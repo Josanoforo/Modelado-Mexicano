@@ -406,6 +406,7 @@
   ],
   "nota": {
     "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL.",
+    "limite_cobertura_T03_rutas": "T03 (t03_dangling_refs, tests/check.py) construye su set de archivos existentes con os.path.basename -- sin ruta -- y su regex de extraccion de citas en backticks no incluye '/' en la clase de caracteres permitida. Una cita con ruta (`carpeta/archivo.md`) nunca produce un match: no se extrae, así que ni se valida ni se marca colgante, exista el archivo o no. El conteo de T03 (y por lo tanto esta línea base) cubre solo citas en forma de nombre desnudo (`archivo.md`); las citas con ruta son un punto ciego, no verificado en ninguna dirección. Encontrado el 29/jul/2026 al citar un report con `corpus/reports/` de prefijo en forense/hitoD-preregistro-v2_0.md y confirmar que T03 no lo marcaba ni truncado ni corregido. No corregido en check.py -- fuera de alcance de esta sesión.",
     "fecha_de_clasificacion": "2026-07-29",
     "conteo_por_bucket": {
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
