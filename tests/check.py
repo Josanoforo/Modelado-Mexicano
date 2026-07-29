@@ -36,8 +36,21 @@ def warn(test, msg):
     (FAILS if STRICT else WARNS).append((test, msg))
 
 def newest(pattern):
-    """El archivo vigente de un artefacto versionado. Falla si hay más de uno."""
-    hits = sorted(glob.glob(os.path.join(ROOT, pattern)))
+    """El archivo vigente de un artefacto versionado. Ordena por versión
+    semántica extraída del nombre (v<major>[._]<minor>), no por orden
+    lexicográfico de string -- lexicográfico rompe en cuanto una versión
+    llega a dos dígitos (`v1_10` ordena antes que `v1_9` como texto, no
+    como versión). Un archivo sin versión en el nombre queda al final del
+    empate, ordenado por nombre. (Hoy cada patrón que llama a esta función
+    resuelve a un único archivo -- verificado -- así que este cambio no
+    mueve ningún resultado vigente; es endurecimiento contra el próximo
+    salto de versión de dos dígitos, no una corrección de un bug visto.)"""
+    hits = glob.glob(os.path.join(ROOT, pattern))
+    def _version_key(h):
+        m = re.search(r"v(\d+)[._](\d+)", os.path.basename(h))
+        version = (int(m.group(1)), int(m.group(2))) if m else (-1, -1)
+        return (version, os.path.basename(h))
+    hits.sort(key=_version_key)
     return hits[-1] if hits else None
 
 def reports():
@@ -542,7 +555,26 @@ def t17_fichas_count():
     se escriba (o se retire) no deje la declaración de estado stale como
     pasó con R3.2 (el propio motivo de esta sesión: T14/T15/T16 taparon
     3 de los 7 puntos de escritura manual; este era uno de los que no
-    tenían test propio)."""
+    tenían test propio).
+
+    Endurecido (29/jul/2026): el patrón busca TODAS las líneas que digan
+    'hitoD-preregistro` tiene **N fichas**' -- ancla al SENTIDO de la frase
+    (cobertura del pre-registro), no a un patrón amplio como '\\d+ de 27',
+    porque `estado:192` ('Paso 2 — EN CURSO. N de 27 corrida') usa el mismo
+    27 como denominador para medir algo distinto -- ejecución, no
+    cobertura -- y un patrón anclado al denominador lo confundiría con esta
+    declaración. `estado:192` necesita su propio aserto, todavía sin test
+    propio -- no se cubre aquí. Hereda de T16
+    la exención de historia fechada (`_CAMBIO_FECHADO`): una mención vieja
+    dentro de un changelog con fecha no cuenta como una segunda declaración
+    vigente en desacuerdo.
+
+    NOTA: hoy esa exención es código muerto -- verificado. `estado:48`, el
+    único changelog fechado que menciona el pre-registro, dice "...no tiene
+    ficha alguna" (singular, sin número), no 'hitoD-preregistro` tiene **N
+    fichas**' -- no matchea el patrón de este test, con o sin exención. La
+    exención está aquí por diseño (hereda la misma disciplina de T16), no
+    porque hoy esté excluyendo nada."""
     h = newest("forense/hitoD-preregistro-v*.md")
     if not h:
         fail("T17", "no se pudo leer `forense/hitoD-preregistro-v*.md`")
@@ -553,14 +585,27 @@ def t17_fichas_count():
         fail("T17", "no se pudo leer `canon/estado-programa-v*.md`")
         return
     s = read(p)
-    m = re.search(r"hitoD-preregistro`\s*tiene\s*\*\*(\d+)\s*fichas\*\*", s)
-    if not m:
-        fail("T17", f"{rel(p)}: no se encontró la declaración canónica de cobertura "
-                    f"del pre-registro ('hitoD-preregistro` tiene **N fichas**' en §4·S2)")
+    pat = re.compile(r"hitoD-preregistro`\s*tiene\s*\*\*(\d+)\s*fichas\*\*")
+    vigentes = []
+    for i, l in enumerate(s.split("\n"), 1):
+        m = pat.search(l)
+        if not m or _CAMBIO_FECHADO.match(l):
+            continue
+        vigentes.append((i, int(m.group(1))))
+    if not vigentes:
+        fail("T17", f"{rel(p)}: no se encontró ninguna declaración vigente de cobertura "
+                    f"del pre-registro ('hitoD-preregistro` tiene **N fichas**' en §4·S2, "
+                    f"fuera de historia fechada)")
         return
-    declarado = int(m.group(1))
-    ln = s[:m.start()].count("\n") + 1
+    distintos = sorted(set(n for _, n in vigentes))
+    if len(distintos) > 1:
+        detalle = " · ".join(f"{rel(p)}:{i}={n}" for i, n in vigentes)
+        fail("T17", f"{rel(p)}: {len(vigentes)} declaraciones vigentes de cobertura, "
+                    f"no todas iguales: {detalle}")
+        return
+    declarado = distintos[0]
     if declarado != real:
+        ln = vigentes[0][0]
         fail("T17", f"{rel(p)}:{ln} declara {declarado} fichas; "
                     f"{rel(h)} tiene {real} encabezados `## R`")
 
