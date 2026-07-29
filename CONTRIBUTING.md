@@ -58,7 +58,7 @@ constructo **en el glosario**. `T05` lo rechaza.
 ## 6 · Procedencia
 
 **(a)** dato EN México · **(b)** muestra de diáspora — *no es evidencia sobre
-M�xico* · **(c)** marco importado.
+México* · **(c)** marco importado.
 
 **La marca VIAJA** con el constructo a cualquier dominio. Un marco **(c)**
 no puede usarse como **causa**: `T09` lo rechaza.
