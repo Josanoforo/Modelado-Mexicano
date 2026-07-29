@@ -1,11 +1,11 @@
 # Modelo de decisión del mexicano contemporáneo
-### `modelo` · **v3.2** · CANÓNICO OPERATIVO
+### `modelo` · **v3.3** · CANÓNICO OPERATIVO
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `modelo-decision-v3.2.md` |
-> | **REEMPLAZA A** | `modelo` **y** la ficha canónica *(eliminada, ADR-36.b)* — **borrar los dos** |
-> | **VERIFICAS ASÍ** | §0 llega al **cambio 33** · la regla R1.1 de §3.1 trae la marca `DOMINIO AGRÍCOLA: INEJECUTABLE` |
+> | **ARCHIVO** | `modelo-decision-v3.3.md` |
+> | **REEMPLAZA A** | `modelo-decision-v3.2.md` — **borrar** |
+> | **VERIFICAS ASÍ** | §0 llega al **cambio 35** · la regla R1.1 de §3.1 trae la marca `DOMINIO AGRÍCOLA: INEJECUTABLE` · §7 trae el **Registro congelado de IDs** (tabla de 49 filas) junto a la declaración del perímetro |
 > | **NOMBRE ESTABLE** | **`modelo`** — cítalo así (*"ver `modelo §3.B`"*), **nunca por nombre de archivo**. Así las versiones suben sin dejar referencias colgando |
 
 > **v3.1 — 28/jul/2026. Tres defectos de redacción corregidos, detectados al escribir el pre-registro del Hito D.** El motor sigue en **49 reglas**; lo que cambia es **qué afirman tres `PORQUE`**.
@@ -18,6 +18,13 @@
 > | 32 | **`§3.7` R7.1 deja de ser una predicción histórica.** Enunciaba dos elecciones concretas; **dos elecciones no falsan un mecanismo**. Se reformula contra **peso percibido del acto**, con las cifras como **instancias**, no como la regla | **D-05** |
 >
 > ⚠️ **Lo que NO se tocó, a propósito.** **D-02** (drivers `(b)` de diáspora bajo tier `[FUERTE]` en R4.2 y R5.2) y **D-03** (la fuerza vive en una palabra: *"SOLO"* legitima, *"destruye"* capital social, en R2.2 y R10.2) **son exactamente lo que sus falsadores van a atacar.** Corregirlos ahora sería mover el blanco después de apuntar. **D-06** no es defecto de redacción: es el conflicto de dato `conf.06`, abierto.
+
+> **v3.3 — 29/jul/2026. Corrección de rótulo del perímetro + registro congelado de IDs.** El motor sigue en **49 reglas**; el perímetro sigue en **27**. Ninguno de los dos cambia — lo que cambia es cómo se nombran y se citan.
+>
+> | # | Cambio | Origen |
+> |---|---|---|
+> | 34 | **`§7`: corrección de RÓTULO.** El registro de decisión decía *"20 `[FUERTE]` + 5 `[MEDIA-FUERTE]` + 2 compuestas"*, tratando a `R1.4` (`[FUERTE como correlación]`) como si fuera una segunda mitad partida. No lo es: la única regla que su propia ficha declara compuesta ("dos falsadores, uno por mitad") es `R4.3` (`[FUERTE / MEDIA]`). `R1.4` es un tier distinto, con un solo falsador que ataca la correlación, no la causa. **El perímetro no cambia: siguen siendo las mismas 27 fijadas el 28/jul/2026, antes de escribir el primer falsador** | Verificación 29/jul/2026 |
+> | 35 | **`§7`: Registro congelado de IDs.** El esquema de ID vigente se derivaba de (posición, tier): las fichas numeran secuencialmente solo entre reglas de perímetro, saltando las `[MEDIA]` y `[HIPÓTESIS]`. Es inservible para un pre-registro — si una `[MEDIA-FUERTE]` se degrada tras su falsador, la regla siguiente cambiaría de ID por efecto de una falsación, no de una decisión. Los **24 IDs ya usados en fichas quedan fijos, nunca se recomputan**; `§3.3` recibe ID por primera vez, tomado de las citas que ya existen en `gobernanza` y `estado`; las **22 reglas restantes** reciben el número libre de su sección en orden posicional — de ahí que `§3.4`, `§3.7` y `§3.9` queden fuera de orden posicional: **un ID es etiqueta, no posición** | Verificación 29/jul/2026 |
 
 **MAYOR 3.0 porque absorbe la ficha canónica, que se elimina.** *(ADR-36.)* La ficha no tenía una sola afirmación propia: era una compresión del modelo v1, que no era autocontenido. El v2 sí lo es, así que la ficha solo aportaba **superficie de desincronización** — y esa desincronización fue el mecanismo del Hito 2: *de 13 reglas que los verticales dijeron estresar, 6 no existían y 4 divergían*. No inventaron: leyeron una ficha desfasada. **Una sección no se puede desincronizar de su propio documento.**
 
@@ -396,7 +403,67 @@ Transcripción del v1, sin cambios. Orden de aplicación: segmento → parámetr
 | **TOTAL** | **49** *(v2.5: +2 por la ampliación de alcance a crédito · v2.4: +3 por la segunda diagonal y las tres reglas que bajaron del barrido forense)* |
 
 **Son 20 reglas `[FUERTE]`, no 19.** El "19" venía de `CHECKPOINT-v2 §9` —hoy fusionado en `estado`— y se contó **antes** del cambio 10 (§3.7 HIPÓTESIS → FUERTE) y quedó congelado. Distribución por dominio: §3.1 **3** · §3.2 1 · §3.3 **2** · §3.4 2 · §3.5 2 · §3.6 0 · §3.7 3 · §3.8 3 · §3.9 2 · §3.10 2.
-**✅ PERÍMETRO DEL HITO D — DECIDIDO el 28/jul/2026: 27 reglas.** = 20 `[FUERTE]` + **5** `[MEDIA-FUERTE]` + 2 compuestas. *(Eran 26; la partición de protesta/autodefensa convirtió una `[MEDIA-FUERTE]` en dos.)* *(Decisión tomada antes de escribir el primer falsador, no después de ver resultados — que es el requisito.)*
+**✅ PERÍMETRO DEL HITO D — DECIDIDO el 28/jul/2026: 27 reglas.** = 20 `[FUERTE]` + 1 `[FUERTE como correlación]` + 1 compuesta `[FUERTE / MEDIA]` + **5** `[MEDIA-FUERTE]`. *(Eran 26; la partición de protesta/autodefensa convirtió una `[MEDIA-FUERTE]` en dos.)* *(Decisión tomada antes de escribir el primer falsador, no después de ver resultados — que es el requisito.)*
+
+⚠️ **Corrección de RÓTULO, 29/jul/2026 (cambio 34).** Este renglón decía *"20 `[FUERTE]` + 5 `[MEDIA-FUERTE]` + 2 compuestas"*. Solo existe **una** compuesta: `R4.3` (`[FUERTE / MEDIA]`), cuya propia ficha en `hitoD-preregistro` se declara *"Compuesta: dos falsadores, uno por mitad"*. La segunda plaza que el rótulo contaba como compuesta la ocupaba `R1.4`, que es tier `[FUERTE como correlación]` — distinto de `[FUERTE / MEDIA]` y **no** una regla partida: lleva un solo falsador, que ataca la correlación. **El perímetro NO cambia: siguen siendo las mismas 27 reglas fijadas el 28/jul/2026, antes de escribir el primer falsador** — esto es una corrección de cómo se nombran 2 de las 27, no de cuáles son las 27.
+
+**Registro congelado de IDs *(v3.3, cambio 35)*.** El esquema anterior derivaba el ID de (posición, tier): las 24 fichas de `hitoD-preregistro` numeran secuencialmente solo entre reglas de perímetro, saltando las `[MEDIA]` y `[HIPÓTESIS]` — así, `R4.2` ("hombre sin permiso laboral") es el 3.er bullet de `§3.4` pero el 2.º ID de perímetro, y `R7.4`/`R7.5` (protesta/autodefensa) son los bullets 8 y 9 de `§3.7`. Eso es inservible para un pre-registro: `gobernanza` pre-registra que una `[MEDIA-FUERTE]` que no sobreviva su falsador queda **degradada a `[MEDIA]`** — fuera del perímetro —, y si eso le pasa a `R7.4`, `R7.5` cambiaría de ID sin que nadie la haya tocado. **Un ID pre-registrado no puede cambiar como resultado de una falsación.**
+
+**Decisión: los IDs son un registro CONGELADO, no una fórmula.** (a) Los **24 IDs ya usados en fichas** (`R1.1`–`R10.3`, ver `hitoD-preregistro`) quedan exactamente como están; nunca se recomputan. (b) `§3.3` nunca tuvo ficha; sus IDs salen de las citas que ya existen en `gobernanza` y `estado` (`R3.4` = el gate). (c) Las **22 reglas restantes** (sin ficha) reciben el número libre de su sección, en **orden posicional** entre sí — por eso `§3.4`, `§3.7` y `§3.9` quedan fuera de orden posicional frente a la línea del motor: **un ID es etiqueta, no posición.**
+
+| ID | Línea | Enunciado corto | Tier | ¿Ficha? |
+|---|---|---|---|---|
+| `R1.1` | L213 | Volatilidad/informalidad → horizonte corto, ahorro informal | `[FUERTE]` | Sí |
+| `R1.2` | L214 | Empleo formal estable → planeación larga (afore/seguro/hipoteca) | `[FUERTE]` | Sí |
+| `R1.3` | L215 | Canal de confianza personal → sube adopción financiera | `[FUERTE]` | Sí |
+| `R1.4` | L216 | Movilidad bloqueada + presión de estatus → consumo compensatorio | `[FUERTE como correlación]` | Sí |
+| `R1.5` | L217 | Seguro de depósito/marca confiable → atenúa aversión | `[MEDIA]` | No |
+| `R1.6` | L218 | Popular/informal + crédito alto CAT → sobreprecio con techo (15–20%) | `[MEDIA]` | No |
+| `R1.7` | L219 | Baja fricción + usura + reporte incompleto → daño downstream | `[MEDIA]` | No |
+| `R2.1` | L224 | Jerarquía tradicional → deferencia, iniciativa suprimida | `[FUERTE]` | Sí |
+| `R2.2` | L225 | Liderazgo benévolo → lealtad; **SOLO** benevolencia legitima | `[MEDIA-FUERTE]` | Sí |
+| `R2.3` | L226 | Prestaciones formales (IMSS/Infonavit) → pesan más que salario | `[MEDIA]` | No |
+| `R2.4` | L227 | Joven urbano (perfil 5) → cambia de empleo sin culpa | `[MEDIA]` | No |
+| `R3.1` | L232 | Trámite presencial discrecional sin registro → mordida | `[FUERTE]` | No |
+| `R3.2` | L233 | Digitalización/testigos/registrable → baja la mordida | `[FUERTE]` | No |
+| `R3.3` | L234 | Norma inútil + sanción improbable → evasión ("hacerse guaje") | `[MEDIA]` | No — **fuera del perímetro** |
+| `R3.4` | L235 | Gobierno digital coercitivo (CoDi) rechazado vs. útil (SPEI) adoptado — **el gate** | `[MEDIA-FUERTE]` | No |
+| `R4.1` | L240 | Sin IMSS + leve-moderado → farmacia con consultorio/automedicación | `[FUERTE]` | Sí |
+| `R4.4` | L241 | Grave/crónico complejo → sistema público pese a la espera | `[MEDIA]` | No |
+| `R4.2` | L242 | Hombre sin permiso laboral → pospone el chequeo | `[FUERTE]` | Sí |
+| `R4.3` | L243 | Desabasto → abandono / familia cuidadora → adherencia | `[FUERTE / MEDIA]` — compuesta | Sí |
+| `R4.5` | L244 | Producto con sellos + precio similar → elige menos sellos | `[MEDIA]` | No |
+| `R5.1` | L249 | Volatilidad/ausencia de Estado → familia como seguro | `[FUERTE]` | Sí |
+| `R5.2` | L250 | Cuidado (mayores/niños/enfermos) → recae en mujeres 40+ | `[FUERTE]` | Sí |
+| `R5.3` | L251 | Baja garantía institucional del matrimonio → unión libre | `[MEDIA]` | No |
+| `R5.4` | L252 | Cortejo urbano-joven-conectado → apps, guiones desiguales | `[MEDIA / HIPÓTESIS]` | No |
+| `R6.1` | L257 | Cita formal-laboral vs. social → interruptor formal/informal | `[MEDIA]` | No |
+| `R6.2` | L258 | Invitación social + descortesía de decir no → "sí voy" incierto | `[HIPÓTESIS]` | No |
+| `R6.3` | L259 | Recursos escasos + urgencias → pospone, "bomberazo" | `[MEDIA]` | No |
+| `R6.4` | L260 | Cita médica con costo por faltar → cumple más con recordatorio | `[MEDIA]` | No |
+| `R7.1` | L265 | Peso percibido del acto → participación diferencial | `[FUERTE]` | Sí |
+| `R7.2` | L266 | Delito sin cobertura de seguro → no denuncia (cifra negra) | `[FUERTE]` | Sí |
+| `R7.3` | L267 | Transferencia sin proximidad/monitoreo → conserva autonomía del voto | `[FUERTE]` | Sí |
+| `R7.6` | L268 | Proximidad/focalización o monitoreo percibido → autonomía cede localmente | `[MEDIA]` | No |
+| `R7.7` | L269 | Dádiva + broker → compra turnout, no vote-choice | `[MEDIA]` | No |
+| `R7.8` | L270 | Transferencia no condicionada → se vive como derecho (entitlement) | `[HIPÓTESIS]` | No |
+| `R7.9` | L271 | Transferencia no condicionada → atribución al líder, no voto comprado | `[MEDIA]` | No |
+| `R7.4` | L272 | Agravio + falla estatal + red previa + entorno urbano → protesta | `[MEDIA-FUERTE]` | Sí |
+| `R7.5` | L273 | Agravio + falla estatal + red previa + vacío rural → autodefensa | `[MEDIA-FUERTE]` | Sí |
+| `R8.1` | L278 | Comité con monitoreo + sanción visible → contribuye; sin ellos, free-riding | `[FUERTE]` | Sí |
+| `R8.2` | L279 | Conoce a la organizadora → entra a la tanda; desconocidos → evita | `[FUERTE]` | Sí |
+| `R8.3` | L280 | Puente personal → confía en el desconocido; sin puente, desconfía | `[FUERTE]` | Sí |
+| `R8.4` | L281 | Pueblo mestizo con sanción social → participa; urbano sin sanción → baja | `[MEDIA]` | No |
+| `R9.3` | L287 | Allegado de confianza → sube credibilidad inicial | `[MEDIA]` | No |
+| `R9.1` | L288 | Experto accesible/cercano/asequible → defiere | `[FUERTE]` | Sí |
+| `R9.2` | L289 | Vacuna/servicio disponible + campaña llega → la mayoría acepta | `[FUERTE]` | Sí |
+| `R9.4` | L290 | Clase media con miedo a caer → escuela privada como seguro anticaída | `[MEDIA]` | No |
+| `R10.1` | L297 | Rechazo → indirecto (face + simpatía) | `[FUERTE]` | Sí |
+| `R10.2` | L298 | Retroalimentación negativa pública → destruye capital social | `[MEDIA-FUERTE]` | Sí |
+| `R10.3` | L299 | Inseguridad/autoridad no confiable → "ver, oír y callar" | `[FUERTE]` | Sí |
+| `R10.4` | L300 | Interlocutor norteño/joven vs. sur/mayor/rural → directividad distinta | `[MEDIA]` | No |
+
+⚠️ **La identidad de cada ID es el texto de la regla, NO la línea.** El validador (`tests/validador_registro_ids.py`) ancla cada ID a una subcadena estable del propio `SI` de la regla, y localiza esa subcadena por búsqueda de texto dentro de su sección — nunca por número de línea. La columna **Línea** de arriba es solo referencia de lectura contra esta versión del archivo (v3.3): si el documento se reedita y las reglas se desplazan, la línea cambia pero el ID **no**, porque no depende de ella. Un registro anclado a posición reintroduciría el acoplamiento (posición, tier) que este registro congelado vino a eliminar — ver PASO 2 de la sesión del 29/jul. *(49 filas: las 27 de perímetro con ficha o con cita en canon, más las 22 sin ficha de las demás secciones. Recuento exacto: `python3 tests/validador_registro_ids.py`.)*
 
 **Cómo se pre-registran las 6 que no son `[FUERTE]` pura, para que la ambigüedad de tier informe en vez de estorbar:**
 
