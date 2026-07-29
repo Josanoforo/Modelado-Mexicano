@@ -1,5 +1,5 @@
 {
-  "head": "26e7ef4bec9b9ec898d3b5f500613066b9635eb4",
+  "head": "31fff96c3d432bfcabfdaf65dcd136ae2b4487cf",
   "fails": [
     [
       "T05",
@@ -77,22 +77,6 @@
   "warns": [
     [
       "T03",
-      "TRANSFER-maestra-7.md: cita `-v3.2.md`, que no existe"
-    ],
-    [
-      "T03",
-      "TRANSFER-maestra-7.md: cita `-v3_2.md`, que no existe"
-    ],
-    [
-      "T03",
-      "TRANSFER-maestra-8.md: cita `-v3.2.md`, que no existe"
-    ],
-    [
-      "T03",
-      "TRANSFER-maestra-8.md: cita `-v3_2.md`, que no existe"
-    ],
-    [
-      "T03",
       "canon/estado-programa-v1_9.md: cita `...-v3.0.md`, que no existe"
     ],
     [
@@ -101,67 +85,59 @@
     ],
     [
       "T03",
-      "canon/gobernanza-v1_9.md: cita `estado-programa-v1.1.md`, que no existe"
+      "forense/censo-integridad-v1_0.md: cita `estado-programa-v1.1.md`, que no existe"
     ],
     [
       "T03",
-      "canon/gobernanza-v1_9.md: cita `glosario-v5.5.md`, que no existe"
+      "forense/censo-integridad-v1_0.md: cita `glosario-v5.5.md`, que no existe"
     ],
     [
       "T03",
-      "canon/gobernanza-v1_9.md: cita `modelo-decision-v3.0.md`, que no existe"
+      "forense/censo-integridad-v1_0.md: cita `modelo-decision-v3.0.md`, que no existe"
     ],
     [
       "T03",
-      "censo-integridad-v1_0.md: cita `estado-programa-v1.1.md`, que no existe"
+      "forense/censo-integridad-v1_1.md: cita `-v3.2.md`, que no existe"
     ],
     [
       "T03",
-      "censo-integridad-v1_0.md: cita `glosario-v5.5.md`, que no existe"
+      "forense/censo-integridad-v1_1.md: cita `-v3_2.md`, que no existe"
     ],
     [
       "T03",
-      "censo-integridad-v1_0.md: cita `modelo-decision-v3.0.md`, que no existe"
+      "forense/censo-integridad-v1_1.md: cita `estado-programa-v1_7.md`, que no existe"
     ],
     [
       "T03",
-      "censo-integridad-v1_1.md: cita `-v3.2.md`, que no existe"
+      "forense/censo-integridad-v1_1.md: cita `estado-programa-v1_8.md`, que no existe"
     ],
     [
       "T03",
-      "censo-integridad-v1_1.md: cita `-v3_2.md`, que no existe"
+      "forense/censo-integridad-v1_1.md: cita `gobernanza-v1_8.md`, que no existe"
     ],
     [
       "T03",
-      "censo-integridad-v1_1.md: cita `estado-programa-v1_7.md`, que no existe"
+      "forense/censo-integridad-v1_1.md: cita `modelo-decision-v3_2.md`, que no existe"
     ],
     [
       "T03",
-      "censo-integridad-v1_1.md: cita `estado-programa-v1_8.md`, que no existe"
+      "forense/censo-integridad-v1_1.md: cita `v1_9.md`, que no existe"
     ],
     [
       "T03",
-      "censo-integridad-v1_1.md: cita `gobernanza-v1_8.md`, que no existe"
+      "forense/historico/TRANSFER-maestra-7.md: cita `-v3.2.md`, que no existe"
     ],
     [
       "T03",
-      "censo-integridad-v1_1.md: cita `modelo-decision-v3_2.md`, que no existe"
+      "forense/historico/TRANSFER-maestra-7.md: cita `-v3_2.md`, que no existe"
     ],
     [
       "T03",
-      "censo-integridad-v1_1.md: cita `v1_9.md`, que no existe"
+      "forense/historico/TRANSFER-maestra-8.md: cita `-v3.2.md`, que no existe"
     ],
     [
       "T03",
-      "forense/curaduria-archivos.md: cita `CHECKPOINT-programa-psicologia-mexicano.md`, que no existe"
-    ],
-    [
-      "T03",
-      "forense/curaduria-archivos.md: cita `glosario-v5.md`, que no existe"
-    ],
-    [
-      "T03",
-      "forense/curaduria-archivos.md: cita `gobernanza-programa.md`, que no existe"
+      "forense/historico/TRANSFER-maestra-8.md: cita `-v3_2.md`, que no existe"
     ],
     [
       "T10",
@@ -429,13 +405,12 @@
     ]
   ],
   "nota": {
-    "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver censo-integridad-v1_1.md §1 para la derivación completa de cada bucket.",
+    "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL.",
     "fecha_de_clasificacion": "2026-07-29",
     "conteo_por_bucket": {
-      "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 6,
+      "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 8,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 5,
-      "T03_nombrado_sin_borrado_explicito_en_ninguna_fuente__gap_de_documentacion": 3,
       "T05_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 5,
       "T06_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T07_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
