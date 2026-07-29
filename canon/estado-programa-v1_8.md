@@ -1,11 +1,11 @@
 # ESTADO DEL PROGRAMA · Psicología del Mexicano Contemporáneo
-### `estado` · **v1.7** · 28 de julio de 2026 · **ÚNICA FUENTE DE ESTADO**
+### `estado` · **v1.8** · 29 de julio de 2026 · **ÚNICA FUENTE DE ESTADO**
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `estado-programa-v1.7.md` |
-> | **REEMPLAZA A** | `estado-programa-v1_6.md` — **borrar** |
-> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v3.2** y `hitoD-R1.1` · §7 registra **1 de 27 corridas** |
+> | **ARCHIVO** | `estado-programa-v1.8.md` |
+> | **REEMPLAZA A** | `estado-programa-v1_7.md` — **borrar** |
+> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v3.2** y `hitoD-R1.1` · §7 registra el pre-registro en **24 de 27**, no en 27 de 27 |
 > | **NOMBRE ESTABLE** | **`estado`** — cítalo así, **nunca por nombre de archivo** |
 
 ---
@@ -44,6 +44,8 @@
 > **Por qué se fusionan.** Los tres describían el estado del programa y **ninguno describía el estado del programa**: el CHECKPOINT se escribió a media sesión y quedó congelado antes del Hito C; `mapa-y-roadmap`, fechado el mismo día, tenía **cero menciones** de modelo v2, glosario v5, ADR-30, Hito C ni de la corrida de refutaciones; `inventario-corpus` declaraba 57 archivos y no mencionaba ninguno de los ocho artefactos de la última sesión. Cuatro cifras del mismo objeto circulaban a la vez —57, ~59, 61— y dos conteos de reports —30 y 31—.
 >
 > **Tres fuentes de estado es deriva, no redundancia.** La regla de la casa —*duplicar la fuente de verdad es el defecto*— aplica al estado igual que a los ADR.
+>
+> **v1.8 — 29/jul.** Auditoría de perímetro de la suite de verificación (`tests/check.py`). Cuatro cambios: (1) **§7 se corrige** — el pre-registro del Hito D cubre **24 de 27**, no 27 de 27, y el dominio `§3.3` del motor no tiene ficha alguna; (2) se cierra en §4·S2 una deuda abierta desde antes de ADR-37 — el perímetro **no está en duda**, es 27 y cuadra exacto contra el motor real; (3) entra en §4·S1 lo que sí queda vivo: **nada vigila el vocabulario de tier dentro del motor**, solo en `corpus/reports/`; (4) entra en §4·S2 el perímetro real de T07–T10, con el defecto de `integrador:174` (la marca de procedencia no viaja con el tier). La suite corre completa: **18 FAIL · 107 WARN**. Fuentes: `forense/notas/2026-07-29-perimetro-suite-T07-T10.md` y su verificación `forense/notas/2026-07-29-b-correccion-perimetro.md`, que **retira** la ambigüedad 20/27 planteada como hipótesis de trabajo y registra qué cifras de la primera nota no se reprodujeron.
 
 ---
 
@@ -99,14 +101,17 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 ### S1 · Grande, sin resolver
 - **Cero datos primarios propios.** Deuda del programa, no de ningún report.
 - **PD-01 · 14 descartes irrecuperables.** Nunca se escribieron. **NO RECONSTRUIR.**
+- **Vocabulario de tier del motor: 7 etiquetas donde el canónico define 4, y nada lo vigila.** Conteo real de `§3.B` (salida de T12, `tests/check.py` sobre HEAD `9301e59`): `20 [FUERTE] · 19 [MEDIA] · 5 [MEDIA-FUERTE] · 2 [HIPÓTESIS] · 1 [FUERTE como correlación] · 1 [FUERTE / MEDIA] · 1 [MEDIA / HIPÓTESIS]` = 49 reglas. Las cuatro primeras son el canónico (glosario, y el `CANONICO` de T07); las tres últimas son compuestas. **T07 solo vigila el vocabulario de `corpus/reports/`, nunca el del motor** — no hay registro de si las tres compuestas son extensión sancionada del vocabulario de 4 o deriva sin documentar, y **nada haría ruido si apareciera una cuarta**. Decisión pendiente, no tomada aquí. ⚠️ *Esto **no** implica ambigüedad de perímetro: ver §4·S2, cerrado.* *(`forense/notas/2026-07-29-b-correccion-perimetro.md §1, §3`)*
 
 ### S2 · Bloquean trabajo futuro
 - ✅ ~~ADR-25, backtest mal especificado~~ — **CERRADO el 28/jul (ADR-37)**, el S2 más antiguo del programa. El gate pasa de **una** condición a **tres**: reproducción · **prueba de mecanismo** (apagar `riesgo_fiscal_percibido` debe colapsar la brecha ≥70%) · **anti-confusión** (apagar el canal debe dejarla persistir). **Desbloquea `R3.4`.** ⚠️ Los umbrales de B y C son **ASIGNADOS**; calibrar contra series de SPEI antes de Fase 1. ⚠️ **Límite declarado:** el gate no separa **coerción de fricción**.
 - **`civico.voto.clientelar` compilaba una cifra de laboratorio como campo** — `p: 0.63` de Ascencio-Chang con tier `FUERTE`. Degradada a `MEDIA`; campo **`procedencia_p`** obligatorio en toda regla. **Nadie había aplicado a las probabilidades de regla la disciplina que `procedencia.yaml` aplica a los parámetros.**
 - **Los 90 parámetros de dispersión de ADR-28.d** no existen en archivo. Mientras falten, el check de varianza intraperfil de `modelo §1.2` **no puede correr**. Requisito de salida en `procedencia.yaml`.
 - **Los 30 componentes de `confianza_institucional` por perfil**: el vector está declarado (ADR-28.b) y **sin poblar**.
-- **Decisión de alcance del Hito D** sin registrar: ¿20 reglas `[FUERTE]` puras, o 26 incluyendo las 4 `[MEDIA-FUERTE]` y las 2 híbridas? **Debe fijarse antes del primer falsador, no después de ver resultados.**
+- ⭐ **El pre-registro del Hito D cubre 24 de 27, y `§3.3` no tiene un solo falsador.** `hitoD-preregistro` v2.0 tiene **24 fichas** (encabezados `## R`, de `R1.1` a `R10.3`): 18 `[FUERTE]` + 4 `[MEDIA-FUERTE]` + 1 `[FUERTE como correlación]` + 1 `[FUERTE / MEDIA]`. **Faltan 3: dos `[FUERTE]` y una `[MEDIA-FUERTE]`.** No existe ningún encabezado `R3.x` — **el dominio `§3.3` del motor (autoridad, trámite y relación con el Estado) quedó entero fuera del pre-registro**. `R3.4` se nombra en el cuerpo pero **no tiene ficha**, pese a que ADR-37 la declaró desbloqueada el 28/jul. ⚠️ **Por qué pesa más que un conteo:** `§3.3` es donde vive `riesgo_fiscal_percibido`, el disparador del que depende el gate de Fase 1. **El dominio que sostiene el gate es el único sin falsadores, y tres artefactos lo daban por cubierto** — `hitoD-preregistro:8` (*"contiene 27 fichas"*), `:13` (*"27 de 27"*) y este archivo en su v1.7 §7. Corregido aquí; los otros dos son append-only y no se tocan. *(`forense/notas/2026-07-29-b-correccion-perimetro.md §4`)*
+- ✅ ~~**Decisión de alcance del Hito D** sin registrar: ¿20 reglas `[FUERTE]` puras, o 26 incluyendo las 4 `[MEDIA-FUERTE]` y las 2 híbridas?~~ — **CERRADO, `gobernanza:266` (ADR-37, 28/jul):** perímetro = **27** (20 `[FUERTE]` + 5 `[MEDIA-FUERTE]` + 2 compuestas; eran 26 hasta que ADR-33 partió protesta/autodefensa en dos). Las **2 compuestas** son `[FUERTE como correlación]` y `[FUERTE / MEDIA]` —así las nombra `hitoD-preregistro:17`, y así aparecen en las fichas de `R1.4` y `R4.3`—; `[MEDIA / HIPÓTESIS]` queda fuera. 20+5+1+1 = **27**, exacto contra el motor real (T12). **Esta entrada llevaba abierta desde antes de ADR-37 y nunca se cerró aquí — era deuda documental, no sustantiva.**
 - **8 refutaciones sin objeto** — incluida `ref.A.02`, la única `MUY_FUERTE` de las 49 (2,207 h/año, el mayor de la OCDE). El modelo no tiene variable de esfuerzo, colorismo, salud mental ni entidad prestamista. **Ampliar el modelo o declarar el alcance y retirarlas.**
+- **T07–T10 solo ven `corpus/reports/*.md`.** No cubren `canon/`, `corpus/forense/`, `forense/` ni `milpa/`. Ampliar **T09** a esos directorios **no añade señal**: los disparos nuevos son mención crítica o falso positivo por co-ocurrencia, **cero usos causales**. Ampliar **T10** sí encuentra algo real en `integrador-psicologia-mexicano.md`: **4 defectos de medida del propio T10** —el integrador marca la procedencia de diáspora con convenciones locales (`[Fuerte, con caveat US]`, `Caveat US:`, `muestras US-hispanas`) que el patrón literal de T10, `(b)`/"diáspora", no reconoce— y **1 defecto real del integrador**: `integrador:174` presenta a Arciniega 2008, Castillo 2010 y Wheeler 2010 como *"Evidencia a favor. **Sólido**"* sin marca de procedencia, mientras el caveat que las declara población latina en EE.UU. vive en `integrador:175`, bajo *"Evidencia en contra / límites"* — la sección opuesta. **El tier se asigna sin la marca; la marca llega como limitación.** *(Las dos líneas leídas textualmente.)* **Decisión pendiente, no tomada aquí:** ¿se amplía el patrón de T10 para reconocer las convenciones locales del integrador, o el integrador adopta el marcador formal `(b)` de `modelo §0.1`? ⚠️ **Los conteos de disparos de la nota original (66/45/5) no se reprodujeron** (65/57/14 al recomputar); no citarlos como verificados. El análisis cualitativo sí está verificado. *(`forense/notas/2026-07-29-perimetro-suite-T07-T10.md §3`; `…-b-correccion-perimetro.md §5, §6`)*
 
 ### S3 · Sustantivas
 - **15 coeficientes de generador nunca validados.** Único punto calibrable hoy: `G3 → horizonte_temporal` vía **panel rotativo ENOE** — sería el primer MEDIDO de 144.
@@ -116,6 +121,7 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 - **26 reglas fuera de la implementación**, sin criterio registrado.
 - **3 de 5 forenses sin tabla de descartes** → ver `descartes-forenses-registro.md`.
 - ⚠️ **El motor sigue SIN ENTIDAD PRESTAMISTA** *(frontera declarada de ADR-35)*. Modela al decisor, no al oferente: el hallazgo mejor sostenido del corpus sobre crédito —*el riesgo vive en el fondeo del prestamista, no en el deudor* (Famsa, Crédito Real; n=2)— **no puede representarse**, y su refutación sigue **sin objeto**.
+- **T03 (`tests/check.py`) produce 41 WARN, no 44** — verificado hoy. El total de WARN de la suite es **107**, no 110. La diferencia no tiene artefacto que la respalde y no se puede reconstruir. *(`forense/notas/2026-07-29-perimetro-suite-T07-T10.md §6`)*
 
 ### S5 · Pendientes irresueltos (no disparan propagación, tienen casillero)
 - **conf.02** · policronía: Trabajo y Tiempo refutan el mismo mito con **mecanismos opuestos**.
@@ -158,7 +164,7 @@ Panel D/E de consumo popular · elasticidades · granularidad municipal · contr
 
 ⚠️ **Antes del Hito D se corrió el `barrido-propagacion-forense`.** De los **22 veredictos ROMPE/MATIZA** de los cinco forenses, **6 nunca habían bajado al motor** y 3 llegaron a medias — tasa de fuga **~41%** en la capa que ADR-29.b considera evidencia primaria. Tres se aterrizaron en v2.4 (**P-01** bandwidth tax, **P-02** condiciones de cesión de la agencia, **P-03** turnout vs. vote-choice). **Los seis quedaron aterrizados**: P-01/02/03 en v2.4; **P-04/05/06 en v2.5, con ampliación de alcance decidida (ADR-35)** — el motor gana dos reglas de crédito y una prohibición dura, y pasa a **49 reglas**.
 
-**✅ Paso 1 COMPLETO. `hitoD-preregistro` v2.0 cubre las 27 del perímetro.** Falsador, umbral y veredictos A/B/C/D para cada una. **Cero búsquedas.**
+**⚠️ Paso 1 INCOMPLETO — `hitoD-preregistro` v2.0 cubre 24 de las 27 del perímetro.** *(Corregido el 29/jul: la v1.7 de este archivo decía "cubre las 27", repitiendo la autodeclaración del propio pre-registro en `:8` y `:13`. El conteo de encabezados `## R` da **24**.)* Las 24 traen falsador, umbral y veredictos A/B/C/D, **con cero búsquedas** — eso se sostiene. **Faltan 3 fichas: dos `[FUERTE]` y una `[MEDIA-FUERTE]`, y son todo `§3.3`** (autoridad, trámite y Estado), incluida `R3.4`, que se nombra en el cuerpo sin ficha propia. Ver §4·S2.
 
 **Seis defectos de redacción detectados sin buscar nada** — todos de la familia de ADR-33, `PORQUE` que no sostiene su `ENTONCES`:
 
@@ -175,7 +181,7 @@ Panel D/E de consumo popular · elasticidades · granularidad municipal · contr
 
 **Dos posiblemente ya falsadas** por evidencia que el corpus contiene: **R1.3** (Nu, 15M sin puente, rural = urbano) y **R1.4** (G2 contestado en D/E). Declarado **antes** de buscar.
 
-~~**Una bloqueada:** R3.4~~ — ✅ **desbloqueada el 28/jul por ADR-37.** Su umbral es ahora el criterio de tres condiciones del gate.
+~~**Una bloqueada:** R3.4~~ — ✅ **desbloqueada el 28/jul por ADR-37.** Su umbral es ahora el criterio de tres condiciones del gate. ⚠️ **Desbloqueada no es pre-registrada:** `R3.4` sigue **sin ficha** en `hitoD-preregistro` v2.0 (§4·S2).
 
 ⚠️ **Esto es el Paso 1. Ninguna regla ha sido probada todavía.** Los 27 umbrales son **ASIGNADOS**, juicio propio, no leídos de ningún report. Un revisor puede moverlos con argumento; **lo que no se vale es moverlos después de ver el resultado**.
 
@@ -196,3 +202,11 @@ Panel D/E de consumo popular · elasticidades · granularidad municipal · contr
 **Siguiente en el orden, por valor informativo y no por facilidad:** R3.2 (ENCIG tiene serie) · R5.1 (Pensión del Bienestar como choque exógeno) · R7.2 (ENVIPE, trae su propio vuelco).
 
 **HITO F · MILPA Fase 1 — POSPUESTO por decisión.**
+
+---
+
+**Suite de verificación (`tests/check.py`) — auditoría de perímetro, 29/jul.** La suite corre completa: **18 FAIL · 107 WARN**. Según la nota del 29/jul, el desglose por test se reprodujo de forma independiente en Windows 11/Python 3.14 contra la corrida original en contenedor Linux. `CONTRIBUTING.md` tenía un byte UTF-8 truncado (pos 2149) que rompía T03 con `UnicodeDecodeError` antes del final de la corrida; corregido en `09bfb05`.
+
+**Lo que la auditoría movió:** se corrigió §7 (el pre-registro cubre **24 de 27**, y `§3.3` no tiene ficha alguna — §4·S2); se cerró una deuda abierta desde antes de ADR-37 (el perímetro **es 27**, sin ambigüedad — §4·S2); quedan abiertos que **T07 no vigila el vocabulario de tier del motor** (§4·S1) y la disyuntiva de **T10 vs. la convención de procedencia del integrador** (§4·S2).
+
+⚠️ **Al usar la nota del 29/jul:** su análisis cualitativo está verificado, pero **sus conteos de disparos de T10 (66/45/5) no se reprodujeron** y una cita suya a `curaduria-archivos.md:23` no checa contra el archivo. Detalle en `forense/notas/2026-07-29-b-correccion-perimetro.md §5–§6`.
