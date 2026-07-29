@@ -352,3 +352,43 @@ Los agrupa un patrón: **dato organizacional propietario** (R2.2, R8.2, R10.2), 
 **¿Dónde hay evidencia débil e intuición fuerte?** En **los umbrales mismos**. Los 27 son **juicio mío, no leídos de ningún report**. Están escritos antes de buscar —eso los hace honestos— pero **son ASIGNADOS**. Un revisor puede moverlos con argumento; **lo que no se vale es moverlos después de ver el resultado**, y ése es el único compromiso que este documento pide.
 
 **¿Qué sería peligroso mal usado?** Tres cosas. **(1)** Leer un `D` como confirmación: una regla inejecutable en un modelo que decide cosas caras es **peor** que una refutada — la refutada se corrige, la inejecutable se cita. **(2)** Ejecutar R10.3 con recolección primaria en zona de violencia activa: **ningún veredicto vale exponer a un informante**. **(3)** Contar 27 pre-registros como 27 pruebas: **esto es el Paso 1**. Ninguna regla ha sido probada todavía.
+
+---
+
+## Notas fechadas — append-only
+
+*(Este documento no se edita. Las siguientes notas se agregan al final, fechadas, sin tocar el cuerpo de arriba — art. `estado §5`: "los tests documentan defectos de la evidencia; se corrigen con nota fechada en la fuente, no editando el dato para que el test calle".)*
+
+### Nota 1 · 29/jul/2026 — "Una bloqueada" ya no aplica
+
+**§ "Una bloqueada" (arriba) dice:** *"`R3.4` — por la spec mal especificada de ADR-25, no por falta de dato. Es el go/no-go del programa y el S2 abierto más antiguo."* Eso fue cierto cuando se escribió (28/jul/2026, antes de ADR-37). **Ya no lo es.**
+
+`gobernanza §4·S2` registra que **ADR-37 (28/jul/2026) cerró ese S2** — el más antiguo del programa —, y `gobernanza:262` dice literalmente: *"→ **Vigente. S2 → cerrado.** Desbloquea `R3.4` del Hito D."* `estado §4·S2` lo registra igual: *"✅ ~~ADR-25, backtest mal especificado~~ — CERRADO el 28/jul (ADR-37)"*, y en `§7`: *"~~Una bloqueada: R3.4~~ — ✅ desbloqueada el 28/jul por ADR-37."*
+
+El bloqueo no era falta de dato: era que la spec de ADR-25 solo pedía **una** condición (reproducción). ADR-37 la reemplaza por **tres**: (A) reproducción, (B) prueba de mecanismo — apagar `riesgo_fiscal_percibido` con el canal constante debe colapsar la brecha **≥70%** —, (C) anti-confusión — apagar el canal de confianza personal con `riesgo_fiscal_percibido` encendido debe dejar la brecha **persistir** (reducción <30%). **El gate pasa solo si A y B y C.** Los umbrales de B y C son `ASIGNADO`, no medidos — calibrar contra series de SPEI antes de Fase 1.
+
+**Desbloqueada no es pre-registrada** (ver Nota 2): `R3.4` puede escribirse ahora, pero **no tiene ficha en este documento**. Ver Nota 3 para el límite que su ficha va a necesitar.
+
+### Nota 2 · 29/jul/2026 — `VERIFICAS ASÍ` dice 27 fichas; contiene 24
+
+La cabecera de este archivo (línea 8, `VERIFICAS ASÍ`) afirma: *"contiene **27 fichas** (R1.1 a R10.3)"*. La línea 13 repite: *"v2.0 completa el perímetro: **27 de 27**"*. **Ambas son falsas.** El conteo de encabezados `## R` da **24**, no 27.
+
+Faltan exactamente las 3 reglas de perímetro de `modelo §3.3` (autoridad, trámite y relación con el Estado) — el dominio entero quedó fuera del Paso 1:
+
+| ID (registro congelado de `modelo §7`) | Tier | Regla |
+|---|---|---|
+| `R3.1` | `[FUERTE]` | Trámite presencial discrecional sin registro → mordida |
+| `R3.2` | `[FUERTE]` | Digitalización/testigos/registrable → baja la mordida |
+| `R3.4` | `[MEDIA-FUERTE]` | Gobierno digital coercitivo (CoDi) vs. útil (SPEI) — el gate |
+
+*(`R3.3`, norma inútil + sanción improbable → evasión, es `[MEDIA]` y queda fuera del perímetro; no le falta ficha porque nunca la necesitó.)*
+
+Esta ausencia ya está registrada en `estado §4·S2` y `§7` (corregido 29/jul/2026) y verificada primero en `forense/notas/2026-07-29-b-correccion-perimetro.md §4`. Se repite aquí, dentro del propio artefacto que hace la autodeclaración falsa, para que quien abra `hitoD-preregistro` directamente —sin pasar por `estado`— no se quede con la cifra de la cabecera. **No se edita la cabecera** (append-only): la cifra de la línea 8 y 13 queda como está: incorrecta, y corregida aquí.
+
+### Nota 3 · 29/jul/2026 — límite que la ficha de `R3.4` va a necesitar
+
+Cuando se escriba la ficha de `R3.4` (todavía no escrita — ver Nota 2), pre-registrar **antes** de correrla el siguiente límite, que `gobernanza §4` (ADR-37, `gobernanza:262`) deja explícitamente vigente y no resuelto:
+
+> ⚠️ **El gate no separa coerción de fricción.** La explicación canónica del fracaso de CoDi frente a SPEI tiene **dos componentes**, y `riesgo_fiscal_percibido` —el único disparador que el gate apaga/enciende— **captura solo el primero**. El segundo componente (fricción de uso, no solo percepción de riesgo fiscal) no tiene disparador propio en el motor.
+
+**Por qué declararlo antes y no después de correr el falsador:** si el gate pasa (condiciones A, B y C de ADR-37 se cumplen) sin haber declarado este límite primero, un resultado positivo se leería como *"el mecanismo es riesgo fiscal percibido"* cuando en realidad **el gate no tiene forma de distinguir ese mecanismo de una mezcla con la fricción no capturada**. Un gate que pasa bajo esta ambigüedad **no distingue mecanismo de confusión** — el mismo riesgo que ADR-37 ya nombró para el disparador del canal (condición C), pero aplicado ahora al lado de la fricción, que ADR-37 no cubrió porque no era su S2. Este límite se pre-registra aquí, antes de que exista la ficha de `R3.4`, para que su Paso 2 no pueda leerse sin él.

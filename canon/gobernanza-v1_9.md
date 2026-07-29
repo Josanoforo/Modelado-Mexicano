@@ -1,11 +1,11 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.8** · 28 de julio de 2026 · **37 ADR**
+### `gobernanza` · **v1.9** · 29 de julio de 2026 · **37 ADR**
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `gobernanza-v1.8.md` |
-> | **REEMPLAZA A** | `gobernanza-v1_7.md` — **borrar** |
-> | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` |
+> | **ARCHIVO** | `gobernanza-v1.9.md` |
+> | **REEMPLAZA A** | `gobernanza-v1.8.md` — **borrar** |
+> | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
 
@@ -263,7 +263,9 @@ Cuando una validación rompe o degrada una afirmación:
 
 **Hallazgo colateral, mismo día, misma familia:** la regla `civico.voto.clientelar` de la spec compilaba **`p: 0.63` con tier `FUERTE`**, y ese 0.63 es la cifra de **laboratorio** de Ascencio-Chang (2025), no de campo. **Se degrada a `MEDIA`** y se crea el campo obligatorio **`procedencia_p`** (`CAMPO` / `LABORATORIO` / `DERIVADA` / `ASIGNADA`): *es la disciplina de `procedencia.yaml` aplicada a las probabilidades de regla, a las que nunca se les había aplicado.* **Una `p` de laboratorio no puede llevar tier `FUERTE`.**
 
-**Registro de decisión · Perímetro del Hito D = 27 reglas** *(28/jul/2026, antes de escribir el primer falsador)*. 20 `[FUERTE]` + **5** `[MEDIA-FUERTE]` + 2 compuestas. *(Eran 26; la partición de protesta/autodefensa por ADR-33 convirtió una en dos.)* Las `[MEDIA-FUERTE]` se falsan **contra la lectura fuerte**: si no sobreviven quedan **degradadas a `[MEDIA]`**, no refutadas. Las compuestas llevan **un falsador por mitad**. La `[FUERTE como correlación]` se ataca **como correlación**, no como causa — atacar la causa fue el error de V1.
+**Registro de decisión · Perímetro del Hito D = 27 reglas** *(28/jul/2026, antes de escribir el primer falsador)*. 20 `[FUERTE]` + 1 `[FUERTE como correlación]` + 1 compuesta `[FUERTE / MEDIA]` + **5** `[MEDIA-FUERTE]`. *(Eran 26; la partición de protesta/autodefensa por ADR-33 convirtió una en dos.)* Las `[MEDIA-FUERTE]` se falsan **contra la lectura fuerte**: si no sobreviven quedan **degradadas a `[MEDIA]`**, no refutadas. La compuesta lleva **un falsador por mitad**. La `[FUERTE como correlación]` se ataca **como correlación**, no como causa — atacar la causa fue el error de V1.
+
+⚠️ **Corrección de RÓTULO, 29/jul/2026.** Este registro decía *"20 `[FUERTE]` + 5 `[MEDIA-FUERTE]` + 2 compuestas"*, tratando a `R1.4` (`[FUERTE como correlación]`) como si fuera una segunda regla partida. **Solo existe una compuesta:** `R4.3` (`[FUERTE / MEDIA]`), cuya ficha en `hitoD-preregistro` se declara "dos falsadores, uno por mitad". `R1.4` es un tier distinto — `[FUERTE como correlación]` —, no una mitad: lleva un solo falsador, contra la correlación. **El perímetro NO cambia: siguen siendo las mismas 27 reglas de esta misma decisión del 28/jul, antes del primer falsador.** Propagado a `modelo §7` (cambio 34) y `estado §4·S2` y `§7`.
 
 ---
 

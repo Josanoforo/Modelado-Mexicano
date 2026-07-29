@@ -1,11 +1,11 @@
 # ESTADO DEL PROGRAMA · Psicología del Mexicano Contemporáneo
-### `estado` · **v1.8** · 29 de julio de 2026 · **ÚNICA FUENTE DE ESTADO**
+### `estado` · **v1.9** · 29 de julio de 2026 · **ÚNICA FUENTE DE ESTADO**
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `estado-programa-v1.8.md` |
-> | **REEMPLAZA A** | `estado-programa-v1_7.md` — **borrar** |
-> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v3.2** y `hitoD-R1.1` · §7 registra el pre-registro en **24 de 27**, no en 27 de 27 |
+> | **ARCHIVO** | `estado-programa-v1.9.md` |
+> | **REEMPLAZA A** | `estado-programa-v1.8.md` — **borrar** |
+> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v3.3** y `hitoD-R1.1` · §7 registra el pre-registro en **24 de 27**, no en 27 de 27, y ya no dice "47 reglas" · §4·S2 trae el rótulo corregido del perímetro (20+1+1+5, no 20+5+2) |
 > | **NOMBRE ESTABLE** | **`estado`** — cítalo así, **nunca por nombre de archivo** |
 
 ---
@@ -20,10 +20,10 @@
 
 | Nombre estable | Archivo vigente | Qué es |
 |---|---|---|
-| **`modelo`** | `modelo-decision-v3.2.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
+| **`modelo`** | `modelo-decision-v3.3.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
 | **`glosario`** | `glosario-v5.6.md` | CANÓNICO. Único punto legítimo de entrada de un tier |
-| **`gobernanza`** | `gobernanza-v1.6.md` | 36 ADR, protocolo de cambio |
-| **`estado`** | `estado-programa-v1.1.md` | Este archivo |
+| **`gobernanza`** | `gobernanza-v1.9.md` | 37 ADR, protocolo de cambio |
+| **`estado`** | `estado-programa-v1.9.md` | Este archivo |
 | **`milpa-whitepaper`** | `milpa-whitepaper-v0.1.md` | El **porqué** del simulador |
 | **`milpa-spec`** | `milpa-spec-v0.2.md` | El **cómo** — incluye el gate de ADR-25/37 |
 | **`milpa-plan`** | `milpa-plan-v0.1.md` | El **cuándo** |
@@ -109,7 +109,7 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 - **Los 90 parámetros de dispersión de ADR-28.d** no existen en archivo. Mientras falten, el check de varianza intraperfil de `modelo §1.2` **no puede correr**. Requisito de salida en `procedencia.yaml`.
 - **Los 30 componentes de `confianza_institucional` por perfil**: el vector está declarado (ADR-28.b) y **sin poblar**.
 - ⭐ **El pre-registro del Hito D cubre 24 de 27, y `§3.3` no tiene un solo falsador.** `hitoD-preregistro` v2.0 tiene **24 fichas** (encabezados `## R`, de `R1.1` a `R10.3`): 18 `[FUERTE]` + 4 `[MEDIA-FUERTE]` + 1 `[FUERTE como correlación]` + 1 `[FUERTE / MEDIA]`. **Faltan 3: dos `[FUERTE]` y una `[MEDIA-FUERTE]`.** No existe ningún encabezado `R3.x` — **el dominio `§3.3` del motor (autoridad, trámite y relación con el Estado) quedó entero fuera del pre-registro**. `R3.4` se nombra en el cuerpo pero **no tiene ficha**, pese a que ADR-37 la declaró desbloqueada el 28/jul. ⚠️ **Por qué pesa más que un conteo:** `§3.3` es donde vive `riesgo_fiscal_percibido`, el disparador del que depende el gate de Fase 1. **El dominio que sostiene el gate es el único sin falsadores, y tres artefactos lo daban por cubierto** — `hitoD-preregistro:8` (*"contiene 27 fichas"*), `:13` (*"27 de 27"*) y este archivo en su v1.7 §7. Corregido aquí; los otros dos son append-only y no se tocan. *(`forense/notas/2026-07-29-b-correccion-perimetro.md §4`)*
-- ✅ ~~**Decisión de alcance del Hito D** sin registrar: ¿20 reglas `[FUERTE]` puras, o 26 incluyendo las 4 `[MEDIA-FUERTE]` y las 2 híbridas?~~ — **CERRADO, `gobernanza:266` (ADR-37, 28/jul):** perímetro = **27** (20 `[FUERTE]` + 5 `[MEDIA-FUERTE]` + 2 compuestas; eran 26 hasta que ADR-33 partió protesta/autodefensa en dos). Las **2 compuestas** son `[FUERTE como correlación]` y `[FUERTE / MEDIA]` —así las nombra `hitoD-preregistro:17`, y así aparecen en las fichas de `R1.4` y `R4.3`—; `[MEDIA / HIPÓTESIS]` queda fuera. 20+5+1+1 = **27**, exacto contra el motor real (T12). **Esta entrada llevaba abierta desde antes de ADR-37 y nunca se cerró aquí — era deuda documental, no sustantiva.**
+- ✅ ~~**Decisión de alcance del Hito D** sin registrar: ¿20 reglas `[FUERTE]` puras, o 26 incluyendo las 4 `[MEDIA-FUERTE]` y las 2 híbridas?~~ — **CERRADO, `gobernanza:266` (ADR-37, 28/jul):** perímetro = **27** (20 `[FUERTE]` + 1 `[FUERTE como correlación]` + 1 compuesta `[FUERTE / MEDIA]` + 5 `[MEDIA-FUERTE]`; eran 26 hasta que ADR-33 partió protesta/autodefensa en dos). ⚠️ **Corrección de RÓTULO, 29/jul/2026:** solo `R4.3` (`[FUERTE / MEDIA]`) es compuesta —su ficha en `hitoD-preregistro` lo declara "dos falsadores, uno por mitad"—; `R1.4` es tier `[FUERTE como correlación]`, distinto de una compuesta, con un solo falsador contra la correlación. La entrada anterior llamaba a las dos "2 compuestas"; el mismo rótulo se corrige en `gobernanza §4` y `modelo §7` (cambio 34). `[MEDIA / HIPÓTESIS]` sigue fuera. 20+1+1+5 = **27**, exacto contra el motor real (T12). **El perímetro no cambia — es corrección de rótulo, no de alcance. Esta entrada llevaba abierta desde antes de ADR-37 y nunca se cerró aquí — era deuda documental, no sustantiva.**
 - **8 refutaciones sin objeto** — incluida `ref.A.02`, la única `MUY_FUERTE` de las 49 (2,207 h/año, el mayor de la OCDE). El modelo no tiene variable de esfuerzo, colorismo, salud mental ni entidad prestamista. **Ampliar el modelo o declarar el alcance y retirarlas.**
 - **T07–T10 solo ven `corpus/reports/*.md`.** No cubren `canon/`, `corpus/forense/`, `forense/` ni `milpa/`. Ampliar **T09** a esos directorios **no añade señal**: los disparos nuevos son mención crítica o falso positivo por co-ocurrencia, **cero usos causales**. Ampliar **T10** sí encuentra algo real en `integrador-psicologia-mexicano.md`: **4 defectos de medida del propio T10** —el integrador marca la procedencia de diáspora con convenciones locales (`[Fuerte, con caveat US]`, `Caveat US:`, `muestras US-hispanas`) que el patrón literal de T10, `(b)`/"diáspora", no reconoce— y **1 defecto real del integrador**: `integrador:174` presenta a Arciniega 2008, Castillo 2010 y Wheeler 2010 como *"Evidencia a favor. **Sólido**"* sin marca de procedencia, mientras el caveat que las declara población latina en EE.UU. vive en `integrador:175`, bajo *"Evidencia en contra / límites"* — la sección opuesta. **El tier se asigna sin la marca; la marca llega como limitación.** *(Las dos líneas leídas textualmente.)* **Decisión pendiente, no tomada aquí:** ¿se amplía el patrón de T10 para reconocer las convenciones locales del integrador, o el integrador adopta el marcador formal `(b)` de `modelo §0.1`? ⚠️ **Los conteos de disparos de la nota original (66/45/5) no se reprodujeron** (65/57/14 al recomputar); no citarlos como verificados. El análisis cualitativo sí está verificado. *(`forense/notas/2026-07-29-perimetro-suite-T07-T10.md §3`; `…-b-correccion-perimetro.md §5, §6`)*
 
@@ -160,7 +160,7 @@ Panel D/E de consumo popular · elasticidades · granularidad municipal · contr
 
 ## 7 · Qué sigue
 
-**HITO D — falsación sistemática. Perímetro DECIDIDO: 27 reglas** = 20 `[FUERTE]` + 5 `[MEDIA-FUERTE]` + 2 compuestas. *(El motor tiene **47 reglas** desde v2.4.)*
+**HITO D — falsación sistemática. Perímetro DECIDIDO: 27 reglas** = 20 `[FUERTE]` + 1 `[FUERTE como correlación]` + 1 compuesta `[FUERTE / MEDIA]` + 5 `[MEDIA-FUERTE]`. *(El motor tiene **49 reglas**, no 47. ⚠️ **Corregido 29/jul/2026:** "47" era la cuenta del motor en v2.4, antes de que v2.5 sumara 2 reglas de crédito por ADR-35 (P-04/P-05 del barrido); este mismo archivo ya dice 49 en `§4·S1`, y el motor real (`modelo §7`, T12) confirma 49. La cifra vieja había quedado congelada de una versión anterior de esta sección.)*
 
 ⚠️ **Antes del Hito D se corrió el `barrido-propagacion-forense`.** De los **22 veredictos ROMPE/MATIZA** de los cinco forenses, **6 nunca habían bajado al motor** y 3 llegaron a medias — tasa de fuga **~41%** en la capa que ADR-29.b considera evidencia primaria. Tres se aterrizaron en v2.4 (**P-01** bandwidth tax, **P-02** condiciones de cesión de la agencia, **P-03** turnout vs. vote-choice). **Los seis quedaron aterrizados**: P-01/02/03 en v2.4; **P-04/05/06 en v2.5, con ampliación de alcance decidida (ADR-35)** — el motor gana dos reglas de crédito y una prohibición dura, y pasa a **49 reglas**.
 
