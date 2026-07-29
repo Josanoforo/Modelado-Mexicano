@@ -22,7 +22,7 @@
 |---|---|---|
 | **`modelo`** | `modelo-decision-v3.3.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
 | **`glosario`** | `glosario-v5.6.md` | CANÓNICO. Único punto legítimo de entrada de un tier |
-| **`gobernanza`** | `gobernanza-v1.9.md` | 39 ADR, protocolo de cambio |
+| **`gobernanza`** | `gobernanza-v1.9.md` | 40 ADR, protocolo de cambio |
 | **`estado`** | `estado-programa-v1.9.md` | Este archivo |
 | **`milpa-whitepaper`** | `milpa-whitepaper-v0.1.md` | El **porqué** del simulador |
 | **`milpa-spec`** | `milpa-spec-v0.2.md` | El **cómo** — incluye el gate de ADR-25/37 |
@@ -92,7 +92,7 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 
 **L5 · Validación — el estrato más problemático.** Una prueba de falsación pre-registrada corrida (veredicto **B**). 49 refutaciones corridas: 27 pasan, 3 fallan, 8 sin objeto, 11 requieren el ejecutable. **15 coeficientes, cero medidos.** Cuatro generadores sin falsar.
 
-**L0 · Gobierno — completo y al día.** 39 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos. *(Corregido 29/jul/2026: decía 32, contradiciendo §0 de este mismo archivo — `censo-integridad-v1_0.md` C1-02. Subió a 39 en la misma sesión, con la aprobación de ADR-38/39 en `gobernanza §4`.)*
+**L0 · Gobierno — completo y al día.** 40 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos. *(Corregido 29/jul/2026: decía 32, contradiciendo §0 de este mismo archivo — `censo-integridad-v1_0.md` C1-02. Subió a 39 en la misma sesión, con la aprobación de ADR-38/39 en `gobernanza §4`; a 40 después, con ADR-40, misma sesión de tests.)*
 
 ---
 

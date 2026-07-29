@@ -611,6 +611,108 @@ def t17_fichas_count():
 
 
 # ───────────────────────────────────────────────────────────────
+# T18 · T-PASO2-EJECUCION — aprobado y registrado 29/jul/2026, tras dos
+#   rechazos y dos rediseños el mismo día:
+#   1) el primer T18 derivaba su "real" leyendo `estado` y lo comparaba
+#      contra el contador declarado en el MISMO archivo -- no cruzaba
+#      frontera de archivo, el mismo alcance autorreferencial que T05.
+#   2) el segundo T18 movió la forma canónica a `hitoD-preregistro` pero
+#      la buscaba en CUALQUIER prosa del archivo -- no distinguía emitir
+#      de citar/hipotetizar. El primer borrador de la propia Nota 5 que
+#      archivaba el veredicto de R1.1 disparó su propio patrón al citar
+#      la narración vieja de `estado`.
+#   ADR-40 fija el diseño final: los veredictos viven en un bloque
+#   designado, append-only, al final de `hitoD-preregistro`
+#   (`## Registro de veredictos archivados`) -- la ÚNICA sección que este
+#   test lee. Fuera de ese bloque, la forma canónica es cita o hipótesis
+#   y no se cuenta, sea cual sea su forma.
+# ───────────────────────────────────────────────────────────────
+_VEREDICTO_CANONICO = re.compile(r"`(R\d+\.\d+)`\s*→\s*veredicto\s*`([A-D])`")
+# Letra en mayúscula exacta (sin heredar re.I de "veredicto"): con re.I
+# sobre todo el patrón, [ABCD] también matchea la preposición "a" -- ya
+# verificado como falso positivo real antes de esta versión.
+_VEREDICTO_SOSPECHOSO = re.compile(r"`(R\d+\.\d+)`[^\n`]{0,20}(?i:veredicto)[^\n]{0,15}\b([A-D])\b")
+
+def _bloque_veredictos(texto):
+    """Extrae SOLO el contenido de '## Registro de veredictos archivados'
+    hasta el final del archivo (ADR-40: bloque designado, append-only,
+    debe ser la última sección). Fuera de ese bloque no se lee nada --
+    es la garantía de que citar o hipotetizar en cualquier otra prosa del
+    documento no puede producir un match."""
+    m = re.search(r"^## Registro de veredictos archivados.*$", texto, re.M)
+    if not m:
+        return None
+    return texto[m.end():]
+
+def t18_paso2_ejecucion():
+    """`hitoD-preregistro` es, desde ADR-40, el registro canónico de
+    veredictos archivados -- pero SOLO dentro de su bloque designado
+    ('## Registro de veredictos archivados', al final del archivo).
+    Deriva el conteo real de ese bloque (forma canónica:
+    '`RX.Y` → veredicto `Z`') y lo compara contra el contador declarado en
+    `estado:192` ('Paso 2 — EN CURSO. N de 27 corrida.'). También escanea
+    el MISMO bloque en busca de líneas con forma de veredicto que no
+    cumplan la forma exacta -- un ID de regla entre backticks seguido, a
+    poca distancia, de la palabra 'veredicto' y una letra A-D -- para que
+    una variante no se archive invisible. Nada fuera del bloque se lee:
+    una hipótesis o una cita en cualquier otra parte del documento, con
+    la forma que sea, no cuenta."""
+    h = newest("forense/hitoD-preregistro-v*.md")
+    if not h:
+        fail("T18", "no se pudo leer `forense/hitoD-preregistro-v*.md`")
+        return
+    completo = read(h)
+    bloque = _bloque_veredictos(completo)
+    if bloque is None:
+        fail("T18", f"{rel(h)}: no se encontró el bloque "
+                    f"'## Registro de veredictos archivados' (ADR-40)")
+        return
+    offset_lineas = completo[:completo.index(bloque)].count("\n")
+    reales = set()
+    for i, l in enumerate(bloque.split("\n"), 1):
+        m = _VEREDICTO_CANONICO.search(l)
+        if m:
+            reales.add(m.group(1))
+            continue
+        ms = _VEREDICTO_SOSPECHOSO.search(l)
+        if ms:
+            fail("T18", f"{rel(h)}:{offset_lineas + i} tiene forma de veredicto para "
+                        f"`{ms.group(1)}` que no cumple la forma canónica "
+                        f"('`RX.Y` → veredicto `Z`', ADR-40), dentro del bloque de registro: "
+                        + re.sub(r"\s+", " ", l.strip())[:110])
+    real = len(reales)
+
+    p = newest("canon/estado-programa-v*.md")
+    if not p:
+        fail("T18", "no se pudo leer `canon/estado-programa-v*.md`")
+        return
+    s2 = read(p)
+    pat = re.compile(r"Paso 2\s*—\s*EN CURSO\.\s*(\d+)\s*de\s*27\s*corrida")
+    vigentes = []
+    for i, l in enumerate(s2.split("\n"), 1):
+        m = pat.search(l)
+        if not m or _CAMBIO_FECHADO.match(l):
+            continue
+        vigentes.append((i, int(m.group(1))))
+    if not vigentes:
+        fail("T18", f"{rel(p)}: no se encontró el contador vigente de ejecución de Paso 2 "
+                    f"('Paso 2 — EN CURSO. N de 27 corrida' en §7, fuera de historia fechada)")
+        return
+    distintos = sorted(set(n for _, n in vigentes))
+    if len(distintos) > 1:
+        detalle = " · ".join(f"{rel(p)}:{i}={n}" for i, n in vigentes)
+        fail("T18", f"{rel(p)}: {len(vigentes)} contadores de ejecución vigentes, "
+                    f"no todos iguales: {detalle}")
+        return
+    declarado = distintos[0]
+    if declarado != real:
+        ln = vigentes[0][0]
+        fail("T18", f"{rel(p)}:{ln} declara {declarado} de 27 corrida; "
+                    f"{rel(h)} tiene {real} veredictos archivados en forma canónica "
+                    f"(patrón `` `RX.Y` → veredicto `Z` ``)")
+
+
+# ───────────────────────────────────────────────────────────────
 # Modo línea base · congela el estado conocido, no lo mueve por defecto
 # ───────────────────────────────────────────────────────────────
 #   --freeze     escribe tests/baseline.json con el estado actual (acto
@@ -764,6 +866,7 @@ def main():
         ("T14 T-INVENTARIO",                      t14_inventario),
         ("T15 T-ADR-COUNT",                       t15_adr_count),
         ("T17 T-FICHAS-COUNT",                    t17_fichas_count),
+        ("T18 T-PASO2-EJECUCION",                 t18_paso2_ejecucion),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
