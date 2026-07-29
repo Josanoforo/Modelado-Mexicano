@@ -18,6 +18,9 @@ from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STRICT = "--strict" in sys.argv
+BASELINE_MODE = "--baseline" in sys.argv
+FREEZE_MODE = "--freeze" in sys.argv
+BASELINE_PATH = os.path.join(ROOT, "tests", "baseline.json")
 FAILS, WARNS = [], []
 
 def read(p):
@@ -101,6 +104,47 @@ def t02_duplicates():
 # ───────────────────────────────────────────────────────────────
 # T03 · Referencias colgantes
 # ───────────────────────────────────────────────────────────────
+
+# Nombres declarados como borrados/superados en `forense/curaduria-archivos.md`
+# §1 (SE VA), §2.2 (ADR transitorios) y §4, y en `canon/gobernanza-v*.md` §2
+# (Registro de artefactos) — leídos de esos dos documentos, no de memoria.
+# Un nombre aquí es un archivo cuya ausencia ya fue decidida y registrada,
+# no una referencia colgante sin explicar. Añadir un nombre nuevo a esta
+# lista es el costo deliberado de declarar un borrado — es el mismo que
+# `curaduria-archivos.md` ya paga a mano.
+HISTORICOS = {
+    # forense/curaduria-archivos.md §1 "SE VA"
+    "estado-proyecto-psicologia-mexicano.md",
+    "glosario-corregido-v2.md",
+    "glosario-v3.md",
+    "glosario-v4.md",
+    # forense/curaduria-archivos.md §2.2 "ADR sin incorporar" (transitorios)
+    "ADR-26-27-28.md",
+    "ADR-29.md",
+    # forense/curaduria-archivos.md §4 "SE AÑADE" / orden de ejecución
+    "hito2-modelo-fantasma.md",   # nunca se subió
+    "auditoria-glosario-v4.md",   # declarado "no subir": andamiaje, no artefacto
+    # canon/gobernanza-v*.md §2, Registro de artefactos
+    "ficha-canonica-modelo.md",
+    "CHECKPOINT-v2.md",
+    "mapa-y-roadmap.md",
+    "inventario-corpus.md",
+    "ADR-30.md",
+    "modelo-decisiones-mexicano.md",
+}
+
+def _normalize_version_dots(name):
+    """ADR-36: la plataforma convierte el punto en guion bajo al subir
+    (`...-v3.0.md` -> `...-v3_0.md`). Una cita con la convención canónica
+    (punto) contra un archivo que existe con guion bajo es cosmética, no
+    una referencia colgante: normaliza el segmento de versión antes de
+    decidir que el archivo no existe."""
+    stem, dot, ext = name.rpartition(".")
+    if not dot:
+        return name
+    stem = re.sub(r"(\d)\.(\d)", r"\1_\2", stem)
+    return f"{stem}.{ext}"
+
 def t03_dangling_refs():
     """Un documento que cita un archivo inexistente no obliga a nada."""
     existing = {os.path.basename(p) for p in
@@ -110,7 +154,7 @@ def t03_dangling_refs():
             continue
         for i, l in enumerate(read(p).split("\n"), 1):
             for m in re.findall(r"`([A-Za-z0-9_\-áéíóúñÁÉÍÓÚÑ.]+\.(?:md|yaml))`", l):
-                if m in existing:
+                if m in existing or _normalize_version_dots(m) in existing or m in HISTORICOS:
                     continue
                 if re.search(r"borrad|BORRAD|REEMPLAZA|elimin|~~|superced|supersede|v1, borrado|fusionad", l, re.I):
                     continue
@@ -291,6 +335,134 @@ def t13_version_header():
 
 
 # ───────────────────────────────────────────────────────────────
+# Modo línea base · congela el estado conocido, no lo mueve por defecto
+# ───────────────────────────────────────────────────────────────
+#   --freeze     escribe tests/baseline.json con el estado actual (acto
+#                deliberado, con rastro en el diff — nunca automático)
+#   --baseline   compara la corrida actual contra tests/baseline.json:
+#                verde si no hay entradas NUEVAS, rojo si las hay
+#
+# La clave NO es (test, mensaje) completo: T03/T09/T10/T11 incrustan el
+# número de línea en el mensaje, y cualquier edición cosmética por encima
+# de la línea citada lo desplaza — probado: una sola línea insertada sin
+# relación con el contenido cambia el mensaje de 3 de 3 hallazgos en el
+# mismo archivo. Tampoco es (test, archivo) a secas: de 39 pares
+# (test, archivo) que produce este corpus, 22 agrupan más de un mensaje
+# distinto (hasta 15 en un solo archivo) — con esa clave, un hallazgo
+# nuevo en un archivo ya conocido no se distinguiría de uno viejo.
+# La clave es (test, mensaje con el número de línea quitado): sobre el
+# corpus real hoy, 107 entradas producen 106 claves únicas — 1 colisión,
+# entre dos citas idénticas al mismo archivo histórico en líneas
+# distintas del mismo censo, que es inocua (perder una no oculta un
+# defecto nuevo, solo un duplicado del mismo ya sabido).
+def _baseline_key(msg):
+    return re.sub(r":\d+ ", ": ", msg, count=1)
+
+def _git_head():
+    try:
+        import subprocess
+        return subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                               capture_output=True, text=True, check=True).stdout.strip()
+    except Exception:
+        return None
+
+# ───────────────────────────────────────────────────────────────
+# Nota de composición · "congelar no es aceptar" (29/jul/2026)
+# ───────────────────────────────────────────────────────────────
+# Congelar una cifra no dice qué es. Sin esto, dentro de dos meses 88
+# WARN se lee como deuda técnica homogénea del corpus, cuando parte es
+# deuda del propio instrumento de medición (T03 con cobertura angosta) y
+# solo parte es deuda real ya identificada. Los buckets son patrones
+# vistos y explicados a mano en censo-integridad-v1_1.md — no una regla
+# general recalculable; lo que no cae en ninguno queda "sin_clasificar",
+# explícito, en vez de asumido como una cosa o la otra.
+_FRAGMENTOS_EJEMPLO = {"-v3.2.md", "-v3_2.md", "...-v3.0.md", "...-v3_0.md"}
+_HISTORIA_RECIENTE_NO_DECLARADA = {
+    "estado-programa-v1_8.md", "gobernanza-v1_8.md", "modelo-decision-v3_2.md",
+    "estado-programa-v1_7.md", "v1_9.md",
+}
+_GOBERNANZA_STALE_C5_02 = {"glosario-v5.5.md", "modelo-decision-v3.0.md", "estado-programa-v1.1.md"}
+_NOMBRADOS_SIN_BORRADO_DECLARADO = {
+    "gobernanza-programa.md", "CHECKPOINT-programa-psicologia-mexicano.md", "glosario-v5.md",
+}
+
+def _classify(test, msg):
+    if test == "T03":
+        m = re.search(r"cita `([^`]+)`", msg)
+        name = m.group(1) if m else None
+        if name in _FRAGMENTOS_EJEMPLO:
+            return "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test"
+        if name in _HISTORIA_RECIENTE_NO_DECLARADA:
+            return "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista"
+        if name in _GOBERNANZA_STALE_C5_02:
+            return "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02"
+        if name in _NOMBRADOS_SIN_BORRADO_DECLARADO:
+            return "T03_nombrado_sin_borrado_explicito_en_ninguna_fuente__gap_de_documentacion"
+        return "T03_sin_clasificar"
+    if test == "T13":
+        return "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01"
+    if test == "T10":
+        return "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7"
+    return f"{test}_sin_clasificar"
+
+def _freeze_note():
+    # Clasifica sobre el conjunto ya deduplicado por _baseline_key (mismo
+    # criterio que se congela), no sobre WARNS crudo — si no, el total del
+    # desglose no cuadra contra "warns" y el propio archivo se contradice.
+    warn_keys = sorted({(t, _baseline_key(m)) for t, m in WARNS})
+    buckets = Counter(_classify(t, m) for t, m in warn_keys)
+    for t, m in FAILS:
+        buckets[f"{t}_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle"] += 1
+    return {
+        "principio": ("Congelar no es aceptar. La cifra congelada mezcla deuda real del "
+                      "corpus con ruido de medición conocido del propio T03 (cobertura "
+                      "angosta); ver censo-integridad-v1_1.md §1 para la derivación completa "
+                      "de cada bucket."),
+        "fecha_de_clasificacion": "2026-07-29",
+        "conteo_por_bucket": dict(sorted(buckets.items())),
+    }
+
+def _freeze_baseline():
+    import json
+    data = {
+        "head": _git_head(),
+        "fails": sorted({(t, _baseline_key(m)) for t, m in FAILS}),
+        "warns": sorted({(t, _baseline_key(m)) for t, m in WARNS}),
+        "nota": _freeze_note(),
+    }
+    with open(BASELINE_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    print(f"\n[--freeze] escrito {rel(BASELINE_PATH)} — HEAD {data['head']} · "
+          f"{len(data['fails'])} fail · {len(data['warns'])} warn congelados")
+
+def _baseline_compare():
+    import json
+    if not os.path.exists(BASELINE_PATH):
+        print(f"\n[--baseline] no existe {rel(BASELINE_PATH)} — corre con --freeze primero.")
+        return 1
+    with open(BASELINE_PATH, encoding="utf-8") as f:
+        data = json.load(f)
+    known = {tuple(e) for e in data["fails"]} | {tuple(e) for e in data["warns"]}
+    current = {(t, _baseline_key(m)) for t, m in FAILS} | {(t, _baseline_key(m)) for t, m in WARNS}
+    nuevos = current - known
+    resueltos = known - current
+    print("\n" + "─" * 72)
+    if nuevos:
+        print(f"  LÍNEA BASE: ROJO — {len(nuevos)} entradas nuevas frente a {rel(BASELINE_PATH)} "
+              f"(HEAD congelado {data.get('head')})")
+        for t, k in sorted(nuevos):
+            print(f"  · {t}: {k[:110]}")
+    else:
+        print(f"  LÍNEA BASE: VERDE — nada nuevo frente a {rel(BASELINE_PATH)} "
+              f"(HEAD congelado {data.get('head')})")
+    if resueltos:
+        print(f"  ({len(resueltos)} entradas de la línea base ya no aparecen — mejora, no bloquea, "
+              f"no baja la cifra congelada sin --freeze explícito)")
+    print("─" * 72)
+    return 1 if nuevos else 0
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -341,6 +513,13 @@ def main():
     print("\n" + "═" * 72)
     print(f"  {len(FAILS)} FAIL · {len(WARNS)} WARN")
     print("═" * 72)
+
+    if FREEZE_MODE:
+        _freeze_baseline()
+        return 0
+    if BASELINE_MODE:
+        return _baseline_compare()
+
     return 1 if FAILS else 0
 
 
