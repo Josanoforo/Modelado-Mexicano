@@ -428,8 +428,9 @@ def _freeze_note():
     return {
         "principio": ("Congelar no es aceptar. La cifra congelada mezcla deuda real del "
                       "corpus con ruido de medición conocido del propio T03 (cobertura "
-                      "angosta); ver censo-integridad-v1_1.md §1 para la derivación completa "
-                      "de cada bucket."),
+                      "angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación "
+                      "completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 "
+                      "(sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL."),
         "fecha_de_clasificacion": "2026-07-29",
         "conteo_por_bucket": dict(sorted(buckets.items())),
     }
