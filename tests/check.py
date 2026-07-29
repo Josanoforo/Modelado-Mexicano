@@ -529,6 +529,43 @@ def t16_suite_self_check():
 
 
 # ───────────────────────────────────────────────────────────────
+# T17 · T-FICHAS-COUNT — el conteo de fichas de `hitoD-preregistro`
+#   declarado en la declaración canónica de `estado §4·S2` debe igualar
+#   los encabezados `## R` reales del propio pre-registro.
+#   (sesión de tests, 29/jul/2026 · consolidación tras `b28b144`, que
+#   dejó 3 menciones sueltas del mismo hecho en `estado` -- 111/171/214
+#   -- por corregir una a la vez cada vez que cambia el conteo real.)
+# ───────────────────────────────────────────────────────────────
+def t17_fichas_count():
+    """Una sola fuente para 'cuántas fichas tiene el pre-registro', y un
+    test que la compara contra el disco -- para que la próxima ficha que
+    se escriba (o se retire) no deje la declaración de estado stale como
+    pasó con R3.2 (el propio motivo de esta sesión: T14/T15/T16 taparon
+    3 de los 7 puntos de escritura manual; este era uno de los que no
+    tenían test propio)."""
+    h = newest("forense/hitoD-preregistro-v*.md")
+    if not h:
+        fail("T17", "no se pudo leer `forense/hitoD-preregistro-v*.md`")
+        return
+    real = len(re.findall(r"^## R\d", read(h), re.M))
+    p = newest("canon/estado-programa-v*.md")
+    if not p:
+        fail("T17", "no se pudo leer `canon/estado-programa-v*.md`")
+        return
+    s = read(p)
+    m = re.search(r"hitoD-preregistro`\s*tiene\s*\*\*(\d+)\s*fichas\*\*", s)
+    if not m:
+        fail("T17", f"{rel(p)}: no se encontró la declaración canónica de cobertura "
+                    f"del pre-registro ('hitoD-preregistro` tiene **N fichas**' en §4·S2)")
+        return
+    declarado = int(m.group(1))
+    ln = s[:m.start()].count("\n") + 1
+    if declarado != real:
+        fail("T17", f"{rel(p)}:{ln} declara {declarado} fichas; "
+                    f"{rel(h)} tiene {real} encabezados `## R`")
+
+
+# ───────────────────────────────────────────────────────────────
 # Modo línea base · congela el estado conocido, no lo mueve por defecto
 # ───────────────────────────────────────────────────────────────
 #   --freeze     escribe tests/baseline.json con el estado actual (acto
@@ -681,6 +718,7 @@ def main():
         ("T13 cabecera de versión ADR-36",        t13_version_header),
         ("T14 T-INVENTARIO",                      t14_inventario),
         ("T15 T-ADR-COUNT",                       t15_adr_count),
+        ("T17 T-FICHAS-COUNT",                    t17_fichas_count),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
