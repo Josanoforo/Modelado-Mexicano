@@ -341,6 +341,194 @@ def t13_version_header():
 
 
 # ───────────────────────────────────────────────────────────────
+# T14 · T-INVENTARIO — cifras de inventario derivadas, no tecleadas
+#   (sesión de tests, 29/jul/2026 · censo-integridad-v1_0.md C1-01, C1-08)
+# ───────────────────────────────────────────────────────────────
+def _inventory_section():
+    """Texto de `## 1 · Inventario verificado` de `estado`, con la línea de
+    archivo (1-indexado) donde empieza -- para anclar hallazgos a línea real
+    en vez de re-buscar la posición dos veces."""
+    p = newest("canon/estado-programa-v*.md")
+    if not p:
+        return None, "", 0
+    s = read(p)
+    m = re.search(r"^## 1 ·[^\n]*\n", s, re.M)
+    if not m:
+        return p, "", 0
+    start = m.end()
+    nxt = re.search(r"^## \d", s[start:], re.M)
+    end = start + nxt.start() if nxt else len(s)
+    start_line = s[:start].count("\n") + 1
+    return p, s[start:end], start_line
+
+def t14_inventario():
+    """La suma de la tabla de `estado §1` debe igualar su propio encabezado
+    (C1-01: decía 56, la tabla suma 59), y las dos filas que son un glob
+    real -- reports, validaciones forenses -- deben igualar el disco. Las
+    otras seis filas de la tabla son listas curadas (nombres específicos,
+    no un glob), no se re-derivan aquí: hacerlo exigiría mantener a mano un
+    segundo inventario tan frágil como el que este test reemplaza. También
+    cubre C1-08: el mismo hecho (conteo de reports) citado en `integrador`."""
+    p, sec, start_line = _inventory_section()
+    if p is None or not sec:
+        fail("T14", "no se pudo leer `## 1 · Inventario verificado` de estado")
+        return
+    m = re.search(r"\*\*(\d+)\s*archivos\*\*", sec)
+    if not m:
+        fail("T14", f"{rel(p)} §1: no se encontró el encabezado '**N archivos**'")
+        return
+    declarado = int(m.group(1))
+    header_line = start_line + sec[:m.start()].count("\n")
+    filas = []
+    for i, l in enumerate(sec.split("\n")):
+        fm = re.match(r"\|\s*\*{0,2}([^|*]+?)\*{0,2}\s*\|\s*\*{0,2}(\d+)\*{0,2}\s*\|", l)
+        if fm and fm.group(1).strip() != "Bloque":
+            filas.append((fm.group(1).strip(), int(fm.group(2)), start_line + i))
+    if not filas:
+        fail("T14", f"{rel(p)} §1: no se encontraron filas de tabla con cuenta numérica")
+        return
+    suma = sum(c for _, c, _ in filas)
+    if suma != declarado:
+        detalle = "+".join(str(c) for _, c, _ in filas)
+        fail("T14", f"{rel(p)}:{header_line} encabezado dice **{declarado} archivos**, "
+                    f"la tabla suma {suma} ({detalle})")
+    real_reports = len(reports())
+    real_forense = len(glob.glob(os.path.join(ROOT, "corpus", "forense", "*.md")))
+    for nombre, cuenta, ln in filas:
+        n = nombre.lower()
+        if "report" in n and cuenta != real_reports:
+            fail("T14", f"{rel(p)}:{ln} fila '{nombre}' declara {cuenta}, "
+                        f"`ls corpus/reports/*.md` da {real_reports}")
+        if "forense" in n and "proceso" not in n and cuenta != real_forense:
+            fail("T14", f"{rel(p)}:{ln} fila '{nombre}' declara {cuenta}, "
+                        f"`ls corpus/forense/*.md` da {real_forense}")
+    integ = newest("canon/integrador-*.md")
+    if integ:
+        # Sitios curados, no un escaneo genérico de "los N reports": el
+        # documento también dice "los 5 reports de la Ronda 3" (línea 52),
+        # un subconjunto real que NO debe compararse contra el total del
+        # corpus -- un regex genérico ahí produce el mismo defecto que T07
+        # (falso positivo por vocabulario libre, no acotado).
+        s = read(integ)
+        for pat in (r"contradicen los (\d+) reports", r"comparten los (\d+) reports"):
+            for im in re.finditer(pat, s):
+                n = int(im.group(1))
+                if n != real_reports:
+                    ln = s[:im.start()].count("\n") + 1
+                    fail("T14", f"{rel(integ)}:{ln} dice 'los {n} reports', "
+                                f"disco tiene {real_reports}")
+
+
+# ───────────────────────────────────────────────────────────────
+# T15 · T-ADR-COUNT — el número de ADR citado en canon/ debe igualar los
+#   ADR únicos de `gobernanza`, sin huecos en la secuencia.
+#   (sesión de tests, 29/jul/2026 · censo-integridad-v1_0.md C1-02: 32 vs 37)
+# ───────────────────────────────────────────────────────────────
+def t15_adr_count():
+    g = newest("canon/gobernanza-v*.md")
+    if not g:
+        fail("T15", "no se pudo leer `canon/gobernanza-v*.md`")
+        return
+    nums = [int(n) for n in re.findall(r"^\*\*ADR-(\d+)", read(g), re.M)]
+    if not nums:
+        fail("T15", f"{rel(g)}: no se encontró ningún `**ADR-N`")
+        return
+    real = len(set(nums))
+    dup = sorted(n for n, c in Counter(nums).items() if c > 1)
+    if dup:
+        fail("T15", f"{rel(g)}: ADR repetido(s), mismo número dos veces: {dup}")
+    huecos = sorted(set(range(1, max(nums) + 1)) - set(nums))
+    if huecos:
+        fail("T15", f"{rel(g)}: huecos en la secuencia de ADR: {huecos}")
+    for p in glob.glob(os.path.join(ROOT, "canon", "*.md")):
+        for i, l in enumerate(read(p).split("\n"), 1):
+            for m in re.finditer(r"(\d+)\s*ADR\b", l):
+                n = int(m.group(1))
+                if n != real:
+                    fail("T15", f"{rel(p)}:{i} cita {n} ADR; gobernanza tiene {real} únicos")
+
+
+# ───────────────────────────────────────────────────────────────
+# T16 · T-SUITE-SELF-CHECK — ninguna afirmación VIGENTE sobre FAIL/WARN en
+#   un canónico puede contradecir la corrida real.
+#   (sesión de tests, 29/jul/2026 · censo-integridad-v1_0.md C1-06/C1-07,
+#   el hallazgo de mayor severidad de todo el censo: 107 vigente cuando la
+#   corrida real daba 111, y el propio mensaje del commit ya sabía 111.)
+#
+#   Juicio explícito de esta sesión: una cifra fechada dentro de un
+#   changelog histórico (`> **v1.8 — 29/jul.** ...`) NO es un defecto -- era
+#   correcta cuando se escribió, y perseguirla degradaría un registro
+#   correcto a falso positivo (exactamente lo que este archivo, en su
+#   propio §0, ya distingue a mano). El único marcador mecánico confiable
+#   que encontramos para "esto es historia, no estado vigente" es esa
+#   combinación cita-de-bloque + versión + fecha, porque es la única forma
+#   en que ESTE documento narra un cambio pasado (ver v1.1/v1.6/v1.7/v1.8
+#   en `estado §0`). Si algún día un canónico declara un FAIL/WARN histórico
+#   con una forma distinta, este test no lo reconocerá como historia y lo
+#   marcará FAIL por error -- limitación declarada, no descubierta a mano.
+# ───────────────────────────────────────────────────────────────
+_CAMBIO_FECHADO = re.compile(r"^>\s*\*\*v\d+[._]\d+\s*[—-]\s*\d{1,2}/")
+
+def _suite_real():
+    """Corrida independiente en subproceso, sin --strict/--baseline/--freeze
+    y sin volver a correr T16 (variable de entorno) -- correr la suite
+    completa para preguntarle 'cuál es tu resultado real' mientras todavía
+    está corriendo es un problema de punto fijo, no una pregunta con
+    respuesta. El subproceso excluye T16 de sí mismo: la cifra contra la
+    que este test compara es 'todo lo demás', no 'todo incluido yo mismo'."""
+    import subprocess
+    env = dict(os.environ, CHECK_SELFCHECK_CHILD="1")
+    try:
+        r = subprocess.run([sys.executable, os.path.join(ROOT, "tests", "check.py")],
+                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=60)
+    except Exception as e:
+        return None, None, str(e)
+    m = re.search(r"(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN", r.stdout)
+    if not m:
+        return None, None, r.stdout[-300:]
+    return int(m.group(1)), int(m.group(2)), None
+
+def t16_suite_self_check():
+    """Ninguna afirmación VIGENTE de FAIL/WARN en canon/ puede contradecir
+    la corrida real (subproceso independiente, ver `_suite_real`).
+
+    LÍMITE DECLARADO -- léelo antes de tocar este test: el único marcador
+    mecánico que reconoce "esto es historia, no estado vigente" es
+    `_CAMBIO_FECHADO`, que exige el formato literal `> **vX.Y — DD/mon.**`
+    al INICIO de la línea (el patrón que `estado §0` ya usa para v1.1,
+    v1.6, v1.7, v1.8). Si un canónico narra un cambio pasado con cualquier
+    otra forma -- una tabla, una nota sin blockquote, una fecha en otro
+    lugar de la oración -- este test NO lo reconocerá como histórico y
+    marcará FAIL un registro que en realidad es correcto. Verificado en la
+    sesión de tests (29/jul/2026): quitarle el `>` a una entrada histórica
+    real basta para que empiece a fallar -- la exención es real, pero es
+    tan angosta como el formato que sabe reconocer. Antes de ampliar el
+    universo de documentos o de patrones que este test vigila, hay que
+    ampliar `_CAMBIO_FECHADO` en la misma medida, o se repite exactamente
+    el defecto de T07 (cobertura más angosta que el fenómeno que declara
+    medir)."""
+    real_fail, real_warn, err = _suite_real()
+    if real_fail is None:
+        fail("T16", f"no se pudo derivar el resultado real de la suite (subproceso): {err}")
+        return
+    for p in glob.glob(os.path.join(ROOT, "canon", "*.md")):
+        for i, l in enumerate(read(p).split("\n"), 1):
+            historico = bool(_CAMBIO_FECHADO.match(l))
+            m1 = re.search(r"\*\*(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN\*\*", l)
+            if m1 and not historico:
+                fd, wd = int(m1.group(1)), int(m1.group(2))
+                if (fd, wd) != (real_fail, real_warn):
+                    fail("T16", f"{rel(p)}:{i} declara {fd} FAIL · {wd} WARN vigente; "
+                                f"la corrida real da {real_fail} FAIL · {real_warn} WARN")
+            m2 = re.search(r"total de WARN de la suite es\s*\*{0,2}(\d+)", l)
+            if m2 and not historico:
+                wd = int(m2.group(1))
+                if wd != real_warn:
+                    fail("T16", f"{rel(p)}:{i} declara {wd} WARN vigente; "
+                                f"la corrida real da {real_warn} WARN")
+
+
+# ───────────────────────────────────────────────────────────────
 # Modo línea base · congela el estado conocido, no lo mueve por defecto
 # ───────────────────────────────────────────────────────────────
 #   --freeze     escribe tests/baseline.json con el estado actual (acto
@@ -491,7 +679,11 @@ def main():
         ("T11 afirmaciones de estado absolutas",  t11_state_claims),
         ("T12 conteos del motor",                 t12_counts),
         ("T13 cabecera de versión ADR-36",        t13_version_header),
+        ("T14 T-INVENTARIO",                      t14_inventario),
+        ("T15 T-ADR-COUNT",                       t15_adr_count),
     ]
+    if not os.environ.get("CHECK_SELFCHECK_CHILD"):
+        tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
     print("═" * 72)
     print("  VERIFICACIÓN DEL CORPUS" + ("   [--strict]" if STRICT else ""))
     print("═" * 72)
