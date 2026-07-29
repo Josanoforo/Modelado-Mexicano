@@ -1,0 +1,449 @@
+{
+  "head": "69357d453ebe5218c67fb992753eab53c06fe19f",
+  "fails": [
+    [
+      "T05",
+      "constructo `confianza personalizada` usado por el motor y ausente del glosario"
+    ],
+    [
+      "T05",
+      "constructo `default es aceptación` usado por el motor y ausente del glosario"
+    ],
+    [
+      "T05",
+      "constructo `interruptor formal` usado por el motor y ausente del glosario"
+    ],
+    [
+      "T05",
+      "constructo `turnout buying` usado por el motor y ausente del glosario"
+    ],
+    [
+      "T05",
+      "constructo `vote-choice` usado por el motor y ausente del glosario"
+    ],
+    [
+      "T06",
+      "12 valores distintos de **confianza interpersonal** en el corpus: 12 (4x) · 15 (4x) · 16 (1x) · 20 (1x) · 22 (5x) · 28 (1x) · 33 (2x) · 34 (1x) · 5 (1x) · 50 (1x) · 66 (1x) · 70 (1x)"
+    ],
+    [
+      "T06",
+      "7 valores distintos de **Gini** en el corpus: 0.39 (1x) · 0.391 (4x) · 0.449 (1x) · 0.45 (2x) · 0.56 (1x) · 0.59 (1x) · 43.5 (1x)"
+    ],
+    [
+      "T07",
+      "7 vocabularios de tier ajenos al Bloque A: `SÓLIDO` ×44 · `MEDIO` ×29 · `HIPÓTESIS RAZONABLE` ×22 · `Moderada` ×3 · `MODERADA` ×2 · `MODERADA-FUERTE` ×1 · `Narrativa exagerada` ×1"
+    ],
+    [
+      "T08",
+      "7 reports sin mapa de evidencia — todo constructo suyo es DERIVADO, no LEÍDO: Humor_in_Mexican_Psychological_Life__2023-2026 · La_arquitectura_invisible_de_la_interacción_so · Mexican_Population_Genomics__2025-2026_Scienti · Mérito__Movilidad_Social_y_Desigualdad_en_Méxi · Non-Family_Social_Capital_in_Mexico__Cooperati · Psicología__Conducta_y_Sociedad_en_el_México_C · Psicología_del_Trabajo_en_México__Un_Mapa_Basa"
+    ],
+    [
+      "T09",
+      "Autoridad_y_jerarquía_en_el_Mé: marco importado como CAUSA sin (c): ### Mito 2: \"El PDI de Hofstede explica todo\""
+    ],
+    [
+      "T09",
+      "Autoridad_y_jerarquía_en_el_Mé: marco importado como CAUSA sin (c): La combinación de alta distancia de poder (81) con alta aversión a la incertidumbre (82) en el "
+    ],
+    [
+      "T09",
+      "El_México_Rural_e_Indígena_en_: marco importado como CAUSA sin (c): Sobre los marcos importados: Hofstede, GLOBE y WVS se construyeron con muestras urbanas, gerenc"
+    ],
+    [
+      "T09",
+      "La_familia_mexicana_como_siste: marco importado como CAUSA sin (c): 2. **México combina colectivismo alto (IDV 30) con la indulgencia más alta del mundo (IVR 97).*"
+    ],
+    [
+      "T09",
+      "La_familia_mexicana_como_siste: marco importado como CAUSA sin (c): Segundo, la **combinación única en Hofstede**: México puntúa 30 en individualismo (alto colecti"
+    ],
+    [
+      "T09",
+      "Psicología__Conducta_y_Socieda: marco importado como CAUSA sin (c): **México no es un bloque homogéneo sino un archipiélago de realidades que comparten patrones es"
+    ],
+    [
+      "T09",
+      "Psicología_del_Consumidor_Mexi: marco importado como CAUSA sin (c): **Fuerza 2: Aversión a la incertidumbre paralizante.** Con un UAI de 82/100, la necesidad emoci"
+    ],
+    [
+      "T09",
+      "Psicología_del_Consumidor_Mexi: marco importado como CAUSA sin (c): El consumidor mexicano opera dentro de una tensión psicológica fundamental que ningún otro merc"
+    ],
+    [
+      "T11",
+      "corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md: afirmación de estado con cuantificador absoluto (5 de 5 comprobadas resultaron falsas): > **Origen de la corrección:** `meta-auditoria-comunicacion.md §3` · ADR-06 · `glosario conf.03"
+    ]
+  ],
+  "warns": [
+    [
+      "T03",
+      "TRANSFER-maestra-7.md: cita `-v3.2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "TRANSFER-maestra-7.md: cita `-v3_2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "TRANSFER-maestra-8.md: cita `-v3.2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "TRANSFER-maestra-8.md: cita `-v3_2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "canon/estado-programa-v1_9.md: cita `...-v3.0.md`, que no existe"
+    ],
+    [
+      "T03",
+      "canon/estado-programa-v1_9.md: cita `...-v3_0.md`, que no existe"
+    ],
+    [
+      "T03",
+      "canon/gobernanza-v1_9.md: cita `estado-programa-v1.1.md`, que no existe"
+    ],
+    [
+      "T03",
+      "canon/gobernanza-v1_9.md: cita `glosario-v5.5.md`, que no existe"
+    ],
+    [
+      "T03",
+      "canon/gobernanza-v1_9.md: cita `modelo-decision-v3.0.md`, que no existe"
+    ],
+    [
+      "T03",
+      "censo-integridad-v1_0.md: cita `estado-programa-v1.1.md`, que no existe"
+    ],
+    [
+      "T03",
+      "censo-integridad-v1_0.md: cita `glosario-v5.5.md`, que no existe"
+    ],
+    [
+      "T03",
+      "censo-integridad-v1_0.md: cita `modelo-decision-v3.0.md`, que no existe"
+    ],
+    [
+      "T03",
+      "censo-integridad-v1_1.md: cita `-v3.2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "censo-integridad-v1_1.md: cita `-v3_2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "censo-integridad-v1_1.md: cita `estado-programa-v1_7.md`, que no existe"
+    ],
+    [
+      "T03",
+      "censo-integridad-v1_1.md: cita `estado-programa-v1_8.md`, que no existe"
+    ],
+    [
+      "T03",
+      "censo-integridad-v1_1.md: cita `gobernanza-v1_8.md`, que no existe"
+    ],
+    [
+      "T03",
+      "censo-integridad-v1_1.md: cita `modelo-decision-v3_2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "censo-integridad-v1_1.md: cita `v1_9.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/curaduria-archivos.md: cita `CHECKPOINT-programa-psicologia-mexicano.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/curaduria-archivos.md: cita `glosario-v5.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/curaduria-archivos.md: cita `gobernanza-programa.md`, que no existe"
+    ],
+    [
+      "T10",
+      "Autoridad_y_jerarquía_en_el_Mé: muestra de diáspora sin (b): **Realidad**: González-López argumenta que \"el marianismo ha dañado nuestra comprensión de"
+    ],
+    [
+      "T10",
+      "Autoridad_y_jerarquía_en_el_Mé: muestra de diáspora sin (b): El sistema mexicano de *respeto* no es sumisión psicológica; es una **tecnología social de"
+    ],
+    [
+      "T10",
+      "Autoridad_y_jerarquía_en_el_Mé: muestra de diáspora sin (b): En el ámbito familiar, la obediencia tiende a estar más internalizada, especialmente en cl"
+    ],
+    [
+      "T10",
+      "El_Mexicano_y_el_Tiempo__Estru: muestra de diáspora sin (b): **Evidencia explícitamente cualitativa/antigua:** policronía de Hall (1959-1983); \"ahorita"
+    ],
+    [
+      "T10",
+      "El_Mexicano_y_el_Tiempo__Estru: muestra de diáspora sin (b): - **Migración:** la experiencia migratoria/fronteriza modula preferencias intertemporales "
+    ],
+    [
+      "T10",
+      "El_Mexicano_y_el_Tiempo__Estru: muestra de diáspora sin (b): - **¿Qué está sesgado por literatura anglosajona o muestras mexicano-americanas?** Hall (p"
+    ],
+    [
+      "T10",
+      "Elegir__Cortejar_y_Amar_en_el_: muestra de diáspora sin (b): - **Machismo tradicional vs. caballerismo (Arciniega, Anderson, Tovar-Blank y Tracey, 2008"
+    ],
+    [
+      "T10",
+      "Genetica_y_Conducta_del_Mexica: muestra de diáspora sin (b): - **Religiosidad/migración/exposición global:** modulan normas de consumo; los mexicoameri"
+    ],
+    [
+      "T10",
+      "Genetica_y_Conducta_del_Mexica: muestra de diáspora sin (b): - ADH1B*2 en mestizos mexicanos: ~3% (Lisker et al., 1995) hasta ~16% en otras estimacione"
+    ],
+    [
+      "T10",
+      "Genetica_y_Conducta_del_Mexica: muestra de diáspora sin (b): - ALDH2 rs671 (el alelo que causa el \"flush\" asiático): **esencialmente ausente / monomórf"
+    ],
+    [
+      "T10",
+      "Health__Body__Food_and_Substan: muestra de diáspora sin (b): - (c) **Estudios con muestras MEXICANO-AMERICANAS en EE.UU.** — marcados como tales y NO p"
+    ],
+    [
+      "T10",
+      "Health__Body__Food_and_Substan: muestra de diáspora sin (b): - **Malinterpretado desde marcos anglosajones:** aplicar \"individual choice / personal res"
+    ],
+    [
+      "T10",
+      "Health__Body__Food_and_Substan: muestra de diáspora sin (b): - **Top errores a evitar:** culpar al individuo por la dieta; confundir consumo con narcot"
+    ],
+    [
+      "T10",
+      "La_arquitectura_invisible_de_l: muestra de diáspora sin (b): Acevedo et al. (2020) distinguieron estas dos formas: el **colectivismo convivial** mexica"
+    ],
+    [
+      "T10",
+      "La_arquitectura_invisible_de_l: muestra de diáspora sin (b): El **machismo** tiene dos dimensiones documentadas por Arciniega et al. (2008) **(b — mues"
+    ],
+    [
+      "T10",
+      "La_arquitectura_invisible_de_l: muestra de diáspora sin (b): El **marianismo** — con sus cinco pilares de familia, virtud, subordinación, autosilenciam"
+    ],
+    [
+      "T10",
+      "La_arquitectura_invisible_de_l: muestra de diáspora sin (b): La **Escala de Simpatía** desarrollada por Acevedo, Herrera, Shenhav, Yim y Campos (2020) "
+    ],
+    [
+      "T10",
+      "La_arquitectura_invisible_de_l: muestra de diáspora sin (b): Un hallazgo matizado de PMC9644291 complejiza la narrativa: entre adolescentes mexicoameri"
+    ],
+    [
+      "T10",
+      "La_familia_mexicana_como_siste: muestra de diáspora sin (b): **La mayoría de los estudios sobre familismo se realizaron con mexicoamericanos en Estados"
+    ],
+    [
+      "T10",
+      "La_familia_mexicana_como_siste: muestra de diáspora sin (b): El familismo no es un valor unitario. La investigación empírica identifica al menos tres d"
+    ],
+    [
+      "T10",
+      "La_familia_mexicana_como_siste: muestra de diáspora sin (b): El hallazgo más crítico proviene de Zeiders et al. (2013): **el familismo de apoyo y el re"
+    ],
+    [
+      "T10",
+      "La_familia_mexicana_como_siste: muestra de diáspora sin (b): La familia mexicana opera como un **sistema psicológico total** que moldea decisiones de c"
+    ],
+    [
+      "T10",
+      "La_familia_mexicana_como_siste: muestra de diáspora sin (b): La frontera entre cercanía emocional saludable y enmeshment patológico **es culturalmente "
+    ],
+    [
+      "T10",
+      "La_familia_mexicana_como_siste: muestra de diáspora sin (b): La mayoría de los estudios sobre familismo mexicano se realizaron con mexicoamericanos, no"
+    ],
+    [
+      "T10",
+      "Mexican_Population_Genomics__2: muestra de diáspora sin (b): **7. PRS performance.** Portability remains a genuine, quantified problem. Martin et al. ("
+    ],
+    [
+      "T10",
+      "Moral_Emotions_in_Mexico__Decl: muestra de diáspora sin (b): **Evidencia a favor.** Machismo tradicional (Arciniega et al. 2008) con rasgos de dominanc"
+    ],
+    [
+      "T10",
+      "Moral_Emotions_in_Mexico__Decl: muestra de diáspora sin (b): **Evidencia media (estudios sólidos pero con muestras específicas —a menudo mexicano-ameri"
+    ],
+    [
+      "T10",
+      "Moral_Emotions_in_Mexico__Decl: muestra de diáspora sin (b): **¿Qué parte está sesgada por literatura estadounidense/europea?** Casi todo el andamiaje:"
+    ],
+    [
+      "T10",
+      "Moral_Emotions_in_Mexico__Decl: muestra de diáspora sin (b): - **Hallazgo débil sobreusado:** extrapolar de muestras de mexicano-americanos o estudiant"
+    ],
+    [
+      "T10",
+      "Moral_Emotions_in_Mexico__Decl: muestra de diáspora sin (b): - **Migración.** Los estudios en mexicano-americanos (Arciniega, Ramírez-Esparza) muestran"
+    ],
+    [
+      "T10",
+      "Moral_Emotions_in_Mexico__Decl: muestra de diáspora sin (b): - Machismo/caballerismo bidimensional (Arciniega et al. 2008, muestra mexicano-americana)."
+    ],
+    [
+      "T10",
+      "Moral_Emotions_in_Mexico__Decl: muestra de diáspora sin (b): 10. **[MEDIO]** El machismo tiene dos caras (Arciniega et al. 2008): machismo tradicional "
+    ],
+    [
+      "T10",
+      "Moral_Emotions_in_Mexico__Decl: muestra de diáspora sin (b): Las afirmaciones marcadas **[SÓLIDO]** provienen de estudios revisados por pares con muest"
+    ],
+    [
+      "T10",
+      "Non-Family_Social_Capital_in_M: muestra de diáspora sin (b): - **Estudios mexicano-americanos en EE.UU.** (buena parte de la literatura anglófona sobre"
+    ],
+    [
+      "T10",
+      "Psicología_Política_y_Comporta: muestra de diáspora sin (b): - **¿Qué está sesgado por literatura anglosajona o muestras mexicano-americanas?** El marc"
+    ],
+    [
+      "T10",
+      "Psicología__Conducta_y_Socieda: muestra de diáspora sin (b): El **machismo** tiene una estructura bifactorial documentada (Arciniega et al., 2008): mac"
+    ],
+    [
+      "T10",
+      "Psicología__Conducta_y_Socieda: muestra de diáspora sin (b): La simpatía está respaldada por múltiples estudios y datos conductuales observacionales, n"
+    ],
+    [
+      "T10",
+      "Psicología__Conducta_y_Socieda: muestra de diáspora sin (b): Un hallazgo particularmente revelador proviene de Ramírez-Esparza et al.: bilingües mexica"
+    ],
+    [
+      "T10",
+      "Psicología__Conducta_y_Socieda: muestra de diáspora sin (b): Un metaanálisis de Cahill et al. (2021, *Psychological Bulletin*) encontró que mayores val"
+    ],
+    [
+      "T10",
+      "Psychology_of_Mexico-US_Migrat: muestra de diáspora sin (b): **Crítica a los marcos anglosajones (obligatoria).** La teoría de asimilación lineal (Gord"
+    ],
+    [
+      "T10",
+      "Psychology_of_Mexico-US_Migrat: muestra de diáspora sin (b): - **Generación migratoria.** Primera generación (nacida en México) vs. segunda/tercera (me"
+    ],
+    [
+      "T10",
+      "Psychology_of_Mexico-US_Migrat: muestra de diáspora sin (b): 3. **¿Qué parte está sesgada por literatura desde marcos estadounidenses/europeos?** Alto "
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): **1. Machismo vs. caballerismo (Arciniega et al., 2008) — dos dimensiones, no un continuo."
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): **2. Marianismo y autosilenciamiento (Castillo et al., 2010).** Guion femenino de virtud, "
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): **Evidencia a favor.** Arciniega et al. (2008): dos factores independientes confirmados po"
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): **Evidencia a favor.** Nuñez et al. (2016): machismo tradicional→ansiedad y hostilidad cín"
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): **Evidencia en contra / matices.** Buena parte de la validación es con mexicano-estadounid"
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): **¿Qué parte está sesgada por literatura estadounidense/europea?** Las tres escalas centra"
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): - **Escolaridad:** predictor fuerte; menor escolaridad ↔ mayor machismo tradicional (Arcin"
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): - Estructura bidimensional machismo/caballerismo (Arciniega et al., 2008, Journal of Couns"
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): - Machismo tradicional→ansiedad y hostilidad cínica (Nuñez et al., 2016, HCHS/SOL, N=4,426"
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): - Marianismo multidimensional y autosilenciamiento→malestar (Castillo et al., 2010; réplic"
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): 1. **[SÓLIDO / MÁS ÚTIL] Machismo y caballerismo son dos dimensiones independientes, no un"
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): 2. **[SÓLIDO, CON MATIZ IMPORTANTE — MÁS MALINTERPRETADO] El machismo tradicional daña al "
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): 3. **\"El machismo causa depresión.\"** Impreciso: el dato robusto (HCHS/SOL) es ansiedad y "
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): 3. **[SÓLIDO] El marianismo y, en particular, el autosilenciamiento predicen malestar psic"
+    ],
+    [
+      "T10",
+      "Reconfiguración_de_los_Guiones: muestra de diáspora sin (b): 4. **\"El caballerismo es machismo bueno.\"** No es un continuo, y no es unívocamente protec"
+    ],
+    [
+      "T10",
+      "Report_26__The_Contemporary_Me: muestra de diáspora sin (b): - **Malinterpretado desde marcos anglosajones:** Aplicar Hofstede/GLOBE/WVS o el marco hon"
+    ],
+    [
+      "T10",
+      "Report_26__The_Contemporary_Me: muestra de diáspora sin (b): - **¿Qué está sesgado por literatura anglosajona o por muestras mexicano-americanas?** Evi"
+    ],
+    [
+      "T10",
+      "Salud_Mental_en_México__Preval: muestra de diáspora sin (b): - **Migración.** Immigrant paradox: la aculturación a EU empeora la salud mental; los inmi"
+    ],
+    [
+      "T10",
+      "Salud_Mental_en_México__Preval: muestra de diáspora sin (b): - Gran parte de la literatura sobre constructos de género (machismo, marianismo) es de **p"
+    ],
+    [
+      "T10",
+      "Salud_Mental_en_México__Preval: muestra de diáspora sin (b): - Machismo/caballerismo y salud mental (Arciniega et al. 2008; Nuñez et al. 2016) — mayorm"
+    ],
+    [
+      "T10",
+      "Salud_Mental_en_México__Preval: muestra de diáspora sin (b): 11. **Masculinidad y malestar.** Arciniega et al. (2008) distinguen machismo tradicional ("
+    ],
+    [
+      "T10",
+      "Salud_Mental_en_México__Preval: muestra de diáspora sin (b): 12. **Marianismo y autosilenciamiento.** Nuñez et al. (2016, HCHS/SOL, N=4,426) y estudios"
+    ],
+    [
+      "T10",
+      "Salud_Mental_en_México__Preval: muestra de diáspora sin (b): Buena parte de la evidencia sobre machismo, marianismo, autosilenciamiento y regulación em"
+    ],
+    [
+      "T13",
+      "canon/integrador-psicologia-mexicano.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)"
+    ]
+  ],
+  "nota": {
+    "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver censo-integridad-v1_1.md §1 para la derivación completa de cada bucket.",
+    "fecha_de_clasificacion": "2026-07-29",
+    "conteo_por_bucket": {
+      "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 6,
+      "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 8,
+      "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 5,
+      "T03_nombrado_sin_borrado_explicito_en_ninguna_fuente__gap_de_documentacion": 3,
+      "T05_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 5,
+      "T06_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
+      "T07_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
+      "T08_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
+      "T09_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 8,
+      "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
+      "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
+      "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1
+    }
+  }
+}
