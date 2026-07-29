@@ -1,0 +1,571 @@
+# tests/refutations.yaml — La batería de refutaciones del corpus
+#
+# QUÉ ES. Los backtests preguntan "¿el simulador reproduce lo que pasó?".
+# Esto pregunta lo contrario: "¿el simulador reproduce lo que el corpus PROBÓ
+# QUE NO ES ASÍ?". Cada entrada es una prueba que el simulador debe FALLAR.
+#
+# POR QUÉ EXISTE. Un modelo puede acertar todos los agregados por el mecanismo
+# equivocado (la caída de vacunación se ajusta igual de bien moviendo "rechazo"
+# que moviendo "desabasto"). La validación por agregados no distingue esas dos
+# versiones. Estas refutaciones sí: restringen el MECANISMO, no el resultado.
+#
+# PROCEDENCIA. Extraídas leyendo las secciones de mitos y sobreinterpretación
+# de los 22 reports que las traen (de 30). No se reconstruyó ninguna de memoria.
+#
+# TIPOS
+#   A · mecánica   — ejecutable: el sim no debe producir la conducta por ese mecanismo
+#   B · paramétrica— verificable por el validador: ningún param puede codificar el mito
+#   C · de lectura — guardrail de la capa de presentación; no ejecutable
+
+version: "0.2.0"
+estado: "INCORPORADA Y CORRIDA — primera corrida 27/jul/2026, resultados abajo"
+
+# ══════════════════════════════════════════════════════════════════
+# CAMBIOS v0.1.0 → v0.2.0  ·  28 de julio de 2026
+# ══════════════════════════════════════════════════════════════════
+#   1. meta.refutaciones_compiladas: 41 → 49. El archivo declaraba 41 y
+#      contenía 49. Corrección #14 del CHECKPOINT, pendiente desde entonces.
+#   2. meta.reports_totales: 30 → 31 (conteo verificado contra disco).
+#   3. estado: de "propuesta" a "incorporada y corrida". Ya se corrió contra
+#      el modelo; el archivo seguía diciendo que era una propuesta.
+#   4. RESULTADOS DE LA PRIMERA CORRIDA incorporados aquí. Vivían solo en
+#      corrida-refutaciones.md, es decir: la batería no sabía su propio
+#      resultado. Un test que no registra su veredicto no es un test.
+# ══════════════════════════════════════════════════════════════════
+
+primera_corrida:
+  fecha: "2026-07-27"
+  contra: "modelo-decisiones-mexicano-v2.md (prosa; NO el ejecutable)"
+  resultados:
+    pasan: 27
+    fallan: 3
+    sin_objeto: 8
+    requieren_ejecutable: 11
+    total: 49
+  los_tres_fallos: >
+    Los tres fallos NO fueron de calibración sino de FORMA FUNCIONAL o de
+    ESQUEMA, y cada uno produjo un cambio del modelo v2:
+      · cambio 1 — confianza_institucional escalar → vector (ADR-28.b)
+      · cambio 2 — params_base puntual → distribución (ADR-28.d)
+      · cambio 5 — familismo → familismo_apoyo + familismo_obligacion (ADR-30)
+  ocho_sin_objeto:
+    que_significa: >
+      El modelo no tiene la variable que la refutación restringe. No es que
+      pase: es que no hay nada que falsar.
+    incluye: >
+      ref.A.02 ("los mexicanos son flojos") — LA ÚNICA DE TIER MUY_FUERTE de
+      las 49, con el dato más contundente del corpus: 2,207 h/año, el mayor de
+      la OCDE. El modelo no tiene variable de esfuerzo ni de horas. Tampoco
+      tiene colorismo, salud mental ni entidad prestamista.
+    decision_pendiente: >
+      Ampliar el modelo o declarar el alcance y retirarlas de la batería.
+      Mientras no se decida, la batería reporta 49 pruebas de las que 8 son
+      inejecutables por construcción: el denominador está inflado.
+  once_requieren_ejecutable:
+    bloqueo: "MILPA Fase 1 está POSPUESTA por decisión (no por olvido)"
+    consecuencia: >
+      22% de la batería no puede correr hasta que exista el simulador. La
+      cobertura real hoy es 30 de 49 refutaciones ejecutables (61%).
+
+  lectura_honesta: >
+    27 de 49 pasan suena bien y no lo es tanto: 8 pasan por vacío y 11 no se
+    corrieron. Las que efectivamente se probaron y sobrevivieron son 27 de 30.
+    Descartar con rigor es entregable — pero el denominador debe decirse.
+
+meta:
+  reports_con_seccion_de_mitos: 22
+  reports_totales: 31          # verificado contra disco 28/jul; antes decía 30
+  refutaciones_compiladas: 49  # el archivo declaraba 41 y contenía 49
+  conflictos_detectados: 3
+
+# ══════════════════════════════════════════════════════════════════════
+# CONFLICTOS: refutaciones que NO entran hasta resolverse por ADR
+# ══════════════════════════════════════════════════════════════════════
+
+conflictos_sin_resolver:
+  - id: conf.01.calidad_vs_precio
+    donde: "Psicología del Consumidor §10 Mito 1 vs. ADR-15 / modelo §7.3 (V1)"
+    el_report_dice: >
+      "El mexicano solo busca lo barato" es mito: la calidad pesa 2x el precio
+      (Roland Berger 2024); solo 4% cambia de marca por precio.
+    la_ronda_4_dice: >
+      "Calidad y dignidad > precio en segmentos populares" quedó NO VALIDADA:
+      el caso ancla era publicidad, no métrica de compra, y en D/E la métrica
+      dura apunta a que gana el precio. Pendiente panel D/E.
+    diagnostico: >
+      La refutación fue a su vez refutada por la validación forense. Si entra a
+      la batería, el simulador quedaría OBLIGADO a no reproducir sensibilidad al
+      precio en segmentos populares — que es justo lo que la evidencia auditada
+      sugiere que sí ocurre. Es el caso más peligroso de todo el archivo.
+    resolucion_propuesta: >
+      Segmentar la refutación: sostenerla para A/B/C+ (donde el dato de Roland
+      Berger es plausible) y RETIRARLA para D/E, marcando el vacío. NO entra
+      como refutación universal.
+    entra: false
+
+  - id: conf.02.policronia
+    donde: "Psicología del Trabajo, Myth 5 vs. El Mexicano y el Tiempo §9"
+    el_report_dice: >
+      Trabajo: la orientación policrónica del tiempo "es un valor cultural, no
+      una deficiencia".
+    el_otro_report_dice: >
+      Tiempo: la policronía de Hall es marco sobreusado; el driver es estructura,
+      y la MISMA persona ficha a tiempo cuando hay checador y sanción.
+    diagnostico: >
+      Los dos refutan el mismo mito ("mañana = informalidad") con mecanismos
+      OPUESTOS: uno lo atribuye a valor cultural, el otro a disparador de
+      contexto. No es matiz, es contradicción de mecanismo.
+    resolucion_propuesta: >
+      Resolver a favor del report de tiempo (Ronda 3, escrito con lente de
+      decisión y con regla SI-ENTONCES tierizada). La refutación entra con el
+      mecanismo estructural, no con el cultural. Requiere ADR.
+    entra: "solo con mecanismo estructural"
+
+  - id: conf.03.hofstede_como_evidencia
+    donde: "Psicología del Consumidor §10 Mito 4 vs. seis reports que marcan Hofstede como sobreusado"
+    el_report_dice: >
+      Usa las dimensiones de Hofstede (Masculinidad México 69 vs. Chile 28) como
+      EVIDENCIA de que LatAm no es homogéneo.
+    el_corpus_dice: >
+      Seis reports marcan Hofstede como marco sobreusado con muestras sesgadas.
+    diagnostico: >
+      No es contradicción plena: ADR-06 resolvió que Hofstede pasa de causa a
+      CORRELATO. Usarlo como medición descriptiva es admisible; como driver no.
+    resolucion_propuesta: "Entra, etiquetado explícitamente como correlato, nunca como generador."
+    entra: true
+
+# ══════════════════════════════════════════════════════════════════════
+# TIPO A · REFUTACIONES MECÁNICAS (ejecutables contra el simulador)
+# ══════════════════════════════════════════════════════════════════════
+
+refutaciones:
+
+  - id: ref.A.01.vacunacion_actitudinal
+    tipo: A
+    mito: "La caída de cobertura de vacunación se explica por rechazo actitudinal"
+    evidencia_contraria: "6M+ de niños sin vacunar por falta de proveedor; cobertura COVID adultos 86-89%"
+    fuente: ["report:conocimiento", "report:salud", "validacion:vacunacion_desabasto"]
+    tier: FUERTE
+    falla_si: "el sim reproduce la caída moviendo cualquier parámetro actitudinal en vez de la capa de disponibilidad"
+    nota: "Es la meta-regla del corpus. Ya existe como bt.vacunacion_desabasto; se duplica aquí como refutación."
+
+  - id: ref.A.02.esfuerzo_laboral
+    tipo: A
+    mito: "Los mexicanos son flojos / trabajan poco"
+    evidencia_contraria: "2,207 h/año, el mayor de la OCDE, 26% sobre el promedio; 27% trabaja >50h semanales; baja productividad = déficit de capital, no de esfuerzo"
+    fuente: ["report:trabajo", "report:foundational", "OCDE2023"]
+    tier: MUY_FUERTE
+    falla_si: "el sim produce menor esfuerzo u horas para el perfil 2 que para el perfil 1 sin una causa estructural explícita en la traza"
+
+  - id: ref.A.03.ahorro_por_cultura
+    tipo: A
+    mito: "El mexicano no ahorra por cultura"
+    evidencia_contraria: "ahorra masivamente en vehículos informales (tanda, guardado); el problema es vehículo y confianza, no disposición"
+    fuente: ["report:behavioral_finance"]
+    tier: FUERTE
+    falla_si: "el sim produce tasa de ahorro total baja en vez de tasa de ahorro FORMAL baja con ahorro informal alto"
+
+  - id: ref.A.04.pobres_no_pagan
+    tipo: A
+    mito: "Los pobres no pagan o no quieren pagar"
+    evidencia_contraria: "pagan sobreprecios muy altos por conveniencia y acceso; ENSAFI 72.7% al corriente; IMOR regulado 5-16% rentable a CAT 80-97%"
+    fuente: ["report:behavioral_finance", "report:credito_popular", "validacion:V3_credito_auditado"]
+    tier: FUERTE
+    falla_si: "el sim produce el colapso de un prestamista vía impago masivo del deudor en vez de vía choque de fondeo"
+    nota: "Emparejada con bt.credito_riesgo_del_prestamista, hoy inejecutable por falta de la entidad prestamista."
+
+  - id: ref.A.05.no_saben_planear
+    tipo: A
+    mito: "Los mexicanos no saben planear / cortoplacismo cultural"
+    evidencia_contraria: "los mismos sujetos con ingreso estable y garantía institucional planean largo (afore, seguro, hipoteca); Progresa aleatorizado"
+    fuente: ["report:tiempo", "report:behavioral_finance", "Progresa_RCT"]
+    tier: FUERTE
+    falla_si: "el horizonte temporal permanece corto tras estabilizar el ingreso, o el sim lo alarga por una regla cableada en vez de por G3"
+
+  - id: ref.A.06.impuntualidad_como_rasgo
+    tipo: A
+    mito: "La impuntualidad mexicana es desorganización o falta de respeto"
+    evidencia_contraria: "es norma contextual: la MISMA persona ficha a tiempo donde hay checador y sanción"
+    fuente: ["report:tiempo"]
+    tier: FUERTE
+    falla_si: "un mismo agente muestra la misma puntualidad en contexto formal-sancionado y en contexto social sin sanción"
+    ver_conflicto: conf.02.policronia
+
+  - id: ref.A.07.mordida_esencial
+    tipo: A
+    mito: "La cultura de la mordida es inherente a lo mexicano"
+    evidencia_contraria: "equilibrio dependiente de frecuencia (Bardhan 1997); Uruguay y Chile, culturalmente latinos, con corrupción mucho menor porque sus instituciones funcionan"
+    fuente: ["report:confianza", "report:politica"]
+    tier: FUERTE
+    falla_si: "la mordida persiste tras digitalizar el trámite y hacer registrable al funcionario"
+
+  - id: ref.A.08.baja_denuncia_tolerancia
+    tipo: A
+    mito: "La baja denuncia refleja tolerancia al delito"
+    evidencia_contraria: "denunciar rinde ~0.8%; es miedo + inutilidad percibida, no tolerancia"
+    fuente: ["report:politica", "report:violencia", "ENVIPE"]
+    tier: FUERTE
+    falla_si: "la cifra negra no baja cuando sube el rendimiento esperado de denunciar"
+
+  - id: ref.A.09.pobres_venden_voto
+    tipo: A
+    mito: "Los pobres venden su voto"
+    evidencia_contraria: "el votante toma el beneficio y conserva autonomía; el canal causal es la percepción de observabilidad (0.06 -> 0.63), no el regalo"
+    fuente: ["report:politica", "validacion:V2_clientelismo", "Ascencio_Chang"]
+    tier: FUERTE
+    falla_si: "subir el tamaño del beneficio mueve el voto cuando el secreto se percibe pleno"
+
+  - id: ref.A.10.apatia_civica
+    tipo: A
+    mito: "El mexicano es apático"
+    evidencia_contraria: "es selectivo y calibrado: ~60% presidencial vs. >85% de abstención en la judicial"
+    fuente: ["report:politica", "validacion:V2_clientelismo"]
+    tier: FUERTE
+    falla_si: "la participación es aproximadamente constante entre tipos de elección"
+
+  - id: ref.A.11.rechazo_tecnologico
+    tipo: A
+    mito: "La baja confianza institucional produce rechazo tecnológico"
+    evidencia_contraria: "Nu 15M de clientes con adopción multiproducto igual en rural y urbano; el efectivo al 82% es preferencia racional, no atraso"
+    fuente: ["report:tecnologia", "report:confianza", "validacion:OXXO_vs_CoDi"]
+    tier: FUERTE
+    falla_si: "el sim predice baja adopción de un producto útil y de baja fricción solo por baja confianza institucional de la celda"
+
+  - id: ref.A.12.farmacia_como_atraso
+    tipo: A
+    mito: "Las farmacias con consultorio son atraso, o los mexicanos no saben cuidarse"
+    evidencia_contraria: "adaptación racional a un sistema saturado; ~10.6M consultas/mes"
+    fuente: ["report:salud"]
+    tier: FUERTE
+    falla_si: "el sim mantiene la preferencia por farmacia cuando el acceso público es ágil y gratuito"
+
+  - id: ref.A.13.eleccion_alimentaria
+    tipo: A
+    mito: "Los mexicanos eligen comer mal"
+    evidencia_contraria: "el entorno obesogénico produce la decisión; borra entorno, precio y tiempo"
+    fuente: ["report:salud_cuerpo"]
+    tier: FUERTE
+    falla_si: "la conducta alimentaria cambia por parámetro de preferencia sin que cambien precio, tiempo o disponibilidad"
+
+  - id: ref.A.14.no_cree_en_terapia
+    tipo: A
+    mito: "El mexicano no cree en la terapia"
+    evidencia_contraria: "la barrera dominante es costo y oferta, no creencia; donde hay oferta accesible hay demanda"
+    fuente: ["report:salud_mental"]
+    tier: FUERTE
+    falla_si: "la demanda de atención no responde a la apertura de oferta accesible"
+
+  - id: ref.A.15.familismo_amoral
+    tipo: A
+    mito: "Familismo amoral: se coopera solo con la familia (Banfield)"
+    evidencia_contraria: "juegos económicos EN México: gradiente familiar fuerte PERO generosidad con desconocidos ~ con vecinos, sin favoritismo intracomunitario"
+    fuente: ["report:capital_social", "report:family"]
+    tier: FUERTE
+    falla_si: "el sim produce cooperación con extraños sistemáticamente menor que con vecinos a igual estructura de sanción"
+
+  - id: ref.A.16.linchamientos_barbarie
+    tipo: A
+    mito: "Los linchamientos son barbarie cultural"
+    evidencia_contraria: "respuesta a vacío estatal"
+    fuente: ["report:politica"]
+    tier: MEDIA
+    falla_si: "el sim produce linchamiento donde la capacidad estatal local es alta"
+
+  - id: ref.A.17.lider_fuerte_autoritarismo
+    tipo: A
+    mito: "Apoyar a un líder fuerte equivale a ser autoritario"
+    evidencia_contraria: "es demanda de eficacia y provisión; solo la autoridad benévola legitima"
+    fuente: ["report:politica", "report:autoridad"]
+    tier: MEDIA
+    falla_si: "el apoyo al líder no cae cuando la provisión y la eficacia caen"
+
+  - id: ref.A.18.sumision_ante_autoridad
+    tipo: A
+    mito: "Los mexicanos son sumisos ante la autoridad"
+    evidencia_contraria: "1968, 1994, #YoSoy132, Ayotzinapa, movilizaciones feministas, protestas Gen Z 2025; 49.5% cree que se puede pedir cambiar las leyes"
+    fuente: ["report:autoridad"]
+    tier: FUERTE
+    falla_si: "la deferencia no cae cuando la autoridad rompe el pacto de protección"
+
+  - id: ref.A.19.iniciativa_como_ambicion
+    tipo: A
+    mito: "La falta de iniciativa refleja falta de ambición"
+    evidencia_contraria: "la supresión de iniciativa es respuesta racional a costo social de rebasar la jerarquía; con autonomía y seguridad psicológica reales, la iniciativa aparece"
+    fuente: ["report:trabajo"]
+    tier: MEDIA
+    falla_si: "la iniciativa no sube al subir la seguridad psicológica y la autonomía"
+
+  - id: ref.A.20.emprendimiento_vibrante
+    tipo: A
+    mito: "La alta tasa de emprendimiento indica cultura startup vibrante"
+    evidencia_contraria: "refleja falta de opciones en el sector formal; el micronegocio suele ser estrategia de supervivencia"
+    fuente: ["report:trabajo"]
+    tier: MEDIA
+    falla_si: "la tasa de micronegocio no cae al abrirse empleo formal"
+
+  - id: ref.A.21.remesas_desarrollo
+    tipo: A
+    mito: "Las remesas desarrollan a México"
+    evidencia_contraria: "son consumo de subsistencia, no inversión estructural"
+    fuente: ["report:migracion"]
+    tier: MEDIA
+    falla_si: "el sim convierte flujo de remesas en inversión productiva o en movilidad ascendente sostenida"
+
+  - id: ref.A.22.corresidencia_cultural
+    tipo: A
+    mito: "Los mexicanos eligen vivir con sus padres por cultura"
+    evidencia_contraria: "vivienda 42% más cara, salarios 21% más bajos; 46% de los que se independizaron regresaron"
+    fuente: ["report:family"]
+    tier: FUERTE
+    falla_si: "la corresidencia no responde a precio de vivienda ni a ingreso"
+    requiere: "hogar como entidad (hoy ausente)"
+
+  - id: ref.A.23.familismo_protector
+    tipo: A
+    mito: "El familismo protege la salud mental"
+    evidencia_contraria: "solo el familismo de APOYO protege; el obligatorio no. Cohesión extrema (enmeshment) empeora consumo de sustancias; la abnegación está identificada como causa de enfermedad mental en mujeres"
+    fuente: ["report:family", "report:salud_mental"]
+    tier: MEDIA
+    falla_si: "el sim trata familismo alto como protector monotónico, sin punto de inflexión ni carga diferencial por género"
+
+  - id: ref.A.24.miedo_igual_riesgo
+    tipo: A
+    mito: "El miedo a la violencia equivale al riesgo objetivo"
+    evidencia_contraria: "el miedo es mayor, desigual y con signo invertido por género; se alimenta de exposición vicaria"
+    fuente: ["report:violencia"]
+    tier: FUERTE
+    falla_si: "la percepción de inseguridad del agente sigue linealmente a la tasa de homicidio de su celda"
+
+  - id: ref.A.25.credulidad_digital
+    tipo: A
+    mito: "Las redes volvieron crédulo al mexicano"
+    evidencia_contraria: "hay heurísticas de verificación; la credulidad no es uniforme y sube la verificación en temas de alto riesgo"
+    fuente: ["report:conocimiento"]
+    tier: FUERTE
+    falla_si: "la aceptación de información es independiente del riesgo percibido del tema"
+
+  - id: ref.A.26.desconfia_del_experto
+    tipo: A
+    mito: "Desconfía del experto por ignorancia"
+    evidencia_contraria: "es experiencia con instituciones que fallan y economía de acceso"
+    fuente: ["report:conocimiento"]
+    tier: FUERTE
+    falla_si: "la deferencia al experto no sube al hacerlo accesible, cercano y asequible"
+
+  - id: ref.A.27.lealtad_de_marca
+    tipo: A
+    mito: "La lealtad de marca mexicana es vínculo emocional excepcional"
+    evidencia_contraria: "cuando cambian, 90-100% queda satisfecho y 46% no regresa; mucha lealtad es aversión al riesgo e inercia"
+    fuente: ["report:consumidor"]
+    tier: MEDIA
+    falla_si: "el sim modela permanencia de marca como afecto en vez de como costo de riesgo percibido"
+
+  - id: ref.A.28.ecommerce_transformador
+    tipo: A
+    mito: "El e-commerce está transformando el retail mexicano"
+    evidencia_contraria: "90% aún prefiere tienda física; comercio tradicional >40% de consumo masivo; 600,000 tienditas siguen siendo canal dominante en hogares de bajo ingreso"
+    fuente: ["report:consumidor"]
+    tier: MEDIA
+    falla_si: "el sim produce sustitución de canal físico por digital sin restricción de acceso ni de fricción"
+
+# ══════════════════════════════════════════════════════════════════════
+# TIPO B · REFUTACIONES PARAMÉTRICAS (verificables por el validador)
+# ══════════════════════════════════════════════════════════════════════
+
+  - id: ref.B.01.sin_caracter_nacional
+    tipo: B
+    mito: "Existe un carácter mexicano"
+    evidencia_contraria: "Bartra: entelequia artificial con existencia solo literaria y mitológica, construida para legitimar el Estado posrevolucionario. Análisis de perfil latente encuentra tres perfiles culturales coexistentes DENTRO de México"
+    fuente: ["report:autoridad", "report:family", "report:foundational"]
+    tier: FUERTE
+    falla_si: "cualquier parámetro toma el mismo valor para los 6 perfiles en todas las celdas, o el sim reporta una cifra 'nacional' sin desagregar"
+
+  - id: ref.B.02.hofstede_no_es_driver
+    tipo: B
+    mito: "Las dimensiones de Hofstede explican la conducta mexicana"
+    evidencia_contraria: "muestra de empleados de IBM, fines de los 60; McSweeney 2002; los ejecutivos del 'Nuevo México' puntúan igual que muestras estadounidenses en orientación participativa"
+    fuente: ["report:autoridad", "report:tiempo", "report:clasemediero", "report:behavioral_finance", "report:emociones_morales", "report:violencia"]
+    tier: FUERTE
+    falla_si: "algún generador o parámetro cita una dimensión de Hofstede como fuente causal"
+    nota: "ADR-06: admisible como CORRELATO descriptivo, nunca como driver. Refutado independientemente por 6 reports."
+
+  - id: ref.B.03.machismo_no_es_rasgo
+    tipo: B
+    mito: "El mexicano es machista (como rasgo homogéneo)"
+    evidencia_contraria: "machismo y caballerismo son dimensiones INDEPENDIENTES, no un continuo; varían por escolaridad, edad y región; el endoso no es exclusivo de hombres (HCHS/SOL N=4,426)"
+    fuente: ["report:genero", "report:autoridad", "report:family"]
+    tier: FUERTE
+    falla_si: "existe un parámetro escalar de machismo, o el modificador de género aplica un valor único por sexo sin variar por escolaridad, edad y región"
+    nota_procedencia: "HCHS/SOL es muestra hispana en EE.UU. — marcar como diáspora, no población en México."
+
+  - id: ref.B.04.colorismo_estructural
+    tipo: B
+    mito: "El colorismo es una susceptibilidad cultural"
+    evidencia_contraria: "es discriminación estructural medible con datos de movilidad (ENADIS, MMSI-INEGI, CEEY)"
+    fuente: ["report:clasemediero", "report:merito"]
+    tier: FUERTE
+    falla_si: "el tono de piel aparece como atributo del agente en vez de como capa de TRATO RECIBIDO en la celda"
+    nota: "La spec ya lo hace bien: discriminacion_tono_piel está en la celda con nota explícita de que no es biológica. Esta refutación blinda esa decisión."
+
+  - id: ref.B.05.violencia_no_es_cultura
+    tipo: B
+    mito: "Hay una cultura de la violencia mexicana"
+    evidencia_contraria: "el homicidio venía a la baja antes de 2006 y se concentra en corredores territoriales específicos, no en una nación homogénea"
+    fuente: ["report:violencia", "report:genero"]
+    tier: FUERTE
+    falla_si: "la exposición a violencia tiene un componente base por perfil independiente de la celda"
+
+  - id: ref.B.06.fatalismo_no_es_religioso
+    tipo: B
+    mito: "El mexicano es fatalista por su religión"
+    evidencia_contraria: "confunde adaptación racional a la precariedad con rasgo religioso; el fatalismo ante la diabetes es desesperanza estructural y falta de acceso"
+    fuente: ["report:religiosidad", "report:salud_cuerpo"]
+    tier: FUERTE
+    falla_si: "el modificador de religiosidad reduce el horizonte temporal o la agencia percibida"
+
+  - id: ref.B.07.mexico_no_es_cultura_de_honor
+    tipo: B
+    mito: "México es cultura de honor"
+    evidencia_contraria: "etiqueta importada contradicha por la autopercepción (Smith 2017); r=.96 dignidad-face"
+    fuente: ["report:emociones_morales", "meta-auditoria:comunicacion"]
+    tier: FUERTE
+    falla_si: "cualquier regla o generador nombra 'honor' como driver"
+    nota: "ADR-05. Ya está en la ficha como prohibición explícita."
+
+  - id: ref.B.08.desconfianza_no_es_permanente
+    tipo: B
+    mito: "La baja confianza mexicana es cultural y permanente"
+    evidencia_contraria: "la confianza en el gobierno subió de 16% a 52% en 6 años (2018-2024, Latinobarómetro); la interpersonal cayó de 33% a 16% y se recuperó a 22%"
+    fuente: ["report:confianza"]
+    tier: FUERTE
+    falla_si: "confianza_institucional no responde a cambios en las capas de la celda, o su base por perfil domina al término de generador"
+
+  - id: ref.B.09.desconfianza_no_es_generalizada
+    tipo: B
+    mito: "Los mexicanos no confían en las instituciones"
+    evidencia_contraria: "89% confía en la Marina, 87% en la familia, 77% en escuelas públicas, 76% en universidades; la desconfianza se concentra en partidos, judicial, policía y legisladores"
+    fuente: ["report:confianza"]
+    tier: FUERTE
+    falla_si: "confianza_institucional es un escalar único en vez de un vector por tipo de institución"
+    nota: "IMPLICACIÓN DE DISEÑO: el parámetro actual es escalar. Esta refutación exige desdoblarlo."
+
+  - id: ref.B.10.sin_genoma_conductual
+    tipo: B
+    mito: "Existe una predisposición genética mexicana a alguna conducta"
+    evidencia_contraria: "distancias genéticas DENTRO de México exceden distancias intercontinentales (FST Seri-Lacandón = 0.136); el firewater myth está desacreditado; ALDH2 es nula en poblaciones mexicanas"
+    fuente: ["report:genomica", "modelo:7.2"]
+    tier: FUERTE
+    falla_si: "cualquier inferencia ascendencia -> conducta de grupo"
+    nota: "ADR-19. Ya lo revisa el validador; se registra aquí por completitud."
+
+  - id: ref.B.11.dispersion_intraperfil
+    tipo: B
+    mito: "Los miembros de un segmento se comportan igual"
+    evidencia_contraria: "las diferencias entre Nuevo León y Chiapas, entre una mujer indígena rural y un profesionista urbano del norte, son mayores que entre muchos países"
+    fuente: ["report:family", "report:autoridad"]
+    tier: FUERTE
+    falla_si: "params_base es un valor puntual por perfil sin varianza, de modo que dos agentes del mismo perfil en la misma celda son idénticos"
+    nota: "Confirmada por el benchmark externo. Hoy MILPA falla esta refutación por construcción."
+
+# ══════════════════════════════════════════════════════════════════════
+# TIPO C · REFUTACIONES DE LECTURA (capa de presentación, no ejecutables)
+# ══════════════════════════════════════════════════════════════════════
+
+  - id: ref.C.01.no_extrapolar_clase_media
+    tipo: C
+    mito: "Lo observado en la clase media urbana digitalizada aplica a todo México"
+    fuente: ["report:violencia", "report:sancion_social", "report:genero", "report:clasemediero", "report:trabajo", "report:juventud"]
+    tier: FUERTE
+    guardrail: "toda salida debe mostrar el mapa de confianza pálido donde el dato es de clase media urbana imputado a otros segmentos"
+    nota: "Refutada independientemente por al menos 6 reports. Es la refutación más repetida del corpus."
+
+  - id: ref.C.02.no_romantizar_resiliencia
+    tipo: C
+    mito: "Los mexicanos son resilientes por naturaleza"
+    evidencia_contraria: "romantiza el sufrimiento, invisibiliza sus costos (somatización, depresión, suicidio masculino) y desresponsabiliza al Estado"
+    fuente: ["report:violencia", "report:salud_mental", "report:desaparecidos"]
+    tier: FUERTE
+    guardrail: "ninguna narrativa de salida puede presentar la adaptación a un mal entorno como virtud"
+
+  - id: ref.C.03.no_folclorizar
+    tipo: C
+    mito: "El mexicano tiene una relación especial con la muerte que amortigua el duelo"
+    evidencia_contraria: "confunde cultura (Día de Muertos) con estructura (impunidad). Falso y peligroso"
+    fuente: ["report:desaparecidos"]
+    tier: FUERTE
+    guardrail: "prohibido usar iconografía o marco festivo-mortuorio en salidas sobre duelo, desaparición o violencia"
+
+  - id: ref.C.04.sindrome_del_cangrejo
+    tipo: C
+    mito: "El mexicano no quiere ver triunfar a otro mexicano"
+    evidencia_contraria: "universal donde hay escasez y desigualdad; base estructural, no cultural. Peligroso si culpa a las víctimas de su precariedad"
+    fuente: ["report:sancion_social"]
+    tier: FUERTE
+    guardrail: "la nivelación horizontal se reporta siempre con su causa estructural visible al lado"
+
+  - id: ref.C.05.latam_no_es_homogeneo
+    tipo: C
+    mito: "LatAm es un mercado homogéneo"
+    evidencia_contraria: "Brasil adoptó Pix al 95%; México tiene 51% sin bancarizar; Colombia carece del ecosistema OXXO; Argentina opera bajo psicología inflacionaria crónica"
+    fuente: ["report:consumidor"]
+    tier: MEDIA
+    guardrail: "prohibido presentar resultados de México como representativos de América Latina"
+    ver_conflicto: conf.03.hofstede_como_evidencia
+
+  - id: ref.C.06.comunidad_no_es_armonica
+    tipo: C
+    mito: "Armonía comunitaria en los pueblos"
+    evidencia_contraria: "faccionalismo, cacicazgo, expulsiones religiosas (33,531 estimados de los Altos de Chiapas en 1993), exclusión de mujeres y avecindados, control social duro. El sistema de cargos NO nivela la riqueza: Cancian mostró que la legitima y estratifica"
+    fuente: ["report:rural_indigena"]
+    tier: FUERTE
+    guardrail: "aplica al material fuera de alcance (ADR-10); se registra para que nadie idealice el sistema comunal al describir la frontera del modelo"
+
+  - id: ref.C.07.no_individualizar_dano_social
+    tipo: C
+    mito: "El diagnóstico individual (TEPT, duelo prolongado) es la solución"
+    evidencia_contraria: "sobreusado; individualiza un daño social"
+    fuente: ["report:desaparecidos", "report:salud_mental"]
+    tier: MEDIA
+    guardrail: "ninguna implicación aplicada puede proponer intervención clínica individual como respuesta primaria a un daño estructural"
+
+  - id: ref.C.08.migrante_no_abandona
+    tipo: C
+    mito: "El migrante abandona a su familia"
+    evidencia_contraria: "la migración suele ser estrategia familiar de provisión; el estigma recae injustamente sobre las madres transnacionales"
+    fuente: ["report:migracion"]
+    tier: MEDIA
+    guardrail: "la salida sobre migración debe mostrar el flujo de provisión, no solo la ausencia"
+
+  - id: ref.C.09.santa_muerte_no_es_narco
+    tipo: C
+    mito: "La Santa Muerte es solo del narco"
+    evidencia_contraria: "sus millones de devotos son mayoritariamente pobres urbanos, mujeres y trabajadores; criminalizarlos es un error ético"
+    fuente: ["report:religiosidad"]
+    tier: FUERTE
+    guardrail: "prohibida cualquier asociación de práctica religiosa popular con criminalidad en las salidas"
+
+  - id: ref.C.10.confianza_personal_no_compensa
+    tipo: C
+    mito: "La confianza personal compensa la debilidad institucional"
+    evidencia_contraria: "es fortaleza adaptativa Y trampa sistémica: reproduce la deficiencia al desviar energía de la construcción institucional hacia la gestión de redes personales"
+    fuente: ["report:confianza"]
+    tier: MEDIA
+    guardrail: "el circuito de confianza personalizada debe reportarse como bucle de refuerzo negativo, no como solución"
+    nota: "IMPLICACIÓN: exige un bucle de retroalimentación que hoy no existe (las capas de estado dinámico no tienen consumidor)."
+
+# ══════════════════════════════════════════════════════════════════════
+# MODO DE EJECUCIÓN
+# ══════════════════════════════════════════════════════════════════════
+
+modo_refutacion:
+  descripcion: >
+    Antes de cualquier publicación, correr la batería completa. Una refutación
+    tipo A o B que el simulador REPRODUZCA es bloqueante: significa que el
+    modelo llegó al resultado por un mecanismo que el corpus ya descartó.
+  bloqueante: true
+  nota_honestidad: >
+    De las 28 refutaciones tipo A, al menos 5 requieren entidades que MILPA
+    hoy no tiene (hogar, prestamista) o parámetros que no están desdoblados
+    (confianza institucional escalar). No se pueden correr todavía. Eso no es
+    razón para omitirlas: una prueba que no se puede correr es deuda visible,
+    y una prueba ausente es deuda invisible.

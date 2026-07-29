@@ -1,0 +1,111 @@
+# rules/tramite.yaml — Dominio: autoridad, trámite, relación con el Estado
+dominio: tramite
+version: "0.2.0"
+
+# ══════════════════════════════════════════════════════════════════
+# CAMBIOS v0.1.0 → v0.2.0  ·  28 de julio de 2026
+# ══════════════════════════════════════════════════════════════════
+#   1. TIERS CORREGIDOS. Las cuatro reglas venían marcadas tier: FUERTE.
+#      El motor (modelo §3.3) dice FUERTE · FUERTE · MEDIA · MEDIA-FUERTE.
+#      Las dos de gobierno digital estaban INFLADAS. Un tier inflado en el
+#      YAML es el mismo defecto que las reglas fantasma del Hito 2, sólo que
+#      una capa más abajo y sin nadie que lo lea.
+#   2. REGLA AUSENTE RESTITUIDA: tramite.evasion_norma (modelo §3.3, [MEDIA]).
+#      El dominio tiene 4 reglas en el motor y el YAML sólo compilaba 3 de
+#      ellas (la cuarta era el espejo de otra, no una regla propia).
+#   3. REFERENCIA COLGANTE ELIMINADA: fuente "modelo:7.1" apuntaba al §7 del
+#      modelo v1 —la extensión de esta regla a crédito—, que el cambio 11 del
+#      v2 RETIRÓ. Citar la fuente retirada reintroduce el alcance retirado.
+#   4. Alcance explícito: esta regla vale para GOBIERNO DIGITAL, no para
+#      crédito ni para productos financieros privados.
+# ══════════════════════════════════════════════════════════════════
+
+reglas:
+  - id: tramite.mordida.discrecional
+    situacion: realiza_tramite_gobierno
+    si:
+      disparadores: {sancion_creible: false, quien_observa: "nadie"}
+    entonces:
+      - {conducta: paga_mordida, p: 0.62}
+      - {conducta: tramite_normal, p: 0.38}
+    porque: {generador: [G1], mecanismo: "trampa social: cada quien paga porque supone que los demás pagan"}
+    tier: FUERTE
+    falsable_si: "Si al digitalizar y agregar testigos la mordida no baja, no es trampa social sino otra cosa"
+    fuente: ["ENCIG2023", "Rothstein_trampa_social", "report:politica"]
+
+  - id: tramite.mordida.con_registro
+    situacion: realiza_tramite_gobierno
+    si:
+      disparadores: {sancion_creible: true, quien_observa: "registro_o_testigos"}
+    entonces:
+      - {conducta: tramite_normal, p: 0.88}
+      - {conducta: paga_mordida, p: 0.12}
+    porque: {generador: [G1], mecanismo: "el registro rompe la trampa social"}
+    tier: FUERTE
+    falsable_si: "Si la digitalización no reduce la mordida, la hipótesis de trampa social falla"
+    fuente: ["ENCIG2023", "report:politica"]
+
+  - id: tramite.gobierno_digital.coercitivo
+    situacion: le_ofrecen_servicio_gobierno_digital
+    si:
+      disparadores: {cobertura_formal: false}
+      contexto_producto: {coercitivo: true, riesgo_fiscal_percibido: true}
+    entonces:
+      - {conducta: rechaza_servicio, p: 0.91}
+      - {conducta: adopta, p: 0.09}
+    porque: {generador: [G1], mecanismo: "la utilidad predice adopción; la coerción con riesgo fiscal la mata"}
+    tier: MEDIA-FUERTE          # corregido en v0.2.0 · el motor §3.3 dice MEDIA-FUERTE, no FUERTE
+    alcance: "gobierno digital ÚNICAMENTE (cambio 11 del modelo v2)"
+    falsable_si: "Si un servicio coercitivo con riesgo fiscal lograra adopción masiva, la regla se rompe"
+    fuente: ["validacion:CoDi", "report:tecnologia"]
+    nota_validacion: "Backtest: CoDi = 3.09M cuentas con >=1 transacción en 6 años."
+
+  - id: tramite.gobierno_digital.util_sin_coercion
+    situacion: le_ofrecen_servicio_gobierno_digital
+    si:
+      contexto_producto: {coercitivo: false, riesgo_fiscal_percibido: false}
+    entonces:
+      - {conducta: adopta, p: 0.71}
+      - {conducta: rechaza_servicio, p: 0.29}
+    porque: {generador: [G1], mecanismo: "la utilidad predice la adopción; sin coerción ni amenaza fiscal desaparece la razón para rechazar"}
+    tier: MEDIA-FUERTE          # corregido en v0.2.0 · hereda el tier de su par: es su espejo obligatorio
+    alcance: "gobierno digital ÚNICAMENTE (cambio 11 del modelo v2)"
+    falsable_si: "Si un servicio digital útil y NO coercitivo tampoco lograra adopción, entonces el driver no es la utilidad sino la confianza institucional, y la regla espejo cae junto con su par"
+    fuente: ["validacion:SPEI", "report:tecnologia", "modelo:3.3"]   # v0.2.0: se retira "modelo:7.1" — es el §7 del v1, la extensión a crédito RETIRADA por el cambio 11
+    nota_restauracion: >
+      ESPEJO OBLIGATORIO de tramite.gobierno_digital.coercitivo. Restaura la
+      segunda mitad de la regla canónica del modelo §3.3 —"SI es útil y sin
+      amenaza (tipo SPEI) ENTONCES se adopta"— omitida en la compilación 0.1.0.
+      Sin ella, apagar riesgo_fiscal_percibido en bt.oxxo_vs_codi cae en
+      NO_COVERAGE (spec §5.2) y el gate de ADR-25 pasaría por pérdida de
+      cobertura, no por prueba de mecanismo.
+    nota_calibracion: >
+      PROBABILIDADES NO CALIBRADAS. El corpus da la dirección (SPEI se adopta),
+      no la magnitud —deuda declarada de elasticidades—. El criterio del gate
+      (B < 10% de A) no depende del split exacto, pero la prueba de mecanismo sí:
+      calibrar contra series de adopción de SPEI antes de correr Fase 1.
+
+  # ── RESTITUIDA en v0.2.0 · existía en modelo §3.3 y no estaba compilada ──
+  - id: tramite.evasion_norma
+    situacion: enfrenta_norma_percibida_inutil_o_extractiva
+    si:
+      disparadores: {sancion_creible: false}
+      contexto_norma: {percibida_util: false}
+    entonces:
+      - {conducta: evade_norma, p: 0.66}
+      - {conducta: cumple_norma, p: 0.34}
+    porque: {generador: [G1], mecanismo: "cálculo ante institución de baja calidad: el costo esperado de cumplir excede el de evadir cuando la sanción es improbable y la norma no rinde"}
+    tier: MEDIA
+    falsable_si: "Si la evasión NO baja al hacer creíble la sanción manteniendo constante la utilidad percibida de la norma, el driver no es el cálculo sino otra cosa"
+    fuente: ["report:politica", "report:autoridad", "modelo:3.3"]
+    nota_segmentacion: >
+      DISTINGUIR DOS EVASIONES QUE EL AGREGADO CONFUNDE:
+        (1) evasión de SUBSISTENCIA — informalidad, perfiles 2 y 3: no cumplir
+            porque cumplir es inviable con el ingreso disponible;
+        (2) evasión por CINISMO DE CLASE ALTA — perfil 4: no cumplir porque la
+            sanción no aplica a uno.
+      Tratarlas como una sola conducta produce la lectura esencialista
+      ("el mexicano no respeta la ley") que este modelo existe para evitar.
+    nota_calibracion: >
+      PROBABILIDADES NO CALIBRADAS. El corpus sostiene la DIRECCIÓN, no la
+      magnitud. Coherentes con el tier MEDIA. No reportar con decimales.

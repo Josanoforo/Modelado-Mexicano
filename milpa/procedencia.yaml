@@ -1,0 +1,345 @@
+# tests/procedencia.yaml — Auditoría de procedencia de los 144 números (eran 107 en v0.1.0)
+#
+# QUÉ ES. El Bloque A obliga a marcar la procedencia de la EVIDENCIA.
+# Nadie obligaba a marcar la procedencia de los NÚMEROS. Este archivo lo hace:
+# para cada valor del modelo, de dónde salió realmente.
+#
+# CLASES DE PROCEDENCIA
+#   MEDIDO     — transcripción directa de un dato publicado y verificable
+#   DERIVADO   — aritmética sobre un MEDIDO (típicamente su complemento a 1)
+#   ORDINAL→CARDINAL — conversión de una etiqueta cualitativa de la ficha
+#                      ("alto", "corto", "muy baja") a un número. La etiqueta
+#                      tiene respaldo; el número concreto no.
+#   ASIGNADO   — juicio informado. La fuente citada sostiene la DIRECCIÓN,
+#                no la magnitud. Coherente con el corpus, no medido.
+#
+# ADVERTENCIA DE LECTURA. Que 96% de los números no sea MEDIDO no es un
+# escándalo por los estándares del campo: los ABM asignan parámetros de forma
+# rutinaria. El escándalo sería no poder distinguir cuál es cuál. Este archivo
+# convierte un problema invisible en uno visible — que es todo lo que se le
+# puede pedir hoy, y el prerrequisito de arreglarlo mañana.
+
+version: "0.2.0"
+estado: "sincronizado con modelo v2.1 (28/jul/2026) — requiere verificación de las 4 entradas MEDIDO contra fuente primaria"
+
+# ══════════════════════════════════════════════════════════════════
+# CAMBIOS v0.1.0 → v0.2.0  ·  28 de julio de 2026
+# ══════════════════════════════════════════════════════════════════
+# El archivo se quedó en el esquema del modelo v1 mientras el modelo pasaba
+# a v2. Cuatro correcciones:
+#
+#   1. ADR-30 — `familismo` se desdobla en `familismo_apoyo` y
+#      `familismo_obligacion`. El v0.1.0 tenía UN parámetro monotónico
+#      positivo, que es exactamente la forma funcional que la refutación
+#      ref.A.23 tumbó.
+#      ⚠ `familismo_apoyo` SE CONSERVA EN G3 (corrección de mesa a la
+#      propuesta original de ADR-30): en G3 el mecanismo es pooling ante
+#      volatilidad —la tanda—, y §3.1 enruta el ahorro informal por ahí.
+#      En G5 es seguro ante Estado ausente. No hay doble conteo.
+#   2. Cambio 7 del modelo v2 — G1 se desdobla en G1a (adopción por canal
+#      personal) y G1b (difusión radial). G1b está CONTRADICHO por su propio
+#      registro (Nu, Kueski, Aplazo difundieron sin puente personal): sus
+#      coeficientes quedan A REVISIÓN, no asignados.
+#   3. Conteo total 107 → 144. Recomputado, no estimado. Desglose abajo.
+#   4. DEUDA NUEVA Y VISIBLE — los 90 parámetros de dispersión de ADR-28.d.
+#      Este archivo es el que debe listarlos. Hoy no los tiene, y por eso el
+#      check de varianza intraperfil del modelo §1.2 NO PUEDE CORRER.
+# ══════════════════════════════════════════════════════════════════
+
+resumen:
+  total_numeros: 144          # era 107 en v0.1.0 (esquema del modelo v1)
+  medido: 4
+  derivado: 6
+  ordinal_a_cardinal: 60      # +6 · familismo_obligacion en los 6 perfiles
+  asignado: 74                # +30 vector confianza · +1 coef familismo_obligacion
+  porcentaje_no_medido: "97.2%"
+  desglose:
+    probabilidades_de_regla: 39      # 18 reglas implementadas de 43; recuento
+                                     # pendiente cuando existan los 10 rules/*.yaml
+    coeficientes_de_generador: 15    # era 14
+    params_base_de_perfil: 90        # era 54 · 15 params × 6 perfiles
+
+  delta_v1_v2:
+    params_base: "+36 · 9 → 15 parámetros por perfil"
+    familismo_desdoblado: "+6 · ORDINAL→CARDINAL (la etiqueta medio/alto existe en modelo §1.1)"
+    confianza_institucional_vector: "+30 · ASIGNADO. ⚠ SIN POBLAR: modelo §1.3 declara el vector de 6 componentes (seguridad · educación · salud · electoral · justicia-policía · financiera) y da porcentajes NACIONALES, no valores por perfil. Nadie ha medido confianza en la Marina por perfil."
+    coeficiente_nuevo: "+1 · familismo_obligacion en G5, ASIGNADO y SIN MAGNITUD (spec: 'signo negativo o no monotónico')"
+    disparadores_de_dominio: "0 · los 42 NO cuentan: entran como booleanos de contexto, no como parámetros calibrables (adenda a ADR-26)"
+
+# ══════════════════════════════════════════════════════════════════
+# DEUDA BLOQUEANTE — los 90 parámetros de dispersión (ADR-28.d)
+# ══════════════════════════════════════════════════════════════════
+deuda_dispersion:
+  estado: ABIERTA
+  severidad: S2
+  que_falta: >
+    ADR-28.d obliga a que cada params_base sea una DISTRIBUCIÓN, no un punto,
+    y modelo §1.2 rechaza en compilación toda configuración con varianza
+    intraperfil cero. Eso implica 90 parámetros de dispersión —uno por cada
+    params_base— que hoy NO EXISTEN en archivo y NO TIENEN familia declarada.
+  consecuencia: >
+    Mientras falten, el check de compilación de §1.2 no puede correr. Es un
+    principio declarado sin artefacto de salida: el patrón que explica casi
+    todos los fallos de este programa.
+  requisito_de_salida: >
+    Esta sección debe listar, para cada uno de los 90 params_base, su familia
+    de distribución y su parámetro de dispersión, con clase de procedencia.
+    Si no están, el conteo real no es 144 sino 234, y 90 números son invisibles.
+  por_que_importa_el_esencialismo: >
+    Con valores puntuales el modelo produce seis clases de mexicano — la forma
+    estadística del esencialismo que este corpus combate, y la que el validador
+    no atrapa porque revisa estructura, no dispersión.
+
+# ══════════════════════════════════════════════════════════════════
+# HALLAZGO PRINCIPAL: la categoría que no estaba prevista
+# ══════════════════════════════════════════════════════════════════
+
+hallazgo_ordinal_cardinal:
+  descripcion: >
+    Los 54 params_base no son ni medidos ni asignados al azar: son la
+    CUANTIFICACIÓN de etiquetas ordinales de la ficha canónica §1. La ficha
+    dice que el perfil 1 tiene horizonte "mixto→largo"; el YAML dice 0.70.
+    La etiqueta tiene respaldo en el corpus. El 0.70 no tiene ninguno.
+  por_que_importa: >
+    La fórmula central es params = base(perfil) + Σ(coef × intensidad). Si la
+    base es una cardinalización arbitraria de un ordinal Y los coeficientes son
+    asignados, entonces la aritmética conserva el ORDEN pero no la MAGNITUD.
+    Sumar 0.70 y -0.60 produce un número con dos decimales y cero significado
+    métrico. Esto coincide exactamente con la deuda ya declarada en la
+    gobernanza: "el simulador será confiable en dirección, no en magnitud".
+    La novedad es que ahora se sabe DÓNDE entra esa imprecisión.
+  implicacion: >
+    Mientras los params_base sean ordinales disfrazados de cardinales, ninguna
+    salida del simulador debe reportarse con precisión decimal. Las salidas
+    deben ser rangos o categorías, no cifras.
+
+# ══════════════════════════════════════════════════════════════════
+# LAS 4 ÚNICAS ENTRADAS MEDIDAS (y sus reservas)
+# ══════════════════════════════════════════════════════════════════
+
+medidos:
+  - valor: 0.06
+    donde: civico.voto.agencia_con_secreto → voto_clientelar
+    fuente: "Ascencio & Chang: probabilidad de voto clientelar con secreto percibido"
+    reserva: ninguna
+    confianza: alta
+
+  - valor: 0.63
+    donde: civico.voto.clientelar_si_observable → voto_clientelar
+    fuente: "Ascencio & Chang: probabilidad con observabilidad percibida"
+    reserva: ninguna
+    confianza: alta
+    nota: "El par 0.06→0.63 es el número mejor sostenido de todo el modelo."
+
+  - valor: 0.13
+    donde: civico.participacion.contingente → vota
+    fuente: "INE, elección judicial 2025"
+    reserva: >
+      DISCREPANCIA ABIERTA: el transfer y el YAML dicen 12.86%; el modelo §7.3
+      dice 13%. Fijar una cifra y su fuente antes de usarla en un backtest.
+    confianza: alta
+
+  - valor: 0.93
+    donde: civico.denuncia.sin_seguro → no_denuncia
+    fuente: "ENVIPE, cifra negra"
+    reserva: >
+      RIESGO DEFINICIONAL. La cifra negra de ENVIPE agrega delitos no
+      denunciados MÁS delitos denunciados sin averiguación previa. Usarla como
+      P(no denuncia) confunde dos cantidades distintas y probablemente
+      sobreestima la no-denuncia. El propio modelo §3.7 arrastra la confusión al
+      escribir "no denuncia (cifra negra)". Verificar contra la tasa de denuncia
+      publicada, que es la magnitud que la regla realmente necesita.
+    confianza: media
+
+derivados:
+  - {valor: 0.94, de: 0.06, donde: civico.voto.agencia_con_secreto, tipo: complemento}
+  - {valor: 0.37, de: 0.63, donde: civico.voto.clientelar_si_observable, tipo: complemento}
+  - {valor: 0.87, de: 0.13, donde: civico.participacion.contingente, tipo: complemento}
+  - {valor: 0.07, de: 0.93, donde: civico.denuncia.sin_seguro, tipo: complemento}
+  - valor: 0.89
+    donde: salud.vacunacion.disponible → acepta_vacuna
+    de: "cobertura COVID en adultos 86–89%"
+    tipo: "extremo superior de un rango, con SALTO DE DOMINIO"
+    reserva: >
+      El dato es cobertura de vacunación COVID en ADULTOS; la regla lo aplica a
+      aceptación de vacuna en general, incluida la infantil, que es el caso del
+      backtest. El salto es plausible pero no está justificado.
+  - {valor: 0.11, de: 0.89, tipo: complemento}
+
+# ══════════════════════════════════════════════════════════════════
+# LOS 29 ASIGNADOS ENTRE LAS PROBABILIDADES
+# ══════════════════════════════════════════════════════════════════
+# La fuente citada sostiene la dirección de la regla, no la magnitud del número.
+# Se listan por regla, con qué sostiene realmente la fuente.
+
+asignados_probabilidad:
+  - regla: dinero.ahorro.informal_sin_puente
+    valores: [0.74, 0.21, 0.05]
+    fuente_citada: [ENIF2024, "report:behavioral_finance", "validacion:OXXO_vs_CoDi"]
+    que_sostiene_de_verdad: "que sin puente ni respaldo la adopción es baja; ENIF mide tenencia de productos, no esta condicional"
+    calibrable_con: "ENIF (trienal, nacional y 6 regiones) — no municipal"
+
+  - regla: dinero.ahorro.con_puente_y_respaldo
+    valores: [0.52, 0.33, 0.15]
+    fuente_citada: ["validacion:Nu_Azteca_Kueski", "report:tecnologia"]
+    que_sostiene_de_verdad: "que con puente la adopción sube; el 58% multiproducto de Nu es otra cantidad"
+    calibrable_con: "reportes trimestrales CNBV por institución"
+
+  - regla: dinero.planeacion.formal_estable
+    valores: [0.68, 0.32]
+    fuente_citada: [ENIF2024, Progresa_RCT, "report:tiempo"]
+    que_sostiene_de_verdad: "Progresa prueba la DIRECCIÓN causal (estabilizar ingreso alarga horizonte), no la proporción"
+    calibrable_con: "ENIF tenencia de afore/seguro por condición de formalidad"
+
+  - regla: dinero.credito.scoring_alternativo
+    valores: [0.71, 0.29]
+    fuente_citada: [NBER_RappiCard, "validacion:V3_credito_auditado"]
+    que_sostiene_de_verdad: "el NBER reporta +0.124 de AUC por huella digital; no reporta tasas de aprobación"
+    calibrable_con: "CNBV: tasas de rechazo por segmento sin historial"
+
+  - regla: dinero.consumo.estatus_mediado_por_credito
+    valores: [0.58, 0.42]
+    fuente_citada: ["validacion:V1_masstige", "report:consumidor"]
+    que_sostiene_de_verdad: "que sin MSI el segmento no accede; nada sobre la proporción que compra"
+    riesgo: "V1 no pudo leer los documentos del proyecto; su cruce es hipótesis, no validación canónica"
+
+  - regla: salud.atencion.leve_sin_imss
+    valores: [0.66, 0.24, 0.10]
+    fuente_citada: [ENSANUT, "report:salud"]
+    que_sostiene_de_verdad: "~10.6M consultas/mes en farmacia con consultorio es un VOLUMEN, no una participación"
+    calibrable_con: "ENSANUT: lugar de atención por condición de derechohabiencia"
+
+  - regla: salud.atencion.grave
+    valores: [0.74, 0.26]
+    fuente_citada: [ENSANUT, "report:salud"]
+    que_sostiene_de_verdad: "la dirección (grave → sistema público)"
+
+  - regla: salud.prevencion.hombre_sin_permiso
+    valores: [0.60, 0.40]
+    fuente_citada: [ENSANUT, "report:salud"]
+    que_sostiene_de_verdad: "la dirección; los valores redondos delatan asignación"
+    riesgo_de_mito: ref.B.03.machismo_no_es_rasgo
+
+  - regla: tramite.mordida.discrecional
+    valores: [0.62, 0.38]
+    fuente_citada: [ENCIG2023, Rothstein_trampa_social, "report:politica"]
+    que_sostiene_de_verdad: "ENCIG mide prevalencia de corrupción por trámite; verificar si 0.62 corresponde a alguna categoría concreta o es asignado"
+    calibrable_con: "ENCIG (bienal, estatal — NO municipal)"
+
+  - regla: tramite.mordida.con_registro
+    valores: [0.88, 0.12]
+    fuente_citada: [ENCIG2023, "report:politica"]
+    que_sostiene_de_verdad: "la dirección (el registro rompe la trampa social)"
+
+  - regla: tramite.gobierno_digital.coercitivo
+    valores: [0.91, 0.09]
+    fuente_citada: ["validacion:CoDi", "report:tecnologia"]
+    que_sostiene_de_verdad: "3.09M cuentas en 6 años es un volumen absoluto; 0.91 no se deriva de ahí"
+    nota: "Es la regla del gate de Fase 1. Su probabilidad es asignada."
+
+  - regla: tramite.gobierno_digital.util_sin_coercion
+    valores: [0.71, 0.29]
+    fuente_citada: ["validacion:SPEI", "modelo:3.3"]
+    que_sostiene_de_verdad: "la dirección; ya viene marcada NO CALIBRADA en el propio archivo"
+
+  - regla: civico.denuncia.con_seguro
+    valores: [0.78, 0.22]
+    fuente_citada: [ENVIPE2025]
+    que_sostiene_de_verdad: "la dirección (el trámite del seguro vuelve racional denunciar); ENVIPE no publica esta condicional en esa forma"
+
+# ══════════════════════════════════════════════════════════════════
+# LOS 14 COEFICIENTES DE GENERADOR: todos asignados
+# ══════════════════════════════════════════════════════════════════
+
+asignados_coeficiente:
+  diagnostico: >
+    Los 15 coeficientes son todos ASIGNADO, y por una razón estructural, no por
+    descuido: un coeficiente es una ELASTICIDAD, y el corpus es transversal —
+    da estados, no ritmos. Ninguna de las fuentes citadas (Pew, ENCIG, ENOE,
+    ENIF, ENVIPE, ENSU, CEEY) publica elasticidades de disposición respecto a
+    capa estructural. No existían para ser citadas.
+  consecuencia: >
+    Los generadores tienen el signo bien sostenido por el corpus y la magnitud
+    sin sostener. Esto es lo que hace posible que un generador explique
+    cualquier cosa si se le mueve el coeficiente — el riesgo de infalsabilidad
+    que las instrucciones v2 marcan y que la prueba de generadores debe atacar.
+  detalle:
+    - {gen: G1, coefs: {confianza_institucional: -0.60, radio_confianza: -0.35}, signo: sostenido, magnitud: asignada}
+    - {gen: G2, coefs: {sens_estatus: 0.55, aversion_riesgo: 0.20}, signo: sostenido, magnitud: asignada}
+    - {gen: G3, coefs: {horizonte_temporal: -0.60, aversion_riesgo: 0.40, familismo_apoyo: 0.20}, signo: sostenido, magnitud: asignada}  # ADR-30: familismo_apoyo SE CONSERVA aquí (mecanismo: pooling ante volatilidad — la tanda). NO es doble conteo con G5.
+    - {gen: G4, coefs: {exposicion_violencia: 0.70, confianza_institucional: -0.40, horizonte_temporal: -0.20, sens_estatus: -0.15}, signo: sostenido, magnitud: asignada}
+    - {gen: G5, coefs: {familismo_apoyo: 0.50, familismo_obligacion: "signo negativo o no monotónico — SIN MAGNITUD", radio_confianza: 0.15}, signo: sostenido, magnitud: asignada}
+    # ⚠ CHECK OBLIGATORIO (ADR-30): una configuración donde familismo_obligacion
+    #   alto mejore TODOS los desenlaces se rechaza en compilación. Si el modelo
+    #   no puede producir el caso en que la familia daña, el parámetro es adorno.
+    # ⚠ AMBOS parámetros heredan marca (b): las escalas de familismo
+    #   (Sabogal, Lugo Steidel, Knight, Calzada, Zeiders) están validadas en
+    #   contextos migratorios. Nadie los ha medido en población EN México.
+    - {gen: G6, coefs: {deferencia: 0.45}, signo: sostenido, magnitud: asignada}
+  unico_calibrable_hoy:
+    coeficiente: "G3 → horizonte_temporal"
+    con_que: >
+      El panel rotativo trimestral de la ENOE sigue al mismo hogar cinco
+      trimestres. Permite observar a los MISMOS sujetos cruzando formal↔informal
+      y estimar el cambio de conducta financiera asociado. Es la única
+      elasticidad del modelo que México permite estimar con dato público.
+
+# ══════════════════════════════════════════════════════════════════
+# CRUCE CON LA BATERÍA DE REFUTACIONES
+# ══════════════════════════════════════════════════════════════════
+# Números que podrían estar codificando un mito ya refutado por el corpus.
+
+riesgos_cruzados:
+  - numeros: "exposicion_violencia base en los 6 perfiles (0.35 a 0.70)"
+    refutacion_en_riesgo: ref.B.05.violencia_no_es_cultura
+    problema: >
+      La refutación exige que la exposición a violencia NO tenga componente base
+      por perfil independiente de la celda. Los 6 perfiles tienen exactamente
+      eso. MILPA falla esta refutación por construcción, en 6 números.
+    severidad: alta
+
+  - numeros: "confianza_institucional base en los 6 perfiles (0.15 a 0.30)"
+    refutacion_en_riesgo: ref.B.09.desconfianza_no_es_generalizada
+    problema: >
+      La refutación exige un vector por tipo de institución (89% Marina vs.
+      desconfianza concentrada en partidos, judicial y policía). El parámetro es
+      escalar en los 6 perfiles.
+    severidad: alta
+
+  - numeros: "0.60 en salud.prevencion.hombre_sin_permiso"
+    refutacion_en_riesgo: ref.B.03.machismo_no_es_rasgo
+    problema: >
+      El mecanismo declarado es "machismo + costo de oportunidad". Al no
+      desagregar por escolaridad, edad y región, el número absorbe el machismo
+      como rasgo masculino fijo — que es justo lo refutado (machismo y
+      caballerismo son dimensiones independientes, y el endoso no es exclusivo
+      de hombres).
+    severidad: media
+
+  - numeros: "familismo_apoyo y familismo_obligacion base en los 6 perfiles (12 números tras ADR-30)"
+    refutacion_en_riesgo: ref.A.23.familismo_protector
+    estado: "RESUELTA por ADR-30 (28/jul/2026) — se desdobla, no se curva"
+    problema: >
+      Un escalar monotónico no puede representar que solo el familismo de APOYO
+      protege y el obligatorio no, ni el punto de inflexión del enmeshment.
+    severidad: media
+
+# ══════════════════════════════════════════════════════════════════
+# CAMPO OBLIGATORIO PROPUESTO
+# ══════════════════════════════════════════════════════════════════
+
+propuesta_de_esquema:
+  descripcion: >
+    Que toda regla y todo generador lleven un campo `procedencia` por número, y
+    que el validador rechace la compilación si falta — igual que hoy rechaza una
+    regla sin `fuente` o una FUERTE sin `falsable_si`.
+  ejemplo: |
+    - id: civico.voto.agencia_con_secreto
+      entonces:
+        - {conducta: toma_beneficio_vota_libre, p: 0.94, procedencia: DERIVADO}
+        - {conducta: voto_clientelar, p: 0.06, procedencia: MEDIDO,
+           dato: "Ascencio & Chang, prob. de voto clientelar con secreto percibido"}
+  efecto: >
+    Hoy un 0.93 leído de ENVIPE y un 0.74 de juicio informado se ven idénticos
+    en el archivo. Con el campo, dejan de verse idénticos — y es exactamente esa
+    indistinción la puerta por la que un pilar falso entra al modelo.
