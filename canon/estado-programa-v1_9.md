@@ -22,7 +22,7 @@
 |---|---|---|
 | **`modelo`** | `modelo-decision-v3.3.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
 | **`glosario`** | `glosario-v5.6.md` | CANÓNICO. Único punto legítimo de entrada de un tier |
-| **`gobernanza`** | `gobernanza-v1.9.md` | 37 ADR, protocolo de cambio |
+| **`gobernanza`** | `gobernanza-v1.9.md` | 39 ADR, protocolo de cambio |
 | **`estado`** | `estado-programa-v1.9.md` | Este archivo |
 | **`milpa-whitepaper`** | `milpa-whitepaper-v0.1.md` | El **porqué** del simulador |
 | **`milpa-spec`** | `milpa-spec-v0.2.md` | El **cómo** — incluye el gate de ADR-25/37 |
@@ -45,13 +45,13 @@
 >
 > **Tres fuentes de estado es deriva, no redundancia.** La regla de la casa —*duplicar la fuente de verdad es el defecto*— aplica al estado igual que a los ADR.
 >
-> **v1.8 — 29/jul.** Auditoría de perímetro de la suite de verificación (`tests/check.py`). Cuatro cambios: (1) **§7 se corrige** — el pre-registro del Hito D cubre **24 de 27**, no 27 de 27, y el dominio `§3.3` del motor no tiene ficha alguna; (2) se cierra en §4·S2 una deuda abierta desde antes de ADR-37 — el perímetro **no está en duda**, es 27 y cuadra exacto contra el motor real; (3) entra en §4·S1 lo que sí queda vivo: **nada vigila el vocabulario de tier dentro del motor**, solo en `corpus/reports/`; (4) entra en §4·S2 el perímetro real de T07–T10, con el defecto de `integrador:174` (la marca de procedencia no viaja con el tier). La suite corre completa: **18 FAIL · 107 WARN**. Fuentes: `forense/notas/2026-07-29-perimetro-suite-T07-T10.md` y su verificación `forense/notas/2026-07-29-b-correccion-perimetro.md`, que **retira** la ambigüedad 20/27 planteada como hipótesis de trabajo y registra qué cifras de la primera nota no se reprodujeron.
+> **v1.8 — 29/jul.** Auditoría de perímetro de la suite de verificación (`tests/check.py`). Cuatro cambios: (1) **§7 se corrige** — el pre-registro del Hito D cubre **24 de 27**, no 27 de 27, y el dominio `§3.3` del motor no tiene ficha alguna; (2) se cierra en §4·S2 una deuda abierta desde antes de ADR-37 — el perímetro **no está en duda**, es 27 y cuadra exacto contra el motor real; (3) entra en §4·S1 lo que sí queda vivo: **nada vigila el vocabulario de tier dentro del motor**, solo en `corpus/reports/`; (4) entra en §4·S2 el perímetro real de T07–T10, con el defecto de `integrador:174` (la marca de procedencia no viaja con el tier). La suite corre completa: **18 FAIL · 107 WARN** *(cifra vigente esa misma mañana del 29/jul: `TRANSFER-maestra-7/8.md` aún no entraban al árbol y la normalización de T03 de `26e7ef4` era horas después — no se toca aquí, es historia correcta cuando se escribió; ver §7, cierre de este archivo, para la cifra de hoy)*. Fuentes: `forense/notas/2026-07-29-perimetro-suite-T07-T10.md` y su verificación `forense/notas/2026-07-29-b-correccion-perimetro.md`, que **retira** la ambigüedad 20/27 planteada como hipótesis de trabajo y registra qué cifras de la primera nota no se reprodujeron.
 
 ---
 
 ## 1 · Inventario verificado
 
-**56 archivos**, verificados el 28/jul/2026 por `diff` entre el índice del proyecto y el montaje de disco (sin discrepancias).
+**59 archivos**, verificados el 28/jul/2026 por `diff` entre el índice del proyecto y el montaje de disco (sin discrepancias). ⚠️ **Corregido 29/jul/2026:** decía 56; es la suma de la propia tabla de abajo (31+5+3+3+6+4+6+1), nunca recalculada tras escribirse. *(`censo-integridad-v1_0.md` C1-01.)*
 
 | Bloque | Cuenta | Notas |
 |---|---|---|
@@ -92,7 +92,7 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 
 **L5 · Validación — el estrato más problemático.** Una prueba de falsación pre-registrada corrida (veredicto **B**). 49 refutaciones corridas: 27 pasan, 3 fallan, 8 sin objeto, 11 requieren el ejecutable. **15 coeficientes, cero medidos.** Cuatro generadores sin falsar.
 
-**L0 · Gobierno — completo y al día.** 32 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos.
+**L0 · Gobierno — completo y al día.** 39 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos. *(Corregido 29/jul/2026: decía 32, contradiciendo §0 de este mismo archivo — `censo-integridad-v1_0.md` C1-02. Subió a 39 en la misma sesión, con la aprobación de ADR-38/39 en `gobernanza §4`.)*
 
 ---
 
@@ -118,10 +118,10 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 - **48 de 49 reglas sin prueba de falsación pre-registrada.**
 - **74 números ASIGNADOS sin calibrar.**
 - **8 reports entraron a la síntesis vía glosario v2 (superado)**, no leídos a fondo.
-- **26 reglas fuera de la implementación**, sin criterio registrado.
+- **25 reglas fuera de la implementación** (43−18), sin criterio registrado. *(Corregido 29/jul/2026: decía 26, no cuadraba contra el propio 18 de 43 de `§4·L4` — `censo-integridad-v1_0.md` C1-03. El "43" en sí sigue sin sustento localizable en el repo, NO-VERIFICABLE — no se toca aquí.)*
 - **3 de 5 forenses sin tabla de descartes** → ver `descartes-forenses-registro.md`.
 - ⚠️ **El motor sigue SIN ENTIDAD PRESTAMISTA** *(frontera declarada de ADR-35)*. Modela al decisor, no al oferente: el hallazgo mejor sostenido del corpus sobre crédito —*el riesgo vive en el fondeo del prestamista, no en el deudor* (Famsa, Crédito Real; n=2)— **no puede representarse**, y su refutación sigue **sin objeto**.
-- **T03 (`tests/check.py`) produce 41 WARN, no 44** — verificado hoy. El total de WARN de la suite es **107**, no 110. La diferencia no tiene artefacto que la respalde y no se puede reconstruir. *(`forense/notas/2026-07-29-perimetro-suite-T07-T10.md §6`)*
+- **T03 (`tests/check.py`) produce hoy 17 WARN; el total de WARN de la suite es 83.** *(Corregido 29/jul/2026, `python3 tests/check.py` sobre HEAD vigente — `censo-integridad-v1_0.md` C1-07. Decía "41, no 44... total 107, no 110", cifra que a su vez ya estaba superada el mismo 29/jul por la fusión de `TRANSFER-maestra-7/8.md`. Y, en contra de lo que decía esta misma línea, la diferencia **sí tiene artefacto que la respalda**: el commit `26e7ef4` bajó T03 a 23; esta misma sesión de correcciones lo bajó más — 3 nombres nuevos en `HISTORICOS` (Paso 2) y la corrección del propio §2 de `gobernanza`, que dejó de citar en backticks los nombres viejos que estaba corrigiendo (Paso 3 ejecutado) — hasta 17. Cada bajada queda con su commit y su comando; ninguna es un número tecleado sin origen.)*
 
 ### S5 · Pendientes irresueltos (no disparan propagación, tienen casillero)
 - **conf.02** · policronía: Trabajo y Tiempo refutan el mismo mito con **mecanismos opuestos**.
@@ -205,8 +205,8 @@ Panel D/E de consumo popular · elasticidades · granularidad municipal · contr
 
 ---
 
-**Suite de verificación (`tests/check.py`) — auditoría de perímetro, 29/jul.** La suite corre completa: **18 FAIL · 107 WARN**. Según la nota del 29/jul, el desglose por test se reprodujo de forma independiente en Windows 11/Python 3.14 contra la corrida original en contenedor Linux. `CONTRIBUTING.md` tenía un byte UTF-8 truncado (pos 2149) que rompía T03 con `UnicodeDecodeError` antes del final de la corrida; corregido en `09bfb05`.
+**Suite de verificación (`tests/check.py`) — última corrida verificada, 29/jul/2026.** La suite corre completa: **18 FAIL · 83 WARN** *(corregido 29/jul/2026 — decía 107, cifra de la auditoría de perímetro de esa misma mañana. Trayectoria completa: 107 (auditoría del 29/jul, antes de `TRANSFER-maestra-7/8.md`) → 89 (`26e7ef4` normaliza T03) → 86 (esta sesión declara 3 nombres en `HISTORICOS`) → 83 (esta sesión corrige `gobernanza §2` para dejar de citar en backticks los nombres viejos que corrige); `censo-integridad-v1_0.md` C1-06)*. Según la nota del 29/jul, el desglose por test se reprodujo de forma independiente en Windows 11/Python 3.14 contra la corrida original en contenedor Linux. `CONTRIBUTING.md` tenía un byte UTF-8 truncado (pos 2149) que rompía T03 con `UnicodeDecodeError` antes del final de la corrida; corregido en `09bfb05`.
 
 **Lo que la auditoría movió:** se corrigió §7 (el pre-registro cubre **24 de 27**, y `§3.3` no tiene ficha alguna — §4·S2); se cerró una deuda abierta desde antes de ADR-37 (el perímetro **es 27**, sin ambigüedad — §4·S2); quedan abiertos que **T07 no vigila el vocabulario de tier del motor** (§4·S1) y la disyuntiva de **T10 vs. la convención de procedencia del integrador** (§4·S2).
 
-⚠️ **Al usar la nota del 29/jul:** su análisis cualitativo está verificado, pero **sus conteos de disparos de T10 (66/45/5) no se reprodujeron** y una cita suya a `curaduria-archivos.md:23` no checa contra el archivo. Detalle en `forense/notas/2026-07-29-b-correccion-perimetro.md §5–§6`.
+⚠️ **Al usar la nota del 29/jul:** su análisis cualitativo está verificado, pero **sus conteos de disparos de T10 (66/45/5) no se reprodujeron** (65/57/14 al recomputar). Detalle en `forense/notas/2026-07-29-b-correccion-perimetro.md §6`. ⚠️ **Corregido 29/jul/2026:** este párrafo decía que una cita suya a `curaduria-archivos.md:23` "no checa contra el archivo" — **falso**. `curaduria-archivos.md:23` sí trae, verbatim, *"...convirtió un `[MEDIO], muestra mexicano-americana` en un `Fuerte` pelón—"*. La afirmación errónea nació en `a79227e` y se heredó aquí sin verificar 17 segundos después (`7d6535e`); retractada en `forense/notas/2026-07-29-b-correccion-perimetro.md §9` y trazada en `censo-integridad-v1_1.md §3`.

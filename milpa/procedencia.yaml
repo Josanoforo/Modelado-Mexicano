@@ -248,7 +248,10 @@ asignados_probabilidad:
     que_sostiene_de_verdad: "la dirección (el trámite del seguro vuelve racional denunciar); ENVIPE no publica esta condicional en esa forma"
 
 # ══════════════════════════════════════════════════════════════════
-# LOS 14 COEFICIENTES DE GENERADOR: todos asignados
+# LOS 15 COEFICIENTES DE GENERADOR: todos asignados
+# (Corregido 29/jul/2026: decía 14, contradiciendo el diagnostico de abajo,
+#  que ya dice 15 -- suma real de la tabla `detalle` (G1:2+G2:2+G3:3+G4:4+
+#  G5:3+G6:1=15). censo-integridad-v1_0.md C1-05.)
 # ══════════════════════════════════════════════════════════════════
 
 asignados_coeficiente:

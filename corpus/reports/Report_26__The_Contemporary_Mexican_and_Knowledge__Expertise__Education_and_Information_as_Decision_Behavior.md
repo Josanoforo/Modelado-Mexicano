@@ -10,6 +10,8 @@ Intenté leer los 25 reports previos del corpus directamente en el Drive/proyect
 
 **Separación de evidencia (regla no negociable):** (a) datos primarios sobre población **en México**; (b) marcos teóricos importados (Hofstede/GLOBE/WVS/honor-dignidad-face), usados solo con crítica; (c) estudios con muestras **mexicano-americanas en EE.UU.** — **no se usan como evidencia sobre México** y no aparecen en este report como tales.
 
+⚠️ **Nota fechada 29/jul/2026 (append-only, no se reescribe la regla de arriba):** la marca (b)/(c) de este report está **invertida** respecto a la convención canónica de `glosario §0.1`/`estado §5` ((b) = muestra de diáspora/mexicano-americana, (c) = marco importado). Aquí es al revés. El contenido y la separación interna no cambian; solo la etiqueta. *(`censo-integridad-v1_0.md`, causa raíz F.)*
+
 ---
 
 ## 1. Resumen ejecutivo (13 hallazgos)

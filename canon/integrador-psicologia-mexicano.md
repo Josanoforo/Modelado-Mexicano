@@ -1,5 +1,5 @@
 # Integrador del corpus · Psicología y conducta del mexicano contemporáneo
-### Mapa de cómo se relacionan y se contradicen los 30 reports, leído desde sus tiers de evidencia
+### Mapa de cómo se relacionan y se contradicen los 31 reports, leído desde sus tiers de evidencia
 
 *Construido leyendo los mapas de evidencia de los reports (regla de oro), no re-resumiendo de memoria. Los `[SÓLIDO]`/`[MEDIO]`/`Fuerte`/`Media`/`Hipótesis`/`Narrativa` provienen de los propios reports o del glosario v2 (autoritativo), citados por nombre de report donde importa. Firewall permanente: el report de genómica es outlier no conductual (ascendencia ≠ conducta) y no se integra.*
 
@@ -7,7 +7,7 @@
 
 ## Nota de alcance y método
 
-Este documento **no es un report temático nuevo**: es el integrador del corpus. Su trabajo es (a) mostrar qué constructos comparten los 30 reports, (b) consolidar el estatus de evidencia, (c) exponer las contradicciones que cruzan el corpus y los choques que dos reports no reconcilian, y (d) fijar la nota transversal de sesgo de muestreo. Se vacía en la estructura obligatoria del Bloque B.
+Este documento **no es un report temático nuevo**: es el integrador del corpus. Su trabajo es (a) mostrar qué constructos comparten los 31 reports, (b) consolidar el estatus de evidencia, (c) exponer las contradicciones que cruzan el corpus y los choques que dos reports no reconcilian, y (d) fijar la nota transversal de sesgo de muestreo. Se vacía en la estructura obligatoria del Bloque B.
 
 **Base de lectura.** Se leyeron a fondo 21 reports. En la primera vuelta, 16: foundational; humor; trabajo; finanzas conductuales; vejez; duelo/desaparecidos; adopción tecnológica/IA; amor/pareja; comunicación; religiosidad; clasemediero; género; migración; juventud/Gen Z; sanción social/chisme; y rural/indígena. En la actualización (Ronda 3), 5 más: **política/cívico, tiempo/planeación, salud/cuerpo/adicciones, educación/experticia y cooperación no-familiar** —los que cerraron los huecos de contenido, escritos ya con lente de decisión (traen reglas SI-ENTONCES)—. Para confianza, family, autoridad, salud mental, violencia, mérito, consumidor y emociones morales se usaron los tiers verbatim del glosario v2, reforzados por referencias cruzadas. La genómica queda fuera por firewall. *Nota: el report de educación declaró un vacío de verificación cruzada por no haber podido leer el resto del corpus desde su conversación; ese cruce queda hecho aquí.*
 

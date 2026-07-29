@@ -24,7 +24,7 @@
 | Artefacto existente | Alimenta | Forma concreta |
 |---|---|---|
 | **Ficha canónica del modelo** | `rules/`, `pop/profiles`, `world/generators` | **Fuente de verdad ejecutable.** Se compila a YAML. Es el único artefacto que el motor lee directamente. |
-| **Modelo de decisión §1 (perfiles)** | `pop/profiles.yaml` | Los 6 perfiles con sus 9 parámetros base + reglas de asignación probabilística por celda |
+| **Modelo de decisión §1 (perfiles)** | `pop/profiles.yaml` | Los 6 perfiles con sus 15 parámetros base *(corregido 29/jul/2026: decía 9, cifra de antes de ADR-30 — `glosario §13`, `modelo §0/§2.2` y `procedencia.yaml` ya dicen 15 desde el 28/jul; `censo-integridad-v1_0.md` C1-10/C5-08)* + reglas de asignación probabilística por celda |
 | **Modelo §2 (generadores G1–G6)** | `world/generators.yaml` | Mapeo *capa estructural → coeficiente sobre parámetro*, con su cláusula falsable |
 | **Modelo §3 (motor SI-ENTONCES, 10 dominios)** | `rules/<dominio>.yaml` | Una regla por entrada, con tier, generador, fuente y disparadores |
 | **Modelo §3 (7 disparadores)** | `engine/triggers.py` | Evaluadores de contexto; se calculan antes de resolver la regla |

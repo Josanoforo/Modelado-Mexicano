@@ -53,6 +53,8 @@ El reporte distingue en todo momento **cinco planos** y, sobre ellos, la distinc
 - (b) **Marcos teóricos importados** (Hofstede, GLOBE, WVS, honor/dignidad/face) — usados solo con crítica.
 - (c) **Estudios con muestras MEXICANO-AMERICANAS en EE.UU.** — marcados como tales y NO presentados como evidencia sobre México. (Ejemplo: el estudio de "desbordamiento transnacional" del etiquetado en mexicano-estadounidenses [Thrasher, 2024] NO es evidencia sobre conducta EN México.)
 
+⚠️ **Nota fechada 29/jul/2026 (append-only, no se reescribe la leyenda de arriba):** la marca (b)/(c) de este report está **invertida** respecto a la convención canónica de `glosario §0.1`/`estado §5`, donde **(b) = muestra de diáspora/mexicano-americana** y **(c) = marco importado**. Aquí es al revés: (b) = marco importado, (c) = muestra mexicano-americana. La separación interna de este report es consistente consigo misma y el contenido no cambia; quien lo lea junto con el glosario debe leer (b) y (c) de este documento al revés de lo que el glosario define. *(`censo-integridad-v1_0.md`, causa raíz F.)*
+
 ## 3. Mapa de evidencia
 
 **[FUERTE]** (datos primarios recientes, múltiples fuentes convergentes):

@@ -182,3 +182,36 @@ El 29/jul cayeron **seis cifras** del programa. Ninguna cayó por análisis, dis
 **Lo que sí funcionó, y es replicable:** una sola pregunta, aplicada seis veces — *¿de qué línea de qué archivo sale este número?* Cinco de las seis cayeron en menos de un minuto cada una. La #6 tardó lo que tarda un `grep -c`.
 
 ⚠️ **Registro deliberado.** Este apartado vale tanto como los hallazgos: los seis defectos ya están corregidos o registrados, pero **el método que los produjo sigue disponible** para la próxima sesión. Un hallazgo se archiva; un método se repite.
+
+---
+
+## 9 · Retracción, 29 de julio de 2026 (tarde) — §5 y la fila 5 de §8 son falsos
+
+**No se edita lo de arriba** (append-only). Esto se añade al final, como corresponde.
+
+**§5 y la fila 5 de §8 de esta misma nota afirman que la cita a `curaduria-archivos.md:23` ("convirtió un `[MEDIO], muestra mexicano-americana` en un `Fuerte` pelón") "no aparece en ese archivo, ni en ningún otro del repo", y que `grep -rn "pelón"` solo la encuentra dentro de esta nota. Es falso, verificado por lectura directa en la sesión de correcciones del 29/jul:**
+
+```
+$ sed -n '23p' forense/curaduria-archivos.md
+```
+> *"...la verificación del red team lo identifica como 'el artefacto sobre-confiado de verdad' —el que convirtió un `[MEDIO], muestra mexicano-americana` en un `Fuerte` pelón—."*
+
+La frase está ahí, verbatim. Y:
+
+```
+$ grep -rn "pelón" forense/ corpus/ canon/
+```
+da **cuatro** apariciones (no cero, no solo-esta-nota): `forense/verificacion-red-team-vs-corpus.md:12` (fuente original, 25/jul) · `forense/curaduria-archivos.md:23` (exactamente donde §5 dice que no está) · `forense/notas/2026-07-29-perimetro-suite-T07-T10.md:87` (la nota anterior del mismo día, que cita la misma frase **sin refutarla**) · esta propia nota (§5, §8), que la cita para negarla.
+
+**Qué se retracta, puntualmente:**
+- §5, párrafo 2 ("La frase citada no aparece en ese archivo, ni en ningún otro del repo") — **retractado**. La frase está en `curaduria-archivos.md:23`, verbatim, y en dos archivos más.
+- §8, fila 5 ("Esa frase no está ahí, ni en ningún archivo | Se abrió la línea 23") — **retractado**. Abrir la línea 23 da el resultado contrario al registrado.
+- §7, fila `curaduria-archivos.md:23` dice "Fuerte pelón" → ❌ NO CHECA — **retractado**; sí checa.
+
+**Lo que NO se retracta:** el mecanismo de fuga de marca de procedencia en `integrador:174`/`175` (§5, párrafo 3) sigue verificado y en pie — es un hallazgo real, independiente de esta cita.
+
+**Por qué importa más que un error de conteo:** esta nota se presenta (§8) como el método que "atrapó las seis cifras" pidiendo "cita textual y número de línea" — el mismo método que aquí, aplicado a la cita de un archivo ajeno, dio el resultado opuesto al real. No es un descuido de alcance: la nota afirma explícitamente haber corrido `grep -rn "pelón"` y reporta un resultado que ese comando no produce.
+
+**Propagación conocida, no corregida aquí (append-only):** `canon/estado-programa-v1_9.md:212` (heredado de `7d6535e`, 17 segundos después de que este error se escribiera en `a79227e`) y `TRANSFER-maestra-8.md:165-167` repiten la misma afirmación falsa. La corrección de `estado-programa` se hace en el mismo commit que esta nota, con cita directa a esta retracción. **El cuerpo de `TRANSFER-maestra-8.md` no se edita** (append-only) — movido a `forense/historico/TRANSFER-maestra-8.md` el 29/jul/2026 con cabecera de una línea que remite a esta retractación; ver `censo-integridad-v1_1.md §3`.
+
+*(Cadena completa, con hora exacta de cada commit: `censo-integridad-v1_1.md §3`.)*
