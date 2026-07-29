@@ -1,3 +1,5 @@
+> ⚠️ **DOCUMENTO MUERTO — el estado vive en `estado`.** Movido a `forense/historico/` el 29/jul/2026 (sesión de correcciones); declara estado que ya no es cierto y no se edita más abajo de esta línea.
+
 Retomo el programa "Psicología del Mexicano Contemporáneo". Esta conversación
 es la Maestra.
 

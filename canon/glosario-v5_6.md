@@ -41,7 +41,7 @@
 
 *27 de julio de 2026. Nada aquí está por referencia a una versión anterior: las tres quedan borrables. Construido leyendo los mapas de evidencia de los reports, las cuatro verticales, el registro de apuestas, la prueba de falsación, el Hito 2 y la lectura completa de los cuatro pivotes. Ningún tier reconstruido de memoria.*
 
-**Corpus a la vista:** 60 archivos — 30 reports temáticos, 1 prueba del canal genético, 4 verticales forenses, 1 registro de apuestas, 24 de gobierno y método.
+**Corpus a la vista:** 60 archivos — 30 reports temáticos, 1 prueba del canal genético, 4 verticales forenses, 1 registro de apuestas, 24 de gobierno y método. ⚠️ **Nota fechada 29/jul/2026:** este párrafo es del corte del 27/jul (ver encabezado de la sección) y nunca se marcó como superado, a diferencia del resto de este glosario. Hoy son **31** reports temáticos (`ls corpus/reports/*.md`, verificado 28/jul en `estado §1`); el resto de la cuenta ("60 archivos") no se re-verifica aquí. *(`censo-integridad-v1_0.md` C1-09.)*
 
 ---
 

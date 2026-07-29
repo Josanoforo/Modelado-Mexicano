@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.9** · 29 de julio de 2026 · **37 ADR**
+### `gobernanza` · **v1.9** · 29 de julio de 2026 · **39 ADR**
 
 > | | |
 > |---|---|
@@ -13,7 +13,7 @@
 *Documento vivo. Registra **qué se decidió, por qué, y qué se rompe si cambia**.
 No repite el contenido del corpus: lo gobierna.*
 
-**Versión de este documento:** 1.1 · **Estado del programa:** Ronda 4 cerrada y **auditada**; modelo v2 y glosario v5 consolidados; Fase 1 del simulador **pospuesta**.
+**Versión de este documento:** 1.9 · **Estado del programa:** Ronda 4 cerrada y **auditada**; modelo v2 y glosario v5 consolidados; Fase 1 del simulador **pospuesta**. *(Corregido 29/jul/2026: decía 1.1, contradiciendo la cabecera de este mismo archivo, que ya dice 1.9 — hallazgo nuevo de esta sesión, no catalogado por `censo-integridad-v1_0.md`.)*
 
 ---
 
@@ -33,7 +33,7 @@ No repite el contenido del corpus: lo gobierna.*
 instrucciones-proyecto-v2.md   ← CANÓNICO. Gobierna todo lo demás.
             │
             ▼
-   30 reports temáticos         ← CANÓNICO (evidencia primaria)
+   31 reports temáticos         ← CANÓNICO (evidencia primaria)
             │
             ├── meta-auditoría comunicación   ← parche a un report
             ▼
@@ -63,14 +63,14 @@ instrucciones-proyecto-v2.md   ← CANÓNICO. Gobierna todo lo demás.
 |---|---|---|---|
 | `instrucciones-proyecto-v2.md` | **CANÓNICO** | v2 | — (se edita con ADR) |
 | **31 reports** en `/mnt/project/` | **CANÓNICO** | Ronda 3. **3 parchados 28/jul** con nota fechada (consumidor · comunicación · foundational). *Eran "30" por conteo de memoria; verificado contra disco el 28/jul. Y los parches se registraban como hechos el 27/jul sin estarlo* | — |
-| `glosario-v5.5.md` | **CANÓNICO** | **v5.5**, autocontenido | reports (mapas de evidencia) |
-| `integrador-psicologia-mexicano.md` | DERIVADO | 30 reports | reports + glosario |
+| `glosario-v5.6.md` | **CANÓNICO** | **v5.6**, autocontenido | reports (mapas de evidencia) |
+| `integrador-psicologia-mexicano.md` | DERIVADO | 31 reports | reports + glosario |
 | `meta-auditoria-comunicacion.md` | CANÓNICO (parche) | 1.0 | — |
-| `modelo-decision-v3.0.md` | **CANÓNICO OPERATIVO** | **v3.0, autocontenido** *(absorbe la ficha)* | integrador + glosario + validaciones |
+| `modelo-decision-v3.3.md` | **CANÓNICO OPERATIVO** | **v3.3, autocontenido** *(absorbe la ficha)* | integrador + glosario + validaciones |
 | ~~`ficha-canonica-modelo.md`~~ | **ELIMINADA 28/jul** *(ADR-36.b)* | — | absorbida en `modelo` §0.1, §0.2 y §9 |
 | **5 validaciones forenses** | **CANÓNICO** *(ADR-29.b)* | Ronda 4 | — |
 | ~~`CHECKPOINT-v2.md`~~ · ~~`mapa-y-roadmap.md`~~ · ~~`inventario-corpus.md`~~ | **BORRADOS 28/jul** | — | **fusionados en `ESTADO-PROGRAMA.md`** |
-| `estado-programa-v1.1.md` | **CANÓNICO (estado)** | v1.1, 28/jul | única fuente de estado |
+| `estado-programa-v1.9.md` | **CANÓNICO (estado)** | v1.9, 29/jul | única fuente de estado |
 | `ADR-30.md` | **BORRADO 28/jul** | — | incorporado a §4; además contenía la versión **superada** (retiraba `familismo` de G3, corregido en mesa) |
 | `milpa/` (Fase 0) | DERIVADO | 0.1.0 | ⚠️ **ausente salvo 3 archivos** |
 | `masterclass-mexico.html` | DERIVADO | foto Ronda 4 | ⚠️ **ausente** |
@@ -80,6 +80,16 @@ instrucciones-proyecto-v2.md   ← CANÓNICO. Gobierna todo lo demás.
 | `modelo-decisiones-mexicano.md` v1 | **BORRADO** 27/jul | — | superado por v2 |
 | `glosario` v2 / v3 / v4 | **BORRADOS** 27/jul | — | consolidados en v5 |
 | `estado-proyecto-...md` | **BORRADO** 27/jul | — | superado |
+
+⚠️ **Corrección 29/jul/2026 (sesión de correcciones):** la tabla de arriba citaba glosario v5.5, modelo v3.0 y estado v1.1 (los nombres de archivo exactos viven en el diff de este commit) pese a que este mismo documento ya iba en v1.9 — congelada desde una versión bastante anterior de `gobernanza`, nunca actualizada en los saltos de versión intermedios. Corregido a las versiones vigentes (glosario v5.6, modelo v3.3, estado v1.9). *(`censo-integridad-v1_0.md` C5-02.)*
+
+**Tres nombres citados por `curaduria-archivos.md` (27/jul) que ningún documento declaró borrados o renombrados** *(gap encontrado por `tests/check.py` T03, bucket `nombrado_sin_borrado_explicito`; declarado aquí porque este §2 es donde vive el Registro de artefactos — el resto de borrados de esta sección ya sigue ese patrón)*:
+
+| Nombre citado (27/jul) | Qué pasó | Certeza |
+|---|---|---|
+| `gobernanza-programa.md` v1.0 | Renombrado bajo la convención de ADR-36 (28/jul) a la serie versionada punto-menor de `gobernanza` (hoy `gobernanza-v1.9.md`) — es este mismo documento, con linaje continuo (ADR-26 a 29 incorporados, tal como `curaduria-archivos.md:37` pedía para su v1.1) | Alta — el propio ADR-36 describe la migración de nombre de todo archivo canónico |
+| `glosario-v5.md` | Renombrado bajo ADR-36 a la serie versionada punto-menor de `glosario` (hoy `glosario-v5.6.md`) | Alta, mismo mecanismo |
+| `CHECKPOINT-programa-psicologia-mexicano.md` | Probable antecesor de `CHECKPOINT-v2.md`, que esta misma tabla ya declara **BORRADO 28/jul, fusionado en `ESTADO-PROGRAMA.md`** (fila de arriba) | **Media** — el nombre no coincide exacto y no hay commit localizable que confirme el renombre `CHECKPOINT-programa-psicologia-mexicano.md` → `CHECKPOINT-v2.md`; se declara aquí como la lectura más probable, no como hecho verificado |
 
 **Regla de borrado** *(aprendida el 27/jul):* un artefacto superado se borra **solo después** de que su sucesor sea autocontenido. El glosario se hizo bien; el modelo se borró antes de consolidar el v2 y se salvó por una copia temporal. **Consolidar primero, borrar después** — no es detalle de proceso, es lo único que separa "versión limpia" de "pérdida".
 
@@ -269,6 +279,21 @@ Cuando una validación rompe o degrada una afirmación:
 
 ---
 
+### Sesión de correcciones · 29/jul/2026 (tarde) — censo de integridad documental
+
+**ADR-38 · Ningún hallazgo sobre la ausencia o el contenido de un texto en otro archivo baja al canon sin el `grep`/lectura literal contra ese archivo, con línea citada.** Motivado por el caso "pelón": `a79227e` afirmó haber corrido `grep -rn "pelón"` y reportó que la frase "no aparece en ese archivo, ni en ningún otro del repo"; el comando real da 4 resultados, incluida la línea exacta que se dijo vacía. **17 segundos después**, en el mismo lote de trabajo, `7d6535e` bajó esa afirmación sin re-verificarla a `canon/estado-programa` — ÚNICA FUENTE DE ESTADO — y de ahí se propagó una tercera vez a `TRANSFER-maestra-8.md`, citada como *ejemplo de método riguroso*. **Cubre la dirección que ADR-29 no cubre:** ADR-29 (§3.1, retropropagación) protege contra hallazgos **correctos** que nunca bajan del forense al canon. Este ADR protege lo contrario: hallazgos **falsos** que sí bajan, y bajan rápido. Requisitos:
+- **a)** Toda afirmación de la forma *"F dice/no dice X"*, *"la cita a F:L no checa"*, *"el archivo F no existe/no contiene Y"* que entre a un artefacto de `canon/` lleva, en el mismo commit, el comando de verificación y su salida real — no basta con citar la nota que lo afirma.
+- **b)** Una afirmación sobre el contenido de un archivo ajeno **no hereda verificación** de la nota que la reporta. Bajarla a canon exige correrla de nuevo contra el archivo, no contra el reporte del hallazgo.
+- **c)** Candidato a test mecánico, no implementado (requiere extraer la cita del texto libre — "T-grep-de-cita", `censo-integridad-v1_0.md §6`): hasta que exista, este ADR es la salvaguarda de proceso.
+→ **Vigente. S2.** *(Aprobado 29/jul/2026, sesión de correcciones sobre `censo-integridad-v1_1.md §3`.)*
+
+**ADR-39 · Verificación de premisas antes de ejecución.** Quien ejecuta un encargo verifica sus premisas contra el archivo **antes** de obedecerlo. Si una premisa no se sostiene, **se detiene y lo reporta** — no la ejecuta, y no ajusta el texto del encargo ni del corpus para que cuadre con una premisa falsa. **Motivado por:** la sesión de correcciones que produjo ADR-38 se comisionó desde un reporte de conversación no verificado contra el repo. Verificar antes de ejecutar encontró, entre otras cosas: la cita de `censo-integridad-v1_0.md` a `estado-programa-v1_9.md:208,234` ("idéntico") apunta a una línea 234 que no existe en un archivo de 212 líneas — la premisa de "dos citas idénticas" no se sostenía tal como estaba escrita; y tratar las tres ocurrencias de "107 WARN" del mismo archivo con una corrección uniforme habría fabricado una afirmación histórica falsa en una entrada de changelog que era exacta cuando se escribió. **Por qué vive aquí y no solo en `instrucciones-proyecto-v2.md`:** esa regla ya existe del lado de las instrucciones de sesión (v2.1), pero un artefacto de `canon/` no puede citar una instrucción de chat — este ADR le da ancla citable dentro del corpus. Requisito: antes de aplicar cualquier corrección que un encargo describa con un hecho verificable (cifra, cita, archivo, estado), correr la verificación **antes** del primer edit; si el resultado contradice la premisa, el hallazgo se reporta como entregable — no se fuerza el edit para que la premisa parezca correcta. No aplica a juicios de valor o preferencias del encargo, solo a hechos sobre el estado del repo.
+→ **Vigente. S2.** *(Aprobado 29/jul/2026, misma sesión.)*
+
+⚠️ **Nota de la sesión, sobre versión de archivo:** ADR-36 pide bump de versión MENOR ante todo cambio de contenido canónico, lo que llevaría este archivo a la siguiente versión punto-menor y a un rename de archivo, con su cascada de referencias (`estado §0`, cabeceras cruzadas). **No se ejecuta aquí** — el encargo que aprobó estos dos ADR pidió aplicarlos con los números correspondientes, no el bump de versión completo, y ese es un cambio de mayor alcance que merece su propio diff aprobado por separado.
+
+---
+
 ## 5. Deuda declarada (decisiones abiertas, conscientemente)
 
 Esto **no** es una lista de pendientes: es deuda que se decidió asumir.
@@ -328,6 +353,7 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 | Versión | Qué cambió |
 |---|---|
 | 1.0 | Creación. ADR-01 a ADR-25, registro de artefactos y protocolo de propagación tras cerrar Ronda 4 y Fase 0. |
+| **1.9** | **29/jul/2026 — Corrección de RÓTULO del perímetro del Hito D (ADR-37, §4).** El registro de decisión decía "20 [FUERTE] + 5 [MEDIA-FUERTE] + 2 compuestas", tratando a `R1.4` ([FUERTE como correlación]) como una segunda regla partida. Solo `R4.3` ([FUERTE / MEDIA]) es compuesta; `R1.4` es un tier distinto, con un solo falsador. El perímetro no cambia: siguen 27. Propagado a `modelo §7` (cambio 34) y `estado §4·S2`/`§7`. *(Fila añadida 29/jul/2026 en la sesión de correcciones — faltaba; `censo-integridad-v1_0.md` C5-03.)* |
 | **1.8** | **28/jul/2026 — ADR-36 adenda (c):** las series numeradas se versionan completas, con prefijo común, y el **orden de lectura pasa del nombre al cuerpo**. Los tres docs de MILPA → `milpa-whitepaper` v0.1 · `milpa-spec` v0.2 · `milpa-plan` v0.1. |
 | **1.7** | **28/jul/2026 — ADR-37: se cierra el S2 más antiguo del programa.** La spec del gate de Fase 1 pasa de una condición a **tres** (reproducción · prueba de mecanismo · anti-confusión). Desbloquea `R3.4`. Colateral: `civico.voto.clientelar` degradada de `FUERTE` a `MEDIA` — su `p: 0.63` era cifra de **laboratorio** compilada como campo; se crea el campo `procedencia_p`. |
 | **1.6** | **28/jul/2026 — ADR-36: nomenclatura versionada y eliminación de la ficha.** Todo archivo canónico pasa a `<nombre-estable>-v<MAYOR>.<MENOR>.md` con bloque de cabecera obligatorio; las referencias internas citan **nombre estable**. La ficha canónica **se elimina** y sus tres bloques con valor propio se absorben en `modelo` §0.1, §0.2 y §9. Un cambio típico pasa de tocar 6 archivos a **1 o 2**. |

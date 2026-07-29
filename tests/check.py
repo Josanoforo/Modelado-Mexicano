@@ -131,6 +131,12 @@ HISTORICOS = {
     "inventario-corpus.md",
     "ADR-30.md",
     "modelo-decisiones-mexicano.md",
+    # canon/gobernanza-v*.md §2, Registro de artefactos — declarados 29/jul/2026
+    # (sesión de correcciones): nombres pre-ADR-36 que forense/curaduria-archivos.md
+    # cita como vigentes el 27/jul y ningún documento declaraba renombrados/borrados.
+    "gobernanza-programa.md",       # renombrado bajo ADR-36 a la serie gobernanza-v1.X.md
+    "glosario-v5.md",               # renombrado bajo ADR-36 a la serie glosario-v5.X.md
+    "CHECKPOINT-programa-psicologia-mexicano.md",  # probable antecesor de CHECKPOINT-v2.md (certeza media)
 }
 
 def _normalize_version_dots(name):
@@ -369,12 +375,12 @@ def _git_head():
 # ───────────────────────────────────────────────────────────────
 # Nota de composición · "congelar no es aceptar" (29/jul/2026)
 # ───────────────────────────────────────────────────────────────
-# Congelar una cifra no dice qué es. Sin esto, dentro de dos meses 88
+# Congelar una cifra no dice qué es. Sin esto, dentro de dos meses 83
 # WARN se lee como deuda técnica homogénea del corpus, cuando parte es
 # deuda del propio instrumento de medición (T03 con cobertura angosta) y
 # solo parte es deuda real ya identificada. Los buckets son patrones
-# vistos y explicados a mano en censo-integridad-v1_1.md — no una regla
-# general recalculable; lo que no cae en ninguno queda "sin_clasificar",
+# vistos y explicados a mano en forense/censo-integridad-v1_1.md — no una
+# regla general recalculable; lo que no cae en ninguno queda "sin_clasificar",
 # explícito, en vez de asumido como una cosa o la otra.
 _FRAGMENTOS_EJEMPLO = {"-v3.2.md", "-v3_2.md", "...-v3.0.md", "...-v3_0.md"}
 _HISTORIA_RECIENTE_NO_DECLARADA = {
@@ -383,6 +389,12 @@ _HISTORIA_RECIENTE_NO_DECLARADA = {
 }
 _GOBERNANZA_STALE_C5_02 = {"glosario-v5.5.md", "modelo-decision-v3.0.md", "estado-programa-v1.1.md"}
 _NOMBRADOS_SIN_BORRADO_DECLARADO = {
+    # Dormante desde 29/jul/2026 (sesión de correcciones): los 3 nombres se
+    # declararon en gobernanza-v1_9.md §2 y se movieron a HISTORICOS (arriba),
+    # así que t03_dangling_refs ya no los agrega a WARNS -- este bucket nunca
+    # vuelve a poblarse a menos que se retire alguno de HISTORICOS. Se
+    # conserva el set (no el código muerto) porque tests/baseline.json
+    # congelado antes de esa sesión todavía puede citar este bucket.
     "gobernanza-programa.md", "CHECKPOINT-programa-psicologia-mexicano.md", "glosario-v5.md",
 }
 
