@@ -63,7 +63,7 @@ México* · **(c)** marco importado.
 **La marca VIAJA** con el constructo a cualquier dominio. Un marco **(c)**
 no puede usarse como **causa**: `T09` lo rechaza.
 
-## 7 · Búsqueda  *(ADR-38)*
+## 7 · Búsqueda  *(ADR-38 · ADR-40)*
 
 Las consultas **se pre-registran** con el falsador. Toda corrida incluye al
 menos una consulta **ADVERSARIA**, redactada para encontrar el caso que
@@ -71,6 +71,16 @@ tumbaría el veredicto — **se evalúa por su sintaxis, no por la declaración
 de intención de quien la escribió**.
 
 **Log de búsqueda obligatorio** o el veredicto no se archiva.
+
+**Forma canónica del veredicto archivado** *(ADR-40)*: `` `RX.Y` → veredicto
+`Z` `` — ID de regla entre backticks, flecha `→` (no `->`), la palabra
+`veredicto` literal, la letra entre backticks. **Vive en el bloque designado
+`## Registro de veredictos archivados`**, al final del pre-registro del hito
+(`hitoD-preregistro`) — la única sección que un test lee para derivar el
+conteo real. **Fuera de ese bloque, la forma canónica es cita o hipótesis,
+nunca emisión** — un archivo append-only que discute fichas necesita poder
+decir *"si `RX.Y` → veredicto `Z`…"* sin fabricar un veredicto. `estado`
+sigue narrando y contando, nunca archiva.
 
 ## 8 · Todo principio nuevo nace con su test  *(ADR-32)*
 

@@ -450,3 +450,21 @@ Cuando se escriba la ficha de `R3.4` (todavía no escrita — ver Nota 2), pre-r
 **A** brecha ≥20 puntos en la dirección predicha, pareada por tipo de trámite cuando sea posible (vía candidata primaria o Respaldo 1) — **confirma correlación, no mecanismo** (ver límites) · **B** brecha presente pero sin parear tipo de trámite ni entidad, o resuelta solo por Respaldo 2 — **degrada a `[MEDIA]`, no refuta**: hay señal en la dirección correcta pero no aislada de los confundidores 1-3 · **C** brecha ausente o invertida (mordida igual o mayor con registro/testigos) — **refuta la regla contra el dato** (la pregunta de `glosario §16`/`modelo §3.3` responde "no") · **D** si ENCIG 2023 no permite ninguna de las tres formas de la regla de selección de pregunta.
 
 *(Perímetro: `R3.2` es una de las 20 `[FUERTE]` de las 27 del Hito D — admisible. ID resuelto de forma única contra `modelo §7`, Registro congelado. No se consultó ENCIG, INEGI ni ninguna serie para escribir ni para revisar esta ficha.)*
+
+### Nota 5 · 29/jul/2026 — Veredicto de `R1.1`, migrado desde `estado`
+
+Hasta hoy, el único lugar donde vivía el resultado de correr el falsador de `R1.1` era la narración de `canon/estado-programa-v1_9.md:194`, dentro de §7. Este documento —el que pre-registró el falsador, el umbral y el confusor de `R1.1` antes de buscar nada (arriba, §3.1)— no tenía el resultado archivado.
+
+**Desde esta nota, el archivo de veredictos vive en el bloque designado al final de este documento** (`## Registro de veredictos archivados`, ADR-40) — no aquí, ni en ninguna otra prosa de este archivo. Esa separación es deliberada: la forma canónica de un veredicto, si pudiera aparecer en cualquier prosa, no distinguiría emitir de citar o hipotetizar — el primer intento de esta nota (revisado antes de commitear) lo demostró al disparar su propio patrón citando la narración vieja de `estado`. El bloque es la única sección que un test puede leer para derivar un conteo real; en cualquier otro lugar del documento, la forma canónica es solo texto.
+
+El resultado en sí, resumido: `R1.1` resultó inejecutable. No por hueco de dato: por hueco de mercado. El Seguro Agrícola Catastrófico, que cubre al productor de temporal, no puede ser contratado directamente por los productores (SADER, textual) — el productor aporta ~2.5% de la prima. Los Fondos de Aseguramiento, voluntarios y plurianuales, concentran 62% de fondos y 66% de cobertura en Sonora-Sinaloa-Tamaulipas: riego, tecnificado, gran extensión — no la población de volatilidad máxima. Donde hay adopción voluntaria en productores pequeños, está atada al financiamiento (AMUCSS, textual) — el confusor pre-registrado, textual. Cero de seis candidatos sobrevivieron al confusor.
+
+Detalle completo, tabla de descartes y tabla de propagación: `hitoD-R1.1` (`forense/hitoD-R1_1-veredicto-v1_0.md`). Esta nota no repite ese análisis, y no archiva el veredicto — solo lo narra. El archivo real está en el bloque de abajo.
+
+---
+
+## Registro de veredictos archivados — append-only, SOLO EMISIONES
+
+*(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
+
+`R1.1` → veredicto `D` — *(archivado 29/jul/2026, narrado en Nota 5, detalle en `hitoD-R1.1`)*
