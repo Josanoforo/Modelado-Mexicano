@@ -6,9 +6,9 @@
   titulo: "T03 no distingue una cita ilustrativa de una cita real"
   clase: instrumento
   abierto: 2026-07-30
-  casos: 2
+  casos: 3
   bloquea: []
-  evidencia: "canon/gobernanza-v1_11.md (ADR-42, corregido antes de comitear en d123f49); caso 2 (refreeze tras PR #1, 2026-07-30): la Nota de reconciliación de revision-publicacion-2026-07-30.md declara LICENSE-CORPUS.md propuesta descartada (D-05) y esa misma declaración dispara T03 — una nota que declara un falso positivo lo agrava, porque el test no distingue mención de referencia; es el argumento más fuerte que existe para la marca explícita de A1"
+  evidencia: "canon/gobernanza-v1_11.md (ADR-42, corregido antes de comitear en d123f49); caso 2 (refreeze tras PR #1, 2026-07-30): la Nota de reconciliación de revision-publicacion-2026-07-30.md declara LICENSE-CORPUS.md propuesta descartada (D-05) y esa misma declaración dispara T03 — una nota que declara un falso positivo lo agrava, porque el test no distingue mención de referencia; caso 3 (PR #13, 2026-07-30): al redactar en forense/bitacora.md la evidencia de I-12 (commit 388e3a2), una cita de nombre de archivo entre backticks dentro de ese mismo párrafo se volcó al diff de sesión y disparó un T03 nuevo; corregido quitando los backticks antes de comitear. Segunda vez el mismo día que documentar un falso positivo genera otro — es el argumento más fuerte que existe para la marca explícita de A1: el criterio de salida ya exige que un documento pueda citar un archivo inexistente o descartado como ejemplo sin generar WARN"
   estado: abierto
 
 - id: D-01
