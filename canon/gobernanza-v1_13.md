@@ -1,11 +1,11 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.12** · 30 de julio de 2026 · **44 ADR**
+### `gobernanza` · **v1.13** · 30 de julio de 2026 · **45 ADR**
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `gobernanza-v1.12.md` |
-> | **REEMPLAZA A** | `gobernanza-v1.11.md` — **borrar** |
-> | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · §4 trae ADR-44 (publicación del repositorio, sin registro previo) |
+> | **ARCHIVO** | `gobernanza-v1.13.md` |
+> | **REEMPLAZA A** | `gobernanza-v1.12.md` — **borrar** |
+> | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · §4 trae ADR-44 (publicación del repositorio, sin registro previo) y ADR-45 (vocabulario de "prueba de falsación", D-05) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
 
@@ -66,7 +66,7 @@ instrucciones-proyecto-v2.md   ← CANÓNICO. Gobierna todo lo demás.
 | `glosario-v5.6.md` | **CANÓNICO** | **v5.6**, autocontenido | reports (mapas de evidencia) |
 | `integrador-psicologia-mexicano.md` | DERIVADO | 31 reports | reports + glosario |
 | `meta-auditoria-comunicacion.md` | CANÓNICO (parche) | 1.0 | — |
-| `modelo-decision-v3.3.md` | **CANÓNICO OPERATIVO** | **v3.3, autocontenido** *(absorbe la ficha)* | integrador + glosario + validaciones |
+| `modelo-decision-v3.4.md` | **CANÓNICO OPERATIVO** | **v3.4, autocontenido** *(absorbe la ficha)* | integrador + glosario + validaciones |
 | ~~`ficha-canonica-modelo.md`~~ | **ELIMINADA 28/jul** *(ADR-36.b)* | — | absorbida en `modelo` §0.1, §0.2 y §9 |
 | **5 validaciones forenses** | **CANÓNICO** *(ADR-29.b)* | Ronda 4 | — |
 | ~~`CHECKPOINT-v2.md`~~ · ~~`mapa-y-roadmap.md`~~ · ~~`inventario-corpus.md`~~ | **BORRADOS 28/jul** | — | **fusionados en `ESTADO-PROGRAMA.md`** |
@@ -344,6 +344,22 @@ Cuando una validación rompe o degrada una afirmación:
 
 ---
 
+**ADR-45 · Vocabulario fijo de "prueba de falsación corrida"; tres poblaciones, nunca mezcladas sin marca.** Decisión de mesa del autor, 30/jul/2026, sobre la evidencia registrada en `cola.yaml` D-05 (derivada al intentar propagar la corrección de README:40 al canon: cinco líneas de `estado`, `modelo` y `gobernanza` invocaban "una prueba de falsación corrida" sin decir de cuál de tres poblaciones distintas hablaban, más una autocontradicción de `modelo` sobre si G1a está falsado). Las tres respuestas se fijan **antes** de ver resultados y no se renegocian al escribir:
+
+**(1) Denominador — se reportan AMBOS, siempre con etiqueta explícita de cuál es cuál.** Nunca uno solo, nunca los dos en la misma celda sin distinguir. `27` = perímetro elegible del Hito D (`gobernanza §4`, ADR-37); `49` = reglas totales del motor (`modelo §3.B`/§7, T12). `27` es subconjunto de `49`: las dos fracciones son verdaderas a la vez — el defecto era no decir cuál se estaba reportando, no que una de las dos fuera falsa.
+
+**(2) Un veredicto `D` cuenta como prueba corrida.** Se corrió el procedimiento pre-registrado y produjo un veredicto archivado (`R1.1` → `D`, inejecutable por hueco de mercado, no de dato). Condición: la letra viaja junto al conteo, siempre — "2 de 27 corridas (`D`, `B`)", nunca solo "2 de 27". Razón registrable: lo contrario haría que el programa reporte menos trabajo del que hizo, y escondería el hallazgo de `hitoD-R1.1` — que el mercado del seguro agrícola voluntario no existe para la población de volatilidad máxima (Seguro Agrícola Catastrófico no contratable por el productor; Fondos de Aseguramiento concentrados en riego/gran extensión; adopción voluntaria atada al financiamiento).
+
+**(3) Las tres poblaciones se reportan separadas — nunca sumadas, nunca una presentada como otra.**
+- **Hito D** — falsación de REGLAS del motor. Vocabulario `RX.Y → veredicto A-D`. Fuente única: el bloque append-only `## Registro de veredictos archivados` de `hitoD-preregistro` (ADR-40). Hoy: 2 de 27 corridas (`R1.1`→`D`, `R3.2`→`B`).
+- **Hito C** — falsación de GENERADORES. Vocabulario ✅ probado / ⚠️ contradicho-contestado / ⬜ sin falsar. Fuente única: `forense/hitoC-prueba-generadores.md`. Hoy: G3 ✅, G1b ⚠️ contradicho, G2 ⚠️ contestado, G1a/G4/G5/G6 ⬜ sin falsar.
+- **Ejercicio de glosario sobre G1a** (`glosario §6/§10`, 27/jul/2026, "utilidad + fricción baja > confianza", dominio seguro agrícola) — objeto propio. Origen `FORENSE` (`corpus/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano...md`, Etapa 3), veredicto informal B. **Anterior a que el Hito D existiera** (28/jul), **nunca pasó por el protocolo de ADR-40** ni entró al bloque archivado: no tiene ID de regla, no cuenta contra el 27 ni contra el 49, y no es "el Hito D".
+
+**Requisito de salida.** Ninguna afirmación de conteo de veredictos o de corridas de falsación existe en `canon/` fuera de su bloque de fuente única sin decir cuál de las tres poblaciones cita y con qué denominador. `I-07` (candidato a test que mecanice esto) queda abierta — este ADR fija el vocabulario; no construye el instrumento que lo vigile.
+→ **Vigente. S2.** *(Aprobado 30/jul/2026, sesión de canon. Cierra `cola.yaml` D-05. Propagado a `modelo` (v3.4, cambio 36, §0.1/§7), `estado` (§0, L5, §4·S3) y `glosario` (§6, §10).)*
+
+---
+
 ## 5. Deuda declarada (decisiones abiertas, conscientemente)
 
 Esto **no** es una lista de pendientes: es deuda que se decidió asumir.
@@ -356,7 +372,7 @@ Esto **no** es una lista de pendientes: es deuda que se decidió asumir.
 | **Confianza radial como canal medible** | Abierta | ADR-20. ⚠️ Ahora **contradicha** por los casos Nu y Kueski: G1b baja a HIPÓTESIS con coeficiente a revisión. |
 | **Granularidad municipal** | Abierta | Techo de resolución real del simulador. |
 | **Cuatro generadores sin falsar** ⭐ | Abierta | G1a, G4, G5, G6. G4 y G5 sin un solo caso disponible. |
-| **48 de 49 reglas sin prueba de falsación** ⭐ | Abierta | Una corrida (veredicto B). Es el Hito D. **Perímetro DECIDIDO: 27 reglas.** |
+| **Reglas del motor sin prueba de falsación pre-registrada** ⭐ | Abierta | **Es el Hito D** (bloque append-only de `hitoD-preregistro`): perímetro DECIDIDO de **27 reglas**, subconjunto de las **49** del motor. **2 de 27 corridas archivadas** — `R1.1` → `D`, `R3.2` → `B`; 25 de 27 sin corrida (47 de 49 sobre el motor completo). *(No confundir con el ejercicio informal de `glosario §6/§10` sobre G1a/seguro agrícola, 27/jul — ese NO es el Hito D: ver ADR-45.)* |
 | **Ocho refutaciones sin objeto** ⭐ | Abierta | El modelo no tiene variable de esfuerzo, colorismo, salud mental ni entidad prestamista. Incluye `ref.A.02` —la única MUY_FUERTE de las 49—. **Decisión pendiente: ampliar el modelo o declarar el alcance y retirarlas.** |
 | **PD-01 · 14 descartes** | **Cerrada — pérdida consumada** | Nunca se escribieron. **No reconstruir:** un descarte fabricado es indistinguible de uno real. |
 | **Sistema indígena-comunal** | **Cerrada por diseño** | ADR-10. No es deuda: es otro modelo. |
@@ -403,6 +419,7 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 | Versión | Qué cambió |
 |---|---|
 | 1.0 | Creación. ADR-01 a ADR-25, registro de artefactos y protocolo de propagación tras cerrar Ronda 4 y Fase 0. |
+| **1.13** | **30/jul/2026 — ADR-45: vocabulario fijo de "prueba de falsación corrida", cierra `cola.yaml` D-05.** Tres decisiones de mesa del autor: (1) denominador — 27 (perímetro del Hito D) y 49 (reglas del motor) se reportan siempre etiquetados, nunca uno sin decir cuál; (2) un veredicto `D` cuenta como corrida, la letra viaja con el conteo; (3) Hito D (reglas), Hito C (generadores) y el ejercicio suelto de `glosario §6/§10` sobre G1a (27/jul, sin bloque archivado) se reportan como tres poblaciones separadas, nunca sumadas ni una etiquetada como otra. Corrige `§5` (fila "48 de 49" mezclaba denominadores y etiquetaba el ejercicio de glosario como "Es el Hito D"). `I-07` queda abierta: sigue siendo patrón de proceso sin test. |
 | **1.12** | **30/jul/2026 — ADR-44: registro retroactivo de la publicación del repositorio (29/jul), sin ADR previo.** Mismo patrón que ADR-42(1), un piso más arriba: la función del programa entero cambió de privado-descriptivo a público-auditable sin pasar por gobernanza. Fija cuatro requisitos de salida — capa legal verificada en el árbol, re-examen de deuda "asumida a propósito" (referido a `revision-publicacion-2026-07-30.md`), README sin cifra sin test (declarado **PENDIENTE**, es F6) y regla hacia adelante contra decisiones que asuman lector interno. *(Sesión de canon F2/F4; T-README y A1-A5 quedaron fuera de perímetro por regla de sesión. Nota: las filas 1.10 y 1.11 no existen en esta tabla — mismo hueco de autorreferencia que `censo-integridad-v1_0.md` C5-03 ya señaló para 1.9; no se reconstruyen aquí, es scope ajeno a este ADR.)* |
 | **1.9** | **29/jul/2026 — Corrección de RÓTULO del perímetro del Hito D (ADR-37, §4).** El registro de decisión decía "20 [FUERTE] + 5 [MEDIA-FUERTE] + 2 compuestas", tratando a `R1.4` ([FUERTE como correlación]) como una segunda regla partida. Solo `R4.3` ([FUERTE / MEDIA]) es compuesta; `R1.4` es un tier distinto, con un solo falsador. El perímetro no cambia: siguen 27. Propagado a `modelo §7` (cambio 34) y `estado §4·S2`/`§7`. *(Fila añadida 29/jul/2026 en la sesión de correcciones — faltaba; `censo-integridad-v1_0.md` C5-03.)* |
 | **1.8** | **28/jul/2026 — ADR-36 adenda (c):** las series numeradas se versionan completas, con prefijo común, y el **orden de lectura pasa del nombre al cuerpo**. Los tres docs de MILPA → `milpa-whitepaper` v0.1 · `milpa-spec` v0.2 · `milpa-plan` v0.1. |
