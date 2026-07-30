@@ -89,3 +89,38 @@
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/refreeze-baseline-pr1-4zha5w` · **HEAD inicial (origin/main):** `22a7d9dcce2156557bbf70a164cee7679730faf1` · **HEAD final:** `84aaae39f3120a60cf52c726d2804fac0495f14f`
+
+**Commits de la sesión:**
+  - `84aaae3` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · cola: I-01 sube a casos=2 — el refreeze post-PR #1 como evidencia para A1
+  - `78288a2` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · estado: declaración vigente de la suite a la corrida real (19 FAIL · 87 WARN)
+  - `74027d5` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · Refreeze de línea base tras el merge del PR #1 (main 22a7d9d)
+  - `a0ae0ad` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · check.py: buckets propios para las 3 entradas del refreeze post-PR #1
+
+**Archivos tocados:**
+```
+canon/cola.yaml               |  4 ++--
+ canon/estado-programa-v1_9.md |  4 ++--
+ tests/baseline.json           | 20 +++++++++++++++++---
+ tests/check.py                | 24 ++++++++++++++++++++++--
+ 4 files changed, 43 insertions(+), 9 deletions(-)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 19 FAIL · 83 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: (ninguno)
+  - Cerrados: (ninguno)
+
+**Qué se decidió:** Re-congelar la línea base tras el merge del PR #1 (main 22a7d9d): un solo --freeze con bucket propio para las 3 entradas nuevas (1 T03 de revision-publicacion-2026-07-30.md — cita ilustrativa del artefacto LICENSE-CORPUS, descartado por D-05, patrón I-01 — y 2 T16 que son su consecuencia aritmética); declaración vigente de estado a la corrida real que T16 reporta (19 FAIL · 87 WARN); I-01 sube a casos=2 con este caso como evidencia para A1; se borra la rama fusionada del PR #1.
+**Qué quedó bloqueado:** Nada nuevo. A1 (la marca explícita en T03 que distinga mención de referencia) sigue en la cola como I-01, ahora con 2 casos; ningún otro pendiente se abrió ni se tocó.
+
+---
+
