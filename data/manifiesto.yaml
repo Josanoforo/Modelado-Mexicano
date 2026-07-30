@@ -1,0 +1,43 @@
+# data/manifiesto.yaml — procedencia de dato externo usado en el corpus
+# Convención: se commitea el manifiesto y el checksum, nunca el payload.
+# El payload (CSV/ZIP crudo) vive en data/raw/, ignorado por git.
+
+- id: encig23_base_datos_csv
+  usado_para: "hitoD-R3.2 (forense/hitoD-R3_2-veredicto-v1_0.md) — falsador de modelo §3.3 / tramite.yaml (mordida por modalidad de trámite)"
+  url_origen: "https://www.inegi.org.mx/programas/encig/2023/#microdatos"
+  fecha_descarga: "2026-07-29"
+  descargado_por: "usuario, vía navegador (la SPA de INEGI no expone el enlace a herramientas headless)"
+  sha256: "af733d867a568cbb0dadef4a5a793b02488a71728d1157860f14501f3d4c393d"
+  tamano_bytes: 38309647
+  formato: "ZIP con 6 CSV (encig2023_01_sec1_A_3_4_5_8_9_10, encig2023_01_sec_11, encig2023_02_residentes_sec_2, encig2023_03_sec_6, encig2023_04_sec_7, encig2023_05_sec_8). Solo se leyeron encig2023_04_sec_7 y encig2023_05_sec_8 (P7_3 y P8_4) — las otras cuatro tablas no se inspeccionaron, por restricción vigente por R3.1/R5.1/R7.2."
+  licencia: "Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html; texto completo de esos Términos no verificado, solo la referencia)"
+  verificacion_tamano: "Página anunciaba 36.5 MB; archivo real 38,309,647 bytes. Verificado por aritmética: 38309647/1048576 (MiB) = 36.53 -> coincide con lo anunciado; 38309647/1000000 (MB decimal) = 38.31 -> no coincide. El anuncio está en MiB etiquetado como MB (convención Windows), no hay descuadre real de contenido."
+
+- id: encig23_estructura_base_datos_pdf
+  usado_para: "hitoD-R3.2 — diccionario de datos / confirmación de esquema y ponderadores (FAC_TRA, FAC_P18), sustituto funcional del FD no localizado"
+  url_origen: "https://www.inegi.org.mx/contenidos/programas/encig/2023/doc/encig23_estructura_base_datos.pdf"
+  fecha_descarga: "2026-07-29"
+  descargado_por: "agente, directamente de inegi.org.mx"
+  sha256: "eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906"
+  tamano_bytes: 3100802
+  formato: PDF
+  licencia: "Términos de Libre Uso de la Información del INEGI (misma referencia que arriba)"
+  nota: >
+    Se buscó el "Descriptor de archivos (FD)" que INEGI publica junto a los microdatos
+    (~3 MB, según lo describió el usuario) en la carpeta de descarga y dentro del zip de
+    microdatos; no se encontró en ninguno de los dos lugares. Este documento -- mismo
+    programa y edición, con el mismo tipo de contenido -- se usó como sustituto. "No pude
+    alcanzar el archivo" original, no "el archivo no tiene el dato".
+
+- id: nota_metodologica_rotulo_pareada
+  fecha: "2026-07-29"
+  hecho: >
+    Durante el análisis de hitoD-R3.2, una cifra reportada como "brecha pareada por
+    N_TRA" resultó estar mal rotulada: era una brecha agrupada (pooled) restringida a
+    los tipos de trámite con ambas modalidades observadas, no una brecha pareada ni
+    estandarizada -- no reponderaba los tipos restantes a una mezcla común entre
+    presencial y digital. Detectado por aritmética (n1 global vs. n1 dentro de la tabla
+    "pareada": la diferencia era exactamente el n presencial del único tipo de trámite
+    excluido). Corregido con estandarización directa (ver hitoD-R3.2 §2.3). Se deja esta
+    nota porque la cifra mal rotulada circuló en el análisis antes de corregirse y el
+    error de nomenclatura -- no solo el número -- es parte de la procedencia del dato.

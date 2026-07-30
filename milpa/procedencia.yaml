@@ -223,7 +223,7 @@ asignados_probabilidad:
   - regla: tramite.mordida.discrecional
     valores: [0.62, 0.38]
     fuente_citada: [ENCIG2023, Rothstein_trampa_social, "report:politica"]
-    que_sostiene_de_verdad: "ENCIG mide prevalencia de corrupción por trámite; verificar si 0.62 corresponde a alguna categoría concreta o es asignado"
+    que_sostiene_de_verdad: "verificado 29/jul/2026 contra microdatos ENCIG 2023 (encig2023_04_sec_7 x encig2023_05_sec_8): 0.62 NO corresponde a ninguna categoría medida -- es ASIGNADO, confirmado. La dirección y la razón relativa presencial/digital (~3.6x-4.9x) sí encuentran apoyo empírico; el valor absoluto no (techo medido 13.38%, no 62%). Refutación de escala, no de valor -- detalle en hitoD-R3.2 (forense/hitoD-R3_2-veredicto-v1_0.md)."
     calibrable_con: "ENCIG (bienal, estatal — NO municipal)"
 
   - regla: tramite.mordida.con_registro
