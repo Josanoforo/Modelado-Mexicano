@@ -490,3 +490,22 @@ canon/cola.yaml                                    | 69 +++++++++++++++++++++-
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `sesion/encuci` · **HEAD inicial (origin/main):** `5b7113a17daa5e83d01f1a28f1c9d344e3df12cf` · **HEAD final:** `5b7113a17daa5e83d01f1a28f1c9d344e3df12cf`
+
+**Commits de la sesión:** (HEAD == origin/main — nada nuevo que listar)
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: D-08, E-04 (renumerada a E-06 al fusionar con PR #8/ADR-46, que ya había tomado E-04/E-05 -- ver cola.yaml E-06)
+  - Cerrados: D-05, D-06, D-07, I-08, I-09
+
+**Qué se decidió:** Registro de dos paquetes de ENCUCI 2020 (BD_ENCUCI2020_dbf.zip, FD_ENCUCI2020.pdf) bajados por navegador por el autor desde la pestaña Microdatos de inegi.org.mx/programas/encuci/2020/; copiados sin renombrar a data/raw/ y registrados con tests/manifiesto.py --registra (ids encuci2020_bd_dbf, encuci2020_fd_pdf). Corregida la entrada hitoD_fase1_ediciones_requieren_navegador: ENCUCI 2020 deja de estar pendiente; ENUT corrige premisa -- el portal expone 5 ediciones (2002/2009/2014/2019/2024) con base+descriptor+diagrama entidad-relación, ninguna descargada todavía (D-08, mismo patrón que D-06/regla v2.2). Declarado en cola.yaml (E-04, renumerada a E-06 al resolver este merge) el criterio corregido de contaminación de esta sesión: descarga ciega (registrar payload ya bajado por humano, sin tocar la red) vs exploración de estructura (E-02/E-03); R8.3 (ENCUCI) queda inhabilitada por el hecho consumado del registro, R5.2 (ENUT) no, porque nada se descargó de ella esta sesión.
+**Qué quedó bloqueado:** ENUT: cinco ediciones confirmadas alcanzables por el autor, ninguna descargada -- queda para otra sesión. ENSANUT: otra sesión la está bajando por script, en curso, no se espera aquí. Se detectó en el checkout un commit ajeno concurrente (rama sesion/calg3, CAL-G3 Fase A, ENNViH) -- no se tocó; esta sesión creó su propia rama sesion/encuci desde origin/main para no mezclarlo.
+
+---
+
