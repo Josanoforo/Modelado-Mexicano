@@ -460,6 +460,38 @@ canon/cola.yaml      |  12 ++
 
 ## 2026-07-30
 
+**Fecha:** 2026-07-30 · **Rama:** `claude/e03-session-contamination-xb1y55` · **HEAD inicial (origin/main):** `5b7113a17daa5e83d01f1a28f1c9d344e3df12cf` · **HEAD final:** `f8a9962d52929eca579fc0bff175371b31814005`
+
+**Commits de la sesión:**
+  - `f8a9962` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · gobernanza: v1.13 -> v1.14 -- ADR-46 (unidad de contaminación es la sesión, no la máquina)
+
+**Archivos tocados:**
+```
+canon/cola.yaml                                    | 69 +++++++++++++++++++++-
+ canon/estado-programa-v1_9.md                      |  4 +-
+ canon/{gobernanza-v1_13.md => gobernanza-v1_14.md} | 34 +++++++++--
+ 3 files changed, 99 insertions(+), 8 deletions(-)
+```
+
+**ADRs añadidos:** ADR-46
+**Líneas de versión modificadas en canon/:** 1
+  - ### `gobernanza` · **v1.14** · 30 de julio de 2026 · **46 ADR**
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: E-04, E-05
+  - Cerrados: D-05, D-06, D-07, I-08, I-09
+
+**Qué se decidió:** ADR-46: unidad de contaminación es LA SESIÓN, no la máquina ni el modelo, corrige cola.yaml E-03. Dos niveles (descarga ciega / exploración de estructura) y condición verificable de lectura reemplazan la prohibición de hardware. Aplicado al registro del 30/jul: ninguna encuesta de la tanda fue descarga ciega; ENUT/ENCUCI/ENSANUT (declaradas libres en el E-03 original) también tuvieron exploración de estructura sin descarga. E-02 verificada, sin el mismo defecto. cola.yaml E-04: la corrección la ejecutó una sesión distinta de la que bajó los datos, deliberado. cola.yaml E-05: --compara mostró que ENCIG 2023 datos-abiertos (26MB) y microdatos (38MB) son productos distintos; R3.2 se midió contra el de 38MB, no cambia el veredicto.
+**Qué quedó bloqueado:** Nada bloqueado por esta corrección. I-07 y demás pendientes de instrumento no tocados -- fuera de alcance de este encargo (solo canon/cola.yaml y canon/gobernanza-v*.md/estado-programa-v*.md, sin tocar data/raw/, instrumento ni fichas).
+
+---
+
+## 2026-07-30
+
 **Fecha:** 2026-07-30 · **Rama:** `sesion/encuci` · **HEAD inicial (origin/main):** `5b7113a17daa5e83d01f1a28f1c9d344e3df12cf` · **HEAD final:** `5b7113a17daa5e83d01f1a28f1c9d344e3df12cf`
 
 **Commits de la sesión:** (HEAD == origin/main — nada nuevo que listar)
@@ -469,10 +501,10 @@ canon/cola.yaml      |  12 ++
   - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
 
 **Cola — IDs afectados en la sesión:**
-  - Abiertos: D-08, E-04
+  - Abiertos: D-08, E-04 (renumerada a E-06 al fusionar con PR #8/ADR-46, que ya había tomado E-04/E-05 -- ver cola.yaml E-06)
   - Cerrados: D-05, D-06, D-07, I-08, I-09
 
-**Qué se decidió:** Registro de dos paquetes de ENCUCI 2020 (BD_ENCUCI2020_dbf.zip, FD_ENCUCI2020.pdf) bajados por navegador por el autor desde la pestaña Microdatos de inegi.org.mx/programas/encuci/2020/; copiados sin renombrar a data/raw/ y registrados con tests/manifiesto.py --registra (ids encuci2020_bd_dbf, encuci2020_fd_pdf). Corregida la entrada hitoD_fase1_ediciones_requieren_navegador: ENCUCI 2020 deja de estar pendiente; ENUT corrige premisa -- el portal expone 5 ediciones (2002/2009/2014/2019/2024) con base+descriptor+diagrama entidad-relación, ninguna descargada todavía (D-08, mismo patrón que D-06/regla v2.2). Declarado en cola.yaml (E-04) el criterio corregido de contaminación de esta sesión: descarga ciega (registrar payload ya bajado por humano, sin tocar la red) vs exploración de estructura (E-02/E-03); R8.3 (ENCUCI) queda inhabilitada por el hecho consumado del registro, R5.2 (ENUT) no, porque nada se descargó de ella esta sesión.
+**Qué se decidió:** Registro de dos paquetes de ENCUCI 2020 (BD_ENCUCI2020_dbf.zip, FD_ENCUCI2020.pdf) bajados por navegador por el autor desde la pestaña Microdatos de inegi.org.mx/programas/encuci/2020/; copiados sin renombrar a data/raw/ y registrados con tests/manifiesto.py --registra (ids encuci2020_bd_dbf, encuci2020_fd_pdf). Corregida la entrada hitoD_fase1_ediciones_requieren_navegador: ENCUCI 2020 deja de estar pendiente; ENUT corrige premisa -- el portal expone 5 ediciones (2002/2009/2014/2019/2024) con base+descriptor+diagrama entidad-relación, ninguna descargada todavía (D-08, mismo patrón que D-06/regla v2.2). Declarado en cola.yaml (E-04, renumerada a E-06 al resolver este merge) el criterio corregido de contaminación de esta sesión: descarga ciega (registrar payload ya bajado por humano, sin tocar la red) vs exploración de estructura (E-02/E-03); R8.3 (ENCUCI) queda inhabilitada por el hecho consumado del registro, R5.2 (ENUT) no, porque nada se descargó de ella esta sesión.
 **Qué quedó bloqueado:** ENUT: cinco ediciones confirmadas alcanzables por el autor, ninguna descargada -- queda para otra sesión. ENSANUT: otra sesión la está bajando por script, en curso, no se espera aquí. Se detectó en el checkout un commit ajeno concurrente (rama sesion/calg3, CAL-G3 Fase A, ENNViH) -- no se tocó; esta sesión creó su propia rama sesion/encuci desde origin/main para no mezclarlo.
 
 ---

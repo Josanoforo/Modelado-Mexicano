@@ -190,9 +190,74 @@
   casos: 1
   bloquea: []
   evidencia: "Decisión de mesa del autor (30/jul): bajar TODAS las olas disponibles de ENCIG (no solo 2023), y la serie completa de cualquier encuesta de la tanda que publique varias ediciones con microdatos. Se derivó la lista real desde inegi.org.mx (no del encargo) y se descargaron por script, registradas en data/manifiesto.yaml con sha256/tamaño/entorno_descarga: ENCIG 2015/2017/2019/2021/2023(datosabiertos) + la ya existente de 2023(microdatos-tab); ENIF 2018/2021/2024; ENVIPE 2018/2019/2020/2021/2022/2023/2024/2025 (serie completa, 8 de 8); ENIGH nueva-construcción 2012/2014/2016/2018/2020/2022. NO se descargó nada de ENUT, ENCUCI ni ENSANUT -- las tres existen pero ninguna edición expuso un enlace de archivo estático verificable por script sin forzar un mecanismo (formulario/SPA/login); quedan marcadas 'requiere navegador' en data/manifiesto.yaml (id hitoD_fase1_ediciones_requieren_navegador), no 'no existe' -- corolario 2 del encargo."
-  consecuencia: "Esta máquina queda INHABILITADA para pre-registrar contra las encuestas efectivamente descargadas -- mismo patrón que E-02 (contaminación por tocar la fuente, aquí por descarga en vez de por lectura). Alcance exacto: R3.1 inhabilitada (ENCIG, ya lo estaba también R3.2 -- archivada). R1.2 inhabilitada (ENIF). R7.2 inhabilitada (ENVIPE). R5.1 inhabilitada (ENIGH). NO inhabilitadas por esta sesión: R5.2 (ENUT, nada se bajó), R8.3 (ENCUCI, nada se bajó), R4.2 (ENSANUT, nada se bajó) -- estas tres siguen abiertas a pre-registro desde esta máquina, precisamente porque no se tocó su fuente. R3.4 tampoco se toca aquí (Banxico/SPEI no forma parte de esta tanda; sigue bloqueada por el gate de ADR-37, razón distinta)."
+  consecuencia: "[TEXTO ORIGINAL, 30/jul/2026 -- ver corrección fechada abajo] Esta máquina queda INHABILITADA para pre-registrar contra las encuestas efectivamente descargadas -- mismo patrón que E-02 (contaminación por tocar la fuente, aquí por descarga en vez de por lectura). Alcance exacto: R3.1 inhabilitada (ENCIG, ya lo estaba también R3.2 -- archivada). R1.2 inhabilitada (ENIF). R7.2 inhabilitada (ENVIPE). R5.1 inhabilitada (ENIGH). NO inhabilitadas por esta sesión: R5.2 (ENUT, nada se bajó), R8.3 (ENCUCI, nada se bajó), R4.2 (ENSANUT, nada se bajó) -- estas tres siguen abiertas a pre-registro desde esta máquina, precisamente porque no se tocó su fuente. R3.4 tampoco se toca aquí (Banxico/SPEI no forma parte de esta tanda; sigue bloqueada por el gate de ADR-37, razón distinta)."
+  correccion_2026-07-30b: >
+    Corregido por encargo de una sesión distinta de la que descargó los datos (ver E-04 sobre por
+    qué eso importa). El texto original erraba en dos direcciones a la vez (gobernanza ADR-46):
+    (a) demasiado amplio -- "esta máquina" INHABILITADA trata el hardware como si retuviera
+    contexto entre sesiones; una sesión nueva arrancada en frío en la misma máquina no ha leído
+    nada y está tan limpia como una en la nube; (b) demasiado estrecho -- lo que contamina no es
+    dónde corrió el proceso, sino qué puede LEER una sesión nueva en ese entorno: los payloads de
+    data/raw/ y la bitácora que describe qué se exploró de la estructura del portal.
+
+
+    Unidad de contaminación: LA SESIÓN (su contexto de lectura), no la máquina ni el modelo.
+    Condición verificable (ADR-46): una sesión puede pre-registrar contra una fuente si NO ha
+    leído data/raw/ de esa fuente, NI la bitácora de la tanda que la bajó, NI ningún registro de
+    exploración de su estructura.
+
+
+    Nivel de contaminación por encuesta, derivado de forense/bitacora.md (bloques de cierre del
+    30/jul, rama claude/hitod-perimetro-compara) y de data/manifiesto.yaml
+    (id hitoD_fase1_ediciones_requieren_navegador): NINGÚN caso de esta tanda fue descarga ciega.
+    Las cuatro encuestas efectivamente descargadas (ENCIG/R3.1, ENIF/R1.2, ENVIPE/R7.2,
+    ENIGH-nc/R5.1) requirieron EXPLORACIÓN DE ESTRUCTURA para encontrarlas: la bitácora declara
+    "lista real derivada de inegi.org.mx, no del encargo (título de página real vs 'Página no
+    encontrada'; Content-Type/Content-Length de un zip real vs el shell de 2263 bytes)" -- eso es
+    probar patrones de nombre por edición (p. ej. ENVIPE 2021/2022 con 'ENVIPE' en mayúsculas,
+    ENIGH-nc con cuatro convenciones de nombre distintas entre 2012 y 2022), no un url conocido de
+    antemano. R3.1/R1.2/R7.2/R5.1 siguen bloqueadas para cualquier sesión que haya leído esa
+    bitácora o esos payloads -- el motivo cambia (exploración de estructura, no descarga), la
+    consecuencia no.
+
+
+    Hallazgo que el texto original no declaraba y que el conservador obliga a declarar: ENUT/R5.2,
+    ENCUCI/R8.3 y ENSANUT/R4.2 NO están libres de contaminación como afirmaba el original. La
+    entrada hitoD_fase1_ediciones_requieren_navegador registra, para las tres, exploración real de
+    estructura sin descarga -- ediciones probadas por patrón de nombre, JSON-LD leído para
+    distinguir placeholder de plantilla vs distribución real, navegación del acordeón de ENSANUT
+    (host ensanut.insp.mx, distinto de inegi.org.mx) para confirmar seis ediciones con sección de
+    descargas real. Es exploración parcial, no descarga -- por eso R5.2/R8.3/R4.2 NO quedan en el
+    mismo nivel que R3.1/R1.2/R7.2/R5.1 (que además tienen payload en data/raw/), pero tampoco
+    quedan libres: cualquier sesión que lea esa entrada de manifiesto.yaml o la bitácora del 30/jul
+    queda igual de alcanzada por la condición verificable de arriba para R5.2/R8.3/R4.2. No se
+    pudo distinguir, dentro de esta exploración, si en algún punto se llegó a ver más que
+    título/JSON-LD/nombre de acordeón por encuesta -- ante la duda, se trata como exploración de
+    estructura completa para las tres, no como caso menor.
   estado: abierto
-  nota_estado: "Abierta como restricción permanente sobre esta máquina para las cuatro fichas listadas, no como tarea -- mismo patrón que E-02. Se cierra sola cuando la ficha correspondiente la escriba otra sesión/máquina que no haya tocado esa fuente."
+  nota_estado: "Abierta como restricción permanente por SESIÓN (no por máquina) para las siete fichas listadas en la corrección -- se cierra por ficha cuando la escriba una sesión que no haya leído data/raw/ de esa fuente, ni la bitácora de la tanda que la bajó, ni ningún registro de exploración de su estructura (condición de ADR-46)."
+
+- id: E-04
+  titulo: "La corrección de E-03 la hizo una sesión distinta de la que bajó los datos -- separación deliberada, no accidental"
+  clase: evidencia
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "Encargo de corrección de E-03 (30/jul/2026, gobernanza ADR-46), ejecutado por una sesión que no participó en la tanda de descarga de Hito D Fase 1 Paso 4 (rama claude/hitod-perimetro-compara, commits feaf38e/d0d9e07/ce3c284/33b412f) ni abrió data/raw/ ni ningún payload en el curso de esta corrección -- restricción explícita del encargo, verificada contra el propio alcance de este PR (solo canon/cola.yaml y canon/gobernanza-v*.md tocados)."
+  consecuencia: "Quien bajó ENCIG/ENIF/ENVIPE/ENIGH y escribió el E-03 original no debía ser quien redefine qué significa estar contaminado por bajarlo: esa sesión ya tenía un incentivo estructural (aunque no consciente) para trazar el criterio de forma que el trabajo que acababa de hacer quedara del lado limpio -- el mismo problema que un auditor auditándose a sí mismo. Separar autoría del hallazgo (E-03) de autoría del criterio (ADR-46) es la misma disciplina que D-05/ADR-45 aplicó al vocabulario de falsación: la mesa fija el criterio antes de ver si conviene, no después. No implica que el E-03 original estuviera escrito de mala fe -- el error (a)/(b) que ADR-46 corrige es plausible en cualquier sesión, incluida esta; el punto es que la corrección no la firme la misma mano que tiene algo en juego en el resultado."
+  estado: cerrado
+  nota_cierre: "Cerrada por declaración -- no requiere trabajo adicional. Se registra como precedente de proceso, no como pendiente."
+
+- id: E-05
+  titulo: "ENCIG 2023 'datos abiertos' (26MB) y la pestaña 'microdatos' (38MB) son productos distintos del mismo levantamiento -- R3.2 se midió contra el de 38MB"
+  clase: evidencia
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "Hallazgo de tests/manifiesto.py --compara en su primer uso real (bitácora 30/jul, rama claude/hitod-perimetro-compara): encig2023_datosabiertos_csv (data/manifiesto.yaml, tamano_bytes 26171769, url_origen .../encig/2023/datosabiertos/encig2023_csv.zip) dio DISCREPANCIA contra la entrada ya registrada encig23_base_datos_csv (tamano_bytes 38309647, url_origen .../encig/2023/#microdatos) -- distintos por tamaño y por hash, no una redundancia. hitoD-R3_2-veredicto-v1_0.md:11 y hitoD-preregistro-v2_0.md:474 declaran que el veredicto de R3.2 se corrió contra las tablas encig2023_04_sec_7 y encig2023_05_sec_8 -- procedencia de la pestaña 'microdatos' (el paquete de 38MB), no del zip de 'datos abiertos' (26MB) que se descargó por separado el 30/jul."
+  consecuencia: "No cambia el veredicto de R3.2 (B, hitoD-preregistro, sin tocar). Lo que falta, y que este hallazgo deja registrado para que una reproducción futura no tropiece con el mismo desconcierto: cuál paquete se usó no estaba escrito en ningún lado hasta este ADR-46 -- alguien que reproduzca R3.2 partiendo del zip de 'datos abiertos' (26MB, la ruta más visible del portal) encontraría una estructura de columnas distinta a la que describe encig23_estructura_base_datos.pdf y no tendría explicación de por qué. Se deja constancia aquí, en data/manifiesto.yaml (ya lo tenía por id/url_origen) y no se toca ninguna ficha ni se abre ningún payload para escribir esta entrada -- la discrepancia ya estaba registrada por --compara, esto solo la nombra y la conecta con R3.2."
+  estado: cerrado
+  nota_cierre: "Cerrada por declaración -- documenta un hecho de procedencia ya medido por D-07/I-09 (--compara), no abre trabajo nuevo. Ver también I-09 (cerrada) para el diseño de --compara que produjo la DISCREPANCIA original."
 
 - id: D-08
   titulo: "La premisa 'sin distribución localizable' para ENCUCI 2020 y para las cuatro ediciones citadas de ENUT era un defecto del instrumento de sondeo por script, no una propiedad real del portal"
@@ -205,13 +270,13 @@
   estado: cerrado
   nota_cierre: "Corregida en el mismo commit que la abre -- ver data/manifiesto.yaml, id hitoD_fase1_ediciones_requieren_navegador."
 
-- id: E-04
+- id: E-06
   titulo: "Criterio corregido de contaminación: descarga ciega (registrar un payload que un humano ya bajó) vs exploración de estructura (una sesión tocando el portal en vivo) -- alcance de ESTA sesión para ENCUCI 2020"
   clase: evidencia
   abierto: 2026-07-30
   casos: 1
   bloquea: []
-  evidencia: "Esta sesión recibió dos archivos ya bajados por el autor vía navegador (pestaña Microdatos de https://www.inegi.org.mx/programas/encuci/2020/ -> 'Descargar todos los archivos'), colocados en /mnt/c/Users/PC0/Descargas MX/. Esta sesión los copió a data/raw/ sin renombrar y los registró con tests/manifiesto.py --registra (sha256/tamaño derivados del archivo real en disco, nunca tecleados). En ningún momento esta sesión hizo una petición de red a inegi.org.mx ni a ningún otro portal -- ni para verificar la URL de origen (la dio el autor) ni para confirmar la existencia de las ediciones de ENUT (también la dio el autor, ver D-08). No se abrió el ZIP ni se leyó el PDF -- solo se hasheó."
-  consecuencia: "Criterio corregido frente a E-02/E-03: 'exploración de estructura' es una sesión/script tocando el portal en vivo por cuenta propia (fetch de red, lectura de página) y aprendiendo del terreno por sí misma -- eso SÍ contamina, es lo que inhabilitó R3.1/R1.2/R7.2/R5.1 en E-03 y las tres secciones de ENNViH en E-02. 'Descarga ciega' es registrar un payload que un canal humano (navegador) ya obtuvo fuera de esta sesión, sin que esta sesión toque la red -- esta sesión hizo solo eso. La distinción no exime al PAYLOAD de la restricción que ya aplica a todo dato registrado con sha256: el archivo de ENCUCI 2020 queda efectivamente registrado en data/manifiesto.yaml en esta sesión -- mismo hecho consumado que en E-03, aunque el canal fue distinto (navegador del autor, no script de esta máquina). Por consistencia con ese precedente, R8.3 (ENCUCI) queda INHABILITADA para pre-registro desde esta sesión en adelante -- ya bloqueada además por conf.06 (D-06). R5.2 (ENUT) NO queda inhabilitada: nada se descargó ni registró de ENUT esta sesión; la corrección de premisa en D-08 es un reporte transcrito del autor, no una exploración propia. R4.2 (ENSANUT) sin cambios -- el autor declaró que otra sesión la está bajando por script; esa sesión, cuando cierre, declarará su propio alcance."
+  evidencia: "Esta sesión recibió dos archivos ya bajados por el autor vía navegador (pestaña Microdatos de https://www.inegi.org.mx/programas/encuci/2020/ -> 'Descargar todos los archivos'), colocados en /mnt/c/Users/PC0/Descargas MX/. Esta sesión los copió a data/raw/ sin renombrar y los registró con tests/manifiesto.py --registra (sha256/tamaño derivados del archivo real en disco, nunca tecleados). En ningún momento esta sesión hizo una petición de red a inegi.org.mx ni a ningún otro portal -- ni para verificar la URL de origen (la dio el autor) ni para confirmar la existencia de las ediciones de ENUT (también la dio el autor, ver D-08). No se abrió el ZIP ni se leyó el PDF -- solo se hasheó. Esta entrada se redactó (id original E-04) antes de conocer la corrección de E-03 por ADR-46/E-04 -- se renumera a E-06 al fusionar con origin/main para no chocar de ID; el contenido no se reescribe, solo se renombra y se referencia."
+  consecuencia: "Criterio corregido frente a E-02/E-03 (texto original, pre-ADR-46): 'exploración de estructura' es una sesión/script tocando el portal en vivo por cuenta propia (fetch de red, lectura de página) y aprendiendo del terreno por sí misma -- eso SÍ contamina, es lo que inhabilitó R3.1/R1.2/R7.2/R5.1 en E-03 y las tres secciones de ENNViH en E-02. 'Descarga ciega' es registrar un payload que un canal humano (navegador) ya obtuvo fuera de esta sesión, sin que esta sesión toque la red -- esta sesión hizo solo eso. La distinción no exime al PAYLOAD de la restricción que ya aplica a todo dato registrado con sha256: el archivo de ENCUCI 2020 queda efectivamente registrado en data/manifiesto.yaml en esta sesión -- mismo hecho consumado que en E-03, aunque el canal fue distinto (navegador del autor, no script de esta máquina). Por consistencia con ese precedente, R8.3 (ENCUCI) queda INHABILITADA para pre-registro desde esta sesión en adelante -- ya bloqueada además por conf.06 (D-06). R5.2 (ENUT) NO queda inhabilitada: nada se descargó ni registró de ENUT esta sesión; la corrección de premisa en D-08 es un reporte transcrito del autor, no una exploración propia. R4.2 (ENSANUT) sin cambios -- el autor declaró que otra sesión la está bajando por script; esa sesión, cuando cierre, declarará su propio alcance. Coincide, de forma independiente, con la unidad de contaminación que fija ADR-46 (la sesión, no la máquina) -- no se reescribe este texto para adoptar ese vocabulario; queda como constancia de que dos sesiones distintas llegaron al mismo criterio por caminos separados."
   estado: cerrado
-  nota_cierre: "Cerrada en la misma sesión que la abre -- no hay acción pendiente derivada, el registro queda para que otra sesión sepa qué tocó esta antes de pre-registrar R8.3."
+  nota_cierre: "Cerrada en la misma sesión que la abre -- no hay acción pendiente derivada, el registro queda para que otra sesión sepa qué tocó esta antes de pre-registrar R8.3. Renumerada de E-04 a E-06 al resolver el conflicto de merge contra origin/main (PR #8 ya había tomado E-04 y E-05)."
