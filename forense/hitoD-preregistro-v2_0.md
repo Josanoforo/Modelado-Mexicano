@@ -551,6 +551,84 @@ Límites no anticipados en la ficha original: los códigos intermedios de modali
 
 ---
 
+### Nota 8 · 30/jul/2026 — `CAL-G3` Fase B: chequeo CAL-X, y dos premisas de la ficha que no se sostienen contra archivo
+
+*(Añadida al final, fechada, sin tocar el cuerpo, ni la Nota 7, ni la Adenda 1 — misma disciplina que las Notas 1-7. **No es un veredicto**: `CAL-G3` no ha emitido ninguno y no aparece en el bloque de emisiones de abajo. Registra el resultado del chequeo previo que el propio punto 9a ordena hacer ANTES de abrir microdatos, y dos hallazgos de documentación que ese chequeo destapó. Ningún `.dta` se abrió para escribir esta nota: todo sale del manual de codificación, del cuestionario y de la documentación de ponderadores.)*
+
+**(0) Qué se hizo y qué no.** Se descargaron los 27 paquetes de las tres olas y se registraron en `data/manifiesto.yaml` con sha256 derivado (Fase A). Se leyeron **sólo** manuales de codificación, cuestionarios y documentación de ponderadores. **No se estimó nada.** No se tocó `milpa/procedencia.yaml`. La Fase C queda detenida por lo que sigue.
+
+---
+
+**(a) EL CRITERIO ES ASIMÉTRICO: puede confirmar G3, no puede refutarlo.**
+
+Chequeo implementado en `tests/calx_g3.py` (insumos y reproducción declarados en su docstring). Denominadores = `folio` de la sección CRH del Libro II: **8,046** (2002) · **8,134** (2005-06) · **9,092** (2009-12) — el último confirma el "~9,092" que el punto (7) citó.
+
+Tasa base de "algún acceso formal" (Banco + Cuentas voluntarias de las afores, por la Adenda 1 (c)): **9.59%–9.94%** (2002) · **7.70%–7.95%** (2005-06) · **7.08%–7.23%** (2009-12). El rango es cota inferior/superior por traslape desconocido entre las dos categorías.
+
+- **`CAL-A` — ALCANZABLE.** Un criterio en RAZÓN tiene techo `p_max/p_min`, no `p_max − p_min`. `RR ≥ 1.5` sólo exige `p(jefe informal) ≤ 66.67%`. Holgura **7x** (2002), **8x** (2005-06), **9x** (2009-12). El modo de falla de `R3.2` —gate en pp por encima del techo observado— **no se repite**: es exactamente lo que el punto (7) evitó al ponerlo en razón.
+- **`CAL-B` — ALCANZABLE.** Celda residual; no impone cota de nivel ni de precisión.
+- **`CAL-C` — NO ALCANZABLE POR CONSTRUCCIÓN.** Esta celda no acota un nivel: acota una **precisión**. Con `RR` puntual = 1 y `p = 7.23%` (ola 3), para que el IC95% superior baje de 1.25 hacen falta **1,981 hogares por brazo — 3,962 con el contraste**. Por ola: 1,398/brazo (2002), 1,786/brazo (2005-06), 1,981/brazo (2009-12). El **techo duro** de hogares discordantes en el desenlace entre olas 1 y 3 es `800 + 657 =` **1,457**. Con ese techo y brazos iguales, `SE(log RR) = 0.1877` y el **mejor IC95% superior alcanzable es 1.445**, contra el **< 1.25** exigido.
+- **`9b` (nulo estricto con poder) — NO ALCANZABLE POR CONSTRUCCIÓN.** La banda `[0.80, 1.25]` exige `SE(log RR) < 0.1139`; el techo permite **0.1877**.
+
+**La cota del techo es deliberadamente generosa, y por eso el resultado es firme.** `1,457` supone: traslape cero entre olas; que **todo** hogar con ahorro formal es hogar panel presente en ambas olas; y **no descuenta todavía** el requisito de que además cambie la formalidad del jefe, ni la atrición efectiva, ni la exclusión de las observaciones levantadas en EE.UU. que el punto (6) ordena. El número real será materialmente menor. Aun así **1,457 < 3,962**.
+
+**Con las tasas base del codebook, el criterio puede CONFIRMAR G3 pero no puede REFUTARLO.** Un criterio que sólo admite confirmación no es un falsador. Por el punto 9a, esto **se re-declara en mesa antes de abrir microdatos**, no después. Registrado en `cola.yaml` como decisión abierta, sin resolver.
+
+---
+
+**(b) LA PREMISA DE COMPARABILIDAD DEL MÓDULO `TB` ES FALSA.**
+
+El punto (4) afirma: *"El módulo `TB` es idéntico en las tres olas (verificado contra la documentación de las tres)"*. No lo es. El set de opciones de `TB33` (trabajo principal) es:
+
+- **2002 — 8 opciones** (`tb33p_a`…`tb33p_h`).
+- **2005-06 — 9 opciones** (`tb33p_a`…`tb33p_i`).
+- **2009-12 — 11 opciones** (`tb33p_a`…`tb33p_k`), añadiendo *"10. Incapacidad/enfermedad"* y *"11. Otro"*.
+
+**La ola 1 carece por completo de *"9. Ninguna de las anteriores"*** — no aparece en ningún punto del Libro IIIA de 2002, verificado por barrido sobre el manual completo.
+
+Aritmética que lo delata, sobre la categoría 3 (*"Contrato verbal o de palabra (no tiene contrato)"*), que es la que el punto (4) usa para DEFINIR informal:
+
+```
+ola 1 (2002)      cat3 = 6,044     cat9 = AUSENTE
+ola 2 (2005-06)   cat3 = 1,772     cat9 = 3,798     cat3+cat9 = 5,570
+ola 3 (2009-12)   cat3 = 1,470     cat9 = 5,198
+```
+
+La suma de la ola 2 (**5,570**) reconstruye el **6,044** de la ola 1 con 8% de holgura. El **1,772** aislado no lo reconstruye de ninguna manera (**−71%**). Sin opción "ninguna", la categoría 3 de 2002 funciona como **residual atrapa-todo**; en 2005 el instrumento la parte en dos.
+
+**Consecuencia sobre la identificación, que es lo grave.** Bajo la definición literal del punto (4) —*"INFORMAL si reporta contrato verbal o de palabra sin IMSS"*— **un jefe de hogar sin ningún cambio real en su situación se codifica INFORMAL en 2002 y sale del contraste en 2005**, recodificado "ninguna", que no es ni formal ni informal. El diseño identifica **con transiciones dentro-de-unidad**, y el instrumento las **fabrica**. **Sesgo sin dirección declarable a priori.** Registrado en `cola.yaml` como decisión abierta, sin resolver.
+
+**Desliz de nombre, aparte y menor.** El punto (4) cita *"`tb33p_d` categorías 1-2"* y *"`tb33p_d` categoría 4"*. `tb33p_*` es una batería multi-selección de binarias separadas, una por opción: `tb33p_a`=cat 1, `tb33p_b`=cat 2, `tb33p_c`=cat 3, `tb33p_d`=**cat 4, IMSS y sólo IMSS**. No existe "`tb33p_d` categorías 1-2". Es la misma familia de defecto que la Adenda 1 (g) catalogó. **La intención es construible sin ambigüedad** (`FORMAL = tb33p_a ∨ tb33p_b ∨ tb33p_d`): nombre mal, intención bien. Se registra, no se corrige el cuerpo.
+
+---
+
+**(c) EL CONFUNDIDOR 5 EN LA OLA 3 NO ESTÁ RESUELTO.**
+
+El "Registro adicional" de la Adenda 1 concluyó que *"el control de oferta del punto (5) cubre las tres olas"*, la ola 3 vía el cuestionario. **Esa inferencia no se sostiene.**
+
+- **Olas 1 y 2 — el módulo `OC` está en el MANUAL DE CODIFICACIÓN.** `oc02` "Población ahorra/pide prestado" por tipo de institución (n=271 en 2002, n=590 en 2005), `oc03` (dentro/fuera de la comunidad), `oc04` (distancia), `oc05_1`–`oc05_10` (tipos de financiamiento), y en la ola 2 además `oc06` (Cajas solidarias, BANSEFI, Cajas populares, Cooperativas). Es el control de oferta que el punto (5) pide.
+- **Ola 3 — el módulo `OC` está SÓLO en el cuestionario.** `eloc09q_bcc1.pdf` trae `OC01`/`OC02`/`OC02a`/`OC03a` con los tipos A. Bancos · B. Cajas de ahorro · B.1 Otro prestamista · C · D. Tandas · E. Prestamistas individuales · F. Otro. Pero `eloc09cb_bcc1.pdf` y `eloc09cb_bcc2.pdf` **no contienen ninguna variable `oc*`** — verificado por barrido sobre ambos.
+
+El propio FAQ del proyecto dice por qué eso importa, verbatim: *"En los cuestionarios de la ENNViH aparecen algunas preguntas que no se encuentran en la base de datos ni en el manual de codificación del libro correspondiente… Hay preguntas que no se hicieron públicas por razones de confidencialidad."*
+
+**Un cuestionario documenta lo que se PREGUNTÓ; el codebook documenta lo que se LIBERÓ.** La ola 3 tiene lo primero y no lo segundo. Resolverlo exige abrir la base de localidad de la ola 3, que la restricción de lectura de Fase B no permite. Hasta que se resuelva, la degradación pre-registrada del punto (5) —ningún resultado se lee como preferencia temporal— **aplica a la ola 3 por defecto**.
+
+---
+
+**(d) Lo demás que se verificó, sin hallazgo adverso.**
+
+- **Las 11 categorías de `CRH01` estaban TODAS anticipadas** por la Adenda 1 (c), e son idénticas en las tres olas. **Nada que escalar a mesa por ahí** — la condición de parada "aparece una categoría de ahorro que la ficha no anticipó" **no se disparó**.
+- **"Apartado" es una segunda celda muerta**, además de la tanda-sola que el punto (7) ya había declarado caída: n=**1** (2002) · n=**1** (2005-06) · n=**0** (2009-12). No rompe nada, porque el punto (7) ya manda evaluar la mitad informal sobre la categoría agregada; se registra para que no se descubra después.
+- **Ponderadores de la ola 3** — la sección que el punto (7) declaraba "aún no leída" contiene **dos familias**, en paralelo exacto con la ola 2, una base por libro: `ehh09w_*` transversales (*"expanden a la población mexicana en 2009"*) y `ehh09lw_*` longitudinales (*"expanden a la población encuestada en el 2009 a la población original del 2002"*). Ambas descargadas y registradas.
+- **Aviso de corrección en la ola 2:** el sitio declara que los *Ponderadores Longitudinales Población 2002* de la ENNViH-2 **fueron modificados** y pide reemplazar cualquier descarga anterior al **15 de octubre de 2014**. La copia registrada el 30/jul/2026 es posterior a esa corrección.
+- **Discrepancia de rótulo de época:** el documento metodológico de ponderadores (`calculo-de-factores-de-expansion.pdf`, enlazado desde `documentacion3.html`) titula su sección 3 **"Factor de expansión 2010"** — llama *2010* a la ola que esta ficha llama *2009-12*. Se registra porque el punto (9c) exige que la ventana viaje pegada a toda cifra, y las dos fuentes no la nombran igual.
+
+---
+
+**(e) Estado de la ficha.** Fase A cerrada. Fase B cerrada con **dos condiciones de parada disparadas** —celda del criterio inalcanzable por construcción (a); premisa que no se sostiene contra archivo (b)— y una tercera parcial (c). **Fase C no se corrió y no se corre** hasta que la mesa resuelva las dos decisiones abiertas en `cola.yaml`. Estimar contra un criterio asimétrico produciría un `CAL-A` o `CAL-B` que no significaría lo que aparenta. **Ningún veredicto se emite en esta nota.**
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
