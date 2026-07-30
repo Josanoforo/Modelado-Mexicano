@@ -1,10 +1,10 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.10** · 29 de julio de 2026 · **41 ADR**
+### `gobernanza` · **v1.11** · 29 de julio de 2026 · **43 ADR**
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `gobernanza-v1.10.md` |
-> | **REEMPLAZA A** | `gobernanza-v1.9.md` — **borrar** |
+> | **ARCHIVO** | `gobernanza-v1.11.md` |
+> | **REEMPLAZA A** | `gobernanza-v1.10.md` — **borrar** |
 > | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
@@ -13,7 +13,7 @@
 *Documento vivo. Registra **qué se decidió, por qué, y qué se rompe si cambia**.
 No repite el contenido del corpus: lo gobierna.*
 
-**Versión de este documento:** 1.10 · **Estado del programa:** Ronda 4 cerrada y **auditada**; modelo v2 y glosario v5 consolidados; Fase 1 del simulador **pospuesta**. *(Corregido 29/jul/2026: decía 1.1, contradiciendo la cabecera de este mismo archivo, que ya dice 1.9 — hallazgo nuevo de esta sesión, no catalogado por `censo-integridad-v1_0.md`.)*
+**Versión de este documento:** 1.11 · **Estado del programa:** Ronda 4 cerrada y **auditada**; modelo v2 y glosario v5 consolidados; Fase 1 del simulador **pospuesta**. *(Corregido 29/jul/2026: decía 1.1, contradiciendo la cabecera de este mismo archivo, que ya dice 1.9 — hallazgo nuevo de esta sesión, no catalogado por `censo-integridad-v1_0.md`.)*
 
 ---
 
@@ -87,7 +87,7 @@ instrucciones-proyecto-v2.md   ← CANÓNICO. Gobierna todo lo demás.
 
 | Nombre citado (27/jul) | Qué pasó | Certeza |
 |---|---|---|
-| `gobernanza-programa.md` v1.0 | Renombrado bajo la convención de ADR-36 (28/jul) a la serie versionada punto-menor de `gobernanza` (hoy `gobernanza-v1.10.md`) — es este mismo documento, con linaje continuo (ADR-26 a 29 incorporados, tal como `curaduria-archivos.md:37` pedía para su v1.1) | Alta — el propio ADR-36 describe la migración de nombre de todo archivo canónico |
+| `gobernanza-programa.md` v1.0 | Renombrado bajo la convención de ADR-36 (28/jul) a la serie versionada punto-menor de `gobernanza` (hoy `gobernanza-v1.11.md`) — es este mismo documento, con linaje continuo (ADR-26 a 29 incorporados, tal como `curaduria-archivos.md:37` pedía para su v1.1) | Alta — el propio ADR-36 describe la migración de nombre de todo archivo canónico |
 | `glosario-v5.md` | Renombrado bajo ADR-36 a la serie versionada punto-menor de `glosario` (hoy `glosario-v5.6.md`) | Alta, mismo mecanismo |
 | `CHECKPOINT-programa-psicologia-mexicano.md` | Probable antecesor de `CHECKPOINT-v2.md`, que esta misma tabla ya declara **BORRADO 28/jul, fusionado en `ESTADO-PROGRAMA.md`** (fila de arriba) | **Media** — el nombre no coincide exacto y no hay commit localizable que confirme el renombre `CHECKPOINT-programa-psicologia-mexicano.md` → `CHECKPOINT-v2.md`; se declara aquí como la lectura más probable, no como hecho verificado |
 
@@ -315,6 +315,18 @@ Cuando una validación rompe o degrada una afirmación:
 **ADR-41 · Una regla aprobada en chat no rige hasta que existe en archivo.** Antes de eso es hipótesis, aunque todos la estén siguiendo. **Motivado por:** seis de los elementos de la subida de `instrucciones-proyecto-v2.md` a v2.2 (tres reglas de v2.1, cuatro de v2.2 más su pregunta de auditoría — la unión real, no las dos listas de "cinco" que traía el traspaso, que no coincidían entre sí) existieron solo en conversación, gobernaron el trabajo de una sesión completa, y se perdieron cuando la sesión se hizo en un entorno sin commitear. El único respaldo fue el chat. **Es la misma familia que ADR-29** —hallazgo correcto que no baja al motor— un piso más arriba: regla correcta que no baja al canon.
 
 **Segundo hallazgo, derivado en sesión el 29/jul/2026.** La capa de autoría del repo no registraba firmante humano. De 25 commits, **21 tienen a Claude como autor, 4 a `corpus@local`, cero a un humano** (verificado: `git log --format='%an <%ae>'`). El trailer `Co-Authored-By` nombraba a Claude en **17 líneas** —es decir, duplicaba al autor en vez de complementarlo— y en **cuatro formas distintas** (`Claude`, `Claude Opus 4.6 (1M context)`, `Claude Opus 5`, `Claude Sonnet 5`), una con especificación de ventana de contexto dentro del campo de identidad. **La historia previa no se reescribe:** es el registro fiel de cómo se hizo el trabajo, y falsificarla sería falsificar procedencia. De aquí adelante: **Jonas autor, Claude co-autor, una forma normalizada de la cadena de modelo.**
+→ **Vigente. S2.** *(Aprobado 29/jul/2026.)*
+
+**ADR-42 · Qué significa el verde en este repo.** El único control automático sobre `main` es `.github/workflows/verify.yml` (`push`/`pull_request`/`workflow_dispatch`, un job, `python3 tests/check.py --baseline`). Tres registros retroactivos, ninguno existía antes en archivo:
+
+**(1) El control cambió de semántica sin ADR.** El commit `f320550` ("CI: usa el modo linea base en vez de check.py sin banderas") movió el paso de CI de `check.py` sin banderas a `check.py --baseline` — un cambio de qué cuenta como éxito del único gate automático del repo, hecho sin pasar por gobernanza. Este ADR lo registra ahora, no lo autoriza retroactivamente ni lo revierte.
+
+**(2) Verde no significa "0 fallas".** Significa **"0 fallas nuevas frente a una línea base congelada"** — hoy esa línea base (`tests/baseline.json`, `head afa7c7f`) contiene **18 FAIL y 81 WARN**, y el CI pasa con esos 99 presentes. Mecanismo exacto: `_baseline_compare()` (`tests/check.py:824-848`) calcula `nuevos = current - known` sobre la unión de FAIL y WARN, y `return 1 if nuevos else 0` — el proceso solo falla si aparece algo que no estaba en el archivo congelado. Un checkmark verde en la página de Actions no es "sin defectos": es "sin defectos que no supiéramos ya".
+
+**(3) Límite de la clave, descubierto en sesión — no es un defecto, es una propiedad que hay que declarar.** `_baseline_key()` (`tests/check.py:736-737`) normaliza cada mensaje quitándole el número de línea (`re.sub(r":\d+ ", ": ", msg, count=1)`) antes de convertirlo en clave de comparación — necesario: sin esa normalización, cualquier edición que desplace líneas produciría falsos positivos masivos contra un defecto ya conocido. **Consecuencia declarada:** si un defecto ya congelado se reproduce N veces más en el mismo archivo, la suite no detecta ninguna de las nuevas apariciones — la clave `(test, mensaje-sin-línea)` ya estaba en `known`, y cuenta como la misma. **Caso probado en sesión, no hipotético:** dos WARN de T03 sobre `forense/censo-integridad-v1_1.md` (líneas 49 y 85), ambos citando el mismo nombre de archivo histórico (estado-programa, versión ya superada), colapsan en una sola clave — 82 WARN crudos, 81 tras la normalización. **Corolario operativo:** `--baseline` protege contra defectos *nuevos*, no contra la *multiplicación* de uno ya conocido dentro del mismo archivo; contar cuántas veces se repite un defecto congelado exige leer la salida sin `--baseline`, no confiar en el veredicto de línea base.
+→ **Vigente. S2.** *(Aprobado 29/jul/2026, derivado de auditoría de sesión contra `tests/check.py` y `.github/workflows/verify.yml`.)*
+
+**ADR-43 · Esquema de co-autoría (precisión a ADR-41).** ADR-41 pidió "una forma normalizada de la cadena de modelo". Su primera aplicación, cinco commits después, produjo **dos** formas: `Claude Sonnet 5` (cuatro commits) y `Claude Fable 5` (uno) — porque cada commit se escribió con el modelo de sesión vigente en ese momento, y ADR-41 no distinguía si "normalizada" quería decir una cadena fija o un formato consistente. **La historia no se reescribe** — los cinco commits quedan como están. **Precisión, no corrección:** la forma normalizada es un **esquema**, no una cadena única — `Claude <modelo> <noreply@anthropic.com>`, con el nombre del modelo como campo variable y el resto fijo. Es deliberado, no una relajación: registrar **qué modelo** co-escribió cada commit es procedencia más fina, no más débil — la misma disciplina que `procedencia.yaml` exige para los números del modelo, aplicada a la autoría. Verificado: los cinco commits de la sesión de ADR-41 ya cumplen este esquema tal como queda definido aquí — ninguno necesita enmienda.
 → **Vigente. S2.** *(Aprobado 29/jul/2026.)*
 
 ---
