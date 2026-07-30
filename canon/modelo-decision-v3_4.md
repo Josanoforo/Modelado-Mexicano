@@ -1,12 +1,18 @@
 # Modelo de decisión del mexicano contemporáneo
-### `modelo` · **v3.3** · CANÓNICO OPERATIVO
+### `modelo` · **v3.4** · CANÓNICO OPERATIVO
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `modelo-decision-v3.3.md` |
-> | **REEMPLAZA A** | `modelo-decision-v3.2.md` — **borrar** |
-> | **VERIFICAS ASÍ** | §0 llega al **cambio 35** · la regla R1.1 de §3.1 trae la marca `DOMINIO AGRÍCOLA: INEJECUTABLE` · §7 trae el **Registro congelado de IDs** (tabla de 49 filas) junto a la declaración del perímetro |
+> | **ARCHIVO** | `modelo-decision-v3.4.md` |
+> | **REEMPLAZA A** | `modelo-decision-v3.3.md` — **borrar** |
+> | **VERIFICAS ASÍ** | §0 llega al **cambio 36** · la regla R1.1 de §3.1 trae la marca `DOMINIO AGRÍCOLA: INEJECUTABLE` · §7 trae el **Registro congelado de IDs** (tabla de 49 filas) junto a la declaración del perímetro · §0.1 y §7 distinguen explícitamente las tres poblaciones de "prueba de falsación" (ADR-45) |
 > | **NOMBRE ESTABLE** | **`modelo`** — cítalo así (*"ver `modelo §3.B`"*), **nunca por nombre de archivo**. Así las versiones suben sin dejar referencias colgando |
+
+> **v3.4 — 30/jul/2026. Vocabulario de "prueba de falsación" fijado (D-05, ADR-45).** El motor sigue en **49 reglas**; el perímetro del Hito D sigue en **27**. Lo que cambia: (1) §0.1 separa el vocabulario de veredicto de **reglas** (Hito D: `RX.Y → A-D`, fuente única el bloque append-only de `hitoD-preregistro`) del vocabulario de **generadores** (Hito C: ✅/⚠️/⬜, fuente `hitoC-prueba-generadores`) — estaban mezclados en una sola oración; (2) §7 deja de decir "una prueba de falsación corrida" — son **2 de 27 corridas archivadas** (`R1.1` → `D`, `R3.2` → `B`); un veredicto `D` es una corrida cuenta igual que cualquier otra, la letra viaja con el conteo; (3) §7 deja de citar el ejercicio informal de `glosario §6/§10` (27/jul, seguro agrícola, veredicto B) como si fuera una regla del motor — es una tercera población, sin ID de regla y sin bloque archivado, distinta de Hito D y de Hito C.
+>
+> | # | Cambio | Origen |
+> |---|---|---|
+> | 36 | **§0.1 y §7: las tres poblaciones de "prueba de falsación" se etiquetan siempre que se citan** — Hito D (reglas, 27/49, bloque append-only), Hito C (generadores, 7, `hitoC-prueba-generadores`), ejercicio de glosario (G1a/seguro agrícola, 27/jul, informal, sin bloque archivado). Ninguna cifra de conteo de corridas se reporta sin decir de cuál habla | **D-05 / ADR-45** |
 
 > **v3.1 — 28/jul/2026. Tres defectos de redacción corregidos, detectados al escribir el pre-registro del Hito D.** El motor sigue en **49 reglas**; lo que cambia es **qué afirman tres `PORQUE`**.
 >
@@ -43,7 +49,9 @@
 
 *Histórico: esta marca vivía solo aquí y se perdía al comprimirse en la ficha derivada — y como la ficha era lo que se pegaba en los prompts, cada corrida heredaba constructos de diáspora sin saberlo. **La ficha se eliminó en v3.0 precisamente por eso.***
 
-**Estado de falsación:** ✅ probado · ⚠️ contradicho o contestado · ⬜ sin falsar. *De **49** reglas, **una** tiene prueba de falsación corrida.*
+**Estado de falsación de los GENERADORES** (§2.1, siete constructos — no reglas): ✅ probado · ⚠️ contradicho o contestado · ⬜ sin falsar.
+
+**Estado de falsación de las REGLAS del motor (49 total; perímetro pre-registrado del Hito D = 27, subconjunto de las 49):** vocabulario `RX.Y → veredicto A-D`, fuente única el bloque append-only de `hitoD-preregistro §Registro de veredictos archivados`. **2 de 27 corridas archivadas** — `R1.1` → veredicto `D`, `R3.2` → veredicto `B` (§7). Un veredicto `D` es una corrida igual que cualquier otra: cuenta en el conteo, no se descarta por ser inejecutable.
 
 ---
 
@@ -162,6 +170,8 @@ Las cláusulas del v1 estaban escritas a nivel de **régimen nacional** —"si l
 | **G6** · Jerarquía + indulgencia | Deferencia, iniciativa suprimida, paternalismo | **Se refuta si** la autoridad autoritaria **no** benévola produce buen desempeño y satisfacción. ⚠️ **SIN FALSAR** — dos casos disponibles, ambos declarados no probatorios |
 
 **Estado de falsación, declarado en el modelo y no en un anexo:** de siete generadores, **uno probado y sobrevive (G3)**, **uno contradicho (G1b)**, **uno contestado (G2)**, **cuatro sin falsar (G1a, G4, G5, G6)**.
+
+⚠️ **G1a sin falsar (arriba) y §7 más abajo describen poblaciones distintas — ADR-45, D-05.** Esta línea habla de **Hito C** (generadores; fuente `hitoC-prueba-generadores`): los Casos 2/3 refutan G1b (difusión radial), no G1a (canal personal), así que G1a sigue sin falsar aquí. §7 cita, por separado, un **ejercicio suelto de `glosario §6/§10`** (27/jul/2026, "utilidad + fricción baja > confianza", veredicto informal B, seguro agrícola) que usa la misma evidencia Nu/Kueski/Aplazo pero es una tercera población: no tiene ID de regla, no está en el bloque append-only de `hitoD-preregistro`, y es anterior a que el Hito D existiera. Ambas líneas son ciertas a la vez porque hablan de poblaciones distintas.
 
 ### 2.2 Coeficientes
 
@@ -385,9 +395,10 @@ Transcripción del v1, sin cambios. Orden de aplicación: segmento → parámetr
 
 ## 7 · Estado de validación
 
-**Marcador honesto, al 27 de julio de 2026:**
+**Marcador honesto, actualizado al 30 de julio de 2026** *(el marcador original era del 27 de julio; el Hito D no existía todavía)*:
 
-- **49 reglas** *(42 en v2 · 43 en v2.1 por conf.07 · 44 en v2.3 al partir la diagonal)*. **Una prueba de falsación pre-registrada corrida** (utilidad + fricción baja > confianza → **veredicto B**: sin contraejemplo limpio, candidato irresuelto en seguro agrícola, techo estructural que impide alcanzar el veredicto C con fuentes públicas).
+- **49 reglas** *(42 en v2 · 43 en v2.1 por conf.07 · 44 en v2.3 al partir la diagonal)*. **Hito D (perímetro de 27 reglas, subconjunto de las 49): 2 de 27 corridas archivadas** — `R1.1` → veredicto `D` (inejecutable por hueco de mercado, no de dato), `R3.2` → veredicto `B` (gate de 20pp aritméticamente inalcanzable). Fuente única: `hitoD-preregistro §Registro de veredictos archivados`.
+- **Ejercicio distinto, no confundir con lo anterior (ADR-45, D-05):** `glosario §6/§10` corrió por su cuenta, el 27/jul/2026 — antes de que el Hito D existiera —, un ejercicio informal sobre "utilidad + fricción baja > confianza" (dominio seguro agrícola), **veredicto informal B**: sin contraejemplo limpio, candidato irresuelto, techo estructural que impide alcanzar el veredicto C con fuentes públicas. No tiene ID de regla, no vive en el bloque append-only de `hitoD-preregistro`, y no cuenta en el "2 de 27" de arriba.
 
 **⚠️ PERÍMETRO DEL HITO D — fijado en v2.1 por conteo mecánico sobre §3.B, no de memoria:**
 

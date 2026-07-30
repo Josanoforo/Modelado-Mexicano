@@ -5,7 +5,7 @@
 > |---|---|
 > | **ARCHIVO** | `estado-programa-v1.9.md` |
 > | **REEMPLAZA A** | `estado-programa-v1.8.md` — **borrar** |
-> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v3.3** y `hitoD-R1.1` · §4·S2 trae la declaración canónica de cobertura del pre-registro (cifra derivada, no tecleada) y el rótulo corregido del perímetro (20+1+1+5, no 20+5+2) · §7 no repite la cifra, cita §4·S2 |
+> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v3.4** y `hitoD-R1.1` · §4·S2 trae la declaración canónica de cobertura del pre-registro (cifra derivada, no tecleada) y el rótulo corregido del perímetro (20+1+1+5, no 20+5+2) · §7 no repite la cifra, cita §4·S2 · las tres poblaciones de "prueba de falsación" (Hito D, Hito C, ejercicio de glosario) se citan siempre con etiqueta (ADR-45, D-05) |
 > | **NOMBRE ESTABLE** | **`estado`** — cítalo así, **nunca por nombre de archivo** |
 
 ---
@@ -20,9 +20,9 @@
 
 | Nombre estable | Archivo vigente | Qué es |
 |---|---|---|
-| **`modelo`** | `modelo-decision-v3.3.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
+| **`modelo`** | `modelo-decision-v3.4.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
 | **`glosario`** | `glosario-v5.6.md` | CANÓNICO. Único punto legítimo de entrada de un tier |
-| **`gobernanza`** | `gobernanza-v1.12.md` | 44 ADR, protocolo de cambio |
+| **`gobernanza`** | `gobernanza-v1.13.md` | 45 ADR, protocolo de cambio |
 | **`estado`** | `estado-programa-v1.9.md` | Este archivo |
 | **`milpa-whitepaper`** | `milpa-whitepaper-v0.1.md` | El **porqué** del simulador |
 | **`milpa-spec`** | `milpa-spec-v0.2.md` | El **cómo** — incluye el gate de ADR-25/37 |
@@ -90,9 +90,9 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 
 **L4 · Implementación — incompleta.** MILPA Fase 0: **3 de 10** `rules/*.yaml` (solo `tramite.yaml` es de dominio). **18 de 43 reglas implementadas**, sin criterio registrado de por qué esas. `masterclass-mexico.html` ausente. **Fase 1 POSPUESTA por decisión, no por olvido.**
 
-**L5 · Validación — el estrato más problemático.** Una prueba de falsación pre-registrada corrida (veredicto **B**). 49 refutaciones corridas: 27 pasan, 3 fallan, 8 sin objeto, 11 requieren el ejecutable. **15 coeficientes, cero medidos.** Cuatro generadores sin falsar.
+**L5 · Validación — el estrato más problemático.** **Hito D** (reglas del motor; perímetro de 27, subconjunto de las 49 del motor): **2 de 27 corridas archivadas** — `R1.1` → veredicto `D`, `R3.2` → veredicto `B` (bloque append-only de `hitoD-preregistro`, ver §7). 49 refutaciones narrativas corridas *(población distinta, `milpa/refutations.yaml`, ref.A.*)*: 27 pasan, 3 fallan, 8 sin objeto, 11 requieren el ejecutable. **15 coeficientes, cero medidos.** Cuatro generadores sin falsar (**Hito C**, distinto de lo anterior — ver `hitoC-prueba-generadores`).
 
-**L0 · Gobierno — completo y al día.** 44 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos. *(Corregido 29/jul/2026: decía 32, contradiciendo §0 de este mismo archivo — `censo-integridad-v1_0.md` C1-02. Subió a 39 en la misma sesión, con la aprobación de ADR-38/39 en `gobernanza §4`; a 40 después, con ADR-40, misma sesión de tests; a 41 después, con ADR-41, misma sesión; a 43 después, con ADR-42/43, misma sesión; a 44 después, con ADR-44, sesión de canon del 30/jul (publicación del repositorio sin ADR previo).)*
+**L0 · Gobierno — completo y al día.** 45 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos. *(Corregido 29/jul/2026: decía 32, contradiciendo §0 de este mismo archivo — `censo-integridad-v1_0.md` C1-02. Subió a 39 en la misma sesión, con la aprobación de ADR-38/39 en `gobernanza §4`; a 40 después, con ADR-40, misma sesión de tests; a 41 después, con ADR-41, misma sesión; a 43 después, con ADR-42/43, misma sesión; a 44 después, con ADR-44, sesión de canon del 30/jul (publicación del repositorio sin ADR previo); a 45 después, con ADR-45, misma sesión (vocabulario de "prueba de falsación", cierra D-05).)*
 
 ---
 
@@ -115,7 +115,7 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 
 ### S3 · Sustantivas
 - **15 coeficientes de generador nunca validados.** Único punto calibrable hoy: `G3 → horizonte_temporal` vía **panel rotativo ENOE** — sería el primer MEDIDO de 144.
-- **48 de 49 reglas sin prueba de falsación pre-registrada.**
+- **47 de 49 reglas del motor sin prueba de falsación pre-registrada corrida** (2 corridas archivadas: `R1.1` → `D`, `R3.2` → `B`). **Dentro del perímetro decidido del Hito D (27 reglas, subconjunto de las 49): 25 de 27 sin corrida.**
 - **74 números ASIGNADOS sin calibrar.**
 - **8 reports entraron a la síntesis vía glosario v2 (superado)**, no leídos a fondo.
 - **25 reglas fuera de la implementación** (43−18), sin criterio registrado. *(Corregido 29/jul/2026: decía 26, no cuadraba contra el propio 18 de 43 de `§3·L4` — `censo-integridad-v1_0.md` C1-03. El "43" en sí sigue sin sustento localizable en el repo, NO-VERIFICABLE — no se toca aquí.)*
