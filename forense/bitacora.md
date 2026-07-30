@@ -393,3 +393,33 @@ canon/cola.yaml      |  53 +++++++++++
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/hitod-perimetro-compara` · **HEAD inicial (origin/main):** `dc5fd0fb20137d802af2c6ab4cc0ea6cd13241e0` · **HEAD final:** `feaf38e745c739e30ef225cebae52b49b9f1d701`
+
+**Commits de la sesión:**
+  - `feaf38e` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · Hito D Fase 1 (parcial, Pasos 1-3): perímetro de red, tabla de fuentes, --compara
+
+**Archivos tocados:**
+```
+canon/cola.yaml     |  3 ++-
+ tests/manifiesto.py | 76 ++++++++++++++++++++++++++++++++++++++++++++++++-----
+ 2 files changed, 72 insertions(+), 7 deletions(-)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: (ninguno)
+  - Cerrados: D-05, D-06, D-07, I-08, I-09
+
+**Qué se decidió:** Fase 1 de Hito D, Pasos 1-3 (parcial, PR marcado explícitamente como incompleto): (1) perímetro de red de los 6 hosts del encargo medido y diagnosticado por clase (inegi/ennvih alcanzables; banxico.org.mx sin registro A/AAAA en el apex -- www sí resuelve --, amucss.org.mx NXDOMAIN, ambos confirmados vía consulta DNS cruda a 8.8.8.8 y 1.1.1.1; cnbv.gob.mx y datos.gob.mx con cadena TLS incompleta, confirmado con openssl s_client propio). (2) Tabla ficha->fuente->alcanzable derivada de las 25 fichas de hitoD-preregistro-v2_0.md, reportada en el PR -- se detiene ahí, la tanda de descarga (Paso 4) espera aprobación explícita de esa tabla en un turno posterior. (3) I-09 cerrada: --compara en tests/manifiesto.py, con prueba negativa de dos lados verificada.
+**Qué quedó bloqueado:** Paso 4 (la tanda de descarga real) bloqueado a propósito -- el encargo exige tabla aprobada antes de bajar nada, y esa aprobación es de un turno posterior a este PR.
+
+---
+
