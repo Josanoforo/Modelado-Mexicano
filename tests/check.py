@@ -757,7 +757,7 @@ def _git_head():
 _FRAGMENTOS_EJEMPLO = {"-v3.2.md", "-v3_2.md", "...-v3.0.md", "...-v3_0.md"}
 _HISTORIA_RECIENTE_NO_DECLARADA = {
     "estado-programa-v1_8.md", "gobernanza-v1_8.md", "modelo-decision-v3_2.md",
-    "estado-programa-v1_7.md", "v1_9.md",
+    "estado-programa-v1_7.md", "v1_9.md", "gobernanza-v1_9.md",
 }
 _GOBERNANZA_STALE_C5_02 = {"glosario-v5.5.md", "modelo-decision-v3.0.md", "estado-programa-v1.1.md"}
 _NOMBRADOS_SIN_BORRADO_DECLARADO = {

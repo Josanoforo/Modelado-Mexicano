@@ -1,10 +1,10 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.9** · 29 de julio de 2026 · **40 ADR**
+### `gobernanza` · **v1.10** · 29 de julio de 2026 · **41 ADR**
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `gobernanza-v1.9.md` |
-> | **REEMPLAZA A** | `gobernanza-v1.8.md` — **borrar** |
+> | **ARCHIVO** | `gobernanza-v1.10.md` |
+> | **REEMPLAZA A** | `gobernanza-v1.9.md` — **borrar** |
 > | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
@@ -13,7 +13,7 @@
 *Documento vivo. Registra **qué se decidió, por qué, y qué se rompe si cambia**.
 No repite el contenido del corpus: lo gobierna.*
 
-**Versión de este documento:** 1.9 · **Estado del programa:** Ronda 4 cerrada y **auditada**; modelo v2 y glosario v5 consolidados; Fase 1 del simulador **pospuesta**. *(Corregido 29/jul/2026: decía 1.1, contradiciendo la cabecera de este mismo archivo, que ya dice 1.9 — hallazgo nuevo de esta sesión, no catalogado por `censo-integridad-v1_0.md`.)*
+**Versión de este documento:** 1.10 · **Estado del programa:** Ronda 4 cerrada y **auditada**; modelo v2 y glosario v5 consolidados; Fase 1 del simulador **pospuesta**. *(Corregido 29/jul/2026: decía 1.1, contradiciendo la cabecera de este mismo archivo, que ya dice 1.9 — hallazgo nuevo de esta sesión, no catalogado por `censo-integridad-v1_0.md`.)*
 
 ---
 
@@ -87,7 +87,7 @@ instrucciones-proyecto-v2.md   ← CANÓNICO. Gobierna todo lo demás.
 
 | Nombre citado (27/jul) | Qué pasó | Certeza |
 |---|---|---|
-| `gobernanza-programa.md` v1.0 | Renombrado bajo la convención de ADR-36 (28/jul) a la serie versionada punto-menor de `gobernanza` (hoy `gobernanza-v1.9.md`) — es este mismo documento, con linaje continuo (ADR-26 a 29 incorporados, tal como `curaduria-archivos.md:37` pedía para su v1.1) | Alta — el propio ADR-36 describe la migración de nombre de todo archivo canónico |
+| `gobernanza-programa.md` v1.0 | Renombrado bajo la convención de ADR-36 (28/jul) a la serie versionada punto-menor de `gobernanza` (hoy `gobernanza-v1.10.md`) — es este mismo documento, con linaje continuo (ADR-26 a 29 incorporados, tal como `curaduria-archivos.md:37` pedía para su v1.1) | Alta — el propio ADR-36 describe la migración de nombre de todo archivo canónico |
 | `glosario-v5.md` | Renombrado bajo ADR-36 a la serie versionada punto-menor de `glosario` (hoy `glosario-v5.6.md`) | Alta, mismo mecanismo |
 | `CHECKPOINT-programa-psicologia-mexicano.md` | Probable antecesor de `CHECKPOINT-v2.md`, que esta misma tabla ya declara **BORRADO 28/jul, fusionado en `ESTADO-PROGRAMA.md`** (fila de arriba) | **Media** — el nombre no coincide exacto y no hay commit localizable que confirme el renombre `CHECKPOINT-programa-psicologia-mexicano.md` → `CHECKPOINT-v2.md`; se declara aquí como la lectura más probable, no como hecho verificado |
 
@@ -311,6 +311,11 @@ Cuando una validación rompe o degrada una afirmación:
 
 **(d) Riesgo conocido: reformular prosa para no disparar un test.** El remedio se aplicó dos veces hoy, en la misma sesión que escribió este ADR: la Nota 5 de `hitoD-preregistro` se reescribió para no disparar `T18` (movió el archivo del veredicto fuera de la prosa narrativa), y el punto (b) de este mismo ADR se reescribió para no disparar `T15` (evitó el par dígito+"ADR" literal al explicar la propagación 39→40). **Es válido mientras el texto reformulado siga afirmando lo mismo** — ninguna de las dos reformulaciones cambió un hecho, solo la forma de decirlo. Pero **T18 tiene una zona designada que hace esa distinción estructural** (dentro del bloque cuenta, fuera no, sin importar la forma); `T14` y `T15` no tienen zona equivalente — su única defensa contra este mismo choque futuro es que quien escribe prosa sobre "cuántos reports" o "cuántos ADR" recuerde reformular a mano. Es una disciplina, no una garantía, y no tiene test que la verifique.
 → **Vigente. S2.** *(Aprobado 29/jul/2026, misma sesión de tests, revisado tres veces antes de aprobarse.)*
+
+**ADR-41 · Una regla aprobada en chat no rige hasta que existe en archivo.** Antes de eso es hipótesis, aunque todos la estén siguiendo. **Motivado por:** seis de los elementos de la subida de `instrucciones-proyecto-v2.md` a v2.2 (tres reglas de v2.1, cuatro de v2.2 más su pregunta de auditoría — la unión real, no las dos listas de "cinco" que traía el traspaso, que no coincidían entre sí) existieron solo en conversación, gobernaron el trabajo de una sesión completa, y se perdieron cuando la sesión se hizo en un entorno sin commitear. El único respaldo fue el chat. **Es la misma familia que ADR-29** —hallazgo correcto que no baja al motor— un piso más arriba: regla correcta que no baja al canon.
+
+**Segundo hallazgo, derivado en sesión el 29/jul/2026.** La capa de autoría del repo no registraba firmante humano. De 25 commits, **21 tienen a Claude como autor, 4 a `corpus@local`, cero a un humano** (verificado: `git log --format='%an <%ae>'`). El trailer `Co-Authored-By` nombraba a Claude en **17 líneas** —es decir, duplicaba al autor en vez de complementarlo— y en **cuatro formas distintas** (`Claude`, `Claude Opus 4.6 (1M context)`, `Claude Opus 5`, `Claude Sonnet 5`), una con especificación de ventana de contexto dentro del campo de identidad. **La historia previa no se reescribe:** es el registro fiel de cómo se hizo el trabajo, y falsificarla sería falsificar procedencia. De aquí adelante: **Jonas autor, Claude co-autor, una forma normalizada de la cadena de modelo.**
+→ **Vigente. S2.** *(Aprobado 29/jul/2026.)*
 
 ---
 
