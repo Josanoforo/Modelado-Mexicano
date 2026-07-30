@@ -157,15 +157,21 @@ def cmd_cierra(decidido, bloqueado):
 
     rango = "origin/main..HEAD"
     if origin_main and head and origin_main != head:
-        log = git("log", rango, "--format=%H|%an|%(trailers:key=Co-Authored-By,valueonly)|%s")
+        # %(trailers:...) inyecta un salto de línea final propio -- si se
+        # mezcla en el mismo --format que %s, corre el asunto a una línea
+        # aparte y rompe el parseo. Se obtiene por separado, un llamado por
+        # commit, y se recorta.
+        log = git("log", rango, "--format=%H\x1f%an\x1f%s")
         lineas.append("**Commits de la sesión:**")
         if log:
             for l in log.split("\n"):
-                partes = l.split("|", 3)
-                h = partes[0][:7] if len(partes) > 0 else "?"
+                partes = l.split("\x1f", 2)
+                h_full = partes[0] if len(partes) > 0 else ""
+                h = h_full[:7] if h_full else "?"
                 an = partes[1] if len(partes) > 1 else "?"
-                co = partes[2].strip() if len(partes) > 2 else ""
-                asunto = partes[3] if len(partes) > 3 else ""
+                asunto = partes[2] if len(partes) > 2 else ""
+                co = git("log", "-1", f"--format=%(trailers:key=Co-Authored-By,valueonly)", h_full) if h_full else None
+                co = co.strip() if co else ""
                 lineas.append(f"  - `{h}` · {an}" + (f" · co: {co}" if co else "") + f" · {asunto}")
         else:
             lineas.append("  (origin/main y HEAD difieren pero `git log` no devolvió commits)")
