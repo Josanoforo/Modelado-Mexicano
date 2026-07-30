@@ -73,3 +73,21 @@
   bloquea: []
   evidencia: "forense/historico/TRANSFER-maestra-9.md §PRIORIDADES/P4"
   estado: abierto
+
+- id: C-01
+  titulo: "Traspaso del chat sin aterrizar en forense/historico/ -- candidato: TRANSFER-maestra-siguiente.md (Downloads, 29/jul 23:01, 17262 bytes -- el encargo citaba 18513, no coincide con ningún archivo real; verificado, no copiado)"
+  clase: canon
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "/mnt/c/Users/PC0/Downloads/TRANSFER-maestra-siguiente.md (stat verificado 2026-07-30, no leído)"
+  estado: abierto
+
+- id: I-04
+  titulo: "Todo artefacto que el chat entregue debe traer bytes o hash en el encargo; quien lo baja lo verifica antes de copiar"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "C-01 es el primer caso: el encargo citó 18513 bytes para TRANSFER-maestra-siguiente.md, el archivo real pesa 17262"
+  estado: abierto
