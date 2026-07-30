@@ -317,3 +317,53 @@
   consecuencia: "Misma familia que D-05 y ADR-45: un identificador sin referente único. La diferencia con D-05 es que allí el problema era vocabulario de veredicto mezclando tres poblaciones; aquí es el ID mismo. Riesgo concreto: un encargo, un test o una propagación al canon que resuelva 'D-06' contra el registro equivocado. CANDIDATO A TEST, no implementado aquí: ningún ID de cola debe aparecer con dos referentes distintos en el canon -- comprobable cruzando los ids de canon/cola.yaml contra las tablas de defectos de forense/ y canon/estado-programa."
   estado: registrado
   nota_estado: "REGISTRADA, NO ABIERTA -- por instrucción explícita del autor (30/jul/2026): se deja constancia, no se resuelve en esta sesión y no se abre como tarea. DESVÍO DE VOCABULARIO, declarado en vez de quedar implícito: este archivo sólo usaba dos valores de `estado` (abierto, cerrado) y esta entrada introduce un tercero. Se eligió así porque 'abierto' la convertiría en tarea (lo que la instrucción prohíbe) y 'cerrado' afirmaría en falso que está resuelta. Si la mesa prefiere conservar el vocabulario de dos valores, esta entrada pasa a `abierto` con esta misma nota y no se pierde nada."
+
+- id: I-11
+  titulo: "Un checkout compartido entre sesiones de escritura se bloquea sin que ninguna sesión haga nada mal -- .git/HEAD es del directorio, no de la sesión"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 2
+  bloquea: []
+  evidencia: "PR #9 (sesion/encuci), sección 'Merge contra origin/main': \"La resolución se hizo en un `git worktree` aparte (no en el checkout compartido), porque el checkout compartido tenía en ese momento cambios sin comitear de otra sesión (`sesion/calg3`, CAL-G3 Fase A) que no debían tocarse.\" PR #10 (sesion/calg3), sección '✅ Conflicto con main resuelto': \"Resuelto en worktree aislado.\" Ambas ramas partían del mismo checkout compartido y del mismo HEAD (5b7113a, 30/jul), cada una tuvo que montar su propio worktree para resolver contra origin/main sin pisar el trabajo sin comitear de la otra -- confirmado también en forense/bitacora.md:508 ('Se detectó en el checkout un commit ajeno concurrente... no se tocó; esta sesión creó su propia rama... para no mezclarlo')."
+  estado: abierto
+  nota_estado: "Práctica derivada, no implementada como mecanismo: una sesión de escritura por worktree. Las sesiones de solo lectura/descarga pueden compartir checkout mientras no escriban dentro del repo. Sin esto, un `git switch`/`checkout` de una sesión mueve el HEAD que todas comparten -- ninguna de las dos sesiones de PR #9/#10 hizo nada incorrecto, el checkout compartido no distingue sesión de directorio."
+
+- id: I-12
+  titulo: "gobernanza declara en el cuerpo una versión distinta de la de su propio nombre de archivo -- defecto recurrente, ya corregido y vuelto a aparecer"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 2
+  bloquea: []
+  evidencia: "canon/gobernanza-v1_14.md:2 (cabecera: \"### `gobernanza` · **v1.14** · 30 de julio de 2026\") vs :16 (\"**Versión de este documento:** 1.12\"). La misma línea 16 ya trae, entre paréntesis, una nota fechada 29/jul/2026 declarando que esa cifra decía antes '1.1' contradiciendo la cabecera del mismo archivo (que en ese momento ya decía 1.9) -- se corrigió una vez y volvió a quedar desfasada al subir el archivo a v1.14 sin que nadie actualizara el cuerpo."
+  estado: abierto
+  nota_estado: "Candidato a test: la versión declarada en '**Versión de este documento:**' debe coincidir con la versión del nombre de archivo vigente de `canon/gobernanza-v*.md` -- mismo molde que T13/T15 (campos autodeclarados verificados contra el propio archivo o su nombre). Nadie actualiza esta línea al subir de versión; es la segunda vez que se detecta desfasada."
+
+- id: I-13
+  titulo: "Colisión de asignación concurrente de IDs en cola.yaml -- dos ramas paralelas asignaron E-04 a entradas distintas, detectado solo al fusionar"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "canon/cola.yaml, entrada E-06, nota_cierre: \"Renumerada de E-04 a E-06 al resolver el conflicto de merge contra origin/main (PR #8 ya había tomado E-04 y E-05).\" PR #9 body, sección 'Merge contra origin/main': \"colisión de ID en E-04 (PR #8 lo usó para la corrección sesión-vs-máquina de E-03; esta rama lo tenía para el criterio de descarga ciega). Se renombró el de esta rama a **E-06** -- contenido intacto, solo el ID y una nota de referencia.\""
+  estado: abierto
+  nota_estado: "Distinto de I-10 (dos referentes persistentes para el mismo ID ya publicado): aquí dos ramas EN CURSO derivaron, cada una leyendo su propia copia local de la cola, el mismo 'siguiente ID disponible' (E-04) para contenidos distintos -- solo se vio al resolver el conflicto de merge. No hay mecanismo que reserve un ID antes de que la rama se fusione contra main."
+
+- id: I-14
+  titulo: "Resolver un merge append-only exige verificar conteo Y contenido -- ninguno de los dos solo basta"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "PR #10 body, sección '⚠️ Defecto atrapado durante la resolución -- se registra porque casi pasa': al concatenar los dos lados del conflicto de `cola.yaml`, el `nota_estado` viejo de E-03 (ya reemplazado por ADR-46) quedó pegado al final de E-06 como campo espurio; \"el YAML parseaba sin quejarse\" y las 27 entradas contaban bien -- lo delató la aritmética de líneas declarada en la tabla de verificación del PR ('cola 195+87+37 = 319 = 319'), que exigió corregirlo antes de ese resultado ser cierto. La entrada E-06 vigente en canon/cola.yaml (arriba) no trae el campo espurio -- corregido antes de mergear."
+  estado: abierto
+  nota_estado: "Candidato a test o a sección de CONTRIBUTING: un merge de un bloque append-only debe verificarse por conteo de entradas Y por revisión del contenido de cada entrada tocada por el conflicto; ninguno de los dos solo alcanza -- el conteo no atrapa un campo espurio pegado a una entrada que ya existía, y a la entrada 'se veía correcta' a simple vista sin la aritmética de líneas."
+
+- id: I-15
+  titulo: "Residuo de worktree que el sandbox no deja borrar (.git/worktrees/*) tras `git worktree remove`"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 2
+  bloquea: []
+  evidencia: "PR #9 body, sección 'Merge contra origin/main': \".git/worktrees/sesion-encuci/ no se pudo borrar (`Device or resource busy` -- restricción de sandbox... El worktree ya no aparece en `git worktree list` y no bloquea nada (verificado: se pudo volver a crear y remover un worktree de prueba sobre esta misma rama sin error)\". PR #10 body, sección 'Nota de entorno: worktree': mismo patrón para `.git/worktrees/sesion-calg3-wt` (\"`git worktree remove` borró el checkout pero no pudo borrar... `git worktree prune` falla igual. No bloquea nada\"), y declara explícitamente \"el mismo residuo existe para `sesion-encuci`, de la sesión anterior\"."
+  estado: abierto
+  nota_estado: "Verificado en ambos PRs que no bloquea nada operativamente -- queda como residuo en disco que alguien con permisos para escribir dentro de `.git/worktrees/` tendría que limpiar con `git worktree prune`. Declarado para que no se descubra sin explicación."
