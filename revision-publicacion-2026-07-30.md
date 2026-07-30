@@ -445,3 +445,19 @@ Orden por (impacto × irreversibilidad) / coste:
 9. **(v2.2) ¿Qué deuda asumida caducó aquí porque cambió la función?** Tres, dictaminadas en la tabla eje: el baseline con la autodeclaración falsa congelada «por decisión de mesa» (fila 6 — una mesa que ya no es privada), la semántica interna del verde de CI (fila 6/rama ix), y las 8 refutaciones sin objeto (fila 5). Y una del propio encargo: su método de verificación de H5 (grep sobre README/CONTRIBUTING/canon) heredó un perímetro nunca medido — no incluyó `git log` ni leyó ADR-41, y por eso afirmó un «cero menciones» falso. La restricción del instrumento le dio forma a la conclusión, el patrón exacto que v2.2 cataloga.
 
 **Pregunta específica del encargo — ¿dónde traté la publicación como decisión futura?** Revisado contra el texto: las formulaciones «elegir licencia», «antes de abrir el Patreon» y «auditoría invitada» refieren a decisiones genuinamente futuras, no a la publicación. La Fase 7 evalúa repliegue como remediación de un hecho consumado, no como alternativa a publicar. No encontré tratamiento de la publicación como pendiente; si algún lector lo encuentra, es defecto de este artefacto y se corrige con nota fechada.
+---
+
+## Nota de reconciliación — 30/jul/2026, antes del merge
+
+La FASE 5 de este documento propone un artefacto, `LICENSE-CORPUS.md`, que
+**no se creará**. La decisión `D-05` se cerró el 30/jul manteniendo un
+`LICENSE` dual único (MIT + CC BY-NC-SA 4.0), ya en `main`. Toda mención a
+`LICENSE-CORPUS.md` en este documento se lee como propuesta descartada, no
+como referencia a un archivo del repositorio.
+
+De la FASE 5 se adopta únicamente el argumento del NOTICE anti-scoring, que
+se integra a `USO-ACEPTABLE.md`. Reconciliación completa en el Eje F del
+plan maestro.
+
+Nota escrita antes del sello: el documento aún no había entrado al canon, así
+que editarlo aquí no viola append-only. A partir del merge, no se edita.
