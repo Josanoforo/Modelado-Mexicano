@@ -91,7 +91,17 @@ def leer_manifiesto(manifiesto_path):
 
 
 def _str_presenter(dumper, data):
-    style = "|" if "\n" in data else None
+    """Prosa de un párrafo (sin línea en blanco interna) usa '>' plegado --
+    PyYAML la reenvuelve a `width`, igual que la convención ya escrita a mano
+    en este archivo. Un '\\n' real que sobrevive tras el pliegue (líneas en
+    blanco internas, ej. una lista con viñetas) exige '|' literal para no
+    perder esa estructura."""
+    if "\n\n" in data.strip():
+        style = "|"
+    elif "\n" in data:
+        style = ">"
+    else:
+        style = None
     return dumper.represent_scalar("tag:yaml.org,2002:str", data, style=style)
 
 
@@ -99,7 +109,9 @@ yaml.add_representer(str, _str_presenter)
 
 
 def escribir_manifiesto(manifiesto_path, cabecera, entradas):
-    cuerpo = yaml.dump(entradas, allow_unicode=True, sort_keys=False, width=100)
+    cuerpo = yaml.dump(entradas, allow_unicode=True, sort_keys=False, width=88,
+                        default_flow_style=False)
+    cuerpo = cuerpo.replace("\n- id:", "\n\n- id:")
     with open(manifiesto_path, "w", encoding="utf-8") as f:
         f.write((cabecera.rstrip("\n") + "\n\n" if cabecera.strip() else "") + cuerpo)
 
