@@ -25,7 +25,9 @@ propone —E0 a E4, las puertas de decisión, el benchmark— está aprobado.
 derivada contra `78d5d54`. Cuatro afirmaciones del cuerpo no se sostienen
 contra archivo; una de ellas —el conteo de constructos— es un número que el
 propio documento declara derivado en su módulo de auditoría. Registradas en
-`canon/cola.yaml` como `I-17`, `D-12` y `E-07`.
+`canon/cola.yaml` como `I-19`, `D-12` y `E-07` (los dos primeros se
+registraron como `I-17`/`D-12` y se renumeraron al fusionar con `origin/main`;
+ver la nota de renumeración en la verificación).
 
 Quien use este plan lee la nota de verificación antes que el cuerpo.
 -->

@@ -77,7 +77,7 @@ El plan tiene la salida correcta ya escrita (*«si dos generadores exigen operac
 
 **Consecuencia sobre el apalancamiento.** *«Operacionalizar los N constructos resuelve los 15 coeficientes»* es la premisa que el plan llama *«el apalancamiento que hace la campaña viable»*. Con `confianza_institucional` desdoblado en al menos dos componentes medibles por separado (dominio para G1, justicia para G4), el trabajo de operacionalización no es de 8 unidades ni de 9, sino de **10 o más**. El plan sigue siendo más barato que calibrar 15 coeficientes uno a uno —el apalancamiento existe— pero su tamaño no es el que el documento declara.
 
-**Nota lateral, no imputable al plan.** El plan escribe `G1` porque `milpa/procedencia.yaml:270` escribe `G1`. Pero `milpa/procedencia.yaml:39-42` declara que *«G1 se desdobla en G1a (adopción por canal personal) y G1b (difusión radial). G1b está CONTRADICHO por su propio registro […]: sus coeficientes quedan A REVISIÓN, no asignados»*, y `modelo-decision-v3_4.md:184` rotula esa fila **G1a**. El desacuerdo de rótulo es entre dos artefactos del canon, no un defecto del plan; se registra en `I-17` para que no se descubra sin explicación.
+**Nota lateral, no imputable al plan.** El plan escribe `G1` porque `milpa/procedencia.yaml:270` escribe `G1`. Pero `milpa/procedencia.yaml:39-42` declara que *«G1 se desdobla en G1a (adopción por canal personal) y G1b (difusión radial). G1b está CONTRADICHO por su propio registro […]: sus coeficientes quedan A REVISIÓN, no asignados»*, y `modelo-decision-v3_4.md:184` rotula esa fila **G1a**. El desacuerdo de rótulo es entre dos artefactos del canon, no un defecto del plan; se registra en `I-19` para que no se descubra sin explicación.
 
 ### 2.3 · «61 fuentes» no es derivable de ningún archivo del repo
 
@@ -134,11 +134,13 @@ No existe `D1` en el repo. `canon/cola.yaml` tiene `D-01` a `D-11`; ninguna trat
 
 | Defecto | Entrada de cola | Clase |
 |---|---|---|
-| 8 vs 9 constructos · «61 fuentes» · «15 fichas huérfanas» · rótulo G1/G1a | `I-17` | instrumento |
+| 8 vs 9 constructos · «61 fuentes» · «15 fichas huérfanas» · rótulo G1/G1a | `I-19` | instrumento |
 | `confianza_institucional` es vector de 6 (ADR-28.b) — rompe el apalancamiento y la mitigación de E2 | `D-12` | decision |
 | ENSANUT «20 archivos bajados» no verificable; colisiona con ADR-46 y con E1 | `E-07` | evidencia |
 
-**Sobre «las 15 fichas huérfanas» (`§7`).** La cadena `huérfana`/`huerfana` no aparece en ningún archivo del repo. No es una afirmación falsa: es vocabulario de chat que el registro no conoce, y por eso no se puede verificar ni ejecutar. Registrado en `I-17` junto a las demás cifras no derivadas.
+**Nota de renumeración, 30/jul/2026, al fusionar con `origin/main`.** Los IDs de esta tabla se asignaron contra `78d5d54`. El PR #14 entró antes del merge y ya había tomado `I-17` e `I-18` para otros dos defectos, así que **los de esta sesión se renumeraron: `I-17` → `I-19` e `I-18` → `I-20`**; `D-12` y `E-07` no chocaron y se conservan. Se renumeran los propios, nunca los que ya están en `main` — mismo patrón que `E-04` → `E-06` (sesión de ENCUCI). Los commits `ef9ac0c` y `0c64eaa`, sus mensajes y el bloque de bitácora de esa sesión citan los IDs viejos: son historia y no se reescriben.
+
+**Sobre «las 15 fichas huérfanas» (`§7`).** La cadena `huérfana`/`huerfana` no aparece en ningún archivo del repo. No es una afirmación falsa: es vocabulario de chat que el registro no conoce, y por eso no se puede verificar ni ejecutar. Registrado en `I-19` junto a las demás cifras no derivadas.
 
 ---
 
