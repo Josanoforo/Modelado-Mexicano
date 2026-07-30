@@ -180,4 +180,5 @@
   bloquea: []
   evidencia: "--registra rechaza un id que ya existe (por diseño, para no sobreescribir en silencio); --verifica solo lee el archivo que la propia entrada declara. Ninguno de los dos modos cubre el caso real que se anticipó como primera prueba de --registra: bajar encig23_estructura_base_datos.pdf (hoy AUSENTE de data/raw/) y comparar su hash contra el que ya está en data/manifiesto.yaml (eb89820c...), sin tocar la entrada existente."
   consecuencia: "Falta un tercer modo (--contrasta o similar): toma un payload nuevo, lo compara contra una entrada existente por id, reporta COINCIDE / DISCREPANCIA -- sin escribir nada. Una DISCREPANCIA es un HALLAZGO (el archivo cambió, o el hash original estaba mal, o la fuente cambió de contenido), no un conflicto que el script resuelva en silencio sobreescribiendo. No se implementa en esta sesión para no alargar el PR de C1."
-  estado: abierto
+  estado: cerrado
+  nota_cierre: "--compara implementado en tests/manifiesto.py (mismo commit que cierra esta entrada). Prueba negativa de dos lados corrida contra copia temporal: candidato idéntico bajo nombre distinto al registrado → COINCIDE, exit 0; mismo candidato con un byte alterado → DISCREPANCIA, exit 1. Verificado contra dato real del repo (encig23_base_datos_csv) sin escribir nada en data/manifiesto.yaml."

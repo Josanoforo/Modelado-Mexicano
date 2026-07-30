@@ -35,11 +35,17 @@ evitar (data/manifiesto.yaml, entradas `encig23_*`, ambas de 2026-07-29,
 anteriores a este script). Un --registra que sí descargara cerraría ese
 hueco; con el diseño actual, alguien todavía teclea el sha256 de un
 archivo recién bajado por fuera de este script antes de que --registra
-pueda verificarlo. Ver también I-09/cola (--contrasta: comparar un
-payload nuevo contra una entrada ya registrada sin sobreescribirla --
-sin eso, la primera prueba real de un --registra completo, encig23_
-estructura_base_datos.pdf recién bajado contra su entrada ya existente
-en el manifiesto, no se puede correr).
+pueda verificarlo.
+
+--compara   contrasta un payload NUEVO (--archivo, típicamente recién
+             bajado bajo un nombre de prueba) contra una entrada YA
+             registrada (--id) -- sin escribir nada. Reporta COINCIDE o
+             DISCREPANCIA. Cierra I-09: sin este modo, verificar un archivo
+             recién descargado contra el manifiesto antes de decidir si
+             reemplaza o confirma una entrada exigía hacerlo a mano. Una
+             DISCREPANCIA es un HALLAZGO (el archivo cambió, o el hash
+             original estaba mal, o la fuente cambió de contenido) -- el
+             script la reporta, no la resuelve ni la silencia sobreescribiendo.
 
 Única dependencia externa: PyYAML.
 """
@@ -226,6 +232,59 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
     sys.exit(exit_code)
 
 
+# ───────────────────────────────────────────────────────────── --compara ──
+
+def cmd_compara(a, manifiesto_path, raw_dir):
+    if not a.id or not a.archivo:
+        print("ERROR: --compara exige --id (entrada ya registrada) y --archivo "
+              "(payload nuevo a contrastar).", file=sys.stderr)
+        sys.exit(1)
+
+    _, entradas = leer_manifiesto(manifiesto_path)
+    entrada = buscar(entradas, a.id)
+    if entrada is None:
+        print(f"ERROR: id '{a.id}' no existe en el manifiesto. --compara contrasta "
+              f"contra una entrada YA registrada; no crea una.", file=sys.stderr)
+        sys.exit(1)
+    if "sha256" not in entrada:
+        print(f"ERROR: '{a.id}' existe pero no tiene payload (sha256) -- es una "
+              f"entrada de nota/documentación, no hay nada contra qué contrastar.",
+              file=sys.stderr)
+        sys.exit(1)
+
+    ruta = os.path.join(raw_dir, a.archivo)
+    if not os.path.exists(ruta):
+        print(f"ERROR: data/raw/{a.archivo} no existe. --compara contrasta un "
+              f"payload real; no compara contra un archivo que no está en disco.",
+              file=sys.stderr)
+        sys.exit(1)
+
+    sha_nuevo = sha256_de(ruta)
+    tam_nuevo = os.path.getsize(ruta)
+    sha_ok = sha_nuevo == entrada.get("sha256")
+    tam_ok = tam_nuevo == entrada.get("tamano_bytes")
+
+    print(f"Entorno de verificación: {entorno_actual()}")
+    print()
+    print(f"Contrastando data/raw/{a.archivo} contra '{a.id}' "
+          f"(registrado como data/raw/{entrada.get('archivo', '?')}):")
+
+    if sha_ok and tam_ok:
+        print(f"  COINCIDE -- sha256 y tamaño ({tam_nuevo} bytes) iguales a los "
+              f"registrados para '{a.id}'. No se escribió nada.")
+        sys.exit(0)
+    else:
+        print(f"  DISCREPANCIA -- no es un error del script, es un HALLAZGO: "
+              f"el payload nuevo no coincide con lo que '{a.id}' tiene "
+              f"registrado. No se sobreescribe nada; decidirlo es de quien lea "
+              f"este resultado.")
+        print(f"    sha256 registrado: {entrada.get('sha256')}")
+        print(f"    sha256 nuevo:      {sha_nuevo}")
+        print(f"    tamano_bytes registrado: {entrada.get('tamano_bytes')}")
+        print(f"    tamano_bytes nuevo:      {tam_nuevo}")
+        sys.exit(1)
+
+
 def main():
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -234,6 +293,9 @@ def main():
                     help="Registra una entrada nueva para un archivo ya en data/raw/")
     g.add_argument("--verifica", action="store_true",
                     help="Verifica una entrada (--id) o todas las que tengan payload")
+    g.add_argument("--compara", action="store_true",
+                    help="Contrasta un payload nuevo (--archivo) contra una entrada "
+                         "ya registrada (--id), sin escribir nada")
 
     ap.add_argument("--id", default=None)
     ap.add_argument("--archivo", default=None,
@@ -255,8 +317,10 @@ def main():
 
     if a.registra:
         cmd_registra(a, manifiesto_path, raw_dir)
-    else:
+    elif a.verifica:
         cmd_verifica(a, manifiesto_path, raw_dir)
+    else:
+        cmd_compara(a, manifiesto_path, raw_dir)
 
 
 if __name__ == "__main__":
