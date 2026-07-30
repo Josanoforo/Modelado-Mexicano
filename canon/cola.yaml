@@ -127,3 +127,35 @@
   bloquea: [I-07]
   evidencia: "Derivado al intentar propagar la corrección de README:40 (2 de 27, R1.1 → D · R3.2 → B) al canon. Tres poblaciones distintas de 'prueba de falsación', cada una con su propio vocabulario de veredicto, mezcladas sin marca en cinco líneas: (1) HITO D / 27 reglas del perímetro — vocabulario `RX.Y → veredicto A-D`, única fuente el bloque append-only de hitoD-preregistro-v2_0.md, hoy 2 corridas (R1.1→D, R3.2→B); estado-programa-v1_9.md:192/:194 ya lo reflejan bien. (2) HITO C / 7 generadores — vocabulario ✅ probado / ⚠️ contradicho-contestado / ⬜ sin falsar, de forense/hitoC-prueba-generadores.md: G3 ✅ PROBADO Y SOBREVIVE (modelo-decision-v3_3.md:159), G1b ⚠️ YA CONTRADICHO (modelo:157, evidencia Nu/Kueski/Aplazo), G2 contestado, G1a/G4/G5/G6 sin falsar — declarado explícito en modelo-decision-v3_3.md:164 ('cuatro sin falsar: G1a, G4, G5, G6'). (3) Ejercicio suelto de glosario-v5_6.md §6/§10 (líneas 153 y 306), fechado 27/jul/2026 — ANTES de que Hito D Paso 2 existiera (28/jul) — sobre el generador G1a ('utilidad + fricción baja > confianza'), origen declarado FORENSE, veredicto informal 'B: candidato irresuelto en seguro agrícola, techo estructural'; nunca pasó por el protocolo de ADR-40 ni entró al bloque archivado. Las cinco líneas ambiguas invocan estas poblaciones sin distinguirlas: estado-programa-v1_9.md:93 ('Una prueba de falsación pre-registrada corrida, veredicto B' — sin dominio, podría leerse como Hito D desactualizado o como el ejercicio 3) · estado-programa-v1_9.md:118 ('48 de 49 reglas sin prueba de falsación pre-registrada' — mismo conteo indeterminado, arrastra el mismo error si se ancla a cualquiera de las tres poblaciones) · modelo-decision-v3_3.md:46 ('De 49 reglas, una tiene prueba de falsación corrida' — la palabra 'reglas' es un error de categoría: el símbolo ✅ que la oración introduce se usa 113 líneas después exclusivamente para GENERADORES, G3 en modelo:159, no para ninguna regla R-numerada) · modelo-decision-v3_3.md:390 (describe inconfundiblemente el ejercicio 3 — dominio seguro agrícola, criterio utilidad+fricción — y CONTRADICE a modelo:164 DEL MISMO ARCHIVO, que declara G1a sin falsar 226 líneas antes) · gobernanza-v1_12.md:359 (tabla de deuda: repite el conteo de modelo:390 y además lo etiqueta explícitamente 'Es el Hito D', que es la conflación más directa de las cinco: el ejercicio 3 no tiene ID de regla, no está en el bloque append-only, y es anterior a que Hito D existiera). Capa adicional sin resolver: el criterio de G1a (canal personal vs. impersonal, modelo:156) no es idéntico al de 'utilidad+fricción>confianza' del ejercicio 3, pero ambos usan la MISMA evidencia (Nu/Kueski/Aplazo) que modelo:157 usa para declarar G1b 'YA CONTRADICHO' — dos vocabularios de veredicto sobre evidencia que se solapa, con conclusiones que no coinciden (uno dice 'irresuelto, sin contraejemplo', el otro dice 'ya contradicho'). Se pausó la sesión de portada (F2) sin editar ninguna de las cinco líneas — decisión del usuario, 2026-07-30: esto se resuelve en mesa, con las tres poblaciones a la vista, no en una sesión de portada"
   estado: abierto
+
+- id: D-06
+  titulo: "C2 del plan maestro era una premisa falsa: no hay registro en ENNViH"
+  clase: decision
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "La ENNViH es de dominio público; los datos y la documentación se descargan sin costo, sin login, sin formulario y sin términos que aceptar. Los enlaces de las tres olas van directo al .zip de Stata. Fuente: ennvih-mxfls.org, portada y página de ENNVIH-3 (2009-2012), consultada el 30/jul/2026 desde Ubuntu local, que alcanza el host (http=200). Corroborado independientemente esta misma sesión (fetch directo de https://ennvih-mxfls.org, mismo día): «La ENNViH es de dominio público. Los datos y la documentación de la encuesta se pueden descargar sin costo alguno para el usuario.» — registrado en data/manifiesto.yaml, id `ennvih_mxfls_licencia`."
+  consecuencia: "El plan maestro tenía \"C2 · registro en ENNViH, lo hace el autor, bloquea C3\" como dependencia humana. No existe. CAL-G3 nunca estuvo bloqueado por un trámite: solo depende de C1 y de esta máquina. Es el mismo patrón que la regla v2.2 cataloga — una restricción supuesta que le dio forma al orden del trabajo y que nadie había medido."
+  estado: cerrado
+  nota_cierre: "Cerrada por verificación. No requiere acción."
+
+- id: E-02
+  titulo: "Contaminación declarada: una sesión de chat leyó la estructura de libros de ENNViH ola 3 el 30/jul"
+  clase: evidencia
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "Al verificar si existía registro, esa sesión abrió la página de ENNVIH-3 y leyó la lista de secciones por libro. NO leyó variables, ni preguntas, ni valores, ni cuestionarios, ni manuales de codificación: solo nombres de sección. Cinco de ellas (TB, CRH, AH, SE, CR) ya estaban nombradas en la ficha de CAL-G3, así que ahí no hubo información nueva. Tres NO se buscaban y sí son nuevas para esa sesión: CO-Confianza, RG-Riesgo, DH-Decisiones en el hogar."
+  consecuencia: "Esa conversación NO debe escribir fichas de falsación que dependan de esas tres secciones. No afecta a R3.1 ni R3.4 (trámite y Estado, sin relación con ENNViH). Sí afectaría a cualquier ficha futura sobre confianza, riesgo o decisiones del hogar medidas en ENNViH, y a conf.06 si se resolviera con esa fuente."
+  estado: abierto
+  nota_estado: "Abierta como restricción permanente sobre esa sesión, no como tarea — no es un pendiente de trabajo. Se cierra sola cuando la ficha correspondiente la escriba otra sesión."
+
+- id: I-08
+  titulo: "El esquema de data/manifiesto.yaml no tenía campo para localizar el payload real en data/raw/"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "Al escribir tests/manifiesto.py (--registra/--verifica) se encontró que ninguna entrada de data/manifiesto.yaml tenía un campo que apuntara al archivo real dentro de data/raw/ -- el id no coincide con el nombre de archivo (id `encig23_base_datos_csv`, archivo real `encig23_base_datos_csv.zip`), así que --verifica no podía saber qué abrir. No es hallazgo del encargo: se descubrió al implementar. Añadido campo `archivo` al esquema (data/manifiesto.yaml:19, :31) y retrocompletado en las dos entradas de payload existentes -- sin fabricar sha256/tamano_bytes/entorno_descarga retroactivos, solo la ruta, que es un hecho verificable contra disco."
+  estado: cerrado
+  nota_cierre: "Cerrada en el mismo commit que la abre -- ver tests/manifiesto.py y data/manifiesto.yaml."
