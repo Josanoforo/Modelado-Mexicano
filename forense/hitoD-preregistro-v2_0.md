@@ -463,8 +463,21 @@ Detalle completo, tabla de descartes y tabla de propagación: `hitoD-R1.1` (`for
 
 ---
 
+### Nota 6 · 29/jul/2026 — Veredicto de `R3.2`, corrida completa
+
+**Desde Nota 5, el resultado en sí vive solo en el bloque designado (`## Registro de veredictos archivados`, ADR-40); esta nota narra, no archiva.** Detalle completo, seis cómputos, estandarización con IC, verificación de escala contra `modelo §3.3`/`tramite.yaml`, y módulo de auditoría: `hitoD-R3.2` (`forense/hitoD-R3_2-veredicto-v1_0.md`).
+
+`R3.2` resultó en veredicto **B**, no por falla de identificación sino porque el gate de 20pp era aritméticamente inalcanzable: la incidencia presencial máxima medida en ENCIG 2023, en los seis cómputos corridos (dos interpretaciones de `P8_4=NA` × sin ponderar/`FAC_TRA`/`FAC_P18`), es 13.38% — un techo que no permite una brecha ≥20pp contra ninguna incidencia digital posible (acotada en 0% por abajo). La dirección predicha (presencial > digital) se confirmó en los 6 de 6 cómputos, con razón relativa 3.61x–4.86x. El confundidor 1 (selección de trámite) se descartó mediante estandarización directa en ambas direcciones, con IC95% que no traslapan la tasa bruta del grupo contrario y cobertura de 97-100% de la mezcla de trámites.
+
+Las probabilidades del motor (`tramite.yaml: p=0.62/0.12`) quedan **refutadas en escala, no en valor**: la dirección y la razón relativa se sostienen; el valor absoluto asignado está entre 4x y 34x por encima de lo medido, según interpretación. Por instrucción explícita, la refutación se reformula y los números no se sustituyen — ver `hitoD-R3.2 §2.5`. Cierra el pendiente de `milpa/procedencia.yaml:226`.
+
+Límites no anticipados en la ficha original: los códigos intermedios de modalidad (`P7_3` 2/3/5/6); dos tablas del cruce con ponderadores distintos declarados por INEGI (`FAC_TRA` vs. `FAC_P18`, sin ponderador único para el cruce); la ambigüedad de `P8_4=NA` por ruta de cuestionario, que separa dos poblaciones-objetivo distintas; una variable (`NT_TIPO`) ausente del diccionario de datos leído que rompe la unicidad de la llave documentada, con 543 filas excluidas por modalidad divergente bajo la misma llave; el Descriptor de Archivos que se buscó (3 MB) no se encontró, sustituido por `encig23_estructura_base_datos.pdf`; y, verificado en el propio documento de estructura de INEGI, que ENCIG 2023 solo muestrea población de ciudades de cien mil habitantes y más — el veredicto no dice nada sobre población rural. `N_TRA` 18 (juzgado/tribunal) es el único tipo de trámite sin ninguna observación digital en la interpretación restrictiva. Se registra, sin falsarse aparte, una hipótesis nueva y no pre-registrada: que el driver dominante sea la discrecionalidad del acto y no el medio — marcada explícitamente como no confirmada.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
 
 `R1.1` → veredicto `D` — *(archivado 29/jul/2026, narrado en Nota 5, detalle en `hitoD-R1.1`)*
+`R3.2` → veredicto `B` — *(archivado 29/jul/2026, narrado en Nota 6, detalle en `hitoD-R3.2`)*

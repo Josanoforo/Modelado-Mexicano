@@ -189,7 +189,7 @@ Panel D/E de consumo popular · elasticidades · granularidad municipal · contr
 
 ⚠️ **Esto es el Paso 1. Ninguna regla ha sido probada todavía.** Los 27 umbrales son **ASIGNADOS**, juicio propio, no leídos de ningún report. Un revisor puede moverlos con argumento; **lo que no se vale es moverlos después de ver el resultado**.
 
-**Paso 2 — EN CURSO. 1 de 27 corrida.**
+**Paso 2 — EN CURSO. 2 de 27 corridas.**
 
 **`R1.1` → veredicto `D` (inejecutable).** El candidato falsador más fuerte de todo el programa. Y `D` **no por hueco de dato: por hueco de mercado.**
 - El **Seguro Agrícola Catastrófico**, que cubre al productor de temporal, **NO PUEDE SER CONTRATADO POR LOS PRODUCTORES** (SADER, textual). El productor aporta ~**2.5%** de la prima (80.7 de 3,262.2 mdp).
