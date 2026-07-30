@@ -540,3 +540,22 @@ data/manifiesto.yaml | 524 +++++++++++++++++++++++++++++++++++++++++++++++++++
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/siete-hallazgos-cola-86sj9r` · **HEAD inicial (origin/main):** `64a5d7bdb30f44d307a838f96f7536471a87c3c8` · **HEAD final:** `64a5d7bdb30f44d307a838f96f7536471a87c3c8`
+
+**Commits de la sesión:** (HEAD == origin/main — nada nuevo que listar)
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: I-11, I-12, I-13, I-14, I-15
+  - Cerrados: D-05, D-06, D-07, D-08, E-04, E-05, E-06, I-08, I-09
+
+**Qué se decidió:** Registrados 5 hallazgos operativos en cola.yaml (I-11..I-15) traídos de memoria de sesión del 30/jul, cada uno con evidencia verificable en PR #9, PR #10 y/o el propio repo (canon/gobernanza-v1_14.md, canon/cola.yaml E-06): worktree por sesión de escritura, colisión de asignación concurrente de IDs, resolver append-only exige conteo Y contenido, residuo de worktree que el sandbox no borra, y gobernanza declarando una versión de cuerpo distinta de su nombre de archivo. Ninguna se resolvió -- registrarlas es el entregable.
+**Qué quedó bloqueado:** Dos de los siete hallazgos del encargo NO se escribieron: (1) 'mover el checkout compartido a main al terminar' -- no se encontró evidencia verificable en el repo de que la sesión de CAL-G3 lo hiciera deliberadamente (ni en PR #9/#10 ni en forense/bitacora.md); solo el reflog de este contenedor, que es ambiguo (indistinguible de aprovisionamiento normal). (2) el valor 'registrado' en cola.yaml -- ya está íntegramente documentado en la nota_estado de I-10 (colisión de IDs D-06), incluida la petición de ratificación de mesa; no se duplica.
+
+---
+
