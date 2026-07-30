@@ -37,7 +37,7 @@ python3 tests/check.py --strict   # los WARN también fallan
 validado.** Un tier derivado de lectura disciplinada es evidencia legítima —
 pero la diferencia importa cuando alguien lo use para decidir algo caro.
 
-- **1 de 27** reglas del perímetro con prueba de falsación corrida (`R1.1` → `B`)
+- **2 de 27** reglas del perímetro con prueba de falsación corrida (`R1.1` → `D` · `R3.2` → `B`)
 - **Cero datos primarios propios** — deuda S1 del programa
 - Los 42 disparadores de contexto **no** cuentan como números: son booleanos
 
@@ -67,9 +67,9 @@ en el glosario, **dos los introdujo quien escribió el check** — porque la lis
 de términos se construyó desde los constructos que ya se sabía que faltaban.
 Un validador cuyo alcance fija quien introduce las reglas no valida nada.
 
-### Falsos positivos conocidos
+### Falsos positivos conocidos *(corrida del 30/jul/2026)*
 
-- **`T03` (44)** — en su mayoría, cabeceras que citan `…-v3.2.md` cuando la
+- **`T03` (21)** — en su mayoría, cabeceras que citan `…-v3.2.md` cuando la
   plataforma renombró a `…-v3_2.md`. Real, pero cosmético.
 - **`T10` (65)** — la lista de palabras clave de diáspora es laxa y pesca
   líneas sin fuente **(b)**. Hay que afinarla antes de subirla a FAIL.

@@ -42,7 +42,7 @@ Derivado en sesión con `git log`, no escrito de memoria (HEAD `c3adff8`,
 como autor y a ningún humano, y eso queda: es el registro fiel de cómo se hizo el
 trabajo. Falsificarlo sería falsificar procedencia — el defecto exacto que este
 programa existe para atrapar. El hallazgo está documentado en
-`canon/gobernanza-v1_11.md` (**ADR-41**), y el esquema corregido —autor humano,
+`gobernanza §4` (**ADR-41**), y el esquema corregido —autor humano,
 modelo como co-autor, con el nombre del modelo como campo variable— en **ADR-43**.
 
 De ahí en adelante, cada commit declara qué modelo lo co-escribió.

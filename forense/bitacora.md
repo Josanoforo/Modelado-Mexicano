@@ -124,3 +124,78 @@ canon/cola.yaml               |  4 ++--
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/f2-f4-portada-adr-7fjpln` · **HEAD inicial (origin/main):** `25abb8390ae0281242c1c2f18e880db56a6e1445` · **HEAD final:** `bdb1b775aa2c15aa637180782a5d553dac6d24b0`
+
+**Commits de la sesión:**
+  - `bdb1b77` · Claude · cola: F7.b y F6/T-README entran a la cola, sin abrirlas
+  - `2d1d866` · Claude · gobernanza: v1.11 -> v1.12 -- ADR-44 (publicación del repositorio sin ADR previo)
+  - `856639c` · Claude · README: corrige README:40 contra el registro de veredictos archivados
+
+**Archivos tocados:**
+```
+AUTHORSHIP.md                                      |  2 +-
+ README.md                                          |  6 ++---
+ canon/cola.yaml                                    | 18 +++++++++++++++
+ canon/estado-programa-v1_9.md                      |  4 ++--
+ canon/{gobernanza-v1_11.md => gobernanza-v1_12.md} | 26 +++++++++++++++++-----
+ 5 files changed, 44 insertions(+), 12 deletions(-)
+```
+
+**ADRs añadidos:** ADR-44
+**Líneas de versión modificadas en canon/:** 1
+  - ### `gobernanza` · **v1.12** · 30 de julio de 2026 · **44 ADR**
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: I-05, I-06
+  - Cerrados: (ninguno)
+
+**Qué se decidió:** F2/F4 del plan maestro: portada y ADR, nada de instrumento. README:40 corregido contra el registro append-only de veredictos (2 de 27, R1.1 → D · R3.2 → B, no 1 de 27 con B mal atribuido a R1.1); Falsos positivos conocidos fechado 30/jul con T03/T10 re-derivados (21/65). ADR-44 sellado en gobernanza (v1.11 -> v1.12): registra retroactivamente la publicación del repo sin ADR previo, capa legal verificada en el árbol (a), re-examen de deuda v2.2 referido a revision-publicacion-2026-07-30.md sin reabrirlo (b), README-sin-test declarado PENDIENTE/F6 (c), regla hacia adelante contra lector interno asumido (d). F7.b y F6/T-README entraron a cola.yaml (I-05, I-06) sin abrirse. check.py --baseline se mantuvo verde en 19 FAIL · 87 WARN durante toda la sesión, ninguna edición fue para callar un test.
+**Qué quedó bloqueado:** Ninguno de los cinco encargos se bloqueó. T-README (F6) y A1..A5 quedaron deliberadamente sin tocar por regla de sesión -- solo se registraron en cola/ADR-44(c), no se implementaron. La fila 1.10/1.11 de la bitácora de versiones de gobernanza sigue faltante (mismo hueco que censo-integridad C5-03 para 1.9); se documentó como límite conocido en la fila 1.12 en vez de reconstruirla, para no abrir un pendiente fuera de encargo.
+
+---
+
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/f2-f4-portada-adr-7fjpln` · **HEAD inicial (origin/main):** `25abb8390ae0281242c1c2f18e880db56a6e1445` · **HEAD final:** `a5286548ed1c08eacef47d2d1a8ed4fdcc35d6f1`
+
+**Commits de la sesión:**
+  - `a528654` · Claude · cola: D-05 -- "prueba de falsación corrida" sin referente único, escalado a mesa
+  - `46e9cef` · Claude · bitácora: bloque de cierre de la sesión F2/F4 (portada, ADR-44)
+  - `bdb1b77` · Claude · cola: F7.b y F6/T-README entran a la cola, sin abrirlas
+  - `2d1d866` · Claude · gobernanza: v1.11 -> v1.12 -- ADR-44 (publicación del repositorio sin ADR previo)
+  - `856639c` · Claude · README: corrige README:40 contra el registro de veredictos archivados
+
+**Archivos tocados:**
+```
+AUTHORSHIP.md                                      |  2 +-
+ README.md                                          |  6 ++--
+ canon/cola.yaml                                    | 36 ++++++++++++++++++++++
+ canon/estado-programa-v1_9.md                      |  4 +--
+ canon/{gobernanza-v1_11.md => gobernanza-v1_12.md} | 26 ++++++++++++----
+ forense/bitacora.md                                | 36 ++++++++++++++++++++++
+ 6 files changed, 98 insertions(+), 12 deletions(-)
+```
+
+**ADRs añadidos:** ADR-44
+**Líneas de versión modificadas en canon/:** 1
+  - ### `gobernanza` · **v1.12** · 30 de julio de 2026 · **44 ADR**
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: D-05, I-05, I-06, I-07
+  - Cerrados: (ninguno)
+
+**Qué se decidió:** Propagación de F2: al intentar llevar la corrección de README:40 (2 de 27, R1.1 → D · R3.2 → B) al canon, el barrido encontró que 5 líneas (estado-programa:93/:118, modelo-decision:46/:390, gobernanza:359) invocan 'prueba de falsación corrida' sin referente único -- tres poblaciones distintas (Hito D/27 reglas, Hito C/7 generadores, ejercicio suelto de glosario sobre G1a fechado 27/jul) mezcladas sin marca, más una autocontradicción de modelo-decision consigo mismo (línea 164 dice G1a sin falsar, línea 390 describe una corrida con veredicto B que es inconfundiblemente sobre G1a). No se editó ninguna de las 5 líneas -- se escaló a mesa por decisión del usuario. Se registró D-05 (decisión, con toda la evidencia y qué población invoca cada línea) e I-07 (patrón de proceso: el encargo nombró un archivo, no una afirmación, y el defecto sobrevivió en el canon -- mismo patrón que ADR-29 un piso más arriba). README:40 queda como estaba, corregido y verificado: no menciona generadores ni G1a, solo la población inequívoca del bloque append-only. check.py --baseline se mantuvo verde (19 FAIL · 87 WARN) durante toda la sesión.
+**Qué quedó bloqueado:** Las 5 líneas ambiguas del canon (estado-programa:93/:118, modelo-decision:46/:390, gobernanza:359) quedan sin corregir a propósito: D-05 las registra pero no las resuelve, es decisión de mesa. I-07 (test candidato: ninguna afirmación de conteo de veredictos fuera del bloque append-only sin derivarse de él) queda bloqueado por D-05 -- no se puede escribir el test hasta decidir qué poblaciones distingue.
+
+---
+
