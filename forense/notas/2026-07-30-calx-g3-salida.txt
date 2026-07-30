@@ -1,0 +1,184 @@
+# Salida literal de tests/calx_g3.py — chequeo CAL-X de la ficha CAL-G3
+# Generada el 2026-07-30 en la rama sesion/calg3-poder.
+# Insumos: sólo manual de codificación. Ningún .dta abierto. Nada estimado.
+# Reproducible con: python3 tests/calx_g3.py
+
+==============================================================================
+CHEQUEO CAL-X · ficha CAL-G3 · insumos = manual de codificación, sin microdato
+==============================================================================
+
+### ola 1 · 2002 — hogares en la sección CRH: N = 8,046
+  marcas FORMAL (Banco + Afores voluntarias) : 800  -> p('algún acceso formal') entre 9.59% y 9.94%
+  marcas INFORMAL (bloque agregado)          : 433
+  'No tiene ahorros'                          : 6,805 (84.6%)
+  categorías con n<=30 (celda propia inevaluable): 3 Cooperativa=26, 5 Tanda=22, 6 Apartado=1, 7 Amigo/pariente=20, 9 Cajas solidarias=3, 8 Afores voluntarias=28
+
+### ola 2 · 2005-06 — hogares en la sección CRH: N = 8,134
+  marcas FORMAL (Banco + Afores voluntarias) : 647  -> p('algún acceso formal') entre 7.70% y 7.95%
+  marcas INFORMAL (bloque agregado)          : 416
+  'No tiene ahorros'                          : 7,061 (86.8%)
+  categorías con n<=30 (celda propia inevaluable): 3 Cooperativa=30, 5 Tanda=18, 6 Apartado=1, 7 Amigo/pariente=6, 9 Cajas solidarias=4, 8 Afores voluntarias=21
+
+### ola 3 · 2009-12 — hogares en la sección CRH: N = 9,092
+  marcas FORMAL (Banco + Afores voluntarias) : 657  -> p('algún acceso formal') entre 7.08% y 7.23%
+  marcas INFORMAL (bloque agregado)          : 443
+  'No tiene ahorros'                          : 7,932 (87.2%)
+  categorías con n<=30 (celda propia inevaluable): 3 Cooperativa=30, 5 Tanda=12, 6 Apartado=0, 7 Amigo/pariente=14, 9 Cajas solidarias=6, 8 Afores voluntarias=13
+
+==============================================================================
+CELDA POR CELDA
+==============================================================================
+
+[CAL-A]  RR >= 1.5 sobre P(mixto o solo formal), IC95% que excluye 1
+  Un criterio en RAZÓN tiene techo p_max/p_min, no p_max - p_min.
+  RR >= 1.5 exige únicamente p(jefe informal) <= 1/1.5 = 66.67%.
+    ola 1 · 2002: p ~ 9.94%  <<  66.67%  (holgura 7x)
+    ola 2 · 2005-06: p ~ 7.95%  <<  66.67%  (holgura 8x)
+    ola 3 · 2009-12: p ~ 7.23%  <<  66.67%  (holgura 9x)
+  -> ALCANZABLE. El modo de falla de R3.2 (gate en pp por encima del techo observado)
+     NO se repite: es exactamente lo que el punto (7) evitó al ponerlo en razón.
+
+[CAL-B]  1 < RR < 1.5, o IC que cruza 1, o confundidor de oferta sin descartar
+  -> ALCANZABLE. Es la celda residual: no impone cota de precisión ni de nivel.
+
+[CAL-C] y [9b nulo estricto]  RR <= 1 con IC95% de límite superior < 1.25
+        (9b además exige el IC95% entero dentro de [0.80, 1.25])
+  Estas celdas NO acotan un nivel: acotan una PRECISIÓN. Con RR puntual = 1,
+  el IC95% superior cae por debajo de 1.25 sólo si n es suficientemente grande.
+
+  ola 1 · 2002:  p = 9.94%
+     n por brazo requerido para IC95%sup < 1.25 : 1,398   (total 2,795 hogares con el contraste)
+  ola 2 · 2005-06:  p = 7.95%
+     n por brazo requerido para IC95%sup < 1.25 : 1,786   (total 3,571 hogares con el contraste)
+  ola 3 · 2009-12:  p = 7.23%
+     n por brazo requerido para IC95%sup < 1.25 : 1,981   (total 3,962 hogares con el contraste)
+
+  TECHO DURO de hogares discordantes en el desenlace (olas 1 y 3):
+     <= 800 + 657 = 1,457 hogares
+     (cota flojísima: supone traslape cero y que TODO hogar con ahorro
+      formal es panel presente en ambas olas, antes de exigir que además
+      cambie la formalidad del jefe, antes de atrición y antes de excluir EE.UU.)
+
+  MEJOR IC95% superior alcanzable con ese techo (brazos iguales, RR=1):
+     SE(log RR) = 0.1877  ->  IC95%sup = 1.445
+     requerido por CAL-C: < 1.25
+  -> NO ALCANZABLE: 1.445 >= 1.25 incluso en el escenario más favorable
+     que los conteos del codebook permiten construir (1,457 < 3,962 necesarios).
+
+  [9b] banda [0.80, 1.25] exige SE(log RR) < 0.1139; el techo permite 0.1877.
+  -> NO ALCANZABLE por el mismo motivo.
+
+==============================================================================
+VEREDICTO DEL CHEQUEO
+==============================================================================
+
+CAL-A  : ALCANZABLE.
+CAL-B  : ALCANZABLE.
+CAL-C  : NO ALCANZABLE por construcción.
+9b     : NO ALCANZABLE por construcción (nulo estricto con poder).
+CAL-X  : DISPARA — y no sobre la celda que la ficha ya había anticipado.
+
+La ficha ya había declarado caída la celda tanda-sola (n=12). Lo que este
+chequeo añade es asimétrico y más grave: con las tasas base del codebook, el
+criterio puede CONFIRMAR G3 (CAL-A) pero no puede REFUTARLO (CAL-C / 9b). Un
+criterio que sólo admite confirmación no es un falsador. Por el punto 9a, esto
+se re-declara EN MESA antes de abrir microdatos, no después.
+
+==============================================================================
+EXTENSIÓN · ¿apilar las dos transiciones del panel mueve CAL-C?
+==============================================================================
+
+(1) HOGARES CON ACCESO FORMAL EN LAS TRES OLAS (Banco + afores voluntarias,
+    mapeo de Adenda 1 (c)), derivados del manual de codificación:
+
+      ola 1 · 2002        800  de  8,046   p = 9.94%
+      ola 2 · 2005-06     647  de  8,134   p = 7.95%
+      ola 3 · 2009-12     657  de  9,092   p = 7.23%
+
+(2) TECHO DE PARES HOGAR-TRANSICIÓN BAJO APILAMIENTO. Misma lógica generosa
+    que el chequeo original: un hogar sólo puede ser discordante en una
+    transición si tiene ahorro formal en exactamente una de las dos olas, luego
+    #discordantes(w,w') <= #formal(w) + #formal(w').
+
+      transición 1->2   <= 800 + 647 = 1,447
+      transición 2->3   <= 647 + 657 = 1,304
+      apiladas          <= 2,751 pares hogar-transición (NOMINAL)
+
+    La cota es igual de floja que antes, y se declara igual: supone traslape
+    cero, supone que TODO hogar con ahorro formal es hogar panel presente en
+    ambas olas de cada transición, cuenta a los formales de la ola 2 en las dos
+    transiciones, y no descuenta todavía el cambio de formalidad del jefe, ni la
+    atrición, ni la exclusión de las observaciones levantadas en EE.UU.
+
+(3) EFECTO DE DISEÑO Y N EFECTIVO. El nominal de 2,751 NO es poder.
+    Con 2 transiciones por hogar, DEFF = 1 + (m-1)*ICC = 1 + ICC.
+
+       ICC                   DEFF   N efectivo   vs. escenario C
+    --------------------------------------------------------------
+      0.00  (cota imposible)    1.00        2,751             +89%
+      0.20  (bajo)              1.20        2,292             +57%
+      0.50  (medio)             1.50        1,834             +26%
+      0.80  (alto)              1.80        1,528              +5%
+
+(4) MATRIZ CONJUNTA — mejor IC95% superior alcanzable con RR puntual = 1,
+    contra el < 1.25 que exige CAL-C, y SE(log RR) contra el
+    < 0.1139 que exige la banda [0.80, 1.25] de 9b.
+
+    p de cada escenario = tasa base agrupada sobre las olas que lo componen.
+
+    esc    ICC  N nominal  N efectivo       SE  IC95%sup      CAL-C         9b
+    --------------------------------------------------------------------------
+    A     0.00      2,751       2,751   0.1265     1.281  no alcanza  no alcanza
+    A     0.20      2,751       2,292   0.1386     1.312  no alcanza  no alcanza
+    A     0.50      2,751       1,834   0.1550     1.355  no alcanza  no alcanza
+    A     0.80      2,751       1,528   0.1698     1.395  no alcanza  no alcanza
+    B       --      1,304       1,304   0.1935     1.461  no alcanza  no alcanza
+    C       --      1,457       1,457   0.1719     1.401  no alcanza  no alcanza
+
+    Escenarios (qué decisión de mesa presupone cada uno):
+      (A) Tres olas, dos transiciones apiladas  ·  p = 8.33%
+          exige resolver D-10 con imputación de 'ninguna' en 2002
+      (B) Sólo olas 2-3, una transición  ·  p = 7.57%
+          D-10 opción 1, la limpia: descarta la línea basal
+      (C) Olas 1 y 3, una transición  ·  p = 8.50%
+          referencia: lo ya calculado en el chequeo original
+
+    NOTA DE CONVENCIÓN, declarada porque cambia una cifra ya publicada:
+      el chequeo original evaluó el escenario C con la p de la ola 3 SOLA
+      (7.23%) y obtuvo IC95%sup = 1.445. Esta matriz lo evalúa
+      con p agrupada sobre las olas 1 y 3 (8.50%) y obtiene
+      1.401, para que las tres filas sean comparables entre sí.
+      Misma cota de discordantes (1,457), distinta convención de p. No cambia
+      el lado del umbral en ninguna de las dos: ambas quedan por encima de 1.25.
+
+==============================================================================
+HALLAZGO — se reporta, no se concluye
+==============================================================================
+
+El mejor caso de toda la matriz es el escenario A con ICC = 0.00
+(la cota imposible), y da IC95%sup = 1.281. El umbral de CAL-C es
+< 1.25. NO alcanza.
+
+Apilar las dos transiciones NO mueve CAL-C de inalcanzable a alcanzable, y el
+resultado no depende del supuesto de correlación: falla incluso con ICC = 0,
+que es una cota que ningún panel real alcanza. Al escenario A le faltarían
+3,398 pares hogar-transición y su techo nominal es 2,751.
+
+EL EFECTO DE DISEÑO SE COME LA GANANCIA. Apilar sube el conteo nominal
++89% (1,457 -> 2,751), pero eso no es poder:
+con ICC alto (0.8) el N efectivo queda en 1,528, apenas
++5% sobre el escenario C. La ganancia bruta es real y la
+ganancia efectiva es marginal.
+
+Lo que sí cambia, y se reporta porque es material: el margen se estrecha.
+El escenario C, la referencia de una sola transición, da IC95%sup = 1.401
+en esta matriz; el mejor caso la baja a 1.281. Sigue del lado inalcanzable del umbral,
+pero la distancia deja de ser holgada.
+
+VEREDICTO DE CAL-X: SIN CAMBIO en ninguna celda. CAL-A y CAL-B siguen
+alcanzables; CAL-C y 9b siguen NO alcanzables por construcción, ahora
+verificado sobre las dos transiciones del panel y no sólo sobre una.
+
+Esto es insumo de D-09 y D-10, no su resolución. No se recomienda escenario,
+no se re-declara ningún criterio, y la decisión de mesa sigue abierta.
+
