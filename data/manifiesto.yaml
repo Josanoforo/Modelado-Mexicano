@@ -12,59 +12,347 @@
 #                     valor retroactivo que nadie derivó entonces.
 
 - id: encig23_base_datos_csv
-  usado_para: "hitoD-R3.2 (forense/hitoD-R3_2-veredicto-v1_0.md) — falsador de modelo §3.3 / tramite.yaml (mordida por modalidad de trámite)"
-  url_origen: "https://www.inegi.org.mx/programas/encig/2023/#microdatos"
-  fecha_descarga: "2026-07-29"
-  descargado_por: "usuario, vía navegador (la SPA de INEGI no expone el enlace a herramientas headless)"
-  archivo: "encig23_base_datos_csv.zip"
-  sha256: "af733d867a568cbb0dadef4a5a793b02488a71728d1157860f14501f3d4c393d"
+  usado_para: hitoD-R3.2 (forense/hitoD-R3_2-veredicto-v1_0.md) — falsador de modelo §3.3 / tramite.yaml
+    (mordida por modalidad de trámite)
+  url_origen: https://www.inegi.org.mx/programas/encig/2023/#microdatos
+  fecha_descarga: '2026-07-29'
+  descargado_por: usuario, vía navegador (la SPA de INEGI no expone el enlace a herramientas headless)
+  archivo: encig23_base_datos_csv.zip
+  sha256: af733d867a568cbb0dadef4a5a793b02488a71728d1157860f14501f3d4c393d
   tamano_bytes: 38309647
-  formato: "ZIP con 6 CSV (encig2023_01_sec1_A_3_4_5_8_9_10, encig2023_01_sec_11, encig2023_02_residentes_sec_2, encig2023_03_sec_6, encig2023_04_sec_7, encig2023_05_sec_8). Solo se leyeron encig2023_04_sec_7 y encig2023_05_sec_8 (P7_3 y P8_4) — las otras cuatro tablas no se inspeccionaron, por restricción vigente por R3.1/R5.1/R7.2."
-  licencia: "Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html; texto completo de esos Términos no verificado, solo la referencia)"
-  verificacion_tamano: "Página anunciaba 36.5 MB; archivo real 38,309,647 bytes. Verificado por aritmética: 38309647/1048576 (MiB) = 36.53 -> coincide con lo anunciado; 38309647/1000000 (MB decimal) = 38.31 -> no coincide. El anuncio está en MiB etiquetado como MB (convención Windows), no hay descuadre real de contenido."
-
+  formato: ZIP con 6 CSV (encig2023_01_sec1_A_3_4_5_8_9_10, encig2023_01_sec_11, encig2023_02_residentes_sec_2,
+    encig2023_03_sec_6, encig2023_04_sec_7, encig2023_05_sec_8). Solo se leyeron encig2023_04_sec_7 y
+    encig2023_05_sec_8 (P7_3 y P8_4) — las otras cuatro tablas no se inspeccionaron, por restricción vigente
+    por R3.1/R5.1/R7.2.
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo de esos Términos no verificado, solo la referencia)
+  verificacion_tamano: 'Página anunciaba 36.5 MB; archivo real 38,309,647 bytes. Verificado por aritmética:
+    38309647/1048576 (MiB) = 36.53 -> coincide con lo anunciado; 38309647/1000000 (MB decimal) = 38.31
+    -> no coincide. El anuncio está en MiB etiquetado como MB (convención Windows), no hay descuadre real
+    de contenido.'
 - id: encig23_estructura_base_datos_pdf
-  usado_para: "hitoD-R3.2 — diccionario de datos / confirmación de esquema y ponderadores (FAC_TRA, FAC_P18), sustituto funcional del FD no localizado"
-  url_origen: "https://www.inegi.org.mx/contenidos/programas/encig/2023/doc/encig23_estructura_base_datos.pdf"
-  fecha_descarga: "2026-07-29"
-  descargado_por: "agente, directamente de inegi.org.mx"
-  archivo: "encig23_estructura_base_datos.pdf"
-  sha256: "eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906"
+  usado_para: hitoD-R3.2 — diccionario de datos / confirmación de esquema y ponderadores (FAC_TRA, FAC_P18),
+    sustituto funcional del FD no localizado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2023/doc/encig23_estructura_base_datos.pdf
+  fecha_descarga: '2026-07-29'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: encig23_estructura_base_datos.pdf
+  sha256: eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906
   tamano_bytes: 3100802
   formato: PDF
-  licencia: "Términos de Libre Uso de la Información del INEGI (misma referencia que arriba)"
-  nota: >
-    Se buscó el "Descriptor de archivos (FD)" que INEGI publica junto a los microdatos
-    (~3 MB, según lo describió el usuario) en la carpeta de descarga y dentro del zip de
-    microdatos; no se encontró en ninguno de los dos lugares. Este documento -- mismo
-    programa y edición, con el mismo tipo de contenido -- se usó como sustituto. "No pude
-    alcanzar el archivo" original, no "el archivo no tiene el dato".
-
+  licencia: Términos de Libre Uso de la Información del INEGI (misma referencia que arriba)
+  nota: |
+    Se buscó el "Descriptor de archivos (FD)" que INEGI publica junto a los microdatos (~3 MB, según lo describió el usuario) en la carpeta de descarga y dentro del zip de microdatos; no se encontró en ninguno de los dos lugares. Este documento -- mismo programa y edición, con el mismo tipo de contenido -- se usó como sustituto. "No pude alcanzar el archivo" original, no "el archivo no tiene el dato".
 - id: nota_metodologica_rotulo_pareada
-  fecha: "2026-07-29"
-  hecho: >
-    Durante el análisis de hitoD-R3.2, una cifra reportada como "brecha pareada por
-    N_TRA" resultó estar mal rotulada: era una brecha agrupada (pooled) restringida a
-    los tipos de trámite con ambas modalidades observadas, no una brecha pareada ni
-    estandarizada -- no reponderaba los tipos restantes a una mezcla común entre
-    presencial y digital. Detectado por aritmética (n1 global vs. n1 dentro de la tabla
-    "pareada": la diferencia era exactamente el n presencial del único tipo de trámite
-    excluido). Corregido con estandarización directa (ver hitoD-R3.2 §2.3). Se deja esta
-    nota porque la cifra mal rotulada circuló en el análisis antes de corregirse y el
-    error de nomenclatura -- no solo el número -- es parte de la procedencia del dato.
-
+  fecha: '2026-07-29'
+  hecho: |
+    Durante el análisis de hitoD-R3.2, una cifra reportada como "brecha pareada por N_TRA" resultó estar mal rotulada: era una brecha agrupada (pooled) restringida a los tipos de trámite con ambas modalidades observadas, no una brecha pareada ni estandarizada -- no reponderaba los tipos restantes a una mezcla común entre presencial y digital. Detectado por aritmética (n1 global vs. n1 dentro de la tabla "pareada": la diferencia era exactamente el n presencial del único tipo de trámite excluido). Corregido con estandarización directa (ver hitoD-R3.2 §2.3). Se deja esta nota porque la cifra mal rotulada circuló en el análisis antes de corregirse y el error de nomenclatura -- no solo el número -- es parte de la procedencia del dato.
 - id: ennvih_mxfls_licencia
-  fecha: "2026-07-30"
+  fecha: '2026-07-30'
+  hecho: |
+    ENNViH/MxFLS declara sus datos de dominio público en su propia página de inicio: "La ENNViH es de dominio público. Los datos y la documentación de la encuesta se pueden descargar sin costo alguno para el usuario." Verificado por fetch directo de https://ennvih-mxfls.org (portada), 30/jul/2026. Sin login, sin formulario, sin términos que aceptar; los enlaces de descarga de las tres olas (ENNVIH-1/2/3) van directo al .zip de datos -- confirmado independientemente desde otra sesión/máquina (Ubuntu local, http=200 contra el host) el mismo día. Corrige revision-publicacion-2026-07-30.md:88/403/444, que marcaba los términos de ENNViH como "reporta el valor" (sin verificar en esa sesión). No cambia el estado del payload: ningún archivo de ENNViH se ha descargado ni se registra aquí -- CAL-G3 sigue sin ejecutarse.
+- id: encig2015_csv
+  usado_para: candidata para R3.1 (trámite/mordida, misma familia que R3.2) -- serie histórica de ENCIG
+    para lectura temporal, aún sin ficha ni ejecutar
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2015/datosabiertos/encig_2015_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos, confirmado por Content-Type
+    application/x-zip-compressed antes de descargar)
+  archivo: encig2015_csv.zip
+  sha256: 656b258288ab67a378af3ea358bb2b8325251247e30cf82123d851c726203a0e
+  tamano_bytes: 13152080
+  formato: ZIP (datos abiertos ENCIG 2015) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: encig2017_csv
+  usado_para: candidata para R3.1 (misma familia que R3.2) -- serie histórica ENCIG
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2017/datosabiertos/encig2017_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: encig2017_csv.zip
+  sha256: fdc7f1c761bf871872bd04080d59c2b58f38f78d6e6384b4a7df82e909d33465
+  tamano_bytes: 35027186
+  formato: ZIP (datos abiertos ENCIG 2017) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: encig2019_csv
+  usado_para: candidata para R3.1 (misma familia que R3.2) -- serie histórica ENCIG
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2019/datosabiertos/encig2019_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: encig2019_csv.zip
+  sha256: 61f49f6149729a7f22c4a64310dd894ec645ebe8b40110cac3fb32125a6ed979
+  tamano_bytes: 32632044
+  formato: ZIP (datos abiertos ENCIG 2019) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: encig2021_csv
+  usado_para: candidata para R3.1 (misma familia que R3.2) -- serie histórica ENCIG
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2021/datosabiertos/encig2021_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: encig2021_csv.zip
+  sha256: c92ea34c7c57237c49ca3d8d99382e340b5939c371ce820332876f7c4c62c56a
+  tamano_bytes: 27752363
+  formato: ZIP (datos abiertos ENCIG 2021) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: encig2023_datosabiertos_csv
+  usado_para: 'candidata para R3.1/lectura temporal -- serie histórica ENCIG. Paquete ''datos abiertos''
+    de la edición 2023, DISTINTO del ya registrado como encig23_base_datos_csv (ese vino del tab #microdatos
+    vía navegador, 38309647 bytes; este viene del path estático datosabiertos/, 26171769 bytes -- --compara
+    confirma que NO coinciden)'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2023/datosabiertos/encig2023_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: encig2023_datosabiertos_csv.zip
+  sha256: 4e3839cd90613fa7dd0f9a123d7636f017a2b8d08a98377a7a04459032bc2611
+  tamano_bytes: 26171769
+  formato: ZIP (datos abiertos ENCIG 2023) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: enif2018_csv
+  usado_para: candidata para R1.2 (estabilidad->planeación larga, dato CONSAR/ENIF) -- serie histórica
+    ENIF
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2018/datosabiertos/conjunto_de_datos_enif_2018_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: enif2018_csv.zip
+  sha256: 51f33ec74ccd596dc74b695587310d02e651923467255520aadc4d9fe13461d5
+  tamano_bytes: 4450312
+  formato: ZIP (datos abiertos ENIF 2018) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: enif2021_csv
+  usado_para: candidata para R1.2 -- serie histórica ENIF
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2021/datosabiertos/conjunto_de_datos_enif_2021_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: enif2021_csv.zip
+  sha256: 0f314fa3733b4b5519486ed4015fca1c9e0864840bcd5944aa7de27796fe5cd9
+  tamano_bytes: 2511357
+  formato: ZIP (datos abiertos ENIF 2021) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: enif2024_csv
+  usado_para: candidata para R1.2 -- serie histórica ENIF
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2024/datosabiertos/conjunto_de_datos_enif_2024_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: enif2024_csv.zip
+  sha256: a3507b4038888247f565f1640a718ef552bb8fc363378e3372a5bf2796bb2e4c
+  tamano_bytes: 3086077
+  formato: ZIP (datos abiertos ENIF 2024) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: envipe2018_csv
+  usado_para: candidata para R7.2 (delito sin seguro -> no denuncia, ENVIPE desagregada por delito x cobertura)
+    -- serie histórica ENVIPE
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2018/datosabiertos/conjunto_de_datos_envipe2018_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: envipe2018_csv.zip
+  sha256: aa279993bfeaaa0bf0d821e964887140ef444f6e695e4e1767f6512e4d2c4723
+  tamano_bytes: 24337809
+  formato: ZIP (datos abiertos ENVIPE 2018) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: envipe2019_csv
+  usado_para: candidata para R7.2 (delito sin seguro -> no denuncia, ENVIPE desagregada por delito x cobertura)
+    -- serie histórica ENVIPE
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2019/datosabiertos/conjunto_de_datos_envipe2019_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: envipe2019_csv.zip
+  sha256: 24bb83987f2ba57912a3f55c8ff3bb48e5f39f2292cd167997312c1fd77207f3
+  tamano_bytes: 19146940
+  formato: ZIP (datos abiertos ENVIPE 2019) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: envipe2020_csv
+  usado_para: candidata para R7.2 (delito sin seguro -> no denuncia, ENVIPE desagregada por delito x cobertura)
+    -- serie histórica ENVIPE
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2020/datosabiertos/conjunto_de_datos_envipe2020_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: envipe2020_csv.zip
+  sha256: 26f468da631bfdb94994a9e5051fa973468608f0da56612b6897df16a2797b9d
+  tamano_bytes: 20253728
+  formato: ZIP (datos abiertos ENVIPE 2020) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: envipe2021_csv
+  usado_para: candidata para R7.2 (delito sin seguro -> no denuncia, ENVIPE desagregada por delito x cobertura)
+    -- serie histórica ENVIPE
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2021/datosabiertos/conjunto_de_datos_ENVIPE_2021_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: envipe2021_csv.zip
+  sha256: 88153c67ff3666be511dab3f3b483226a0af9f0e8683bd8dbfba8d616ddbfdd1
+  tamano_bytes: 22334244
+  formato: ZIP (datos abiertos ENVIPE 2021) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: envipe2022_csv
+  usado_para: candidata para R7.2 (delito sin seguro -> no denuncia, ENVIPE desagregada por delito x cobertura)
+    -- serie histórica ENVIPE
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2022/datosabiertos/conjunto_de_datos_ENVIPE_2022_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: envipe2022_csv.zip
+  sha256: 3a6e0f3a05dd4120efe8072de519402a39f4ed1690593433a68bb2ee137e77bb
+  tamano_bytes: 18858955
+  formato: ZIP (datos abiertos ENVIPE 2022) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: envipe2023_csv
+  usado_para: candidata para R7.2 (delito sin seguro -> no denuncia, ENVIPE desagregada por delito x cobertura)
+    -- serie histórica ENVIPE
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2023/datosabiertos/conjunto_de_datos_ENVIPE_2023_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: envipe2023_csv.zip
+  sha256: 0dcc00a7fc37b79806f1bf1b85b12cd090b5ecc8e76983a3a1a861f2ef3fb404
+  tamano_bytes: 17728995
+  formato: ZIP (datos abiertos ENVIPE 2023) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: envipe2024_csv
+  usado_para: candidata para R7.2 (delito sin seguro -> no denuncia, ENVIPE desagregada por delito x cobertura)
+    -- serie histórica ENVIPE
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2024/datosabiertos/conjunto_de_datos_ENVIPE_2024_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: envipe2024_csv.zip
+  sha256: 90776b2fab6e3666dad1cb5f5f3eb7d6a7699dbfefd4f8f04f07fb01e61a6fb2
+  tamano_bytes: 17837779
+  formato: ZIP (datos abiertos ENVIPE 2024) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: envipe2025_csv
+  usado_para: candidata para R7.2 (delito sin seguro -> no denuncia, ENVIPE desagregada por delito x cobertura)
+    -- serie histórica ENVIPE
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2025/datosabiertos/conjunto_de_datos_ENVIPE_2025_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: envipe2025_csv.zip
+  sha256: 8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa
+  tamano_bytes: 17600019
+  formato: ZIP (datos abiertos ENVIPE 2025) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: enigh2012_nc_csv
+  usado_para: candidata para R5.1 (volatilidad + ausencia de Estado -> familia como seguro; si ENIGH no
+    permite identificar beneficiarios) -- serie histórica ENIGH nueva construcción
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2012/datosabiertos/enigh_ncv_2012_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: enigh2012_nc_csv.zip
+  sha256: 2ed45acfb402cbcf21ecc3197555d343a484e6ffcf59be2a0d54878d1dda5e44
+  tamano_bytes: 25396190
+  formato: ZIP (datos abiertos ENIGH 2012, modalidad nueva construcción) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: enigh2014_nc_csv
+  usado_para: candidata para R5.1 (volatilidad + ausencia de Estado -> familia como seguro; si ENIGH no
+    permite identificar beneficiarios) -- serie histórica ENIGH nueva construcción
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2014/datosabiertos/enigh_ncv_2014_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: enigh2014_nc_csv.zip
+  sha256: fffec78d722e010229af7cc241592653163766f4216cb73a27c4fd87a11ada7e
+  tamano_bytes: 39555490
+  formato: ZIP (datos abiertos ENIGH 2014, modalidad nueva construcción) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: enigh2016_nc_csv
+  usado_para: candidata para R5.1 (volatilidad + ausencia de Estado -> familia como seguro; si ENIGH no
+    permite identificar beneficiarios) -- serie histórica ENIGH nueva construcción
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2016/datosabiertos/conjunto_de_datos_enigh2016_nueva_serie_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: enigh2016_nc_csv.zip
+  sha256: 95e30780dfff83305fd1293945a0a5ed04c4e4daed4b0d45b66343db09e8eca1
+  tamano_bytes: 40991826
+  formato: ZIP (datos abiertos ENIGH 2016, modalidad nueva construcción) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: enigh2018_nc_csv
+  usado_para: candidata para R5.1 (volatilidad + ausencia de Estado -> familia como seguro; si ENIGH no
+    permite identificar beneficiarios) -- serie histórica ENIGH nueva construcción
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2018/datosabiertos/conjunto_de_datos_enigh_2018_ns_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: enigh2018_nc_csv.zip
+  sha256: 5026cd951c109ac01c466aa22066beb7c6cbdcf7ecfc213967bd961d1243d636
+  tamano_bytes: 43339807
+  formato: ZIP (datos abiertos ENIGH 2018, modalidad nueva construcción) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: enigh2020_nc_csv
+  usado_para: candidata para R5.1 (volatilidad + ausencia de Estado -> familia como seguro; si ENIGH no
+    permite identificar beneficiarios) -- serie histórica ENIGH nueva construcción
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2020/datosabiertos/conjunto_de_datos_enigh_ns_2020_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: enigh2020_nc_csv.zip
+  sha256: 47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4
+  tamano_bytes: 93711908
+  formato: ZIP (datos abiertos ENIGH 2020, modalidad nueva construcción) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+- id: enigh2022_nc_csv
+  usado_para: candidata para R5.1 (volatilidad + ausencia de Estado -> familia como seguro; si ENIGH no
+    permite identificar beneficiarios) -- serie histórica ENIGH nueva construcción
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2022/datosabiertos/conjunto_de_datos_enigh_ns_2022_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: enigh2022_nc_csv.zip
+  sha256: 3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06
+  tamano_bytes: 90030937
+  formato: ZIP (datos abiertos ENIGH 2022, modalidad nueva construcción) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host FF-5563
+
+- id: hitoD_fase1_ediciones_requieren_navegador
+  fecha: '2026-07-30'
   hecho: >
-    ENNViH/MxFLS declara sus datos de dominio público en su propia página de
-    inicio: "La ENNViH es de dominio público. Los datos y la documentación de
-    la encuesta se pueden descargar sin costo alguno para el usuario."
-    Verificado por fetch directo de https://ennvih-mxfls.org (portada),
-    30/jul/2026. Sin login, sin formulario, sin términos que aceptar; los
-    enlaces de descarga de las tres olas (ENNVIH-1/2/3) van directo al .zip
-    de datos -- confirmado independientemente desde otra sesión/máquina
-    (Ubuntu local, http=200 contra el host) el mismo día. Corrige
-    revision-publicacion-2026-07-30.md:88/403/444, que marcaba los términos
-    de ENNViH como "reporta el valor" (sin verificar en esa sesión). No
-    cambia el estado del payload: ningún archivo de ENNViH se ha descargado
-    ni se registra aquí -- CAL-G3 sigue sin ejecutarse.
+    Corolario 2 del encargo (Hito D Fase 1, ampliación del Paso 4): distinguir
+    "requiere navegador" de "no existe". Las siguientes ediciones SÍ existen
+    (página real, no "Página no encontrada") pero no se bajaron por script --
+    no se forzó ningún mecanismo (login, formulario POST, SPA sin enlace
+    estático). Se listan aquí para que quede constancia de qué se intentó y
+    por qué no se completó, sin tratarlas como inexistentes:
+
+    ENCIG: 2011, 2013 (sin JSON-LD ni patrón datosabiertos localizable) ·
+    2025 (JSON-LD trae solo un placeholder de plantilla, sin distribución
+    real -- probablemente aún no publicada, no confirmable por script).
+
+    ENIF: 2012, 2015 (mismo patrón: sin distribución real localizable).
+
+    ENIGH (modalidad nc): 2008, 2010 (sin distribución localizable) · 2024
+    (JSON-LD con placeholder de plantilla, no publicada aún).
+
+    ENUT: 2009, 2014, 2019, 2024 -- ninguna edición expone zip estático bajo
+    los patrones de nombre probados (datosabiertos/microdatos); 2024 tiene
+    JSON-LD con placeholder de plantilla.
+
+    ENCUCI: 2020 (sin distribución localizable). 2012 aparenta vivir en una
+    ruta legada distinta de la plantilla actual -- no explorada más a fondo
+    en esta sesión.
+
+    ENSANUT: host real es ensanut.insp.mx (INSP), NO inegi.org.mx. Ediciones
+    reales confirmadas por estructura de navegación propia: 2006, 2012, 2016,
+    2018, y ENSANUT Continua 2020-2024 (2025/2026 solo tienen página de
+    presentación, sin sección de descargas -- probablemente no publicadas).
+    El portal expone un acordeón real de archivos por módulo, pero el nombre
+    de archivo viaja codificado en un campo de formulario cuyo único
+    <form action> apunta de vuelta a la misma página (POST autodirigido, no
+    un GET estático) -- replicar ese envío sin más instrucción habría sido
+    forzar el mecanismo, así que se clasifica "requiere navegador" para las
+    seis ediciones con sección de descargas real.
+
+    Ninguna de estas búsquedas abrió un cuestionario, diccionario de datos,
+    manual de codificación ni base -- solo se verificó existencia de página
+    (título) y presencia/ausencia de un enlace de archivo verificable por
+    Content-Type/Content-Length.
