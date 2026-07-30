@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# APAGADO POR R0 (ADR-48, 30/jul/2026): `--cierra` ya no se invoca desde ningún lado — tiene tres defectos conocidos y registrados en forense/hallazgos-congelados-2026-07-30.yaml — I-17 (la cifra 'Antes' sale de baseline.json congelado, no de la corrida real) e I-20, que son dos: deriva el diff contra el ref LOCAL origin/main sin fetch, y reporta como 'Cerrados de la sesión' toda entrada que ya estaba cerrada antes — y nadie lee su salida. El script se queda en el árbol; `--abre` sigue siendo válido.
 """tests/bitacora.py — protocolo-sesion v1.0 §1/§2.
 
 --abre    imprime el estado del repo, todo derivado en el momento.
@@ -9,7 +10,7 @@ o de un archivo. Ningún campo se teclea ni se rellena con placeholder;
 si algo no se puede derivar, se omite y se reporta como omitido al final.
 
 Única dependencia externa del proyecto: PyYAML, para leer/escribir
-canon/cola.yaml (protocolo §5).
+forense/hallazgos-congelados-2026-07-30.yaml (protocolo §5).
 """
 import argparse
 import datetime
@@ -98,10 +99,11 @@ def cmd_abre():
             print("(forense/bitacora.md existe pero no tiene bloques con encabezado '## ')")
             faltantes.append("último bloque de bitácora (archivo sin bloques)")
 
-    print("\n--- Cola abierta (canon/cola.yaml), por clase ---")
-    cola_raw = leer("canon/cola.yaml")
+    print("\n--- Hallazgos congelados por R0 (forense/hallazgos-congelados-2026-07-30.yaml), "
+          "los que quedaron abiertos, por clase — registro, no cola de trabajo ---")
+    cola_raw = leer("forense/hallazgos-congelados-2026-07-30.yaml")
     if cola_raw is None:
-        print("(canon/cola.yaml no existe)")
+        print("(forense/hallazgos-congelados-2026-07-30.yaml no existe)")
         faltantes.append("cola (el archivo no existe)")
     else:
         entradas = yaml.safe_load(cola_raw) or []
@@ -216,14 +218,14 @@ def cmd_cierra(decidido, bloqueado):
 
     lineas.append("")
     lineas.append("**Cola — IDs afectados en la sesión:**")
-    cola_antes_raw = git("show", "origin/main:canon/cola.yaml") if origin_main else None
+    cola_antes_raw = git("show", "origin/main:forense/hallazgos-congelados-2026-07-30.yaml") if origin_main else None
     ids_antes = set()
     if cola_antes_raw:
         try:
             ids_antes = {e["id"] for e in (yaml.safe_load(cola_antes_raw) or [])}
         except Exception:
             pass
-    cola_despues_raw = leer("canon/cola.yaml")
+    cola_despues_raw = leer("forense/hallazgos-congelados-2026-07-30.yaml")
     ids_despues, estado_despues = set(), {}
     if cola_despues_raw:
         try:

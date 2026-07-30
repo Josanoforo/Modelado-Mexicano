@@ -6,7 +6,9 @@
 > |---|---|
 > | **ARCHIVO** | `protocolo-sesion-v1.0.md` |
 > | **NOMBRE ESTABLE** | **`protocolo`** — cítalo así, nunca por nombre de archivo |
-> | **VERIFICAS ASÍ** | §1 tiene **dos** comandos · §4 lista cinco prohibiciones · §5 define el esquema de la cola |
+> | **VERIFICAS ASÍ** | §1 tiene **un** comando · §2 es la regla de R0, sin comando · §4 lista cinco prohibiciones · §5 declara la cola congelada |
+>
+> **Modificado el 30/jul/2026 por ADR-48 (R0)** — §2 (cierre) y §5 (cola). El número de versión no sube: esa decisión es de mesa, y R0 corta exactamente la clase de trabajo que la renumeración arrastra (retropropagación de citas). Se lee con ADR-48 al lado.
 
 **Qué gobierna.** Cómo abre y cierra una sesión, y quién puede escribir qué en un traspaso. No gobierna rigor de contenido — eso es `instrucciones`. Existe porque el programa gastaba la primera hora de cada sesión reconstruyendo lo que la anterior ya sabía.
 
@@ -25,7 +27,7 @@ Imprime, todo derivado en el momento:
 - HEAD, `origin/main`, si divergen, y ramas vivas
 - Estado de `check.py --baseline` y de `validador_registro_ids.py`
 - El último bloque de bitácora (`forense/bitacora.md`, la entrada más reciente)
-- La cola abierta (`canon/cola.yaml`), agrupada por clase
+- Los hallazgos que quedaron abiertos al congelar (`forense/hallazgos-congelados-2026-07-30.yaml`), agrupados por clase — registro, no cola de trabajo (§5)
 - La versión de `instrucciones` vigente y su commit
 
 Eso es la apertura completa. No se pega `estado §4`. No se re-deriva a mano lo que el script deriva. Si el script no existe todavía, escribirlo es el primer pendiente y va antes que cualquier otro trabajo.
@@ -34,24 +36,18 @@ Eso es la apertura completa. No se pega `estado §4`. No se re-deriva a mano lo 
 
 ---
 
-## 2 · Cierre — obligatorio, no opcional
+## 2 · Cierre — la regla de R0
 
-```
-python3 tests/bitacora.py --cierra
-```
+**Cada sesión produce una medición o produce nada.**
 
-Anexa a `forense/bitacora.md` un bloque derivado, nunca escrito a mano:
+- **Defecto que no impide medir:** una línea en `forense/hallazgos.md` y sigue. No abre entrada, no abre ADR, no abre discusión.
+- **Defecto que impide medir:** para y reporta. Eso es el reporte entero.
 
-- Fecha, HEAD inicial y final, rama usada
-- Commits de la sesión: hash, autor, co-autor, asunto
-- Archivos tocados
-- ADRs añadidos, versiones subidas
-- Delta de suite: FAIL/WARN antes y después
-- IDs de cola abiertos y cerrados en la sesión
+Eso es el cierre completo. No hay auditoría por escrito, no hay módulo de proceso, no hay bloque derivado obligatorio.
 
-Lo único que se escribe a mano en ese bloque son dos líneas: **qué se decidió** y **qué quedó bloqueado**. Todo lo demás lo deriva el script o no entra.
+**Qué desapareció y por qué.** Hasta el 30/jul/2026 este parágrafo obligaba a `python3 tests/bitacora.py --cierra` y a un bloque derivado de once campos anexado a `forense/bitacora.md`. ADR-48 (R0) lo apaga: el aparato de auditoría consumía el trabajo que decía vigilar, y el propio derivador acumuló tres defectos registrados sin que nadie leyera su salida. El script sigue en el árbol con su marca de apagado; `--cierra` no se invoca desde ningún lado. `forense/bitacora.md` queda como está — append-only, no se reescribe, no se le anexa más.
 
-**Regla dura:** una sesión que no termina en commit no dejó nada. Si se acaba el tiempo, se comitea lo que haya con el bloque de bitácora. Un hallazgo en una conversación no es un hallazgo del programa.
+**Lo que no cambia:** una sesión que no termina en commit no dejó nada. Si se acaba el tiempo, se comitea lo que haya. Un hallazgo en una conversación no es un hallazgo del programa.
 
 ---
 
@@ -69,34 +65,25 @@ Dos documentos, no uno. El defecto del TRANSFER-8 —siete premisas falsas— vi
 
 ## 4 · Cinco prohibiciones
 
-1. **No se abre trabajo de evidencia y de instrumento en la misma sesión.** Los hallazgos de instrumento van a la cola, no al turno.
+1. **No se abre trabajo de evidencia y de instrumento en la misma sesión.** Los hallazgos de instrumento van a `forense/hallazgos.md`, una línea, no al turno (§2 · §5).
 
 2. **No se congela una línea base en la misma corrida que cambió el medidor.** Primero se ve el efecto sin `--baseline`, luego se decide. (`015af3a` lo hizo y su `head` no identifica el código que produjo sus conteos.)
 
 3. **No se declara una cifra que un test vigila sin derivarla de la salida de ese test.** Y ojo: algunos tests miden antes de emitir su propio veredicto — el número a declarar es el que el test reporta, no el total de la corrida. (T16: escribir el total lo hace fallar para siempre.)
 
-4. **No se edita un pre-registro.** Adenda fechada o veredicto. (El alcance exacto de esta protección es una decisión abierta: ver la cola.)
+4. **No se edita un pre-registro.** Adenda fechada o veredicto. (El alcance exacto de esta protección quedó sin decidir: `D-01`, congelada en `forense/hallazgos-congelados-2026-07-30.yaml`.)
 
 5. **`accept edits` apagado en toda sesión que escriba al canon.** Anula la confirmación de ediciones pero no la regla `ask` de `git commit`: auto mode puede escribir un artefacto y no poder sellarlo.
 
 ---
 
-## 5 · La cola tiene IDs y vive en un archivo
+## 5 · La cola está congelada
 
-`canon/cola.yaml`. Una entrada por pendiente. El chat puede proponer entradas; solo CC las escribe.
+**No hay cola.** `canon/cola.yaml` se congeló el 30/jul/2026 como `forense/hallazgos-congelados-2026-07-30.yaml` (ADR-48, R0). Ese archivo es registro: no rige, no bloquea, no ordena prioridades, **y no se le añaden entradas** — ni una. Tampoco se borra: lo citan por ID commits, cuerpos de PR y bloques de `forense/bitacora.md`.
 
-```yaml
-- id: I-01                      # I instrumento · C canon · E evidencia · D decisión
-  titulo: "T03 no puede marcar una cita ilustrativa"
-  clase: instrumento
-  abierto: 2026-07-29
-  casos: 3                      # cuántas veces se ha manifestado
-  bloquea: []                   # IDs que no avanzan sin esto
-  evidencia: "forense/bitacora.md#2026-07-29"
-  estado: abierto               # abierto · en_curso · cerrado · descartado
-```
+**Dónde va un defecto nuevo.** A `forense/hallazgos.md`, una línea, bajo la regla de §2. Si impide medir, no va a ningún archivo: se para y se reporta.
 
-**Reglas de la cola.** Un pendiente sin ID no existe. Se cierra con referencia al commit que lo cierra. `casos` sube cuando reaparece — un defecto que se manifiesta tres veces tiene prioridad sobre uno que se manifestó una vez, y eso deja de ser impresión y pasa a ser un campo.
+**Convención de IDs**, para cuando algo necesite uno (declarada en `gobernanza` junto a ADR-48, cierra I-13): `D-AAAAMMDD-HHMM` con la fecha y hora UTC de apertura, o un hash corto. Nunca un correlativo derivado de contar el archivo — eso es lo que hizo colisionar `E-04` entre dos ramas ciegas entre sí. Los IDs correlativos ya asignados son historia y no se renumeran.
 
 ---
 
