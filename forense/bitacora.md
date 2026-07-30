@@ -559,3 +559,336 @@ data/manifiesto.yaml | 524 +++++++++++++++++++++++++++++++++++++++++++++++++++
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/sellar-d09-d10-adr-mncope` · **HEAD inicial (origin/main):** `9301e59203b01243e76fe2de47eaad93667a9514` · **HEAD final:** `d391f58b7d08c2e298506c69b3365bb77dd5047e`
+
+**Commits de la sesión:**
+  - `d391f58` · Josanoforo · Merge pull request #12 from Josanoforo/sesion/calg3-poder
+  - `58f8a54` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · CAL-G3: aritmética de poder sobre el panel completo — apilar dos transiciones no mueve CAL-C
+  - `1868045` · Josanoforo · Merge pull request #11 from Josanoforo/claude/siete-hallazgos-cola-86sj9r
+  - `16af08a` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · cola: registra cinco hallazgos operativos de la jornada del 30/jul (I-11..I-15)
+  - `64a5d7b` · Josanoforo · Merge pull request #10 from Josanoforo/sesion/calg3
+  - `4a58320` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · Merge origin/main (PR #8 ADR-46, PR #9 ENCUCI) into sesion/calg3
+  - `6b54d7c` · Josanoforo · Merge pull request #9 from Josanoforo/sesion/encuci
+  - `dcbf6ec` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · Merge origin/main (PR #8, ADR-46) into sesion/encuci
+  - `7847920` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · CAL-G3 Fase B: chequeo CAL-X, dos premisas falsas y el confundidor 5 sin cerrar
+  - `981c1ea` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · CAL-G3: chequeo CAL-X del punto 9a, previo a abrir microdatos
+  - `11d9415` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · ENCUCI 2020: registro de BD/FD bajados por navegador; corrige premisa de ENUT/ENCUCI
+  - `686e377` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · CAL-G3 Fase A: descarga y registro de las tres olas de ENNViH/MxFLS
+  - `0817817` · Josanoforo · Merge pull request #8 from Josanoforo/claude/e03-session-contamination-xb1y55
+  - `85f608a` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre -- ADR-46 (unidad de contaminación es la sesión)
+  - `f8a9962` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · gobernanza: v1.13 -> v1.14 -- ADR-46 (unidad de contaminación es la sesión, no la máquina)
+  - `5b7113a` · Josanoforo · Merge pull request #7 from Josanoforo/claude/hitod-perimetro-compara
+  - `82b0961` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre — Hito D Fase 1, Paso 4 (ampliación)
+  - `33b412f` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · manifiesto.py: pliegue '>' con ancho en vez de literal '|' sin envolver
+  - `ce3c284` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · Hito D Fase 1, Paso 4 (ampliación): serie completa de ENCIG/ENIF/ENVIPE/ENIGH
+  - `45be175` · Josanoforo · Merge pull request #6 from Josanoforo/claude/hitod-perimetro-compara
+  - `d0d9e07` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre — Hito D Fase 1, Pasos 1-3
+  - `feaf38e` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · Hito D Fase 1 (parcial, Pasos 1-3): perímetro de red, tabla de fuentes, --compara
+  - `dc5fd0f` · Josanoforo · Merge pull request #5 from Josanoforo/claude/manifiesto-registra-verifica
+  - `095a2a2` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre — resolución de conflictos, D-07, I-09
+  - `5a9263d` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · C1: declara desvío de alcance y el hueco de --contrasta
+  - `beac5eb` · Josanoforo · Merge origin/main (PR #4: D-05/ADR-45) into C1
+  - `7f9fd96` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre de la sesión C1 (manifiesto.py)
+  - `b65f44f` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · C1: tests/manifiesto.py — --registra y --verifica de procedencia de datos
+  - `4054c35` · Josanoforo · Merge pull request #4 from Josanoforo/claude/falsacion-vocabulary-zfjvr4
+  - `a217d32` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · bitacora: cierre de sesión D-05/ADR-45
+  - `adb3e62` · Claude · D-05: fija el vocabulario de "prueba de falsación" (ADR-45)
+  - `584f806` · Josanoforo · Merge pull request #3 from Josanoforo/claude/f2-f4-portada-adr-7fjpln
+  - `7d92f5b` · Claude · bitácora: bloque de cierre — escalada de D-05, sesión F2/F4 completa
+  - `a528654` · Claude · cola: D-05 -- "prueba de falsación corrida" sin referente único, escalado a mesa
+  - `46e9cef` · Claude · bitácora: bloque de cierre de la sesión F2/F4 (portada, ADR-44)
+  - `bdb1b77` · Claude · cola: F7.b y F6/T-README entran a la cola, sin abrirlas
+  - `2d1d866` · Claude · gobernanza: v1.11 -> v1.12 -- ADR-44 (publicación del repositorio sin ADR previo)
+  - `856639c` · Claude · README: corrige README:40 contra el registro de veredictos archivados
+  - `25abb83` · Josanoforo · Merge pull request #2 from Josanoforo/claude/refreeze-baseline-pr1-4zha5w
+  - `1ee9f29` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · bitácora: el borrado de la rama del PR #1 quedó bloqueado, no hecho
+  - `902ab75` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · bitácora: bloque de cierre del refreeze post-PR #1
+  - `84aaae3` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · cola: I-01 sube a casos=2 — el refreeze post-PR #1 como evidencia para A1
+  - `78288a2` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · estado: declaración vigente de la suite a la corrida real (19 FAIL · 87 WARN)
+  - `74027d5` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · Refreeze de línea base tras el merge del PR #1 (main 22a7d9d)
+  - `a0ae0ad` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · check.py: buckets propios para las 3 entradas del refreeze post-PR #1
+  - `22a7d9d` · Josanoforo · Merge pull request #1 from Josanoforo/claude/psicologia-mexicano-publication-review-h5h6ic
+  - `f4bef94` · Josanoforo · Nota de reconciliación: LICENSE-CORPUS.md descartado (D-05)
+  - `10239cd` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · revisión estratégica de publicación (propuesta sin sello, ADR-39 aplicado al encargo)
+  - `4e174dd` · Josanoforo · Add files via upload
+  - `7fa7481` · Josanoforo · Delete USO-ACEPTABLE.md
+  - `83db9c9` · Josanoforo · Delete CITATION.cff
+  - `5fab073` · Josanoforo · Delete AVISO-DE-ALCANCE.md
+  - `29f08b4` · Josanoforo · Delete LICENSE
+  - `a946db5` · Josanoforo · Delete AUTHORSHIP.md
+  - `acd65af` · Josanoforo · Add files via upload
+  - `fb1f333` · Josanoforo · Add files via upload
+  - `c3adff8` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: segundo bloque de cierre
+  - `b73d1dd` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · cierre del gate (segunda vuelta): bucket propio TRANSFER-9, estado sincronizado, cola +2
+  - `c6dd7ee` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: primer bloque de cierre + fix de bitacora.py --cierra
+  - `7dd1c5a` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · Parte 2: aterriza protocolo-sesion, cola.yaml y tests/bitacora.py
+  - `c42abc9` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · Parte 1: cierre del gate T17 -- estado sincronizado, deuda congelada, .gitignore
+  - `97b9f2b` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: T17 ve su propio objeto -- escanea hitoD-preregistro, no solo estado
+  - `d123f49` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · gobernanza: v1.10 -> v1.11 -- ADR-42 (qué significa el verde) y ADR-43 (esquema de co-autoría)
+  - `24df4b3` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · hitoD: adenda 1 a CAL-G3 -- desenlace primario a cuatro estados con molde ENIF
+  - `c9e67bd` · Jonas · co: Claude Fable 5 <noreply@anthropic.com> · hitoD: ficha CAL-G3 -- pre-registro de estimación propia de coeficiente de generador
+  - `015af3a` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: T03 exime citas de renombre; --freeze con conteo derivado (18 FAIL · 82 WARN)
+  - `2bf50b2` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · gobernanza: v1.9 -> v1.10 -- ADR-41 (reglas de sesión sin archivo, autoría del repo)
+  - `c68feab` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · instrucciones-proyecto-v2.md: v2 -> v2.2 -- procedencia documental y hallazgos de Hito D
+  - `afa7c7f` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · hitoD-R3.2: veredicto B -- gate inalcanzable por construcción, escala no valor
+  - `771ea26` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: T18 T-PASO2-EJECUCION -- veredictos en bloque designado (ADR-40)
+  - `d26cfde` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: newest() por versión no lexicográfico; T17 asevera unicidad
+  - `de3f22a` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · estado: consolida declaración canónica de cobertura del pre-registro (§4·S2)
+  - `1a56210` · Claude · co: Claude <noreply@anthropic.com> · tests: T17 T-FICHAS-COUNT -- declarado en estado == encabezados ## R reales
+  - `90eb140` · Claude · co: Claude <noreply@anthropic.com> · hitoD-preregistro: revierte prefijo de ruta en 3 citas (T03 no las ve); documenta el hueco
+  - `b28b144` · Claude · co: Claude <noreply@anthropic.com> · hitoD-preregistro: ficha de R3.2, pre-registrada antes de abrir ENCIG
+  - `9fb8473` · Claude · co: Claude <noreply@anthropic.com> · tests: T14/T15/T16 -- convierte en test 4 de las 7 cifras que quedaron a mano
+  - `e3d483b` · Claude · co: Claude <noreply@anthropic.com> · baseline.json: actualiza HEAD al commit real que describe el arbol
+  - `c377b97` · Claude · co: Claude <noreply@anthropic.com> · tests/baseline.json: congela 18 FAIL / 82 WARN tras la sesion de correcciones
+  - `31fff96` · Claude · co: Claude <noreply@anthropic.com> · Censo de integridad: corrige causa raiz A/C, casos B/D/F, mueve documentos muertos, incorpora ADR-38/39
+  - `f320550` · Claude · CI: usa el modo linea base en vez de check.py sin banderas
+  - `3375a28` · Claude · baseline.json: actualiza HEAD al commit real que describe el arbol
+  - `26e7ef4` · Claude · T03: normaliza punto/guion bajo, declara historicos, congela linea base P1
+  - `69357d4` · Claude · Censo v1.1: procedencia por commit, denominador eb92d99/9efa61f, cadena del caso pelon
+  - `9dbff7a` · Claude · Anade censo-integridad-v1_0: auditoria mecanica completa de canon/ y forense/
+  - `9efa61f` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · Corrige rotulo del perimetro del Hito D + registro congelado de IDs
+  - `eb92d99` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · Anade TRANSFER-maestra-8.md: cierre de sesion del 29/jul
+  - `8254fde` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · Anade TRANSFER-maestra-7.md: documento de traspaso, estaba fuera del repo
+  - `7d6535e` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · estado v1.8: corrige "cubre las 27" y registra la auditoria de perimetro
+  - `a79227e` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · Nota forense: verificacion del perimetro y cobertura del pre-registro
+
+**Archivos tocados:**
+```
+.github/workflows/verify.yml                       |    4 +-
+ .gitignore                                         |   16 +
+ AUTHORSHIP.md                                      |   84 ++
+ AVISO-DE-ALCANCE.md                                |  106 +++
+ CITATION.cff                                       |   35 +
+ CONTRIBUTING.md                                    |   12 +-
+ LICENSE                                            |   65 ++
+ README.md                                          |    6 +-
+ USO-ACEPTABLE.md                                   |   92 ++
+ canon/cola.yaml                                    |  369 ++++++++
+ ...do-programa-v1_7.md => estado-programa-v1_9.md} |   52 +-
+ canon/glosario-v5_6.md                             |    6 +-
+ canon/gobernanza-v1_14.md                          |  458 +++++++++
+ canon/gobernanza-v1_8.md                           |  336 -------
+ canon/integrador-psicologia-mexicano.md            |    4 +-
+ ...lo-decision-v3_2.md => modelo-decision-v3_4.md} |   94 +-
+ canon/protocolo-sesion-v1_0.md                     |  107 +++
+ ...ayer_of_Decisions__Environment_and_Structure.md |    2 +
+ ...ucation_and_Information_as_Decision_Behavior.md |    2 +
+ data/manifiesto.yaml                               | 1001 ++++++++++++++++++++
+ forense/bitacora.md                                |  561 +++++++++++
+ forense/censo-integridad-v1_0.md                   |  313 ++++++
+ forense/censo-integridad-v1_1.md                   |  156 +++
+ forense/historico/TRANSFER-maestra-7.md            |  169 ++++
+ forense/historico/TRANSFER-maestra-8.md            |  210 ++++
+ forense/historico/TRANSFER-maestra-9.md            |  188 ++++
+ forense/hitoD-R3_2-veredicto-v1_0.md               |  136 +++
+ forense/hitoD-preregistro-v2_0.md                  |  283 ++++++
+ forense/notas/2026-07-29-b-correccion-perimetro.md |  217 +++++
+ .../notas/2026-07-29-c-correccion-curaduria-66.md  |   30 +
+ forense/notas/2026-07-29-d-bloqueo-encig.md        |   52 +
+ forense/notas/2026-07-30-calx-g3-salida.txt        |  184 ++++
+ ...26-07-30-ensanut2024-salud-post-autodirigido.md |   66 ++
+ forense/notas/2026-07-30-fetch-vs-html-crudo.md    |   46 +
+ instrucciones-proyecto-v2.md                       |   24 +-
+ milpa/milpa-plan-v0_1.md                           |    2 +-
+ milpa/procedencia.yaml                             |    7 +-
+ revision-publicacion-2026-07-30.md                 |  463 +++++++++
+ tests/baseline.json                                |  448 +++++++++
+ tests/bitacora.py                                  |  276 ++++++
+ tests/calx_g3.py                                   |  420 ++++++++
+ tests/check.py                                     |  631 +++++++++++-
+ tests/manifiesto.py                                |  339 +++++++
+ tests/validador_registro_ids.py                    |  242 +++++
+ 44 files changed, 7934 insertions(+), 380 deletions(-)
+```
+
+**ADRs añadidos:** ADR-01, ADR-02, ADR-03, ADR-04, ADR-05, ADR-06, ADR-07, ADR-08, ADR-09, ADR-10, ADR-11, ADR-12, ADR-13, ADR-14, ADR-15, ADR-16, ADR-17, ADR-18, ADR-19, ADR-20, ADR-21, ADR-22, ADR-23, ADR-24, ADR-25, ADR-26, ADR-27, ADR-28, ADR-29, ADR-30, ADR-31, ADR-32, ADR-33, ADR-34, ADR-35, ADR-36, ADR-37, ADR-38, ADR-39, ADR-40, ADR-41, ADR-42, ADR-43, ADR-44, ADR-45, ADR-46
+**Líneas de versión modificadas en canon/:** 5
+  - evidencia: "canon/gobernanza-v1_14.md:2 (cabecera: \"### `gobernanza` · **v1.14** · 30 de julio de 2026\") vs :16 (\"**Versión de este documento:** 1.12\"). La misma línea 16 ya trae, entre paréntesis, una nota fechada 29/jul/2026 declarando que esa cifra decía antes '1.1' contradiciendo la cabecera del mismo archivo (que en ese momento ya decía 1.9) -- se corrigió una vez y volvió a quedar desfasada al subir el archivo a v1.14 sin que nadie actualizara el cuerpo."
+  - ### `estado` · **v1.9** · 29 de julio de 2026 · **ÚNICA FUENTE DE ESTADO**
+  - ### `gobernanza` · **v1.14** · 30 de julio de 2026 · **46 ADR**
+  - ### `modelo` · **v3.4** · CANÓNICO OPERATIVO
+  - ### `protocolo` · **v1.0** · 29 de julio de 2026
+
+**Delta de suite:**
+  - Antes: (tests/baseline.json no existía en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: C-01, D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11, E-01, E-02, E-03, E-04, E-05, E-06, I-01, I-02, I-03, I-04, I-05, I-06, I-07, I-08, I-09, I-10, I-11, I-12, I-13, I-14, I-15
+  - Cerrados: (ninguno)
+
+**Qué se decidió:** D-09/D-10 sellados con ADR-47 (gobernanza v1.15): distingo FALSAR REGLA vs CALIBRAR COEFICIENTE. D-10 opcion 1 (olas 2-3), D-09 opcion 3 (elasticidad descriptiva, sin veredicto). Fase C de CAL-G3 desbloqueada con alcance reducido, no corrida en esta sesion. Nota 9 en hitoD-preregistro-v2_0.md. milpa/procedencia.yaml no se toca.
+**Qué quedó bloqueado:** Fase C de CAL-G3 (estimacion real) -- no se corre en esta sesion por instruccion explicita. Revision de las 27 fichas del perimetro por tipo de tarea (D-11 en cola.yaml, abierta sin resolver).
+
+---
+
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/sellar-d09-d10-adr-mncope` · **HEAD inicial (origin/main):** `9301e59203b01243e76fe2de47eaad93667a9514` · **HEAD final:** `80739405e3e69360d165540ff2d58abd137638a0`
+
+**Commits de la sesión:**
+  - `8073940` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · cola.yaml: nueva entrada I-16 -- gobernanza:16 declara estado de programa falso
+  - `e146f30` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · gobernanza v1.15: corrige version del cuerpo (I-12, tercer caso)
+  - `388e3a2` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · gobernanza: v1.14 -> v1.15 -- ADR-47 (falsar regla != calibrar coeficiente), sella D-09/D-10
+  - `d391f58` · Josanoforo · Merge pull request #12 from Josanoforo/sesion/calg3-poder
+  - `58f8a54` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · CAL-G3: aritmética de poder sobre el panel completo — apilar dos transiciones no mueve CAL-C
+  - `1868045` · Josanoforo · Merge pull request #11 from Josanoforo/claude/siete-hallazgos-cola-86sj9r
+  - `16af08a` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · cola: registra cinco hallazgos operativos de la jornada del 30/jul (I-11..I-15)
+  - `64a5d7b` · Josanoforo · Merge pull request #10 from Josanoforo/sesion/calg3
+  - `4a58320` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · Merge origin/main (PR #8 ADR-46, PR #9 ENCUCI) into sesion/calg3
+  - `6b54d7c` · Josanoforo · Merge pull request #9 from Josanoforo/sesion/encuci
+  - `dcbf6ec` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · Merge origin/main (PR #8, ADR-46) into sesion/encuci
+  - `7847920` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · CAL-G3 Fase B: chequeo CAL-X, dos premisas falsas y el confundidor 5 sin cerrar
+  - `981c1ea` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · CAL-G3: chequeo CAL-X del punto 9a, previo a abrir microdatos
+  - `11d9415` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · ENCUCI 2020: registro de BD/FD bajados por navegador; corrige premisa de ENUT/ENCUCI
+  - `686e377` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · CAL-G3 Fase A: descarga y registro de las tres olas de ENNViH/MxFLS
+  - `0817817` · Josanoforo · Merge pull request #8 from Josanoforo/claude/e03-session-contamination-xb1y55
+  - `85f608a` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre -- ADR-46 (unidad de contaminación es la sesión)
+  - `f8a9962` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · gobernanza: v1.13 -> v1.14 -- ADR-46 (unidad de contaminación es la sesión, no la máquina)
+  - `5b7113a` · Josanoforo · Merge pull request #7 from Josanoforo/claude/hitod-perimetro-compara
+  - `82b0961` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre — Hito D Fase 1, Paso 4 (ampliación)
+  - `33b412f` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · manifiesto.py: pliegue '>' con ancho en vez de literal '|' sin envolver
+  - `ce3c284` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · Hito D Fase 1, Paso 4 (ampliación): serie completa de ENCIG/ENIF/ENVIPE/ENIGH
+  - `45be175` · Josanoforo · Merge pull request #6 from Josanoforo/claude/hitod-perimetro-compara
+  - `d0d9e07` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre — Hito D Fase 1, Pasos 1-3
+  - `feaf38e` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · Hito D Fase 1 (parcial, Pasos 1-3): perímetro de red, tabla de fuentes, --compara
+  - `dc5fd0f` · Josanoforo · Merge pull request #5 from Josanoforo/claude/manifiesto-registra-verifica
+  - `095a2a2` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre — resolución de conflictos, D-07, I-09
+  - `5a9263d` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · C1: declara desvío de alcance y el hueco de --contrasta
+  - `beac5eb` · Josanoforo · Merge origin/main (PR #4: D-05/ADR-45) into C1
+  - `7f9fd96` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre de la sesión C1 (manifiesto.py)
+  - `b65f44f` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · C1: tests/manifiesto.py — --registra y --verifica de procedencia de datos
+  - `4054c35` · Josanoforo · Merge pull request #4 from Josanoforo/claude/falsacion-vocabulary-zfjvr4
+  - `a217d32` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · bitacora: cierre de sesión D-05/ADR-45
+  - `adb3e62` · Claude · D-05: fija el vocabulario de "prueba de falsación" (ADR-45)
+  - `584f806` · Josanoforo · Merge pull request #3 from Josanoforo/claude/f2-f4-portada-adr-7fjpln
+  - `7d92f5b` · Claude · bitácora: bloque de cierre — escalada de D-05, sesión F2/F4 completa
+  - `a528654` · Claude · cola: D-05 -- "prueba de falsación corrida" sin referente único, escalado a mesa
+  - `46e9cef` · Claude · bitácora: bloque de cierre de la sesión F2/F4 (portada, ADR-44)
+  - `bdb1b77` · Claude · cola: F7.b y F6/T-README entran a la cola, sin abrirlas
+  - `2d1d866` · Claude · gobernanza: v1.11 -> v1.12 -- ADR-44 (publicación del repositorio sin ADR previo)
+  - `856639c` · Claude · README: corrige README:40 contra el registro de veredictos archivados
+  - `25abb83` · Josanoforo · Merge pull request #2 from Josanoforo/claude/refreeze-baseline-pr1-4zha5w
+  - `1ee9f29` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · bitácora: el borrado de la rama del PR #1 quedó bloqueado, no hecho
+  - `902ab75` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · bitácora: bloque de cierre del refreeze post-PR #1
+  - `84aaae3` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · cola: I-01 sube a casos=2 — el refreeze post-PR #1 como evidencia para A1
+  - `78288a2` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · estado: declaración vigente de la suite a la corrida real (19 FAIL · 87 WARN)
+  - `74027d5` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · Refreeze de línea base tras el merge del PR #1 (main 22a7d9d)
+  - `a0ae0ad` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · check.py: buckets propios para las 3 entradas del refreeze post-PR #1
+  - `22a7d9d` · Josanoforo · Merge pull request #1 from Josanoforo/claude/psicologia-mexicano-publication-review-h5h6ic
+  - `f4bef94` · Josanoforo · Nota de reconciliación: LICENSE-CORPUS.md descartado (D-05)
+  - `10239cd` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · revisión estratégica de publicación (propuesta sin sello, ADR-39 aplicado al encargo)
+  - `4e174dd` · Josanoforo · Add files via upload
+  - `7fa7481` · Josanoforo · Delete USO-ACEPTABLE.md
+  - `83db9c9` · Josanoforo · Delete CITATION.cff
+  - `5fab073` · Josanoforo · Delete AVISO-DE-ALCANCE.md
+  - `29f08b4` · Josanoforo · Delete LICENSE
+  - `a946db5` · Josanoforo · Delete AUTHORSHIP.md
+  - `acd65af` · Josanoforo · Add files via upload
+  - `fb1f333` · Josanoforo · Add files via upload
+  - `c3adff8` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: segundo bloque de cierre
+  - `b73d1dd` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · cierre del gate (segunda vuelta): bucket propio TRANSFER-9, estado sincronizado, cola +2
+  - `c6dd7ee` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: primer bloque de cierre + fix de bitacora.py --cierra
+  - `7dd1c5a` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · Parte 2: aterriza protocolo-sesion, cola.yaml y tests/bitacora.py
+  - `c42abc9` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · Parte 1: cierre del gate T17 -- estado sincronizado, deuda congelada, .gitignore
+  - `97b9f2b` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: T17 ve su propio objeto -- escanea hitoD-preregistro, no solo estado
+  - `d123f49` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · gobernanza: v1.10 -> v1.11 -- ADR-42 (qué significa el verde) y ADR-43 (esquema de co-autoría)
+  - `24df4b3` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · hitoD: adenda 1 a CAL-G3 -- desenlace primario a cuatro estados con molde ENIF
+  - `c9e67bd` · Jonas · co: Claude Fable 5 <noreply@anthropic.com> · hitoD: ficha CAL-G3 -- pre-registro de estimación propia de coeficiente de generador
+  - `015af3a` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: T03 exime citas de renombre; --freeze con conteo derivado (18 FAIL · 82 WARN)
+  - `2bf50b2` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · gobernanza: v1.9 -> v1.10 -- ADR-41 (reglas de sesión sin archivo, autoría del repo)
+  - `c68feab` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · instrucciones-proyecto-v2.md: v2 -> v2.2 -- procedencia documental y hallazgos de Hito D
+  - `afa7c7f` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · hitoD-R3.2: veredicto B -- gate inalcanzable por construcción, escala no valor
+  - `771ea26` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: T18 T-PASO2-EJECUCION -- veredictos en bloque designado (ADR-40)
+  - `d26cfde` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: newest() por versión no lexicográfico; T17 asevera unicidad
+  - `de3f22a` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · estado: consolida declaración canónica de cobertura del pre-registro (§4·S2)
+  - `1a56210` · Claude · co: Claude <noreply@anthropic.com> · tests: T17 T-FICHAS-COUNT -- declarado en estado == encabezados ## R reales
+  - `90eb140` · Claude · co: Claude <noreply@anthropic.com> · hitoD-preregistro: revierte prefijo de ruta en 3 citas (T03 no las ve); documenta el hueco
+  - `b28b144` · Claude · co: Claude <noreply@anthropic.com> · hitoD-preregistro: ficha de R3.2, pre-registrada antes de abrir ENCIG
+  - `9fb8473` · Claude · co: Claude <noreply@anthropic.com> · tests: T14/T15/T16 -- convierte en test 4 de las 7 cifras que quedaron a mano
+  - `e3d483b` · Claude · co: Claude <noreply@anthropic.com> · baseline.json: actualiza HEAD al commit real que describe el arbol
+  - `c377b97` · Claude · co: Claude <noreply@anthropic.com> · tests/baseline.json: congela 18 FAIL / 82 WARN tras la sesion de correcciones
+  - `31fff96` · Claude · co: Claude <noreply@anthropic.com> · Censo de integridad: corrige causa raiz A/C, casos B/D/F, mueve documentos muertos, incorpora ADR-38/39
+  - `f320550` · Claude · CI: usa el modo linea base en vez de check.py sin banderas
+  - `3375a28` · Claude · baseline.json: actualiza HEAD al commit real que describe el arbol
+  - `26e7ef4` · Claude · T03: normaliza punto/guion bajo, declara historicos, congela linea base P1
+  - `69357d4` · Claude · Censo v1.1: procedencia por commit, denominador eb92d99/9efa61f, cadena del caso pelon
+  - `9dbff7a` · Claude · Anade censo-integridad-v1_0: auditoria mecanica completa de canon/ y forense/
+  - `9efa61f` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · Corrige rotulo del perimetro del Hito D + registro congelado de IDs
+  - `eb92d99` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · Anade TRANSFER-maestra-8.md: cierre de sesion del 29/jul
+  - `8254fde` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · Anade TRANSFER-maestra-7.md: documento de traspaso, estaba fuera del repo
+  - `7d6535e` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · estado v1.8: corrige "cubre las 27" y registra la auditoria de perimetro
+  - `a79227e` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · Nota forense: verificacion del perimetro y cobertura del pre-registro
+
+**Archivos tocados:**
+```
+.github/workflows/verify.yml                       |    4 +-
+ .gitignore                                         |   16 +
+ AUTHORSHIP.md                                      |   84 ++
+ AVISO-DE-ALCANCE.md                                |  106 +++
+ CITATION.cff                                       |   35 +
+ CONTRIBUTING.md                                    |   12 +-
+ LICENSE                                            |   65 ++
+ README.md                                          |    6 +-
+ USO-ACEPTABLE.md                                   |   92 ++
+ canon/cola.yaml                                    |  393 ++++++++
+ ...do-programa-v1_7.md => estado-programa-v1_9.md} |   52 +-
+ canon/glosario-v5_6.md                             |    6 +-
+ canon/gobernanza-v1_15.md                          |  478 ++++++++++
+ canon/gobernanza-v1_8.md                           |  336 -------
+ canon/integrador-psicologia-mexicano.md            |    4 +-
+ ...lo-decision-v3_2.md => modelo-decision-v3_4.md} |   94 +-
+ canon/protocolo-sesion-v1_0.md                     |  107 +++
+ ...ayer_of_Decisions__Environment_and_Structure.md |    2 +
+ ...ucation_and_Information_as_Decision_Behavior.md |    2 +
+ data/manifiesto.yaml                               | 1001 ++++++++++++++++++++
+ forense/bitacora.md                                |  726 ++++++++++++++
+ forense/censo-integridad-v1_0.md                   |  313 ++++++
+ forense/censo-integridad-v1_1.md                   |  156 +++
+ forense/historico/TRANSFER-maestra-7.md            |  169 ++++
+ forense/historico/TRANSFER-maestra-8.md            |  210 ++++
+ forense/historico/TRANSFER-maestra-9.md            |  188 ++++
+ forense/hitoD-R3_2-veredicto-v1_0.md               |  136 +++
+ forense/hitoD-preregistro-v2_0.md                  |  301 ++++++
+ forense/notas/2026-07-29-b-correccion-perimetro.md |  217 +++++
+ .../notas/2026-07-29-c-correccion-curaduria-66.md  |   30 +
+ forense/notas/2026-07-29-d-bloqueo-encig.md        |   52 +
+ forense/notas/2026-07-30-calx-g3-salida.txt        |  184 ++++
+ ...26-07-30-ensanut2024-salud-post-autodirigido.md |   66 ++
+ forense/notas/2026-07-30-fetch-vs-html-crudo.md    |   46 +
+ instrucciones-proyecto-v2.md                       |   24 +-
+ milpa/milpa-plan-v0_1.md                           |    2 +-
+ milpa/procedencia.yaml                             |    7 +-
+ revision-publicacion-2026-07-30.md                 |  463 +++++++++
+ tests/baseline.json                                |  448 +++++++++
+ tests/bitacora.py                                  |  276 ++++++
+ tests/calx_g3.py                                   |  420 ++++++++
+ tests/check.py                                     |  631 +++++++++++-
+ tests/manifiesto.py                                |  339 +++++++
+ tests/validador_registro_ids.py                    |  242 +++++
+ 44 files changed, 8161 insertions(+), 380 deletions(-)
+```
+
+**ADRs añadidos:** ADR-01, ADR-02, ADR-03, ADR-04, ADR-05, ADR-06, ADR-07, ADR-08, ADR-09, ADR-10, ADR-11, ADR-12, ADR-13, ADR-14, ADR-15, ADR-16, ADR-17, ADR-18, ADR-19, ADR-20, ADR-21, ADR-22, ADR-23, ADR-24, ADR-25, ADR-26, ADR-27, ADR-28, ADR-29, ADR-30, ADR-31, ADR-32, ADR-33, ADR-34, ADR-35, ADR-36, ADR-37, ADR-38, ADR-39, ADR-40, ADR-41, ADR-42, ADR-43, ADR-44, ADR-45, ADR-46, ADR-47
+**Líneas de versión modificadas en canon/:** 5
+  - evidencia: "canon/gobernanza-v1_14.md:2 (cabecera: \"### `gobernanza` · **v1.14** · 30 de julio de 2026\") vs :16 (\"**Versión de este documento:** 1.12\"). La misma línea 16 ya trae, entre paréntesis, una nota fechada 29/jul/2026 declarando que esa cifra decía antes '1.1' contradiciendo la cabecera del mismo archivo (que en ese momento ya decía 1.9) -- se corrigió una vez y volvió a quedar desfasada al subir el archivo a v1.14 sin que nadie actualizara el cuerpo. TERCER CASO, el mismo día: el commit que registró esta entrada (388e3a2, sella D-09/D-10 con ADR-47, sube gobernanza a v1.15/47 ADR) subió el archivo de v1.14 a v1.15 sin tocar la línea 16, que seguía en '1.12' -- el defecto reapareció en el propio commit que lo catalogó como I-12, antes de que el PR #13 se fusionara. Detectado por el autor revisando el diff, no por ningún test (verificado: T13 solo exige presencia de los campos ARCHIVO/NOMBRE ESTABLE, no coincidencia de valor -- no habría atrapado esto). canon/gobernanza-v1_15.md:90 tenía además una segunda ocurrencia de la misma familia, no catalogada hasta ahora: la fila de `gobernanza-programa.md` v1.0 en la tabla de §2 se autocitaba con el nombre de archivo YA renombrado y desfasado (\"hoy gobernanza-v1.12.md\", sin backticks para no leerse como cita viva) -- un segundo campo autodeclarado, en el mismo archivo, con el mismo desfase, corregido en el mismo commit."
+  - ### `estado` · **v1.9** · 29 de julio de 2026 · **ÚNICA FUENTE DE ESTADO**
+  - ### `gobernanza` · **v1.15** · 30 de julio de 2026 · **47 ADR**
+  - ### `modelo` · **v3.4** · CANÓNICO OPERATIVO
+  - ### `protocolo` · **v1.0** · 29 de julio de 2026
+
+**Delta de suite:**
+  - Antes: (tests/baseline.json no existía en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: C-01, D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11, E-01, E-02, E-03, E-04, E-05, E-06, I-01, I-02, I-03, I-04, I-05, I-06, I-07, I-08, I-09, I-10, I-11, I-12, I-13, I-14, I-15, I-16
+  - Cerrados: (ninguno)
+
+**Qué se decidió:** Nueva entrada I-16 en cola.yaml: gobernanza:16 afirma en presente 'modelo v2 y glosario v5 consolidados' -- falso (modelo va en v3.4, glosario en v5.6), congelado desde v1.1. Distinguida explicitamente de I-12: I-12 es sintactico (version vs nombre de archivo, mecanico, T19 lo atrapa); I-16 es semantico (prosa de estado envejecida, T19 NO lo atraparia). Barrido de canon/milpa/forense por otras frases de estado sin fecha: solo se encontro otra (estado-programa:91, Fase 1 pospuesta) y sigue siendo cierta. No se toco la linea de gobernanza -- queda para mesa por instruccion explicita.
+**Qué quedó bloqueado:** La reescritura de gobernanza:16 (decision de contenido, no mecanica) -- queda para mesa. I-16 no se resuelve en esta sesion.
+
+---
+
