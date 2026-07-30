@@ -892,3 +892,34 @@ data/manifiesto.yaml | 524 +++++++++++++++++++++++++++++++++++++++++++++++++++
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/new-session-gdstpo` · **HEAD inicial (origin/main):** `78d5d54f8037569ef0acfbca8e59b2ba4922f0f6` · **HEAD final:** `ef9ac0c427eb989e85b0994e40bc7d6e37ddd027`
+
+**Commits de la sesión:**
+  - `ef9ac0c` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · Hito E: recoge el plan de campaña (tipo 3, sin sello) + verificación de premisas
+
+**Archivos tocados:**
+```
+canon/cola.yaml                                    |  33 +++
+ forense/hitoE-campana-medicion-v2_0.md             | 232 +++++++++++++++++++++
+ .../2026-07-30-verificacion-premisas-hitoE.md      | 153 ++++++++++++++
+ 3 files changed, 418 insertions(+)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: D-12, E-07, I-17, I-18
+  - Cerrados: D-05, D-06, D-07, D-08, D-09, D-10, E-04, E-05, E-06, I-08, I-09
+
+**Qué se decidió:** Se recogió al repo el plan de Hito E (adjunto de chat, tipo 3) VERBATIM y sin sello, con cabecera de procedencia, y se verificaron sus premisas contra 78d5d54 como exige instrucciones v2.1. Catorce afirmaciones sobre el estado del repo: DIEZ se sostienen -- incluidas las dos que cargan la tesis del documento (CAL-G3 declaró la opción (b), hitoD-preregistro-v2_0.md:511; R3.2 dejó el motor 4x-34x fuera de escala). CUATRO no: (1) los 15 coeficientes se reducen a NUEVE constructos, no ocho -- el plan lo declara derivado en su propio módulo de auditoría y omite radio_confianza (G1 y G5), que él mismo nombra en §8; propaga a la puerta E0->E1 que pre-registra '>=5 de 8', y 5/8 no es 5/9; (2) confianza_institucional no es un constructo sino un vector de SEIS (ADR-28.b) -- la mitigación de E2 'operacionalización única por constructo' derogaría ese ADR sin nombrarlo, y el vector sigue SIN POBLAR (procedencia.yaml:65); (3) '61 fuentes' no existe en ningún archivo -- reales: 56 entradas de manifiesto (55 sin la nota de clasificación), 27 de ellas paquetes de UNA encuesta, 6 programas distintos, 36 documentos de corpus; aparece dentro de una obligación de exhaustividad de E0, que así no se puede auditar; (4) 'ENSANUT 20 archivos bajados, desbloquea 4 fichas' -- data/raw/ no existe, el manifiesto no tiene ninguna entrada de ENSANUT, la nota de esa sesión inventaría 10 filas y prohíbe la descarga sin mesa, R4.2 es la única ficha asociada, y bajo ADR-46 no es paralelo sino dependencia de E1 por la misma sesión limpia. NO se corrigió el cuerpo del plan: instrucciones v2.1 prohíbe ajustar el texto para que cuadre, y los números tocados son puertas de decisión. Registrado en cola.yaml I-17 (instrumento), D-12 (decision), E-07 (evidencia). Y un hallazgo de INSTRUMENTO propio, I-18: bitacora.py --cierra tiene dos defectos que fabrican un bloque falso -- (a) deriva contra el ref LOCAL origin/main sin hacer fetch (el primer intento de esta sesión declaró 46 archivos, 8747 inserciones y los 47 ADRs como trabajo de la sesión, porque el ref estaba en 9301e59 y el remoto en 78d5d54; se descartó sin comitear, se hizo fetch y se regeneró: 3 archivos, 418 inserciones, ningún ADR); (b) tests/bitacora.py:235-237 calcula 'Cerrados' filtrando por el estado DESPUÉS sin compararlo con el estado ANTES, así que reporta como cerradas por la sesión las once que ya estaban cerradas en 78d5d54 -- esta sesión cerró CERO. El defecto (b) sigue presente en el bloque de abajo: su línea 'Cerrados' es falsa y se lee junto a I-18.
+**Qué quedó bloqueado:** Las cuatro entradas nuevas quedan abiertas y sin resolver, deliberadamente. Las tres del plan: corregir el denominador de la puerta E0->E1 y decidir si confianza_institucional se mide como uno o como seis son decisiones de mesa, no correcciones de una sesión de verificación. La de instrumento (I-18): bitacora.py NO se arregló en esta sesión -- protocolo §4 prohibición 1 (no se abre trabajo de evidencia y de instrumento en la misma sesión) y prohibición 2 (no se congela una línea base en la misma corrida que cambió el medidor); el fetch se hizo a mano, el script sigue sin hacerlo. El plan de Hito E sigue SIN SELLO -- no hay ADR y su propia cabecera declara 'propuesta, no rige sin ADR'; nada de E0-E4 está aprobado ni se ejecutó. Referencia colgante no resuelta: 'D1' (plan §6) no existe en el repo; el candidato más cercano por contenido es ADR-44 (publicación del repositorio), sin confirmar. Esta sesión NO tocó ninguna fuente externa (sin petición de red a ningún portal de datos, sin descargas): bajo la condición verificable de ADR-46 no queda inhabilitada para pre-registrar contra nada. Pendiente ajeno: la sesión que está bajando ENSANUT debe cerrar y declarar su propio alcance -- hasta entonces '20 archivos' es tipo (3) y no entra al canon como hecho.
+
+---
+
