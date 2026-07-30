@@ -175,7 +175,7 @@ def t03_dangling_refs():
             for m in re.findall(r"`([A-Za-z0-9_\-áéíóúñÁÉÍÓÚÑ.]+\.(?:md|yaml))`", l):
                 if m in existing or _normalize_version_dots(m) in existing or m in HISTORICOS:
                     continue
-                if re.search(r"borrad|BORRAD|REEMPLAZA|elimin|~~|superced|supersede|v1, borrado|fusionad", l, re.I):
+                if re.search(r"borrad|BORRAD|REEMPLAZA|elimin|~~|superced|supersede|v1, borrado|fusionad|renombr", l, re.I):
                     continue
                 warn("T03", f"{rel(p)}:{i} cita `{m}`, que no existe")
 
