@@ -1,0 +1,226 @@
+CAL-G3 · FASE C · ESTIMACIÓN DESCRIPTIVA · VENTANA 2005-2012
+==============================================================================
+
+Panel ENNViH/MxFLS, olas 2 (2005-06) y 3 (2009-12). La ola 1 queda
+FUERA (D-10, opción 1): su módulo TB no es comparable y el instrumento
+fabrica transiciones. Entregable DESCRIPTIVO (D-09, opción 3): sin
+veredicto de falsación, sin celda CAL, sin entrada al conteo de
+corridas. No calibra el -0.60 (ficha, punto 2, opción b).
+
+El módulo OC de la ola 3 no está en el manual de codificación, así que
+el confundidor de OFERTA queda sin descartar y aplica la degradación
+pre-registrada: NINGUNA cifra de este documento se lee como preferencia
+temporal. Se lee como conducta bajo restricción de oferta.
+
+TODA cifra de este documento pertenece a la ventana 2005-2012.
+
+autoprueba de estimadores: OK (logit=log-OR, EE=Woolf, MCO exacto, ponderado==replicado)
+
+------------------------------------------------------------------------------
+1 · FLUJO DE MUESTRA
+------------------------------------------------------------------------------
+  jefes_ola2                                       8294
+  jefes_ola3                                       9068
+  ola3_ronda_C_no_enlazable                         192
+  jefes_en_ambas_olas                              6817
+  elegibles_basal_ola2                             4194
+  elegible_sin_jefatura_o_ausente_en_ola3           581
+  excluidos_sin_entidad_federativa                    0
+  sin_TB33_en_ola3                                 1173
+  sin_CRH_en_ola3                                    16
+  composicion_no_construible_ola3                    20
+  muestra_analitica                                2404
+
+  Atrición efectiva sobre elegibles basales: 1790 de 4194 = 42.7%
+
+  Observaciones excluidas por levantamiento fuera de entidad federativa
+  mexicana: 0. El marcador es COTA INFERIOR — ver la nota.
+
+  Incidencia de "Otro" (crh01_1k), tratado como faltante para el estado
+  de composición (Adenda 1 c), sobre el módulo CRH completo:
+    ola 2 (2005-06): 45 de 8134 hogares = 0.55%
+    ola 3 (2009-12): 30 de 9092 hogares = 0.33%
+
+------------------------------------------------------------------------------
+2 · COMPOSICIÓN BASAL (ola 2): PERDIDOS vs RETENIDOS
+------------------------------------------------------------------------------
+  retenidos (n=2404)
+    sexo del jefe:       hombre=87.8%, mujer=12.2%
+    formalidad basal:    formal=40.1%, informal=15.6%, ninguna=44.3%
+    acceso formal basal: 9.1%
+    edad media:          42.5 (n con dato=2397)
+    nivel educativo ls14: 1.0=7.6%, 2.0=0.2%, 3.0=41.2%, 4.0=25.6%, 5.0=1.2%, 6.0=11.0%, 7.0=0.5%, 8.0=1.1%, 9.0=10.6%, 10.0=0.6%, 98.0=0.2%, None=0.2%
+
+  perdidos (n=1790)
+    sexo del jefe:       hombre=83.1%, mujer=16.9%
+    formalidad basal:    formal=36.0%, informal=15.6%, ninguna=48.3%
+    acceso formal basal: 8.5%
+    edad media:          45.4 (n con dato=1781)
+    nivel educativo ls14: 1.0=10.0%, 2.0=0.3%, 3.0=43.2%, 4.0=22.9%, 5.0=0.8%, 6.0=9.5%, 7.0=0.6%, 8.0=0.9%, 9.0=9.9%, 10.0=0.9%, 98.0=0.9%, None=0.2%
+
+  Dirección del sesgo, declarada ANTES de medir (ficha, punto 6): si
+  los perdidos son sistemáticamente más informales, el sesgo va CONTRA
+  encontrar el efecto. Las cifras de arriba permiten verificarlo.
+
+------------------------------------------------------------------------------
+3 · TRANSICIÓN DE LOS CUATRO ESTADOS (Adenda 1 b), muestra analítica
+------------------------------------------------------------------------------
+  filas = estado del hogar en 2005-06 · columnas = en 2009-12
+                     ninguno  solo_informal   mixto  solo_formal    total
+  ninguno               1841             78       5          113     2037
+  solo_informal          111             23       1           13      148
+  mixto                   10              1       0            0       11
+  solo_formal            146             14       1           47      208
+  total                 2108            116       7          173     2404
+
+  "Algún acceso formal" (mixto o solo formal), 2005-2012:
+    ola 2: 9.11%   ola 3: 7.49%   (n=2404)
+
+  Transición de formalidad del jefe:
+    formal -> formal           686
+    formal -> informal          50
+    formal -> ninguna          228
+    informal -> formal          90
+    informal -> informal        83
+    informal -> ninguna        201
+    ninguna -> formal          154
+    ninguna -> informal        146
+    ninguna -> ninguna         766
+
+------------------------------------------------------------------------------
+4 · EFECTOS FIJOS DE HOGAR SOBRE LA TRANSICIÓN 2005-06 -> 2009-12
+------------------------------------------------------------------------------
+  beta(pp): probabilidad lineal con EF de hogar (== MCO en primeras
+  diferencias); efecto sobre P(algún acceso formal) en puntos
+  porcentuales; EE robusto HC1.
+  OR: logit condicional de Chamberlain. n.disc = hogares que cambian de
+  desenlace; n.inf = de ésos, los que ADEMÁS cambian de exposición —
+  los únicos que identifican el coeficiente.
+
+==============================================================================
+EXPOSICIÓN: jefe-literal
+  formalidad del jefe, definición literal del punto (4): FORMAL = contrato escrito o IMSS; INFORMAL = contrato verbal sin IMSS; "ninguna de las anteriores" queda FUERA del contraste
+==============================================================================
+
+  DESENLACE: base — algún acceso formal = Banco o cuentas voluntarias de afores (Adenda 1 c/e)
+
+  ponderador                                      n  beta(pp)       EE IC95%               
+  --------------------------------------------------------------------------
+  sin ponderar                                  909      0.60     2.29 [-3.88, 5.09]
+  fac_2l ola 2  (long., Libro II, hogar)        803      2.14     3.32 [-4.37, 8.65]
+  fac_2l ola 3  (long., Libro II, hogar)        803      2.33     3.40 [-4.33, 9.00]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)     801      1.92     3.31 [-4.57, 8.41]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)     794      1.71     3.29 [-4.74, 8.15]
+
+  logit condicional                          n.disc  n.inf       OR IC95% del OR        
+  --------------------------------------------------------------------------
+  sin ponderar                                  149     10    1.053 [0.316, 3.515]
+  fac_2l ola 2  (long., Libro II, hogar)        136      8    1.551 [0.352, 6.831]
+  fac_2l ola 3  (long., Libro II, hogar)        136      8    1.600 [0.374, 6.847]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)     135      8    1.464 [0.336, 6.382]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)     131      7    1.358 [0.310, 5.958]
+
+  DESENLACE: sens-cajas — única sensibilidad admitida (Adenda 1 d): cooperativa + caja de ahorro + cajas solidarias pasan a FORMAL
+
+  ponderador                                      n  beta(pp)       EE IC95%               
+  --------------------------------------------------------------------------
+  sin ponderar                                  909     -0.40     2.70 [-5.69, 4.90]
+  fac_2l ola 2  (long., Libro II, hogar)        803     -1.00     3.94 [-8.73, 6.73]
+  fac_2l ola 3  (long., Libro II, hogar)        803     -0.89     4.05 [-8.83, 7.04]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)     801     -1.19     3.93 [-8.88, 6.51]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)     794     -1.44     3.91 [-9.10, 6.23]
+
+  logit condicional                          n.disc  n.inf       OR IC95% del OR        
+  --------------------------------------------------------------------------
+  sin ponderar                                  193     14    0.822 [0.285, 2.368]
+  fac_2l ola 2  (long., Libro II, hogar)        172     11    0.774 [0.206, 2.906]
+  fac_2l ola 3  (long., Libro II, hogar)        172     11    0.795 [0.211, 2.989]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)     172     11    0.746 [0.200, 2.777]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)     168     10    0.694 [0.176, 2.735]
+
+==============================================================================
+EXPOSICIÓN: jefe-binaria
+  formalidad del jefe, lectura binaria: FORMAL vs NO-FORMAL (conserva "ninguna de las anteriores" en el grupo de comparación)
+==============================================================================
+
+  DESENLACE: base — algún acceso formal = Banco o cuentas voluntarias de afores (Adenda 1 c/e)
+
+  ponderador                                      n  beta(pp)       EE IC95%               
+  --------------------------------------------------------------------------
+  sin ponderar                                 2404      0.09     1.49 [-2.84, 3.01]
+  fac_2l ola 2  (long., Libro II, hogar)       2177     -2.29     3.17 [-8.50, 3.91]
+  fac_2l ola 3  (long., Libro II, hogar)       2177     -2.60     3.26 [-8.99, 3.79]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)    2172     -2.53     3.27 [-8.93, 3.88]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)    2143     -2.60     3.34 [-9.14, 3.93]
+
+  logit condicional                          n.disc  n.inf       OR IC95% del OR        
+  --------------------------------------------------------------------------
+  sin ponderar                                  303     61    1.003 [0.607, 1.660]
+  fac_2l ola 2  (long., Libro II, hogar)        279     57    0.736 [0.345, 1.570]
+  fac_2l ola 3  (long., Libro II, hogar)        279     57    0.710 [0.332, 1.520]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)     278     57    0.719 [0.334, 1.547]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)     269     54    0.702 [0.322, 1.528]
+
+  DESENLACE: sens-cajas — única sensibilidad admitida (Adenda 1 d): cooperativa + caja de ahorro + cajas solidarias pasan a FORMAL
+
+  ponderador                                      n  beta(pp)       EE IC95%               
+  --------------------------------------------------------------------------
+  sin ponderar                                 2404     -0.74     1.70 [-4.08, 2.59]
+  fac_2l ola 2  (long., Libro II, hogar)       2177     -3.96     3.27 [-10.37, 2.45]
+  fac_2l ola 3  (long., Libro II, hogar)       2177     -4.20     3.37 [-10.80, 2.40]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)    2172     -4.15     3.36 [-10.75, 2.44]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)    2143     -3.97     3.43 [-10.71, 2.76]
+
+  logit condicional                          n.disc  n.inf       OR IC95% del OR        
+  --------------------------------------------------------------------------
+  sin ponderar                                  394     79    0.884 [0.563, 1.387]
+  fac_2l ola 2  (long., Libro II, hogar)        359     72    0.647 [0.335, 1.251]
+  fac_2l ola 3  (long., Libro II, hogar)        359     72    0.633 [0.326, 1.229]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)     359     72    0.639 [0.328, 1.247]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)     349     68    0.643 [0.325, 1.271]
+
+==============================================================================
+EXPOSICIÓN: algun-miembro
+  sensibilidad pre-registrada del punto (4): expuesto = algún miembro del hogar es FORMAL
+==============================================================================
+
+  DESENLACE: base — algún acceso formal = Banco o cuentas voluntarias de afores (Adenda 1 c/e)
+
+  ponderador                                      n  beta(pp)       EE IC95%               
+  --------------------------------------------------------------------------
+  sin ponderar                                 2404      1.57     1.30 [-0.97, 4.11]
+  fac_2l ola 2  (long., Libro II, hogar)       2177      1.48     2.10 [-2.63, 5.60]
+  fac_2l ola 3  (long., Libro II, hogar)       2177      1.07     2.20 [-3.24, 5.38]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)    2172      1.43     2.11 [-2.69, 5.56]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)    2143      1.43     2.16 [-2.81, 5.67]
+
+  logit condicional                          n.disc  n.inf       OR IC95% del OR        
+  --------------------------------------------------------------------------
+  sin ponderar                                  303     63    1.334 [0.806, 2.209]
+  fac_2l ola 2  (long., Libro II, hogar)        279     60    1.303 [0.569, 2.984]
+  fac_2l ola 3  (long., Libro II, hogar)        279     60    1.198 [0.510, 2.815]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)     278     60    1.293 [0.569, 2.938]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)     269     57    1.269 [0.541, 2.974]
+
+  DESENLACE: sens-cajas — única sensibilidad admitida (Adenda 1 d): cooperativa + caja de ahorro + cajas solidarias pasan a FORMAL
+
+  ponderador                                      n  beta(pp)       EE IC95%               
+  --------------------------------------------------------------------------
+  sin ponderar                                 2404      1.30     1.47 [-1.59, 4.19]
+  fac_2l ola 2  (long., Libro II, hogar)       2177      0.55     2.16 [-3.69, 4.78]
+  fac_2l ola 3  (long., Libro II, hogar)       2177      0.13     2.28 [-4.33, 4.59]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)    2172      0.51     2.16 [-3.72, 4.74]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)    2143      0.72     2.22 [-3.64, 5.08]
+
+  logit condicional                          n.disc  n.inf       OR IC95% del OR        
+  --------------------------------------------------------------------------
+  sin ponderar                                  394     81    1.171 [0.746, 1.839]
+  fac_2l ola 2  (long., Libro II, hogar)        359     75    1.034 [0.524, 2.038]
+  fac_2l ola 3  (long., Libro II, hogar)        359     75    0.965 [0.479, 1.944]
+  fac_3al ola 2 (long., Libro IIIA, indiv.)     359     75    1.033 [0.526, 2.030]
+  fac_3al ola 3 (long., Libro IIIA, indiv.)     349     71    1.045 [0.516, 2.116]
+
+==============================================================================
+Toda cifra de este documento pertenece a la ventana 2005-2012. Sin ese
+calificador pegado, la cifra se degrada al citarse.
+==============================================================================
