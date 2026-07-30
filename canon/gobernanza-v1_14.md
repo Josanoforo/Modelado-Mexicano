@@ -1,11 +1,11 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.13** · 30 de julio de 2026 · **45 ADR**
+### `gobernanza` · **v1.14** · 30 de julio de 2026 · **46 ADR**
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `gobernanza-v1.13.md` |
-> | **REEMPLAZA A** | `gobernanza-v1.12.md` — **borrar** |
-> | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · §4 trae ADR-44 (publicación del repositorio, sin registro previo) y ADR-45 (vocabulario de "prueba de falsación", D-05) |
+> | **ARCHIVO** | `gobernanza-v1.14.md` |
+> | **REEMPLAZA A** | `gobernanza-v1.13.md` — **borrar** |
+> | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · §4 trae ADR-44 (publicación del repositorio, sin registro previo), ADR-45 (vocabulario de "prueba de falsación", D-05) y ADR-46 (unidad de contaminación es la SESIÓN, no la máquina — corrige `cola.yaml` E-03) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
 
@@ -360,6 +360,31 @@ Cuando una validación rompe o degrada una afirmación:
 
 ---
 
+**ADR-46 · La unidad de contaminación es LA SESIÓN, no la máquina ni el modelo — dos niveles, condición verificable.** Decisión de mesa del autor, 30/jul/2026, sobre la evidencia registrada en `cola.yaml` E-03 (declaraba "esta máquina queda INHABILITADA para pre-registrar contra las encuestas efectivamente descargadas" tras la tanda de Hito D Fase 1, ampliación del Paso 4). El texto original erraba en dos direcciones a la vez:
+
+**(a) Demasiado amplio.** Un modelo no retiene contexto entre sesiones. Una sesión nueva arrancada en frío en la misma máquina no ha leído nada de lo que esa máquina procesó antes y está tan limpia como una sesión en la nube. Inhabilitar hardware desperdicia una vertiente entera del programa: bajo ese criterio, cada tanda de descargas quema la única máquina con salida real a INEGI.
+
+**(b) Demasiado estrecho en lo que sí importa.** Lo que contamina no es dónde corrió el proceso de descarga: es qué puede LEER una sesión nueva en ese entorno — los payloads en `data/raw/`, y la bitácora que describe qué se exploró de la estructura de la fuente antes de bajarlos. Eso se controla con instrucción de encargo (qué archivos toca una sesión), no con qué hardware la ejecuta.
+
+**Criterio fijado.**
+
+**(1) Unidad de contaminación: LA SESIÓN — su contexto de lectura acumulado —, nunca la máquina ni el modelo que la corre.** Dos sesiones en la misma máquina, o la misma sesión reanudada en otra, no comparten contaminación por compartir hardware o proveedor de modelo; comparten contaminación solo si una leyó lo que la otra escribió.
+
+**(2) Dos niveles de contacto con una fuente, que el texto original de `cola.yaml` E-03 colapsaba en uno:**
+- **Descarga ciega** — url, sha256, tamaño, formato del payload. No contamina: la sesión no aprende nada sobre el CONTENIDO de la fuente por el solo hecho de haber movido bytes con una URL ya conocida de antemano.
+- **Exploración de estructura** — descubrir qué ediciones existen, probar patrones de nombre de archivo, leer cómo el portal organiza sus descargas (títulos de página, JSON-LD, navegación, acordeones). Contamina PARCIALMENTE: no es leer variables ni valores, pero sí es aprender algo sobre la fuente que una sesión sin ese contexto no sabría. Declarar hasta dónde llegó la exploración es obligatorio — no basta con declarar que hubo descarga.
+
+**(3) Condición verificable, que reemplaza la prohibición de hardware.** Una sesión puede pre-registrar contra una fuente **si y solo si** no ha leído `data/raw/` de esa fuente, **ni** la bitácora de la tanda que la bajó, **ni** ningún registro de exploración de su estructura. Es una condición sobre lo que esa sesión ha leído, verificable contra su propio historial de lectura — no una propiedad del entorno donde corre.
+
+**(4) El conservador va del lado de declarar más exploración, no menos.** Cuando el registro de una tanda no permite distinguir con certeza si un contacto con la fuente fue descarga ciega o exploración de estructura, se trata como exploración de estructura completa. Aplicado retroactivamente a `cola.yaml` E-03: ninguna encuesta de la tanda del 30/jul calificó como descarga ciega — las cuatro efectivamente descargadas (ENCIG/`R3.1`, ENIF/`R1.2`, ENVIPE/`R7.2`, ENIGH-nc/`R5.1`) requirieron derivar la lista real del portal probando patrones de nombre por edición, y las tres que NO se descargaron (ENUT/`R5.2`, ENCUCI/`R8.3`, ENSANUT/`R4.2`) también tuvieron exploración de estructura real (JSON-LD, navegación, patrones de nombre) sin llegar a descarga — el E-03 original las declaraba libres de contaminación por no haberse descargado nada, sin ver que la exploración misma ya contamina parcialmente.
+
+**(5) Aplicado a `cola.yaml` E-02.** Verificado en esta sesión: el texto de E-02 ya trazaba la unidad de contaminación sobre "esa conversación", no sobre una máquina — no tenía el defecto (a)/(b) que este ADR corrige en E-03. No requirió reescritura, solo esta constancia de que se revisó.
+
+**Requisito de salida.** Ninguna entrada futura de `cola.yaml` que declare contaminación por descarga o exploración de una fuente usa "máquina" como unidad — usa "sesión" y, si hubo contacto con la fuente antes de la descarga (o en vez de ella), declara el nivel (descarga ciega / exploración de estructura) y hasta dónde llegó.
+→ **Vigente. S2.** *(Aprobado 30/jul/2026, corrección ejecutada por una sesión distinta de la que bajó los datos de Hito D Fase 1 Paso 4 — ver `cola.yaml` E-04 sobre por qué esa separación es deliberada. Corrige `cola.yaml` E-03 con nota fechada, texto original conservado íntegro. Verificado contra E-02: sin el mismo defecto, no reescrita.)*
+
+---
+
 ## 5. Deuda declarada (decisiones abiertas, conscientemente)
 
 Esto **no** es una lista de pendientes: es deuda que se decidió asumir.
@@ -419,6 +444,7 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 | Versión | Qué cambió |
 |---|---|
 | 1.0 | Creación. ADR-01 a ADR-25, registro de artefactos y protocolo de propagación tras cerrar Ronda 4 y Fase 0. |
+| **1.14** | **30/jul/2026 — ADR-46: la unidad de contaminación es LA SESIÓN, no la máquina ni el modelo, corrige `cola.yaml` E-03.** El texto original de E-03 declaraba "esta máquina queda INHABILITADA" tras la tanda de descargas de Hito D Fase 1 — demasiado amplio (un modelo no retiene contexto entre sesiones; una sesión nueva en la misma máquina está tan limpia como una en la nube) y demasiado estrecho (lo que contamina es qué puede LEER una sesión nueva — `data/raw/` y la bitácora de la tanda —, no dónde corrió el proceso). Fija: (1) unidad = sesión; (2) dos niveles — descarga ciega (no contamina) vs. exploración de estructura (contamina parcialmente, declarar hasta dónde); (3) condición verificable — una sesión pre-registra contra una fuente si no leyó `data/raw/` de esa fuente, ni la bitácora de su tanda, ni ningún registro de exploración de su estructura; (4) el conservador declara más exploración, no menos — aplicado a E-03, NINGUNA de las siete encuestas de la tanda fue descarga ciega, incluidas las tres (ENUT/ENCUCI/ENSANUT) que el original declaraba libres solo por no haberse descargado. E-02 verificada: sin el mismo defecto, no reescrita. Corrección ejecutada por una sesión distinta de la que bajó los datos (`cola.yaml` E-04). |
 | **1.13** | **30/jul/2026 — ADR-45: vocabulario fijo de "prueba de falsación corrida", cierra `cola.yaml` D-05.** Tres decisiones de mesa del autor: (1) denominador — 27 (perímetro del Hito D) y 49 (reglas del motor) se reportan siempre etiquetados, nunca uno sin decir cuál; (2) un veredicto `D` cuenta como corrida, la letra viaja con el conteo; (3) Hito D (reglas), Hito C (generadores) y el ejercicio suelto de `glosario §6/§10` sobre G1a (27/jul, sin bloque archivado) se reportan como tres poblaciones separadas, nunca sumadas ni una etiquetada como otra. Corrige `§5` (fila "48 de 49" mezclaba denominadores y etiquetaba el ejercicio de glosario como "Es el Hito D"). `I-07` queda abierta: sigue siendo patrón de proceso sin test. |
 | **1.12** | **30/jul/2026 — ADR-44: registro retroactivo de la publicación del repositorio (29/jul), sin ADR previo.** Mismo patrón que ADR-42(1), un piso más arriba: la función del programa entero cambió de privado-descriptivo a público-auditable sin pasar por gobernanza. Fija cuatro requisitos de salida — capa legal verificada en el árbol, re-examen de deuda "asumida a propósito" (referido a `revision-publicacion-2026-07-30.md`), README sin cifra sin test (declarado **PENDIENTE**, es F6) y regla hacia adelante contra decisiones que asuman lector interno. *(Sesión de canon F2/F4; T-README y A1-A5 quedaron fuera de perímetro por regla de sesión. Nota: las filas 1.10 y 1.11 no existen en esta tabla — mismo hueco de autorreferencia que `censo-integridad-v1_0.md` C5-03 ya señaló para 1.9; no se reconstruyen aquí, es scope ajeno a este ADR.)* |
 | **1.9** | **29/jul/2026 — Corrección de RÓTULO del perímetro del Hito D (ADR-37, §4).** El registro de decisión decía "20 [FUERTE] + 5 [MEDIA-FUERTE] + 2 compuestas", tratando a `R1.4` ([FUERTE como correlación]) como una segunda regla partida. Solo `R4.3` ([FUERTE / MEDIA]) es compuesta; `R1.4` es un tier distinto, con un solo falsador. El perímetro no cambia: siguen 27. Propagado a `modelo §7` (cambio 34) y `estado §4·S2`/`§7`. *(Fila añadida 29/jul/2026 en la sesión de correcciones — faltaba; `censo-integridad-v1_0.md` C5-03.)* |
