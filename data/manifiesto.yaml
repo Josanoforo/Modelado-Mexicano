@@ -1,12 +1,22 @@
 # data/manifiesto.yaml — procedencia de dato externo usado en el corpus
 # Convención: se commitea el manifiesto y el checksum, nunca el payload.
 # El payload (CSV/ZIP crudo) vive en data/raw/, ignorado por git.
+#
+# Esquema ampliado 2026-07-30 (tests/manifiesto.py, cola I-08):
+#   archivo           ruta relativa dentro de data/raw/; sin este campo
+#                     --verifica no puede localizar el payload.
+#   entorno_descarga  derivado por --registra al momento de registrar, nunca
+#                     pedido por parámetro. Las dos entradas de payload de
+#                     abajo son anteriores a este campo y a este script (se
+#                     registraron a mano el 29/jul); no se les fabrica un
+#                     valor retroactivo que nadie derivó entonces.
 
 - id: encig23_base_datos_csv
   usado_para: "hitoD-R3.2 (forense/hitoD-R3_2-veredicto-v1_0.md) — falsador de modelo §3.3 / tramite.yaml (mordida por modalidad de trámite)"
   url_origen: "https://www.inegi.org.mx/programas/encig/2023/#microdatos"
   fecha_descarga: "2026-07-29"
   descargado_por: "usuario, vía navegador (la SPA de INEGI no expone el enlace a herramientas headless)"
+  archivo: "encig23_base_datos_csv.zip"
   sha256: "af733d867a568cbb0dadef4a5a793b02488a71728d1157860f14501f3d4c393d"
   tamano_bytes: 38309647
   formato: "ZIP con 6 CSV (encig2023_01_sec1_A_3_4_5_8_9_10, encig2023_01_sec_11, encig2023_02_residentes_sec_2, encig2023_03_sec_6, encig2023_04_sec_7, encig2023_05_sec_8). Solo se leyeron encig2023_04_sec_7 y encig2023_05_sec_8 (P7_3 y P8_4) — las otras cuatro tablas no se inspeccionaron, por restricción vigente por R3.1/R5.1/R7.2."
@@ -18,6 +28,7 @@
   url_origen: "https://www.inegi.org.mx/contenidos/programas/encig/2023/doc/encig23_estructura_base_datos.pdf"
   fecha_descarga: "2026-07-29"
   descargado_por: "agente, directamente de inegi.org.mx"
+  archivo: "encig23_estructura_base_datos.pdf"
   sha256: "eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906"
   tamano_bytes: 3100802
   formato: PDF
@@ -41,3 +52,19 @@
     excluido). Corregido con estandarización directa (ver hitoD-R3.2 §2.3). Se deja esta
     nota porque la cifra mal rotulada circuló en el análisis antes de corregirse y el
     error de nomenclatura -- no solo el número -- es parte de la procedencia del dato.
+
+- id: ennvih_mxfls_licencia
+  fecha: "2026-07-30"
+  hecho: >
+    ENNViH/MxFLS declara sus datos de dominio público en su propia página de
+    inicio: "La ENNViH es de dominio público. Los datos y la documentación de
+    la encuesta se pueden descargar sin costo alguno para el usuario."
+    Verificado por fetch directo de https://ennvih-mxfls.org (portada),
+    30/jul/2026. Sin login, sin formulario, sin términos que aceptar; los
+    enlaces de descarga de las tres olas (ENNVIH-1/2/3) van directo al .zip
+    de datos -- confirmado independientemente desde otra sesión/máquina
+    (Ubuntu local, http=200 contra el host) el mismo día. Corrige
+    revision-publicacion-2026-07-30.md:88/403/444, que marcaba los términos
+    de ENNViH como "reporta el valor" (sin verificar en esa sesión). No
+    cambia el estado del payload: ningún archivo de ENNViH se ha descargado
+    ni se registra aquí -- CAL-G3 sigue sin ejecutarse.
