@@ -892,3 +892,32 @@ data/manifiesto.yaml | 524 +++++++++++++++++++++++++++++++++++++++++++++++++++
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/i-01-false-positives-docs-jh7r2g` · **HEAD inicial (origin/main):** `78d5d54f8037569ef0acfbca8e59b2ba4922f0f6` · **HEAD final:** `2c157fac3d9a0cc54f9e6fc0b665b779cff9c1ae`
+
+**Commits de la sesión:**
+  - `2c157fa` · Claude · cola: I-01 sube a casos=3 -- backtick de I-12 en bitacora.md disparo T03 nuevo (PR #13)
+
+**Archivos tocados:**
+```
+canon/cola.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: (ninguno)
+  - Cerrados: D-05, D-06, D-07, D-08, D-09, D-10, E-04, E-05, E-06, I-08, I-09
+
+**Qué se decidió:** Nueva entrada registrada: I-01 sube a casos=3. El tercero ocurrio hoy en el PR #13 (commit 388e3a2, ya fusionado): al redactar en forense/bitacora.md la evidencia de I-12, una cita de nombre de archivo entre backticks dentro de ese mismo parrafo se volcó al diff de sesión y disparó un T03 nuevo; se corrigió quitando los backticks antes de comitear, por eso no aparece en la corrida actual. Es la segunda vez el mismo dia que documentar un falso positivo genera otro -- la primera fue la nota de reconciliación del PR #1 (caso 2) -- y es el argumento mas fuerte que existe para la marca explicita que I-01 propone: el criterio de salida ya dice que un documento debe poder citar un archivo inexistente o descartado como ejemplo sin generar WARN.
+**Qué quedó bloqueado:** La marca explicita de A1 (distinguir en T03 mención de referencia vs cita real) sigue en la cola como I-01, ahora con 3 casos; no se implementa en esta sesión.
+
+---
+
