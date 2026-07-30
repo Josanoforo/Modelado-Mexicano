@@ -160,3 +160,24 @@
   evidencia: "Al escribir tests/manifiesto.py (--registra/--verifica) se encontró que ninguna entrada de data/manifiesto.yaml tenía un campo que apuntara al archivo real dentro de data/raw/ -- el id no coincide con el nombre de archivo (id `encig23_base_datos_csv`, archivo real `encig23_base_datos_csv.zip`), así que --verifica no podía saber qué abrir. No es hallazgo del encargo: se descubrió al implementar. Añadido campo `archivo` al esquema (data/manifiesto.yaml:19, :31) y retrocompletado en las dos entradas de payload existentes -- sin fabricar sha256/tamano_bytes/entorno_descarga retroactivos, solo la ruta, que es un hecho verificable contra disco."
   estado: cerrado
   nota_cierre: "Cerrada en el mismo commit que la abre -- ver tests/manifiesto.py y data/manifiesto.yaml."
+
+- id: D-07
+  titulo: "Desvío de alcance en tests/manifiesto.py: --registra no descarga, registra un payload que ya está en data/raw/"
+  clase: decision
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "El encargo de C1 pedía que --registra descargara el archivo desde --url-origen. Lo construido registra un archivo ya presente en data/raw/ -- no abre socket, no valida TLS. Revisión de PR (2026-07-30) marcó el desvío como no declarado en ninguna parte hasta ese momento."
+  consecuencia: "Defendible: un script de este repo bajando de una URL con TLS sin verificar es el mismo tipo de riesgo que el proyecto ya trata con sospecha (proxy de egreso bloqueado contra inegi.org.mx, forense/notas/2026-07-29-d-bloqueo-encig.md). Pero es un desvío real, no una lectura literal del encargo. Lo que queda sin cubrir: el momento de la descarga sigue sin instrumentar -- ahí nacieron los dos hashes tecleados a mano en data/manifiesto.yaml (encig23_*, 2026-07-29, anteriores a este script). Con el diseño actual, un archivo recién bajado por fuera del script sigue necesitando que alguien teclee su sha256 antes de que --registra pueda registrarlo. Ver I-09 -- --contrasta es el paso que permitiría probar esto de verdad, sin descargar dentro del script."
+  estado: cerrado
+  nota_cierre: "Declarado en el docstring de tests/manifiesto.py y aquí, mismo commit que lo declara. No cambia el diseño -- la decisión de no descargar se mantiene."
+
+- id: I-09
+  titulo: "tests/manifiesto.py no tiene modo para contrastar un payload nuevo contra una entrada YA registrada sin sobreescribirla"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "--registra rechaza un id que ya existe (por diseño, para no sobreescribir en silencio); --verifica solo lee el archivo que la propia entrada declara. Ninguno de los dos modos cubre el caso real que se anticipó como primera prueba de --registra: bajar encig23_estructura_base_datos.pdf (hoy AUSENTE de data/raw/) y comparar su hash contra el que ya está en data/manifiesto.yaml (eb89820c...), sin tocar la entrada existente."
+  consecuencia: "Falta un tercer modo (--contrasta o similar): toma un payload nuevo, lo compara contra una entrada existente por id, reporta COINCIDE / DISCREPANCIA -- sin escribir nada. Una DISCREPANCIA es un HALLAZGO (el archivo cambió, o el hash original estaba mal, o la fuente cambió de contenido), no un conflicto que el script resuelva en silencio sobreescribiendo. No se implementa en esta sesión para no alargar el PR de C1."
+  estado: abierto

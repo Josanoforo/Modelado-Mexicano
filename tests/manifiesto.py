@@ -21,6 +21,26 @@ escriban a mano en data/manifiesto.yaml. No cubre el caso que abrió I-04
 (artefactos que el chat entrega, como TRANSFER-*.md) -- ese permanece
 abierto; este script solo alcanza data/raw/.
 
+DESVÍO DE ALCANCE, declarado (cola D-07): el encargo pedía que --registra
+descargara el archivo desde `--url-origen`. Lo que existe registra un
+archivo que YA está en data/raw/ -- no abre ningún socket ni valida TLS.
+Es defendible (un script de este repo bajando de una URL con TLS sin
+verificar es exactamente el tipo de riesgo que el resto del proyecto trata
+con sospecha -- ver protocolo §4 y el propio caso de encig23 con proxy de
+egreso bloqueado), pero es un desvío real y no una lectura literal del
+encargo, así que se declara aquí en vez de quedar implícito. Lo que deja
+sin cubrir: el momento de la descarga en sí sigue sin instrumentar -- ahí
+nacieron los dos hashes tecleados a mano que este script existe para
+evitar (data/manifiesto.yaml, entradas `encig23_*`, ambas de 2026-07-29,
+anteriores a este script). Un --registra que sí descargara cerraría ese
+hueco; con el diseño actual, alguien todavía teclea el sha256 de un
+archivo recién bajado por fuera de este script antes de que --registra
+pueda verificarlo. Ver también I-09/cola (--contrasta: comparar un
+payload nuevo contra una entrada ya registrada sin sobreescribirla --
+sin eso, la primera prueba real de un --registra completo, encig23_
+estructura_base_datos.pdf recién bajado contra su entrada ya existente
+en el manifiesto, no se puede correr).
+
 Única dependencia externa: PyYAML.
 """
 import argparse
