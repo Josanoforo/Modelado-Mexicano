@@ -921,3 +921,35 @@ canon/cola.yaml | 4 ++--
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/i-01-false-positives-docs-jh7r2g` · **HEAD inicial (origin/main):** `78d5d54f8037569ef0acfbca8e59b2ba4922f0f6` · **HEAD final:** `dd85b7b211150caffdc170cc164adc6ae501dde0`
+
+**Commits de la sesión:**
+  - `dd85b7b` · Claude · cola: registra I-17/I-18 -- baseline.json congelado en bitacora.py --cierra y clave sin numero de linea deduplica multiplicidad
+  - `ce2918b` · Claude · bitacora: cierra sesion -- registra I-01 caso 3 (backtick de I-12, PR #13)
+  - `2c157fa` · Claude · cola: I-01 sube a casos=3 -- backtick de I-12 en bitacora.md disparo T03 nuevo (PR #13)
+
+**Archivos tocados:**
+```
+canon/cola.yaml     | 24 ++++++++++++++++++++++--
+ forense/bitacora.md | 29 +++++++++++++++++++++++++++++
+ 2 files changed, 51 insertions(+), 2 deletions(-)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: I-17, I-18
+  - Cerrados: D-05, D-06, D-07, D-08, D-09, D-10, E-04, E-05, E-06, I-08, I-09
+
+**Qué se decidió:** Verificado el desfase que bitacora.py --cierra reporto (21 FAIL/84 WARN 'Antes' vs 19 FAIL/87 WARN reales) contra check.py: los FAIL cuadran (21-2 resueltos=19). Los WARN no son claves nuevas -- --baseline sigue VERDE -- son 3 ocurrencias adicionales de dos claves YA congeladas en baseline.json (T03 LICENSE-CORPUS.md paso de 1 a 3 citas en revision-publicacion-2026-07-30.md; T03 estado-programa-v1_8.md paso de 1 a 2 citas en censo-integridad-v1_1.md), invisibles porque _baseline_key() (tests/check.py:763) quita el numero de linea antes de deduplicar -- primera vez que esta limitacion se manifiesta con cifras verificables. Registradas dos entradas nuevas en cola.yaml sin resolver: I-17 (bitacora.py --cierra declara 'Antes' desde baseline.json congelado sin rotular la fuente -- misma familia que README:40/I-06/I-07) e I-18 (el hallazgo de fondo: la clave sin numero de linea deduplica multiplicidad de un defecto ya conocido; documentarlo no lo mitiga).
+**Qué quedó bloqueado:** I-17 e I-18 quedan abiertas, sin implementarse -- por instruccion explicita, esta sesion solo registra. No se toco tests/bitacora.py ni tests/check.py.
+
+---
+
