@@ -801,6 +801,15 @@ def _classify(test, msg):
     if test == "T03":
         m = re.search(r"cita `([^`]+)`", msg)
         name = m.group(1) if m else None
+        if name == "LICENSE-CORPUS.md" and "revision-publicacion-2026-07-30" in msg:
+            # Refreeze tras el merge del PR #1 (30/jul/2026): la revisión de
+            # publicación cita, como propuesta de su FASE 5, un artefacto que
+            # su propia Nota de reconciliación declara descartado (D-05, se
+            # mantuvo el LICENSE dual único). Patrón I-01 (canon/cola.yaml):
+            # T03 no distingue mención de referencia — mismo patrón benigno
+            # ya reconocido en los T03 de TRANSFER-8/9.
+            return ("T03_revision-publicacion_cita_ilustrativa_de_artefacto_"
+                     "descartado_D-05__patron_I-01_mismo_que_TRANSFER-8-9")
         if name in _FRAGMENTOS_EJEMPLO and "TRANSFER-maestra-9.md" in msg:
             return ("T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo"
                      "__mismo_patron_benigno_ya_reconocido")
@@ -828,6 +837,13 @@ def _freeze_note():
     for t, m in FAILS:
         if t == "T17":
             buckets["T17_autodeclaracion_falsa_conocida__protegida_por_append-only__pendiente_de_ADR"] += 1
+        elif t == "T16":
+            # Los T16 del refreeze del 30/jul/2026 son consecuencia aritmética
+            # del T03 de revision-publicacion (3 citas ilustrativas suben el
+            # total de WARN y desfasan la declaración de estado), no defectos
+            # independientes: desaparecen cuando A1 resuelva I-01.
+            buckets["T16_consecuencia_aritmetica_del_T03_de_revision-publicacion"
+                    "__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01"] += 1
         else:
             buckets[f"{t}_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle"] += 1
     return {
@@ -835,8 +851,12 @@ def _freeze_note():
                       "corpus con ruido de medición conocido del propio T03 (cobertura "
                       "angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación "
                       "completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 "
-                      "(sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL."),
-        "fecha_de_clasificacion": "2026-07-29",
+                      "(sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL. "
+                      "Re-congelada el 30/jul/2026 tras el merge del PR #1 (main 22a7d9d): "
+                      "3 entradas nuevas, cada una con bucket propio — 1 T03 (cita "
+                      "ilustrativa de LICENSE-CORPUS, artefacto propuesto y descartado por "
+                      "D-05, patrón I-01) y 2 T16 que son su consecuencia aritmética."),
+        "fecha_de_clasificacion": "2026-07-30",
         "conteo_por_bucket": dict(sorted(buckets.items())),
     }
 

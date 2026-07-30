@@ -1,5 +1,5 @@
 {
-  "head": "c6dd7ee37fe09f15a6135fa1c60e68ab48278314",
+  "head": "a0ae0ad6a7548c98724ded683138f4ea1b009c8f",
   "fails": [
     [
       "T05",
@@ -74,6 +74,14 @@
       "corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md: afirmación de estado con cuantificador absoluto (5 de 5 comprobadas resultaron falsas): > **Origen de la corrección:** `meta-auditoria-comunicacion.md §3` · ADR-06 · `glosario conf.03"
     ],
     [
+      "T16",
+      "canon/estado-programa-v1_9.md: declara 19 FAIL · 84 WARN vigente; la corrida real da 19 FAIL · 87 WARN"
+    ],
+    [
+      "T16",
+      "canon/estado-programa-v1_9.md: declara 84 WARN vigente; la corrida real da 87 WARN"
+    ],
+    [
       "T17",
       "declaraciones de cobertura del pre-registro no cuadran con forense/hitoD-preregistro-v2_0.md (25 encabezados `## R`): canon/estado-programa-v1_9.md:111=25 · forense/hitoD-preregistro-v2_0.md:8=27"
     ]
@@ -146,6 +154,10 @@
     [
       "T03",
       "forense/historico/TRANSFER-maestra-9.md: cita `-v3_2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "revision-publicacion-2026-07-30.md: cita `LICENSE-CORPUS.md`, que no existe"
     ],
     [
       "T10",
@@ -413,13 +425,14 @@
     ]
   ],
   "nota": {
-    "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL.",
-    "fecha_de_clasificacion": "2026-07-29",
+    "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL. Re-congelada el 30/jul/2026 tras el merge del PR #1 (main 22a7d9d): 3 entradas nuevas, cada una con bucket propio — 1 T03 (cita ilustrativa de LICENSE-CORPUS, artefacto propuesto y descartado por D-05, patrón I-01) y 2 T16 que son su consecuencia aritmética.",
+    "fecha_de_clasificacion": "2026-07-30",
     "conteo_por_bucket": {
       "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 6,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,
+      "T03_revision-publicacion_cita_ilustrativa_de_artefacto_descartado_D-05__patron_I-01_mismo_que_TRANSFER-8-9": 1,
       "T05_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 5,
       "T06_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T07_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
@@ -428,6 +441,7 @@
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1,
+      "T16_consecuencia_aritmetica_del_T03_de_revision-publicacion__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01": 2,
       "T17_autodeclaracion_falsa_conocida__protegida_por_append-only__pendiente_de_ADR": 1
     }
   }
