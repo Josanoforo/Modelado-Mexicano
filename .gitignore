@@ -3,3 +3,18 @@ __pycache__/
 *.pyc
 .venv/
 data/raw/
+
+# Dotfiles de entorno del sandbox, ajenos al repo (nunca trackeados;
+# .gitmodules verificado -- git log --all -- .gitmodules vacío)
+.bash_profile
+.bashrc
+.claude/
+.gitconfig
+.gitmodules
+.idea
+.mcp.json
+.profile
+.ripgreprc
+.vscode
+.zprofile
+.zshrc

@@ -1,5 +1,5 @@
 {
-  "head": "afa7c7fc9388d0e0efd96b088475844ed533099c",
+  "head": "97b9f2b6d69fcc407217c33e82c2051523c273e0",
   "fails": [
     [
       "T05",
@@ -72,6 +72,10 @@
     [
       "T11",
       "corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md: afirmación de estado con cuantificador absoluto (5 de 5 comprobadas resultaron falsas): > **Origen de la corrección:** `meta-auditoria-comunicacion.md §3` · ADR-06 · `glosario conf.03"
+    ],
+    [
+      "T17",
+      "declaraciones de cobertura del pre-registro no cuadran con forense/hitoD-preregistro-v2_0.md (25 encabezados `## R`): canon/estado-programa-v1_9.md:111=25 · forense/hitoD-preregistro-v2_0.md:8=27"
     ]
   ],
   "warns": [
@@ -414,7 +418,8 @@
       "T09_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 8,
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
-      "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1
+      "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1,
+      "T17_autodeclaracion_falsa_conocida__protegida_por_append-only__pendiente_de_ADR": 1
     }
   }
 }
