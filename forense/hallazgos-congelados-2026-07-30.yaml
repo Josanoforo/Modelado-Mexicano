@@ -1,3 +1,25 @@
+# forense/hallazgos-congelados-2026-07-30.yaml
+#
+# CONGELADA el 30 de julio de 2026 por ADR-48 (R0). Era `canon/cola.yaml`.
+#
+# Sale del canon: la cola dejó de ser un pendiente que se trabaja y pasó a ser
+# un registro de lo que el aparato de auditoría produjo antes de R0. No rige
+# nada, no bloquea nada, no se cita como fuente de prioridades.
+#
+# NO SE BORRA. Es evidencia: la referencian commits, cuerpos de PR y bloques de
+# `forense/bitacora.md` por ID, y esas citas no se reescriben.
+#
+# NO SE LE AÑADEN ENTRADAS. Ni una. Un defecto nuevo va a `forense/hallazgos.md`
+# (una línea si no impide medir; si impide medir, se para y se reporta), bajo la
+# regla de R0 en `canon/protocolo-sesion-v1_0.md` §2.
+#
+# Estado al congelar, derivado en la sesión que congela: 40 entradas. Se cerraron
+# dos en el mismo acto -- I-01 (marca de cita ilustrativa, implementada en
+# `tests/check.py`) e I-13 (convención de IDs, declarada en
+# `canon/gobernanza-v1_15.md`). Las otras 38 se congelan sin tocar, en el estado
+# en que estaban.
+#
+# ---- cabecera original, conservada ----
 # canon/cola.yaml — protocolo-sesion §5
 # Una entrada por pendiente. El chat propone, solo CC escribe.
 # Clases: I instrumento · C canon · E evidencia · D decisión
@@ -9,7 +31,8 @@
   casos: 3
   bloquea: []
   evidencia: "canon/gobernanza-v1_11.md (ADR-42, corregido antes de comitear en d123f49); caso 2 (refreeze tras PR #1, 2026-07-30): la Nota de reconciliación de revision-publicacion-2026-07-30.md declara LICENSE-CORPUS.md propuesta descartada (D-05) y esa misma declaración dispara T03 — una nota que declara un falso positivo lo agrava, porque el test no distingue mención de referencia; caso 3 (PR #13, 2026-07-30): al redactar en forense/bitacora.md la evidencia de I-12 (commit 388e3a2), una cita de nombre de archivo entre backticks dentro de ese mismo párrafo se volcó al diff de sesión y disparó un T03 nuevo; corregido quitando los backticks antes de comitear. Segunda vez el mismo día que documentar un falso positivo genera otro — es el argumento más fuerte que existe para la marca explícita de A1: el criterio de salida ya exige que un documento pueda citar un archivo inexistente o descartado como ejemplo sin generar WARN"
-  estado: abierto
+  estado: cerrado
+  nota_cierre: "Cerrada por ADR-48 (R0), 2026-07-30, con implementación. Marca explícita: `{cita-ilustrativa}` escrito pegado a la cita que exime; exime SOLO la cita inmediatamente anterior, no la línea entera ni el documento. Implementada en tests/check.py (constante MARCA_ILUSTRATIVA, comprobada dentro de t03_dangling_refs antes de la heurística de verbos de borrado). VERIFICACIÓN DE LOS TRES CASOS REGISTRADOS, derivada en la sesión de cierre: solo UNO de los tres estaba vivo en el árbol. Caso 2 (revision-publicacion-2026-07-30.md, LICENSE-CORPUS.md) disparaba en tres líneas -- :392, :452 y :455 -- y las tres dejan de disparar con la marca aplicada: T03 pasa de 21 a 18 WARN y las tres que desaparecen son exactamente esas. Casos 1 y 3 no se pueden verificar por corrida porque nunca llegaron a comitearse: el caso 1 (gobernanza-v1_11.md, ADR-42) se corrigió antes de comitear en d123f49 y el caso 3 (forense/bitacora.md, I-12, commit 388e3a2) se corrigió quitando los backticks antes de comitear. El instrumento ya no obliga a mutilar el texto -- que era el defecto --, pero los dos casos que lo demostraron son historia y no reaparecen en una corrida. Ninguna de las 18 WARN restantes de T03 se marca: son referencias colgantes de otra familia (censo-integridad, TRANSFER históricos, fragmentos de patrón de versión) y siguen vigiladas."
 
 - id: D-01
   titulo: "¿La protección append-only de un pre-registro cubre su cabecera de metadatos (VERIFICAS ASÍ), o solo el cuerpo de fichas?"
@@ -347,8 +370,9 @@
   casos: 1
   bloquea: []
   evidencia: "canon/cola.yaml, entrada E-06, nota_cierre: \"Renumerada de E-04 a E-06 al resolver el conflicto de merge contra origin/main (PR #8 ya había tomado E-04 y E-05).\" PR #9 body, sección 'Merge contra origin/main': \"colisión de ID en E-04 (PR #8 lo usó para la corrección sesión-vs-máquina de E-03; esta rama lo tenía para el criterio de descarga ciega). Se renombró el de esta rama a **E-06** -- contenido intacto, solo el ID y una nota de referencia.\""
-  estado: abierto
+  estado: cerrado
   nota_estado: "Distinto de I-10 (dos referentes persistentes para el mismo ID ya publicado): aquí dos ramas EN CURSO derivaron, cada una leyendo su propia copia local de la cola, el mismo 'siguiente ID disponible' (E-04) para contenidos distintos -- solo se vio al resolver el conflicto de merge. No hay mecanismo que reserve un ID antes de que la rama se fusione contra main."
+  nota_cierre: "Cerrada por ADR-48 (R0), 2026-07-30. Convención adoptada y declarada en canon/gobernanza-v1_15.md (§ Convención de IDs, junto a ADR-48): ningún ID nuevo se deriva contando la cola. Se usa `D-AAAAMMDD-HHMM` (fecha y hora UTC de apertura) o un hash corto -- ambos independientes del estado de cualquier otra rama, así que dos sesiones ciegas entre sí no pueden colisionar salvo empate al minuto, y ese caso se rompe con el hash. CORRIGE UNA CIFRA DEL PLAN DE RECUPERACIÓN: ese documento atribuye a esta entrada `casos: 3`; el campo declara `casos: 1` y así se congela. La cifra del plan no se usó como criterio de nada. Los IDs correlativos ya asignados (I-01..I-20, D-01..D-12, E-01..E-07, C-01) NO se renumeran: son historia citada por commits, PRs y bloques de bitácora. La convención rige de aquí en adelante, y como la cola queda congelada por R0 no hay IDs nuevos que asignar en ella -- el primer consumidor real será forense/hallazgos.md."
 
 - id: I-14
   titulo: "Resolver un merge append-only exige verificar conteo Y contenido -- ninguno de los dos solo basta"
