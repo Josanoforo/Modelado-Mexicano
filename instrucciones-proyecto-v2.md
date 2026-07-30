@@ -1,6 +1,10 @@
-# Instrucciones del proyecto — "Psicología del Mexicano Contemporáneo" · v2
+# Instrucciones del proyecto — "Psicología del Mexicano Contemporáneo" · v2.2
 
 > **Por qué v2.** La v1 (Bloque A + Bloque B) se diseñó para escribir **un report temático**. El proyecto creció a un **programa multi-artefacto**: reports temáticos + un integrador (meta-síntesis) + un modelo de decisión + validaciones forenses. Esta v2 **conserva casi toda la v1 verbatim** y solo añade o precisa lo que el proyecto probó que necesita. Cada cambio está marcado `[NUEVO]`, `[REFINADO]` u `[OPCIONAL]` para que sea fácil aprobarlo o cortarlo. Todo lo no marcado es v1 sin cambios.
+
+> **Por qué v2.1.** Añade tres reglas de procedencia documental y una pregunta de auditoría, marcadas `[NUEVO v2.1]`. Atienden una clase de defecto distinta de todas las anteriores: no errores sobre México, sino **afirmaciones del corpus sobre sí mismo** —conteos, coberturas, versiones, referencias cruzadas— escritas a mano y nunca verificadas. Todo lo demás es v2 sin cambios.
+
+> **Por qué v2.2.** Añade cuatro reglas y una pregunta de auditoría, marcadas `[NUEVO v2.2]`. Tres salen de la primera medición contra datos primarios del programa (Hito D · R3.2): una restricción de entorno que le dio forma al diseño sin que nadie la midiera, un umbral pre-registrado aritméticamente inalcanzable, y un rótulo estadístico correcto en intención que describía otro cálculo. La cuarta caduca una deuda que dejó de ser coherente cuando el programa pasó de describir a validar. Todo lo demás es v2.1 sin cambios.
 
 ---
 
@@ -22,11 +26,25 @@
 
 `[NUEVO]` **Regla de oro (procedencia por lectura).** No reconstruyas tiers ni hallazgos de memoria: léelos de los reports, de sus mapas de evidencia y del glosario. Toda síntesis se construye **leyendo, no recordando**. Si un tier no está a la vista, ve a buscarlo antes de afirmarlo.
 
+`[NUEVO v2.1]` **Procedencia de la lectura (extensión de la Regla de oro).** Leer no basta si no sabes **de dónde**. Toda afirmación sobre el contenido de un archivo se marca con su fuente: **(1)** leída del repo en esta sesión, con commit citable; **(2)** leída de un espejo del proyecto, que puede estar atrás del repo; **(3)** reportada por otra sesión o conversación, no verificada. **Solo (1) entra al canon.** Las de tipo (2) y (3) se formulan como pregunta a verificar, nunca como instrucción ni como hecho. Un espejo **sin sello de commit no es fuente**: no se puede distinguir un archivo vigente de uno que el repo ya borró. Si el espejo no declara de qué commit salió, se lee como (3), no como (2). *(Por qué está aquí: la Regla de oro dice "léelo, no lo recuerdes" y no basta. Un archivo leído del espejo se siente exactamente igual que uno leído del repo, y un artefacto borrado por ADR sigue ahí, legible y falso.)*
+
 `[NUEVO]` **Marca la procedencia de la evidencia (las tres clases).** Distingue y etiqueta siempre: **(a)** datos primarios sobre población **EN México**; **(b)** estudios con muestras **mexicano-americanas / de diáspora** en EE.UU. (sujetas a aculturación y selección migratoria — **no** son evidencia directa sobre México); **(c)** marcos teóricos **importados**. Constructos como simpatía, machismo/caballerismo y marianismo suelen ser (b): márcalos. *(Esta fue la falla recurrente del corpus: el eslabón débil confundía diáspora con población en México.)*
 
 `[NUEVO]` **Firewall genético (reformulado).** Queda **prohibida la inferencia ascendencia → conducta de grupo** (no existe un "genoma mexicano"; la variación de mestizaje es tal que la genética de poblaciones, bien leída, es argumento **contra** el determinismo). Se **admite** un canal genético **individual**, estrecho, molecularmente explícito y de efecto **pequeño frente a la estructura** (sobre todo metabolismo de alcohol y nicotina), **nunca** como segmentación por ascendencia. Cuidado con la predisposición metabólica: modifica una *consecuencia*, no una *decisión*.
 
 `[NUEVO · OPCIONAL]` **Falsabilidad.** Para cada patrón o regla fuerte, di **qué evidencia lo cambiaría**. Vigila que "adaptación racional" no se vuelva infalsable (siempre se puede inventar un incentivo que haga óptima cualquier conducta): acótala con tamaños de efecto y contraevidencia, igual que se le exige al culturalismo.
+
+`[NUEVO v2.1]` **Ninguna cifra esperada se teclea de memoria.** Si un paso de verificación necesita un valor de referencia —un conteo, un estado de suite, un número de reglas—, se **deriva en la misma sesión** o se **cita con archivo y línea**. Está prohibido copiar una cifra de un documento de traspaso, de una conversación previa o de una sesión anterior para usarla como criterio de comparación. Corolario: **un criterio de parada con una constante escrita a mano es el defecto que el criterio existe para atrapar.** Si la cifra esperada no se puede derivar, el paso se formula como "reporta el valor" y no como "se espera N".
+
+`[NUEVO v2.1]` **Verificación de premisas antes de ejecución** (ADR-39, `gobernanza:290`). Todo encargo declara al inicio su procedencia: qué se verificó contra el repo, qué viene de un espejo, qué viene de reporte de otra sesión. **Quien ejecuta verifica las premisas del encargo antes de ejecutarlo.** Si una premisa no se sostiene contra el archivo, se detiene y lo reporta — no la ejecuta, y no ajusta el texto para que cuadre. **Encontrar que una instrucción estaba mal fundada es un entregable, no una interrupción.**
+
+`[NUEVO v2.2]` **Verificación de la restricción antes del diseño.** Antes de diseñar un plan alrededor de una restricción —de acceso, de entorno, de herramienta, de permisos—, **verifica que la restricción existe y mide su perímetro**. Una restricción supuesta se hereda igual que una cifra supuesta, y es peor, porque nadie la audita: una cifra parece una afirmación, una restricción parece el terreno. Dos corolarios operativos: **(1)** verificar alcanzabilidad **no es** consultar la fuente — comprobar que un host responde no revela nada sobre lo que el dato dice, así que no contamina ningún pre-registro y va **antes** que él, no después. **(2)** "no pude alcanzar la fuente" y "la fuente no tiene el dato" son **hallazgos distintos**; confundirlos mete un veredicto falso al registro. Se reportan con palabras distintas y no se colapsan nunca. *(Por qué está aquí: el programa operó desde su primer día sin salida de red hacia ningún dominio de datos público mexicano, y nadie lo midió. Esa restricción no verificada le dio forma al diseño completo —síntesis de literatura, cero datos primarios como deuda asumida— y lo que la destrabó no fue rigor analítico sino un `curl` a nueve hosts.)*
+
+`[NUEVO v2.2]` **Las deudas asumidas caducan cuando cambia el objetivo.** "Cero datos primarios propios" fue coherente mientras la función del programa era **describir**. Dejó de serlo cuando pasó a **validar**, y siguió operando por inercia porque estaba registrada como **decisión** y no como **pendiente**. Toda deuda declarada "asumida a propósito" **se re-examina cuando cambia la función del programa**, no solo cuando alguien la cuestiona.
+
+`[NUEVO v2.2]` **Todo umbral en puntos porcentuales se verifica contra tasas base plausibles antes de pre-registrarse.** Si el desenlace es raro, un umbral absoluto es inalcanzable por construcción y el criterio va en **razón o riesgo relativo**. Es la misma familia que "verifica la restricción antes de diseñar", aplicada a un criterio numérico: un umbral asignado no solo necesita fuente, necesita ser **posible**.
+
+`[NUEVO v2.2]` **Una cantidad rotulada "pareada", "controlada" o "ajustada" trae su método explícito, o el rótulo no se usa.** Un rótulo correcto en intención puede describir un cálculo que no lo es, y se lee como identificación lograda.
 
 ---
 
@@ -56,6 +74,8 @@ Estructura obligatoria (para reports temáticos):
 - ¿Qué parece psicológico pero en realidad es un incentivo racional ante un entorno específico?
 - ¿Dónde hay evidencia débil pero intuición social fuerte?
 - ¿Qué conclusiones serían peligrosas si alguien las usara de forma simplista?
+- `[NUEVO v2.1]` ¿Qué afirmación de este artefacto describe **el estado del corpus** —un conteo, una cobertura, una versión, la existencia de un archivo— y **no fue derivada, sino escrita a mano**?
+- `[NUEVO v2.2]` ¿Qué restricción o deuda está heredando este artefacto sin verificar — una limitación cuyo perímetro nunca se midió, o una deuda declarada "asumida a propósito" cuando la función del programa era otra?
 
 ---
 
@@ -72,3 +92,5 @@ Además: **marca cada métrica como AUDITADA o AUTO-REPORTADA por parte interesa
 ---
 
 *Nota de alcance. Estas reglas gobiernan todo el programa: reports temáticos (Bloque B), el integrador y el modelo de decisión (estructura propia + Bloque A + auditoría), y las validaciones forenses (Bloque C). La v2 no cambia el espíritu de la v1 —anti-esencialismo, estructura sobre cultura, evidencia tierizada— solo lo hace explícito donde el proyecto tropezó: procedencia de la evidencia, el firewall genético, la crítica calibrada de marcos, y el hecho de que un modelo de decisión no es un report temático.*
+
+*Las tres reglas de procedencia documental de v2.1 (lectura, cifras, premisas) atienden un tropiezo distinto: los defectos que el programa encontró auditándose no estaban en la evidencia sobre México, sino en las **afirmaciones del corpus sobre sí mismo**. La capa de evidencia resistió la auditoría; la capa de contabilidad sobre esa evidencia, no. Esa clase de defecto no se corrige con más cuidado: se corrige **derivando en vez de escribiendo, y verificando antes de obedecer**. Las cuatro de v2.2 extienden el mismo principio al **terreno** (restricciones no medidas), al **criterio** (umbrales imposibles), al **rótulo** (métodos implícitos) y al **calendario** (deudas que caducan).*
