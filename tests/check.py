@@ -823,7 +823,10 @@ def _freeze_note():
     warn_keys = sorted({(t, _baseline_key(m)) for t, m in WARNS})
     buckets = Counter(_classify(t, m) for t, m in warn_keys)
     for t, m in FAILS:
-        buckets[f"{t}_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle"] += 1
+        if t == "T17":
+            buckets["T17_autodeclaracion_falsa_conocida__protegida_por_append-only__pendiente_de_ADR"] += 1
+        else:
+            buckets[f"{t}_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle"] += 1
     return {
         "principio": ("Congelar no es aceptar. La cifra congelada mezcla deuda real del "
                       "corpus con ruido de medición conocido del propio T03 (cobertura "
