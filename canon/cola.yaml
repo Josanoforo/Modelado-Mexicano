@@ -1,0 +1,75 @@
+# canon/cola.yaml — protocolo-sesion §5
+# Una entrada por pendiente. El chat propone, solo CC escribe.
+# Clases: I instrumento · C canon · E evidencia · D decisión
+
+- id: I-01
+  titulo: "T03 no distingue una cita ilustrativa de una cita real"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "canon/gobernanza-v1_11.md (ADR-42, corregido antes de comitear en d123f49)"
+  estado: abierto
+
+- id: D-01
+  titulo: "¿La protección append-only de un pre-registro cubre su cabecera de metadatos (VERIFICAS ASÍ), o solo el cuerpo de fichas?"
+  clase: decision
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "tests/check.py, bucket T17_autodeclaracion_falsa_conocida (tests/baseline.json); protocolo §4.4"
+  estado: abierto
+
+- id: D-02
+  titulo: "¿T07 debe vigilar el vocabulario de tier del motor, no solo corpus/reports/?"
+  clase: decision
+  abierto: 2026-07-29
+  casos: 1
+  bloquea: []
+  evidencia: "canon/estado-programa-v1_9.md:104"
+  estado: abierto
+
+- id: D-03
+  titulo: "¿T10 se amplía al canon con un patrón nuevo, o el integrador adopta el marcador formal (b)?"
+  clase: decision
+  abierto: 2026-07-29
+  casos: 1
+  bloquea: []
+  evidencia: "canon/estado-programa-v1_9.md:114"
+  estado: abierto
+
+- id: D-04
+  titulo: "¿Qué modelo genera el baseline LLM de R3.1/R3.4 antes de escribirlas, declarado distinto del que las resuelve?"
+  clase: decision
+  abierto: 2026-07-29
+  casos: 1
+  bloquea: []
+  evidencia: "forense/historico/TRANSFER-maestra-9.md §PRIORIDADES/P0 (cifras corregidas al aterrizar: hoy 2 fichas faltantes de 27, no 3 -- R3.2 ya tiene ficha)"
+  estado: abierto
+
+- id: I-02
+  titulo: "La sesión de chat con conector de GitHub no debe usarse para escribir R3.1 (contaminación por lectura libre del repo)"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "encargo de cierre, 2026-07-30"
+  estado: abierto
+
+- id: I-03
+  titulo: "tests/baseline.json no tiene campo que identifique la versión de check.py que produjo los conteos"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "protocolo §4.2 (caso 015af3a); verificado en sesión: baseline.json solo registra head, no versión de check.py"
+  estado: abierto
+
+- id: E-01
+  titulo: "Trabajo de corpus declarado en TRANSFER-9 (turnos 1-4, correcciones de reports, carga de tiempo) sin verificar contra el repo"
+  clase: evidencia
+  abierto: 2026-07-29
+  casos: 1
+  bloquea: []
+  evidencia: "forense/historico/TRANSFER-maestra-9.md §PRIORIDADES/P4"
+  estado: abierto
