@@ -629,6 +629,24 @@ El propio FAQ del proyecto dice por qué eso importa, verbatim: *"En los cuestio
 
 ---
 
+### Nota 9 · 30/jul/2026 — Decisiones de mesa sobre `D-09`/`D-10`, ADR-47, y estado de la Fase C
+
+*(Añadida al final, fechada, sin tocar el cuerpo, ni la Nota 7, ni la Adenda 1, ni la Nota 8 — misma disciplina que las Notas 1-8. `CAL-G3` no se edita. No es un veredicto: `CAL-G3` sigue sin emitir `CAL-A`/`B`/`C`/`X` y no entra al bloque de abajo — ver punto 2.)*
+
+**Procedencia.** Decisiones de mesa tomadas por el autor el 30/jul/2026, sobre la evidencia de esta Nota 8 y del cálculo de poder apilando las dos transiciones del panel completo (`tests/calx_g3.py`, extensión narrada en `forense/notas/2026-07-30-calx-g3-salida.txt`). Ambas verificadas contra archivo antes de escribir esta nota.
+
+**(1) `D-10` — opción 1: la muestra analítica se restringe a las olas 2-3.** Razón: la ola 1 carece de *"ninguna de las anteriores"* y su categoría 3 opera como residual atrapa-todo (Nota 8, punto b) — el instrumento fabrica transiciones en un diseño que identifica con transiciones dentro-de-unidad. La opción 2 (imputar un equivalente de "ninguna" en 2002) exige un supuesto sobre datos que no existen, con un sesgo sin dirección declarable. El dato que elimina el costo aparente de restringir: el cálculo de poder apilando las dos transiciones muestra que el escenario B (olas 2-3, IC95%sup **1.461**) y el escenario C (olas 1 y 3, IC95%sup **1.401**) — ninguno alcanza el `<1.25` que exige `CAL-C` —, y el mejor caso de toda la matriz (tres olas apiladas, ICC=0, cota imposible) da **1.281**, que tampoco alcanza. Restringir a olas 2-3 no sacrifica poder de falsación útil: ese poder no existía con tres olas tampoco. El costo era hipotético.
+
+**(2) `D-09` — opción 3: partir el entregable.** La elasticidad se estima como resultado **descriptivo**, con su banda, **sin** veredicto de falsación asociado. `CAL-G3` no emite `CAL-A`/`B`/`C`/`X` y no entra al conteo de corridas del bloque `## Registro de veredictos archivados` (ADR-40). Razón de fondo: el criterio no puede refutar — verificado sobre las dos transiciones del panel y robusto a cualquier supuesto de ICC, falla incluso con ICC=0 —, pero el motivo real no es la falta de poder: `CAL-G3` nunca fue una tarea de falsación. `G3` no está en duda como dirección; lo que está en duda es su **magnitud**, y un veredicto binario es la herramienta equivocada para eso. El propio pre-registro (punto 2, arriba) ya lo intuía al declarar la elasticidad autónoma como entregable independiente del veredicto.
+
+**(3) ADR nuevo en gobernanza.** `gobernanza` ADR-47 registra la distinción entre **FALSAR UNA REGLA** (¿existe el patrón? veredicto binario, exige poder para resolver en ambas direcciones) y **CALIBRAR UN COEFICIENTE** (¿cuánto vale? magnitud con banda, no exige poder refutador). Son tareas distintas y el perímetro del Hito D las mezcla. `CAL-G3` es el primer caso donde la confusión se hizo visible; ADR-47 no reclasifica las otras fichas del perímetro — eso queda abierto sin resolver en `cola.yaml`.
+
+**(4) Estado de la Fase C.** Queda **DESBLOQUEADA con alcance reducido** — olas 2-3, entregable descriptivo — por las decisiones (1) y (2) de arriba. **No se corre en esta sesión.**
+
+**(5) Cierre en `cola.yaml`.** `D-09` y `D-10` cierran citando ADR-47, sin editar su texto original — mismo molde que `D-06`.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
