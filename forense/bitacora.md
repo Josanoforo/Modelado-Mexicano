@@ -358,3 +358,38 @@ canon/cola.yaml      |  32 +++++++
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/manifiesto-registra-verifica` · **HEAD inicial (origin/main):** `4054c35a4ea549d42b676a9552024e75daad980b` · **HEAD final:** `5a9263d9df487ba4c8bc016ec54659106245b1cf`
+
+**Commits de la sesión:**
+  - `5a9263d` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · C1: declara desvío de alcance y el hueco de --contrasta
+  - `beac5eb` · Josanoforo · Merge origin/main (PR #4: D-05/ADR-45) into C1
+  - `7f9fd96` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre de la sesión C1 (manifiesto.py)
+  - `b65f44f` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · C1: tests/manifiesto.py — --registra y --verifica de procedencia de datos
+
+**Archivos tocados:**
+```
+canon/cola.yaml      |  53 +++++++++++
+ data/manifiesto.yaml |  27 ++++++
+ forense/bitacora.md  |  31 ++++++
+ tests/manifiesto.py  | 263 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 374 insertions(+)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: D-06, D-07, E-02, I-08, I-09
+  - Cerrados: D-05
+
+**Qué se decidió:** Resueltos los 3 pendientes de revisión de PR #5 (C1): (1) merge con origin/main (PR #4, D-05/ADR-45) resuelto conservando ambos lados en cola.yaml y bitacora.md en orden cronológico -- verificado por conteo de líneas (201 base + 31 mías + 128 de PR#4 = 360) y por unicidad de IDs de cola; D-05 queda cerrada, D-06/E-02/I-08 intactas. (2) Desvío de alcance declarado en el docstring de tests/manifiesto.py y en cola (D-07, cerrada): --registra no descarga desde --url-origen como pedía el encargo, registra un payload ya en data/raw/ -- defendible, pero no estaba declarado. (3) I-09 registra el hueco que eso abre: falta un modo --contrasta que compare un payload nuevo contra una entrada existente sin sobreescribirla (COINCIDE/DISCREPANCIA); no se implementa en esta sesión, queda pendiente a propósito.
+**Qué quedó bloqueado:** Nada bloqueado. I-09 (--contrasta) queda abierta deliberadamente -- es la única forma de correr la prueba que se había anticipado (bajar encig23_estructura_base_datos.pdf y contrastarlo contra la entrada ya registrada), pero implementarla ahora alargaría este PR.
+
+---
+
