@@ -13,7 +13,7 @@
 *Documento vivo. Registra **qué se decidió, por qué, y qué se rompe si cambia**.
 No repite el contenido del corpus: lo gobierna.*
 
-**Versión de este documento:** 1.12 · **Estado del programa:** Ronda 4 cerrada y **auditada**; modelo v2 y glosario v5 consolidados; Fase 1 del simulador **pospuesta**. *(Corregido 29/jul/2026: decía 1.1, contradiciendo la cabecera de este mismo archivo, que ya dice 1.9 — hallazgo nuevo de esta sesión, no catalogado por `censo-integridad-v1_0.md`.)*
+**Versión de este documento:** 1.15 · **Estado del programa:** Ronda 4 cerrada y **auditada**; modelo v2 y glosario v5 consolidados; Fase 1 del simulador **pospuesta**. *(Corregido 29/jul/2026: decía 1.1, contradiciendo la cabecera de este mismo archivo, que en ese momento ya decía 1.9 — hallazgo nuevo de esa sesión, no catalogado por `censo-integridad-v1_0.md`. Corregido de nuevo 30/jul/2026: decía 1.12, contradiciendo la cabecera de este mismo archivo, que ya decía 1.14 y ahora dice 1.15 — reapareció en el propio commit que registró el defecto como `cola.yaml` I-12; ver esa entrada.)*
 
 ---
 
@@ -87,7 +87,7 @@ instrucciones-proyecto-v2.md   ← CANÓNICO. Gobierna todo lo demás.
 
 | Nombre citado (27/jul) | Qué pasó | Certeza |
 |---|---|---|
-| `gobernanza-programa.md` v1.0 | Renombrado bajo la convención de ADR-36 (28/jul) a la serie versionada punto-menor de `gobernanza` (hoy `gobernanza-v1.12.md`) — es este mismo documento, con linaje continuo (ADR-26 a 29 incorporados, tal como `curaduria-archivos.md:37` pedía para su v1.1) | Alta — el propio ADR-36 describe la migración de nombre de todo archivo canónico |
+| `gobernanza-programa.md` v1.0 | Renombrado bajo la convención de ADR-36 (28/jul) a la serie versionada punto-menor de `gobernanza` (hoy `gobernanza-v1.15.md`) — es este mismo documento, con linaje continuo (ADR-26 a 29 incorporados, tal como `curaduria-archivos.md:37` pedía para su v1.1) | Alta — el propio ADR-36 describe la migración de nombre de todo archivo canónico |
 | `glosario-v5.md` | Renombrado bajo ADR-36 a la serie versionada punto-menor de `glosario` (hoy `glosario-v5.6.md`) | Alta, mismo mecanismo |
 | `CHECKPOINT-programa-psicologia-mexicano.md` | Probable antecesor de `CHECKPOINT-v2.md`, que esta misma tabla ya declara **BORRADO 28/jul, fusionado en `ESTADO-PROGRAMA.md`** (fila de arriba) | **Media** — el nombre no coincide exacto y no hay commit localizable que confirme el renombre `CHECKPOINT-programa-psicologia-mexicano.md` → `CHECKPOINT-v2.md`; se declara aquí como la lectura más probable, no como hecho verificado |
 
