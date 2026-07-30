@@ -557,57 +557,84 @@ def t17_fichas_count():
     3 de los 7 puntos de escritura manual; este era uno de los que no
     tenían test propio).
 
-    Endurecido (29/jul/2026): el patrón busca TODAS las líneas que digan
-    'hitoD-preregistro` tiene **N fichas**' -- ancla al SENTIDO de la frase
-    (cobertura del pre-registro), no a un patrón amplio como '\\d+ de 27',
-    porque `estado:192` ('Paso 2 — EN CURSO. N de 27 corrida') usa el mismo
-    27 como denominador para medir algo distinto -- ejecución, no
-    cobertura -- y un patrón anclado al denominador lo confundiría con esta
-    declaración. `estado:192` necesita su propio aserto, todavía sin test
-    propio -- no se cubre aquí. Hereda de T16
-    la exención de historia fechada (`_CAMBIO_FECHADO`): una mención vieja
-    dentro de un changelog con fecha no cuenta como una segunda declaración
-    vigente en desacuerdo.
+    Ampliado (29/jul/2026, sesión de canon). Hallazgo previo: el patrón
+    original solo escaneaba `canon/estado-programa`, nunca el propio
+    `hitoD-preregistro` -- así que la autodeclaración falsa de su propia
+    cabecera ("VERIFICAS ASÍ: contiene **27 fichas**", línea 8, ya
+    autoseñalada como falsa por su Nota 2) nunca entró al radar de este
+    test, con verbo "tiene" o sin él. La causa raíz no era el verbo -- era
+    el alcance. Se corrige ampliando a DOS fuentes de declaración vigente:
 
-    NOTA: hoy esa exención es código muerto -- verificado. `estado:48`, el
-    único changelog fechado que menciona el pre-registro, dice "...no tiene
-    ficha alguna" (singular, sin número), no 'hitoD-preregistro` tiene **N
-    fichas**' -- no matchea el patrón de este test, con o sin exención. La
-    exención está aquí por diseño (hereda la misma disciplina de T16), no
-    porque hoy esté excluyendo nada."""
+    (1) `estado`, citando al pre-registro por su nombre estable
+        (`hitoD-preregistro\\``) seguido, a distancia corta y con
+        CUALQUIER verbo o frase intermedia, de `**N fichas**` -- cubre
+        "tiene", "contiene", "incluye", "declara", etc. Cubre la familia
+        "hitoD-preregistro\\` <lo que sea> **N fichas**"; NO cubre una
+        declaración que nombre el archivo por su nombre de archivo en vez
+        del nombre estable, ni una que ponga más de ~30 caracteres entre
+        el nombre y la cifra.
+
+    (2) El propio `hitoD-preregistro`, que no se nombra a sí mismo --
+        cualquier `**N fichas**` en su CUERPO VIGENTE, definido como todo
+        el texto antes de `## Notas fechadas` (el propio archivo declara
+        esa sección "append-only... se agregan al final" -- todo lo que
+        vive ahí es historia narrada o citada, nunca declaración fresca).
+        Es una exención ESTRUCTURAL, no un regex de fecha por nota: las
+        Notas 1-7 usan el formato "### Nota N · fecha", que `_CAMBIO_FECHADO`
+        no reconoce (exige `> **vX.Y — DD/mon.**`, el formato de `estado §0`)
+        -- ampliar el universo sin ampliar la exención habría repetido el
+        defecto de T07 que este mismo test ya advertía evitar. Cubre
+        "contiene **N fichas**", "tiene **N fichas**", cualquier frase que
+        preceda a la cifra entre corchetes dobles; NO cubre una declaración
+        que hable de cobertura sin la palabra "fichas" pegada al número
+        (p. ej. `hitoD-preregistro:13`, "v2.0 completa el perímetro: **27
+        de 27**", queda fuera -- no dice "fichas").
+
+    Hereda de T16 la exención de historia fechada para la fuente (1)
+    (`_CAMBIO_FECHADO`); la fuente (2) usa su propia exención estructural,
+    descrita arriba, en vez de heredarla."""
     h = newest("forense/hitoD-preregistro-v*.md")
     if not h:
         fail("T17", "no se pudo leer `forense/hitoD-preregistro-v*.md`")
         return
-    real = len(re.findall(r"^## R\d", read(h), re.M))
+    texto_h = read(h)
+    real = len(re.findall(r"^## R\d", texto_h, re.M))
+
+    vigentes = []
+
     p = newest("canon/estado-programa-v*.md")
     if not p:
         fail("T17", "no se pudo leer `canon/estado-programa-v*.md`")
         return
     s = read(p)
-    pat = re.compile(r"hitoD-preregistro`\s*tiene\s*\*\*(\d+)\s*fichas\*\*")
-    vigentes = []
+    pat_ext = re.compile(r"hitoD-preregistro`[^\n]{0,30}\*\*(\d+)\s*fichas\*\*")
     for i, l in enumerate(s.split("\n"), 1):
-        m = pat.search(l)
+        m = pat_ext.search(l)
         if not m or _CAMBIO_FECHADO.match(l):
             continue
-        vigentes.append((i, int(m.group(1))))
+        vigentes.append((rel(p), i, int(m.group(1))))
+
+    marcador = "## Notas fechadas"
+    corte = texto_h.find(marcador)
+    cuerpo_vigente = texto_h if corte == -1 else texto_h[:corte]
+    pat_int = re.compile(r"\*\*(\d+)\s*fichas\*\*")
+    for i, l in enumerate(cuerpo_vigente.split("\n"), 1):
+        m = pat_int.search(l)
+        if not m:
+            continue
+        vigentes.append((rel(h), i, int(m.group(1))))
+
     if not vigentes:
-        fail("T17", f"{rel(p)}: no se encontró ninguna declaración vigente de cobertura "
-                    f"del pre-registro ('hitoD-preregistro` tiene **N fichas**' en §4·S2, "
-                    f"fuera de historia fechada)")
+        fail("T17", "no se encontró ninguna declaración vigente de cobertura del "
+                     "pre-registro (ni en `canon/estado-programa` citando el nombre "
+                     "estable, ni en el cuerpo vigente -- antes de `## Notas fechadas` "
+                     "-- del propio pre-registro)")
         return
-    distintos = sorted(set(n for _, n in vigentes))
-    if len(distintos) > 1:
-        detalle = " · ".join(f"{rel(p)}:{i}={n}" for i, n in vigentes)
-        fail("T17", f"{rel(p)}: {len(vigentes)} declaraciones vigentes de cobertura, "
-                    f"no todas iguales: {detalle}")
-        return
-    declarado = distintos[0]
-    if declarado != real:
-        ln = vigentes[0][0]
-        fail("T17", f"{rel(p)}:{ln} declara {declarado} fichas; "
-                    f"{rel(h)} tiene {real} encabezados `## R`")
+    distintos = sorted(set(n for _, _, n in vigentes))
+    if len(distintos) > 1 or distintos[0] != real:
+        detalle = " · ".join(f"{a}:{i}={n}" for a, i, n in vigentes)
+        fail("T17", f"declaraciones de cobertura del pre-registro no cuadran con "
+                     f"{rel(h)} ({real} encabezados `## R`): {detalle}")
 
 
 # ───────────────────────────────────────────────────────────────
