@@ -410,8 +410,22 @@
     ENUT: 2009, 2014, 2019, 2024 -- ninguna edición expone zip estático bajo los patrones
     de nombre probados (datosabiertos/microdatos); 2024 tiene JSON-LD con placeholder de plantilla.
 
+    Corrección, misma fecha, verificado por navegador por el autor: la premisa anterior era
+    un límite del instrumento -- los patrones de URL que este script probó -- no una propiedad
+    del portal real. El portal expone las cinco ediciones (2002, 2009, 2014, 2019, 2024), cada
+    una con base, descriptor de archivos y diagrama entidad-relación, desde la pestaña Microdatos.
+    Ninguna se ha descargado todavía -- sigue pendiente, ahora por razón distinta: existe y es
+    alcanzable, falta bajarla, no falta localizarla (mismo patrón que D-06/regla v2.2 en cola.yaml
+    -- una ausencia medida con un instrumento, heredada como propiedad del terreno). Ver cola.yaml
+    D-08.
+
     ENCUCI: 2020 (sin distribución localizable). 2012 aparenta vivir en una ruta legada distinta
     de la plantilla actual -- no explorada más a fondo en esta sesión.
+
+    Corrección, misma fecha: 2020 sí expone descarga directa desde la pestaña Microdatos --
+    Descargar todos los archivos --, verificado por navegador por el autor, quien la bajó y
+    esta sesión la registró (encuci2020_bd_dbf, encuci2020_fd_pdf). Deja de estar pendiente.
+    2012 sigue sin explorar más a fondo -- sin cambio.
 
     ENSANUT: host real es ensanut.insp.mx (INSP), NO inegi.org.mx. Ediciones reales confirmadas
     por estructura de navegación propia: 2006, 2012, 2016, 2018, y ENSANUT Continua 2020-2024
@@ -949,3 +963,39 @@
     obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: encuci2020_bd_dbf
+  usado_para: hitoD-R8.3 (forense/hitoD-preregistro-v2_0.md) -- payload de microdatos, aún
+    no explotado en ninguna ficha de falsación commiteada; bloqueado además por conf.06 (D-06,
+    canon/cola.yaml)
+  url_origen: https://www.inegi.org.mx/programas/encuci/2020/
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario (navegador), pestaña Microdatos -> Descargar todos los archivos
+  archivo: BD_ENCUCI2020_dbf.zip
+  sha256: 0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283
+  tamano_bytes: 6913684
+  formato: ZIP (Base de Datos ENCUCI 2020, formato dbf) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Payload de microdatos crudo (dbf), no abierto ni inspeccionado -- solo hasheado, por
+    firewall vigente de esta sesión.
+
+- id: encuci2020_fd_pdf
+  usado_para: hitoD-R8.3 -- descriptor de archivos / diccionario de datos de encuci2020_bd_dbf,
+    aún no explotado
+  url_origen: https://www.inegi.org.mx/programas/encuci/2020/
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario (navegador), pestaña Microdatos -> Descargar todos los archivos
+  archivo: FD_ENCUCI2020.pdf
+  sha256: 6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638
+  tamano_bytes: 1758249
+  formato: PDF (Descriptor de archivos / FD)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: FD_ENCUCI2020.pdf es el Descriptor de archivos (FD) que INEGI publica junto a los
+    microdatos -- el mismo tipo de documento que para ENCIG 2023 no se pudo localizar (id
+    encig23_estructura_base_datos_pdf, sustituido entonces por un PDF de estructura equivalente).
+    Aquí sí está, bajado directo de la pestaña Microdatos. No abierto ni leído -- solo hasheado,
+    por firewall vigente de esta sesión.
