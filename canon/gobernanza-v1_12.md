@@ -1,11 +1,11 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.11** · 29 de julio de 2026 · **43 ADR**
+### `gobernanza` · **v1.12** · 30 de julio de 2026 · **44 ADR**
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `gobernanza-v1.11.md` |
-> | **REEMPLAZA A** | `gobernanza-v1.10.md` — **borrar** |
-> | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** |
+> | **ARCHIVO** | `gobernanza-v1.12.md` |
+> | **REEMPLAZA A** | `gobernanza-v1.11.md` — **borrar** |
+> | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · §4 trae ADR-44 (publicación del repositorio, sin registro previo) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
 
@@ -13,7 +13,7 @@
 *Documento vivo. Registra **qué se decidió, por qué, y qué se rompe si cambia**.
 No repite el contenido del corpus: lo gobierna.*
 
-**Versión de este documento:** 1.11 · **Estado del programa:** Ronda 4 cerrada y **auditada**; modelo v2 y glosario v5 consolidados; Fase 1 del simulador **pospuesta**. *(Corregido 29/jul/2026: decía 1.1, contradiciendo la cabecera de este mismo archivo, que ya dice 1.9 — hallazgo nuevo de esta sesión, no catalogado por `censo-integridad-v1_0.md`.)*
+**Versión de este documento:** 1.12 · **Estado del programa:** Ronda 4 cerrada y **auditada**; modelo v2 y glosario v5 consolidados; Fase 1 del simulador **pospuesta**. *(Corregido 29/jul/2026: decía 1.1, contradiciendo la cabecera de este mismo archivo, que ya dice 1.9 — hallazgo nuevo de esta sesión, no catalogado por `censo-integridad-v1_0.md`.)*
 
 ---
 
@@ -87,7 +87,7 @@ instrucciones-proyecto-v2.md   ← CANÓNICO. Gobierna todo lo demás.
 
 | Nombre citado (27/jul) | Qué pasó | Certeza |
 |---|---|---|
-| `gobernanza-programa.md` v1.0 | Renombrado bajo la convención de ADR-36 (28/jul) a la serie versionada punto-menor de `gobernanza` (hoy `gobernanza-v1.11.md`) — es este mismo documento, con linaje continuo (ADR-26 a 29 incorporados, tal como `curaduria-archivos.md:37` pedía para su v1.1) | Alta — el propio ADR-36 describe la migración de nombre de todo archivo canónico |
+| `gobernanza-programa.md` v1.0 | Renombrado bajo la convención de ADR-36 (28/jul) a la serie versionada punto-menor de `gobernanza` (hoy `gobernanza-v1.12.md`) — es este mismo documento, con linaje continuo (ADR-26 a 29 incorporados, tal como `curaduria-archivos.md:37` pedía para su v1.1) | Alta — el propio ADR-36 describe la migración de nombre de todo archivo canónico |
 | `glosario-v5.md` | Renombrado bajo ADR-36 a la serie versionada punto-menor de `glosario` (hoy `glosario-v5.6.md`) | Alta, mismo mecanismo |
 | `CHECKPOINT-programa-psicologia-mexicano.md` | Probable antecesor de `CHECKPOINT-v2.md`, que esta misma tabla ya declara **BORRADO 28/jul, fusionado en `ESTADO-PROGRAMA.md`** (fila de arriba) | **Media** — el nombre no coincide exacto y no hay commit localizable que confirme el renombre `CHECKPOINT-programa-psicologia-mexicano.md` → `CHECKPOINT-v2.md`; se declara aquí como la lectura más probable, no como hecho verificado |
 
@@ -329,6 +329,19 @@ Cuando una validación rompe o degrada una afirmación:
 **ADR-43 · Esquema de co-autoría (precisión a ADR-41).** ADR-41 pidió "una forma normalizada de la cadena de modelo". Su primera aplicación, cinco commits después, produjo **dos** formas: `Claude Sonnet 5` (cuatro commits) y `Claude Fable 5` (uno) — porque cada commit se escribió con el modelo de sesión vigente en ese momento, y ADR-41 no distinguía si "normalizada" quería decir una cadena fija o un formato consistente. **La historia no se reescribe** — los cinco commits quedan como están. **Precisión, no corrección:** la forma normalizada es un **esquema**, no una cadena única — `Claude <modelo> <noreply@anthropic.com>`, con el nombre del modelo como campo variable y el resto fijo. Es deliberado, no una relajación: registrar **qué modelo** co-escribió cada commit es procedencia más fina, no más débil — la misma disciplina que `procedencia.yaml` exige para los números del modelo, aplicada a la autoría. Verificado: los cinco commits de la sesión de ADR-41 ya cumplen este esquema tal como queda definido aquí — ninguno necesita enmienda.
 → **Vigente. S2.** *(Aprobado 29/jul/2026.)*
 
+**ADR-44 · El repositorio es público; la función del programa pasa de privado-descriptivo a público-auditable.** El repo quedó público el 29/jul/2026 sin registro de decisión — mismo patrón que ADR-42(1): un cambio de semántica del programa entero, hecho sin pasar por gobernanza. Este ADR lo registra ahora, no lo autoriza retroactivamente ni lo revierte, y fija sus requisitos de salida:
+
+**(a) Capa legal en el árbol — verificado en sesión.** `LICENSE`, `AUTHORSHIP.md`, `USO-ACEPTABLE.md`, `AVISO-DE-ALCANCE.md` y `CITATION.cff` existen en la raíz (`git ls-files`, corrido el 30/jul/2026). Ninguno de los cinco falta.
+
+**(b) Re-examen de deuda "asumida a propósito" (regla v2.2).** Toda deuda declarada en `§5` de este documento como "asumida a propósito" queda re-examinada a esta fecha, no solo re-declarada. El dictamen ítem por ítem ya se corrió — este ADR no lo repite ni lo reabre — y vive en `revision-publicacion-2026-07-30.md §1` (tabla "EL EJE"), verificado ahí contra `gobernanza §5`, `estado §4` y `cola.yaml`. Tres deudas caducaron por completo con la función pública (cero datos primarios propios, ya caducada dos veces; las ocho refutaciones sin objeto; el baseline con la autodeclaración falsa de `hitoD-preregistro:8`, congelada "por decisión de mesa" cuando la mesa todavía era privada); las demás siguen decisión con su forma o presentación ajustada, no con su fondo.
+
+**(c) README sin cifra de estado no vigilada por test — PENDIENTE, es F6.** No se cumple hoy. `README.md` sigue teniendo cifras de estado (§"Estado del modelo", §"Falsos positivos conocidos") sin ningún test que las derive y las compare contra el árbol, más allá de la corrección puntual que esta misma sesión aplicó a `README:40` y a los conteos de T03/T10. El molde que cerraría esta condición (`T-README`, mismo patrón que `T16`) está en `cola.yaml` y **fuera del perímetro de la sesión que sella este ADR** — regla de sesión vigente: T-README es F6 y no se toca en sesiones de canon. Este requisito de salida queda abierto a propósito, no por descuido: se cierra cuando exista el test, no antes, y bloquea la apertura de cualquier vía de patrocinio — no el registro de este ADR.
+
+**(d) Ninguna decisión de mesa futura asume lector interno.** Regla hacia adelante, no retroactiva: toda decisión que de aquí en más se registre en `cola.yaml`, en este documento o en `estado` se escribe asumiendo que quien la lee puede ser un desconocido, no el propio equipo. La deuda #12 de la tabla eje citada en (b) — "el repo es privado / esto solo lo leemos nosotros", nunca declarada ni medida — fue la última decisión de mesa que asumió lector interno sin decirlo; no se detectó otra de la misma clase en esta sesión.
+
+**Dato de cierre, aportado por el encargo y no re-verificable desde esta sesión** (sin acceso autenticado a Settings/Insights de GitHub — mismo trato que un supuesto [S1] de `revision-publicacion-2026-07-30.md`, no una cifra derivada de este árbol): con "Preserve this repository" activo, ya existiría copia del árbol en el GitHub Archive Program. Si es correcto, el repliegue a privado **no revertiría la exposición** — cerraría, por el lado de los hechos y no de la decisión, la deuda #12 citada arriba: la restricción "el repo es privado" ya sería falsa incluso antes de este ADR. Verificarlo con acceso autenticado a GitHub queda en cola; este ADR no lo da por confirmado, lo registra como recibido.
+→ **Vigente. S2.** *(Aprobado 30/jul/2026, sesión de canon F2/F4. (a) verificado en sesión; (b) referido a `revision-publicacion-2026-07-30.md`, no reabierto aquí; (c) declarado PENDIENTE, condición de salida no cumplida; (d) regla hacia adelante.)*
+
 ---
 
 ## 5. Deuda declarada (decisiones abiertas, conscientemente)
@@ -390,6 +403,7 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 | Versión | Qué cambió |
 |---|---|
 | 1.0 | Creación. ADR-01 a ADR-25, registro de artefactos y protocolo de propagación tras cerrar Ronda 4 y Fase 0. |
+| **1.12** | **30/jul/2026 — ADR-44: registro retroactivo de la publicación del repositorio (29/jul), sin ADR previo.** Mismo patrón que ADR-42(1), un piso más arriba: la función del programa entero cambió de privado-descriptivo a público-auditable sin pasar por gobernanza. Fija cuatro requisitos de salida — capa legal verificada en el árbol, re-examen de deuda "asumida a propósito" (referido a `revision-publicacion-2026-07-30.md`), README sin cifra sin test (declarado **PENDIENTE**, es F6) y regla hacia adelante contra decisiones que asuman lector interno. *(Sesión de canon F2/F4; T-README y A1-A5 quedaron fuera de perímetro por regla de sesión. Nota: las filas 1.10 y 1.11 no existen en esta tabla — mismo hueco de autorreferencia que `censo-integridad-v1_0.md` C5-03 ya señaló para 1.9; no se reconstruyen aquí, es scope ajeno a este ADR.)* |
 | **1.9** | **29/jul/2026 — Corrección de RÓTULO del perímetro del Hito D (ADR-37, §4).** El registro de decisión decía "20 [FUERTE] + 5 [MEDIA-FUERTE] + 2 compuestas", tratando a `R1.4` ([FUERTE como correlación]) como una segunda regla partida. Solo `R4.3` ([FUERTE / MEDIA]) es compuesta; `R1.4` es un tier distinto, con un solo falsador. El perímetro no cambia: siguen 27. Propagado a `modelo §7` (cambio 34) y `estado §4·S2`/`§7`. *(Fila añadida 29/jul/2026 en la sesión de correcciones — faltaba; `censo-integridad-v1_0.md` C5-03.)* |
 | **1.8** | **28/jul/2026 — ADR-36 adenda (c):** las series numeradas se versionan completas, con prefijo común, y el **orden de lectura pasa del nombre al cuerpo**. Los tres docs de MILPA → `milpa-whitepaper` v0.1 · `milpa-spec` v0.2 · `milpa-plan` v0.1. |
 | **1.7** | **28/jul/2026 — ADR-37: se cierra el S2 más antiguo del programa.** La spec del gate de Fase 1 pasa de una condición a **tres** (reproducción · prueba de mecanismo · anti-confusión). Desbloquea `R3.4`. Colateral: `civico.voto.clientelar` degradada de `FUERTE` a `MEDIA` — su `p: 0.63` era cifra de **laboratorio** compilada como campo; se crea el campo `procedencia_p`. |
