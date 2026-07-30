@@ -440,6 +440,530 @@
     ni base -- solo se verificó existencia de página (título) y presencia/ausencia de un enlace
     de archivo verificable por Content-Type/Content-Length.
 
+- id: ennvih1_2002_hogar_dta
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh02dta_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh02dta_all.zip
+  sha256: 8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923
+  tamano_bytes: 17534918
+  formato: ZIP con las bases .dta (Stata) de todos los libros del cuestionario de hogar, ENNViH-1
+    (2002)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih1_2002_hogar_cb
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh02cb_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh02cb_all.zip
+  sha256: a3220412505d6684e50548bdd1e01ce816d3af99ed846e4e27f30f35e9b506b2
+  tamano_bytes: 2195863
+  formato: ZIP con los manuales de codificación (PDF) de todos los libros de hogar, ENNViH-1
+    (2002)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih1_2002_hogar_q
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh02q_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh02q_all.zip
+  sha256: 40af29bd864e967200dbbde2c9744795b33c0a23cdbb19902dd2ecdb7beb3cac
+  tamano_bytes: 3750632
+  formato: ZIP con los cuestionarios (PDF) de todos los libros de hogar, ENNViH-1 (2002)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih1_2002_ponderador
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh02w_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh02w_all.zip
+  sha256: bbe8006844f715c19b724ebb74f1408c4cfa07e2efdfe7d6748b5182ef214587
+  tamano_bytes: 755310
+  formato: ZIP con los ponderadores muestrales por libro, ENNViH-1 (2002)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih1_2002_local_dta
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/eloc02dta_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/eloc02dta_all.zip
+  sha256: 7d3f350a7e7146528822f046f721afbfa1fdd62e0fa2a0781ca54a45181f894e
+  tamano_bytes: 1591239
+  formato: ZIP con las bases .dta del cuestionario de LOCALIDAD, ENNViH-1 (2002)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih1_2002_local_cb
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/eloc02cb_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/eloc02cb_all.zip
+  sha256: 29bedbaecf229e15e6af1dd6410533bc2ecfa740334cdf9a9cd7043e925ea2e6
+  tamano_bytes: 901067
+  formato: ZIP con los manuales de codificación (PDF) del cuestionario de localidad, ENNViH-1
+    (2002)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih1_2002_local_q
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/eloc02q_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/eloc02q_all.zip
+  sha256: e8a28cdd05def8e0a9b89c86b6ba5574e8cd819de7ab86780a22c9f473d46d97
+  tamano_bytes: 5995112
+  formato: ZIP con los cuestionarios (PDF) de localidad, ENNViH-1 (2002)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih1_2002_guia
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/guiausuariov1.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/guiausuariov1.pdf
+  sha256: d38ee15b9c6b4681364e75fefeed27a26b216c5974a2a5d5c4c7c213e2eede53
+  tamano_bytes: 483275
+  formato: PDF — Guía de Usuario ENNViH-1 (2002)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih2_2005_hogar_dta
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh05dta_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh05dta_all.zip
+  sha256: fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a
+  tamano_bytes: 20198874
+  formato: ZIP con las bases .dta (Stata) de todos los libros del cuestionario de hogar, ENNViH-2
+    (2005-06)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih2_2005_hogar_cb
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh05cb_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh05cb_all.zip
+  sha256: 1bbbb7ee97bd8d1273213e0d4d2ee616198405d32bc145df9236efa2940f210b
+  tamano_bytes: 1184711
+  formato: ZIP con los manuales de codificación (PDF) de todos los libros de hogar, ENNViH-2
+    (2005-06)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih2_2005_hogar_q
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh05q_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh05q_all.zip
+  sha256: e73709d1de16f4c79cd20a48080dca7ea6ec3a2dcca491837d7f79a00928e894
+  tamano_bytes: 2913036
+  formato: ZIP con los cuestionarios (PDF) de todos los libros de hogar, ENNViH-2 (2005-06)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih2_2005_ponderador_transversal
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh05w_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh05w_all.zip
+  sha256: 34ee12b0c0d71e76676197089b5fd6048c0fdaa590a220f440d95526b1f4713b
+  tamano_bytes: 759009
+  formato: ZIP con los ponderadores TRANSVERSALES (población mexicana en 2005) por libro,
+    ENNViH-2
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih2_2005_ponderador_longitudinal
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh05lw_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh05lw_all.zip
+  sha256: 6567bcbf3386b04b3d77c0ac0eb564d5be752b0090bb9caa31ccb1e077a745bf
+  tamano_bytes: 698559
+  formato: ZIP con los ponderadores LONGITUDINALES (población del 2002) por libro, ENNViH-2
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih2_2005_local_dta
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/eloc05dta_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/eloc05dta_all.zip
+  sha256: fd7c1888d33a81d0269675654f3fc8f32b442d80a70b0164080fa19859cda1e0
+  tamano_bytes: 417340
+  formato: ZIP con las bases .dta del cuestionario de LOCALIDAD, ENNViH-2 (2005-06)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih2_2005_local_cb
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/eloc05cb_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/eloc05cb_all.zip
+  sha256: e793a63ba5b39bd5599c9340f64129e6ab380a7c67fc87c0721a04283fff2d7b
+  tamano_bytes: 166796
+  formato: ZIP con los manuales de codificación (PDF) del cuestionario de localidad, ENNViH-2
+    (2005-06)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih2_2005_local_q
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/eloc05q_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/eloc05q_all.zip
+  sha256: eb9aee58ebeb3206f77f7d75931fb298d8b50b03a0f8d793300f9dfbcaa06f2c
+  tamano_bytes: 642097
+  formato: ZIP con los cuestionarios (PDF) de localidad, ENNViH-2 (2005-06)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih2_2005_guia
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/guiausuariov2.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/guiausuariov2.pdf
+  sha256: 6d3334e77e1d417bf7be997715c4e38b0c0047e595a948d7bbcd8295255f0ddc
+  tamano_bytes: 307528
+  formato: PDF — Guía de Usuario ENNViH-2 (2005-06)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih3_2009_hogar_dta
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh09dta_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh09dta_all.zip
+  sha256: 00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15
+  tamano_bytes: 26376091
+  formato: ZIP con las bases .dta (Stata) de todos los libros del cuestionario de hogar, ENNViH-3
+    (2009-12)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih3_2009_hogar_cb
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh09cb_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh09cb_all.zip
+  sha256: 1e23ee82ac16f1f977daa78f017753045a459dc468ba599c1ec4011cc08ef059
+  tamano_bytes: 10077598
+  formato: ZIP con los manuales de codificación (PDF) de todos los libros de hogar, ENNViH-3
+    (2009-12)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih3_2009_hogar_q
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh09q_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh09q_all.zip
+  sha256: 4eaed9c07a638fdd388901cd84692b9de2f8503ccf5d54da524b660b46fb5340
+  tamano_bytes: 6156032
+  formato: ZIP con los cuestionarios (PDF) de todos los libros de hogar, ENNViH-3 (2009-12)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih3_2009_ponderador_transversal
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh09w_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh09w_all.zip
+  sha256: e7929b49a7cd4f1eae5aa17da77c7eea4794d0f26265fbd40dde5e9c8e3ef8b8
+  tamano_bytes: 876722
+  formato: ZIP con los ponderadores TRANSVERSALES por libro, ENNViH-3 (2009-12)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih3_2009_ponderador_longitudinal
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/ehh09lw_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/ehh09lw_all.zip
+  sha256: 52472e0c648c5c35e00bf11b546c9b60beadec93f01290771b67adece3903833
+  tamano_bytes: 655349
+  formato: ZIP con los ponderadores LONGITUDINALES por libro, ENNViH-3 (2009-12)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih3_2009_local_dta
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/eloc09dta_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/eloc09dta_all.zip
+  sha256: da3d4d6f80943d85d481f021b50771956bedaec3a8c257753d46e31b65000406
+  tamano_bytes: 423878
+  formato: ZIP con las bases .dta del cuestionario de LOCALIDAD, ENNViH-3 (2009-12)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih3_2009_local_cb
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/eloc09cb_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/eloc09cb_all.zip
+  sha256: 1e319818bf0abaa4c6ae076c91500c94ac0daa50f6c5c8517b1e297734a46d5e
+  tamano_bytes: 1796199
+  formato: ZIP con los manuales de codificación (PDF) del cuestionario de localidad, ENNViH-3
+    (2009-12)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih3_2009_local_q
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/eloc09q_all.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/eloc09q_all.zip
+  sha256: 7740382889fdc5b6d634c888bd35cee541e50a875b991952f299ae0881b36379
+  tamano_bytes: 2618552
+  formato: ZIP con los cuestionarios (PDF) de localidad, ENNViH-3 (2009-12)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih3_2009_guia
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/guia_de_usuario_ennvih-3.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/guia_de_usuario_ennvih-3.pdf
+  sha256: f5e884eb6d923211ea21bf98c5584d87cb04e7540c62d59d6812bbaa28401ba8
+  tamano_bytes: 774086
+  formato: PDF — Guía de Usuario ENNViH-3 (2009-12)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ennvih3_2009_factores_exp
+  usado_para: CAL-G3 (forense/hitoD-preregistro-v2_0.md, Nota 7 + Adenda 1) — estimación propia
+    de la elasticidad formalidad→composición del ahorro del hogar en el panel ENNViH/MxFLS,
+    ventana 2002-2012
+  url_origen: https://www.ennvih-mxfls.org/assets/calculo-de-factores-de-expansion.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de ennvih-mxfls.org (enlace directo al asset, sin formulario
+    de registro)
+  archivo: ennvih/calculo-de-factores-de-expansion.pdf
+  sha256: cc297561caa5e963fd5a7cd88a8ab0a45726b997015eafbcdac7bcf088fe214d
+  tamano_bytes: 337947
+  formato: PDF — Cálculo de factores de expansión, documentación de ponderadores de la ola
+    3 (enlazada desde documentacion3.html)
+  licencia: 'Dominio público, descarga sin costo (sitio del proyecto, sección Introducción).
+    El sitio declara un procedimiento de registro de usuario que estos enlaces directos a
+    /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita
+    obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.'
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
 - id: encuci2020_bd_dbf
   usado_para: hitoD-R8.3 (forense/hitoD-preregistro-v2_0.md) -- payload de microdatos, aún
     no explotado en ninguna ficha de falsación commiteada; bloqueado además por conf.06 (D-06,
