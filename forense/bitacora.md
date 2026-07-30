@@ -423,3 +423,38 @@ canon/cola.yaml     |  3 ++-
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/hitod-perimetro-compara` · **HEAD inicial (origin/main):** `dc5fd0fb20137d802af2c6ab4cc0ea6cd13241e0` · **HEAD final:** `33b412f2656d68482bf99e76bd7f70d23730fc6c`
+
+**Commits de la sesión:**
+  - `33b412f` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · manifiesto.py: pliegue '>' con ancho en vez de literal '|' sin envolver
+  - `ce3c284` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · Hito D Fase 1, Paso 4 (ampliación): serie completa de ENCIG/ENIF/ENVIPE/ENIGH
+  - `d0d9e07` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: bloque de cierre — Hito D Fase 1, Pasos 1-3
+  - `feaf38e` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · Hito D Fase 1 (parcial, Pasos 1-3): perímetro de red, tabla de fuentes, --compara
+
+**Archivos tocados:**
+```
+canon/cola.yaml      |  12 ++
+ data/manifiesto.yaml | 445 ++++++++++++++++++++++++++++++++++++++++++++++-----
+ forense/bitacora.md  |  30 ++++
+ tests/manifiesto.py  |  92 ++++++++++-
+ 4 files changed, 527 insertions(+), 52 deletions(-)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: E-03
+  - Cerrados: D-05, D-06, D-07, I-08, I-09
+
+**Qué se decidió:** Ampliación del Paso 4 (Hito D Fase 1), decisión de mesa del autor: se bajó la serie completa disponible de ENCIG (2015/2017/2019/2021/2023-datosabiertos, más la 2023-microdatos ya existente) y de toda encuesta de la tanda con varias ediciones -- ENIF (2018/2021/2024), ENVIPE (serie completa 2018-2025, 8/8), ENIGH nueva-construcción (2012/2014/2016/2018/2020/2022). Lista real derivada de inegi.org.mx, no del encargo (título de página real vs 'Página no encontrada'; Content-Type/Content-Length de un zip real vs el shell de 2263 bytes). encig2023_datosabiertos_csv resultó DISCREPANCIA (--compara) contra la entrada ya existente encig23_base_datos_csv -- dos paquetes distintos de la misma edición, registrados por separado, sin fusionar. ENUT/ENCUCI/ENSANUT: nada se descargó -- las tres existen pero ninguna edición expuso enlace estático sin forzar un mecanismo (SPA/formulario); registradas como 'requiere navegador', no 'no existe' (corolario 2). E-03 declara el alcance exacto de inhabilitación de esta máquina para pre-registrar: R3.1/R1.2/R7.2/R5.1 quedan inhabilitadas (ENCIG/ENIF/ENVIPE/ENIGH); R5.2/R8.3/R4.2 (ENUT/ENCUCI/ENSANUT) NO, porque nada se tocó de esas fuentes. De paso, se corrigió un defecto de legibilidad propio en tests/manifiesto.py: el presentador de YAML volvía literal cualquier prosa que --registra reescribiera, aplastando párrafos ya envueltos a mano en una sola línea -- corregido a plegado con ancho, contenido verificado idéntico.
+**Qué quedó bloqueado:** Nada de esta ampliación quedó bloqueado -- todo lo que el sitio de INEGI exponía por script se bajó y registró. Lo que sigue fuera del alcance de esta máquina: ENUT/ENCUCI/ENSANUT (requieren navegador o ingeniería del formulario de ENSANUT, no forzado por directiva), y R3.4/Banxico (fuera de esta ampliación, sigue bloqueada por ADR-37).
+
+---
+
