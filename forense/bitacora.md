@@ -984,3 +984,37 @@ canon/cola.yaml                                    |  33 +++
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `claude/new-session-gdstpo` · **HEAD inicial (origin/main):** `fe66ee9a9df71542381e5f6b507e9b1d78b4f291` · **HEAD final:** `ac5b95fe4f558daf81b77cbb05f0ee861c85390b`
+
+**Commits de la sesión:**
+  - `ac5b95f` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · merge origin/main -- resuelve cola.yaml y bitacora.md (append-only), renumera I-17/I-18 -> I-19/I-20
+  - `0c64eaa` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · bitacora: cierra sesión -- Hito E verificado + I-18 (bitacora.py fabrica bloques falsos)
+  - `ef9ac0c` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · Hito E: recoge el plan de campaña (tipo 3, sin sello) + verificación de premisas
+
+**Archivos tocados:**
+```
+canon/cola.yaml                                    |  44 ++++
+ forense/bitacora.md                                |  31 +++
+ forense/hitoE-campana-medicion-v2_0.md             | 234 +++++++++++++++++++++
+ .../2026-07-30-verificacion-premisas-hitoE.md      | 155 ++++++++++++++
+ 4 files changed, 464 insertions(+)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: D-12, E-07, I-19, I-20
+  - Cerrados: D-05, D-06, D-07, D-08, D-09, D-10, E-04, E-05, E-06, I-08, I-09
+
+**Qué se decidió:** Merge de origin/main (fe66ee9, PR #14) en claude/new-session-gdstpo y resolución de los dos conflictos append-only (cola.yaml, bitacora.md) conservando ambos lados en orden cronológico. COLISION DE IDs resuelta renumerando LOS PROPIOS, nunca los de main (patrón E-04 -> E-06 de la sesión de ENCUCI): I-17 -> I-19 (plan Hito E, 8 vs 9 constructos y 61 fuentes) e I-18 -> I-20 (bitacora.py, baseline sin fetch y Cerrados); D-12 y E-07 no chocaron. Las dos renumeradas llevan nota declarando su ID original; los commits ef9ac0c/0c64eaa y el bloque de bitácora anterior citan los IDs viejos y NO se reescriben. La resolución NO fue concatenación ciega: main no era append puro de base -- había subido I-01 a casos=3 y extendido su evidencia (caso 3, PR #13) -- así que se reconstruyó como main completo + mi bloque, no como base + los dos apéndices, que habría perdido esa edición in-place. HALLAZGO QUE DESTAPO EL MERGE, registrado en I-20: el I-17 de main y mi I-20 tocan el MISMO script (tests/bitacora.py --cierra) por defectos DISTINTOS, sin que ninguna de las dos sesiones viera a la otra -- main-I-17 es sobre la fuente de la cifra 'Antes' (baseline.json congelado), I-20 es sobre el baseline del DIFF (ref local sin fetch) y sobre 'Cerrados'; con el I-18 de main (multiplicidad invisible a --baseline, en check.py) son cuatro defectos de instrumento registrados el mismo día por dos sesiones ciegas entre sí. Verificado antes de push: aritmética de líneas (cola 393+20+44=457=457; bitacora 894+61+31=986=986), cero marcadores de conflicto, 40 IDs sin duplicados, I-01 casos=3 conservado, check.py --baseline VERDE, validador OK, y el cuerpo del plan de Hito E sigue verbatim contra el adjunto original.
+**Qué quedó bloqueado:** Sin cambios respecto al cierre anterior: las cuatro entradas (I-19, D-12, E-07, I-20) siguen abiertas y sin resolver -- corregir el denominador de la puerta E0->E1, decidir si confianza_institucional se mide como uno o como seis, y arreglar tests/bitacora.py son decisiones de mesa o trabajo de instrumento aparte (protocolo §4, prohibiciones 1 y 2). El plan de Hito E sigue SIN SELLO: no hay ADR. La línea 'Cerrados' del bloque de abajo sigue siendo falsa por el defecto (b) de I-20 -- esta sesión cerró CERO entradas; no se edita a mano porque el bloque es derivado y append-only, se lee junto a I-20. Queda pendiente abrir el PR de esta rama contra main.
+
+---
+
