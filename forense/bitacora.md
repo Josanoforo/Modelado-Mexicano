@@ -201,6 +201,134 @@ AUTHORSHIP.md                                      |  2 +-
 
 ## 2026-07-30
 
+**Fecha:** 2026-07-30 · **Rama:** `claude/falsacion-vocabulary-zfjvr4` · **HEAD inicial (origin/main):** `9301e59203b01243e76fe2de47eaad93667a9514` · **HEAD final:** `adb3e62010316ae37c7b31e3b796b28c4cbbe8c9`
+
+**Commits de la sesión:**
+  - `adb3e62` · Claude · D-05: fija el vocabulario de "prueba de falsación" (ADR-45)
+  - `584f806` · Josanoforo · Merge pull request #3 from Josanoforo/claude/f2-f4-portada-adr-7fjpln
+  - `7d92f5b` · Claude · bitácora: bloque de cierre — escalada de D-05, sesión F2/F4 completa
+  - `a528654` · Claude · cola: D-05 -- "prueba de falsación corrida" sin referente único, escalado a mesa
+  - `46e9cef` · Claude · bitácora: bloque de cierre de la sesión F2/F4 (portada, ADR-44)
+  - `bdb1b77` · Claude · cola: F7.b y F6/T-README entran a la cola, sin abrirlas
+  - `2d1d866` · Claude · gobernanza: v1.11 -> v1.12 -- ADR-44 (publicación del repositorio sin ADR previo)
+  - `856639c` · Claude · README: corrige README:40 contra el registro de veredictos archivados
+  - `25abb83` · Josanoforo · Merge pull request #2 from Josanoforo/claude/refreeze-baseline-pr1-4zha5w
+  - `1ee9f29` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · bitácora: el borrado de la rama del PR #1 quedó bloqueado, no hecho
+  - `902ab75` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · bitácora: bloque de cierre del refreeze post-PR #1
+  - `84aaae3` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · cola: I-01 sube a casos=2 — el refreeze post-PR #1 como evidencia para A1
+  - `78288a2` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · estado: declaración vigente de la suite a la corrida real (19 FAIL · 87 WARN)
+  - `74027d5` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · Refreeze de línea base tras el merge del PR #1 (main 22a7d9d)
+  - `a0ae0ad` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · check.py: buckets propios para las 3 entradas del refreeze post-PR #1
+  - `22a7d9d` · Josanoforo · Merge pull request #1 from Josanoforo/claude/psicologia-mexicano-publication-review-h5h6ic
+  - `f4bef94` · Josanoforo · Nota de reconciliación: LICENSE-CORPUS.md descartado (D-05)
+  - `10239cd` · Claude · co: Claude Fable 5 <noreply@anthropic.com> · revisión estratégica de publicación (propuesta sin sello, ADR-39 aplicado al encargo)
+  - `4e174dd` · Josanoforo · Add files via upload
+  - `7fa7481` · Josanoforo · Delete USO-ACEPTABLE.md
+  - `83db9c9` · Josanoforo · Delete CITATION.cff
+  - `5fab073` · Josanoforo · Delete AVISO-DE-ALCANCE.md
+  - `29f08b4` · Josanoforo · Delete LICENSE
+  - `a946db5` · Josanoforo · Delete AUTHORSHIP.md
+  - `acd65af` · Josanoforo · Add files via upload
+  - `fb1f333` · Josanoforo · Add files via upload
+  - `c3adff8` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: segundo bloque de cierre
+  - `b73d1dd` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · cierre del gate (segunda vuelta): bucket propio TRANSFER-9, estado sincronizado, cola +2
+  - `c6dd7ee` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · bitácora: primer bloque de cierre + fix de bitacora.py --cierra
+  - `7dd1c5a` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · Parte 2: aterriza protocolo-sesion, cola.yaml y tests/bitacora.py
+  - `c42abc9` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · Parte 1: cierre del gate T17 -- estado sincronizado, deuda congelada, .gitignore
+  - `97b9f2b` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: T17 ve su propio objeto -- escanea hitoD-preregistro, no solo estado
+  - `d123f49` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · gobernanza: v1.10 -> v1.11 -- ADR-42 (qué significa el verde) y ADR-43 (esquema de co-autoría)
+  - `24df4b3` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · hitoD: adenda 1 a CAL-G3 -- desenlace primario a cuatro estados con molde ENIF
+  - `c9e67bd` · Jonas · co: Claude Fable 5 <noreply@anthropic.com> · hitoD: ficha CAL-G3 -- pre-registro de estimación propia de coeficiente de generador
+  - `015af3a` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: T03 exime citas de renombre; --freeze con conteo derivado (18 FAIL · 82 WARN)
+  - `2bf50b2` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · gobernanza: v1.9 -> v1.10 -- ADR-41 (reglas de sesión sin archivo, autoría del repo)
+  - `c68feab` · Jonas · co: Claude Sonnet 5 <noreply@anthropic.com> · instrucciones-proyecto-v2.md: v2 -> v2.2 -- procedencia documental y hallazgos de Hito D
+  - `afa7c7f` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · hitoD-R3.2: veredicto B -- gate inalcanzable por construcción, escala no valor
+  - `771ea26` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: T18 T-PASO2-EJECUCION -- veredictos en bloque designado (ADR-40)
+  - `d26cfde` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · tests: newest() por versión no lexicográfico; T17 asevera unicidad
+  - `de3f22a` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · estado: consolida declaración canónica de cobertura del pre-registro (§4·S2)
+  - `1a56210` · Claude · co: Claude <noreply@anthropic.com> · tests: T17 T-FICHAS-COUNT -- declarado en estado == encabezados ## R reales
+  - `90eb140` · Claude · co: Claude <noreply@anthropic.com> · hitoD-preregistro: revierte prefijo de ruta en 3 citas (T03 no las ve); documenta el hueco
+  - `b28b144` · Claude · co: Claude <noreply@anthropic.com> · hitoD-preregistro: ficha de R3.2, pre-registrada antes de abrir ENCIG
+  - `9fb8473` · Claude · co: Claude <noreply@anthropic.com> · tests: T14/T15/T16 -- convierte en test 4 de las 7 cifras que quedaron a mano
+  - `e3d483b` · Claude · co: Claude <noreply@anthropic.com> · baseline.json: actualiza HEAD al commit real que describe el arbol
+  - `c377b97` · Claude · co: Claude <noreply@anthropic.com> · tests/baseline.json: congela 18 FAIL / 82 WARN tras la sesion de correcciones
+  - `31fff96` · Claude · co: Claude <noreply@anthropic.com> · Censo de integridad: corrige causa raiz A/C, casos B/D/F, mueve documentos muertos, incorpora ADR-38/39
+  - `f320550` · Claude · CI: usa el modo linea base en vez de check.py sin banderas
+  - `3375a28` · Claude · baseline.json: actualiza HEAD al commit real que describe el arbol
+  - `26e7ef4` · Claude · T03: normaliza punto/guion bajo, declara historicos, congela linea base P1
+  - `69357d4` · Claude · Censo v1.1: procedencia por commit, denominador eb92d99/9efa61f, cadena del caso pelon
+  - `9dbff7a` · Claude · Anade censo-integridad-v1_0: auditoria mecanica completa de canon/ y forense/
+  - `9efa61f` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · Corrige rotulo del perimetro del Hito D + registro congelado de IDs
+  - `eb92d99` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · Anade TRANSFER-maestra-8.md: cierre de sesion del 29/jul
+  - `8254fde` · Claude · co: Claude Sonnet 5 <noreply@anthropic.com> · Anade TRANSFER-maestra-7.md: documento de traspaso, estaba fuera del repo
+  - `7d6535e` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · estado v1.8: corrige "cubre las 27" y registra la auditoria de perimetro
+  - `a79227e` · Claude · co: Claude Opus 5 <noreply@anthropic.com> · Nota forense: verificacion del perimetro y cobertura del pre-registro
+
+**Archivos tocados:**
+```
+.github/workflows/verify.yml                       |   4 +-
+ .gitignore                                         |  16 +
+ AUTHORSHIP.md                                      |  84 +++
+ AVISO-DE-ALCANCE.md                                | 106 ++++
+ CITATION.cff                                       |  35 ++
+ CONTRIBUTING.md                                    |  12 +-
+ LICENSE                                            |  65 +++
+ README.md                                          |   6 +-
+ USO-ACEPTABLE.md                                   |  92 +++
+ canon/cola.yaml                                    | 130 +++++
+ ...do-programa-v1_7.md => estado-programa-v1_9.md} |  52 +-
+ canon/glosario-v5_6.md                             |   6 +-
+ canon/{gobernanza-v1_8.md => gobernanza-v1_13.md}  | 120 +++-
+ canon/integrador-psicologia-mexicano.md            |   4 +-
+ ...lo-decision-v3_2.md => modelo-decision-v3_4.md} |  94 ++-
+ canon/protocolo-sesion-v1_0.md                     | 107 ++++
+ ...ayer_of_Decisions__Environment_and_Structure.md |   2 +
+ ...ucation_and_Information_as_Decision_Behavior.md |   2 +
+ data/manifiesto.yaml                               |  43 ++
+ forense/bitacora.md                                | 201 +++++++
+ forense/censo-integridad-v1_0.md                   | 313 ++++++++++
+ forense/censo-integridad-v1_1.md                   | 156 +++++
+ forense/historico/TRANSFER-maestra-7.md            | 169 ++++++
+ forense/historico/TRANSFER-maestra-8.md            | 210 +++++++
+ forense/historico/TRANSFER-maestra-9.md            | 188 ++++++
+ forense/hitoD-R3_2-veredicto-v1_0.md               | 136 +++++
+ forense/hitoD-preregistro-v2_0.md                  | 205 +++++++
+ forense/notas/2026-07-29-b-correccion-perimetro.md | 217 +++++++
+ .../notas/2026-07-29-c-correccion-curaduria-66.md  |  30 +
+ forense/notas/2026-07-29-d-bloqueo-encig.md        |  52 ++
+ instrucciones-proyecto-v2.md                       |  24 +-
+ milpa/milpa-plan-v0_1.md                           |   2 +-
+ milpa/procedencia.yaml                             |   7 +-
+ revision-publicacion-2026-07-30.md                 | 463 +++++++++++++++
+ tests/baseline.json                                | 448 +++++++++++++++
+ tests/bitacora.py                                  | 276 +++++++++
+ tests/check.py                                     | 631 ++++++++++++++++++++-
+ tests/validador_registro_ids.py                    | 242 ++++++++
+ 38 files changed, 4894 insertions(+), 56 deletions(-)
+```
+
+**ADRs añadidos:** ADR-38, ADR-39, ADR-40, ADR-41, ADR-42, ADR-43, ADR-44, ADR-45
+**Líneas de versión modificadas en canon/:** 4
+  - ### `estado` · **v1.9** · 29 de julio de 2026 · **ÚNICA FUENTE DE ESTADO**
+  - ### `gobernanza` · **v1.13** · 30 de julio de 2026 · **45 ADR**
+  - ### `modelo` · **v3.4** · CANÓNICO OPERATIVO
+  - ### `protocolo` · **v1.0** · 29 de julio de 2026
+
+**Delta de suite:**
+  - Antes: (tests/baseline.json no existía en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: C-01, D-01, D-02, D-03, D-04, D-05, E-01, I-01, I-02, I-03, I-04, I-05, I-06, I-07
+  - Cerrados: (ninguno)
+
+**Qué se decidió:** D-05: vocabulario fijo de 'prueba de falsación' (ADR-45) — denominador 27/49 siempre etiquetado, veredicto D cuenta como corrida, Hito D/Hito C/ejercicio de glosario se reportan como tres poblaciones separadas. Cierra D-05 en cola.yaml.
+**Qué quedó bloqueado:** I-07 sigue abierta: sigue siendo un patrón de proceso sin test.
+
+---
+
+## 2026-07-30
+
 **Fecha:** 2026-07-30 · **Rama:** `claude/manifiesto-registra-verifica` · **HEAD inicial (origin/main):** `584f806f7a8ffb9c714dc8f6b3196d4c1ddea91b` · **HEAD final:** `b65f44fc8abf0e1d111eb232231a8611ee704b80`
 
 **Commits de la sesión:**
