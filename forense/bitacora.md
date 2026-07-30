@@ -458,3 +458,34 @@ canon/cola.yaml      |  12 ++
 
 ---
 
+## 2026-07-30
+
+**Fecha:** 2026-07-30 · **Rama:** `sesion/calg3` · **HEAD inicial (origin/main):** `5b7113a17daa5e83d01f1a28f1c9d344e3df12cf` · **HEAD final:** `981c1ea5b7084775e601b5cc659f8c63ecee1fed`
+
+**Commits de la sesión:**
+  - `981c1ea` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · CAL-G3: chequeo CAL-X del punto 9a, previo a abrir microdatos
+  - `686e377` · Josanoforo · co: Claude Opus 5 (1M context) <noreply@anthropic.com> · CAL-G3 Fase A: descarga y registro de las tres olas de ENNViH/MxFLS
+
+**Archivos tocados:**
+```
+data/manifiesto.yaml | 524 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ tests/calx_g3.py     | 209 ++++++++++++++++++++
+ 2 files changed, 733 insertions(+)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 21 FAIL · 84 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 87 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: D-09, D-10, I-10
+  - Cerrados: D-05, D-06, D-07, I-08, I-09
+
+**Qué se decidió:** CAL-G3 Fases A y B, sin estimar nada. FASE A: 27 paquetes de ENNViH/MxFLS (tres olas completas: hogar, localidad, ponderadores, codebooks, cuestionarios, guías) descargados de ennvih-mxfls.org y registrados con manifiesto.py --registra, sha256 derivado; --verifica COINCIDE en las 27. FASE B, solo documentación, ningún .dta abierto: (1) las 11 categorías de CRH01 son idénticas en las tres olas y estaban TODAS anticipadas por Adenda 1 (c) -- nada que escalar; 'Apartado' es segunda celda muerta (n=1/1/0) además de la tanda-sola ya declarada caída. (2) CHEQUEO CAL-X del punto 9a (tests/calx_g3.py, solo codebook): CAL-A y CAL-B alcanzables (RR>=1.5 solo exige p<=66.67% contra base de 7-10%, holgura 7x-9x; el modo de falla de R3.2 no se repite), pero CAL-C y 9b NO ALCANZABLES POR CONSTRUCCION -- exigen precisión, no nivel: 1,981 hogares por brazo (3,962 con el contraste) contra un techo duro de 1,457 discordantes, mejor IC95%sup alcanzable 1.445 contra el <1.25 requerido, SE(log RR) disponible 0.1877 contra 0.1139 necesario; la cota es generosa (traslape cero, sin atrición, sin exclusión de EE.UU., sin cambio de formalidad del jefe). El criterio puede CONFIRMAR G3 pero no puede REFUTARLO. (3) La premisa 'el módulo TB es idéntico en las tres olas' es FALSA: 8 opciones en 2002, 9 en 2005, 11 en 2009, y la ola 1 carece de 'Ninguna de las anteriores'; cat3 2002=6,044 vs cat3+cat9 2005=5,570 vs cat3 sola 2005=1,772 (-71%) -- un jefe sin cambio real se codifica informal en 2002 y sale del contraste en 2005; el instrumento fabrica las transiciones con las que el diseño identifica. (4) El confundidor 5 NO está resuelto en la ola 3: el módulo OC está en el codebook de las olas 1-2 y solo en el cuestionario de la ola 3; el FAQ del proyecto declara que hay preguntas no publicadas por confidencialidad -- un cuestionario documenta lo preguntado, el codebook lo liberado. Registrado en Nota 8 del pre-registro (append-only, antes del bloque de emisiones, sin tocar cuerpo/Nota 7/Adenda 1) y en cola.yaml D-09, D-10 (decisiones de mesa, NO resueltas aquí) e I-10 (colisión de IDs 'D-06', registrada sin abrir). Corregida cola.yaml D-06 con nota fechada sin borrar el original: la cita de la portada estaba truncada -- el registro de usuario EXISTE y está publicado, lo verificado es que NO ESTA APLICADO en /assets/ (200 sin sesión); no es lo mismo. Recogidos a forense/notas/ dos .md producidos por la sesión de ENSANUT, con procedencia declarada y sin editar el cuerpo.
+**Qué quedó bloqueado:** FASE C de CAL-G3, no corrida a propósito: bloqueada por D-09 y D-10, ambas decisiones de mesa. Estimar contra un criterio que solo admite confirmación produciría un CAL-A o CAL-B que no significaría lo que aparenta. milpa/procedencia.yaml NO se tocó (la ficha lo prohíbe: ninguna de sus cuatro clases admite una estimación propia). Nota 7 y Adenda 1 NO se editaron. Ningún veredicto emitido: CAL-G3 no aparece en el bloque de emisiones. Pendiente de resolver por la mesa, sin recomendación de esta sesión: qué se hace con CAL-C/9b (tres opciones listadas en D-09) y cómo se armoniza la exposición entre olas (dos opciones en D-10). I-10 queda registrada, no abierta, por instrucción explícita. Conflicto de merge previsto y aceptado con sesion/encuci: ambas ramas salen de 5b7113a y tocan data/manifiesto.yaml y canon/cola.yaml, ambos append-only por convención -- se resuelve conservando ambos lados en orden cronológico, como en PR #4.
+
+---
+
