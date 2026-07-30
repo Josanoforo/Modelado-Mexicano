@@ -119,8 +119,8 @@ canon/cola.yaml               |  4 ++--
   - Abiertos: (ninguno)
   - Cerrados: (ninguno)
 
-**Qué se decidió:** Re-congelar la línea base tras el merge del PR #1 (main 22a7d9d): un solo --freeze con bucket propio para las 3 entradas nuevas (1 T03 de revision-publicacion-2026-07-30.md — cita ilustrativa del artefacto LICENSE-CORPUS, descartado por D-05, patrón I-01 — y 2 T16 que son su consecuencia aritmética); declaración vigente de estado a la corrida real que T16 reporta (19 FAIL · 87 WARN); I-01 sube a casos=2 con este caso como evidencia para A1; se borra la rama fusionada del PR #1.
-**Qué quedó bloqueado:** Nada nuevo. A1 (la marca explícita en T03 que distinga mención de referencia) sigue en la cola como I-01, ahora con 2 casos; ningún otro pendiente se abrió ni se tocó.
+**Qué se decidió:** Re-congelar la línea base tras el merge del PR #1 (main 22a7d9d): un solo --freeze con bucket propio para las 3 entradas nuevas (1 T03 de revision-publicacion-2026-07-30.md — cita ilustrativa del artefacto LICENSE-CORPUS, descartado por D-05, patrón I-01 — y 2 T16 que son su consecuencia aritmética); declaración vigente de estado a la corrida real que T16 reporta (19 FAIL · 87 WARN); I-01 sube a casos=2 con este caso como evidencia para A1; el borrado de la rama fusionada del PR #1 se intentó y quedó bloqueado (línea siguiente).
+**Qué quedó bloqueado:** El borrado remoto de claude/psicologia-mexicano-publication-review-h5h6ic — verificada fusionada (ahead 0, ancestro de main en 22a7d9d), pero el proxy git del entorno devuelve 403 a todo push que borre refs y el MCP de GitHub no expone borrado de ramas; queda para la UI de GitHub o un clon local. Fuera de eso, nada nuevo: A1 (la marca explícita en T03 que distinga mención de referencia) sigue en la cola como I-01, ahora con 2 casos; ningún otro pendiente se abrió ni se tocó.
 
 ---
 
