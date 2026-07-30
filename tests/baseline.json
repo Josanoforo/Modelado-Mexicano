@@ -1,5 +1,5 @@
 {
-  "head": "97b9f2b6d69fcc407217c33e82c2051523c273e0",
+  "head": "c6dd7ee37fe09f15a6135fa1c60e68ab48278314",
   "fails": [
     [
       "T05",
@@ -138,6 +138,14 @@
     [
       "T03",
       "forense/historico/TRANSFER-maestra-8.md: cita `-v3_2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/historico/TRANSFER-maestra-9.md: cita `-v3.2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/historico/TRANSFER-maestra-9.md: cita `-v3_2.md`, que no existe"
     ],
     [
       "T10",
@@ -408,6 +416,7 @@
     "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL.",
     "fecha_de_clasificacion": "2026-07-29",
     "conteo_por_bucket": {
+      "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 6,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,

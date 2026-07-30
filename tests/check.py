@@ -801,6 +801,9 @@ def _classify(test, msg):
     if test == "T03":
         m = re.search(r"cita `([^`]+)`", msg)
         name = m.group(1) if m else None
+        if name in _FRAGMENTOS_EJEMPLO and "TRANSFER-maestra-9.md" in msg:
+            return ("T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo"
+                     "__mismo_patron_benigno_ya_reconocido")
         if name in _FRAGMENTOS_EJEMPLO:
             return "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test"
         if name in _HISTORIA_RECIENTE_NO_DECLARADA:
