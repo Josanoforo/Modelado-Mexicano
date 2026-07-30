@@ -91,3 +91,21 @@
   bloquea: []
   evidencia: "C-01 es el primer caso: el encargo citó 18513 bytes para TRANSFER-maestra-siguiente.md, el archivo real pesa 17262"
   estado: abierto
+
+- id: I-05
+  titulo: "F7.b — un PR puede tocar baseline.json, check.py y el defecto en el mismo diff, y el CI pasa igual"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 0
+  bloquea: []
+  evidencia: "protocolo §4 regla 2 (\"no se congela una línea base en la misma corrida que cambió el medidor\") lo prohíbe como disciplina de sesión, pero nada en .github/workflows/verify.yml ni en tests/check.py lo hace mecánico: el único gate de CI es `check.py --baseline`, que compara contra el propio baseline.json que el mismo diff pudo haber movido. Falta: (1) regla escrita para PRs de terceros (hoy solo cubre sesiones propias vía protocolo), (2) job informativo de CI que corra la suite completa sin --baseline y publique el delta, para que un baseline movido en el mismo diff que introduce el defecto sea visible aunque no bloquee. Sin caso real conocido todavía — riesgo estructural derivado de leer check.py y verify.yml, no un incidente ocurrido"
+  estado: abierto
+
+- id: I-06
+  titulo: "F6 — T-README: nadie vigila las cifras de README.md contra el árbol"
+  clase: instrumento
+  abierto: 2026-07-30
+  casos: 1
+  bloquea: []
+  evidencia: "revision-publicacion-2026-07-30.md §8 (opción 1) y gobernanza-v1_12.md ADR-44(c): T14/T15/T16/T17 vigilan estado y gobernanza, ninguno vigila README — el defecto real de README:40 que esta sesión corrigió a mano (2 de 27, no 1 de 27) es el primer caso conocido de una cifra de portada que se corrigió sin que ningún test lo hubiera atrapado antes de publicarse. Molde: T16 (mismo mecanismo de _CAMBIO_FECHADO + comparación contra la corrida real), con prueba negativa de dos lados: (a) una cifra vigente que no cuadra debe fallar, (b) una cifra fechada/histórica marcada correctamente NO debe fallar aunque difiera de la corrida real"
+  estado: abierto
