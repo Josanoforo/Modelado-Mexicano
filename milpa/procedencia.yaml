@@ -298,13 +298,12 @@ asignados_coeficiente:
     #   (Sabogal, Lugo Steidel, Knight, Calzada, Zeiders) están validadas en
     #   contextos migratorios. Nadie los ha medido en población EN México.
     - {gen: G6, coefs: {deferencia: 0.45}, signo: sostenido, magnitud: asignada}
-  unico_calibrable_hoy:
-    coeficiente: "G3 → horizonte_temporal"
-    con_que: >
-      El panel rotativo trimestral de la ENOE sigue al mismo hogar cinco
-      trimestres. Permite observar a los MISMOS sujetos cruzando formal↔informal
-      y estimar el cambio de conducta financiera asociado. Es la única
-      elasticidad del modelo que México permite estimar con dato público.
+  # `unico_calibrable_hoy` SE RETIRA (ADR-49, D1): la premisa de conducta
+  # financiera vía ENOE es falsa a nivel de reactivo (forense/hallazgos.md,
+  # 31/jul/2026). Lo único que sobrevivía -- el panel rotativo sigue al mismo
+  # hogar cinco trimestres -- es cierto pero es propiedad del instrumento
+  # ENOE, no una vía de calibración; no se vuelve a declarar aquí como campo
+  # de coeficiente. Ningún coeficiente de generador tiene ruta hoy.
 
 # ══════════════════════════════════════════════════════════════════
 # CRUCE CON LA BATERÍA DE REFUTACIONES

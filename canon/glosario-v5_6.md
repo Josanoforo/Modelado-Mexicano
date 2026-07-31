@@ -375,7 +375,7 @@ Los `params_base` no son medidos ni inventados: son la **cuantificación de etiq
 
 → **Ninguna salida del simulador debe reportarse con decimales.** Rangos o categorías.
 
-**Los 15 coeficientes de generador** están en `procedencia.yaml` (v0.2.0). Todos **ASIGNADOS**, **cero medidos**. Esta capa **nunca ha sido validada**, ni por vertical ni por falsación. Único punto calibrable hoy: `G3 → horizonte_temporal` vía **panel rotativo de la ENOE** — sería el **primer MEDIDO** de los 144.
+**Los 15 coeficientes de generador** están en `procedencia.yaml` (v0.2.0). Todos **ASIGNADOS**, **cero medidos**. Esta capa **nunca ha sido validada**, ni por vertical ni por falsación. `unico_calibrable_hoy` se retiró (ADR-49): la vía ENOE no identifica la elasticidad — ningún cuestionario ENOE/ENOEN trae conducta financiera (`forense/hallazgos.md`, 31/jul/2026). Ningún coeficiente de generador tiene ruta de calibración hoy.
 
 ---
 
