@@ -10,6 +10,14 @@
 #                     abajo son anteriores a este campo y a este script (se
 #                     registraron a mano el 29/jul); no se les fabrica un
 #                     valor retroactivo que nadie derivó entonces.
+#
+# Campo opcional url_origen_procedencia (30/jul, --promueve): presente solo
+# en entradas que --promueve movió desde data/manifiesto-staging.yaml sin
+# que el autor confirmara url_origen -- declara de dónde salió el valor
+# ("derivada de <página guardada>", "asignada vía --grupo/--url en
+# --escanea", o "no derivada" si url_origen quedó en "no determinada") y
+# dice explícitamente NO CONFIRMADA POR EL AUTOR. Una entrada sin este
+# campo tiene url_origen declarada por quien la registró (--registra).
 
 - id: encig23_base_datos_csv
   usado_para: hitoD-R3.2 (forense/hitoD-R3_2-veredicto-v1_0.md) — falsador de modelo §3.3
@@ -412,19 +420,19 @@
 
     Corrección, misma fecha, verificado por navegador por el autor: la premisa anterior era
     un límite del instrumento -- los patrones de URL que este script probó -- no una propiedad
-    del portal real. El portal expone las cinco ediciones (2002, 2009, 2014, 2019, 2024), cada
-    una con base, descriptor de archivos y diagrama entidad-relación, desde la pestaña Microdatos.
-    Ninguna se ha descargado todavía -- sigue pendiente, ahora por razón distinta: existe y es
-    alcanzable, falta bajarla, no falta localizarla (mismo patrón que D-06/regla v2.2 en cola.yaml
-    -- una ausencia medida con un instrumento, heredada como propiedad del terreno). Ver cola.yaml
-    D-08.
+    del portal real. El portal expone las cinco ediciones (2002, 2009, 2014, 2019, 2024),
+    cada una con base, descriptor de archivos y diagrama entidad-relación, desde la pestaña
+    Microdatos. Ninguna se ha descargado todavía -- sigue pendiente, ahora por razón distinta:
+    existe y es alcanzable, falta bajarla, no falta localizarla (mismo patrón que D-06/regla
+    v2.2 en cola.yaml -- una ausencia medida con un instrumento, heredada como propiedad del
+    terreno). Ver cola.yaml D-08.
 
     ENCUCI: 2020 (sin distribución localizable). 2012 aparenta vivir en una ruta legada distinta
     de la plantilla actual -- no explorada más a fondo en esta sesión.
 
     Corrección, misma fecha: 2020 sí expone descarga directa desde la pestaña Microdatos --
-    Descargar todos los archivos --, verificado por navegador por el autor, quien la bajó y
-    esta sesión la registró (encuci2020_bd_dbf, encuci2020_fd_pdf). Deja de estar pendiente.
+    Descargar todos los archivos --, verificado por navegador por el autor, quien la bajó
+    y esta sesión la registró (encuci2020_bd_dbf, encuci2020_fd_pdf). Deja de estar pendiente.
     2012 sigue sin explorar más a fondo -- sin cambio.
 
     ENSANUT: host real es ensanut.insp.mx (INSP), NO inegi.org.mx. Ediciones reales confirmadas
@@ -999,3 +1007,356 @@
     encig23_estructura_base_datos_pdf, sustituido entonces por un PDF de estructura equivalente).
     Aquí sí está, bajado directo de la pestaña Microdatos. No abierto ni leído -- solo hasheado,
     por firewall vigente de esta sesión.
+
+- id: descargamasiva_3072026_105543
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: DescargaMasiva_3072026_105543.zip
+  sha256: cbcd416a843f0a17419fb4c5be64800540c37dc2b575c69862a87f16de04e0d6
+  tamano_bytes: 602155
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: descargamasiva_3072026_10560
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: DescargaMasiva_3072026_10560.zip
+  sha256: a68da0e08403c2083a161491a908a36ae340c1a13db545bb22383577e6d0a7e9
+  tamano_bytes: 602154
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: descargamasiva_3072026_105617
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: DescargaMasiva_3072026_105617.zip
+  sha256: 4ab75449ed7bc6e3576d3da6c85f81fcb8c2a462ccfdacc75e3761f8840f5240
+  tamano_bytes: 602150
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: descargamasiva_3072026_105625
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: DescargaMasiva_3072026_105625.zip
+  sha256: b7af09f37e8215d9a092825b4f4ecdde4bae65a6f3fc5ec8f40086b61a245bfb
+  tamano_bytes: 602154
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: descargamasiva_3072026_10567
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: DescargaMasiva_3072026_10567.zip
+  sha256: e913e542b6f08fee3192d3881891e5a0163cd715d1d321b38d108dbda9aa2b25
+  tamano_bytes: 602152
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: 1_vfinal_cuestionario_hogar_ensanut_2024_etiquetas_cuestionarios
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: 1 VFINAL Cuestionario Hogar ENSANUT 2024_ETIQUETAS.Cuestionarios.pdf
+  sha256: adc873843b79067a1a2212e25b1f90f6ecb916f8541ad0e42411fd933126c425
+  tamano_bytes: 662210
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: 2_vfinal_cuestionario_nios_0_a_9_ensanut_2024_etiquetas_cuestionarios
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: 2 VFINAL Cuestionario nios 0 a 9 ENSANUT 2024_ETIQUETAS.Cuestionarios.pdf
+  sha256: af65f922094c42a31d77cad5d8d889c0d7e597b925c7ef0efe1ae700fd66981c
+  tamano_bytes: 518103
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: 3_vfinal_cuestionario_adolescentes_ensanut_2024_etiquetas_cuestionarios
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: 3 VFINAL Cuestionario adolescentes ENSANUT 2024_ETIQUETAS.Cuestionarios.pdf
+  sha256: 344f32ef0f873f86fb20faf1d6afd2bfa0bc3735656ea4fe4d71e39736faeeab
+  tamano_bytes: 479013
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: 4_vfinal_cuestionario_adultos_ensanut_2024_etiquetas_cuestionarios
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: 4 VFINAL Cuestionario adultos ENSANUT 2024_ETIQUETAS.Cuestionarios.pdf
+  sha256: 0bc30c3b7f08bda0b1cfebb823eb2bfdd815581fd1d93ea956314bf6507f82d0
+  tamano_bytes: 795644
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: 5_vfinal_cuestionario_utilizadores_ensanut_2024_etiquetas_cuestionarios
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: 5 VFINAL Cuestionario utilizadores ENSANUT 2024_ETIQUETAS.Cuestionarios.pdf
+  sha256: 004aacee3729009e79065ba7e2c4afacfc7f7c3e418e735c405f46e9189fafa6
+  tamano_bytes: 267996
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: indice_de_bienestar_cuestionarios
+  usado_para: documentación — cuestionario, Índice de Bienestar
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: Indice de Bienestar.Cuestionarios.docx
+  sha256: 6913725196ae2a3b52f11a1d8d3d650336a13840ad5279daecce0d89048d93f5
+  tamano_bytes: 13255
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: nse_hogar_ensanut_2024_catlogo
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: NSE_Hogar_ENSANUT_2024.Catlogo.xlsx
+  sha256: ed1be4e10d76b065f2c6ad67e4ab3fb9f5af3ce5d5877aea28ffe4382f5ccc1a
+  tamano_bytes: 137855
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: nse_hogar_ensanut_2024_csv_csv
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: NSE_Hogar_ENSANUT_2024.csv.csv.zip
+  sha256: 685e33d003ca100b06501c377de13abce8f56b46b3705f7a6fa0effaf4db28af
+  tamano_bytes: 83570
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: nse_integrantes_ensanut_2024_catlogo
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: NSE_Integrantes_ENSANUT_2024.Catlogo.xlsx
+  sha256: 6d2425ad899ab5beaa9c4ea016d9cadebb17ae4827fa847090b5c32ebc7bf8b0
+  tamano_bytes: 138387
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: nse_integrantes_ensanut_2024_csv_csv
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: NSE_Integrantes_ENSANUT_2024.csv.csv.zip
+  sha256: 0315bc625b262ec14f818c4b3858a387a022911e527af059ac3c6923f46e6ff0
+  tamano_bytes: 256745
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: adolescentes_ensanut2024_w_csv_csv
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: adolescentes_ensanut2024_w.csv.csv.zip
+  sha256: 3c5f21ef6158ea0830cabc750ca31b45e0039b04fa93b9b9236b0fe6457d023b
+  tamano_bytes: 416868
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: adolescentes_ensanut2024_w_stata_stata
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: adolescentes_ensanut2024_w.stata.stata.zip
+  sha256: b528e00511ad931f2fda973c344299a73d245c11502d867cb9666f7c33824260
+  tamano_bytes: 798929
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: adultos_ensanut2024_w_catlogo_csv_csv
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: adultos_ensanut2024_w.Catlogo.csv.csv.zip
+  sha256: 464a62daf5e9b0f991a500791e58eb4d2c5ec255acabd59f74ad67d71520ab7a
+  tamano_bytes: 234627
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: adultos_ensanut2024_w_catlogo
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: adultos_ensanut2024_w.Catlogo.xlsx
+  sha256: 0ab22b7f0c3515d966e60634d6e06543a14f2839cda32e3e49895749d419df4c
+  tamano_bytes: 247551
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: hogar_ensanut2024_w_icb_catlogo
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: hogar_ensanut2024_w_ICB.Catlogo.xlsx
+  sha256: b5b9792e92287091a89e57f13f13a4b89aab4b27a060c4ea7e1cd375041716fd
+  tamano_bytes: 162227
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: hogar_ensanut2024_w_icb_csv_csv
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: hogar_ensanut2024_w_ICB.csv.csv.zip
+  sha256: fb27bb64c3fbd2344ff8966ad69c4675d2c0a0f86b87225b0c6899bc8b2b4212
+  tamano_bytes: 996094
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: integrantes_ensanut2024_w_icb_catlogo
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: integrantes_ensanut2024_w_ICB.Catlogo.xlsx
+  sha256: d0acf24dd918f07c4462ade607171933a2756f4ff6a2fa8fff64193ea4566448
+  tamano_bytes: 197249
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: integrantes_ensanut2024_w_icb_csv_csv
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: integrantes_ensanut2024_w_ICB.csv.csv.zip
+  sha256: 1dc1277b38b131a5768acffc6679aa30f3c873be5fd695c61da93e126d2f07da
+  tamano_bytes: 1858331
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: menores_ensanut2024_w_catlogo
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: menores_ensanut2024_w.Catlogo.xlsx
+  sha256: 2aa89c4b97ecf310e96f4c6ab9b23388194353c30f3bba371b5aad0f71c660a6
+  tamano_bytes: 197357
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: menores_ensanut2024_w_csv_csv
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: menores_ensanut2024_w.csv.csv.zip
+  sha256: df07aa31dfc8838869d098d9e128a9800262cc713218a4e470bed35cbd88809f
+  tamano_bytes: 617777
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: menores_ensanut2024_w_stata_stata
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: menores_ensanut2024_w.stata.stata.zip
+  sha256: cadf52a7127a6feeb2b37b4b299c96ab559e1eb78c1ee7022db58618ff0442bb
+  tamano_bytes: 1133030
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: utilizadores_ensanut2024_w_catlogo
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: utilizadores_ensanut2024_w.Catlogo.xlsx
+  sha256: 81928f1d470126174e135df17749cfa82e3ef43fffe7ee7568ccb0752ef3ed3e
+  tamano_bytes: 153149
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: utilizadores_ensanut2024_w_csv_csv
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: utilizadores_ensanut2024_w.csv.csv.zip
+  sha256: 2836f15464e01ebbd42e282cac1b2bf18cf98c2262e360c346c5ebd6cfae27ea
+  tamano_bytes: 284328
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: utilizadores_ensanut2024_w_stata_stata
+  usado_para: sin uso asignado — registro de inventario
+  url_origen: https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+  url_origen_procedencia: derivada de descargas.php por --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-07-30'
+  descargado_por: usuario, vía navegador
+  archivo: utilizadores_ensanut2024_w.stata.stata.zip
+  sha256: 1fb44754452e5cbf8d8b195385cd4b052cde80b4784ac38193527682f8ceb482
+  tamano_bytes: 424623
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
