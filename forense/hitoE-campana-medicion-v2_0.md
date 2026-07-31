@@ -232,3 +232,64 @@ Esta es la parte que hace de la campaña un reto y no una tarea.
 **8 · ¿Qué afirmación sobre el estado del corpus no fue derivada?** Derivadas: la estructura de los 6 generadores y sus 15 coeficientes con valores, de `milpa/procedencia.yaml`; que los 15 se reducen a 8 constructos, por inspección de esa misma estructura; que `familismo_obligacion` está sin magnitud. **No derivado:** que existan fuentes para los 8 constructos — es la pregunta que E0 responde, y este plan **no la presupone**.
 
 **9 · (v2.2) ¿Qué deuda asumida caduca aquí?** Dos, y la segunda es de este documento. *«Los coeficientes se calibran de uno en uno»* nunca se registró como decisión: se heredó de que `CAL-G3` fue el primero y se trató como plantilla; caduca por ADR-47. Y **la conmensurabilidad entre efecto medido y peso asignado**, que la v1.0 de este plan dio por buena sin verificarla pese a que la ficha `CAL-G3` ya la había refutado por escrito. Registrar eso importa: la regla v2.2 no se cumple por conocerla — se citó tres veces el mismo día en que se violó.
+
+---
+
+## 11 · Adenda 31/jul/2026 — el catálogo de fuentes contra los cuatro contrastes
+
+**Disciplina aplicada:** adenda fechada, append-only. El cuerpo (§0–§10) no se tocó — ni una palabra —, por la misma regla de procedencia que la cabecera ya invoca para el resto del documento: este archivo es tipo (3), no rige, y corregirlo para que cuadre está prohibido. Esta sección es de otra sesión, con otra procedencia: deriva de `data/catalogo-fuentes-v1_0.md` (119 fuentes, verificado 31/jul/2026 contra `origin/main` en `2114d93` con `tests/catalogo.py` y `tests/dedup.py`, ambos consistentes) y de `milpa/procedencia.yaml` (sin modificar).
+
+**Límite de lectura — ADR-46, declarado antes de leer resultado alguno.** Esta sesión leyó `data/catalogo-fuentes-v1_0.md` completo y los diez inventarios de `data/inventarios/` en su texto de *alcance temático declarado* (las líneas que cada inventario marca como "Alcance temático declarado" / "Pertinencia al dominio" / "Relación con el dominio"). **No abrió ningún portal, ninguna página de fuente, ningún cuestionario ni diccionario de variables.** Cada inventario declara en su cabecera que es "catalogación de instrumentos" y que "no contiene variables, reactivos, cifras de resultados ni valoraciones de calidad" — con ese material solo se pueden producir **candidatas**, nunca un veredicto de instrumentación. Por eso la escala de este contraste tiene dos valores, no tres:
+
+- **CANDIDATA CON DOCUMENTACIÓN PENDIENTE** — el alcance temático declarado de la fuente sugiere que mide el constructo. Falta el cuestionario para saber con qué reactivo y a qué segmentación llega; esa inspección la hace una sesión que se declare contaminada (ADR-46), no ésta.
+- **SIN CANDIDATA** — ninguna de las 119 declara alcance temático compatible. Este veredicto sí se sostiene solo con el catálogo.
+
+**La unidad es el constructo, no la celda.** `milpa/procedencia.yaml:270-281` (`asignados_coeficiente.detalle`) da, por inspección directa, **9 constructos únicos** tras los 15 coeficientes: `aversion_riesgo, confianza_institucional, deferencia, exposicion_violencia, familismo_apoyo, familismo_obligacion, horizonte_temporal, radio_confianza, sens_estatus`. Por ADR-28.b, `confianza_institucional` no es escalar: es un vector de 6 componentes (seguridad, educación, salud, electoral, justicia-policía, financiera), **sin poblar** (`procedencia.yaml:65`). Contado el vector, el barrido cubrió **14 filas**: 9 constructos, con `confianza_institucional` desdoblado en sus 6 componentes en vez de una fila agregada.
+
+### Conteo derivado (el entregable central)
+
+| | Filas (de 14) | Constructos únicos (de 9) |
+|---|---|---|
+| **CANDIDATA CON DOCUMENTACIÓN PENDIENTE** | 9 | 6 (con al menos un componente candidato) |
+| **SIN CANDIDATA** | 5 | 3 (`sens_estatus`, `horizonte_temporal`, `deferencia`) |
+
+Traducido a los 144 números — y aquí la unidad vuelve a la celda solo para multiplicar, no para buscar: de los **144**, **39 son `probabilidades_de_regla`, una unidad distinta (reglas implementadas, no constructos latentes) y quedan fuera de este contraste.** De los **105 restantes** (15 coeficientes + 90 `params_base`, ambos construidos sobre los mismos 9 constructos):
+
+| | Números | Base del cálculo |
+|---|---|---|
+| **CON CANDIDATA** | **64** | 10/15 coeficientes (slots cuyo constructo tiene candidata) + 54/90 params_base (`confianza_institucional` 24/36 · `radio_confianza` 6/6 · `aversion_riesgo` 6/6 · `exposicion_violencia` 6/6 · `familismo_apoyo` 6/6 · `familismo_obligacion` 6/6) |
+| **SIN CANDIDATA** | **35** | 5/15 coeficientes (`sens_estatus`×2, `horizonte_temporal`×2, `deferencia`×1) + 30/90 params_base (`confianza_institucional` 12/36 · `sens_estatus` 6/6 · `horizonte_temporal` 6/6 · `deferencia` 6/6) |
+| **NO DERIVABLE ESTA SESIÓN** | **6** | 1 de los 15 `params_base` no tiene nombre declarado en `procedencia.yaml` (la reconstrucción del desglose 54→90 vía `delta_v1_v2` deja 14 de 15 parámetros identificados por nombre; el 15º queda sin identidad legible en este archivo — línea para `forense/hallazgos.md`, no bloquea) |
+
+El reparto de `confianza_institucional` (24 candidata / 12 sin candidata de sus 36 números) asume partición pareja entre sus 6 componentes — **supuesto, no medido**; el vector está declarado "sin poblar" y esta sesión no lo llena.
+
+### Los cuatro contrastes
+
+**1 · §196 — "las 15 fichas huérfanas del cruce, ahora con fuente candidata identificada".** Ese cruce (qué son las "15 fichas huérfanas") no existe en el árbol — ya lo registró `I-19` (`hallazgos-congelados-2026-07-30.yaml:440`): la cadena "huérfana" no aparece en ningún archivo del repo. Interpretando "las 15" como los 15 coeficientes de `asignados_coeficiente` — la única estructura de 15 elementos que el repo sí declara —, el resultado de cruzarlos contra las 119 fuentes es: **10 de 15 tienen candidata con documentación pendiente; 5 de 15 no tienen ninguna** (`sens_estatus` en G2 y G4, `horizonte_temporal` en G3 y G4, `deferencia` en G6). §196 afirma que las 15 "ahora" tienen candidata — la cifra real es 10, no 15, y la brecha no es cosmética: los 5 sin candidata tocan 3 constructos enteros sin ninguna fuente utilizable en el catálogo completo.
+
+**2 · §211 — "la campaña puede terminar en 4 de 15".** Esa cifra se fijó sin catálogo, como piso de riesgo genérico. Con las 119 fuentes, el piso **no baja — cambia de naturaleza**. Antes era un riesgo difuso ("puede que no todo se opere"); ahora es un mecanismo nombrado: **5 de 15 coeficientes no tienen ninguna candidata en el catálogo completo**, así que ningún ejercicio de pre-registro puede llevarlos más allá de "no medido, sin fuente" — no es una cuestión de banda o de `CAL-X`, es que el corpus entero no lo cubre. De los 10 restantes, **ninguno pasó de candidata a instrumentado**: esta sesión no puede confirmar que alguno vaya a sobrevivir la inspección de instrumento. "4 de 15" sigue siendo un resultado posible — pero ahora es optimista, no pesimista, si alguno de los 10 candidatos falla la inspección de reactivo o segmentación. El catálogo no sube el número; lo hace defendible.
+
+**3 · §113 — "`deferencia` y `familismo_obligacion` son los candidatos a quedarse sin proxy limpio".** Contrastada: **parcialmente sostenida y demasiado angosta.** `deferencia` se confirma — cero mención de deferencia, jerarquía o respeto a la autoridad como constructo en los diez inventarios; **SIN CANDIDATA**, sin matiz. `familismo_obligacion` es más ambiguo de lo que la hipótesis supone: sí hay candidatas (`ENASEM` cuidado a adultos mayores, `ENDIREH`, `ENASIC`, `ENBIARE` relaciones y percepción de vida familiar), pero **ninguna es la escala de familismo** — son proxies conductuales de cuidado/obligación, y las dos marcas (b) de `procedencia.yaml:278-280` (escalas validadas en contexto migratorio, nadie las midió en población en México) siguen sin resolverse aunque exista candidata. Lo que la hipótesis **no vio**: `sens_estatus` y `horizonte_temporal` terminan en el mismo **SIN CANDIDATA** que `deferencia` — cero mención de sensibilidad al estatus o de horizonte temporal/impaciencia como constructo declarado en los diez inventarios —, y dos de los seis componentes de `confianza_institucional` (educación, financiera) también quedan sin candidata. La hipótesis nombró 2 constructos frágiles; el catálogo encuentra 3 constructos enteros sin nada, más 2 componentes de un cuarto.
+
+**4 · Los constructos declarados vs. los derivados.** El plan (§0, §1, §2, §5, módulo de auditoría punto 8) declara **8**. `milpa/procedencia.yaml:270-281` (`asignados_coeficiente.detalle`), inspeccionado en esta sesión independientemente, da **9**: el plan omite `radio_confianza` (presente en G1 y G5) de su lista de constructos compartidos en §0, pese a nombrarlo entre los frágiles en §8. El conteo correcto — derivado aquí de la tabla `detalle`, no tomado de ningún número que se me haya dictado — es **9**, y coincide con el ya registrado en `I-19` (`forense/hallazgos-congelados-2026-07-30.yaml:440`), abierto desde el 30/jul/2026 y todavía sin resolver. Esta adenda no lo cierra — no es decisión de mesa, es una sesión de catálogo — pero confirma el 9 por una vía distinta a la que I-19 usó.
+
+### Cola priorizada — de las 32 operables sin bajar, cuáles desbloquean más constructos
+
+Ordenadas por cuántas de las 14 filas (constructo o componente de `confianza_institucional`) tienen en esa fuente una candidata con documentación pendiente. Ninguna de las 6 ya en disco (`ENCIG`, `ENCUCI`, `ENIF`, `ENIGH`, `ENNVIH`, `ENVIPE`) está en esta cola — ya están bajadas —, aunque `ENCIG` y `ENCUCI` ya aportan candidata declarada para `radio_confianza` y componentes de `confianza_institucional`, y `ENVIPE` para `exposicion_violencia` y `confianza_institucional[seguridad/justicia-policía]`.
+
+| Orden | Fuente | Filas que desbloquea (candidata) |
+|---|---|---|
+| 1 | **ENDIREH** | 3 · `exposicion_violencia`, `familismo_apoyo`, `familismo_obligacion` (proxy conductual) |
+| 2 | **ENASIC** (Encuesta Nacional para el Sistema de Cuidados) | 2 · `familismo_apoyo`, `familismo_obligacion` (proxy conductual — población cuidadora) |
+| 3 | **ENBIARE** (Encuesta Nacional de Bienestar Autorreportado) | 2 · `familismo_apoyo`, `familismo_obligacion` (declara "relaciones en el hogar y percepción de la vida familiar") |
+| 4 | **ENASEM** | 2 · `familismo_apoyo`, `familismo_obligacion` (proxy conductual — cuidado a adultos mayores) |
+| 5 | **ENSU** | 2 · `confianza_institucional[seguridad]`, `exposicion_violencia` — débil: el propio inventario marca "pertinencia parcial, no verificada" |
+| 6 | **ENUT** | 1 · `familismo_apoyo` (trabajo no remunerado al hogar) |
+| 7 | **ENSANUT** | 1 · `confianza_institucional[salud]` (el propio inventario la marca "marginal, catalogada por completitud") |
+| 8 | **ENCUP** | 1 · `confianza_institucional[electoral]` |
+| 9 | **Global Findex Database** | 1 · `aversion_riesgo` (declara "gestión de riesgo financiero", no una escala de aversión al riesgo) |
+| — | Las 23 operables restantes de las 32 | 0 · ninguna declara alcance temático compatible con los 9 constructos, según lectura de esta sesión |
+
+Ningún constructo se resuelve bajando una sola fuente: los tres huecos totales (`sens_estatus`, `horizonte_temporal`, `deferencia`) no tienen candidata en ninguna de las 119, bajadas o no — bajar no los toca.
+
+**Hasta dónde leyó esta sesión, declarado:** `data/catalogo-fuentes-v1_0.md` completo (133 líneas); los diez archivos de `data/inventarios/` en sus secciones de alcance temático declarado (no completos línea por línea en los casos de `inventario-fuentes-migracion-mexico.md` y `inventario_fuentes_tramites_estado_mexico.md`, donde se usó búsqueda dirigida por palabra clave en vez de lectura corrida); `milpa/procedencia.yaml` completo; `forense/hallazgos-congelados-2026-07-30.yaml` (entradas I-19 y D-12) para contexto de lo ya registrado. Cero portales, cero cuestionarios, cero diccionarios de variables.
