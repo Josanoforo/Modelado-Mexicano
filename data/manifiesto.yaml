@@ -2281,3 +2281,68 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: encig2015_estructura_base_datos_pdf
+  usado_para: documentación -- mapeo de reactivos, sin ficha asignada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2015/doc/encig15_estructura_base_datos.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón doc/)
+  archivo: encig15_estructura_base_datos.pdf
+  sha256: 1bcf65db52e8fb3b1ecd4806bd53fcde0cfa4ba0ed4a1e57abac27d5890382f4
+  tamano_bytes: 4340061
+  formato: PDF (Estructura de la base de datos ENCIG 2015)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: 'La misma sesión (encargo E-G) también localizó por navegador el FD (Descriptor de
+    archivos) y el Cuestionario propios de esta edición (ids encigYYYY_fd_pdf / encigYYYY_cuestionario_pdf).
+    Este archivo pudo ser redundante con ese FD o complementario -- no se abrió ninguno de
+    los dos para decidirlo (violaría el mismo firewall que motiva no abrir payloads). Se registra
+    de todas formas porque ya está bajado y hasheado: que alguien futuro decida si sobra.'
+
+- id: encig2017_estructura_base_datos_pdf
+  usado_para: documentación -- mapeo de reactivos, sin ficha asignada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2017/doc/encig17_estructura_base_datos.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón doc/)
+  archivo: encig17_estructura_base_datos.pdf
+  sha256: 89b967f4f59cce087b6c69da2d532f49b7b8180380c3afb1302dabba804e7210
+  tamano_bytes: 2116934
+  formato: PDF (Estructura de la base de datos ENCIG 2017)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: 'La misma sesión (encargo E-G) también localizó por navegador el FD (Descriptor de
+    archivos) y el Cuestionario propios de esta edición (ids encigYYYY_fd_pdf / encigYYYY_cuestionario_pdf).
+    Este archivo pudo ser redundante con ese FD o complementario -- no se abrió ninguno de
+    los dos para decidirlo (violaría el mismo firewall que motiva no abrir payloads). Se registra
+    de todas formas porque ya está bajado y hasheado: que alguien futuro decida si sobra.'
+
+- id: encig2021_estructura_base_datos_pdf
+  usado_para: documentación -- mapeo de reactivos, sin ficha asignada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2021/doc/encig21_estructura_base_datos.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón doc/)
+  archivo: encig21_estructura_base_datos.pdf
+  sha256: 365c031bf48af4c6d65a8e5422c6cf0362500efd37cd0e924e3c1fe38b965dd2
+  tamano_bytes: 2612238
+  formato: PDF (Estructura de la base de datos ENCIG 2021)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: 'La misma sesión (encargo E-G) también localizó por navegador el FD (Descriptor de
+    archivos) y el Cuestionario propios de esta edición (ids encigYYYY_fd_pdf / encigYYYY_cuestionario_pdf).
+    Este archivo pudo ser redundante con ese FD o complementario -- no se abrió ninguno de
+    los dos para decidirlo (violaría el mismo firewall que motiva no abrir payloads). Se registra
+    de todas formas porque ya está bajado y hasheado: que alguien futuro decida si sobra.'
+
+- id: encargoEG_ruptura_enoe_y_descriptores_pendientes_navegador
+  fecha: '2026-07-31'
+  hecho: |-
+    Encargo E-G (bajar ENOE y descriptores faltantes). Dos hechos de la fuente que quedan declarados aquí, no resueltos -- el pre-registro que decida cómo tratarlos no existe todavía:
+
+    1) Ruptura de serie ENOE/ENOEN. Bajo el patrón datosabiertos/{año}/conjunto_de_datos_{prefijo}_{año}_{t}t_csv.zip, el naming real es: 'enoe' para 2019 trimestre 1 -- 2020 trimestre 1 (última edición antes de que el levantamiento se suspendiera en abril de 2020 por la contingencia sanitaria, declarado en la propia ficha del programa); hueco completo en 2020 trimestre 2 (sin levantamiento, no es ausencia de instrumento); 'enoen' (ENOE Nueva Edición) para 2020 trimestre 3 -- 2022 trimestre 4; y el naming vuelve a 'enoe' desde 2023 trimestre 1 en adelante (incluye 2026 trimestre 1, el más reciente publicado), aunque metodológicamente sigue siendo la Nueva Edición -- INEGI simplemente dejó de usar el sufijo 'n' en el nombre de archivo. Confirmado por Content-Type/Content-Length real contra cada URL (no por listado ni por JSON-LD, que en esta página solo trae un único ejemplo de 2020 trimestre 1 como muestra de plantilla). Las 28 entradas bajadas cubren 2019 trimestre 1 -- 2026 trimestre 1 completo salvo el hueco real de 2020 trimestre 2.
+
+    2) Descriptores. Por script (patrones de URL /contenidos/programas/{prog}/{año}/doc/... y variantes), solo se localizó el de ENCIG 2015/2017/2021 (patrón encig{aa}_estructura_base_datos.pdf -- probado también para 2019 con más de media docena de variantes, sin éxito) y se registran en esta misma sesión. El de ENOE (ambas ediciones) no se localizó por ningún patrón probado: /programas/enoe/15ymas/ devuelve solo un shell HTML de SPA (~5.7 KB, sin enlaces reales -- los componentes se llenan por JS del lado del cliente), y el JSON-LD embebido solo trae un ejemplo de distribución (2020 trimestre 1, muestra de plantilla, no un índice real). Confirmado que esto es distinto de 'recurso ausente': INEGI sirve 'Página no encontrada' como HTTP 200, Content-Type text/html, 2263 bytes fijos, incluso para recursos claramente inexistentes (verificado contra 2026 trimestre 4 de ENOE, que no debería existir todavía) -- el shell de la SPA no es ese patrón, es contenido real que un script no puede atravesar.
+
+    Los descriptores de ENIF (2018/2021/2024), ENVIPE (las ocho ediciones 2018-2025) y ENCIG 2019 -- que en un primer sondeo por script tampoco se localizaron -- SÍ se consiguieron y registran en esta misma sesión, bajados a mano desde la pestaña Microdatos de cada programa (mismo patrón ya documentado en este repo para ENCUCI/ENUT, ver id hitoD_fase1_ediciones_requieren_navegador arriba): 'no alcanzable por script' no es 'no existe', y aquí queda resuelto para estos tres. Sigue pendiente, por la misma razón, solo el descriptor de ENOE.
