@@ -2099,3 +2099,185 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: enoe_2023_1t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2023/conjunto_de_datos_enoe_2023_1t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2023_1t_csv.zip
+  sha256: 138e737d3644512d21c4704be32ab31fcd6c5f64c0a0fb30a96df12c9c305773
+  tamano_bytes: 41532376
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2023 trimestre 1) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2023_2t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2023/conjunto_de_datos_enoe_2023_2t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2023_2t_csv.zip
+  sha256: b5efd0e94be25a9aaad852e652e4653bd2eaafef4df92e3fd206d5f3e0046b10
+  tamano_bytes: 42728491
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2023 trimestre 2) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2023_3t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2023/conjunto_de_datos_enoe_2023_3t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2023_3t_csv.zip
+  sha256: e40824bfcb0b6a99b23dd33171e472406258dfdcfc2bbd0f614e7f2e66a165a6
+  tamano_bytes: 44005595
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2023 trimestre 3) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2023_4t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2023/conjunto_de_datos_enoe_2023_4t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2023_4t_csv.zip
+  sha256: add63ea0f5ae2649bfc726b7bc0040304674bab11e31ef6e3c26af6274d0bfa5
+  tamano_bytes: 43788274
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2023 trimestre 4) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2024_1t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2024/conjunto_de_datos_enoe_2024_1t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2024_1t_csv.zip
+  sha256: 0beed808bf4f1457d6ec13600a8bdd3ca8db7e7276ab14675a44e74e6a33592c
+  tamano_bytes: 55944351
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2024 trimestre 1) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2024_2t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2024/conjunto_de_datos_enoe_2024_2t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2024_2t_csv.zip
+  sha256: 19a0a9f0e30bd699c2b538f1af52654c0aef09b640e0e3b1081a9369ad363647
+  tamano_bytes: 41777459
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2024 trimestre 2) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2024_3t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2024/conjunto_de_datos_enoe_2024_3t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2024_3t_csv.zip
+  sha256: f384a1b8872e051856ed2241289400302b13a8701489b1c596390452c183cd01
+  tamano_bytes: 53958272
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2024 trimestre 3) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2024_4t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2024/conjunto_de_datos_enoe_2024_4t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2024_4t_csv.zip
+  sha256: bb6d958c9bca11672d367d2c051cd08bf1654c471c2f32c8e21992c126a3b426
+  tamano_bytes: 54101479
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2024 trimestre 4) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2025_1t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2025/conjunto_de_datos_enoe_2025_1t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2025_1t_csv.zip
+  sha256: 3931e7c9242147da6ebf9badb1e2b9a59d43d95a9811e077232be406c4ce6691
+  tamano_bytes: 61038674
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2025 trimestre 1) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2025_2t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2025/conjunto_de_datos_enoe_2025_2t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2025_2t_csv.zip
+  sha256: 9530a017e3defb0658418b73a47a6039eeb54abf11342fa10693374736515127
+  tamano_bytes: 53803168
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2025 trimestre 2) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2025_3t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2025/conjunto_de_datos_enoe_2025_3t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2025_3t_csv.zip
+  sha256: 7138b2bfabc740a9805b83b3fd0dae28287fc2aab3781a596a741b8fc7861566
+  tamano_bytes: 46026887
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2025 trimestre 3) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2025_4t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2025/conjunto_de_datos_enoe_2025_4t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2025_4t_csv.zip
+  sha256: e4d4284cc9924a40c39544a5530715f320a5627cd81997214c0430827616d9d6
+  tamano_bytes: 54060030
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2025 trimestre 4) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2026_1t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2026/conjunto_de_datos_enoe_2026_1t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2026_1t_csv.zip
+  sha256: 429c288af46e408de743e5dfb92750f668df7e42789be5824f7cdf1c5ff56580
+  tamano_bytes: 42978855
+  formato: ZIP (datos abiertos ENOE, naming revertido a 'enoe' pero metodológicamente ENOEN,
+    2026 trimestre 1) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
