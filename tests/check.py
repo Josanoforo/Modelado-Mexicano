@@ -150,6 +150,12 @@ HISTORICOS = {
     "gobernanza-programa.md",       # renombrado bajo ADR-36 a la serie gobernanza-v1.X.md
     "glosario-v5.md",               # renombrado bajo ADR-36 a la serie glosario-v5.X.md
     "CHECKPOINT-programa-psicologia-mexicano.md",  # probable antecesor de CHECKPOINT-v2.md (certeza media)
+    # canon/gobernanza-v*.md §2 — declarado 30/jul/2026 por ADR-48 (R0):
+    # la cola del canon se congeló como `forense/hallazgos-congelados-2026-07-30.yaml`.
+    # Las citas vivas del canon están reapuntadas; las que quedan viven en
+    # artefactos que no se reescriben (pre-registros, bitácora append-only,
+    # documentos recogidos verbatim) y esta línea es lo que cuesta declararlo.
+    "cola.yaml",
 }
 
 def _normalize_version_dots(name):
@@ -164,6 +170,18 @@ def _normalize_version_dots(name):
     stem = re.sub(r"(\d)\.(\d)", r"\1_\2", stem)
     return f"{stem}.{ext}"
 
+# Marca explícita de cita ilustrativa (cola I-01, cerrada por ADR-48).
+# Se escribe pegada a la cita que exime, no en cualquier parte de la línea:
+#
+#     La FASE 5 propone `LICENSE-CORPUS.md` {cita-ilustrativa}, que no se creará.
+#
+# Exime SOLO la cita inmediatamente anterior — una línea con tres citas y una
+# marca deja las otras dos vigiladas. Es deliberado: el defecto que I-01
+# registró es que documentar un falso positivo genera otro, y la respuesta a
+# eso es una exención estrecha y visible en el texto, no una lista paralela de
+# excepciones que nadie mantiene (el costo que ya paga HISTORICOS).
+MARCA_ILUSTRATIVA = r"\s*\{cita-ilustrativa\}"
+
 def t03_dangling_refs():
     """Un documento que cita un archivo inexistente no obliga a nada."""
     existing = {os.path.basename(p) for p in
@@ -172,8 +190,11 @@ def t03_dangling_refs():
         if ".git" in p:
             continue
         for i, l in enumerate(read(p).split("\n"), 1):
-            for m in re.findall(r"`([A-Za-z0-9_\-áéíóúñÁÉÍÓÚÑ.]+\.(?:md|yaml))`", l):
+            for mo in re.finditer(r"`([A-Za-z0-9_\-áéíóúñÁÉÍÓÚÑ.]+\.(?:md|yaml))`", l):
+                m = mo.group(1)
                 if m in existing or _normalize_version_dots(m) in existing or m in HISTORICOS:
+                    continue
+                if re.match(MARCA_ILUSTRATIVA, l[mo.end():]):
                     continue
                 if re.search(r"borrad|BORRAD|REEMPLAZA|elimin|~~|superced|supersede|v1, borrado|fusionad|renombr", l, re.I):
                     continue
@@ -805,7 +826,7 @@ def _classify(test, msg):
             # Refreeze tras el merge del PR #1 (30/jul/2026): la revisión de
             # publicación cita, como propuesta de su FASE 5, un artefacto que
             # su propia Nota de reconciliación declara descartado (D-05, se
-            # mantuvo el LICENSE dual único). Patrón I-01 (canon/cola.yaml):
+            # mantuvo el LICENSE dual único). Patrón I-01 (forense/hallazgos-congelados-2026-07-30.yaml):
             # T03 no distingue mención de referencia — mismo patrón benigno
             # ya reconocido en los T03 de TRANSFER-8/9.
             return ("T03_revision-publicacion_cita_ilustrativa_de_artefacto_"
