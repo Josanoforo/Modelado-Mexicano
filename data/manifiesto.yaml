@@ -1395,3 +1395,81 @@
   tamano_bytes: 424623
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: enif2018_fd_xlsx
+  usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2018/microdatos/enif_2018_fd.xlsx
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enif_2018_fd.xlsx
+  sha256: dd8d5c92a7a031505d95da3ee6f00b670f90d5fd5cbd94c744393ffe81b4f6d7
+  tamano_bytes: 246905
+  formato: XLSX (Descriptor de archivos / FD)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enif2018_cuestionario_pdf
+  usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2018/doc/enif_2018_cuestionario.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enif_2018_cuestionario.pdf
+  sha256: cda9a0283a39514e404c53aacb1d0200b68b38f29d8e06b4cd2386a4b8b558e9
+  tamano_bytes: 1688866
+  formato: PDF (Cuestionario)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enif2021_fd_zip
+  usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2021/microdatos/enif_2021_fd_pdf.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enif_2021_fd_pdf.zip
+  sha256: 6f4e3aab705ddb6910607be15aa711eca56ef5060dcc60bc941d201ef3079457
+  tamano_bytes: 1229311
+  formato: ZIP con PDF (Descriptor de archivos / FD) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enif2021_cuestionario_pdf
+  usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2021/doc/enif_2021_cuestionario.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enif_2021_cuestionario.pdf
+  sha256: 2fe495a58f2eae73aa3f583d2859de3aa062c4d925453cb6522939c1fea81e16
+  tamano_bytes: 1214633
+  formato: PDF (Cuestionario)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enif2024_fd_xlsx
+  usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2024/microdatos/enif_2024_fd.xlsx
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enif_2024_fd.xlsx
+  sha256: 17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2
+  tamano_bytes: 122271
+  formato: XLSX (Descriptor de archivos / FD)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enif2024_cuestionario_pdf
+  usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2024/doc/enif_2024_cuestionario.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enif_2024_cuestionario.pdf
+  sha256: 32e37cc13da38691dee20fbffcef3637aeb87b8dac194e64f83bebed8b57ef8b
+  tamano_bytes: 1228366
+  formato: PDF (Cuestionario)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
