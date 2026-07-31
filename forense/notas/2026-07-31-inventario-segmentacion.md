@@ -352,9 +352,12 @@ solo filas con sí/parcial (instrucción del encargo: no inflar la tabla con
 |---|---|---|---|---|
 | `civico.denuncia.sin_seguro` + `con_seguro` | ENVIPE | **Sí** | `BP1_20` (¿denunció?) + `BP1_23` (razón de no denunciar, incl. miedo/desconfianza) + `BP2_1` (vehículo asegurado) + `BP1_28` (razón de sí denunciar, incl. "por el seguro") | preg. 1.20/1.23/1.28/2.1, pp.4-6 |
 | `civico.participacion.contingente` | ENCUCI | Sí | `AP7_9` (votó 2018), `AP7_8` (credencial vigente), `AP7_11` (funcionario de casilla) | Sección 6-7, p.44 |
-| `civico.voto.agencia_con_secreto` / `clientelar_si_observable` | ENCUCI | Sí | `AP7_13`/`AP7_13A`/`AP7_14`/`AP7_15` (simpatía partidista, secrecía del voto) | pp.44-45 |
+| `civico.voto.agencia_con_secreto` | ENCUCI | Sí | `AP7_13`/`AP7_13A`/`AP7_14`/`AP7_15` (simpatía partidista, secrecía del voto) | pp.44-45 |
+| `civico.voto.clientelar_si_observable` | ENCUCI | Sí | `AP7_13`/`AP7_13A`/`AP7_14`/`AP7_15` (simpatía partidista, secrecía del voto) | pp.44-45 |
 | `civico.protesta.agravio_urbano` | ENCUCI | Parcial | `AP7_3_5/6`/`AP7_4_5/6` (protesta, bloqueo de vías) | pp.40-41 |
-| `civico.transferencia.entitlement_derecho` / `atribucion_lider` | ENIGH | Parcial | `bene_gob` (agregado de claves de programas: Beca Benito Juárez, Pensión Bienestar, etc.) | concentradohogar |
+| `civico.transferencia.entitlement_derecho` | ENIGH | Parcial | `bene_gob` (agregado de claves de programas: Beca Benito Juárez, Pensión Bienestar, etc.) | concentradohogar |
+| | ENIF | Parcial | `P3_4` (recibe apoyo/programa de gobierno) + `P9_9_1` (piensa cubrir vejez con apoyo de gobierno) | Sección 3 p.5; Sección 9 p.26 |
+| `civico.transferencia.atribucion_lider` | ENIGH | Parcial | `bene_gob` (agregado de claves de programas: Beca Benito Juárez, Pensión Bienestar, etc.) | concentradohogar |
 | | ENIF | Parcial | `P3_4` (recibe apoyo/programa de gobierno) + `P9_9_1` (piensa cubrir vejez con apoyo de gobierno) | Sección 3 p.5; Sección 9 p.26 |
 
 **§3.9 Información y creencia**
