@@ -11,7 +11,8 @@
 # Números (ver ENTREGABLE en el encargo):
 #   claves_unicas: 36
 #   archivos: 36
-#   claves_con_certeza: 27 (R1) -> 31 (R4, ver forense/hallazgos.md 31/jul/2026)
+#   claves_con_certeza: 27 (R1) -> 31 (R4) -> 32 (alias report:salud,
+#     31/jul/2026, ver forense/hallazgos.md)
 
 mapeo:
   report:autoridad: corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md
@@ -33,6 +34,14 @@ mapeo:
   report:rural_indigena: corpus/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md
   report:salud_cuerpo: corpus/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md
   report:salud_mental: corpus/reports/Salud_Mental_en_México__Prevalencia__Estigma_y_la_Brecha_entre_Necesidad_y_Atención.md
+  # Alias legacy: `report:salud` es anterior al desdoblamiento salud_cuerpo/
+  # salud_mental. Sus 5 citas vivas (procedencia.yaml:246,252,257;
+  # refutations.yaml:147,238) son, las 5, sobre acceso/sistema de salud
+  # FÍSICA -- ninguna toca salud mental/estigma. Mapea al mismo archivo que
+  # report:salud_cuerpo. Movida de residuales a mapeo (ver forense/hallazgos.md
+  # 31/jul/2026). No se reescriben las citas en milpa/*.yaml -- el alias las
+  # resuelve; eso es otra decisión.
+  report:salud: corpus/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md
   report:sancion_social: corpus/reports/Sanción_Social_Horizontal_en_México__Chisme__Envidia_y_Mal_de_Ojo_como_Mecanismos_de_Nivelación.md
   report:tecnologia: corpus/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md
   report:tiempo: corpus/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md
@@ -85,28 +94,6 @@ residuales:
   # report:genomica, validacion:Nu_Azteca_Kueski) se resolvieron en R4 y
   # viven ahora en `mapeo`, arriba, con la cita verbatim que los decide.
   claves_sin_archivo:
-    - clave: report:salud
-      candidatos: []
-      nota: >-
-        SIGUE ABIERTA -- se caracteriza, no se resuelve (así lo pide el
-        encargo de R4: "sin candidato, a caracterizar"). Existen
-        report:salud_cuerpo (-> Health_Body_Food...) y report:salud_mental
-        (-> Salud_Mental_en_México...) como archivos distintos; ningún
-        tercer archivo de salud genérica en el corpus. Las 5 citas vivas de
-        `report:salud` (milpa/procedencia.yaml:246,252,257 -- atención leve
-        sin IMSS, atención grave, prevención hombre sin permiso --; y
-        milpa/refutations.yaml:147,238 -- vacunación por desabasto, farmacia
-        con consultorio) son, las 5, sobre ACCESO/SISTEMA DE SALUD FÍSICA:
-        las cinco coinciden textualmente con contenido de
-        `Health__Body__Food_and_Substance_Use_in_Mexico...` (10.6M
-        consultas/mes en farmacia con consultorio, línea 13 y 131; hombre
-        sin permiso vía ENSANUT 2022, línea 17; IMSS/informalidad, línea 19)
-        y NINGUNA toca salud mental/estigma. Lectura razonable: `report:salud`
-        es clave legacy anterior al desdoblamiento salud_cuerpo/salud_mental,
-        y por contenido correspondería a salud_cuerpo -- pero el encargo
-        pide caracterizar, no mapear, así que se deja abierta con este
-        hallazgo anotado para que la sesión que decida el desdoblamiento en
-        milpa/*.yaml (fuera del perímetro de ésta) lo confirme.
     - clave: validacion:CoDi
       candidatos: []
       nota: >-
