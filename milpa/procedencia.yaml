@@ -12,6 +12,16 @@
 #                      tiene respaldo; el número concreto no.
 #   ASIGNADO   — juicio informado. La fuente citada sostiene la DIRECCIÓN,
 #                no la magnitud. Coherente con el corpus, no medido.
+#   AJUSTADO   — reproduce los momentos observados (media, varianza,
+#                transición) de un dato real; NO está identificado
+#                causalmente. Contesta CUÁNTO, nunca SI EL PATRÓN EXISTE
+#                (ADR-47). Exige campo `ruta:` con uno de: pseudo_panel |
+#                momentos | composicion | transversal_con_seleccion.
+#                `ruta: composicion` exige la regla de descomposición
+#                DECLARADA ANTES de ver los datos; inventada después es
+#                post-hoc (Bloque C, validación forense). Sellada por
+#                ADR-49 (D2): nace VACÍA, cero números AJUSTADO hoy;
+#                ningún ASIGNADO se reclasifica por este cambio.
 #
 # ADVERTENCIA DE LECTURA. Que 96% de los números no sea MEDIDO no es un
 # escándalo por los estándares del campo: los ABM asignan parámetros de forma
@@ -28,10 +38,19 @@ estado: >-
   como cita el comentario de la línea de abajo (resumen.desglose,
   probabilidades_de_regla): ese denominador quedó de una versión anterior del
   motor y no se corrige aquí (no es número de esta sesión, ver ADR de la
-  mesa). De esas 49, solo 18 llevan algún valor numérico (4 MEDIDO + 1
-  vacunación-cuasi-medido en DERIVADO + 13 ASIGNADO); 31 reglas no tienen
-  ningún valor -- MEDIDO, DERIVADO ni ASIGNADO -- ni en este archivo ni en
-  canon. Sin cobertura alguna: los 4 dominios completos de trabajo (§3.2),
+  mesa). De esas 49, solo 15 llevan algún valor numérico (4 MEDIDO + 1
+  vacunación-cuasi-medido en DERIVADO + 13 entradas ASIGNADO repartidas sobre
+  10 reglas propias); 34 reglas no tienen ningún valor -- MEDIDO, DERIVADO
+  ni ASIGNADO -- ni en este archivo ni en canon. CORREGIDO 31/jul/2026
+  (decisión de mesa, D4): decía "18 con valor, 31 sin" -- ese conteo trataba
+  las 18 ENTRADAS de asignados_probabilidad como 18 reglas distintas, pero
+  tres pares de esas entradas apuntan a la MISMA regla (las dos mitades
+  condicionales de un bullet: dinero.ahorro.informal_sin_puente +
+  con_puente_y_respaldo; tramite.gobierno_digital.coercitivo +
+  util_sin_coercion; civico.denuncia.sin_seguro + con_seguro). Contando
+  reglas, no entradas: 15 con valor, 34 sin -- ver forense/cobertura-motor.md
+  para el detalle línea por línea. Sin cobertura alguna: los 4 dominios
+  completos de trabajo (§3.2),
   familia (§3.5), tiempo (§3.6), cooperación (§3.8) y comunicación (§3.10) --
   20 reglas -- y 3 de las 4 de información/creencia (§3.9). Aún requiere
   verificación de primaria: las 4 entradas MEDIDO. Pendiente aparte: los ids
@@ -298,13 +317,12 @@ asignados_coeficiente:
     #   (Sabogal, Lugo Steidel, Knight, Calzada, Zeiders) están validadas en
     #   contextos migratorios. Nadie los ha medido en población EN México.
     - {gen: G6, coefs: {deferencia: 0.45}, signo: sostenido, magnitud: asignada}
-  unico_calibrable_hoy:
-    coeficiente: "G3 → horizonte_temporal"
-    con_que: >
-      El panel rotativo trimestral de la ENOE sigue al mismo hogar cinco
-      trimestres. Permite observar a los MISMOS sujetos cruzando formal↔informal
-      y estimar el cambio de conducta financiera asociado. Es la única
-      elasticidad del modelo que México permite estimar con dato público.
+  # `unico_calibrable_hoy` SE RETIRA (ADR-49, D1): la premisa de conducta
+  # financiera vía ENOE es falsa a nivel de reactivo (forense/hallazgos.md,
+  # 31/jul/2026). Lo único que sobrevivía -- el panel rotativo sigue al mismo
+  # hogar cinco trimestres -- es cierto pero es propiedad del instrumento
+  # ENOE, no una vía de calibración; no se vuelve a declarar aquí como campo
+  # de coeficiente. Ningún coeficiente de generador tiene ruta hoy.
 
 # ══════════════════════════════════════════════════════════════════
 # CRUCE CON LA BATERÍA DE REFUTACIONES
