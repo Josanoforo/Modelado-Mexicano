@@ -1786,19 +1786,6 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
 
-- id: encig2015_fd_pdf
-  usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
-  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2015/doc/encig15_estructura_base_datos.pdf
-  fecha_descarga: '2026-07-30'
-  descargado_por: agente, directamente de inegi.org.mx
-  archivo: encig15_estructura_base_datos.pdf
-  sha256: 1bcf65db52e8fb3b1ecd4806bd53fcde0cfa4ba0ed4a1e57abac27d5890382f4
-  tamano_bytes: 4340061
-  formato: PDF (Descriptor de archivos / FD)
-  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
-  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
-    FF-5563
-
 - id: encig2015_cuestionario_pdf
   usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
   url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2015/doc/encig15_cuestionario.pdf
@@ -1808,19 +1795,6 @@
   sha256: 9a174ca282cd2eb472b6b19354b0267f0eef88cad10e6a3a3a3c6b485db4c0ec
   tamano_bytes: 1703035
   formato: PDF (Cuestionario)
-  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
-  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
-    FF-5563
-
-- id: encig2017_fd_pdf
-  usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
-  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2017/doc/encig17_estructura_base_datos.pdf
-  fecha_descarga: '2026-07-30'
-  descargado_por: agente, directamente de inegi.org.mx
-  archivo: encig17_estructura_base_datos.pdf
-  sha256: 89b967f4f59cce087b6c69da2d532f49b7b8180380c3afb1302dabba804e7210
-  tamano_bytes: 2116934
-  formato: PDF (Descriptor de archivos / FD)
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
@@ -1860,19 +1834,6 @@
   sha256: 8ff04e1c60399633504b83a907af3b1bcf027e80dafca23e574d219920d868be
   tamano_bytes: 1744074
   formato: PDF (Cuestionario)
-  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
-  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
-    FF-5563
-
-- id: encig2021_fd_pdf
-  usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
-  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2021/doc/encig21_estructura_base_datos.pdf
-  fecha_descarga: '2026-07-30'
-  descargado_por: agente, directamente de inegi.org.mx
-  archivo: encig21_estructura_base_datos.pdf
-  sha256: 365c031bf48af4c6d65a8e5422c6cf0362500efd37cd0e924e3c1fe38b965dd2
-  tamano_bytes: 2612238
-  formato: PDF (Descriptor de archivos / FD)
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
