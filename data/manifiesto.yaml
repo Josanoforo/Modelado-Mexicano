@@ -2932,3 +2932,52 @@
     FF-5563
   nota: Página de diccionario de variables del catálogo RNM correspondiente a ENUT 2024 (idBiinegi=3381),
     enlazado desde /programas/enut/2024/data/arbol/arbolData.js -> Metadatos (estándar DDI).
+
+- id: cpv2020_cuestionario_ampliado_pdf
+  usado_para: documentación — instrumento, Cuestionario Ampliado del CPV 2020 (producto que
+    trae las marginales de los 6 ejes vía muestra probabilística; identificado en data/arbol/arbolData.js
+    de /programas/ccpv/2020/, verificado por HEAD antes de bajar)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ccpv/2020/doc/Censo2020_cuest_ampliado.pdf
+  fecha_descarga: '2026-07-31'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida,
+    Encargo D)
+  archivo: Censo2020_cuest_ampliado.pdf
+  sha256: 4a88b9b7a3e8c7dfae2804008ddb5082522a8f9e2bd63880fc34fdde1b972272
+  tamano_bytes: 986778
+  formato: PDF
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: 'La base de microdatos del Cuestionario Ampliado en sí (CSV/DBF/SAV) sigue sin bajar:
+    vive detrás del componente descargaMasivaV2 (idBiinegi=3001, endpoint archivoscompaginacion),
+    cuyos parámetros proyecto/anio no se lograron derivar esta sesión (ver forense/notas/);
+    esto es solo el instrumento (cuestionario), no el dato.'
+
+- id: enadid2023_hogar_cuestionario_pdf
+  usado_para: documentación — instrumento, Cuestionario para el hogar de ENADID 2023
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enadid/2023/doc/hogar_enadid23.pdf
+  fecha_descarga: '2026-07-31'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida,
+    Encargo D)
+  archivo: hogar_enadid23.pdf
+  sha256: 8b046a68dc19e292522557e05d81952e8fb04c2d3a1375c93fa7192e857e3270
+  tamano_bytes: 997178
+  formato: PDF
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enadid2023_mujer_modulo_cuestionario_pdf
+  usado_para: documentación — instrumento, Módulo para la mujer de ENADID 2023 (migración
+    con referencia temporal explícita)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enadid/2023/doc/mujer_enadid23.pdf
+  fecha_descarga: '2026-07-31'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida,
+    Encargo D)
+  archivo: mujer_enadid23.pdf
+  sha256: 005a9e83fff28a570a283429bcbb03f60a0b1aed7264631af237c5d9fa7226a2
+  tamano_bytes: 943319
+  formato: PDF
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
