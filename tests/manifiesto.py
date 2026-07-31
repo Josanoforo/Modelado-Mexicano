@@ -5,7 +5,12 @@
 --registra   añade una entrada NUEVA para un archivo que ya está en data/raw/.
              sha256, tamaño y entorno_descarga se derivan del archivo real y
              del proceso en ejecución -- ninguno se teclea ni se pide por
-             parámetro. No sobreescribe: un id que ya existe es error.
+             parámetro. No sobreescribe: un id que ya existe es error. Tampoco
+             duplica por contenido: si el sha256 ya está en el manifiesto bajo
+             OTRO id, aborta y dice cuál -- misma dedup que --escanea ya hacía,
+             ahora simétrica (30/jul: su ausencia aquí es justo lo que dejó
+             pasar dos entradas para el mismo PDF de ENCIG bajo dos ids, de
+             dos sesiones que no se vieron).
 
 --verifica   recomputa sha256 y tamaño del archivo que una entrada declara
              (campo `archivo`) y los compara contra lo que el manifiesto
@@ -272,6 +277,18 @@ def cmd_registra(a, manifiesto_path, raw_dir):
               f"disco.", file=sys.stderr)
         sys.exit(1)
 
+    sha = sha256_de(ruta_absoluta)
+    por_hash, _ = _index_manifiesto(entradas)
+    if sha in por_hash:
+        print(f"ERROR: este archivo ya está registrado -- mismo sha256 que la "
+              f"entrada '{por_hash[sha].get('id', '?')}' (archivo "
+              f"'{por_hash[sha].get('archivo', '?')}'). --escanea dedupica por "
+              f"hash; --registra hace lo mismo desde aquí -- no escribe una "
+              f"segunda entrada para el mismo contenido bajo un id distinto. Si "
+              f"el archivo cambió de verdad, es un id nuevo para un sha256 "
+              f"nuevo, no este caso.", file=sys.stderr)
+        sys.exit(1)
+
     entrada = {
         "id": a.id,
         "usado_para": a.usado_para,
@@ -279,7 +296,7 @@ def cmd_registra(a, manifiesto_path, raw_dir):
         "fecha_descarga": a.fecha_descarga or datetime.date.today().isoformat(),
         "descargado_por": a.descargado_por,
         "archivo": a.archivo,
-        "sha256": sha256_de(ruta_absoluta),
+        "sha256": sha,
         "tamano_bytes": os.path.getsize(ruta_absoluta),
         "formato": a.formato,
         "licencia": a.licencia,
