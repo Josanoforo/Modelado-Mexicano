@@ -1,0 +1,96 @@
+# corpus/indice.yaml
+# Índice derivado de claves "report:X" / "validacion:Y" (milpa/*.yaml) contra
+# archivos en corpus/reports/ y corpus/forense/.
+#
+# Metodología: una clave se marca "certeza" solo si hay UN único archivo cuyo
+# título denota el mismo tema sin competir con otro archivo del corpus. Si dos
+# archivos son candidatos plausibles, o si ningún archivo encaja, la clave NO
+# se fuerza — queda en `residuales.claves_sin_archivo` con sus candidatos (si
+# los hay). Generado a mano contra ce0658c; no hay script de regeneración.
+#
+# Números (ver ENTREGABLE en el encargo):
+#   claves_unicas: 36
+#   archivos: 36
+#   claves_con_certeza: 27
+
+mapeo:
+  report:autoridad: corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md
+  report:behavioral_finance: corpus/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md
+  report:capital_social: corpus/reports/Non-Family_Social_Capital_in_Mexico__Cooperation__Trust__and_Collective_Action_Beyond_Kinship.md
+  report:clasemediero: corpus/reports/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md
+  report:confianza: corpus/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md
+  report:conocimiento: corpus/reports/Report_26__The_Contemporary_Mexican_and_Knowledge__Expertise__Education_and_Information_as_Decision_Behavior.md
+  report:consumidor: corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md
+  report:credito_popular: corpus/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md
+  report:desaparecidos: corpus/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md
+  report:emociones_morales: corpus/reports/Moral_Emotions_in_Mexico__Declared_Dignity__Relational_Face__and_Residual_Catholic_Guilt.md
+  report:family: corpus/reports/La_familia_mexicana_como_sistema_psicológico__entre_el_afecto__la_obligación_y_la_adaptación_económica.md
+  report:juventud: corpus/reports/Psicología_de_la_Juventud_Mexicana_Contemporánea__Gen_Z_y_Millennials_Jóvenes_como_Cohorte_Divergente.md
+  report:merito: corpus/reports/Mérito__Movilidad_Social_y_Desigualdad_en_México__Actualización_2025-2026.md
+  report:migracion: corpus/reports/Psychology_of_Mexico-US_Migration__Identity__Family__Aspiration__and_Wellbeing_in_2025.md
+  report:politica: corpus/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md
+  report:religiosidad: corpus/reports/Religiosidad_y_Psicología_del_Mexicano_Contemporáneo__Moral__Afrontamiento__Consumo_e_Identidad_en_Transformación.md
+  report:rural_indigena: corpus/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md
+  report:salud_cuerpo: corpus/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md
+  report:salud_mental: corpus/reports/Salud_Mental_en_México__Prevalencia__Estigma_y_la_Brecha_entre_Necesidad_y_Atención.md
+  report:sancion_social: corpus/reports/Sanción_Social_Horizontal_en_México__Chisme__Envidia_y_Mal_de_Ojo_como_Mecanismos_de_Nivelación.md
+  report:tecnologia: corpus/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md
+  report:tiempo: corpus/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md
+  report:trabajo: corpus/reports/Psicología_del_Trabajo_en_México__Un_Mapa_Basado_en_Evidencia.md
+  report:violencia: corpus/reports/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md
+  validacion:V1_masstige: corpus/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md
+  validacion:V2_clientelismo: corpus/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md
+  validacion:V3_credito_auditado: corpus/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md
+
+residuales:
+  # El corpus cita una fuente que no existe (o cuyo archivo no se puede
+  # asignar sin adivinar). Candidatos listados cuando los hay; si hay más de
+  # uno, la clave es ambigua, no huérfana.
+  claves_sin_archivo:
+    - clave: report:foundational
+      candidatos:
+        - corpus/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md
+        - corpus/reports/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md
+      nota: "dos títulos plausibles para 'foundational'; ninguno lo dice literalmente"
+    - clave: report:genero
+      candidatos:
+        - corpus/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md
+        - corpus/reports/Reconfiguración_de_los_Guiones_de_Género_en_México__Masculinidades__Feminidades_y_Violencia_a_través_de_Clase__Generación_y_Región.md
+      nota: "ambos títulos contienen 'Género' literalmente; no hay forma de elegir sin leer el contenido citante"
+    - clave: report:genomica
+      candidatos:
+        - corpus/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md
+        - corpus/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md
+      nota: >-
+        verificado contra refutations.yaml:456 (ref.B.10.sin_genoma_conductual,
+        cita FST Seri-Lacandón y ALDH2) — el contenido encaja con AMBOS títulos
+        (genética poblacional y genómica poblacional); no se puede desambiguar
+        sin abrir los dos archivos completos
+    - clave: report:salud
+      candidatos: []
+      nota: >-
+        existen report:salud_cuerpo (-> Health_Body_Food...) y report:salud_mental
+        (-> Salud_Mental_en_México...) como archivos distintos, pero ningún
+        tercer archivo de salud genérica en el corpus
+    - clave: validacion:CoDi
+      candidatos: []
+      nota: "no hay archivo de corpus; la validación vive como nota_validacion inline en milpa/tramite.yaml:61"
+    - clave: validacion:SPEI
+      candidatos: []
+      nota: "no hay archivo de corpus; ver milpa/tramite.yaml:74 (misma fuente citada junto a report:tecnologia y modelo:3.3)"
+    - clave: validacion:OXXO_vs_CoDi
+      candidatos: []
+      nota: "no hay archivo de corpus; se cita en milpa-spec-v0_2.md:211 y refutations.yaml:230 sin documento propio"
+    - clave: validacion:vacunacion_desabasto
+      candidatos: []
+      nota: "no hay archivo de corpus; se cita en refutations.yaml:147 junto a report:conocimiento y report:salud"
+    - clave: validacion:Nu_Azteca_Kueski
+      candidatos:
+        - corpus/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md
+      nota: "candidato por tema (crédito fácil/sobreendeudamiento), no por coincidencia literal de nombre; no se fuerza a 'certeza'"
+
+  # Trabajo hecho que ninguna clave de milpa/*.yaml referencia.
+  archivos_sin_clave:
+    - corpus/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md
+    - corpus/reports/Vejez_y_Cuidado_Intergeneracional_en_México__El_Debilitamiento_del_Seguro_Familiar.md
+    - corpus/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md
