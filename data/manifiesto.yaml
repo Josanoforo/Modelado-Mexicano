@@ -1889,3 +1889,73 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: enoe_2019_1t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2019/conjunto_de_datos_enoe_2019_1t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2019_1t_csv.zip
+  sha256: fffc14c0b6e7f1e3ea33ce587dad4716820313fc6de9c5c34542c6495175ed4b
+  tamano_bytes: 44252554
+  formato: ZIP (datos abiertos ENOE, edición clásica, 2019 trimestre 1) -- no inspeccionado,
+    solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2019_2t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2019/conjunto_de_datos_enoe_2019_2t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2019_2t_csv.zip
+  sha256: 939eea79c9b1f6777af991af0f1966e63ce642976abb0cd5886eb396f3ad903e
+  tamano_bytes: 44295173
+  formato: ZIP (datos abiertos ENOE, edición clásica, 2019 trimestre 2) -- no inspeccionado,
+    solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2019_3t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2019/conjunto_de_datos_enoe_2019_3t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2019_3t_csv.zip
+  sha256: 3dee3611fa30f76e557afd819a60c6e0bc5bc156006053ebb0a688451b9037cc
+  tamano_bytes: 44134773
+  formato: ZIP (datos abiertos ENOE, edición clásica, 2019 trimestre 3) -- no inspeccionado,
+    solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2019_4t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2019/conjunto_de_datos_enoe_2019_4t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2019_4t_csv.zip
+  sha256: 5cdbc8ac79f8366f59f7062ec83bf72cc5140c00b53f4d4cc8f5afe2e07c5efe
+  tamano_bytes: 39117268
+  formato: ZIP (datos abiertos ENOE, edición clásica, 2019 trimestre 4) -- no inspeccionado,
+    solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enoe_2020_1t_csv
+  usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2020/conjunto_de_datos_enoe_2020_1t_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: conjunto_de_datos_enoe_2020_1t_csv.zip
+  sha256: df69c6653909cdd98c501b176dc9b2eb7cc2e0498e238f289a41b6803f7f457f
+  tamano_bytes: 43904494
+  formato: ZIP (datos abiertos ENOE, edición clásica, 2020 trimestre 1) -- no inspeccionado,
+    solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
