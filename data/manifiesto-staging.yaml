@@ -1,9 +1,21 @@
-# manifiesto-staging.yaml -- candidatos que --promueve dejó sin promover
-# (página guardada -- no es dato --, hash/tamaño faltante, o fuera
-# del --grupo de la última corrida). url_origen y usado_para siguen
-# siendo los dos campos que una máquina no deriva.
+# manifiesto-staging.yaml -- candidatos derivados por `tests/manifiesto.py --escanea`, fusionados por raíz (última corrida por raíz reemplaza solo esa raíz).
+#
+# sha256, tamano_bytes, fecha_descarga (del mtime) y entorno_descarga
+# se derivaron del archivo real en disco -- nunca se tecleó ni se pidió
+# por parámetro. url_origen y usado_para son los dos campos que una
+# máquina no puede derivar: quedan en "" y # PENDIENTE hasta que el
+# autor los complete. `raiz` es el NOMBRE de la raíz -- la ruta real
+# vive en data/raices.local.yaml, gitignorado, nunca aquí.
+#
+# Este archivo NO es data/manifiesto.yaml. Ninguna entrada de aquí se
+# promueve automáticamente.
+
+# ══ Raíz 'descargas_mx' -- corrida actual ══
+
+# ── Página guardada (no es dato -- evidencia de procedencia): descargas.php ──
 
 - archivo: descargas.php
+  raiz: descargas_mx
   sha256: 361ac35fa637933ba245bf1fa328cf62bd6cd80d61bf613cf0b431755a1cef10
   tamano_bytes: 141181
   fecha_descarga: '2026-07-30'
