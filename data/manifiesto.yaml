@@ -1892,9 +1892,10 @@
 
 - id: enoe_2019_1t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2019/conjunto_de_datos_enoe_2019_1t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2019_1t_csv.zip
   sha256: fffc14c0b6e7f1e3ea33ce587dad4716820313fc6de9c5c34542c6495175ed4b
   tamano_bytes: 44252554
@@ -1903,16 +1904,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2019_2t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2019/conjunto_de_datos_enoe_2019_2t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2019_2t_csv.zip
   sha256: 939eea79c9b1f6777af991af0f1966e63ce642976abb0cd5886eb396f3ad903e
   tamano_bytes: 44295173
@@ -1921,16 +1922,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2019_3t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2019/conjunto_de_datos_enoe_2019_3t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2019_3t_csv.zip
   sha256: 3dee3611fa30f76e557afd819a60c6e0bc5bc156006053ebb0a688451b9037cc
   tamano_bytes: 44134773
@@ -1939,16 +1940,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2019_4t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2019/conjunto_de_datos_enoe_2019_4t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2019_4t_csv.zip
   sha256: 5cdbc8ac79f8366f59f7062ec83bf72cc5140c00b53f4d4cc8f5afe2e07c5efe
   tamano_bytes: 39117268
@@ -1957,16 +1958,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2020_1t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2020/conjunto_de_datos_enoe_2020_1t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2020_1t_csv.zip
   sha256: df69c6653909cdd98c501b176dc9b2eb7cc2e0498e238f289a41b6803f7f457f
   tamano_bytes: 43904494
@@ -1975,16 +1976,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoen_2020_3t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2020/conjunto_de_datos_enoen_2020_3t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoen_2020_3t_csv.zip
   sha256: e07984bfc96bd75a1eeed09c122a636ea7a1d7300b44d88577116a781a49068a
   tamano_bytes: 34070549
@@ -1993,16 +1994,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoen_2020_4t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2020/conjunto_de_datos_enoen_2020_4t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoen_2020_4t_csv.zip
   sha256: c80d258fcd8a0975be4dcb49b0c4162ba46c1caa9a1f2af158b08a9195c62962
   tamano_bytes: 42038767
@@ -2011,16 +2012,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoen_2021_1t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2021/conjunto_de_datos_enoen_2021_1t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoen_2021_1t_csv.zip
   sha256: b92ab5c27ccaf4cc15dd76f715f1022c44af0b844d2fb4ebf3d1ec5bb1a16461
   tamano_bytes: 45815136
@@ -2029,16 +2030,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoen_2021_2t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2021/conjunto_de_datos_enoen_2021_2t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoen_2021_2t_csv.zip
   sha256: b047edf42e703cce20106ad53f27edc97c2b6bda6e3928d9ed905f41072e208c
   tamano_bytes: 33876717
@@ -2047,16 +2048,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoen_2021_3t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2021/conjunto_de_datos_enoen_2021_3t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoen_2021_3t_csv.zip
   sha256: 909a2d027a9688710c41710903d0835def5fe01a122dde7f5adb36a50320dc84
   tamano_bytes: 51070919
@@ -2065,16 +2066,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoen_2021_4t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2021/conjunto_de_datos_enoen_2021_4t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoen_2021_4t_csv.zip
   sha256: 74c6173ee16c14b5d23e0546041642e4eb766417921d844f84b26977a4e5859e
   tamano_bytes: 43112416
@@ -2083,16 +2084,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoen_2022_1t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2022/conjunto_de_datos_enoen_2022_1t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoen_2022_1t_csv.zip
   sha256: 7b91b51494239d5c0458fada84872e1745e4115c8e924be7511fc5a0d1c48ca9
   tamano_bytes: 44630600
@@ -2101,16 +2102,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoen_2022_2t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2022/conjunto_de_datos_enoen_2022_2t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoen_2022_2t_csv.zip
   sha256: 454154e53a5fc3d42842bac54d53b463cf898674460ff6162364f86cb6c7b287
   tamano_bytes: 41272360
@@ -2119,16 +2120,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoen_2022_3t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2022/conjunto_de_datos_enoen_2022_3t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoen_2022_3t_csv.zip
   sha256: 61d09993bd4daf894236c5618779c93ec8d77c08e38ced59aa049c6c3b1bb7ab
   tamano_bytes: 40289417
@@ -2137,16 +2138,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoen_2022_4t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2022/conjunto_de_datos_enoen_2022_4t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoen_2022_4t_csv.zip
   sha256: e0d897b28539b79c00e2a9e32df5d7045cf5dcbeda08afde2fbae5b0c819a937
   tamano_bytes: 40388980
@@ -2155,16 +2156,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2023_1t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2023/conjunto_de_datos_enoe_2023_1t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2023_1t_csv.zip
   sha256: 138e737d3644512d21c4704be32ab31fcd6c5f64c0a0fb30a96df12c9c305773
   tamano_bytes: 41532376
@@ -2173,16 +2174,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2023_2t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2023/conjunto_de_datos_enoe_2023_2t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2023_2t_csv.zip
   sha256: b5efd0e94be25a9aaad852e652e4653bd2eaafef4df92e3fd206d5f3e0046b10
   tamano_bytes: 42728491
@@ -2191,16 +2192,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2023_3t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2023/conjunto_de_datos_enoe_2023_3t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2023_3t_csv.zip
   sha256: e40824bfcb0b6a99b23dd33171e472406258dfdcfc2bbd0f614e7f2e66a165a6
   tamano_bytes: 44005595
@@ -2209,16 +2210,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2023_4t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2023/conjunto_de_datos_enoe_2023_4t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2023_4t_csv.zip
   sha256: add63ea0f5ae2649bfc726b7bc0040304674bab11e31ef6e3c26af6274d0bfa5
   tamano_bytes: 43788274
@@ -2227,16 +2228,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2024_1t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2024/conjunto_de_datos_enoe_2024_1t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2024_1t_csv.zip
   sha256: 0beed808bf4f1457d6ec13600a8bdd3ca8db7e7276ab14675a44e74e6a33592c
   tamano_bytes: 55944351
@@ -2245,16 +2246,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2024_2t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2024/conjunto_de_datos_enoe_2024_2t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2024_2t_csv.zip
   sha256: 19a0a9f0e30bd699c2b538f1af52654c0aef09b640e0e3b1081a9369ad363647
   tamano_bytes: 41777459
@@ -2263,16 +2264,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2024_3t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2024/conjunto_de_datos_enoe_2024_3t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2024_3t_csv.zip
   sha256: f384a1b8872e051856ed2241289400302b13a8701489b1c596390452c183cd01
   tamano_bytes: 53958272
@@ -2281,16 +2282,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2024_4t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2024/conjunto_de_datos_enoe_2024_4t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2024_4t_csv.zip
   sha256: bb6d958c9bca11672d367d2c051cd08bf1654c471c2f32c8e21992c126a3b426
   tamano_bytes: 54101479
@@ -2299,16 +2300,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2025_1t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2025/conjunto_de_datos_enoe_2025_1t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2025_1t_csv.zip
   sha256: 3931e7c9242147da6ebf9badb1e2b9a59d43d95a9811e077232be406c4ce6691
   tamano_bytes: 61038674
@@ -2317,16 +2318,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2025_2t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2025/conjunto_de_datos_enoe_2025_2t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2025_2t_csv.zip
   sha256: 9530a017e3defb0658418b73a47a6039eeb54abf11342fa10693374736515127
   tamano_bytes: 53803168
@@ -2335,16 +2336,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2025_3t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2025/conjunto_de_datos_enoe_2025_3t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2025_3t_csv.zip
   sha256: 7138b2bfabc740a9805b83b3fd0dae28287fc2aab3781a596a741b8fc7861566
   tamano_bytes: 46026887
@@ -2353,16 +2354,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2025_4t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2025/conjunto_de_datos_enoe_2025_4t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2025_4t_csv.zip
   sha256: e4d4284cc9924a40c39544a5530715f320a5627cd81997214c0430827616d9d6
   tamano_bytes: 54060030
@@ -2371,16 +2372,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: enoe_2026_1t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
-  url_origen: no determinada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2026/conjunto_de_datos_enoe_2026_1t_csv.zip
   fecha_descarga: '2026-07-30'
-  descargado_por: no determinado -- archivo encontrado en data_raw, sin entrada previa en el manifiesto
+  descargado_por: >-
+    no determinado -- el archivo ya estaba en data_raw al empezar esta sesión, sin registro previo en el manifiesto. Quién/qué lo puso ahí sigue sin determinarse; lo que SÍ se confirmó (ver url_origen_procedencia) es que la URL de abajo sirve, hoy, un archivo del mismo tamaño exacto.
   archivo: conjunto_de_datos_enoe_2026_1t_csv.zip
   sha256: 429c288af46e408de743e5dfb92750f668df7e42789be5824f7cdf1c5ff56580
   tamano_bytes: 42978855
@@ -2389,10 +2390,9 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  url_origen_procedencia: encontrado en disco, NO confirmada por el autor
+  url_origen_procedencia: >-
+    url_origen confirmada por esta sesión el 2026-07-31 vía HEAD contra el catálogo oficial de datosabiertos de INEGI -- Content-Length byte-exacto contra tamano_bytes (evidencia verificable, no testimonio). No confirma quién descargó el archivo ni cuándo -- ver descargado_por.
   raiz: data_raw
-  nota: >-
-    Corrección 2026-07-31 (forense/hallazgos.md): esta entrada se registró originalmente con descargado_por='agente' y url_origen construida, sin que esta sesión hubiera bajado el archivo -- procedencia fabricada. Corregido a 'no determinada' por commit de seguimiento. Verificación independiente hecha SÍ por esta sesión (no fabricada): una petición HEAD contra la URL construida arriba devuelve Content-Length byte-exacto igual a tamano_bytes -- evidencia de que ese patrón de URL sirve contenido idéntico hoy, pero no es prueba de que así se haya bajado ESTE archivo específico ni de cuándo.
 
 - id: encig2015_estructura_base_datos_pdf
   usado_para: documentación -- mapeo de reactivos, sin ficha asignada
