@@ -65,6 +65,35 @@ pueda verificarlo.
              descarga (proximidad de mtime en disco, nunca solo por nombre;
              un cambio de día calendario o un salto grande siempre abre
              tanda nueva) para que el reporte no sea una lista de N líneas.
+             Además del campo `url_origen` (con su comentario # PENDIENTE),
+             cada entrada staging trae `url_origen_sugerida` -- la misma
+             sugerencia pero en un campo YAML real, no solo en un comentario,
+             para que --promueve pueda leerla sin re-escanear la carpeta.
+
+--promueve   mueve entradas de data/manifiesto-staging.yaml a
+             data/manifiesto.yaml aunque url_origen no esté confirmada por
+             el autor. CORRECCIÓN DE DISEÑO (30/jul): bloquear el registro
+             por dos campos que una máquina no deriva (url_origen,
+             usado_para) dejaba archivos con sha256/tamaño reales
+             *invisibles* a --verifica -- un archivo sin registrar no se
+             audita. Un archivo registrado con un campo marcado como no
+             confirmado sí se audita: por eso el manifiesto existe. Lo único
+             irrecuperable es la ausencia de sha256/tamano_bytes -- eso sí
+             bloquea la promoción de esa entrada; una URL no confirmada no.
+             Escribe url_origen (la sugerencia derivada de una página
+             guardada si la hay, el valor que --escanea --grupo/--url le
+             haya asignado, o "no determinada" si no hay ninguna de las
+             dos) junto con `url_origen_procedencia`, que declara de dónde
+             salió y dice explícitamente NO CONFIRMADA POR EL AUTOR --
+             nunca se calla ese hecho ni se hace pasar la sugerencia por
+             procedencia declarada. `usado_para` deja de bloquear: si
+             --escanea/--grupo no le asignó uno, se registra como "sin uso
+             asignado — registro de inventario". Una página guardada
+             (.php/.html/.htm) nunca se promueve -- no es dato, es rastro
+             de procedencia. Lo que no se promueve (por ser página, por
+             faltarle hash/tamaño, o por quedar fuera de un --grupo) se
+             reescribe en data/manifiesto-staging.yaml; lo que sí se
+             promovió sale de staging.
 
 Única dependencia externa: PyYAML.
 """
@@ -262,6 +291,15 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
                 print(f"    tamano_bytes manifiesto: {entrada.get('tamano_bytes')}")
                 print(f"    tamano_bytes real:       {tam_real}")
 
+    derivadas = [e for e in entradas if e.get("url_origen_procedencia")]
+    print()
+    print(f"Procedencia derivada, NO confirmada por el autor: {len(derivadas)} "
+          f"entrada(s) de {len(entradas)} en el manifiesto (cuenta el manifiesto "
+          f"completo, no solo lo verificado arriba):")
+    for e in derivadas:
+        print(f"  {e.get('id', '?')} ({e.get('archivo', '?')}): "
+              f"{e['url_origen_procedencia']}")
+
     sys.exit(exit_code)
 
 
@@ -391,6 +429,9 @@ def _formatear_entrada_staging(f, sugerencia_url):
                        f'descargas.php: {sugerencia_url}')
     else:
         lineas.append('  url_origen: ""      # PENDIENTE')
+    # Mismo dato que el comentario de arriba, pero en un campo YAML real --
+    # --promueve lee esto; un comentario lo pierde el parser.
+    lineas.append(f"  url_origen_sugerida: {_yaml_valor(sugerencia_url or '')}")
     if usado_valor:
         lineas.append(f"  usado_para: {_yaml_valor(usado_valor)}")
     else:
@@ -460,15 +501,24 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
             sugerencia_por_grupo[i] = next(iter(candidatas))
 
     aplicados = 0
-    if a.grupo:
-        for grupo in grupos:
+    if a.grupo or a.grupo_n is not None:
+        if a.grupo_n is not None:
+            if not (1 <= a.grupo_n <= len(grupos)):
+                print(f"ERROR: --grupo-n {a.grupo_n} fuera de rango -- hay "
+                      f"{len(grupos)} tanda(s) detectada(s).", file=sys.stderr)
+                sys.exit(1)
+            candidatos_tandas = [grupos[a.grupo_n - 1]]
+        else:
+            candidatos_tandas = grupos
+        for grupo in candidatos_tandas:
             for f in grupo:
-                if fnmatch.fnmatch(f["archivo"].lower(), a.grupo.lower()):
-                    if a.grupo_url:
-                        f["url_origen"] = a.grupo_url
-                    if a.usado_para:
-                        f["usado_para"] = a.usado_para
-                    aplicados += 1
+                if a.grupo and not fnmatch.fnmatch(f["archivo"].lower(), a.grupo.lower()):
+                    continue
+                if a.grupo_url:
+                    f["url_origen"] = a.grupo_url
+                if a.usado_para:
+                    f["usado_para"] = a.usado_para
+                aplicados += 1
 
     # ── escribir data/manifiesto-staging.yaml ──
     staging_path = os.path.join(os.path.dirname(manifiesto_path), STAGING_NOMBRE)
@@ -545,18 +595,167 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
             print(f"  {p['archivo']} -- sugerencia detectada: "
                   f"{p['_url_sugerida'] or '(ninguna)'}")
 
-    if a.grupo:
+    if a.grupo or a.grupo_n is not None:
         print()
-        print(f"--grupo '{a.grupo}': {aplicados} archivo(s) nuevo(s) recibieron "
-              + ", ".join(filter(None, [
-                  f"url_origen='{a.grupo_url}'" if a.grupo_url else None,
-                  f"usado_para='{a.usado_para}'" if a.usado_para else None,
-              ])) if aplicados else f"--grupo '{a.grupo}': ningún archivo nuevo coincide con el patrón")
+        descriptor = " + ".join(filter(None, [
+            f"tanda {a.grupo_n}" if a.grupo_n is not None else None,
+            f"patrón '{a.grupo}'" if a.grupo else None,
+        ]))
+        if aplicados:
+            print(f"--grupo-n/--grupo ({descriptor}): {aplicados} archivo(s) nuevo(s) "
+                  f"recibieron " + ", ".join(filter(None, [
+                      f"url_origen='{a.grupo_url}'" if a.grupo_url else None,
+                      f"usado_para='{a.usado_para}'" if a.usado_para else None,
+                  ])))
+        else:
+            print(f"--grupo-n/--grupo ({descriptor}): ningún archivo nuevo coincide")
 
     print()
     print(f"Escrito: {os.path.relpath(staging_path, repo_root())} "
           f"({len(nuevos) + len(paginas)} entrada(s) staging). "
           f"Nada se promovió a {os.path.relpath(manifiesto_path, repo_root())}.")
+
+
+# ───────────────────────────────────────────────────────────── --promueve ──
+
+def _derivar_id(nombre_archivo, ids_existentes):
+    """Slug mecánico del nombre de archivo -- nunca tecleado. Si colisiona
+    con un id ya existente (u otro derivado en el mismo lote), se
+    desambigua con un sufijo numérico, nunca sobreescribiendo."""
+    base = os.path.splitext(nombre_archivo)[0]
+    slug = re.sub(r"[^a-z0-9]+", "_", base.lower()).strip("_")
+    slug = re.sub(r"_+", "_", slug) or "archivo"
+    candidato = slug
+    n = 2
+    while candidato in ids_existentes:
+        candidato = f"{slug}_{n}"
+        n += 1
+    return candidato
+
+
+def _reescribir_staging_restante(staging_path, restantes):
+    """Tras --promueve, staging solo debe listar lo que sigue sin estar en
+    el manifiesto: páginas guardadas, entradas sin hash/tamaño, o lo que
+    quedó fuera de un --grupo. No hay mtime disponible aquí (no se
+    re-escanea el disco), así que no se reconstruye la agrupación por
+    tanda -- una lista plana es honesta con lo que este paso sí sabe."""
+    if not restantes:
+        with open(staging_path, "w", encoding="utf-8") as f:
+            f.write(f"# {STAGING_NOMBRE} -- vacío: no quedan candidatos sin "
+                     f"promover a data/manifiesto.yaml.\n")
+        return
+    cabecera = (
+        f"# {STAGING_NOMBRE} -- candidatos que --promueve dejó sin promover\n"
+        f"# (página guardada -- no es dato --, hash/tamaño faltante, o fuera\n"
+        f"# del --grupo de la última corrida). url_origen y usado_para siguen\n"
+        f"# siendo los dos campos que una máquina no deriva."
+    )
+    entradas_txt = [_formatear_entrada_staging(e, e.get("url_origen_sugerida"))
+                     for e in sorted(restantes, key=lambda e: e["archivo"])]
+    with open(staging_path, "w", encoding="utf-8") as f:
+        f.write(cabecera + "\n\n" + "\n\n".join(entradas_txt) + "\n")
+
+
+def cmd_promueve(a, manifiesto_path, raw_dir):
+    staging_path = os.path.join(os.path.dirname(manifiesto_path), STAGING_NOMBRE)
+    if not os.path.exists(staging_path):
+        print(f"ERROR: no existe {os.path.relpath(staging_path, repo_root())} -- "
+              f"nada que promover. Corre --escanea primero.", file=sys.stderr)
+        sys.exit(1)
+
+    _, staging_entradas = leer_manifiesto(staging_path)
+    if not staging_entradas:
+        print(f"{os.path.relpath(staging_path, repo_root())} no tiene candidatos "
+              f"pendientes. Nada que promover.")
+        return
+
+    cabecera, entradas = leer_manifiesto(manifiesto_path)
+    por_hash, _ = _index_manifiesto(entradas)
+    ids_existentes = {e.get("id") for e in entradas if e.get("id")}
+
+    if a.grupo:
+        objetivo = [e for e in staging_entradas
+                    if fnmatch.fnmatch(e["archivo"].lower(), a.grupo.lower())]
+        fuera_de_grupo = [e for e in staging_entradas if e not in objetivo]
+    else:
+        objetivo = list(staging_entradas)
+        fuera_de_grupo = []
+
+    promovidas, no_promovidas, restantes = [], [], list(fuera_de_grupo)
+
+    for e in objetivo:
+        ext = os.path.splitext(e["archivo"])[1].lower()
+        if ext in EXTENSIONES_PAGINA:
+            no_promovidas.append((e, "página guardada, no es dato -- no se promueve"))
+            restantes.append(e)
+            continue
+
+        if e.get("sha256") in por_hash:
+            no_promovidas.append(
+                (e, f"ya registrado externamente como "
+                    f"'{por_hash[e['sha256']].get('id', '?')}' -- no se duplica"))
+            continue
+
+        if not e.get("sha256") or not e.get("tamano_bytes"):
+            no_promovidas.append(
+                (e, "falta sha256 o tamano_bytes -- irrecuperable, no se promueve"))
+            restantes.append(e)
+            continue
+
+        url_valor = e.get("url_origen") or ""
+        sugerida = e.get("url_origen_sugerida") or ""
+        if url_valor and sugerida and url_valor == sugerida:
+            procedencia = "derivada de descargas.php por --escanea, NO confirmada por el autor"
+        elif url_valor:
+            procedencia = "asignada vía --grupo/--url en --escanea, NO confirmada por el autor"
+        elif sugerida:
+            url_valor = sugerida
+            procedencia = "derivada de descargas.php por --escanea, NO confirmada por el autor"
+        else:
+            url_valor = "no determinada"
+            procedencia = "no derivada -- --escanea no encontró sugerencia, NO confirmada por el autor"
+
+        usado_valor = e.get("usado_para") or "sin uso asignado — registro de inventario"
+
+        id_ = _derivar_id(e["archivo"], ids_existentes)
+        ids_existentes.add(id_)
+
+        nueva = {
+            "id": id_,
+            "usado_para": usado_valor,
+            "url_origen": url_valor,
+            "url_origen_procedencia": procedencia,
+            "fecha_descarga": e["fecha_descarga"],
+            "descargado_por": e["descargado_por"],
+            "archivo": e["archivo"],
+            "sha256": e["sha256"],
+            "tamano_bytes": e["tamano_bytes"],
+            "entorno_descarga": e["entorno_descarga"],
+        }
+        entradas.append(nueva)
+        por_hash[nueva["sha256"]] = nueva
+        promovidas.append(nueva)
+
+    escribir_manifiesto(manifiesto_path, cabecera, entradas)
+    _reescribir_staging_restante(staging_path, restantes)
+
+    print(f"Promovidas {len(promovidas)} entrada(s) a "
+          f"{os.path.relpath(manifiesto_path, repo_root())}:")
+    for n in promovidas:
+        print(f"  {n['id']} <- {n['archivo']}")
+        print(f"    url_origen: {n['url_origen']}")
+        print(f"    url_origen_procedencia: {n['url_origen_procedencia']}")
+        print(f"    usado_para: {n['usado_para']}")
+
+    if no_promovidas:
+        print()
+        print(f"No promovidas ({len(no_promovidas)}):")
+        for e, razon in no_promovidas:
+            print(f"  {e['archivo']}: {razon}")
+
+    print()
+    print(f"Quedan {len(restantes)} entrada(s) en "
+          f"{os.path.relpath(staging_path, repo_root())}.")
 
 
 # ───────────────────────────────────────────────────────────── --compara ──
@@ -626,13 +825,28 @@ def main():
     g.add_argument("--escanea", default=None, metavar="RUTA",
                     help="Recorre RUTA y escribe candidatos nuevos (dedup por sha256) "
                          "en data/manifiesto-staging.yaml -- nunca en el manifiesto")
+    g.add_argument("--promueve", action="store_true",
+                    help="Mueve candidatos de data/manifiesto-staging.yaml a "
+                         "data/manifiesto.yaml aunque url_origen no esté confirmada "
+                         "(queda marcada con url_origen_procedencia)")
 
     ap.add_argument("--id", default=None)
     ap.add_argument("--grupo", default=None,
-                     help="patrón fnmatch (--escanea): aplica --url/--usado-para a "
-                          "los archivos nuevos cuyo nombre case con el patrón")
+                     help="patrón fnmatch. Con --escanea: aplica --url/--usado-para a "
+                          "los archivos nuevos cuyo nombre case con el patrón (o, "
+                          "combinado con --grupo-n, a un subconjunto DENTRO de esa "
+                          "tanda). Con --promueve: limita la promoción a los que "
+                          "casen (por defecto, --promueve procesa todo lo que hay en "
+                          "staging)")
+    ap.add_argument("--grupo-n", dest="grupo_n", type=int, default=None,
+                     help="(--escanea) número de tanda -- 1-based, ver 'GRUPOS de "
+                          "datos detectados' en el reporte -- para aplicar "
+                          "--url/--usado-para a TODA la tanda, sin depender del "
+                          "nombre. Se puede combinar con --grupo para un "
+                          "subconjunto dentro de esa tanda")
     ap.add_argument("--url", dest="grupo_url", default=None,
-                     help="url_origen a aplicar a los archivos que casen con --grupo")
+                     help="url_origen a aplicar a los archivos que casen con "
+                          "--grupo/--grupo-n (--escanea)")
     ap.add_argument("--archivo", default=None,
                      help="ruta relativa dentro de data/raw/ (--registra)")
     ap.add_argument("--usado-para", dest="usado_para", default=None)
@@ -656,6 +870,8 @@ def main():
         cmd_verifica(a, manifiesto_path, raw_dir)
     elif a.escanea:
         cmd_escanea(a, manifiesto_path, raw_dir)
+    elif a.promueve:
+        cmd_promueve(a, manifiesto_path, raw_dir)
     else:
         cmd_compara(a, manifiesto_path, raw_dir)
 
