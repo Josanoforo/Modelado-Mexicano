@@ -12,6 +12,16 @@
 #                      tiene respaldo; el número concreto no.
 #   ASIGNADO   — juicio informado. La fuente citada sostiene la DIRECCIÓN,
 #                no la magnitud. Coherente con el corpus, no medido.
+#   AJUSTADO   — reproduce los momentos observados (media, varianza,
+#                transición) de un dato real; NO está identificado
+#                causalmente. Contesta CUÁNTO, nunca SI EL PATRÓN EXISTE
+#                (ADR-47). Exige campo `ruta:` con uno de: pseudo_panel |
+#                momentos | composicion | transversal_con_seleccion.
+#                `ruta: composicion` exige la regla de descomposición
+#                DECLARADA ANTES de ver los datos; inventada después es
+#                post-hoc (Bloque C, validación forense). Sellada por
+#                ADR-49 (D2): nace VACÍA, cero números AJUSTADO hoy;
+#                ningún ASIGNADO se reclasifica por este cambio.
 #
 # ADVERTENCIA DE LECTURA. Que 96% de los números no sea MEDIDO no es un
 # escándalo por los estándares del campo: los ABM asignan parámetros de forma
