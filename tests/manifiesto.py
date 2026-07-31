@@ -9,10 +9,17 @@
 
 --verifica   recomputa sha256 y tamaño del archivo que una entrada declara
              (campo `archivo`) y los compara contra lo que el manifiesto
-             registra. Sin --id, verifica todas las entradas con payload.
-             Un archivo ausente de data/raw/ se reporta AUSENTE -- no es un
-             error del script, es un hecho sobre el entorno (el payload
-             nunca se commitea; puede faltar sin que nada esté roto).
+             registra, resolviendo la raíz real por el campo `raiz` de la
+             entrada (ausente = data_raw). Sin --id, verifica todas las
+             entradas con payload. Un archivo ausente de su raíz se
+             reporta AUSENTE -- no es un error del script, es un hecho
+             sobre el entorno (el payload nunca se commitea; puede faltar
+             sin que nada esté roto). Cada línea declara la raíz junto al
+             id ([data_raw], [descargas_mx], [downloads]...) y el resumen
+             final tabula por raíz SIN COLAPSAR -- un AUSENTE en
+             `downloads` no es el mismo hecho que un AUSENTE en
+             `data_raw`, y una raíz que este entorno no tiene configurada
+             en data/raices.local.yaml se reporta aparte, no como AUSENTE.
 
 Motivación (cola I-04): el encargo del 30/jul citó 18513 bytes para un
 archivo que en realidad pesa 17262 -- una cifra tecleada, no derivada. Este
@@ -47,24 +54,78 @@ pueda verificarlo.
              original estaba mal, o la fuente cambió de contenido) -- el
              script la reporta, no la resuelve ni la silencia sobreescribiendo.
 
---escanea   recorre una carpeta fuera del repo (típicamente la carpeta de
-             descargas del navegador) y, para cada archivo que no esté ya
-             en data/manifiesto.yaml (dedup por sha256, no por nombre),
-             deriva archivo/sha256/tamano_bytes/fecha_descarga (del mtime)/
-             entorno_descarga/descargado_por y escribe una entrada STAGING
-             en data/manifiesto-staging.yaml -- nunca en el manifiesto. No
-             descarga nada, no sobreescribe nada y no abre ningún payload:
-             hashear y hacer stat no es abrir; leer como texto un .php/.html
-             guardado (para sugerir url_origen) tampoco toca ningún portal.
-             url_origen y usado_para son los únicos dos campos que una
-             máquina no deriva -- quedan en "" con comentario # PENDIENTE,
-             salvo que --grupo/--url/--usado-para se los asignen a un lote.
+RAÍCES (30/jul, corrección de diseño): hay tres, nunca dos.
+    data_raw      repo/data/raw/ -- lo que baja un agente. Integrada:
+                  se resuelve por código, nunca por archivo.
+    descargas_mx  carpeta de descargas curada por el autor.
+    downloads     destino por defecto del navegador -- NO es una carpeta
+                  de datos: tiene archivos ajenos al proyecto.
+Las rutas reales de descargas_mx/downloads (y cualquier otra que se
+declare) viven en data/raices.local.yaml, gitignorado -- cada máquina
+define las suyas; una ruta literal nunca se commitea, ni ahí (ese archivo
+no se versiona) ni en una entrada del manifiesto (campo `raiz`: el NOMBRE
+de la raíz, nunca la ruta). Las 53 entradas de payload anteriores a este
+campo no tienen `raiz` -- su ausencia SIGNIFICA data_raw; no se les
+migra un valor retroactivo que nadie declaró entonces.
+
+--escanea   recorre una RAÍZ POR NOMBRE (nunca una ruta -- ver arriba) y,
+             para cada archivo que no esté ya en data/manifiesto.yaml
+             (dedup por sha256, no por nombre),
+             deriva archivo/raiz/sha256/tamano_bytes/fecha_descarga (del
+             mtime)/entorno_descarga/descargado_por y escribe una entrada
+             STAGING en data/manifiesto-staging.yaml -- nunca en el
+             manifiesto. `raiz` es el nombre de la raíz escaneada; el
+             reporte también lo declara siempre, por nombre -- un staging
+             que no dice de dónde salió es el mismo defecto de procedencia,
+             una capa más abajo. Sobre `downloads` EXIGE --grupo o
+             --grupo-n (si no, aborta): esa raíz no es de datos y un
+             escaneo completo mete ruido que alguien limpiaría a mano.
+             Sobre data_raw/descargas_mx el escaneo completo sigue
+             permitido. No descarga nada, no sobreescribe nada y no abre
+             ningún payload: hashear y hacer stat no es abrir; leer como
+             texto un .php/.html guardado (para sugerir url_origen)
+             tampoco toca ningún portal. url_origen y usado_para son los
+             únicos dos campos que una máquina no deriva -- quedan en ""
+             con comentario # PENDIENTE, salvo que --grupo/--grupo-n +
+             --url/--usado-para se los asignen a un lote (--grupo-n
+             selecciona una tanda ENTERA por su número, sin depender del
+             nombre; --grupo, un patrón fnmatch, acota un subconjunto --
+             solo o dentro de una tanda ya elegida con --grupo-n).
              Un hash nuevo con un nombre que ya está registrado no se
              registra: se reporta aparte como hallazgo (mismo nombre,
              contenido distinto), no se resuelve solo. Agrupa por tanda de
              descarga (proximidad de mtime en disco, nunca solo por nombre;
              un cambio de día calendario o un salto grande siempre abre
              tanda nueva) para que el reporte no sea una lista de N líneas.
+             Además del campo `url_origen` (con su comentario # PENDIENTE),
+             cada entrada staging trae `url_origen_sugerida` -- la misma
+             sugerencia pero en un campo YAML real, no solo en un comentario,
+             para que --promueve pueda leerla sin re-escanear la carpeta.
+
+--promueve   mueve entradas de data/manifiesto-staging.yaml a
+             data/manifiesto.yaml aunque url_origen no esté confirmada por
+             el autor. CORRECCIÓN DE DISEÑO (30/jul): bloquear el registro
+             por dos campos que una máquina no deriva (url_origen,
+             usado_para) dejaba archivos con sha256/tamaño reales
+             *invisibles* a --verifica -- un archivo sin registrar no se
+             audita. Un archivo registrado con un campo marcado como no
+             confirmado sí se audita: por eso el manifiesto existe. Lo único
+             irrecuperable es la ausencia de sha256/tamano_bytes -- eso sí
+             bloquea la promoción de esa entrada; una URL no confirmada no.
+             Escribe url_origen (la sugerencia derivada de una página
+             guardada si la hay, el valor que --escanea --grupo/--url le
+             haya asignado, o "no determinada" si no hay ninguna de las
+             dos) junto con `url_origen_procedencia`, que declara de dónde
+             salió y dice explícitamente NO CONFIRMADA POR EL AUTOR --
+             nunca se calla ese hecho ni se hace pasar la sugerencia por
+             procedencia declarada. `usado_para` deja de bloquear: si
+             --escanea/--grupo no le asignó uno, se registra como "sin uso
+             asignado — registro de inventario". Una página guardada
+             (.php/.html/.htm) nunca se promueve -- no es dato, es rastro
+             de procedencia. Lo que no se promueve (por ser página, por
+             faltarle hash/tamaño, o por quedar fuera de un --grupo) se
+             reescribe en data/manifiesto-staging.yaml; lo que sí se
+             promovió sale de staging.
 
 Única dependencia externa: PyYAML.
 """
@@ -88,6 +149,32 @@ def repo_root():
 def rutas(root):
     return (os.path.join(root, "data", "manifiesto.yaml"),
             os.path.join(root, "data", "raw"))
+
+
+RAIZ_INTEGRADA = "data_raw"  # resuelta por código (rutas()); nunca por archivo
+
+
+def raices_configuradas(root):
+    """Mapa nombre->ruta real de raíces EXTERNAS al repo (todo salvo
+    RAIZ_INTEGRADA). Vive en data/raices.local.yaml, gitignorado -- cada
+    máquina declara sus propias rutas; una ruta literal nunca se commitea,
+    ni aquí ni en una entrada del manifiesto (campo `raiz`: el NOMBRE,
+    nunca la ruta)."""
+    ruta_config = os.path.join(root, "data", "raices.local.yaml")
+    if not os.path.exists(ruta_config):
+        return {}
+    with open(ruta_config, encoding="utf-8") as f:
+        datos = yaml.safe_load(f) or {}
+    return {k: v for k, v in datos.items() if k != RAIZ_INTEGRADA}
+
+
+def resolver_raiz(nombre, root, raw_dir):
+    """None si `nombre` no es RAIZ_INTEGRADA ni está en
+    data/raices.local.yaml -- este entorno no la tiene configurada (puede
+    ser válida en otra máquina; no es un error del manifiesto)."""
+    if nombre == RAIZ_INTEGRADA:
+        return raw_dir
+    return raices_configuradas(root).get(nombre)
 
 
 def separar_cabecera(texto):
@@ -212,6 +299,7 @@ def cmd_registra(a, manifiesto_path, raw_dir):
 # ───────────────────────────────────────────────────────────── --verifica ──
 
 def cmd_verifica(a, manifiesto_path, raw_dir):
+    root = os.path.dirname(os.path.dirname(manifiesto_path))
     _, entradas = leer_manifiesto(manifiesto_path)
     con_payload = [e for e in entradas if "sha256" in e]
 
@@ -230,18 +318,35 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
     print()
 
     exit_code = 0
+    # Tres estados por raíz, sin colapsar -- AUSENTE en 'downloads' no es lo
+    # mismo que AUSENTE en 'data_raw', y una tabla que solo dijera "AUSENTE"
+    # los volvería indistinguibles.
+    por_raiz = {}
     for entrada in objetivo:
         id_ = entrada.get("id", "?")
         archivo = entrada.get("archivo")
+        nombre_raiz = entrada.get("raiz", RAIZ_INTEGRADA)
+        tally = por_raiz.setdefault(nombre_raiz, {"coincide": 0, "no_coincide": 0,
+                                                     "ausente": 0, "sin_raiz": 0})
         if not archivo:
-            print(f"{id_}: SIN CAMPO 'archivo' en el manifiesto -- no se puede "
-                  f"localizar el payload (omitido, no cuenta como falla)")
+            print(f"{id_} [{nombre_raiz}]: SIN CAMPO 'archivo' en el manifiesto -- "
+                  f"no se puede localizar el payload (omitido, no cuenta como falla)")
             continue
 
-        ruta = os.path.join(raw_dir, archivo)
+        base_dir = resolver_raiz(nombre_raiz, root, raw_dir)
+        if base_dir is None:
+            tally["sin_raiz"] += 1
+            print(f"{id_} [{nombre_raiz}]: RAÍZ NO CONFIGURADA -- este entorno no "
+                  f"define '{nombre_raiz}' en data/raices.local.yaml; no se puede "
+                  f"verificar (no es un error del manifiesto, puede ser válida en "
+                  f"otra máquina)")
+            continue
+
+        ruta = os.path.join(base_dir, archivo)
         if not os.path.exists(ruta):
-            print(f"{id_}: AUSENTE -- data/raw/{archivo} no está en disco "
-                  f"(no es un error: el payload no se commitea)")
+            tally["ausente"] += 1
+            print(f"{id_} [{nombre_raiz}]: AUSENTE -- {archivo} no está en la raíz "
+                  f"'{nombre_raiz}' (no es un error: el payload no se commitea)")
             continue
 
         sha_real = sha256_de(ruta)
@@ -250,17 +355,36 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
         tam_ok = tam_real == entrada.get("tamano_bytes")
 
         if sha_ok and tam_ok:
-            print(f"{id_}: COINCIDE -- sha256 y tamaño ({tam_real} bytes) "
-                  f"verificados contra data/manifiesto.yaml")
+            tally["coincide"] += 1
+            print(f"{id_} [{nombre_raiz}]: COINCIDE -- sha256 y tamaño "
+                  f"({tam_real} bytes) verificados contra data/manifiesto.yaml")
         else:
+            tally["no_coincide"] += 1
             exit_code = 1
-            print(f"{id_}: NO COINCIDE")
+            print(f"{id_} [{nombre_raiz}]: NO COINCIDE")
             if not sha_ok:
                 print(f"    sha256 manifiesto: {entrada.get('sha256')}")
                 print(f"    sha256 real:       {sha_real}")
             if not tam_ok:
                 print(f"    tamano_bytes manifiesto: {entrada.get('tamano_bytes')}")
                 print(f"    tamano_bytes real:       {tam_real}")
+
+    print()
+    print("Por raíz (sin colapsar):")
+    for nombre_raiz in sorted(por_raiz):
+        t = por_raiz[nombre_raiz]
+        print(f"  {nombre_raiz}: coincide={t['coincide']} · "
+              f"no_coincide={t['no_coincide']} · ausente={t['ausente']} · "
+              f"sin_configurar={t['sin_raiz']}")
+
+    derivadas = [e for e in entradas if e.get("url_origen_procedencia")]
+    print()
+    print(f"Procedencia derivada, NO confirmada por el autor: {len(derivadas)} "
+          f"entrada(s) de {len(entradas)} en el manifiesto (cuenta el manifiesto "
+          f"completo, no solo lo verificado arriba):")
+    for e in derivadas:
+        print(f"  {e.get('id', '?')} [{e.get('raiz', RAIZ_INTEGRADA)}] "
+              f"({e.get('archivo', '?')}): {e['url_origen_procedencia']}")
 
     sys.exit(exit_code)
 
@@ -378,6 +502,7 @@ def _formatear_entrada_staging(f, sugerencia_url):
     usado_valor = f.get("usado_para")
     lineas = [
         f"- archivo: {_yaml_valor(f['archivo'])}",
+        f"  raiz: {_yaml_valor(f.get('raiz', RAIZ_INTEGRADA))}",
         f"  sha256: {f['sha256']}",
         f"  tamano_bytes: {f['tamano_bytes']}",
         f"  fecha_descarga: '{f['fecha_descarga']}'",
@@ -391,6 +516,9 @@ def _formatear_entrada_staging(f, sugerencia_url):
                        f'descargas.php: {sugerencia_url}')
     else:
         lineas.append('  url_origen: ""      # PENDIENTE')
+    # Mismo dato que el comentario de arriba, pero en un campo YAML real --
+    # --promueve lee esto; un comentario lo pierde el parser.
+    lineas.append(f"  url_origen_sugerida: {_yaml_valor(sugerencia_url or '')}")
     if usado_valor:
         lineas.append(f"  usado_para: {_yaml_valor(usado_valor)}")
     else:
@@ -398,10 +526,31 @@ def _formatear_entrada_staging(f, sugerencia_url):
     return "\n".join(lineas)
 
 
+RAICES_QUE_EXIGEN_GRUPO = {"downloads"}
+
+
 def cmd_escanea(a, manifiesto_path, raw_dir):
-    ruta = os.path.abspath(os.path.expanduser(a.escanea))
+    root = os.path.dirname(os.path.dirname(manifiesto_path))
+    nombre_raiz = a.escanea
+    ruta = resolver_raiz(nombre_raiz, root, raw_dir)
+    if ruta is None:
+        disponibles = [RAIZ_INTEGRADA] + sorted(raices_configuradas(root))
+        print(f"ERROR: raíz '{nombre_raiz}' no configurada. --escanea recibe un "
+              f"NOMBRE de raíz, nunca una ruta. '{RAIZ_INTEGRADA}' es integrada; "
+              f"el resto se declara en data/raices.local.yaml (gitignorado -- cada "
+              f"máquina define sus propias rutas). Disponibles aquí: "
+              f"{', '.join(disponibles)}.", file=sys.stderr)
+        sys.exit(1)
     if not os.path.isdir(ruta):
-        print(f"ERROR: '{a.escanea}' no es una carpeta accesible.", file=sys.stderr)
+        print(f"ERROR: la raíz '{nombre_raiz}' apunta a una ruta que no es una "
+              f"carpeta accesible en esta máquina.", file=sys.stderr)
+        sys.exit(1)
+    if nombre_raiz in RAICES_QUE_EXIGEN_GRUPO and not (a.grupo or a.grupo_n is not None):
+        print(f"ERROR: --escanea sobre la raíz '{nombre_raiz}' exige --grupo o "
+              f"--grupo-n. No es una carpeta de datos del proyecto -- tiene "
+              f"archivos ajenos, y un escaneo completo metería ruido al staging "
+              f"que alguien tendría que limpiar a mano, que es justo el trabajo "
+              f"que este comando existe para quitar.", file=sys.stderr)
         sys.exit(1)
 
     _, entradas = leer_manifiesto(manifiesto_path)
@@ -430,6 +579,7 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
 
         registro = {
             "archivo": nombre,
+            "raiz": nombre_raiz,
             "sha256": sha,
             "tamano_bytes": st.st_size,
             "mtime": st.st_mtime,
@@ -460,29 +610,51 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
             sugerencia_por_grupo[i] = next(iter(candidatas))
 
     aplicados = 0
-    if a.grupo:
-        for grupo in grupos:
+    if a.grupo or a.grupo_n is not None:
+        if a.grupo_n is not None:
+            if not (1 <= a.grupo_n <= len(grupos)):
+                print(f"ERROR: --grupo-n {a.grupo_n} fuera de rango -- hay "
+                      f"{len(grupos)} tanda(s) detectada(s).", file=sys.stderr)
+                sys.exit(1)
+            candidatos_tandas = [grupos[a.grupo_n - 1]]
+        else:
+            candidatos_tandas = grupos
+        for grupo in candidatos_tandas:
             for f in grupo:
-                if fnmatch.fnmatch(f["archivo"].lower(), a.grupo.lower()):
-                    if a.grupo_url:
-                        f["url_origen"] = a.grupo_url
-                    if a.usado_para:
-                        f["usado_para"] = a.usado_para
-                    aplicados += 1
+                if a.grupo and not fnmatch.fnmatch(f["archivo"].lower(), a.grupo.lower()):
+                    continue
+                if a.grupo_url:
+                    f["url_origen"] = a.grupo_url
+                if a.usado_para:
+                    f["usado_para"] = a.usado_para
+                aplicados += 1
 
     # ── escribir data/manifiesto-staging.yaml ──
+    # Fusiona, no reemplaza: con tres raíces, escanear 'downloads' hoy no
+    # puede borrar lo que 'descargas_mx' dejó staged ayer. Lo de esta
+    # corrida reemplaza SOLO las entradas de la raíz que se está escaneando
+    # (una tanda vieja de la MISMA raíz sí debe refrescarse); lo de otras
+    # raíces se preserva tal cual, en un bloque aparte (sin mtime -- no se
+    # re-escanea su disco -- así que no se reconstruye su agrupación).
     staging_path = os.path.join(os.path.dirname(manifiesto_path), STAGING_NOMBRE)
+    _, staging_previo = leer_manifiesto(staging_path)
+    de_otras_raices = [e for e in staging_previo
+                       if e.get("raiz", RAIZ_INTEGRADA) != nombre_raiz]
+
     bloques = [
         f"# {STAGING_NOMBRE} -- candidatos derivados por `tests/manifiesto.py "
-        f"--escanea` desde:\n#   {ruta}\n#\n"
+        f"--escanea`, fusionados por raíz (última corrida por raíz reemplaza "
+        f"solo esa raíz).\n#\n"
         f"# sha256, tamano_bytes, fecha_descarga (del mtime) y entorno_descarga\n"
         f"# se derivaron del archivo real en disco -- nunca se tecleó ni se pidió\n"
         f"# por parámetro. url_origen y usado_para son los dos campos que una\n"
         f"# máquina no puede derivar: quedan en \"\" y # PENDIENTE hasta que el\n"
-        f"# autor los complete.\n#\n"
+        f"# autor los complete. `raiz` es el NOMBRE de la raíz -- la ruta real\n"
+        f"# vive en data/raices.local.yaml, gitignorado, nunca aquí.\n#\n"
         f"# Este archivo NO es data/manifiesto.yaml. Ninguna entrada de aquí se\n"
         f"# promueve automáticamente."
     ]
+    bloques.append(f"\n# ══ Raíz '{nombre_raiz}' -- corrida actual ══")
     for i, grupo in enumerate(grupos):
         tmin = _fmt_ts(min(f["mtime"] for f in grupo))
         tmax = _fmt_ts(max(f["mtime"] for f in grupo))
@@ -498,12 +670,20 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
                     f"procedencia): {pagina['archivo']} ──")
         bloques.append(cabecera + "\n\n" + _formatear_entrada_staging(pagina, None))
 
+    if de_otras_raices:
+        bloques.append(f"\n# ══ Preservado de otra(s) raíz(ces) -- de una corrida "
+                        f"anterior, no de esta ══")
+        entradas_txt = [_formatear_entrada_staging(e, e.get("url_origen_sugerida"))
+                        for e in sorted(de_otras_raices,
+                                        key=lambda e: (e.get("raiz", RAIZ_INTEGRADA), e["archivo"]))]
+        bloques.append("\n\n".join(entradas_txt))
+
     with open(staging_path, "w", encoding="utf-8") as f:
         f.write("\n".join(bloques).strip() + "\n")
 
     # ── reporte a stdout ──
     total = len(ya_registrados) + len(conflictos_nombre) + len(nuevos) + len(paginas)
-    print(f"Escaneado: {ruta}")
+    print(f"Escaneado: raíz '{nombre_raiz}' ({ruta})")
     print(f"Entorno: {entorno_actual()}")
     print()
     print(f"Total en disco: {total} · nuevos: {len(nuevos) + len(paginas)} · "
@@ -545,18 +725,180 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
             print(f"  {p['archivo']} -- sugerencia detectada: "
                   f"{p['_url_sugerida'] or '(ninguna)'}")
 
-    if a.grupo:
+    if a.grupo or a.grupo_n is not None:
         print()
-        print(f"--grupo '{a.grupo}': {aplicados} archivo(s) nuevo(s) recibieron "
-              + ", ".join(filter(None, [
-                  f"url_origen='{a.grupo_url}'" if a.grupo_url else None,
-                  f"usado_para='{a.usado_para}'" if a.usado_para else None,
-              ])) if aplicados else f"--grupo '{a.grupo}': ningún archivo nuevo coincide con el patrón")
+        descriptor = " + ".join(filter(None, [
+            f"tanda {a.grupo_n}" if a.grupo_n is not None else None,
+            f"patrón '{a.grupo}'" if a.grupo else None,
+        ]))
+        if aplicados:
+            print(f"--grupo-n/--grupo ({descriptor}): {aplicados} archivo(s) nuevo(s) "
+                  f"recibieron " + ", ".join(filter(None, [
+                      f"url_origen='{a.grupo_url}'" if a.grupo_url else None,
+                      f"usado_para='{a.usado_para}'" if a.usado_para else None,
+                  ])))
+        else:
+            print(f"--grupo-n/--grupo ({descriptor}): ningún archivo nuevo coincide")
+
+    if de_otras_raices:
+        print()
+        print(f"Preservadas {len(de_otras_raices)} entrada(s) de otra(s) raíz(ces) "
+              f"(de una corrida anterior de --escanea, no de esta):")
+        por_raiz_previa = {}
+        for e in de_otras_raices:
+            por_raiz_previa.setdefault(e.get("raiz", RAIZ_INTEGRADA), 0)
+            por_raiz_previa[e.get("raiz", RAIZ_INTEGRADA)] += 1
+        for r in sorted(por_raiz_previa):
+            print(f"  {r}: {por_raiz_previa[r]}")
 
     print()
     print(f"Escrito: {os.path.relpath(staging_path, repo_root())} "
-          f"({len(nuevos) + len(paginas)} entrada(s) staging). "
+          f"({len(nuevos) + len(paginas)} entrada(s) staging de la raíz "
+          f"'{nombre_raiz}' + {len(de_otras_raices)} preservada(s) de otras). "
           f"Nada se promovió a {os.path.relpath(manifiesto_path, repo_root())}.")
+
+
+# ───────────────────────────────────────────────────────────── --promueve ──
+
+def _derivar_id(nombre_archivo, ids_existentes):
+    """Slug mecánico del nombre de archivo -- nunca tecleado. Si colisiona
+    con un id ya existente (u otro derivado en el mismo lote), se
+    desambigua con un sufijo numérico, nunca sobreescribiendo."""
+    base = os.path.splitext(nombre_archivo)[0]
+    slug = re.sub(r"[^a-z0-9]+", "_", base.lower()).strip("_")
+    slug = re.sub(r"_+", "_", slug) or "archivo"
+    candidato = slug
+    n = 2
+    while candidato in ids_existentes:
+        candidato = f"{slug}_{n}"
+        n += 1
+    return candidato
+
+
+def _reescribir_staging_restante(staging_path, restantes):
+    """Tras --promueve, staging solo debe listar lo que sigue sin estar en
+    el manifiesto: páginas guardadas, entradas sin hash/tamaño, o lo que
+    quedó fuera de un --grupo. No hay mtime disponible aquí (no se
+    re-escanea el disco), así que no se reconstruye la agrupación por
+    tanda -- una lista plana es honesta con lo que este paso sí sabe."""
+    if not restantes:
+        with open(staging_path, "w", encoding="utf-8") as f:
+            f.write(f"# {STAGING_NOMBRE} -- vacío: no quedan candidatos sin "
+                     f"promover a data/manifiesto.yaml.\n")
+        return
+    cabecera = (
+        f"# {STAGING_NOMBRE} -- candidatos que --promueve dejó sin promover\n"
+        f"# (página guardada -- no es dato --, hash/tamaño faltante, o fuera\n"
+        f"# del --grupo de la última corrida). url_origen y usado_para siguen\n"
+        f"# siendo los dos campos que una máquina no deriva."
+    )
+    entradas_txt = [_formatear_entrada_staging(e, e.get("url_origen_sugerida"))
+                     for e in sorted(restantes, key=lambda e: e["archivo"])]
+    with open(staging_path, "w", encoding="utf-8") as f:
+        f.write(cabecera + "\n\n" + "\n\n".join(entradas_txt) + "\n")
+
+
+def cmd_promueve(a, manifiesto_path, raw_dir):
+    staging_path = os.path.join(os.path.dirname(manifiesto_path), STAGING_NOMBRE)
+    if not os.path.exists(staging_path):
+        print(f"ERROR: no existe {os.path.relpath(staging_path, repo_root())} -- "
+              f"nada que promover. Corre --escanea primero.", file=sys.stderr)
+        sys.exit(1)
+
+    _, staging_entradas = leer_manifiesto(staging_path)
+    if not staging_entradas:
+        print(f"{os.path.relpath(staging_path, repo_root())} no tiene candidatos "
+              f"pendientes. Nada que promover.")
+        return
+
+    cabecera, entradas = leer_manifiesto(manifiesto_path)
+    por_hash, _ = _index_manifiesto(entradas)
+    ids_existentes = {e.get("id") for e in entradas if e.get("id")}
+
+    if a.grupo:
+        objetivo = [e for e in staging_entradas
+                    if fnmatch.fnmatch(e["archivo"].lower(), a.grupo.lower())]
+        fuera_de_grupo = [e for e in staging_entradas if e not in objetivo]
+    else:
+        objetivo = list(staging_entradas)
+        fuera_de_grupo = []
+
+    promovidas, no_promovidas, restantes = [], [], list(fuera_de_grupo)
+
+    for e in objetivo:
+        ext = os.path.splitext(e["archivo"])[1].lower()
+        if ext in EXTENSIONES_PAGINA:
+            no_promovidas.append((e, "página guardada, no es dato -- no se promueve"))
+            restantes.append(e)
+            continue
+
+        if e.get("sha256") in por_hash:
+            no_promovidas.append(
+                (e, f"ya registrado externamente como "
+                    f"'{por_hash[e['sha256']].get('id', '?')}' -- no se duplica"))
+            continue
+
+        if not e.get("sha256") or not e.get("tamano_bytes"):
+            no_promovidas.append(
+                (e, "falta sha256 o tamano_bytes -- irrecuperable, no se promueve"))
+            restantes.append(e)
+            continue
+
+        url_valor = e.get("url_origen") or ""
+        sugerida = e.get("url_origen_sugerida") or ""
+        if url_valor and sugerida and url_valor == sugerida:
+            procedencia = "derivada de descargas.php por --escanea, NO confirmada por el autor"
+        elif url_valor:
+            procedencia = "asignada vía --grupo/--url en --escanea, NO confirmada por el autor"
+        elif sugerida:
+            url_valor = sugerida
+            procedencia = "derivada de descargas.php por --escanea, NO confirmada por el autor"
+        else:
+            url_valor = "no determinada"
+            procedencia = "no derivada -- --escanea no encontró sugerencia, NO confirmada por el autor"
+
+        usado_valor = e.get("usado_para") or "sin uso asignado — registro de inventario"
+
+        id_ = _derivar_id(e["archivo"], ids_existentes)
+        ids_existentes.add(id_)
+
+        nueva = {
+            "id": id_,
+            "usado_para": usado_valor,
+            "url_origen": url_valor,
+            "url_origen_procedencia": procedencia,
+            "fecha_descarga": e["fecha_descarga"],
+            "descargado_por": e["descargado_por"],
+            "archivo": e["archivo"],
+            "raiz": e.get("raiz", RAIZ_INTEGRADA),
+            "sha256": e["sha256"],
+            "tamano_bytes": e["tamano_bytes"],
+            "entorno_descarga": e["entorno_descarga"],
+        }
+        entradas.append(nueva)
+        por_hash[nueva["sha256"]] = nueva
+        promovidas.append(nueva)
+
+    escribir_manifiesto(manifiesto_path, cabecera, entradas)
+    _reescribir_staging_restante(staging_path, restantes)
+
+    print(f"Promovidas {len(promovidas)} entrada(s) a "
+          f"{os.path.relpath(manifiesto_path, repo_root())}:")
+    for n in promovidas:
+        print(f"  {n['id']} <- {n['archivo']} [{n['raiz']}]")
+        print(f"    url_origen: {n['url_origen']}")
+        print(f"    url_origen_procedencia: {n['url_origen_procedencia']}")
+        print(f"    usado_para: {n['usado_para']}")
+
+    if no_promovidas:
+        print()
+        print(f"No promovidas ({len(no_promovidas)}):")
+        for e, razon in no_promovidas:
+            print(f"  {e['archivo']}: {razon}")
+
+    print()
+    print(f"Quedan {len(restantes)} entrada(s) en "
+          f"{os.path.relpath(staging_path, repo_root())}.")
 
 
 # ───────────────────────────────────────────────────────────── --compara ──
@@ -623,16 +965,35 @@ def main():
     g.add_argument("--compara", action="store_true",
                     help="Contrasta un payload nuevo (--archivo) contra una entrada "
                          "ya registrada (--id), sin escribir nada")
-    g.add_argument("--escanea", default=None, metavar="RUTA",
-                    help="Recorre RUTA y escribe candidatos nuevos (dedup por sha256) "
-                         "en data/manifiesto-staging.yaml -- nunca en el manifiesto")
+    g.add_argument("--escanea", default=None, metavar="RAIZ",
+                    help="Nombre de una raíz (data_raw / lo que declare "
+                         "data/raices.local.yaml) -- NUNCA una ruta. Escribe "
+                         "candidatos nuevos (dedup por sha256) en "
+                         "data/manifiesto-staging.yaml -- nunca en el manifiesto. "
+                         "Sobre una raíz marcada como no-datos (p.ej. 'downloads') "
+                         "exige --grupo o --grupo-n")
+    g.add_argument("--promueve", action="store_true",
+                    help="Mueve candidatos de data/manifiesto-staging.yaml a "
+                         "data/manifiesto.yaml aunque url_origen no esté confirmada "
+                         "(queda marcada con url_origen_procedencia)")
 
     ap.add_argument("--id", default=None)
     ap.add_argument("--grupo", default=None,
-                     help="patrón fnmatch (--escanea): aplica --url/--usado-para a "
-                          "los archivos nuevos cuyo nombre case con el patrón")
+                     help="patrón fnmatch. Con --escanea: aplica --url/--usado-para a "
+                          "los archivos nuevos cuyo nombre case con el patrón (o, "
+                          "combinado con --grupo-n, a un subconjunto DENTRO de esa "
+                          "tanda). Con --promueve: limita la promoción a los que "
+                          "casen (por defecto, --promueve procesa todo lo que hay en "
+                          "staging)")
+    ap.add_argument("--grupo-n", dest="grupo_n", type=int, default=None,
+                     help="(--escanea) número de tanda -- 1-based, ver 'GRUPOS de "
+                          "datos detectados' en el reporte -- para aplicar "
+                          "--url/--usado-para a TODA la tanda, sin depender del "
+                          "nombre. Se puede combinar con --grupo para un "
+                          "subconjunto dentro de esa tanda")
     ap.add_argument("--url", dest="grupo_url", default=None,
-                     help="url_origen a aplicar a los archivos que casen con --grupo")
+                     help="url_origen a aplicar a los archivos que casen con "
+                          "--grupo/--grupo-n (--escanea)")
     ap.add_argument("--archivo", default=None,
                      help="ruta relativa dentro de data/raw/ (--registra)")
     ap.add_argument("--usado-para", dest="usado_para", default=None)
@@ -656,6 +1017,8 @@ def main():
         cmd_verifica(a, manifiesto_path, raw_dir)
     elif a.escanea:
         cmd_escanea(a, manifiesto_path, raw_dir)
+    elif a.promueve:
+        cmd_promueve(a, manifiesto_path, raw_dir)
     else:
         cmd_compara(a, manifiesto_path, raw_dir)
 
