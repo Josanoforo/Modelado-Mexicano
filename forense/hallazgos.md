@@ -17,3 +17,6 @@ Lo que había antes de R0 está congelado en
 `forense/hallazgos-congelados-2026-07-30.yaml` y no se le añaden entradas.
 
 ---
+
+- **2026-07-30** · El paquete de catálogo traía `data/inventarios/README.md`, que colisiona con el `README.md` de la raíz bajo el nombre normalizado de `T02` y ponía la línea base en ROJO. Renombrado a `README-inventarios.md` al aterrizarlo. Impedía medir; se paró, se corrigió y se siguió.
+- **2026-07-30** · `data/catalogo-fuentes-v1_0.md` declara "Operables ya en `data/manifiesto.yaml`: 6" y "Operables NO bajadas: 32". Ninguno de los dos scripts los imprime — salen de restar a mano el listado del catálogo contra las 38 operables. Se verificaron por fuera al aterrizar (dan 6 y 32, y los 6 acrónimos están en el manifiesto), pero la receta declarada `catalogo.py && dedup.py` no los reproduce sola. No impide medir.
