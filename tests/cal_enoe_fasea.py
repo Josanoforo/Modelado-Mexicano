@@ -5,8 +5,9 @@ tests/cal_enoe_fasea.py — COMPUERTA 1 de CAL-ENOE Fase A: ¿existe el desenlac
 
 QUÉ PREGUNTA ESTE SCRIPT, Y NADA MÁS
 ------------------------------------
-`milpa/procedencia.yaml:282-288` (`asignados_coeficiente.unico_calibrable_hoy`)
-declara, textual:
+`milpa/procedencia.yaml` declaraba, textual, en el campo
+`asignados_coeficiente.unico_calibrable_hoy` (retirado por ADR-49 D1;
+ver `milpa/procedencia.yaml:319-324`):
 
     "El panel rotativo trimestral de la ENOE sigue al mismo hogar cinco
      trimestres. Permite observar a los MISMOS sujetos cruzando formal↔informal
@@ -601,11 +602,12 @@ def main():
   para no repetir.
 
   CONSECUENCIA — se registra, NO se ejecuta aquí:
-  `milpa/procedencia.yaml:282-288` (`unico_calibrable_hoy`) afirma que ENOE
+  `milpa/procedencia.yaml` afirmaba, en el campo `unico_calibrable_hoy` (ya
+  retirado por ADR-49 D1; ver `milpa/procedencia.yaml:319-324`), que ENOE
   permite "estimar el cambio de conducta financiera asociado". La premisa es
-  falsa a nivel de reactivo. La corrección de esa declaración y su cascada es
-  decisión de MESA: este script no toca procedencia.yaml, ni el modelo, ni
-  ADR alguno.
+  falsa a nivel de reactivo. La corrección de esa declaración y su cascada
+  fue decisión de MESA (ADR-49): este script no la ejecutó, no toca
+  procedencia.yaml, ni el modelo, ni ADR alguno.
 
   Las compuertas 2 (enlace del panel a cinco trimestres), 3 (poder) y 4
   (población interrogada) NO se evalúan: son condicionales a que exista
