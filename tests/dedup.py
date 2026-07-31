@@ -58,4 +58,26 @@ print(f"TRANSVERSALES (3+ dominios): {sum(1 for r in rows if r['n_dom']>=3)}   m
 print("\n== ESPINA DORSAL: 3+ dominios ==")
 for r in rows:
     if r['n_dom']>=3: print(f"  {r['n_dom']}d  micro={r['micro']:2s} libre={r['libre']:2s}  {r['acronimo']:16s} {r['titulo'][:60]}")
+
+# --- cruce contra el manifiesto: qué del catálogo ya está en disco ---
+MAN = os.path.join(OUT, 'manifiesto.yaml')
+en_disco = set()
+if os.path.exists(MAN):
+    ids = re.findall(r'^- id: ([a-z0-9_]+)', open(MAN, encoding='utf-8').read(), re.M)
+    pref = {re.match(r'^[a-z]+', i).group(0).upper() for i in ids}
+    for r in rows:
+        a = r['acronimo'].upper()
+        if a in pref or any(p in a for p in pref if len(p) > 3):
+            en_disco.add(r['acronimo'])
+    r_disco = f"{len(en_disco)} ({', '.join(sorted(en_disco))})"
+else:
+    r_disco = "manifiesto.yaml ausente — cruce NO derivado"
+op_disco = [r for r in op if r['acronimo'] in en_disco]
+print(f"\nCRUCE CONTRA data/manifiesto.yaml")
+print(f"  fuentes del catálogo ya registradas: {r_disco}")
+print(f"  OPERABLES ya en disco:      {len(op_disco)}")
+print(f"  OPERABLES sin bajar:        {len(op) - len(op_disco)}")
+for r in rows:
+    r['en_disco'] = r['acronimo'] in en_disco
+
 json.dump(rows, open(os.path.join(OUT,'catalogo_unico.json'),'w'), ensure_ascii=False, indent=1)
