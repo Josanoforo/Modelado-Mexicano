@@ -116,14 +116,16 @@ autor dé la procedencia de cada uno.
 
 ## 6 · `sesion/encuci` — ¿reserva el dominio ENCUCI?
 
-Verificado: `sesion/encuci` **sí tiene push** — `git rev-parse
-sesion/encuci` y `git rev-parse origin/sesion/encuci` coinciden en
-`dcbf6ece15a49d609ed955c09f575f6090a7c082`. No es una rama local huérfana;
-existe en `origin` y ya trae consigo el registro de
-`encuci2020_bd_dbf`/`encuci2020_fd_pdf` que después llegó a `main` (PR #8,
-ADR-46). No hay nada que anotar como riesgo aquí más allá de esto: la rama
-está publicada, no reserva un "dominio" en ningún sentido especial, y este
-inventario no depende de ella.
+**Corrección (verificado con `git ls-remote --heads origin`):** `sesion/encuci`
+**NO existe en el remoto.** Las únicas ramas vivas en `origin` son `main`,
+`sesion/calg3-fasec` y `sesion/inventario-descargas`. El chequeo original de
+esta nota usó `git rev-parse origin/sesion/encuci`, que solo lee el ref de
+seguimiento local — quedó atrás después de que la rama remota se borró, y
+por eso reportó una coincidencia que ya no es cierta. No reserva ningún
+dominio: la rama fue borrada del remoto. De cualquier forma no importa para
+el registro de ENCUCI2020: `encuci2020_bd_dbf`/`encuci2020_fd_pdf` ya están
+en `data/manifiesto.yaml` de `main` (llegaron ahí por PR #8, ADR-46,
+independientemente de si `sesion/encuci` sigue viva).
 
 ---
 
