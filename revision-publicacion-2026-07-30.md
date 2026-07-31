@@ -389,7 +389,7 @@ Orden por (impacto × irreversibilidad) / coste:
 **Hoy, mientras está expuesto:**
 1. Fix `README:40` (+ retirar el presente de T03/T10 o fecharlos). Criterio derivable: la línea cita el bloque `## Registro de veredictos archivados` y su conteo coincide con `grep -c` sobre ese bloque.
 2. `AUTHORSHIP.md` (borrador arriba). Criterio: existe y README lo enlaza.
-3. `LICENSE` + `LICENSE-CORPUS.md`. Criterio: `ls` los encuentra; GitHub muestra licencia.
+3. `LICENSE` + `LICENSE-CORPUS.md` {cita-ilustrativa}. Criterio: `ls` los encuentra; GitHub muestra licencia.
 4. Aviso de alcance en README (borrador arriba).
 5. `cola.yaml:83` anonimizada con nota.
 6. `CITATION.cff`.
@@ -449,10 +449,10 @@ Orden por (impacto × irreversibilidad) / coste:
 
 ## Nota de reconciliación — 30/jul/2026, antes del merge
 
-La FASE 5 de este documento propone un artefacto, `LICENSE-CORPUS.md`, que
+La FASE 5 de este documento propone un artefacto, `LICENSE-CORPUS.md` {cita-ilustrativa}, que
 **no se creará**. La decisión `D-05` se cerró el 30/jul manteniendo un
 `LICENSE` dual único (MIT + CC BY-NC-SA 4.0), ya en `main`. Toda mención a
-`LICENSE-CORPUS.md` en este documento se lee como propuesta descartada, no
+`LICENSE-CORPUS.md` {cita-ilustrativa} en este documento se lee como propuesta descartada, no
 como referencia a un archivo del repositorio.
 
 De la FASE 5 se adopta únicamente el argumento del NOTICE anti-scoring, que
