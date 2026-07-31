@@ -11,7 +11,7 @@
 # Números (ver ENTREGABLE en el encargo):
 #   claves_unicas: 36
 #   archivos: 36
-#   claves_con_certeza: 27
+#   claves_con_certeza: 27 (R1) -> 31 (R4, ver forense/hallazgos.md 31/jul/2026)
 
 mapeo:
   report:autoridad: corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md
@@ -42,55 +42,125 @@ mapeo:
   validacion:V2_clientelismo: corpus/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md
   validacion:V3_credito_auditado: corpus/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md
 
+  # Los cuatro siguientes se resuelven en R4 (31/jul/2026), leyendo el
+  # contexto que cita cada clave en milpa/*.yaml y contrastándolo contra
+  # el contenido de los archivos candidatos. Ver forense/hallazgos.md.
+  report:foundational: corpus/reports/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md
+  # Decidido por cita verbatim: ref.A.02.esfuerzo_laboral (milpa/refutations.yaml:156)
+  # cita "2,207 horas anuales... 26%... 27%... déficit de capital, no esfuerzo",
+  # que aparece TEXTUAL en este archivo (línea 193). ref.B.01.sin_caracter_nacional
+  # (refutations.yaml:379) cita a Bartra/"entelequia" -- también textual aquí
+  # (línea 63). El otro candidato (La_arquitectura_invisible...) no contiene
+  # ninguna de las dos citas.
+  report:genero: corpus/reports/Reconfiguración_de_los_Guiones_de_Género_en_México__Masculinidades__Feminidades_y_Violencia_a_través_de_Clase__Generación_y_Región.md
+  # Decidido por cita verbatim: ref.B.03.machismo_no_es_rasgo (refutations.yaml:396)
+  # cita "HCHS/SOL N=4,426" -- aparece textual aquí (línea 11: "HCHS/SOL
+  # (Nuñez et al., 2016; N=4,426)"). El propio título del archivo ("...a
+  # través de Clase, Generación y Región") corresponde a la cláusula de la
+  # refutación "varían por escolaridad, edad y región". El otro candidato
+  # (Elegir__Cortejar_y_Amar...) tiene machismo/caballerismo pero no cita
+  # HCHS/SOL ni N=4,426.
+  report:genomica: corpus/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md
+  # Decidido por cita verbatim: ref.B.10.sin_genoma_conductual (refutations.yaml:456)
+  # cita "firewater myth... desacreditado" y "ALDH2 es nula en poblaciones
+  # mexicanas" -- ambas frases aparecen textuales aquí (líneas 11, 56, 99,
+  # 211). El otro candidato (Mexican_Population_Genomics__2025-2026...) no
+  # menciona firewater myth, ALDH2 ni FST en ningún punto del archivo.
+  validacion:Nu_Azteca_Kueski: corpus/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md
+  # CORRIGE el candidato débil de R1 (Crédito_Fácil_y_Sobreendeudamiento...,
+  # que solo mencionaba a Kueski, nunca a Nu ni a "58%"). Este archivo trae
+  # los tres nombres de la clave como casos CONSECUTIVOS y nombrados: Caso 1
+  # = Banco Azteca (línea 31), Caso 2 = Nu México (línea 40), Caso 3 = Kueski
+  # y Aplazo (línea 49); y contiene textual "Adopción multiproducto de 58%"
+  # (línea 44), la cifra citada en milpa/procedencia.yaml:222
+  # ("el 58% multiproducto de Nu es otra cantidad"). Coincidencia literal,
+  # no solo temática -- por eso se mueve de residuales a mapeo. Este archivo
+  # estaba en `archivos_sin_clave`: ya no aplica, se retira de ahí.
+
 residuales:
   # El corpus cita una fuente que no existe (o cuyo archivo no se puede
   # asignar sin adivinar). Candidatos listados cuando los hay; si hay más de
   # uno, la clave es ambigua, no huérfana.
+  # Los cuatro que R1 dejaba aquí (report:foundational, report:genero,
+  # report:genomica, validacion:Nu_Azteca_Kueski) se resolvieron en R4 y
+  # viven ahora en `mapeo`, arriba, con la cita verbatim que los decide.
   claves_sin_archivo:
-    - clave: report:foundational
-      candidatos:
-        - corpus/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md
-        - corpus/reports/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md
-      nota: "dos títulos plausibles para 'foundational'; ninguno lo dice literalmente"
-    - clave: report:genero
-      candidatos:
-        - corpus/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md
-        - corpus/reports/Reconfiguración_de_los_Guiones_de_Género_en_México__Masculinidades__Feminidades_y_Violencia_a_través_de_Clase__Generación_y_Región.md
-      nota: "ambos títulos contienen 'Género' literalmente; no hay forma de elegir sin leer el contenido citante"
-    - clave: report:genomica
-      candidatos:
-        - corpus/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md
-        - corpus/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md
-      nota: >-
-        verificado contra refutations.yaml:456 (ref.B.10.sin_genoma_conductual,
-        cita FST Seri-Lacandón y ALDH2) — el contenido encaja con AMBOS títulos
-        (genética poblacional y genómica poblacional); no se puede desambiguar
-        sin abrir los dos archivos completos
     - clave: report:salud
       candidatos: []
       nota: >-
-        existen report:salud_cuerpo (-> Health_Body_Food...) y report:salud_mental
-        (-> Salud_Mental_en_México...) como archivos distintos, pero ningún
-        tercer archivo de salud genérica en el corpus
+        SIGUE ABIERTA -- se caracteriza, no se resuelve (así lo pide el
+        encargo de R4: "sin candidato, a caracterizar"). Existen
+        report:salud_cuerpo (-> Health_Body_Food...) y report:salud_mental
+        (-> Salud_Mental_en_México...) como archivos distintos; ningún
+        tercer archivo de salud genérica en el corpus. Las 5 citas vivas de
+        `report:salud` (milpa/procedencia.yaml:246,252,257 -- atención leve
+        sin IMSS, atención grave, prevención hombre sin permiso --; y
+        milpa/refutations.yaml:147,238 -- vacunación por desabasto, farmacia
+        con consultorio) son, las 5, sobre ACCESO/SISTEMA DE SALUD FÍSICA:
+        las cinco coinciden textualmente con contenido de
+        `Health__Body__Food_and_Substance_Use_in_Mexico...` (10.6M
+        consultas/mes en farmacia con consultorio, línea 13 y 131; hombre
+        sin permiso vía ENSANUT 2022, línea 17; IMSS/informalidad, línea 19)
+        y NINGUNA toca salud mental/estigma. Lectura razonable: `report:salud`
+        es clave legacy anterior al desdoblamiento salud_cuerpo/salud_mental,
+        y por contenido correspondería a salud_cuerpo -- pero el encargo
+        pide caracterizar, no mapear, así que se deja abierta con este
+        hallazgo anotado para que la sesión que decida el desdoblamiento en
+        milpa/*.yaml (fuera del perímetro de ésta) lo confirme.
     - clave: validacion:CoDi
       candidatos: []
-      nota: "no hay archivo de corpus; la validación vive como nota_validacion inline en milpa/tramite.yaml:61"
+      nota: >-
+        SIGUE ABIERTA -- no hay archivo de corpus dedicado a CoDi como
+        validación propia. La evidencia real vive repartida: (a)
+        `milpa/tramite.yaml:61` (nota_validacion inline: "3.09M cuentas con
+        >=1 transacción en 6 años"); (b) `report:tecnologia` ->
+        `Adopción_y_Resistencia_Tecnológica_en_México...`, líneas 21-23 y 64
+        (cifras de Banxico: 21.8M cuentas registradas, 17.8M transacciones
+        acumuladas, fracaso por fricción/miedo al SAT); (c)
+        `corpus/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano...`,
+        Caso 9 (líneas 105-109) y Par 2 (líneas 181-182), que trae la cifra
+        exacta "3.09 millones de cuentas realizaron al menos una
+        transacción" citada en (a). Tres fuentes, ninguna es "el documento
+        de CoDi" -- no se fuerza mapeo.
     - clave: validacion:SPEI
       candidatos: []
-      nota: "no hay archivo de corpus; ver milpa/tramite.yaml:74 (misma fuente citada junto a report:tecnologia y modelo:3.3)"
+      nota: >-
+        SIGUE ABIERTA -- no hay archivo de corpus dedicado. La evidencia
+        vive en `report:tecnologia` ->
+        `Adopción_y_Resistencia_Tecnológica_en_México...`, línea 23 ("SPEI...
+        es infraestructura estatal ampliamente adoptada... el contraste
+        CoDi/SPEI dentro del mismo emisor prueba que 'confianza en el
+        Estado' no explica la adopción"), citada junto a `modelo:3.3` en
+        `milpa/tramite.yaml:74`. Misma familia de evidencia que CoDi (mismo
+        contraste, mismo archivo); no hay documento propio de SPEI.
     - clave: validacion:OXXO_vs_CoDi
       candidatos: []
-      nota: "no hay archivo de corpus; se cita en milpa-spec-v0_2.md:211 y refutations.yaml:230 sin documento propio"
+      nota: >-
+        SIGUE ABIERTA -- no hay archivo de corpus propio. La evidencia vive
+        en dos lugares: (a) el gate `bt.oxxo_vs_codi` está especificado en
+        `milpa/milpa-spec-v0_2.md:366-403` (§10.1, condiciones A/B/C del
+        backtest de Fase 1); (b) el contrafactual OXXO Pay/Spin vs. CoDi está
+        narrado en `corpus/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano...`,
+        "PAR 2" (líneas 181-182) y Caso 9. Se cita en
+        `milpa/milpa-spec-v0_2.md:211` y `milpa/refutations.yaml:230` sin
+        documento propio de validación.
     - clave: validacion:vacunacion_desabasto
       candidatos: []
-      nota: "no hay archivo de corpus; se cita en refutations.yaml:147 junto a report:conocimiento y report:salud"
-    - clave: validacion:Nu_Azteca_Kueski
-      candidatos:
-        - corpus/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md
-      nota: "candidato por tema (crédito fácil/sobreendeudamiento), no por coincidencia literal de nombre; no se fuerza a 'certeza'"
+      nota: >-
+        SIGUE ABIERTA -- no hay archivo de corpus propio; es
+        `bt.vacunacion_desabasto`, uno de los cinco backtests forenses de
+        `milpa/milpa-whitepaper-v0_1.md:126-130` (§5.4: "la caída se explica
+        por desabasto/logística, no por rechazo actitudinal"). La evidencia
+        dura vive en dos reports ya mapeados: `report:conocimiento` ->
+        `Report_26__...Knowledge...`, línea 28 ("cobertura COVID adultos
+        ~86-89%... esquema completo a los 2 años: 26.6% en 2022... por
+        logística/desabasto, no rechazo cultural") -- coincide con la cifra
+        citada en `milpa/refutations.yaml:146` y `milpa/procedencia.yaml:199`
+        -- y `corpus/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano...`,
+        línea 137 ("6+ millones de niños quedaron sin vacunar por
+        DESABASTO"), que trae el "6M+" de `refutations.yaml:146` textual.
 
   # Trabajo hecho que ninguna clave de milpa/*.yaml referencia.
   archivos_sin_clave:
     - corpus/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md
     - corpus/reports/Vejez_y_Cuidado_Intergeneracional_en_México__El_Debilitamiento_del_Seguro_Familiar.md
-    - corpus/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md
