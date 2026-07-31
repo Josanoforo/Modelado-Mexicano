@@ -435,7 +435,7 @@ Esto **no** es una lista de pendientes: es deuda que se decidió asumir.
 | Deuda | Estado | Decisión |
 |---|---|---|
 | **Sin datos primarios** (falla raíz) | Abierta | **Asumida a propósito.** Se trabaja con literatura tierizada y validación forense. |
-| **Elasticidades / coeficientes** | Abierta, **con ruta** | Los 15 coeficientes son `ASIGNADO`; el corpus es transversal (da estados, no ritmos). ⭐ **`G3 → horizonte_temporal` es calibrable hoy** con el panel rotativo de la ENOE. Sería el **primer coeficiente MEDIDO** de los 107. |
+| **Elasticidades / coeficientes** | Abierta, **sin ruta hoy** | Los 15 coeficientes son `ASIGNADO`; el corpus es transversal (da estados, no ritmos). `unico_calibrable_hoy` se retiró (ADR-49, D1): la vía ENOE no identifica conducta financiera (`forense/hallazgos.md`, 31/jul/2026). Ningún coeficiente tiene ruta de calibración con dato público hoy. |
 | **Consumo popular D/E, rural** | Abierta | Vacío admitido; el mapa debe mostrarlo pálido, no interpolado. |
 | **Confianza radial como canal medible** | Abierta | ADR-20. ⚠️ Ahora **contradicha** por los casos Nu y Kueski: G1b baja a HIPÓTESIS con coeficiente a revisión. |
 | **Granularidad municipal** | Abierta | Techo de resolución real del simulador. |

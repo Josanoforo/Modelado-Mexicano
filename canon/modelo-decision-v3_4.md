@@ -191,7 +191,7 @@ Las cláusulas del v1 estaban escritas a nivel de **régimen nacional** —"si l
 
 ⚠️ **`familismo_apoyo` se conserva en G3** *(corrección a la propuesta original de ADR-30)*. Ahí el mecanismo es **pooling económico bajo volatilidad** — la tanda, el préstamo del primo, la corresidencia. `§3.1` enruta el ahorro informal por G3; retirarlo dejaría esa regla sin canal. No hay doble conteo: en G3 es pooling ante volatilidad, en G5 es seguro ante Estado ausente.
 
-**Punto de calibración prioritario.** `G3 → horizonte_temporal` es la única elasticidad del modelo estimable con dato público mexicano, vía el **panel rotativo de la ENOE** (mismo hogar, cinco trimestres, cruzando formal↔informal). Sería el **primer coeficiente MEDIDO** de los 144 números. Dos rutas independientes lo señalan: la auditoría de procedencia y el único caso del registro con diseño adecuado.
+**`unico_calibrable_hoy` se retira (ADR-49, D1).** El campo asumía que el panel rotativo de la ENOE permite estimar la elasticidad `G3 → horizonte_temporal`; `forense/hallazgos.md` (31/jul/2026) encontró que ningún cuestionario de ENOE/ENOEN trae conducta financiera (ahorro, crédito, deuda, planeación, expectativas) — la premisa muere a nivel de reactivo, no de tema. Lo que sí sobrevive, **sin adjetivo de unicidad**, es una propiedad del instrumento: el panel rotativo trimestral de la ENOE sigue al mismo hogar cinco trimestres, cruzando formal↔informal. Eso no identifica un ritmo (una elasticidad) hoy. ⚠️ No confundir con los **seis valores de `horizonte_temporal` por perfil** (`params_base`, ORDINAL→CARDINAL) — esos nunca dependieron de ENOE y no cambian con este retiro.
 
 ---
 
