@@ -511,3 +511,36 @@ poblar el vector de confianza o resolver `[dominio]` de G1, eso es decisión
 de mesa (`D-12` ya la dejó abierta) y esta sesión no la toma. No se
 propusieron constructos nuevos: los 9 (más `acceso_digital`) son los que
 `milpa/procedencia.yaml` y `canon/modelo-decision-v3_4.md` ya declaran.
+
+---
+
+> **NOTA FECHADA · 31/jul/2026 · sesión R4, resaca de ADR-49.** No se edita
+> el cuerpo de arriba: este documento es **tipo (3)**, propuesta sin sello,
+> y se respeta como tal (ver cabecera). Se deja constancia de que el
+> **criterio de orden de la "Cola priorizada" de la adenda del 31/jul
+> (§7, tabla de 10 filas, puesto 1 = `ENOE`) cayó con ADR-49 D1** y la cola
+> **debe rederivarse antes de usarse para decidir qué bajar primero**. Dos
+> motivos, ninguno resuelto aquí — no se reordena nada:
+>
+> 1. El puesto 1 (`ENOE`) se justifica explícitamente arriba (línea de la
+>    tabla y el párrafo de criterio que la precede) por ser "la única con
+>    ruta de calibración ya declarada en `procedencia.yaml`
+>    (`unico_calibrable_hoy`)". Esa premisa es exactamente la que ADR-49 D1
+>    retira — `unico_calibrable_hoy` se retira, no se corrige, porque la
+>    vía que codificaba (ENOE → elasticidad `G3 → horizonte_temporal` vía
+>    conducta financiera) es falsa a nivel de reactivo. Con la premisa
+>    retirada, el criterio "distinto y más fuerte" que la adenda usa para
+>    poner a `ENOE` por delante de fuentes que desbloquean más filas
+>    (`ENDIREH`, `ENASIC`, `ENBIARE`, `ENASEM`) deja de sostenerse tal como
+>    está escrito.
+> 2. La misma cola lista a `ENOE`, `ENUT` (puesto 7) y `ENSANUT` (puesto 8)
+>    como **"operables sin bajar"**. ⚠️ Esta nota **no verifica** ese estado
+>    contra `data/manifiesto.yaml` — hacerlo sacaría a esta sesión de su
+>    perímetro limpio (ADR-46). Se deja como **afirmación a verificar por
+>    una sesión con acceso al manifiesto**, no como hecho: si alguna de las
+>    tres ya está bajada, la cola tiene un segundo defecto independiente del
+>    de D1.
+>
+> Ninguna de las dos observaciones reordena la cola — eso es decisión de
+> mesa. Ambas quedan para que la sesión que reordene (o la que verifique el
+> manifiesto) parta de aquí.
