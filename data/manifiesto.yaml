@@ -2642,3 +2642,293 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: enut2002_bd_dbf
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2002/microdatos/enut_2002_dbf.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2002_bd_dbf.zip
+  sha256: 61c2de5a9296758a30a2066a21fe58f361a854a38a82f4370d6065cac46c1fad
+  tamano_bytes: 2667594
+  formato: ZIP (base de microdatos ENUT 2002, formato DBF) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=1721. Portal NO publica diagrama entidad-relación ni diccionario de variables
+    aparte para esta edición (sin catálogo RNM detectado).
+
+- id: enut2002_fd_pdf
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2002/doc/descripcion.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2002_fd.pdf
+  sha256: b2073ec7cdba45b297130d021ec0465750b5ea94df6599f09971332d7a3491d6
+  tamano_bytes: 239525
+  formato: PDF (descriptor de archivos ENUT 2002)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=1721.
+
+- id: enut2009_bd_dbf
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2009/microdatos/enut_2009_dbf.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2009_bd_dbf.zip
+  sha256: ae1bbbaf12ec4eb6eb314099101257fe5d778ff65adb223219369bc9378aaafa
+  tamano_bytes: 5249774
+  formato: ZIP (base de microdatos ENUT 2009, formato DBF) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=1143. Portal no publica diagrama entidad-relación aparte para esta edición;
+    diccionario de variables vía catálogo RNM (ver enut2009_diccionario_variables_html).
+
+- id: enut2009_fd_pdf
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2009/doc/fd_enut09.pdf
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2009_fd.pdf
+  sha256: 7f51369ae14244f7ceae91a22a697b63e48abc23b55a761afd272998dcb43376
+  tamano_bytes: 187410
+  formato: PDF (descriptor de archivos ENUT 2009)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=1143.
+
+- id: enut2009_diccionario_variables_html
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/12/data-dictionary
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2009_diccionario_variables.html
+  sha256: ccd1eb3e762d8b4c9075450da9ec2c8bb97496ab2794476c4a124b284591b6a8
+  tamano_bytes: 32841
+  formato: HTML (diccionario de variables, Red Nacional de Metadatos, catálogo 12) -- documentación
+    publicada, leída para identificar la página
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Página de diccionario de variables del catálogo RNM correspondiente a ENUT 2009 (idBiinegi=1143),
+    enlazado desde /programas/enut/2009/data/arbol/arbolData.js -> Metadatos (estándar DDI).
+
+- id: enut2014_bd_dbf
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2014/microdatos/bd_enut14_dbf.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2014_bd_dbf.zip
+  sha256: 96edba74fa5a1ec2cdfd64e7fc973bb9b16b0948a39cefef0e4d8314f8c4f2e3
+  tamano_bytes: 5624461
+  formato: ZIP (base de microdatos ENUT 2014, formato DBF) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=1720. Portal no publica diagrama entidad-relación aparte para esta edición;
+    diccionario de variables vía catálogo RNM (ver enut2014_diccionario_variables_html).
+
+- id: enut2014_fd_xls
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2014/doc/fd_enut14.xls
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2014_fd.xls
+  sha256: 032c504c100241d592af8b3b3cc7e219f8aba9a2c81aabdfe395cc20025b3add
+  tamano_bytes: 334336
+  formato: XLS (descriptor de archivos ENUT 2014)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=1720.
+
+- id: enut2014_diccionario_variables_html
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/276/data-dictionary
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2014_diccionario_variables.html
+  sha256: db9c9f75b47a2842fd1d5f0a4d7b950ccd1036f1456eb8511d55e0f223163cda
+  tamano_bytes: 50445
+  formato: HTML (diccionario de variables, Red Nacional de Metadatos, catálogo 276) -- documentación
+    publicada, leída para identificar la página
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Página de diccionario de variables del catálogo RNM correspondiente a ENUT 2014 (idBiinegi=1720),
+    enlazado desde /programas/enut/2014/data/arbol/arbolData.js -> Metadatos (estándar DDI).
+
+- id: enut2019_bd_csv
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2019/microdatos/enut_2019_bd_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2019_bd_csv.zip
+  sha256: d3da76a02cdd36229ab8d744a951b18b545e261959d9b8f1ca1161591bd5856d
+  tamano_bytes: 11086174
+  formato: ZIP (base de microdatos ENUT 2019, formato CSV) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: 'Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=2968. El propio portal advierte (data-html de la pestaña): ''El 28 de
+    agosto de 2025, se reemplazaron los microdatos de la ENUT 2019, debido a que se actualizaron
+    las estimaciones de población'' -- este archivo es esa versión reemplazada, no la original
+    de 2019.'
+
+- id: enut2019_fd_xlsx
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2019/microdatos/enut_2019_fd.xlsx
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2019_fd.xlsx
+  sha256: 8577edc8e1f2b0011fc1f668c019d175cf489179daaa6dbd03be02ad1dbaa6fa
+  tamano_bytes: 116279
+  formato: XLSX (descriptor de archivos ENUT 2019)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=2968.
+
+- id: enut2019_der_zip
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2019/microdatos/enut_2019_diagrama_er.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2019_der.zip
+  sha256: 4cf74d141629ac78f2023f49cbcd6bff5fc5c8d778a1c4a346ba2cf7f0a5674d
+  tamano_bytes: 83679
+  formato: ZIP (diagrama entidad-relación ENUT 2019)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=2968.
+
+- id: enut2019_diccionario_variables_html
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/618/data-dictionary
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2019_diccionario_variables.html
+  sha256: 3c47a1341092fdd16e1d7621fc69e744dfdd753247c3e5b24561c05e4905758a
+  tamano_bytes: 46879
+  formato: HTML (diccionario de variables, Red Nacional de Metadatos, catálogo 618) -- documentación
+    publicada, leída para identificar la página
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Página de diccionario de variables del catálogo RNM correspondiente a ENUT 2019 (idBiinegi=2968),
+    enlazado desde /programas/enut/2019/data/arbol/arbolData.js -> Metadatos (estándar DDI).
+
+- id: enut2024_bd_csv
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_bd_csv.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2024_bd_csv.zip
+  sha256: 25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba
+  tamano_bytes: 17934681
+  formato: ZIP (base de microdatos ENUT 2024, formato CSV) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=3381.
+
+- id: enut2024_fd_xlsx
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_fd.xlsx
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2024_fd.xlsx
+  sha256: 4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58
+  tamano_bytes: 162690
+  formato: XLSX (descriptor de archivos ENUT 2024)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=3381.
+
+- id: enut2024_der_zip
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_diagrama_er.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2024_der.zip
+  sha256: b91284dc32246423603a688ab8015a5d5336220d3fb0b26fa8e56a43fbeff247
+  tamano_bytes: 227361
+  formato: ZIP (diagrama entidad-relación ENUT 2024)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Descubierto vía /programas/enut/{año}/data/pestana/pestanadata.js -> componente descargaMasivaV2
+    (data-tipoinformacion=4, data-id=idBiinegi) -> /app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion.
+    url_origen = /contenidos + pathLogico + extensión, verificado HEAD byte-exacto antes de
+    bajar. idBiinegi=3381.
+
+- id: enut2024_diccionario_variables_html
+  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
+    de Hito E
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/1127/data-dictionary
+  fecha_descarga: '2026-07-30'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enut2024_diccionario_variables.html
+  sha256: f9a2e32bc7673946b521e0bdde4b6786318a3dfbaba046d658e26e745e28b422
+  tamano_bytes: 40533
+  formato: HTML (diccionario de variables, Red Nacional de Metadatos, catálogo 1127) -- documentación
+    publicada, leída para identificar la página
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: Página de diccionario de variables del catálogo RNM correspondiente a ENUT 2024 (idBiinegi=3381),
+    enlazado desde /programas/enut/2024/data/arbol/arbolData.js -> Metadatos (estándar DDI).
