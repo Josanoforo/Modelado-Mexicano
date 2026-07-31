@@ -20,7 +20,26 @@
 # puede pedir hoy, y el prerrequisito de arreglarlo mañana.
 
 version: "0.2.0"
-estado: "sincronizado con modelo v2.1 (28/jul/2026) — requiere verificación de las 4 entradas MEDIDO contra fuente primaria"
+estado: >-
+  verificado contra canon/modelo-decision-v3_4.md en ce0658c (31/jul/2026):
+  asignados_probabilidad tiene 13 entradas/29 valores (confirmado por conteo
+  directo) y el resumen declara 39 -- consistente (4 MEDIDO + 6 DERIVADO + 29
+  ASIGNADO = 39). El motor v3.4 declara 49 reglas SI-ENTONCES en §3.B, no 43
+  como cita el comentario de la línea de abajo (resumen.desglose,
+  probabilidades_de_regla): ese denominador quedó de una versión anterior del
+  motor y no se corrige aquí (no es número de esta sesión, ver ADR de la
+  mesa). De esas 49, solo 18 llevan algún valor numérico (4 MEDIDO + 1
+  vacunación-cuasi-medido en DERIVADO + 13 ASIGNADO); 31 reglas no tienen
+  ningún valor -- MEDIDO, DERIVADO ni ASIGNADO -- ni en este archivo ni en
+  canon. Sin cobertura alguna: los 4 dominios completos de trabajo (§3.2),
+  familia (§3.5), tiempo (§3.6), cooperación (§3.8) y comunicación (§3.10) --
+  20 reglas -- y 3 de las 4 de información/creencia (§3.9). Aún requiere
+  verificación de primaria: las 4 entradas MEDIDO. Pendiente aparte: los ids
+  "dominio.categoria.nombre" de asignados_probabilidad (p.ej.
+  dinero.ahorro.informal_sin_puente) no existen literalmente en
+  canon/modelo-decision-v3_4.md -- el motor describe sus 49 reglas en prosa,
+  sin id estable -- así que el cruce por dominio de arriba es lo más fino que
+  se puede derivar sin adivinar a qué bullet corresponde cada id.
 
 # ══════════════════════════════════════════════════════════════════
 # CAMBIOS v0.1.0 → v0.2.0  ·  28 de julio de 2026
