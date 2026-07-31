@@ -296,3 +296,218 @@ El reparto de `confianza_institucional` (24 candidata / 12 sin candidata de sus 
 Ningún constructo se resuelve bajando una sola fuente: los dos huecos totales (`sens_estatus`, `deferencia`) no tienen candidata en ninguna de las 119, bajadas o no — bajar no los toca.
 
 **Hasta dónde leyó esta sesión, declarado:** `data/catalogo-fuentes-v1_0.md` completo (133 líneas); los diez archivos de `data/inventarios/` en sus secciones de alcance temático declarado (no completos línea por línea en los casos de `inventario-fuentes-migracion-mexico.md` y `inventario_fuentes_tramites_estado_mexico.md`, donde se usó búsqueda dirigida por palabra clave en vez de lectura corrida); `milpa/procedencia.yaml` completo; `forense/hallazgos-congelados-2026-07-30.yaml` (entradas I-19 y D-12) para contexto de lo ya registrado. Cero portales, cero cuestionarios, cero diccionarios de variables.
+## Adenda · 31/jul/2026 · contraste contra el catálogo de fuentes
+
+> Disciplina aplicada: **append-only**. La cabecera de este archivo prohíbe
+> editar el cuerpo (*«corregir el texto para que cuadre está prohibido»*), así
+> que ni una palabra de `§0`–`§10` se tocó. Lo que sigue es contraste nuevo,
+> no corrección del texto de arriba.
+
+**Procedencia de esta adenda.** Tipo (1): derivado en esta sesión leyendo
+`data/catalogo-fuentes-v1_0.md` (119 fuentes) y `data/inventarios/*.md`
+contra `milpa/procedencia.yaml`, bajo el límite de lectura de ADR-46 (solo
+alcance temático declarado — nunca reactivo, nunca portal). El catálogo no
+existía cuando este plan se escribió (30/jul); entró al repo el mismo día
+por otra sesión y hoy es el primer artefacto que lo cita.
+
+**Unidad de trabajo:** el constructo, no los 144 números uno por uno. Los 15
+coeficientes de `milpa/procedencia.yaml:270-281` son **9 constructos
+únicos**, no 8 — ya registrado como defecto en `forense/hallazgos-congelados-2026-07-30.yaml:439-448`
+(`I-19`) y reconfirmado aquí de forma independiente contando la misma
+sección del archivo. `confianza_institucional` se trató como **vector de
+seis** componentes (ADR-28.b), no como escalar, honrando `D-12`. El
+inventario de trabajo queda en 15 unidades: los 8 constructos no-confianza
+compartidos entre generadores + los 6 componentes del vector +
+`acceso_digital` (aparece solo en `params_base`, no en los 15 coeficientes,
+pero es de la misma familia de escalas — `canon/modelo-decision-v3_4.md:96`).
+
+### 1 · Corrección de §10 punto 8 — el conteo de constructos
+
+El plan declara **derivado** «los 15 se reducen a 8 constructos». Contando
+`milpa/procedencia.yaml:270-281` de nuevo, con script y a mano, dan **9**:
+`aversion_riesgo, confianza_institucional, deferencia, exposicion_violencia,
+familismo_apoyo, familismo_obligacion, horizonte_temporal, radio_confianza,
+sens_estatus`. El faltante es `radio_confianza` (G1, G5) — el propio plan lo
+nombra entre los frágiles en `§8` sin contarlo en el denominador. Esta
+adenda no corrige `§0`/`§1`/`§2`/`§5`/`§9`: los deja como están, tipo (3), y
+apunta a `I-19` para el detalle completo.
+
+### 2 · §113 — la hipótesis de los proxies frágiles, contrastada
+
+**Afirmación:** `deferencia` y `familismo_obligacion` son "los candidatos a
+quedarse sin fuente".
+
+**Contraste, por alcance temático declarado en las 119 fuentes:** de los 9
+constructos-coeficiente (tratando `confianza_institucional` como escalar
+único, como hace la tabla de `§0`), **6 quedan SIN INSTRUMENTO**:
+`aversion_riesgo`, `deferencia`, `familismo_apoyo`, `familismo_obligacion`,
+`horizonte_temporal`, `sens_estatus`. Solo `exposicion_violencia` queda
+INSTRUMENTADO limpio (ENVIPE / ENDIREH); `radio_confianza` y
+`confianza_institucional` quedan PARCIAL (hay fuente con alcance declarado
+adyacente — confianza interpersonal genérica, confianza institucional
+genérica — pero ninguna ficha del catálogo declara textualmente el
+componente que el modelo necesita, y confirmarlo exige inspección de
+instrumento, fuera del límite de esta sesión).
+
+**Veredicto:** la hipótesis de `§113` acierta en la dirección — los dos
+nombrados sí están SIN INSTRUMENTO — pero **subestima el tamaño del
+problema por un factor de tres**. No son 2 de 9 los frágiles; son 6 de 9.
+La compuerta de `§9` (E0→E1, "≥5 de 8/9 constructos con fuente candidata")
+no se habría pasado ni con el denominador correcto ni con el incorrecto: con
+9, hay 3 candidatos (`exposicion_violencia` instrumentado + 2 parciales) —
+muy por debajo de 5.
+
+### 3 · `confianza_institucional` como vector — instrumentado componente a componente
+
+Contra ADR-28.b, que exige tratarlo como vector de 6 y no como promedio:
+
+| Componente | Veredicto | Candidata |
+|---|---|---|
+| salud | **INSTRUMENTADO** | ENSANUT — declara explícitamente "confianza en instituciones y servicios de salud" |
+| seguridad / FFAA | PARCIAL | ENCIG, ENVIPE — "confianza en instituciones" genérico, sin desagregar el componente |
+| justicia-policía | PARCIAL | ENVIPE, ENCIG — mismo alcance genérico que arriba |
+| electoral / partidos | PARCIAL | ENCUCI, LAPOP, Latinobarómetro — alcance adyacente, sin frase textual de "confianza electoral" |
+| educación | **SIN INSTRUMENTO** | — |
+| financiera | **SIN INSTRUMENTO** | — |
+
+Con esta desagregación, el componente que `G4` usa (`justicia-policía`) es
+PARCIAL, no ciego; el que `G1` usa (`[dominio]`, sin resolver cuál de los
+seis — ver `D-12`) no puede siquiera evaluarse hasta que se decida el
+componente, así que su ficha se cuenta como SIN INSTRUMENTO por
+indeterminación, no por ausencia de fuente.
+
+### 4 · Riesgo cruzado — `exposicion_violencia` y `ref.B.05`
+
+`milpa/procedencia.yaml:296-302` exige que la refutación `ref.B.05` no
+tenga componente base por perfil independiente de la celda, y que el
+parámetro sí lo tiene (6 números, 0.35–0.70). Del lado de instrumento: la
+fuente de mayor cobertura para este constructo, **ENVIPE**, declara
+desagregación geográfica (entidad, urbano/rural) pero **no** desagregación
+demográfica por perfil en su alcance declarado; la fuente que sí desagrega
+por perfil, **ENDIREH**, tiene universo acotado (mujeres de 15+, violencia
+en el hogar). Ninguna de las dos, con el alcance hoy declarado, sostiene un
+efecto medido por perfil sin mezclar universos — así que instrumentar este
+constructo no resuelve por sí solo el riesgo cruzado con `ref.B.05`; solo
+provee la magnitud agregada, que es justo lo que la refutación cuestiona.
+
+### 5 · §196 — las "15 fichas huérfanas del cruce"
+
+Esa frase no existe en ningún otro archivo del repo (ya registrado en
+`I-19`, punto 3: "la cadena huérfana/huerfana no aparece en ningún archivo
+del repo"). Interpretando "las 15" como los 15 coeficientes de
+`milpa/procedencia.yaml:270-281` — es el único conjunto de 15 que el plan
+maneja — y cruzando cada ficha (generador × coeficiente) contra el veredicto
+de su constructo:
+
+| Generador | Coeficiente | Veredicto de la ficha |
+|---|---|---|
+| G1 | `confianza_institucional[dominio]` | SIN INSTRUMENTO (componente sin resolver, `D-12`) |
+| G1 | `radio_confianza` | PARCIAL |
+| G2 | `sens_estatus` | SIN INSTRUMENTO |
+| G2 | `aversion_riesgo` | SIN INSTRUMENTO |
+| G3 | `horizonte_temporal` | SIN INSTRUMENTO |
+| G3 | `aversion_riesgo` | SIN INSTRUMENTO |
+| G3 | `familismo_apoyo` | SIN INSTRUMENTO |
+| G4 | `exposicion_violencia` | **INSTRUMENTADO** |
+| G4 | `confianza_institucional[justicia]` | PARCIAL |
+| G4 | `horizonte_temporal` | SIN INSTRUMENTO |
+| G4 | `sens_estatus` | SIN INSTRUMENTO |
+| G5 | `familismo_apoyo` | SIN INSTRUMENTO |
+| G5 | `familismo_obligacion` | SIN INSTRUMENTO |
+| G5 | `radio_confianza` | PARCIAL |
+| G6 | `deferencia` | SIN INSTRUMENTO |
+
+**4 de 15 fichas tienen candidata** (1 instrumentada + 3 parciales); **11 de
+15 no tienen ninguna**. Ninguna de las 11 huérfanas tiene fuente candidata
+identificada entre las 119 — al contrario de lo que `§196` afirma para el
+conjunto entero.
+
+### 6 · §211 — recálculo de "la campaña puede terminar en 4 de 15"
+
+El plan escribió esa cifra sin catálogo, como techo pesimista. Con las 119
+fuentes:
+
+- **Bajo el criterio estricto** (candidata = INSTRUMENTADO, sin pendiente de
+  inspección): **1 de 15** — solo `exposicion_violencia` (G4). **Baja**, y
+  baja mucho: el techo pesimista del plan era optimista.
+- **Bajo el criterio laxo** (candidata = INSTRUMENTADO o PARCIAL, con
+  inspección de instrumento pendiente y fuera del alcance de esta sesión):
+  **4 de 15** — la misma cifra que el plan escribió a ciegas, pero por una
+  razón distinta y con 3 de las 4 marcadas explícitamente como no
+  confirmadas.
+
+**Conclusión:** el «4 de 15» del plan no se sostiene como habría querido
+sostenerse — coincide con el criterio laxo por coincidencia numérica, no
+porque el plan haya acertado el mecanismo, y bajo el criterio que de verdad
+importa para pre-registrar (fuente confirmada, no candidata a confirmar)
+la cifra real es **1 de 15**.
+
+### 7 · Cobertura sobre los 144 números
+
+Multiplicando por perfiles, no por celda:
+
+| | INSTRUMENTADO | PARCIAL | SIN INSTRUMENTO | Total |
+|---|---|---|---|---|
+| 15 coeficientes (fichas, tabla §5) | 1 | 3 | 11 | 15 |
+| 90 `params_base` (15 parámetros × 6 perfiles) | 3×6=18 | 4×6=24 | 8×6=48 | 90 |
+| **Subtotal constructo-parametrizado** | **19** | **27** | **59** | **105** |
+| 39 probabilidades de regla | — fuera del alcance de este contraste (no son constructo-parametrizadas de la misma forma) | | | 39 |
+| **144** | | | | |
+
+**El entregable central:** de los 105 números de los 144 que dependen de un
+constructo (15 coeficientes + 90 `params_base`), **19 quedan sobre fuente
+instrumentada, 27 sobre fuente parcial (pendiente de inspección de
+instrumento) y 59 sin ninguna fuente candidata en las 119.** Los 39 de
+probabilidades de regla no se tocaron: no son de la misma familia de
+parámetro y el encargo no pidió recorrerlos.
+
+### 8 · Cola priorizada — operables sin bajar que más desbloquean
+
+De las 32 operables sin bajar (`data/catalogo-fuentes-v1_0.md`, sección
+"Operables no bajadas"), por impacto estimado en constructos hoy PARCIAL o
+SIN INSTRUMENTO — impacto **estimado por alcance declarado**, no
+confirmado; confirmarlo exige la inspección que ADR-46 reserva a otra
+sesión:
+
+1. **ENCUP** — candidata a instrumentar hasta 3 componentes del vector de
+   confianza institucional (electoral, justicia-policía, posiblemente
+   seguridad) si su batería declarada resulta suficientemente desagregada.
+2. **ENSAFI** — candidata a `aversion_riesgo` y a `confianza_institucional[financiera]`.
+3. **ENFIH** — mismo par que ENSAFI.
+4. **GLOBAL FINDEX DATABASE** — su alcance ya declara "gestionar riesgo
+   financiero"; candidata a `aversion_riesgo` y a la componente financiera
+   del vector.
+5. **ENCUESTA NACIONAL PARA EL SISTEMA DE CUIDADOS** — candidata a
+   `familismo_apoyo` (redes de apoyo entre hogares).
+6. **ENADID** — sospecha ya documentada de "captación de redes de apoyo";
+   candidata a `familismo_apoyo`.
+7. **ENDIREH** — candidata a `familismo_obligacion` y a reforzar la
+   desagregación por perfil de `exposicion_violencia` (§4 de esta adenda).
+8. **ENCUESTA NACIONAL DE BIENESTAR (ENBIARE)** — candidata especulativa a
+   familismo; su módulo de bienestar/relaciones no está confirmado.
+9. **EDER** — candidata especulativa y débil a `horizonte_temporal`
+   (trayectorias de curso de vida).
+
+Ninguna de las 32 se bajó. Ninguna de estas candidaturas se confirma sin
+abrir el instrumento — quedan como orden de prioridad, no como veredicto.
+
+### 9 · Límite de lectura declarado (ADR-46)
+
+Esta adenda leyó únicamente: `data/catalogo-fuentes-v1_0.md`; los 11
+archivos de `data/inventarios/` (los 10 dominios + `README-inventarios.md`);
+`milpa/procedencia.yaml`; `canon/modelo-decision-v3_4.md` (solo las líneas
+citadas arriba, para resolver el rótulo `G1a`/`[dominio]` y el vector de
+`§1.3`); `forense/hallazgos-congelados-2026-07-30.yaml` (`I-19`, `D-12`).
+No se abrió ningún portal, ninguna URL de fuente, ningún diccionario de
+variables. Todo veredicto PARCIAL en esta adenda lleva razón "requiere
+inspección de instrumento" cuando esa es la causa — la sesión que abra el
+instrumento se declara contaminada al hacerlo (ADR-46).
+
+### 10 · Fuera de perímetro, y por qué no se tocó
+
+No se bajó ninguna fuente. No se abrió ningún ADR. No se modificó
+`milpa/procedencia.yaml` ni el modelo — si el cruce de arriba implicara
+poblar el vector de confianza o resolver `[dominio]` de G1, eso es decisión
+de mesa (`D-12` ya la dejó abierta) y esta sesión no la toma. No se
+propusieron constructos nuevos: los 9 (más `acceso_digital`) son los que
+`milpa/procedencia.yaml` y `canon/modelo-decision-v3_4.md` ya declaran.
