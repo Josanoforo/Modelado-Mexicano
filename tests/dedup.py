@@ -64,7 +64,7 @@ MAN = os.path.join(OUT, 'manifiesto.yaml')
 en_disco = set()
 if os.path.exists(MAN):
     ids = re.findall(r'^- id: ([a-z0-9_]+)', open(MAN, encoding='utf-8').read(), re.M)
-    pref = {re.match(r'^[a-z]+', i).group(0).upper() for i in ids}
+    pref = {m.group(0).upper() for i in ids if (m := re.match(r'^[a-z]+', i))}
     for r in rows:
         a = r['acronimo'].upper()
         if a in pref or any(p in a for p in pref if len(p) > 3):
