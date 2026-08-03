@@ -127,6 +127,8 @@ resumen:
 # (PR #50 fusionado). Los otros 3 componentes (seguridad-FFAA, electoral-
 # partidos, justicia-policía) NO se tocan aquí: siguen ASIGNADO/SIN POBLAR,
 # candidata adyacente sin confirmar (hitoE-campana-medicion-v2_0.md §12).
+# CORREGIDO 3/ago/2026: los tres restantes se reclasifican en la sección
+# siguiente (ola 2) — ya no están sin tocar.
 # ══════════════════════════════════════════════════════════════════
 condicionales_confianza_institucional:
   salud:
@@ -160,6 +162,55 @@ condicionales_confianza_institucional:
       Mismo límite de alcance que educación (§1.4 de la nota): condicional
       genuina sobre un subconjunto declarado de x, no sobre los seis ejes
       a la vez.
+
+# ══════════════════════════════════════════════════════════════════
+# RECLASIFICACIÓN v4.0 · ola 2 · 3/ago/2026 · los 3 componentes restantes
+# de confianza_institucional pasan a MEDIDO·PARCIAL(x) — completa el
+# vector: 6 de 6 componentes de confianza_institucional ahora
+# MEDIDO·PARCIAL(x). CAL-CONF Fase B, segunda ola. Fuente única:
+# forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md §1-5.
+# Matiz declarado por la nota (§5, cierre), que instruye explícitamente que
+# viaje aquí: a diferencia de salud/educación/financiera (un solo reactivo
+# o índice por componente), estos tres quedan medidos POR INSTITUCIÓN
+# dentro del componente — instituciones/ítems separados, sin colapsar a un
+# escalar único. El contador de una sola línea de `modelo` no captura este
+# matiz; este archivo sí.
+# ══════════════════════════════════════════════════════════════════
+  seguridad-FFAA:
+    clase: "MEDIDO·PARCIAL(edad,dominio), por institución"
+    antes: "ASIGNADO, dentro de confianza_institucional_vector, SIN POBLAR"
+    fuente: "ENVIPE 2025, TPer_Vic1 (91 182 filas) — AP5_4_04 (Guardia Nacional) · AP5_4_08 (Ejército) · AP5_4_09 (Fuerza Aérea) · AP5_4_10 (Marina), cada una condicionada a identificar la institución (AP5_3_XX=1) — forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md §1.2, §3.1, §5"
+    n_util: "91182 filas de tabla; base efectiva por institución (identifica) = 71742 GN · 75260 Ejército · 31963 FA · 56181 Marina"
+    eje_condicionante: "edad (18–29·30–44·45–59·60+) y dominio (urbano/complemento urbano/rural), por institución"
+    nota: >
+      MEDIDO·PARCIAL(x), por institución: 4 instituciones separadas, no un
+      escalar único (1 eje conjunto de 6 celdas + 1 marginal, por
+      institución). El universo efectivo de cada reactivo AP5_4_XX es
+      "quienes identifican esa institución" -- no-aplicabilidad
+      estructural (blanco = no aplica), no imputada, no no-respuesta.
+  justicia-policía:
+    clase: "MEDIDO·PARCIAL(edad,dominio), por institución"
+    antes: "ASIGNADO, dentro de confianza_institucional_vector, SIN POBLAR"
+    fuente: "ENVIPE 2025, TPer_Vic1 (misma tabla) — AP5_4_01 (Tránsito) · AP5_4_02 (Preventiva) · AP5_4_03 (Estatal) · AP5_4_05 (Ministerial/Judicial) · AP5_4_06 (MP y Fiscalías Estatales) · AP5_4_07 (FGR) · AP5_4_11 (Jueces) — forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md §1.3, §3.2, §5"
+    n_util: "91182 filas de tabla; base efectiva por institución (identifica) de 18398 (Jueces, 20.2%) a 59383 (Policía Estatal, 65.1%)"
+    eje_condicionante: "edad (18–29·30–44·45–59·60+) y dominio (urbano/complemento urbano/rural), por institución"
+    nota: >
+      MEDIDO·PARCIAL(x), por institución: 7 instituciones separadas, mismo
+      tratamiento de no-aplicabilidad estructural que seguridad-FFAA. La
+      celda más pequeña del acto es Jueces x 60+ con 2328 casos -- ninguna
+      celda cae bajo el mínimo de soporte (30).
+  electoral-partidos:
+    clase: "MEDIDO·PARCIAL(formalidad,edad,dominio), por ítem"
+    antes: "ASIGNADO, dentro de confianza_institucional_vector, SIN POBLAR"
+    fuente: "ENCUCI 2020, SEC_4_5 (21 519 filas, mismo join que educación en la primera ola) — AP5_2_5 (Partidos políticos) · AP5_3_6 (Senadores y diputados federales) · AP5_3_7 (Diputados locales) · AP5_3_8 (Instituto Nacional Electoral) — forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md §1.4, §3.3, §5"
+    n_util: "21519 filas de tabla; útiles por ítem entre 19398 (Diputados locales) y 19859 (INE)"
+    eje_condicionante: "formalidad × edad (conjunto, 8 celdas) + dominio (marginal), por ítem"
+    nota: >
+      MEDIDO·PARCIAL(x), por ítem: 4 ítems separados (2 ejes conjuntos +
+      1 marginal cada uno), no un escalar único. La celda más frágil de
+      toda la ola es Diputados locales, Formal x 60+ (n=215, SE=8.89pp) --
+      supera el mínimo de 30 con margen amplio, no es SIN SOPORTE, se
+      reporta con su fragilidad declarada.
 
 # ══════════════════════════════════════════════════════════════════
 # DEUDA BLOQUEANTE — los 90 parámetros de dispersión (ADR-28.d)
