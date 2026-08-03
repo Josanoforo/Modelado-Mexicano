@@ -7,7 +7,7 @@
 > | **ARCHIVO** | `p3-lca-preregistro-v1_0.md` |
 > | **NOMBRE ESTABLE** | **`p3-lca-preregistro`** — cítalo así, nunca por nombre de archivo |
 > | **QUÉ ES** | El protocolo completo de la prueba **P3** de `revision-programa-2026-07-31.md` §5. **No la ejecuta.** La ejecuta otra sesión, en Fase B |
-> | **VERIFICAS ASÍ** | §1 trae **dos hipótesis rivales** con su falsador cada una · §3 fija el rango de `k` y la regla de desempate **antes** del dato · §6 es una tabla de decisión con **seis desenlaces** · §8 es el módulo de auditoría de nueve preguntas |
+> | **VERIFICAS ASÍ** | §1 trae **tres hipótesis** —la del programa y **dos rivales**— con su falsador cada una · §3 fija el rango de `k` y la regla de desempate **antes** del dato · §6 es una tabla de decisión con **seis desenlaces** · §8 es el módulo de auditoría de nueve preguntas |
 > | **ESTADO** | **SELLADO.** Cualquier cambio posterior va como **enmienda fechada y visible** al final de este archivo (§10), nunca como edición silenciosa del cuerpo |
 
 ---
