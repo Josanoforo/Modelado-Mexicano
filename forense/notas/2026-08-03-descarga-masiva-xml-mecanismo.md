@@ -96,7 +96,7 @@ CSV.
    detecta truncación grosera; no reemplaza el `--verifica` por archivo.
 
 **No verificado esta sesión:** si el botón "Descarga masiva" existe en las páginas de las 27
-fuentes SIN PAYLOAD de `cola-descarga-rederivada.md` §2 (ENASEM, ENDIREH, ENSU, ENCUP, etc.). Se
+fuentes SIN PAYLOAD de `2026-07-31-cola-descarga-rederivada.md` §2 (ENASEM, ENDIREH, ENSU, ENCUP, etc.). Se
 confirmó para CPV y ENADID. Razonable esperar que exista en otros programas del mismo portal, pero
 es expectativa, no verificación.
 
@@ -117,7 +117,7 @@ botón en un intento anterior significa que el mecanismo A no existe para ese po
 `data/manifiesto.yaml` ya registra 5 entradas `descargamasiva_3072026_*` (`raiz: descargas_mx`,
 `usado_para: sin uso asignado`), bajadas por el usuario el 30/jul vía navegador — instancias de
 este mismo mecanismo A para el programa que el usuario navegaba ese día, sin identificar. Por el
-§2 de `cola-descarga-rederivada.md`, se sabe que solo contienen el instalador genérico — pero eso
+§2 de `2026-07-31-cola-descarga-rederivada.md`, se sabe que solo contienen el instalador genérico — pero eso
 se concluyó **sin abrir el XML interno de cada uno**. **Se anota como cola, no se abre esta sesión**
 (instrucción explícita del encargo): la próxima sesión debería extraer `DescargaMasivaOD.xml` de
 esos 5 zips y correr la receta de §1 — y, dado el hallazgo de esta sesión, **verificar el nombre de
