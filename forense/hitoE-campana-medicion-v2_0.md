@@ -917,3 +917,283 @@ repetir §0-§12); `forense/notas/2026-07-31-cal-conf-fasea.md` completa;
 --verifica` sobre esos cuatro ids. No se abrió descriptor, cuestionario,
 portal ni microdato nuevo. No se rederivó la cola priorizada de `§8`/`§9`
 de las adendas del 31/jul: sigue como estaba.
+
+---
+
+## 14 · Adenda 03/ago/2026 — la cola priorizada de `§11` queda **REEMPLAZADA**: cola de medición rederivada contra el canon v4.0 completo
+
+**Disciplina aplicada:** adenda fechada, append-only. El cuerpo (§0–§13,
+incluidas las tres adendas previas) no se tocó — ni una palabra. Esta sección
+es de otra sesión, con otra procedencia.
+
+**Por qué el vehículo es `hitoE` y no una nota nueva** *(decidido contra la
+convención del archivo, no heredado del encargo)*. La cola que se reemplaza
+vive en **`§11`** de este archivo (`:278`, "Cola priorizada — de las 32
+operables sin bajar, cuáles desbloquean más constructos", diez posiciones), y
+la convención de este archivo para corregir su propio cuerpo es la adenda
+fechada append-only que `§12` y `§13` ya usaron dos veces. Una cola de
+reemplazo alojada fuera dejaría `§11:278` legible **sin marca de que está
+vencida** — que es exactamente el patrón de propagación fallida que `§8` de
+`canon/modelo-decision-v4_0.md` documenta ("dos de los seis casos figuraban
+como reparados sin estarlo") y que ADR-29.a existe para impedir. El costo de
+elegir este vehículo se declara: `hitoE` es tipo (3) y su cabecera dice
+`CLASE: Propuesta. No es decisión. No rige sin ADR`. **Esta adenda hereda esa
+clase entera: es una propuesta de orden de trabajo, no un acto de canon, y no
+rige sin ADR.** No mueve ningún contador, no mide nada, no toca `canon/` ni
+`milpa/`.
+
+**Procedencia.** Tipo (1) para todo lo derivado contra archivo abajo. Las
+premisas del encargo entraron como tipo (3) y se verificaron una por una en
+`§14.0`; **una no se sostiene** y su caída se declara ahí con su consecuencia
+sobre el contenido de la cola.
+
+---
+
+### 14.0 · Verificación de premisas antes de obedecer
+
+| Premisa del encargo | Verificación | Veredicto |
+|---|---|---|
+| Existe una cola vieja en `hitoE §"Cola priorizada"` con **10 posiciones** | `forense/hitoE-campana-medicion-v2_0.md:278`, tabla de 10 filas numeradas (ENOE · ENDIREH · ENASIC · ENBIARE · ENASEM · ENSU · ENUT · ENSANUT · ENCUP · Global Findex) más una fila `—` de resto. *(Hay una segunda cola, de 9 posiciones, en `§8:464` de la otra adenda del 31/jul; no es la que el encargo nombra y esta adenda tampoco la rederiva — ver `§14.5`.)* | **SE SOSTIENE** |
+| Su criterio de orden cayó con **ADR-49 D1** | El criterio de `§11` es "cuántas de las 14 filas desbloquea", **con una excepción declarada**: ENOE encabeza *"porque es la única fuente que `procedencia.yaml` ya declara calibrable con dato público (`unico_calibrable_hoy`)"*. `canon/modelo-decision-v4_0.md:400`: *"**`unico_calibrable_hoy` se retira (ADR-49, D1)** … la premisa muere a nivel de reactivo, no de tema."* El campo que sostenía la posición 1 ya no existe | **SE SOSTIENE** |
+| **Tres** de sus posiciones ya están en disco | Derivado contra `data/manifiesto.yaml` (182 ids): **ENOE** (pos. 1) → `enoe_2019_1t_csv` … `enoe_2026_1t_csv`, 26 ids trimestrales + 6 cuestionarios; **ENUT** (pos. 7) → `enut2019_bd_csv`, `enut2024_bd_csv` (+2002/2009/2014); **ENSANUT** (pos. 8) → 23 ids (`hogar_ensanut2024_w_icb_csv_csv`, `adultos_ensanut2024_w_catlogo`, …). Las otras siete (ENDIREH, ENASIC, ENBIARE, ENASEM, ENSU, ENCUP, Global Findex) no tienen ningún id | **SE SOSTIENE — exactamente tres** |
+| El reencuadre cambió la unidad de lo que se mide | `modelo` v4.0 cabecera (`:11`) y §1.1.F: la unidad pasa de *perfil × parámetro* a **condicional θ_k( · \| x )**, y `D`=14. La cola de `§11` ordena **fuentes a bajar** por *constructos que desbloquean*; ninguna de las dos unidades sobrevive intacta | **SE SOSTIENE** |
+| El contador vigente es **3 de 14** con desglose 3 / 6 / 3 / 2 | Titular localizado en `modelo` **§1.1.F paso 5** (`:275`), repetido en **§6.1** (`:619`) y **§12** (`:723`), citando `forense/notas/2026-08-03-cal-conf-faseb-medicion.md` §5. Desglose **rederivado abajo en `§14.1`, no copiado** | **SE SOSTIENE** |
+| Las dos adendas de hitoE del 3/ago y sus efectos | `§12` (PR #48: educación y financiera dejan de ser SIN INSTRUMENTO) y `§13` (PR #52: los tres PARCIAL restantes también tienen reactivo específico; tabla de `§3` queda 6 INSTRUMENTADO · 0 PARCIAL · 0 SIN INSTRUMENTO) | **SE SOSTIENEN** |
+| Veredictos de instrumento C / C-bis / P2 | `forense/notas/2026-07-31-encargo-c-familismo-deferencia-reactivo.md` §2.3 (ENUT `6.11`/`6.11a` → PROXY); `…/2026-08-03-cbis-deferencia-externas.md` §0 (Latinobarómetro `P4NOIJ` → PROXY; LAPOP SIN REACTIVO; WVS y ENCUP abiertas); `…/2026-08-01-p2-momentos-atributos.md` §2.c y §2.d | **SE SOSTIENEN** |
+| **Precondición: "ola 2 de Fase B fusionada y su contador propagado"** | `origin/main` = `f6bcaaa`. Fusionado hay: **ola 1** de Fase B (PR #50, `7f53fa7`, mide salud/educación/financiera), **la propagación del contador** (PR #51, `c658b96`) y **la adenda `§13`** (PR #52, `75b12c5`). La **ola 2 no existe**: `§13.5` la titula literalmente *"insumo para la segunda ola, **declarado y no ejecutado**"* y declara sus tres componentes con fuente y variable pero sin medición | ❌ **NO SE SOSTIENE** |
+
+**Por qué esta sesión no se detiene, dicho con la consecuencia.** La regla del
+encargo es *"DETENTE si una premisa cae"*. La premisa caída es una
+**precondición de higiene**, y lo que protege —*"la cola se deriva contra el
+estado final, no contra uno en tránsito"*— **sí se cumple**: `origin/main` está
+en `f6bcaaa`, el árbol de trabajo limpio, no hay rama viva salvo la de esta
+sesión, y el contador **está** propagado a `canon` en tres sitios. Lo que la
+premisa erró no es el estado del repo sino **qué es la ola 2**: no es un
+insumo ya consumado de la cola, es **materia de la cola**. La consecuencia es
+directa y visible abajo: los tres componentes restantes de
+`confianza_institucional` **son posiciones 1–3**, no trabajo hecho. Detenerse
+habría entregado cero y dejado la cola vieja vigente por omisión; se declara
+el defecto y se sigue, que es lo que `instrucciones` v2.1 pide de quien
+ejecuta. **Segunda caída, del mismo tronco:** el encargo dice
+*"`exposicion_violencia` (ENVIPE, que la ola 2 ya abrió)"* — **ENVIPE no está
+abierta**. `§13.5` la nombra como *"uno que esa ola no abrió (ENVIPE 2025)"*.
+`exposicion_violencia` no cobra descuento de instrumento-ya-abierto en el
+orden de abajo.
+
+---
+
+### 14.1 · El desglose de las 14, derivado
+
+Derivado de `modelo` §1.1.F paso 1–2 (los 15 parámetros menos `acceso_digital`,
+que sale por C3) y de los veredictos de instrumento de C, C-bis y P2 §2.c —
+no copiado del titular:
+
+**Las 14** = 8 escalares (`horizonte_temporal`, `radio_confianza`,
+`aversion_riesgo`, `sens_estatus`, `deferencia`, `familismo_apoyo`,
+`familismo_obligacion`, `exposicion_violencia`) + 6 componentes de
+`confianza_institucional` (seguridad-FFAA, educación, salud, electoral-partidos,
+justicia-policía, financiera).
+
+| Clase | Cuáles | n |
+|---|---|---|
+| **MEDIDO·PARCIAL(x)** | `confianza_institucional[salud]` (ENCIG `P11_1_3`) · `[educación]` (ENCUCI `AP5_2_6`) · `[financiera]` (ENIF `P11_1_1`-`P11_1_5`) | **3** |
+| **Reactivo directo localizado, sin medir** | `radio_confianza` (ENCUCI `AP5_1_1/2/3`) · `exposicion_violencia` (ENVIPE `BP1_20/23/28`) · `familismo_apoyo` (ENIF `P9_9_1..6`) · `confianza_institucional[seguridad-FFAA]` (ENVIPE `AP5_4_04/08/09/10`) · `[justicia-policía]` (ENVIPE `AP5_4_01/02/03/05/06/07/11`) · `[electoral-partidos]` (ENCUCI `AP5_2_5`, `AP5_3_6/7/8`) | **6** |
+| **Solo proxy localizado** | `horizonte_temporal` (ENIF `P4_10`, ⚠️ falla C3) · `familismo_obligacion` (ENUT `6.11`/`6.11a`) · `deferencia` (Latinobarómetro `P4NOIJ`) | **3** |
+| **Sin reactivo o no determinable en este régimen** | `sens_estatus` · `aversion_riesgo` | **2** |
+| | **3 + 6 + 3 + 2** | **14** ✔ |
+
+Coincide con el titular de `modelo:723`. El control es el que importa: **la
+suma cierra en 14 por derivación independiente**, no por copia.
+
+---
+
+### 14.2 · El criterio, declarado antes de la lista
+
+Se toma la propuesta del encargo, **con dos cambios derivados** que se
+declaran en vez de aplicarse en silencio. Es **un** criterio, escrito arriba y
+aplicado parejo a las doce posiciones.
+
+**Compuerta de factibilidad (se aplica antes de ordenar, no es un nivel).** Una
+posición entra como **medición** solo si cumple las dos:
+
+- **(i) payload registrado** — el instrumento tiene id en `data/manifiesto.yaml`;
+- **(ii) co-observación** — reactivo y **condicionantes** salen del **mismo
+  instrumento**. No es cautela: `canon` §1.1.C dice *"la síntesis amplía la
+  malla de atributos; no amplía la malla de pares (parámetro, desenlace)"*, y
+  Fase B §0 ya derivó la consecuencia — condicionar sobre ejes de ENIGH vía
+  reponderación **fabricaría una conjunta que nadie midió**.
+
+Lo que falla (i) entra como posición de **desbloqueo** (descarga), no de
+medición. Lo que falla (ii) **no entra**: es límite, y va a `§14.4`.
+
+**Orden, por lo que la posición cierra — estrictamente en este orden:**
+
+- **(a)** mueve el contador `3 de 14` **directamente** (medición de una
+  condicional con reactivo directo);
+- **(b)** desbloquea una **decisión pre-registrada pendiente** — P3 (LCA,
+  `forense/p3-lca-preregistro-v1_0.md` §6.1) o P4 / desdoblamiento de G1a
+  (`modelo:396`, pre-registro de ADR-49 D3);
+- **(c)** cierra un parámetro cuyo **proxy ya está localizado**;
+- **(d)** todo lo demás.
+
+**Desempate dentro de cada nivel, en orden:** 1) payload registrado **y ningún
+insumo faltante declarado** — no basta el payload si la posición está bloqueada
+por otra cosa; 2) es prerequisito de una posición posterior; 3) cierra una
+segunda cosa además de la que la clasifica.
+
+**Los dos cambios respecto de la propuesta del encargo, y por qué.** El primero
+es la **compuerta**: sin ella, una posición que "mueve el contador" pero cuyo
+microdato nadie puede abrir encabezaría la cola, y el encargo prohíbe fabricar
+urgencia. El segundo es el **primer desempate**: el encargo dice "primero lo
+que tiene payload ya registrado"; se le añade *"y ningún insumo faltante"*
+porque hay al menos una posición (P4) con payload completo y **bloqueada por
+una co-observación que no está establecida en archivo** — ordenarla por payload
+sola la pondría por delante de una posición ejecutable hoy.
+
+---
+
+### 14.3 · La cola — doce posiciones
+
+**Sesión-tipo, vocabulario del repo, no inventado aquí:** **Ubuntu microdato**
+= sesión Ubuntu local, *"única vertiente con salida a dominios de datos
+mexicanos"* (`forense/notas/2026-07-31-perimetro-descarga.md:3`) y el checkout
+que monta `data_raw`; contamina por ADR-46 al abrir microdato. **Navegador del
+autor** = lo que `data/manifiesto.yaml` registra como `descargado_por: usuario,
+vía navegador (la SPA de INEGI no expone el enlace a herramientas headless)`
+(`encig23_base_datos_csv`, `encuci2020_bd_dbf`), y la vía para portales con
+licencia/registro (Encargo C §3.4). **Mesa** = decisión, no medición.
+
+#### Nivel (a) — mueven el contador directamente
+
+| # | Qué se mide | Fuente · variable (citada) | Qué mueve | Payload | Sesión-tipo |
+|---|---|---|---|---|---|
+| **1** | `confianza_institucional[justicia-policía]` | **ENVIPE**, `AP5_4_01/02/03/05/06/07/11` (`§13.5`) | Contador → 4/14. **Segunda cosa que cierra** (desempate 3): P2 §2.d marca el coeficiente `G4 · confianza_institucional[justicia]` **JUSTO IDENTIFICADO** con C1 *"solo por **proxy**"* (ENVIPE `AP5_5_*`, percepción de corrupción). Medir `AP5_4_*` sustituye ese proxy por reactivo directo **en el mismo instrumento** | `envipe2025_fd_pdf` + microdato `envipe2018_csv`…`envipe2025_csv` — **registrados** | Ubuntu microdato |
+| **2** | `confianza_institucional[seguridad-FFAA]` | **ENVIPE**, `AP5_4_04/08/09/10` (`§13.5`) | Contador → 5/14. Prerequisito de la posición 8 (P4) | mismos ids — **registrados** | Ubuntu microdato |
+| **3** | `confianza_institucional[electoral-partidos]` | **ENCUCI**, `AP5_2_5` · `AP5_3_6/7/8` (`§13.5`) | Contador → 6/14. Cierra los **seis** componentes del vector de ADR-28.b: prerequisito de la posición 8 | `encuci2020_fd_pdf` + `encuci2020_bd_dbf` — **registrados**; instrumento **ya abierto** por Fase B ola 1 | Ubuntu microdato |
+| **4** | `exposicion_violencia` | **ENVIPE**, `BP1_20`/`BP1_23`/`BP1_28` (P2 §2.c, inventario l.353) | Contador → 7/14. Es además la C1 del coeficiente `G4 · exposicion_violencia`, **IDENTIFICADO·TRUNCADO** (P2 §2.d) | mismos ids que 1–2 — **registrados**. ⚠️ ENVIPE **no** está abierta: `§13.5` la nombra como la que la ola 1 *no* abrió | Ubuntu microdato |
+| **5** | `radio_confianza` | **ENCUCI**, `AP5_1_1`/`AP5_1_2`/`AP5_1_3` (P2 §2.c, inventario l.264) | Contador → 8/14. Es la C1 de `G1 · radio_confianza`, **IDENTIFICADO** (P2 §2.d) | `encuci2020_bd_dbf` — **registrado**; instrumento ya abierto | Ubuntu microdato |
+| **6** | `familismo_apoyo` | **ENIF**, `P9_9_1..6` (P2 §2.c, inventario l.171) | Contador → 9/14. C1 de `G3 · familismo_apoyo`, **IDENTIFICADO**, sobre *"ENIF 6 ejes estrictos, la malla más rica del corpus"* (P2 §2.d) | `enif2024_csv` — **registrado**; instrumento ya abierto por Fase B ola 1 | Ubuntu microdato |
+
+> **Nota de ejecución, no de orden.** Las posiciones 1, 2 y 4 comparten
+> instrumento (ENVIPE) y las 3 y 5 comparten instrumento (ENCUCI): son dos
+> sesiones, no cinco. Agrupar por instrumento es economía de ejecución y **no
+> reordena nada** — el orden de arriba sale del criterio, no del calendario.
+
+#### Nivel (b) — desbloquean una decisión pre-registrada pendiente
+
+| # | Qué se hace | Fuente · variable | Qué decide | Payload | Sesión-tipo |
+|---|---|---|---|---|---|
+| **7** | **Ejecutar P3** — LCA de segmentación | **ENIGH 2022 nueva serie**, `enigh2022_nc_csv`; siete indicadores citados de `p3-lca-preregistro-v1_0.md` §2.1: `segsoc` · `edad` · `residencia` · `tam_loc` · `est_socio` · `celular` (SERV_2) · `conex_inte` (SERV_4); `k` = 1…8, regla de decisión sellada en §3.3 | **No mueve el contador** — el propio pre-registro lo prohíbe (§6.2 punto 4, §7 punto 2: *"cero de las 14 condicionales. Ni una."*). **Decide canon:** cuál de D1–D6 de la tabla §6.1, y bajo D2/D4/D6 el destino de los seis descriptores de `modelo` §1.1.D. Es la prueba de falsabilidad de la segmentación | `enigh2022_nc_csv` — **registrado**, sha256 verificado por P1 y citado por P3 §2.1 | Ubuntu microdato. ⚠️ El ejecutor **no puede** ser una sesión que haya escrito el pre-registro, y §6.1·D4 le **prohíbe** reescribir §1.1.D con las clases que le salgan |
+| **8** | **P4** — dispersión de confianza entre instituciones condicionada a atributos | Batería completa de confianza institucional en **un solo instrumento**; la candidata nombrada para el vector completo es **ENCIG batería XI** (P2 §2.d, C1; `modelo` §1.3) | Decide **si `G1a` se desdobla** en seis `ASIGNADO` nombrados, como ya hace `G4`. Pre-registro escrito antes del dato en `modelo:396` (ADR-49 D3): *"si la dispersión entre componentes es la que ADR-28.b sostiene (Marina 89% vs. partidos 23.9%), la pendiente común queda implausible"* | **Bloqueada — no por payload.** Ver evaluación abajo | Mesa primero (definir la co-observación), luego Ubuntu microdato |
+
+> **Evaluación de P4, que el encargo pide explícitamente: ¿ya es corrible con
+> las mediciones de Fase B?** **No, y el faltante es nombrable.** P4 compara
+> **entre componentes**; las tres condicionales que Fase B midió salen de
+> **tres instrumentos distintos** —salud de ENCIG, educación de ENCUCI,
+> financiera de ENIF (`§14.1`)—, así que una dispersión *entre* ellas
+> condicionada a atributos exigiría cruzar instrumentos: **exactamente la
+> conjunta que §1.1.C prohíbe fabricar** y que la propia Fase B §0 declaró como
+> el matiz que tumba la premisa de condicionar sobre los ejes de ENIGH.
+> Completar las posiciones 1–3 **tampoco** lo resuelve por sí solo: deja los
+> seis componentes medidos, pero repartidos entre ENVIPE, ENCUCI y ENIF/ENCIG.
+> **Lo que le falta a P4, dicho como tarea y no como deseo:** verificar si la
+> **batería XI de ENCIG cubre los seis componentes** — hoy consta en archivo
+> que cubre salud (`P11_1_3`, medido) y que es *"candidata adyacente"* para los
+> tres de `§13.5` (ids `encig2021_cuestionario_pdf`,
+> `encig2021_estructura_base_datos_pdf`), pero **que cubra educación y
+> financiera no está establecido en ningún archivo leído aquí**. Ese chequeo
+> —descriptor, no microdato— es el primer paso de la posición 8, y si sale
+> negativo P4 **no es corrible en este régimen** y eso mismo es su resultado.
+> **Ninguna cifra se teclea aquí:** el `Marina 89% / partidos 23.9%` de arriba
+> es cita literal de `modelo:396`, que a su vez es lo que P4 va a contrastar.
+
+#### Nivel (c) — cierran un parámetro con proxy ya localizado
+
+| # | Qué se mide | Fuente · variable (citada) | Qué mueve | Payload | Sesión-tipo |
+|---|---|---|---|---|---|
+| **9** | `familismo_obligacion` — carga de cuidado intra-hogar por persona | **ENUT** 2019 y 2024, preguntas `6.11`/`6.11a`: `P6_11_01`…`P6_11_11` (11 tareas de cuidado) y `P6_11A_XX_1`…`P6_11A_XX_4` (tiempo, lun-vie vs. sáb-dom). Encargo C §2.2, verificado persistente entre ediciones | **PROXY con supuesto declarado**, no reactivo directo: *"carga de cuidado alta y asimétrica ≈ conducta consistente con obligación internalizada — no la prueba"* (C §2.3). **Si eso cuenta o no en el contador `3 de 14` es decisión de mesa, no de esta cola** — por eso es nivel (c) y no (a). Cierra además la mitad medible del check de ADR-30 (contraste apoyo vs. obligación) que P2 §3.b declaró PERSISTENTE, porque `6.16` (ayuda **inter**-hogar) da el contraste dentro del mismo instrumento | `enut2019_bd_csv`, `enut2024_bd_csv` (+2002/2009/2014) — **registrados** | Ubuntu microdato |
+| **10** | `horizonte_temporal` | **ENIF**, `P4_10` *"¿por cuánto tiempo cubriría gastos con ahorros?"* (P2 §2.c, inventario l.320) | PROXY (*"stock de ahorro ≠ tasa de descuento"*). ⚠️ **Falla C3** y hay que decir para qué: `P4_10` **es** la variable con la que Tabla B observa `dinero.ahorro.volatilidad_horizonte_corto`, el desenlace de G3 (P2 §2.d) — medir la condicional es legítimo, **usarla después para identificar `G3 · horizonte_temporal` es circular**. Compra la condicional, no el coeficiente | `enif2024_csv` — **registrado** | Ubuntu microdato |
+| **11** | `deferencia` — **desbloqueo, no medición** | **Latinobarómetro 2024**, ítem `P4NOIJ` "Obediencia" entre las cualidades a inculcar en los niños (C-bis §0) | PROXY con supuesto declarado. **Falla la compuerta (i):** `data/manifiesto.yaml` registra `latinobarometro2024_cuestionario_esp` y `latinobarometro2024_fichas_tecnicas` — **el microdato no está registrado**. La posición es la descarga, no la estimación | Cuestionario y ficha **registrados**; microdato **ausente del manifiesto**. Fricción de licencia/registro de usuario, no bloqueo técnico (C §3.4) | **Navegador del autor** |
+
+#### Nivel (d) — todo lo demás
+
+| # | Qué se hace | Fuente | Qué mueve | Payload | Sesión-tipo |
+|---|---|---|---|---|---|
+| **12** | Cerrar las **dos candidatas abiertas de `deferencia`** que C-bis dejó sin agotar | **WVS Ola 7** — `WVS7 Questionnaire Mexico 2018 Spanish.pdf`, `DOID 6635`, `SAID 3203` (localizado con precisión, **no legible** con las herramientas de esa sesión) · **ENCUP** — portal INEGI confirmado sin instrumento estático; ruta de recuperación `fomentocivico.segob.gob.mx`, fuera de los hosts alcanzables del sandbox | No mueve el contador. **Mejoraría el proxy** de la posición 11: C-bis declara que WVS *"es la candidata que la literatura señala como más probable de tener el reactivo mejor formulado … y queda sin cerrar, no descartada"* | Ninguno registrado | **Navegador del autor** |
+
+---
+
+### 14.4 · Lo que NO entra en la cola — límite vigente, con cita
+
+**No son posiciones y no se les fabrica urgencia.** Son las 2 de las 14 sin
+reactivo ni proxy, y su estado es un **límite de régimen**, no una tarea
+pendiente:
+
+| Condicional | Estado | Cita |
+|---|---|---|
+| **`sens_estatus`** | **NO DETERMINABLE EN ESTE RÉGIMEN.** Ningún reactivo de sensibilidad a estatus **reportado**; vive en §3.1/§3.9, dominios **no prioritarios** del inventario, que *"solo trae filas sí/parcial, así que no se puede distinguir 'no reportado' de 'no existe'"*. El desenlace sí existe (ENIGH `gastotarjetas`) y las celdas también — lo que falta es la C1 | P2 §2.c y §2.d (`G2 · sens_estatus`, `G4 · sens_estatus`) |
+| **`aversion_riesgo`** | **NO DETERMINABLE EN ESTE RÉGIMEN.** El único candidato, ENIF `P5_23`/`P5_24`, mide **conocimiento de protección de depósitos IPAB**: es *"el moderador que la regla `dinero.ahorro.seguro_deposito_atenua_aversion` pone en el `SI`, no una medida de aversión"* | P2 §2.c y §2.d (`G2`/`G3 · aversion_riesgo`) |
+
+**Ninguna de las dos se colapsa a "no existe en el dato mexicano".** Levantar
+el límite exige graduar los dominios §3.1/§3.9 del inventario — **un acto de
+inventario, no una medición**, y por eso no es posición de esta cola. Que
+`Global Findex` figurara en la posición 10 de la cola vieja como candidata a
+`aversion_riesgo` no cambia esto: la propia fila declaraba que la fuente
+*"declara 'gestión de riesgo financiero', no una escala de aversión al riesgo"*
+(`§11:278`, fila 10).
+
+---
+
+### 14.5 · Qué queda vencido, qué no
+
+- **`§11:278` ("Cola priorizada — de las 32 operables sin bajar")** →
+  **REEMPLAZADA** por `§14.3`. No se edita ni se hereda: sigue legible como
+  registro histórico, con esta marca.
+- **`§8:464` (la otra cola, 9 posiciones, adenda del 31/jul)** → **no se
+  rederiva aquí**. El encargo nombra una cola de 10 posiciones y esa es la de
+  `§11`. `§8` ordena lo mismo —fuentes operables sin bajar— con el mismo
+  criterio de constructos desbloqueados, así que hereda las mismas tres vías de
+  caducidad; **decir eso no es rederivarla** y esta adenda no la sustituye.
+  Queda declarado, no ejecutado, igual que `§13.7` lo dejó.
+- **`p3-lca-preregistro-v1_0.md` §6.2 punto 4** dice *"'0 de 14 condicionales
+  medidas' sigue siendo 0"*. El contador es hoy **3**; la afirmación
+  **sustantiva** del punto —que el LCA no estima ningún θ_k y no mueve el
+  contador— **sigue en pie** y es la que la posición 7 usa. **Discrepancia
+  señalada, no corregida:** es un pre-registro **sellado** y esta adenda no lo
+  edita.
+
+---
+
+### 14.6 · Límite de lectura declarado (ADR-46)
+
+Esta adenda leyó: `forense/hitoE-campana-medicion-v2_0.md` completo;
+`canon/modelo-decision-v4_0.md` §1.1.F, §1.2, §1.3, §2.2, §6.1, §7, §12
+(leídas, no editadas); `canon/gobernanza-v1_15.md` (ADR-28.a, ADR-50, ADR-51,
+por `grep`); `forense/p3-lca-preregistro-v1_0.md` §2.1, §2.2, §6, §7;
+`forense/notas/2026-08-01-p2-momentos-atributos.md` §2.c y §2.d;
+`forense/notas/2026-08-03-cal-conf-faseb-medicion.md` §0 y §5;
+`forense/notas/2026-08-03-cbis-deferencia-externas.md` §0–§3;
+`forense/notas/2026-07-31-encargo-c-familismo-deferencia-reactivo.md` completa;
+`revision-programa-2026-07-31.md` §5–§7; `forense/hallazgos.md`;
+`data/manifiesto.yaml` (enumeración de ids por patrón).
+
+**Cero portales, cero cuestionarios, cero descriptores, cero microdato.** Esta
+adenda **no mide nada** — ordena. Ninguna cifra de este documento se tecleó:
+las variables, ids y veredictos son citas de las notas nombradas, y el estado
+de payload sale de enumerar `data/manifiesto.yaml`.
+
+⚠️ **Qué significa exactamente "payload registrado" arriba, y qué no.**
+`python3 tests/manifiesto.py --verifica` se corrió en esta sesión: **este
+entorno no monta `data_raw`** (todos los ids dan `AUSENTE — el payload no se
+commitea`, y las raíces `descargas_mx` dan `RAÍZ NO CONFIGURADA`). Por tanto el
+hecho verificable que esta adenda afirma es **"registrado en
+`data/manifiesto.yaml`"**, nunca "está en disco". Quien ejecute cualquier
+posición corre `--verifica` en el entorno que sí monta la raíz **antes** de
+empezar.
+
+### 14.7 · Fuera de perímetro, y por qué no se tocó
+
+No se tocó `canon/` ni `milpa/`. No se selló ningún ADR. No se movió ningún
+contador. No se editó `§11` ni ninguna línea del cuerpo `§0`–`§13`. No se
+rederivó la cola de `§8`. No se corrigió `p3-lca-preregistro-v1_0.md` §6.2
+punto 4 (sellado). No se descargó ninguna fuente.
