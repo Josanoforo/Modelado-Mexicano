@@ -13,7 +13,7 @@ declarar.
 **Entorno.** `data/raw` no existe por defecto en un worktree nuevo (está en
 `.gitignore`, igual que `data/raices.local.yaml`) — se recreó el symlink a
 mano (`data/raw -> /home/pc0/mm-corpus/raw`) y se copió
-`raices.local.yaml` desde `/home/pc0/Modelado-Mexicano` antes de empezar.
+`data/raices.local.yaml` desde `/home/pc0/Modelado-Mexicano` antes de empezar.
 Sin esto, `tests/manifiesto.py --verifica` habría reportado AUSENTE para
 todo, no porque falte el payload sino porque el entorno no monta la raíz —
 la misma advertencia que dejó `§14.6` de `hitoE`.
@@ -272,7 +272,7 @@ script, no repetido aquí):
 - **ENCUCI**, join `SEC_4_5`+`SD`, reproduce educación de la primera ola
   antes de tocar `AP5_1_*`: `n_filas=21519 no_respuesta=1483 sin_cruce=1265
   utiles=18771` — coincide exacto con lo publicado en
-  `cal-conf-faseb-medicion.md` y ya reproducido una vez por
+  `2026-08-03-cal-conf-faseb-medicion.md` y ya reproducido una vez por
   `cal_conf_faseb_ola2.py`. Las ocho celdas formalidad×edad también
   coinciden a la décima de punto porcentual.
 - **ENIF**, tabla `TMODULO`, reproduce el índice financiero de la primera
@@ -516,23 +516,45 @@ enif2024_csv [data_raw]: COINCIDE -- sha256 y tamaño (3086077 bytes) verificado
 encuci2020_bd_dbf [data_raw]: COINCIDE -- sha256 y tamaño (6913684 bytes) verificados contra data/manifiesto.yaml
 ```
 
-`python3 tests/check.py` — salida cruda, sin editar, tal como pide el
-encargo:
+**Defecto encontrado por revisión, no por esta sesión: la primera versión
+de esta nota afirmó "ninguno lo introduce esta sesión" con una cifra
+(19/84) que en realidad era la de `main`, no la del árbol de la rama —
+corrida antes de escribir el §1.2 con las citas cruzadas, no re-corrida
+después.** La rama sí introducía 2 FAIL/WARN nuevos, ambos en este mismo
+archivo: `` `raices.local.yaml` `` citado sin el prefijo `data/` (línea 16
+de esta nota; `data/raices.local.yaml` sí está exento porque T03 no
+matchea rutas con `/` dentro de las comillas — el mismo patrón que usan
+`hallazgos.md` y `2026-07-31-p1-enigh-semilla.md` en `main`) y
+`` `cal-conf-faseb-medicion.md` `` citado sin la fecha (línea 275; el
+archivo real es `2026-08-03-cal-conf-faseb-medicion.md`, citado bien dos
+líneas más abajo en la 545 de la versión anterior). Corregidas ambas
+citas. `git merge origin/main` corrido antes de la re-corrida (la rama
+nació en `2a218a1`; `main` ya traía `PR #58`, posición 8 — merge limpio,
+sin pérdida, la nota de esa posición sobrevive intacta).
+
+`python3 tests/check.py` — salida cruda, re-corrida sobre el árbol
+sincronizado con `main` y con las dos citas corregidas:
 
 ```
 19 FAIL · 84 WARN
 ```
 
-**Ninguno de los 19 FAIL ni 84 WARN lo introduce esta sesión.** `git
-status --short` antes de este acto muestra únicamente `data/raw`
-(symlink recreado, gitignorado) y `tests/cal_conf_faseb_pos5_6.py` (nuevo)
-como no rastreados — esta sesión no tocó `canon/`, `corpus/reports/`,
-`milpa/`, ni ningún archivo que la suite audite. Los 19/84 son
-preexistentes al estado de `main` en `2a218a1`, ajenos a `radio_confianza`
-y `familismo_apoyo` (glosario de constructos del motor, vocabulario de
-tiers, marcos importados sin marca `(c)`, referencias colgantes en
-documentos no relacionados, etc.) — no se investigan ni se corrigen aquí,
-fuera de perímetro de este encargo.
+`python3 tests/check.py --baseline`:
+
+```
+LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado a0ae0ad6a7548c98724ded683138f4ea1b009c8f)
+(3 entradas de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
+```
+
+**Ahora sí, verificado y no solo afirmado: ninguno de los 19 FAIL ni 84
+WARN lo introduce esta sesión.** `git status --short` tras el merge y las
+correcciones muestra únicamente `data/raw` (symlink recreado, gitignorado)
+como no rastreado — esta sesión no tocó `canon/`, `corpus/reports/`,
+`milpa/`, ni ningún archivo que la suite audite fuera de esta propia nota.
+Los 19/84 son preexistentes (glosario de constructos del motor,
+vocabulario de tiers, marcos importados sin marca `(c)`, referencias
+colgantes en documentos no relacionados, etc.) — no se investigan ni se
+corrigen aquí, fuera de perímetro de este encargo.
 
 ---
 
