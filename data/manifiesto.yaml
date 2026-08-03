@@ -2981,3 +2981,46 @@
   licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: lapop_abmex2023_cuestionario_mexico
+  usado_para: 'C-bis: búsqueda de reactivo de deferencia jerárquica (forense/notas/2026-08-03-cbis-deferencia-externas.md)'
+  url_origen: https://www.vanderbilt.edu/lapop/mexico/ABMex2023-Mexico-Questionnaire-V9.2.3.0-Spa-230511-W.pdf
+  fecha_descarga: '2026-08-03'
+  descargado_por: sesion/cbis-deferencia-externas (fork C-bis)
+  archivo: lapop_abmex2023_cuestionario.pdf
+  sha256: 0cf179c783d74f779eb7b0f0d880a59d6bfbd0c4ae53e394563f7a26c954b2d2
+  tamano_bytes: 627114
+  formato: pdf
+  licencia: © Vanderbilt University 2023, derechos reservados (declarado en el propio PDF);
+    términos de reuso no verificados más allá de eso
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: latinobarometro2024_cuestionario_esp
+  usado_para: 'C-bis: búsqueda de reactivo de deferencia jerárquica (forense/notas/2026-08-03-cbis-deferencia-externas.md)'
+  url_origen: https://www.latinobarometro.org/documents/LAT-2024/latinobarometro-2024-cuestionario-esp.pdf
+  fecha_descarga: '2026-08-03'
+  descargado_por: sesion/cbis-deferencia-externas (fork C-bis)
+  archivo: latinobarometro2024_cuestionario_esp.pdf
+  sha256: f1fe995d24081906d91ff7646aa4afa7ecdf0e1728c3192d1dd264b89172fb7b
+  tamano_bytes: 430128
+  formato: pdf
+  licencia: © Corporación Latinobarómetro (aviso del sitio); términos de reuso del cuestionario
+    no declarados explícitamente en el documento — no verificado más allá de eso
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: latinobarometro2024_fichas_tecnicas
+  usado_para: 'C-bis: confirmar país-año-n de la muestra mexicana 2024 para el ítem P4NOIJ
+    (forense/notas/2026-08-03-cbis-deferencia-externas.md)'
+  url_origen: https://www.latinobarometro.org/documents/LAT-2024/latinobarometro-2024-fichas-tecnicas.pdf
+  fecha_descarga: '2026-08-03'
+  descargado_por: sesion/cbis-deferencia-externas (fork C-bis)
+  archivo: latinobarometro2024_fichas_tecnicas.pdf
+  sha256: e5dc667acbb2ba3d8518462ba669bcfaa66e01d6acc13e46239c5af7d20bfbca
+  tamano_bytes: 16325
+  formato: pdf
+  licencia: © Corporación Latinobarómetro (aviso del sitio); términos de reuso no declarados
+    explícitamente en el documento — no verificado más allá de eso
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
