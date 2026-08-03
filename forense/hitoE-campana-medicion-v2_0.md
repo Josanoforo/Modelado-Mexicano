@@ -1197,3 +1197,72 @@ No se tocó `canon/` ni `milpa/`. No se selló ningún ADR. No se movió ningún
 contador. No se editó `§11` ni ninguna línea del cuerpo `§0`–`§13`. No se
 rederivó la cola de `§8`. No se corrigió `p3-lca-preregistro-v1_0.md` §6.2
 punto 4 (sellado). No se descargó ninguna fuente.
+
+---
+
+## 15 · Adenda 04/ago/2026 — corrige fila 4 de `§14.3`: `exposicion_violencia` sigue sin fuente verificada
+
+**Disciplina aplicada:** adenda fechada, append-only. `§14.3` no se edita —
+la fila 4 queda íntegra, con esta marca de que está vencida en su columna
+"Fuente · variable"; el resto de sus columnas (posición, contador de
+destino, mención de `C1` de `G4`) no cambia.
+
+**Clase: Corrección de fila, misma clase que `§14` entero — Propuesta. No
+es decisión. No rige sin ADR.**
+
+**Qué pasó.** La sesión que ejecutó la posición 4 (`PR #57`,
+`forense/notas/2026-08-04-cal-conf-faseb-medicion-pos4.md`) verificó el
+descriptor de `BP1_20`/`BP1_23`/`BP1_28` contra `fd_envipe2025.pdf` y
+encontró que el trío no mide `exposicion_violencia`: `BP1_20` es *"¿Acudió
+a denunciar el delito?"*, condicionado por construcción de `TMod_Vic` a ya
+haber sido víctima — mide conducta de denuncia, no exposición a violencia.
+Detalle completo, con las tres razones verificadas contra `canon` y
+`milpa/`, en esa nota §4.0 y en `forense/hallazgos.md` (entrada
+04/ago/2026).
+
+**Origen del defecto, para que la próxima cola no lo repita.** La fila 4
+citó `P2 §2.c, inventario l.353` y `P2 §2.d` sin que ninguna sesión
+verificara el descriptor de `BP1_20` contra el cuestionario antes de
+escribir la fila — exactamente el paso que esta adenda de `§14` (arriba,
+`§14.6`) declara *"no mide nada — ordena"*: la cola se construyó citando
+notas, no reactivos verificados. `P2:229` marca el trío como *"reportado"*,
+no *"verificado"* — la distinción que `instrucciones` v2.1 exige y que
+esta fila no propagó.
+
+**Consecuencia sobre la fila 4, dicha con precisión.** La posición **sigue
+viva**: `exposicion_violencia` sigue siendo el único de los 8 escalares
+restantes con marca `IDENTIFICADO` en P2 (`§2.d`), y sigue sin medir — el
+contador no se movió (`PR #57` lo corrigió de vuelta a 6/14). Lo que cae es
+solo la columna "Fuente · variable" de la fila: **`BP1_20`/`BP1_23`/`BP1_28`
+quedan retirados como su reactivo**, y ninguna fuente/variable los
+sustituye todavía. Encontrar el reactivo correcto de `exposicion_violencia`
+—si existe uno en el corpus ya inventariado, o si el parámetro cae a
+`NO DETERMINABLE EN ESTE RÉGIMEN` como `sens_estatus`/`aversion_riesgo`
+(`§14.4`)— es trabajo de otra sesión, no de esta adenda.
+
+**Fila 4, `§14.3`, corregida:**
+
+| # | Qué se mide | Fuente · variable (citada) | Qué mueve | Payload | Sesión-tipo |
+|---|---|---|---|---|---|
+| **4** | `exposicion_violencia` | **PENDIENTE DE VERIFICACIÓN** — `BP1_20`/`BP1_23`/`BP1_28` de ENVIPE **retirados**: miden conducta de denuncia condicionada a victimización, no exposición a violencia (`PR #57`, `forense/hallazgos.md` 04/ago/2026) | Contador → 7/14, sin cambio de destino. Sigue siendo la C1 del coeficiente `G4 · exposicion_violencia`, **IDENTIFICADO·TRUNCADO** en P2 (`§2.d`) — esa marca de P2 hereda el mismo rótulo sin verificar y no se corrige aquí | Sin determinar | Sin determinar hasta localizar reactivo |
+
+**Efecto sobre `civico.denuncia.con_seguro` y
+`comunicacion.inseguridad.ver_oir_callar`, señalado sin resolver.** `PR
+#57` §4.2 encuentra que `BP1_20`/`BP1_28` (con `BP2_1` faltante) son
+candidato cercano para `civico.denuncia.con_seguro` (P2:248,
+`IDENTIFICADO`, regla de probabilidad libre — no una de las 14
+condicionales, no mueve este contador) y que `BP1_23` es candidato para
+`comunicacion.inseguridad.ver_oir_callar` (P2:264, `C2` `Parcial` de
+`G4`). Ninguno de los dos se adjudica aquí — es exactamente el trabajo de
+inventario que `§14.6` reserva a otra sesión.
+
+### 15.1 · Límite de lectura declarado (ADR-46)
+
+Esta adenda leyó: `forense/notas/2026-08-04-cal-conf-faseb-medicion-pos4.md`
+completa (§0.2, §4.0-§4.2, §5); `forense/hallazgos.md` (entrada nueva);
+`canon/modelo-decision-v4_0.md:365-380` (tabla de generadores); esta
+sección (`§14.3`-`§14.7`) para no repetirla. No se abrió microdato nuevo,
+no se leyó cuestionario ni descriptor — la verificación del reactivo la
+hizo la sesión de `PR #57`, citada aquí, no re-derivada. No se tocó
+`canon/` ni `milpa/`. No se movió ningún contador (sigue en 6/14, `PR
+#57`). No se rederivó ninguna otra fila de `§14.3`.
