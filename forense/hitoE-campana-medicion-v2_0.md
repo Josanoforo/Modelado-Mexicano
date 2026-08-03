@@ -1266,3 +1266,67 @@ no se leyó cuestionario ni descriptor — la verificación del reactivo la
 hizo la sesión de `PR #57`, citada aquí, no re-derivada. No se tocó
 `canon/` ni `milpa/`. No se movió ningún contador (sigue en 6/14, `PR
 #57`). No se rederivó ninguna otra fila de `§14.3`.
+
+---
+
+## 16 · Adenda 04/ago/2026 — cierra fila 8 de `§14.3`: P4 no es corrible en este régimen, faltante nombrado
+
+**Disciplina aplicada:** adenda fechada, append-only, mismo mecanismo que
+`§15`. `§14.3` no se edita — la fila 8 queda íntegra; esta adenda registra
+el resultado del paso 1 que la propia fila declaraba pendiente ("Bloqueada
+— no por payload. Ver evaluación abajo").
+
+**Clase: Corrección de fila, misma clase que `§14` entero — Propuesta. No
+es decisión. No rige sin ADR.**
+
+**Qué pasó.** La sesión que ejecutó el paso 1 de la posición 8 (`PR #58`,
+`forense/notas/2026-08-04-cal-conf-faseb-pos8-encig-battxi.md`) verificó si
+la batería XI de ENCIG 2021 (25 ítems, sección "Confianza en
+instituciones") cubre, en un solo instrumento, los seis componentes de
+`confianza_institucional` de ADR-28.b — la condición que la evaluación de
+`§14.3` (arriba) dejó como "primer paso de la posición 8". Verificado
+contra `encig21_cuestionario.pdf` y `encig21_estructura_base_datos.pdf`,
+ítem por ítem: **CUBIERTO** salud (`P11_1_3`), educación (`P11_1_1`,
+`P11_1_16`), seguridad-FFAA (`P11_1_20`, `P11_1_21`), justicia-policía
+(`P11_1_2`, `P11_1_17`, `P11_1_22`), electoral-partidos (`P11_1_14`,
+`P11_1_19`) — **NO CUBIERTO** financiera: ningún ítem de los 25 mide
+confianza en una institución de servicios financieros; el candidato más
+cercano por nombre (`P11_1_5`, "Empresarios") descarta por descriptor —
+confianza en un actor social, no en una institución financiera. Detalle
+completo, con las 25 filas y el veredicto por componente, en esa nota §1-§3.
+
+**Consecuencia sobre la fila 8, dicha con precisión.** Ningún instrumento
+del corpus trae los seis componentes de `confianza_institucional` en una
+sola batería — completar posiciones 1-3 de esta misma cola tampoco lo
+resuelve, porque deja los seis medidos pero repartidos entre ENVIPE, ENCUCI
+y ENIF/ENCIG (la evaluación de arriba ya lo anticipaba). Medir la
+dispersión *entre* componentes exigiría cruzar instrumentos distintos —
+exactamente la conjunta que `modelo` §1.1.C prohíbe fabricar. **P4 no es
+corrible en este régimen, y ese es su resultado, no una tarea pendiente**
+— mismo tipo de límite que las 2 de `§14.4` (`sens_estatus`,
+`aversion_riesgo`): no se colapsa a "P4 no existe", se registra como
+**NO DETERMINABLE EN ESTE RÉGIMEN sin fabricar una conjunta prohibida**,
+con el faltante nombrado (**financiera**) para que quede verificable, no
+solo declarado. **Esto no decide si `G1a` se desdobla en seis `ASIGNADO`**
+— `canon/modelo-decision-v4_0.md:396` (ADR-49 D3) registra el mismo cierre
+por enmienda in situ: el pre-registro corrió y su resultado es que el dato
+no puede llegar en este régimen, así que la pregunta de homogeneidad de
+pendientes **vuelve a mesa**, no se resuelve aquí.
+
+**Fila 8, `§14.3`, corregida:**
+
+| # | Qué se hace | Fuente · variable | Qué decide | Payload | Sesión-tipo |
+|---|---|---|---|---|---|
+| **8** | **P4** — dispersión de confianza entre instituciones condicionada a atributos | Batería completa de confianza institucional en **un solo instrumento**; ENCIG batería XI verificada (`PR #58`): cubre 5 de 6 (falta financiera) | **NO DETERMINABLE EN ESTE RÉGIMEN** sin fabricar la conjunta que §1.1.C prohíbe — faltante nombrado: **financiera**. No decide el desdoblamiento de `G1a`; la pregunta vuelve a mesa (`modelo:396`, ADR-49 D3, enmienda in situ 4/ago/2026) | Chequeo de batería corrido — **NO CUBIERTO** financiera | Ubuntu microdato (`PR #58`) |
+
+### 16.1 · Límite de lectura declarado (ADR-46)
+
+Esta adenda leyó: `forense/notas/2026-08-04-cal-conf-faseb-pos8-encig-battxi.md`
+completa (§1-§5); `canon/modelo-decision-v4_0.md:396` (enmienda in situ,
+misma sesión); esta sección (`§14.3`, `§16` para no repetirla). No se abrió
+microdato de ENCIG (`encig2021_csv.zip`) — el chequeo de la batería XI lo
+hizo la sesión de `PR #58`, citada aquí, no re-derivada. No se tocó
+`milpa/`. No se movió ningún contador (P4 no mueve contador — `hitoE`
+§14.3, fila 8 original, columna "Qué mueve" nunca lo declaró; el contador
+de condicionales sigue en `canon/modelo-decision-v4_0.md`). No se decidió
+el desdoblamiento de `G1a`. No se rederivó ninguna otra fila de `§14.3`.
