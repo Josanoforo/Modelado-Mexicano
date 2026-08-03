@@ -66,7 +66,7 @@ instrucciones-proyecto-v2.md   ← CANÓNICO. Gobierna todo lo demás.
 | `glosario-v5.6.md` | **CANÓNICO** | **v5.6**, autocontenido | reports (mapas de evidencia) |
 | `integrador-psicologia-mexicano.md` | DERIVADO | 31 reports | reports + glosario |
 | `meta-auditoria-comunicacion.md` | CANÓNICO (parche) | 1.0 | — |
-| `modelo-decision-v3.4.md` | **CANÓNICO OPERATIVO** | **v3.4, autocontenido** *(absorbe la ficha)* | integrador + glosario + validaciones |
+| `modelo-decision-v4.0.md` | **CANÓNICO OPERATIVO** | **v4.0, autocontenido** *(absorbe la ficha)* | integrador + glosario + validaciones |
 | ~~`ficha-canonica-modelo.md`~~ | **ELIMINADA 28/jul** *(ADR-36.b)* | — | absorbida en `modelo` §0.1, §0.2 y §9 |
 | **5 validaciones forenses** | **CANÓNICO** *(ADR-29.b)* | Ronda 4 | — |
 | ~~`CHECKPOINT-v2.md`~~ · ~~`mapa-y-roadmap.md`~~ · ~~`inventario-corpus.md`~~ | **BORRADOS 28/jul** | — | **fusionados en `ESTADO-PROGRAMA.md`** |
