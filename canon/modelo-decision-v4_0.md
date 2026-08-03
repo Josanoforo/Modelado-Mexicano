@@ -8,7 +8,7 @@
 > | **VERIFICAS ASÍ** | §0 llega al **cambio 37** · **§1.1 es un diseño de síntesis de población, no una tabla de perfiles** — si encuentras una tabla de 6 filas × 15 parámetros, estás leyendo el v3.4 · §1.1.D trae la **prohibición de condicionar sobre número de perfil** · §1.1.F trae el **denominador derivado** con su aritmética · la regla R1.1 de §3.1 trae la marca `DOMINIO AGRÍCOLA: INEJECUTABLE` · §7 trae el **Registro congelado de IDs** (tabla de 49 filas) |
 > | **NOMBRE ESTABLE** | **`modelo`** — cítalo así (*"ver `modelo §3.B`"*), **nunca por nombre de archivo**. Así las versiones suben sin dejar referencias colgando |
 
-> **v4.0 — 3/ago/2026. MAYOR: la unidad de población deja de ser el perfil. §1.1 pasa de tabla a diseño de síntesis; los seis perfiles pasan de BASES a DESCRIPTORES.** *(ADR-51 · `revision-programa-2026-07-31.md` §2 · P1 `forense/notas/2026-07-31-p1-enigh-semilla.md` · P2 `forense/notas/2026-08-01-p2-momentos-atributos.md`.)* El motor sigue en **49 reglas**; el perímetro del Hito D sigue en **27**; los siete generadores de §2 y sus quince coeficientes **no cambian de contenido**. Lo que cambia es **sobre qué se define un agente**: ya no pertenece a uno de seis perfiles con quince valores puntuales, sino que porta un **vector de atributos observables** y los parámetros del modelo son **distribuciones condicionales sobre ese vector**. Las 10 reglas que citaban número de perfil citan ahora el atributo que ya codificaban, **sin cambio predictivo** (§1.6). El contador nuevo del programa es **"condicionales medidas sobre atributos: ~~0~~ 3 de 14"** *(corregido 3/ago/2026 — `CAL-CONF` Fase B midió salud/educación/financiera de `confianza_institucional`, `forense/notas/2026-08-03-cal-conf-faseb-medicion.md` §5)*, con `D`=14 derivado en §1.1.F.
+> **v4.0 — 3/ago/2026. MAYOR: la unidad de población deja de ser el perfil. §1.1 pasa de tabla a diseño de síntesis; los seis perfiles pasan de BASES a DESCRIPTORES.** *(ADR-51 · `revision-programa-2026-07-31.md` §2 · P1 `forense/notas/2026-07-31-p1-enigh-semilla.md` · P2 `forense/notas/2026-08-01-p2-momentos-atributos.md`.)* El motor sigue en **49 reglas**; el perímetro del Hito D sigue en **27**; los siete generadores de §2 y sus quince coeficientes **no cambian de contenido**. Lo que cambia es **sobre qué se define un agente**: ya no pertenece a uno de seis perfiles con quince valores puntuales, sino que porta un **vector de atributos observables** y los parámetros del modelo son **distribuciones condicionales sobre ese vector**. Las 10 reglas que citaban número de perfil citan ahora el atributo que ya codificaban, **sin cambio predictivo** (§1.6). El contador nuevo del programa es **"condicionales medidas sobre atributos: ~~3~~ 6 de 14"** *(corregido 3/ago/2026 — `CAL-CONF` Fase B ola 2 midió seguridad-FFAA / justicia-policía / electoral-partidos de `confianza_institucional`, `forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md` §5)*, con `D`=14 derivado en §1.1.F.
 >
 > | # | Cambio | Origen |
 > |---|---|---|
@@ -265,15 +265,15 @@ Los 90 valores puntuales eran `ASIGNADO` — juicio informado, cero medidos. `re
 
 | Estado | Condicionales | Cuenta |
 |---|---|---|
-| **MEDIDO·PARCIAL(x)** *(nuevo 3/ago/2026, ver clase sellada en `milpa/procedencia.yaml`)* | `confianza_institucional[salud]` (ENCIG `P11_1_3`, condicionada a edad) · `confianza_institucional[educación]` (ENCUCI `AP5_2_6`, formalidad×edad + marginales urbanización/ingreso/acceso digital) · `confianza_institucional[financiera]` (ENIF `P11_1_1`-`P11_1_5`, formalidad×edad + marginales urbanización/migración/ingreso) — `forense/notas/2026-08-03-cal-conf-faseb-medicion.md` §4-5 | **3** |
-| **Reactivo directo reportado, sin medir** | `radio_confianza` (ENCUCI `AP5_1_1/2/3`) · `exposicion_violencia` (ENVIPE `BP1_20/23/28`) · `familismo_apoyo` (ENIF `P9_9_1..6`) · `confianza_institucional` × 3 componentes restantes — seguridad-FFAA, electoral-partidos, justicia-policía (ENCIG batería XI, candidata adyacente sin confirmar) | ~~**9**~~ **6** |
-| **Proxy declarado, pendiente de medición** | `horizonte_temporal` (ENIF `P4_10`, ⚠️ falla C3) · `familismo_obligacion` (ENUT 6.11/6.11a, M2) · `deferencia` (M3, Latinobarómetro `P4NOIJ`, ADR-51 (f)) | ~~**2**~~ **3** |
-| **Sin reactivo o no determinable** | ~~`deferencia` (M3, cola C-bis sin correr)~~ · `sens_estatus` · `aversion_riesgo` | ~~**3**~~ **2** |
-| | | **14** ✔ *(3+6+3+2)* |
-| **MEDIDAS** | los tres componentes de `confianza_institucional` de arriba — distribución condicional empírica, no media puntual, sobre un subconjunto declarado de `x` (nunca los seis ejes a la vez) | ~~**0**~~ **3** |
+| **MEDIDO·PARCIAL(x)** *(nuevo 3/ago/2026, ver clase sellada en `milpa/procedencia.yaml`)* | `confianza_institucional[salud]` (ENCIG `P11_1_3`, condicionada a edad) · `confianza_institucional[educación]` (ENCUCI `AP5_2_6`, formalidad×edad + marginales urbanización/ingreso/acceso digital) · `confianza_institucional[financiera]` (ENIF `P11_1_1`-`P11_1_5`, formalidad×edad + marginales urbanización/migración/ingreso) — `forense/notas/2026-08-03-cal-conf-faseb-medicion.md` §4-5 · `confianza_institucional[seguridad-FFAA]` (ENVIPE `AP5_4_04/08/09/10`, por institución, condicionada a edad/dominio) · `confianza_institucional[justicia-policía]` (ENVIPE `AP5_4_01/02/03/05/06/07/11`, por institución, condicionada a edad/dominio) · `confianza_institucional[electoral-partidos]` (ENCUCI `AP5_2_5`/`AP5_3_6/7/8`, por ítem, condicionada a formalidad×edad/dominio) — `forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md` §3-5 | ~~**3**~~ **6** |
+| **Reactivo directo reportado, sin medir** | `radio_confianza` (ENCUCI `AP5_1_1/2/3`) · `exposicion_violencia` (ENVIPE `BP1_20/23/28`) · `familismo_apoyo` (ENIF `P9_9_1..6`) | ~~**6**~~ **3** |
+| **Proxy declarado, pendiente de medición** | `horizonte_temporal` (ENIF `P4_10`, ⚠️ falla C3) · `familismo_obligacion` (ENUT 6.11/6.11a, M2) · `deferencia` (M3, Latinobarómetro `P4NOIJ`, ADR-51 (f)) | **3** |
+| **Sin reactivo o no determinable** | `sens_estatus` · `aversion_riesgo` | **2** |
+| | | **14** ✔ *(6+3+3+2)* |
+| **MEDIDAS** | los seis componentes de `confianza_institucional` de arriba — distribución condicional empírica, no media puntual, sobre un subconjunto declarado de `x` (nunca los seis ejes a la vez); los tres de la ola 2 además medidos **por institución**, no como escalar único (`forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md` §1.0, §4-5) | ~~**3**~~ **6** |
 
-> ## 📊 **Condicionales medidas sobre atributos: ~~0~~ 3 de 14**
-> *(Corregido 3/ago/2026 — `forense/notas/2026-08-03-cal-conf-faseb-medicion.md` §5, PR #50 fusionado. `4 de 144` sigue congelado y no se mueve — ver §6.1.)*
+> ## 📊 **Condicionales medidas sobre atributos: ~~3~~ 6 de 14**
+> *(Corregido 3/ago/2026 — `forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md` §5, ola 2 de Fase B midió `confianza_institucional[seguridad-FFAA/justicia-policía/electoral-partidos]`. `4 de 144` sigue congelado y no se mueve — ver §6.1.)*
 >
 > **`D`=14 es derivado del diseño de §1.1, nunca estimado.** Su aritmética completa está arriba, pasos 1–5. Si alguien mueve `D`, tiene que mover uno de esos cinco pasos y decir cuál.
 
@@ -616,8 +616,8 @@ Orden de aplicación: **vector de atributos** → parámetros (condicionales sob
 
 **Titular nuevo del bloque de parámetros (M6, mesa del 31/jul):**
 
-> ## 📊 **Condicionales medidas sobre atributos: ~~0~~ 3 de 14**
-> *(Corregido 3/ago/2026 — `CAL-CONF` Fase B, `forense/notas/2026-08-03-cal-conf-faseb-medicion.md` §5, PR #50: mide `confianza_institucional[salud/educación/financiera]`. Ver §1.1.F, Paso 5. `4 de 144` sigue congelado y no se toca, ver abajo.)*
+> ## 📊 **Condicionales medidas sobre atributos: ~~3~~ 6 de 14**
+> *(Corregido 3/ago/2026 — `CAL-CONF` Fase B ola 2, `forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md` §5: mide `confianza_institucional[seguridad-FFAA/justicia-policía/electoral-partidos]`. Ver §1.1.F, Paso 5. `4 de 144` sigue congelado y no se toca, ver abajo.)*
 
 **`D`=14 sale del diseño de §1.1, no de una estimación.** Su aritmética: 15 parámetros por perfil (nombrados y controlados contra el `+36` de la tabla de arriba) **menos** `acceso_digital`, que bajo el reencuadre es un **atributo observable** y no un parámetro. Ver §1.1.F, pasos 1–5.
 
@@ -720,7 +720,7 @@ Orden de aplicación: **vector de atributos** → parámetros (condicionales sob
 - **De 13 reglas que las cuatro verticales dijeron estresar: 6 no existían en el motor, 4 divergían, 3 eran fieles.** V2 (clientelismo) es el único vertical cuyas reglas ancla son fieles al canon.
 - **49 refutaciones corridas por primera vez contra el modelo: 27 pasan, 3 fallan, 8 sin objeto, 11 requieren el ejecutable.** Los tres fallos son los cambios 1, 2 y 5 de este v2. *(Resultados incorporados a `refutations.yaml` v0.2.0 el 28/jul; hasta entonces vivían solo en `corrida-refutaciones.md` y el YAML seguía marcado como "propuesta".)*
 - **Siete generadores: uno probado (G3), uno contradicho (G1b), uno contestado (G2), cuatro sin falsar. Quince coeficientes: cero medidos.**
-- **Condicionales medidas sobre atributos: ~~0~~ 3 de 14** (§1.1.F · §6.1, corregido 3/ago/2026 — `forense/notas/2026-08-03-cal-conf-faseb-medicion.md` §5). De las 14: **3 MEDIDO·PARCIAL** (`confianza_institucional[salud/educación/financiera]`), 6 tienen reactivo directo localizado sin medir, 3 solo proxy, 2 sin reactivo o no determinables.
+- **Condicionales medidas sobre atributos: ~~3~~ 6 de 14** (§1.1.F · §6.1, corregido 3/ago/2026 — `forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md` §5). De las 14: **6 MEDIDO·PARCIAL** (`confianza_institucional[salud/educación/financiera/seguridad-FFAA/justicia-policía/electoral-partidos]`, 6 de 6), 3 tienen reactivo directo localizado sin medir, 3 solo proxy, 2 sin reactivo o no determinables.
 - **Números enumerables: 54** (15 coeficientes + 39 probabilidades), **cuatro medidos**. ⚠️ *El titular `4 de 144` sigue congelado y no se mueve aquí (§6.1).*
 - **Grados de libertad reales del ajuste: 22** = 7 de probabilidad + 15 coeficientes (ADR-51, corrigiendo el "29 = 14+15" de ADR-50). **De esos 22: 7 identificados —2 truncados—, 2 justo identificados, 5 inidentificables, 8 no determinables en este régimen** (P2 §2.d).
 - **Las 14 familias de distribución exigidas por ADR-28.d no están declaradas** — mientras falten, el check de varianza intra-celda no puede correr (§1.2, §6).
