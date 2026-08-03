@@ -23,6 +23,18 @@
 #                post-hoc (Bloque C, validación forense). Sellada por
 #                ADR-49 (D2): nace VACÍA, cero números AJUSTADO hoy;
 #                ningún ASIGNADO se reclasifica por este cambio.
+#   MEDIDO·PARCIAL(x) — sexta clase, sellada 3/ago/2026. Condicional medida
+#                empíricamente (distribución sobre desenlaces, no media
+#                puntual) sobre un subconjunto DECLARADO x de los ejes de
+#                atributos de `modelo §1.1.A` — nunca los seis a la vez.
+#                (x) lista los ejes efectivos entre paréntesis. Distinta de
+#                MEDIDO (que implicaría condicionar sobre los 6 ejes) y de
+#                ASIGNADO/PENDIENTE (que implicarían cero medición). Hueco
+#                de taxonomía señalado sin resolver por
+#                `forense/notas/2026-08-03-cal-conf-faseb-medicion.md` §4
+#                ("no 'MEDIDO' pleno... ni 'ASIGNADO'/'PENDIENTE'"); esta
+#                sesión lo sella y reclasifica sus primeros tres usos, ver
+#                `condicionales_confianza_institucional` abajo.
 #
 # ADVERTENCIA DE LECTURA. Que 96% de los números no sea MEDIDO no es un
 # escándalo por los estándares del campo: los ABM asignan parámetros de forma
@@ -101,9 +113,53 @@ resumen:
   delta_v1_v2:
     params_base: "+36 · 9 → 15 parámetros por perfil"
     familismo_desdoblado: "+6 · ORDINAL→CARDINAL (la etiqueta medio/alto existe en modelo §1.1)"
-    confianza_institucional_vector: "+30 · ASIGNADO. ⚠ SIN POBLAR: modelo §1.3 declara el vector de 6 componentes (seguridad · educación · salud · electoral · justicia-policía · financiera) y da porcentajes NACIONALES, no valores por perfil. Nadie ha medido confianza en la Marina por perfil."
+    confianza_institucional_vector: "+30 · ASIGNADO. ⚠ SIN POBLAR: modelo §1.3 declara el vector de 6 componentes (seguridad · educación · salud · electoral · justicia-policía · financiera) y da porcentajes NACIONALES, no valores por perfil. Nadie ha medido confianza en la Marina por perfil. (Fila del esquema v3.4/tabla-de-perfiles. Bajo `modelo` v4.0 tres de los seis componentes se reclasifican como condicionales `MEDIDO·PARCIAL(x)`, no como celdas de esta tabla — ver `condicionales_confianza_institucional` abajo. El conteo de 144/30 de esta fila no cambia: es del esquema viejo, congelado.)"
     coeficiente_nuevo: "+1 · familismo_obligacion en G5, ASIGNADO y SIN MAGNITUD (spec: 'signo negativo o no monotónico')"
     disparadores_de_dominio: "0 · los 42 NO cuentan: entran como booleanos de contexto, no como parámetros calibrables (adenda a ADR-26)"
+
+# ══════════════════════════════════════════════════════════════════
+# RECLASIFICACIÓN v4.0 · 3 de 6 componentes de confianza_institucional pasan
+# a MEDIDO·PARCIAL(x) — condicionales del reencuadre perfiles→atributos
+# (`modelo §1.1.F`, contador "condicionales medidas sobre atributos"), NO
+# celdas de la tabla de perfiles vieja de arriba. Autorizada por el encargo
+# que sella la clase MEDIDO·PARCIAL(x) (ver CLASES DE PROCEDENCIA arriba).
+# Fuente única: forense/notas/2026-08-03-cal-conf-faseb-medicion.md §1-5
+# (PR #50 fusionado). Los otros 3 componentes (seguridad-FFAA, electoral-
+# partidos, justicia-policía) NO se tocan aquí: siguen ASIGNADO/SIN POBLAR,
+# candidata adyacente sin confirmar (hitoE-campana-medicion-v2_0.md §12).
+# ══════════════════════════════════════════════════════════════════
+condicionales_confianza_institucional:
+  salud:
+    clase: "MEDIDO·PARCIAL(edad)"
+    antes: "ASIGNADO, dentro de confianza_institucional_vector, SIN POBLAR"
+    fuente: "ENCIG 2021, P11_1_3 'Confianza en hospitales públicos' — forense/notas/2026-08-03-cal-conf-faseb-medicion.md §1.1, §3.1, §4"
+    n_util: 38458
+    eje_condicionante: "edad (18–29 · 30–44 · 45–59 · 60+)"
+    nota: >
+      Proporción ponderada (FAC_P18) + IC95% por conglomerado último
+      (UPM_DIS/EST_DIS), condicionada solo a edad -- formalidad, urbanización,
+      ingreso y acceso digital NO DISPONIBLES en este instrumento (nota §1.1).
+      No es MEDIDO pleno (implicaría los 6 ejes de x) ni ASIGNADO.
+  educación:
+    clase: "MEDIDO·PARCIAL(formalidad,edad,urbanización,ingreso,acceso_digital)"
+    antes: "ASIGNADO, dentro de confianza_institucional_vector, SIN POBLAR"
+    fuente: "ENCUCI 2020, AP5_2_6 'Confianza en universidades públicas' — forense/notas/2026-08-03-cal-conf-faseb-medicion.md §1.2, §3.2, §4"
+    n_util: 18771
+    eje_condicionante: "formalidad × edad (conjunto) + urbanización, ingreso, acceso digital (marginales, un eje a la vez); migración NO DISPONIBLE"
+    nota: >
+      No cruza los seis ejes de x simultáneamente (§1.4 de la nota) -- es
+      condicional genuina sobre un subconjunto declarado, no una media
+      puntual.
+  financiera:
+    clase: "MEDIDO·PARCIAL(formalidad,edad,urbanización,migración,ingreso)"
+    antes: "ASIGNADO, dentro de confianza_institucional_vector, SIN POBLAR"
+    fuente: "ENIF 2024, índice P11_1_1-P11_1_5 — forense/notas/2026-08-03-cal-conf-faseb-medicion.md §1.3, §3.3, §4"
+    n_util: 10264
+    eje_condicionante: "formalidad × edad (conjunto) + urbanización, migración, ingreso (marginales, un eje a la vez); acceso digital NO VERIFICADO"
+    nota: >
+      Mismo límite de alcance que educación (§1.4 de la nota): condicional
+      genuina sobre un subconjunto declarado de x, no sobre los seis ejes
+      a la vez.
 
 # ══════════════════════════════════════════════════════════════════
 # DEUDA BLOQUEANTE — los 90 parámetros de dispersión (ADR-28.d)
