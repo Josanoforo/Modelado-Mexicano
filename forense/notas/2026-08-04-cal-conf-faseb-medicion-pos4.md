@@ -1,6 +1,9 @@
-# CAL-CONF Fase B — posición 4 de la cola: `exposicion_violencia` (G4, C1), ENVIPE 2025
+# CAL-CONF Fase B — posición 4 de la cola: intento de medir `exposicion_violencia` (G4, C1), ENVIPE 2025
 
-*4 de agosto de 2026.*
+*4 de agosto de 2026. Enmendada in situ el mismo 4/ago/2026 (mismo día,
+misma rama sin fusionar — I-12): el título original decía simplemente
+"mide `exposicion_violencia`". No la mide — ver §4.0. Los números de §3 no
+cambiaron; el rótulo sí.*
 
 ⚠️ **CONTAMINACIÓN DE MICRODATO, declarada para esta sesión.** Esta sesión
 abre microdato de **ENVIPE 2025** — tabla `TMod_Vic`, no abierta por ninguna
@@ -190,6 +193,13 @@ truncamiento C4 del coeficiente ("el ingreso solo entra como `ESTRATO` de
 de "no fabricar un eje que nadie validó" que ola 1 aplicó a `ENIGH` en su
 §0.
 
+**Conector, añadido 04/ago/2026 (§0.2 en sí no se toca):** el mismo hecho
+de arriba —`TMod_Vic` es la subpoblación de víctimas, no la población
+general— es la razón por la que §4/§5 corrigen el rótulo de lo medido en
+esta nota: una condicional estimada sobre esa subpoblación no puede hablar
+de cuánta violencia hay en `x`, solo de la conducta posterior a sufrirla.
+Ver §4.0.
+
 ---
 
 ## 1 · Especificación de la medición — congelada antes de calcular
@@ -369,61 +379,124 @@ colapsa con otra.
 
 ## 4 · Qué queda MEDIDO, con procedencia — y qué no
 
-| Componente | Estado | Fuente | Año | Variables | n útil | Método |
+### 4.0 · Corrección de rótulo, 04/ago/2026 — esto NO mide `exposicion_violencia`
+
+**Declarado antes de la tabla, no después: lo que sigue no es
+`exposicion_violencia`.** `BP1_20` es *"¿Acudió... a denunciar el
+delito?"* — condicionado, por construcción de `TMod_Vic` (§0.2), a **ya
+haber sido víctima**. Lo medido en §3 es `P(denunció | ya fue víctima, x)`,
+no `P(víctima | x)`. Tres razones, verificadas contra `canon` y `milpa/`
+en esta misma corrección:
+
+1. **El universo lo impide por construcción.** `TMod_Vic` (§0.2) es la
+   subpoblación de víctimas (`RESUL_H='A'` en el 100%) — el denominador de
+   cualquier condicional estimada ahí ya excluyó a quienes no fueron
+   víctimas. La exposición a violencia vive un paso antes, en
+   `P(víctima | x)`, no en la conducta posterior a serlo.
+2. **No sostiene la cláusula falsable de `G4`.** `canon/modelo-decision-v4_0.md:372`
+   define `G4` como *"Exposición a violencia + impunidad → Conducta
+   defensiva, retracción del espacio público"*, refutable *"si exposición
+   alta no produce conducta defensiva"*. Una tasa de denuncia no construye
+   el antecedente de esa cláusula. `milpa/procedencia.yaml:441` escala el
+   parámetro `exposicion_violencia` entre 0.35 y 0.70 por perfil — una
+   tasa de denuncia no puebla esa escala.
+3. **Colisión de contenido dentro del mismo generador.** §3.2 de esta nota
+   muestra que las razones de no denunciar, en cabeza, son pérdida de
+   tiempo (34.8%), desconfianza en la autoridad (13.8%), trámites (10.0%),
+   actitud hostil de la autoridad (3.3%) — contenido de
+   `confianza_institucional[justicia]`, que ya entra a `G4` con su propio
+   coeficiente (`−0.40`, `milpa/procedencia.yaml:368`). Poblar
+   `exposicion_violencia` con esto metería el mismo contenido dos veces en
+   la misma ecuación. El chequeo `C3` de P2 (`§2.b`, "no-circularidad")
+   pasa formalmente — `BP1_20`/`BP1_23`/`BP1_28` no son literalmente la
+   misma variable que `confianza_institucional[justicia]` — pero falla en
+   sustancia: son la misma información bajo otro nombre.
+
+**Origen del rótulo defectuoso, para que no se repita.**
+`forense/notas/2026-08-01-p2-momentos-atributos.md:229` marca el trío como
+*"(victimización, denuncia y sus razones)"* con estado **reportado** —no
+verificado— y `:264` lo repite como *"C1 ENVIPE `BP1_20` (victimización)"*.
+De ahí bajó a `hitoE §14.3` fila 4 y de la cola al encargo original de esta
+sesión, que pedía verificar el descriptor pero venía él mismo sin
+verificar. Registrado en `forense/hallazgos.md` (entrada 04/ago/2026, este
+mismo acto).
+
+### 4.1 · Lo que sí queda MEDIDO: conducta de denuncia condicionada a victimización, no el parámetro `exposicion_violencia`
+
+**Los números de §3 no se tocan — son correctos y sobreviven íntegros.**
+Lo que cambia es el rótulo:
+
+| Qué se midió | Estado | Fuente | Año | Variables | n útil | Método |
 |---|---|---|---|---|---|---|
-| `exposicion_violencia` (C1, `BP1_20`) | **MEDIDO·PARCIAL(x)** | ENVIPE | 2025 | `BP1_20` | 40 189 (excl. 91 sin edad) | Proporción ponderada (`FAC_DEL`) + IC95% por conglomerado último (`UPM_DIS`/`EST_DIS`); condicionada a edad, marginal `DOMINIO` |
-| `exposicion_violencia` (razón de no denuncia, `BP1_23`) | **MEDIDO**, distribución de categorías, sin cruzar con x | ENVIPE | 2025 | `BP1_23` | 36 040 | Ídem, sin condicionar por edad/dominio (declarado, §1.0) |
-| `exposicion_violencia` (razón de denuncia, `BP1_28`) | **MEDIDO**, distribución de categorías, sin cruzar con x | ENVIPE | 2025 | `BP1_28` | 4 110 | Ídem |
+| Conducta de denuncia condicionada a victimización (`BP1_20`) | **MEDIDO**, no es `exposicion_violencia` (§4.0) | ENVIPE | 2025 | `BP1_20` | 40 189 (excl. 91 sin edad) | Proporción ponderada (`FAC_DEL`) + IC95% por conglomerado último (`UPM_DIS`/`EST_DIS`); condicionada a edad, marginal `DOMINIO` |
+| Razones de no denunciar, entre víctimas que no denunciaron (`BP1_23`) | **MEDIDO**, distribución de categorías, sin cruzar con x | ENVIPE | 2025 | `BP1_23` | 36 040 | Ídem, sin condicionar por edad/dominio (declarado, §1.0) |
+| Razones de sí denunciar, entre víctimas que denunciaron (`BP1_28`) | **MEDIDO**, distribución de categorías, sin cruzar con x | ENVIPE | 2025 | `BP1_28` | 4 110 | Ídem |
 
-**Clase sugerida para `milpa/procedencia.yaml` — declarada, no ejecutada**
-(el encargo no pide tocar `milpa/` en este acto y esta nota no lo hace):
-`exposicion_violencia` pasaría de `magnitud: asignada` (`0.70`,
-`milpa/procedencia.yaml:419`) a **`MEDIDO·PARCIAL(x)`** — ejes efectivos:
-edad (conjunto), dominio (marginal), sobre `BP1_20`; sin condicionar sobre
-`BP1_23`/`BP1_28`. Formalidad, ingreso y migración **NO DISPONIBLES** en
-esta fuente (§0.2) — el mismo truncamiento C4 que P2 ya había anotado para
-este coeficiente, ahora con números detrás en vez de solo la marca
-"truncado".
+**No se sugiere ninguna clase nueva para `exposicion_violencia` en
+`milpa/procedencia.yaml`.** `milpa/procedencia.yaml:419` sigue con
+`magnitud: asignada` (`0.70`) y así se queda — no hay reactivo verificado
+en este acto que lo mueva de ahí. La sugerencia de §4 de la versión
+anterior de esta nota (`MEDIDO·PARCIAL(x)` para `exposicion_violencia`) se
+**retira** — no se ejecutó nunca contra `milpa/` (la nota nunca tocó ese
+archivo), así que no hay reversión que hacer ahí, solo retirar la
+recomendación escrita aquí.
 
-**Qué le falta al coeficiente `G4` para salir de TRUNCADO (bonus del
-encargo — señalado, no estimado):** P2 (`§2.d`) da la ficha completa de
-`G4 exposicion_violencia` como `IDENTIFICADO · TRUNCADO`. `C1` (este acto)
-y `C2` (`BP1_23` vía `comunicacion.inseguridad.ver_oir_callar`, `Parcial`
-según P2) ya tienen reactivo — el truncamiento no es de identificación, es
-de **cobertura de ejes**: falta digital y migración en ENVIPE (ausentes de
-la fuente, no recuperables sin cambiar de instrumento) y falta una
-declaración de ingreso — `ESTRATO` existe en `TMod_Vic` pero nadie lo ha
-validado todavía como análogo aceptable de los tramos de `ENIGH` (mismo
-tipo de brecha que ola 1 dejó abierta para `tloc` de ENIF, resuelta ahí
-verificando el catálogo — aquí queda sin resolver, es trabajo de otra
-sesión, no de esta). Salir de TRUNCADO no depende de más medición de `C1`:
-depende de que alguien declare y verifique si `ESTRATO` es un eje
-utilizable.
+### 4.2 · Reubicación del hallazgo — dos candidatos señalados, ninguno adjudicado
+
+**`civico.denuncia.con_seguro` (P2:248, `IDENTIFICADO`).** La regla usa
+exactamente `BP2_1` (vehículo asegurado) `×` `BP1_20` (denunció) `×`
+`BP1_28`, "celdas ENVIPE edad × urbanización" — el mismo instrumento y dos
+de las tres variables que mide esta nota (`BP1_20`, `BP1_28`), condicionado
+además por edad y `DOMINIO`, los mismos dos ejes que usa §3.1. **Lo que
+falta para que la tabla de §3 sirva directamente a esa regla es `BP2_1`**
+(vehículo asegurado) como filtro adicional — variable que esta sesión no
+leyó ni tocó. Se declara como candidato: la tabla de §3.1/§3.3 es un
+insumo cercano, no la medición de `civico.denuncia.con_seguro` — falta
+verificar `BP2_1` (universo, no-respuesta, si vive en `TMod_Vic` o en otra
+tabla) antes de poder decir que sirve. Si sirve o no, y si merece su propio
+acto de medición, es decisión de mesa — no se adjudica aquí.
+
+**`comunicacion.inseguridad.ver_oir_callar` (P2:264, C2 `Parcial` de `G4`
+vía `BP1_23`).** P2 ya marca `BP1_23` como el reactivo `Parcial` de esta
+regla, distinta de `exposicion_violencia`. La distribución de categorías
+de §3.2 de esta nota (razones de no denunciar, con las cuatro que apuntan
+a desconfianza institucional/costo de trámite en cabeza) es, por esa misma
+cita de P2, un candidato directo para esa regla — no para
+`exposicion_violencia`. Se declara, no se adjudica: verificar si la
+regla `comunicacion.inseguridad.ver_oir_callar` pide algo más que la
+distribución de §3.2 (universo, corte, condicionantes) es trabajo que esta
+nota no hace.
+
+**Qué le falta al coeficiente `G4` para salir de TRUNCADO — vigente, con
+una corrección.** P2 (`§2.d`) marca `G4 exposicion_violencia` como
+`IDENTIFICADO · TRUNCADO` con `C1` = `BP1_20`. Esa marca de P2 hereda el
+mismo rótulo que §4.0 corrige aquí — **de qué reactivo es realmente `C1`
+de `G4` queda una pregunta abierta, no resuelta por esta nota**: `BP1_20`
+mide denuncia, no exposición, así que si `C1` sigue siendo `BP1_20` la
+ficha de P2 tiene el mismo defecto que esta sección corrige. Esta nota no
+edita P2 (§0.1 y `hallazgos.md`, entrada nueva) ni resuelve cuál es el `C1`
+correcto de `G4` — se limita a señalar que la pregunta está abierta.
 
 ---
 
 ## 5 · El contador
 
-**condicionales medidas sobre atributos: 7 de 14**
+**condicionales medidas sobre atributos: 6 de 14 — sin cambio.**
 
-Los siete son los seis componentes de `confianza_institucional` (ola 1 +
-ola 2) más `exposicion_violencia` (este acto), medido como distribución
-condicional empírica (no media puntual) sobre `BP1_20` — `n` sin ponderar,
-estimación ponderada por `FAC_DEL`, dispersión por conglomerado último,
-sobre un subconjunto declarado de `x` (edad, dominio — sin formalidad,
-ingreso ni migración, NO DISPONIBLES en esta fuente). `BP1_23`/`BP1_28` se
-miden también (§3.2-3.3) pero no aportan ejes adicionales de `x` al mismo
-componente — se reportan como parte de la caracterización del reactivo
-directo del parámetro, no como una segunda condicional que mueva el
-contador por separado. Los 7 escalares restantes
-(`aversion_riesgo`, `deferencia`, `familismo_apoyo`, `familismo_obligacion`,
-`horizonte_temporal`, `radio_confianza`, `sens_estatus`) siguen fuera de
-alcance de este acto, no medidos aquí, y el contador no los infla. `D`=14
-derivado en `canon` §1.1.F.
+Este acto no midió `exposicion_violencia`: midió otra cosa (conducta de
+denuncia condicionada a victimización, y sus razones — §4) que también
+valía la pena medir, pero que no es ninguna de las 14 condicionales
+declaradas en `canon` §1.1.F. El contador sigue en los seis componentes de
+`confianza_institucional` que propagó `PR #56` (ola 1 + ola 2) —
+`milpa/procedencia.yaml:419` sigue con `exposicion_violencia:
+magnitud asignada`, sin medir. La posición 4 de `hitoE §14.3` sigue viva
+(`exposicion_violencia` sigue sin medir) pero su fuente/variable queda por
+determinar — ver `forense/hitoE-campana-medicion-v2_0.md` §15 (adenda que
+corrige la fila 4 de §14.3) y `forense/hallazgos.md`.
 
-**Este acto no propaga el contador a `milpa/procedencia.yaml` ni a ningún
-otro artefacto de canon** — es el mismo límite que declararon ola 1 y ola
-2: la propagación es un acto posterior, distinto, con su propio PR.
+**Este acto no propaga ningún contador a `milpa/procedencia.yaml` ni a
+ningún otro artefacto de canon** — no hay nada que propagar: el número no
+se movió.
 
 ---
 
@@ -443,3 +516,16 @@ de respuesta completas — verificado suficiente, mismo criterio que usó ola
 --verifica` sobre `envipe2025_csv`. No se editó `milpa/procedencia.yaml`,
 `canon/modelo-decision-v4_0.md` ni ningún otro artefacto de canon — todos
 se leyeron, ninguno se tocó.
+
+**Adenda de esta sesión, 04/ago/2026 (corrección de rótulo).** Leído
+además: `canon/modelo-decision-v4_0.md:365-380` (tabla de generadores y
+cláusulas falsables, `G4`) y `:2.2` (coeficientes); `milpa/procedencia.yaml:365-448`
+(asignación de coeficientes de `G4` y `riesgos_cruzados`); re-verificado
+`forense/notas/2026-08-01-p2-momentos-atributos.md:229,248,264` línea por
+línea (no de memoria); `forense/hitoE-campana-medicion-v2_0.md` §14.4-§14.7
+(mecanismo de enmienda de la cola); `forense/hallazgos.md` completo (formato
+de entrada); `python3 tests/check.py --baseline` corrido en esta sesión.
+Sigue sin tocarse `milpa/procedencia.yaml` y sigue sin tocarse P2 — la
+corrección de rótulo de P2 se registra en `forense/hallazgos.md`, no se
+edita la nota misma (fuera de perímetro de este acto, decisión de mesa si
+amerita acto aparte).
