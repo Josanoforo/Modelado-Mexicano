@@ -2981,3 +2981,159 @@
   licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: cpv2020_caas_eum_csv
+  usado_para: 'microdatos — Cuestionario Ampliado, muestra de personas (nacional, EUM). Marginales
+    de los 6 ejes de perfil (modelo §1.1). Cubre solo viviendas particulares habitadas: excluye
+    colectivas, Servicio Exterior y población sin vivienda (declarado por el portal).'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ccpv/2020/microdatos/caas/Censo2020_CAAS_eum_csv.zip
+  fecha_descarga: '2026-08-03'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
+    URL localizada en DescargaMasivaOD.xml de descarga masiva)
+  archivo: Censo2020_CAAS_eum_csv.zip
+  sha256: 10b56a3b724c14c000464f3a632a9eb845dd5fa0ffc800d16644840d74b7c125
+  tamano_bytes: 1076224
+  formato: ZIP (CSV)
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: cpv2020_iter_nal_csv
+  usado_para: microdatos — Iter (Iteración de localidad), agregados nacionales por localidad.
+    Marginales que la síntesis IPU necesita (modelo §1.1).
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ccpv/2020/microdatos/iter/ITER_NAL_2020_csv.zip
+  fecha_descarga: '2026-08-03'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
+    URL localizada en DescargaMasivaOD.xml de descarga masiva)
+  archivo: ITER_NAL_2020_csv.zip
+  sha256: ff39bb1d1b6e6adcc6204622535d213d4cd04902bc6ab6e8345f244a6d5f85d6
+  tamano_bytes: 36604573
+  formato: ZIP (CSV)
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: cpv2020_diccionario_cuestionario_ampliado_xlsx
+  usado_para: documentación — diccionario de datos del Cuestionario Ampliado (CAAS/CEU), necesario
+    para interpretar las columnas de esas dos bases
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ccpv/2020/microdatos/diccionario_cuestionario_ampliado_cpv2020.xlsx
+  fecha_descarga: '2026-08-03'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
+    URL localizada en DescargaMasivaOD.xml de descarga masiva)
+  archivo: diccionario_cuestionario_ampliado_cpv2020.xlsx
+  sha256: e728cdac1872be856ba15c2902a77fb6c03e60c2d98619b7ae8988cc82afb6dc
+  tamano_bytes: 95642
+  formato: XLSX
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: cpv2020_caas_descriptor_bd_xlsx
+  usado_para: documentación — descriptor de la base de datos CAAS (estructura de tablas/campos,
+    no diccionario de variables de reactivo)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ccpv/2020/doc/Censo2020_CAAS_descriptor_bd.xlsx
+  fecha_descarga: '2026-08-03'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
+    URL localizada en DescargaMasivaOD.xml de descarga masiva)
+  archivo: Censo2020_CAAS_descriptor_bd.xlsx
+  sha256: ca169ac742c3cb683025e5e7933eaf8e11803a157981a8efbe6f09d38fb01dcd
+  tamano_bytes: 77167
+  formato: XLSX
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: cpv2020_ceu_descriptor_bd_xlsx
+  usado_para: documentación — descriptor de la base de datos CEU (estructura de tablas/campos,
+    no diccionario de variables de reactivo)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ccpv/2020/doc/Censo2020_CEU_descriptor_bd.xlsx
+  fecha_descarga: '2026-08-03'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
+    URL localizada en DescargaMasivaOD.xml de descarga masiva)
+  archivo: Censo2020_CEU_descriptor_bd.xlsx
+  sha256: b497acecd542c50379fcb505b84e4bf016caae99fb440bbd8655384372e5a87e
+  tamano_bytes: 52106
+  formato: XLSX
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: cpv2020_fd_iter_pdf
+  usado_para: documentación — ficha descriptiva de Iter (estructura de campos del agregado
+    por localidad, no diccionario de reactivo)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ccpv/2020/doc/fd_iter_cpv2020.pdf
+  fecha_descarga: '2026-08-03'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
+    URL localizada en DescargaMasivaOD.xml de descarga masiva)
+  archivo: fd_iter_cpv2020.pdf
+  sha256: 1b7ea20fb8f00b9ed248da725a43bda0c7bab6c96d4fe77d6ddf51b1876525eb
+  tamano_bytes: 921352
+  formato: PDF
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enadid2023_base_datos_csv
+  usado_para: microdatos — ENADID 2023, base de datos completa. Eje de condición migratoria
+    con referencia temporal explícita (cierra el límite que P1/ENIGH dejó anotado, forense/notas/2026-07-31-p1-enigh-semilla.md:61)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enadid/2023/microdatos/base_datos_enadid23_csv.zip
+  fecha_descarga: '2026-08-03'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
+    URL directa en HTML del portal, sin XML de descarga masiva)
+  archivo: base_datos_enadid23_csv.zip
+  sha256: 995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18
+  tamano_bytes: 44922433
+  formato: ZIP (CSV)
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enadid2023_fd_xlsx
+  usado_para: documentación — ficha descriptiva/diccionario de la base de datos ENADID 2023
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enadid/2023/microdatos/fd_enadid23.xlsx
+  fecha_descarga: '2026-08-03'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
+    URL directa en HTML del portal, sin XML de descarga masiva)
+  archivo: fd_enadid23.xlsx
+  sha256: d56582b7ace04e2c13a1b9ea22aeea458d7b9cc02a21241e5fda29fe12b4f34c
+  tamano_bytes: 2085302
+  formato: XLSX
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: descargamasiva_382026_131650_xml
+  usado_para: 'mecanismo — manifiesto de 576 URLs reales de descarga directa para CPV 2020
+    (570 microdatos + 6 doc), resuelve el bloqueo de proyecto/anio del endpoint AJAX declarado
+    en forense/notas/2026-07-31-cola-descarga-rederivada.md §4. Usado esta sesión para derivar
+    las 7 URLs de CPV registradas junto a esta entrada. No es payload de encuesta: es el índice
+    de URLs.'
+  url_origen: no determinada (generado por el portal /programas/ccpv/2020/ al solicitar 'descarga
+    masiva' desde el navegador; el XML no tiene URL propia de descarga, se entrega dentro
+    de DescargaMasiva_382026_131650.zip)
+  fecha_descarga: '2026-08-03'
+  descargado_por: usuario, vía navegador (botón 'Descarga masiva' de /programas/ccpv/2020/);
+    extraído del zip por el agente en esta sesión
+  archivo: DescargaMasivaOD_382026_131650.xml
+  sha256: 97bdf1888b9c441860cc4bc49f445026fc35335695840c85fedab22f5d3fa46c
+  tamano_bytes: 69763
+  formato: XML
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: cpv2020_ceu_eum_csv
+  usado_para: microdatos — Cuestionario Ampliado, muestra de viviendas (nacional, EUM), misma
+    muestra que CAAS. Cubre solo viviendas particulares habitadas (declarado por el portal).
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ccpv/2020/microdatos/ceu/Censo2020_CEU_eum_csv.zip
+  fecha_descarga: '2026-08-03'
+  descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
+    URL localizada en DescargaMasivaOD.xml de descarga masiva; re-descargado tras hash inestable
+    en el primer intento, ver forense/notas/)
+  archivo: Censo2020_CEU_eum_csv.zip
+  sha256: 49f2dd9563d9dda71f884b57655ecd1b34607c51acca72f8647403810a84d2cd
+  tamano_bytes: 135163712
+  formato: ZIP (CSV)
+  licencia: Uso público INEGI, art. 100 LSNIEG (citar la fuente)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
