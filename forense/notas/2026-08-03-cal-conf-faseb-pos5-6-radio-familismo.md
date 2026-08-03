@@ -518,19 +518,28 @@ encuci2020_bd_dbf [data_raw]: COINCIDE -- sha256 y tamaño (6913684 bytes) verif
 
 **Defecto encontrado por revisión, no por esta sesión: la primera versión
 de esta nota afirmó "ninguno lo introduce esta sesión" con una cifra
-(19/84) que en realidad era la de `main`, no la del árbol de la rama —
+(19/84) que en realidad era la de main, no la del árbol de la rama —
 corrida antes de escribir el §1.2 con las citas cruzadas, no re-corrida
 después.** La rama sí introducía 2 FAIL/WARN nuevos, ambos en este mismo
-archivo: `` `raices.local.yaml` `` citado sin el prefijo `data/` (línea 16
-de esta nota; `data/raices.local.yaml` sí está exento porque T03 no
-matchea rutas con `/` dentro de las comillas — el mismo patrón que usan
-`hallazgos.md` y `2026-07-31-p1-enigh-semilla.md` en `main`) y
-`` `cal-conf-faseb-medicion.md` `` citado sin la fecha (línea 275; el
-archivo real es `2026-08-03-cal-conf-faseb-medicion.md`, citado bien dos
-líneas más abajo en la 545 de la versión anterior). Corregidas ambas
-citas. `git merge origin/main` corrido antes de la re-corrida (la rama
-nació en `2a218a1`; `main` ya traía `PR #58`, posición 8 — merge limpio,
-sin pérdida, la nota de esa posición sobrevive intacta).
+archivo: el nombre de archivo sin su prefijo de carpeta (`data/`) para el
+YAML de raíces locales — sin ese prefijo, T03 lo lee como cita de un
+archivo suelto que no existe; con el prefijo (que sí lleva `/` dentro de
+las comillas) queda exento, el mismo patrón que usan `hallazgos.md` y
+`2026-07-31-p1-enigh-semilla.md` en `main` — y el nombre de la nota de la
+primera ola sin su prefijo de fecha (línea 275; el archivo real es
+`2026-08-03-cal-conf-faseb-medicion.md`, citado bien ahí). Corregidas
+ambas citas. **Segundo defecto, encontrado por una segunda revisión: el
+párrafo que acabas de leer, al citar entre comillas simples los dos
+nombres *mal escritos* para explicar el error, volvía a disparar T03 —
+el test no distingue mención de referencia y cita real. Reescrito arriba
+sin comillas simples alrededor de los dos nombres ilustrativos** (así se
+entienden igual en prosa, sin darle a T03 nada que matchear); las citas
+que sí son referencias reales a archivos existentes (`data/raices.local.yaml`,
+`2026-08-03-cal-conf-faseb-medicion.md`, `hallazgos.md`,
+`2026-07-31-p1-enigh-semilla.md`) siguen entre comillas simples, como
+corresponde. `git merge origin/main` corrido antes de la re-corrida (la
+rama nació en `2a218a1`; `main` ya traía `PR #58`, posición 8 — merge
+limpio, sin pérdida, la nota de esa posición sobrevive intacta).
 
 `python3 tests/check.py` — salida cruda, re-corrida sobre el árbol
 sincronizado con `main` y con las dos citas corregidas:
