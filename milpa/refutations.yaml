@@ -62,7 +62,15 @@ primera_corrida:
       Mientras no se decida, la batería reporta 49 pruebas de las que 8 son
       inejecutables por construcción: el denominador está inflado.
   once_requieren_ejecutable:
-    bloqueo: "MILPA Fase 1 está POSPUESTA por decisión (no por olvido)"
+    bloqueo: >
+      Corregido 3/ago/2026 (ADR-51, cascada de ADR-50): decía "MILPA Fase 1
+      está POSPUESTA por decisión (no por olvido)" -- ya no lo está: ADR-50
+      (31/jul/2026) la declaró arquitectura objetivo del programa, calibrada
+      por AJUSTE, no por identificación causal, y ADR-51 (3/ago/2026) ejecuta
+      la cascada a este campo que ADR-50 dejó pendiente. Bloqueo vigente hoy:
+      MILPA Fase 1 no tiene simulador ejecutable (3 de 10 rules/*.yaml,
+      estado §L4) -- las 11 refutaciones siguen sin poder correr, pero por
+      falta de implementación, no por estar pospuesta.
     consecuencia: >
       22% de la batería no puede correr hasta que exista el simulador. La
       cobertura real hoy es 30 de 49 refutaciones ejecutables (61%).
