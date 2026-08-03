@@ -20,7 +20,7 @@
 
 | Nombre estable | Archivo vigente | Qué es |
 |---|---|---|
-| **`modelo`** | `modelo-decision-v3.4.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
+| **`modelo`** | `modelo-decision-v4.0.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
 | **`glosario`** | `glosario-v5.6.md` | CANÓNICO. Único punto legítimo de entrada de un tier |
 | **`gobernanza`** | `gobernanza-v1.15.md` | 51 ADR, protocolo de cambio |
 | **`estado`** | `estado-programa-v1.9.md` | Este archivo |
