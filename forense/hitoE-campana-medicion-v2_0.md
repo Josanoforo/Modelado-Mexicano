@@ -715,3 +715,205 @@ de `G1a`). No se abrió ningún descriptor, cuestionario, portal ni microdato
 nuevo — todo lo citado ya estaba escrito en Fase A o en canon publicado. No
 se rederivó la cola priorizada de `§8`/`§9` de las adendas del 31/jul: sigue
 como estaba.
+
+## 13 · Adenda 03/ago/2026 — la nota "queda anotado, sin actuar" de `§12` se resuelve: los tres PARCIAL restantes también tienen reactivo específico
+
+**Disciplina aplicada:** adenda fechada, append-only. El cuerpo (§0–§12) no
+se tocó — ni una palabra, incluida la adenda de `PR #48`. Esta sección es de
+otra sesión, con otra procedencia.
+
+**Procedencia.** Tipo (3) hasta verificarla aquí: la premisa de qué dice
+`CAL-CONF` Fase A sobre seguridad-FFAA, justicia-policía y electoral-partidos
+viene citada de segunda mano en `§12.1` ("Fase A también reporta reactivo
+específico... queda anotado, sin actuar") y de la adenda del `PR #48`; esta
+sesión la contrasta contra `forense/notas/2026-07-31-cal-conf-fasea.md`
+(Fase A, tabla "Resultado por componente", leída completa) — tipo (1) desde
+aquí. También se leyó `forense/notas/2026-08-03-cal-conf-faseb-medicion.md`
+§4 (íntegra esa sección), `data/manifiesto.yaml` (grep sobre los cuatro ids
+de instrumento citados) y se corrió `tests/manifiesto.py --verifica` sobre
+esos cuatro ids en esta sesión. No se abrió descriptor, cuestionario, portal
+ni microdato nuevo — todo lo citado ya estaba escrito en Fase A. No se tocó
+`canon/` ni `milpa/`. No se rederivó la cola priorizada de `§8`/`§9`.
+
+### 1 · La premisa, verificada línea por línea contra Fase A
+
+`§12.1` dice, sin actuar: *"Fase A también reporta reactivo específico para
+seguridad-FFAA, justicia-policía y electoral-partidos (hoy PARCIAL en la
+tabla de §3) — pero revisar esos tres es re-priorizar coberturas de la
+campaña, y el encargo que produce esta adenda lo prohíbe expresamente."* El
+encargo que produce **esta** adenda es distinto: pide leer Fase A
+directamente y aplicar, sin inflar, el mismo criterio que ya clasificó salud
+(y luego educación y financiera) como INSTRUMENTADO. Leída la tabla de Fase
+A completa, la premisa se sostiene y con el mismo nivel de detalle que la
+premisa exigía — variable, archivo, página — para los tres:
+
+- **Seguridad-fuerzas armadas → SÍ, específico.** Fase A: *"ENVIPE `AP5_4_08`
+  Ejército, `AP5_4_09` Fuerza Aérea, `AP5_4_10` Marina, `AP5_4_04` Guardia
+  Nacional (`fd_envipe2025.pdf`, sección 5.4, pp. 33-34) · ENCUCI `AP5_3_4`
+  'Ejército y Marina', `AP5_3_5` 'Guardia [Nacional]' (`FD_ENCUCI2020.pdf`,
+  pregunta 5.3, p. 27) · ENCIG ítem 20 'Guardia Nacional', ítem 21 'Ejército
+  y Marina' (`encig21_cuestionario.pdf`, sección XI, pregunta 11.1, p. 22)"*.
+  Institución nombrada por variable, en tres instrumentos independientes —
+  no "confianza en instituciones" sin desagregar.
+- **Justicia-policía → SÍ, específico.** Fase A: *"ENVIPE `AP5_4_01/02/03/05`
+  (policía de tránsito/preventiva/estatal/ministerial), `AP5_4_06` Ministerio
+  Público, `AP5_4_07` Fiscalía General, `AP5_4_11` Jueces (pp. 29-34) ·
+  ENCUCI `AP5_3_1` Jueces, `AP5_3_3` Policía (p. 27) · ENCIG ítem 2
+  'Policías', ítem 17 'Jueces y Magistrados', ítem 22 'Ministerio Público'
+  (p. 22)"*. Mismo patrón: variable nombrada por institución, tres
+  instrumentos.
+- **Electoral-partidos → SÍ, específico.** Fase A: *"ENCUCI `AP5_2_5`
+  'Partidos' (p. 26), `AP5_3_6` 'Senadores federales', `AP5_3_7`
+  'Diputados', `AP5_3_8` 'Instituto [Nacional Electoral]' (p. 27-28) · ENCIG
+  ítem 12 'Cámaras de Diputados y Senadores', ítem 14 'Institutos
+  electorales', ítem 19 'Partidos políticos' (p. 22)"*.
+
+**El criterio que decide, aplicado sin inflar.** `§12.1` fijó la regla:
+*"Reactivo específico == 'SÍ' en la columna de Fase A, mismo criterio que ya
+usa esta tabla para clasificar salud como INSTRUMENTADO ('declara
+explícitamente'). No PARCIAL: no es alcance adyacente, es la variable
+nombrada."* Las tres filas de arriba cumplen exactamente esa condición — la
+misma tabla de Fase A que trae "SÍ" para las tres, con variable, archivo y
+página, y no "alcance temático" de catálogo (`data/catalogo-fuentes-v1_0.md`,
+la fuente que sí sustentaba el PARCIAL original de `hitoE:367-369`). El
+motivo original de PARCIAL — *"confianza en instituciones genérico, sin
+desagregar el componente"* — era una lectura de catálogo, no de instrumento;
+Fase A abrió el instrumento y encontró exactamente la desagregación que
+faltaba. No se aplica aquí la regla de "no inflar": los tres reactivos no
+son genéricos, y clasificarlos PARCIAL a estas alturas — con la cita en
+mano — sería subestimar, no el error simétrico.
+
+**Lo que esto NO dice.** Ningún componente tiene ya, en esta adenda, corte
+formal/informal distinto del que Fase A ya reportaba (`§`"Corte
+formal/informal" de la nota): los tres traen "SÍ, vía ENCUCI: mismo
+`AP3_15_4`" — no cambia con esta corrección, solo el estatus de reactivo.
+
+### 2 · Tabla de `§3`, corregida en las tres filas restantes
+
+| Componente | Veredicto (antes, `§12`) | Veredicto (ahora) | Candidata |
+|---|---|---|---|
+| seguridad / FFAA | PARCIAL | **INSTRUMENTADO** | ENVIPE `AP5_4_04/08/09/10`, ENCUCI `AP5_3_4`/`AP5_3_5`, ENCIG ítem 20/21 |
+| justicia-policía | PARCIAL | **INSTRUMENTADO** | ENVIPE `AP5_4_01/02/03/05/06/07/11`, ENCUCI `AP5_3_1`/`AP5_3_3`, ENCIG ítem 2/17/22 |
+| electoral / partidos | PARCIAL | **INSTRUMENTADO** | ENCUCI `AP5_2_5`/`AP5_3_6`/`AP5_3_7`/`AP5_3_8`, ENCIG ítem 12/14/19 |
+
+**Tabla de `§3` completa, hoy: 6 INSTRUMENTADO · 0 PARCIAL · 0 SIN
+INSTRUMENTO.** Los seis componentes del vector `confianza_institucional`
+tienen ya reactivo específico verificado contra descriptor/cuestionario en
+al menos un instrumento.
+
+### 3 · Cascada sobre las fichas de `§5` — `G1` deja de ser "el peor caso posible"; `G4` sube directo
+
+**`G4` (`confianza_institucional[justicia]`), directo.** La ficha de `G4`
+nombra el componente `justicia` explícitamente (`canon/modelo-decision-v4_0.md:392`).
+Con justicia-policía → INSTRUMENTADO (§2 arriba), la ficha sube en el mismo
+movimiento — no hay indeterminación de componente que resolver, a diferencia
+de `G1`.
+
+**`G1` (`confianza_institucional[dominio]`), por el piso.** `§12.2` razonó:
+*"esos seis se miden donde vive su instrumento... tampoco los seis son
+INSTRUMENTADO, así que darle ese estatus [a `G1`] sería inflarla sobre el
+peor caso posible"* — y por eso dejó a `G1` en PARCIAL, el peor caso de los
+seis en ese momento (3 INSTRUMENTADO, 3 PARCIAL). Con la corrección de `§2`
+arriba, el peor caso posible entre los seis componentes es hoy
+INSTRUMENTADO — no queda ningún componente al que `G1a` pueda aterrizar por
+debajo de ese estatus. Mismo razonamiento de piso que usó `§12.2`, aplicado
+al nuevo piso: **`G1` (`confianza_institucional[dominio]`) → INSTRUMENTADO**
+(antes PARCIAL). Esto no resuelve `D-12` ni la pregunta de homogeneidad de
+pendientes que `canon/modelo-decision-v4_0.md:396` deja abierta (si `G1a`
+debe desdoblarse en seis `ASIGNADO` nombrados) — esa pregunta es sobre la
+*forma* del coeficiente, no sobre si su componente tiene instrumento; sigue
+sin decidir, y esta adenda no la toca.
+
+**Tabla de `§5` (15 fichas), corregida:**
+
+| Generador | Coeficiente | Veredicto (antes, `§12`) | Veredicto (ahora) |
+|---|---|---|---|
+| G1 | `confianza_institucional[dominio]` | PARCIAL | **INSTRUMENTADO** |
+| G4 | `confianza_institucional[justicia]` | PARCIAL | **INSTRUMENTADO** |
+
+Las 13 filas restantes de `§5` no cambian: `radio_confianza` (G1, G5),
+`sens_estatus`/`aversion_riesgo`/`horizonte_temporal`/`familismo_apoyo`/`familismo_obligacion`/`deferencia`
+no son componentes del vector `confianza_institucional` y Fase A no los
+tocó. **Total `§5`: 3 INSTRUMENTADO (antes 1) · 2 PARCIAL (antes 4) · 10 SIN
+INSTRUMENTO (sin cambio). 3+2+10=15.**
+
+### 4 · Efecto derivado sobre `§6` y `§7`
+
+**Tabla `§6` (estricto/laxo, 15 fichas).** Estricto (INSTRUMENTADO puro):
+**1 → 3 de 15** (se suman `G1` y `G4`). Laxo (INSTRUMENTADO + PARCIAL): sigue
+**5 de 15** — no cambia el total laxo, solo se redistribuye de PARCIAL a
+INSTRUMENTADO dentro de él.
+
+**Tabla `§7` (105 números, unidad y aritmética de `hitoE:445-462`, sin
+inventar unidad nueva).** De las 15 unidades de `params_base` (8 constructos
+no-confianza + 6 componentes del vector + `acceso_digital`, per `§12.3`),
+las tres que suben son exactamente las tres de `§2` arriba — 3 unidades × 6
+perfiles = 18 `params_base` que se mueven de PARCIAL a INSTRUMENTADO:
+
+```
+params_base (90 = 15 unidades × 6 perfiles), sobre el estado post-§12:
+  INSTRUMENTADO:      30 (5 unidades) → 48 (8 unidades)   Δ +18  (seguridad-FFAA, justicia-policía, electoral-partidos, +6 c/u)
+  PARCIAL:             24 (4 unidades) → 6 (1 unidad)      Δ −18  (queda solo radio_confianza)
+  SIN INSTRUMENTO:     36 (6 unidades) → 36 (6 unidades)   Δ  0
+
+15 coeficientes (fichas, tabla §5):
+  INSTRUMENTADO:  1 → 3   Δ +2   (fichas de G1 y G4)
+  PARCIAL:        4 → 2   Δ −2   (quedan radio_confianza de G1 y de G5)
+  SIN INSTRUMENTO:10 → 10  Δ  0
+
+Subtotal 105 (15 + 90), sobre el post-§12 (31/28/46):
+  INSTRUMENTADO:  31 → 51   Δ +20
+  PARCIAL:        28 →  8   Δ −20
+  SIN INSTRUMENTO:46 → 46   Δ  0
+  (51 + 8 + 46 = 105 — se conserva el total, ✔)
+```
+
+Los 39 `probabilidades_de_regla` no se tocan, igual que declaraba `§12.3`.
+
+### 5 · Nota de consecuencia para Fase B — insumo para la segunda ola, declarado y no ejecutado
+
+Los tres componentes que suben quedan con fuente y variable nombradas, en
+los mismos tres instrumentos que la primera ola de Fase B
+(`forense/notas/2026-08-03-cal-conf-faseb-medicion.md`) ya abrió a nivel de
+microdato (ENCIG 2021, ENCUCI 2020) más uno que esa ola no abrió (ENVIPE
+2025). Payload en disco, derivado con `tests/manifiesto.py --verifica`
+corrido en esta sesión sobre los cuatro ids de instrumento citados — los
+cuatro **AUSENTE** en esta sesión (el payload no se commitea; no es hallazgo
+nuevo, mismo patrón que el resto del repo):
+
+- **seguridad-FFAA** — fuente ENVIPE, variable `AP5_4_04`/`AP5_4_08`/`AP5_4_09`/`AP5_4_10`;
+  id de manifiesto `envipe2025_fd_pdf` (`fd_envipe2025.pdf`) → AUSENTE en
+  `data_raw` en esta sesión.
+- **justicia-policía** — fuente ENVIPE, variable `AP5_4_01`/`02`/`03`/`05`/`06`/`07`/`11`;
+  mismo id `envipe2025_fd_pdf` → AUSENTE.
+- **electoral-partidos** — fuente ENCUCI, variable `AP5_2_5`/`AP5_3_6`/`AP5_3_7`/`AP5_3_8`;
+  id de manifiesto `encuci2020_fd_pdf` (`FD_ENCUCI2020.pdf`) → AUSENTE.
+
+(Los tres también tienen candidata en ENCIG — ids `encig2021_cuestionario_pdf`
+y `encig2021_estructura_base_datos_pdf`, ambos verificados AUSENTE en esta
+sesión también.) Ninguna cifra de esta sección se tecleó: los cuatro ids se
+corrieron contra `tests/manifiesto.py --verifica` en esta misma sesión. Esta
+adenda no mide — no abre microdato, no corre el script de Fase B — es
+insumo declarado para quien ejecute esa segunda ola.
+
+### 6 · Discrepancia señalada, no corregida
+
+`forense/notas/2026-08-03-cal-conf-faseb-medicion.md` §4 describe a los tres
+componentes de esta adenda como *"candidata adyacente, no reactivo textual
+confirmado por inspección completa"* — heredado de la caracterización de
+`§12` antes de esta corrección. Con `§1`-`§2` de esta adenda, esa frase ya
+no describe lo que Fase A trae. Esta adenda no edita esa nota — es de otra
+sesión, con su propia fecha — y la deja anotada para quien la mantenga.
+
+### 7 · Límite de lectura declarado
+
+Esta adenda leyó: `forense/hitoE-campana-medicion-v2_0.md` completo (para no
+repetir §0-§12); `forense/notas/2026-07-31-cal-conf-fasea.md` completa;
+`forense/notas/2026-08-03-cal-conf-faseb-medicion.md` (procedencia, §0 y §4);
+`canon/modelo-decision-v4_0.md` líneas 386-396 (leídas, no editadas);
+`data/manifiesto.yaml` (grep sobre los ids de `envipe2025_fd_pdf`,
+`encuci2020_fd_pdf`, `encig2021_cuestionario_pdf`,
+`encig2021_estructura_base_datos_pdf`) y corrió `tests/manifiesto.py
+--verifica` sobre esos cuatro ids. No se abrió descriptor, cuestionario,
+portal ni microdato nuevo. No se rederivó la cola priorizada de `§8`/`§9`
+de las adendas del 31/jul: sigue como estaba.
