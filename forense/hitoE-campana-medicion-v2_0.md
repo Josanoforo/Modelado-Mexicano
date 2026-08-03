@@ -544,3 +544,174 @@ propusieron constructos nuevos: los 9 (más `acceso_digital`) son los que
 > Ninguna de las dos observaciones reordena la cola — eso es decisión de
 > mesa. Ambas quedan para que la sesión que reordene (o la que verifique el
 > manifiesto) parta de aquí.
+
+---
+
+## 12 · Adenda 03/ago/2026 — `CAL-CONF` Fase A tumba dos veredictos SIN INSTRUMENTO; cierre de `D-12` re-declara la ficha de `G1`
+
+**Disciplina aplicada:** adenda fechada, append-only. El cuerpo (§0–§11,
+incluidas sus dos adendas del 31/jul) no se tocó — ni una palabra. Esta
+sección es de otra sesión, con otra procedencia.
+
+**Procedencia.** Tipo (1) para lo verificado contra archivo en esta sesión;
+la premisa de qué dice `CAL-CONF` Fase A es tipo (3) hasta leerla aquí, y
+tras leerla se sostiene. Fuentes: `forense/notas/2026-07-31-cal-conf-fasea.md`
+(Fase A, íntegra); `forense/hallazgos.md`, entrada **2026-08-03** ("Cierre de
+`D-12`"); `canon/gobernanza-v1_15.md` §4, entrada **ADR-51**; y, solo para
+resolver que `G1a` sigue escrito como `confianza_institucional[dominio]` sin
+componente fijo, `canon/modelo-decision-v4_0.md` líneas 386 y 394 (leídas,
+no editadas — ADR-46 no se viola: son líneas de canon ya publicadas, no un
+descriptor, cuestionario ni microdato). No se abrió ningún portal, cuestionario
+adicional ni microdato. No se tocó `canon/` ni `milpa/`.
+
+### 1 · Educación y financiera dejan de ser SIN INSTRUMENTO
+
+`forense/hitoE-campana-medicion-v2_0.md:370-371` (esta misma sesión las leyó
+sin cambios) marca **educación** y **financiera** como SIN INSTRUMENTO, celda
+de fuente vacía. `CAL-CONF` Fase A — que abrió descriptor y cuestionario, no
+solo alcance temático de catálogo — encontró para ambos un reactivo
+**específico**, no adyacente:
+
+- **Educación → INSTRUMENTADO.** Fase A, tabla "Resultado por componente":
+  *"ENCUCI `AP5_2_6` 'Universidades' (`FD_ENCUCI2020.pdf`, pregunta 5.2, p.
+  26) · ENCIG ítem 1 'Universidades públicas', ítem 16 'Escuelas públicas de
+  nivel básico' (`encig21_cuestionario.pdf`, sección XI, p. 22)"*. Reactivo
+  específico == "SÍ" en la columna de Fase A, mismo criterio que ya usa esta
+  tabla para clasificar salud como INSTRUMENTADO ("declara explícitamente").
+  No PARCIAL: no es alcance adyacente, es la variable nombrada.
+- **Financiera → INSTRUMENTADO.** Fase A: *"ENIF, Sección 11 'Confianza y
+  protección de personas usuarias de servicios financieros', `P11_1_1`-`P11_1_5`
+  (`enif_2024_fd.xlsx`, hoja `TMODULO`; `enif_2024_cuestionario.pdf`, p.
+  28)"* — y Fase A verificó aparte, sección "De paso", que la batería **no
+  está condicionada** a tener producto financiero: todo entrevistado adulto
+  la contesta. Fase A lo dice explícito: *"Esto tumba el veredicto SIN
+  INSTRUMENTO que `forense/hitoE-campana-medicion-v2_0.md:370-371` declara
+  para el componente financiero"*.
+
+No se infla el estatus de los otros cuatro componentes. Fase A también
+reporta reactivo específico para seguridad-FFAA, justicia-policía y
+electoral-partidos (hoy PARCIAL en la tabla de §3) — pero revisar esos tres
+es re-priorizar coberturas de la campaña, y el encargo que produce esta
+adenda lo prohíbe expresamente ("no rederivar la cola priorizada de hitoE").
+Queda anotado, sin actuar: otra sesión, contra el canon v4.0 completo.
+
+**Tabla de §3, corregida solo en las dos filas que cambian:**
+
+| Componente | Veredicto (antes) | Veredicto (ahora) | Candidata |
+|---|---|---|---|
+| educación | SIN INSTRUMENTO | **INSTRUMENTADO** | ENCUCI `AP5_2_6` "Universidades" |
+| financiera | SIN INSTRUMENTO | **INSTRUMENTADO** | ENIF Sección 11, `P11_1_1`-`P11_1_5` |
+
+### 2 · El razonamiento de `hitoE:373-377` caducó — la ficha de `G1` se re-declara
+
+**Lo que decía.** `G1` usa `confianza_institucional[dominio]`, sin resolver
+cuál de los seis componentes — atado a `D-12`, abierta — así que "no puede
+siquiera evaluarse hasta que se decida el componente" y se contaba SIN
+INSTRUMENTO por indeterminación, no por ausencia de fuente.
+
+**Lo que cambió.** `forense/hallazgos.md`, entrada 2026-08-03: *"Cierre de
+`D-12`... El reencuadre perfiles→atributos elimina esa tabla... `confianza_institucional`
+sale de la clase 'inidentificable con cualquier número de momentos' y pasa a
+IDENTIFICADO·TRUNCADO. ADR-51 es ese acto de mesa."* `canon/gobernanza-v1_15.md`
+§4, ADR-51, lo confirma: *"cierra `D-12`"*. La causa que esta ficha citaba —
+"no puede evaluarse hasta que se decida el componente" porque `modelo §1.1`
+no daba valor por componente bajo perfiles — ya no existe: esa tabla se
+eliminó.
+
+**Lo que NO cambió, y por qué la ficha no pasa a INSTRUMENTADO.**
+`canon/modelo-decision-v4_0.md:386` sigue escribiendo el coeficiente de `G1a`
+como `confianza_institucional[dominio] −0.60` — sin componente fijo, a
+diferencia de `G4` que usa `[justicia]` nombrado. La misma línea 394 lo
+explica: el `−0.60` "se aplica al componente que el dominio seleccione"
+(ADR-49, D3 — homogeneidad de pendientes declarada, no medida). `G1` no es
+una ficha sobre un componente: es una ficha que puede aterrizar en
+**cualquiera** de los seis, según qué regla de dominio dispare. Bajo el
+modelo v4.0, esos seis se miden donde vive su instrumento — la tabla
+corregida de §1 de esta adenda da: **3 INSTRUMENTADO** (salud, educación,
+financiera), **3 PARCIAL** (seguridad-FFAA, justicia-policía, electoral-partidos),
+**0 SIN INSTRUMENTO**. Ningún componente al que `G1a` pueda aterrizar queda
+ya sin candidata — la indeterminación que justificaba SIN INSTRUMENTO
+desapareció — pero tampoco los seis son INSTRUMENTADO, así que darle ese
+estatus a la ficha sería inflarla sobre el peor caso posible.
+
+**Re-declarado:** `G1` (`confianza_institucional[dominio]`) → **PARCIAL**
+(antes SIN INSTRUMENTO). Mismo criterio de piso que usa esta tabla en otras
+fichas con candidata adyacente, no textual, no confirmada por inspección
+completa.
+
+**Nota sin resolver, declarada y no actuada.** `canon/modelo-decision-v4_0.md:394`
+trae, en la misma nota de ADR-49 D3, la frase *"No cierra `D-12`... sigue
+abierta, es otro asunto"* — refiriéndose a si `G1a` debe desdoblarse en seis
+`ASIGNADO` nombrados como `G4`. Esa frase, leída sola, contradice el cierre
+que `hallazgos.md` (3/ago) y `gobernanza-v1_15.md` §4 (ADR-51) registran para
+el mismo `D-12`. Esta adenda no la resuelve — no edita `canon/` — y sigue la
+instrucción del encargo de verificar el cierre contra `hallazgos.md` (3/ago)
+y ADR-51, las dos fuentes que el propio encargo señaló como autoridad. Se
+deja la tensión anotada para que la sesión que sí pueda tocar `canon/` la
+concilie.
+
+### 3 · Efecto sobre el conteo del inventario, derivado
+
+Unidad y aritmética son las que ya usa `hitoE:445-462` (§7, "Cobertura sobre
+los 144 números") — no se inventa unidad nueva.
+
+**Tabla §5 (15 fichas, `hitoE:402-419`).** Solo la fila de `G1` cambia (SIN
+INSTRUMENTO → PARCIAL); ninguna otra fila la toca `educación`/`financiera`
+porque no son coeficientes de generador, son componentes del vector que solo
+`G1` y `G4` referencian. Antes: *"4 de 15 fichas tienen candidata (1
+instrumentada + 3 parciales); 11 de 15 no tienen ninguna."* Ahora: **5 de 15
+tienen candidata (1 instrumentada + 4 parciales); 10 de 15 no tienen
+ninguna.**
+
+**Tabla §6 (`hitoE:425-443`, criterio estricto/laxo).** Estricto
+(INSTRUMENTADO puro) no cambia: sigue **1 de 15** (`exposicion_violencia`,
+G4) — ni `G1` ni `educación`/`financiera` alimentan un coeficiente con
+INSTRUMENTADO. Laxo (INSTRUMENTADO + PARCIAL) sube de 4 a **5 de 15**, por la
+misma fila de `G1`.
+
+**Tabla §7 (105 números constructo-parametrizados, `hitoE:449-455`).** La
+fila de 90 `params_base` se reparte en 15 unidades × 6 perfiles (8
+constructos no-confianza + 6 componentes del vector + `acceso_digital`, como
+declara la adenda del 31/jul antes de esta tabla). Educación y financiera son
+2 de esas 15 unidades, y las dos saltan de SIN INSTRUMENTO a INSTRUMENTADO
+directo — sin pasar por PARCIAL, porque Fase A encontró reactivo específico,
+no adyacente:
+
+```
+params_base (90 = 15 unidades × 6 perfiles):
+  INSTRUMENTADO:      18 (3 unidades) → 30 (5 unidades)   Δ +12  (educación +6, financiera +6)
+  PARCIAL:             24 (4 unidades) → 24 (4 unidades)   Δ  0
+  SIN INSTRUMENTO:     48 (8 unidades) → 36 (6 unidades)   Δ −12
+
+15 coeficientes (fichas, tabla §5):
+  INSTRUMENTADO:  1 → 1   Δ  0
+  PARCIAL:        3 → 4   Δ +1   (ficha de G1)
+  SIN INSTRUMENTO:11 → 10  Δ −1
+
+Subtotal 105 (15 + 90):
+  INSTRUMENTADO:  19 → 31   Δ +12
+  PARCIAL:        27 → 28   Δ +1
+  SIN INSTRUMENTO:59 → 46   Δ −13
+  (31 + 28 + 46 = 105 — se conserva el total, ✔)
+```
+
+**Sobre el "12 números recuperados" que circula:** sí se deriva de este
+archivo, y es exactamente el número de arriba — **los 12 `params_base` de
+educación (6 perfiles) y financiera (6 perfiles) que saltan de SIN
+INSTRUMENTO a INSTRUMENTADO.** No es el efecto total sobre el inventario: el
+efecto total, incluida la ficha de `G1`, es **+12 INSTRUMENTADO / +1 PARCIAL
+/ −13 SIN INSTRUMENTO** sobre los 105 números constructo-parametrizados. Los
+39 `probabilidades_de_regla` no se tocan — no son de esta familia, igual que
+declara la tabla original.
+
+### 4 · Límite de lectura declarado
+
+Esta adenda leyó: `forense/hitoE-campana-medicion-v2_0.md` completo (para no
+repetir lo que las dos adendas del 31/jul ya cubren); `forense/notas/2026-07-31-cal-conf-fasea.md`
+completa; `forense/hallazgos.md` (entrada 2026-08-03, "Cierre de `D-12`");
+`canon/gobernanza-v1_15.md` §4 (entrada ADR-51); `canon/modelo-decision-v4_0.md`
+líneas 380-398 (tabla de coeficientes de generador y su nota de homogeneidad
+de `G1a`). No se abrió ningún descriptor, cuestionario, portal ni microdato
+nuevo — todo lo citado ya estaba escrito en Fase A o en canon publicado. No
+se rederivó la cola priorizada de `§8`/`§9` de las adendas del 31/jul: sigue
+como estaba.
