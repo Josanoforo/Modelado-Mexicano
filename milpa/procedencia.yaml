@@ -213,6 +213,63 @@ condicionales_confianza_institucional:
       reporta con su fragilidad declarada.
 
 # ══════════════════════════════════════════════════════════════════
+# RECLASIFICACIÓN v4.0 · CAL-CONF Fase B, posiciones 5-6 · 04/ago/2026 ·
+# dos parámetros escalares (no componentes de confianza_institucional)
+# pasan a MEDIDO·PARCIAL(x). Fuente única: forense/notas/2026-08-03-cal-
+# conf-faseb-pos5-6-radio-familismo.md §1-5 (PR #59 fusionado). Misma
+# clase que condicionales_confianza_institucional (arriba), distinta
+# sección porque estos dos no son componentes del vector de ADR-28.b.
+# ⚠ MARCA C3, viaja con el número (nota §1.0/§4, obligatoria de citar
+# cada vez que se use este dato para identificar un generador):
+#   - familismo_apoyo NO identifica G5 (el desenlace de G5 en ENIF es la
+#     misma variable que el reactivo -- circular). Sí identifica G3.
+#   - radio_confianza NO identifica cooperacion.confianza.puente_personal
+#     (el desenlace observado de esa regla es AP5_1_2, el propio
+#     reactivo -- circular). Sí identifica G1.
+# ══════════════════════════════════════════════════════════════════
+condicionales_escalares:
+  radio_confianza:
+    clase: "MEDIDO·PARCIAL(formalidad,edad,dominio), por ítem"
+    antes: "ASIGNADO -- coeficiente de generador (G1 -0.35, G5 0.15), sin condicional base medida"
+    fuente: "ENCUCI 2020, SEC_4_5, AP5_1_1 (mayoría de las personas) · AP5_1_2 (personas que conoce) · AP5_1_3 (vecinos de su colonia/localidad) -- forense/notas/2026-08-03-cal-conf-faseb-pos5-6-radio-familismo.md §1.1, §3.1, §4"
+    n_util: "21519 filas de tabla; útiles por ítem entre 20090 (vecinos) y 20131 (conocidos)"
+    eje_condicionante: "formalidad × edad (conjunto, 8 celdas) + dominio (marginal), por ítem"
+    nota: >
+      MEDIDO·PARCIAL(x), por ítem: 3 ítems separados (desconocidos /
+      conocidos personalmente / vecinos), no un escalar único --
+      promediarlos asumiría una unidimensionalidad de "radio de confianza"
+      que nadie verificó. Universo completo (todo entrevistado, sin
+      no-aplicabilidad estructural). Dicotomizado >=6/10, corte tomado del
+      propio enunciado de la pregunta ("como en la escuela"), no derivado
+      de la distribución.
+    marca_c3: >
+      NO USAR para identificar cooperacion.confianza.puente_personal
+      (canon/modelo-decision-v4_0.md:496): su desenlace observado en Tabla
+      B es AP5_1_2, el propio reactivo de esta entrada -- sería circular
+      (P2 §2.d). Compra la condicional de G1, no el coeficiente de esa
+      regla.
+  familismo_apoyo:
+    clase: "MEDIDO·PARCIAL(formalidad,edad,urbanización), por ítem"
+    antes: "ASIGNADO -- coeficiente de generador (G3 0.20, G5 0.50), sin condicional base medida"
+    fuente: "ENIF 2024, TMODULO, P9.9 '¿con qué piensa cubrir su vejez?' -- seis ítems (p9_9_1..6); p9_9_4 ('dinero de familiares') es el que opera el constructo, los otros cinco son contexto del mismo menú -- forense/notas/2026-08-03-cal-conf-faseb-pos5-6-radio-familismo.md §1.2, §3.2, §4"
+    n_util: "12379 filas (universo efectivo filtro_s9_1=2, <71 años -- 91.7% de TMODULO); p9_9_4 útiles=8221 tras cruce formalidad×edad"
+    eje_condicionante: "formalidad × edad (conjunto, 8 celdas) + tloc/urbanización (marginal), por ítem; NO se cruzan migración ni ingreso en este acto (declarado, §1.2 de la nota)"
+    nota: >
+      MEDIDO·PARCIAL(x), por ítem: 6 ítems del menú medidos por separado,
+      uno (p9_9_4) opera familismo_apoyo, los otros cinco (gobierno /
+      pensión-Afore / venta de bienes / seguir trabajando / otro) se
+      reportan como contexto del mismo menú de opción múltiple, no como
+      parte del constructo. Universo efectivo excluye 71+ años por
+      no-aplicabilidad estructural del cuestionario (blanco != no-respuesta,
+      cruce perfecto verificado contra filtro_s9_1).
+    marca_c3: >
+      NO USAR para identificar G5·familismo_apoyo (canon/modelo-decision-v4_0.md:465):
+      el desenlace de G5 en ENIF es familia.seguro.volatilidad_ausencia_estado,
+      observado con la misma batería P9_9_1..6 -- circular (P2 §2.d,
+      inventario:171). Sí identifica G3·familismo_apoyo (desenlace distinto,
+      dinero.ahorro.volatilidad_horizonte_corto vía P4_10).
+
+# ══════════════════════════════════════════════════════════════════
 # DEUDA BLOQUEANTE — los 90 parámetros de dispersión (ADR-28.d)
 # ══════════════════════════════════════════════════════════════════
 deuda_dispersion:
