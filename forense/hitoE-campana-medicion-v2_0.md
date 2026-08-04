@@ -1385,3 +1385,76 @@ recomienda para `sens_estatus` no se corrió aquí, queda encargado. No se
 tocó ninguno de: `milpa/procedencia.yaml`, `canon/modelo-decision-v4_0.md`,
 `canon/gobernanza-v1_15.md`. No se movió ningún contador. No se reclasificó
 ninguna otra fila de `§14.3` o `§14.4`.
+
+## 18 · Adenda 04/ago/2026 — ENDIREH paso 1: fila 4 de `§14.3` sí tiene candidatos, sin adjudicar
+
+**Disciplina aplicada:** adenda fechada, append-only, mismo mecanismo que
+`§15`-`§17`. `§14.3` no se edita — la fila 4 (corregida por `§15`) queda
+íntegra; esta adenda registra el resultado del paso 1 sobre ENDIREH que
+`canon/modelo-decision-v4_0.md:275` nombra como uno de los dos actos de
+búsqueda en curso para `exposicion_violencia` (el otro, "posición 4
+rehecha sobre `TPer_Vic1`", volvió **NO ALCANZABLE** por `PR #61`, sin
+examinar nada).
+
+**Clase: Corrección de fila, misma clase que `§14` entero — Propuesta. No
+es decisión. No rige sin ADR.**
+
+**Qué pasó.** `forense/notas/2026-08-04-cal-conf-faseb-pos4-endireh-paso1.md`
+bajó el descriptor de archivos de ENDIREH 2021 (`endireh2021_fd.pdf`, FD,
+730 pp., registrado en `data/manifiesto.yaml` como `endireh2021_fd_pdf`,
+sha256 verificado) y lo leyó contra la frase-criterio de `exposicion_violencia`.
+**Encontró once candidatas en `TB_VD` ("Tabla de variables derivadas")**:
+`VTOT_A`/`VTOT_12M` (agregado, cualquier tipo/ámbito), `VPSI`/`VFIS`/`VECO`/`VSEX`
+× vida/12m (por tipo de violencia), `VESC`/`VLAB`/`VCOM`/`VFAM`/`VPAR` ×
+vida/12m (por ámbito, con universos progresivamente más angostos que
+"mujeres 15+" — estudiantes, trabajadoras, con pareja). Ninguna mide
+conducta posterior (denuncia, búsqueda de ayuda) — el defecto que
+inhabilitó `BP1_20`/`BP1_23`/`BP1_28` de ENVIPE (`§15`) — todas describen
+"condición de violencia... a lo largo de la vida/últimos 12 meses" con
+catálogo con-incidencia/sin-incidencia, la incidencia misma, no la
+conducta que sigue.
+
+**Lo que la nota deja abierto, declarado, no fabricado.** El chequeo C3
+(circularidad contra Tabla B) pasa — ENDIREH no está entre las 8 fuentes
+de Tabla B, ninguna candidata puede aparecer del lado del desenlace. El
+chequeo C2 (mismo instrumento observa un desenlace enrutado por `G4`:
+`civico.protesta.agravio_urbano`, `civico.autodefensa.agravio_rural`,
+`comunicacion.inseguridad.ver_oir_callar`) **no se resolvió** — ninguna de
+las 20 secciones de ENDIREH se describe, por su resumen de tabla, como
+protesta/autodefensa/ver-oír-callar, pero la nota no leyó las 20 secciones
+completas para descartarlo con certeza. Si C2 falla, ENDIREH mediría la
+condicional `θ_k(x)` de `exposicion_violencia` sin identificar el
+coeficiente `β_G4` — "compra la condicional, no el coeficiente", el mismo
+patrón ya declarado para `familismo_apoyo`/`radio_confianza` (`modelo:271`).
+
+**Consecuencia sobre la fila 4, dicha con precisión.** La fila sigue
+**PENDIENTE DE VERIFICACIÓN** — este acto no midió nada y no mueve el
+contador (sigue en **8/14**). Lo que cambia es que la fila deja de estar
+sin ningún acto que la haya examinado con el instrumento abierto: por
+primera vez desde que `PR #57` retiró el reactivo de ENVIPE, hay
+candidatas verificadas por descriptor literal, con universo (mujeres
+15+, más angosto por ámbito) y ejes disponibles declarados (edad,
+urbanización, acceso digital a nivel hogar — confiables; ingreso a nivel
+persona — parcial; formalidad laboral y migración — sin equivalente
+confirmado en ENDIREH). **Cuenta como uno de los actos nombrados de la
+condición de caducidad de ADR-52 A** — no la cierra, porque sí produjo
+candidatos; de haber vuelto sin ninguno, habría sido el tercero y hubiera
+cerrado la búsqueda.
+
+**Qué le falta a la próxima sesión (paso 2).** Elegir entre el agregado
+(`VTOT_A`/`VTOT_12M`) y el desglose por ámbito/tipo, resolver C2 (leer las
+20 secciones o descartarlo por otra vía), y medir la condicional con el
+mismo rigor que ya se aplicó a `radio_confianza`/`familismo_apoyo`
+(ponderación, dispersión por conglomerado, estimador validado) —
+`endireh2021_fd.pdf` ya está registrado con hash, no hace falta volver a
+bajarlo si sigue en disco de esa sesión.
+
+### 18.1 · Límite de lectura declarado (ADR-46)
+
+Esta adenda leyó: `forense/notas/2026-08-04-cal-conf-faseb-pos4-endireh-paso1.md`
+completa; `canon/modelo-decision-v4_0.md:275` (para citar la condición de
+caducidad) y `:372` (cláusula de `G4`) — no re-derivados, solo citados.
+No se abrió microdato ni descriptor nuevo en este acto de adenda — la
+lectura del FD la hizo la nota citada. No se tocó `canon/` ni `milpa/`.
+No se movió ningún contador. No se reclasificó ninguna otra fila de
+`§14.3`.
