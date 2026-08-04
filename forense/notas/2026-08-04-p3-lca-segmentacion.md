@@ -428,3 +428,19 @@ Validado.
 paso, después de cerrar esta nota — resultado en el mensaje de cierre de
 sesión/PR, no en este cuerpo, para no tener que reabrir el archivo si algo
 cambia entre el commit de la nota y el commit final.*
+
+---
+
+## Adenda · 4 de agosto de 2026 — decisión de mesa: se sella D5, se descarta D6, se habilita el multinivel
+
+*Append-only. No edita el cuerpo de arriba, que queda íntegro como se cerró el 4/ago/2026.*
+
+**Decisión de mesa del autor sobre la tensión que §7 (arriba) dejó planteada y explícitamente sin adjudicar** entre la mecánica de decisión (D5, por la letra de `p3-lca-preregistro-v1_0.md` §3.3/§6.1) y la fenomenología de la curva de BIC (congruente con D6). Registrada en `canon/gobernanza-v1_15.md` §4, **ADR-53**, y en `canon/estado-programa-v1_9.md` §3·L5.
+
+**El desenlace es D5 — INESTABLE**, con las dos precisiones que el pre-registro exige: INESTABLE no es victoria de ninguna hipótesis (§1/§6.1·D5 de `p3-lca-preregistro-v1_0.md`), y `modelo` §1.1.D no se toca (§6.2.8) — nada más cambia en `canon/` por el veredicto en sí.
+
+**D6 se descarta, con su razón escrita, no se omite.** La condición literal se cumple (BIC monótono decreciente 1–8, mínimo en el borde `k=8`), pero H-C pierde por el propio §1 del pre-registro: "cualquier mínimo interior de BIC en el rango [con solución estable]" la falsa, y S1 produce ese mínimo interior — quitando los tres ejes de hogar, el BIC toca fondo en `k=4` y sube después (diferencias sucesivas re-derivadas de `resultados.json`: `+6 866.45 · +1 027.54 · +35.86 · −50.21 · −85.63 · −85.76 · −85.93`). La explicación no es post-hoc: §3.6.3 y §2.5.b ya declaraban, antes de ver el dato, que la independencia local violada por diseño sobreestima el número de clases, y S1 es la prueba de control que el propio pre-registro montó para detectarlo (§2.5.c). **Límite del argumento, declarado:** la solución de S1 tampoco es estable — su `k_primario=3` (tras la regla de no-separación) replica 1 de 50 arranques, y el mínimo interior bruto en `k=4` dista solo 35.86 puntos de `k=3` y 50.21 de `k=5`, sobre un rango total de BIC de 7 929.85. S1 no demuestra que existan clases: demuestra que la forma de la curva depende de los ejes de hogar, y eso basta para que el descenso monótono deje de ser evidencia limpia de gradiente. Ambas lecturas quedan sin soporte estable — eso es D5, no D6. **Costo declarado:** D6 habría sido confirmación empírica del reencuadre perfiles→atributos; bajo D5 el reencuadre sigue justificado por diseño, no por dato.
+
+**Se activa el LCA multinivel — habilitado, no corrido.** `p3-lca-preregistro-v1_0.md` §2.5 lo declaraba condicional a que S1 mostrara que los ejes de hogar dominan la solución; S1 lo mostró. Queda habilitado con tres condiciones, parte de la activación: **(1)** es análisis nuevo, necesita enmienda fechada al pre-registro (§10 de `p3-lca-preregistro-v1_0.md`), no editada aquí; **(2)** necesita pre-registro propio de una sesión limpia que no haya abierto ENIGH ni leído esta nota ni sus resultados; **(3)** no se corre ni se pre-registra en este acto.
+
+**Lo que NO se hace en esta adenda:** no se toca `modelo` §1.1.D, no se corre ni pre-registra el multinivel, no se mueve `8 de 14`, `4 de 144` ni ningún contador de Hito D. Detalle completo, cifras y su re-derivación en `canon/gobernanza-v1_15.md` ADR-53.
