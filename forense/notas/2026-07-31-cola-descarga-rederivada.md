@@ -137,6 +137,7 @@ application/pdf`, tamaño exacto) antes de bajar. Las tres `--registra`n limpio 
 id ni de sha256) y las tres `--verifica` dan COINCIDE contra `data_raw`.
 
 **Lo que NO se bajó, y por qué, con palabras distintas:**
+
 - **CPV — base de microdatos (muestra del cuestionario ampliado, CSV/DBF/SAS/SPSS/Stata).**
   RESPONDE PERO EL ENDPOINT DE MICRODATOS RECHAZA LA PETICIÓN (§4) — no NO ALCANZABLE, no SIN
   RECURSO: el recurso existe (es el mismo que otra sesión bajó para ENOE/ENIF/ENVIPE/ENCIG por
@@ -162,3 +163,28 @@ en §0/§3, no se edita. Ninguna cifra de este documento se tecleó sin regenera
 `catalogo.py`/`dedup.py`/`cruce_operables.py` en esta sesión (§1/§2). Esta sesión descargó y
 registró; no abrió microdato ni analizó contenido de encuesta más allá de identificar qué
 payload es cada archivo.
+
+---
+
+## 6 · Adenda 04/ago/2026 — §3(a) reclasificada: el CPV Ampliado sale de la ruta crítica
+
+**Disciplina aplicada:** adenda fechada, append-only. §3(a) no se edita — la
+fila queda íntegra, con esta marca de que su estado cambió.
+
+**Qué pasó.** §3(a) puso el CPV Ampliado como "candidata obvia para
+marginales de los 6 ejes de perfil". `forense/notas/2026-07-31-p1-enigh-semilla.md`
+(P1) corrió después de esta nota y su veredicto es **CONJUNTA COMPLETA**: los
+seis ejes de perfil llegan a nivel persona en ENIGH con llave de unión
+(`folioviv+foliohog+numren`), y la ruta IPF vive sobre esa semilla. La semilla
+existe y no es el CPV.
+
+**Lo que el CPV todavía aporta, sin inflarlo.** P1 declara un caveat de
+granularidad: urbanización, ingreso y acceso digital son atributos de hogar
+en ENIGH, sin varianza intra-hogar. El CPV Ampliado no lo arregla — también
+es de vivienda. Queda como validación externa de marginales, no como insumo
+de la semilla.
+
+**Reclasificación:** de **bloqueo** a **deseable sin para-qué crítico**. Un
+bloqueo que no bloquea nada consume atención cada vez que alguien lee la
+cola. Detalle en `forense/notas/2026-08-04-barrido-escritorio-pendientes.md`
+§3.
