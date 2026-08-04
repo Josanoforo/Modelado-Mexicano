@@ -1,5 +1,12 @@
 # Inventario de segmentación · INV-SEG partes 1 y 2
 
+⚠️ **Alcance de este inventario:** mapeo de constructos sobre las OCHO
+fuentes que estaban en disco el 31/jul/2026. NO es una búsqueda de qué
+fuentes existen. Para eso, `data/catalogo-fuentes-v1_0.md` y
+`data/inventarios/`. Confundir "no está aquí" con "no existe" produjo una
+afirmación falsa en la rama del PR #85 (ver `forense/hallazgos.md`,
+4/ago/2026).
+
 *31 de julio de 2026. Responde al ENCARGO INV-SEG. Ocho fuentes en disco:
 ENIGH, ENIF, ENVIPE, ENOE, ENCUCI, ENCIG, ENSANUT, ENUT.*
 
