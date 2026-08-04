@@ -600,3 +600,213 @@ Fase B sin su prefijo "2026-08-03-") — mismo defecto de cita que
 `forense/notas/2026-08-03-cal-conf-faseb-pos5-6-radio-familismo.md` §6
 ya documentó y corrigió en su propia sesión. Corregido aquí antes de
 commitear, no después.
+
+---
+
+## 10 · Reconciliación de celdas contra el marginal (paso 3, tercer commit)
+
+*Encargo X-bis, mesa #19 continuada. Verificación de premisas antes de
+obedecer: §4.1/§4.2/§4.3 de esta nota sí reportan β̂ por celda para W1/W2/W3
+y citan el β̂ marginal de Encargo W al lado de cada uno — confirmado
+releyendo §4 completo. La nota, hasta este punto (§0-§9), no contiene
+ninguna reconciliación de las celdas contra el marginal — confirmado, no
+hay PARO por esta vía. Entorno verificado antes de empezar:
+`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` sin definir, sonda a
+`www.inegi.org.mx` → 200. `data/raw` es el symlink compartido de los tres
+worktrees de esta rama de trabajo (`/home/pc0/mm-corpus/raw`,
+`data/raices.local.yaml`), no ausente.*
+
+**Motivación, tal como la plantea el encargo:** los tres β̂ marginales
+invierten signo (o no son estables) al condicionar en §4. Eso no es
+distinguible de un bug de agregación — celdas que no particionan la
+muestra, pesos mal aplicados, o secuela del bug de parseo DBF corregido a
+media corrida (§4, párrafo de advertencia) — hasta demostrar que las
+celdas reproducen el marginal.
+
+### 10.1 · Método
+
+Script ad-hoc de esta sesión (no commiteado — vive en el scratch de este
+acto, fuera del perímetro; el perímetro de este acto es solo esta nota),
+que reusa `tests/svystat.py::prop_ultimate_cluster` y `tests/dbfmini.py`
+**sin modificar ninguno de los dos**, sobre exactamente los mismos campos,
+universos, dicotomizaciones y llaves de join que §1/§4 ya congelaron y
+usaron. Para cada eje de cada coeficiente:
+
+```
+p1 = Σ_c (w_c · p1_c) / Σ_c w_c     sobre las celdas del eje, grupo θ=1
+p0 = Σ_c (w_c · p0_c) / Σ_c w_c     sobre las celdas del eje, grupo θ=0
+reconciliado = p1 − p0
+```
+
+implementado como el pool ponderado de todas las filas θ=1 (resp. θ=0) que
+caen en **alguna** celda del eje, vía `prop_ultimate_cluster` sobre ese
+pool — algebraicamente idéntico a la suma ponderada de `p_hat` por celda
+que pide el encargo (cada celda ya es, por construcción, `p_hat` de un
+subconjunto disjunto de filas con el mismo campo de peso). No se promedió
+ningún β̂ de celda. Las cifras se derivaron de la corrida de este acto, no
+se copiaron de §4 — la única cifra reusada de la nota es el β̂ marginal
+citado, contra el que se compara.
+
+**Guardia de reproducción, antes de leer ninguna celda nueva:** el
+marginal recalculado en este acto, sobre el universo completo de cada
+ítem (sin restringir a ningún eje), coincide cifra por cifra con el que
+§4 ya reportó y que a su vez coincidió con `milpa/procedencia.yaml:630-690`:
+
+| Ítem | n(θ=1) | n(θ=0) | β̂ recalculado | β̂ en §4 |
+|---|---|---|---|---|
+| `AP5_1_1` | 6 430 | 6 945 | −0.0102 | −0.0102 |
+| `AP5_1_2` | 10 667 | 2 726 | −0.0113 | −0.0113 |
+| `AP5_1_3` | 7 644 | 5 721 | −0.0269 | −0.0269 |
+| `P11_1_23` (W2) | 20 245 | 17 510 | −0.0645 | −0.0645 |
+| `p9_9_4` (W3) | 5 281 | 6 183 | +0.0279 | +0.0279 |
+
+Coincide exacto en los cinco. El pipeline de este acto reproduce el de §4
+antes de tocar ninguna celda.
+
+### 10.2 · Diagnóstico de integridad de los cruces, antes de leer ninguna brecha de cobertura como bug
+
+Cada eje de W1 depende de un join (`SEC_4_5`→`SD` para formalidad/edad,
+`SEC_4_5`→`SEC_9_10` para ingreso, por `UPM`+`VIV_SEL`+`R_SEL`/`N_REN`); W2
+depende de un join (`sec_11`→`residentes_sec_2` por `ID_PER`); W3 no usa
+join (todo vive en `TMODULO`). Se instrumentó cada eje para separar, de
+la brecha entre el universo del eje y el universo marginal, cuánto es
+**fallo de llave (`sin_cruce`, evidencia de un join roto)** y cuánto es
+**código excluido por la propia especificación de §1 del acto anterior**
+(no-aplicabilidad estructural, no sabe/no responde, fuera de los tramos
+declarados):
+
+| Eje | Instrumento | `sin_cruce` (fallo de llave) | Excluido por código declarado | Detalle del código |
+|---|---|---|---|---|
+| Formalidad (W1) | ENCUCI | **0** | 5 236 | `AP3_15_4` en blanco (no trabajó) |
+| Edad (W1) | ENCUCI | **0** | 957 | 901 con edad 15-17 (fuera de los tramos `18-29`+, declarados desde 18) + 56 con código `97`/`98`/`99` |
+| Ingreso (W1) | ENCUCI | **0** | 560 | `AP10_14` en `{8,9}` (no quiere decir/no sabe) |
+| Edad (W2) | ENCIG | **0** | 0 | — cobertura 100% |
+| Formalidad (W3) | ENIF | n/a (sin join) | 3 007 | `p3_13` en blanco (no trabaja, 2 964) + código `9` (43) |
+| Ingreso (W3) | ENIF | n/a (sin join) | 3 338 | `p3_11a` en blanco (mismo grupo no-trabaja, 2 964) + `98000`/`99888` (374) |
+| Migración (W3) | ENIF | n/a (sin join) | 11 | `p3_15_epc` = `999` |
+| Edad/Urbanización/Acceso digital (W3) | ENIF | n/a (sin join) | 0 | — cobertura 100% cada uno |
+
+**Cero fallos de llave en los dos joins usados (ENCUCI y ENCIG), en los
+cinco ítems.** Esto descarta directamente, para todos los ejes, la
+hipótesis "celdas mal particionadas por join roto" y, junto con §10.3
+abajo (reconciliación exacta donde la cobertura es completa), descarta
+también "pesos mal aplicados" y "secuela del bug de parseo DBF" — ninguna
+de las tres hipótesis del encargo se sostiene como explicación de las
+brechas que sí aparecen. Donde hay brecha, es 100% código excluido por la
+especificación ya congelada en §1, no dato perdido por error de código de
+este acto ni del anterior.
+
+### 10.3 · Resultados de la reconciliación, por eje
+
+**W1 — ENCUCI, `radio_confianza`.** Marginal citado de §4.1 al lado de
+cada ítem.
+
+| Ítem | Eje | p1 | p0 | reconciliado | marginal citado | diferencia | diferencia relativa | Σn celdas / n marginal | cobertura | veredicto |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `AP5_1_1` | Formalidad | 0.1469 | 0.1659 | −0.0191 | −0.0102 | −0.0089 | 87.2% | 8 139 / 13 375 | 60.8% | **NO COINCIDE** |
+| `AP5_1_1` | Edad | 0.1287 | 0.1354 | −0.0067 | −0.0102 | +0.0035 | 34.3% | 12 418 / 13 375 | 92.8% | **NO COINCIDE** |
+| `AP5_1_1` | Ingreso | 0.1184 | 0.1295 | −0.0111 | −0.0102 | −0.0009 | 8.4% | 12 815 / 13 375 | 95.8% | **NO COINCIDE** |
+| `AP5_1_2` | Formalidad | 0.1541 | 0.1670 | −0.0129 | −0.0113 | −0.0016 | 14.1% | 8 145 / 13 393 | 60.8% | **NO COINCIDE** |
+| `AP5_1_2` | Edad | 0.1302 | 0.1402 | −0.0100 | −0.0113 | +0.0013 | 11.4% | 12 432 / 13 393 | 92.8% | **NO COINCIDE** |
+| `AP5_1_2` | Ingreso | 0.1215 | 0.1343 | −0.0128 | −0.0113 | −0.0014 | 12.5% | 12 833 / 13 393 | 95.8% | **NO COINCIDE** |
+| `AP5_1_3` | Formalidad | 0.1425 | 0.1736 | −0.0311 | −0.0269 | −0.0042 | 15.6% | 8 131 / 13 365 | 60.8% | **NO COINCIDE** |
+| `AP5_1_3` | Edad | 0.1180 | 0.1496 | −0.0316 | −0.0269 | −0.0047 | 17.6% | 12 404 / 13 365 | 92.8% | **NO COINCIDE** |
+| `AP5_1_3` | Ingreso | 0.1116 | 0.1396 | −0.0280 | −0.0269 | −0.0011 | 4.1% | 12 808 / 13 365 | 95.8% | **NO COINCIDE** |
+
+**Ningún eje de W1 alcanza cobertura completa del universo del marginal**
+— los tres ejes de los tres ítems muestran Σn de celdas < n marginal, por
+las brechas declaradas en §10.2. Con el criterio literal del encargo
+(Σn celdas = n marginal ⇒ COINCIDE; si no, NO COINCIDE), **ninguna de las
+nueve filas de W1 reconcilia contra el marginal citado.**
+
+**W2 — ENCIG, `confianza_institucional`.**
+
+| Ítem | Eje | p1 | p0 | reconciliado | marginal citado | diferencia | diferencia relativa | Σn celdas / n marginal | cobertura | veredicto |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `P11_1_23` | Edad | 0.0736 | 0.1381 | −0.0645 | −0.0645 | +0.0000 | 0.0% | 37 755 / 37 755 | 100.0% | **COINCIDE** |
+
+**El único eje de W2 reconcilia exacto a cuatro decimales.**
+
+**W3 — ENIF, `familismo_apoyo`.**
+
+| Eje | p1 | p0 | reconciliado | marginal citado | diferencia | diferencia relativa | Σn celdas / n marginal | cobertura | veredicto |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Formalidad | 0.2550 | 0.2510 | +0.0041 | +0.0279 | −0.0238 | 85.3% | 8 457 / 11 464 | 73.8% | **NO COINCIDE** |
+| Edad | 0.3139 | 0.2860 | +0.0279 | +0.0279 | +0.0000 | 0.0% | 11 464 / 11 464 | 100.0% | **COINCIDE** |
+| Urbanización | 0.3139 | 0.2860 | +0.0279 | +0.0279 | +0.0000 | 0.0% | 11 464 / 11 464 | 100.0% | **COINCIDE** |
+| Ingreso | 0.2551 | 0.2512 | +0.0039 | +0.0279 | −0.0240 | 86.0% | 8 126 / 11 464 | 70.9% | **NO COINCIDE** |
+| Migración | 0.3139 | 0.2856 | +0.0282 | +0.0279 | +0.0003 | 1.2% | 11 453 / 11 464 | 99.9% | **COINCIDE** |
+| Acceso digital | 0.3139 | 0.2860 | +0.0279 | +0.0279 | +0.0000 | 0.0% | 11 464 / 11 464 | 100.0% | **COINCIDE** |
+
+**Cuatro de seis ejes de W3 reconcilian exacto** (Edad, Urbanización,
+Migración con cobertura 99.9%, Acceso digital); **dos no** (Formalidad,
+Ingreso — ambos con la misma exclusión estructural de fondo: la
+subpoblación que no trabaja, §10.2).
+
+### 10.4 · Lectura, sin ajustar el texto para que cuadre
+
+**Ninguna de las tres hipótesis de bug que motivó este acto se sostiene.**
+Cero fallos de llave en los joins de ENCUCI y ENCIG (§10.2); y donde la
+cobertura de un eje es completa o casi completa (W2/Edad, W3/Edad,
+W3/Urbanización, W3/Migración, W3/Acceso digital — cinco de dieciséis
+filas de §10.3), el reconciliado coincide con el marginal a cuatro
+decimales, sin excepción. Eso descarta pesos mal aplicados y secuela del
+bug de parseo DBF como explicación de cualquier brecha: si esos bugs
+existieran, se verían también en los ejes de cobertura completa, y no se
+ven.
+
+**Pero el criterio literal del encargo (Σn celdas = n marginal) falla en
+once de las dieciséis filas — las nueve de W1 completas, y Formalidad/
+Ingreso de W3.** En los tres casos la brecha es la misma, ya declarada en
+§1 del acto anterior: los ejes de Formalidad e Ingreso solo clasifican a
+quien trabaja/reporta ingreso — una subpoblación estructuralmente más
+chica que el universo del marginal, no un error de este acto ni del
+anterior. El eje de Edad de W1 pierde además 901 personas de 15-17 años,
+fuera de los tramos `18-29`+ que §1.1 declaró desde 18 — otra restricción
+declarada, no un bug.
+
+**Esto no es "las celdas no particionan la muestra" en el sentido de un
+defecto de código** — dentro de su propio universo elegible, cada eje
+particiona sin pérdida (cobertura interna 100%, verificado por
+construcción: cada fila con código válido cae en exactamente una celda).
+Es que el universo elegible de Formalidad/Ingreso/Edad-W1 es un
+subconjunto propio y declarado del universo del marginal, no el mismo
+conjunto. Comparar el β̂ reconciliado de esas celdas contra el marginal de
+§4 es comparar dos poblaciones distintas, anidadas pero de tamaño
+diferente — no una descomposición exacta del mismo número.
+
+**Aplicando el criterio del encargo tal como está escrito, sin
+suavizarlo:** se marca como **NO VALIDADO** en el sentido de esta
+reconciliación —§4.1 completo (los tres ítems de W1, en sus tres ejes) y
+las filas Formalidad/Ingreso de §4.3 (W3)— porque ninguna de esas celdas
+reconstruye el marginal que cita. Se marca **VALIDADO** —§4.2 completo
+(W2) y las filas Edad/Urbanización/Migración/Acceso digital de §4.3
+(W3)— porque el reconciliado coincide exacto con el marginal citado: para
+esos ejes, la inversión (o no-inversión) de signo que reporta §4 es
+composicional y real, no distinguible de un bug porque no hay bug que la
+explique.
+
+**Lo que este acto no hace, declarado, no ejecutado:** la comparación
+correcta para separar "¿el β̂ marginal completo también se invertiría si
+se pudiera condicionar sobre el universo entero?" de "¿el β̂ marginal
+restringido al universo elegible del eje ya tenía otro signo antes de
+condicionar?" requeriría recalcular un marginal restringido a cada
+universo elegible (por ejemplo, β̂ marginal solo entre quienes trabajan,
+para comparar limpio contra las celdas de Formalidad) — este acto no lo
+hace. Es el paso natural siguiente, no ejecutado aquí: **PARA**, como pide
+el encargo, sin intentar arreglarlo ni extenderlo en este acto.
+
+### 10.5 · Cierre — perímetro y suite
+
+`git status --short` antes de commitear: solo esta nota modificada, más
+`data/raw` (symlink gitignorado, no rastreado) — verificado, no se tocó
+`milpa/procedencia.yaml`, `canon/`, `tests/svystat.py`, `tests/dbfmini.py`
+ni ningún archivo de `data/inventarios`.
+
+`python3 tests/manifiesto.py --verifica`: los tres payloads que este acto
+reabrió (`encuci2020_bd_dbf`, `encig23_base_datos_csv`, `enif2024_csv`)
+**COINCIDEN** contra `data/manifiesto.yaml` (sha256 y tamaño) — reverificado
+de nuevo en este acto, no asumido del acto anterior.
+
+`python3 tests/check.py --baseline`: **LÍNEA BASE: VERDE** — nada nuevo
+frente a `tests/baseline.json`.
