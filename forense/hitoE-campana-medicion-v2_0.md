@@ -1769,3 +1769,53 @@ No se tocó ninguna otra fila de `§14.3`. Cascada ejecutada:
 `milpa/procedencia.yaml` (entrada nueva), `canon/modelo-decision-v4_0.md`
 (§1.1.F Paso 5, §6.1, §7 — contador y reparto), `forense/hallazgos.md`
 (línea de cierre).
+
+## 23 · Adenda 04/ago/2026 — ENCUP paso 1 (Encargo M): `deferencia` LA FUENTE NO TIENE EL DATO
+
+> **Número reservado al abrir rama, no al escribir esta adenda** — `PR #79`
+> (abierto al momento de esta sesión, ver §0.1 de la nota citada abajo) ya
+> reserva `§22` para su propia adenda de `exposicion_violencia`; se
+> verificó su diff (`gh pr diff 79 --name-only` /
+> `grep "^+## " `) antes de numerar esta, para no repetir la colisión que
+> `§21` documentó dos entradas atrás.
+
+`deferencia` no es una fila de `§14.3` (esa cola cubre las 14 condicionales
+medibles; `deferencia` y `sens_estatus` son los dos huecos totales que
+`§14.3` explícitamente no lista, `§14.4`). Esta adenda no mueve ninguna
+fila de la cola — documenta el resultado de examinar la candidatura de
+`deferencia` sobre `ENCUP 2012`, que el manifiesto (`data/manifiesto.yaml`,
+campo `usado_para` de los seis payloads de ENCUP) ya declaraba abierta
+junto a la de posición 9 (`confianza_institucional[electoral]`, sin tocar
+aquí).
+
+**Resultado: LA FUENTE NO TIENE EL DATO.** Cuestionario 2012 completo (84
+preguntas) recorrido contra una frase-criterio escrita antes de abrir el
+PDF (deferencia = acatar decisión de autoridad jerárquica/institucional/de
+edad aun sin acuerdo propio, distinta de confianza institucional,
+obediencia como valor de crianza, y conformidad entre pares). Dos
+candidatas por vocabulario (`P44A` "obedecer siempre las leyes aún
+injustas"; `P68` "obedecer la voluntad de la mayoría") examinadas y
+descartadas con argumento — ninguna nombra una jerarquía interpersonal
+concreta con efecto conductual, que es lo que `R2.1`
+(`trabajo.jerarquia.deferencia_iniciativa_suprimida`) necesita. `P44A` en
+particular es precedente casi textual de `ENCUCI AP5_11`, ya descartado
+por la misma razón en Encargo C. C2 (desenlaces de `G6`) cierra: ningún
+wording de las tres reglas que invocan `G6` vive en el instrumento. C3
+limpio: ENCUP no está en Tabla B. `deferencia` sigue en `PROXY CON
+SUPUESTO DECLARADO (M3, Latinobarómetro `P4NOIJ`, ADR-51(f))`, sin
+cambio de contador (sigue en 3 de 14 en ese estado; 8 de 14 medidas —
+9 si `PR #79` fusiona antes que esta). Detalle completo, candidata por
+candidata, con `n` de correspondencia cuestionario↔base, denominador,
+ejes de atributos y viabilidad de H-07/H-08, en
+`forense/notas/2026-08-04-encup-paso1-deferencia.md`.
+
+### 23.1 · Límite de lectura declarado (ADR-46)
+
+Esta sesión abrió y leyó completo `Cuestionario-Quinta_2012_ENCUP.pdf` y
+los encabezados/recuentos agregados de `BaseDatos_ENCUP_2012_Final.xlsx`
+— **inhabilitada para pre-registrar contra ENCUP** (cualquier constructo).
+No abrió los cuatro cuestionarios de contexto (2001, 2003, 2005, 2008)
+más allá de un barrido de términos de una palabra sobre el texto plano,
+declarado en la nota citada §11. No tocó `canon/` ni `milpa/`. No movió
+ningún contador de `§14`-`§21`. No reclasificó ninguna fila de `§14.3`
+(`deferencia` nunca estuvo en esa tabla).
