@@ -12,6 +12,8 @@
 >
 > **1.** `milpa-whitepaper` — el **porqué** · **2.** `milpa-spec` — el **cómo** · **3.** `milpa-plan` — el **cuándo**
 
+> **Modificado por ADR-57 (4/ago/2026):** las afirmaciones de intervención de §0 y la salvaguarda de §6.2 quedan bajo compuerta de identificación — ver gobernanza ADR-57. La versión no sube; excepción a ADR-36 declarada en el propio ADR.
+
 ### Codename **MILPA** — *Modelo de Interacción, Localidad, Población y Adaptación*
 
 *Documento 1 de 3. Acompañan: (2) Especificación técnica del modelo, (3) Integración y plan de trabajo.*
