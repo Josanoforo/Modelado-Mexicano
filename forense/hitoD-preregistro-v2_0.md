@@ -893,6 +893,34 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 
 ---
 
+### Nota 17 · 4/ago/2026 — Veredicto de `R4.2`, chequeo barato completo, corrida limpia
+
+*(Añadida al final, fechada, sin tocar el cuerpo ni las Notas 1-16 — misma disciplina. Encargo Y, perímetro `forense/notas/2026-08-04-y*.md`.)*
+
+**Veredicto: `D`.** No por hueco de dato accidental: verificado contra el cuestionario Hogar y Adultos de ENSANUT 2024 en etiquetas y los catálogos de `integrantes`/`adultos` que **no existe pregunta sobre "sin permiso laboral para atender su salud"** (`grep -i "permiso"` sin coincidencias relacionadas con trabajo en ningún cuestionario) ni pregunta dedicada de posposición de chequeo (`H0402=30` capta solo la última necesidad de salud en 3 meses, no un evento repetible). La pieza más cercana, `H0405` motivo **"06 No tuvo tiempo"**, no distingue motivo laboral de otros. La ficha misma pre-anticipó exactamente este caso en su fila `D`: *"si la encuesta no cruza permiso laboral con conducta preventiva"*. Verificado, no hay solape con `A`/`B`/`C`: las tres exigen que el cruce exista en alguna forma medible, y no existe. Detalle completo: `forense/notas/2026-08-04-y4-veredicto-r4-2.md`.
+
+---
+
+### Nota 18 · 4/ago/2026 — `R5.2`, corrida completa sobre ENUT 2024: propuesta `A`, no adjudicada por reserva estadística
+
+*(Añadida al final, fechada, sin tocar el cuerpo, la ficha ni las Notas 1-17 — misma disciplina. Encargo Y.)*
+
+**Diseño transversal** (comparación entre grupos, no transición individual — ENUT no es panel; mismo criterio que la ficha prevé en su fila `C`). Mujeres 40+ en hogares con varón adulto disponible: grupo ocupada-formal-tiempo-completo (n=1,872, media 7.96 h/semana de cuidado) vs. grupo no-ocupada (n=8,150, media 10.46 h/semana). **Reducción% = 23.98%, SE=4.89pp (método delta, grupos independientes), IC95%=[14.39%, 33.57%].**
+
+**El punto satisface la fila `A`** (*"reducción ≥20% → la estructura basta y el guion sale del `PORQUE`"*) **pero el IC95% no despeja el umbral** — el límite inferior (14.39%) queda debajo de 20%, a diferencia de la corrida limpia de `R7.2`/Nota 12. **Verificado, no hay solape con `B`**: el diseño de este acto ya incluye el control de varón disponible que `B` exige como ausente, así que `B` no se satisface bajo ninguna lectura. `C`/`D` tampoco aplican: el cruce que `C` describe es el que este acto ejecutó, y `D` es falso (ENUT sí permite el cruce). **Propuesta: `A`, con reserva estadística fuerte declarada — no adjudicada.** El veredicto archivado y el contador `3 de 27` no cambian por esta nota. Detalle completo, tabla, y las salvedades de proxy declaradas antes de correr: `forense/notas/2026-08-04-y1-operacionalizacion-r5-2-enut.md` y `forense/notas/2026-08-04-y5-veredicto-r5-2.md`.
+
+---
+
+### Nota 19 · 4/ago/2026 — `R1.2`, corrida completa sobre ENIF 2024: el falsador no se satisface, y ninguna fila de la escala propia nombra ese desenlace
+
+*(Añadida al final, fechada, sin tocar el cuerpo, la ficha ni las Notas 1-18 — misma disciplina. Encargo Y.)*
+
+**CONSAR verificado innecesario** (commit 1, `forense/notas/2026-08-04-y2-operacionalizacion-r1-2-enif.md`): el Umbral es evaluable con ENIF sola. Denominador (formal + ingreso estable + ingreso suficiente ≥1 salario mínimo mensualizado 2024): n=2,308, Σpeso=15,256,719. **Numerador (aporta voluntariamente a Afore O tiene seguro privado de vida/GMM) = 42.98%, SE=1.58pp, IC95%=[39.88%, 46.08%].**
+
+**El Umbral pide `<15%`. El resultado, 42.98% con IC95% que no se acerca a 15%, es una no-satisfacción decisiva y limpia del falsador — no un caso límite como `R5.2`.** Verificado, no hay solape entre filas: `A` (umbral cruzado, tasas bajas) no se satisface; `B` (*"tasas bajas sin control"*) tampoco, porque las tasas no son bajas; `C` describe un diseño más fino que no hizo falta; `D` predecía que el hueco de dato sería improbable porque el dato existiría — y existió, pero el resultado no fue un hueco, fue un no-cruce medido. **Ninguna fila nombra "el falsador corrió limpio y no se satisfizo, la regla sobrevive"** — mismo patrón que `R5.2` en esta misma tanda: dos de tres fichas de este acto tropiezan con un hueco de *diseño del pre-registro*, no de dato. Se declara como patrón, no se inventa fila nueva ni se retoca la ficha (fuera de perímetro). Control de acceso efectivo, ejecutado igual: entre quienes no cumplen el numerador, el motivo dominante (Σpeso 8.87M contra 3.67M) es de acceso, no de decisión — dato que hubiera decidido `A` vs. `B` si el Umbral se hubiera cruzado; no cambia la conclusión porque no se cruzó. **No adjudicada, no archivada.** Detalle completo, embudo del denominador y clasificación de motivos: `forense/notas/2026-08-04-y6-veredicto-r1-2.md`.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
@@ -900,3 +928,4 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 `R1.1` → veredicto `D` — *(archivado 29/jul/2026, narrado en Nota 5, detalle en `hitoD-R1.1`)*
 `R3.2` → veredicto `B` — *(archivado 29/jul/2026, narrado en Nota 6, detalle en `hitoD-R3.2`)*
 `R7.2` → veredicto `D` — *(archivado 4/ago/2026, narrado en Nota 11, detalle en `hitoD-R7.2`)*
+`R4.2` → veredicto `D` — *(archivado 4/ago/2026, narrado en Nota 17, detalle en `forense/notas/2026-08-04-y4-veredicto-r4-2.md`)*
