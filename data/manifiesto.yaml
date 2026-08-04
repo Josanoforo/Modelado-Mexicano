@@ -3273,3 +3273,201 @@
   licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: encup_2012_base_datos_xlsx
+  usado_para: sin uso asignado -- registro de inventario. Candidata hitoE (forense/hitoE-campana-medicion-v2_0.md
+    §292, posición 9 de la cola priorizada) a confianza_institucional[electoral]; también
+    candidata abierta a deferencia, hoy con proxy vía Latinobarómetro P4NOIJ (forense/notas/2026-08-03-cbis-deferencia-externas.md).
+    No leída ni evaluada esta sesión -- logística de descarga únicamente.
+  url_origen: https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/BaseDatos_ENCUP_2012_Final.xlsx
+  fecha_descarga: '2026-08-04'
+  descargado_por: agente, directamente de fomentocivico.segob.gob.mx -- verificación TLS activa
+    contra cadena completada (no -k/--insecure), ver nota
+  archivo: encup_2012_base_datos_xlsx.xlsx
+  sha256: 50341d97a3e305e6ed3348757632e5b23ab2e87b2052304961905619d85612e4
+  tamano_bytes: 4814178
+  formato: XLSX, base de datos ENCUP 2012 (última edición)
+  licencia: Términos y Condiciones de gob.mx (https://www.gob.mx/terminos); texto completo
+    no verificado, solo la referencia
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: 'Cadena TLS incompleta del lado del servidor (no envía el intermedio; OpenSSL verify
+    result 20/''unable to get local issuer certificate''; no autofirmado, no CA no reconocida).
+    Reparación honesta, no certificado fijado: el intermedio ''Go Daddy Secure Certificate
+    Authority - G2'' se obtuvo de su URL pública declarada en la extensión AIA del propio
+    certificado hoja (http://certificates.godaddy.com/repository/gdig2.crt; huella SHA-256
+    97:3A:41:27:6F:FD:01:E0:27:A2:AA:D4:9E:34:C3:78:46:D3:E9:76:FF:6A:62:0B:67:12:E3:38:32:04:1A:A6;
+    válido 2011-05-03..2031-05-03), que encadena a ''Go Daddy Root Certificate Authority -
+    G2'', ya presente en el almacén de CA del sistema. Con la cadena completa la verificación
+    pasó contra ese almacén sin desactivar ninguna comprobación (curl --cacert con almacén
+    de sistema + intermedio; NO se usó -k/--insecure en ningún momento). Certificado hoja
+    verificado: CN=*.segob.gob.mx, emisor Go Daddy Secure Certificate Authority - G2, válido
+    2026-03-05..2026-09-19, huella SHA-256 72:39:61:7A:02:C2:4F:13:4D:0D:36:06:19:C9:F1:55:C7:FC:CD:38:B7:C0:A2:1F:94:60:62:1F:86:93:6A:70.
+    Fuente descontinuada: ENCUP no tiene edición posterior a 2012; este payload es la última
+    edición conocida, no una serie viva. No abierto/leído (ADR-46(2)) -- solo descargado y
+    hasheado.'
+
+- id: encup_2001_cuestionario_pdf
+  usado_para: sin uso asignado -- registro de inventario. Candidata hitoE (forense/hitoE-campana-medicion-v2_0.md
+    §292, posición 9 de la cola priorizada) a confianza_institucional[electoral]; también
+    candidata abierta a deferencia, hoy con proxy vía Latinobarómetro P4NOIJ (forense/notas/2026-08-03-cbis-deferencia-externas.md).
+    No leída ni evaluada esta sesión -- logística de descarga únicamente.
+  url_origen: https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/Cuestionario_Primera_2001_ENCUP.pdf
+  fecha_descarga: '2026-08-04'
+  descargado_por: agente, directamente de fomentocivico.segob.gob.mx -- verificación TLS activa
+    contra cadena completada (no -k/--insecure), ver nota
+  archivo: encup_2001_cuestionario_pdf.pdf
+  sha256: bb33eeddc30bc8acfea43400c34b9d0e53ad3bb9d6c63d92fbc9f16c835f98cf
+  tamano_bytes: 147691
+  formato: PDF, cuestionario ENCUP primera edición 2001
+  licencia: Términos y Condiciones de gob.mx (https://www.gob.mx/terminos); texto completo
+    no verificado, solo la referencia
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: 'Cadena TLS incompleta del lado del servidor (no envía el intermedio; OpenSSL verify
+    result 20/''unable to get local issuer certificate''; no autofirmado, no CA no reconocida).
+    Reparación honesta, no certificado fijado: el intermedio ''Go Daddy Secure Certificate
+    Authority - G2'' se obtuvo de su URL pública declarada en la extensión AIA del propio
+    certificado hoja (http://certificates.godaddy.com/repository/gdig2.crt; huella SHA-256
+    97:3A:41:27:6F:FD:01:E0:27:A2:AA:D4:9E:34:C3:78:46:D3:E9:76:FF:6A:62:0B:67:12:E3:38:32:04:1A:A6;
+    válido 2011-05-03..2031-05-03), que encadena a ''Go Daddy Root Certificate Authority -
+    G2'', ya presente en el almacén de CA del sistema. Con la cadena completa la verificación
+    pasó contra ese almacén sin desactivar ninguna comprobación (curl --cacert con almacén
+    de sistema + intermedio; NO se usó -k/--insecure en ningún momento). Certificado hoja
+    verificado: CN=*.segob.gob.mx, emisor Go Daddy Secure Certificate Authority - G2, válido
+    2026-03-05..2026-09-19, huella SHA-256 72:39:61:7A:02:C2:4F:13:4D:0D:36:06:19:C9:F1:55:C7:FC:CD:38:B7:C0:A2:1F:94:60:62:1F:86:93:6A:70.
+    Fuente descontinuada: ENCUP no tiene edición posterior a 2012; este payload es la última
+    edición conocida, no una serie viva. No abierto/leído (ADR-46(2)) -- solo descargado y
+    hasheado.'
+
+- id: encup_2003_cuestionario_pdf
+  usado_para: sin uso asignado -- registro de inventario. Candidata hitoE (forense/hitoE-campana-medicion-v2_0.md
+    §292, posición 9 de la cola priorizada) a confianza_institucional[electoral]; también
+    candidata abierta a deferencia, hoy con proxy vía Latinobarómetro P4NOIJ (forense/notas/2026-08-03-cbis-deferencia-externas.md).
+    No leída ni evaluada esta sesión -- logística de descarga únicamente.
+  url_origen: https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/Cuestionario_Segunda_2003_ENCUP.pdf
+  fecha_descarga: '2026-08-04'
+  descargado_por: agente, directamente de fomentocivico.segob.gob.mx -- verificación TLS activa
+    contra cadena completada (no -k/--insecure), ver nota
+  archivo: encup_2003_cuestionario_pdf.pdf
+  sha256: acae1fe19bad780c6d9d7feda9a1739263a28118956011417cc357200270f24c
+  tamano_bytes: 233736
+  formato: PDF, cuestionario ENCUP segunda edición 2003
+  licencia: Términos y Condiciones de gob.mx (https://www.gob.mx/terminos); texto completo
+    no verificado, solo la referencia
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: 'Cadena TLS incompleta del lado del servidor (no envía el intermedio; OpenSSL verify
+    result 20/''unable to get local issuer certificate''; no autofirmado, no CA no reconocida).
+    Reparación honesta, no certificado fijado: el intermedio ''Go Daddy Secure Certificate
+    Authority - G2'' se obtuvo de su URL pública declarada en la extensión AIA del propio
+    certificado hoja (http://certificates.godaddy.com/repository/gdig2.crt; huella SHA-256
+    97:3A:41:27:6F:FD:01:E0:27:A2:AA:D4:9E:34:C3:78:46:D3:E9:76:FF:6A:62:0B:67:12:E3:38:32:04:1A:A6;
+    válido 2011-05-03..2031-05-03), que encadena a ''Go Daddy Root Certificate Authority -
+    G2'', ya presente en el almacén de CA del sistema. Con la cadena completa la verificación
+    pasó contra ese almacén sin desactivar ninguna comprobación (curl --cacert con almacén
+    de sistema + intermedio; NO se usó -k/--insecure en ningún momento). Certificado hoja
+    verificado: CN=*.segob.gob.mx, emisor Go Daddy Secure Certificate Authority - G2, válido
+    2026-03-05..2026-09-19, huella SHA-256 72:39:61:7A:02:C2:4F:13:4D:0D:36:06:19:C9:F1:55:C7:FC:CD:38:B7:C0:A2:1F:94:60:62:1F:86:93:6A:70.
+    Fuente descontinuada: ENCUP no tiene edición posterior a 2012; este payload es la última
+    edición conocida, no una serie viva. No abierto/leído (ADR-46(2)) -- solo descargado y
+    hasheado.'
+
+- id: encup_2005_cuestionario_pdf
+  usado_para: sin uso asignado -- registro de inventario. Candidata hitoE (forense/hitoE-campana-medicion-v2_0.md
+    §292, posición 9 de la cola priorizada) a confianza_institucional[electoral]; también
+    candidata abierta a deferencia, hoy con proxy vía Latinobarómetro P4NOIJ (forense/notas/2026-08-03-cbis-deferencia-externas.md).
+    No leída ni evaluada esta sesión -- logística de descarga únicamente.
+  url_origen: https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/Cuestionario_Tercera_2005_ENCUP.pdf
+  fecha_descarga: '2026-08-04'
+  descargado_por: agente, directamente de fomentocivico.segob.gob.mx -- verificación TLS activa
+    contra cadena completada (no -k/--insecure), ver nota
+  archivo: encup_2005_cuestionario_pdf.pdf
+  sha256: c6f4a3c77002949fcda99be40f3342f27241916b60e1fd63d3a8a5e3dbb57562
+  tamano_bytes: 116061
+  formato: PDF, cuestionario ENCUP tercera edición 2005
+  licencia: Términos y Condiciones de gob.mx (https://www.gob.mx/terminos); texto completo
+    no verificado, solo la referencia
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: 'Cadena TLS incompleta del lado del servidor (no envía el intermedio; OpenSSL verify
+    result 20/''unable to get local issuer certificate''; no autofirmado, no CA no reconocida).
+    Reparación honesta, no certificado fijado: el intermedio ''Go Daddy Secure Certificate
+    Authority - G2'' se obtuvo de su URL pública declarada en la extensión AIA del propio
+    certificado hoja (http://certificates.godaddy.com/repository/gdig2.crt; huella SHA-256
+    97:3A:41:27:6F:FD:01:E0:27:A2:AA:D4:9E:34:C3:78:46:D3:E9:76:FF:6A:62:0B:67:12:E3:38:32:04:1A:A6;
+    válido 2011-05-03..2031-05-03), que encadena a ''Go Daddy Root Certificate Authority -
+    G2'', ya presente en el almacén de CA del sistema. Con la cadena completa la verificación
+    pasó contra ese almacén sin desactivar ninguna comprobación (curl --cacert con almacén
+    de sistema + intermedio; NO se usó -k/--insecure en ningún momento). Certificado hoja
+    verificado: CN=*.segob.gob.mx, emisor Go Daddy Secure Certificate Authority - G2, válido
+    2026-03-05..2026-09-19, huella SHA-256 72:39:61:7A:02:C2:4F:13:4D:0D:36:06:19:C9:F1:55:C7:FC:CD:38:B7:C0:A2:1F:94:60:62:1F:86:93:6A:70.
+    Fuente descontinuada: ENCUP no tiene edición posterior a 2012; este payload es la última
+    edición conocida, no una serie viva. No abierto/leído (ADR-46(2)) -- solo descargado y
+    hasheado.'
+
+- id: encup_2008_cuestionario_pdf
+  usado_para: sin uso asignado -- registro de inventario. Candidata hitoE (forense/hitoE-campana-medicion-v2_0.md
+    §292, posición 9 de la cola priorizada) a confianza_institucional[electoral]; también
+    candidata abierta a deferencia, hoy con proxy vía Latinobarómetro P4NOIJ (forense/notas/2026-08-03-cbis-deferencia-externas.md).
+    No leída ni evaluada esta sesión -- logística de descarga únicamente.
+  url_origen: https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/Cuestionario_Cuarta_2008_ENCUP.pdf
+  fecha_descarga: '2026-08-04'
+  descargado_por: agente, directamente de fomentocivico.segob.gob.mx -- verificación TLS activa
+    contra cadena completada (no -k/--insecure), ver nota
+  archivo: encup_2008_cuestionario_pdf.pdf
+  sha256: df4337c8e95a3764b8c0c03a0c7dd6b91d97c30910a1042ec23a01749d3a5cbd
+  tamano_bytes: 396678
+  formato: PDF, cuestionario ENCUP cuarta edición 2008
+  licencia: Términos y Condiciones de gob.mx (https://www.gob.mx/terminos); texto completo
+    no verificado, solo la referencia
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: 'Cadena TLS incompleta del lado del servidor (no envía el intermedio; OpenSSL verify
+    result 20/''unable to get local issuer certificate''; no autofirmado, no CA no reconocida).
+    Reparación honesta, no certificado fijado: el intermedio ''Go Daddy Secure Certificate
+    Authority - G2'' se obtuvo de su URL pública declarada en la extensión AIA del propio
+    certificado hoja (http://certificates.godaddy.com/repository/gdig2.crt; huella SHA-256
+    97:3A:41:27:6F:FD:01:E0:27:A2:AA:D4:9E:34:C3:78:46:D3:E9:76:FF:6A:62:0B:67:12:E3:38:32:04:1A:A6;
+    válido 2011-05-03..2031-05-03), que encadena a ''Go Daddy Root Certificate Authority -
+    G2'', ya presente en el almacén de CA del sistema. Con la cadena completa la verificación
+    pasó contra ese almacén sin desactivar ninguna comprobación (curl --cacert con almacén
+    de sistema + intermedio; NO se usó -k/--insecure en ningún momento). Certificado hoja
+    verificado: CN=*.segob.gob.mx, emisor Go Daddy Secure Certificate Authority - G2, válido
+    2026-03-05..2026-09-19, huella SHA-256 72:39:61:7A:02:C2:4F:13:4D:0D:36:06:19:C9:F1:55:C7:FC:CD:38:B7:C0:A2:1F:94:60:62:1F:86:93:6A:70.
+    Fuente descontinuada: ENCUP no tiene edición posterior a 2012; este payload es la última
+    edición conocida, no una serie viva. No abierto/leído (ADR-46(2)) -- solo descargado y
+    hasheado.'
+
+- id: encup_2012_cuestionario_pdf
+  usado_para: sin uso asignado -- registro de inventario. Candidata hitoE (forense/hitoE-campana-medicion-v2_0.md
+    §292, posición 9 de la cola priorizada) a confianza_institucional[electoral]; también
+    candidata abierta a deferencia, hoy con proxy vía Latinobarómetro P4NOIJ (forense/notas/2026-08-03-cbis-deferencia-externas.md).
+    No leída ni evaluada esta sesión -- logística de descarga únicamente.
+  url_origen: https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/Cuestionario-Quinta_2012_ENCUP.pdf
+  fecha_descarga: '2026-08-04'
+  descargado_por: agente, directamente de fomentocivico.segob.gob.mx -- verificación TLS activa
+    contra cadena completada (no -k/--insecure), ver nota
+  archivo: encup_2012_cuestionario_pdf.pdf
+  sha256: 33be2b2192530dee6d916cb7dc517483d608e47b73f097ffe68899dcdd96e7c6
+  tamano_bytes: 1026475
+  formato: PDF, cuestionario ENCUP quinta edición 2012 (última edición)
+  licencia: Términos y Condiciones de gob.mx (https://www.gob.mx/terminos); texto completo
+    no verificado, solo la referencia
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+  nota: 'Cadena TLS incompleta del lado del servidor (no envía el intermedio; OpenSSL verify
+    result 20/''unable to get local issuer certificate''; no autofirmado, no CA no reconocida).
+    Reparación honesta, no certificado fijado: el intermedio ''Go Daddy Secure Certificate
+    Authority - G2'' se obtuvo de su URL pública declarada en la extensión AIA del propio
+    certificado hoja (http://certificates.godaddy.com/repository/gdig2.crt; huella SHA-256
+    97:3A:41:27:6F:FD:01:E0:27:A2:AA:D4:9E:34:C3:78:46:D3:E9:76:FF:6A:62:0B:67:12:E3:38:32:04:1A:A6;
+    válido 2011-05-03..2031-05-03), que encadena a ''Go Daddy Root Certificate Authority -
+    G2'', ya presente en el almacén de CA del sistema. Con la cadena completa la verificación
+    pasó contra ese almacén sin desactivar ninguna comprobación (curl --cacert con almacén
+    de sistema + intermedio; NO se usó -k/--insecure en ningún momento). Certificado hoja
+    verificado: CN=*.segob.gob.mx, emisor Go Daddy Secure Certificate Authority - G2, válido
+    2026-03-05..2026-09-19, huella SHA-256 72:39:61:7A:02:C2:4F:13:4D:0D:36:06:19:C9:F1:55:C7:FC:CD:38:B7:C0:A2:1F:94:60:62:1F:86:93:6A:70.
+    Fuente descontinuada: ENCUP no tiene edición posterior a 2012; este payload es la última
+    edición conocida, no una serie viva. No abierto/leído (ADR-46(2)) -- solo descargado y
+    hasheado.'
