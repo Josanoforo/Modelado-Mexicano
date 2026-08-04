@@ -1,0 +1,224 @@
+{
+  "campos": [
+    "S3_formalidad_trabajos",
+    "I2_edad",
+    "I3_migracion",
+    "I4_tam_loc",
+    "I5_est_socio",
+    "I6_celular",
+    "I7_conex_inte"
+  ],
+  "categorias": [
+    [
+      "formal_ocupado",
+      "informal_ocupado",
+      "no_ocupado"
+    ],
+    [
+      "18-29",
+      "30-44",
+      "45-59",
+      "60+"
+    ],
+    [
+      "extranjero",
+      "misma_entidad",
+      "otra_entidad"
+    ],
+    [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    [
+      "no",
+      "si"
+    ],
+    [
+      "no",
+      "si"
+    ]
+  ],
+  "tabla_k_1_8": {
+    "1": {
+      "k": 1,
+      "loglik": -1285162.991324345,
+      "n_parametros": 15,
+      "BIC": 2570510.323337465,
+      "aBIC": 2570462.6526680198,
+      "AIC": 2570355.98264869,
+      "entropia": null,
+      "prevalencias": [
+        1.0
+      ],
+      "n_arranques": 500,
+      "n_replican_mejor_logL": 50,
+      "senal_frontera_0_1": 0,
+      "n_efectivo": 217375.0,
+      "tiempo_seg": 5.5955424308776855
+    },
+    "2": {
+      "k": 2,
+      "loglik": -1205458.4086649166,
+      "n_parametros": 31,
+      "BIC": 2411297.7880866346,
+      "aBIC": 2411199.268703114,
+      "AIC": 2410978.8173298333,
+      "entropia": 0.7923120131490946,
+      "prevalencias": [
+        0.6276504378703829,
+        0.37234956212961706
+      ],
+      "n_arranques": 500,
+      "n_replican_mejor_logL": 50,
+      "senal_frontera_0_1": 2,
+      "n_efectivo": 217375.0,
+      "tiempo_seg": 16.41747736930847
+    },
+    "3": {
+      "k": 3,
+      "loglik": -1187861.5997903713,
+      "n_parametros": 47,
+      "BIC": 2376300.8004055703,
+      "aBIC": 2376151.4323079744,
+      "AIC": 2375817.1995807425,
+      "entropia": 0.753481457790387,
+      "prevalencias": [
+        0.20655526175381608,
+        0.3927411495634757,
+        0.40070358868270817
+      ],
+      "n_arranques": 500,
+      "n_replican_mejor_logL": 50,
+      "senal_frontera_0_1": 2,
+      "n_efectivo": 217375.0,
+      "tiempo_seg": 42.29732346534729
+    },
+    "4": {
+      "k": 4,
+      "loglik": -1176801.0329065192,
+      "n_parametros": 63,
+      "BIC": 2354376.296705893,
+      "aBIC": 2354176.079894222,
+      "AIC": 2353728.0658130385,
+      "entropia": 0.727356626439297,
+      "prevalencias": [
+        0.3224314213024128,
+        0.3341130244190332,
+        0.20680456680482032,
+        0.13665098747373375
+      ],
+      "n_arranques": 500,
+      "n_replican_mejor_logL": 48,
+      "senal_frontera_0_1": 5,
+      "n_efectivo": 217375.0,
+      "tiempo_seg": 54.61247968673706
+    },
+    "5": {
+      "k": 5,
+      "loglik": -1171730.5835861666,
+      "n_parametros": 79,
+      "BIC": 2344432.028133214,
+      "aBIC": 2344180.9626074675,
+      "AIC": 2343619.167172333,
+      "entropia": 0.7289632809831796,
+      "prevalencias": [
+        0.08710381869625067,
+        0.1821193433828984,
+        0.3147075469143279,
+        0.1327216725333473,
+        0.2833476184731758
+      ],
+      "n_arranques": 500,
+      "n_replican_mejor_logL": 30,
+      "senal_frontera_0_1": 5,
+      "n_efectivo": 217375.0,
+      "tiempo_seg": 66.91160273551941
+    },
+    "6": {
+      "k": 6,
+      "loglik": -1169500.3516178555,
+      "n_parametros": 95,
+      "BIC": 2340168.194264618,
+      "aBIC": 2339866.2800247967,
+      "AIC": 2339190.703235711,
+      "entropia": 0.7155347548962243,
+      "prevalencias": [
+        0.05947896656445911,
+        0.08545207459639119,
+        0.27958903274433833,
+        0.29948446869691203,
+        0.14543450445290948,
+        0.13056095294498987
+      ],
+      "n_arranques": 500,
+      "n_replican_mejor_logL": 14,
+      "senal_frontera_0_1": 5,
+      "n_efectivo": 217375.0,
+      "tiempo_seg": 79.91651344299316
+    },
+    "7": {
+      "k": 7,
+      "loglik": -1167792.4342310398,
+      "n_parametros": 111,
+      "BIC": 2336948.9895590134,
+      "aBIC": 2336596.226605117,
+      "AIC": 2335806.8684620797,
+      "entropia": 0.7151793281798724,
+      "prevalencias": [
+        0.2617227475076247,
+        0.29108616461144554,
+        0.1272514470362519,
+        0.05024399815845776,
+        0.14183432510010513,
+        0.06560113012976376,
+        0.06226018745635123
+      ],
+      "n_arranques": 500,
+      "n_replican_mejor_logL": 2,
+      "senal_frontera_0_1": 10,
+      "n_efectivo": 217375.0,
+      "tiempo_seg": 93.02037525177002
+    },
+    "8": {
+      "k": 8,
+      "loglik": -1167075.159838475,
+      "n_parametros": 127,
+      "BIC": 2335711.0708419103,
+      "aBIC": 2335307.4591739387,
+      "AIC": 2334404.31967695,
+      "entropia": 0.6962978051206012,
+      "prevalencias": [
+        0.2240275863945615,
+        0.11441097159070944,
+        0.04271993014903715,
+        0.28315744693317946,
+        0.1399271881079092,
+        0.06613626015917001,
+        0.0615659261291024,
+        0.06805469053633088
+      ],
+      "n_arranques": 500,
+      "n_replican_mejor_logL": 1,
+      "senal_frontera_0_1": 11,
+      "n_efectivo": 217375.0,
+      "tiempo_seg": 107.32926177978516
+    }
+  },
+  "decision_Sec3_3": {
+    "k_BIC_minimo": 8,
+    "k_aBIC_minimo": 8,
+    "BIC_y_aBIC_discrepan": false,
+    "rango_BIC_observado_1_8": 234799.25249555474,
+    "umbral_2pct_no_separacion": 4695.985049911095,
+    "k_primario_tras_regla_no_separacion": 6,
+    "nota": "BIC y aBIC seleccionan el mismo k"
+  }
+}
