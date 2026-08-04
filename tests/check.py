@@ -675,11 +675,17 @@ def t17_fichas_count():
 #   test lee. Fuera de ese bloque, la forma canónica es cita o hipótesis
 #   y no se cuenta, sea cual sea su forma.
 # ───────────────────────────────────────────────────────────────
-_VEREDICTO_CANONICO = re.compile(r"`(R\d+\.\d+)`\s*→\s*veredicto\s*`([A-D])`")
+# ADR-58 (4/ago/2026) extiende la escala con la fila E (corroboración
+# prospectiva) -- excepción acotada aplicada aquí a `R1.2` (inciso d).
+# El rango pasa de A-D a A-E; sin este cambio, la línea `R1.2` →
+# veredicto `E` del bloque append-only quedaría invisible para este
+# parser (ni canónica ni sospechosa) y el contador declarado (11) no
+# cuadraría contra el real (10).
+_VEREDICTO_CANONICO = re.compile(r"`(R\d+\.\d+)`\s*→\s*veredicto\s*`([A-E])`")
 # Letra en mayúscula exacta (sin heredar re.I de "veredicto"): con re.I
-# sobre todo el patrón, [ABCD] también matchea la preposición "a" -- ya
+# sobre todo el patrón, [ABCDE] también matchea la preposición "a" -- ya
 # verificado como falso positivo real antes de esta versión.
-_VEREDICTO_SOSPECHOSO = re.compile(r"`(R\d+\.\d+)`[^\n`]{0,20}(?i:veredicto)[^\n]{0,15}\b([A-D])\b")
+_VEREDICTO_SOSPECHOSO = re.compile(r"`(R\d+\.\d+)`[^\n`]{0,20}(?i:veredicto)[^\n]{0,15}\b([A-E])\b")
 
 def _bloque_veredictos(texto):
     """Extrae SOLO el contenido de '## Registro de veredictos archivados'
@@ -701,7 +707,7 @@ def t18_paso2_ejecucion():
     `estado:192` ('Paso 2 — EN CURSO. N de 27 corrida.'). También escanea
     el MISMO bloque en busca de líneas con forma de veredicto que no
     cumplan la forma exacta -- un ID de regla entre backticks seguido, a
-    poca distancia, de la palabra 'veredicto' y una letra A-D -- para que
+    poca distancia, de la palabra 'veredicto' y una letra A-E -- para que
     una variante no se archive invisible. Nada fuera del bloque se lee:
     una hipótesis o una cita en cualquier otra parte del documento, con
     la forma que sea, no cuenta."""
