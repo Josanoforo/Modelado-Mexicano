@@ -101,7 +101,7 @@ colapsa con celdas vecinas ni se omite.
 ### 1.1 · W1 — G1 · `radio_confianza` (ENCUCI 2020)
 
 Reactivo, desenlace, dicotomización y universo: **idénticos a
-`w-coeficientes-generador-paso1.md` §1.1**, reusados sin re-derivar:
+`2026-08-04-w-coeficientes-generador-paso1.md` §1.1**, reusados sin re-derivar:
 
 - θ (tres ítems, medidos por separado): `AP5_1_1`/`AP5_1_2`/`AP5_1_3`,
   confía=`{06..10}` / no confía=`{00..05}`, excluido `99`.
@@ -136,7 +136,7 @@ Tres ejes × tres ítems de θ = 9 tablas, cada una con 2 (formalidad), 4
 ### 1.2 · W2 — G1 · `confianza_institucional` (ENCIG 2023)
 
 Reactivo, desenlace, dicotomización y universo: **idénticos a
-`w-coeficientes-generador-paso1.md` §1.2**:
+`2026-08-04-w-coeficientes-generador-paso1.md` §1.2**:
 
 - θ: `P11_1_23` (`encig2023_01_sec_11.csv`), confía=`{1,2}` / no
   confía=`{3,4}`, excluidos `5` (no aplica) y `9` (no sabe).
@@ -165,7 +165,7 @@ Un eje × un ítem de θ = 1 tabla, 4 celdas.
 ### 1.3 · W3 — G3 · `familismo_apoyo` (ENIF 2024)
 
 Reactivo, desenlace, dicotomización y universo: **idénticos a
-`w-coeficientes-generador-paso1.md` §1.3**:
+`2026-08-04-w-coeficientes-generador-paso1.md` §1.3**:
 
 - θ: `p9_9_4` (`TMODULO`), binario `1` Sí / `2` No / `9` No sabe. Universo
   efectivo: `filtro_s9_1=2` (<71 años), n=12 379.
@@ -179,7 +179,7 @@ rica del corpus):**
 
 - **Formalidad** — `p3_13`: `1`-`6` (cualquier derechohabiencia por
   trabajo) = Formal, `7` = Informal; blanco (no trabaja) y `9` (no sabe)
-  excluidos. Reusado de `cal-conf-faseb-medicion.md` §1.3.
+  excluidos. Reusado de `2026-08-03-cal-conf-faseb-medicion.md` §1.3.
 - **Edad** — `edad_v`, mismos tramos de siempre.
 - **Urbanización** — `tloc`: `1` 100,000+ · `2` 15,000–99,999 · `3`
   2,500–14,999 · `4` <2,500. Reusado, idéntico esquema a `tam_loc` de
@@ -194,12 +194,12 @@ rica del corpus):**
   re-derivada. Códigos `98000`/`99888` excluidos (no sabe/no responde).
 - **Migración** — `p3_15_epc`: `001`-`032` (entidad mexicana) = no
   migrante, código ≥`200` (país extranjero) = migrante internacional,
-  `999` excluido. Reusado de `cal-conf-faseb-medicion.md` §1.3, con su
+  `999` excluido. Reusado de `2026-08-03-cal-conf-faseb-medicion.md` §1.3, con su
   misma advertencia: referencia temporal "hace cinco años", declarada por
   el instrumento, no confirmada equivalente a ningún proxy de ENIGH.
 - **Acceso digital** — `p3_14` ("¿Usted tiene un celular inteligente
   (smartphone)?"): `1` Sí / `2` No. **Eje nuevo en este acto** — no
-  ejecutado por `cal-conf-faseb-medicion.md`, que lo había declarado NO
+  ejecutado por `2026-08-03-cal-conf-faseb-medicion.md`, que lo había declarado NO
   DISPONIBLE sin haber visto el diccionario completo de `TMODULO` (§0,
   hallazgo de corrección). Vive en `TMODULO`, sin join.
 
@@ -273,3 +273,330 @@ de curva, ninguna familia paramétrica, ninguna decisión sobre cuál forma
 
 **El primer resultado que produzca este procedimiento es el que se
 reporta.**
+
+---
+
+## 4 · Resultados — primera y única corrida
+
+Corrida con `tests/svystat.py::prop_ultimate_cluster` (sin modificar)
+sobre exactamente la especificación de §1-§2. Ningún número de esta
+sección se recalculó después de verlo. **Guardia de reproducción, corrida
+antes de tocar ninguna celda nueva:** el script recalculó primero el β̂
+marginal de cada coeficiente y coincidió exacto, cifra por cifra, con
+`milpa/procedencia.yaml:630-690` (W1: n=6430/6945, −0.0102; n=10667/2726,
+−0.0113; n=7644/5721, −0.0269 · W2: n=20245/17510, −0.0645 · W3:
+n=5281/6183, +0.0279) — el pipeline de este acto reproduce el de W antes
+de estratificar, mismo patrón de guardia que Fase B introdujo.
+
+⚠️ **Un defecto de implementación, encontrado y corregido antes de ver
+ningún número de W1 (no después):** la primera corrida del script leyó
+`AP5_16_1..10` (contacto con funcionario) comparando el campo crudo contra
+la cadena `"1"`, pero esos campos son numéricos en el DBF y se leen como
+`"1.000000000000000"` — la comparación fallaba silenciosamente y el
+universo de contacto salía en 0 para los tres ítems de W1 (los únicos que
+usan esos campos; W2 y W3 no los tocan y salieron correctos en la primera
+corrida). Se corrigió a comparar `int(float(valor))`, y se corrió de
+nuevo — **la corrida que se reporta abajo es la segunda, la primera no
+produjo un solo número de W1** (solo SIN SOPORTE por n=0), así que no hay
+selección post-hoc: no se vio ni un β̂ de W1 antes de la corrección.
+
+**Mínimo de 30 casos por grupo (`θ=1` y `θ=0`) dentro de cada celda —
+igual que Fase B; celdas por debajo se marcan SIN SOPORTE, no se
+colapsan.**
+
+### 4.1 · W1 — G1 · `radio_confianza` (ENCUCI) — β̂ por celda, tres ítems
+
+**`AP5_1_1` (mayoría de las personas).** Marginal (W): n=6430/6945,
+β̂=−0.0102, IC95%=[−0.0292, +0.0089].
+
+| Eje | Nivel | n(θ=1) | n(θ=0) | β̂ | IC95% |
+|---|---|---|---|---|---|
+| Formalidad | Formal | 1 315 | 1 712 | +0.0288 | [−0.0178, +0.0755] |
+| Formalidad | Informal | 2 782 | 2 330 | +0.0141 | [−0.0181, +0.0462] |
+| Edad | 18-29 | 1 777 | 1 535 | **+0.0398** | [+0.0015, +0.0782] |
+| Edad | 30-44 | 2 177 | 1 934 | +0.0208 | [−0.0111, +0.0527] |
+| Edad | 45-59 | 1 373 | 1 393 | −0.0310 | [−0.0679, +0.0060] |
+| Edad | 60+ | 1 156 | 1 073 | −0.0296 | [−0.0922, +0.0329] |
+| Ingreso | <$3,000 | 2 726 | 2 019 | +0.0182 | [−0.0110, +0.0473] |
+| Ingreso | $3,000-5,500 | 1 478 | 1 321 | +0.0171 | [−0.0243, +0.0586] |
+| Ingreso | $5,501-7,500 | 566 | 641 | **+0.0607** | [+0.0032, +0.1182] |
+| Ingreso | $7,501-9,000 | 345 | 490 | +0.0062 | [−0.0736, +0.0860] |
+| Ingreso | $9,001-11,000 | 259 | 404 | +0.0708 | [−0.0083, +0.1500] |
+| Ingreso | >$11,000 | 399 | 680 | +0.0283 | [−0.0529, +0.1095] |
+| Ingreso | Sin ingreso | 852 | 635 | +0.0030 | [−0.0309, +0.0369] |
+
+**`AP5_1_2` (personas que conoce).** Marginal (W): n=10667/2726,
+β̂=−0.0113, IC95%=[−0.0341, +0.0114].
+
+| Eje | Nivel | n(θ=1) | n(θ=0) | β̂ | IC95% |
+|---|---|---|---|---|---|
+| Formalidad | Formal | 412 | 2 616 | **+0.0663** | [+0.0059, +0.1268] |
+| Formalidad | Informal | 1 229 | 3 888 | −0.0075 | [−0.0435, +0.0285] |
+| Edad | 18-29 | 587 | 2 725 | +0.0409 | [−0.0115, +0.0934] |
+| Edad | 30-44 | 854 | 3 259 | +0.0248 | [−0.0165, +0.0661] |
+| Edad | 45-59 | 623 | 2 145 | −0.0076 | [−0.0464, +0.0312] |
+| Edad | 60+ | 529 | 1 710 | −0.0158 | [−0.0771, +0.0455] |
+| Ingreso | <$3,000 | 1 167 | 3 591 | +0.0243 | [−0.0106, +0.0593] |
+| Ingreso | $3,000-5,500 | 554 | 2 248 | +0.0075 | [−0.0426, +0.0577] |
+| Ingreso | $5,501-7,500 | 218 | 990 | +0.0306 | [−0.0475, +0.1087] |
+| Ingreso | $7,501-9,000 | 123 | 712 | +0.0552 | [−0.0444, +0.1549] |
+| Ingreso | $9,001-11,000 | 85 | 579 | **+0.2035** | [+0.0628, +0.3441] |
+| Ingreso | >$11,000 | 122 | 956 | +0.0008 | [−0.0770, +0.0786] |
+| Ingreso | Sin ingreso | 319 | 1 169 | −0.0115 | [−0.0510, +0.0280] |
+
+**`AP5_1_3` (vecinos).** Marginal (W): n=7644/5721, β̂=**−0.0269**,
+IC95%=[**−0.0465, −0.0072**] — el único de los tres ítems distinguible de
+cero al 95% en el marginal.
+
+| Eje | Nivel | n(θ=1) | n(θ=0) | β̂ | IC95% |
+|---|---|---|---|---|---|
+| Formalidad | Formal | 1 147 | 1 876 | +0.0355 | [−0.0099, +0.0808] |
+| Formalidad | Informal | 2 226 | 2 882 | +0.0291 | [−0.0033, +0.0615] |
+| Edad | 18-29 | 1 598 | 1 713 | **+0.0407** | [+0.0002, +0.0813] |
+| Edad | 30-44 | 1 799 | 2 309 | **+0.0331** | [+0.0018, +0.0644] |
+| Edad | 45-59 | 1 050 | 1 709 | +0.0212 | [−0.0165, +0.0590] |
+| Edad | 60+ | 837 | 1 389 | +0.0053 | [−0.0534, +0.0640] |
+| Ingreso | <$3,000 | 2 197 | 2 550 | +0.0146 | [−0.0128, +0.0421] |
+| Ingreso | $3,000-5,500 | 1 221 | 1 578 | **+0.0497** | [+0.0068, +0.0926] |
+| Ingreso | $5,501-7,500 | 488 | 719 | +0.0495 | [−0.0121, +0.1110] |
+| Ingreso | $7,501-9,000 | 305 | 529 | +0.0557 | [−0.0303, +0.1417] |
+| Ingreso | $9,001-11,000 | 245 | 417 | **+0.1103** | [+0.0272, +0.1935] |
+| Ingreso | >$11,000 | 323 | 751 | +0.0074 | [−0.0712, +0.0859] |
+| Ingreso | Sin ingreso | 684 | 801 | **+0.0592** | [+0.0252, +0.0933] |
+
+**Lectura de W1, sin decidir por mesa:** en los tres ítems, sobre los tres
+ejes, **28 de 39 celdas tienen signo positivo** (12 de ellas distinguibles
+de cero al 95%) frente a un marginal negativo (solo `AP5_1_3` distinguible
+de cero). Ninguna celda con IC95% que excluye cero tiene signo negativo —
+las 12 celdas significativas de esta sección son **todas positivas**. El
+patrón es consistente entre los tres ítems y los tres ejes: no hay un solo
+eje ni un solo ítem donde condicionar reproduzca el signo negativo del
+marginal con significancia.
+
+### 4.2 · W2 — G1 · `confianza_institucional` (ENCIG) — β̂ por celda
+
+Marginal (W): n=20245/17510, β̂=**−0.0645**, IC95%=[**−0.0744, −0.0546**].
+
+| Eje | Nivel | n(θ=1) | n(θ=0) | β̂ | IC95% |
+|---|---|---|---|---|---|
+| Edad | 18-29 | 3 680 | 4 511 | **+0.0850** | [+0.0635, +0.1065] |
+| Edad | 30-44 | 5 624 | 5 747 | **+0.0624** | [+0.0443, +0.0806] |
+| Edad | 45-59 | 4 635 | 5 095 | **+0.0626** | [+0.0433, +0.0820] |
+| Edad | 60+ | 3 571 | 4 892 | **+0.0380** | [+0.0227, +0.0533] |
+
+**Lectura de W2, sin decidir por mesa:** las cuatro celdas del único eje
+estricto disponible tienen signo **positivo y distinguible de cero al
+95%** — signo opuesto al marginal (−0.0645), en las cuatro celdas, sin una
+sola excepción. No es un debilitamiento del marginal: es una reversión
+completa de signo, consistente en las cuatro celdas de edad.
+
+### 4.3 · W3 — G3 · `familismo_apoyo` (ENIF) — β̂ por celda, seis ejes
+
+Marginal (W): n=5281/6183, β̂=**+0.0279**, IC95%=[**+0.0029, +0.0529**].
+
+| Eje | Nivel | n(θ=1) | n(θ=0) | β̂ | IC95% |
+|---|---|---|---|---|---|
+| Formalidad | Formal | 2 651 | 1 220 | −0.0333 | [−0.0700, +0.0033] |
+| Formalidad | Informal | 2 434 | 2 152 | **+0.0555** | [+0.0187, +0.0922] |
+| Edad | 18-29 | 1 467 | 1 195 | −0.0094 | [−0.0565, +0.0377] |
+| Edad | 30-44 | 2 142 | 1 830 | −0.0394 | [−0.0807, +0.0018] |
+| Edad | 45-59 | 1 722 | 1 444 | −0.0376 | [−0.0851, +0.0100] |
+| Edad | 60+ | 852 | 812 | +0.0255 | [−0.0399, +0.0909] |
+| Urbanización (`tloc`) | 100k+ | 3 684 | 2 322 | **−0.0333** | [−0.0656, −0.0010] |
+| Urbanización (`tloc`) | 15k-99,999 | 809 | 749 | +0.0049 | [−0.0604, +0.0703] |
+| Urbanización (`tloc`) | 2,500-14,999 | 729 | 760 | −0.0747 | [−0.1519, +0.0025] |
+| Urbanización (`tloc`) | <2,500 | 961 | 1 450 | **+0.0727** | [+0.0121, +0.1334] |
+| Ingreso | <$3,000 | 2 274 | 2 100 | **+0.0614** | [+0.0244, +0.0983] |
+| Ingreso | $3,000-5,500 | 870 | 547 | −0.0369 | [−0.1024, +0.0286] |
+| Ingreso | $5,501-7,500 | 302 | 163 | +0.0176 | [−0.0860, +0.1213] |
+| Ingreso | $7,501-9,000 | 238 | 100 | −0.0843 | [−0.1687, +0.0001] |
+| Ingreso | $9,001-11,000 | 244 | 91 | −0.0050 | [−0.0906, +0.0807] |
+| Ingreso | >$11,000 | 870 | 255 | −0.0231 | [−0.0637, +0.0175] |
+| Ingreso | Sin ingreso | 38 | 34 | +0.1502 | [−0.0532, +0.3535] |
+| Migración | No migrante | 6 134 | 5 252 | **−0.0280** | [−0.0531, −0.0029] |
+| Migración | Migrante internacional | 40 | 27 | n0=27 | **SIN SOPORTE** |
+| Acceso digital (`p3_14`) | Sí (smartphone) | 5 479 | 4 421 | **−0.0302** | [−0.0553, −0.0052] |
+| Acceso digital (`p3_14`) | No | 704 | 860 | **+0.1034** | [+0.0368, +0.1701] |
+
+**Lectura de W3, sin decidir por mesa:** el marginal (+0.0279, apenas
+distinguible de cero) **no es estable entre celdas — varía en signo, y
+donde varía, lo hace en la subpoblación mayoritaria.** En las cuatro
+celdas que concentran a la mayoría de la muestra (`Formal`, `100k+`, `No
+migrante`, `Sí smartphone` — todas mayoría dentro de su eje) el signo es
+**negativo**, tres de ellas distinguibles de cero al 95%, opuesto al
+marginal. En las celdas minoritarias correspondientes (`Informal`,
+`<2,500`, `Migrante internacional` [SIN SOPORTE], `No` smartphone) el
+signo es positivo y más grande en magnitud, también distinguible de cero
+donde hay soporte. Edad e ingreso no muestran un patrón tan limpio: la
+mayoría de sus celdas no son distinguibles de cero en ninguna dirección
+(6 de 13 no significativas de 13 celdas totales entre los dos ejes; de las
+significativas, `<$3,000` es positiva y `100k+` ya contado arriba es el
+único cruce con urbanización). La celda `Sin ingreso` (n=38/34) es la más
+cercana al mínimo de soporte de todo el acto — se reporta, no se descarta,
+pero su IC95% ([−0.0532, +0.3535]) es demasiado ancho para leer signo.
+
+---
+
+## 5 · Resultados X2 — forma funcional, leída no ajustada
+
+### 5.1 · W1 — `radio_confianza`, tasa de `tramite.mordida.discrecional` por nivel de θ (0-10)
+
+Corte de W reportado al lado: confía=`{6..10}` / no confía=`{0..5}`.
+
+| θ | `AP5_1_1` n / % mordida | `AP5_1_2` n / % mordida | `AP5_1_3` n / % mordida |
+|---|---|---|---|
+| 0 | 1 028 / 13.71% [10.49,16.92] | 253 / 14.75% [5.72,23.78] | 1 127 / 13.57% [10.27,16.87] |
+| 1 | 265 / 12.68% [9.06,16.30] | 88 / 14.56% [7.67,21.45] | 236 / 18.60% [11.22,25.99] |
+| 2 | 478 / 14.91% [10.03,19.80] | 219 / 5.56% [2.63,8.50] | 467 / 18.40% [11.91,24.89] |
+| 3 | 795 / 14.38% [11.20,17.57] | 300 / 16.70% [11.07,22.34] | 674 / 12.60% [9.40,15.80] |
+| 4 | 710 / 18.01% [13.36,22.67] | 288 / 13.02% [8.03,18.01] | 638 / 10.99% [7.42,14.56] |
+| 5 | 3 669 / 11.60% [9.92,13.27] | 1 578 / 13.88% [11.34,16.41] | 2 579 / 14.43% [12.28,16.58] |
+| **6** | 1 388 / 11.50% [8.74,14.27] | 740 / 15.30% [11.42,19.18] | 1 267 / 12.44% [9.41,15.46] |
+| 7 | 2 040 / 14.87% [12.28,17.45] | 1 365 / 13.12% [10.59,15.64] | 1 866 / 12.49% [10.25,14.73] |
+| 8 | 2 241 / 11.29% [8.48,14.11] | 3 586 / 13.06% [11.32,14.79] | 2 590 / 10.87% [9.13,12.61] |
+| 9 | 319 / 5.70% [3.24,8.17] | 2 407 / 11.40% [9.51,13.29] | 954 / 9.68% [6.29,13.07] |
+| 10 | 442 / 9.47% [7.15,11.79] | 2 569 / 11.28% [8.88,13.67] | 967 / 10.78% [5.09,16.48] |
+
+**Lectura, sin ajustar curva ni decidir cuál forma gana:** ninguno de los
+tres ítems traza una curva monótona. `AP5_1_1` sube de 0 a un pico en 4
+(18.01%) y luego baja de forma irregular hasta 9 (5.70%); `AP5_1_2` tiene
+un mínimo aislado en 2 (5.56%, `n`=219) rodeado de valores 13-17% en 0-1 y
+3-4, luego se aplana 11-15% en 5-10; `AP5_1_3` sube de 0 a un pico en 1-2
+(≈18.5%) y baja de forma más regular después, de 3 en adelante. El corte
+`≥6` de W no coincide con un salto visible en ninguno de los tres — no hay
+escalón entre el nivel 5 y el 6 en ninguna de las tres columnas. La
+lectura más defendible es una **pendiente descendente débil y ruidosa**
+(promedio de niveles 0-4 más alto que promedio de niveles 6-10 en los tres
+ítems), no una recta limpia, no una S clara, no un umbral en 6.
+
+### 5.2 · W2 — `confianza_institucional`, tasa de `tramite.mordida.discrecional` por nivel de θ (1-4)
+
+Corte de W reportado al lado: confía=`{1,2}` / no confía=`{3,4}`.
+
+| θ | Etiqueta | n | % mordida | IC95% |
+|---|---|---|---|---|
+| 1 | Mucha confianza | 1 903 | 4.17% | [2.98%, 5.36%] |
+| 2 | Algo de confianza | 18 342 | 7.66% | [7.11%, 8.20%] |
+| 3 | Algo de desconfianza | 12 507 | 12.10% | [11.18%, 13.03%] |
+| 4 | Mucha desconfianza | 5 003 | 18.16% | [16.45%, 19.86%] |
+
+**Lectura, sin ajustar curva ni decidir cuál forma gana:** los cuatro
+puntos son monótonos y casi rectos (incrementos de +3.49pp, +4.44pp,
++6.06pp entre niveles consecutivos — levemente creciente/convexo, no
+constante). Es la curva más limpia de todo el acto. **Pero no se lee
+aislada de §4.2:** esta curva agrega sobre todas las edades sin
+condicionar, y §4.2 ya mostró que, dentro de cada tramo de edad, el signo
+de la relación entre `P11_1_23` y la mordida se invierte. La limpieza de
+esta curva marginal es compatible con ser, ella también, un artefacto de
+composición por edad — no lo contradice, lo redondea: edad se asocia con
+más confianza (mayor θ=1) y con menos mordida (§4.2), lo que basta para
+producir una curva marginal descendente aunque la relación dentro de cada
+edad sea ascendente. No se decide aquí cuál de las dos lecturas es la
+correcta para el generador — se reportan ambas, explícitamente en
+tensión.
+
+### 5.3 · W3 — `familismo_apoyo`
+
+No aplica — `p9_9_4` es binario. Declarado en §2, no forzado aquí.
+
+---
+
+## 6 · Respuesta directa a las dos preguntas del encargo (§0)
+
+**Pregunta 1 — ¿sobreviven los tres al condicionar?** No, ninguno de los
+tres sobrevive sin matiz:
+
+- **W1 (`radio_confianza`):** no sobrevive. De 39 celdas (3 ítems × 3
+  ejes), 28 tienen signo positivo — opuesto al marginal negativo — y las
+  12 celdas distinguibles de cero al 95% son todas positivas, sin una
+  sola excepción negativa significativa (§4.1).
+- **W2 (`confianza_institucional`):** no sobrevive, de la forma más
+  limpia de las tres. Las cuatro celdas de edad, el único eje disponible,
+  tienen signo positivo y significativo — reversión completa y consistente
+  frente al marginal negativo (§4.2).
+- **W3 (`familismo_apoyo`):** no es estable. El marginal (apenas
+  significativo) se invierte en signo, con significancia, en las celdas
+  mayoritarias de tres de los seis ejes (`Formal`, `100k+`, `No migrante`,
+  `Sí smartphone`), mientras se amplifica en la misma dirección del
+  marginal en las celdas minoritarias correspondientes (§4.3). Edad e
+  ingreso no muestran un patrón tan limpio, en su mayoría no significativo
+  en ninguna dirección.
+
+**Lo que esto NO dice:** no dice que los tres β̂ marginales de W estén
+"mal" ni que deban descartarse — siguen siendo lo que son, diferencias de
+proporciones marginales, correctamente calculadas y reportadas (§2 del
+encargo W). Lo que dice es que **ninguno de los tres puede leerse como una
+propiedad estable de la relación entre θ y el desenlace, independiente de
+formalidad/edad/ingreso/urbanización/migración/acceso digital** — cada uno
+está, en mayor o menor medida, compuesto por la correlación entre esos
+atributos y ambas variables (θ y desenlace) a la vez, exactamente la
+posibilidad que `canon/modelo-decision-v4_0.md` (criterio C4 de P2) anticipó
+al pedir la malla de celdas. Si el marginal representa o no el coeficiente
+del generador (que multiplica un θ(x) condicional) es pregunta de mesa —
+este acto entrega la evidencia, no la resuelve.
+
+**Pregunta 2 — ¿qué forma tiene la relación?** Donde θ tiene escala (W1,
+W2), la forma leída **no sostiene una familia paramétrica limpia**:
+
+- W1: pendiente descendente débil, ruidosa, no monótona en ninguno de los
+  tres ítems — ni recta, ni S, ni escalón visible en el corte `≥6` (§5.1).
+- W2: curva marginal casi recta y monótona (§5.2) — pero, leída junto con
+  §4.2, es compatible con ser ella misma un artefacto de composición por
+  edad, no una forma funcional estable de la relación individual.
+- W3: no aplica, θ binario (§5.3).
+
+**Ninguna forma se declara ganadora — no le corresponde a este acto
+(§2.1). La mesa lee las tablas de §5 con la advertencia explícita de
+§5.2 sobre W2.**
+
+---
+
+## 7 · Contador
+
+**Contadores movidos: cero directos** — como anuncia el encargo. Los tres
+β̂ marginales de W siguen en `milpa/procedencia.yaml` con la misma clase
+`MEDIDO·β̂(diferencia de proporciones)`; este acto no cambia esa clase, no
+mueve ningún coeficiente a la escala del modelo, no toca
+`asignados_coeficiente.detalle`. Lo que cambia es el campo
+`eje_condicionante` de las tres entradas (§8): pasa de "no ejecutado en
+este acto" a un resumen del resultado de condicionar, con referencia a
+esta nota para el detalle completo. El README sigue diciendo "15
+coeficientes, 0 medidos" en la escala del modelo — sigue siendo cierto,
+este acto no lo toca.
+
+---
+
+## 8 · `milpa/procedencia.yaml` — actualización de `eje_condicionante`
+
+Sección `coeficientes_generador_medidos`, tres entradas, **solo el campo
+`eje_condicionante`** editado; `clase`, `antes`, `fuente`, `n_util`,
+`beta_hat`, `nota`, `marca_c3`/`marca_c2` sin tocar. Ver commit de esta
+sección para el diff exacto.
+
+---
+
+## 9 · Verificación de perímetro y suite
+
+`git status --short` antes de commitear: solo esta nota y
+`milpa/procedencia.yaml` (sección `coeficientes_generador_medidos`, tres
+líneas `eje_condicionante`, verificado por `git diff` línea por línea)
+modificados, más `data/raw` (symlink gitignorado, no rastreado). No se
+tocó `canon/`, `asignados_coeficiente.detalle`, el bloque append-only,
+`data/manifiesto.yaml`, ni `tests/svystat.py` — verificado por diff, no
+solo afirmado.
+
+`python3 tests/manifiesto.py --verifica`: los tres payloads que este acto
+abrió (`encuci2020_bd_dbf`, `encig23_base_datos_csv`, `enif2024_csv`)
+**COINCIDEN** contra `data/manifiesto.yaml` (sha256 y tamaño).
+
+`python3 tests/check.py`: `18 FAIL · 84 WARN`.
+`python3 tests/check.py --baseline`: **LÍNEA BASE: VERDE** — nada nuevo
+frente a `tests/baseline.json` (HEAD congelado `090ee0f`). Dos defectos
+de cita encontrados y corregidos antes de esta verificación final: dos
+referencias a notas de W y de Fase B habían perdido el prefijo de fecha
+al citarlas entre comillas simples (el nombre de archivo de W sin su
+prefijo "2026-08-04-", y el nombre de archivo de la nota de medición de
+Fase B sin su prefijo "2026-08-03-") — mismo defecto de cita que
+`forense/notas/2026-08-03-cal-conf-faseb-pos5-6-radio-familismo.md` §6
+ya documentó y corrigió en su propia sesión. Corregido aquí antes de
+commitear, no después.
