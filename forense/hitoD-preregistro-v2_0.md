@@ -959,6 +959,30 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 
 ---
 
+### Nota 23 · 4/ago/2026 — Veredicto de `R4.1` y `R9.1`: `D` para ambas, por motivos distintos, registradas juntas
+
+*(Añadida al final, fechada, sin tocar el cuerpo, ninguna ficha ni las Notas 1-22 — misma disciplina. Encargo Z, commit 2.)*
+
+**`R4.1` → `D`.** Ninguna fuente del catálogo construye la comparación antes/después que el Umbral exige (ENSANUT y ENIGH son ambas corte transversal, sin panel de acceso a salud anclado a un evento fechado). **`R9.1` → `D`.** Sin variable de distancia en km (solo tiempo de traslado) y con exclusión estructural, por diseño del cuestionario de Utilizadores, de quien no consultó a nadie — la subpoblación donde "prevalece 'yo sé por experiencia'" sería más visible. **Simetría cumplida, no colapsada:** ambas fallan por ausencia de diseño en el instrumento, no por el mismo mecanismo — se documentan juntas y se archivan por separado. Detalle completo: `forense/notas/2026-08-04-z4-veredicto-r4-1-r9-1.md`.
+
+---
+
+### Nota 24 · 4/ago/2026 — Veredicto de `R4.3`: `D` en ambas mitades, archivadas por separado
+
+*(Añadida al final, fechada, sin tocar el cuerpo, ninguna ficha ni las Notas 1-23 — misma disciplina. Encargo Z, commit 2.)*
+
+**Mitad A → `D` y mitad B → `D`, ambas por la misma fila compartida de la ficha** (línea 132: "si solo hay adherencia auto-reportada") — la única variable de adherencia en el catálogo entero (`A0313`, ENSANUT) es por entrevista, no por surtimiento. Mitad A tiene además techo abierto en la duración del desabasto ("1 mes o más", no aísla ≥3 meses). Mitad B no tiene variable de cuidadora; su único proxy (corresidencia) es el confusor socioeconómico que la propia ficha ya advierte (línea 130) — no se corrió ese proxy sin control, por diseño, no por omisión. Detalle completo: `forense/notas/2026-08-04-z5-veredicto-r4-3.md`.
+
+---
+
+### Nota 25 · 4/ago/2026 — Veredicto de `R9.2`: `D`, meta-regla del corpus, abasto solo lo reporta el prestador
+
+*(Añadida al final, fechada, sin tocar el cuerpo, ninguna ficha ni las Notas 1-24 — misma disciplina. Encargo Z, commit 2.)*
+
+**`R9.2` → `D`.** El Umbral exige cobertura baja **Y** abasto/campaña verificados por tercero; la segunda condición no tiene ninguna fuente en el catálogo completo — la única disponible (DGIS) es el propio prestador, excluida por la ficha misma (línea 271). La conjunción nunca puede cruzar a `A` sin esa pieza, así que no se corrió cobertura: no cambia el veredicto. Anti-superviviente (Bloque C) cumplido a nivel de instrumento: se buscó en las 119 fuentes del catálogo, no solo en ENSANUT, y se archiva el descarte con motivo. **Este `D` es ausencia determinable de instrumento auditor, no ausencia del fenómeno ni evidencia de que el hueco sea actitudinal** — la meta-regla del corpus no cae por este veredicto. Detalle completo: `forense/notas/2026-08-04-z6-veredicto-r9-2.md`.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
@@ -967,3 +991,8 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 `R3.2` → veredicto `B` — *(archivado 29/jul/2026, narrado en Nota 6, detalle en `hitoD-R3.2`)*
 `R7.2` → veredicto `D` — *(archivado 4/ago/2026, narrado en Nota 11, detalle en `hitoD-R7.2`)*
 `R4.2` → veredicto `D` — *(archivado 4/ago/2026, narrado en Nota 17, detalle en `forense/notas/2026-08-04-y4-veredicto-r4-2.md`)*
+`R4.1` → veredicto `D` — *(archivado 4/ago/2026, narrado en Nota 23, detalle en `forense/notas/2026-08-04-z4-veredicto-r4-1-r9-1.md`)*
+`R9.1` → veredicto `D` — *(archivado 4/ago/2026, narrado en Nota 23, detalle en `forense/notas/2026-08-04-z4-veredicto-r4-1-r9-1.md`)*
+`R4.3` → veredicto `D` — *(mitad A, archivado 4/ago/2026, narrado en Nota 24, detalle en `forense/notas/2026-08-04-z5-veredicto-r4-3.md`)*
+`R4.3` → veredicto `D` — *(mitad B, archivado 4/ago/2026, narrado en Nota 24, detalle en `forense/notas/2026-08-04-z5-veredicto-r4-3.md`)*
+`R9.2` → veredicto `D` — *(archivado 4/ago/2026, narrado en Nota 25, detalle en `forense/notas/2026-08-04-z6-veredicto-r9-2.md`)*
