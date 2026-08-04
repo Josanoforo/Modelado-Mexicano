@@ -612,6 +612,91 @@ asignados_coeficiente:
   # de coeficiente. Ningún coeficiente de generador tiene ruta hoy.
 
 # ══════════════════════════════════════════════════════════════════
+# RECLASIFICACIÓN v4.0 · Encargo W · 04/ago/2026 · primera estimación
+# empírica (β̂) de tres coeficientes de generador -- NO condicionales θ_k(x)
+# (eso es `condicionales_escalares`, arriba). Contador: 0 de 15 -> 3 de 15
+# coeficientes de generador. `asignados_coeficiente.detalle` NO se toca --
+# los valores ASIGNADO (-0.35/-0.60/0.20) siguen siendo lo que el modelo
+# usa. Fuente única: forense/notas/2026-08-04-w-coeficientes-generador-
+# paso1.md §3 (PR pendiente de fusionar).
+# ⚠ ESCALA, no se repite bastante: β̂ es diferencia de proporciones
+#   ponderada del desenlace (regresión de binario sobre binario), NO la
+#   escala del índice del generador que usa el ASIGNADO. Sin función de
+#   enlace declarada por el modelo, no hay conversión entre las dos.
+#   Comparable entre sí (razón de magnitudes, mismo generador, misma
+#   escala): SÍ. Comparable contra el valor ASIGNADO en magnitud: NO.
+# ══════════════════════════════════════════════════════════════════
+coeficientes_generador_medidos:
+  G1_radio_confianza:
+    clase: "MEDIDO·β̂(diferencia de proporciones), por ítem, marginal (sin condicionar sobre atributos)"
+    antes: "ASIGNADO -- coeficiente de generador (G1 -0.35), sin estimación empírica"
+    fuente: "ENCUCI 2020, SEC_4_5 (21519 filas) -- reactivo AP5_1_1/2/3 (dicotomizado >=6/10) x desenlace tramite.mordida.discrecional (AP5_17 o AP5_18='1', universo con contacto AP5_16_1..10) -- forense/notas/2026-08-04-w-coeficientes-generador-paso1.md §1.1, §3.1"
+    n_util: "AP5_1_1: n=13375 (6430+6945) · AP5_1_2: n=13393 (10667+2726) · AP5_1_3: n=13365 (7644+5721), de universo con contacto=13435/21519"
+    eje_condicionante: "no ejecutado en este acto (C4 de P2: ENCUCI 3 ejes estrictos -- formalidad, edad, ingreso -- declarados como disponibles, no usados; estimación marginal)"
+    beta_hat: "AP5_1_1: -0.0102 [IC95% -0.0292,0.0089] · AP5_1_2: -0.0113 [IC95% -0.0341,0.0114] · AP5_1_3: -0.0269 [IC95% -0.0465,-0.0072]"
+    nota: >
+      Escala de diferencia de proporciones del desenlace, NO la escala del
+      índice del generador -- no comparable en magnitud contra el -0.35
+      ASIGNADO (ver cabecera de esta sección). Signo coincide en los tres
+      ítems (negativo). Solo AP5_1_3 (vecinos) es distinguible de cero al
+      95%; AP5_1_1 y AP5_1_2 no lo son -- se reportan los tres, sin
+      descartar los no significativos. Tres ítems por separado, no
+      índice -- mismo criterio que condicionales_escalares.radio_confianza.
+    marca_c3: >
+      NO USAR para identificar cooperacion.confianza.puente_personal
+      (mismo límite que condicionales_escalares.radio_confianza) --
+      su desenlace observado es AP5_1_2, el propio reactivo de esta
+      entrada. Esta entrada identifica G1 vía tramite.mordida.discrecional
+      únicamente.
+  G1_confianza_institucional:
+    clase: "MEDIDO·β̂(diferencia de proporciones), un ítem, marginal, TRUNCADO"
+    antes: "ASIGNADO -- coeficiente de generador (G1 -0.60), sin estimación empírica"
+    fuente: "ENCIG 2023, encig2023_01_sec_11 (batería XI, ítem P11_1_23 'servidores/empleados de gobierno', dicotomizado confía={1,2}/no confía={3,4}) x encig2023_01_sec1_A_3_4_5_8_9_10 (P8_3_1/2/3, desenlace tramite.mordida.discrecional), unidas por ID_PER, 38966 filas cada una, cero pérdida de join -- forense/notas/2026-08-04-w-coeficientes-generador-paso1.md §1.2, §3.2"
+    n_util: "n=37755 (20245+17510) de 38966"
+    eje_condicionante: "no ejecutado en este acto (C4 de P2: ENCIG 1 eje estricto -- solo edad --, sin ingreso ni ruralidad en ningún régimen; estimación marginal)"
+    beta_hat: "-0.0645 [IC95% -0.0744,-0.0546]"
+    nota: >
+      Escala de diferencia de proporciones del desenlace, NO la escala del
+      índice del generador -- no comparable en magnitud contra el -0.60
+      ASIGNADO. Signo coincide (negativo), distinguible de cero al 95%.
+      Un solo ítem de los 25 de la batería XI, declarado por construct
+      validity (referente "funcionario/empleado de gobierno" genérico,
+      coincide con el sujeto del desenlace) y para no duplicar ítems ya
+      reclamados por confianza_institucional[justicia] de G4
+      (policía/jueces/ministerio público) -- no promediado en índice, ver
+      nota de ADR-49 D3 (pendiente de pendiente común entre componentes).
+    marca_c2: >
+      Ruta de identificación GENÉRICA (constructo, no componente con
+      nombre) vía tramite.mordida.discrecional ("trampa social", G1,
+      modelo:450) -- distinta de la ruta confianza_institucional
+      [financiera] que ADR-52 B nombró para las reglas de ahorro de G1
+      (dinero.ahorro.informal_sin_puente/con_puente_y_respaldo). No se
+      decide aquí si ambas rutas deberían fundirse en un solo número --
+      pregunta de mesa, declarada en forense/notas/2026-08-04-w-
+      coeficientes-generador-paso1.md §1.2.
+  G3_familismo_apoyo:
+    clase: "MEDIDO·β̂(diferencia de proporciones), un ítem, marginal"
+    antes: "ASIGNADO -- coeficiente de generador (G3 0.20), sin estimación empírica"
+    fuente: "ENIF 2024, TMODULO (universo filtro_s9_1=2, <71 años) -- reactivo p9_9_4 (binario, ya reusado de condicionales_escalares.familismo_apoyo) x desenlace dinero.ahorro.volatilidad_horizonte_corto (p4_10, dicotomizado horizonte-cero={1}/no-cero={2,3,4,5}) -- forense/notas/2026-08-04-w-coeficientes-generador-paso1.md §1.3, §3.3"
+    n_util: "n=11464 (5281+6183) de 12379"
+    eje_condicionante: "no ejecutado en este acto (C4 de P2: ENIF 6 ejes estrictos -- la malla más rica del corpus --, declarados como disponibles, no usados; estimación marginal)"
+    beta_hat: "+0.0279 [IC95% 0.0029,0.0529]"
+    nota: >
+      Escala de diferencia de proporciones del desenlace, NO la escala del
+      índice del generador -- no comparable en magnitud contra el 0.20
+      ASIGNADO. Signo coincide (positivo), distinguible de cero al 95%.
+      Dicotomización del desenlace declarada antes de ver la relación con
+      el reactivo, con ancla más débil que la de radio_confianza (§1.3 de
+      la nota lo declara: la categoría 1 del catálogo funde "no tiene
+      ahorros" con "menos de una semana", no hay ancla externa tipo
+      "aprobatorio de escuela"); mover el corte a {1,2} es defendible y
+      queda para revisión de mesa si este número se usa fuera de este acto.
+    marca_c3: >
+      Identifica G3 (desenlace distinto del reactivo). NO identifica G5
+      (mismo límite que condicionales_escalares.familismo_apoyo): el
+      desenlace de G5 en ENIF es la misma batería P9_9_1..6.
+
+# ══════════════════════════════════════════════════════════════════
 # CRUCE CON LA BATERÍA DE REFUTACIONES
 # ══════════════════════════════════════════════════════════════════
 # Números que podrían estar codificando un mito ya refutado por el corpus.
