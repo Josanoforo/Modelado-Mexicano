@@ -1049,3 +1049,35 @@ forense/hallazgos.md                               |   1 +
 
 ---
 
+## 2026-08-03
+
+**Fecha:** 2026-08-03 · **Rama:** `sesion/hitoD-r7-2-delito-sin-seguro` · **HEAD inicial (origin/main):** `642be976c748f6e91a7888aceeb532e881fa100a` · **HEAD final:** `e9f6ac7ce32b3982eab5a50442e1ca6e0ec54fc4`
+
+**Commits de la sesión:**
+  - `e9f6ac7` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · Encargo J: R7.2 con las ocho olas ENVIPE — pareo por identificabilidad ejecutado a escala, D queda
+
+**Archivos tocados:**
+```
+forense/hallazgos.md                       |   1 +
+ forense/hitoD-preregistro-v2_0.md          |  14 ++
+ forense/notas/2026-08-04-r7-2-ocho-olas.md | 148 +++++++++++++++++++
+ tests/hitoD_r7_2_ocho_olas.py              | 226 +++++++++++++++++++++++++++++
+ 4 files changed, 389 insertions(+)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 19 FAIL · 83 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 84 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: (ninguno)
+  - Cerrados: D-05, D-06, D-07, D-08, D-09, D-10, E-04, E-05, E-06, I-01, I-08, I-09, I-13
+
+**Qué se decidió:** Ocho olas ENVIPE agrupadas; pareo por identificabilidad ejecutado a escala -- ninguna vía cierra A sin reserva (desconocido: IC cruza 20; conocido: n insuficiente aun agrupado, 42/42 conglomerados singleton). D queda archivada, ambigüedad de Nota 12 disuelta sin ADR.
+**Qué quedó bloqueado:** Ninguno propio. Decisión de mesa pendiente: si archiva este desenlace como entrada fechada en el bloque append-only de veredictos (no se archivó en este acto, es de mesa).
+
+---
+
