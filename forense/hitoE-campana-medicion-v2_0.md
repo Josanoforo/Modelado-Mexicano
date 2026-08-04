@@ -1458,3 +1458,80 @@ No se abrió microdato ni descriptor nuevo en este acto de adenda — la
 lectura del FD la hizo la nota citada. No se tocó `canon/` ni `milpa/`.
 No se movió ningún contador. No se reclasificó ninguna otra fila de
 `§14.3`.
+
+---
+
+## 19 · Adenda 04/ago/2026 — ENVIPE paso 1: fila 4 de `§14.3` — `TPer_Vic1` NO TIENE EL DATO, argumentado
+
+**Disciplina aplicada:** adenda fechada, append-only, mismo mecanismo que
+`§15`-`§18`. `§14.3` no se edita — la fila 4 (corregida por `§15`) queda
+íntegra; esta adenda registra el resultado del otro de los dos actos que
+`canon/modelo-decision-v4_0.md:275` nombra para `exposicion_violencia`:
+*"posición 4 rehecha sobre `TPer_Vic1`"*, que en sus dos intentos previos
+(`PR #61` y su reemisión) volvió **NO ALCANZABLE**, sin examinar nada.
+
+**Clase: Corrección de fila, misma clase que `§14` entero — Propuesta. No
+es decisión. No rige sin ADR.**
+
+**Qué pasó.** `forense/notas/2026-08-04-cal-conf-faseb-pos4-envipe-paso1.md`
+verificó primero que este entorno **no** repite la firma de bloqueo de los
+dos intentos previos (`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` sin declarar,
+INEGI responde `200`, `data/raw` poblado en el checkout de trabajo) y, con
+eso resuelto, **sí abrió** `fd_envipe2025.pdf` y `cuest_principal_envipe2025.pdf`
+(ambos ya registrados y verificados contra `data/manifiesto.yaml`) contra
+la tabla `TPer_Vic1` (240 variables, Sección IV "Percepción sobre
+seguridad pública" + Sección V "Desempeño institucional"). **Ninguna de
+sus variables sirve**: la Sección IV completa pregunta por conocimiento o
+rumor del entorno (`AP4_5`, *"¿sabe usted o ha escuchado...?"*), expectativa
+subjetiva de riesgo futuro (`AP4_6`, `AP4_7`) o conducta de evitación/protección
+motivada por miedo (`AP4_10`, `AP4_11`) — percepción/actitud o conducta
+defensiva, nunca un hecho de violencia sufrida por la persona misma; la
+Sección V completa es reconocimiento/confianza en autoridades
+(`confianza_institucional`, parámetro ya aparte del modelo). Detalle
+completo, tabla candidato por candidato con wording literal, universo y
+catálogo, en la nota citada, §5.
+
+**Consecuencia sobre la fila 4, dicha con precisión.** La posición **sigue
+viva** — `exposicion_violencia` sigue sin medir, el contador no se mueve
+(**8/14**). Lo que se cierra es solo la pregunta sobre `TPer_Vic1`
+específicamente: de los "dos actos en curso" que `gobernanza:527` nombraba,
+**ninguno sigue en curso hoy** — el de ENDIREH concluyó con candidato
+parcial (`§18`, arriba); este concluye con NO SIRVE argumentado. Ninguno
+de los dos volvió *sin examinar* como en los intentos previos de este
+mismo acto.
+
+**Nota para mesa, citada de la nota original, no decidida aquí.** La nota
+señala un paralelo con el precedente que cerró `aversion_riesgo` y, por
+esa vía, `sens_estatus` (ADR-52 A / ADR-54): un candidato **examinado y
+descartado con argumento**, no un acto bloqueado por entorno. Si mesa
+decide que ese precedente aplica, la búsqueda sobre `TPer_Vic1` cerraría
+por argumento en vez de necesitar un tercer acto sin reactivo. **Esta
+adenda no toma esa decisión** — la deja escrita para que mesa la tome con
+el hecho ya verificado delante.
+
+**Chequeos C2/C3, ejes de atributos.** C3 (circularidad contra Tabla B):
+ENVIPE **sí** es una de las 8 fuentes de Tabla B — a diferencia de
+ENDIREH, donde C3 pasaba limpio — pero no llega a materializarse porque
+ninguna variable de `TPer_Vic1` se adjudica. C2 (mismo instrumento observa
+un desenlace de `G4`): **declarado abierto**, misma disciplina que
+`§18` — el candidato más próximo (`AP4_11_09`, "adquirir armas de fuego")
+no es wording de `civico.autodefensa.agravio_rural`, pero comparte familia
+conceptual con lo que `G4` produce; no se leyeron `TMod_Vic`/`TPer_Vic2`/Secciones
+VI-VII para descartarlo con certeza. Ejes de atributos disponibles en
+ENVIPE (citados de `forense/notas/2026-07-31-inventario-segmentacion.md`,
+no re-derivados): **2 de 6 confiables** (edad, urbanización), **2
+parciales** (formalidad laboral, ingreso), **2 sin equivalente** (acceso
+digital, migración).
+
+**Declaración de contaminación (ADR-46).** Esta sesión abrió el FD y el
+cuestionario principal de ENVIPE 2025 — queda inhabilitada para
+pre-registrar contra ENVIPE mientras retenga este contexto.
+
+### 19.1 · Límite de lectura declarado (ADR-46)
+
+Esta adenda leyó: `forense/notas/2026-08-04-cal-conf-faseb-pos4-envipe-paso1.md`
+completa; `canon/modelo-decision-v4_0.md:275` (condición de caducidad) —
+no re-derivado, solo citado. No se abrió ningún PDF ni microdato en este
+acto de adenda — la lectura del FD y del cuestionario la hizo la nota
+citada. No se tocó `canon/` ni `milpa/`. No se movió ningún contador. No
+se reclasificó ninguna otra fila de `§14.3`.
