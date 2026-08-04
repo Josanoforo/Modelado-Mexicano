@@ -42,9 +42,10 @@ Sin `cloud_default` en la variable de entorno; INEGI **responde** — a
 diferencia de los dos intentos previos del mismo acto (`PR #61` y su
 reemisión), ambos `000`/`403` de política de proxy al `CONNECT`, registrados
 en `forense/hallazgos.md` (entradas 04/ago/2026, líneas 74 y 79). El
-checkout de trabajo de esta sesión (`/home/pc0/Modelado-Mexicano`, con
-`data/raices.local.yaml` y `data/raw` simbólico a `/home/pc0/mm-corpus/raw`)
-tiene `data/raw` poblado — distinto de un clon efímero donde `data/raw`
+checkout de trabajo de esta sesión, con `data/raices.local.yaml` presente
+y `data/raw` simbólico a la raíz externa integrada (ruta real no citada
+aquí, por disciplina de §0), tiene `data/raw` poblado — distinto de un
+clon efímero donde `data/raw`
 está ausente por diseño (`.gitignore`: `data/raw/`, `data/raices.local.yaml`),
 trampa que §0 del encargo anticipa ("todo reportará AUSENTE aunque el
 manifiesto lo registre"). **Entorno correcto para este acto, confirmado
