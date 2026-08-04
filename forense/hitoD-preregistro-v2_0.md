@@ -700,6 +700,20 @@ Detalle completo, las 15 tasas de denuncia por clase de delito, verificación de
 
 ---
 
+### Nota 12 · 4/ago/2026 — Revisión de `R7.2`: `A` también se satisface por la letra de la ficha, no adjudicado
+
+*(Añadida al final, fechada, sin tocar el cuerpo, la ficha ni las Notas 1-11 — misma disciplina que Nota 11 declaró. El veredicto archivado en el registro de abajo NO cambia con esta nota.)*
+
+**El hallazgo adyacente que Nota 11 declaró "no adjudicado" (denuncia 79.1% asegurado, n=402, vs. 67.2% no asegurado, n=614, dentro de `BPCOD=01`, brecha 11.9pp) satisface, leído literal, la fila `A` de la escala propia de la ficha** (*"brecha <20 puntos con pareo"*) — a la vez que `D` sigue siendo cierta (`BP2_1` no cruza con `BPCOD` entre clases, verificado de nuevo, independiente, en esta revisión). El Umbral (línea 184, *"brecha de denuncia entre delitos asegurados y no asegurados <20 puntos, pareando gravedad e identificabilidad"*) no dice "entre clases de delito" — y el disparador de vuelco que la propia ficha cita como lo que la hace falsable (línea 179, *"SI es robo de vehículo asegurado ENTONCES sí denuncia"*) es, textualmente, un enunciado intra-clase. La ficha no declara precedencia entre ambas lecturas.
+
+**Verificación estadística nueva en este acto, no heredada:** brecha con IC95% de la brecha misma (no solo de cada brazo) — `[6.4pp, 17.4pp]`, no cruza el umbral de 20. Universo de `BP2_1` re-verificado fila por fila contra el CSV crudo (sin blancos dentro de `BPCOD=01`; blanco estructural del 100% fuera de él). Estimador re-validado de forma independiente (caso sintético + reproducción de la marginal `DOMINIO` de `PR #57`), no copiado del acto anterior.
+
+**No se adjudica cuál fila prevalece — es decisión de mesa.** Mismo patrón que `D5`/`D6` en la segmentación P3 de ENIGH el mismo día (`forense/notas/2026-08-04-p3-lca-segmentacion.md §6`): un pre-registro con dos desenlaces que se solapan porque no anticipó el caso intermedio (aquí: cobertura que varía *dentro* de una clase pero no *entre* clases), sin regla de precedencia escrita. Detalle completo, tabla comparativa de las dos filas y sus argumentos: `hitoD-R7.2-revision` (`forense/hitoD-R7_2-revision-v1_0.md`).
+
+**El veredicto archivado (`D`) y el contador (`3 de 27`) no cambian por esta nota.** Si mesa decide que `A` reemplaza o co-existe con `D`, se registra como entrada nueva fechada en el bloque de abajo — no reescribiendo la línea de `R7.2` ya archivada.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
