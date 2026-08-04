@@ -1699,3 +1699,73 @@ Esta adenda leyó completa la nota
 reabrió el FD ni el cuestionario de ENVIPE 2025 — esa lectura la hizo la
 nota citada. No se tocó `canon/` ni `milpa/`. No se movió ningún
 contador. No se reclasificó ninguna otra fila de `§14.3`.
+
+## 22 · Adenda 04/ago/2026 — Encargo K: fila 4 de `§14.3` CIERRA — `exposicion_violencia` medida, contador 8→9/14
+
+**Disciplina aplicada:** adenda fechada, append-only. `§14.3` no se edita
+— la fila 4 (última nota en `§21`) queda íntegra; esta adenda registra
+el cierre.
+
+**Clase: registro de acto de MEDICIÓN — mueve el contador. Distinta de
+`§18`-`§21` (registro de acto de búsqueda, no movían el contador).**
+
+**Qué pasó.** El acto que `§21` dejó en CANDIDATO VÁLIDO sin adjudicar
+(`TPer_Vic2` de ENVIPE 2025, `AP7_3_09`-`_14`) se midió en
+`forense/notas/2026-08-04-medicion-exposicion-violencia-envipe.md`.
+Núcleo de cinco ítems limpios (`AP7_3_10` amenaza · `AP7_3_11` agresión
+física con lesión · `AP7_3_12` secuestro · `AP7_3_13` agresión sexual ·
+`AP7_3_14` violación), binario "sufrió al menos uno, 2024", ponderado
+por `FAC_ELE`, dispersión por conglomerado último (`EST_DIS`×`UPM_DIS`).
+`AP7_3_09` (extorsión) medida aparte por su matiz patrimonial no
+resuelto, reportada como condicional con/sin. Estimador contrastado
+contra caso conocido (INEGI, presentación nacional ENVIPE 2025:
+violación sexual, 279 por 100 mil mujeres, 2024) — reproducido con
+0.09% de diferencia.
+
+**Consecuencia sobre la fila 4, dicha con precisión.** El contador
+**se mueve: 8/14 → 9/14**. `exposicion_violencia` sale de "sin reactivo
+verificado — búsqueda abierta" (que queda vacía, no por agotar los tres
+actos de la condición de caducidad de ADR-52 A —que sigue intacta como
+criterio— sino porque el segundo acto de búsqueda encontró candidato y
+este acto lo midió) y entra a `MEDIDO·PARCIAL(edad,dominio,formalidad,
+ESTRATO)`. C3 limpio (re-verificado, ninguna candidata en Tabla B). C2
+**sellado, no resuelto**: `BP1_23` (candidato de `comunicacion.
+inseguridad.ver_oir_callar`, `§15`) depende estructuralmente de la misma
+subpoblación que dispara `AP7_3_XX`=1 — declarado como límite que viaja
+con el número en `milpa/procedencia.yaml`, no resuelto porque resolverlo
+exigiría adjudicar `ver_oir_callar`, fuera del alcance de este acto.
+
+**Fila 4, `§14.3`, nota sobre su estado (no se reescribe la fila):**
+
+| # | Qué se mide | Fuente · variable (citada) | Qué mueve | Payload | Sesión-tipo |
+|---|---|---|---|---|---|
+| **4** | `exposicion_violencia` | **MEDIDO·PARCIAL(x)** — `TPer_Vic2` (ENVIPE 2025), `AP7_3_10`-`_14` (núcleo) + `AP7_3_09` (extorsión, condicional aparte); `TPer_Vic1`/`TMod_Vic` (ENVIPE) descartadas con argumento (`§19`/`§21`); ENDIREH queda como complemento (CP-1), no reactivo alternativo | Contador **8/14 → 9/14**. Compra la condicional base del coeficiente `G4 · exposicion_violencia`, `IDENTIFICADO·TRUNCADO` en P2 (`§2.d`) — el coeficiente sigue `ASIGNADO` (0.70), solo la condicional queda medida | Sin extorsión: 5.675% [IC95% 5.427-5.924%]. Con extorsión: 9.668% [IC95% 9.358-9.977%]. Ejes: edad×dominio (conjunto) + formalidad/ESTRATO (marginal) | Medición — `forense/notas/2026-08-04-medicion-exposicion-violencia-envipe.md` |
+
+**CP-1, dicho con las palabras del encargo que la cierra, sin
+reabrirla aquí.** ENVIPE es el reactivo de `exposicion_violencia`
+(universo poblacional, sin marca de parcialidad, encuadre de
+victimización delictiva). ENDIREH queda como complemento con dos
+funciones nombradas (ventana de vida, desdoble tipo×ámbito) — nunca se
+suman ni promedian con ENVIPE, constructos y universos distintos. Esta
+adenda no reabre CP-1: reporta que se cerró y qué se hizo con la
+decisión.
+
+**Efecto sobre `comunicacion.inseguridad.ver_oir_callar`, señalado y
+sellado, no resuelto (extiende `§15`, `§21`).** La dependencia
+estructural entre `AP7_3_XX` y `BP1_23` (misma cascada de disparo del
+Instrumento B) queda declarada en `milpa/procedencia.yaml`
+(`limite_c2`), pegada al número, para que quien adjudique cualquiera de
+las dos variables la encuentre ahí.
+
+### 22.1 · Límite de lectura declarado (ADR-46)
+
+Esta adenda leyó completa la nota
+`2026-08-04-medicion-exposicion-violencia-envipe.md` citada arriba; no
+reabrió el FD ni el cuestionario de ENVIPE 2025 — esa lectura ya la
+hizo `§21`/la nota de paso 1. Sí abrió microdato nuevo: el CSV de
+`TPer_Vic2` (`envipe2025_csv.zip`, ya registrado en manifiesto, hash
+verificado) y el CSV de `TSDem` (mismo zip) para el join de formalidad.
+No se tocó ninguna otra fila de `§14.3`. Cascada ejecutada:
+`milpa/procedencia.yaml` (entrada nueva), `canon/modelo-decision-v4_0.md`
+(§1.1.F Paso 5, §6.1, §7 — contador y reparto), `forense/hallazgos.md`
+(línea de cierre).

@@ -270,6 +270,128 @@ condicionales_escalares:
       dinero.ahorro.volatilidad_horizonte_corto vía P4_10).
 
 # ══════════════════════════════════════════════════════════════════
+# RECLASIFICACIÓN v4.0 · CAL-CONF Fase B, posición 4 · Encargo K (mesa #18,
+# 4/ago/2026) · exposicion_violencia pasa a MEDIDO·PARCIAL(x). Cierra la
+# "búsqueda abierta" que ADR-52 A había sellado -- por medición exitosa
+# (segundo acto de búsqueda, forense/notas/2026-08-04-envipe-tper-vic2-tmod-
+# vic-paso1.md, encontró candidato válido), NO por agotar los tres actos de
+# la condición de caducidad, que sigue intacta como criterio. Fuente única:
+# forense/notas/2026-08-04-medicion-exposicion-violencia-envipe.md §2-6
+# (Encargo K fusionado). CP-1 (decisión de mesa, cerrada este mismo encargo):
+# ENVIPE es el reactivo, ENDIREH queda como complemento con dos funciones
+# nombradas (ventana de vida, desdoble tipo×ámbito) -- nunca se suman ni
+# promedian, universos y constructos distintos.
+# ══════════════════════════════════════════════════════════════════
+condicionales_escalares_exposicion_violencia:
+  exposicion_violencia:
+    clase: "MEDIDO·PARCIAL(edad,dominio,formalidad,ESTRATO)"
+    antes: >
+      ASIGNADO -- coeficiente de generador (G4 0.70, canon/modelo-decision-v4_0.md:396),
+      sin condicional base medida. Reactivo anterior (ENVIPE BP1_20/23/28)
+      retirado por PR #57: medía conducta de denuncia condicionada a
+      victimización, no exposición a violencia (hitoE §15).
+    fuente: >
+      ENVIPE 2025, TPer_Vic2 (91182 filas, universo persona seleccionada 18+,
+      sin condicionar a RESUL_H, cero blancos), Sección VII -- núcleo
+      AP7_3_10 (amenaza) · AP7_3_11 (agresión física con lesión) ·
+      AP7_3_12 (secuestro) · AP7_3_13 (agresión sexual) · AP7_3_14
+      (violación); condicional con AP7_3_09 (extorsión) reportada aparte,
+      fuera del núcleo por su matiz patrimonial no resuelto --
+      forense/notas/2026-08-04-medicion-exposicion-violencia-envipe.md §2-6.
+    n_util: >
+      91182 filas de tabla, cero blancos en las seis variables (AP7_3_09 a
+      AP7_3_14). Join a TSDem por ID_PER para el eje de formalidad: 91182 de
+      91182 coinciden (100%); de esos, 56829 (62.3%) tienen AP3_8="trabajó"
+      y AP3_10 válido -- el n aguanta el marginal de formalidad.
+    eje_condicionante: >
+      edad (18-29 · 30-44 · 45-59 · 60+) × dominio (U/C/R), conjunto (12
+      celdas) + formalidad (AP3_8/AP3_10 vía join a TSDem, marginal, proxy
+      rugoso de posición en la ocupación -- jornalero/empleado/cuenta
+      propia/patrón/sin pago, NO verificación de registro formal ante
+      seguridad social, mismo límite que TPer_Vic1) + ESTRATO de área
+      (marginal, no ingreso individual). Acceso digital y migración NO
+      DISPONIBLES en este instrumento (mismo límite que TPer_Vic1).
+    estimador: >
+      Binario "sufrió al menos uno de los cinco del núcleo, durante 2024" +
+      condicional con AP7_3_09 sumado; ponderado por FAC_ELE (factor de
+      personas elegidas, no FAC_ELE_AM que es del área urbana de interés);
+      dispersión por conglomerado último (método de razón, Woodruff/
+      "ultimate cluster": EST_DIS como estrato, UPM_DIS como PSU, 746
+      estratos con ≥2 UPM usados, cero estratos singleton). Periodo: 2024,
+      12 meses (enero-diciembre) -- ventana de eventos consumados, NO
+      ventana de vida; distinto de ENDIREH, nunca se suma ni promedia con
+      ella (CP-1).
+    distribucion: >
+      Sin AP7_3_09 (núcleo): 5.675% ponderado [IC95% 5.427%-5.924%], n
+      crudo=4822 de 91182, población=5 436 874 de 95 795 780 (tasa 5675.5
+      por 100 mil). Con AP7_3_09 (extorsión sumada): 9.668% ponderado
+      [IC95% 9.358%-9.977%], n crudo=8464, población=9 261 225 (tasa 9667.7
+      por 100 mil). Desglose por ítem (ponderado, tasa/100k): AP7_3_09
+      (extorsión) 4750.4 · AP7_3_10 (amenaza) 3472.5 · AP7_3_11 (lesión)
+      1340.3 · AP7_3_12 (secuestro) 77.6 · AP7_3_13 (agresión sexual)
+      1473.7 · AP7_3_14 (violación) 128.2. Por DOMINIO: U 6.861% · C 5.104%
+      · R 2.868%. Por ESTRATO (marginal, área no ingreso individual): 1
+      3.776% · 2 5.464% · 3 6.757% · 4 6.733%. Por banda de edad: 18-29
+      9.680% · 30-44 6.277% · 45-59 4.056% · 60+ 2.022%. Por posición en la
+      ocupación (formalidad, solo ocupados): jornalero 2.230% · empleado/
+      obrero 6.683% · cuenta propia 6.336% · patrón 6.015% · sin pago
+      5.168%.
+    validacion_estimador: >
+      Contrastado contra caso conocido publicado: "violación sexual, 279
+      delitos por cada 100 mil MUJERES, 2024" (INEGI, presentación nacional
+      ENVIPE 2025, slide "Delitos sexuales", tema Caracterización del
+      delito). Reproducido con el mismo pipeline (FAC_ELE, universo
+      TPer_Vic2, SEXO=2) usando incidencia (suma ponderada de AP7_4_14,
+      frecuencia): 279.3 por 100 mil mujeres -- diferencia relativa 0.09%,
+      dentro del redondeo publicado. La prevalencia (AP7_3_14=1, víctimas)
+      da 197.4 -- más baja que la incidencia, como se espera cuando hay
+      revictimización; INEGI no publica prevalencia por tipo de delito a
+      nivel nacional, solo incidencia, así que la validación usa incidencia
+      y el constructo de este acto usa prevalencia (binario), misma
+      mecánica de ponderación ya validada. NEGATIVO DESCARTADO, declarado
+      para que no se reintente: RESUL_H='A' ponderado por FAC_ELE da
+      26 114.8 por 100 mil (publicado: 24 135, +8.2%) -- RESUL_H es
+      resultado de la visita al HOGAR, no un flag de víctima a nivel
+      persona (contamina con victimización de otros integrantes vía Sección
+      VI), no sirve como ancla de validación aunque el nombre del catálogo
+      ("con/sin victimización") sugiera lo contrario.
+    marca_c3: >
+      LIMPIO. Verificado variable por variable (forense/notas/2026-08-04-
+      envipe-tper-vic2-tmod-vic-paso1.md §7 + re-verificación independiente
+      esta sesión, grep sobre forense/notas/2026-07-31-inventario-
+      segmentacion.md): ninguna de AP7_3_09-14 aparece en las 41 filas de
+      Tabla B. Único hit de mnemónico es AP7_1 de ENCUCI (trabajo
+      voluntario/comunidad) -- colisión de nombre entre encuestas
+      distintas, ya documentada, no es la AP7_1 de ENVIPE de este acto.
+    limite_c2: >
+      SELLADO, no resuelto -- decisión de este acto (§3.4 del encargo,
+      opción (b), argumentada: resolverlo exigiría decidir que
+      comunicacion.inseguridad.ver_oir_callar no usará BP1_23, y esa es una
+      adjudicación que corresponde a quien opere ese desenlace, no a un
+      acto de medición). BP1_23 (candidato Parcial de
+      comunicacion.inseguridad.ver_oir_callar, hitoE §15,
+      canon/modelo-decision-v4_0.md ~:517) solo se pregunta a quien ya
+      disparó el Instrumento B, es decir a quien contestó AP7_3_XX=1 (o
+      AP6_6=1) en TPer_Vic2 -- dependencia ESTRUCTURAL de aplicación del
+      cuestionario, no de contenido (C3 pasa limpio, arriba). Si
+      exposicion_violencia (este reactivo) y comunicacion.inseguridad.
+      ver_oir_callar (si se llegara a operacionalizar con BP1_23) entran
+      juntas a la misma ecuación, NO son independientes por diseño --
+      declarado por forense/notas/2026-08-04-envipe-tper-vic2-tmod-vic-
+      paso1.md §8, sellado aquí para que viaje con el número, mismo
+      tratamiento que la marca C3: quien adjudique cualquiera de las dos
+      variables lo encuentra aquí.
+    periodo: >
+      2024, 12 meses (enero-diciembre de 2024) -- ventana de referencia de
+      eventos consumados durante el año, NO ventana de vida. Distinto de
+      ENDIREH, que trae ventana de vida para algunos tipos de violencia;
+      nunca se suman ni promedian entre sí (CP-1, decisión de mesa cerrada
+      este encargo): son constructos distintos (ENDIREH incluye violencia
+      de pareja y familiar, fuera del mecanismo de G4) sobre universos
+      distintos (ENVIPE: persona 18+ ambos sexos, n=91182; ENDIREH: mujeres
+      15+, universo más estrecho).
+
+# ══════════════════════════════════════════════════════════════════
 # DEUDA BLOQUEANTE — los 90 parámetros de dispersión (ADR-28.d)
 # ══════════════════════════════════════════════════════════════════
 deuda_dispersion:
