@@ -1,0 +1,73 @@
+{
+  "n_universo_18mas": 217375,
+  "meta_carga": {
+    "n_poblacion_total": 309684,
+    "n_18_mas": 217375,
+    "n_sin_match_concentradohogar": 0,
+    "n_sin_match_hogares": 0
+  },
+  "faltantes_por_indicador": {
+    "I1_formalidad": {
+      "n_faltante": 139,
+      "prop_faltante": 0.0006394479585968948
+    },
+    "I2_edad": {
+      "n_faltante": 0,
+      "prop_faltante": 0.0
+    },
+    "I3_migracion": {
+      "n_faltante": 0,
+      "prop_faltante": 0.0
+    },
+    "I4_tam_loc": {
+      "n_faltante": 0,
+      "prop_faltante": 0.0
+    },
+    "I5_est_socio": {
+      "n_faltante": 0,
+      "prop_faltante": 0.0
+    },
+    "I6_celular": {
+      "n_faltante": 0,
+      "prop_faltante": 0.0
+    },
+    "I7_conex_inte": {
+      "n_faltante": 0,
+      "prop_faltante": 0.0
+    }
+  },
+  "est_socio_vs_ing_cor": {
+    "n_hogares": 90059,
+    "violaciones_monotonicidad_adyacente": 26339,
+    "prop_violaciones": 0.29246707677274647,
+    "rango_ing_cor_por_est_socio": {
+      "1": [
+        0.0,
+        7153770.46
+      ],
+      "2": [
+        0.0,
+        3098499.46
+      ],
+      "3": [
+        0.0,
+        6431318.87
+      ],
+      "4": [
+        0.0,
+        6124150.93
+      ]
+    },
+    "veredicto": "NO es funcion determinista de ing_cor -- los rangos de ing_cor se traslapan casi por completo entre las 4 categorias de est_socio y una fraccion sustancial de pares consecutivos (ordenados por ing_cor) viola monotonicidad"
+  },
+  "residencia_referencia_temporal": {
+    "hallazgo": "la fuente no lo trae",
+    "detalle": "El diccionario de datos de `poblacion` (columna 46, `residencia`) solo dice 'Categorias en el catalogo de residencia', sin texto de pregunta. `metadatos_enigh_2022_ns.txt` no menciona `residencia` en ninguna parte (0 coincidencias grep). Ninguno de los dos archivos trae el periodo de referencia (¿hace 5 anios? ¿al nacer?)."
+  },
+  "variables_diseno": {
+    "factor_persona": "factor -- vive DIRECTO en `poblacion`, a nivel persona",
+    "estrato": "est_dis -- en `poblacion`",
+    "upm": "upm -- en `poblacion`",
+    "nota": "El hueco declarado por Sec.5.1 queda CERRADO: las tres variables de diseno se localizaron por nombre exacto en la misma tabla que I1/I2/I3."
+  }
+}

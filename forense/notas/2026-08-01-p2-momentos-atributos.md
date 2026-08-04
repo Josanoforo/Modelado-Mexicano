@@ -383,3 +383,31 @@ Un ADR de **corrección** —cambiar "perfil" por "atributo" en el texto de ADR-
 - **`CAL-CONF` Fase B sigue sin existir** como artefacto. `revision §2` la redefine como *"medir confianza por institución condicionada a atributos observables"*; §2.d de esta nota indica dónde puede hacerse (ENCIG batería XI) y sobre qué atributos **no** puede (ingreso, ruralidad).
 - **No se verificó nada contra disco.** Ni manifiesto, ni hashes, ni presencia de las fuentes citadas en `calibrable_con`. Fuera de perímetro por diseño del encargo — misma salvedad que ADR-50 declara para sí mismo.
 - **Los scripts de derivación viven en el scratchpad de la sesión, no en el repo.** Sus salidas crudas están transcritas íntegras arriba (§0.1, §0.2, §1.c, §1.d, §2.a); las entradas son `milpa/procedencia.yaml`, `canon/modelo-decision-v3_4.md` §3.B y `forense/notas/2026-07-31-inventario-segmentacion.md`.
+
+---
+
+## Adenda 04/ago/2026 — `:229` y `:264` quedan vencidas, no corregidas en la fila
+
+**Disciplina aplicada:** adenda fechada, append-only, mismo mecanismo que
+`forense/hitoE-campana-medicion-v2_0.md` §15/§16. Las filas `:229` y `:264`
+no se editan.
+
+**Qué pasó.** `:229` describe el trío `BP1_20`/`BP1_23`/`BP1_28` de ENVIPE
+como *"(victimización, denuncia y sus razones)"*, y `:264` cita "C1 ENVIPE
+`BP1_20` (victimización)". La sesión que ejecutó la posición 4 de la cola
+(`PR #57`, `forense/notas/2026-08-04-cal-conf-faseb-medicion-pos4.md`)
+verificó el descriptor de ese trío contra `fd_envipe2025.pdf` y encontró que
+no mide `exposicion_violencia`: `BP1_20` es *"¿Acudió a denunciar el
+delito?"*, condicionado por construcción a ya haber sido víctima — mide
+conducta de denuncia, no exposición a violencia. Registrado en
+`forense/hallazgos.md` (04/ago/2026) y propagado en `hitoE` §15.
+
+**Por qué no se edita la fila.** `:229` marca el trío como **reportado**
+(estado del inventario), no **verificado** contra el cuestionario — la
+distinción que `instrucciones` v2.1 exige. La fila no mintió: dijo de dónde
+venía el dato sin verificarlo, y quien la citó después (la fila 4 de la cola
+vieja, corregida en `hitoE` §15) leyó *reportado* como si dijera
+*verificado*. Ese es el defecto real, y es transferible: la columna de
+estado de una tabla es parte de la afirmación, no decoración. Editar `:229`
+borraría el registro de que ese salto de lectura ocurrió. Detalle en
+`forense/notas/2026-08-04-barrido-escritorio-pendientes.md` §7.
