@@ -9,9 +9,10 @@
 Reconstruido —no copiado— el 4/ago/2026, contra el estado de hoy del repo:
 `data/catalogo-fuentes-v1_0.md` (119 fuentes, dedup) y
 `forense/hitoD-preregistro-v2_0.md` (27 fichas, R1.1–R10.3 + R3.1/R3.2/R3.4).
-El insumo `cruce-catalogo-fichas-2026-07-30.md` del espejo (tipo 2) se usó
-como hipótesis a re-derivar, nunca como cifra a copiar. Donde sus números no
-coinciden con los de aquí, la discrepancia se reporta en §4.
+El insumo `cruce-catalogo-fichas-2026-07-30.md` {cita-ilustrativa} del
+espejo (tipo 2) se usó como hipótesis a re-derivar, nunca como cifra a
+copiar. Donde sus números no coinciden con los de aquí, la discrepancia se
+reporta en §4.
 
 Sesión Nube, sin red, sin instrumento abierto. Toda afirmación de "candidata"
 es del tipo **cubre el dominio — sin verificar a nivel de variable**, nunca
@@ -58,10 +59,20 @@ correctas para lo que cada una mide; no son la misma pregunta.
 Pregunta: ¿el catálogo trae algo que cubra el dominio de esta ficha, sin
 verificar a nivel de variable? Dominios tomados de los 10 inventarios
 (`data/inventarios/README-inventarios.md`): FIN, MIG, TEC, CAP, CUL, SAL,
-SEG, TRA, EST (trámites), TIE (uso del tiempo). **No hay un dominio
-"electoral/cívico-participación" entre los 10** — hallazgo que se declara
-antes de la tabla, no después: donde el falsador es electoral, no puede
-haber candidata por diseño del inventario, no por ausencia de búsqueda.
+SEG, TRA, EST (trámites), TIE (uso del tiempo).
+
+**Corrección respecto a una versión anterior de este documento:** esa
+versión afirmaba que no existía dominio "cívico-electoral" entre los 10
+inventarios y usaba eso para descartar R7.1/R7.3/R7.4/R7.5 sin candidata.
+Es un error de inferir por el nombre de los archivos de inventario en vez
+de su contenido: **ENCUP** (`data/catalogo-fuentes-v1_0.md:72`, Encuesta
+Nacional sobre Cultura Política y Prácticas Ciudadanas) está en el
+catálogo, aparece en los inventarios de trámites/estado, capital social y
+cultura/valores/opinión, y es literalmente ese dominio. No hay un
+inventario que se *llame* cívico-electoral, pero las fuentes están, y eso
+es lo que la tabla de abajo tiene que reflejar por ficha — con el
+argumento correcto sostenido a nivel de **umbral**, no de dominio, cuando
+la candidata no basta.
 
 | Ficha | Dominio del falsador | ¿Candidata en catálogo? | Candidata(s) | Nota |
 |---|---|---|---|---|
@@ -72,9 +83,9 @@ haber candidata por diseño del inventario, no por ausencia de búsqueda.
 | R2.2 | TRA (clima organizacional) | No | — | Mismo hueco que R2.1 |
 | R4.1 | SAL | Sí | ENSANUT, ENIGH (SAL) | ENSANUT cubre acceso y uso de servicios de salud; **candidata pública real**, sin verificar si trae medición de "trato" (el confusor que la propia ficha marca CONFUNDIDO) |
 | R4.3 | SAL | Parcial | ENSANUT | Adherencia por surtimiento (no auto-reporte) es el hueco — ENSANUT es candidata de dominio, no se sabe si mide surtimiento |
-| R7.1 | cívico-electoral | **No** | — | Dominio no inventariado. Coincide con el `C`/`D` de la propia ficha (hueco de granularidad municipal) |
-| R7.3 | cívico-electoral | **No** | — | Mismo hueco estructural que R7.1 — el RDD que pide no puede nacer de estos 10 inventarios |
-| R7.4/R7.5 | cívico-electoral/conflicto | **No** | — | Mismo hueco. Consistente con el D "probable" ya pre-registrado |
+| R7.1 | cívico-electoral | **Sí, existe — no alcanza el umbral** | ENCUP + registros del INE | La candidata está en disco: ENCUP mide peso percibido del acto cívico, y los registros del INE traen participación por tipo de elección. Pero el umbral de R7.1 (`hitoD-preregistro-v2_0.md:174`) pide **diferencia de participación entre concurrente y no concurrente para el mismo electorado**, es decir **serie municipal pareada** — ENCUP es encuesta nacional de corte, sin la granularidad de comicio local que el umbral exige. La candidata existe; el hueco es de granularidad, no de dominio. Consistente con el propio cruce del 30/jul, que ya proponía ENCUP + INE para esta ficha con estado `[B]` — sostenido, no cerrado, no `A`/`C`. |
+| R7.3 | cívico-electoral | Parcial | ENCUP (actitudes); no hay candidata para el RDD mismo | ENCUP capta cultura política/actitudes cívicas, pero el falsador exige un **RDD sobre resultados electorales reales** (turnout/vote-choice) ligado a la identificación de beneficiarios de la Pensión del Bienestar, con efectos ≥5–10 puntos a escala nacional — eso es dato de resultado electoral + padrón de beneficiarios cruzados, no actitud autorreportada. ENCUP no sustituye esa pieza; el hueco es de diseño (el RDD no existe en fuentes públicas), no de dominio inventariado. |
+| R7.4/R7.5 | cívico-electoral/conflicto | No | — | El dominio de participación cívica sí está cubierto (ENCUP, ENCUCI, ENVIPE, ENSU), pero ninguna de esas es un **registro de eventos** (protesta/autodefensa) codificado por entorno — son encuestas de actitud/victimización, no catálogos de incidentes. El hueco aquí es de tipo de instrumento (encuesta vs. registro de eventos), no de dominio. Consistente con el D "probable" ya pre-registrado. |
 | R8.1 | CAP | Sí | ENCUCI, ENVIPE, ENSU | Miden capital social/participación comunitaria; ninguna cataloga comités específicos con/sin sanción — candidata de dominio únicamente |
 | R8.2 | FIN, CAP | Parcial | ENIF (participación en tandas) | ENIF pregunta ahorro informal/tandas pero no diferencia tandas digitales de tradicionales — el hueco de plataforma persiste |
 | R9.1 | SAL | Sí | ENSANUT | Igual que R4.1 — la propia ficha ya nota la simetría con R4.1 |
@@ -83,14 +94,16 @@ haber candidata por diseño del inventario, no por ausencia de búsqueda.
 | R10.2 | TRA (organizacional) | No | — | Mismo hueco que R2.1/R2.2 |
 | R10.3 | SEG | Parcial | ENVIPE, ENSU | Miden percepción de seguridad/confianza en autoridad, no disposición a testificar bajo protección — y la propia ficha prefiere D por riesgo ético, no solo por dato |
 
-**Cifra re-derivada:** de las 18 fichas sin fuente declarada, **8 tienen
-candidata de dominio real** (R4.1, R4.3, R8.1, R8.2, R9.1, R9.2, R10.3 —
-parcial/sí — más ninguna adicional), **4 no tienen ninguna posible por
-diseño del inventario** (R7.1, R7.3, R7.4/R7.5, agrupadas: 3 fichas), y el
-resto queda sin candidata verificable en este barrido. Esto **no coincide**
-con el "11 de 15" del espejo — denominador distinto (18, no 15) y criterio
-de candidata más estricto aquí (exige nombrar el instrumento, no solo "hay
-algo del dominio"). Se reporta como discrepancia, no se reconcilia.
+**Cifra re-derivada, contada directo de la tabla:** de las 18 fichas sin
+fuente declarada, **4 tienen candidata directa** (R4.1, R8.1, R9.1, R9.2),
+**1 más tiene candidata identificada pero insuficiente para el umbral, no
+por dominio** (R7.1 — ver arriba), **6 tienen candidata parcial** (R1.1,
+R1.3, R4.3, R7.3, R8.2, R10.3), y **7 no tienen ninguna** (R1.4, R2.1, R2.2,
+R7.4, R7.5, R10.1, R10.2). Esto **no coincide** con el "11 de 15" del
+espejo — denominador distinto (18, no 15) y criterio más estricto aquí, que
+exige nombrar el instrumento y, cuando la candidata no basta, distinguir
+hueco de dominio de hueco de umbral en vez de archivar ambos como "sin
+candidata". Se reporta como discrepancia, no se reconcilia.
 
 ---
 
@@ -164,7 +177,7 @@ umbrales.
 |---|---|---|
 | 25 fichas totales | **27** | El pre-registro creció entre el 30/jul (25) y hoy (27): `R3.1` y `R3.4` se agregaron por Notas 1-2, `R3.2` ya estaba. Denominador distinto, no error. |
 | 15/10 (declara/no declara fuente) | **9/18** | Denominador distinto (27 vs. 25) y criterio explícito aquí (nombrar el instrumento), no reconstruible del documento del espejo, que no escribió su criterio. |
-| 11 de 15 sin fuente sí tienen candidata | **8 de 18** (parcial/sí), 3 sin candidata posible por diseño del inventario | Mismo problema de denominador; además esta tabla distingue "candidata de dominio" de "candidata verificada a nivel de variable" con más disciplina que la cifra citada del espejo, que no declara su propio criterio de candidata. |
+| 11 de 15 sin fuente sí tienen candidata | **11 de 18** (directa, insuficiente-por-umbral o parcial — ver §2), 7 sin ninguna | Mismo problema de denominador; además esta tabla distingue "candidata de dominio" de "candidata suficiente para el umbral" con más disciplina que la cifra citada del espejo, que no declara su propio criterio de candidata. |
 | ~21 de 27 perímetro falsable (estimado, §6 del encargo) | No re-derivado en este acto | Esa cifra es aritmética sobre inferencias de cobertura, no un conteo de este documento — corresponde a un acto de mesa que decida qué candidatas de §2/§3 se promueven a instrumento abierto. Este documento no la produce ni la ratifica. |
 
 ---
