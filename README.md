@@ -21,7 +21,7 @@ python3 tests/check.py --strict   # los WARN también fallan
 | `corpus/reports/` | **31 reports temáticos** | Evidencia primaria. **Append-only** |
 | `corpus/forense/` | **5 validaciones forenses** | ADR-29.b: mismo rango que los reports. **Append-only** |
 | `canon/` | `modelo` · `glosario` · `gobernanza` · `estado` · `integrador` | Versionado, una sola versión viva de cada uno |
-| `milpa/` | whitepaper · spec · plan + 3 YAML | Simulador. **Fase 1 pospuesta por decisión** |
+| `milpa/` | whitepaper · spec · plan + 3 YAML | Simulador. **Fase 1 ya NO pospuesta — arquitectura objetivo del programa (ADR-50/51), calibrada por AJUSTE** |
 | `forense/` | Auditorías, barridos, pre-registros | **Fechados, append-only** |
 | `tests/` | La suite | Un ADR sin test aquí es decorativo |
 
@@ -31,13 +31,17 @@ python3 tests/check.py --strict   # los WARN también fallan
 
 ## Estado del modelo
 
-**49 reglas · 20 `[FUERTE]` · 144 números, 4 medidos · 15 coeficientes, 0 medidos.**
+**49 reglas · 20 `[FUERTE]`.** <!-- 49: python3 tests/validador_registro_ids.py · 20 [FUERTE]: T12 en tests/check.py (motor_rules()+rule_tier() sobre §3.B) -->
+
+- **11 de 27** corridas del Hito D con veredicto archivado — **7D·1B·2A·1E** <!-- bloque "## Registro de veredictos archivados" de forense/hitoD-preregistro-v2_0.md, parser _VEREDICTO_CANONICO (tests/check.py:684, T18) -->
+- **Condicionales medidas 9 de 14** <!-- grep -c 'clase: "MEDIDO·PARCIAL' milpa/procedencia.yaml -->
+- **Coeficientes en escala del modelo 0 de 15** — tres asociaciones marginales (β̂) existen para tres de los quince, pero ADR-57(a) las rotula asociaciones, no coeficientes: ninguna sobrevive condicionar y no cuentan aquí <!-- modelo §2.2 ("Los quince coeficientes son ASIGNADO. Ninguno es medido"); milpa/procedencia.yaml: asignados_coeficiente / coeficientes_generador_medidos -->
+- **[MESA-M4] `4 de 144`** congelado 31/jul/2026, no se recalcula <!-- forense/hallazgos.md, 2026-07-31: "Congelamiento de `4 de 144`" — decisión de mesa, no ADR -->
 
 **Es una síntesis rigurosa de literatura con tiers leídos, no un artefacto
 validado.** Un tier derivado de lectura disciplinada es evidencia legítima —
 pero la diferencia importa cuando alguien lo use para decidir algo caro.
 
-- **2 de 27** reglas del perímetro con prueba de falsación corrida (`R1.1` → `D` · `R3.2` → `B`)
 - **Cero datos primarios propios** — deuda S1 del programa
 - Los 42 disparadores de contexto **no** cuentan como números: son booleanos
 
