@@ -1535,3 +1535,70 @@ no re-derivado, solo citado. No se abrió ningún PDF ni microdato en este
 acto de adenda — la lectura del FD y del cuestionario la hizo la nota
 citada. No se tocó `canon/` ni `milpa/`. No se movió ningún contador. No
 se reclasificó ninguna otra fila de `§14.3`.
+
+## 20 · Adenda 04/ago/2026 — ENVIPE `TPer_Vic2`/`TMod_Vic`: fila 4 de `§14.3` tiene CANDIDATO VÁLIDO, sin adjudicar
+
+**Disciplina aplicada:** adenda fechada, append-only. `§14.3` no se edita
+— la fila 4 (ya corregida por `§15`, `§19`) queda íntegra; esta adenda
+registra un candidato nuevo sobre la columna "Fuente · variable", que
+sigue **PENDIENTE DE VERIFICACIÓN** hasta que mesa adjudique.
+
+**Clase: registro de acto, misma clase que `§18`/`§19` — no es decisión,
+no rige sin ADR.**
+
+**Qué pasó.** La sesión que abrió `TPer_Vic2` y `TMod_Vic` de ENVIPE 2025
+(`forense/notas/2026-08-04-envipe-tper-vic2-tmod-vic-paso1.md`) —
+insumos que `§19` dejó explícitamente fuera de perímetro (su §11) —
+encontró que `TPer_Vic2`, Sección VII (Victimización personal), trae seis
+variables (`AP7_3_09` a `AP7_3_14`) que preguntan directamente a la
+persona seleccionada si sufrió, durante 2024, un hecho específico de
+violencia (amenaza, agresión física con lesión, secuestro, agresión
+sexual, violación), sobre el universo completo de la tabla — persona
+seleccionada 18+, `n`=91 182, sin condicionar a `RESUL_H`, cero blancos.
+`TMod_Vic`, la otra tabla del acto, se recorrió completa y no sirve:
+mismo defecto de denominador que `PR #57` encontró en
+`BP1_20`/`BP1_23`/`BP1_28` (subpoblación de víctimas por construcción,
+`RESUL_H='A'` en el 100% de sus filas).
+
+**Consecuencia sobre la fila 4, dicha con precisión.** La posición
+**sigue viva y no se adjudica aquí** — el acto que la abrió tiene
+prohibido medir y decidir CP-1 (protocolo §4.1). El contador no se movió
+(sigue en **8/14**, sin cambio). Lo que cambia es que la fila 4 deja de
+tener solo NO SIRVE argumentado (`TPer_Vic1`, `§19`) — ahora tiene además
+un CANDIDATO VÁLIDO nombrado, con universo, denominador, `n` y C3
+resueltos, y C2 declarado abierto y acotado con un riesgo estructural
+concreto (`BP1_23`, candidato de `comunicacion.inseguridad.ver_oir_callar`
+en `§15`, depende por diseño del instrumento de la misma subpoblación
+que dispara `AP7_3_XX`=1 — no son independientes si ambas se adjudican
+del mismo ENVIPE 2025).
+
+**Fila 4, `§14.3`, nota sobre su estado (no se reescribe la fila):**
+
+| # | Qué se mide | Fuente · variable (citada) | Qué mueve | Payload | Sesión-tipo |
+|---|---|---|---|---|---|
+| **4** | `exposicion_violencia` | **PENDIENTE DE VERIFICACIÓN** — `TPer_Vic1` (ENVIPE) descartada con argumento (`§19`); `TMod_Vic` (ENVIPE) descartada con argumento (defecto de denominador, este acto); **`TPer_Vic2` (ENVIPE), `AP7_3_09`-`_14`, CANDIDATO VÁLIDO sin adjudicar** (este acto); ENDIREH tiene candidato parcial más estrecho (universo mujeres 15+, `PR #67`) | Contador sin cambio, sigue **8/14**. Sigue siendo la C1 del coeficiente `G4 · exposicion_violencia`, `IDENTIFICADO·TRUNCADO` en P2 (`§2.d`) | Sin determinar | Sin determinar — adjudicación es de mesa |
+
+**Efecto sobre `comunicacion.inseguridad.ver_oir_callar`, señalado sin
+resolver (extiende `§15`).** Si mesa adjudica `AP7_3_09`-`_14` como
+reactivo de `exposicion_violencia` **y** `BP1_23` como reactivo de
+`comunicacion.inseguridad.ver_oir_callar` en el mismo acto o en actos
+distintos sin cruzarlos, la dependencia estructural entre ambas
+variables (misma cascada de disparo del Instrumento B) queda sin
+declarar en el momento de medir. Señalado para que la sesión de medición
+lo resuelva explícitamente — no se resuelve aquí.
+
+**Nota de serie, para mesa, sin explorar aquí.** ENVIPE 2025 es la
+octava ola de una serie 2018-2025 con FD y cuestionarios propios por año
+(32 ids en el manifiesto). Si el candidato de este acto se adjudica, eso
+abre la puerta a una serie repetida de corte transversal de ocho olas,
+no un dato de un año — con el mismo problema de los 15 coeficientes de
+ritmo en cero que `§11`/Encargo E ya dejaron registrado. No se
+pre-registra nada contra esa posibilidad.
+
+### 20.1 · Límite de lectura declarado (ADR-46)
+
+Esta adenda leyó completa la nota
+`2026-08-04-envipe-tper-vic2-tmod-vic-paso1.md` citada arriba; no
+reabrió el FD ni el cuestionario de ENVIPE 2025 — esa lectura la hizo la
+nota citada. No se tocó `canon/` ni `milpa/`. No se movió ningún
+contador. No se reclasificó ninguna otra fila de `§14.3`.
