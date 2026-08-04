@@ -236,3 +236,93 @@ regresión condicional — informativos del régimen, "no más no menos"):**
 
 **El primer resultado que produzca este procedimiento es el que se
 reporta.**
+
+---
+
+## 3 · Resultados — primera y única corrida
+
+Corrida con `tests/svystat.py::prop_ultimate_cluster` (sin modificar) y
+`tests/dbfmini.py` (sin modificar, ya en `main` desde la segunda ola de
+Fase B) sobre exactamente la especificación de §1. Ningún número de esta
+sección se recalculó después de verlo. `β̂ = p̂(θ=1) − p̂(θ=0)`, escala:
+**diferencia de proporciones ponderada del desenlace**, no la escala del
+índice del generador (§1 del encargo). Signo esperado entre paréntesis,
+tomado de `procedencia.yaml` tal como está hoy — se reporta si el signo
+observado coincide, nunca la magnitud contra el valor asignado.
+
+### 3.1 · W1 — G1 · `radio_confianza` (signo asignado: negativo)
+
+| ítem θ | n(θ=1) | n(θ=0) | p̂(θ=1) | p̂(θ=0) | β̂ | se | IC95% | estratos singleton (1/0) |
+|---|---|---|---|---|---|---|---|---|
+| `AP5_1_1` (mayoría de las personas) | 6 430 | 6 945 | 0.1210 | 0.1312 | **−0.0102** | 0.0097 | (−0.0292, 0.0089) | 16 / 10 |
+| `AP5_1_2` (personas que conoce) | 10 667 | 2 726 | 0.1239 | 0.1353 | **−0.0113** | 0.0116 | (−0.0341, 0.0114) | 4 / 23 |
+| `AP5_1_3` (vecinos) | 7 644 | 5 721 | 0.1139 | 0.1408 | **−0.0269** | 0.0100 | (**−0.0465, −0.0072**) | 11 / 8 |
+
+**Signo: coincide en los tres ítems** (β̂ negativo, mismo signo que el
+−0.35 asignado). **Solo `AP5_1_3` (vecinos) es distinguible de cero al
+95%**; `AP5_1_1` y `AP5_1_2` no lo son — su IC95% cruza cero. Se reportan
+los tres, no solo el significativo: no hay regla en §1 que permita
+descartar los otros dos después de verlos, y descartarlos sería
+exactamente la selección post-hoc que el encargo prohíbe.
+
+### 3.2 · W2 — G1 · `confianza_institucional` (signo asignado: negativo)
+
+| θ | n(θ=1) | n(θ=0) | p̂(θ=1) | p̂(θ=0) | β̂ | se | IC95% | estratos singleton (1/0) |
+|---|---|---|---|---|---|---|---|---|
+| `P11_1_23` (confía en servidores/empleados de gobierno) | 20 245 | 17 510 | 0.0736 | 0.1381 | **−0.0645** | 0.0051 | (**−0.0744, −0.0546**) | 5 / 11 |
+
+**Signo: coincide** (β̂ negativo, mismo signo que el −0.60 asignado).
+**Distinguible de cero al 95%.** `n` de la unión (`ID_PER`) entre
+`encig2023_01_sec1_A_3_4_5_8_9_10` y `encig2023_01_sec_11`: 38 966 de
+38 966 — cero pérdidas de join.
+
+### 3.3 · W3 — G3 · `familismo_apoyo` (signo asignado: positivo)
+
+| θ | n(θ=1) | n(θ=0) | p̂(θ=1) | p̂(θ=0) | β̂ | se | IC95% | estratos singleton (1/0) |
+|---|---|---|---|---|---|---|---|---|
+| `P9_9_4` (cubriría vejez con dinero de familiares) | 5 281 | 6 183 | 0.3139 | 0.2860 | **+0.0279** | 0.0128 | (**0.0029, 0.0529**) | 3 / 0 |
+
+**Signo: coincide** (β̂ positivo, mismo signo que el +0.20 asignado).
+**Distinguible de cero al 95%.**
+
+### 3.4 · Orden relativo dentro de G1 — lo único comparable entre W1 y W2 (§1 del encargo)
+
+`|β̂(W2, confianza_institucional)| = 0.0645` **>** `|β̂(W1, radio_confianza,
+mejor ítem)| = 0.0269`. El orden relativo coincide con el asignado
+(`|−0.60| > |−0.35|`). **Esto es lo único que este acto compara en
+magnitud** — la razón entre coeficientes del mismo generador, invariante
+a la escala (§1 del encargo). No se compara ninguno de los dos contra su
+valor asignado en puntos porcentuales ni en ninguna otra unidad: sería el
+error de categoría que §1 prohíbe.
+
+### 3.5 · Lo que NO se puede decir con estos números, dicho explícito
+
+- **No** "el coeficiente medido de `radio_confianza` es −0.03, el
+  asignado es −0.35, difiere en 91%" — el −0.35 vive en la escala del
+  índice del generador; el −0.03 vive en la escala de diferencia de
+  proporciones del desenlace. No hay función de enlace declarada entre
+  las dos (§1 del encargo, pendiente abierta, no resuelta aquí).
+- **No** "`confianza_institucional` pesa el doble que `radio_confianza`
+  en el modelo" — la razón 0.0645/0.0269 ≈ 2.4 es una propiedad de esta
+  medición en esta escala, no una traducción del 0.60/0.35 = 1.7 del
+  modelo. Ambas razones apuntan en la misma dirección (mayor peso de
+  `confianza_institucional`); no son el mismo número ni se espera que lo
+  sean sin la función de enlace.
+- **No** se resuelve si `AP5_1_1`/`AP5_1_2` (no significativos) refutan
+  `radio_confianza` como mecanismo de `G1` — un IC95% que cruza cero en
+  esta escala truncada y marginal (sin condicionar sobre atributos) no
+  es un falsador del generador; el falsador de `G1` vive en `modelo`
+  §2.1, sobre la cláusula completa, no sobre esta regresión bivariada.
+
+---
+
+## 4 · Contador
+
+**0 de 15 → 3 de 15 coeficientes de generador con primera estimación
+empírica (β̂, escala de diferencia de proporciones).** Los tres
+sobrevivieron — ningún PARO se disparó. `milpa/procedencia.yaml` recibe
+una sección nueva, `coeficientes_generador_medidos`, con las tres
+entradas (clase, fuente, n_util, eje condicionante, nota de escala). No
+se toca `asignados_coeficiente.detalle` — los valores `ASIGNADO`
+(−0.35, −0.60, 0.20) siguen siendo lo que el modelo usa; lo nuevo es un
+número medido, en otra escala, guardado aparte y rotulado como tal.
