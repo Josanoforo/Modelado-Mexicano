@@ -714,6 +714,20 @@ Detalle completo, las 15 tasas de denuncia por clase de delito, verificación de
 
 ---
 
+### Nota 13 · 4/ago/2026 — Ocho olas ENVIPE (2018-2025): el pareo por identificabilidad que Nota 12 no pudo ejecutar, ejecutado agrupado
+
+*(Añadida al final, fechada, sin tocar el cuerpo, la ficha ni las Notas 1-12 — misma disciplina. El veredicto archivado en el registro de abajo NO cambia con esta nota; tampoco se toca aquí.)*
+
+**Lo que Nota 12 dejó sin resolver:** las dos lecturas de la escala (`A` y `D`) se satisfacían a la vez porque el pareo de identificabilidad que el Umbral exige no se podía ejecutar con `n=121/124` (2025 sola). Este acto agrupó las ocho olas de ENVIPE registradas en el manifiesto (2018-2025, `TMod_Vic`, 32 piezas verificadas COINCIDE contra `data/manifiesto.yaml`, nada re-descargado) para multiplicar ese `n` y ejecutar el pareo.
+
+**Comparabilidad verificada primero, no asumida:** las ocho olas comparten las cuatro variables objetivo (`BPCOD`, `BP2_1`, `BP1_12_1..5`, `BP1_20`) con el mismo nombre, el mismo catálogo sustantivo y el mismo universo (`RESUL_H='A'` al 100% en las ocho) — ninguna se excluye. Tres salvedades declaradas, ninguna excluyente: marcador de blanco distinto en 2019-2020 (`NA` de texto, no cadena vacía), estratificación de diseño con un tercio de los estratos en 2019 (231 vs. 593-739), y levantamiento de 2020 partido en dos periodos por la contingencia sanitaria (subestimación por recordación reconocida por el propio INEGI). Detalle: `forense/notas/2026-08-04-r7-2-ocho-olas.md §4`.
+
+**El pareo, ejecutado:** dentro de `BPCOD=01`, estratificando por identificabilidad (`BP1_12_1`: conocido/desconocido) y comparando asegurado vs. no asegurado **dentro de cada estrato** — el pareo literal que el Umbral pide. Agrupar multiplicó el `n` crudo de la celda más pequeña ~14× (de 3 en 2025 sola a 43 agrupado), pero **no alcanzó**: los 43 casos de `asegurado × conocido` caen en 42 pares (año, estrato-UPM) todos con una sola observación — cero conglomerados aportan varianza estimable con el estimador de conglomerado último de este perímetro (`tests/svystat.py`). Donde el pareo sí fue calculable (`desconocido`, 858/800 casos, el 95% de la submuestra observable): brecha 17.5pp, **IC95%=[13.2pp, 21.9pp] — cruza 20**.
+
+**Ninguna vía cierra `A` sin reserva.** Donde se puede medir, el intervalo cruza el umbral que `A` exige no cruzar; donde el mecanismo de la regla aplica más directamente (agresor efectivamente identificable), ni agrupando ocho olas alcanza el `n` para medir con varianza defendible. El veredicto archivado (`D`) y el contador (`3 de 27`) no cambian por esta nota — mismo tratamiento que Nota 12. Si mesa decide archivar este desenlace como cierre de la ambigüedad que Nota 12 abrió, se registra como entrada nueva fechada en el bloque de abajo, no aquí. Detalle completo, tabla de comparabilidad, diagnóstico de conglomerados singleton y el párrafo sobre corte transversal repetido: `forense/notas/2026-08-04-r7-2-ocho-olas.md`.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
