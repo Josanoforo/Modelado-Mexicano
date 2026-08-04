@@ -22,9 +22,12 @@ trabajo de campo. Todo se apoya en literatura publicada por terceros.
 independiente.
 
 **No es un instrumento validado.** De los 144 números del modelo, **4 están
-medidos**. De los 15 coeficientes de generador, **ninguno**. Una regla marcada
-`[FUERTE]` significa que la literatura la sostiene bien, no que su probabilidad esté
-calibrada contra datos.
+medidos** — `4 de 144` sigue **[MESA-M4]**: congelado 31/jul/2026 por decisión de
+mesa, no se recalcula. De los 15 coeficientes de generador, **ninguno está en
+escala del modelo** — tres asociaciones marginales (β̂) existen (Encargo W),
+pero ADR-57(a) las rotula asociaciones, no coeficientes: ninguna sobrevive
+condicionar. Una regla marcada `[FUERTE]` significa que la literatura la
+sostiene bien, no que su probabilidad esté calibrada contra datos.
 
 **No fue escrito principalmente por un humano.** Ver `AUTHORSHIP.md`.
 
@@ -95,9 +98,11 @@ en bloque que ya existe. No sustituye a este archivo.)*
 >
 > **Síntesis de literatura, sin revisión por pares, sin datos primarios propios,
 > escrita en su mayor parte por modelos de lenguaje.** De los 144 números del
-> modelo, 4 están medidos; de los 15 coeficientes, ninguno. El corpus
-> sobre-muestrea al clasemediero urbano formal y deja el sistema indígena-comunal
-> **fuera por diseño**.
+> modelo, 4 están medidos (`4 de 144`, **[MESA-M4]**: congelado 31/jul/2026, no
+> se recalcula); de los 15 coeficientes en escala del modelo, ninguno — tres
+> asociaciones marginales existen pero ADR-57(a) las excluye del conteo. El
+> corpus sobre-muestrea al clasemediero urbano formal y deja el sistema
+> indígena-comunal **fuera por diseño**.
 >
 > Léelo entero en **[`AVISO-DE-ALCANCE.md`](AVISO-DE-ALCANCE.md)**.
 > Autoría e IA en **[`AUTHORSHIP.md`](AUTHORSHIP.md)**.
