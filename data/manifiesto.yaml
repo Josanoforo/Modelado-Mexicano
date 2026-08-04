@@ -3228,3 +3228,48 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: endireh2021_bd_csv_zip
+  usado_para: 'Encargo E (mesa #18): tabla TB_VD para exposicion_violencia (U2 rama B) --
+    cruce con ejes de atributos'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2021/microdatos/bd_endireh_2021_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (idBiinegi=3117 via API archivoscompaginacion;
+    verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/78902567, coincide con lo bajado)'
+  archivo: endireh2021/bd_endireh_2021_csv.zip
+  sha256: e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e
+  tamano_bytes: 78902567
+  formato: ZIP -- microdatos ENDIREH 2021 (CSV, incluye TB_VD entre otras tablas). No se abrio
+    ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: endutih2024_bd_dbf_zip
+  usado_para: 'Encargo E (mesa #18): microdatos para eje acceso_digital'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endutih/2024/microdatos/endutih2024_bd_dbf.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion; verificado
+    -r 0-0 antes de bajar: Content-Range bytes 0-0/8823853, coincide con lo bajado)'
+  archivo: endutih2024/endutih2024_bd_dbf.zip
+  sha256: ef723ed125c81c4a9036b74fab67f520de007a2d52c5e0b03d4ebec509e1ae87
+  tamano_bytes: 8823853
+  formato: ZIP -- microdatos ENDUTIH 2024, formato DBF (unico formato publicado por INEGI
+    para esta fuente). No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: mociba2024_bd_csv_zip
+  usado_para: 'Encargo E (mesa #18): microdatos para eje acceso_digital'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/mociba/2024/microdatos/mociba2024_bd_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion; verificado
+    -r 0-0 antes de bajar: Content-Range bytes 0-0/1500882, coincide con lo bajado)'
+  archivo: mociba2024/mociba2024_bd_csv.zip
+  sha256: 105e2e266134be538d33b5685e24bd41247eec5156f27b11ada7a3bb50f0a7ab
+  tamano_bytes: 1500882
+  formato: ZIP -- microdatos MOCIBA 2024 (CSV). No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
