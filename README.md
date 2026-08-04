@@ -86,7 +86,7 @@ Un validador cuyo alcance fija quien introduce las reglas no valida nada.
 
 **S2** · Los **90 parámetros de dispersión** de ADR-28.d no existen en archivo — el check de varianza no puede correr · Los **30 componentes** de `confianza_institucional` por perfil, declarados y sin poblar · **8 refutaciones sin objeto**, incluida `ref.A.02` · El motor **no tiene entidad prestamista** (frontera de ADR-35)
 
-**S3** · 15 coeficientes sin validar · 48 de 49 reglas sin falsación pre-registrada corrida · 74 números asignados · **3 de 5 forenses sin tabla de descartes**
+**S3** · 15 coeficientes sin validar · 38 de 49 reglas sin falsación pre-registrada corrida <!-- 49 (validador_registro_ids.py) − 11 (fichas del bloque append-only, T18) = 38 --> · 74 números asignados · **3 de 5 forenses sin tabla de descartes**
 
 **S5** · `conf.02` · `conf.05` · **`conf.06`** — resuelto 28/jul: eran **tres reactivos distintos** de la misma escala (62.1% conocidos · 32.1% vecinos · 21.8% la mayoría), leídos como una sola cifra
 
