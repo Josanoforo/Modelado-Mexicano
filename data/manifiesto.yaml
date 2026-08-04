@@ -2987,9 +2987,9 @@
     §6): NO es microdato de personas del Cuestionario Ampliado — la etiqueta original de esta
     entrada lo era por error, heredado de una premisa sin verificar. CAAS = Censo de Alojamientos
     de Asistencia Social: tres tablas, TI_TRA_CAAS_00.csv (trabajadores), TI_USU_CAAS_00.csv
-    (usuarios), TR_ALO_CAAS_00.csv (alojamientos) — confirmado por listado del ZIP (unzip -l)
-    y por las pestañas del descriptor (cpv2020_caas_descriptor_bd_xlsx: "CAAS_Alojamientos" /
-    "CAAS_Usuarios" / "CAAS_Trabajadores"). Es el censo de instituciones de asistencia social
+    (usuarios), TR_ALO_CAAS_00.csv (alojamientos) — confirmado por listado del ZIP (unzip
+    -l) y por las pestañas del descriptor (cpv2020_caas_descriptor_bd_xlsx: "CAAS_Alojamientos"
+    / "CAAS_Usuarios" / "CAAS_Trabajadores"). Es el censo de instituciones de asistencia social
     (albergues, asilos, orfanatos), no una muestra de personas en viviendas. El tamaño pequeño
     (1.08 MB nacional) es correcto para este producto — verificado HEAD=disco=1 076 224 bytes
     exactos, ZIP válido (cabecera PK real, no HTML de error). La muestra real del Cuestionario
@@ -3026,11 +3026,11 @@
 
 - id: cpv2020_diccionario_cuestionario_ampliado_xlsx
   usado_para: 'CORREGIDO 2026-08-03: no es el diccionario de CAAS/CEU (esa descripción original
-    era errónea — CAAS/CEU traen su propio descriptor, ver esas dos entradas). Sus pestañas son
-    VIVIENDAS / PERSONAS / MIGRANTES: es el diccionario de la muestra real del Cuestionario
+    era errónea — CAAS/CEU traen su propio descriptor, ver esas dos entradas). Sus pestañas
+    son VIVIENDAS / PERSONAS / MIGRANTES: es el diccionario de la muestra real del Cuestionario
     Ampliado, cuyos archivos de datos NO están entre las 576 URLs del XML de descarga masiva
-    (ver forense/notas/2026-08-03-descarga-masiva-xml-mecanismo.md §6) — documentación de un
-    producto todavía sin bajar.'
+    (ver forense/notas/2026-08-03-descarga-masiva-xml-mecanismo.md §6) — documentación de
+    un producto todavía sin bajar.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/ccpv/2020/microdatos/diccionario_cuestionario_ampliado_cpv2020.xlsx
   fecha_descarga: '2026-08-03'
   descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
@@ -3096,8 +3096,8 @@
   descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
     URL localizada directa en HTML del portal; corregido 2026-08-03 — SÍ existe un XML de
     descarga masiva propio para ENADID 2023 (DescargaMasiva_382026_13276.zip, totalMb="138.55
-    MB", 4 archivos), encontrado tras verificar; esta URL se usó vía HTML sin necesitarlo, no
-    porque el mecanismo A no exista para este portal — ver forense/notas/2026-08-03-descarga-masiva-xml-mecanismo.md
+    MB", 4 archivos), encontrado tras verificar; esta URL se usó vía HTML sin necesitarlo,
+    no porque el mecanismo A no exista para este portal — ver forense/notas/2026-08-03-descarga-masiva-xml-mecanismo.md
     §2)
   archivo: base_datos_enadid23_csv.zip
   sha256: 995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18
@@ -3114,8 +3114,8 @@
   descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
     URL localizada directa en HTML del portal; corregido 2026-08-03 — SÍ existe un XML de
     descarga masiva propio para ENADID 2023 (DescargaMasiva_382026_13276.zip, totalMb="138.55
-    MB", 4 archivos), encontrado tras verificar; esta URL se usó vía HTML sin necesitarlo, no
-    porque el mecanismo A no exista para este portal — ver forense/notas/2026-08-03-descarga-masiva-xml-mecanismo.md
+    MB", 4 archivos), encontrado tras verificar; esta URL se usó vía HTML sin necesitarlo,
+    no porque el mecanismo A no exista para este portal — ver forense/notas/2026-08-03-descarga-masiva-xml-mecanismo.md
     §2)
   archivo: fd_enadid23.xlsx
   sha256: d56582b7ace04e2c13a1b9ea22aeea458d7b9cc02a21241e5fda29fe12b4f34c
@@ -3127,15 +3127,15 @@
 
 - id: descargamasiva_382026_131650_xml
   usado_para: 'mecanismo — manifiesto de 576 URLs reales de descarga directa para CPV 2020
-    (570 microdatos + 6 doc), agrupadas en 5 familias: caas/cl/ceu/iter/ageb_manzana. Rodea el
-    endpoint AJAX bloqueado por proyecto/anio (forense/notas/2026-07-31-cola-descarga-rederivada.md
+    (570 microdatos + 6 doc), agrupadas en 5 familias: caas/cl/ceu/iter/ageb_manzana. Rodea
+    el endpoint AJAX bloqueado por proyecto/anio (forense/notas/2026-07-31-cola-descarga-rederivada.md
     §4) para ESAS 5 familias — pero corregido 2026-08-03: la muestra real del Cuestionario
-    Ampliado (VIVIENDAS/PERSONAS/MIGRANTES) NO es ninguna de esas 5 familias y no aparece entre
-    las 576 URLs, así que el bloqueo de §4 para ESE producto específico sigue sin resolver (ver
-    forense/notas/2026-08-03-descarga-masiva-xml-mecanismo.md §6). Usado esta sesión para derivar
-    las 7 URLs de CPV registradas junto a esta entrada (2 de ellas, CAAS/CEU, mal identificadas
-    al registrarse por primera vez — ver sus propias entradas). No es payload de encuesta: es
-    el índice de URLs.'
+    Ampliado (VIVIENDAS/PERSONAS/MIGRANTES) NO es ninguna de esas 5 familias y no aparece
+    entre las 576 URLs, así que el bloqueo de §4 para ESE producto específico sigue sin resolver
+    (ver forense/notas/2026-08-03-descarga-masiva-xml-mecanismo.md §6). Usado esta sesión
+    para derivar las 7 URLs de CPV registradas junto a esta entrada (2 de ellas, CAAS/CEU,
+    mal identificadas al registrarse por primera vez — ver sus propias entradas). No es payload
+    de encuesta: es el índice de URLs.'
   url_origen: no determinada (generado por el portal /programas/ccpv/2020/ al solicitar 'descarga
     masiva' desde el navegador; el XML no tiene URL propia de descarga, se entrega dentro
     de DescargaMasiva_382026_131650.zip)
@@ -3152,12 +3152,11 @@
 
 - id: cpv2020_ceu_eum_csv
   usado_para: 'CORREGIDO 2026-08-03 (ver forense/notas/2026-08-03-descarga-masiva-xml-mecanismo.md
-    §6): NO es microdato de viviendas del Cuestionario Ampliado — misma corrección que
-    cpv2020_caas_eum_csv. CEU es cartografía urbana: TR_VIALIDAD_EU (vialidades) y TI_MANZANA_EU
-    (manzanas), confirmado por las pestañas del descriptor (cpv2020_ceu_descriptor_bd_xlsx:
-    "TR_VIALIDAD_EU" / "TI_MANZANA_EU"). No es tabla de viviendas encuestadas. La muestra real
-    de viviendas del Cuestionario Ampliado tampoco está entre las 576 URLs de este XML — ver
-    la nota de cpv2020_caas_eum_csv.'
+    §6): NO es microdato de viviendas del Cuestionario Ampliado — misma corrección que cpv2020_caas_eum_csv.
+    CEU es cartografía urbana: TR_VIALIDAD_EU (vialidades) y TI_MANZANA_EU (manzanas), confirmado
+    por las pestañas del descriptor (cpv2020_ceu_descriptor_bd_xlsx: "TR_VIALIDAD_EU" / "TI_MANZANA_EU").
+    No es tabla de viviendas encuestadas. La muestra real de viviendas del Cuestionario Ampliado
+    tampoco está entre las 576 URLs de este XML — ver la nota de cpv2020_caas_eum_csv.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/ccpv/2020/microdatos/ceu/Censo2020_CEU_eum_csv.zip
   fecha_descarga: '2026-08-03'
   descargado_por: agente, directamente de inegi.org.mx (curl, sesión de descarga dirigida;
@@ -3211,5 +3210,21 @@
   formato: pdf
   licencia: © Corporación Latinobarómetro (aviso del sitio); términos de reuso no declarados
     explícitamente en el documento — no verificado más allá de eso
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: endireh2021_fd_pdf
+  usado_para: encargo cal-conf-faseb-pos4 (ENDIREH paso 1) — busqueda de reactivo de exposicion_violencia,
+    hitoE §14.3 fila 4 PENDIENTE DE VERIFICACIÓN
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_fd.pdf
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (idBiinegi=3117 vía API archivoscompaginacion,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/10369637)'
+  archivo: endireh2021/endireh2021_fd.pdf
+  sha256: 5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180
+  tamano_bytes: 10369637
+  formato: PDF — Estructura de la base de datos ENDIREH 2021 (descriptor de archivos / FD),
+    730 pp. No se abrió microdato.
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
