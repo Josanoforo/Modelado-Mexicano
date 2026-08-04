@@ -359,6 +359,69 @@ Todos los resultados numéricos citados en esta nota viven en
 `ck_*.json` individuales de la misma carpeta — auditables línea por línea,
 no transcritos de memoria.
 
+**Validación del motor (datos sintéticos, `tests/p3_lca_validacion_sintetica.py`).**
+Antes de confiar el veredicto D5 al motor de EM, se valida el motor mismo
+contra un caso donde la respuesta correcta se conoce por construcción: el
+script genera un universo sintético (n=8 000, 4 indicadores de cardinalidad
+mixta [2,3,2,4]) desde un modelo generador con `k=3`, `π` y `φ` conocidos, y
+corre `ajustar()` (`tests/p3_lca_em.py`) sobre `k=1..5` sin tocar ENIGH ni
+`data/raw` — valida el algoritmo, no el pipeline de datos. **El BIC recupera
+el `k` verdadero** (mínimo en `k=3` de los cinco probados) y, resuelto el
+label-switching por la permutación de clases que minimiza la distancia a
+los parámetros verdaderos, **las dos máximas diferencias absolutas caen
+dentro de sus tolerancias declaradas**: `π` difiere como máximo `0.0063`
+(tolerancia `<0.02`) y `φ` como máximo `0.0360` (tolerancia `<0.05`).
+Reproducir con:
+```
+python3 tests/p3_lca_validacion_sintetica.py
+```
+Salida cruda de la corrida que sustenta esta nota:
+```
+======================================================================
+Validacion del motor LCA contra datos sinteticos -- k y phi conocidos
+======================================================================
+n = 8000 personas -- 48 patrones de respuesta unicos
+cardinalidades observadas = [2, 3, 2, 4] (esperadas [2, 3, 2, 4])
+
+-- Paso 1: el motor recupera k por BIC, corriendo k=1..5 --
+  k=1: logL=-30208.6212  parametros=7  BIC=60480.1528
+  k=2: logL=-27864.4309  parametros=15  BIC=55863.6698
+  k=3: logL=-27252.1616  parametros=23  BIC=54711.0288
+  k=4: logL=-27247.4650  parametros=31  BIC=54773.5330
+  k=5: logL=-27245.9399  parametros=39  BIC=54842.3805
+  BIC minimo en k=3 (verdadero k=3)
+
+-- Paso 2: bajo el k verdadero, compara pi y phi estimados contra los generadores --
+  permutacion de clases que empareja estimado con verdadero: (2, 1, 0)
+  costo total (suma de |diferencias| en pi + phi, tras permutar): 0.3000
+
+  pi verdadero  vs  pi estimado (ya permutado):
+    clase 0: 0.5000  vs  0.5005  (dif 0.0005)
+    clase 1: 0.3000  vs  0.3059  (dif 0.0059)
+    clase 2: 0.2000  vs  0.1937  (dif 0.0063)
+
+  phi verdadero vs phi estimado (ya permutado), maxima diferencia por clase/indicador:
+    clase 0 indicador x0: verdadero=[0.850, 0.150]  estimado=[0.852, 0.148]  dif_max=0.0019
+    clase 0 indicador x1: verdadero=[0.750, 0.150, 0.100]  estimado=[0.750, 0.156, 0.094]  dif_max=0.0062
+    clase 0 indicador x2: verdadero=[0.800, 0.200]  estimado=[0.807, 0.193]  dif_max=0.0068
+    clase 0 indicador x3: verdadero=[0.650, 0.150, 0.100, 0.100]  estimado=[0.658, 0.139, 0.108, 0.095]  dif_max=0.0108
+    clase 1 indicador x0: verdadero=[0.150, 0.850]  estimado=[0.155, 0.845]  dif_max=0.0054
+    clase 1 indicador x1: verdadero=[0.100, 0.750, 0.150]  estimado=[0.096, 0.739, 0.165]  dif_max=0.0147
+    clase 1 indicador x2: verdadero=[0.200, 0.800]  estimado=[0.198, 0.802]  dif_max=0.0015
+    clase 1 indicador x3: verdadero=[0.100, 0.150, 0.650, 0.100]  estimado=[0.091, 0.170, 0.639, 0.100]  dif_max=0.0196
+    clase 2 indicador x0: verdadero=[0.500, 0.500]  estimado=[0.510, 0.490]  dif_max=0.0099
+    clase 2 indicador x1: verdadero=[0.050, 0.100, 0.850]  estimado=[0.054, 0.094, 0.853]  dif_max=0.0061
+    clase 2 indicador x2: verdadero=[0.500, 0.500]  estimado=[0.493, 0.507]  dif_max=0.0068
+    clase 2 indicador x3: verdadero=[0.100, 0.100, 0.100, 0.700]  estimado=[0.077, 0.074, 0.113, 0.736]  dif_max=0.0360
+
+  Maxima diferencia absoluta en pi:  0.0063
+  Maxima diferencia absoluta en phi: 0.0360
+
+OK -- el motor recupera k=3 por BIC, y pi/phi dentro de tolerancia
+  (tol pi<0.02, tol phi<0.05; n=8000, 48 patrones unicos).
+Validado.
+```
+
 ---
 
 *Suite (`tests/check.py` y `tests/check.py --baseline`) corrida como último
