@@ -983,6 +983,18 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 
 ---
 
+### Nota 26 · 4/ago/2026 — Adenda de plantilla: fila `E` prospectiva y regla de precedencia (ADR-58)
+
+*(Añadida al final, fechada, sin tocar el cuerpo, ninguna ficha ni las Notas 1-25 — misma disciplina que las notas anteriores. Decisión de mesa del autor, ADR-58, sobre el patrón de Notas 18 y 19: dos de tres fichas del mismo acto tropezaron con un hueco de diseño del pre-registro, no de dato — la escala `A/B/C/D` declarada en la cabecera de este documento no tiene dónde anotar ni "el falsador corrió limpio y no refutó" ni "el punto satisface la fila pero el IC no despeja el umbral".)*
+
+**Fila `E`, prospectiva.** Toda ficha futura declara, al sellar y antes de ver dato alguno: *"`E` · El falsador corrió limpio y no se satisfizo — la regla sobrevive a esta prueba"*, junto con qué significa ese desenlace para esa regla — corrobora (y qué corroboraría, dicho por adelantado), acota (a qué subpoblación o régimen), o falsador débil (la prueba no podía decir nada, y la ficha era mejorable). Precedente negativo: `R1.2`/Nota 19, resultado a casi el triple del umbral, ejecutor negándose con razón a forzar una fila.
+
+**Regla de precedencia, declarada al sellar.** Si dos filas de una escala pueden satisfacerse a la vez, la ficha declara cuál manda al sellar, no después; la fila más específica gana sobre la más general, y la escala propia de una ficha gobierna sobre cualquier leyenda genérica del corpus (la de la línea 19 de este documento, incluida). Precedente: `R5.2`/Nota 18, que tuvo que verificar a mano la no-superposición con `B` porque ninguna regla lo decía.
+
+**Alcance de esta adenda.** Rige toda ficha que se selle de aquí en adelante. No reabre, no reinterpreta y no reclasifica ninguna ficha ya sellada ni ninguna nota ya escrita — las Notas 1-25 quedan exactamente como están. La única aplicación retroactiva es la excepción nombrada y acotada de `R1.2` → `E`, adjudicada en `gobernanza` ADR-58(d): no crea precedente automático para ninguna otra ficha corrida de este perímetro. Detalle completo de la decisión, con su razonamiento íntegro: `gobernanza` ADR-58.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
@@ -996,3 +1008,6 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 `R4.3` → veredicto `D` — *(mitad A, archivado 4/ago/2026, narrado en Nota 24, detalle en `forense/notas/2026-08-04-z5-veredicto-r4-3.md`)*
 `R4.3` → veredicto `D` — *(mitad B, archivado 4/ago/2026, narrado en Nota 24, detalle en `forense/notas/2026-08-04-z5-veredicto-r4-3.md`)*
 `R9.2` → veredicto `D` — *(archivado 4/ago/2026, narrado en Nota 25, detalle en `forense/notas/2026-08-04-z6-veredicto-r9-2.md`)*
+`R5.1` → veredicto `A` — *(archivado 4/ago/2026, narrado en Nota 16, adjudicado por `gobernanza` ADR-58(c). Reserva verbatim, Nota 16: "ENIGH es corte transversal repetido, no panel (aunque el Umbral de la ficha, línea 143, pide literalmente la comparación transversal beneficiario/no-beneficiario que este acto corrió); control de comparabilidad limitado a tercil de ingreso per cápita (sin pareo por región/escolaridad ni matching); `P040` no distingue donante familiar de no familiar; cobertura del programa no es 100% en ninguna ola." Detalle en `forense/notas/2026-08-04-hitoD-r5-1-pension-bienestar.md`)*
+`R5.2` → veredicto `A` — *(archivado 4/ago/2026, narrado en Nota 18, adjudicado por `gobernanza` ADR-58(c). Reserva verbatim, Nota 18: "El punto satisface la fila `A` ... pero el IC95% no despeja el umbral — el límite inferior (14.39%) queda debajo de 20%, a diferencia de la corrida limpia de `R7.2`/Nota 12." (Reducción% = 23.98%, SE=4.89pp, IC95%=[14.39%,33.57%].) Detalle en `forense/notas/2026-08-04-y1-operacionalizacion-r5-2-enut.md` y `forense/notas/2026-08-04-y5-veredicto-r5-2.md`)*
+`R1.2` → veredicto `E` — *(archivado 4/ago/2026, narrado en Nota 19, adjudicado por `gobernanza` ADR-58(d), excepción acotada y nombrada — regla `dinero.planeacion.formal_estable`. Desenlace verbatim, Nota 19: "El Umbral pide `<15%`. El resultado, 42.98% con IC95% que no se acerca a 15%, es una no-satisfacción decisiva y limpia del falsador — no un caso límite como `R5.2`." (Numerador=42.98%, SE=1.58pp, IC95%=[39.88%,46.08%].) Detalle en `forense/notas/2026-08-04-y6-veredicto-r1-2.md`)*
