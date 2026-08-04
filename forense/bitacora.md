@@ -1064,6 +1064,20 @@ forense/hallazgos.md                       |   1 +
  tests/hitoD_r7_2_ocho_olas.py              | 226 +++++++++++++++++++++++++++++
  4 files changed, 389 insertions(+)
 ```
+**Fecha:** 2026-08-03 · **Rama:** `sesion/cal-conf-faseb-pos4-envipe-tpervic2-tmodvic-paso2` · **HEAD inicial (origin/main):** `642be976c748f6e91a7888aceeb532e881fa100a` · **HEAD final:** `02d20b5200ecdb59acc8c5252538bee39bb2acc6`
+
+**Commits de la sesión:**
+  - `02d20b5` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · CAL-CONF Fase B, posición 4: mide exposicion_violencia (9 de 14)
+
+**Archivos tocados:**
+```
+canon/modelo-decision-v4_0.md                      |  22 +-
+ forense/hallazgos.md                               |   1 +
+ forense/hitoE-campana-medicion-v2_0.md             |  70 +++++
+ ...6-08-04-medicion-exposicion-violencia-envipe.md | 293 +++++++++++++++++++++
+ milpa/procedencia.yaml                             | 122 +++++++++
+ 5 files changed, 497 insertions(+), 11 deletions(-)
+```
 
 **ADRs añadidos:** (ninguno detectado)
 **Líneas de versión modificadas en canon/:** 0
@@ -1078,6 +1092,8 @@ forense/hallazgos.md                       |   1 +
 
 **Qué se decidió:** Ocho olas ENVIPE agrupadas; pareo por identificabilidad ejecutado a escala -- ninguna vía cierra A sin reserva (desconocido: IC cruza 20; conocido: n insuficiente aun agrupado, 42/42 conglomerados singleton). D queda archivada, ambigüedad de Nota 12 disuelta sin ADR.
 **Qué quedó bloqueado:** Ninguno propio. Decisión de mesa pendiente: si archiva este desenlace como entrada fechada en el bloque append-only de veredictos (no se archivó en este acto, es de mesa).
+**Qué se decidió:** ENVIPE TPer_Vic2 mide exposicion_violencia (núcleo AP7_3_10-_14, binario 2024, ponderado FAC_ELE); AP7_3_09 extorsión aparte; estimador validado contra caso conocido (violación sexual 279/100k mujeres, 0.09% diff); C3 limpio, C2 sellado (dependencia BP1_23); clase MEDIDO·PARCIAL(edad,dominio,formalidad,ESTRATO); contador 8→9/14, reparto cierra 9+0+2+3; sin ADR nuevo (propagación directa)
+**Qué quedó bloqueado:** C2 sellado, no resuelto -- BP1_23/comunicacion.inseguridad.ver_oir_callar depende de la misma subpoblación por diseño del instrumento; H-12 no re-evaluado contra el nuevo reactivo (adjudicación fuera de alcance)
 
 ---
 
