@@ -1128,3 +1128,22 @@ forense/hallazgos.md                               |   1 +
 
 ---
 
+## 2026-08-04
+
+**Fecha:** 2026-08-04 · **Rama:** `claude/fichas-r3-1-r3-4-t5a02g` · **HEAD inicial (origin/main):** `a0d8fd538b304e0c36c5ec38ef42b42c89f1177b` · **HEAD final:** `a0d8fd538b304e0c36c5ec38ef42b42c89f1177b`
+
+**Commits de la sesión:** (HEAD == origin/main — nada nuevo que listar)
+
+**Delta de suite:**
+  - Antes: 19 FAIL · 83 WARN (congelados en origin/main)
+  - Después: 18 FAIL · 84 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: (ninguno)
+  - Cerrados: D-05, D-06, D-07, D-08, D-09, D-10, E-04, E-05, E-06, I-01, I-08, I-09, I-13
+
+**Qué se decidió:** Encargo O (mesa #18): escribir las dos fichas de perimetro que faltaban (R3.1, R3.4) en vez de tocar T17 o la cabecera del pre-registro -- 25->27 fichas, T17 pasa de FAIL a verde (19->18 FAIL).
+**Qué quedó bloqueado:** Discrepancia numerica CoDi sin resolver en R3.4 (tramite.yaml: 3.09M cuentas vs report ancla: 21.8M cuentas/17.8M transacciones) -- exige abrir Banxico, fuera de perimetro de sesion limpia; queda para la calibracion de Fase 1 que gobernanza:271 ya exige.
+
+---
+
