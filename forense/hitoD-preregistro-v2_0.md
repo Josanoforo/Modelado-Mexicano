@@ -728,6 +728,26 @@ Detalle completo, las 15 tasas de denuncia por clase de delito, verificación de
 
 ---
 
+### Nota 14 · 4/ago/2026 — `R5.1`, corrida completa sobre las 6 olas ENIGH: propuesta `A`, no adjudicada
+
+*(Añadida al final, fechada, sin tocar el cuerpo, la ficha ni las Notas 1-13 — misma disciplina que las notas anteriores declararon. El veredicto archivado en el registro de abajo NO cambia con esta nota — sigue en 3 líneas; esta nota propone, no emite.)*
+
+**Beneficiarios identificados, no `D`:** `ingresos.clave` trae código aislable para la pensión de adultos mayores en las 6 olas — `P044` ("70 y más" 2012-2014, "65 y más" 2016-2018), `P104` ("Programa para el Bienestar de las Personas Adultas Mayores", 2020-2022). No se usó `bene_gob` (agregado de `concentradohogar` que mezcla la pensión con becas juveniles y otros programas, confirmado en la fórmula del diccionario de datos) — el mismo tipo de error que `I-18`/ADR-30 ya nombró para otra fuente.
+
+**Ventana fijada antes de estimar:** antes = 2012/2014/2016/2018 (`P044`), después = 2020/2022 (`P104`) — el cambio de clave y un salto de monto (de ~$660/mes a ~$1,550-2,144/mes, más del doble, sin ola intermedia) caen exactamente entre 2018 y 2020, verificado en el propio dato, no solo por fecha de reforma recordada.
+
+**Las dos medidas del Umbral, en las 6 olas, hogares con adulto mayor, beneficiario vs. no beneficiario:** corresidencia (`clase_hog∈{3,4}`) nunca muestra reducción — brecha ≤3.5pp, IC95% traslapados en las 6 olas. Transferencia intrafamiliar hacia mayor (`ingresos.clave=P040`, receptor 65+) tampoco muestra reducción — brecha +3.8pp a +16.9pp, **en la dirección contraria** a "retroceso" (beneficiarios reciben más, no menos), significativa en 4 de 6 olas. Estratificando 2020/2022 por tercil de `ingtrab` *per cápita* (no total — el total está mecánicamente inflado en hogares extensos, hallazgo metodológico de este acto): en ningún estrato aparece una brecha negativa y significativa; en el tercil alto, la brecha es positiva y significativa (+9.1pp a +9.8pp en corresidencia).
+
+**Confusor del monto (PP-4) documentado, no insuficiente:** la pensión cubre 60-63% del gasto monetario per cápita del hogar beneficiario en 2020/2022 (32-47% en 2012-2018) — no es cifra simbólica.
+
+**Estimador validado contra caso conocido publicado, no solo el sintético de `svystat.py`:** reproduce Total de hogares (37,560,123), `bene_gob` ($1,777), `donativos` ($1,271) y `jubilacion` ($5,169) del Comunicado de Prensa INEGI 420/23 (26/jul/2023, ENIGH 2022) a 3 decimales o mejor.
+
+**Propuesta: fila `A`** — reducción ≤0 (nula o negativa) con monto suficiente documentado, en las 6 olas y en cada estrato de ingreso probado. **Reserva explícita:** ENIGH es corte transversal repetido, no panel (aunque el Umbral de la ficha, línea 143, pide literalmente la comparación transversal beneficiario/no-beneficiario que este acto corrió); control de comparabilidad limitado a tercil de ingreso per cápita (sin pareo por región/escolaridad ni matching); `P040` no distingue donante familiar de no familiar; cobertura del programa no es 100% en ninguna ola. **Verificado, no hay solape con fila `B`** (la tercera ocurrencia habría obligado a instrumentar precedencia, per PP-3 — no aplica aquí: A se satisface limpio, B no se satisface en ninguna lectura).
+
+**El veredicto archivado (`3 líneas`, sin `R5.1`) y el contador (`3 de 27`) no cambian por esta nota.** Si mesa decide adjudicar `A`, se registra como entrada nueva fechada en el bloque de abajo. Detalle completo, tabla de comparabilidad entre olas, las dos medidas por separado, criterio de comparabilidad de hogares y validación del estimador: `forense/notas/2026-08-04-hitoD-r5-1-pension-bienestar.md`.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
