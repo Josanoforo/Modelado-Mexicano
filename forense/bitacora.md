@@ -1018,3 +1018,34 @@ canon/cola.yaml                                    |  44 ++++
 
 ---
 
+## 2026-08-03
+
+**Fecha:** 2026-08-03 · **Rama:** `sesion/cal-conf-faseb-pos4-envipe-paso1` · **HEAD inicial (origin/main):** `268d9dfc6b158849d2e49fe0824a8d2e93017850` · **HEAD final:** `e03b81cfbeff382f32595746d4942e25cc0e7b29`
+
+**Commits de la sesión:**
+  - `e03b81c` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · CAL-CONF Fase B, pos4 rehecho paso 1 (ENVIPE): TPer_Vic1 no tiene reactivo de exposicion_violencia
+
+**Archivos tocados:**
+```
+forense/hallazgos.md                               |   1 +
+ forense/hitoE-campana-medicion-v2_0.md             |  77 +++++
+ .../2026-08-04-cal-conf-faseb-pos4-envipe-paso1.md | 322 +++++++++++++++++++++
+ 3 files changed, 400 insertions(+)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 19 FAIL · 83 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 84 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: (ninguno)
+  - Cerrados: D-05, D-06, D-07, D-08, D-09, D-10, E-04, E-05, E-06, I-01, I-08, I-09, I-13
+
+**Qué se decidió:** ENVIPE TPer_Vic1 examinado y descartado con argumento para exposicion_violencia (LA FUENTE NO TIENE EL DATO); adenda hitoE §19; contador sin cambio 8/14
+**Qué quedó bloqueado:** C2 (G4 desenlaces vs. TPer_Vic1) declarado abierto, no resuelto; decisión de mesa pendiente sobre si el precedente aversion_riesgo/sens_estatus aplica a exposicion_violencia
+
+---
+
