@@ -921,6 +921,44 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 
 ---
 
+### Nota 20 · 4/ago/2026 — Declaración de fuente, `R4.1` + `R9.1`: ENSANUT CONTINUA 2024, registradas juntas por la Nota de simetría
+
+*(Añadida al final, fechada, sin tocar el cuerpo, ninguna ficha ni las Notas 1-19 — misma disciplina. Encargo Z, commit 1. Escrita antes de abrir un solo ZIP de microdato.)*
+
+**Fuente declarada para ambas: ENSANUT CONTINUA 2024** (Cuestionario de Utilizadores + sección IV de Hogar), única candidata del catálogo con variable de institución de atención que distingue farmacia-con-consultorio de IMSS/informal, y con variables cuantitativas de costo/tiempo/espera. Todas las candidatas consideradas (ENSANUT, ENIGH, ENASEM) y la razón de descarte de las no elegidas: `forense/notas/2026-08-04-z1-declaracion-fuente-r4-1-r9-1.md`.
+
+**Condición del Umbral no cubierta, `R4.1`:** ninguna fuente del catálogo construye la comparación antes/después que el Umbral exige ("tras una mejora documentada de acceso público") — ENSANUT y ENIGH son ambas corte transversal, sin panel ni evento fechado de apertura de clínica. El confusor de trato tiene un proxy débil (mención espontánea, no escala), declarado pero no resuelto.
+
+**Condición del Umbral no cubierta, `R9.1`:** dos, independientes — (1) no existe variable de distancia en km, solo tiempo de traslado; (2) el único cuestionario con acceso objetivo cuantitativo (Utilizadores) excluye por diseño a quien no buscó ninguna atención, la subpoblación donde "prevalece 'yo sé por experiencia'" sería más visible; el Cuestionario Hogar cubre a todos pero su lista de motivos de no-atención es enteramente institucional, sin categoría de preferencia por conocimiento propio/allegado.
+
+**Ambas condiciones son ausencia de instrumento, no de variable con otro nombre — verificado contra los dos cuestionarios completos, no contra sus catálogos.** Corrida y asignación de fila: commit 2 de este encargo.
+
+---
+
+### Nota 21 · 4/ago/2026 — Declaración de fuente, `R4.3` (mitad A + mitad B): ENSANUT CONTINUA 2024, con el mismo hueco de adherencia auto-reportada para ambas mitades
+
+*(Añadida al final, fechada, sin tocar el cuerpo, ninguna ficha ni las Notas 1-20 — misma disciplina. Encargo Z, commit 1. Escrita antes de abrir un solo ZIP de microdato.)*
+
+**Fuente declarada: ENSANUT CONTINUA 2024**, secciones de Diabetes/Hipertensión del Cuestionario de Adultos — única candidata con variable de motivo de interrupción de tratamiento que distingue desabasto (`A0314`, códigos 05/06/10) de otras causas. Candidatas descartadas y razón: `forense/notas/2026-08-04-z2-declaracion-fuente-r4-3.md`.
+
+**Condición del Umbral no cubierta, compartida por ambas mitades:** la escala propia de la ficha (línea 132) declara fila `D` "si solo hay adherencia auto-reportada" — la única variable de adherencia disponible en el catálogo entero es `A0313` (recuento de suspensión por entrevista), no adherencia por surtimiento. Específico de mitad A: la duración del desabasto tiene techo abierto en "1 mes o más", no aísla el episodio ≥3 meses exacto. Específico de mitad B: no existe variable de cuidadora; el único proxy (corresidencia) es el mismo confusor que la propia ficha, línea 130, ya advierte.
+
+**Corrida y asignación de fila, por separado para cada mitad: commit 2 de este encargo.**
+
+---
+
+### Nota 22 · 4/ago/2026 — Declaración de fuente, `R9.2`: ENSANUT cubre la cobertura, ninguna fuente del catálogo audita abasto/campaña fuera del prestador
+
+*(Añadida al final, fechada, sin tocar el cuerpo, ninguna ficha ni las Notas 1-21 — misma disciplina. Encargo Z, commit 1. Escrita antes de abrir un solo ZIP de microdato. `R9.2` es la meta-regla del corpus — se declara con el cuidado que exige su Bloque C.)*
+
+**Fuente declarada para la mitad de cobertura: ENSANUT CONTINUA 2024** (vacunación en Niños/Adolescentes/Adultos, verificada contra Cartilla física mostrada, no auto-reporte de hogar puro) — encuesta de hogar, independiente del prestador. **Candidata descartada para la mitad de abasto/campaña: DGIS — Otros subsistemas** (`data/catalogo-fuentes-v1_0.md:123`), descartada no por ausencia de dato sino porque es la propia Secretaría de Salud reportándose a sí misma — exactamente lo que la ficha excluye en su línea 271. Detalle completo: `forense/notas/2026-08-04-z3-declaracion-fuente-r9-2.md`.
+
+**Condición del Umbral no cubierta:** "disponibilidad y alcance de campaña verificados por fuente independiente del prestador" — ninguna fuente del catálogo completo la construye; no es limitación de ENSANUT específicamente, es ausencia de instrumento auditor externo. Coincide letra por letra con la fila `D` de la propia escala (línea 273): "si el abasto solo lo reporta el prestador". **Obligación anti-superviviente de Bloque C (línea 270) pendiente para el commit 2**, no adelantada ni sustituida por esta declaración.
+
+**Corrida y asignación de fila: commit 2 de este encargo.**
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
