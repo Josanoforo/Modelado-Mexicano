@@ -87,3 +87,28 @@ Esta es la lista que el autor tiene que bajar a mano desde la pestaña Microdato
 ## 7. Contaminación de esta sesión (ADR-46)
 
 Esta sesión leyó y tocó `inegi.org.mx`: páginas de programa (incluido su JSON-LD embebido), el catálogo de microdatos, y el host estático de `datosabiertos`/`doc`. Por diseño (ADR-46: la unidad de contaminación es la sesión, no la máquina), **queda contaminada para pre-registrar contra cualquiera de estas fuentes**. El pre-registro correspondiente lo hace otra sesión, no esta.
+
+---
+
+## 8. Adenda 04/ago/2026 — la tabla §5 colapsa dos clases bajo un mismo rótulo
+
+**Disciplina aplicada:** adenda fechada, append-only. La tabla §5 no se
+edita — cada fila queda íntegra. Esta adenda separa lo que el §0 de esta
+misma nota ya advertía que no se debía colapsar: *"'no pude alcanzar la
+fuente' y 'la fuente no tiene el dato' son hallazgos distintos"*. La tabla
+§5 usa **RESPONDE PERO SIN EL RECURSO** para dos situaciones que no son
+comparables:
+
+| Caso | Fila de §5 | Qué es en realidad | Estado |
+|---|---|---|---|
+| ENOE 2020Q2 | `.../enoe/15ymas/datosabiertos/2020Q2` | Hueco real de la fuente. Levantamiento suspendido por contingencia sanitaria. | **Vigente y definitivo** — no se re-sondea |
+| ENOE 2026Q2+ | `.../enoe/15ymas/datosabiertos/2026Q2 en adelante` | Aún no publicado. | **Vigente** — caduca solo con el calendario editorial |
+| ENCIG 2019 `/doc/` (9 variantes) | `.../programas/encig/2019/doc/...` | Fallo de adivinanza de nombre por script. La propia fila ya lo dice: "no implica que el documento no exista". | **RESUELTA** — `data/manifiesto.yaml` (~l.2533) registra que ese descriptor sí se consiguió |
+| ENIF/ENVIPE `/doc/` (~20 variantes) | `.../programas/{enif,envipe}/.../doc/...` | Ídem — fallo de adivinanza de nombre. | **RESUELTA** — `data/manifiesto.yaml` (~l.2533) registra que esos descriptores sí se consiguieron |
+
+El rótulo mezcla "la fuente no lo tiene" (hueco real, filas 1-2) con "no
+acerté el nombre" (estado transitorio ya vencido, filas 3-4). Hoy la tabla
+§5, leída sola, sugiere que ENCIG 2019 y ENIF/ENVIPE siguen bloqueados por
+`/doc/`; no es así — sus descriptores ya están en el manifiesto, bajados por
+otra sesión (navegador del autor, §6 de esta misma nota). Detalle en
+`forense/notas/2026-08-04-barrido-escritorio-pendientes.md` §5.
