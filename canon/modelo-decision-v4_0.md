@@ -671,10 +671,10 @@ Orden de aplicación: **vector de atributos** → parámetros (condicionales sob
 | `R2.2` | L225 | Liderazgo benévolo → lealtad; **SOLO** benevolencia legitima | `[MEDIA-FUERTE]` | Sí |
 | `R2.3` | L226 | Prestaciones formales (IMSS/Infonavit) → pesan más que salario | `[MEDIA]` | No |
 | `R2.4` | L227 | Joven urbano (perfil 5) → cambia de empleo sin culpa | `[MEDIA]` | No |
-| `R3.1` | L232 | Trámite presencial discrecional sin registro → mordida | `[FUERTE]` | No |
+| `R3.1` | L232 | Trámite presencial discrecional sin registro → mordida | `[FUERTE]` | Sí *(Nota 14, 4/ago/2026)* |
 | `R3.2` | L233 | Digitalización/testigos/registrable → baja la mordida | `[FUERTE]` | Sí |
 | `R3.3` | L234 | Norma inútil + sanción improbable → evasión ("hacerse guaje") | `[MEDIA]` | No — **fuera del perímetro** |
-| `R3.4` | L235 | Gobierno digital coercitivo (CoDi) rechazado vs. útil (SPEI) adoptado — **el gate** | `[MEDIA-FUERTE]` | No |
+| `R3.4` | L235 | Gobierno digital coercitivo (CoDi) rechazado vs. útil (SPEI) adoptado — **el gate** | `[MEDIA-FUERTE]` | Sí *(Nota 15, 4/ago/2026)* |
 | `R4.1` | L240 | Sin IMSS + leve-moderado → farmacia con consultorio/automedicación | `[FUERTE]` | Sí |
 | `R4.4` | L241 | Grave/crónico complejo → sistema público pese a la espera | `[MEDIA]` | No |
 | `R4.2` | L242 | Hombre sin permiso laboral → pospone el chequeo | `[FUERTE]` | Sí |
