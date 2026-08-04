@@ -90,7 +90,7 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 
 **L4 · Implementación — incompleta.** MILPA Fase 0: **3 de 10** `rules/*.yaml` (solo `tramite.yaml` es de dominio). **18 de 43 reglas implementadas**, sin criterio registrado de por qué esas. `masterclass-mexico.html` ausente. **Fase 1 ya NO está pospuesta: es la arquitectura objetivo del programa, calibrada por AJUSTE, no por identificación causal (ADR-50); la subidentificación bajo atributos persiste, calibrabilidad de los libres sin reactivo retirada (ADR-51).** *(Corregido 3/ago/2026, ADR-51: decía "Fase 1 POSPUESTA por decisión, no por olvido" — ADR-50 (31/jul/2026) ya había cambiado ese estado y declaró la cascada a esta línea pendiente, sin ejecutarla; ADR-51 la ejecuta.)*
 
-**L5 · Validación — el estrato más problemático.** **Hito D** (reglas del motor; perímetro de 27, subconjunto de las 49 del motor): **2 de 27 corridas archivadas** — `R1.1` → veredicto `D`, `R3.2` → veredicto `B` (bloque append-only de `hitoD-preregistro`, ver §7). 49 refutaciones narrativas corridas *(población distinta, `milpa/refutations.yaml`, ref.A.*)*: 27 pasan, 3 fallan, 8 sin objeto, 11 requieren el ejecutable. **15 coeficientes, cero medidos.** Cuatro generadores sin falsar (**Hito C**, distinto de lo anterior — ver `hitoC-prueba-generadores`).
+**L5 · Validación — el estrato más problemático.** **Hito D** (reglas del motor; perímetro de 27, subconjunto de las 49 del motor): **3 de 27 corridas archivadas** — `R1.1` → veredicto `D`, `R3.2` → veredicto `B`, `R7.2` → veredicto `D` (bloque append-only de `hitoD-preregistro`, ver §7). 49 refutaciones narrativas corridas *(población distinta, `milpa/refutations.yaml`, ref.A.*)*: 27 pasan, 3 fallan, 8 sin objeto, 11 requieren el ejecutable. **15 coeficientes, cero medidos.** Cuatro generadores sin falsar (**Hito C**, distinto de lo anterior — ver `hitoC-prueba-generadores`).
 
 **P3 · LCA de segmentación sobre ENIGH (población distinta de Hito D/Hito C — un pre-registro propio, `p3-lca-preregistro-v1_0.md`).** **Veredicto D5 — INESTABLE** (`forense/notas/2026-08-04-p3-lca-segmentacion.md`, adenda de cierre; ADR-53). No es victoria de ninguna hipótesis: los seis descriptores de `modelo` §1.1.D siguen sin respaldo estructural y sin refutar, y `§1.1.D` **no se toca**. **D6 (gradiente sin clases) se descarta con razón escrita**: la forma de la curva de BIC del ajuste principal (monótona decreciente, mínimo en `k=8`) es congruente con D6, pero la sensibilidad S1 (solo indicadores de persona) produce un mínimo interior en `k=4` — con solución no estable — que basta para que el descenso monótono deje de leerse como gradiente limpio; ver ADR-53 para las cifras re-derivadas y el límite declarado. **LCA multinivel: HABILITADO, no corrido** (tres condiciones en ADR-53 y en `p3-lca-preregistro-v1_0.md` §2.5). No mueve `8 de 14`, `4 de 144` ni ningún contador del Hito D.
 
@@ -117,7 +117,7 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 
 ### S3 · Sustantivas
 - **15 coeficientes de generador nunca validados. Ninguno con ruta de calibración hoy** — `unico_calibrable_hoy` se retiró (ADR-49, D1): la vía ENOE no identifica conducta financiera (`forense/hallazgos.md`, 31/jul/2026).
-- **47 de 49 reglas del motor sin prueba de falsación pre-registrada corrida** (2 corridas archivadas: `R1.1` → `D`, `R3.2` → `B`). **Dentro del perímetro decidido del Hito D (27 reglas, subconjunto de las 49): 25 de 27 sin corrida.**
+- **46 de 49 reglas del motor sin prueba de falsación pre-registrada corrida** (3 corridas archivadas: `R1.1` → `D`, `R3.2` → `B`, `R7.2` → `D`). **Dentro del perímetro decidido del Hito D (27 reglas, subconjunto de las 49): 24 de 27 sin corrida.**
 - **74 números ASIGNADOS sin calibrar.**
 - **8 reports entraron a la síntesis vía glosario v2 (superado)**, no leídos a fondo.
 - **25 reglas fuera de la implementación** (43−18), sin criterio registrado. *(Corregido 29/jul/2026: decía 26, no cuadraba contra el propio 18 de 43 de `§3·L4` — `censo-integridad-v1_0.md` C1-03. El "43" en sí sigue sin sustento localizable en el repo, NO-VERIFICABLE — no se toca aquí.)*
@@ -191,7 +191,7 @@ Panel D/E de consumo popular · elasticidades · granularidad municipal · contr
 
 ⚠️ **Esto es el Paso 1. Ninguna regla ha sido probada todavía.** Los 27 umbrales son **ASIGNADOS**, juicio propio, no leídos de ningún report. Un revisor puede moverlos con argumento; **lo que no se vale es moverlos después de ver el resultado**.
 
-**Paso 2 — EN CURSO. 2 de 27 corridas.**
+**Paso 2 — EN CURSO. 3 de 27 corridas.**
 
 **`R1.1` → veredicto `D` (inejecutable).** El candidato falsador más fuerte de todo el programa. Y `D` **no por hueco de dato: por hueco de mercado.**
 - El **Seguro Agrícola Catastrófico**, que cubre al productor de temporal, **NO PUEDE SER CONTRATADO POR LOS PRODUCTORES** (SADER, textual). El productor aporta ~**2.5%** de la prima (80.7 de 3,262.2 mdp).
@@ -205,7 +205,11 @@ Panel D/E de consumo popular · elasticidades · granularidad municipal · contr
 
 ⚠️ **Sobre el hueco rural-popular:** el brief decía que el mejor candidato vive ahí y que *"no es casualidad"*. Correcto, pero el mecanismo es otro: **no es solo que el corpus no muestree ahí — es que el mercado tampoco.** Las dos ausencias tienen la misma raíz, y por eso **el hueco no se cierra leyendo más**: se cierra con dato primario propio, la deuda S1 del programa.
 
-**Siguiente en el orden, por valor informativo y no por facilidad:** R3.2 (ENCIG tiene serie) · R5.1 (Pensión del Bienestar como choque exógeno) · R7.2 (ENVIPE, trae su propio vuelco).
+**`R7.2` → veredicto `D` (inejecutable como está especificada).** `[FUERTE]`, ENVIPE 2025 (`TMod_Vic`). No por hueco de dato: `BP2_1` ("Vehículo robado asegurado") es la única variable de cobertura de seguro del instrumento, y solo se formula para `BPCOD=01` (robo total de vehículo) — verificado por diseño de cuestionario y empíricamente contra microdato (1 028 de 40 280 filas válidas, 100% `BPCOD=01`). La ficha exige, para pasar a evaluable, que la cobertura **varíe entre clases de delito**; no varía — hueco de instrumento, no de mercado ni de muestra. Hallazgo adyacente, declarado y no adjudicado: dentro de `BPCOD=01`, denuncia 79.1% (asegurado, n=402) vs. 67.2% (no asegurado, n=614) — brecha de 11.9pp en la dirección del "vuelco" de la propia ficha, pero no prueba el falsador tal como está redactado (compara clases, no subgrupos de una). Detalle completo: `hitoD-R7.2`.
+
+⚠️ **Corrección de staleness, encontrada al tocar esta línea:** la edición anterior de este párrafo listaba *"Siguiente en el orden: R3.2 (ENCIG tiene serie) · R5.1 · R7.2"* — pero `R3.2` ya estaba archivada (veredicto `B`, 29/jul/2026, §L5 arriba) desde antes de que esta línea se escribiera la última vez; nunca se retiró de la lista de pendientes al cerrarla. No se investiga aquí por qué; se corrige de paso, con esta nota, al mover el contador por `R7.2`.
+
+**Siguiente en el orden, por valor informativo y no por facilidad:** R5.1 (Pensión del Bienestar como choque exógeno).
 
 **HITO F · MILPA Fase 1 — POSPUESTO por decisión.**
 
