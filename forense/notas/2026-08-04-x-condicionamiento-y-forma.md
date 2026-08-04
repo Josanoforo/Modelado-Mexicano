@@ -810,3 +810,174 @@ de nuevo en este acto, no asumido del acto anterior.
 
 `python3 tests/check.py --baseline`: **LÍNEA BASE: VERDE** — nada nuevo
 frente a `tests/baseline.json`.
+
+---
+
+## 11 · Rider (Encargo Z, W1) — marginal restringido al universo de cada eje, y corrección del titular
+
+*Mesa #19, 4/ago/2026. Perímetro propio: solo esta nota, esta sección,
+al final — sin colisión con el resto del encargo. Verificación de
+premisas antes de obedecer: §10.4 diagnosticó el error de comparación
+(celdas de un eje contra el marginal de **toda** la población, cuando
+los ejes de Formalidad/Ingreso solo clasifican a quien trabaja/reporta
+ingreso — "dos universos distintos") y declaró **PARA** sobre el paso
+correcto, sin ejecutarlo — confirmado releyendo §10.4 completo. Este
+rider ejecuta ese paso pendiente. Entorno verificado antes de empezar:
+`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` sin definir, sonda a
+`www.inegi.org.mx` → 200 — mismo entorno que §10.*
+
+### 11.1 · El "marginal restringido" ya estaba derivado en §10.3 — solo mal etiquetado en la comparación
+
+La columna `reconciliado` de §10.3 es el pool ponderado de **todas** las
+celdas de un eje (`p1 = Σ_c w_c·p1_c / Σ_c w_c`, igual para `p0`). Como
+las celdas de un eje particionan sin pérdida su propio universo elegible
+(cobertura interna 100%, verificado en §10.2), ese pool es,
+**algebraicamente, el mismo número** que computar `β̂` directamente
+sobre la unión de esas celdas — es decir, **es ya el marginal
+restringido al universo del eje**, no una cifra distinta que haya que
+recalcular con microdato nuevo. No se abrió ningún payload adicional
+para este rider: se reusa el número que §10.3 ya derivó, y se corrige
+contra qué se compara.
+
+El error de §10 no estaba en el cálculo de `reconciliado` — estaba en
+comparar esa cifra contra el marginal **poblacional completo** (columna
+`marginal citado`) en vez de contra sí misma como definición del
+marginal restringido. Comparar `reconciliado` contra el marginal
+completo es exactamente "comparar dos universos" cuando la cobertura
+es <100%; comparar `reconciliado` contra sí mismo, una vez llamado por
+su nombre correcto, es una identidad — **coincide siempre, por
+construcción, no es un hallazgo nuevo.** El hallazgo real está en otra
+comparación, que sí es no trivial: **¿el marginal restringido conserva
+el signo del marginal completo, o cambia solo por restringir el
+universo, antes de condicionar en ninguna celda?**
+
+### 11.2 · Cobertura por eje y comparación de signo, marginal completo vs. marginal restringido
+
+| Coeficiente | Eje | Cobertura | Marginal completo | Marginal restringido (`reconciliado`, §10.3) | ¿Mismo signo? |
+|---|---|---|---|---|---|
+| W1/`AP5_1_1` | Formalidad | 60.8% | −0.0102 | −0.0191 | Sí |
+| W1/`AP5_1_1` | Edad | 92.8% | −0.0102 | −0.0067 | Sí |
+| W1/`AP5_1_1` | Ingreso | 95.8% | −0.0102 | −0.0111 | Sí |
+| W1/`AP5_1_2` | Formalidad | 60.8% | −0.0113 | −0.0129 | Sí |
+| W1/`AP5_1_2` | Edad | 92.8% | −0.0113 | −0.0100 | Sí |
+| W1/`AP5_1_2` | Ingreso | 95.8% | −0.0113 | −0.0128 | Sí |
+| W1/`AP5_1_3` | Formalidad | 60.8% | −0.0269 | −0.0311 | Sí |
+| W1/`AP5_1_3` | Edad | 92.8% | −0.0269 | −0.0316 | Sí |
+| W1/`AP5_1_3` | Ingreso | 95.8% | −0.0269 | −0.0280 | Sí |
+| W2/`P11_1_23` | Edad | 100.0% | −0.0645 | −0.0645 | Sí (idéntico, trivial) |
+| W3 | Formalidad | 73.8% | +0.0279 | +0.0041 | Sí, magnitud colapsa a casi cero |
+| W3 | Edad | 100.0% | +0.0279 | +0.0279 | Sí (idéntico, trivial) |
+| W3 | Urbanización | 100.0% | +0.0279 | +0.0279 | Sí (idéntico, trivial) |
+| W3 | Ingreso | 70.9% | +0.0279 | +0.0039 | Sí, magnitud colapsa a casi cero |
+| W3 | Migración | 99.9% | +0.0279 | +0.0282 | Sí (casi idéntico) |
+| W3 | Acceso digital | 100.0% | +0.0279 | +0.0279 | Sí (idéntico, trivial) |
+
+**Ninguna fila cambia de signo al restringir el universo** — en las
+dieciséis, el marginal restringido conserva el signo del marginal
+completo. Esto descarta, para las tres reglas, la hipótesis más simple
+de "el signo del marginal es un artefacto de qué población entra" (si
+fuera así, restringir el universo ya habría bastado para invertirlo,
+sin necesidad de condicionar en celdas). Lo que sí varía es la
+**magnitud** en Formalidad/Ingreso de W3 — cae a menos de un séptimo
+del marginal completo — y eso, junto con la ausencia de intervalo de
+confianza propio para esa cifra restringida (no computado en este
+rider, ver §11.4), es lo que mantiene esas dos filas sin resolver.
+
+### 11.3 · Lectura por regla — dónde el signo SÍ se invierte, y contra qué
+
+Con el marginal correctamente restringido como punto de comparación
+(§11.2), la pregunta relevante pasa de "¿coinciden las celdas con el
+marginal?" (respondida trivialmente: sí, siempre, por construcción) a
+"¿coincide el signo de las **celdas individuales** (§4) con el signo
+del **marginal restringido** que esas mismas celdas, pooladas,
+reproducen?" — ahí es donde vive la instabilidad real, no en la
+reconciliación misma.
+
+**W2 (`confianza_institucional`, ENCIG) — no sobrevive, confirmado.**
+Cobertura 100%: no hay universo distinto que comparar, ninguna
+ambigüedad de denominador posible. El marginal restringido es idéntico
+al completo (−0.0645) — y sin embargo las cuatro celdas de edad que lo
+componen son, **las cuatro, positivas y significativas** (§4.2). No es
+un artefacto de comparar poblaciones distintas: es la misma población,
+particionada, con signo opuesto dentro de cada partición al que tiene
+agregada. Patrón de libro de texto (el mismo tipo de composición que
+produce una paradoja de Simpson): edad se asocia con más confianza y
+con menos mordida a la vez, y esa doble asociación basta para invertir
+el signo al agregar, sin que exista ningún bug de join, peso o parseo
+(ya descartados en §10.2). **Confirma, con más fuerza que §6, que el
+marginal de W2 no es una propiedad estable de la relación individual.**
+
+**W3 (`familismo_apoyo`, ENIF) — no sobrevive en los cuatro ejes de
+cobertura completa; las dos de cobertura parcial (Formalidad, Ingreso)
+quedan sin resolver, no confirmadas.** Edad, Urbanización, Migración y
+Acceso digital reconcilian con cobertura ≥99.9% — mismo argumento que
+W2: sin ambigüedad de universo, y aun así **cada uno de esos cuatro
+ejes tiene una celda mayoritaria con signo negativo significativo y una
+celda minoritaria con signo positivo significativo** (§4.3), agregando
+a un marginal positivo. Confirmado, no artefacto de denominador.
+Formalidad e Ingreso, en cambio, tienen cobertura 74% y 71%: su
+marginal restringido conserva el signo positivo pero se **desploma** a
++0.0041 y +0.0039 — compatible con "no hay instabilidad real, el
+marginal restringido ya es ~cero" o con "hay instabilidad pero se
+diluye contra un denominador más chico", y este rider no calcula el
+IC95% de esas dos cifras restringidas para distinguir entre ambas
+lecturas (§11.4). **No se fuerza una conclusión que el dato disponible
+no sostiene.**
+
+**W1 (`radio_confianza`, ENCUCI) — todavía no se puede decir, en
+ninguno de los tres ítems ni de los tres ejes.** Es la única de las
+tres reglas donde **ningún eje alcanza cobertura completa** (60.8%
+Formalidad, 92.8% Edad, 95.8% Ingreso, repetido en los tres ítems) —
+así que, a diferencia de W2 y de cuatro de los seis ejes de W3, no hay
+ninguna fila de W1 donde la reconciliación sea trivialmente
+no-ambigua. El marginal restringido conserva el signo negativo en las
+nueve filas (§11.2) — la instabilidad de signo que muestran las celdas
+individuales de §4.1 (28 de 39 positivas) no se explica por la sola
+restricción de universo — pero sin intervalo de confianza para esos
+nueve marginales restringidos (§11.4, no ejecutado aquí) no se puede
+distinguir "la relación dentro del universo elegible también se
+invierte a nivel de celda, de forma real" de "el marginal restringido
+sigue siendo compatible con cero y la aparente positividad de las
+celdas es ruido de muestras más chicas". **Se declara sin resolver, no
+se fuerza ni `A` ni `D` para esta pieza del encargo.**
+
+### 11.4 · Lo que este rider no hace, declarado
+
+No calcula el error estándar ni el IC95% de ningún marginal
+restringido (`reconciliado` de §10.3) — `prop_ultimate_cluster` los
+produce como subproducto de una corrida directa sobre el universo
+restringido, no de un pool manual de los `se` por celda (combinarlos
+correctamente exigiría la covarianza entre celdas dentro del mismo
+diseño complejo, que este rider no deriva). Es la pieza que separaría,
+para W1 completo y para Formalidad/Ingreso de W3, "instabilidad real
+dentro del universo elegible" de "marginal restringido ya cercano a
+cero, sin señal que estabilizar". **Paso natural siguiente, no
+ejecutado — mismo criterio de `PARA` que §10.4 ya declaró una vez.**
+
+### 11.5 · Corrección del titular de §6, sin editarlo
+
+*(Corrección fechada, append-only — igual que las Notas del pre-registro del Hito D: no se edita §6, se declara aquí la lectura correcta y por qué.)*
+
+§6 dice: **"¿sobreviven los tres al condicionar? No, ninguno de los tres
+sobrevive sin matiz."** Con la reconciliación contra el universo
+correcto (§11.1-§11.3), esa frase sobre-generaliza: **dos de las tres
+reglas —`confianza_institucional` (W2) y `familismo_apoyo` (W3, en
+cuatro de sus seis ejes)— no sobreviven, confirmado sin ambigüedad de
+denominador.** De la tercera —`radio_confianza` (W1)— **todavía no se
+puede decir**: la evidencia disponible no descarta la inestabilidad
+que §4.1 reportó, pero tampoco la confirma con el rigor que sí alcanzan
+W2 y W3, porque ningún eje de W1 tiene cobertura completa y este rider
+no calculó el intervalo de confianza que haría falta para cerrarlo
+(§11.4). Las dos celdas de cobertura parcial de W3 (Formalidad,
+Ingreso) comparten la misma reserva.
+
+### 11.6 · Cierre — perímetro y suite
+
+Ningún archivo además de esta nota se tocó — `git status --short`:
+solo `forense/notas/2026-08-04-x-condicionamiento-y-forma.md`
+modificado, más `data/raw` (symlink gitignorado). No se abrió ningún
+payload nuevo: todas las cifras de §11.2 son las de `reconciliado` y
+`marginal citado` que §10.3 ya derivó y verificó contra
+`data/manifiesto.yaml` en su propio cierre (§10.5) — reusadas, no
+recalculadas. `python3 tests/check.py --baseline`: **LÍNEA BASE:
+VERDE** — nada nuevo frente a `tests/baseline.json`.
