@@ -900,3 +900,4 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 `R1.1` → veredicto `D` — *(archivado 29/jul/2026, narrado en Nota 5, detalle en `hitoD-R1.1`)*
 `R3.2` → veredicto `B` — *(archivado 29/jul/2026, narrado en Nota 6, detalle en `hitoD-R3.2`)*
 `R7.2` → veredicto `D` — *(archivado 4/ago/2026, narrado en Nota 11, detalle en `hitoD-R7.2`)*
+`R5.1` → veredicto `A` — *(archivado 4/ago/2026, narrado en Nota 16, detalle en la nota de corrida; refutada por INVERSIÓN DE SIGNO, no por reducción pequeña: la corresidencia y la transferencia intrafamiliar hacia mayores no bajan en ninguna de las 6 olas ENIGH ni en ningún tercil de ingreso post-reforma — si acaso suben)*
