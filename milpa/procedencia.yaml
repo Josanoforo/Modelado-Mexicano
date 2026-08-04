@@ -632,7 +632,7 @@ coeficientes_generador_medidos:
     antes: "ASIGNADO -- coeficiente de generador (G1 -0.35), sin estimación empírica"
     fuente: "ENCUCI 2020, SEC_4_5 (21519 filas) -- reactivo AP5_1_1/2/3 (dicotomizado >=6/10) x desenlace tramite.mordida.discrecional (AP5_17 o AP5_18='1', universo con contacto AP5_16_1..10) -- forense/notas/2026-08-04-w-coeficientes-generador-paso1.md §1.1, §3.1"
     n_util: "AP5_1_1: n=13375 (6430+6945) · AP5_1_2: n=13393 (10667+2726) · AP5_1_3: n=13365 (7644+5721), de universo con contacto=13435/21519"
-    eje_condicionante: "no ejecutado en este acto (C4 de P2: ENCUCI 3 ejes estrictos -- formalidad, edad, ingreso -- declarados como disponibles, no usados; estimación marginal)"
+    eje_condicionante: "EJECUTADO (Encargo X, forense/notas/2026-08-04-x-condicionamiento-y-forma.md §4.1) -- 3 ejes, uno a la vez (formalidad, edad, ingreso), 39 celdas (3 ítems x 3 ejes). El marginal NO SOBREVIVE: 28 de 39 celdas cambian a signo positivo (opuesto al marginal negativo) y las 12 celdas distinguibles de cero al 95% son todas positivas, sin excepción. X2 (§5.1): tasa por nivel 0-10 no monótona en los tres ítems, sin escalón visible en el corte >=6."
     beta_hat: "AP5_1_1: -0.0102 [IC95% -0.0292,0.0089] · AP5_1_2: -0.0113 [IC95% -0.0341,0.0114] · AP5_1_3: -0.0269 [IC95% -0.0465,-0.0072]"
     nota: >
       Escala de diferencia de proporciones del desenlace, NO la escala del
@@ -653,7 +653,7 @@ coeficientes_generador_medidos:
     antes: "ASIGNADO -- coeficiente de generador (G1 -0.60), sin estimación empírica"
     fuente: "ENCIG 2023, encig2023_01_sec_11 (batería XI, ítem P11_1_23 'servidores/empleados de gobierno', dicotomizado confía={1,2}/no confía={3,4}) x encig2023_01_sec1_A_3_4_5_8_9_10 (P8_3_1/2/3, desenlace tramite.mordida.discrecional), unidas por ID_PER, 38966 filas cada una, cero pérdida de join -- forense/notas/2026-08-04-w-coeficientes-generador-paso1.md §1.2, §3.2"
     n_util: "n=37755 (20245+17510) de 38966"
-    eje_condicionante: "no ejecutado en este acto (C4 de P2: ENCIG 1 eje estricto -- solo edad --, sin ingreso ni ruralidad en ningún régimen; estimación marginal)"
+    eje_condicionante: "EJECUTADO (Encargo X, forense/notas/2026-08-04-x-condicionamiento-y-forma.md §4.2) -- único eje estricto, edad, 4 celdas. El marginal NO SOBREVIVE: las cuatro celdas tienen signo POSITIVO y distinguible de cero al 95% -- reversión completa frente al marginal negativo, sin excepción (sigue TRUNCADO en ingreso/ruralidad, no resuelto aquí). X2 (§5.2): curva marginal por nivel 1-4 casi recta y monótona, pero leída junto con la reversión de §4.2 es compatible con ser ella misma artefacto de composición por edad, no forma estable -- ambas lecturas se reportan en tensión explícita."
     beta_hat: "-0.0645 [IC95% -0.0744,-0.0546]"
     nota: >
       Escala de diferencia de proporciones del desenlace, NO la escala del
@@ -679,7 +679,7 @@ coeficientes_generador_medidos:
     antes: "ASIGNADO -- coeficiente de generador (G3 0.20), sin estimación empírica"
     fuente: "ENIF 2024, TMODULO (universo filtro_s9_1=2, <71 años) -- reactivo p9_9_4 (binario, ya reusado de condicionales_escalares.familismo_apoyo) x desenlace dinero.ahorro.volatilidad_horizonte_corto (p4_10, dicotomizado horizonte-cero={1}/no-cero={2,3,4,5}) -- forense/notas/2026-08-04-w-coeficientes-generador-paso1.md §1.3, §3.3"
     n_util: "n=11464 (5281+6183) de 12379"
-    eje_condicionante: "no ejecutado en este acto (C4 de P2: ENIF 6 ejes estrictos -- la malla más rica del corpus --, declarados como disponibles, no usados; estimación marginal)"
+    eje_condicionante: "EJECUTADO (Encargo X, forense/notas/2026-08-04-x-condicionamiento-y-forma.md §4.3) -- 6 ejes, uno a la vez (formalidad, edad, urbanización/tloc, ingreso, migración, acceso digital/p3_14 -- este último corrige un NO DISPONIBLE declarado por error en forense/notas/2026-08-03-cal-conf-faseb-medicion.md §1.3, ver §0 de esta nota), 21 celdas. El marginal (apenas significativo) NO ES ESTABLE: se invierte a signo negativo, con significancia, en las celdas MAYORITARIAS de formalidad/urbanización/migración/digital (Formal, 100k+, No migrante, Sí smartphone), y se amplifica en la dirección del marginal en las celdas minoritarias correspondientes. Edad e ingreso sin patrón limpio (mayoría no significativa). X2 no aplica -- p9_9_4 es binario."
     beta_hat: "+0.0279 [IC95% 0.0029,0.0529]"
     nota: >
       Escala de diferencia de proporciones del desenlace, NO la escala del
