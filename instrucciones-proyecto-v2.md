@@ -1,10 +1,12 @@
-# Instrucciones del proyecto — "Psicología del Mexicano Contemporáneo" · v2.2
+# Instrucciones del proyecto — "Psicología del Mexicano Contemporáneo" · v2.3
 
 > **Por qué v2.** La v1 (Bloque A + Bloque B) se diseñó para escribir **un report temático**. El proyecto creció a un **programa multi-artefacto**: reports temáticos + un integrador (meta-síntesis) + un modelo de decisión + validaciones forenses. Esta v2 **conserva casi toda la v1 verbatim** y solo añade o precisa lo que el proyecto probó que necesita. Cada cambio está marcado `[NUEVO]`, `[REFINADO]` u `[OPCIONAL]` para que sea fácil aprobarlo o cortarlo. Todo lo no marcado es v1 sin cambios.
 
 > **Por qué v2.1.** Añade tres reglas de procedencia documental y una pregunta de auditoría, marcadas `[NUEVO v2.1]`. Atienden una clase de defecto distinta de todas las anteriores: no errores sobre México, sino **afirmaciones del corpus sobre sí mismo** —conteos, coberturas, versiones, referencias cruzadas— escritas a mano y nunca verificadas. Todo lo demás es v2 sin cambios.
 
 > **Por qué v2.2.** Añade cuatro reglas y una pregunta de auditoría, marcadas `[NUEVO v2.2]`. Tres salen de la primera medición contra datos primarios del programa (Hito D · R3.2): una restricción de entorno que le dio forma al diseño sin que nadie la midiera, un umbral pre-registrado aritméticamente inalcanzable, y un rótulo estadístico correcto en intención que describía otro cálculo. La cuarta caduca una deuda que dejó de ser coherente cuando el programa pasó de describir a validar. Todo lo demás es v2.1 sin cambios.
+
+> **Por qué v2.3.** Las versiones anteriores añadieron rigor y ninguna le puso precio. El resultado, medido el 30/jul/2026: una jornada de 15 PR, 40 entradas de cola, 3 ADR y 54 payloads registrados, con cero mediciones — 2 de 27 y 0 de 15 exactamente donde amanecieron. Ningún defecto catalogado ese día habría dañado a un lector: todos eran de contabilidad del programa sobre sí mismo. La v2.3 no retira ninguna regla de rigor. Añade la regla que dice cuándo el rigor está sustituyendo al trabajo, y acota el módulo de auditoría a los artefactos donde tiene función. Marcado `[NUEVO v2.3]` y `[REFINADO v2.3]`.
 
 ---
 
@@ -24,6 +26,18 @@
 - Si no hay evidencia suficiente para una sección, dilo y no la rellenes.
 - Escribe el reporte final en español.
 
+`[NUEVO v2.3]` **Regla de señal — la que manda sobre las de abajo cuando chocan.**
+
+**Cada sesión produce una medición, o produce nada.** Defecto que no impide medir → **una línea** en `forense/hallazgos.md` y sigue. No se cataloga. Defecto que sí impide medir → se para y se reporta.
+
+**Un contador que no se mueve es el único síntoma que no admite interpretación.** Si al cierre de una sesión `2 de 27` sigue en `2 de 27`, esa sesión no avanzó, sin importar cuántos PR fusionó ni qué tan correcto era todo lo que escribió.
+
+**El aparato tiene costo y el costo se cuenta.** Toda regla, test, ADR, convención de nombres o módulo obligatorio se paga en sesiones que no midieron. Antes de añadir cualquiera, se declara qué defecto real atrapó —uno que **ya ocurrió**, no uno concebible— y qué le habría costado a un lector. Si no le habría costado nada a un lector, es contabilidad interna: se anota y no se instrumenta.
+
+**Corolario, y es el que duele.** Las reglas de procedencia de v2.1 y v2.2 se conservan íntegras: atraparon errores reales y baratos. Lo que se retira es su **generalización** — la idea de que si verificar es bueno, verificarlo todo siempre es mejor. Verificar tiene un precio, se paga en lo único escaso, y la auditoría de la auditoría no lo vale nunca.
+
+*(Por qué está aquí: el 30/jul el aparato de auditoría se volvió el trabajo. No por descuido — cada paso individual estaba justificado por una regla escrita. Ese es exactamente el modo de falla: un sistema de rigor sin criterio de suficiencia no se detiene solo, porque siempre queda algo por verificar y siempre es defendible verificarlo. La señal no puede ser "¿está bien hecho?"; tiene que ser un número que se mueve o no se mueve.)*
+
 `[NUEVO]` **Regla de oro (procedencia por lectura).** No reconstruyas tiers ni hallazgos de memoria: léelos de los reports, de sus mapas de evidencia y del glosario. Toda síntesis se construye **leyendo, no recordando**. Si un tier no está a la vista, ve a buscarlo antes de afirmarlo.
 
 `[NUEVO v2.1]` **Procedencia de la lectura (extensión de la Regla de oro).** Leer no basta si no sabes **de dónde**. Toda afirmación sobre el contenido de un archivo se marca con su fuente: **(1)** leída del repo en esta sesión, con commit citable; **(2)** leída de un espejo del proyecto, que puede estar atrás del repo; **(3)** reportada por otra sesión o conversación, no verificada. **Solo (1) entra al canon.** Las de tipo (2) y (3) se formulan como pregunta a verificar, nunca como instrucción ni como hecho. Un espejo **sin sello de commit no es fuente**: no se puede distinguir un archivo vigente de uno que el repo ya borró. Si el espejo no declara de qué commit salió, se lee como (3), no como (2). *(Por qué está aquí: la Regla de oro dice "léelo, no lo recuerdes" y no basta. Un archivo leído del espejo se siente exactamente igual que uno leído del repo, y un artefacto borrado por ADR sigue ahí, legible y falso.)*
@@ -35,6 +49,8 @@
 `[NUEVO · OPCIONAL]` **Falsabilidad.** Para cada patrón o regla fuerte, di **qué evidencia lo cambiaría**. Vigila que "adaptación racional" no se vuelva infalsable (siempre se puede inventar un incentivo que haga óptima cualquier conducta): acótala con tamaños de efecto y contraevidencia, igual que se le exige al culturalismo.
 
 `[NUEVO v2.1]` **Ninguna cifra esperada se teclea de memoria.** Si un paso de verificación necesita un valor de referencia —un conteo, un estado de suite, un número de reglas—, se **deriva en la misma sesión** o se **cita con archivo y línea**. Está prohibido copiar una cifra de un documento de traspaso, de una conversación previa o de una sesión anterior para usarla como criterio de comparación. Corolario: **un criterio de parada con una constante escrita a mano es el defecto que el criterio existe para atrapar.** Si la cifra esperada no se puede derivar, el paso se formula como "reporta el valor" y no como "se espera N".
+
+`[REFINADO v2.3]` **Y la receta de derivación también se verifica.** Derivar no basta si la receta está mal: `grep -c "^## R"` sobre `hitoD-preregistro-v2_0.md` devuelve 26 y no 25, porque cuenta el encabezado `## Registro de veredictos archivados`. Una cifra derivada con una receta no probada es una cifra tecleada con pasos extra. **Prueba la receta contra un caso donde conozcas la respuesta**, o reporta el valor crudo y el comando que lo produjo, para que quien lea pueda ver el error que tú no viste.
 
 `[NUEVO v2.1]` **Verificación de premisas antes de ejecución** (ADR-39, `gobernanza:290`). Todo encargo declara al inicio su procedencia: qué se verificó contra el repo, qué viene de un espejo, qué viene de reporte de otra sesión. **Quien ejecuta verifica las premisas del encargo antes de ejecutarlo.** Si una premisa no se sostiene contra el archivo, se detiene y lo reporta — no la ejecuta, y no ajusta el texto para que cuadre. **Encontrar que una instrucción estaba mal fundada es un entregable, no una interrupción.**
 
@@ -67,6 +83,10 @@ Estructura obligatoria (para reports temáticos):
 `[NUEVO · CONDICIONAL]` **11. Reglas de decisión.** Si el report alimenta el modelo de decisión, cierra con reglas **SI-ENTONCES** por las decisiones clave del dominio: *SI [segmento/contexto] ENTONCES [conducta esperada] — PORQUE [driver] — [TIER]*, incluyendo los **disparadores de contexto** que voltean la conducta (formal/informal, quién observa, sanción creíble, puente personal, cobertura formal, urgencia).
 
 **Módulo de auditoría de rigor extremo (obligatorio en TODO artefacto, al final):**
+
+`[REFINADO v2.3]` **Dónde va, y dónde ya no.** Este módulo es obligatorio **solo en artefactos que afirman algo sobre México** — reports temáticos, integrador, modelo de decisión, validaciones forenses. **No va** en notas de sesión, registros de medición, encargos, manifiestos, ni forenses de proceso. Ahí no atrapa nada: no hay afirmación sobre México que auditar, y su costo es una sesión que no midió.
+
+*(Era obligatorio "en TODO artefacto". Esa palabra es la que produjo la jornada del 30/jul: siete preguntas de auditoría sobre un documento que solo registra qué archivo se descargó.)*
 - ¿Qué parte del análisis podría estar confundiendo pobreza, desigualdad, violencia o informalidad con "cultura"?
 - ¿Qué parte podría estar sobregeneralizando desde clases medias urbanas?
 - ¿Qué parte está sesgada por literatura escrita desde marcos estadounidenses o europeos? `[NUEVO]` (incluye aquí las muestras mexicano-americanas, no solo los marcos).
@@ -76,6 +96,7 @@ Estructura obligatoria (para reports temáticos):
 - ¿Qué conclusiones serían peligrosas si alguien las usara de forma simplista?
 - `[NUEVO v2.1]` ¿Qué afirmación de este artefacto describe **el estado del corpus** —un conteo, una cobertura, una versión, la existencia de un archivo— y **no fue derivada, sino escrita a mano**?
 - `[NUEVO v2.2]` ¿Qué restricción o deuda está heredando este artefacto sin verificar — una limitación cuyo perímetro nunca se midió, o una deuda declarada "asumida a propósito" cuando la función del programa era otra?
+- `[NUEVO v2.3]` **¿Cuántos contadores movió el trabajo que produjo este artefacto?** Si la respuesta es cero, dilo en una línea al inicio del módulo, sin justificarlo. Hay artefactos que legítimamente no mueven contadores. Lo que no es legítimo es que nadie se dé cuenta.
 
 ---
 
@@ -94,3 +115,7 @@ Además: **marca cada métrica como AUDITADA o AUTO-REPORTADA por parte interesa
 *Nota de alcance. Estas reglas gobiernan todo el programa: reports temáticos (Bloque B), el integrador y el modelo de decisión (estructura propia + Bloque A + auditoría), y las validaciones forenses (Bloque C). La v2 no cambia el espíritu de la v1 —anti-esencialismo, estructura sobre cultura, evidencia tierizada— solo lo hace explícito donde el proyecto tropezó: procedencia de la evidencia, el firewall genético, la crítica calibrada de marcos, y el hecho de que un modelo de decisión no es un report temático.*
 
 *Las tres reglas de procedencia documental de v2.1 (lectura, cifras, premisas) atienden un tropiezo distinto: los defectos que el programa encontró auditándose no estaban en la evidencia sobre México, sino en las **afirmaciones del corpus sobre sí mismo**. La capa de evidencia resistió la auditoría; la capa de contabilidad sobre esa evidencia, no. Esa clase de defecto no se corrige con más cuidado: se corrige **derivando en vez de escribiendo, y verificando antes de obedecer**. Las cuatro de v2.2 extienden el mismo principio al **terreno** (restricciones no medidas), al **criterio** (umbrales imposibles), al **rótulo** (métodos implícitos) y al **calendario** (deudas que caducan).*
+
+`[NUEVO v2.3]` Y atiende un tropiezo que las anteriores no podían ver, porque lo causaron. Cada regla de v2.1 y v2.2 fue una respuesta correcta a un error real. Juntas produjeron un programa que dedicó su jornada más productiva —15 PR fusionados— a auditarse, sin mover un solo contador. El rigor no falló por estar mal diseñado; falló por no tener un criterio de suficiencia. La v2.3 es ese criterio y es una sola frase: **cada sesión produce una medición, o produce nada.**
+
+Si esta versión hace que el proyecto pase por alto un defecto de contabilidad, funcionó. Ese es el intercambio, y está tomado a propósito.
