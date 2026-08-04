@@ -1330,3 +1330,58 @@ hizo la sesión de `PR #58`, citada aquí, no re-derivada. No se tocó
 §14.3, fila 8 original, columna "Qué mueve" nunca lo declaró; el contador
 de condicionales sigue en `canon/modelo-decision-v4_0.md`). No se decidió
 el desdoblamiento de `G1a`. No se rederivó ninguna otra fila de `§14.3`.
+
+---
+
+## 17 · Adenda 04/ago/2026 — `§14.4` se divide: `sens_estatus` no es límite verificado, es no examinado
+
+**Disciplina aplicada:** adenda fechada, append-only. `§14.4` no se edita —
+las dos filas quedan íntegras, con esta marca de que agrupaban dos estados
+distintos bajo el mismo título ("límite vigente").
+
+**Qué pasó.** `§14.4` pone `sens_estatus` y `aversion_riesgo` en la misma
+fila de tratamiento porque ambos terminan en el mismo veredicto —
+**NO DETERMINABLE EN ESTE RÉGIMEN** — citado de P2 (`forense/notas/2026-08-01-p2-momentos-atributos.md`
+§2.c, §2.d). Leídos los dos veredictos completos, el fundamento no es el
+mismo:
+
+- **`aversion_riesgo`** tiene un candidato **examinado y descartado con
+  argumento**: ENIF `P5_23`/`P5_24` mide conocimiento de protección de
+  depósitos IPAB, que P2 identifica como *"el moderador que la regla
+  `dinero.ahorro.seguro_deposito_atenua_aversion` pone en el `SI`, no una
+  medida de aversión"*. Alguien fue a ver el reactivo y lo descartó.
+- **`sens_estatus`** no tiene ningún candidato examinado. El veredicto de
+  P2 dice, literalmente, que el inventario *"solo trae filas sí/parcial,
+  así que no se puede distinguir 'no reportado' de 'no existe'"* — es una
+  limitación del instrumento de catalogación, no un hallazgo sobre las
+  fuentes. Nadie ha ido a la fuente. El desenlace sí existe (ENIGH
+  `gastotarjetas`) y las celdas también (P2 §2.d: "4 ejes estrictos").
+
+**Consecuencia.** `§14.4` deja de ser una sola clase. Dentro de "lo que no
+entra en la cola":
+
+- **`aversion_riesgo` = límite verificado.** Levantar el límite exige
+  graduar los dominios §3.1/§3.9 del inventario (`§14.4` ya lo dice) — acto
+  de inventario, no de fuente.
+- **`sens_estatus` = no examinado.** Su examen es barato: lectura de
+  descriptor de las fuentes de §3.1/§3.9 contra `sens_estatus`, del mismo
+  tipo que la posición 8 de `§14.3` paso 1 (chequeo de batería, sin abrir
+  microdato). Podría ser un encargo de escritorio, no una medición. Hasta
+  que ese examen se corra, `sens_estatus` no debería citarse como si fuera
+  el mismo tipo de límite que `aversion_riesgo` — como sí ocurrió en
+  `§15` (línea *"si el parámetro cae a `NO DETERMINABLE EN ESTE RÉGIMEN`
+  como `sens_estatus`/`aversion_riesgo` (`§14.4`)"*), cita que esta adenda no
+  corrige por ser texto de otra sección ya cerrada, pero que queda marcada
+  aquí como heredando la misma imprecisión.
+
+Detalle en `forense/notas/2026-08-04-barrido-escritorio-pendientes.md` §6.
+
+### 17.1 · Límite de lectura declarado (ADR-46)
+
+Esta adenda leyó: `§14.4` y `§15` de este mismo archivo;
+`forense/notas/2026-08-01-p2-momentos-atributos.md` §2.c, §2.d, :234, :268.
+No se abrió ningún descriptor de fuente nueva — el examen que esta adenda
+recomienda para `sens_estatus` no se corrió aquí, queda encargado. No se
+tocó ninguno de: `milpa/procedencia.yaml`, `canon/modelo-decision-v4_0.md`,
+`canon/gobernanza-v1_15.md`. No se movió ningún contador. No se reclasificó
+ninguna otra fila de `§14.3` o `§14.4`.
