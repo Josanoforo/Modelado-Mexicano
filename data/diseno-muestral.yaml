@@ -33,12 +33,14 @@
 # fuente de verdad -- este censo describe documentación, no presencia
 # de archivo).
 #
-# COMMIT 1 (este): mapa parcial derivado en FASE A -- barrido de notas
-# forenses YA escritas por otras sesiones. CERO instrumento abierto por
-# ESTA sesión. Frontera limpia/contaminada del acto: todo lo que hay
-# hasta este commit es citable por cualquier sesión limpia sin costo.
-# COMMIT 2 (siguiente): FASE B, declarada por adelantado, abre
-# documentos de diseño para un subconjunto nombrado de los huecos.
+# COMMIT 1 (07aa541): mapa parcial de FASE A -- barrido de notas
+# forenses ya escritas, cero instrumento abierto.
+# COMMIT 2 (este): FASE B -- declarada por adelantado (ver
+# forense/notas/2026-08-04-censo-diseno-muestral.md), abrió cuatro
+# documentos de diseño ya presentes en el corpus (CPV, ENADID, ENNViH,
+# ENOE). Esta sesión queda inhabilitada por ADR-46 para pre-registrar
+# contra esas cuatro fuentes. Detalle exacto de qué se abrió, en la
+# nota forense.
 #
 # Verificación de receta: python3 -c "import yaml; d=yaml.safe_load(open('data/diseno-muestral.yaml')); print(len(d))"
 # debe imprimir 43 (17 fuentes con payload + 26 operables sin payload,
@@ -345,6 +347,103 @@
     manifiesto (líneas 1087-1340+), no inferido. No abrí ningún archivo de `data/raw/` ni ningún
     .pdf/.xlsx/.csv/.zip -- toda la evidencia proviene de los .md de forense/notas/ citados
     arriba.'
+- fuente: CPV (Censo de Población y Vivienda 2020) — componente Cuestionario Ampliado
+  estado: MAPEADO
+  ponderador: FACTOR (Factor de Expansión, numérico 1..99999999)
+  estrato: ESTRATO (alfanumérico, longitud 17)
+  upm: UPM (Unidad Primaria de Muestreo, alfanumérico, longitud 7)
+  donde_vive: Diccionario de datos del Cuestionario Ampliado, hojas VIVIENDAS/PERSONAS/MIGRANTES
+    -- sección "DISEÑO MUESTRAL" de cada hoja (consecutivos 6/7/8 en VIVIENDAS). El Cuestionario
+    BÁSICO del CPV es enumeración censal completa (no aplica ponderador/estrato/UPM en sentido
+    de muestreo); es el Cuestionario Ampliado el que trae una muestra probabilística propia
+    con estas tres variables.
+  procedencia: 'Abierto en FASE B de este acto (2026-08-04): data/raw/diccionario_cuestionario_ampliado_cpv2020.xlsx
+    (id manifiesto cpv2020_diccionario_cuestionario_ampliado_xlsx), hoja VIVIENDAS filas Excel
+    18-25 (bajo encabezado "DISEÑO MUESTRAL", consecutivos 6=ESTRATO/7=UPM/8=FACTOR), confirmado
+    igual en hojas PERSONAS y MIGRANTES del mismo archivo.'
+  notas: FASE A no encontró ninguna nota que documentara esto (barrido exhaustivo con 0 resultados
+    sobre diseño muestral de CPV). El propio manifiesto (metadata, no nota) ya sugería que el
+    Ampliado podía tener diseño propio -- FASE B lo confirmó abriendo el diccionario. La base
+    de microdatos del Cuestionario Ampliado (los VALORES, no solo los nombres de campo) no está
+    descargada todavía -- eso no se necesitó para este censo (solo nombres de campo), pero queda
+    como hueco aparte si algún día se quiere calcular con datos reales.
+- fuente: ENADID (Encuesta Nacional de la Dinámica Demográfica) 2023
+  estado: MAPEADO
+  ponderador: FAC_VIV (vivienda) / FAC_HOG (hogar) / FAC_PER (persona/mujer) -- factor de expansión,
+    varía por nivel de tabla
+  estrato: EST_DIS (Estrato de diseño muestral, alfanumérico 001..659) -- NO confundir con ESTRATO
+    (variable sustantiva sociodemográfica 1..4, "Bajo"/etc., no es la de diseño)
+  upm: UPM_DIS (Unidad Primaria de Muestreo, alfanumérico 00001..15220) -- NO confundir con
+    UPM (columna de llave de enlace entre tablas, no necesariamente el mismo campo usado para
+    varianza)
+  donde_vive: Ficha descriptiva/diccionario de datos ENADID 2023, tablas TVIVIENDA/THOGAR/TMUJER1
+    (y análogas), sección "Factor de expansión y variables de explotación".
+  procedencia: 'Abierto en FASE B de este acto (2026-08-04): data/raw/fd_enadid23.xlsx (id manifiesto
+    enadid2023_fd_xlsx). TVIVIENDA: FAC_VIV fila Excel 150, EST_DIS fila 187, UPM_DIS fila 188.
+    THOGAR: FAC_VIV fila 62, EST_DIS fila 128, UPM_DIS fila 129. TMUJER1: EST_DIS fila 1027,
+    UPM_DIS fila 1028 (FAC_PER, "Factor persona (mujer)", en la misma tabla, fila cercana a
+    102 según numeración de la hoja).'
+  notas: FASE A no encontró ninguna nota sobre esto (barrido exhaustivo, 0 resultados; se descartó
+    explícitamente un falso-positivo por convención de nombres compartida con notas de ENSANUT).
+    El patrón ESTRATO(sustantivo)/EST_DIS(diseño) y UPM(llave)/UPM_DIS(diseño) se repite entre
+    encuestas INEGI recientes -- mismo patrón que ENVIPE ya advertía en su propia nota.
+- fuente: ENNViH / MxFLS (Encuesta Nacional sobre Niveles de Vida de los Hogares / Mexican Family
+    Life Survey)
+  estado: PENDIENTE
+  ponderador: Archivos de ponderador existen por convención de nombre (ehh0Xw_all.zip = transversal,
+    ehh0Xlw_all.zip = longitudinal, uno por ola) -- nombre de COLUMNA dentro del .dta no confirmado
+    en ningún documento leído.
+  estrato: 'No confirmado como nombre de columna. El método SÍ está documentado: diseño estratificado
+    bietápico por región -> estrato -> UPM (con probabilidad igual) -> USM (6 por UPM, probabilidad
+    proporcional al tamaño) -> vivienda.'
+  upm: No confirmado como nombre de columna (mismo estado que estrato -- el documento de método
+    usa notación matemática genérica "i-ésima UPM", no un nombre de campo real).
+  donde_vive: 'El documento calculo-de-factores-de-expansion.pdf (ola 3) explica la fórmula
+    completa de construcción del factor de expansión (selección con probabilidad proporcional
+    al tamaño de USM, ajuste por no respuesta a nivel estrato, calibración con variables auxiliares)
+    -- pero nunca declara los nombres de columna reales del archivo de datos liberado. La guía
+    de usuario de la ola 3 (guia_de_usuario_ennvih-3.pdf) tampoco los declara (se revisó completa:
+    es una guía de fusión de "libros"/tablas, no un diccionario de variables de diseño).'
+  procedencia: 'Abierto en FASE B de este acto (2026-08-04): data/raw/ennvih/calculo-de-factores-de-expansion.pdf
+    (id ennvih3_2009_factores_exp, líneas 52-121 del texto extraído con pdftotext -layout) y
+    data/raw/ennvih/guia_de_usuario_ennvih-3.pdf (id ennvih3_2009_guia, grep completo sin coincidencias
+    de "estrato"/"upm"/"conglomerado" como nombre de columna -- solo aparece "peso" en el sentido
+    antropométrico).'
+  notas: 'FASE A ya tenía una cita parcial (forense/hitoD-preregistro-v2_0.md:499,622) que solo
+    nombraba la FAMILIA de archivo del ponderador por ola, sin fórmula ni estructura de diseño.
+    FASE B añadió la mecánica completa del diseño (región/estrato/UPM/USM, PPS, calibración)
+    pero NO resolvió el nombre de columna real -- por eso el estado se queda en PENDIENTE y
+    no sube a MAPEADO: dos de los tres campos exigidos (estrato, upm) no tienen un nombre de
+    columna citado con archivo:línea, solo un rol conceptual. Candidato para cerrarlo en un
+    futuro acto: abrir el encabezado del .dta de ponderador (ehh09w_all.zip) -- eso ya sería
+    microdato, no FD, y requeriría su propia declaración de contaminación.'
+- fuente: ENOE / ENOEN (Encuesta Nacional de Ocupación y Empleo / ENOE Nueva Edición)
+  estado: PENDIENTE
+  ponderador: FAC (ediciones 2005T1-2020T1) / FAC_TRI + FAC_MEN ("los tres transversales", desde
+    2020T3) -- nombres de columna confirmados por nota previa, no por FASE B directamente.
+  estrato: No confirmado como nombre de columna. Documentado como concepto ("estrato" genérico,
+    sujeto a colapsamiento en pseudo-estratos cuando tiene menos de 2 UPM) -- el documento de
+    diseño muestral nunca usa un nombre de campo en mayúsculas para él.
+  upm: UPM (Unidad Primaria de Muestreo) -- confirmado como columna real de enlace/llave por
+    nota previa, y confirmado en su ROL de conglomerado/PSU por el documento de diseño abierto
+    en FASE B ("diseño...bietápico...entre las unidades primarias de muestreo (UPM)").
+  donde_vive: El diseño muestral formal (probabilístico, bietápico, estratificado, por conglomerados;
+    ajuste de factores por colapsamiento de estratos, no respuesta y proyecciones de población;
+    estimación de varianza) vive en enoe_n_diseno_muestral.pdf, dentro de "3. Metodología/Metodologías/"
+    del zip de documentación ya descargado. Los NOMBRES de columna reales viven en el Descriptor
+    de Archivos (enoe_n_fd_c_bas_amp.pdf), que este entorno no tiene -- confirmado ausente.
+  procedencia: 'Abierto en FASE B de este acto (2026-08-04): se extrajo (sin tocar el resto
+    del zip) "3. Metodología/Metodologías/enoe_n_diseno_muestral.pdf" de data/raw/enoe_n_trim3_2020-trim4_2022.zip
+    (id enoen_trim3_2020_trim4_2022_documentacion_zip) y se leyó completo con pdftotext -layout
+    (423 líneas) -- confirma "diseño...bietápico, estratificado y por conglomerados" (§4) y
+    el procedimiento de colapsamiento de estratos (§6.1), pero es puramente narrativo/matemático
+    (subíndices h/i/e), cero nombres de columna en mayúsculas en todo el documento. Los nombres
+    FAC/FAC_TRI/FAC_MEN/UPM ya estaban citados en forense/notas/2026-07-31-cal-enoe-fasea.md:126-127.'
+  notas: FASE A ya tenía una cita parcial de la misma nota (cal-enoe-fasea.md). FASE B confirmó
+    el TIPO de diseño y el procedimiento de colapsamiento, pero no puede cerrar "estrato" como
+    nombre de columna porque el único documento con esa información (el FD/descriptor de archivos)
+    no está en el corpus en este entorno. No sube a MAPEADO por esa única pieza faltante --
+    2 de 3 campos sí tienen nombre de columna citado (ponderador, UPM).
 - fuente: ENCUP (Encuesta Nacional sobre Cultura Política y Prácticas Ciudadanas) 2012
   estado: SIN_DISEÑO_PUBLICADO
   ponderador: no encontrado
@@ -355,11 +454,14 @@
     de ENCUP en el manifiesto (2001/2003/2005/2008/2012) tiene más que el cuestionario en PDF
     y, para 2012, la base en xlsx.
   procedencia: 'No abierto en este acto -- ya verificado por PR #96 (`sesion/encup-paso2-deferencia`,
-    mergeado en `fbfd3dda9`), que examinó exactamente esta pregunta ("(B) Diseño muestral no
-    resuelto... al ser xlsx único sin documento de diseño separado, resolverlo exige abrir el
-    instrumento") y por forense/notas/2026-08-04-encup-paso1-deferencia.md / 2026-08-04-encup-paso2-deferencia.md.'
+    mergeado en `fbfd3dda9`), que examinó exactamente esta pregunta como parte de otra tarea
+    ("(B) Diseño muestral no resuelto... al ser xlsx único sin documento de diseño separado,
+    resolverlo exige abrir el instrumento") y por forense/notas/2026-08-04-encup-paso1-deferencia.md
+    / 2026-08-04-encup-paso2-deferencia.md.'
   notas: 'Este es exactamente el hallazgo que dio origen a este acto (P-A, PR #96, "PARO: ENCUP
-    paso 2"). Se reutiliza su veredicto en vez de reabrir el xlsx.'
+    paso 2"). Se reutiliza su veredicto en vez de reabrir el xlsx en esta sesión (que ya está
+    contaminada contra otras 4 fuentes en FASE B; abrir ENCUP no habría cambiado la respuesta,
+    ya dada por escrito con cita).'
 - fuente: LATINOBARÓMETRO (muestra de México, ola 2024)
   estado: SIN_DISEÑO_PUBLICADO
   ponderador: no encontrado como nombre de columna
@@ -373,88 +475,30 @@
   procedencia: 'forense/notas/2026-08-03-cbis-deferencia-externas.md:153 ("De la ficha técnica:
     México — Moreno & Sotnikova Social Research and Consulting — muestra en 4 etapas, probabilística
     en 3 etapas y por cuota en la etapa final — n=1200...").'
-  notas: 'Resuelto en FASE A (no requirió abrir nada nuevo: la cita ya vivía en una nota existente).
-    Se clasifica SIN_DISEÑO_PUBLICADO y no PENDIENTE porque SÍ hay caracterización del diseño
-    citable -- solo no llega a nombre de columna.'
-- fuente: CPV (Censo de Población y Vivienda 2020)
-  estado: PENDIENTE
-  ponderador: no encontrado
-  estrato: no encontrado
-  upm: no encontrado
-  donde_vive: no examinado -- ver candidato_fase_b en notas
-  procedencia: ninguna nota lo documenta
-  notas: 'Candidato para FASE B (aún no abierto en este commit): id: cpv2020_diccionario_cuestionario_ampliado_xlsx
-    -- ruta: diccionario_cuestionario_ampliado_cpv2020.xlsx (dentro de data/raw/; ya descargado,
-    sha256 registrado en data/manifiesto.yaml:3039). Es el diccionario de datos del Cuestionario
-    Ampliado (pestañas VIVIENDAS/PERSONAS/MIGRANTES, manifiesto.yaml:3030) -- el candidato más
-    directo para localizar NOMBRES de campo de estrato/UPM/factor de ponderación, si existen.
-    Aviso: sería solo para nombres de variable, no valores -- la base de microdatos real del
-    Cuestionario Ampliado (CSV/DBF/SAS/SPSS/Stata, que traería los VALORES del ponderador/estrato/UPM)
-    sigue sin descargar según la propia nota (forense/notas/2026-07-31-cola-descarga-rederivada.md:74,
-    confirmado en manifiesto.yaml:2951-2954 y :3032-3033). Candidato secundario, más débil:
-    cpv2020_cuestionario_ampliado_pdf (el instrumento/cuestionario en sí; normalmente los cuestionarios
-    de INEGI no listan estrato/UPM, eso vive en descriptores de base de datos o diccionarios
-    de variables, no en el cuestionario aplicado).'
-- fuente: ENADID (Encuesta Nacional de la Dinámica Demográfica) 2023
-  estado: PENDIENTE
-  ponderador: no encontrado
-  estrato: no encontrado
-  upm: no encontrado
-  donde_vive: no examinado -- ver candidato_fase_b en notas
-  procedencia: ninguna nota lo documenta
-  notas: 'Candidato para FASE B (aún no abierto en este commit): enadid2023_fd_xlsx (data/raw/fd_enadid23.xlsx)
-    -- "ficha descriptiva/diccionario de la base de datos ENADID 2023" (data/manifiesto.yaml:3110-3120),
-    ya descargado. Es el documento donde INEGI típicamente lista el catálogo completo de variables
-    por tabla, incluidas las de diseño (ponderador/estrato/UPM); sería el primer archivo a abrir
-    en FASE B. Alternativa/complemento si el FD no trae el detalle de diseño muestral: enadid2023_base_datos_csv
-    (data/raw/base_datos_enadid23_csv.zip, manifiesto.yaml:3091-3108), la base de microdatos
-    misma, que contendría las columnas de diseño aunque no un documento metodológico dedicado.'
-- fuente: ENNViH / MxFLS (Encuesta Nacional sobre Niveles de Vida de los Hogares / Mexican Family
-    Life Survey)
-  estado: PENDIENTE
-  ponderador: no encontrado
-  estrato: no encontrado
-  upm: no encontrado
-  donde_vive: no examinado -- ver candidato_fase_b en notas
-  procedencia: ninguna nota lo documenta
-  notas: 'Candidato para FASE B (aún no abierto en este commit): Candidato principal: id `ennvih3_2009_factores_exp`,
-    ruta `ennvih/calculo-de-factores-de-expansion.pdf` (ya en manifiesto con sha256; es literalmente
-    el documento metodológico de construcción de los factores de expansión de la ola 3, mencionado
-    pero declarado "aún no leído" en el punto 7 de la Nota 7 y solo parcialmente resumido en
-    la Nota 8(d) -- nunca se cita si trae sección de estratificación/UPM). Candidato secundario:
-    id `ennvih3_2009_guia`, ruta `ennvih/guia_de_usuario_ennvih-3.pdf` (ya citada por sección
-    concreta -- §5.2.1, para el esquema de enlace `pid_link`, en Nota 10(c) -- por lo que es
-    un documento con secciones ya usadas puntualmente; podría traer una sección de diseño muestral
-    no explorada aún).'
-- fuente: ENOE / ENOEN (Encuesta Nacional de Ocupación y Empleo / ENOE Nueva Edición)
-  estado: PENDIENTE
-  ponderador: no encontrado
-  estrato: no encontrado
-  upm: no encontrado
-  donde_vive: no examinado -- ver candidato_fase_b en notas
-  procedencia: ninguna nota lo documenta
-  notas: 'Candidato para FASE B (aún no abierto en este commit): enoen_trim3_2020_trim4_2022_documentacion_zip
-    -- data/raw/enoe_n_trim3_2020-trim4_2022.zip (ya en el entorno, sha256 verificado; requeriría
-    extraer y releer `enoe_n_diseno_muestral.pdf` §6 completo, buscando el nombre exacto de
-    la variable de estrato y de UPM -- la sesión de cal-enoe-fasea lo leyó "en detalle" pero
-    con foco en panel/longitudinalidad, no en inventariar campos de diseño). Si eso no basta,
-    el documento definitivo es el Descriptor de Archivos `enoe_n_fd_c_bas_amp.pdf`, referenciado
-    dentro del mismo paquete pero AUSENTE tanto del ZIP como de data/manifiesto.yaml -- ese
-    sí exigiría una descarga nueva antes de poder abrirse en FASE B.'
+  notas: 'Resuelto en FASE A (no requirió FASE B: la cita ya vivía en una nota existente). Se
+    clasifica SIN_DISEÑO_PUBLICADO y no PENDIENTE porque SÍ hay caracterización del diseño citable
+    -- solo no llega al nivel de nombre de variable/columna que este censo busca. Si algún día
+    se descarga el informe metodológico completo (informe-2024.pdf, mencionado pero no conservado
+    por la sesión que lo abrió) podría cerrar esto -- eso es descarga, fuera de perímetro de
+    este acto (P-B).'
 - fuente: ENDIREH 2021 (Encuesta Nacional sobre la Dinámica de las Relaciones en los Hogares)
   estado: PENDIENTE
   ponderador: no encontrado
   estrato: no encontrado
   upm: no encontrado
-  donde_vive: No determinable en este entorno. El único candidato (FD "Estructura de la base
-    de datos ENDIREH 2021", 730 pp., id endireh2021_fd_pdf) está registrado en data/manifiesto.yaml
-    pero AUSENTE físicamente en este sandbox Ubuntu -- verificado con tests/manifiesto.py --verifica
-    --id endireh2021_fd_pdf ("AUSENTE -- endireh2021/endireh2021_fd.pdf no está en la raíz data_raw").
+  donde_vive: 'No determinable en este entorno. El único candidato (FD "Estructura de la base
+    de datos ENDIREH 2021", 730 pp.) está registrado en data/manifiesto.yaml (id endireh2021_fd_pdf,
+    raíz data_raw) pero AUSENTE físicamente en este sandbox Ubuntu -- verificado con tests/manifiesto.py
+    --verifica --id endireh2021_fd_pdf ANTES de intentar abrir nada ("AUSENTE -- endireh2021/endireh2021_fd.pdf
+    no está en la raíz data_raw"). No es un hallazgo sobre el diseño de ENDIREH: es un hallazgo
+    sobre este entorno.'
   procedencia: 'Dos menciones parciales sin confirmar: forense/notas/2026-08-04-endireh-paso1bis-verificacion-microdato.md:347-348
     y forense/hitoE-campana-medicion-v2_0.md mencionan candidatos (FAC_MUJ, EST_DIS/UPM_DIS/ESTRATO)
     como trabajo futuro, no confirmados contra el archivo real.'
-  notas: 'No es un hallazgo sobre el diseño de ENDIREH: es un hallazgo sobre este entorno (payload
-    declarado, ausente aquí). FASE B no se intenta para esta fuente en este acto.'
+  notas: 'FASE B no se intentó para esta fuente: no hay nada que abrir en este entorno (no es
+    una decisión, es una imposibilidad verificada). Cuando un entorno con acceso a data_raw
+    completo (o a la raíz descargas_mx) retome esto, el candidato de FASE B es el mismo FD ya
+    identificado.'
 - fuente: ENDUTIH 2024 (Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información
     en los Hogares)
   estado: PENDIENTE
@@ -465,8 +509,9 @@
     sin FD/diccionario separado en el manifiesto -- y ese único payload está AUSENTE en este
     entorno (verificado con tests/manifiesto.py --verifica --id endutih2024_bd_dbf_zip: "AUSENTE").'
   procedencia: ninguna nota lo documenta
-  notas: A diferencia de ENDIREH, aquí ni siquiera hay un candidato nombrado en manifiesto para
-    un FD separado.
+  notas: 'FASE B no se intentó: no hay ningún archivo de ENDUTIH en este entorno, ni FD ni BD.
+    A diferencia de ENDIREH, aquí ni siquiera hay un candidato nombrado en manifiesto para un
+    FD separado -- si existe, no está registrado.'
 - fuente: MOCIBA (Módulo sobre Ciberacoso) 2024
   estado: PENDIENTE
   ponderador: no encontrado
@@ -475,9 +520,10 @@
   donde_vive: 'No determinable en este entorno. Único payload (mociba2024_bd_csv_zip) AUSENTE
     -- verificado con tests/manifiesto.py --verifica --id mociba2024_bd_csv_zip: "AUSENTE".'
   procedencia: ninguna nota lo documenta
-  notas: 'MOCIBA es un módulo aplicado sobre otra encuesta base (candidato: ENDUTIH) -- si se
-    confirma esa relación, su diseño podría heredarse. No verificado en este acto -- especulación
-    declarada, no hallazgo.'
+  notas: 'MOCIBA es un módulo aplicado sobre otra encuesta base (candidato: ENDUTIH, dado el
+    eje acceso_digital con que ambos se registraron en Encargo E) -- si algún día se confirma
+    esa relación, su diseño muestral podría heredarse del de la encuesta base en vez de resolverse
+    por separado. No verificado en este acto -- especulación declarada, no hallazgo.'
 - fuente: LAPOP / AmericasBarometer (Barómetro de las Américas), muestra México
   estado: PENDIENTE
   ponderador: no encontrado
@@ -487,9 +533,13 @@
     un cuestionario en PDF (lapop_abmex2023_cuestionario.pdf, 77 páginas) -- no hay ficha técnica,
     FD ni informe metodológico.
   procedencia: ninguna nota lo documenta
-  notas: 'Candidato de FASE B nombrado, pero deliberadamente NO abierto en este acto: el único
-    archivo es un cuestionario (no un documento de diseño), y abrirlo pagaría el costo de contaminación
-    ADR-46 por una probabilidad de éxito baja. Se deja la decisión a una sesión futura o a mesa.'
+  notas: 'Deliberadamente NO abierto en FASE B de este acto, a diferencia de CPV/ENADID/ENNViH/ENOE:
+    el único candidato es un cuestionario (no un documento de diseño), y abrirlo pagaría el
+    mismo costo de contaminación ADR-46 que los otros cuatro por una probabilidad de éxito baja
+    (los cuestionarios de LAPOP no suelen traer el anexo metodológico con estrato/UPM/ponderador
+    -- eso vive en el "Technical/Methodology Report" o en el codebook del archivo de datos,
+    ninguno de los cuales está en este corpus). Se deja la decisión de pagar ese costo a una
+    sesión futura o a mesa, en vez de gastarlo aquí especulativamente.'
 - fuente: ACS — American Community Survey (ACS) y Puerto Rico Community Survey (PRCS)
   estado: PENDIENTE
   ponderador: no examinado
