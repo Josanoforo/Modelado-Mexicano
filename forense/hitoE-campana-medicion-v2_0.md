@@ -1819,3 +1819,75 @@ más allá de un barrido de términos de una palabra sobre el texto plano,
 declarado en la nota citada §11. No tocó `canon/` ni `milpa/`. No movió
 ningún contador de `§14`-`§21`. No reclasificó ninguna fila de `§14.3`
 (`deferencia` nunca estuvo en esa tabla).
+
+## 24 · Adenda 04/ago/2026 — ENUT paso 1 (Encargo N): fila **9** de `§14.3` — corrige cita, `familismo_obligacion` sigue CANDIDATO CON PROXY, contador sin mover
+
+Responde al Encargo N (mesa #18). Régimen: ENUT paso 1, abrir microdato y
+diccionario para verificar contra dato real lo que el Encargo C (31/jul)
+dictaminó contra diccionario solamente — **sin medir, sin decidir si el
+resultado mueve el contador**. Detalle completo, tabla de variables ×
+wording × universo × catálogo × n, denominador cuantificado, doble conteo
+contra ADR-30, viabilidad de H-11, ejes de atributos, C2 y C3, en
+`forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md`.
+
+**Corrección de cita, no de veredicto.** La fila 9 de `§14.3` (arriba)
+cita `P6_11_01`…`P6_11_11` ("11 tareas de cuidado"), heredado literal del
+Encargo C. Verificado contra el FD real: eso es **la ola 2019**. La ola
+**2024** trae `P6_11_01`…`P6_11_14` (**14** tareas — tres ítems nuevos:
+asistir a juntas/festivales escolares, jugar/leer/orientar/consolar,
+vigilar/estar al pendiente, que en 2019 vivían comprimidos en un solo
+ítem). El filtro de universo también cambia de nombre y de condición
+entre olas (`FP6_11`, una variable, 2019; `FILTRO_S6_11`, disyunción de
+dos variables, 2024) — mismo tema, no el mismo instrumento ítem por ítem.
+No se edita la fila 9 (es una cita histórica de una sesión previa, y el
+error no cambia el veredicto de esa fila); se deja esta corrección
+adjunta para que quien la lea después no la copie de nuevo.
+
+**Lo nuevo, verificado contra microdato (2024, n=74 053 informantes
+TMODULO):** el candidato sigue siendo **conducta de cuidado, no
+obligación declarada** — el glosario define el constructo como creencia
+internalizada, y la Sección VI de ENUT es, sin excepción, tiempo
+dedicado a actividades, no percepción sobre ellas. El universo del
+reactivo es **12.08%** de los informantes (8 943/74 053, condicionado a
+que el hogar tenga un dependiente que necesitó cuidado la semana pasada)
+— no puede hablar de obligación en la población general, solo de
+intensidad entre quienes ya cuidan. Doble conteo contra ADR-30
+(`familismo_apoyo`, ENIF `P9_9_4`): **no se sostiene** — direcciones,
+marcos temporales y muestras opuestas/independientes (recibir dinero
+futuro vs. dar tiempo de cuidado la semana pasada), no hay conducta
+compartida que se cuente dos veces. H-11 (`segsoc`×`est_socio`): ninguna
+de las dos variables existe literalmente en ENUT; los proxies propios
+(`P5_6_7` derechohabiencia, `P5_10` ingreso individual) solo son
+evaluables sobre el **39.1%** de quienes muestran el reactivo de
+obligación (3 496/8 943), porque ambos exigen haber trabajado — excluye
+estructuralmente a la mayoría de quienes cuidan. C3 (Tabla B): **ENUT sí
+es una de las ocho fuentes de Tabla B** — verificado aparte de su
+posición 7 en esta cola, como pidió el encargo, no son lo mismo. C2
+(desenlaces de `G5`): no falla con el etiquetado vigente, pero **queda a
+un paso de fallar** — la misma familia de variables (`P6_11_*`) que este
+candidato usaría ya observa en Tabla B la regla
+`familia.cuidado.recae_mujeres_40mas` (§3.5), que hoy no cita `PORQUE G5`
+pero cuya generadora sí nombra "carga de cuidado" como mecanismo; si mesa
+retiqueta esa regla a G5, la circularidad sería la misma que ya
+inhabilitó a `P9_9_*` para `familismo_apoyo`·G5.
+
+**Contador: sin mover.** Sigue en `3 de 14` en "proxy declarado,
+pendiente de medición" (fila `familismo_obligacion`,
+`canon/modelo-decision-v4_0.md:271`) y `9 de 14` medidas — el veredicto
+"candidato válido como proxy de conducta de cuidado" y el supuesto exacto
+que habría que declarar quedan escritos en la nota citada, para que mesa
+decida si eso mueve el contador. No se reclasificó ninguna fila de
+`§14.3`. No se tocó `canon/` ni `milpa/`.
+
+### 24.1 · Límite de lectura declarado (ADR-46)
+
+Esta sesión abrió `enut2024_fd.xlsx`, `enut2019_fd.xlsx` (íntegros),
+`enut2024_diccionario_variables.html`, `enut2019_diccionario_variables.html`,
+y microdato de `enut2024_bd_csv.zip` (`tmodulo.csv`, `tsdem.csv`,
+`thogar.csv`) y `enut2019_bd_csv.zip` (`enut_2019/TMODULO.csv`) —
+columnas y conteos de frecuencia citados en la nota, no fila por fila —
+**inhabilitada para pre-registrar contra ENUT** (cualquier constructo).
+No abrió `enut2019_der_zip`/`enut2024_der_zip`, `enut_2019_indigena/`, ni
+`tvar_crea.csv` más allá de confirmar su existencia. No tocó `canon/` ni
+`milpa/`. No movió ningún contador. No reclasificó ninguna fila de
+`§14.3`.
