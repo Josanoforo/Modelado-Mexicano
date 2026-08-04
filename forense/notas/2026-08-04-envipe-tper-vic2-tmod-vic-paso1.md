@@ -450,7 +450,10 @@ una.
   dado que la caducidad de tres está pensada para búsquedas que
   terminan en NO SIRVE, no en candidato).
 - No se editó el cuerpo de `hitoE` — la adenda de esta nota vive en
-  `hitoE §20` (append-only), no en el cuerpo ni en `§14.3`/`§15`.
+  `hitoE §21` (append-only; renumerada desde `§20` al fusionar `main`
+  por colisión de numeración concurrente con el Encargo F —
+  `forense/hallazgos.md`, entrada de cierre de este acto), no en el
+  cuerpo ni en `§14.3`/`§15`.
 - No se tocó `canon/` ni `milpa/`.
 - No se resolvió C2 — declarado abierto y acotado (§8), con el riesgo de
   `BP1_23` nombrado explícitamente, no fabricado ni cerrado.
