@@ -74,7 +74,7 @@ instrucciones-proyecto-v2.md   ← CANÓNICO. Gobierna todo lo demás.
 | ~~`ficha-canonica-modelo.md`~~ | **ELIMINADA 28/jul** *(ADR-36.b)* | — | absorbida en `modelo` §0.1, §0.2 y §9 |
 | **5 validaciones forenses** | **CANÓNICO** *(ADR-29.b)* | Ronda 4 | — |
 | ~~`CHECKPOINT-v2.md`~~ · ~~`mapa-y-roadmap.md`~~ · ~~`inventario-corpus.md`~~ | **BORRADOS 28/jul** | — | **fusionados en `ESTADO-PROGRAMA.md`** |
-| `estado-programa-v1.9.md` | **CANÓNICO (estado)** | v1.9, 29/jul | única fuente de estado |
+| `estado-programa-v1.10.md` | **CANÓNICO (estado)** | v1.10, 4/ago | única fuente de estado |
 | `ADR-30.md` | **BORRADO 28/jul** | — | incorporado a §4; además contenía la versión **superada** (retiraba `familismo` de G3, corregido en mesa) |
 | `milpa/` (Fase 0) | DERIVADO | 0.1.0 | ⚠️ **ausente salvo 3 archivos** |
 | `masterclass-mexico.html` | DERIVADO | foto Ronda 4 | ⚠️ **ausente** |
