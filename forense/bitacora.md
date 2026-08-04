@@ -1097,3 +1097,34 @@ canon/modelo-decision-v4_0.md                      |  22 +-
 
 ---
 
+## 2026-08-04
+
+**Fecha:** 2026-08-04 · **Rama:** `worktree-mm-enut-paso1-familismo` · **HEAD inicial (origin/main):** `821dbbfc9f9474d0309e42c077a010faf7ab01ae` · **HEAD final:** `bfc98e0dd08b8ddbe2765b38d7437d3ff1d7e7cb`
+
+**Commits de la sesión:**
+  - `bfc98e0` · Josanoforo · co: Claude Sonnet 5 <noreply@anthropic.com> · ENUT paso 1 (Encargo N): familismo_obligacion sigue CANDIDATO VALIDO COMO PROXY de conducta de cuidado, verificado contra microdato real
+
+**Archivos tocados:**
+```
+forense/hallazgos.md                               |   1 +
+ forense/hitoE-campana-medicion-v2_0.md             |  72 ++++++++++
+ .../2026-08-04-enut-paso1-familismo-obligacion.md  | 146 +++++++++++++++++++++
+ 3 files changed, 219 insertions(+)
+```
+
+**ADRs añadidos:** (ninguno detectado)
+**Líneas de versión modificadas en canon/:** 0
+
+**Delta de suite:**
+  - Antes: 19 FAIL · 83 WARN (congelados en origin/main)
+  - Después: 19 FAIL · 84 WARN (corrida real, sin --baseline)
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: (ninguno)
+  - Cerrados: D-05, D-06, D-07, D-08, D-09, D-10, E-04, E-05, E-06, I-01, I-08, I-09, I-13
+
+**Qué se decidió:** ENUT 6.11/6.11a verificado contra microdato real (no solo diccionario): sigue CANDIDATO VALIDO COMO PROXY de conducta de cuidado (respuesta (2) de la pregunta central), no obligacion declarada. Denominador cuantificado (12.08% de informantes, universo condicionado a dependiente en el hogar). Doble conteo ADR-30 contra familismo_apoyo/ENIF P9_9_4: no se sostiene, direcciones/marcos/muestras opuestos. H-11 viable solo sobre 39.1% del denominador (proxies de segsoc/est_socio exigen empleo). C3: ENUT si es una de las 8 fuentes de Tabla B (distinto de su posicion 7 en la cola de hitoE). C2: no falla con el etiquetado vigente, pero queda a un paso de fallar si familia.cuidado.recae_mujeres_40mas se retiqueta a G5. Corrige cita heredada: 2024 trae 14 items (P6_11_01..14), no 11 (eso es 2019). Contador sin mover (sigue 3/14 proxy pendiente, 9/14 medidas) -- queda para mesa.
+**Qué quedó bloqueado:** Ninguno propio. Decisiones de mesa pendientes: (1) si el candidato conducta-de-cuidado mueve el contador de familismo_obligacion a MEDIDO, (2) si familia.cuidado.recae_mujeres_40mas se retiqueta como desenlace de G5 (afectaria C2), (3) si los proxies de segsoc/est_socio en ENUT (P5_6_7, P5_10) bastan para evaluar H-11 pese a cubrir solo 39.1% del denominador.
+
+---
+
