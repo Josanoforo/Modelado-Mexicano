@@ -1,5 +1,7 @@
 # HITO D, R5.1 — "familia como seguro sustituto del Estado": prueba corrida, veredicto propuesto A (reserva adjunta)
 
+⚠️ **Posterior a esta nota (Encargo V, mesa #19, 4/ago/2026): la fila A propuesta aquí no se adjudicó.** Se encontró ENASEM/MHAS en el catálogo del programa (panel 50+, olas 2018 y 2021) y la regla de elegibilidad del programa (§ nota del 4/ago), que permiten un diseño de identificación más fuerte que la comparación transversal beneficiario/no-beneficiario corrida aquí. El registro append-only sigue con tres veredictos.
+
 **Mueve el Hito D: 3 → 4 de 27. No mueve el contador de condicionales (8 de 14).**
 
 *4 de agosto de 2026. Encargo P, mesa #18. Rama `sesion/hitoD-r5-1-pension-bienestar`, worktree `~/mm-hitoD-r5-1-pension-bienestar` (nuevo, creado en este acto).*

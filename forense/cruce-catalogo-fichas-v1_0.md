@@ -52,6 +52,34 @@ sobre 25 fichas con un criterio que su propio documento no escribe. Aquí el
 criterio queda escrito arriba y el denominador es 27. Ambas cifras son
 correctas para lo que cada una mide; no son la misma pregunta.
 
+**Nota (Encargo V, mesa #19, 4/ago/2026): existe una lectura más estricta
+del mismo criterio, y no se reconcilia con el 9/18 de arriba — se registra
+aparte.** La rama de #87 exige, para contar como "declara fuente", que el
+nombre citado resuelva a un instrumento identificable y utilizable, no solo
+mencionado. Bajo esa lectura **no cuentan**: una población o universo sin
+instrumento nombrado · un tipo de dato genérico sin instrumento · un
+estudio académico no instrumental — **R10.1** (Félix-Brasdefer, muestra de
+Tlaxcala, es un paper, no un instrumento del catálogo; ya cae del lado "no
+declara" en el 9/18 de arriba, así que no mueve esa cifra, pero sí ilustra
+el criterio) · un identificador interno del corpus sin fuente resuelta —
+**R8.3**, que en el 9/18 de arriba cuenta como "declara" (ENCUCI, vía
+`conf.06`), pero cuya propia ficha (§3 de este documento) dice que el
+bloqueo real no es falta de fuente sino que "cinco cifras de confianza
+interpersonal circulan y no se reconcilian" — `conf.06` es un identificador
+de conflicto abierto del corpus, no una fuente resuelta. Bajo el criterio
+de #87, **R8.3 sale del lado "declara"**, y **9 − 1 = 8**: la lectura
+estricta da **8/27**, no 9/27.
+
+**No se reconcilian las dos cifras aquí.** El 9/18 de arriba usa el
+criterio fijado en esta sesión (línea 33): nombrar el instrumento basta,
+sin exigir que la cita resuelva el bloqueo de la ficha. El 8/27 de #87 usa
+un criterio más estricto: nombrar el instrumento no basta si lo que la
+propia ficha declara es que ese nombre no resuelve nada usable. Ambos
+criterios están escritos, ambos son defendibles, y dan cifras distintas
+sobre el mismo denominador (27). Se deja la diferencia registrada, no
+resuelta — resolverla es una decisión de mesa sobre qué pregunta se quiere
+contestar, no un error de conteo de ninguno de los dos.
+
 ---
 
 ## §2 · Sellado del cruce original — fichas SIN fuente declarada (18)
