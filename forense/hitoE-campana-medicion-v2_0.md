@@ -1536,7 +1536,104 @@ acto de adenda — la lectura del FD y del cuestionario la hizo la nota
 citada. No se tocó `canon/` ni `milpa/`. No se movió ningún contador. No
 se reclasificó ninguna otra fila de `§14.3`.
 
-## 20 · Adenda 04/ago/2026 — ENVIPE `TPer_Vic2`/`TMod_Vic`: fila 4 de `§14.3` tiene CANDIDATO VÁLIDO, sin adjudicar
+---
+
+## 20 · Adenda 04/ago/2026 — ENDIREH paso 1-bis: microdato abierto, `VFAM` corregido, C2 cerrado
+
+**Disciplina aplicada:** adenda fechada, append-only, mismo mecanismo que
+`§15`-`§19`. `§14.3` no se edita — la fila 4 (corregida por `§15`) queda
+íntegra; esta adenda registra el resultado de abrir el ZIP de microdatos
+de ENDIREH (`endireh2021_bd_csv_zip`) que `§18` solo había prometido por
+descriptor (FD en PDF, sin abrir el archivo).
+
+**Clase: Corrección de fila, misma clase que `§14` entero — Propuesta. No
+es decisión. No rige sin ADR.**
+
+**Qué pasó.** `forense/notas/2026-08-04-endireh-paso1bis-verificacion-microdato.md`
+re-descargó el ZIP (sha256 coincidente con el registrado — durabilidad
+confirmada en sentido positivo para este payload), lo abrió, y contrastó
+las once candidatas de `§18` contra el archivo real, columna por columna,
+con catálogo observado y denominador cuantificado con `n`.
+
+**Corrección puntual, no cosmética: `VFAM` no tiene par "a lo largo de la
+vida".** `§18` describía el grupo "por ámbito" como `VESC/VLAB/VCOM/VFAM/
+VPAR × vida/12m`, dando a entender que las cinco siguen el mismo patrón
+dual de ventana temporal. El archivo trae `VFAM` como **una sola
+columna** (no `VFAM_A`/`VFAM_12M`), y su descripción literal en el FD es
+"Condición de violencia total en el ámbito familiar **en los últimos 12
+meses**" — no existe versión de por vida para el ámbito familiar en
+`TB_VD`. El descriptor prometía una forma; el archivo trae otra.
+
+**Segunda corrección: no los cinco ámbitos angostan el universo.** `§14.3`
+generaliza "los ámbitos tienen universos progresivamente más angostos
+por diseño". Verificado con `n` real: **cierto para `VESC`** (n=104 212
+alguna vez / 11 092 últimos 12m, condicionado a `POB_E_A`/`POB_E_12M`),
+**`VLAB`** (n=88 760/55 328, condicionado a `POB_L_A`/`POB_L_12M`) y
+**`VPAR`** (n=105 278, condicionado a `POBP`≠0, `T_INSTRUM`≠C2) — **falso
+para `VCOM` y `VFAM`**, ambas con denominador = 110 127 = universo
+completo, igual que `VTOT`/`VPSI`/`VFIS`/`VECO`/`VSEX`. Ninguna de las
+19 columnas repite el defecto exacto de `BP1_20` (condicionar sobre
+haber sufrido violencia, `§72` de `forense/hallazgos.md`) — las
+condicionadas lo están por aplicabilidad de dominio (estudió/trabajó/
+tiene pareja), no por victimización previa.
+
+**C2 se cierra.** `§18` lo dejaba declarado abierto por no haber leído
+las 20 secciones completas. Esta adenda registra que sí se leyó el
+resumen de contenido de las 27 tablas completo y se corrió `grep` de
+siete términos (protesta, autodefensa, policía/ronda comunitaria,
+manifestación, linchamiento, insegur*) sobre el texto íntegro del FD
+(51 795 líneas): cero resultados en las siete búsquedas, salvo
+`denuncia` (755, todos sobre violencia sufrida por la propia mujer, no
+agravio urbano/rural). **ENDIREH no observa los tres desenlaces de
+`G4`**, con el límite de lectura declarado en la nota citada (no se
+leyó ítem por ítem el resto de las ~23 secciones).
+
+**C3 re-derivado**, no heredado: `grep -in endireh` contra
+`forense/notas/2026-07-31-inventario-segmentacion.md` sigue en cero
+resultados. Pasa.
+
+**Ejes de atributos, corregidos con `n` real.** `§18` los daba como
+"edad, urbanización, acceso digital a nivel hogar — confiables; ingreso
+a nivel persona — parcial; formalidad laboral y migración — sin
+equivalente". Verificado contra columnas reales: **edad** (`EDAD`,
+`TSDem`, n=432 746) y **acceso digital** (`P1_4_5`/`P1_4_9`, `TVIV`,
+n=122 646) confiables como los daba `§18`; **urbanización** (`DOMINIO`,
+3 categorías U/C/R) **no es confiable como `§18` decía** — es un proxy
+más burdo que `tam_loc` (4 categorías), reclasificado aquí a **parcial**;
+**ingreso** (`TB_SEC_IV`, n=110 127, por fuente, de la mujer, no de
+hogar) sigue parcial; **formalidad laboral** y **migración** siguen sin
+equivalente confirmado en lo leído (`TSDem`, `TVIV`, `TB_SEC_IV`; no se
+abrieron las 23 tablas restantes).
+
+**Consecuencia sobre la fila 4, dicha con precisión.** La fila sigue
+**PENDIENTE DE VERIFICACIÓN** — este acto no midió nada y no mueve el
+contador (sigue en **8/14**). Lo que cambia frente a `§18` es que las
+once candidatas dejan de estar verificadas solo por descriptor: están
+verificadas contra el archivo, con catálogo, universo y denominador
+cuantificados fila por fila, y con dos correcciones de detalle que
+importan para paso 2 (`VFAM` sin par de por vida; `VCOM`/`VFAM` sin
+angostar universo).
+
+**Qué le falta a la próxima sesión (paso 2).** Elegir entre agregado
+(`VTOT_A`/`VTOT_12M`) y desglose — **CP-1, sigue en mesa, este acto no la
+decide**. Si se elige desglose, decidir qué hacer con la asimetría de
+`VFAM` (sin ventana de por vida) antes de tratarlo como par de las otras
+cuatro. Medir con ponderación (`FAC_MUJ`) y diseño muestral (`UPM_DIS`/
+`EST_DIS`/`ESTRATO`), no con los conteos crudos de esta adenda.
+
+### 20.1 · Límite de lectura declarado (ADR-46)
+
+Esta adenda leyó: `forense/notas/2026-08-04-endireh-paso1bis-verificacion-microdato.md`
+completa — la lectura del ZIP, del FD y de los headers de `TSDem`/`TVIV`/
+`TB_SEC_IV` la hizo la nota citada, no este acto de adenda directamente.
+No se tocó `canon/` ni `milpa/`. No se movió ningún contador. No se
+reclasificó ninguna otra fila de `§14.3`. Esta sesión abrió el
+instrumento de ENDIREH — inhabilitada para pre-registrar contra ENDIREH
+(ADR-46).
+
+---
+
+## 21 · Adenda 04/ago/2026 — ENVIPE `TPer_Vic2`/`TMod_Vic`: fila 4 de `§14.3` tiene CANDIDATO VÁLIDO, sin adjudicar
 
 **Disciplina aplicada:** adenda fechada, append-only. `§14.3` no se edita
 — la fila 4 (ya corregida por `§15`, `§19`) queda íntegra; esta adenda
@@ -1595,7 +1692,7 @@ no un dato de un año — con el mismo problema de los 15 coeficientes de
 ritmo en cero que `§11`/Encargo E ya dejaron registrado. No se
 pre-registra nada contra esa posibilidad.
 
-### 20.1 · Límite de lectura declarado (ADR-46)
+### 21.1 · Límite de lectura declarado (ADR-46)
 
 Esta adenda leyó completa la nota
 `2026-08-04-envipe-tper-vic2-tmod-vic-paso1.md` citada arriba; no
