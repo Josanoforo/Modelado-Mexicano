@@ -767,6 +767,186 @@ def t18_paso2_ejecucion():
 
 
 # ───────────────────────────────────────────────────────────────
+# T19a · T-CABECERA-CRUZADA (estado → modelo) — Acto 1, 4/ago/2026.
+#   La fila VERIFICAS ASÍ de `estado` cita la versión de `modelo` que
+#   hay que tener abierta para verificarla. Esa cita puede desincronizarse
+#   sin que ningún test lo note: `modelo` subió de v3.4 a v4.0 (Encargo A,
+#   3/ago/2026) y `estado` siguió citando v3.4 en su cabecera un acto
+#   entero, mientras su propio §0 ya listaba v4.0 -- exactamente la clase
+#   de defecto que I-12 nombró para `gobernanza` (versión del cuerpo
+#   distinta de la de su cabecera), aquí aplicada a una cita cruzada
+#   entre dos canónicos en vez de a la cabecera de uno solo. Seis
+#   apariciones documentadas antes de este test: I-12 ×2, `estado` ×2
+#   (esta y la de `modelo` en su propia cabecera, ver T19b), `modelo` ×2.
+# ───────────────────────────────────────────────────────────────
+def t19a_estado_cita_modelo_vigente():
+    """`estado` VERIFICAS ASÍ debe citar la versión de `modelo` que
+    `newest()` resuelve hoy -- ni más vieja (Encargo A) ni cualquier
+    otra. Solo mira las primeras líneas (cabecera, no el cuerpo): una
+    cita histórica de `modelo` en prosa fechada no es este defecto."""
+    e = newest("canon/estado-programa-v*.md")
+    m = newest("canon/modelo-decision-v*.md")
+    if not e or not m:
+        fail("T19a", "no se pudo leer `canon/estado-programa-v*.md` o `canon/modelo-decision-v*.md`")
+        return
+    vm = re.search(r"v(\d+)[._](\d+)", os.path.basename(m))
+    if not vm:
+        fail("T19a", f"{rel(m)}: no se pudo derivar la versión de su propio nombre de archivo")
+        return
+    real = f"{vm.group(1)}.{vm.group(2)}"
+    cabecera = read(e)[:1500]
+    citas = re.findall(r"`modelo`\s+en\s+\*\*v(\d+)[._](\d+)\*\*", cabecera)
+    if not citas:
+        fail("T19a", f"{rel(e)}: la cabecera no cita ninguna versión de `modelo` en la forma "
+                     f"'`modelo` en **vX.Y**' -- VERIFICAS ASÍ debe declarar qué versión verifica")
+        return
+    for maj, minr in citas:
+        if f"{maj}.{minr}" != real:
+            fail("T19a", f"{rel(e)}: cabecera VERIFICAS ASÍ cita `modelo` v{maj}.{minr}; "
+                         f"la vigente es v{real} ({rel(m)})")
+
+
+# ───────────────────────────────────────────────────────────────
+# T19b · T-CONTADOR-14-CRUZADO — Acto 1, 4/ago/2026.
+#   El caso que lo motiva: `modelo §1.1.F`/§6.1/§7 subieron de "8 de 14"
+#   a "9 de 14" (Encargo K, 4/ago/2026) pero la cabecera del propio
+#   documento (el párrafo de changelog "v4.0 -- 3/ago/2026") se quedó en
+#   "8 de 14" -- un acto entero corrigió tres apariciones del mismo
+#   contador y dejó la cuarta, más visible, intacta. Cruza tres fuentes:
+#   la cabecera, §6.1 (la sección que deriva el denominador) y el
+#   conteo real de `procedencia.yaml` -- para que las tres no puedan
+#   volver a divergir sin que algo falle.
+# ───────────────────────────────────────────────────────────────
+_CONTADOR_14 = re.compile(r"condicionales medidas sobre atributos:\s*(?:~~\d+~~\s*)?(\d+)\s*de\s*14", re.I)
+
+def t19b_modelo_contador_14():
+    """La cabecera de `modelo` ('condicionales medidas sobre atributos:
+    N de 14', en el párrafo de changelog de la versión vigente) debe
+    coincidir con la misma frase dentro de §6.1, y con el conteo real
+    de `clase: "MEDIDO·PARCIAL` en `milpa/procedencia.yaml`."""
+    m = newest("canon/modelo-decision-v*.md")
+    if not m:
+        fail("T19b", "no se pudo leer `canon/modelo-decision-v*.md`")
+        return
+    s = read(m)
+    mc = _CONTADOR_14.search(s[:2000])
+    if not mc:
+        fail("T19b", f"{rel(m)}: la cabecera (primeros 2000 caracteres) no declara "
+                     f"'condicionales medidas sobre atributos: N de 14'")
+        return
+    declarado_cabecera = int(mc.group(1))
+
+    sec = re.search(r"^### 6\.1[^\n]*\n(.*?)(?=^## |\Z)", s, re.M | re.S)
+    if not sec:
+        fail("T19b", f"{rel(m)}: no se encontró la sección §6.1")
+        return
+    ms = _CONTADOR_14.search(sec.group(1))
+    if not ms:
+        fail("T19b", f"{rel(m)} §6.1: no declara 'condicionales medidas sobre atributos: N de 14'")
+        return
+    declarado_61 = int(ms.group(1))
+    if declarado_cabecera != declarado_61:
+        fail("T19b", f"{rel(m)}: cabecera declara {declarado_cabecera} de 14; "
+                    f"§6.1 declara {declarado_61} de 14")
+
+    proc = os.path.join(ROOT, "milpa", "procedencia.yaml")
+    if not os.path.exists(proc):
+        fail("T19b", "no se pudo leer `milpa/procedencia.yaml`")
+        return
+    real = read(proc).count('clase: "MEDIDO·PARCIAL')
+    if declarado_cabecera != real:
+        fail("T19b", f"{rel(m)}: cabecera declara {declarado_cabecera} de 14; "
+                    f"`grep -c 'clase: \"MEDIDO·PARCIAL' {rel(proc)}` da {real}")
+
+
+# ───────────────────────────────────────────────────────────────
+# T19c · T-PORTADA-DERIVADA — Acto 1, 4/ago/2026. Cierra I-06 ("nadie
+#   vigila las cifras de README.md contra el árbol") e I-07 (una cifra
+#   corregida en la portada sobrevivió sin sincronizar al canon, porque
+#   el encargo nombró un archivo y no una afirmación). Cruza las tres
+#   cifras derivadas que este acto puso en README `## Estado del
+#   modelo` contra su fuente real: fichas del bloque append-only de
+#   `hitoD-preregistro` (mismo parser canónico que T18, `_VEREDICTO_
+#   CANONICO`, aplicado SOLO al bloque designado), `MEDIDO·PARCIAL` de
+#   `procedencia.yaml`, y coeficientes en escala (0 de 15 mientras
+#   `procedencia.yaml` no promueva ninguno de ASIGNADO a medido en la
+#   escala del modelo -- ADR-57(a) excluye los tres β̂ marginales).
+# ───────────────────────────────────────────────────────────────
+def t19c_readme_derivadas():
+    r = os.path.join(ROOT, "README.md")
+    if not os.path.exists(r):
+        fail("T19c", "no se pudo leer `README.md`")
+        return
+    s = read(r)
+    m = re.search(r"^## Estado del modelo\b.*?(?=^## |\Z)", s, re.M | re.S)
+    if not m:
+        fail("T19c", "README.md: no se encontró la sección `## Estado del modelo`")
+        return
+    bloque = m.group(0)
+
+    h = newest("forense/hitoD-preregistro-v*.md")
+    if not h:
+        fail("T19c", "no se pudo leer `forense/hitoD-preregistro-v*.md`")
+    else:
+        vb = _bloque_veredictos(read(h))
+        if vb is None:
+            fail("T19c", f"{rel(h)}: no se encontró '## Registro de veredictos archivados' (ADR-40)")
+        else:
+            fichas = {}
+            for l in vb.split("\n"):
+                mv = _VEREDICTO_CANONICO.search(l)
+                if mv:
+                    fichas[mv.group(1)] = mv.group(2)
+            real_n = len(fichas)
+            letras = Counter(fichas.values())
+
+            mn = re.search(r"\*\*(\d+)\s*de\s*27\*\*\s*corridas del Hito D", bloque)
+            if not mn:
+                fail("T19c", "README.md, `## Estado del modelo`: no se encontró "
+                             "'**N de 27** corridas del Hito D'")
+            elif int(mn.group(1)) != real_n:
+                fail("T19c", f"README.md declara {mn.group(1)} de 27 corridas del Hito D; "
+                            f"el bloque append-only de {rel(h)} tiene {real_n} fichas con veredicto")
+
+            md = re.search(r"—\s*\*\*([\dA-E·\s]+)\*\*", bloque)
+            if not md:
+                fail("T19c", "README.md, `## Estado del modelo`: no se encontró el desglose por letra "
+                             "(forma '**NLETRA·...**' tras un guion largo)")
+            else:
+                declarado = dict((letra, int(n)) for n, letra in
+                                  re.findall(r"(\d+)([A-E])", md.group(1)))
+                derivado = {k: v for k, v in letras.items() if v}
+                if declarado != derivado:
+                    fail("T19c", f"README.md declara desglose {declarado}; "
+                                f"derivado del bloque append-only: {derivado}")
+
+    proc = os.path.join(ROOT, "milpa", "procedencia.yaml")
+    if not os.path.exists(proc):
+        fail("T19c", "no se pudo leer `milpa/procedencia.yaml`")
+        return
+    ptxt = read(proc)
+    real_medidas = ptxt.count('clase: "MEDIDO·PARCIAL')
+    mcond = re.search(r"[Cc]ondicionales medidas\s*(\d+)\s*de\s*14", bloque)
+    if not mcond:
+        fail("T19c", "README.md, `## Estado del modelo`: no se encontró "
+                     "'condicionales medidas N de 14'")
+    elif int(mcond.group(1)) != real_medidas:
+        fail("T19c", f"README.md declara condicionales medidas {mcond.group(1)} de 14; "
+                    f"`grep -c 'clase: \"MEDIDO·PARCIAL' {rel(proc)}` da {real_medidas}")
+
+    promovido = re.search(r"magnitud:\s*medid", ptxt, re.I) is not None
+    mcoef = re.search(r"[Cc]oeficientes en escala del modelo\s*(\d+)\s*de\s*15", bloque)
+    if not mcoef:
+        fail("T19c", "README.md, `## Estado del modelo`: no se encontró "
+                     "'coeficientes en escala del modelo N de 15'")
+    elif int(mcoef.group(1)) != 0 or promovido:
+        fail("T19c", f"README.md declara {mcoef.group(1)} de 15 coeficientes en escala; "
+                    + ("`milpa/procedencia.yaml` promueve alguno a medido -- la cifra debe subir de 0"
+                       if promovido else
+                       "`milpa/procedencia.yaml` no sostiene un valor distinto de 0"))
+
+
+# ───────────────────────────────────────────────────────────────
 # Modo línea base · congela el estado conocido, no lo mueve por defecto
 # ───────────────────────────────────────────────────────────────
 #   --freeze     escribe tests/baseline.json con el estado actual (acto
@@ -947,6 +1127,9 @@ def main():
         ("T15 T-ADR-COUNT",                       t15_adr_count),
         ("T17 T-FICHAS-COUNT",                    t17_fichas_count),
         ("T18 T-PASO2-EJECUCION",                 t18_paso2_ejecucion),
+        ("T19a cabecera cruzada estado→modelo",   t19a_estado_cita_modelo_vigente),
+        ("T19b contador 14 cruzado (modelo)",     t19b_modelo_contador_14),
+        ("T19c portada derivada (README)",        t19c_readme_derivadas),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
