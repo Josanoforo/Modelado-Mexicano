@@ -1,11 +1,11 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **58 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **59 ADR**
 
 > | | |
 > |---|---|
 > | **ARCHIVO** | `gobernanza-v1.15.md` |
 > | **REEMPLAZA A** | `gobernanza-v1.14.md` — **borrar** |
-> | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · detalle ADR-44 a ADR-58 en **§0.1**, abajo — el último es **ADR-58** |
+> | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · detalle ADR-44 a ADR-58 en **§0.1**, abajo — el último es **ADR-59** (§4, no está en §0.1) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
 ### 0.1 Detalle de verificación (ADR-44 a ADR-58)
@@ -651,6 +651,20 @@ Cuando una validación rompe o degrada una afirmación:
 **Versión y nombre de archivo.** El número de versión **no sube** y el archivo **no se renombra** — mismo criterio que ADR-48 a ADR-57. Excepción declarada a ADR-36, acotada a esta enmienda.
 
 → **Vigente. S2.** *(Aprobado 4/ago/2026, decisión de mesa del autor. Sesión de escritura, sin dato — perímetro declarado en el propio encargo: `canon/gobernanza-v1_15.md`, `forense/hitoD-preregistro-v2_0.md` (adenda + bloque append-only, nada más), `canon/estado-programa-v1_9.md` (solo rider: contador Paso 2 y cadena de ADR/L0), `tests/check.py` (parser del bloque, extensión de rango de letra), `forense/hallazgos.md` si aplica; no abrió `data/raw/` ni microdato. MESA-R12=SÍ.)*
+
+---
+
+**ADR-59 · Se incorpora `instrucciones-proyecto-v2_4.md` verbatim; ADR-58(b) gobierna íntegro sobre la regla de precedencia de Bloque B-bis, y se corrige la firma de entorno universalizada por error en la plantilla de arranque de Bloque D.** Decisión de mesa del autor, 4/ago/2026: v2.4 sube sin enmendar — es la versión que gobernó los actos de hoy, y una copia que difiera de la que gobernó sería peor que un defecto documentado. Este ADR es el lugar de reconciliación para dos defectos que la lectura de v2.4 contra el repo real expuso; el texto de v2.4 no se toca.
+
+**(a) La regla de precedencia de Bloque B-bis no desplaza a ADR-58(b) — lo asume sin citarlo.** v2.4 §Bloque B-bis cierra con: *"Y la regla de precedencia. Si dos filas de una escala pueden satisfacerse a la vez, se declara cuál manda, al sellar y no después. La escala de la ficha gobierna sobre cualquier legend genérico, y hay que decirlo en la ficha."* Eso obliga a declarar la precedencia al sellar — hacia adelante — pero no dice cuál gana cuando la ficha no lo declaró: no trae default. ADR-58(b) ya selló ese default: *"la fila más específica gana sobre la más general, y la escala de la ficha gobierna sobre cualquier leyenda genérica del corpus."* (La propia paráfrasis de B-bis — "legend genérico", sin concordancia de género con "leyenda" — es indicio de que restituye ADR-58(b) de memoria, no que lo reemplaza.) Se declara: ADR-58(b) sigue vigente e íntegro como default de precedencia; B-bis es el requisito procesal de declararlo explícito en fichas nuevas al sellar, no una regla nueva ni un reemplazo. Ninguna ficha, sellada antes o después de v2.4, necesita elegir entre los dos textos.
+
+**(b) La plantilla de arranque (Bloque D) universaliza mal la firma de entorno; se corrige aquí, no en v2.4.** El punto 4 del bloque ARRANQUE escribe `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE → esperado: sin_variable` bajo un encabezado que ordena "si algo no cuadra, PARA y repórtalo", sin acotar de qué entorno es firma esa expectativa. Verificado en acto propio, 4/ago/2026, en un acto asignado a nube: `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default` es el valor real del entorno, y el propio punto 4 ya exime la sonda de red cuando el acto no la necesita — el defecto no es la sonda, es tratar `sin_variable` como constante universal del bloque en vez de como una firma más, específica de un entorno. Se declara: `sin_variable` + sonda 200 contra INEGI es la firma del entorno Ubuntu-con-red; `cloud_default` sin sonda es la firma correcta de un acto de nube. Ninguna de las dos es, por sí sola, un desajuste — el desajuste sería una firma que no corresponde al entorno que el encargo asignó. No se enmienda v2.4 (llega y queda verbatim, como todo este ADR): la corrección vive aquí, igual que en (a). Queda en el backlog de v2.5, junto con la cuarta variante de alcanzabilidad, para cuando se reescriba Bloque D.
+
+**Convención de fecha.** Las fechas de los ADR se registran en el huso horario local del repo (UTC-6), no en el del entorno de ejecución: un entorno que corre en UTC cruza de día a partir de las 18:00 hora local, y le pone a un acto la fecha de mañana. Esta misma entrada llevaba `5/ago/2026` por esa razón — el commit original quedó en `2026-08-05T00:58:13+00:00`, que en el huso del repo es 4/ago 18:58, media hora después de PR #100 (18:28 -0600) — corregido a `4/ago/2026` en sus tres apariciones antes de fusionar. Ningún test lo vigila.
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` **no sube** y el archivo **no se renombra** — mismo criterio que ADR-48 a ADR-58. `instrucciones-proyecto-v2_4.md` es archivo nuevo: no reemplaza ni borra `instrucciones-proyecto-v2.md`, que conserva citas vivas.
+
+→ **Vigente. S2.** *(Aprobado 4/ago/2026, decisión de mesa del autor. Sesión de escritura, sin dato — perímetro declarado en el propio encargo: `instrucciones-proyecto-v2_4.md` (nuevo, verbatim, sha256 verificado contra el valor que dio mesa), `canon/gobernanza-v1_15.md` (este ADR + cascada de cabecera), `canon/estado-programa-v1_10.md` (cascada del contador de ADR); no abrió `data/raw/` ni microdato.)*
 
 ---
 
