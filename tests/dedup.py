@@ -60,13 +60,29 @@ for r in rows:
     if r['n_dom']>=3: print(f"  {r['n_dom']}d  micro={r['micro']:2s} libre={r['libre']:2s}  {r['acronimo']:16s} {r['titulo'][:60]}")
 
 # --- cruce contra el manifiesto: qué del catálogo ya está en disco ---
+# Cruce aproximado (la versión exacta, mantenida a mano, vive en
+# tests/cruce_operables.py). Dos correcciones aquí, verificadas contra
+# el manifiesto real -- no una regla general re-derivable de memoria:
+#  (a) un id que empieza con dígito (ordinal de documento multi-parte,
+#      p.ej. `1_vfinal_..._ensanut_2024_...`) no tiene "letras al inicio"
+#      -- antes no aportaba NINGÚN prefijo; ahora se prueban todas sus
+#      palabras, porque la significativa (`ensanut`) no está en la primera.
+#  (b) el acrónimo se pliega a ASCII antes de comparar: los ids del
+#      manifiesto son ASCII y un acrónimo con tilde (LATINOBARÓMETRO)
+#      nunca calzaría por diferencia de byte, no porque falte en disco.
 MAN = os.path.join(OUT, 'manifiesto.yaml')
 en_disco = set()
 if os.path.exists(MAN):
     ids = re.findall(r'^- id: ([a-z0-9_]+)', open(MAN, encoding='utf-8').read(), re.M)
-    pref = {m.group(0).upper() for i in ids if (m := re.match(r'^[a-z]+', i))}
+    pref = set()
+    for i in ids:
+        m = re.match(r'^[a-z]+', i)
+        if m:
+            pref.add(m.group(0).upper())
+        else:
+            pref.update(tok.upper() for tok in re.findall(r'[a-z]+', i))
     for r in rows:
-        a = r['acronimo'].upper()
+        a = unicodedata.normalize('NFKD', r['acronimo'].upper()).encode('ascii', 'ignore').decode()
         if a in pref or any(p in a for p in pref if len(p) > 3):
             en_disco.add(r['acronimo'])
     r_disco = f"{len(en_disco)} ({', '.join(sorted(en_disco))})"
