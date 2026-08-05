@@ -832,6 +832,44 @@ coeficientes_generador_medidos:
       independientes entre sí por compartir instrumento y universo; no se
       combinan ni se promedian.
 
+  G3_horizonte_temporal:
+    clase: "GATE·ID-X -- compuerta de identificación inalcanzable por construcción, verificada con n reales (Encargo CORRIDA-IDG3, forense/notas/2026-08-05-corrida-idg3.md). NO es una estimación: el gate detiene el acto antes de cruzar exposición contra desenlace."
+    antes: "ASIGNADO -- coeficiente de generador (G3 -0.60, procedencia.yaml:627), RUTA-I (única del censo, forense/censo-estimabilidad-coeficientes-v1_0.md fila 5), llave de identificación (i) de ADR-57(c) sellada por ficha-id-g3-v1_0.md (PR #125), no ejercida hasta este acto"
+    universo: "Jefes de hogar ENNViH/MxFLS presentes en olas 2 (2005-06) y 3 (2009-12), con batería TB33 determinada (FORMAL_CONTRATO=tb33p_a∨tb33p_b vs INFORMAL=tb33p_c) en ambas olas y con ah03h no faltante en ambas olas -- especificación primaria: jefe de hogar; sensibilidad: algún miembro del hogar"
+    fuente: "ENNViH/MxFLS, panel de tres olas, dominio público -- exposición TB33 (Libro IIIA), desenlace ah03h/tenencia de Activos Financieros-AFORE (Libro II sección ii_ah), roster de jefatura (Libro C) -- forense/notas/2026-08-05-corrida-idg3.md §4"
+    n_util: "primaria (jefe): 762 (de 6,818 jefes enlazados en ambas olas; 771 con TB33 determinado antes del filtro de ah03h) · sensibilidad (algún miembro): 1,562 (de 6,818; 1,595 con TB33 determinado)"
+    gate_id_x: >
+      Recalculado con n reales sobre la fórmula sellada de
+      tests/idx_g3.py (se_log_rr, reusada sin modificar, verificada contra
+      su propia reproducción del 1.237 publicado): primaria
+      IC95%sup=1.483 (margen -0.233 sobre el umbral <1.25); sensibilidad
+      IC95%sup=1.372 (margen -0.122). Ninguna de las dos alcanza. El
+      pre-cálculo publicado en la ficha (1.237, margen +0.013) usó una
+      cota flojísima sobre las poblaciones completas de cada ola
+      (2,253/17,177) que no exige enlace de panel, aplicabilidad de TB33
+      ni ausencia de faltantes -- la muestra real, con esos tres filtros
+      aplicados, es dos órdenes de magnitud más chica.
+    estimando: >
+      NINGUNO. El gate detiene el acto antes de cruzar
+      FORMAL_CONTRATO/INFORMAL contra ah03h -- no se calculó RR, razón de
+      riesgo ni intervalo de confianza sobre la relación exposición-
+      desenlace. Este acto NO produce un coeficiente identificado ni un
+      coeficiente en la escala del generador; produce la confirmación de
+      que la llave de identificación (i) de ADR-57(c), aplicada a este
+      desenlace con este panel, no tiene potencia suficiente. El contador
+      0 de 15 no se mueve.
+    fila_propuesta: "ID-X (propuesta de esta sesión, no adjudicada -- mesa audita)"
+    supuesto_identificacion: >
+      No ejercido (el gate no lo permitió), pero declarado por la ficha
+      antes de correr: efectos fijos de hogar vía pid_link, tenencia de
+      AFORE del hogar responde a la formalidad contractual del JEFE y no
+      del conjunto de miembros -- sesgo declarado ATENÚA (dirección
+      CONTRA encontrar el efecto), mismo argumento que CAL-G3.
+    nota_escala: >
+      No aplica -- no hay estimando que escalar. ADR-57(c) distingue
+      identificado de en-escala-del-modelo; este acto no llega a ninguno
+      de los dos.
+
 # ══════════════════════════════════════════════════════════════════
 # CENSO DE ESTIMABILIDAD · Encargo E-CE · 04/ago/2026 · campo `ruta:`
 # nuevo por coeficiente. `asignados_coeficiente.detalle` NO SE TOCA (mismo
