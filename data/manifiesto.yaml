@@ -3619,3 +3619,316 @@
   licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: ensu2025_bd_csv_zip
+  usado_para: 'Encargo B-3 (mesa #20): microdatos ENSU 2025 (Encuesta Nacional de Seguridad
+    Publica Urbana), candidata a confianza_institucional[seguridad]/exposicion_violencia --
+    pertinencia de reactivo sigue parcial/no verificada (forense/notas/2026-08-04-barrido-alcanzabilidad-27fuentes.md
+    paragraph 3 y 7). Este acto solo descarga y registra, sin leer reactivo. FD no disponible
+    bajo el patron verificado por el API para esta fuente -- ver nota forense de este acto.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ensu/microdatos/ensu_bd_2025_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=1127,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/12332522, coincide
+    con lo bajado)'
+  archivo: ensu2025/ensu_bd_2025_csv.zip
+  sha256: 317ed14f2f2f43c9f8280e491f7592d0cf95a0392aaa641b66822569444b121c
+  tamano_bytes: 12332522
+  formato: CSV (comprimido en ZIP) -- Base de datos ENSU 2025, edicion mas reciente verificada.
+    No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enbiare2021_bd_csv_zip
+  usado_para: 'Encargo B-3 (mesa #20): microdatos ENBIARE 2021, candidata a familismo_obligacion/familismo_apoyo
+    (hoy solo con proxy via ENUT) -- forense/notas/2026-08-04-barrido-alcanzabilidad-27fuentes.md
+    paragraph 5 y 7. Este acto solo descarga y registra, sin leer reactivo.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enbiare/2021/microdatos/enbiare_2021_base_de_datos_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3103,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/5684658, coincide
+    con lo bajado)'
+  archivo: enbiare2021/enbiare_2021_base_de_datos_csv.zip
+  sha256: afe9013a4cc26538dfe81da686f0d09e756a7d0e2fc407cd22f596fd53c0f354
+  tamano_bytes: 5684658
+  formato: CSV (comprimido en ZIP) -- Base de datos ENBIARE 2021. No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enbiare2021_fd_pdf
+  usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ENBIARE 2021, pareja
+    de enbiare2021_bd_csv_zip.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enbiare/2021/microdatos/enbiare_2021_fd.pdf
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3103,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/997663, coincide
+    con lo bajado)'
+  archivo: enbiare2021/enbiare_2021_fd.pdf
+  sha256: 8a79265d8c1f761d9f3043c2d4837a9366679314b97aaebd8d189c6bcbc716a9
+  tamano_bytes: 997663
+  formato: PDF -- Descriptor de archivos (FD) de ENBIARE 2021. No se abrio.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enasic2022_bd_csv_zip
+  usado_para: 'Encargo B-3 (mesa #20): microdatos ENASIC 2022, candidata a familismo_obligacion/familismo_apoyo
+    (hoy solo con proxy via ENUT) -- forense/notas/2026-08-04-barrido-alcanzabilidad-27fuentes.md
+    paragraph 5 y 7. Este acto solo descarga y registra, sin leer reactivo.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enasic/2022/microdatos/enasic_2022_bd_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3325,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/2289078, coincide
+    con lo bajado)'
+  archivo: enasic2022/enasic_2022_bd_csv.zip
+  sha256: 8a5e8c5ed2dcda6e25dfe2dd630c0ac7273e0736e7b99662a15a4ef68c3ab36e
+  tamano_bytes: 2289078
+  formato: CSV (comprimido en ZIP) -- Base de datos ENASIC 2022. No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enasic2022_fd_xlsx
+  usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ENASIC 2022, pareja
+    de enasic2022_bd_csv_zip.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enasic/2022/microdatos/enasic_2022_fd.xlsx
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3325,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/266488, coincide
+    con lo bajado)'
+  archivo: enasic2022/enasic_2022_fd.xlsx
+  sha256: 33c692e05bd7dbafb801a1594a819c7be0e7cf5c25822c66ea458dc9fe9c1370
+  tamano_bytes: 266488
+  formato: XLSX -- Descriptor de archivos (FD) de ENASIC 2022. No se abrio.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: ensafi2023_bd_csv_zip
+  usado_para: 'Encargo B-3 (mesa #20): cierre del barrido de alcanzabilidad -- ENSAFI 2023
+    (Encuesta Nacional sobre Salud Financiera) estaba SIN PAYLOAD en el catalogo v2.0 sin
+    haberse sondeado. Portal INEGI resuelto esta sesion via /programas/ensafi/ (stub JS a
+    /2023/, idBiinegi=3364). FD declarado por el API resuelve a soft-404 (2263B) -- no publicado
+    bajo ese patron, ver nota forense. Este acto solo descarga y registra, no lee reactivo.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ensafi/2023/microdatos/ensafi_2023_bd_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/ensafi/ -> stub
+    JS a /2023/, idm=3364; API archivoscompaginacion idBiinegi=3364, tipodocto=0; verificado
+    -r 0-0 antes de bajar: Content-Range bytes 0-0/5027338, coincide con lo bajado)'
+  archivo: ensafi2023/ensafi_2023_bd_csv.zip
+  sha256: c0594079ddf4733d4f574d00f5e84290c62c5330eab0567dd867c26d42fafacd
+  tamano_bytes: 5027338
+  formato: CSV (comprimido en ZIP) -- Base de datos ENSAFI 2023. No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enpol2021_bd_csv_zip
+  usado_para: 'Encargo B-3 (mesa #20): cierre del barrido de alcanzabilidad -- ENPOL 2021
+    (Encuesta Nacional de Poblacion Privada de la Libertad) estaba SIN PAYLOAD en el catalogo
+    v2.0 sin haberse sondeado. Portal INEGI resuelto esta sesion via /programas/enpol/ (stub
+    JS a /2021/, idm=3119, formato idm sin comillas -- variante no vista antes). Candidata
+    a seguridad_justicia. Este acto solo descarga y registra, no lee reactivo.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enpol/2021/microdatos/bd_enpol_2021_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/enpol/ -> stub
+    JS a /2021/, idm=3119; API archivoscompaginacion idBiinegi=3119, tipodocto=0; verificado
+    -r 0-0 antes de bajar: Content-Range bytes 0-0/35914746, coincide con lo bajado)'
+  archivo: enpol2021/bd_enpol_2021_csv.zip
+  sha256: 8307f9e4542093f8d1b2aac5676956c939551c42ce3ae5d08bdcb22bc5e06cfb
+  tamano_bytes: 35914746
+  formato: CSV (comprimido en ZIP) -- Base de datos ENPOL 2021. No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enpol2021_fd_pdf
+  usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ENPOL 2021, pareja
+    de enpol2021_bd_csv_zip.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enpol/2021/microdatos/fd_enpol2021.pdf
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion idBiinegi=3119,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/3945038, coincide
+    con lo bajado)'
+  archivo: enpol2021/fd_enpol2021.pdf
+  sha256: 7f3a23e15782d9df9a3e5da65b4fda9d9c9fc76ca1acfdf4f4347702ec6f06db
+  tamano_bytes: 3945038
+  formato: PDF -- Descriptor de archivos (FD) de ENPOL 2021. No se abrio.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enfih2019_bd_csv_zip
+  usado_para: 'Encargo B-3 (mesa #20): cierre del barrido de alcanzabilidad -- ENFIH 2019
+    (Encuesta Nacional sobre las Finanzas de los Hogares, Banxico+INEGI) estaba SIN PAYLOAD
+    en el catalogo v2.0 sin haberse sondeado. Portal INEGI resuelto esta sesion via /programas/enfih/
+    (stub JS a /2019/, idBiinegi=3099). Candidata a credito-ahorro-finanzas-hogar. Este acto
+    solo descarga y registra, no lee reactivo.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enfih/2019/microdatos/enfih_2019_base_de_datos_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/enfih/ -> stub
+    JS a /2019/, idm=3099; API archivoscompaginacion idBiinegi=3099, tipodocto=0; verificado
+    -r 0-0 antes de bajar: Content-Range bytes 0-0/4404049, coincide con lo bajado)'
+  archivo: enfih2019/enfih_2019_base_de_datos_csv.zip
+  sha256: be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5
+  tamano_bytes: 4404049
+  formato: CSV (comprimido en ZIP) -- Base de datos ENFIH 2019. No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enfih2019_fd_xlsx
+  usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ENFIH 2019, pareja
+    de enfih2019_bd_csv_zip.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enfih/2019/microdatos/enfih_2019_fd.xlsx
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion idBiinegi=3099,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/202396, coincide
+    con lo bajado)'
+  archivo: enfih2019/enfih_2019_fd.xlsx
+  sha256: 326b68b342797de45a7a4eb3dbf04f3790d11035df2611d7f9153d1ae12a48e1
+  tamano_bytes: 202396
+  formato: XLSX -- Descriptor de archivos (FD) de ENFIH 2019. No se abrio.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enti2022_bd_dbf_zip
+  usado_para: 'Encargo B-3 (mesa #20): cierre del barrido de alcanzabilidad -- ENTI 2022 (Encuesta
+    Nacional de Trabajo Infantil, INEGI+OIT+STPS) estaba SIN PAYLOAD en el catalogo v2.0 sin
+    haberse sondeado. Portal INEGI resuelto esta sesion via /programas/enti/ (stub JS con
+    vredirect() a /2022/, idBiinegi=3327). Candidata a trabajo_ingreso_formalidad. Este acto
+    solo descarga y registra, no lee reactivo.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enti/2022/microdatos/enti_2022_bd_dbf.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/enti/ -> stub JS
+    vredirect() a /2022/, idm=3327; API archivoscompaginacion idBiinegi=3327, tipodocto=0,
+    titulo "Bases de datos" plural -- distinto de "Base de datos" singular visto en otras
+    fuentes; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/18671874, coincide
+    con lo bajado)'
+  archivo: enti2022/enti_2022_bd_dbf.zip
+  sha256: 9443db5e0970d73795925766fe5bccd8c56687d3fe5b8946a9b67b4e10bceaf5
+  tamano_bytes: 18671874
+  formato: DBF (comprimido en ZIP) -- Base de datos ENTI 2022. No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enti2022_fd_pdf
+  usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ENTI 2022, pareja de
+    enti2022_bd_dbf_zip.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enti/2022/microdatos/enti_2022_fd.pdf
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion idBiinegi=3327,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/1760381, coincide
+    con lo bajado)'
+  archivo: enti2022/enti_2022_fd.pdf
+  sha256: 40b570551e125c334a671f1bdbd46c1334b2b8fbd721b7c2797503968b6ac4be
+  tamano_bytes: 1760381
+  formato: PDF -- Descriptor de archivos (FD) de ENTI 2022. No se abrio.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: eder2025_bd_csv_zip
+  usado_para: 'Encargo B-3 (mesa #20): cierre del barrido de alcanzabilidad -- EDER 2025 (Encuesta
+    Demografica Retrospectiva) estaba SIN PAYLOAD en el catalogo v2.0 sin haberse sondeado.
+    Portal INEGI resuelto esta sesion via /programas/eder/ (stub JS a /2025/, idBiinegi=3463).
+    Candidata a migracion. Este acto solo descarga y registra, no lee reactivo.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/eder/2025/microdatos/eder2025_bases_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/eder/ -> stub JS
+    a /2025/, idm=3463; API archivoscompaginacion idBiinegi=3463, tipodocto=0; verificado
+    -r 0-0 antes de bajar: Content-Range bytes 0-0/15399361, coincide con lo bajado)'
+  archivo: eder2025/eder2025_bases_csv.zip
+  sha256: f6e953778392cd6814cc0ace7e222fc3e98cbbd02eff36510f37046ce7089970
+  tamano_bytes: 15399361
+  formato: CSV (comprimido en ZIP) -- Base de datos EDER 2025. No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: eder2025_descripcion_bd_pdf
+  usado_para: 'Encargo B-3 (mesa #20): documento "Descripcion de la base de datos" de EDER
+    2025, pareja de eder2025_bd_csv_zip -- el API no listo un titulo "Descriptor de archivos
+    (FD)" para esta fuente, el equivalente mas cercano trae este titulo distinto, declarado
+    asi (no forzado a la etiqueta FD).'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/eder/2025/microdatos/889463930242.pdf
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion idBiinegi=3463,
+    tipodocto=0, titulo "Descripcion de la base de datos", pathLogico numerico 889463930242
+    -- no un slug descriptivo; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/4380365,
+    coincide con lo bajado)'
+  archivo: eder2025/eder2025_descripcion_bd.pdf
+  sha256: 9737a557c3f23340a4d21c43b213918a7961d102537d29c0139bd8ba9e8b69e6
+  tamano_bytes: 4380365
+  formato: PDF -- Descripcion de la base de datos de EDER 2025 (no rotulado FD por el propio
+    API). No se abrio.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: edr2024_bd_dbf_zip
+  usado_para: 'Encargo B-3 (mesa #20): cierre del barrido de alcanzabilidad -- EDR (Estadisticas
+    de Defunciones Registradas), edicion 2024, estaba SIN PAYLOAD en el catalogo v2.0 sin
+    haberse sondeado. Portal INEGI resuelto directo (sin stub de redireccion) via /programas/edr/,
+    idBiinegi=3358. Candidata a salud. El API lista 43 archivos para esta fuente (bases de
+    datos 1990-2024, tabulados, olap) y NINGUNO trae titulo "Descriptor de archivos" -- FD
+    no publicado por separado para EDR bajo este mecanismo, declarado como tal, no como "no
+    lo encontre". Este acto solo descarga y registra, no lee reactivo.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/edr/microdatos/defunciones/2024/defunciones_base_datos_2024_dbf.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/edr/ real, idm=3358,
+    sin stub de redireccion; API archivoscompaginacion idBiinegi=3358, tipodocto=0; verificado
+    -r 0-0 antes de bajar: Content-Range bytes 0-0/28238311, coincide con lo bajado)'
+  archivo: edr2024/defunciones_base_datos_2024_dbf.zip
+  sha256: a8acb8f0f5aab9d06bf50e55db0f1c2de3e3c32597e0f0aa7c62d0530c17ee3b
+  tamano_bytes: 28238311
+  formato: DBF (comprimido en ZIP) -- Base de datos EDR 2024 (defunciones registradas). No
+    se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: elcos2012_bd_dbf_zip
+  usado_para: 'Encargo B-3 (mesa #20): cierre del barrido de alcanzabilidad -- ELCOS 2012
+    (Encuesta Laboral y de Corresponsabilidad Social, INEGI+INMUJERES no verificado) estaba
+    SIN PAYLOAD en el catalogo v2.0 sin haberse sondeado. Portal INEGI resuelto esta sesion
+    via /programas/elcos/ (stub JS a /2012/, idBiinegi=1729). Candidata a uso_del_tiempo_cuidados_hogar
+    / trabajo_ingreso_formalidad. pathLogico del API (ELCOS_BD) no trae año, a diferencia
+    de otras fuentes -- verificado con dos variantes de construccion de URL antes de bajar
+    (ver nota forense). Este acto solo descarga y registra, no lee reactivo.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/elcos/microdatos/ELCOS_BD_dbf.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/elcos/ -> stub
+    JS a /2012/, idm=1729; API archivoscompaginacion idBiinegi=1729, tipodocto=0, pathLogico=/programas/elcos/microdatos/ELCOS_BD
+    extension=dbf; verificado -r 0-0 la construccion pathLogico+_dbf.zip antes de bajar: Content-Range
+    bytes 0-0/3902958, coincide con lo bajado -- la variante pathLogico+.dbf sin zip dio soft-404,
+    descartada)'
+  archivo: elcos2012/ELCOS_BD_dbf.zip
+  sha256: 925013378ceffc1cb800902dad2d0d090992d8ce7f5e6049a51b0605c85b30b5
+  tamano_bytes: 3902958
+  formato: DBF (comprimido en ZIP) -- Base de datos ELCOS 2012. No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: elcos2012_fd_xls
+  usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ELCOS 2012, pareja
+    de elcos2012_bd_dbf_zip. Formato .xls (Excel legado, no .xlsx) -- se comprobo que se comporta
+    como pdf/xlsx (sin sufijo .zip), no como formato de datos.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/elcos/doc/elcos_fd.xls
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion idBiinegi=1729,
+    tipodocto=0, pathLogico=/programas/elcos/doc/elcos_fd extension=xls; verificado -r 0-0
+    antes de bajar: Content-Range bytes 0-0/293376, coincide con lo bajado -- la variante
+    pathLogico+_xls.zip dio soft-404, descartada)'
+  archivo: elcos2012/elcos_fd.xls
+  sha256: 5d93835e086b7d03863b80d394e0a6a006bfac27a8ee3cf8a6db1fe0140ec9c9
+  tamano_bytes: 293376
+  formato: XLS -- Descriptor de archivos (FD) de ELCOS 2012. No se abrio.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
