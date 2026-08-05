@@ -1,6 +1,6 @@
 # Nota propia — Encargo E-CE, censo de estimabilidad de los 15 coeficientes de generador
 
-*5 de agosto de 2026. Acto de escritorio, entorno nube (`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default`, sin sonda de red — el propio encargo exime el punto 4 del Bloque D: "no toca microdato ni red"). Base: `origin/main` = `8cdabcb` (merge PR #106), verificado con `git fetch origin main` contra el SHA declarado por el encargo — coinciden exactamente, cero deriva que reportar antes de editar.*
+*4 de agosto de 2026. Acto de escritorio, entorno nube (`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default`, sin sonda de red — el propio encargo exime el punto 4 del Bloque D: "no toca microdato ni red"). Base: `origin/main` = `8cdabcb` (merge PR #106), verificado con `git fetch origin main` contra el SHA declarado por el encargo — coinciden exactamente, cero deriva que reportar antes de editar.*
 
 **Qué es este documento y qué no es.** Nota de cierre de sesión sobre `forense/censo-estimabilidad-coeficientes-v1_0.md` (nuevo). No abre ningún microdato, no corre ninguna estimación, no adjudica ningún veredicto de Hito D, no cambia ningún valor `ASIGNADO`. Perímetro del encargo, verificado al cerrar: `forense/censo-estimabilidad-coeficientes-v1_0.md` (nuevo) · `milpa/procedencia.yaml` (solo campo `ruta:` nuevo, sección paralela, `detalle` sin tocar) · esta nota · `forense/hallazgos.md` (append). No se escribió nada fuera de esa lista.
 
