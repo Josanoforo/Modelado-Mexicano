@@ -1,6 +1,6 @@
 # ACTO C-06a — Las cinco cifras de `conf.06`, localizadas
 
-*5 de agosto de 2026. Sesión LIMPIA: no se abrió ENCUCI ni ningún microdato. No se editó `canon/glosario-v5_6.md`, `forense/hitoD-preregistro-v2_0.md` ni `forense/cruce-catalogo-fichas-v2_0.md`. No se adjudicó `R8.3`. No se selló ADR. No se calculó ninguna proporción — toda cifra citada aquí es una relectura de un artefacto ya escrito por una sesión anterior, con archivo y línea.*
+*4 de agosto de 2026. Sesión LIMPIA: no se abrió ENCUCI ni ningún microdato. No se editó `canon/glosario-v5_6.md`, `forense/hitoD-preregistro-v2_0.md` ni `forense/cruce-catalogo-fichas-v2_0.md`. No se adjudicó `R8.3`. No se selló ADR. No se calculó ninguna proporción — toda cifra citada aquí es una relectura de un artefacto ya escrito por una sesión anterior, con archivo y línea.*
 
 **Corrección de mesa que origina el acto.** Una sesión previa declaró que `conf.06` "se resuelve leyendo". Es falso: leer da las cinco cifras y qué dicen medir; adjudicar cuál es cuál exige calcular, y eso queda fuera de este acto por diseño (§4).
 
