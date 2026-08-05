@@ -1,8 +1,16 @@
-# ENCARGO E-MXFLS · Ficha borrador — diseño intra-persona para `G3·horizonte_temporal` (RUTA-I)
+# FICHA `ID-G3` · diseño intra-persona para `G3·horizonte_temporal` (RUTA-I)
+### `ficha-id-g3` · **v1.0** · 5 de agosto de 2026 · Encargo S2-IDG3, promovida de borrador
 
-**Estado: BORRADOR. NO SELLADA.** Este documento es el entregable que ADR-57(c) pidió y no concedió — el diseño de la promoción de `CAL-G3` (descriptivo, Fase C ya corrida) a un intento de identificación bajo la llave (i) ("panel con el desenlace en el instrumento, mismos sujetos entre olas"). Mesa sella en acto aparte. Este acto **no corre la estimación, no abre microdato, no promueve nada** en `milpa/procedencia.yaml` ni en ningún canon.
+> | | |
+> |---|---|
+> | **ARCHIVO** | `ficha-id-g3-v1_0.md` |
+> | **REEMPLAZA A** | `forense/notas/2026-08-04-e-mxfls-ficha-borrador.md` — el propio borrador, `git mv`ido a este archivo (no hay dos copias; la nota de proceso original, `forense/notas/2026-08-04-e-mxfls-nota-proceso.md`, queda intacta y sin tocar) |
+> | **VERIFICAS ASÍ** | Condiciones (1)/(3) de sello: `forense/notas/2026-08-05-s-idg3-verificacion-no-sello.md` §2(1),(3) — citas verbatim contra `canon/gobernanza-v1_15.md:623` y contra el Paso 2(8)/fila `E` de esta misma ficha, no re-verificadas aquí. Condición (2): 9 invocaciones `python3 tests/manifiesto.py --verifica --id <id>`, las 9 `COINCIDE`, salida cruda en `forense/notas/2026-08-05-s2-idg3-sello.md` §2. Condición (4): `python3 tests/idx_g3.py` (barrido de 6 escenarios ICC×pares-de-olas, las 6 `<1.25`), salida completa en `forense/notas/2026-08-05-s2-idg3-sello.md` §3 y reproducible corriendo el script. |
+> | **NOMBRE ESTABLE** | **`ficha-id-g3`** — cítalo así, no por nombre de archivo |
 
-Redactado en worktree `~/mm-e-mxfls-g3-horizonte`, rama `sesion/e-mxfls-g3-horizonte-ficha`, contra `origin/main` en `bd2c975` (el encargo declaraba `2bc613b`; es ancestro directo — verificado `git merge-base --is-ancestor` — y el único merge entre ambos, PR #113, no toca ningún archivo de este perímetro; detalle en la nota de proceso). Único PR abierto concurrente: #114 (`sesion/hitoD-r1-3-canal-confianza`, R1.3 canal de confianza→fintech) — hipótesis distinta, sin traslape de archivos con este acto.
+**Estado: PROPUESTA DE SELLO COMPLETA — pendiente decisión de mesa (PLAN-MAESTRO v1.5 §1: "sellarla es decisión de mesa").** Este documento es el entregable que ADR-57(c) pidió y no concedió — el diseño de la promoción de `CAL-G3` (descriptivo, Fase C ya corrida) a un intento de identificación bajo la llave (i) ("panel con el desenlace en el instrumento, mismos sujetos entre olas"). Las cuatro condiciones de sello (`forense/notas/2026-08-05-s-idg3-verificacion-no-sello.md` §8, retomadas por el Encargo S2-IDG3) verifican limpias — ver tabla `VERIFICAS ASÍ` arriba y `forense/notas/2026-08-05-s2-idg3-sello.md` para la evidencia completa. **Este acto no corre la estimación, no abre microdato, no promueve nada** en `milpa/procedencia.yaml` ni en ningún canon — correr la estimación en la misma sesión que sella contaminaría el pre-registro contra MxFLS (ADR-46).
+
+Redactado originalmente en worktree `~/mm-e-mxfls-g3-horizonte`, rama `sesion/e-mxfls-g3-horizonte-ficha`, contra `origin/main` en `bd2c975`. Verificado sin sellar por S-IDG3 en `~/Modelado-Mexicano` (nube), rama `claude/g3-horizonte-temporal-id-s88z1w`, contra `origin/main` en `06d04be`. Esta promoción a artefacto propio se redactó en worktree `~/mm-s2-idg3-sello`, rama `sesion/s2-idg3-sello`, contra `origin/main` en `08b8b6c` (PR #121, el mismo que fusionó la nota de S-IDG3).
 
 ---
 
