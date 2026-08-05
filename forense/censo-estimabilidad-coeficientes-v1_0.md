@@ -1,5 +1,5 @@
 # Censo de estimabilidad de los 15 coeficientes de generador
-### `censo-estimabilidad-coeficientes` · **v1.0** · 5 de agosto de 2026 · Encargo E-CE, acto de escritorio (nube, sin microdato)
+### `censo-estimabilidad-coeficientes` · **v1.0** · 4 de agosto de 2026 · Encargo E-CE, acto de escritorio (nube, sin microdato)
 
 > | | |
 > |---|---|
@@ -37,7 +37,7 @@ Las cuatro clases se derivan directamente de la compuerta de identificación que
 - **`data/catalogo-fuentes-v2_0.md`** — inventario de fuentes por dominio/clase, no por variable (declarado en su propio §"Lo que este documento no hace", línea 184-187). Revisado completo: no aporta ningún candidato de reactivo o desenlace a nivel de coeficiente que no esté ya en `procedencia.yaml`/`modelo-decision`/`hitoD-preregistro` — su unidad es la fuente, no el ítem.
 - **`forense/cruce-catalogo-fichas-v2_0.md`** ("cruce v2.0") — cruza el catálogo contra las 27 fichas de Hito D (veredictos de falsación de reglas), no contra los 15 coeficientes de generador. Revisado completo (§3.1-§3.10): cero mención de `coeficientes_generador_medidos`, cero mención de `asignados_coeficiente`. No aporta candidatos nuevos aquí — se declara el negativo en vez de omitirlo.
 - **`canon/modelo-decision-v4_0.md`** §1.1.E-F (H-01 a H-12, líneas 214-227) y §2.1-2.2 (líneas 370-398) — origen de la mayoría de los candidatos y de los cierres de búsqueda ya sellados (ADR-52 A, ADR-54).
-- **`forense/hitoD-preregistro-v2_0.md`** Notas 7-10 (líneas 478-651) — la ficha `CAL-G3`, único caso con llave de identificación ya ejercida a nivel descriptivo.
+- **`forense/hitoD-preregistro-v2_0.md`** Notas 7-10 (líneas 478-651) — la ficha `CAL-G3`, único caso con llave de identificación ya corrida a nivel descriptivo.
 - **`forense/hallazgos.md`** — barrido de actos de medición ya corridos sobre ENVIPE/ENDIREH para los desenlaces de G4 (líneas 72, 77, 87, 90, 94 del archivo).
 
 ---
