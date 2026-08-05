@@ -1011,6 +1011,18 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 
 ---
 
+### Nota 28 · 4/ago/2026 — Adjudicación de `R3.1` → veredicto `B`, sellada en `gobernanza` ADR-60
+
+*(Añadida al final, fechada, sin tocar el cuerpo, la ficha ni las Notas 1-27 — misma disciplina que las notas anteriores. Decisión de mesa del autor, ENCARGO M-1, 4/ago/2026, sobre la propuesta que Nota 27 dejó sin adjudicar.)*
+
+**Adjudicación.** La corrida de Nota 27 (dirección confirmada en 6 de 6 cómputos, brecha 9.28pp-32.73pp, sin traslape de IC95% en ninguno, resuelta por Respaldo 1 sin pareo por tipo de trámite individual) se adjudica fila `B` — degrada a `[MEDIA]`, no refuta. Cuatro razones, incluida la resolución de la contradicción textual entre la línea 762 de la ficha ("este respaldo degrada automáticamente el veredicto a B, nunca a A") y la fila `A` de su propia escala, línea 784 ("vía candidata primaria o Respaldo 1"): `gobernanza` ADR-60(a). La resolución de esa tensión (762 gobierna sobre 784) fue declarada en `forense/hitoD-R3_1-especificacion-v1_0.md §4`, **antes** de abrir `encig23_base_datos_csv.zip` — es la razón por la que la resolución es válida; al revés no lo sería.
+
+**El tier del motor no se toca.** Un veredicto `B` no retiquetea `R3.1` de `[FUERTE]` a `[MEDIA]` en `modelo §3.B`/`§7` — el tier del motor y el veredicto de Hito D son ejes distintos, con precedente directo e intacto: `R3.2`→`B` archivado el 29/jul, tier `[FUERTE]` sin tocar. El perímetro de 27 (20 `[FUERTE]`+5 `[MEDIA-FUERTE]`+1+1) no se mueve por esto: `gobernanza` ADR-60(b).
+
+**Tres límites declarados, no resueltos** (contradicción de escala, género como confundidor no aislado, composición por contacto con autoridad de seguridad en la partición de `N_TRA`); **convergencia observada, no adjudicada**, entre `R3.1` y `W1` (mismo desenlace `tramite.mordida.discrecional`, mismo `PORQUE` G1); **`G1·radio_confianza`** pasa de `ASIGNADO` a `ASIGNADO · SIGNO BAJO PRUEBA`, condición de resolución en el resultado de `W1-P`; **hipótesis del desdoble de `radio_confianza`, probada y descartada** con los conteos por ítem de `§4.1` del Encargo X: `gobernanza` ADR-60(c)-(f). Detalle completo de la decisión, con su razonamiento íntegro: `gobernanza` ADR-60.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
@@ -1027,3 +1039,4 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 `R5.1` → veredicto `A` — *(archivado 4/ago/2026, narrado en Nota 16, adjudicado por `gobernanza` ADR-58(c). Reserva verbatim, Nota 16: "ENIGH es corte transversal repetido, no panel (aunque el Umbral de la ficha, línea 143, pide literalmente la comparación transversal beneficiario/no-beneficiario que este acto corrió); control de comparabilidad limitado a tercil de ingreso per cápita (sin pareo por región/escolaridad ni matching); `P040` no distingue donante familiar de no familiar; cobertura del programa no es 100% en ninguna ola." Detalle en `forense/notas/2026-08-04-hitoD-r5-1-pension-bienestar.md`)*
 `R5.2` → veredicto `A` — *(archivado 4/ago/2026, narrado en Nota 18, adjudicado por `gobernanza` ADR-58(c). Reserva verbatim, Nota 18: "El punto satisface la fila `A` ... pero el IC95% no despeja el umbral — el límite inferior (14.39%) queda debajo de 20%, a diferencia de la corrida limpia de `R7.2`/Nota 12." (Reducción% = 23.98%, SE=4.89pp, IC95%=[14.39%,33.57%].) Detalle en `forense/notas/2026-08-04-y1-operacionalizacion-r5-2-enut.md` y `forense/notas/2026-08-04-y5-veredicto-r5-2.md`)*
 `R1.2` → veredicto `E` — *(archivado 4/ago/2026, narrado en Nota 19, adjudicado por `gobernanza` ADR-58(d), excepción acotada y nombrada — regla `dinero.planeacion.formal_estable`. Desenlace verbatim, Nota 19: "El Umbral pide `<15%`. El resultado, 42.98% con IC95% que no se acerca a 15%, es una no-satisfacción decisiva y limpia del falsador — no un caso límite como `R5.2`." (Numerador=42.98%, SE=1.58pp, IC95%=[39.88%,46.08%].) Detalle en `forense/notas/2026-08-04-y6-veredicto-r1-2.md`)*
+`R3.1` → veredicto `B` — *(archivado 4/ago/2026, narrado en Nota 28, detalle en `hitoD-R3.1`, adjudicado por `gobernanza` ADR-60. Corrida completa (seis cómputos, brecha 9.28pp-32.73pp, sin traslape de IC95%) narrada en Nota 27.)*
