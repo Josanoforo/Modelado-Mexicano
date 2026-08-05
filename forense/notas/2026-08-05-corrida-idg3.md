@@ -122,3 +122,23 @@ Ninguna sensibilidad reincorpora `tb33p_d` (IMSS) — reabrir ese canal reabrir�
 - **Fila `E`** (el falsador corrió limpio y no se satisfizo): no aplica aquí en su forma prospectiva original — esa fila describe el desenlace de CORRER el contraste y no encontrar señal con poder suficiente. Aquí el gate impide llegar siquiera a correr el contraste. La ficha misma anticipó esto como posible desenlace de esta ruta (§8: "es plausible... que el número real de hogares informativos quede de nuevo por debajo de lo necesario") — y ese desenlace, confirmado, es exactamente `ID-X`, no `E`: la diferencia es que `E` presupone que el contraste SÍ corrió y no refutó; `ID-X` es que el contraste NUNCA debió correr.
 
 el primer resultado que produzca este procedimiento es el que se reporta.
+
+---
+
+## §8 · Resultados (commit 2 — no edita lo anterior)
+
+**Fila propuesta: `ID-X`.** Confirmada para la especificación primaria (jefe, n_util=762, IC95%sup=1.483) y para su sensibilidad pre-registrada (algún miembro, n_util=1,562, IC95%sup=1.372) — ninguna de las dos alcanza el umbral `<1.25` de la ficha (§3, §6, §7 arriba). El gate se ejecutó y se detuvo el acto **antes** de cruzar `FORMAL_CONTRATO`/`INFORMAL` contra `ah03h` — no se calculó ningún RR, ninguna razón de riesgo, ningún IC95% sobre la relación exposición-desenlace. Lo único calculado sobre `ah03h` dentro de la muestra final son sus tasas marginales por ola (167/762 y 175/762), que son un hecho sobre el instrumento y la muestra, no sobre la relación bajo prueba — misma distinción que el Paso 0 de la ficha ya establece para sus propias cifras de estructura.
+
+Script reproducible: `tests/idg3_corrida.py` (este commit). `python3 tests/idg3_corrida.py` reproduce íntegramente la cascada, ambos gates y el veredicto de arriba.
+
+## §9 · Límites, declarados explícitamente
+
+- **No se descartó el confundidor de oferta local** (`eloc`, ficha punto 6.2) — el gate cierra el acto antes de que ese paso fuera necesario. Queda sin verificar, no como omisión sino porque no había una relación que ese confundidor pudiera oscurecer.
+- **No hay ancla externa publicada contra la cual validar un RR** de `FORMAL_CONTRATO`→`ah03h` específicamente (a diferencia de las anclas de estructura de §4, que sí existen) — no aplica de todas formas, porque no se calculó ningún RR. Se declara como límite general de esta ruta, no de esta corrida puntual.
+- **UPM sigue sin confirmarse como columna** (§5) — reverificado, no resuelto; mismo límite que la ficha ya declaraba, ahora confirmado independientemente contra las tres tablas completas de Libro C de ola 3.
+- **La atrición de 6,818 a 771/1,595 no se descompone completamente** entre "sin empleo actual" y "con empleo pero TB33 no cubre su situación contractual" más allá de lo declarado en §4 — se reportó la cifra agregada (2,147 casos en la categoría intermedia, ola 2) porque acotarla más finamente habría exigido abrir variables de TB fuera del perímetro de lectura de la ficha (§10) que no aportan a la decisión ya tomada por el gate.
+- **El episodio de entorno (§2)** es un límite del acto, no del diseño: esta sesión no habría podido completar ni siquiera la construcción de la muestra sin la instalación de `pandas` fuera de esta sesión por el usuario.
+
+## §10 · Lo que este acto NO hace
+
+No modifica `ficha-id-g3-v1_0.md`. No sella ningún ADR. No toca `canon/`. No mueve el Hito D. No mueve el contador 0 de 15 (no se produjo ningún coeficiente, identificado o no — el gate paró el acto antes de estimar nada). No declara enlace ni forma funcional. No descarga nada de red (todo el corpus ya estaba en disco, verificado por hash antes de abrir). No abre tablas fuera de la restricción del Paso 10 de la ficha (`CRH`, `SE`, `CR` permanecen sin abrir). No adjudica su propia fila — la propone; mesa adjudica.
