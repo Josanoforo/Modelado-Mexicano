@@ -350,3 +350,186 @@ otras sesiones ni a otras máquinas.
 
 **El primer resultado que produzca este procedimiento es el que se
 reporta.**
+
+---
+
+## 13 · Commit 2 — resultados (corrida única, script de sesión no commiteado)
+
+Ejecuta exactamente la especificación de §4-§10, sin desviación. Script en
+el scratch de esta sesión (mismo criterio que `Encargo W`: solo `tests/
+svystat.py` es reutilizable y se guarda; el glue de cada acto no se
+commitea), usando `tests.svystat.prop_ultimate_cluster` sin modificar.
+Primera y única corrida — no se re-ejecutó tras ver el resultado.
+
+### 13.1 · Insumos abiertos y verificaciones estructurales
+
+`envipe2025_csv.zip` abierto con `zipfile`+`csv.DictReader` (`newline=""`,
+mismo patrón que `PR #57`/`PR #74` para el terminador `\r` puro de
+`TPer_Vic2`/`TMod_Vic`). Cuatro tablas leídas: `conjunto_de_datos_
+tper_vic1_envipe2025.csv` (91182 filas), `..._tper_vic2_envipe2025.csv`
+(91182), `..._tmod_vic_envipe2025.csv` (40280), `..._tsdem_envipe2025.csv`
+(300654) — las cuatro coinciden con los conteos ya declarados por notas
+previas (`PR #57`, `PR #74`, `2026-08-04-envipe-tper-vic2-tmod-vic-
+paso1.md §6`). `EDAD` fuera de banda 18+: 0 en `TPer_Vic1` y en
+`TPer_Vic2` (verificado, no supuesto). `FAC_ELE`/`EST_DIS`/`UPM_DIS`:
+comparados persona por persona entre `TPer_Vic1` y `TPer_Vic2` vía
+`ID_PER` — **0 discrepancias de 91182** (mismo diseño, confirmado, no
+asumido).
+
+**Universo construido** (§5 de la spec): 14 285 personas con ≥1 fila de
+`TMod_Vic` con `BPCOD`∈{05,...,15} y `BP1_23` no blanco. De ellas, 13 023
+con desenlace binario (miedo/desconfianza o práctica) y 1 262 excluidas
+por responder únicamente `{09,99}` (regla §4, paso 4). 4 362 personas
+(30.5% del universo) tuvieron más de una fila calificante — la regla de
+precedencia de §4 no fue un caso marginal, fue necesaria para casi un
+tercio del universo. **Chequeo de robustez §4.1**: de las 22 536 filas
+calificantes (`BP1_23` no blanco, `BPCOD` 05-15), **22 536 tenían
+`BP1_20`=2 y 0 no** — coincidencia perfecta con la regla de pase del
+cuestionario derivada en PASO 0 (§2.2). El universo construido por
+"`BP1_23` no blanco" y el universo construido por "`BP1_20`=2" son el
+mismo conjunto, verificado, no supuesto.
+
+### 13.2 · Fila 8 — `exposicion_violencia` (θ = TPer_Vic2 núcleo) × `BP1_23`
+
+**Marginal de reconciliación** (universo completo, sin condicionar por
+θ): n=13023, 29.431% [IC95% 28.227%,30.636%].
+
+**Marginal por θ**: θ=1 (expuesto al núcleo, n=4033): 40.858%
+[38.615%,43.101%]. θ=0 (n=8990): 24.243% [22.890%,25.597%]. **Diferencia
+= +16.614pp [IC95% 13.995,19.234]pp.**
+
+**Por eje** (un eje a la vez, todas las celdas con soporte ≥30):
+
+| eje | categoría | θ=1 (n, %) | θ=0 (n, %) | diferencia [IC95%] |
+|---|---|---|---|---|
+| edad | 18-29 | 1552, 37.218% | 2133, 21.088% | +16.131 [11.852,20.410] |
+| edad | 30-44 | 1474, 43.265% | 3296, 24.627% | +18.638 [14.305,22.970] |
+| edad | 45-59 | 699, 44.754% | 2160, 25.639% | +19.114 [13.444,24.785] |
+| edad | 60+ | 308, 43.385% | 1401, 27.250% | +16.136 [8.860,23.411] |
+| dominio | U | 2728, 40.018% | 5969, 23.823% | +16.195 [12.916,19.474] |
+| dominio | C | 872, 43.637% | 1887, 26.379% | +17.258 [12.086,22.431] |
+| dominio | R | 433, 41.208% | 1134, 23.128% | +18.080 [11.040,25.121] |
+| ESTRATO | 1 (Bajo) | 455, 45.898% | 1047, 26.879% | +19.019 [13.317,24.721] |
+| ESTRATO | 2 | 1788, 41.889% | 3944, 25.673% | +16.216 [12.183,20.250] |
+| ESTRATO | 3 | 1125, 40.331% | 2396, 22.185% | +18.146 [13.065,23.227] |
+| ESTRATO | 4 (Alto) | 665, 35.463% | 1603, 21.891% | +13.573 [8.008,19.137] |
+
+**Regla de discordancia** (plantilla `G1_radio_confianza`, cita corregida
+33/9 por `ADR-61`, no 28/12): **0 de 11 celdas invierten signo respecto
+al marginal (+16.614pp); 11 de 11 distinguibles de cero al 95%.**
+Resultado marcadamente más estable que `G1_radio_confianza`/`G1_
+confianza_institucional`/`G3_familismo_apoyo` (donde condicionar
+revierte mayoría o totalidad del signo) — este β̂ marginal **sí
+sobrevive** condicionar por los tres ejes duros.
+
+**Formalidad** (subuniverso vía join `TSDem`/`ID_PER`, n=9323 de 13023,
+mismas 5 categorías que `condicionales_escalares_exposicion_
+violencia.exposicion_violencia`): jornalero +30.263pp
+[20.961,39.565] (n1=73,n0=175) · empleado/obrero +14.900pp
+[11.485,18.315] (n1=2018,n0=4422) · cuenta propia +17.827pp
+[12.256,23.398] (n1=680,n0=1488) · patrón +15.335pp [7.330,23.340]
+(n1=108,n0=296) · sin pago **SIN SOPORTE** (n1=29,n0=34, bajo el mínimo
+de 30). 0 de 4 (con soporte) invierten signo, 4 de 4 significativas.
+
+**Curva por nivel** (núcleo, 0-5 ítems disparados, no ajustada, `disciplina
+X §5`): nivel 0 (n=8990) 24.243% · nivel 1 (n=3524) 37.869% · nivel 2
+(n=433) 58.149% · nivel 3 (n=66) 72.007% · nivel 4 (n=9, **SIN SOPORTE**)
+73.329% · nivel 5 (n=1, **SIN SOPORTE**) 100%. Monótona creciente donde
+hay soporte (niveles 0-3) — se reporta como observación descriptiva, no
+como parámetro de forma identificado (§8 de la spec).
+
+### 13.3 · Fila 9 — `confianza_institucional_justicia` (7 ítems, TPer_Vic1) × `BP1_23`
+
+**Marginal de reconciliación**: idéntico al de fila 8 (n=13023, 29.431%
+[28.227%,30.636%]) — mismo universo, mismo desenlace, sin condicionar por
+ningún ítem, como se espera.
+
+**Por ítem** (universo = disparadores AP7_3 no denunciantes ∩ identifica
+la institución; θ=1 "confía"{1,2} vs θ=0 "no confía"{3,4}):
+
+| ítem | institución | n útil (confía+no confía) | diferencia marginal [IC95%] |
+|---|---|---|---|
+| `AP5_4_01` | Tránsito | 9618 (3319+6299) | −6.421 [−9.096,−3.746] |
+| `AP5_4_02` | Preventiva | 7998 (3711+4287) | −5.226 [−8.317,−2.134] |
+| `AP5_4_03` | Estatal | 9843 (4957+4886) | −7.919 [−10.588,−5.251] |
+| `AP5_4_05` | Ministerial/Judicial | 5143 (2606+2537) | −9.706 [−13.286,−6.126] |
+| `AP5_4_06` | MP y Fiscalías Estatales | 5782 (2864+2918) | −4.683 [−8.139,−1.228] |
+| `AP5_4_07` | FGR | 4278 (2490+1788) | −6.658 [−10.863,−2.452] |
+| `AP5_4_11` | Jueces | 3672 (1835+1837) | −11.269 [−15.729,−6.809] |
+
+Los siete ítems: mismo signo (negativo — no confiar asocia con MAYOR
+tasa de razón miedo/desconfianza) y los siete distinguibles de cero al
+95%.
+
+**Regla de discordancia por ítem** (un eje a la vez: edad 4 celdas +
+dominio 3 = 7 por ítem, 49 total; flip = signo distinto del marginal de
+ESE ítem, no de cero — corregido en el script tras detectar que la
+primera pasada comparaba contra cero en vez de contra el marginal del
+ítem, error que sí importaba aquí porque el marginal de fila 9 es
+negativo, a diferencia del de fila 8):
+
+| ítem | invierten signo | significativas (95%) |
+|---|---|---|
+| `AP5_4_01` Tránsito | 2 de 7 | 4 de 7 |
+| `AP5_4_02` Preventiva | 2 de 7 | 4 de 7 |
+| `AP5_4_03` Estatal | 0 de 7 | 4 de 7 |
+| `AP5_4_05` Ministerial/Judicial | 0 de 7 | 4 de 7 |
+| `AP5_4_06` MP y Fiscalías Estatales | 1 de 7 | 2 de 7 |
+| `AP5_4_07` FGR | 1 de 7 | 2 de 7 |
+| `AP5_4_11` Jueces | 0 de 7 | 5 de 7 |
+| **TOTAL** | **6 de 49** | **25 de 49** |
+
+Detalle celda por celda (los 49) en el script de sesión —
+disponible en `/tmp` de esta sesión, no commiteado; cifras arriba
+copiadas directamente de su salida, cero retecleo. `Jueces` es el ítem
+con mayor magnitud marginal y mejor proporción de significancia (0
+inversiones, 5/7 significativo); `MP y Fiscalías Estatales`/`FGR` los
+más débiles (2/7 cada uno, universo más chico por menor identificación de
+esas instituciones).
+
+**Curvas por nivel** (1-4, no ajustadas): las 7 muestran la tasa más alta
+en nivel 4 (mucha desconfianza) que en nivel 1 en las 7 instituciones;
+no monótonas estrictamente en los niveles 2-3 para todas (p.ej. `AP5_4_01`
+nivel 2=24.472% vs nivel 1=25.139%, leve no-monotonicidad temprana,
+seguida de escalón claro en nivel 4=34.557%). Se reporta como
+observación, no como parámetro de forma.
+
+### 13.4 · Declaración de contaminación (ADR-46), commit 2
+
+Esta sesión abrió, además de lo declarado en §11 (commit 1):
+`conjunto_de_datos_tper_vic1_envipe2025.csv`, `..._tper_vic2_
+envipe2025.csv`, `..._tmod_vic_envipe2025.csv`, `..._tsdem_
+envipe2025.csv` — contenido sustantivo completo (todas las filas, vía
+`csv.DictReader`), no solo estructura/conteo. No se abrió ninguna otra
+tabla del zip (`TVivienda`, `THogar`) ni ningún catálogo/diccionario más
+allá de los ya citados en PASO 0. Esta sesión, mientras retenga este
+contexto, queda **inhabilitada para pre-registrar contra ENVIPE**
+(ADR-46, unidad=sesión) — ya declarado parcialmente en §11, extendido
+aquí a microdato sustantivo completo de las cuatro tablas.
+
+### 13.5 · Qué no se hizo en Commit 2
+
+- No se editó Commit 1 (§1-§12 arriba, intactos).
+- No se corrió ninguna regresión con diseño muestral (A-bis, hasta que
+  exista cruce contra `survey` de R).
+- No se comparó ninguna cifra contra el marginal poblacional de ENVIPE
+  (91182) — prohibido por §5 de la spec.
+- No se operacionalizó `comunicacion.inseguridad.ver_oir_callar` como
+  variable global — la dicotomización de `BP1_23` (§4) es de este acto
+  únicamente.
+- No se tocó `limite_c2`, `rutas_estimabilidad_coeficiente`,
+  `asignados_coeficiente.detalle`, entradas `W` existentes, ni
+  `eje_policial`.
+- No se re-corrió el script tras ver el primer resultado (§13.1-§13.3 son
+  la única corrida, salvo la corrección de un error de signo en el
+  contador de discordancia de fila 9 detectado ANTES de transcribir
+  ninguna cifra a `procedencia.yaml` — el error estaba en el contador
+  agregado del script, no en los p_hat/IC de cada celda, que no
+  cambiaron; declarado aquí en vez de ocultado).
+- No se fusionó el PR de este acto.
+
+**Contador.** `coeficientes_generador_medidos` gana dos entradas
+(`G4_exposicion_violencia`, `G4_confianza_institucional_justicia`).
+Ningún coeficiente pasa a escala del modelo (0 de 15 sigue en 0 de 15) —
+dos asociaciones condicionales nuevas, techo del censo, sin función de
+enlace declarada.

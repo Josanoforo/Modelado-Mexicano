@@ -766,6 +766,72 @@ coeficientes_generador_medidos:
       significancia, en las celdas mayoritarias de tres de seis ejes.
       Asociar ≠ identificar.
 
+  G4_exposicion_violencia:
+    clase: "MEDIDO·β̂(diferencia de proporciones), condicional(ejes), universo=disparadores AP7_3 no denunciantes"
+    antes: "ASIGNADO -- coeficiente de generador (G4 0.70, canon/modelo-decision-v4_0.md:396), sin desenlace medido -- RUTA-C en el censo de estimabilidad (fila 8, forense/censo-estimabilidad-coeficientes-v1_0.md:72), bloqueado por limitación estructural declarada (limite_c2, procedencia.yaml:396-413) hasta adjudicación de mesa (MESA-E1 = (i), forense/notas/2026-08-04-encargo-e-envipe-g4-paso1.md §1)"
+    universo: "Personas 18+ de ENVIPE 2025 (TMod_Vic) que dispararon AP7_3_XX=1 para algún XX en {05,...,15} (catálogo completo de delito personal, no solo el núcleo 10-14 de θ) y con BP1_20=2 (no denunció) para ese delito -- n=13023 (de 14285 con BP1_23 no blanco; 1262 excluidos por responder solo 09/99). Prohibido comparar contra el marginal poblacional de ENVIPE (91182 filas) -- universo seleccionado por construcción, no aleatorio."
+    fuente: "ENVIPE 2025 -- θ = TPer_Vic2 (binario, al menos uno de AP7_3_10/11/12/13/14, ya MEDIDO en condicionales_escalares_exposicion_violencia.exposicion_violencia, procedencia.yaml:315-423) x desenlace BP1_23 (TMod_Vic, dicotomizado miedo/desconfianza={01,02,06,08} vs práctica={03,04,05,07}, 1262 con solo {09,99} excluidos), unión por ID_PER -- forense/notas/2026-08-04-encargo-e-envipe-g4-paso1.md (spec §1-§12, resultados §13.1-§13.2)"
+    n_util: "universo binario=13023 · θ=1 (expuesto núcleo): n=4033 · θ=0: n=8990"
+    eje_condicionante: "EJECUTADO, un eje a la vez (patrón Encargo X) -- edad (4 celdas), dominio (3), ESTRATO (4): 11 de 11 celdas con soporte (mínimo 30), CERO invierten signo respecto al marginal (+16.614pp), las 11 distinguibles de cero al 95%. Formalidad (marginal, join TSDem, n=9323 de 13023, mismas 5 categorías que condicionales_escalares_exposicion_violencia): 4 de 4 celdas con soporte, cero invierten signo, las 4 significativas (sin_pago SIN SOPORTE, n1=29/n0=34). Curva por nivel (núcleo 0-5 ítems, no ajustada, disciplina X §5): 24.243%(n=8990)→37.869%(n=3524)→58.149%(n=433)→72.007%(n=66)→73.329%(n=9, SIN SOPORTE)→100%(n=1, SIN SOPORTE) -- monótona creciente donde hay soporte."
+    beta_hat: "Marginal (θ=1 − θ=0) = +16.614pp [IC95% 13.995,19.234]. Por edad: 18-29 +16.131[11.852,20.410] · 30-44 +18.638[14.305,22.970] · 45-59 +19.114[13.444,24.785] · 60+ +16.136[8.860,23.411]. Por dominio: U +16.195[12.916,19.474] · C +17.258[12.086,22.431] · R +18.080[11.040,25.121]. Por ESTRATO: 1 +19.019[13.317,24.721] · 2 +16.216[12.183,20.250] · 3 +18.146[13.065,23.227] · 4 +13.573[8.008,19.137]. Por formalidad: jornalero +30.263[20.961,39.565] · empleado/obrero +14.900[11.485,18.315] · cuenta propia +17.827[12.256,23.398] · patrón +15.335[7.330,23.340] · sin pago SIN SOPORTE."
+    nota: >
+      Escala de diferencia de proporciones del desenlace (BP1_23 =
+      miedo/desconfianza), NO la escala del índice del generador -- no
+      comparable en magnitud contra el 0.70 ASIGNADO (ningún ADR de D-ABC
+      ha sellado función de enlace a la fecha de este commit). Techo:
+      asociación condicional en universo seleccionado (víctima, no
+      denunciante) -- ninguna lectura causal ni de intervención (A-bis 2).
+      El universo NO se restringe a θ=1: incluye también víctimas de
+      delito patrimonial/fraude puro (θ=0) no denunciantes, lo que
+      permite la comparación misma. Resultado marcadamente consistente:
+      cero de 15 celdas con soporte invierten signo (11 ejes duros + 4
+      formalidad) -- distinto del patrón de G1_radio_confianza/G1_
+      confianza_institucional/G3_familismo_apoyo (mayoría o totalidad
+      invierte al condicionar, ver eje_condicionante de cada uno): este
+      β̂ marginal SÍ sobrevive condicionar, mismo signo y orden de
+      magnitud en cada celda.
+    marca_c2: >
+      Comparte desenlace (BP1_23) y universo con
+      G4_confianza_institucional_justicia (misma limitación estructural
+      que limite_c2, procedencia.yaml:396-413) -- las dos entradas NO son
+      independientes entre sí por compartir instrumento y universo; no se
+      combinan ni se promedian.
+
+  G4_confianza_institucional_justicia:
+    clase: "MEDIDO·β̂(diferencia de proporciones), condicional(ejes), universo=disparadores AP7_3 no denunciantes, por institución"
+    antes: "ASIGNADO -- coeficiente de generador (G4 -0.40, canon/modelo-decision-v4_0.md:396), sin desenlace medido -- RUTA-C en el censo de estimabilidad (fila 9, forense/censo-estimabilidad-coeficientes-v1_0.md:73), misma limitación estructural que G4_exposicion_violencia, bloqueado hasta adjudicación de mesa (MESA-E1 = (i))"
+    universo: "MISMO universo que G4_exposicion_violencia (n=13023, disparadores AP7_3_05-15 no denunciantes -- θ de esta fila es independiente del disparador, ver nota), intersectado por ítem con 'identifica la institución' (AP5_4_XX no blanco, no 9/NS-NR) -- universo distinto por institución, tamaño declarado por ítem en n_util. Riesgo de colisionador declarado (A-bis 2): condicionar el universo por ser víctima-no-denunciante puede correlacionar con el propio θ (confianza institucional) -- lectura permitida: asociación condicional en universo seleccionado, techo del censo, NINGUNA lectura causal ni de intervención."
+    fuente: "ENVIPE 2025 -- θ = TPer_Vic1, 7 ítems AP5_4_01/02/03/05/06/07/11 (Tránsito/Preventiva/Estatal/Ministerial-Judicial/MP y Fiscalías Estatales/FGR/Jueces, ya MEDIDO·PARCIAL(edad,dominio) por institución en condicionales_confianza_institucional.justicia-policía, procedencia.yaml:191-201), cada uno dicotomizado confía{1,2}/no confía{3,4} -- x mismo desenlace BP1_23 de G4_exposicion_violencia, unión por ID_PER entre TPer_Vic1 y TMod_Vic -- forense/notas/2026-08-04-encargo-e-envipe-g4-paso1.md (spec §1-§12, resultados §13.1, §13.3)"
+    n_util: "AP5_4_01 (Tránsito): n=9618 (3319+6299) · AP5_4_02 (Preventiva): n=7998 (3711+4287) · AP5_4_03 (Estatal): n=9843 (4957+4886) · AP5_4_05 (Ministerial/Judicial): n=5143 (2606+2537) · AP5_4_06 (MP y Fiscalías Estatales): n=5782 (2864+2918) · AP5_4_07 (FGR): n=4278 (2490+1788) · AP5_4_11 (Jueces): n=3672 (1835+1837)"
+    eje_condicionante: "EJECUTADO, un eje a la vez (patrón Encargo X) -- edad (4 celdas) y dominio (3), por ítem = 7 celdas x 7 ítems = 49 celdas totales. Regla de discordancia (plantilla G1_radio_confianza, cita 33/9 ya corregida por ADR-61, no 28/12): 6 de 49 invierten signo respecto al marginal de su propio ítem (no de cero -- los 7 marginales son negativos), 25 de 49 distinguibles de cero al 95%. Por ítem (invierten/total · significativas/total): AP5_4_01 2/7·4/7 · AP5_4_02 2/7·4/7 · AP5_4_03 0/7·4/7 · AP5_4_05 0/7·4/7 · AP5_4_06 1/7·2/7 · AP5_4_07 1/7·2/7 · AP5_4_11 0/7·5/7. Curvas por nivel (1-4, no ajustadas): las 7 muestran tasa más alta en nivel 4 (mucha desconfianza) que en nivel 1, no siempre monótonas en niveles 2-3 (detalle en la nota forense §13.3)."
+    beta_hat: "Marginal por ítem (confía − no_confía): AP5_4_01 -6.421pp[-9.096,-3.746] · AP5_4_02 -5.226pp[-8.317,-2.134] · AP5_4_03 -7.919pp[-10.588,-5.251] · AP5_4_05 -9.706pp[-13.286,-6.126] · AP5_4_06 -4.683pp[-8.139,-1.228] · AP5_4_07 -6.658pp[-10.863,-2.452] · AP5_4_11 -11.269pp[-15.729,-6.809]. Los siete significativos al 95% y de signo consistente (negativo)."
+    nota: >
+      Escala de diferencia de proporciones del desenlace (BP1_23 =
+      miedo/desconfianza), NO la escala del índice del generador -- no
+      comparable en magnitud contra el -0.40 ASIGNADO (ningún ADR de
+      D-ABC ha sellado función de enlace a la fecha). Signo negativo (no
+      confiar en la institución asocia con MAYOR tasa de razón de miedo/
+      desconfianza para no denunciar) es consistente en dirección con el
+      ASIGNADO (-0.40) -- pero por A-bis 2 esto es asociación en universo
+      seleccionado, NUNCA identificación ni corroboración del valor
+      asignado (mismo criterio que ADR-57(a) aplicó a G1/G3): el universo
+      mismo pudo seleccionarse por razones ligadas a θ (colisionador
+      nombrado, no descartado, no resuelto). Jueces (AP5_4_11) es el
+      ítem con mayor magnitud y mejor soporte relativo (0/7 invierte,
+      5/7 significativo); MP y Fiscalías Estatales / FGR son los más
+      débiles (2/7 significativo cada uno, universos más chicos por
+      menor identificación de esas instituciones, procedencia.yaml:195).
+    marca_c3: >
+      LIMPIO -- verificado esta sesión (grep dirigido sobre
+      forense/notas/2026-07-31-inventario-segmentacion.md para los siete
+      mnemónicos AP5_4_01/02/03/05/06/07/11): cero hits en Tabla B.
+    marca_c2: >
+      Comparte desenlace (BP1_23) y universo con
+      G4_exposicion_violencia (misma limitación estructural que
+      limite_c2, procedencia.yaml:396-413) -- las dos entradas NO son
+      independientes entre sí por compartir instrumento y universo; no se
+      combinan ni se promedian.
+
 # ══════════════════════════════════════════════════════════════════
 # CENSO DE ESTIMABILIDAD · Encargo E-CE · 04/ago/2026 · campo `ruta:`
 # nuevo por coeficiente. `asignados_coeficiente.detalle` NO SE TOCA (mismo
