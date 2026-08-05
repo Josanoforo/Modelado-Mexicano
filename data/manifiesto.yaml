@@ -3624,8 +3624,12 @@
   usado_para: 'Encargo B-3 (mesa #20): microdatos ENSU 2025 (Encuesta Nacional de Seguridad
     Publica Urbana), candidata a confianza_institucional[seguridad]/exposicion_violencia --
     pertinencia de reactivo sigue parcial/no verificada (forense/notas/2026-08-04-barrido-alcanzabilidad-27fuentes.md
-    paragraph 3 y 7). Este acto solo descarga y registra, sin leer reactivo. FD no disponible
-    bajo el patron verificado por el API para esta fuente -- ver nota forense de este acto.'
+    paragraph 3 y 7). Encargo M-3 (2026-08-05): el listado JSON completo de documentos de
+    esta fuente (268 titulos, API archivoscompaginacion) SI declara un FD para 2025, pero
+    su pathLogico repite el patron que ya daba soft-404 -- la API anuncia un documento que
+    el servidor no sirve. Ningun titulo "Cuestionario" existe en el listado. confianza_institucional[seguridad]/exposicion_violencia
+    quedan EL DESCRIPTOR NO ALCANZA -- es "no pude alcanzar la fuente", no "la fuente no
+    tiene el dato". Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/ensu/microdatos/ensu_bd_2025_csv.zip
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=1127,
@@ -3643,7 +3647,9 @@
 - id: enbiare2021_bd_csv_zip
   usado_para: 'Encargo B-3 (mesa #20): microdatos ENBIARE 2021, candidata a familismo_obligacion/familismo_apoyo
     (hoy solo con proxy via ENUT) -- forense/notas/2026-08-04-barrido-alcanzabilidad-27fuentes.md
-    paragraph 5 y 7. Este acto solo descarga y registra, sin leer reactivo.'
+    paragraph 5 y 7. Encargo M-3 (2026-08-05) abrio el FD emparejado (enbiare2021_fd_pdf):
+    familismo_apoyo EXISTE (parcial), familismo_obligacion NO EXISTE -- ver esa entrada y
+    forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enbiare/2021/microdatos/enbiare_2021_base_de_datos_csv.zip
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3103,
@@ -3659,7 +3665,11 @@
 
 - id: enbiare2021_fd_pdf
   usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ENBIARE 2021, pareja
-    de enbiare2021_bd_csv_zip.'
+    de enbiare2021_bd_csv_zip. Encargo M-3 (2026-08-05): descriptor abierto integro (4 tablas/10
+    apartados). familismo_apoyo EXISTE reactivo parcial (PB2_1, expectativa de ayuda familiar
+    en urgencia; PC1_1/PC1_5, conducta de cuidado/visita). familismo_obligacion NO EXISTE
+    -- sin item de creencia de deber/sacrificio familiar en todo el descriptor; sigue con
+    marca (b) para ese componente. Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enbiare/2021/microdatos/enbiare_2021_fd.pdf
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3103,
@@ -3676,7 +3686,9 @@
 - id: enasic2022_bd_csv_zip
   usado_para: 'Encargo B-3 (mesa #20): microdatos ENASIC 2022, candidata a familismo_obligacion/familismo_apoyo
     (hoy solo con proxy via ENUT) -- forense/notas/2026-08-04-barrido-alcanzabilidad-27fuentes.md
-    paragraph 5 y 7. Este acto solo descarga y registra, sin leer reactivo.'
+    paragraph 5 y 7. Encargo M-3 (2026-08-05) abrio el FD emparejado (enasic2022_fd_xlsx):
+    familismo_apoyo y familismo_obligacion EXISTEN ambos -- este ultimo con bateria Likert
+    directa sobre deber familiar, el mejor candidato (a) del lote. Ver esa entrada y forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enasic/2022/microdatos/enasic_2022_bd_csv.zip
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3325,
@@ -3692,7 +3704,12 @@
 
 - id: enasic2022_fd_xlsx
   usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ENASIC 2022, pareja
-    de enasic2022_bd_csv_zip.'
+    de enasic2022_bd_csv_zip. Encargo M-3 (2026-08-05): descriptor abierto integro (6 hojas).
+    familismo_apoyo EXISTE (P4_2_1/P4_2_2, cuidado intrahogar). familismo_obligacion EXISTE
+    -- Seccion 7 "Percepcion cultural de los cuidados", bateria Likert P7_12_1-P7_12_8 mide
+    directamente la creencia de deber familiar ("su deber es cuidar a los padres, conyuge,
+    hijas e hijos"). Candidato fuerte a primera medicion (a) del corpus para este componente
+    -- pendiente de adjudicacion de mesa, no decidido en este acto. Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enasic/2022/microdatos/enasic_2022_fd.xlsx
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3325,
@@ -3711,7 +3728,11 @@
     (Encuesta Nacional sobre Salud Financiera) estaba SIN PAYLOAD en el catalogo v2.0 sin
     haberse sondeado. Portal INEGI resuelto esta sesion via /programas/ensafi/ (stub JS a
     /2023/, idBiinegi=3364). FD declarado por el API resuelve a soft-404 (2263B) -- no publicado
-    bajo ese patron, ver nota forense. Este acto solo descarga y registra, no lee reactivo.'
+    bajo ese patron, ver nota forense. Encargo M-3 (2026-08-05): sin FD ni cuestionario accesible
+    (portal /programas/ensafi/2023/ es SPA sin listado estatico, WebFetch solo recupera <title>;
+    no se adivino ningun endpoint no declarado). aversion_riesgo, horizonte_temporal y R1.3
+    (canal de confianza) quedan EL DESCRIPTOR NO ALCANZA -- es "no pude alcanzar la fuente",
+    no "la fuente no tiene el dato". Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/ensafi/2023/microdatos/ensafi_2023_bd_csv.zip
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/ensafi/ -> stub
@@ -3730,7 +3751,9 @@
     (Encuesta Nacional de Poblacion Privada de la Libertad) estaba SIN PAYLOAD en el catalogo
     v2.0 sin haberse sondeado. Portal INEGI resuelto esta sesion via /programas/enpol/ (stub
     JS a /2021/, idm=3119, formato idm sin comillas -- variante no vista antes). Candidata
-    a seguridad_justicia. Este acto solo descarga y registra, no lee reactivo.'
+    a seguridad_justicia. Encargo M-3 (2026-08-05) abrio el FD emparejado: R10.3 tiene candidato
+    con universo no coincidente (P8_4/P8_5, miedo a represalias por corrupcion interna) --
+    ver esa entrada y forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enpol/2021/microdatos/bd_enpol_2021_csv.zip
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/enpol/ -> stub
@@ -3746,7 +3769,13 @@
 
 - id: enpol2021_fd_pdf
   usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ENPOL 2021, pareja
-    de enpol2021_bd_csv_zip.'
+    de enpol2021_bd_csv_zip. Encargo M-3 (2026-08-05): descriptor abierto integro (7 tablas).
+    R10.3 ("ver, oir y callar"): candidato con universo NO coincidente -- P8_4/P8_5 (Seccion
+    VIII, corrupcion al interior del Centro) preguntan si denuncio y, si no, la razon; opcion
+    literal "Por miedo a represalias, incluso juridicas". Mecanismo de silencio-por-miedo
+    real, pero el universo es corrupcion sufrida por la propia persona privada de la libertad
+    dentro del centro, no testigo de delito en poblacion general -- no se adjudica como reactivo
+    directo de R10.3. Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enpol/2021/microdatos/fd_enpol2021.pdf
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion idBiinegi=3119,
@@ -3764,8 +3793,9 @@
   usado_para: 'Encargo B-3 (mesa #20): cierre del barrido de alcanzabilidad -- ENFIH 2019
     (Encuesta Nacional sobre las Finanzas de los Hogares, Banxico+INEGI) estaba SIN PAYLOAD
     en el catalogo v2.0 sin haberse sondeado. Portal INEGI resuelto esta sesion via /programas/enfih/
-    (stub JS a /2019/, idBiinegi=3099). Candidata a credito-ahorro-finanzas-hogar. Este acto
-    solo descarga y registra, no lee reactivo.'
+    (stub JS a /2019/, idBiinegi=3099). Candidata a credito-ahorro-finanzas-hogar. Encargo
+    M-3 (2026-08-05) abrio el FD emparejado: R1.2 EXISTE (afore/seguro/hipoteca), R1.4 NO
+    EXISTE (sin item de marca) -- ver esa entrada y forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enfih/2019/microdatos/enfih_2019_base_de_datos_csv.zip
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/enfih/ -> stub
@@ -3781,7 +3811,11 @@
 
 - id: enfih2019_fd_xlsx
   usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ENFIH 2019, pareja
-    de enfih2019_bd_csv_zip.'
+    de enfih2019_bd_csv_zip. Encargo M-3 (2026-08-05): descriptor abierto integro (16 hojas).
+    R1.2 (planeacion larga) EXISTE: P9_10/P9_11A (Afore, incl. aportacion voluntaria), P9_12_1
+    (seguro de vida), P9_12_7 (plan privado de retiro), P5_12 (credito hipotecario). R1.4
+    (prima de marca/consumo compensatorio) NO EXISTE -- libro completo sin item de eleccion
+    de marca. Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enfih/2019/microdatos/enfih_2019_fd.xlsx
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion idBiinegi=3099,
@@ -3799,8 +3833,9 @@
   usado_para: 'Encargo B-3 (mesa #20): cierre del barrido de alcanzabilidad -- ENTI 2022 (Encuesta
     Nacional de Trabajo Infantil, INEGI+OIT+STPS) estaba SIN PAYLOAD en el catalogo v2.0 sin
     haberse sondeado. Portal INEGI resuelto esta sesion via /programas/enti/ (stub JS con
-    vredirect() a /2022/, idBiinegi=3327). Candidata a trabajo_ingreso_formalidad. Este acto
-    solo descarga y registra, no lee reactivo.'
+    vredirect() a /2022/, idBiinegi=3327). Candidata a trabajo_ingreso_formalidad. Encargo
+    M-3 (2026-08-05) abrio el FD emparejado: sin candidato limpio a ningun constructo del
+    glosario -- ver esa entrada y forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enti/2022/microdatos/enti_2022_bd_dbf.zip
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/enti/ -> stub JS
@@ -3818,7 +3853,12 @@
 
 - id: enti2022_fd_pdf
   usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ENTI 2022, pareja de
-    enti2022_bd_dbf_zip.'
+    enti2022_bd_dbf_zip. Encargo M-3 (2026-08-05): descriptor abierto integro (7 tablas: vivienda,
+    hogar, sociodemografico, ocupacion I/II, cuestionario basico 5-11 anios, cuestionario
+    basico 12-17 anios). Sin constructo del programa asignado a esta fuente por el encargo
+    -- revisado trabajo/negocio familiar no remunerado, es economia informal familiar, no
+    la creencia normativa de familismo_obligacion/familismo_apoyo; no se forzo ningun candidato.
+    Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enti/2022/microdatos/enti_2022_fd.pdf
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion idBiinegi=3327,
@@ -3836,7 +3876,10 @@
   usado_para: 'Encargo B-3 (mesa #20): cierre del barrido de alcanzabilidad -- EDER 2025 (Encuesta
     Demografica Retrospectiva) estaba SIN PAYLOAD en el catalogo v2.0 sin haberse sondeado.
     Portal INEGI resuelto esta sesion via /programas/eder/ (stub JS a /2025/, idBiinegi=3463).
-    Candidata a migracion. Este acto solo descarga y registra, no lee reactivo.'
+    Candidata a migracion. Encargo M-3 (2026-08-05) abrio el descriptor emparejado: HISTORIAVIDA
+    tiene diseno de evento fechado (anio_retro/edad_retro), lo cual reabre la pregunta de
+    diseno de R4.1 -- pendiente de mesa. Reactivo especifico de R4.1 para adultos NO EXISTE.
+    Ver esa entrada y forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/eder/2025/microdatos/eder2025_bases_csv.zip
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/eder/ -> stub JS
@@ -3854,7 +3897,15 @@
   usado_para: 'Encargo B-3 (mesa #20): documento "Descripcion de la base de datos" de EDER
     2025, pareja de eder2025_bd_csv_zip -- el API no listo un titulo "Descriptor de archivos
     (FD)" para esta fuente, el equivalente mas cercano trae este titulo distinto, declarado
-    asi (no forzado a la etiqueta FD).'
+    asi (no forzado a la etiqueta FD). Encargo M-3 (2026-08-05) -- prioridad del lote: descriptor
+    abierto integro (8 tablas). Hallazgo de diseno: la tabla HISTORIAVIDA SI indexa por anio_retro/edad_retro
+    (evento fechado) -- esto contradice la premisa vigente de que "ninguna fuente trae diseno
+    panel/evento fechado" para R4.1; declarado para adjudicacion de mesa, no cerrado en este
+    acto. Reactivo especifico de R4.1 (adulto con padecimiento leve elige farmacia-con-consultorio)
+    NO EXISTE: la Seccion Salud solo trae anio de inicio del padecimiento, no lugar de atencion.
+    Candidato adyacente con universo distinto: hij_ate_N ("donde fue atendido el parto"),
+    opcion literal "Consultorio de una farmacia", fechado via hij_vid_N -- es parto, no automedicacion
+    por padecimiento leve. Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/eder/2025/microdatos/889463930242.pdf
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion idBiinegi=3463,
@@ -3877,7 +3928,11 @@
     idBiinegi=3358. Candidata a salud. El API lista 43 archivos para esta fuente (bases de
     datos 1990-2024, tabulados, olap) y NINGUNO trae titulo "Descriptor de archivos" -- FD
     no publicado por separado para EDR bajo este mecanismo, declarado como tal, no como "no
-    lo encontre". Este acto solo descarga y registra, no lee reactivo.'
+    lo encontre". Encargo M-3 (2026-08-05): sin documento descriptivo alguno accesible --
+    portal /programas/edr/ es SPA sin listado estatico, ningun endpoint adicional probado
+    sin declarar (prohibido adivinar). Es informacion vital administrativa (defunciones registradas),
+    no encuesta de opinion -- la logica de "reactivo" aplica debilmente de por si. Sin constructo
+    del programa asignado por el encargo. Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/edr/microdatos/defunciones/2024/defunciones_base_datos_2024_dbf.zip
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/edr/ real, idm=3358,
@@ -3899,7 +3954,9 @@
     via /programas/elcos/ (stub JS a /2012/, idBiinegi=1729). Candidata a uso_del_tiempo_cuidados_hogar
     / trabajo_ingreso_formalidad. pathLogico del API (ELCOS_BD) no trae año, a diferencia
     de otras fuentes -- verificado con dos variantes de construccion de URL antes de bajar
-    (ver nota forense). Este acto solo descarga y registra, no lee reactivo.'
+    (ver nota forense). Encargo M-3 (2026-08-05) abrio el FD emparejado: R2.1/R10.2 NO EXISTEN,
+    R2.2 existe solo como proxy estrecho (conciliacion trabajo-familia) que no satisface el
+    falsador -- ver esa entrada y forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/elcos/microdatos/ELCOS_BD_dbf.zip
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/elcos/ -> stub
@@ -3918,7 +3975,15 @@
 - id: elcos2012_fd_xls
   usado_para: 'Encargo B-3 (mesa #20): diccionario de archivos (FD) de ELCOS 2012, pareja
     de elcos2012_bd_dbf_zip. Formato .xls (Excel legado, no .xlsx) -- se comprobo que se comporta
-    como pdf/xlsx (sin sufijo .zip), no como formato de datos.'
+    como pdf/xlsx (sin sufijo .zip), no como formato de datos. Encargo M-3 (2026-08-05) --
+    prioridad del lote: descriptor abierto integro (hoja "Mujer elegida", 1312 filas, Secciones
+    IV-X). R2.1 (jerarquia->deferencia/iniciativa) y R10.2 (retro publica/privada) NO EXISTEN
+    -- cero coincidencias de iniciativa, disenso, reporte de errores, canal anonimo, retroalimentacion,
+    rotacion. R2.2 (liderazgo benevolo) EXISTE proxy estrecho: P7_25/P8_8 ("si necesita llegar
+    tarde... su jefe reacciona... comprensivo"), mide solo conciliacion trabajo-familia en
+    corte transversal individual, sin diseno pareado de rotacion/desempeño -- no satisface
+    el falsador de R2.2. Confirma: ELCOS no trae clima organizacional en sentido amplio pese
+    al nombre. Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/elcos/doc/elcos_fd.xls
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion idBiinegi=1729,
