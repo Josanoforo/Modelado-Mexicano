@@ -3471,3 +3471,151 @@
     Fuente descontinuada: ENCUP no tiene edición posterior a 2012; este payload es la última
     edición conocida, no una serie viva. No abierto/leído (ADR-46(2)) -- solo descargado y
     hasheado.'
+
+- id: endutih2024_fd_xlsx
+  usado_para: 'Encargo D-2 (mesa #20): diccionario de archivos (FD) de ENDUTIH 2024, requerido
+    por R1.3 (canal de confianza personal -> adopcion financiera) para nombrar variables del
+    eje acceso_digital; sin FD no se puede nombrar una variable sobre la base ya registrada
+    (endutih2024_bd_dbf_zip).'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endutih/2024/microdatos/fd_endutih2024.xlsx
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3413,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/155075, coincide
+    con lo bajado)'
+  archivo: endutih2024/fd_endutih2024.xlsx
+  sha256: ecdf95924b0b31e2593fdfabe69cf88ecbc5c90a40b3fa3caa9f8427147a96de
+  tamano_bytes: 155075
+  formato: XLSX -- Descriptor de archivos (FD)/diccionario de ENDUTIH 2024. No se abrio ni
+    extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: mociba2024_fd_xlsx
+  usado_para: 'Encargo D-2 (mesa #20): diccionario de archivos (FD) de MOCIBA 2024, mismo
+    eje acceso_digital que ENDUTIH, para R1.3; sin FD no se puede nombrar una variable sobre
+    la base ya registrada (mociba2024_bd_csv_zip).'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/mociba/2024/doc/mociba2024_fd.xlsx
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3438,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/139012, coincide
+    con lo bajado)'
+  archivo: mociba2024/mociba2024_fd.xlsx
+  sha256: 9d6fb1979576f30b5aee0f61f11ab7afefd56d5b77c596df95cf11103b35d080
+  tamano_bytes: 139012
+  formato: XLSX -- Descriptor de archivos (FD)/diccionario de MOCIBA 2024. No se abrio ni
+    extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enasem2018_bd_csv_zip
+  usado_para: 'Encargo D-2 (mesa #20): microdatos ENASEM 2018, panel 50+, ola pre-reforma
+    (flanquea reforma de pension de feb/2019 junto con 2021) -- ruta de diseno para R5.1 (familia
+    como seguro sustituto del Estado / Pension del Bienestar), declarada erroneamente irrealizable
+    el 4/ago (forense/hallazgos.md). Exploracion de contenido (DDI/codebook) ya hecha por
+    sesion previa (forense/notas/2026-08-04-enasem-paso1-descriptor.md, permanentemente inhabilitada
+    para pre-registrar contra ENASEM); este acto solo descarga y registra el archivo, sin
+    abrir contenido.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enasem/2018/microdatos/enasem_2018_bd_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=2967,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/8767343, coincide
+    con lo bajado)'
+  archivo: enasem2018/enasem_2018_bd_csv.zip
+  sha256: bfd8ffd172e2728f7822a953e338bfbd47fd181f8f4725866d98a12b41c13a3b
+  tamano_bytes: 8767343
+  formato: ZIP -- microdatos ENASEM 2018 (CSV, ronda longitudinal del panel MHAS/ENASEM).
+    No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enasem2018_fd_xlsx
+  usado_para: 'Encargo D-2 (mesa #20): diccionario de archivos (FD) de ENASEM 2018, pareja
+    de enasem2018_bd_csv_zip -- misma ruta de diseno para R5.1.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enasem/2018/microdatos/enasem_2018_fd.xlsx
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=2967,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/628677, coincide
+    con lo bajado)'
+  archivo: enasem2018/enasem_2018_fd.xlsx
+  sha256: 00d1cd1ac75cf01ad401d36371ecfeb3cb41bb34221b158bf83e2d672befea17
+  tamano_bytes: 628677
+  formato: XLSX -- Descriptor de archivos de ENASEM 2018. No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enasem2021_bd_csv_zip
+  usado_para: 'Encargo D-2 (mesa #20): microdatos ENASEM 2021, panel 50+, ola post-reforma
+    (flanquea reforma de pension de feb/2019 junto con 2018) -- ruta de diseno para R5.1,
+    declarada erroneamente irrealizable el 4/ago (forense/hallazgos.md). Exploracion de contenido
+    (DDI/codebook) ya hecha por sesion previa (forense/notas/2026-08-04-enasem-paso1-descriptor.md,
+    permanentemente inhabilitada para pre-registrar contra ENASEM); este acto solo descarga
+    y registra el archivo, sin abrir contenido.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enasem/2021/microdatos/enasem_2021_bd_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3295,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/7438658, coincide
+    con lo bajado)'
+  archivo: enasem2021/enasem_2021_bd_csv.zip
+  sha256: 68b8f7ecbd55c2e857cb7449a3ead2b6edc2c87398d45667296d84b7c76db730
+  tamano_bytes: 7438658
+  formato: ZIP -- microdatos ENASEM 2021 (CSV, ronda longitudinal del panel MHAS/ENASEM).
+    No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enasem2021_fd_xlsx
+  usado_para: 'Encargo D-2 (mesa #20): diccionario de archivos (FD) de ENASEM 2021, pareja
+    de enasem2021_bd_csv_zip -- misma ruta de diseno para R5.1.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enasem/2021/microdatos/enasem_2021_fd.xlsx
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3295,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/633836, coincide
+    con lo bajado)'
+  archivo: enasem2021/enasem_2021_fd.xlsx
+  sha256: 00f5dfaef8134f7bb840889622b03a2adc9cde6c7985245c161ed343524b7d08
+  tamano_bytes: 633836
+  formato: XLSX -- Descriptor de archivos (FD) de ENASEM 2021. No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enasem2024_bd_csv_zip
+  usado_para: 'Encargo D-2 (mesa #20): microdatos ENASEM 2024, panel 50+ -- ola adicional
+    traida por el mismo mecanismo/API que 2018 y 2021 (barata, ver encargo Sec.4: ''si hay
+    mas olas por esa via y son baratas, traelas -- un panel sirve poco truncado''); no priorizada
+    explicitamente por el encargo (que prioriza 2018/2021) pero disponible por la via INEGI
+    sin costo adicional de mecanismo.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enasem/2024/microdatos/enasem_2024_bd_csv.zip
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3504,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/11929796, coincide
+    con lo bajado)'
+  archivo: enasem2024/enasem_2024_bd_csv.zip
+  sha256: 6712f1b0cc5e15f70c7124c2de2f7d398e419d4d1e5adcf3c673363dfbd1c9a4
+  tamano_bytes: 11929796
+  formato: ZIP -- microdatos ENASEM 2024 (CSV, ronda longitudinal del panel MHAS/ENASEM).
+    No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
+
+- id: enasem2024_fd_xlsx
+  usado_para: 'Encargo D-2 (mesa #20): diccionario de archivos (FD) de ENASEM 2024, pareja
+    de enasem2024_bd_csv_zip -- misma ola adicional barata (ver enasem2024_bd_csv_zip).'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enasem/2024/microdatos/enasem_2024_fd.xlsx
+  fecha_descarga: '2026-08-04'
+  descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=3504,
+    tipodocto=0; verificado -r 0-0 antes de bajar: Content-Range bytes 0-0/617009, coincide
+    con lo bajado)'
+  archivo: enasem2024/enasem_2024_fd.xlsx
+  sha256: 79b02638baa74477f3e84f112b40635f6a60f5578cab0cef250d7f4f061ff065
+  tamano_bytes: 617009
+  formato: XLSX -- Descriptor de archivos de ENASEM 2024. No se abrio ni extrajo.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
+    FF-5563
