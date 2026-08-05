@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Cruce completo catálogo (43 operables) × data/manifiesto.yaml.
+"""Cruce completo catálogo (operables -- la cuenta la deriva `len(op)` más
+abajo, no se teclea aquí: un número impreso en prosa es un número que se
+puede quedar atrás de su comando) × data/manifiesto.yaml.
 
 No es un grep de acrónimo por prefijo (eso es lo que tests/dedup.py hace de
 forma cruda y por lo que su cifra de "sin bajar" es solo una aproximación).
@@ -148,7 +150,7 @@ print("RESUMEN:", resumen)
 print(f"OPERABLES SIN PAYLOAD DE VERDAD: {resumen['SIN PAYLOAD']} de {len(op)}")
 
 sin_atribuir = [e['id'] for e in entradas if e['id'] not in asignados]
-print(f"\nEntradas del manifiesto NO atribuidas a ninguna de las 43 operables "
+print(f"\nEntradas del manifiesto NO atribuidas a ninguna de las {len(op)} operables "
       f"(otras fuentes ya en manifiesto, o inventario sin fuente identificada "
       f"sin abrir el archivo): {len(sin_atribuir)}")
 for i in sin_atribuir:

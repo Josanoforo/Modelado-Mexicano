@@ -38,7 +38,7 @@ deduplicar).
 
 ## Cifras derivadas (11 inventarios)
 
-**Cifras históricas al 2026-08-05 — congeladas; las vigentes se derivan con:
+**Cifras históricas al 2026-08-04 — congeladas; las vigentes se derivan con:
 `python3 tests/catalogo.py && python3 tests/dedup.py`.** (Esta tabla es anterior
 al cruce contra `data/manifiesto.yaml` -- ese cálculo, qué de esto ya está en
 disco, vive aparte en `python3 tests/cruce_operables.py`, encadenado tras los
