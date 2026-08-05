@@ -36,6 +36,8 @@ def prop_ultimate_cluster(rows):
 
     Devuelve dict con p_hat, se, ic95 (lo, hi), n_upm_total, n_estratos_singleton.
     """
+    rows = list(rows)  # se recorre dos veces (aqui y en el bloque de UPM abajo) --
+    # un generador se agotaria en el primer recorrido y fallaria en silencio
     N_hat = 0.0
     num = 0.0
     for _est, _upm, w, y in rows:

@@ -16,3 +16,5 @@ jobs:
           python-version: '3.12'
       - name: Suite de verificación (modo línea base — verde = no empeoraste)
         run: python3 tests/check.py --baseline
+      - name: svystat.py — validación independiente (bloqueante)
+        run: python3 tests/test_svystat.py
