@@ -271,3 +271,151 @@ del acto — el fracaso sería la fila 4 o la fila 1 sin poder concluir nada:
 ---
 
 **El primer resultado que produzca este procedimiento es el que se reporta.**
+
+---
+---
+
+## 8 · Resultados — primera y única corrida (commit 2)
+
+Script: `tests/w1_p_policial.py` (nuevo, no modifica `tests/svystat.py` ni
+`tests/dbfmini.py`). Corre desde la raíz: `python3 tests/w1_p_policial.py`.
+
+**Validación de pipeline, antes de leer nada nuevo:** autochequeo interno de
+`svystat.py` (`_caso_conocido`, SRS n=200/k=80) coincide a 9 decimales. El universo
+de contacto reconstruido desde `AP5_16_1..10` reproduce **13 435 de 21 519**,
+cifra por cifra igual al ya verificado en `2026-08-04-w-coeficientes-generador-
+paso1.md` §1.1 — confirma que la lectura de la batería es correcta antes de
+particionarla. Nota de implementación: `AP5_16_*` está codificado en el DBF como
+campo Numérico de texto ancho fijo (`"1.000000000000000"`), no como carácter
+simple `"1"` — el primer intento de lectura ingenua comparó contra `'1'` y dio
+`n_contact=0`; detectado y corregido por la propia guarda de reproducción antes de
+construir la partición sobre datos mal parseados.
+
+**Partición ejecutada:** estrato policial n=4087; estrato no-policial n=9348
+(suma exacta 13 435). Del estrato policial, **3605 (88.2%) tuvieron además al
+menos otro contacto** de la batería (municipal/estatal/salud/educación/etc.) — el
+estrato "policial" está lejos de ser "solo policía"; ver confundidor 1 de §7.
+
+**Prevalencia de `tramite.mordida.discrecional` por estrato** (agrupada sobre
+`confía`, referencia estable, independiente del ítem):
+
+| Estrato | n | p̂ | IC95% |
+|---|---|---|---|
+| Policial | 4084 | 27.30% | [24.92%, 29.68%] |
+| No-policial | 9328 | 5.35% | [4.65%, 6.04%] |
+
+**Tabla completa, por ítem × estrato** (β̂ = p̂(confía=1) − p̂(confía=0); RR =
+p̂(confía=1)/p̂(confía=0); "sig." = IC95% excluye cero al 95%):
+
+| Ítem θ | Estrato | n(confía=1) | n(confía=0) | β̂ | IC95%(β̂) | RR | IC95%(RR) |
+|---|---|---|---|---|---|---|---|
+| AP5_1_1 (mayoría de las personas) | policial | 2030 | 2047 | **−5.37pp** | [−9.92, −0.82] sig. | 0.821 | [0.691, 0.975] |
+| AP5_1_1 | no-policial | 4400 | 4898 | +0.80pp | [−0.58, 2.18] n.s. | 1.160 | [0.899, 1.498] |
+| AP5_1_2 (personas que conoce) | policial | 3284 | 796 | −5.18pp | [−10.62, 0.27] n.s. | 0.836 | [0.698, 1.001] |
+| AP5_1_2 | no-policial | 7383 | 1930 | +0.13pp | [−1.55, 1.81] n.s. | 1.025 | [0.745, 1.410] |
+| AP5_1_3 (vecinos) | policial | 2273 | 1799 | **−5.53pp** | [−10.09, −0.98] sig. | 0.817 | [0.691, 0.966] |
+| AP5_1_3 | no-policial | 5371 | 3922 | −0.45pp | [−1.87, 0.96] n.s. | 0.919 | [0.707, 1.195] |
+
+Ninguna celda cae bajo el mínimo n=30 — las seis tienen soporte (la más chica,
+policial×AP5_1_2×confía=0, n=796).
+
+**Veredicto por ítem** (criterio de §5 de esta ficha):
+
+- `AP5_1_1`: signos opuestos (policial negativo sig., no-policial positivo n.s.) →
+  **DISCREPANTE**.
+- `AP5_1_2`: signos opuestos pero ningún IC95% excluye cero → **ESTABLE**.
+- `AP5_1_3`: signos iguales (ambos negativos) → **ESTABLE**.
+
+**Veredicto agregado** (regla de precedencia de §5): 0 items SIN SOPORTE → no
+aplica fila 1. 1 de 3 DISCREPANTE (no alcanza 2 de 3) → no aplica fila 2. 2 de 3
+ESTABLE (alcanza 2 de 3) → aplica fila 3.
+
+## **→ COMPOSICIÓN POLICIAL DESCARTADA**
+
+### 8.1 · Lectura honesta más allá del tag (declarada por la restricción 3 — no sub- ni sobre-reportar)
+
+El veredicto mecánico de la regla pre-registrada es DESCARTADA, pero el patrón
+fino es más específico que "el estrato policial no importa" — y esa lectura
+gruesa **no** se sostiene con la tabla completa:
+
+En los tres ítems, el punto central de β̂ en el estrato **policial** es negativo
+(coherente con el signo ASIGNADO, −0.35) y significativo al 95% en dos de tres
+(`AP5_1_1`, `AP5_1_3`), marginal en el tercero (`AP5_1_2`, el IC95% roza cero por
+0.27pp). En el estrato **no-policial**, los tres puntos centrales son pequeños,
+sin patrón de signo consistente (+0.80pp, +0.13pp, −0.45pp), y ninguno es
+significativo. Es decir: **la señal negativa que sostiene el signo ASIGNADO se
+detecta, en este corte, únicamente dentro del estrato de contacto policial** — no
+porque el estrato no-policial muestre el signo contrario con fuerza estadística
+(eso habría contado como DISCREPANTE en más ítems), sino porque el estrato
+no-policial no muestra señal detectable en ninguna dirección.
+
+La regla pre-registrada en §5 se diseñó para detectar *reversión de signo* (el
+riesgo que el encargo nombra: "W1 no mide lo que su rótulo dice"). El patrón que
+aparece aquí es distinto: *concentración de significancia sin reversión de
+signo*. Bajo la escala de cuatro filas de §5, eso cuenta como DESCARTADA (la
+hipótesis de que el estrato policial *invierte* el comportamiento del estimando
+no se sostiene) — pero no equivale a "el contacto policial es irrelevante para
+W1". Ambas lecturas son ciertas a la vez y no se contradicen: la partición
+policial no cambia el *signo* del estimando (por eso DESCARTADA), pero si el
+estimando marginal de W1 resulta significativo, este corte sugiere que gran parte
+de esa significancia proviene del subconjunto con contacto policial, no del
+resto. Esta observación no mueve el veredicto (la escala de §5 no tiene una fila
+para "concentración sin reversión") ni se declara como hallazgo nuevo fuera de
+esa escala — se dejan las cifras completas de la tabla para que mesa lea el
+patrón fino, no solo el tag.
+
+### 8.2 · Validación contra caso conocido — declarado como límite
+
+No existe ancla externa publicada para este corte estratificado (policial vs.
+no-policial de `radio_confianza`×`tramite.mordida.discrecional`) — es un corte
+nuevo de este acto, nadie lo ha corrido antes. Lo que sí se validó: (a) el
+autochequeo interno de `prop_ultimate_cluster` contra el caso SRS degenerado; (b)
+el pipeline de lectura de `AP5_16_*` contra el 13 435 ya publicado y verificado
+en otro acto. Ninguna de las dos es una validación del *estimando estratificado
+en sí* — se declara como límite, no se inventa un ancla que no existe.
+
+### 8.3 · Contexto adicional (post-hoc, no parte del falsador pre-registrado)
+
+Ahora que el commit 1 ya está sellado, es lícito leer `G1_radio_confianza` en
+`milpa/procedencia.yaml` y `forense/hallazgos.md` — se leen aquí por primera vez,
+después de correr y reportar §8; no informan el falsador ya committeado. Nota
+para el registro, no para revisar el veredicto de arriba (que no cambia):
+
+El β̂ marginal de W1 (sin condicionar) es negativo en los tres ítems pero pequeño
+y solo significativo en `AP5_1_3` (vecinos, −0.0269). Al condicionar por
+formalidad/edad/ingreso (Encargo X), la prosa de `eje_condicionante` en
+`milpa/procedencia.yaml:665` cita "28 de 39 celdas... positivas... 12
+significativas" — cifra que `forense/hallazgos.md` (entrada ENCARGO M-1,
+ADR-60(f)) ya declaró errónea, recontada por aritmética directa sobre
+`2026-08-04-x-condicionamiento-y-forma.md` §4.1 en **33 de 39 positivas, 9 de 39
+significativas (las nueve positivas)** — discrepancia declarada por ese acto, no
+corregida ahí (tarea asignada al commit 3 de la v1 de este mismo encargo,
+**eliminado y reasignado fuera de este acto por el propio §-1 de la v2** que este
+acto ejecuta; no se corrige aquí tampoco, mismo motivo — fuera de perímetro). Con
+cualquiera de las dos cifras la lectura cualitativa es la misma: la mayoría de
+las celdas de formalidad/edad/ingreso invierten a signo positivo, y toda celda
+significativa es positiva.
+
+El eje policial de este acto **no reproduce esa reversión**: donde hay señal
+significativa (`AP5_1_1`, `AP5_1_3`), el signo se mantiene negativo en el estrato
+policial, igual que el marginal y que el ASIGNADO. Los cuatro ejes medidos hasta
+ahora (formalidad, edad, ingreso, policial) apuntan en direcciones distintas: los
+tres de Encargo X reversan el signo; el policial de este acto lo mantiene y lo
+concentra. Esto no cambia el veredicto de §8 (que es sobre si el eje policial
+*por sí solo* reversa el patrón entre sus propios dos estratos, y no lo hace) —
+se declara como contexto para que mesa, al leer los cuatro ejes en conjunto,
+tenga el cuadro completo.
+
+### 8.4 · Perímetro de cierre
+
+No cambia el valor `ASIGNADO` (−0.35) de `G1_radio_confianza` — sigue siendo lo
+que el modelo usa. No adjudica si el signo del modelo está mal — reporta signo y
+estabilidad de esta partición, la lectura de qué implica para el generador es de
+mesa. No sella ADR. No toca `canon/`, `data/manifiesto.yaml`, ni
+`tests/svystat.py`. **Esta sesión abrió microdato de ENCUCI: queda inhabilitada
+para pre-registrar cualquier otro estimando contra ENCUCI (ADR-46).**
+
+---
+
+**Los resultados de §8 son los que produjo la primera y única corrida de
+`tests/w1_p_policial.py`. No se re-corrió con otra especificación.**
