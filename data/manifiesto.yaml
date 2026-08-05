@@ -1096,6 +1096,13 @@
   tamano_bytes: 662210
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Cuestionario Hogar completo (instrumento de campo), 8 secciones (I Vivienda ... VIII Inseguridad
+    del Agua); unidad de observación mixta vivienda/hogar (informante) y persona (roster de
+    integrantes). Sección IV trae la cadena de necesidad/búsqueda/atención de salud (H0404 "¿buscó
+    atención?", H0406 "¿fue atendido?", motivos de no búsqueda/no atención en H0405/H0407) que
+    filtra a quién se aplica el Cuestionario de Utilizadores. Documento madre para verificar
+    redacción exacta antes de usar cualquier variable derivada de hogar/NSE/ICB.
 
 - id: 2_vfinal_cuestionario_nios_0_a_9_ensanut_2024_etiquetas_cuestionarios
   usado_para: sin uso asignado — registro de inventario
@@ -1109,6 +1116,12 @@
   tamano_bytes: 518103
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Cuestionario aplicado por proxy (madre/cuidador) a niños de 0 a 9 años 11 meses. 9 secciones:
+    atención prenatal/parto y niño sano, educación inicial, desarrollo infantil temprano, calidad
+    del contexto/disciplina, esquema de vacunación, diarrea, IRA, accidentes,
+    funcionamiento/discapacidad. Prefijo de variable M0xxx; es la fuente de redacción del microdato
+    menores_ensanut2024_w.
 
 - id: 3_vfinal_cuestionario_adolescentes_ensanut_2024_etiquetas_cuestionarios
   usado_para: sin uso asignado — registro de inventario
@@ -1122,6 +1135,13 @@
   tamano_bytes: 479013
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Cuestionario aplicado a adolescentes de 10-19 años, con autollenado en tablet para la sección de
+    salud sexual y reproductiva. 9 secciones: consumo de sustancias (incluye módulo de fentanilo),
+    enfermedades crónicas, salud sexual/reproductiva, funcionamiento, vacunación, sintomatología
+    depresiva, conductas alimentarias, accidentes, violencia/abuso, disciplina. Fuente de redacción
+    para adolescentes_ensanut2024_w, que no trae catálogo de etiquetas propio entre los payloads de
+    este acto.
 
 - id: 4_vfinal_cuestionario_adultos_ensanut_2024_etiquetas_cuestionarios
   usado_para: sin uso asignado — registro de inventario
@@ -1135,6 +1155,12 @@
   tamano_bytes: 795644
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Cuestionario aplicado a personas de 20+ años, 20 secciones: obesidad, depresión, diabetes,
+    hipertensión, cardiovascular/renal, antecedentes heredofamiliares, salud sexual/reproductiva,
+    vacunación, Sección X Programas Preventivos (detecciones oncológicas y de enfermedades crónicas,
+    10.1-10.8), accidentes, violencia, adicciones, funcionamiento, memoria, actividades de vida
+    diaria, caídas, sarcopenia. Fuente de redacción exacta para adultos_ensanut2024_w.
 
 - id: 5_vfinal_cuestionario_utilizadores_ensanut_2024_etiquetas_cuestionarios
   usado_para: sin uso asignado — registro de inventario
@@ -1148,6 +1174,12 @@
   tamano_bytes: 267996
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Cuestionario aplicado solo a personas identificadas en Hogar (H0406=Sí) como atendidas por una
+    necesidad de salud en los últimos 3 meses; unidad de observación persona-evento. 4 secciones:
+    Utilización, Atención (incluye u0201 institución/prestador y matriz de correspondencia con
+    derechohabiencia), Medicamentos, Estudios de laboratorio/gabinete. Fuente de redacción para
+    utilizadores_ensanut2024_w.
 
 - id: indice_de_bienestar_cuestionarios
   usado_para: documentación — cuestionario, Índice de Bienestar
@@ -1161,6 +1193,13 @@
   tamano_bytes: 13255
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Nota metodológica de 1 página (NO es un cuestionario de preguntas, pese al nombre) que documenta
+    la construcción del Índice de Bienestar ENSANUT 2024 vía Análisis de Componentes Principales
+    (matriz de correlaciones policóricas) sobre 8 variables de vivienda/bienes del hogar. Unidad de
+    observación: hogar (índice replicado a cada integrante). Explica el origen de indice1/nseF/nse5F
+    que aparecen en los archivos NSE_* y *_w_ICB — "ICB" e "Índice de Bienestar" son el mismo
+    constructo, no dos distintos, verificado leyendo este documento.
 
 - id: nse_hogar_ensanut_2024_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1174,6 +1213,11 @@
   tamano_bytes: 137855
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Diccionario de variables (hojas Variables/Valores) del archivo de Nivel Socioeconómico a nivel
+    hogar: solo 4 variables (FOLIO_I, indice1, nseF, nse5F) — el mismo índice de bienestar
+    documentado en indice_de_bienestar_cuestionarios. Unidad de observación: hogar. Sirve para
+    interpretar el csv correspondiente.
 
 - id: nse_hogar_ensanut_2024_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1187,6 +1231,10 @@
   tamano_bytes: 83570
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Microdato de 10,975 hogares con las 4 variables del catálogo NSE hogar (FOLIO_I, indice1, nseF,
+    nse5F). Unidad de observación: hogar. Tabla lookup de nivel socioeconómico/bienestar para unir
+    por FOLIO_I con cualquier otro archivo de persona/hogar de ENSANUT 2024.
 
 - id: nse_integrantes_ensanut_2024_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1200,6 +1248,11 @@
   tamano_bytes: 138387
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Diccionario de variables (hojas Variables/Valores) del mismo índice de bienestar pero replicado
+    a nivel integrante: FOLIO_I, FOLIO_INT, id_int, indice1, nseF, nse5F. Unidad de observación:
+    persona dentro del hogar. Sin hoja de metodología propia — ver indice_de_bienestar_cuestionarios
+    para el origen del índice.
 
 - id: nse_integrantes_ensanut_2024_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1213,6 +1266,11 @@
   tamano_bytes: 256745
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Microdato de 36,021 integrantes / 10,975 hogares con indice1/nseF/nse5F (valor idéntico para
+    todos los integrantes de un mismo hogar). Unidad de observación: persona. Permite anexar el
+    nivel socioeconómico del hogar a cualquier análisis a nivel persona sin necesidad de merge con
+    NSE_Hogar.
 
 - id: adolescentes_ensanut2024_w_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1226,6 +1284,13 @@
   tamano_bytes: 416868
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Microdato de 3,730 adolescentes (10-19 años) x 478 columnas, cubre las 9 secciones del
+    cuestionario de adolescentes (sustancias, crónicas, salud sexual/reproductiva, funcionamiento,
+    vacunación, depresión, conductas alimentarias, accidentes, violencia, disciplina). Sin catálogo
+    de etiquetas propio entre los payloads de este acto: la cabecera solo trae códigos (d0101, etc.)
+    — hay que cruzar contra el PDF del cuestionario (id 3_vfinal_...) para interpretar columnas y
+    categorías.
 
 - id: adolescentes_ensanut2024_w_stata_stata
   usado_para: sin uso asignado — registro de inventario
@@ -1239,6 +1304,10 @@
   tamano_bytes: 798929
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Mismo microdato de adolescentes_ensanut2024_w_csv_csv (3,730x478, mismos nombres de columna) en
+    formato Stata .dta dentro de zip — verificado por nombre y tamaño descomprimido, no por apertura
+    variable a variable. Usar el csv salvo que se requiera tipado nativo de Stata.
 
 - id: adultos_ensanut2024_w_catlogo_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1252,6 +1321,12 @@
   tamano_bytes: 234627
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    DEFECTO DE ETIQUETADO, verificado esta sesión: pese al nombre/extensión .csv.csv.zip, NO
+    contiene microdato — el archivo interno es "adultos_ensanut2024_w.Catálogo.xlsx", byte-idéntico
+    (mismo sha256) al catálogo del id adultos_ensanut2024_w_catlogo. Es un duplicado comprimido y
+    mal nombrado del diccionario de variables; no existe microdato csv de personas adultas entre los
+    24 payloads de este acto.
 
 - id: adultos_ensanut2024_w_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1265,6 +1340,12 @@
   tamano_bytes: 247551
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Diccionario de variables (hojas Variables 842 filas / Valores 3,347 filas) del microdato de
+    trabajo de adultos; etiquetas replican literalmente la redacción del cuestionario (id
+    4_vfinal_...), incluye el bloque completo de Programas Preventivos (A1001x-A1008x) y vacunación
+    (A09xx). Mapa variable-pregunta indispensable — el microdato csv de adultos en sí NO está entre
+    los 24 payloads (ver adultos_ensanut2024_w_catlogo_csv_csv).
 
 - id: hogar_ensanut2024_w_icb_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1278,6 +1359,12 @@
   tamano_bytes: 162227
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Diccionario de variables (203 variables reales) del cuestionario Hogar "con ICB": vivienda,
+    identificación, solo ítems de informante de Sección III (NO los ítems por integrante como
+    H0404/lugar usual de atención/seguridad social), conocimiento de IMSS-BIENESTAR en Sección IV
+    (NO la cadena de necesidad/búsqueda 4.1-4.9), activos, seguridad alimentaria, agua, y al final
+    indice1/nseF/nse5F. Sección VI (Programas Sociales) queda vacía en este archivo.
 
 - id: hogar_ensanut2024_w_icb_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1291,6 +1378,12 @@
   tamano_bytes: 996094
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Microdato de 10,975 hogares x 203 columnas correspondiente al catálogo anterior: vivienda,
+    activos, seguridad alimentaria, inseguridad hídrica e índice de bienestar/NSE ya anexado. Unidad
+    de observación: hogar/informante — NO incluye las variables por integrante de Secciones III/IV
+    (H0404, motivos de no búsqueda/no atención, lugar usual de atención, derechohabiencia
+    individual).
 
 - id: integrantes_ensanut2024_w_icb_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1304,6 +1397,12 @@
   tamano_bytes: 197249
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Diccionario de variables (260 variables) del archivo de integrantes: identificación/relación con
+    jefe(a) de hogar, recepción y duración de 14 programas sociales/de bienestar (LICONSA, Pensión
+    Adultos Mayores, Jóvenes Construyendo el Futuro, etc.), autopercepción de impacto, y al final
+    indice1/nseF/nse5F. Unidad de observación: cada integrante del hogar (todas las edades). NO
+    incluye la cadena de necesidad/búsqueda de salud de Sección IV — H0404 no está en este archivo.
 
 - id: integrantes_ensanut2024_w_icb_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1317,6 +1416,11 @@
   tamano_bytes: 1858331
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Microdato de 36,021 integrantes x 260 columnas correspondiente al catálogo anterior: roster de
+    hogar, módulo de programas de bienestar/impacto percibido, e índice de condición de bienestar a
+    nivel persona. Útil para vincular por FOLIO_I/FOLIO_INT con el resto de módulos ENSANUT y
+    aportar NSE al modelo — no trae variables de utilización/acceso a servicios de salud.
 
 - id: menores_ensanut2024_w_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1330,6 +1434,12 @@
   tamano_bytes: 197357
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Catálogo de 483 variables (hojas Variables/Valores) del microdato de niños 0-9 años, uno a uno
+    con las 9 secciones del cuestionario (id 2_vfinal_...): atención prenatal/niño sano, educación
+    inicial, desarrollo infantil, disciplina, vacunación, diarrea, IRA, accidentes, funcionamiento,
+    más diseño muestral (ponde_f, estrato, upm). Diccionario indispensable para el csv/stata
+    correspondiente.
 
 - id: menores_ensanut2024_w_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1343,6 +1453,11 @@
   tamano_bytes: 617777
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Microdato de 4,311 niños de 0-9 años 11 meses (uno por menor elegido en el hogar) con las 9
+    secciones temáticas del cuestionario más variables de diseño muestral. Fuente de indicadores de
+    desarrollo infantil temprano, prácticas de crianza/disciplina y cobertura de
+    vacunación/servicios preventivos en la niñez temprana.
 
 - id: menores_ensanut2024_w_stata_stata
   usado_para: sin uso asignado — registro de inventario
@@ -1356,6 +1471,10 @@
   tamano_bytes: 1133030
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Mismo microdato de menores_ensanut2024_w_csv_csv (4,311 registros x 483 variables) en formato
+    Stata .dta dentro de zip — verificado por nombre y tamaño descomprimido, no abierto variable a
+    variable. Usar el csv salvo que se requiera tipado nativo de Stata.
 
 - id: utilizadores_ensanut2024_w_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1369,6 +1488,12 @@
   tamano_bytes: 153149
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Diccionario de 121 variables + FOLIO_INT (hojas Variables/Valores) del microdato de
+    utilizadores, incluye u0201 (institución/prestador de atención) con sus 24 categorías completas
+    y uh0310_m (derechohabiencia importada de Hogar, sin etiquetas decodificadas en este catálogo —
+    solo inferibles de la matriz de correspondencia impresa en el PDF del cuestionario). Mapa
+    variable-pregunta para el csv/stata de utilizadores.
 
 - id: utilizadores_ensanut2024_w_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1382,6 +1507,11 @@
   tamano_bytes: 284328
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Microdato de 3,223 personas-evento (usuarios de servicios de salud) x 121 columnas:
+    derechohabiencia (uh0310_m), utilización, atención y prestador (u0201), medicamentos, estudios
+    de laboratorio/gabinete, y diseño muestral. Base numérica para analizar prestador de primera
+    atención, gasto de bolsillo y tiempos de espera/consulta.
 
 - id: utilizadores_ensanut2024_w_stata_stata
   usado_para: sin uso asignado — registro de inventario
@@ -1395,6 +1525,10 @@
   tamano_bytes: 424623
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+  nota: >
+    Mismo microdato de utilizadores_ensanut2024_w_csv_csv (3,223x121, mismos nombres de variable
+    incluido u0201) en formato Stata .dta dentro de zip — verificado por apertura y comparación de
+    dimensiones/columnas. Usar el csv salvo que se requiera tipado nativo de Stata.
 
 - id: enif2018_fd_xlsx
   usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
