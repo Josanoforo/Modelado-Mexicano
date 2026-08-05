@@ -979,25 +979,41 @@
     FF-5563
 
 - id: encuci2020_bd_dbf
-  usado_para: hitoD-R8.3 (forense/hitoD-preregistro-v2_0.md) -- payload de microdatos, aún
-    no explotado en ninguna ficha de falsación commiteada; bloqueado además por conf.06 (D-06,
-    canon/cola.yaml)
+  usado_para: 'hitoD-R8.3 (forense/hitoD-preregistro-v2_0.md) -- payload de microdatos.
+    Corregido 2026-08-05 (Encargo M-2): la afirmación "aún no explotado en ninguna ficha
+    de falsación commiteada" era falsa desde antes de esta corrección -- este mismo
+    payload (sha256/tamaño verificados) fue abierto y explotado dos veces: (1) Encargo
+    W (forense/notas/2026-08-04-w-coeficientes-generador-paso1.md), que estimó los tres
+    reactivos AP5_1_1/AP5_1_2/AP5_1_3 de la tabla ENCUCI_2020_SEC_4_5 como parte de W1
+    (coeficiente marginal de radio_confianza); (2) C-06b (forense/notas/2026-08-05-c06b-conf06-encuci-corte.md),
+    que reabrió la misma tabla del mismo zip para confirmar contra microdato las tres
+    cifras del conflicto conf.06 a los cortes ≥6/10 y ≥8/10 -- resultado sellado por
+    ADR-64 (canon/gobernanza-v1_15.md), que cierra conf.06. `R8.3` en sí sigue con veredicto
+    D (condición A, marca C3 de circularidad de radio_confianza contra cooperacion.confianza.puente_personal,
+    sigue vigente -- ADR-64(e) solo levanta la condición B). Bloqueo por conf.06 (D-06,
+    canon) también desactualizado: conf.06 cerrado por ADR-64.'
   url_origen: https://www.inegi.org.mx/programas/encuci/2020/
   fecha_descarga: '2026-07-30'
   descargado_por: usuario (navegador), pestaña Microdatos -> Descargar todos los archivos
   archivo: BD_ENCUCI2020_dbf.zip
   sha256: 0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283
   tamano_bytes: 6913684
-  formato: ZIP (Base de Datos ENCUCI 2020, formato dbf) -- no inspeccionado, solo hasheado
+  formato: ZIP (Base de Datos ENCUCI 2020, formato dbf) -- inspeccionado y explotado (Encargo
+    W, C-06b; ver usado_para), tabla ENCUCI_2020_SEC_4_5
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  nota: Payload de microdatos crudo (dbf), no abierto ni inspeccionado -- solo hasheado, por
-    firewall vigente de esta sesión.
+  nota: 'Payload de microdatos crudo (dbf). Registrado 2026-07-30 como "no abierto ni
+    inspeccionado -- solo hasheado, por firewall vigente de esta sesión" -- correcto
+    en ESA sesión (ADR-46: la contaminación es por sesión, no por payload), pero el
+    campo usado_para no se actualizó cuando sesiones posteriores sí lo abrieron (Encargo
+    W, 2026-08-04; C-06b, 2026-08-05). Corregido 2026-08-05, Encargo M-2.'
 
 - id: encuci2020_fd_pdf
-  usado_para: hitoD-R8.3 -- descriptor de archivos / diccionario de datos de encuci2020_bd_dbf,
-    aún no explotado
+  usado_para: 'hitoD-R8.3 -- descriptor de archivos / diccionario de datos de encuci2020_bd_dbf.
+    Corregido 2026-08-05 (Encargo M-2), misma corrección y misma razón que encuci2020_bd_dbf:
+    "aún no explotado" era falso -- Encargo W y C-06b lo usaron para confirmar el esquema/nombres
+    de campo de ENCUCI_2020_SEC_4_5 (AP5_1_1/2/3, FAC_SEL) antes de abrir el .dbf.'
   url_origen: https://www.inegi.org.mx/programas/encuci/2020/
   fecha_descarga: '2026-07-30'
   descargado_por: usuario (navegador), pestaña Microdatos -> Descargar todos los archivos
@@ -1015,10 +1031,23 @@
     por firewall vigente de esta sesión.
 
 - id: descargamasiva_3072026_105543
-  usado_para: sin uso asignado — registro de inventario
-  url_origen: no determinada
-  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
-    el autor
+  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI (DescargaMasivaApp.exe
+    + DescargaMasivaOD.xml + leeme.txt), NO microdato. Estructura idéntica a las otras
+    cuatro descargamasiva_3072026_* y a descargamasiva_382026_131650_xml (mismo componente
+    descargaMasivaV2). XML interno (480 B) apunta a ENUT 2024, totalMb="17.47 MB": enut_2024_bd_csv.zip
+    + enut_2024_diagrama_er.zip + enut_2024_fd.xlsx -- mismas tres URLs, byte por byte,
+    de enut2024_bd_csv/enut2024_der_zip/enut2024_fd_xlsx, ya bajadas directamente (2026-07-30)
+    y catalogadas aparte. Redundante: no aporta payload nuevo. Identificado 2026-08-05,
+    Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md) -- forense/notas/2026-07-31-enut-descarga.md
+    §Parte 2 ya había listado la estructura externa del zip pero declaró el contenido
+    "fuera de perímetro" de esa sesión.'
+  url_origen: 'no determinada (generado por el portal /programas/enut/2024/ al solicitar
+    "Descarga masiva" desde el navegador -- mismo patrón que descargamasiva_382026_131650_xml)'
+  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2, abriendo
+    el zip con zipfile) -- la URL de DESCARGA DEL ZIP en sí sigue sin determinar: el
+    portal genera este paquete bajo demanda y no expone una URL persistente para él,
+    mismo patrón que descargamasiva_382026_131650_xml. No confundir con las URLs DENTRO
+    del XML, esas sí están citadas arriba, verbatim.'
   fecha_descarga: '2026-07-30'
   descargado_por: usuario, vía navegador
   archivo: DescargaMasiva_3072026_105543.zip
@@ -1029,10 +1058,17 @@
     FF-5563
 
 - id: descargamasiva_3072026_10560
-  usado_para: sin uso asignado — registro de inventario
-  url_origen: no determinada
-  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
-    el autor
+  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato,
+    misma estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada
+    para el patrón completo). XML interno (479 B) apunta a ENUT 2019, totalMb="9.53
+    MB": enut_2019_bd_csv.zip + enut_2019_diagrama_er.zip + enut_2019_fd.xlsx -- mismas
+    tres URLs de enut2019_bd_csv/enut2019_der_zip/enut2019_fd_xlsx, ya bajadas directamente
+    y catalogadas aparte. Redundante. Identificado 2026-08-05, Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
+  url_origen: 'no determinada (generado por el portal /programas/enut/2019/ al solicitar
+    "Descarga masiva" desde el navegador)'
+  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma
+    reserva que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue
+    sin determinar, el portal lo genera bajo demanda.'
   fecha_descarga: '2026-07-30'
   descargado_por: usuario, vía navegador
   archivo: DescargaMasiva_3072026_10560.zip
@@ -1043,10 +1079,17 @@
     FF-5563
 
 - id: descargamasiva_3072026_105617
-  usado_para: sin uso asignado — registro de inventario
-  url_origen: no determinada
-  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
-    el autor
+  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato,
+    misma estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada
+    para el patrón completo). XML interno (348 B) apunta a ENUT 2009, totalMb="5.19
+    MB": fd_enut09.pdf + enut_2009_dbf.zip -- mismas dos URLs de enut2009_fd_pdf/enut2009_bd_dbf,
+    ya bajadas directamente y catalogadas aparte. Redundante. Identificado 2026-08-05,
+    Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
+  url_origen: 'no determinada (generado por el portal /programas/enut/2009/ al solicitar
+    "Descarga masiva" desde el navegador)'
+  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma
+    reserva que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue
+    sin determinar, el portal lo genera bajo demanda.'
   fecha_descarga: '2026-07-30'
   descargado_por: usuario, vía navegador
   archivo: DescargaMasiva_3072026_105617.zip
@@ -1057,10 +1100,17 @@
     FF-5563
 
 - id: descargamasiva_3072026_105625
-  usado_para: sin uso asignado — registro de inventario
-  url_origen: no determinada
-  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
-    el autor
+  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato,
+    misma estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada
+    para el patrón completo). XML interno (350 B) apunta a ENUT 2002, totalMb="2.77
+    MB": descripcion.pdf + enut_2002_dbf.zip -- mismas dos URLs de enut2002_fd_pdf/enut2002_bd_dbf,
+    ya bajadas directamente y catalogadas aparte. Redundante. Identificado 2026-08-05,
+    Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
+  url_origen: 'no determinada (generado por el portal /programas/enut/2002/ al solicitar
+    "Descarga masiva" desde el navegador)'
+  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma
+    reserva que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue
+    sin determinar, el portal lo genera bajo demanda.'
   fecha_descarga: '2026-07-30'
   descargado_por: usuario, vía navegador
   archivo: DescargaMasiva_3072026_105625.zip
@@ -1071,10 +1121,17 @@
     FF-5563
 
 - id: descargamasiva_3072026_10567
-  usado_para: sin uso asignado — registro de inventario
-  url_origen: no determinada
-  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
-    el autor
+  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato,
+    misma estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada
+    para el patrón completo). XML interno (348 B) apunta a ENUT 2014, totalMb="5.68
+    MB": fd_enut14.xls + bd_enut14_dbf.zip -- mismas dos URLs de enut2014_fd_xls/enut2014_bd_dbf,
+    ya bajadas directamente y catalogadas aparte. Redundante. Identificado 2026-08-05,
+    Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
+  url_origen: 'no determinada (generado por el portal /programas/enut/2014/ al solicitar
+    "Descarga masiva" desde el navegador)'
+  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma
+    reserva que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue
+    sin determinar, el portal lo genera bajo demanda.'
   fecha_descarga: '2026-07-30'
   descargado_por: usuario, vía navegador
   archivo: DescargaMasiva_3072026_10567.zip
@@ -2789,8 +2846,13 @@
     enlazado desde /programas/enut/2014/data/arbol/arbolData.js -> Metadatos (estándar DDI).
 
 - id: enut2019_bd_csv
-  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
-    de Hito E
+  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2):
+    "constructo pendiente de asignar" desactualizado desde el 2026-08-04 -- `TMODULO.csv`
+    de este payload fue abierto e inspeccionado (columnas/frecuencias, no fila-por-fila)
+    en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md §3.2/§3.5, junto
+    con enut2019_fd_xlsx/enut2019_diccionario_variables_html. No se corrió estadística
+    de resultado sobre esta ola específicamente -- la corrida completa de R5.2 (Encargo
+    Y) usó la ola 2024, ver enut2024_bd_csv.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2019/microdatos/enut_2019_bd_csv.zip
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx
@@ -2810,8 +2872,10 @@
     de 2019.'
 
 - id: enut2019_fd_xlsx
-  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
-    de Hito E
+  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2):
+    "constructo pendiente de asignar" desactualizado -- workbook parseado íntegro (hoja
+    por tabla) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md §3.2 para
+    confirmar reactivos/nemónicos antes de abrir el microdato de enut2019_bd_csv.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2019/microdatos/enut_2019_fd.xlsx
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx
@@ -2846,8 +2910,10 @@
     bajar. idBiinegi=2968.
 
 - id: enut2019_diccionario_variables_html
-  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
-    de Hito E
+  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2):
+    "constructo pendiente de asignar" desactualizado -- leída (landing RNM, estructura
+    de tablas y conteos) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md
+    §3.2.'
   url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/618/data-dictionary
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx
@@ -2863,8 +2929,13 @@
     enlazado desde /programas/enut/2019/data/arbol/arbolData.js -> Metadatos (estándar DDI).
 
 - id: enut2024_bd_csv
-  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
-    de Hito E
+  usado_para: 'Encargo Y — R5.2 (cuidado -> mujeres 40+), forense/notas/2026-08-04-y5-veredicto-r5-2.md.
+    Corregido 2026-08-05 (Encargo M-2): "constructo pendiente de asignar" desactualizado
+    desde el 2026-08-04 -- este payload alimentó `run_r5_2.py` (tablas `tsdem.csv`,
+    `tmodulo.csv`, `tvar_crea.csv`), corrida completa y PROPUESTA (no adjudicada; el
+    veredicto archivado y el contador `3 de 27` no cambiaron por esa nota — mismo criterio
+    que Nota 16/R5.1). Inspección estructural previa (columnas, sin cruces) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md
+    §3.2/§3.5 y forense/notas/2026-08-04-y1-operacionalizacion-r5-2-enut.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_bd_csv.zip
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx
@@ -2881,8 +2952,10 @@
     bajar. idBiinegi=3381.
 
 - id: enut2024_fd_xlsx
-  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
-    de Hito E
+  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2):
+    "constructo pendiente de asignar" desactualizado -- workbook parseado íntegro (hoja
+    por tabla) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md §3.2 y
+    usado como base de nombres/columnas para la corrida R5.2 (ver enut2024_bd_csv).'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_fd.xlsx
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx
@@ -2917,8 +2990,10 @@
     bajar. idBiinegi=3381.
 
 - id: enut2024_diccionario_variables_html
-  usado_para: documentación / microdato — ENUT, constructo pendiente de asignar en el cruce
-    de Hito E
+  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2):
+    "constructo pendiente de asignar" desactualizado -- leída (landing RNM, estructura
+    de tablas y conteos) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md
+    §3.2.'
   url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/1127/data-dictionary
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx
