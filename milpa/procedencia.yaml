@@ -745,6 +745,37 @@ coeficientes_generador_medidos:
       Asociar ≠ identificar.
 
 # ══════════════════════════════════════════════════════════════════
+# CENSO DE ESTIMABILIDAD · Encargo E-CE · 05/ago/2026 · campo `ruta:`
+# nuevo por coeficiente. `asignados_coeficiente.detalle` NO SE TOCA (mismo
+# criterio que Encargo W arriba: sección nueva y paralela, no edición de
+# `detalle`) -- ningún valor ASIGNADO ni ninguna clase cambia por este acto.
+# Taxonomía RUTA-A/RUTA-I/RUTA-C/SIN-RUTA definida por PRIMERA VEZ en este
+# acto -- NO es canon heredado, no rige nada hasta que exista ADR que la
+# selle (ver censo, §1). Detalle completo, cita por fila y verificación del
+# reparto: forense/censo-estimabilidad-coeficientes-v1_0.md.
+# ══════════════════════════════════════════════════════════════════
+rutas_estimabilidad_coeficiente:
+  version_censo: "1.0"
+  fuente: forense/censo-estimabilidad-coeficientes-v1_0.md
+  detalle:
+    - {gen: G1, coef: confianza_institucional, ruta: RUTA-A, prioridad: BAJA, nota: "β̂ marginal ya corrido, Encargo W -- no re-abre ruta, ver ADR-57(a)"}
+    - {gen: G1, coef: radio_confianza, ruta: RUTA-A, prioridad: BAJA, nota: "β̂ marginal ya corrido, Encargo W -- ASIGNADO · SIGNO BAJO PRUEBA (ADR-60 e), pendiente W1-P"}
+    - {gen: G2, coef: sens_estatus, ruta: SIN-RUTA, prioridad: BAJA, nota: "búsqueda de reactivo cerrada, ADR-54"}
+    - {gen: G2, coef: aversion_riesgo, ruta: SIN-RUTA, prioridad: BAJA, nota: "búsqueda de reactivo cerrada, ADR-52 A"}
+    - {gen: G3, coef: horizonte_temporal, ruta: RUTA-I, prioridad: ALTA, nota: "llave sellada ENNViH/MxFLS vía CAL-G3, Fase C descriptiva ya corrida, gobernanza:623 -- ruta ENOE de ADR-49 D1 NO se re-propone"}
+    - {gen: G3, coef: aversion_riesgo, ruta: SIN-RUTA, prioridad: BAJA, nota: "misma búsqueda cerrada que G2·aversion_riesgo, ADR-52 A"}
+    - {gen: G3, coef: familismo_apoyo, ruta: RUTA-A, prioridad: BAJA, nota: "β̂ marginal ya corrido, Encargo W -- marca (b)"}
+    - {gen: G4, coef: exposicion_violencia, ruta: RUTA-C, prioridad: MEDIA, nota: "candidato BP1_23/ver_oir_callar con limitación estructural declarada, procedencia.yaml:396-413 (limite_c2) -- pendiente adjudicación de mesa"}
+    - {gen: G4, coef: confianza_institucional, ruta: RUTA-C, prioridad: MEDIA, nota: "mismo candidato y misma limitación que G4·exposicion_violencia"}
+    - {gen: G4, coef: horizonte_temporal, ruta: SIN-RUTA, prioridad: BAJA, nota: "sin reactivo dedicado; único proxy (ENIF P4_10) es de G3 y cruza instrumento distinto de los desenlaces de G4"}
+    - {gen: G4, coef: sens_estatus, ruta: SIN-RUTA, prioridad: BAJA, nota: "misma búsqueda cerrada que G2·sens_estatus, ADR-54"}
+    - {gen: G5, coef: familismo_apoyo, ruta: SIN-RUTA, prioridad: BAJA, nota: "único candidato (ENIF p9_9_4) excluido por circularidad, marca C3, línea 265-270 arriba -- marca (b)"}
+    - {gen: G5, coef: familismo_obligacion, ruta: SIN-RUTA, prioridad: BAJA, nota: "sin magnitud asignada (ADR-30); condicional propia solo PROXY CON SUPUESTO DECLARADO, forma PENDIENTE -- marca (b)"}
+    - {gen: G5, coef: radio_confianza, ruta: SIN-RUTA, prioridad: BAJA, nota: "reactivo (ENCUCI) y desenlace (ENIF) en instrumentos distintos, sin muestra común"}
+    - {gen: G6, coef: deferencia, ruta: SIN-RUTA, prioridad: BAJA, nota: "único proxy (Latinobarómetro P4NOIJ) sin desenlace de G6 documentado en el mismo instrumento; SIN_DISEÑO_PUBLICADO"}
+  reparto: "RUTA-A=3 · RUTA-I=1 · RUTA-C=2 · SIN-RUTA=9 -- suma 15, comando de verificación en el censo §7"
+
+# ══════════════════════════════════════════════════════════════════
 # CRUCE CON LA BATERÍA DE REFUTACIONES
 # ══════════════════════════════════════════════════════════════════
 # Números que podrían estar codificando un mito ya refutado por el corpus.
