@@ -1,6 +1,10 @@
 # Integración y plan de trabajo · MILPA
 ### `milpa-plan` · **v0.1**
 
+> ⚠️ **INCOMPATIBILIDAD PARCIAL con `modelo` v4.0 — declarada, no resuelta (ENCARGO MT-mantenimiento, 4/ago/2026, ADR-62).** La Parte I.2 de este documento describe la compilación del motor desde la ficha canónica — un archivo **borrado por ADR-36.b**, absorbido en `modelo` §0.1/§0.2/§9, sin compilador propio que lo reemplace. Ese mismo artefacto fue el mecanismo del **Hito 2** (reglas fantasma, desincronización perfil↔motor: `canon/estado-programa-v1_10.md §L3`) — la razón por la que ADR-36.b lo eliminó, no una omisión de este plan. La reescritura completa de `milpa-plan` sobre `modelo` v4.0 (vector de atributos, ADR-51) **espera el veredicto del benchmark** (Fase 1, Parte II abajo); hasta entonces, léase como snapshot del diseño previo a ADR-36.b/ADR-51, no como plan de integración vigente.
+>
+> **Desvío de alcance, declarado.** Este acto NO renombra el archivo a `milpa-plan-v0_2.md` ni sube la cifra de versión de la cabecera de abajo, aunque el defecto arriba lo pediría. Bajo la convención de ADR-36 (nombre de archivo = versión), renombrar dejaría colgantes las citas a `milpa-plan-v0.1.md` de `canon/estado-programa-v1_10.md` (Registro de artefactos) y `forense/censo-integridad-v1_0.md` — ninguno de los dos en el perímetro cerrado de este acto — y tumbaría `tests/check.py --baseline` (T03) en rojo. Se declara aquí en vez de quedar implícito; renombrar y subir versión queda para un acto que también toque esos dos archivos.
+
 > | | |
 > |---|---|
 > | **ARCHIVO** | `milpa-plan-v0.1.md` |

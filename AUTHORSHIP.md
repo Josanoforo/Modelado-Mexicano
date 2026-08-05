@@ -56,8 +56,13 @@ plausibles sin fuente, síntesis que suena bien y no se sostiene. Contra eso hay
 maquinaria real, y conviene saber qué alcanza:
 
 **Existe.** Una suite de verificación automática (`tests/check.py`) que corre en
-CI sobre cada push y cada PR, y que hoy documenta **19 FAIL y 84 WARN** como deuda
-conocida y congelada. Un sistema de tierización de evidencia. Marcas de procedencia
+CI sobre cada push y cada PR, y que documenta como deuda conocida y congelada
+un recuento de FAIL/WARN que se mueve con cada corrección — la cifra vigente
+se deriva corriendo `python3 tests/check.py`; no se teclea aquí porque una
+cifra tecleada se desactualiza sin que nadie lo note (le pasó a este mismo
+párrafo — ver `forense/hallazgos.md`, ENCARGO MT-mantenimiento). Ver también
+`README.md` (`## Estado del modelo`) para el resto de los números vivos del
+modelo. Un sistema de tierización de evidencia. Marcas de procedencia
 `(a)` dato en México / `(b)` muestra de diáspora / `(c)` marco importado. Un
 registro append-only de errores propios en `forense/`. 43 decisiones de arquitectura
 razonadas.

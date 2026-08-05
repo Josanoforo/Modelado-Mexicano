@@ -1,6 +1,22 @@
 # rules/tramite.yaml — Dominio: autoridad, trámite, relación con el Estado
 dominio: tramite
-version: "0.2.0"
+version: "0.3.0"
+
+# ══════════════════════════════════════════════════════════════════
+# CAMBIOS v0.2.0 → v0.3.0  ·  4 de agosto de 2026 (ENCARGO MT-mantenimiento)
+# ══════════════════════════════════════════════════════════════════
+#   1. TODO `p:` GANA `clase: ASIGNADO`. Ninguna probabilidad de este YAML
+#      tenía marca de procedencia -- exactamente el mismo defecto que
+#      milpa-spec §5.1 documenta para `civico.voto.clientelar` (una cifra
+#      de laboratorio viajando sin declarar que lo era, hasta que alguien
+#      la leyó como si fuera de campo). Las 10 probabilidades de este
+#      archivo (5 reglas × 2) no son de laboratorio ni de campo medido --
+#      son ASIGNADAS por mesa, sin calibración (ver `nota_calibracion`,
+#      que no se toca: es el mismo hecho dicho en prosa). Un número sin
+#      clase es el peor lugar para él justo donde un motor lo consumiría
+#      literal. Conteo derivado con comando, ver mensaje del commit que
+#      introduce este cambio.
+# ══════════════════════════════════════════════════════════════════
 
 # ══════════════════════════════════════════════════════════════════
 # CAMBIOS v0.1.0 → v0.2.0  ·  28 de julio de 2026
@@ -26,8 +42,8 @@ reglas:
     si:
       disparadores: {sancion_creible: false, quien_observa: "nadie"}
     entonces:
-      - {conducta: paga_mordida, p: 0.62}
-      - {conducta: tramite_normal, p: 0.38}
+      - {conducta: paga_mordida, p: 0.62, clase: ASIGNADO}
+      - {conducta: tramite_normal, p: 0.38, clase: ASIGNADO}
     porque: {generador: [G1], mecanismo: "trampa social: cada quien paga porque supone que los demás pagan"}
     tier: FUERTE
     falsable_si: "Si al digitalizar y agregar testigos la mordida no baja, no es trampa social sino otra cosa"
@@ -38,8 +54,8 @@ reglas:
     si:
       disparadores: {sancion_creible: true, quien_observa: "registro_o_testigos"}
     entonces:
-      - {conducta: tramite_normal, p: 0.88}
-      - {conducta: paga_mordida, p: 0.12}
+      - {conducta: tramite_normal, p: 0.88, clase: ASIGNADO}
+      - {conducta: paga_mordida, p: 0.12, clase: ASIGNADO}
     porque: {generador: [G1], mecanismo: "el registro rompe la trampa social"}
     tier: FUERTE
     falsable_si: "Si la digitalización no reduce la mordida, la hipótesis de trampa social falla"
@@ -51,8 +67,8 @@ reglas:
       disparadores: {cobertura_formal: false}
       contexto_producto: {coercitivo: true, riesgo_fiscal_percibido: true}
     entonces:
-      - {conducta: rechaza_servicio, p: 0.91}
-      - {conducta: adopta, p: 0.09}
+      - {conducta: rechaza_servicio, p: 0.91, clase: ASIGNADO}
+      - {conducta: adopta, p: 0.09, clase: ASIGNADO}
     porque: {generador: [G1], mecanismo: "la utilidad predice adopción; la coerción con riesgo fiscal la mata"}
     tier: MEDIA-FUERTE          # corregido en v0.2.0 · el motor §3.3 dice MEDIA-FUERTE, no FUERTE
     alcance: "gobierno digital ÚNICAMENTE (cambio 11 del modelo v2)"
@@ -65,8 +81,8 @@ reglas:
     si:
       contexto_producto: {coercitivo: false, riesgo_fiscal_percibido: false}
     entonces:
-      - {conducta: adopta, p: 0.71}
-      - {conducta: rechaza_servicio, p: 0.29}
+      - {conducta: adopta, p: 0.71, clase: ASIGNADO}
+      - {conducta: rechaza_servicio, p: 0.29, clase: ASIGNADO}
     porque: {generador: [G1], mecanismo: "la utilidad predice la adopción; sin coerción ni amenaza fiscal desaparece la razón para rechazar"}
     tier: MEDIA-FUERTE          # corregido en v0.2.0 · hereda el tier de su par: es su espejo obligatorio
     alcance: "gobierno digital ÚNICAMENTE (cambio 11 del modelo v2)"
@@ -92,8 +108,8 @@ reglas:
       disparadores: {sancion_creible: false}
       contexto_norma: {percibida_util: false}
     entonces:
-      - {conducta: evade_norma, p: 0.66}
-      - {conducta: cumple_norma, p: 0.34}
+      - {conducta: evade_norma, p: 0.66, clase: ASIGNADO}
+      - {conducta: cumple_norma, p: 0.34, clase: ASIGNADO}
     porque: {generador: [G1], mecanismo: "cálculo ante institución de baja calidad: el costo esperado de cumplir excede el de evadir cuando la sanción es improbable y la norma no rinde"}
     tier: MEDIA
     falsable_si: "Si la evasión NO baja al hacer creíble la sanción manteniendo constante la utilidad percibida de la norma, el driver no es el cálculo sino otra cosa"
