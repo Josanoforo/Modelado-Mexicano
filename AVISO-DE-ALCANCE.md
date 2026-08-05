@@ -10,8 +10,9 @@ da por sabido el contexto. Este archivo es para quien llega de fuera.
 ## Qué es esto
 
 Una síntesis de literatura sobre conducta, psicología y estructura social en México
-—31 reports temáticos—, más un modelo de decisión que convierte esa síntesis en 49
-reglas segmentadas, más un aparato para refutarlas.
+—**31 reports temáticos**<!-- ls corpus/reports/*.md | wc -l -->—, más un modelo de
+decisión que convierte esa síntesis en **49 reglas**<!-- python3
+tests/validador_registro_ids.py --> segmentadas, más un aparato para refutarlas.
 
 ## Qué no es
 
@@ -22,12 +23,17 @@ trabajo de campo. Todo se apoya en literatura publicada por terceros.
 independiente.
 
 **No es un instrumento validado.** De los 144 números del modelo, **4 están
-medidos** — `4 de 144` sigue **[MESA-M4]**: congelado 31/jul/2026 por decisión de
-mesa, no se recalcula. De los 15 coeficientes de generador, **ninguno está en
-escala del modelo** — tres asociaciones marginales (β̂) existen (Encargo W),
-pero ADR-57(a) las rotula asociaciones, no coeficientes: ninguna sobrevive
-condicionar. Una regla marcada `[FUERTE]` significa que la literatura la
-sostiene bien, no que su probabilidad esté calibrada contra datos.
+medidos** <!-- modelo §6.1 (90 params_base + 15 coeficientes + 39 probabilidades =
+144; 4 MEDIDO); forense/hallazgos.md, 2026-07-31: "Congelamiento de `4 de 144`" —
+decisión de mesa, no ADR --> — `4 de 144` sigue **[MESA-M4]**: congelado 31/jul/2026
+por decisión de mesa, no se recalcula. De los 15 coeficientes de generador,
+**ninguno está en escala del modelo** <!-- modelo §2.2 ("Los quince coeficientes
+son ASIGNADO. Ninguno es medido"); milpa/procedencia.yaml:
+asignados_coeficiente / coeficientes_generador_medidos --> — tres asociaciones
+marginales (β̂) existen (Encargo W), pero ADR-57(a) las rotula asociaciones, no
+coeficientes: ninguna sobrevive condicionar. Una regla marcada `[FUERTE]` significa
+que la literatura la sostiene bien, no que su probabilidad esté calibrada contra
+datos.
 
 **No fue escrito principalmente por un humano.** Ver `AUTHORSHIP.md`.
 
@@ -52,7 +58,8 @@ suite documenta que el marcado está incompleto.
 
 **Marcos importados.** Hofstede, GLOBE, WVS y las tipologías honor/dignidad/face
 aparecen en el corpus. Se usan con crítica declarada, pero la suite detecta ocho
-lugares donde un marco importado se usa como causa sin la marca `(c)`.
+lugares <!-- python3 tests/check.py → T09 --> donde un marco importado se usa
+como causa sin la marca `(c)`.
 
 ---
 
@@ -65,9 +72,10 @@ desactualiza sin que nadie lo note (le pasó a este mismo párrafo — ver
 `forense/hallazgos.md`, ENCARGO MT-mantenimiento). El CI está verde porque no
 ha empeorado, no porque no haya nada roto.
 
-Entre lo que la suite documenta: siete valores distintos del coeficiente de Gini
-circulando en el corpus, doce valores distintos de confianza interpersonal, siete
-vocabularios de tier incompatibles, y siete reports sin mapa de evidencia.
+Entre lo que la suite documenta <!-- python3 tests/check.py → T06/T07/T08 -->:
+siete valores distintos del coeficiente de Gini circulando en el corpus, doce
+valores distintos de confianza interpersonal, siete vocabularios de tier
+incompatibles, y siete reports sin mapa de evidencia.
 
 `forense/` contiene el registro fechado de los errores que el programa encontró
 auditándose. Es append-only: nada de eso se borra ni se reescribe.
@@ -99,12 +107,21 @@ en bloque que ya existe. No sustituye a este archivo.)*
 ```markdown
 > ### ⚠️ Antes de citar nada
 >
-> **Síntesis de literatura, sin revisión por pares, sin datos primarios propios,
-> escrita en su mayor parte por modelos de lenguaje.** De los 144 números del
-> modelo, 4 están medidos (`4 de 144`, **[MESA-M4]**: congelado 31/jul/2026, no
-> se recalcula); de los 15 coeficientes en escala del modelo, ninguno — tres
-> asociaciones marginales existen pero ADR-57(a) las excluye del conteo. El
-> corpus sobre-muestrea al clasemediero urbano formal y deja el sistema
+> **Síntesis de literatura, sin revisión por pares, escrita en su mayor parte
+> por modelos de lenguaje.** Sí hay dato primario propio: **223 payloads**
+> <!-- grep -cE '^\s*sha256:' data/manifiesto.yaml --> con `sha256` y estimandos
+> propios sobre ENVIPE/ENCIG/ENCUCI/ENIF/ENIGH, con un estimador
+> (`tests/svystat.py`) respaldado contra tres casos de referencia (Encargo E-3,
+> PR #97) y validado contra cifras publicadas de INEGI en al menos dos actos
+> (Encargo K, ENVIPE; Encargo P, ENIGH). El modelo en sí sigue mayormente sin
+> medir: de los 144 números, 4 están medidos (`4 de 144`, **[MESA-M4]**:
+> congelado 31/jul/2026, no se recalcula); de los 15 coeficientes en escala del
+> modelo, ninguno — tres asociaciones marginales existen pero ADR-57(a) las
+> excluye del conteo. Y la mayoría de las 49 reglas sigue descansando en
+> síntesis de literatura, no en dato propio: **36 de 49**
+> <!-- 49 (validador_registro_ids.py) − 13 (fichas del bloque append-only,
+> T18) = 36 --> sin corrida de falsación pre-registrada. El corpus
+> sobre-muestrea al clasemediero urbano formal y deja el sistema
 > indígena-comunal **fuera por diseño**.
 >
 > Léelo entero en **[`AVISO-DE-ALCANCE.md`](AVISO-DE-ALCANCE.md)**.
