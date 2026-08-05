@@ -13,11 +13,16 @@ licencia; simplemente no puede alegar que no se le dijo.
 
 ## Qué es este modelo
 
-`canon/modelo-decision-v3_3.md` contiene 49 reglas SI-ENTONCES que predicen conducta
-esperada por segmento —clase, región, edad, género, escolaridad, formalidad— con una
-etiqueta de fuerza de evidencia y una probabilidad asociada.
+`modelo §3.B` (nombre estable — el archivo vigente es `canon/modelo-decision-v4_0.md`,
+pero las versiones suben, así que se cita por sección, no por archivo) contiene **49
+reglas** <!-- python3 tests/validador_registro_ids.py --> SI-ENTONCES que predicen
+conducta esperada por segmento —clase, región, edad, género, escolaridad,
+formalidad— con una etiqueta de fuerza de evidencia y una probabilidad asociada.
 
-**De sus 144 números, 4 están medidos. De sus 15 coeficientes de generador, ninguno.**
+**De sus 144 números, 4 están medidos. De sus 15 coeficientes de generador,
+ninguno.** <!-- modelo §6.1; forense/hallazgos.md, 2026-07-31: "Congelamiento de
+`4 de 144`"; modelo §2.2; milpa/procedencia.yaml: asignados_coeficiente /
+coeficientes_generador_medidos -->
 El resto son valores asignados por juicio, derivados de literatura, sin calibrar
 contra datos primarios. Una regla `[FUERTE]` significa que la literatura la sostiene
 bien, no que su probabilidad esté medida.
@@ -81,7 +86,17 @@ lectura discutible del material: es su inversión.
 - Parte de la evidencia proviene de **muestras mexicano-americanas**, sujetas a
   aculturación y selección migratoria. Está marcada `(b)` donde se detectó; la suite
   documenta que el marcado es incompleto.
-- **Cero datos primarios propios.**
+- **Sí hay dato primario propio.** 223 payloads con `sha256`
+  <!-- grep -cE '^\s*sha256:' data/manifiesto.yaml --> y estimandos propios
+  sobre ENVIPE, ENCIG, ENCUCI, ENIF y ENIGH; estimador (`tests/svystat.py`)
+  respaldado contra tres casos de referencia (Encargo E-3, PR #97) y validado
+  contra cifras publicadas de INEGI en al menos dos actos (Encargo K, ENVIPE;
+  Encargo P, ENIGH). Pero el modelo sigue mayormente sin medir (`4 de 144`
+  **[MESA-M4]**, congelado; `0 de 15` coeficientes en escala del modelo — las
+  asociaciones marginales que existen las rotula así ADR-57(a), no
+  coeficientes) y **36 de 49** <!-- 49 (validador_registro_ids.py) − 13
+  (fichas del bloque append-only, T18) = 36 --> reglas siguen sin corrida de
+  falsación pre-registrada.
 
 ---
 
