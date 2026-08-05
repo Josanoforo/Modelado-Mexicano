@@ -58,9 +58,12 @@ lugares donde un marco importado se usa como causa sin la marca `(c)`.
 
 ## El repositorio publica sus propios defectos
 
-Es deliberado. `python3 tests/check.py` corre una suite de verificación que hoy
-arroja **19 FAIL y 84 WARN** contra el propio corpus, congelados como línea base.
-El CI está verde porque no ha empeorado, no porque no haya nada roto.
+Es deliberado. `python3 tests/check.py` corre una suite de verificación contra
+el propio corpus y congela su recuento de FAIL/WARN como línea base — córrelo
+para ver la cifra vigente; no se teclea aquí porque una cifra tecleada se
+desactualiza sin que nadie lo note (le pasó a este mismo párrafo — ver
+`forense/hallazgos.md`, ENCARGO MT-mantenimiento). El CI está verde porque no
+ha empeorado, no porque no haya nada roto.
 
 Entre lo que la suite documenta: siete valores distintos del coeficiente de Gini
 circulando en el corpus, doce valores distintos de confianza interpersonal, siete

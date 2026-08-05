@@ -141,7 +141,6 @@ import hashlib
 import os
 import platform
 import re
-import socket
 import sys
 
 import yaml
@@ -238,9 +237,15 @@ def sha256_de(path, buf_size=1024 * 1024):
 
 
 def entorno_actual():
-    """Derivado del proceso en ejecución -- nunca pedido por parámetro."""
+    """Derivado del proceso en ejecución -- nunca pedido por parámetro.
+
+    No incluye `host` hacia adelante (ENCARGO MT-mantenimiento, 5/ago/2026,
+    ADR-62): ~190 entradas ya escritas en data/manifiesto.yaml exponen
+    hostname bajo la versión anterior de esta función y se quedan tal cual
+    -- append-only, no se reescriben retroactivamente. SO y Python se
+    conservan."""
     return (f"{platform.system()} {platform.release()} ({platform.machine()}) "
-            f"· Python {platform.python_version()} · host {socket.gethostname()}")
+            f"· Python {platform.python_version()}")
 
 
 def buscar(entradas, id_):
@@ -250,9 +255,27 @@ def buscar(entradas, id_):
     return None
 
 
+def _id_unico(valor, comando):
+    """--id ahora acumula (action='append') para que --verifica pueda recibir
+    varios sin que argparse se quede callado con el último y descarte el
+    resto (ENCARGO MT-mantenimiento, 5/ago/2026; forense/hallazgos.md
+    4/ago). Los comandos de un solo id (--registra, --compara) no tienen uso
+    para más de uno -- fallan ruidoso en vez de tomar el último en silencio,
+    que es exactamente el defecto que este helper cierra."""
+    if valor is None:
+        return None
+    if len(valor) > 1:
+        print(f"ERROR: {comando} no admite --id repetido (recibió {len(valor)}): "
+              f"{', '.join(valor)}. Cada invocación de {comando} opera sobre un "
+              f"solo id.", file=sys.stderr)
+        sys.exit(1)
+    return valor[0]
+
+
 # ───────────────────────────────────────────────────────────── --registra ──
 
 def cmd_registra(a, manifiesto_path, raw_dir):
+    a.id = _id_unico(a.id, "--registra")
     obligatorios = [("--id", a.id), ("--archivo", a.archivo),
                      ("--usado-para", a.usado_para), ("--url-origen", a.url_origen),
                      ("--descargado-por", a.descargado_por), ("--formato", a.formato),
@@ -321,12 +344,27 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
     con_payload = [e for e in entradas if "sha256" in e]
 
     if a.id:
-        objetivo = [e for e in con_payload if e.get("id") == a.id]
-        if not objetivo:
-            existe_sin_payload = buscar(entradas, a.id) is not None
-            razon = ("existe pero no tiene payload (sha256) -- es una entrada de "
-                      "nota/documentación" if existe_sin_payload else "no existe")
-            print(f"ERROR: id '{a.id}' {razon} en el manifiesto.", file=sys.stderr)
+        # --id ahora es action='append': varios --id en la misma invocación
+        # verifican TODOS, no solo el último (defecto documentado en
+        # forense/hallazgos.md 4/ago -- TANDA-4 de la maestra lo esquivó a
+        # mano). Un id pedido que no existe es error explícito y ruidoso, no
+        # un silencio parcial: se listan TODOS los faltantes antes de salir,
+        # no solo el primero.
+        ids_pedidos = list(dict.fromkeys(a.id))  # dedup preservando orden
+        objetivo = []
+        faltantes = []
+        for id_pedido in ids_pedidos:
+            coincidencias = [e for e in con_payload if e.get("id") == id_pedido]
+            if not coincidencias:
+                existe_sin_payload = buscar(entradas, id_pedido) is not None
+                razon = ("existe pero no tiene payload (sha256) -- es una entrada de "
+                          "nota/documentación" if existe_sin_payload else "no existe")
+                faltantes.append((id_pedido, razon))
+            else:
+                objetivo.extend(coincidencias)
+        if faltantes:
+            for id_pedido, razon in faltantes:
+                print(f"ERROR: id '{id_pedido}' {razon} en el manifiesto.", file=sys.stderr)
             sys.exit(1)
     else:
         objetivo = con_payload
@@ -921,6 +959,7 @@ def cmd_promueve(a, manifiesto_path, raw_dir):
 # ───────────────────────────────────────────────────────────── --compara ──
 
 def cmd_compara(a, manifiesto_path, raw_dir):
+    a.id = _id_unico(a.id, "--compara")
     if not a.id or not a.archivo:
         print("ERROR: --compara exige --id (entrada ya registrada) y --archivo "
               "(payload nuevo a contrastar).", file=sys.stderr)
@@ -994,7 +1033,9 @@ def main():
                          "data/manifiesto.yaml aunque url_origen no esté confirmada "
                          "(queda marcada con url_origen_procedencia)")
 
-    ap.add_argument("--id", default=None)
+    ap.add_argument("--id", action="append", default=None,
+                     help="repetible. --verifica corre sobre TODOS los --id dados; "
+                          "--registra/--compara exigen exactamente uno")
     ap.add_argument("--grupo", default=None,
                      help="patrón fnmatch. Con --escanea: aplica --url/--usado-para a "
                           "los archivos nuevos cuyo nombre case con el patrón (o, "

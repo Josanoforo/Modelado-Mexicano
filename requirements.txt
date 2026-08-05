@@ -1,0 +1,4 @@
+# Única dependencia externa del repo: tests/manifiesto.py usa PyYAML para
+# leer/escribir data/manifiesto.yaml. tests/check.py y el resto de tests/
+# corren con la librería estándar, sin nada de aquí.
+PyYAML
