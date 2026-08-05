@@ -1,6 +1,6 @@
 # Aterrizar R5.1: tratamiento por norma (regla DOF), no por recepción declarada
 
-*5 de agosto de 2026. Acto A4, mesa. Rama `claude/audit-reparto-cruce-dof-0xqo7u`.*
+*4 de agosto de 2026. Acto A4, mesa. Rama `claude/audit-reparto-cruce-dof-0xqo7u`.*
 
 > **PROCEDENCIA — leer antes que el cuerpo.** Las tres citas del DOF de este documento son **tipo (3)**:
 > reportadas por conversación/búsqueda web de esta sesión, **no verificadas contra el DOF desde el repo**.
