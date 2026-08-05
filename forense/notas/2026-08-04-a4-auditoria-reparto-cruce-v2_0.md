@@ -1,6 +1,6 @@
 # Auditoría del reparto de veredictos — `cruce-catalogo-fichas-v2_0.md`
 
-*5 de agosto de 2026. Acto A4, mesa. Rama `claude/audit-reparto-cruce-dof-0xqo7u`. Base: `origin/main` en
+*4 de agosto de 2026. Acto A4, mesa. Rama `claude/audit-reparto-cruce-dof-0xqo7u`. Base: `origin/main` en
 `32d9321` (Merge PR #100), que ya incluye `9729894` (base declarada del encargo) como ancestro directo —
 `main` avanzó un merge entre la declaración del encargo y la apertura de esta sesión; sin discrepancia que
 bloquee, reportado por disciplina.*
