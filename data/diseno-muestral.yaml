@@ -1,0 +1,861 @@
+# data/diseno-muestral.yaml — censo de diseño muestral del corpus
+# ACTO M, 2026-08-04. Archivo NUEVO -- cero traslape con canon/, milpa/, tests/, manifiesto.
+#
+# Qué es. Un mapa de qué fuentes del corpus tienen su diseño muestral
+# (ponderador, estrato, UPM -- unidad primaria de muestreo) YA
+# documentado con cita verificable (archivo:línea de una nota forense,
+# o archivo:hoja/fila de un documento de diseño abierto en este acto).
+# Toda sesión limpia futura congela una especificación de medición
+# CITANDO este archivo, sin volver a abrir el instrumento.
+#
+# Por qué existe. El PARO de PR #96 (ENCUP paso 2, ADR-46) mostró que
+# "¿esta fuente tiene diseño muestral resoluble?" no se sabía para
+# ENCUP -- ni para cuántas otras. Este acto responde esa pregunta una
+# vez, para las 17 fuentes con payload en data/manifiesto.yaml, y deja
+# nombradas (PENDIENTE) las 26 operables del catálogo que aún no
+# tienen payload.
+#
+# estado (tres valores, sin un cuarto informal):
+#   MAPEADO               ponderador + estrato + upm, los tres con
+#                         nombre de COLUMNA citado archivo:línea/fila.
+#   SIN_DISEÑO_PUBLICADO   la fuente no publica (en este corpus) un
+#                         documento que nombre las tres variables de
+#                         diseño a nivel de columna -- puede traer
+#                         caracterización cualitativa del diseño sin
+#                         llegar a nombre de campo (ver notas).
+#   PENDIENTE              no examinado, examinado sin resolver del
+#                         todo (falta 1 de 3 campos), o payload
+#                         registrado pero AUSENTE en este entorno.
+#
+# Lo que este archivo NO decide: qué fuente se usa para qué constructo
+# (eso es mesa/fichas), ni si el payload existe en disco AHORA MISMO en
+# TU entorno (para eso, tests/manifiesto.py --verifica sigue siendo la
+# fuente de verdad -- este censo describe documentación, no presencia
+# de archivo).
+#
+# COMMIT 1 (07aa541): mapa parcial de FASE A -- barrido de notas
+# forenses ya escritas, cero instrumento abierto.
+# COMMIT 2 (este): FASE B -- declarada por adelantado (ver
+# forense/notas/2026-08-04-censo-diseno-muestral.md), abrió cuatro
+# documentos de diseño ya presentes en el corpus (CPV, ENADID, ENNViH,
+# ENOE). Esta sesión queda inhabilitada por ADR-46 para pre-registrar
+# contra esas cuatro fuentes. Detalle exacto de qué se abrió, en la
+# nota forense.
+#
+# Verificación de receta: python3 -c "import yaml; d=yaml.safe_load(open('data/diseno-muestral.yaml')); print(len(d))"
+# debe imprimir 43 (17 fuentes con payload + 26 operables sin payload,
+# derivadas de data/catalogo_unico.json el 2026-08-04 -- si el catálogo
+# cambia, esta cifra puede cambiar; no se teclea de memoria, se deriva).
+
+- fuente: ENCIG (Encuesta Nacional de Calidad e Impacto Gubernamental)
+  estado: MAPEADO
+  ponderador: 'FAC_P18 (edición 2023, confirmado también para 2021; nota: dos tablas específicas
+    del cruce trámites usan ponderadores distintos, FAC_TRA para encig2023_04_sec_7 y FAC_P18
+    para encig2023_05_sec_8 -- sin ponderador único documentado por INEGI para ESE cruce específico)'
+  estrato: EST_DIS
+  upm: UPM_DIS
+  donde_vive: Las tres variables de diseño (FAC_P18/EST_DIS/UPM_DIS) viven embebidas como columnas
+    dentro de cada tabla de microdatos de ENCIG (ej. conjunto_de_datos_encig2021_01_sec_11;
+    encig2023_01_sec_11.csv; encig2023_01_sec1_A_3_4_5_8_9_10.csv), no en un catálogo de diseño
+    separado -- confirmado repetidamente para las ediciones 2021 y 2023.
+  procedencia: 'forense/notas/2026-08-04-x-condicionamiento-y-forma.md:147 ("Ponderador `FAC_P18`,
+    estrato `EST_DIS`, UPM `UPM_DIS` — ambas tablas, misma edición 2023, unidas por `ID_PER`",
+    dentro de la sección expresamente titulada ''### 1.2 · W2 — G1 · `confianza_institucional`
+    (ENCIG 2023)''); corroborado por forense/notas/2026-08-04-w-coeficientes-generador-paso1.md:177
+    ("Ponderador: `FAC_P18`. Estrato: `EST_DIS`. UPM: `UPM_DIS`.", mismo contexto ENCIG 2023,
+    instrumento `encig2023_01_sec_11`/`encig2023_01_sec1_A_3_4_5_8_9_10`); y por forense/notas/2026-08-03-cal-conf-faseb-medicion.md:113-114
+    ("tabla `conjunto_de_datos_encig2021_01_sec_11` (reactivo, ponderador `FAC_P18`, diseño
+    `EST_DIS`/`UPM_DIS`)", edición 2021) y línea 264 ("UPM_DIS/EST_DIS (ENCIG, ENCUCI) ... como
+    conglomerado y estrato de diseño reales"). Matiz sobre ponderador de una tabla específica
+    en forense/hitoD-R3_2-veredicto-v1_0.md:84 (dos tablas del cruce trámites usan FAC_TRA vs
+    FAC_P18, sin ponderador único declarado por INEGI para ese cruce puntual) y la llave primaria
+    documentada en la misma nota, línea 86 (`CVE_ENT+UPM+V_SEL+R_ELE+N_TRA`, donde `UPM` aparece
+    como campo de la llave de fila, distinto de `UPM_DIS` que es la variable de diseño para
+    estimación de varianza).'
+  notas: 'La pista del encargo (FAC_P18, FAC_TRA) se verificó: FAC_P18 es efectivamente el ponderador
+    estándar de ENCIG a nivel persona/tabla (confirmado en múltiples notas independientes, ediciones
+    2021 y 2023), y FAC_TRA aparece SOLO como ponderador alternativo de una tabla específica
+    del cruce de trámites (encig2023_04_sec_7), sin que INEGI declare un ponderador único para
+    ese cruce puntual (hitoD-R3_2-veredicto-v1_0.md:84). No confundir el campo `UPM` que aparece
+    dentro de la llave primaria documentada de las tablas de trámites (`CVE_ENT+UPM+V_SEL+R_ELE+N_TRA`,
+    hitoD-R3_2-veredicto-v1_0.md:86) con la variable de diseño `UPM_DIS` usada como PSU para
+    estimación de varianza -- son nombres de campo distintos que conviven en el mismo instrumento;
+    el censo reporta `UPM_DIS` como la UPM de diseño porque es la que las notas usan explícitamente
+    para el estimador de conglomerado último. Se descartó como falso positivo cualquier mención
+    de ENCIG que fuera solo de paso (ej. comparaciones de universo con TMod_Vic/ENVIPE en hitoD-R7_2-veredicto-v1_0.md:180,
+    o el bloqueo de acceso narrado en 2026-07-29-d-bloqueo-encig.md, que documenta un intento
+    fallido de alcanzar el sitio de INEGI, no datos de diseño muestral) -- ninguna de esas se
+    usó como cita de resolución. Todas las citas usadas son inequívocamente sobre ENCIG mismo
+    (nombran tablas, instrumentos y ediciones específicas de ENCIG), no menciones de paso dentro
+    de notas sobre otra fuente. No se leyó ningún archivo dentro de data/raw/ ni ningún .pdf/.xlsx/.dta/.csv/.dbf
+    -- toda la evidencia proviene de archivos .md dentro de forense/ (notas y de nivel superior)
+    según la regla del encargo.'
+- fuente: ENCUCI (Encuesta Nacional de Cultura Cívica 2020)
+  estado: MAPEADO
+  ponderador: FAC_SEL
+  estrato: EST_DIS
+  upm: UPM_DIS
+  donde_vive: Tabla `ENCUCI_2020_SEC_4_5` (tabla de reactivos), unida por `UPM`+`VIV_SEL`+`R_SEL`=`N_REN`
+    a `ENCUCI_2020_SD` y a `ENCUCI_2020_SEC_9_10`, y por `UPM`+`VIV_SEL` (sin `R_SEL`) a `ENCUCI_2020_VIV`
+    (nivel hogar) -- relación de llaves declarada en `FD_ENCUCI2020.pdf` §1.2.4. El campo de
+    estrato/UPM se documenta como parte del diseño de esa misma tabla de reactivos.
+  procedencia: 'forense/notas/2026-08-03-cal-conf-faseb-medicion.md:148-149 (cita primaria:
+    "tabla `ENCUCI_2020_SEC_4_5` (reactivo, ponderador `FAC_SEL`, `DOMINIO`, diseño `EST_DIS`/`UPM_DIS`)"),
+    corroborado en el mismo archivo en líneas 264 ("con `UPM_DIS`/`EST_DIS` (ENCIG, ENCUCI)...
+    como conglomerado y estrato de diseño reales") y 275 (tabla de verificación: "ENCUCI 2020
+    | `FAC_SEL` | 96,427,583 | Población 15+ de México..."), y de forma independiente en forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md:225-226
+    (misma tripleta, sesión distinta, mismo instrumento).'
+  notas: 'Falso-positivo evitado: `forense/notas/2026-07-31-inventario-segmentacion.md:82` menciona
+    un campo llamado `ESTRATO` (valores 1-4) en la tabla `VIV` de ENCUCI, pero ese es un campo
+    de urbanización/tamaño de localidad ("sin etiqueta de tamaño en el diccionario... no se
+    puede interpretar sin documentación externa"), NO el estrato de diseño muestral -- es un
+    homónimo distinto de `EST_DIS`, que es el campo que las notas de CAL-CONF Fase B usan explícitamente
+    como estrato de diseño para el estimador de varianza por conglomerados (método de razón/Woodruff).
+    También se descartaron como ruido menciones de paso del acrónimo ENCUCI dentro de notas
+    centradas en otras fuentes (ENVIPE en `medicion-exposicion-violencia-envipe.md`, ENCUP en
+    `encup-paso1/paso2-deferencia.md`, `meta-auditoria-comunicacion.md`, `hallazgos.md`) --
+    ninguna de ellas aporta ponderador/estrato/UPM de ENCUCI, solo citan el acrónimo como precedente
+    conceptual, colisión de mnemónico (`AP7_1`) o convergencia narrativa, consistente con la
+    advertencia de falso-positivo del encargo. La tripleta ponderador=`FAC_SEL`/estrato=`EST_DIS`/upm=`UPM_DIS`
+    aparece de forma idéntica en dos notas de sesiones distintas (`2026-08-03-cal-conf-faseb-medicion.md`
+    y `2026-08-03-cal-conf-faseb-medicion-ola2.md`), y el ponderador además se validó por orden
+    de magnitud (suma de pesos ≈ 96 427 583, coherente con población 15+ de México, Censo 2020
+    ~97 millones) -- da robustez adicional más allá de la simple cita.'
+- fuente: ENIF (Encuesta Nacional de Inclusión Financiera)
+  estado: MAPEADO
+  ponderador: fac_per
+  estrato: est_dis
+  upm: upm_dis
+  donde_vive: 'Tabla `tmodulo` del microdato ENIF 2024 (mismos tres nombres presentes, sin variación,
+    en las cuatro tablas del paquete: `tvivienda`, `thogar`, `tsdem`, `tmodulo`) -- verificado
+    por el propio agente contra el diccionario de datos embebido en `enif2024_csv.zip` (subdirectorio
+    `diccionario_de_datos/` de cada tabla), no contra el FD oficial separado (`enif_2024_fd.xlsx`,
+    que no se abrió para esto).'
+  procedencia: 'forense/notas/2026-08-04-y2-operacionalizacion-r1-2-enif.md:31-33 (encabezado
+    ''## Diseño muestral'': ''Ponderador `fac_per` (tabla `tmodulo`); estrato `est_dis`; UPM
+    `upm_dis` (mismos nombres en las 4 tablas)''). Corroborado -- mismos tres nombres, mismo
+    contexto ENIF 2024 -- en: forense/notas/2026-08-04-y6-veredicto-r1-2.md:16 (''SE (conglomerado
+    último, `est_dis`/`upm_dis`) = 1.58pp''); forense/notas/2026-08-04-x-condicionamiento-y-forma.md:174
+    (bajo el subtítulo ''### 1.3 · W3 — G3 · `familismo_apoyo` (ENIF 2024)'', línea 165); forense/notas/2026-08-04-w-coeficientes-generador-paso1.md:211-213
+    (''Ponderador: `fac_per`. Estrato: `est_dis`. UPM: `upm_dis`... reactivo, desenlace, ponderador
+    y diseño en el mismo registro, sin join''); forense/notas/2026-08-03-cal-conf-faseb-medicion.md:226
+    (''Ponderador: `fac_per` (factor de expansión a nivel persona)'', dentro de la sección 1.3
+    dedicada a ENIF, confirmado por el párrafo previo líneas 210-221 que habla explícitamente
+    de ENIF/TMODULO); forense/notas/2026-08-03-cal-conf-faseb-pos5-6-radio-familismo.md:227
+    (''Ponderador: `fac_per` — verificado: suma sobre las 13 502 filas de...'').'
+  notas: 'Resuelto con alta confianza y con corroboración cruzada inusualmente fuerte (5 notas
+    independientes, escritas en sesiones distintas -- 3 y 4 de agosto -- coinciden exactamente
+    en los tres nombres de campo para ENIF 2024, sin contradicción). Falso positivo evitado:
+    ''CONSAR'' aparece mencionado junto a ENIF en varias notas (p.ej. y2-operacionalizacion
+    linea 7) pero es una fuente DISTINTA, no localizada en disco, mencionada solo como comparación
+    descartada -- no se confundió con datos de diseño de ENIF. También se evitó tomar como evidencia
+    de ENIF el mnemónico compartido `est_dis`/`upm_dis`/`fac_*` que aparece en notas sobre ENVIPE,
+    ENCIG, ENCUCI, ENDIREH, ENUT, ENASEM (mismo patrón de nomenclatura INEGI, pero fuentes distintas)
+    -- cada cita reportada aquí fue verificada en su contexto inmediato (encabezado de sección,
+    tabla citada, o mención explícita ''ENIF 2024'') antes de incluirla. Precisión importante:
+    lo verificado y citado es específicamente la edición 2024; las ediciones 2018 y 2021 existen
+    en el manifiesto (enif2018_csv, enif2021_csv, sus FD/cuestionarios) pero ninguna nota del
+    corpus abrió o citó sus nombres de campo de diseño -- no se puede extender la cita de 2024
+    a esas ediciones sin verificación adicional, aunque INEGI mantiene convenciones de nomenclatura
+    estables entre ediciones de una misma encuesta en este corpus (mismo patrón visto en ENVIPE/ENCIG).
+    No se leyó ningún archivo fuera de forense/*.md, forense/notas/*.md, canon/modelo-decision-v4_0.md
+    y data/manifiesto.yaml (metadata) -- ningún .zip/.csv/.xlsx/.pdf fue abierto en esta sesión,
+    cumpliendo la regla dura de ADR-46.'
+- fuente: ENVIPE (Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública)
+  estado: MAPEADO
+  ponderador: 'FAC_ELE ("Factor de personas elegidas", para TPer_Vic1/TPer_Vic2 -- unidad de
+    análisis persona 18+). Variantes verificadas por tabla: FAC_HOG (hogar, para ítems de robo
+    de vehículo/vivienda) y FAC_DEL (delito-tipo, para TMod_Vic -- unidad de análisis el delito,
+    no la persona)'
+  estrato: EST_DIS (estrato de diseño, usado para estimación de varianza -- NO confundir con
+    `ESTRATO`, que es una variable sustantiva de área 1-4 dentro del mismo "bloque de diseño
+    muestral" del layout pero funciona como proxy de ingreso/urbanización, no como estrato de
+    varianza)
+  upm: UPM_DIS (unidad primaria de muestreo / PSU de diseño, tratada como "ultimate cluster"
+    en el estimador de dispersión; comparte llave UPM+VIV_SEL+HOGAR+R_SEL entre TPer_Vic1/TPer_Vic2/TMod_Vic)
+  donde_vive: 'Diccionario de datos `data/raw/fd_envipe2025.pdf` (INEGI, "Descriptor de archivos"),
+    en el bloque de variables de diseño muestral que acompaña a cada tabla (p.ej. `fd.txt` cons.
+    146-147 / líneas ~1504-1518 para `TPer_Vic2`, líneas ~264-266 para `TPer_Vic1`). Las variables
+    viven dentro de cada tabla del CSV (`TPer_Vic1`, `TPer_Vic2`, `TMod_Vic`, `THogar`), no
+    en un archivo de diseño separado. El peso cambia según la unidad de análisis de la tabla:
+    `FAC_ELE` (persona 18+, en `TPer_Vic1`/`TPer_Vic2`), `FAC_HOG` (hogar, para ítems de robo
+    de vehículo/vivienda), `FAC_DEL` (delito-tipo, en `TMod_Vic`, verificado contra `fd_envipe2025.pdf`
+    p.2: "el cuarto expande cada delito captado en el módulo sobre victimización"). El estrato
+    y la UPM de diseño (`EST_DIS`, `UPM_DIS`) son comunes a las tablas relacionadas por la llave
+    `UPM+VIV_SEL+HOGAR+R_SEL`.'
+  procedencia: 'forense/notas/2026-08-04-medicion-exposicion-violencia-envipe.md:100-109 (FAC_ELE
+    como peso, verificado en diccionario; EST_DIS como estrato de diseño y UPM_DIS como PSU,
+    método "ultimate cluster"/Woodruff, 746 estratos con ≥2 UPM); forense/notas/2026-08-04-medicion-exposicion-violencia-envipe.md:159-160
+    (FAC_HOG para tabla de hogar); forense/notas/2026-08-04-cal-conf-faseb-medicion-pos4.md:249-251
+    (dispersión: UPM_DIS anidada en EST_DIS, para TMod_Vic); forense/notas/2026-08-04-cal-conf-faseb-medicion-pos4.md:254-261
+    (FAC_DEL como ponderador de TMod_Vic, verificado contra fd_envipe2025.pdf p.2, distinguido
+    explícitamente de FAC_ELE); forense/notas/2026-08-04-envipe-tper-vic2-tmod-vic-paso1.md:348-364
+    (DOMINIO/ESTRATO en el bloque de diseño muestral, fd.txt cons. 146-147 / fd.txt:1504-1518,
+    con matiz de que ESTRATO es proxy de ingreso, no estrato de varianza)'
+  notas: 'Hallazgo genuino, no mención de paso: el archivo `2026-08-04-medicion-exposicion-violencia-envipe.md`
+    tiene ENVIPE como tema exclusivo del acto completo (título, encargo K), y `2026-08-04-cal-conf-faseb-medicion-pos4.md`
+    dedica su §1 al ponderador/dispersión de `TMod_Vic` de ENVIPE. Ambos verifican los campos
+    contra el diccionario de datos (`fd_envipe2025.pdf`), no los citan de memoria -- el propio
+    texto de `cal-conf-faseb-medicion-pos4.md:254-261` narra explícitamente el cuidado de NO
+    copiar un ponderador de otra tabla sin verificar ("ningún ponderador se copia del acto anterior
+    sin verificar que es el que corresponde a esta tabla").
+
+
+    Matiz importante (posible falso-positivo evitado activamente por las propias notas, no por
+    mí): ENVIPE tiene TRES ponderadores distintos según la tabla/unidad de análisis -- `FAC_ELE`
+    (persona elegida, no `FAC_ELE_AM` que es solo para 34 áreas urbanas de interés), `FAC_HOG`
+    (hogar) y `FAC_DEL` (delito-tipo en `TMod_Vic`). No existe un "el ponderador de ENVIPE"
+    único; el campo `ponderador` de esta respuesta reporta el más general/documentado (`FAC_ELE`)
+    y las variantes verificadas.
+
+
+    Segundo matiz: `ESTRATO` (variable sustantiva 1-4, "estrato de área", usada como proxy de
+    ingreso/marginación en el eje "Ingreso" del canon §1.1.A) y `EST_DIS` (estrato de diseño,
+    para el estimador de "ultimate cluster"/Woodruff) son nombres parecidos pero campos distintos
+    dentro del mismo bloque del layout -- una nota (`2026-08-04-envipe-tper-vic2-tmod-vic-paso1.md:351`)
+    los menciona juntos ("`DOMINIO`/`ESTRATO` en el bloque de diseño muestral") lo cual podría
+    inducir a confundirlos con el estrato de varianza si no se lee `2026-08-04-medicion-exposicion-violencia-envipe.md:106-109`,
+    que aclara sin ambigüedad que el estrato de diseño usado para varianza es `EST_DIS`, no
+    `ESTRATO`.
+
+
+    Validación externa: el estimador con `FAC_ELE` sobre `TPer_Vic2` fue contrastado contra
+    una cifra publicada por INEGI (incidencia de violación sexual, 279.3 calculado vs. 279 publicado,
+    diferencia 0.09%), lo cual da soporte fuerte a que `FAC_ELE` es el ponderador correcto para
+    esa tabla, no solo una lectura del diccionario.
+
+
+    746 estratos de diseño con ≥2 UPM, cero estratos singleton -- dato reportado en la misma
+    nota, útil como evidencia adicional de que `EST_DIS`/`UPM_DIS` son efectivamente los campos
+    de diseño (varianza estimable en todos los estratos).'
+- fuente: ENUT (Encuesta Nacional sobre Uso del Tiempo)
+  estado: MAPEADO
+  ponderador: FAC_PER
+  estrato: EST_DIS
+  upm: UPM_DIS
+  donde_vive: Ponderador `FAC_PER` en las tablas `tmodulo`/`tvar_crea` de ENUT 2024 (`enut2024_bd_csv.zip`);
+    estrato `EST_DIS` y UPM `UPM_DIS` citados en el mismo microdato (misma sección "## Diseño
+    muestral" de la nota, sin tabla distinta especificada, pero el commit 2 de la misma operacionalización
+    confirma que se leen junto con `tsdem`/`tmodulo`/`tvar_crea` — script `run_r5_2.py` ejecutado
+    sobre `tsdem.csv`, `tmodulo.csv`, `tvar_crea.csv` de `enut2024_bd_csv.zip`).
+  procedencia: 'forense/notas/2026-08-04-y1-operacionalizacion-r5-2-enut.md:32 ("## Diseño muestral
+    / Ponderador `FAC_PER` (individuo, `tmodulo`/`tvar_crea`); estrato `EST_DIS`; UPM `UPM_DIS`.
+    Estimación de la brecha con error estándar del diseño complejo (no i.i.d.).") — corroborado
+    de forma independiente en forense/notas/2026-08-04-y5-veredicto-r5-2.md:9 (tabla de resultados:
+    "Σpeso (`FAC_PER`)" y "SE (conglomerado último `EST_DIS`/`UPM_DIS`)"), misma operacionalización
+    de ENUT 2024, commit 2.'
+  notas: 'Búsqueda exhaustiva de "ENUT" en forense/notas/*.md, forense/*.md sueltos y canon/modelo-decision-v4_0.md:
+    decenas de menciones, la gran mayoría sobre contenido temático (familismo_obligacion, proxies
+    de formalidad/ingreso, cobertura, comparaciones con otras fuentes) y no sobre diseño muestral.
+    Se descartaron como falso-positivo potencial varias menciones de paso de "ENUT" dentro de
+    notas centradas en otras fuentes (p.ej. cbis-deferencia-externas.md sobre ENCUP citando
+    el mecanismo RNM que "sirvió el diccionario de ENUT"; enasem-paso1-descriptor.md mencionando
+    ENUT solo como comparación) -- ninguna de esas trae ponderador/estrato/UPM. El hallazgo
+    real vive en dos notas dedicadas específicamente a ENUT 2024 (Encargo Y, commits 1 y 2,
+    regla R5.2 del catálogo de fichas), con sección "## Diseño muestral" explícita en la primera
+    y una tabla de resultados que reutiliza los mismos tres campos en la segunda -- doble cita,
+    no una mención aislada. Nombres de campo verificados en mayúsculas (`FAC_PER`, `EST_DIS`,
+    `UPM_DIS`), distintos de la convención en minúsculas que otra nota (`2026-08-04-y2-operacionalizacion-r1-2-enif.md:33`)
+    usa para ENIF (`fac_per`/`est_dis`/`upm_dis`) -- se verificó con cuidado que la cita de
+    ENUT no se confundiera con la de ENIF, que usa nombres homónimos salvo por mayúsculas/minúsculas.
+    No se leyó ningún archivo bajo data/raw/ ni ningún instrumento (.xlsx/.dbf/.csv/.html/.pdf)
+    en esta sesión; toda la evidencia proviene de notas .md ya escritas por sesiones anteriores
+    que sí abrieron el instrumento bajo ADR-46 y dejaron la cita por escrito.'
+- fuente: ENIGH (Encuesta Nacional de Ingresos y Gastos de los Hogares)
+  estado: MAPEADO
+  ponderador: factor (factor de expansión) -- forense/notas/2026-08-04-p3-lca-segmentacion.md:39-41
+  estrato: est_dis (estrato) -- forense/notas/2026-08-04-p3-lca-segmentacion.md:39-41
+  upm: upm -- forense/notas/2026-08-04-p3-lca-segmentacion.md:39-41,134-135
+  donde_vive: 'Tabla/archivo `poblacion` del paquete de microdatos ENIGH 2022 (nueva construcción),
+    a nivel PERSONA -- los tres campos (`factor`, `est_dis`, `upm`) viven juntos ahí, "el mismo
+    módulo que I1/I2/I3" (forense/notas/2026-08-04-p3-lca-segmentacion.md:40-41). No hay FD/diccionario
+    de ENIGH registrado como entrada aparte en data/manifiesto.yaml (solo los seis .zip de datos
+    abiertos por año: enigh2012/2014/2016/2018/2020/2022_nc_csv); el diseño quedó documentado
+    dentro de una nota forense, no en un archivo de diccionario dedicado.'
+  procedencia: forense/notas/2026-08-04-p3-lca-segmentacion.md:39-41 ("Variables de diseño (§5.1,
+    hueco declarado por el pre-registro -- CERRADO aquí). `factor` (factor de expansión), `est_dis`
+    (estrato) y `upm` viven directo en `poblacion`, a nivel persona [...] se localizaron por
+    nombre exacto, no se teclearon de memoria."); UPM corroborado también en la misma nota,
+    línea 135 ("10 211 UPM totales, partidas en dos mitades de 5 105/5 106 UPM"). Antecedente
+    del hueco (ya cerrado) en forense/p3-lca-preregistro-v1_0.md:241,243.
+  notas: 'Secuencia relevante para la mesa: (1) forense/p3-lca-preregistro-v1_0.md:241 menciona
+    genéricamente "factores de expansión", "estratos y conglomerados (UPM)" del diseño de ENIGH
+    pero SIN nombrar los campos exactos; (2) la misma nota, línea 243, declara explícitamente
+    el hueco: "P1 no inventarió el factor de expansión ni las variables de diseño de ENIGH --
+    no aparecen en `modelo` §1.1.A ni en ninguna otra parte del canon", y se niega a teclear
+    nombres de memoria (regla v2.1 anti-alucinación); (3) forense/notas/2026-08-04-p3-lca-segmentacion.md
+    (ejecución de Fase B del mismo acto P3, misma fecha) CIERRA ese hueco explícitamente en
+    su §1 ("Variables de diseño (§5.1, hueco declarado por el pre-registro -- CERRADO aquí)")
+    citando los tres nombres de campo localizados "por nombre exacto" en `poblacion`. Esto es
+    la cadena completa hueco-declarado -> hueco-cerrado dentro del propio corpus permitido para
+    esta sesión (ninguno de los dos archivos es un payload; ambos son notas .md). Descarté como
+    falso positivo la mención de "est_socio" (forense/notas/2026-08-01-p2-momentos-atributos.md:126)
+    -- ese es un índice socioeconómico multivariado de INEGI (confirmado no-monotónico respecto
+    a ing_cor en la propia nota de segmentación, línea 54-61), no el estrato de diseño muestral;
+    no lo reporté como "estrato". También descarté FAC_ELE/EST_DIS/UPM_DIS que aparecen repetidamente
+    en forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md -- esos son campos de ENVIPE/ENCUCI/ENIF,
+    no de ENIGH (falso positivo de acrónimo similar, exactamente la advertencia del encargo).
+    El sha256 de enigh2022_nc_csv citado en la nota de segmentación (línea 28) coincide con
+    manifiesto.yaml:398, confirmando que ambas notas hablan del mismo archivo físico.'
+- fuente: ENSANUT (Encuesta Nacional de Salud y Nutrición) 2024 — ENSANUT Continua 2024
+  estado: MAPEADO
+  ponderador: '`ponde_f`'
+  estrato: '`estrato` / `est_sel`'
+  upm: '`upm`'
+  donde_vive: Tabla `integrantes_ensanut2024_w_ICB` (roster de integrantes del hogar; manifiesto
+    ids `integrantes_ensanut2024_w_icb_catlogo` / `integrantes_ensanut2024_w_icb_csv_csv`, raiz
+    `descargas_mx`, ausente en este entorno). Corroborado también en `adultos_ensanut2024_w_ICB`
+    según la nota z1 (misma convención de diseño, "misma encuesta").
+  procedencia: forense/notas/2026-08-04-y3-operacionalizacion-r4-2-ensanut.md:12 (cita primaria);
+    corroborado en forense/notas/2026-08-04-z1-declaracion-fuente-r4-1-r9-1.md:46
+  notas: 'Dos notas de forense/notas/ documentan explícitamente el diseño muestral de ENSANUT
+    2024, de forma consistente entre sí:
+
+
+    1. `2026-08-04-y3-operacionalizacion-r4-2-ensanut.md:12` -- nota íntegramente dedicada a
+    ENSANUT 2024 (título lo declara), sección "Diseño que se hubiera corrido": "Ponderador `ponde_f`,
+    estrato `estrato`/`est_sel`, UPM `upm` (tabla `integrantes_ensanut2024_w_ICB`)."
+
+
+    2. `2026-08-04-z1-declaracion-fuente-r4-1-r9-1.md:46` -- nota sobre elección de fuente para
+    R4.1/R9.1 que EXPLÍCITAMENTE elige ENSANUT CONTINUA 2024 (línea 19) frente a ENIGH; su sección
+    "Variables exactas, universo, ponderador, estrato, UPM" repite la misma convención: "Diseño
+    muestral: ponderador `ponde_f`, estrato `estrato`/`est_sel`, UPM `upm` — misma convención
+    verificada en Nota 17/`forense/notas/2026-08-04-y3-operacionalizacion-r4-2-ensanut.md` para
+    la misma encuesta." Esta cita NO es mención de paso: la nota entera trata sobre ENSANUT,
+    comparándola con ENIGH solo para justificar por qué ENSANUT fue la elegida (ENIGH queda
+    descartada, no es sujeto del pasaje citado).
+
+
+    Descarté como falso-positivo el hallazgo de `2026-07-31-inventario-segmentacion.md:84`,
+    que documenta `estrato` (Rural/Urbano/Metropolitano) como variable de URBANIZACIÓN en una
+    tabla comparativa entre fuentes -- es plausible que sea el mismo campo de diseño muestral
+    (mismo nombre `estrato`), pero esa nota lo cita como reactivo de tabulación temática, no
+    como pieza del trío ponderador+estrato+UPM, así que lo trato como corroboración lateral,
+    no como cita primaria.
+
+
+    No encontré ninguna nota que cite el nombre EXACTO del campo de ponderador o UPM en un catálogo/diccionario
+    abierto directamente (serían necesarios para FASE B si se quisiera verificar contra el instrumento
+    real), pero las dos notas primarias sí satisfacen el estándar de "archivo:línea" pedido
+    y son mutuamente consistentes (una cita a la otra explícitamente como "misma convención
+    verificada").
+
+
+    Todos los ~24 payloads de ENSANUT 2024 en `data/manifiesto.yaml` tienen `raiz: descargas_mx`,
+    carpeta de Windows ausente en este entorno Ubuntu -- confirmado por grep directo sobre el
+    manifiesto (líneas 1087-1340+), no inferido. No abrí ningún archivo de `data/raw/` ni ningún
+    .pdf/.xlsx/.csv/.zip -- toda la evidencia proviene de los .md de forense/notas/ citados
+    arriba.'
+- fuente: CPV (Censo de Población y Vivienda 2020) — componente Cuestionario Ampliado
+  estado: MAPEADO
+  ponderador: FACTOR (Factor de Expansión, numérico 1..99999999)
+  estrato: ESTRATO (alfanumérico, longitud 17)
+  upm: UPM (Unidad Primaria de Muestreo, alfanumérico, longitud 7)
+  donde_vive: Diccionario de datos del Cuestionario Ampliado, hojas VIVIENDAS/PERSONAS/MIGRANTES
+    -- sección "DISEÑO MUESTRAL" de cada hoja (consecutivos 6/7/8 en VIVIENDAS). El Cuestionario
+    BÁSICO del CPV es enumeración censal completa (no aplica ponderador/estrato/UPM en sentido
+    de muestreo); es el Cuestionario Ampliado el que trae una muestra probabilística propia
+    con estas tres variables.
+  procedencia: 'Abierto en FASE B de este acto (2026-08-04): data/raw/diccionario_cuestionario_ampliado_cpv2020.xlsx
+    (id manifiesto cpv2020_diccionario_cuestionario_ampliado_xlsx), hoja VIVIENDAS filas Excel
+    18-25 (bajo encabezado "DISEÑO MUESTRAL", consecutivos 6=ESTRATO/7=UPM/8=FACTOR), confirmado
+    igual en hojas PERSONAS y MIGRANTES del mismo archivo.'
+  notas: FASE A no encontró ninguna nota que documentara esto (barrido exhaustivo con 0 resultados
+    sobre diseño muestral de CPV). El propio manifiesto (metadata, no nota) ya sugería que el
+    Ampliado podía tener diseño propio -- FASE B lo confirmó abriendo el diccionario. La base
+    de microdatos del Cuestionario Ampliado (los VALORES, no solo los nombres de campo) no está
+    descargada todavía -- eso no se necesitó para este censo (solo nombres de campo), pero queda
+    como hueco aparte si algún día se quiere calcular con datos reales.
+- fuente: ENADID (Encuesta Nacional de la Dinámica Demográfica) 2023
+  estado: MAPEADO
+  ponderador: FAC_VIV (vivienda) / FAC_HOG (hogar) / FAC_PER (persona/mujer) -- factor de expansión,
+    varía por nivel de tabla
+  estrato: EST_DIS (Estrato de diseño muestral, alfanumérico 001..659) -- NO confundir con ESTRATO
+    (variable sustantiva sociodemográfica 1..4, "Bajo"/etc., no es la de diseño)
+  upm: UPM_DIS (Unidad Primaria de Muestreo, alfanumérico 00001..15220) -- NO confundir con
+    UPM (columna de llave de enlace entre tablas, no necesariamente el mismo campo usado para
+    varianza)
+  donde_vive: Ficha descriptiva/diccionario de datos ENADID 2023, tablas TVIVIENDA/THOGAR/TMUJER1
+    (y análogas), sección "Factor de expansión y variables de explotación".
+  procedencia: 'Abierto en FASE B de este acto (2026-08-04): data/raw/fd_enadid23.xlsx (id manifiesto
+    enadid2023_fd_xlsx). TVIVIENDA: FAC_VIV fila Excel 150, EST_DIS fila 187, UPM_DIS fila 188.
+    THOGAR: FAC_VIV fila 62, EST_DIS fila 128, UPM_DIS fila 129. TMUJER1: EST_DIS fila 1027,
+    UPM_DIS fila 1028 (FAC_PER, "Factor persona (mujer)", en la misma tabla, fila cercana a
+    102 según numeración de la hoja).'
+  notas: FASE A no encontró ninguna nota sobre esto (barrido exhaustivo, 0 resultados; se descartó
+    explícitamente un falso-positivo por convención de nombres compartida con notas de ENSANUT).
+    El patrón ESTRATO(sustantivo)/EST_DIS(diseño) y UPM(llave)/UPM_DIS(diseño) se repite entre
+    encuestas INEGI recientes -- mismo patrón que ENVIPE ya advertía en su propia nota.
+- fuente: ENNViH / MxFLS (Encuesta Nacional sobre Niveles de Vida de los Hogares / Mexican Family
+    Life Survey)
+  estado: PENDIENTE
+  ponderador: Archivos de ponderador existen por convención de nombre (ehh0Xw_all.zip = transversal,
+    ehh0Xlw_all.zip = longitudinal, uno por ola) -- nombre de COLUMNA dentro del .dta no confirmado
+    en ningún documento leído.
+  estrato: 'No confirmado como nombre de columna. El método SÍ está documentado: diseño estratificado
+    bietápico por región -> estrato -> UPM (con probabilidad igual) -> USM (6 por UPM, probabilidad
+    proporcional al tamaño) -> vivienda.'
+  upm: No confirmado como nombre de columna (mismo estado que estrato -- el documento de método
+    usa notación matemática genérica "i-ésima UPM", no un nombre de campo real).
+  donde_vive: 'El documento calculo-de-factores-de-expansion.pdf (ola 3) explica la fórmula
+    completa de construcción del factor de expansión (selección con probabilidad proporcional
+    al tamaño de USM, ajuste por no respuesta a nivel estrato, calibración con variables auxiliares)
+    -- pero nunca declara los nombres de columna reales del archivo de datos liberado. La guía
+    de usuario de la ola 3 (guia_de_usuario_ennvih-3.pdf) tampoco los declara (se revisó completa:
+    es una guía de fusión de "libros"/tablas, no un diccionario de variables de diseño).'
+  procedencia: 'Abierto en FASE B de este acto (2026-08-04): data/raw/ennvih/calculo-de-factores-de-expansion.pdf
+    (id ennvih3_2009_factores_exp, líneas 52-121 del texto extraído con pdftotext -layout) y
+    data/raw/ennvih/guia_de_usuario_ennvih-3.pdf (id ennvih3_2009_guia, grep completo sin coincidencias
+    de "estrato"/"upm"/"conglomerado" como nombre de columna -- solo aparece "peso" en el sentido
+    antropométrico).'
+  notas: 'FASE A ya tenía una cita parcial (forense/hitoD-preregistro-v2_0.md:499,622) que solo
+    nombraba la FAMILIA de archivo del ponderador por ola, sin fórmula ni estructura de diseño.
+    FASE B añadió la mecánica completa del diseño (región/estrato/UPM/USM, PPS, calibración)
+    pero NO resolvió el nombre de columna real -- por eso el estado se queda en PENDIENTE y
+    no sube a MAPEADO: dos de los tres campos exigidos (estrato, upm) no tienen un nombre de
+    columna citado con archivo:línea, solo un rol conceptual. Candidato para cerrarlo en un
+    futuro acto: abrir el encabezado del .dta de ponderador (ehh09w_all.zip) -- eso ya sería
+    microdato, no FD, y requeriría su propia declaración de contaminación.'
+- fuente: ENOE / ENOEN (Encuesta Nacional de Ocupación y Empleo / ENOE Nueva Edición)
+  estado: PENDIENTE
+  ponderador: FAC (ediciones 2005T1-2020T1) / FAC_TRI + FAC_MEN ("los tres transversales", desde
+    2020T3) -- nombres de columna confirmados por nota previa, no por FASE B directamente.
+  estrato: No confirmado como nombre de columna. Documentado como concepto ("estrato" genérico,
+    sujeto a colapsamiento en pseudo-estratos cuando tiene menos de 2 UPM) -- el documento de
+    diseño muestral nunca usa un nombre de campo en mayúsculas para él.
+  upm: UPM (Unidad Primaria de Muestreo) -- confirmado como columna real de enlace/llave por
+    nota previa, y confirmado en su ROL de conglomerado/PSU por el documento de diseño abierto
+    en FASE B ("diseño...bietápico...entre las unidades primarias de muestreo (UPM)").
+  donde_vive: El diseño muestral formal (probabilístico, bietápico, estratificado, por conglomerados;
+    ajuste de factores por colapsamiento de estratos, no respuesta y proyecciones de población;
+    estimación de varianza) vive en enoe_n_diseno_muestral.pdf, dentro de "3. Metodología/Metodologías/"
+    del zip de documentación ya descargado. Los NOMBRES de columna reales viven en el Descriptor
+    de Archivos (enoe_n_fd_c_bas_amp.pdf), que este entorno no tiene -- confirmado ausente.
+  procedencia: 'Abierto en FASE B de este acto (2026-08-04): se extrajo (sin tocar el resto
+    del zip) "3. Metodología/Metodologías/enoe_n_diseno_muestral.pdf" de data/raw/enoe_n_trim3_2020-trim4_2022.zip
+    (id enoen_trim3_2020_trim4_2022_documentacion_zip) y se leyó completo con pdftotext -layout
+    (423 líneas) -- confirma "diseño...bietápico, estratificado y por conglomerados" (§4) y
+    el procedimiento de colapsamiento de estratos (§6.1), pero es puramente narrativo/matemático
+    (subíndices h/i/e), cero nombres de columna en mayúsculas en todo el documento. Los nombres
+    FAC/FAC_TRI/FAC_MEN/UPM ya estaban citados en forense/notas/2026-07-31-cal-enoe-fasea.md:126-127.'
+  notas: FASE A ya tenía una cita parcial de la misma nota (cal-enoe-fasea.md). FASE B confirmó
+    el TIPO de diseño y el procedimiento de colapsamiento, pero no puede cerrar "estrato" como
+    nombre de columna porque el único documento con esa información (el FD/descriptor de archivos)
+    no está en el corpus en este entorno. No sube a MAPEADO por esa única pieza faltante --
+    2 de 3 campos sí tienen nombre de columna citado (ponderador, UPM).
+- fuente: ENCUP (Encuesta Nacional sobre Cultura Política y Prácticas Ciudadanas) 2012
+  estado: SIN_DISEÑO_PUBLICADO
+  ponderador: no encontrado
+  estrato: no encontrado
+  upm: no encontrado
+  donde_vive: No vive en ningún archivo del corpus. ENCUP 2012 es un xlsx único (encup_2012_base_datos_xlsx)
+    sin documento de diseño muestral separado (FD/estructura/diccionario) -- ninguna edición
+    de ENCUP en el manifiesto (2001/2003/2005/2008/2012) tiene más que el cuestionario en PDF
+    y, para 2012, la base en xlsx.
+  procedencia: 'No abierto en este acto -- ya verificado por PR #96 (`sesion/encup-paso2-deferencia`,
+    mergeado en `fbfd3dda9`), que examinó exactamente esta pregunta como parte de otra tarea
+    ("(B) Diseño muestral no resuelto... al ser xlsx único sin documento de diseño separado,
+    resolverlo exige abrir el instrumento") y por forense/notas/2026-08-04-encup-paso1-deferencia.md
+    / 2026-08-04-encup-paso2-deferencia.md.'
+  notas: 'Este es exactamente el hallazgo que dio origen a este acto (P-A, PR #96, "PARO: ENCUP
+    paso 2"). Se reutiliza su veredicto en vez de reabrir el xlsx en esta sesión (que ya está
+    contaminada contra otras 4 fuentes en FASE B; abrir ENCUP no habría cambiado la respuesta,
+    ya dada por escrito con cita).'
+- fuente: LATINOBARÓMETRO (muestra de México, ola 2024)
+  estado: SIN_DISEÑO_PUBLICADO
+  ponderador: no encontrado como nombre de columna
+  estrato: no encontrado como nombre de columna
+  upm: no encontrado como nombre de columna
+  donde_vive: 'La ficha técnica (latinobarometro2024_fichas_tecnicas.pdf, ya en el corpus) describe
+    el diseño a nivel AGREGADO -- "México, muestra en 4 etapas, probabilística en 3 etapas y
+    por cuota en la etapa final, n=1200, error muestral ±2.8%" -- pero no es un diccionario
+    de datos ni nombra columnas de ponderador/estrato/UPM. No se abrió ningún archivo nuevo
+    en este acto: la cita ya existía en forense/notas/2026-08-03-cbis-deferencia-externas.md.'
+  procedencia: 'forense/notas/2026-08-03-cbis-deferencia-externas.md:153 ("De la ficha técnica:
+    México — Moreno & Sotnikova Social Research and Consulting — muestra en 4 etapas, probabilística
+    en 3 etapas y por cuota en la etapa final — n=1200...").'
+  notas: 'Resuelto en FASE A (no requirió FASE B: la cita ya vivía en una nota existente). Se
+    clasifica SIN_DISEÑO_PUBLICADO y no PENDIENTE porque SÍ hay caracterización del diseño citable
+    -- solo no llega al nivel de nombre de variable/columna que este censo busca. Si algún día
+    se descarga el informe metodológico completo (informe-2024.pdf, mencionado pero no conservado
+    por la sesión que lo abrió) podría cerrar esto -- eso es descarga, fuera de perímetro de
+    este acto (P-B).'
+- fuente: ENDIREH 2021 (Encuesta Nacional sobre la Dinámica de las Relaciones en los Hogares)
+  estado: PENDIENTE
+  ponderador: no encontrado
+  estrato: no encontrado
+  upm: no encontrado
+  donde_vive: 'No determinable en este entorno. El único candidato (FD "Estructura de la base
+    de datos ENDIREH 2021", 730 pp.) está registrado en data/manifiesto.yaml (id endireh2021_fd_pdf,
+    raíz data_raw) pero AUSENTE físicamente en este sandbox Ubuntu -- verificado con tests/manifiesto.py
+    --verifica --id endireh2021_fd_pdf ANTES de intentar abrir nada ("AUSENTE -- endireh2021/endireh2021_fd.pdf
+    no está en la raíz data_raw"). No es un hallazgo sobre el diseño de ENDIREH: es un hallazgo
+    sobre este entorno.'
+  procedencia: 'Dos menciones parciales sin confirmar: forense/notas/2026-08-04-endireh-paso1bis-verificacion-microdato.md:347-348
+    y forense/hitoE-campana-medicion-v2_0.md mencionan candidatos (FAC_MUJ, EST_DIS/UPM_DIS/ESTRATO)
+    como trabajo futuro, no confirmados contra el archivo real.'
+  notas: 'FASE B no se intentó para esta fuente: no hay nada que abrir en este entorno (no es
+    una decisión, es una imposibilidad verificada). Cuando un entorno con acceso a data_raw
+    completo (o a la raíz descargas_mx) retome esto, el candidato de FASE B es el mismo FD ya
+    identificado.'
+- fuente: ENDUTIH 2024 (Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información
+    en los Hogares)
+  estado: PENDIENTE
+  ponderador: no encontrado
+  estrato: no encontrado
+  upm: no encontrado
+  donde_vive: 'No determinable en este entorno. Único payload registrado (endutih2024_bd_dbf_zip)
+    sin FD/diccionario separado en el manifiesto -- y ese único payload está AUSENTE en este
+    entorno (verificado con tests/manifiesto.py --verifica --id endutih2024_bd_dbf_zip: "AUSENTE").'
+  procedencia: ninguna nota lo documenta
+  notas: 'FASE B no se intentó: no hay ningún archivo de ENDUTIH en este entorno, ni FD ni BD.
+    A diferencia de ENDIREH, aquí ni siquiera hay un candidato nombrado en manifiesto para un
+    FD separado -- si existe, no está registrado.'
+- fuente: MOCIBA (Módulo sobre Ciberacoso) 2024
+  estado: PENDIENTE
+  ponderador: no encontrado
+  estrato: no encontrado
+  upm: no encontrado
+  donde_vive: 'No determinable en este entorno. Único payload (mociba2024_bd_csv_zip) AUSENTE
+    -- verificado con tests/manifiesto.py --verifica --id mociba2024_bd_csv_zip: "AUSENTE".'
+  procedencia: ninguna nota lo documenta
+  notas: 'MOCIBA es un módulo aplicado sobre otra encuesta base (candidato: ENDUTIH, dado el
+    eje acceso_digital con que ambos se registraron en Encargo E) -- si algún día se confirma
+    esa relación, su diseño muestral podría heredarse del de la encuesta base en vez de resolverse
+    por separado. No verificado en este acto -- especulación declarada, no hallazgo.'
+- fuente: LAPOP / AmericasBarometer (Barómetro de las Américas), muestra México
+  estado: PENDIENTE
+  ponderador: no encontrado
+  estrato: no encontrado
+  upm: no encontrado
+  donde_vive: No vive en ningún archivo del corpus. El único artefacto de LAPOP registrado es
+    un cuestionario en PDF (lapop_abmex2023_cuestionario.pdf, 77 páginas) -- no hay ficha técnica,
+    FD ni informe metodológico.
+  procedencia: ninguna nota lo documenta
+  notas: 'Deliberadamente NO abierto en FASE B de este acto, a diferencia de CPV/ENADID/ENNViH/ENOE:
+    el único candidato es un cuestionario (no un documento de diseño), y abrirlo pagaría el
+    mismo costo de contaminación ADR-46 que los otros cuatro por una probabilidad de éxito baja
+    (los cuestionarios de LAPOP no suelen traer el anexo metodológico con estrato/UPM/ponderador
+    -- eso vive en el "Technical/Methodology Report" o en el codebook del archivo de datos,
+    ninguno de los cuales está en este corpus). Se deja la decisión de pagar ese costo a una
+    sesión futura o a mesa, en vez de gastarlo aquí especulativamente.'
+- fuente: ACS — American Community Survey (ACS) y Puerto Rico Community Survey (PRCS)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: CLUES — Clave Única de Establecimientos de Salud (CLUES)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: CNGF — Censo Nacional de Gobierno Federal (CNGF) y censos nacionales de gobierno en
+    el ámbito estatal
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: CNGMD — Censo Nacional de Gobiernos Municipales y Demarcaciones Territoriales de la
+    Ciudad de México (CNGMD)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: CONEVAL — Consejo Nacional de Evaluación de la Política de Desarrollo Social (CONEVAL)
+    — reclasificación
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: CPS — Current Population Survey (CPS) y Annual Social and Economic Supplement
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ECOVID-ML — Encuesta Telefónica sobre COVID-19 y Mercado Laboral (ECOVID-ML)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: EDER — Encuesta Demográfica Retrospectiva (EDER)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: EDR — Estadísticas de Defunciones Registradas (EDR) — subconjunto de defunciones por
+    homicidio
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: EIC — Encuesta Intercensal (EIC) 2015
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ELCOS — Encuesta Laboral y de Corresponsabilidad Social (ELCOS) **[parcialmente verificado]**
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ENAPROCE — Encuesta Nacional sobre Productividad y Competitividad de las Micro, Pequeñas
+    y Medianas Empresas (ENAPROCE)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ENASEM — Encuesta Nacional sobre Salud y Envejecimiento en México (ENASEM) / Mexican
+    Health and Aging Study (MHAS)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ENCUESTA NACIONAL DE BIENESTAR — Encuesta Nacional de Bienestar Autorreportado
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ENCUESTA NACIONAL PARA EL SIST — Encuesta Nacional para el Sistema de Cuidados
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ENFIH — Encuesta Nacional sobre las Finanzas de los Hogares (ENFIH)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ENPOL — Encuesta Nacional de Población Privada de la Libertad (ENPOL)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ENSAFI — Encuesta Nacional sobre Salud Financiera (ENSAFI)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ENSU — Encuesta Nacional de Seguridad Pública Urbana (ENSU)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ENTI — Encuesta Nacional de Trabajo Infantil (ENTI)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ESTADÍSTICA EDUCATIVA — Estadística educativa — Formato 911 / SIGED
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: ESTADÍSTICAS DE NATALIDAD / NA — Estadísticas de Natalidad / Nacimientos registrados
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: GLOBAL FINDEX DATABASE — Global Findex Database (México como país incluido)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: INE — Instituto Nacional Electoral (INE) — cómputos y resultados electorales
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: REGISTROS ADMINISTRATIVOS DE E — Registros administrativos de estadísticas vitales
+    y nupcialidad
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
+- fuente: SAEH — Subsistema Automatizado de Egresos Hospitalarios (SAEH)
+  estado: PENDIENTE
+  ponderador: no examinado
+  estrato: no examinado
+  upm: no examinado
+  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
+    (microdato + acceso libre) pero nunca descargado
+  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
+    && tests/dedup.py, 4/ago/2026)
+  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
+    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
+    pasa a examinarse en un acto futuro.'
