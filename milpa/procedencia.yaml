@@ -684,6 +684,28 @@ coeficientes_generador_medidos:
       (Encargo X, ver eje_condicionante arriba) mostró que el marginal no
       es estable (28 de 39 celdas invierten el signo). Asociar ≠
       identificar.
+    eje_policial: >
+      EJECUTADO (Encargo W1-P, forense/notas/2026-08-04-w1-p-policial.md §8) --
+      partición AP5_16_1='1' (estrato policial, n=4087, 88.2% con contacto
+      adicional) vs. resto del universo de contacto (no-policial, n=9348), 6
+      celdas (3 ítems x 2 estratos), n mínimo=30 alcanzado en las seis.
+      COMPOSICIÓN POLICIAL DESCARTADA por la regla de precedencia
+      pre-registrada en la ficha (2 de 3 ítems ESTABLE -- AP5_1_2 sin
+      discrepancia significativa, AP5_1_3 mismo signo en ambos estratos; 1 de
+      3 DISCREPANTE -- AP5_1_1 signos opuestos con el estrato policial
+      significativo). El eje policial NO reproduce la reversión de signo que
+      sí muestran formalidad/edad/ingreso (eje_condicionante arriba): donde
+      hay señal significativa (AP5_1_1, AP5_1_3), el signo se mantiene
+      negativo en el estrato policial, igual que el marginal y que el
+      ASIGNADO. Prevalencia del desenlace: 27.30% [24.92,29.68] en policial
+      vs. 5.35% [4.65,6.04] en no-policial. Resuelve la condición de
+      ADR-60(e) (radio_confianza quedaba ASIGNADO · SIGNO BAJO PRUEBA
+      apuntando a este acto). Asociar ≠ identificar (mismo límite que
+      adr57_a arriba): el 88.2% del estrato policial tuvo además otro
+      contacto, y el desenlace es compuesto sobre AP5_17/AP5_18 (todos los
+      contactos de la persona, no la autoridad específica) -- no atribuible
+      en exclusiva al contacto policial. Contacto no aleatorizado
+      (colisionador/selección posible, no aislado).
   G1_confianza_institucional:
     clase: "MEDIDO·β̂(diferencia de proporciones), un ítem, marginal, TRUNCADO"
     antes: "ASIGNADO -- coeficiente de generador (G1 -0.60), sin estimación empírica"
