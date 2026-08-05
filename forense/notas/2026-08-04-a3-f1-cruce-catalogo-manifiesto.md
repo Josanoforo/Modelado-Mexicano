@@ -4,7 +4,7 @@ evidencia; no toca Hito D, `data/manifiesto.yaml` ni ningún veredicto `RX.Y`.)
 
 # A3 · F1 — reparar la cadena del cruce catálogo × manifiesto
 
-*5 de agosto de 2026.* Rama `claude/bloque-arranque-verificacion-n1byxs`
+*4 de agosto de 2026.* Rama `claude/bloque-arranque-verificacion-n1byxs`
 (clon existente, no nuevo). HEAD al abrir y al escribir esta nota:
 `32d9321` (== `origin/main`, sin divergencia — `git fetch` confirmado).
 Encargo declaraba base `9729894`; es ancestro de HEAD (main avanzó por
