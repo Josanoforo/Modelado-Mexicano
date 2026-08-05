@@ -19,8 +19,16 @@ Que hay aqui:
      un estrato de una sola UPM se excluye de la varianza (documentado en
      el propio modulo) de forma identificable, no como un cero indistin-
      guible de precision real.
-  3. Una llamada a svystat._caso_conocido() (el autochequeo del modulo,
-     ya existente) como tercera confirmacion, gratis.
+  3. test_generador_no_falla_en_silencio() -- mismo dataset de (1), pasado
+     como GENERADOR en vez de lista. prop_ultimate_cluster() recorre `rows`
+     dos veces (N_hat/num, y despues el bloque de UPM); un generador se
+     agota en el primer recorrido y el segundo lo veia vacio, sin excepcion
+     -- doble recorrido, defecto silencioso (ENCARGO MT-mantenimiento,
+     5/ago/2026). svystat.py ahora materializa `rows = list(rows)` al
+     entrar; este caso exige que el resultado sobre un generador sea
+     EXACTAMENTE igual al de la lista del mismo dataset.
+  4. Una llamada a svystat._caso_conocido() (el autochequeo del modulo,
+     ya existente) como cuarta confirmacion, gratis.
 
 Que NO hay aqui -- las dos reproducciones archivadas (Hito D R7.2 ocho
 olas; CAL-CONF Fase B ola2) se corrieron por separado, re-ejecutando los
@@ -30,8 +38,9 @@ contra el microdato real -- no tiene sentido reimplementar esos pipelines
 aqui. Detalle completo, con los tres resultados contra la cifra archivada,
 en forense/notas/2026-08-04-svystat-casos-referencia.md.
 
-Corre solo; no esta cableado a check.py (decision de mesa aparte si se
-quiere agregar como test obligatorio):
+Corre solo, y ademas es un step bloqueante propio en CI (ENCARGO
+MT-mantenimiento, 5/ago/2026: `.github/workflows/verify.yml`, standalone,
+sin depender de check.py):
 
     python3 tests/test_svystat.py
 """
@@ -154,15 +163,52 @@ def test_estrato_singleton():
     print("  OK -- el estrato singleton queda marcado, no escondido en un cero falso.")
 
 
+def test_generador_no_falla_en_silencio():
+    """rows como GENERADOR, no lista -- prop_ultimate_cluster() la recorre
+    dos veces (N_hat/num arriba, bloque de UPM abajo); un generador se agota
+    en el primer recorrido y el segundo lo ve vacio SIN lanzar excepcion --
+    el defecto exacto que motiva este caso (ENCARGO MT-mantenimiento,
+    5/ago/2026: `rows = list(rows)` al entrar a la funcion). Mismo dataset
+    que test_caso_sintetico_dos_estratos(), para comparar contra un
+    resultado ya conocido en vez de derivar un segundo esperado a mano.
+    """
+    rows_lista = [
+        ("A", "A1", 2.0, 1.0), ("A", "A1", 3.0, 0.0),
+        ("A", "A2", 1.0, 1.0), ("A", "A2", 1.0, 1.0), ("A", "A2", 2.0, 0.0),
+        ("A", "A3", 4.0, 0.0), ("A", "A3", 2.0, 1.0),
+        ("B", "B1", 6.0, 1.0), ("B", "B1", 2.0, 0.0),
+        ("B", "B2", 2.0, 0.0), ("B", "B2", 4.0, 1.0), ("B", "B2", 3.0, 1.0),
+    ]
+
+    def rows_generador():
+        for r in rows_lista:
+            yield r
+
+    out_lista = prop_ultimate_cluster(rows_lista)
+    out_generador = prop_ultimate_cluster(rows_generador())
+
+    print("TEST 3 -- mismo dataset via GENERADOR, no lista:")
+    print(f"  p_hat lista={out_lista['p_hat']:.12f} generador={out_generador['p_hat']:.12f}")
+    print(f"  se   lista={out_lista['se']:.12f} generador={out_generador['se']:.12f}")
+
+    assert out_generador == out_lista, (
+        "prop_ultimate_cluster(generador) debe dar EXACTAMENTE el mismo dict "
+        "que prop_ultimate_cluster(lista) del mismo dataset -- si difiere, el "
+        "doble recorrido volvio a romperse en silencio")
+    print("  OK -- resultado sobre generador identico al de la lista.")
+
+
 if __name__ == "__main__":
     test_caso_sintetico_dos_estratos()
     print()
     test_estrato_singleton()
     print()
-    print("TEST 3 -- autochequeo existente del modulo (svystat._caso_conocido):")
+    test_generador_no_falla_en_silencio()
+    print()
+    print("TEST 4 -- autochequeo existente del modulo (svystat._caso_conocido):")
     svystat._caso_conocido()
     print()
-    print("Los tres casos de este archivo coinciden. Las dos reproducciones")
+    print("Los cuatro casos de este archivo coinciden. Las dos reproducciones")
     print("archivadas (Hito D R7.2 ocho olas; CAL-CONF Fase B ola2) se")
     print("corrieron por separado -- detalle en")
     print("forense/notas/2026-08-04-svystat-casos-referencia.md.")
