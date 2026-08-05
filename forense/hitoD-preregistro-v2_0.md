@@ -1023,6 +1023,34 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 
 ---
 
+### Nota 29 · 4/ago/2026 — `R1.3`, corrida completa sobre ENIF 2024: propuesta `E` (acotada), no adjudicada
+
+*(Añadida al final, fechada, sin tocar el cuerpo, la ficha ni las Notas 1-28 — misma disciplina que las notas anteriores. Especificación congelada ANTES de abrir el ZIP de microdato en commit previo: `forense/hitoD-R1_3-especificacion-v1_0.md`.)*
+
+**Construibilidad confirmada contra el cruce ya archivado.** `cruce-catalogo-fichas-v2_0.md:50-51` ya establecía, antes de este acto, que 2 de las 3 condiciones del Umbral (penetración, brecha rural-urbana) son construibles con ENIF y viven en el mismo instrumento; la tercera (canal de alta desagregado) no existe en ninguna fuente pública. Este acto lo confirma contra el FD de ENIF 2024 sin encontrar un proxy limpio (la batería `P5_14`/`P5_15_*`/`P5_16` se refiere a "su última cuenta", no al producto bajo prueba). ENDUTIH: solo se abrió su FD (estructura) — no aporta variable al cómputo (muestra independiente de ENIF, sin llave de unión a nivel de unidad) y su ítem de banca móvil nombra bancos con sucursal, lo opuesto al producto del falsador; su DBF no se abrió.
+
+**Corrección de canalización, declarada antes de reportar cifra alguna.** La especificación congelada (§3.3) declaraba unir `TMODULO.LLAVEMOD = TSDEM.LLAVESDE` para leer `NIV` (escolaridad, proxy de segmento popular). Al ejecutar, `TSDEM.niv` resultó **blanco en 30,866 de 44,374 filas (69.6%)** — incluidas filas cuya edad coincide exactamente con la del respondiente del módulo, es decir, blanco incluso para el propio seleccionado, no solo para el resto del hogar. `TMODULO` trae su **propia copia** de `niv` (mismo código, misma pregunta 2.6, mismo catálogo de 13 valores) **completa: 0 blancos en 13,502 filas**. Se usó `TMODULO.niv` directamente, sin unión a `TSDEM` — no es un cambio de especificación (la variable, su definición y sus códigos son los mismos que congeló el commit 1; solo cambió de qué tabla física se lee un campo duplicado), es una corrección de canalización del mismo tipo que `hitoD-R3.1-especificacion §6` ya usaba como categoría (bug de canalización no se atenúa suavemente, A-bis 4) — declarada aquí, sin resultado sustantivo visto antes de encontrar el defecto ni después de corregirlo (el defecto es indiferente al valor de `P5_4_8`, no hay selección sobre el desenlace). El primer resultado sustantivo reportado abajo es del pipeline ya corregido.
+
+**Universo:** `TMODULO` de ENIF 2024, n=13,502. Segmento popular (`NIV` ∈ {00,01,02,03}): **n=6,884** (50.9% del universo). Distribución `TLOC` dentro del segmento popular: urbano (1-3) n=4,672, rural (4) n=2,212.
+
+**Canalización (chequeo de plausibilidad, no umbral):** penetración de `P5_4_8=1` sobre el universo TOTAL (sin filtrar por segmento popular) = **9.47%** IC95=[8.75%,10.19%] — orden de magnitud razonable frente a las cifras de adopción fintech ya citadas en `canon/integrador-psicologia-mexicano.md:214` (sin ser ancla formal, declarado así en el commit 1).
+
+**CONDICIÓN 1 — Penetración, segmento popular:** `p_hat = 3.86%`, SE=0.32pp, IC95=[3.23%, 4.48%]. **No cruza el umbral de ≥10%** — decisivo: el límite superior del IC95 (4.48%) queda muy por debajo de 10%, no es un caso límite tipo `R5.2`.
+
+**CONDICIÓN 2 — Brecha rural-urbana, segmento popular:** urbano `p_hat=4.74%` (IC95=[3.90%,5.59%]), rural `p_hat=1.76%` (IC95=[1.15%,2.37%]). Brecha = **2.98pp**, SE=0.53pp, IC95=[1.94pp, 4.03pp]. **Sí satisface el umbral de <10pp** — también decisivo (el límite superior del IC95, 4.03pp, queda muy por debajo de 10pp).
+
+**Aplicación del árbol de decisión de `hitoD-R1_3-especificacion-v1_0.md §2` (declarado antes de ver estas cifras).** La Condición 1 falla de forma decisiva → **Rama 1**: el falsador corrió limpio sobre las dos condiciones evaluables y no se satisfizo (basta que UNA de las dos evaluables falle; aquí falla la 1, sin importar que la 2 sí se satisfaga). **Propuesta: fila `E`** — *"el falsador corrió limpio en penetración y brecha rural-urbana, y no se satisfizo — la regla sobrevive esta prueba, acotada porque la condición 3 (canal de alta desagregado) nunca pudo evaluarse."*
+
+**El desenlace interesante, ya declarado por adelantado en el commit 1 (§2), se confirma.** Las cifras de Nu que circulan en el corpus (13-15M de clientes) son del denominador propio de la empresa (su propia base ya adoptante); medido contra el denominador poblacional correcto — adultos del segmento popular nacional, vía la única encuesta con ese universo — la penetración del canal 100% digital sin sucursal es 3.86%, no "masiva". La brecha rural-urbana sí es pequeña (2.98pp) entre quienes ya adoptaron, pero eso es consistente con que el mecanismo de adopción sea el mismo (bajo, parejo) en ambos entornos, no con que haya alcanzado escala masiva en ninguno. Dicho como se pre-declaró: Nu es una vanguardia de mercado, no todavía representativa del grueso del segmento popular medido a nivel nacional — el primer dato poblacional (no de la propia fintech) sobre esta pregunta.
+
+**Límite declarado, no maquillado:** "segmento popular" se operacionalizó por escolaridad (`NIV`≤secundaria) — el único proxy disponible en ENIF, sin variable de ingreso ni NSE (§3.3 de la especificación). Un resultado con otra definición de "popular" (ingreso, AMAI) podría diferir; no se tiene con qué construirlo en esta fuente. Estratos singleton (varianza no estimable con este método): 4 de 189 en la corrida de penetración, 10 de 51 en la corrida rural — minoritarios, no invalidan el IC reportado. Condición 3 no se intentó con el proxy imperfecto de "última cuenta" (`P5_14`/`P5_15_2`/`P5_16`) declarado en la especificación: no era necesario para decidir la rama (la Condición 1 ya decide `Rama 1` por sí sola), y forzarlo hubiera sido verificación sin retorno.
+
+**El veredicto archivado (12 líneas, sin `R1.3`) y el contador (`12 de 27`) no cambian por esta nota.** Si mesa decide adjudicar `E`, se registra como entrada nueva fechada en el bloque de abajo.
+
+**Declaración ADR-46:** al abrir `conjunto_de_datos_tmodulo_enif2024.csv` de `enif2024_csv.zip` para esta corrida, esta sesión queda inhabilitada para pre-registrar ninguna otra ficha contra ENIF. La exploración de estructura de los FD de ENIF 2018/2021/2024 y ENDUTIH 2024 ya había contaminado parcialmente esas cuatro fuentes desde el commit 1.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
