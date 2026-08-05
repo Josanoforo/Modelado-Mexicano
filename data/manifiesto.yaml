@@ -3932,3 +3932,36 @@
   licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: encig25_base_datos_csv
+  usado_para: extensión de serie ENCIG (encargo B-4b-alpha) — no atribuido a condición nombrada,
+    olas previas ya citadas en hitoD-R3.2
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2025/microdatos/encig25_base_datos_csv.zip
+  fecha_descarga: '2026-08-05'
+  descargado_por: agente, directamente de inegi.org.mx via API archivoscompaginacion (idBiinegi=3431,
+    tipodocto=0)
+  archivo: encig25_base_datos_csv.zip
+  sha256: 47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12
+  tamano_bytes: 37624925
+  formato: ZIP con microdatos ENCIG 2025 (csv), no abierto
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Universo: áreas urbanas de 100 mil habitantes o más (82 áreas) -- todo estimador
+    derivado de este payload queda acotado a esa subpoblación, no a la nacional. Individual,
+    ~41 mil viviendas.'
+
+- id: encig25_estructura_base_datos_pdf
+  usado_para: extensión de serie ENCIG (encargo B-4b-alpha) — descriptor de archivos / esquema,
+    no atribuido a condición nombrada
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2025/doc/encig25_estructura_base_datos.pdf
+  fecha_descarga: '2026-08-05'
+  descargado_por: agente, directamente de inegi.org.mx via API archivoscompaginacion (idBiinegi=3431,
+    tipodocto=0)
+  archivo: encig25_estructura_base_datos.pdf
+  sha256: 09e1b19bcb165979406865360bfdec95a9767640c58565b64d405ceb04e623a2
+  tamano_bytes: 14820825
+  formato: PDF
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
