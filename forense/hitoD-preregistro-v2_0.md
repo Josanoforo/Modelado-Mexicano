@@ -995,6 +995,22 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 
 ---
 
+### Nota 27 · 4/ago/2026 — `R3.1`, corrida completa sobre ENCIG 2023: propuesta `B`, no adjudicada
+
+*(Añadida al final, fechada, sin tocar el cuerpo, la ficha ni las Notas 1-26 — misma disciplina que las notas anteriores. Especificación congelada ANTES de abrir el ZIP de microdato en commit previo: `forense/hitoD-R3_1-especificacion-v1_0.md`.)*
+
+**Candidata primaria verificada ausente** contra el diccionario (`encig23_estructura_base_datos.pdf`, secciones VII/VIII) — ningún ítem de ENCIG 2023 distingue testigo/folio/identificabilidad del servidor dentro de lo presencial; lo más cercano, `P7_10`/`P7_11` (queja presentada), mide conducta posterior a un problema, no la estructura del acto. **Respaldo 1 engancha:** `N_TRA` clasificado en ALTA discrecionalidad ({11,12,13,17,18}, servicios municipales/permisos locales/uso de suelo/MP-Fiscalía/juzgado) vs. BAJA ({01,02,03,04,07,09,10,14,15,16}, pagos de tarifa fija/citas/registros formales), por conocimiento externo, declarado antes de ver una fila de dato — 10 códigos quedan excluidos por heterogeneidad interna o por no encajar el mecanismo de la ficha.
+
+**Validación de canalización:** la incidencia presencial agregada de este acto reproduce, a los dos decimales y en los seis regímenes, el techo de 13.38% ya archivado por `hitoD-R3.2` sobre el mismo par de tablas — no hay ancla académica externa para este estimando específico (ya verificado por la propia ficha, líneas 742-744), así que esta coincidencia interna sustituye esa validación ausente.
+
+**Brecha ALTA-BAJA confirmada en dirección predicha en 6 de 6 cómputos** (dos interpretaciones de `P8_4` × sin ponderar/`FAC_TRA`/`FAC_P18`), 9.28pp–32.73pp, razón 5.05x–21.81x, **sin traslape de IC95% en ningún cómputo** — no es un caso límite tipo `R5.2`, la separación es clara en los seis. Cuatro de seis cómputos cruzan el umbral de 20pp declarado, pero **esto no decide el veredicto**: por la letra explícita de la ficha (línea 762), Respaldo 1 nunca produce `A`, sin importar la magnitud — techo fijado antes de correr, en la especificación congelada, no después de ver el resultado. `C` tampoco se satisface: la brecha no está ausente ni invertida en ningún cómputo.
+
+**Propuesta: fila `B`** — brecha presente, dirección predicha, sin pareo por tipo de trámite individual (Respaldo 1 no lo permite por diseño) — degrada a `[MEDIA]`, no refuta. **Límite declarado sin maquillar:** dentro de BAJA, `N_TRA` 04 (tenencia vehicular, 11.95%) y 10 (Registro Civil, 13.66%) tienen incidencia más alta que el resto del grupo, aunque ambos quedan por debajo del piso de ALTA (21.00%) — la clasificación externa no captura toda la varianza dentro de BAJA. **El veredicto archivado (11 líneas, sin `R3.1`) y el contador (`11 de 27`) no cambian por esta nota.** Si mesa decide adjudicar `B`, se registra como entrada nueva fechada en el bloque de abajo. Detalle completo, tabla de los seis cómputos, chequeo de composición por `N_TRA` y límites declarados: `forense/hitoD-R3_1-veredicto-v1_0.md`.
+
+**Declaración ADR-46:** al abrir `encig23_base_datos_csv.zip` para esta corrida, esta sesión queda inhabilitada para pre-registrar ninguna otra ficha contra ENCIG.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*
