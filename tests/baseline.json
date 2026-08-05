@@ -1,5 +1,5 @@
 {
-  "head": "090ee0f6b72f662d0361d205d4599d705d84dfd0",
+  "head": "837d5fe56d523615259efb77c17c84fee86ac684",
   "fails": [
     [
       "T05",
@@ -72,24 +72,20 @@
     [
       "T11",
       "corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md: afirmación de estado con cuantificador absoluto (5 de 5 comprobadas resultaron falsas): > **Origen de la corrección:** `meta-auditoria-comunicacion.md §3` · ADR-06 · `glosario conf.03"
-    ],
-    [
-      "T17",
-      "declaraciones de cobertura del pre-registro no cuadran con forense/hitoD-preregistro-v2_0.md (25 encabezados `## R`): canon/estado-programa-v1_9.md:113=25 · forense/hitoD-preregistro-v2_0.md:8=27"
     ]
   ],
   "warns": [
     [
       "T03",
-      "canon/estado-programa-v1_9.md: cita `...-v3.0.md`, que no existe"
-    ],
-    [
-      "T03",
-      "canon/estado-programa-v1_9.md: cita `...-v3_0.md`, que no existe"
+      "canon/gobernanza-v1_15.md: cita `estado-programa-v1_9.md`, que no existe"
     ],
     [
       "T03",
       "forense/censo-integridad-v1_0.md: cita `estado-programa-v1.1.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/censo-integridad-v1_0.md: cita `estado-programa-v1_9.md`, que no existe"
     ],
     [
       "T03",
@@ -121,6 +117,10 @@
     ],
     [
       "T03",
+      "forense/censo-integridad-v1_1.md: cita `estado-programa-v1_9.md`, que no existe"
+    ],
+    [
+      "T03",
       "forense/censo-integridad-v1_1.md: cita `gobernanza-v1_8.md`, que no existe"
     ],
     [
@@ -130,6 +130,10 @@
     [
       "T03",
       "forense/censo-integridad-v1_1.md: cita `v1_9.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/hallazgos.md: cita `estado-programa-v1_9.md`, que no existe"
     ],
     [
       "T03",
@@ -146,6 +150,18 @@
     [
       "T03",
       "forense/historico/TRANSFER-maestra-9.md: cita `-v3_2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/notas/2026-08-01-p2-momentos-atributos.md: cita `estado-programa-v1_9.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/notas/2026-08-04-canon-v2_3-adr54.md: cita `estado-programa-v1_9.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/notas/2026-08-04-p3-multinivel-preregistro.md: cita `estado-programa-v1_9.md`, que no existe"
     ],
     [
       "T10",
@@ -418,8 +434,9 @@
     "conteo_por_bucket": {
       "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
-      "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 6,
+      "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 4,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,
+      "T03_sin_clasificar": 7,
       "T05_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 5,
       "T06_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T07_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
@@ -427,8 +444,7 @@
       "T09_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 8,
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
-      "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1,
-      "T17_autodeclaracion_falsa_conocida__protegida_por_append-only__pendiente_de_ADR": 1
+      "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1
     }
   }
 }
