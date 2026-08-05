@@ -42,7 +42,7 @@ python3 tests/check.py --strict   # los WARN también fallan
 validado.** Un tier derivado de lectura disciplinada es evidencia legítima —
 pero la diferencia importa cuando alguien lo use para decidir algo caro.
 
-- **Cero datos primarios propios** — deuda S1 del programa
+- **223 payloads propios con `sha256`** <!-- grep -cE '^\s*sha256:' data/manifiesto.yaml --> y estimandos propios sobre ENVIPE, ENCIG, ENCUCI, ENIF y ENIGH — estimador (`tests/svystat.py`) respaldado contra tres casos de referencia (Encargo E-3, PR #97) y validado contra cifras publicadas de INEGI en al menos dos actos (Encargo K sobre ENVIPE, Encargo P sobre ENIGH). No es "cero dato primario propio" — y sigue sin ser instrumento validado
 - Los 42 disparadores de contexto **no** cuentan como números: son booleanos
 
 ---
@@ -82,7 +82,7 @@ Un validador cuyo alcance fija quien introduce las reglas no valida nada.
 
 ## Deudas abiertas
 
-**S1** · Cero datos primarios propios · **PD-01**: 14 descartes irrecuperables, *no reconstruir*
+**S1** · Sí hay dato primario propio: 223 payloads con `sha256` <!-- grep -cE '^\s*sha256:' data/manifiesto.yaml --> y estimandos propios sobre ENVIPE/ENCIG/ENCUCI/ENIF/ENIGH, estimador respaldado contra tres casos de referencia y validado contra INEGI publicado (Encargo E-3/PR #97; Encargo K; Encargo P) · **PD-01**: 14 descartes irrecuperables, *no reconstruir*
 
 **S2** · Los **90 parámetros de dispersión** de ADR-28.d no existen en archivo — el check de varianza no puede correr · Los **30 componentes** de `confianza_institucional` por perfil, declarados y sin poblar · **8 refutaciones sin objeto**, incluida `ref.A.02` · El motor **no tiene entidad prestamista** (frontera de ADR-35)
 

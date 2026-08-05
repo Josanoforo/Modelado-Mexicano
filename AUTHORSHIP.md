@@ -64,12 +64,24 @@ párrafo — ver `forense/hallazgos.md`, ENCARGO MT-mantenimiento). Ver también
 `README.md` (`## Estado del modelo`) para el resto de los números vivos del
 modelo. Un sistema de tierización de evidencia. Marcas de procedencia
 `(a)` dato en México / `(b)` muestra de diáspora / `(c)` marco importado. Un
-registro append-only de errores propios en `forense/`. 43 decisiones de arquitectura
-razonadas.
+registro append-only de errores propios en `forense/`. **64 decisiones de
+arquitectura** <!-- grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v*.md | grep -oE
+'[0-9]+' | sort -n | tail -1 --> razonadas.
 
 **No existe.** Verificación humana independiente de las fuentes citadas, una por
-una. Un tercero que haya releído el corpus completo. Datos primarios propios: todo
-es síntesis de literatura publicada.
+una. Un tercero que haya releído el corpus completo.
+
+**Sí existe, con la misma precisión que exige lo anterior:** dato primario
+propio — **223 payloads** <!-- grep -cE '^\s*sha256:' data/manifiesto.yaml -->
+con `sha256` y estimandos propios sobre ENVIPE, ENCIG, ENCUCI, ENIF y ENIGH, con
+un estimador (`tests/svystat.py`) respaldado contra tres casos de referencia
+(Encargo E-3, PR #97) y validado contra cifras publicadas de INEGI en al menos
+dos actos (Encargo K, ENVIPE; Encargo P, ENIGH). Lo que sigue faltando es el
+modelo en sí: de 144 números, 4 medidos (`4 de 144`, **[MESA-M4]**, congelado);
+de 15 coeficientes de generador, ninguno en escala del modelo; y **36 de 49**
+<!-- 49 (validador_registro_ids.py) − 13 (fichas del bloque append-only, T18)
+= 36 --> reglas sin corrida de falsación pre-registrada — todo eso sigue siendo
+síntesis de literatura, no dato medido.
 
 **Lo más honesto que se puede decir del método:** varios de los defectos más graves
 del programa no los encontró la suite — los encontró alguien pidiendo la cita
