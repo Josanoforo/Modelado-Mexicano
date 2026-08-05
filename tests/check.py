@@ -947,6 +947,117 @@ def t19c_readme_derivadas():
 
 
 # ───────────────────────────────────────────────────────────────
+# T20 · T-CASCADA-MARCADA — Encargo CU, 5/ago/2026. Cierra (parcialmente)
+#   el requisito de salida de ADR-45 (`gobernanza:362`, I-07): "ninguna
+#   afirmación de conteo de veredictos... existe en `canon/` fuera de su
+#   bloque de fuente única sin decir cuál de las tres poblaciones cita y
+#   con qué denominador".
+#
+#   Hallazgo que lo motiva: con T18 vigilando un solo sitio vigente
+#   (`estado:196`) y T19c otro (`README:36`), la cascada de ADR-55/56/58/60
+#   se ejecutó completa cada vez, pero el perímetro ACOTADO de ADR-63
+#   (R1.3→E, 12→13) dejó fuera `gobernanza:358` y `:810` -- declarado
+#   como deuda por el propio ADR-63 (`gobernanza:786`) -- Y ADEMÁS
+#   `modelo-decision:64` y `:636`, que ninguna nota de deuda anterior
+#   había nombrado nunca. Los cuatro declaraban "12 de 27" con la suite
+#   completa en VERDE, porque ningún test los leía. Encargo CU corrigió
+#   los cuatro con cascada completa (no acotada) y marca los ocho sitios
+#   vigentes de canon/README que sí hacen la afirmación DIRECTA de
+#   "corridas archivadas" -- para que la próxima cascada acotada no
+#   vuelva a dejar un sitio invisible atrás.
+#
+#   Convención de marcado (extiende la que `README.md` ya usa para sus
+#   propias cifras de portada, p. ej. líneas 34/37 -- receta de derivación
+#   en un comentario HTML junto a la cifra): un comentario
+#   `<!-- T20:HITO-D pob=reglas -->` en cualquier punto de la MISMA línea
+#   física que la cifra vigente. `pob=reglas` declara que la cifra cuenta
+#   REGLAS distintas con veredicto archivado -- el denominador de
+#   T18/T19c y de `_bloque_veredictos` (el diccionario `fichas` colapsa
+#   por ID de regla: `R4.3` se archiva en dos mitades y cuenta 1, no 2).
+#   El test toma la PRIMERA cifra en forma "N de 27" que aparezca en esa
+#   línea -- verificado contra los ocho sitios marcados en este acto: en
+#   todos, la afirmación vigente antecede a cualquier mención histórica
+#   de transición ("N de 27 → M de 27") que pueda venir después en la
+#   misma línea, dentro de la cola fechada de correcciones.
+#
+#   LÍMITE DECLARADO -- léelo antes de asumir que esto cierra I-07 por
+#   completo. T20 vigila los sitios MARCADOS. Un contador vigente nuevo
+#   que nadie marque sigue siendo invisible para la suite; la marca es
+#   obligación de quien escribe la cifra, no algo que este test pueda
+#   descubrir por sí solo. Tampoco entiende una cifra en forma
+#   COMPLEMENTO ("N de 27 SIN corrida"): `estado-programa:122` declara
+#   vigente "14 de 27 sin corrida" (27-13=14, correcto hoy) pero se deja
+#   SIN MARCAR a propósito -- marcarla con la etiqueta de hoy produciría
+#   un FAIL falso, porque T20 compara la cifra encontrada directo contra
+#   `real` sin restar de 27. Extender la etiqueta a `forma=complemento`
+#   queda fuera de este acto.
+#
+#   No duplica a T18 ni a T19c -- ambos siguen como están, verdes y
+#   verificados, y no se borran. `README:36` y `estado:196` sí llevan
+#   también la marca de T20 (para que la cascada vigilada cubra todo el
+#   universo declarado, no solo lo que quedó fuera de T18/T19c) -- eso
+#   vuelve a T20 redundante con T18 en `estado:196` y con T19c en
+#   `README:36`. Redundancia observada y anotada aquí para mesa, no
+#   removida: decidir si T18/T19c se retiran queda fuera de este acto.
+# ───────────────────────────────────────────────────────────────
+_MARCA_T20_HITO_D = re.compile(r"T20:HITO-D\s+pob=(\S+?)\s*-->")
+_CONTADOR_DE_27 = re.compile(r"(\d+)\s*de\s*27\b")
+
+def t20_cascada_marcada():
+    """Cada sitio de `README.md`/`canon/*.md` marcado `<!-- T20:HITO-D
+    pob=reglas -->` debe declarar, en la misma línea, la misma cifra de
+    'N de 27' que produce `_bloque_veredictos` + `_VEREDICTO_CANONICO`
+    sobre el bloque append-only de `hitoD-preregistro` (el mismo parser
+    canónico que usan T18/T19c). No inspecciona nada sin marca -- ver
+    límite declarado arriba."""
+    h = newest("forense/hitoD-preregistro-v*.md")
+    if not h:
+        fail("T20", "no se pudo leer `forense/hitoD-preregistro-v*.md`")
+        return
+    bloque = _bloque_veredictos(read(h))
+    if bloque is None:
+        fail("T20", f"{rel(h)}: no se encontró el bloque "
+                    f"'## Registro de veredictos archivados' (ADR-40)")
+        return
+    fichas = {}
+    for l in bloque.split("\n"):
+        m = _VEREDICTO_CANONICO.search(l)
+        if m:
+            fichas[m.group(1)] = m.group(2)
+    real = len(fichas)
+
+    archivos = [os.path.join(ROOT, "README.md")] + sorted(glob.glob(os.path.join(ROOT, "canon", "*.md")))
+    marcados = 0
+    for p in archivos:
+        if not os.path.exists(p):
+            continue
+        for i, l in enumerate(read(p).split("\n"), 1):
+            mm = _MARCA_T20_HITO_D.search(l)
+            if not mm:
+                continue
+            marcados += 1
+            pob = mm.group(1)
+            if pob != "reglas":
+                fail("T20", f"{rel(p)}:{i} marcador T20:HITO-D declara población "
+                            f"'{pob}' -- este test solo sabe verificar 'reglas'")
+                continue
+            mn = _CONTADOR_DE_27.search(l)
+            if not mn:
+                fail("T20", f"{rel(p)}:{i} tiene marcador T20:HITO-D pero no se "
+                            f"encontró ninguna cifra en forma 'N de 27' en la misma línea")
+                continue
+            declarado = int(mn.group(1))
+            if declarado != real:
+                fail("T20", f"{rel(p)}:{i} declara {declarado} de 27 corridas archivadas "
+                            f"(marcado T20:HITO-D, pob=reglas); el bloque append-only de "
+                            f"{rel(h)} tiene {real} veredictos archivados en forma canónica "
+                            f"(`_VEREDICTO_CANONICO`)")
+    if marcados == 0:
+        warn("T20", "ningún sitio con marcador `T20:HITO-D` encontrado en "
+                     "README.md/canon/*.md -- ¿se perdió el marcado?")
+
+
+# ───────────────────────────────────────────────────────────────
 # Modo línea base · congela el estado conocido, no lo mueve por defecto
 # ───────────────────────────────────────────────────────────────
 #   --freeze     escribe tests/baseline.json con el estado actual (acto
@@ -1130,6 +1241,7 @@ def main():
         ("T19a cabecera cruzada estado→modelo",   t19a_estado_cita_modelo_vigente),
         ("T19b contador 14 cruzado (modelo)",     t19b_modelo_contador_14),
         ("T19c portada derivada (README)",        t19c_readme_derivadas),
+        ("T20 T-CASCADA-MARCADA",                 t20_cascada_marcada),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
