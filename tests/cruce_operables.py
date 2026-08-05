@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Cruce completo catálogo (38 operables) × data/manifiesto.yaml.
+"""Cruce completo catálogo (43 operables) × data/manifiesto.yaml.
 
 No es un grep de acrónimo por prefijo (eso es lo que tests/dedup.py hace de
 forma cruda y por lo que su cifra de "sin bajar" es solo una aproximación).
@@ -9,7 +9,17 @@ en el manifiesto le pertenecen -- lista cerrada, mantenida a mano porque
 los ids no siguen una convención mecánica única (encig2015_csv, ennvih1_...,
 1_vfinal_..._ensanut_2024_..., etc.).
 
-Uso: python3 tests/cruce_operables.py
+Depende de data/catalogo_unico.json -- lo produce tests/dedup.py (dedup por
+acrónimo+título sobre data/catalogo_derivado.json, que a su vez produce
+tests/catalogo.py), no un typo de este archivo: catalogo_unico.json trae el
+campo `en_disco` y las 131 filas ya deduplicadas que este script necesita
+para que `op_acr` compare acrónimos limpios, no las ~200 entradas crudas
+con duplicados (p.ej. "LAPOP" y "AMERICASBAROMETER / LAPOP" como dos filas
+separadas) que catalogo_derivado.json todavía contiene.
+
+Uso: python3 tests/catalogo.py && python3 tests/dedup.py && python3 tests/cruce_operables.py
+     (encadenado porque cada paso consume el derivado del anterior; ver
+     guarda de archivo ausente más abajo si se corre este script suelto)
 """
 import json
 import os
@@ -27,8 +37,10 @@ con_payload = [e for e in entradas if 'sha256' in e]
 # acronimo del catálogo -> lista de prefijos/substrings de `id` que le pertenecen
 MAPA = {
     'ACS': [],
+    'CLUES': [],
     'CNGF': [],
     'CNGMD': [],
+    'CONEVAL': [],
     'CPS': [],
     'CPV': ['cpv2020'],
     'ECOVID-ML': [],
@@ -64,6 +76,16 @@ MAPA = {
     'ESTADÍSTICA EDUCATIVA': [],
     'ESTADÍSTICAS DE NATALIDAD / NA': [],
     'GLOBAL FINDEX DATABASE': [],
+    'INE': [],
+    # LAPOP y "AMERICASBAROMETER / LAPOP" NO son la misma clave: son dos
+    # filas separadas en catalogo_unico.json (el dedup por título no las
+    # fusionó -- el inventario que solo dice "AmericasBarometer / LAPOP"
+    # sin descriptor en español no comparte título normalizado con el que
+    # sí lo tiene). Esta es la fila real, operable (micro=sí, libre=sí);
+    # la otra es mono-dominio con libre='?' y por eso nunca entra a `op`
+    # -- no hace falta (ni corresponde) mapear su nombre compuesto aquí.
+    'LAPOP': ['lapop'],
+    'LATINOBARÓMETRO': ['latinobarometro'],
     'MOCIBA': [],
     'REGISTROS ADMINISTRATIVOS DE E': [],
     'SAEH': [],
@@ -74,7 +96,14 @@ def pertenece(id_, prefijos):
     return any(id_.startswith(p) or p in id_ for p in prefijos)
 
 
-op = [r for r in json.load(open(os.path.join(RAIZ, 'data', 'catalogo_unico.json')))
+UNICO = os.path.join(RAIZ, 'data', 'catalogo_unico.json')
+if not os.path.exists(UNICO):
+    raise SystemExit(f"NO ENCONTRÉ {UNICO} — lo produce tests/dedup.py, no tests/catalogo.py "
+                      f"(y dedup.py a su vez depende de data/catalogo_derivado.json, producido "
+                      f"por tests/catalogo.py). Corre primero:\n"
+                      f"  python3 tests/catalogo.py && python3 tests/dedup.py")
+
+op = [r for r in json.load(open(UNICO))
       if r['micro'] == 'sí' and r['libre'] == 'sí']
 op_acr = {r['acronimo'] for r in op}
 faltan_mapa = op_acr - set(MAPA)
@@ -88,6 +117,9 @@ SOLO_INSTRUMENTO = {
     'cpv2020_cuestionario_ampliado_pdf',
     'enadid2023_hogar_cuestionario_pdf',
     'enadid2023_mujer_modulo_cuestionario_pdf',
+    'lapop_abmex2023_cuestionario_mexico',
+    'latinobarometro2024_cuestionario_esp',
+    'latinobarometro2024_fichas_tecnicas',
 }
 
 asignados = set()
@@ -116,7 +148,7 @@ print("RESUMEN:", resumen)
 print(f"OPERABLES SIN PAYLOAD DE VERDAD: {resumen['SIN PAYLOAD']} de {len(op)}")
 
 sin_atribuir = [e['id'] for e in entradas if e['id'] not in asignados]
-print(f"\nEntradas del manifiesto NO atribuidas a ninguna de las 38 operables "
+print(f"\nEntradas del manifiesto NO atribuidas a ninguna de las 43 operables "
       f"(otras fuentes ya en manifiesto, o inventario sin fuente identificada "
       f"sin abrir el archivo): {len(sin_atribuir)}")
 for i in sin_atribuir:
