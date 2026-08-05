@@ -1147,3 +1147,22 @@ forense/hallazgos.md                               |   1 +
 
 ---
 
+## 2026-08-05
+
+**Fecha:** 2026-08-05 · **Rama:** `claude/cierre-documental-p2-l9gxgn` · **HEAD inicial (origin/main):** `3de5a2853ad9b6f04ceace00f668848c62ae4e12` · **HEAD final:** (este commit)
+
+**Commits de la sesión:** ENCARGO P2 (mesa #20), cierre documental: ADR-65 (sella la ruta de lectura de curvas del Encargo X), `instrucciones-proyecto-v2_5.md` (nuevo), cierre parcial de `I-07`, `forense/encargos/` (directorio + convención, nuevo).
+
+**Delta de suite:**
+  - Antes: 18 FAIL · 95 WARN (corrida real sobre origin/main, sin --baseline)
+  - Después: 18 FAIL · 95 WARN (corrida real, sin --baseline) — `--baseline` VERDE, sin marcadores nuevos
+
+**Cola — IDs afectados en la sesión:**
+  - Abiertos: (ninguno)
+  - Cerrados: (ninguno)
+  - Cerrada parcialmente: I-07 — `T20` (PR #126) vigila la cascada del contador del Hito D en los ocho sitios marcados `<!-- T20:HITO-D pob=reglas -->`; un contador escrito sin marca sigue siendo invisible, límite declarado del propio test, no falla de instrumentación. Quien escriba un contador nuevo debe marcarlo; ningún test puede obligarlo.
+
+**Qué se decidió:** Cuatro tareas de cierre documental, sesión limpia, sin abrir `data/raw` ni microdato. (1) ADR-65 sella la ruta de "leer las curvas de forma funcional del Encargo X" como vía para destrabar los 15 β del motor: `W1` no tiene forma (ni escalón en el corte ≥6), `W2` es casi recta pero compatible con artefacto de composición por edad, `W3` no aplica; no declara ninguna forma por descarte y no cierra `D-ABC` (función de enlace, decisión de mesa aparte). (2) `instrucciones-proyecto-v2_5.md` = v2.4 verbatim (sha256 del original sin cambio) + tres deltas medidos el 4-5/ago: verificación de payloads uno por `--id`, firma de entorno de tres partes (añade chequeo de `data/raw` montado), y la convención de que los encargos vivos se commitean a `forense/encargos/`. (3) `I-07` cerrada parcialmente con la redacción que la evidencia admite (ver arriba). (4) `forense/encargos/` creado con su convención (`convencion.md` — se descartó nombrarlo `README.md` tras chocar con `T02`, corregido antes de commitear); no se pobló con encargos concretos.
+**Qué quedó bloqueado:** Nada nuevo. `D-ABC` (función de enlace) sigue sin sellar, decisión de mesa pendiente, expresamente fuera de este acto. `forense/encargos/` queda vacío de encargos concretos — depende de textos que hoy viven fuera del repo.
+
+---
