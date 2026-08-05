@@ -1,1 +1,22 @@
 * text=auto eol=lf
+
+# merge=union: driver interno de git, no personalizado (verificado empíricamente
+# en ramas locales, Encargo CU 5/ago/2026 -- ver forense/notas/2026-08-05-cu-cascada-vigilada-union.md).
+# Reduce a mecánico lo que la receta manual de fusión ya hacía a mano: "ambas
+# tandas, main arriba, la línea del empalme una sola vez". Requiere que el
+# archivo SIEMPRE termine en salto de línea -- verificado hoy en los dos; si
+# alguna vez deja de cumplirse, dos ramas que apendicen a la vez duplican en
+# silencio la última entrada compartida en vez de conflictuar (reproducido en
+# la prueba empírica citada arriba). Sin verificar: si el botón "Merge pull
+# request" de GitHub honra este driver del lado servidor -- la ruta
+# garantizada es el merge local (`git merge`, con este archivo en el árbol).
+forense/hallazgos.md merge=union
+forense/bitacora.md merge=union
+
+# hitoD-preregistro-v2_0.md es append-only pero NO entra a union, a propósito:
+# T18/T19c/T20 (tests/check.py) cuentan reglas/líneas de su bloque designado
+# "## Registro de veredictos archivados". Con union, dos ramas que archiven
+# veredictos a la vez duplicarían en silencio la línea de una de ellas -- sin
+# conflicto, sin aviso, inflando el contador que mide el programa entero. Un
+# merge manual que conflictúa es ruidoso; un union que duplica no lo es. Este
+# archivo se sigue fusionando a mano.
