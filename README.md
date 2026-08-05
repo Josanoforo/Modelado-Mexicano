@@ -33,7 +33,7 @@ python3 tests/check.py --strict   # los WARN también fallan
 
 **49 reglas · 20 `[FUERTE]`.** <!-- 49: python3 tests/validador_registro_ids.py · 20 [FUERTE]: T12 en tests/check.py (motor_rules()+rule_tier() sobre §3.B) -->
 
-- **12 de 27** corridas del Hito D con veredicto archivado — **7D·2B·2A·1E** <!-- bloque "## Registro de veredictos archivados" de forense/hitoD-preregistro-v2_0.md, parser _VEREDICTO_CANONICO (tests/check.py:684, T18); +R3.1→B, ADR-60 -->
+- **13 de 27** corridas del Hito D con veredicto archivado — **7D·2B·2A·2E** <!-- bloque "## Registro de veredictos archivados" de forense/hitoD-preregistro-v2_0.md, parser _VEREDICTO_CANONICO (tests/check.py:684, T18); +R1.3→E, ADR-63 -->
 - **Condicionales medidas 9 de 14** <!-- grep -c 'clase: "MEDIDO·PARCIAL' milpa/procedencia.yaml -->
 - **Coeficientes en escala del modelo 0 de 15** — tres asociaciones marginales (β̂) existen para tres de los quince, pero ADR-57(a) las rotula asociaciones, no coeficientes: ninguna sobrevive condicionar y no cuentan aquí <!-- modelo §2.2 ("Los quince coeficientes son ASIGNADO. Ninguno es medido"); milpa/procedencia.yaml: asignados_coeficiente / coeficientes_generador_medidos -->
 - **[MESA-M4] `4 de 144`** congelado 31/jul/2026, no se recalcula <!-- forense/hallazgos.md, 2026-07-31: "Congelamiento de `4 de 144`" — decisión de mesa, no ADR -->
@@ -86,7 +86,7 @@ Un validador cuyo alcance fija quien introduce las reglas no valida nada.
 
 **S2** · Los **90 parámetros de dispersión** de ADR-28.d no existen en archivo — el check de varianza no puede correr · Los **30 componentes** de `confianza_institucional` por perfil, declarados y sin poblar · **8 refutaciones sin objeto**, incluida `ref.A.02` · El motor **no tiene entidad prestamista** (frontera de ADR-35)
 
-**S3** · 15 coeficientes sin validar · 37 de 49 reglas sin falsación pre-registrada corrida <!-- 49 (validador_registro_ids.py) − 12 (fichas del bloque append-only, T18) = 37; +R3.1→B, ADR-60 --> · 74 números asignados · **3 de 5 forenses sin tabla de descartes**
+**S3** · 15 coeficientes sin validar · 36 de 49 reglas sin falsación pre-registrada corrida <!-- 49 (validador_registro_ids.py) − 13 (fichas del bloque append-only, T18) = 36; +R1.3→E, ADR-63 --> · 74 números asignados · **3 de 5 forenses sin tabla de descartes**
 
 **S5** · `conf.02` · `conf.05` · **`conf.06`** — resuelto 28/jul: eran **tres reactivos distintos** de la misma escala (62.1% conocidos · 32.1% vecinos · 21.8% la mayoría), leídos como una sola cifra
 
