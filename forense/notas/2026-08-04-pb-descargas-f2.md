@@ -14,12 +14,12 @@ por el script).
 ## 0 · La matriz de concurrencia citada por el encargo no existe — verificado, no fabricada
 
 El encargo original citaba "la matriz de concurrencia de arriba" en un
-archivo `PARALELO-PA-deferencia-y-PB-descargas.md`. Ese archivo **no existe**
+archivo `PARALELO-PA-deferencia-y-PB-descargas.md` {cita-ilustrativa}. Ese archivo **no existe**
 en ningún lugar: cero resultados en `git log --all` sobre todas las ramas,
 cero menciones en `canon/protocolo-sesion-v1_0.md` o `canon/gobernanza-v1_15.md`,
 cero archivo físico en los ~30 worktrees vivos de `/home/pc0/mm-*` al momento
 de verificar. Mismo patrón, segunda ocurrencia el mismo día: ACTO M ya había
-verificado horas antes que `PARALELOS-tanda-2.md` tampoco existe
+verificado horas antes que `PARALELOS-tanda-2.md` {cita-ilustrativa} tampoco existe
 (`forense/hallazgos.md:108`; detalle en
 `forense/notas/2026-08-04-censo-diseno-muestral.md:23-60`). Tercera
 ocurrencia del mismo patrón, ver §2 (ESTAD citada como "ENSATD" en el
