@@ -1,14 +1,24 @@
-import json, re, unicodedata, collections
+import json, re, unicodedata, collections, yaml
 import os, sys
 RAIZ = os.environ.get('MM_RAIZ') or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INV  = os.path.join(RAIZ, 'data', 'inventarios')
 OUT  = os.path.join(RAIZ, 'data')
+ALIAS = os.path.join(INV, 'alias-fuentes.yaml')
 if not os.path.isdir(INV):
     sys.exit(f"NO ENCONTRÉ {INV} — este script se corre desde un clon del repo con los "
              f"inventarios en data/inventarios/, o con MM_RAIZ apuntando a la raíz.")
 
 d = json.load(open(os.path.join(OUT,'catalogo_derivado.json')))
-F = d['fuentes']
+F_TODAS = d['fuentes']
+# tests/catalogo.py ya no inventa identidad para un título que no resuelve
+# contra la tabla de alias (acronimo=None) -- este script hereda esa señal:
+# se excluyen del dedup (akey()/unicodedata no operan sobre None) y se
+# imprime el conteo antes que cualquier otra cifra, mismo criterio que
+# tests/catalogo.py.
+F = [r for r in F_TODAS if r['acronimo'] is not None]
+SIN_RESOLVER_HEREDADO = len(F_TODAS) - len(F)
+print(f"SIN_RESOLVER (heredado de catalogo.py, excluidas del dedup): {SIN_RESOLVER_HEREDADO}")
+
 def norm(s):
     s = unicodedata.normalize('NFKD', s).encode('ascii','ignore').decode()
     s = re.sub(r'\*\*.*?\*\*','',s)
@@ -60,40 +70,76 @@ for r in rows:
     if r['n_dom']>=3: print(f"  {r['n_dom']}d  micro={r['micro']:2s} libre={r['libre']:2s}  {r['acronimo']:16s} {r['titulo'][:60]}")
 
 # --- cruce contra el manifiesto: qué del catálogo ya está en disco ---
-# Cruce aproximado (la versión exacta, mantenida a mano, vive en
-# tests/cruce_operables.py). Dos correcciones aquí, verificadas contra
-# el manifiesto real -- no una regla general re-derivable de memoria:
-#  (a) un id que empieza con dígito (ordinal de documento multi-parte,
-#      p.ej. `1_vfinal_..._ensanut_2024_...`) no tiene "letras al inicio"
-#      -- antes no aportaba NINGÚN prefijo; ahora se prueban todas sus
-#      palabras, porque la significativa (`ensanut`) no está en la primera.
-#  (b) el acrónimo se pliega a ASCII antes de comparar: los ids del
-#      manifiesto son ASCII y un acrónimo con tilde (LATINOBARÓMETRO)
-#      nunca calzaría por diferencia de byte, no porque falte en disco.
+# ENCARGO MAP-1: el emparejamiento pasa ahora por la tabla de alias
+# (data/inventarios/alias-fuentes.yaml) en vez del heurístico de prefijos
+# de acrónimo sueltos que se comparaba contra el acronimo (ya) fragmentado
+# de catalogo.py. Sigue siendo aproximado -- la versión exacta, mantenida a
+# mano, vive en tests/cruce_operables.py (fuera del perímetro de este acto).
+# Un id de manifiesto que no empareja con ninguna fuente canónica va a su
+# propia lista (MANIFEST_SIN_MATCH) y se cuenta, no se descarta en silencio.
+def ascii_up(s):
+    return unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().upper()
+
+def prefijos_id(mid):
+    """Mismo criterio que la versión anterior: si el id empieza con letra,
+    su corrida de letras iniciales; si empieza con dígito (ordinal de
+    documento multi-parte, p.ej. `1_vfinal_..._ensanut_2024_...`), todas las
+    palabras del id -- la significativa no está al inicio."""
+    m = re.match(r'^[a-z]+', mid)
+    if m: return {m.group(0).upper()}
+    return {tok.upper() for tok in re.findall(r'[a-z]+', mid)}
+
+ALIAS_ENTRADAS = yaml.safe_load(open(ALIAS, encoding='utf-8')) or [] if os.path.isfile(ALIAS) else []
+tokens_por_canon = {}
+for e in ALIAS_ENTRADAS:
+    toks = {ascii_up(e['canonico'].split('/')[0].strip())}
+    for al in e.get('alias', []):
+        al_n = al.strip()
+        # solo siglas cortas como blanco de emparejamiento contra ids -- un
+        # truncamiento largo de rama-fallback nunca aparece tal cual en un id
+        if al_n and len(al_n) <= 12 and '/' not in al_n:
+            toks.add(ascii_up(al_n))
+    tokens_por_canon[e['canonico']] = {t for t in toks if len(t) >= 2}
+
 MAN = os.path.join(OUT, 'manifiesto.yaml')
 en_disco = set()
+id_a_canon = {}
+manifest_sin_match = []
 if os.path.exists(MAN):
     ids = re.findall(r'^- id: ([a-z0-9_]+)', open(MAN, encoding='utf-8').read(), re.M)
-    pref = set()
-    for i in ids:
-        m = re.match(r'^[a-z]+', i)
-        if m:
-            pref.add(m.group(0).upper())
+    for mid in ids:
+        pfs = prefijos_id(mid)
+        hallado = None
+        for canon, toks in tokens_por_canon.items():
+            if pfs & toks:
+                hallado = canon; break
+        if hallado is None:
+            for canon, toks in tokens_por_canon.items():
+                if any(len(pf) > 3 and any(pf in t or t in pf for t in toks) for pf in pfs):
+                    hallado = canon; break
+        if hallado:
+            id_a_canon[mid] = hallado
+            en_disco.add(hallado)
         else:
-            pref.update(tok.upper() for tok in re.findall(r'[a-z]+', i))
-    for r in rows:
-        a = unicodedata.normalize('NFKD', r['acronimo'].upper()).encode('ascii', 'ignore').decode()
-        if a in pref or any(p in a for p in pref if len(p) > 3):
-            en_disco.add(r['acronimo'])
+            manifest_sin_match.append(mid)
     r_disco = f"{len(en_disco)} ({', '.join(sorted(en_disco))})"
 else:
+    ids = []
     r_disco = "manifiesto.yaml ausente — cruce NO derivado"
 op_disco = [r for r in op if r['acronimo'] in en_disco]
-print(f"\nCRUCE CONTRA data/manifiesto.yaml")
+print(f"\nCRUCE CONTRA data/manifiesto.yaml (vía tabla de alias)")
+print(f"  entradas de manifiesto: {len(ids)}")
+print(f"  ids emparejados a alguna fuente canónica: {len(id_a_canon)}")
+print(f"  MANIFEST_SIN_MATCH (id sin fuente canónica que lo explique): {len(manifest_sin_match)}")
 print(f"  fuentes del catálogo ya registradas: {r_disco}")
 print(f"  OPERABLES ya en disco:      {len(op_disco)}")
 print(f"  OPERABLES sin bajar:        {len(op) - len(op_disco)}")
 for r in rows:
     r['en_disco'] = r['acronimo'] in en_disco
 
+print(f"  MANIFEST_SIN_MATCH, primeros 20 de {len(manifest_sin_match)}: {manifest_sin_match[:20]}")
+
+# catalogo_unico.json se mantiene como LISTA (no dict): tests/cruce_operables.py
+# (fuera del perímetro de este acto) hace `for r in json.load(open(UNICO))`
+# esperando ese formato exacto -- cambiarlo rompería ese script.
 json.dump(rows, open(os.path.join(OUT,'catalogo_unico.json'),'w'), ensure_ascii=False, indent=1)
