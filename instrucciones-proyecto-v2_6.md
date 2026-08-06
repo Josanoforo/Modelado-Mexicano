@@ -250,6 +250,22 @@ A.5 · El fallo de un agente es un hecho sobre el agente, no sobre la fuente [NU
 
 A.6 · Encontrado por búsqueda no es verificado [NUEVO v2.6]. Una candidata localizada por buscador y no abierta byte a byte es evidencia de segunda mano. Se registra como candidata, nunca se promueve a ficha ni se abre como fuente, y lleva la marca SIN-FETCH hasta que un acto con red la abra. Medido: el barrido de las 17 condiciones reportó WebFetch 403 en el 100% de los intentos, verificado contra dominio de control neutral — las 17 candidatas que hoy parecen resueltas son, todas, de segunda mano.
 
-Corolario retroactivo, y va acotado a propósito. No se auditan los cierres negativos del corpus en bloque: eso es la jornada del 30/jul otra vez. Se reabre únicamente el cierre negativo que hoy gatea una ficha del Hito D. Si un cierre sin universo declarado no bloquea ninguna regla, se anota en forense/hallazgos.md y se queda como está.
+Corolario retroactivo. Lo que se reabre es la razón, no la etiqueta.
+
+Reabrir solo lo rotulado "no existe" sería cometer el defecto otra vez, un nivel más arriba: la etiqueta es del buscador, igual que el cierre. Se reabre todo cierre cuya razón sea informacional, en sus tres redacciones:
+
+1. la clasificación negativa explícita ("no existe", "ninguna encontrada", "no hay fuente");
+2. la evidencia calificada como débil por falta de información — un tier bajo asignado porque no se halló el dato, no porque el dato hallado fuera malo;
+3. lo que quedó sin corroborar por esa misma falta — la reserva declarada que nadie volvió a tocar.
+
+Los tres son el mismo defecto y los tres se sellaron sin universo. Un tier medio puesto porque el buscador no encontró es tan revisable como un NO-ENCONTRADO, y es más peligroso porque no lleva la palabra que dispara la sospecha.
+
+Lo acotado es el disparador, no el tipo. No se auditan los cierres del corpus en bloque: eso es la jornada del 30/jul otra vez. Se reabre lo que hoy gatea una ficha del Hito D. Si un cierre sin universo declarado no bloquea ninguna regla, se anota en forense/hallazgos.md y se queda como está.
+
+A.7 · La identidad de un artefacto es su contenido, no su envoltura [NUEVO v2.6]. Medido el 5/ago/2026: dos generaciones de la misma canasta de Descarga Masiva de INEGI — 1,010,608 bytes ambas, totalMb="51.00 GB" ambas, 7,930 URLs únicas idénticas — dan sha256 distintos, porque el atributo aut es un token de solicitud que cambia en cada generación (cf4f56bb-… contra 612e96b9-…). ENCARGO-VER2 declara PARO ante hash discordante; con la segunda generación para en falso sobre el archivo correcto.
+
+Todo payload cuyo formato incluya un token de sesión, marca de tiempo de generación o identificador de solicitud se registra con dos hashes: el crudo, para reproducibilidad byte a byte, y un hash de contenido con esos campos neutralizados. El criterio de PARO se evalúa contra el segundo. Para este XML, derivados en esta sesión: crudo 7089264d… · sin aut 4687abd6… · del set de URLs ordenado 9a98e161….
+
+Corolario: un hash discordante no es un hallazgo sobre el archivo hasta que se sabe qué campo cambió. Es la misma regla A.5 aplicada a un artefacto en vez de a un portal.
 
 El costo de esta versión, contado. Tres reglas. Ninguna añade un test —nada de esto es verificable desde la suite— y ninguna añade una pregunta al módulo de auditoría. Las tres salen del mismo defecto medido cuatro veces, y ese defecto sí le costó a un lector: mantuvo el perímetro falsable del Hito D estimado por debajo de lo real, y el perímetro es un número que el modelo consume. Si en tres meses ninguna ha atrapado nada, se retiran. La regla de señal manda sobre las tres: cada sesión produce una medición, o produce nada.
