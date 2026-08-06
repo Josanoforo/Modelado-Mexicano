@@ -9956,3 +9956,57 @@
     INT-1 (PR #148) ya habia estableciendo que el archivo de 102MB es estructuralmente INTEGRO (25 miembros, testzip() limpio) y clasificado como NO_COINCIDE (hash), no CORRUPTO. MAP-1b habia planteado "hipotesis: carrera, no truncacion". Esta re-baja no puede distinguir entre (a) el valor original 784410e6/2895872 fue una lectura parcial de ESTA MISMA descarga capturada a medio camino, o (b) la URL servia un archivo genuinamente distinto el 2026-08-05 que ya no esta disponible -- ambas hipotesis quedan abiertas para mesa. Lo que SI establece con certeza: el contenido que esta URL sirve HOY, bajado en serie sin solape, es el de 102349631 bytes -- no el de 2895872.
 
     Convencion de id: se registra bajo un id NUEVO distinto del original porque tests/manifiesto.py --registra no sobreescribe (`el id ya existe es error`) y este acto tiene instruccion explicita de no "corregir el viejo en silencio". El campo `archivo` de la entrada nueva apunta a la MISMA ruta fisica que la original (data/raw/endireh2016/bd_mujeres_endireh2016_sitioinegi_dbf.zip) porque es, verificado, el mismo archivo -- no se duplican 102MB en disco para dar a cada id su propia copia.
+
+- id: mmsi_2016_cuestionario
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/mmsi/2016/doc/cuestionario_mmsi_2016.pdf
+  fecha_descarga: '2026-08-06'
+  descargado_por: 'no determinado -- el archivo ya estaba en data/raw/inegi_mmsi_2016/ (mtime
+    2026-08-05 17:03) sin registro previo en el manifiesto. Huérfano documentado por TC-1
+    (PR #144, forense/notas/2026-08-05-tc1-corpus.md) y reconfirmado por una verificación
+    ad hoc (PR #146) sin conexión declarada encontrada en ninguna de las dos. Quién/qué lo
+    puso ahí sigue sin determinarse.'
+  archivo: inegi_mmsi_2016/cuestionario_mmsi_2016.pdf
+  sha256: 48d59dfc6f26354e9c7be635fe1e79624c5974924f31f8a13a5392e2574cdcab
+  tamano_bytes: 705908
+  formato: PDF (cuestionario MMSI 2016, documentación de instrumento -- no inspeccionado,
+    solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: '[ENCARGO REPAIR-1, 2026-08-06, Tarea 2] Registro de huérfano preexistente, no descarga
+    nueva. url_origen confirmada por esta sesión vía HEAD contra inegi.org.mx (misma convención
+    que enoe_2019_1t_csv): HTTP 200, Content-Length=705908, byte-exacto contra tamano_bytes
+    real -- evidencia verificable, no testimonio (script --registra no expone --url-origen-procedencia,
+    por eso esta metodología va en la nota, no en un campo aparte). sha256 del payload en
+    disco verificado ANTES de este registro contra data/censo-raices-2026-08-06.tsv (MAP-1b,
+    PR #145): coincide exacto (48d59dfc...). Patrón mmsi/2016/doc/ derivado del único otro
+    archivo ''doc'' del mismo programa ya presente en el índice de descarga masiva (mmsi2016_fd.xlsx),
+    no asumido sin verificación HTTP directa.'
+
+- id: mmsi_2016_manual_entrevistador
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/mmsi/2016/doc/manual_entrevistador_mmsi_2016.pdf
+  fecha_descarga: '2026-08-06'
+  descargado_por: 'no determinado -- el archivo ya estaba en data/raw/inegi_mmsi_2016/ (mtime
+    2026-08-05 17:03) sin registro previo en el manifiesto. Huérfano documentado por TC-1
+    (PR #144, forense/notas/2026-08-05-tc1-corpus.md) y reconfirmado por una verificación
+    ad hoc (PR #146) sin conexión declarada encontrada en ninguna de las dos. Quién/qué lo
+    puso ahí sigue sin determinarse.'
+  archivo: inegi_mmsi_2016/manual_entrevistador_mmsi_2016.pdf
+  sha256: c46d79eb6efe3dd174d258856b2b3e951d09b499eb83f804a7348f06e3554993
+  tamano_bytes: 5388442
+  formato: PDF (manual del entrevistador MMSI 2016, documentación de instrumento -- no inspeccionado,
+    solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: '[ENCARGO REPAIR-1, 2026-08-06, Tarea 2] Registro de huérfano preexistente, no descarga
+    nueva. url_origen confirmada por esta sesión vía HEAD contra inegi.org.mx (misma convención
+    que enoe_2019_1t_csv): HTTP 200, Content-Length=5388442, byte-exacto contra tamano_bytes
+    real -- evidencia verificable, no testimonio (script --registra no expone --url-origen-procedencia,
+    por eso esta metodología va en la nota, no en un campo aparte). sha256 del payload en
+    disco verificado ANTES de este registro contra data/censo-raices-2026-08-06.tsv (MAP-1b,
+    PR #145): coincide exacto (c46d79eb...). Patrón mmsi/2016/doc/ derivado del único otro
+    archivo ''doc'' del mismo programa ya presente en el índice de descarga masiva (mmsi2016_fd.xlsx),
+    no asumido sin verificación HTTP directa.'
