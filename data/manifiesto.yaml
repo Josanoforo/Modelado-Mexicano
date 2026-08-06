@@ -10733,3 +10733,129 @@
     cuentas activas trimestrales -- ORDEN DE MAGNITUD MENOR a 3.09M y a 21.8M/17.8M; ninguna
     cifra de este informe oficial llega a millones de cuentas CoDi. Fortalece la hipotesis
     de que 21.8M/17.8M miden dispositivos/apps enrolados (ver banxico_sie_cf883), no cuentas.'
+
+- id: inegi_rnm_catalog_330_enaproce2015
+  usado_para: 'R2.1/R2.2/R10.2 y ENAPROCE en general -- pagina completa del catalogo RNM 330,
+    incluye seccion #metadata-data_access con politica de acceso literal'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/330
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: R2.1_R2.2_R10.2_RNM_microdato/inegi_rnm_catalog_330_enaproce2015.html
+  sha256: 25d01ec9153514adb967c76979923e1ac4a195bb5d4f4361496f7c46e6854881
+  tamano_bytes: 147583
+  formato: HTML
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no re-verificado en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Condicion de acceso literal (nodo id=metadata-data_access, texto exacto): ''La informacion
+    de la ENAPROCE a nivel microdato es confidencial; la descarga de la base de datos de este
+    proyecto es restringida al publico en general. Sin embargo, es posible acceder a la informacion
+    de microdatos de manera indirecta a traves del siguiente mecanismo: Laboratorio de analisis
+    de datos para servidores publicos del Estado Mexicano, funcionarios de organismos internacionales
+    e investigadores y estudiantes calificados...'' -- CONFIRMA byte a byte la hipotesis no
+    verificada que dejo EXPLORA-1 (PR#149): acceso INDIRECTO via Laboratorio, NO descarga
+    directa. Clasificacion A.4: NO-ACCESIBLE (condicion institucional).'
+
+- id: inegi_rnm_catalog_518_enaproce2018
+  usado_para: R2.1/R2.2/R10.2 -- pagina completa del catalogo RNM 518, incluye los dos enlaces
+    download/13137 y download/19219, y la politica de acceso literal
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/518
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: R2.1_R2.2_R10.2_RNM_microdato/inegi_rnm_catalog_518_enaproce2018.html
+  sha256: 67dac48414d11adfcaf2b0fd25c1848a54f3233b33194dbc5eccbdf3ad7b1ffd
+  tamano_bytes: 167071
+  formato: HTML
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no re-verificado en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Misma condicion de acceso literal que catalog/330 (verificado byte a byte, texto identico
+    salvo referencias especificas a la fuente). NO-ACCESIBLE por la misma razon institucional.
+
+- id: inegi_rnm_518_download_19219
+  usado_para: B.1 -- que es realmente catalog/518/download/19219 (uno de los dos enlaces sin
+    resolver que dejo EXPLORA-1)
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/518/download/19219
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: R2.1_R2.2_R10.2_RNM_microdato/inegi_rnm_518_download_19219_informe_final_levantamiento.pdf
+  sha256: ccde5597f5afe98464a4af1298d37223c69641a25b12d0d1b51f4cf91f30fa24
+  tamano_bytes: 3942875
+  formato: 'PDF (Content-Disposition: attachment; filename=INFORME_FINAL_LEVANTAMIENTO.pdf;
+    Content-Type declarado: application/octet-stream)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no re-verificado en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'RESUELTO: es el Informe Final del Levantamiento de la Informacion de ENAPROCE 2018
+    -- documentacion metodologica/de campo, NO microdato. 26 paginas, 3,942,875 bytes verificados.
+    El otro enlace (download/13137) NO es payload: responde HTTP 500 con cuerpo ''Error An
+    Error Was Encountered RESOURCE_NOT_AVAILABLE!'' -- recurso catalogado pero no disponible
+    server-side, no se descarga nada (ver nota forense para el detalle, no amerita entrada
+    de manifiesto por no haber archivo real).'
+
+- id: inegi_laboratorio_microdatos_solicitud_uso
+  usado_para: B.5 -- condicion exacta de acceso al Laboratorio de Microdatos INEGI, tramite
+    para el carril del usuario (no automatizable, dias-semanas)
+  url_origen: https://www.inegi.org.mx/contenidos/app/microdatos/laboratoriodatos/doc/Solicitud_Uso.pdf
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: R2.1_R2.2_R10.2_RNM_microdato/inegi_laboratorio_microdatos_solicitud_uso.pdf
+  sha256: 5a5d041da5edbe1d17ef608c9eb4d072f34a0b7811c20c368c223cf08bb15c19
+  tamano_bytes: 467097
+  formato: PDF
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no re-verificado en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Formulario de solicitud de uso del Laboratorio de Microdatos. Condicion (confirmar
+    texto exacto del formulario en la nota forense 2026-08-08-explora2.md): afiliacion institucional
+    -- estudiante de posgrado con carta de supervisor, investigador con carta de superior
+    inmediato, o servidor publico/funcionario de organismo internacional; enviar a microdatos@inegi.org.mx.'
+
+- id: datosgobmx_ckan_enaproce_enestyc_cero
+  usado_para: B.4 -- CKAN datos.gob.mx package_search para enaproce y enestyc, ambas cero
+    resultados
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=enaproce ; https://www.datos.gob.mx/api/3/action/package_search?q=enestyc
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de datos.gob.mx
+  archivo: R2.1_R2.2_R10.2_RNM_microdato/datosgobmx_ckan_package_search_enaproce_enestyc_cero_resultados.json
+  sha256: d26a2cdbc9fcbf8b1fb6f6d35464c83dce825a99591d9012fa21d45da6b832d9
+  tamano_bytes: 216
+  formato: JSON (respuesta API CKAN)
+  licencia: Datos abiertos, Ley General de Transparencia / Guía CKAN datos.gob.mx (licenciamiento
+    especifico por dataset no aplica -- respuesta es metadato de catalogo, no dataset)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Las dos consultas (q=enaproce, q=enestyc) devuelven exactamente el mismo cuerpo byte-identico
+    (sha256 identico, confirmado con diff): success=true, count=0 -- CKAN no incluye el termino
+    de busqueda en la forma vacia de la respuesta, asi que un solo payload evidencia ambas
+    consultas (evitado el rechazo por deduplicacion de tests/manifiesto.py, que aborta ante
+    sha256 repetido bajo id distinto). NO-ENCONTRADO para ambas: cero datasets con organization
+    inegi u otra que declaren enaproce/enestyc en datos.gob.mx al 6/ago/2026. ADVERTENCIA
+    DE ENTORNO: datos.gob.mx/www.datos.gob.mx fallo TLS en este entorno (curl 60, ''unable
+    to get local issuer certificate'' -- falta el intermedio Let''s Encrypt E8 en el trust
+    store local de esta caja) incluso con dangerouslyDisableSandbox activo -- verificado que
+    NO es bloqueo de sandbox (mismo fallo con y sin la bandera), es gap de cadena de confianza
+    local. Se uso curl -k para esta consulta puntual tras verificar manualmente el certificado
+    real (CN=datos.gob.mx, vigente 20-may-2026 a 18-ago-2026, emisor Let''s Encrypt E8, subjectAltName
+    coincide) -- no es un MITM, es CA intermedia faltante. Declarado aqui explicitamente,
+    no oculto.'
+
+- id: inegi_rnm_search_intento_param
+  usado_para: B.3 -- evidencia de que el buscador interno RNM no se deja filtrar por query
+    string simple
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/search?search=ENESTYC (y variante
+    ?ps=ENESTYC, mismo resultado, no registrada por ser byte-identica salvo el parametro)
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: R2.1_R2.2_R10.2_RNM_microdato/inegi_rnm_catalog_search_intento_search_param.html
+  sha256: a466058ec91f9acf31e3cff06278f1618adedf9ec72c7c81adc7e7fe63c4c428
+  tamano_bytes: 30145
+  formato: HTML
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no re-verificado en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'NO-ENCONTRADO (mecanismo, no dato): ambos parametros probados (search=, ps=) devuelven
+    el catalogo COMPLETO sin filtrar (825 de 825 operaciones estadisticas) -- el buscador
+    real es JS/AJAX (sin <form> ni <input> server-renderizados en la vista sin JS), mecanismo
+    de filtrado real no determinado en este acto. No se repite una tercera conjetura de nombre
+    de parametro (misma disciplina que prohibe repetir conjeturas de id de serie en Tarea
+    A). Universo de busqueda: rnm/index.php/catalog/search, termino ENESTYC, 2026-08-06.'
