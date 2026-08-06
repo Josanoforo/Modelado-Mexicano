@@ -979,19 +979,18 @@
     FF-5563
 
 - id: encuci2020_bd_dbf
-  usado_para: 'hitoD-R8.3 (forense/hitoD-preregistro-v2_0.md) -- payload de microdatos.
-    Corregido 2026-08-05 (Encargo M-2): la afirmación "aún no explotado en ninguna ficha
-    de falsación commiteada" era falsa desde antes de esta corrección -- este mismo
-    payload (sha256/tamaño verificados) fue abierto y explotado dos veces: (1) Encargo
-    W (forense/notas/2026-08-04-w-coeficientes-generador-paso1.md), que estimó los tres
-    reactivos AP5_1_1/AP5_1_2/AP5_1_3 de la tabla ENCUCI_2020_SEC_4_5 como parte de W1
-    (coeficiente marginal de radio_confianza); (2) C-06b (forense/notas/2026-08-05-c06b-conf06-encuci-corte.md),
-    que reabrió la misma tabla del mismo zip para confirmar contra microdato las tres
-    cifras del conflicto conf.06 a los cortes ≥6/10 y ≥8/10 -- resultado sellado por
-    ADR-64 (canon/gobernanza-v1_15.md), que cierra conf.06. `R8.3` en sí sigue con veredicto
-    D (condición A, marca C3 de circularidad de radio_confianza contra cooperacion.confianza.puente_personal,
-    sigue vigente -- ADR-64(e) solo levanta la condición B). Bloqueo por conf.06 (D-06,
-    canon) también desactualizado: conf.06 cerrado por ADR-64.'
+  usado_para: 'hitoD-R8.3 (forense/hitoD-preregistro-v2_0.md) -- payload de microdatos. Corregido
+    2026-08-05 (Encargo M-2): la afirmación "aún no explotado en ninguna ficha de falsación
+    commiteada" era falsa desde antes de esta corrección -- este mismo payload (sha256/tamaño
+    verificados) fue abierto y explotado dos veces: (1) Encargo W (forense/notas/2026-08-04-w-coeficientes-generador-paso1.md),
+    que estimó los tres reactivos AP5_1_1/AP5_1_2/AP5_1_3 de la tabla ENCUCI_2020_SEC_4_5
+    como parte de W1 (coeficiente marginal de radio_confianza); (2) C-06b (forense/notas/2026-08-05-c06b-conf06-encuci-corte.md),
+    que reabrió la misma tabla del mismo zip para confirmar contra microdato las tres cifras
+    del conflicto conf.06 a los cortes ≥6/10 y ≥8/10 -- resultado sellado por ADR-64 (canon/gobernanza-v1_15.md),
+    que cierra conf.06. `R8.3` en sí sigue con veredicto D (condición A, marca C3 de circularidad
+    de radio_confianza contra cooperacion.confianza.puente_personal, sigue vigente -- ADR-64(e)
+    solo levanta la condición B). Bloqueo por conf.06 (D-06, canon) también desactualizado:
+    conf.06 cerrado por ADR-64.'
   url_origen: https://www.inegi.org.mx/programas/encuci/2020/
   fecha_descarga: '2026-07-30'
   descargado_por: usuario (navegador), pestaña Microdatos -> Descargar todos los archivos
@@ -1003,11 +1002,11 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  nota: 'Payload de microdatos crudo (dbf). Registrado 2026-07-30 como "no abierto ni
-    inspeccionado -- solo hasheado, por firewall vigente de esta sesión" -- correcto
-    en ESA sesión (ADR-46: la contaminación es por sesión, no por payload), pero el
-    campo usado_para no se actualizó cuando sesiones posteriores sí lo abrieron (Encargo
-    W, 2026-08-04; C-06b, 2026-08-05). Corregido 2026-08-05, Encargo M-2.'
+  nota: 'Payload de microdatos crudo (dbf). Registrado 2026-07-30 como "no abierto ni inspeccionado
+    -- solo hasheado, por firewall vigente de esta sesión" -- correcto en ESA sesión (ADR-46:
+    la contaminación es por sesión, no por payload), pero el campo usado_para no se actualizó
+    cuando sesiones posteriores sí lo abrieron (Encargo W, 2026-08-04; C-06b, 2026-08-05).
+    Corregido 2026-08-05, Encargo M-2.'
 
 - id: encuci2020_fd_pdf
   usado_para: 'hitoD-R8.3 -- descriptor de archivos / diccionario de datos de encuci2020_bd_dbf.
@@ -1032,22 +1031,20 @@
 
 - id: descargamasiva_3072026_105543
   usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI (DescargaMasivaApp.exe
-    + DescargaMasivaOD.xml + leeme.txt), NO microdato. Estructura idéntica a las otras
-    cuatro descargamasiva_3072026_* y a descargamasiva_382026_131650_xml (mismo componente
-    descargaMasivaV2). XML interno (480 B) apunta a ENUT 2024, totalMb="17.47 MB": enut_2024_bd_csv.zip
-    + enut_2024_diagrama_er.zip + enut_2024_fd.xlsx -- mismas tres URLs, byte por byte,
-    de enut2024_bd_csv/enut2024_der_zip/enut2024_fd_xlsx, ya bajadas directamente (2026-07-30)
-    y catalogadas aparte. Redundante: no aporta payload nuevo. Identificado 2026-08-05,
-    Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md) -- forense/notas/2026-07-31-enut-descarga.md
-    §Parte 2 ya había listado la estructura externa del zip pero declaró el contenido
-    "fuera de perímetro" de esa sesión.'
-  url_origen: 'no determinada (generado por el portal /programas/enut/2024/ al solicitar
-    "Descarga masiva" desde el navegador -- mismo patrón que descargamasiva_382026_131650_xml)'
-  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2, abriendo
-    el zip con zipfile) -- la URL de DESCARGA DEL ZIP en sí sigue sin determinar: el
-    portal genera este paquete bajo demanda y no expone una URL persistente para él,
-    mismo patrón que descargamasiva_382026_131650_xml. No confundir con las URLs DENTRO
-    del XML, esas sí están citadas arriba, verbatim.'
+    + DescargaMasivaOD.xml + leeme.txt), NO microdato. Estructura idéntica a las otras cuatro
+    descargamasiva_3072026_* y a descargamasiva_382026_131650_xml (mismo componente descargaMasivaV2).
+    XML interno (480 B) apunta a ENUT 2024, totalMb="17.47 MB": enut_2024_bd_csv.zip + enut_2024_diagrama_er.zip
+    + enut_2024_fd.xlsx -- mismas tres URLs, byte por byte, de enut2024_bd_csv/enut2024_der_zip/enut2024_fd_xlsx,
+    ya bajadas directamente (2026-07-30) y catalogadas aparte. Redundante: no aporta payload
+    nuevo. Identificado 2026-08-05, Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md)
+    -- forense/notas/2026-07-31-enut-descarga.md §Parte 2 ya había listado la estructura externa
+    del zip pero declaró el contenido "fuera de perímetro" de esa sesión.'
+  url_origen: no determinada (generado por el portal /programas/enut/2024/ al solicitar "Descarga
+    masiva" desde el navegador -- mismo patrón que descargamasiva_382026_131650_xml)
+  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2, abriendo el
+    zip con zipfile) -- la URL de DESCARGA DEL ZIP en sí sigue sin determinar: el portal genera
+    este paquete bajo demanda y no expone una URL persistente para él, mismo patrón que descargamasiva_382026_131650_xml.
+    No confundir con las URLs DENTRO del XML, esas sí están citadas arriba, verbatim.'
   fecha_descarga: '2026-07-30'
   descargado_por: usuario, vía navegador
   archivo: DescargaMasiva_3072026_105543.zip
@@ -1058,17 +1055,17 @@
     FF-5563
 
 - id: descargamasiva_3072026_10560
-  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato,
-    misma estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada
-    para el patrón completo). XML interno (479 B) apunta a ENUT 2019, totalMb="9.53
-    MB": enut_2019_bd_csv.zip + enut_2019_diagrama_er.zip + enut_2019_fd.xlsx -- mismas
-    tres URLs de enut2019_bd_csv/enut2019_der_zip/enut2019_fd_xlsx, ya bajadas directamente
-    y catalogadas aparte. Redundante. Identificado 2026-08-05, Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
-  url_origen: 'no determinada (generado por el portal /programas/enut/2019/ al solicitar
-    "Descarga masiva" desde el navegador)'
-  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma
-    reserva que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue
-    sin determinar, el portal lo genera bajo demanda.'
+  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato, misma
+    estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada para el
+    patrón completo). XML interno (479 B) apunta a ENUT 2019, totalMb="9.53 MB": enut_2019_bd_csv.zip
+    + enut_2019_diagrama_er.zip + enut_2019_fd.xlsx -- mismas tres URLs de enut2019_bd_csv/enut2019_der_zip/enut2019_fd_xlsx,
+    ya bajadas directamente y catalogadas aparte. Redundante. Identificado 2026-08-05, Encargo
+    M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
+  url_origen: no determinada (generado por el portal /programas/enut/2019/ al solicitar "Descarga
+    masiva" desde el navegador)
+  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma reserva
+    que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue sin determinar,
+    el portal lo genera bajo demanda.'
   fecha_descarga: '2026-07-30'
   descargado_por: usuario, vía navegador
   archivo: DescargaMasiva_3072026_10560.zip
@@ -1079,17 +1076,16 @@
     FF-5563
 
 - id: descargamasiva_3072026_105617
-  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato,
-    misma estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada
-    para el patrón completo). XML interno (348 B) apunta a ENUT 2009, totalMb="5.19
-    MB": fd_enut09.pdf + enut_2009_dbf.zip -- mismas dos URLs de enut2009_fd_pdf/enut2009_bd_dbf,
-    ya bajadas directamente y catalogadas aparte. Redundante. Identificado 2026-08-05,
-    Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
-  url_origen: 'no determinada (generado por el portal /programas/enut/2009/ al solicitar
-    "Descarga masiva" desde el navegador)'
-  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma
-    reserva que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue
-    sin determinar, el portal lo genera bajo demanda.'
+  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato, misma
+    estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada para el
+    patrón completo). XML interno (348 B) apunta a ENUT 2009, totalMb="5.19 MB": fd_enut09.pdf
+    + enut_2009_dbf.zip -- mismas dos URLs de enut2009_fd_pdf/enut2009_bd_dbf, ya bajadas
+    directamente y catalogadas aparte. Redundante. Identificado 2026-08-05, Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
+  url_origen: no determinada (generado por el portal /programas/enut/2009/ al solicitar "Descarga
+    masiva" desde el navegador)
+  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma reserva
+    que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue sin determinar,
+    el portal lo genera bajo demanda.'
   fecha_descarga: '2026-07-30'
   descargado_por: usuario, vía navegador
   archivo: DescargaMasiva_3072026_105617.zip
@@ -1100,17 +1096,16 @@
     FF-5563
 
 - id: descargamasiva_3072026_105625
-  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato,
-    misma estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada
-    para el patrón completo). XML interno (350 B) apunta a ENUT 2002, totalMb="2.77
-    MB": descripcion.pdf + enut_2002_dbf.zip -- mismas dos URLs de enut2002_fd_pdf/enut2002_bd_dbf,
-    ya bajadas directamente y catalogadas aparte. Redundante. Identificado 2026-08-05,
-    Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
-  url_origen: 'no determinada (generado por el portal /programas/enut/2002/ al solicitar
-    "Descarga masiva" desde el navegador)'
-  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma
-    reserva que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue
-    sin determinar, el portal lo genera bajo demanda.'
+  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato, misma
+    estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada para el
+    patrón completo). XML interno (350 B) apunta a ENUT 2002, totalMb="2.77 MB": descripcion.pdf
+    + enut_2002_dbf.zip -- mismas dos URLs de enut2002_fd_pdf/enut2002_bd_dbf, ya bajadas
+    directamente y catalogadas aparte. Redundante. Identificado 2026-08-05, Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
+  url_origen: no determinada (generado por el portal /programas/enut/2002/ al solicitar "Descarga
+    masiva" desde el navegador)
+  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma reserva
+    que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue sin determinar,
+    el portal lo genera bajo demanda.'
   fecha_descarga: '2026-07-30'
   descargado_por: usuario, vía navegador
   archivo: DescargaMasiva_3072026_105625.zip
@@ -1121,17 +1116,16 @@
     FF-5563
 
 - id: descargamasiva_3072026_10567
-  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato,
-    misma estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada
-    para el patrón completo). XML interno (348 B) apunta a ENUT 2014, totalMb="5.68
-    MB": fd_enut14.xls + bd_enut14_dbf.zip -- mismas dos URLs de enut2014_fd_xls/enut2014_bd_dbf,
-    ya bajadas directamente y catalogadas aparte. Redundante. Identificado 2026-08-05,
-    Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
-  url_origen: 'no determinada (generado por el portal /programas/enut/2014/ al solicitar
-    "Descarga masiva" desde el navegador)'
-  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma
-    reserva que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue
-    sin determinar, el portal lo genera bajo demanda.'
+  usado_para: 'mecanismo — paquete lanzador "Descarga Masiva" de INEGI, NO microdato, misma
+    estructura y mismo hallazgo que descargamasiva_3072026_105543 (ver esa entrada para el
+    patrón completo). XML interno (348 B) apunta a ENUT 2014, totalMb="5.68 MB": fd_enut14.xls
+    + bd_enut14_dbf.zip -- mismas dos URLs de enut2014_fd_xls/enut2014_bd_dbf, ya bajadas
+    directamente y catalogadas aparte. Redundante. Identificado 2026-08-05, Encargo M-2 (forense/notas/2026-08-05-m2-incognitas.md).'
+  url_origen: no determinada (generado por el portal /programas/enut/2014/ al solicitar "Descarga
+    masiva" desde el navegador)
+  url_origen_procedencia: 'contenido interno derivado 2026-08-05 (Encargo M-2) -- misma reserva
+    que descargamasiva_3072026_105543: la URL de descarga del ZIP en sí sigue sin determinar,
+    el portal lo genera bajo demanda.'
   fecha_descarga: '2026-07-30'
   descargado_por: usuario, vía navegador
   archivo: DescargaMasiva_3072026_10567.zip
@@ -1156,9 +1150,9 @@
   nota: >
     Cuestionario Hogar completo (instrumento de campo), 8 secciones (I Vivienda ... VIII Inseguridad
     del Agua); unidad de observación mixta vivienda/hogar (informante) y persona (roster de
-    integrantes). Sección IV trae la cadena de necesidad/búsqueda/atención de salud (H0404 "¿buscó
-    atención?", H0406 "¿fue atendido?", motivos de no búsqueda/no atención en H0405/H0407) que
-    filtra a quién se aplica el Cuestionario de Utilizadores. Documento madre para verificar
+    integrantes). Sección IV trae la cadena de necesidad/búsqueda/atención de salud (H0404
+    "¿buscó atención?", H0406 "¿fue atendido?", motivos de no búsqueda/no atención en H0405/H0407)
+    que filtra a quién se aplica el Cuestionario de Utilizadores. Documento madre para verificar
     redacción exacta antes de usar cualquier variable derivada de hogar/NSE/ICB.
 
 - id: 2_vfinal_cuestionario_nios_0_a_9_ensanut_2024_etiquetas_cuestionarios
@@ -1175,10 +1169,9 @@
     FF-5563
   nota: >
     Cuestionario aplicado por proxy (madre/cuidador) a niños de 0 a 9 años 11 meses. 9 secciones:
-    atención prenatal/parto y niño sano, educación inicial, desarrollo infantil temprano, calidad
-    del contexto/disciplina, esquema de vacunación, diarrea, IRA, accidentes,
-    funcionamiento/discapacidad. Prefijo de variable M0xxx; es la fuente de redacción del microdato
-    menores_ensanut2024_w.
+    atención prenatal/parto y niño sano, educación inicial, desarrollo infantil temprano,
+    calidad del contexto/disciplina, esquema de vacunación, diarrea, IRA, accidentes, funcionamiento/discapacidad.
+    Prefijo de variable M0xxx; es la fuente de redacción del microdato menores_ensanut2024_w.
 
 - id: 3_vfinal_cuestionario_adolescentes_ensanut_2024_etiquetas_cuestionarios
   usado_para: sin uso asignado — registro de inventario
@@ -1193,12 +1186,12 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Cuestionario aplicado a adolescentes de 10-19 años, con autollenado en tablet para la sección de
-    salud sexual y reproductiva. 9 secciones: consumo de sustancias (incluye módulo de fentanilo),
-    enfermedades crónicas, salud sexual/reproductiva, funcionamiento, vacunación, sintomatología
-    depresiva, conductas alimentarias, accidentes, violencia/abuso, disciplina. Fuente de redacción
-    para adolescentes_ensanut2024_w, que no trae catálogo de etiquetas propio entre los payloads de
-    este acto.
+    Cuestionario aplicado a adolescentes de 10-19 años, con autollenado en tablet para la
+    sección de salud sexual y reproductiva. 9 secciones: consumo de sustancias (incluye módulo
+    de fentanilo), enfermedades crónicas, salud sexual/reproductiva, funcionamiento, vacunación,
+    sintomatología depresiva, conductas alimentarias, accidentes, violencia/abuso, disciplina.
+    Fuente de redacción para adolescentes_ensanut2024_w, que no trae catálogo de etiquetas
+    propio entre los payloads de este acto.
 
 - id: 4_vfinal_cuestionario_adultos_ensanut_2024_etiquetas_cuestionarios
   usado_para: sin uso asignado — registro de inventario
@@ -1215,9 +1208,9 @@
   nota: >
     Cuestionario aplicado a personas de 20+ años, 20 secciones: obesidad, depresión, diabetes,
     hipertensión, cardiovascular/renal, antecedentes heredofamiliares, salud sexual/reproductiva,
-    vacunación, Sección X Programas Preventivos (detecciones oncológicas y de enfermedades crónicas,
-    10.1-10.8), accidentes, violencia, adicciones, funcionamiento, memoria, actividades de vida
-    diaria, caídas, sarcopenia. Fuente de redacción exacta para adultos_ensanut2024_w.
+    vacunación, Sección X Programas Preventivos (detecciones oncológicas y de enfermedades
+    crónicas, 10.1-10.8), accidentes, violencia, adicciones, funcionamiento, memoria, actividades
+    de vida diaria, caídas, sarcopenia. Fuente de redacción exacta para adultos_ensanut2024_w.
 
 - id: 5_vfinal_cuestionario_utilizadores_ensanut_2024_etiquetas_cuestionarios
   usado_para: sin uso asignado — registro de inventario
@@ -1232,11 +1225,11 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Cuestionario aplicado solo a personas identificadas en Hogar (H0406=Sí) como atendidas por una
-    necesidad de salud en los últimos 3 meses; unidad de observación persona-evento. 4 secciones:
-    Utilización, Atención (incluye u0201 institución/prestador y matriz de correspondencia con
-    derechohabiencia), Medicamentos, Estudios de laboratorio/gabinete. Fuente de redacción para
-    utilizadores_ensanut2024_w.
+    Cuestionario aplicado solo a personas identificadas en Hogar (H0406=Sí) como atendidas
+    por una necesidad de salud en los últimos 3 meses; unidad de observación persona-evento.
+    4 secciones: Utilización, Atención (incluye u0201 institución/prestador y matriz de correspondencia
+    con derechohabiencia), Medicamentos, Estudios de laboratorio/gabinete. Fuente de redacción
+    para utilizadores_ensanut2024_w.
 
 - id: indice_de_bienestar_cuestionarios
   usado_para: documentación — cuestionario, Índice de Bienestar
@@ -1251,12 +1244,13 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Nota metodológica de 1 página (NO es un cuestionario de preguntas, pese al nombre) que documenta
-    la construcción del Índice de Bienestar ENSANUT 2024 vía Análisis de Componentes Principales
-    (matriz de correlaciones policóricas) sobre 8 variables de vivienda/bienes del hogar. Unidad de
-    observación: hogar (índice replicado a cada integrante). Explica el origen de indice1/nseF/nse5F
-    que aparecen en los archivos NSE_* y *_w_ICB — "ICB" e "Índice de Bienestar" son el mismo
-    constructo, no dos distintos, verificado leyendo este documento.
+    Nota metodológica de 1 página (NO es un cuestionario de preguntas, pese al nombre) que
+    documenta la construcción del Índice de Bienestar ENSANUT 2024 vía Análisis de Componentes
+    Principales (matriz de correlaciones policóricas) sobre 8 variables de vivienda/bienes
+    del hogar. Unidad de observación: hogar (índice replicado a cada integrante). Explica
+    el origen de indice1/nseF/nse5F que aparecen en los archivos NSE_* y *_w_ICB — "ICB" e
+    "Índice de Bienestar" son el mismo constructo, no dos distintos, verificado leyendo este
+    documento.
 
 - id: nse_hogar_ensanut_2024_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1271,10 +1265,10 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Diccionario de variables (hojas Variables/Valores) del archivo de Nivel Socioeconómico a nivel
-    hogar: solo 4 variables (FOLIO_I, indice1, nseF, nse5F) — el mismo índice de bienestar
-    documentado en indice_de_bienestar_cuestionarios. Unidad de observación: hogar. Sirve para
-    interpretar el csv correspondiente.
+    Diccionario de variables (hojas Variables/Valores) del archivo de Nivel Socioeconómico
+    a nivel hogar: solo 4 variables (FOLIO_I, indice1, nseF, nse5F) — el mismo índice de bienestar
+    documentado en indice_de_bienestar_cuestionarios. Unidad de observación: hogar. Sirve
+    para interpretar el csv correspondiente.
 
 - id: nse_hogar_ensanut_2024_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1289,9 +1283,9 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Microdato de 10,975 hogares con las 4 variables del catálogo NSE hogar (FOLIO_I, indice1, nseF,
-    nse5F). Unidad de observación: hogar. Tabla lookup de nivel socioeconómico/bienestar para unir
-    por FOLIO_I con cualquier otro archivo de persona/hogar de ENSANUT 2024.
+    Microdato de 10,975 hogares con las 4 variables del catálogo NSE hogar (FOLIO_I, indice1,
+    nseF, nse5F). Unidad de observación: hogar. Tabla lookup de nivel socioeconómico/bienestar
+    para unir por FOLIO_I con cualquier otro archivo de persona/hogar de ENSANUT 2024.
 
 - id: nse_integrantes_ensanut_2024_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1306,9 +1300,9 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Diccionario de variables (hojas Variables/Valores) del mismo índice de bienestar pero replicado
-    a nivel integrante: FOLIO_I, FOLIO_INT, id_int, indice1, nseF, nse5F. Unidad de observación:
-    persona dentro del hogar. Sin hoja de metodología propia — ver indice_de_bienestar_cuestionarios
+    Diccionario de variables (hojas Variables/Valores) del mismo índice de bienestar pero
+    replicado a nivel integrante: FOLIO_I, FOLIO_INT, id_int, indice1, nseF, nse5F. Unidad
+    de observación: persona dentro del hogar. Sin hoja de metodología propia — ver indice_de_bienestar_cuestionarios
     para el origen del índice.
 
 - id: nse_integrantes_ensanut_2024_csv_csv
@@ -1324,10 +1318,10 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Microdato de 36,021 integrantes / 10,975 hogares con indice1/nseF/nse5F (valor idéntico para
-    todos los integrantes de un mismo hogar). Unidad de observación: persona. Permite anexar el
-    nivel socioeconómico del hogar a cualquier análisis a nivel persona sin necesidad de merge con
-    NSE_Hogar.
+    Microdato de 36,021 integrantes / 10,975 hogares con indice1/nseF/nse5F (valor idéntico
+    para todos los integrantes de un mismo hogar). Unidad de observación: persona. Permite
+    anexar el nivel socioeconómico del hogar a cualquier análisis a nivel persona sin necesidad
+    de merge con NSE_Hogar.
 
 - id: adolescentes_ensanut2024_w_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1344,10 +1338,10 @@
   nota: >
     Microdato de 3,730 adolescentes (10-19 años) x 478 columnas, cubre las 9 secciones del
     cuestionario de adolescentes (sustancias, crónicas, salud sexual/reproductiva, funcionamiento,
-    vacunación, depresión, conductas alimentarias, accidentes, violencia, disciplina). Sin catálogo
-    de etiquetas propio entre los payloads de este acto: la cabecera solo trae códigos (d0101, etc.)
-    — hay que cruzar contra el PDF del cuestionario (id 3_vfinal_...) para interpretar columnas y
-    categorías.
+    vacunación, depresión, conductas alimentarias, accidentes, violencia, disciplina). Sin
+    catálogo de etiquetas propio entre los payloads de este acto: la cabecera solo trae códigos
+    (d0101, etc.) — hay que cruzar contra el PDF del cuestionario (id 3_vfinal_...) para interpretar
+    columnas y categorías.
 
 - id: adolescentes_ensanut2024_w_stata_stata
   usado_para: sin uso asignado — registro de inventario
@@ -1362,9 +1356,9 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Mismo microdato de adolescentes_ensanut2024_w_csv_csv (3,730x478, mismos nombres de columna) en
-    formato Stata .dta dentro de zip — verificado por nombre y tamaño descomprimido, no por apertura
-    variable a variable. Usar el csv salvo que se requiera tipado nativo de Stata.
+    Mismo microdato de adolescentes_ensanut2024_w_csv_csv (3,730x478, mismos nombres de columna)
+    en formato Stata .dta dentro de zip — verificado por nombre y tamaño descomprimido, no
+    por apertura variable a variable. Usar el csv salvo que se requiera tipado nativo de Stata.
 
 - id: adultos_ensanut2024_w_catlogo_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1379,11 +1373,11 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    DEFECTO DE ETIQUETADO, verificado esta sesión: pese al nombre/extensión .csv.csv.zip, NO
-    contiene microdato — el archivo interno es "adultos_ensanut2024_w.Catálogo.xlsx", byte-idéntico
-    (mismo sha256) al catálogo del id adultos_ensanut2024_w_catlogo. Es un duplicado comprimido y
-    mal nombrado del diccionario de variables; no existe microdato csv de personas adultas entre los
-    24 payloads de este acto.
+    DEFECTO DE ETIQUETADO, verificado esta sesión: pese al nombre/extensión .csv.csv.zip,
+    NO contiene microdato — el archivo interno es "adultos_ensanut2024_w.Catálogo.xlsx", byte-idéntico
+    (mismo sha256) al catálogo del id adultos_ensanut2024_w_catlogo. Es un duplicado comprimido
+    y mal nombrado del diccionario de variables; no existe microdato csv de personas adultas
+    entre los 24 payloads de este acto.
 
 - id: adultos_ensanut2024_w_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1398,11 +1392,11 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Diccionario de variables (hojas Variables 842 filas / Valores 3,347 filas) del microdato de
-    trabajo de adultos; etiquetas replican literalmente la redacción del cuestionario (id
+    Diccionario de variables (hojas Variables 842 filas / Valores 3,347 filas) del microdato
+    de trabajo de adultos; etiquetas replican literalmente la redacción del cuestionario (id
     4_vfinal_...), incluye el bloque completo de Programas Preventivos (A1001x-A1008x) y vacunación
-    (A09xx). Mapa variable-pregunta indispensable — el microdato csv de adultos en sí NO está entre
-    los 24 payloads (ver adultos_ensanut2024_w_catlogo_csv_csv).
+    (A09xx). Mapa variable-pregunta indispensable — el microdato csv de adultos en sí NO está
+    entre los 24 payloads (ver adultos_ensanut2024_w_catlogo_csv_csv).
 
 - id: hogar_ensanut2024_w_icb_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1419,9 +1413,9 @@
   nota: >
     Diccionario de variables (203 variables reales) del cuestionario Hogar "con ICB": vivienda,
     identificación, solo ítems de informante de Sección III (NO los ítems por integrante como
-    H0404/lugar usual de atención/seguridad social), conocimiento de IMSS-BIENESTAR en Sección IV
-    (NO la cadena de necesidad/búsqueda 4.1-4.9), activos, seguridad alimentaria, agua, y al final
-    indice1/nseF/nse5F. Sección VI (Programas Sociales) queda vacía en este archivo.
+    H0404/lugar usual de atención/seguridad social), conocimiento de IMSS-BIENESTAR en Sección
+    IV (NO la cadena de necesidad/búsqueda 4.1-4.9), activos, seguridad alimentaria, agua,
+    y al final indice1/nseF/nse5F. Sección VI (Programas Sociales) queda vacía en este archivo.
 
 - id: hogar_ensanut2024_w_icb_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1437,9 +1431,9 @@
     FF-5563
   nota: >
     Microdato de 10,975 hogares x 203 columnas correspondiente al catálogo anterior: vivienda,
-    activos, seguridad alimentaria, inseguridad hídrica e índice de bienestar/NSE ya anexado. Unidad
-    de observación: hogar/informante — NO incluye las variables por integrante de Secciones III/IV
-    (H0404, motivos de no búsqueda/no atención, lugar usual de atención, derechohabiencia
+    activos, seguridad alimentaria, inseguridad hídrica e índice de bienestar/NSE ya anexado.
+    Unidad de observación: hogar/informante — NO incluye las variables por integrante de Secciones
+    III/IV (H0404, motivos de no búsqueda/no atención, lugar usual de atención, derechohabiencia
     individual).
 
 - id: integrantes_ensanut2024_w_icb_catlogo
@@ -1455,11 +1449,12 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Diccionario de variables (260 variables) del archivo de integrantes: identificación/relación con
-    jefe(a) de hogar, recepción y duración de 14 programas sociales/de bienestar (LICONSA, Pensión
-    Adultos Mayores, Jóvenes Construyendo el Futuro, etc.), autopercepción de impacto, y al final
-    indice1/nseF/nse5F. Unidad de observación: cada integrante del hogar (todas las edades). NO
-    incluye la cadena de necesidad/búsqueda de salud de Sección IV — H0404 no está en este archivo.
+    Diccionario de variables (260 variables) del archivo de integrantes: identificación/relación
+    con jefe(a) de hogar, recepción y duración de 14 programas sociales/de bienestar (LICONSA,
+    Pensión Adultos Mayores, Jóvenes Construyendo el Futuro, etc.), autopercepción de impacto,
+    y al final indice1/nseF/nse5F. Unidad de observación: cada integrante del hogar (todas
+    las edades). NO incluye la cadena de necesidad/búsqueda de salud de Sección IV — H0404
+    no está en este archivo.
 
 - id: integrantes_ensanut2024_w_icb_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1474,10 +1469,11 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Microdato de 36,021 integrantes x 260 columnas correspondiente al catálogo anterior: roster de
-    hogar, módulo de programas de bienestar/impacto percibido, e índice de condición de bienestar a
-    nivel persona. Útil para vincular por FOLIO_I/FOLIO_INT con el resto de módulos ENSANUT y
-    aportar NSE al modelo — no trae variables de utilización/acceso a servicios de salud.
+    Microdato de 36,021 integrantes x 260 columnas correspondiente al catálogo anterior: roster
+    de hogar, módulo de programas de bienestar/impacto percibido, e índice de condición de
+    bienestar a nivel persona. Útil para vincular por FOLIO_I/FOLIO_INT con el resto de módulos
+    ENSANUT y aportar NSE al modelo — no trae variables de utilización/acceso a servicios
+    de salud.
 
 - id: menores_ensanut2024_w_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1492,11 +1488,11 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Catálogo de 483 variables (hojas Variables/Valores) del microdato de niños 0-9 años, uno a uno
-    con las 9 secciones del cuestionario (id 2_vfinal_...): atención prenatal/niño sano, educación
-    inicial, desarrollo infantil, disciplina, vacunación, diarrea, IRA, accidentes, funcionamiento,
-    más diseño muestral (ponde_f, estrato, upm). Diccionario indispensable para el csv/stata
-    correspondiente.
+    Catálogo de 483 variables (hojas Variables/Valores) del microdato de niños 0-9 años, uno
+    a uno con las 9 secciones del cuestionario (id 2_vfinal_...): atención prenatal/niño sano,
+    educación inicial, desarrollo infantil, disciplina, vacunación, diarrea, IRA, accidentes,
+    funcionamiento, más diseño muestral (ponde_f, estrato, upm). Diccionario indispensable
+    para el csv/stata correspondiente.
 
 - id: menores_ensanut2024_w_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1511,10 +1507,10 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Microdato de 4,311 niños de 0-9 años 11 meses (uno por menor elegido en el hogar) con las 9
-    secciones temáticas del cuestionario más variables de diseño muestral. Fuente de indicadores de
-    desarrollo infantil temprano, prácticas de crianza/disciplina y cobertura de
-    vacunación/servicios preventivos en la niñez temprana.
+    Microdato de 4,311 niños de 0-9 años 11 meses (uno por menor elegido en el hogar) con
+    las 9 secciones temáticas del cuestionario más variables de diseño muestral. Fuente de
+    indicadores de desarrollo infantil temprano, prácticas de crianza/disciplina y cobertura
+    de vacunación/servicios preventivos en la niñez temprana.
 
 - id: menores_ensanut2024_w_stata_stata
   usado_para: sin uso asignado — registro de inventario
@@ -1529,9 +1525,9 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Mismo microdato de menores_ensanut2024_w_csv_csv (4,311 registros x 483 variables) en formato
-    Stata .dta dentro de zip — verificado por nombre y tamaño descomprimido, no abierto variable a
-    variable. Usar el csv salvo que se requiera tipado nativo de Stata.
+    Mismo microdato de menores_ensanut2024_w_csv_csv (4,311 registros x 483 variables) en
+    formato Stata .dta dentro de zip — verificado por nombre y tamaño descomprimido, no abierto
+    variable a variable. Usar el csv salvo que se requiera tipado nativo de Stata.
 
 - id: utilizadores_ensanut2024_w_catlogo
   usado_para: sin uso asignado — registro de inventario
@@ -1546,11 +1542,11 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Diccionario de 121 variables + FOLIO_INT (hojas Variables/Valores) del microdato de
-    utilizadores, incluye u0201 (institución/prestador de atención) con sus 24 categorías completas
-    y uh0310_m (derechohabiencia importada de Hogar, sin etiquetas decodificadas en este catálogo —
-    solo inferibles de la matriz de correspondencia impresa en el PDF del cuestionario). Mapa
-    variable-pregunta para el csv/stata de utilizadores.
+    Diccionario de 121 variables + FOLIO_INT (hojas Variables/Valores) del microdato de utilizadores,
+    incluye u0201 (institución/prestador de atención) con sus 24 categorías completas y uh0310_m
+    (derechohabiencia importada de Hogar, sin etiquetas decodificadas en este catálogo — solo
+    inferibles de la matriz de correspondencia impresa en el PDF del cuestionario). Mapa variable-pregunta
+    para el csv/stata de utilizadores.
 
 - id: utilizadores_ensanut2024_w_csv_csv
   usado_para: sin uso asignado — registro de inventario
@@ -1565,10 +1561,10 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
   nota: >
-    Microdato de 3,223 personas-evento (usuarios de servicios de salud) x 121 columnas:
-    derechohabiencia (uh0310_m), utilización, atención y prestador (u0201), medicamentos, estudios
-    de laboratorio/gabinete, y diseño muestral. Base numérica para analizar prestador de primera
-    atención, gasto de bolsillo y tiempos de espera/consulta.
+    Microdato de 3,223 personas-evento (usuarios de servicios de salud) x 121 columnas: derechohabiencia
+    (uh0310_m), utilización, atención y prestador (u0201), medicamentos, estudios de laboratorio/gabinete,
+    y diseño muestral. Base numérica para analizar prestador de primera atención, gasto de
+    bolsillo y tiempos de espera/consulta.
 
 - id: utilizadores_ensanut2024_w_stata_stata
   usado_para: sin uso asignado — registro de inventario
@@ -1584,8 +1580,8 @@
     FF-5563
   nota: >
     Mismo microdato de utilizadores_ensanut2024_w_csv_csv (3,223x121, mismos nombres de variable
-    incluido u0201) en formato Stata .dta dentro de zip — verificado por apertura y comparación de
-    dimensiones/columnas. Usar el csv salvo que se requiera tipado nativo de Stata.
+    incluido u0201) en formato Stata .dta dentro de zip — verificado por apertura y comparación
+    de dimensiones/columnas. Usar el csv salvo que se requiera tipado nativo de Stata.
 
 - id: enif2018_fd_xlsx
   usado_para: documentación -- mapeo de reactivos a los seis componentes de confianza_institucional
@@ -2980,13 +2976,12 @@
     enlazado desde /programas/enut/2014/data/arbol/arbolData.js -> Metadatos (estándar DDI).
 
 - id: enut2019_bd_csv
-  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2):
-    "constructo pendiente de asignar" desactualizado desde el 2026-08-04 -- `TMODULO.csv`
-    de este payload fue abierto e inspeccionado (columnas/frecuencias, no fila-por-fila)
-    en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md §3.2/§3.5, junto
-    con enut2019_fd_xlsx/enut2019_diccionario_variables_html. No se corrió estadística
-    de resultado sobre esta ola específicamente -- la corrida completa de R5.2 (Encargo
-    Y) usó la ola 2024, ver enut2024_bd_csv.'
+  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2): "constructo
+    pendiente de asignar" desactualizado desde el 2026-08-04 -- `TMODULO.csv` de este payload
+    fue abierto e inspeccionado (columnas/frecuencias, no fila-por-fila) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md
+    §3.2/§3.5, junto con enut2019_fd_xlsx/enut2019_diccionario_variables_html. No se corrió
+    estadística de resultado sobre esta ola específicamente -- la corrida completa de R5.2
+    (Encargo Y) usó la ola 2024, ver enut2024_bd_csv.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2019/microdatos/enut_2019_bd_csv.zip
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx
@@ -3006,10 +3001,10 @@
     de 2019.'
 
 - id: enut2019_fd_xlsx
-  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2):
-    "constructo pendiente de asignar" desactualizado -- workbook parseado íntegro (hoja
-    por tabla) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md §3.2 para
-    confirmar reactivos/nemónicos antes de abrir el microdato de enut2019_bd_csv.'
+  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2): "constructo
+    pendiente de asignar" desactualizado -- workbook parseado íntegro (hoja por tabla) en
+    forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md §3.2 para confirmar reactivos/nemónicos
+    antes de abrir el microdato de enut2019_bd_csv.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2019/microdatos/enut_2019_fd.xlsx
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx
@@ -3044,10 +3039,9 @@
     bajar. idBiinegi=2968.
 
 - id: enut2019_diccionario_variables_html
-  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2):
-    "constructo pendiente de asignar" desactualizado -- leída (landing RNM, estructura
-    de tablas y conteos) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md
-    §3.2.'
+  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2): "constructo
+    pendiente de asignar" desactualizado -- leída (landing RNM, estructura de tablas y conteos)
+    en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md §3.2.'
   url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/618/data-dictionary
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx
@@ -3064,11 +3058,11 @@
 
 - id: enut2024_bd_csv
   usado_para: 'Encargo Y — R5.2 (cuidado -> mujeres 40+), forense/notas/2026-08-04-y5-veredicto-r5-2.md.
-    Corregido 2026-08-05 (Encargo M-2): "constructo pendiente de asignar" desactualizado
-    desde el 2026-08-04 -- este payload alimentó `run_r5_2.py` (tablas `tsdem.csv`,
-    `tmodulo.csv`, `tvar_crea.csv`), corrida completa y PROPUESTA (no adjudicada; el
-    veredicto archivado y el contador `3 de 27` no cambiaron por esa nota — mismo criterio
-    que Nota 16/R5.1). Inspección estructural previa (columnas, sin cruces) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md
+    Corregido 2026-08-05 (Encargo M-2): "constructo pendiente de asignar" desactualizado desde
+    el 2026-08-04 -- este payload alimentó `run_r5_2.py` (tablas `tsdem.csv`, `tmodulo.csv`,
+    `tvar_crea.csv`), corrida completa y PROPUESTA (no adjudicada; el veredicto archivado
+    y el contador `3 de 27` no cambiaron por esa nota — mismo criterio que Nota 16/R5.1).
+    Inspección estructural previa (columnas, sin cruces) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md
     §3.2/§3.5 y forense/notas/2026-08-04-y1-operacionalizacion-r5-2-enut.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_bd_csv.zip
   fecha_descarga: '2026-07-30'
@@ -3086,10 +3080,10 @@
     bajar. idBiinegi=3381.
 
 - id: enut2024_fd_xlsx
-  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2):
-    "constructo pendiente de asignar" desactualizado -- workbook parseado íntegro (hoja
-    por tabla) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md §3.2 y
-    usado como base de nombres/columnas para la corrida R5.2 (ver enut2024_bd_csv).'
+  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2): "constructo
+    pendiente de asignar" desactualizado -- workbook parseado íntegro (hoja por tabla) en
+    forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md §3.2 y usado como base de
+    nombres/columnas para la corrida R5.2 (ver enut2024_bd_csv).'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_fd.xlsx
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx
@@ -3124,10 +3118,9 @@
     bajar. idBiinegi=3381.
 
 - id: enut2024_diccionario_variables_html
-  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2):
-    "constructo pendiente de asignar" desactualizado -- leída (landing RNM, estructura
-    de tablas y conteos) en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md
-    §3.2.'
+  usado_para: 'documentación / microdato — ENUT. Corregido 2026-08-05 (Encargo M-2): "constructo
+    pendiente de asignar" desactualizado -- leída (landing RNM, estructura de tablas y conteos)
+    en forense/notas/2026-08-04-enut-paso1-familismo-obligacion.md §3.2.'
   url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/1127/data-dictionary
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx
@@ -3837,8 +3830,8 @@
     esta fuente (268 titulos, API archivoscompaginacion) SI declara un FD para 2025, pero
     su pathLogico repite el patron que ya daba soft-404 -- la API anuncia un documento que
     el servidor no sirve. Ningun titulo "Cuestionario" existe en el listado. confianza_institucional[seguridad]/exposicion_violencia
-    quedan EL DESCRIPTOR NO ALCANZA -- es "no pude alcanzar la fuente", no "la fuente no
-    tiene el dato". Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
+    quedan EL DESCRIPTOR NO ALCANZA -- es "no pude alcanzar la fuente", no "la fuente no tiene
+    el dato". Ver forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/ensu/microdatos/ensu_bd_2025_csv.zip
   fecha_descarga: '2026-08-04'
   descargado_por: 'agente, directamente de inegi.org.mx (API archivoscompaginacion, idBiinegi=1127,
@@ -4239,3 +4232,23 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
     texto completo no verificado, solo la referencia)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: latinobarometro2024_bd_stata
+  usado_para: sin uso asignado
+  url_origen: https://www.latinobarometro.org/documents/LAT-2024/latinobarometro-2024-stata-v20250817.zip
+  fecha_descarga: '2026-08-05'
+  descargado_por: agente, directamente de latinobarometro.org (enlace directo al zip, sin
+    formulario de registro)
+  archivo: latinobarometro2024_bd_stata.zip
+  sha256: 469a94c55395b36c4d1f013851a7e79d0619620640a64653eca79afce21f5e97
+  tamano_bytes: 6691592
+  formato: ZIP con microdato Stata (.dta, esp/eng) y cuestionarios PDF (esp/eng), Latinobarómetro
+    2024
+  licencia: © Corporación Latinobarómetro (aviso del sitio); descarga directa sin registro
+    ni formulario (HTTP 200 sin sesión ni cookie de autenticación); términos de reuso no declarados
+    explícitamente en el documento — no verificado más allá de eso
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ENCARGO VER-1/A5: microdato de la ola 2024 (país México incluido), descargado directamente
+    sin muro de registro — el sitio SÍ expone descarga libre para esta ola/formato, a diferencia
+    de la premisa genérica de mesa. Contiene Latinobarometro_2024_Stata_esp/eng_v20250817.dta
+    + cuestionarios PDF esp/eng. No se abrió el .dta (ADR-46, estructura no contenido).'
