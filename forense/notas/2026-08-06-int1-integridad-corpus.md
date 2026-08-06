@@ -128,9 +128,10 @@ exactamente la clase de defecto que este acto existe para no repetir:
 una afirmación del corpus/canon sobre sí mismo, no verificada contra el
 archivo antes de citarla.
 
-Segunda verificación: el encargo advierte que citar `raices.local.yaml` en
-backticks puede disparar T03 (referencias colgantes) en CI, y pide verificar
-el patrón antes de escribir. Leí `tests/check.py:200`
+Segunda verificación: el encargo advierte que citar el nombre suelto
+`raices.local.yaml` {cita-ilustrativa} en backticks puede disparar T03
+(referencias colgantes) en CI, y pide verificar el patrón antes de
+escribir. Leí `tests/check.py:200`
 (`` `([A-Za-z0-9_\-áéíóúñÁÉÍÓÚÑ.]+\.(?:md|yaml))` `` — la clase de
 caracteres no admite `/`) y el commit `183b7af` de MAP-1b, que ya reparó
 exactamente este caso en su propia nota. Citar el nombre con su ruta
@@ -401,12 +402,37 @@ los haya en las 23 (18 + 5) nunca evaluadas estructuralmente.
 ## Lo que este acto no hizo
 
 No tocó `data/manifiesto.yaml` — ni una línea, ni para las 3 entradas
-NO COINCIDE. No re-descargó nada. No movió, copió (salvo `raices.local.yaml`
-a este worktree, gitignorado, no versionado), renombró ni borró ningún
+NO COINCIDE. No re-descargó nada. No movió, copió (salvo
+`data/raices.local.yaml` a este worktree, gitignorado, no versionado),
+renombró ni borró ningún
 payload. No editó `tests/`. No decidió si los 3 NO COINCIDE se resuelven
 por re-descarga o re-registro — eso lo declara la recomendación, no lo
 ejecuta. No corrió `unzip`/`7z` porque ninguno está instalado en este
 entorno — no se instaló nada para rodear esa ausencia.
+
+## ADDENDUM — corrección post-PR: dos citas sueltas de `raices.local.yaml`
+
+Con el PR #148 ya abierto, se encontraron **dos** citas de
+`` `raices.local.yaml` `` sin la ruta completa (una en el "Aparte" del
+Arranque, describiendo el propio riesgo de T03; otra en esta sección) — el
+mismo defecto que este documento afirmaba haber evitado. La primera se
+corrigió con la marca `{cita-ilustrativa}` (`tests/check.py:180-190`,
+verificado que debe ir en la MISMA línea física que la cita — un primer
+intento la dejó en la línea siguiente por el reflow del párrafo, y
+`l[mo.end():]` opera por línea, no por párrafo; no habría eximido nada). La
+segunda se corrigió usando la ruta completa, igual que el resto del
+documento.
+
+Verificación rigurosa después de corregir, no solo re-correr la suite con
+el corpus montado (que no expone el riesgo, porque `data/raices.local.yaml`
+ya estaba copiado ahí — Arranque §3): se movieron **ambos**, `data/raw` y
+`data/raices.local.yaml`, simulando un checkout limpio real, y se llamó
+`t03_dangling_refs()` directamente (no el resumen truncado de la terminal,
+que solo imprime 3 ejemplos por test) para inspeccionar los 29 WARN de T03
+completos, sin filtrar. Los 29 son preexistentes (`estado-programa-v1_9.md`
+y similares); cero mencionan este documento o "raices". Confirmado, no
+asumido. Corpus y `raices.local.yaml` restaurados; `tests/check.py
+--baseline` vuelve a dar `18 FAIL · 95 WARN`, VERDE.
 
 ## PASO 4 — Suite y PR
 
