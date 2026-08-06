@@ -444,3 +444,16 @@ enlazado.
 
 `forense/hallazgos.md`: una línea añadida al final (append, `merge=union`
 activo en `.gitattributes`).
+
+## ACTUALIZACIÓN — `origin/main` avanzó durante este acto
+
+Entre el arranque (`cbf0fb0`, PR #145) y este cierre, `origin/main` avanzó a
+`168af29`: PR #146 (verificación ad hoc EOCD/envipe2023, citada arriba) y
+PR #147 (MAP-1: corrección de `acron()` en `tests/catalogo.py`). Ninguno de
+los dos toca `data/manifiesto.yaml` ni `tests/manifiesto.py`
+(`git diff cbf0fb0..168af29 --stat` sobre ambos, vacío) — el barrido de
+PASO 1 sigue vigente sin re-derivar. `git fetch && git merge origin/main`:
+limpio, sin conflicto (`forense/hallazgos.md` se auto-fusionó por
+`merge=union` — 136 entradas, la propia incluida, ninguna duplicada).
+`tests/check.py --baseline` corrido una tercera vez, después del merge:
+exit 0, `18 FAIL · 95 WARN`, VERDE — igual que las dos corridas de PASO 4.
