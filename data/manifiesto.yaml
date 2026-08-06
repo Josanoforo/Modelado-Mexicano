@@ -10622,7 +10622,11 @@
 
 - id: banxico_codi_cuentas_validadas_x_mil_hab
   usado_para: MED-R3.4 -- descarga directa (no cuadro SIE) de cuentas validadas por cada mil
-    habitantes, distribucion geografica trimestral
+    habitantes, distribucion geografica trimestral. ACTUALIZADO 2026-08-08 (addendum EXPLORA-2
+    post-token) -- sumado por trimestre nacional (32 entidades y 382-411 LADAs, cross-check exacto),
+    resuelve la reconciliacion A.3 -- 2025-T3 = 21,884,617 cuentas validadas acumuladas, confirma
+    el 21.8M de prensa (El Economista sept-2025) contra fuente primaria, diff +0.39%. Serie completa
+    2022-T1 a 2026-T1 en forense/notas/2026-08-08-explora2.md.
   url_origen: https://www.banxico.org.mx/sistemas-de-pago/d/%7BE50C9EF7-B0D3-99A9-0B62-F95B57CF0529%7D.xlsx
   fecha_descarga: '2026-08-06'
   descargado_por: agente, directamente de banxico.org.mx

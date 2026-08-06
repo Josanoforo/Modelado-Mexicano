@@ -4,6 +4,7 @@ __pycache__/
 .venv/
 data/raw/
 data/raices.local.yaml
+data/secretos.local.yaml
 
 # Dotfiles de entorno del sandbox, ajenos al repo (nunca trackeados;
 # .gitmodules verificado -- git log --all -- .gitmodules vacío)
