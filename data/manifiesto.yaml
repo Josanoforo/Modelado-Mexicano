@@ -9933,3 +9933,26 @@
     en reconciliación mesa (2026-08-06) contra main post-PR#142; entrada original de corrida
     A se descargó 2026-08-05 pero nunca llegó a commitearse (Write sobrescrito por corrida
     B antes de commitear).'
+
+- id: endireh_2016_bd_mujeres_endireh2016_sitioinegi_dbf_redescarga
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2016/microdatos/bd_mujeres_endireh2016_sitioinegi_dbf.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx, re-baja SERIAL (descarga completa,
+    sha256 y chequeo estructural, y solo entonces registro -- sin solape) ejecutada por ENCARGO
+    REPAIR-1 (2026-08-06, Tarea 1) contra el mismo url_origen que la entrada original
+  archivo: endireh2016/bd_mujeres_endireh2016_sitioinegi_dbf.zip
+  sha256: a990a007f2b63f8276c4b57bce86def1f2d1770934e54a4f6312ca867189e275
+  tamano_bytes: 102349631
+  formato: ZIP (25 miembros)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 1] Re-baja SERIAL (descarga completa, sha256, chequeo estructural, y solo entonces registro -- sin solape) del mismo url_origen que la entrada 'endireh_2016_bd_mujeres_endireh2016_sitioinegi_dbf' (registrada por ENCARGO DESC-1, commit ae4910b, 2026-08-05). Resultado: la descarga fresca reproduce BYTE A BYTE el archivo que ya estaba en esa ruta antes de esta re-baja (sha256 a990a007f2b63f8276c4b57bce86def1f2d1770934e54a4f6312ca867189e275, 102349631 bytes, ZIP de 25 miembros, zipfile.testzip() sin miembro corrupto) -- NO reproduce el valor que la entrada original declara (sha256 784410e6b99c99b5431133d004354f55f40e04c220f21635651e6ae37998f8fb, 2895872 bytes, 35.34x mas chico). La entrada original queda SIN EDITAR -- no se corrige en silencio.
+
+    Hallazgo de mecanismo, mas preciso que la hipotesis previa: la propia nota de la entrada original (DESC-1, ae4910b) YA lista una estructura de 25 miembros con los MISMOS 25 nombres que esta re-baja encuentra hoy (verificado por comparacion de namelist(), no solo por conteo) -- pero su sha256/tamano_bytes declarado corresponde a un archivo 35x mas chico. Es decir: al momento del commit de registro, DESC-1 ya podia leer el directorio central completo del zip (25 miembros reales) pero el sha256/tamano_bytes que escribio corresponde a una lectura MAS TEMPRANA del mismo archivo, todavia en descarga -- una carrera entre el computo del hash y la inspeccion estructural DENTRO del propio proceso de registro de DESC-1, no necesariamente una sobreescritura posterior. Esto es distinto del patron de los dos archivos envipe_2023 (mtime posterior al commit -- sobreescritura post-registro): INT-1 ya habia notado que endireh_2016 tiene mtime ANTERIOR al commit, la relacion opuesta; este hallazgo explica esa asimetria sin resolverla del todo (sigue sin instrumentarse el momento exacto de la descarga original).
+
+    INT-1 (PR #148) ya habia estableciendo que el archivo de 102MB es estructuralmente INTEGRO (25 miembros, testzip() limpio) y clasificado como NO_COINCIDE (hash), no CORRUPTO. MAP-1b habia planteado "hipotesis: carrera, no truncacion". Esta re-baja no puede distinguir entre (a) el valor original 784410e6/2895872 fue una lectura parcial de ESTA MISMA descarga capturada a medio camino, o (b) la URL servia un archivo genuinamente distinto el 2026-08-05 que ya no esta disponible -- ambas hipotesis quedan abiertas para mesa. Lo que SI establece con certeza: el contenido que esta URL sirve HOY, bajado en serie sin solape, es el de 102349631 bytes -- no el de 2895872.
+
+    Convencion de id: se registra bajo un id NUEVO distinto del original porque tests/manifiesto.py --registra no sobreescribe (`el id ya existe es error`) y este acto tiene instruccion explicita de no "corregir el viejo en silencio". El campo `archivo` de la entrada nueva apunta a la MISMA ruta fisica que la original (data/raw/endireh2016/bd_mujeres_endireh2016_sitioinegi_dbf.zip) porque es, verificado, el mismo archivo -- no se duplican 102MB en disco para dar a cada id su propia copia.
