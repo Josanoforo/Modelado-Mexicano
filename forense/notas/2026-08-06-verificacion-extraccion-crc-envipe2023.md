@@ -81,8 +81,7 @@ Sin descargar nada nuevo — solo lectura de lo que ya está en disco en este wo
 - **299 con EOCD presente** (estructuralmente cerrados; no implica que el contenido
   interno sea correcto, solo que el archivo no está truncado en la cola).
 - **2 con EOCD AUSENTE** — exactamente los mismos dos de la Parte 3
-  (`envipe_2023_bd_envipe_2023_dta`, `envipe_2023_bd_envipe_2023_sav`). Ningún otro zip
-  del corpus tiene este defecto.
+  (`envipe_2023_bd_envipe_2023_dta`, `envipe_2023_bd_envipe_2023_sav`).
 - **16 declarados sin archivo en disco** en este worktree — no evaluados (no es lo
   mismo que "ausente"; puede ser una raíz no montada aquí, p. ej. `descargas_mx`, no
   investigado en este acto, fuera de perímetro de la pregunta de mesa).
