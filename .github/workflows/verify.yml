@@ -9,11 +9,24 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+      # Sin actions/checkout: el 6/ago tres runs distintos (PR #149, #150,
+      # #151) fallaron en "Getting action download info" / quedaron
+      # `queued` 15 min y GitHub los canceló solo -- el marketplace de
+      # actions estaba caído, no el contenido de ningún PR. git plano no
+      # depende de ese servicio, solo de git/https ya presentes en el
+      # runner. GITHUB_SHA replica el mismo commit que actions/checkout
+      # resolvía por defecto (para pull_request, el merge commit).
+      - name: Checkout (git plano -- sin action de marketplace)
+        run: |
+          git init -q
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth 50 origin "${GITHUB_SHA}"
+          git checkout -q FETCH_HEAD
+      # Sin actions/setup-python: ubuntu-latest (24.04) ya trae Python
+      # 3.12 preinstalado como `python3` -- el mismo pin que setup-python
+      # pedía, sin depender de otro action de marketplace.
       - name: Suite de verificación (modo línea base — verde = no empeoraste)
         run: python3 tests/check.py --baseline
       - name: svystat.py — validación independiente (bloqueante)
