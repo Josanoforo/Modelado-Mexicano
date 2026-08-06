@@ -102,7 +102,14 @@ def t02_duplicates():
         return re.sub(r"[^a-z0-9]", "", n)
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
-        if ".git" in p or "/tests/" in p:
+        if ".git" in p or "/tests/" in p or "/data/raw" in p:
+            # data/raw: INEGI empaqueta conjunto_de_datos.csv/diccionario_datos.csv
+            # en casi todos sus zips de microdato — by_name colisiona por diseño
+            # de nomenclatura del portal, no por defecto del corpus. by_hash ya
+            # lo cubre mejor tests/manifiesto.py --verifica (dedup por sha256
+            # declarado, sin rehashear el corpus completo en cada corrida).
+            continue
+        if not os.path.isfile(p):
             continue
         by_name[norm(os.path.basename(p))].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
