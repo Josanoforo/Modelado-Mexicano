@@ -9933,3 +9933,512 @@
     en reconciliación mesa (2026-08-06) contra main post-PR#142; entrada original de corrida
     A se descargó 2026-08-05 pero nunca llegó a commitearse (Write sobrescrito por corrida
     B antes de commitear).'
+
+- id: endireh_2016_bd_mujeres_endireh2016_sitioinegi_dbf_redescarga
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2016/microdatos/bd_mujeres_endireh2016_sitioinegi_dbf.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx, re-baja SERIAL (descarga completa,
+    sha256 y chequeo estructural, y solo entonces registro -- sin solape) ejecutada por ENCARGO
+    REPAIR-1 (2026-08-06, Tarea 1) contra el mismo url_origen que la entrada original
+  archivo: endireh2016/bd_mujeres_endireh2016_sitioinegi_dbf.zip
+  sha256: a990a007f2b63f8276c4b57bce86def1f2d1770934e54a4f6312ca867189e275
+  tamano_bytes: 102349631
+  formato: ZIP (25 miembros)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 1] Re-baja SERIAL (descarga completa, sha256, chequeo estructural, y solo entonces registro -- sin solape) del mismo url_origen que la entrada 'endireh_2016_bd_mujeres_endireh2016_sitioinegi_dbf' (registrada por ENCARGO DESC-1, commit ae4910b, 2026-08-05). Resultado: la descarga fresca reproduce BYTE A BYTE el archivo que ya estaba en esa ruta antes de esta re-baja (sha256 a990a007f2b63f8276c4b57bce86def1f2d1770934e54a4f6312ca867189e275, 102349631 bytes, ZIP de 25 miembros, zipfile.testzip() sin miembro corrupto) -- NO reproduce el valor que la entrada original declara (sha256 784410e6b99c99b5431133d004354f55f40e04c220f21635651e6ae37998f8fb, 2895872 bytes, 35.34x mas chico). La entrada original queda SIN EDITAR -- no se corrige en silencio.
+
+    Hallazgo de mecanismo, mas preciso que la hipotesis previa: la propia nota de la entrada original (DESC-1, ae4910b) YA lista una estructura de 25 miembros con los MISMOS 25 nombres que esta re-baja encuentra hoy (verificado por comparacion de namelist(), no solo por conteo) -- pero su sha256/tamano_bytes declarado corresponde a un archivo 35x mas chico. Es decir: al momento del commit de registro, DESC-1 ya podia leer el directorio central completo del zip (25 miembros reales) pero el sha256/tamano_bytes que escribio corresponde a una lectura MAS TEMPRANA del mismo archivo, todavia en descarga -- una carrera entre el computo del hash y la inspeccion estructural DENTRO del propio proceso de registro de DESC-1, no necesariamente una sobreescritura posterior. Esto es distinto del patron de los dos archivos envipe_2023 (mtime posterior al commit -- sobreescritura post-registro): INT-1 ya habia notado que endireh_2016 tiene mtime ANTERIOR al commit, la relacion opuesta; este hallazgo explica esa asimetria sin resolverla del todo (sigue sin instrumentarse el momento exacto de la descarga original).
+
+    INT-1 (PR #148) ya habia estableciendo que el archivo de 102MB es estructuralmente INTEGRO (25 miembros, testzip() limpio) y clasificado como NO_COINCIDE (hash), no CORRUPTO. MAP-1b habia planteado "hipotesis: carrera, no truncacion". Esta re-baja no puede distinguir entre (a) el valor original 784410e6/2895872 fue una lectura parcial de ESTA MISMA descarga capturada a medio camino, o (b) la URL servia un archivo genuinamente distinto el 2026-08-05 que ya no esta disponible -- ambas hipotesis quedan abiertas para mesa. Lo que SI establece con certeza: el contenido que esta URL sirve HOY, bajado en serie sin solape, es el de 102349631 bytes -- no el de 2895872.
+
+    Convencion de id: se registra bajo un id NUEVO distinto del original porque tests/manifiesto.py --registra no sobreescribe (`el id ya existe es error`) y este acto tiene instruccion explicita de no "corregir el viejo en silencio". El campo `archivo` de la entrada nueva apunta a la MISMA ruta fisica que la original (data/raw/endireh2016/bd_mujeres_endireh2016_sitioinegi_dbf.zip) porque es, verificado, el mismo archivo -- no se duplican 102MB en disco para dar a cada id su propia copia.
+
+- id: mmsi_2016_cuestionario
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/mmsi/2016/doc/cuestionario_mmsi_2016.pdf
+  fecha_descarga: '2026-08-06'
+  descargado_por: 'no determinado -- el archivo ya estaba en data/raw/inegi_mmsi_2016/ (mtime
+    2026-08-05 17:03) sin registro previo en el manifiesto. Huérfano documentado por TC-1
+    (PR #144, forense/notas/2026-08-05-tc1-corpus.md) y reconfirmado por una verificación
+    ad hoc (PR #146) sin conexión declarada encontrada en ninguna de las dos. Quién/qué lo
+    puso ahí sigue sin determinarse.'
+  archivo: inegi_mmsi_2016/cuestionario_mmsi_2016.pdf
+  sha256: 48d59dfc6f26354e9c7be635fe1e79624c5974924f31f8a13a5392e2574cdcab
+  tamano_bytes: 705908
+  formato: PDF (cuestionario MMSI 2016, documentación de instrumento -- no inspeccionado,
+    solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: '[ENCARGO REPAIR-1, 2026-08-06, Tarea 2] Registro de huérfano preexistente, no descarga
+    nueva. url_origen confirmada por esta sesión vía HEAD contra inegi.org.mx (misma convención
+    que enoe_2019_1t_csv): HTTP 200, Content-Length=705908, byte-exacto contra tamano_bytes
+    real -- evidencia verificable, no testimonio (script --registra no expone --url-origen-procedencia,
+    por eso esta metodología va en la nota, no en un campo aparte). sha256 del payload en
+    disco verificado ANTES de este registro contra data/censo-raices-2026-08-06.tsv (MAP-1b,
+    PR #145): coincide exacto (48d59dfc...). Patrón mmsi/2016/doc/ derivado del único otro
+    archivo ''doc'' del mismo programa ya presente en el índice de descarga masiva (mmsi2016_fd.xlsx),
+    no asumido sin verificación HTTP directa.'
+
+- id: mmsi_2016_manual_entrevistador
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/mmsi/2016/doc/manual_entrevistador_mmsi_2016.pdf
+  fecha_descarga: '2026-08-06'
+  descargado_por: 'no determinado -- el archivo ya estaba en data/raw/inegi_mmsi_2016/ (mtime
+    2026-08-05 17:03) sin registro previo en el manifiesto. Huérfano documentado por TC-1
+    (PR #144, forense/notas/2026-08-05-tc1-corpus.md) y reconfirmado por una verificación
+    ad hoc (PR #146) sin conexión declarada encontrada en ninguna de las dos. Quién/qué lo
+    puso ahí sigue sin determinarse.'
+  archivo: inegi_mmsi_2016/manual_entrevistador_mmsi_2016.pdf
+  sha256: c46d79eb6efe3dd174d258856b2b3e951d09b499eb83f804a7348f06e3554993
+  tamano_bytes: 5388442
+  formato: PDF (manual del entrevistador MMSI 2016, documentación de instrumento -- no inspeccionado,
+    solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: '[ENCARGO REPAIR-1, 2026-08-06, Tarea 2] Registro de huérfano preexistente, no descarga
+    nueva. url_origen confirmada por esta sesión vía HEAD contra inegi.org.mx (misma convención
+    que enoe_2019_1t_csv): HTTP 200, Content-Length=5388442, byte-exacto contra tamano_bytes
+    real -- evidencia verificable, no testimonio (script --registra no expone --url-origen-procedencia,
+    por eso esta metodología va en la nota, no en un campo aparte). sha256 del payload en
+    disco verificado ANTES de este registro contra data/censo-raices-2026-08-06.tsv (MAP-1b,
+    PR #145): coincide exacto (c46d79eb...). Patrón mmsi/2016/doc/ derivado del único otro
+    archivo ''doc'' del mismo programa ya presente en el índice de descarga masiva (mmsi2016_fd.xlsx),
+    no asumido sin verificación HTTP directa.'
+
+- id: engasto2012_gasto_dbf
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_dbf.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_dbf.zip
+  sha256: 38d2d3238d4d9533c817e3d2c30ea113b16678acea74d0027d596114401aa4c4
+  tamano_bytes: 72445247
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_gasto_de_consumo_ajustado_constante_dbf
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_de_consumo_ajustado_constante_dbf.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_de_consumo_ajustado_constante_dbf.zip
+  sha256: 48a47e6ca7e2cc0add060ad60e54548c521400e4cde8cbc76a8a56989d8d56a6
+  tamano_bytes: 39914206
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_gasto_de_consumo_ajustado_constante_dta
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_de_consumo_ajustado_constante_dta.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_de_consumo_ajustado_constante_dta.zip
+  sha256: ce0e07931f965a48c42cd9f1ca9dd0a2d27fbfc7b8769c0f399156e95abc8b7c
+  tamano_bytes: 47831192
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_gasto_de_consumo_ajustado_constante_sav
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_de_consumo_ajustado_constante_sav.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_de_consumo_ajustado_constante_sav.zip
+  sha256: 67864acb791e3044e497df1fcb3d82bd81569c8b3408c6e57be1ecc5bc6dd01e
+  tamano_bytes: 81263908
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_gasto_de_consumo_ajustado_dbf
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_de_consumo_ajustado_dbf.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_de_consumo_ajustado_dbf.zip
+  sha256: 87da7f281dacffd90a00d6da3d834b88310d2ea71f3df60123c2e89ee1eead40
+  tamano_bytes: 35762073
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_gasto_de_consumo_ajustado_dta
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_de_consumo_ajustado_dta.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_de_consumo_ajustado_dta.zip
+  sha256: baa12eb4f1b32dec19f1627d6f7abf82ec11cb8a1b755f1a981312891fff97e1
+  tamano_bytes: 37585691
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_gasto_de_consumo_ajustado_sav
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_de_consumo_ajustado_sav.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_de_consumo_ajustado_sav.zip
+  sha256: df537940dcacadd09b14a7c917a2c6ebd8e2cc7222a86d52917c2c21398ca6a4
+  tamano_bytes: 68104386
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_gasto_dta
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_dta.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_dta.zip
+  sha256: 03f8ed295658a4ba93cc10cfcee3c2067e06372ed9c60fbe8e581f06e807022f
+  tamano_bytes: 68499377
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_gasto_mujeres_dbf
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_mujeres_dbf.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_mujeres_dbf.zip
+  sha256: 02062f81a772bf3c006613dcd4ce6672d55699f921bd3060e0c31ba93524b17c
+  tamano_bytes: 2301803
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_gasto_mujeres_dta
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_mujeres_dta.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_mujeres_dta.zip
+  sha256: bbbaaf97cdf2a4c6a7495124b49644ee63be9663a0fe38c6d397b35eca5b62ef
+  tamano_bytes: 2225480
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_gasto_mujeres_sav
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_mujeres_sav.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_mujeres_sav.zip
+  sha256: a67e8254e64b7e0f6f3647e4fd634c8ab29a423ae3c2e991f2749b8b77a84500
+  tamano_bytes: 4295690
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_gasto_sav
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_sav.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/gasto_sav.zip
+  sha256: c9dfb0fe65aa98dfa35d26ca29f8f192306d9844bbab2adf75ea801227f3cc98
+  tamano_bytes: 94192018
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_hogar_dbf
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/hogar_dbf.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/hogar_dbf.zip
+  sha256: 4b7b4b77e137c9e71730efb423bbf702e54cd70d97d3f7854b3166bab859638b
+  tamano_bytes: 1768812
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_hogar_dta
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/hogar_dta.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/hogar_dta.zip
+  sha256: 03c47fdeae7d93d840250628f8935fd8035eb65de54e4080dd296eeca2b2acee
+  tamano_bytes: 1673532
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_hogar_sav
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/hogar_sav.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/hogar_sav.zip
+  sha256: dd5a758fa5806c58f58a4b16070d0b9c2326e13ded369c05bee54538af5d0daa
+  tamano_bytes: 3435401
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_persona_dbf
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/persona_dbf.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/persona_dbf.zip
+  sha256: 12fc666aa8d3071aace09240c110a7c3d602dafba8483059a5000c9a3b626f74
+  tamano_bytes: 2415139
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_persona_dta
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/persona_dta.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/persona_dta.zip
+  sha256: 22816da6fd51f86c48f72c87b0e42acff8d5a0e1e7f61cd1424bbebce6aeb987
+  tamano_bytes: 2350036
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: engasto2012_persona_sav
+  usado_para: sin uso asignado
+  url_origen: https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/persona_sav.zip
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, vía curl directo desde inegi.org.mx (URL derivada del XML de la
+    canasta de descarga masiva -- misma canasta que ENCARGO DESC-1 usó, campo exacto programa=engasto/año=2012,
+    ver nota). Archivo ya estaba en data/raw/ (huérfano, ENCARGO REPAIR-1 solo lo registra,
+    no lo baja de nuevo).
+  archivo: engasto2012/persona_sav.zip
+  sha256: 4904f4f347d94e2157a7a318cf3dc1ac39eca46c1aa99d16eacb90140a17f6b2
+  tamano_bytes: 6872669
+  formato: ZIP (microdatos ENGASTO 2012 -- no inspeccionado internamente, solo hasheado)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
+    texto completo no verificado, solo la referencia)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: |-
+    [ENCARGO REPAIR-1, 2026-08-06, Tarea 3] Huérfano preexistente en data/raw/engasto2012/ -- ningún id del manifiesto tenía `archivo` apuntando a esta ruta exacta antes de este registro (verificado programáticamente contra las 471 entradas previas, no solo citado). Distinto de los 18 ids con prefijo `engasto_2012_*` que YA existen en el manifiesto: esos apuntan su `archivo` a engasto2013/<mismo nombre base> -- id y ruta divergen (hallazgo ya nombrado por MAP-1b/TC-1). Esta acto NO edita ni renombra esos 18 ids -- decidir si se corrigen es de mesa/ADR-C, no de este acto.
+
+    Convención de id: `engasto2012_<archivo>` (sin guion bajo entre "engasto" y "2012", a diferencia de `engasto_2012_<archivo>`) -- elegida específicamente para no colisionar con los 25 ids `engasto_2012_*` ya existentes (7 correctos + 18 mal apuntados) sin tocarlos. Prefijo `engasto2012_` confirmado libre antes de usarlo (grep, 0 coincidencias previas).
+
+    Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
+
+    url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
