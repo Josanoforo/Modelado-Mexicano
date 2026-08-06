@@ -129,8 +129,8 @@ una afirmación del corpus/canon sobre sí mismo, no verificada contra el
 archivo antes de citarla.
 
 Segunda verificación: el encargo advierte que citar el nombre suelto
-`raices.local.yaml` {cita-ilustrativa} en backticks puede disparar T03
-(referencias colgantes) en CI, y pide verificar el patrón antes de
+"raices.local.yaml" en backticks puede disparar T03 (referencias
+colgantes) en CI, y pide verificar el patrón antes de
 escribir. Leí `tests/check.py:200`
 (`` `([A-Za-z0-9_\-áéíóúñÁÉÍÓÚÑ.]+\.(?:md|yaml))` `` — la clase de
 caracteres no admite `/`) y el commit `183b7af` de MAP-1b, que ya reparó
@@ -410,29 +410,35 @@ por re-descarga o re-registro — eso lo declara la recomendación, no lo
 ejecuta. No corrió `unzip`/`7z` porque ninguno está instalado en este
 entorno — no se instaló nada para rodear esa ausencia.
 
-## ADDENDUM — corrección post-PR: dos citas sueltas de `raices.local.yaml`
+## ADDENDUM — corrección post-PR: citas sueltas de "raices.local.yaml"
 
-Con el PR #148 ya abierto, se encontraron **dos** citas de
-`` `raices.local.yaml` `` sin la ruta completa (una en el "Aparte" del
-Arranque, describiendo el propio riesgo de T03; otra en esta sección) — el
-mismo defecto que este documento afirmaba haber evitado. La primera se
-corrigió con la marca `{cita-ilustrativa}` (`tests/check.py:180-190`,
-verificado que debe ir en la MISMA línea física que la cita — un primer
-intento la dejó en la línea siguiente por el reflow del párrafo, y
-`l[mo.end():]` opera por línea, no por párrafo; no habría eximido nada). La
-segunda se corrigió usando la ruta completa, igual que el resto del
-documento.
+Con el PR #148 ya abierto, revisión externa (dos rondas de `grep`, la
+segunda con un patrón más amplio que el propio patrón de T03) encontró
+varias citas del nombre suelto "raices.local.yaml" entre backticks, sin la
+ruta completa — el mismo defecto que este documento afirmaba haber
+evitado, reintroducido en el propio texto que lo discute (incluyendo, en
+un primer intento de arreglo, una marca `{cita-ilustrativa}` colocada en
+la línea siguiente por el reflow del párrafo — inválida, porque
+`l[mo.end():]` en `tests/check.py:204` opera por línea física, no por
+párrafo).
 
-Verificación rigurosa después de corregir, no solo re-correr la suite con
-el corpus montado (que no expone el riesgo, porque `data/raices.local.yaml`
-ya estaba copiado ahí — Arranque §3): se movieron **ambos**, `data/raw` y
-`data/raices.local.yaml`, simulando un checkout limpio real, y se llamó
-`t03_dangling_refs()` directamente (no el resumen truncado de la terminal,
-que solo imprime 3 ejemplos por test) para inspeccionar los 29 WARN de T03
-completos, sin filtrar. Los 29 son preexistentes (`estado-programa-v1_9.md`
-y similares); cero mencionan este documento o "raices". Confirmado, no
-asumido. Corpus y `raices.local.yaml` restaurados; `tests/check.py
---baseline` vuelve a dar `18 FAIL · 95 WARN`, VERDE.
+Política final, más simple que ir marcando cada caso: toda mención
+**ilustrativa** de "raices.local.yaml" o de cualquier otro nombre corto
+que T03 pudiera leer como ruta (p. ej. "estado-programa-v1_9.md", citado
+más abajo como ejemplo de otro archivo) va **sin backticks** — entre
+comillas o sin marcado alguno — en vez de depender de una marca sensible
+al ajuste de línea. Toda mención de un archivo **real** de este acto sigue
+en backticks con su ruta completa (`data/raices.local.yaml`,
+`data/manifiesto.yaml`, etc.), que no coincide con el patrón de T03 porque
+la diagonal rompe la clase de caracteres del regex (verificado contra
+`tests/check.py:200` antes de la primera corrección, arriba en el Arranque).
+
+Verificado, no asumido: `data/raw` y `data/raices.local.yaml` movidos a la
+vez (simulacro de checkout limpio real, sin ninguno de los dos presente),
+`t03_dangling_refs()` llamado directamente — no el resumen truncado de la
+terminal, que solo imprime 3 ejemplos por test — para inspeccionar los 29
+WARN completos, sin filtrar. Cero mencionan este documento. Restaurados
+ambos; `tests/check.py --baseline` vuelve a dar `18 FAIL · 95 WARN`, VERDE.
 
 ## PASO 4 — Suite y PR
 
