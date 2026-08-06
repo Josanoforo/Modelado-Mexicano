@@ -104,6 +104,8 @@ def t02_duplicates():
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
         if ".git" in p or "/tests/" in p:
             continue
+        if not os.path.isfile(p):
+            continue
         by_name[norm(os.path.basename(p))].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():
