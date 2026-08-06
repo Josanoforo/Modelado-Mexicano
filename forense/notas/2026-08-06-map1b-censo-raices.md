@@ -40,7 +40,7 @@ drwxrwxrwx 1 pc0 pc0 4096 Aug  5 18:30 /mnt/c/Users/PC0/Downloads
 
 `data/raw` no existe en un worktree recién creado — ni siquiera como symlink roto.
 El symlink es infraestructura por-worktree que `git worktree add` no reproduce
-(gitignorado, igual que `raices.local.yaml`). Se verificó en los seis worktrees
+(gitignorado, igual que `data/raices.local.yaml`). Se verificó en los seis worktrees
 existentes de esta máquina: los cinco con trabajo activo en `data_raw`
 (`wt-tc1-010528-2`, `wt-conf17`, `wt-desc1`, `wt-ver1`, y el clon base) tienen
 idénticamente `data/raw -> /home/pc0/mm-corpus/raw`; `wt-map1-1786000558` (MAP-1
@@ -177,7 +177,7 @@ YAML) apuntando en realidad a `descargas_mx`/`downloads` — es exactamente lo
 que el cruce del PASO 3 (categoría C) prueba empíricamente, no lo que este
 paso puede concluir por lectura de código. No se decide aquí.
 
-**(d) ¿Qué le pasa a una entrada `descargas_mx` cuando `raices.local.yaml` no existe?**
+**(d) ¿Qué le pasa a una entrada `descargas_mx` cuando `data/raices.local.yaml` no existe?**
 Prueba empírica, con el archivo real del worktree ocultado y restaurado en el
 mismo comando:
 ```
@@ -205,7 +205,7 @@ y produce el código en 391-397 (`resolver_raiz` devuelve `None` porque
 168-169). Nota adicional no pedida por la pregunta pero visible en la salida
 cruda: el exit code queda en `0` — `sin_configurar` no toca `exit_code` (solo
 la rama NO COINCIDE, línea 418, lo pone en 1). Una corrida de `--verifica`
-sobre entradas `descargas_mx` en una máquina sin `raices.local.yaml` termina
+sobre entradas `descargas_mx` en una máquina sin `data/raices.local.yaml` termina
 en éxito de proceso sin haber verificado nada. Se declara, no se corrige —
 `tests/` está fuera de este perímetro.
 
