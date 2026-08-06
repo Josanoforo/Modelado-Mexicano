@@ -20,13 +20,23 @@ SIN_RESOLVER_HEREDADO = len(F_TODAS) - len(F)
 print(f"SIN_RESOLVER (heredado de catalogo.py, excluidas del dedup): {SIN_RESOLVER_HEREDADO}")
 
 def norm(s):
-    s = unicodedata.normalize('NFKD', s).encode('ascii','ignore').decode()
     s = re.sub(r'\*\*.*?\*\*','',s)
     s = re.sub(r'\(.*?\)','',s)
     s = re.split(r'[—–]|\s-\s', s)[0]
+    s = unicodedata.normalize('NFKD', s).encode('ascii','ignore').decode()
     s = re.sub(r'[^a-z0-9 ]',' ', s.lower())
     s = re.sub(r'\b(encuesta|nacional|de|del|la|el|los|las|y|en|sobre|para|mexico|censo)\b',' ',s)
     return re.sub(r'\s+',' ',s).strip()
+
+# [ENCARGO REPAIR-1, 2026-08-06, Tarea 4] caso de prueba: PR #147 declaró
+# que encode('ascii','ignore') corría antes del split en em-dash y lo
+# borraba, dejando ese corte muerto -- nunca disparaba. Dos títulos reales
+# de data/catalogo_derivado.json (WVS) que solo difieren tras un em-dash
+# deben normalizar igual una vez que el corte esté vivo.
+_prueba_norm_emdash_a = norm('World Values Survey (WVS) — muestra de México')
+_prueba_norm_emdash_b = norm('World Values Survey (WVS) — olas de México')
+assert _prueba_norm_emdash_a == _prueba_norm_emdash_b, (
+    f"corte en em-dash sigue muerto: {_prueba_norm_emdash_a!r} != {_prueba_norm_emdash_b!r}")
 def akey(a):
     a = unicodedata.normalize('NFKD', a).encode('ascii','ignore').decode()
     return re.split(r'\s*/\s*', a.strip())[0].strip()
