@@ -10442,3 +10442,294 @@
     Identidad de contenido con engasto2013 (hallazgo DESC-1, "18 de 21 archivos reutilizados byte por byte") -- RE-VERIFICADA en este acto, no asumida: sha256 Y tamaño de este archivo vs. su homónimo en engasto2013/ (mismo nombre base) son DISTINTOS -- no solo el hash, el tamaño también difiere (hasta ~40% en algunos pares, p.ej. gasto_dbf.zip: 72445247 bytes en engasto2012/ vs 60663633 en engasto2013/). Los 18 pares comparados dieron 0 idénticos / 18 distintos. Esto refuta la afirmación "byte-idéntico" de forma más fuerte que el hallazgo previo de MAP-1b (que ya la había contradicho solo por hash, sin reportar tamaño) -- aquí ni siquiera el tamaño coincide, así que no es plausible que sea el mismo contenido con metadata distinta. No se resuelve qué relación real existe entre ambos años -- solo se documenta que "reuso byte-idéntico" es empíricamente falso.
 
     url_origen: derivada de data/indice-descarga-masiva-2026-08-05.tsv (canasta nacional verificada por DESC-1/VER-1), filtrando por campo exacto programa=="engasto" año=="2012" (no por substring de texto -- un grep de texto plano sobre "2012" da un falso positivo por coincidencia de dígitos dentro de un tamaño_bytes de otra fila). Tamaño declarado en el índice cross-verificado contra el tamaño real en disco antes de registrar: coincide exacto.
+
+- id: codi_org_mx_estadisticas_landing
+  usado_para: 'MED-R3.4 -- landing que expone los 5 cuadros SIE (CF881-CF885) separados por
+    metrica: cuentas validadas, cuentas con pago, cuentas con cobro, operaciones, monto, apps
+    moviles enroladas'
+  url_origen: https://www.codi.org.mx/secundarias/estadisticas.html
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de codi.org.mx
+  archivo: R3.4_Banxico_CoDi_SPEI/codi_org_mx_estadisticas_landing.html
+  sha256: 43119a1bbf066c426c0b40bb9c8f0fa851caed5a4df163cba99f8ea5b9ea5983
+  tamano_bytes: 17874
+  formato: HTML
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Pagina oficial CoDi/Banxico. Contiene los enlaces reales (idCuadro) usados para bajar
+    CF881/CF882/CF883/CF884/CF885 -- ver esas entradas.
+
+- id: banxico_codi_avances_2026
+  usado_para: MED-R3.4 -- confirma fecha real de actualizacion de la pagina de avances de
+    implantacion (institucional, no cifras de usuario final)
+  url_origen: https://www.banxico.org.mx/sistemas-de-pago/codi-avances-banco-mexico.html
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_codi_avances_banco_mexico.html
+  sha256: 3052e7114cb2b100d7f170c2dc78549ca47174a7b2f9e581e36bea12bfb0252a
+  tamano_bytes: 8271
+  formato: HTML
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Ultima actualizacion declarada en el propio HTML: 10 de julio de 2026 -- coincide
+    con snippet citado por EXPLORA-1 (PR#149), confirmado byte a byte. Trata de avance institucional
+    (35 participantes SPEI, tiempos de procesamiento), no de cuentas/operaciones de usuario
+    final.'
+
+- id: banxico_infraestructuras_mercados_fin_landing
+  usado_para: MED-R3.4 -- landing de politica IdMF; confirma SPEI como sistemicamente importante
+    desde 2016 y enlaza al listado de ediciones del Informe Anual
+  url_origen: https://www.banxico.org.mx/sistemas-de-pago/infraestructuras-mercados-fin.html
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_infraestructuras_mercados_fin_landing.html
+  sha256: f834b52c2ed053165c2ed6c107c953b3d81148d7461d95c2e32a11aea47e704c
+  tamano_bytes: 10267
+  formato: HTML
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: El enlace 'Informe anual sobre las infraestructuras...' de esta landing apunta a una
+    sub-pagina de listado (banxico_informe_anual_idmf_listado_ediciones), no directo a un
+    PDF.
+
+- id: banxico_informe_anual_idmf_listado_ediciones
+  usado_para: MED-R3.4 -- tabla con las 9 ediciones existentes (2016-2024) del Informe Anual
+    IdMF, con su URL real (GUID) por edicion
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/informe-anual-sobre-las-infraestructuras-de-los-me/informes-infraestructuras-mer.html
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_informe_anual_IdMF_listado_ediciones.html
+  sha256: ba11757f129f714c0ab1c65b0c1ee20681a8991935ba4933feaf954655639bff
+  tamano_bytes: 11067
+  formato: HTML
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'CONFIRMADO: NO existe edicion 2025 al 6/ago/2026 -- la mas reciente es 2024. Ediciones
+    2019-2024 bajadas y registradas por separado; 2016-2018 quedan fuera del alcance del encargo
+    (pide 2019 en adelante) y no se bajaron.'
+
+- id: banxico_sie_cf881_cuentas_validadas
+  usado_para: MED-R3.4 -- cuadro SIE CF881 'Total de cuentas validadas' por institucion, definicion
+    propia de Banxico. Metrica 1 de 4 (cuentas registradas).
+  url_origen: https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?sector=21&accion=consultarCuadro&idCuadro=CF881&locale=es
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx (SieInternet, sin token -- distinto
+    de SieAPIRest)
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_sie_cuadro_CF881_cuentas_validadas.html
+  sha256: 1debc7f3cc65edde5ef8c48544c03bf7dd6244a836dd19ad299c138e25fc3f55
+  tamano_bytes: 467574
+  formato: HTML (tabla SIE)
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Total nacional 25/26/27-jul-2026: 5,467 / 4,635 / 6,091 cuentas/dia -- valores diarios
+    pequenos, consistentes con FLUJO diario (altas del dia), no con stock acumulado. Snapshot
+    de los ultimos 3 dias mostrados por defecto en la vista sin JS de SIE Internet (25,26,27-jul-2026);
+    NO es la serie historica completa -- este acto no logro obtener rango de fechas ampliado
+    sin JS (ver nota forense: intento con parametros fechaInicio/fechaFin devolvio 400, no
+    se repitio la conjetura de nombres de parametro).'
+
+- id: banxico_sie_cf882_cuentas_pago_cobro
+  usado_para: 'MED-R3.4 -- cuadro SIE CF882, DOS series: ''Cuentas que han realizado al menos
+    un pago'' y ''...un cobro''. Metrica 2 de 4 (cuentas con >=1 operacion), STOCK acumulado.'
+  url_origen: https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?sector=21&accion=consultarCuadro&idCuadro=CF882&locale=es
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx (SieInternet, sin token)
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_sie_cuadro_CF882_cuentas_pago_cobro.html
+  sha256: 05cec9b9a2937b22f8644e2f674c183559b86fd97b3235312f23b21ab99f4964
+  tamano_bytes: 116399
+  formato: HTML (tabla SIE)
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: '25/26/27-jul-2026 -- pago: 2,797,082/2,797,925/2,799,154 (candidata mas cercana a
+    3.09M Cobertura360 oct-2024, aunque un stock creciente 21 meses despues deberia superar,
+    no quedar por debajo de, 3.09M -- no reconciliado del todo, ver nota forense A.3). cobro:
+    1,126,651/1,126,757/1,126,911. Definicion propia Banxico (nota en la pagina): calculado
+    por dia operativo SPEI (apertura t 18:00 -- cierre t+1 18:00). Snapshot de los ultimos
+    3 dias mostrados por defecto en la vista sin JS de SIE Internet (25,26,27-jul-2026); NO
+    es la serie historica completa -- este acto no logro obtener rango de fechas ampliado
+    sin JS (ver nota forense: intento con parametros fechaInicio/fechaFin devolvio 400, no
+    se repitio la conjetura de nombres de parametro).'
+
+- id: banxico_sie_cf884_operaciones
+  usado_para: MED-R3.4 -- cuadro SIE CF884 'Total de operaciones enviadas'. Metrica 3 de 4
+    (numero de operaciones), FLUJO diario.
+  url_origen: https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?sector=21&accion=consultarCuadro&idCuadro=CF884&locale=es
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx (SieInternet, sin token)
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_sie_cuadro_CF884_operaciones.html
+  sha256: 5bd31243e63fad1cb680728f1a3cfbddba6196506aa0f7779adbc6c8aaa5a5de
+  tamano_bytes: 792297
+  formato: HTML (tabla SIE)
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: '25/26/27-jul-2026: 7,425 / 5,470 / 11,687 operaciones/dia -- orden de magnitud consistente
+    con Informe Anual IdMF 2024 (9,903 operaciones promedio diarias en dic-2024, Grafica 2.10):
+    misma serie, corroboracion cruzada entre dos fuentes primarias independientes. Snapshot
+    de los ultimos 3 dias mostrados por defecto en la vista sin JS de SIE Internet (25,26,27-jul-2026);
+    NO es la serie historica completa -- este acto no logro obtener rango de fechas ampliado
+    sin JS (ver nota forense: intento con parametros fechaInicio/fechaFin devolvio 400, no
+    se repitio la conjetura de nombres de parametro).'
+
+- id: banxico_sie_cf885_monto
+  usado_para: MED-R3.4 -- cuadro SIE CF885 'Total de monto enviado' (pesos). Metrica 4 de
+    4 (importes), FLUJO diario.
+  url_origen: https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?sector=21&accion=consultarCuadro&idCuadro=CF885&locale=es
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx (SieInternet, sin token)
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_sie_cuadro_CF885_monto.html
+  sha256: de7658bfa05dbab31166f681a3ad8b481ba3afebb16589d289ae58ac3e083748
+  tamano_bytes: 788382
+  formato: HTML (tabla SIE)
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: '25/26/27-jul-2026: $7,758,533 / $3,538,804 / $12,985,859 pesos/dia -- orden de magnitud
+    consistente con Informe Anual IdMF 2024 (10.6 millones de pesos promedio diario en dic-2024,
+    Grafica 2.12). Snapshot de los ultimos 3 dias mostrados por defecto en la vista sin JS
+    de SIE Internet (25,26,27-jul-2026); NO es la serie historica completa -- este acto no
+    logro obtener rango de fechas ampliado sin JS (ver nota forense: intento con parametros
+    fechaInicio/fechaFin devolvio 400, no se repitio la conjetura de nombres de parametro).'
+
+- id: banxico_sie_cf883_dispositivos_enrolados
+  usado_para: MED-R3.4 -- cuadro SIE CF883, dos series 'Total de dispositivos Android enrolados'
+    y '...iOS enrolados'. NO es ninguna de las 4 metricas que pide la ficha (es apps/dispositivos,
+    no cuentas/operaciones/monto) -- candidata mas fuerte para explicar 21.8M/17.8M.
+  url_origen: https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?sector=21&accion=consultarCuadro&idCuadro=CF883&locale=es
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx (SieInternet, sin token)
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_sie_cuadro_CF883_dispositivos_enrolados.html
+  sha256: f6456499e8ab2e498cf0995308f6a14250ae9529611fe9320a578642d85c5b1a
+  tamano_bytes: 886364
+  formato: HTML (tabla SIE)
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Android, 25/26/27-jul-2026: 24,150,606 / 24,155,308 / 24,161,851 -- STOCK acumulado,
+    +-5k/dia. Orden de magnitud y trayectoria de crecimiento compatibles con llegar desde
+    ~21.8M (El Economista, sept-2025, ~11 meses antes) hasta ~24.16M (ago-2026). iOS total
+    no extraido en este acto (dato queda en el HTML crudo, no se repitio el intento por presupuesto
+    de la ventana). Snapshot de los ultimos 3 dias mostrados por defecto en la vista sin JS
+    de SIE Internet (25,26,27-jul-2026); NO es la serie historica completa -- este acto no
+    logro obtener rango de fechas ampliado sin JS (ver nota forense: intento con parametros
+    fechaInicio/fechaFin devolvio 400, no se repitio la conjetura de nombres de parametro).'
+
+- id: banxico_codi_cuentas_validadas_x_mil_hab
+  usado_para: MED-R3.4 -- descarga directa (no cuadro SIE) de cuentas validadas por cada mil
+    habitantes, distribucion geografica trimestral
+  url_origen: https://www.banxico.org.mx/sistemas-de-pago/d/%7BE50C9EF7-B0D3-99A9-0B62-F95B57CF0529%7D.xlsx
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_codi_cuentas_validadas_x_mil_hab_trimestral.xlsx
+  sha256: 7a8496df90cc9baa28090482836ac1815e0cab530c84047f92ba5de3bf6946b9
+  tamano_bytes: 166771
+  formato: XLSX
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: No abierto/parseado en este acto por presupuesto de tiempo -- queda para MED como
+    insumo trimestral de la distribucion geografica, complementario a los 5 cuadros CF88x.
+
+- id: banxico_informe_anual_idmf_2019
+  usado_para: MED-R3.4 -- Informe Anual IdMF edicion 2019, candidata primaria mas fuerte segun
+    el encargo EXPLORA-2 A.2
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/informe-anual-sobre-las-infraestructuras-de-los-me/%7BBA5D54C6-AF6C-FF85-9C4B-C39DF70C66E0%7D.pdf
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx
+  archivo: R3.4_Banxico_CoDi_SPEI/informe_anual_IdMF_2019.pdf
+  sha256: fc9ed33813a22cc143df21c9ce25cf499a2a5d2ec16b3fc6da451b4ec73a188a
+  tamano_bytes: 2494301
+  formato: PDF
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Edicion 2019 del Informe Anual sobre las Infraestructuras de los Mercados Financieros.
+
+- id: banxico_informe_anual_idmf_2020
+  usado_para: MED-R3.4 -- Informe Anual IdMF edicion 2020, candidata primaria mas fuerte segun
+    el encargo EXPLORA-2 A.2
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/informe-anual-sobre-las-infraestructuras-de-los-me/%7BD10D30F6-7791-8CDC-4D38-D7666C8A21DA%7D.pdf
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx
+  archivo: R3.4_Banxico_CoDi_SPEI/informe_anual_IdMF_2020.pdf
+  sha256: 7634005053ecfcbc6ef79cfbf7a5af57e1e53eb6dab7e0fb3b36f090797e96f4
+  tamano_bytes: 4010821
+  formato: PDF
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Edicion 2020 del Informe Anual sobre las Infraestructuras de los Mercados Financieros.
+
+- id: banxico_informe_anual_idmf_2021
+  usado_para: MED-R3.4 -- Informe Anual IdMF edicion 2021, candidata primaria mas fuerte segun
+    el encargo EXPLORA-2 A.2
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/informe-anual-sobre-las-infraestructuras-de-los-me/%7B82C5B226-4EE1-17B7-377B-9B82F1C2E388%7D.pdf
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx
+  archivo: R3.4_Banxico_CoDi_SPEI/informe_anual_IdMF_2021.pdf
+  sha256: 63e3e08a71dcbdc918ad329bafdcedd446c795342ebebbfc0287ead9ca67cb95
+  tamano_bytes: 3576969
+  formato: PDF
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Edicion 2021 del Informe Anual sobre las Infraestructuras de los Mercados Financieros.
+
+- id: banxico_informe_anual_idmf_2022
+  usado_para: MED-R3.4 -- Informe Anual IdMF edicion 2022, candidata primaria mas fuerte segun
+    el encargo EXPLORA-2 A.2
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/informe-anual-sobre-las-infraestructuras-de-los-me/%7BE90A6B02-CBDC-343B-93ED-0ABD8A05B60B%7D.pdf
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx
+  archivo: R3.4_Banxico_CoDi_SPEI/informe_anual_IdMF_2022.pdf
+  sha256: c63ec824f4918a7b64c6b24c8c7c5dea10ce7e2e229d03770279e8b3326aa322
+  tamano_bytes: 3149823
+  formato: PDF
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Edicion 2022 del Informe Anual sobre las Infraestructuras de los Mercados Financieros.
+
+- id: banxico_informe_anual_idmf_2023
+  usado_para: MED-R3.4 -- Informe Anual IdMF edicion 2023, candidata primaria mas fuerte segun
+    el encargo EXPLORA-2 A.2
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/informe-anual-sobre-las-infraestructuras-de-los-me/%7BC0033C9D-4821-F3F2-1F71-79BB7EDAE1AA%7D.pdf
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx
+  archivo: R3.4_Banxico_CoDi_SPEI/informe_anual_IdMF_2023.pdf
+  sha256: efbcd28175c9d96b42032d5283e660971aee6ffff82c95a62a9fe1bff413047d
+  tamano_bytes: 3395130
+  formato: PDF
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Edicion 2023 del Informe Anual sobre las Infraestructuras de los Mercados Financieros.
+
+- id: banxico_informe_anual_idmf_2024
+  usado_para: MED-R3.4 -- Informe Anual IdMF edicion 2024, candidata primaria mas fuerte segun
+    el encargo EXPLORA-2 A.2
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/informe-anual-sobre-las-infraestructuras-de-los-me/%7BE0085475-B1D7-DED0-60AF-05ED88153BDC%7D.pdf
+  fecha_descarga: '2026-08-06'
+  descargado_por: agente, directamente de banxico.org.mx
+  archivo: R3.4_Banxico_CoDi_SPEI/informe_anual_IdMF_2024.pdf
+  sha256: c164b91183402c0728f9799bf4c6889706c71158b45c40546b28a07ab2c78d6f
+  tamano_bytes: 4304507
+  formato: PDF
+  licencia: Términos de uso de banxico.org.mx (aviso legal general del sitio; texto especifico
+    de licenciamiento de datos SIE/CoDi no verificado byte a byte en este acto)
+  entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Edicion 2024 del Informe Anual sobre las Infraestructuras de los Mercados Financieros.
+    Seccion 2.3.3 CoDi (p.17-19 aprox) trae cifras primarias: dic-2024 9,903 operaciones promedio
+    diarias (-18.2% vs dic-2023) y $10.6M pesos promedio diario operado; cierre 2024: 35 participantes
+    SPEI con CoDi, 51 terceros desarrolladores, 1,020 comercios enrolados (998 via institucion/desarrollador
+    + 22 desarrolladores), 86 entidades gubernamentales enroladas; cuentas que usaron CoDi
+    en Q4-2024: 25.0 mil cobradores + 216.4 mil pagadores + 16.4 mil combinada = ~257.8 mil
+    cuentas activas trimestrales -- ORDEN DE MAGNITUD MENOR a 3.09M y a 21.8M/17.8M; ninguna
+    cifra de este informe oficial llega a millones de cuentas CoDi. Fortalece la hipotesis
+    de que 21.8M/17.8M miden dispositivos/apps enrolados (ver banxico_sie_cf883), no cuentas.'
