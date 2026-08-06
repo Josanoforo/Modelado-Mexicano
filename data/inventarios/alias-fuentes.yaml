@@ -1,0 +1,1529 @@
+# Identidad canonica de fuentes. Una entrada por fuente real.
+# Generado por ENCARGO MAP-1 (2026-08-06) a partir del diagnostico de
+# tests/catalogo.py:acron() sobre los 11 inventarios (ver
+# forense/notas/2026-08-06-map1-lector.md para el metodo completo).
+#
+# canonico:     la sigla o nombre corto con el que el programa la cita.
+# nombre:       nombre descriptivo completo, sin calificadores de dominio.
+# institucion:  quien la produce, tal como lo declara el propio inventario
+#               (campo "Institucion" ya extraido por catalogo.py; puede
+#               venir vacio si esa fila del inventario no lo declaraba).
+# alias:        TODAS las formas en que acron() produce su identidad hoy,
+#               verbatim -- incluye espacios finales y truncamientos a 30
+#               caracteres cuando ese es el resultado real de la rama de
+#               fallback. El archivo documenta la realidad, no la limpia.
+# procedencia:  de que inventario (archivo) y que linea de encabezado salio
+#               cada alias, una entrada por ocurrencia cruda.
+# slug_portal:  el slug bajo /programas/<slug>/ en
+#               data/indice-descarga-masiva-2026-08-05.tsv, SOLO si se
+#               verifico ahi (coincidencia exacta de slug + corroboracion
+#               por contenido de url/carpeta/archivo). Si no aparece en ese
+#               indice, se omite el campo -- no es evidencia de que la
+#               fuente no exista, esa canasta es solo una de las que ofrece
+#               el portal de descarga masiva.
+#
+# Dos identidades quedaron deliberadamente FUERA de esta tabla porque su
+# forma truncada es AMBIGUA -- dos fuentes reales distintas producen la
+# misma cadena de 30 caracteres y no hay forma de distinguirlas por ese
+# string sin adivinar cual es cual:
+#   - "ENCUESTA NACIONAL DE CALIDAD D" <- ENCAL (IMSS, clase-fuente:215)
+#     Y "Encuesta Nacional de Calidad de la Ciudadania" (cultura_valores_
+#     opinion:234, texto casi identico a ENCC en capital_social:224 pero
+#     sin su parentesis -- candidato a ENCC, no confirmado aqui).
+#   - "REGISTROS ADMINISTRATIVOS DE A" <- aseguramiento IMSS
+#     (trabajo_ingreso_formalidad:36) Y aseguramiento ISSSTE
+#     (trabajo_ingreso_formalidad:48) -- dos registros administrativos
+#     distintos, no la misma fuente.
+# Sus 4 filas de origen quedan SIN_RESOLVER a proposito tras el cambio de
+# PASO 3. Ver la nota forense para el detalle completo.
+
+- canonico: '"LOS NEGOCIOS EN LA ECONOMÍA D'
+  nombre: '"Los negocios en la economía de Internet"'
+  institucion: INEGI
+  alias:
+  - '"LOS NEGOCIOS EN LA ECONOMÍA D'
+  procedencia:
+  - alias: '"LOS NEGOCIOS EN LA ECONOMÍA D'
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 228
+- canonico: ACS
+  nombre: American Community Survey (ACS) y Puerto Rico Community Survey
+  institucion: U.S. Census Bureau
+  alias:
+  - ACS
+  procedencia:
+  - alias: ACS
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 325
+- canonico: AHORRO FINANCIERO Y FINANCIAMI
+  nombre: Ahorro Financiero y Financiamiento en México
+  institucion: CNBV.
+  alias:
+  - AHORRO FINANCIERO Y FINANCIAMI
+  procedencia:
+  - alias: AHORRO FINANCIERO Y FINANCIAMI
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 40
+- canonico: ANUARIO DE MIGRACIÓN Y REMESAS
+  nombre: Anuario de Migración y Remesas México / Yearbook of Migration and Remittances Mexico
+  institucion: Fundación BBVA México y la Secretaría de Gobernación a través de la Secretaría Técnica
+    del CONAPO, con BBVA Research
+  alias:
+  - ANUARIO DE MIGRACIÓN Y REMESAS
+  procedencia:
+  - alias: ANUARIO DE MIGRACIÓN Y REMESAS
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 399
+- canonico: BDIF
+  nombre: Bases de Datos de Inclusión Financiera
+  institucion: Comisión Nacional Bancaria y de Valores (CNBV), Dirección General para el Acceso a Servicios
+    Financieros.
+  alias:
+  - BDIF
+  procedencia:
+  - alias: BDIF
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 17
+- canonico: BIT
+  nombre: Banco de Información de Telecomunicaciones
+  institucion: Comisión Reguladora de Telecomunicaciones (CRT), organismo adscrito a la Agencia de Transformación
+    Digital y Telecomunicaciones (ATDT). Creado por el extinto Instituto Federal de Telecomunicaciones
+    (IFT), que a su vez heredó información de la Cofetel. Los registros, repositorios digitales y sistemas
+    del IFT —incluido el Banco de Información con el historial estadístico del sector— pasaron a disposición
+    de la CRT. El IFT se extinguió el 17 de octubre de 2025, al nombrarse la presidencia de la CRT y quedar
+    abrogada la Ley Federal de Telecomunicaciones y Radiodifusión (verificado).
+  alias:
+  - BIT
+  procedencia:
+  - alias: BIT
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 29
+- canonico: BOLETÍN ESTADÍSTICO DE SOLICIT
+  nombre: Boletín Estadístico de Solicitantes de Refugio en México
+  institucion: UPMRIP en colaboración con la Comisión Mexicana de Ayuda a Refugiados (COMAR)
+  alias:
+  - BOLETÍN ESTADÍSTICO DE SOLICIT
+  procedencia:
+  - alias: BOLETÍN ESTADÍSTICO DE SOLICIT
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 177
+- canonico: CBP
+  nombre: CBP Nationwide Encounters y Southwest Land Border Encounters
+  institucion: U.S. Customs and Border Protection
+  alias:
+  - CBP
+  procedencia:
+  - alias: CBP
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 367
+- canonico: CE
+  nombre: Censos Económicos
+  institucion: INEGI
+  alias:
+  - CE
+  procedencia:
+  - alias: CE
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 43
+  - alias: CE
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 25
+- canonico: CENSO DE ALOJAMIENTOS DE ASIST
+  nombre: Censo de Alojamientos de Asistencia Social
+  institucion: INEGI.
+  alias:
+  - CENSO DE ALOJAMIENTOS DE ASIST
+  procedencia:
+  - alias: CENSO DE ALOJAMIENTOS DE ASIST
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 192
+- canonico: CENSOS NACIONALES DE GOBIERNO
+  nombre: Censos Nacionales de Gobierno (CNGF, CNGE, CNGMD) y Censo Nacional de Transparencia
+  institucion: 'INEGI. Informantes: instituciones estatales, federales y municipales.'
+  alias:
+  - CENSOS NACIONALES DE GOBIERNO
+  procedencia:
+  - alias: CENSOS NACIONALES DE GOBIERNO
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 166
+  - alias: CENSOS NACIONALES DE GOBIERNO
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 403
+- canonico: CERO DESABASTO
+  nombre: Cero Desabasto
+  institucion: 'colectivo de +140 organizaciones de sociedad civil, impulsado por Práctica: Laboratorio
+    para la Democracia y Nosotrxs — funcionalmente independiente del gobierno `[verificado]`.'
+  alias:
+  - CERO DESABASTO
+  procedencia:
+  - alias: CERO DESABASTO
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 110
+- canonico: CLUES
+  nombre: Clave Única de Establecimientos de Salud
+  institucion: Dirección General de Información en Salud (DGIS), Secretaría de Salud `[verificado]`.
+  alias:
+  - CLUES
+  procedencia:
+  - alias: CLUES
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 33
+- canonico: CNARTYS
+  nombre: Catálogo Nacional de Regulaciones, Trámites y Servicios
+  institucion: Comisión Nacional de Mejora Regulatoria (CONAMER), órgano administrativo desconcentrado
+    de la Secretaría de Economía
+  alias:
+  - CNARTYS
+  procedencia:
+  - alias: CNARTYS
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 422
+- canonico: CNGF
+  nombre: Censo Nacional de Gobierno Federal (CNGF) y censos nacionales de gobierno en el ámbito estatal
+  institucion: INEGI
+  alias:
+  - CNGF
+  procedencia:
+  - alias: CNGF
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 86
+  slug_portal: cngf
+- canonico: CNGMD
+  nombre: Censo Nacional de Gobiernos Municipales y Demarcaciones Territoriales de la Ciudad de México
+  institucion: INEGI, Subsistema Nacional de Información de Gobierno, Seguridad Pública e Impartición
+    de Justicia
+  alias:
+  - CNGMD
+  procedencia:
+  - alias: CNGMD
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 71
+  slug_portal: cngmd
+- canonico: COFEPRIS
+  nombre: Comisión Federal para la Protección contra Riesgos Sanitarios
+  institucion: Comisión Federal para la Protección contra Riesgos Sanitarios `[verificado]`.
+  alias:
+  - COFEPRIS
+  procedencia:
+  - alias: COFEPRIS
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 185
+- canonico: 'COMPILACIONES ESTADÍSTICAS DE '
+  nombre: Compilaciones estadísticas de la STPS
+  institucion: Secretaría del Trabajo y Previsión Social (STPS), Dirección General de Investigación y
+    Estadísticas del Trabajo (DGIET)
+  alias:
+  - 'COMPILACIONES ESTADÍSTICAS DE '
+  procedencia:
+  - alias: 'COMPILACIONES ESTADÍSTICAS DE '
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 238
+- canonico: CONEVAL
+  nombre: Consejo Nacional de Evaluación de la Política de Desarrollo Social
+  institucion: Consejo Nacional de Evaluación de la Política de Desarrollo Social, **absorbido por INEGI
+    el 17/jul/2025** según hallazgo del fork de investigación de esta sesión `[verificado por búsqueda;
+    no re-verificado por segunda fuente independiente — reportar con esa reserva]`.
+  alias:
+  - CONEVAL
+  procedencia:
+  - alias: CONEVAL
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 170
+- canonico: CONSAR
+  nombre: Comisión Nacional del Sistema de Ahorro para el Retiro
+  institucion: Comisión Nacional del Sistema de Ahorro para el Retiro `[verificado]`.
+  alias:
+  - CONSAR
+  procedencia:
+  - alias: CONSAR
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 140
+- canonico: CPS
+  nombre: Current Population Survey (CPS) y Annual Social and Economic Supplement
+  institucion: U.S. Census Bureau y Bureau of Labor Statistics
+  alias:
+  - CPS
+  procedencia:
+  - alias: CPS
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 339
+- canonico: CPV
+  nombre: Censo de Población y Vivienda / Conteos
+  institucion: Instituto Nacional de Estadística y Geografía (INEGI).
+  alias:
+  - CENSO DE POBLACIÓN Y VIVIENDA
+  - 'CENSO DE POBLACIÓN Y VIVIENDA '
+  - CPV
+  procedencia:
+  - alias: CPV
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 15
+  - alias: 'CENSO DE POBLACIÓN Y VIVIENDA '
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 15
+  - alias: CPV
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 12
+  - alias: CENSO DE POBLACIÓN Y VIVIENDA
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 16
+  - alias: CENSO DE POBLACIÓN Y VIVIENDA
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 14
+  - alias: CPV
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 14
+  - alias: 'CENSO DE POBLACIÓN Y VIVIENDA '
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 33
+  - alias: 'CENSO DE POBLACIÓN Y VIVIENDA '
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 10
+  slug_portal: ccpv
+- canonico: CSISFLM
+  nombre: Cuenta Satélite de las Instituciones sin Fines de Lucro de México
+  institucion: INEGI — Sistema de Cuentas Nacionales de México
+  alias:
+  - CSISFLM
+  procedencia:
+  - alias: CSISFLM
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 78
+- canonico: CUENTA SATÉLITE DEL TRABAJO NO
+  nombre: Cuenta Satélite del Trabajo No Remunerado de los Hogares de México
+  institucion: INEGI (Sistema de Cuentas Nacionales de México).
+  alias:
+  - CUENTA SATÉLITE DEL TRABAJO NO
+  procedencia:
+  - alias: CUENTA SATÉLITE DEL TRABAJO NO
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 178
+- canonico: DTM
+  nombre: Matriz de Seguimiento del Desplazamiento (DTM), México
+  institucion: Organización Internacional para las Migraciones (OIM), oficina en México
+  alias:
+  - DTM
+  procedencia:
+  - alias: DTM
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 293
+- canonico: ECOVID-ED
+  nombre: Encuesta para la Medición del Impacto COVID-19 en la Educación
+  institucion: INEGI. Proyecto de investigación, no programa regular.
+  alias:
+  - ECOVID-ED
+  procedencia:
+  - alias: ECOVID-ED
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 185
+- canonico: ECOVID-ML
+  nombre: Encuesta Telefónica sobre COVID-19 y Mercado Laboral
+  institucion: INEGI
+  alias:
+  - ECOVID-ML
+  procedencia:
+  - alias: ECOVID-ML
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 201
+- canonico: EDER
+  nombre: Encuesta Demográfica Retrospectiva
+  institucion: INEGI, con colaboraciones académicas por edición. El primer levantamiento de 1998 se hizo
+    sobre una submuestra de hogares de la ENADID 1997, con financiamiento de instituciones mexicanas,
+    francesas y estadunidenses, y la información quedó bajo resguardo de El Colegio de la Frontera Norte
+    (COLEF). Edición 2011 como módulo de la ENOE con financiamiento de COLEF y la UABC; edición 2017 como
+    módulo de la Encuesta Nacional de los Hogares (ENH) con apoyo de El Colegio de México.
+  alias:
+  - EDER
+  - ENCUESTA DEMOGRÁFICA RETROSPEC
+  procedencia:
+  - alias: EDER
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 175
+  - alias: ENCUESTA DEMOGRÁFICA RETROSPEC
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 150
+  slug_portal: eder
+- canonico: EDR
+  nombre: Estadísticas de Defunciones Registradas
+  institucion: INEGI, a partir de certificados de defunción del Registro Civil y Servicios Médicos Forenses,
+    con confronta con la Secretaría de Salud `[verificado]`.
+  alias:
+  - EDR
+  procedencia:
+  - alias: EDR
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 29
+  - alias: EDR
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 28
+  slug_portal: edr
+- canonico: EIC
+  nombre: Encuesta Intercensal
+  institucion: INEGI
+  alias:
+  - EIC
+  procedencia:
+  - alias: EIC
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 43
+- canonico: ELCOS
+  nombre: Encuesta Laboral y de Corresponsabilidad Social
+  institucion: INEGI, con el Instituto Nacional de las Mujeres **[no verificado]**
+  alias:
+  - ELCOS
+  - ENCUESTA LABORAL Y DE CORRESPO
+  procedencia:
+  - alias: ELCOS
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 231
+  - alias: ENCUESTA LABORAL Y DE CORRESPO
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 164
+  slug_portal: elcos
+- canonico: EMIF NORTE
+  nombre: Encuesta sobre Migración en la Frontera Norte de México
+  institucion: El Colegio de la Frontera Norte, con UPMRIP, CONAPO, CONAPRED, STPS, SRE y Secretaría de
+    Bienestar
+  alias:
+  - EMIF NORTE
+  procedencia:
+  - alias: EMIF NORTE
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 223
+- canonico: EMIF SUR
+  nombre: Encuesta sobre Migración en la Frontera Sur de México
+  institucion: Misma coordinación interinstitucional que Emif Norte. Opera en Guatemala, El Salvador y
+    Honduras
+  alias:
+  - EMIF SUR
+  procedencia:
+  - alias: EMIF SUR
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 237
+- canonico: ENADID
+  nombre: Encuesta Nacional de la Dinámica Demográfica
+  institucion: 'INEGI. Referentes metodológicos: programa de Encuestas de Salud Reproductiva (RHS) y uso
+    por USAID `[verificado]`.'
+  alias:
+  - ENADID
+  - ENCUESTA NACIONAL DE LA DINÁMI
+  procedencia:
+  - alias: ENADID
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 75
+  - alias: ENADID
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 134
+  - alias: ENCUESTA NACIONAL DE LA DINÁMI
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 66
+  slug_portal: enadid
+- canonico: ENADIS
+  nombre: Encuesta Nacional sobre Discriminación
+  institucion: INEGI, en coordinación con el Consejo Nacional para Prevenir la Discriminación (CONAPRED);
+    ediciones anteriores a cargo de CONAPRED con UNAM.
+  alias:
+  - ENADIS
+  - ENCUESTA NACIONAL SOBRE DISCRI
+  procedencia:
+  - alias: ENCUESTA NACIONAL SOBRE DISCRI
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 102
+  - alias: ENADIS
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 91
+  slug_portal: enadis
+- canonico: ENAFIN
+  nombre: Encuesta Nacional de Financiamiento de las Empresas
+  institucion: CNBV en coordinación con INEGI.
+  alias:
+  - ENAFIN
+  procedencia:
+  - alias: ENAFIN
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 190
+  slug_portal: enafin
+- canonico: ENAID
+  nombre: Encuesta Nacional de Acceso a la Información Pública y Protección de Datos Personales
+  institucion: INEGI en convenio con el entonces INAI. Existió un repositorio del proyecto a cargo del
+    INAI además del micrositio del INEGI. Custodia actual [no verificado]
+  alias:
+  - ENAID
+  procedencia:
+  - alias: ENAID
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 205
+  slug_portal: enaid
+- canonico: ENAPROCE
+  nombre: Encuesta Nacional sobre Productividad y Competitividad de las Micro, Pequeñas y Medianas Empresas
+  institucion: INEGI. La edición 2015 se realizó con financiamiento del Instituto Nacional del Emprendedor
+    y de Bancomext, y asesoría de la SHCP y la oficina en México del Banco Mundial.
+  alias:
+  - ENAPROCE
+  procedencia:
+  - alias: ENAPROCE
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 171
+  - alias: ENAPROCE
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 138
+  slug_portal: enaproce
+- canonico: ENASEM
+  nombre: Encuesta Nacional sobre Salud y Envejecimiento en México (ENASEM) / Mexican Health and Aging
+    Study
+  institucion: INEGI en colaboración con la Universidad de Texas (UTMB y, en la ronda 2024, el Centro
+    de Ciencias de la Salud en San Antonio), Universidad de Wisconsin, UCLA, el Instituto Nacional de
+    Geriatría (INGER) y el INSP; financiamiento parcial del National Institute on Aging `[verificado]`.
+  alias:
+  - ENASEM
+  - ENASEM / MHAS
+  - 'ENCUESTA NACIONAL SOBRE SALUD '
+  procedencia:
+  - alias: ENASEM / MHAS
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 150
+  - alias: ENASEM
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 117
+  - alias: ENASEM / MHAS
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 164
+  - alias: ENASEM / MHAS
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 153
+  - alias: 'ENCUESTA NACIONAL SOBRE SALUD '
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 136
+  slug_portal: enasem
+- canonico: ENCC
+  nombre: Encuesta Nacional sobre Calidad de la Ciudadanía
+  institucion: Instituto Nacional Electoral (entonces IFE), con instituciones académicas
+  alias:
+  - ENCC
+  procedencia:
+  - alias: ENCC
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 224
+- canonico: ENCIG
+  nombre: Encuesta Nacional de Calidad e Impacto Gubernamental
+  institucion: INEGI, Subsistema Nacional de Información de Gobierno, Seguridad Pública e Impartición
+    de Justicia. Información de Interés Nacional.
+  alias:
+  - ENCIG
+  - ENCUESTA NACIONAL DE CALIDAD E
+  procedencia:
+  - alias: ENCIG
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 129
+  - alias: ENCIG
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 129
+  - alias: ENCUESTA NACIONAL DE CALIDAD E
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 72
+  - alias: ENCIG
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 96
+  - alias: ENCIG
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 167
+  slug_portal: encig
+- canonico: ENCOAP
+  nombre: Encuesta Nacional de Confianza en la Administración Pública
+  institucion: INEGI
+  alias:
+  - ENCOAP
+  procedencia:
+  - alias: ENCOAP
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 224
+  slug_portal: encoap
+- canonico: ENCODAT
+  nombre: Encuesta Nacional de Consumo de Drogas, Alcohol y Tabaco (ENCODAT) y la serie ENA
+  institucion: en 2025, esfuerzo conjunto de la Comisión Nacional de Salud Mental y Adicciones (CONASAMA),
+    el Instituto Nacional de Psiquiatría "Ramón de la Fuente Muñiz" (INPRFM) y el INSP, bajo la Secretaría
+    de Salud `[verificado]`. Las primeras ediciones fueron dirigidas por la Dirección General de Epidemiología
+    y el entonces Instituto Mexicano de Psiquiatría `[verificado]`.
+  alias:
+  - ENCODAT
+  procedencia:
+  - alias: ENCODAT
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 149
+- canonico: ENCODE
+  nombre: Encuesta Nacional de Consumo de Drogas en Estudiantes
+  institucion: INPRFM, con CONADIC (hoy CONASAMA), Secretaría de Salud y SEP `[verificado]`.
+  alias:
+  - ENCODE
+  procedencia:
+  - alias: ENCODE
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 209
+- canonico: ENCRIGE
+  nombre: Encuesta Nacional de Calidad Regulatoria e Impacto Gubernamental en Empresas
+  institucion: INEGI, con SHCP, Secretaría de Economía, COFEMER (hoy CONAMER) y CEESP
+  alias:
+  - ENCRIGE
+  procedencia:
+  - alias: ENCRIGE
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 378
+  slug_portal: encrige
+- canonico: ENCUCI
+  nombre: Encuesta Nacional de Cultura Cívica
+  institucion: <cite index="1-1">INEGI, en colaboración con el Instituto Nacional Electoral (INE)</cite>.
+    Antecedente institucional vinculado también a SEGOB.
+  alias:
+  - ENCUCI
+  - ENCUESTA NACIONAL DE CULTURA C
+  procedencia:
+  - alias: ENCUCI
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 46
+  - alias: ENCUESTA NACIONAL DE CULTURA C
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 44
+  - alias: ENCUCI
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 115
+  - alias: ENCUCI
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 72
+  slug_portal: encuci
+- canonico: ENCUESTA NACIONAL DE BIENESTAR
+  nombre: Encuesta Nacional de Bienestar Autorreportado
+  institucion: INEGI.
+  alias:
+  - ENCUESTA NACIONAL DE BIENESTAR
+  procedencia:
+  - alias: ENCUESTA NACIONAL DE BIENESTAR
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 234
+- canonico: ENCUESTA NACIONAL DE OPINIÓN C
+  nombre: Encuesta Nacional de Opinión Católica
+  institucion: Católicas por el Derecho a Decidir, México. `[no verificado]` la composición completa del
+    equipo responsable.
+  alias:
+  - ENCUESTA NACIONAL DE OPINIÓN C
+  procedencia:
+  - alias: ENCUESTA NACIONAL DE OPINIÓN C
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 262
+- canonico: ENCUESTA NACIONAL DE RELIGIÓN,
+  nombre: Encuesta Nacional de Religión, Secularización y Laicidad
+  institucion: <cite index="19-2">Universidad Nacional Autónoma de México (UNAM), 2015</cite>. `[verificado]`
+    la existencia y la referencia de publicación.
+  alias:
+  - ENCUESTA NACIONAL DE RELIGIÓN,
+  procedencia:
+  - alias: ENCUESTA NACIONAL DE RELIGIÓN,
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 248
+- canonico: ENCUESTA NACIONAL MCCI SOBRE C
+  nombre: Encuesta Nacional MCCI sobre Corrupción e Impunidad
+  institucion: Mexicanos Contra la Corrupción y la Impunidad (MCCI), organización no gubernamental fundada
+    en 2015 `[verificado]`.
+  alias:
+  - ENCUESTA NACIONAL MCCI SOBRE C
+  procedencia:
+  - alias: ENCUESTA NACIONAL MCCI SOBRE C
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 125
+- canonico: ENCUESTA NACIONAL PARA EL SIST
+  nombre: Encuesta Nacional para el Sistema de Cuidados
+  institucion: INEGI.
+  alias:
+  - ENCUESTA NACIONAL PARA EL SIST
+  procedencia:
+  - alias: ENCUESTA NACIONAL PARA EL SIST
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 122
+- canonico: ENCUESTA NACIONAL SOBRE CONFIA
+  nombre: Encuesta Nacional sobre Confianza del Consumidor
+  institucion: INEGI (con el Banco de México en la definición del indicador).
+  alias:
+  - ENCUESTA NACIONAL SOBRE CONFIA
+  procedencia:
+  - alias: ENCUESTA NACIONAL SOBRE CONFIA
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 118
+- canonico: ENCUESTA NACIONAL SOBRE CREENC
+  nombre: Encuesta Nacional sobre Creencias y Prácticas Religiosas en México
+  institucion: <cite index="17-0">Red de Investigadores del Fenómeno Religioso en México (RIFREM), con
+    CONACYT, El Colegio de la Frontera Norte, El Colegio de Jalisco y CIESAS</cite>. `[verificado]`
+  alias:
+  - ENCUESTA NACIONAL SOBRE CREENC
+  procedencia:
+  - alias: ENCUESTA NACIONAL SOBRE CREENC
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 220
+- canonico: ENCUESTAS ECONÓMICAS NACIONALE
+  nombre: Encuestas Económicas Nacionales mensuales y anuales
+  institucion: INEGI
+  alias:
+  - ENCUESTAS ECONÓMICAS NACIONALE
+  procedencia:
+  - alias: ENCUESTAS ECONÓMICAS NACIONALE
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 116
+- canonico: ENCUP
+  nombre: Encuesta Nacional sobre Cultura Política y Prácticas Ciudadanas
+  institucion: SEGOB e INEGI. Tres de las cinco ediciones fueron realizadas por el INEGI (2001, 2003,
+    2008)
+  alias:
+  - ENCUESTA NACIONAL SOBRE CULTUR
+  - ENCUP
+  procedencia:
+  - alias: ENCUP
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 63
+  - alias: ENCUESTA NACIONAL SOBRE CULTUR
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 58
+- canonico: ENDIREH
+  nombre: Encuesta Nacional sobre la Dinámica de las Relaciones en los Hogares
+  institucion: INEGI, con INMUJERES.
+  alias:
+  - ENCUESTA NACIONAL SOBRE LA DIN
+  - ENDIREH
+  procedencia:
+  - alias: ENDIREH
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 132
+  - alias: ENDIREH
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 110
+  - alias: ENCUESTA NACIONAL SOBRE LA DIN
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 80
+  slug_portal: endireh
+- canonico: ENDUTIH
+  nombre: Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información en los Hogares
+  institucion: 'INEGI. Se ha realizado en convenio con el entonces IFT y, en su origen, con la SCT. Tras
+    la extinción del IFT la contraparte sectorial correspondería a CRT o ATDT: **no verificado** para
+    la edición más reciente.'
+  alias:
+  - ENDUTIH
+  procedencia:
+  - alias: ENDUTIH
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 115
+  - alias: ENDUTIH
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 129
+  slug_portal: endutih
+- canonico: ENE
+  nombre: Encuesta Nacional de Empleo (ENE) y Encuesta Nacional de Empleo Urbano
+  institucion: INEGI, históricamente con la STPS
+  alias:
+  - ENE
+  procedencia:
+  - alias: ENE
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 212
+  slug_portal: ene
+- canonico: ENESTYC
+  nombre: Encuesta Nacional de Empleo, Salarios, Tecnología y Capacitación en el Sector Manufacturero
+  institucion: INEGI y STPS
+  alias:
+  - ENESTYC
+  procedencia:
+  - alias: ENESTYC
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 223
+  slug_portal: enestyc
+- canonico: ENFIH
+  nombre: Encuesta Nacional sobre las Finanzas de los Hogares
+  institucion: Banco de México en conjunto con INEGI; levantamiento a cargo del INEGI.
+  alias:
+  - ENFIH
+  procedencia:
+  - alias: ENFIH
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 114
+  slug_portal: enfih
+- canonico: ENIF
+  nombre: Encuesta Nacional de Inclusión Financiera
+  institucion: INEGI en colaboración con la Comisión Nacional Bancaria y de Valores (CNBV). La lista de
+    variables enviada por la CNBV se tomó como base principal para el diseño del instrumento, cuyo desarrollo
+    estuvo a cargo del INEGI (verificado).
+  alias:
+  - ENIF
+  procedencia:
+  - alias: ENIF
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 126
+  - alias: ENIF
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 103
+  - alias: ENIF
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 157
+  slug_portal: enif
+- canonico: ENIGH
+  nombre: Encuesta Nacional de Ingresos y Gastos de los Hogares
+  institucion: INEGI (el MCS con uso de CONEVAL para medición multidimensional de pobreza).
+  alias:
+  - 'ENCUESTA NACIONAL DE INGRESOS '
+  - ENIGH
+  procedencia:
+  - alias: ENIGH
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 90
+  - alias: ENIGH
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 89
+  - alias: ENIGH
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 101
+  - alias: ENIGH
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 104
+  - alias: ENIGH
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 68
+  - alias: 'ENCUESTA NACIONAL DE INGRESOS '
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 38
+  slug_portal: enigh
+- canonico: ENIM / MICS
+  nombre: Encuesta Nacional de Niños, Niñas y Mujeres
+  institucion: INSP con UNICEF México `[no verificado en esta sesión]`.
+  alias:
+  - ENCUESTA NACIONAL DE NIÑOS, NI
+  procedencia:
+  - alias: ENCUESTA NACIONAL DE NIÑOS, NI
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 224
+- canonico: ENM
+  nombre: Encuesta Nacional de Migración
+  institucion: Área de Investigación Aplicada y Opinión del Instituto de Investigaciones Jurídicas, UNAM.
+    Colección *Los mexicanos vistos por sí mismos*
+  alias:
+  - ENM
+  procedencia:
+  - alias: ENM
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 279
+- canonico: ENNVIH
+  nombre: Encuesta Nacional sobre Niveles de Vida de los Hogares (ENNViH) / Mexican Family Life Survey
+  institucion: Universidad Iberoamericana y Centro de Investigación y Docencia Económicas (CIDE), con
+    colaboraciones internacionales `[no verificado en esta sesión]`.
+  alias:
+  - ENNVIH
+  - ENNVIH / MXFLS
+  procedencia:
+  - alias: ENNVIH / MXFLS
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 162
+  - alias: ENNVIH
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 131
+  - alias: ENNVIH / MXFLS
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 239
+  - alias: ENNVIH / MXFLS
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 164
+- canonico: ENOE
+  nombre: Encuesta Nacional de Ocupación y Empleo (ENOE) / ENOE Nueva Edición
+  institucion: INEGI.
+  alias:
+  - ENCUESTA NACIONAL DE OCUPACIÓN
+  - ENOE
+  procedencia:
+  - alias: ENOE
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 61
+  - alias: ENOE
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 57
+  - alias: ENCUESTA NACIONAL DE OCUPACIÓN
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 24
+  slug_portal: enoe
+- canonico: ENPOL
+  nombre: Encuesta Nacional de Población Privada de la Libertad
+  institucion: INEGI. Se realiza en el marco del mandato del artículo 29 de la Ley Nacional de Ejecución
+    Penal.
+  alias:
+  - ENPOL
+  procedencia:
+  - alias: ENPOL
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 202
+  - alias: ENPOL
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 243
+  slug_portal: enpol
+- canonico: ENSAFI
+  nombre: Encuesta Nacional sobre Salud Financiera
+  institucion: INEGI en colaboración con CONDUSEF.
+  alias:
+  - ENSAFI
+  procedencia:
+  - alias: ENSAFI
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 102
+  slug_portal: ensafi
+- canonico: ENSANUT
+  nombre: Encuesta Nacional de Salud y Nutrición (ENSANUT) y ENSANUT Continua
+  institucion: Instituto Nacional de Salud Pública (INSP), en el marco del Sistema Nacional de Encuestas
+    de Salud, con la Secretaría de Salud `[verificado]`. Antecedentes de la familia de encuestas de salud
+    desde 1986 `[verificado]`.
+  alias:
+  - ENCUESTA NACIONAL DE SALUD Y N
+  - ENSANUT
+  procedencia:
+  - alias: ENCUESTA NACIONAL DE SALUD Y N
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 290
+  - alias: ENSANUT
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 119
+  - alias: ENSANUT
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 148
+  - alias: ENCUESTA NACIONAL DE SALUD Y N
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 94
+  slug_portal: ensanut
+- canonico: ENSU
+  nombre: Encuesta Nacional de Seguridad Pública Urbana
+  institucion: INEGI. Origen en una solicitud del Consejo Nacional de Seguridad Pública.
+  alias:
+  - ENSU
+  procedencia:
+  - alias: ENSU
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 112
+  - alias: ENSU
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 79
+  - alias: ENSU
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 186
+  slug_portal: ensu
+- canonico: ENTI
+  nombre: Encuesta Nacional de Trabajo Infantil
+  institucion: INEGI, en colaboración con la Organización Internacional del Trabajo (OIT) y la Secretaría
+    del Trabajo y Previsión Social (STPS)
+  alias:
+  - ENCUESTA NACIONAL DE TRABAJO I
+  - ENTI
+  procedencia:
+  - alias: ENTI
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 79
+  - alias: ENCUESTA NACIONAL DE TRABAJO I
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 108
+  slug_portal: enti
+- canonico: ENUT
+  nombre: Encuesta Nacional sobre Uso del Tiempo
+  institucion: INEGI, en colaboración con el Instituto Nacional de las Mujeres (INMUJERES).
+  alias:
+  - ENCUESTA NACIONAL SOBRE USO DE
+  - ENUT
+  procedencia:
+  - alias: ENUT
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 29
+  - alias: ENUT
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 90
+  - alias: ENCUESTA NACIONAL SOBRE USO DE
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 52
+  slug_portal: enut
+- canonico: ENVE
+  nombre: Encuesta Nacional de Victimización de Empresas
+  institucion: INEGI (SNIGSPIJ).
+  alias:
+  - ENVE
+  procedencia:
+  - alias: ENVE
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 149
+  - alias: ENVE
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 359
+  slug_portal: enve
+- canonico: ENVI
+  nombre: Encuesta Nacional de Vivienda
+  institucion: INEGI, en colaboración con CONAVI, INFONAVIT, FOVISSSTE y Sociedad Hipotecaria Federal.
+  alias:
+  - ENVI
+  procedencia:
+  - alias: ENVI
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 138
+  slug_portal: envi
+- canonico: ENVIPE
+  nombre: Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública
+  institucion: INEGI, en el marco del Subsistema Nacional de Información de Gobierno, Seguridad Pública
+    e Impartición de Justicia (SNIGSPIJ).
+  alias:
+  - ENCUESTA NACIONAL DE VICTIMIZA
+  - ENVIPE
+  procedencia:
+  - alias: ENVIPE
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 95
+  - alias: ENCUESTA NACIONAL DE VICTIMIZA
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 86
+  - alias: ENVIPE
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 62
+  - alias: ENVIPE
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 53
+  slug_portal: envipe
+- canonico: ESTAD
+  nombre: Encuesta de Satisfacción, Trato Adecuado y Digno
+  institucion: Dirección General de Calidad y Educación en Salud (DGCES), con Instituto Nacional de Salud
+    Pública (INSP), desde 2015 `[verificado]`.
+  alias:
+  - ESTAD
+  procedencia:
+  - alias: ESTAD
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 200
+- canonico: ESTADÍSTICA DE INGRESOS Y EGRE
+  nombre: Estadística de ingresos y egresos por remesas
+  institucion: Banco de México, con insumos del INEGI para remesas en efectivo y especie
+  alias:
+  - ESTADÍSTICA DE INGRESOS Y EGRE
+  procedencia:
+  - alias: ESTADÍSTICA DE INGRESOS Y EGRE
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 149
+- canonico: ESTADÍSTICA DE USUARIOS DEL SI
+  nombre: Estadística de usuarios del sistema Llave MX
+  institucion: Agencia de Transformación Digital y Telecomunicaciones (ATDT)
+  alias:
+  - ESTADÍSTICA DE USUARIOS DEL SI
+  procedencia:
+  - alias: ESTADÍSTICA DE USUARIOS DEL SI
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 213
+- canonico: ESTADÍSTICA EDUCATIVA
+  nombre: Estadística educativa
+  institucion: Secretaría de Educación Pública (SEP), Dirección General de Planeación, Programación y
+    Estadística Educativa
+  alias:
+  - ESTADÍSTICA EDUCATIVA
+  procedencia:
+  - alias: ESTADÍSTICA EDUCATIVA
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 57
+- canonico: ESTADÍSTICAS DE LA POBLACIÓN M
+  nombre: Estadísticas de la población mexicana en el exterior y de matrícula consular
+  institucion: Instituto de los Mexicanos en el Exterior (IME), Secretaría de Relaciones Exteriores
+  alias:
+  - ESTADÍSTICAS DE LA POBLACIÓN M
+  procedencia:
+  - alias: ESTADÍSTICAS DE LA POBLACIÓN M
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 191
+- canonico: ESTADÍSTICAS DE NATALIDAD / NA
+  nombre: Estadísticas de Natalidad / Nacimientos registrados
+  institucion: INEGI (con base en Registro Civil); la Secretaría de Salud opera además su propio subsistema
+    de nacimientos (SINAC) `[no verificado en detalle]`.
+  alias:
+  - ESTADÍSTICAS DE NATALIDAD / NA
+  procedencia:
+  - alias: ESTADÍSTICAS DE NATALIDAD / NA
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 44
+- canonico: ESTADÍSTICAS Y REGISTROS DEL S
+  nombre: Estadísticas y registros del sector cultural
+  institucion: (a) INEGI, en colaboración con la Secretaría de Cultura; (b) Secretaría de Cultura.
+  alias:
+  - ESTADÍSTICAS Y REGISTROS DEL S
+  procedencia:
+  - alias: ESTADÍSTICAS Y REGISTROS DEL S
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 148
+- canonico: ETOE
+  nombre: Encuesta Telefónica de Ocupación y Empleo
+  institucion: INEGI
+  alias:
+  - ETOE
+  procedencia:
+  - alias: ETOE
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 190
+- canonico: GATS
+  nombre: Encuesta Global de Tabaquismo en Adultos
+  institucion: INSP, con coordinación de CONASAMA (en 2015, CONADIC) y asistencia técnica de OPS/OMS y
+    de los CDC de Estados Unidos; financiamiento de la Iniciativa Bloomberg en las primeras ediciones
+    `[verificado]`.
+  alias:
+  - GATS
+  procedencia:
+  - alias: GATS
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 179
+- canonico: GLOBAL FINDEX DATABASE
+  nombre: Global Findex Database
+  institucion: Banco Mundial; levantamiento por Gallup.
+  alias:
+  - GLOBAL FINDEX DATABASE
+  procedencia:
+  - alias: GLOBAL FINDEX DATABASE
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 174
+  - alias: GLOBAL FINDEX DATABASE
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 245
+- canonico: I Y II CONTEO
+  nombre: Conteo de Población y Vivienda
+  institucion: INEGI
+  alias:
+  - I Y II CONTEO
+  procedencia:
+  - alias: I Y II CONTEO
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 29
+- canonico: IEDMX
+  nombre: Índice de Estado de Derecho en México (IEDMX) e Índice Global de Estado de Derecho
+  institucion: World Justice Project (WJP). En México con contrapartes académicas en publicaciones derivadas
+    (p. ej. PIRC-CIDE)
+  alias:
+  - IEDMX
+  procedencia:
+  - alias: IEDMX
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 334
+- canonico: IMSS
+  nombre: Familia de instrumentos de satisfacción de usuarios
+  institucion: IMSS `[verificado]`.
+  alias:
+  - IMSS
+  procedencia:
+  - alias: IMSS
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 230
+- canonico: INCBG
+  nombre: Índice Nacional de Corrupción y Buen Gobierno
+  institucion: Transparencia Mexicana, A.C.
+  alias:
+  - INCBG
+  procedencia:
+  - alias: INCBG
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 315
+- canonico: INE
+  nombre: Instituto Nacional Electoral
+  institucion: Instituto Nacional Electoral, órgano constitucional autónomo `[verificado]`.
+  alias:
+  - INE
+  procedencia:
+  - alias: INE
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 155
+- canonico: IPUMS
+  nombre: IPUMS International, muestras censales de México armonizadas
+  institucion: Minnesota Population Center, University of Minnesota, con el INEGI como oficina asociada
+  alias:
+  - IPUMS
+  procedencia:
+  - alias: IPUMS
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 381
+- canonico: LAPOP
+  nombre: Barómetro de las Américas / AmericasBarometer
+  institucion: LAPOP Lab, Vanderbilt University; ITAM como socio en rondas mexicanas; financiamiento de
+    USAID en varias rondas
+  alias:
+  - AMERICASBAROMETER / LAPOP
+  - LAPOP
+  procedencia:
+  - alias: LAPOP
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 265
+  - alias: AMERICASBAROMETER / LAPOP
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 146
+  - alias: LAPOP
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 260
+  - alias: LAPOP
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 176
+  - alias: LAPOP
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 262
+- canonico: LATINOBARÓMETRO
+  nombre: Latinobarómetro
+  institucion: <cite index="51-0">Corporación Latinobarómetro, organización privada sin fines de lucro
+    con sede en Chile</cite>.
+  alias:
+  - LATINOBARÓMETRO
+  procedencia:
+  - alias: LATINOBARÓMETRO
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 161
+  - alias: LATINOBARÓMETRO
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 274
+  - alias: LATINOBARÓMETRO
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 190
+  - alias: LATINOBARÓMETRO
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 279
+- canonico: MGA
+  nombre: Métrica de Gobierno Abierto
+  institucion: Coordinada por el INAI y realizada por el Centro de Investigación y Docencia Económicas
+    (CIDE). Continuidad institucional tras 2025 [no verificado]
+  alias:
+  - MGA
+  procedencia:
+  - alias: MGA
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 458
+- canonico: MMP
+  nombre: Mexican Migration Project (MMP), difundido también como Mesoamerican Migration Project
+  institucion: Departamento de Investigación sobre Movimientos Sociales de la Universidad de Guadalajara
+    y Office of Population Research de Princeton University. Sitio adicional alojado en Brown University
+  alias:
+  - MMP
+  procedencia:
+  - alias: MMP
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 251
+- canonico: MOCIBA
+  nombre: Módulo sobre Ciberacoso
+  institucion: INEGI. Módulo adosado a la ENDUTIH.
+  alias:
+  - MOCIBA
+  procedencia:
+  - alias: MOCIBA
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 143
+  - alias: MOCIBA
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 219
+  slug_portal: mociba
+- canonico: MOCUP
+  nombre: Módulo de Cultura Política
+  institucion: INEGI
+  alias:
+  - MOCUP
+  procedencia:
+  - alias: MOCUP
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 208
+- canonico: MTPTREF
+  nombre: Mediciones Trimestrales de los Puestos de Trabajo y sus Remuneraciones por Entidad Federativa
+  institucion: INEGI
+  alias:
+  - MTPTREF
+  procedencia:
+  - alias: MTPTREF
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 127
+- canonico: 'MÓDULO DE MIGRACIÓN INTERNA E '
+  nombre: Módulo de Migración Interna e Internacional 2002, adjunto a la Encuesta Nacional de Empleo
+  institucion: INEGI
+  alias:
+  - 'MÓDULO DE MIGRACIÓN INTERNA E '
+  procedencia:
+  - alias: 'MÓDULO DE MIGRACIÓN INTERNA E '
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 307
+- canonico: MÓDULO SOBRE EVENTOS CULTURALE
+  nombre: Módulo sobre Eventos Culturales Seleccionados
+  institucion: INEGI.
+  alias:
+  - MÓDULO SOBRE EVENTOS CULTURALE
+  procedencia:
+  - alias: MÓDULO SOBRE EVENTOS CULTURALE
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 30
+- canonico: MÓDULOS Y ENCUESTAS COMPLEMENT
+  nombre: Módulos y encuestas complementarias del INEGI con contenido parcial del dominio
+  institucion: Ediciones | Cobertura | Microdatos | Contenido pertinente
+  alias:
+  - MÓDULOS Y ENCUESTAS COMPLEMENT
+  procedencia:
+  - alias: MÓDULOS Y ENCUESTAS COMPLEMENT
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 254
+- canonico: OCDE
+  nombre: 'Health at a Glance: Latin America and the Caribbean'
+  institucion: OCDE, con Banco Mundial.
+  alias:
+  - OCDE
+  procedencia:
+  - alias: OCDE
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 288
+- canonico: OHSS
+  nombre: Yearbook of Immigration Statistics y series mensuales de la Office of Homeland Security Statistics
+  institucion: Office of Homeland Security Statistics, U.S. Department of Homeland Security (antes Office
+    of Immigration Statistics)
+  alias:
+  - OHSS
+  procedencia:
+  - alias: OHSS
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 353
+- canonico: OTROS SUBSISTEMAS DE LA DGIS
+  nombre: Otros subsistemas de la DGIS
+  institucion: DGIS, Secretaría de Salud `[verificado — listado de componentes]`.
+  alias:
+  - OTROS SUBSISTEMAS DE LA DGIS
+  procedencia:
+  - alias: OTROS SUBSISTEMAS DE LA DGIS
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 89
+- canonico: PEW RESEARCH CENTER
+  nombre: Global Attitudes / Religious Landscape
+  institucion: Pew Research Center.
+  alias:
+  - PEW RESEARCH CENTER
+  procedencia:
+  - alias: PEW RESEARCH CENTER
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 276
+- canonico: PI
+  nombre: Portafolio de Información
+  institucion: CNBV.
+  alias:
+  - PI
+  procedencia:
+  - alias: PI
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 29
+- canonico: PL
+  nombre: Pobreza Laboral (PL) e Índice de la Tendencia Laboral de la Pobreza
+  institucion: 'INEGI. Anteriormente Consejo Nacional de Evaluación de la Política de Desarrollo Social
+    (CONEVAL): el 16 de julio de 2025 las reformas legales formalizaron la desaparición del CONEVAL y
+    transfirieron al INEGI la medición de la pobreza y la evaluación integral de la política de desarrollo
+    social, asumidas formalmente desde el 17 de julio de 2025. En diciembre de 2025 se publicó en el DOF
+    la creación de la Dirección General de Evaluación y Medición de Pobreza dentro del INEGI.'
+  alias:
+  - PL
+  procedencia:
+  - alias: PL
+    archivo: inventario_fuentes_trabajo_ingreso_formalidad_mexico.md
+    linea: 101
+- canonico: PUB
+  nombre: Padrón Único de Beneficiarios de Bienestar
+  institucion: Secretaría de Bienestar `[verificado]`.
+  alias:
+  - PUB
+  procedencia:
+  - alias: PUB
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 95
+- canonico: REDECO
+  nombre: REDECO, REUNE y Buró de Entidades Financieras
+  institucion: Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros
+    (CONDUSEF).
+  alias:
+  - REDECO
+  procedencia:
+  - alias: REDECO
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 75
+- canonico: REGISTRO ADMINISTRATIVO DE ASO
+  nombre: Registro administrativo de asociaciones religiosas
+  institucion: Secretaría de Gobernación (SEGOB), Subsecretaría de Desarrollo Democrático, Participación
+    Social y Asuntos Religiosos.
+  alias:
+  - REGISTRO ADMINISTRATIVO DE ASO
+  procedencia:
+  - alias: REGISTRO ADMINISTRATIVO DE ASO
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 134
+- canonico: REGISTROS ADMINISTRATIVOS DE E
+  nombre: Registros administrativos de estadísticas vitales y nupcialidad
+  institucion: INEGI, a partir de actas del Registro Civil y de la Secretaría de Salud (SINAC/SEED para
+    nacimientos).
+  alias:
+  - REGISTROS ADMINISTRATIVOS DE E
+  procedencia:
+  - alias: REGISTROS ADMINISTRATIVOS DE E
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 206
+- canonico: REGISTROS ADMINISTRATIVOS DE S
+  nombre: Registros administrativos de servicios de cuidado infantil y asistencia social
+  institucion: IMSS; SNDIF; Secretaría de Bienestar; en su caso, ISSSTE.
+  alias:
+  - REGISTROS ADMINISTRATIVOS DE S
+  procedencia:
+  - alias: REGISTROS ADMINISTRATIVOS DE S
+    archivo: inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md
+    linea: 220
+- canonico: RESULTADOS Y ESTADÍSTICA ELECT
+  nombre: Resultados y estadística electoral
+  institucion: INE.
+  alias:
+  - RESULTADOS Y ESTADÍSTICA ELECT
+  procedencia:
+  - alias: RESULTADOS Y ESTADÍSTICA ELECT
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 162
+- canonico: RFOSC / CLUNI
+  nombre: Registro Federal de las Organizaciones de la Sociedad Civil
+  institucion: Originalmente INDESOL, conforme a la Ley Federal de Fomento a las Actividades Realizadas
+    por Organizaciones de la Sociedad Civil. Tras la extinción del INDESOL la operación pasó a la Secretaría
+    de Bienestar; cadena institucional y fecha del traspaso **no verificadas**
+  alias:
+  - RFOSC / CLUNI
+  procedencia:
+  - alias: RFOSC / CLUNI
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 193
+- canonico: RNID
+  nombre: Registro Nacional de Incidencia Delictiva
+  institucion: 'Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública (SESNSP), órgano desconcentrado
+    de la Secretaría de Gobernación. Informantes: fiscalías y procuradurías de las 32 entidades y la FGR.'
+  alias:
+  - RNID
+  procedencia:
+  - alias: RNID
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 11
+- canonico: RNPDNO
+  nombre: Registro Nacional de Personas Desaparecidas y No Localizadas
+  institucion: Comisión Nacional de Búsqueda de Personas (CNB), Secretaría de Gobernación.
+  alias:
+  - RNPDNO
+  procedencia:
+  - alias: RNPDNO
+    archivo: inventario_fuentes_seguridad_justicia_mexico.md
+    linea: 45
+- canonico: SAEH
+  nombre: Subsistema Automatizado de Egresos Hospitalarios
+  institucion: Dirección General de Información en Salud (DGIS), Secretaría de Salud `[verificado]`.
+  alias:
+  - SAEH
+  procedencia:
+  - alias: SAEH
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 63
+  - alias: SAEH
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 74
+- canonico: SAR
+  nombre: Estadísticas del Sistema de Ahorro para el Retiro
+  institucion: Comisión Nacional del Sistema de Ahorro para el Retiro (CONSAR).
+  alias:
+  - SAR
+  procedencia:
+  - alias: SAR
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 63
+- canonico: SERIES DERIVADAS Y COMPILACION
+  nombre: Series derivadas y compilaciones de terceros
+  institucion: 'Múltiples (entrada-bundle, sin institución única): UISP/INSP; CONEVAL; Plataforma Nacional
+    de Datos Abiertos; repositorios internacionales (OMS, OPS, Banco Mundial, IHME/GBD, OCDE)'
+  alias:
+  - SERIES DERIVADAS Y COMPILACION
+  procedencia:
+  - alias: SERIES DERIVADAS Y COMPILACION
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 272
+- canonico: SIE
+  nombre: Sistema de Información Económica
+  institucion: Banco de México.
+  alias:
+  - SIE
+  procedencia:
+  - alias: SIE
+    archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
+    linea: 52
+- canonico: SINERHIAS
+  nombre: Subsistema de Información de Equipamiento, Recursos Humanos e Infraestructura
+  institucion: Dirección General de Información en Salud (DGIS), Secretaría de Salud `[verificado]`.
+  alias:
+  - SINERHIAS
+  procedencia:
+  - alias: SINERHIAS
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 48
+- canonico: SISAI 20
+  nombre: Plataforma Nacional de Transparencia
+  institucion: Antes INAI y organismos garantes locales. Ahora la Secretaría Anticorrupción y Buen Gobierno
+    administra, implementa y pone en funcionamiento la PNT, con Transparencia para el Pueblo a cargo de
+    administrarla y supervisarla
+  alias:
+  - SISAI 20
+  procedencia:
+  - alias: SISAI 20
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 441
+- canonico: SISTEMA NACIONAL DE VIGILANCIA
+  nombre: Sistema Nacional de Vigilancia Epidemiológica
+  institucion: Dirección General de Epidemiología (DGE), Secretaría de Salud `[verificado, ya en `inventario_fuentes_salud_mexico.md:62`]`.
+  alias:
+  - SISTEMA NACIONAL DE VIGILANCIA
+  procedencia:
+  - alias: SISTEMA NACIONAL DE VIGILANCIA
+    archivo: inventario_fuentes_clase-fuente-mexico.md
+    linea: 79
+  - alias: SISTEMA NACIONAL DE VIGILANCIA
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 59
+- canonico: SISVEA
+  nombre: Sistema de Vigilancia Epidemiológica de las Adicciones
+  institucion: Dirección General de Epidemiología (DGE) / Dirección de Investigación Epidemiológica (DIE),
+    Secretaría de Salud `[verificado]`. Información complementaria concentrada por CONASAMA `[verificado]`.
+  alias:
+  - SISVEA
+  procedencia:
+  - alias: SISVEA
+    archivo: inventario_fuentes_salud_mexico.md
+    linea: 194
+- canonico: UPMRIP
+  nombre: Boletines estadísticos de la Unidad de Política Migratoria, Registro e Identidad de Personas
+  institucion: UPMRIP, Subsecretaría de Derechos Humanos, Población y Migración, SEGOB. Con base en registros
+    administrativos del Instituto Nacional de Migración generados en puntos de internación, oficinas y
+    estaciones migratorias
+  alias:
+  - UPMRIP
+  procedencia:
+  - alias: UPMRIP
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 163
+- canonico: VABCOEL
+  nombre: Valor Agregado Bruto del Comercio Electrónico
+  institucion: INEGI. Medición de la economía digital; estadística derivada de tipo cuenta satélite.
+  alias:
+  - VABCOEL
+  procedencia:
+  - alias: VABCOEL
+    archivo: inventario-fuentes-tecnologia-digital-mexico.md
+    linea: 199
+- canonico: WVS
+  nombre: World Values Survey
+  institucion: WVS Association, con equipos nacionales; en México se ha coordinado desde instituciones
+    académicas y firmas locales según la ola.
+  alias:
+  - WORLD VALUES SURVEY
+  - WVS
+  procedencia:
+  - alias: WVS
+    archivo: inventario_fuentes_capital_social_mexico.md
+    linea: 178
+  - alias: WORLD VALUES SURVEY
+    archivo: inventario_fuentes_cultura_valores_opinion_mexico.md
+    linea: 204
+  - alias: WVS
+    archivo: inventario_fuentes_tramites_estado_mexico.md
+    linea: 296
+- canonico: ÍNDICES DE INTENSIDAD MIGRATOR
+  nombre: Índices de intensidad migratoria México-Estados Unidos
+  institucion: Secretaría Técnica del CONAPO, SEGOB
+  alias:
+  - ÍNDICES DE INTENSIDAD MIGRATOR
+  procedencia:
+  - alias: ÍNDICES DE INTENSIDAD MIGRATOR
+    archivo: inventario-fuentes-migracion-mexico.md
+    linea: 205
