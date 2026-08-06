@@ -1,20 +1,64 @@
 name: Verificación del corpus
 
+# Endurecido 7/ago/2026 tras tres fallos de CI en la misma ventana de ~30 min
+# (PR #149, #150, #151), ninguno de contenido:
+#   · #151 murió en "Set up job" con Service Unavailable bajando la definición
+#     de la action, antes de ejecutar una línea de código.
+#   · #150 y #149 quedaron atascados y GitHub los auto-canceló a los ~15 min.
+# Verificado el 7/ago sobre los merge refs exactos que GitHub prueba
+# (refs/pull/{139,149,150,151}/merge → 76fc590, d88fdad, 62a3e31, 0b10fd4),
+# en entorno replicado del runner (checkout depth=1, sin data/raw, venv limpio
+# SIN PyYAML, env despojado): los dos pasos dan exit 0 en los cuatro.
+#
+# Dos cambios, y los dos atacan el modo de falla medido, no uno concebible:
+#   1. CERO actions del marketplace. El repo es público: el checkout se hace
+#      con git plano, sin token y sin descargar nada de la CDN que falló.
+#      También sale actions/setup-python: ubuntu-latest ya trae Python 3.12 y
+#      check.py/test_svystat.py son stdlib puro (verificado: nadie importa
+#      yaml; requirements.txt solo lo necesita tests/manifiesto.py, que el CI
+#      no corre — por eso el workflow nunca instaló nada y estaba bien así).
+#   2. timeout-minutes: un job atascado muere en 10 min en vez de colgar 15
+#      y morir auto-cancelado, que es un estado que se lee como rojo.
+
 on:
   push:
     branches: [ main ]
   pull_request:
   workflow_dispatch:
 
+# Un run vivo por PR: los re-lanzamientos cancelan al anterior en vez de
+# apilarse en una cola degradada.
+concurrency:
+  group: verify-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+      - name: Checkout sin marketplace (repo público — cero descargas de action)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://github.com/${{ github.repository }}.git"
+          if [ -n "${{ github.event.pull_request.number }}" ]; then
+            REF="+refs/pull/${{ github.event.pull_request.number }}/merge:refs/remotes/origin/ci"
+          else
+            REF="+${{ github.ref }}:refs/remotes/origin/ci"
+          fi
+          git -c protocol.version=2 fetch -q --depth=1 --no-tags origin "$REF"
+          git checkout -q refs/remotes/origin/ci
+          git log -1 --format="HEAD=%H %s"
+
+      - name: Intérprete del runner (crudo, para que quede en el log)
+        run: python3 -VV
+
       - name: Suite de verificación (modo línea base — verde = no empeoraste)
         run: python3 tests/check.py --baseline
+
       - name: svystat.py — validación independiente (bloqueante)
         run: python3 tests/test_svystat.py
