@@ -1,0 +1,16 @@
+orden	fuente	objetos	accion_minima	impacto	probabilidad	costo	condicion_de_paro	resultado_posible	recomendacion
+1	Auditoría ASF 165-DS Servicios de vacunación ISSSTE 2024	R9.2	abrir PDF y anexos	ALTO	ALTO	BAJO	parar si no hay desglose por unidad, delegación, biológico o campaña	Auditoría independiente de disponibilidad y campaña	A
+2	Encuesta Anual de Competencias Financieras Banxico 2019-2024	R1.5-R1.7; R8.2	abrir manual 2024	ALTO	ALTO	BAJO	parar si no distingue modalidad y consecuencia financiera	Medición directa de crédito, daño y tandas	A
+3	Reporte IFT sobre uso y confianza de Servicios Financieros Digitales	R3.4	abrir cuestionario	ALTO	ALTO	BAJO	parar si confianza/riesgo y fraude/abandono no coexisten por persona	Coeficiente de confianza/riesgo digital	A
+4	Cero Desabasto, datos abiertos de reportes	R9.2	confirmar exportación	ALTO	ALTO	BAJO	parar si no se confirman esquema, denominador, cobertura, campaña y granularidad	Indicador civil independiente; no calcular tasa hasta satisfacer las condiciones	A
+5	Experimento de información electoral 2009	R7.1; R7.6-R7.9	abrir codebook	ALTO	ALTO	BAJO	parar si no hay llave sección-encuesta documentada	Resultado electoral experimental reproducible	A
+6	Mexico Enterprise Surveys, componente panel candidato 2006-2010	R2.1; R2.2; R10.2	verificar llave longitudinal	ALTO	ALTO	MEDIO	parar si no se confirman continuidad de empresas, llave estable y dos observaciones comparables	Panel de empresa con efectos fijos solo si se verifica longitudinalidad	A
+7	Compartamos RCT 2008-2012	crédito; bienestar; sens_estatus	comprobar texto literal del reactivo	ALTO	MEDIO	BAJO	parar si no existe reactivo explícito de estatus	RCT de crédito/bienestar; retirar uso de estatus si no consta	A
+8	Large-Scale Financial Education Program Impact Evaluation 2011-2012	horizonte; adopción financiera	abrir codebook	ALTO	MEDIO	BAJO	parar si no coobserva intervención y conducta financiera	Efecto experimental de educación financiera	A
+9	ISSP Social Networks and Social Resources 2017 México	G5; R8.3	abrir cuestionario	ALTO	ALTO	BAJO	parar si deber/apoyo no coexiste con confianza o conducta	Medición poblacional de redes y apoyo	A
+10	ISSP Family and Changing Gender Roles 2012 México	G5; R5.2	abrir cuestionario	ALTO	ALTO	BAJO	parar si solo mide roles generales sin cuidado o conducta	Medición actitudinal de obligación familiar	A
+11	CSES Module 5 México 2018	R7.1; R7.3; R7.6-R7.9	abrir codebook	ALTO	ALTO	BAJO	parar si reactivos y voto no están en la misma observación	Condicionales electorales individuales	A
+12	Mass Mobilization Protest Data, México	R7.4; R7.5	confirmar granularidad	ALTO	MEDIO	BAJO	parar si el archivo México no conserva evento, actor y geografía	Contraste histórico de protesta	A
+13	Votar entre Balas	R7.5; reglas electorales	verificar encabezados	ALTO	ALTO	BAJO	parar si no hay municipio, fecha y actor político	Enlace municipio por elección con violencia político-criminal	A
+14	ENCOAP 2023/2025	G1; G5; R8.3	abrir cuestionario	ALTO	ALTO	BAJO	parar si confianza, servicios y participación no coexisten	Condicionales institucionales en la misma muestra	A
+15	Early Childhood Education Program Impact Evaluation 2012-2014	R5.2; cuidado	abrir codebook	MEDIO	MEDIO	BAJO	parar si no hay outcomes de cuidado o empoderamiento pertinentes	Efecto experimental de programa/cuidado	A
