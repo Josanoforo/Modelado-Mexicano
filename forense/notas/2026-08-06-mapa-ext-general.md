@@ -47,7 +47,7 @@ internacionales (OCDE, Banco Mundial, WVS, UCDP, GDELT) y restringidas
 
 ## Candidatos materiales
 
-La tabla completa vive en `data/mapa-fuentes-externas-2026-08-06.tsv`. Los
+La tabla completa vive en `data/mapa-ext-general-2026-08-06.tsv`. Los
 hallazgos principales son:
 
 1. **Banxico Competencias Financieras 2019-2024.** Fuente omitida del catálogo
