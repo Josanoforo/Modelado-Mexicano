@@ -1,0 +1,67 @@
+{
+  "archivos": {
+    "aliases-fuentes.tsv": {
+      "filas": 4,
+      "sha256": "4ea5cf366440968b94ac0ef8a25b22c7e9a503643808068be55cc17be7aabd3b"
+    },
+    "artefactos-rechazados.tsv": {
+      "filas": 111,
+      "sha256": "5e748a78083cdb1218ce20ad3102df5403e38f21688865d53429c9e9c45927a1"
+    },
+    "decisiones-humanas.tsv": {
+      "filas": 2,
+      "sha256": "cbc14f00f94d8958e67a7ce952d955cc16ea4672f2eb3521d1bd7a3daddef765"
+    },
+    "evidencias.tsv": {
+      "filas": 200,
+      "sha256": "89a76cebffd8124fe2b5aaae2fd6410b8e595bad1335c1727d049b9fa2ad9cdb"
+    },
+    "fusiones-relaciones.tsv": {
+      "filas": 1,
+      "sha256": "d7ab67a8a20b4f27e825a025a4ffc6326f001508f72b6a0a273b79f30cd5a7b3"
+    },
+    "relaciones.tsv": {
+      "filas": 199,
+      "sha256": "741161dee36da3f0f0507b0c25a4f30f608a0bc4d83d1f26205b5c4f0e1cd764"
+    },
+    "utilidad-modelo.tsv": {
+      "filas": 199,
+      "sha256": "31066d4e782ad55d2ccf6fd0f28a3d79e45db6d674feb40cbd65590ec4b6feae"
+    }
+  },
+  "baseline_version": "1.0.0",
+  "clave_relacion": [
+    "necesidad_id",
+    "fuente_canonica_normalizada",
+    "objeto_evidencia_id_canonico"
+  ],
+  "conteos": {
+    "artefactos_rechazados": 111,
+    "candidatas": 147,
+    "confirmadas": 3,
+    "decisiones_pendientes": 2,
+    "familias_alias": 4,
+    "fusiones_declaradas": 1,
+    "negativas": 42,
+    "no_accesibles": 7,
+    "procedencias_aceptadas": 200,
+    "relaciones_activas": 199
+  },
+  "delimiter": "TAB",
+  "encoding": "UTF-8",
+  "invariantes": [
+    "Toda relación activa tiene al menos una procedencia aceptada.",
+    "Ninguna procedencia aceptada queda huérfana.",
+    "Las adjudicaciones negativas se preservan.",
+    "La diferencia entre procedencias y relaciones se explica únicamente por fusiones declaradas.",
+    "Normalizar una fuente no propaga estados ni fusiona objetos de evidencia distintos.",
+    "La cola de candidatas se deriva y no constituye una segunda fuente de verdad.",
+    "Una relación confirmada no equivale automáticamente a un parámetro listo."
+  ],
+  "procedencia": {
+    "criterio": "No queremos versionar 200 filas de historia de ejecución; sí queremos versionar toda la procedencia vigente necesaria para justificar el baseline aceptado.",
+    "manifest_origen_sha256": "e72c174075ae1bbf6535723aea0fbaf19c1938a55f470de275f4fbf7d36e1d24",
+    "origen": "baseline semántico aceptado por la integración final"
+  },
+  "schema_version": "1.0.0"
+}
