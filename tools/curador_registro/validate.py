@@ -190,7 +190,7 @@ def validate_semantic_execution(
     schemas: dict[str, dict[str, Any]] = {}
     for name in (
         "inspector-contract.schema.json", "neutral-report.schema.json",
-        "curator-input.schema.json", "semantic-proposal.schema.json",
+        "curator-input.schema.json", "semantic-run-proposal.schema.json",
         "semantic-supervision.schema.json",
     ):
         path = execution_root / "schemas" / name
@@ -340,8 +340,8 @@ def validate_semantic_execution(
         if integration_row.get("expediente_integrable") != "NO" or integration_row.get("modifica_baseline") != "NO":
             errors.append(f"EJECUCION_SEMANTICA_DESTINO_INTEGRACION_INVALIDO:{rid}")
 
-    if "semantic-proposal.schema.json" in schemas:
-        validator = Draft202012Validator(schemas["semantic-proposal.schema.json"])
+    if "semantic-run-proposal.schema.json" in schemas:
+        validator = Draft202012Validator(schemas["semantic-run-proposal.schema.json"])
         for row in proposals:
             if list(validator.iter_errors(row)):
                 errors.append(f"EJECUCION_SEMANTICA_PROPUESTA_SCHEMA_INVALIDO:{row.get('relacion_id', '')}")

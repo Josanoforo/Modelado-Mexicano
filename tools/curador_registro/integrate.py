@@ -22,7 +22,7 @@ except ImportError:
 
 
 ALLOWED_ADJUDICATIONS = {"CONFIRMADA", "NEGATIVA", "CANDIDATA", "CONFLICTO_MATERIAL"}
-PROPOSAL_SCHEMA = "semantic-proposal.schema.json"
+PROPOSAL_SCHEMA = "adjudication-proposal.schema.json"
 REPORT_SCHEMA = "inspection-report.schema.json"
 TASK_SCHEMA = "inspector-task.schema.json"
 CURATOR_TASK_SCHEMA = "semantic-curator-task.schema.json"

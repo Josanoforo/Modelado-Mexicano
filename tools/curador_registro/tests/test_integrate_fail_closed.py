@@ -197,7 +197,7 @@ class FailClosedDossierTests(unittest.TestCase):
             for name in ["snapshot-t0.json", "universo-declarado-t0.tsv", "excepciones-cegamiento.tsv"]:
                 shutil.copy2(UNIVERSE / name, universe / name)
             for name in [
-                "semantic-proposal.schema.json", "inspection-report.schema.json",
+                "adjudication-proposal.schema.json", "inspection-report.schema.json",
                 "inspector-task.schema.json", "semantic-curator-task.schema.json",
             ]:
                 shutil.copy2(REPO / "tools" / "curador_registro" / "schemas" / name, schemas / name)
