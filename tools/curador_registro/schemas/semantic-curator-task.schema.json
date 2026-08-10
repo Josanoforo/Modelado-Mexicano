@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "tarea_curacion_id", "run_id", "snapshot_t0_sha256",
+    "baseline_sha256", "asignaciones", "criterio_parada"
+  ],
+  "properties": {
+    "tarea_curacion_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "snapshot_t0_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "baseline_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "criterio_parada": {"type": "string", "minLength": 1},
+    "asignaciones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["relacion_id", "reporte_inspeccion_ref", "activo_id"],
+        "properties": {
+          "relacion_id": {"type": "string", "minLength": 1},
+          "reporte_inspeccion_ref": {"type": "string", "minLength": 1},
+          "activo_id": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

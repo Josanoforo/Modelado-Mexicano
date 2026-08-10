@@ -1,0 +1,56 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "codificacion": {
+    "P7_12_7": [
+      {
+        "codigo": "1",
+        "etiqueta": "De acuerdo (Sí)"
+      },
+      {
+        "codigo": "2",
+        "etiqueta": "Desacuerdo (No)"
+      },
+      {
+        "codigo": "8",
+        "etiqueta": "No responde"
+      },
+      {
+        "codigo": "9",
+        "etiqueta": "No sabe"
+      }
+    ]
+  },
+  "criterio_parada": "NO_DETERMINADO y no calcular mientras población, tabla y ponderador no estén fijados por autoridad superior",
+  "direccion": "NO_APLICA_DISTRIBUCION",
+  "diseno_muestral": {
+    "conglomerado": "UPM_DIS",
+    "estrato": "EST_DIS",
+    "reserva": "El mnemónico aparece en tres tablas/poblaciones con FAC_CUI, FAC_UNI y FAC_ELE; la especificación superior no elige universo",
+    "tipo": "probabilístico, estratificado, unietápico y por conglomerados"
+  },
+  "dominio": "NO_DETERMINADO",
+  "edicion": "2022",
+  "especificacion_id": "ESP-OPACA-B-d13ec4fe",
+  "estimando": "distribucion_descriptiva_completa_del_reactivo",
+  "evidencia_neutral_ref": "data/curacion-registro/expedientes-produccion/evidencia-neutral-produccion.json",
+  "evidencia_ref": "data/curacion-registro/expedientes-produccion/evidencia-neutral-produccion.json#ENASIC_2022;RINS-53a431507d08139af2aab80f",
+  "faltantes": "Conservar 8=No responde y 9=No sabe; no dicotomizar",
+  "hash_evidencia_neutral": "94427f99647c16f459615f957fcd59ffb0f09340b1d1cd46815e3ae5b58a48c1",
+  "hash_microdato": "8a5e8c5ed2dcda6e25dfe2dd630c0ac7273e0736e7b99662a15a4ef68c3ab36e",
+  "incertidumbre": "NO_DETERMINADO hasta fijar población, tabla y ponderador",
+  "input_member": "NO_DETERMINADO",
+  "input_path": "/home/pc0/mm-corpus/raw/enasic2022/enasic_2022_bd_csv.zip",
+  "periodo_levantamiento": "NO_DETERMINADO",
+  "periodo_referencia_por_variable": {
+    "P7_12_7": "NO_DETERMINADO"
+  },
+  "poblacion": "NO_DETERMINADO",
+  "ponderador": "NO_DETERMINADO",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "tipo_inferencia": "DESCRIPTIVA_CON_DISENO",
+  "transformacion": "NINGUNA",
+  "unidad_observacion": "NO_DETERMINADO",
+  "variables": [
+    "P7_12_7"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "rules": [
+    {
+      "rule_id": "RW-01-DECISION",
+      "when": {"utilidad_requiere_decision": "SI"},
+      "tipo_trabajo": "DECISION_HUMANA",
+      "siguiente_accion": "Resolver la decisión vinculada {utilidad_decision_id} sin alterar el reporte neutral.",
+      "input_requerido": "Expediente de decisión {utilidad_decision_id} y procedencia exacta de {relacion_id}.",
+      "criterio_cierre": "Decisión humana explícita registrada o bloqueo conservado.",
+      "prioridad_operativa": "P1_DECISION_MATERIAL",
+      "reserva": "Nivel 1 no conoce ni decide esta clasificación."
+    },
+    {
+      "rule_id": "RW-02-CONFLICTO",
+      "when": {"conflicto_material": "SI"},
+      "tipo_trabajo": "ESCALAMIENTO_SEMANTICO",
+      "siguiente_accion": "Arbitrar constructo, unidad, dirección, escala o denominador de {relacion_id} conservando todos los reportes.",
+      "input_requerido": "Reportes completos y evidencias con localizadores de {relacion_id}.",
+      "criterio_cierre": "Arbitraje explícito o conflicto material conservado.",
+      "prioridad_operativa": "P1_CONFLICTO_MATERIAL",
+      "reserva": "No usar consenso de agentes como evidencia."
+    },
+    {
+      "rule_id": "RW-03-ABIERTO",
+      "when": {"estado_evidencia": ["ABIERTO_SIN_MAPEO", "MAPEADO_PARCIAL"]},
+      "tipo_trabajo": "ANALISIS_MEDICION",
+      "siguiente_accion": "Definir especificación completa antes de calcular sobre la evidencia abierta de {relacion_id}.",
+      "input_requerido": "Población, unidad, variables, codificación, faltantes, ponderación, diseño, transformación e incertidumbre.",
+      "criterio_cierre": "Resultado reproducible o NO_DETERMINADO por campo material faltante.",
+      "prioridad_operativa": "P2_ADQUIRIDO_ABIERTO",
+      "reserva": "No redefinir el estimando para producir resultado."
+    },
+    {
+      "rule_id": "RW-04-DESCARGADO",
+      "when": {"estado_evidencia": "DESCARGADO_NO_ABIERTO"},
+      "tipo_trabajo": "APERTURA_EXTRACCION",
+      "siguiente_accion": "Abrir el activo exacto vinculado a {relacion_id}, extraer estructura y registrar frontera.",
+      "input_requerido": "activo_id, hash, ruta autorizada y contrato cegado.",
+      "criterio_cierre": "Reporte neutral con objeto abierto, estructura y no inspeccionado explícito.",
+      "prioridad_operativa": "P1_ADQUIRIDO_NO_ABIERTO",
+      "reserva": "La apertura no adjudica la relación."
+    },
+    {
+      "rule_id": "RW-05-INDEXADO",
+      "when": {"estado_evidencia": "INDEXADO_NO_DESCARGADO"},
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA",
+      "siguiente_accion": "Verificar el localizador exacto ya declarado de {relacion_id} con máximo dos intentos y sin discovery panorámico.",
+      "input_requerido": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "criterio_cierre": "EVIDENCIA_LOCALIZADA, NO_ACCESIBLE, NO_DETERMINADO o SIN_RUTA_VIABLE_ACTUAL tras máximo dos intentos.",
+      "prioridad_operativa": "P3_INDEXADO",
+      "reserva": "No descargar sin decisión supervisora de adquisición."
+    },
+    {
+      "rule_id": "RW-06-DEFAULT",
+      "when": {},
+      "tipo_trabajo": "CURADURIA_FUENTE",
+      "siguiente_accion": "Contrastar procedencia estructurada de {relacion_id} con sus objetos de modelo permitidos y emitir propuesta o reserva.",
+      "input_requerido": "Evidencia previa exacta, mapeo necesidad→objeto y reportes neutrales disponibles.",
+      "criterio_cierre": "Propuesta semántica trazable o NO_DETERMINADO con supuesto faltante concreto.",
+      "prioridad_operativa": "P4_CURADURIA",
+      "reserva": "No propagar estado por fuente ni por necesidad."
+    }
+  ]
+}

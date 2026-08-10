@@ -1,0 +1,102 @@
+{
+  "baseline": {
+    "conteos": {
+      "artefactos_rechazados": 111,
+      "candidatas": 147,
+      "confirmadas": 3,
+      "decisiones_pendientes": 2,
+      "familias_alias": 4,
+      "fusiones_declaradas": 1,
+      "negativas": 42,
+      "no_accesibles": 7,
+      "procedencias_aceptadas": 200,
+      "relaciones_activas": 199
+    },
+    "errores": [],
+    "ok": true
+  },
+  "coberturas": {
+    "COBERTURA_ADQUIRIDA": {
+      "denominador": "NO_DETERMINADO",
+      "estado": "NO_DETERMINADO",
+      "numerador": 509
+    },
+    "COBERTURA_BOOTSTRAP_RUTEO": {
+      "denominador": 199,
+      "numerador": 199
+    },
+    "COBERTURA_DECLARADA": {
+      "denominador": "NO_DETERMINADO",
+      "estado": "NO_DETERMINADO",
+      "numerador": 36026,
+      "reserva": "No existe identidad puntual defendible para todos los componentes declarados conservadores."
+    },
+    "COBERTURA_INSPECCIONADA": {
+      "denominador": 509,
+      "numerador": 509
+    },
+    "COBERTURA_SEMANTICA_EJECUTADA_COLA": {
+      "denominador": 147,
+      "numerador": 147
+    },
+    "COMPONENTES_DECLARADOS_CONSERVADORES_CONTABILIZADOS": {
+      "denominador": 36026,
+      "numerador": 36026,
+      "rotulo_denominador": "COTA_SUPERIOR_NO_RECONCILIADA"
+    },
+    "RELACIONES_CON_CALCULO_DESCRIPTIVO": {
+      "denominador": 3,
+      "numerador": 2
+    },
+    "RELACIONES_LISTAS_PARA_USO_MODELO": {
+      "denominador": 3,
+      "numerador": 1
+    }
+  },
+  "diagnosticos": {
+    "activos_descubiertos_despues_t0": 2,
+    "adjudicacion_legacy": {
+      "CANDIDATA": 147,
+      "CONFIRMADA": 3,
+      "NEGATIVA": 42,
+      "NO_ACCESIBLE": 7
+    },
+    "afirmaciones_observadas": {
+      "HECHO_OBSERVADO": 509,
+      "NO_DETERMINADO": 509,
+      "NO_INSPECCIONADO": 509
+    },
+    "calculos_reproducibles": 10,
+    "clasificacion_trabajo": {
+      "ANALISIS_MEDICION": 2,
+      "BUSQUEDA_DIRIGIDA": 81,
+      "CURADURIA_FUENTE": 64
+    },
+    "estados_semanticos_recalculados_independientemente": {
+      "BLOQUEADA_INPUT_FALTANTE": 2,
+      "EJECUTADA_CON_RESULTADO": 55,
+      "FUENTE_ABIERTA_SIN_OBJETO_REQUERIDO": 73,
+      "NO_ALCANZO_TRAS_INTENTOS": 10,
+      "REQUIERE_DECISION_HUMANA": 7
+    },
+    "excepciones_cegamiento": 0,
+    "excepciones_inspeccion": 0,
+    "filas_produccion_reproducidas_independientemente": 11,
+    "hallazgos_semanticos_potenciales": 0,
+    "objetos_no_representados": 0,
+    "producciones_no_determinadas": 1,
+    "terminales_semanticos_sin_expediente_integrable": 147
+  },
+  "errores": [],
+  "metrica_historica": {
+    "definicion_anterior": "NO_DETERMINADO",
+    "denominador_anterior": "NO_DETERMINADO",
+    "metrica_actual_comparable": "NO_COMPARABLE_DIRECTAMENTE",
+    "metrica_anterior": "~0.9%",
+    "numerador_anterior": "NO_DETERMINADO",
+    "reserva": "No existe una definición local exacta verificable de unidad, join y denominador para reproducirla."
+  },
+  "ok": true,
+  "reservas": [],
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b"
+}

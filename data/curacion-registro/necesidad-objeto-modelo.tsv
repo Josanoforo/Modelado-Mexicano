@@ -1,0 +1,38 @@
+necesidad_id	objeto_modelo_origen	fuentes_verificacion	reserva
+N1	G1.confianza_institucional	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	NINGUNA
+N2	G1.radio_confianza	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	NINGUNA
+N3	G2.sens_estatus	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	ADR-54 permanece cerrada
+N4	G2.aversion_riesgo	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	ADR-52 permanece cerrada
+N5	G3.horizonte_temporal	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	NINGUNA
+N6	G3.aversion_riesgo	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	ADR-52 permanece cerrada
+N7	G3.familismo_apoyo	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	NINGUNA
+N8	G4.exposicion_violencia	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	NINGUNA
+N9	G4.confianza_institucional	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	NINGUNA
+N10	G4.horizonte_temporal	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	NINGUNA
+N11	G4.sens_estatus	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	ADR-54 permanece cerrada
+N12	G5.familismo_apoyo	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	NINGUNA
+N13	G5.familismo_obligacion	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	NINGUNA
+N14	G5.radio_confianza	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	NINGUNA
+N15	G6.deferencia	forense/censo-estimabilidad-coeficientes-v1_0.md;milpa/procedencia.yaml	NINGUNA
+N16	tramite.mordida.discrecional	forense/notas/2026-08-08-barrido1.md;milpa/tramite.yaml;milpa/procedencia.yaml	Dos objetos explícitos bajo una necesidad
+N16	tramite.mordida.con_registro	forense/notas/2026-08-08-barrido1.md;milpa/tramite.yaml;milpa/procedencia.yaml	Dos objetos explícitos bajo una necesidad
+N17	tramite.gobierno_digital.coercitivo	forense/notas/2026-08-08-barrido1.md;milpa/tramite.yaml;milpa/procedencia.yaml;forense/hitoD-preregistro-v2_0.md	Dos objetos explícitos bajo una necesidad
+N17	tramite.gobierno_digital.util_sin_coercion	forense/notas/2026-08-08-barrido1.md;milpa/tramite.yaml;milpa/procedencia.yaml;forense/hitoD-preregistro-v2_0.md	Dos objetos explícitos bajo una necesidad
+N18	tramite.evasion_norma	forense/notas/2026-08-08-barrido1.md;milpa/tramite.yaml;milpa/procedencia.yaml	NINGUNA
+N19	dinero.ahorro.con_puente_y_respaldo	forense/notas/2026-08-08-barrido1.md;milpa/procedencia.yaml	Dos objetos explícitos bajo una necesidad
+N19	dinero.credito.scoring_alternativo	forense/notas/2026-08-08-barrido1.md;milpa/procedencia.yaml	Dos objetos explícitos bajo una necesidad
+N20	civico.denuncia.con_seguro	forense/notas/2026-08-08-barrido1.md;milpa/procedencia.yaml	NINGUNA
+N21	R1.4	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	NINGUNA
+N22	R2.1	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	NINGUNA
+N23	R2.2	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	NINGUNA
+N24	R3.4	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	NINGUNA
+N25	R7.1	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	NINGUNA
+N26	R7.3	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	NINGUNA
+N27	R7.4	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	Dos objetos explícitos bajo una necesidad
+N27	R7.5	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	Dos objetos explícitos bajo una necesidad
+N28	R8.1	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	NINGUNA
+N29	R8.2	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	NINGUNA
+N30	R8.3	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	NINGUNA
+N31	R10.1	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	NINGUNA
+N32	R10.2	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	NINGUNA
+N33	R10.3	forense/notas/2026-08-08-barrido1.md;forense/hitoD-preregistro-v2_0.md	Riesgo ético: solo dato secundario

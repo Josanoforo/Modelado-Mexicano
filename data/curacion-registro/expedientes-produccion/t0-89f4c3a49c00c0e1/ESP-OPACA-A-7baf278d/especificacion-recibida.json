@@ -1,0 +1,68 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "codificacion": {
+    "PB2_1": [
+      {
+        "codigo": "1",
+        "etiqueta": "Sí"
+      },
+      {
+        "codigo": "2",
+        "etiqueta": "No"
+      },
+      {
+        "codigo": "3",
+        "etiqueta": "No tiene familia"
+      }
+    ],
+    "PB2_2": [
+      {
+        "codigo": "1",
+        "etiqueta": "Sí"
+      },
+      {
+        "codigo": "2",
+        "etiqueta": "No"
+      },
+      {
+        "codigo": "3",
+        "etiqueta": "No tiene familia"
+      }
+    ]
+  },
+  "criterio_parada": "No calcular si faltan población, unidad, códigos, ponderador, estrato, conglomerado o si aparece código inesperado",
+  "direccion": "NO_APLICA_DISTRIBUCION",
+  "diseno_muestral": {
+    "conglomerado": "UPM_DIS",
+    "estrato": "EST_DIS",
+    "tipo": "probabilístico, estratificado, trietápico y por conglomerados",
+    "unidad_ultima": "persona de 18 años o más"
+  },
+  "dominio": "Nacional",
+  "edicion": "2021",
+  "especificacion_id": "ESP-OPACA-A-7baf278d",
+  "estimando": "distribucion_descriptiva_completa_por_reactivo_separado",
+  "evidencia_neutral_ref": "data/curacion-registro/expedientes-produccion/evidencia-neutral-produccion.json",
+  "evidencia_ref": "data/curacion-registro/expedientes-produccion/evidencia-neutral-produccion.json#ENBIARE_2021;RINS-f8b69223da037aa03c6b30bf;https://www.inegi.org.mx/rnm/index.php/catalog/730;https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463903628.pdf",
+  "faltantes": "Conservar blancos y cualquier código no declarado; código inesperado detiene cálculo",
+  "hash_evidencia_neutral": "94427f99647c16f459615f957fcd59ffb0f09340b1d1cd46815e3ae5b58a48c1",
+  "hash_microdato": "afe9013a4cc26538dfe81da686f0d09e756a7d0e2fc407cd22f596fd53c0f354",
+  "incertidumbre": "Taylor linealizado con estratos EST_DIS y conglomerados UPM_DIS; intervalo normal 95%",
+  "input_member": "TENBIARE.csv",
+  "input_path": "/home/pc0/mm-corpus/raw/enbiare2021/enbiare_2021_base_de_datos_csv.zip",
+  "periodo_levantamiento": "2021-06-03/2021-07-23",
+  "periodo_referencia_por_variable": {
+    "PB2_1": "momento de la entrevista (reactivo sin ventana retrospectiva explícita)",
+    "PB2_2": "momento de la entrevista (reactivo sin ventana retrospectiva explícita)"
+  },
+  "poblacion": "Población de 18 o más años, alfabeta y hablante de lengua española",
+  "ponderador": "FAC_ELE",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "tipo_inferencia": "DESCRIPTIVA_CON_DISENO",
+  "transformacion": "NINGUNA",
+  "unidad_observacion": "persona adulta elegida; última unidad de selección",
+  "variables": [
+    "PB2_1",
+    "PB2_2"
+  ]
+}

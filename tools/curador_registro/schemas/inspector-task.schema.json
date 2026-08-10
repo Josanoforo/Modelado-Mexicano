@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["tarea_observacion_id", "run_id", "snapshot_t0_sha256", "activo_id", "objeto_logico_id", "rutas_localizadores", "grado_inspeccion", "criterio_parada"],
+  "properties": {
+    "tarea_observacion_id": {"type": "string"},
+    "run_id": {"type": "string"},
+    "snapshot_t0_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "activo_id": {"type": "string"},
+    "objeto_logico_id": {"type": "string"},
+    "familia_logica_id": {"type": "string"},
+    "rutas_localizadores": {"type": "array", "items": {"type": "string"}},
+    "grado_inspeccion": {"type": "string"},
+    "criterio_parada": {"type": "string"},
+    "necesidad_id": false,
+    "relacion_id": false,
+    "adjudicacion_vigente": false,
+    "constructo_esperado": false,
+    "objeto_modelo_origen": false,
+    "decision_humana_pendiente": false,
+    "hipotesis": false,
+    "interpretacion_deseada": false,
+    "resultado_favorable": false,
+    "signo_esperado": false
+  }
+}

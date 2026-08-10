@@ -1,0 +1,10 @@
+{
+  "condiciones": {
+    "INSPECCIONADA_POR_PRIMERA_VEZ_EN_CORRECCION": 19,
+    "REUTILIZADA_PRE_T0_CORREGIDO": 490
+  },
+  "identidades_locales_en_ledger": 509,
+  "ledger_sha256": "9cecc05550e35d0ff570a6f083da458702e54de4c6a6065ac77b0b9d6fb8b661",
+  "objetos_recuperados": 19,
+  "regla_idempotencia": "la condición histórica se lee del ledger y se valida contra filas derivadas; nunca se reclasifica por existencia del expediente vigente"
+}
