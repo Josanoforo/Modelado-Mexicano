@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["reporte_id", "tarea_observacion_id", "activo_id", "objeto_logico_id", "afirmacion_tipo", "objeto_inspeccionado", "universo_inspeccionado", "metodo", "valor_o_descripcion", "evidencia_ref", "localizador", "limitacion", "bloqueo", "siguiente_objeto_no_inspeccionado"],
+  "properties": {
+    "afirmacion_tipo": {"enum": ["HECHO_OBSERVADO", "NO_OBSERVADO_EN_UNIVERSO_INSPECCIONADO", "NO_DETERMINADO", "NO_INSPECCIONADO", "NO_ACCESIBLE", "CALCULO_REPRODUCIBLE", "INFERENCIA_PROPUESTA"]},
+    "adjudicacion_semantica": false,
+    "clasificacion_relacion": false
+  }
+}

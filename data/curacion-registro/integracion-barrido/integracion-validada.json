@@ -1,0 +1,83 @@
+{
+  "aceptadas_sin_cambio_estado": 0,
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "cambios_adjudicacion_integrados": 0,
+  "contratos": {
+    "inspection-report.schema.json": {
+      "ruta": "tools/curador_registro/schemas/inspection-report.schema.json",
+      "sha256": "63d70985de99dfae24501aa7869e5884a5d6d9ffb16bcdf4f820bdecc2af87ec"
+    },
+    "inspector-task.schema.json": {
+      "ruta": "tools/curador_registro/schemas/inspector-task.schema.json",
+      "sha256": "4c71fd240447631cc3e9648d1fbea2a216ea20733ca44c727e5c6967cbdcb43a"
+    },
+    "semantic-curator-task.schema.json": {
+      "ruta": "tools/curador_registro/schemas/semantic-curator-task.schema.json",
+      "sha256": "d2277a8d99e11e8331b8acbb5bf7f811fee427b02cea0a385805135f852b0007"
+    },
+    "semantic-proposal.schema.json": {
+      "ruta": "tools/curador_registro/schemas/semantic-proposal.schema.json",
+      "sha256": "e3d1e91dc0b79bd5483d995a52d3824f3d972a5c6e1c551437bce8b21ee83b60"
+    }
+  },
+  "errores_expediente": [],
+  "expediente_completo": true,
+  "expediente_integracion_sha256": "fe0d9f52f25f2b84528a468ab2c02cfb32cc1a17c184a8c0e4a1a47cf777387b",
+  "expediente_semantico_ref": "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-354ccb9dc1023a0bd420d48f/expediente-integracion.tsv",
+  "expediente_semantico_sha256": "82942dade6fcab17fe20212ab0c00bbf860b90b696aa6b261147b6fd20df4244",
+  "hashes_copia_candidata": {
+    "aliases-fuentes.tsv": "4ea5cf366440968b94ac0ef8a25b22c7e9a503643808068be55cc17be7aabd3b",
+    "artefactos-rechazados.tsv": "5e748a78083cdb1218ce20ad3102df5403e38f21688865d53429c9e9c45927a1",
+    "baseline.json": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+    "decisiones-humanas.tsv": "cbc14f00f94d8958e67a7ce952d955cc16ea4672f2eb3521d1bd7a3daddef765",
+    "evidencias.tsv": "89a76cebffd8124fe2b5aaae2fd6410b8e595bad1335c1727d049b9fa2ad9cdb",
+    "fusiones-relaciones.tsv": "d7ab67a8a20b4f27e825a025a4ffc6326f001508f72b6a0a273b79f30cd5a7b3",
+    "relaciones.tsv": "741161dee36da3f0f0507b0c25a4f30f608a0bc4d83d1f26205b5c4f0e1cd764",
+    "utilidad-modelo.tsv": "31066d4e782ad55d2ccf6fd0f28a3d79e45db6d674feb40cbd65590ec4b6feae"
+  },
+  "ok": true,
+  "propuestas": 0,
+  "rechazadas": 0,
+  "semantic_run_id": "SEMRUN-354ccb9dc1023a0bd420d48f",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "validacion_baseline_original_intacto": {
+    "diferencias": [],
+    "hashes_antes": {
+      "aliases-fuentes.tsv": "4ea5cf366440968b94ac0ef8a25b22c7e9a503643808068be55cc17be7aabd3b",
+      "artefactos-rechazados.tsv": "5e748a78083cdb1218ce20ad3102df5403e38f21688865d53429c9e9c45927a1",
+      "baseline.json": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+      "decisiones-humanas.tsv": "cbc14f00f94d8958e67a7ce952d955cc16ea4672f2eb3521d1bd7a3daddef765",
+      "evidencias.tsv": "89a76cebffd8124fe2b5aaae2fd6410b8e595bad1335c1727d049b9fa2ad9cdb",
+      "fusiones-relaciones.tsv": "d7ab67a8a20b4f27e825a025a4ffc6326f001508f72b6a0a273b79f30cd5a7b3",
+      "relaciones.tsv": "741161dee36da3f0f0507b0c25a4f30f608a0bc4d83d1f26205b5c4f0e1cd764",
+      "utilidad-modelo.tsv": "31066d4e782ad55d2ccf6fd0f28a3d79e45db6d674feb40cbd65590ec4b6feae"
+    },
+    "hashes_despues": {
+      "aliases-fuentes.tsv": "4ea5cf366440968b94ac0ef8a25b22c7e9a503643808068be55cc17be7aabd3b",
+      "artefactos-rechazados.tsv": "5e748a78083cdb1218ce20ad3102df5403e38f21688865d53429c9e9c45927a1",
+      "baseline.json": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+      "decisiones-humanas.tsv": "cbc14f00f94d8958e67a7ce952d955cc16ea4672f2eb3521d1bd7a3daddef765",
+      "evidencias.tsv": "89a76cebffd8124fe2b5aaae2fd6410b8e595bad1335c1727d049b9fa2ad9cdb",
+      "fusiones-relaciones.tsv": "d7ab67a8a20b4f27e825a025a4ffc6326f001508f72b6a0a273b79f30cd5a7b3",
+      "relaciones.tsv": "741161dee36da3f0f0507b0c25a4f30f608a0bc4d83d1f26205b5c4f0e1cd764",
+      "utilidad-modelo.tsv": "31066d4e782ad55d2ccf6fd0f28a3d79e45db6d674feb40cbd65590ec4b6feae"
+    },
+    "ok": true
+  },
+  "validacion_copia_completa": {
+    "conteos": {
+      "artefactos_rechazados": 111,
+      "candidatas": 147,
+      "confirmadas": 3,
+      "decisiones_pendientes": 2,
+      "familias_alias": 4,
+      "fusiones_declaradas": 1,
+      "negativas": 42,
+      "no_accesibles": 7,
+      "procedencias_aceptadas": 200,
+      "relaciones_activas": 199
+    },
+    "errores": [],
+    "ok": true
+  }
+}

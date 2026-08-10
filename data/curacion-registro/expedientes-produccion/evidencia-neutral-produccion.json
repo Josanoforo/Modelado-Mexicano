@@ -1,0 +1,74 @@
+{
+  "esquema": "evidencia-neutral-produccion-v1",
+  "fuentes": {
+    "ENASIC_2022": {
+      "ambiguedad_material": {
+        "factores_observados": {
+          "THOG_UNIP.csv": "FAC_UNI",
+          "TPER_ELE.csv": "FAC_ELE",
+          "TPOB_CUI.csv": "FAC_CUI"
+        },
+        "reserva": "El documento metodológico denomina FAC_SEL al factor de la población seleccionada, mientras el CSV y el descriptor usan FAC_ELE. No existe en las fuentes abiertas una regla que elija una de las tres tablas para el uso solicitado.",
+        "tablas_con_P7_12_7": [
+          "THOG_UNIP.csv",
+          "TPER_ELE.csv",
+          "TPOB_CUI.csv"
+        ]
+      },
+      "diseno_observado": "probabilístico, estratificado, unietápico y por conglomerados; método de Conglomerados Últimos y Series de Taylor",
+      "documento_metodologico": {
+        "hash_sha256": "2f51b5aaddf37c1c537141e46185ee3cec11b0aefc896d1fde3505aacabc41e9",
+        "localizadores": "páginas físicas 6, 7 y 12",
+        "ruta": "/home/pc0/mm-corpus/raw/enasic2022/889463927082.pdf"
+      },
+      "microdato": {
+        "hash_sha256": "8a5e8c5ed2dcda6e25dfe2dd630c0ac7273e0736e7b99662a15a4ef68c3ab36e",
+        "ruta": "/home/pc0/mm-corpus/raw/enasic2022/enasic_2022_bd_csv.zip"
+      },
+      "reactivo": {
+        "codificacion": [
+          {"codigo": "1", "etiqueta": "De acuerdo (Sí)"},
+          {"codigo": "2", "etiqueta": "Desacuerdo (No)"},
+          {"codigo": "8", "etiqueta": "No responde"},
+          {"codigo": "9", "etiqueta": "No sabe"}
+        ],
+        "descriptor_hash_sha256": "33c692e05bd7dbafb801a1594a819c7be0e7cf5c25822c66ea458dc9fe9c1370",
+        "descriptor_ruta": "/home/pc0/mm-corpus/raw/enasic2022/enasic_2022_fd.xlsx",
+        "localizadores": "TPOB_CUI!B1423:G1426; THOG_UNIP!B915:G918; TPER_ELE!B713:G716",
+        "texto_literal": "Se debe enseñar a la mujer (al hombre) que su deber es cuidar a los padres, cónyuge, hijas e hijos",
+        "variable": "P7_12_7"
+      }
+    },
+    "ENBIARE_2021": {
+      "codificacion": {
+        "PB1_01_PB1_02": "00 a 10; 0=nada en absoluto; 10=completamente",
+        "PB2_1_PB2_2": "1=Sí; 2=No; 3=No tiene familia",
+        "PF1_1_PF1_6": "1=Sí; 2=No"
+      },
+      "descriptor": {
+        "hash_sha256": "8a79265d8c1f761d9f3043c2d4837a9366679314b97aaebd8d189c6bcbc716a9",
+        "localizadores": "PB1 pp. 12; PB2 p. 13; PF1 p. 23; variables de diseño p. 39",
+        "ruta": "/home/pc0/mm-corpus/raw/enbiare2021/enbiare_2021_fd.pdf"
+      },
+      "diseno": {
+        "conglomerado": "UPM_DIS",
+        "estrato": "EST_DIS",
+        "fuente_oficial": "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463903628.pdf",
+        "ponderador": "FAC_ELE",
+        "tipo": "probabilístico, estratificado, trietápico y por conglomerados"
+      },
+      "microdato": {
+        "hash_sha256": "afe9013a4cc26538dfe81da686f0d09e756a7d0e2fc407cd22f596fd53c0f354",
+        "miembro": "TENBIARE.csv",
+        "ruta": "/home/pc0/mm-corpus/raw/enbiare2021/enbiare_2021_base_de_datos_csv.zip"
+      },
+      "periodos": {
+        "edicion": "2021",
+        "levantamiento": "2021-06-03/2021-07-23",
+        "PF1_1_PF1_6_referencia": "últimos 12 meses"
+      },
+      "poblacion": "Población de 18 o más años, alfabeta y hablante de lengua española",
+      "unidad": "persona adulta elegida; última unidad de selección"
+    }
+  }
+}

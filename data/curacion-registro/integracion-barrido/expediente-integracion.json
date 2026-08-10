@@ -1,0 +1,34 @@
+{
+  "archivos": {
+    "integracion-propuestas.tsv": "d445ca557168928b57f9ae93d8b27fc0ee07314d8e4f800999176b1b3ce7fefa",
+    "procedencias-vinculadas.tsv": "a1fc7a8fce4b5694808e1fea7e6b18f61c2b7598b5fa2c7848dc87967cd3b48a",
+    "propuestas-recibidas.tsv": "de020d244a065484cda90bc6a98cc0c8cfa4acb0965e615fb14828ae71731ea6",
+    "reportes-recibidos.tsv": "f592901719a496653c0c661ec8e1b4a026830a2e607a3135bdd7f168384d753a",
+    "tarea-curador-recibida.json": "cfa92862594889633335b74be970b8e6e6ee271de9124fc29b99deba977c816b",
+    "tareas-inspeccion-recibidas.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contratos": {
+    "inspection-report.schema.json": {
+      "ruta": "tools/curador_registro/schemas/inspection-report.schema.json",
+      "sha256": "63d70985de99dfae24501aa7869e5884a5d6d9ffb16bcdf4f820bdecc2af87ec"
+    },
+    "inspector-task.schema.json": {
+      "ruta": "tools/curador_registro/schemas/inspector-task.schema.json",
+      "sha256": "4c71fd240447631cc3e9648d1fbea2a216ea20733ca44c727e5c6967cbdcb43a"
+    },
+    "semantic-curator-task.schema.json": {
+      "ruta": "tools/curador_registro/schemas/semantic-curator-task.schema.json",
+      "sha256": "d2277a8d99e11e8331b8acbb5bf7f811fee427b02cea0a385805135f852b0007"
+    },
+    "semantic-proposal.schema.json": {
+      "ruta": "tools/curador_registro/schemas/semantic-proposal.schema.json",
+      "sha256": "e3d1e91dc0b79bd5483d995a52d3824f3d972a5c6e1c551437bce8b21ee83b60"
+    }
+  },
+  "expediente_semantico_ref": "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-354ccb9dc1023a0bd420d48f/expediente-integracion.tsv",
+  "expediente_semantico_sha256": "82942dade6fcab17fe20212ab0c00bbf860b90b696aa6b261147b6fd20df4244",
+  "semantic_run_id": "SEMRUN-354ccb9dc1023a0bd420d48f",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "version": 1
+}

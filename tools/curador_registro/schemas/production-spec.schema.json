@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "production-spec.schema.json",
+  "title": "Contrato cegado de producción",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "especificacion_id",
+    "snapshot_t0_sha256",
+    "baseline_sha256",
+    "estimando",
+    "poblacion",
+    "dominio",
+    "unidad_observacion",
+    "variables",
+    "codificacion",
+    "faltantes",
+    "direccion",
+    "ponderador",
+    "diseno_muestral",
+    "transformacion",
+    "incertidumbre",
+    "tipo_inferencia",
+    "criterio_parada",
+    "periodo_referencia_por_variable",
+    "edicion",
+    "periodo_levantamiento",
+    "input_path",
+    "input_member",
+    "hash_microdato",
+    "evidencia_ref",
+    "evidencia_neutral_ref",
+    "hash_evidencia_neutral"
+  ],
+  "properties": {
+    "especificacion_id": {"type": "string", "minLength": 1},
+    "snapshot_t0_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "baseline_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "estimando": {"type": "string", "minLength": 1},
+    "poblacion": {"type": "string", "minLength": 1},
+    "dominio": {"type": "string", "minLength": 1},
+    "unidad_observacion": {"type": "string", "minLength": 1},
+    "variables": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "codificacion": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["codigo", "etiqueta"],
+          "properties": {
+            "codigo": {"type": "string"},
+            "etiqueta": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "faltantes": {"type": "string", "minLength": 1},
+    "direccion": {"type": "string", "minLength": 1},
+    "ponderador": {"type": "string", "minLength": 1},
+    "diseno_muestral": {
+      "type": "object",
+      "required": ["tipo", "estrato", "conglomerado"],
+      "properties": {
+        "tipo": {"type": "string", "minLength": 1},
+        "estrato": {"type": "string", "minLength": 1},
+        "conglomerado": {"type": "string", "minLength": 1}
+      }
+    },
+    "transformacion": {"type": "string", "minLength": 1},
+    "incertidumbre": {"type": "string", "minLength": 1},
+    "tipo_inferencia": {"type": "string", "minLength": 1},
+    "criterio_parada": {"type": "string", "minLength": 1},
+    "periodo_referencia_por_variable": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+    "edicion": {"type": "string", "minLength": 1},
+    "periodo_levantamiento": {"type": "string", "minLength": 1},
+    "input_path": {"type": "string", "minLength": 1},
+    "input_member": {"type": "string", "minLength": 1},
+    "hash_microdato": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "evidencia_ref": {"type": "string", "minLength": 1},
+    "evidencia_neutral_ref": {"type": "string", "minLength": 1},
+    "hash_evidencia_neutral": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "supervisor_link": false,
+    "necesidad_id": false,
+    "relacion_id": false,
+    "objeto_modelo_origen": false,
+    "decision_pendiente": false,
+    "interpretacion_deseada": false,
+    "signo_esperado": false,
+    "resultado_favorable": false
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$id": "semantic-run-task.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "fail_closed": {
+      "const": true
+    },
+    "relaciones_asignadas": {
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    }
+  },
+  "required": [
+    "schema_version",
+    "task_id",
+    "run_id",
+    "snapshot_t0_sha256",
+    "baseline_sha256",
+    "fuente_canonica_normalizada",
+    "familia_logica_id",
+    "relaciones_asignadas",
+    "criterio_cierre",
+    "fail_closed"
+  ],
+  "type": "object"
+}

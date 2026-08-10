@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "propuesta_id", "snapshot_t0_sha256", "baseline_sha256",
+    "reporte_inspeccion_ref", "tarea_observacion_id", "activo_id",
+    "objeto_logico_id", "procedencia_ref", "relacion_id", "accion",
+    "afirmacion_origen_tipo", "tratar_como_hecho",
+    "adjudicacion_propuesta", "evidencia_nueva_material",
+    "cegamiento_roto", "excepcion_cegamiento_ref", "reserva"
+  ],
+  "properties": {
+    "propuesta_id": {"type": "string", "minLength": 1},
+    "snapshot_t0_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "baseline_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "reporte_inspeccion_ref": {"type": "string", "minLength": 1},
+    "tarea_observacion_id": {"type": "string", "minLength": 1},
+    "activo_id": {"type": "string", "minLength": 1},
+    "objeto_logico_id": {"type": "string", "minLength": 1},
+    "procedencia_ref": {"type": "string", "minLength": 1},
+    "relacion_id": {"type": "string", "minLength": 1},
+    "accion": {"enum": ["CONSERVAR_ADJUDICACION", "CAMBIAR_ADJUDICACION", "NO_DETERMINADO", "ESCALAR"]},
+    "afirmacion_origen_tipo": {"type": "string", "minLength": 1},
+    "tratar_como_hecho": {"enum": ["SI", "NO"]},
+    "adjudicacion_propuesta": {"enum": ["CONFIRMADA", "NEGATIVA", "CANDIDATA", "CONFLICTO_MATERIAL"]},
+    "evidencia_nueva_material": {"enum": ["SI", "NO"]},
+    "cegamiento_roto": {"enum": ["SI", "NO"]},
+    "excepcion_cegamiento_ref": {"type": "string", "minLength": 1},
+    "reserva": {"type": "string", "minLength": 1}
+  }
+}

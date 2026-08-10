@@ -100,6 +100,24 @@ def t02_duplicates():
     def norm(n):
         n = unicodedata.normalize("NFKD", n).encode("ascii", "ignore").decode().lower()
         return re.sub(r"[^a-z0-9]", "", n)
+    # Grupos cuyos miembros caen TODOS bajo estos tres prefijos son
+    # nomenclatura por-run/por-expediente que colisiona por diseño del
+    # pipeline de curación semántica del barrido: cada unidad de trabajo
+    # (SEMRUN-*, ESP-OPACA-*, la integración) reusa el mismo puñado de
+    # nombres genéricos (particiones.tsv, hashes.json, resumen.json,
+    # analisis-reproducible.py...). Mismo razonamiento que la excepción de
+    # data/raw arriba: colisión por diseño de nomenclatura, no defecto del
+    # corpus. Es a nivel de GRUPO, no de archivo individual (a diferencia de
+    # data/raw, que se excluye del índice por completo): si un solo miembro
+    # de un grupo cae fuera de estos tres prefijos, el grupo entero se sigue
+    # reportando -- una colisión real que cruce el límite no se tapa.
+    EXCEPTED_PREFIXES = (
+        "data/curacion-registro/ejecucion-semantica/runs/",
+        "data/curacion-registro/expedientes-produccion/",
+        "data/curacion-registro/integracion-barrido/",
+    )
+    def all_excepted(paths):
+        return all(p.startswith(EXCEPTED_PREFIXES) for p in paths)
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
         if ".git" in p or "/tests/" in p or "/data/raw" in p:
@@ -114,10 +132,10 @@ def t02_duplicates():
         by_name[norm(os.path.basename(p))].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():
-        if len(v) > 1:
+        if len(v) > 1 and not all_excepted(v):
             fail("T02", "nombre normalizado colisiona: " + " · ".join(v))
     for k, v in by_hash.items():
-        if len(v) > 1:
+        if len(v) > 1 and not all_excepted(v):
             fail("T02", "contenido idéntico bajo nombres distintos: " + " · ".join(v))
 
 

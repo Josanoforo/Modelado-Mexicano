@@ -1,0 +1,50 @@
+{
+  "conteos": {
+    "candidatos_reconciliacion": 8202,
+    "cobertura_adquisicion_puntual": "NO_DETERMINADO",
+    "componentes_declarados_conservadores": 36026,
+    "contenidos_locales_sha256_unicos": 509,
+    "cota_superior_activos_declarados": 36026,
+    "declaraciones_parseadas": 37526,
+    "denominador_activos_declarados": "NO_DETERMINADO",
+    "discrepancias_hash_local": 3,
+    "duplicados_locales_reales": 1,
+    "hashes_representaciones_locales_verificados": 510,
+    "identidades_locales_verificadas": 509,
+    "inputs": 52,
+    "inputs_con_error": 0,
+    "numerador_adquirido_identidades_locales_verificadas": 509,
+    "representaciones_locales": 510
+  },
+  "core_componentes_sha256": {
+    "activos": "21807b1f6f0442de3fe4a8d38c9a4eb65f51fa7fb673e298993c634831df30cd",
+    "candidatos_reconciliacion": "2c366cb7140e4c13e6ab33b929013c96efc83bb2b35ce6440d81c3c5f4265a5d",
+    "declaraciones": "dda471b96afadf048fcdcd059abd1496985c76ca3d0547e002db16e3cb3a1217",
+    "familias": "b3dbf5483abadde6f7853fec8c309a51103154a4177ac467bb69859d8949abbb",
+    "inputs": "50ec2028b34d38b730773732b850ab9159140b57a311fcbb7e959ca4f10072d4"
+  },
+  "corpus_root": "/home/pc0/mm-corpus/raw",
+  "effort_efectivo": "NO_OBSERVABLE",
+  "hashes_outputs": {
+    "candidatos-reconciliacion-activos.tsv": "5fff0201f06384c4046ea2e2b60d19dfe3c53b38e93a735b68330f6347994e31",
+    "declaraciones-activos-t0.tsv": "04a8fe6c6e35b250561f240bc5e8573b1ff0f3ea1d3f3594029dca1fb639e3a6",
+    "discrepancias-hash-local.tsv": "848c9b645bbfd9669965f67e01bfb92e61ee8cd228b525dea1285804188f87cc",
+    "familias-activos.tsv": "2c339e78556733aa6171836999f699f6b467b85f034b6a4641310d750c83ad81",
+    "fuentes-t0.tsv": "f11590f13e555ee22c0ca01ae33f9d04018397f837b13b1f227c31234d354dec",
+    "universo-declarado-t0.tsv": "532d4968eb2a5998c45a63cfff52a77ac3adb7d2ae086fecff9af05555a833df"
+  },
+  "modelo_efectivo": "NO_OBSERVABLE",
+  "rotulacion_denominadores": {
+    "cobertura_adquisicion_puntual": "NO_DETERMINADO: el numerador local verificado no se divide entre la cota superior",
+    "componentes_declarados_conservadores": "componentes tras aplicar solo joins estructurales; conservan por separado declaraciones cuya identidad no pudo verificarse",
+    "contenidos_locales_sha256_unicos": "valores SHA-256 distintos observados en las representaciones locales",
+    "cota_superior_activos_declarados": "máximo conservador compatible con las declaraciones parseadas; no es una estimación puntual de activos únicos",
+    "declaraciones_parseadas": "filas de procedencia conservadas; no son activos",
+    "denominador_activos_declarados": "NO_DETERMINADO mientras existan candidatos de reconciliación sin evidencia estructural",
+    "identidades_locales_verificadas": "identidades de contenido local sustentadas por SHA-256 observado",
+    "representaciones_locales": "archivos regulares enumerados directamente en corpus_root"
+  },
+  "routing_modelos_verificado": false,
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "t0_congelado": true
+}

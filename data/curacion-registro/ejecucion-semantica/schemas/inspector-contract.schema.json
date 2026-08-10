@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","not":{"anyOf":[{"required":["relacion_id"]},{"required":["necesidad_id"]},{"required":["adjudicacion_vigente"]},{"required":["objeto_modelo_origen"]}]},"required":["schema_version","tarea_observacion_id","run_id","snapshot_t0_sha256","rutas_localizadores","objetos_a_abrir","criterio_parada"],"type":"object"}
