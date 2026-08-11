@@ -1,5 +1,5 @@
 {
-  "head": "10b5a5e2e96a351011569d374d6d9ff6f577345b",
+  "head": "2cf3e289d0f2b0ef99c15d0f2c003ee4dbaaa3ea",
   "fails": [
     [
       "T05",
@@ -72,12 +72,32 @@
     [
       "T11",
       "corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md: afirmación de estado con cuantificador absoluto (5 de 5 comprobadas resultaron falsas): > **Origen de la corrección:** `meta-auditoria-comunicacion.md §3` · ADR-06 · `glosario conf.03"
+    ],
+    [
+      "T16",
+      "canon/estado-programa-v1_10.md: declara 18 FAIL · 95 WARN vigente; la corrida real da 18 FAIL · 101 WARN"
+    ],
+    [
+      "T16",
+      "canon/estado-programa-v1_10.md: declara 95 WARN vigente; la corrida real da 101 WARN"
+    ],
+    [
+      "T16",
+      "canon/gobernanza-v1_15.md: declara 18 FAIL · 95 WARN vigente; la corrida real da 18 FAIL · 101 WARN"
     ]
   ],
   "warns": [
     [
       "T03",
       "canon/gobernanza-v1_15.md: cita `estado-programa-v1_9.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/CAREO-benchmarks-4RT-archivo-proyecto.md: cita `red-team-A_auditoria-adversarial.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/CAREO-benchmarks-4RT-archivo-proyecto.md: cita `red_team_A_auditoria.md`, que no existe"
     ],
     [
       "T03",
@@ -162,6 +182,18 @@
     [
       "T03",
       "forense/notas/2026-08-04-p3-multinivel-preregistro.md: cita `estado-programa-v1_9.md`, que no existe"
+    ],
+    [
+      "T03",
+      "propuesta-motor-adaptativo-celda-v0_1.md: cita `catalogo-fuentes-v1_0.md`, que no existe"
+    ],
+    [
+      "T03",
+      "propuesta-motor-adaptativo-celda-v0_1.md: cita `cruce-catalogo-fichas-2026-07-30.md`, que no existe"
+    ],
+    [
+      "T03",
+      "propuesta-motor-adaptativo-celda-v0_1.md: cita `v2_0.md`, que no existe"
     ],
     [
       "T10",
@@ -436,7 +468,7 @@
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 4,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,
-      "T03_sin_clasificar": 7,
+      "T03_sin_clasificar": 12,
       "T05_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 5,
       "T06_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T07_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
@@ -444,7 +476,8 @@
       "T09_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 8,
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
-      "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1
+      "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1,
+      "T16_consecuencia_aritmetica_del_T03_de_revision-publicacion__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01": 4
     }
   }
 }
