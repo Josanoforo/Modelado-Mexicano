@@ -1,3 +1,5 @@
+> **NOTA DE SUCESIÓN · 11/ago/2026.** Esta v0.1 fue lo que Ronda 1 revisó — se conserva verbatim como registro exacto de esa revisión, no se edita. El veredicto adversarial (`forense/RONDA1-motor-adaptativo-celda-veredicto-fable-2026-08-11-v1_0.md`) encontró ocho defectos de contrato reales (identidad de celda definida dos veces de forma incompatible; `ACOTADO` contradice su propia prosa; colisión de vocabulario no vista con ADR-49 D2; entre otros) — los ocho clasificados **material y correcto** en la adjudicación de IA1 (`forense/RONDA1-motor-adaptativo-celda-adjudicacion-v1_0.md`) y corregidos en **`propuesta-motor-adaptativo-celda-v0_2.md`**, la versión vigente. El diseño central de esta v0.1 —celda-D como unidad, champion/challenger/baseline, coordinación sobre infraestructura existente— sobrevivió Ronda 1 sin cambio; lo que cambió fueron los campos del contrato. Léase esta v0.1 como el borrador que Ronda 1 examinó, no como la propuesta vigente.
+
 # El motor adaptativo por celda: seleccionar el estimador, no imponerlo
 ### Propuesta sin sello · v0.1 · 11/ago/2026
 
