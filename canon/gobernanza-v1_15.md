@@ -873,6 +873,26 @@ Los tres referentes muestran la misma dirección positiva al condicionar (28 cel
 
 ---
 
+**ADR-68 · Mesa adopta el contrato celda-D (v0.3) como formato del registro de comparación de estimadores, el piloto de finanzas del hogar con gate de semana 1 redefinido, los umbrales go/no-go de Ronda 1 con dos ajustes, y el aplazamiento de NROY — sin adoptar M1 y sin ejecutar celda alguna.** Decisión de mesa del autor, 11/ago/2026, sobre el veredicto conjunto APROBAR CON CAMBIOS de Ronda 1 (`forense/RONDA1-motor-adaptativo-celda-veredicto-fable-2026-08-11-v1_0.md`, adjudicación en archivo hermano) y la revisión de dirección externa incorporada en `propuesta-motor-adaptativo-celda-v0_3.md` (#168).
+
+**(a) El contrato.** Se adopta el contrato de v0.3 §3 —clave `estimando × poblacion_objetivo`; fuente/diseño/estrategia exclusivamente como atributos de candidato; `tipo_adjudicacion: COMPARACION | FALSACION | CALIBRACION_CONJUNTA`; `universo_candidatos`; `escala` en salida y en criterio; `universo_instrumento` por candidato; `rol: BASELINE | CHALLENGER | COMPLEMENTO`; `fuerza` + `calibrado` separados de la forma— como formato del registro. **Hogar de las celdas: `data/curacion-registro/celdas-d/`, un YAML por celda, esquema de v0.3 §3.** El motor `tools/curador_registro/` NO se modifica durante el piloto; su integración es decisión post-GO. Regla intacta y central: **ningún estado de celda-D mueve por sí mismo contadores de canon**; promover exige el sello que ya rige (ADR-57(c), ADR-49/51).
+
+**(b) Piloto: dominio FIN (finanzas del hogar), trámites como fallback nombrado.** Gate de semana 1 REDEFINIDO conforme al estado real del registro: ENSAFI y ENFIH ya están adquiridas e íntegras en disco (`capa2=SI`, `capa3=EXISTE;COINCIDE;INTEGRO`, `data/curacion-registro/relaciones.tsv`; el "formato no verificado" del inventario es ficha anterior al barrido) — el gate es por tanto **apertura a nivel variable** de ambas contra las celdas objetivo, con veredictos A.4; "fallar el gate" = las celdas objetivo devuelven `NO-ENCONTRADO`/`EXISTE-NO-SATISFACE` con universo y términos declarados, nunca una impresión. El fallback lo decide mesa sobre ese reporte.
+
+**(c) Umbrales go/no-go.** Se adoptan los siete de Ronda 1 §7 con dos ajustes de mesa: (i) al criterio de discriminación se le eleva a regla lo que la matriz de riesgos ya decía — **empate declarado = empate, no se adjudica**; y cero victorias honestas en cualquiera de las dos direcciones es un NO-GO *informativo* que se registra y mesa decide, nunca un resultado a forzar; (ii) el dry-run de compilación hacia `procedencia.yaml` corre **sin escribir en `milpa/`** — artefacto en `forense/notas/`. Transversal: cada umbral se evalúa al cierre con conteos derivados por comando a la vista.
+
+**(d) NROY: aplazada** (coinciden IA1, IA2 y mesa). Condición de entrada declarada: entra cuando exista el primer ejercicio de calibración conjunta pre-registrado (la primera corrida AJUSTADO del catálogo de momentos), con pre-registro propio.
+
+**(e) M0: RESUELTO-RECUPERADO.** Los cinco archivos del encargo existían en el espejo y entraron verbatim con banner y sha256 verificado (#168, `forense/`). Vigencia de la disposición de Ronda 1: ningún menú de "modelos elegibles" se sella sin ellos a la vista.
+
+**(f) Celdas-D semilla registrables** (v0.3 §4-bis, ya con referente sellado por ADR-67): `radio_confianza` (COMPARACION: baseline ENCUCI vigente / challenger ENBIARE proxy parcial / criterio = vinculación-invarianza), `familismo_obligacion` (dos celdas ligadas por brecha-momento, rol COMPLEMENTO — no competencia), `R5.1-D2` (FALSACION con escala B-bis heredada; la celda que ejercería la primera llave).
+
+**(g) Pendientes nombrados, no sellados aquí:** reapertura acotada de ADR-52A/54 SOLO vía resultado de apertura de ENSAFI/ENFIH (el vehículo es E-CE v1.1, ADR-61); nota de glosario "celda-D vs celda-x vs celda-B" y `baseline_celda` al primer uso en código; la interfaz selector↔matriz (v0.3 §4) queda declarada sin decidir M1.
+
+**Cascada.** Conteo de ADR vía receta T15. Contadores que NO se mueven: los mismos de ADR-67, declarado.
+
+---
+
 ## 5. Deuda declarada (decisiones abiertas, conscientemente)
 
 Esto **no** es una lista de pendientes: es deuda que se decidió asumir.
