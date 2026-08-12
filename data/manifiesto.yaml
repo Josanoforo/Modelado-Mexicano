@@ -11293,3 +11293,317 @@
     no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
     (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
     --escanea/--promueve, no tecleado.'
+
+- id: za6980_q_mx
+  usado_para: ISSP 2017 Social Networks and Social Resources, Mexico -- cuestionario aplicado
+    (documentacion). N2,N12,N14 (radio_confianza/familismo_apoyo, Q7/Q8/Q11); N30 parcial
+    (puente personal, Q1 position generator + Q11 confianza); N13/N28 debiles tematicamente
+    (sin item de obligacion normativa ni de monitoreo+sancion)
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/social-networks/2017
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA6980_q_mx.pdf
+  raiz: descargas_mx
+  sha256: 61bc0c80415521965ec1b2546fbe3b2400cfacb2e6b0b542583304821544f2ed
+  tamano_bytes: 247978
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Portada (p.1): ''Mexico / ISSP 2017 - Social Networks and Social Resources / Questionnaire''.
+    Documento leido en esta sesion. Microdato asociado (za6980_v2_0_0_dta/_sav) verificado:
+    Mexico presente, c_alphan=MX y country=484 (ISO), N=1002 de 44492.'
+
+- id: za6980_backgroundvar_mx
+  usado_para: ISSP 2017 Social Networks and Social Resources, Mexico -- variables de trasfondo/demograficas
+    (documentacion). N2,N12,N14 (radio_confianza/familismo_apoyo, Q7/Q8/Q11); N30 parcial
+    (puente personal, Q1 position generator + Q11 confianza); N13/N28 debiles tematicamente
+    (sin item de obligacion normativa ni de monitoreo+sancion)
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/social-networks/2017
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA6980_backgroundvar_mx.pdf
+  raiz: descargas_mx
+  sha256: 6004c300ca1331bfd15f163c4deaa726c71b66b46ae9e05361f40ae8cc26ca5f
+  tamano_bytes: 220092
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Documento de variables de trasfondo (background variables) del modulo Social Networks
+    2017. No abierto a nivel de contenido en esta sesion (solo verificado que existe y su
+    sha256/tamano); clasificado por convencion de nombre GESIS, mismo patron que el resto
+    del lote ZA6980.
+
+- id: za6980_v2_0_0_dta
+  usado_para: ISSP 2017 Social Networks and Social Resources, Mexico -- microdato formato
+    Stata (.dta). N2,N12,N14 (radio_confianza/familismo_apoyo, Q7/Q8/Q11); N30 parcial (puente
+    personal, Q1 position generator + Q11 confianza); N13/N28 debiles tematicamente (sin item
+    de obligacion normativa ni de monitoreo+sancion)
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/social-networks/2017
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA6980_v2-0-0.dta.zip
+  raiz: descargas_mx
+  sha256: aa3bfcbcc1dc20a2735e8e9d2d3d47a72d909dade66e8c4623b910965dc227de
+  tamano_bytes: 3144289
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Verificado con pandas.read_stata (StataReader, convert_categoricals=False): 44492
+    filas x 356 columnas. Variable c_alphan (Country/Sample ISO 3166 alfanumerico): MX=1002.
+    Variable country (ISO 3166 numerico): 484=1002 (coincide exacto, 484 es el codigo ISO
+    de Mexico). studyno=6980, doi=10.4232/1.13322, version=2.0.0 (2019-08-19) -- confirma
+    identidad del estudio. EXISTE-SATISFACE.'
+
+- id: za6980_v2_0_0_sav
+  usado_para: ISSP 2017 Social Networks and Social Resources, Mexico -- microdato formato
+    SPSS (.sav). N2,N12,N14 (radio_confianza/familismo_apoyo, Q7/Q8/Q11); N30 parcial (puente
+    personal, Q1 position generator + Q11 confianza); N13/N28 debiles tematicamente (sin item
+    de obligacion normativa ni de monitoreo+sancion)
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/social-networks/2017
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA6980_v2-0-0.sav.zip
+  raiz: descargas_mx
+  sha256: 20a1420f4aa8f8dcb30f7de61879796d20b7c3042805e7925e56c30b4ae97ca5
+  tamano_bytes: 5278278
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Mismo estudio que za6980_v2_0_0_dta (ambos formatos exportan el mismo microdato GESIS
+    ZA6980 v2.0.0) -- verificacion de Mexico/N=1002 hecha sobre el .dta (pyreadstat no esta
+    instalado en este entorno; pandas.read_stata sirvio directamente, alternativa que el encargo
+    ofrecia). No se abrio el .sav a nivel de variable en esta sesion; mismo sha256-independiente,
+    mismo contenido declarado por GESIS.
+
+- id: za5900_backgroundvar_mx
+  usado_para: ISSP 2012 Family and Changing Gender Roles IV, Mexico -- variables de trasfondo
+    (documentacion). N13 (familismo_obligacion) candidato mas fuerte de los 3 modulos ISSP
+    -- V27 'adult children are important source of help for elderly parents', V35/V36 provision/costo
+    de cuidado a mayores; N12 (familismo_apoyo) tematicamente adyacente
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA5900_backgroundvar_mx.pdf
+  raiz: descargas_mx
+  sha256: a7f6a3438eebcf355ea80013bb6965ca86ae8126289c3a6392fc78c46b720a39
+  tamano_bytes: 668385
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: No abierto a nivel de contenido en esta sesion; clasificado por convencion de nombre
+    GESIS (mismo patron que ZA6980/ZA7600).
+
+- id: za5900_bq
+  usado_para: ISSP 2012 Family and Changing Gender Roles IV, Mexico -- basic questionnaire
+    / modulo de trasfondo estandar ISSP (documentacion). N13 (familismo_obligacion) candidato
+    mas fuerte de los 3 modulos ISSP -- V27 'adult children are important source of help for
+    elderly parents', V35/V36 provision/costo de cuidado a mayores; N12 (familismo_apoyo)
+    tematicamente adyacente
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA5900_bq.pdf
+  raiz: descargas_mx
+  sha256: 434dd01051c416f5379489c5bd8a368b5e561ecd89e6e9a1b96b3568fa2f36d0
+  tamano_bytes: 500702
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: No abierto a nivel de contenido en esta sesion; 'bq' es la abreviatura estandar GESIS
+    para el modulo de background questions comun a todos los estudios ISSP de este periodo
+    (mismo patron que se ve en otros estudios GESIS ya en el corpus).
+
+- id: za5900_cdb
+  usado_para: ISSP 2012 Family and Changing Gender Roles IV, Mexico -- codebook completo (documentacion).
+    N13 (familismo_obligacion) candidato mas fuerte de los 3 modulos ISSP -- V27 'adult children
+    are important source of help for elderly parents', V35/V36 provision/costo de cuidado
+    a mayores; N12 (familismo_apoyo) tematicamente adyacente
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA5900_cdb.pdf
+  raiz: descargas_mx
+  sha256: 5c288f3c0872e85161fefe4faeb2d43ad98fb7ab7f5a114190b78975135aa81c
+  tamano_bytes: 5971210
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: No abierto a nivel de contenido en esta sesion (5.97MB, codebook completo); el listado
+    de variables/etiquetas equivalente se derivo directamente del .dta via pandas.read_stata
+    para la verificacion de Mexico. Existia tambien un duplicado byte-identico 'ZA5900_cdb
+    (1).pdf' (mismo sha256) en descargas_mx, deliberadamente NO registrado -- descarga duplicada
+    del navegador.
+
+- id: za5900_mr
+  usado_para: ISSP 2012 Family and Changing Gender Roles IV, Mexico -- methodology report
+    (documentacion). N13 (familismo_obligacion) candidato mas fuerte de los 3 modulos ISSP
+    -- V27 'adult children are important source of help for elderly parents', V35/V36 provision/costo
+    de cuidado a mayores; N12 (familismo_apoyo) tematicamente adyacente
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA5900_mr.pdf
+  raiz: descargas_mx
+  sha256: d191e7c2967f52ca18004130038cda7c297d7a81b5a6233d74cb52739d908744
+  tamano_bytes: 319274
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: No abierto a nivel de contenido en esta sesion; clasificado por convencion de nombre
+    GESIS ('mr' = method report).
+
+- id: za5900_overview
+  usado_para: ISSP 2012 Family and Changing Gender Roles IV, Mexico -- resumen/ficha de estudio
+    (documentacion). N13 (familismo_obligacion) candidato mas fuerte de los 3 modulos ISSP
+    -- V27 'adult children are important source of help for elderly parents', V35/V36 provision/costo
+    de cuidado a mayores; N12 (familismo_apoyo) tematicamente adyacente
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA5900_overview.pdf
+  raiz: descargas_mx
+  sha256: 1bfbd19be390dcdd32f2c6b3b16e3743196c88687cd1c28bfa3a974f90b6efb4
+  tamano_bytes: 231846
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: No abierto a nivel de contenido en esta sesion; clasificado por convencion de nombre
+    GESIS.
+
+- id: za5900_q_mx
+  usado_para: ISSP 2012 Family and Changing Gender Roles IV, Mexico -- cuestionario aplicado
+    (documentacion). N13 (familismo_obligacion) candidato mas fuerte de los 3 modulos ISSP
+    -- V27 'adult children are important source of help for elderly parents', V35/V36 provision/costo
+    de cuidado a mayores; N12 (familismo_apoyo) tematicamente adyacente
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA5900_q_mx.pdf
+  raiz: descargas_mx
+  sha256: d8fe53baeb29455b8ec9aa772a63eae4eb8308456aa1e1986d2c96b5067e5375
+  tamano_bytes: 228950
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Portada (p.1): ''Mexico / ISSP 2012 - Family and Changing Gender Roles IV / Questionnaire''.
+    Documento leido en esta sesion. Microdato asociado (za5900_v4_0_0_dta/_por/_sav) verificado:
+    Mexico presente, C_ALPHAN=MX, N=1527 de 61754.'
+
+- id: za5900_questionnaire_development_report
+  usado_para: ISSP 2012 Family and Changing Gender Roles IV, Mexico -- reporte de desarrollo
+    del cuestionario (documentacion). N13 (familismo_obligacion) candidato mas fuerte de los
+    3 modulos ISSP -- V27 'adult children are important source of help for elderly parents',
+    V35/V36 provision/costo de cuidado a mayores; N12 (familismo_apoyo) tematicamente adyacente
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA5900_questionnaire_development_report.pdf
+  raiz: descargas_mx
+  sha256: 909a71504d235cd09ec821df25ba9d7ad7abf7e7e704e92a345cb81d552273a1
+  tamano_bytes: 2339766
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: No abierto a nivel de contenido en esta sesion; clasificado por nombre de archivo
+    explicito, sin ambiguedad.
+
+- id: za5900_v4_0_0_dta
+  usado_para: ISSP 2012 Family and Changing Gender Roles IV, Mexico -- microdato formato Stata
+    (.dta). N13 (familismo_obligacion) candidato mas fuerte de los 3 modulos ISSP -- V27 'adult
+    children are important source of help for elderly parents', V35/V36 provision/costo de
+    cuidado a mayores; N12 (familismo_apoyo) tematicamente adyacente
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/family-and-changing-gender-roles/2012
+  url_origen_procedencia: URL del modulo GESIS derivada del patron declarado en forense/notas/2026-08-12-acto-p-lote1-adquisicion.md:3
+    (Nota de contexto ISSP, tres modulos) -- no confirmada por fetch en esta sesion (acto
+    sin red para microdato), NO CONFIRMADA POR EL AUTOR.
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA5900_v4-0-0.dta.zip
+  raiz: descargas_mx
+  sha256: ed7d7781f9ccc4cfc947188ba18e4169434c022db17637af75d2b5612509db33
+  tamano_bytes: 4916181
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Verificado con pandas.read_stata (StataReader, convert_categoricals=False): 61754
+    filas x 420 columnas. Este release NO tiene columnas ''country''/''studyno''/''doi''/''c_alphan''
+    en minuscula (esquema mas viejo, 2012) -- variable real es C_ALPHAN (mayusculas), derivada
+    leyendo la lista de columnas, no tecleada de memoria. C_ALPHAN=MX: N=1527. V1 (GESIS Data
+    Archive Study Number)=5900, DOI=10.4232/1.12661 -- confirma identidad. Contenido tematico
+    (V27 ''adult children are important source of help for elderly parents''; V35/V36 provision/costo
+    de cuidado a adultos mayores) es el candidato mas directo de los 3 modulos ISSP para N13
+    (familismo_obligacion). EXISTE-SATISFACE.'
+
+- id: za5900_v4_0_0_por
+  usado_para: ISSP 2012 Family and Changing Gender Roles IV, Mexico -- microdato formato SPSS
+    Portable (.por). N13 (familismo_obligacion) candidato mas fuerte de los 3 modulos ISSP
+    -- V27 'adult children are important source of help for elderly parents', V35/V36 provision/costo
+    de cuidado a mayores; N12 (familismo_apoyo) tematicamente adyacente
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/family-and-changing-gender-roles/2012
+  url_origen_procedencia: URL del modulo GESIS derivada del patron declarado en forense/notas/2026-08-12-acto-p-lote1-adquisicion.md:3
+    (Nota de contexto ISSP, tres modulos) -- no confirmada por fetch en esta sesion (acto
+    sin red para microdato), NO CONFIRMADA POR EL AUTOR.
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA5900_v4-0-0.por.zip
+  raiz: descargas_mx
+  sha256: 47ad77b2b5db45554b53dfccb00728c3e17d7fe15ff2668e949fd0441f2db660
+  tamano_bytes: 9881561
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Mismo estudio que za5900_v4_0_0_dta (mismo microdato GESIS ZA5900 v4.0.0 en formato
+    .por). No abierto a nivel de variable en esta sesion (pandas no lee .por nativamente);
+    verificacion de Mexico/N=1527 hecha sobre el .dta.
+
+- id: za5900_v4_0_0_sav
+  usado_para: ISSP 2012 Family and Changing Gender Roles IV, Mexico -- microdato formato SPSS
+    (.sav). N13 (familismo_obligacion) candidato mas fuerte de los 3 modulos ISSP -- V27 'adult
+    children are important source of help for elderly parents', V35/V36 provision/costo de
+    cuidado a mayores; N12 (familismo_apoyo) tematicamente adyacente
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/family-and-changing-gender-roles/2012
+  url_origen_procedencia: URL del modulo GESIS derivada del patron declarado en forense/notas/2026-08-12-acto-p-lote1-adquisicion.md:3
+    (Nota de contexto ISSP, tres modulos) -- no confirmada por fetch en esta sesion (acto
+    sin red para microdato), NO CONFIRMADA POR EL AUTOR.
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA5900_v4-0-0.sav.zip
+  raiz: descargas_mx
+  sha256: 21a1e85603e142f6848211c5fe0932ed8eee77e50efd9e2c4bfe4470782d0934
+  tamano_bytes: 9521151
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Mismo estudio que za5900_v4_0_0_dta (mismo microdato GESIS ZA5900 v4.0.0 en formato
+    .sav). No abierto a nivel de variable en esta sesion (pyreadstat no instalado); verificacion
+    de Mexico/N=1527 hecha sobre el .dta.
+
+- id: za7600_v3_0_0_dta
+  usado_para: ISSP 2019 Social Inequality V -- NINGUNA -- Mexico ausente de la muestra (N3
+    no se sirve desde este modulo; el resto de las 7 necesidades de la cola fueron asignadas
+    al modulo 2017/2012, no a este)
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/social-inequality/2019
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA7600_v3-0-0.dta.zip
+  raiz: descargas_mx
+  sha256: 19e93ee8998505e3d98d8e9db09c9159f574883ea8161d3ada8bd28c79bd9717
+  tamano_bytes: 3990845
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Verificado con pandas.read_stata (StataReader, convert_categoricals=False): 44975
+    filas x 357 columnas. Variable c_alphan (Country/Sample ISO 3166 alfanumerico): 29 paises
+    listados, ''MX'' NUNCA aparece (conteo=0). Variable country (ISO numerico): 484 (Mexico)
+    tampoco aparece (conteo=0). Confirma, con el dato real, lo que data/cola-adquisicion-2026-08-12.tsv
+    ya declaraba desde un sondeo web del 2026-08-06 (''release final ISSP 2019, 29 paises...
+    no se encontro muestra Mexico''). studyno=7600, doi=10.4232/1.14009, version=3.0.0 (2022-10-14).
+    Contenido (V1-V9 ''Getting ahead: how important is...'') es el modulo Social Inequality
+    clasico. EXISTE-NO-SATISFACE -- pais ausente, no fallo de apertura. No se reabre ADR-54
+    (no relacionado; ese ADR es sobre sens_estatus/aversion_riesgo, no sobre este hallazgo).'
+
+- id: za7600_v3_0_0_sav
+  usado_para: ISSP 2019 Social Inequality V -- NINGUNA -- Mexico ausente de la muestra (N3
+    no se sirve desde este modulo; el resto de las 7 necesidades de la cola fueron asignadas
+    al modulo 2017/2012, no a este)
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/social-inequality/2019
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA7600_v3-0-0.sav.zip
+  raiz: descargas_mx
+  sha256: d71954fe95ba139ccfad31d14e0069670de69420dfbbc4e09d2a59e99ed2a1f7
+  tamano_bytes: 4611332
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Mismo estudio que za7600_v3_0_0_dta (mismo microdato GESIS ZA7600 v3.0.0 en formato
+    .sav). Verificacion de ausencia de Mexico hecha sobre el .dta; mismo estudio, mismo universo
+    de 29 paises declarado por GESIS.
