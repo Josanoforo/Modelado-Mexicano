@@ -34,3 +34,32 @@ El cruce por nombre exacto entre `fuente_canonica_normalizada` (75 valores) y `p
 `gap` para `SIN-PUERTA`: por cada una, se añade una fila nueva al puntero vigente (`data/universo-puertas-2026-08-12.tsv`) con `puerta = <fuente_canonica_normalizada misma>` (identificador trazable, no una institución inventada), `clase_origen = gap_mapeo_map_b` (valor nuevo, deliberado — ninguno de los 6 valores ya en uso en esa columna — `canasta_publica`, `catalogo_metadatos_inegi`, `ong_observatorio`, `organismo_internacional`, `repositorio_academico`, `transparencia` — describe honestamente "no se encontró institución", forzar uno de esos sería una clasificación falsa), `clasificacion_a4 = NO-ENCONTRADO`, `universo_declarado` cita el mecanismo exacto de búsqueda y la fecha. Cero red en ninguna de estas filas — nacen `NO-ENCONTRADO` de mapeo, no de sondeo.
 
 **El primer resultado que produzca este cruce es el que se reporta** — no se re-corre buscando un embudo con menos `SIN-PUERTA`.
+
+## §2 · Commit 2 (resultados) — el embudo, tal como lo produjo el método de §1
+
+**7 `CON-PUERTA-CLASIFICADA` · 1 `EQUIVALENCIA-AMBIGUA` · 67 `SIN-PUERTA`, de 75.** `CON-PUERTA-SIN-CLASIFICAR` = 0 — verificado aparte: las 31 puertas del puntero vigente tienen las 31 con algún valor real en `clasificacion_a4` (ninguna columna vacía), así que ese valor de `gap` no ocurre en este corte, no por defecto del método.
+
+**Los 7 matches confirmados, con el nivel de evidencia real de cada uno (ninguno por parecido de cadena):**
+
+| fuente_canonica | puerta | evidencia |
+|---|---|---|
+| `WVS` | `WVS_World_Values_Survey` | nombre idéntico |
+| `ENASIC` | `RNM_ENASIC_2022_ficha922` | nombre idéntico (ya en producción propia, SELLO-B) |
+| `ENBIARE` | `RNM_ENBIARE_2021_ficha730` | nombre idéntico |
+| `ENCUCI` | `RNM_ENCUCI_2020_ficha647` | nombre idéntico |
+| `MEXICO_PANEL_STUDY_2012` | `ICPSR_Mexico_Panel_Study_2012` | **URL**: mismo `study_id` ICPSR 35024, solo difiere el prefijo de colección (`ICPSR` vs `RCMD`) |
+| `PI` | `CNBV_Portafolio_Informacion` | nombre + **necesidad** (N19 en ambos lados, única relación de `PI`) |
+| `INE` | `INE_Conteos_Censales_Participacion` | institución + **necesidad parcial** (`INE` sirve N25 y N26; la puerta solo cubre N25 — N26 queda declarado sin puerta, no se fuerza una cobertura que no existe) |
+
+**El caso ambiguo:** `REPOSITORIOS_UNAM_COLMEX_ITAM_DATAVERSE_ICPSR` nombra explícitamente las mismas cinco instituciones que cinco puertas ya clasificadas (`UNAM_Repositorio_Institucional_panel`, `COLMEX_Repositorio_panel`, `ITAM_panel_household_finance`, `Harvard_Dataverse_Mexico_panel`, `ICPSR_Mexico_Panel_Study_2012`) — ninguna evidencia en el repo prefiere una sobre las otras cuatro. Nota aparte, no una contradicción: `ICPSR_Mexico_Panel_Study_2012` es también la puerta CONFIRMADA de `MEXICO_PANEL_STUDY_2012` (fila separada arriba) — la misma puerta puede servir a dos demandas distintas a la vez.
+
+**Un rechazo explícito, declarado en vez de omitido:** `IMSS` (fuente_nombre = "Familia de instrumentos de satisfacción de usuarios") se comparó contra `IMSS_Datos_Abiertos_Asegurados` (microdato administrativo de población asegurada) — mismo institución, producto verificablemente distinto (encuestas de satisfacción vs. registro administrativo de asegurados), sin URL ni cita que los identifique. Queda `SIN-PUERTA`, no `CON-PUERTA-CLASIFICADA` por cercanía de nombre.
+
+**Un valor centinela, no una fuente real:** `SIN_CANDIDATO_IDENTIFICADO` es un valor de `relaciones.tsv` sin `fuente_nombre` — no hay nada que buscarle puerta; `SIN-PUERTA` trivial, declarado para que no se lea como un gap sustantivo.
+
+**Las 67 filas `SIN-PUERTA` restantes** cubren, entre otras familias reconocibles por nombre: eventos de protesta/conflicto (`ACLED`, `GDELT`, `UCDP`, tres variantes de `MASS_MOBILIZATION_*`, dos bases de eventos de protesta/agua), evaluaciones de impacto del Banco Mundial (siete entradas `IMPACT_EVALUATION_*`/`MICROCREDIT_*`/`LARGE_SCALE_FINANCIAL_EDUCATION*`/`PRICE_AND_INFORMATION*`/`EARLY_CHILDHOOD*`), encuestas INEGI sin puerta propia todavía (`ENAFIN`, `ENCIG`, `ENCOAP`, `ENCUP`, `ENIF`, `ENIGH`, `ENNVIH`, `ENOE`, `ENVIPE`, `ENSAFI`, `ENFIH` — estas dos últimas SÍ tienen ficha RNM real, pero esa fila vive en una rama sin fusionar todavía, PR #187, invisible a este corte por diseño), literatura académica de encuestas/experimentos electorales (`CSES` y su duplicado aparente `COMPARATIVE_STUDY_OF_ELECTORAL_SYSTEMS_MEXICO_2018`, `LAPOP`, `LATINOBARÓMETRO`, `OECD`, cuatro entradas electorales/polarización), y un racimo de fuentes financieras/tandas sin puerta institucional dedicada (`BDIF`, `CANAL_DE_ADQUISICION_REFERIDOS_FINTECH`, `REGISTRO_DE_TANDAS_Y_REPUTACION`, `REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES`, `SERIES_SPEI_CODI_BANXICO`, entre otras). Ninguna de estas 67 se fuerza a una puerta existente por cercanía temática — el TSV es la lista completa, esta nota no repite las 67 filas.
+
+**Nota sobre duplicados aparentes del lado de la demanda, no resueltos aquí:** `CSES`/`COMPARATIVE_STUDY_OF_ELECTORAL_SYSTEMS_MEXICO_2018`, `GPS`/`GLOBAL_PREFERENCES_SURVEY`, y las dos entradas de `ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_*` parecen nombrar el mismo instrumento real bajo dos identidades de `fuente_canonica` distintas. Fuera de perímetro de este acto (eso es resolución de alias del lado de la demanda, no crosswalk demanda↔puerta) — declarado para quien mantenga `aliases-fuentes.tsv`.
+
+**Verificación de cierre:** `python3 tests/check.py --baseline` → resultado en el commit de cierre (ver hallazgos.md).
+
