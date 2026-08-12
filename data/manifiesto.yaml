@@ -10623,10 +10623,10 @@
 - id: banxico_codi_cuentas_validadas_x_mil_hab
   usado_para: MED-R3.4 -- descarga directa (no cuadro SIE) de cuentas validadas por cada mil
     habitantes, distribucion geografica trimestral. ACTUALIZADO 2026-08-08 (addendum EXPLORA-2
-    post-token) -- sumado por trimestre nacional (32 entidades y 382-411 LADAs, cross-check exacto),
-    resuelve la reconciliacion A.3 -- 2025-T3 = 21,884,617 cuentas validadas acumuladas, confirma
-    el 21.8M de prensa (El Economista sept-2025) contra fuente primaria, diff +0.39%. Serie completa
-    2022-T1 a 2026-T1 en forense/notas/2026-08-08-explora2.md.
+    post-token) -- sumado por trimestre nacional (32 entidades y 382-411 LADAs, cross-check
+    exacto), resuelve la reconciliacion A.3 -- 2025-T3 = 21,884,617 cuentas validadas acumuladas,
+    confirma el 21.8M de prensa (El Economista sept-2025) contra fuente primaria, diff +0.39%.
+    Serie completa 2022-T1 a 2026-T1 en forense/notas/2026-08-08-explora2.md.
   url_origen: https://www.banxico.org.mx/sistemas-de-pago/d/%7BE50C9EF7-B0D3-99A9-0B62-F95B57CF0529%7D.xlsx
   fecha_descarga: '2026-08-06'
   descargado_por: agente, directamente de banxico.org.mx
@@ -10863,3 +10863,20 @@
     de filtrado real no determinado en este acto. No se repite una tercera conjetura de nombre
     de parametro (misma disciplina que prohibe repetir conjeturas de id de serie en Tarea
     A). Universo de busqueda: rnm/index.php/catalog/search, termino ENESTYC, 2026-08-06.'
+
+- id: banxico_2013_17_crowding_out_70ymas
+  usado_para: 'Insumo metodologico citado por R5.1-D2 (Commit 4, E4c): precedente metodologico
+    directo -- Amuedo-Dorantes y Juarez Gonzalez (2013), Banxico Documentos de Investigacion
+    2013-17, mismo pais/encuesta ENIGH/pregunta sustantiva de crowding-out. No es microdato.'
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/documentos-de-investigacion-del-banco-de-mexico/%7B55E4278D-C42F-8B21-FDFA-BC67036EED1F%7D.pdf
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-11'
+  descargado_por: agente, curl directo desde banxico.org.mx (HTTP 200, no HEAD), verificado
+    byte a byte (39 paginas leidas completas) contra las afirmaciones del encargo antes de
+    registrar -- no es el valor por defecto "usuario, via navegador" que --escanea asigna a
+    descargas_mx; corregido a mano tras la promocion, unico campo tocado.
+  archivo: banxico-2013-17-crowding-out-70ymas.pdf
+  raiz: descargas_mx
+  sha256: 899dff850d1b23c74d803c026d1dd6306f4115b1b9427a74eb008114d4e99839
+  tamano_bytes: 253790
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
