@@ -11051,3 +11051,245 @@
   licencia: misma nota que wb2661_asq_questionnaires
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: Descargable sin sesion, misma pestana Documentation.
+
+- id: f00006635_wvs7_questionnaire_mexico_2018_spanish
+  usado_para: WVS7 Mexico 2018 -- cuestionario (espanol), doc. N5/N15
+  url_origen: https://www.worldvaluessurvey.org/AJDownload.jsp DOID=6635
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: F00006635-WVS7_Questionnaire_Mexico_2018_Spanish.pdf
+  raiz: descargas_mx
+  sha256: d84607c68d30985f537a18048c5c903b2f5b73e57420f37689ab67758bac387d
+  tamano_bytes: 96941
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descarga manual del usuario, en navegador autenticado (cuenta WVS gratuita registrada
+    por el usuario), NO por este agente. Mecanismo: AJDownload.jsp (POST DOID=6635), disparado
+    por DocDownload(doid) en la ficha de datos de WVSDocumentationWV7.jsp (Wave 7 -> Mexico
+    2018, tr id=3203). Este es el MISMO endpoint que el Commit 2 de este acto sondeo 6 veces
+    sin exito (1 byte de respuesta, curl anonimo sin sesion) -- la sesion autenticada del
+    usuario confirma retroactivamente la hipotesis que ese commit dejo declarada y no resuelta
+    (''requiere sesion autenticada... posible SPA-only''): el bloqueo era de autenticacion,
+    no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
+    --escanea/--promueve, no tecleado.'
+
+- id: f00008602_wvs7_methodology_report_mexico_2018
+  usado_para: WVS7 Mexico 2018 -- informe de metodologia, doc. N5/N15
+  url_origen: https://www.worldvaluessurvey.org/AJDownload.jsp DOID=8602
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: F00008602-WVS7_Methodology_Report_Mexico_2018.pdf
+  raiz: descargas_mx
+  sha256: ba4ebdd333ca4e46bb79b0ac7f8988eb4a2475ba82ec61ba87542082fe9c95ee
+  tamano_bytes: 320171
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descarga manual del usuario, en navegador autenticado (cuenta WVS gratuita registrada
+    por el usuario), NO por este agente. Mecanismo: AJDownload.jsp (POST DOID=8602), disparado
+    por DocDownload(doid) en la ficha de datos de WVSDocumentationWV7.jsp (Wave 7 -> Mexico
+    2018, tr id=3203). Este es el MISMO endpoint que el Commit 2 de este acto sondeo 6 veces
+    sin exito (1 byte de respuesta, curl anonimo sin sesion) -- la sesion autenticada del
+    usuario confirma retroactivamente la hipotesis que ese commit dejo declarada y no resuelta
+    (''requiere sesion autenticada... posible SPA-only''): el bloqueo era de autenticacion,
+    no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
+    --escanea/--promueve, no tecleado.'
+
+- id: f00010700_wvs7_information_about_the_team_mexico_2018
+  usado_para: WVS7 Mexico 2018 -- ficha del equipo ejecutor
+  url_origen: https://www.worldvaluessurvey.org/AJDownload.jsp DOID=10700
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: F00010700-WVS7_Information_about_the_team_Mexico_2018.pdf
+  raiz: descargas_mx
+  sha256: fd2d50c0cb9b7b7001f16c6d3cd45b10c73b0684ec525544e9a5ff0636e2e884
+  tamano_bytes: 84609
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descarga manual del usuario, en navegador autenticado (cuenta WVS gratuita registrada
+    por el usuario), NO por este agente. Mecanismo: AJDownload.jsp (POST DOID=10700), disparado
+    por DocDownload(doid) en la ficha de datos de WVSDocumentationWV7.jsp (Wave 7 -> Mexico
+    2018, tr id=3203). Este es el MISMO endpoint que el Commit 2 de este acto sondeo 6 veces
+    sin exito (1 byte de respuesta, curl anonimo sin sesion) -- la sesion autenticada del
+    usuario confirma retroactivamente la hipotesis que ese commit dejo declarada y no resuelta
+    (''requiere sesion autenticada... posible SPA-only''): el bloqueo era de autenticacion,
+    no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
+    --escanea/--promueve, no tecleado.'
+
+- id: f00010701_wvs7_sample_design_mexico_2018
+  usado_para: WVS7 Mexico 2018 -- diseno muestral, doc. N5/N15
+  url_origen: https://www.worldvaluessurvey.org/AJDownload.jsp DOID=10701
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: F00010701-WVS7_Sample_Design_Mexico_2018.pdf
+  raiz: descargas_mx
+  sha256: 148b41f4315af1060a434fe35a76e874fdae87a2db40425f679ece29f6df8b66
+  tamano_bytes: 209667
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descarga manual del usuario, en navegador autenticado (cuenta WVS gratuita registrada
+    por el usuario), NO por este agente. Mecanismo: AJDownload.jsp (POST DOID=10701), disparado
+    por DocDownload(doid) en la ficha de datos de WVSDocumentationWV7.jsp (Wave 7 -> Mexico
+    2018, tr id=3203). Este es el MISMO endpoint que el Commit 2 de este acto sondeo 6 veces
+    sin exito (1 byte de respuesta, curl anonimo sin sesion) -- la sesion autenticada del
+    usuario confirma retroactivamente la hipotesis que ese commit dejo declarada y no resuelta
+    (''requiere sesion autenticada... posible SPA-only''): el bloqueo era de autenticacion,
+    no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
+    --escanea/--promueve, no tecleado.'
+
+- id: f00011928_world_values_survey_wave_7_2017_2020_mexico_v3_0
+  usado_para: WVS7 Mexico 2018 -- codebook/resultados v3.0, doc. N5/N15
+  url_origen: https://www.worldvaluessurvey.org/AJDownload.jsp DOID=11928
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: F00011928-World_Values_Survey_Wave_7_2017-2020_Mexico_v3.0.pdf
+  raiz: descargas_mx
+  sha256: faee54eeaff1ca170bc86b3f26c0593df99b576d035d44055f08470f97b03005
+  tamano_bytes: 3064693
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descarga manual del usuario, en navegador autenticado (cuenta WVS gratuita registrada
+    por el usuario), NO por este agente. Mecanismo: AJDownload.jsp (POST DOID=11928), disparado
+    por DocDownload(doid) en la ficha de datos de WVSDocumentationWV7.jsp (Wave 7 -> Mexico
+    2018, tr id=3203). Este es el MISMO endpoint que el Commit 2 de este acto sondeo 6 veces
+    sin exito (1 byte de respuesta, curl anonimo sin sesion) -- la sesion autenticada del
+    usuario confirma retroactivamente la hipotesis que ese commit dejo declarada y no resuelta
+    (''requiere sesion autenticada... posible SPA-only''): el bloqueo era de autenticacion,
+    no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
+    --escanea/--promueve, no tecleado.'
+
+- id: f00013032_wvs_wave_7_mexico_spss_v5_1
+  usado_para: Microdato WVS7 Mexico 2018, formato SPSS v5.1, cand. N5/N15
+  url_origen: https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13032
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: F00013032-WVS_Wave_7_Mexico_Spss_v5.1.zip
+  raiz: descargas_mx
+  sha256: 4b5f387199ded46d22c760ef1aa65ce82f38d77efc1c75db5fc174856bdc364d
+  tamano_bytes: 407655
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descarga manual del usuario, en navegador autenticado (cuenta WVS gratuita registrada
+    por el usuario), NO por este agente. Mecanismo: AJDownload.jsp (POST DOID=13032), disparado
+    por DocDownload(doid) en la ficha de datos de WVSDocumentationWV7.jsp (Wave 7 -> Mexico
+    2018, tr id=3203). Este es el MISMO endpoint que el Commit 2 de este acto sondeo 6 veces
+    sin exito (1 byte de respuesta, curl anonimo sin sesion) -- la sesion autenticada del
+    usuario confirma retroactivamente la hipotesis que ese commit dejo declarada y no resuelta
+    (''requiere sesion autenticada... posible SPA-only''): el bloqueo era de autenticacion,
+    no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
+    --escanea/--promueve, no tecleado.'
+
+- id: f00013084_wvs_wave_7_mexico_stata_v5_1
+  usado_para: Microdato WVS7 Mexico 2018, formato Stata v5.1, cand. N5/N15
+  url_origen: https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13084
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: F00013084-WVS_Wave_7_Mexico_Stata_v5.1.zip
+  raiz: descargas_mx
+  sha256: a676a7601e25cb15a670828d8bf2990d8a73958c7367118c3a5293c6ae84d9a4
+  tamano_bytes: 412519
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descarga manual del usuario, en navegador autenticado (cuenta WVS gratuita registrada
+    por el usuario), NO por este agente. Mecanismo: AJDownload.jsp (POST DOID=13084), disparado
+    por DocDownload(doid) en la ficha de datos de WVSDocumentationWV7.jsp (Wave 7 -> Mexico
+    2018, tr id=3203). Este es el MISMO endpoint que el Commit 2 de este acto sondeo 6 veces
+    sin exito (1 byte de respuesta, curl anonimo sin sesion) -- la sesion autenticada del
+    usuario confirma retroactivamente la hipotesis que ese commit dejo declarada y no resuelta
+    (''requiere sesion autenticada... posible SPA-only''): el bloqueo era de autenticacion,
+    no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
+    --escanea/--promueve, no tecleado.'
+
+- id: f00013146_wvs_wave_7_mexico_csv_v5_1
+  usado_para: Microdato WVS7 Mexico 2018, formato CSV v5.1, cand. N5/N15
+  url_origen: https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13146
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: F00013146-WVS_Wave_7_Mexico_Csv_v5.1.zip
+  raiz: descargas_mx
+  sha256: cf0b774e1f6611b5531cfb66db982a8c3443e658bb0befcb1ef053d790ca4afe
+  tamano_bytes: 443663
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descarga manual del usuario, en navegador autenticado (cuenta WVS gratuita registrada
+    por el usuario), NO por este agente. Mecanismo: AJDownload.jsp (POST DOID=13146), disparado
+    por DocDownload(doid) en la ficha de datos de WVSDocumentationWV7.jsp (Wave 7 -> Mexico
+    2018, tr id=3203). Este es el MISMO endpoint que el Commit 2 de este acto sondeo 6 veces
+    sin exito (1 byte de respuesta, curl anonimo sin sesion) -- la sesion autenticada del
+    usuario confirma retroactivamente la hipotesis que ese commit dejo declarada y no resuelta
+    (''requiere sesion autenticada... posible SPA-only''): el bloqueo era de autenticacion,
+    no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
+    --escanea/--promueve, no tecleado.'
+
+- id: f00013203_wvs_wave_7_mexico_excel_v5_1
+  usado_para: Microdato WVS7 Mexico 2018, formato Excel v5.1, cand. N5/N15
+  url_origen: https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13203
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: F00013203-WVS_Wave_7_Mexico_Excel_v5.1.xlsx
+  raiz: descargas_mx
+  sha256: b7665211531d4dbda82640ea78f1b92b2b53820f69b1674a27018a2c7e31f200
+  tamano_bytes: 2373291
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descarga manual del usuario, en navegador autenticado (cuenta WVS gratuita registrada
+    por el usuario), NO por este agente. Mecanismo: AJDownload.jsp (POST DOID=13203), disparado
+    por DocDownload(doid) en la ficha de datos de WVSDocumentationWV7.jsp (Wave 7 -> Mexico
+    2018, tr id=3203). Este es el MISMO endpoint que el Commit 2 de este acto sondeo 6 veces
+    sin exito (1 byte de respuesta, curl anonimo sin sesion) -- la sesion autenticada del
+    usuario confirma retroactivamente la hipotesis que ese commit dejo declarada y no resuelta
+    (''requiere sesion autenticada... posible SPA-only''): el bloqueo era de autenticacion,
+    no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
+    --escanea/--promueve, no tecleado.'
+
+- id: f00013259_wvs_wave_7_mexico_exceltxt_v5_0
+  usado_para: Microdato WVS7 Mexico 2018, formato ExcelTxt v5.0, cand. N5/N15
+  url_origen: https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13259
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: F00013259-WVS_Wave_7_Mexico_ExcelTxt_v5.0.xlsx
+  raiz: descargas_mx
+  sha256: a2272e83db5a1ad9c6cb28fbf085a2e5b42bb0bb30764e1c2c4ab9abf72bc4d0
+  tamano_bytes: 2696219
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descarga manual del usuario, en navegador autenticado (cuenta WVS gratuita registrada
+    por el usuario), NO por este agente. Mecanismo: AJDownload.jsp (POST DOID=13259), disparado
+    por DocDownload(doid) en la ficha de datos de WVSDocumentationWV7.jsp (Wave 7 -> Mexico
+    2018, tr id=3203). Este es el MISMO endpoint que el Commit 2 de este acto sondeo 6 veces
+    sin exito (1 byte de respuesta, curl anonimo sin sesion) -- la sesion autenticada del
+    usuario confirma retroactivamente la hipotesis que ese commit dejo declarada y no resuelta
+    (''requiere sesion autenticada... posible SPA-only''): el bloqueo era de autenticacion,
+    no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
+    --escanea/--promueve, no tecleado.'
+
+- id: f00013316_wvs_wave_7_mexico_csvtext_v5_1
+  usado_para: Microdato WVS7 Mexico 2018, formato CsvText v5.1, cand. N5/N15
+  url_origen: https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13316
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: F00013316-WVS_Wave_7_Mexico_CsvText_v5.1.zip
+  raiz: descargas_mx
+  sha256: 2cb902597fd6164f075b446c684fcfba16ff4969f3719a13f2f80d769005b726
+  tamano_bytes: 1013749
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descarga manual del usuario, en navegador autenticado (cuenta WVS gratuita registrada
+    por el usuario), NO por este agente. Mecanismo: AJDownload.jsp (POST DOID=13316), disparado
+    por DocDownload(doid) en la ficha de datos de WVSDocumentationWV7.jsp (Wave 7 -> Mexico
+    2018, tr id=3203). Este es el MISMO endpoint que el Commit 2 de este acto sondeo 6 veces
+    sin exito (1 byte de respuesta, curl anonimo sin sesion) -- la sesion autenticada del
+    usuario confirma retroactivamente la hipotesis que ese commit dejo declarada y no resuelta
+    (''requiere sesion autenticada... posible SPA-only''): el bloqueo era de autenticacion,
+    no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
+    --escanea/--promueve, no tecleado.'
