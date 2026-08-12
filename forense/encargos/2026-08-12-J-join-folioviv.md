@@ -1,6 +1,6 @@
 - **SHA de redacción:** `3e071f0` (Merge PR #175, `origin/main`, 12/ago/2026) — verificado exacto contra `origin/main` al arranque de este acto, 0 commits de diferencia.
 - **Entorno asignado:** CAJA LOCAL (microdato ENIGH en disco). NO nube, NO contenedor de chat, NO en paralelo en otro entorno.
-- **Estado:** VIVO
+- **Estado:** CONSUMIDO — PR de la rama `mesa/j-join-folioviv` (dos commits: `7525b70` especificación congelada, y el commit de resultados/arreglo que lo sigue). Detalle en `forense/notas/2026-08-12-j-alcance-folioviv.md`.
 
 ---
 
