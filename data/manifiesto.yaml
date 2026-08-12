@@ -11293,3 +11293,81 @@
     no un defecto del portal ni un limite de sandbox. DOID y rol verificados contra forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
     (tabla de la ficha, lineas 137-147). sha256 derivado del archivo real por tests/manifiesto.py
     --escanea/--promueve, no tecleado.'
+
+- id: za6980_issp2017sn_cuestionario_mx_pdf
+  usado_para: ISSP 2017 Social Networks and Social Resources -- cuestionario nacional aplicado
+    en Mexico (CUESTIONARIO DEL MODULO DE 'REDES SOCIALES y RECURSOS SOCIALES').
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/social-networks/2017
+  url_origen_procedencia: 'confirmada -- misma URL ya citada como la de este modulo en forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (Commit 2, intento del agente bloqueado por Cloudflare) y forense/notas/2026-08-12-acto-o-cola-adquisicion.md;
+    modulo verificado de forma independiente leyendo la portada del propio PDF (ZA6980_q_mx.pdf:
+    ''Mexico / ISSP 2017 - Social Networks and Social Resources / Questionnaire'').'
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA6980_q_mx.pdf
+  raiz: descargas_mx
+  sha256: 61bc0c80415521965ec1b2546fbe3b2400cfacb2e6b0b542583304821544f2ed
+  tamano_bytes: 247978
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Registro GESIS gratuito, descarga manual del usuario en navegador -- NO por este agente
+    (ACTO P.Lote-1 Commit 2 quedo NO OBTENIDO POR ESTE AGENTE EN 11 INTENTOS, bloqueo Cloudflare
+    a nivel de dominio antes de alcanzar el formulario de registro; el bloqueo era anti-bot,
+    no de licencia -- la receta manual del usuario funciono donde el agente no, ver forense/hallazgos.md
+    ACTO P.Lote-1). Candidata registrada en relaciones.tsv para N2/N3/N12/N13/N14/N28/N30
+    bajo el nombre exacto 'ISSP Social Networks and Social Resources 2017 Mexico'; de esas,
+    N12/N13/N14 ya tienen fuente CONFIRMADA distinta (ENBIARE/ENASIC) -- este payload no las
+    mueve. N2/N3/N28/N30 siguen sin fuente CONFIRMADA en ninguna entrada del corpus; este
+    payload queda disponible como candidata sin abrir (mapeo semantico variable-por-variable
+    fuera de este acto).
+
+- id: za6980_issp2017sn_datos_v2_0_0_sav_zip
+  usado_para: ISSP 2017 Social Networks and Social Resources -- datos SPSS v2.0.0, release
+    internacional (Mexico incluido).
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/social-networks/2017
+  url_origen_procedencia: 'confirmada -- misma URL ya citada como la de este modulo en forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (Commit 2, intento del agente bloqueado por Cloudflare) y forense/notas/2026-08-12-acto-o-cola-adquisicion.md;
+    modulo verificado de forma independiente leyendo la portada del propio PDF (ZA6980_q_mx.pdf:
+    ''Mexico / ISSP 2017 - Social Networks and Social Resources / Questionnaire'').'
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA6980_v2-0-0.sav.zip
+  raiz: descargas_mx
+  sha256: 20a1420f4aa8f8dcb30f7de61879796d20b7c3042805e7925e56c30b4ae97ca5
+  tamano_bytes: 5278278
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Registro GESIS gratuito, descarga manual del usuario en navegador -- NO por este agente
+    (ACTO P.Lote-1 Commit 2 quedo NO OBTENIDO POR ESTE AGENTE EN 11 INTENTOS, bloqueo Cloudflare
+    a nivel de dominio antes de alcanzar el formulario de registro; el bloqueo era anti-bot,
+    no de licencia -- la receta manual del usuario funciono donde el agente no, ver forense/hallazgos.md
+    ACTO P.Lote-1). Candidata registrada en relaciones.tsv para N2/N3/N12/N13/N14/N28/N30
+    bajo el nombre exacto 'ISSP Social Networks and Social Resources 2017 Mexico'; de esas,
+    N12/N13/N14 ya tienen fuente CONFIRMADA distinta (ENBIARE/ENASIC) -- este payload no las
+    mueve. N2/N3/N28/N30 siguen sin fuente CONFIRMADA en ninguna entrada del corpus; este
+    payload queda disponible como candidata sin abrir (mapeo semantico variable-por-variable
+    fuera de este acto).
+
+- id: za6980_issp2017sn_datos_v2_0_0_dta_zip
+  usado_para: ISSP 2017 Social Networks and Social Resources -- datos Stata v2.0.0, release
+    internacional (Mexico incluido).
+  url_origen: https://www.gesis.org/en/issp/data-and-documentation/social-networks/2017
+  url_origen_procedencia: 'confirmada -- misma URL ya citada como la de este modulo en forense/notas/2026-08-12-acto-p-lote1-adquisicion.md
+    (Commit 2, intento del agente bloqueado por Cloudflare) y forense/notas/2026-08-12-acto-o-cola-adquisicion.md;
+    modulo verificado de forma independiente leyendo la portada del propio PDF (ZA6980_q_mx.pdf:
+    ''Mexico / ISSP 2017 - Social Networks and Social Resources / Questionnaire'').'
+  fecha_descarga: '2026-08-12'
+  descargado_por: usuario, vía navegador
+  archivo: ZA6980_v2-0-0.dta.zip
+  raiz: descargas_mx
+  sha256: aa3bfcbcc1dc20a2735e8e9d2d3d47a72d909dade66e8c4623b910965dc227de
+  tamano_bytes: 3144289
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Registro GESIS gratuito, descarga manual del usuario en navegador -- NO por este agente
+    (ACTO P.Lote-1 Commit 2 quedo NO OBTENIDO POR ESTE AGENTE EN 11 INTENTOS, bloqueo Cloudflare
+    a nivel de dominio antes de alcanzar el formulario de registro; el bloqueo era anti-bot,
+    no de licencia -- la receta manual del usuario funciono donde el agente no, ver forense/hallazgos.md
+    ACTO P.Lote-1). Candidata registrada en relaciones.tsv para N2/N3/N12/N13/N14/N28/N30
+    bajo el nombre exacto 'ISSP Social Networks and Social Resources 2017 Mexico'; de esas,
+    N12/N13/N14 ya tienen fuente CONFIRMADA distinta (ENBIARE/ENASIC) -- este payload no las
+    mueve. N2/N3/N28/N30 siguen sin fuente CONFIRMADA en ninguna entrada del corpus; este
+    payload queda disponible como candidata sin abrir (mapeo semantico variable-por-variable
+    fuera de este acto).
