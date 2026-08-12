@@ -83,6 +83,20 @@
     "evidencia_ref": {"type": "string", "minLength": 1},
     "evidencia_neutral_ref": {"type": "string", "minLength": 1},
     "hash_evidencia_neutral": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "documentacion_fuente": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["url", "fecha_consulta", "campos_resueltos"],
+        "properties": {
+          "url": {"type": "string", "minLength": 1},
+          "fecha_consulta": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+          "campos_resueltos": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
     "supervisor_link": false,
     "necesidad_id": false,
     "relacion_id": false,
