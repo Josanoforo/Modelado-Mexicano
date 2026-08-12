@@ -20,7 +20,7 @@
       }
     ]
   },
-  "criterio_parada": "No calcular mientras periodo_levantamiento no esté fijado -- el documento de Diseño Muestral de la Enasic 2022 que lo tendría no está en el corpus adquirido (este acto no descarga nada). Los otros seis campos materiales quedan fijados en el commit E4b SELLO-B, 2026-08-11 (forense/notas/2026-08-11-e4b-sello-b-corrida-b.md).",
+  "criterio_parada": "Los siete campos materiales quedan fijados: seis en el commit E4b SELLO-B, 2026-08-11 (forense/notas/2026-08-11-e4b-sello-b-corrida-b.md); periodo_levantamiento en la enmienda pre-dato U1/E4b' del 2026-08-12 (forense/notas/2026-08-12-u1-e4b-prime-recorrida.md), desde RNM ficha 922 -- ningún resultado había sido visto antes de esta enmienda. Ya no aplica un criterio de parada material; el primer resultado que produzca produce.py sobre esta especificación es el que se reporta.",
   "direccion": "NO_APLICA_DISTRIBUCION -- distribución descriptiva, sin hipótesis direccional (A-bis regla 1: no se estima una asociación en este acto)",
   "diseno_muestral": {
     "conglomerado": "UPM_DIS",
@@ -40,7 +40,7 @@
   "incertidumbre": "IC95 por linealización de Taylor sobre conglomerados últimos (estrato=EST_DIS, conglomerado=UPM_DIS), consistente con 889463927082.pdf SS3 ('Conglomerados Últimos junto con... Series de Taylor'); tools/curador_registro/produce.py::taylor_distribution. Declarado antes de ver el dato.",
   "input_member": "TPER_ELE.csv",
   "input_path": "/home/pc0/mm-corpus/raw/enasic2022/enasic_2022_bd_csv.zip",
-  "periodo_levantamiento": "NO_DETERMINADO",
+  "periodo_levantamiento": "2022-10-24/2022-12-16",
   "periodo_referencia_por_variable": {
     "P7_12_7": "Momento de la entrevista (reactivo sin ventana retrospectiva explícita) -- sin marco temporal declarado en el ítem, mismo patrón que PB1_01/PB2_1/PB2_2 en este corpus"
   },
