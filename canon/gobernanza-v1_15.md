@@ -913,7 +913,7 @@ Los tres referentes muestran la misma dirección positiva al condicionar (28 cel
 
 **(c) Regla de conducto.** Toda nota de exploración que descubra puerta, capacidad o restricción cierra su acto subiendo la fila a la tabla consolidada o declarando por qué no.
 
-**(d)** Se acota ADR-68(a): su congelamiento del motor refería a la integración de celdas-D, no al mantenimiento del aparato (precedente ADR-62) — esta modificación es mantenimiento.
+**(d)** ENMIENDA NOMBRADA a ADR-68(a), firmada por mesa en este acto. El congelamiento del motor `tools/curador_registro/` rige a partir de la apertura del piloto (primer registro de celda-D del piloto en E0); el mantenimiento del aparato previo a esa apertura queda permitido únicamente con ADR que lo selle, como este. La cláusula anterior de este inciso ("refería a la integración de celdas-D… precedente ADR-62") se retira: la revisión del 12/ago demostró que ADR-62 no toca este directorio y que un ADR anterior no acota a uno posterior. Enmendar con nombre es más barato que aclarar sin derecho.
 
 **(e)** Falsador y caducidad, citados verbatim de la propuesta §3, ya en el repo por este mismo acto: "si en los próximos tres meses aparece un `NO_DETERMINADO` cuya respuesta estaba en una puerta ya consolidada, la estructura falló y se rediseña"; "si en tres meses el campo no evitó ni un defecto ni resolvió un dato, P3-P4 se retiran y se anota — la regla de señal manda sobre esta propuesta como sobre todo lo demás." El estado NO EJECUTADO previo queda registrado en la historia de la rama y en hallazgos: la brecha alcanzó a su propia remediación, y el arreglo fue el conducto mismo.
 
