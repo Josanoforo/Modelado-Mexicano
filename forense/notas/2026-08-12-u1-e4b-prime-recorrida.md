@@ -59,3 +59,30 @@ Un primer intento de leer esta misma ficha con la herramienta de fetch web resum
 Ningún resultado se calcula. `tools/curador_registro/produce.py` no se invoca. Los seis campos materiales restantes no se tocan — siguen exactamente como los fijó SELLO-B, 2026-08-11.
 
 **El primer resultado que produzca este procedimiento es el que se reporta.**
+
+## §6 · Commit 2 (resultados) — el primer resultado, tal como lo produjo el motor
+
+Sesión separada, misma rama (`u1/e4b-prime-recorrida`), sin editar §0-§5 arriba (commit 1b, `0edc008`, congelado). Secuencia real, en orden:
+
+1. `tools/curador_registro/prepare_production.py --config data/curacion-registro/especificaciones-produccion.json --snapshot data/curacion-universo/snapshot-t0.json --baseline data/curacion-registro --output-root data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1` — regenera el contrato cegado de las tres especificaciones vigentes. Verificado por `diff` byte a byte ANTES de escribir sobre el repo real (corrida primero contra un directorio de scratch): `ESP-OPACA-A-7baf278d` y `ESP-OPACA-C-9ecb5c61` salen bit-idénticos (no tocados); solo `ESP-OPACA-B-d13ec4fe` cambia, exactamente en `periodo_levantamiento` y `criterio_parada` — el delta que commit 1b declaró.
+2. `tools/curador_registro/produce.py --spec .../ESP-OPACA-B-d13ec4fe/especificacion-recibida.json --output-dir .../ESP-OPACA-B-d13ec4fe` — `{"calculos_reproducibles": 1, "no_determinado": 0}`. Con los siete campos materiales completos, el motor calculó por primera vez.
+3. `tools/curador_registro/integrate_production.py --config ... --snapshot ... --baseline data/curacion-registro --analyst-root data/curacion-registro/expedientes-produccion --output data/curacion-registro/produccion-modelo.tsv` — reproduce las tres especificaciones desde cero en un directorio temporal, compara byte a byte contra lo que el paso 2 escribió (`hashes_analista_confiados: false`, ningún `hashes.json` firmado por el analista participa), y solo entonces reescribe `produccion-modelo.tsv`. Resultado: `{"productos": 11, "reproducibles": 11, "no_determinado": 0, "RELACIONES_CON_CALCULO_DESCRIPTIVO": 3, "RELACIONES_LISTAS_PARA_USO_MODELO": 1}`. Antes de este commit, la fila de `ESP-OPACA-B-d13ec4fe` era la única `NO_DETERMINADO` de las 11; ahora las 11 son `CALCULO_REPRODUCIBLE`. El diff de `produccion-modelo.tsv` toca las 11 filas (no solo la de B) porque `hash_especificacion_fuente` es el sha256 del archivo `especificaciones-produccion.json` completo (`integrate_production.py:255`) — delta esperado, declarado en commit 1b, no un defecto.
+
+**El resultado (`ESP-OPACA-B-d13ec4fe`, `P7_12_7`, TPER_ELE, ENASIC 2022, diseño EST_DIS/UPM_DIS, ponderador FAC_ELE, n=5,579, suma_pesos=80,237,061, cero blancos):**
+
+| código | etiqueta | proporción | IC95 |
+|---|---|---|---|
+| 1 | De acuerdo (Sí) | 0.6933 | [0.6725, 0.7140] |
+| 2 | Desacuerdo (No) | 0.2995 | [0.2788, 0.3203] |
+| 8 | No responde | 0.0035 | [0.0009, 0.0060] |
+| 9 | No sabe | 0.0037 | [0.0012, 0.0062] |
+
+Las cuatro categorías oficiales quedan con `estado_celda: ESTIMACION_SUSTENTADA` — ninguna celda vacía, ningún colapso de categoría. Error estándar por linealización de Taylor sobre `EST_DIS`/`UPM_DIS` (`taylor_distribution`, método declarado por SELLO-B el 11/ago, antes de ver el dato).
+
+**Celda-D actualizada** (`data/curacion-registro/celdas-d/G5.familismo_obligacion.actitud.yaml`), no reescrita: `resultado` (candidato BASELINE/ENASIC) pasa de `NO-EJECUTADO` a `vigente -- CALCULO_REPRODUCIBLE`; `champion_actual` de `NINGUNO` a `"BASELINE.ENASIC"`; `procedencia_condicional` de `SIN_ESTIMACION_TODAVIA` a `MEDICION_DIRECTA_MICRODATO`; `output_nativo`/`incertidumbre`/`supuesto_transporte` actualizados para dejar de citar un `NO_DETERMINADO` que ya no es cierto. **Cada uno de estos cuatro cambios sigue un precedente verificado dentro del mismo directorio, no un criterio inventado en este acto:** `G5.radio_confianza.encuci_vs_enbiare.yaml` ya resuelve exactamente esta forma (BASELINE único, calculado, sin challenger con quien adjudicar) con `resultado: "vigente -- ..."` (no `GANO`) y `champion_actual` explícito pese a no haber adjudicación formal (líneas 83-87, 123); su comentario en `procedencia_condicional` (líneas 149-153) da el contraste explícito que clasifica a P7_12_7 como `MEDICION_DIRECTA_MICRODATO` (una distribución marginal de un reactivo, sin condicionante analítico cruzando variables) frente a `MEDICION_CONDICIONAL_MICRODATO` (condicionada por formalidad×edad, el caso de ENCUCI). `estado_operativo` se queda en `PENDIENTE` — no sube a `LISTO` — porque, a diferencia de esa celda hermana (`requiere_decision_mesa: false`), esta sigue con `requiere_decision_mesa: true` sin resolver (la reserva de encuadre de género, ADR-67(b)); esa reserva es independiente de `periodo_levantamiento` y esta corrida no la toca. `tests/test_celdas_d.py` (2/2 ok) valida ambos archivos contra el contrato v0.3 §3 después del cambio.
+
+**Verificación de cierre:** `python3 tests/check.py --baseline` → `LÍNEA BASE: VERDE` (22 FAIL · 104 WARN, sin cambio frente al HEAD congelado) — este commit no introduce ningún FAIL/WARN nuevo.
+
+**Qué NO resuelve este commit:** la reserva de encuadre de género (ADR-67(b), `requiere_decision_mesa: true`) sigue abierta — el resultado existe y está verificado, pero `estado_uso_modelo` en `produccion-modelo.tsv` sigue `NO_LISTA_DECISION_HUMANA_PENDIENTE`, derivado por la misma máquina que reprodujo el cálculo, no por esta sesión. `G5.familismo_obligacion.conducta` (lado ENUT) sigue sin abrir — acto propio, declarado desde SELLO-B. Este acto no adjudica nada, no sella ningún ADR, no decide si el resultado entra al modelo.
+
+**El primer resultado que produjo este procedimiento es el reportado arriba — no se corrió el motor una segunda vez, no se buscó un resultado distinto.**
