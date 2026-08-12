@@ -1,6 +1,8 @@
 # El motor adaptativo por celda: seleccionar el estimador, no imponerlo
 ### Propuesta sin sello · v0.3 · 11/ago/2026
 
+> ⚠️ **Superseded 12/ago/2026 en §3 por `propuesta-motor-adaptativo-celda-v0_4.md`** (ACTO V, `ADR-71(d)`): el campo `fuerza` de esta versión se parte en `fuerza_coeficiente` + `procedencia_condicional`. Este archivo no se edita — historia de la propuesta.
+
 > | | |
 > |---|---|
 > | **ARCHIVO** | `propuesta-motor-adaptativo-celda-v0_3.md` |

@@ -33,6 +33,16 @@ dentro de una ola) y did_ultimate_cluster (diferencias-en-diferencias
 entre dos olas independientes) -- derivacion completa en
 forense/notas/2026-08-12-estimador-contraste.md. prop_ultimate_cluster
 arriba no se modifica.
+
+Anadido ACTO S (12/ago/2026): diff4_ultimate_cluster (contraste de 4
+celdas T/C/T2/C2 dentro de una ola -- triple diferencia). Corrige un
+defecto declarado y no implementado en E4c/R5.1-D2 Commit 4 (sumar
+Var(diff T-C) + Var(diff T2-C2) trata dos contrastes que comparten
+estrato/UPM dentro de la misma ola como si fueran independientes --
+no lo son; el mismo argumento que ya distingue diff_ultimate_cluster
+de sumar var(p_T)+var(p_C)). Derivacion completa en
+forense/notas/2026-08-12-e4c-r5-1-d2-commit5-correccion-varianza-ddd.md
+S2. diff_ultimate_cluster y did_ultimate_cluster no se modifican.
 """
 import math
 
@@ -257,6 +267,152 @@ def did_ultimate_cluster(rows_pre, rows_post):
         "ic95": (lo, hi),
         "n_estratos_singleton_pre": out_pre["n_estratos_singleton"],
         "n_estratos_singleton_post": out_post["n_estratos_singleton"],
+    }
+
+
+def diff4_ultimate_cluster(rows):
+    """rows: iterable de (estrato, upm, peso, y, grupo) con y en {0,1} y
+    grupo en {"T", "C", "T2", "C2", None}. Contraste de 4 celdas dentro
+    de UNA ola -- extension de diff_ultimate_cluster a una triple
+    diferencia (E4c/R5.1-D2, Commit 5,
+    forense/notas/2026-08-12-e4c-r5-1-d2-commit5-correccion-varianza-ddd.md
+    S2). T/C es el contraste principal (ej. personas 65+, elegibilidad
+    por regla); T2/C2 es la banda de control (ej. personas 55-64, misma
+    particion aplicada a una poblacion no elegible bajo ninguna regla,
+    en ninguna ola).
+
+    Estima d4_hat = (p_T - p_C) - (p_T2 - p_C2), con conglomerado ultimo
+    sobre el residual linealizado COMPARTIDO por las cuatro celdas -- no
+    dos contrastes independientes sumados. Por que: T, C, T2 y C2 salen
+    de la MISMA muestra dentro de una ola (comparten estrato/UPM -- un
+    hogar con una persona en cada banda de edad aporta filas a las dos
+    bandas desde la misma UPM), asi que
+    Var((p_T-p_C)-(p_T2-p_C2)) != Var(p_T-p_C) + Var(p_T2-p_C2) en
+    general -- el mismo argumento por el que diff_ultimate_cluster
+    existe (T y C salen de la misma ola), aplicado ahora a cuatro
+    celdas en vez de dos. Sumar dos salidas de diff_ultimate_cluster
+    (T-vs-C y T2-vs-C2 por separado) pierde exactamente esa covarianza
+    -- es el defecto que este acto corrige (E4c Commit 4 lo proponia
+    asi; Commit 5 lo retiro sin implementar el reemplazo, perimetro de
+    ese acto).
+
+    Formula, extension directa de diff_ultimate_cluster (mismo metodo
+    de Wolter, "Introduction to Variance Estimation", ultimate cluster):
+
+      p_T = sum(w*y | grupo=T) / N_hat_T      p_C, p_T2, p_C2 analogos
+
+      z_i =   1{i en T}  * w_i*(y_i-p_T)  / N_hat_T
+            - 1{i en C}  * w_i*(y_i-p_C)  / N_hat_C
+            - 1{i en T2} * w_i*(y_i-p_T2) / N_hat_T2
+            + 1{i en C2} * w_i*(y_i-p_C2) / N_hat_C2
+
+      var(d4_hat) = sum_h [ (m_h/(m_h-1)) * sum_i (z_hi - mean_i(z_hi))^2 ]
+
+    z_i es, termino a termino, el residual de diff_ultimate_cluster para
+    T-vs-C MENOS el residual de diff_ultimate_cluster para T2-vs-C2 --
+    no una formula de otra familia, la misma aplicada dos veces con
+    signo y sumada por UPM antes de tomar varianza (por eso la
+    covarianza entre bandas se captura: si ambos residuales se mueven
+    juntos dentro de la misma UPM, se combinan ahi, antes del cuadrado).
+    z_hi es z_i agregado por UPM dentro de estrato y m_h es el numero de
+    UPM del estrato h (misma forma que diff_ultimate_cluster y
+    prop_ultimate_cluster arriba).
+
+    Cinco decisiones de diseno, heredadas de diff_ultimate_cluster sin
+    inventar politica nueva (derivacion completa en la nota citada
+    arriba):
+
+      1. Unidades fuera de las cuatro celdas (grupo=None, o cualquier
+         valor que no sea "T"/"C"/"T2"/"C2") permanecen en el archivo y
+         aportan z_i=0 -- no se filtran, misma razon que
+         diff_ultimate_cluster: cambiar la estructura de estratos/UPM
+         del diseno alteraria los grados de libertad; sigue siendo
+         estimacion de dominio, no submuestreo.
+      2. Singleton: un estrato de una sola UPM salta (no aporta a
+         var(d4_hat)) y se cuenta en n_estratos_singleton -- misma
+         politica que diff_ultimate_cluster y prop_ultimate_cluster. El
+         llamador DEBE leer ese contador.
+      3. Cuantil normal 1.959963985, igual que las tres funciones
+         hermanas, no 1.96.
+      4. rows = list(rows): se recorre dos veces (los cuatro N_hat/num,
+         y despues el bloque de UPM), mismo motivo que las funciones
+         hermanas -- un generador se agotaria en el primer recorrido.
+      5. Celda vacia: si CUALQUIERA de N_hat_T, N_hat_C, N_hat_T2,
+         N_hat_C2 es 0, devuelve None -- extension de la misma regla de
+         diff_ultimate_cluster (no se construye un contraste al que le
+         falte una pata), a cuatro celdas en vez de dos. El valor de
+         retorno no distingue cual celda fallo (misma forma que las
+         funciones hermanas: None es None) -- quien llama y necesite
+         diagnosticar cual celda esta vacia revisa las cuatro N_hat
+         antes de invocar. Las cuatro lecturas sustantivas, declaradas
+         para quien audite un None: T vacio = la banda principal no
+         tiene tratamiento (falla de identificacion, no de esta
+         funcion); C vacio = la banda principal no tiene comparacion;
+         T2 vacio = la banda de control no tiene "tratamiento" bajo la
+         misma particion (inesperado: la banda de control no deberia
+         ser elegible por edad bajo ninguna regla, pero puede no tener
+         nadie sobre el umbral de ingreso); C2 vacio = la banda de
+         control no tiene "comparacion".
+
+    Devuelve dict con d4_hat, p_T, p_C, p_T2, p_C2, se, ic95, n_estratos,
+    n_upm_total, n_estratos_singleton. La combinacion ENTRE olas
+    (DDD = d4_hat_post - d4_hat_pre, Var = Var(d4_post) + Var(d4_pre))
+    queda para quien llama, no para esta funcion -- ese argumento de
+    independencia entre-olas ya esta resuelto y validado en
+    did_ultimate_cluster; no se reimplementa un did4_ultimate_cluster
+    aqui (fuera del contrato de este acto).
+    """
+    rows = list(rows)  # se recorre dos veces -- ver decision 4 arriba
+
+    CELDAS = ("T", "C", "T2", "C2")
+    SIGNO = {"T": 1.0, "C": -1.0, "T2": -1.0, "C2": 1.0}
+
+    N_hat = {c: 0.0 for c in CELDAS}
+    num = {c: 0.0 for c in CELDAS}
+    for _est, _upm, w, y, grupo in rows:
+        if grupo in N_hat:
+            N_hat[grupo] += w
+            num[grupo] += w * y
+    if any(N_hat[c] == 0 for c in CELDAS):
+        return None
+    p = {c: num[c] / N_hat[c] for c in CELDAS}
+    d4_hat = (p["T"] - p["C"]) - (p["T2"] - p["C2"])
+
+    # Agregar z_i por (estrato, upm). Unidades fuera de las 4 celdas aportan 0.
+    upm_z = {}
+    estrato_upms = {}
+    for est, upm, w, y, grupo in rows:
+        key = (est, upm)
+        if grupo in SIGNO:
+            z_i = SIGNO[grupo] * w * (y - p[grupo]) / N_hat[grupo]
+        else:
+            z_i = 0.0
+        upm_z[key] = upm_z.get(key, 0.0) + z_i
+        estrato_upms.setdefault(est, set()).add(upm)
+
+    var = 0.0
+    singleton_estratos = 0
+    for est, upms in estrato_upms.items():
+        m_h = len(upms)
+        z_list = [upm_z[(est, upm)] for upm in upms]
+        if m_h < 2:
+            singleton_estratos += 1
+            continue
+        mean_z = sum(z_list) / m_h
+        ss = sum((z - mean_z) ** 2 for z in z_list)
+        var += (m_h / (m_h - 1)) * ss
+
+    se = math.sqrt(var) if var > 0 else 0.0
+    lo = d4_hat - 1.959963985 * se
+    hi = d4_hat + 1.959963985 * se
+    return {
+        "d4_hat": d4_hat,
+        "p_T": p["T"], "p_C": p["C"], "p_T2": p["T2"], "p_C2": p["C2"],
+        "se": se,
+        "ic95": (lo, hi),
+        "n_estratos": len(estrato_upms),
+        "n_upm_total": len(upm_z),
+        "n_estratos_singleton": singleton_estratos,
     }
 
 
