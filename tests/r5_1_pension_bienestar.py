@@ -132,9 +132,20 @@ def procesar_ola(year):
     zpath = RAW / cfg["zip_name"]
     z = zipfile.ZipFile(zpath)
 
+    # folioviv en poblacion/ingresos pierde el cero inicial de entidad 01-09
+    # en 2016 y 2018 (no en 2012/2014/2020/2022) -- concentradohogar nunca lo
+    # pierde. zfill() se ancla al ancho REAL de esta ola (2012 es C(6), no
+    # C(10) como el resto) en vez de asumir 10 -- ver e4c commit 3
+    # (forense/notas/2026-08-11-e4c-r5-1-d2-commit3-ajuste-preejecucion.md)
+    # y forense/notas/2026-08-12-j-alcance-folioviv.md S1.2/S2.
+    ancho_folioviv = None
+
     hogares = {}
     for row in _reader(z, cfg["ch"]):
-        key = (row["folioviv"], row["foliohog"])
+        fv = row["folioviv"].strip()
+        if ancho_folioviv is None:
+            ancho_folioviv = len(fv)
+        key = (fv, row["foliohog"])
         hogares[key] = {
             "est_dis": row["est_dis"],
             "upm": row["upm"],
@@ -155,14 +166,15 @@ def procesar_ola(year):
     # edad por persona, solo necesaria para atribuir receptor de P040 a mayor/no-mayor
     edad_persona = {}
     for row in _reader(z, cfg["pob"]):
-        key = (row["folioviv"], row["foliohog"], row["numren"])
+        key = (row["folioviv"].strip().zfill(ancho_folioviv), row["foliohog"], row["numren"])
         try:
             edad_persona[key] = int(row["edad"])
         except (ValueError, KeyError):
             pass
 
     for row in _reader(z, cfg["ing"]):
-        hkey = (row["folioviv"], row["foliohog"])
+        fv = row["folioviv"].strip().zfill(ancho_folioviv)
+        hkey = (fv, row["foliohog"])
         hh = hogares.get(hkey)
         if hh is None:
             continue
@@ -177,7 +189,7 @@ def procesar_ola(year):
             hh["beneficiario"] = True
             hh["monto_pension_tri"] += ing_tri
         elif clave == TRANSFER_CLAVE:
-            pkey = (row["folioviv"], row["foliohog"], row["numren"])
+            pkey = (fv, row["foliohog"], row["numren"])
             edad = edad_persona.get(pkey)
             if edad is not None and edad >= EDAD_MAYOR:
                 hh["transferencia_mayor"] = True
