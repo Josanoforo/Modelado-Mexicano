@@ -126,21 +126,29 @@ def construir_universo(tmpdir):
     hog = _leer(tmpdir, "hogares")
     trab = _leer(tmpdir, "trabajos")
 
+    # folioviv en poblacion/trabajos puede perder el cero inicial de entidad
+    # 01-09 (medido en 2016/2018 de ENIGH -- no en 2022, la unica ola que
+    # este script procesa hoy, verificada limpia; se normaliza igual por si
+    # ese universo cambia). zfill() se ancla al ancho REAL de concentradohogar
+    # de esta ola, no a un 10 fijo -- 2012 es C(6), no C(10). Ver
+    # forense/notas/2026-08-12-j-alcance-folioviv.md S1.2/S2.
+    ancho_folioviv = len(conc[0]["folioviv"].strip()) if conc else 10
+
     conc_por_hogar = {}
     for row in conc:
-        key = (row["folioviv"], row["foliohog"])
+        key = (row["folioviv"].strip().zfill(ancho_folioviv), row["foliohog"])
         conc_por_hogar[key] = row
 
     hog_por_hogar = {}
     for row in hog:
-        key = (row["folioviv"], row["foliohog"])
+        key = (row["folioviv"].strip().zfill(ancho_folioviv), row["foliohog"])
         hog_por_hogar[key] = row
 
     # Trabajo principal (id_trabajo=1) por persona -- para S3.
     trab_principal = {}
     tiene_trabajo = set()
     for row in trab:
-        key = (row["folioviv"], row["foliohog"], row["numren"])
+        key = (row["folioviv"].strip().zfill(ancho_folioviv), row["foliohog"], row["numren"])
         tiene_trabajo.add(key)
         if row["id_trabajo"] == "1":
             trab_principal[key] = row
@@ -152,8 +160,9 @@ def construir_universo(tmpdir):
         edad = int(row["edad"])
         if edad < 18:
             continue
-        hkey = (row["folioviv"], row["foliohog"])
-        pkey = (row["folioviv"], row["foliohog"], row["numren"])
+        fv = row["folioviv"].strip().zfill(ancho_folioviv)
+        hkey = (fv, row["foliohog"])
+        pkey = (fv, row["foliohog"], row["numren"])
         crow = conc_por_hogar.get(hkey)
         hrow = hog_por_hogar.get(hkey)
         if crow is None:
@@ -187,7 +196,7 @@ def construir_universo(tmpdir):
         remesas = float(crow["remesas"]) if crow and crow["remesas"].strip() != "" else None
 
         universo.append({
-            "folioviv": row["folioviv"],
+            "folioviv": fv,
             "foliohog": row["foliohog"],
             "numren": row["numren"],
             "factor": float(row["factor"]),
