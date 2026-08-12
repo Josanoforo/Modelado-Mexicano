@@ -68,6 +68,49 @@ forense/notas/2026-08-12-estimador-contraste.md:
      se colapsan entre olas, y que None se propaga si una ola tiene
      grupo vacio.
 
+ACTO S (12/ago/2026) anade diff4_ultimate_cluster (contraste de 4 celdas
+T/C/T2/C2 dentro de una ola -- triple diferencia; E4c/R5.1-D2 Commit 4
+la propuso como suma de dos diff_ultimate_cluster independientes,
+Commit 5 encontro que las dos bandas comparten estrato/UPM dentro de
+cada ola y retiro esa construccion sin implementar el reemplazo,
+perimetro de ese acto). Derivacion completa en
+forense/notas/2026-08-12-e4c-r5-1-d2-commit5-correccion-varianza-ddd.md
+S2 y en el propio docstring de diff4_ultimate_cluster. Casos nuevos:
+ 10. test_diff4_caso1_degenerado_a_diff() -- degenerado a lo ya
+     probado. Mismo dataset T/C de test_diff_caso1_srs_forma_cerrada
+     (ya validado) mas una fila T2 y una fila C2, cada una SOLA en su
+     propio estrato (singleton, y=0 -> p_T2=p_C2=0 exacto, el termino
+     de control se anula en d4_hat y las dos filas no aportan a la
+     varianza por ser singleton) -- d4_hat y se deben coincidir con
+     diff_ultimate_cluster(T,C) a 1e-12, mismo criterio que el Caso 2
+     de ENCARGO B.
+ 11. test_diff4_caso2_covarianza_entre_bandas() -- EL CASO QUE
+     DEMUESTRA EL DEFECTO QUE ESTE ACTO CORRIGE. 6 UPM, T/C/T2/C2 las
+     cuatro presentes en cada UPM, con covarianza POSITIVA por diseno
+     entre la brecha T-C y la brecha T2-C2 (una UPM rompe el patron a
+     proposito, mismo criterio que el Caso 3 de ENCARGO B para evitar
+     covarianza perfecta/degenerada). Se compara diff4_ultimate_cluster
+     (que ve la covarianza) contra sqrt(se(T,C)^2 + se(T2,C2)^2) usando
+     diff_ultimate_cluster sobre cada par POR SEPARADO (la construccion
+     ingenua que E4c Commit 4 proponia). Deben diferir de forma visible
+     y en la direccion que la teoria predice (covarianza positiva ->
+     se correcto MENOR que la suma ingenua) -- se afirma la direccion,
+     no solo la diferencia.
+ 12. test_diff4_caso3_singleton() -- chequeo adyacente barato, mismo
+     patron que test_estrato_singleton(): una sola UPM con las cuatro
+     celdas presentes -- d4_hat se calcula, se debe ser exactamente 0.0
+     y quedar marcado en n_estratos_singleton, no escondido.
+ 13. test_diff4_caso4_srs_forma_cerrada() -- forma cerrada exacta,
+     factible: T/C en un estrato SRS (mismo dataset y forma cerrada de
+     test_diff_caso1_srs_forma_cerrada) y T2/C2 en OTRO estrato SRS
+     independiente (sin UPM compartida con T/C -- por diseno, sin
+     covarianza posible). Bajo esa construccion,
+     var(d4) = var(T,C) + var(T2,C2), la suma de dos formas cerradas ya
+     validadas -- confirma que diff4_ultimate_cluster colapsa
+     exactamente a la suma ingenua cuando las dos bandas genuinamente no
+     comparten estructura de diseno, no solo cuando el dataset es
+     demasiado chico para notar la diferencia.
+
 Corre solo, y ademas es un step bloqueante propio en CI (ENCARGO
 MT-mantenimiento, 5/ago/2026: `.github/workflows/verify.yml`, standalone,
 sin depender de check.py):
@@ -79,7 +122,7 @@ import sys
 
 sys.path.insert(0, "tests")
 import svystat  # noqa: E402
-from svystat import prop_ultimate_cluster, diff_ultimate_cluster, did_ultimate_cluster  # noqa: E402
+from svystat import prop_ultimate_cluster, diff_ultimate_cluster, did_ultimate_cluster, diff4_ultimate_cluster  # noqa: E402
 
 TOL = 1e-9  # misma tolerancia que el autochequeo del propio modulo
             # (_caso_conocido); generosa frente a la precision real de
@@ -471,6 +514,178 @@ def test_did_ultimate_cluster_coherencia():
     print("  OK -- theta_hat, se y contadores de singleton por ola coinciden; None se propaga en grupo vacio.")
 
 
+def test_diff4_caso1_degenerado_a_diff():
+    """Caso 1 de ACTO S -- degenerado a lo ya probado.
+
+    Mismo dataset T/C de test_diff_caso1_srs_forma_cerrada (d=5/12,
+    se=sqrt(1463/10368), ya validado a mano ahi) mas una fila T2 y una
+    fila C2, cada una SOLA en su propio estrato (y=0 -> p_T2=p_C2=0
+    exacto, el termino (p_T2-p_C2) se anula en d4_hat; las dos filas son
+    singleton, no aportan a la varianza). d4_hat y se deben coincidir
+    con diff_ultimate_cluster(T,C) a 1e-12 -- mismo criterio que el
+    Caso 2 de ENCARGO B para probar coherencia con lo ya validado.
+    """
+    rows_TC = [
+        ("unico", "upmT0", 1.0, 1.0, "T"), ("unico", "upmT1", 1.0, 1.0, "T"),
+        ("unico", "upmT2", 1.0, 0.0, "T"), ("unico", "upmT3", 1.0, 1.0, "T"),
+        ("unico", "upmC0", 1.0, 0.0, "C"), ("unico", "upmC1", 1.0, 1.0, "C"),
+        ("unico", "upmC2", 1.0, 0.0, "C"),
+    ]
+    out_diff = diff_ultimate_cluster(rows_TC)
+
+    rows_4 = rows_TC + [
+        ("T2_solo_estrato", "upm_t2", 1.0, 0.0, "T2"),
+        ("C2_solo_estrato", "upm_c2", 1.0, 0.0, "C2"),
+    ]
+    out_diff4 = diff4_ultimate_cluster(rows_4)
+
+    print("TEST 10 -- diff4 Caso 1, degenerado a diff_ultimate_cluster (T2/C2 singleton, p_T2=p_C2=0):")
+    print(f"  d4_hat={out_diff4['d4_hat']:.12f} d_hat(T,C)={out_diff['d_hat']:.12f}")
+    print(f"  se(diff4)={out_diff4['se']:.12f} se(T,C)={out_diff['se']:.12f}")
+    print(f"  n_estratos_singleton: base={out_diff['n_estratos_singleton']} diff4={out_diff4['n_estratos_singleton']}")
+
+    assert abs(out_diff4["d4_hat"] - out_diff["d_hat"]) < TOL_STRICT, "d4_hat no coincide con d_hat de diff_ultimate_cluster"
+    assert abs(out_diff4["se"] - out_diff["se"]) < TOL_STRICT, "se no coincide con el de diff_ultimate_cluster"
+    assert out_diff4["n_estratos_singleton"] == out_diff["n_estratos_singleton"] + 2, (
+        "las dos filas T2/C2 anadidas deben quedar marcadas como singleton (2 nuevos), no absorbidas en silencio")
+    print("  OK -- diff4_ultimate_cluster no contradice a diff_ultimate_cluster donde la banda de control no pesa (1e-12).")
+
+
+def test_diff4_caso2_covarianza_entre_bandas():
+    """Caso 2 de ACTO S -- EL CASO QUE DEMUESTRA EL DEFECTO QUE ESTE ACTO CORRIGE.
+
+    6 UPM en un solo estrato, las cuatro celdas (T/C/T2/C2) presentes en
+    cada UPM con pesos desiguales. Covarianza POSITIVA por diseno entre
+    la brecha T-C y la brecha T2-C2: UPM1/2 con ambas brechas positivas
+    (T2>C2 alineado con T>C), UPM4/5/6 con ambas negativas, UPM3 rompe
+    el patron a proposito (T>C pero T2<C2) -- mismo criterio que el
+    Caso 3 de ENCARGO B para evitar una covarianza perfecta/degenerada
+    (se=0.0 exacto, matematicamente correcto pero no ilustra el punto
+    general).
+
+    Se compara diff4_ultimate_cluster (que ve la covarianza via el
+    residual compartido) contra sqrt(se(T,C)^2 + se(T2,C2)^2) usando
+    diff_ultimate_cluster sobre cada par POR SEPARADO -- la
+    construccion que E4c Commit 4 proponia y Commit 5 encontro
+    incorrecta. Deben diferir de forma visible Y en la direccion que la
+    teoria predice: Var(A-B) = Var(A)+Var(B)-2*Cov(A,B), asi que
+    covarianza positiva implica se(correcto) < se(suma ingenua) -- se
+    afirma la direccion, no solo que difieren.
+    """
+    rows = [
+        ("s", "upm1", 3.0, 1.0, "T"), ("s", "upm1", 2.0, 0.0, "C"), ("s", "upm1", 2.0, 1.0, "T2"), ("s", "upm1", 3.0, 0.0, "C2"),
+        ("s", "upm2", 4.0, 1.0, "T"), ("s", "upm2", 3.0, 0.0, "C"), ("s", "upm2", 1.0, 1.0, "T2"), ("s", "upm2", 2.0, 0.0, "C2"),
+        ("s", "upm3", 5.0, 1.0, "T"), ("s", "upm3", 1.0, 0.0, "C"), ("s", "upm3", 4.0, 0.0, "T2"), ("s", "upm3", 2.0, 1.0, "C2"),  # rompe el patron
+        ("s", "upm4", 2.0, 0.0, "T"), ("s", "upm4", 4.0, 1.0, "C"), ("s", "upm4", 3.0, 0.0, "T2"), ("s", "upm4", 1.0, 1.0, "C2"),
+        ("s", "upm5", 1.0, 0.0, "T"), ("s", "upm5", 5.0, 1.0, "C"), ("s", "upm5", 2.0, 0.0, "T2"), ("s", "upm5", 4.0, 1.0, "C2"),
+        ("s", "upm6", 3.0, 0.0, "T"), ("s", "upm6", 2.0, 1.0, "C"), ("s", "upm6", 1.0, 0.0, "T2"), ("s", "upm6", 3.0, 1.0, "C2"),
+    ]
+    out_diff4 = diff4_ultimate_cluster(rows)
+
+    rows_TC = [(e, u, w, y, g) for e, u, w, y, g in rows if g in ("T", "C")]
+    rows_T2C2_como_TC = [(e, u, w, y, "T" if g == "T2" else "C") for e, u, w, y, g in rows if g in ("T2", "C2")]
+    out_TC = diff_ultimate_cluster(rows_TC)
+    out_T2C2 = diff_ultimate_cluster(rows_T2C2_como_TC)
+    se_suma_ingenua = math.sqrt(out_TC["se"] ** 2 + out_T2C2["se"] ** 2)
+
+    print("TEST 11 -- diff4 Caso 2, la covarianza entre bandas importa (defecto de E4c Commit 4):")
+    print(f"  p_T={out_diff4['p_T']:.4f} p_C={out_diff4['p_C']:.4f} p_T2={out_diff4['p_T2']:.4f} p_C2={out_diff4['p_C2']:.4f} d4_hat={out_diff4['d4_hat']:.6f}")
+    print(f"  se(diff4_ultimate_cluster, con covarianza) = {out_diff4['se']:.12f}")
+    print(f"  sqrt(se(T,C)^2 + se(T2,C2)^2) (ingenuo, E4c Commit 4)  = {se_suma_ingenua:.12f}")
+    print(f"  diferencia (ingenuo - correcto) = {se_suma_ingenua - out_diff4['se']:.6f}")
+
+    assert abs(se_suma_ingenua - out_diff4["se"]) > 0.05, (
+        "el SE correcto y el SE de la suma ingenua deben diferir de forma visible -- si no "
+        "difieren, el dataset no esta ejerciendo la covarianza y el caso no prueba lo que dice probar")
+    assert out_diff4["se"] < se_suma_ingenua, (
+        "con covarianza positiva por diseno, el SE correcto debe ser MENOR que la suma ingenua "
+        "(Var(A-B)=Var(A)+Var(B)-2Cov(A,B)) -- si sale mayor, el signo de la covarianza en el "
+        "dataset o en la formula esta invertido")
+    print("  OK -- difieren de forma visible y en la direccion correcta: la suma ingenua de E4c Commit 4 habria sobreestimado el SE.")
+
+
+def test_diff4_caso3_singleton():
+    """Caso 3 de ACTO S -- chequeo adyacente barato, mismo patron que
+    test_estrato_singleton(): una sola UPM con las cuatro celdas
+    presentes. d4_hat se calcula (T=1,C=0,T2=0,C2=0 -> d4=(1-0)-(0-0)=1),
+    pero con una sola UPM en el (unico) estrato no hay varianza
+    estimable -- se debe ser exactamente 0.0 y quedar marcado en
+    n_estratos_singleton, no escondido como un cero indistinguible.
+    """
+    rows = [
+        ("estrato_solo", "upm_x", 3.0, 1.0, "T"),
+        ("estrato_solo", "upm_x", 2.0, 0.0, "C"),
+        ("estrato_solo", "upm_x", 4.0, 0.0, "T2"),
+        ("estrato_solo", "upm_x", 1.0, 0.0, "C2"),
+    ]
+    out = diff4_ultimate_cluster(rows)
+
+    print("TEST 12 -- diff4 Caso 3, una sola UPM con las cuatro celdas (varianza no estimable):")
+    print(f"  d4_hat={out['d4_hat']:.6f} se={out['se']:.6f} n_estratos={out['n_estratos']} n_estratos_singleton={out['n_estratos_singleton']}")
+
+    assert abs(out["d4_hat"] - 1.0) < TOL, "d4_hat"
+    assert out["se"] == 0.0, "se deberia ser exactamente 0.0 (var=0, no NaN ni excepcion)"
+    assert out["n_estratos"] == 1, "n_estratos"
+    assert out["n_upm_total"] == 1, "n_upm_total"
+    assert out["n_estratos_singleton"] == 1, "n_estratos_singleton -- el caso singleton debe quedar marcado"
+    print("  OK -- el estrato singleton queda marcado, no escondido en un cero falso.")
+
+
+def test_diff4_caso4_srs_forma_cerrada():
+    """Caso 4 de ACTO S -- forma cerrada exacta, factible.
+
+    T/C en el estrato "unico" (mismo dataset y forma cerrada de
+    test_diff_caso1_srs_forma_cerrada: d1=5/12, var1=1463/10368) y T2/C2
+    en OTRO estrato "control", SRS, sin ninguna UPM compartida con T/C
+    (T2=[1,0,1] n_T2=3 p_T2=2/3; C2=[0,0] n_C2=2 p_C2=0):
+
+      d2 = 2/3 - 0 = 2/3
+      var2 = (5/4) * [ (2/3)(1/3)/3 + 0 ] = (5/4)*(2/27) = 5/54
+
+    Sin UPM compartida entre las dos bandas, no hay mecanismo para
+    covarianza -- diff4_ultimate_cluster debe colapsar EXACTAMENTE a la
+    suma de las dos formas cerradas ya validadas por separado:
+
+      d4_esperado = d1 - d2 = 5/12 - 2/3 = -1/4
+      var4_esperado = var1 + var2 = 1463/10368 + 960/10368 = 2423/10368
+      se4_esperado = sqrt(2423/10368)
+
+    Confirma el otro extremo del Caso 2: cuando las bandas genuinamente
+    no comparten estructura de diseno (no solo cuando el dataset es
+    chico), diff4 SI coincide con la suma ingenua -- la funcion no
+    inventa covarianza donde no la hay.
+    """
+    rows_TC = [
+        ("unico", "upmT0", 1.0, 1.0, "T"), ("unico", "upmT1", 1.0, 1.0, "T"),
+        ("unico", "upmT2", 1.0, 0.0, "T"), ("unico", "upmT3", 1.0, 1.0, "T"),
+        ("unico", "upmC0", 1.0, 0.0, "C"), ("unico", "upmC1", 1.0, 1.0, "C"),
+        ("unico", "upmC2", 1.0, 0.0, "C"),
+    ]
+    rows_T2C2 = [
+        ("control", "upmT2_0", 1.0, 1.0, "T2"), ("control", "upmT2_1", 1.0, 0.0, "T2"), ("control", "upmT2_2", 1.0, 1.0, "T2"),
+        ("control", "upmC2_0", 1.0, 0.0, "C2"), ("control", "upmC2_1", 1.0, 0.0, "C2"),
+    ]
+    out = diff4_ultimate_cluster(rows_TC + rows_T2C2)
+
+    d1 = 3 / 4 - 1 / 3
+    var1 = (7 / 6) * (3 / 64 + 2 / 27)
+    d2 = 2 / 3 - 0
+    var2 = (5 / 4) * ((2 / 3) * (1 / 3) / 3 + 0)
+    d4_esperado = d1 - d2
+    var4_esperado = var1 + var2
+    se4_esperado = math.sqrt(var4_esperado)
+
+    print("TEST 13 -- diff4 Caso 4, forma cerrada exacta (T/C y T2/C2 en estratos SRS distintos, sin UPM compartida):")
+    print(f"  d4_hat calculado = {out['d4_hat']:.12f} (esperado {d4_esperado:.12f})")
+    print(f"  se calculado    = {out['se']:.12f} (esperado {se4_esperado:.12f}, = sqrt(var1+var2) de las dos formas cerradas)")
+
+    assert abs(out["d4_hat"] - d4_esperado) < TOL, "d4_hat no coincide con la forma cerrada"
+    assert abs(out["se"] - se4_esperado) < TOL, "se no coincide con la suma de las dos formas cerradas"
+    assert out["n_estratos"] == 2, "n_estratos -- T/C y T2/C2 en estratos distintos"
+    assert out["n_estratos_singleton"] == 0, "n_estratos_singleton"
+    print("  OK -- sin UPM compartida, diff4 colapsa exactamente a la suma de las dos formas cerradas (no inventa covarianza).")
+
+
 if __name__ == "__main__":
     test_caso_sintetico_dos_estratos()
     print()
@@ -491,9 +706,19 @@ if __name__ == "__main__":
     print()
     test_did_ultimate_cluster_coherencia()
     print()
-    print("Los nueve casos de este archivo coinciden. Las dos reproducciones")
+    test_diff4_caso1_degenerado_a_diff()
+    print()
+    test_diff4_caso2_covarianza_entre_bandas()
+    print()
+    test_diff4_caso3_singleton()
+    print()
+    test_diff4_caso4_srs_forma_cerrada()
+    print()
+    print("Los trece casos de este archivo coinciden. Las dos reproducciones")
     print("archivadas (Hito D R7.2 ocho olas; CAL-CONF Fase B ola2) se")
     print("corrieron por separado -- detalle en")
     print("forense/notas/2026-08-04-svystat-casos-referencia.md. Derivacion")
     print("completa de diff_ultimate_cluster/did_ultimate_cluster en")
-    print("forense/notas/2026-08-12-estimador-contraste.md.")
+    print("forense/notas/2026-08-12-estimador-contraste.md, y de")
+    print("diff4_ultimate_cluster en")
+    print("forense/notas/2026-08-12-e4c-r5-1-d2-commit5-correccion-varianza-ddd.md.")
