@@ -14,3 +14,17 @@ La identidad estable de una relación se construye con la terna
 El validador comprueba hashes, conteos declarados, procedencias, fusiones,
 decisiones y la proyección de utilidad sin depender de nombres o cantidades
 particulares de una corrida.
+
+## `via_capa2.py` — la vía de `capa2_manifiesto`
+
+```bash
+python3 tools/curador_registro/via_capa2.py --root .              # solo lectura (por defecto)
+python3 tools/curador_registro/via_capa2.py --root . --escribe    # aplica los diffs propuestos
+```
+
+Deriva `capa2_manifiesto` por fila de `relaciones.tsv` contra `data/manifiesto.yaml`
+real y reporta el diff propuesto. Solo promueve a `SI` cuando `id_manifiesto`
+resuelve a una entrada con payload verificado — nunca por coincidencia de
+nombre de fuente. Ver `forense/notas/2026-08-13-v2-via-capa2.md` para la
+especificación completa (qué distingue `SI`/`SI_O_REFERENCIADO`/`NO_REFERENCIADO`,
+y por qué esta vía no promueve las filas `SI_O_REFERENCIADO` automáticamente).
