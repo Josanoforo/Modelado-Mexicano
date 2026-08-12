@@ -29,7 +29,7 @@ Fuente de la taxonomía de rutas: `forense/censo-estimabilidad-coeficientes-v1_0
 
 > "el denominador **27 no se toca** (cuenta fichas del pre-registro original, y `R5.1`→`A` de ADR-58 queda como historia con su estampa de universo — diseño transversal por recepción declarada, régimen de 5 instrumentos, con la reserva que ADR-58 dejó escrita); la métrica del renglón nuevo es **llaves de identificación ejercidas** (hoy 0), que `R5.1-D2` movería a 1 si corre conforme a su pre-registro sellado."
 
-Este registro es una **población de conteo distinta** de la de Hito D. Ninguna fila de aquí mueve `13 de 27` (Hito D, `estado-programa-v1_10.md:95`), `15 coeficientes, cero medidos` (misma línea — el "0 de 15" que cita el encargo que abrió este acto es una paráfrasis; el texto vigente en el archivo dice literalmente "15 coeficientes, cero medidos", corregido aquí sin editar la fuente), `8 de 14` ni `4 de 144` (`estado-programa-v1_10.md:97`).
+Este registro es una **población de conteo distinta** de la de Hito D. Ninguna fila de aquí mueve `13 de 27` (Hito D, `estado-programa-v1_10.md:95`), `15 coeficientes, cero medidos` (misma línea — el "0 de 15" que cita el encargo que abrió este acto es una paráfrasis; el texto vigente en el archivo dice literalmente "15 coeficientes, cero medidos", corregido aquí sin editar la fuente), `9 de 14` (corregido de `8 de 14`, vencido desde el 4/ago/2026; fuente vigente `modelo-decision-v4_0.md:277`, Encargo K, 4/ago/2026) ni `4 de 144` (`estado-programa-v1_10.md:97`).
 
 Un veredicto anotado en la tabla de abajo es **PROPUESTO** hasta que mesa lo firme — la clase `A`–`E` del Hito D **no aplica aquí**; la escala de cada fila es la que su propio pre-registro declaró (Bloque B-bis, `instrucciones-proyecto-v2_4.md`).
 
@@ -86,3 +86,25 @@ sed -n '/^## 3 · Tabla de llaves/,/^## /p' forense/registro-llaves-identificaci
 **Corrida contra este archivo tal como quedó escrito:** numerador `0`, denominador `2`. `llaves de identificación ejercidas: 0 de 2`.
 
 La columna `estado` nunca contiene la subcadena `EJERCIDA_` (con guion bajo final) salvo en sus cuatro valores `EJERCIDA_*` — `SELLADA_NO_EJERCIDA` termina en `EJERCIDA` sin guion bajo posterior y no coincide con el patrón, verificado arriba. Cuando la primera fila `EJERCIDA_*` aparezca, esta receta la cuenta sin tocarse.
+
+---
+
+### 4.1 · Verificación del denominador `RUTA-I` citado en §3 (línea 55) — corregido, Acto A′
+
+§3 dice que la fila `RUTA-I` (1 de las 15 filas de coeficientes de generador) queda "verificado en §4 con la receta del propio censo". Esa derivación nunca se copió a este §4 — vivía solo en `forense/hallazgos.md:121` (Encargo E-CE, 4/ago/2026). Se corrige citando aquí el comando y su salida cruda, corridos contra el estado actual de `forense/censo-estimabilidad-coeficientes-v1_0.md` (su propia receta, §7 de ese archivo):
+
+```
+grep -E '^\| [0-9]+ \|' forense/censo-estimabilidad-coeficientes-v1_0.md \
+  | grep -oE 'RUTA-[CIA]|SIN-RUTA' | sort | uniq -c
+```
+
+Salida real:
+
+```
+      3 RUTA-A
+      2 RUTA-C
+      1 RUTA-I
+      9 SIN-RUTA
+```
+
+`3 + 2 + 1 + 9 = 15` — coincide con las 15 filas de datos del censo (`grep -cE '^\| [0-9]+ \|' forense/censo-estimabilidad-coeficientes-v1_0.md` = `15`). El reparto discrimina correctamente: `RUTA-I = 1`, la cifra que §3 línea 55 cita como denominador de la primera fila de la tabla.
