@@ -161,14 +161,11 @@ celda_d:
                                   # acto de vinculación-invarianza que la adjudicaría -- evento futuro y distinto
                                   # (ver criterio_adjudicacion), no una condición de este archivo.
   fecha_declaracion: "2026-08-12"
-  commit_declaracion: "PENDIENTE"  # Bootstrap genuino: un commit no puede contener su propio SHA final --
-                                    # cada `git commit --amend` que intente insertarlo cambia el propio hash,
-                                    # sin punto fijo alcanzable. Se completa en el commit 2 de este acto (PASO
-                                    # 4/5), editando solo este campo con el SHA ya estable del commit 1 --
-                                    # mismo patrón que G5.familismo_obligacion.actitud.yaml usa para referenciar
-                                    # el commit SELLO-B de E4b (un commit *distinto*, ya cerrado): aquí el
-                                    # commit referenciado es este mismo archivo, así que el cierre de la
-                                    # referencia no puede vivir en el mismo commit que declara.
+  commit_declaracion: "6fdccb5"  # SHA del commit 1 de este acto (E4a: celda-D + nota forense), completado
+                                  # aquí en el commit 2 -- un commit no puede contener su propio SHA final
+                                  # (cada `git commit --amend` que lo intente cambia el propio hash, sin punto
+                                  # fijo alcanzable), así que el cierre de esta referencia vive un commit
+                                  # después, sobre un SHA que ya no vuelve a cambiar.
   fecha_adjudicacion: "NO-APLICA"
   commit_adjudicacion: "NO-APLICA"
   relacion_complemento: NO-APLICA  # rol COMPLEMENTO/relacion_complemento (H2, v0.3 §3.1) es para el caso
