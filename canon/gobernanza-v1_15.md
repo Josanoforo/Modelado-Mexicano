@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **68 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **69 ADR**
 
 > | | |
 > |---|---|
@@ -890,6 +890,18 @@ Los tres referentes muestran la misma dirección positiva al condicionar (28 cel
 **(g) Pendientes nombrados, no sellados aquí:** reapertura acotada de ADR-52A/54 SOLO vía resultado de apertura de ENSAFI/ENFIH (el vehículo es E-CE v1.1, ADR-61); nota de glosario "celda-D vs celda-x vs celda-B" y `baseline_celda` al primer uso en código; la interfaz selector↔matriz (v0.3 §4) queda declarada sin decidir M1.
 
 **Cascada.** Conteo de ADR vía receta T15. Contadores que NO se mueven: los mismos de ADR-67, declarado.
+
+---
+
+**ADR-69 · El universo mínimo de búsqueda por fuente es requisito de un `NO-ENCONTRADO` sobre campo material — el artefacto operativo es `data/UNIVERSO-MINIMO-FUENTE-v1_0.md`.** Decisión de mesa del autor, dictada por escrito 11/ago/2026 en el hilo de dirección, tras el hallazgo de E4b (ENASIC 2022, `periodo_levantamiento = NO_DETERMINADO`, PR #173, `8df61b0`): el acto barrió, con rigor y universo declarado, el descriptor de 6 hojas y el PDF de 26 páginas — ninguno trae la fecha de levantamiento — y declaró `NO-ENCONTRADO` sin llegar a un tercer sitio, la ficha de la Red Nacional de Metadatos (`inegi.org.mx/rnm/index.php/catalog/922`), que sí la trae. Este ADR no decide nada nuevo sobre ENASIC: registra la regla que faltaba para que el próximo acto no repita el mismo defecto sobre otra fuente.
+
+**(a) La corrección de premisa, explícita.** El conocimiento sobre la RNM existía en el repo desde el **31/jul/2026** (`forense/notas/2026-07-31-perimetro-descarga.md` §4: *"El catálogo de microdatos (`/rnm/index.php/catalog/`) SÍ es navegable por curl"*, a diferencia de `/programas/`, que es SPA), reforzado el 7/ago (`explora1.md:106`, hallazgo estructural: la RNM es puerta distinta de Descarga Masiva) y el 8/ago (`explora2.md:82`, buscador interno de catálogo verificado *roto* — ignora el parámetro de búsqueda en silencio, `825 de 825` sin filtrar). Fue el diagnóstico preliminar de mesa el que erró al decir que la RNM "no estaba en el universo de búsqueda de ningún acto del programa" — falso, refutado con `grep -rlni "Red Nacional de Metadatos"` (10 archivos). **Lo que faltaba no era el conocimiento: era la regla que lo convirtiera en paso obligatorio.** Corolario que sube a doctrina: **un hallazgo que se queda en `forense/notas/` y no llega a una receta no protege de nada — el programa lo vuelve a pagar completo**, aunque se haya tocado cuatro veces (31/jul, 7/ago, 8/ago, y el `NO-ENCONTRADO` del 11/ago que no fue a mirar).
+
+**(b) Segunda corrección de premisa, esta vez sobre el propio borrador de este acto — atrapada por su PASO 1 antes de sellar.** La redacción inicial de este ADR citaba `forense/notas/2026-08-07-explora1.md` y `2026-08-08-explora2.md` como fuente del hecho de mecanismo; ninguna de las dos contiene las frases atribuidas, y leídas completas documentan lo contrario para esa sesión (bloqueo total de `curl` a `inegi.org.mx`, buscador RNM "JS/AJAX, no reproducible por curl"). La redacción inicial también atribuía descargas directas registradas para "ENDIREH, ENADID, ENUT y ENCUP" — la fuente real (`cola-descarga-rederivada.md:110-111`) nombra ENDIREH(801)/ENADID(981)/ENASEM(861)/ENSU(1100), y aclara en la misma nota (línea 147) que esos cuatro enlaces eran un producto-señuelo (tablas de indicadores, no microdato) y que **no se registró nada bajo esos acrónimos** — lo opuesto de "uso registrado". El hecho de mecanismo sobrevive intacto y con más peso (cuatro contactos documentados, no dos); la cita y el ejemplo se corrigen. Detalle completo en `data/UNIVERSO-MINIMO-FUENTE-v1_0.md` §"Hecho de mecanismo" y en la entrada de `forense/hallazgos.md` de este acto. Corolario propio: la verificación de fundamento que el PASO 1 exige correr y pegar cruda — no dar por buena la cita de un encargo sin reproducirla — es exactamente el mecanismo que atrapó esto antes de que se sellara sobre una cita falsa.
+
+**Qué no hace.** No reabre ningún cierre negativo en bloque. Se aplica de aquí en adelante y, hacia atrás, **solo** donde un `NO-ENCONTRADO` esté hoy bloqueando un cálculo o una ficha — el resto se anota y se queda como está. Mismo corolario acotado de A.6, por la misma razón: no repetir la jornada del 30/jul.
+
+**Cascada.** Conteo de ADR en los sitios que la receta de T15 derive (68→69), reportados uno a uno en el PR. Contadores que NO se mueven, declarado: `13 de 27`, `15 coeficientes cero medidos`, `9 de 14`, `4 de 144`, llaves ejercidas `0 de 2`.
 
 ---
 
