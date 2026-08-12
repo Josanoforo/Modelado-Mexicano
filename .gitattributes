@@ -7,9 +7,15 @@
 # archivo SIEMPRE termine en salto de línea -- verificado hoy en los dos; si
 # alguna vez deja de cumplirse, dos ramas que apendicen a la vez duplican en
 # silencio la última entrada compartida en vez de conflictuar (reproducido en
-# la prueba empírica citada arriba). Sin verificar: si el botón "Merge pull
-# request" de GitHub honra este driver del lado servidor -- la ruta
-# garantizada es el merge local (`git merge`, con este archivo en el árbol).
+# la prueba empírica citada arriba).
+# VERIFICADO 12/ago/2026: el botón "Merge pull request" de GitHub NO honra
+# este driver del lado servidor -- dos PRs (#175, #179) reportaron conflicto
+# en forense/hallazgos.md en la interfaz mientras el mismo merge resolvía
+# limpio en clon local. La ruta garantizada, y la única, es el merge local
+# (git merge con este archivo en el árbol), fusionando main HACIA la rama.
+# NO usar el editor web de conflictos en archivos union: resuelve a mano y
+# es la vía por la que se borra la entrada ajena. Receta completa en
+# forense/notas/2026-08-12-union-vs-boton-github.md.
 forense/hallazgos.md merge=union
 forense/bitacora.md merge=union
 
