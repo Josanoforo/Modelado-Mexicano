@@ -1,6 +1,6 @@
 - **SHA de redacción:** `2b13e88` (`origin/main` al momento en que se lanzó este encargo)
 - **Entorno asignado:** NUBE — sin sonda de red (ADR-59(b)); no toca microdato ni red.
-- **Estado:** CONSUMIDO — ejecutado por el acto de este mismo commit, PR `infra/indice-v1` (ver `data/INFRAESTRUCTURA-v1_0.md` y `forense/notas/2026-08-13-indice-infraestructura.md`).
+- **Estado:** CONSUMIDO — ejecutado por el acto de este mismo commit, PR #191 (`infra/indice-v1`, https://github.com/Josanoforo/Modelado-Mexicano/pull/191). Ver `data/INFRAESTRUCTURA-v1_0.md` y `forense/notas/2026-08-13-indice-infraestructura.md`.
 
 ---
 
