@@ -141,18 +141,30 @@ celda_d:
     EXISTE-SATISFACE -- el universo del instrumento BASELINE (ENCUCI, todo entrevistado, sin filtro declarado)
     cubre la población objetivo del coeficiente G1/G5 que radio_confianza alimenta; no hay brecha de cobertura
     declarada que transportar para el champion vigente. (Esto no dice nada sobre ENBIARE, que no es el champion.)
-  fuerza: "MEDIDO·PARCIAL(x)"  # Ninguno de los tres valores del enum (ASIGNADO|AJUSTADO|IDENTIFICADO) nombra con
-                                 # precisión una medición condicional directa de microdato -- no causal
-                                 # (marca C3: radio_confianza NO identifica cooperacion.confianza.puente_personal,
-                                 # milpa/procedencia.yaml:226), no ajuste de momentos de un modelo estructural
-                                 # (ADR-49 D2), no un valor puesto a criterio. Reserva declarada en vez de forzar
-                                 # un valor falso -- mismo criterio que G5.familismo_obligacion.actitud.yaml usó
-                                 # para NO_DETERMINADO, por una razón distinta: ahí no había valor que
-                                 # caracterizar; aquí sí lo hay, pero ningún nombre del enum lo describe. El
-                                 # COEFICIENTE que este valor alimenta (radio_confianza=0.15 en G5,
-                                 # milpa/procedencia.yaml:629, "magnitud: asignada") sí es ASIGNADO -- pero es un
-                                 # objeto distinto (el peso que el generador le da a la condicional), no la
-                                 # condicional misma que esta celda compara.
+  fuerza_coeficiente: ASIGNADO  # El COEFICIENTE que la condicional de esta celda alimenta (radio_confianza=0.15
+                                 # en G5, milpa/procedencia.yaml:629, "magnitud: asignada") es ASIGNADO --
+                                 # verificado contra el archivo, no tecleado. Es un objeto distinto de la
+                                 # condicional misma que esta celda compara (el peso que el generador le da a la
+                                 # condicional, no la condicional) -- exactamente la distinción que v0.4 separa.
+  procedencia_condicional: MEDICION_CONDICIONAL_MICRODATO  # BASELINE/ENCUCI mide la condicional directo de
+                                 # microdato, pero condicionada (formalidad×edad, ver universo_instrumento) --
+                                 # no una medición directa sin condicionar, no un proxy (eso sería ENBIARE/
+                                 # CHALLENGER, todavía sin adjudicar), no ausencia de estimación (sí existe,
+                                 # vigente).
+  vocabulario_version: 0.4  # Reserva original conservada verbatim (campo `fuerza` retirado, resuelto por esta
+                                 # versión): "MEDIDO·PARCIAL(x) -- Ninguno de los tres valores del enum
+                                 # (ASIGNADO|AJUSTADO|IDENTIFICADO) nombra con precisión una medición condicional
+                                 # directa de microdato -- no causal (marca C3: radio_confianza NO identifica
+                                 # cooperacion.confianza.puente_personal, milpa/procedencia.yaml:226), no ajuste
+                                 # de momentos de un modelo estructural (ADR-49 D2), no un valor puesto a
+                                 # criterio. Reserva declarada en vez de forzar un valor falso -- mismo criterio
+                                 # que G5.familismo_obligacion.actitud.yaml usó para NO_DETERMINADO, por una razón
+                                 # distinta: ahí no había valor que caracterizar; aquí sí lo hay, pero ningún
+                                 # nombre del enum lo describe." -- fue el mecanismo que detectó el defecto que
+                                 # v0.4 corrige (propuesta-motor-adaptativo-celda-v0_4.md §3): el enum describía
+                                 # el coeficiente (fuerza_coeficiente, arriba) y esta celda no tenía dónde
+                                 # declarar qué tipo de medición es la condicional misma (procedencia_condicional,
+                                 # arriba).
   calibrado: false
   estado_operativo: LISTO  # existe candidato champion_actual vigente (BASELINE/ENCUCI) con production_spec_refs
                             # auditables (v0.2 §3.1, regla de agregación D7)

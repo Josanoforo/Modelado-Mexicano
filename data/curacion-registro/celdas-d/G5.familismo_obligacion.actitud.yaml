@@ -55,10 +55,25 @@ celda_d:
     tipo: "IC95 por linealización de Taylor sobre conglomerados últimos (estrato EST_DIS, conglomerado UPM_DIS) -- método declarado antes de ver el dato, no producido todavía"
     ref: "tools/curador_registro/produce.py::taylor_distribution"
   supuesto_transporte: "NO-TRANSPORTABLE:no hay estimación que transportar -- periodo_levantamiento NO_DETERMINADO impidió el cálculo en este acto"
-  fuerza: NO_DETERMINADO  # Ninguno de los tres valores del enum (ASIGNADO|AJUSTADO|IDENTIFICADO) describe
-                            # correctamente "no hay estimación todavía": los tres caracterizan un VALOR existente
-                            # en milpa/procedencia.yaml, y aquí no hay valor que caracterizar. Se declara así en
-                            # vez de forzar un valor del enum que sería falso.
+  fuerza_coeficiente: ASIGNADO  # el coeficiente `familismo_obligacion` de G5 (milpa/procedencia.yaml:117,
+                            # "+1 · familismo_obligacion en G5, ASIGNADO y SIN MAGNITUD (spec: 'signo negativo
+                            # o no monotónico')") está clasificado ASIGNADO -- la clasificación de procedencia
+                            # no depende de que la magnitud numérica ya exista (SIN MAGNITUD es un eje aparte,
+                            # ver también :629 "magnitud: asignada" a nivel de fila G5, y :899 "ruta: SIN-RUTA,
+                            # sin magnitud asignada"). Derivado del archivo, no tecleado.
+  procedencia_condicional: SIN_ESTIMACION_TODAVIA  # lo que ESTA celda compara -- la condicional actitudinal
+                            # de ENASIC -- sigue sin estimación: periodo_levantamiento NO_DETERMINADO impidió
+                            # el cálculo en este acto (ver `resultado` arriba). Objeto distinto del coeficiente
+                            # de arriba -- es exactamente la distinción que v0.4 introduce.
+  vocabulario_version: 0.4  # Reserva original conservada verbatim (campo `fuerza` retirado, resuelto por esta
+                            # versión): "NO_DETERMINADO -- Ninguno de los tres valores del enum
+                            # (ASIGNADO|AJUSTADO|IDENTIFICADO) describe correctamente 'no hay estimación
+                            # todavía': los tres caracterizan un VALOR existente en milpa/procedencia.yaml, y
+                            # aquí no hay valor que caracterizar. Se declara así en vez de forzar un valor del
+                            # enum que sería falso." -- fue el mecanismo que detectó el defecto que v0.4
+                            # corrige (propuesta-motor-adaptativo-celda-v0_4.md §3): el enum describía el
+                            # coeficiente (arriba, ASIGNADO) y esta celda no tenía dónde declarar que la
+                            # condicional (no el coeficiente) seguía sin estimar (procedencia_condicional, arriba).
   calibrado: false
   estado_operativo: PENDIENTE
   requiere_decision_mesa: true  # hereda el registro semilla (v0.3 §4-bis) y el supervisor_link de la maestra

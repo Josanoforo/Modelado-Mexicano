@@ -66,8 +66,8 @@ REQUIRED_TOP_FIELDS = [
     "id", "estimando", "tipo_adjudicacion", "dominio", "poblacion_objetivo",
     "unidad_objetivo", "universo_candidatos", "candidatos", "criterio_adjudicacion",
     "momentos_holdout_refs", "champion_actual", "output_nativo", "incertidumbre",
-    "supuesto_transporte", "fuerza", "calibrado", "estado_operativo",
-    "requiere_decision_mesa", "fecha_declaracion", "commit_declaracion",
+    "supuesto_transporte", "fuerza_coeficiente", "procedencia_condicional", "calibrado",
+    "estado_operativo", "requiere_decision_mesa", "fecha_declaracion", "commit_declaracion",
     "fecha_adjudicacion", "commit_adjudicacion", "relacion_complemento",
 ]
 REQUIRED_CANDIDATO_FIELDS = [
