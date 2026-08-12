@@ -89,7 +89,28 @@ migra un valor retroactivo que nadie declaró entonces.
              permitido. No descarga nada, no sobreescribe nada y no abre
              ningún payload: hashear y hacer stat no es abrir; leer como
              texto un .php/.html guardado (para sugerir url_origen)
-             tampoco toca ningún portal. url_origen y usado_para son los
+             tampoco toca ningún portal.
+
+             ALCANCE DE DATO en raíces no curadas (hoy solo `downloads`,
+             corrección de MAP-1b -- forense/notas/2026-08-06-map1b-censo-
+             raices.md): antes de esta corrección, --grupo/--grupo-n exigido
+             sobre `downloads` acotaba solo a qué archivos se les asignaba
+             url_origen/usado_para -- el recorrido SÍ hasheaba y staged todo
+             el contenido de la carpeta, extensión aparte, incluidos
+             archivos personales ajenos al proyecto (fotos, exports de
+             WhatsApp/Instagram, respaldos completos de Google Takeout de
+             decenas de GiB). Ahora, sobre una raíz que exige --grupo, un
+             archivo cuya extensión no está en EXTENSIONES_DATO_RAICES_NO_CURADAS
+             (el mismo filtro de 8 extensiones que el censo MAP-1b declaró y
+             aplicó a mano) se excluye ANTES de leerlo/hashearlo -- no
+             aparece en staging, no se cuenta como "nuevo", y el reporte
+             solo declara cuántos y con qué extensiones, nunca sus nombres
+             (mismo criterio que MAP-1b usó para no transcribir ruido
+             personal). `data_raw`/`descargas_mx` no llevan este filtro --
+             son carpetas curadas de datos del proyecto, sin el riesgo que
+             `downloads` (destino por defecto del navegador) sí tiene.
+
+             url_origen y usado_para son los
              únicos dos campos que una máquina no deriva -- quedan en ""
              con comentario # PENDIENTE, salvo que --grupo/--grupo-n +
              --url/--usado-para se los asignen a un lote (--grupo-n
@@ -452,6 +473,27 @@ STAGING_NOMBRE = "manifiesto-staging.yaml"
 # se agrupan por tanda junto con archivos de datos aunque el mtime coincida.
 EXTENSIONES_PAGINA = {".php", ".html", ".htm"}
 
+# Alcance de dato para raíces NO curadas (ver RAICES_QUE_EXIGEN_GRUPO): mismo
+# filtro de 8 extensiones que ENCARGO MAP-1b declaró y aplicó a mano el
+# 2026-08-06 (forense/notas/2026-08-06-map1b-censo-raices.md, PASO 2) al
+# censar 'downloads' -- ahí se dejaron 1763 de 2141 archivos fuera del
+# filtro, dominados por contenido ajeno al proyecto (.md/.docx/.png/.html
+# personales) y, más grave, 37 archivos `takeout-*` de Google (52 GiB,
+# exportación personal completa de una cuenta). Esa nota excluyó esos 37 de
+# HASHEARSE explícitamente ("no se hashean -- hacerlo habría dominado el
+# tiempo de corrida por valor forense nulo") -- una protección de privacidad
+# real que ese censo aplicó a mano, fuera del repo, y que --escanea nunca
+# heredó: antes de este filtro, --grupo/--grupo-n solo acotaba a qué
+# archivos se les asignaba url_origen/usado_para (línea ~683 más abajo) --
+# el barrido de sha256_de() sobre CADA archivo de 'downloads', incluidos
+# esos 37 respaldos personales, ocurría de todas formas, antes de cualquier
+# filtro. La corrección de alcance: el filtro de extensión decide qué se
+# LEE, no solo qué se etiqueta -- se aplica previo a recorrer el barrido
+# (antes de sha256_de), no después.
+EXTENSIONES_DATO_RAICES_NO_CURADAS = {
+    ".zip", ".csv", ".dta", ".dbf", ".xlsx", ".pdf", ".sav", ".xml",
+}
+
 # Un salto de más de 15 minutos entre dos mtimes consecutivos (o un cambio
 # de día calendario, sin importar el salto) abre una tanda nueva. Deriva
 # la agrupación del disco, no del nombre: dos archivos con el mismo prefijo
@@ -613,10 +655,21 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
 
     ya_registrados, conflictos_nombre = [], []
     nuevos, paginas = [], []
+    fuera_de_alcance = []
 
     for nombre in sorted(os.listdir(ruta)):
         ruta_abs = os.path.join(ruta, nombre)
         if not os.path.isfile(ruta_abs):
+            continue
+
+        extension = os.path.splitext(nombre)[1].lower()
+        if (nombre_raiz in RAICES_QUE_EXIGEN_GRUPO
+                and extension not in EXTENSIONES_DATO_RAICES_NO_CURADAS
+                and extension not in EXTENSIONES_PAGINA):
+            # Riesgo de privacidad (MAP-1b, 2026-08-06): 'downloads' no es
+            # una carpeta de datos, tiene archivos ajenos al proyecto -- se
+            # excluye ANTES de leer/hashear, no solo antes de etiquetar.
+            fuera_de_alcance.append(nombre)
             continue
 
         sha = sha256_de(ruta_abs)
@@ -737,14 +790,24 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
         f.write("\n".join(bloques).strip() + "\n")
 
     # ── reporte a stdout ──
-    total = len(ya_registrados) + len(conflictos_nombre) + len(nuevos) + len(paginas)
+    total = len(ya_registrados) + len(conflictos_nombre) + len(nuevos) + len(paginas) + len(fuera_de_alcance)
     print(f"Escaneado: raíz '{nombre_raiz}' ({ruta})")
     print(f"Entorno: {entorno_actual()}")
     print()
     print(f"Total en disco: {total} · nuevos: {len(nuevos) + len(paginas)} · "
           f"ya registrados: {len(ya_registrados)} · conflicto de nombre: "
-          f"{len(conflictos_nombre)}")
+          f"{len(conflictos_nombre)} · fuera de alcance de dato: {len(fuera_de_alcance)}")
     print()
+
+    if fuera_de_alcance:
+        extensiones_vistas = sorted({os.path.splitext(n)[1].lower() or "(sin extensión)" for n in fuera_de_alcance})
+        print(f"FUERA DE ALCANCE DE DATO ({len(fuera_de_alcance)}) -- ni leídos ni hasheados, "
+              f"riesgo de privacidad (MAP-1b): extensión ajena al filtro de '{nombre_raiz}' "
+              f"({sorted(EXTENSIONES_DATO_RAICES_NO_CURADAS)}). No se transcriben los nombres "
+              f"aquí (pueden ser archivos personales ajenos al proyecto, mismo criterio que "
+              f"forense/notas/2026-08-06-map1b-censo-raices.md aplicó a los 28 grupos de ruido "
+              f"personal). Extensiones distintas vistas: {extensiones_vistas}")
+        print()
 
     if ya_registrados:
         print(f"YA REGISTRADOS ({len(ya_registrados)}):")
