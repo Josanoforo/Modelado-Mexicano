@@ -1,0 +1,73 @@
+# Primera celda-D del registro (data/curacion-registro/celdas-d/), esquema propuesta-motor-adaptativo-celda-v0_3.md §3.
+# Conforme a §3 y a §4 donde §3/§4 y el resumen de ADR-68(f) difieran -- §4 manda (instrucción explícita del encargo E4b).
+#
+# Divergencia declarada: ADR-68(f) (canon/gobernanza-v1_15.md:888) resume esta celda como
+# "familismo_obligacion (dos celdas ligadas por brecha-momento, rol COMPLEMENTO -- no competencia)".
+# Ese "rol COMPLEMENTO" es un listado abreviado, no el contrato: v0.3 §3.1 y §4-bis son explícitos --
+# ENASIC (actitud) y ENUT (conducta) son DOS celdas-D DISTINTAS ligadas por `relacion_complemento` con
+# momento propio; NINGUNA de las dos lleva `rol: COMPLEMENTO` (ese rol es para una fuente que aporta
+# contexto a una celda YA definida sin aspirar a ganarla -- no es este caso). Este archivo sigue §3.1/§4-bis,
+# no la paráfrasis de ADR-68(f). Esta celda abre SOLO el componente actitudinal; la conducta es acto propio.
+
+celda_d:
+  id: G5.familismo_obligacion.actitud
+  estimando: "G5·familismo_obligacion (componente actitudinal)"
+  tipo_adjudicacion: CALIBRACION_CONJUNTA  # heredado del registro semilla (v0.3 §4-bis), provisional
+  dominio: CUL  # cultura_valores_opinion -- coincide con data/inventarios/inventario_fuentes_cultura_valores_opinion_mexico.md;
+                # el reactivo mide norma/creencia (Sección 7, "Percepción CULTURAL de los cuidados" en el propio
+                # instrumento), no tiempo/conducta (eso sería TIE -- uso_del_tiempo_cuidados_hogar -- y le
+                # correspondería a la celda .conducta/ENUT, acto propio, no a esta)
+  poblacion_objetivo: "Personas de 15 a 60 años residentes en viviendas particulares de México, seleccionadas como 'persona elegida' (ENASIC 2022, tabla TPER_ELE) -- ver forense/notas/2026-08-11-e4b-sello-b-corrida-b.md §1/§4 para la justificación frente a TPOB_CUI/THOG_UNIP, que comparten el mismo reactivo sobre universos distintos"
+  unidad_objetivo: persona
+  universo_candidatos: "Único candidato conocido y barrido en este acto (E4b, 11/ago/2026): ENASIC 2022 P7_12_7, vía apertura de su descriptor (enasic_2022_fd_xlsx + 889463927082.pdf). No se barrieron fuentes adicionales para el componente actitudinal -- no era el encargo de este acto y no se declara exhaustivo."
+  candidatos:
+    - rol: BASELINE
+      fuentes: [ENASIC]
+      edicion_periodo: "2022"
+      universo_instrumento: "Personas de 15-60 años, persona elegida (una por hogar), vivienda particular -- tabla TPER_ELE. Reactivo P7_12_7, formulado como norma de género explícita (ver reserva de encuadre, forense/notas/2026-08-11-e4b-sello-b-corrida-b.md §5)."
+      diseno_datos: transversal
+      estrategia: NO-APLICA  # distribución descriptiva de diseño con un único candidato BASELINE, no ruta de
+                              # AJUSTADO (ADR-49 D2, gobernanza:439) -- esa enumeración acota `estrategia` a la
+                              # clase AJUSTADO de milpa/procedencia.yaml; esta celda no alimenta esa clase.
+                              # Mismo patrón que v0.2 §3 usa para un candidato de FALSACION ("NO-APLICA -- es un
+                              # ejercicio de falsación, no de ajuste/comparación").
+      regla_composicion: NO-APLICA
+      production_spec_refs:
+        - "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resultado.tsv"
+        - "data/curacion-registro/especificaciones-produccion.json#ESP-OPACA-B-d13ec4fe"
+      resultado: "NO-EJECUTADO"  # Nota honesta: el motor SÍ corrió (produce.py, ver production_spec_refs) y no
+                                   # calculó -- campos_materiales_faltantes:periodo_levantamiento, genuinamente
+                                   # ausente del corpus adquirido, no descubierto por falta de intento. Ninguno
+                                   # de los cinco valores del enum de v0.3 §3 nombra exactamente este estado
+                                   # (motor corrido, diagnóstico preciso, cero cálculo); NO-EJECUTADO es el más
+                                   # cercano y NO debe leerse como "nadie lo intentó" -- ver resumen.json del
+                                   # expediente (calculos_reproducibles: 0, no_determinado: 1) para el intento real.
+  criterio_adjudicacion:
+    texto: "NO-APLICA en este acto -- un único candidato BASELINE, sin challenger con quien competir. CALIBRACION_CONJUNTA no adjudica aquí: el registro semilla (v0.3 §4-bis) la marcó 'provisional -- no se ejecuta en este acto', y este acto corrió el motor pero el motor no calculó (ver `resultado` arriba)."
+    escala: "NO-APLICA -- no hay estimación que expresar en ninguna escala todavía"
+  momentos_holdout_refs: []
+  champion_actual: NINGUNO
+  output_nativo:
+    tipo: DISTRIBUCION_DESCRIPTIVA
+    escala: "proporción sobre respondientes de TPER_ELE (0-1 / %), 4 categorías oficiales (De acuerdo/Desacuerdo/No responde/No sabe) -- declarada, no producida: no hay valor todavía (ver `resultado`)"
+    valor_ref: "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resultado.tsv (estado=NO_DETERMINADO en la única fila)"
+  incertidumbre:
+    tipo: "IC95 por linealización de Taylor sobre conglomerados últimos (estrato EST_DIS, conglomerado UPM_DIS) -- método declarado antes de ver el dato, no producido todavía"
+    ref: "tools/curador_registro/produce.py::taylor_distribution"
+  supuesto_transporte: "NO-TRANSPORTABLE:no hay estimación que transportar -- periodo_levantamiento NO_DETERMINADO impidió el cálculo en este acto"
+  fuerza: NO_DETERMINADO  # Ninguno de los tres valores del enum (ASIGNADO|AJUSTADO|IDENTIFICADO) describe
+                            # correctamente "no hay estimación todavía": los tres caracterizan un VALOR existente
+                            # en milpa/procedencia.yaml, y aquí no hay valor que caracterizar. Se declara así en
+                            # vez de forzar un valor del enum que sería falso.
+  calibrado: false
+  estado_operativo: PENDIENTE
+  requiere_decision_mesa: true  # hereda el registro semilla (v0.3 §4-bis) y el supervisor_link de la maestra
+                                 # (especificaciones-produccion.json#ESP-OPACA-B-d13ec4fe: requiere_decision=SI)
+                                 # -- la reserva de encuadre de género (ADR-67(b)) sigue sin resolver por mesa
+  fecha_declaracion: "2026-08-11"
+  commit_declaracion: "8df61b0"  # SHA del commit 1 (SELLO-B), pusheado a origin/e4b/sello-b-corrida-b antes de este commit
+  fecha_adjudicacion: "NO-APLICA"
+  commit_adjudicacion: "NO-APLICA"
+  relacion_complemento: G5.familismo_obligacion.conducta  # celda hermana (ENUT, capa conductual) -- NO existe
+                                                             # todavía en este directorio; abrirla es acto propio,
+                                                             # no este (ver forense/notas/2026-08-11-e4b-sello-b-corrida-b.md §7)
