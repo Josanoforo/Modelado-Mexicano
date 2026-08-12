@@ -83,10 +83,10 @@ Esta nota usa el rango real (N1-N33) para `n_necesidades_servidas`. No se re-esc
 
 Las 14 filas contra `mapa-fuentes-2026-08-06.tsv` (fuentes: `ENIF`, `SERIES_SPEI_CODI_BANXICO`, `AHORRO FINANCIERO Y FINANCIAMI`, `BDIF`, `ENAFIN`, `PI`, `LAPOP`, `LATINOBARÓMETRO`) **no tienen `condicion_faltante` mecánicamente disponible** — la columna no existe en ese archivo (es el rollup de 13 columnas por fuente, no el detalle de 21-23 columnas por variable). Su valor en la cola es literalmente `NO`, y eso **refleja ausencia de dato consultable, no confirmación de que no falte nada** — declarado aquí para no confundir "no lo sé" con "está completo". Notable: dos de estas ocho son `LAPOP` y `LATINOBARÓMETRO`, ambas sirviendo N30 (R8.3) — el hueco de dato es justo donde más pesaría saber.
 
-Las 3 fuentes de `verif3.md` (`ACLED`, `SICS`, `SE`) se leyeron a mano (no hay columna que unir en una nota en prosa) y se citan con línea exacta en el script de derivación — declarado como excepción al método mecánico, no oculto:
-- `ACLED` (`verif3.md:105-112`): agregado mes×año, sin admin1/admin2/estado/municipio ni coordenadas.
-- `SICS` (`verif3.md:190-198`, `EXISTE-NO-SATISFACE`): conteos nacionales agregados por ejercicio fiscal, sin identificador de comité.
-- `SE` (`verif3.md:250-258`): 45 páginas de percepción 0-100, sin variable de frecuencia conductual.
+Las 3 fuentes de `2026-08-08-verif3.md` (`ACLED`, `SICS`, `SE`) se leyeron a mano (no hay columna que unir en una nota en prosa) y se citan con línea exacta en el script de derivación — declarado como excepción al método mecánico, no oculto:
+- `ACLED` (`2026-08-08-verif3.md:105-112`): agregado mes×año, sin admin1/admin2/estado/municipio ni coordenadas.
+- `SICS` (`2026-08-08-verif3.md:190-198`, `EXISTE-NO-SATISFACE`): conteos nacionales agregados por ejercicio fiscal, sin identificador de comité.
+- `SE` (`2026-08-08-verif3.md:250-258`): 45 páginas de percepción 0-100, sin variable de frecuencia conductual.
 
 El texto de condición se etiqueta por `necesidad_id` cuando la fuente sirve más de una (p. ej. `N12:… || N13:…`), para no perder cuál hueco corresponde a cuál necesidad al fusionar varias filas de `relaciones.tsv` en una sola fila de fuente.
 
