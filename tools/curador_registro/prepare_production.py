@@ -18,7 +18,7 @@ from typing import Any
 FORBIDDEN = {
     "supervisor_link", "necesidad_id", "relacion_id", "objeto_modelo_origen",
     "decision_pendiente", "interpretacion_deseada", "signo_esperado",
-    "resultado_favorable",
+    "resultado_favorable", "documentacion_fuente",
 }
 MASTER_REQUIRED = {
     "especificacion_id", "estimando", "poblacion", "dominio",

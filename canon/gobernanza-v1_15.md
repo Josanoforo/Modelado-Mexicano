@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **69 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **70 ADR**
 
 > | | |
 > |---|---|
@@ -902,6 +902,26 @@ Los tres referentes muestran la misma dirección positiva al condicionar (28 cel
 **Qué no hace.** No reabre ningún cierre negativo en bloque. Se aplica de aquí en adelante y, hacia atrás, **solo** donde un `NO-ENCONTRADO` esté hoy bloqueando un cálculo o una ficha — el resto se anota y se queda como está. Mismo corolario acotado de A.6, por la misma razón: no repetir la jornada del 30/jul.
 
 **Cascada.** Conteo de ADR en los sitios que la receta de T15 derive (68→69), reportados uno a uno en el PR. Contadores que NO se mueven, declarado: `13 de 27`, `15 coeficientes cero medidos`, `9 de 14`, `4 de 144`, llaves ejercidas `0 de 2`.
+
+---
+
+**ADR-70 · Mesa sella la remediación de la brecha documental.** Decisión de mesa del autor, 12/ago/2026, sobre `PROPUESTA-remediacion-brecha-documental.md` y el barrido del 12/ago (fichas RNM 922/ENASIC y 730/ENBIARE abiertas de primera mano en esa sesión). **Renumerado de ADR-69 a ADR-70**: esta rama se desarrolló contra `origin/main=89ba199`, sin ADR-69 todavía; mientras corría, `PR #175` (ENCARGO-C, `universo mínimo de búsqueda por fuente`) selló ADR-69 sobre el mismo hallazgo raíz (ficha RNM 922) y fusionó primero. Su propia entrada de hallazgos (`forense/hallazgos.md`, "ENCARGO C, revisión post-PR") registra la corrección recibida en el hilo de dirección el 12/ago: *"el número 69 está tomado en vuelo"*, instruyendo a esta sesión usar ADR-70 — instrucción que nunca llegó a este hilo directamente; encontrada al fusionar `origin/main` y leer la entrada, no re-derivada de memoria.
+
+**(a)** La RNM y las fichas de fuentes activas entran al universo consolidado (puertas + activos).
+
+**(b)** `documentacion_fuente` es campo del contrato de producción y `validate` lo exige en specs nuevas.
+
+**(c) Regla de conducto.** Toda nota de exploración que descubra puerta, capacidad o restricción cierra su acto subiendo la fila a la tabla consolidada o declarando por qué no.
+
+**(d)** ENMIENDA NOMBRADA a ADR-68(a), firmada por mesa en este acto. El congelamiento del motor `tools/curador_registro/` rige a partir de la apertura del piloto (primer registro de celda-D del piloto en E0); el mantenimiento del aparato previo a esa apertura queda permitido únicamente con ADR que lo selle, como este. La cláusula anterior de este inciso ("refería a la integración de celdas-D… precedente ADR-62") se retira: la revisión del 12/ago demostró que ADR-62 no toca este directorio y que un ADR anterior no acota a uno posterior. Enmendar con nombre es más barato que aclarar sin derecho.
+
+**(e)** Falsador y caducidad, citados verbatim de la propuesta §3, ya en el repo por este mismo acto: "si en los próximos tres meses aparece un `NO_DETERMINADO` cuya respuesta estaba en una puerta ya consolidada, la estructura falló y se rediseña"; "si en tres meses el campo no evitó ni un defecto ni resolvió un dato, P3-P4 se retiran y se anota — la regla de señal manda sobre esta propuesta como sobre todo lo demás." El estado NO EJECUTADO previo queda registrado en la historia de la rama y en hallazgos: la brecha alcanzó a su propia remediación, y el arreglo fue el conducto mismo.
+
+**Nota de alcance sobre (d), derivada de la ejecución de este mismo acto.** Registrar la RNM por "la vía del motor" (`snapshot_universe.py`, regenerando `data/curacion-universo/snapshot-t0.json`) cambia `snapshot_t0_sha256` — el ancla que `integrate_production.py::canonical_analyst_spec()` verifica contra los tres expedientes ya sellados en `data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/` (`ESP-OPACA-A-7baf278d`/familismo_apoyo, `ESP-OPACA-B-d13ec4fe`/ENASIC SELLO-B·CORRIDA-B, `ESP-OPACA-C-9ecb5c61`/ENCUCI-ENBIARE). Confirmado con la suite real (`tools/curador_registro/tests/test_produccion_correctiva.py`): una regeneración puramente aditiva (4 declaraciones nuevas, cero interacción de contenido con las tres specs selladas) hace fallar su reproducción supervisada. "Mantenimiento" en (d) no implica "sin efecto mecánico" — implica que el efecto, cuando lo hay, se declara y se resella por acto separado, no se absorbe en silencio. Por eso este acto NO ejecutó la regeneración del snapshot (P2 queda `EN-ESPERA-DE-VIA`); la tabla declarativa (`data/universo-puertas-2026-08-12.tsv`) es la cobertura mínima de (a).
+
+**Solape con ADR-69, declarado.** Ambos ADR nacen del mismo hallazgo raíz (E4b/ENASIC, ficha RNM 922) pero resuelven preguntas distintas: ADR-69 es una regla de *proceso* (qué recorrer antes de declarar `NO-ENCONTRADO`); ADR-70(a)-(c) es una regla de *registro* (la RNM entra al universo consolidado de puertas/activos) y ADR-70(b) es, además, un cambio de contrato (`documentacion_fuente` en `production-spec.schema.json`) que ningún artefacto de ADR-69 toca. No se fusionan en un solo ADR aquí porque ya están sellados por separado en ramas distintas; reconciliar sus dos artefactos (`data/UNIVERSO-MINIMO-FUENTE-v1_0.md` y `data/universo-puertas-2026-08-12.tsv`) en una sola tabla queda pendiente nombrado, de mesa.
+
+**Cascada.** Conteo de ADR vía receta T15. Contadores que NO se mueven: los mismos de ADR-67, declarado.
 
 ---
 
