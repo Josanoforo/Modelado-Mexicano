@@ -49,6 +49,12 @@ DIRECT_SEMANTIC_CONTENT = (
     "application/vnd.openxmlformats", "text/csv", "application/csv",
     "application/octet-stream",
 )
+# ADR-69(b): documentacion_fuente es obligatorio para specs nuevas; las ya
+# selladas al momento del ADR no se editan retroactivamente. Lista cerrada,
+# no heurística de fecha.
+ESPECIFICACIONES_SELLADAS_SIN_DOCUMENTACION_FUENTE = {
+    "ESP-OPACA-A-7baf278d", "ESP-OPACA-B-d13ec4fe", "ESP-OPACA-C-9ecb5c61",
+}
 
 
 def sha256(path: Path) -> str:
@@ -64,6 +70,17 @@ def read_tsv(path: Path) -> list[dict[str, str]]:
 
 def unique_nonempty(rows: list[dict[str, str]], field: str) -> set[str]:
     return {row.get(field, "") for row in rows if row.get(field, "")}
+
+
+def documentacion_fuente_errors(production_config: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    for spec in production_config.get("specifications", []):
+        spec_id = spec.get("especificacion_id", "")
+        if spec_id in ESPECIFICACIONES_SELLADAS_SIN_DOCUMENTACION_FUENTE:
+            continue
+        if not spec.get("documentacion_fuente"):
+            errors.append(f"ESPECIFICACION_SIN_DOCUMENTACION_FUENTE:{spec_id}")
+    return errors
 
 
 def corpus_inventory(corpus_root: Path) -> tuple[list[tuple[str, str]], Counter[str]]:
@@ -563,6 +580,7 @@ def validate(repo_root: Path, output_root: Path | None = None) -> dict[str, Any]
             if row.get(field) in {"", "NO_DETERMINADO"}:
                 errors.append(f"PRODUCCION_SIN_CAMPO_MATERIAL:{row.get('produccion_id', '')}:{field}")
     production_config = json.loads((registry_dir / "especificaciones-produccion.json").read_text(encoding="utf-8"))
+    errors.extend(documentacion_fuente_errors(production_config))
     independently_reproduced_production: list[dict[str, str]] = []
     try:
         independently_reproduced_production = verify_production_bundle(

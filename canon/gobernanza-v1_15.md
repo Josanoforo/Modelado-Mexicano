@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **68 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **69 ADR**
 
 > | | |
 > |---|---|
@@ -888,6 +888,24 @@ Los tres referentes muestran la misma dirección positiva al condicionar (28 cel
 **(f) Celdas-D semilla registrables** (v0.3 §4-bis, ya con referente sellado por ADR-67): `radio_confianza` (COMPARACION: baseline ENCUCI vigente / challenger ENBIARE proxy parcial / criterio = vinculación-invarianza), `familismo_obligacion` (dos celdas ligadas por brecha-momento, rol COMPLEMENTO — no competencia), `R5.1-D2` (FALSACION con escala B-bis heredada; la celda que ejercería la primera llave).
 
 **(g) Pendientes nombrados, no sellados aquí:** reapertura acotada de ADR-52A/54 SOLO vía resultado de apertura de ENSAFI/ENFIH (el vehículo es E-CE v1.1, ADR-61); nota de glosario "celda-D vs celda-x vs celda-B" y `baseline_celda` al primer uso en código; la interfaz selector↔matriz (v0.3 §4) queda declarada sin decidir M1.
+
+**Cascada.** Conteo de ADR vía receta T15. Contadores que NO se mueven: los mismos de ADR-67, declarado.
+
+---
+
+**ADR-69 · Mesa sella la remediación de la brecha documental.** Decisión de mesa del autor, 12/ago/2026, sobre `PROPUESTA-remediacion-brecha-documental.md` y el barrido del 12/ago (fichas RNM 922/ENASIC y 730/ENBIARE abiertas de primera mano en esa sesión).
+
+**(a)** La RNM y las fichas de fuentes activas entran al universo consolidado (puertas + activos).
+
+**(b)** `documentacion_fuente` es campo del contrato de producción y `validate` lo exige en specs nuevas.
+
+**(c) Regla de conducto.** Toda nota de exploración que descubra puerta, capacidad o restricción cierra su acto subiendo la fila a la tabla consolidada o declarando por qué no.
+
+**(d)** Se acota ADR-68(a): su congelamiento del motor refería a la integración de celdas-D, no al mantenimiento del aparato (precedente ADR-62) — esta modificación es mantenimiento.
+
+**(e) NO EJECUTADO.** No se pudo citar verbatim el falsador y la caducidad de la propuesta v0.1 §3: `PROPUESTA-remediacion-brecha-documental.md` no existe en el clon de `origin/main` (`89ba199`) ni en ningún worktree local, ni en el historial de commits (`git log --all`), ni en PRs abiertos o cerrados, ni en búsqueda de código de GitHub — las cuatro búsquedas dan vacío. No hay §3 que citar; no se inventa el texto. Registrado como hallazgo (`forense/hallazgos.md`, entrada de este acto); el falsador y la caducidad de la propuesta v0.1 quedan pendientes de esta cláusula hasta que el documento exista en el repo y mesa lo re-selle.
+
+**Nota de alcance sobre (d), derivada de la ejecución de este mismo acto.** Registrar la RNM por "la vía del motor" (`snapshot_universe.py`, regenerando `data/curacion-universo/snapshot-t0.json`) cambia `snapshot_t0_sha256` — el ancla que `integrate_production.py::canonical_analyst_spec()` verifica contra los tres expedientes ya sellados en `data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/` (`ESP-OPACA-A-7baf278d`/familismo_apoyo, `ESP-OPACA-B-d13ec4fe`/ENASIC SELLO-B·CORRIDA-B, `ESP-OPACA-C-9ecb5c61`/ENCUCI-ENBIARE). Confirmado con la suite real (`tools/curador_registro/tests/test_produccion_correctiva.py`): una regeneración puramente aditiva (4 declaraciones nuevas, cero interacción de contenido con las tres specs selladas) hace fallar su reproducción supervisada. "Mantenimiento" en (d) no implica "sin efecto mecánico" — implica que el efecto, cuando lo hay, se declara y se resella por acto separado, no se absorbe en silencio. Por eso este acto NO ejecutó la regeneración del snapshot (P2 queda `EN-ESPERA-DE-VIA`); la tabla declarativa (`data/universo-puertas-2026-08-12.tsv`) es la cobertura mínima de (a).
 
 **Cascada.** Conteo de ADR vía receta T15. Contadores que NO se mueven: los mismos de ADR-67, declarado.
 
