@@ -35,36 +35,49 @@ celda_d:
       production_spec_refs:
         - "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resultado.tsv"
         - "data/curacion-registro/especificaciones-produccion.json#ESP-OPACA-B-d13ec4fe"
-      resultado: "NO-EJECUTADO"  # Nota honesta: el motor SÍ corrió (produce.py, ver production_spec_refs) y no
-                                   # calculó -- campos_materiales_faltantes:periodo_levantamiento, genuinamente
-                                   # ausente del corpus adquirido, no descubierto por falta de intento. Ninguno
-                                   # de los cinco valores del enum de v0.3 §3 nombra exactamente este estado
-                                   # (motor corrido, diagnóstico preciso, cero cálculo); NO-EJECUTADO es el más
-                                   # cercano y NO debe leerse como "nadie lo intentó" -- ver resumen.json del
-                                   # expediente (calculos_reproducibles: 0, no_determinado: 1) para el intento real.
+      resultado: >
+        vigente -- CALCULO_REPRODUCIBLE (U1/E4b', 12/ago/2026, tras enmienda de periodo_levantamiento en
+        forense/notas/2026-08-12-u1-e4b-prime-recorrida.md): P7_12_7 sobre TPER_ELE, n=5,579, suma_pesos=
+        80,237,061; De acuerdo(Sí)=0.6933 [IC95 0.6725-0.7140], Desacuerdo(No)=0.2995 [0.2788-0.3203],
+        No responde=0.0035, No sabe=0.0037 -- las cuatro categorías oficiales con ESTIMACION_SUSTENTADA,
+        cero celdas vacías. verificacion_supervisor=REPRODUCIDA_EN_TEMP_Y_COMPARADA_BYTE_A_BYTE
+        (integrate_production.py). "vigente" en el mismo sentido que
+        G5.radio_confianza.encuci_vs_enbiare.yaml usa para su BASELINE/ENCUCI -- único candidato, nada que
+        adjudicar todavía (ver `criterio_adjudicacion`), no un "GANO" que reclamaría una comparación que no
+        ocurrió.
   criterio_adjudicacion:
-    texto: "NO-APLICA en este acto -- un único candidato BASELINE, sin challenger con quien competir. CALIBRACION_CONJUNTA no adjudica aquí: el registro semilla (v0.3 §4-bis) la marcó 'provisional -- no se ejecuta en este acto', y este acto corrió el motor pero el motor no calculó (ver `resultado` arriba)."
-    escala: "NO-APLICA -- no hay estimación que expresar en ninguna escala todavía"
+    texto: "NO-APLICA en este acto -- un único candidato BASELINE, sin challenger con quien competir. CALIBRACION_CONJUNTA no adjudica aquí: el registro semilla (v0.3 §4-bis) la marcó 'provisional -- no se ejecuta en este acto'; el cálculo ya existe (ver `resultado` arriba) pero no hay challenger contra quien adjudicarlo."
+    escala: "NO-APLICA -- un único candidato, nada que comparar en ninguna escala todavía"
   momentos_holdout_refs: []
-  champion_actual: NINGUNO
+  champion_actual: "BASELINE.ENASIC"  # mismo criterio que G5.radio_confianza.encuci_vs_enbiare.yaml:123
+                                        # ("explícito, per encargo -- ENBIARE está registrado, no compite
+                                        # todavía"): único candidato con cálculo vigente y verificado se
+                                        # vuelve champion por default, sin que eso resuelva
+                                        # `requiere_decision_mesa` (abajo) -- son dos ejes independientes,
+                                        # igual que en esa celda hermana.
   output_nativo:
     tipo: DISTRIBUCION_DESCRIPTIVA
-    escala: "proporción sobre respondientes de TPER_ELE (0-1 / %), 4 categorías oficiales (De acuerdo/Desacuerdo/No responde/No sabe) -- declarada, no producida: no hay valor todavía (ver `resultado`)"
-    valor_ref: "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resultado.tsv (estado=NO_DETERMINADO en la única fila)"
+    escala: "proporción sobre respondientes de TPER_ELE (0-1 / %), 4 categorías oficiales (De acuerdo/Desacuerdo/No responde/No sabe) -- producida, ver `resultado` arriba para los cuatro valores"
+    valor_ref: "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resultado.tsv (estado=CALCULO_REPRODUCIBLE en la única fila)"
   incertidumbre:
-    tipo: "IC95 por linealización de Taylor sobre conglomerados últimos (estrato EST_DIS, conglomerado UPM_DIS) -- método declarado antes de ver el dato, no producido todavía"
+    tipo: "IC95 por linealización de Taylor sobre conglomerados últimos (estrato EST_DIS, conglomerado UPM_DIS) -- método declarado antes de ver el dato (E4b SELLO-B, 11/ago), producido en esta corrida (ver `resultado` arriba)"
     ref: "tools/curador_registro/produce.py::taylor_distribution"
-  supuesto_transporte: "NO-TRANSPORTABLE:no hay estimación que transportar -- periodo_levantamiento NO_DETERMINADO impidió el cálculo en este acto"
+  supuesto_transporte: "NO-TRANSPORTABLE:existe una estimación vigente (ver `resultado`), pero su uso en el modelo depende de la reserva de encuadre de género (ADR-67(b)) sin resolver por mesa -- ver `requiere_decision_mesa` abajo; no se declara EXISTE-SATISFACE ni ACOTADO-CON-SUPUESTO por esta sesión porque resolver esa reserva es precisamente la decisión pendiente, no una que este acto tome"
   fuerza_coeficiente: ASIGNADO  # el coeficiente `familismo_obligacion` de G5 (milpa/procedencia.yaml:117,
                             # "+1 · familismo_obligacion en G5, ASIGNADO y SIN MAGNITUD (spec: 'signo negativo
                             # o no monotónico')") está clasificado ASIGNADO -- la clasificación de procedencia
                             # no depende de que la magnitud numérica ya exista (SIN MAGNITUD es un eje aparte,
                             # ver también :629 "magnitud: asignada" a nivel de fila G5, y :899 "ruta: SIN-RUTA,
                             # sin magnitud asignada"). Derivado del archivo, no tecleado.
-  procedencia_condicional: SIN_ESTIMACION_TODAVIA  # lo que ESTA celda compara -- la condicional actitudinal
-                            # de ENASIC -- sigue sin estimación: periodo_levantamiento NO_DETERMINADO impidió
-                            # el cálculo en este acto (ver `resultado` arriba). Objeto distinto del coeficiente
-                            # de arriba -- es exactamente la distinción que v0.4 introduce.
+  procedencia_condicional: MEDICION_DIRECTA_MICRODATO  # P7_12_7 es una distribución marginal directa sobre
+                            # TPER_ELE (un reactivo, un ponderador, sin condicionante analítico cruzando
+                            # variables) -- contraste explícito contra el precedente del propio corpus,
+                            # G5.radio_confianza.encuci_vs_enbiare.yaml:149-153, cuyo BASELINE/ENCUCI es
+                            # MEDICION_CONDICIONAL_MICRODATO precisamente PORQUE condiciona por
+                            # formalidad×edad; esta celda no condiciona nada -- no un proxy (eso sería un
+                            # ítem sustituto, no es el caso), no ausencia de estimación (sí existe, vigente,
+                            # ver `resultado` arriba). Objeto distinto del coeficiente de arriba -- es
+                            # exactamente la distinción que v0.4 introduce.
   vocabulario_version: 0.4  # Reserva original conservada verbatim (campo `fuerza` retirado, resuelto por esta
                             # versión): "NO_DETERMINADO -- Ninguno de los tres valores del enum
                             # (ASIGNADO|AJUSTADO|IDENTIFICADO) describe correctamente 'no hay estimación
@@ -75,10 +88,15 @@ celda_d:
                             # coeficiente (arriba, ASIGNADO) y esta celda no tenía dónde declarar que la
                             # condicional (no el coeficiente) seguía sin estimar (procedencia_condicional, arriba).
   calibrado: false
-  estado_operativo: PENDIENTE
+  estado_operativo: PENDIENTE  # no LISTO pese a `champion_actual` vigente arriba -- a diferencia de
+                                 # G5.radio_confianza.encuci_vs_enbiare.yaml (requiere_decision_mesa: false,
+                                 # LISTO), esta celda tiene `requiere_decision_mesa: true` sin resolver
+                                 # (abajo): el bloqueo hoy es la reserva de encuadre, no el cálculo.
   requiere_decision_mesa: true  # hereda el registro semilla (v0.3 §4-bis) y el supervisor_link de la maestra
                                  # (especificaciones-produccion.json#ESP-OPACA-B-d13ec4fe: requiere_decision=SI)
-                                 # -- la reserva de encuadre de género (ADR-67(b)) sigue sin resolver por mesa
+                                 # -- la reserva de encuadre de género (ADR-67(b)) sigue sin resolver por mesa;
+                                 # NO cambia con esta corrida -- periodo_levantamiento y el encuadre de género
+                                 # son dos reservas independientes, esta corrida sólo cerró la primera
   fecha_declaracion: "2026-08-11"
   commit_declaracion: "8df61b0"  # SHA del commit 1 (SELLO-B), pusheado a origin/e4b/sello-b-corrida-b antes de este commit
   fecha_adjudicacion: "NO-APLICA"
