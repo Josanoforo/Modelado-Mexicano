@@ -10873,10 +10873,181 @@
   fecha_descarga: '2026-08-11'
   descargado_por: agente, curl directo desde banxico.org.mx (HTTP 200, no HEAD), verificado
     byte a byte (39 paginas leidas completas) contra las afirmaciones del encargo antes de
-    registrar -- no es el valor por defecto "usuario, via navegador" que --escanea asigna a
-    descargas_mx; corregido a mano tras la promocion, unico campo tocado.
+    registrar -- no es el valor por defecto "usuario, via navegador" que --escanea asigna
+    a descargas_mx; corregido a mano tras la promocion, unico campo tocado.
   archivo: banxico-2013-17-crowding-out-70ymas.pdf
   raiz: descargas_mx
   sha256: 899dff850d1b23c74d803c026d1dd6306f4115b1b9427a74eb008114d4e99839
   tamano_bytes: 253790
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: cses5_modulo5_2016_2021_csv
+  usado_para: Microdato CSES Modulo 5 (2016-2021), candidato para N17/N25/N26/N27 (cola de
+    adquisicion 2026-08-12, palanca 7) -- archivo pooled cross-nacional, un solo CSV dentro
+    del zip (cses5.csv); cobertura de Mexico NO verificada en esta sesion (no se abre a nivel
+    variable, prohibido por este acto)
+  url_origen: https://cses.org/wp-content/uploads/2023/07/cses5_csv.zip
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de cses.org (requirio dangerouslyDisableSandbox --
+    cses.org no esta en el allowlist de red de la caja; timeout sin override)
+  archivo: cses5_csv.zip
+  sha256: 4e8bc74a9e62ec405f172346a1cfe28fecd66934d0176ea4a0493c3807fd7e13
+  tamano_bytes: 16604927
+  formato: ZIP (contiene 1 CSV)
+  licencia: no declarada explicitamente en la pagina de descarga (verificado en esta sesion);
+    cita obligatoria via DOI 10.7804/cses.module5.2023-07-25
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descarga directa sin registro ni sesion -- pagina de origen sondeada 200 (tras override),
+    enlace verificado por HEAD antes de bajar (Content-Length coincide exacto).
+
+- id: cses5_modulo5_2016_2021_codebook
+  usado_para: Ficha documental (codebook) del CSES Modulo 5 -- acompana cses5_modulo5_2016_2021_csv
+  url_origen: https://cses.org/wp-content/uploads/2023/07/cses5_codebook.zip
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de cses.org
+  archivo: cses5_codebook.zip
+  sha256: a012fd2d683603e77cb80abc82dbc076b29299359ea8ead561464fe271c24b57
+  tamano_bytes: 593754
+  formato: ZIP
+  licencia: misma nota que cses5_modulo5_2016_2021_csv
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descarga directa sin registro, misma pagina que el CSV.
+
+- id: cses5_modulo5_2016_2021_cuestionario
+  usado_para: Ficha documental (cuestionario) del CSES Modulo 5
+  url_origen: https://cses.org/wp-content/uploads/2019/05/cses5_Questionnaire.txt
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de cses.org
+  archivo: cses5_Questionnaire.txt
+  sha256: d4deba9a038639871db1625158ef437fe476a3f8b2a0edc5a8041347528abc6c
+  tamano_bytes: 117737
+  formato: TXT (ASCII, CRLF)
+  licencia: misma nota que cses5_modulo5_2016_2021_csv
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descarga directa sin registro.
+
+- id: gps_do_files_country_level
+  usado_para: Scripts Stata (no dato) del Global Preferences Survey a nivel pais, candidato
+    para N2/N4/N5/N6/N17 (cola 2026-08-12, palanca 6)
+  url_origen: https://gps.econ.uni-bonn.de/file/GPS_do-files_country_level.zip
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de gps.econ.uni-bonn.de
+  archivo: GPS_do-files_country_level.zip
+  sha256: 1c6da5b663cfdf126b475a4e95a80eba9b42819f372d08567b0630fd8a9c90c6
+  tamano_bytes: 1362
+  formato: ZIP (contiene .do de Stata)
+  licencia: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (declarada
+    en la pagina de descargas, junto a la cita obligatoria Falk et al. 2018 QJE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Enlace abierto, sin formulario ni registro -- el dataset real (pais/individuo, Stata)
+    exige el formulario "Dataset", enviado en esta sesion, entrega pendiente por correo (ver
+    nota forense 5.4, EN-ESPERA-DE-CORREO -- no es un payload, no tiene entrada aqui).
+
+- id: gps_do_files_individual_level
+  usado_para: misma nota que gps_do_files_country_level, nivel individuo
+  url_origen: https://gps.econ.uni-bonn.de/file/GPS_do-files_individual_level.zip
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de gps.econ.uni-bonn.de
+  archivo: GPS_do-files_individual_level.zip
+  sha256: 5cb6663719ebfebf2f38a2e5ff88cde530334ca050730bb32dba1d56a2d4254e
+  tamano_bytes: 3627
+  formato: ZIP (contiene .do de Stata)
+  licencia: misma que gps_do_files_country_level
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Enlace abierto, sin formulario ni registro.
+
+- id: wb2661_asq_questionnaires
+  usado_para: Ficha documental (cuestionarios ASQ -- Ages & Stages Questionnaires -- por edad
+    en meses) del estudio Early Childhood Education Program Impact Evaluation 2012-2014 (Banco
+    Mundial catalogo 2661), candidato para N13 (cola 2026-08-12, palanca 4)
+  url_origen: https://microdata.worldbank.org/catalog/2661/download/38386
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de microdata.worldbank.org
+  archivo: wb2661_ASQ_Questionnaires.zip
+  sha256: 3ea807864522a499f2611e2936693e8b64263472d34a5c1fb2efe21ac6d669de
+  tamano_bytes: 7573363
+  formato: ZIP (PDFs por edad en meses)
+  licencia: no confirmada explicitamente para este item en esta sesion; la pagina del estudio
+    solo declara requisitos de cita, no licencia de reuso
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descargable sin sesion desde la pestana "Documentation" del catalogo (distinta de
+    "Get Microdata", que exige cuenta) -- confirmado con curl anonimo, sin cookies.
+
+- id: wb2661_baseline_instrumentos
+  usado_para: Instrumentos (cuestionarios) de la ola Baseline del estudio Banco Mundial catalogo
+    2661
+  url_origen: https://microdata.worldbank.org/catalog/2661/download/38387
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de microdata.worldbank.org
+  archivo: wb2661_Baseline.zip
+  sha256: dc3ea30471830e0c894a089ebcc7d36e3e102ce53c21cb5f024b8b46c411b485
+  tamano_bytes: 1706187
+  formato: ZIP
+  licencia: misma nota que wb2661_asq_questionnaires
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descargable sin sesion, misma pestana Documentation.
+
+- id: wb2661_year1_instrumentos
+  usado_para: Instrumentos de la ola Year 1 del estudio Banco Mundial catalogo 2661
+  url_origen: https://microdata.worldbank.org/catalog/2661/download/38388
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de microdata.worldbank.org
+  archivo: wb2661_Year1.zip
+  sha256: 0b51ea015257ed5c32a9fe4676157f9230ebb23b32da1db80745c4ba9c2f69df
+  tamano_bytes: 1747196
+  formato: ZIP
+  licencia: misma nota que wb2661_asq_questionnaires
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descargable sin sesion, misma pestana Documentation.
+
+- id: wb2661_endline_instrumentos
+  usado_para: Instrumentos de la ola Endline del estudio Banco Mundial catalogo 2661
+  url_origen: https://microdata.worldbank.org/catalog/2661/download/38389
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de microdata.worldbank.org
+  archivo: wb2661_Endline.zip
+  sha256: 64b070a3a5a8389bb3a7c53fb49c51018df666431972a90838c34924be42e88d
+  tamano_bytes: 1742099
+  formato: ZIP
+  licencia: misma nota que wb2661_asq_questionnaires
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descargable sin sesion, misma pestana Documentation.
+
+- id: wb2661_baseline_report
+  usado_para: Reporte tecnico de la ola Baseline del estudio Banco Mundial catalogo 2661
+  url_origen: https://microdata.worldbank.org/catalog/2661/download/38390
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de microdata.worldbank.org
+  archivo: wb2661_Baseline_Report.pdf
+  sha256: 66e7d4065260f09ea74292b41f3e1f2480ea1064316f4785689d3d84fb429a2f
+  tamano_bytes: 1602946
+  formato: PDF
+  licencia: misma nota que wb2661_asq_questionnaires
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descargable sin sesion, misma pestana Documentation.
+
+- id: wb2661_year1_report
+  usado_para: Reporte tecnico de la ola Year 1 del estudio Banco Mundial catalogo 2661
+  url_origen: https://microdata.worldbank.org/catalog/2661/download/38391
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de microdata.worldbank.org
+  archivo: wb2661_Year1_Report.pdf
+  sha256: d3c725cc2fd809b2bcf18fc545de924de4338af95ba6b2429eb2b72ca3dfc8cc
+  tamano_bytes: 566030
+  formato: PDF
+  licencia: misma nota que wb2661_asq_questionnaires
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descargable sin sesion, misma pestana Documentation.
+
+- id: wb2661_endline_report
+  usado_para: Reporte tecnico de la ola Endline del estudio Banco Mundial catalogo 2661
+  url_origen: https://microdata.worldbank.org/catalog/2661/download/38392
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, directamente de microdata.worldbank.org
+  archivo: wb2661_Endline_Report.pdf
+  sha256: 08c83c951c539f798598dee2ab563c71406fddc93cc4ad7365d8180e8e4ac012
+  tamano_bytes: 798886
+  formato: PDF
+  licencia: misma nota que wb2661_asq_questionnaires
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descargable sin sesion, misma pestana Documentation.
