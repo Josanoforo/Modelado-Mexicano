@@ -2,7 +2,7 @@
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `UNIVERSO-MINIMO-FUENTE-v1.0.md` |
+> | **ARCHIVO** | `UNIVERSO-MINIMO-FUENTE-v1_0.md` |
 > | **REEMPLAZA A** | Nada — creación. |
 > | **VERIFICAS ASÍ** | `grep -c -E "^[0-9]\." data/UNIVERSO-MINIMO-FUENTE-v1_0.md` da **6** (los seis niveles de la lista); el ADR que lo sella es **ADR-69** (`canon/gobernanza-v1_15.md`) |
 > | **NOMBRE ESTABLE** | **`universo-minimo-fuente`** — cítalo así, nunca por nombre de archivo |
@@ -21,7 +21,7 @@
 
 2. **El PDF "Conociendo la base de datos"** de la edición, si existe.
 
-3. **La ficha de la Red Nacional de Metadatos** — `https://www.inegi.org.mx/rnm/index.php/catalog/{id}`. Contiene, en secciones estructuradas: *Muestreo* (marco, estratificación, tamaño y selección de muestra), *Recolección de Datos* (**periodo de ejecución, periodo de levantamiento y periodo de referencia, en tablas con fecha inicio/fin**), factores de expansión **por tabla, con nombre exacto de columna**, tasa de respuesta, cuestionarios por sección, y política de acceso. Metadatos exportables en `/rnm/index.php/metadata/export/{id}/json` y `/ddi`.
+3. **La ficha de la Red Nacional de Metadatos** — `https://www.inegi.org.mx/rnm/index.php/catalog/{id}`. Contiene, en secciones estructuradas: *Muestreo* (marco, estratificación, tamaño y selección de muestra), *Recolección de Datos* (**periodo de ejecución, periodo de levantamiento y periodo de referencia, en tablas con fecha inicio/fin**), factores de expansión **por tabla, con nombre exacto de columna**, tasa de respuesta, cuestionarios por sección, y política de acceso. Metadatos exportables en `/rnm/index.php/metadata/export/{id}/json` y `/ddi`. **El buscador del catálogo (`/rnm/index.php/catalog/search?search={término}`) está roto: ignora el parámetro en silencio y devuelve el catálogo completo sin filtrar** (`forense/notas/2026-08-08-explora2.md:82`, verificado con dos nombres de parámetro distintos — `825 de 825` operaciones estadísticas en ambos casos, mismo total). El `{id}` de este nivel se obtiene por otra vía — navegación directa o un enlace ya conocido —, nunca por ese buscador; recibir 825 resultados es la firma de que no filtró, no de que la fuente no está catalogada.
 
 4. **Los indicadores de calidad publicados** de esa ficha — coeficiente de variación, error estándar e intervalo de confianza oficiales, típicamente en `/rnm/index.php/catalog/{id}/download/{n}`. **Son un validador externo del estimado propio**, del mismo tipo que `validar_contra_publicado()` es para ENIGH. Nota de mecanismo, con la reserva que §"Hecho de mecanismo" abajo detalla: un enlace `/download/{n}` catalogado no garantiza que el recurso sea el documento buscado — verificar `Content-Type`/`Content-Disposition` antes de registrar.
 
