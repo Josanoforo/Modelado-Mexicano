@@ -1,0 +1,177 @@
+# Segunda celda-D del registro (data/curacion-registro/celdas-d/), esquema propuesta-motor-adaptativo-celda-v0_3.md §3.
+# Conforme a §3 y a §4 donde §3/§4-bis y el resumen de ADR-68(f) difieran -- §4 manda (instrucción explícita del
+# encargo E4a, mismo criterio que E4b aplicó en G5.familismo_obligacion.actitud.yaml).
+#
+# Divergencia buscada y NO encontrada para esta celda -- declarado explícitamente en vez de omitido: a diferencia
+# de familismo_obligacion (donde ADR-68(f) resumía "rol COMPLEMENTO" y v0.3 §3.1/§4-bis lo contradecía), el resumen
+# de ADR-68(f) para radio_confianza ("COMPARACION: baseline ENCUCI vigente / challenger ENBIARE proxy parcial /
+# criterio = vinculación-invarianza", canon/gobernanza-v1_15.md:888) es consistente con el YAML completo de v0.3
+# §4-bis -- no hay contradicción de contenido que resolver con la regla "§4 manda". Lo que este acto sí hace, sobre
+# el registro semilla de v0.3 §4-bis (propuesta-motor-adaptativo-celda-v0_3.md:108-122), es (a) reemplazar el
+# `edicion_periodo: "por confirmar"` del candidato CHALLENGER con el valor real, derivado en este acto de
+# `produccion-modelo.tsv` (no de memoria, instrucción explícita del encargo), y (b) corregir la cita de línea
+# `modelo:253` que ese mismo registro semilla usa para el resultado del candidato BASELINE -- verificado en este
+# acto que `modelo-decision-v4_0.md:253` cae hoy sobre el encabezado "D = 14 condicionales", no sobre la cita
+# específica de `radio_confianza` (que vive en la línea 268); no es un error de contenido del registro semilla,
+# es deriva de línea por ediciones posteriores del canon -- ver detalle en forense/notas/2026-08-12-e4a-radio-celda-d.md.
+#
+# Línea explícita que pide el encargo (ADR-68(a)): ningún estado de esta celda mueve contadores de canon
+# (13 de 27, 15 coeficientes cero medidos, 9 de 14, 4 de 144, llaves ejercidas) -- promover exige el sello que ya
+# rige (ADR-57(c), ADR-49/51), no un cambio en este archivo.
+
+celda_d:
+  id: G5.radio_confianza.encuci_vs_enbiare
+  estimando: "G5·radio_confianza (milpa/procedencia.yaml, coeficiente de generador) -- registro semilla v0.3 §4-bis, verbatim"
+  tipo_adjudicacion: COMPARACION
+  dominio: CAP  # participación comunitaria y capital social -- coincide con
+                # data/inventarios/inventario_fuentes_capital_social_mexico.md:3, que nombra "confianza
+                # interpersonal" explícitamente en la definición del dominio. Distinto de CUL (cultura_valores_
+                # opinion), que usa la celda hermana G5.familismo_obligacion.actitud.yaml -- ese reactivo mide
+                # norma/creencia; radio_confianza mide confianza interpersonal directa, dominio propio.
+  poblacion_objetivo: >
+    Población adulta de México cuya confianza interpersonal informa el coeficiente de radio_confianza en G1/G5
+    (milpa/procedencia.yaml). El modelo no fija un universo único propio para esta condicional (canon §1.1.B) --
+    cada candidato trae su propia cobertura efectiva, declarada por separado en `universo_instrumento`: ENCUCI
+    cubre el universo completo de entrevistados (sin filtro de identificación previo declarado en el ítem, aunque
+    el condicionante formalidad×edad usado para medirla empieza en el tramo 18-29); ENBIARE acota a personas de
+    18 años o más, alfabetas, hablantes de español (verificado contra produccion-modelo.tsv, no de memoria). Ese
+    desacople de poblaciones y de escalas es precisamente lo que el acto de vinculación-invarianza tendría que
+    sortear -- no es un defecto de esta celda, es su razón de existir.
+  unidad_objetivo: persona
+  universo_candidatos: >
+    ENCUCI (BASELINE) es la primera y única operacionalización vigente hasta el 8/ago/2026: MEDIDO·PARCIAL(x)
+    desde CAL-CONF Fase B posiciones 5-6 (PR #59 fusionado, 3/ago/2026,
+    forense/notas/2026-08-03-cal-conf-faseb-pos5-6-radio-familismo.md), operando la RUTA-A del coeficiente G1
+    (milpa/procedencia.yaml:888). ENBIARE (CHALLENGER) es la segunda, hallada por el acto ABRIR-4
+    (8/ago/2026, forense/notas/2026-08-08-abrir4.md §7): lectura completa del diccionario
+    (`enbiare2021_fd.pdf`, `pdftotext -layout`, 2326 líneas) más verificación de integridad del zip de microdato
+    (`enbiare2021_bd_csv_zip`, 5,684,658 B, COINCIDE) -- localiza `PB1_01`/`PB1_02` (Apartado B, batería de
+    confianza 0-10) y `PF1_1`..`PF1_6` (Apartado F, desenlace financiero) en la misma tabla `TENBIARE.csv`
+    (n=31,166, una persona seleccionada por hogar). ABRIR-4 declaró explícitamente NO VERIFICADO si `PB1_01`/
+    `PB1_02` miden el mismo constructo que `AP5_1_1/2/3` de ENCUCI (§7c/§8 de esa nota) -- la reserva que
+    ADR-67(a) hereda y por la que exige el acto de vinculación-invarianza antes de cualquier uso paramétrico
+    sustitutivo. Ningún otro candidato fue barrido por este acto ni por ABRIR-4 específicamente para
+    radio_confianza. ISSP, GPS y LAPOP quedan en cola como operacionalizaciones futuras -- declarado
+    explícitamente por ADR-67(a) (canon/gobernanza-v1_15.md:864: "el menú de operacionalizaciones crecerá con
+    ISSP/GPS/LAPOP en cola"), no barridos ni descartados por este acto, simplemente no alcanzados todavía.
+  candidatos:
+    - rol: BASELINE
+      fuentes: [ENCUCI]
+      edicion_periodo: "2020"
+      universo_instrumento: >
+        ENCUCI 2020, `SEC_4_5`, ítems `AP5_1_1` (confianza en "la mayoría de las personas") / `AP5_1_2`
+        (personas que conoce) / `AP5_1_3` (vecinos de su colonia/localidad), escala ordinal 0-10, dicotomizada
+        confía={6..10}/no confía={0..5} -- corte tomado del enunciado de la pregunta ("como en la escuela"), no
+        derivado de la distribución. Universo completo: se pregunta a todo entrevistado, sin filtro de
+        identificación previo ni no-aplicabilidad estructural (verificado contra FD y contra la distribución
+        cruda de los tres campos, forense/notas/2026-08-03-cal-conf-faseb-pos5-6-radio-familismo.md §1.1).
+        n=21,519 filas de `SEC_4_5`; útiles por ítem entre 20,090 (vecinos) y 20,131 (conocidos). Condicionante
+        primario (conjunto): formalidad (`AP3_15_4`) × edad (tramos 18-29/30-44/45-59/60+). Marginal: `DOMINIO`
+        (Urbano/Complemento urbano/Rural). Ponderador `FAC_SEL`, suma verificada 96,427,583 (orden de magnitud
+        contra Censo 2020, población 15+, ~97 millones -- no recalculado desde cero, sí reproducido antes de
+        aceptar la cifra en el acto que la midió).
+      diseno_datos: transversal
+      estrategia: NO-APLICA  # distribución descriptiva de diseño con un único candidato midiendo esta condicional
+                              # hasta el 8/ago -- no ruta de AJUSTADO (ADR-49 D2); mismo patrón que
+                              # G5.familismo_obligacion.actitud.yaml usa para su propio BASELINE.
+      regla_composicion: NO-APLICA
+      production_spec_refs:
+        - "forense/notas/2026-08-03-cal-conf-faseb-pos5-6-radio-familismo.md §1.1, §3.1, §4"
+        - "milpa/procedencia.yaml#condicionales_escalares.radio_confianza"
+        # Nota: este candidato NO pasa por tools/curador_registro/ -- es una medición previa a ese sistema
+        # (PR #59, 3/ago/2026); no tiene especificacion_id en especificaciones-produccion.json.
+      resultado: >
+        vigente -- MEDIDO·PARCIAL(formalidad,edad,dominio), por ítem (modelo-decision-v4_0.md:268 -- NO línea 253
+        como cita el registro semilla de v0.3 §4-bis: esa línea cae hoy sobre el encabezado "D = 14 condicionales",
+        deriva de línea por ediciones posteriores del canon, no error de contenido; ver header de este archivo).
+    - rol: CHALLENGER
+      fuentes: [ENBIARE]
+      edicion_periodo: "2021"
+      universo_instrumento: >
+        ENBIARE 2021, tabla `TENBIARE.csv` (persona elegida, una por hogar). Apartado B: `PB1_01`
+        ("¿cuánto confía en la mayoría de la gente?") / `PB1_02` (gente que conoce), escala 0-10. Apartado F:
+        `PF1_1`..`PF1_6` (pidió prestado para alimentos/renta/agua/luz-gas-teléfono/colegiaturas/medicinas en
+        últimos 12 meses), mismo folio/hogar/persona seleccionada. Universo derivado de las 8 filas de
+        `produccion-modelo.tsv` (especificacion_id=ESP-OPACA-C-9ecb5c61), no de memoria: población "de 18 o más
+        años, alfabeta y hablante de lengua española", dominio Nacional, unidad "persona adulta elegida; última
+        unidad de selección", edición 2021, periodo de levantamiento 2021-06-03/2021-07-23, n=31,166,
+        suma_pesos=84,449,936. (El registro semilla de v0.3 §4-bis dejaba `edicion_periodo: "por confirmar"` --
+        confirmado en este acto contra el TSV.)
+      diseno_datos: transversal
+      estrategia: NO-APLICA
+      regla_composicion: NO-APLICA
+      production_spec_refs:
+        - "data/curacion-registro/especificaciones-produccion.json#ESP-OPACA-C-9ecb5c61"
+        - "data/curacion-registro/produccion-modelo.tsv (8 filas, especificacion_id=ESP-OPACA-C-9ecb5c61)"
+      resultado: >
+        NO-EJECUTADO -- en el sentido de este contrato (no ha corrido el acto de vinculación-invarianza que
+        adjudicaría champion/challenger). La distribución descriptiva SÍ está calculada y disponible (8 filas,
+        estado=CALCULO_REPRODUCIBLE, verificacion_supervisor=REPRODUCIDA_EN_TEMP_Y_COMPARADA_BYTE_A_BYTE,
+        n=31,166, suma_pesos=84,449,936) -- lo que falta no es el cómputo, es la comparación formal contra el
+        baseline. Clase PROXY_PARCIAL por ADR-67(a) (canon/gobernanza-v1_15.md:864), registrado sin adjudicar;
+        `DH-ea9e932f3970ce12` resuelve la pregunta de clasificación (PROXY_PARCIAL) pero NO sustituye el acto de
+        vinculación-invarianza que ADR-67(a) exige antes de cualquier uso paramétrico sustitutivo -- son dos
+        decisiones distintas sobre la misma relación (ver forense/notas/2026-08-12-e4a-radio-celda-d.md §3).
+  criterio_adjudicacion:
+    texto: >
+      Acto de vinculación con prueba de invarianza (convergencia ENCUCI↔ENBIARE sobre celdas compartidas, con
+      lógica de ítems ancla), declarado antes de cualquier resultado adjudicado del challenger -- ADR-67(a)
+      (canon/gobernanza-v1_15.md:864). La invarianza parcial es el estado intermedio reconocido de esa
+      literatura, no un limbo.
+    escala: "por declarar en el acto de vinculación"  # instrucción explícita del encargo: no inventar un umbral
+  momentos_holdout_refs: []
+  champion_actual: "BASELINE.ENCUCI"  # explícito, per encargo -- ENBIARE está registrado, no compite todavía
+  output_nativo:
+    tipo: >
+      Distribución condicional empírica -- una de las 14 condicionales de Θ (tabla "Distribución" de
+      propuesta-motor-adaptativo-celda-v0_1.md §3.6, MEDIDO·PARCIAL(x)), no un ajuste de momentos ni un valor
+      puesto a criterio (ver reserva de `fuerza`, abajo).
+    escala: >
+      Ordinal 0-10, dicotomizada confía={6..10}/no confía={0..5} (BASELINE/ENCUCI, ver universo_instrumento) --
+      distinta de la escala 0-10 propia de ENBIARE `PB1_01`/`PB1_02`, cuyo corte todavía no está declarado (ver
+      criterio_adjudicacion.escala). Ambas escalas nominalmente 0-10 pero sin equivalencia de constructo
+      verificada -- exactamente el punto que esta celda existe para resolver, no para asumir.
+    valor_ref: "milpa/procedencia.yaml#condicionales_escalares.radio_confianza"
+  incertidumbre:
+    tipo: >
+      IC/dispersión sobre diseño complejo -- conglomerado último (`EST_DIS`/`UPM_DIS`), revalidado en
+      `tests/svystat.py` (forense/notas/2026-08-03-cal-conf-faseb-pos5-6-radio-familismo.md §2).
+    ref: "tests/svystat.py"
+  supuesto_transporte: >
+    EXISTE-SATISFACE -- el universo del instrumento BASELINE (ENCUCI, todo entrevistado, sin filtro declarado)
+    cubre la población objetivo del coeficiente G1/G5 que radio_confianza alimenta; no hay brecha de cobertura
+    declarada que transportar para el champion vigente. (Esto no dice nada sobre ENBIARE, que no es el champion.)
+  fuerza: "MEDIDO·PARCIAL(x)"  # Ninguno de los tres valores del enum (ASIGNADO|AJUSTADO|IDENTIFICADO) nombra con
+                                 # precisión una medición condicional directa de microdato -- no causal
+                                 # (marca C3: radio_confianza NO identifica cooperacion.confianza.puente_personal,
+                                 # milpa/procedencia.yaml:226), no ajuste de momentos de un modelo estructural
+                                 # (ADR-49 D2), no un valor puesto a criterio. Reserva declarada en vez de forzar
+                                 # un valor falso -- mismo criterio que G5.familismo_obligacion.actitud.yaml usó
+                                 # para NO_DETERMINADO, por una razón distinta: ahí no había valor que
+                                 # caracterizar; aquí sí lo hay, pero ningún nombre del enum lo describe. El
+                                 # COEFICIENTE que este valor alimenta (radio_confianza=0.15 en G5,
+                                 # milpa/procedencia.yaml:629, "magnitud: asignada") sí es ASIGNADO -- pero es un
+                                 # objeto distinto (el peso que el generador le da a la condicional), no la
+                                 # condicional misma que esta celda compara.
+  calibrado: false
+  estado_operativo: LISTO  # existe candidato champion_actual vigente (BASELINE/ENCUCI) con production_spec_refs
+                            # auditables (v0.2 §3.1, regla de agregación D7)
+  requiere_decision_mesa: false  # hereda el registro semilla (v0.3 §4-bis). La celda misma no requiere decisión
+                                  # de mesa para existir como registro; lo que SÍ requiere decisión de mesa es el
+                                  # acto de vinculación-invarianza que la adjudicaría -- evento futuro y distinto
+                                  # (ver criterio_adjudicacion), no una condición de este archivo.
+  fecha_declaracion: "2026-08-12"
+  commit_declaracion: "PENDIENTE"  # Bootstrap genuino: un commit no puede contener su propio SHA final --
+                                    # cada `git commit --amend` que intente insertarlo cambia el propio hash,
+                                    # sin punto fijo alcanzable. Se completa en el commit 2 de este acto (PASO
+                                    # 4/5), editando solo este campo con el SHA ya estable del commit 1 --
+                                    # mismo patrón que G5.familismo_obligacion.actitud.yaml usa para referenciar
+                                    # el commit SELLO-B de E4b (un commit *distinto*, ya cerrado): aquí el
+                                    # commit referenciado es este mismo archivo, así que el cierre de la
+                                    # referencia no puede vivir en el mismo commit que declara.
+  fecha_adjudicacion: "NO-APLICA"
+  commit_adjudicacion: "NO-APLICA"
+  relacion_complemento: NO-APLICA  # rol COMPLEMENTO/relacion_complemento (H2, v0.3 §3.1) es para el caso
+                                    # familismo_obligacion (dos celdas distintas ligadas por brecha-momento) --
+                                    # no aplica aquí: esta celda es COMPARACION de un único estimando, sin celda
+                                    # hermana ligada.
