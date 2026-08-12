@@ -103,12 +103,7 @@ Se adoptan las mismas dos operacionalizaciones que `2026-08-04-hitoD-r5-1-pensio
 
 ⚠️ **Nota de vigilancia (heredada de §0):** esta escala se escribió sabiendo ya que la corrida por recepción declarada dio fila A. Si el resultado de este diseño también da A, **no se puede leer como confirmación independiente sin más** — hay que preguntar primero si la escala se calibró (sin querer) para que A fuera fácil de alcanzar. Se deja constancia de que el umbral de 10pp y las bandas de B se copiaron del original **por consistencia con la ficha que este documento no enmienda**, no porque se hayan re-derivado para este diseño específicamente — es una limitación real, no retórica, y se declara aquí en vez de en un anexo.
 
-### Apéndice 12/ago/2026 — fila `E` y su precedencia (ADR-71(b))
-
-* E — DiD >20pp en al menos uno de los dos desenlaces, decisivo (IC95% que despeja el umbral por completo), y monto documentado como suficiente —la misma exigencia que ya pesa sobre A—, y identificación de §2 exitosa. Corroboración acotada: la regla sobrevive a su prueba en esta ventana, con este diseño. No es confirmación causal ni licencia para afirmar intervención — la compuerta de identificación de ADR-57 sigue rigiendo.
-* Precedencia, declarada al sellar y no después (Bloque B-bis): el orden pasa a ser A → E → B → C → D. La cláusula de "monto insuficiente" de B gana sobre E, exactamente como ya gana sobre A: si el monto no está documentado como suficiente, el resultado es B (ambiguo) sea cual sea la magnitud del DiD. Razón escrita: un monto insuficiente es una objeción de atribución, no de tamaño — un DiD grande con transferencia trivial frente al gasto del hogar no puede atribuirse a sustitución inducida por ese dinero. Que E herede la misma condición que A mantiene la escala simétrica en sus dos extremos.
-* La contraparte de A-bis sigue por encima de toda la escala: un punto estimado que satisface un umbral con un intervalo de confianza que no lo despeja no adjudica — se reporta como propuesta con la reserva escrita.
-* Nota de alcance: este apéndice no edita las filas A/B/C/D ni la regla de precedencia original; la amplía. Si algún día chocan, gobierna el apéndice por ser posterior y explícito.
+**§6 fue enmendado el 12/ago/2026 por ADR-71(b) — fila `E` y precedencia A → E → B → C → D. Ver §9.**
 
 ---
 
@@ -141,7 +136,12 @@ Ninguna de las dos lecturas se adopta aquí. **Se plantea para que la mesa la re
 
 ## 9 · Enmiendas
 
-**Ninguna a la fecha del sello.**
+### Apéndice 12/ago/2026 — fila `E` y su precedencia (ADR-71(b))
+
+* E — DiD >20pp en al menos uno de los dos desenlaces, decisivo (IC95% que despeja el umbral por completo), y monto documentado como suficiente —la misma exigencia que ya pesa sobre A—, y identificación de §2 exitosa. Corroboración acotada: la regla sobrevive a su prueba en esta ventana, con este diseño. No es confirmación causal ni licencia para afirmar intervención — la compuerta de identificación de ADR-57 sigue rigiendo.
+* Precedencia, declarada al sellar y no después (Bloque B-bis): el orden pasa a ser A → E → B → C → D. La cláusula de "monto insuficiente" de B gana sobre E, exactamente como ya gana sobre A: si el monto no está documentado como suficiente, el resultado es B (ambiguo) sea cual sea la magnitud del DiD. Razón escrita: un monto insuficiente es una objeción de atribución, no de tamaño — un DiD grande con transferencia trivial frente al gasto del hogar no puede atribuirse a sustitución inducida por ese dinero. Que E herede la misma condición que A mantiene la escala simétrica en sus dos extremos.
+* La contraparte de A-bis sigue por encima de toda la escala: un punto estimado que satisface un umbral con un intervalo de confianza que no lo despeja no adjudica — se reporta como propuesta con la reserva escrita.
+* Nota de alcance: este apéndice no edita las filas A/B/C/D ni la regla de precedencia original; la amplía. Si algún día chocan, gobierna el apéndice por ser posterior y explícito.
 
 > **Regla de enmienda:** cualquier cambio a §2 (definición de tratamiento), §4 (olas), §5 (desenlaces) o §6 (umbral/escala) posterior a la fecha del sello **se anexa aquí como enmienda fechada, con el texto viejo visible y la razón del cambio** — nunca como edición silenciosa del cuerpo. **Una enmienda posterior al primer ajuste se marca POST-DATO** y todo veredicto que dependa de ella se reporta como **exploratorio**, no como pre-registrado — misma regla que `p3-lca-preregistro-v1_0.md` §10, citada, no reinventada.
 >
