@@ -49,7 +49,7 @@ DIRECT_SEMANTIC_CONTENT = (
     "application/vnd.openxmlformats", "text/csv", "application/csv",
     "application/octet-stream",
 )
-# ADR-69(b): documentacion_fuente es obligatorio para specs nuevas; las ya
+# ADR-70(b): documentacion_fuente es obligatorio para specs nuevas; las ya
 # selladas al momento del ADR no se editan retroactivamente. Lista cerrada,
 # no heurística de fecha.
 ESPECIFICACIONES_SELLADAS_SIN_DOCUMENTACION_FUENTE = {
