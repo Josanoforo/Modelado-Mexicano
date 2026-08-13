@@ -113,3 +113,66 @@ Regla A.6 (no violable): una candidata localizada por buscador y no abierta byte
 Contra-regla B-bis, escrita antes de ver el dato: este acto puede terminar sin una sola puerta nueva utilizable, y eso sería un resultado, no un fracaso. Si las 15 vuelven NO OBTENIDO POR ESTE AGENTE, el entregable son 15 recetas manuales — el carril usuario+`descargas_mx` ya cerró tres veces (ISSP, WVS, y parcialmente Banco Mundial/GPS vía registro) lo que el agente declaró imposible. La receta es el entregable de mayor rendimiento, no su consuelo.
 
 El primer resultado que produzca este procedimiento es el que se reporta.
+
+---
+
+## 5 · Commit 2 — la ejecución
+
+Por fuente, en el orden del encargo: `curl` (nunca `curl -I`) → si falla, reintento con cabeceras de navegador real, declarando si el 403 cambia → apertura byte a byte de lo que responda → clasificación A.4 en la misma línea que su universo + mecanismo + fecha. WebFetch no se probó de nuevo contra estas 15 — el barrido de las 17 condiciones ya lo reportó 403 en el 100% de los intentos contra un dominio de control neutral (dato heredado, citado, no re-medido); se usó `curl` desde el primer intento.
+
+### 5.1 · Las 9 EXISTE-SATISFACE
+
+**INEGI_ENCOAP_2023 (palanca 17).** La portada JSON-LD trae un `contentUrl` señuelo (`.../prueba.pdf`) — el mismo patrón de soft-404/placeholder que este repo ya documentó para ENVIPE 2024. No se le creyó. Se aplicó el mecanismo B ya probado en 5+ programas INEGI (API `archivoscompaginacion`, sin adivinar nombre de archivo): `idBiinegi=3369` → `pathLogico=/programas/encoap/2023/microdatos/bd_encoap2023` → verificado con `GET -r 0-0`: **206 Partial Content, 420 306 bytes reales**, no el soft-404 fijo de 2263 bytes. Libre, sin registro.
+
+**RNM_CNGMD_2023_catalogo977 (palanca 28).** La ficha RNM declara textualmente "Uso público... a través de un sitio de descarga directa". Verificado en el sitio real (`programas/cngmd/2023/`, tab "Datos abiertos", `tipoinformacion=12` — no 4, distinto de ENCOAP): **87 archivos reales**, uno verificado (`GET -r 0-0`: 206, 2 835 380 bytes).
+
+**Banxico_EncuestaCompetenciasFinancieras (palanca 33).** 6 enlaces `.xlsx` directos (2019-2024) en la propia portada, sin formulario. Verificado 2024: **206, 1 210 013 bytes**.
+
+**JPAL_CorruptionInformation_MexicoVoters_2009 (palanca 30).** Enlace "Download data (545 KB)" directo en la página J-PAL, sin registro. Verificado (siguiendo redirects http→https→CDN): **206, 184 801 bytes**.
+
+**Zenodo_ElectoralPrecinctLevel_MexicoMunicipal (palanca 31) — con hallazgo de calidad de la cola.** La URL congelada en el Commit 1 (`.../s41597-025-04999-0`, verbatim de `data/cola-adquisicion-2026-08-12.tsv`) da **404 real de Nature** (confirmado con cookie-jar para descartar bucle de consentimiento, no un bloqueo de caja). Buscado el título exacto en el buscador propio de `nature.com` (A.6: candidata de buscador, promovida solo tras abrir byte a byte) → DOI real `s41597-025-04918-9`. Página real: título coincide exacto con el `fuente_canonica` de la cola. Su sección "Data Records" declara Zenodo + GitHub; verificado vía API de Zenodo: **1 archivo, 739 952 144 bytes, `access_right=open`**, confirmado también con `GET -r 0-0` directo. **La cola tiene un DOI mal transcrito para esta fuente — reportado a mesa, no editado (fuera de perímetro de este acto).**
+
+**OSF_InteractingAsEquals_PartisanPolarizacion_Mexico (palanca 12).** El artículo declara en "Data availability": datos y código en `osf.io/f7bzy/`, con una limitación explícita del propio paper (texto crudo de chats no disponible por protección de sujetos humanos, pero las medidas derivadas sí). OSF es SPA sin contenido en HTML crudo — sondeado con su API pública (`api.osf.io/v2/`): nodo `public: true`, carpeta `Data/` con **10 archivos reales** (incl. `Master_Data.dta`, datos municipales y de pobreza 2020), sin autenticación. Solo listado de metadatos, ningún archivo abierto a nivel de contenido.
+
+**WorldBank_MEX_EnterpriseSurvey_2023_catalogo6453 (palanca 9) — mecanismo distinto a los otros 2 catálogos WB de este lote.** Su tab "Get Microdata" NO usa el login NADA de `microdata.worldbank.org` (a diferencia de 2049/1039/2661) — declara "Data available from external repository" y remite a `enterprisesurveys.org` → botón "Access microdata" → `login.enterprisesurveys.org` → formulario de registro (nombre/correo/contraseña/"primary institution affiliation" como **campo de texto libre**, país, resumen de 1 párrafo del proyecto, aceptar "Data Access Protocol") — sin cargo, sin verificación de afiliación real. Registro gratuito, no ejecutado (este acto no descarga).
+
+**WorldBank_MEX_LargeScaleFinancialEducation_2011_catalogo2049 (palanca 23) y WorldBank_MEX_ParentalEmpowerment_2010_catalogo1039 (palanca 35).** Mismo patrón NADA que catálogo 2661 ya documentado en P·Lote-1 (`"Login to access data..."`). **La cuenta de este proyecto (`jonieqsa@gmail.com`, creada en P·Lote-1, activada 2026-08-13 según la fila `WorldBank_MEX_ECEPIE_2012_2014_catalogo2661`) sirve para estos 2 catálogos también — no hace falta registrar de nuevo.**
+
+### 5.2 · Las 2 EXISTE-NO-SATISFACE
+
+**GDELT_RawDataFiles (palanca 11) y UCDP_Downloads_GED (palanca 16).** Ambas 100 % libres, sin registro, verificadas con contenido real (UCDP: `GET -r 0-0` da 206, 39 122 522 bytes). Ambas con **cero menciones de "mexico"/"méxico" en el HTML crudo de la portada** — son bases globales (eventos noticiosos geolocalizados / conflicto armado, todos los países) sin recorte de país en el mecanismo de descarga documentado. Para GDELT esto no es un hallazgo nuevo: la propia cola ya lo declaraba antes de sondear ("debe construirse universo México, deduplicar noticias, clasificar agravio/respuesta"). Ninguna de las dos es NO-ACCESIBLE (cero barrera) ni NO-ENCONTRADO (el recurso responde y existe) — lo que falta es la declaración/recorte de México, no el acceso.
+
+### 5.3 · Las 4 NO OBTENIDO POR ESTE AGENTE
+
+**MassMobilization_Dataverse_MMdata (palanca 14) — EN 4 INTENTOS.** La portada (`massmobilization.github.io`) es 100 % libre y responde 200. El repositorio real (`dataverse.harvard.edu/dataverse/MMdata`) da **HTTP 202 con cabecera `x-amzn-waf-action: challenge`** en las 4 rutas probadas (página directa, API REST `/api/dataverses/MMdata/contents`, dominio raíz, reintento con cabeceras de navegador real Chrome/Windows — 202 idéntico, sin cambio). Es un reto anti-bot **AWS WAF** a nivel de dominio — mismo patrón funcional que el Cloudflare de GESIS/ISSP (P·Lote-1 §5.1), proveedor distinto.
+
+**openICPSR_Microcredit_MexicoPlacement_proj116334 (palanca 25), OECD_TrustSurveyData (palanca 36) y Cenfri_MicroinsuranceMexico (palanca 38) — EN 2 INTENTOS cada una.** Las 3 dan la **firma Cloudflare idéntica a GESIS/ISSP** (`server: cloudflare`, `cf-mitigated: challenge`, CSP referenciando `challenges.cloudflare.com`, título `"Just a moment..."`), sin cambio con cabeceras de navegador real. openICPSR (a diferencia de ICPSR clásico, que exige *Restricted Data Use Agreement* — ver `ICPSR_Mexico_Panel_Study_2012`, `NO-ACCESIBLE`) suele permitir registro gratuito, pero el bloqueo ocurrió antes de ver ese formulario — no se puede confirmar ni descartar.
+
+Ninguna de las 4 es NO-ACCESIBLE: en ningún caso se confirmó pago o afiliación institucional — el bloqueo ocurrió antes de ver contenido alguno. Las 4 recetas manuales (<1 min cada una, abrir en navegador real — el reto se resuelve solo, como en ISSP/WVS) quedan en las filas nuevas del puntero (§6).
+
+## 6 · Filas nuevas escritas en `data/universo-puertas-2026-08-12.tsv`
+
+Verificado sin drift antes de escribir: `git fetch origin main` + `git merge-base --is-ancestor origin/main HEAD` → confirmado, nadie más empujó desde que este acto abrió el worktree. **15 filas añadidas por `append` puro (Python, escritura de texto plano tabulado — nunca `csv.writer`, defecto ya documentado en este proyecto para estos TSV), 0 filas ajenas tocadas** — verificado con `git diff --stat` (15 insertions, 0 deletions) y con conteo de columnas (`awk -F'\t' '{print NF}' | sort -u` → `15` único valor, las 114 filas). El puntero pasa de 99 a 114 filas de datos.
+
+**Hallazgo de perímetro, declarado y no resuelto por este acto.** Las 15 fuentes de este lote ya tenían una fila `gap_mapeo_map_b` / `NO-ENCONTRADO` propia (las mismas 62 de la premisa) — verificado por comando, las 15 coinciden por nombre exacto. El perímetro de este acto es estrictamente aditivo ("SOLO filas nuevas, jamás editar filas ajenas"), así que esas 15 filas viejas **quedan tal cual**, ahora stale (dicen NO-ENCONTRADO contra las tablas internas, mientras la fila nueva de al lado dice EXISTE-SATISFACE/EXISTE-NO-SATISFACE/NO OBTENIDO contra el portal real). Retirarlas es trabajo de un acto tipo MAP-B (que sí tiene ese mecanismo y ese perímetro, ver `forense/notas/2026-08-13-map-b-crosswalk.md`), no de este. Mismo razonamiento aplica a `data/crosswalk-fuente-puerta-2026-08-13.tsv` (75 filas, fuera de este perímetro): el contador que el encargo cita ("12 de 75 con A.4 derivada de portal") no se actualizó en ESE archivo por este acto — la evidencia que lo movería ya vive en las 15 filas nuevas de `universo-puertas`, lista para que el acto de reconciliación la levante.
+
+## 7 · PRISMA — embudo de las 15 fuentes de este lote
+
+| intentadas | respondieron (200, contenido real) | con-México-declarado | con-microdato-declarado | no-accesibles | no-obtenidas | con-receta-manual |
+|---|---|---|---|---|---|---|
+| 15 | 11 | 9 | 9 | 0 | 4 | 4 |
+
+Lectura: de 15 intentadas, 11 dieron contenido real (las otras 4 se quedaron en el reto anti-bot antes de mostrar nada). De esas 11, 9 declaran México explícitamente (título o contenido) — las mismas 9 que declaran microdato real accesible: no hubo ningún caso de "México sí, microdato no" en este lote (a diferencia de lo que sí ocurrió con GESIS/ZA7600 en P·Lote-1). Las otras 2 de las 11 (GDELT, UCDP) son bases globales sin declarar México — ni accedidas-sin-satisfacer por falta de dato, sino por falta de recorte/declaración. Cero NO-ACCESIBLE: en este lote nunca se llegó a confirmar pago o afiliación institucional como condición — todas las barreras encontradas fueron técnicas (Cloudflare/AWS WAF) antes de ver siquiera un formulario.
+
+## 8 · Propuesta de firma del Lote 2 — ordenada por lo que el sondeo encontró
+
+La firma del PLAN v1 (`GDELT·11 · ENCOAP·17 · WB_ENTERPRISE·9`) resulta, medida: 1 fuente que no satisface (GDELT, base global sin México), 1 fuente limpia (ENCOAP) y 1 fuente con registro nuevo pendiente (WB_ENTERPRISE). Un acierto de tres, con dos sondas gastadas en encontrarlo. Con el mapa completo, la reordenación por evidencia:
+
+**Lote 2 propuesto — agente-ejecutable de punta a punta, cero fricción (6 fuentes, listas para un P·Lote-k hoy mismo):** `ENCOAP·17` · `CNGMD·28` · `Banxico_EncuestaCompetenciasFinancieras·33` · `JPAL_CorruptionInformation·30` · `Zenodo_ElectoralPrecinctLevel·31` · `OSF_InteractingAsEquals·12`. Las 6 ya están verificadas con `GET -r 0-0`/API real, sin registro, sin espera de correo — sirven N2,N3,N17,N25,N28,N29,N30 (7 necesidades). Costo de la caja: ~0 adicional, ya sondeado en este mismo acto.
+
+**Carril usuario+navegador (no agente) — registro ya iniciado o requerido, mismo patrón que cerró ISSP/WVS tres veces:** `WorldBank_MEX_LargeScaleFinancialEducation·23` y `WorldBank_MEX_ParentalEmpowerment·35` (cuenta NADA ya activa, solo falta iniciar sesión y clic — cero registro nuevo) · `WORLD_BANK_ENTERPRISE_SURVEY·9` (cuenta nueva en `enterprisesurveys.org`, gratuita, sin pago) · `MASS_MOBILIZATION·14` / `openICPSR_Microcredit·25` / `OECD_TrustSurvey·36` / `Cenfri_Microinsurance·38` (reto anti-bot que un navegador real resuelve solo — recetas en §6).
+
+**Requiere decisión de mesa antes de cualquier acto de descarga — no es un Lote de descarga, es una decisión de ingeniería:** `GDELT·11` y `UCDP·16`. Ambas 100 % libres pero globales (GDELT: >2.5 TB/año; UCDP: decenas de archivos) — bajarlas completas sin definir primero el mecanismo de recorte/construcción de universo México sería gastar la caja en peso muerto, exactamente el riesgo que este acto fue encargado a prevenir. Palancas 12 y 16 que el encargo señalaba como saltadas por el PLAN v1: la 12 (Nature/OSF) ya quedó resuelta arriba (Lote 2 limpio); la 16 (UCDP) es la que de verdad necesita esta decisión antes de tocarla.
+
+El primer resultado que produjo este acto es el que se reporta.
+
