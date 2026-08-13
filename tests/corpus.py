@@ -40,6 +40,25 @@ para C1 tal como está escrito. Precedente: T20 (tests/check.py) declara
 igual de explícito que "no ve sitios sin marca" -- un test con límite
 escrito vale; uno que aparenta cubrir todo y no lo hace, no.
 
+ENMIENDA (ACTO INV-DESCMX, 2026-08-13): el límite de arriba ya NO aplica
+tal cual -- queda como registro histórico del defecto que motivó su
+escritura, no como descripción del código vigente. C1 ahora barre TODAS
+las raíces que `M.raices_configuradas()` declare (más RAIZ_INTEGRADA),
+cada una emparejada solo contra las entradas que declaran esa misma
+`raiz` -- un archivo bajo `descargas_mx` ya no se da por cubierto porque
+exista una entrada con ese contenido bajo `data_raw` (duplicado físico
+entre raíces, no lo mismo que "cubierto"; ver C2 para duplicados por
+contenido dentro del manifiesto). Excepción deliberada, no reintroduce
+el defecto: sobre raíces en `M.RAICES_QUE_EXIGEN_GRUPO` (`downloads`),
+el barrido se acota a `M.EXTENSIONES_DATO_RAICES_NO_CURADAS` -- mismo
+filtro que MAP-1b aplicó a mano y que --escanea ya reusa, no uno nuevo
+-- y el reporte da solo la CUENTA, nunca nombres: esa raíz es el
+destino por defecto del navegador, no una carpeta curada del proyecto
+(`descargas_mx` sí lo es y no lleva filtro ni redacción de nombres,
+ver ENCARGO INV-DESCMX §0(a)/(b)). Un huérfano de `downloads` sigue
+siendo un hecho sobre la tabla, no una lista de nombres personales en
+un commit permanente.
+
 Las tres comprobaciones emiten WARN; ninguna emite FAIL. Decisión de
 diseño central de este script (ENCARGO TC-1, 2026-08-05/06): un hallazgo
 del corpus no debe poder gatear el push de un acto ajeno -- CONF-17 quedó
@@ -68,35 +87,53 @@ def cargar(root):
     return entradas, raw_dir
 
 
-def c1_huerfanos(entradas, raw_dir):
-    """Archivo bajo data/raw que ninguna entrada del manifiesto declara.
+def c1_huerfanos(root, entradas, raw_dir):
+    """Archivo bajo una raíz configurada que ninguna entrada del manifiesto
+    declara PARA ESA RAÍZ.
 
-    Universo de comparación: entradas con sha256 (payload real) cuya raíz
-    es data_raw -- explícita o por convención (campo `raiz` ausente).
-    Entradas de otras raíces (p.ej. descargas_mx) no describen archivos
-    bajo data/raw y no pueden volver huérfano nada aquí; ver el límite
-    declarado en la cabecera de este archivo.
+    Barre RAIZ_INTEGRADA (data_raw) más todo lo que M.raices_configuradas()
+    devuelva (descargas_mx, downloads -- lo que este entorno tenga en
+    data/raices.local.yaml). Cada raíz se compara solo contra las entradas
+    que declaran esa raíz (`raiz` ausente = data_raw por convención) -- un
+    archivo con contenido ya registrado bajo OTRA raíz sigue siendo
+    huérfano aquí: es un duplicado físico entre raíces, no una cobertura.
+    Sobre raíces en M.RAICES_QUE_EXIGEN_GRUPO se acota por extensión con
+    M.EXTENSIONES_DATO_RAICES_NO_CURADAS (mismo filtro que --escanea, no
+    reinventado) -- ver ENMIENDA 2026-08-13 en la cabecera de este archivo.
+
+    Devuelve {nombre_raiz: [rutas relativas ordenadas]}.
     """
-    declarados = set()
-    for e in entradas:
-        if "sha256" not in e:
-            continue
-        if e.get("raiz", M.RAIZ_INTEGRADA) != M.RAIZ_INTEGRADA:
-            continue
-        archivo = e.get("archivo")
-        if not archivo:
-            continue
-        declarados.add(os.path.normpath(archivo))
+    raices = {M.RAIZ_INTEGRADA: raw_dir}
+    raices.update(M.raices_configuradas(root))
 
-    huerfanos = []
-    if os.path.isdir(raw_dir):
-        for dirpath, _dirnames, filenames in os.walk(raw_dir):
-            for fn in filenames:
-                ruta_abs = os.path.join(dirpath, fn)
-                rel = os.path.normpath(os.path.relpath(ruta_abs, raw_dir))
-                if rel not in declarados:
-                    huerfanos.append(rel)
-    return sorted(huerfanos)
+    resultado = {}
+    for nombre_raiz, ruta_raiz in raices.items():
+        declarados = set()
+        for e in entradas:
+            if "sha256" not in e:
+                continue
+            if e.get("raiz", M.RAIZ_INTEGRADA) != nombre_raiz:
+                continue
+            archivo = e.get("archivo")
+            if not archivo:
+                continue
+            declarados.add(os.path.normpath(archivo))
+
+        acotar_extension = nombre_raiz in M.RAICES_QUE_EXIGEN_GRUPO
+        huerfanos = []
+        if ruta_raiz and os.path.isdir(ruta_raiz):
+            for dirpath, _dirnames, filenames in os.walk(ruta_raiz):
+                for fn in filenames:
+                    if acotar_extension:
+                        ext = os.path.splitext(fn)[1].lower()
+                        if ext not in M.EXTENSIONES_DATO_RAICES_NO_CURADAS:
+                            continue
+                    ruta_abs = os.path.join(dirpath, fn)
+                    rel = os.path.normpath(os.path.relpath(ruta_abs, ruta_raiz))
+                    if rel not in declarados:
+                        huerfanos.append(rel)
+        resultado[nombre_raiz] = sorted(huerfanos)
+    return resultado
 
 
 def c2_duplicados_por_contenido(entradas):
@@ -161,19 +198,29 @@ def main():
     partes = [f"{nombre}={n}" for nombre, n in sorted(conteo_raices.items())]
     partes.append(f"SIN CAMPO raiz (=data_raw por convención)={sin_campo}")
     print("  por raíz, tal cual declarado: " + " · ".join(partes))
-    print(f"  universo visible a C1 (data_raw efectivo): "
-          f"{conteo_raices.get('data_raw', 0) + sin_campo} de {len(con_payload)}")
+    print(f"  raíces visibles a C1 (RAIZ_INTEGRADA + configuradas en "
+          f"data/raices.local.yaml): {M.RAIZ_INTEGRADA}, "
+          f"{', '.join(sorted(M.raices_configuradas(root))) or '(ninguna configurada en esta máquina)'}")
     print()
 
     warn_total = 0
 
-    huerfanos = c1_huerfanos(entradas, raw_dir)
-    etiqueta = f"[warn]  C1 huérfanos  ({len(huerfanos)} warn)" if huerfanos \
+    huerfanos_por_raiz = c1_huerfanos(root, entradas, raw_dir)
+    total_huerfanos = sum(len(v) for v in huerfanos_por_raiz.values())
+    etiqueta = f"[warn]  C1 huérfanos  ({total_huerfanos} warn)" if total_huerfanos \
         else "[ ok ]  C1 huérfanos"
-    print("  " + etiqueta + "  -- alcance: solo data_raw, ver límite en cabecera")
-    for h in huerfanos:
-        print(f"    · data/raw/{h} -- ningún id del manifiesto lo declara")
-    warn_total += len(huerfanos)
+    print("  " + etiqueta + "  -- alcance: todas las raíces configuradas, ver ENMIENDA en cabecera")
+    for nombre_raiz in sorted(huerfanos_por_raiz):
+        lista = huerfanos_por_raiz[nombre_raiz]
+        if not lista:
+            continue
+        if nombre_raiz in M.RAICES_QUE_EXIGEN_GRUPO:
+            print(f"    · [{nombre_raiz}]: {len(lista)} huérfano(s) -- solo cuenta, "
+                  f"sin nombres (raíz no curada, ver ENMIENDA 2026-08-13)")
+        else:
+            for h in lista:
+                print(f"    · [{nombre_raiz}] {h} -- ningún id del manifiesto lo declara para esta raíz")
+    warn_total += total_huerfanos
 
     dups = c2_duplicados_por_contenido(entradas)
     print(f"  [warn]  C2 duplicado por contenido  ({len(dups)} warn)" if dups
@@ -192,7 +239,7 @@ def main():
     warn_total += len(sin_archivo)
 
     print()
-    print(f"  {warn_total} WARN  (C1={len(huerfanos)} · C2={len(dups)} · "
+    print(f"  {warn_total} WARN  (C1={total_huerfanos} · C2={len(dups)} · "
           f"C3={len(sin_archivo)})")
     print("  Ninguna comprobación de este script emite FAIL: no gatea nada,")
     print("  no toca tests/baseline.json, no tiene --freeze.")
