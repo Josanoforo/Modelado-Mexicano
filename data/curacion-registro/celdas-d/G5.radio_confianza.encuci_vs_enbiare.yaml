@@ -192,9 +192,9 @@ celda_d:
                                   # fijo alcanzable), así que el cierre de esta referencia vive un commit
                                   # después, sobre un SHA que ya no vuelve a cambiar.
   fecha_adjudicacion: "2026-08-13"
-  commit_adjudicacion: "PENDIENTE-COMMIT-SIGUIENTE"  # SHA del commit 2 de ENCARGO 9 (resultados) -- un commit no
-                                  # puede contener su propio SHA final (mismo problema que commit_declaracion,
-                                  # arriba); se cierra un commit después, sobre un SHA que ya no vuelve a cambiar.
+  commit_adjudicacion: "84a943e"  # SHA del commit 2 de ENCARGO 9 (resultados) -- cerrado aquí, un commit después,
+                                  # mismo mecanismo que commit_declaracion (arriba): ese commit no podía citar su
+                                  # propio SHA final.
   relacion_complemento: NO-APLICA  # rol COMPLEMENTO/relacion_complemento (H2, v0.3 §3.1) es para el caso
                                     # familismo_obligacion (dos celdas distintas ligadas por brecha-momento) --
                                     # no aplica aquí: esta celda es COMPARACION de un único estimando, sin celda
