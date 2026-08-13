@@ -2,7 +2,7 @@
 
 - **SHA de redacción:** el encargo no trae un SHA de redacción explícito en su propio texto (a diferencia de, p. ej., ENASIC-SPLIT). Se declara aquí el que este acto verificó al arrancar, per Bloque D punto 2: `origin/main` estaba, al primer `git branch -r`/`git status` de esta sesión, en `f8eb2e3a3a7ee29c5875b677d82e511a6e4cadac` (2026-08-11 23:50:23 -0600) — **desactualizado**, porque este clon no había hecho `git fetch origin main` desde su creación. Tras `git fetch origin main`, el real es `959006ac212b1b955fe7fe75fe7c177bded54f20` (2026-08-13 09:10:23 -0600, merge de PR #206/enasic-split). Es el SHA contra el que este acto deriva todo lo que reporta. Detalle completo de la discrepancia y su corrección en la nota de arranque, abajo.
 - **Entorno asignado:** NUBE (`cloud_default`, confirmado por `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default`). Repo-only, sin red, sin corpus. **NO** en caja (Ubuntu/WSL local) — el propio encargo lo declara y no hay razón para verificarlo contra red: este acto no abre microdato ni depende de `data/raw`.
-- **Estado:** `VIVO` (se marca `CONSUMIDO` en el COMMIT 2 de este mismo acto, con la rama que lo ejecuta).
+- **Estado:** `CONSUMIDO` — ejecutado por el PR de esta rama (`claude/registro-efimeros-forense-mm9sra`), COMMIT 2 (`forense/registro-efimeros-v1_0.md` + cierre en `forense/hallazgos.md`). Nace `VIVO` en el COMMIT 1 de este mismo acto (el que archiva este texto); se marca `CONSUMIDO` aquí, en el COMMIT 2, al cerrar.
 
 ---
 
