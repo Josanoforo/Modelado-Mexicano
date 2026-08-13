@@ -6,7 +6,7 @@
 
 **Verificación de origin, no de worktree.** `mm-w-r-tres-encargos` (el worktree donde primero se buscó contexto) estaba desactualizado — su último commit (`45cf9aa`) antecede a los merges de `#200` (APERTURA-ISSP), `#201` (censo-explotación) y `#202` (CAPA3-RECONCILIA), los tres insumos que este acto necesita. Este worktree se creó fresco desde `origin/main` verificado por `git fetch` + `git log origin/main -1`, no desde el estado de un worktree existente.
 
-**ENTORNO.** CAJA con corpus, declarado por el encargo. `data/raw` y `descargas_mx` no traían enlace por defecto en un worktree nuevo — se crearon: `data/raw → /home/pc0/mm-corpus/raw` (mismo destino que el clon principal) y `descargas_mx → /mnt/c/Users/PC0/Descargas MX` (mismo destino que `raices.local.yaml` documenta en los worktrees hermanos). `data/raices.local.yaml` (gitignorado) copiado de `mm-w-r-tres-encargos` sin editar.
+**ENTORNO.** CAJA con corpus, declarado por el encargo. `data/raw` y `descargas_mx` no traían enlace por defecto en un worktree nuevo — se crearon: `data/raw → /home/pc0/mm-corpus/raw` (mismo destino que el clon principal) y `descargas_mx → /mnt/c/Users/PC0/Descargas MX` (mismo destino que `data/raices.local.yaml` documenta en los worktrees hermanos). `data/raices.local.yaml` (gitignorado) copiado de `mm-w-r-tres-encargos` sin editar.
 
 **ESPEJO.** Ninguna cifra de esta nota viene de espejo alguno del proyecto.
 
