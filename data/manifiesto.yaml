@@ -11607,3 +11607,265 @@
   nota: Mismo estudio que za7600_v3_0_0_dta (mismo microdato GESIS ZA7600 v3.0.0 en formato
     .sav). Verificacion de ausencia de Mexico hecha sobre el .dta; mismo estudio, mismo universo
     de 29 paises declarado por GESIS.
+
+- id: banxico_encuesta_competencias_financieras_2024
+  usado_para: 'P-LOTE-2 (N29): ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_DE_LA_POBLACION,
+    ola 2024, palanca 33'
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/encuesta-de-competencias-financieras-de-la-poblaci/microdatos/{746E6FB8-DA99-CB2F-3D57-ABC5118E154B}.xlsx
+  fecha_descarga: '2026-08-12'
+  descargado_por: 'agente, curl directo desde banxico.org.mx (GET -r 0-0 verificado antes:
+    206, Content-Range 0-0/1210013; luego descarga completa, HTTP 200, no HEAD)'
+  archivo: banxico_encuesta_competencias_financieras_2024.xlsx
+  sha256: 8745de04acee2137d4c130fa65e690d996f9b39fbc31315d238579b8352a5245
+  tamano_bytes: 1210013
+  formato: XLSX
+  licencia: Portada declara descarga directa sin registro ni sesion (verificado por SONDA-1,
+    fila de puerta Banxico_EncuestaCompetenciasFinancieras, 2026-08-12); texto especifico
+    de licenciamiento de microdatos no verificado byte a byte en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.'
+
+- id: zenodo_electoral_precinct_level_mexico_municipal
+  usado_para: 'P-LOTE-2 (N25): ELECTORAL_PRECINCT_LEVEL_DATABASE_FOR_MEXICAN_MUNICIPAL_ELECTION,
+    base a nivel de casilla, palanca 31'
+  url_origen: https://zenodo.org/api/records/14991955/files/brunocalderonh/The-Mexican-municipal-elections-electoral-precinct-level-database-Static_v1.zip/content
+  fecha_descarga: '2026-08-12'
+  descargado_por: 'agente, curl directo desde zenodo.org (GET -r 0-0 verificado antes: 206,
+    Content-Range 0-0/739952144; descarga completa 739952144 bytes, md5 d1cbf7125ab6f2ffecf3d9f0e0ab125e
+    coincide exacto con el reportado por la API de Zenodo)'
+  archivo: zenodo_electoral_precinct_level_mexico_municipal.zip
+  sha256: 8998b4dca1712216a3aa871138afc9a6a06c907191cc4a750771f274250f1acf
+  tamano_bytes: 739952144
+  formato: ZIP
+  licencia: access_right=open via API de Zenodo (record 14991955, DOI 10.5281/zenodo.14991955);
+    Calderon-Hernandez, Larreguy, Marshall, Perez Castellanos, articulo Nature Scientific
+    Data DOI s41597-025-04918-9 (DOI correcto -- ver correccion T1 en data/cola-adquisicion-2026-08-12.tsv,
+    palanca 31)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    La URL de la cola tenia un DOI mal transcrito (s41597-025-04999-0, 404 real) -- corregido
+    a s41597-025-04918-9 en este mismo acto, T1.'
+
+- id: osf_iae_data_si_f9
+  usado_para: 'P-LOTE-2 (N3,N17): OSF_InteractingAsEquals_PartisanPolarizacion_Mexico, replication
+    package file Data_SI_F9.dta, palanca 12'
+  url_origen: https://osf.io/download/hd3ze/
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, curl -L directo desde osf.io (redirect 302->200 seguido); tamano
+    descargado coincide exacto con el declarado por la API publica de OSF (api.osf.io/v2/nodes/f7bzy/files/osfstorage/)
+    antes de bajar
+  archivo: osf_interacting_as_equals/Data_SI_F9.dta
+  sha256: 5804a97238ceabbe851c7270c923d9ec1a6cc5596a766c5b3f3b71471a8cee04
+  tamano_bytes: 193728
+  formato: DTA
+  licencia: 'libre, sin registro -- API publica de OSF confirma nodo f7bzy publico (verificado
+    por SONDA-1, 2026-08-12); limitacion declarada por el propio articulo: texto crudo de
+    chats experimentales NO incluido por proteccion de sujetos humanos, este archivo no lo
+    contiene'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    1 de 10 archivos del paquete de replicacion en carpeta Data/ del nodo OSF f7bzy.'
+
+- id: osf_iae_si_f9_results_combined
+  usado_para: 'P-LOTE-2 (N3,N17): OSF_InteractingAsEquals_PartisanPolarizacion_Mexico, replication
+    package file SI_F9_results_combined.dta, palanca 12'
+  url_origen: https://osf.io/download/ctg3s/
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, curl -L directo desde osf.io (redirect 302->200 seguido); tamano
+    descargado coincide exacto con el declarado por la API publica de OSF (api.osf.io/v2/nodes/f7bzy/files/osfstorage/)
+    antes de bajar
+  archivo: osf_interacting_as_equals/SI_F9_results_combined.dta
+  sha256: c3d7803053d8fbdc6154db26af795c79da62f29afa7a90ff1eb89b042a46ce38
+  tamano_bytes: 10443
+  formato: DTA
+  licencia: 'libre, sin registro -- API publica de OSF confirma nodo f7bzy publico (verificado
+    por SONDA-1, 2026-08-12); limitacion declarada por el propio articulo: texto crudo de
+    chats experimentales NO incluido por proteccion de sujetos humanos, este archivo no lo
+    contiene'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    1 de 10 archivos del paquete de replicacion en carpeta Data/ del nodo OSF f7bzy.'
+
+- id: osf_iae_dip_municipality_2021
+  usado_para: 'P-LOTE-2 (N3,N17): OSF_InteractingAsEquals_PartisanPolarizacion_Mexico, replication
+    package file Dip_Municipality_2021.dta, palanca 12'
+  url_origen: https://osf.io/download/czety/
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, curl -L directo desde osf.io (redirect 302->200 seguido); tamano
+    descargado coincide exacto con el declarado por la API publica de OSF (api.osf.io/v2/nodes/f7bzy/files/osfstorage/)
+    antes de bajar
+  archivo: osf_interacting_as_equals/Dip_Municipality_2021.dta
+  sha256: df3536d216decc162480d8e86f95363690d6d62d06d1f69745bacbee2970c9d4
+  tamano_bytes: 24326
+  formato: DTA
+  licencia: 'libre, sin registro -- API publica de OSF confirma nodo f7bzy publico (verificado
+    por SONDA-1, 2026-08-12); limitacion declarada por el propio articulo: texto crudo de
+    chats experimentales NO incluido por proteccion de sujetos humanos, este archivo no lo
+    contiene'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    1 de 10 archivos del paquete de replicacion en carpeta Data/ del nodo OSF f7bzy.'
+
+- id: osf_iae_binscatter_morena_pobreza
+  usado_para: 'P-LOTE-2 (N3,N17): OSF_InteractingAsEquals_PartisanPolarizacion_Mexico, replication
+    package file binscatter_morena_pobreza.csv, palanca 12'
+  url_origen: https://osf.io/download/uvymk/
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, curl -L directo desde osf.io (redirect 302->200 seguido); tamano
+    descargado coincide exacto con el declarado por la API publica de OSF (api.osf.io/v2/nodes/f7bzy/files/osfstorage/)
+    antes de bajar
+  archivo: osf_interacting_as_equals/binscatter_morena_pobreza.csv
+  sha256: ebf14687022506b9125d68819cb7b307653cd63ebe73e2d5b067bcc4b1e99f22
+  tamano_bytes: 917
+  formato: CSV
+  licencia: 'libre, sin registro -- API publica de OSF confirma nodo f7bzy publico (verificado
+    por SONDA-1, 2026-08-12); limitacion declarada por el propio articulo: texto crudo de
+    chats experimentales NO incluido por proteccion de sujetos humanos, este archivo no lo
+    contiene'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    1 de 10 archivos del paquete de replicacion en carpeta Data/ del nodo OSF f7bzy.'
+
+- id: osf_iae_si_f9_results_vote
+  usado_para: 'P-LOTE-2 (N3,N17): OSF_InteractingAsEquals_PartisanPolarizacion_Mexico, replication
+    package file SI_F9_results_vote.dta, palanca 12'
+  url_origen: https://osf.io/download/pt6xs/
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, curl -L directo desde osf.io (redirect 302->200 seguido); tamano
+    descargado coincide exacto con el declarado por la API publica de OSF (api.osf.io/v2/nodes/f7bzy/files/osfstorage/)
+    antes de bajar
+  archivo: osf_interacting_as_equals/SI_F9_results_vote.dta
+  sha256: 0b4be03d50674d00673255e6168711805c8170cd58087771b24321a79e0f1b63
+  tamano_bytes: 3511
+  formato: DTA
+  licencia: 'libre, sin registro -- API publica de OSF confirma nodo f7bzy publico (verificado
+    por SONDA-1, 2026-08-12); limitacion declarada por el propio articulo: texto crudo de
+    chats experimentales NO incluido por proteccion de sujetos humanos, este archivo no lo
+    contiene'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    1 de 10 archivos del paquete de replicacion en carpeta Data/ del nodo OSF f7bzy.'
+
+- id: osf_iae_si_f9_results
+  usado_para: 'P-LOTE-2 (N3,N17): OSF_InteractingAsEquals_PartisanPolarizacion_Mexico, replication
+    package file SI_F9_results.dta, palanca 12'
+  url_origen: https://osf.io/download/667adbd9d6a72900460b19e5/
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, curl -L directo desde osf.io (redirect 302->200 seguido); tamano
+    descargado coincide exacto con el declarado por la API publica de OSF (api.osf.io/v2/nodes/f7bzy/files/osfstorage/)
+    antes de bajar
+  archivo: osf_interacting_as_equals/SI_F9_results.dta
+  sha256: 0196ce6b2e1dc30e4d3efc32426f38e254b563a38ae368bece70ab6cb04718e2
+  tamano_bytes: 6470
+  formato: DTA
+  licencia: 'libre, sin registro -- API publica de OSF confirma nodo f7bzy publico (verificado
+    por SONDA-1, 2026-08-12); limitacion declarada por el propio articulo: texto crudo de
+    chats experimentales NO incluido por proteccion de sujetos humanos, este archivo no lo
+    contiene'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    1 de 10 archivos del paquete de replicacion en carpeta Data/ del nodo OSF f7bzy.'
+
+- id: osf_iae_concentrado_indicadores_de_pobreza_2020_modificado
+  usado_para: 'P-LOTE-2 (N3,N17): OSF_InteractingAsEquals_PartisanPolarizacion_Mexico, replication
+    package file Concentrado_indicadores_de_pobreza_2020_modificado.dta, palanca 12'
+  url_origen: https://osf.io/download/u5f2p/
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, curl -L directo desde osf.io (redirect 302->200 seguido); tamano
+    descargado coincide exacto con el declarado por la API publica de OSF (api.osf.io/v2/nodes/f7bzy/files/osfstorage/)
+    antes de bajar
+  archivo: osf_interacting_as_equals/Concentrado_indicadores_de_pobreza_2020_modificado.dta
+  sha256: 27cbc8e889c8c232c3642bf1af37c3a945d7eaadecfa549881682ec1db600466
+  tamano_bytes: 323536
+  formato: DTA
+  licencia: 'libre, sin registro -- API publica de OSF confirma nodo f7bzy publico (verificado
+    por SONDA-1, 2026-08-12); limitacion declarada por el propio articulo: texto crudo de
+    chats experimentales NO incluido por proteccion de sujetos humanos, este archivo no lo
+    contiene'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    1 de 10 archivos del paquete de replicacion en carpeta Data/ del nodo OSF f7bzy.'
+
+- id: osf_iae_si_f9_results_pid
+  usado_para: 'P-LOTE-2 (N3,N17): OSF_InteractingAsEquals_PartisanPolarizacion_Mexico, replication
+    package file SI_F9_results_pid.dta, palanca 12'
+  url_origen: https://osf.io/download/ws3yh/
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, curl -L directo desde osf.io (redirect 302->200 seguido); tamano
+    descargado coincide exacto con el declarado por la API publica de OSF (api.osf.io/v2/nodes/f7bzy/files/osfstorage/)
+    antes de bajar
+  archivo: osf_interacting_as_equals/SI_F9_results_pid.dta
+  sha256: 2b2fc85dc6fdb3ec16fec136e065dfa3cb0f069de97aaa3be58b2f7bfcc5beec
+  tamano_bytes: 3511
+  formato: DTA
+  licencia: 'libre, sin registro -- API publica de OSF confirma nodo f7bzy publico (verificado
+    por SONDA-1, 2026-08-12); limitacion declarada por el propio articulo: texto crudo de
+    chats experimentales NO incluido por proteccion de sujetos humanos, este archivo no lo
+    contiene'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    1 de 10 archivos del paquete de replicacion en carpeta Data/ del nodo OSF f7bzy.'
+
+- id: osf_iae_master_data
+  usado_para: 'P-LOTE-2 (N3,N17): OSF_InteractingAsEquals_PartisanPolarizacion_Mexico, replication
+    package file Master_Data.dta, palanca 12'
+  url_origen: https://osf.io/download/tp84r/
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, curl -L directo desde osf.io (redirect 302->200 seguido); tamano
+    descargado coincide exacto con el declarado por la API publica de OSF (api.osf.io/v2/nodes/f7bzy/files/osfstorage/)
+    antes de bajar
+  archivo: osf_interacting_as_equals/Master_Data.dta
+  sha256: 473539bededa89b17095fe54ac9cebc66c57e91f4d1139dc56138eb206d1616c
+  tamano_bytes: 1290938
+  formato: DTA
+  licencia: 'libre, sin registro -- API publica de OSF confirma nodo f7bzy publico (verificado
+    por SONDA-1, 2026-08-12); limitacion declarada por el propio articulo: texto crudo de
+    chats experimentales NO incluido por proteccion de sujetos humanos, este archivo no lo
+    contiene'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    1 de 10 archivos del paquete de replicacion en carpeta Data/ del nodo OSF f7bzy.'
+
+- id: osf_iae_2018_see_pre_nal_mun
+  usado_para: 'P-LOTE-2 (N3,N17): OSF_InteractingAsEquals_PartisanPolarizacion_Mexico, replication
+    package file 2018_SEE_PRE_NAL_MUN.xlsx, palanca 12'
+  url_origen: https://osf.io/download/g5tnv/
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, curl -L directo desde osf.io (redirect 302->200 seguido); tamano
+    descargado coincide exacto con el declarado por la API publica de OSF (api.osf.io/v2/nodes/f7bzy/files/osfstorage/)
+    antes de bajar
+  archivo: osf_interacting_as_equals/2018_SEE_PRE_NAL_MUN.xlsx
+  sha256: 2b7fa5e6a63872e453341bffe53a8457d88771bd72205319a68e71e5968a478a
+  tamano_bytes: 464098
+  formato: XLSX
+  licencia: 'libre, sin registro -- API publica de OSF confirma nodo f7bzy publico (verificado
+    por SONDA-1, 2026-08-12); limitacion declarada por el propio articulo: texto crudo de
+    chats experimentales NO incluido por proteccion de sujetos humanos, este archivo no lo
+    contiene'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    1 de 10 archivos del paquete de replicacion en carpeta Data/ del nodo OSF f7bzy.'
+
+- id: inegi_encoap_2023_csv
+  usado_para: 'P-LOTE-2 (N2,N30): ENCOAP 2023, microdato formato CSV, palanca 17'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encoap/2023/microdatos/bd_encoap2023_csv.zip
+  fecha_descarga: '2026-08-12'
+  descargado_por: agente, curl directo desde inegi.org.mx. Mecanismo de SONDA-1 (API archivoscompaginacion,
+    idBiinegi=3369) devolvio 204 sistemico en esta sesion (verificado tambien con id invalido
+    de control, mismo 204 -- caida del endpoint, no del dato). URL real recuperada en cambio
+    desde data/curacion-universo/universo-declarado-t0.tsv (declaracion T0 previa, activo
+    ACT-050e7d14027179aad03439ee), verificada independientemente con GET -r 0-0 (206, Content-Range
+    0-0/420306 -- coincide exacto con el tamano que SONDA-1 ya habia reportado por la via
+    de la API, confirmando mismo archivo por ruta distinta)
+  archivo: inegi_encoap_2023_csv.zip
+  sha256: 04d31a66a3c5122dc31858097ecb06a79a1b3d46eb2395fb6a62095f340eb108
+  tamano_bytes: 420306
+  formato: ZIP
+  licencia: libre, descarga directa sin registro ni sesion (RNM/ficha del programa; verificado
+    por SONDA-1, 2026-08-12)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Fuente firmada en Lote 2 de ENCARGO P-LOTE-2 (mesa, 2026-08-13). Ficha SONDA-1: EXISTE-SATISFACE.
+    Hallazgo de este acto: el mecanismo B documentado por SONDA-1 (API descargamasiva/archivoscompaginacion)
+    esta caido en esta sesion para TODO idBiinegi (incl. uno invalido de control) -- posible
+    mantenimiento o cambio de API del lado de INEGI entre sesiones, mismo dia. No resuelto
+    en este acto (fuera de perimetro diagnosticar la API).'
