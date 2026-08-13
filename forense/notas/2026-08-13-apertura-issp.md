@@ -252,3 +252,20 @@ LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 9
 ```
 
 Confirma la hipótesis de §10: las 2 entradas `T16` eran eco puro del corrimiento de conteo que causaba `T02`, no defectos independientes — al quitar `T02` (23→18, una baja de 5: el propio `T02` + sus 2 `T16` + 2 mejoras ajenas ya presentes en lo fusionado, no atribuibles a este acto), el resultado real vuelve a calzar con el congelado. Un solo mecanismo, un solo commit de rename lo resuelve. El análisis de §10 se deja intacto, sin reescribir, como registro de lo que pasó y por qué — esta es la corrección que le sigue, no un reemplazo silencioso.
+
+## 13 · Traspaso explícito para un futuro censo v1.2 (no se toca censo v1.1)
+
+Este acto **no** edita `forense/censo-estimabilidad-coeficientes-v1_0.md` — es de otro PR, con su universo declarado a su propio SHA (`8cdabcb`, 4/ago), y este acto no tiene el mandato ni el perímetro para reabrirlo. Lo que sigue es el traspaso de lo que este acto sí puede entregarle a quien redacte la versión 1.2, con los `relacion_id` y variables exactas para que ese acto no re-derive nada de lo que ya está aquí verificado.
+
+**La línea, verbatim, para que quien la lea no tenga que reconstruirla:**
+
+> ISSP corrobora la fila 14 con un segundo instrumento; aporta reactivo sin co-observación para 12 y 13; no reclasifica nada por sí solo.
+
+**Fila 14 (`radio_confianza`, G5) — convergencia de dos instrumentos independientes, no un hallazgo único.** El censo v1.0 (§5, fila 14) ya declaraba esta fila cerrada por puente vía ENBIARE 2021 (`REL-5741e12c`, PB1_01/02 confianza generalizada 0-10 + PF1_1-6 dificultad financiera realizada, N=31,166 — sellado por ABRIR-4). Este acto encuentra el **mismo tipo de cierre, en un instrumento completamente distinto**: ISSP 2017/ZA6980 (`REL-b034b04e9ba040bd02e39b8b`), `v35` (Q11, confianza generalizada categórica) + `v59` (Q31, dificultad para llegar a fin de mes), N=1,002, `desenlace_coobservado_en_mismo_instrumento=SÍ` verificado en este acto (§7.2). Dos fuentes de datos independientes, dos diseños muestrales distintos, mismo patrón estructural (reactivo de confianza + desenlace de necesidad financiera, misma tabla, misma muestra). Eso es convergencia — vale más para la robustez de la fila que un hallazgo aislado, y un futuro censo v1.2 puede citarlo así sin tener que reabrir ISSP.
+
+**Filas 12 y 13 — reactivo aportado, sin co-observación, no forzado a encajar en el patrón de puente.** Verificado en este acto, honestamente declarado como lo que es:
+
+- `12 familismo_apoyo`: ISSP 2017/ZA6980 (`REL-7751c832c7e30e4e4d7603cc` / `REL-e95e26820797a0f55c9246d7` / `REL-9dfab617c356df5594575a3c`), `v26` (Q8a, "a quién recurriría si necesitara pedir prestada una gran suma de dinero" — familia+amigos cercanos 49.0% de México). Reactivo real, verificado byte a byte. **No** se declaró `desenlace_coobservado_en_mismo_instrumento=SÍ` para esta fila — el ítem es él mismo una medida de disposición hipotética, no un reactivo con un desenlace realizado distinto co-observado al lado (§8 de este acto, celda 8 del TSV).
+- `13 familismo_obligacion`: ISSP 2012/ZA5900 (`REL-cd0d1c5fd7e85418603c73cd` / `REL-d630dc1ea394364e53631401`), `V27`/Q7f + `V35`/Q14; ISSP 2017/ZA6980 (`REL-75b2ff53a19d8058eba2dbb7`), `v38`/Q13a ("Los hijos adultos tienen el deber de cuidar a sus padres ancianos"). Los dos módulos, verificados. Igual que la fila 12: reactivo sin desenlace co-observado declarado — la fila 13 del censo sigue bloqueada por lo que ya estaba bloqueada antes de este acto (sin magnitud asignada, ADR-30, `procedencia.yaml:629`), y ningún reactivo la desbloquea por sí solo. Este acto no lo promete y no lo entrega.
+
+**Lo que este traspaso NO hace:** no reclasifica ninguna fila del censo v1.0/v1.1, no calcula ninguna magnitud, no adjudica si `v35`/Q11 mide el mismo constructo que ENCUCI `AP5_1_1/2/3` (esa equivalencia queda, como ya declaró §7.2, para que mesa la adjudique). Es un traspaso de evidencia verificada, con cita exacta, para que el acto que sí tenga el perímetro de censo v1.2 no tenga que reabrir ISSP para encontrar lo que este acto ya encontró.
