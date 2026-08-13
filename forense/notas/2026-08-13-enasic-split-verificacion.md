@@ -232,3 +232,44 @@ Ningún archivo de `canon/`, `data/curacion-registro/`, `milpa/` tocado por este
 Al refrescar contra `origin/main` para cerrar este acto, `origin/main` había avanzado de `19d885d` (base de este acto) a `fbe4e0a` (PR #204 y otros, fusionados durante la ejecución de este acto). `git ls-tree -r fbe4e0a --name-only | grep curador_registro` muestra el directorio **completo**, incluidos `produce.py`/`prepare_production.py`/`integrate_production.py` — restaurado por trabajo concurrente (rama `motor/via-capa2`, ACTO V2, ya visible en `git worktree list` al arrancar este acto, §0). **El hallazgo de §0/§2.2 ("`tools/curador_registro/` ausente de `origin/main`") era exacto contra la base real de este acto (`19d885d`, verificado con el mismo comando) y ya no lo es contra el `origin/main` post-fusión** — no se edita el texto original (append-only, mismo criterio que toda corrección de este corpus), se declara aquí. No cambia ningún resultado de este acto: el cómputo de `P6_38` (§2.2) usó `tests/svystat.py`, no el motor formal, por decisión pre-registrada en §1.5 antes de saber si el motor existía o no — la restauración del motor no lo invalida ni lo hace redundante retroactivamente, porque este acto nunca sella nada en `data/curacion-registro/` (§1.6).
 
 `git merge origin/main --no-edit`: limpio, sin conflicto en `forense/hallazgos.md` (driver `merge=union`, ambas entradas — la de este acto y las 3 nuevas de `origin/main` — sobreviven intactas, verificado por conteo: 229+3=232 líneas). Citas de línea de este documento a `canon/gobernanza-v1_15.md` (866, 942, 952) verificadas de nuevo tras el merge: el diff de `origin/main` solo añade contenido después de la línea 973 — ninguna cita de arriba se desplazó. `python3 tests/check.py --baseline`, corrido una tercera vez tras el merge: **VERDE, 18 FAIL · 105 WARN, idéntico** a antes del merge.
+
+## SEGUNDA CORRECCIÓN (recibida de mesa tras revisar el PR) — la ADENDA de arriba también estaba mal. §0/§2.2 nunca tuvieron razón, y "restaurado" es una explicación fabricada, no verificada
+
+**El hallazgo original de §0/§2.2 es falso, verificado por mesa y reconfirmado aquí, contra el SHA exacto que §0 cita:**
+
+```
+$ git ls-tree 19d885d -- tools/curador_registro/produce.py
+100644 blob 6491482f638017b3f1470f1333be8009c0acfe10	tools/curador_registro/produce.py
+$ git cat-file -e 19d885d:tools/curador_registro/produce.py && echo EXISTE
+EXISTE
+$ git ls-tree -r 19d885d --name-only | grep -cE "produce\.py|prepare_production\.py|integrate_production\.py"
+3
+```
+
+`tools/curador_registro/produce.py`/`prepare_production.py`/`integrate_production.py` **sí estaban** en `19d885d` — la base real de este acto — todo el tiempo. §0 dijo lo contrario. La ADENDA de arriba, escrita para "corregir" ese hallazgo, en realidad **inventó una segunda afirmación falsa**: nadie "restauró" nada por trabajo concurrente. Fue ver `tools/curador_registro/via_capa2.py` cambiar en el diff de PR #204 y saltar a que todo el directorio había reaparecido, sin verificar si alguna vez había faltado. No se verificó esa inferencia antes de escribirla — exactamente el defecto que se supone que este programa combate (regla de oro, `instrucciones-proyecto` §"Procedencia de la lectura").
+
+**El mecanismo real, reconstruido y verificado, es un error de este agente, no del repositorio (Bloque D-ter A.5 — "el fallo de un agente es un hecho sobre el agente, no sobre la fuente"):** al leer la nota de ABRIR-4 (§0, antes de escribir el pre-registro), este acto ejecutó `cd /home/pc0/wt-abrir4-1786051186 && git log --oneline -15 ...` para inspeccionar los commits de ese worktree hermano — y no volvió a `cd /home/pc0/mm-enasic-split` después. Las comprobaciones de `tools/curador_registro/` que siguieron corrieron, con alta probabilidad, contra ese directorio de trabajo desviado, con dos consecuencias distintas que se refuerzan:
+
+```
+$ git -C /home/pc0/wt-abrir4-1786051186 log -1 --format="%h %ci %s"
+2895d5a 2026-08-06 16:45:52 -0600 Merge origin/main into wt-abrir4-1786051186
+$ git -C /home/pc0/wt-abrir4-1786051186 ls-tree -r HEAD --name-only | grep -c curador_registro
+0
+```
+
+`HEAD` en ese worktree es `2895d5a`, del 6/ago/2026 — anterior a `59d6c40` (BARRIDO-COMPLETO, el commit que primero añade `tools/curador_registro/` al historial, ~10/ago). Un `ls tools/` o `git ls-tree -r HEAD` corrido ahí da, legítimamente, "no existe" — pero eso es una pregunta sobre el `HEAD` de `wt-abrir4-1786051186`, no sobre `origin/main` ni sobre `19d885d`, que es lo que §0 afirmó estar verificando.
+
+Segundo defecto, independiente, en la misma tanda de comandos:
+
+```
+$ git branch -a | grep -i "u1"
+(vacío -- la rama no existe, ni local ni remota: PR #185 la borró al fusionar, limpieza estándar de GitHub)
+$ git ls-tree -r u1/e4b-prime-recorrida --name-only 2>/dev/null | grep -c curador_registro
+0
+```
+
+El comando original usaba `2>/dev/null`, que silenció `fatal: Not a valid object name u1/e4b-prime-recorrida` — la rama ya no existe (borrada tras el merge de PR #185, limpieza normal). `grep -c` sobre una entrada vacía imprime `0`, indistinguible en la salida de un "0 coincidencias reales" — se leyó como "confirmado ausente en la punta de esa rama" cuando en realidad el comando nunca corrió con éxito. Este es precisamente el patrón que Bloque D-ter A.5 nombra para un `curl` que falla: la formulación correcta era "NO OBTENIDO POR ESTE AGENTE", no una clasificación sobre el repositorio.
+
+**Lo único que sí era cierto, y se sobre-extendió:** `git log --all --diff-filter=A -- tools/curador_registro/produce.py` → `59d6c40` es, verificado de nuevo aquí, el primer commit de todo el historial en *añadir* esa ruta. Eso es verdad y sigue siéndolo. El error fue leer "primer commit que lo añade" como "único lugar donde aparece" — un archivo añadido una vez y nunca borrado sobrevive intacto a cada fusión posterior que no lo toque; "añadido por X" no implica "ausente en cualquier commit que no sea X".
+
+**Qué no cambia:** ningún resultado de §2.1/§2.2/§3/§4 depende de si `tools/curador_registro/` existía — el cómputo de `P6_38` usó `tests/svystat.py` por decisión pre-registrada en §1.5, antes de mirar si el motor formal estaba presente. **Qué sí cambia:** §0 y la ADENDA anterior quedan corregidas aquí, sin editarse (append-only) — ambas describen algo que nunca fue cierto sobre el repositorio, y la causa era enteramente de este agente, no de `origin/main`, no de una purga, no de trabajo concurrente que "restauró" nada.
