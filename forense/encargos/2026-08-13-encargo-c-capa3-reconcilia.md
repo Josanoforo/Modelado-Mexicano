@@ -1,6 +1,6 @@
 - **SHA de redacción:** `dcc4f6a` (`origin/main` — confirmado contra el clon en esta sesión: es el HEAD exacto sobre el que se abrió el worktree de este acto, `git worktree add /home/pc0/mm-capa3-reconcilia -b capa3-reconcilia origin/main`).
 - **Entorno asignado:** CAJA con corpus (exige `data/raices.local.yaml` con `descargas_mx`, gitignorado, no heredado por worktree). **NO** en nube — no tiene los bytes. Ejecutado en esta ocasión en Ubuntu/WSL, worktree `~/mm-capa3-reconcilia`, con `data/raices.local.yaml` y el symlink `data/raw` recreados a mano (ninguno de los dos viaja con `git worktree add` — ver `forense/notas/2026-08-13-capa3-reconcilia.md` §1).
-- **Estado:** VIVO — Commit 1 (especificación congelada: las 19 filas derivadas por `awk`, las 4 verificaciones `--verifica` con salida cruda) ejecutado en `forense/notas/2026-08-13-capa3-reconcilia.md`. Commit 2 (escritura en `relaciones.tsv`) pendiente al momento de archivar este encargo.
+- **Estado:** VIVO — Commit 1 (especificación congelada: las 19 filas derivadas por `awk`, las 4 verificaciones `--verifica` con salida cruda) y Commit 2 (escritura en `relaciones.tsv`, 19→0 filas en desacuerdo, `via_capa2.py` 0 diffs, `tests/check.py --baseline` VERDE contra `948ad70`) ejecutados en `forense/notas/2026-08-13-capa3-reconcilia.md`. Pasa a `CONSUMIDO` cuando la mesa fusione el PR que lo cierra.
 
 ---
 

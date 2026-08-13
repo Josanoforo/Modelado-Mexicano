@@ -134,3 +134,46 @@ Las cuatro dan `COINCIDE`. Cero `AUSENTE`, cero hash discordante — no hay PARO
 Las cuatro `id_manifiesto` distintas resuelven las 19 filas: `EXISTE;COINCIDE;INTEGRO` en las 19, ninguna excepción. El mecanismo de escritura será `split`/`join` por `\t` sobre las líneas exactas de la tabla de §2, nunca `csv.writer` (defecto conocido del 13/ago, re-citó comillas y corrompió 7 filas ajenas de universo-puertas). Commit 2 escribe, corre `git diff --unified=0` y confirma que el diff toca exactamente 19 líneas, un campo por línea.
 
 Frase de cierre de siempre.
+
+## §6 · Commit 2 — escritura
+
+Autocorrección declarada antes de escribir: el archivo de encargo de §0 (A.3) se había commiteado en Commit 1 como `forense/encargos/2026-08-13-capa3-reconcilia.md` — nombre normalizado idéntico al de esta nota, y `tests/check.py` (T02) lo marcó como colisión real (no falso positivo: son dos archivos de contenido distinto con el mismo nombre normalizado). Renombrado en este commit a `forense/encargos/2026-08-13-encargo-c-capa3-reconcilia.md`, vía `git mv` — mismo contenido, sin tocar Commit 1 ya empujado.
+
+Escritura por `split`/`join` de `\t` (script Python de una sola pasada, sin `csv.writer`), sobre las 19 líneas exactas identificadas en §2/§5:
+
+```
+$ git diff --unified=0 -- data/curacion-registro/relaciones.tsv | grep -c '^[+-][^+-]'
+38
+```
+
+38 líneas de diff = 19 líneas lógicas (una `-` y una `+` por fila), confirmado línea por línea contra la tabla de §2 — en cada una, el único campo que cambia es `capa3_disco_real`, de `NO_REFERENCIADO` a `EXISTE;COINCIDE;INTEGRO`. Diff completo en el commit.
+
+Distribución `capa2_manifiesto` × `capa3_disco_real`, antes/después:
+
+| | antes | después |
+|---|---|---|
+| `SI` × `EXISTE;COINCIDE;INTEGRO` | 24 | 43 |
+| `SI` × `NO_REFERENCIADO` | 19 | 0 |
+| `SI_O_REFERENCIADO` × `SI_O_PARCIAL` | 68 | 68 (sin tocar) |
+| `NO_REFERENCIADO` × `NO_REFERENCIADO` | 86 | 86 (sin tocar) |
+
+Contador central del encargo: filas con `capa2=SI` y `capa3` en desacuerdo: **19 → 0**. Ninguna volvió `AUSENTE` — verificado sobre la tabla completa (no solo las 19), 0 filas con `AUSENTE` o `NO_COINCIDE` en `capa3_disco_real`.
+
+`python3 tools/curador_registro/via_capa2.py`:
+
+```
+Filas en relaciones.tsv: 197
+Diffs propuestos (capa2_manifiesto): 0
+```
+
+0 diffs — capa2 no se movió, como exige el perímetro.
+
+`tests/check.py --baseline` contra `948ad70` (línea base congelada por ENLACE-1 · Commit 4):
+
+```
+LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 948ad70343320b62f000d31fd39e2b2b68336ad9)
+```
+
+(22 FAIL · 105 WARN en la corrida cruda — la misma cuenta pre-existente que ENLACE-1 · Commit 2 ya declaró ROJA/preexistente contra el baseline congelado más viejo; contra el freeze real de `948ad70` esta corrida da VERDE, incluido el T02 ya corregido arriba.)
+
+Frase de cierre de siempre.
