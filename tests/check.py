@@ -1188,6 +1188,16 @@ def _classify(test, msg):
             return "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02"
         if name in _NOMBRADOS_SIN_BORRADO_DECLARADO:
             return "T03_nombrado_sin_borrado_explicito_en_ninguna_fuente__gap_de_documentacion"
+        if name == "v2_6.md" and "A8LAND-instrucciones" in msg:
+            # ACTO A8-LAND, 13/ago/2026 (ADR-78): el encargo archivado
+            # (forense/encargos/2026-08-13-A8LAND-instrucciones-v2_7.md) cita
+            # "v2_6.md" sin el prefijo "instrucciones-proyecto-" tres veces,
+            # verbatim -- forense/encargos/convencion.md exige archivar el
+            # encargo tal como se lanzó, no editado, así que la cita corta
+            # queda. El archivo real (instrucciones-proyecto-v2_6.md) existe;
+            # T03 compara por nombre exacto y no lo reconoce. Mismo patrón que
+            # 2026-08-12-M6-sello.md, ya congelado.
+            return "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello"
         return "T03_sin_clasificar"
     if test == "T13":
         return "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01"
@@ -1205,12 +1215,27 @@ def _freeze_note():
         if t == "T17":
             buckets["T17_autodeclaracion_falsa_conocida__protegida_por_append-only__pendiente_de_ADR"] += 1
         elif t == "T16":
-            # Los T16 del refreeze del 30/jul/2026 son consecuencia aritmética
-            # del T03 de revision-publicacion (3 citas ilustrativas suben el
-            # total de WARN y desfasan la declaración de estado), no defectos
-            # independientes: desaparecen cuando A1 resuelva I-01.
-            buckets["T16_consecuencia_aritmetica_del_T03_de_revision-publicacion"
-                    "__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01"] += 1
+            if "gobernanza-v1_15.md:1104" in m or "gobernanza-v1_15.md:1132" in m:
+                # ACTO A8-LAND, 13/ago/2026 (ADR-78): gobernanza:1104 (ADR-76(f))
+                # y gobernanza:1132 (ADR-77, su propia Cascada) declaran "104
+                # WARN", exacto contra su propia base al sellarse -- correctos
+                # como historia, no como estado vigente. Consecuencia
+                # aritmética del T03 de este mismo refreeze (el encargo
+                # archivado sube el WARN real de 104 a 107), no un defecto de
+                # ninguno de los dos ADR. T16 no distingue "lo que ese ADR
+                # midió" de "lo que es vigente hoy" -- limite documentado en
+                # su propio docstring (_CAMBIO_FECHADO solo reconoce blockquote
+                # de changelog). Editarlas falsearía el registro de dos
+                # decisiones ya selladas.
+                buckets["T16_cifra_historica_de_ADR_ya_sellado__consecuencia_aritmetica_"
+                        "del_T03_de_A8LAND__no_defecto_de_ese_ADR__ver_ADR-78"] += 1
+            else:
+                # Los T16 del refreeze del 30/jul/2026 son consecuencia aritmética
+                # del T03 de revision-publicacion (3 citas ilustrativas suben el
+                # total de WARN y desfasan la declaración de estado), no defectos
+                # independientes: desaparecen cuando A1 resuelva I-01.
+                buckets["T16_consecuencia_aritmetica_del_T03_de_revision-publicacion"
+                        "__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01"] += 1
         else:
             buckets[f"{t}_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle"] += 1
     return {
@@ -1222,8 +1247,19 @@ def _freeze_note():
                       "Re-congelada el 30/jul/2026 tras el merge del PR #1 (main 22a7d9d): "
                       "3 entradas nuevas, cada una con bucket propio — 1 T03 (cita "
                       "ilustrativa de LICENSE-CORPUS, artefacto propuesto y descartado por "
-                      "D-05, patrón I-01) y 2 T16 que son su consecuencia aritmética."),
-        "fecha_de_clasificacion": "2026-07-30",
+                      "D-05, patrón I-01) y 2 T16 que son su consecuencia aritmética. "
+                      "Re-congelada el 13/ago/2026, ACTO A8-LAND (ADR-78), autorizado "
+                      "explícitamente por mesa en el hilo de la sesión tras que el ejecutor "
+                      "reportara los hallazgos y preguntara si congelar — mismo mecanismo de "
+                      "autorización que ya usó ENCARGO ADR-PROVISIONALIDAD §9 (PR #199): 3 "
+                      "entradas nuevas — 1 T03 (forense/encargos/2026-08-13-A8LAND-"
+                      "instrucciones-v2_7.md cita \"v2_6.md\" sin prefijo, verbatim, tres "
+                      "veces, patrón M6-sello) y 2 T16 (gobernanza:1104/ADR-76(f) y "
+                      "gobernanza:1132/ADR-77, cada uno correcto contra lo que su propio ADR "
+                      "midió al sellarse, consecuencia aritmética del T03 de este mismo "
+                      "refreeze — ninguno de los dos ADR está mal, el WARN real se movió "
+                      "después de que ambos sellaran)."),
+        "fecha_de_clasificacion": "2026-08-13",
         "conteo_por_bucket": dict(sorted(buckets.items())),
     }
 

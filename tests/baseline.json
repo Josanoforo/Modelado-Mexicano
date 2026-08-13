@@ -1,5 +1,5 @@
 {
-  "head": "2cb39c9ceff4abe76d895a9739242c2e5d056516",
+  "head": "3d0d1e5fd05567e59f8df65b2e1495b43bbcfc3c",
   "fails": [
     [
       "T05",
@@ -75,15 +75,7 @@
     ],
     [
       "T16",
-      "canon/estado-programa-v1_10.md: declara 18 FAIL · 95 WARN vigente; la corrida real da 18 FAIL · 104 WARN"
-    ],
-    [
-      "T16",
-      "canon/estado-programa-v1_10.md: declara 95 WARN vigente; la corrida real da 104 WARN"
-    ],
-    [
-      "T16",
-      "canon/gobernanza-v1_15.md: declara 18 FAIL · 95 WARN vigente; la corrida real da 18 FAIL · 104 WARN"
+      "canon/gobernanza-v1_15.md: declara 18 FAIL · 104 WARN vigente; la corrida real da 18 FAIL · 107 WARN"
     ]
   ],
   "warns": [
@@ -158,6 +150,10 @@
     [
       "T03",
       "forense/encargos/2026-08-12-M6-sello.md: cita `MESA-cuatro-decisiones-3_1-a-3_4.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-08-13-A8LAND-instrucciones-v2_7.md: cita `v2_6.md`, que no existe"
     ],
     [
       "T03",
@@ -469,11 +465,12 @@
     ]
   ],
   "nota": {
-    "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL. Re-congelada el 30/jul/2026 tras el merge del PR #1 (main 22a7d9d): 3 entradas nuevas, cada una con bucket propio — 1 T03 (cita ilustrativa de LICENSE-CORPUS, artefacto propuesto y descartado por D-05, patrón I-01) y 2 T16 que son su consecuencia aritmética.",
-    "fecha_de_clasificacion": "2026-07-30",
+    "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL. Re-congelada el 30/jul/2026 tras el merge del PR #1 (main 22a7d9d): 3 entradas nuevas, cada una con bucket propio — 1 T03 (cita ilustrativa de LICENSE-CORPUS, artefacto propuesto y descartado por D-05, patrón I-01) y 2 T16 que son su consecuencia aritmética. Re-congelada el 13/ago/2026, ACTO A8-LAND (ADR-78), autorizado explícitamente por mesa en el hilo de la sesión tras que el ejecutor reportara los hallazgos y preguntara si congelar — mismo mecanismo de autorización que ya usó ENCARGO ADR-PROVISIONALIDAD §9 (PR #199): 3 entradas nuevas — 1 T03 (forense/encargos/2026-08-13-A8LAND-instrucciones-v2_7.md cita \"v2_6.md\" sin prefijo, verbatim, tres veces, patrón M6-sello) y 2 T16 (gobernanza:1104/ADR-76(f) y gobernanza:1132/ADR-77, cada uno correcto contra lo que su propio ADR midió al sellarse, consecuencia aritmética del T03 de este mismo refreeze — ninguno de los dos ADR está mal, el WARN real se movió después de que ambos sellaran).",
+    "fecha_de_clasificacion": "2026-08-13",
     "conteo_por_bucket": {
       "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
+      "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello": 1,
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 4,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,
       "T03_sin_clasificar": 14,
@@ -485,7 +482,7 @@
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1,
-      "T16_consecuencia_aritmetica_del_T03_de_revision-publicacion__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01": 4
+      "T16_cifra_historica_de_ADR_ya_sellado__consecuencia_aritmetica_del_T03_de_A8LAND__no_defecto_de_ese_ADR__ver_ADR-78": 2
     }
   }
 }
