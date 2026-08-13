@@ -43,4 +43,12 @@ Toda la literatura de este benchmark se verificó, en cambio, con `WebSearch` �
 
 ---
 
-*Continúa en Commit 2 con el detalle de cada hallazgo — ver `forense/benchmark-enlace-invarianza-v1_0.md`, sección "COMMIT 2". Esta nota no se edita hacia atrás; lo que cambia entre commits se agrega como sección nueva.*
+## 3 · Correcciones mecánicas encontradas al cerrar (declaradas, no escondidas)
+
+`python3 tests/check.py --baseline` corrido después de escribir Commit 1 dio **ROJO, 5 entradas nuevas**: `T02` (el nombre normalizado de `forense/encargos/2026-08-13-benchmark-enlace-invarianza.md` colisionaba con el de esta nota — mismo defecto de construcción que `convencion.md` ya documenta, "un encargo y una nota con el mismo tema y sin prefijo colisionan por construcción"), `T03` (dos citas a `` `x-condicionamiento-y-forma.md` `` en el benchmark sin el prefijo de fecha, que `T03` no resuelve contra el archivo real) y tres mensajes de `T16` derivados de esos dos (el conteo real de FAIL/WARN se movió, así que las cifras que `canon/estado-programa-v1_10.md`/`canon/gobernanza-v1_15.md` declaran como vigentes dejaron de coincidir mientras las dos fallas de arriba estuvieran presentes). Corregido antes de Commit 2: el encargo se renombró con prefijo de código (`2026-08-13-BE-benchmark-enlace-invarianza.md`, mismo mecanismo que ya usó `ACTO APERTURA-ISSP` el mismo día para el mismo defecto de clase) y las dos citas ganaron su prefijo de fecha completo. Re-corrido: **`18 FAIL · 105 WARN`, LÍNEA BASE: VERDE** — nada nuevo frente a `tests/baseline.json` (`948ad70`), sin necesidad de tocar `canon/`.
+
+## 4 · Cierre
+
+**Contadores movidos: 0.** Este acto no mide ninguna condicional ni coeficiente del motor, no toca `canon/**` ni `milpa/procedencia.yaml` — produce literatura verificada e insumo para que mesa selle `D-ABC` y diseñe el acto de vinculación ENCUCI↔ENBIARE, ninguno de los dos sellado aquí. `git status --short` antes de Commit 2: solo `forense/benchmark-enlace-invarianza-v1_0.md` (extendido con la sección "COMMIT 2"), esta nota (extendida con §3-§4) y `forense/hallazgos.md` (append) — verificado, nada fuera del perímetro declarado.
+
+*Esta nota no se edita hacia atrás; lo que cambió entre commits se agregó como sección nueva (§2-§4), §0-§1 quedan como se escribieron en Commit 1.*
