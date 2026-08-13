@@ -1,18 +1,18 @@
-# manifiesto-staging.yaml -- candidatos que --promueve dejó sin promover
-# (página guardada -- no es dato --, hash/tamaño faltante, o fuera
-# del --grupo de la última corrida). url_origen y usado_para siguen
-# siendo los dos campos que una máquina no deriva.
+# manifiesto-staging.yaml -- candidatos derivados por `tests/manifiesto.py --escanea`, fusionados por raíz (última corrida por raíz reemplaza solo esa raíz).
+#
+# sha256, tamano_bytes, fecha_descarga (del mtime) y entorno_descarga
+# se derivaron del archivo real en disco -- nunca se tecleó ni se pidió
+# por parámetro. url_origen y usado_para son los dos campos que una
+# máquina no puede derivar: quedan en "" y # PENDIENTE hasta que el
+# autor los complete. `raiz` es el NOMBRE de la raíz -- la ruta real
+# vive en data/raices.local.yaml, gitignorado, nunca aquí.
+#
+# Este archivo NO es data/manifiesto.yaml. Ninguna entrada de aquí se
+# promueve automáticamente.
 
-- archivo: DescargaMasivaOD_582026_171540_NACIONAL_7930url.xml
-  raiz: data_raw
-  sha256: ebd66f3dd4975252bf18f28e8495cb9be2a2f66c8ca538dcaef339dbbcbbcb8d
-  tamano_bytes: 1010608
-  fecha_descarga: '2026-08-05'
-  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
-  descargado_por: usuario, vía navegador
-  url_origen: ""      # PENDIENTE
-  url_origen_sugerida: ''
-  usado_para: ""      # PENDIENTE
+# ══ Raíz 'descargas_mx' -- corrida actual ══
+
+# ── Grupo 1: 1 archivo(s) -- 2026-08-05 17:56:22 a 2026-08-05 17:56:22 -- token dominante: (ninguno) ──
 
 - archivo: DescargaMasiva_582026_175614.zip
   raiz: descargas_mx
@@ -24,6 +24,8 @@
   url_origen: ""      # PENDIENTE
   url_origen_sugerida: ''
   usado_para: ""      # PENDIENTE
+
+# ── Grupo 2: 5 archivo(s) -- 2026-08-06 09:53:57 a 2026-08-06 09:54:26 -- token dominante: descargamasiva ──
 
 - archivo: DescargaMasiva_682026_95355.zip
   raiz: descargas_mx
@@ -80,11 +82,25 @@
   url_origen_sugerida: ''
   usado_para: ""      # PENDIENTE
 
+# ── Página guardada (no es dato -- evidencia de procedencia): descargas.php ──
+
 - archivo: descargas.php
   raiz: descargas_mx
   sha256: 361ac35fa637933ba245bf1fa328cf62bd6cd80d61bf613cf0b431755a1cef10
   tamano_bytes: 141181
   fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+# ══ Preservado de otra(s) raíz(ces) -- de una corrida anterior, no de esta ══
+- archivo: DescargaMasivaOD_582026_171540_NACIONAL_7930url.xml
+  raiz: data_raw
+  sha256: ebd66f3dd4975252bf18f28e8495cb9be2a2f66c8ca538dcaef339dbbcbbcb8d
+  tamano_bytes: 1010608
+  fecha_descarga: '2026-08-05'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   descargado_por: usuario, vía navegador
   url_origen: ""      # PENDIENTE
