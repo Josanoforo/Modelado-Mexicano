@@ -34,7 +34,7 @@ python3 tests/check.py --strict   # los WARN también fallan
 **49 reglas · 20 `[FUERTE]`.** <!-- 49: python3 tests/validador_registro_ids.py · 20 [FUERTE]: T12 en tests/check.py (motor_rules()+rule_tier() sobre §3.B) -->
 
 - **13 de 27** corridas del Hito D con veredicto archivado — **7D·2B·2A·2E** <!-- T20:HITO-D pob=reglas --> <!-- bloque "## Registro de veredictos archivados" de forense/hitoD-preregistro-v2_0.md, parser _VEREDICTO_CANONICO (tests/check.py:684, T18); +R1.3→E, ADR-63 -->
-- **Condicionales medidas 9 de 14** <!-- grep -c 'clase: "MEDIDO·PARCIAL' milpa/procedencia.yaml -->
+- **Condicionales medidas 9 de 15** <!-- numerador: grep -c 'clase: "MEDIDO·PARCIAL' milpa/procedencia.yaml · denominador: modelo §1.1.F, pasos 1-6 (14→15 el 13/ago/2026, ACTO PROC-11 / ADR-75(b)) -->
 - **Coeficientes en escala del modelo 0 de 15** — tres asociaciones marginales (β̂) existen para tres de los quince, pero ADR-57(a) las rotula asociaciones, no coeficientes: ninguna sobrevive condicionar y no cuentan aquí <!-- modelo §2.2 ("Los quince coeficientes son ASIGNADO. Ninguno es medido"); milpa/procedencia.yaml: asignados_coeficiente / coeficientes_generador_medidos -->
 - **[MESA-M4] `4 de 144`** congelado 31/jul/2026, no se recalcula <!-- forense/hallazgos.md, 2026-07-31: "Congelamiento de `4 de 144`" — decisión de mesa, no ADR -->
 
