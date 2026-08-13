@@ -125,3 +125,24 @@ Este acto mide una pregunta distinta: **¿algún nombre canónico de `relaciones
 El encargo citaba "mociba 48, engasto 46, endireh 41" — mociba da 47 aquí, no 48 (±1, método de bucketing distinto, no investigado más a fondo: no cambia la conclusión "corpus sin demanda"). Nota: esta tabla **no es comparable** con la tabla equivalente del censo de explotación (`envipe` 76, `encig` 37, `ennvih` 27, `enoe` 25) — miden universos distintos (huérfanos-por-nombre de 298 vs. `SIN-DEMANDA`-por-id de 538) y por eso las cifras por prefijo difieren mucho (p. ej. `enoe`: 7 aquí vs. 25 allá — la mayoría de `enoe` sí es alcanzable por nombre, solo no está citada por id).
 
 ---
+
+## §4 · COMMIT 2 — vía antes → escribe alias → vía después
+
+**Vía en lectura, antes de tocar `alias-fuentes.yaml`** (código de §1 ya aplicado, Commit 1 ya en la rama): `Diagnóstico auxiliar: 74`. `Diffs propuestos: 0`.
+
+**Se extiende `data/inventarios/alias-fuentes.yaml`** (nunca reemplazado — `git diff --stat`: `84 insertions(+), 0 deletions(-)`, un solo archivo): cabecera con la documentación de los dos campos nuevos (`ampara`, `evidencia_identidad`); las 4 entradas de §2 (`CCPV` nueva, `EARLY_CHILDHOOD_EDUCATION_PROGRAM_IMPACT_EVALUATION_2012_2014` nueva, `ISSP` nueva, `LATINOBARÓMETRO` extendida con los dos campos nuevos sobre su entrada ya existente). Las dos exclusiones deliberadas de la cabecera (ENCAL/ENCC, IMSS/ISSSTE) no se tocan. `data/curacion-registro/aliases-fuentes.tsv` **no se toca** — su formato (`alias_fuente` → `fuente_canonica_normalizada`, normalización de duplicados **dentro** de `relaciones.tsv`) es el mecanismo de ALIAS-D declarado fuera de perímetro en §0/§5, no el de identidad fuente↔payload que resuelve este acto; ninguna de las 4 fuentes de §2 lo necesitaba.
+
+`CCPV` ganó dos formas de alias adicionales (`cpv2020`, `censo2020`) más allá del canónico desnudo, y `EARLY_CHILDHOOD...` ganó `wb2661` — verificado antes de añadirlas que son las formas que realmente casan con frontera de letra contra el texto propio de los payloads (el canónico completo con guiones bajos de `EARLY_CHILDHOOD...` no aparece así en ningún texto libre del manifiesto; ver §2).
+
+**Vía en lectura, después:** `Diagnóstico auxiliar: 75`. `Diffs propuestos: 0`.
+
+**Diff exacto de membresía (conjunto completo de `diagnostico_candidatas_sin_id`, no la lista impresa — el script trunca su impresión a 50 filas, "no se trunca la cuenta"):**
+
+- **ENTRARON (1):** `REL-894b3c5025557df7ef942f2a` [N13/`EARLY_CHILDHOOD_EDUCATION_PROGRAM_IMPACT_EVALUATION_2012_2014`] — la forma `wb2661` añadida es la que la mete; el canónico desnudo no casaba.
+- **SALIERON (0):** ninguna.
+
+`CCPV`, `ISSP` y `LATINOBARÓMETRO` no cambian membresía: sus filas correspondientes en `relaciones.tsv` ya casaban antes de este commit (vía el *fallback* de canónico desnudo, o —en el caso de `LATINOBARÓMETRO`— vía la mención tangencial que §1 ya documentó). Las entradas nuevas/extendidas no cambian eso, pero fijan la evidencia correcta y declarada (`ampara`/`evidencia_identidad`) donde antes no había ninguna, y `CCPV` queda con dos formas adicionales verificadas que hacen el casamiento robusto contra los 8 payloads propios en vez de depender de una mención de navegación de portal en una entrada ajena (ver §2).
+
+**Lista nominal de filas que la vía promovería con `--escribe`: ninguna.** `Diffs propuestos: 0` antes y después — sin `data/raw` montado, ninguna fila puede alcanzar `COINCIDE` bajo la regla de promoción vigente (intacta, ver §1), así que `--escribe` no tendría nada que escribir en ningún momento de este acto. **No se corrió `--escribe`** contra el `relaciones.tsv` real, en ningún momento, sobre ningún archivo del repo — `relaciones.tsv` está fuera del perímetro ESCRIBE de este encargo (§1/§5).
+
+---

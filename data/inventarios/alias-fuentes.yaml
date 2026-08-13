@@ -21,6 +21,30 @@
 #               indice, se omite el campo -- no es evidencia de que la
 #               fuente no exista, esa canasta es solo una de las que ofrece
 #               el portal de descarga masiva.
+# ---
+# Campos anadidos por ENCARGO ALIAS-P (2026-08-13, ver forense/notas/
+# 2026-08-13-alias-p-motor-diag.md) -- presentes SOLO en las entradas que
+# ese acto agrego o re-verifico (LATINOBARÓMETRO, CCPV, EARLY_CHILDHOOD_
+# EDUCATION_PROGRAM_IMPACT_EVALUATION_2012_2014, ISSP); las 124 entradas
+# de MAP-1 no tocadas por ese acto no los llevan -- ausencia no es defecto.
+#
+# ampara:            que clase(s) de objeto real amparan los payloads de
+#                    esta fuente en el manifiesto -- microdato / instrumento
+#                    (cuestionario/protocolo aplicado) / documentacion
+#                    (codebook, ficha tecnica, descriptor, reporte). Existe
+#                    para que un lector NO asuma microdato disponible solo
+#                    porque el diagnostico auxiliar de via_capa2.py marco
+#                    una fila como candidata -- ese diagnostico nunca
+#                    distingue tipo de objeto, ver notas por entrada.
+# evidencia_identidad: por que un payload P se declara de esta fuente F,
+#                    tres criterios citables (uno o mas por entrada, nunca
+#                    "parecido de cadena" solo):
+#                      a: url_origen de P pertenece al portal institucional de F.
+#                      b: usado_para de P nombra el instrumento de F sin ambiguedad.
+#                      c: archivo de P lleva el identificador de catalogo
+#                         que el portal de F publica.
+#                    Formato: {criterio: a|b|c, cita: "ids de
+#                    data/manifiesto.yaml + el hecho verificado"}.
 #
 # Dos identidades quedaron deliberadamente FUERA de esta tabla porque su
 # forma truncada es AMBIGUA -- dos fuentes reales distintas producen la
@@ -116,6 +140,25 @@
   - alias: CBP
     archivo: inventario-fuentes-migracion-mexico.md
     linea: 367
+- canonico: CCPV
+  nombre: Censo de Población y Vivienda 2020
+  institucion: Instituto Nacional de Estadística y Geografía (INEGI).
+  alias:
+  - CCPV
+  - cpv2020
+  - censo2020
+  ampara:
+  - microdato
+  - instrumento
+  - documentación
+  evidencia_identidad:
+  - criterio: b
+    cita: "data/manifiesto.yaml#cpv2020_cuestionario_ampliado_pdf,#cpv2020_iter_nal_csv,#cpv2020_caas_eum_csv,#cpv2020_ceu_eum_csv,#cpv2020_diccionario_cuestionario_ampliado_xlsx,#cpv2020_caas_descriptor_bd_xlsx,#cpv2020_ceu_descriptor_bd_xlsx,#cpv2020_fd_iter_pdf -- usado_para nombra 'CPV'/'Censo2020'/'Cuestionario Ampliado' sin ambiguedad en las 8"
+  - criterio: c
+    cita: "mismos 8 ids -- archivo lleva 'Censo2020'/'cpv2020' explicito"
+  - criterio: a
+    cita: "mismos 8 ids -- url_origen=https://www.inegi.org.mx/contenidos/programas/ccpv/2020/*, portal institucional con slug 'ccpv'"
+  nota: "Misma fuente real que la entrada 'CPV' de este archivo (linea ~250; su slug_portal: ccpv coincide exacto con el path de estos 8 url_origen) -- entrada separada por necesidad mecanica, no por identidad distinta: tools/curador_registro/via_capa2.py indexa por canonico exacto (data/curacion-registro/relaciones.tsv usa el string 'CCPV', no 'CPV'), y ese mecanismo de busqueda queda fuera del perimetro de este acto (ADR-70(d) autoriza tres cambios puntuales a ese archivo, ninguno es 'buscar tambien dentro de alias:'). Formas 'cpv2020'/'censo2020' anadidas porque casan directo (frontera de letra + sin acento) contra archivo/id de las 8 propias -- la forma 'ccpv' sola ya casaba antes de este acto, pero solo via mencion de navegacion de portal en OTRA entrada del manifiesto (verificado), no via estos 8 payloads mismos. Ver forense/notas/2026-08-13-alias-p-motor-diag.md."
 - canonico: CE
   nombre: Censos Económicos
   institucion: INEGI
@@ -307,6 +350,21 @@
   - alias: DTM
     archivo: inventario-fuentes-migracion-mexico.md
     linea: 293
+- canonico: EARLY_CHILDHOOD_EDUCATION_PROGRAM_IMPACT_EVALUATION_2012_2014
+  nombre: Early Childhood Education Program Impact Evaluation 2012-2014
+  institucion: Banco Mundial (World Bank Microdata Library, catálogo 2661).
+  alias:
+  - EARLY_CHILDHOOD_EDUCATION_PROGRAM_IMPACT_EVALUATION_2012_2014
+  - wb2661
+  ampara:
+  - instrumento
+  - documentación
+  evidencia_identidad:
+  - criterio: c
+    cita: "data/manifiesto.yaml#wb2661_asq_questionnaires,#wb2661_baseline_instrumentos,#wb2661_year1_instrumentos,#wb2661_endline_instrumentos,#wb2661_baseline_report,#wb2661_year1_report,#wb2661_endline_report -- archivo/id llevan 'wb2661' explicito (los 7)"
+  - criterio: a
+    cita: "mismos 7 ids -- url_origen=https://microdata.worldbank.org/catalog/2661/download/*, portal institucional del catalogo"
+  nota: "SOLO documentación/instrumento -- 0 de los 7 es microdato (4 instrumentos/cuestionarios de las olas ASQ/Baseline/Year1/Endline, 3 reportes técnicos). Ningún payload de este grupo puede satisfacer una fila de relaciones.tsv cuyo objeto_evidencia_id_canonico pida microdato. Forma 'wb2661' añadida porque es la que realmente casa (frontera de letra) contra archivo/id de los 7 -- el canónico completo, con guiones bajos, NO aparece así en el texto libre del manifiesto (que usa espacios/guion en el título 'Early Childhood Education Program Impact Evaluation 2012-2014')."
 - canonico: ECOVID-ED
   nombre: Encuesta para la Medición del Impacto COVID-19 en la Educación
   institucion: INEGI. Proyecto de investigación, no programa regular.
@@ -1133,6 +1191,23 @@
   - alias: IPUMS
     archivo: inventario-fuentes-migracion-mexico.md
     linea: 381
+- canonico: ISSP
+  nombre: International Social Survey Programme, módulos con México
+  institucion: GESIS – Leibniz Institute for the Social Sciences (archivo del ISSP).
+  alias:
+  - ISSP
+  ampara:
+  - microdato
+  - instrumento
+  - documentación
+  evidencia_identidad:
+  - criterio: c
+    cita: "data/manifiesto.yaml#za6980_* (4 ids), #za5900_* (10 ids), #za7600_* (2 ids) -- archivo lleva el número de catálogo GESIS (ZA6980/ZA5900/ZA7600) explícito en las 16"
+  - criterio: b
+    cita: "mismos 16 ids -- usado_para nombra el módulo ISSP exacto ('ISSP 2017 Social Networks and Social Resources' / 'ISSP 2012 Family and Changing Gender Roles IV' / 'ISSP 2019 Social Inequality V') sin ambigüedad"
+  - criterio: a
+    cita: "9 de 16 (za6980_* y za5900_v4_0_0_*/za7600_*) -- url_origen=https://www.gesis.org/en/issp/data-and-documentation/*, portal institucional directo. Los otros 7 (za5900_backgroundvar_mx/bq/cdb/mr/overview/q_mx/questionnaire_development_report) tienen url_origen='no determinada' -- (a) NO se cumple para esos 7, se incluyen solo por (b)+(c)"
+  nota: "za7600 (2 payloads, microdato) documenta el módulo ISSP 2019 Social Inequality V, en el que México está AUSENTE de la muestra (usado_para lo declara: 'NINGUNA -- Mexico ausente de la muestra'). Identidad ISSP confirmada igual (mismo programa, mismo catálogo GESIS), pero estos 2 no pueden satisfacer ninguna necesidad que pida dato mexicano -- distinto de los otros 14 (za6980/za5900), que sí lo tienen."
 - canonico: LAPOP
   nombre: Barómetro de las Américas / AmericasBarometer
   institucion: LAPOP Lab, Vanderbilt University; ITAM como socio en rondas mexicanas; financiamiento de
@@ -1175,6 +1250,15 @@
   - alias: LATINOBARÓMETRO
     archivo: inventario_fuentes_tramites_estado_mexico.md
     linea: 279
+  ampara:
+  - microdato
+  - instrumento
+  - documentación
+  evidencia_identidad:
+  - criterio: c
+    cita: "data/manifiesto.yaml#latinobarometro2024_bd_stata -- archivo=latinobarometro2024_bd_stata.zip, 'latinobarometro' sin acento es prefijo directo (frontera de letra: sigue '2024', un dígito, frontera válida)"
+  - criterio: a
+    cita: "data/manifiesto.yaml#latinobarometro2024_bd_stata,#latinobarometro2024_cuestionario_esp,#latinobarometro2024_fichas_tecnicas -- url_origen=https://www.latinobarometro.org/documents/LAT-2024/*, portal institucional directo"
 - canonico: MGA
   nombre: Métrica de Gobierno Abierto
   institucion: Coordinada por el INAI y realizada por el Centro de Investigación y Docencia Económicas
