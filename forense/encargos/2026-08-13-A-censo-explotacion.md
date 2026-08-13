@@ -1,10 +1,11 @@
 - **SHA de redacción:** `dcc4f6a`
 - **Entorno asignado:** cualquiera, SIN red, SIN corpus. Firma de nube `cloud_default` sin sonda (ADR-59(b)). NO en los dos.
 - **Estado:** CONSUMIDO — ejecutado por el acto de este mismo commit, rama `claude/censo-explotacion-adr-9rq3xo`, PR #201 (https://github.com/Josanoforo/Modelado-Mexicano/pull/201). Ver `data/censo-explotacion-2026-08-13.tsv` y `forense/notas/2026-08-13-censo-explotacion.md`.
+- **Nombre de archivo, desviado de §1 y declarado:** el encargo (§1, verbatim abajo) pedía este archivo en `forense/encargos/2026-08-13-censo-explotacion.md` — mismo nombre base que `forense/notas/2026-08-13-censo-explotacion.md`, en otro directorio. Esa colisión disparaba `T02` (`tests/check.py`) como FAIL nuevo contra `tests/baseline.json` y bloqueaba el check requerido de PR #201 (`mergeable_state: blocked`), con dos entradas `T16` como eco. Renombrado a `2026-08-13-A-censo-explotacion.md` (prefijo `A-`, mismo mecanismo que ya usó el par `forense/encargos/2026-08-13-A7-indice-infraestructura.md`/`forense/notas/2026-08-13-indice-infraestructura.md` el mismo día) tras confirmarlo con el usuario — no decidido unilateralmente. Verificado: con el renombre, `T02` deja de disparar y las dos entradas `T16` desaparecen con él (mismo mecanismo, no dos arreglos). Detalle completo en `forense/notas/2026-08-13-censo-explotacion.md`, sección "Estado de la suite".
 
 ---
 
-Texto completo del encargo, tal como se lanzó (verbatim):
+Texto completo del encargo, tal como se lanzó (verbatim, incluida la ruta original de este mismo archivo en §1 — no se edita el texto verbatim aunque la ejecución real haya desviado por la razón de arriba):
 
 ---
 
