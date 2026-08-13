@@ -105,7 +105,7 @@ celda_d:
         - "data/curacion-registro/produccion-modelo.tsv (8 filas, especificacion_id=ESP-OPACA-C-9ecb5c61)"
       resultado: >
         EJECUTADO -- ENCARGO 9 (13/ago/2026), acto de vinculación-invarianza diseñado por ADR-76(d) (Propuesta 2
-        de forense/benchmark-enlace-invarianza-v1_0.md), estándar de éxito ADR-79 (argumento de vinculación
+        de forense/benchmark-enlace-invarianza-v1_0.md), estándar de éxito ADR-80 (argumento de vinculación
         declarado). Veredicto: INVARIANZA PARCIAL sobre el único par de ítems próximos disponible (`AP5_1_1`
         ENCUCI ↔ `PB1_01` ENBIARE, `AP5_1_2` ↔ `PB1_02`), escala 0-10 completa sin dicotomizar. Configural
         SOSTENIDA en ambos instrumentos: r ponderado(AP5_1_1,AP5_1_2)=0.5165 IC95%[0.4985,0.5341] n=21,398
@@ -126,7 +126,7 @@ celda_d:
       literatura, no un limbo.
     escala: >
       INVARIANZA PARCIAL -- configural sostenida (ambos instrumentos, r>0 con IC95% excluyendo 0), métrica no
-      sostenida (Δλ=-0.0280, IC95%[-0.0431,-0.0132]). Declarada por ENCARGO 9 (13/ago/2026), estándar ADR-79
+      sostenida (Δλ=-0.0280, IC95%[-0.0431,-0.0132]). Declarada por ENCARGO 9 (13/ago/2026), estándar ADR-80
       (argumento de vinculación declarado). Cifras y procedimiento completo en
       forense/notas/2026-08-13-invarianza-encuci-enbiare.md.
   momentos_holdout_refs: []
