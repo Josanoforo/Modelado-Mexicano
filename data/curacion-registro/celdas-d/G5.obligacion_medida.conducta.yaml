@@ -1,0 +1,144 @@
+# Celda-D de `obligación_medida`, registrada por ACTO PROC-11 (13/ago/2026).
+# Esquema propuesta-motor-adaptativo-celda-v0_3.md §3, con §4 mandando donde §3/§4 y el resumen de
+# ADR-68(f) difieran -- mismo criterio declarado por la celda hermana G5.familismo_obligacion.actitud.yaml.
+#
+# QUÉ REGISTRA. La segunda de las dos medidas que ADR-75(b) separó. Enmienda in situ de ENASIC-SPLIT
+# sobre ADR-67(b) (canon/gobernanza-v1_15.md), firmada por mesa el 13/ago/2026 en ACTO RES, verbatim:
+# "P6_38 deja de ser sensibilidad condicional de familismo_obligacion y pasa a medida propia, nombrada:
+# obligación_medida (ENASIC 2022, P6_38, tabla TPOB_CUI, θ categórica de 5 vías, n=5,677)". El mismo
+# párrafo dejó "registrar la celda-D G5.obligación_medida en data/curacion-registro/celdas-d/" como
+# PENDIENTE DE MESA, fuera del perímetro de ACTO RES -- este acto lo ejecuta, y nada más de lo que ese
+# párrafo reservó.
+#
+# NO LLEVA `relacion_complemento`. Es exigencia explícita del rector, no una omisión: ADR-75(b) dice que
+# norma_de_género y obligación_medida son "dos celdas-D distintas, SIN rol: COMPLEMENTO entre ellas
+# (mismo criterio que ya separa la celda de actitud ENASIC de la celda de conducta ENUT) -- dos medidas,
+# dos análisis, sin fusión ni jerarquía". La celda hermana sí lleva `relacion_complemento` (hacia la
+# celda ENUT), y esa asimetría es correcta: ahí el complemento es actitud/conducta del MISMO constructo;
+# aquí son constructos distintos.
+#
+# NINGUNA CIFRA DE ESTE ARCHIVO SE RECALCULÓ EN ESTE ACTO. Todas se citan verbatim de
+# forense/notas/2026-08-13-enasic-split-verificacion.md §2.2 (fusionada), que las produjo y verificó.
+# ACTO PROC-11 es repo-only, sin data/raw y sin corpus: no abre microdato. La reproducción independiente
+# y el expediente de producción son el encargo de ACTO PROD-P638 -- de ahí `estado_operativo: PENDIENTE`
+# abajo, que es un estado de EXPEDIENTE, no una duda sobre el cálculo.
+#
+# PROVISIONALIDAD (ADR-72). El cálculo de §2.2 se produjo el 13/ago/2026, el mismo día del corte de
+# ADR-72; se cita como provisional, no como asentado -- mismo tratamiento que ENASIC-SPLIT §3 ya se
+# aplicó a sí mismo para la Medida 1.
+#
+# CONTADOR. Esta celda entra en el mismo acto que mueve `D`: 14 -> 15 (política firmada por ADR-75(b):
+# "entra, cuando se registre, como condicional nueva"). NO mueve el NUMERADOR: el numerador lo deriva
+# `grep -c 'clase: "MEDIDO·PARCIAL' milpa/procedencia.yaml` (T19b/T19c) y esta θ no entra a ese archivo
+# -- la clase MEDIDO·PARCIAL(x) exige eje condicionante y esta medición es marginal nacional (x = ∅),
+# el mismo muro que ACTO PROC-10 documentó para P7_12_7 (forense/notas/2026-08-13-proc-10.md §3).
+# Levantarlo es la decisión D3, nombrada y no firmada al cerrar este acto. Contador: 9 de 15.
+
+celda_d:
+  id: G5.obligacion_medida.conducta
+  estimando: "G5·obligación_medida — motivo autorreportado del cuidado ya realizado (batería de 5 razones)"
+  tipo_adjudicacion: CALIBRACION_CONJUNTA  # heredado del registro semilla (v0.3 §4-bis) por la vía de la
+                                           # celda hermana, provisional -- no se adjudica nada en este acto
+  dominio: TIE  # uso_del_tiempo_cuidados_hogar. Derivado, no tecleado: la celda hermana eligió CUL con razón
+                # escrita (Sección 7, "Percepción CULTURAL de los cuidados") y en la MISMA línea nombró el
+                # contraste -- "no tiempo/conducta (eso sería TIE -- uso_del_tiempo_cuidados_hogar)". P6_38
+                # vive en Sección 6, dirigida a quien la sección ya identificó como cuidador/a (FILTRO 6.10),
+                # y mide el motivo del cuidado YA REALIZADO. Verificación independiente del código:
+                # `grep -ln "ENASIC" data/inventarios/*.md` lista ENASIC en
+                # inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md.
+                # Matiz declarado: la hermana nombra TIE pensando en la celda .conducta/ENUT; ésta es
+                # .conducta pero ENASIC, no ENUT -- el dominio se hereda por el eje conducta/cuidados, no
+                # por el instrumento.
+  poblacion_objetivo: "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró haber brindado cuidados a por lo menos una población susceptible (ENASIC 2022, tabla TPOB_CUI). Definición oficial del PDF del instrumento, línea 384, citada en forense/notas/2026-08-13-enasic-split-verificacion.md §2.2 -- discapacidad/dependencia, niñas/niños 0-5, niñas/niños/adolescentes 6-17, personas 60+, o personas enfermas temporales."
+  unidad_objetivo: persona
+  universo_candidatos: "Único candidato conocido, verificado por ENASIC-SPLIT (13/ago/2026): ENASIC 2022 P6_38, vía apertura del diccionario de TPOB_CUI (filas 1170-1176) y del PDF del instrumento. No se barrieron fuentes adicionales para el motivo autorreportado de cuidado -- no era el encargo de aquel acto ni de éste, y no se declara exhaustivo."
+  candidatos:
+    - rol: BASELINE
+      fuentes: [ENASIC]
+      edicion_periodo: "2022"
+      universo_instrumento: "Población cuidadora, 15+ años, vivienda particular -- tabla TPOB_CUI, gatillada por FILTRO 6.10 ('¿LA (EL) INFORMANTE ES CUIDADOR(A) DE PERSONAS DE SU HOGAR Y/O DE OTROS HOGARES?', fila 1170). Verificado contra el microdato, no solo por lectura de la lógica de filtro: FILTRO6_10='1' en el 100% de las 5,677 filas -- la tabla ya está construida como población cuidadora, así que P6_38 se formula a la población completa de la tabla, sin exclusión adicional. Reactivo P6_38: 'A las personas que declaró cuidar, ¿usted las cuida por...' con 5 opciones de elección única."
+      diseno_datos: transversal
+      estrategia: NO-APLICA  # distribución descriptiva de diseño con un único candidato BASELINE, no ruta de
+                             # AJUSTADO (ADR-49 D2) -- esa enumeración acota `estrategia` a la clase AJUSTADO
+                             # de milpa/procedencia.yaml; esta celda no alimenta esa clase. Mismo criterio que
+                             # la celda hermana.
+      regla_composicion: NO-APLICA
+      production_spec_refs: []  # VACÍO A PROPÓSITO, no por omisión. No existe todavía expediente de producción
+                                # ni especificación ESP-OPACA-* para P6_38: ENASIC-SPLIT §1.6 declaró
+                                # explícitamente que no creaba celda-D ni registraba especificación nueva, y
+                                # este acto es repo-only (sin corpus, sin data/raw). Crear el expediente por la
+                                # vía del motor (prepare -> produce -> integrate) es el encargo de ACTO
+                                # PROD-P638. Poblar este campo con una ruta inventada sería exactamente el
+                                # defecto que `documentacion_fuente` (ADR-70(b)) existe para impedir.
+      resultado: >
+        CALCULADA Y VERIFICADA POR ENASIC-SPLIT, SIN EXPEDIENTE PROPIO TODAVÍA -- citada verbatim de
+        forense/notas/2026-08-13-enasic-split-verificacion.md §2.2, no recalculada aquí. P6_38 sobre
+        TPOB_CUI, n=5,677, suma de pesos (FAC_CUI)=31,652,127, 148 estratos (0 singleton -- sin pérdida
+        de grados de libertad), 861 UPM. Las cinco categorías, proporción [IC95]:
+        (1) obligación 479 -> 0.0765 [0.0661, 0.0868] ·
+        (2) decisión familiar 366 -> 0.0671 [0.0579, 0.0763] ·
+        (3) ser la (el) única(o) que podía 193 -> 0.0356 [0.0286, 0.0426] ·
+        (4) petición de quien necesita el cuidado 72 -> 0.0123 [0.0083, 0.0162] ·
+        (5) iniciativa propia 4,567 -> 0.8086 [0.7918, 0.8254].
+        Suma de las cinco proporciones puntuales = 1.0001 (redondeo). Completitud verificada contra el
+        microdato: 0 valores en blanco o fuera de {1,2,3,4,5} en las 5,677 filas; P6_38 no trae código de
+        blanco/no-sabe/no-responde en el diccionario. Cómputo por tests/svystat.py::prop_ultimate_cluster,
+        declarado en §1.5 ANTES de correr. Provisional per ADR-72 (producida el 13/ago/2026).
+        "CALCULADA" no es "GANÓ": único candidato, nada que adjudicar todavía (ver criterio_adjudicacion) --
+        mismo sentido que la celda hermana usa para su BASELINE.
+  criterio_adjudicacion:
+    texto: "NO-APLICA en este acto -- un único candidato BASELINE, sin challenger con quien competir. CALIBRACION_CONJUNTA no adjudica aquí: el cálculo ya existe (ver `resultado` arriba) pero no hay challenger contra quien adjudicarlo. Mismo estado que la celda hermana."
+    escala: "NO-APLICA -- un único candidato, nada que comparar en ninguna escala todavía"
+  momentos_holdout_refs: []
+  champion_actual: "BASELINE.ENASIC"  # único candidato con cálculo verificado se vuelve champion por default,
+                                      # sin que eso resuelva `estado_operativo` -- dos ejes independientes,
+                                      # mismo criterio que G5.familismo_obligacion.actitud.yaml:70 y que
+                                      # G5.radio_confianza.encuci_vs_enbiare.yaml:123.
+  output_nativo:
+    tipo: DISTRIBUCION_DESCRIPTIVA
+    escala: "proporción sobre la población cuidadora de TPOB_CUI (0-1 / %), 5 categorías de elección única (obligación / decisión familiar / ser la (el) única(o) que podía / petición de quien necesita el cuidado / iniciativa propia)"
+    valor_ref: "forense/notas/2026-08-13-enasic-split-verificacion.md §2.2 (tabla completa). Sin `resultado.tsv` propio todavía -- ver production_spec_refs arriba y ACTO PROD-P638."
+  incertidumbre:
+    tipo: "IC95 por linealización de Taylor sobre conglomerados últimos (estrato EST_DIS, conglomerado UPM_DIS -- filas 1481-1482 del diccionario, viven directo en TPOB_CUI y no requieren unión), ponderador FAC_CUI (fila 1483, 'FACTOR HOGAR DE EXPANSIÓN'). Método declarado en §1.5 antes de ver el dato. Nombres de columna verificados para TPOB_CUI específicamente, no heredados de TPER_ELE/FAC_ELE."
+    ref: "tests/svystat.py::prop_ultimate_cluster"
+  supuesto_transporte: "ACOTADO-CON-SUPUESTO. Límite de escala, obligatorio por Bloque A-bis regla 3 y verbatim de forense/notas/2026-08-13-enasic-split-verificacion.md §2.2: el 7.65% de P6_38 (motivo propio, entre cuidadores YA identificados, ventana de una semana) y el 69.33% de P7_12_7 (acuerdo con una norma general, población elegida completa, sin ventana retrospectiva) NO SE RESTAN NI SE COMPARAN como si fueran la misma escala -- universos distintos, preguntas distintas, escalas distintas (proporción-de-motivo-entre-cinco vs. proporción-de-acuerdo-con-norma). Verlas juntas es el punto de 'dos medidas, dos análisis': no se funden en un solo número. Segundo límite, del periodo: el periodo de referencia de esta θ es 'la semana anterior a la fecha de referencia' (definición oficial de la población, líneas 384-385), DISTINTO del de la celda hermana (momento de la entrevista, sin ventana retrospectiva) -- una diferencia de ventana temporal que cualquier lectura conjunta tiene que declarar. No se declara EXISTE-SATISFACE: el constructo que ampara es el motivo autorreportado del propio comportamiento de cuidado ya realizado, no obligación familiar sentida en general."
+  fuerza_coeficiente: NO-APLICA  # Ningún coeficiente de generador se llama `obligacion_medida`. El coeficiente
+                                 # `familismo_obligacion` de G5 (milpa/procedencia.yaml:117) sigue existiendo,
+                                 # sigue ASIGNADO y SIN MAGNITUD, y NO es esta celda -- ADR-75(b) reserva
+                                 # explícitamente a mesa la pregunta de si ese nombre de generador se desdobla
+                                 # o sobrevive, y ACTO PROC-11 no la decide (entra nombrada a la cascada de
+                                 # MOTOR-1). Declarar aquí ASIGNADO afirmaría una correspondencia
+                                 # coeficiente<->condicional que ningún acto ha establecido.
+  procedencia_condicional: MEDICION_DIRECTA_MICRODATO  # Mismo diagnóstico que la celda hermana, y por la misma
+                                 # razón verificable: P6_38 es una distribución marginal directa sobre TPOB_CUI
+                                 # (un reactivo, un ponderador, sin condicionante analítico cruzando variables).
+                                 # Contraste del propio corpus: G5.radio_confianza.encuci_vs_enbiare.yaml:149-153
+                                 # es MEDICION_CONDICIONAL_MICRODATO precisamente PORQUE condiciona por
+                                 # formalidad×edad. Esta celda no condiciona nada. No es proxy (no hay ítem
+                                 # sustituto) y no es ausencia de estimación (existe, vigente). Es este campo el
+                                 # que fija que x = ∅ y por tanto que la θ no puede entrar hoy a
+                                 # milpa/procedencia.yaml bajo MEDIDO·PARCIAL(x) -- ver el bloque CONTADOR del
+                                 # encabezado y forense/notas/2026-08-13-proc-10.md §3.
+  vocabulario_version: 0.4
+  calibrado: false
+  estado_operativo: PENDIENTE  # RAZÓN, única y declarada: "expediente por la vía -- PROD-P638". No es duda
+                               # sobre el cálculo (existe, verificado contra microdato por ENASIC-SPLIT §2.2)
+                               # ni decisión de mesa pendiente (ver requiere_decision_mesa abajo). Es que esta
+                               # θ todavía no tiene expediente de producción propio en
+                               # data/curacion-registro/expedientes-produccion/ ni fila en produccion-modelo.tsv:
+                               # el pipeline prepare->produce->integrate no ha corrido sobre ella. ACTO PROC-11
+                               # es repo-only y no puede correrlo. Pasa a LISTO cuando PROD-P638 reproduzca las
+                               # cinco proporciones e IC a los decimales de la nota.
+  requiere_decision_mesa: false  # ADR-75(b) ya firmó lo que había que firmar sobre esta medida: que P6_38 es
+                                 # medida propia, cómo se llama, que es celda-D distinta sin rol COMPLEMENTO, y
+                                 # que entra al denominador como condicional nueva. No queda reserva abierta
+                                 # sobre el constructo. Las dos decisiones que SÍ siguen abiertas y tocan a esta
+                                 # celda son de otro objeto, no de ella: D3 (taxonomía de procedencia -- de qué
+                                 # clase es una condicional medida nacionalmente) y la pregunta del nombre de
+                                 # generador de G5, que ADR-75(b) reservó y que se firma en MOTOR-2.
+  fecha_declaracion: "2026-08-13"
+  commit_declaracion: "95d926d"  # SHA del COMMIT 1 de ACTO PROC-11 (el mapa congelado), que fija el contenido
+                                 # material de este archivo antes de escribirlo:
+                                 # forense/notas/2026-08-13-proc-11.md §2
+  fecha_adjudicacion: "NO-APLICA"
+  commit_adjudicacion: "NO-APLICA"

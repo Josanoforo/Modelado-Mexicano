@@ -104,23 +104,37 @@ celda_d:
         - "data/curacion-registro/especificaciones-produccion.json#ESP-OPACA-C-9ecb5c61"
         - "data/curacion-registro/produccion-modelo.tsv (8 filas, especificacion_id=ESP-OPACA-C-9ecb5c61)"
       resultado: >
-        NO-EJECUTADO -- en el sentido de este contrato (no ha corrido el acto de vinculación-invarianza que
-        adjudicaría champion/challenger). La distribución descriptiva SÍ está calculada y disponible (8 filas,
-        estado=CALCULO_REPRODUCIBLE, verificacion_supervisor=REPRODUCIDA_EN_TEMP_Y_COMPARADA_BYTE_A_BYTE,
-        n=31,166, suma_pesos=84,449,936) -- lo que falta no es el cómputo, es la comparación formal contra el
-        baseline. Clase PROXY_PARCIAL por ADR-67(a) (canon/gobernanza-v1_15.md:864), registrado sin adjudicar;
-        `DH-ea9e932f3970ce12` resuelve la pregunta de clasificación (PROXY_PARCIAL) pero NO sustituye el acto de
-        vinculación-invarianza que ADR-67(a) exige antes de cualquier uso paramétrico sustitutivo -- son dos
-        decisiones distintas sobre la misma relación (ver forense/notas/2026-08-12-e4a-radio-celda-d.md §3).
+        EJECUTADO -- ENCARGO 9 (13/ago/2026), acto de vinculación-invarianza diseñado por ADR-76(d) (Propuesta 2
+        de forense/benchmark-enlace-invarianza-v1_0.md), estándar de éxito "argumento de vinculación declarado"
+        (gobernanza-v1_15.md:1122, enmienda in situ sobre ADR-76(d), sellada por ADR-80/ACTO FIRMAS-2, 13/ago/2026).
+        Veredicto: INVARIANZA PARCIAL sobre el único par de ítems próximos disponible (`AP5_1_1`
+        ENCUCI ↔ `PB1_01` ENBIARE, `AP5_1_2` ↔ `PB1_02`), escala 0-10 completa sin dicotomizar. Configural
+        SOSTENIDA en ambos instrumentos: r ponderado(AP5_1_1,AP5_1_2)=0.5165 IC95%[0.4985,0.5341] n=21,398
+        útiles (121 excluidas por código 99, listwise); r ponderado(PB1_01,PB1_02)=0.5575 IC95%[0.5446,0.5704]
+        n=31,166 útiles (0 excluidas). Métrica (tau-equivalente, λ=√r12, única identificación posible con 2
+        indicadores) NO SOSTENIDA: λ_ENCUCI=0.7187, λ_ENBIARE=0.7467, Δλ=-0.0280, IC95%[-0.0431,-0.0132]
+        (excluye 0). Bootstrap de conglomerado último por estrato/UPM, 2000 réplicas, semilla 20260813,
+        corrido una sola vez per la promesa de primer resultado de COMMIT 1. `AP5_1_3` fuera de alcance, no
+        evaluado (Propuesta 2 punto 2). Detalle completo, procedimiento congelado antes de abrir dato y
+        resultados: `forense/notas/2026-08-13-invarianza-encuci-enbiare.md`. Clase PROXY_PARCIAL de `ADR-67(a)`
+        (canon/gobernanza-v1_15.md:864) NO cambia por este resultado -- INVARIANZA PARCIAL desbloquea el gate
+        de las 8 producciones (`produccion-modelo.tsv`), no sustituye a ENCUCI como champion.
   criterio_adjudicacion:
     texto: >
       Acto de vinculación con prueba de invarianza (convergencia ENCUCI↔ENBIARE sobre celdas compartidas, con
       lógica de ítems ancla), declarado antes de cualquier resultado adjudicado del challenger -- ADR-67(a)
       (canon/gobernanza-v1_15.md:864). La invarianza parcial es el estado intermedio reconocido de esa
       literatura, no un limbo.
-    escala: "por declarar en el acto de vinculación"  # instrucción explícita del encargo: no inventar un umbral
+    escala: >
+      INVARIANZA PARCIAL -- configural sostenida (ambos instrumentos, r>0 con IC95% excluyendo 0), métrica no
+      sostenida (Δλ=-0.0280, IC95%[-0.0431,-0.0132]). Declarada por ENCARGO 9 (13/ago/2026), bajo el estándar
+      "argumento de vinculación declarado" (gobernanza-v1_15.md:1122, ADR-80/ACTO FIRMAS-2). Cifras y
+      procedimiento completo en forense/notas/2026-08-13-invarianza-encuci-enbiare.md.
   momentos_holdout_refs: []
-  champion_actual: "BASELINE.ENCUCI"  # explícito, per encargo -- ENBIARE está registrado, no compite todavía
+  champion_actual: "BASELINE.ENCUCI"  # explícito, sin cambio tras ENCARGO 9 -- INVARIANZA PARCIAL desbloquea el
+                                       # gate de las 8 producciones, no da a ENBIARE poder de sustitución (B-bis,
+                                       # forense/notas/2026-08-13-invarianza-encuci-enbiare.md). ENBIARE evaluado,
+                                       # no promovido.
   output_nativo:
     tipo: >
       Distribución condicional empírica -- una de las 14 condicionales de Θ (tabla "Distribución" de
@@ -178,8 +192,10 @@ celda_d:
                                   # (cada `git commit --amend` que lo intente cambia el propio hash, sin punto
                                   # fijo alcanzable), así que el cierre de esta referencia vive un commit
                                   # después, sobre un SHA que ya no vuelve a cambiar.
-  fecha_adjudicacion: "NO-APLICA"
-  commit_adjudicacion: "NO-APLICA"
+  fecha_adjudicacion: "2026-08-13"
+  commit_adjudicacion: "84a943e"  # SHA del commit 2 de ENCARGO 9 (resultados) -- cerrado aquí, un commit después,
+                                  # mismo mecanismo que commit_declaracion (arriba): ese commit no podía citar su
+                                  # propio SHA final.
   relacion_complemento: NO-APLICA  # rol COMPLEMENTO/relacion_complemento (H2, v0.3 §3.1) es para el caso
                                     # familismo_obligacion (dos celdas distintas ligadas por brecha-momento) --
                                     # no aplica aquí: esta celda es COMPARACION de un único estimando, sin celda
