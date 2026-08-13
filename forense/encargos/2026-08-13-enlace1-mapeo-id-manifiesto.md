@@ -4,7 +4,7 @@
 
 ---
 
-Texto completo del encargo, tal como se lanzó (verbatim, el documento completo `PLANENLACECAPA220260813.md` subido por el usuario — incluye la adjudicación §0, el estado del repo §1, el encargo ACTO ENLACE-1 §2 que este acto ejecuta, y la secuencia posterior §3):
+Texto completo del encargo, tal como se lanzó (verbatim, el documento completo PLANENLACECAPA220260813.md subido por el usuario — incluye la adjudicación §0, el estado del repo §1, el encargo ACTO ENLACE-1 §2 que este acto ejecuta, y la secuencia posterior §3):
 
 ---
 
