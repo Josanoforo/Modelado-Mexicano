@@ -16,6 +16,10 @@ en el manifiesto vía `data/inventarios/alias-fuentes.yaml`.
 
 Modo lectura por defecto. --escribe aplica los diffs propuestos a
 relaciones.tsv fila por fila, en sitio, sin reordenar el archivo.
+
+Sale con código 1 (sin escribir nada) si el desglose de estados de
+verificación da COINCIDE=0 habiendo >=1 fila con id_manifiesto -- señal de
+que data/raw no está montada, no de que ya no queda nada por promover.
 """
 
 from __future__ import annotations
@@ -23,7 +27,9 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import re
 import sys
+import unicodedata
 from pathlib import Path
 
 try:
@@ -78,6 +84,24 @@ def cargar_alias(alias_path: Path) -> dict[str, set[str]]:
     return resultado
 
 
+def _sin_acentos(s: str) -> str:
+    """Minúsculas sin diacríticos -- 'latinobarómetro' -> 'latinobarometro'."""
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii")
+
+
+def _con_frontera_de_letra(forma: str, texto: str) -> bool:
+    """True si `forma` aparece en `texto` sin quedar embebida dentro de una
+    palabra más larga: el carácter inmediato anterior/posterior, si existe, no
+    puede ser otra letra a-z (dígitos/guion_bajo/espacio/puntuación sí cuentan
+    como frontera válida -- necesario para casar 'latinobarometro' contra
+    'latinobarometro2024_bd_stata', donde el año sigue sin separador). Ambos
+    argumentos ya en minúsculas y sin acentos (ver `_sin_acentos`)."""
+    if not forma:
+        return False
+    patron = re.compile(r"(?<![a-z])" + re.escape(forma) + r"(?![a-z])")
+    return patron.search(texto) is not None
+
+
 def sha256_de(path: Path, buf_size: int = 1024 * 1024) -> str:
     h = hashlib.sha256()
     with path.open("rb") as f:
@@ -108,6 +132,9 @@ def verificar_entrada(entrada: dict, root: Path, raices: dict[str, str]) -> str:
     return "COINCIDE"
 
 
+ESTADOS_VERIFICACION = ("COINCIDE", "NO_COINCIDE", "AUSENTE", "SIN_PAYLOAD", "RAIZ_NO_CONFIGURADA")
+
+
 def derivar(root: Path) -> dict:
     relaciones_path = root / "data" / "curacion-registro" / "relaciones.tsv"
     manifiesto_path = root / "data" / "manifiesto.yaml"
@@ -121,18 +148,23 @@ def derivar(root: Path) -> dict:
     texto_manifiesto = " | ".join(
         f"{e.get('usado_para', '')} {e.get('archivo', '')}".lower() for e in manifiesto
     )
+    texto_manifiesto_norm = _sin_acentos(texto_manifiesto)
 
     diffs: list[dict] = []
     diagnostico: list[dict] = []
+    estados_verificacion: dict[str, int] = dict.fromkeys(ESTADOS_VERIFICACION, 0)
+    filas_con_id_manifiesto = 0
     for f in filas:
         actual = f.get("capa2_manifiesto", "")
         idm = f.get("id_manifiesto", NO_DETERMINADO)
         if idm != NO_DETERMINADO:
+            filas_con_id_manifiesto += 1
             entrada = por_id.get(idm)
             if entrada is None:
                 estado, derivado = "ID_NO_EN_MANIFIESTO", actual
             else:
                 estado = verificar_entrada(entrada, root, raices)
+                estados_verificacion[estado] += 1
                 derivado = "SI" if estado == "COINCIDE" else actual
             if derivado != actual:
                 diffs.append({
@@ -146,7 +178,8 @@ def derivar(root: Path) -> dict:
         else:
             fc = f["fuente_canonica_normalizada"]
             formas = alias.get(fc.upper(), {fc.lower()})
-            if any(forma and forma in texto_manifiesto for forma in formas):
+            formas_norm = {_sin_acentos(forma) for forma in formas if forma}
+            if any(_con_frontera_de_letra(forma, texto_manifiesto_norm) for forma in formas_norm):
                 diagnostico.append({
                     "relacion_id": f["relacion_id"],
                     "necesidad_id": f["necesidad_id"],
@@ -158,6 +191,8 @@ def derivar(root: Path) -> dict:
         "total_filas": len(filas),
         "diffs_propuestos": diffs,
         "diagnostico_candidatas_sin_id": diagnostico,
+        "estados_verificacion": estados_verificacion,
+        "filas_con_id_manifiesto": filas_con_id_manifiesto,
     }
 
 
@@ -190,8 +225,11 @@ def main() -> int:
     root = args.root.resolve()
 
     resultado = derivar(root)
+    estados = resultado["estados_verificacion"]
 
     print(f"Filas en relaciones.tsv: {resultado['total_filas']}")
+    print("Estados de verificación (verificar_entrada(), antes de diffs): "
+          + " ".join(f"{e}={estados[e]}" for e in ESTADOS_VERIFICACION))
     print(f"Diffs propuestos (capa2_manifiesto): {len(resultado['diffs_propuestos'])}")
     for d in resultado["diffs_propuestos"]:
         print(f"  {d['relacion_id']} [{d['necesidad_id']}/{d['fuente_canonica_normalizada']}]: "
@@ -214,6 +252,10 @@ def main() -> int:
             print(f"\n{len(resultado['diffs_propuestos'])} filas escritas en relaciones.tsv.")
         else:
             print("\n--escribe pasado, pero 0 diffs propuestos -- nada que escribir.")
+
+    if estados["COINCIDE"] == 0 and resultado["filas_con_id_manifiesto"] >= 1:
+        print("\ncero payloads verificables — ¿está data/raw montada?", file=sys.stderr)
+        return 1
 
     return 0
 
