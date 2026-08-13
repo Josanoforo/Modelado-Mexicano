@@ -1,6 +1,6 @@
 # ACTO RECONCILIA-PUERTAS · El mapa del solape entre ADR-69 y ADR-70
 
-`ENCARGO RECONCILIA-PUERTAS`, 13/ago/2026 (`forense/encargos/2026-08-13-reconcilia-puertas.md`), archivado como primer commit de este acto (regla A.3). Cierra **D11**. Base declarada por el encargo: ninguna explícita — se usa `origin/main` al abrir.
+`ENCARGO RECONCILIA-PUERTAS`, 13/ago/2026 (`forense/encargos/2026-08-13-RP-reconcilia-puertas.md`), archivado como primer commit de este acto (regla A.3). Cierra **D11**. Base declarada por el encargo: ninguna explícita — se usa `origin/main` al abrir.
 
 ## 0 · ARRANQUE
 
@@ -105,7 +105,7 @@ resto (52 de 62)            no-INEGI por institución declarada o por ausencia d
 
 ## 4 · El caso testigo: 16 filas contradictorias, identificadas una por una
 
-### 4.1 · Método, declarado antes de cruzar nada (mismo criterio que MAP-B, §1 de `map-b-crosswalk.md`)
+### 4.1 · Método, declarado antes de cruzar nada (mismo criterio que MAP-B, §1 de `forense/notas/2026-08-13-map-b-crosswalk.md`)
 
 Ninguna identidad se declara por parecido de cadena. Jerarquía de evidencia, en orden:
 
