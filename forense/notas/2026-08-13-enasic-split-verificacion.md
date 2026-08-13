@@ -75,3 +75,154 @@ Si `P6_38` supera el criterio de suficiencia (1.3.a), la proporción se calcula 
 No sella ni edita `canon/gobernanza-v1_15.md` — el diff de la enmienda a ADR-67(b) se presenta en COMMIT 2 como propuesta (bloque de texto, antes/después), no se aplica. No crea ni edita ninguna celda-D en `data/curacion-registro/celdas-d/`, no registra ninguna especificación nueva en `especificaciones-produccion.json`, no mueve `condicionales 9 de 14` (eso es de mesa, al firmar — §0). Cualquier cómputo que este acto produzca para `P6_38` es propuesta de mesa, no sellado, no registrado en el motor formal — mismo criterio que MAP-A usó para presentar cifras nuevas sin sellar adjudicación.
 
 **El primer resultado que produzca este procedimiento es el que se reporta.**
+
+## §2 · Commit 2 (resultado) — sin editar §0-§1 arriba
+
+Sesión separada, misma rama (`enasic-split`), sobre el mismo `enasic_2022_bd_csv.zip`/`enasic_2022_fd.xlsx` ya verificados `COINCIDE` por ABRIR-4 (§0). Abiertos de primera mano en este acto por primera vez en esta sesión: `889463927082.pdf` (texto íntegro, `pdftotext -layout`), `enasic_2022_fd.xlsx` (hojas `TPER_ELE` y `TPOB_CUI`, vía `openpyxl`), `TPOB_CUI.csv` (microdato, vía `csv.DictReader`, codificación `latin-1`).
+
+### §2.1 · Resultado de (1) — lectura (ii), confirmada por evidencia positiva, no solo por ausencia
+
+`889463927082.pdf` **no es el cuestionario.** Confirmado por su propio índice (Introducción · 1. Características de la base de datos [Objetivo, Conceptos básicos, **Estructura de la base de datos**, Unidad de análisis, **Factor de expansión**, Relación entre tablas, Modelo entidad relación] · 2. Principales poblaciones · 3. Precisiones estadísticas · 4. Principales indicadores · Anexos [código R]) y por barrido de término sobre las 1,251 líneas de texto extraído: `entrevistador`=0, `guion`/`guión`=0, `lea:`=0, `aplica a`=0, `instrucciones de aplicación`=0, `P7_12`=0. `cuestionario` aparece **una sola vez**, y es una remisión explícita hacia otro documento: *"cada pregunta del cuestionario... para un correcto uso de las tablas se consulte el Descriptor de Archivos (FD)"* (línea 191) — el propio documento declara que el detalle de pregunta vive en el FD, no en sus páginas. NO-ENCONTRADO para guion de entrevista dentro de `889463927082.pdf`: universo=texto íntegro (26pp/1251 líneas), términos=los de arriba, mecanismo=`pdftotext -layout` + `grep`, fecha=13/ago/2026 (vocabulario v2.6 A.4).
+
+Siguiendo la instrucción del encargo, se buscó en `enasic_2022_fd.xlsx`, hoja `TPER_ELE`. Fila 713, columna `Pregunta` (definida por el propio FD como *"la pregunta textual del instrumento de captación"*, fila 7), citada verbatim y completa:
+
+> `7.12.7 Le voy a leer unas frases. Usted me responderá si está de acuerdo o en desacuerdo. Se debe enseñar a la mujer (al hombre) que su deber es cuidar a los padres, cónyuge, hijas e hijos`
+
+Un **único** mnemónico (`P7_12_7`), un **único** texto de captura, con el paréntesis impreso dentro de la misma cadena — sin columna de bifurcación, sin nota de "SI SEXO=1/2", sin un segundo mnemónico. Contraste directo dentro de la misma estructura: donde el instrumento sí trae dos ítems realmente distintos, usa dos mnemónicos distintos (`P7_12_2` "...responsabilidad de la mujer" vs. `P7_12_4` "...responsabilidad del hombre" — dos enunciados con contenido distinto, cada uno su propia variable). Para `P7_12_7` no hizo eso: un mnemónico, una cadena. Existe una variable `SEXO` en la misma tabla (fila 1058, "Sexo de la persona elegida") — permite un cruce analítico posterior por sexo del informante como cualquier otra variable demográfica, pero no hay ningún campo que registre o condicione qué versión del paréntesis se leyó.
+
+**Esto es evidencia positiva, no solo ausencia:** la propia definición de columna del FD ("la pregunta textual del instrumento de captación") describe esta cadena como lo que efectivamente se captura. **Lectura (ii) — fórmula genérica, una sola versión administrada y capturada — es la que sostiene el diccionario**, con el matiz declarado en §1.1: no se pudo abrir un guion de campo real que confirme qué se dice en voz alta (`889463927082.pdf` no lo es, y no hay otro candidato en el corpus adquirido) — lo que se verifica aquí es lo que el **dato capturado** permite reconstruir, que es una sola respuesta por persona, sin distinción de versión leída.
+
+**Aplicación de la falsación (B-bis), tal como el encargo la declara, sin modificarla:** bajo lectura (ii), **"la partición no es posible con este instrumento"** — se reporta así, no se fuerza. Concretamente: no existe, en este corpus, una vía para reconstruir un `P7_12_7` desdoblado en "versión-mujer" / "versión-hombre" por informante, porque el dato capturado es una sola cadena por persona sin marca de cuál paréntesis se pronunció.
+
+**Glosa propia (interpretación declarada, no sustituye la falsación de arriba — ver §1.4).** Esta falsación específica es sobre un desdoblamiento **interno** de `P7_12_7` (una partición por versión leída dentro de la misma medida) — **no** es, en este acto, lo mismo que la partición que mesa pidió (`P7_12_7` como medida separada de `P6_38`). Esa segunda partición se rige por el criterio de separabilidad de §1.3 (suficiencia + distinción de constructo + evidencia textual), no por la lectura (i)/(ii). Bajo ese criterio distinto, evaluado en §2.3 abajo, `P7_12_7` (norma de género, enunciado normativo de tercera persona sobre un deber diferenciado por sexo) y `P6_38` (obligación medida, autorreporte en primera persona del propio motivo) **sí resultan separables** — la lectura (ii) acota lo que se puede decir sobre `P7_12_7` internamente (no hay asimetría de internalización por sexo del informante reconstruible), pero no colapsa `P7_12_7` en `P6_38` ni viceversa: siguen siendo, textualmente, una norma-sobre-terceros y un motivo-propio-reportado. Mesa decide si esta lectura de "partición" (interna a `P7_12_7`) es la que gobierna el alcance de la enmienda, o si la separabilidad de §1.3 basta — este acto presenta ambas, sin fusionarlas.
+
+### §2.2 · Resultado de (2) — corrige a ABRIR-4: `P6_38` es batería completa de 5 razones, no variable huérfana
+
+**ABRIR-4 (`forense/notas/2026-08-08-abrir4.md` §6) no se sostiene contra verificación directa del diccionario.** Su caracterización — *"variable única sin desglose visible de otras razones en el diccionario — posible batería incompleta"* — describe la fila 1172 de `TPOB_CUI` aislada (`P6_38`, código `1`, concepto `"obligación?"`), pero **las filas 1173-1176, mismo mnemónico `P6_38`, completan la misma pregunta con cuatro razones más**, verbatim:
+
+> `6.38 A las personas que declaró cuidar, ¿usted las cuida por...`
+> `1` — `obligación?`
+> `2` — `decisión familiar?`
+> `3` — `ser la (el) única(o) que podía?`
+> `4` — `petición de quien necesita el cuidado?`
+> `5` — `iniciativa propia?`
+
+Es exactamente el mismo patrón de fila-por-código que `P7_12_7` (Pregunta/Nemónico en la primera fila, Códigos Válidos/Concepto continuando en las filas siguientes, mismo mnemónico) — ABRIR-4, en un barrido de término de cuatro instrumentos completos, no continuó leyendo las filas siguientes de este hit particular. **No es una batería incompleta: es una variable categórica de elección única, cinco categorías, completa.** Se corrige aquí, no se edita la nota original (append-only) — mismo criterio que ADR-67(b) §(b) ya usó para su propia corrección de hallazgo (`gobernanza:866`).
+
+**Universo.** `FILTRO 6.10` (fila 1170, inmediatamente antes de `P6_38`): *"¿LA (EL) INFORMANTE ES CUIDADOR(A) DE PERSONAS DE SU HOGAR Y/O DE OTROS HOGARES?"* — gatilla la pregunta. Verificado contra el microdato (`TPOB_CUI.csv`, n=5,677): `FILTRO6_10='1'` en el 100% de las filas — la tabla `TPOB_CUI` ya está construida como población cuidadora (definición oficial del PDF, línea 384: *"Población de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible"* — discapacidad/dependencia, niñas/niños 0-5, niñas/niños/adolescentes 6-17, personas 60+, o personas enfermas temporales, todas sin discapacidad salvo la primera categoría), así que `P6_38` se formula a la población cuidadora completa de la tabla, sin exclusión adicional — confirmado empíricamente, no solo por lectura de la lógica de filtro. `dominio` = Nacional, mismo criterio ya verificado por E4b sobre el corpus íntegro (`forense/notas/2026-08-11-e4b-sello-b-corrida-b.md` §1: barrido de las 6 hojas + PDF completo, términos "nacional"/"cobertura"/"representa", sin restricción subnacional encontrada — aplica a la encuesta completa, no reverificado hoja por hoja de nuevo en este acto). `periodo_referencia` = "la semana anterior a la fecha de referencia" (declarado en la misma definición de población, línea 384-385) — **distinto** del de `P7_12_7` (momento de la entrevista, sin ventana retrospectiva).
+
+**Completitud del dato, verificada:** `P6_38` no trae código de blanco/no-sabe/no-responde en el diccionario (a diferencia de `P6_36_3`, filas 1163-1165, que sí trae `'b' Blanco por secuencia`) — y el microdato lo confirma: **0 valores en blanco o fuera de {1,2,3,4,5} en las 5,677 filas.** Diseño: `EST_DIS`/`UPM_DIS` (filas 1481-1482, viven directo en `TPOB_CUI`, no requieren unión), `ponderador = FAC_CUI` (fila 1483, "FACTOR HOGAR DE EXPANSIÓN"), mismo patrón que `TPER_ELE`/`FAC_ELE` que E4b ya documentó, verificado aquí de nuevo para `TPOB_CUI` específicamente (nombres de columna no se heredan).
+
+**Cómputo** (`tests/svystat.py::prop_ultimate_cluster`, declarado en §1.5 antes de correr; comando y salida cruda en el historial de esta sesión):
+
+| código | razón | n | proporción | IC95 |
+|---|---|---|---|---|
+| 1 | obligación | 479 | 0.0765 | [0.0661, 0.0868] |
+| 2 | decisión familiar | 366 | 0.0671 | [0.0579, 0.0763] |
+| 3 | ser la (el) única(o) que podía | 193 | 0.0356 | [0.0286, 0.0426] |
+| 4 | petición de quien necesita el cuidado | 72 | 0.0123 | [0.0083, 0.0162] |
+| 5 | iniciativa propia | 4,567 | 0.8086 | [0.7918, 0.8254] |
+
+n=5,677, suma de pesos (`FAC_CUI`)=31,652,127, 148 estratos (0 singleton — sin pérdida de grados de libertad), 861 UPM. Suma de las cinco proporciones puntuales = 1.0001 (redondeo). **`P6_38` sostiene θ**: universo no degenerado, denominador completo, diseño declarado, cinco categorías mutuamente excluyentes con variación real — el criterio de suficiencia (§1.3.a) se cumple, contra lo que ABRIR-4 y el propio encargo (citándola) anticipaban.
+
+**Escala y comparabilidad (Bloque A-bis regla 3).** Distribución descriptiva categórica (5 categorías), diseño muestral (conglomerado último, Wolter). **No** es un coeficiente de índice ni una asociación identificada. **Contra qué no se compara:** el 7.65% de `P6_38` (motivo propio, entre cuidadores ya identificados, ventana de una semana) y el 69.33% de `P7_12_7` (acuerdo con una norma general, población elegida completa, sin ventana retrospectiva) **no se restan ni se comparan como si fueran la misma escala** — universos distintos, preguntas distintas, escalas distintas (proporción-de-acuerdo-con-norma vs. proporción-de-motivo-entre-cinco). Verlas juntas es exactamente el punto de "dos medidas, dos análisis": no se funden en un solo número.
+
+### §2.3 · Separabilidad, aplicando el criterio de §1.3
+
+- **(a) Suficiencia** — ambas cumplen: `P7_12_7` (E4b/U1, ya sellado) y `P6_38` (§2.2, este acto), cada una con universo, diseño y denominador completo declarados.
+- **(b) Distinción de constructo, nombrada** — *norma de género* (`P7_12_7`): creencia normativa sobre quién **debe** cargar el deber de cuidar, en tercera persona genérica diferenciada por sexo del sujeto enseñado. *Obligación medida* (`P6_38`): autorreporte en primera persona del motivo **propio** de quien ya cuida, entre cinco razones posibles, sin marca de género en el ítem mismo. Son, textualmente, una norma-sobre-otros y un motivo-propio-reportado — constructos distintos, tal como el criterio exige.
+- **(c) Evidencia textual** — `P7_12_7` vive en Sección 7 ("Percepción cultural de los cuidados", batería de acuerdo/desacuerdo con enunciados normativos); `P6_38` vive en Sección 6, dirigida específicamente a quien la propia sección ya identificó como cuidador/a (`FILTRO 6.10`). Ubicación de sección y encabezado oficial, no inferencia por número de variable.
+
+**Los tres se cumplen. Bajo el criterio de §1.3, la partición mesa/encargo (dos medidas: norma de género y obligación medida) procede** — con la reserva de §2.1 sobre qué significa exactamente "partición" en la frase de falsación del encargo (interna a `P7_12_7`, no bloquea esta separación).
+
+## §3 · Las dos medidas propuestas
+
+**Medida 1 — norma de género.**
+
+**Advertencia de procedencia, aplicable a toda la Medida 1 (encontrada al escribir este §, no antes — no estaba en el pre-registro de Commit 1 porque ADR-72 se selló el mismo día y esta sesión no lo había leído hasta ahora).** `canon/gobernanza-v1_15.md:942`, **ADR-72** (sellado 13/ago/2026, ya en `origin/main` antes de que este worktree se abriera): *"Se declara `PROVISIONAL` todo veredicto, coeficiente, contador, reparto y cierre de búsqueda producido por este programa antes del 13/ago/2026 [...] ninguna decisión nueva puede citarlos como asentados."* U1/E4b′ (PR #185) fusionó `2026-08-12T20:57:44Z` — antes del corte. La tabla de abajo **es la misma que ese acto verificó** (Taylor/conglomerado último, reproducción byte a byte por `integrate_production.py`) y no se pone en duda por ADR-72 — pero se cita aquí **como provisional, no como asentada**, tal como ADR-72 exige de cualquier decisión nueva que la use. Además, `forense/registro-recalculo-v1_0.md` entrada `0` ya señala, sin resolver, que `censo-estimabilidad-coeficientes-v1_0.md` clasifica `familismo_obligacion` (N13) `SIN-RUTA` mientras `data/curacion-registro/relaciones.tsv` trae `EXISTE-SATISFACE`/`CONFIRMADA` para la misma necesidad (`REL-fe202a3fa76f0516a6e27f8b`, el mismo `P7_12_7`) — desacuerdo de bookkeeping entre dos tablas del programa, absorbido por CENSO-v1.1 (entrada 1 del registro), **no resuelto ni tocado por este acto.**
+
+Variable: `P7_12_7` (ENASIC 2022, tabla `TPER_ELE`). Texto literal: *"Se debe enseñar a la mujer (al hombre) que su deber es cuidar a los padres, cónyuge, hijas e hijos"* (lectura (ii), fórmula única — §2.1). Escala: acuerdo/desacuerdo, 4 categorías oficiales. Universo: personas de 15-60 años, persona elegida, vivienda particular, Nacional. Tabla (ya calculada y verificada, U1/E4b′, PR #185 MERGED — citada, no recalculada en este acto, **provisional per ADR-72**):
+
+| código | categoría | proporción | IC95 |
+|---|---|---|---|
+| 1 | De acuerdo (Sí) | 0.6933 | [0.6725, 0.7140] |
+| 2 | Desacuerdo (No) | 0.2995 | [0.2788, 0.3203] |
+| 8 | No responde | 0.0035 | [0.0009, 0.0060] |
+| 9 | No sabe | 0.0037 | [0.0012, 0.0062] |
+
+n=5,579, suma_pesos=80,237,061. Constructo que ampara: creencia normativa sobre deber de cuidado diferenciado por sexo (norma de género), Sección 7 "Percepción cultural de los cuidados".
+
+**Medida 2 — obligación medida.** Variable: `P6_38` (ENASIC 2022, tabla `TPOB_CUI`). Texto literal: *"A las personas que declaró cuidar, ¿usted las cuida por…"* con 5 opciones (obligación / decisión familiar / ser la (el) única(o) que podía / petición de quien necesita el cuidado / iniciativa propia). Escala: categórica, 5 categorías, elección única. Universo: población cuidadora de 15+ años (≥1 población susceptible atendida en la semana de referencia), Nacional. Tabla: ver §2.2 (n=5,677, suma_pesos=31,652,127). Constructo que ampara: motivo autorreportado del propio comportamiento de cuidado ya realizado (obligación medida), Sección 6, condicional a `FILTRO 6.10`.
+
+**Nota de rigor, aplicable a ambas:** ninguna de las dos tablas de arriba es resultado sellado de este acto salvo la de la Medida 2, que sí se calculó aquí (§2.2) — es propuesta para que mesa decida, no registro formal en `data/curacion-registro/` (§1.6, no se crea celda-D nueva ni se registra `ESP-OPACA-*` nueva en este acto).
+
+## §4 · Diff propuesto para ADR-67(b) — PROPUESTA, no aplicado, no sellado por este acto
+
+Texto vigente hoy (`canon/gobernanza-v1_15.md:866`, verbatim):
+
+```diff
+- **(b) `DH-332a13a70cbbf875` (N13) → `COMPLEMENTAR_PROXY_ENUT`, con roles declarados.**
+- ENASIC `P7_12_7` opera la **θ actitudinal** de `familismo_obligacion` — con la
+- reserva del encuadre de norma de género ("enseñar a la mujer/al hombre") escrita
+- en la especificación CRES-7cb78abf, y sensibilidad con el candidato secundario
+- `P6_38` si la spec lo admite. ENUT 6.11/6.11a queda como **capa conductual**
+- (momento m-lado / validación), no como θ: [...]
+```
+
+Texto propuesto (inserta una enmienda in situ fechada, mismo mecanismo que este mismo archivo ya usa repetidamente para enmendar un párrafo sellado sin subir el número de versión ni renombrar el archivo — p. ej. la propia ADR-49 (3) trae, en el mismo sitio, un "Corregido 4/ago/2026" fechado que no reemplaza el texto original, lo sigue; no relacionado en tema con "D3" del encargo, §0, solo con la técnica de enmienda — no reemplaza el párrafo original de ADR-67(b), lo sigue):
+
+```diff
+  **(b) `DH-332a13a70cbbf875` (N13) → `COMPLEMENTAR_PROXY_ENUT`, con roles declarados.**
+  ENASIC `P7_12_7` opera la **θ actitudinal** de `familismo_obligacion` — con la
+  reserva del encuadre de norma de género ("enseñar a la mujer/al hombre") escrita
+  en la especificación CRES-7cb78abf, y sensibilidad con el candidato secundario
+  `P6_38` si la spec lo admite. ENUT 6.11/6.11a queda como **capa conductual**
+  (momento m-lado / validación), no como θ: [...]
++
++ *(Enmienda in situ, 13/ago/2026, ENASIC-SPLIT — mismo criterio que ADR-48 a
++ ADR-65: el número de versión no sube, el archivo no se renombra.) `P6_38`
++ deja de ser sensibilidad condicional de `familismo_obligacion` y pasa a
++ medida propia, nombrada: `obligación_medida` (ENASIC 2022, `P6_38`, tabla
++ `TPOB_CUI`, θ categórica de 5 vías, n=5,677 — tabla y verificación en
++ `forense/notas/2026-08-13-enasic-split-verificacion.md` §2.2/§3). El
++ `familismo_obligacion` atitudinal (`P7_12_7`) se renombra en el mismo acto a
++ `norma_de_género` para no seguir compartiendo nombre con una medida que ya
++ no es la misma cosa. Las dos son celdas-D distintas, sin `rol: COMPLEMENTO`
++ entre ellas (mismo criterio que ya separa la celda de actitud ENASIC de la
++ celda de conducta ENUT, `gobernanza:888`) — dos medidas, dos análisis, sin
++ fusión ni jerarquía. Corrección de premisa: la caracterización previa de
++ `P6_38` como "variable única sin desglose de otras razones" (ABRIR-4,
++ `forense/notas/2026-08-08-abrir4.md` §6) no se sostuvo contra el diccionario
++ — es categórica completa de 5 vías (verificado, misma nota §2.2). Pendiente
++ de mesa, no ejecutado por esta enmienda: registrar la celda-D
++ `G5.obligación_medida` (o el nombre que mesa fije) en
++ `data/curacion-registro/celdas-d/`, y decidir si `familismo_obligacion`
++ sobrevive como nombre de generador en `canon/modelo-decision-v4_0.md` o si
++ también se desdobla ahí — este acto no lo decide ni lo toca.*
+```
+
+**Firma de mesa:** este bloque es el que mesa firmaría, tal como está, o con los cambios que decida — este acto no lo aplica a `canon/gobernanza-v1_15.md`.
+
+## §5 · Contador
+
+**`condicionales 9 de 14` no se mueve en este acto** — declarado, mismo criterio que todo ADR ya citado en §0. **El propio contador está listado, verbatim, en el alcance (A) de ADR-72 como uno de los que hoy son `PROVISIONAL`** (`gobernanza:952`) — no solo no lo mueve este acto: el "14" y el "9" que hoy lo componen no están, ellos mismos, asentados hasta que su entrada de recálculo cierre (`forense/registro-recalculo-v1_0.md`, no cerrada). Si mesa firma la enmienda de §4 **sobre el estado actual, provisional, del contador**: `familismo_obligacion`/`norma_de_género` (uno de los 8 escalares de `D`, `modelo-decision-v4_0.md:253`) pasaría a `MEDIDO` cuando la decisión de uso en modelo (`requiere_decision_mesa`) se resuelva — eso movería el contador a 10 de 14, pero es un acto de mesa firmando, no de esta sesión, y hereda la misma reserva de provisionalidad que el 9 de 14 ya tiene hoy. `obligación_medida`, si mesa la registra como condicional nueva y no como sub-componente de la misma, sería un cambio de denominador (`D` pasaría de 14 a 15) que tampoco decide este acto — se señala como pregunta abierta para mesa, no como recomendación.
+
+## §6 · Qué NO se hizo en este acto (declarado, no implícito)
+
+No se editó `canon/gobernanza-v1_15.md`, ninguna celda-D, ni `especificaciones-produccion.json`. No se registró `obligación_medida` en el motor formal (ausente de este checkout, §0) ni en ningún registro de `data/curacion-registro/`. No se decidió si `familismo_obligacion` sobrevive como nombre de generador en `modelo-decision-v4_0.md`. No se resolvió la reserva de encuadre de género de `P7_12_7` (`requiere_decision_mesa: true` sigue como está). El cómputo de `P6_38` (§2.2) es real, verificado y reproducible (comando + salida cruda en esta sesión), pero es propuesta para mesa, no producción sellada.
+
+## §7 · Verificación de cierre
+
+`python3 tests/check.py --baseline`, corrido dos veces (antes y después de añadir la línea de `forense/hallazgos.md`), ambas idénticas:
+
+```
+18 FAIL · 105 WARN
+────────────────────────────────────────────────────────────────────────
+LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 948ad70343320b62f000d31fd39e2b2b68336ad9)
+(3 entradas de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
+────────────────────────────────────────────────────────────────────────
+```
+
+Ningún archivo de `canon/`, `data/curacion-registro/`, `milpa/` tocado por este acto.
+
+**El primer resultado que produjo este procedimiento es el reportado arriba — no se corrió el cómputo de `P6_38` una segunda vez, no se buscó un resultado distinto.**
