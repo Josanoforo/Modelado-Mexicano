@@ -4,7 +4,7 @@ SHA de redacción: `a97dc28` (`origin/main`, merge #217 · ADR-77/A.8). Corregid
 
 Archivado junto con su ejecución (regla A.3), no antes — llegó pegado en la conversación de dirección, sin archivo propio en el repo al momento de lanzarse.
 
-**Estado: CONSUMIDO por ACTO TRIAGE-63, COMMIT 1.** COMMIT 2 queda sin ejecutar — PARO DECLARADO (`CANDIDATA-A-SONDEO = 27 > 20`), ver `forense/notas/2026-08-13-triage-63.md §7`.
+**Estado: CONSUMIDO por ACTO TRIAGE-63, COMMIT 1 — PR #219.** COMMIT 2 queda sin ejecutar — PARO DECLARADO (`CANDIDATA-A-SONDEO = 27 > 20`), ver `forense/notas/2026-08-13-triage-63.md §7`.
 
 ---
 
