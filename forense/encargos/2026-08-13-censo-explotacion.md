@@ -1,6 +1,6 @@
 - **SHA de redacción:** `dcc4f6a`
 - **Entorno asignado:** cualquiera, SIN red, SIN corpus. Firma de nube `cloud_default` sin sonda (ADR-59(b)). NO en los dos.
-- **Estado:** CONSUMIDO — ejecutado por el acto de este mismo commit, rama `claude/censo-explotacion-adr-9rq3xo`. Ver `data/censo-explotacion-2026-08-13.tsv` y `forense/notas/2026-08-13-censo-explotacion.md`.
+- **Estado:** CONSUMIDO — ejecutado por el acto de este mismo commit, rama `claude/censo-explotacion-adr-9rq3xo`, PR #201 (https://github.com/Josanoforo/Modelado-Mexicano/pull/201). Ver `data/censo-explotacion-2026-08-13.tsv` y `forense/notas/2026-08-13-censo-explotacion.md`.
 
 ---
 
