@@ -18,7 +18,7 @@ LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 9
 
 **Premisa 1, interpretada correctamente antes de leerla como bloqueo.** El `8` crudo no es una llave ya ejercida — es exactamente el modo de falla que el propio `registro-llaves-identificacion-v1_0.md` §4 declara para el `grep -c 'EJERCIDA_'` ingenuo: cuenta también las cuatro filas del vocabulario de `estado` (§2: `EJERCIDA_CORROBORA`/`EJERCIDA_ACOTA`/`EJERCIDA_REFUTA`/`EJERCIDA_INDECISA`) y la prosa que las menciona, no solo la columna `estado` de la tabla de llaves (§3). La receta corregida de ese mismo §4 (acotada a `## 3 · Tabla de llaves`, columna 6) da `0` contra el archivo tal como estaba — verificado antes de firmar nada, ver §1 abajo. No había fila `EJERCIDA_*` sellada de antemano: **no PARA**.
 
-**Premisa 2.** `72` — máximo ADR en `gobernanza-v1_15.md` antes de este acto. Confirma que el próximo ADR, si la receta de alguna de las cuatro firmas lo pide, es `ADR-73`.
+**Premisa 2.** `72` — máximo ADR en `gobernanza-v1_15.md` antes de este acto. Confirma que el próximo ADR, si la receta de alguna de las cuatro firmas lo pide, es `ADR-73` contra esta base (`19d885d`) — colisionó con `PR #203` (ALIAS-P), que derivó el mismo número contra la misma base y fusionó primero; renumerado a `ADR-74` al fusionar `origin/main`, ver §5.
 
 **Premisa 3.** `18 FAIL · 105 WARN`, LÍNEA BASE VERDE contra `tests/baseline.json` (HEAD congelado `948ad70`, el propio Commit 3 de ENLACE-1). Punto de partida verificado antes de revertir nada en §4.
 
@@ -54,15 +54,15 @@ $ sed -n '/^## 3 · Tabla de llaves/,/^## /p' forense/registro-llaves-identifica
 
 ---
 
-## 2 · Firma (b) — rótulo de cota adoptado, `ADR-73(a)`
+## 2 · Firma (b) — rótulo de cota adoptado, `ADR-74(a)` (redactado como `ADR-73`, renumerado — §5)
 
 **Firma, verbatim:** *"Adopto el rótulo de MAP-A §7 verbatim."*
 
-`ADR-67` (`gobernanza:862`) dejó dos cifras sin cerrar en la misma oración: un tablero placeholder (`COTA_SUPERIOR_NO_RECONCILIADA`) y "958 programas hoy conocidos (0.52%)" sin receta citada. `forense/notas/2026-08-12-map-a-cota-universo.md` §7 reconstruyó el mecanismo de los tres denominadores (D1=35,708 activos T0 / 958 nombres de programa crudos, D2=825 fichas del catálogo RNM vía export CSV — verificado dos veces bit-idéntico y cruzado independientemente contra la paginación HTML, `page=55`×15=825 exacto —, D3=197 relaciones/75 fuentes) y propuso, sin sellar (*"mesa decide en acto propio"*), el rótulo verbatim que este acto adopta íntegro en `ADR-73(a)`.
+`ADR-67` (`gobernanza:862`) dejó dos cifras sin cerrar en la misma oración: un tablero placeholder (`COTA_SUPERIOR_NO_RECONCILIADA`) y "958 programas hoy conocidos (0.52%)" sin receta citada. `forense/notas/2026-08-12-map-a-cota-universo.md` §7 reconstruyó el mecanismo de los tres denominadores (D1=35,708 activos T0 / 958 nombres de programa crudos, D2=825 fichas del catálogo RNM vía export CSV — verificado dos veces bit-idéntico y cruzado independientemente contra la paginación HTML, `page=55`×15=825 exacto —, D3=197 relaciones/75 fuentes) y propuso, sin sellar (*"mesa decide en acto propio"*), el rótulo verbatim que este acto adopta íntegro en `ADR-74(a)`.
 
 **Corrección de lectura, misma fuente (MAP-A §5/§7).** El `958` sí tiene receta mecánica real (`awk -F'\t' 'NR>1{print $2}' data/curacion-universo/universo-declarado-t0.tsv | sort -u | wc -l` = 958, verificado) — pero cuenta cadenas de `fuente_programa` **sin deduplicar** (10 variantes nombran solo "Censo de Población y Vivienda"). La lectura correcta de "5 instrumentos de 958 programas (0.52%)" es **"5 de 958 nombres de programa no deduplicados"** — la fracción real es más alta, no cuantificada (exigiría deduplicar `fuente_programa`, acto propio, no ejecutado).
 
-**Propagación, sin reescribir texto sellado.** Por el mismo principio que `ADR-67` sentó ("VENCIDO EN ALCANCE — no refutado, no borrado, no vigente para el territorio nuevo"), `gobernanza:862` no se reescribe: gana dos anotaciones entre paréntesis, apuntando a `ADR-73(a)`, donde vive el rótulo completo y la estampa de universo (mecanismo = endpoint de exportación CSV del catálogo RNM/INEGI, fecha = 12/ago/2026, `data/universo-cota-2026-08-12.tsv`). Texto completo del ADR en `canon/gobernanza-v1_15.md`, entre `ADR-72` y `## 5. Deuda declarada`.
+**Propagación, sin reescribir texto sellado.** Por el mismo principio que `ADR-67` sentó ("VENCIDO EN ALCANCE — no refutado, no borrado, no vigente para el territorio nuevo"), `gobernanza:862` no se reescribe: gana dos anotaciones entre paréntesis, apuntando a `ADR-74(a)`, donde vive el rótulo completo y la estampa de universo (mecanismo = endpoint de exportación CSV del catálogo RNM/INEGI, fecha = 12/ago/2026, `data/universo-cota-2026-08-12.tsv`). Texto completo del ADR en `canon/gobernanza-v1_15.md`, entre `ADR-73` (ALIAS-P) y `## 5. Deuda declarada`.
 
 ---
 
@@ -72,7 +72,7 @@ $ sed -n '/^## 3 · Tabla de llaves/,/^## /p' forense/registro-llaves-identifica
 
 El texto de cierre ya estaba propuesto, verbatim, en `forense/notas/2026-08-13-censo-v1_1-abrir4-enasem.md` §12 ("Propuesta de cierre — Entrada 1..."). Se copió sin reescribir a la columna `estado` de la fila 1 de `forense/registro-recalculo-v1_0.md` §1, con la nota (no dentro del texto copiado, aparte, para no violar "cópialo, no lo reescribas") de que el `0 de 2` que esa propuesta cita para `llaves de identificación ejercidas` seguía exacto cuando se escribió — la firma (a) de este mismo acto lo mueve a `1 de 2` por una razón enteramente distinta y concurrente, no por relación causal con el censo.
 
-**Por qué necesita ADR propio — no es discrecional.** `ADR-72`, sección "Criterio de salida" (texto sellado): *"`RECALCULADO — CAMBIA` (se propaga con su ADR)."* La regla vive también, idéntica, en la cabecera de `registro-recalculo-v1_0.md` §1. `ADR-73(b)` es ese vehículo — ratifica el movimiento concreto de las tres filas (12/13/14, `SIN-RUTA`→`RUTA-C`) sin declarar canon la taxonomía de rutas en general (que sigue sin sellarse, per `censo-estimabilidad-coeficientes-v1_1.md` §1, verbatim).
+**Por qué necesita ADR propio — no es discrecional.** `ADR-72`, sección "Criterio de salida" (texto sellado): *"`RECALCULADO — CAMBIA` (se propaga con su ADR)."* La regla vive también, idéntica, en la cabecera de `registro-recalculo-v1_0.md` §1. `ADR-74(b)` es ese vehículo — ratifica el movimiento concreto de las tres filas (12/13/14, `SIN-RUTA`→`RUTA-C`) sin declarar canon la taxonomía de rutas en general (que sigue sin sellarse, per `censo-estimabilidad-coeficientes-v1_1.md` §1, verbatim).
 
 ### 3.2 · Entrada 0 (cotejo censo↔relaciones.tsv) — `RECALCULADO — SIN CAMBIO`, cotejo nuevo de las 12 filas restantes
 
@@ -158,9 +158,13 @@ VERDE contra `e7cd99d`, como el encargo exige al cierre.
 
 ---
 
-## 5 · Propagación y verificación de cierre (COMMIT 2)
+## 5 · Propagación, colisión de numeración, y verificación de cierre (COMMIT 2 + merge)
 
-**Estructura de dos commits, siguiendo el encargo.** COMMIT 1 (`267527c`) escribe las cuatro firmas y sus derivaciones propias — incluye, dentro de `gobernanza-v1_15.md`, la cabecera `73 ADR` y el cuerpo de `ADR-73` (intrínsecos a añadir el ADR correctamente, no propagación a otro archivo). COMMIT 2 propaga a `canon/estado-programa-v1_10.md` (contador de llaves `0→1`, conteo de ADR `72→73` en dos sitios, cascada `72→73` de la cadena L0, WARN `105→104` en dos sitios) y a los dos sitios de `gobernanza-v1_15.md` que citan el WARN total dentro de ADR históricos (`760`, `852`) — ninguno de los dos es intrínseco a `ADR-73`, ambos son consecuencia aritmética del arreglo de (d). Cierra con esta nota, el archivo A.3 y la entrada de `forense/hallazgos.md`.
+**Colisión de numeración con `PR #203` (ALIAS-P + MOTOR-DIAG) — cuarta vez que pasa, resuelta con el mismo mecanismo que las tres anteriores.** COMMIT 1 y COMMIT 2 (abajo) se escribieron y sellaron localmente como `ADR-73`, derivado correctamente contra `origin/main = 19d885d` (72 únicos, contiguo — verificado con la receta de T15 antes del primer commit, misma disciplina que ya exigió ADR-71). Mientras tanto, `PR #203` (ENCARGO B · ALIAS-P + MOTOR-DIAG, sobre `tools/curador_registro/via_capa2.py`) selló su **propio** `ADR-73` contra la misma base, y fusionó primero a `origin/main`. Ambos números son correctos contra el terreno que cada uno tenía delante al sellar — ninguno de los dos erró; gana quien fusionó primero, exactamente el criterio que ya resolvió `ADR-69`/`PR #175` → `ADR-70`, y que forzó las dos renumeraciones de `ADR-71` en el propio ACTO M-6.
+
+**Resolución.** `git fetch origin main` + `git merge origin/main` — dos conflictos reales, ambos por inserción en el mismo punto de dos ramas independientes: `canon/gobernanza-v1_15.md` (el cuerpo del ADR nuevo, entre `ADR-72` y `## 5. Deuda declarada`) y `canon/estado-programa-v1_10.md` (la misma línea de cascada de §L0, un único párrafo de texto continuo). Resuelto conservando **ambas** narrativas, en el orden en que fusionaron — el `ADR-73` de ALIAS-P íntegro y sin tocar, seguido del ADR de este acto renumerado a `ADR-74` (todas sus referencias internas `ADR-73(a)`/`ADR-73(b)` → `ADR-74(a)`/`ADR-74(b)`, y el límite "ADR-48 a ADR-72" de la cláusula de versión sube a "ADR-48 a ADR-73", porque ahora hay un ADR intermedio antes del suyo). Cabecera de `gobernanza` y tabla de `estado-programa` suben a `74 ADR`. Ninguna referencia de ALIAS-P a su propio `ADR-73` se tocó — no era de este acto tocarla.
+
+**Estructura de commits.** COMMIT 1 (`267527c`) y COMMIT 2 (`4bd96ef`) escriben las cuatro firmas, sus derivaciones propias, y la propagación de contadores — como `ADR-73`, antes de la colisión. Un tercer commit (este mismo cambio) fusiona `origin/main` y renumera a `ADR-74`, sin dejar hueco. `llaves de identificación ejercidas 0→1` y la propagación de WARN `105→104` (`gobernanza-v1_15.md:760,852`, `estado-programa-v1_10.md:130,222`) no fueron tocadas por el merge — ALIAS-P no las tocó, auto-merge limpio.
 
 **Contadores declarados que NO se mueven (verificados, no tecleados):**
 
