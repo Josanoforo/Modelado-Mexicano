@@ -9,6 +9,7 @@ Cabecera obligatoria de cada encargo archivado aquí:
 - **SHA de redacción** — el commit de `origin/main` (o de la rama base) contra el que el encargo se escribió, para que quien lo audite después sepa qué terreno asumía.
 - **Entorno asignado** — a cuál va (nube / Ubuntu) y, si aplica, el que NO — mismo criterio que Bloque D de `instrucciones-proyecto`.
 - **Estado** — `VIVO` o `CONSUMIDO` (ver abajo).
+- **Bloque VERIFICACIÓN DE EXISTENCIA** — además de la cabecera de arriba, todo encargo archivado aquí trae, contestado por quien lo escribe, el bloque de la Parte 2 de A.8 (`instrucciones-proyecto-v2_7.md`, Bloque D-ter): estructura, contenido y cobertura retroactiva, va después del bloque ARRANQUE de Bloque D.
 
 Nombre de archivo. El archivo de encargo lleva el código del acto como prefijo tras la fecha (AAAA-MM-DD-<CÓDIGO>-<tema>.md); su nota no. T02 normaliza sin distinguir directorio, así que un encargo y una nota con el mismo tema y sin prefijo colisionan por construcción — ha ocurrido en cinco actos.
 
