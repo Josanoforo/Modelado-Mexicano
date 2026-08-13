@@ -2,7 +2,7 @@
 
 - **SHA de redacción**: `b17a6f6` (merge #195), derivado por `git log -1` contra clon fresco, 13/ago/2026.
 - **Entorno asignado**: **NUBE.** Repo-only, sin red a dominios de datos, sin microdato, sin corpus. Firma `cloud_default` sin sonda es correcta (ADR-59(b)). **NO lo lances en la caja** — la caja tiene tres actos y este no la necesita.
-- **Estado**: `VIVO`.
+- **Estado**: `CONSUMIDO` — ejecutado en la rama `claude/new-session-ls8v9e`, commits `e087e12` (este archivo) · `162789a` (COMMIT 1: sella ADR-72, abre `forense/registro-recalculo-v1_0.md`) · el commit de COMMIT 2 que sigue a este mismo cambio (enmienda de ADDENDA 5, nota de cierre, hallazgos, y este archivo). PR aún no abierto en esta sesión — ningún acto de esta convención exige que lo esté para marcar `CONSUMIDO`; el registro es el commit, no el PR. Detalle completo: `forense/notas/2026-08-13-adr-provisionalidad-cierre.md` (nombre distinto de este archivo a propósito — mismo slug habría colisionado con T02, nombre normalizado, entre `forense/notas/` y `forense/encargos/`; hallazgo encontrado y corregido en el propio COMMIT 2, ver esa nota §8).
 - **Naturaleza**: acto de sellado. **La decisión ya está tomada por mesa.** El ejecutor propaga y deriva; **no decide, no reescribe el texto sellado, y no amplía el alcance.**
 
 Archivado per `forense/encargos/convencion.md` (A.3) como **primer commit**, antes del ARRANQUE.
