@@ -55,4 +55,74 @@ El primer resultado que produzca este procedimiento es el que se reporta.
 
 ---
 
-*(Commit 2 — el sondeo fila por fila, `data/acceso-puertas-2026-08-13.tsv` y el cierre — se agrega a continuación de este archivo, en un commit separado, sin editar lo de arriba.)*
+## 4 · Commit 2 — el sondeo fila por fila
+
+Las 52 filas no-genéricas sondeadas individualmente (`curl -s -D - -o /dev/null -r 0-0`, sin y con `dangerouslyDisableSandbox` donde el resultado sin override no fue limpio), más las 62 de universo interno etiquetadas `NO_PROBADO` sin sondear (fuera de alcance declarado, §3.2 del encargo). Tabla completa en `data/acceso-puertas-2026-08-13.tsv`. Metodología por fila: código HTTP crudo primero, cabecera diagnóstica verbatim segundo, `quien_puede` derivado de ambos + el `condicion_acceso` ya documentado por sondeos previos (no re-abierto a nivel de contenido salvo donde se declara "PROMOCIÓN" o "CAMBIO DE CUBETA" abajo).
+
+**Hallazgo cruzado con un acto concurrente, verificado por comando, no solo citado:** mientras se sondeaba `RNM_CNGMD_2023_catalogo977`, la memoria de sesión registró que P·LOTE-2 (PR #204, corriendo en paralelo, `/home/pc0/mm-p-lote2`) encontró la misma API de INEGI (`archivoscompaginacion`) caída (`204` vacío, incluso con un ID de control inválido). Re-verificado de forma independiente en este acto: `idBiinegi=977&tipodocto=4` → `204` hoy. Para descartar que la API completa esté muerta (no solo esta ficha), se re-probó también la URL directa de payload de ENCOAP ya conocida (`.../encoap/2023/microdatos/bd_encoap2023_csv.zip`, ruta de SONDA-1) — **sigue viva, `206`, `420306` bytes exactos** — así que la API de *descubrimiento* está caída pero las URLs de payload ya conocidas por otra vía siguen sirviendo. `INEGI_ENCOAP_2023` se mantiene `AGENTE` con esta evidencia; `RNM_CNGMD_2023_catalogo977` se reclasifica (detalle en la tabla).
+
+### 4.1 · Conteo por `quien_puede` (los cinco valores, suman 114)
+
+| valor | filas |
+|---|---|
+| NO_PROBADO | 63 (62 universo interno + 1 sin URL propia) |
+| AGENTE | 30 |
+| USUARIO_NAVEGADOR | 11 |
+| USUARIO_REGISTRO | 8 |
+| NADIE | 2 |
+| **TOTAL** | **114** |
+
+### 4.2 · Filas que cambiaron de cubeta — la noticia del acto
+
+1. **`DataCivica_Explorador_Violencia`** — `NO OBTENIDO POR ESTE AGENTE EN 2 INTENTOS` (8/ago, HTTP 403 en `datacivica.org` y `/proyectos/`) → hoy **`AGENTE`**, `206` real en ambas URLs (título "Data Cívica" confirmado, 2913 bytes, sin reto ni bloqueo). Confirma la falsación pre-registrada en §3.3.
+2. **`RNM_CNGMD_2023_catalogo977`** — `EXISTE-SATISFACE` (SONDA-1, 12/ago, 87 archivos verificados vía la API de descubrimiento de INEGI) → hoy **`USUARIO_NAVEGADOR`**, la API de descubrimiento murió (`204` vacío, confirmado dos veces independientes: este acto y P·LOTE-2 concurrente). Caso límite del vocabulario, declarado en la tabla: no es un reto anti-bot que ceda a JS, es una API muerta con una ruta manual sin confirmar.
+3. **`Mexico_Evalua_IMCO_SignosVitales_Intersecta`** — `SIN-FETCH` (candidata de buscador, nunca abierta byte a byte) → **promovida** (A.6): ambas URLs abiertas con contenido real esta sesión (`206`/`200`). Se mantiene `AGENTE`.
+4. **`CIDE_Panel_Mexico_2006`** — el host primario sigue muerto (`investigadores.cide.edu`, DNS no resuelve, con y sin override), pero el mirror `redalyc.org` que la nota del 8/ago ya había alcanzado ("PDF recuperado pero contenido binario/no legible por la herramienta") se reclasifica de facto: el problema era de la herramienta de lectura (WebFetch no parsea PDF binario), no de acceso — un agente con `curl` sí puede bajar esos 174 217 bytes hoy. Se clasifica `AGENTE`.
+5. **`MCCI_Encuesta_Corrupcion_Impunidad`** y **`PNT_Plataforma_Nacional_Transparencia`** — ambas declaraban "libre" antes; hoy dan `403 "Attention Required! | Cloudflare"` con el `User-Agent` por defecto de `curl` — un bloqueo de huella de cliente que **no existía en el sondeo anterior** y que cede por completo con un `User-Agent` de navegador (sin JS, sin cookie). Se mantienen `AGENTE`, pero es un mecanismo nuevo, no documentado antes en este proyecto, y se declara como tal (§2 arriba) para que el próximo acto no lo confunda con `cf-mitigated: challenge`.
+6. **`Mejoredu_INEE_Bases_Datos`, `Tandas_para_el_Bienestar`** — re-sondeadas con override disponible, tal como el pre-registro (§3.3) anticipaba que podrían cambiar. **No cambiaron**: las 3 URLs de Mejoredu y la única de Tandas siguen sin resolver DNS, idéntico con y sin `dangerouslyDisableSandbox`. La hipótesis del encargo ("la clasificación vieja es de antes del override") queda **falsada** para estas dos filas específicamente — el override no era la causa del bloqueo.
+7. **Infraestructura, no clasificación:** `cses.org`, `gps.econ.uni-bonn.de`, `www.worldvaluessurvey.org`, `zenodo.org`, `osf.io` ya no necesitan override (§0/4-bis) — `quien_puede` no cambia para las filas que dependen de estos dominios (ya eran `AGENTE`/`USUARIO_REGISTRO` correctamente), pero el mecanismo de acceso a la caja sí cambió y queda documentado para que el próximo acto no reserve override donde ya no hace falta.
+
+### 4.3 · La lista de descarga manual — el producto que no existía, ordenado por cuántas necesidades sirve cada fuente
+
+19 fuentes requieren humano (`USUARIO_REGISTRO` + `USUARIO_NAVEGADOR`); las recetas completas (ejecutables en <1 min cada una) están en `data/acceso-puertas-2026-08-13.tsv`, columna `receta_manual`:
+
+| # | fuente | quien_puede | necesidades | receta (resumen) |
+|---|---|---|---|---|
+| 1 | GESIS_ISSP | USUARIO_NAVEGADOR | 7 (N2,N3,N12,N13,N14,N28,N30) | Abrir en navegador, reto Cloudflare se resuelve solo; login con cuenta GESIS ya registrada |
+| 2 | GPS_Global_Preferences_Survey | USUARIO_REGISTRO | 5 (N2,N4,N5,N6,N17) | Formulario ya enviado por el agente; revisar correo `jonieqsa@gmail.com` |
+| 3 | WorldBank_MEX_EnterpriseSurvey_2023_catalogo6453 | USUARIO_REGISTRO | 3 (N22,N23,N32) | Registrarse gratis en `login.enterprisesurveys.org` |
+| 4 | BID_IDB_Microdatos_Center | USUARIO_REGISTRO | 2 (N18,N19) | Portal con bug de redirect propio; buscar "IDB microdata center" si el enlace directo falla |
+| 5 | WVS_World_Values_Survey | USUARIO_NAVEGADOR | 2 (N5,N15) | Clic en "Mexico 2018", login con cuenta WVS ya registrada |
+| 6 | MassMobilization_Dataverse_MMdata | USUARIO_NAVEGADOR | 2 (N17,N27) | Abrir Harvard Dataverse en navegador, reto AWS WAF se resuelve solo |
+| 7 | OIT_ILOSTAT | USUARIO_NAVEGADOR | 1 (N18) | Abrir en navegador, reto Cloudflare se resuelve solo |
+| 8 | Tandas_para_el_Bienestar | USUARIO_NAVEGADOR | 1 (N29) | Buscar el programa para confirmar si sigue vigente bajo otro dominio |
+| 9 | WorldBank_MEX_ECEPIE_2012_2014_catalogo2661 | USUARIO_REGISTRO | 1 (N13) | Login con cuenta NADA ya activa (`jonieqsa@gmail.com`) |
+| 10 | RNM_CNGMD_2023_catalogo977 | USUARIO_NAVEGADOR | 1 (N28) | Navegar a pestaña "Datos abiertos" (API automática muerta) |
+| 11 | WorldBank_MEX_LargeScaleFinancialEducation_2011_catalogo2049 | USUARIO_REGISTRO | 1 (N5) | Login con cuenta NADA ya activa |
+| 12 | WorldBank_MEX_ParentalEmpowerment_2010_catalogo1039 | USUARIO_REGISTRO | 1 (N28) | Login con cuenta NADA ya activa |
+| 13 | openICPSR_Microcredit_MexicoPlacement_proj116334 | USUARIO_NAVEGADOR | 1 (N3) | Abrir en navegador, reto Cloudflare se resuelve solo |
+| 14 | OECD_TrustSurveyData | USUARIO_NAVEGADOR | 1 (N30) | Abrir en navegador, reto Cloudflare se resuelve solo |
+| 15 | Cenfri_MicroinsuranceMexico | USUARIO_NAVEGADOR | 1 (N21) | Abrir en navegador, reto Cloudflare se resuelve solo |
+| 16 | Mejoredu_INEE_Bases_Datos | USUARIO_NAVEGADOR | 0 (candidata) | Buscar "Mejoredu bases de datos PLANEA"; confirmar si el dominio también falla en casa |
+| 17 | COLEF_EMIF_Norte_Sur | USUARIO_REGISTRO | 0 (candidata) | Registro en `colef.mx/emif` (nombre/correo/contraseña/institución/rol) |
+| 18 | IPUMS_International_Mexico | USUARIO_REGISTRO | 0 (candidata) | Registro gratuito estándar IPUMS |
+| 19 | Harvard_Dataverse_Mexico_panel | USUARIO_NAVEGADOR | 0 (candidata, NO-ENCONTRADO) | Abrir en navegador; buscar dataset de panel mexicano dentro (ninguno identificado aún) |
+
+**`NADIE` (2, no accionable sin cambiar de condición — pago o acuerdo restringido, ninguna receta manual ayuda):** `ICPSR_Mexico_Panel_Study_2012` (Restricted Data Use Agreement, N26/N27) · `Gallup_World_Poll` (datasets de pago, N15 potencial).
+
+### 4.4 · Estado de la suite
+
+```
+$ python3 tests/check.py --baseline
+18 FAIL · 105 WARN
+LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 948ad70343320b62f000d31fd39e2b2b68336ad9)
+(3 entradas de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
+```
+
+VERDE, sin `--freeze` (no hizo falta). T03 respetado: ninguna cita entre backticks de archivo gitignorado (`data/raw` no se tocó, no hay payloads nuevos).
+
+### 4.5 · Contadores movidos
+
+Cero contadores de México — este acto midió al propio programa (su capacidad de saber quién puede bajar qué), igual que SONDA-1 y P·Lote-1 antes. El artefacto que no existía (columna `quien_puede`, derivable, con evidencia fresca de hoy) ahora existe para 52 de 114 filas del puntero de puertas; las otras 62 quedan `NO_PROBADO`, declaradas y no adivinadas.
+
+El primer resultado que produjo este procedimiento es el que se reporta.
