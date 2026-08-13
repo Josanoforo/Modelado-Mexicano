@@ -1,6 +1,6 @@
 # ACTO APERTURA-ISSP · Apertura a nivel variable, los dos módulos ISSP con México
 
-Ejecuta el encargo `forense/encargos/2026-08-13-apertura-issp.md` (A.3, commit previo en esta rama). Responde a la deuda dejada explícitamente por ACTO R″ (`forense/notas/2026-08-13-r2-registro-via-completa.md` §4): "eso excede lo que este acto puede cerrar sin abrir cada reactivo contra cada necesidad, y es justamente el trabajo de una apertura a nivel variable".
+Ejecuta el encargo `forense/encargos/2026-08-13-AI-apertura-issp.md` (A.3, commit previo en esta rama; renombrado de `2026-08-13-apertura-issp.md` en §12 — T02, ver ahí). Responde a la deuda dejada explícitamente por ACTO R″ (`forense/notas/2026-08-13-r2-registro-via-completa.md` §4): "eso excede lo que este acto puede cerrar sin abrir cada reactivo contra cada necesidad, y es justamente el trabajo de una apertura a nivel variable".
 
 ## 0 · ARRANQUE — comandos y salida cruda
 
@@ -178,7 +178,7 @@ Los 8 `NO-ENCONTRADO` cierran con universo + términos + fecha en la misma líne
 
 ### 8.1 · (a) Por qué esta fila no sube a `relaciones.tsv`, y quién debería subirla
 
-Este acto no escribe ninguna fila en `relaciones.tsv` porque su propio perímetro (`forense/encargos/2026-08-13-apertura-issp.md` §2, sección NO ESCRIBE) lo prohíbe de forma explícita: ese archivo es del Carril A — al momento de escribir esto, ya fusionado por ENLACE-1 (PR #196, `dcc4f6a`). El acto que debe promover los 6 veredictos `EXISTE-SATISFACE` (y, por completitud, los 8 `NO-ENCONTRADO`) de `data/apertura-issp-variables-2026-08-13.tsv` a `relaciones.tsv` es un acto de propagación posterior — mismo patrón operativo que ENLACE-1, pero consumiendo este TSV en vez de `data/manifiesto.yaml` como fuente. No lanzado a la fecha de este cierre (13/ago/2026). Esta es la línea que P4 exige cuando un acto no puede subir la fila él mismo: la razón, por escrito, en vez de un silencio que otro acto tiene que redescubrir seis días después.
+Este acto no escribe ninguna fila en `relaciones.tsv` porque su propio perímetro (`forense/encargos/2026-08-13-AI-apertura-issp.md` §2, sección NO ESCRIBE) lo prohíbe de forma explícita: ese archivo es del Carril A — al momento de escribir esto, ya fusionado por ENLACE-1 (PR #196, `dcc4f6a`). El acto que debe promover los 6 veredictos `EXISTE-SATISFACE` (y, por completitud, los 8 `NO-ENCONTRADO`) de `data/apertura-issp-variables-2026-08-13.tsv` a `relaciones.tsv` es un acto de propagación posterior — mismo patrón operativo que ENLACE-1, pero consumiendo este TSV en vez de `data/manifiesto.yaml` como fuente. No lanzado a la fecha de este cierre (13/ago/2026). Esta es la línea que P4 exige cuando un acto no puede subir la fila él mismo: la razón, por escrito, en vez de un silencio que otro acto tiene que redescubrir seis días después.
 
 ### 8.2 · (b) El puente, re-derivado y verificado — no heredado de la ADDENDA
 
@@ -228,3 +228,27 @@ También se observa, sin relación con este acto: 2 entradas que sí estaban en 
 Al ir a añadir la fila de `forense/hallazgos.md` (perímetro §2 de este acto, omitida por error en el COMMIT 2 original — corregida en este commit, antes de considerar el acto cerrado) se encontró que `origin/main` había avanzado de `b17a6f6` (base de este worktree) a `5f90757`: ENLACE-1 completó sus Commits 3-4 (incluido un `--freeze` de línea base) y SONDA-1 (PR #197) fusionó completo. `git merge origin/main` (local, nunca el botón de GitHub — mismo criterio que el resto del programa) resuelve limpio, sin conflicto: los archivos que cambiaron (`relaciones.tsv`, `universo-puertas-2026-08-12.tsv`, `tests/baseline.json`, notas/encargos ajenos) no se solapan con el perímetro de este acto.
 
 Como `tests/baseline.json` fue uno de los archivos que cambió (el `--freeze` de ENLACE-1), los números del §10 de arriba quedan referidos a un baseline ya superado — se re-corrió la suite después de fusionar, no se asumió que el resultado anterior seguía valiendo: **23 FAIL · 105 WARN** (antes 104 — una unidad de deriva ajena a este acto, ya presente en lo que se fusionó), línea base congelada ahora en `948ad70` (antes `e7cd99d`), **mismas 3 entradas exactas** (`T02` + `T16`×2 de arriba). La causa raíz no cambia; solo el número de fondo contra el que se compara. No se re-corrió la suite en las 3 condiciones por segunda vez — el mecanismo (config gitignorada, `data/raw`) es ajeno a lo que trajo la fusión, y ya se verificó una vez que las 3 condiciones dan resultado idéntico.
+
+## 12 · Rename autorizado (VENTANA 1) — resuelto, VERDE confirmado
+
+**Actualización — resuelto tras autorización explícita del usuario, no decidido unilateralmente.** La causa del `T02` de §10 no era de este acto: el propio §2 del encargo (`forense/encargos/2026-08-13-apertura-issp.md`, ya renombrado, ver abajo) prescribía ese mismo nombre base para la nota y para el encargo archivado, en dos directorios — colisión de construcción, no un error de ejecución. El usuario lo confirmó en VENTANA 1, identificó la causa como propia, y señaló la convención real ya presente en `origin/main` (no en memoria): los encargos archivados llevan el código del acto como prefijo tras la fecha; las notas no. Precedente exacto en el propio repo, verificado antes de actuar (no asumido): commit `500080a` (`ACTO A · Censo de explotación: renombra el encargo archivado para destrabar CI de PR #201`) resolvió la misma colisión el mismo día con el mismo mecanismo, y `forense/encargos/2026-08-13-A7-indice-infraestructura.md` evitó la colisión desde el origen con el mismo patrón.
+
+Ejecutado:
+
+1. `git mv forense/encargos/2026-08-13-apertura-issp.md forense/encargos/2026-08-13-AI-apertura-issp.md` — con `git mv`, historial del archivo preservado.
+2. Nota de desviación añadida a la cabecera del archivo renombrado (antes del bloque verbatim, que no se edita — mismo patrón que `500080a`).
+3. Citas vivas actualizadas al nombre nuevo en esta nota (§0, §8.1) — la cita literal del mensaje de error de `T02` dentro del análisis rojo de §10 **no se edita**: es una cita textual de lo que el test reportó en ese momento, y editarla sería reescribir historia, no corregirla.
+4. `git merge origin/main` en local (`origin/main` había avanzado otros 14 commits desde el `5f90757` del §11: PR #199 ADR-72 + PR #201 censo de explotación — sin conflicto, perímetros disjuntos, confirmado con `git status` limpio tras el merge).
+5. Entrada de addendum en `forense/hallazgos.md` (no se edita la entrada original de este acto).
+6. Línea nueva en `forense/encargos/convencion.md` (instrucción explícita de VENTANA 1, fuera del perímetro original de este encargo, autorizada ahí mismo) documentando la regla general para que un sexto acto no la repita.
+
+Re-verificado — comando y salida cruda, sin editar:
+
+```
+$ python3 tests/check.py --baseline
+18 FAIL · 105 WARN
+LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 948ad70343320b62f000d31fd39e2b2b68336ad9)
+(3 entradas de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
+```
+
+Confirma la hipótesis de §10: las 2 entradas `T16` eran eco puro del corrimiento de conteo que causaba `T02`, no defectos independientes — al quitar `T02` (23→18, una baja de 5: el propio `T02` + sus 2 `T16` + 2 mejoras ajenas ya presentes en lo fusionado, no atribuibles a este acto), el resultado real vuelve a calzar con el congelado. Un solo mecanismo, un solo commit de rename lo resuelve. El análisis de §10 se deja intacto, sin reescribir, como registro de lo que pasó y por qué — esta es la corrección que le sigue, no un reemplazo silencioso.

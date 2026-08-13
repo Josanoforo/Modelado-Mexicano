@@ -10,6 +10,8 @@ Cabecera obligatoria de cada encargo archivado aquí:
 - **Entorno asignado** — a cuál va (nube / Ubuntu) y, si aplica, el que NO — mismo criterio que Bloque D de `instrucciones-proyecto`.
 - **Estado** — `VIVO` o `CONSUMIDO` (ver abajo).
 
+Nombre de archivo. El archivo de encargo lleva el código del acto como prefijo tras la fecha (AAAA-MM-DD-<CÓDIGO>-<tema>.md); su nota no. T02 normaliza sin distinguir directorio, así que un encargo y una nota con el mismo tema y sin prefijo colisionan por construcción — ha ocurrido en cinco actos.
+
 Ciclo de vida. Un encargo nace `VIVO`. Cuando el acto que lo ejecuta cierra, se marca `CONSUMIDO`, con el PR que lo ejecutó. Un encargo consumido **no se borra**: es el registro de qué se pidió exactamente, y es lo que permite auditar después si el ejecutor hizo lo que se le dijo — borrar un encargo consumido destruiría esa auditoría tan bien como nunca haberlo escrito.
 
 Este acto (ENCARGO P2) establece la convención y el sitio. **No** puebla el directorio con encargos concretos — eso depende de textos que hoy viven fuera del repo (en conversaciones), y mesa los añade después, uno por uno, con su cabecera completa.

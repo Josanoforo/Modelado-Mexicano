@@ -5,6 +5,16 @@ Estado: VIVO.
 
 Archivado per forense/encargos/convencion.md (Regla A.3) como primer commit de este acto, antes de ejecutar el bloque de ARRANQUE.
 
+---
+
+**Nombre de archivo, desviado de §2 y declarado:** el encargo (§2, verbatim abajo) pedía este archivo en `forense/encargos/2026-08-13-apertura-issp.md` — mismo nombre base que `forense/notas/2026-08-13-apertura-issp.md`, en otro directorio. Esa colisión disparaba `T02` (`tests/check.py`) como FAIL nuevo contra `tests/baseline.json`, con dos entradas `T16` como eco del mismo corrimiento de conteo. Renombrado a `2026-08-13-AI-apertura-issp.md` (prefijo `AI-`, mismo mecanismo que ya usaron `forense/encargos/2026-08-13-A-censo-explotacion.md` y `forense/encargos/2026-08-13-A7-indice-infraestructura.md` el mismo día) tras confirmarlo con el usuario (VENTANA 1) — no decidido unilateralmente; este acto había reportado la colisión sin auto-otorgarse esa autorización. Verificado: con el renombre, `T02` deja de disparar y las dos entradas `T16` desaparecen con él — mismo mecanismo, no dos arreglos. Detalle completo en `forense/notas/2026-08-13-apertura-issp.md`, §12.
+
+---
+
+Texto completo del encargo, tal como se lanzó (verbatim, incluida la ruta original de este mismo archivo en §2 — no se edita el texto verbatim aunque la ejecución real haya desviado por la razón de arriba):
+
+---
+
 §0 · Por qué existe este acto, y qué NO lo bloquea
 0.1 · Lo pidió el acto anterior, por escrito, y lleva dos días parado
 
