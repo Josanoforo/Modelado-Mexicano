@@ -146,3 +146,59 @@ El encargo citaba "mociba 48, engasto 46, endireh 41" — mociba da 47 aquí, no
 **Lista nominal de filas que la vía promovería con `--escribe`: ninguna.** `Diffs propuestos: 0` antes y después — sin `data/raw` montado, ninguna fila puede alcanzar `COINCIDE` bajo la regla de promoción vigente (intacta, ver §1), así que `--escribe` no tendría nada que escribir en ningún momento de este acto. **No se corrió `--escribe`** contra el `relaciones.tsv` real, en ningún momento, sobre ningún archivo del repo — `relaciones.tsv` está fuera del perímetro ESCRIBE de este encargo (§1/§5).
 
 ---
+
+## §5 · Límite conocido del guardián de corpus-ausente, declarado y no corregido
+
+Encontrado por revisión posterior a Commit 2, no por este acto: el contador de estados de `derivar()` solo se incrementa dentro de la rama `entrada is not None` —
+
+```python
+entrada = por_id.get(idm)
+if entrada is None:
+    estado, derivado = "ID_NO_EN_MANIFIESTO", actual
+else:
+    estado = verificar_entrada(entrada, root, raices)
+    estados_verificacion[estado] += 1   # <- solo aquí
+    derivado = "SI" if estado == "COINCIDE" else actual
+```
+
+`filas_con_id_manifiesto` cuenta **toda** fila con `id_manifiesto != NO_DETERMINADO`, incluidas las que caen en `ID_NO_EN_MANIFIESTO` (un `id_manifiesto` que no resuelve a ninguna entrada real de `data/manifiesto.yaml` — un id roto, no un problema de corpus). Esas filas nunca incrementan ninguno de los cinco estados del desglose (§1). Consecuencia: si algún día **todas** las filas con `id_manifiesto` cayeran en `ID_NO_EN_MANIFIESTO`, el desglose impreso mostraría `COINCIDE=0 NO_COINCIDE=0 AUSENTE=0 SIN_PAYLOAD=0 RAIZ_NO_CONFIGURADA=0` (los cinco en cero) y el guardián de §1(2) dispararía igual — `filas_con_id_manifiesto >= 1` sigue siendo cierto — con el mensaje "¿está data/raw montada?", cuando la causa real sería ids rotos en `relaciones.tsv`, no ausencia de corpus.
+
+**Verificado que hoy no ocurre, con la aritmética exacta:** `filas_con_id_manifiesto = 43`; `ID_NO_EN_MANIFIESTO` hoy = **0** (los 43 ids resuelven todos a una entrada real del manifiesto); `29 AUSENTE + 14 RAIZ_NO_CONFIGURADA + 0 COINCIDE + 0 NO_COINCIDE + 0 SIN_PAYLOAD = 43`, exactamente `filas_con_id_manifiesto`. La suma de los cinco estados y el total de filas con id coinciden hoy — el límite es real pero **latente**, no manifestado.
+
+**No se corrige aquí.** Ampliar el guardián para distinguir "cero coincide por corpus ausente" de "cero coincide porque todos los ids están rotos" sería un cuarto cambio a `via_capa2.py`, fuera de los tres que ADR-73 autorizó y selló — un cambio así necesita su propio ADR bajo la misma ventana de ADR-70(d), no una extensión silenciosa de este. Declarado como límite conocido del diagnóstico para quien lo toque después.
+
+---
+
+## §6 · ADENDA — `SE` recibe entrada, y la razón real de que siga sin invertir es más precisa de lo que §1 decía
+
+Mesa corrigió el criterio de §1 tras revisar el PR: no basta con declarar `SE` como "parcial" — hay que verificar si existe una forma discriminante real antes de rendirse. Se investigó con una re-derivación ciega independiente, una verificación adversarial (intentar romper la candidata) y una búsqueda de completitud, las tres corridas contra el corpus real, no sobre la palabra de las otras.
+
+**Identidad, confirmada:** `SE` = Secretaría de Economía. Su única fuente real en el corpus es `data/manifiesto.yaml#r2_1_ecco_reporte_se_2023` (`archivo: R2.1_ECCO/SE_REPORTE_GENERAL_ECCO_2023.pdf`) — el reporte de SE dentro de ECCO (Encuesta de Clima y Cultura Organizacional, instrumento anual de la SFP aplicado a 287 instituciones de la APF; SE es una de esas 287). Las 3 filas de `relaciones.tsv` (N21/N22/N32) comparten `fuente_nombre: "Reporte General ECCO (SE) 2023"` — sin ambigüedad, un único payload objetivo, confirmado por búsqueda de completitud (no hay otro payload de SE/ECCO en el manifiesto).
+
+**Sí existe una forma discriminante real: `ECCO`.** Verificado tres veces de forma independiente (coordinador + 2 agentes adversariales, mismas funciones `_sin_acentos`/`_con_frontera_de_letra` de `via_capa2.py`, corridas contra las 554 entradas de `data/manifiesto.yaml`): `ecco` aparece exactamente 3 veces con frontera de letra en `texto_manifiesto` completo, las 3 dentro de `r2_1_ecco_reporte_se_2023` (una en `usado_para`, dos en `archivo`), **cero** en cualquier otra de las 553 entradas restantes. No hay ninguna palabra española real que contenga "ecco" como subcadena (a diferencia de "se"), y una búsqueda adversarial en todo el repo (114 líneas/35 archivos) confirma que "ECCO" no nombra nada más en este programa hoy.
+
+**Pero esa forma no puede arreglar el diagnóstico — y el motivo no es falta de evidencia, es un defecto mecánico verificado en `cargar_alias()`:**
+
+```python
+formas = {canon.lower()}          # incondicional, para TODA entrada
+for a in entrada.get("alias") or []:
+    ...
+    formas.add(a.strip().lower())
+```
+
+El canónico desnudo (`"se"`) se siembra en el conjunto de formas **antes** de leer `alias:`, sin condición — ninguna entrada de datos puede quitarlo, solo puede sumar más formas encima. Y `derivar()` compara con `any(...)` (semántica OR): agregar `ECCO` solo puede sumar coincidencias, nunca restar la que ya produce `"se"`. Probado en vivo, no solo argumentado — se simuló la entrada real (`canonico: SE, alias: [ECCO, ...]`) contra `cargar_alias()`:
+
+```
+formas resultantes para SE: {'se', 'se_reporte_general_ecco', 'ecco'}
+'se' sigue en el conjunto? True
+```
+
+Es decir: **ninguna forma que se hubiera podido escribir en `alias-fuentes.yaml` habría invertido las 3 filas de `SE`** — no porque `"se"` como pronombre sea indistinguible de `"se"` como sigla en el texto (eso también es cierto, y es lo que §1 ya documentaba), sino porque el mecanismo de lectura de alias nunca aísla las formas curadas del canónico desnudo. Es un límite de `via_capa2.py`, no de `alias-fuentes.yaml`.
+
+**Se añadió la entrada `SE` de todas formas** (`alias: [SE, ECCO]`, `ampara: [documentación]`, `evidencia_identidad` con los tres criterios citados contra `r2_1_ecco_reporte_se_2023`) — es identidad real, verificada, con evidencia (a)+(b)+(c), y este archivo documenta identidad de fuentes exista o no efecto mecánico hoy. El campo `nota` de la entrada declara explícitamente, en el propio archivo de datos (no solo aquí), que esta entrada **no** cambia el comportamiento del diagnóstico para `SE` y por qué — para que un lector futuro no la lea como "ya arreglado". **Diagnóstico auxiliar: sigue en 75** (verificado — no hay cambio de membresía; las 3 filas de `SE` ya estaban dentro por el *fallback* antes de esta adenda, y siguen dentro después, ahora con evidencia y razón documentadas en vez de silencio).
+
+**No se toca `via_capa2.py`.** Arreglar el defecto mecánico (p. ej. que una entrada curada pueda excluir el canónico desnudo del conjunto comparado) sería un cuarto cambio, fuera de los tres que ADR-73 selló bajo la ventana de ADR-70(d) — un ADR nuevo lo autorizaría, no una extensión silenciosa de éste. Declarado para ese acto futuro, no resuelto aquí.
+
+**Reserva de completitud, fuera de alcance de este acto, declarada para quien la revise:** la fila N21 (`REL-fd8abdfbae6d8de6a94eb38c`) tiene `confianza: BAJA` y su `evidencia_textual_breve`/`nota` describen un tema (paneles de consumo/marca de hogares) distinto del contenido real del reporte ECCO (cultura organizacional/gobierno) — posible enlace débil o artefacto de coincidencia sobre el canónico `SE`, no verificado aquí (fuera del perímetro: no se toca `relaciones.tsv`). No cambia el payload objetivo de esta entrada de alias.
+
+---

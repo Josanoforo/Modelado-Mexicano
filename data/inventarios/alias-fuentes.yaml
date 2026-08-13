@@ -1504,6 +1504,22 @@
   - alias: SAR
     archivo: inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md
     linea: 63
+- canonico: SE
+  nombre: Secretaría de Economía — Reporte General ECCO 2023
+  institucion: Secretaría de Economía (SE), Gobierno de México — reporte por dependencia de la Encuesta de Clima y Cultura Organizacional (ECCO), instrumento anual de la Secretaría de la Función Pública aplicado a 287 instituciones de la APF.
+  alias:
+  - SE
+  - ECCO
+  ampara:
+  - documentación
+  evidencia_identidad:
+  - criterio: c
+    cita: "data/manifiesto.yaml#r2_1_ecco_reporte_se_2023 -- archivo='R2.1_ECCO/SE_REPORTE_GENERAL_ECCO_2023.pdf' lleva 'ECCO' explícito dos veces; único id de las 554 entradas del manifiesto que lo contiene"
+  - criterio: b
+    cita: "mismo id -- usado_para: '...verificación byte a byte de si el reporte agregado de ECCO cruza el ítem de confianza...'; formato: 'reporte específico de Secretaría de Economía (no el agregado APF completo)'"
+  - criterio: a
+    cita: "mismo id -- url_origen=https://www.gob.mx/cms/uploads/attachment/file/907022/SE_REPORTE_GENERAL_ECCO_2023.pdf, portal institucional gob.mx"
+  nota: "Esta entrada NO arregla el falso positivo de las 3 filas SE de relaciones.tsv (N21/N22/N32) -- verificado, no supuesto: tools/curador_registro/via_capa2.py:cargar_alias() ejecuta `formas = {canon.lower()}` de forma incondicional para TODA entrada, antes de sumar lo que traiga `alias:` -- ninguna forma que se añada aquí puede QUITAR el canónico desnudo ('se') del conjunto que derivar() compara con any() (semántica OR, solo suma coincidencias, nunca resta). Simulado con esta entrada real: formas resultantes = {'se','ecco'}, y 'se' sigue casando con frontera de letra contra prosa ajena a SE/ECCO (13 apariciones como pronombre reflexivo en el corpus). 'ECCO' en sí es forma limpia y suficiente para la identidad (3/3 ocurrencias dentro de este único payload, 0/554 en cualquier otro) -- el defecto es mecánico, de tools/curador_registro/via_capa2.py, no de falta de evidencia textual. Corregirlo exigiría un cuarto cambio a ese archivo (p. ej. que una entrada curada pueda excluir el canónico desnudo), fuera de los tres que ADR-73 autorizó y fuera del perímetro de este acto -- declarado para un ADR futuro bajo la misma ventana de ADR-70(d), no resuelto aquí. Reserva adicional para ese futuro acto: ECCO es una encuesta anual aplicada a 287 dependencias de la APF con reporte propio por cada una -- si el corpus incorpora el reporte de otra dependencia, 'ecco' dejaría de ser exclusivo de este payload dentro de texto_manifiesto (seguiría siendo evidencia genuina de contenido ECCO, ya no de cuál dependencia)."
 - canonico: SERIES DERIVADAS Y COMPILACION
   nombre: Series derivadas y compilaciones de terceros
   institucion: 'Múltiples (entrada-bundle, sin institución única): UISP/INSP; CONEVAL; Plataforma Nacional
