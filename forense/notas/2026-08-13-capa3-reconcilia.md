@@ -176,4 +176,29 @@ LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 9
 
 (22 FAIL · 105 WARN en la corrida cruda — la misma cuenta pre-existente que ENLACE-1 · Commit 2 ya declaró ROJA/preexistente contra el baseline congelado más viejo; contra el freeze real de `948ad70` esta corrida da VERDE, incluido el T02 ya corregido arriba.)
 
+## §7 · TRASPASO — no arreglado aquí, dirigido a APERTURA-ISSP y a ENLACE-2
+
+Hallazgo de paso, fuera del perímetro de este acto (que verifica procedencia, `capa2` vs `capa3`, no suficiencia semántica, que es `capa4`): de las 19 filas, las 12 ISSP resuelven a `za6980_q_mx` (8 filas) y `za5900_q_mx` (4 filas) — ambos **cuestionarios**, no codebooks. Pero **7 de las 12** declaran en `siguiente_accion` (`data/curacion-registro/utilidad-modelo.tsv` / `evidencias.tsv`) que lo que piden es abrir un **codebook**, no releer el cuestionario:
+
+| relacion_id | necesidad_id | id_manifiesto apuntado | `siguiente_accion` declarada |
+|---|---|---|---|
+| REL-72ff714a3ba6d0bab952e05f | N2 | za6980_q_mx | "Obtener codebook México 2017." |
+| REL-845a93bc24990147a394f897 | N2 | za6980_q_mx | "Abrir codebook." |
+| REL-8d2952203ec3678f3bd0c473 | N30 | za6980_q_mx | "Abrir codebook." |
+| REL-9dfab617c356df5594575a3c | N12 | za6980_q_mx | "Obtener codebook." |
+| REL-b034b04e9ba040bd02e39b8b | N14 | za6980_q_mx | "Abrir codebook." |
+| REL-cd0d1c5fd7e85418603c73cd | N13 | za5900_q_mx | "Consolidar codebook." |
+| REL-d630dc1ea394364e53631401 | N13 | za5900_q_mx | "Obtener codebook." |
+
+Para el módulo ZA5900 el codebook **ya existe como payload en el corpus, sin que ninguna fila lo referencie**:
+
+```
+$ python3 tests/manifiesto.py --verifica --id za5900_cdb
+za5900_cdb [descargas_mx]: COINCIDE -- sha256 y tamaño (5971210 bytes) verificados contra data/manifiesto.yaml
+```
+
+`za5900_cdb` (`ZA5900_cdb.pdf`, 5.97 MB, `usado_para` en el manifiesto: *"ISSP 2012 Family and Changing Gender Roles IV, Mexico -- codebook completo... N13 (familismo_obligacion) candidato mas fuerte de los 3 modulos ISSP... N12 (familismo_apoyo) tematicamente adyacente"*) — describe con precisión N13/N12, pero las dos filas N13 de arriba (`REL-cd0d1c5fd7e85418603c73cd`, `REL-d630dc1ea394364e53631401`) siguen apuntando a `za5900_q_mx` (el cuestionario), no a `za5900_cdb`. Para ZA6980 no existe ningún `id_manifiesto` de tipo codebook en `data/manifiesto.yaml` (`grep -n "za6980.*cdb\|za6980_cdb"` → 0 resultados) — las 5 filas que piden codebook de ese módulo no tienen a qué apuntar todavía, distinto del caso ZA5900 donde el payload ya está y solo falta el enlace.
+
+No se corrige aquí: `capa2=SI` es una afirmación de procedencia (el `id_manifiesto` resuelve a un payload íntegro en disco), no de suficiencia — si el objeto de evidencia pedía otro documento, eso vive en `capa4_apertura_mapeo`, que sigue vacía en las 19 filas de este acto. Traspaso explícito para que no se pierda como pasó con ABRIR-4 (cinco días sin verse): **APERTURA-ISSP** (dueña de `capa4` en estas filas) debería decidir si las 2 filas N13/ZA5900 deben reapuntar `id_manifiesto` a `za5900_cdb`, y si las 5 filas ZA6980 necesitan que alguien adquiera/registre su codebook antes de poder cerrar `capa4`; **ENLACE-2** debería considerar el mismo hallazgo al absorber los veredictos de `capa4` en su pasada sobre `relaciones.tsv`.
+
 Frase de cierre de siempre.
