@@ -1,4 +1,4 @@
-Instrucciones del proyecto — "Psicología del Mexicano Contemporáneo" · v2.7
+Instrucciones del proyecto — "Psicología del Mexicano Contemporáneo" · v2.8
 
 Por qué v2. La v1 (Bloque A + Bloque B) se diseñó para escribir un report temático. El proyecto creció a un programa multi-artefacto: reports temáticos + un integrador (meta-síntesis) + un modelo de decisión + validaciones forenses. Esta v2 conserva casi toda la v1 verbatim y solo añade o precisa lo que el proyecto probó que necesita. Cada cambio está marcado [NUEVO], [REFINADO] u [OPCIONAL] para que sea fácil aprobarlo o cortarlo. Todo lo no marcado es v1 sin cambios.
 
@@ -155,7 +155,7 @@ Un encargo declaró data/raw ausente como PARO y detuvo una sesión que sí ten�
 PR #77 registró seis archivos que se quedaron en un data/raw local. Nadie lo notó hasta dos actos después. Éste es el que costó de verdad: el manifiesto afirmaba tener payloads que el corpus compartido no tenía.
 Dos encargos corrieron en dos entornos a la vez y produjeron el mismo archivo dos veces, tirando una jornada de capacidad.
 
-Regla. Todo encargo abre con el bloque de abajo, textual y sin resumir. Un encargo sin él está mal escrito y quien lo reciba puede pedirlo antes de ejecutar.
+Regla. Todo encargo abre con los DOS bloques de abajo, textuales y sin resumir. Un encargo sin ellos está mal escrito y quien lo reciba puede pedirlos antes de ejecutar.
 
 ════════ ARRANQUE — hazlo antes de leer el resto del encargo ════════
 
@@ -192,7 +192,32 @@ encargo supone es entregable, no interrupción.
 
 ════════════════════════════════════════════════════════════════════
 
-Dos líneas más que el encargo debe traer, fuera del bloque.
+═══ VERIFICACIÓN DE EXISTENCIA — la contesta quien ESCRIBE el encargo [NUEVO v2.8] ═══
+
+1 · ESTRUCTURA. Qué tablas gobiernan este dominio, derivado de
+    data/INFRAESTRUCTURA-v1_0.md (no de memoria). Cuáles escribe este
+    encargo y cuáles deliberadamente no, con la razón de cada omisión.
+    Si el índice no cubre el dominio: ese hueco es el entregable, y el
+    encargo se detiene ahí.
+
+2 · CONTENIDO. Comando ejecutado y salida cruda que demuestra que lo que
+    este encargo manda producir NO existe ya. Un encargo que dice "no
+    existe" sin comando está mal escrito. Resultado por objeto, con el
+    vocabulario de A.4: EXISTE-SATISFACE / EXISTE-NO-SATISFACE /
+    NO-ENCONTRADO (con dónde y con qué términos) / NO-ACCESIBLE.
+
+3 · COBERTURA RETROACTIVA. Fecha de nacimiento de cada tabla gobernante
+    (git log --diff-filter=A) contra la fecha del trabajo que se va a
+    tocar. Si la tabla es posterior, decláralo: ese trabajo nunca pasó
+    por ella y su ausencia NO prueba que no exista.
+
+⚠️ Si (2) o (3) revelan que el trabajo ya está hecho, total o
+   parcialmente: el encargo NO se lanza. Se reescribe sobre el faltante
+   real, o se cancela. Descubrirlo aquí es el rendimiento de este bloque.
+
+════════════════════════════════════════════════════════════════════
+
+Dos líneas más que el encargo debe traer, fuera de los bloques.
 
 ENTORNO ASIGNADO — y el que NO. Nombrar a cuál va y decir explícitamente que no se lance en el otro. Las dos veces que esa línea faltó, el encargo salió duplicado.
 
@@ -268,7 +293,9 @@ Todo payload cuyo formato incluya un token de sesión, marca de tiempo de genera
 
 Corolario: un hash discordante no es un hallazgo sobre el archivo hasta que se sabe qué campo cambió. Es la misma regla A.5 aplicada a un artefacto en vez de a un portal.
 
-El costo de esta versión, contado. Tres reglas. Ninguna añade un test —nada de esto es verificable desde la suite— y ninguna añade una pregunta al módulo de auditoría. Las tres salen del mismo defecto medido cuatro veces, y ese defecto sí le costó a un lector: mantuvo el perímetro falsable del Hito D estimado por debajo de lo real, y el perímetro es un número que el modelo consume. Si en tres meses ninguna ha atrapado nada, se retiran. La regla de señal manda sobre las tres: cada sesión produce una medición, o produce nada.
+⚠️ Nota de numeración [NUEVO v2.8]. El rótulo A.7 está disputado: además de esta regla vigente, existen dos borradores sin sellar que reclaman el mismo número — el índice de infraestructura (absorbido por A.8, ver abajo) y la estampa de universo de ADR-67, cuyo texto no está en el repo y por tanto no es sellable. Quien selle cualquiera de los dos tiene que renumerar. Registrado en ADR-76(h), y de nuevo en ADR-77 ("A.8 absorbe el borrador del índice de infraestructura...").
+
+El costo de esta versión, contado. Cuatro reglas. Ninguna añade un test —nada de esto es verificable desde la suite— y ninguna añade una pregunta al módulo de auditoría. Las tres salen del mismo defecto medido cuatro veces, y ese defecto sí le costó a un lector: mantuvo el perímetro falsable del Hito D estimado por debajo de lo real, y el perímetro es un número que el modelo consume. Si en tres meses ninguna ha atrapado nada, se retiran. La regla de señal manda sobre las cuatro: cada sesión produce una medición, o produce nada.
 
 Por qué v2.7. El 13/ago/2026 la dirección entregó una cola de 19 fuentes para descarga manual cuyas dos primeras — GESIS/ISSP y WVS — ya estaban descargadas y registradas desde el 12/ago en `data/manifiesto.yaml`; la cola se derivó cruzando dos tablas de tres, y la que faltaba, la barata, era el manifiesto. El costo, de no haberlo notado el usuario, era una tarde de descargas repetidas y entradas duplicadas en el manifiesto bajo ids distintos — el mismo defecto que ya obligó a retractar un acto el 12/ago (ACTO R / ACTO R″). No retira nada de v2.4, v2.5 ni v2.6.
 
@@ -297,3 +324,19 @@ Por qué v2.7. El 13/ago/2026 la dirección entregó una cola de 19 fuentes para
 **Lo que A.8 deliberadamente NO hace.** No añade un test: qué tabla gobierna qué dominio y qué contiene no es verificable desde la suite sin duplicar la lógica del propio índice. No exige mantener el índice al día por barrido periódico — se actualiza cuando un acto descubre que le falta algo (regla de conducto, ADR-70(c)). **No se audita a sí misma:** no hay pregunta nueva en el módulo de auditoría de rigor extremo.
 
 **Nota de numeración, y reduce una colisión en vez de crearla.** `A.7` está hoy reservado tres veces: la regla **vigente** de `instrucciones-proyecto-v2_6.md:265` ("la identidad de un artefacto es su contenido, no su envoltura"), el borrador del **índice de infraestructura** (`forense/encargos/2026-08-13-A7-indice-infraestructura.md:18`), y el borrador de la **estampa de universo** (ADR-67, sin texto en el repo). **A.8 absorbe el borrador del índice de infraestructura** — su regla es la pregunta (1) de arriba — de modo que el rótulo `A.7` queda disputado por dos, no por tres. La estampa de universo conserva su reclamo y **sigue sin poder sellarse** hasta que su texto esté commiteado.
+
+Por qué v2.8 [NUEVO v2.8]. A.8 (arriba, v2.7, ya sellada por `ADR-77`) atendió el primero de dos defectos medidos el 13/ago/2026 — verificar qué ya existe. Quedaba el segundo, de otra clase: ese mismo día se midió que las instrucciones que la conversación de dirección tenía cargadas estaban tres versiones atrás de las del repo. La regla de abajo sale de ese defecto. No retira nada de v2.4 a v2.7.
+
+A.9 · Una versión de instrucciones no está sellada hasta que está en los dos lados [NUEVO v2.8].
+
+El defecto, medido el 13/ago/2026. Las instrucciones cargadas en la conversación de dirección estaban en v2.4 con A.4–A.6 pegadas a mano; el repo estaba en v2.6. Faltaban enteras A.1, A.2, A.3 y A.7, y el corolario retroactivo de A.6 estaba truncado — la mitad que dice que un tier bajo por falta de información es tan revisable como un NO-ENCONTRADO no estaba. No fue un desfase inerte: produjo tres defectos ese día. Cuatro encargos salieron sin instrucción de archivarse (A.3). El punto 4 del ARRANQUE se usó con dos partes en vez de tres (A.2). Y el alcance de A.6 se leyó acotado cuando el texto vigente lo tiene ancho.
+
+La regla, y es una frase. Toda versión nueva de instrucciones se pega en el proyecto de Claude en el mismo acto que la sella en el repo. Si no está en los dos lados, no está sellada — y el ADR que la sella lo declara explícitamente, con la fecha del pegado.
+
+Por qué hace falta y no basta con acordarlo. El repo avanza por PR y el proyecto de Claude se edita a mano; no hay mecanismo que los ate y ningún test puede verlo — el proyecto vive fuera del repositorio, misma exención que Bloque D. Lo único que cierra la brecha es que el mismo acto haga las dos cosas.
+
+Falsador y caducidad. Si en tres meses ninguna sesión encuentra desfase entre las dos copias, A.9 se retira y se anota. Si se encuentra desfase habiendo A.9 sellada, el problema es que el ADR no lo declaró: se corrige la plantilla del ADR, no la regla.
+
+El costo de esta versión, contado. Una regla. Le costó tres defectos de dirección en una sola jornada. Si en tres meses no ha atrapado nada, se retira. La regla de señal manda sobre ella: cada sesión produce una medición, o produce nada.
+
+[NUEVO v2.8] Y la v2.8 completa lo que v2.7 dejó pendiente por construcción, no por descuido: dos sesiones distintas trabajaron el mismo encargo A8-LAND en paralelo sobre bases que divergieron a mitad de camino (`ACTO SELLA`/PR #216 fusionó entre que cada una arrancó), y la que llegó primero solo traía A.8. A.9 pregunta algo que A.8 no cubre y que por eso sobrevivió sin sellar un ciclo más: "¿la regla llegó a quien tiene que leerla?" — un cuerpo de reglas impecable en el repo no gobierna nada si la sesión que dirige está leyendo una copia de hace tres versiones. Verificar la existencia cuesta un grep; verificar que las dos copias coinciden cuesta un diff. No verificarlas costó, el mismo día, una tarde del usuario y tres defectos de dirección.
