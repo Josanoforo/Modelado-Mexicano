@@ -86,3 +86,66 @@ No nombrado por ADR-69 ni ADR-70, pero citado por las 62 filas `gap_mapeo_map_b`
 ## §6 · Contador de esta parte
 
 **Filas `gap_mapeo_map_b` en contradicción confirmada con una fila real, dentro de `universo-puertas-2026-08-12.tsv`: 21 de 62 (20 de alta confianza + 1 de confianza media corroborada por MAP-B), no las ~15 del pre-registro.** 2 candidatas adicionales verificadas y descartadas explícitamente (`BIARE`, `IMSS`), no cuentan. Contador que COMMIT 2 propone mover a 0 — vía marca, no vía edición de las filas existentes (ver §7).
+
+---
+
+## §7 · Commit 2 — regla de precedencia y cierre propuesta
+
+**No se fusionan los artefactos aquí.** Lo que sigue es propuesta para que mesa selle; este acto no edita `universo-puertas-2026-08-12.tsv` ni `crosswalk-fuente-puerta-2026-08-13.tsv`.
+
+**(a) Regla de equivalencia: se reafirma la de MAP-B, no se reemplaza.** `2026-08-13-map-b-crosswalk.md:18-22` ya la fijó — URL > necesidad reforzada por nombre/institución > cita explícita, nunca por parecido de cadena — y §5 mostró que es más sólida que la candidata que este mismo encargo proponía (fecha más reciente sola invierte el resultado en 20/20 casos verificados). Se mantiene sin cambio.
+
+**(b) Cláusula de cierre que falta — enmienda a la regla de conducto de ADR-70(c).** Hoy (c) exige subir la fila nueva; no exige nada sobre la fila vieja. Texto propuesto:
+
+> Todo acto que abra o actualice, en `data/universo-puertas-*.tsv`, una fila con `clasificacion_a4` distinta de `NO-ENCONTRADO` para una fuente que ya tiene una fila `clase_origen=gap_mapeo_map_b` en el mismo archivo, para declarar cerrado su conducto debe: **(1)** aplicar el método de equivalencia de MAP-B (§1 de `2026-08-13-map-b-crosswalk.md`) entre su puerta nueva y las filas `gap_mapeo_map_b` vigentes; **(2)** si hay evidencia de identidad, marcar la fila vieja con `superseded_por = <puerta nueva>` (columna nueva, aditiva) sin editar ni borrar el resto de su contenido, y actualizar la fila correspondiente de `crosswalk-fuente-puerta-*.tsv` de `SIN-PUERTA`/`VACIO` a `CON-PUERTA-CLASIFICADA`; **(3)** si no hay evidencia suficiente bajo ese método, no hace nada más — el gap sigue legítimamente abierto. Mecanismo de "no editar, marcar" con el mismo precedente que ya fijó `ADR-71(c)` (`canon/gobernanza-v1_15.md:934`): *"una entrada fechada posterior vence en alcance a la anterior, la anterior se conserva verbatim, y la nueva lo dice en su propia línea."* Mientras una fila `gap_mapeo_map_b` no tenga `superseded_por`, se trata como vigente.
+
+## §8 · El diff exacto que implementaría la regla sobre el backlog de hoy
+
+**En `data/universo-puertas-2026-08-12.tsv`:** añadir columna 16, `superseded_por` (vacía salvo donde se indica). **En `data/crosswalk-fuente-puerta-2026-08-13.tsv`:** para las mismas 20 filas por `fuente_canonica`, `puerta` pasa de `VACIO` al valor de la columna 2 de abajo, `clasificacion_a4_de_la_puerta` pasa al valor real (columna 3), `gap` pasa de `SIN-PUERTA` a `CON-PUERTA-CLASIFICADA`.
+
+| fila vieja (`universo-puertas`, `superseded_por` nuevo valor) | puerta real | `clasificacion_a4_de_la_puerta` a copiar |
+|---|---|---|
+| `GDELT` | `GDELT_RawDataFiles` | EXISTE-NO-SATISFACE |
+| `UCDP` | `UCDP_Downloads_GED` | EXISTE-NO-SATISFACE |
+| `ENCOAP` | `INEGI_ENCOAP_2023` | EXISTE-SATISFACE |
+| `CNGMD` | `RNM_CNGMD_2023_catalogo977` | EXISTE-SATISFACE |
+| `ISSP` | `GESIS_ISSP` | EXISTE-SATISFACE |
+| `OECD` | `OECD_TrustSurveyData` | NO OBTENIDO POR ESTE AGENTE EN 2 INTENTOS |
+| `GLOBAL_PREFERENCES_SURVEY` | `GPS_Global_Preferences_Survey` | EXISTE-NO-SATISFACE |
+| `INTERACTING_AS_EQUALS_REDUCES_PARTISAN_POLARIZATION_IN_MEXICO` | `OSF_InteractingAsEquals_PartisanPolarizacion_Mexico` | EXISTE-SATISFACE |
+| `ELECTORAL_PRECINCT_LEVEL_DATABASE_FOR_MEXICAN_MUNICIPAL_ELECTION` | `Zenodo_ElectoralPrecinctLevel_MexicoMunicipal` | EXISTE-SATISFACE |
+| `LARGE_SCALE_FINANCIAL_EDUCATION_PROGRAM_IMPACT_EVALUATION_2011_2` | `WorldBank_MEX_LargeScaleFinancialEducation_2011_catalogo2049` | EXISTE-SATISFACE |
+| `IMPACT_EVALUATION_OF_PARENTAL_EMPOWERMENT_PROGRAM` | `WorldBank_MEX_ParentalEmpowerment_2010_catalogo1039` | EXISTE-SATISFACE |
+| `WORLD_BANK_ENTERPRISE_SURVEY_MEXICO_2023` | `WorldBank_MEX_EnterpriseSurvey_2023_catalogo6453` | EXISTE-SATISFACE |
+| `PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND` | `Cenfri_MicroinsuranceMexico` | NO OBTENIDO POR ESTE AGENTE EN 2 INTENTOS |
+| `MICROCREDIT_IMPACTS_RANDOMIZED_MICROCREDIT_PROGRAM_PLACEMENT_EXP` | `openICPSR_Microcredit_MexicoPlacement_proj116334` | NO OBTENIDO POR ESTE AGENTE EN 2 INTENTOS |
+| `DOES_CORRUPTION_INFORMATION_INSPIRE_THE_FIGHT_OR_QUASH_THE_HOPE` | `JPAL_CorruptionInformation_MexicoVoters_2009` | EXISTE-SATISFACE |
+| `ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_2019_2024` | `Banxico_EncuestaCompetenciasFinancieras` | EXISTE-SATISFACE |
+| `ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_DE_LA_POBLACION` | `Banxico_EncuestaCompetenciasFinancieras` | EXISTE-SATISFACE |
+| `MASS_MOBILIZATION_DATA_PROJECT_EVENTOS_MEXICO` | `MassMobilization_Dataverse_MMdata` | NO OBTENIDO POR ESTE AGENTE EN 4 INTENTOS |
+| `MASS_MOBILIZATION_PROTEST_DATA` | `MassMobilization_Dataverse_MMdata` | NO OBTENIDO POR ESTE AGENTE EN 4 INTENTOS |
+| `MASS_MOBILIZATION_PROTEST_DATA_MEXICO` | `MassMobilization_Dataverse_MMdata` | NO OBTENIDO POR ESTE AGENTE EN 4 INTENTOS |
+
+**Aparte, condicionada a confirmación de mesa (confianza media, no automática):** `COMPARATIVE_STUDY_OF_ELECTORAL_SYSTEMS_MEXICO_2018` → `CSES_Modulo5_2016_2021` (EXISTE-SATISFACE) — aplicar solo si mesa confirma que el módulo 2016-2021 cubre la ronda 2018 citada por la fila vieja; si no, queda `gap_mapeo_map_b` legítimo.
+
+**No tocar** (verificado y descartado, no candidatas): `BIARE`, `IMSS`.
+
+**Contador que este diff produce:** filas `gap_mapeo_map_b` en contradicción sin marcar: **21 → 0** (o 20 → 0 si mesa no confirma el par de confianza media, quedando esa fila abierta legítimamente en 1).
+
+## §9 · ADR propuesto (no sellado por este acto)
+
+**Candidato `ADR-74`** (73 únicos y contiguos en `canon/gobernanza-v1_15.md` al momento de este acto, `origin/main=1e6e6a9` — re-derivar contra el `main` real al sellar, mismo criterio que `ADR-71` y `ADR-73` ya dejaron escrito).
+
+> **ADR-74 · Enmienda a la regla de conducto de ADR-70(c): obligación de reconciliar `gap_mapeo_map_b` al abrir puerta real, y columna `superseded_por`.** Decisión de mesa, sobre `ACTO RECONCILIA-PUERTAS` (`forense/notas/2026-08-13-reconcilia-puertas.md`).
+>
+> **(a)** Se añade a ADR-70(c) la obligación de cierre descrita en §7(b) de la nota citada — verbatim, no se repite aquí.
+>
+> **(b)** `data/universo-puertas-*.tsv` gana la columna `superseded_por` (16ª, aditiva, vacía por defecto). Ningún archivo fuera de `universo-puertas` y `crosswalk-fuente-puerta` cambia de esquema.
+>
+> **(c)** Se autoriza, como acto de mantenimiento separado (no este), aplicar el diff de §8 de la nota citada: 20 filas `gap_mapeo_map_b` marcadas `superseded_por`, más 1 condicionada a confirmación de mesa sobre el módulo ISSP/CSES citado ahí.
+>
+> **(d)** Se reafirma, sin cambio, el método de equivalencia de MAP-B (`2026-08-13-map-b-crosswalk.md:18-22`) como mecanismo vigente de identidad fuente↔puerta — no se sustituye por un criterio de fecha.
+>
+> **Cascada:** conteo de ADR vía receta T15, re-derivado al sellar. Contadores que NO se mueven: ninguno de medición sobre México — esta ADR es higiene de dos artefactos de registro, no una medición nueva.
+
+**Cierre de este acto: no aplica el diff, no sella el ADR — los entrega a mesa, tal como el encargo lo pidió.**
