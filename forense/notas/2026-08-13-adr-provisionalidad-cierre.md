@@ -65,7 +65,9 @@ El WARN bajó un punto (el `T03` colgante que el propio archivo de encargo gener
 
 ---
 
-## 4 · Hallazgo NO resuelto: T15 queda en rojo, y no se maquilla
+## 4 · Hallazgo NO resuelto al cerrar COMMIT 2 — resuelto después, ver §9
+
+*(Encabezado y cuerpo de esta sección sin editar: son el estado real al cerrar COMMIT 2, antes de que mesa decidiera. §9 narra la resolución, sin borrar esto.)*
 
 Al sellar `**ADR-72`, `python3 tests/check.py --baseline` pasó a **ROJO** — no por T16 (que este acto sí resuelve, §3), sino por **T15 (T-ADR-COUNT)**, con exactamente un fallo nuevo:
 
@@ -117,4 +119,33 @@ El propio encargo nombra, en su lista `ESCRIBE` de §1, dos archivos con el **mi
 
 ---
 
-**Requisito de salida.** Este archivo; línea en `forense/hallazgos.md` (append, merge local); `forense/encargos/2026-08-13-adr-provisionalidad.md` actualizado de `VIVO` a `CONSUMIDO`; `tests/check.py --baseline` corrido al cierre — **ROJO, una entrada nueva (T15, §4), reportada y no resuelta por decisión de mesa**, no por omisión de este acto.
+## 9 · Resolución de §4 — mesa decidió, mismo día, vía PR #199
+
+El hallazgo de §4 se reportó, no se resolvió, y se abrió PR #199 con `--baseline` en ROJO por esa única entrada, exactamente como §4 documenta. Mesa (el operador humano, en el hilo de la PR) respondió directamente: *"solve Pr cant merge"* — una instrucción explícita de resolver el bloqueo, dada fuera del marco de este encargo (que había reservado la decisión) y por encima de él. Las tres opciones que §4 dejó abiertas seguían siendo las mismas; se implementó la **opción 2**: ampliar `T15` con una excepción histórica, mirando exactamente el mecanismo que `T03` ya usa (`MARCA_ILUSTRATIVA` / `{cita-ilustrativa}`, `tests/check.py:198-208`).
+
+**Por qué esa opción y no las otras dos.** La opción 1 (reescribir la narrativa de ADR-71) habría alterado contenido de una decisión ya sellada para maquillar una cita que, en su momento, era correcta. La opción 3 (`--freeze`) habría aceptado el hueco sin cerrarlo — el mismo `t15_adr_count()` seguiría sin poder distinguir una cita histórica de una vigente, y el próximo ADR con la misma necesidad narrativa volvería a pisar la misma mina. La opción 2 corrige la causa raíz, no reescribe ninguna palabra de ADR-71, y no oculta nada en un archivo de línea base — es aditiva y reversible.
+
+**Implementación, verbatim del cambio:**
+- `tests/check.py` — `MARCA_HISTORICA = r"` `?\s*\{cita-historica\}"` (el `` `? `` opcional porque, a diferencia de T03, el regex de T15 no incluye los backticks de la cita en el match); el bucle de `t15_adr_count()` salta una cita si la marca la sigue de inmediato, idéntico patrón a T03's `re.match(MARCA_ILUSTRATIVA, l[mo.end():])`.
+- `canon/gobernanza-v1_15.md:938` — se añadió ` {cita-historica}` inmediatamente después de `` `71 ADR` ``, dentro del párrafo de ADR-71. **Ninguna otra palabra de ese párrafo se tocó.** La cita sigue diciendo, correctamente, lo que decía: que ADR-71 trajo el conteo a 71.
+
+**Efecto de segundo orden, derivado, no asumido.** Corregir T15 cambia lo que T16 considera "real": su subproceso interno excluye solo T16 de sí mismo, no T15 — con T15 limpio, el "real" que T16 compara bajó de `19 FAIL` a `18 FAIL` (WARN sin cambio, 105). Los 3 sitios que COMMIT 2 había fijado en `19 FAIL · 105 WARN` (`estado-programa-v1_10.md:222`, `gobernanza-v1_15.md:760,852`) se corrigieron una vez más, a `18 FAIL · 105 WARN` — el mismo mecanismo de punto fijo de §3, una vuelta más.
+
+**Corrida 5 — final, con T15 exento y el punto fijo re-derivado:**
+```
+18 FAIL · 105 WARN
+```
+Desglose sin cambio en el contenido: T09=8 · T05=5 · T06=2 · T07=1 · T08=1 · T11=1 (=18, el mismo desglose de siempre, idéntico al que el propio encargo declaraba el 13/ago contra `b17a6f6`). T15=0. T16=0.
+
+```
+LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 948ad70343320b62f000d31fd39e2b2b68336ad9)
+(3 entradas de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
+```
+
+`tests/check.py` completo: los 22 tests nombrados en `[ ok ]`/`[warn]`/`[FAIL]` verificados uno a uno; T02, T15, T16, T20 en `[ok]`. No se corrió `--freeze` — no hizo falta: no quedó ninguna entrada nueva que aceptar.
+
+**Alcance de este cambio, declarado.** Toca `tests/**`, fuera del `NO ESCRIBE` original del encargo — autorizado explícitamente por mesa en el hilo de la PR, no una decisión unilateral de este acto. No se mintió un ADR nuevo para esto: es mantenimiento de aparato de verificación, misma clase que las excepciones de `data/raw` y de nomenclatura por-run que T02 ya tenía, ninguna de las cuales necesitó ADR propio tampoco.
+
+---
+
+**Requisito de salida.** Este archivo; línea en `forense/hallazgos.md` (append, merge local) — dos entradas, el hallazgo (§4) y su resolución (§9); `forense/encargos/2026-08-13-adr-provisionalidad.md` actualizado de `VIVO` a `CONSUMIDO`; `tests/check.py --baseline` corrido al cierre final — **VERDE**, cero entradas nuevas, tres mejoras frente al congelado de ENLACE-1.
