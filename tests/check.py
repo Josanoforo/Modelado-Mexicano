@@ -482,7 +482,28 @@ def t14_inventario():
 # T15 · T-ADR-COUNT — el número de ADR citado en canon/ debe igualar los
 #   ADR únicos de `gobernanza`, sin huecos en la secuencia.
 #   (sesión de tests, 29/jul/2026 · censo-integridad-v1_0.md C1-02: 32 vs 37)
+#
+#   Marca de cita histórica (ADR-72, 13/ago/2026). Mismo mecanismo que
+#   MARCA_ILUSTRATIVA de T03 (línea ~208), aplicado aquí porque T15 tenía
+#   el mismo punto ciego que motivó esa marca: ADR-71 narra su propia saga
+#   de renumeración ("Cascada — historia completa de la numeración") y
+#   cita, correctamente, el conteo que tenía en ESE momento — `71 ADR`.
+#   Sellar el siguiente ADR vuelve esa cita histórica, correcta, indistinguible
+#   de una afirmación vigente para el regex de siempre. A diferencia de T16
+#   (que exime bloques `> **vX.Y — DD/mon.**`, el único formato en que
+#   `estado §0` narra un cambio pasado), T15 no tenía ningún mecanismo
+#   equivalente porque, hasta ADR-71, ningún ADR había necesitado citar un
+#   dígito de conteo dentro de su propia prosa ya sellada — ADR-44 a ADR-70
+#   dicen "conteo de ADR vía receta T15" sin dígito, precisamente evitando
+#   esta trampa. La marca exime SOLO la cita inmediatamente anterior, igual
+#   que T03: una línea con dos citas y una marca deja la otra vigilada.
 # ───────────────────────────────────────────────────────────────
+#   La cita que motiva esta marca vive entre backticks (`` `71 ADR` ``,
+#   markdown estándar de este repo para un valor citado) — el regex de
+#   arriba (`(\d+)\s*ADR\b`) no incluye el backtick de cierre en el match,
+#   así que la marca debe tolerar un backtick opcional antes de sí misma.
+MARCA_HISTORICA = r"`?\s*\{cita-historica\}"
+
 def t15_adr_count():
     g = newest("canon/gobernanza-v*.md")
     if not g:
@@ -503,8 +524,11 @@ def t15_adr_count():
         for i, l in enumerate(read(p).split("\n"), 1):
             for m in re.finditer(r"(\d+)\s*ADR\b", l):
                 n = int(m.group(1))
-                if n != real:
-                    fail("T15", f"{rel(p)}:{i} cita {n} ADR; gobernanza tiene {real} únicos")
+                if n == real:
+                    continue
+                if re.match(MARCA_HISTORICA, l[m.end():]):
+                    continue
+                fail("T15", f"{rel(p)}:{i} cita {n} ADR; gobernanza tiene {real} únicos")
 
 
 # ───────────────────────────────────────────────────────────────
