@@ -1,7 +1,7 @@
 ENCARGO APERTURA-ISSP · los dos módulos con México, a nivel variable
 SHA de redacción: b17a6f6 (merge #195) — derivado por git log -1 contra clon fresco, 13/ago/2026.
 Entorno asignado: Ubuntu Claude Code, sesión con corpus. No usa red. NO Claude cloud (no tiene los bytes). NO lo lances mientras corran tres sesiones en la misma caja — ver §0.2.
-Estado: VIVO.
+Estado: CONSUMIDO — `PR #200` (rama `wt-apertura-issp-1786589980`, merge `19d885d`, ancestro confirmado de `fd788a9`). *Corrección de ACTO E2, 13/ago/2026: este archivo seguía marcado `VIVO` pese a estar fusionado; ver `forense/notas/2026-08-13-e2-cierre.md`.*
 
 Archivado per forense/encargos/convencion.md (Regla A.3) como primer commit de este acto, antes de ejecutar el bloque de ARRANQUE.
 

@@ -1,6 +1,6 @@
 **SHA de redacción:** `e993752` (merge #202)
 **Entorno asignado:** CAJA con red. NO en nube — mide alcanzabilidad de portales y la nube da 403 `host_not_allowed`. NO en los dos.
-**Estado:** VIVO
+**Estado:** CONSUMIDO — `PR #205` (rama `vp/verifica-puertas`, merge `b7aa67c`, ancestro confirmado de `fd788a9`). *Corrección de ACTO E2, 13/ago/2026: este archivo seguía marcado `VIVO` pese a estar fusionado; ver `forense/notas/2026-08-13-e2-cierre.md`.*
 
 ---
 
