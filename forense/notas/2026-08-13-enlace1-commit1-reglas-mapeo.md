@@ -121,3 +121,38 @@ Consecuencia mecánica (`tools/curador_registro/via_capa2.py:verificar_entrada`)
 Este commit congela la asignación completa y verificable por lectura (§1-§6). **Commit 2 (escritura en `relaciones.tsv` + corrida de la vía + `--escribe` + suite) queda pendiente de un entorno con el corpus montado** — reportado a mesa/usuario junto con este commit, no ejecutado a ciegas.
 
 **La frase:** el primer resultado que produjo este procedimiento es el que se reporta.
+
+---
+
+## §8 · Commit 2 — ejecución y resultados (entorno LOCAL, corpus montado)
+
+**Entorno:** LOCAL (Ubuntu, Claude CLI), worktree `~/mm-enlace1-commit2` sobre `claude/new-session-s98494`, `HEAD=afd9661` (Commit 1) al arrancar, `b17a6f6`=`origin/main` confirmado ancestro.
+
+**Premisas re-verificadas** (mismas de §0, mismo checkout): `197` filas / `0` diffs / `97` diagnóstico auxiliar, `173` `NO_DETERMINADO`, `14` filas ISSP, `16` entradas za-módulo — las cuatro coinciden exacto. La comprobación de corpus en disco (`ZA6980_q_mx.pdf`) inicialmente dio "NO encontrado" porque `yq` no está instalado en este entorno (el `find` cayó a `/nonexistent`) — no por ausencia real del corpus. Verificado en su lugar con `sha256sum` directo: los 4 archivos fuente (`ZA6980_q_mx.pdf`, `ZA5900_q_mx.pdf`, `F00006635-WVS7_Questionnaire_Mexico_2018_Spanish.pdf` bajo `descargas_mx`; `cses5_Questionnaire.txt` bajo `data_raw`/`mm-corpus`) existen en disco y su sha256 real coincide, byte a byte, con `data/manifiesto.yaml` y con la tabla congelada de §6. Ningún mapeo resultó contradicho — no hizo falta un tercer commit de corrección.
+
+**Verificación adicional, no pedida por el encargo pero motivada por el historial real de la rama:** `git log` expone ACTO R-RETRACCIÓN (`764b6bf`), que formaliza el retiro de un registro ISSP/ZA6980 incompatible de ACTO R (PR #190, `ddecf23`, id `za6980_issp2017sn_cuestionario_mx_pdf`), superado por ACTO R″ (PR #193, ya fusionado en `main`). Confirmado antes de escribir: `za6980_q_mx`/`za5900_q_mx` (los ids que usa este acto) son el registro vigente post-retracción — mismo PDF/sha256 que el id retirado, según la propia nota de retracción — no un remanente. `grep -c issp2017sn data/manifiesto.yaml` = `0`; `554` entradas totales; `0` duplicados por `sha256` — re-verificado igual que en el cierre de ACTO R-RETRACCIÓN, sin cambio.
+
+**Escritura:** las 19 filas de §6 escritas exactamente como estaba especificado (`id_manifiesto` + `sha256_fuente`, edición por líneas preservando el TSV, sin `csv.writer` propio). Caveats de §2/§4 (za6980 "débil temáticamente" en N13/N28; cobertura de México no verificada en CSES; anomalía de catálogo N17) escritos en `nota` de las filas correspondientes — no estaban ya presentes pese a la expectativa de la nota de arranque de Commit 2 ("ya debería, por Commit 1"): Commit 1 fue estrictamente de lectura y no tocó `relaciones.tsv`. Las 2 filas N3 (za7600) recibieron el mismo enriquecimiento de `nota`; `id_manifiesto` sin tocar.
+
+**Corrida de la vía:**
+```
+$ python3 tools/curador_registro/via_capa2.py        # antes de escribir
+Diffs propuestos (capa2_manifiesto): 19               # exactamente las 19 filas de §6, todas estado=COINCIDE
+$ python3 tools/curador_registro/via_capa2.py --escribe
+19 filas escritas en relaciones.tsv.
+$ python3 tools/curador_registro/via_capa2.py         # después de escribir
+Diffs propuestos (capa2_manifiesto): 0
+```
+`via_capa2.py --escribe` reescribe el archivo completo vía `csv.DictWriter`; verificado que las 178 filas no tocadas quedaron byte-idénticas (`git diff --numstat` = 21/21 líneas, exactamente las filas de este acto).
+
+**Contador: capa2 `SI`: 24 → 43. Diagnóstico auxiliar: 97 → 78** (78 = 97 − 19: las 19 filas resueltas salen del pool de candidatas a revisión).
+
+**`tests/check.py --baseline`: ROJO, no VERDE — 22 FAIL · 105 WARN, 4 entradas nuevas contra `tests/baseline.json` (HEAD congelado `e7cd99d`).** Verificado con `git stash` de los cambios de este commit que el ROJO es idéntico con y sin ellos — preexistente a Commit 2, no introducido aquí:
+- 1/4 (T03): `forense/encargos/2026-08-13-enlace1-mapeo-id-manifiesto.md` (añadido por Commit 1, `afd9661`) cita en prosa `PLANENLACECAPA220260813.md` — el documento que subió el usuario para lanzar el encargo, nunca un archivo del repo. Falso positivo del escáner de referencias colgantes de T03, no una cita rota real.
+- 3/4 (T16): `canon/estado-programa-v1_10.md` y `canon/gobernanza-v1_15.md` declaran conteos WARN desactualizados (101, 95) frente al real 105 — deriva ajena a este acto, no relacionada con `relaciones.tsv` ni con ISSP/WVS/CSES.
+
+No corregido aquí: el archivo que dispara T03 es de Commit 1, ya empujado — corregirlo excede el perímetro declarado de Commit 2 y no es "la verificación de disco contradice el mapeo" (la única condición que autoriza tocar el resultado de Commit 1). Los documentos `canon/` son de competencia de mesa, no de la sesión ejecutora. Declarado en `forense/hallazgos.md`, no investigado más allá de fijar la causa.
+
+`tests/test_celdas_d.py` (ejecutado directo — `pytest` no está instalado en este entorno, `python3 tests/test_celdas_d.py` corre el mismo `main()`): 2/2 archivos válidos contra el contrato v0.3 §3, sin relación con este acto.
+
+**La frase (Commit 2):** el primer resultado que produjo esta corrida es el que se reporta — 19/19 filas escritas sin contradicción de disco, 0 pares o candidatas adicionales resueltos más allá del alcance congelado en §6.
