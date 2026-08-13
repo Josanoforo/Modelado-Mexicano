@@ -866,7 +866,20 @@ def t19a_estado_cita_modelo_vigente():
 #   conteo real de `procedencia.yaml` -- para que las tres no puedan
 #   volver a divergir sin que algo falle.
 # ───────────────────────────────────────────────────────────────
-_CONTADOR_14 = re.compile(r"condicionales medidas sobre atributos:\s*(?:~~\d+~~\s*)?(\d+)\s*de\s*14", re.I)
+# Denominador 14 -> 15 el 13/ago/2026 (ACTO PROC-11, ejecutando ADR-75(b)): entra
+# `obligación_medida` como condicional nueva, ver `modelo §1.1.F` Paso 6. El NOMBRE
+# de la constante se conserva -- es el identificador del test (T-CONTADOR-14-CRUZADO)
+# y renombrarlo rompería la trazabilidad de ADR-51/Encargo K sin ganar nada; lo que
+# cambia es el denominador que vigila, no qué vigila.
+#
+# OJO -- ESTA CONSTANTE NO ES EL ÚNICO SITIO. T19c (abajo) tiene su propia regex
+# gemela para el mismo contador, leída sobre README.md en vez de sobre `modelo`.
+# ACTO PROC-11 encontró el hueco de la forma cara: su encargo declaraba perímetro
+# "SOLO la constante _CONTADOR_14" y, de haberse ejecutado así, README.md habría
+# quedado en "9 de 15" con T19c todavía buscando "de 14" -- suite ROJA por un
+# perímetro que no podía satisfacer su propio criterio de cierre. Si alguien vuelve
+# a mover este denominador, tiene que mover LAS DOS.
+_CONTADOR_14 = re.compile(r"condicionales medidas sobre atributos:\s*(?:~~\d+~~\s*)?(\d+)\s*de\s*15", re.I)
 
 def t19b_modelo_contador_14():
     """La cabecera de `modelo` ('condicionales medidas sobre atributos:
@@ -975,12 +988,18 @@ def t19c_readme_derivadas():
         return
     ptxt = read(proc)
     real_medidas = ptxt.count('clase: "MEDIDO·PARCIAL')
-    mcond = re.search(r"[Cc]ondicionales medidas\s*(\d+)\s*de\s*14", bloque)
+    # Regex GEMELA de `_CONTADOR_14` (línea ~869), sobre README en vez de `modelo`.
+    # Denominador 14 -> 15 el 13/ago/2026, ACTO PROC-11 -- ver el comentario largo
+    # junto a esa constante: las dos se mueven juntas o la suite se pone roja.
+    # El NUMERADOR sigue derivándose de `procedencia.yaml`, sin cambio: el acto que
+    # movió el denominador no metió ninguna entrada nueva a ese archivo (las dos θ
+    # nuevas son marginales nacionales y `MEDIDO·PARCIAL(x)` exige eje condicionante).
+    mcond = re.search(r"[Cc]ondicionales medidas\s*(\d+)\s*de\s*15", bloque)
     if not mcond:
         fail("T19c", "README.md, `## Estado del modelo`: no se encontró "
-                     "'condicionales medidas N de 14'")
+                     "'condicionales medidas N de 15'")
     elif int(mcond.group(1)) != real_medidas:
-        fail("T19c", f"README.md declara condicionales medidas {mcond.group(1)} de 14; "
+        fail("T19c", f"README.md declara condicionales medidas {mcond.group(1)} de 15; "
                     f"`grep -c 'clase: \"MEDIDO·PARCIAL' {rel(proc)}` da {real_medidas}")
 
     promovido = re.search(r"magnitud:\s*medid", ptxt, re.I) is not None
