@@ -2,7 +2,7 @@
 
 **SHA de redacción:** `dcc4f6a` + PR #197 fusionado (SONDA-1).
 **Entorno asignado:** CAJA con red y corpus compartido. NO en nube (no alcanza dominios de datos ni tiene los bytes). NO lanzado en los dos.
-**Estado:** VIVO al archivarse este texto (13/ago/2026, sesión de ejecución de este mismo acto). La firma de mesa para §1 llegó en un segundo turno de la misma conversación (verbatim, íntegra, abajo) — el acto no arrancó hasta que llegó.
+**Estado:** CONSUMIDO por PR #204 (13/ago/2026). La firma de mesa para §1 llegó en un segundo turno de la misma conversación (verbatim, íntegra, abajo) — el acto no arrancó hasta que llegó. Cierre: 4/5 fuentes firmadas adquiridas (CNGMD·28 NO OBTENIDO); T1/T2/T3 cerrados; ver `forense/notas/2026-08-13-acto-p-lote2-adquisicion.md` para el detalle y los hallazgos.
 
 ---
 
