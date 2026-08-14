@@ -2,7 +2,7 @@
 
 - **SHA de redacción:** `84b2acf` (`origin/main`, post-#228) — el propio documento lo declara en su encabezado y se verificó por comando contra el clon de esta sesión antes de arrancar.
 - **Entorno asignado:** «caja o nube con corpus» (§4, fila 6 de la tabla de lanzamiento) · **SIN red** — declarado por el propio encargo, sonda saltada. Ejecutado en esta ocasión en la CAJA (Ubuntu/WSL local) con el corpus montado por symlink, que es lo que ENLACE-1 Commit 1 no tuvo.
-- **Estado:** CONSUMIDO — ejecutado en `forense/notas/2026-08-14-enlace2-clase-limbo.md` (Commit 1: política congelada) y `forense/notas/2026-08-14-enlace2-adjudicacion-resultados.md` (Commits 2-3: adjudicación, vía, las 19).
+- **Estado:** CONSUMIDO por PR de ACTO ENLACE-2 — ejecutado en `forense/notas/2026-08-14-enlace2-clase-limbo.md` (Commit 1: política congelada) y `forense/notas/2026-08-14-enlace2-68-mas-19.md` (Commits 2-3: adjudicación de las 68, corrida de la vía, destino de las 19). Contador movido: capa2 `SI` 43 → 51.
 - **Concurrencia declarada por el propio encargo:** «serializa con nadie: `relaciones.tsv` es solo suyo esta ola». SANEA-MAPEO, el otro encargo de F-B, declara explícitamente que **NO** toca `relaciones.tsv`.
 
 ## Bloque VERIFICACIÓN DE EXISTENCIA (A.8, Parte 2 — contestado por quien ejecuta)
