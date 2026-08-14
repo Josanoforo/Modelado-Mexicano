@@ -879,6 +879,16 @@ def t19a_estado_cita_modelo_vigente():
 # quedado en "9 de 15" con T19c todavía buscando "de 14" -- suite ROJA por un
 # perímetro que no podía satisfacer su propio criterio de cierre. Si alguien vuelve
 # a mover este denominador, tiene que mover LAS DOS.
+#
+# NUMERADOR -- séptima clase, 13/ago/2026 (`ACTO PROC-10-bis`, ADR-79(a)):
+# `milpa/procedencia.yaml` ganó `MEDIDO·NACIONAL` (marginales medidas sin eje,
+# x = ∅) además de `MEDIDO·PARCIAL(x)`. Este predicado, y su gemelo de T19c
+# abajo, contaban SOLO `MEDIDO·PARCIAL` -- una subcadena literal que no
+# reconoce la clase nueva. El numerador subió de 9 a 10 en `procedencia.yaml`
+# (entra `norma_de_género`) pero el conteo mecánico se quedó en 9: suite ROJA
+# declarada por `PROC-10-bis` (`forense/notas/2026-08-13-proc-10-bis.md` §4),
+# corregida aquí. Mismo criterio que el hueco del párrafo de arriba: quien
+# mueva el numerador con una clase nueva tiene que sumarla aquí Y en T19c.
 _CONTADOR_14 = re.compile(r"condicionales medidas sobre atributos:\s*(?:~~\d+~~\s*)?(\d+)\s*de\s*15", re.I)
 
 def t19b_modelo_contador_14():
@@ -915,10 +925,11 @@ def t19b_modelo_contador_14():
     if not os.path.exists(proc):
         fail("T19b", "no se pudo leer `milpa/procedencia.yaml`")
         return
-    real = read(proc).count('clase: "MEDIDO·PARCIAL')
+    ptxt = read(proc)
+    real = ptxt.count('clase: "MEDIDO·PARCIAL') + ptxt.count('clase: "MEDIDO·NACIONAL')
     if declarado_cabecera != real:
         fail("T19b", f"{rel(m)}: cabecera declara {declarado_cabecera} de 14; "
-                    f"`grep -c 'clase: \"MEDIDO·PARCIAL' {rel(proc)}` da {real}")
+                    f"`grep -c 'clase: \"MEDIDO·PARCIAL\\|MEDIDO·NACIONAL' {rel(proc)}` da {real}")
 
 
 # ───────────────────────────────────────────────────────────────
@@ -987,20 +998,21 @@ def t19c_readme_derivadas():
         fail("T19c", "no se pudo leer `milpa/procedencia.yaml`")
         return
     ptxt = read(proc)
-    real_medidas = ptxt.count('clase: "MEDIDO·PARCIAL')
+    real_medidas = ptxt.count('clase: "MEDIDO·PARCIAL') + ptxt.count('clase: "MEDIDO·NACIONAL')
     # Regex GEMELA de `_CONTADOR_14` (línea ~869), sobre README en vez de `modelo`.
     # Denominador 14 -> 15 el 13/ago/2026, ACTO PROC-11 -- ver el comentario largo
     # junto a esa constante: las dos se mueven juntas o la suite se pone roja.
-    # El NUMERADOR sigue derivándose de `procedencia.yaml`, sin cambio: el acto que
-    # movió el denominador no metió ninguna entrada nueva a ese archivo (las dos θ
-    # nuevas son marginales nacionales y `MEDIDO·PARCIAL(x)` exige eje condicionante).
+    # NUMERADOR -- séptima clase, 13/ago/2026 (`ACTO PROC-10-bis`, ADR-79(a)):
+    # `MEDIDO·NACIONAL` entra a la cuenta junto con `MEDIDO·PARCIAL(x)`; ver el
+    # comentario largo junto a `_CONTADOR_14` -- las dos regex se corrigen juntas
+    # o la suite se pone roja otra vez.
     mcond = re.search(r"[Cc]ondicionales medidas\s*(\d+)\s*de\s*15", bloque)
     if not mcond:
         fail("T19c", "README.md, `## Estado del modelo`: no se encontró "
                      "'condicionales medidas N de 15'")
     elif int(mcond.group(1)) != real_medidas:
         fail("T19c", f"README.md declara condicionales medidas {mcond.group(1)} de 15; "
-                    f"`grep -c 'clase: \"MEDIDO·PARCIAL' {rel(proc)}` da {real_medidas}")
+                    f"`grep -c 'clase: \"MEDIDO·PARCIAL\\|MEDIDO·NACIONAL' {rel(proc)}` da {real_medidas}")
 
     promovido = re.search(r"magnitud:\s*medid", ptxt, re.I) is not None
     mcoef = re.search(r"[Cc]oeficientes en escala del modelo\s*(\d+)\s*de\s*15", bloque)
@@ -1217,6 +1229,22 @@ def _classify(test, msg):
             # T03 compara por nombre exacto y no lo reconoce. Mismo patrón que
             # 2026-08-12-M6-sello.md, ya congelado.
             return "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello"
+        if name in {"compass-1-7edaceda.md", "compass-2-8b198c56.md", "compass-3-d72e6a97.md",
+                     "red-team-A_auditoria-adversarial.md", "red_team_A_auditoria.md"}:
+            # ACTO PROC-10-bis, 13/ago/2026: el encargo de MOTOR-1 (§3, archivado
+            # verbatim en forense/encargos/2026-08-13-PROC-10-BIS-clase-septima-y-anexos.md
+            # por A.3) exige que "el lanzador suba a la sesión" estos cinco archivos --
+            # nunca llegaron. MOTOR-1 se declaró bloqueado (PARA) precisamente por su
+            # ausencia; T03 la confirma, no es un defecto nuevo. Desaparece cuando
+            # MOTOR-1 corra con los archivos en mano, o si alguien retira la cita.
+            return "T03_encargo_MOTOR-1_cita_archivos_nunca_entregados_a_la_sesion__PROC-10-bis_declara_PARA"
+        if name == "propuesta-motor-matriz-v0_2.md":
+            # ACTO PROC-10-bis, 13/ago/2026: el encargo original (archivado verbatim,
+            # §3 PERÍMETRO de MOTOR-1) cita "propuesta-motor-matriz-v0_2.md" -- solo
+            # existe "propuesta-motor-matriz-v0_1.md" en el árbol. Error del encargo tal
+            # como se lanzó (A.3 prohíbe editarlo), repetido una vez más en la nota propia
+            # al citarlo para explicar el hallazgo. No se corrige ninguna de las dos citas.
+            return "T03_encargo_verbatim_cita_v0_2_inexistente__solo_existe_v0_1__error_del_encargo_PROC-10-bis"
         return "T03_sin_clasificar"
     if test == "T13":
         return "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01"
@@ -1234,11 +1262,13 @@ def _freeze_note():
         if t == "T17":
             buckets["T17_autodeclaracion_falsa_conocida__protegida_por_append-only__pendiente_de_ADR"] += 1
         elif t == "T16":
-            if "gobernanza-v1_15.md:1104" in m or "gobernanza-v1_15.md:1132" in m:
+            if "gobernanza-v1_15.md:1104" in m or "gobernanza-v1_15.md:1134" in m:
                 # ACTO A8-LAND, 13/ago/2026 (ADR-78): gobernanza:1104 (ADR-76(f))
-                # y gobernanza:1132 (ADR-77, su propia Cascada) declaran "104
-                # WARN", exacto contra su propia base al sellarse -- correctos
-                # como historia, no como estado vigente. Consecuencia
+                # y gobernanza:1134 (ADR-77, su propia Cascada -- corrida en
+                # :1132 al sellarse; el número de línea se movió por edits
+                # ajenos entre entonces y este refreeze, el texto no) declaran
+                # "104 WARN", exacto contra su propia base al sellarse --
+                # correctos como historia, no como estado vigente. Consecuencia
                 # aritmética del T03 de este mismo refreeze (el encargo
                 # archivado sube el WARN real de 104 a 107), no un defecto de
                 # ninguno de los dos ADR. T16 no distingue "lo que ese ADR
@@ -1248,6 +1278,20 @@ def _freeze_note():
                 # decisiones ya selladas.
                 buckets["T16_cifra_historica_de_ADR_ya_sellado__consecuencia_aritmetica_"
                         "del_T03_de_A8LAND__no_defecto_de_ese_ADR__ver_ADR-78"] += 1
+            elif ("gobernanza-v1_15.md:764" in m or "gobernanza-v1_15.md:856" in m or
+                  "estado-programa-v1_10.md:129" in m or "estado-programa-v1_10.md:221" in m):
+                # ACTO PROC-10-bis, 13/ago/2026: estas cuatro citas declaran "107
+                # WARN" (o "18 FAIL · 107 WARN"), exacto contra su propia base al
+                # escribirse (ACTO A8-LAND ya había subido 104 a 107) -- correctas
+                # como historia. Consecuencia aritmética de este mismo refreeze: el
+                # encargo de MOTOR-1 archivado por A.3 (forense/encargos/2026-08-13-
+                # PROC-10-BIS-clase-septima-y-anexos.md) cita cinco archivos nunca
+                # entregados a la sesión más un "v0_2" inexistente, subiendo el WARN
+                # real de 107 a 119 -- ver forense/notas/2026-08-13-proc-10-bis.md
+                # §4. No es un defecto de ninguna de las cuatro citas ni del propio
+                # encargo archivado (A.3 prohíbe editarlo).
+                buckets["T16_cifra_historica_declarada_107_WARN__consecuencia_aritmetica_"
+                        "del_T03_de_PROC-10-bis__no_defecto_independiente"] += 1
             else:
                 # Los T16 del refreeze del 30/jul/2026 son consecuencia aritmética
                 # del T03 de revision-publicacion (3 citas ilustrativas suben el
@@ -1277,7 +1321,24 @@ def _freeze_note():
                       "gobernanza:1132/ADR-77, cada uno correcto contra lo que su propio ADR "
                       "midió al sellarse, consecuencia aritmética del T03 de este mismo "
                       "refreeze — ninguno de los dos ADR está mal, el WARN real se movió "
-                      "después de que ambos sellaran)."),
+                      "después de que ambos sellaran). "
+                      "Re-congelada el 13/ago/2026, ACTO PROC-10-bis (ADR-79(a)), autorizado "
+                      "explícitamente por el usuario en la sesión ('pull and solve CI', tras "
+                      "reportarle el fallo de CI de PR #227 y el hallazgo verificado) — mismo "
+                      "mecanismo de autorización que ya usó ACTO A8-LAND. Corrige la causa raíz "
+                      "declarada por PROC-10-bis (T19b/T19c contaban solo `MEDIDO·PARCIAL`, no "
+                      "reconocían la séptima clase `MEDIDO·NACIONAL` que ese acto selló — "
+                      "corregido en ambas regex, `tests/check.py` líneas ~918/~1001) y congela "
+                      "el residuo esperado: 7 T03 (los cinco archivos de MOTOR-1 nunca "
+                      "entregados a la sesión, más dos citas del propio encargo verbatim a "
+                      "`propuesta-motor-matriz-v0_2.md`, que no existe — solo `v0_1` — error "
+                      "del encargo original, no de este acto) y 6 T16 (cuatro citas históricas "
+                      "de \"107 WARN\"/\"18 FAIL · 107 WARN\" en gobernanza:764,856 y "
+                      "estado-programa:129,221, correctas cuando se escribieron, más las dos ya "
+                      "clasificadas de A8-LAND cuyo número de línea real se corrió de :1132 a "
+                      ":1134 por edits ajenos entre sesiones — consecuencia aritmética de subir "
+                      "el WARN real, ninguna cita está mal). Detalle completo: "
+                      "forense/notas/2026-08-13-proc-10-bis.md §4."),
         "fecha_de_clasificacion": "2026-08-13",
         "conteo_por_bucket": dict(sorted(buckets.items())),
     }
