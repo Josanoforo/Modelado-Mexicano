@@ -6,7 +6,7 @@ from pathlib import Path
 
 import yaml
 
-from tools.curador_registro.via_capa2 import derivar, aplicar_diffs
+from tools.curador_registro.via_capa2 import CAPA3_INTEGRO, aplicar_diffs, derivar
 
 
 class ViaCapa2Test(unittest.TestCase):
@@ -35,21 +35,25 @@ class ViaCapa2Test(unittest.TestCase):
                 "relacion_id": "REL-A", "necesidad_id": "N1",
                 "fuente_canonica_normalizada": "FUENTE_OK",
                 "id_manifiesto": "fuente_ok_xlsx", "capa2_manifiesto": "SI_O_REFERENCIADO",
+                "capa3_disco_real": "SI_O_PARCIAL",
             },
             {  # id_manifiesto apunta a una entrada cuyo payload no coincide -> NO promueve
                 "relacion_id": "REL-B", "necesidad_id": "N2",
                 "fuente_canonica_normalizada": "FUENTE_ROTA",
                 "id_manifiesto": "fuente_rota_xlsx", "capa2_manifiesto": "SI_O_REFERENCIADO",
+                "capa3_disco_real": "SI_O_PARCIAL",
             },
             {  # sin id_manifiesto, pero el nombre aparece en el manifiesto -> diagnostico, no escribe
                 "relacion_id": "REL-C", "necesidad_id": "N3",
                 "fuente_canonica_normalizada": "FUENTE_CANDIDATA",
                 "id_manifiesto": "NO_DETERMINADO", "capa2_manifiesto": "NO_REFERENCIADO",
+                "capa3_disco_real": "NO_REFERENCIADO",
             },
             {  # sin id_manifiesto y sin ninguna presencia -> ni diff ni diagnostico
                 "relacion_id": "REL-D", "necesidad_id": "N4",
                 "fuente_canonica_normalizada": "FUENTE_AUSENTE",
                 "id_manifiesto": "NO_DETERMINADO", "capa2_manifiesto": "NO_REFERENCIADO",
+                "capa3_disco_real": "NO_REFERENCIADO",
             },
         ]
         for f in filas:
@@ -112,6 +116,41 @@ class ViaCapa2Test(unittest.TestCase):
         antes = self.relaciones_path.read_bytes()
         aplicar_diffs(self.relaciones_path, [])
         self.assertEqual(self.relaciones_path.read_bytes(), antes)
+
+
+    def test_promover_lleva_capa3_y_solo_en_las_promovidas(self):
+        """El defecto que ENLACE-2 (PR 236) midio: la via escribia capa2 y
+        dejaba capa3 atras, asi que cada promocion creaba una fila
+        SI|SI_O_PARCIAL que alguien reconciliaba a mano despues."""
+        resultado = derivar(self.root)
+        escritas = aplicar_diffs(self.relaciones_path, resultado["diffs_propuestos"])
+        self.assertEqual(escritas, 1, "solo REL-A se promueve, solo REL-A lleva capa3")
+        with self.relaciones_path.open(encoding="utf-8-sig", newline="") as h:
+            por_id = {f["relacion_id"]: f for f in csv.DictReader(h, delimiter="\t")}
+        self.assertEqual(por_id["REL-A"]["capa2_manifiesto"], "SI")
+        self.assertEqual(por_id["REL-A"]["capa3_disco_real"], CAPA3_INTEGRO)
+        # las no promovidas conservan su capa3 intacto
+        self.assertEqual(por_id["REL-B"]["capa3_disco_real"], "SI_O_PARCIAL")
+        self.assertEqual(por_id["REL-C"]["capa3_disco_real"], "NO_REFERENCIADO")
+        self.assertEqual(por_id["REL-D"]["capa3_disco_real"], "NO_REFERENCIADO")
+
+    def test_no_toca_capa3_si_el_estado_no_es_coincide(self):
+        """Hoy `derivado = "SI" if estado == "COINCIDE"` hace imposible este
+        caso; la prueba fija la condicion por si esa regla cambia. capa3 se
+        escribe porque COINCIDE lo verifico, no porque el veredicto sea SI."""
+        diff = {
+            "relacion_id": "REL-B", "necesidad_id": "N2",
+            "fuente_canonica_normalizada": "FUENTE_ROTA",
+            "actual": "SI_O_REFERENCIADO", "derivado": "SI",
+            "estado": "NO_COINCIDE", "razon": "forzado por la prueba",
+        }
+        escritas = aplicar_diffs(self.relaciones_path, [diff])
+        self.assertEqual(escritas, 0)
+        with self.relaciones_path.open(encoding="utf-8-sig", newline="") as h:
+            por_id = {f["relacion_id"]: f for f in csv.DictReader(h, delimiter="\t")}
+        self.assertEqual(por_id["REL-B"]["capa2_manifiesto"], "SI")
+        self.assertEqual(por_id["REL-B"]["capa3_disco_real"], "SI_O_PARCIAL",
+                         "capa3 no se adivina desde el veredicto")
 
 
 if __name__ == "__main__":
