@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **83 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **84 ADR**
 
 > | | |
 > |---|---|
@@ -1332,6 +1332,30 @@ print('únicos',len(s),'max',max(s),'huecos',[i for i in range(1,max(s)+1) if i 
 **Versión y nombre de archivo.** El número de versión de `gobernanza` **no sube** y el archivo **no se renombra** — mismo criterio que `ADR-48` a `ADR-82`.
 
 → **Vigente.** *(Decisión de mesa, ACTO S4-AMANUENSE-MESA (CIERRE-E6), 14/ago/2026. Sesión nube, secuencial interno — perímetro declarado en el propio encargo: `canon/gobernanza-v1_15.md` (este ADR), `canon/estado-programa-v1_10.md` (cascada), `forense/registro-recalculo-v1_0.md` (cierre de Entrada 6); no tocó `milpa/procedencia.yaml`, `canon/modelo-decision-v4_0.md`, `tests/**` ni `data/censo-explotacion-2026-08-13.tsv`.)*
+
+---
+
+**ADR-84 · Mesa autoriza el mecanismo TABLERO-FIRMAS — crea `forense/firmas-pendientes.tsv`, sella la convención `A.12`, y encarga el vigía mecánico `T-FIRMAS` (commit separado) que se auto-protege.** Decisión de mesa del autor, ACTO TABLERO-FIRMAS, 14/ago/2026, dictada como firma de mesa verbatim que autoriza a la vez la creación del mecanismo y el texto que lo sella — patrón SELLA-3 (`ADR-76`/`ADR-79`): el ejecutor propaga una decisión dictada, no decide. Detalle completo, los dos barridos y la derivación fila por fila, en `forense/notas/2026-08-14-tablero-firmas.md`.
+
+**Firma de mesa, verbatim:** *"está bien que yo tenga que sellar; el maldito problema viene cuando ya ni nos acordamos que tengo que sellar y se quedan en el limbo como muchas otras cosas."*
+
+**(a) El tablero.** `forense/firmas-pendientes.tsv` — esquema `id · qué_se_firma · dónde · creado · gatea · estado (ABIERTA/FIRMADA/RETIRADA) · firmada_en` — poblado por barrido DERIVADO del árbol, no de memoria: `grep -rn "RANURA" canon/ forense/ milpa/`; `grep -rn "requiere_decision.*true\|PENDIENTE de mesa\|pendiente nombrado.*mesa\|PROPUESTA.*mesa"` sobre el árbol completo; los seis incisos `M1`-`M6` del esqueleto `ADR-MOTOR-2`; la disputa de rótulo `A.7`; el rótulo `A.10` autorizado sin escribir; la regla de precedencia de pares de filas de `ADR-76(e)` sellada sin aplicar; y lo que los dos barridos encontraron además. **23 filas, 19 `ABIERTA` y 4 `FIRMADA`.** Tres hallazgos de verificación que el propio barrido produjo, no supuestos: (1) la fila de `A.9` —que el encargo de hoy traía como pendiente— ya estaba `FIRMADA` por `ADR-81(c)` antes de que este acto empezara a escribir; se registra `FIRMADA`, no `ABIERTA`, con nota de la premisa vencida. (2) `origin/main` avanzó durante la propia investigación de este acto (`PR #235`, `ACTO PROD-P638`) y resolvió en vivo la fila que iba a registrarse como la propagación pendiente de `obligación_medida`; se fusionó esa base antes de escribir y la fila entró ya `FIRMADA`. (3) Ese mismo `PR #235` dejó, a su vez, un hallazgo propio sin cerrar (`forense/hallazgos.md`, entrada "ACTO PROD-P638, hallazgo fuera de perímetro"): dos entradas de `especificaciones-produccion.json` con `requiere_decision: "SI"` que ya no reflejan decisiones resueltas — se registra `ABIERTA` en el mismo barrido, no en un acto aparte. Las tres son la prueba de que el tablero se deriva contra el árbol real en el momento de escribir, no contra lo que el encargo, la memoria, o el acto anterior suponían.
+
+**(b) La convención, `A.12`.** Texto sellado en `instrucciones-proyecto-v2_9.md`, incorporado verbatim:
+
+> Todo acto que cree una ranura de firma, deje una decisión "de mesa" sin resolver, o marque algo PROPUESTA/PENDIENTE-de-mesa, añade su fila a `forense/firmas-pendientes.tsv` en el mismo commit. Toda firma dada se marca FIRMADA con su ADR/PR en el acto que la propaga. El tablero se deriva, no se recuerda.
+
+**(c) El vigía, `T-FIRMAS`.** Autorizado aquí, escrito en commit separado sobre `tests/check.py`: WARN siempre que existan filas `ABIERTA` (una por fila, con sus días de antigüedad); FAIL si aparece un marcador nuevo (`RANURA`/`PENDIENTE de mesa`) en `canon/`/`forense/` sin fila correspondiente en el tablero — el mecanismo se auto-protege desde su propio primer commit.
+
+**Lo que este ADR NO hace.** No firma ninguna de las 19 filas `ABIERTA` del tablero — registrarlas no es adjudicarlas, es el acto contrario: hacerlas visibles para que mesa las firme cuando corresponda, una por una, en el acto que traiga esa firma. No escribe el texto de `A.10` ni reclama `A.11` — quedan exactamente como estaban, declarado en la nota de alcance de `instrucciones-proyecto-v2_9.md`, no decidido aquí. No resuelve la disputa del rótulo `A.7` (fila `FP-07`). No toca `milpa/`, `data/` ni `canon/modelo-decision-v4_0.md`.
+
+**Cascada.** Conteo de ADR (83→84), derivado con la receta de T15 contra `origin/main` real (`2f2125c`, tras fusionar `ACTO PROD-P638`/`PR #235` — únicos:83 · max:83 · huecos:[]): `gobernanza-v1_15.md:2` (cabecera) · `estado-programa-v1_10.md:27,101` (las dos citas de esa línea). `python3 tests/check.py` (crudo, sin flags), corrido antes de este commit: **18 FAIL · 119 WARN** (más los 2 T16 permanentes de `gobernanza:1106`/`:1136`, ya aceptados desde antes de este acto — 20 en la corrida completa), sin cambio por este commit — ninguna fila nueva de `T-FIRMAS` existe todavía (ese test se escribe y se cuenta en el commit separado de `(c)`). **Contadores que NO se mueven, declarado uno por uno:** `13 de 27` (Hito D) · `11 de 15` (condicionales) · `0 de 15` (coeficientes) · `1 de 2` (llaves) · `4 de 144`. Ninguno — este acto es de gobierno sobre el propio programa, no de medición sobre México. **Contador que sí mueve, y es el propio del acto: `0 → 19` firmas de mesa pendientes visibles donde antes había limbo** — el número exacto lo produce el barrido de `(a)`, no este encargo ni ningún otro documento.
+
+**Reversión.** Solo por un ADR de mesa que retire `A.12` o decida que el tablero no vale su costo — mismo criterio de caducidad a tres meses que `A.3`/`A.8`/`A.9` ya usan, declarado en `instrucciones-proyecto-v2_9.md`.
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` **no sube** y el archivo **no se renombra** — mismo criterio que `ADR-48` a `ADR-83`.
+
+→ **Vigente.** *(Decisión de mesa, ACTO TABLERO-FIRMAS, 14/ago/2026. Sesión repo-only, nube, sin red, sin `data/raw` — perímetro: `canon/gobernanza-v1_15.md` (este ADR), `canon/estado-programa-v1_10.md` (cascada), `forense/firmas-pendientes.tsv` (nuevo), `instrucciones-proyecto-v2_9.md` (nuevo), `forense/hallazgos.md`, `forense/notas/2026-08-14-tablero-firmas.md` (nuevo); `tests/check.py` (`T-FIRMAS`) va en commit separado declarado en `(c)`; no tocó `milpa/`, `data/` ni `canon/modelo-decision-v4_0.md`.)*
 
 ---
 
