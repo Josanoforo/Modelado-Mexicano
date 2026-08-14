@@ -447,12 +447,14 @@ condicionales_escalares_exposicion_violencia:
 # ejecutado (`forense/notas/2026-08-13-proc-10.md` §1-§3). Primer uso:
 # `norma_de_género` (ENASIC 2022 P7_12_7, renombrada desde
 # `familismo_obligacion` por ADR-75(b)/`ACTO PROC-11`, 13/ago/2026).
-# Contador: numerador 9 → 10, denominador intacto en 15 (ya movido a 15 por
-# `ACTO PROC-11`, ADR-75(b) -- objeto distinto, ver ADR-79(h)).
-# `obligación_medida` (P6_38, la segunda θ marginal nacional de la misma
-# familia, celda-D ya registrada en `data/curacion-registro/celdas-d/`)
-# NO entra aquí -- su expediente propio y su entrada a este archivo son el
-# encargo de `PROD-P638`; numerador a 11 de 15 cuando cierre.
+# Contador: numerador 9 → 10 (`PROC-10-bis`), denominador intacto en 15 (ya
+# movido a 15 por `ACTO PROC-11`, ADR-75(b) -- objeto distinto, ver ADR-79(h)).
+# Segundo uso, 13/ago/2026, `ACTO PROD-P638`: `obligación_medida` (ENASIC
+# 2022 P6_38, tabla TPOB_CUI) -- la segunda θ marginal nacional de la misma
+# familia, celda-D registrada por `ACTO PROC-11`, reproducida por el motor
+# formal (prepare->produce->integrate, hashes_analista_confiados: false) y
+# verificada contra las cinco proporciones e IC de `forense/notas/2026-08-13-
+# enasic-split-verificacion.md` §2.2. Numerador 10 → 11.
 # ══════════════════════════════════════════════════════════════════
 condicionales_escalares_medido_nacional:
   norma_de_género:
@@ -500,6 +502,66 @@ condicionales_escalares_medido_nacional:
       §5, nombrada y no ejecutada aquí). `MEDIDO·NACIONAL` describe lo que
       esta θ ES (marginal, sin eje), no una promesa de que nunca se
       condicionará.
+  obligación_medida:
+    clase: "MEDIDO·NACIONAL"
+    antes: >
+      Registrada por `ACTO PROC-11` (13/ago/2026) como celda-D
+      (`G5.obligacion_medida.conducta.yaml`), pero sin clase de procedencia:
+      la fila «Medida sin clase de procedencia — decisión D3 pendiente» de
+      `modelo` §1.1.F Paso 5, contada aparte de `MEDIDO·NACIONAL` aunque la
+      clase séptima ya existiera desde `PROC-10-bis`, porque el expediente
+      de producción propio (celda calculada por `ENASIC-SPLIT`, no
+      reproducida todavía por el motor formal) era el encargo separado de
+      `ACTO PROD-P638`.
+    fuente: >
+      ENASIC 2022, P6_38, tabla TPOB_CUI (población cuidadora, `FILTRO
+      6.10`) -- expediente `ESP-OPACA-D-d800e103`, fila
+      `PROD-ea28cc177894157ca113388b` (fila 12) de
+      `data/curacion-registro/produccion-modelo.tsv`; celda-D en
+      `data/curacion-registro/celdas-d/G5.obligacion_medida.conducta.yaml`.
+      Cálculo original y pre-registro del método en
+      `forense/notas/2026-08-13-enasic-split-verificacion.md` §1.5/§2.2
+      (`tests/svystat.py::prop_ultimate_cluster`); reproducción
+      independiente por el motor formal
+      (`tools/curador_registro/produce.py::taylor_distribution`,
+      `hashes_analista_confiados: false`) en
+      `forense/notas/2026-08-13-prod-p638.md` §1-§2.
+    n_util: 5677
+    theta_ic95: >
+      Categórica de 5 vías, elección única (no binaria como la celda
+      hermana): obligación 0.0765 IC95[0.0661,0.0868] (n=479) · decisión
+      familiar 0.0671 IC95[0.0579,0.0763] (n=366) · ser la (el) única(o) que
+      podía 0.0356 IC95[0.0286,0.0426] (n=193) · petición de quien necesita
+      el cuidado 0.0123 IC95[0.0083,0.0162] (n=72) · iniciativa propia
+      0.8086 IC95[0.7918,0.8254] (n=4,567). Idéntico a 4 decimales entre el
+      motor formal (z=1.96) y `svystat.py` (z=1.959963985, declarado en
+      §1.5 como no comparable dígito a dígito) -- verificado que la
+      diferencia de cuantil no mueve ninguna cifra a esta precisión. IC95
+      por linealización de Taylor sobre conglomerados últimos
+      (EST_DIS/UPM_DIS), ponderador FAC_CUI.
+    eje_condicionante: >
+      ∅ -- marginal nacional, sin eje declarado. Mismo hueco de taxonomía
+      que `norma_de_género` (arriba); ambas comparten clase por la misma
+      razón, no por ser el mismo constructo.
+    limite_de_constructo: >
+      Verbatim de `forense/notas/2026-08-13-enasic-split-verificacion.md`
+      §2.2 (Bloque A-bis regla 3): "el 7.65% de P6_38 (motivo propio, entre
+      cuidadores ya identificados, ventana de una semana) y el 69.33% de
+      P7_12_7 (acuerdo con una norma general, población elegida completa,
+      sin ventana retrospectiva) no se restan ni se comparan como si fueran
+      la misma escala -- universos distintos, preguntas distintas, escalas
+      distintas". Periodo de referencia también distinto: "la semana
+      anterior a la fecha de referencia" (`obligación_medida`) vs. momento
+      de la entrevista, sin ventana retrospectiva (`norma_de_género`). No se
+      declara EXISTE-SATISFACE.
+    nota: >
+      Segunda entrada de la clase séptima, no una reapertura de D3: la
+      clase y su definición (arriba) ya estaban selladas por `PROC-10-bis`
+      (ADR-79(a)); este acto (`PROD-P638`) solo añade la segunda θ de la
+      misma familia que ya estaba nombrada en la propia definición de la
+      clase (adenda B.5.3 de `forense/notas/2026-08-13-proc-11.md`).
+      Admitir esta θ tampoco abre su condicional POR eje -- mismo criterio
+      que `norma_de_género`, misma puerta D3-B nombrada y no ejecutada.
 
 # ══════════════════════════════════════════════════════════════════
 # DEUDA BLOQUEANTE — los 90 parámetros de dispersión (ADR-28.d)
