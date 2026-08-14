@@ -1209,6 +1209,14 @@ _T21_ARCHIVOS_CONOCIDOS = {
     "forense/notas/2026-08-14-sanea-mapeo.md",
     "forense/notas/2026-08-14-tablero-firmas.md",
     "forense/notas/2026-08-14-t-firmas.md",
+    # Sumados en ACTO TABLERO-FIRMAS COMMIT 3 -- origin/main avanzó con
+    # ENLACE-2/MOTOR-3-E0/RECONCILIA-SPEC (PR #236-238) mientras este acto
+    # investigaba; ver forense/notas/2026-08-14-tablero-firmas-commit3.md.
+    "forense/encargos/2026-08-14-ENLACE-2-adjudicacion-68-y-19.md",  # cita FP-24 (RANURA c) y los M1-M6 ya cubiertos por FP-01..FP-06
+    "forense/notas/2026-08-14-enlace2-68-mas-19.md",                # fuente primaria de FP-24
+    "forense/notas/2026-08-14-enlace2-clase-limbo.md",              # fuente primaria de FP-24, §4
+    "forense/encargos/2026-08-14-MOTOR-3-E0-autocontenido.md",      # solo referencia M1-M6, ya cubiertos por FP-01..FP-06
+    "forense/notas/2026-08-14-tablero-firmas-commit3.md",            # esta misma nota cita los marcadores verbatim al documentarlos -- mismo autocaptura que ya tuvo el commit 2
 }
 
 def _t21_tabla():

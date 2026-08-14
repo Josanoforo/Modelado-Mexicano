@@ -119,6 +119,18 @@ celda_d:
                                  # requiere_decision=SI -> NO, misma fecha); periodo_levantamiento (la otra
                                  # reserva, cerrada 12/ago por U1/E4b') y el encuadre de género (cerrada
                                  # aquí) eran dos reservas independientes -- ambas resueltas ya.
+  correccion_2026-08-14: >
+    La afirmación de arriba (requiere_decision=SI -> NO, misma fecha) es falsa contra el
+    árbol real -- corregido por ACTO RECONCILIA-SPEC, 14/ago/2026, sin borrar la afirmación
+    original. La spec NO se actualizó en ACTO RES: evidencia, `git log fb4bade..HEAD --oneline
+    -- data/curacion-registro/especificaciones-produccion.json` devuelve un único commit,
+    57a730b (ACTO PROD-P638 COMMIT 1), inserción pura (+28/-0, agrega ESP-OPACA-D) cuyo propio
+    mensaje declara "A/B/C re-derivadas byte a byte, sin cambio" --
+    especificaciones-produccion.json#ESP-OPACA-B-d13ec4fe.supervisor_link.requiere_decision
+    permaneció "SI" desde la creación del archivo hasta este acto, nunca "NO". Corregida en
+    la maestra por este mismo acto (Commit 2), citando ADR-75(a) -- la resolución que la
+    maestra debía reflejar: "SI" -> "NO". Detalle completo, con el diagnóstico de --validate-
+    existing y el mapa de las 9 filas: forense/notas/2026-08-14-reconcilia-spec.md.
   fecha_declaracion: "2026-08-11"
   commit_declaracion: "8df61b0"  # SHA del commit 1 (SELLO-B), pusheado a origin/e4b/sello-b-corrida-b antes de este commit
   fecha_adjudicacion: "NO-APLICA"
