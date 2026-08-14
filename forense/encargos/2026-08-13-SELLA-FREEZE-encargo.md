@@ -2,7 +2,7 @@
 
 - **SHA de redacción**: `84b2acf` (`origin/main`, merge #228 · ACTO TRIAGE-63 COMMIT 2) — derivado por comando el 13/ago/2026, no heredado. Refrescado al arrancar este acto (14/ago/2026): idéntico, sin movimiento de `main`.
 - **Entorno asignado**: NUBE — repo-only, sin red, sin corpus.
-- **Estado**: `CONSUMIDO` — ejecutado en este acto por `ADR-81` (`canon/gobernanza-v1_15.md`), rama `claude/encargo-acto-sella-freeze-6l3za7`; detalle comando por comando en `forense/notas/2026-08-13-sella-freeze.md`. PR no abierto en esta sesión (no solicitado explícitamente por quien lanzó el acto).
+- **Estado**: `CONSUMIDO` — ejecutado por `PR #229` (rama `claude/encargo-acto-sella-freeze-6l3za7`), `ADR-81` en `canon/gobernanza-v1_15.md`; detalle comando por comando en `forense/notas/2026-08-13-sella-freeze.md`.
 
 ---
 
