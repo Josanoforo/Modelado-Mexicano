@@ -13,7 +13,7 @@ Filosofía: cada ADR que declara un principio necesita un test que FALLE
 visiblemente si no se cumple. "Principio declarado sin requisito de salida"
 es el patrón que explica casi todos los fallos del programa.
 """
-import io, os, re, sys, glob, hashlib, unicodedata
+import io, os, re, sys, glob, hashlib, unicodedata, datetime
 from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -1138,6 +1138,146 @@ def t20_cascada_marcada():
 
 
 # ───────────────────────────────────────────────────────────────
+# T21 · T-FIRMAS — el tablero de firmas pendientes se deriva, no se
+#   recuerda (A.12, `instrucciones-proyecto-v2_9.md` · ACTO TABLERO-FIRMAS,
+#   14/ago/2026). Firma de mesa que motiva el mecanismo, verbatim: "está
+#   bien que yo tenga que sellar; el maldito problema viene cuando ya ni
+#   nos acordamos que tengo que sellar y se quedan en el limbo como
+#   muchas otras cosas."
+#
+#   (a) WARN por cada fila `ABIERTA` de `forense/firmas-pendientes.tsv`,
+#   con sus días de antigüedad -- la memoria mecánica: no depende de que
+#   alguien se acuerde, grita en cada corrida de la suite, en cada acto,
+#   para siempre.
+#
+#   (b) FAIL si un archivo NUEVO de `canon/`/`forense/` trae un marcador
+#   de ranura de firma o de decisión de mesa sin resolver (las mismas dos
+#   expresiones que sembraron el tablero: `grep -rn "RANURA"` y
+#   `grep -rn "requiere_decision.*true\|PENDIENTE de mesa\|pendiente
+#   nombrado.*mesa\|PROPUESTA.*mesa"`) sin que ninguna fila del tablero lo
+#   cite en `dónde` -- el mecanismo se auto-protege desde su propio primer
+#   commit.
+#
+#   LÍMITE DECLARADO -- léelo antes de tocar este test. (b) tiene
+#   granularidad de ARCHIVO, no de línea: un archivo ya conocido (el
+#   snapshot de abajo, verificado al sellar T-FIRMAS) puede ganar una
+#   mención nueva del marcador sin volver a fallar. Granularidad de línea
+#   sería más fina pero más frágil -- el propio ACTO TABLERO-FIRMAS vio
+#   números de línea correrse varias veces por ediciones ajenas dentro de
+#   una sola sesión (`forense/notas/2026-08-14-tablero-firmas.md`). La
+#   protección real de (b) es contra la clase de defecto que motivó todo
+#   el acto -- un documento NUEVO (encargo, nota, ADR) que crea una
+#   ranura o deja una decisión sin resolver y nadie lo sube al tablero --
+#   no contra cada edición de un archivo que ya está vigilado.
+# ───────────────────────────────────────────────────────────────
+_T21_MARCADOR_RANURA = re.compile(r"RANURA")
+_T21_MARCADOR_PENDIENTE = re.compile(
+    r"requiere_decision.*true|PENDIENTE de mesa|pendiente nombrado.*mesa|PROPUESTA.*mesa")
+
+# Snapshot verificado por los dos grep del propio encargo (`grep -rl
+# "RANURA" canon/ forense/` + `grep -rl` con el patrón de arriba) al
+# sellar T21 -- ACTO TABLERO-FIRMAS, 14/ago/2026. Cada archivo de esta
+# lista ya se revisó contra `forense/firmas-pendientes.tsv` (fila con
+# estado real, o exclusión razonada -- ver `forense/notas/2026-08-14-
+# tablero-firmas.md`). Un archivo NUEVO que no esté aquí y traiga
+# cualquiera de los dos marcadores es exactamente el defecto que (b)
+# existe para atrapar.
+_T21_ARCHIVOS_CONOCIDOS = {
+    "canon/gobernanza-v1_15.md",
+    "forense/encargos/2026-08-11-A-renglon-llaves.md",
+    "forense/encargos/2026-08-12-E4c-commit4.md",
+    "forense/encargos/2026-08-12-E4c-paso3-corrida.md",
+    "forense/encargos/2026-08-12-encargos-finales-plan-descargas-completo-p-lote1.md",
+    "forense/encargos/2026-08-12-encargos-finales-plan-descargas-completo.md",
+    "forense/encargos/2026-08-12-veredicto-pr185-mapeo-universo-map-a.md",
+    "forense/encargos/2026-08-12-veredicto-pr185-mapeo-universo-map-b.md",
+    "forense/encargos/2026-08-13-MOTOR-COND-v2-encargos-finales.md",
+    "forense/encargos/2026-08-13-RP-reconcilia-puertas.md",
+    "forense/ficha-id-g3-v1_0.md",
+    "forense/firmas-pendientes.tsv",
+    "forense/hallazgos.md",
+    "forense/notas/2026-08-05-s2-idg3-sello.md",
+    "forense/notas/2026-08-11-e4b-sello-b-corrida-b.md",
+    "forense/notas/2026-08-11-e4c-r5-1-d2-commit3-ajuste-preejecucion.md",
+    "forense/notas/2026-08-12-acto-m-adq-ensafi-enfih.md",
+    "forense/notas/2026-08-12-e4c-r5-1-d2-commit4-diseno-resuelto.md",
+    "forense/notas/2026-08-12-u1-e4b-prime-recorrida.md",
+    "forense/notas/2026-08-13-enasic-split-verificacion.md",
+    "forense/notas/2026-08-13-proc-11.md",
+    "forense/notas/2026-08-13-res-reserva.md",
+    "forense/notas/2026-08-13-sella-3.md",
+    "forense/notas/2026-08-14-sanea-mapeo.md",
+    "forense/notas/2026-08-14-tablero-firmas.md",
+    "forense/notas/2026-08-14-t-firmas.md",
+}
+
+def _t21_tabla():
+    """Lee forense/firmas-pendientes.tsv como lista de dicts (una por fila,
+    en el orden del archivo). (None, []) si el archivo no existe."""
+    p = os.path.join(ROOT, "forense", "firmas-pendientes.tsv")
+    if not os.path.exists(p):
+        return None, []
+    lineas = read(p).split("\n")
+    if not lineas or not lineas[0].strip():
+        return p, []
+    cabecera = lineas[0].split("\t")
+    filas = []
+    for l in lineas[1:]:
+        if not l.strip():
+            continue
+        campos = l.split("\t")
+        if len(campos) != len(cabecera):
+            continue
+        filas.append(dict(zip(cabecera, campos)))
+    return p, filas
+
+def t21_firmas():
+    p, filas = _t21_tabla()
+    if p is None:
+        fail("T21", "no existe `forense/firmas-pendientes.tsv` -- A.12 "
+                     "(`instrucciones-proyecto-v2_9.md`) lo exige")
+        return
+
+    # (a) WARN por cada fila ABIERTA, con antigüedad -- la memoria mecánica.
+    hoy = datetime.date.today()
+    for f in filas:
+        if f.get("estado") != "ABIERTA":
+            continue
+        edad_txt = "antigüedad no derivable"
+        try:
+            anio, mes, dia = (int(x) for x in f.get("creado", "").split("-"))
+            edad_txt = f"{(hoy - datetime.date(anio, mes, dia)).days} días"
+        except (ValueError, TypeError):
+            pass
+        warn("T21", f"{f.get('id', '?')} ABIERTA desde {f.get('creado', '?')} "
+                     f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
+
+    # (b) auto-protección: archivo nuevo de canon/forense con marcador de
+    # ranura o de pendiente-de-mesa, sin fila que lo cite en `dónde`.
+    citados = set()
+    for f in filas:
+        for m in re.finditer(r"[\w./-]+\.(?:md|tsv|yaml|json)", f.get("dónde", "")):
+            citados.add(os.path.basename(m.group(0)))
+
+    archivos = (glob.glob(os.path.join(ROOT, "canon", "*.md")) +
+                glob.glob(os.path.join(ROOT, "forense", "**", "*.md"), recursive=True) +
+                glob.glob(os.path.join(ROOT, "forense", "**", "*.tsv"), recursive=True))
+    for a in sorted(set(archivos)):
+        r = rel(a)
+        if r in _T21_ARCHIVOS_CONOCIDOS:
+            continue
+        s = read(a)
+        if not (_T21_MARCADOR_RANURA.search(s) or _T21_MARCADOR_PENDIENTE.search(s)):
+            continue
+        if os.path.basename(a) in citados:
+            continue
+        fail("T21", f"{r} trae un marcador de ranura/pendiente-de-mesa nuevo y "
+                     f"ninguna fila de `forense/firmas-pendientes.tsv` lo cita -- "
+                     f"añade la fila (A.12), o explica la exclusión en la nota del acto "
+                     f"y súmalo a `_T21_ARCHIVOS_CONOCIDOS`")
+
+
+# ───────────────────────────────────────────────────────────────
 # Modo línea base · congela el estado conocido, no lo mueve por defecto
 # ───────────────────────────────────────────────────────────────
 #   --freeze     escribe tests/baseline.json con el estado actual (acto
@@ -1407,6 +1547,7 @@ def main():
         ("T19b contador 14 cruzado (modelo)",     t19b_modelo_contador_14),
         ("T19c portada derivada (README)",        t19c_readme_derivadas),
         ("T20 T-CASCADA-MARCADA",                 t20_cascada_marcada),
+        ("T21 T-FIRMAS",                          t21_firmas),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
