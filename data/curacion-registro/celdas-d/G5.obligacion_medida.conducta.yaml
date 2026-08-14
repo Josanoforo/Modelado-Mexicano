@@ -63,29 +63,32 @@ celda_d:
                              # de milpa/procedencia.yaml; esta celda no alimenta esa clase. Mismo criterio que
                              # la celda hermana.
       regla_composicion: NO-APLICA
-      production_spec_refs: []  # VACÍO A PROPÓSITO, no por omisión. No existe todavía expediente de producción
-                                # ni especificación ESP-OPACA-* para P6_38: ENASIC-SPLIT §1.6 declaró
-                                # explícitamente que no creaba celda-D ni registraba especificación nueva, y
-                                # este acto es repo-only (sin corpus, sin data/raw). Crear el expediente por la
-                                # vía del motor (prepare -> produce -> integrate) es el encargo de ACTO
-                                # PROD-P638. Poblar este campo con una ruta inventada sería exactamente el
-                                # defecto que `documentacion_fuente` (ADR-70(b)) existe para impedir.
+      production_spec_refs:
+        - "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/resultado.tsv"
+        - "data/curacion-registro/especificaciones-produccion.json#ESP-OPACA-D-d800e103"
       resultado: >
-        CALCULADA Y VERIFICADA POR ENASIC-SPLIT, SIN EXPEDIENTE PROPIO TODAVÍA -- citada verbatim de
-        forense/notas/2026-08-13-enasic-split-verificacion.md §2.2, no recalculada aquí. P6_38 sobre
-        TPOB_CUI, n=5,677, suma de pesos (FAC_CUI)=31,652,127, 148 estratos (0 singleton -- sin pérdida
-        de grados de libertad), 861 UPM. Las cinco categorías, proporción [IC95]:
+        REPRODUCIDA POR EL MOTOR FORMAL, ACTO PROD-P638 (13/ago/2026) -- calculada primero por ENASIC-SPLIT
+        (tests/svystat.py::prop_ultimate_cluster, forense/notas/2026-08-13-enasic-split-verificacion.md §2.2)
+        y reproducida aquí de forma independiente con tools/curador_registro/produce.py::taylor_distribution
+        (motor distinto, mismo microdato re-hasheado, hashes_analista_confiados: false) vía
+        ESP-OPACA-D-d800e103, fila `PROD-ea28cc177894157ca113388b` (fila 12) de
+        data/curacion-registro/produccion-modelo.tsv, verificación REPRODUCIDA_EN_TEMP_Y_COMPARADA_BYTE_A_BYTE
+        por integrate_production.py. P6_38 sobre TPOB_CUI, n=5,677, suma de pesos (FAC_CUI)=31,652,127, 148
+        estratos (0 singleton -- sin pérdida de grados de libertad), 861 UPM. Las cinco categorías,
+        proporción [IC95], idénticas a los decimales de la nota (z=1.96 del motor formal vs. z=1.959963985
+        de svystat.py, declarado en §1.5 como no comparable dígito a dígito -- verificado que a 4 decimales
+        no mueve ninguna cifra):
         (1) obligación 479 -> 0.0765 [0.0661, 0.0868] ·
         (2) decisión familiar 366 -> 0.0671 [0.0579, 0.0763] ·
         (3) ser la (el) única(o) que podía 193 -> 0.0356 [0.0286, 0.0426] ·
         (4) petición de quien necesita el cuidado 72 -> 0.0123 [0.0083, 0.0162] ·
         (5) iniciativa propia 4,567 -> 0.8086 [0.7918, 0.8254].
         Suma de las cinco proporciones puntuales = 1.0001 (redondeo). Completitud verificada contra el
-        microdato: 0 valores en blanco o fuera de {1,2,3,4,5} en las 5,677 filas; P6_38 no trae código de
-        blanco/no-sabe/no-responde en el diccionario. Cómputo por tests/svystat.py::prop_ultimate_cluster,
-        declarado en §1.5 ANTES de correr. Provisional per ADR-72 (producida el 13/ago/2026).
-        "CALCULADA" no es "GANÓ": único candidato, nada que adjudicar todavía (ver criterio_adjudicacion) --
-        mismo sentido que la celda hermana usa para su BASELINE.
+        microdato de nuevo en este acto: 0 valores en blanco o fuera de {1,2,3,4,5} en las 5,677 filas.
+        Provisional per ADR-72 (el cálculo original sigue siendo del 13/ago/2026; la reproducción no lo
+        re-asienta, solo lo verifica por una vía distinta).
+        "REPRODUCIDA" es un eje distinto de `champion_actual`: único candidato, nada que adjudicar todavía
+        (ver criterio_adjudicacion) -- mismo sentido que la celda hermana usa para su BASELINE.
   criterio_adjudicacion:
     texto: "NO-APLICA en este acto -- un único candidato BASELINE, sin challenger con quien competir. CALIBRACION_CONJUNTA no adjudica aquí: el cálculo ya existe (ver `resultado` arriba) pero no hay challenger contra quien adjudicarlo. Mismo estado que la celda hermana."
     escala: "NO-APLICA -- un único candidato, nada que comparar en ninguna escala todavía"
@@ -97,7 +100,7 @@ celda_d:
   output_nativo:
     tipo: DISTRIBUCION_DESCRIPTIVA
     escala: "proporción sobre la población cuidadora de TPOB_CUI (0-1 / %), 5 categorías de elección única (obligación / decisión familiar / ser la (el) única(o) que podía / petición de quien necesita el cuidado / iniciativa propia)"
-    valor_ref: "forense/notas/2026-08-13-enasic-split-verificacion.md §2.2 (tabla completa). Sin `resultado.tsv` propio todavía -- ver production_spec_refs arriba y ACTO PROD-P638."
+    valor_ref: "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/resultado.tsv (estado=CALCULO_REPRODUCIBLE en la única fila); tabla completa también en forense/notas/2026-08-13-enasic-split-verificacion.md §2.2 y en forense/notas/2026-08-13-prod-p638.md §2."
   incertidumbre:
     tipo: "IC95 por linealización de Taylor sobre conglomerados últimos (estrato EST_DIS, conglomerado UPM_DIS -- filas 1481-1482 del diccionario, viven directo en TPOB_CUI y no requieren unión), ponderador FAC_CUI (fila 1483, 'FACTOR HOGAR DE EXPANSIÓN'). Método declarado en §1.5 antes de ver el dato. Nombres de columna verificados para TPOB_CUI específicamente, no heredados de TPER_ELE/FAC_ELE."
     ref: "tests/svystat.py::prop_ultimate_cluster"
@@ -121,14 +124,13 @@ celda_d:
                                  # encabezado y forense/notas/2026-08-13-proc-10.md §3.
   vocabulario_version: 0.4
   calibrado: false
-  estado_operativo: PENDIENTE  # RAZÓN, única y declarada: "expediente por la vía -- PROD-P638". No es duda
-                               # sobre el cálculo (existe, verificado contra microdato por ENASIC-SPLIT §2.2)
-                               # ni decisión de mesa pendiente (ver requiere_decision_mesa abajo). Es que esta
-                               # θ todavía no tiene expediente de producción propio en
-                               # data/curacion-registro/expedientes-produccion/ ni fila en produccion-modelo.tsv:
-                               # el pipeline prepare->produce->integrate no ha corrido sobre ella. ACTO PROC-11
-                               # es repo-only y no puede correrlo. Pasa a LISTO cuando PROD-P638 reproduzca las
-                               # cinco proporciones e IC a los decimales de la nota.
+  estado_operativo: LISTO  # RESUELTO 13/ago/2026, ACTO PROD-P638 -- el pipeline prepare->produce->integrate
+                               # corrió sobre ESP-OPACA-D-d800e103 (caja con corpus) y reprodujo las cinco
+                               # proporciones e IC a los decimales de forense/notas/2026-08-13-enasic-split-
+                               # verificacion.md §2.2, verificado byte a byte por integrate_production.py
+                               # (hashes_analista_confiados: false). Expediente propio en
+                               # data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/
+                               # y fila 12 (PROD-ea28cc177894157ca113388b) de produccion-modelo.tsv.
   requiere_decision_mesa: false  # ADR-75(b) ya firmó lo que había que firmar sobre esta medida: que P6_38 es
                                  # medida propia, cómo se llama, que es celda-D distinta sin rol COMPLEMENTO, y
                                  # que entra al denominador como condicional nueva. No queda reserva abierta
