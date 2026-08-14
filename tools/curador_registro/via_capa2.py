@@ -15,7 +15,12 @@ sin `id_manifiesto` propio tienen una fuente con alguna presencia conocida
 en el manifiesto vía `data/inventarios/alias-fuentes.yaml`.
 
 Modo lectura por defecto. --escribe aplica los diffs propuestos a
-relaciones.tsv fila por fila, en sitio, sin reordenar el archivo.
+relaciones.tsv fila por fila, en sitio, sin reordenar el archivo -- y, en las
+filas que promueve a `SI` con `estado == "COINCIDE"`, escribe también
+`capa3_disco_real = EXISTE;COINCIDE;INTEGRO`, que es lo que esa verificación
+literalmente afirma. Sin eso, cada promoción rompía la biyección
+capa2<->capa3 y dejaba una reconciliación manual detrás (medido en ENLACE-2,
+PR #236: 8 promociones, 8 desacuerdos). Ver aplicar_diffs().
 
 Sale con código 1 (sin escribir nada) si el desglose de estados de
 verificación da COINCIDE=0 habiendo >=1 fila con id_manifiesto -- señal de
@@ -134,6 +139,13 @@ def verificar_entrada(entrada: dict, root: Path, raices: dict[str, str]) -> str:
 
 ESTADOS_VERIFICACION = ("COINCIDE", "NO_COINCIDE", "AUSENTE", "SIN_PAYLOAD", "RAIZ_NO_CONFIGURADA")
 
+# El valor de capa3_disco_real que acompaña a capa2_manifiesto=SI en
+# relaciones.tsv, sin excepción. No se inventa aquí: se lee del archivo (las
+# 51 filas SI de hoy lo llevan) y afirma exactamente lo que verifica
+# verificar_entrada() == "COINCIDE" -- existe en disco, sha256 y tamaño
+# coinciden. Ver aplicar_diffs() para por qué la vía lo escribe.
+CAPA3_INTEGRO = "EXISTE;COINCIDE;INTEGRO"
+
 
 def derivar(root: Path) -> dict:
     relaciones_path = root / "data" / "curacion-registro" / "relaciones.tsv"
@@ -173,6 +185,8 @@ def derivar(root: Path) -> dict:
                     "fuente_canonica_normalizada": f["fuente_canonica_normalizada"],
                     "actual": actual,
                     "derivado": derivado,
+                    "estado": estado,
+                    "capa3_actual": f.get("capa3_disco_real", ""),
                     "razon": f"id_manifiesto={idm} estado={estado}",
                 })
         else:
@@ -196,21 +210,48 @@ def derivar(root: Path) -> dict:
     }
 
 
-def aplicar_diffs(relaciones_path: Path, diffs: list[dict]) -> None:
-    """Reescribe solo el valor de capa2_manifiesto de las filas con diff --
-    preserva orden y todas las demás columnas, nunca reordena el archivo."""
-    derivado_por_id = {d["relacion_id"]: d["derivado"] for d in diffs}
+def aplicar_diffs(relaciones_path: Path, diffs: list[dict]) -> int:
+    """Reescribe capa2_manifiesto de las filas con diff y, cuando la promoción
+    es a `SI` con `estado == "COINCIDE"`, también capa3_disco_real --
+    preserva orden y todas las demás columnas, nunca reordena el archivo.
+    Devuelve cuántas celdas de capa3 escribió.
+
+    Por qué capa3 va aquí y no en un acto aparte (ADR de B2, 14/ago/2026):
+    `capa2_manifiesto` y `capa3_disco_real` son biyectivos en `relaciones.tsv`
+    sin una sola excepción, y esta función era la única forma de romperlo --
+    escribía capa2 y dejaba capa3 atrás, así que cada promoción producía una
+    fila `SI`|`SI_O_PARCIAL` que alguien tenía que reconciliar a mano después.
+    Ocurrió, medido, en ENLACE-2 (PR #236): 8 filas promovidas, 8 desacuerdos
+    creados en el mismo comando. El precedente de que eso cuesta un acto
+    propio es CAPA3-RECONCILIA (PR #202, 19 desacuerdos -> 0).
+
+    `CAPA3_INTEGRO` no se inventa: es el valor que ya llevan las filas `SI` del
+    archivo, y `verificar_entrada() == "COINCIDE"` es literalmente lo que ese
+    valor afirma (existe en disco, sha256 y tamaño coinciden). Fuera de esa
+    condición no se escribe capa3 -- una promoción que no venga de COINCIDE no
+    existe hoy (`derivado = "SI" if estado == "COINCIDE"`), y si algún día
+    existiera, esta función debe dejarla en paz en vez de adivinar."""
+    por_id = {d["relacion_id"]: d for d in diffs}
     with relaciones_path.open(encoding="utf-8-sig", newline="") as handle:
         lector = csv.DictReader(handle, delimiter="\t")
         campos = lector.fieldnames
         filas = list(lector)
+    capa3_escritas = 0
     for fila in filas:
-        if fila["relacion_id"] in derivado_por_id:
-            fila["capa2_manifiesto"] = derivado_por_id[fila["relacion_id"]]
+        d = por_id.get(fila["relacion_id"])
+        if d is None:
+            continue
+        fila["capa2_manifiesto"] = d["derivado"]
+        if (d["derivado"] == "SI" and d.get("estado") == "COINCIDE"
+                and "capa3_disco_real" in fila
+                and fila["capa3_disco_real"] != CAPA3_INTEGRO):
+            fila["capa3_disco_real"] = CAPA3_INTEGRO
+            capa3_escritas += 1
     with relaciones_path.open("w", encoding="utf-8", newline="") as handle:
         escritor = csv.DictWriter(handle, fieldnames=campos, delimiter="\t", lineterminator="\n")
         escritor.writeheader()
         escritor.writerows(filas)
+    return capa3_escritas
 
 
 def main() -> int:
@@ -247,9 +288,11 @@ def main() -> int:
 
     if args.escribe:
         if resultado["diffs_propuestos"]:
-            aplicar_diffs(root / "data" / "curacion-registro" / "relaciones.tsv",
-                           resultado["diffs_propuestos"])
-            print(f"\n{len(resultado['diffs_propuestos'])} filas escritas en relaciones.tsv.")
+            capa3 = aplicar_diffs(root / "data" / "curacion-registro" / "relaciones.tsv",
+                                   resultado["diffs_propuestos"])
+            print(f"\n{len(resultado['diffs_propuestos'])} filas escritas en relaciones.tsv "
+                  f"(capa2_manifiesto), de las cuales {capa3} llevaron también "
+                  f"capa3_disco_real -> {CAPA3_INTEGRO}.")
         else:
             print("\n--escribe pasado, pero 0 diffs propuestos -- nada que escribir.")
 

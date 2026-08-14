@@ -1384,6 +1384,61 @@ def _baseline_compare():
     return 1 if nuevos else 0
 
 
+# ───────────────────────────────────────────────────────────────
+# T21 · Biyección capa2 ↔ capa3 en relaciones.tsv
+# ───────────────────────────────────────────────────────────────
+
+# La correspondencia que el registro cumple sin una sola excepción desde que
+# CAPA3-RECONCILIA (PR #202) la reparó — 19 desacuerdos → 0. No es cosmética:
+# `capa3_disco_real` afirma el estado del payload EN DISCO, así que una fila
+# `SI`|`SI_O_PARCIAL` dice a la vez "verificado íntegro" y "quizá parcial".
+# Nadie vigilaba esto: hasta este test, `grep -c "capa2\|capa3" tests/check.py`
+# daba 0, y por eso el defecto de `via_capa2.py --escribe` (que escribía capa2
+# y dejaba capa3 atrás) pudo vivir callado hasta que ENLACE-2 lo midió con 8
+# filas rotas en un solo comando (PR 236).
+CAPA2_CAPA3 = {
+    "SI":                "EXISTE;COINCIDE;INTEGRO",
+    "SI_O_REFERENCIADO": "SI_O_PARCIAL",
+    "NO_REFERENCIADO":   "NO_REFERENCIADO",
+}
+
+def t21_capa2_capa3():
+    """Cada fila de `relaciones.tsv` debe llevar el `capa3_disco_real` que su
+    `capa2_manifiesto` exige. Un valor de capa2 fuera de la correspondencia no
+    es un fallo — es un aviso para que quien lo introduzca declare aquí qué
+    capa3 le toca."""
+    p = os.path.join(ROOT, "data", "curacion-registro", "relaciones.tsv")
+    if not os.path.exists(p):
+        fail("T21", "no se pudo leer `data/curacion-registro/relaciones.tsv`")
+        return
+    lineas = read(p).split("\n")
+    cab = lineas[0].split("\t")
+    if "capa2_manifiesto" not in cab or "capa3_disco_real" not in cab:
+        fail("T21", "relaciones.tsv no trae capa2_manifiesto y/o capa3_disco_real")
+        return
+    i2, i3 = cab.index("capa2_manifiesto"), cab.index("capa3_disco_real")
+    desacuerdos, desconocidos = {}, {}
+    for n, l in enumerate(lineas[1:], 2):
+        if not l.strip():
+            continue
+        c = l.split("\t")
+        if len(c) <= max(i2, i3):
+            continue
+        esperado = CAPA2_CAPA3.get(c[i2])
+        if esperado is None:
+            desconocidos.setdefault(c[i2], []).append(n)
+        elif c[i3] != esperado:
+            desacuerdos.setdefault((c[i2], c[i3]), []).append(n)
+    for (c2, c3), filas in sorted(desacuerdos.items()):
+        fail("T21", f"relaciones.tsv: {len(filas)} fila(s) con capa2={c2} y capa3={c3}; "
+                    f"capa2={c2} exige capa3={CAPA2_CAPA3[c2]} "
+                    f"(primera en la línea {filas[0]})")
+    for c2, filas in sorted(desconocidos.items()):
+        warn("T21", f"relaciones.tsv: capa2={c2} no está en la correspondencia que declara "
+                    f"este test ({len(filas)} fila(s), primera en la línea {filas[0]}) -- "
+                    f"si es un valor nuevo legítimo, añádelo a CAPA2_CAPA3 con su capa3")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -1407,6 +1462,7 @@ def main():
         ("T19b contador 14 cruzado (modelo)",     t19b_modelo_contador_14),
         ("T19c portada derivada (README)",        t19c_readme_derivadas),
         ("T20 T-CASCADA-MARCADA",                 t20_cascada_marcada),
+        ("T21 T-CAPA2-CAPA3",                     t21_capa2_capa3),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))

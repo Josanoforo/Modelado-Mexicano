@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **83 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **84 ADR**
 
 > | | |
 > |---|---|
@@ -1332,6 +1332,33 @@ print('únicos',len(s),'max',max(s),'huecos',[i for i in range(1,max(s)+1) if i 
 **Versión y nombre de archivo.** El número de versión de `gobernanza` **no sube** y el archivo **no se renombra** — mismo criterio que `ADR-48` a `ADR-82`.
 
 → **Vigente.** *(Decisión de mesa, ACTO S4-AMANUENSE-MESA (CIERRE-E6), 14/ago/2026. Sesión nube, secuencial interno — perímetro declarado en el propio encargo: `canon/gobernanza-v1_15.md` (este ADR), `canon/estado-programa-v1_10.md` (cascada), `forense/registro-recalculo-v1_0.md` (cierre de Entrada 6); no tocó `milpa/procedencia.yaml`, `canon/modelo-decision-v4_0.md`, `tests/**` ni `data/censo-explotacion-2026-08-13.tsv`.)*
+
+---
+
+**ADR-84 · Mantenimiento acotado de `via_capa2.py` bajo la ventana de ADR-70(d): la vía escribe `capa3_disco_real` al promover, y la suite gana su primer test de la biyección `capa2`↔`capa3`.** Decisión de mesa, firma B1 del plan de remediación de ENLACE-2, 14/ago/2026, ejecutada por ACTO B2.
+
+**Firma de mesa, verbatim:** *"B1: SELLADO — mantenimiento acotado de la vía bajo la ventana ADR-70(d), lista CERRADA de tres: (a) via_capa2.py escribe capa3 al promover solo con estado COINCIDE; (b) bootstrap.py::derive_evidence_state deja de casar NO_REFERENCIADO por subcadena; (c) test nuevo que cubra capa2/capa3 en check.py y test_via_capa2.py — hoy cero cobertura, por eso el defecto vivió callado. Nada más entra bajo este sello. El ADR lo redacta el acto B2 con número por T15."*
+
+**Por qué hace falta este ADR y no basta el commit.** `tools/curador_registro/` está congelado desde ADR-70(d): *"el congelamiento del motor rige a partir de la apertura del piloto (primer registro de celda-D del piloto en E0); el mantenimiento del aparato previo a esa apertura queda permitido únicamente con ADR que lo selle."* Mismo mecanismo, mismo archivo y mismo precedente que ADR-73. **Estado de la ventana al sellar, medido:** E0 existe (`ACTO MOTOR-3/E0`, PR #237) pero está en fase-plan — `2abf292` declara *"cero código"*, `milpa/src/` no existe en el árbol y las tres celdas-D de `data/curacion-registro/celdas-d/` son las semillas previas de ADR-68, no un registro del piloto. La ventana sigue abierta; los Compass ×3 ya aterrizaron (PR #234), así que la cadena MOTOR-2 → E0 puede cerrarla pronto. **Por eso este acto va hoy.**
+
+**(a) La vía escribe `capa3_disco_real` al promover — SELLADO Y EJECUTADO.** `aplicar_diffs()` escribía `capa2_manifiesto` y nada más, así que cada promoción dejaba una fila `SI`|`SI_O_PARCIAL` — la biyección rota en el mismo comando que la producía. Medido en ENLACE-2 (PR #236): **8 promociones, 8 desacuerdos**, reconciliados a mano en ese mismo acto porque la nota lo detectó. El precedente de lo que cuesta no detectarlo es CAPA3-RECONCILIA (PR #202): **19 desacuerdos → 0**, un acto entero. Ahora `derivar()` propaga `estado` al diff y `aplicar_diffs()` escribe `EXISTE;COINCIDE;INTEGRO` **solo** cuando `derivado == "SI"` y `estado == "COINCIDE"` — la condición no es el veredicto sino la verificación, que es literalmente lo que ese valor afirma. Devuelve cuántas celdas de capa3 escribió y `main()` lo imprime. **La regla de promoción a `SI` no se toca** (`derivado = "SI" if estado == "COINCIDE" else actual`, intacta), como en ADR-73.
+
+**(b) `bootstrap.py::derive_evidence_state` — PARO, no ejecutado. La medición no sostiene la premisa con la que se selló.** El ejecutor reportó que `derive_evidence_state` casa `NO_REFERENCIADO` por subcadena sobre `f"{capa3};{capa4}"` y que por eso rotularía mal las 40 filas que ENLACE-2 degradó. Al ir a ejecutarlo se midió el efecto real de quitar ese token, y **no es acotado**:
+
+- De las **86** filas `NO_REFERENCIADO` que ya existían antes de ENLACE-2, solo **12** deben su rótulo a `INDEXADO` en `capa4`. Las otras **74** dependen de la misma subcadena de `capa3` — y **50** de ellas están hoy rotuladas `INDEXADO_NO_DESCARGADO` en `bootstrap-semantico.tsv`, en sincronía con lo commiteado.
+- Quitar el token relabelaría esas **50 filas preexistentes que hoy están bien**, para arreglar 40 que en realidad no están mal: `INDEXADO_NO_DESCARGADO` significa *"indexación declarada sin apertura exacta vinculada"*, y eso es cierto de las 40 (todas con `capa1_universo_indexado = SI`) tanto como de las 62. **La caracterización de "rótulo semánticamente falso" que el ejecutor puso sobre la mesa no sobrevive a la medición, y este ADR lo declara en vez de ejecutar el sello a ciegas.**
+
+**Lo que sí queda establecido, y es el defecto real:** `bootstrap-semantico.tsv` es una tabla **derivada** que nada re-deriva y nada compara contra su fuente. ENLACE-2 la desincronizó en **45 de 48** filas (commiteado `MECANISMO_NO_EJECUTADO` ×45 + `MAPEADO_COMPLETO` ×3; derivado hoy `INDEXADO_NO_DESCARGADO` ×40 + `DESCARGADO_NO_ABIERTO` ×5 + `MAPEADO_COMPLETO` ×3) y ninguna prueba lo notó. Es latente — `bootstrap.py` no corre en CI (`.github/workflows/verify.yml` corre `tests/check.py --baseline` y `tests/test_svystat.py`) y `relaciones.tsv` se bulk-cargó una sola vez. **Queda abierto para decisión de mesa**, con dos salidas nombradas: re-derivar las 48 filas de `bootstrap-semantico.tsv` para volver a sincronía (mecánico, sin tocar vocabulario), o añadir un test que vigile la divergencia (que hoy fallaría en 45 filas y por tanto exige autorización propia). Este acto no toma ninguna.
+
+**(c) La suite gana `T21 T-CAPA2-CAPA3` — SELLADO Y EJECUTADO.** Antes de este acto, `grep -c "capa2\|capa3" tests/check.py` daba **0**: nada en la suite vigilaba las dos columnas, y `test_via_capa2.py` tenía cuatro pruebas, ninguna sobre capa3. Por eso el defecto de (a) pudo vivir callado. `T21` declara la correspondencia (`SI`↔`EXISTE;COINCIDE;INTEGRO`, `SI_O_REFERENCIADO`↔`SI_O_PARCIAL`, `NO_REFERENCIADO`↔`NO_REFERENCIADO`), falla sobre cualquier fila que la rompa, y avisa —sin fallar— si aparece un valor de capa2 no declarado, para que quien lo introduzca diga qué capa3 le toca. **Probado en las dos direcciones:** `[ ok ]` sobre el árbol real, y `[FAIL]` sobre una copia con tres filas `SI`|`SI_O_PARCIAL` inyectadas, que es el defecto exacto de (a). Más dos pruebas en `test_via_capa2.py` (6 en total, verdes): que la promoción arrastra capa3 y solo en las promovidas, y que un diff con `estado != COINCIDE` **no** toca capa3 — capa3 no se adivina desde el veredicto.
+
+**Efecto mecánico declarado (nota de alcance de ADR-70(d), mismo criterio que ADR-73).** Los cambios de (a) solo actúan bajo `--escribe`, que este acto **no corre** contra `relaciones.tsv`; el árbol queda con la vía dando `COINCIDE=51 · 0 diffs` antes y después. No se toca ningún archivo fuera de `via_capa2.py`, `tests/check.py` y `tools/curador_registro/tests/test_via_capa2.py`. Cero interacción con `snapshot_t0_sha256`, `expedientes-produccion/` o cualquier expediente sellado. `bootstrap.py` **no se tocó** (ver (b)).
+
+**Lo que este ADR NO hace.** No cambia la regla de promoción a `SI`. No promueve ni degrada ninguna fila. No abre `tools/curador_registro/` en bloque — la lista de la firma es cerrada y (b) queda además sin ejecutar. No re-deriva `bootstrap-semantico.tsv`. No mueve ningún contador: `capa2 SI` sigue en **51**, y `13 de 27` · `11 de 15` · `0 de 15` · `1 de 2` · `4 de 144` intactos.
+
+**Cascada, derivada con la receta de T15 justo antes de escribir este párrafo** (83 únicos, contiguos 1..83, sin huecos): conteo de ADR 83→84 en `gobernanza-v1_15.md:2` (cabecera) y `estado-programa-v1_10.md:27,101`. `tests/check.py --baseline` corrido después del commit; cifra en `forense/notas/2026-08-14-acto-b2-via-capa3.md`.
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` **no sube** y el archivo **no se renombra** — mismo criterio que ADR-48 a ADR-83.
 
 ---
 
