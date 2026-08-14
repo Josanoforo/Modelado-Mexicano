@@ -139,3 +139,76 @@ Un único commit toca el archivo desde `fb4bade`, y es una inserción pura (`+28
 ## Frase de siempre
 
 Ningún contador de medición sobre México se mueve. Este commit no escribe ningún dato de producción ni cambia ningún parámetro del modelo — es diagnóstico: deriva el mapa de las 9 filas preservadas por `#235` y documenta, con evidencia git, una afirmación ya falsa desde su propio commit de origen. `13 de 27` (Hito D) · `11 de 15` (condicionales) · `0 de 15` (coeficientes) · `1 de 2` (llaves) · `4 de 144` — ninguno se mueve.
+
+---
+
+# Commit 2 — la reconciliación
+
+Aplica los dos edits que el mapa de §2 especificó. Nada más.
+
+## §4 · Los edits del mapa, aplicados
+
+```diff
+--- a/data/curacion-registro/especificaciones-produccion.json
++++ b/data/curacion-registro/especificaciones-produccion.json
+@@ ESP-OPACA-B-d13ec4fe (línea 61) @@
+-      "supervisor_link": {"relacion_id": "REL-fe202a3fa76f0516a6e27f8b", "objeto_modelo_origen": "G5.familismo_obligacion", "requiere_decision": "SI"}
++      "supervisor_link": {"relacion_id": "REL-fe202a3fa76f0516a6e27f8b", "objeto_modelo_origen": "G5.familismo_obligacion", "requiere_decision": "NO"}
+@@ ESP-OPACA-C-9ecb5c61 (línea 106) @@
+-      "supervisor_link": {"relacion_id": "REL-5741e12ce3e0a0e076ee48fc", "objeto_modelo_origen": "G5.radio_confianza", "requiere_decision": "SI"}
++      "supervisor_link": {"relacion_id": "REL-5741e12ce3e0a0e076ee48fc", "objeto_modelo_origen": "G5.radio_confianza", "requiere_decision": "NO"}
+```
+
+Dos líneas, dos archivos de especificación, exactamente los dos campos que el mapa nombró — verificado con `git diff` antes de commitear que el diff no toca ninguna otra línea del archivo (`python3 -c "import json; json.load(open(...))"` confirma JSON todavía válido).
+
+`data/curacion-registro/celdas-d/G5.familismo_obligacion.actitud.yaml`: campo `correccion_2026-08-14` añadido después de `requiere_decision_mesa` (antes de `fecha_declaracion`) — la afirmación falsa de `:118-119` **no se borró**, per PERÍMETRO. `python3 tests/test_celdas_d.py` confirma el archivo sigue `ok` contra el contrato v0.3 §3 tras el añadido (23 claves + 1 nueva no rompe el validador — acepta claves adicionales).
+
+## §5 · Verificación de cierre
+
+**`--validate-existing`, reintentado tras el fix, mismo comando que §1.1:**
+
+```
+$ python3 tools/curador_registro/integrate_production.py \
+    --config data/curacion-registro/especificaciones-produccion.json \
+    --snapshot data/curacion-universo/snapshot-t0.json \
+    --baseline data/curacion-registro \
+    --analyst-root data/curacion-registro/expedientes-produccion \
+    --output data/curacion-registro/produccion-modelo.tsv \
+    --validate-existing
+...
+ValueError: microdato no existe: ESP-OPACA-A-7baf278d:/home/pc0/mm-corpus/raw/enbiare2021/enbiare_2021_base_de_datos_csv.zip
+```
+
+**Idéntico a §1.1, mismo spec (A), misma línea, mismo motivo.** Confirma lo que §1.1 ya declaraba: el bloqueo es 100% de entorno (nube sin corpus montado), 0% relacionado con la deriva B/radio que este commit corrigió — si la deriva fuera la causa, el error habría cambiado o se habría movido a `ESP-OPACA-B`/`ESP-OPACA-C`; no cambió, sigue reventando en `A`, que este acto nunca tocó. El `PASA en verde` literal que el criterio de cierre pide exige correr este mismo comando en caja con `data/raices.local.yaml` y el corpus montado — bloqueo registrado con receta concreta, no perseguido más allá desde aquí (mismo criterio que A.2: la asignación a nube es correcta para este acto, no un error del ejecutor).
+
+**Verificación directa que sí es posible desde nube — mecánica, no tecleada:** comparación campo a campo de `requiere_decision` entre la maestra y las 12 filas de la tabla, uniendo por `especificacion_id`:
+
+```
+$ python3 - <<'EOF'
+import json, csv
+specs = json.load(open("data/curacion-registro/especificaciones-produccion.json"))["specifications"]
+spec_rd = {s["especificacion_id"]: s["supervisor_link"]["requiere_decision"] for s in specs}
+mismatches = []
+with open("data/curacion-registro/produccion-modelo.tsv", encoding="utf-8-sig", newline="") as fh:
+    for row in csv.DictReader(fh, delimiter="\t"):
+        if row["requiere_decision"] != spec_rd.get(row["especificacion_id"]):
+            mismatches.append(row["produccion_id"])
+print(f"filas: {sum(1 for _ in open('data/curacion-registro/produccion-modelo.tsv'))-1}, mismatches: {len(mismatches)}")
+EOF
+filas: 12, mismatches: 0
+```
+
+**CONFIRMADO: 12/12 filas concuerdan.** Antes del fix eran 9/12 desacuerdos (las 9 del mapa); después, 0.
+
+**Tests dirigidos, no la suite costosa por inercia:**
+
+- `python3 tests/test_celdas_d.py` → mi archivo (`G5.familismo_obligacion.actitud.yaml`) `ok`. `G5.obligacion_medida.conducta.yaml` sigue `FAIL` (`falta relacion_complemento`) — archivo que este acto no toca, hallazgo ajeno declarado y no perseguido.
+- `tools/curador_registro/tests/test_produccion_correctiva.py` y `test_barrido_completo.py`: fallan antes **y** después del fix, con el mismo conteo y el mismo mensaje exacto en ambos casos (verificado con `git stash`/`git stash pop` para correr ambas versiones) — 0 fallas nuevas, 0 fallas corregidas por este acto. Mismo patrón que `--validate-existing`: dependen de corpus que esta nube no tiene.
+- `python3 tests/check.py --baseline`: **20 FAIL · 119 WARN — LÍNEA BASE: VERDE**, corrido antes y después del fix (§ARRANQUE y aquí), cifra idéntica en ambas corridas.
+
+**`forense/firmas-pendientes.tsv`:** no creado. El mapa de §2 no encontró ninguna fila que exigiera firma nueva de mesa — las 9 ya estaban gobernadas por ADR-75(a)/ADR-82, ambos ya sellados; el defecto era de propagación mecánica, no de decisión pendiente. Consistente con "no se espera" del propio encargo. Las "seis firmas M del esqueleto" que el encargo menciona (`forense/ADR-MOTOR-2-esqueleto-2026-08-14.md`) son un objeto distinto — no las produce el mapa de estas 9 filas — y quedan, correctamente, fuera del perímetro de este acto; no se crea el archivo solo para anotarlas.
+
+## §6 · Cierre
+
+Deriva spec↔tabla: 0. La afirmación falsa, corregida con evidencia. Contadores tocados: 0 — esto es higiene, y lo dice.
+
