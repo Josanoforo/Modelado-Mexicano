@@ -36,9 +36,14 @@
   sha256: af733d867a568cbb0dadef4a5a793b02488a71728d1157860f14501f3d4c393d
   tamano_bytes: 38309647
   formato: ZIP con 6 CSV (encig2023_01_sec1_A_3_4_5_8_9_10, encig2023_01_sec_11, encig2023_02_residentes_sec_2,
-    encig2023_03_sec_6, encig2023_04_sec_7, encig2023_05_sec_8). Solo se leyeron encig2023_04_sec_7
-    y encig2023_05_sec_8 (P7_3 y P8_4) — las otras cuatro tablas no se inspeccionaron, por
-    restricción vigente por R3.1/R5.1/R7.2.
+    encig2023_03_sec_6, encig2023_04_sec_7, encig2023_05_sec_8). Al registrarse (29/jul/2026)
+    solo se habían leído encig2023_04_sec_7 y encig2023_05_sec_8 (P7_3 y P8_4), por restricción
+    vigente por R3.1/R5.1/R7.2. VENCIDO EN PARTE desde el 4/ago/2026, declarado por ACTO C
+    (14/ago) — Encargo W abrió también encig2023_01_sec_11 (batería XI) y publicó frecuencias
+    reales de P11_1_23 en forense/notas/2026-08-04-w-coeficientes-generador-paso1.md líneas
+    179 y 272, que es el objeto que ENLACE-2 (PR 236) enlazó para N1/ENCIG. Quedan tres tablas
+    sin inspeccionar — encig2023_01_sec1_A_3_4_5_8_9_10, encig2023_02_residentes_sec_2 y
+    encig2023_03_sec_6.
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
     texto completo de esos Términos no verificado, solo la referencia)
   verificacion_tamano: 'Página anunciaba 36.5 MB; archivo real 38,309,647 bytes. Verificado
@@ -301,7 +306,13 @@
 
 - id: envipe2025_csv
   usado_para: candidata para R7.2 (delito sin seguro -> no denuncia, ENVIPE desagregada por
-    delito x cobertura) -- serie histórica ENVIPE
+    delito x cobertura) -- serie histórica ENVIPE. ESTE es el payload de ENVIPE 2025 que se
+    ABRIÓ de verdad, declarado por ACTO C (14/ago) — forense/notas/2026-08-04-medicion-exposicion-violencia-envipe.md
+    línea 89 lo nombra con este mismo sha256, y forense/notas/2026-08-04-envipe-tper-vic2-tmod-vic-paso1.md
+    línea 482 declara haber contado filas de TPer_Vic2 y TMod_Vic dentro de este zip. De ahí
+    salen AP7_3_10..14 y BP2_1, y por eso ENLACE-2 (PR 236) enlazó aquí N8 y N20. OJO -- ENVIPE
+    2025 está registrada DOS VECES con payloads distintos; el otro es envipe_2025_bd_envipe_2025_csv
+    (microdatos de la canasta masiva, otro sha256, sin abrir). No son intercambiables por nombre.
   url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2025/datosabiertos/conjunto_de_datos_ENVIPE_2025_csv.zip
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
@@ -8599,7 +8610,11 @@
     en el hogar y la victimización personal." Unidad de análisis: población de 18 años y más.'
 
 - id: envipe_2025_bd_envipe_2025_csv
-  usado_para: sin uso asignado
+  usado_para: sin uso asignado. OJO, declarado por ACTO C (14/ago/2026) -- ENVIPE 2025 está
+    registrada DOS VECES con payloads distintos. Éste es el paquete de microdatos de la canasta
+    masiva (DESC-1, 5/ago). El que las mediciones abrieron de verdad es envipe2025_csv (datos
+    abiertos, sha256 8a7a99fd..., registrado un día ANTES que éste), y es el que ENLACE-2 (PR 236) enlazó para N8/AP7_3_10..14 y N20/BP2_1. Quien consuma ENVIPE 2025 debe elegir a
+    sabiendas; no son intercambiables por nombre.
   url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2025/microdatos/bd_envipe_2025_csv.zip
   fecha_descarga: '2026-08-05'
   descargado_por: agente, vía curl directo desde inegi.org.mx (URL tomada del XML de la canasta
