@@ -1,0 +1,60 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "codificacion": {
+    "P6_38": [
+      {
+        "codigo": "1",
+        "etiqueta": "Obligación"
+      },
+      {
+        "codigo": "2",
+        "etiqueta": "Decisión familiar"
+      },
+      {
+        "codigo": "3",
+        "etiqueta": "Ser la (el) única(o) que podía"
+      },
+      {
+        "codigo": "4",
+        "etiqueta": "Petición de quien necesita el cuidado"
+      },
+      {
+        "codigo": "5",
+        "etiqueta": "Iniciativa propia"
+      }
+    ]
+  },
+  "criterio_parada": "Los campos materiales replican, verbatim donde aplica, la celda-D data/curacion-registro/celdas-d/G5.obligacion_medida.conducta.yaml (ACTO PROC-11, 13/ago/2026) y forense/notas/2026-08-13-enasic-split-verificacion.md §1.5/§2.2 (ENASIC-SPLIT, mismo día) -- ambas escritas, y las cinco proporciones e IC ya conocidas, ANTES de que este acto (PROD-P638) compusiera esta especificación o ejecutara produce.py. Declarado por lo que es: una reproducción independiente de un resultado ya conocido, no un pre-registro ciego. Criterio de éxito fijado por el encargo de PROD-P638 antes de correr: las cinco proporciones e IC de produce.py deben coincidir, a los decimales que la nota declara, con los de esa nota §2.2. El primer resultado que produzca produce.py sobre esta especificación es el que se reporta -- no se reintenta si no coincide.",
+  "direccion": "NO_APLICA_DISTRIBUCION -- distribución descriptiva categórica de 5 vías, sin hipótesis direccional (A-bis regla 1: no se estima una asociación en este acto)",
+  "diseno_muestral": {
+    "conglomerado": "UPM_DIS",
+    "estrato": "EST_DIS",
+    "reserva": "EST_DIS/UPM_DIS viven directo en TPOB_CUI (filas 1481-1482 del diccionario), no requieren unión con otra tabla -- verificado para TPOB_CUI específicamente, no heredado de TPER_ELE (forense/notas/2026-08-13-enasic-split-verificacion.md §2.2).",
+    "tipo": "probabilístico, estratificado, unietápico y por conglomerados"
+  },
+  "dominio": "Nacional",
+  "edicion": "2022",
+  "especificacion_id": "ESP-OPACA-D-d800e103",
+  "estimando": "distribucion_descriptiva_completa_del_reactivo",
+  "evidencia_neutral_ref": "data/curacion-registro/expedientes-produccion/evidencia-neutral-produccion.json",
+  "evidencia_ref": "data/curacion-registro/expedientes-produccion/evidencia-neutral-produccion.json#ENASIC_2022;RINS-53a431507d08139af2aab80f;https://www.inegi.org.mx/rnm/index.php/catalog/922;https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463927082.pdf",
+  "faltantes": "El reactivo no declara código de blanco/no-sabe/no-responde en el diccionario (a diferencia de P6_36_3, filas 1163-1165); blancos genuinos, de aparecer, van a missing_n y salen del denominador; código no declarado en la codificación detiene el cálculo (CODIGOS_INESPERADOS).",
+  "hash_evidencia_neutral": "94427f99647c16f459615f957fcd59ffb0f09340b1d1cd46815e3ae5b58a48c1",
+  "hash_microdato": "8a5e8c5ed2dcda6e25dfe2dd630c0ac7273e0736e7b99662a15a4ef68c3ab36e",
+  "incertidumbre": "IC95 por linealización de Taylor sobre conglomerados últimos (estrato=EST_DIS, conglomerado=UPM_DIS), consistente con 889463927082.pdf §3 ('Conglomerados Últimos junto con... Series de Taylor'); tools/curador_registro/produce.py::taylor_distribution (z=1.96). Motor formal declarado por PROD-P638 (este acto) antes de ejecutarlo -- distinto del método con que ENASIC-SPLIT §1.5 pre-registró y calculó por primera vez este mismo reactivo (tests/svystat.py::prop_ultimate_cluster, z=1.959963985, declarado ahí antes de ver el dato); ambos z se citan para que un desacuerdo en la última cifra del IC no se lea como no-reproducción. El objeto de este acto es verificar si, con el motor formal, las cinco proporciones e IC reproducen a los decimales de forense/notas/2026-08-13-enasic-split-verificacion.md §2.2.",
+  "input_member": "TPOB_CUI.csv",
+  "input_path": "/home/pc0/mm-corpus/raw/enasic2022/enasic_2022_bd_csv.zip",
+  "periodo_levantamiento": "2022-10-24/2022-12-16",
+  "periodo_referencia_por_variable": {
+    "P6_38": "La semana anterior a la fecha de referencia (definición oficial de la población, líneas 384-385 del PDF del instrumento) -- distinto del periodo de la celda hermana P7_12_7 (momento de la entrevista, sin ventana retrospectiva)"
+  },
+  "poblacion": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró haber brindado cuidados a por lo menos una población susceptible (ENASIC 2022, tabla TPOB_CUI, gatillada por FILTRO 6.10) -- verificado FILTRO6_10='1' en el 100% de las 5,677 filas, sin exclusión adicional.",
+  "ponderador": "FAC_CUI",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "tipo_inferencia": "DESCRIPTIVA_CON_DISENO",
+  "transformacion": "NINGUNA",
+  "unidad_observacion": "Persona cuidadora identificada por FILTRO 6.10 (tabla TPOB_CUI), 15 años y más, en vivienda particular",
+  "variables": [
+    "P6_38"
+  ]
+}
