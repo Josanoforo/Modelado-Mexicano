@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **82 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **83 ADR**
 
 > | | |
 > |---|---|
@@ -1305,6 +1305,33 @@ print('únicos',len(s),'max',max(s),'huecos',[i for i in range(1,max(s)+1) if i 
 **Versión y nombre de archivo.** El número de versión de `gobernanza` **no sube** y el archivo **no se renombra** — mismo criterio que `ADR-48` a `ADR-81`.
 
 → **Vigente.** *(Decisión de mesa, ACTO S4-AMANUENSE-MESA (ADJUDICA-RADIO), 14/ago/2026. Sesión nube, secuencial interno — perímetro declarado en el propio encargo: `canon/gobernanza-v1_15.md` (este ADR y la enmienda in situ sobre `ADR-67(a)`), `canon/estado-programa-v1_10.md` (cascada), `data/curacion-registro/celdas-d/G5.radio_confianza.encuci_vs_enbiare.yaml`; no tocó `milpa/procedencia.yaml`, `canon/modelo-decision-v4_0.md` ni `tests/**`.)*
+
+---
+
+**ADR-83 · Mesa cierra la Entrada 6 de `registro-recalculo` (cotejo censo-explotación↔consumo real) como `RECALCULADO — CAMBIA`, y sella como regla vinculante la advertencia anti-poda sobre payloads `SIN-DEMANDA` con consumo trazable.** Decisión de mesa del autor, ACTO S4-AMANUENSE-MESA (CIERRE-E6), 14/ago/2026, sobre `forense/registro-recalculo-v1_0.md` (Entrada 6, `ABIERTA`) y `forense/notas/2026-08-13-cep-cotejo.md` (procedimiento y universo del cotejo, ACTO CEP). Firma de mesa, verbatim: *"RECALCULADO — CAMBIA"* y *"Se sella como regla"*, entre las opciones que el ejecutor puso sobre la mesa (cierre como `RECALCULADO — SIN CAMBIO`/`CAMBIA`/`INDECIDIBLE`; advertencia anti-poda sellada como regla o solo registrada).
+
+**(a) Cierre de la Entrada 6 — `RECALCULADO — CAMBIA`.** El cotejo (ACTO CEP, COMMIT 1 `b30f5c0` + COMMIT 2, `fd788a9`) midió, primera y única corrida, que 22 de los 538 payloads rotulados `SIN-DEMANDA` en `data/censo-explotacion-2026-08-13.tsv` sí tienen consumo trazable: 2 por vía hash (`CONSUMIDO-POR-PRODUCCIÓN`, contra `hash_microdato` de `produccion-modelo.tsv` — `enbiare2021_bd_csv_zip`, `enasic2022_bd_csv_zip`) y 20 por vía ruta (`CONSUMIDO-POR-CORRIDA`, cita literal en 11 scripts de `tests/` — `BD_ENCUCI2020_dbf.zip`, `enif2024_csv.zip`, 6 zips de ENIGH, 4 de ENNViH ola 2/3, 8 de ENVIPE) — verificado en `data/censo-explotacion-2026-08-13.tsv` (`Counter` sobre `consumo_detectado`: `SIN-CONSUMO-DETECTADO`=528, `CONSUMIDO-POR-CORRIDA`=20, `CONSUMIDO-POR-PRODUCCIÓN`=2, suman los 550). Lo que cambia: el rótulo `SIN-DEMANDA` deja de leerse, sin más, como "nadie necesita esto" — para estos 22 payloads significa "el censo no sabía que una estimación o corrida ya lo usaba", hecho nuevo frente al censo original (que no traía esta columna). `estado` (columna 8) no se edita — el hallazgo vive en las columnas nuevas `consumo_detectado`/`consumo_universo_declarado`, ya escritas en el TSV por ACTO CEP; este ADR sella el cierre de la entrada sobre ese resultado, no re-mide nada.
+
+**(b) Regla anti-poda, sellada — vinculante para actos futuros, no solo registrada.** Firma de mesa: *"Se sella como regla."* Ningún acto puede podar, archivar, mover fuera de `data/raw`, ni recomendar el descarte de un payload cuyo `estado=SIN-DEMANDA` en `data/censo-explotacion-2026-08-13.tsv` sin comprobar antes su columna `consumo_detectado`. Si `consumo_detectado≠SIN-CONSUMO-DETECTADO`, el payload es insumo verificado de una producción sellada (`produccion-modelo.tsv`) o de una corrida de `tests/` que alimenta un veredicto del Hito D — su descarte exige ADR de mesa propio, con el veredicto o producción que depende de él nombrado y su reemplazo o migración declarados, no discreción de ejecutor. Verbatim de origen, `registro-recalculo-v1_0.md:42`: *"SIN-DEMANDA se lee como 'nadie necesita esto'; para los payloads que alimentaron veredictos sellados significa 'la tabla no sabe que la estimación lo usó'. Quien pode por ese rótulo borra el insumo de los veredictos sellados."*
+
+**Lo que este ADR NO hace.** No reclasifica ningún payload del censo — `estado` queda intacto en las 550 filas. No cierra ninguna otra entrada de `registro-recalculo` (0/1/2/4 ya cerradas por actos previos; 3/5 siguen `ABIERTA`, gateadas por sus propias condiciones). No corre ningún cotejo nuevo — adjudica sobre el resultado ya medido y verificado por ACTO CEP. No toca `milpa/procedencia.yaml`, `canon/modelo-decision-v4_0.md`, `tests/**` ni ningún contador de medición sobre México — el cotejo mide el propio programa, no mide a México (`forense/notas/2026-08-13-cep-cotejo.md` §4).
+
+**Cascada.** Numeración derivada con la receta de T15:
+```
+python3 -c "
+import re
+t=open('canon/gobernanza-v1_15.md',encoding='utf-8').read()
+n=[int(x) for x in re.findall(r'^\*\*ADR-(\d+)',t,re.M)];s=sorted(set(n))
+print('únicos',len(s),'max',max(s),'huecos',[i for i in range(1,max(s)+1) if i not in s])
+"
+```
+→ **únicos 82 · max 82 · huecos []** — `83` contiguo, sin colisión. Sitios de cascada: `gobernanza-v1_15.md:2` (cabecera, 82→83) · `estado-programa-v1_10.md:27` (tabla, 82→83) · `estado-programa-v1_10.md:101` (historia completa de la numeración, mismo criterio que `ADR-75` a `ADR-82` ya aplicaron). `python3 tests/check.py --baseline` → **20 FAIL · 119 WARN — LÍNEA BASE: VERDE**, corrido antes y después de este acto, sin cambio. **Contadores que NO se mueven, declarado uno por uno:** `13 de 27` (Hito D) · `10 de 15` (condicionales) · `0 de 15` (coeficientes) · `1 de 2` (llaves) · `4 de 144`. Ninguno.
+
+**Reversión.** (a) se revierte solo por un ADR de mesa que decida que el hallazgo no ameritaba `CAMBIA` sino `SIN CAMBIO` (p. ej. si se determina que los 22 payloads no debían contarse). (b) se revierte solo por un ADR de mesa que despromueva la regla anti-poda de vinculante a registro informativo.
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` **no sube** y el archivo **no se renombra** — mismo criterio que `ADR-48` a `ADR-82`.
+
+→ **Vigente.** *(Decisión de mesa, ACTO S4-AMANUENSE-MESA (CIERRE-E6), 14/ago/2026. Sesión nube, secuencial interno — perímetro declarado en el propio encargo: `canon/gobernanza-v1_15.md` (este ADR), `canon/estado-programa-v1_10.md` (cascada), `forense/registro-recalculo-v1_0.md` (cierre de Entrada 6); no tocó `milpa/procedencia.yaml`, `canon/modelo-decision-v4_0.md`, `tests/**` ni `data/censo-explotacion-2026-08-13.tsv`.)*
 
 ---
 
