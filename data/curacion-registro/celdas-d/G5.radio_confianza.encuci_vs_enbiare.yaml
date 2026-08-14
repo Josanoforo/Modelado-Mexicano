@@ -117,8 +117,11 @@ celda_d:
         corrido una sola vez per la promesa de primer resultado de COMMIT 1. `AP5_1_3` fuera de alcance, no
         evaluado (Propuesta 2 punto 2). Detalle completo, procedimiento congelado antes de abrir dato y
         resultados: `forense/notas/2026-08-13-invarianza-encuci-enbiare.md`. Clase PROXY_PARCIAL de `ADR-67(a)`
-        (canon/gobernanza-v1_15.md:864) NO cambia por este resultado -- INVARIANZA PARCIAL desbloquea el gate
-        de las 8 producciones (`produccion-modelo.tsv`), no sustituye a ENCUCI como champion.
+        (canon/gobernanza-v1_15.md:864) queda resuelta `CONVERGENTE-CONFIGURAL` por `ADR-82` (14/ago/2026,
+        ACTO S4-AMANUENSE-MESA/ADJUDICA-RADIO, enmienda in situ sobre `ADR-67(a)`, firma de mesa verbatim
+        "Resolver como convergente-config.") -- la resolución no otorga equivalencia métrica ni poder de
+        sustitución: INVARIANZA PARCIAL desbloquea el gate de las 8 producciones (`produccion-modelo.tsv`),
+        ENBIARE no sustituye a ENCUCI como champion.
   criterio_adjudicacion:
     texto: >
       Acto de vinculación con prueba de invarianza (convergencia ENCUCI↔ENBIARE sobre celdas compartidas, con
@@ -129,7 +132,9 @@ celda_d:
       INVARIANZA PARCIAL -- configural sostenida (ambos instrumentos, r>0 con IC95% excluyendo 0), métrica no
       sostenida (Δλ=-0.0280, IC95%[-0.0431,-0.0132]). Declarada por ENCARGO 9 (13/ago/2026), bajo el estándar
       "argumento de vinculación declarado" (gobernanza-v1_15.md:1122, ADR-80/ACTO FIRMAS-2). Cifras y
-      procedimiento completo en forense/notas/2026-08-13-invarianza-encuci-enbiare.md.
+      procedimiento completo en forense/notas/2026-08-13-invarianza-encuci-enbiare.md. Clase PROXY_PARCIAL de
+      `ADR-67(a)` resuelta `CONVERGENTE-CONFIGURAL` sobre este veredicto por `ADR-82` (14/ago/2026, ACTO
+      S4-AMANUENSE-MESA/ADJUDICA-RADIO) -- `champion_actual` no cambia.
   momentos_holdout_refs: []
   champion_actual: "BASELINE.ENCUCI"  # explícito, sin cambio tras ENCARGO 9 -- INVARIANZA PARCIAL desbloquea el
                                        # gate de las 8 producciones, no da a ENBIARE poder de sustitución (B-bis,
