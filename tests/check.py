@@ -1138,7 +1138,7 @@ def t20_cascada_marcada():
 
 
 # ───────────────────────────────────────────────────────────────
-# T21 · T-FIRMAS — el tablero de firmas pendientes se deriva, no se
+# T22 · T-FIRMAS — el tablero de firmas pendientes se deriva, no se
 #   recuerda (A.12, `instrucciones-proyecto-v2_9.md` · ACTO TABLERO-FIRMAS,
 #   14/ago/2026). Firma de mesa que motiva el mecanismo, verbatim: "está
 #   bien que yo tenga que sellar; el maldito problema viene cuando ya ni
@@ -1170,19 +1170,19 @@ def t20_cascada_marcada():
 #   ranura o deja una decisión sin resolver y nadie lo sube al tablero --
 #   no contra cada edición de un archivo que ya está vigilado.
 # ───────────────────────────────────────────────────────────────
-_T21_MARCADOR_RANURA = re.compile(r"RANURA")
-_T21_MARCADOR_PENDIENTE = re.compile(
+_T22_MARCADOR_RANURA = re.compile(r"RANURA")
+_T22_MARCADOR_PENDIENTE = re.compile(
     r"requiere_decision.*true|PENDIENTE de mesa|pendiente nombrado.*mesa|PROPUESTA.*mesa")
 
 # Snapshot verificado por los dos grep del propio encargo (`grep -rl
 # "RANURA" canon/ forense/` + `grep -rl` con el patrón de arriba) al
-# sellar T21 -- ACTO TABLERO-FIRMAS, 14/ago/2026. Cada archivo de esta
+# sellar T22 -- ACTO TABLERO-FIRMAS, 14/ago/2026. Cada archivo de esta
 # lista ya se revisó contra `forense/firmas-pendientes.tsv` (fila con
 # estado real, o exclusión razonada -- ver `forense/notas/2026-08-14-
 # tablero-firmas.md`). Un archivo NUEVO que no esté aquí y traiga
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
-_T21_ARCHIVOS_CONOCIDOS = {
+_T22_ARCHIVOS_CONOCIDOS = {
     "canon/gobernanza-v1_15.md",
     "forense/encargos/2026-08-11-A-renglon-llaves.md",
     "forense/encargos/2026-08-12-E4c-commit4.md",
@@ -1217,9 +1217,11 @@ _T21_ARCHIVOS_CONOCIDOS = {
     "forense/notas/2026-08-14-enlace2-clase-limbo.md",              # fuente primaria de FP-24, §4
     "forense/encargos/2026-08-14-MOTOR-3-E0-autocontenido.md",      # solo referencia M1-M6, ya cubiertos por FP-01..FP-06
     "forense/notas/2026-08-14-tablero-firmas-commit3.md",            # esta misma nota cita los marcadores verbatim al documentarlos -- mismo autocaptura que ya tuvo el commit 2
+    "forense/notas/2026-08-14-tablero-firmas-commit4-freeze.md",     # ídem, tercera vez
+    "forense/notas/2026-08-14-tablero-firmas-commit5-colision-adr84.md",  # ídem, cuarta vez
 }
 
-def _t21_tabla():
+def _t22_tabla():
     """Lee forense/firmas-pendientes.tsv como lista de dicts (una por fila,
     en el orden del archivo). (None, []) si el archivo no existe."""
     p = os.path.join(ROOT, "forense", "firmas-pendientes.tsv")
@@ -1239,10 +1241,10 @@ def _t21_tabla():
         filas.append(dict(zip(cabecera, campos)))
     return p, filas
 
-def t21_firmas():
-    p, filas = _t21_tabla()
+def t22_firmas():
+    p, filas = _t22_tabla()
     if p is None:
-        fail("T21", "no existe `forense/firmas-pendientes.tsv` -- A.12 "
+        fail("T22", "no existe `forense/firmas-pendientes.tsv` -- A.12 "
                      "(`instrucciones-proyecto-v2_9.md`) lo exige")
         return
 
@@ -1257,7 +1259,7 @@ def t21_firmas():
             edad_txt = f"{(hoy - datetime.date(anio, mes, dia)).days} días"
         except (ValueError, TypeError):
             pass
-        warn("T21", f"{f.get('id', '?')} ABIERTA desde {f.get('creado', '?')} "
+        warn("T22", f"{f.get('id', '?')} ABIERTA desde {f.get('creado', '?')} "
                      f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
 
     # (b) auto-protección: archivo nuevo de canon/forense con marcador de
@@ -1272,17 +1274,17 @@ def t21_firmas():
                 glob.glob(os.path.join(ROOT, "forense", "**", "*.tsv"), recursive=True))
     for a in sorted(set(archivos)):
         r = rel(a)
-        if r in _T21_ARCHIVOS_CONOCIDOS:
+        if r in _T22_ARCHIVOS_CONOCIDOS:
             continue
         s = read(a)
-        if not (_T21_MARCADOR_RANURA.search(s) or _T21_MARCADOR_PENDIENTE.search(s)):
+        if not (_T22_MARCADOR_RANURA.search(s) or _T22_MARCADOR_PENDIENTE.search(s)):
             continue
         if os.path.basename(a) in citados:
             continue
-        fail("T21", f"{r} trae un marcador de ranura/pendiente-de-mesa nuevo y "
+        fail("T22", f"{r} trae un marcador de ranura/pendiente-de-mesa nuevo y "
                      f"ninguna fila de `forense/firmas-pendientes.tsv` lo cita -- "
                      f"añade la fila (A.12), o explica la exclusión en la nota del acto "
-                     f"y súmalo a `_T21_ARCHIVOS_CONOCIDOS`")
+                     f"y súmalo a `_T22_ARCHIVOS_CONOCIDOS`")
 
 
 # ───────────────────────────────────────────────────────────────
@@ -1532,6 +1534,61 @@ def _baseline_compare():
     return 1 if nuevos else 0
 
 
+# ───────────────────────────────────────────────────────────────
+# T21 · Biyección capa2 ↔ capa3 en relaciones.tsv
+# ───────────────────────────────────────────────────────────────
+
+# La correspondencia que el registro cumple sin una sola excepción desde que
+# CAPA3-RECONCILIA (PR #202) la reparó — 19 desacuerdos → 0. No es cosmética:
+# `capa3_disco_real` afirma el estado del payload EN DISCO, así que una fila
+# `SI`|`SI_O_PARCIAL` dice a la vez "verificado íntegro" y "quizá parcial".
+# Nadie vigilaba esto: hasta este test, `grep -c "capa2\|capa3" tests/check.py`
+# daba 0, y por eso el defecto de `via_capa2.py --escribe` (que escribía capa2
+# y dejaba capa3 atrás) pudo vivir callado hasta que ENLACE-2 lo midió con 8
+# filas rotas en un solo comando (PR 236).
+CAPA2_CAPA3 = {
+    "SI":                "EXISTE;COINCIDE;INTEGRO",
+    "SI_O_REFERENCIADO": "SI_O_PARCIAL",
+    "NO_REFERENCIADO":   "NO_REFERENCIADO",
+}
+
+def t21_capa2_capa3():
+    """Cada fila de `relaciones.tsv` debe llevar el `capa3_disco_real` que su
+    `capa2_manifiesto` exige. Un valor de capa2 fuera de la correspondencia no
+    es un fallo — es un aviso para que quien lo introduzca declare aquí qué
+    capa3 le toca."""
+    p = os.path.join(ROOT, "data", "curacion-registro", "relaciones.tsv")
+    if not os.path.exists(p):
+        fail("T21", "no se pudo leer `data/curacion-registro/relaciones.tsv`")
+        return
+    lineas = read(p).split("\n")
+    cab = lineas[0].split("\t")
+    if "capa2_manifiesto" not in cab or "capa3_disco_real" not in cab:
+        fail("T21", "relaciones.tsv no trae capa2_manifiesto y/o capa3_disco_real")
+        return
+    i2, i3 = cab.index("capa2_manifiesto"), cab.index("capa3_disco_real")
+    desacuerdos, desconocidos = {}, {}
+    for n, l in enumerate(lineas[1:], 2):
+        if not l.strip():
+            continue
+        c = l.split("\t")
+        if len(c) <= max(i2, i3):
+            continue
+        esperado = CAPA2_CAPA3.get(c[i2])
+        if esperado is None:
+            desconocidos.setdefault(c[i2], []).append(n)
+        elif c[i3] != esperado:
+            desacuerdos.setdefault((c[i2], c[i3]), []).append(n)
+    for (c2, c3), filas in sorted(desacuerdos.items()):
+        fail("T21", f"relaciones.tsv: {len(filas)} fila(s) con capa2={c2} y capa3={c3}; "
+                    f"capa2={c2} exige capa3={CAPA2_CAPA3[c2]} "
+                    f"(primera en la línea {filas[0]})")
+    for c2, filas in sorted(desconocidos.items()):
+        warn("T21", f"relaciones.tsv: capa2={c2} no está en la correspondencia que declara "
+                    f"este test ({len(filas)} fila(s), primera en la línea {filas[0]}) -- "
+                    f"si es un valor nuevo legítimo, añádelo a CAPA2_CAPA3 con su capa3")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -1555,7 +1612,8 @@ def main():
         ("T19b contador 14 cruzado (modelo)",     t19b_modelo_contador_14),
         ("T19c portada derivada (README)",        t19c_readme_derivadas),
         ("T20 T-CASCADA-MARCADA",                 t20_cascada_marcada),
-        ("T21 T-FIRMAS",                          t21_firmas),
+        ("T21 T-CAPA2-CAPA3",                     t21_capa2_capa3),
+        ("T22 T-FIRMAS",                          t22_firmas),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
