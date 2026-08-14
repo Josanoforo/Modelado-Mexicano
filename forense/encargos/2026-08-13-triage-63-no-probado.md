@@ -4,7 +4,7 @@ SHA de redacción: `a97dc28` (`origin/main`, merge #217 · ADR-77/A.8). Corregid
 
 Archivado junto con su ejecución (regla A.3), no antes — llegó pegado en la conversación de dirección, sin archivo propio en el repo al momento de lanzarse.
 
-**Estado: CONSUMIDO por ACTO TRIAGE-63, COMMIT 1 — PR #219.** COMMIT 2 queda sin ejecutar — PARO DECLARADO (`CANDIDATA-A-SONDEO = 27 > 20`), ver `forense/notas/2026-08-13-triage-63.md §7`.
+**Estado: CONSUMIDO — COMMIT 1 por PR #219, COMMIT 2 por este PR.** El PARO de COMMIT 1 (`CANDIDATA-A-SONDEO = 27 > 20`, `forense/notas/2026-08-13-triage-63.md §7`) fue retirado sin fundamento por `ADR-79(i)`/`ADR-80(a)` (ver ADENDA 2 abajo) — no invalida el triaje de COMMIT 1. Ejecución de COMMIT 2 en `forense/notas/2026-08-13-triage-63-commit2-sondeo.md`.
 
 ---
 
@@ -34,3 +34,27 @@ Correcciones sustantivas, aplicadas y verificadas en `forense/notas/2026-08-13-t
 4. El hallazgo real: re-correr los tres cruces del crosswalk (nombre exacto · URL · necesidad_que_sirve) contra el estado del 13/ago, no confiar en el VACIO de un día antes.
 5. La aritmética `10+16+10+28=64≠63` no era una fila cayendo en dos buckets — eran dos recetas distintas en dos pasadas distintas. Re-derivar los cuatro conteos en una sola pasada para que la suma cierre por construcción.
 6. Sin cambio: el PARO de `CANDIDATA-A-SONDEO > 20`, el orden de sondeo por regla del Hito D, A.4/A.5/A.6, el perímetro, la prohibición de borrar filas.
+
+## ADENDA 2 — dispatch de COMMIT 2 (recibido en mensaje separado, mismo día)
+
+Texto verbatim del ítem que lanza este acto (numerado `8` dentro de un dispatch mayor de esa misma sesión de dirección; los ítems 1-7 no fueron recibidos por este acto y no se archivan aquí — fuera de lo que este acto puede auditar):
+
+```
+8 · TRIAGE-63 COMMIT 2 — el sondeo
+Entorno: CAJA con red · Gate: ADR-79 con (i) firmado + REG-LOTE3 cerrado
+Perímetro: columnas de sondeo de data/acceso-puertas-2026-08-13.tsv, nota, hallazgos. ⚠️ No toca estado_triaje.
+
+Orden — las 17 que gatean Hito D primero, derivado por cruce contra necesidad-objeto-modelo.tsv;
+re-derívalo y reporta si difiere: [lista de 17 filas por N-número, ver forense/notas/2026-08-13-triage-63-commit2-sondeo.md §1]
+Las 10 restantes solo si mesa firmó SONDEO-COMPLETO.
+
+Mecánica: GET nunca HEAD, nunca curl -I · sin override primero, con override solo si falla,
+reportando los dos. A.5: "NO OBTENIDO POR ESTE AGENTE EN N INTENTOS" con salida cruda y receta
+manual de menos de un minuto. A.6: lo hallado por buscador y no abierto va SIN-FETCH. A.4: ninguna
+clasificación negativa sin universo en la línea. Sin gate numérico. Si se acaba la capacidad, entrega
+lo sondeado con la frontera declarada.
+```
+
+Precedido, en el mismo dispatch, por el bloque ARRANQUE + VERIFICACIÓN DE EXISTENCIA compartido de esa sesión (líneas base 3d0d1e5/ADR-76(f), receta T15, vocabulario A.4 EXISTE-SATISFACE/EXISTE-NO-SATISFACE/NO-ENCONTRADO/NO-ACCESIBLE) — no retranscrito aquí por ser genérico a todo el dispatch, no específico de este ítem; seguido verbatim, ver `forense/notas/2026-08-13-triage-63-commit2-sondeo.md §0`.
+
+**El gate no estaba satisfecho al recibir el encargo — 0/2, verificado con comando, no asumido.** `ADR-79` no existía (máximo sellado 78) y `REG-LOTE3` no existía en ningún branch/commit/PR/worktree. Sesión reportó el estado exacto al usuario (actuando como mesa) y esperó, sin auto-adjudicarse el desbloqueo — mismo criterio que `R5.1-D3` (`forense/encargos/2026-08-13-r5-1-d3.md`) el mismo día. El gate se resolvió más tarde, sin acción de este acto: `ADR-79` sellado por `ACTO SELLA-3` (con su inciso `(i)`/`D-M` explícitamente **NO** sellado — "REGISTRADO, NO SELLADO", `gobernanza-v1_15.md:1183`), `REG-LOTE3` cerrado por `PR #225`, y `(i)` sellado como `SONDEO-COMPLETO` por enmienda in situ de `ADR-80(a)` (`ACTO FIRMAS-2`, `gobernanza-v1_15.md:1199`, firma de mesa verbatim: *"Sondeo Completo."*) — verificado de nuevo por comando (`git grep`, `gh pr view`) antes de arrancar el sondeo, no heredado de la notificación.
