@@ -185,3 +185,13 @@ ACTO L (liberación de las 8 de radio): repo-only, conforme a ADR-71(a); no es d
 Reapertura de ADR-52A/54 y de las NEGATIVAS de BRASDEFER/MOBILE_TUTORS: decisiones de mesa, con los reportes de M-APERTURA y E-CE v1.1 enfrente. Ningún acto de este documento las toma.
 
 El costo de este documento, contado: cero reglas nuevas. Todo es aplicación de reglas selladas (A.3-A.6, ADR-59(b), ADR-69, ADR-70, ADR-71, Bloque D, R1/R2/R3) más las decisiones que solo mesa puede tomar, señaladas donde van: la firma del corte (§1, quizá ya consumida), la firma del Lote 2 (§4, al lanzar), la adjudicación de #184 y las reaperturas (§8).
+
+---
+
+## ADENDA-1 al §6 (ACTO M-APERTURA) — firmada por mesa, 14/ago/2026
+
+*Archivada por ACTO C (14/ago/2026) como propagación de estado medido, no como adjudicación nueva. Las dos cifras que la adenda declara se re-derivaron contra el árbol post-#236 antes de archivarla, con el propio script del gate: **ENFIH 7 `EXISTE;COINCIDE;INTEGRO` · 5 `NO_REFERENCIADO` · 8 `SI_O_PARCIAL`; ENSAFI 7 · 4 · 9** — coinciden exacto. Texto de mesa, verbatim:*
+
+> ADENDA-1 al ENCARGO M-APERTURA (§6 del plan de descargas, forense/encargos/2026-08-12-…-completo.md) · 14/ago/2026 · mesa. (a) El gate de arranque se corrige a la realidad post-ENLACE-1/2. El texto original esperaba EXISTE;COINCIDE;INTEGRO uniforme por fuente; hoy, medido sobre el árbol de #236, cada fuente trae TRES valores (ENFIH: 7 EXISTE;COINCIDE;INTEGRO · 5 NO_REFERENCIADO · 8 SI_O_PARCIAL — ENSAFI: 7 · 4 · 9). Gate nuevo, leído así y solo así: procede si cada fuente tiene ≥1 fila con capa3 EXISTE;COINCIDE;INTEGRO (hoy 7 y 7 — sobra); los valores mixtos son estado esperado del registro, NO disparan PARO. El PARO queda reservado a: cero filas íntegras en alguna de las dos, o hash discordante contra disco. (b) El acto CONSUME data/lista-apertura-enlace2-2026-08-14.tsv y, como parte de su perímetro ya declarado sobre capa4 (precedente ENLACE-1), corrige las 17 celdas cuyo rótulo INDEXADO-NO-DESCARGADO es hoy factualmente falso (son adjudicadas-no-referenciadas; #236 lo midió) al rótulo que su apertura arroje. (c) Su reporte es el insumo directo de la firma de pares (A3) — lo dice en su nota de cierre. Gates: esta adenda + #236 fusionado. Todo lo demás del §6 queda verbatim.
+
+**Estado del §6 tras esta adenda:** los dos gates están **cumplidos** — la adenda existe (este commit) y `#236` fusionó en `origin/main` (`cf0dd68`, 14/ago). M-APERTURA queda **lanzable**.
