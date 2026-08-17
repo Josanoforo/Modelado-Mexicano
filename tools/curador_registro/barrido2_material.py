@@ -12,6 +12,7 @@ import csv
 import hashlib
 import io
 import itertools
+import unicodedata
 import json
 import os
 import re
@@ -34,9 +35,9 @@ from jsonschema import Draft202012Validator
 
 
 AUTHORIZED_ROOTS = ("data_raw", "descargas_mx")
-MATERIAL_BUILD_VERSION = "BARRIDO2-MATERIAL-1.0"
+MATERIAL_BUILD_VERSION = "BARRIDO2-MATERIAL-1.1"
 MATERIAL_BUILD_SHA256 = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
-PRIVACY_CONTRACT = "BARRIDO2-PRIVACY-1.0"
+PRIVACY_CONTRACT = "BARRIDO2-PRIVACY-1.1"
 HASH_RE = re.compile(r"^[0-9a-f]{64}$")
 PAYLOAD_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$")
 W2_SUFFIXES = {".pdf", ".xls", ".xlsx", ".csv", ".tsv", ".dta", ".sav", ".docx"}
@@ -68,6 +69,44 @@ PII_PATTERNS = (
     re.compile(r"^[a-záéíóúñ]{3,}(?:[ _-]+[a-záéíóúñ]{3,}){1,3}$"),
     re.compile(r"^(?:/|[A-Za-z]:[/\\])"),
 )
+
+# Tres de esos patrones —los índices 7, 8 y 9— no detectan un identificador:
+# detectan la FORMA de un nombre propio (palabras capitalizadas, en mayúsculas o
+# en minúsculas, unidas por espacio o guion bajo). Sobre el DATO son la defensa
+# correcta y se conservan intactos. Sobre el ESQUEMA producen falsos positivos
+# estructurales: `VIV_SEL`, `CVE_ENT` y `NOM_MUN` tienen esa forma y son nombres
+# de variable del INEGI, no datos personales.
+#
+# Medido sobre 65 603 nombres y etiquetas distintos del corpus: hoy se redacta
+# el 5.50 %, y 3 601 de esas cadenas las redacta EXCLUSIVAMENTE una heurística
+# de nombre. Los ocho patrones de identificador duro tienen CERO activaciones en
+# todo el universo.
+#
+# Pero quitarlas a secas no es correcto: la misma medición encontró 44 nombres
+# de persona reales —candidatos independientes en los .dta electorales de
+# Veracruz, donde cada candidato es una columna— del tipo `RAÚL GONZÁLEZ GARCÍA`.
+# Así que la exención no es por clase de patrón sino por FORMA DE LA CADENA: se
+# exenta sólo lo que tiene forma de código (un token ASCII, sin espacios, sin
+# acentos, con guiones bajos). `VIV_SEL` la tiene; `RAÚL GONZÁLEZ GARCÍA` y
+# `JoséGuillernoAntonioMongueSa` no la tienen y siguen redactados.
+#
+# La política de mesa prohíbe valores individuales y PII. Un código de columna
+# no es ninguna de las dos cosas: lo que fallaba no era la política, sino
+# aplicarla al esquema con el detector pensado para el dato.
+PII_FORMA_DE_NOMBRE = (PII_PATTERNS[7], PII_PATTERNS[8], PII_PATTERNS[9])
+PII_IDENTIFICADOR = PII_PATTERNS[:7] + PII_PATTERNS[10:]
+# El corte va por posición, así que se ancla: si alguien reordena o inserta un
+# patrón, esto revienta al importar en vez de relajar la privacidad en silencio.
+assert len(PII_PATTERNS) == 11
+assert all("A-ZÁÉÍÓÚÑ" in p.pattern or "a-záéíóúñ" in p.pattern for p in PII_FORMA_DE_NOMBRE)
+assert len(PII_IDENTIFICADOR) == 8
+
+_CODIGO_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_]{0,63}$")
+
+
+def es_codigo(text: str) -> bool:
+    """¿La cadena es un código de esquema y no prosa que pueda nombrar a alguien?"""
+    return bool(_CODIGO_RE.match(text))
 
 
 class MaterialDriftError(RuntimeError):
@@ -184,9 +223,14 @@ def logical_object_id(digest: str, locator: str) -> str:
     ).hexdigest()
 
 
-def safe_text(value: object, *, durable: bool = False) -> tuple[str, bool]:
+def safe_text(value: object, *, durable: bool = False, estructural: bool = False) -> tuple[str, bool]:
+    """`estructural=True` marca metadato de esquema: nombre de columna, nombre
+    de variable, título de hoja. Ahí las heurísticas de nombre propio sólo se
+    saltan cuando la cadena tiene forma de código; cualquier otra cosa —prosa,
+    acentos, espacios— se sigue evaluando con los once patrones."""
     text = " ".join(str(value or "").replace("\t", " ").replace("\r", " ").replace("\n", " ").split())
-    redacted = any(pattern.search(text) for pattern in PII_PATTERNS)
+    patrones = PII_IDENTIFICADOR if (estructural and es_codigo(text)) else PII_PATTERNS
+    redacted = any(pattern.search(text) for pattern in patrones)
     if redacted:
         text = "[REDACTADO-PRIVACIDAD]"
     if not text:
@@ -194,6 +238,160 @@ def safe_text(value: object, *, durable: bool = False) -> tuple[str, bool]:
     if durable:
         text = text[:160].rstrip()
     return text, redacted
+
+
+_NUMERICO_RE = re.compile(r"^[-+]?\d+(?:[.,]\d+)?$")
+
+# Vocabulario de encabezado de diccionario, compartido por la vía delimitada y
+# la vía XLSX. Incluye el que usan de hecho los archivos «FD» del INEGI —
+# `Pregunta | Nemónico | Tipo | Tamaño | Códigos Válidos | Concepto` —, que la
+# primera pasada no conocía. Deliberadamente NO incluye `clave` ni `nombre`
+# sueltos: son nombres plausibles de columna en microdatos, y un falso positivo
+# aquí no cuesta un nombre perdido sino un recorrido fila a fila de datos.
+#
+# Cuál columna es cuál se verificó abriendo los archivos, no por intuición: en
+# el diccionario del INEGI `NOMBRE_CAMPO` es la ETIQUETA legible ("Resultado
+# definitivo de la entrevista") y `NEMÓNICO` es el CÓDIGO (`r_def`) — al revés
+# de lo que sugieren los nombres.
+VARIABLE_ALIASES = frozenset({
+    "variable", "var", "nombre_variable", "campo", "nemonico", "mnemonico",
+    "nombre_de_la_variable", "nombre_mnemonico",
+    # Grafías rotas en origen: varios diccionarios vienen en cp850/cp1252 y su
+    # encabezado ya está corrupto en el archivo publicado. No se exige la
+    # grafía canónica; se reconocen las formas medidas.
+    "nem_nico", "mnem_nico",
+})
+# El orden importa: es la precedencia con que se elige la etiqueta principal
+# cuando el encabezado ofrece varias. `Pregunta` gana sobre `Descripción`, y
+# `Concepto` no compite porque en el layout FD del INEGI no etiqueta a la
+# variable sino a la categoría — va emparejado con `Códigos Válidos`.
+LABEL_PRIORIDAD = (
+    "pregunta", "pregunta_y_categoria", "reactivo", "etiqueta", "label",
+    "nombre_campo", "nombre_del_campo", "descripcion", "descripci_n",
+    "definicion", "definition",
+)
+LABEL_ALIASES = frozenset(LABEL_PRIORIDAD)
+CATEGORY_ALIASES = frozenset({
+    "categoria", "categorias", "category", "categories", "value_label",
+    "value_labels", "codigos_validos", "valores_validos", "opciones",
+    "rango_claves", "rangos_validos", "rango_valido", "clases", "catalogo",
+    "categorias_valores_nulos", "categor_as", "cat_logo", "concepto",
+})
+
+
+def _orden_etiqueta(clave: str) -> int:
+    return LABEL_PRIORIDAD.index(clave) if clave in LABEL_PRIORIDAD else len(LABEL_PRIORIDAD)
+# Marcadores de columna que el INEGI intercala entre el encabezado y los datos:
+# `[1] [2] …` o `(1) (2) …`. Están en 57 de 139 hojas medidas.
+_MARCADOR_RE = re.compile(r"^[\[(]\d+[\])]$")
+
+# Cuántas filas se miran buscando el encabezado. Los «FD» del INEGI abren con
+# un bloque de título y notas al pie numeradas; el encabezado real medido en
+# `enasic_2022_fd.xlsx` vive en la fila 15.
+VENTANA_ENCABEZADO = 40
+
+
+def _clave_encabezado(value: object) -> str:
+    """Normaliza una celda de encabezado para comparar contra el vocabulario.
+
+    Quita acentos: `Nemónico` y `Códigos Válidos` no coinciden con nada si se
+    comparan tal cual, y son exactamente los términos que el INEGI usa.
+    """
+    text = unicodedata.normalize("NFKD", str(value or "").strip())
+    text = "".join(char for char in text if not unicodedata.combining(char))
+    return re.sub(r"[^a-z0-9]+", "_", text.casefold()).strip("_")
+
+
+def _mapa_encabezado(fila: Iterable[Any]) -> dict[str, int]:
+    return {
+        clave: index
+        for index, value in enumerate(fila)
+        if (clave := _clave_encabezado(value))
+    }
+
+
+def _es_encabezado_de_diccionario(mapa: dict[str, int]) -> bool:
+    """Un diccionario nombra variables y dice algo de sus valores.
+
+    La familia más grande medida —227 archivos de ENOE/ENVIPE/ENCIG— es
+    `NOMBRE_CAMPO | LONGITUD | TIPO | NEMÓNICO | CATÁLOGO | RANGO_CLAVES`: tiene
+    variable y categorías pero ninguna columna que se llame «etiqueta». Exigir
+    etiqueta dejaría fuera justo a esa familia.
+    """
+    return bool(
+        VARIABLE_ALIASES & mapa.keys()
+        and (LABEL_ALIASES & mapa.keys() or CATEGORY_ALIASES & mapa.keys())
+    )
+
+
+def _es_fila_marcador(fila: Iterable[Any]) -> bool:
+    celdas = [str(v or "").strip() for v in fila]
+    llenas = [c for c in celdas if c]
+    return bool(llenas) and all(_MARCADOR_RE.match(c) for c in llenas)
+
+
+def encuentra_encabezado(
+    filas: list[Iterable[Any]], *, tabla_declarada: bool = False
+) -> tuple[int, dict[str, int], str]:
+    """Localiza la fila de encabezado dentro de una ventana, y dice por qué.
+
+    Devuelve `(indice_0based, mapa, origen)`; `indice = -1` cuando no hay
+    encabezado defendible. El sesgo es a no persistir: si ninguna regla cierra,
+    la tabla queda `NO-DETERMINADO` y sus columnas se nombran por posición.
+
+    Los «FD» del INEGI nunca ponen el encabezado en la fila 1: medido sobre 139
+    hojas, vive entre la fila 4 y la 20, con moda en la 15.
+    """
+    for indice, fila in enumerate(filas):
+        mapa = _mapa_encabezado(fila)
+        if _es_encabezado_de_diccionario(mapa):
+            return indice, mapa, "SI-DICCIONARIO"
+    # El encabezado DERIVADO sólo puede ser la primera fila no vacía. Buscarlo
+    # más abajo promovería la primera observación de una tabla que abre con un
+    # título libre, que es peor que no tener nombres: inventa unos falsos y
+    # además pierde esa fila del conteo. Un encabezado más profundo tiene que
+    # ganarse el lugar por vocabulario de diccionario, no por forma.
+    for indice, fila in enumerate(filas):
+        if not any(str(v or "").strip() for v in fila):
+            continue
+        return (indice, _mapa_encabezado(fila), "SI-DERIVADO") if _looks_like_header(fila) else (
+            (0, _mapa_encabezado(filas[0]), "SI-TABLA-DECLARADA") if tabla_declarada
+            else (-1, {}, "NO-DETERMINADO")
+        )
+    if tabla_declarada and filas:
+        return 0, _mapa_encabezado(filas[0]), "SI-TABLA-DECLARADA"
+    return -1, {}, "NO-DETERMINADO"
+
+
+def _looks_like_header(values: Iterable[Any]) -> bool:
+    """¿La primera fila nombra columnas, o ya es una observación?
+
+    El §8 exige conservar el encabezado de una tabla delimitada; la privacidad
+    exige no persistir una fila de datos.  Cuando el nombre del archivo no
+    declara nada, la única evidencia disponible es la forma de la fila, y se
+    resuelve por forma —no por nombre— con sesgo hacia no persistir: ante la
+    duda queda ``COLUMNA-N`` y la tabla lo declara como ``NO-DETERMINADO``.
+
+    Exige simultáneamente: al menos dos celdas llenas, que cubran la mitad de
+    la fila, todas distintas, todas cortas, ninguna numérica y ninguna con
+    forma de identificador personal.  Una fila de microdatos falla al menos una
+    de las cinco casi siempre; un renglón de nombres de variable las cumple.
+    """
+    cells = [str(value or "").strip() for value in values]
+    filled = [cell for cell in cells if cell]
+    if len(filled) < 2 or len(filled) * 2 < len(cells):
+        return False
+    if any(len(cell) > 64 for cell in filled):
+        return False
+    if len({cell.casefold() for cell in filled}) != len(filled):
+        return False
+    if any(_NUMERICO_RE.match(cell) for cell in filled):
+        return False
+    return not any(
+        pattern.search(cell)
+        for cell in filled
+        for pattern in (PII_IDENTIFICADOR if es_codigo(cell) else PII_PATTERNS)
+    )
 
 
 def valid_payload_id(value: object, *, allow_no_aplica: bool = False) -> bool:
@@ -742,63 +940,78 @@ def _csv_objects(stream: BinaryIO, locator: str, suffix: str, *, dictionary_hint
         wrapper.seek(0)
         delimiter = "\t" if suffix == ".tsv" else max((",", "\t", ";", "|"), key=sample.splitlines()[0].count) if sample.splitlines() else ","
         reader = csv.reader(wrapper, delimiter=delimiter)
-        try:
-            first_row = next(reader)
-        except StopIteration:
-            first_row = []
         declared_dictionary = bool(re.search(
             r"(?:^|[/_.\s-])(diccionario|dictionary|codebook|catalogo|cat[aá]logo|variables?)(?:[/_.#\s-]|$)",
             f"{locator} {dictionary_hint}", re.I,
         ))
-        variable_aliases = {"variable", "var", "nombre_variable", "campo"}
-        label_aliases = {"etiqueta", "label", "definicion", "definition", "reactivo", "pregunta"}
-        first_normalized = {
-            str(value or "").strip().casefold().replace(" ", "_"): index
-            for index, value in enumerate(first_row)
-        }
-        dictionary_schema = bool(
-            declared_dictionary
-            and variable_aliases.intersection(first_normalized)
-            and label_aliases.intersection(first_normalized)
-        )
-        structural_header = dictionary_schema
+        variable_aliases, label_aliases = VARIABLE_ALIASES, LABEL_ALIASES
+        # Ventana, no primera fila: 82 de los 310 diccionarios delimitados del
+        # corpus abren con un bloque de título (`Tabla:`, `Insumos:`, `Lista de
+        # variables:`) y traen el encabezado hasta la fila 3, 5, 10, 12 o 19.
+        ventana: list[list[str]] = []
+        for fila in reader:
+            ventana.append(fila)
+            if len(ventana) >= VENTANA_ENCABEZADO:
+                break
+        indice_encabezado, normalized, origen_encabezado = encuentra_encabezado(ventana)
+        dictionary_schema = origen_encabezado == "SI-DICCIONARIO"
+        structural_header = indice_encabezado >= 0
+        first_row = ventana[indice_encabezado] if structural_header else (ventana[0] if ventana else [])
         header = first_row if structural_header else [f"COLUMNA-{index}" for index in range(1, len(first_row) + 1)]
-        normalized = {str(value or "").strip().casefold().replace(" ", "_"): index for index, value in enumerate(header)}
+        # Las filas del bloque de título y el encabezado mismo no son datos; lo
+        # que quedó por debajo sí, y se cuenta sin persistirse.
+        resto_ventana = ventana[indice_encabezado + 1:] if structural_header else ventana
         dictionary = bool(
             dictionary_schema
             and variable_aliases.intersection(normalized)
             and label_aliases.intersection(normalized)
         )
         variable_column = normalized[sorted(variable_aliases.intersection(normalized))[0]] if dictionary else -1
-        label_columns = [normalized[name] for name in sorted(label_aliases.intersection(normalized))]
+        label_columns = [normalized[name] for name in sorted(label_aliases.intersection(normalized), key=_orden_etiqueta)]
+        category_columns = (
+            [normalized[name] for name in sorted(CATEGORY_ALIASES & normalized.keys())] if dictionary else []
+        )
         dictionary_objects: list[dict[str, Any]] = []
         count = 0
-        data_rows = reader if structural_header else itertools.chain([first_row], reader)
-        for values in data_rows:
+        for values in itertools.chain(resto_ventana, reader):
+            # Un encabezado repetido por sección o una fila de marcadores no es
+            # una observación y no debe engrosar el conteo de filas.
+            if _es_fila_marcador(values) or _es_encabezado_de_diccionario(_mapa_encabezado(values)):
+                continue
             count += 1
             if not dictionary or variable_column >= len(values) or not values[variable_column].strip():
                 continue
-            variable, _ = safe_text(values[variable_column])
+            variable, _ = safe_text(values[variable_column], estructural=True)
             labels = [safe_text(values[index])[0] for index in label_columns if index < len(values) and values[index].strip()]
+            categories = [
+                safe_text(values[index])[0]
+                for index in category_columns if index < len(values) and values[index].strip()
+            ]
             dictionary_objects.append({
                 "locator": f"{locator}#diccionario-fila={count}:variable={variable}",
                 "parent_locator": locator,
                 "type": "VARIABLE-DICCIONARIO", "name": variable,
                 "label": labels[0] if labels else "NO-APLICA",
                 "definition": " · ".join(labels) if labels else "metadato de diccionario",
+                "categories": categories,
             })
     finally:
         wrapper.detach()
     objects: list[dict[str, Any]] = [{
         "locator": locator, "type": "TABLA", "name": "tabla-raiz" if locator == "tabla=raiz" else Path(locator).name,
-        "definition": f"filas={count};columnas={len(header)};delimitador={repr(delimiter)};encabezado={'SI' if structural_header else 'NO-DETERMINADO'}",
+        "definition": (
+            f"filas={count};columnas={len(header)};delimitador={repr(delimiter)}"
+            f";encabezado={origen_encabezado}"
+            f";diccionario_declarado={'SI' if declared_dictionary else 'NO'}"
+        ),
     }]
     for index, name in enumerate(header, 1):
-        clean, _ = safe_text(name)
+        clean, _ = safe_text(name, estructural=True)
         objects.append({
             "locator": f"{locator}#columna={index}", "type": "COLUMNA",
             "parent_locator": locator,
-            "name": clean, "definition": "encabezado de tabla delimitada",
+            "name": clean,
+            "definition": f"encabezado de tabla delimitada; origen={origen_encabezado}",
         })
     objects.extend(dictionary_objects)
     return objects
@@ -856,63 +1069,80 @@ def _xlsx_objects(path: Path) -> list[dict[str, Any]]:
                 r"diccionario|dictionary|codebook|catalogo|cat[aá]logo|variables?",
                 f"{path.name} {sheet.title}", re.I,
             ))
-            first_two = list(
-                sheet.iter_rows(min_row=1, max_row=min(max_row, 2), values_only=True)
-            ) if max_row else []
-            first = first_two[0] if first_two else ()
-            variable_aliases = {"variable", "var", "nombre_variable", "campo"}
-            label_aliases = {"etiqueta", "label", "definicion", "definition", "reactivo", "pregunta"}
-            first_normalized = {
-                str(value or "").strip().casefold().replace(" ", "_"): index
-                for index, value in enumerate(first) if str(value or "").strip()
-            }
-            dictionary_schema = bool(
-                declared_dictionary
-                and variable_aliases.intersection(first_normalized)
-                and label_aliases.intersection(first_normalized)
-            )
+            # Se itera SIN cota de fila: los catálogos SPSS de ENSANUT declaran
+            # `<dimension ref="A14:E20"/>` y acotar por `max_row` devuelve filas
+            # vacías justo donde vive el encabezado.
+            # `if max_row` se conserva: una hoja sin dimensiones no se itera, y
+            # eso ya es contrato probado. Lo que cambia es que dentro de una
+            # hoja CON dimensiones se recorre la ventana completa en vez de
+            # sólo las dos primeras filas.
+            ventana: list[tuple[Any, ...]] = []
+            if max_row:
+                for fila in sheet.iter_rows(values_only=True):
+                    ventana.append(fila)
+                    if len(ventana) >= VENTANA_ENCABEZADO:
+                        break
             declared_table = bool(getattr(sheet, "tables", {}))
-            structural_header = dictionary_schema or declared_table
+            fila_encabezado, header_map, origen_encabezado = encuentra_encabezado(
+                ventana, tabla_declarada=declared_table
+            )
+            structural_header = fila_encabezado >= 0
+            dictionary_schema = origen_encabezado == "SI-DICCIONARIO"
+            if structural_header:
+                encabezado = list(ventana[fila_encabezado])
+            else:
+                encabezado = next(
+                    (list(f) for f in ventana if any(str(v or "").strip() for v in f)), []
+                )
             objects.append({
                 "locator": locator, "type": "HOJA-XLSX", "name": sheet.title,
-                "definition": f"filas={max_row};columnas={max_column};encabezado={'SI' if structural_header else 'NO-DETERMINADO'}", "sheet": sheet.title,
+                "definition": (
+                    f"filas={max_row};columnas={max_column}"
+                    f";encabezado={origen_encabezado}"
+                    f";fila_encabezado={fila_encabezado + 1 if structural_header else 'NO-APLICA'}"
+                    f";diccionario_declarado={'SI' if declared_dictionary else 'NO'}"
+                ),
+                "sheet": sheet.title,
             })
-            for index, value in enumerate(first, 1):
-                name, _ = safe_text(value if structural_header else f"COLUMNA-{index}")
+            for index, value in enumerate(encabezado, 1):
+                # Una celda vacía no nombra una columna. Los 42 `COLUMNA-N` que
+                # ENASIC produjo eran artefactos de leer una fila en blanco.
+                if not str(value or "").strip():
+                    continue
+                name, _ = safe_text(
+                    value if structural_header else f"COLUMNA-{index}", estructural=True
+                )
                 objects.append({
                     "locator": f"{locator}#columna={index}", "type": "COLUMNA",
                     "parent_locator": locator,
                     "name": name,
-                    "definition": "encabezado estructural" if structural_header else "encabezado no determinado; valor no persistido",
+                    "definition": (
+                        f"encabezado estructural; origen={origen_encabezado}"
+                        if structural_header
+                        else "encabezado no determinado; valor no persistido"
+                    ),
                     "sheet": sheet.title,
                 })
-            # Solo las hojas que se autodeclaran diccionario se recorren como
-            # metadatos fila a fila. Las hojas de observaciones nunca exportan
-            # sus celdas. Se exige columna variable + etiqueta/definición.
-            header_row = 0
-            header_map: dict[str, int] = {}
-            category_aliases = {"categoria", "categorias", "category", "categories", "value_label", "value_labels"}
-            candidate_rows = (
-                sheet.iter_rows(min_row=1, max_row=min(max_row, 20), values_only=True)
-                if max_row else ()
-            )
-            for candidate_number, candidate in enumerate(candidate_rows, 1):
-                normalized = {
-                    str(value or "").strip().casefold().replace(" ", "_"): index
-                    for index, value in enumerate(candidate)
-                    if str(value or "").strip()
-                }
-                if dictionary_schema and variable_aliases.intersection(normalized) and label_aliases.intersection(normalized):
-                    header_row, header_map = candidate_number, normalized
-                    break
-            if header_row:
-                variable_column = header_map[sorted(variable_aliases.intersection(header_map))[0]]
-                label_columns = [header_map[name] for name in sorted(label_aliases.intersection(header_map))]
-                category_columns = [header_map[name] for name in sorted(category_aliases.intersection(header_map))]
-                for row_number, values in enumerate(sheet.iter_rows(min_row=header_row + 1, values_only=True), header_row + 1):
+            # Solo las hojas cuyo encabezado tiene estructura de diccionario se
+            # recorren fila a fila. Las hojas de observaciones nunca exportan
+            # sus celdas.
+            if dictionary_schema:
+                variable_column = header_map[sorted(VARIABLE_ALIASES & header_map.keys())[0]]
+                label_columns = [header_map[n] for n in sorted(LABEL_ALIASES & header_map.keys(), key=_orden_etiqueta)]
+                category_columns = [header_map[n] for n in sorted(CATEGORY_ALIASES & header_map.keys())]
+                for row_number, values in enumerate(sheet.iter_rows(values_only=True), 1):
+                    if row_number <= fila_encabezado + 1:
+                        continue
+                    # 47 % de las hojas FD repiten el encabezado por sección
+                    # —hasta 16 veces— e intercalan una fila de marcadores
+                    # `[1] [2] …`. Ninguna de las dos es una variable.
+                    if _es_fila_marcador(values):
+                        continue
+                    if _es_encabezado_de_diccionario(_mapa_encabezado(values)):
+                        continue
                     if variable_column >= len(values) or not str(values[variable_column] or "").strip():
                         continue
-                    variable, _ = safe_text(values[variable_column])
+                    variable, _ = safe_text(values[variable_column], estructural=True)
                     labels = [safe_text(values[index])[0] for index in label_columns if index < len(values) and str(values[index] or "").strip()]
                     categories = [safe_text(values[index])[0] for index in category_columns if index < len(values) and str(values[index] or "").strip()]
                     objects.append({
@@ -951,7 +1181,7 @@ def _xls_objects(path: Path) -> list[dict[str, Any]]:
                     names.append(raw.decode("utf-16le" if flags & 1 else "latin-1", errors="replace"))
                 cursor += 4 + length
         for sheet_ordinal, name in enumerate(names, 1):
-            clean, _ = safe_text(name)
+            clean, _ = safe_text(name, estructural=True)
             name_sha256 = hashlib.sha256(name.encode("utf-8", errors="replace")).hexdigest()
             objects.append({
                 "locator": f"hoja={sheet_ordinal}:nombre_sha256={name_sha256}", "type": "HOJA-XLS",
@@ -1106,7 +1336,7 @@ def _sav_objects(path: Path) -> list[dict[str, Any]]:
                 read_exact(missing_slots * 8)
                 if variable_type == -1:
                     continue
-                clean_name, _ = safe_text(name)
+                clean_name, _ = safe_text(name, estructural=True)
                 clean_label, _ = safe_text(label)
                 variable_ordinal = len(variables) + 1
                 name_sha256 = hashlib.sha256(name.encode("utf-8", errors="replace")).hexdigest()
@@ -1197,7 +1427,7 @@ def _dta_objects(path: Path) -> list[dict[str, Any]]:
             "definition": f"observaciones={reader._nobs};variables={reader._nvar};observaciones-no-persistidas",
         })
         for variable_ordinal, name in enumerate(variables, 1):
-            clean_name, _ = safe_text(name)
+            clean_name, _ = safe_text(name, estructural=True)
             clean_label, _ = safe_text(labels.get(name, ""))
             mapping = value_tables.get(label_tables.get(name, ""), {})
             label_names = sorted({safe_text(value)[0] for value in mapping.values()})
@@ -1436,7 +1666,7 @@ def _e2_record(task: dict[str, Any], raw: dict[str, Any], parser: str, boundary:
 
     raw_locator = str(raw.get("locator", "objeto"))
     locator, red_locator = safe_text(raw_locator)
-    name, red_name = safe_text(raw.get("name", ""))
+    name, red_name = safe_text(raw.get("name", ""), estructural=True)
     label, red_label = safe_text(raw.get("label", ""))
     question, red_question = safe_text(raw.get("question", ""))
     definition, red_definition = safe_text(raw.get("definition", ""))
@@ -1445,8 +1675,8 @@ def _e2_record(task: dict[str, Any], raw: dict[str, Any], parser: str, boundary:
     unit, red_unit = safe_text(raw.get("unit", ""))
     period, red_period = safe_text(raw.get("period", ""))
     population, red_population = safe_text(raw.get("population", ""))
-    sheet, red_sheet = safe_text(raw.get("sheet", ""))
-    table, red_table = safe_text(raw.get("table", ""))
+    sheet, red_sheet = safe_text(raw.get("sheet", ""), estructural=True)
+    table, red_table = safe_text(raw.get("table", ""), estructural=True)
     route, red_route = safe_text(task["ruta_relativa"])
     parent_locator = raw.get("parent_locator")
     parent_id = (

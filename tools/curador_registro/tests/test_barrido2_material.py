@@ -713,13 +713,22 @@ class Barrido2MaterialTests(unittest.TestCase):
         self.assertEqual({"variable", "category"}, set(variables))
         self.assertEqual("Variable label", variables["variable"]["label"])
         self.assertIn("observaciones no persistidas", boundary)
+        # Un nombre de variable de Stata no admite espacios: `first_name` es una
+        # columna SOBRE nombres, no el nombre de nadie, y como tiene forma de
+        # código se conserva. Donde sí puede aparecer una persona es en la
+        # ETIQUETA, que sigue evaluándose con los once patrones.
         private_names = self.raw / "private-names.dta"
-        pd.DataFrame({"first_name": [1], "second_name": [2]}).to_stata(private_names, write_index=False)
+        pd.DataFrame({"first_name": [1], "second_name": [2]}).to_stata(
+            private_names, write_index=False,
+            variable_labels={"first_name": "Juan Perez Garcia"},
+        )
         private_objects, _, _ = inspect_e2(private_names)
         private_variables = [row for row in private_objects if row["type"] == "VARIABLE-DTA"]
         self.assertEqual(2, len(private_variables))
         self.assertEqual(2, len({row["locator"] for row in private_variables}))
-        self.assertEqual({"[REDACTADO-PRIVACIDAD]"}, {row["name"] for row in private_variables})
+        self.assertEqual({"first_name", "second_name"}, {row["name"] for row in private_variables})
+        etiquetas = {row["name"]: row["label"] for row in private_variables}
+        self.assertEqual("[REDACTADO-PRIVACIDAD]", etiquetas["first_name"])
         sav = self.raw / "sample.sav"
         header = bytearray(176); header[:4] = b"$FL2"; header[64:68] = struct.pack("<i", 2)
         variable_label = b"Age label"
@@ -743,7 +752,12 @@ class Barrido2MaterialTests(unittest.TestCase):
             data = b"\0" * 6 + bytes((len(encoded), 0)) + encoded
             return struct.pack("<HH", 0x0085, len(data)) + data
 
-        payload = boundsheet("first_name") + boundsheet("second_name")
+        # Nombres con forma de nombre propio y espacios: el nombre de una hoja
+        # sí puede serlo. La exención estructural sólo alcanza a lo que tiene
+        # forma de código —un token ASCII sin espacios—, así que estos dos se
+        # siguen redactando y la garantía que esta prueba cuida, que dos
+        # nombres redactados conserven localizadores distintos, sigue medida.
+        payload = boundsheet("Juan Perez") + boundsheet("Ana Lopez")
 
         class FakeOle:
             def __enter__(self): return self
