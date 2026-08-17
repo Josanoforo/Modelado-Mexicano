@@ -2,7 +2,7 @@
 
 - **SHA de redacción:** `385884e` (merge de #173, `origin/main`, 11/ago/2026)
 - **Entorno asignado:** NUBE. **NO** la caja local — ahí corren los actos de E4. Este acto no toca microdato, no descarga nada y no necesita `data/raw`.
-- **Estado:** VIVO
+- **Estado:** CONSUMIDO — PR #175. *(Re-verificado 17/ago/2026, ACTO E-HIG/HIGIENE-VIVOS, contra `f3873c2`: `git merge-base --is-ancestor 3e071f0 f3873c2` OK; `canon/gobernanza-v1_15.md:928` [ADR-69] cita este mismo PR #175 al sellarse, y `data/UNIVERSO-MINIMO-FUENTE-v1_0.md` está en el árbol. Coincide con lo que la ADENDA de este mismo archivo ya reportaba.)*
 - **Decisión de mesa que lo autoriza:** dictada por escrito el 11/ago/2026 en el hilo de dirección, tras el hallazgo de E4b. Este acto **no decide nada nuevo: registra lo decidido.**
 
 **EL DEFECTO, DICHO CON PRECISIÓN — y la primera versión de este diagnóstico era falsa.** Una lectura preliminar afirmó que la Red Nacional de Metadatos del INEGI "no estaba en el universo de búsqueda de ningún acto del programa". **Es falso, verificado con `grep -rlni "rnm/index.php\|Red Nacional de Metadatos"`: aparece en diez archivos.** El programa la conoce bien — `forense/notas/2026-08-07-explora1.md` documenta que `/rnm/index.php/catalog/` **responde HTML real y es navegable por curl**, a diferencia de `/programas/`, que es una SPA; hay uso registrado de su API de búsqueda (`/rnm/index.php/api/catalog/search`) y de sus descargas directas (`/catalog/{id}/download/{n}`) para ENDIREH (801), ENADID, ENUT y ENCUP.

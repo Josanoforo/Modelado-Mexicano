@@ -26,6 +26,8 @@ verificablemente satisfecha — ver
 `forense/notas/2026-08-05-m4bis-encup-lapop-latinobarometro-bloqueo.md`
 §5 para el razonamiento completo.
 
+*(Re-verificado 17/ago/2026, ACTO E-HIG/HIGIENE-VIVOS, contra `f3873c2`: `ls forense/cruce-catalogo-fichas-v3_0.md` → no existe; `git log --all --oneline --grep="cruce-catalogo-fichas-v3_0"` → sin resultados de creación. Sigue `VIVO`, misma razón, gate propio [M-1 a M-4 del lote] todavía no verificable como satisfecho.)*
+
 ---
 
 ## Texto del encargo, verbatim

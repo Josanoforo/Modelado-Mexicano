@@ -2,7 +2,7 @@
 
 - **SHA de redacción:** `19d885d` (`origin/main`, merge PR #200/wt-apertura-issp-1786589980, que a su vez ya trae fusionado PR #202/capa3-reconcilia — confirmado: es exactamente el commit sobre el que se abrió el worktree `~/mm-enasic-split` de este acto, `python3 tests/bitacora.py --abre` sin divergencia HEAD/origin-main)
 - **Entorno asignado:** CAJA con corpus (Ubuntu/WSL local, worktree dedicado). **NO** se lanza en la nube: este acto abre `data/raw/enasic2022/` (PDF + diccionario xlsx) de primera mano — la nube no trae `data/raw` montado (mismo criterio declarado por E4b/PR #173 y U1/PR #185 para el mismo corpus).
-- **Estado:** VIVO
+- **Estado:** CONSUMIDO — PR #206 (rama `enasic-split`). *(Re-verificado 17/ago/2026, ACTO E-HIG/HIGIENE-VIVOS, contra `f3873c2`: `git merge-base --is-ancestor 959006a f3873c2` OK; `forense/notas/2026-08-13-enasic-split-verificacion.md` en el árbol.)*
 
 ---
 
