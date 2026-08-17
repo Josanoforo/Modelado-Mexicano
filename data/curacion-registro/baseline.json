@@ -5,16 +5,16 @@
       "sha256": "4ea5cf366440968b94ac0ef8a25b22c7e9a503643808068be55cc17be7aabd3b"
     },
     "artefactos-rechazados.tsv": {
-      "filas": 111,
-      "sha256": "5e748a78083cdb1218ce20ad3102df5403e38f21688865d53429c9e9c45927a1"
+      "filas": 85,
+      "sha256": "0c0ac54dcd2a160da97cfc1488e9f31aa879dcdbb23764247a6a20405bfe3439"
     },
     "decisiones-humanas.tsv": {
       "filas": 2,
-      "sha256": "cbc14f00f94d8958e67a7ce952d955cc16ea4672f2eb3521d1bd7a3daddef765"
+      "sha256": "2d32cd5e06fc2901aaf1eca7505936049528fd8496761a25653b7c2bcc21dcd8"
     },
     "evidencias.tsv": {
       "filas": 200,
-      "sha256": "89a76cebffd8124fe2b5aaae2fd6410b8e595bad1335c1727d049b9fa2ad9cdb"
+      "sha256": "432b4fe581f07f454c6ece2e8766d35b992e47c82b7845e6d42f78f5c0958580"
     },
     "fusiones-relaciones.tsv": {
       "filas": 1,
@@ -22,7 +22,7 @@
     },
     "relaciones.tsv": {
       "filas": 199,
-      "sha256": "741161dee36da3f0f0507b0c25a4f30f608a0bc4d83d1f26205b5c4f0e1cd764"
+      "sha256": "50e1e594ddb92be266919990446cf566bbc4f4e657b0dc220cae8227eed2aa86"
     },
     "utilidad-modelo.tsv": {
       "filas": 199,
@@ -36,10 +36,10 @@
     "objeto_evidencia_id_canonico"
   ],
   "conteos": {
-    "artefactos_rechazados": 111,
+    "artefactos_rechazados": 85,
     "candidatas": 147,
     "confirmadas": 3,
-    "decisiones_pendientes": 2,
+    "decisiones_pendientes": 0,
     "familias_alias": 4,
     "fusiones_declaradas": 1,
     "negativas": 42,
