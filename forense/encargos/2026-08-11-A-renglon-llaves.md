@@ -2,7 +2,7 @@
 
 - **SHA de redacción:** `931997c` (merge de PR #169, `origin/main`, 11/ago/2026)
 - **Entorno asignado:** NUBE. **NO** se lanza en la caja local Ubuntu CC — ahí corren E4a/E4b/E4c, que sí tocan microdato, y este acto no lo toca. No se lanzan los dos carriles sobre los mismos archivos.
-- **Estado:** VIVO
+- **Estado:** CONSUMIDO — PR #170 (rama `renglon/llaves-identificacion`, misma que PASO 6 de este encargo declara). *(Re-verificado 17/ago/2026, ACTO E-HIG/HIGIENE-VIVOS, contra `f3873c2`: commits `e38554e`/`5549de5` fusionados en `bfc0037` → `git merge-base --is-ancestor bfc0037 f3873c2` OK; `git show bfc0037 --stat` incluye `forense/registro-llaves-identificacion-v1_0.md` y este mismo archivo. Corrige un `VIVO` que llevaba desde el 11/ago pese a estar fusionado.)*
 - **Bloquea a:** E4c (`R5.1-D2`). Sin este renglón, E4c produce un veredicto sin fila donde escribirlo.
 
 **PROCEDENCIA DEL ENCARGO.** Todo lo de abajo fue derivado con comando contra un clon de `931997c` el 11/ago/2026. El defecto que lo motiva: `grep -rn "R5.1-D2"` devuelve solo prosa (`gobernanza:868`, `hallazgos:179`, `estado:99`, `propuesta-…-v0_3:218`) y ninguna casilla; y el parser canónico T18 (`tests/check.py`) matchea `` `R\d+\.\d+` → veredicto `[A-E]` ``, patrón que **no captura** `R5.1-D2` — el sufijo rompe el backtick de cierre. Verifica ambas cosas tú mismo antes de obedecer este encargo.

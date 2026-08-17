@@ -2,7 +2,7 @@
 
 - **SHA de redacción**: `b17a6f6` (verificado en ARRANQUE de este acto: `origin/main` estaba exactamente en `b17a6f6` al abrir el worktree — sin deriva que re-derivar).
 - **Entorno asignado**: caja Ubuntu, worktree propio. Prohibido nube (medido: 403 host_not_allowed) y prohibido lanzarlo en los dos entornos a la vez.
-- **Estado**: `VIVO`.
+- **Estado**: `CONSUMIDO — PR #197` (rama `sonda1-mapa-barreras-lote2`). *(Re-verificado 17/ago/2026, ACTO E-HIG/HIGIENE-VIVOS, contra `f3873c2`: `git merge-base --is-ancestor 5f90757 f3873c2` OK; commit `210b045` "ACTO SONDA-1 · Commit 2: sondeo real de 15 fuentes, 15 puertas nuevas" en el árbol; nota de cierre `forense/notas/2026-08-12-acto-sonda1-mapa-barreras.md`.)*
 
 Archivado per convención de este directorio (`forense/encargos/convencion.md`), como primer commit de este acto, antes de ejecutar el resto del bloque de ARRANQUE — Regla A.3 (`instrucciones-proyecto-v2_5.md`, Bloque D-bis).
 
