@@ -32,10 +32,12 @@ from tools.curador_registro.barrido2_material import (
     normalize_relative,
     representation_id,
     safe_text,
+    valid_payload_id,
     validate_material_files,
     validate_material_snapshot,
     wave_concurrency_limit,
 )
+from tools.curador_registro.write_barrido2_w0 import CENSUS_SUFFIX, write_w0
 
 
 def digest(payload: bytes) -> str:
@@ -107,6 +109,14 @@ class Barrido2MaterialTests(unittest.TestCase):
         snapshot = build_material_snapshot(self._manifest(rows), self.roots, path)
         return snapshot, path
 
+    def test_payload_id_uses_closed_administrative_grammar(self) -> None:
+        self.assertTrue(valid_payload_id("nota_metodologica_rotulo_pareada"))
+        self.assertTrue(valid_payload_id("20260813130000_export_csv"))
+        self.assertFalse(valid_payload_id("persona@example.test"))
+        self.assertFalse(valid_payload_id("Alicia Perez"))
+        self.assertFalse(valid_payload_id("NO-APLICA"))
+        self.assertTrue(valid_payload_id("NO-APLICA", allow_no_aplica=True))
+
     def test_three_identities_are_not_collapsed_and_root_is_respected(self) -> None:
         raw_payload = b"raw"
         mx_payload = b"mx"
@@ -149,6 +159,46 @@ class Barrido2MaterialTests(unittest.TestCase):
         self.assertEqual(4, snapshot["counts"]["declaraciones_sin_archivo_sha"])
         self.assertEqual({"DECLARACION-SIN-ARCHIVO-SHA"}, {row["estado_administrativo"] for row in snapshot["declarations"]})
         self.assertEqual({"NO-APLICA"}, {row["representacion_id"] for row in snapshot["declarations"]})
+
+    def test_w0_products_rederive_populations_and_preserve_census_prefix(self) -> None:
+        payload = b"present"
+        (self.raw / "present.csv").write_bytes(payload)
+        self.contract.write_text(json.dumps({
+            "base_sha": "a" * 40, "network_habilitada": False,
+        }) + "\n", encoding="utf-8")
+        rows = [
+            {"id": "P-PRESENT", "archivo": "present.csv", "sha256": digest(payload), "tamano_bytes": len(payload)},
+            {"id": "P-MISSING", "archivo": "missing.csv", "sha256": "b" * 64, "tamano_bytes": 2},
+        ]
+        snapshot, snapshot_path = self._snapshot(rows)
+        tasks = self.base / "tasks"; task_ledger = self.base / "task-ledger.tsv"
+        materialize_tasks(snapshot_path, self.contract, tasks, task_ledger)
+        frozen = self.base / "contract-hashes.json"
+        frozen.write_text(json.dumps({
+            "files": {"data/curacion-universo/contrato-barrido2-v1_0.json": digest(self.contract.read_bytes())},
+        }), encoding="utf-8")
+        previous = self.base / "previous.tsv"
+        prefix = [
+            "id_manifiesto", "archivo", "raiz", "tamano_bytes",
+            "usado_para_declara_uso", "necesidades_que_lo_citan",
+            "tsv_de_apertura_que_lo_toca", "estado", "universo_declarado",
+            "consumo_detectado", "consumo_universo_declarado",
+        ]
+        previous.write_text("\t".join(prefix) + "\n", encoding="utf-8")
+        output = self.base / "out"
+        result = write_w0(snapshot_path, task_ledger, self.contract, frozen, previous, output, "2026-08-17")
+        self.assertEqual({"censo": 2, "fuera_de_disco": 1, "ledger": 1}, {key: result[key] for key in ("censo", "fuera_de_disco", "ledger")})
+        with (output / "data/censo-explotacion-2026-08-17.tsv").open(encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle, delimiter="\t"); census = list(reader)
+        self.assertEqual(prefix + CENSUS_SUFFIX, reader.fieldnames)
+        self.assertEqual({"P-PRESENT", "P-MISSING"}, {row["id_manifiesto"] for row in census})
+        self.assertEqual({"data_raw"}, {row["raiz"] for row in census})
+        self.assertEqual({"PRESENTE-INTEGRO", "FUERA-DE-DISCO"}, {row["estado_e0"] for row in census})
+        fuera = (output / "data/fuera-de-disco-v1_0.tsv").read_text(encoding="utf-8")
+        self.assertNotIn("no existe", fuera.casefold())
+        baseline = json.loads((output / "data/curacion-universo/baseline-material-barrido2.json").read_text())
+        self.assertFalse(baseline["network_habilitada"])
+        self.assertEqual(snapshot["snapshot_sha256"], baseline["reports"]["snapshot_sha256"])
 
     def test_undeclared_physical_representation_keeps_no_payload(self) -> None:
         (self.raw / "oculto.txt").write_text("estructura", encoding="utf-8")
@@ -246,6 +296,13 @@ class Barrido2MaterialTests(unittest.TestCase):
         (self.raw / "nested").mkdir()
         with self.assertRaisesRegex(ValueError, "RAICES_SOLAPADAS"):
             self._snapshot([])
+
+    def test_root_self_alias_is_ignored_without_expanding_universe(self) -> None:
+        (self.raw / "one.txt").write_text("one", encoding="utf-8")
+        (self.raw / "raw").symlink_to(self.raw, target_is_directory=True)
+        snapshot, _ = self._snapshot([])
+        self.assertEqual(1, snapshot["counts"]["representaciones_fisicas"])
+        self.assertEqual("one.txt", snapshot["representations"][0]["ruta_relativa"])
 
     def test_snapshot_output_cannot_enter_a_material_root(self) -> None:
         manifest = self._manifest([])

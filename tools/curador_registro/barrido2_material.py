@@ -38,6 +38,7 @@ MATERIAL_BUILD_VERSION = "BARRIDO2-MATERIAL-1.0"
 MATERIAL_BUILD_SHA256 = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
 PRIVACY_CONTRACT = "BARRIDO2-PRIVACY-1.0"
 HASH_RE = re.compile(r"^[0-9a-f]{64}$")
+PAYLOAD_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$")
 W2_SUFFIXES = {".pdf", ".xls", ".xlsx", ".csv", ".tsv", ".dta", ".sav", ".docx"}
 WAVE_MAX_WORKERS = {"W1": 3, "W2": 3, "W3": 2, "W4": 1, "W5": 3}
 TEXT_SUFFIXES = {".txt", ".php", ".md", ".log", ".dat"}
@@ -152,8 +153,23 @@ def safe_text(value: object, *, durable: bool = False) -> tuple[str, bool]:
     if not text:
         text = "NO-APLICA"
     if durable:
-        text = text[:160]
+        text = text[:160].rstrip()
     return text, redacted
+
+
+def valid_payload_id(value: object, *, allow_no_aplica: bool = False) -> bool:
+    """Valida la identidad administrativa; no la interpreta como prosa.
+
+    Los ids del manifiesto son *slugs* controlados, no texto extraído.  Aplicar
+    las heurísticas de nombres propios a ellos rechazaría ids históricos
+    legítimos como ``nota_metodologica_rotulo_pareada``. La gramática cerrada
+    excluye espacios, correos y otros valores narrativos; el marcador reservado
+    sólo se admite expresamente para físicos no declarados.
+    """
+    token = str(value or "").strip()
+    if token == "NO-APLICA":
+        return allow_no_aplica
+    return bool(PAYLOAD_ID_RE.fullmatch(token))
 
 
 def load_roots(config_path: Path) -> tuple[dict[str, Path], str]:
@@ -316,6 +332,13 @@ def _physical_files(root: Path) -> list[tuple[Path, Path, tuple[Any, ...]]]:
                     f"SYMLINK_FUERA_DE_RAIZ:{path.relative_to(root).as_posix()}"
                 ) from exc
             if resolved.is_dir():
+                # El corpus histórico contiene ``data/raw -> <raíz>`` como
+                # alias autorreferente. No es una representación física y
+                # seguirlo duplicaría (o ciclaría) el universo. Sólo este caso
+                # inode-equivalente se ignora; cualquier otro enlace de
+                # directorio permanece fail-closed.
+                if resolved == root:
+                    continue
                 raise MaterialDriftError(
                     f"SYMLINK_DIRECTORIO_NO_ENUMERABLE:{path.relative_to(root).as_posix()}"
                 )
@@ -352,7 +375,7 @@ def build_material_snapshot(manifest_path: Path, roots_config: Path, output_path
     payload_ids = [str(row.get("id", "") or "").strip() for row in manifest]
     if "" in payload_ids or len(payload_ids) != len(set(payload_ids)):
         raise ValueError("PAYLOAD_IDS_VACIOS_O_DUPLICADOS")
-    if any(payload_id == "NO-APLICA" or len(payload_id) > 160 or safe_text(payload_id)[1] for payload_id in payload_ids):
+    if any(not valid_payload_id(payload_id) for payload_id in payload_ids):
         raise ValueError("PAYLOAD_ID_RESERVADO_LARGO_O_PRIVADO")
 
     physical: dict[tuple[str, str], dict[str, Any]] = {}
@@ -1552,7 +1575,7 @@ def inspect_task(
     if set(task) != TASK_ALLOWED or task.get("network_habilitada") is not False:
         raise ValueError("TAREA_CIEGA_INVALIDA")
     payload_id = str(task.get("payload_id", ""))
-    if not payload_id or len(payload_id) > 160 or (payload_id != "NO-APLICA" and safe_text(payload_id)[1]):
+    if not valid_payload_id(payload_id, allow_no_aplica=True):
         raise ValueError("TAREA_PAYLOAD_ID_PRIVADO_O_INVALIDO")
     if task.get("wave_initial") not in {"W1", "W2", "W3", "W4"}:
         raise ValueError("TAREA_OLA_INICIAL_INVALIDA")
@@ -1776,7 +1799,7 @@ def validate_material_snapshot(snapshot: dict[str, Any]) -> list[str]:
     if counts != expected_counts:
         errors.append("CONTEOS_SNAPSHOT_NO_RECONCILIAN")
     payload_ids = [str(row.get("payload_id", "")) for row in declarations]
-    if len(payload_ids) != len(set(payload_ids)) or any(not value or value == "NO-APLICA" for value in payload_ids):
+    if len(payload_ids) != len(set(payload_ids)) or any(not valid_payload_id(value) for value in payload_ids):
         errors.append("PAYLOAD_IDS_SNAPSHOT_INVALIDOS")
     for declaration in declarations:
         if declaration.get("estado_administrativo") not in {"TERMINAL", "DECLARACION-SIN-ARCHIVO-SHA"}:

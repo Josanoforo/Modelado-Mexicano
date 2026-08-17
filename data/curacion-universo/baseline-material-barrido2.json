@@ -1,0 +1,52 @@
+{
+  "base_sha": "f3873c25d12ec3e26730901dc257788011e5ceea",
+  "contracts": {
+    "data/curacion-universo/contrato-barrido2-v1_0.json": "22c711b5bd2cfeba3ffab7c77551d7c9e50441b209cbea532143b1e8e1e01666",
+    "tools/curador_registro/schemas/barrido2-cableado-row.schema.json": "449a2dc0210372823ff8f46ac9b4dfceca8de5bd0c3a4dad6697c53eda29695b",
+    "tools/curador_registro/schemas/barrido2-e2-neutral-record.schema.json": "4097765a3406d52e1796fba06007f096179dbcdbdf1861cb84255ba143f827fb",
+    "tools/curador_registro/schemas/barrido2-material-baseline.schema.json": "637fbf45f3b3b31e6f346d7edad92e727da779bce4ca745f1ed6c50bb78b66b4",
+    "tools/curador_registro/schemas/barrido2-semantic-proposal.schema.json": "3a407c473f0e7ff2e25b7b2f4c2b9ba2c6ce71440576c747838521ea773927cf"
+  },
+  "counts": {
+    "contenidos_sha_unicos": 662,
+    "declaraciones_con_archivo_sha": 627,
+    "declaraciones_sin_archivo_sha": 4,
+    "declaraciones_totales": 631,
+    "fuera_de_disco": 49,
+    "objetos_e2": 0,
+    "reportes": 0,
+    "representaciones_declaradas": 577,
+    "representaciones_fisicas": 672,
+    "representaciones_no_declaradas": 95,
+    "waves": {
+      "W1": 26,
+      "W2": 246,
+      "W3": 399,
+      "W4": 1
+    }
+  },
+  "e2_index_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "exceptions": {
+    "estado": "NO-EVALUADAS-W0",
+    "materiales_abiertas": 0
+  },
+  "fecha": "2026-08-17",
+  "inventory_sha256": "1e6cf0d30cd7b9eeaffa9523fe76729945834a54cd745abbc095ce051df8730b",
+  "ledger_sha256": "d60d4a70870970a1c2db8743938952c02fc891ac487a66a7046bca9f1dd5b174",
+  "manifest_sha": "ee50b12c2c868c6024ffa8aca5f614874b5310455320c2ce028f7534fb38ebe2",
+  "network_habilitada": false,
+  "parsers": {
+    "build_sha256": "3b44692f79e3b6bfbeee9697fe235ae4439368a88073c68e178ab0d8078a1489",
+    "build_version": "BARRIDO2-MATERIAL-1.0",
+    "estado": "PRELIMINAR-W0",
+    "w0_writer_sha256": "1a9d22626419aba61665f2ae2081ae702c4c147899c63b7b78d6fe68e6847a26"
+  },
+  "prisma_material_sha256": "834b490163efd1562345fd7d52a500fdef6ab402edc5d2c6bc25469714187fa7",
+  "reports": {
+    "durable_rows": 0,
+    "estado": "PENDIENTE-E2",
+    "snapshot_sha256": "f346a37ad54031004afe9611266809ba597425d78100903c45051afbad3292c3"
+  },
+  "roots_config_sha256": "5e30427c6fcfc3da5930cc22b2ef4205f95a1f0c4ef942acb976df9c0a522431",
+  "schema_version": "BARRIDO2-MATERIAL-BASELINE-1.0"
+}
