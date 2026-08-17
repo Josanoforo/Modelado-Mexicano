@@ -23,6 +23,11 @@ from typing import Any, Iterable
 
 import yaml
 
+try:
+    from .barrido2_material import build_material_snapshot
+except ImportError:
+    from barrido2_material import build_material_snapshot
+
 
 URL_RE = re.compile(r"https?://[^\s<>\]\[\)\(\"']+")
 HASH_RE = re.compile(r"^[0-9a-fA-F]{64}$")
@@ -763,11 +768,25 @@ def build_snapshot(spec_path: Path, repo_root: Path, corpus_root: Path, output_d
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--spec", type=Path, required=True)
-    parser.add_argument("--repo-root", type=Path, required=True)
-    parser.add_argument("--corpus-root", type=Path, required=True)
-    parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--barrido2", action="store_true")
+    parser.add_argument("--manifest", type=Path)
+    parser.add_argument("--roots-config", type=Path)
+    parser.add_argument("--snapshot-output", type=Path)
+    parser.add_argument("--spec", type=Path)
+    parser.add_argument("--repo-root", type=Path)
+    parser.add_argument("--corpus-root", type=Path)
+    parser.add_argument("--output-dir", type=Path)
     args = parser.parse_args()
+    if args.barrido2:
+        if not all((args.manifest, args.roots_config, args.snapshot_output)):
+            parser.error("--barrido2 requiere --manifest, --roots-config y --snapshot-output")
+        snapshot = build_material_snapshot(
+            args.manifest.resolve(), args.roots_config.resolve(), args.snapshot_output.resolve()
+        )
+        print(json.dumps({"ok": True, **snapshot["counts"], "snapshot_sha256": snapshot["snapshot_sha256"]}, ensure_ascii=False, indent=2, sort_keys=True))
+        return 0
+    if not all((args.spec, args.repo_root, args.corpus_root, args.output_dir)):
+        parser.error("modo T0 histórico requiere --spec, --repo-root, --corpus-root y --output-dir")
     snapshot = build_snapshot(args.spec.resolve(), args.repo_root.resolve(), args.corpus_root.resolve(), args.output_dir.resolve())
     print(json.dumps({"ok": True, **snapshot["conteos"], "snapshot_t0_sha256": snapshot["snapshot_t0_sha256"]}, ensure_ascii=False, indent=2, sort_keys=True))
     return 0

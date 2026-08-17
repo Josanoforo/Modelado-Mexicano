@@ -19,6 +19,11 @@ from typing import Any
 import olefile
 import openpyxl
 
+try:
+    from .barrido2_material import inspect_task, materialize_tasks
+except ImportError:
+    from barrido2_material import inspect_task, materialize_tasks
+
 
 FORBIDDEN_TASK_FIELDS = {
     "necesidad_id", "relacion_id", "adjudicacion_vigente", "constructo_esperado",
@@ -514,12 +519,43 @@ def execute(universe_path: Path, snapshot_path: Path, corpus_root: Path, output_
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--universe", type=Path, required=True)
-    parser.add_argument("--snapshot", type=Path, required=True)
-    parser.add_argument("--corpus-root", type=Path, required=True)
-    parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--output-root", type=Path, required=True)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--barrido2-materialize", action="store_true")
+    mode.add_argument("--barrido2-inspect", action="store_true")
+    parser.add_argument("--contract", type=Path)
+    parser.add_argument("--task-root", type=Path)
+    parser.add_argument("--ledger", type=Path)
+    parser.add_argument("--task", type=Path)
+    parser.add_argument("--roots-config", type=Path)
+    parser.add_argument("--staging-dir", type=Path)
+    parser.add_argument("--staging-root", type=Path)
+    parser.add_argument("--reuse-source-dir", type=Path)
+    parser.add_argument("--universe", type=Path)
+    parser.add_argument("--snapshot", type=Path)
+    parser.add_argument("--corpus-root", type=Path)
+    parser.add_argument("--output-dir", type=Path)
+    parser.add_argument("--output-root", type=Path)
     args = parser.parse_args()
+    if args.barrido2_materialize:
+        if not all((args.snapshot, args.contract, args.task_root, args.ledger)):
+            parser.error("--barrido2-materialize requiere --snapshot, --contract, --task-root y --ledger")
+        result = materialize_tasks(
+            args.snapshot.resolve(), args.contract.resolve(), args.task_root.resolve(), args.ledger.resolve(),
+            args.staging_root.resolve() if args.staging_root else None,
+        )
+        print(json.dumps({"ok": True, **result}, ensure_ascii=False, indent=2, sort_keys=True))
+        return 0
+    if args.barrido2_inspect:
+        if not all((args.task, args.roots_config, args.contract, args.staging_dir)):
+            parser.error("--barrido2-inspect requiere --task, --roots-config, --contract y --staging-dir")
+        result = inspect_task(
+            args.task.resolve(), args.roots_config.resolve(), args.contract.resolve(), args.staging_dir.resolve(),
+            reuse_source_dir=args.reuse_source_dir.resolve() if args.reuse_source_dir else None,
+        )
+        print(json.dumps({"ok": True, **result}, ensure_ascii=False, indent=2, sort_keys=True))
+        return 0
+    if not all((args.universe, args.snapshot, args.corpus_root, args.output_dir, args.output_root)):
+        parser.error("modo T0 histórico requiere --universe, --snapshot, --corpus-root, --output-dir y --output-root")
     result = execute(args.universe.resolve(), args.snapshot.resolve(), args.corpus_root.resolve(), args.output_dir.resolve(), args.output_root.resolve())
     print(json.dumps({"ok": True, **result}, ensure_ascii=False, indent=2, sort_keys=True))
     return 0
