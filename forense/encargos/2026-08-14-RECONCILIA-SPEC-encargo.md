@@ -1,6 +1,6 @@
 - **SHA de redacción:** `2f2125c` (`origin/main` — HEAD exacto en el momento de arranque de esta sesión; es el merge de `#235`/`prod-p638` que el propio encargo exige como GATE, y también incluye `d653ab9`/PR#230 como ancestro — ADR-82 ya estaba sellado en ese terreno. Confirmado contra el clon de esta sesión, no supuesto).
 - **Entorno asignado:** repo-only — el propio encargo lo declara equivalente para nube o caja (no abre microdato, no escribe `data/raw`). Asignación explícita para esta ejecución: **E2 → Sonnet, nube, HOY**. Ejecutado en nube (`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default`, sin sonda de red, sin `data/raw` — firma correcta de acto de nube, ver nota).
-- **Estado:** VIVO — Commit 1 (el mapa: `forense/notas/2026-08-14-reconcilia-spec.md`, `forense/encargos/2026-08-14-RECONCILIA-SPEC-encargo.md`) y Commit 2 (la reconciliación: `especificaciones-produccion.json`, `celdas-d/G5.familismo_obligacion.actitud.yaml`, `forense/hallazgos.md`) ejecutados en esta rama. Pasa a `CONSUMIDO` cuando la mesa fusione el PR que lo cierra.
+- **Estado:** CONSUMIDO — PR #238 (rama `claude/encargo-3-reconcilia-specs-kecktd`). *(Re-verificado 17/ago/2026, ACTO E-HIG/HIGIENE-VIVOS, contra `f3873c2`: `git merge-base --is-ancestor 8925588 f3873c2` OK.)*
 
 ---
 

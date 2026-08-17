@@ -1,5 +1,5 @@
 {
-  "head": "2af748ca7d0b0d53611931326f468e26eb99aba4",
+  "head": "408a3d1d5274fd8dbd5e3c9308eeb8c1f82bbe4b",
   "fails": [
     [
       "T05",
@@ -75,7 +75,7 @@
     ],
     [
       "T16",
-      "canon/gobernanza-v1_15.md: declara 18 FAIL · 104 WARN vigente; la corrida real da 18 FAIL · 131 WARN"
+      "canon/gobernanza-v1_15.md: declara 18 FAIL · 104 WARN vigente; la corrida real da N WARN"
     ]
   ],
   "warns": [
@@ -485,84 +485,80 @@
     ],
     [
       "T22",
-      "FP-01 ABIERTA desde 2026-08-14 (0 días): M1 · ¿Se adopta el cómputo matricial como definición del ejecutable (ABM como modo derivado) y cuánd"
+      "FP-01 ABIERTA desde 2026-08-14 (N días): M1 · ¿Se adopta el cómputo matricial como definición del ejecutable (ABM como modo derivado) y cuánd"
     ],
     [
       "T22",
-      "FP-02 ABIERTA desde 2026-08-14 (0 días): M2 · Granularidad D: ¿cortes iniciales por eje (tres ejes de hogar) y quién los sella?"
+      "FP-02 ABIERTA desde 2026-08-14 (N días): M2 · Granularidad D: ¿cortes iniciales por eje (tres ejes de hogar) y quién los sella?"
     ],
     [
       "T22",
-      "FP-03 ABIERTA desde 2026-08-14 (0 días): M3 · ¿Se acepta campo medio como tratamiento declarado de G1b mientras conserve estatus HIPÓTESIS?"
+      "FP-03 ABIERTA desde 2026-08-14 (N días): M3 · ¿Se acepta campo medio como tratamiento declarado de G1b mientras conserve estatus HIPÓTESIS?"
     ],
     [
       "T22",
-      "FP-04 ABIERTA desde 2026-08-14 (0 días): M4 · ¿El catálogo de momentos se constituye como el pre-registro que gobernanza: exige, roles AJU"
+      "FP-04 ABIERTA desde 2026-08-14 (N días): M4 · ¿El catálogo de momentos se constituye como el pre-registro que gobernanza: exige, roles AJU"
     ],
     [
       "T22",
-      "FP-05 ABIERTA desde 2026-08-14 (0 días): M5 · ¿El curador deriva sus necesidades del libro de demanda (fuente única) o mantiene listas separa"
+      "FP-05 ABIERTA desde 2026-08-14 (N días): M5 · ¿El curador deriva sus necesidades del libro de demanda (fuente única) o mantiene listas separa"
     ],
     [
       "T22",
-      "FP-06 ABIERTA desde 2026-08-14 (0 días): M6 · ¿Los tres dictámenes compass (+RT-B/RT-D) entran al repo antes de sellar cualquier ADR que los "
+      "FP-06 ABIERTA desde 2026-08-14 (N días): M6 · ¿Los tres dictámenes compass (+RT-B/RT-D) entran al repo antes de sellar cualquier ADR que los "
     ],
     [
       "T22",
-      "FP-07 ABIERTA desde 2026-08-10 (4 días): Rótulo A.7 disputado: la regla vigente (identidad=contenido) contra la estampa de universo de ADR-67"
+      "FP-07 ABIERTA desde 2026-08-10 (N días): Rótulo A.7 disputado: la regla vigente (identidad=contenido) contra la estampa de universo de ADR-67"
     ],
     [
       "T22",
-      "FP-09 ABIERTA desde 2026-08-13 (1 días): Rótulo A.10 autorizado (ADR-79(e), firma de mesa 'comitteemos el texto') para el principio de estamp"
+      "FP-10 ABIERTA desde 2026-08-13 (N días): Precedencia entre pares de filas de universo-puertas-*.tsv que describen la misma fuente (Regla 1/Re"
     ],
     [
       "T22",
-      "FP-10 ABIERTA desde 2026-08-13 (1 días): Precedencia entre pares de filas de universo-puertas-*.tsv que describen la misma fuente (Regla 1/Re"
+      "FP-11 ABIERTA desde 2026-08-05 (N días): ficha-id-g3 (primer intento de identificación bajo panel MxFLS, llave (i)) — PROPUESTA DE SELLO COMP"
     ],
     [
       "T22",
-      "FP-11 ABIERTA desde 2026-08-05 (9 días): ficha-id-g3 (primer intento de identificación bajo panel MxFLS, llave (i)) — PROPUESTA DE SELLO COMP"
+      "FP-12 ABIERTA desde 2026-08-12 (N días): FUSION-PUERTAS — fusionar data/UNIVERSO-MINIMO-FUENTE-v1_0.md y data/universo-puertas-2026-08-12.tsv"
     ],
     [
       "T22",
-      "FP-12 ABIERTA desde 2026-08-12 (2 días): FUSION-PUERTAS — fusionar data/UNIVERSO-MINIMO-FUENTE-v1_0.md y data/universo-puertas-2026-08-12.tsv"
+      "FP-14 ABIERTA desde 2026-08-13 (N días): E3-TRIAGE — lanzar la Entrada 3 de registro-recalculo (los 7 veredictos D del Hito D); gate cumplido"
     ],
     [
       "T22",
-      "FP-13 ABIERTA desde 2026-08-13 (1 días): RUTA-SELLO — sellar como canon la taxonomía RUTA-A/RUTA-C/RUTA-I/SIN-RUTA con las cifras íntegras de"
+      "FP-15 ABIERTA desde 2026-08-13 (N días): Entrada 5 de registro-recalculo (ADR-50/ADR-51/ADR-57(c)) — gateada por el sello del motor de matriz"
     ],
     [
       "T22",
-      "FP-14 ABIERTA desde 2026-08-13 (1 días): E3-TRIAGE — lanzar la Entrada 3 de registro-recalculo (los 7 veredictos D del Hito D); gate cumplido"
+      "FP-17 ABIERTA desde 2026-08-14 (N días): Cola de adquisición — 15 filas EXISTE-NO-VERIFICADO del sondeo-27 propuestas hoy a data/cola-adquisi"
     ],
     [
       "T22",
-      "FP-15 ABIERTA desde 2026-08-13 (1 días): Entrada 5 de registro-recalculo (ADR-50/ADR-51/ADR-57(c)) — gateada por el sello del motor de matriz"
+      "FP-18 ABIERTA desde 2026-08-11 (N días): ¿Se instrumenta el marcador T20 (tests/check.py) para la población 'llaves de identificación ejercid"
     ],
     [
       "T22",
-      "FP-17 ABIERTA desde 2026-08-14 (0 días): Cola de adquisición — 15 filas EXISTE-NO-VERIFICADO del sondeo-27 propuestas hoy a data/cola-adquisi"
+      "FP-19 ABIERTA desde 2026-08-11 (N días): Metodología E4c §4 — precedencia de 'monto documentado insuficiente' (fila B) sobre las filas A/E cu"
     ],
     [
       "T22",
-      "FP-18 ABIERTA desde 2026-08-11 (3 días): ¿Se instrumenta el marcador T20 (tests/check.py) para la población 'llaves de identificación ejercid"
+      "FP-22 ABIERTA desde 2026-08-14 (N días): A.9 aplica a esta misma acta: instrucciones-proyecto-v2_9.md (trae A.12) necesita pegarse al proyect"
     ],
     [
       "T22",
-      "FP-19 ABIERTA desde 2026-08-11 (3 días): Metodología E4c §4 — precedencia de 'monto documentado insuficiente' (fila B) sobre las filas A/E cu"
+      "FP-24 ABIERTA desde 2026-08-13 (N días): RANURA (c) -- politica de pares para relaciones.tsv (fila 'gemela' SI + NO_DETERMINADO, mismo necesi"
     ],
     [
       "T22",
-      "FP-22 ABIERTA desde 2026-08-14 (0 días): A.9 aplica a esta misma acta: instrucciones-proyecto-v2_9.md (trae A.12) necesita pegarse al proyect"
-    ],
-    [
-      "T22",
-      "FP-24 ABIERTA desde 2026-08-13 (1 días): RANURA (c) -- politica de pares para relaciones.tsv (fila 'gemela' SI + NO_DETERMINADO, mismo necesi"
+      "FP-25 ABIERTA desde 2026-08-17 (N días): A.9 aplica a instrucciones-proyecto-v2_10.md (trae A.10, estampa de universo): pegarla al proyecto d"
     ]
   ],
   "nota": {
-    "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL. Re-congelada el 30/jul/2026 tras el merge del PR #1 (main 22a7d9d): 3 entradas nuevas, cada una con bucket propio — 1 T03 (cita ilustrativa de LICENSE-CORPUS, artefacto propuesto y descartado por D-05, patrón I-01) y 2 T16 que son su consecuencia aritmética. Re-congelada el 13/ago/2026, ACTO A8-LAND (ADR-78), autorizado explícitamente por mesa en el hilo de la sesión tras que el ejecutor reportara los hallazgos y preguntara si congelar — mismo mecanismo de autorización que ya usó ENCARGO ADR-PROVISIONALIDAD §9 (PR #199): 3 entradas nuevas — 1 T03 (forense/encargos/2026-08-13-A8LAND-instrucciones-v2_7.md cita \"v2_6.md\" sin prefijo, verbatim, tres veces, patrón M6-sello) y 2 T16 (gobernanza:1104/ADR-76(f) y gobernanza:1132/ADR-77, cada uno correcto contra lo que su propio ADR midió al sellarse, consecuencia aritmética del T03 de este mismo refreeze — ninguno de los dos ADR está mal, el WARN real se movió después de que ambos sellaran). Re-congelada el 13/ago/2026, ACTO PROC-10-bis (ADR-79(a)), autorizado explícitamente por el usuario en la sesión ('pull and solve CI', tras reportarle el fallo de CI de PR #227 y el hallazgo verificado) — mismo mecanismo de autorización que ya usó ACTO A8-LAND. Corrige la causa raíz declarada por PROC-10-bis (T19b/T19c contaban solo `MEDIDO·PARCIAL`, no reconocían la séptima clase `MEDIDO·NACIONAL` que ese acto selló — corregido en ambas regex, `tests/check.py` líneas ~918/~1001) y congela el residuo esperado: 7 T03 (los cinco archivos de MOTOR-1 nunca entregados a la sesión, más dos citas del propio encargo verbatim a `propuesta-motor-matriz-v0_2.md`, que no existe — solo `v0_1` — error del encargo original, no de este acto) y 6 T16 (cuatro citas históricas de \"107 WARN\"/\"18 FAIL · 107 WARN\" en gobernanza:764,856 y estado-programa:129,221, correctas cuando se escribieron, más las dos ya clasificadas de A8-LAND cuyo número de línea real se corrió de :1132 a :1134 por edits ajenos entre sesiones — consecuencia aritmética de subir el WARN real, ninguna cita está mal). Detalle completo: forense/notas/2026-08-13-proc-10-bis.md §4.",
-    "fecha_de_clasificacion": "2026-08-13",
+    "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL. Re-congelada el 30/jul/2026 tras el merge del PR #1 (main 22a7d9d): 3 entradas nuevas, cada una con bucket propio — 1 T03 (cita ilustrativa de LICENSE-CORPUS, artefacto propuesto y descartado por D-05, patrón I-01) y 2 T16 que son su consecuencia aritmética. Re-congelada el 13/ago/2026, ACTO A8-LAND (ADR-78), autorizado explícitamente por mesa en el hilo de la sesión tras que el ejecutor reportara los hallazgos y preguntara si congelar — mismo mecanismo de autorización que ya usó ENCARGO ADR-PROVISIONALIDAD §9 (PR #199): 3 entradas nuevas — 1 T03 (forense/encargos/2026-08-13-A8LAND-instrucciones-v2_7.md cita \"v2_6.md\" sin prefijo, verbatim, tres veces, patrón M6-sello) y 2 T16 (gobernanza:1104/ADR-76(f) y gobernanza:1132/ADR-77, cada uno correcto contra lo que su propio ADR midió al sellarse, consecuencia aritmética del T03 de este mismo refreeze — ninguno de los dos ADR está mal, el WARN real se movió después de que ambos sellaran). Re-congelada el 13/ago/2026, ACTO PROC-10-bis (ADR-79(a)), autorizado explícitamente por el usuario en la sesión ('pull and solve CI', tras reportarle el fallo de CI de PR #227 y el hallazgo verificado) — mismo mecanismo de autorización que ya usó ACTO A8-LAND. Corrige la causa raíz declarada por PROC-10-bis (T19b/T19c contaban solo `MEDIDO·PARCIAL`, no reconocían la séptima clase `MEDIDO·NACIONAL` que ese acto selló — corregido en ambas regex, `tests/check.py` líneas ~918/~1001) y congela el residuo esperado: 7 T03 (los cinco archivos de MOTOR-1 nunca entregados a la sesión, más dos citas del propio encargo verbatim a `propuesta-motor-matriz-v0_2.md`, que no existe — solo `v0_1` — error del encargo original, no de este acto) y 6 T16 (cuatro citas históricas de \"107 WARN\"/\"18 FAIL · 107 WARN\" en gobernanza:764,856 y estado-programa:129,221, correctas cuando se escribieron, más las dos ya clasificadas de A8-LAND cuyo número de línea real se corrió de :1132 a :1134 por edits ajenos entre sesiones — consecuencia aritmética de subir el WARN real, ninguna cita está mal). Detalle completo: forense/notas/2026-08-13-proc-10-bis.md §4. Re-congelada el 17/ago/2026, ACTO T22-DERIVA (ADR-88), autorizada por mesa en la sesión mediante pregunta estructurada que citó ADR-76(f) verbatim y describió qué cambia y qué no con cada opción — mismo mecanismo de autorización que ya usó ADR-86, y misma honestidad de procedencia: no es cita verbatim de texto libre. Este recongelado NO absorbe deuda nueva del corpus: reescribe las 19 claves de T22 bajo la normalización nueva de `_baseline_key`, que deja de meter la antigüedad variable ('(N días)') en la clave. Sin esa corrección el recongelado duraba un solo día — probado contra el propio CI, no supuesto: el run 31772585548 sobre f3873c2 fue SUCCESS el 14/ago y ese mismo commit da exit 1 el 17/ago. La suite cruda no se mueve y T22 sigue emitiendo sus 19 WARN en cada corrida: cambia qué cuenta como regresión nueva, no qué reporta la suite. Detalle completo: forense/notas/2026-08-17-t22-deriva.md.",
+    "fecha_de_clasificacion": "2026-08-17",
     "conteo_por_bucket": {
       "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
@@ -580,7 +576,7 @@
       "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1,
       "T16_consecuencia_aritmetica_del_T03_de_revision-publicacion__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01": 2,
-      "T22_sin_clasificar": 19
+      "T22_sin_clasificar": 18
     }
   }
 }

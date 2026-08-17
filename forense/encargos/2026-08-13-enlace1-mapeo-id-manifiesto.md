@@ -1,6 +1,6 @@
 - **SHA de redacción:** `b17a6f6` (`origin/main`, post-#195 — confirmado contra el clon en esta sesión)
 - **Entorno asignado:** cualquiera, sin red (declarado por el propio encargo; sonda saltada). Ejecutado en esta ocasión en un entorno de nube efímero — ver `forense/notas/2026-08-13-enlace1-commit1-reglas-mapeo.md` §7 para la limitación de corpus que ese entorno concreto expuso (Commit 2 pendiente de un entorno con `data/raw`/`data/raices.local.yaml` montados).
-- **Estado:** VIVO — Commit 1 (reglas + mapeo de las 21 filas, congelado por lectura) ejecutado en `forense/notas/2026-08-13-enlace1-commit1-reglas-mapeo.md`. Commit 2 (escritura en `relaciones.tsv` + corrida de la vía + `--escribe`) no ejecutado — bloqueado por falta de corpus montado en el entorno de esta sesión, pendiente de decisión de usuario/mesa.
+- **Estado:** CONSUMIDO — PR #196. Commit 2 sí se completó, en sesión posterior con corpus montado (commit `1cd2797`: "Continuación de Commit 1 [`afd9661`, cloud sin corpus] en entorno LOCAL con el corpus montado"). *(Re-verificado 17/ago/2026, ACTO E-HIG/HIGIENE-VIVOS, contra `f3873c2`: `git merge-base --is-ancestor dcc4f6a f3873c2` OK; commit posterior `265a892` cita explícitamente "PR #196 ENLACE-1". Corrige un `VIVO` que declaraba Commit 2 pendiente pese a estar ya fusionado.)*
 
 ---
 

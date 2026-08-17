@@ -2,7 +2,7 @@
 
 - **Archivado por**: sesión ACTO MAP-B (`~/mm-map-b-crosswalk`, rama `map-b/crosswalk-fuente-puerta`).
 - **SHA de redacción**: base `origin/main = 11083af` (post-PR #184), verificado en esta sesión antes de abrir worktree.
-- **Estado**: este acto ejecuta únicamente §3 (MAP-B). §2 (MAP-A) corre en paralelo en otro worktree/rama (`map-a/...`), sesión distinta, no esta. Parte 0 (veredicto PR #185) y §5 (borrador A.7) son de mesa/dirección, no se ejecutan aquí — reproducidos íntegros abajo por regla A.3 (`forense/encargos/convencion.md`), como primer commit de este acto.
+- **Estado**: `CONSUMIDO — PR #189` (rama `map-b/crosswalk-fuente-puerta`) para §3/MAP-B, lo único que este acto ejecuta. §2 (MAP-A) corre en paralelo en otro worktree/rama (`map-a/...`), sesión distinta, no esta — archivada aparte, fuera del alcance de este veredicto. Parte 0 (veredicto PR #185) y §5 (borrador A.7) son de mesa/dirección, no se ejecutan aquí — reproducidos íntegros abajo por regla A.3 (`forense/encargos/convencion.md`), como primer commit de este acto. *(Re-verificado 17/ago/2026, ACTO E-HIG/HIGIENE-VIVOS, contra `f3873c2`: `git merge-base --is-ancestor 2b13e88 f3873c2` OK; `data/crosswalk-fuente-puerta-2026-08-13.tsv` en el árbol.)*
 - **Nota de colisión de nombre evitada deliberadamente**: MAP-A recibió el mismo documento en paralelo; este archivo usa sufijo `-map-b` para no colisionar con el archivo que MAP-A archive por su cuenta (mismo patrón T02 ya resuelto hoy entre ACTO P·LOTE-1 y ACTO M-ADQ, ver `forense/hallazgos.md`).
 
 Texto recibido, reproducido verbatim:

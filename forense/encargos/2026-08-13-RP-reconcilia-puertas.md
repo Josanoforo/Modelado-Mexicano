@@ -1,6 +1,6 @@
 **SHA de redacción:** `b7aa67c` (merge #205, `origin/main` en el momento de abrir este acto — ninguna base distinta fue declarada por quien lanzó el encargo)
 **Entorno asignado:** NUBE, repo-only. Sin gate.
-**Estado:** VIVO
+**Estado:** CONSUMIDO — PR #208 (rama `claude/reconcilia-puertas-adr-206k23`). *(Re-verificado 17/ago/2026, ACTO E-HIG/HIGIENE-VIVOS, contra `f3873c2`: `git merge-base --is-ancestor 040b8ad f3873c2` OK; `forense/notas/2026-08-13-reconcilia-puertas.md` en el árbol. Cubre solo la sección RECONCILIA-PUERTAS, per la nota de archivo [A.3] de este documento — el resto ["LANZAMIENTO"] se archivó por fidelidad, no se adjudica aquí.)*
 
 ---
 

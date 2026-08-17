@@ -7,6 +7,7 @@
 > | **QUÉ ES** | Supera a `censo-estimabilidad-coeficientes-v1_0.md` (4/ago/2026) sin borrarlo — protocolo de renombre por versión (`forense/encargos/convencion.md`). Para cada uno de los 15 coeficientes de generador (`milpa/procedencia.yaml:612-639`): su clase citada, un desenlace co-observado candidato si existe, el criterio de tres preguntas separadas ((A) reactivo, (B) co-observación, (C) llave de identificación ADR-57(c)) aplicado a las 9 filas que v1.0 dejó `SIN-RUTA`, y una clasificación de ruta + prioridad recalculada. Derivado contra `origin/main = dcc4f6a` (13/ago/2026) — ver §8. |
 > | **QUÉ NO ES** | No abre ningún microdato, no corre ninguna estimación, no cambia ningún valor `ASIGNADO`, no mueve el contador `0 de 2` de `registro-llaves-identificacion-v1_0.md`, no adjudica ningún veredicto de Hito D, no sella ninguna llave nueva de ADR-57(c). Es censo de estado, no medición ni adjudicación — §9. |
 > | **VERIFICAS ASÍ** | §7 trae el comando que deriva el reparto de rutas contra este mismo archivo. El razonamiento completo detrás de cada celda (fuentes, hashes, comandos crudos) vive en `forense/notas/2026-08-13-censo-v1_1-abrir4-enasem.md` — este archivo es la tabla consolidada (estación 2 del conducto, §1 de esa nota); no repite el detalle de derivación, lo cita. |
+> | **SELLADA POR** | `ADR-89` (`canon/gobernanza-v1_15.md`, 17/ago/2026, ACTO RUTA-SELLO) — las cuatro definiciones de §1 y el reparto de §7 son canon desde este ADR, estampado (A.10) como snapshot a este archivo al SHA `dcc4f6a`, `VENCIBLE EN ALCANCE al cierre de BARRIDO-2`. Ver también la enmienda in situ sobre §1, línea 45. |
 
 ---
 
@@ -43,6 +44,8 @@
 ## 1 · Las cuatro rutas — sin cambio de definición
 
 Misma taxonomía que v1.0 §1 (RUTA-A/RUTA-I/RUTA-C/SIN-RUTA), no re-declarada aquí — sigue sin ser canon, sigue sin regir nada hasta que una mesa la selle con ADR. Este acto no la edita, solo la aplica con más disciplina en la columna de universo declarado. Regla nueva de este acto, verificada contra la propia definición de `RUTA-C` de v1.0 (no una clase nueva inventada — ver §9 de la nota para la verificación completa): **"co-observación disponible, corrida no ejecutada" es exactamente lo que `RUTA-C` ya define** ("existe un reactivo... y un desenlace candidato, co-observables en principio dentro del mismo instrumento — pero la corrida no se ha ejecutado"). Las filas 8 y 9 de v1.0 ya eran precedente de esta misma clase antes de este acto.
+
+*(Enmienda in situ, 17/ago/2026, ACTO RUTA-SELLO, `ADR-89` — el párrafo de arriba no se toca, es historia correcta al 13/ago/2026.)* **La mesa selló esta taxonomía con `ADR-79(f)`/`ADR-89`: las cuatro definiciones (citadas verbatim de v1.0 §1 en `ADR-89`) y el reparto de §7 son canon desde hoy.** El reparto queda estampado (A.10) como snapshot de este archivo al SHA `dcc4f6a`, rotulado `VENCIBLE EN ALCANCE al cierre de BARRIDO-2` — no es estado del programa, no es denominador ni cuota para el barrido, no rige territorio nuevo. Ninguna fila individual de §5 se reabre ni se mueve por este sello.
 
 ---
 
