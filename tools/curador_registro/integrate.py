@@ -8,6 +8,7 @@ import csv
 import hashlib
 import json
 import shutil
+import sys
 import tempfile
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -518,6 +519,38 @@ def validate_integration_dossier(repo_root: Path) -> list[str]:
 
 
 def main() -> int:
+    if "--barrido2" in sys.argv[1:]:
+        try:
+            from .integrate_barrido2 import integrate_barrido2
+        except ImportError:
+            from integrate_barrido2 import integrate_barrido2
+        parser = argparse.ArgumentParser(description="Integra capa 4 BARRIDO-2 fail-closed")
+        parser.add_argument("--barrido2", action="store_true", required=True)
+        parser.add_argument("--baseline", dest="registry", type=Path, required=True)
+        parser.add_argument("--material-baseline", type=Path, required=True)
+        parser.add_argument("--proposals", type=Path, required=True)
+        parser.add_argument("--tasks", type=Path, required=True)
+        parser.add_argument("--reports", type=Path, required=True)
+        parser.add_argument("--ledger", type=Path, required=True)
+        parser.add_argument("--material-task-root", type=Path, required=True)
+        parser.add_argument("--mapping", type=Path, required=True)
+        parser.add_argument("--declarations", type=Path, required=True)
+        parser.add_argument("--universe", type=Path, required=True)
+        parser.add_argument("--asset-states", type=Path, required=True)
+        parser.add_argument("--rules", type=Path, required=True)
+        parser.add_argument("--output-dir", type=Path, required=True)
+        parser.add_argument("--apply", action="store_true")
+        args = parser.parse_args()
+        result = integrate_barrido2(
+            args.registry.resolve(), args.material_baseline.resolve(),
+            args.proposals.resolve(), args.tasks.resolve(), args.reports.resolve(),
+            args.ledger.resolve(), args.material_task_root.resolve(),
+            args.mapping.resolve(), args.declarations.resolve(), args.universe.resolve(),
+            args.asset_states.resolve(), args.rules.resolve(), args.output_dir.resolve(),
+            apply=args.apply,
+        )
+        print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True, default=dict))
+        return 0 if result["ok"] else 1
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--baseline", type=Path, required=True)
     parser.add_argument("--snapshot", type=Path, required=True)

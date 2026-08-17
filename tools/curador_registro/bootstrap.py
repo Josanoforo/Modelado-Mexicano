@@ -50,6 +50,15 @@ def derive_evidence_state(relation: dict[str, str], report_ref: str) -> tuple[st
         return "MAPEADO_COMPLETO", "negativa legacy con procedencia aceptada"
     if legacy == "CONFIRMADA":
         return "MAPEADO_COMPLETO", "confirmada legacy con procedencia aceptada"
+    if layer4 in {
+        "EXISTE-SATISFACE", "EXISTE-NO-SATISFACE",
+        "NO-ENCONTRADO-EN-UNIVERSO-INSPECCIONADO", "NO-ENCONTRADO",
+    }:
+        return "MAPEADO_COMPLETO", "veredicto capa4 supervisado o legacy explícito"
+    if layer4 == "NO-ACCESIBLE":
+        return "NO_ACCESIBLE", "frontera material capa4 no accesible"
+    if layer4 == "NO-DETERMINADO" and report_ref != "NO_DETERMINADO":
+        return "ABIERTO_SIN_MAPEO", "apertura E2 sin adjudicación semántica suficiente"
     combined = f"{layer3};{layer4}".upper()
     if "ABIERTO-SIN-MAPEO" in combined:
         return "ABIERTO_SIN_MAPEO", "estado explícito de apertura"
