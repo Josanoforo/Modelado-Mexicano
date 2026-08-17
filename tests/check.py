@@ -1308,8 +1308,28 @@ def t22_firmas():
 # entre dos citas idénticas al mismo archivo histórico en líneas
 # distintas del mismo censo, que es inocua (perder una no oculta un
 # defecto nuevo, solo un duplicado del mismo ya sabido).
+# Deriva de fecha, corregida por ACTO T22-DERIVA (ADR-88, 17/ago/2026).
+# T22 incrusta la ANTIGÜEDAD de la fila en su propio mensaje (`(3 días)`), y
+# esa cifra cambia sola cada medianoche: la misma fila `ABIERTA`, sobre el
+# mismo árbol, sin un byte de diferencia, produce una clave distinta cada
+# día. Consecuencia medida y no concebida: la corrida de CI sobre `f3873c2`
+# fue SUCCESS el 14/ago/2026 (run 31772585548) y ese mismo commit da exit 1
+# el 17/ago -- y las tres PR abiertas ese día (A10-ESTAMPA, BARRIDO-2,
+# E-HIG) estaban rojas por lo mismo. Recongelar sin esto compra un solo día:
+# a la mañana siguiente las 19 claves vuelven a no coincidir.
+#
+# El remedio es de la CLAVE, no del mensaje, y la distinción es el punto:
+# el WARN sigue imprimiendo los días en cada corrida -- ésa es justamente la
+# función que `A.12` le encarga, gritar la antigüedad hasta que alguien la
+# atienda --, y solo la clave que decide "¿es esto una regresión NUEVA?"
+# los ignora. Una fila `ABIERTA` que envejece no es un hallazgo nuevo; una
+# fila `ABIERTA` que aparece, sí, y su `id` y su fecha `creado` -- ambos
+# estables -- la siguen distinguiendo.
+_T22_EDAD_VARIABLE = re.compile(r"\(\d+ días\)")
+
 def _baseline_key(msg):
-    return re.sub(r":\d+ ", ": ", msg, count=1)
+    msg = re.sub(r":\d+ ", ": ", msg, count=1)
+    return _T22_EDAD_VARIABLE.sub("(N días)", msg)
 
 def _git_head():
     try:
@@ -1488,8 +1508,22 @@ def _freeze_note():
                       "clasificadas de A8-LAND cuyo número de línea real se corrió de :1132 a "
                       ":1134 por edits ajenos entre sesiones — consecuencia aritmética de subir "
                       "el WARN real, ninguna cita está mal). Detalle completo: "
-                      "forense/notas/2026-08-13-proc-10-bis.md §4."),
-        "fecha_de_clasificacion": "2026-08-13",
+                      "forense/notas/2026-08-13-proc-10-bis.md §4. "
+                      "Re-congelada el 17/ago/2026, ACTO T22-DERIVA (ADR-88), autorizada por "
+                      "mesa en la sesión mediante pregunta estructurada que citó ADR-76(f) "
+                      "verbatim y describió qué cambia y qué no con cada opción — mismo "
+                      "mecanismo de autorización que ya usó ADR-86, y misma honestidad de "
+                      "procedencia: no es cita verbatim de texto libre. Este recongelado NO "
+                      "absorbe deuda nueva del corpus: reescribe las 19 claves de T22 bajo la "
+                      "normalización nueva de `_baseline_key`, que deja de meter la antigüedad "
+                      "variable ('(N días)') en la clave. Sin esa corrección el recongelado "
+                      "duraba un solo día — probado contra el propio CI, no supuesto: el run "
+                      "31772585548 sobre f3873c2 fue SUCCESS el 14/ago y ese mismo commit da "
+                      "exit 1 el 17/ago. La suite cruda no se mueve y T22 sigue emitiendo sus "
+                      "19 WARN en cada corrida: cambia qué cuenta como regresión nueva, no qué "
+                      "reporta la suite. Detalle completo: "
+                      "forense/notas/2026-08-17-t22-deriva.md."),
+        "fecha_de_clasificacion": "2026-08-17",
         "conteo_por_bucket": dict(sorted(buckets.items())),
     }
 
