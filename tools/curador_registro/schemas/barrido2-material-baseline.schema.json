@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "barrido2-material-baseline.schema.json",
+  "title": "BARRIDO-2 frozen material baseline",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "base_sha", "manifest_sha", "roots_config_sha256",
+    "inventory_sha256", "parsers", "contracts", "reports", "exceptions",
+    "counts", "network_habilitada", "e2_index_sha256", "ledger_sha256",
+    "prisma_material_sha256", "fecha"
+  ],
+  "properties": {
+    "schema_version": {"const": "BARRIDO2-MATERIAL-BASELINE-1.0"},
+    "base_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "manifest_sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "roots_config_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "inventory_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "parsers": {"type": "object", "minProperties": 1},
+    "contracts": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+    "reports": {"type": "object", "minProperties": 1},
+    "exceptions": {"type": "object"},
+    "counts": {"type": "object", "minProperties": 1},
+    "network_habilitada": {"const": false},
+    "e2_index_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "ledger_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "prisma_material_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "fecha": {"type": "string", "format": "date"}
+  }
+}

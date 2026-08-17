@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **86 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **87 ADR**
 
 > | | |
 > |---|---|
@@ -1399,6 +1399,28 @@ print('únicos',len(s),'max',max(s),'huecos',[i for i in range(1,max(s)+1) if i 
 **Cascada.** Numeración renumerada de `85`→`86` por la misma colisión de `ADR-84` que renumeró el ADR anterior (ver arriba) — la derivación de T15 al escribirse originalmente (`únicos 84, max 84, sin huecos`) era correcta contra el árbol de ese momento, antes de que este mismo commit fusionara `origin/main` y absorbiera el `ADR-84` real de `ACTO B2`. Sitios de cascada: `gobernanza-v1_15.md:2` (cabecera, 85→86) · `estado-programa-v1_10.md:27` (tabla, 85→86) · `estado-programa-v1_10.md:101` (historia completa de la numeración, mismo criterio que `ADR-75` a `ADR-85` ya aplicaron). `python3 tests/check.py --baseline`, corrido antes y después de este ADR (solo cambia el propio recongelado, no el árbol que la suite mide): **VERDE** después, **ROJO** (22 entradas) antes — la transición es el propio hecho que este ADR sella, no un efecto colateral.
 
 **Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra — mismo criterio que `ADR-48` a `ADR-85`.
+
+→ **Vigente.**
+
+---
+
+**ADR-87 · Mesa autoriza el mantenimiento cerrado de BARRIDO-2 bajo ADR-70(d), absorbe M-APERTURA y fija la política dinámica de FP-24.** Decisión de mesa del autor, ACTO BARRIDO-2, 17/ago/2026, dictada en el encargo archivado en `forense/encargos/2026-08-17-BARRIDO-2-cobertura-material-cableado-universo.md`.
+
+**Estado de la ventana, re-derivado antes de tocar `tools/curador_registro/`.** `milpa/src/` sigue ausente y las tres celdas-D presentes son semillas anteriores al piloto; no existe el primer registro de celda-D del piloto en E0. La frase de `forense/notas/2026-08-14-motor3-plan.md` que llama cerrada la ventana pertenece a un plan que declara cero código. ADR-84, posterior y ya fusionado, re-derivó el mismo terreno y concluyó que la ventana seguía abierta. No hay contradicción material: el congelamiento rige, y esta autorización nominal satisface la única excepción que ADR-70(d) permite.
+
+**(a) Lista cerrada de mantenimiento.** BARRIDO-2 puede modificar el aparato únicamente para: (1) snapshot multirraíz; (2) inspección E2; (3) validación offline; (4) sincronización mecánica de bootstrap; y (5) vía fail-closed de capa 4. `T-CABLEADO` pertenece a tests y no amplía la lista. La vía de alta de relaciones nuevas solo se implementa si la supervisión produce al menos una `PROPUESTA_ALTA` validada; cero altas es un resultado permitido y no autoriza construir el high path preventivamente.
+
+**(b) M-APERTURA.** Queda **SUPERADO POR BARRIDO-2**. Su §6, adenda, gates y texto histórico se preservan; las 17 aperturas con payload disponible sobreviven como subconjunto obligatorio de aceptación. La lista no se revela a inspectores materiales y solo se consume en la fase semántica posterior a E2.
+
+**(c) FP-24.** Sigue ABIERTA. Los 20 IDs históricos describen únicamente el snapshot de ENLACE-2 y no son denominador, máximo, población congelada ni regla codificable. Una propuesta queda bloqueada solo cuando aceptarla exige decidir la regla pendiente sobre pares; pertenencia histórica, `necesidad_id` compartida, fuente común o el rótulo antiguo “gemela” no bastan. Si la evidencia fuente/objeto-específica permite decidir sin esa regla, la propuesta sigue la vía ordinaria. Si sí depende de la regla, termina `PROPUESTA_CAMBIO / REQUIERE_DECISION_FP24` y nunca `INTEGRADA` mientras FP-24 siga ABIERTA.
+
+**(d) Cableado e infraestructura.** `build_cableado.py`, si BARRIDO-2 lo crea, solo ensambla, proyecta decisiones, incorpora terminales, valida, ordena y escribe; no hace matching semántico. `data/INFRAESTRUCTURA-v1_0.md` se actualiza al cierre, después de observar qué mecanismos quedaron realmente implementados, y no gatea la apertura material.
+
+**Lo que este ADR no hace.** No abre el piloto, no adjudica FP-24, no preautoriza relaciones nuevas, no descarga fuentes, no calcula coeficientes y no convierte cableado en credencial de escritura. Los cambios de `tools/curador_registro/` siguen limitados por (a) y por las pruebas de privacidad/red/fail-closed del encargo.
+
+**Cascada.** T15 re-derivado contra `origin/main=f3873c25d12ec3e26730901dc257788011e5ceea`: 86 entradas numeradas en secuencia 1..86, sin huecos ni duplicados; por tanto éste toma el siguiente número libre. Se actualizan la cabecera de `gobernanza` y los dos sitios vigentes de conteo en `estado`. Contadores de medición sobre México movidos: 0; este ADR habilita el artefacto usable de cobertura y cableado que el acto debe producir.
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que ADR-48 a ADR-86.
 
 → **Vigente.**
 

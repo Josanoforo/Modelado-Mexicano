@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "barrido2-cableado-row.schema.json",
+  "title": "BARRIDO-2 durable cableado row",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "payload_id", "representacion_id", "sha256_12", "sha256", "fuente_canonica",
+    "objeto_logico_id", "necesidad_id", "reactivo_id", "texto_reactivo_recortado",
+    "grado_inspeccion", "afirmacion_tipo", "veredicto_a4", "evidencia",
+    "frontera_inspeccion", "reporte_neutral_ref", "propuesta_id", "relacion_id",
+    "semrun_id", "requiere_decision_mesa", "decision_mesa_id", "dependencia_fp24",
+    "razon_gate", "estado_integracion", "cegamiento_roto", "fecha", "razon"
+  ],
+  "properties": {
+    "payload_id": {"type": "string", "minLength": 1},
+    "representacion_id": {"type": "string", "pattern": "^REP-[0-9a-f]{64}$"},
+    "sha256_12": {"type": "string", "pattern": "^[0-9a-f]{12}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "fuente_canonica": {"type": "string", "minLength": 1},
+    "objeto_logico_id": {"type": "string", "minLength": 1},
+    "necesidad_id": {"type": "string", "minLength": 1},
+    "reactivo_id": {"type": "string", "minLength": 1},
+    "texto_reactivo_recortado": {"type": "string", "minLength": 1, "maxLength": 160},
+    "grado_inspeccion": {"enum": ["E0", "E1", "E2", "NO-DETERMINADO"]},
+    "afirmacion_tipo": {"type": "string", "minLength": 1},
+    "veredicto_a4": {"enum": ["EXISTE-SATISFACE", "EXISTE-NO-SATISFACE", "NO-ENCONTRADO-EN-UNIVERSO-INSPECCIONADO", "NO-ACCESIBLE", "NO-DETERMINADO"]},
+    "evidencia": {"type": "string", "minLength": 1, "maxLength": 160},
+    "frontera_inspeccion": {"type": "string", "minLength": 1, "maxLength": 160},
+    "reporte_neutral_ref": {"type": "string", "minLength": 1},
+    "propuesta_id": {"type": "string", "minLength": 1},
+    "relacion_id": {"type": "string", "minLength": 1},
+    "semrun_id": {"type": "string", "minLength": 1},
+    "requiere_decision_mesa": {"enum": ["SI", "NO"]},
+    "decision_mesa_id": {"enum": ["FP-24", "NO-APLICA"]},
+    "dependencia_fp24": {"enum": ["SI", "NO"]},
+    "razon_gate": {"type": "string", "minLength": 1, "maxLength": 160},
+    "estado_integracion": {"enum": ["NO_APLICA_TERMINAL", "PROPUESTA_ALTA", "PROPUESTA_CAMBIO", "VALIDADA", "INTEGRADA", "RECHAZADA_FAIL_CLOSED", "CONFLICTO_MATERIAL", "REQUIERE_DECISION_FP24", "NO_DETERMINADO"]},
+    "cegamiento_roto": {"enum": ["SI", "NO"]},
+    "fecha": {"type": "string", "format": "date"},
+    "razon": {"type": "string", "minLength": 1, "maxLength": 160}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"dependencia_fp24": {"const": "SI"}}, "required": ["dependencia_fp24"]},
+      "then": {
+        "properties": {
+          "requiere_decision_mesa": {"const": "SI"},
+          "decision_mesa_id": {"const": "FP-24"},
+          "estado_integracion": {"const": "REQUIERE_DECISION_FP24"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"estado_integracion": {"const": "INTEGRADA"}}, "required": ["estado_integracion"]},
+      "then": {"not": {"properties": {"relacion_id": {"const": "NO-APLICA"}}}}
+    }
+  ]
+}
