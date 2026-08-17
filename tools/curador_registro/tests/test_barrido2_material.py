@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import io
 import json
 import os
 import shutil
@@ -36,8 +37,11 @@ from tools.curador_registro.barrido2_material import (
     validate_material_files,
     validate_material_snapshot,
     wave_concurrency_limit,
+    _xls_objects,
+    _xlsx_objects,
 )
 from tools.curador_registro.write_barrido2_w0 import CENSUS_SUFFIX, write_w0
+from tools.curador_registro.write_barrido2_material import write_final
 
 
 def digest(payload: bytes) -> str:
@@ -200,6 +204,71 @@ class Barrido2MaterialTests(unittest.TestCase):
         self.assertFalse(baseline["network_habilitada"])
         self.assertEqual(snapshot["snapshot_sha256"], baseline["reports"]["snapshot_sha256"])
 
+    def test_final_material_writer_keeps_full_private_index_and_compacts_durable_report(self) -> None:
+        payload = b"variable,label\nx,Example\ny,Other\n"
+        (self.raw / "dictionary.csv").write_bytes(payload)
+        self.contract.write_text(json.dumps({
+            "base_sha": "a" * 40, "network_habilitada": False,
+        }) + "\n", encoding="utf-8")
+        _, snapshot_path = self._snapshot([{
+            "id": "PAYLOAD-1", "archivo": "dictionary.csv",
+            "sha256": digest(payload), "tamano_bytes": len(payload),
+        }])
+        task_root = self.base / "tasks"; task_ledger = self.base / "task-ledger.tsv"
+        staging_root = self.base / "staging"
+        materialize_tasks(snapshot_path, self.contract, task_root, task_ledger)
+        task_path = next(task_root.glob("*.json"))
+        inspect_task(task_path, self.roots, self.contract, staging_root / task_path.stem, verify_network=False)
+        materialize_tasks(snapshot_path, self.contract, task_root, task_ledger, staging_root)
+        frozen = self.base / "contract-hashes.json"
+        frozen.write_text(json.dumps({
+            "files": {"data/curacion-universo/contrato-barrido2-v1_0.json": digest(self.contract.read_bytes())},
+        }), encoding="utf-8")
+        previous = self.base / "previous.tsv"
+        prefix = [
+            "id_manifiesto", "archivo", "raiz", "tamano_bytes",
+            "usado_para_declara_uso", "necesidades_que_lo_citan",
+            "tsv_de_apertura_que_lo_toca", "estado", "universo_declarado",
+            "consumo_detectado", "consumo_universo_declarado",
+        ]
+        previous.write_text("\t".join(prefix) + "\n", encoding="utf-8")
+        output = self.base / "out"
+        write_w0(snapshot_path, task_ledger, self.contract, frozen, previous, output, "2026-08-17")
+        private_index = self.base / "private/e2-neutral-index.jsonl"
+        result = write_final(
+            snapshot_path, task_ledger, task_root, staging_root, self.contract,
+            frozen, output, private_index, "2026-08-17",
+        )
+        source_index = staging_root / task_path.stem / "e2-neutral-index.jsonl"
+        self.assertEqual(source_index.read_bytes(), private_index.read_bytes())
+        with (output / "data/curacion-universo/reportes-inspeccion-barrido2-v1_0.tsv").open(encoding="utf-8", newline="") as handle:
+            reports = list(csv.DictReader(handle, delimiter="\t"))
+        self.assertGreater(len(reports), 0)
+        self.assertLessEqual(len(reports), result["e2_records"])
+        self.assertTrue(all(row["afirmacion_tipo"] == "RESUMEN-NEUTRAL-COMPACTO" for row in reports))
+        self.assertTrue(all(value and len(value) <= 160 for row in reports for value in row.values()))
+        with (output / "data/curacion-universo/ledger-inspecciones-barrido2.tsv").open(encoding="utf-8", newline="") as handle:
+            durable_ledger = list(csv.DictReader(handle, delimiter="\t"))
+        self.assertEqual("0", durable_ledger[0]["excepciones"])
+        with (output / "data/censo-explotacion-2026-08-17.tsv").open(encoding="utf-8", newline="") as handle:
+            census = list(csv.DictReader(handle, delimiter="\t"))
+        self.assertEqual("E2", census[0]["grado_inspeccion"])
+        baseline = json.loads((output / "data/curacion-universo/baseline-material-barrido2.json").read_text())
+        self.assertEqual(digest(private_index.read_bytes()), baseline["e2_index_sha256"])
+        self.assertFalse(baseline["network_habilitada"])
+
+        source_report = staging_root / task_path.stem / "reportes-durables.tsv"
+        source_report.write_text(source_report.read_text(encoding="utf-8") + "\n", encoding="utf-8")
+        rejected_output = self.base / "rejected"
+        with self.assertRaisesRegex(ValueError, "GATE_MATERIAL_INVALIDO"):
+            write_final(
+                snapshot_path, task_ledger, task_root, staging_root, self.contract,
+                frozen, rejected_output, self.base / "rejected-index.jsonl", "2026-08-17",
+            )
+        self.assertFalse(
+            (rejected_output / "data/curacion-universo/reportes-inspeccion-barrido2-v1_0.tsv").exists()
+        )
+
     def test_undeclared_physical_representation_keeps_no_payload(self) -> None:
         (self.raw / "oculto.txt").write_text("estructura", encoding="utf-8")
         snapshot, _ = self._snapshot([{"id": "ADMIN", "hecho": "sin payload"}])
@@ -312,6 +381,8 @@ class Barrido2MaterialTests(unittest.TestCase):
     def test_wave_precedence_is_exclusive(self) -> None:
         self.assertEqual("W4", assign_wave("big.zip", 1024**3, {"max_ratio": 1}))
         self.assertEqual("W4", assign_wave("risk.zip", 1, {"max_ratio": 201}))
+        self.assertEqual("W4", assign_wave("expanded.zip", 1, {"uncompressed": 2 * 1024**3}))
+        self.assertEqual("W4", assign_wave("large.zip", 512 * 1024**2, {"max_ratio": 1}))
         self.assertEqual("W3", assign_wave("normal.zip", 1, {"max_ratio": 2}))
         self.assertEqual("W2", assign_wave("table.csv", 1))
         self.assertEqual("W1", assign_wave("image.png", 1))
@@ -581,6 +652,30 @@ class Barrido2MaterialTests(unittest.TestCase):
         no_header_objects, _, _ = inspect_e2(no_header)
         self.assertNotIn("PERSONA PRUEBA", json.dumps(no_header_objects, ensure_ascii=False))
 
+        empty = self.raw / "empty-sheet.xlsx"
+        workbook = openpyxl.Workbook(); workbook.active.title = "Vacia"
+        workbook.create_sheet("ConDatos").append(["valor"])
+        workbook.save(empty); workbook.close()
+        empty_objects, _, _ = inspect_e2(empty)
+        sheets = [row for row in empty_objects if row["type"] == "HOJA-XLSX"]
+        self.assertEqual(["Vacia", "ConDatos"], [row["name"] for row in sheets])
+
+        class EmptyReadOnlySheet:
+            title = "VaciaReal"
+            max_row = None
+            max_column = None
+            tables: dict[str, object] = {}
+
+            def iter_rows(self, **_kwargs):
+                raise AssertionError("una hoja sin dimensiones no debe iterarse")
+
+        fake_workbook = mock.Mock(worksheets=[EmptyReadOnlySheet()])
+        with mock.patch("tools.curador_registro.barrido2_material.openpyxl.load_workbook", return_value=fake_workbook):
+            truly_empty = _xlsx_objects(empty)
+        self.assertEqual(1, len(truly_empty))
+        self.assertIn("filas=0;columnas=0", truly_empty[0]["definition"])
+        fake_workbook.close.assert_called_once()
+
     def test_e2_pdf_opens_every_page_not_only_first_five(self) -> None:
         path = self.raw / "six.pdf"
         write_pdf(path, 6)
@@ -618,6 +713,13 @@ class Barrido2MaterialTests(unittest.TestCase):
         self.assertEqual({"variable", "category"}, set(variables))
         self.assertEqual("Variable label", variables["variable"]["label"])
         self.assertIn("observaciones no persistidas", boundary)
+        private_names = self.raw / "private-names.dta"
+        pd.DataFrame({"first_name": [1], "second_name": [2]}).to_stata(private_names, write_index=False)
+        private_objects, _, _ = inspect_e2(private_names)
+        private_variables = [row for row in private_objects if row["type"] == "VARIABLE-DTA"]
+        self.assertEqual(2, len(private_variables))
+        self.assertEqual(2, len({row["locator"] for row in private_variables}))
+        self.assertEqual({"[REDACTADO-PRIVACIDAD]"}, {row["name"] for row in private_variables})
         sav = self.raw / "sample.sav"
         header = bytearray(176); header[:4] = b"$FL2"; header[64:68] = struct.pack("<i", 2)
         variable_label = b"Age label"
@@ -634,6 +736,26 @@ class Barrido2MaterialTests(unittest.TestCase):
         self.assertIn("label=Adult", next(row for row in sav_objects if row["type"] == "VALUE-LABEL-COLLECTION-SAV")["value_labels"][0])
         self.assertEqual("EXCEPCION-ESPECIFICA", next(row for row in sav_objects if row["type"] == "EXTENSION-DICCIONARIO-SAV")["state"])
         self.assertIn("observaciones no leídas", sav_boundary)
+
+    def test_xls_redacted_sheet_names_keep_distinct_private_locators(self) -> None:
+        def boundsheet(name: str) -> bytes:
+            encoded = name.encode("latin-1")
+            data = b"\0" * 6 + bytes((len(encoded), 0)) + encoded
+            return struct.pack("<HH", 0x0085, len(data)) + data
+
+        payload = boundsheet("first_name") + boundsheet("second_name")
+
+        class FakeOle:
+            def __enter__(self): return self
+            def __exit__(self, *_args): return False
+            def exists(self, name: str) -> bool: return name == "Workbook"
+            def openstream(self, _name: str): return io.BytesIO(payload)
+
+        with mock.patch("tools.curador_registro.barrido2_material.olefile.OleFileIO", return_value=FakeOle()):
+            objects = _xls_objects(self.raw / "private.xls")
+        self.assertEqual(2, len(objects))
+        self.assertEqual(2, len({row["locator"] for row in objects}))
+        self.assertEqual({"[REDACTADO-PRIVACIDAD]"}, {row["name"] for row in objects})
 
     def test_e2_docx_html_xml_and_text_cover_structural_objects(self) -> None:
         docx = self.raw / "sample.docx"
@@ -718,6 +840,8 @@ class Barrido2MaterialTests(unittest.TestCase):
         self.assertEqual("[REDACTADO-PRIVACIDAD]", name)
         for variant in ("ALICIA PEREZ", "alicia perez", "ALICIA_PEREZ"):
             self.assertEqual(("[REDACTADO-PRIVACIDAD]", True), safe_text(variant))
+        for absolute_path in ("/", "/tmp/private/file.tsv", r"C:\\Users\\Persona\\file.tsv"):
+            self.assertEqual(("[REDACTADO-PRIVACIDAD]", True), safe_text(absolute_path))
         compact, compact_redacted = safe_text("x" * 240, durable=True)
         self.assertFalse(compact_redacted)
         self.assertEqual(160, len(compact))
@@ -758,6 +882,35 @@ class Barrido2MaterialTests(unittest.TestCase):
         task_path = next(task_root.glob("*.json")); task = json.loads(task_path.read_text())
         task["payload_id"] = "persona@example.test"; task_path.write_text(json.dumps(task), encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "TAREA_PAYLOAD_ID_PRIVADO_O_INVALIDO"):
+            inspect_task(task_path, self.roots, self.contract, self.base / "staging", verify_network=False)
+
+    def test_administrative_payload_slug_is_not_reinterpreted_as_pii(self) -> None:
+        payload = b"# estructura\n"; (self.raw / "one.txt").write_bytes(payload)
+        _, snapshot_path = self._snapshot([{
+            "id": "nota_metodologica_rotulo_pareada", "archivo": "one.txt",
+            "sha256": digest(payload), "tamano_bytes": len(payload),
+        }])
+        task_root = self.base / "tasks"; ledger = self.base / "ledger.tsv"
+        staging_root = self.base / "staging"
+        materialize_tasks(snapshot_path, self.contract, task_root, ledger)
+        task_path = next(task_root.glob("*.json"))
+        inspect_task(task_path, self.roots, self.contract, staging_root / task_path.stem, verify_network=False)
+        materialize_tasks(snapshot_path, self.contract, task_root, ledger, staging_root)
+        validation = validate_material_files(
+            snapshot_path, self.contract, task_root, ledger, staging_root,
+            require_complete=True,
+        )
+        self.assertTrue(validation["ok"], validation["errors"])
+
+    def test_task_budget_is_enforced_not_merely_documented(self) -> None:
+        (self.raw / "one.txt").write_text("x", encoding="utf-8")
+        _, snapshot_path = self._snapshot([])
+        task_root = self.base / "tasks"; ledger = self.base / "ledger.tsv"
+        materialize_tasks(snapshot_path, self.contract, task_root, ledger)
+        task_path = next(task_root.glob("*.json")); task = json.loads(task_path.read_text())
+        task["presupuesto"]["timeout_segundos"] = 1801
+        task_path.write_text(json.dumps(task), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "TAREA_PRESUPUESTO_INVALIDO"):
             inspect_task(task_path, self.roots, self.contract, self.base / "staging", verify_network=False)
 
     @unittest.skipUnless(shutil.which("unshare"), "unshare no está instalado")

@@ -66,6 +66,7 @@ PII_PATTERNS = (
     ),
     re.compile(r"^[A-ZÁÉÍÓÚÑ]{3,}(?:[ _-]+[A-ZÁÉÍÓÚÑ]{3,}){1,3}$"),
     re.compile(r"^[a-záéíóúñ]{3,}(?:[ _-]+[a-záéíóúñ]{3,}){1,3}$"),
+    re.compile(r"^(?:/|[A-Za-z]:[/\\])"),
 )
 
 
@@ -112,6 +113,44 @@ def _atomic_write_text(path: Path, content: str) -> None:
     try:
         with os.fdopen(descriptor, "w", encoding="utf-8", newline="") as handle:
             handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
+def _atomic_write_lines(path: Path, lines: Iterable[str]) -> None:
+    """Escribe un artefacto grande sin duplicarlo completo en memoria."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8", newline="") as handle:
+            for line in lines:
+                handle.write(line)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
+def _atomic_write_tsv_rows(
+    path: Path, fieldnames: list[str], rows: Iterable[dict[str, str]]
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(
+                handle, fieldnames=fieldnames, delimiter="\t", lineterminator="\n"
+            )
+            writer.writeheader()
+            writer.writerows(rows)
             handle.flush()
             os.fsync(handle.fileno())
         os.replace(temporary, path)
@@ -289,10 +328,10 @@ def assign_wave(relative: str, size: int, geometry: dict[str, Any] | None = None
     suffix = Path(relative).suffix.casefold()
     geometry = geometry or {}
     risky = (
-        size >= 1024**3
+        size >= 512 * 1024**2
         or int(geometry.get("max_member", 0)) > 8 * 1024**3
         or float(geometry.get("max_ratio", 0.0)) > 200
-        or int(geometry.get("uncompressed", 0)) > 8 * 1024**3
+        or int(geometry.get("uncompressed", 0)) >= 2 * 1024**3
     )
     if risky:
         return "W4"
@@ -807,11 +846,19 @@ def _xlsx_objects(path: Path) -> list[dict[str, Any]]:
     try:
         for sheet in workbook.worksheets:
             locator = f"hoja={sheet.title}"
+            # En modo read-only openpyxl puede devolver ``None`` para las
+            # dimensiones de una hoja completamente vacía.  La ausencia de
+            # celdas es una frontera estructural válida, no una excepción del
+            # contenedor ni una razón para perder las hojas posteriores.
+            max_row = int(sheet.max_row or 0)
+            max_column = int(sheet.max_column or 0)
             declared_dictionary = bool(re.search(
                 r"diccionario|dictionary|codebook|catalogo|cat[aá]logo|variables?",
                 f"{path.name} {sheet.title}", re.I,
             ))
-            first_two = list(sheet.iter_rows(min_row=1, max_row=min(sheet.max_row, 2), values_only=True))
+            first_two = list(
+                sheet.iter_rows(min_row=1, max_row=min(max_row, 2), values_only=True)
+            ) if max_row else []
             first = first_two[0] if first_two else ()
             variable_aliases = {"variable", "var", "nombre_variable", "campo"}
             label_aliases = {"etiqueta", "label", "definicion", "definition", "reactivo", "pregunta"}
@@ -828,7 +875,7 @@ def _xlsx_objects(path: Path) -> list[dict[str, Any]]:
             structural_header = dictionary_schema or declared_table
             objects.append({
                 "locator": locator, "type": "HOJA-XLSX", "name": sheet.title,
-                "definition": f"filas={sheet.max_row};columnas={sheet.max_column};encabezado={'SI' if structural_header else 'NO-DETERMINADO'}", "sheet": sheet.title,
+                "definition": f"filas={max_row};columnas={max_column};encabezado={'SI' if structural_header else 'NO-DETERMINADO'}", "sheet": sheet.title,
             })
             for index, value in enumerate(first, 1):
                 name, _ = safe_text(value if structural_header else f"COLUMNA-{index}")
@@ -845,7 +892,11 @@ def _xlsx_objects(path: Path) -> list[dict[str, Any]]:
             header_row = 0
             header_map: dict[str, int] = {}
             category_aliases = {"categoria", "categorias", "category", "categories", "value_label", "value_labels"}
-            for candidate_number, candidate in enumerate(sheet.iter_rows(min_row=1, max_row=min(sheet.max_row, 20), values_only=True), 1):
+            candidate_rows = (
+                sheet.iter_rows(min_row=1, max_row=min(max_row, 20), values_only=True)
+                if max_row else ()
+            )
+            for candidate_number, candidate in enumerate(candidate_rows, 1):
                 normalized = {
                     str(value or "").strip().casefold().replace(" ", "_"): index
                     for index, value in enumerate(candidate)
@@ -899,10 +950,11 @@ def _xls_objects(path: Path) -> list[dict[str, Any]]:
                     raw = data[8:8 + count * (2 if flags & 1 else 1)]
                     names.append(raw.decode("utf-16le" if flags & 1 else "latin-1", errors="replace"))
                 cursor += 4 + length
-        for name in names:
+        for sheet_ordinal, name in enumerate(names, 1):
             clean, _ = safe_text(name)
+            name_sha256 = hashlib.sha256(name.encode("utf-8", errors="replace")).hexdigest()
             objects.append({
-                "locator": f"hoja={clean}", "type": "HOJA-XLS",
+                "locator": f"hoja={sheet_ordinal}:nombre_sha256={name_sha256}", "type": "HOJA-XLS",
                 "name": clean, "definition": "EXCEPCION-ESPECIFICA:celdas-BIFF-no-decodificadas",
                 "state": "EXCEPCION-ESPECIFICA", "sheet": clean,
             })
@@ -1056,8 +1108,10 @@ def _sav_objects(path: Path) -> list[dict[str, Any]]:
                     continue
                 clean_name, _ = safe_text(name)
                 clean_label, _ = safe_text(label)
+                variable_ordinal = len(variables) + 1
+                name_sha256 = hashlib.sha256(name.encode("utf-8", errors="replace")).hexdigest()
                 variables.append({
-                    "locator": f"tabla=sav#variable={clean_name}",
+                    "locator": f"tabla=sav#variable={variable_ordinal}:nombre_sha256={name_sha256}",
                     "parent_locator": "tabla=sav",
                     "type": "VARIABLE-SAV", "name": clean_name, "label": clean_label,
                     "definition": (
@@ -1142,13 +1196,14 @@ def _dta_objects(path: Path) -> list[dict[str, Any]]:
             "locator": "tabla=stata", "type": "TABLA-DTA", "name": "tabla-stata",
             "definition": f"observaciones={reader._nobs};variables={reader._nvar};observaciones-no-persistidas",
         })
-        for name in variables:
+        for variable_ordinal, name in enumerate(variables, 1):
             clean_name, _ = safe_text(name)
             clean_label, _ = safe_text(labels.get(name, ""))
             mapping = value_tables.get(label_tables.get(name, ""), {})
             label_names = sorted({safe_text(value)[0] for value in mapping.values()})
+            name_sha256 = hashlib.sha256(name.encode("utf-8", errors="replace")).hexdigest()
             objects.append({
-                "locator": f"tabla=stata#variable={clean_name}", "type": "VARIABLE-DTA",
+                "locator": f"tabla=stata#variable={variable_ordinal}:nombre_sha256={name_sha256}", "type": "VARIABLE-DTA",
                 "parent_locator": "tabla=stata",
                 "name": clean_name, "label": clean_label,
                 "definition": f"formato={formats.get(name, 'NO-DETERMINADO')}",
@@ -1450,6 +1505,179 @@ REPORT_FIELDS = [
 ]
 
 
+def _audit_e2_files_streaming(
+    index_path: Path,
+    report_path: Path,
+    summary: dict[str, Any],
+    task: dict[str, Any],
+    schema_validator: Draft202012Validator,
+) -> dict[str, Any]:
+    """Audita un expediente E2 en O(n), sin cargarlo completo en RAM."""
+    errors: list[str] = []
+
+    def fail(code: str) -> None:
+        # Un artefacto corrupto no debe poder agotar memoria sólo generando
+        # millones de diagnósticos repetidos. El primer centenar conserva
+        # evidencia suficiente y el gate permanece cerrado.
+        if len(errors) < 200:
+            errors.append(code)
+        elif len(errors) == 200:
+            errors.append("E2_ERRORES_TRUNCADOS")
+
+    object_ids: set[str] = set()
+    parent_ids: set[str] = set()
+    record_ids: set[str] = set()
+    record_hashes: list[str] = []
+    durable_expected: dict[str, str] = {}
+    records_count = e2_count = exception_count = 0
+    summary_batch = str(summary.get("batch_sha256", ""))
+    try:
+        with index_path.open(encoding="utf-8") as handle:
+            for line_number, line in enumerate(handle, 1):
+                if not line.strip():
+                    continue
+                try:
+                    record = json.loads(line)
+                except (json.JSONDecodeError, TypeError):
+                    fail(f"E2_INDEX_JSON_INVALIDO:{line_number}")
+                    continue
+                records_count += 1
+                record_id = str(record.get("record_id", ""))
+                if list(schema_validator.iter_errors(record)):
+                    fail(f"E2_SCHEMA_INVALIDO:{record_id or line_number}")
+                seed = {
+                    key: value for key, value in record.items()
+                    if key not in {"record_id", "record_sha256", "batch_id", "batch_sha256"}
+                }
+                expected_id = "E2R-" + canonical_sha(seed)
+                expected_hash = canonical_sha({**seed, "record_id": expected_id})
+                if record_id != expected_id or record.get("record_sha256") != expected_hash:
+                    fail(f"E2_RECORD_HASH_INVALIDO:{record_id or line_number}")
+                if record_id in record_ids:
+                    fail(f"E2_RECORD_ID_DUPLICADO:{record_id}")
+                record_ids.add(record_id)
+                record_hashes.append(str(record.get("record_sha256", "")))
+                if (
+                    record.get("representacion_id") != task.get("representacion_id")
+                    or record.get("payload_id") != task.get("payload_id")
+                    or record.get("sha256") != task.get("sha256")
+                ):
+                    fail(f"E2_JOIN_INVALIDO:{record_id}")
+                if (
+                    record.get("parser") != summary.get("parser")
+                    or record.get("parser_version") != MATERIAL_BUILD_VERSION
+                ):
+                    fail(f"E2_PARSER_BUILD_INVALIDO:{record_id}")
+                if (
+                    record.get("batch_id") != "E2B-" + summary_batch
+                    or record.get("batch_sha256") != summary_batch
+                ):
+                    fail(f"E2_BATCH_HASH_INVALIDO:{record_id}")
+                if any(
+                    key in record
+                    for key in ("necesidad_id", "relacion_id", "valor_individual", "fila_microdato", "pii")
+                ):
+                    fail(f"E2_CONTAMINACION_SEMANTICA_PRIVACIDAD:{record_id}")
+                privacy_values = [
+                    # payload_id es un slug administrativo validado por
+                    # ``valid_payload_id``. No es prosa extraída: aplicarle
+                    # heurísticas de nombres/teléfonos produce falsos PII en
+                    # ids legítimos con guiones bajos o timestamps.
+                    record.get("ruta_relativa", ""), record.get("localizador", ""), record.get("nombre", ""),
+                    record.get("etiqueta", ""), record.get("texto_reactivo", ""),
+                    record.get("definicion", ""), *(record.get("categorias", []) or []),
+                    *(record.get("value_labels", []) or []), record.get("unidad", ""),
+                    record.get("periodo", ""), record.get("poblacion", ""),
+                    record.get("hoja", ""), record.get("tabla", ""),
+                ]
+                if any(
+                    pattern.search(str(value))
+                    for pattern in PII_PATTERNS for value in privacy_values
+                ):
+                    fail(f"E2_PII_NO_REDACTADA:{record_id}")
+                if (
+                    "[REDACTADO-PRIVACIDAD]" in privacy_values
+                    and record.get("privacidad") != "[REDACTADO-PRIVACIDAD]"
+                ):
+                    fail(f"E2_MARCA_PRIVACIDAD_INCONSISTENTE:{record_id}")
+                object_ids.add(str(record.get("objeto_logico_id", "")))
+                parent_id = str(record.get("objeto_padre_id", ""))
+                if parent_id != "NO-APLICA":
+                    parent_ids.add(parent_id)
+                if record.get("estado") == "E2-COMPLETO":
+                    e2_count += 1
+                if record.get("estado") == "EXCEPCION-ESPECIFICA":
+                    exception_count += 1
+                try:
+                    durable = _durable_row(record)
+                    durable_hash = canonical_sha(durable)
+                except (KeyError, TypeError, ValueError):
+                    fail(f"REPORTE_DURABLE_PROYECCION_INVALIDA:{record_id}")
+                else:
+                    if record_id in durable_expected:
+                        fail(f"REPORTE_DURABLE_RECORD_ID_DUPLICADO:{record_id}")
+                    durable_expected[record_id] = durable_hash
+    except (OSError, UnicodeError):
+        fail("E2_INDEX_ILEGIBLE")
+
+    if not records_count:
+        fail("E2_SIN_OBJETOS")
+    if not parent_ids.issubset(object_ids):
+        for missing in sorted(parent_ids - object_ids)[:20]:
+            fail(f"E2_PADRE_NO_DEREFERENCIABLE:{missing}")
+    expected_batch = canonical_sha(sorted(record_hashes))
+    if summary_batch != expected_batch:
+        fail("E2_SUMMARY_BATCH_HASH_INVALIDO")
+    if (
+        summary.get("objetos_e1") != records_count
+        or summary.get("objetos_e2") != e2_count
+        or summary.get("excepciones") != exception_count
+    ):
+        fail("E2_CONTEOS_NO_RECONCILIAN")
+
+    seen_report_ids: set[str] = set()
+    durable_count = 0
+    try:
+        with report_path.open(encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle, delimiter="\t")
+            if reader.fieldnames != REPORT_FIELDS:
+                fail("REPORTE_DURABLE_CABECERA_INVALIDA")
+            for durable_row in reader:
+                durable_count += 1
+                report_id = str(durable_row.get("reporte_id", ""))
+                record_id = str(durable_row.get("record_id", ""))
+                if report_id in seen_report_ids:
+                    fail(f"REPORTE_DURABLE_ID_DUPLICADO:{report_id}")
+                seen_report_ids.add(report_id)
+                if any(value is None or str(value) == "" for value in durable_row.values()):
+                    fail(f"REPORTE_DURABLE_CELDA_VACIA:{report_id}")
+                if any(len(str(value or "")) > 160 for value in durable_row.values()):
+                    fail(f"REPORTE_DURABLE_TEXTO_LARGO:{report_id}")
+                if any(
+                    str(value).startswith("/")
+                    or re.match(r"^[A-Za-z]:[/\\]", str(value))
+                    for value in durable_row.values()
+                ):
+                    fail(f"REPORTE_DURABLE_RUTA_ABSOLUTA:{report_id}")
+                expected_durable_hash = durable_expected.pop(record_id, None)
+                if (
+                    expected_durable_hash is None
+                    or canonical_sha(durable_row) != expected_durable_hash
+                ):
+                    fail(f"REPORTE_DURABLE_NO_DEREFERENCIABLE:{report_id}")
+    except (OSError, UnicodeError, csv.Error):
+        fail("REPORTE_DURABLE_ILEGIBLE")
+    if durable_expected or durable_count != records_count:
+        fail("REPORTE_DURABLE_NO_CUBRE_INDICE_1A1")
+    return {
+        "errors": errors,
+        "records": records_count,
+        "e2": e2_count,
+        "exceptions": exception_count,
+        "batch_sha256": expected_batch,
+    }
+
+
 def _completed_expediente_matches_task(
     summary: dict[str, Any], directory: Path, task: dict[str, Any], task_path: Path
 ) -> bool:
@@ -1476,54 +1704,12 @@ def _completed_expediente_matches_task(
             return False
         if summary.get("index_sha256") != sha256_file(index_path) or summary.get("report_sha256") != sha256_file(report_path):
             return False
-        records = [json.loads(line) for line in index_path.read_text(encoding="utf-8").splitlines() if line]
-        if not records:
-            return False
         schema_path = Path(__file__).with_name("schemas") / "barrido2-e2-neutral-record.schema.json"
         schema_validator = Draft202012Validator(json.loads(schema_path.read_text(encoding="utf-8")))
-        record_ids: set[str] = set()
-        for record in records:
-            seed = {key: value for key, value in record.items() if key not in {"record_id", "record_sha256", "batch_id", "batch_sha256"}}
-            expected_id = "E2R-" + canonical_sha(seed)
-            if (
-                list(schema_validator.iter_errors(record))
-                or record.get("record_id") != expected_id
-                or record.get("record_sha256") != canonical_sha({**seed, "record_id": expected_id})
-                or record.get("representacion_id") != task["representacion_id"]
-                or record.get("payload_id") != task["payload_id"]
-                or record.get("sha256") != task["sha256"]
-                or record.get("parser") != summary.get("parser")
-                or record.get("parser_version") != MATERIAL_BUILD_VERSION
-                or record.get("record_id") in record_ids
-            ):
-                return False
-            record_ids.add(str(record["record_id"]))
-        object_ids = {str(record.get("objeto_logico_id", "")) for record in records}
-        if any(
-            str(record.get("objeto_padre_id", "")) not in {"NO-APLICA", *object_ids}
-            for record in records
-        ):
-            return False
-        batch = canonical_sha(sorted(str(record["record_sha256"]) for record in records))
-        if summary.get("batch_sha256") != batch or any(
-            record.get("batch_id") != "E2B-" + batch or record.get("batch_sha256") != batch
-            for record in records
-        ):
-            return False
-        if (
-            summary.get("objetos_e1") != len(records)
-            or summary.get("objetos_e2") != sum(record.get("estado") == "E2-COMPLETO" for record in records)
-            or summary.get("excepciones") != sum(record.get("estado") == "EXCEPCION-ESPECIFICA" for record in records)
-        ):
-            return False
-        with report_path.open(encoding="utf-8-sig", newline="") as handle:
-            reader = csv.DictReader(handle, delimiter="\t")
-            reports = list(reader)
-        return (
-            reader.fieldnames == REPORT_FIELDS
-            and sorted(reports, key=lambda row: row["record_id"])
-            == sorted((_durable_row(record) for record in records), key=lambda row: row["record_id"])
+        audit = _audit_e2_files_streaming(
+            index_path, report_path, summary, task, schema_validator
         )
+        return not audit["errors"]
     except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError):
         return False
 
@@ -1559,7 +1745,7 @@ def _durable_row(record: dict[str, Any]) -> dict[str, str]:
     return compact
 
 
-def inspect_task(
+def _inspect_task_inner(
     task_path: Path,
     roots_config: Path,
     contract_path: Path,
@@ -1726,6 +1912,14 @@ def inspect_task(
         for locator, raw in raw_by_locator.items():
             raw["depth"] = locator_depth(locator)
     records = [_e2_record(task, raw, parser, boundary) for raw in raw_objects]
+    # Los contenedores grandes pueden producir cientos de miles de objetos.
+    # Los registros ya contienen la proyección completa; conservar además el
+    # árbol crudo duplica varios GiB sin aportar información al expediente.
+    raw_objects.clear()
+    source_records.clear()
+    if reuse_source_dir is None:
+        raw_by_locator.clear()
+        depth_cache.clear()
     batch_hash = canonical_sha(sorted(row["record_sha256"] for row in records))
     batch_id = "E2B-" + batch_hash
     for record in records:
@@ -1733,17 +1927,24 @@ def inspect_task(
         record["batch_sha256"] = batch_hash
         # record_sha256 excluye hashes de lote por contrato.
     index_path = staging_dir / "e2-neutral-index.jsonl"
-    index_content = "".join(
-        json.dumps(record, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
-        for record in sorted(records, key=lambda row: (row["objeto_logico_id"], row["record_id"]))
+    ordered_records = sorted(
+        records, key=lambda row: (row["objeto_logico_id"], row["record_id"])
     )
-    _atomic_write_text(index_path, index_content)
-    reports = [_durable_row(record) for record in records]
+    _atomic_write_lines(index_path, (
+        json.dumps(record, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
+        for record in ordered_records
+    ))
     report_path = staging_dir / "reportes-durables.tsv"
-    report_buffer = io.StringIO(newline="")
-    writer = csv.DictWriter(report_buffer, fieldnames=REPORT_FIELDS, delimiter="\t", lineterminator="\n")
-    writer.writeheader(); writer.writerows(sorted(reports, key=lambda row: row["reporte_id"]))
-    _atomic_write_text(report_path, report_buffer.getvalue())
+    ordered_for_report = sorted(
+        records,
+        key=lambda record: hashlib.sha256(
+            f"{record['record_id']}\x00{record['representacion_id']}".encode()
+        ).hexdigest(),
+    )
+    _atomic_write_tsv_rows(
+        report_path, REPORT_FIELDS,
+        (_durable_row(record) for record in ordered_for_report),
+    )
     summary = {
         "tarea_id": task["tarea_id"], "representacion_id": task["representacion_id"],
         "tarea_sha256": sha256_file(task_path),
@@ -1767,6 +1968,61 @@ def inspect_task(
         json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
     )
     return summary
+
+
+def inspect_task(
+    task_path: Path,
+    roots_config: Path,
+    contract_path: Path,
+    staging_dir: Path,
+    *,
+    verify_network: bool = True,
+    reuse_source_dir: Path | None = None,
+) -> dict[str, Any]:
+    """Ejecuta una tarea con límites efectivos de tiempo y memoria.
+
+    La tarea sigue siendo validada de nuevo por ``_inspect_task_inner`` antes
+    de abrir bytes. Este envoltorio sólo convierte el presupuesto cegado en
+    límites del proceso; siempre restaura el estado para que las pruebas
+    sintéticas puedan compartir intérprete.
+    """
+    import resource
+    import signal
+
+    task = json.loads(task_path.read_text(encoding="utf-8"))
+    budget = task.get("presupuesto")
+    expected_budget = {
+        "timeout_segundos": 1800,
+        "memoria_mib": 4096,
+        "miembro_max_bytes": 8 * 1024**3,
+        "temp_max_bytes": "MIN-50GIB-10PORCIENTO-LIBRE",
+    }
+    if budget != expected_budget:
+        raise ValueError("TAREA_PRESUPUESTO_INVALIDO")
+    timeout_seconds = int(budget["timeout_segundos"])
+    memory_bytes = int(budget["memoria_mib"]) * 1024**2
+    old_limit = resource.getrlimit(resource.RLIMIT_AS)
+    old_handler = signal.getsignal(signal.SIGALRM)
+
+    def _timeout_handler(_signum: int, _frame: object) -> None:
+        raise TimeoutError("TAREA_TIMEOUT_PRESUPUESTO")
+
+    hard_limit = old_limit[1]
+    bounded_soft = memory_bytes if hard_limit == resource.RLIM_INFINITY else min(memory_bytes, hard_limit)
+    if old_limit[0] != resource.RLIM_INFINITY:
+        bounded_soft = min(bounded_soft, old_limit[0])
+    try:
+        resource.setrlimit(resource.RLIMIT_AS, (bounded_soft, hard_limit))
+        signal.signal(signal.SIGALRM, _timeout_handler)
+        signal.alarm(timeout_seconds)
+        return _inspect_task_inner(
+            task_path, roots_config, contract_path, staging_dir,
+            verify_network=verify_network, reuse_source_dir=reuse_source_dir,
+        )
+    finally:
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, old_handler)
+        resource.setrlimit(resource.RLIMIT_AS, old_limit)
 
 
 def validate_material_snapshot(snapshot: dict[str, Any]) -> list[str]:
@@ -2000,87 +2256,12 @@ def validate_material_files(
                 or row.get("privacidad") != summary.get("privacidad")
             ):
                 errors.append(f"LEDGER_E2_REUSE_INEXACTO:{rep_id}")
-            records = [json.loads(line) for line in index_path.read_text(encoding="utf-8").splitlines() if line]
-            if not records:
-                errors.append(f"E2_SIN_OBJETOS:{rep_id}")
-            if (
-                summary.get("objetos_e1") != len(records)
-                or summary.get("objetos_e2") != sum(record.get("estado") == "E2-COMPLETO" for record in records)
-                or summary.get("excepciones") != sum(record.get("estado") == "EXCEPCION-ESPECIFICA" for record in records)
-            ):
-                errors.append(f"E2_CONTEOS_NO_RECONCILIAN:{rep_id}")
-            for record in records:
-                if record.get("representacion_id") != rep_id or record.get("sha256") != row.get("sha256"):
-                    errors.append(f"E2_JOIN_INVALIDO:{rep_id}")
-                if (
-                    record.get("parser") != summary.get("parser")
-                    or record.get("parser_version") != MATERIAL_BUILD_VERSION
-                ):
-                    errors.append(f"E2_PARSER_BUILD_INVALIDO:{rep_id}:{record.get('record_id', '')}")
-                if any(key in record for key in ("necesidad_id", "relacion_id", "valor_individual", "fila_microdato", "pii")):
-                    errors.append(f"E2_CONTAMINACION_SEMANTICA_PRIVACIDAD:{rep_id}")
-                if list(schema_validator.iter_errors(record)):
-                    errors.append(f"E2_SCHEMA_INVALIDO:{rep_id}:{record.get('record_id', '')}")
-                seed_payload = {
-                    key: value for key, value in record.items()
-                    if key not in {"record_id", "record_sha256", "batch_id", "batch_sha256"}
-                }
-                expected_record_id = "E2R-" + canonical_sha(seed_payload)
-                hash_payload = {**seed_payload, "record_id": expected_record_id}
-                if record.get("record_id") != expected_record_id or record.get("record_sha256") != canonical_sha(hash_payload):
-                    errors.append(f"E2_RECORD_HASH_INVALIDO:{rep_id}:{record.get('record_id', '')}")
-                privacy_values = [
-                    record.get("payload_id", ""),
-                    record.get("ruta_relativa", ""), record.get("localizador", ""),
-                    record.get("nombre", ""), record.get("etiqueta", ""),
-                    record.get("texto_reactivo", ""), record.get("definicion", ""),
-                    *(record.get("categorias", []) or []), *(record.get("value_labels", []) or []),
-                    record.get("unidad", ""), record.get("periodo", ""), record.get("poblacion", ""),
-                    record.get("hoja", ""), record.get("tabla", ""),
-                ]
-                if any(pattern.search(str(value)) for pattern in PII_PATTERNS for value in privacy_values):
-                    errors.append(f"E2_PII_NO_REDACTADA:{rep_id}:{record.get('record_id', '')}")
-                if "[REDACTADO-PRIVACIDAD]" in privacy_values and record.get("privacidad") != "[REDACTADO-PRIVACIDAD]":
-                    errors.append(f"E2_MARCA_PRIVACIDAD_INCONSISTENTE:{rep_id}:{record.get('record_id', '')}")
-            object_ids = {str(record.get("objeto_logico_id", "")) for record in records}
-            for record in records:
-                parent_id = str(record.get("objeto_padre_id", ""))
-                if parent_id != "NO-APLICA" and parent_id not in object_ids:
-                    errors.append(f"E2_PADRE_NO_DEREFERENCIABLE:{rep_id}:{record.get('record_id', '')}")
-            expected_batch = canonical_sha(sorted(record.get("record_sha256", "") for record in records))
-            if summary.get("batch_sha256") != expected_batch:
-                errors.append(f"E2_SUMMARY_BATCH_HASH_INVALIDO:{rep_id}")
-            if any(
-                record.get("batch_id") != "E2B-" + expected_batch
-                or record.get("batch_sha256") != expected_batch
-                for record in records
-            ):
-                errors.append(f"E2_BATCH_HASH_INVALIDO:{rep_id}")
-            with report_path.open(encoding="utf-8-sig", newline="") as handle:
-                reader = csv.DictReader(handle, delimiter="\t")
-                durable = list(reader)
-                if reader.fieldnames != REPORT_FIELDS:
-                    errors.append(f"REPORTE_DURABLE_CABECERA_INVALIDA:{rep_id}")
-            for durable_row in durable:
-                if any(value == "" for value in durable_row.values()):
-                    errors.append(f"REPORTE_DURABLE_CELDA_VACIA:{rep_id}")
-                if any(len(value) > 160 for value in durable_row.values()):
-                    errors.append(f"REPORTE_DURABLE_TEXTO_LARGO:{rep_id}")
-                if any(str(value).startswith("/") or re.match(r"^[A-Za-z]:[/\\]", str(value)) for value in durable_row.values()):
-                    errors.append(f"REPORTE_DURABLE_RUTA_ABSOLUTA:{rep_id}")
-                record = next((item for item in records if item.get("record_id") == durable_row.get("record_id")), None)
-                if record is None or durable_row != _durable_row(record):
-                    errors.append(f"REPORTE_DURABLE_NO_DEREFERENCIABLE:{rep_id}:{durable_row.get('reporte_id', '')}")
-            record_ids = [str(record.get("record_id", "")) for record in records]
-            durable_record_ids = [str(row.get("record_id", "")) for row in durable]
-            if (
-                len(record_ids) != len(set(record_ids))
-                or len(durable_record_ids) != len(set(durable_record_ids))
-                or set(record_ids) != set(durable_record_ids)
-            ):
-                errors.append(f"REPORTE_DURABLE_NO_CUBRE_INDICE_1A1:{rep_id}")
+            audit = _audit_e2_files_streaming(
+                index_path, report_path, summary, current_task, schema_validator
+            )
+            errors.extend(f"{code}:{rep_id}" for code in audit["errors"])
             completed += 1
-            e2_records += len(records)
+            e2_records += int(audit["records"])
     if require_complete and completed != len(expected):
         errors.append("GATE_E2_INCOMPLETO")
     return {

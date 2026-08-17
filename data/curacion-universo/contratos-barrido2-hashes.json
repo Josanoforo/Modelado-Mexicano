@@ -3,10 +3,15 @@
   "base_sha": "f3873c25d12ec3e26730901dc257788011e5ceea",
   "fecha_congelacion": "2026-08-17",
   "files": {
-    "data/curacion-universo/contrato-barrido2-v1_0.json": "22c711b5bd2cfeba3ffab7c77551d7c9e50441b209cbea532143b1e8e1e01666",
+    "data/curacion-universo/contrato-barrido2-v1_0.json": "1c96e3beff85f4829e8afa7a316a29ae13ec4643c468b12b9577ee24ba73acfe",
     "tools/curador_registro/schemas/barrido2-e2-neutral-record.schema.json": "4097765a3406d52e1796fba06007f096179dbcdbdf1861cb84255ba143f827fb",
     "tools/curador_registro/schemas/barrido2-semantic-proposal.schema.json": "3a407c473f0e7ff2e25b7b2f4c2b9ba2c6ce71440576c747838521ea773927cf",
     "tools/curador_registro/schemas/barrido2-cableado-row.schema.json": "449a2dc0210372823ff8f46ac9b4dfceca8de5bd0c3a4dad6697c53eda29695b",
     "tools/curador_registro/schemas/barrido2-material-baseline.schema.json": "637fbf45f3b3b31e6f346d7edad92e727da779bce4ca745f1ed6c50bb78b66b4"
+  },
+  "transicion_material": {
+    "contrato_sha256_anterior": "22c711b5bd2cfeba3ffab7c77551d7c9e50441b209cbea532143b1e8e1e01666",
+    "razon": "W0 observado: umbral pesado/riesgo explicitado para archivos >=512 MiB o expansion ZIP >=2 GiB",
+    "fecha": "2026-08-17"
   }
 }

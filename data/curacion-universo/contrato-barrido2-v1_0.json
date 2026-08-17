@@ -33,6 +33,12 @@
   ],
   "grades": ["E0", "E1", "E2"],
   "wave_precedence": ["W4_PESADA_RIESGO", "W3_ZIP", "W2_DOCUMENTO_TABULAR", "W1_LIGERA"],
+  "wave_risk_thresholds": {
+    "physical_bytes_gte": 536870912,
+    "zip_uncompressed_bytes_gte": 2147483648,
+    "zip_member_bytes_gt": 8589934592,
+    "zip_ratio_gt": 200
+  },
   "retry_wave": "W5_EXCEPCION",
   "private_e2_index": ".barrido2/private/e2-neutral-index.jsonl",
   "durable_report": "data/curacion-universo/reportes-inspeccion-barrido2-v1_0.tsv",

@@ -1,41 +1,45 @@
-# PRISMA material BARRIDO-2 · W0
+# PRISMA material BARRIDO-2
 
-Fecha: 2026-08-17. Estado: PRELIMINAR-W0. Red material: deshabilitada.
+Fecha: 2026-08-17. Estado: CERRADO-E2. Red material: deshabilitada.
 
 | Métrica | Cifra | Denominador | Comando de derivación |
 |---|---:|---|---|
-| declaraciones_totales | 631 | declaraciones del manifiesto | `CMD-W0` |
-| declaraciones_con_archivo_sha | 627 | declaraciones del manifiesto | `CMD-W0` |
-| declaraciones_sin_archivo_sha | 4 | declaraciones del manifiesto | `CMD-W0` |
-| representaciones_fisicas | 672 | archivos de las dos raíces configuradas | `CMD-W0` |
-| sha_unicos | 662 | representaciones físicas | `CMD-W0` |
-| representaciones_declaradas | 577 | representaciones físicas | `CMD-W0` |
-| representaciones_no_declaradas | 95 | representaciones físicas | `CMD-W0` |
-| fuera_de_disco | 49 | declaraciones con archivo+sha | `CMD-W0` |
-| divergentes_hash_o_tamano | 1 | declaraciones con archivo+sha | `CMD-W0` |
-| corruptas_E0 | 0 | representaciones físicas | `CMD-W0` |
-| cifradas_E0 | 0 | representaciones físicas | `CMD-W0` |
-| no_soportadas_E0 | 0 | representaciones físicas | `CMD-W0` |
-| reutilizadas | 0 | representaciones físicas; W0 no abre | `CMD-W0` |
-| abiertas_E1 | 0 | representaciones físicas; W0 no abre | `CMD-W0` |
-| caracterizadas_E2 | 0 | representaciones físicas; W0 no abre | `CMD-W0` |
-| excepciones_de_apertura | 0 | representaciones físicas; W0 no abre | `CMD-W0` |
-| objetos_logicos | 0 | objetos enumerados; W0 no abre | `CMD-W0` |
-| reportes | 0 | registros E2; W0 no abre | `CMD-W0` |
-| ola_W1 | 26 | representaciones físicas | `CMD-W0` |
-| ola_W2 | 246 | representaciones físicas | `CMD-W0` |
-| ola_W3 | 399 | representaciones físicas | `CMD-W0` |
-| ola_W4 | 1 | representaciones físicas | `CMD-W0` |
-| ola_W5_reintentos | 0 | referencias a representaciones ya asignadas | `CMD-W0` |
+| declaraciones_totales | 631 | declaraciones del manifiesto | `CMD-MATERIAL` |
+| declaraciones_con_archivo_sha | 627 | declaraciones del manifiesto | `CMD-MATERIAL` |
+| declaraciones_sin_archivo_sha | 4 | declaraciones del manifiesto | `CMD-MATERIAL` |
+| representaciones_fisicas | 672 | archivos de las dos raíces configuradas | `CMD-MATERIAL` |
+| sha_unicos | 662 | representaciones físicas | `CMD-MATERIAL` |
+| representaciones_declaradas | 577 | representaciones físicas | `CMD-MATERIAL` |
+| representaciones_no_declaradas | 95 | representaciones físicas | `CMD-MATERIAL` |
+| fuera_de_disco | 49 | declaraciones con archivo+sha | `CMD-MATERIAL` |
+| divergentes_hash_o_tamano | 1 | declaraciones con archivo+sha | `CMD-MATERIAL` |
+| corruptas_E0 | 0 | representaciones físicas | `CMD-MATERIAL` |
+| cifradas_E0 | 0 | representaciones físicas | `CMD-MATERIAL` |
+| no_soportadas_E0 | 0 | representaciones físicas | `CMD-MATERIAL` |
+| reutilizadas | 10 | representaciones E2 | `CMD-MATERIAL` |
+| abiertas_E1 | 672 | representaciones físicas | `CMD-MATERIAL` |
+| caracterizadas_E2_o_excepcion | 672 | representaciones físicas | `CMD-MATERIAL` |
+| representaciones_con_excepcion | 373 | representaciones E2 | `CMD-MATERIAL` |
+| excepciones_por_objeto | 3919 | objetos E1 | `CMD-MATERIAL` |
+| objetos_logicos_E1 | 1331710 | objetos enumerados | `CMD-MATERIAL` |
+| objetos_caracterizados_E2 | 1327791 | objetos E1 | `CMD-MATERIAL` |
+| reportes_durables_compactos | 1840 | grupos representación/tipo/estado/privacidad/frontera | `CMD-MATERIAL` |
+| ola_W1 | 26 | representaciones físicas | `CMD-MATERIAL` |
+| ola_W2 | 246 | representaciones físicas | `CMD-MATERIAL` |
+| ola_W3 | 396 | representaciones físicas | `CMD-MATERIAL` |
+| ola_W4 | 4 | representaciones físicas | `CMD-MATERIAL` |
+| ola_W5_reintentos | 0 | referencias a representaciones ya asignadas | `CMD-MATERIAL` |
 
-Comando `CMD-W0`:
+Comando `CMD-MATERIAL`:
 
 ```sh
-unshare -Urn -- python3 tools/curador_registro/snapshot_universe.py \
-  --barrido2 --manifest data/manifiesto.yaml \
-  --roots-config data/raices.local.yaml \
-  --snapshot-output .barrido2/private/t0/snapshot.json
+unshare -Urn -- python3 tools/curador_registro/write_barrido2_material.py \
+  --snapshot .barrido2/private/t0/snapshot-v2.json \
+  --task-ledger .barrido2/private/t0/ledger-v2.tsv \
+  --task-root .barrido2/tasks-v2 --staging-root .barrido2/staging-v2 \
+  --contract data/curacion-universo/contrato-barrido2-v1_0.json \
+  --contract-hashes data/curacion-universo/contratos-barrido2-hashes.json \
+  --output-root . --private-index .barrido2/private/e2-neutral-index.jsonl --date 2026-08-17
 ```
 
-La partición inicial es disjunta y exhaustiva:
-W1∪W2∪W3∪W4=universo físico; W5 permanece vacío en W0.
+Partición: W1∪W2∪W3∪W4=universo físico; intersecciones vacías; W5 sin reintentos.

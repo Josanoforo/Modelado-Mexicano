@@ -1,7 +1,7 @@
 {
   "base_sha": "f3873c25d12ec3e26730901dc257788011e5ceea",
   "contracts": {
-    "data/curacion-universo/contrato-barrido2-v1_0.json": "22c711b5bd2cfeba3ffab7c77551d7c9e50441b209cbea532143b1e8e1e01666",
+    "data/curacion-universo/contrato-barrido2-v1_0.json": "1c96e3beff85f4829e8afa7a316a29ae13ec4643c468b12b9577ee24ba73acfe",
     "tools/curador_registro/schemas/barrido2-cableado-row.schema.json": "449a2dc0210372823ff8f46ac9b4dfceca8de5bd0c3a4dad6697c53eda29695b",
     "tools/curador_registro/schemas/barrido2-e2-neutral-record.schema.json": "4097765a3406d52e1796fba06007f096179dbcdbdf1861cb84255ba143f827fb",
     "tools/curador_registro/schemas/barrido2-material-baseline.schema.json": "637fbf45f3b3b31e6f346d7edad92e727da779bce4ca745f1ed6c50bb78b66b4",
@@ -13,39 +13,55 @@
     "declaraciones_sin_archivo_sha": 4,
     "declaraciones_totales": 631,
     "fuera_de_disco": 49,
-    "objetos_e2": 0,
-    "reportes": 0,
+    "objetos_e1": 1331710,
+    "objetos_e2": 1327791,
+    "reportes_durables": 1840,
     "representaciones_declaradas": 577,
+    "representaciones_e2_terminales": 672,
     "representaciones_fisicas": 672,
     "representaciones_no_declaradas": 95,
     "waves": {
       "W1": 26,
       "W2": 246,
-      "W3": 399,
-      "W4": 1
+      "W3": 396,
+      "W4": 4
     }
   },
-  "e2_index_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "e2_index_sha256": "2c55aeaf21c84ca36dd939eb70f0b5452f45aa18ef4cb3b79c9cfcf1d523bf0d",
   "exceptions": {
-    "estado": "NO-EVALUADAS-W0",
-    "materiales_abiertas": 0
+    "objetos_con_excepcion": 3919,
+    "representaciones_con_excepcion": 373
   },
   "fecha": "2026-08-17",
   "inventory_sha256": "1e6cf0d30cd7b9eeaffa9523fe76729945834a54cd745abbc095ce051df8730b",
-  "ledger_sha256": "d60d4a70870970a1c2db8743938952c02fc891ac487a66a7046bca9f1dd5b174",
+  "ledger_sha256": "9e17ab0b826513f72308d4fb195cd7820c64425fd73be621aa833e86ab65ea77",
   "manifest_sha": "ee50b12c2c868c6024ffa8aca5f614874b5310455320c2ce028f7534fb38ebe2",
   "network_habilitada": false,
   "parsers": {
-    "build_sha256": "3b44692f79e3b6bfbeee9697fe235ae4439368a88073c68e178ab0d8078a1489",
+    "build_sha256": "1f901b6af70a9c62081414597d69ba536ed9ea2b5f112363bbb94147bf2c7000",
     "build_version": "BARRIDO2-MATERIAL-1.0",
-    "estado": "PRELIMINAR-W0",
-    "w0_writer_sha256": "1a9d22626419aba61665f2ae2081ae702c4c147899c63b7b78d6fe68e6847a26"
+    "counts": {
+      "barrido2-excepcion-material-1": 83,
+      "barrido2-stdlib-1": 3,
+      "barrido2-stdlib-1+csv": 7,
+      "barrido2-stdlib-1+html": 16,
+      "barrido2-stdlib-1+json": 1,
+      "barrido2-stdlib-1+olefile": 8,
+      "barrido2-stdlib-1+openpyxl": 44,
+      "barrido2-stdlib-1+pandas-stata": 14,
+      "barrido2-stdlib-1+poppler": 86,
+      "barrido2-stdlib-1+sav-dictionary": 3,
+      "barrido2-stdlib-1+xml": 7,
+      "barrido2-stdlib-1+zipfile": 400
+    },
+    "writer_sha256": "eb1015a9cbfac8fcd199a7f4657247b6a0a818380cad5fa22dcf8cd3b439a6bf"
   },
-  "prisma_material_sha256": "834b490163efd1562345fd7d52a500fdef6ab402edc5d2c6bc25469714187fa7",
+  "prisma_material_sha256": "12847da8b5d18d3cde3e5ae29916cd73d066874539d7e3459e5002aa64335422",
   "reports": {
-    "durable_rows": 0,
-    "estado": "PENDIENTE-E2",
-    "snapshot_sha256": "f346a37ad54031004afe9611266809ba597425d78100903c45051afbad3292c3"
+    "durable_rows": 1840,
+    "durable_sha256": "a25c7359a54aac4e6707d1cc3565ab7ae5dbe628ee40d74f812c01f6d79f3eac",
+    "estado": "CERRADO-E2",
+    "snapshot_sha256": "fdb2fc186d8a9469599942810e4db3c3aefe95761f49fc96d3d5fb3c615924bb"
   },
   "roots_config_sha256": "5e30427c6fcfc3da5930cc22b2ef4205f95a1f0c4ef942acb976df9c0a522431",
   "schema_version": "BARRIDO2-MATERIAL-BASELINE-1.0"
