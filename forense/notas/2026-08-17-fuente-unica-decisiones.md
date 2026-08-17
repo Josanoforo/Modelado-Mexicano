@@ -283,7 +283,28 @@ Cero entradas nuevas que no sean `T22: FP-26`..`FP-37`. **Ninguna regresión aje
 
 **Por qué este acto NO recongela, aunque el encargo pida VERDE.** Recongelar `tests/baseline.json` **exige ADR de mesa propio, sin condiciones adicionales** — `ADR-76(f)`, y los tres precedentes que lo respetaron al pie: `ADR-86` (autorizado en el acto por el usuario), `ADR-88` y `ADR-90` (ambos por `AskUserQuestion` estructurada que citó `ADR-76(f)` verbatim antes de tocar nada). Además, `tests/**` está fuera del perímetro declarado de este acto. Recongelar por cuenta propia sería exactamente el atajo que `ADR-76(f)` existe para prohibir.
 
-Se deja `ROJO` con las 12 entradas identificadas una por una, y **se consulta a mesa en la FASE 2**, con el conteo de filas ya estabilizado para que la autorización cubra un solo recongelado y no dos.
+Se dejó `ROJO` con las 12 entradas identificadas una por una y **se consultó a mesa en la FASE 2**, con el conteo de filas ya estabilizado para que la autorización cubriera un solo recongelado y no dos.
+
+**Mesa autorizó, y el recongelado se ejecutó en commit propio.** `AskUserQuestion` estructurada citando `ADR-76(f)`, con las tres opciones escritas antes de la respuesta (recongelar en commit propio · dejar `ROJO` y declararlo · esperar a que BARRIDO-2 fusione). Selección: *"Recongelar, en commit propio"*. Procedencia declarada sin adorno — **no es cita verbatim de texto libre**, es una selección sobre opciones redactadas por el ejecutor; mismo criterio de honestidad que `ADR-86`, `ADR-88` y `ADR-90`.
+
+```
+$ python3 tests/check.py --freeze
+[--freeze] escrito tests/baseline.json — HEAD 6f78d066ae2aecf61ca63046e19242d46f4a255d · 19 fail · 117 warn congelados
+$ python3 tests/check.py --baseline
+20 FAIL · 128 WARN
+LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 6f78d06)
+```
+
+**Durabilidad re-verificada tras el recongelado**, importando `_baseline_key` directamente (no por fecha simulada, que en este entorno no intercepta el `datetime.date.today()` ya resuelto dentro del módulo):
+
+```
+misma fila, distinta antigüedad (0 días vs 196 días) -> misma clave:  True
+fila distinta (FP-36 vs FP-99)                       -> clave distinta: True
+```
+
+El arreglo de `ADR-88` sigue vigente y las doce filas nuevas no lo rompen: el tablero no volverá a ponerse `ROJO` por el mero paso del tiempo, y una fila nueva de verdad se seguirá detectando.
+
+El recongelado va en **commit propio**, posterior a los dos de contenido, para que el diff de contenido y el de mantenimiento de suite no se mezclen — mismo criterio que `ADR-87`/`ADR-89` aplicaron al negarse a colar mantenimiento dentro de un acto de contenido. `tests/baseline.json` queda como **ampliación de perímetro autorizada por mesa en el acto**, no como desborde silencioso.
 
 **`git diff --check`.** Limpio en `canon/`. En el TSV marca las filas `ABIERTA` (séptima columna `firmada_en` vacía → tab final). **Falso positivo estructural, no corregido, y la razón importa:** `_t22_tabla` descarta con `if len(campos) != len(cabecera): continue`. Quitar el tab final dejaría la fila en 6 campos y el parser la **saltaría en silencio** — la fila desaparecería del tablero sin que nada fallara, que es precisamente el defecto que el tablero existe para atrapar. Verificado que `origin/main` ya trae ese tab final en las 18 filas `ABIERTA` previas: es convención pre-existente, no algo que este acto introduzca.
 
