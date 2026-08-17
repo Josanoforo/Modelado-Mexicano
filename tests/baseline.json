@@ -1,5 +1,5 @@
 {
-  "head": "07a1bc6ff0f2541ede5609cc1761e8ecc6669187",
+  "head": "408a3d1d5274fd8dbd5e3c9308eeb8c1f82bbe4b",
   "fails": [
     [
       "T05",
@@ -75,7 +75,7 @@
     ],
     [
       "T16",
-      "canon/gobernanza-v1_15.md: declara 18 FAIL · 104 WARN vigente; la corrida real da 18 FAIL · 131 WARN"
+      "canon/gobernanza-v1_15.md: declara 18 FAIL · 104 WARN vigente; la corrida real da N WARN"
     ]
   ],
   "warns": [
@@ -525,10 +525,6 @@
     ],
     [
       "T22",
-      "FP-13 ABIERTA desde 2026-08-13 (N días): RUTA-SELLO — sellar como canon la taxonomía RUTA-A/RUTA-C/RUTA-I/SIN-RUTA con las cifras íntegras de"
-    ],
-    [
-      "T22",
       "FP-14 ABIERTA desde 2026-08-13 (N días): E3-TRIAGE — lanzar la Entrada 3 de registro-recalculo (los 7 veredictos D del Hito D); gate cumplido"
     ],
     [
@@ -580,7 +576,7 @@
       "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1,
       "T16_consecuencia_aritmetica_del_T03_de_revision-publicacion__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01": 2,
-      "T22_sin_clasificar": 19
+      "T22_sin_clasificar": 18
     }
   }
 }

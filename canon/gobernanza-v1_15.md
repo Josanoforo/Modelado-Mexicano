@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **89 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **90 ADR**
 
 > | | |
 > |---|---|
@@ -1510,6 +1510,36 @@ Sitios: `gobernanza-v1_15.md:2` (cabecera, este documento) · `estado-programa-v
 **Versión y nombre de archivo.** El número de versión de `gobernanza` **no sube** y el archivo **no se renombra** — mismo criterio que `ADR-48` a `ADR-88`.
 
 → **Vigente.** *(Decisión de mesa, ACTO RUTA-SELLO, 17/ago/2026. Sesión repo-only, nube, sin `data/raw` — perímetro: `canon/gobernanza-v1_15.md` (este ADR + cabecera), `forense/censo-estimabilidad-coeficientes-v1_1.md` (línea 45 + fila de cabecera, solamente), `forense/firmas-pendientes.tsv` (`FP-13`), `canon/estado-programa-v1_10.md` (solo cascada de conteo, desborde declarado arriba), `forense/hallazgos.md` (una entrada, desborde declarado — el latente de `_baseline_key`/T16 que este ADR expone y no corrige), `forense/encargos/2026-08-17-RUTA-SELLO-taxonomia.md` (nuevo, A.3), `forense/notas/2026-08-17-ruta-sello.md` (nueva); no abrió microdato, no tocó `data/`, `tools/`, `milpa/` ni `tests/`, no tocó `canon/glosario-v5_6.md`.)*
+
+---
+
+**ADR-90 · Corrige un segundo punto ciego de `_baseline_key`, gemelo del que `ADR-88` cerró para T22: el conteo `real_fail`/`real_warn` que `T16` incrusta en sus dos mensajes "permanentes" no estaba normalizado, así que cualquier cambio futuro al WARN real — no solo el que `ADR-89` acaba de causar — volvía a romper el freeze.** Decisión del usuario, ACTO T16-DERIVA, 17/ago/2026, dada en respuesta a `AskUserQuestion` — no cita verbatim de texto libre, se declara sin adorno (mismo criterio de honestidad de procedencia que `ADR-86`/`ADR-88`/`A.9`): una pregunta estructurada citó `ADR-76(f)` verbatim, describió qué cambia y qué no cambia con cada una de las tres opciones, y el usuario seleccionó *"Arreglar la causa + recongelar"* frente a *"Solo recongelar"* y *"Dejarlo ROJO"*, las tres escritas antes de la respuesta.
+
+**El defecto, medido y no concebido.** `ADR-89` (arriba) bajó `FP-13` a `FIRMADA`, lo que bajó `T22 T-FIRMAS` de 19 a 18 WARN y el WARN real de la suite de 131 a 130 — cambio legítimo, dentro de perímetro, consecuencia mecánica del propio sello. Eso rompió el freeze de `tests/baseline.json` sobre las dos entradas "permanentes" de `T16` (`gobernanza:1106`,`:1136`, que declaran a propósito la cifra histórica `18 FAIL · 104 WARN` — nunca debe seguir al real, `gobernanza:1106` verbatim: *"Estado derivado en este acto, no copiado"*): el mensaje que `T16` construye para esas dos líneas incrusta el `real_fail`/`real_warn` VIGENTE (`"...la corrida real da {N} FAIL · {M} WARN"`), y `_baseline_key` (`tests/check.py:1330`) solo normalizaba (a) el número de línea inicial y (b) la antigüedad variable de `T22` — no ese sufijo. Consecuencia: **cualquier cambio al WARN real de la suite, por cualquier causa, cambia la clave de estas dos entradas y las vuelve "nuevas"**, sin que `gobernanza:1106`/`:1136` cambien un byte. Mismo patrón exacto que `ADR-88` ya documentó para `T22` ("el mismo árbol pasa de VERDE a ROJO"), aquí disparado por cualquier PR que mueva WARN, no por el paso del tiempo.
+
+**La corrección, y por qué es de la clave y no del mensaje.** `_baseline_key` gana una tercera normalización: `la corrida real da (\d+ FAIL · )?\d+ WARN` → `la corrida real da N WARN`, aplicada después de las dos existentes. El mensaje **sigue imprimiendo el real vigente** en cada corrida — verificado: la sección de detalle (`· T16: 2`) sigue mostrando `130 WARN` real, solo la sección `LÍNEA BASE` (que usa la clave) muestra `N WARN` —, porque reportar la divergencia real es exactamente la función que `T16` existe para cumplir. Lo único que cambia es qué cuenta como **regresión nueva**: el `real_fail`/`real_warn` de hoy no lo es; que `gobernanza:1106`/`:1136` empiecen a declarar algo *distinto* de `18 FAIL · 104 WARN` sí lo sería — ese "declara" no está tocado por esta normalización, sigue siendo parte de la clave.
+
+**Contraprueba corrida, no asumida.** Cuatro pruebas directas sobre `_baseline_key` (`python3 -c` importando `tests/check.py`, sin archivos temporales en `canon/`):
+1. Mismo "declara", distinto real (`130` vs `999`) → **misma clave** — el bug que se cierra.
+2. Distinto "declara" (`18/104` vs `20/200`), mismo real → **clave distinta** — no queda ciego a un hallazgo genuinamente nuevo en la misma línea.
+3. Distinto archivo/línea, mismo "declara" → **clave distinta** — sin colisión falsa entre, p. ej., `gobernanza:764` y `estado-programa:221`.
+4. Un mensaje sin el patrón `la corrida real da…` (la variante `m2` de otro test) → **sin tocar** — la sustitución no sobre-matchea.
+
+Las cuatro, comando por comando, en `forense/notas/2026-08-17-t16-deriva.md`.
+
+**El recongelado.** `python3 tests/check.py --freeze` → `tests/baseline.json` con `head` `408a3d1` (el commit del backfill de `FP-13`, último de `ACTO RUTA-SELLO`), **19 fail · 119 warn** congelados (claves únicas tras deduplicar). `--baseline` → **LÍNEA BASE: VERDE**. Necesario y no cosmético: `_baseline_compare` lee las claves almacenadas tal cual, sin re-derivarlas — las dos entradas "permanentes", congeladas bajo la clave vieja (con `131` incrustado), nunca habrían coincidido con la clave nueva sin recongelar.
+
+**Lo que este ADR NO hace.** No firma ni resuelve ninguna fila `ABIERTA` del tablero de firmas — siguen tan visibles como antes. No toca `T16` en sí (ni su lógica de detección, ni el resto de sus mensajes) ni `T22`/`_T22_EDAD_VARIABLE`: la corrección vive entera en una tercera línea de `_baseline_key`. No relaja el criterio para ningún otro test — verificado que el patrón `"la corrida real da"` solo lo emite `T16` (`grep -c` sobre `tests/check.py`). No reabre `ADR-76(f)`, que sigue exigiendo ADR de mesa (aquí, decisión del usuario) sin condiciones adicionales para todo recongelado futuro. No toca `data/`, `tools/`, `milpa/`, ni el corpus. No mueve ningún contador de medición sobre México.
+
+**Perímetro, y por qué es acto aparte.** `tests/check.py` y `tests/baseline.json` están fuera del perímetro de `ACTO RUTA-SELLO` (`ADR-89`), que no declaró tocar `tests/`. Mismo criterio que `ADR-88`/`ACTO T22-DERIVA` ya fijó frente a `ADR-87`/`ACTO A10-ESTAMPA`: acto propio, con su propio ADR y su propio commit, aunque viaje en la misma rama y el mismo PR.
+
+**Cascada.** Conteo de ADR (89→90), receta de T15: `gobernanza-v1_15.md:2` (cabecera) · `estado-programa-v1_10.md:27` · `estado-programa-v1_10.md:101`. **Contadores que NO se mueven, uno por uno:** `13 de 27` · `11 de 15` · `0 de 15` · `1 de 2` · `4 de 144`. Ninguno — esto es mantenimiento del aparato de medición, no medición sobre México.
+
+**Reversión.** Revertir la tercera normalización de `_baseline_key` devuelve el defecto completo: el rojo por cualquier cambio de WARN vuelve. Si algún día un test distinto necesita que su propio `real_fail`/`real_warn` incrustado SÍ entre en la clave, la normalización se acota a `T16` en vez de retirarse — hoy no hace falta, porque es el único que lo emite.
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` **no sube** y el archivo **no se renombra** — mismo criterio que `ADR-48` a `ADR-89`.
+
+→ **Vigente.** *(Decisión del usuario, ACTO T16-DERIVA, 17/ago/2026. Sesión repo-only, nube, sin `data/raw` — perímetro: `tests/check.py` (`_baseline_key`), `tests/baseline.json` (recongelado), `canon/gobernanza-v1_15.md` (este ADR + cabecera), `canon/estado-programa-v1_10.md` (cascada de conteo), `forense/notas/2026-08-17-t16-deriva.md` (nueva); no tocó el tablero de firmas, `data/`, `tools/`, `milpa/` ni el corpus.)*
 
 ---
 

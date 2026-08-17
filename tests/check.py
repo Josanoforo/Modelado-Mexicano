@@ -1327,9 +1327,26 @@ def t22_firmas():
 # estables -- la siguen distinguiendo.
 _T22_EDAD_VARIABLE = re.compile(r"\(\d+ días\)")
 
+# Segundo punto ciego de la misma familia, corregido por ACTO CI-BASELINE-T16
+# (ADR-90, 17/ago/2026) -- mismo género de defecto que _T22_EDAD_VARIABLE
+# (arriba), esta vez del propio T16. Las dos entradas "permanentes" que T16
+# emite contra `gobernanza:1106`/`:1136` (una cita histórica congelada, p.ej.
+# `18 FAIL · 104 WARN`, que nunca debe seguir al real) incrustan en su
+# mensaje el `real_fail`/`real_warn` VIGENTE ("...la corrida real da {N} FAIL
+# · {M} WARN"). Ese sufijo es tan volátil como la antigüedad de T22 -- cambia
+# cada vez que CUALQUIER test mueve su WARN, por cualquier motivo, sin que el
+# archivo citado cambie un byte -- pero no estaba normalizado: `ADR-89`
+# (`FP-13` -> `FIRMADA`, WARN real 131->130) lo expuso, ROJO sin regresión de
+# contenido. La cita que SÍ importa (`declara {fd} FAIL · {wd} WARN vigente`,
+# el valor histórico congelado) no se toca -- solo el sufijo que describe la
+# corrida de hoy, que por definición nunca es parte de la identidad del
+# hallazgo.
+_T16_REAL_SUFIJO = re.compile(r"la corrida real da (\d+ FAIL · )?\d+ WARN")
+
 def _baseline_key(msg):
     msg = re.sub(r":\d+ ", ": ", msg, count=1)
-    return _T22_EDAD_VARIABLE.sub("(N días)", msg)
+    msg = _T22_EDAD_VARIABLE.sub("(N días)", msg)
+    return _T16_REAL_SUFIJO.sub("la corrida real da N WARN", msg)
 
 def _git_head():
     try:
