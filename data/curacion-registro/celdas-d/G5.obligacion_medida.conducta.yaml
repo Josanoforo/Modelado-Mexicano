@@ -17,6 +17,22 @@
 # celda ENUT), y esa asimetría es correcta: ahí el complemento es actitud/conducta del MISMO constructo;
 # aquí son constructos distintos.
 #
+# CORRECCIÓN 2026-08-17 (ENCARGO 2 · CELDA-D-COMPLEMENTO, forense/notas/2026-08-17-celda-d-complemento.md;
+# forense/hallazgos.md ya lo había marcado "ajeno, no perseguido" el 14/ago, ACTO RECONCILIA-SPEC). El
+# párrafo de arriba leyó "SIN rol: COMPLEMENTO entre ellas" como orden de OMITIR este campo -- no lo es.
+# Son dos mecanismos distintos, ambos de §3.1: `rol: COMPLEMENTO` es un candidato dentro de `candidatos`
+# (nunca aplica entre dos celda_d separadas, así que la frase de ADR-75(b) es cierta pero no dice nada del
+# campo de abajo); `relacion_complemento` es el campo de `celda_d` que declara si ESTA celda tiene una
+# celda hermana ligada. Esa segunda pregunta, ADR-75(b) sí la contesta, en el mismo párrafo del
+# denominador: "norma_de_género y obligación_medida son constructos distintos por texto y evidencia...
+# no dos facetas de lo mismo" (canon/gobernanza-v1_15.md:896) -- a diferencia de actitud/ENUT-conducta,
+# que sí son dos facetas de un mismo constructo y sí llevan `relacion_complemento` poblado entre sí (v0.3
+# §4-bis; G5.familismo_obligacion.actitud.yaml:138). Sin esa relación, el valor sancionado y ya en uso del
+# propio esquema es `NO-APLICA` -- mismo criterio, mismo vocabulario, que
+# G5.radio_confianza.encuci_vs_enbiare.yaml:204 ("sin celda hermana ligada"). Se declara explícito abajo:
+# la omisión deliberada pasa a ser explícita en el vocabulario del esquema. No es cambio semántico --
+# ADR-75(b) no se enmienda, se termina de leer -- y no abre ADR nuevo.
+#
 # NINGUNA CIFRA DE ESTE ARCHIVO SE RECALCULÓ EN ESTE ACTO. Todas se citan verbatim de
 # forense/notas/2026-08-13-enasic-split-verificacion.md §2.2 (fusionada), que las produjo y verificó.
 # ACTO PROC-11 es repo-only, sin data/raw y sin corpus: no abre microdato. La reproducción independiente
@@ -144,3 +160,12 @@ celda_d:
                                  # forense/notas/2026-08-13-proc-11.md §2
   fecha_adjudicacion: "NO-APLICA"
   commit_adjudicacion: "NO-APLICA"
+  relacion_complemento: NO-APLICA  # ADR-75(b) contesta la pregunta, no la deja abierta (canon/gobernanza-
+                                    # v1_15.md:886-889, verbatim "dos medidas, dos análisis, sin fusión ni
+                                    # jerarquía"; :896, verbatim "no dos facetas de lo mismo"). No es la
+                                    # brecha actitud/conducta de UN constructo -- ése es el caso de
+                                    # G5.familismo_obligacion.actitud/.conducta, que sí se ligan entre sí
+                                    # por este campo (v0.3 §4-bis) -- son dos constructos distintos, sin
+                                    # celda hermana ligada: mismo criterio y mismo valor que
+                                    # G5.radio_confianza.encuci_vs_enbiare.yaml:204. Corrección 2026-08-17
+                                    # sobre la lectura original de este archivo -- ver cabecera.
