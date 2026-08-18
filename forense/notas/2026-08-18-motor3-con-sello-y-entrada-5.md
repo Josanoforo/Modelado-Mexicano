@@ -243,3 +243,37 @@ El plan del 14/ago la da por `PENDIENTE`; hoy las tres están `LISTO` (§3). Cif
 **Las dos citas mutables sincronizadas, y sólo esas dos.** `ADR-81` enumera cuáles son mutables y cuáles no; tras `ACTO MESA-18AGO` (D-5) y `ACTO T16-HISTÓRICAS`, los únicos rastreadores vivos que quedaban eran `canon/estado-programa-v1_10.md:129` y `:221`. Se actualizaron a la corrida real con paréntesis fechado prepuesto —trayectoria histórica **ampliada, nunca reescrita**—, mismo mecanismo que ese archivo viene usando desde el 29/jul. `gobernanza:764`/`:856`/`:1274` **no se tocaron**: narran lo que cada ADR midió al sellarse y están marcadas `{cita-historica}`.
 
 **`tests/baseline.json` no se tocó y no se corrió `--freeze`**, conforme al lanzamiento. Ninguna cifra sustantiva —ningún β, θ, contador de medición o conteo de ADR— se movió.
+
+---
+
+## 10 · Lo que dirección debería mirar primero — tres cosas, dichas sin adorno
+
+Este acto cerró lo que se le pidió. Lo que sigue **no** son pendientes que se hayan dejado colgando: son las tres cosas que quien audite este PR conviene que vea antes que el resto, porque dos de ellas cambian cómo se lee un archivo del programa y la tercera es un toque a `canon/` que quedó sin autorización explícita de mesa en la sesión.
+
+### 10.1 · `ASIGNADO` no existe como valor de `clase:` — es la clase del *bloque*
+
+Medido, no supuesto: el campo `clase:` aparece **18** veces en `milpa/procedencia.yaml`, y **ninguna** de las 18 dice `ASIGNADO`. La clase vive en el nombre del bloque (`asignados_probabilidad`, `asignados_coeficiente`) y en sus comentarios `#`, que `yaml.safe_load` descarta.
+
+**Por qué importa más de lo que parece:** un cargador escrito de la forma obvia —buscar `clase:` y clasificar— reportaría **cero entradas `ASIGNADO`** en un archivo cuyo propio diagnóstico dice, textualmente, que *"los 15 coeficientes son todos ASIGNADO"*. No fallaría: reportaría cero, en silencio, y cualquier conteo derivado de ahí sería falso sin que nada lo señalara. `milpa/src/procedencia.py` declara la correspondencia **explícita y auditable** (`BLOQUES_CON_CLASE_IMPLICITA`) en vez de inferirla del nombre del bloque en tiempo de ejecución — inferirla haría que un bloque nuevo entrara al motor sin que nadie lo decidiera.
+
+Con la correspondencia declarada, el loader carga **37 entradas**: 19 `ASIGNADO` (13 de probabilidad + 6 filas de coeficiente), 10 `MEDIDO·PARCIAL`, 5 `MEDIDO·β̂`, 2 `MEDIDO·NACIONAL`, 1 `GATE·ID`.
+
+### 10.2 · Nueve de los quince fixes de `RONDA-M` **no** se aplicaron, y ninguno se declaró resuelto
+
+La cuenta está en §4, fix por fix, con su razón. El resumen honesto: **6 de los 12 materiales aplicados · 6 no aplicados · 0 de los 3 de cita aplicados · 1 de las 2 sobrevenidas aplicada, 1 nombrada.**
+
+Los nueve no aplicados comparten una sola causa y no es falta de tiempo: **viven en `propuesta-motor-matriz-v0_1.md`**, y tanto el encargo (*"no editas la matriz"*) como la cabecera del propio veredicto de `RONDA-M` (la corrección *"vive en la adjudicación de mesa y en una v0.2"*) prohíben tocarla. Son, exactamente, el contenido de la **v0.2** que el veredicto exige y que ningún acto ha escrito todavía. **Ninguno se dio por bueno aquí**, y los que sí se pudieron cablear se cablearon donde nacen —el catálogo y `milpa/src/`— que es donde ya no se pueden olvidar.
+
+Dicho de otro modo: si alguien lee "los 15 fixes de RONDA-M listados" y entiende "los 15 aplicados", entiende mal. Están **listados con su estado**, que es lo que el encargo pedía, y nueve siguen esperando su acto.
+
+### 10.3 · El único toque a `canon/`, y su autorización — declarada, no dada por supuesta
+
+Este acto tocó `canon/estado-programa-v1_10.md` en **dos líneas y sólo dos**: `:129` y `:221`, los únicos rastreadores de cifra de suite que quedaban vivos tras `ACTO MESA-18AGO` (D-5) y `ACTO T16-HISTÓRICAS`. Ninguna cifra sustantiva —ningún β, θ, contador de medición, conteo de ADR— se movió, y `gobernanza:764`/`:856`/`:1274` no se tocaron por estar marcadas `{cita-historica}`.
+
+**Lo que sostiene el toque:** `ADR-81` designa expresamente esas citas como *mutables, mantenidas en sincronía por T16, no historia congelada*, y el cierre del encargo exige `tests/check.py --baseline` **VERDE**. Sin sincronizarlas, la línea base queda ROJA por dos entradas de `T16` que son pura cascada aritmética de este mismo acto.
+
+**Lo que NO lo sostiene, y por eso se dice:** los tres precedentes de este mismo movimiento en este mismo archivo —`ACTO PROC-10-bis` (*"pull and solve CI"*), `ACTO MOTOR-3/E0` (*"corrije CI"*), `ACTO CONSOLIDA-2` (*"solve CI"*)— llevaban **autorización directa del usuario en la sesión**. Este acto **no la tiene**: el lanzamiento no dice nada sobre CI, dice *"sin `--freeze`"* —que se respetó— y exige la línea base verde. Se procedió por la designación de `ADR-81` y por la exigencia de cierre, y se declara aquí en vez de dejarlo pasar como rutina.
+
+**Si mesa prefiere que la cifra no se hubiera tocado**, revertir esas dos líneas es un cambio aislado —no arrastra ningún otro archivo de este PR— y deja la línea base ROJA por esas dos entradas de `T16` y nada más.
+
+**Hallazgo colateral de ese mismo toque, que no es de este acto:** el `44` de T03 en `:129` **ya estaba vencido antes de empezar** — árbol limpio a `f3d3f95` daba **47**. `T16` vigila el **total** de esa línea, no esta sub-cifra, y por eso pudo derivar sin que nadie lo notara. Es la misma clase de defecto que `FP-51` persigue: un vigía que mira una parte y deja el resto sin vigilar. Corregido aquí, con la causa dicha, no en silencio.
