@@ -1,0 +1,57 @@
+{
+  "cifra_1_contraste_dta": {
+    "denominador": 103712,
+    "denominador_es": "entradas de value_labels en registros con objeto_tipo terminado en -DTA",
+    "escala": "PORCENTAJE-DE-CONSERVACION",
+    "numerador": 103161,
+    "porcentaje": "99.47",
+    "referencia_declarada": "99.5",
+    "registros_portadores": 6024
+  },
+  "cifra_1_value_labels_sav": {
+    "denominador": 135262,
+    "denominador_es": "entradas de value_labels en registros con objeto_tipo terminado en -SAV",
+    "escala": "PORCENTAJE-DE-CONSERVACION",
+    "numerador": 129318,
+    "porcentaje": "95.61",
+    "registros_portadores": 4866
+  },
+  "cifra_2_metadatos_zip": {
+    "criterio": "definicion sin redaccion y con las cuatro claves bytes=/comprimidos=/crc=/zip_slip=",
+    "denominador": 25713,
+    "denominador_es": "registros con objeto_tipo=MIEMBRO-ZIP",
+    "escala": "PORCENTAJE-DE-CONSERVACION",
+    "numerador": 25713,
+    "porcentaje": "100.00",
+    "reparto_zip_slip": {
+      "escala": "CONTEO-ABSOLUTO",
+      "valores": {
+        "NO": 25708,
+        "SI": 5
+      }
+    },
+    "solo_zip_slip_presente": {
+      "denominador": 25713,
+      "escala": "PORCENTAJE-DE-CONSERVACION",
+      "numerador": 25713,
+      "porcentaje": "100.00"
+    }
+  },
+  "cifra_3_pdf_abiertos": {
+    "denominador_ajeno_pdf_abiertos_todos": 628,
+    "denominador_ajeno_pdf_totales": 630,
+    "escala": "CONTEO-ABSOLUTO-CON-PORCENTAJE",
+    "porcentaje_B_sobre_A": "100.00",
+    "unidad": "documento PDF (representacion_id + prefijo de localizador)",
+    "universo_A_cifrados": 313,
+    "universo_A_es": "documentos PDF con al menos una pagina cifrado=SI-EXTRAIBLE",
+    "universo_B_abiertos_de_A": 313,
+    "universo_B_es": "los de A con al menos una pagina texto_extraible=SI"
+  },
+  "estampa_universo_A10": {
+    "expedientes_examinados": 672,
+    "generacion": "v7",
+    "procedimiento_sha256": "94e0b5ebdd9fb6b5c5c241aef28fcde2d5c95f46e513f764895a35af7e75a7aa",
+    "registros_indice_e2": 1833802
+  }
+}
