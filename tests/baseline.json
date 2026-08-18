@@ -1,5 +1,5 @@
 {
-  "head": "54e9b188c85ddbe176e2ab4e5acc3e96ab02dc1c",
+  "head": "24cd4d82d3bda4be35245396bc64e56b377bddfa",
   "fails": [
     [
       "T05",
@@ -92,6 +92,14 @@
     [
       "T16",
       "canon/gobernanza-v1_15.md: declara 24 FAIL · 126 WARN vigente; la corrida real da N WARN"
+    ],
+    [
+      "T22",
+      "forense/encargos/2026-08-17-CONSOLIDA-17AGO.md trae un marcador de ranura/pendiente-de-mesa nuevo y ninguna fila de `forense/firmas-pendientes.tsv` lo cita -- añade la fila (A.12), o explica la exclusión en la nota del acto y súmalo a `_T22_ARCHIVOS_CONOCIDOS`"
+    ],
+    [
+      "T22",
+      "forense/notas/2026-08-17-consolida.md trae un marcador de ranura/pendiente-de-mesa nuevo y ninguna fila de `forense/firmas-pendientes.tsv` lo cita -- añade la fila (A.12), o explica la exclusión en la nota del acto y súmalo a `_T22_ARCHIVOS_CONOCIDOS`"
     ]
   ],
   "warns": [
@@ -593,6 +601,7 @@
       "T15_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T16_cifra_historica_declarada_107_WARN__consecuencia_aritmetica_del_T03_de_PROC-10-bis__no_defecto_independiente": 2,
       "T16_consecuencia_aritmetica_del_T03_de_revision-publicacion__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01": 6,
+      "T22_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T22_sin_clasificar": 17
     }
   }
