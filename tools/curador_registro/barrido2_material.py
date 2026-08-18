@@ -118,17 +118,46 @@ assert len(PII_IDENTIFICADOR) == 8
 CAMPOS_MAQUINA_TSV = Path(__file__).resolve().parents[2] / "data/curacion-universo/campos-maquina-barrido2.tsv"
 
 
-def _campos_maquina() -> frozenset[str]:
+def _lee_contrato_campos() -> list[dict[str, str]]:
     if not CAMPOS_MAQUINA_TSV.is_file():
         raise MaterialDriftError(f"CONTRATO_CAMPOS_MAQUINA_AUSENTE:{CAMPOS_MAQUINA_TSV}")
     with CAMPOS_MAQUINA_TSV.open(encoding="utf-8-sig", newline="") as handle:
-        campos = {row["campo"].strip() for row in csv.DictReader(handle, delimiter="\t") if row.get("campo")}
+        return [row for row in csv.DictReader(handle, delimiter="\t") if row.get("campo")]
+
+
+def _clase_declarada(row: dict[str, str]) -> str:
+    """Clase de la fila. Un contrato sin la columna es `MAQUINA`, que es como
+    nació el archivo: se lee viejo sin reventar y sin cambiar de significado."""
+    return (row.get("clase") or "MAQUINA").strip().upper() or "MAQUINA"
+
+
+def _campos_maquina() -> frozenset[str]:
+    campos = {r["campo"].strip() for r in _lee_contrato_campos() if _clase_declarada(r) == "MAQUINA"}
+    if "label" in campos:
+        raise MaterialDriftError("CONTRATO_CAMPOS_MAQUINA_EXIME_TEXTO_HUMANO:label")
+    return frozenset(campos)
+
+
+def _campos_esquema() -> frozenset[str]:
+    """Llaves cuyo VALOR es un identificador de esquema, no un dato de máquina.
+
+    La diferencia con `CAMPOS_MAQUINA` es toda la seguridad del mecanismo: un
+    campo de máquina se conserva **verbatim**, mientras que uno de esquema recibe
+    la exención **por FORMA** —la misma que `nombre`/`hoja`/`tabla` ya reciben—,
+    así que `variables=EST_DIS` sobrevive y `variables=RAÚL GONZÁLEZ GARCÍA` se
+    redacta. Esa distinción no es teórica: en los `.dta` electorales de Veracruz
+    cada candidato es una columna, o sea que un nombre de variable **puede** ser
+    el nombre de una persona. Conservar verbatim por confiar en la llave sería
+    exactamente el error que la doctrina de arriba prohíbe.
+    """
+    campos = {r["campo"].strip() for r in _lee_contrato_campos() if _clase_declarada(r) == "ESQUEMA"}
     if "label" in campos:
         raise MaterialDriftError("CONTRATO_CAMPOS_MAQUINA_EXIME_TEXTO_HUMANO:label")
     return frozenset(campos)
 
 
 CAMPOS_MAQUINA = _campos_maquina()
+CAMPOS_ESQUEMA = _campos_esquema()
 
 
 def safe_text_compuesto(value: object, *, durable: bool = False) -> tuple[str, bool]:
@@ -145,17 +174,75 @@ def safe_text_compuesto(value: object, *, durable: bool = False) -> tuple[str, b
     partes: list[str] = []
     redacted = False
     for parte in text.split(";"):
-        clave = parte.split("=", 1)[0].strip() if "=" in parte else ""
+        if "=" in parte:
+            clave, valor = parte.split("=", 1)
+            clave = clave.strip()
+        else:
+            clave, valor = "", parte
         if clave in CAMPOS_MAQUINA:
             partes.append(parte)
             continue
-        limpio, red = safe_text(parte)
+        # Se evalúan la CLAVE y el VALOR por separado, no el segmento entero.
+        # Tres de los once patrones están anclados (`^…$`: nombre en mayúsculas,
+        # nombre en minúsculas, ruta absoluta) y el prefijo `clave=` les rompe el
+        # ancla, de modo que sobre el segmento completo NUNCA disparaban dentro de
+        # una cadena compuesta. Medido: `RAÚL GONZÁLEZ GARCÍA` activa
+        # `PII_PATTERNS[8]`; `label=RAÚL GONZÁLEZ GARCÍA` no activaba ninguno. Por
+        # ese hueco se colaba justo el precedente que la doctrina de arriba cita
+        # para conservar las heurísticas de nombre — los 44 nombres de candidatos
+        # de los `.dta` electorales de Veracruz. Barrido el índice v7 entero
+        # (1 833 802 registros): el hueco existía y **nunca llegó a ejercerse**,
+        # cero `label=` con forma de nombre lo cruzaron. Se cierra igual, porque
+        # un agujero sin usar sigue siendo un agujero.
+        clave_limpia, red_clave = safe_text(clave, estructural=True) if clave else ("", False)
+        if red_clave:
+            # La clave misma es dato de persona. No se conserva como rótulo: eso
+            # publicaría exactamente lo que se quiso redactar.
+            redacted = True
+            partes.append("[REDACTADO-PRIVACIDAD]")
+            continue
+        # La CLAVE se evalúa como esquema (`estructural=True`): es un nombre de
+        # campo emitido por el parser, así que la exención va por FORMA, igual que
+        # en `nombre`/`hoja`/`tabla`. No es un detalle: `zip_slip` activa el patrón
+        # de nombre en minúsculas (`zip`+`_`+`slip`), y sin la exención por forma
+        # se perdería la declaración de seguridad de cada miembro ZIP — la misma
+        # que hoy permite ver los 5 miembros con `zip_slip=SI` del corpus.
+        # El VALOR sólo recibe esa exención cuando su llave está declarada
+        # `ESQUEMA` en el contrato. `label=` no lo está nunca y no puede estarlo.
+        limpio, red = safe_text(valor, estructural=clave in CAMPOS_ESQUEMA)
         redacted = redacted or red
-        partes.append(f"{clave}=[REDACTADO-PRIVACIDAD]" if red and clave else limpio)
+        partes.append(f"{clave}={limpio}" if clave else limpio)
     salida = ";".join(partes)
     if durable:
         salida = salida[:160].rstrip()
     return salida, redacted
+
+
+def activa_pii_compuesto(text: str) -> bool:
+    """¿Un valor compuesto YA ESCRITO conserva algo que debió redactarse?
+
+    Es el lado VALIDADOR del predicado de arriba, y no lo reimplementa: **llama a
+    `safe_text_compuesto` y lee su bandera**. Que sea literalmente la misma
+    función es el punto — no una copia que pueda desincronizarse.
+
+    Historia, medida y no supuesta, porque explica por qué esto faltaba. El gate
+    estuvo VERDE dos veces (`ledger-v2` y `ledger-v5`, 672 de 672) con un escritor
+    y un validador igual de romos: los dos redactaban el metadato de máquina. El
+    commit `abb978a` (17/ago 22:33) hizo al escritor deliberadamente más fino
+    —conservar `codigo_hex` y `crc` ES el entregable del bloque 2— aplicando
+    `safe_text_compuesto` a `definition`, `categories` y `value_labels`, y **no
+    tocó una sola línea del bloque PII del validador**. Desde entonces el gate no
+    volvió a cerrar: `ledger-v6` 273 de 672, `ledger-v7` 296 de 672. `7ef2c0f`
+    unificó el eje ESTRUCTURAL (`nombre`/`hoja`/`tabla`) con
+    `exento_estructural()`, que es otro eje, y por eso no lo destrabó.
+
+    Lo que este predicado NO afloja: `CAMPOS_MAQUINA` es una lista cerrada que
+    vive declarada en `data/curacion-universo/campos-maquina-barrido2.tsv`, con
+    una guarda que se niega a arrancar si alguien mete `label` en ella
+    (`CONTRATO_CAMPOS_MAQUINA_EXIME_TEXTO_HUMANO`). Toda la decisión de qué se
+    exime la sigue tomando `safe_text_compuesto`, sin una regla nueva.
+    """
+    return safe_text_compuesto(text)[1]
 
 
 _CODIGO_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_]{0,63}$")
@@ -2128,9 +2215,24 @@ def _audit_e2_files_streaming(
                     # ids legítimos con guiones bajos o timestamps.
                     record.get("ruta_relativa", ""), record.get("localizador", ""),
                     record.get("etiqueta", ""), record.get("texto_reactivo", ""),
-                    record.get("definicion", ""), *(record.get("categorias", []) or []),
-                    *(record.get("value_labels", []) or []), record.get("unidad", ""),
+                    record.get("unidad", ""),
                     record.get("periodo", ""), record.get("poblacion", ""),
+                ]
+                # Los TRES campos COMPUESTOS, y exactamente los tres que el
+                # escritor emite con `safe_text_compuesto` — `definition`,
+                # `categories`, `value_labels`, verificado en la construcción del
+                # registro. Se validan con el MISMO predicado que los escribió, no
+                # con los once patrones sobre la cadena entera: un
+                # `crc=2719796586` o un `codigo_hex=3120202020202020` son metadato
+                # emitido por el parser, no un teléfono ni un identificador de
+                # persona. Ni uno más ni uno menos que los tres: `categorias` hoy
+                # tiene cero activaciones medidas y entra igual, porque lo que
+                # evita la próxima divergencia es que la lista espeje al escritor,
+                # no que cubra sólo lo que ya dolió.
+                valores_compuestos = [
+                    record.get("definicion", ""),
+                    *(record.get("categorias", []) or []),
+                    *(record.get("value_labels", []) or []),
                 ]
                 # Los nombres de esquema —variable, hoja, tabla— siguen el mismo
                 # criterio que el comentario de arriba ya aplicaba a payload_id,
@@ -2151,6 +2253,8 @@ def _audit_e2_files_streaming(
                 if any(
                     pattern.search(str(value))
                     for pattern in PII_PATTERNS for value in privacy_values
+                ) or any(
+                    activa_pii_compuesto(str(value)) for value in valores_compuestos
                 ) or any(
                     pattern.search(str(value))
                     for value in nombres_de_esquema
