@@ -73,6 +73,14 @@ REGLA_LEDGER = "R1-ID-MANIFIESTO-EN-LEDGER"
 REGLA_ALIAS = "R2-ALIAS-FUENTE-CURADO"
 REGLA_MANIFIESTO = "R3-TOKEN-CONTRA-ID-MANIFIESTO"
 REGLA_RUTA = "R4-TOKEN-CONTRA-PAYLOAD-O-RUTA"
+# Las cuatro reglas anteriores son léxicas sobre el id y la ruta, y por eso se
+# les escapa el material cuyo nombre de archivo no dice de dónde viene: GDELT
+# vive como `20260813130000_export_csv`. La procedencia real está en otros dos
+# campos del manifiesto —`url_origen` y `usado_para`—, porque el manifiesto NO
+# tiene campo `fuente`. Estas cuatro reglas leen esos campos.
+REGLA_USADO_PARA = "R5-CADENA-CANONICA-EN-USADO-PARA"
+REGLA_SLUG = "R7-SLUG-DE-PROGRAMA-INEGI"
+REGLA_CARPETA = "R8-PREFIJO-DE-CARPETA-EN-ARCHIVO"
 REGLA_NINGUNA = "R0-SIN-CANDIDATO-MATERIAL"
 
 TOKEN_MINIMO = 4
@@ -126,6 +134,63 @@ def manifest_ids(path: Path) -> list[str]:
     return re.findall(r"^- id:\s*(\S+)\s*$", path.read_text(encoding="utf-8"), re.M)
 
 
+_CAMPO_RE = re.compile(r"^\s{2}([a-z_]+):\s*(.*)$")
+
+
+def manifest_records(path: Path) -> dict[str, dict[str, str]]:
+    """Lee el manifiesto como registros planos, sin yaml.
+
+    Sólo se necesitan cuatro campos y todos son de una línea. Evitar yaml aquí
+    mantiene esta vía barata y sin dependencia, igual que `manifest_ids`.
+    """
+    registros: dict[str, dict[str, str]] = {}
+    actual: dict[str, str] | None = None
+    for linea in path.read_text(encoding="utf-8").split("\n"):
+        inicio = re.match(r"^- id:\s*(\S+)\s*$", linea)
+        if inicio:
+            actual = {"id": inicio.group(1)}
+            registros[inicio.group(1)] = actual
+            continue
+        if actual is None:
+            continue
+        campo = _CAMPO_RE.match(linea)
+        if campo and campo.group(1) in {"archivo", "url_origen", "url_origen_procedencia", "usado_para", "nota", "raiz"}:
+            actual[campo.group(1)] = campo.group(2).strip().strip('"\'')
+    return registros
+
+
+def _host(url: str) -> str:
+    match = re.match(r"https?://([^/]+)", (url or "").strip())
+    return match.group(1).casefold() if match else ""
+
+
+def mapa_host_fuente(repo: Path) -> dict[str, str]:
+    """Deriva host -> fuente canónica desde los mapas externos ya versionados.
+
+    NO se usa como regla de resolución, y la razón está medida: de los 15 hosts
+    que los mapas mapean, sólo 5 apuntan a un nombre que exista en el registro;
+    el manifiesto usa `data.gdeltproject.org` donde el mapa dice
+    `www.gdeltproject.org`; los nombres del mapa son descriptivos
+    (`GDELT_2_0_EVENT_DATABASE`) y no canónicos (`GDELT`); y un host como
+    `www.banxico.org.mx` sirve a 17 entradas de varias fuentes distintas, de modo
+    que host -> fuente no es una función. Se conserva porque es el insumo que un
+    curador necesita para decidir esos casos a mano, que es donde el §17 los
+    pone.
+    """
+    reclamos: dict[str, set[str]] = defaultdict(set)
+    for relativa in ("data/mapa-ext-general-2026-08-06.tsv", "data/mapa-ext-academico-2026-08-06.tsv"):
+        ruta = repo / relativa
+        if not ruta.is_file():
+            continue
+        for fila in read_tsv(ruta):
+            nombre = fila.get("nombre_fuente") or fila.get("fuente") or fila.get("nombre") or ""
+            url = fila.get("URL_primaria") or fila.get("url_primaria") or ""
+            host = _host(url)
+            if host and nombre:
+                reclamos[host].add(normalized(nombre))
+    return {host: next(iter(nombres)) for host, nombres in reclamos.items() if len(nombres) == 1}
+
+
 def _split_ids(value: str) -> list[str]:
     parts = (value or "").replace(";", ",").split(",")
     return [p.strip() for p in parts if p.strip() and p.strip() not in {"NO-APLICA", "NO_DETERMINADO", ""}]
@@ -150,7 +215,6 @@ def resolve_sources(
     rep_by_payload = {pid: [r["representacion_id"] for r in rows] for pid, rows in by_payload.items()}
     manifest = manifest_ids(manifest_path)
     manifest_norm = {mid: normalized(mid) for mid in manifest}
-
     alias_payload: dict[str, list[tuple[str, str]]] = defaultdict(list)
     for row in aliases:
         parts = row.get("base_identidad", "").split("|")
@@ -160,6 +224,29 @@ def resolve_sources(
     by_source: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in relations:
         by_source[row["fuente_canonica_normalizada"]].append(row)
+
+    registros = manifest_records(manifest_path)
+    # Índices inversos fuente -> payloads observados, uno por regla no léxica.
+    por_usado_para: dict[str, set[str]] = defaultdict(set)
+    por_slug: dict[str, set[str]] = defaultdict(set)
+    por_carpeta: dict[str, set[str]] = defaultdict(set)
+    fuentes_norm = {normalized(s): s for s in by_source}
+    for mid, registro in registros.items():
+        if mid not in by_payload:
+            continue
+        texto = normalized(" ".join(
+            registro.get(campo, "") for campo in ("usado_para", "nota")
+        ))
+        for clave in fuentes_norm:
+            if len(clave) >= 8 and clave in texto:
+                por_usado_para[clave].add(mid)
+        url = registro.get("url_origen", "") or registro.get("url_origen_procedencia", "")
+        slug = re.search(r"inegi\.org\.mx/(?:contenidos/)?programas/([a-z0-9_]+)", url or "", re.I)
+        if slug:
+            por_slug[normalized(slug.group(1))].add(mid)
+        carpeta = (registro.get("archivo", "") or "").split("/")[0]
+        if carpeta and carpeta != registro.get("archivo", ""):
+            por_carpeta[normalized(carpeta)].add(mid)
 
     out: list[dict[str, str]] = []
     detalle: list[dict[str, str]] = []
@@ -195,6 +282,15 @@ def resolve_sources(
                 if route_hit:
                     payloads, rule = route_hit, REGLA_RUTA
                     evidence = "token=" + token + " en payload_id/ruta_relativa"
+        if not payloads and len(token) >= 8 and token in por_usado_para:
+            payloads, rule = sorted(por_usado_para[token]), REGLA_USADO_PARA
+            evidence = "manifiesto:usado_para nombra la fuente canonica literal"
+        if not payloads and token in por_slug:
+            payloads, rule = sorted(por_slug[token]), REGLA_SLUG
+            evidence = "manifiesto:url_origen slug inegi.org.mx/programas/" + token.casefold()
+        if not payloads and token in por_carpeta:
+            payloads, rule = sorted(por_carpeta[token]), REGLA_CARPETA
+            evidence = "manifiesto:archivo carpeta " + token.casefold() + "/"
 
         reps = sorted({rep for pid in payloads for rep in rep_by_payload[pid]})
         relaciones = sorted(r["relacion_id"] for r in rows)
@@ -213,6 +309,10 @@ def resolve_sources(
         detalle.extend({"fuente_canonica": source, "tipo": "PAYLOAD", "valor": p} for p in payloads)
         detalle.extend({"fuente_canonica": source, "tipo": "RELACION", "valor": r} for r in relaciones)
     return out, detalle
+
+
+def _nombre_fragmento(payload: str) -> str:
+    return re.sub(r"[^A-Za-z0-9._-]", "_", payload)[:180]
 
 
 def project_index(
@@ -240,7 +340,7 @@ def project_index(
                     continue
                 handle = handles.get(payload)
                 if handle is None:
-                    safe = re.sub(r"[^A-Za-z0-9._-]", "_", payload)[:180]
+                    safe = _nombre_fragmento(payload)
                     handle = handles[payload] = (shard_root / f"{safe}.jsonl").open("w", encoding="utf-8")
                 handle.write(line if line.endswith("\n") else line + "\n")
                 counts[payload] += 1
@@ -248,7 +348,7 @@ def project_index(
         for handle in handles.values():
             handle.close()
     hashes = {
-        payload: sha256_file(shard_root / f"{re.sub(r'[^A-Za-z0-9._-]', '_', payload)[:180]}.jsonl")
+        payload: sha256_file(shard_root / f"{_nombre_fragmento(payload)}.jsonl")
         for payload in counts
     }
     return dict(counts), hashes
@@ -293,6 +393,76 @@ def cmd_fuentes(args: argparse.Namespace) -> int:
     return 0
 
 
+def escribe_paquetes_de_relacion(
+    registry: Path, coverage: list[dict[str, str]], detalle: list[dict[str, str]],
+    counts: dict[str, int], shard_root: Path, pack_root: Path,
+) -> dict[str, int]:
+    """Arma el expediente de lectura de cada relación.
+
+    El curador recibe el índice E2 COMPLETO de sus payloads candidatos — no el
+    reporte durable recortado a 160, que el §9 prohíbe usar como única base y
+    que además está redactado en el 63 % de sus campos. El paquete no adjudica:
+    no propone veredicto ni elige objeto lógico.
+    """
+    relaciones = {row["relacion_id"]: row for row in read_tsv(registry / "relaciones.tsv")}
+    necesidades = {row["necesidad_id"]: row for row in read_tsv(registry / "necesidad-objeto-modelo.tsv")}
+    evidencias: dict[str, dict[str, str]] = {}
+    for row in read_tsv(registry / "evidencias.tsv"):
+        evidencias.setdefault(row["relacion_id"], row)
+    por_fuente_payload: dict[str, list[str]] = defaultdict(list)
+    por_fuente_relacion: dict[str, list[str]] = defaultdict(list)
+    for row in detalle:
+        destino = por_fuente_payload if row["tipo"] == "PAYLOAD" else por_fuente_relacion
+        destino[row["fuente_canonica"]].append(row["valor"])
+    resumen = {"paquetes": 0, "con_material": 0, "sin_material": 0}
+    pack_root.mkdir(parents=True, exist_ok=True)
+    for fila in coverage:
+        fuente = fila["fuente_canonica"]
+        payloads = por_fuente_payload.get(fuente, [])
+        for relacion_id in por_fuente_relacion.get(fuente, []):
+            relacion = relaciones.get(relacion_id)
+            if relacion is None:
+                continue
+            necesidad = necesidades.get(relacion["necesidad_id"], {})
+            paquete = {
+                "schema_version": SCHEMA_VERSION,
+                "relacion_id": relacion_id,
+                "necesidad_id": relacion["necesidad_id"],
+                "necesidad_texto": necesidad.get("descripcion") or necesidad.get("objeto_modelo") or "NO-DETERMINADO",
+                "fuente_canonica": fuente,
+                "regla_resolucion": fila["regla_resolucion"],
+                "evidencia_resolucion": fila["evidencia_resolucion"],
+                "capa2_manifiesto": relacion.get("capa2_manifiesto", ""),
+                "capa3_disco_real": relacion.get("capa3_disco_real", ""),
+                "capa4_actual": relacion.get("capa4_apertura_mapeo", ""),
+                "clasificacion_relacion": relacion.get("clasificacion_relacion", ""),
+                "evidencia_previa": {
+                    campo: evidencias.get(relacion_id, {}).get(campo, "")
+                    for campo in ("variable_reactivo_tabla", "texto_evidencia", "unidad_observacion",
+                                  "periodo", "universo_muestra", "parte_necesidad_no_cubierta")
+                },
+                "payloads_candidatos": [
+                    {
+                        "payload_id": payload,
+                        "objetos_e2": counts.get(payload, 0),
+                        "fragmento": str((shard_root / f"{_nombre_fragmento(payload)}.jsonl").relative_to(shard_root.parent)),
+                    }
+                    for payload in payloads
+                ],
+                "instruccion": (
+                    "Lee los fragmentos completos. Elige, si existe, el objeto lógico que responde a la "
+                    "necesidad y escribe su record_id y record_sha256 como evidencia. Si no existe, declara "
+                    "la frontera de lo que sí revisaste. No inventes payload_id ni objeto_logico_id."
+                ),
+            }
+            (pack_root / f"{relacion_id}.json").write_text(
+                json.dumps(paquete, ensure_ascii=False, indent=1, sort_keys=True) + "\n", encoding="utf-8"
+            )
+            resumen["paquetes"] += 1
+            resumen["con_material" if payloads else "sin_material"] += 1
+    return resumen
+
+
 def cmd_paquetes(args: argparse.Namespace) -> int:
     coverage_path = args.coverage.resolve()
     coverage = read_tsv(coverage_path)
@@ -306,8 +476,13 @@ def cmd_paquetes(args: argparse.Namespace) -> int:
         payloads = por_fuente.get(row["fuente_canonica"], [])
         row["objetos_e2"] = str(sum(counts.get(p, 0) for p in payloads))
     write_tsv(coverage_path, COVERAGE_FIELDS, coverage)
+    resumen_packs = escribe_paquetes_de_relacion(
+        args.registry.resolve(), coverage, read_tsv(_detalle_path(coverage_path)),
+        counts, args.shard_root.resolve(), args.pack_root.resolve(),
+    )
     manifest_out = {
         "schema_version": SCHEMA_VERSION,
+        "paquetes_de_relacion": resumen_packs,
         "payloads_proyectados": len(counts),
         "objetos_proyectados": sum(counts.values()),
         "fragmentos_sha256": hashes,
@@ -336,6 +511,8 @@ def main() -> int:
     p.add_argument("--coverage", type=Path, required=True)
     p.add_argument("--index", type=Path, required=True)
     p.add_argument("--shard-root", type=Path, required=True)
+    p.add_argument("--pack-root", type=Path, required=True)
+    p.add_argument("--registry", type=Path, required=True)
     p.set_defaults(func=cmd_paquetes)
 
     args = parser.parse_args()
