@@ -128,3 +128,28 @@ Tras el acto, tres vigías se dispararon y los tres eran **defectos reales de es
 **Cierre: 19 FAIL · 130 WARN.** FAIL **sin cambio** contra la línea base; el único WARN nuevo es el que `FP-57` debe producir por diseño. Cero recongelados de `tests/baseline.json` — el criterio de `FP-51` (*"un recongelado no es la vía rutinaria al verde"*) no se puso a prueba porque no hizo falta.
 
 **Segunda derivación del conteo de ADR, al cierre:** `origin/main` **no se movió** (sigue `f3d3f95`); el archivo editado da **106 únicos, máximo 106, sin huecos ni duplicados**, y `git show origin/main:canon/gobernanza-v1_15.md` sigue en **105**. **La colisión de ADR que la ola 1 hacía esperar no ocurrió**: nadie más tomó el 106.
+
+---
+
+## §7 · Acta de cierre — el acto en una página
+
+*Reporte de cierre tal como se entregó a dirección, incorporado al expediente para que no viva sólo en la conversación.*
+
+**Firma A.2, tres partes:** `cloud_default` · sonda `200` · `data/raw` **no montado** (`ls` vacío) → repo-only correcto, no se abrió microdato.
+
+**Dos cifras del encargo las desmintió el clon** — corregidas en el sello, no heredadas:
+
+- ADR máximo era **105**, no 104: `ADR-105` entró con `PR #263` mientras el encargo se redactaba. Este acto sella el **106**.
+- Tiers de `§3.7`: **3F · 3M · 2MF · 1H**, no `5F·1H·2MF·3M`. El `5` es artefacto de `grep`: el bullet 7 lleva dos `[FUERTE]` en prosa histórica que no son tiers. Coincide exacto con `modelo-decision:664` (*"§3.7 **3**"*).
+
+**C0 — cinco rótulos, evidencia citada, cero ejecución.** `E-A10` → CONSUMIDO `#242` (A.10 vive en `instrucciones-proyecto-v2_10.md:366`) · `B2-RELEVO` → SUPERADO por `#255`/`#260` · `E-DEC` → CONSUMIDO `#246` (`ADR-91`) · `E-HIG` → CONSUMIDO `#243` · `RUTA-SELLO` → CONSUMIDO `#245` (`ADR-89`). Ninguno resultó genuinamente vivo. Sólo bloques de `Estado`.
+
+**C1 — el entregable duro: el requisito de salida está SATISFECHO.** 19 sitios clasificados (§2). `hitoD-preregistro:166` cita `R7.3`, **la mitad `[FUERTE]`**, no el paquete → **cero casos de clase (c), cero PARA por `ADR-60(b)`, ningún veredicto tocado**. Un solo texto vivo con el defecto (`prompts-verticales:101-102`), corregido; el resto son fósiles fechados que no se retocan.
+
+**C2/C3.** `ADR-106` sella la partición ya ejecutada (firma de mesa *"Adopto"*) · `conf.07` resuelta en `glosario §11` y en `gobernanza` · `§15` re-derivada desde §11 · cascada `estado-programa:27`/`:101` cláusula por cláusula (`ESTADO-SPLIT` sigue VIVO, no fusionó) · `FP-57` por los dos sitios de `corpus/` con el *"ni broker"* retirado (PARA, fuera de perímetro). **Contadores de medición sobre México: cero se mueven.**
+
+### Las tres cosas que este acto deja dichas
+
+1. **La deuda estaba escrita dos veces.** `glosario §15` llevaba `conf.07` en `:399` **y** en `:406`, duplicada desde v5.1, invisible a toda auditoría. La delató **re-derivar** la lista desde §11 en vez de leerla.
+2. **`E-HIG` dejó rancio su propio rótulo** — el encargo cuyo objeto era reconciliar rótulos contra el árbol. Su cuerpo decía *"marcar `CONSUMIDO` con el PR que fusione este acto"*, y esa instrucción es **estructuralmente inejecutable**: cuando el PR existe, el acto ya terminó. El rótulo lo tiene que poner el siguiente.
+3. **Tres vigías atraparon tres defectos míos, y los tres eran reales**: `T15` (la cabecera de `gobernanza` es un tercer sitio de conteo que la cascada del encargo no nombraba), `T02` (nota y encargo colisionaban en nombre normalizado), `T16` (recifrado 129→130 WARN). Línea base **19 FAIL · 129 WARN**; cierre **19 FAIL · 130 WARN** — FAIL sin cambio, y el único WARN nuevo es `T-FIRMAS` imprimiendo `FP-57`, que es lo que debe hacer. **Cero recongelados de `tests/baseline.json`.**
