@@ -656,6 +656,18 @@ def build_material_snapshot(manifest_path: Path, roots_config: Path, output_path
         if inventory_guards[root_id] != after:
             raise MaterialDriftError(f"INVENTARIO_RAIZ_CAMBIO_DURANTE_SNAPSHOT:{root_id}")
 
+    # Índice por contenido, dentro de cada raíz. El join declaración↔representación
+    # se hacía SOLO por (raíz, ruta) exacta, y el manifiesto declara `archivo:` con
+    # nombre desnudo para las altas que viven en subcarpeta —`Descargas Manuales/`
+    # entre ellas—, así que 49 declaraciones cuyos bytes estaban en disco, íntegros
+    # y ya inspeccionados, se reportaban FUERA-DE-DISCO. El propio producto lo
+    # anunciaba y no lo hacía: su columna `mecanismo` dice
+    # `JOIN-EXACTO-RAIZ-RUTA+INVENTARIO-SHA256-W0` y la mitad del inventario por
+    # sha256 nunca corría. Aquí corre.
+    physical_por_sha: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+    for representation in physical.values():
+        physical_por_sha[(representation["root_id"], representation["sha256"])].append(representation)
+
     declarations: list[dict[str, Any]] = []
     declaration_by_key: dict[tuple[str, str], list[str]] = defaultdict(list)
     for source in manifest:
@@ -689,6 +701,26 @@ def build_material_snapshot(manifest_path: Path, roots_config: Path, output_path
             continue
         row["ruta_relativa"] = relative
         representation = physical.get((root_id, relative))
+        row["join_declaracion"] = "RUTA-EXACTA"
+        if representation is None and HASH_RE.fullmatch(declared_hash):
+            # Segundo intento, por contenido. La identidad de contenido es una de
+            # las tres que el §4 del encargo define, y un archivo movido de
+            # carpeta sigue siendo el archivo declarado.
+            candidatos = sorted(
+                physical_por_sha.get((root_id, declared_hash), []),
+                key=lambda item: item["ruta_relativa"],
+            )
+            if candidatos:
+                representation = candidatos[0]
+                row["ruta_relativa"] = representation["ruta_relativa"]
+                row["ruta_declarada"] = relative
+                row["join_declaracion"] = (
+                    "SHA256-UNICO" if len(candidatos) == 1 else "SHA256-AMBIGUO"
+                )
+                row["razon_e0"] = (
+                    "JOIN-POR-CONTENIDO: la ruta declarada no existe pero el sha256 "
+                    f"declarado coincide con {len(candidatos)} representación(es) de la misma raíz"
+                )
         if representation is None:
             row.update(estado_e0="FUERA-DE-DISCO", estado_administrativo="TERMINAL")
             declarations.append(row)
@@ -716,7 +748,10 @@ def build_material_snapshot(manifest_path: Path, roots_config: Path, output_path
             sha256_observado=observed_hash, estado_e0=state,
             estado_administrativo="TERMINAL",
         )
-        declaration_by_key[(root_id, relative)].append(payload_id)
+        # La llave es la ruta OBSERVADA, no la declarada: si el enganche fue por
+        # contenido, marcarla con la ruta declarada dejaría la representación como
+        # NO-DECLARADA y volvería a perder el payload_id, que es el defecto entero.
+        declaration_by_key[(root_id, representation["ruta_relativa"])].append(payload_id)
         declarations.append(row)
 
     content_counts = Counter(row["sha256"] for row in physical.values())

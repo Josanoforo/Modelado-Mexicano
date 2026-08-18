@@ -113,6 +113,49 @@ class Barrido2MaterialTests(unittest.TestCase):
         snapshot = build_material_snapshot(self._manifest(rows), self.roots, path)
         return snapshot, path
 
+    def test_declaracion_en_subcarpeta_engancha_por_contenido_y_no_es_fuera_de_disco(self) -> None:
+        """El manifiesto declara `archivo:` con nombre desnudo y el archivo vive en
+        una subcarpeta. Antes eso daba FUERA-DE-DISCO sobre bytes que estaban en
+        disco, íntegros y ya inspeccionados: 49 declaraciones reales del corpus.
+        El propio producto anunciaba el remedio y no lo aplicaba — su columna
+        `mecanismo` dice `JOIN-EXACTO-RAIZ-RUTA+INVENTARIO-SHA256-W0`."""
+        destino = self.descargas / "Descargas Manuales"
+        destino.mkdir()
+        contenido = b"contenido declarado que vive una carpeta mas abajo"
+        (destino / "paquete.zip").write_bytes(contenido)
+        digest = hashlib.sha256(contenido).hexdigest()
+        snapshot, _ = self._snapshot([{
+            "id": "paquete_en_subcarpeta", "raiz": "descargas_mx",
+            "archivo": "paquete.zip", "sha256": digest, "tamano_bytes": len(contenido),
+        }])
+        declaracion = next(
+            row for row in snapshot["declarations"] if row["payload_id"] == "paquete_en_subcarpeta"
+        )
+        self.assertNotEqual("FUERA-DE-DISCO", declaracion["estado_e0"])
+        self.assertEqual("SHA256-UNICO", declaracion["join_declaracion"])
+        self.assertEqual("paquete.zip", declaracion["ruta_declarada"])
+        self.assertEqual("Descargas Manuales/paquete.zip", declaracion["ruta_relativa"])
+        self.assertEqual("SI", declaracion["hash_coincide_manifiesto"])
+        representacion = next(
+            row for row in snapshot["representations"]
+            if row["ruta_relativa"] == "Descargas Manuales/paquete.zip"
+        )
+        self.assertEqual("DECLARADA", representacion["coincidencia_manifiesto"])
+        self.assertEqual(["paquete_en_subcarpeta"], representacion["payload_ids"])
+        self.assertEqual(0, snapshot["counts"]["fuera_de_disco"])
+
+    def test_declaracion_ausente_de_verdad_sigue_siendo_fuera_de_disco(self) -> None:
+        """La contrapartida: el enganche por contenido no puede inventar material.
+        Si el sha declarado no está en ninguna representación, sigue FUERA-DE-DISCO."""
+        snapshot, _ = self._snapshot([{
+            "id": "nunca_bajado", "raiz": "descargas_mx", "archivo": "ausente.zip",
+            "sha256": "b" * 64, "tamano_bytes": 10,
+        }])
+        declaracion = next(row for row in snapshot["declarations"] if row["payload_id"] == "nunca_bajado")
+        self.assertEqual("FUERA-DE-DISCO", declaracion["estado_e0"])
+        self.assertEqual("RUTA-EXACTA", declaracion["join_declaracion"])
+        self.assertEqual(1, snapshot["counts"]["fuera_de_disco"])
+
     def test_payload_id_uses_closed_administrative_grammar(self) -> None:
         self.assertTrue(valid_payload_id("nota_metodologica_rotulo_pareada"))
         self.assertTrue(valid_payload_id("20260813130000_export_csv"))
