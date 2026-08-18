@@ -1,6 +1,10 @@
 ENCARGO · ACTO CI-CATEGORÍA — devolver el significado al CI
 
 SHA de redacción: 997482b (merge #244, origin/main, verificado por git ls-remote el 18/ago/2026) Entorno asignado: NUBE (sesión nueva de Claude Code / claude.ai, clon fresco). NO lo lances en Ubuntu: ahí corre ACTO B2-V7 en paralelo. Dos actos en la misma caja ya tiraron una jornada. Estado: VIVO Precedencia: ninguna. Corre en paralelo con ACTO B2-V7; sus perímetros son disjuntos por construcción.
+
+---
+**Estado: `CONSUMIDO`** — ejecutado en la rama `claude/ci-categoria-significado-wspwwn`, commits `485a32d` (commit 1, arreglo de categoría de T22/`SENAL`), `a4bac3c` (commit 2, punto fijo de T16, sin edición a canon), `956077c` (commit 3, regla del recongelado redactada y no sellada) y `9fc1297` (commit 4, filas del tablero, `ADR-96`, enmiendas y cierre). PR no abierto en este acto — no solicitado explícitamente por quien lanzó el encargo; la rama queda lista para revisión. Detalle completo, comando por comando, en `forense/notas/2026-08-18-ci-categoria.md`.
+---
 ════════ ARRANQUE — hazlo antes de leer el resto del encargo ════════ Reporta las cinco líneas de abajo y NO empieces hasta tenerlas. Si algo no cuadra, PARA y repórtalo: encontrar que el terreno no es el que el encargo supone es entregable, no interrupción.
 1 · REPO. Localiza el CLON EXISTENTE. No clones uno nuevo salvo que no haya ninguno, y si clonas, dilo. Reporta: ruta absoluta · git log -1 --format="%h %s" · git status ⚠️ No arranques desde el home.
 2 · SHA. Este encargo se escribió contra 997482b. Si main se movió: NO es PARO — refresca, re-deriva, y reporta la diferencia antes de editar.
