@@ -1,7 +1,7 @@
 # ENCARGO · COND-ATRIB — los β̂ marginales pagan su deuda de condicionamiento (A-bis 1-4, B-bis)
 
 **SHA de redacción:** `68a3466` (`PR #257`, `origin/main`) · Entorno asignado: UBUNTU, worktree con corpus (`data/raw` montada). NO nube — abre microdato.
-**Estado:** CONSUMIDO — ACTO COND-ATRIB, rama `cond-atrib` (worktree `/home/pc0/Modelado-Mexicano-barrido2`), 18/ago/2026. Commits 1-4 (especificación congelada, corrida, cierre, cascada) más un commit de fusión (`origin/main` avanzó a `PR #261`/`PR #262` durante la ejecución, `ADR-104` provisional se renumeró a `ADR-105` por colisión real con `ACTO NOTAS-P3`).
+**Estado:** CONSUMIDO — ACTO COND-ATRIB, `PR #263` (rama `cond-atrib`, worktree `/home/pc0/Modelado-Mexicano-barrido2`), 18/ago/2026. Commits 1-4 (especificación congelada, corrida, cierre, cascada) más un commit de fusión (`origin/main` avanzó a `PR #261`/`PR #262` durante la ejecución, `ADR-104` provisional se renumeró a `ADR-105` por colisión real con `ACTO NOTAS-P3`).
 **Gate:** lanzado tras la fusión de `gate-durable-v7` (`PR #260`), confirmado vía `gh api .../pulls/260` (`merged: true`) antes de arrancar, no vía estado de worktree.
 
 > Archivado bajo A.3 por la sesión que lo ejecutó. Texto verbatim; lo único añadido es esta cabecera y la marca de estado.
