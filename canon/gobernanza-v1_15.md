@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **97 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **98 ADR**
 
 > | | |
 > |---|---|
@@ -1734,6 +1734,33 @@ Se abren cuatro filas que faltaban, ids derivados contra el máximo real del tab
 **Cascada.** Conteo de ADR (96→97), receta de `T15`: `gobernanza-v1_15.md:2` (cabecera) · `estado-programa-v1_10.md:27,101` (dos sitios, re-derivados; el encargo citaba también `:99`, que no es cita de conteo de ADR — diferencia reportada en la nota del acto).
 
 **Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que ADR-48 a ADR-96.
+
+→ **Vigente.**
+
+---
+
+**ADR-98 · `integrate_barrido2.preflight` deja de tratar una `PROPUESTA_ALTA` validada como error que aborta el lote -- la emite `PROPUESTA_ALTA` (WARN, pendiente de high path, nada integrado, high path sin construirse); y nace `T23 · T-CABLEADO` en `tests/check.py`, inactivo hasta que exista `data/cableado-universo-v1_0.tsv` o se pase `--require-cableado`, con sus 19 condiciones de FAIL fila por fila, cuatro WARN de conteo y dos pruebas negativas obligatorias.** Decisión de mesa del autor, ACTO INTEGRATE-T23, 18/ago/2026, dictada en el encargo archivado en `forense/encargos/2026-08-18-INTEGRATE-T23-integrador-cableado.md`.
+
+**(a) El defecto de C5, cerrado.** `preflight()` (`integrate_barrido2.py:137`) añadía `ALTA_REQUIERE_HIGH_PATH_NO_IMPLEMENTADO` a sus errores para toda ALTA validada, y como `preflight` alimenta `checked["ok"]`, eso abortaba el lote entero -- ni siquiera las propuestas ordinarias sin relación con la ALTA se procesaban. `preflight` ya no genera ese error (solo valida joins/hashes, que la fila ya pasa); `_apply_layer4` distingue, dentro del grupo por `relacion_id_actual`, si las filas `ALTA` están `supervised`: si sí, `estado_integracion=PROPUESTA_ALTA` (`razon_integracion` empieza `WARN:`), fuera de `accepted` -- no se integra nada de ella; si no, sigue `RECHAZADA_FAIL_CLOSED` como antes, sin cambiar el caso que el encargo no cubre. `propuestas_altas_validadas` del camino de éxito, hardcodeado a `0` desde siempre (invisible mientras la ALTA validada abortaba antes de llegar ahí), pasa a contar de verdad. `PROPUESTA_ALTA` no se inventa: ya vivía en el enum de `estado_integracion` de `barrido2-cableado-row.schema.json`, congelado -- este commit es la primera vez que el integrador lo escribe. No construye el high path: eso sigue condicionado a que exista al menos una ALTA validada en corrida real (encargo madre §19/§21), decisión de acto, no de `preflight`.
+
+**(b) T23, nacido inactivo por construcción.** `t23_cableado()` calcula sus rutas dentro de la función (no como constantes de módulo), para que las pruebas sintéticas puedan monkeypatchear `check.ROOT` sin tocar el repo real. Sin `data/cableado-universo-v1_0.tsv` y sin `--require-cableado`: `return` inmediato, cero FAIL/WARN. Con la bandera y sin el archivo: un único FAIL ("no existe bajo --require-cableado"), nada más. Con el archivo presente (con o sin bandera): las 19 condiciones rigen siempre -- incluida la de las 17 aperturas absorbidas, evaluada contra `relaciones.tsv` + `data/lista-apertura-enlace2-2026-08-14.tsv` y no contra el cableado, tal como `forense/notas/2026-08-17-b2-derivaciones-c4.md` §4 la describe. Fija las tres rutas que el propio §4 señala sin fijar en ningún sitio (`propuestas-barrido2.tsv`, `tareas-semanticas-barrido2.tsv`, `decisiones-integracion-barrido2.tsv`, bajo `data/curacion-registro/ejecucion-semantica/barrido2/`, sumadas a la lista «Versionable» del §24 del encargo madre) -- ninguna existe todavía en el árbol real; T23 las trata ausentes y falla cerrado si el cableado llegara a existir sin ellas. Dos límites declarados, no disimulados: `evidencia`/`reporte_neutral_ref` exigen forma dereferenciable (`algo:sha256`), no resolución contra el índice E2 privado (no vive en un clon limpio); `SIN-DEMANDA-CONFIRMADO`, sin columna propia en las 26, se busca por token en la fila.
+
+**(c) Control C4, verificado antes y después del commit, línea por línea.**
+
+```
+python3 tests/check.py            → 19 FAIL · 135 WARN   (idéntico a antes -- T23 inactivo no suma)
+python3 tests/check.py --baseline → LÍNEA BASE: VERDE, tests/baseline.json sin tocar
+python3 tests/check.py --require-cableado → 20 FAIL · 135 WARN, una sola entrada T23 nueva, por
+    archivo inexistente y solo por eso
+```
+
+**(d) Pruebas.** `tools/curador_registro/tests/test_integrate_barrido2.py`: fixture con una segunda relación real (`REL-00e7bd28c9c0db01fd89a3be`, N24/ENIF) para que la ALTA y una propuesta ordinaria no colisionen de grupo; cuatro pruebas exigidas por el encargo -- lote no aborta y la ordinaria integra (a), la ALTA sale `PROPUESTA_ALTA` sin tocar su relación, verificado byte a byte (b), las dos pruebas verdes del acto anterior siguen verdes (c), segunda corrida idéntica es idempotente (d) -- 3/3 OK junto con las dos preexistentes. `tools/curador_registro/tests/test_check_t23.py`, nuevo: las dos pruebas negativas obligatorias del §22, sintéticas a propósito (T23 no conoce los 20 IDs históricos, así que probarlo con uno de ellos sería verificar justo lo que la espec prohíbe) -- una relación decidible por evidencia específica con `dependencia_fp24=NO` integra sin FAIL; cualquier propuesta con `dependencia_fp24=SI` forzada a `INTEGRADA` falla citando exactamente la condición 18. 5/5 OK, suite completa.
+
+**Lo que este ADR NO hace.** No crea `build_cableado.py` ni `data/cableado-universo-v1_0.tsv` (C6, exige decisiones de la fase semántica). No toca `barrido2_material.py` ni ningún producto de `data/`. No adjudica FP-24 caso por caso -- la condición 18 de T23 es incondicional (fail-closed) precisamente porque este acto no lo hace. No cierra ninguna FP. No congela `tests/baseline.json`. **Contadores de medición sobre México: 0.**
+
+**Cascada.** Conteo de ADR (97→98), receta de `T15`: `gobernanza-v1_15.md:2` (cabecera) · `estado-programa-v1_10.md:27,101` (dos sitios, re-derivados; `:101` recibe también las entradas de `ADR-96`/`ADR-97` que la cadena no llevaba -- mismo mecanismo de backfill que `ADR-91`/`92`/`93` ya aplicaron cuando encontraron el mismo hueco al tocar esa misma línea, declarado ahí mismo).
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que ADR-48 a ADR-97.
 
 → **Vigente.**
 
