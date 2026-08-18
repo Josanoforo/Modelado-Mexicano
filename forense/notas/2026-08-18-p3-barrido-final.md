@@ -100,9 +100,10 @@ Ninguno se heredó ciego: los 5 se releyeron contra el árbol de hoy antes de de
 | Falsos positivos del patrón, descartados | **1** | detalle §6 |
 | Columnas de tablero desalineadas, corregidas | **0** | ninguna fila existente encontrada con estado/puntero incorrecto para los temas de §6 |
 | `python3 tests/check.py --baseline`, antes (stash de este acto) | **19 FAIL · 126 WARN, VERDE** | `git stash push -u` → corrida → `git stash pop` |
-| `python3 tests/check.py --baseline`, después de filas+hallazgos+ADR+cascada, antes de archivar este acto | **21 FAIL · 129 WARN, ROJO -- 2 entradas nuevas** | corrida directa sobre el árbol final de este acto |
+| `python3 tests/check.py --baseline`, después de filas+hallazgos+ADR+cascada, antes de resolver CI | **21 FAIL · 129 WARN, ROJO -- 2 entradas nuevas** (T22 sobre este encargo y esta nota, autocaptura del propio patrón) | corrida directa sobre el árbol de ese punto |
+| `python3 tests/check.py --baseline`, final, tras sumar los dos archivos a `_T22_ARCHIVOS_CONOCIDOS` | **19 FAIL · 129 WARN, VERDE** | mismo mecanismo ya usado por TABLERO-FIRMAS/CI-CATEGORIA para el mismo tipo de autocaptura |
 | Delta de WARN | **+3** (T22, una por cada `FILA` nueva `ABIERTA`) | explicado y recifrado en `estado-programa:129`/`:221`, cascada de este mismo acto |
-| Delta de FAIL | **+2** (T22, este encargo y esta nota citan `RANURA`/`PENDIENTE de mesa` como ejemplo del patrón, no como marcador real) | mismo defecto ya aceptado en `forense/encargos/2026-08-17-CONSOLIDA-17AGO.md` / `2026-08-17-consolida.md` desde el 17/ago; sin `--freeze` -- queda declarado, RED honesto, no escondido (ver §9) |
+| Delta de FAIL | **0**, neto (T22 disparó +2 por autocaptura del patrón, resuelto sumando ambos archivos a `_T22_ARCHIVOS_CONOCIDOS` -- no `--freeze`, no edición de `baseline.json`) | ver §9 -- CI (workflow `verify.yml`) exige `--baseline` en verde, así que esto se resolvió en vez de dejarse declarado |
 
 ## 8 · Cascada y ADR
 
@@ -111,18 +112,20 @@ Ninguno se heredó ciego: los 5 se releyeron contra el árbol de hoy antes de de
 ## 9 · Verificación final
 
 ```
-$ python3 tests/check.py --baseline
-21 FAIL · 129 WARN
-LÍNEA BASE: ROJO — 2 entradas nuevas frente a tests/baseline.json
-· T22: forense/encargos/2026-08-18-NOTAS-P3.md trae un marcador de ranura/pendiente-de-mesa nuevo y ninguna fila...
-· T22: forense/notas/2026-08-18-p3-barrido-final.md trae un marcador de ranura/pendiente-de-mesa nuevo y ninguna fila...
-(2 entradas de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
+$ python3 tests/check.py --baseline      # tras filas+hallazgos+ADR+cascada
+21 FAIL · 129 WARN -- ROJO, 2 entradas nuevas (T22 sobre este encargo y esta nota)
+
+$ python3 tests/check.py --baseline      # tras sumar ambos a _T22_ARCHIVOS_CONOCIDOS
+19 FAIL · 129 WARN -- VERDE, nada nuevo frente a tests/baseline.json
+
+$ python3 tests/test_svystat.py          # segundo gate bloqueante de CI (verify.yml), no tocado por este acto
+Los trece casos de este archivo coinciden.
 
 $ git diff --check
 (sin salida — limpio)
 ```
 
-Sin `--freeze`. Sin recongelado. `T22` de las tres filas nuevas del tablero es WARN, señal esperada -- exactamente lo que A.12 existe para producir. Los **2 FAIL nuevos** son otra cosa: este mismo encargo y esta misma nota, por necesidad, citan `RANURA`/`PENDIENTE de mesa` al reproducir verbatim el patrón de PARTE 3 y al documentar los hallazgos que lo usan como ejemplo -- exactamente el mismo defecto, ya conocido y ya aceptado sin instrumentar, que `forense/encargos/2026-08-17-CONSOLIDA-17AGO.md` y `forense/notas/2026-08-17-consolida.md` cargan desde el 17/ago (ver `forense/notas/2026-08-17-consolida.md:200,207,239,249`, que documenta el mismo mecanismo -- T22 sobre el propio `2026-08-17-CONSOLIDA-17AGO.md` y sobre esta misma nota de esa jornada). `tests/` está fuera del perímetro de este acto (no se toca `_T22_ARCHIVOS_CONOCIDOS`) y `--freeze` está prohibido por el encargo -- así que estos dos quedan RED, honestos y explicados, no escondidos, a la espera de que un acto con permiso sobre `tests/` los sume a la lista conocida o de que mesa autorice un recongelado.
+`T22` de las tres filas nuevas del tablero es WARN, señal esperada -- exactamente lo que A.12 existe para producir, y no se toca. Los **2 FAIL** eran otra cosa: este mismo encargo y esta misma nota, por necesidad, citan `RANURA`/`PENDIENTE de mesa` al reproducir verbatim el patrón de PARTE 3 y al documentar los hallazgos que lo usan como ejemplo -- mismo defecto de autocaptura que `2026-08-14-tablero-firmas*.md` y `2026-08-18-ci-categoria.md` ya tenían resuelto por la misma vía (no el que usaron `2026-08-17-CONSOLIDA-17AGO.md`/`2026-08-17-consolida.md`, que siguen aceptados solo vía `baseline.json` congelado, sin entrar nunca a `_T22_ARCHIVOS_CONOCIDOS`). `tests/check.py` T22 documenta sus propios dos remedios (comentario junto a `_T22_ARCHIVOS_CONOCIDOS`): abrir fila, o sumar el archivo a la lista conocida. El encargo original de este acto declaraba `tests/**` fuera de perímetro y prohibía `--freeze` -- pero el usuario pidió explícitamente, después del primer push, "resuelve CI"; sumar estos dos archivos a `_T22_ARCHIVOS_CONOCIDOS` no es `--freeze` (no toca `baseline.json`, no acepta ninguna cifra nueva) y es el remedio que el propio test documenta para esta clase exacta de autocaptura -- se hizo en un segundo commit, con la orden explícita del usuario como mandato para ese único archivo fuera del perímetro original.
 
 ## 10 · Lo que este acto NO hizo
 
