@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **105 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **106 ADR**
 
 > | | |
 > |---|---|
@@ -2014,7 +2014,7 @@ La estrategia se elige **por parámetro, no por programa** — un `AJUSTADO` pue
 → **Vigente.** *(ACTO COND-ATRIB, 18/ago/2026, decisión del ejecutor bajo encargo VIVO. Sesión Ubuntu con `data/raw` montado — perímetro `milpa/procedencia.yaml` (solo la entrada de C0), `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md` (cascada), `forense/hallazgos.md`, `forense/encargos/`; abrió microdato de ENCIG 2023 bajo `unshare -Urn` salvo la desviación declarada en (d).)*
 
 
-**ADR-106 · Sella la partición ya ejecutada de `modelo §3.7` y da por RESUELTO `conf.07`.** Decisión de mesa del autor, `ACTO CONF-07-CIERRE`, 18/ago/2026, sobre el encargo `forense/encargos/2026-08-18-CONF-07-CIERRE.md`. Detalle completo, comando por comando: `forense/notas/2026-08-18-conf-07-cierre.md`.
+**ADR-106 · Sella la partición ya ejecutada de `modelo §3.7` y da por RESUELTO `conf.07`.** Decisión de mesa del autor, `ACTO CONF-07-CIERRE`, 18/ago/2026, sobre el encargo `forense/encargos/2026-08-18-CONF-07-CIERRE.md`. Detalle completo, comando por comando: `forense/notas/2026-08-18-sello-conf07-y-rotulos.md`.
 
 **Firma de mesa que autoriza, verbatim:** *"Adopto"* — respuesta al prompt único del acto, que puso a mesa las dos mitades con su tier derivado más el resultado del requisito de salida (mecanismo `ADR-86`/`ADR-88`/`ADR-90`: selección sobre opciones redactadas por el ejecutor, no cita de texto libre; se declara sin adorno).
 
@@ -2045,7 +2045,7 @@ Un tercer acto la profundizó: `modelo v2.3` partió además la diagonal del `EN
 
 **Lo que este ADR NO hace.** No re-tieriza ninguna mitad — las tres cifras salen del clon tal como el motor las tiene desde `v2.1`/`v2.3`. No toca `canon/modelo-decision-v4_0.md`: la partición ya está ahí y sellarla no la reescribe. No toca ningún veredicto ni el perímetro del Hito D (`ADR-60(b)`). No reabre `conf.08`. No ejecuta `E-DEC`, `E-HIG` ni `RUTA-SELLO` — el `C0` de este acto sólo los **rotula** contra evidencia del árbol. No sube el número de versión de `glosario` ni de `gobernanza`.
 
-**Cascada.** Conteo de ADR re-derivado en vivo **dos veces**, con el comando a la vista. **Primera derivación**, contra `origin/main = f3d3f95` (`PR #263`, `COND-ATRIB`, fusionado): `grep -o "^\*\*ADR-[0-9]\+" canon/gobernanza-v1_15.md` → **105 únicos, máximo 105, sin huecos, sin duplicados** → este ADR es el **106**. *(El encargo declaraba "ADR máximo hoy 104"; la deriva lo desmiente: `ADR-105` entró con `PR #263` mientras se redactaba.)* Segunda derivación al cierre del acto, registrada abajo. Sitios de conteo propagados: `canon/estado-programa-v1_10.md:27` y `:101`, cláusula por cláusula — `ESTADO-SPLIT` **no ha fusionado** (verificado: `forense/encargos/2026-08-18-ESTADO-SPLIT.md` sigue `VIVO`), así que la cascada va donde el split aún no llegó.
+**Cascada.** Conteo de ADR re-derivado en vivo **dos veces**, con el comando a la vista. **Primera derivación**, contra `origin/main = f3d3f95` (`PR #263`, `COND-ATRIB`, fusionado): `grep -o "^\*\*ADR-[0-9]\+" canon/gobernanza-v1_15.md` → **105 únicos, máximo 105, sin huecos, sin duplicados** → este ADR es el **106**. *(El encargo declaraba "ADR máximo hoy 104"; la deriva lo desmiente: `ADR-105` entró con `PR #263` mientras se redactaba.)* **Segunda derivación, al cierre del acto** (tras escribir este ADR, `origin/main` **sin moverse**, sigue en `f3d3f95`): mismo comando sobre el archivo ya editado → **106 únicos, máximo 106, sin huecos, sin duplicados**; y `git show origin/main:canon/gobernanza-v1_15.md | grep -o "^\*\*ADR-[0-9]\+"` → máximo **105**, es decir **la colisión de ADR que la ola 1 hacía esperar NO ocurrió**: ningún acto paralelo tomó el 106. El número se confirma. Sitios de conteo propagados: `canon/estado-programa-v1_10.md:27` y `:101`, cláusula por cláusula — `ESTADO-SPLIT` **no ha fusionado** (verificado: `forense/encargos/2026-08-18-ESTADO-SPLIT.md` sigue `VIVO`), así que la cascada va donde el split aún no llegó.
 
 **Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que `ADR-48` a `ADR-105`.
 

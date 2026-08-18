@@ -110,3 +110,21 @@ Sólo se tocó el **bloque de `Estado`** de cada archivo. Ni una línea del cuer
 `canon/glosario-v5_6.md` (fila `conf.07` §11, dos líneas de §15) · `canon/gobernanza-v1_15.md` (`ADR-106` + fila `conf.07`) · `canon/estado-programa-v1_10.md` (**sólo** cascada de conteo, `:27` y `:101`) · `forense/encargos/` (**sólo** bloques de `Estado` de cinco archivos + el propio encargo archivado, A.3) · `forense/prompts-verticales-validacion.md` (la corrección (b) autorizada por el encargo) · `forense/firmas-pendientes.tsv` (`FP-57`) · esta nota · `forense/hallazgos.md`.
 
 **NO se tocó:** `canon/modelo-decision-v4_0.md` · `forense/hitoD-*` · `milpa/` · `corpus/` · `data/` · `tools/`.
+
+---
+
+## §6 · Suite de verificación — antes y después, con la corrida a la vista
+
+Línea base medida en el clon **antes de editar nada**, contra `57984b5` y contra `f3d3f95` (`origin/main`): **19 FAIL · 129 WARN**, idéntica en ambos.
+
+Tras el acto, tres vigías se dispararon y los tres eran **defectos reales de este acto**, no ruido:
+
+| Vigía | Qué dijo | Resolución |
+|---|---|---|
+| `T15` | *"`canon/gobernanza-v1_15.md:2` cita 105 ADR; gobernanza tiene 106 únicos"* | **Corregido**: la cabecera del archivo es un tercer sitio de conteo que la cascada del encargo no nombraba. Ahora dice 106 |
+| `T02` | *"nombre normalizado colisiona: `forense/notas/2026-08-18-conf-07-cierre.md` · `forense/encargos/2026-08-18-CONF-07-CIERRE.md`"* | **Corregido**: la nota se renombró a `forense/notas/2026-08-18-sello-conf07-y-rotulos.md` y las referencias se actualizaron. `ADR-36`: nota y encargo del mismo acto no pueden compartir nombre normalizado |
+| `T16` | *"`:129` declara 129 WARN; la corrida real da 130"* y *"`:221` declara 19 FAIL · 129 WARN; la real da 19 FAIL · 130"* | **Recifrado, no silenciado**: el WARN nuevo es de `T22`/T-FIRMAS por la fila `FP-57`. **El vigía imprime toda fila `ABIERTA`: abrir una fila *es* el WARN.** Comportamiento correcto; `estado-programa:129` y `:221` recifrados a **19 FAIL · 130 WARN** |
+
+**Cierre: 19 FAIL · 130 WARN.** FAIL **sin cambio** contra la línea base; el único WARN nuevo es el que `FP-57` debe producir por diseño. Cero recongelados de `tests/baseline.json` — el criterio de `FP-51` (*"un recongelado no es la vía rutinaria al verde"*) no se puso a prueba porque no hizo falta.
+
+**Segunda derivación del conteo de ADR, al cierre:** `origin/main` **no se movió** (sigue `f3d3f95`); el archivo editado da **106 únicos, máximo 106, sin huecos ni duplicados**, y `git show origin/main:canon/gobernanza-v1_15.md` sigue en **105**. **La colisión de ADR que la ola 1 hacía esperar no ocurrió**: nadie más tomó el 106.
