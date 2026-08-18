@@ -1303,6 +1303,17 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # devolver-significado-ci.md, no lleva ninguno de los dos marcadores
     # -- verificado, no supuesto -- así que no se añade aquí.)
     "forense/notas/2026-08-18-ci-categoria.md",
+    # Sumado en ACTO SELLO-FICHA-G3, 18/ago/2026 -- dispara
+    # `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) por coincidencia de dos
+    # citas ajenas en la misma línea del Estado: "PROPUESTA DE SELLO
+    # COMPLETA" (cita el estado ya existente de FP-11, `firmas-
+    # pendientes.tsv:12`) y "...que mesa firmó" (cita verbatim el gate del
+    # propio encargo). No crea ninguna decisión nueva sin registrar: FP-11
+    # ya tiene su fila, ya es `FIRMADA-CONDICIONAL`, y este acto no le
+    # cambió el estado -- verificado, no supuesto, y explicado en la propia
+    # nota (§6). Mismo criterio de autocaptura verbatim que las notas de
+    # TABLERO-FIRMAS/CI-CATEGORIA ya usaron.
+    "forense/notas/2026-08-18-sello-ficha-g3-gate-e0e5-no-cumplido.md",
     # Sumados en ACTO NOTAS-P3, 18/ago/2026 -- ejecuta CONSOLIDA-17AGO
     # §PARTE 3 (el barrido de firmas-pendientes.tsv en sí). El encargo
     # reproduce verbatim (A.3) el patrón de dirección, que cita "RANURA"
