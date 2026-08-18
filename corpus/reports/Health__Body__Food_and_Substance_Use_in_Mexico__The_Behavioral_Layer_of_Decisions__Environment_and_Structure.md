@@ -32,7 +32,7 @@ Hallazgos (marcados por solidez):
 
 13. **[FUERTE] El sedentarismo es masivo y creciente, y es urbano.** Solo 4.0% de los adultos cumplen las tres recomendaciones de movimiento (ENSANUT 2022); la inactividad adulta subió de 16.5% a 19.8% (2018-2022); los urbanos se mueven menos.
 
-14. **[HIPÓTESIS RAZONABLE] El consumo de comida/alcohol como recompensa asequible (consumo compensatorio) explica parte de la persistencia del refresco y la botana en hogares de bajo ingreso.** Hay lógica económica pero poca medición directa.
+14. **[HIPÓTESIS RAZONABLE] El consumo de comida/alcohol como recompensa asequible (consumo compensatorio, rama recompensa) explica parte de la persistencia del refresco y la botana en hogares de bajo ingreso.** Hay lógica económica pero poca medición directa.
 
 15. **[NARRATIVA POPULAR, a desactivar] "Los mexicanos eligen comer mal / son descuidados con su salud."** Esta lectura borra el ambiente obesogénico, el precio de las calorías y el tiempo, y sirve para culpar al individuo en vez de diseñar entornos.
 
@@ -72,7 +72,7 @@ El reporte distingue en todo momento **cinco planos** y, sobre ellos, la distinc
 - Imagen corporal (muestras urbanas/clase media).
 
 **[HIPÓTESIS RAZONABLE]**:
-- Consumo compensatorio como driver del refresco/botana.
+- Consumo compensatorio (rama recompensa) como driver del refresco/botana.
 - Rol de la confianza radial en a quién se cree en salud.
 
 **[NARRATIVA POPULAR]**:
@@ -278,7 +278,7 @@ El reporte distingue en todo momento **cinco planos** y, sobre ellos, la distinc
 
 **¿Qué parece psicológico pero es incentivo racional?** Ir a la farmacia con consultorio; automedicarse; comprar caloría barata; posponer el chequeo por costo de oportunidad del tiempo; abandonar tratamiento ante desabasto. Todo esto parece "descuido" pero es optimización bajo restricciones.
 
-**¿Dónde hay evidencia débil pero intuición social fuerte?** Consumo compensatorio (comida/alcohol como recompensa); ligar colorismo con imagen corporal; el "fatalismo" como rasgo; el peso real del script "no rechazar comida/alcohol".
+**¿Dónde hay evidencia débil pero intuición social fuerte?** Consumo compensatorio, rama recompensa (comida/alcohol como recompensa); ligar colorismo con imagen corporal; el "fatalismo" como rasgo; el peso real del script "no rechazar comida/alcohol".
 
 **¿Qué conclusiones serían peligrosas si se usaran de forma simplista?** "Los mexicanos eligen comer mal" → culpar al individuo y desmantelar políticas de entorno. "El consumo de drogas es el problema" → confundir salud pública con seguridad y militarizar un problema de consumo minoritario. "El fatalismo es cultural" → dejar de invertir en acceso. Todas estas lecturas invierten la causalidad y deben desactivarse.
 

@@ -283,7 +283,24 @@ def t06_numeric_consistency():
 # ───────────────────────────────────────────────────────────────
 # T07 · Vocabulario de tiers  (T-05: cuatro vocabularios incompatibles)
 # ───────────────────────────────────────────────────────────────
-CANONICO = {"FUERTE", "MEDIA", "MEDIA-FUERTE", "HIPÓTESIS"}
+# Bloque A (canónico): fuerte · media · hipótesis razonable · narrativa
+# popular -- `HIPÓTESIS` es la forma corta de "hipótesis razonable", ya en
+# uso antes de este acto. CANONICO admite esos cuatro más sus
+# equivalencias, mapeo sellado por mesa (`ADR-93(c)`/`FP-30`, ejecutado por
+# `ADR-94`): SÓLIDO→fuerte · MEDIO/MODERADA→media · HIPÓTESIS RAZONABLE→
+# hipótesis razonable · NARRATIVA EXAGERADA→narrativa popular ·
+# MODERADA-FUERTE→media-fuerte. `MEDIA-FUERTE` no es del Bloque A pero se
+# retiene como quinta categoría, declarado en `ADR-94`: el test la usa
+# desde antes de este acto, el corpus la usa una vez, y retirarla rompería
+# sin ganancia -- es el único punto de este conjunto que ADR-94 decide de
+# nuevo; el resto ya estaba sellado por FP-30.
+CANONICO = {
+    "FUERTE", "SÓLIDO",
+    "MEDIA", "MEDIO", "MODERADA",
+    "HIPÓTESIS", "HIPÓTESIS RAZONABLE",
+    "NARRATIVA POPULAR", "NARRATIVA EXAGERADA",
+    "MEDIA-FUERTE", "MODERADA-FUERTE",
+}
 def t07_tier_vocabulary():
     ajenos = Counter()
     pat = r"\[(SÓLIDO|MEDIO|HIPÓTESIS RAZONABLE)\]|Calificación:\s*([A-ZÁÉÍÓÚ\- ]{4,25})|\*\*(Moderada|Moderada-Fuerte|Narrativa exagerada|Débil)\*\*"
@@ -291,8 +308,13 @@ def t07_tier_vocabulary():
         for i, l in enumerate(read(p).split("\n"), 1):
             for m in re.finditer(pat, l):
                 tok = next(g for g in m.groups() if g)
-                if tok.strip().upper() not in CANONICO:
-                    ajenos[tok.strip()] += 1
+                # ADR-94/FP-41: contar sobre la misma forma normalizada que
+                # decide el chequeo -- antes se comparaba con `.upper()` pero
+                # se contaba con `tok.strip()` sin mayusculizar, así que
+                # "Moderada" y "MODERADA" salían como dos vocabularios.
+                normalizado = tok.strip().upper()
+                if normalizado not in CANONICO:
+                    ajenos[normalizado] += 1
     if ajenos:
         det = " · ".join(f"`{k}` ×{v}" for k, v in ajenos.most_common(8))
         fail("T07", f"{len(ajenos)} vocabularios de tier ajenos al Bloque A: {det}")
@@ -1158,6 +1180,14 @@ def t20_cascada_marcada():
 #   cite en `dónde` -- el mecanismo se auto-protege desde su propio primer
 #   commit.
 #
+#   (c) WARN por cada fila `FIRMADA` con `ejecutada_en` vacío, con sus
+#   días de antigüedad (ADR-94, columnas `ejecutada_en`/`encargo`
+#   añadidas al tablero en ese mismo acto). `estado` solo distinguía
+#   ABIERTA de FIRMADA -- ninguno de los cuatro valores significaba
+#   "firmada y sin ejecutar", que es distinto de "firmada" a secas: una
+#   firma resuelve la pregunta de mesa, no escribe el archivo. Mismo
+#   mecanismo que (a), sobre la columna nueva.
+#
 #   LÍMITE DECLARADO -- léelo antes de tocar este test. (b) tiene
 #   granularidad de ARCHIVO, no de línea: un archivo ya conocido (el
 #   snapshot de abajo, verificado al sellar T-FIRMAS) puede ganar una
@@ -1260,6 +1290,25 @@ def t22_firmas():
         except (ValueError, TypeError):
             pass
         warn("T22", f"{f.get('id', '?')} ABIERTA desde {f.get('creado', '?')} "
+                     f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
+
+    # (c) WARN por cada fila FIRMADA con `ejecutada_en` vacío -- una firma
+    # de mesa no es lo mismo que una firma ejecutada, y `estado` solo
+    # distinguía ABIERTA de FIRMADA (ADR-94, arreglo (a): defecto real que
+    # atrapó -- FP-30 firmada, T07 siguió fallando, nació FP-41, y mesa fue
+    # consultada dos veces sobre el mismo asunto).
+    for f in filas:
+        if f.get("estado") != "FIRMADA":
+            continue
+        if f.get("ejecutada_en", "").strip():
+            continue
+        edad_txt = "antigüedad no derivable"
+        try:
+            anio, mes, dia = (int(x) for x in f.get("creado", "").split("-"))
+            edad_txt = f"{(hoy - datetime.date(anio, mes, dia)).days} días"
+        except (ValueError, TypeError):
+            pass
+        warn("T22", f"{f.get('id', '?')} FIRMADA sin ejecutar desde {f.get('creado', '?')} "
                      f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
 
     # (b) auto-protección: archivo nuevo de canon/forense con marcador de
