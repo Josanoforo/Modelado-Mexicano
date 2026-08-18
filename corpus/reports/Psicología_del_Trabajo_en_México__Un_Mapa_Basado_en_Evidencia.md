@@ -126,7 +126,7 @@ U.S.-Mexico bilateral trade reached approximately **$930 billion in 2024**, maki
 
 **Myth 4: "High entrepreneurship means vibrant startup culture."** Mexico's high entrepreneurship rate (GEM data: 55.3% know someone who recently started a business) largely reflects **lack of formal sector options**. Starting a micro-business is often survival strategy, not Silicon Valley ambition.
 
-**Myth 5: "'Mañana' culture means unreliability."** Polychronic time orientation reflects prioritization of relationships over schedules. It is a cultural value, not a deficiency. MNCs that frame it as laziness create resentment without improving outcomes.
+**Myth 5: "'Mañana' culture means unreliability."** False — but the mechanism is contextual norm plus structure, not a fixed "polychronic" cultural trait: the same workers who keep social plans loose operate strictly monochronically when the environment enforces it (a time clock, a piece-rate bonus, a contractual deadline). Time orientation as an individual preference is real and measurable; as a national trait it is not supported by the measurement literature. MNCs that frame it as laziness — or as an immutable culture — create resentment without improving outcomes.
 
 **Myth 6: "Mexican workers don't care about professional development."** Career stagnation is the number-one reason for quitting. Workers respond eagerly to development investment. The constraint is that many organizations — especially family businesses — offer no structured growth paths.
 

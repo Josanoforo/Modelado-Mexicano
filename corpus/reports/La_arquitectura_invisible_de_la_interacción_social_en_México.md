@@ -152,7 +152,7 @@ Israel representa quizás el contraste más radical con México en la dimensión
 
 México tiene la **distancia de poder más alta** de la región (81 vs. 49 de Argentina), la **indulgencia más alta** (97) y un perfil de **masculinidad alto** (69 vs. 28 de Chile). Argentina, con su individualismo significativamente mayor (46 vs. 30) y menor distancia de poder, muestra un estilo comunicativo más confrontacional y argumentativo — simpatía coexiste con tradición de debate. Colombia (IDV 13) es la más similar a México en perfil comunicativo. Brasil comparte la orientación indirecta pero a través del **jeitinho brasileiro** — más enfocado en soluciones creativas a la burocracia que en preservación de imagen per se.
 
-Lo **compartido regionalmente**: alta evitación de incertidumbre (todos ≥76), colectivismo, confianza basada en relaciones, orientación policrónica y preferencia por retroalimentación negativa indirecta. Lo **distintivamente mexicano**: la intensidad particular de la combinación PDI+colectivismo+UAI+masculinidad+indulgencia, los sustratos culturales prehispánicos de protocolo y deferencia, y la severidad del contexto de violencia e inseguridad contemporáneo.
+Lo **compartido regionalmente**: alta evitación de incertidumbre (todos ≥76), colectivismo, confianza basada en relaciones, orientación policrónica —preferencia individual medible, sin adscripción nacional establecida (ADR-94)— y preferencia por retroalimentación negativa indirecta. Lo **distintivamente mexicano**: la intensidad particular de la combinación PDI+colectivismo+UAI+masculinidad+indulgencia, los sustratos culturales prehispánicos de protocolo y deferencia, y la severidad del contexto de violencia e inseguridad contemporáneo.
 
 ---
 

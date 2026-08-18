@@ -1,5 +1,5 @@
 {
-  "head": "6f78d066ae2aecf61ca63046e19242d46f4a255d",
+  "head": "45d7d2f541fca5edbc6205d2c8ea713a2276f8cc",
   "fails": [
     [
       "T05",
@@ -72,6 +72,18 @@
     [
       "T11",
       "corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md: afirmación de estado con cuantificador absoluto (5 de 5 comprobadas resultaron falsas): > **Origen de la corrección:** `meta-auditoria-comunicacion.md §3` · ADR-06 · `glosario conf.03"
+    ],
+    [
+      "T15",
+      "canon/estado-programa-v1_10.md: cita 91 ADR; gobernanza tiene 93 únicos"
+    ],
+    [
+      "T16",
+      "canon/estado-programa-v1_10.md: declara 128 WARN vigente; la corrida real da N WARN"
+    ],
+    [
+      "T16",
+      "canon/estado-programa-v1_10.md: declara 18 FAIL · 128 WARN vigente; la corrida real da N WARN"
     ],
     [
       "T16",
@@ -154,6 +166,10 @@
     [
       "T03",
       "forense/encargos/2026-08-14-MOTOR-3-E0-autocontenido.md: cita `propuesta-motor-matriz-v0_2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-08-17-REGISTRA-17AGO-II.md: cita `PLAN-MULTIFASE-F0-F6-2026-08-13.md`, que no existe"
     ],
     [
       "T03",
@@ -489,39 +505,11 @@
     ],
     [
       "T22",
-      "FP-22 ABIERTA desde 2026-08-14 (N días): A.9 aplica a esta misma acta: instrucciones-proyecto-v2_9.md (trae A.12) necesita pegarse al proyect"
-    ],
-    [
-      "T22",
-      "FP-24 ABIERTA desde 2026-08-13 (N días): RANURA (c) -- politica de pares para relaciones.tsv (fila 'gemela' SI + NO_DETERMINADO, mismo necesi"
-    ],
-    [
-      "T22",
-      "FP-25 ABIERTA desde 2026-08-17 (N días): A.9 aplica a instrucciones-proyecto-v2_10.md (trae A.10, estampa de universo): pegarla al proyecto d"
-    ],
-    [
-      "T22",
       "FP-26 ABIERTA desde 2026-08-17 (N días): DISPARADOR-POSTBARRIDO -- al cierre de BARRIDO-2 (PR #244 fusionado + criterios de cierre SS28 de su"
     ],
     [
       "T22",
-      "FP-27 ABIERTA desde 2026-08-17 (N días): conf.02 -- policronia: Trabajo y Tiempo refutan el mismo mito con MECANISMOS OPUESTOS. Que se decide"
-    ],
-    [
-      "T22",
-      "FP-28 ABIERTA desde 2026-08-17 (N días): conf.05 -- consumo compensatorio: tier Fuerte por la via del consumidor vs. Hipotesis por la via de "
-    ],
-    [
-      "T22",
-      "FP-29 ABIERTA desde 2026-08-17 (N días): conf.06 residual -- 'confianza radial, magnitud' como constructo sigue SIN ESTABLECER. ADR-64 cerro "
-    ],
-    [
-      "T22",
-      "FP-30 ABIERTA desde 2026-08-17 (N días): Vocabulario de tier: el corpus usa SIETE vocabularios ajenos al Bloque A (SOLIDO x44, MEDIO x29, HIP"
-    ],
-    [
-      "T22",
-      "FP-31 ABIERTA desde 2026-08-17 (N días): propuesta-motor-adaptativo-celda v0.4 (12/ago) sigue rotulada 'Propuesta sin sello'. Sus SS8 declara"
+      "FP-29 ABIERTA desde 2026-08-17 (N días): Antes de adjudicar magnitud de confianza radial hay que resolver la procedencia del 22% y alinear es"
     ],
     [
       "T22",
@@ -541,11 +529,27 @@
     ],
     [
       "T22",
-      "FP-36 ABIERTA desde 2026-08-17 (N días): Caducidad de tres actos ante bloqueo de entorno (CP-4): un acto que no pudo correr porque el entorno"
+      "FP-37 ABIERTA desde 2026-08-17 (N días): Derivar el censo de estimabilidad por COMANDO en vez de por foto escrita a mano. ADR-61(d) midio que"
     ],
     [
       "T22",
-      "FP-37 ABIERTA desde 2026-08-17 (N días): Derivar el censo de estimabilidad por COMANDO en vez de por foto escrita a mano. ADR-61(d) midio que"
+      "FP-38 ABIERTA desde 2026-08-17 (N días): La procedencia de `glosario:136` está mal marcada. Dice `(a)+(c)` —incluye dato primario mexicano— y"
+    ],
+    [
+      "T22",
+      "FP-39 ABIERTA desde 2026-08-17 (N días): El integrador adjudica contradicciones abiertas sin ADR. `:245` y `:351` toman partido en `conf.02`;"
+    ],
+    [
+      "T22",
+      "FP-40 ABIERTA desde 2026-08-17 (N días): `El Mexicano y el Tiempo`: infringe A.4. Dice \"No hay medición nacional reciente de policronía mex"
+    ],
+    [
+      "T22",
+      "FP-41 ABIERTA desde 2026-08-17 (N días): `CANONICO` de `tests/check.py:286` se desvió del Bloque A sin ADR. El Bloque A admite fuerte · media"
+    ],
+    [
+      "T22",
+      "FP-42 ABIERTA desde 2026-08-17 (N días): Dos filas del tablero necesitan texto que vive fuera del repo (A.3). `FP-24`: su regla propuesta est"
     ]
   ],
   "nota": {
@@ -558,7 +562,7 @@
       "T03_encargo_verbatim_cita_v0_2_inexistente__solo_existe_v0_1__error_del_encargo_PROC-10-bis": 3,
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 4,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,
-      "T03_sin_clasificar": 16,
+      "T03_sin_clasificar": 17,
       "T05_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 5,
       "T06_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T07_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
@@ -567,8 +571,10 @@
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1,
+      "T15_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
+      "T16_cifra_historica_declarada_107_WARN__consecuencia_aritmetica_del_T03_de_PROC-10-bis__no_defecto_independiente": 2,
       "T16_consecuencia_aritmetica_del_T03_de_revision-publicacion__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01": 2,
-      "T22_sin_clasificar": 16
+      "T22_sin_clasificar": 13
     }
   }
 }
