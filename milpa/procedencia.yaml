@@ -307,18 +307,44 @@ condicionales_escalares:
 # ══════════════════════════════════════════════════════════════════
 condicionales_escalares_confianza_generica:
   confianza_institucional_generico_servidores_publicos:
-    clase: "PENDIENTE -- medición condicional por atributos NO CORRIDA en este acto"
-    instrumento: "ENCIG 2023, encig2023_01_sec_11 (batería XI, sección 'Confianza en instituciones')"
-    item: "P11_1_23 -- 'servidores(as) públicos(as) o empleados(as) de gobierno' (ítem 23 de 25)"
-    fuente: "forense/notas/2026-08-04-cal-conf-faseb-pos8-encig-battxi.md §1-2"
+    clase: "MEDIDO·PARCIAL(edad,formalidad,sexo,escolaridad,estrato), por atributos"
+    instrumento: "ENCIG 2023, encig2023_01_sec_11 (batería XI, sección 'Confianza en instituciones') unido por ID_PER a encig2023_02_residentes_sec_2 (roster) -- forense/notas/2026-08-18-cond-atrib-confianza-generico.md §1"
+    item: "P11_1_23 -- 'servidores(as) públicos(as) o empleados(as) de gobierno' (ítem 23 de 25), dicotomizado confía={1,2}/no confía={3,4}"
+    universo: "Personas 18+ de ENCIG 2023 (ciudades de 100 000+ habitantes por diseño del instrumento) con P11_1_23 válido -- n=37845 (de 38966, excluidos código 5 'No aplica' n=20 y código 9 'No sabe' n=1101). No se reconcilia contra un marginal de otra fuente (A-bis regla 4)."
+    fuente: "forense/notas/2026-08-18-cond-atrib-confianza-generico.md (ACTO COND-ATRIB, spec §1 congelada antes de correr, resultados §2, interpretación §3); ponderador FAC_P18, diseño EST_DIS/UPM_DIS, tests/svystat.py::diff_ultimate_cluster (sin modificar), un eje a la vez, nivel vs. resto del mismo eje"
+    n_util: "Edad n=37670 (4 celdas) · Formalidad(POS) n=26502 (5 celdas, blanco estructural excluido) · Sexo n=37845 (2 celdas) · Escolaridad(NIV) n=37845 (3 celdas) · Estrato(EST) n=37845 (4 celdas)"
+    eje_condicionante: >
+      EJECUTADO, un eje a la vez -- Edad: 4/4 celdas distinguibles de cero
+      al 95%, patrón en U (18-29 y 60+ por encima del resto, +4.4pp/+4.6pp;
+      30-44 y 45-59 por debajo, -4.7pp/-3.2pp). Formalidad (POS): 4/5
+      distinguibles (jornalero no, IC cruza cero pese a n=282); sin patrón
+      ordenado por formalidad -- sin-pago más confiado (+15.7pp), patrón
+      menos confiado (-6.6pp). Sexo: partición binaria, d_hat antisimétrico
+      por construcción (Hombre -1.8pp, Mujer +1.8pp, ambos apenas
+      distinguibles de cero) -- propiedad mecánica, no hallazgo de
+      robustez. Escolaridad (NIV): solo Superior distinguible de cero
+      (-2.5pp), Básica-o-menos y Media-superior-técnica no. Estrato (EST):
+      0/4 celdas distinguibles de cero -- sin patrón. Cuatro ejes
+      canónicos de modelo §1.1.A declarados NO DISPONIBLES en ENCIG 2023,
+      no forzados: urbanización/tamaño de localidad (universo restringido
+      a ciudades 100 000+), ingreso, migración, acceso digital (ninguno
+      localizado en las 6 tablas del instrumento).
     nota: >
-      Solo existe el β̂ MARGINAL de este reactivo, ya registrado en
-      coeficientes_generador_medidos.G1_confianza_institucional (arriba,
-      marca_c2) -- este bloque registra el reactivo y su estado de
-      cobertura, no lo condiciona sobre atributos ni fabrica un número que
-      nadie corrió. Si una mesa futura promueve el genérico a componente
-      del vector de ADR-28.b, es cambio MAYOR con su propia derivación
-      (ADR-57 (e)).
+      Antes: solo existía el β̂ MARGINAL del reactivo, registrado en
+      coeficientes_generador_medidos.G1_confianza_institucional (marca_c2)
+      -- una medición DISTINTA (β̂ asociación con tramite.mordida.discrecional,
+      ya condicionada por Encargo X sobre edad únicamente). Esta entrada
+      mide algo distinto: θ(P11_1_23 | x), la prevalencia del propio
+      reactivo condicionada por atributos poblacionales -- análogo a sus
+      hermanas condicionales_escalares.radio_confianza/.familismo_apoyo.
+      No identifica nada causalmente (A-bis regla 2) -- asociación
+      condicionada. No comparable en escala contra el β̂ de
+      G1_confianza_institucional (regla 3) -- desenlaces distintos, mismo
+      reactivo. No mueve el contador de coeficientes de generador en
+      escala del modelo (sigue 0 de 15) -- P11_1_23 genérico no es
+      componente nombrado del vector de ADR-28.b (ADR-57(e), arriba). Si
+      una mesa futura promueve el genérico a componente del vector, es
+      cambio MAYOR con su propia derivación (ADR-57 (e)).
 
 # ══════════════════════════════════════════════════════════════════
 # RECLASIFICACIÓN v4.0 · CAL-CONF Fase B, posición 4 · Encargo K (mesa #18,

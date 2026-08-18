@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **104 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **105 ADR**
 
 > | | |
 > |---|---|
@@ -1975,7 +1975,6 @@ La estrategia se elige **por parámetro, no por programa** — un `AJUSTADO` pue
 
 → **Vigente.**
 
----
 
 **ADR-104 · Se registra, con estampa de universo (A.10), el cierre del barrido `CONSOLIDA-17AGO §PARTE 3` — propagación y registro puros, ninguna decisión nueva, ningún pendiente adjudicado.** Decisión de mesa del autor, `ACTO NOTAS-P3`, 18/ago/2026, sobre el encargo despachado por mesa (`forense/encargos/2026-08-17-CONSOLIDA-17AGO.md §PARTE 3`, cita verbatim del encargo original: *"ya no quiero más items abiertos o decisiones pendientes regados por todo el proyecto"*).
 
@@ -1996,6 +1995,26 @@ La estrategia se elige **por parámetro, no por programa** — un `AJUSTADO` pue
 → **Vigente.** *(Aprobado 18/ago/2026 — registro puro sobre encargo ya despachado por mesa; sesión de escritura, sin dato — perímetro `canon/`/`forense/`, lectura sin escritura en `milpa/`; no abrió `data/raw/` ni microdato.)*
 
 ---
+**ADR-105 · La entrada `condicionales_escalares_confianza_generica.confianza_institucional_generico_servidores_publicos` de `milpa/procedencia.yaml` pasa de `PENDIENTE` a `MEDIDO·PARCIAL(edad,formalidad,sexo,escolaridad,estrato)` -- primera medición de θ(P11_1_23 | x) sobre ENCIG 2023, distinta de la asociación ya medida en `G1_confianza_institucional`.** Decisión del ejecutor bajo el encargo `COND-ATRIB` (VIVO, sin ADR propio previo), dictada tras la fusión de `gate-durable-v7` (`PR #260`). Detalle completo, comando por comando: `forense/notas/2026-08-18-cond-atrib-confianza-generico.md`.
+
+**(a) Lo que este ADR NO hace primero, porque el propio encargo lo pedía verificado antes de correr nada.** De las 4 entradas con `clase:` conteniendo "marginal" o "PENDIENTE...condicional" en `milpa/procedencia.yaml`, 3 (`G1_radio_confianza`, `G1_confianza_institucional`, `G3_familismo_apoyo`, bajo `coeficientes_generador_medidos`) ya estaban condicionadas por `Encargo X` (4/ago/2026) -- son, verbatim, el precedente que `instrucciones-proyecto-v2_10.md` §81 (A-bis Regla 1) cita como su propio caso fundador. Condicionarlas de nuevo habría repetido trabajo ya hecho. El denominador real del acto era 1, no ≥3 -- verificado por lectura completa de sus campos `eje_condicionante`, no por el conteo que traía el encargo. `forense/notas/2026-08-18-cond-atrib-confianza-generico.md` §0 documenta la exclusión de las tres, entrada por entrada.
+
+**(b) La medición.** ENCIG 2023 (`encig23_base_datos_csv.zip`, `sha256 af733d86...`, coincide contra `data/manifiesto.yaml`), `encig2023_01_sec_11` unido 1:1 (38966/38966) a `encig2023_02_residentes_sec_2` por `ID_PER`. Universo: 18+ con `P11_1_23` válido, n=37845 (excluidos `5`/`9`). Ponderador `FAC_P18`, diseño `EST_DIS`/`UPM_DIS`, `tests/svystat.py::diff_ultimate_cluster` (sin modificar, mismo método que `Encargo X`/`Encargo W`), nivel vs. resto del mismo eje (no vs. marginal global -- grupos disjuntos, condición del propio método). Cinco ejes probados: Edad (4/4 celdas distinguibles de cero, patrón en U), Formalidad/POS (4/5, sin patrón ordenado, sin-pago +15.7pp y patrón -6.6pp los extremos), Sexo (partición binaria, antisimétrica por construcción, ambas celdas apenas distinguibles), Escolaridad/NIV (solo Superior distinguible, -2.5pp), Estrato/EST (0/4, sin señal). Cuatro ejes canónicos de `modelo §1.1.A` -- urbanización/tamaño de localidad, ingreso, migración, acceso digital -- declarados NO DISPONIBLES en ENCIG 2023, verificado contra el diccionario, no forzados.
+
+**(c) Un defecto de código propio, corregido antes de reportar cualquier número.** El primer intento del script reasignó por error la variable de diseño `EST_DIS` (~347 estratos) también como la variable del eje "Estrato" (`EST`, 1-4) -- detectado por inspección del output antes de escribir resultado alguno en el archivo o en `procedencia.yaml`, corregido, y re-ejecutado una sola vez. No es corrección de la especificación (que siempre nombró `EST`): es corrección de una implementación que no la seguía. Declarado en `forense/notas/2026-08-18-cond-atrib-confianza-generico.md` §2.
+
+**(d) Un defecto de proceso propio, declarado y no escondido.** Antes de escribir la especificación congelada, el reconocimiento de instrumento abrió sin `unshare -Urn` las cabeceras de dos tablas del CSV y una prueba de unión que expuso las distribuciones marginales (no condicionales) de `P11_1_23` y `SEXO` -- sin llamada de red intentada, riesgo de exfiltración nulo, pero violación de la letra de la doctrina de red cero. Ninguna celda condicional se vio antes de congelar. El resto de la apertura y todo cómputo corrió bajo `unshare -Urn`.
+
+**Lo que este ADR NO hace.** No identifica causalmente nada (A-bis regla 2). No compara esta medición en escala contra el β̂ de `G1_confianza_institucional` (A-bis regla 3) -- desenlaces distintos. No mueve el contador de coeficientes de generador en escala del modelo (sigue 0 de 15) -- el reactivo genérico no es componente nombrado del vector de `ADR-28.b` (`ADR-57(e)`). No toca `milpa/refutations.yaml`, el modelo, ni el pre-registro del Hito D. No abre ningún instrumento fuera de ENCIG 2023.
+
+**Cascada.** Conteo de ADR re-derivado en vivo dos veces. Primera derivación, contra `origin/main = 6178bf9` (`PR #260`, gate-durable-v7, fusionado): 103 únicos, máximo 103, sin huecos -- confirmado por `gh api repos/Josanoforo/Modelado-Mexicano/pulls/260` (`merged: true`) y por la cabecera vigente de este archivo en ese momento ("103 ADR{cita-historica}"), candidato `ADR-104`. Mientras este acto corría, `origin/main` avanzó a `57984b5` (`PR #261` CONSOLIDA-17AGO parte 3, `PR #262` `ACTO NOTAS-P3`) -- `ACTO NOTAS-P3` fusionó su propio `ADR-104` primero. **Renumerado de `ADR-104` provisional a `ADR-105` al fusionar `origin/main = 57984b5`** -- octavo ejercicio del mismo protocolo, tras `ADR-91`/`92`/`93`/`95`, `ADR-98`→`99` y `ADR-100`→`103`. Sitios: `gobernanza-v1_15.md:2` (cabecera, 104→105) y `estado-programa-v1_10.md:27,101` (tabla y narrativa, 104→105). El merge de `estado-programa-v1_10.md:101` produjo conflicto real (no automerge) en la narrativa larga: resuelto reconstruyendo el orden correcto -- historia compartida hasta `ADR-102`, luego la cláusula propia de `ADR-103`/`GATE-DURABLE-V7` (que la narrativa de ninguno de los dos lados llevaba -- hueco del acto anterior, verificado y llenado aquí, no inventado en nombre ajeno), luego la cláusula de `origin` para `ADR-104`/`NOTAS-P3` preservada verbatim, luego esta cláusula renumerada a `ADR-105`. `gobernanza-v1_15.md` y `forense/hallazgos.md` fusionaron limpio (sin conflicto) -- este ADR se reordena manualmente después de `ADR-104`/`NOTAS-P3` para que el archivo quede en orden numérico ascendente, mismo criterio de legibilidad que todo ADR anterior.
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que `ADR-48` a `ADR-104`.
+
+→ **Vigente.** *(ACTO COND-ATRIB, 18/ago/2026, decisión del ejecutor bajo encargo VIVO. Sesión Ubuntu con `data/raw` montado — perímetro `milpa/procedencia.yaml` (solo la entrada de C0), `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md` (cascada), `forense/hallazgos.md`, `forense/encargos/`; abrió microdato de ENCIG 2023 bajo `unshare -Urn` salvo la desviación declarada en (d).)*
+
+---
+
 
 ## 5. Deuda declarada (decisiones abiertas, conscientemente)
 
