@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **102 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **103 ADR**
 
 > | | |
 > |---|---|
@@ -1935,6 +1935,26 @@ La estrategia se elige **por parámetro, no por programa** — un `AJUSTADO` pue
 **Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que `ADR-48` a `ADR-101`. `forense/metodologia-identificacion-vs-ajuste-v0_1.md` tampoco se renombra (append-only, citado por nombre de archivo en `procedencia.yaml` y en este mismo ADR) — gana el rótulo interno **v1.0 — SELLADA** sin mover su nombre de archivo `v0_1`.
 
 → **Vigente. S2.** *(Aprobado 18/ago/2026, decisión de mesa del autor sobre la lectura de mesa de `ACTO SELLA-RUTAS`. Sesión de escritura, Sonnet, sin dato — perímetro `canon/`/`milpa/`/`forense/`, ADR-46; no abrió `data/raw/` ni microdato.)*
+
+---
+
+**ADR-103 · Se registra, con estampa de universo (A.10), el cierre del barrido `CONSOLIDA-17AGO §PARTE 3` — propagación y registro puros, ninguna decisión nueva, ningún pendiente adjudicado.** Decisión de mesa del autor, `ACTO NOTAS-P3`, 18/ago/2026, sobre el encargo despachado por mesa (`forense/encargos/2026-08-17-CONSOLIDA-17AGO.md §PARTE 3`, cita verbatim del encargo original: *"ya no quiero más items abiertos o decisiones pendientes regados por todo el proyecto"*).
+
+**Qué sella, y qué no vuelve a sellar.** No es una decisión de mesa nueva: es el registro, con estampa de universo, de que el barrido que `PARTE 3` pedía desde el 17/ago **corrió por primera vez** hoy — dos actos previos (#250-ish, `PR #259`) ejecutaron Partes 1-2 y dejaron ésta declarada `VIVA`. Universo: `forense/notas/*.md` (**225** archivos, re-derivado — no 212, cifra del 17/ago) más `hallazgos.md`, `canon/modelo-decision-v4_0.md` y `milpa/*.yaml`. Patrón de dirección re-validado (A.4) contra sus dos controles positivos declarados antes de usarse. Mismo tipo de ADR que `ADR-76`/`ADR-92`: el ejecutor propaga y deriva, no decide.
+
+**Resultado, cada cifra con su comando** (detalle completo, PRISMA con comandos, en `forense/notas/2026-08-18-p3-barrido-final.md`). `grep -rniE` del patrón sobre el universo declarado: **148 líneas en 49 archivos** (vs. 135/46 contra `d0019a2` el 17/ago). Triaje: **3** `FILA` nuevas (`FP-54` — indexación/doble conteo de hogar de `R5.1-D3`; `FP-55` — worktree `Modelado-Mexicano-curador`, 590 commits sin empujar; `FP-56` — ocho refutaciones sin objeto de `milpa/refutations.yaml`, incluida `ref.A.02`), **0** duplicadas (las cinco candidatas que dirección ya había localizado se re-verificaron una por una: `corte de edad` ya tenía `FP-53` de `CONSOLIDA-2`; `GDELT`/`UCDP` seguía `YA RESUELTO` vía `ADR-76(g)`), **0** columnas de tablero desalineadas encontradas que corregir. El resto — `RESUELTO-SIN-TACHAR` y `SOLO ANOTADO` — se registra en `forense/hallazgos.md`, no en canon.
+
+**No es la regla que hace que esto no vuelva a pasar.** Ese sello — `firmas-pendientes.tsv` como único lugar donde vive un pendiente, con FAIL automático por marcador sin fila — es `PARTE 4` de `CONSOLIDA-17AGO`, **todavía sin ejecutar, fuera del perímetro de este acto**. Este ADR sella solo que el barrido de `PARTE 3` corrió y con qué resultado; no declara la regla forward-looking, no la adopta por adelantado, y no cierra `PARTE 4`.
+
+**Falsador y caducidad.** Si en tres meses ningún acto cita este corte para decidir si un pendiente de antes del 18/ago/2026 ya fue examinado, el sello no dañó nada — se anota como registro histórico sin uso, mismo criterio que A.3/A.8/A.9/A.10/A.12. No es refutable por sí mismo: es el registro de que un comando corrió, con su salida.
+
+**LO QUE NO SE HACE.** No adjudica ninguno de los tres `FILA` que abre ni ninguno de los `RESUELTO-SIN-TACHAR` que encuentra — los hace visibles. No sella `PARTE 4`. No edita `modelo-decision` ni `milpa/*.yaml` — los lee y registra lo que encuentra como fila, no lo arregla al paso. No re-barre `canon/` ni lo que `ADR-91`/`#248` ya cubrieron. No congela `tests/baseline.json` sin autorización de mesa (`ADR-76(f)`).
+
+**Cascada.** Conteo de ADR (102→103), receta de T15: `gobernanza-v1_15.md:2` (cabecera) · `estado-programa-v1_10.md:27,101` (dos sitios).
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que `ADR-48` a `ADR-102`.
+
+→ **Vigente.** *(Aprobado 18/ago/2026 — registro puro sobre encargo ya despachado por mesa; sesión de escritura, sin dato — perímetro `canon/`/`forense/`, lectura sin escritura en `milpa/`; no abrió `data/raw/` ni microdato.)*
 
 ---
 
