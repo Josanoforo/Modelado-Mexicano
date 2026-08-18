@@ -101,6 +101,63 @@ assert len(PII_PATTERNS) == 11
 assert all("A-ZÁÉÍÓÚÑ" in p.pattern or "a-záéíóúñ" in p.pattern for p in PII_FORMA_DE_NOMBRE)
 assert len(PII_IDENTIFICADOR) == 8
 
+# Campos que la MÁQUINA emite dentro de cadenas `k=v;k=v`, declarados en producto
+# durable y no aquí, para que la exención sea auditable sin leer código:
+# `data/curacion-universo/campos-maquina-barrido2.tsv`.
+#
+# La exención va POR CAMPO, no por longitud de dígitos. Un CRC-32 de diez cifras
+# no es un teléfono y un código IEEE-754 de dieciséis no es una cadena
+# identificante, pero los patrones no distinguen un dato de persona de un
+# identificador de máquina y el default estaba del lado equivocado: se perdieron
+# 132 396 de 135 262 value labels de SAV (97.9 %) y el 71.6 % de los metadatos de
+# miembro ZIP, incluida la declaración `zip_slip` por miembro, que es una garantía
+# de seguridad y no un adorno.
+#
+# `label` NO está en la lista y no puede estarlo: es texto humano y ahí sí puede
+# aparecer una persona.
+CAMPOS_MAQUINA_TSV = Path(__file__).resolve().parents[2] / "data/curacion-universo/campos-maquina-barrido2.tsv"
+
+
+def _campos_maquina() -> frozenset[str]:
+    if not CAMPOS_MAQUINA_TSV.is_file():
+        raise MaterialDriftError(f"CONTRATO_CAMPOS_MAQUINA_AUSENTE:{CAMPOS_MAQUINA_TSV}")
+    with CAMPOS_MAQUINA_TSV.open(encoding="utf-8-sig", newline="") as handle:
+        campos = {row["campo"].strip() for row in csv.DictReader(handle, delimiter="\t") if row.get("campo")}
+    if "label" in campos:
+        raise MaterialDriftError("CONTRATO_CAMPOS_MAQUINA_EXIME_TEXTO_HUMANO:label")
+    return frozenset(campos)
+
+
+CAMPOS_MAQUINA = _campos_maquina()
+
+
+def safe_text_compuesto(value: object, *, durable: bool = False) -> tuple[str, bool]:
+    """Depura una cadena `k=v;k=v` segmento por segmento.
+
+    Los segmentos cuya clave está declarada como campo de máquina se conservan
+    intactos; todos los demás se evalúan con los once patrones. Cuando un
+    segmento se redacta, se conserva su clave para que el lector sepa QUÉ se
+    redactó: `label=[REDACTADO-PRIVACIDAD]`, no un hueco anónimo.
+    """
+    text = " ".join(str(value or "").replace("\t", " ").replace("\r", " ").replace("\n", " ").split())
+    if "=" not in text:
+        return safe_text(text, durable=durable)
+    partes: list[str] = []
+    redacted = False
+    for parte in text.split(";"):
+        clave = parte.split("=", 1)[0].strip() if "=" in parte else ""
+        if clave in CAMPOS_MAQUINA:
+            partes.append(parte)
+            continue
+        limpio, red = safe_text(parte)
+        redacted = redacted or red
+        partes.append(f"{clave}=[REDACTADO-PRIVACIDAD]" if red and clave else limpio)
+    salida = ";".join(partes)
+    if durable:
+        salida = salida[:160].rstrip()
+    return salida, redacted
+
+
 _CODIGO_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_]{0,63}$")
 
 
@@ -1233,8 +1290,28 @@ def _pdf_objects(path: Path) -> list[dict[str, Any]]:
     metadata = dict(line.split(":", 1) for line in info.stdout.splitlines() if ":" in line)
     pages = int(metadata.get("Pages", "0").strip() or 0)
     encrypted = metadata.get("Encrypted", "no").strip().casefold()
+    cifrado_declarado = "NO"
     if encrypted.startswith("yes"):
-        raise PermissionError("PDF_CIFRADO")
+        # `Encrypted: yes` NO es un descarte: es un caso a intentar. La mayoría de
+        # los PDF oficiales mexicanos vienen con banderas de permiso puestas y la
+        # contraseña de usuario vacía — se leen sin clave. Descartarlos por la
+        # bandera costó 83 de 169 PDF (49 %) y 5 996 páginas, entre ellas 25
+        # cuestionarios y 7 diccionarios que el programa lleva semanas buscando
+        # por otras vías. Se intenta extraer; sólo si el intento falla de verdad
+        # se declara PDF_CIFRADO, y con la salida cruda del intento.
+        sonda = subprocess.run(
+            ["pdftotext", "-f", "1", "-l", "1", str(path), "-"],
+            capture_output=True, timeout=120,
+        )
+        texto_sonda, _ = _decode_text(sonda.stdout)
+        if sonda.returncode != 0 or not texto_sonda.strip():
+            raise PermissionError(
+                "PDF_CIFRADO;intento=pdftotext -f 1 -l 1"
+                f";rc={sonda.returncode}"
+                f";stderr={safe_text(sonda.stderr.decode('utf-8', 'replace'))[0][:120]}"
+                f";bytes_texto={len(sonda.stdout)}"
+            )
+        cifrado_declarado = f"SI-EXTRAIBLE;permisos={safe_text(encrypted)[0][:80]}"
     objects: list[dict[str, Any]] = []
     for page in range(1, pages + 1):
         result = subprocess.run(
@@ -1253,7 +1330,10 @@ def _pdf_objects(path: Path) -> list[dict[str, Any]]:
         lines = [" ".join(line.split()) for line in text.splitlines() if line.strip()]
         objects.append({
             "locator": f"pagina={page}", "type": "PAGINA-PDF", "name": f"Página {page}",
-            "definition": f"lineas_texto={len(lines)};texto_extraible={'SI' if lines else 'NO'}", "page": page,
+            "definition": (
+                f"lineas_texto={len(lines)};texto_extraible={'SI' if lines else 'NO'}"
+                f";cifrado={cifrado_declarado}"
+            ), "page": page,
         })
         for ordinal, line in enumerate(lines):
             if not (line.endswith("?") or (len(line) <= 180 and (line.isupper() or re.match(r"^(?:\d+\.?|[IVX]+\.)\s", line)))):
@@ -1704,9 +1784,9 @@ def _e2_record(task: dict[str, Any], raw: dict[str, Any], parser: str, boundary:
     name, red_name = safe_text(raw.get("name", ""), estructural=True)
     label, red_label = safe_text(raw.get("label", ""))
     question, red_question = safe_text(raw.get("question", ""))
-    definition, red_definition = safe_text(raw.get("definition", ""))
-    categories_with_flags = [safe_text(value) for value in raw.get("categories", [])]
-    labels_with_flags = [safe_text(value) for value in raw.get("value_labels", [])]
+    definition, red_definition = safe_text_compuesto(raw.get("definition", ""))
+    categories_with_flags = [safe_text_compuesto(value) for value in raw.get("categories", [])]
+    labels_with_flags = [safe_text_compuesto(value) for value in raw.get("value_labels", [])]
     unit, red_unit = safe_text(raw.get("unit", ""))
     period, red_period = safe_text(raw.get("period", ""))
     population, red_population = safe_text(raw.get("population", ""))

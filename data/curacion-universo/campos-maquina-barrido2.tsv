@@ -1,0 +1,10 @@
+campo	tipo_valor	por_que_es_exento	patron_pii_que_disparaba	ejemplo_real	efecto_medido_antes
+codigo_hex	hexadecimal de 16 caracteres	Codigo IEEE-754 de la categoria SAV, emitido por el parser. No proviene de ningun dato de informante.	PII_PATTERNS[5] (?<!\d)\d{11,18}(?!\d) -- una racha de 16 digitos	codigo_hex=0000000000000000	132396 de 135262 value labels SAV (97.9%) redactados
+crc	entero de hasta 10 digitos	CRC-32 del miembro ZIP, calculado por zipfile. No es un telefono.	PII_PATTERNS[3] telefono mexicano de 10 digitos	crc=3266880665	71.6% de los metadatos de miembro ZIP redactados, incluida la declaracion zip_slip por miembro
+bytes	entero	Tamano en bytes del miembro, medido por el parser.	PII_PATTERNS[5] en archivos de 11+ digitos	bytes=1404772	arrastrado junto con crc en el mismo campo definicion
+comprimidos	entero	Tamano comprimido del miembro, medido por el parser.	PII_PATTERNS[5] en archivos de 11+ digitos	comprimidos=1398210	idem
+formato_impresion	entero o 0xHEX	Formato de impresion SPSS, leido del encabezado del .sav.	PII_PATTERNS[5]	formato_impresion=0x50802	arrastrado con codigo_hex
+formato_escritura	entero o 0xHEX	Formato de grabacion SPSS, leido del encabezado del .sav.	PII_PATTERNS[5]	formato_escritura=0x50802	idem
+filas	entero	Conteo de filas de la tabla, medido; nunca su contenido.	PII_PATTERNS[5] en tablas de 11+ digitos	filas=1505	potencial
+columnas	entero	Conteo de columnas de la tabla, medido.	PII_PATTERNS[5]	columnas=61	potencial
+lineas_texto	entero	Conteo de lineas de la seccion, medido.	PII_PATTERNS[5]	lineas_texto=68	potencial

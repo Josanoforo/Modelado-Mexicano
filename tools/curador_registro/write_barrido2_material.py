@@ -146,9 +146,17 @@ def _compact_reports(
     return sorted(compact, key=lambda row: row["reporte_id"])
 
 
+def _ruta_relativa(path: Path, base: Path) -> str:
+    """Ruta relativa al repo cuando se puede; nunca una ruta absoluta durable."""
+    try:
+        return str(path.resolve().relative_to(base.resolve()))
+    except ValueError:
+        return path.name
+
+
 def _prisma(
     snapshot: dict[str, Any], summaries: list[dict[str, Any]], report_count: int,
-    date: str,
+    date: str, invocacion: dict[str, str],
 ) -> str:
     declarations = snapshot["declarations"]
     representations = snapshot["representations"]
@@ -193,14 +201,18 @@ def _prisma(
     ]
     lines.extend(f"| {name} | {value} | {denominator} | `CMD-MATERIAL` |" for name, value, denominator in metrics)
     lines.extend([
-        "", "Comando `CMD-MATERIAL`:", "", "```sh",
+        # El comando se DERIVA de la invocación real, no se teclea. La versión
+        # anterior estaba cableada a la generación `v2` y publicaba cifras que
+        # salían de otra: 0 de 672 `tarea_id` derivaban de v2 y 672 de 672 de la
+        # generación vigente. Un comando que no corre no es procedencia.
+        "", "Comando `CMD-MATERIAL` (derivado de la invocación que produjo estas cifras):", "", "```sh",
         "unshare -Urn -- python3 tools/curador_registro/write_barrido2_material.py \\",
-        "  --snapshot .barrido2/private/t0/snapshot-v2.json \\",
-        "  --task-ledger .barrido2/private/t0/ledger-v2.tsv \\",
-        "  --task-root .barrido2/tasks-v2 --staging-root .barrido2/staging-v2 \\",
-        "  --contract data/curacion-universo/contrato-barrido2-v1_0.json \\",
-        "  --contract-hashes data/curacion-universo/contratos-barrido2-hashes.json \\",
-        "  --output-root . --private-index .barrido2/private/e2-neutral-index.jsonl --date 2026-08-17",
+        f"  --snapshot {invocacion['snapshot']} \\",
+        f"  --task-ledger {invocacion['task_ledger']} \\",
+        f"  --task-root {invocacion['task_root']} --staging-root {invocacion['staging_root']} \\",
+        f"  --contract {invocacion['contract']} \\",
+        f"  --contract-hashes {invocacion['contract_hashes']} \\",
+        f"  --output-root . --private-index {invocacion['private_index']} --date {date}",
         "```", "",
         "Partición: W1∪W2∪W3∪W4=universo físico; intersecciones vacías; W5 sin reintentos.", "",
     ])
@@ -305,7 +317,15 @@ def write_final(
     _write_tsv(census_path, census_header, census)
 
     prisma_path = universe / "prisma-material-barrido2.md"
-    _atomic_text(prisma_path, _prisma(snapshot, summaries, len(compact), date))
+    _atomic_text(prisma_path, _prisma(snapshot, summaries, len(compact), date, {
+        key: _ruta_relativa(value, output_root)
+        for key, value in (
+            ("snapshot", snapshot_path), ("task_ledger", task_ledger_path),
+            ("task_root", task_root), ("staging_root", staging_root),
+            ("contract", contract_path), ("contract_hashes", contract_hashes_path),
+            ("private_index", private_index_path),
+        )
+    }))
     inventory = [{"representacion_id": row["representacion_id"], "sha256": row["sha256"]} for row in sorted(snapshot["representations"], key=lambda item: item["representacion_id"])]
     parser_counts = Counter(summary["parser"] for summary in summaries)
     baseline = {
