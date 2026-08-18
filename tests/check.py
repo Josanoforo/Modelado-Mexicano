@@ -1314,6 +1314,17 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # nota (§6). Mismo criterio de autocaptura verbatim que las notas de
     # TABLERO-FIRMAS/CI-CATEGORIA ya usaron.
     "forense/notas/2026-08-18-sello-ficha-g3-gate-e0e5-no-cumplido.md",
+    # Sumados en ACTO NOTAS-P3, 18/ago/2026 -- ejecuta CONSOLIDA-17AGO
+    # §PARTE 3 (el barrido de firmas-pendientes.tsv en sí). El encargo
+    # reproduce verbatim (A.3) el patrón de dirección, que cita "RANURA"
+    # y "Pendiente de mesa" como sus propios ejemplos/controles positivos;
+    # la nota del acto documenta esos mismos hallazgos citándolos -- mismo
+    # autocaptura ya visto arriba en TABLERO-FIRMAS y CI-CATEGORIA, no una
+    # ranura real sin fila. Los tres `FILA` que este acto sí abre (FP-54,
+    # FP-55, FP-56) están citados en `forense/firmas-pendientes.tsv` desde
+    # el mismo commit -- eso es lo que (b) protege, y sigue protegido.
+    "forense/encargos/2026-08-18-NOTAS-P3.md",
+    "forense/notas/2026-08-18-p3-barrido-final.md",
 }
 
 def _t22_tabla():
