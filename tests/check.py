@@ -589,7 +589,37 @@ def _suite_real():
     completa para preguntarle 'cuál es tu resultado real' mientras todavía
     está corriendo es un problema de punto fijo, no una pregunta con
     respuesta. El subproceso excluye T16 de sí mismo: la cifra contra la
-    que este test compara es 'todo lo demás', no 'todo incluido yo mismo'."""
+    que este test compara es 'todo lo demás', no 'todo incluido yo mismo'.
+
+    Punto fijo verificado, no asumido (ACTO CI-CATEGORIA, 18/ago/2026,
+    contra 997482b). Como T16 nunca corre dentro de este subproceso, el
+    par (real_fail, real_warn) que devuelve NUNCA incluye la contribución
+    de T16 -- es estructuralmente estable frente a cuántas citas de
+    gobernanza estén desincronizadas (0, 1, 2 o 3), no una coincidencia de
+    esta corrida en particular. Confirmado por prueba directa (editada y
+    revertida, no commiteada): fijar una sola cita vigente
+    (`gobernanza:1658`) al valor esperado bajó el FAIL de la corrida
+    completa de 22 a 21 -- un T16 menos -- y este subproceso siguió dando
+    exactamente 19 FAIL · 132 WARN, sin moverse un dígito. La trampa que
+    esto previene: quien resincronice `gobernanza:1106`, `:1136` o
+    `:1658` copiando el total impreso al pie de la corrida (22 FAIL) en
+    vez del que este test acepta (19 FAIL, el 'núcleo' sin T16) deja esas
+    líneas rojas para siempre -- ningún `declara` hace cerrar la
+    comparación contra 22, porque este subproceso jamás calcula 22.
+
+    Las tres citas que hoy no matchean el núcleo (`gobernanza:1106`,
+    `:1136`, `:1658`) no se reescriben aquí: las tres narran un estado
+    PASADO de un ADR ya sellado (ADR-76(f)/ADR-77/ADR-94 respectivamente),
+    sin el formato de blockquote que `_CAMBIO_FECHADO` exige para
+    reconocerlas como histórico -- límite ya declarado en el docstring de
+    `t16_suite_self_check`. Sobreescribirlas con el núcleo vigente
+    falsearía lo que esos ADR midieron al sellarse -- `gobernanza:1106`
+    lo dice verbatim: "nunca debe seguir al real". Quedan protegidas por
+    el mecanismo que ya existe: `_T16_REAL_SUFIJO` normaliza el sufijo
+    volátil ('la corrida real da…') de la clave de línea base para las
+    tres por igual -- el regex no está acotado a `:1106`/`:1136` -- así
+    que ninguna necesita recongelarse cada vez que el WARN real se mueve
+    por una causa ajena a gobernanza."""
     import subprocess
     env = dict(os.environ, CHECK_SELFCHECK_CHILD="1")
     try:
