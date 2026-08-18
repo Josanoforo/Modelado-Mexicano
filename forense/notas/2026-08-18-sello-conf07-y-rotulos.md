@@ -35,7 +35,7 @@
 **ADR máximo, primera derivación** (contra `origin/main = f3d3f95`):
 `grep -o "^\*\*ADR-[0-9]\+" canon/gobernanza-v1_15.md | grep -o "[0-9]\+" | sort -n` → **105 únicos, máximo 105, sin huecos, sin duplicados**. El encargo declaraba 104; `ADR-105` entró con `PR #263`. Este acto sella el **106**.
 
-**`ESTADO-SPLIT`**: `forense/encargos/2026-08-18-ESTADO-SPLIT.md:5` sigue **`VIVO`** — **no ha fusionado**. La cascada va, por tanto, a `estado-programa:27` y `:101` **cláusula por cláusula**, donde el split aún no llegó.
+**`ESTADO-SPLIT`**, al arrancar: `forense/encargos/2026-08-18-ESTADO-SPLIT.md:5` decía **`VIVO`** — no había fusionado. La cascada se escribió, por tanto, **cláusula por cláusula dentro de `:101`**. ⚠️ **Esto cambió a medio acto y se rehízo — ver §7.bis.**
 
 ---
 
@@ -153,3 +153,23 @@ Tras el acto, tres vigías se dispararon y los tres eran **defectos reales de es
 1. **La deuda estaba escrita dos veces.** `glosario §15` llevaba `conf.07` en `:399` **y** en `:406`, duplicada desde v5.1, invisible a toda auditoría. La delató **re-derivar** la lista desde §11 en vez de leerla.
 2. **`E-HIG` dejó rancio su propio rótulo** — el encargo cuyo objeto era reconciliar rótulos contra el árbol. Su cuerpo decía *"marcar `CONSUMIDO` con el PR que fusione este acto"*, y esa instrucción es **estructuralmente inejecutable**: cuando el PR existe, el acto ya terminó. El rótulo lo tiene que poner el siguiente.
 3. **Tres vigías atraparon tres defectos míos, y los tres eran reales**: `T15` (la cabecera de `gobernanza` es un tercer sitio de conteo que la cascada del encargo no nombraba), `T02` (nota y encargo colisionaban en nombre normalizado), `T16` (recifrado 129→130 WARN). Línea base **19 FAIL · 129 WARN**; cierre **19 FAIL · 130 WARN** — FAIL sin cambio, y el único WARN nuevo es `T-FIRMAS` imprimiendo `FP-57`, que es lo que debe hacer. **Cero recongelados de `tests/baseline.json`.**
+
+---
+
+## §7.bis · La contingencia del encargo ocurrió — fusión de `ESTADO-SPLIT` (`PR #264`)
+
+El encargo la nombraba textualmente: *"`estado-programa:101` cláusula por cláusula **salvo que ESTADO-SPLIT ya haya fusionado** (entonces la cascada va donde el split la dejó — derívalo)"*. Al arrancar el acto, `ESTADO-SPLIT` estaba `VIVO`. **Fusionó mientras este acto corría** (`PR #264`, `c8cd649`), y `PR #265` quedó `mergeable_state: dirty`.
+
+**Fusión local de `origin/main`, tres conflictos, los tres resueltos tomando `origin/main` como base y reaplicando encima:**
+
+| Conflicto | Qué chocó | Resolución |
+|---|---|---|
+| `:101` (la narrativa de `L0`) | El split la partió en **66 cláusulas, una por línea**; mi cascada era una cláusula **dentro** de la línea única | Se toma la estructura del split y **se rehace la cascada como cláusula propia** — `- a 106 después, con ADR-106…`. Detalle de forma: `:101` abre un paréntesis en itálicas `*(` y **la última cláusula lo cierra** con `)*`; al insertarse, la 105 pasa a terminar en `;` y la 106 asume el cierre |
+| `:196` (T03/WARN) | `ESTADO-SPLIT` recifró 129→**128** (ejecuta `FP-48`, −1); este acto recifró 129→**130** (abre `FP-57`, +1) | **Ninguno de los dos lados era correcto.** Re-derivado de la corrida real sobre el árbol fusionado: **129**. Aritmética limpia: 129 − 1 (`FP-48`) + 1 (`FP-57`) = 129 |
+| `:288` (suite verificada) | mismo choque | idem — **19 FAIL · 129 WARN** |
+
+**Conteo de ADR: sin colisión.** `ESTADO-SPLIT` no sella ADR. Tercera derivación, sobre el árbol ya fusionado: **106 únicos, máximo 106, sin huecos ni duplicados**. El `106` se mantiene.
+
+**El resto de la fusión entró limpio** — incluidos `canon/glosario-v5_6.md`, `canon/gobernanza-v1_15.md`, `forense/hallazgos.md` (que lleva `merge=union`) y los cinco encargos rotulados por `C0`. `FP-48` conserva el estado que le dejó `ESTADO-SPLIT` (`FIRMADA`, ejecutada); `FP-57` sigue `ABIERTA`.
+
+**Lo que este episodio deja dicho:** el encargo **acertó al escribir la contingencia como rama explícita** en vez de asumir un orden de fusión. El costo de que ocurriera fue una fusión local y un recifrado — no una re-derivación del acto. *Un encargo que nombra la bifurcación que puede abrirse bajo sus pies convierte una colisión en un trámite.* Corolario menos cómodo: **el WARN correcto no estaba en ninguno de los dos lados**. Dos actos concurrentes, cada uno con su cifra derivada correctamente de **su** árbol, producen dos cifras y ambas quedan mal al fusionar. La cifra sólo existe después de la fusión, y hay que volver a correr la suite para tenerla.
