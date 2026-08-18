@@ -5,6 +5,8 @@
 - **Modelo: Opus.** La PARTE 3 es triaje con criterio, no conteo: decidir qué pendiente merece fila y cuál merece una línea es exactamente donde un modelo chico infla el tablero.
 - **Archívese en `forense/encargos/`** con su lanzamiento (A.3).
 
+> **ADENDA FECHADA — 18/ago/2026.** `ACTO CONSOLIDA-2` (v2, `forense/encargos/2026-08-18-CONSOLIDA-2.md`) ejecutó, contra `68a3466`: PARTE 2 (`FP-38` → `FIRMADA`, procedencia de `glosario:136` corregida) y PARTE 1(b)/(c)/(d) (propagación de `conf.01` a `milpa/refutations.yaml`, re-derivación de la lista "sin ADR" de `glosario:399`, nota fechada de `R1.4` en `hitoD-preregistro`, cierra `FP-43`) — PARTE 1(a) (`conf.02`/`ADR-92(d)`) ya la había ejecutado `ACTO CIERRA-17AGO` al corpus. **Estado revisado: PARCIALMENTE CONSUMIDO.** Siguen `VIVO`, sin ejecutar: **PARTE 3** (el barrido de las 212 notas de `forense/notas/` + `hallazgos.md` + `modelo-decision` + `milpa/*.yaml`, con su triaje `YA RESUELTO`/`FILA`/`SOLO ANOTADO`) y **PARTE 4** (el ADR que sella `firmas-pendientes.tsv` como único lugar de un pendiente). El cuerpo de abajo, tal como se lanzó, no se edita — A.3. Detalle: `forense/notas/2026-08-18-consolida-2-fp38-propagaciones.md`.
+
 ## ⛔ GATE — no arranca hasta que **PR #250 (`CIERRA-17AGO`) esté fusionado**
 
 Escribe los mismos archivos y ejecuta lo que `CIERRA` dejó declarado y sin escribir.
