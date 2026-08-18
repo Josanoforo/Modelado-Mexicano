@@ -280,6 +280,17 @@ def logical_object_id(digest: str, locator: str) -> str:
     ).hexdigest()
 
 
+def exento_estructural(text: str) -> bool:
+    """Único predicado de exención para metadato de esquema.
+
+    Lo usan el escritor (`safe_text`) y el validador (`E2_PII_NO_REDACTADA`). Que
+    fuera uno solo no es estética: la primera vez que se amplió la exención sin
+    tocar el validador, el gate rechazó 399 de 672 expedientes recién hechos y
+    costó una reejecución completa. Con un solo predicado no pueden separarse.
+    """
+    return es_codigo(text) or _es_vocabulario_encabezado(text)
+
+
 def safe_text(value: object, *, durable: bool = False, estructural: bool = False) -> tuple[str, bool]:
     """`estructural=True` marca metadato de esquema: nombre de columna, nombre
     de variable, título de hoja. Ahí las heurísticas de nombre propio sólo se
@@ -292,7 +303,7 @@ def safe_text(value: object, *, durable: bool = False, estructural: bool = False
     # la heurística de nombre propio, pero son encabezados de diccionario del
     # INEGI, no personas. La exención sigue siendo por lista cerrada y declarada,
     # nunca por forma del texto libre.
-    exento = estructural and (es_codigo(text) or _es_vocabulario_encabezado(text))
+    exento = estructural and exento_estructural(text)
     patrones = PII_IDENTIFICADOR if exento else PII_PATTERNS
     redacted = any(pattern.search(text) for pattern in patrones)
     if redacted:
@@ -2143,7 +2154,7 @@ def _audit_e2_files_streaming(
                 ) or any(
                     pattern.search(str(value))
                     for value in nombres_de_esquema
-                    for pattern in (PII_IDENTIFICADOR if es_codigo(str(value)) else PII_PATTERNS)
+                    for pattern in (PII_IDENTIFICADOR if exento_estructural(str(value)) else PII_PATTERNS)
                 ):
                     fail(f"E2_PII_NO_REDACTADA:{record_id}")
                 if (
