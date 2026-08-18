@@ -1,6 +1,6 @@
 # ENCARGO `REGISTRA-17AGO` · las cinco firmas de mesa del 17/ago, los dos benchmarks, y las filas que faltaban
 
-- **SHA de redacción:** `1282ae3` (`origin/main`, merge #247) · **Fecha:** 17/ago/2026 · **Estado:** `CONSUMIDO` — `PR #248` (rama `claude/new-session-wk4z60`), detalle en `forense/notas/2026-08-17-registra-17ago.md`.
+- **SHA de redacción:** `1282ae3` (`origin/main`, merge #247) · **Fecha:** 17/ago/2026 · **Estado:** `CONSUMIDO` — `PR #248` (rama `claude/new-session-wk4z60`), detalle en `forense/notas/2026-08-17-registra-17ago-comandos.md`.
 - **Entorno asignado: NUBE**, repo-only, sin red, sin corpus. **NO en la caja** — ahí corre BARRIDO-2 y este acto no necesita microdato.
 - **Modelo: Sonnet 4.6.** Es registro, no adjudicación: los textos van verbatim y las derivaciones son de una línea.
 - **Archívese en `forense/encargos/`** con su lanzamiento (A.3).

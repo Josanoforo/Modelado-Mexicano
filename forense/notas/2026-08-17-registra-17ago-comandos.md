@@ -50,7 +50,7 @@ Variable presente (`cloud_default`) — firma correcta de un acto de nube. La so
 
 ## §1 · Perímetro real, y la corrección a la verificación de concurrencia del encargo
 
-**Escrito por este acto:** `forense/firmas-pendientes.tsv` · `canon/gobernanza-v1_15.md` (`ADR-92` + cabecera) · `forense/BENCHMARK-conf02-policronia-2026-08-17.md` (nuevo) · `forense/BENCHMARK-conf05-consumo-compensatorio-2026-08-17.md` (nuevo) · `forense/notas/2026-08-17-registra-17ago.md` (esta nota) · `forense/hallazgos.md` (una entrada) · `forense/encargos/2026-08-17-REGISTRA-17AGO.md` (A.3).
+**Escrito por este acto:** `forense/firmas-pendientes.tsv` · `canon/gobernanza-v1_15.md` (`ADR-92` + cabecera) · `forense/BENCHMARK-conf02-policronia-2026-08-17.md` (nuevo) · `forense/BENCHMARK-conf05-consumo-compensatorio-2026-08-17.md` (nuevo) · `forense/notas/2026-08-17-registra-17ago-comandos.md` (esta nota) · `forense/hallazgos.md` (una entrada) · `forense/encargos/2026-08-17-REGISTRA-17AGO.md` (A.3).
 
 **No escrito, verificado:** `data/**`, `tools/**`, `canon/estado-programa-v1_10.md`, `canon/glosario-v5_6.md`, `canon/integrador-*`, `corpus/**`, `tests/**`, `instrucciones-proyecto-*` — cero archivos de estas rutas en los dos commits de contenido.
 
@@ -185,7 +185,7 @@ $ sed -n '49p' "corpus/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__
 ```
 Confirmado verbatim, línea exacta.
 
-**`PLAN-MULTIFASE-F0-F6-2026-08-13.md` y "cuatro preguntas del transfer" (FP-42):**
+**PLAN-MULTIFASE-F0-F6-2026-08-13.md** *(citado sin backticks a propósito: vive fuera del repo y T03 no distingue mención de referencia — mismo remedio que `forense/notas/2026-08-14-enlace2-clase-limbo.md:3`)* **y "cuatro preguntas del transfer" (FP-42):**
 ```
 $ find / -iname "PLAN-MULTIFASE-F0-F6-2026-08-13.md" 2>/dev/null
 (cero resultados)
@@ -286,5 +286,83 @@ $ python3 tests/check.py --baseline
 **Ninguna de las 8 entradas es un defecto introducido por error** — las cinco son el propósito declarado del acto (hacer visibles los pendientes), y las tres restantes son el costo ya aceptado de no invadir el perímetro de `BARRIDO-2`.
 
 `git diff --check` sobre los dos commits de contenido: limpio, sin marcas de conflicto ni espacio en blanco al final de línea.
+
+---
+
+## §7 · Corrección post-revisión — el conteo de §6 estaba mal, y dos de las ocho eran mías
+
+**Dirección revisó y corrigió: la corrida real da 11 entradas, no 8, y dos son responsabilidad de este acto, arreglables dentro de su propio perímetro.** Re-corrido `python3 tests/check.py --baseline` contra el estado tras los dos commits de contenido — confirmado, 11, no 8:
+
+```
+$ python3 tests/check.py --baseline
+[...]
+  30 FAIL · 129 WARN
+  LÍNEA BASE: ROJO — 11 entradas nuevas [...]
+  · T02: nombre normalizado colisiona: forense/notas/2026-08-17-registra-17ago.md · forense/encargos/2026-08-17-REGISTR[...]
+  · T03: forense/notas/2026-08-17-registra-17ago.md: cita `PLAN-MULTIFASE-F0-F6-2026-08-13.md`, que no existe
+  · T15: canon/estado-programa-v1_10.md: cita 91 ADR; gobernanza tiene 92 únicos
+  · T16: canon/estado-programa-v1_10.md: declara 128 WARN vigente; [...]
+  · T16: canon/estado-programa-v1_10.md: declara 18 FAIL · 128 WARN vigente; [...]
+  · T16: canon/gobernanza-v1_15.md: declara 18 FAIL · 128 WARN vigente; [...]
+  · T22: FP-38..FP-42 (5)
+```
+
+**T02 — mías, arregladas.** `forense/notas/2026-08-17-registra-17ago.md` y `forense/encargos/2026-08-17-REGISTRA-17AGO.md` normalizan (`t02_duplicates`: NFKD, ascii, minúsculas, solo alfanumérico) al mismo nombre: `20260817registra17agomd`. Arreglado renombrando la nota, no el encargo (el encargo es el archivo A.3, verbatim, y ya lleva el nombre que el propio documento adjunto traía):
+
+```
+$ git mv forense/notas/2026-08-17-registra-17ago.md forense/notas/2026-08-17-registra-17ago-comandos.md
+$ python3 -c "...norm('2026-08-17-REGISTRA-17AGO.md')..."
+encargo:  20260817registra17agomd
+new note: 20260817registra17agocomandosmd
+```
+Distintos. Las tres referencias propias a la nota (en `canon/gobernanza-v1_15.md` ×3, `forense/hallazgos.md` ×1, y la línea `CONSUMIDO` que este mismo acto añadió en `forense/encargos/2026-08-17-REGISTRA-17AGO.md`) se actualizaron al nombre nuevo. **Las dos citas a la nota que viven dentro del texto *verbatim* del encargo (líneas 43 y 125 de `forense/encargos/2026-08-17-REGISTRA-17AGO.md`) NO se tocaron** — son el archivo A.3, y editarlas rompería la razón de ser de archivarlo verbatim: quedan como constancia de que el nombre original instruido colisionaba, no como referencia viva.
+
+**T03 — mía, arreglada con el precedente exacto que dirección señaló.**
+```
+$ sed -n '3p' forense/notas/2026-08-14-enlace2-clase-limbo.md
+**Encargo:** [...] (citado sin backticks a propósito: vive fuera del repo y T03 no distingue mención de referencia — mismo remedio que ENLACE-1 Commit 3)
+```
+Mismo remedio aplicado: el encabezado de la nota que citaba `` `PLAN-MULTIFASE-F0-F6-2026-08-13.md` `` (con backticks — el archivo no existe, es justo lo que `FP-42` documenta) pasa a citarlo sin backticks, con la misma glosa entre paréntesis.
+
+**T16 — la parte que dirección no nombró, y que sí era mía: el conteo real subió de 18 a 20 FAIL (núcleo, T16 excluido de sí mismo) porque `T15` ahora falla dos veces (`estado-programa:27` y `:101`), y eso rompió las CINCO citas "mutables" `**18 FAIL · 128 WARN**` de `gobernanza-v1_15.md` (líneas 764, 856, 1274, 1387, 1393) que antes coincidían.** Estas cinco se distinguen por texto propio de las dos verdaderamente congeladas (`:1106`/`:1136`, `18 FAIL · 104 WARN`, historia sellada de `ADR-76(f)`, nunca tocadas): las cinco dicen explícitamente *"cifra mantenida en sincronía por T16, no historia congelada"*. Mismo mecanismo, mismo remedio, que `ADR-91` ya aplicó sobre sí mismo: *"los sitios vigentes de **N FAIL · M WARN** en canon/, cambio de dígito únicamente, sin reescribir la prosa alrededor; los dos 'permanentes' [...] no se tocan."*
+
+```
+$ grep -noP '\*\*\d+\s*FAIL\s*·\s*\d+\s*WARN\*\*' canon/gobernanza-v1_15.md
+764:**18 FAIL · 128 WARN**   856:**18 FAIL · 128 WARN**
+1106:**18 FAIL · 104 WARN**  1136:**18 FAIL · 104 WARN**   [-- las dos permanentes, no tocadas --]
+1274:**18 FAIL · 128 WARN**  1387:**18 FAIL · 128 WARN**  1393:**18 FAIL · 128 WARN**
+```
+Las cinco no-permanentes, cambio de dígito únicamente (18→20), script dirigido por número de línea para no arriesgar un `sed` global sobre un archivo de 1600+ líneas donde "18" aparece decenas de veces en prosa histórica que no debe tocarse:
+
+```
+$ python3 -c "... TARGET_LINES = {764, 856, 1274, 1387, 1393} ... OLD='**18 FAIL · 128 WARN**' NEW='**20 FAIL · 128 WARN**' ..."
+touched: [764, 856, 1274, 1387, 1393]
+```
+
+**Estado final, re-verificado:**
+
+```
+$ python3 tests/check.py --baseline
+[...]
+  23 FAIL · 128 WARN
+  LÍNEA BASE: ROJO — 7 entradas nuevas frente a tests/baseline.json (HEAD congelado 6f78d066ae2aecf61ca63046e19242d46f4a255d)
+  · T15: canon/estado-programa-v1_10.md: cita 91 ADR; gobernanza tiene 92 únicos
+  · T16: canon/estado-programa-v1_10.md: declara 18 FAIL · 128 WARN vigente; la corrida real da N WARN
+  · T22: FP-38 ABIERTA [...]
+  · T22: FP-39 ABIERTA [...]
+  · T22: FP-40 ABIERTA [...]
+  · T22: FP-41 ABIERTA [...]
+  · T22: FP-42 ABIERTA [...]
+  (5 entradas de la línea base ya no aparecen — mejora, no bloquea)
+```
+
+**7, no 8 ni 11 — y las 7 que quedan son exactamente lo que §6 ya argumentaba, ahora con el conteo correcto en vez de uno truncado por error propio:**
+
+- **5 son `T22`, las filas nuevas.** Señal, no defecto — dicho explícitamente por el encargo.
+- **2 son la cascada de ADR a `canon/estado-programa-v1_10.md`** (`T15` cuenta 2 sitios —`:27` y `:101`— colapsados en 1 línea en el resumen compacto; `T16` cuenta 1 sitio más, `:221`, la sexta cita "mutable" de `18 FAIL`, que vive en el archivo de `BARRIDO-2` y no en el mío). Las 2 permanentes de `gobernanza:1106`/`:1136` (`18 FAIL · 104 WARN`, historia sellada de `ADR-76(f)`) siguen fallando también, pero **ya estaban en la línea base** desde antes de este acto — no cuentan como nuevas, y no se tocan, por la misma razón que `ADR-89`/`ADR-91` ya dieron.
+
+**Corrección al propio §6 de esta nota:** decía "3 son T15/T16" — eran 6 (las 5 mutables de `gobernanza` más la 1 de `estado-programa`), de las cuales 5 estaban en mi perímetro y se arreglaron aquí; solo la de `estado-programa` era genuinamente ajena. El conteo original de 8 entradas totales también estaba mal — la corrida real daba 11, no 8; T02/T03 no se habían medido después de escribir la nota, se habían dado por buenos sin re-correr el comando. Mismo defecto, en miniatura, que el hallazgo de `forense/hallazgos.md` sobre la verificación de concurrencia del encargo: **no basta con haber corrido el comando una vez — hay que re-correrlo después de cada cambio que pueda haberlo movido, no heredar la primera salida.**
+
+`git diff --check`, re-verificado tras esta corrección: limpio.
 
 **Contadores del programa que mueve este acto: 0.** Mueve el tablero de 11 a 16 `FIRMADA`, abre cinco filas (`FIRMADA-CONDICIONAL` sin cambio en 10). Ningún contador de medición sobre México.
