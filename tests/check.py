@@ -1964,6 +1964,64 @@ def t23_cableado():
                             f"{rel.get('capa3_disco_real')!r})")
 
 
+# ───────────────────────────────────────────────────────────────
+# T24 · T-LLAVES-EJERCIDAS — Encargo T20-LLAVES, 18/ago/2026. Cierra
+#   `FP-18` (firma de mesa `ADR-91`, `PR #246`): instrumenta el vigía
+#   sobre la población "llaves de identificación ejercidas" que
+#   `ADR-67(c)` abrió (`gobernanza:868`) -- distinta del denominador 27
+#   de Hito D, distinta de `9 de 14`, distinta de `15 coeficientes, cero
+#   medidos`.
+#
+#   El vigía OBSERVA el contador, no lo mueve (mismo límite que el
+#   propio encargo declara): deriva la cifra con la receta congelada de
+#   `forense/registro-llaves-identificacion-v*.md` §4 -- acota el conteo
+#   a `## 3 · Tabla de llaves`, extrae la columna `estado` (sexta tras
+#   dividir por `|`) de cada fila de datos, cuenta las que empiezan con
+#   `EJERCIDA_` -- y la cruza contra la cita vigente de
+#   `canon/estado-programa-v*.md` ("Llaves de identificación ejercidas:
+#   `N` de `M`."). Mismo defecto de cascada que T19b/T19c ya vigilan
+#   para sus propios contadores: una cifra que se desincroniza de su
+#   fuente sin que ninguna corrida lo note.
+#
+#   Hoy el registro trae `1` de `2` (ACTO ADJ-4, 13/ago/2026) y
+#   `estado-programa:99` ya cita esa misma cifra -- este marcador nace
+#   en verde, no dispara sobre estado no-regresivo, y por eso no exige
+#   `SENAL` (precedente `ADR-96`/`ADR-101(c)`/`FP-51`): no hay disparo
+#   que declarar.
+# ───────────────────────────────────────────────────────────────
+def t24_llaves_ejercidas():
+    r = newest("forense/registro-llaves-identificacion-v*.md")
+    if not r:
+        fail("T24", "no se pudo leer `forense/registro-llaves-identificacion-v*.md`")
+        return
+    texto = read(r)
+    m = re.search(r"^## 3 · Tabla de llaves\n(.*?)(?=^## )", texto, re.S | re.M)
+    if not m:
+        fail("T24", f"{rel(r)}: no se encontró la sección `## 3 · Tabla de llaves`")
+        return
+    filas = [l for l in m.group(1).split("\n") if l.startswith("| `")]
+    if not filas:
+        fail("T24", f"{rel(r)}: `## 3 · Tabla de llaves` no trae filas de datos")
+        return
+    estados = [l.split("|")[5].strip() for l in filas]
+    ejercidas = sum(1 for e in estados if "EJERCIDA_" in e)
+    total = len(filas)
+
+    e = newest("canon/estado-programa-v*.md")
+    if not e:
+        fail("T24", "no se pudo leer `canon/estado-programa-v*.md`")
+        return
+    dm = re.search(r"Llaves de identificaci[oó]n ejercidas:\s*`(\d+)`\s*de\s*`(\d+)`", read(e))
+    if not dm:
+        fail("T24", f"{rel(e)}: no se encontró la cita 'Llaves de identificación "
+                     f"ejercidas: `N` de `M`.'")
+        return
+    declarado_num, declarado_den = int(dm.group(1)), int(dm.group(2))
+    if (declarado_num, declarado_den) != (ejercidas, total):
+        fail("T24", f"{rel(e)} declara {declarado_num} de {declarado_den} llaves "
+                     f"ejercidas; {rel(r)} (receta §4) deriva {ejercidas} de {total}")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -1990,6 +2048,7 @@ def main():
         ("T21 T-CAPA2-CAPA3",                     t21_capa2_capa3),
         ("T22 T-FIRMAS",                          t22_firmas),
         ("T23 T-CABLEADO",                        t23_cableado),
+        ("T24 T-LLAVES-EJERCIDAS",                t24_llaves_ejercidas),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
