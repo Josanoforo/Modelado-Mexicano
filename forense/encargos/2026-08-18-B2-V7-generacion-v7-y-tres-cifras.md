@@ -2,7 +2,7 @@
 
 **SHA de redacción:** `997482b` (merge #244, `origin/main`, verificado por `git ls-remote` el 18/ago/2026)
 **Entorno asignado:** UBUNTU, worktree existente `/home/pc0/Modelado-Mexicano-barrido2`. NO clones. NO en la nube.
-**Estado:** VIVO — en ejecución por ACTO B2-V7, rama `acto-b2-v7`, 18/ago/2026. Se marca CONSUMIDO con su PR en el commit de cierre.
+**Estado:** CONSUMIDO — ACTO B2-V7, `PR #255` (rama `acto-b2-v7`), 18/ago/2026. Sella `ADR-98`.
 **Precedencia:** ninguna. Corrió en paralelo con ACTO CI-CATEGORÍA (nube).
 
 > Archivado bajo A.3 por el propio acto que lo ejecuta. Texto verbatim tal como se lanzó;
