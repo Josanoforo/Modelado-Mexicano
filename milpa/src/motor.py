@@ -1,4 +1,13 @@
-"""La rebanada mínima: `m = Σ_x π(x)·h_r(B·θ(x), C(x))`, hasta donde E0 llega.
+"""La rebanada mínima del motor de matriz — punto de entrada del paquete.
+
+NOTA DE FORMA, deliberada: `milpa/src/` es un PAQUETE DE ESPACIO DE NOMBRES —
+no lleva `__init__.py`. La razón es del repo, no de estilo: `T02` normaliza
+nombres sin distinguir directorio, y un `milpa/src/__init__.py` colisiona por
+construcción con `tools/curador_registro/__init__.py`, que ya existe. Se
+verificó corriendo la suite con y sin el archivo. Los imports funcionan igual
+(`from milpa.src import motor`).
+
+La rebanada mínima: `m = Σ_x π(x)·h_r(B·θ(x), C(x))`, hasta donde E0 llega.
 
 QUÉ HACE ESTA REBANADA, dicho sin adorno: carga `milpa/procedencia.yaml`
 validando clases, construye `B` con su celda sin magnitud declarada, carga el
