@@ -61,7 +61,7 @@ El consumidor mexicano opera dentro de una tensión psicológica fundamental que
 | Gen Z influye 91% decisiones hogar | **Moderada** | Google México/Julian Coulter |
 | MSI es 20% de saldos de tarjeta | **Fuerte** | Banco de México |
 | 90% prefiere tienda física | **Moderada** | Roland Berger 2024 |
-| Desigualdad → consumo compensatorio | **Fuerte** | Velandia-Morales 2022, Frontiers in Psychology |
+| Desigualdad → consumo compensatorio (rama estatus) | **Fuerte** | Velandia-Morales 2022, Frontiers in Psychology |
 | Lealtad de marca es parcialmente inercia | **Hipótesis razonable** | Inferido de McKinsey (90% satisfecho al cambiar) |
 | Hofstede: Indulgencia 97, UAI 82 | **Media (c)** — *correlato descriptivo, NO causa (ADR-06, corregido 28/jul/2026)* | Hofstede Insights. Marco importado; muestra original IBM 1967-73, no poblacional mexicana |
 | OXXO procesa 50% pagos efectivo e-commerce | **Fuerte** | EBANX, PCMI |
@@ -381,7 +381,7 @@ El error #1 es **confundir bajo ingreso con baja disposición a pagar**. Los con
 
 3. **La lealtad de marca es más defensiva que afectiva.** Mucha lealtad mexicana es aversión al riesgo disfrazada. Esto representa tanto una ventaja (es difícil que la competencia te robe clientes) como una vulnerabilidad (cuando un consumidor *descubre* que hay alternativas satisfactorias, puede no regresar).
 
-4. **La desigualdad produce consumo compensatorio, no solo restricción.** Las clases con menor movilidad social son las más propensas al consumo de estatus como compensación psicológica. Esto no es irracionalidad — es una respuesta predecible a un sistema que ofrece movilidad simbólica (comprar el logo) cuando la movilidad real es inaccesible.
+4. **La desigualdad produce consumo compensatorio de estatus, no solo restricción.** Las clases con menor movilidad social son las más propensas al consumo de estatus como compensación psicológica. Esto no es irracionalidad — es una respuesta predecible a un sistema que ofrece movilidad simbólica (comprar el logo) cuando la movilidad real es inaccesible.
 
 5. **México no es LatAm genérica.** El ecosistema OXXO, la lealtad de marca extrema, la muy baja penetración de marcas privadas, la influencia cultural estadounidense asimétrica, y la lenta adopción de pagos digitales pese a buena infraestructura hacen de México un mercado sui generis que requiere estrategia específica.
 

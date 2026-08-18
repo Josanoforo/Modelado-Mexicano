@@ -286,7 +286,14 @@ def safe_text(value: object, *, durable: bool = False, estructural: bool = False
     saltan cuando la cadena tiene forma de código; cualquier otra cosa —prosa,
     acentos, espacios— se sigue evaluando con los once patrones."""
     text = " ".join(str(value or "").replace("\t", " ").replace("\r", " ").replace("\n", " ").split())
-    patrones = PII_IDENTIFICADOR if (estructural and es_codigo(text)) else PII_PATTERNS
+    # Un metadato de esquema se exime cuando tiene forma de código o cuando ES un
+    # término del vocabulario de encabezado que este módulo declara. `Códigos
+    # Válidos` y `Pregunta y categoría` son dos palabras capitalizadas y disparan
+    # la heurística de nombre propio, pero son encabezados de diccionario del
+    # INEGI, no personas. La exención sigue siendo por lista cerrada y declarada,
+    # nunca por forma del texto libre.
+    exento = estructural and (es_codigo(text) or _es_vocabulario_encabezado(text))
+    patrones = PII_IDENTIFICADOR if exento else PII_PATTERNS
     redacted = any(pattern.search(text) for pattern in patrones)
     if redacted:
         text = "[REDACTADO-PRIVACIDAD]"
@@ -365,6 +372,11 @@ def _mapa_encabezado(fila: Iterable[Any]) -> dict[str, int]:
         for index, value in enumerate(fila)
         if (clave := _clave_encabezado(value))
     }
+
+
+def _es_vocabulario_encabezado(value: str) -> bool:
+    """¿La celda ES uno de los términos de encabezado que el módulo declara?"""
+    return _clave_encabezado(value) in (VARIABLE_ALIASES | LABEL_ALIASES | CATEGORY_ALIASES)
 
 
 def _es_encabezado_de_diccionario(mapa: dict[str, int]) -> bool:
@@ -1150,7 +1162,15 @@ def _xlsx_objects(path: Path) -> list[dict[str, Any]]:
     objects: list[dict[str, Any]] = []
     try:
         for sheet in workbook.worksheets:
-            locator = f"hoja={sheet.title}"
+            # El localizador lleva el hash del título además del título. Ocho hojas
+            # del corpus tienen títulos que la heurística de nombre propio redacta
+            # ("DIAGRAMA ENTIDAD - RELACIÓN", "NOTAS ACLARATORIAS", "Presidente
+            # Municipio TEPJF") y con el título se perdía también su identidad:
+            # quedaban indistinguibles entre sí y de cualquier otra hoja redactada
+            # del universo. El hash preserva la distinción sin relajar la
+            # redacción — es la misma garantía que la vía XLS ya tenía.
+            titulo_sha256 = hashlib.sha256(sheet.title.encode("utf-8", errors="replace")).hexdigest()
+            locator = f"hoja={sheet.title}#nombre_sha256={titulo_sha256}"
             # En modo read-only openpyxl puede devolver ``None`` para las
             # dimensiones de una hoja completamente vacía.  La ausencia de
             # celdas es una frontera estructural válida, no una excepción del
@@ -1256,11 +1276,104 @@ def _xlsx_objects(path: Path) -> list[dict[str, Any]]:
     return objects
 
 
+def _biff_sst(payload: bytes) -> list[str]:
+    """Tabla de cadenas compartidas de un BIFF8, con sus CONTINUE.
+
+    El decodificador anterior leía sólo los BOUNDSHEET y estampaba
+    `celdas-BIFF-no-decodificadas` de forma incondicional, sin intentar nada: las
+    841 hojas `.xls` del corpus quedaron con cero tablas, cero diccionarios y cero
+    columnas. Son BIFF8/OLE2 legítimos —verificado por magic bytes en el 100 % de
+    la muestra— y 224 de esas hojas son diccionarios de variables de ENDIREH,
+    ENVIPE, ENUT, EDER y ELCOS. Se decodifican con `olefile` + stdlib, que es lo
+    que el módulo ya usa; no hace falta ninguna dependencia nueva.
+    """
+    trozos: list[bytes] = []
+    cortes: list[int] = []
+    total = 0
+    dentro = False
+    cursor = 0
+    while cursor + 4 <= len(payload):
+        tipo, largo = struct.unpack("<HH", payload[cursor:cursor + 4])
+        datos = payload[cursor + 4:cursor + 4 + largo]
+        if tipo == 0x00FC:
+            dentro = True
+            trozos.append(datos); total += len(datos)
+        elif dentro and tipo == 0x003C:
+            cortes.append(total); trozos.append(datos); total += len(datos)
+        elif dentro:
+            break
+        cursor += 4 + largo
+    if not trozos:
+        return []
+    blob = b"".join(trozos); frontera = set(cortes)
+    pos = 8
+    try:
+        unicas = struct.unpack("<I", blob[4:8])[0]
+    except struct.error:
+        return []
+    cadenas: list[str] = []
+    for _ in range(min(unicas, 200000)):
+        if pos + 3 > len(blob):
+            break
+        cch = struct.unpack("<H", blob[pos:pos + 2])[0]; pos += 2
+        flags = blob[pos]; pos += 1
+        alto = flags & 0x1
+        crun = 0; cbext = 0
+        if flags & 0x8:
+            crun = struct.unpack("<H", blob[pos:pos + 2])[0]; pos += 2
+        if flags & 0x4:
+            cbext = struct.unpack("<I", blob[pos:pos + 4])[0]; pos += 4
+        letras: list[str] = []
+        for _ in range(cch):
+            if pos in frontera and pos < len(blob):
+                alto = blob[pos] & 0x1; pos += 1
+            ancho = 2 if alto else 1
+            crudo = blob[pos:pos + ancho]; pos += ancho
+            letras.append(crudo.decode("utf-16le" if ancho == 2 else "latin-1", errors="replace"))
+        pos += crun * 4 + cbext
+        cadenas.append("".join(letras))
+    return cadenas
+
+
+def _biff_filas(payload: bytes, inicio: int, sst: list[str], tope: int) -> list[list[str]]:
+    """Primeras `tope` filas de una hoja BIFF, sólo celdas de texto y número.
+
+    No persiste la hoja: se detiene en la ventana de encabezado, igual que las
+    vías XLSX y delimitada.
+    """
+    cursor = inicio
+    filas: dict[int, dict[int, str]] = {}
+    leidos = 0
+    while cursor + 4 <= len(payload) and leidos < 60000:
+        tipo, largo = struct.unpack("<HH", payload[cursor:cursor + 4])
+        datos = payload[cursor + 4:cursor + 4 + largo]
+        leidos += 1
+        if tipo == 0x000A:                      # EOF de la hoja
+            break
+        if tipo == 0x00FD and largo >= 10:      # LABELSST
+            fila, col, _xf, isst = struct.unpack("<HHHI", datos[:10])
+            if fila < tope and 0 <= isst < len(sst):
+                filas.setdefault(fila, {})[col] = sst[isst]
+        elif tipo == 0x0203 and largo >= 14:    # NUMBER
+            fila, col, _xf = struct.unpack("<HHH", datos[:6])
+            if fila < tope:
+                valor = struct.unpack("<d", datos[6:14])[0]
+                filas.setdefault(fila, {})[col] = (
+                    str(int(valor)) if valor == int(valor) else str(valor)
+                )
+        cursor += 4 + largo
+    if not filas:
+        return []
+    ancho = max(max(c for c in cols) for cols in filas.values()) + 1
+    return [[filas.get(f, {}).get(c, "") for c in range(ancho)] for f in range(max(filas) + 1)]
+
+
 def _xls_objects(path: Path) -> list[dict[str, Any]]:
     objects: list[dict[str, Any]] = []
     with olefile.OleFileIO(path) as document:
         stream = "Workbook" if document.exists("Workbook") else "Book" if document.exists("Book") else ""
-        names: list[str] = []
+        hojas: list[tuple[str, int]] = []
+        payload = b""
         if stream:
             payload = document.openstream(stream).read()
             cursor = 0
@@ -1268,18 +1381,73 @@ def _xls_objects(path: Path) -> list[dict[str, Any]]:
                 record_type, length = struct.unpack("<HH", payload[cursor:cursor + 4])
                 data = payload[cursor + 4:cursor + 4 + length]
                 if record_type == 0x0085 and len(data) >= 8:
+                    inicio = struct.unpack("<I", data[0:4])[0]
                     count, flags = data[6], data[7]
                     raw = data[8:8 + count * (2 if flags & 1 else 1)]
-                    names.append(raw.decode("utf-16le" if flags & 1 else "latin-1", errors="replace"))
+                    hojas.append((raw.decode("utf-16le" if flags & 1 else "latin-1", errors="replace"), inicio))
                 cursor += 4 + length
-        for sheet_ordinal, name in enumerate(names, 1):
+        sst = _biff_sst(payload) if payload else []
+        for sheet_ordinal, (name, inicio) in enumerate(hojas, 1):
             clean, _ = safe_text(name, estructural=True)
             name_sha256 = hashlib.sha256(name.encode("utf-8", errors="replace")).hexdigest()
+            locator = f"hoja={sheet_ordinal}:nombre_sha256={name_sha256}"
+            ventana = _biff_filas(payload, inicio, sst, VENTANA_ENCABEZADO) if 0 < inicio < len(payload) else []
+            if not ventana:
+                objects.append({
+                    "locator": locator, "type": "HOJA-XLS", "name": clean,
+                    "definition": "EXCEPCION-ESPECIFICA:celdas-BIFF-no-decodificadas",
+                    "state": "EXCEPCION-ESPECIFICA", "sheet": clean,
+                })
+                continue
+            fila_encabezado, header_map, origen = encuentra_encabezado(ventana)
+            estructural = fila_encabezado >= 0
+            encabezado = ventana[fila_encabezado] if estructural else next(
+                (f for f in ventana if any(str(v or "").strip() for v in f)), []
+            )
             objects.append({
-                "locator": f"hoja={sheet_ordinal}:nombre_sha256={name_sha256}", "type": "HOJA-XLS",
-                "name": clean, "definition": "EXCEPCION-ESPECIFICA:celdas-BIFF-no-decodificadas",
-                "state": "EXCEPCION-ESPECIFICA", "sheet": clean,
+                "locator": locator, "type": "HOJA-XLS", "name": clean,
+                "definition": (
+                    f"filas={len(ventana)}+;columnas={len(encabezado)}"
+                    f";encabezado={origen}"
+                    f";fila_encabezado={fila_encabezado + 1 if estructural else 'NO-APLICA'}"
+                ),
+                "sheet": clean,
             })
+            for index, value in enumerate(encabezado, 1):
+                if not str(value or "").strip():
+                    continue
+                nombre, _ = safe_text(value if estructural else f"COLUMNA-{index}", estructural=True)
+                objects.append({
+                    "locator": f"{locator}#columna={index}", "type": "COLUMNA",
+                    "parent_locator": locator, "name": nombre,
+                    "definition": (
+                        f"encabezado estructural; origen={origen}" if estructural
+                        else "encabezado no determinado; valor no persistido"
+                    ),
+                    "sheet": clean,
+                })
+            if origen == "SI-DICCIONARIO":
+                variable_column = header_map[sorted(VARIABLE_ALIASES & header_map.keys())[0]]
+                label_columns = [header_map[n] for n in sorted(LABEL_ALIASES & header_map.keys(), key=_orden_etiqueta)]
+                category_columns = [header_map[n] for n in sorted(CATEGORY_ALIASES & header_map.keys())]
+                for numero, valores in enumerate(ventana[fila_encabezado + 1:], fila_encabezado + 2):
+                    if _es_fila_marcador(valores) or _es_encabezado_de_diccionario(_mapa_encabezado(valores)):
+                        continue
+                    if variable_column >= len(valores) or not str(valores[variable_column] or "").strip():
+                        continue
+                    variable, _ = safe_text(valores[variable_column], estructural=True)
+                    etiquetas = [safe_text(valores[i])[0] for i in label_columns
+                                 if i < len(valores) and str(valores[i] or "").strip()]
+                    categorias = [safe_text(valores[i])[0] for i in category_columns
+                                  if i < len(valores) and str(valores[i] or "").strip()]
+                    objects.append({
+                        "locator": f"{locator}#diccionario-fila={numero}:variable={variable}",
+                        "parent_locator": locator, "type": "VARIABLE-DICCIONARIO-XLS",
+                        "name": variable,
+                        "label": etiquetas[0] if etiquetas else "NO-APLICA",
+                        "definition": " · ".join(etiquetas) if etiquetas else "metadato de diccionario",
+                        "categories": categorias, "sheet": clean,
+                    })
     return objects
 
 
@@ -1536,6 +1704,25 @@ def _dta_objects(path: Path) -> list[dict[str, Any]]:
         value_tables = reader.value_labels()
         variables = list(reader._varlist)
         formats = dict(zip(variables, reader._fmtlist))
+        # `_fmtlist` es el formato de VISUALIZACION (%9.0g). El TIPO de
+        # almacenamiento vive en `_dtyplist`/`_typlist`, ya poblados en este mismo
+        # reader tras `variable_labels()`, y el SS8 los exige explicitamente para
+        # DTA/SAV. Estaban al 0.00 % en los 42 687 objetos VARIABLE-DTA por pura
+        # omision: cero I/O adicional, cero lectura de observaciones y cero riesgo
+        # de privacidad -- un codigo de tipo de almacenamiento no identifica a nadie.
+        crudos = list(getattr(reader, "_dtyplist", None) or getattr(reader, "_typlist", None) or [])
+        tipos: dict[str, str] = {}
+        for nombre_var, crudo in zip(variables, crudos):
+            texto = str(crudo).lstrip("|")
+            if isinstance(crudo, int) or texto.isdigit():
+                # Stata codifica una cadena como la LONGITUD de la cadena, y
+                # `_dtyplist` la entrega como texto. Sin esta rama, `municode`
+                # -- string de 5 caracteres, formato %9s -- salia NUMERICO-5.
+                tipos[nombre_var] = f"STRING-{texto}"
+            elif texto.startswith(("S", "s", "object", "U")):
+                tipos[nombre_var] = "STRING"
+            else:
+                tipos[nombre_var] = f"NUMERICO-{texto}"
         label_tables = dict(zip(variables, reader._lbllist))
         objects.append({
             "locator": "tabla=stata", "type": "TABLA-DTA", "name": "tabla-stata",
@@ -1551,7 +1738,7 @@ def _dta_objects(path: Path) -> list[dict[str, Any]]:
                 "locator": f"tabla=stata#variable={variable_ordinal}:nombre_sha256={name_sha256}", "type": "VARIABLE-DTA",
                 "parent_locator": "tabla=stata",
                 "name": clean_name, "label": clean_label,
-                "definition": f"formato={formats.get(name, 'NO-DETERMINADO')}",
+                "definition": f"tipo={tipos.get(name, 'NO-DETERMINADO')};formato={formats.get(name, 'NO-DETERMINADO')}",
                 "value_labels": label_names,
             })
     return objects
