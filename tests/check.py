@@ -22,6 +22,7 @@ BASELINE_MODE = "--baseline" in sys.argv
 FREEZE_MODE = "--freeze" in sys.argv
 BASELINE_PATH = os.path.join(ROOT, "tests", "baseline.json")
 FAILS, WARNS = [], []
+SENAL = []
 
 def read(p):
     return io.open(p, encoding="utf-8").read()
@@ -34,6 +35,14 @@ def fail(test, msg):
 
 def warn(test, msg):
     (FAILS if STRICT else WARNS).append((test, msg))
+
+def senal(test, msg):
+    """WARN de vigía: dispara por diseño en cada corrida, así que por
+    construcción no puede ser un detector de regresiones. Se imprime
+    igual —A.12 le encarga justamente gritar hasta que alguien atienda—
+    y queda fuera de la comparación de línea base."""
+    (FAILS if STRICT else WARNS).append((test, msg))
+    SENAL.append((test, _baseline_key(msg)))
 
 def newest(pattern):
     """El archivo vigente de un artefacto versionado. Ordena por versión
@@ -580,7 +589,37 @@ def _suite_real():
     completa para preguntarle 'cuál es tu resultado real' mientras todavía
     está corriendo es un problema de punto fijo, no una pregunta con
     respuesta. El subproceso excluye T16 de sí mismo: la cifra contra la
-    que este test compara es 'todo lo demás', no 'todo incluido yo mismo'."""
+    que este test compara es 'todo lo demás', no 'todo incluido yo mismo'.
+
+    Punto fijo verificado, no asumido (ACTO CI-CATEGORIA, 18/ago/2026,
+    contra 997482b). Como T16 nunca corre dentro de este subproceso, el
+    par (real_fail, real_warn) que devuelve NUNCA incluye la contribución
+    de T16 -- es estructuralmente estable frente a cuántas citas de
+    gobernanza estén desincronizadas (0, 1, 2 o 3), no una coincidencia de
+    esta corrida en particular. Confirmado por prueba directa (editada y
+    revertida, no commiteada): fijar una sola cita vigente
+    (`gobernanza:1658`) al valor esperado bajó el FAIL de la corrida
+    completa de 22 a 21 -- un T16 menos -- y este subproceso siguió dando
+    exactamente 19 FAIL · 132 WARN, sin moverse un dígito. La trampa que
+    esto previene: quien resincronice `gobernanza:1106`, `:1136` o
+    `:1658` copiando el total impreso al pie de la corrida (22 FAIL) en
+    vez del que este test acepta (19 FAIL, el 'núcleo' sin T16) deja esas
+    líneas rojas para siempre -- ningún `declara` hace cerrar la
+    comparación contra 22, porque este subproceso jamás calcula 22.
+
+    Las tres citas que hoy no matchean el núcleo (`gobernanza:1106`,
+    `:1136`, `:1658`) no se reescriben aquí: las tres narran un estado
+    PASADO de un ADR ya sellado (ADR-76(f)/ADR-77/ADR-94 respectivamente),
+    sin el formato de blockquote que `_CAMBIO_FECHADO` exige para
+    reconocerlas como histórico -- límite ya declarado en el docstring de
+    `t16_suite_self_check`. Sobreescribirlas con el núcleo vigente
+    falsearía lo que esos ADR midieron al sellarse -- `gobernanza:1106`
+    lo dice verbatim: "nunca debe seguir al real". Quedan protegidas por
+    el mecanismo que ya existe: `_T16_REAL_SUFIJO` normaliza el sufijo
+    volátil ('la corrida real da…') de la clave de línea base para las
+    tres por igual -- el regex no está acotado a `:1106`/`:1136` -- así
+    que ninguna necesita recongelarse cada vez que el WARN real se mueve
+    por una causa ajena a gobernanza."""
     import subprocess
     env = dict(os.environ, CHECK_SELFCHECK_CHILD="1")
     try:
@@ -597,21 +636,24 @@ def t16_suite_self_check():
     """Ninguna afirmación VIGENTE de FAIL/WARN en canon/ puede contradecir
     la corrida real (subproceso independiente, ver `_suite_real`).
 
-    LÍMITE DECLARADO -- léelo antes de tocar este test: el único marcador
-    mecánico que reconoce "esto es historia, no estado vigente" es
-    `_CAMBIO_FECHADO`, que exige el formato literal `> **vX.Y — DD/mon.**`
-    al INICIO de la línea (el patrón que `estado §0` ya usa para v1.1,
-    v1.6, v1.7, v1.8). Si un canónico narra un cambio pasado con cualquier
-    otra forma -- una tabla, una nota sin blockquote, una fecha en otro
-    lugar de la oración -- este test NO lo reconocerá como histórico y
-    marcará FAIL un registro que en realidad es correcto. Verificado en la
-    sesión de tests (29/jul/2026): quitarle el `>` a una entrada histórica
-    real basta para que empiece a fallar -- la exención es real, pero es
-    tan angosta como el formato que sabe reconocer. Antes de ampliar el
-    universo de documentos o de patrones que este test vigila, hay que
-    ampliar `_CAMBIO_FECHADO` en la misma medida, o se repite exactamente
-    el defecto de T07 (cobertura más angosta que el fenómeno que declara
-    medir)."""
+    LÍMITE DECLARADO -- léelo antes de tocar este test: dos marcadores
+    mecánicos reconocen "esto es historia, no estado vigente". El primero,
+    `_CAMBIO_FECHADO`, exige el formato literal `> **vX.Y — DD/mon.**` al
+    INICIO de la línea (el patrón que `estado §0` ya usa para v1.1, v1.6,
+    v1.7, v1.8). El segundo, `MARCA_HISTORICA` (ACTO T16-HISTÓRICAS,
+    18/ago/2026 -- mismo mecanismo `{cita-historica}` que T15 ya usa desde
+    ADR-72), exime SOLO la cita inmediatamente anterior a la marca: una
+    línea con dos citas y una marca deja la otra vigilada. Si un canónico
+    narra un cambio pasado con cualquier otra forma -- una tabla, una nota
+    sin blockquote ni marca, una fecha en otro lugar de la oración -- este
+    test NO lo reconocerá como histórico y marcará FAIL un registro que en
+    realidad es correcto. Verificado en la sesión de tests (29/jul/2026):
+    quitarle el `>` a una entrada histórica real basta para que empiece a
+    fallar -- la exención es real, pero es tan angosta como los dos
+    formatos que sabe reconocer. Antes de ampliar el universo de
+    documentos o de patrones que este test vigila, hay que ampliar ambos
+    marcadores en la misma medida, o se repite exactamente el defecto de
+    T07 (cobertura más angosta que el fenómeno que declara medir)."""
     real_fail, real_warn, err = _suite_real()
     if real_fail is None:
         fail("T16", f"no se pudo derivar el resultado real de la suite (subproceso): {err}")
@@ -619,15 +661,17 @@ def t16_suite_self_check():
     for p in glob.glob(os.path.join(ROOT, "canon", "*.md")):
         for i, l in enumerate(read(p).split("\n"), 1):
             historico = bool(_CAMBIO_FECHADO.match(l))
-            m1 = re.search(r"\*\*(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN\*\*", l)
-            if m1 and not historico:
-                fd, wd = int(m1.group(1)), int(m1.group(2))
+            for m in re.finditer(r"\*\*(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN\*\*", l):
+                if historico or re.match(MARCA_HISTORICA, l[m.end():]):
+                    continue
+                fd, wd = int(m.group(1)), int(m.group(2))
                 if (fd, wd) != (real_fail, real_warn):
                     fail("T16", f"{rel(p)}:{i} declara {fd} FAIL · {wd} WARN vigente; "
                                 f"la corrida real da {real_fail} FAIL · {real_warn} WARN")
-            m2 = re.search(r"total de WARN de la suite es\s*\*{0,2}(\d+)", l)
-            if m2 and not historico:
-                wd = int(m2.group(1))
+            for m in re.finditer(r"total de WARN de la suite es\s*\*{0,2}(\d+)", l):
+                if historico or re.match(MARCA_HISTORICA, l[m.end():]):
+                    continue
+                wd = int(m.group(1))
                 if wd != real_warn:
                     fail("T16", f"{rel(p)}:{i} declara {wd} WARN vigente; "
                                 f"la corrida real da {real_warn} WARN")
@@ -1249,6 +1293,15 @@ _T22_ARCHIVOS_CONOCIDOS = {
     "forense/notas/2026-08-14-tablero-firmas-commit3.md",            # esta misma nota cita los marcadores verbatim al documentarlos -- mismo autocaptura que ya tuvo el commit 2
     "forense/notas/2026-08-14-tablero-firmas-commit4-freeze.md",     # ídem, tercera vez
     "forense/notas/2026-08-14-tablero-firmas-commit5-colision-adr84.md",  # ídem, cuarta vez
+    # Sumado en ACTO CI-CATEGORIA, 18/ago/2026 -- la nota documenta, por
+    # nombre, el control C2 del commit 1 (que crea a propósito un archivo
+    # con el marcador RANURA para probar la protección de (b)); la cita es
+    # verbatim al describir el control, no una ranura real sin fila --
+    # mismo autocaptura ya visto en las notas de TABLERO-FIRMAS arriba.
+    # (El encargo archivado del mismo acto, 2026-08-18-CI-CATEGORIA-
+    # devolver-significado-ci.md, no lleva ninguno de los dos marcadores
+    # -- verificado, no supuesto -- así que no se añade aquí.)
+    "forense/notas/2026-08-18-ci-categoria.md",
 }
 
 def _t22_tabla():
@@ -1289,7 +1342,7 @@ def t22_firmas():
             edad_txt = f"{(hoy - datetime.date(anio, mes, dia)).days} días"
         except (ValueError, TypeError):
             pass
-        warn("T22", f"{f.get('id', '?')} ABIERTA desde {f.get('creado', '?')} "
+        senal("T22", f"{f.get('id', '?')} ABIERTA desde {f.get('creado', '?')} "
                      f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
 
     # (c) WARN por cada fila FIRMADA con `ejecutada_en` vacío -- una firma
@@ -1308,7 +1361,7 @@ def t22_firmas():
             edad_txt = f"{(hoy - datetime.date(anio, mes, dia)).days} días"
         except (ValueError, TypeError):
             pass
-        warn("T22", f"{f.get('id', '?')} FIRMADA sin ejecutar desde {f.get('creado', '?')} "
+        senal("T22", f"{f.get('id', '?')} FIRMADA sin ejecutar desde {f.get('creado', '?')} "
                      f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
 
     # (b) auto-protección: archivo nuevo de canon/forense con marcador de
@@ -1597,8 +1650,8 @@ def _freeze_baseline():
     import json
     data = {
         "head": _git_head(),
-        "fails": sorted({(t, _baseline_key(m)) for t, m in FAILS}),
-        "warns": sorted({(t, _baseline_key(m)) for t, m in WARNS}),
+        "fails": sorted({(t, _baseline_key(m)) for t, m in FAILS} - set(SENAL)),
+        "warns": sorted({(t, _baseline_key(m)) for t, m in WARNS} - set(SENAL)),
         "nota": _freeze_note(),
     }
     with open(BASELINE_PATH, "w", encoding="utf-8") as f:
@@ -1615,7 +1668,8 @@ def _baseline_compare():
     with open(BASELINE_PATH, encoding="utf-8") as f:
         data = json.load(f)
     known = {tuple(e) for e in data["fails"]} | {tuple(e) for e in data["warns"]}
-    current = {(t, _baseline_key(m)) for t, m in FAILS} | {(t, _baseline_key(m)) for t, m in WARNS}
+    current = ({(t, _baseline_key(m)) for t, m in FAILS} |
+               {(t, _baseline_key(m)) for t, m in WARNS}) - set(SENAL)
     nuevos = current - known
     resueltos = known - current
     print("\n" + "─" * 72)
