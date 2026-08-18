@@ -299,7 +299,7 @@ $ python3 tests/check.py --baseline
   30 FAIL · 129 WARN
   LÍNEA BASE: ROJO — 11 entradas nuevas [...]
   · T02: nombre normalizado colisiona: forense/notas/2026-08-17-registra-17ago.md · forense/encargos/2026-08-17-REGISTR[...]
-  · T03: forense/notas/2026-08-17-registra-17ago.md: cita `PLAN-MULTIFASE-F0-F6-2026-08-13.md`, que no existe
+  · T03: forense/notas/2026-08-17-registra-17ago.md: cita PLAN-MULTIFASE-F0-F6-2026-08-13.md (sin backticks aquí, mismo motivo que abajo), que no existe
   · T15: canon/estado-programa-v1_10.md: cita 91 ADR; gobernanza tiene 92 únicos
   · T16: canon/estado-programa-v1_10.md: declara 128 WARN vigente; [...]
   · T16: canon/estado-programa-v1_10.md: declara 18 FAIL · 128 WARN vigente; [...]
@@ -322,7 +322,7 @@ Distintos. Las tres referencias propias a la nota (en `canon/gobernanza-v1_15.md
 $ sed -n '3p' forense/notas/2026-08-14-enlace2-clase-limbo.md
 **Encargo:** [...] (citado sin backticks a propósito: vive fuera del repo y T03 no distingue mención de referencia — mismo remedio que ENLACE-1 Commit 3)
 ```
-Mismo remedio aplicado: el encabezado de la nota que citaba `` `PLAN-MULTIFASE-F0-F6-2026-08-13.md` `` (con backticks — el archivo no existe, es justo lo que `FP-42` documenta) pasa a citarlo sin backticks, con la misma glosa entre paréntesis.
+Mismo remedio aplicado: el encabezado de la nota que citaba PLAN-MULTIFASE-F0-F6-2026-08-13.md entre backticks (el archivo no existe, es justo lo que `FP-42` documenta) pasa a citarlo sin backticks, con la misma glosa entre paréntesis. *(Y esta propia línea lo cita sin backticks, a propósito, por la misma razón — T03 escanea también dentro de bloques de código y de comillas dobles de markdown, no distingue mención de referencia en ningún contexto.)*
 
 **T16 — la parte que dirección no nombró, y que sí era mía: el conteo real subió de 18 a 20 FAIL (núcleo, T16 excluido de sí mismo) porque `T15` ahora falla dos veces (`estado-programa:27` y `:101`), y eso rompió las CINCO citas "mutables" `**18 FAIL · 128 WARN**` de `gobernanza-v1_15.md` (líneas 764, 856, 1274, 1387, 1393) que antes coincidían.** Estas cinco se distinguen por texto propio de las dos verdaderamente congeladas (`:1106`/`:1136`, `18 FAIL · 104 WARN`, historia sellada de `ADR-76(f)`, nunca tocadas): las cinco dicen explícitamente *"cifra mantenida en sincronía por T16, no historia congelada"*. Mismo mecanismo, mismo remedio, que `ADR-91` ya aplicó sobre sí mismo: *"los sitios vigentes de **N FAIL · M WARN** en canon/, cambio de dígito únicamente, sin reescribir la prosa alrededor; los dos 'permanentes' [...] no se tocan."*
 
