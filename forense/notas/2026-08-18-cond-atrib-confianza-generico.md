@@ -64,3 +64,61 @@ Para ejes con 3+ niveles (Edad, Formalidad, Escolaridad, Estrato) -- que NO est�
 **El contador (auditoría, declarado antes de correr):** este acto mide México. Mueve la entrada de C0 de `PENDIENTE` a `MEDIDO·PARCIAL(x)` (la clase que corresponde a su familia `condicionales_escalares`, no `MEDIDO·β̂` -- esta entrada nunca tuvo un β̂ propio, tenía cero número). No toca el contador de coeficientes de generador en escala del modelo (hoy 0 de 15): esta medición es una condicional θ(x) sobre un ítem que no es un componente nombrado del vector de `ADR-28.b` (declarado por `ADR-57(e)`, procedencia.yaml:293-307) -- sigue sin alimentar ningún generador con nombre. Sigue siendo asociación condicionada, no identificación (A-bis regla 1-2); el primero de la lista de 15 sigue reservado a FP-11.
 
 **El primer resultado que produzca este procedimiento es el que se reporta.**
+
+## 2 · Resultados — primera y única corrida
+
+**Nota de proceso, antes de los números.** Al escribir el script se cometió un defecto de código (no de especificación): la variable de agregación de diseño `EST_DIS` (~347 estratos de diseño, rango 001-999) se reasignó por error también a la variable del eje sustantivo "Estrato" (`eje_est`), que la especificación de §1 nombra correctamente como `EST` (1-4). El primer intento de ejecución produjo ~347 niveles espurios para ese eje -- detectado por inspección directa del output (recuento de líneas y valores de nivel fuera de {1,2,3,4}) antes de escribir cualquier resultado en este archivo o en `procedencia.yaml`. Corregido (`eje_est = df["EST"]`, no `df["est"]`) y re-ejecutado una sola vez más antes de reportar. Esto no es "corregir la especificación hacia atrás" (§1 siempre dijo `EST`): es una corrección de una implementación que no seguía lo ya congelado, hecha antes de que ningún resultado circulara. Se declara para que conste, no se oculta.
+
+Comando: `unshare -Urn -- python3 cond_atrib_run.py` (script idéntico a lo congelado en §1, salvo la línea `eje_est` corregida como se explica arriba), ejecutado desde la raíz de este worktree contra `/home/pc0/mm-corpus/raw/encig23_base_datos_csv.zip`.
+
+```
+universo efectivo (P11_1_23 valido, excl. 5 y 9): n=37845
+
+MARGINAL GLOBAL (contexto, no referencia de diferencia): p_hat=0.5135 IC95%=[0.5052,0.5218] n=37845 n_estratos=347 singleton=0
+
+=== EJE: Edad (n=37670 de 37845, niveles=['18-29', '30-44', '45-59', '60+']) ===
+  18-29: n_T=8207 (con soporte) n_C=29463 | p_hat(nivel)=0.5469 | d_hat=+0.0443 IC95%=[+0.0251,+0.0635] se=0.0098 | n_estratos=347 singleton=0 n_upm=8916
+  30-44: n_T=11387 (con soporte) n_C=26283 | p_hat(nivel)=0.4798 | d_hat=-0.0471 IC95%=[-0.0643,-0.0299] se=0.0088 | n_estratos=347 singleton=0 n_upm=8916
+  45-59: n_T=9747 (con soporte) n_C=27923 | p_hat(nivel)=0.4904 | d_hat=-0.0318 IC95%=[-0.0499,-0.0136] se=0.0092 | n_estratos=347 singleton=0 n_upm=8916
+  60+: n_T=8329 (con soporte) n_C=29341 | p_hat(nivel)=0.5504 | d_hat=+0.0459 IC95%=[+0.0257,+0.0661] se=0.0103 | n_estratos=347 singleton=0 n_upm=8916
+
+=== EJE: Formalidad (POS) (n=26502 de 37845, niveles=['cuenta-propia', 'empleado-obrero', 'jornalero', 'patron', 'sin-pago']) ===
+  cuenta-propia: n_T=6812 (con soporte) n_C=19690 | p_hat(nivel)=0.4725 | d_hat=-0.0382 IC95%=[-0.0606,-0.0158] se=0.0114 | n_estratos=347 singleton=0 n_upm=8776
+  empleado-obrero: n_T=18370 (con soporte) n_C=8132 | p_hat(nivel)=0.5116 | d_hat=+0.0352 IC95%=[+0.0143,+0.0561] se=0.0107 | n_estratos=347 singleton=0 n_upm=8776
+  jornalero: n_T=282 (con soporte) n_C=26220 | p_hat(nivel)=0.5161 | d_hat=+0.0151 IC95%=[-0.0774,+0.1075] se=0.0472 | n_estratos=347 singleton=0 n_upm=8776
+  patron: n_T=788 (con soporte) n_C=25714 | p_hat(nivel)=0.4372 | d_hat=-0.0659 IC95%=[-0.1207,-0.0110] se=0.0280 | n_estratos=347 singleton=0 n_upm=8776
+  sin-pago: n_T=250 (con soporte) n_C=26252 | p_hat(nivel)=0.6569 | d_hat=+0.1572 IC95%=[+0.0726,+0.2418] se=0.0432 | n_estratos=347 singleton=0 n_upm=8776
+
+=== EJE: Sexo (n=37845 de 37845, niveles=['Hombre', 'Mujer']) ===
+  Hombre: n_T=17254 (con soporte) n_C=20591 | p_hat(nivel)=0.5038 | d_hat=-0.0180 IC95%=[-0.0345,-0.0015] se=0.0084 | n_estratos=347 singleton=0 n_upm=8919
+  Mujer: n_T=20591 (con soporte) n_C=17254 | p_hat(nivel)=0.5218 | d_hat=+0.0180 IC95%=[+0.0015,+0.0345] se=0.0084 | n_estratos=347 singleton=0 n_upm=8919
+
+=== EJE: Escolaridad (NIV) (n=37845 de 37845, niveles=['Basica-o-menos', 'Media-superior-tecnica', 'Superior']) ===
+  Basica-o-menos: n_T=14762 (con soporte) n_C=23083 | p_hat(nivel)=0.5196 | d_hat=+0.0101 IC95%=[-0.0074,+0.0277] se=0.0090 | n_estratos=347 singleton=0 n_upm=8919
+  Media-superior-tecnica: n_T=9278 (con soporte) n_C=28567 | p_hat(nivel)=0.5254 | d_hat=+0.0162 IC95%=[-0.0039,+0.0362] se=0.0102 | n_estratos=347 singleton=0 n_upm=8919
+  Superior: n_T=13805 (con soporte) n_C=24040 | p_hat(nivel)=0.4973 | d_hat=-0.0246 IC95%=[-0.0420,-0.0072] se=0.0089 | n_estratos=347 singleton=0 n_upm=8919
+
+=== EJE: Estrato (EST) (n=37845 de 37845, niveles=['1', '2', '3', '4']) ===
+  1: n_T=561 (con soporte) n_C=37284 | p_hat(nivel)=0.5307 | d_hat=+0.0176 IC95%=[-0.0487,+0.0838] se=0.0338 | n_estratos=347 singleton=0 n_upm=8919
+  2: n_T=16975 (con soporte) n_C=20870 | p_hat(nivel)=0.5082 | d_hat=-0.0097 IC95%=[-0.0265,+0.0071] se=0.0086 | n_estratos=347 singleton=0 n_upm=8919
+  3: n_T=13965 (con soporte) n_C=23880 | p_hat(nivel)=0.5187 | d_hat=+0.0079 IC95%=[-0.0093,+0.0251] se=0.0088 | n_estratos=347 singleton=0 n_upm=8919
+  4: n_T=6344 (con soporte) n_C=31501 | p_hat(nivel)=0.5151 | d_hat=+0.0019 IC95%=[-0.0186,+0.0225] se=0.0105 | n_estratos=347 singleton=0 n_upm=8919
+```
+
+Verificación de totales por eje contra el universo declarado (n=37845): Edad suma 37670 (175 excluidos, código EDAD 98/99 no especificada) · Formalidad suma 26502 (11343 excluidos, blanco estructural = no trabajó la semana de referencia, declarado en §1) · Sexo suma 37845 (cero excluidos) · Escolaridad suma 37845 (cero excluidos) · Estrato suma 37845 (cero excluidos) -- todos reconcilian contra lo esperado en §1, ningún eje pierde filas fuera de lo ya declarado.
+
+## 3 · Interpretación
+
+Aplicando exactamente la regla declarada en §1(6), sin adjudicar mecanismo y sin lectura causal (A-bis regla 2):
+
+**Sexo (2 niveles -- propiedad mecánica declarada, no hallazgo de robustez).** `d_hat` antisimétrico exacto: Hombre −0.0180 [−0.0345,−0.0015], Mujer +0.0180 [+0.0015,+0.0345] -- ambos apenas distinguibles de cero (el límite superior/inferior roza 0.0015). Brecha pequeña (3.6pp) pero detectable: mujeres marginalmente más confiadas que hombres en este universo.
+
+**Edad (4 niveles).** Rango de `p_hat`: 0.4798 (30-44, mínimo) a 0.5504 (60+, máximo) -- 7.1pp de recorrido. **4 de 4 niveles con `d_hat` distinguible de cero al 95%**: 18-29 y 60+ positivos (por encima del resto del eje), 30-44 y 45-59 negativos. Patrón: forma de U, no monótono -- adultos jóvenes y adultos mayores confían más en "servidores públicos genéricos" que adultos de edad media; sustantivo dado que las cuatro celdas tienen IC95% que no cruzan cero.
+
+**Formalidad/POS (5 niveles).** Rango de `p_hat`: 0.4372 (patrón, mínimo) a 0.6569 (sin-pago, máximo) -- 22pp de recorrido, el más amplio de los cinco ejes. **4 de 5 niveles con `d_hat` distinguible de cero** (jornalero es la excepción, IC95%=[−0.0774,+0.1075], cruza cero pese a n=282≥30 -- celda con soporte pero sin señal). Sin patrón ordenado limpio por "formalidad": sin-pago (trabajo familiar sin remuneración) es el nivel más confiado con diferencia amplia (+15.7pp), patrón es el menos confiado (−6.6pp); empleado/obrero positivo (+3.5pp), cuenta propia negativo (−3.8pp). No se lee como escala de formalidad creciente o decreciente -- disperso, con dos extremos marcados.
+
+**Escolaridad/NIV (3 niveles).** Rango de `p_hat`: 0.4973 (Superior, mínimo) a 0.5254 (Media-superior-técnica, máximo) -- 2.8pp, modesto. **Solo 1 de 3 niveles distinguible de cero**: Superior, negativo (−2.5pp) -- quienes tienen escolaridad superior confían algo menos que el resto en este reactivo; Básica-o-menos y Media-superior-técnica no se distinguen de cero. No hay patrón monótono limpio (Básica 0.5196 → Media 0.5254 → Superior 0.4973, sube y luego baja) -- señal débil, concentrada en un extremo.
+
+**Estrato/EST (4 niveles).** Rango de `p_hat`: 0.5082 (nivel 2, mínimo) a 0.5307 (nivel 1, máximo) -- 2.3pp, el más chico de los cinco ejes. **0 de 4 niveles distinguible de cero.** Sin patrón -- efectivamente plano; el diccionario no da significado sustantivo a los cuatro niveles de `EST` más allá de "Estrato" (§1), así que no se interpreta más allá de "sin señal aquí".
+
+**Ningún punto de este acto se adjudica sin IC que lo despeje** (A-bis, contraparte) -- jornalero (Formalidad), y los tres niveles no marcados arriba en Escolaridad y los cuatro de Estrato, cruzan cero y se reportan como propuesta sin adjudicación. Ninguna lectura causal ni de intervención. Universo restringido a ENCIG (ciudades de 100 000+ habitantes) -- no se reconcilia contra un marginal de otra fuente ni otro universo (A-bis regla 4). Ningún número de esta sección se compara en magnitud contra el β̂ de `coeficientes_generador_medidos.G1_confianza_institucional` (−0.0645) -- mismo reactivo, escala y desenlace distintos (A-bis regla 3).
