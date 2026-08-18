@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "barrido2-semantic-proposal.schema.json",
+  "title": "BARRIDO-2 supervised semantic proposal row",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "propuesta_id", "tarea_id", "reporte_id", "payload_id", "representacion_id",
+    "sha256", "objeto_logico_id", "necesidad_id", "reactivo_id", "accion_propuesta",
+    "relacion_id_actual", "veredicto_a4", "evidencia_ref", "frontera_semantica",
+    "confianza", "requiere_decision_mesa", "decision_mesa_id", "dependencia_fp24",
+    "razon_gate", "estado_supervision", "supervisor_id", "fecha"
+  ],
+  "properties": {
+    "propuesta_id": {"type": "string", "pattern": "^PROP-B2-[0-9a-f]{24,64}$"},
+    "tarea_id": {"type": "string", "minLength": 1},
+    "reporte_id": {"type": "string", "minLength": 1},
+    "payload_id": {"type": "string", "minLength": 1},
+    "representacion_id": {"type": "string", "pattern": "^REP-[0-9a-f]{64}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "objeto_logico_id": {"type": "string", "pattern": "^OBJ-B2-[0-9a-f]{64}$"},
+    "necesidad_id": {"type": "string", "pattern": "^N([1-9]|[12][0-9]|3[0-3])$"},
+    "reactivo_id": {"type": "string", "minLength": 1},
+    "accion_propuesta": {"enum": ["ALTA", "CAMBIO", "SIN_CAMBIO", "TERMINAL"]},
+    "relacion_id_actual": {"type": "string", "minLength": 1},
+    "veredicto_a4": {"enum": ["EXISTE-SATISFACE", "EXISTE-NO-SATISFACE", "NO-ENCONTRADO-EN-UNIVERSO-INSPECCIONADO", "NO-ACCESIBLE", "NO-DETERMINADO"]},
+    "evidencia_ref": {"type": "string", "minLength": 1},
+    "frontera_semantica": {"type": "string", "minLength": 1, "maxLength": 160},
+    "confianza": {"enum": ["ALTA", "MEDIA", "BAJA", "NO-DETERMINADO"]},
+    "requiere_decision_mesa": {"enum": ["SI", "NO"]},
+    "decision_mesa_id": {"enum": ["FP-24", "NO-APLICA"]},
+    "dependencia_fp24": {"enum": ["SI", "NO"]},
+    "razon_gate": {"type": "string", "minLength": 1, "maxLength": 160},
+    "estado_supervision": {"enum": ["PENDIENTE", "VALIDADA", "RECHAZADA_FAIL_CLOSED", "CONFLICTO_MATERIAL", "REQUIERE_DECISION_FP24"]},
+    "supervisor_id": {"type": "string", "minLength": 1},
+    "fecha": {"type": "string", "format": "date"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"dependencia_fp24": {"const": "SI"}}, "required": ["dependencia_fp24"]},
+      "then": {
+        "properties": {
+          "requiere_decision_mesa": {"const": "SI"},
+          "decision_mesa_id": {"const": "FP-24"},
+          "estado_supervision": {"const": "REQUIERE_DECISION_FP24"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"dependencia_fp24": {"const": "NO"}}, "required": ["dependencia_fp24"]},
+      "then": {
+        "properties": {
+          "requiere_decision_mesa": {"const": "NO"},
+          "decision_mesa_id": {"const": "NO-APLICA"}
+        }
+      }
+    }
+  ]
+}

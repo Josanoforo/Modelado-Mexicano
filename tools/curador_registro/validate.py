@@ -15,10 +15,12 @@ from jsonschema import Draft202012Validator
 
 try:
     from .baseline import validar_baseline
+    from .barrido2_material import validate_material_files
     from .integrate import validate_integration_dossier
     from .integrate_production import verify_production_bundle
 except ImportError:
     from baseline import validar_baseline
+    from barrido2_material import validate_material_files
     from integrate import validate_integration_dossier
     from integrate_production import verify_production_bundle
 
@@ -709,10 +711,29 @@ def validate(repo_root: Path, output_root: Path | None = None) -> dict[str, Any]
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--repo-root", type=Path, required=True)
+    parser.add_argument("--barrido2-material", action="store_true")
+    parser.add_argument("--snapshot", type=Path)
+    parser.add_argument("--contract", type=Path)
+    parser.add_argument("--task-root", type=Path)
+    parser.add_argument("--ledger", type=Path)
+    parser.add_argument("--staging-root", type=Path)
+    parser.add_argument("--require-complete", action="store_true")
+    parser.add_argument("--repo-root", type=Path)
     parser.add_argument("--output-root", type=Path)
     parser.add_argument("--write-dashboard", type=Path)
     args = parser.parse_args()
+    if args.barrido2_material:
+        if not all((args.snapshot, args.contract, args.task_root, args.ledger)):
+            parser.error("--barrido2-material requiere --snapshot, --contract, --task-root y --ledger")
+        result = validate_material_files(
+            args.snapshot.resolve(), args.contract.resolve(), args.task_root.resolve(),
+            args.ledger.resolve(), args.staging_root.resolve() if args.staging_root else None,
+            require_complete=args.require_complete,
+        )
+        print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
+        return 0 if result["ok"] else 1
+    if args.repo_root is None:
+        parser.error("modo histórico requiere --repo-root")
     result = validate(args.repo_root.resolve(), args.output_root.resolve() if args.output_root else None)
     if args.write_dashboard:
         path = args.write_dashboard.resolve()

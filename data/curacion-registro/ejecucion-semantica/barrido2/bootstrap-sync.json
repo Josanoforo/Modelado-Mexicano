@@ -1,0 +1,31 @@
+{
+  "after_sha256": {
+    "baseline.json": "db88a09a27c3b5e569198ef6033c2a479cfe286babb7d3571011a8646e079703",
+    "bootstrap-semantico.tsv": "ef8342a9a8fd5dac63a32dea939d480a59ce325048edd9867479d44860810e5e",
+    "relaciones.tsv": "50e1e594ddb92be266919990446cf566bbc4f4e657b0dc220cae8227eed2aa86",
+    "trabajo-semantico.tsv": "bc5cc8a798ce9d93596fe78a564cf4f48c0a11377960132ceecaa1c8af0c24f6"
+  },
+  "apply": true,
+  "before_sha256": {
+    "baseline.json": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+    "bootstrap-semantico.tsv": "c8f0bc9ece794e8a0aa591a69fca68fbc8483d8a8b25d3a2948c1c0b93906eb6",
+    "relaciones.tsv": "83c127fe003e2792d472e100d6ce537c85b4ca3642953ac672c03948cd42f0ad",
+    "trabajo-semantico.tsv": "3509605e3c9f2442107f81c351d57b70346e0890d14d3e08f98247f949b40ca3"
+  },
+  "bootstrap_rows": 199,
+  "changed": [
+    "relaciones.tsv",
+    "baseline.json",
+    "bootstrap-semantico.tsv",
+    "trabajo-semantico.tsv"
+  ],
+  "ok": true,
+  "recovered_relation_ids": [
+    "REL-02e6e4861871631dd29048bd",
+    "REL-c3e1306bb304b019d0a94e4b"
+  ],
+  "recovery_ref": "f01e2a930fbbd31cff677573f56a7bb157358cb1",
+  "recovery_sha256": "741161dee36da3f0f0507b0c25a4f30f608a0bc4d83d1f26205b5c4f0e1cd764",
+  "relations": 199,
+  "work_rows": 147
+}

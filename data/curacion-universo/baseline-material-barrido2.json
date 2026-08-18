@@ -1,0 +1,68 @@
+{
+  "base_sha": "f3873c25d12ec3e26730901dc257788011e5ceea",
+  "contracts": {
+    "data/curacion-universo/contrato-barrido2-v1_0.json": "1c96e3beff85f4829e8afa7a316a29ae13ec4643c468b12b9577ee24ba73acfe",
+    "tools/curador_registro/schemas/barrido2-cableado-row.schema.json": "449a2dc0210372823ff8f46ac9b4dfceca8de5bd0c3a4dad6697c53eda29695b",
+    "tools/curador_registro/schemas/barrido2-e2-neutral-record.schema.json": "4097765a3406d52e1796fba06007f096179dbcdbdf1861cb84255ba143f827fb",
+    "tools/curador_registro/schemas/barrido2-material-baseline.schema.json": "637fbf45f3b3b31e6f346d7edad92e727da779bce4ca745f1ed6c50bb78b66b4",
+    "tools/curador_registro/schemas/barrido2-semantic-proposal.schema.json": "3a407c473f0e7ff2e25b7b2f4c2b9ba2c6ce71440576c747838521ea773927cf"
+  },
+  "counts": {
+    "contenidos_sha_unicos": 662,
+    "declaraciones_con_archivo_sha": 627,
+    "declaraciones_sin_archivo_sha": 4,
+    "declaraciones_totales": 631,
+    "fuera_de_disco": 0,
+    "objetos_e1": 1342437,
+    "objetos_e2": 1338518,
+    "reportes_durables": 1875,
+    "representaciones_declaradas": 626,
+    "representaciones_e2_terminales": 672,
+    "representaciones_fisicas": 672,
+    "representaciones_no_declaradas": 46,
+    "waves": {
+      "W1": 26,
+      "W2": 246,
+      "W3": 396,
+      "W4": 4
+    }
+  },
+  "e2_index_sha256": "62faa80c8c12d82a98a7439b287eae2d3919819a38d8edbb600aeed236a6ef23",
+  "exceptions": {
+    "objetos_con_excepcion": 3919,
+    "representaciones_con_excepcion": 373
+  },
+  "fecha": "2026-08-17",
+  "inventory_sha256": "1e6cf0d30cd7b9eeaffa9523fe76729945834a54cd745abbc095ce051df8730b",
+  "ledger_sha256": "395f1c2eb84684782c8324e55febf557a9eca8818113d67990a2f0ab747bfb51",
+  "manifest_sha": "ee50b12c2c868c6024ffa8aca5f614874b5310455320c2ce028f7534fb38ebe2",
+  "network_habilitada": false,
+  "parsers": {
+    "build_sha256": "c484280bf7523047f5976ae9c5179b533a68f1fae86e72814c95e2263df3809d",
+    "build_version": "BARRIDO2-MATERIAL-1.1",
+    "counts": {
+      "barrido2-excepcion-material-1": 83,
+      "barrido2-stdlib-1": 3,
+      "barrido2-stdlib-1+csv": 7,
+      "barrido2-stdlib-1+html": 16,
+      "barrido2-stdlib-1+json": 1,
+      "barrido2-stdlib-1+olefile": 8,
+      "barrido2-stdlib-1+openpyxl": 44,
+      "barrido2-stdlib-1+pandas-stata": 14,
+      "barrido2-stdlib-1+poppler": 86,
+      "barrido2-stdlib-1+sav-dictionary": 3,
+      "barrido2-stdlib-1+xml": 7,
+      "barrido2-stdlib-1+zipfile": 400
+    },
+    "writer_sha256": "eb1015a9cbfac8fcd199a7f4657247b6a0a818380cad5fa22dcf8cd3b439a6bf"
+  },
+  "prisma_material_sha256": "6f20113f061d5789b752701fa80a62c0bae7b32408ec25e4588c134405ed6cf4",
+  "reports": {
+    "durable_rows": 1875,
+    "durable_sha256": "a8163c8ae3491fd5280ef89a82abebbd83aabb39f5741ba18c8d21819073da1f",
+    "estado": "CERRADO-E2",
+    "snapshot_sha256": "62785991687fdf0a385798ba7ccae91a0a03522fdbcc8c2df0b87a7ef9e465cb"
+  },
+  "roots_config_sha256": "5e30427c6fcfc3da5930cc22b2ef4205f95a1f0c4ef942acb976df9c0a522431",
+  "schema_version": "BARRIDO2-MATERIAL-BASELINE-1.0"
+}

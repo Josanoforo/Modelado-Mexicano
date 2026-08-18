@@ -6,6 +6,8 @@
 
 Archivado por convención de este directorio (`forense/encargos/convencion.md`), como primer commit de este acto, antes de ejecutar el resto del bloque de ARRANQUE — Regla A.3 (`instrucciones-proyecto-v2_6.md`, Bloque D-bis). Texto reproducido idéntico al archivado independientemente por la sesión de P·Lote-1 (mismo documento fuente, dos actos distintos lo consumen).
 
+**Decisión de mesa 2026-08-17:** el §6 queda **SUPERADO POR BARRIDO-2**. Se conserva íntegro, con sus gates y adenda históricos; sus 17 aperturas y entregables son subconjunto obligatorio de aceptación dentro de BARRIDO-2 y se consumen solo después del gate E2.
+
 ---
 
 ## Texto completo del encargo, tal como se recibió
@@ -147,6 +149,8 @@ Commit 2 — ejecución: sonda + descarga + sha256 + manifiesto + ficha/puerta, 
 Contador: 2 fuentes de cita-huérfana a estado registrado (adquiridas, en-espera-de-vía, o no-accesibles con razón escrita).
 
 §6 · ACTO M-APERTURA — ENFIH 2019 + ENSAFI 2023 a nivel variable (caja · dos commits POST-DATO)
+
+**SUPERADO POR BARRIDO-2 · decisión de mesa 2026-08-17.** El texto y los gates históricos que siguen no se borran ni se reinterpretan; BARRIDO-2 absorbe su ejecución semántica post-E2.
 
 GATE (script): M-ADQ (§3) cerrado y fusionado — su nota visible y el universo mínimo por fuente en estado EN-CONDUCTO o con la decisión acotada de mesa si algo quedó NO-ENCONTRADO. Además:
 
