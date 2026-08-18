@@ -90,3 +90,24 @@ Recuperado con `git log --format="%h %ad %s" -G"<fragmento fijo de la línea>" -
 - **§7 — `_baseline_key`/`_T16_REAL_SUFIJO` (ADR-90):** no se tocó ningún código de normalización. La colisión de clave que el transfer del 18/ago describía para 7 rastreadores se disuelve sola al bajar a 2 — verificado: `_T16_REAL_SUFIJO = re.compile(r"la corrida real da (\d+ FAIL · )?\d+ WARN")` sigue aplicándose igual a las claves de línea base de `estado-programa:129`/`:221`, que ahora son las únicas dos que producen ese sufijo variable en `FAILS`/`WARNS` de T16; con solo 2 en vez de 7, no hay ningún par de claves que colisionen entre sí que no colisionaran ya antes (la normalización sigue haciendo su trabajo, simplemente sobre menos entradas). No se verificó ni se tocó ningún otro uso de `_baseline_key` fuera de T16.
 - **Cascada de ADR (96→97):** derivada, no tecleada — `grep -oE "^\*\*ADR-[0-9]+" canon/gobernanza-v1_15.md | grep -oE "[0-9]+" | sort -n | tail -1` → `96`, sin huecos. Sitios de cascada re-derivados con `grep -noE ".{0,40}[0-9]+\s*ADR\b.{0,40}" canon/estado-programa-v1_10.md` → **dos** sitios, `:27` y `:101` (el encargo citaba tres, `:27,:99/:101`; `:99` no es cita de conteo de ADR — es la línea de "llaves de identificación ejercidas" — diferencia reportada, no corregida en silencio). Los tres sitios (`gobernanza-v1_15.md:2`, `estado-programa:27`, `:101`) suben de `96` a `97` con `ADR-97`.
 - **PR:** no abierto en este acto — no solicitado explícitamente por quien lanzó el encargo (mismo criterio que `ACTO CI-CATEGORIA` fijó para su propio cierre). La rama `claude/new-session-cy41al` queda lista para revisión; `firmas-pendientes.tsv` registra el pendiente de PR en `ejecutada_en` de `FP-50`.
+
+## Commit 5 · T16 espeja a T15 de verdad
+
+El parche del Commit 1 seguía usando `re.search`, que solo devuelve la **primera** coincidencia de la línea. `t15_adr_count` (`tests/check.py:556`) ya iteraba con `re.finditer`, comprobando `MARCA_HISTORICA` por cada cita, no una vez por línea — `T16` no lo espejaba de verdad.
+
+**Control que expone el defecto, antes y después (inyectado en `canon/gobernanza-v1_15.md`, revertido con `cp` desde respaldo, no queda en el árbol):**
+
+```
+Control doble: **99 FAIL · 99 WARN** {cita-historica} y además **88 FAIL · 88 WARN** sin marca.
+```
+
+- **Antes** (código del Commit 1, `re.search`): `[ ok ] T16 T-SUITE-SELF-CHECK` — la primera cita (marcada) hacía que la función nunca mirara la segunda. Confirmado con `git stash` sobre el código, sin tocar la inyección.
+- **Después** (`re.finditer`): `[FAIL] T16 T-SUITE-SELF-CHECK (1 fail)` — `canon/gobernanza-v1_15.md:1823 declara 88 FAIL · 88 WARN vigente; la corrida real da 19 FAIL · 135 WARN`. Señala exactamente la segunda cita, deja exenta la primera.
+
+**N1/N2/N3 del Commit 1, re-corridos contra el cambio** (mismo camino de código): los tres con el resultado esperado — N1 (cita mala sin marca) `FAIL`; N2 (misma cita, con marca) `[ ok ]`; N3 (T15 con las 8 marcas reales del Commit 2) `[ ok ]`.
+
+**Ninguna de las ocho citas marcadas tenía una segunda cita FAIL/WARN oculta en la misma línea.** Verificado dos veces: (1) `grep -oE` sobre cada una de las 8 líneas cuenta exactamente una cita `**N FAIL · M WARN**` en negritas por línea; (2) tras el cambio a `re.finditer`, la suite se mantiene en `19 FAIL · 135 WARN` con `T16 [ ok ]` — de haber una segunda cita sin marcar, habría aparecido como `FAIL` nuevo, y no fue el caso. No es un hallazgo nuevo esta vez.
+
+**Casi-incidente propio, corregido en el mismo commit:** el primer borrador de la enmienda `(g)` de `ADR-97` citaba el control de arriba con `**88 FAIL · 88 WARN**` en negritas dentro de la propia prosa del ADR — y `T16`, ya corregido, lo detectó como cita vigente sin marcar (`20 FAIL · 135 WARN`, línea base ROJA). Corregido quitando las negritas del ejemplo ilustrativo dentro del ADR (mismo cuidado que `ADR-96` ya tuvo con `T03` para sus propios ejemplos) — sin usar `{cita-ilustrativa}`, que es mecanismo de `T03`, no de `T16`. Re-verificado: `19 FAIL · 135 WARN`, `T16 [ ok ]`, línea base VERDE.
+
+`python3 tests/check.py --baseline` final: `19 FAIL · 135 WARN`, `LÍNEA BASE: VERDE`, sin `--freeze`, `tests/baseline.json` intacto.

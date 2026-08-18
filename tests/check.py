@@ -661,19 +661,17 @@ def t16_suite_self_check():
     for p in glob.glob(os.path.join(ROOT, "canon", "*.md")):
         for i, l in enumerate(read(p).split("\n"), 1):
             historico = bool(_CAMBIO_FECHADO.match(l))
-            m1 = re.search(r"\*\*(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN\*\*", l)
-            if m1 and re.match(MARCA_HISTORICA, l[m1.end():]):
-                m1 = None
-            if m1 and not historico:
-                fd, wd = int(m1.group(1)), int(m1.group(2))
+            for m in re.finditer(r"\*\*(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN\*\*", l):
+                if historico or re.match(MARCA_HISTORICA, l[m.end():]):
+                    continue
+                fd, wd = int(m.group(1)), int(m.group(2))
                 if (fd, wd) != (real_fail, real_warn):
                     fail("T16", f"{rel(p)}:{i} declara {fd} FAIL · {wd} WARN vigente; "
                                 f"la corrida real da {real_fail} FAIL · {real_warn} WARN")
-            m2 = re.search(r"total de WARN de la suite es\s*\*{0,2}(\d+)", l)
-            if m2 and re.match(MARCA_HISTORICA, l[m2.end():]):
-                m2 = None
-            if m2 and not historico:
-                wd = int(m2.group(1))
+            for m in re.finditer(r"total de WARN de la suite es\s*\*{0,2}(\d+)", l):
+                if historico or re.match(MARCA_HISTORICA, l[m.end():]):
+                    continue
+                wd = int(m.group(1))
                 if wd != real_warn:
                     fail("T16", f"{rel(p)}:{i} declara {wd} WARN vigente; "
                                 f"la corrida real da {real_warn} WARN")
