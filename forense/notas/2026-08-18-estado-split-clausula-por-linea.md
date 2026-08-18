@@ -1,6 +1,6 @@
 # Nota del acto · ESTADO-SPLIT — `estado-programa:101` deja de ser una sola línea
 
-18/ago/2026 · rama `claude/launcher-estado-split-wglzaf` · SHA de arranque `f3d3f95` (`origin/main`, merge `#263`, `ACTO COND-ATRIB`, `ADR-105`) · encargo `forense/encargos/2026-08-18-ESTADO-SPLIT.md`.
+18/ago/2026 · `PR #264` · rama `claude/launcher-estado-split-wglzaf` · SHA de arranque `f3d3f95` (`origin/main`, merge `#263`, `ACTO COND-ATRIB`, `ADR-105`) · encargo `forense/encargos/2026-08-18-ESTADO-SPLIT.md`.
 
 Acto **de forma, no de contenido**: no sella ADR, no mueve ningún contador de medición sobre México, no reclasifica nada. Cambia una sola cosa —cómo `git` ve la línea `:101`— y la cambia entera.
 
