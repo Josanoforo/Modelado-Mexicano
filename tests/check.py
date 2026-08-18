@@ -13,13 +13,14 @@ Filosofía: cada ADR que declara un principio necesita un test que FALLE
 visiblemente si no se cumple. "Principio declarado sin requisito de salida"
 es el patrón que explica casi todos los fallos del programa.
 """
-import io, os, re, sys, glob, hashlib, unicodedata, datetime
+import csv, io, os, re, sys, glob, hashlib, unicodedata, datetime
 from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STRICT = "--strict" in sys.argv
 BASELINE_MODE = "--baseline" in sys.argv
 FREEZE_MODE = "--freeze" in sys.argv
+REQUIRE_CABLEADO = "--require-cableado" in sys.argv
 BASELINE_PATH = os.path.join(ROOT, "tests", "baseline.json")
 FAILS, WARNS = [], []
 SENAL = []
@@ -1743,6 +1744,204 @@ def t21_capa2_capa3():
                     f"si es un valor nuevo legítimo, añádelo a CAPA2_CAPA3 con su capa3")
 
 
+# ───────────────────────────────────────────────────────────────
+# T23 · T-CABLEADO -- nace inactivo, activado por --require-cableado
+#
+# Espec única: `forense/notas/2026-08-17-b2-derivaciones-c4.md` §4, que a su
+# vez deriva del encargo madre §21/§22. ACTO T23-INTEGRADOR-CABLEADO,
+# 18/ago/2026 (ADR-98). `T-CABLEADO` no conoce los 20 IDs históricos, ni
+# denominadores, ni cuotas -- la validación es fila por fila.
+#
+# Sin `--require-cableado` y sin `data/cableado-universo-v1_0.tsv`: T23 no
+# emite nada (ni FAIL ni WARN) -- el producto no existe todavía (C6, sin
+# empezar). Con `--require-cableado` y sin producto: FAIL, únicamente por
+# archivo inexistente. Con producto presente (con o sin la bandera): las 19
+# condiciones rigen siempre.
+#
+# Rutas fijadas por este acto (§4: "no tienen ruta fijada en ningún sitio" es
+# el defecto que desbloquea dos de las 19 condiciones) bajo
+# `data/curacion-registro/ejecucion-semantica/barrido2/`, versionadas (§24
+# «Versionable»: propuestas depuradas, decisiones, cableado).
+# ───────────────────────────────────────────────────────────────
+CABLEADO_CABECERA = [
+    "payload_id", "representacion_id", "sha256_12", "sha256", "fuente_canonica",
+    "objeto_logico_id", "necesidad_id", "reactivo_id", "texto_reactivo_recortado",
+    "grado_inspeccion", "afirmacion_tipo", "veredicto_a4", "evidencia",
+    "frontera_inspeccion", "reporte_neutral_ref", "propuesta_id", "relacion_id",
+    "semrun_id", "requiere_decision_mesa", "decision_mesa_id", "dependencia_fp24",
+    "razon_gate", "estado_integracion", "cegamiento_roto", "fecha", "razon",
+]
+_T23_TEXTO_160 = {"texto_reactivo_recortado", "razon_gate", "evidencia", "frontera_inspeccion", "razon"}
+_T23_SENTINELS = {"", "NO-APLICA", "NO-DETERMINADO", "[REDACTADO-PRIVACIDAD]"}
+_T23_NO_INTEGRADA_TERMINAL_OK = {"INTEGRADA", "NO_APLICA_TERMINAL"}
+
+
+def _t23_leer_tsv(path):
+    """None si el archivo no existe -- distinto de [], que es 'existe y está vacío'."""
+    if not os.path.exists(path):
+        return None
+    with io.open(path, encoding="utf-8-sig", newline="") as handle:
+        return list(csv.DictReader(handle, delimiter="\t"))
+
+
+def _t23_fila(n, row, ctx):
+    """Devuelve lista de mensajes FAIL para una fila de cableado. `n` es el
+    número de línea (2-based, la 1 es cabecera)."""
+    problemas = []
+    def f(msg):
+        problemas.append(f"cableado-universo:{n} {msg}")
+
+    payload_id = row.get("payload_id", "")
+    representacion_id = row.get("representacion_id", "")
+    sha = row.get("sha256", "")
+    sha12 = row.get("sha256_12", "")
+    veredicto = row.get("veredicto_a4", "")
+    evidencia = row.get("evidencia", "")
+    frontera = row.get("frontera_inspeccion", "")
+    reporte_ref = row.get("reporte_neutral_ref", "")
+    relacion_id = row.get("relacion_id", "")
+    propuesta_id = row.get("propuesta_id", "")
+    estado_integracion = row.get("estado_integracion", "")
+    grado = row.get("grado_inspeccion", "")
+    requiere_mesa = row.get("requiere_decision_mesa", "")
+    decision_mesa = row.get("decision_mesa_id", "")
+    fp24 = row.get("dependencia_fp24", "")
+
+    # 3 · payload_id ausente
+    if not payload_id:
+        f("payload_id ausente")
+    # 4 · representacion_id ausente
+    if not representacion_id:
+        f("representacion_id ausente")
+    # 5 · SHA inválido
+    if not re.fullmatch(r"[0-9a-f]{64}", sha or ""):
+        f(f"sha256 inválido ({sha!r})")
+    # 6 · sha256_12 incorrecto
+    elif sha12 != sha[:12]:
+        f(f"sha256_12 ({sha12!r}) no es prefijo de sha256")
+    # 7 · celda vacía (resto de las 26, payload_id/representacion_id ya cubiertas arriba)
+    for col in CABLEADO_CABECERA:
+        if col in ("payload_id", "representacion_id"):
+            continue
+        if row.get(col, "") == "":
+            f(f"celda vacía en `{col}`")
+    # 8 · texto >160 (solo las 5 columnas de texto durable)
+    for col in _T23_TEXTO_160:
+        valor = row.get(col, "")
+        if len(valor) > 160:
+            f(f"`{col}` excede 160 caracteres ({len(valor)})")
+    # 9 · evidencia requerida ausente
+    if veredicto in ("EXISTE-SATISFACE", "EXISTE-NO-SATISFACE") and evidencia in _T23_SENTINELS:
+        f(f"veredicto_a4={veredicto} exige evidencia real, trae {evidencia!r}")
+    # 10 · reporte neutral no dereferenciable -- límite declarado (§4): el
+    # índice E2 privado no vive en un clon limpio; se exige forma
+    # dereferenciable (`id:sha256`), no resolución contra el índice.
+    if reporte_ref not in _T23_SENTINELS and not re.fullmatch(r"[^:\s]+:[0-9a-f]{64}", reporte_ref):
+        f(f"reporte_neutral_ref no tiene forma dereferenciable ({reporte_ref!r})")
+    # 11 · negativo sin frontera
+    if veredicto == "EXISTE-NO-SATISFACE" and frontera in _T23_SENTINELS:
+        f("veredicto_a4=EXISTE-NO-SATISFACE sin frontera_inspeccion declarada")
+    # 12 · SIN-DEMANDA-CONFIRMADO sin E2 -- no tiene columna propia (§4);
+    # búsqueda de token en la fila, a mano.
+    if any("SIN-DEMANDA-CONFIRMADO" in (row.get(col, "") or "") for col in CABLEADO_CABECERA) and grado != "E2":
+        f("SIN-DEMANDA-CONFIRMADO exige E2 completo (grado_inspeccion=E2)")
+    # 13 · INTEGRADA con relacion_id inexistente
+    if estado_integracion == "INTEGRADA" and relacion_id not in ctx["relaciones"]:
+        f(f"INTEGRADA cita relacion_id inexistente en relaciones.tsv ({relacion_id!r})")
+    # 14 · INTEGRADA sin decisión verificable de integrate.py
+    if estado_integracion == "INTEGRADA":
+        decision = ctx["decisiones"].get(propuesta_id) if ctx["decisiones"] is not None else None
+        if decision is None:
+            f(f"INTEGRADA sin decisión verificable en decisiones-integracion-barrido2.tsv (propuesta_id={propuesta_id!r})")
+        elif decision.get("estado_integracion") != "INTEGRADA":
+            f(f"INTEGRADA en el cableado pero decisiones-integracion-barrido2.tsv dice "
+              f"{decision.get('estado_integracion')!r} para {propuesta_id!r}")
+    # 15 · propuesta/reporte/tarea sin join
+    if propuesta_id not in _T23_SENTINELS:
+        propuesta = ctx["propuestas"].get(propuesta_id) if ctx["propuestas"] is not None else None
+        if propuesta is None:
+            f(f"propuesta_id sin fila en propuestas-barrido2.tsv ({propuesta_id!r})")
+        elif ctx["tareas"] is None or propuesta.get("tarea_id") not in ctx["tareas"]:
+            f(f"propuesta {propuesta_id!r} sin join a tarea semántica verificable")
+    # 16 · físico no declarado con payload_id inventado
+    if payload_id not in _T23_SENTINELS and payload_id not in ctx["payload_ids"]:
+        f(f"payload_id {payload_id!r} no corresponde a ningún payload conocido -- inventado")
+    # 17 · inconsistencia entre requiere_decision_mesa, decision_mesa_id y dependencia_fp24
+    if fp24 == "SI" and (requiere_mesa != "SI" or decision_mesa != "FP-24"):
+        f(f"dependencia_fp24=SI exige requiere_decision_mesa=SI y decision_mesa_id=FP-24, "
+          f"trae {requiere_mesa!r}/{decision_mesa!r}")
+    if fp24 == "NO" and (requiere_mesa != "NO" or decision_mesa != "NO-APLICA"):
+        f(f"dependencia_fp24=NO exige requiere_decision_mesa=NO y decision_mesa_id=NO-APLICA, "
+          f"trae {requiere_mesa!r}/{decision_mesa!r}")
+    # 18 · dependencia_fp24=SI e INTEGRADA mientras FP-24 esté abierta -- este
+    # acto no adjudica FP-24 caso por caso (fuera de perímetro, ADR-93/ADR-95);
+    # la regla fail-closed es incondicional, igual que el schema congelado.
+    if fp24 == "SI" and estado_integracion == "INTEGRADA":
+        f("dependencia_fp24=SI no puede quedar INTEGRADA mientras FP-24 esté abierta")
+    return problemas
+
+
+def t23_cableado():
+    cableado_path = os.path.join(ROOT, "data", "cableado-universo-v1_0.tsv")
+    rows = _t23_leer_tsv(cableado_path)
+    if rows is None:
+        if REQUIRE_CABLEADO:
+            fail("T23", "`data/cableado-universo-v1_0.tsv` no existe bajo --require-cableado")
+        return  # T-CABLEADO normal queda inactivo antes de existir el producto (§22)
+    if not rows:
+        fail("T23", "`data/cableado-universo-v1_0.tsv` trae solo cabecera, cero filas")
+        return
+
+    relaciones = {r["relacion_id"] for r in (_t23_leer_tsv(os.path.join(ROOT, "data/curacion-registro/relaciones.tsv")) or [])}
+    b2 = os.path.join(ROOT, "data/curacion-registro/ejecucion-semantica/barrido2")
+    propuestas_rows = _t23_leer_tsv(os.path.join(b2, "propuestas-barrido2.tsv"))
+    tareas_rows = _t23_leer_tsv(os.path.join(b2, "tareas-semanticas-barrido2.tsv"))
+    decisiones_rows = _t23_leer_tsv(os.path.join(b2, "decisiones-integracion-barrido2.tsv"))
+    ctx = {
+        "relaciones": relaciones,
+        "propuestas": ({r["propuesta_id"]: r for r in propuestas_rows} if propuestas_rows is not None else None),
+        "tareas": ({r["tarea_id"] for r in tareas_rows}) if tareas_rows is not None else None,
+        "decisiones": ({r["propuesta_id"]: r for r in decisiones_rows}) if decisiones_rows is not None else None,
+        "payload_ids": ({r.get("payload_id", "") for r in tareas_rows}) if tareas_rows is not None else set(),
+    }
+
+    conteos = Counter()
+    for n, row in enumerate(rows, 2):
+        for msg in _t23_fila(n, row, ctx):
+            fail("T23", msg)
+        conteos[row.get("estado_integracion", "")] += 1
+
+    # WARN únicamente por conteos -- nunca por tener 0/5/20/30 FP-24 (§22).
+    for estado in ("CONFLICTO_MATERIAL", "NO_DETERMINADO", "REQUIERE_DECISION_FP24"):
+        if conteos[estado]:
+            warn("T23", f"cableado-universo: {conteos[estado]} fila(s) en estado {estado}")
+    no_integradas = sum(c for e, c in conteos.items() if e not in _T23_NO_INTEGRADA_TERMINAL_OK)
+    if no_integradas:
+        warn("T23", f"cableado-universo: {no_integradas} propuesta(s) no integrada(s)")
+
+    # 19 · aperturas absorbidas -- la única de las 19 que se evalúa contra el
+    # registro (relaciones.tsv/lista-apertura), no contra celdas del
+    # cableado (§4). `capa3_disco_real` que empieza en EXISTE es la señal de
+    # payload observado que ya vive en el registro -- no reinventa una
+    # segunda fuente de verdad para "en disco".
+    apertura_path = os.path.join(ROOT, "data", "lista-apertura-enlace2-2026-08-14.tsv")
+    apertura_rows = _t23_leer_tsv(apertura_path)
+    relaciones_completas = _t23_leer_tsv(os.path.join(ROOT, "data/curacion-registro/relaciones.tsv"))
+    if apertura_rows is not None and relaciones_completas is not None:
+        rel_by_id = {r["relacion_id"]: r for r in relaciones_completas}
+        for r in apertura_rows:
+            if r.get("destino") != "APERTURA-PENDIENTE":
+                continue
+            rel = rel_by_id.get(r["relacion_id"])
+            if rel is None:
+                continue
+            if (rel.get("capa4_apertura_mapeo") == "INDEXADO-NO-DESCARGADO"
+                    and rel.get("capa3_disco_real", "").startswith("EXISTE")):
+                fail("T23", f"apertura absorbida {r['relacion_id']} conserva "
+                            f"INDEXADO-NO-DESCARGADO con payload observado (capa3_disco_real="
+                            f"{rel.get('capa3_disco_real')!r})")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -1768,6 +1967,7 @@ def main():
         ("T20 T-CASCADA-MARCADA",                 t20_cascada_marcada),
         ("T21 T-CAPA2-CAPA3",                     t21_capa2_capa3),
         ("T22 T-FIRMAS",                          t22_firmas),
+        ("T23 T-CABLEADO",                        t23_cableado),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
