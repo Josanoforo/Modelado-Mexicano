@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **101 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **102 ADR**
 
 > | | |
 > |---|---|
@@ -1904,6 +1904,37 @@ $ awk -F'\t' 'NR>1 && $15=="2026-08-14"{print $13}' data/universo-puertas-2026-0
 **Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que `ADR-48` a `ADR-100`.
 
 → **Vigente.**
+
+---
+
+**ADR-102 · Se sella el procedimiento de la clase `AJUSTADO`: `forense/metodologia-identificacion-vs-ajuste-v0_1.md` §2, §4 y §5 pasan de propuesta a canon — v1.0 — SELLADA.** Decisión de mesa del autor, 18/ago/2026, sobre la lectura de mesa presentada por `ACTO SELLA-RUTAS` (resumen fiel de §2-§6 contra `68a3466`, `forense/notas/2026-08-18-sella-rutas.md`), respuesta verbatim: *"Sello tal como están escritas."*
+
+**Qué sella, y qué no vuelve a sellar.** `ADR-49` (D2, 31/jul/2026) ya selló la CLASE `AJUSTADO` y el enum de su campo `ruta:` — `pseudo_panel` | `momentos` | `composicion` | `transversal_con_seleccion` — naciendo vacía. Lo que `ADR-49` no selló es el CÓMO: qué significa sustantivamente cada ruta, bajo qué condición dura opera, y qué le cuesta al programa no tener panel. Ese contenido vivía únicamente en `forense/metodologia-identificacion-vs-ajuste-v0_1.md`, rotulado *"propuesta metodológica, sin sellar. No es canon."* Este ADR sella ese cómo. `ADR-49` es el sello de la clase; `ADR-102` es el sello del procedimiento.
+
+**(1) §2 — identificación ≠ ajuste.** El motor es un ABM: sus parámetros reproducen la conducta observada, no un contrafactual individual. Identificación pregunta *cuánto cambiaría el desenlace de este sujeto si cruzara la condición* (exige variación intra-sujeto); ajuste pregunta *qué valor hace que la población simulada reproduzca la distribución observada* (no exige panel). Queda canon como el marco que distingue las cuatro rutas de `ruta:` de la identificación causal.
+
+**(2) §4 — las cinco rutas, con su condición dura, quedan canon tal como están escritas** (verbatim — ni una línea del documento se edita, solo se le cambia el rótulo de estado):
+- **Panel intra-sujeto** — identifica causalmente; México no lo permite hoy para este constructo. **No es una ruta de `AJUSTADO`** — `ADR-49` ya la excluye del enum de `ruta:` porque identifica, no ajusta; este ADR no cambia esa exclusión, solo sella su descripción como contexto.
+- **Pseudo-panel de cohortes** (`ruta: pseudo_panel`) — la cohorte, no el individuo, como unidad; exige suficientes olas repetidas del mismo corte poblacional.
+- **Ajuste por momentos** (`ruta: momentos`) — el conjunto de parámetros se elige por reproducir momentos observados (media, varianza, transición), no por identificar un coeficiente aislado.
+- **Transversal con selección declarada** (`ruta: transversal_con_seleccion`) — una sola ola; no separa causa de selección; el límite se declara y se acota, no se disimula.
+- **Composición** (`ruta: composicion`) — el parámetro se descompone en piezas medibles por separado. **Condición dura, innegociable:** la regla de descomposición se declara **antes de ver los datos**; declarada después es post-hoc y el Bloque C (validación forense, ADR-08) la prohíbe.
+
+La estrategia se elige **por parámetro, no por programa** — un `AJUSTADO` puede ir por `pseudo_panel`, otro por `momentos`, otro por `composicion`, dentro del mismo generador.
+
+**(3) §5 — el costo, sellado sin suavizar.** Solo el panel intra-sujeto separa causa de selección. Las cuatro rutas de `ruta:` no lo hacen: un coeficiente estimado por cualquiera de ellas y leído como causal es esencialismo con ropa de econometría — la misma falla que el Bloque A ya persigue en la cultura. El pseudo-panel mitiga (la composición de una cohorte es más estable que la de un individuo) sin eliminar; momentos lo esquiva sin resolverlo (reproduce el agregado, no afirma el mecanismo). Ninguna de las cuatro compra la garantía del panel — la ficha de cada `AJUSTADO` declara cuál compró la suya, no finge equivalencia.
+
+**Sellar el cómo no puebla nada.** Este ADR no escribe un solo valor `AJUSTADO` en `milpa/procedencia.yaml`, no reclasifica ningún `ASIGNADO`, no corre ningún ajuste. Cada `AJUSTADO` futuro exige su propio acto: pre-registro de los momentos a reproducir **antes** de correr (ya vinculante por `ADR-50`(3)), campo `ruta:` declarado con uno de los cuatro valores del enum, y — solo si `ruta: composicion` — la regla de descomposición declarada por escrito antes de abrir el dato. Este ADR sella el instrumento; no lo usa.
+
+**Falsador y caducidad.** Si en tres meses ningún `AJUSTADO` se puebla por una ruta sellada aquí, el sello no dañó nada — se anota como capacidad ociosa, mismo criterio que A.3/A.8/A.9/A.10/A.12 de `instrucciones-proyecto`. Si algún `AJUSTADO` se puebla **sin** `ruta:` declarada: hoy **ningún test lo vigila** — verificado contra `tests/check.py` y `tools/curador_registro/validate.py` (`grep -n AJUSTADO` sobre ambos: cero líneas que validen el campo `ruta:` de una entrada `AJUSTADO` en `milpa/procedencia.yaml`; el único enum de rutas que sí valida código hoy es `ESTRATEGIAS` de `tests/test_celdas_d.py:58`, y gobierna las celdas-D de `data/curacion-registro/celdas-d/`, un dominio distinto). Se declara el hueco, no se instrumenta aquí — instrumentarlo es acto propio, con el costo que v2.3 exige contarle a cualquier regla nueva.
+
+**LO QUE NO SE HACE.** No puebla ningún `AJUSTADO`. No reclasifica ningún `ASIGNADO`. No toca ninguna ficha ni el pre-registro. No reordena Hito E (el orden de §7 ya es vinculante por `ADR-50`(2), sin cambio aquí). No crea `build_cableado.py` ni ningún test nuevo — el hueco del falsador queda declarado, no instrumentado. No adjudica `FP-07` (disputa de rótulo `A.7`, ajena a este acto).
+
+**Cascada.** Conteo de ADR (101→102), receta de T15: `gobernanza-v1_15.md:2` (cabecera) · `estado-programa-v1_10.md:27,101` (dos sitios).
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que `ADR-48` a `ADR-101`. `forense/metodologia-identificacion-vs-ajuste-v0_1.md` tampoco se renombra (append-only, citado por nombre de archivo en `procedencia.yaml` y en este mismo ADR) — gana el rótulo interno **v1.0 — SELLADA** sin mover su nombre de archivo `v0_1`.
+
+→ **Vigente. S2.** *(Aprobado 18/ago/2026, decisión de mesa del autor sobre la lectura de mesa de `ACTO SELLA-RUTAS`. Sesión de escritura, Sonnet, sin dato — perímetro `canon/`/`milpa/`/`forense/`, ADR-46; no abrió `data/raw/` ni microdato.)*
 
 ---
 

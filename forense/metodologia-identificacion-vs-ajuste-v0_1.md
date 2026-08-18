@@ -47,7 +47,9 @@
 
 # De identificación a ajuste — qué clase de problema es calibrar este modelo
 
-**31/jul/2026 · propuesta metodológica, sin sellar. No es canon.**
+**`metodologia-identificacion-vs-ajuste` · v1.0 — SELLADA · 18/ago/2026 · `ADR-102`**
+
+**31/jul/2026 (redacción) · sellada 18/ago/2026 por `ADR-102`** — procedimiento canónico de las cuatro rutas de la clase `AJUSTADO` (clase sellada por `ADR-49`, D2).
 Salió de la conversación entre el autor y la sesión de chat el 31/jul, después de que `CAL-ENOE` Fase A cerrara la última ruta de calibración causal declarada. Se escribe porque el razonamiento vale más que la conclusión, y en un traspaso operativo se pierde.
 
 **Procedencia.** Lo derivado del repo va citado con archivo. Lo que es razonamiento de la conversación va marcado como tal. La partición estado/ritmo y el mapeo a los 144 se verificaron contra `modelo §1.1` y `milpa/procedencia.yaml` en el commit `ce0658c`; el resto es argumento, no hallazgo.
@@ -178,3 +180,5 @@ Y el orden se invierte respecto a como veníamos:
 No corrige `procedencia.yaml`. No sella la clase `AJUSTADO`. No reordena la cola de Hito E. No toca el modelo ni el pre-registro.
 
 Todo eso es decisión de mesa, y conviene tomarla en un solo acto junto con la cascada de `unico_calibrable_hoy` que dejó abierta `CAL-ENOE` Fase A — porque son la misma decisión vista desde dos lados.
+
+**Actualización, 18/ago/2026.** La clase quedó operable por `ADR-102`: sella como procedimiento canónico los §2, §4 y §5 de este documento —las cuatro rutas de `ruta:` con su condición dura, y el costo de §5 sin suavizar— citando a `ADR-49` como el sello de la clase. Lo escrito arriba sigue siendo cierto sobre su propio alcance original: este documento, por sí solo, nunca se selló ni reclasificó nada; lo que cambió es que ya existe el acto externo que lo sella. Sigue sin poblar ningún `AJUSTADO` — cada uno exige su propio acto, con `ruta:` declarada y, si es `composicion`, la regla de descomposición pre-declarada.
