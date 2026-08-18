@@ -1051,6 +1051,18 @@ Un veredicto A no sería la primera medición de este contraste (el report ancla
 
 ---
 
+### Nota 30 · 18/ago/2026 — `R1.4` consume la rama `estatus` de `conf.05`, y esa rama pierde su sostén de tier en el mismo acto
+
+*(Añadida al final, fechada, sin tocar el cuerpo, la ficha ni las Notas 1-29 — misma disciplina que las notas anteriores declararon. Mecanismo de nota fechada en el bloque append-only, no edición de cuerpo, tal como este mismo archivo lo exige más abajo. Perímetro: `ACTO CONSOLIDA-2`, único sitio de `hitoD-preregistro` que ese acto toca — ejecuta `FP-43`.)*
+
+**`R1.4` (`:59`-`:60`) consume la rama `consumo_compensatorio.estatus` de `conf.05`, no la rama `recompensa`.** Declarado, no editado: el `SI-ENTONCES` de la ficha —*"movilidad real bloqueada + presión de estatus (perfiles 2, 3, 5) → consumo compensatorio/aspiracional, aun apalancado"*— describe gasto en bienes posicionales por presión de estatus, el desenlace que `ADR-94`/`ADR-92(e)` (`FP-28`) asignó a la rama `estatus` al partir el constructo, no a la rama `recompensa` (ingesta de comida/alcohol). Título y regla, redactados para quien sí tenga perímetro de edición del cuerpo (`FP-43`, `forense/notas/2026-08-17-cierra.md` §6): *"R1.4 · Movilidad bloqueada → consumo_compensatorio.estatus `[FUERTE como correlación]`"* / *"**SI** hay movilidad real bloqueada + presión de estatus (perfiles 2, 3, 5) **ENTONCES** consumo compensatorio/aspiracional (rama estatus), aun apalancado — PORQUE G2"*. El resto de la ficha —falsador, umbral, A/B/C/D— no cambia: solo el título y la línea `SI-ENTONCES` ganarían la etiqueta de rama, si algún acto con perímetro de cuerpo la aplicara.
+
+**Esa rama acaba de perder su sostén de tier, en el mismo PR que ejecuta esta nota.** `glosario:136` marcaba `consumo_compensatorio.estatus` `Fuerte` con procedencia `(a)+(c)`, sostenida por Velandia-Morales (2022) — un experimento del CIMCYC, Universidad de Granada, con resultado nulo declarado adentro. `FP-38`, ejecutada en este mismo acto, corrige la procedencia a `(c)` y marca el tier `Fuerte` **sin sostén por esa cita** — no lo sustituye por otro. `R1.4` sigue citando `[FUERTE como correlación]` en su propio título porque así lo redactó `FP-43` antes de que `FP-38` corriera; el calificativo describe cómo el motor trata la regla (como correlación, no como driver aislado — ver arriba, "Ataque obligatorio: la correlación, no la causa"), no repite la cita de Velandia-Morales. Aun así, la base que sostenía `Fuerte` para la rama que `R1.4` consume quedó más débil hoy que ayer, y quien audite esta ficha después no debería tener que cruzar `glosario` y este archivo por su cuenta para saberlo.
+
+**El veredicto archivado (sin `R1.4`) y el contador (`13 de 27`) no cambian por esta nota.** `R1.4` no corrió, no se falsó, no se adjudicó — el falsador declarado arriba (segmento más bloqueado, D/E, prima de marca vs. sustituto funcional) sigue sin ejecutarse, y el corte de `edad` que comparten dos de sus reglas hermanas (`R2.4`, `R5.4`) sigue `PENDIENTE` — fila abierta en el mismo PR (`firmas-pendientes.tsv`), no resuelta aquí. Cierra `FP-43`. Detalle completo de la propagación de `FP-38`: `forense/notas/2026-08-18-consolida-2-fp38-propagaciones.md`.
+
+---
+
 ## Registro de veredictos archivados — append-only, SOLO EMISIONES
 
 *(Declarado en `gobernanza` ADR-40. Única sección de este documento que un test puede leer para derivar el conteo real de veredictos — ninguna otra prosa de este archivo cuenta, sea cual sea su forma. Cada línea nueva se añade al final de este bloque, nunca se edita una existente. No citar, no hipotetizar, no ejemplificar aquí: cualquier línea con la forma canónica dentro de este bloque se lee como veredicto emitido, sin excepción.)*

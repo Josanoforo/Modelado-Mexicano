@@ -396,7 +396,7 @@ Los `params_base` no son medidos ni inventados: son la **cuantificación de etiq
 ## 15 · Deudas vivas
 
 - **PD-01** — 14 descartes irrecuperables. **No reconstruir.**
-- **conf.02, conf.05, conf.07** — sin ADR. *(conf.04 salió de esta lista: resuelto por ADR-27. conf.06 sale de esta lista: resuelto por ADR-64.)*
+- **conf.07** — sin ADR; tiene acto propio gateado a éste, `CONF-07-CIERRE` (comparte `glosario`, se lanza cuando este acto fusione). *(conf.02 y conf.05 salen de esta lista, re-derivado 18/ago/2026: resueltos por ADR-94 — ver §11. conf.04 salió de esta lista: resuelto por ADR-27. conf.06 sale de esta lista: resuelto por ADR-64.)*
 - **Panel D/E de consumo popular** — dato primario que no existe.
 - **Confianza radial como canal medible** — hipótesis sin aislar (ADR-20).
 - **Control por origen social y red** en pigmentocracia — no existe en el corpus.
