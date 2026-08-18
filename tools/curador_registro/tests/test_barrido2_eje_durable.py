@@ -29,6 +29,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from tools.curador_registro.barrido2_material import (  # noqa: E402
     CAMPOS_ESQUEMA,
+    _durable_row,
     CAMPOS_MAQUINA,
     MaterialDriftError,
     PII_PATTERNS,
@@ -152,6 +153,95 @@ class MaquinaNoEsEsquema(unittest.TestCase):
         self.assertTrue(any(p.search("zip_slip") for p in PII_PATTERNS))
         entrada = "zip_slip=SI"
         self.assertEqual(safe_text_compuesto(entrada), (entrada, False))
+
+
+class NoRompeLoQueNoDebeTocar(unittest.TestCase):
+    """Tres defectos que la revisión adversarial encontró en la primera versión
+    de este arreglo, reproducidos y cerrados. Los tres se descubrieron con la
+    reejecución ya en vuelo y costaron pararla a los 23 minutos; se paga una vez."""
+
+    def test_un_segmento_no_redactado_sale_verbatim(self) -> None:
+        """Reconstruir desde la clave recortada mutilaba el texto del documento
+        fuente: `ENT = 15` salía `ENT=15`. Y como sólo se parte por el PRIMER
+        `=`, la mutilación era además inconsistente dentro de la misma cadena."""
+        for entrada in ["ENT = 15", "(5.6 = 3 Y 5.8 = 7)", "Sexo (Hombre = 1)",
+                        "tipo=NUMERICO;formato_impresion=0x50802"]:
+            with self.subTest(entrada=entrada):
+                self.assertEqual(safe_text_compuesto(entrada), (entrada, False))
+
+    def test_una_cadena_con_igual_no_se_convierte_en_una_sin_igual(self) -> None:
+        """`=calle;=5` salía `calle;5`, que al revalidarse cae por la rama plana
+        de `safe_text_compuesto` y activa el patrón de domicilio — o sea, el gate
+        rechazaba un expediente recién escrito. Es la misma clase de defecto que
+        este acto cierra, reintroducida por comodidad de formato."""
+        entrada = "=calle;=5"
+        escrito, red = safe_text_compuesto(entrada)
+        self.assertEqual(escrito, entrada)
+        self.assertFalse(red)
+        self.assertFalse(activa_pii_compuesto(escrito))
+
+    def test_la_llave_de_maquina_no_exime_un_valor_que_no_es_de_maquina(self) -> None:
+        """La exención la controlaba el DATO, no la máquina: bastaba con que un
+        valor externo llegara conteniendo `;crc=<nombre>` para fabricar un
+        segmento con llave declarada que el escritor conservaba entero y el
+        validador ya no revisaba. Se cierra por FORMA del valor, que cierra la
+        clase entera y no un emisor."""
+        escrito, red = safe_text_compuesto("tipo=NUMERICO;crc=Ana Maria Lopez")
+        self.assertTrue(red)
+        self.assertEqual(escrito, f"tipo=NUMERICO;crc={REDACTADO}")
+        self.assertFalse(activa_pii_compuesto(escrito))
+        # y la contraparte sigue viva: un crc de verdad no se toca
+        self.assertEqual(safe_text_compuesto("crc=2719796586"), ("crc=2719796586", False))
+
+
+class TipoDeObjetoNoEsProsa(unittest.TestCase):
+    """`objeto_tipo` es el vocabulario que el propio módulo emite, no texto
+    extraído. Pasarlo por el detector de nombres es el mismo error de categoría
+    que este acto corrige en los campos compuestos, y su efecto estaba medido:
+    `PII_PATTERNS[8]` muerde todo tipo con guion, así que 1 650 224 de 1 833 802
+    filas durables (89.99 %) salían con el tipo redactado. El daño no era sólo de
+    lectura — `write_barrido2_material.py` agrupa por esa clave, o sea que clases
+    distintas se fusionaban en una sola fila publicada."""
+
+    BASE = {
+        "record_id": "r", "representacion_id": "REP-x", "record_sha256": "a",
+        "batch_id": "b", "batch_sha256": "c", "payload_id": "p", "sha256": "s",
+        "objeto_logico_id": "o", "localizador": "pagina=1", "nombre": "NO-APLICA",
+        "etiqueta": "NO-APLICA", "texto_reactivo": "NO-APLICA",
+        "definicion": "lineas_texto=1", "frontera_inspeccion": "todas las paginas",
+        "estado": "E2-COMPLETO", "privacidad": "DEPURADO", "fecha": "2026-08-18",
+    }
+
+    def _tipo(self, valor: str) -> str:
+        fila = dict(self.BASE)
+        fila["objeto_tipo"] = valor
+        return _durable_row(fila)["objeto_tipo"]
+
+    def test_el_vocabulario_real_sobrevive_entero(self) -> None:
+        """Los 52 valores distintos medidos en el índice v7. Incluye los nombres
+        de etiqueta HTML en mayúsculas que el parser emite tal cual del
+        documento (`TH`, `OPTION`, `H1`), que no son vocabulario cerrado y por eso
+        la exención va por FORMA y no por lista."""
+        for tipo in ["MIEMBRO-ZIP", "SECCION-PDF", "VALUE-LABEL-COLLECTION-SAV",
+                     "VARIABLE-DICCIONARIO-XLSX", "EXCEPCION-MIEMBRO-ZIP",
+                     "FORMATO-NO-SOPORTADO", "COLUMNA", "TABLA", "TH", "H1",
+                     "OPTION", "LEGEND", "CONTROL-CHECKBOX", "PARRAFO-DOCX"]:
+            with self.subTest(tipo=tipo):
+                self.assertEqual(self._tipo(tipo), tipo)
+
+    def test_un_tipo_con_forma_de_nombre_se_sigue_redactando(self) -> None:
+        """La exención es por forma, no por confiar en el nombre del campo."""
+        for impostor in ["RAÚL GONZÁLEZ GARCÍA", "JUAN PEREZ", "Ana Maria"]:
+            with self.subTest(impostor=impostor):
+                self.assertEqual(self._tipo(impostor), REDACTADO)
+
+    def test_no_ensancha_el_eje_estructural(self) -> None:
+        """El predicado del tipo vive aparte a propósito: ampliar
+        `exento_estructural()` para arreglar un cuarto campo habría relajado
+        `nombre`/`hoja`/`tabla` de paso, que es justo el error que este acto
+        cierra. `MIEMBRO-ZIP` no es código para el eje estructural."""
+        from tools.curador_registro.barrido2_material import exento_estructural
+        self.assertFalse(exento_estructural("MIEMBRO-ZIP"))
 
 
 class ContratoDurable(unittest.TestCase):
