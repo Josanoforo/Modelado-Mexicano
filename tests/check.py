@@ -1180,6 +1180,14 @@ def t20_cascada_marcada():
 #   cite en `dónde` -- el mecanismo se auto-protege desde su propio primer
 #   commit.
 #
+#   (c) WARN por cada fila `FIRMADA` con `ejecutada_en` vacío, con sus
+#   días de antigüedad (ADR-94, columnas `ejecutada_en`/`encargo`
+#   añadidas al tablero en ese mismo acto). `estado` solo distinguía
+#   ABIERTA de FIRMADA -- ninguno de los cuatro valores significaba
+#   "firmada y sin ejecutar", que es distinto de "firmada" a secas: una
+#   firma resuelve la pregunta de mesa, no escribe el archivo. Mismo
+#   mecanismo que (a), sobre la columna nueva.
+#
 #   LÍMITE DECLARADO -- léelo antes de tocar este test. (b) tiene
 #   granularidad de ARCHIVO, no de línea: un archivo ya conocido (el
 #   snapshot de abajo, verificado al sellar T-FIRMAS) puede ganar una
@@ -1282,6 +1290,25 @@ def t22_firmas():
         except (ValueError, TypeError):
             pass
         warn("T22", f"{f.get('id', '?')} ABIERTA desde {f.get('creado', '?')} "
+                     f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
+
+    # (c) WARN por cada fila FIRMADA con `ejecutada_en` vacío -- una firma
+    # de mesa no es lo mismo que una firma ejecutada, y `estado` solo
+    # distinguía ABIERTA de FIRMADA (ADR-94, arreglo (a): defecto real que
+    # atrapó -- FP-30 firmada, T07 siguió fallando, nació FP-41, y mesa fue
+    # consultada dos veces sobre el mismo asunto).
+    for f in filas:
+        if f.get("estado") != "FIRMADA":
+            continue
+        if f.get("ejecutada_en", "").strip():
+            continue
+        edad_txt = "antigüedad no derivable"
+        try:
+            anio, mes, dia = (int(x) for x in f.get("creado", "").split("-"))
+            edad_txt = f"{(hoy - datetime.date(anio, mes, dia)).days} días"
+        except (ValueError, TypeError):
+            pass
+        warn("T22", f"{f.get('id', '?')} FIRMADA sin ejecutar desde {f.get('creado', '?')} "
                      f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
 
     # (b) auto-protección: archivo nuevo de canon/forense con marcador de
