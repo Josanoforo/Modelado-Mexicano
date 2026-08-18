@@ -1,6 +1,6 @@
 # ENCARGO `REGISTRA-17AGO-II` · tres firmas más, la reformulación de FP-29 y el texto que desbloquea FP-33
 
-- **SHA de redacción:** `1282ae3` (`origin/main`, merge #247) · **Fecha:** 17/ago/2026 · **Estado:** `VIVO`
+- **SHA de redacción:** `1282ae3` (`origin/main`, merge #247) · **Fecha:** 17/ago/2026 · **Estado:** `CONSUMIDO` — `PR #249` (rama `claude/new-session-7avlfg`), detalle en `forense/notas/2026-08-17-registra-2.md`.
 - **Entorno: NUBE**, repo-only, sin red, sin corpus. **NO en la caja** — ahí corre BARRIDO-2.
 - **Modelo: Sonnet 4.6.** Registro y pegado, no adjudicación.
 - **Archívese en `forense/encargos/`** con su lanzamiento (A.3).
