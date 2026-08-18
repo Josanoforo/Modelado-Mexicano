@@ -68,6 +68,28 @@ class Barrido2Fixture:
         material_task = self.task_root / f"{self.material_task_id}.json"
         material_task.write_text('{"network_habilitada":false}\n', encoding="utf-8")
 
+        # Segunda relación, distinta de la primera, para poder someter una
+        # ALTA sin que su `relacion_id_actual` agrupe con la propuesta
+        # ordinaria en `_apply_layer4` (agrupa por relación, no por lote).
+        self.relation_alta = next(
+            row for row in leer_tsv(self.registry / "relaciones.tsv")
+            if row["clasificacion_relacion"] == "CANDIDATA"
+            and row["relacion_id"] != relation["relacion_id"]
+        )
+        self.material_task_id_alta = "TASK-B2-" + "a1" * 32
+        self.task_id_alta = "TSEM-B2-" + "b" * 24
+        self.rep_id_alta = "REP-" + "c2" * 32
+        self.sha_alta = "d3" * 32
+        self.object_id_alta = "OBJ-B2-" + "e4" * 32
+        self.report_id_alta = "RPTC-B2-" + "f5" * 32
+        self.report_record_id_alta = "E2R-" + "a6" * 32
+        self.report_record_sha_alta = "b7" * 32
+        self.e2_record_id_alta = "E2R-" + "c8" * 32
+        self.e2_record_sha_alta = "d9" * 32
+        self.payload_id_alta = "payload_prueba_barrido2_alta"
+        material_task_alta = self.task_root / f"{self.material_task_id_alta}.json"
+        material_task_alta.write_text('{"network_habilitada":false}\n', encoding="utf-8")
+
         self.reports = root / "reports.tsv"
         report_fields = [
             "reporte_id", "record_id", "record_sha256", "payload_id",
@@ -81,12 +103,24 @@ class Barrido2Fixture:
             "representacion_id": self.rep_id,
             "sha256": self.sha,
             "objeto_logico_id": self.object_id,
+        }, {
+            "reporte_id": self.report_id_alta,
+            "record_id": self.report_record_id_alta,
+            "record_sha256": self.report_record_sha_alta,
+            "payload_id": self.payload_id_alta,
+            "representacion_id": self.rep_id_alta,
+            "sha256": self.sha_alta,
+            "objeto_logico_id": self.object_id_alta,
         }])
         self.ledger = root / "ledger.tsv"
         write_tsv(self.ledger, ["payload_id", "representacion_id", "sha256"], [{
             "payload_id": self.payload_id,
             "representacion_id": self.rep_id,
             "sha256": self.sha,
+        }, {
+            "payload_id": self.payload_id_alta,
+            "representacion_id": self.rep_id_alta,
+            "sha256": self.sha_alta,
         }])
         self.material_baseline = root / "material-baseline.json"
         self.material_baseline.write_text(json.dumps({
@@ -117,7 +151,29 @@ class Barrido2Fixture:
             "curador_id": "CURADOR-PRUEBA",
             "fecha": "2026-08-17",
         }
-        write_tsv(self.tasks, TASK_FIELDS, [self.task])
+        self.task_alta = {
+            "tarea_id": self.task_id_alta,
+            "relacion_id": self.relation_alta["relacion_id"],
+            "reporte_id": self.report_id_alta,
+            "reporte_record_id": self.report_record_id_alta,
+            "reporte_record_sha256": self.report_record_sha_alta,
+            "e2_record_id": self.e2_record_id_alta,
+            "e2_record_sha256": self.e2_record_sha_alta,
+            "payload_id": self.payload_id_alta,
+            "representacion_id": self.rep_id_alta,
+            "sha256": self.sha_alta,
+            "objeto_logico_id": self.object_id_alta,
+            "necesidad_id": self.relation_alta["necesidad_id"],
+            "reactivo_id": "REACTIVO-PRUEBA-ALTA",
+            "fuente_canonica": self.relation_alta["fuente_canonica_normalizada"],
+            "frontera_semantica": self.frontier,
+            "material_tarea_id": self.material_task_id_alta,
+            "material_task_sha256": digest(material_task_alta),
+            "material_baseline_sha256": digest(self.material_baseline),
+            "curador_id": "CURADOR-PRUEBA",
+            "fecha": "2026-08-17",
+        }
+        write_tsv(self.tasks, TASK_FIELDS, [self.task, self.task_alta])
         self.proposals = root / "proposals.tsv"
         self.output = root / "output"
 
@@ -151,8 +207,34 @@ class Barrido2Fixture:
             "fecha": "2026-08-17",
         }
 
-    def run(self, proposal: dict[str, str], *, apply: bool = True) -> dict[str, object]:
-        write_tsv(self.proposals, PROPOSAL_FIELDS, [proposal])
+    def proposal_alta(self, *, estado_supervision: str = "VALIDADA") -> dict[str, str]:
+        return {
+            "propuesta_id": "PROP-B2-" + "b" * 24,
+            "tarea_id": self.task_id_alta,
+            "reporte_id": self.report_id_alta,
+            "payload_id": self.payload_id_alta,
+            "representacion_id": self.rep_id_alta,
+            "sha256": self.sha_alta,
+            "objeto_logico_id": self.object_id_alta,
+            "necesidad_id": self.relation_alta["necesidad_id"],
+            "reactivo_id": "REACTIVO-PRUEBA-ALTA",
+            "accion_propuesta": "ALTA",
+            "relacion_id_actual": self.relation_alta["relacion_id"],
+            "veredicto_a4": "EXISTE-SATISFACE",
+            "evidencia_ref": f"{self.e2_record_id_alta}:{self.e2_record_sha_alta}",
+            "frontera_semantica": self.frontier,
+            "confianza": "ALTA",
+            "requiere_decision_mesa": "NO",
+            "decision_mesa_id": "NO-APLICA",
+            "dependencia_fp24": "NO",
+            "razon_gate": "material nuevo sin par existente en el registro; propone alta de relación",
+            "estado_supervision": estado_supervision,
+            "supervisor_id": "SUPERVISOR-PRUEBA",
+            "fecha": "2026-08-17",
+        }
+
+    def run_many(self, proposals: list[dict[str, str]], *, apply: bool = True) -> dict[str, object]:
+        write_tsv(self.proposals, PROPOSAL_FIELDS, proposals)
         return integrate_barrido2(
             self.registry,
             self.material_baseline,
@@ -169,6 +251,9 @@ class Barrido2Fixture:
             self.output,
             apply=apply,
         )
+
+    def run(self, proposal: dict[str, str], *, apply: bool = True) -> dict[str, object]:
+        return self.run_many([proposal], apply=apply)
 
 
 class Barrido2IntegrationTests(unittest.TestCase):
@@ -200,6 +285,50 @@ class Barrido2IntegrationTests(unittest.TestCase):
                 decision = next(csv.DictReader(handle, delimiter="\t"))
             self.assertEqual("REQUIERE_DECISION_FP24", decision["estado_integracion"])
             self.assertNotEqual("INTEGRADA", decision["estado_integracion"])
+
+    def test_validated_alta_does_not_abort_the_batch_and_stays_pending(self) -> None:
+        """C5: una `PROPUESTA_ALTA` validada ya no es un error de preflight que
+        aborta el lote (`ALTA_REQUIERE_HIGH_PATH_NO_IMPLEMENTADO`, defecto
+        encontrado por la auditoría de cinco agentes, `2026-08-18-b2-transfer.md`).
+        El lote procesa la propuesta ordinaria (a), la ALTA sale `PROPUESTA_ALTA`
+        sin integrarse (b), y una segunda corrida idéntica es idempotente (d)."""
+        with tempfile.TemporaryDirectory() as temporary_name:
+            fixture = Barrido2Fixture(Path(temporary_name))
+            relation_alta_before = dict(fixture.relation_alta)
+            ordinary = fixture.proposal()
+            alta = fixture.proposal_alta()
+            first = fixture.run_many([ordinary, alta])
+            # (a) el lote no aborta: `ok` sigue True, no hay `errors`, y la
+            # propuesta ordinaria se integra igual que sin la ALTA presente.
+            self.assertTrue(first["ok"])
+            self.assertNotIn("errors", first)
+            self.assertFalse(first["high_path_built"])
+            self.assertEqual(1, first["propuestas_altas_validadas"])
+            relation = next(
+                row for row in leer_tsv(fixture.registry / "relaciones.tsv")
+                if row["relacion_id"] == fixture.relation["relacion_id"]
+            )
+            self.assertEqual("EXISTE-NO-SATISFACE", relation["capa4_apertura_mapeo"])
+
+            with (fixture.output / "decisiones-integracion-barrido2.tsv").open(encoding="utf-8", newline="") as handle:
+                decisions = {row["propuesta_id"]: row for row in csv.DictReader(handle, delimiter="\t")}
+            self.assertEqual("INTEGRADA", decisions[ordinary["propuesta_id"]]["estado_integracion"])
+            # (b) la ALTA queda `PROPUESTA_ALTA` -- ni integrada ni rechazada --
+            # y su relación no se toca en absoluto (bytes iguales a antes de correr).
+            self.assertEqual("PROPUESTA_ALTA", decisions[alta["propuesta_id"]]["estado_integracion"])
+            relation_alta_after = next(
+                row for row in leer_tsv(fixture.registry / "relaciones.tsv")
+                if row["relacion_id"] == fixture.relation_alta["relacion_id"]
+            )
+            self.assertEqual(relation_alta_before, relation_alta_after)
+
+            # (c) las dos pruebas de §22 del acto anterior -- corridas como
+            # parte de esta misma suite -- siguen verdes; no se tocan aquí.
+
+            # (d) idempotencia: segunda corrida idéntica, diff cero.
+            second = fixture.run_many([ordinary, alta])
+            self.assertTrue(second["ok"])
+            self.assertEqual([], second["changed"])
 
 
 if __name__ == "__main__":
