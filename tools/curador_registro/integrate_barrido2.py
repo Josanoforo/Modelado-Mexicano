@@ -49,7 +49,7 @@ DECISION_FIELDS = PROPOSAL_FIELDS + [
 INTEGRABLE_ACTIONS = {"CAMBIO", "SIN_CAMBIO", "TERMINAL"}
 INTEGRATION_STATES = {
     "INTEGRADA", "RECHAZADA_FAIL_CLOSED", "CONFLICTO_MATERIAL",
-    "REQUIERE_DECISION_FP24", "NO_APLICA_TERMINAL",
+    "REQUIERE_DECISION_FP24", "NO_APLICA_TERMINAL", "PROPUESTA_ALTA",
 }
 
 
@@ -242,9 +242,10 @@ def preflight(
         if proposal.get("accion_propuesta") in INTEGRABLE_ACTIONS and proposal.get("dependencia_fp24") == "NO":
             if proposal.get("estado_supervision") != "VALIDADA":
                 errors.append(f"PROPUESTA_NO_SUPERVISADA:{pid}")
-        elif proposal.get("accion_propuesta") == "ALTA" and proposal.get("estado_supervision") == "VALIDADA":
-            # La via de altas no se construye sin una ALTA real validada en la corrida.
-            errors.append(f"ALTA_REQUIERE_HIGH_PATH_NO_IMPLEMENTADO:{pid}")
+        # Una ALTA validada NO es un error de expediente: preflight solo
+        # verifica joins/hashes, y esta fila ya los pasó arriba. Si construir
+        # el high path procede es decisión de acto (encargo madre §19/§21),
+        # no de preflight -- _apply_layer4 la emite como PROPUESTA_ALTA.
 
     return {
         "ok": not errors,
@@ -281,7 +282,13 @@ def _apply_layer4(
         if fp24:
             state, reason = "REQUIERE_DECISION_FP24", "FP-24 abierta; la propuesta declara dependencia material específica"
         elif any(row["accion_propuesta"] == "ALTA" for row in rows):
-            state, reason = "RECHAZADA_FAIL_CLOSED", "High path ausente: la corrida no puede inventar identidad de alta"
+            if supervised:
+                # Validada pero sin high path en esta corrida: no es error ni
+                # rechazo, queda pendiente de que exista al menos una ALTA
+                # validada para que un acto la construya (encargo madre §19).
+                state, reason = "PROPUESTA_ALTA", "WARN: ALTA validada sin high path construido; pendiente de decisión de acto, no se integra ni se rechaza"
+            else:
+                state, reason = "RECHAZADA_FAIL_CLOSED", "High path ausente: la corrida no puede inventar identidad de alta"
         elif len(verdicts) != 1:
             state, reason = "CONFLICTO_MATERIAL", "Representaciones supervisadas producen veredictos A4 incompatibles"
         elif not supervised:
@@ -448,7 +455,10 @@ def integrate_barrido2(
             "applied": bool(apply and changed),
             "journal_id": journal_id,
             "propuestas": len(checked["proposals"]),
-            "propuestas_altas_validadas": 0,
+            "propuestas_altas_validadas": sum(
+                row.get("accion_propuesta") == "ALTA" and row.get("estado_supervision") == "VALIDADA"
+                for row in checked["proposals"]
+            ),
             "high_path_built": False,
             "relaciones_integradas": len(accepted_groups),
             "decisiones": Counter(row["estado_integracion"] for row in decisions),
