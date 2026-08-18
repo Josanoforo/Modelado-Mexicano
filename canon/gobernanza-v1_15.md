@@ -2051,7 +2051,7 @@ Un tercer acto la profundizó: `modelo v2.3` partió además la diagonal del `EN
 
 **Reversión.** Se revierte sólo si mesa decide que la partición de `v2.1`/`v2.3` fue un error de fondo — en cuyo caso lo que se revierte es el motor, no este sello. La corrección de `prompts-verticales` se revierte por separado, y sola, si mesa quiere conservar la plantilla en su forma de Ronda 4 como pieza de archivo.
 
-→ **Vigente.** *(ACTO CONF-07-CIERRE, 18/ago/2026, firma de mesa "Adopto". Sesión NUBE `cloud_default`, repo-only, `data/raw` no montado ni usado — perímetro `canon/glosario-v5_6.md`, `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md` (sólo cascada de conteo), `forense/encargos/` (sólo bloques de `Estado`), `forense/prompts-verticales-validacion.md`, `forense/firmas-pendientes.tsv`, `forense/notas/`, `forense/hallazgos.md`. NO tocó `canon/modelo-decision-v4_0.md`, `hitoD-*`, ni `milpa/`.)*
+→ **Vigente.** *(ACTO CONF-07-CIERRE, `PR #265`, 18/ago/2026, firma de mesa "Adopto". Sesión NUBE `cloud_default`, repo-only, `data/raw` no montado ni usado — perímetro `canon/glosario-v5_6.md`, `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md` (sólo cascada de conteo), `forense/encargos/` (sólo bloques de `Estado`), `forense/prompts-verticales-validacion.md`, `forense/firmas-pendientes.tsv`, `forense/notas/`, `forense/hallazgos.md`. NO tocó `canon/modelo-decision-v4_0.md`, `hitoD-*`, ni `milpa/`.)*
 
 ---
 

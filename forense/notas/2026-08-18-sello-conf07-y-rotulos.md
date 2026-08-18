@@ -2,7 +2,7 @@
 
 **Encargo:** `forense/encargos/2026-08-18-CONF-07-CIERRE.md` · **SHA declarado:** `57984b5` (`PR #262`)
 **Entorno:** NUBE, repo-only · **Modelo:** Opus 5 · **Rama:** `claude/conf-07-cierre-partition-labels-lfu6k7`
-**Sello:** `ADR-106` · **Firma de mesa, verbatim:** *"Adopto"*
+**Sello:** `ADR-106` · **PR:** `#265` · **Firma de mesa, verbatim:** *"Adopto"*
 
 ---
 
