@@ -1,0 +1,8 @@
+cifra	que_mide	escala	numerador	denominador	denominador_es	valor	referencia_declarada	reproduce_referencia	sello_universo
+1	value labels de SAV conservados	PORCENTAJE-DE-CONSERVACION	129318	135262	entradas de value_labels en registros con objeto_tipo terminado en -SAV	95.61	NO-APLICA	NO-APLICA	v7/672-expedientes/1833802-registros/65122e6
+1-bis	contraste DTA, misma regla	PORCENTAJE-DE-CONSERVACION	103161	103712	entradas de value_labels en registros con objeto_tipo terminado en -DTA	99.47	99.5	SI	v7/672-expedientes/1833802-registros/65122e6
+2	metadatos de miembro ZIP conservados enteros	PORCENTAJE-DE-CONSERVACION	25713	25713	registros con objeto_tipo=MIEMBRO-ZIP	100.00	sobrevive entero	SI	v7/672-expedientes/1833802-registros/65122e6
+2-bis	solo la declaracion zip_slip= conservada	PORCENTAJE-DE-CONSERVACION	25713	25713	registros con objeto_tipo=MIEMBRO-ZIP	100.00	zip_slip=NO sobrevive	SI	v7/672-expedientes/1833802-registros/65122e6
+2-ter	miembros ZIP con zip_slip=SI	CONTEO-ABSOLUTO	5	25713	miembros ZIP con zip_slip=SI sobre el total de miembros ZIP	5	NO-APLICA	NO-APLICA	v7/672-expedientes/1833802-registros/65122e6
+3	PDF cifrados que abrieron	CONTEO-ABSOLUTO-CON-PORCENTAJE	313	313	documentos PDF con al menos una pagina cifrado=SI-EXTRAIBLE	313 de 313 (100.00)	77 de 78	NO	v7/672-expedientes/1833802-registros/65122e6
+3-bis	PDF que abrieron, universo completo	CONTEO-ABSOLUTO-CON-PORCENTAJE	628	630	todos los documentos PDF del universo v7	628 de 630 (99.68)	NO-APLICA	NO-APLICA	v7/672-expedientes/1833802-registros/65122e6
