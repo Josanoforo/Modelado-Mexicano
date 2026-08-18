@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **96 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **97 ADR**
 
 > | | |
 > |---|---|
@@ -1708,6 +1708,30 @@ Se abren cuatro filas que faltaban, ids derivados contra el máximo real del tab
 **Cascada.** Conteo de ADR (95→96), receta de `T15`: `gobernanza-v1_15.md:2` (cabecera) · `estado-programa-v1_10.md:27,101`. `python3 tests/check.py --baseline` tras (a)-(d): `22 FAIL · 135 WARN`, **LÍNEA BASE: VERDE**, sin recongelar — mismo `head` congelado en el commit 1 de este acto (`997482bbda18b52621e24909eedbed0630c7a111`).
 
 **Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que ADR-48 a ADR-95.
+
+→ **Vigente.**
+
+---
+
+**ADR-97 · `T16` deja de ser ciego a `MARCA_HISTORICA`, se marcan las ocho narraciones de acto pasado que se venían sobreescribiendo hacia adelante, y el defecto medido en `FP-50` (`gobernanza:1658` como tercera cita permanente) queda cerrado por su causa, no por su síntoma.** Decisión de mesa del autor, ACTO T16-HISTÓRICAS, 18/ago/2026, dictada en el encargo archivado en `forense/encargos/2026-08-18-T16-HISTORICAS-cerrar-bucle-congelados.md`.
+
+**(a) El defecto, medido y no de CI.** `ACTO CI-CATEGORIA` sacó `T22(a)` de la comparación de línea base; quedó una puerta abierta — `t16_suite_self_check` solo reconocía `_CAMBIO_FECHADO` (el formato `> **vX.Y — DD/mon.**`) como marcador de "esto es historia". `MARCA_HISTORICA` (`{cita-historica}`) ya existía, ya era canon (`ADR-72`) y ya la usaba `T15` desde el 29/jul; `T16` simplemente no la leía. Censo derivado, no de memoria: de las 11 citas de FAIL/WARN que `T16` vigila en `canon/`, 3 eran FAIL permanente (`gobernanza:1106`, `:1136`, `:1658`) y **5 más vivían dentro de ADR ya sellados narrando lo que ese acto midió al sellarse** (`gobernanza:764`, `:856`, `:1274`, `:1387`, `:1393`) — se las venía resincronizando hacia adelante para mantener el test verde, entre 7 y 17 veces cada una (tabla completa, con cada commit que la sobreescribió, en `forense/notas/2026-08-18-t16-historicas.md`). Cada resincronización obligada fue un CI rojo, y cada CI rojo un candidato a recongelado.
+
+**(b) El parche, espejo de `T15`.** Cuatro líneas en `t16_suite_self_check`: si la cita en negritas está seguida de ` {cita-historica}`, se exime — mismo mecanismo, mismo alcance (exime solo la cita inmediatamente anterior a la marca) que `T15` ya usa. `LÍMITE DECLARADO` del docstring ampliado: ya no es cierto que `_CAMBIO_FECHADO` sea el único marcador mecánico de "esto es historia". Tres controles corridos y revertidos antes de commitear: cita mala sin marca → `T16` `FAIL` (protección intacta); misma cita con marca → `T16` `[ ok ]`; `T15` corrido con las ocho marcas nuevas → sigue `[ ok ]` (no le rompe su propio uso de la marca).
+
+**(c) Las ocho, marcadas sin tocar su cifra.** `gobernanza:764` (ADR-62), `:856` (ADR-66), `:1106` (ADR-76(f)), `:1136` (ADR-77), `:1274` (cascada de ADR-81, cita a ADR-84), `:1387` (enmienda de ADR-85, cita a ADR-84), `:1393` (ADR-86) y `:1658` (ADR-94) ganan ` {cita-historica}` inmediatamente tras la cifra en negritas. `estado-programa-v1_10.md:129` y `:221` **no se marcan**: declaran estado vigente, ya traen el valor real, y por diseño deben seguir siéndolo. Marcar una cifra falsa congela la falsificación en su sitio — deliberado, mal menor frente a seguir resincronizándola cada semana; la verdad histórica de cada una (qué decía al sellarse, derivada por `git log -S`/`git show`, no restaurada) queda tabulada en la nota del acto, con **tres de las ocho que nunca fueron sobreescritas** (`:1106`, `:1136`, `:1658` — su cifra de hoy es la que se selló) y cinco que sí (`:764`/`:856` comparten historial de resincronización, igual que `:1387`/`:1393`; `:1274` es un caso aparte, narra su propia trayectoria en prosa desde su creación).
+
+**(d) Cierra sin recongelar — el falsador de `FP-51` pasa su primera prueba.** `python3 tests/check.py --baseline` antes de este acto: `22 FAIL · 135 WARN`, 3 `FAIL` de `T16`. Después de (b) y (c), sin tocar `tests/baseline.json`: **`T16` `[ ok ]`**, **`19 FAIL · 135 WARN`**, rastreadores vivos de `7` a `2` (`estado-programa:129`/`:221`, los dos que se quedan sin marcar), **`--baseline` sigue `VERDE`**, con 2 entradas que dejan de aparecer — puebla `resueltos`, no baja la cifra congelada. Es exactamente el caso que `FP-51` describe: un acto que arregla la causa del defecto en vez de apagar el vigía, y termina verde sin recongelar. Se anota como evidencia a favor en la fila de `FP-51`, sin firmarla — la firma es de mesa.
+
+**(e) `FP-50` pasa a `FIRMADA`.** El defecto que nombraba (`gobernanza:1658` como tercera cita permanente sin que ningún ADR la nombrara así) queda resuelto de raíz: `:1658` ya no depende de que mesa la nombre "permanente" caso por caso — ahora la protege el mismo mecanismo mecánico que protege a las otras siete, `MARCA_HISTORICA`, verificado por `T16` en cada corrida.
+
+**(f) Fila `ABIERTA` nueva, la pregunta que este acto no contesta.** ¿Se restauran las cifras originales de las cinco narraciones sobreescritas (`gobernanza:764`, `:856`, `:1274`, `:1387`, `:1393`), o se conserva el texto actual con la marca y la tabla de este acto como registro de la sobreescritura? Este acto tabula y deja en mesa — restaurar la cifra de un ADR sellado no es decisión de un ejecutor, y `:1274` en particular ya narra su propia trayectoria en prosa, donde restaurar el primer valor podría romper una redacción que hoy es correcta.
+
+**Lo que este ADR NO hace.** No restaura ninguna cifra histórica. No toca `_baseline_key` ni `_T16_REAL_SUFIJO` (`ADR-90`) — la colisión de clave que el transfer del 18/ago describía para 7 rastreadores se disuelve sola al bajar a 2, verificado, no reescrita. No cierra `FP-47`, `FP-48` ni `FP-51` — `FP-51` recibe evidencia, no firma. No toca `tools/`, `data/`, `milpa/` ni `.barrido2/`. No arranca ninguna etapa de `FP-26`. **Contadores de medición sobre México: 0** — `13 de 27`, `0 de 15`, `11 de 15` y `1 de 2` no se mueven; este acto es higiene de la suite, no medición.
+
+**Cascada.** Conteo de ADR (96→97), receta de `T15`: `gobernanza-v1_15.md:2` (cabecera) · `estado-programa-v1_10.md:27,101` (dos sitios, re-derivados; el encargo citaba también `:99`, que no es cita de conteo de ADR — diferencia reportada en la nota del acto).
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que ADR-48 a ADR-96.
 
 → **Vigente.**
 
