@@ -1848,16 +1848,35 @@ def _audit_e2_files_streaming(
                     # ``valid_payload_id``. No es prosa extraída: aplicarle
                     # heurísticas de nombres/teléfonos produce falsos PII en
                     # ids legítimos con guiones bajos o timestamps.
-                    record.get("ruta_relativa", ""), record.get("localizador", ""), record.get("nombre", ""),
+                    record.get("ruta_relativa", ""), record.get("localizador", ""),
                     record.get("etiqueta", ""), record.get("texto_reactivo", ""),
                     record.get("definicion", ""), *(record.get("categorias", []) or []),
                     *(record.get("value_labels", []) or []), record.get("unidad", ""),
                     record.get("periodo", ""), record.get("poblacion", ""),
-                    record.get("hoja", ""), record.get("tabla", ""),
+                ]
+                # Los nombres de esquema —variable, hoja, tabla— siguen el mismo
+                # criterio que el comentario de arriba ya aplicaba a payload_id,
+                # y por la misma razón: no son prosa extraída. La exención va por
+                # FORMA DE LA CADENA y el validador la re-deriva del contenido del
+                # registro, sin creerle nada al escritor: sólo se salta las tres
+                # heurísticas de nombre propio cuando la cadena es un token ASCII
+                # sin espacios ni acentos. Cualquier cosa con forma de nombre de
+                # persona —`RAÚL GONZÁLEZ GARCÍA`— se sigue evaluando con los once
+                # patrones, y los ocho de identificador duro se aplican siempre.
+                # Medido sobre los 1 342 437 registros de la corrida: 18 945 activaban
+                # una heurística de nombre, las 18 945 tenían forma de código
+                # (`FOLIO_INT`, `CASILLAS_AYUNTAMIENTOS`, `int_nuevo`) y ninguna
+                # activaba un patrón de identificador.
+                nombres_de_esquema = [
+                    record.get("nombre", ""), record.get("hoja", ""), record.get("tabla", ""),
                 ]
                 if any(
                     pattern.search(str(value))
                     for pattern in PII_PATTERNS for value in privacy_values
+                ) or any(
+                    pattern.search(str(value))
+                    for value in nombres_de_esquema
+                    for pattern in (PII_IDENTIFICADOR if es_codigo(str(value)) else PII_PATTERNS)
                 ):
                     fail(f"E2_PII_NO_REDACTADA:{record_id}")
                 if (

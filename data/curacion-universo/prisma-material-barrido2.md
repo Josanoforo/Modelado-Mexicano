@@ -9,21 +9,21 @@ Fecha: 2026-08-17. Estado: CERRADO-E2. Red material: deshabilitada.
 | declaraciones_sin_archivo_sha | 4 | declaraciones del manifiesto | `CMD-MATERIAL` |
 | representaciones_fisicas | 672 | archivos de las dos raíces configuradas | `CMD-MATERIAL` |
 | sha_unicos | 662 | representaciones físicas | `CMD-MATERIAL` |
-| representaciones_declaradas | 577 | representaciones físicas | `CMD-MATERIAL` |
-| representaciones_no_declaradas | 95 | representaciones físicas | `CMD-MATERIAL` |
-| fuera_de_disco | 49 | declaraciones con archivo+sha | `CMD-MATERIAL` |
+| representaciones_declaradas | 626 | representaciones físicas | `CMD-MATERIAL` |
+| representaciones_no_declaradas | 46 | representaciones físicas | `CMD-MATERIAL` |
+| fuera_de_disco | 0 | declaraciones con archivo+sha | `CMD-MATERIAL` |
 | divergentes_hash_o_tamano | 1 | declaraciones con archivo+sha | `CMD-MATERIAL` |
 | corruptas_E0 | 0 | representaciones físicas | `CMD-MATERIAL` |
 | cifradas_E0 | 0 | representaciones físicas | `CMD-MATERIAL` |
 | no_soportadas_E0 | 0 | representaciones físicas | `CMD-MATERIAL` |
-| reutilizadas | 10 | representaciones E2 | `CMD-MATERIAL` |
+| reutilizadas | 0 | representaciones E2 | `CMD-MATERIAL` |
 | abiertas_E1 | 672 | representaciones físicas | `CMD-MATERIAL` |
 | caracterizadas_E2_o_excepcion | 672 | representaciones físicas | `CMD-MATERIAL` |
 | representaciones_con_excepcion | 373 | representaciones E2 | `CMD-MATERIAL` |
 | excepciones_por_objeto | 3919 | objetos E1 | `CMD-MATERIAL` |
-| objetos_logicos_E1 | 1331710 | objetos enumerados | `CMD-MATERIAL` |
-| objetos_caracterizados_E2 | 1327791 | objetos E1 | `CMD-MATERIAL` |
-| reportes_durables_compactos | 1840 | grupos representación/tipo/estado/privacidad/frontera | `CMD-MATERIAL` |
+| objetos_logicos_E1 | 1342437 | objetos enumerados | `CMD-MATERIAL` |
+| objetos_caracterizados_E2 | 1338518 | objetos E1 | `CMD-MATERIAL` |
+| reportes_durables_compactos | 1875 | grupos representación/tipo/estado/privacidad/frontera | `CMD-MATERIAL` |
 | ola_W1 | 26 | representaciones físicas | `CMD-MATERIAL` |
 | ola_W2 | 246 | representaciones físicas | `CMD-MATERIAL` |
 | ola_W3 | 396 | representaciones físicas | `CMD-MATERIAL` |
