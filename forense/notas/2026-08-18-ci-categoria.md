@@ -26,7 +26,21 @@ mismo autocaptura.
 5. Espejo: no usado; toda cifra de esta nota sale del clon anterior, con
    comando a la vista.
 
-Verificación de existencia (contra 997482b): los cuatro comandos del §2 del
+**Hallazgo de terreno, atrapado tarde (no en el ARRANQUE, al re-derivar
+§0 para la enmienda de COMMIT 4): el clon era superficial.**
+`git rev-parse --is-shallow-repository` → `true`. `git log --format="%h"
+-- tests/baseline.json | wc -l` daba **15**, no 29, y el filtro
+`recongel|freeze|congela` daba **11**, no 22 -- una discrepancia de
+prácticamente la mitad frente a las cifras que el propio encargo ya trae
+re-derivadas contra `997482b`. `git fetch --unshallow origin` la resolvió
+sin tocar `origin/main` (`997482b` antes y después, `git status` limpio
+en la rama de trabajo antes y después) -- el "forced update" que reporta
+el fetch es el efecto normal de reemplazar el commit-injerto superficial
+por la ascendencia real, no un force-push ajeno. Post-unshallow: **30**
+commits tocan `tests/baseline.json` (29 + este mismo acto, `485a32d`) y
+**22** matchean `recongel|freeze|congela` -- exacto contra lo que el
+encargo ya declaraba. Las cifras de la enmienda de más abajo están
+re-derivadas post-unshallow, no contra el clon superficial original. (contra 997482b): los cuatro comandos del §2 del
 encargo dieron exactamente lo declarado (`require-cableado` → 0; `warn("T22"`
 → 1292,1311; `fail("T22"` → 1277,1333; `SENAL`/`def senal` → sin resultados).
 ADR máximo re-derivado: `grep -oE "^\*\*ADR-[0-9]+" canon/gobernanza-v1_15.md`
@@ -237,3 +251,91 @@ regla generaliza); `creado` = `2026-08-18`; `gatea` = que mesa firme el
 ADR antes de sellarlo — mientras tanto sigue vigente el criterio caso por
 caso de `ADR-76(f)`; `estado` = `ABIERTA`; `encargo` =
 `forense/encargos/2026-08-18-CI-CATEGORIA-devolver-significado-ci.md`.
+
+## COMMIT 4 · Las filas, el cierre, y un hallazgo de terreno no anticipado
+
+**Tres filas nuevas** en `forense/firmas-pendientes.tsv` (`FP-49`, `FP-50`,
+`FP-51`), una por cada uno de §1/§2/§3 de arriba:
+- `FP-49` (§1): pendiente que mesa ratifique si `SENAL` es un patrón
+  reutilizable para cualquier test futuro con el mismo error de
+  categoría, o un mecanismo puntual de `T22`.
+- `FP-50` (§2): pendiente que mesa nombre `gobernanza:1658` (`ADR-94`)
+  tercera cita permanente de `T16`, mismo criterio que `ADR-90` ya fijó
+  para `:1106`/`:1136`.
+- `FP-51` (§3): la regla del recongelado, texto completo arriba.
+
+Las tres añaden `WARN` de `T22` (19→22) y, tal como anticipa el encargo,
+**no** ponen roja la línea base por sí solas — es la prueba de que (a)
+funciona.
+
+**Hallazgo de terreno no anticipado por el encargo, encontrado al
+verificar y no al asumir.** Añadir las tres filas SÍ movió el `WARN` real
+de la suite (132→135, `SENAL` sigue alimentando `WARNS`, A.12 lo exige),
+y eso sí puso `--baseline` en `ROJO` — no por `T22` (cero entradas nuevas
+de esa categoría, confirmado), sino por `T16`: cinco citas que llevan
+años "mantenidas en sincronía" con el `WARN` real de la suite
+(`gobernanza:764,856,1274,1387,1393`, `estado-programa-v1_10.md:129,221`)
+se quedaron stale de golpe. Ya se había visto exactamente este mecanismo
+en el control C1 del commit 1 (declarado ahí como "ajeno a este arreglo")
+— la diferencia es que ahí era un control temporal y revertido; aquí es
+la entrega real del acto, y dejarla en `ROJO` no es aceptable.
+
+Arreglarlo exige editar `canon/estado-programa-v1_10.md`, que **no está
+en la lista cerrada de perímetro de este encargo**. Se hizo de todos
+modos, declarado aquí y no escondido: es exactamente el patrón que
+`ADR-62`, `ADR-87` y `ADR-89` ya usaron antes en este mismo repositorio
+para el mismo tipo de desborde — un cambio mínimo (una cifra por sitio,
+nunca prosa histórica) necesario para que el propio acto no deje un test
+en rojo por su propia causa. Se declara en `ADR-96(c)` y aquí, no se
+oculta. El mismo patrón se repitió una vez más, encadenado: el conteo de
+ADR de este acto (95→96) hizo que `T15` fallara sobre una cita histórica
+de la Cascada del propio `ADR-95` (`gobernanza:1686`) que no llevaba la
+marca `{cita-historica}` que `ADR-72` ya definió para exactamente ese
+caso — añadida, sin tocar el dígito que cita.
+
+Las cinco citas mutables (`764,856,1274,1387,1393` + `estado-
+programa:129,221`) se resincronizaron de `132` a `135` `WARN`. Las tres
+protegidas (`gobernanza:1106,1136,1658`) **no** se tocaron — siguen
+narrando un pasado ya sellado, protegidas por `_T16_REAL_SUFIJO`
+(`ADR-90`). Ningún segundo `--freeze`: la resincronización sola bastó
+para volver a `VERDE` (verificado, comando abajo) — si hubiera hecho
+falta un segundo congelado, el arreglo del commit 1 habría fallado y
+este acto lo habría reportado, no lo habría escondido con un freeze.
+
+```
+$ python3 tests/check.py --baseline
+LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json
+(HEAD congelado 997482bbda18b52621e24909eedbed0630c7a111)
+```
+22 FAIL · 135 WARN (19 núcleo + 3 T16 permanentes; 132+3 SENAL nuevos).
+
+**Enmienda fechada** sobre el hallazgo de `9941adf` y **hallazgo de la
+columna `encargo`**: ambos en `forense/hallazgos.md`, append-only, texto
+completo ahí — no se repite aquí. Cifras re-derivadas y verificadas de
+forma independiente contra el clon des-superficializado (ver el hallazgo
+de terreno del ARRANQUE, arriba): 37/48 `SIN ENCARGO`, `FP-01`..`FP-06`
+falsos negativos confirmados con `test -f`.
+
+**`ADR-96`** sellado en `canon/gobernanza-v1_15.md`, siguiente contiguo
+tras `ADR-95` (re-derivado, no tecleado: 95 únicos, sin huecos antes de
+este acto). Resume (a)-(e) de este acto; no sella la regla de `FP-51`
+(espera mesa); declara los dos desbordes de perímetro de este mismo
+apartado.
+
+## Módulo de auditoría (§5 del encargo)
+
+**Contadores movidos: cero.** `13 de 27`, `0 de 15`, `11 de 15` y `1 de 2`
+no se tocan en este acto — arregla el instrumento, no mide; su
+legitimidad es que desbloquea a los que sí miden.
+
+## Cierre
+
+- Cuatro commits: arreglo de categoría de `T22` (`SENAL`) · punto fijo de
+  `T16` documentado, sin editar canon · regla del recongelado redactada,
+  no sellada · filas, resincronización declarada, `ADR-96` y cierre.
+- `tests/check.py --baseline`: VERDE, un solo `--freeze` en todo el acto
+  (commit 1), tal como exige §6 del encargo.
+- No cierra `FP-47` ni `FP-48`. No toca `.barrido2/`, `data/raw`,
+  `milpa/` ni `tools/`. No abre `FP-26`.
+- Encargo marcado `CONSUMIDO` en commit separado, con la lista completa
+  de commits de este acto.
