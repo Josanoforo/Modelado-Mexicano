@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **103 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **104 ADR**
 
 > | | |
 > |---|---|
@@ -1988,7 +1988,7 @@ La estrategia se elige **por parámetro, no por programa** — un `AJUSTADO` pue
 
 **Lo que este ADR NO hace.** No identifica causalmente nada (A-bis regla 2). No compara esta medición en escala contra el β̂ de `G1_confianza_institucional` (A-bis regla 3) -- desenlaces distintos. No mueve el contador de coeficientes de generador en escala del modelo (sigue 0 de 15) -- el reactivo genérico no es componente nombrado del vector de `ADR-28.b` (`ADR-57(e)`). No toca `milpa/refutations.yaml`, el modelo, ni el pre-registro del Hito D. No abre ningún instrumento fuera de ENCIG 2023.
 
-**Cascada.** Conteo de ADR (103→104), re-derivado en vivo contra `origin/main = 6178bf9` (PR #260, gate-durable-v7, fusionado) antes de escribir el número: 103 únicos, máximo 103, sin huecos -- confirmado además por `gh api repos/Josanoforo/Modelado-Mexicano/pulls/260` (`merged: true`) y por la cabecera vigente de este mismo archivo ("103 ADR"). Sitios: `gobernanza-v1_15.md:2` (cabecera, 103→104) y `estado-programa-v1_10.md:27,101` (tabla y narrativa, 103→104). Nota declarada, no reparada aquí por estar fuera de perímetro de este acto: la narrativa de `estado-programa-v1_10.md:101` no llevaba cláusula propia para `ADR-103`/`GATE-DURABLE-V7` (se detiene en la cláusula de `ADR-102`) pese a que la cabecera y la tabla ya contaban 103 antes de este acto -- un hueco dejado por el acto anterior, no por éste; este ADR añade su propia cláusula continuando desde el conteo numérico vigente (103→104), sin inventar la cláusula faltante de `ADR-103` en nombre ajeno.
+**Cascada.** Conteo de ADR (103→104), re-derivado en vivo contra `origin/main = 6178bf9` (PR #260, gate-durable-v7, fusionado) antes de escribir el número: 103 únicos, máximo 103, sin huecos -- confirmado además por `gh api repos/Josanoforo/Modelado-Mexicano/pulls/260` (`merged: true`) y por la cabecera vigente de este mismo archivo ("103 ADR{cita-historica}"). Sitios: `gobernanza-v1_15.md:2` (cabecera, 103→104) y `estado-programa-v1_10.md:27,101` (tabla y narrativa, 103→104). Nota declarada, no reparada aquí por estar fuera de perímetro de este acto: la narrativa de `estado-programa-v1_10.md:101` no llevaba cláusula propia para `ADR-103`/`GATE-DURABLE-V7` (se detiene en la cláusula de `ADR-102`) pese a que la cabecera y la tabla ya contaban 103 antes de este acto -- un hueco dejado por el acto anterior, no por éste; este ADR añade su propia cláusula continuando desde el conteo numérico vigente (103→104), sin inventar la cláusula faltante de `ADR-103` en nombre ajeno.
 
 **Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que `ADR-48` a `ADR-103`.
 
