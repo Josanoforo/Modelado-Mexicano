@@ -283,7 +283,24 @@ def t06_numeric_consistency():
 # ───────────────────────────────────────────────────────────────
 # T07 · Vocabulario de tiers  (T-05: cuatro vocabularios incompatibles)
 # ───────────────────────────────────────────────────────────────
-CANONICO = {"FUERTE", "MEDIA", "MEDIA-FUERTE", "HIPÓTESIS"}
+# Bloque A (canónico): fuerte · media · hipótesis razonable · narrativa
+# popular -- `HIPÓTESIS` es la forma corta de "hipótesis razonable", ya en
+# uso antes de este acto. CANONICO admite esos cuatro más sus
+# equivalencias, mapeo sellado por mesa (`ADR-93(c)`/`FP-30`, ejecutado por
+# `ADR-94`): SÓLIDO→fuerte · MEDIO/MODERADA→media · HIPÓTESIS RAZONABLE→
+# hipótesis razonable · NARRATIVA EXAGERADA→narrativa popular ·
+# MODERADA-FUERTE→media-fuerte. `MEDIA-FUERTE` no es del Bloque A pero se
+# retiene como quinta categoría, declarado en `ADR-94`: el test la usa
+# desde antes de este acto, el corpus la usa una vez, y retirarla rompería
+# sin ganancia -- es el único punto de este conjunto que ADR-94 decide de
+# nuevo; el resto ya estaba sellado por FP-30.
+CANONICO = {
+    "FUERTE", "SÓLIDO",
+    "MEDIA", "MEDIO", "MODERADA",
+    "HIPÓTESIS", "HIPÓTESIS RAZONABLE",
+    "NARRATIVA POPULAR", "NARRATIVA EXAGERADA",
+    "MEDIA-FUERTE", "MODERADA-FUERTE",
+}
 def t07_tier_vocabulary():
     ajenos = Counter()
     pat = r"\[(SÓLIDO|MEDIO|HIPÓTESIS RAZONABLE)\]|Calificación:\s*([A-ZÁÉÍÓÚ\- ]{4,25})|\*\*(Moderada|Moderada-Fuerte|Narrativa exagerada|Débil)\*\*"
@@ -291,8 +308,13 @@ def t07_tier_vocabulary():
         for i, l in enumerate(read(p).split("\n"), 1):
             for m in re.finditer(pat, l):
                 tok = next(g for g in m.groups() if g)
-                if tok.strip().upper() not in CANONICO:
-                    ajenos[tok.strip()] += 1
+                # ADR-94/FP-41: contar sobre la misma forma normalizada que
+                # decide el chequeo -- antes se comparaba con `.upper()` pero
+                # se contaba con `tok.strip()` sin mayusculizar, así que
+                # "Moderada" y "MODERADA" salían como dos vocabularios.
+                normalizado = tok.strip().upper()
+                if normalizado not in CANONICO:
+                    ajenos[normalizado] += 1
     if ajenos:
         det = " · ".join(f"`{k}` ×{v}" for k, v in ajenos.most_common(8))
         fail("T07", f"{len(ajenos)} vocabularios de tier ajenos al Bloque A: {det}")
