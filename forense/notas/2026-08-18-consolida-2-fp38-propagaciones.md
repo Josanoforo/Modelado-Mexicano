@@ -175,14 +175,33 @@ LÍNEA BASE: ROJO — 2 entradas nuevas frente a tests/baseline.json
 
 **Desglose por test, no agregado.** Las dos entradas nuevas son el mismo mecanismo de cascada que `CIERRA-17AGO`/`REGISTRA-17AGO` ya dejaron precedentado: `canon/estado-programa-v1_10.md` declara cifras de FAIL/WARN "vigentes" en dos citas históricas (`:129`, `:221`), y este acto —al cambiar el total real (19→21 FAIL, 127→126 WARN: dos FAIL nuevos son las propias entradas de `T16` citadas arriba, y el WARN neto combina la fila nueva de `T22` que `FP-53` agrega en COMMIT 3 con las dos ediciones de contenido de `glosario`/`integrador`/`corpus`/`hitoD-preregistro`)— las deja desactualizadas. `canon/estado-programa-v1_10.md` está fuera del perímetro de este acto salvo por la cascada `:27`/`:101` (conteo de ADR — sin cambio, ver abajo): no se persigue esta cascada de `T16` aquí, mismo criterio ya aplicado por `CONSOLIDA-17AGO`/`CIERRA-17AGO` para el mismo tipo de defecto, y consistente con `ADR-101(c)`/`FP-51`: un recongelado no es la vía rutinaria, y esto no es una regresión de sustancia — es una cifra citada que quedó atrás. Se declara, no se persigue, no se recongela.
 
-**ADR y cascada `:27`/`:101`, re-derivados al escribir.** Ningún commit de este acto sella una decisión de mesa nueva: `FP-38` se firma citando la cita de mesa ya dada (17/ago), las tres propagaciones de COMMIT 2 propagan resoluciones ya tomadas (`ADR-94`, `glosario:316`), y la fila de COMMIT 3 se abre citando `ADR-101` sin sellar nada nuevo. **No se escribe ningún ADR en este acto.** El máximo de ADR hoy, re-derivado:
+**ADR y cascada `:27`/`:101`, re-derivados al escribir Y al fusionar — la colisión que el encargo anticipó ocurrió de verdad.** Ningún commit de este acto sella una decisión de mesa nueva: `FP-38` se firma citando la cita de mesa ya dada (17/ago), las tres propagaciones de COMMIT 2 propagan resoluciones ya tomadas (`ADR-94`, `glosario:316`), y la fila de COMMIT 3 se abre citando `ADR-101` sin sellar nada nuevo. **Este acto no escribe ningún ADR propio.** Al escribir (contra `68a3466`), el máximo era `101`, sin cambio frente a lo que `estado-programa:27`/`:101` ya declaraban. Al re-derivar justo antes de empujar el commit de cierre:
 
 ```
-$ grep -oE "^\*\*ADR-[0-9]+" canon/gobernanza-v1_15.md | sed -E 's/\*\*ADR-//' | sort -n | tail -1
+$ git fetch origin main
+68a3466..afbdf4f  main       -> origin/main
+$ git merge-base --is-ancestor origin/main HEAD
+(falla — drift real, no falso positivo)
+$ git diff --stat 68a3466 origin/main
+canon/estado-programa-v1_10.md                                    |  4 +-
+canon/gobernanza-v1_15.md                                         | 33 ++++++++++-
+forense/encargos/2026-08-18-SELLA-RUTAS-ajustado-metodologia.md   | 49 +++++++++++++
+forense/hallazgos.md                                              |  2 +
+forense/metodologia-identificacion-vs-ajuste-v0_1.md              |  6 +-
+forense/notas/2026-08-18-sella-rutas.md                           | 67 ++++++++++++++++
+milpa/procedencia.yaml                                            |  4 +-
+```
+
+`PR #258` (`ACTO SELLA-RUTAS`) fusionó mientras este acto corría y selló `ADR-102` (procedimiento de la clase `AJUSTADO`, `forense/metodologia-identificacion-vs-ajuste-v0_1.md`). **Cero colisión de contenido** — ninguno de los archivos que `SELLA-RUTAS` toca está en el perímetro de este acto, y viceversa; el único archivo compartido es `forense/hallazgos.md`, apéndice puro en ambos lados. `git merge origin/main` limpio, sin marcadores de conflicto (`Auto-merging forense/hallazgos.md`, `Merge made by the 'ort' strategy`). `SELLA-RUTAS` ya dejó su propia cascada escrita (`estado-programa:27`/`:101` → `102 ADR`) — no hay nada que este acto necesite propagar. El máximo real, re-confirmado tras el merge:
+
+```
+$ grep -oE "^\*\*ADR-[0-9]+" canon/gobernanza-v1_15.md | sed -E 's/\*\*ADR-//' | sort -n | tail -3
+100
 101
+102
 ```
 
-Sin cambio frente al que `estado-programa:27`/`:101` ya declaran (`101 ADR`, puesto ahí por `ADR-101` mismo al fusionar `MESA-18AGO`) — no hay cascada que escribir. Se re-confirma el mismo número justo antes de empujar el commit de cierre, por si algún carril concurrente (`SELLA-RUTAS` u otro) fusionó un ADR nuevo mientras tanto.
+**102, no 101.** La cita de `ADR-101` D-10 en `FP-53` (COMMIT 3) no cambia por esto: `ADR-101` sigue existiendo con el mismo texto, solo dejó de ser el número más alto.
 
 **No se recongela `tests/baseline.json`** sin ADR de mesa (`ADR-76(f)`). `--freeze` no se corrió.
 
