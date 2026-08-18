@@ -1,5 +1,5 @@
 {
-  "head": "24cd4d82d3bda4be35245396bc64e56b377bddfa",
+  "head": "997482bbda18b52621e24909eedbed0630c7a111",
   "fails": [
     [
       "T05",
@@ -70,24 +70,8 @@
       "corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md: afirmación de estado con cuantificador absoluto (5 de 5 comprobadas resultaron falsas): > **Origen de la corrección:** `meta-auditoria-comunicacion.md §3` · ADR-06 · `glosario conf.03"
     ],
     [
-      "T15",
-      "canon/estado-programa-v1_10.md: cita 91 ADR; gobernanza tiene 94 únicos"
-    ],
-    [
-      "T16",
-      "canon/estado-programa-v1_10.md: declara 128 WARN vigente; la corrida real da N WARN"
-    ],
-    [
-      "T16",
-      "canon/estado-programa-v1_10.md: declara 18 FAIL · 128 WARN vigente; la corrida real da N WARN"
-    ],
-    [
       "T16",
       "canon/gobernanza-v1_15.md: declara 18 FAIL · 104 WARN vigente; la corrida real da N WARN"
-    ],
-    [
-      "T16",
-      "canon/gobernanza-v1_15.md: declara 20 FAIL · 126 WARN vigente; la corrida real da N WARN"
     ],
     [
       "T16",
@@ -510,74 +494,6 @@
     [
       "T13",
       "canon/integrador-psicologia-mexicano.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)"
-    ],
-    [
-      "T22",
-      "FP-15 ABIERTA desde 2026-08-13 (N días): Entrada 5 de registro-recalculo (ADR-50/ADR-51/ADR-57(c)) — gateada por el sello del motor de matriz"
-    ],
-    [
-      "T22",
-      "FP-17 FIRMADA sin ejecutar desde 2026-08-14 (N días): Cola de adquisición — 15 filas EXISTE-NO-VERIFICADO del sondeo-27 propuestas hoy a data/cola-adquisi"
-    ],
-    [
-      "T22",
-      "FP-18 FIRMADA sin ejecutar desde 2026-08-11 (N días): ¿Se instrumenta el marcador T20 (tests/check.py) para la población 'llaves de identificación ejercid"
-    ],
-    [
-      "T22",
-      "FP-24 FIRMADA sin ejecutar desde 2026-08-13 (N días): RANURA (c) -- politica de pares para relaciones.tsv (fila 'gemela' SI + NO_DETERMINADO, mismo necesi"
-    ],
-    [
-      "T22",
-      "FP-26 ABIERTA desde 2026-08-17 (N días): DISPARADOR-POSTBARRIDO -- al cierre de BARRIDO-2 (PR #244 fusionado + criterios de cierre SS28 de su"
-    ],
-    [
-      "T22",
-      "FP-29 ABIERTA desde 2026-08-17 (N días): Antes de adjudicar magnitud de confianza radial hay que resolver la procedencia del 22% y alinear es"
-    ],
-    [
-      "T22",
-      "FP-32 ABIERTA desde 2026-08-17 (N días): U2/EV-1 de la remediacion de brecha documental (indicadores oficiales de precision CV/EE/IC con sha2"
-    ],
-    [
-      "T22",
-      "FP-33 ABIERTA desde 2026-08-17 (N días): U3/DOC-BACKFILL de la remediacion de brecha documental (las cuatro preguntas del transfer sobre las "
-    ],
-    [
-      "T22",
-      "FP-34 ABIERTA desde 2026-08-17 (N días): Las CUATRO decisiones de mesa que BARRIDO-2 declara 'propagadas' viven solo en su rama y no tienen f"
-    ],
-    [
-      "T22",
-      "FP-35 ABIERTA desde 2026-08-17 (N días): data/INFRAESTRUCTURA-v1_0.md no cubre el cableado de BARRIDO-2, y el propio encargo declara que 'la "
-    ],
-    [
-      "T22",
-      "FP-37 ABIERTA desde 2026-08-17 (N días): Derivar el censo de estimabilidad por COMANDO en vez de por foto escrita a mano. ADR-61(d) midio que"
-    ],
-    [
-      "T22",
-      "FP-38 ABIERTA desde 2026-08-17 (N días): La procedencia de `glosario:136` está mal marcada. Dice `(a)+(c)` —incluye dato primario mexicano— y"
-    ],
-    [
-      "T22",
-      "FP-42 ABIERTA desde 2026-08-17 (N días): Dos filas del tablero necesitan texto que vive fuera del repo (A.3). `FP-24`: su regla propuesta est"
-    ],
-    [
-      "T22",
-      "FP-43 FIRMADA sin ejecutar desde 2026-08-18 (N días): La ficha R1.4 en forense/hitoD-preregistro-v2_0.md:59-60 debe declarar que consume la rama consumo_c"
-    ],
-    [
-      "T22",
-      "FP-44 FIRMADA sin ejecutar desde 2026-08-18 (N días): canon/estado-programa-v1_10.md: (§S5, casillero de pendientes irresueltos) debe pasar de \"conf.02"
-    ],
-    [
-      "T22",
-      "FP-45 FIRMADA sin ejecutar desde 2026-08-18 (N días): canon/estado-programa-v1_10.md: (§S5) debe pasar de \"conf.05 · consumo compensatorio: Fuerte (con"
-    ],
-    [
-      "T22",
-      "FP-46 FIRMADA sin ejecutar desde 2026-08-18 (N días): FP-24 está FIRMADA (ADR-93) pero su sustancia -- las 20 filas CON PAR de data/curacion-registro/rela"
     ]
   ],
   "nota": {
@@ -598,11 +514,9 @@
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1,
-      "T15_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
-      "T16_cifra_historica_declarada_107_WARN__consecuencia_aritmetica_del_T03_de_PROC-10-bis__no_defecto_independiente": 2,
-      "T16_consecuencia_aritmetica_del_T03_de_revision-publicacion__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01": 6,
+      "T16_consecuencia_aritmetica_del_T03_de_revision-publicacion__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01": 3,
       "T22_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
-      "T22_sin_clasificar": 17
+      "T22_sin_clasificar": 19
     }
   }
 }

@@ -22,6 +22,7 @@ BASELINE_MODE = "--baseline" in sys.argv
 FREEZE_MODE = "--freeze" in sys.argv
 BASELINE_PATH = os.path.join(ROOT, "tests", "baseline.json")
 FAILS, WARNS = [], []
+SENAL = []
 
 def read(p):
     return io.open(p, encoding="utf-8").read()
@@ -34,6 +35,14 @@ def fail(test, msg):
 
 def warn(test, msg):
     (FAILS if STRICT else WARNS).append((test, msg))
+
+def senal(test, msg):
+    """WARN de vigía: dispara por diseño en cada corrida, así que por
+    construcción no puede ser un detector de regresiones. Se imprime
+    igual —A.12 le encarga justamente gritar hasta que alguien atienda—
+    y queda fuera de la comparación de línea base."""
+    (FAILS if STRICT else WARNS).append((test, msg))
+    SENAL.append((test, _baseline_key(msg)))
 
 def newest(pattern):
     """El archivo vigente de un artefacto versionado. Ordena por versión
@@ -1289,7 +1298,7 @@ def t22_firmas():
             edad_txt = f"{(hoy - datetime.date(anio, mes, dia)).days} días"
         except (ValueError, TypeError):
             pass
-        warn("T22", f"{f.get('id', '?')} ABIERTA desde {f.get('creado', '?')} "
+        senal("T22", f"{f.get('id', '?')} ABIERTA desde {f.get('creado', '?')} "
                      f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
 
     # (c) WARN por cada fila FIRMADA con `ejecutada_en` vacío -- una firma
@@ -1308,7 +1317,7 @@ def t22_firmas():
             edad_txt = f"{(hoy - datetime.date(anio, mes, dia)).days} días"
         except (ValueError, TypeError):
             pass
-        warn("T22", f"{f.get('id', '?')} FIRMADA sin ejecutar desde {f.get('creado', '?')} "
+        senal("T22", f"{f.get('id', '?')} FIRMADA sin ejecutar desde {f.get('creado', '?')} "
                      f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
 
     # (b) auto-protección: archivo nuevo de canon/forense con marcador de
@@ -1597,8 +1606,8 @@ def _freeze_baseline():
     import json
     data = {
         "head": _git_head(),
-        "fails": sorted({(t, _baseline_key(m)) for t, m in FAILS}),
-        "warns": sorted({(t, _baseline_key(m)) for t, m in WARNS}),
+        "fails": sorted({(t, _baseline_key(m)) for t, m in FAILS} - set(SENAL)),
+        "warns": sorted({(t, _baseline_key(m)) for t, m in WARNS} - set(SENAL)),
         "nota": _freeze_note(),
     }
     with open(BASELINE_PATH, "w", encoding="utf-8") as f:
@@ -1615,7 +1624,8 @@ def _baseline_compare():
     with open(BASELINE_PATH, encoding="utf-8") as f:
         data = json.load(f)
     known = {tuple(e) for e in data["fails"]} | {tuple(e) for e in data["warns"]}
-    current = {(t, _baseline_key(m)) for t, m in FAILS} | {(t, _baseline_key(m)) for t, m in WARNS}
+    current = ({(t, _baseline_key(m)) for t, m in FAILS} |
+               {(t, _baseline_key(m)) for t, m in WARNS}) - set(SENAL)
     nuevos = current - known
     resueltos = known - current
     print("\n" + "─" * 72)
