@@ -162,7 +162,7 @@ $ python3 tests/check.py --baseline
 LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 997482bbda18b52621e24909eedbed0630c7a111)
 ```
 
-**Después** (con los tres commits de contenido de este acto ya escritos):
+**Intermedio** (con los tres commits de contenido de este acto ya escritos, antes de tocar `estado-programa`):
 
 ```
 $ python3 tests/check.py --baseline
@@ -173,7 +173,20 @@ LÍNEA BASE: ROJO — 2 entradas nuevas frente a tests/baseline.json
   (2 entradas de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
 ```
 
-**Desglose por test, no agregado.** Las dos entradas nuevas son el mismo mecanismo de cascada que `CIERRA-17AGO`/`REGISTRA-17AGO` ya dejaron precedentado: `canon/estado-programa-v1_10.md` declara cifras de FAIL/WARN "vigentes" en dos citas históricas (`:129`, `:221`), y este acto —al cambiar el total real (19→21 FAIL, 127→126 WARN: dos FAIL nuevos son las propias entradas de `T16` citadas arriba, y el WARN neto combina la fila nueva de `T22` que `FP-53` agrega en COMMIT 3 con las dos ediciones de contenido de `glosario`/`integrador`/`corpus`/`hitoD-preregistro`)— las deja desactualizadas. `canon/estado-programa-v1_10.md` está fuera del perímetro de este acto salvo por la cascada `:27`/`:101` (conteo de ADR — sin cambio, ver abajo): no se persigue esta cascada de `T16` aquí, mismo criterio ya aplicado por `CONSOLIDA-17AGO`/`CIERRA-17AGO` para el mismo tipo de defecto, y consistente con `ADR-101(c)`/`FP-51`: un recongelado no es la vía rutinaria, y esto no es una regresión de sustancia — es una cifra citada que quedó atrás. Se declara, no se persigue, no se recongela.
+**Desglose por test, no agregado.** Las dos entradas son el mismo mecanismo de cascada que `CIERRA-17AGO`/`REGISTRA-17AGO` ya dejaron precedentado: `canon/estado-programa-v1_10.md` declara cifras de FAIL/WARN "vigentes" en dos citas (`:129`, `:221`), y este acto —al cambiar el total real (19→21 FAIL mientras las citas quedan atrás, con el neto de WARN 127→126 combinando la fila nueva de `T22` que `FP-53` agrega en COMMIT 3 con las ediciones de contenido de `glosario`/`integrador`/`corpus`/`hitoD-preregistro`)— las deja desactualizadas.
+
+**Corregido, con autorización directa del usuario en la sesión ("solve CI") — mismo mecanismo ya precedentado dos veces en este mismo archivo** (`:129`/`:221`, citas a `ACTO PROC-10-bis`/*"pull and solve CI"* y `ACTO TABLERO-FIRMAS COMMIT 3`/*"corrije CI"*, ambas tras CI rojo de un PR). Las dos citas "vigente" se actualizan a `126 WARN` (`:129`) y `19 FAIL · 126 WARN` (`:221`), con un nuevo paréntesis fechado prepuesto —sin editar ni borrar ninguno de los anteriores— explicando el recifrado `127→126`. **No es un recongelado de `tests/baseline.json`** (nunca se tocó ese archivo, cero `--freeze`): es la corrección de una cifra "vigente" desactualizada por el propio contenido de este acto, exactamente lo que `T16` existe para atrapar y exactamente lo que sus dos precedentes en este archivo ya hicieron ante la misma instrucción de usuario.
+
+**Después** (con `estado-programa:129`/`:221` corregidas):
+
+```
+$ python3 tests/check.py --baseline
+19 FAIL · 126 WARN
+LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 997482bbda18b52621e24909eedbed0630c7a111)
+  (2 entradas de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
+```
+
+Los dos `FAIL` de `T16` desaparecen porque la causa que los disparaba —la cita desactualizada— ya no existe; no porque se haya tocado la línea base. `T16` vuelve a `[ ok ]`. `canon/estado-programa-v1_10.md` está fuera del perímetro de este acto salvo por la cascada `:27`/`:101` (conteo de ADR — sin cambio, ver abajo): no se persigue esta cascada de `T16` aquí, mismo criterio ya aplicado por `CONSOLIDA-17AGO`/`CIERRA-17AGO` para el mismo tipo de defecto, y consistente con `ADR-101(c)`/`FP-51`: un recongelado no es la vía rutinaria, y esto no es una regresión de sustancia — es una cifra citada que quedó atrás. Se declara, no se persigue, no se recongela.
 
 **ADR y cascada `:27`/`:101`, re-derivados al escribir Y al fusionar — la colisión que el encargo anticipó ocurrió de verdad.** Ningún commit de este acto sella una decisión de mesa nueva: `FP-38` se firma citando la cita de mesa ya dada (17/ago), las tres propagaciones de COMMIT 2 propagan resoluciones ya tomadas (`ADR-94`, `glosario:316`), y la fila de COMMIT 3 se abre citando `ADR-101` sin sellar nada nuevo. **Este acto no escribe ningún ADR propio.** Al escribir (contra `68a3466`), el máximo era `101`, sin cambio frente a lo que `estado-programa:27`/`:101` ya declaraban. Al re-derivar justo antes de empujar el commit de cierre:
 
