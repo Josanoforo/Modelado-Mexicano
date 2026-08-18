@@ -636,21 +636,24 @@ def t16_suite_self_check():
     """Ninguna afirmación VIGENTE de FAIL/WARN en canon/ puede contradecir
     la corrida real (subproceso independiente, ver `_suite_real`).
 
-    LÍMITE DECLARADO -- léelo antes de tocar este test: el único marcador
-    mecánico que reconoce "esto es historia, no estado vigente" es
-    `_CAMBIO_FECHADO`, que exige el formato literal `> **vX.Y — DD/mon.**`
-    al INICIO de la línea (el patrón que `estado §0` ya usa para v1.1,
-    v1.6, v1.7, v1.8). Si un canónico narra un cambio pasado con cualquier
-    otra forma -- una tabla, una nota sin blockquote, una fecha en otro
-    lugar de la oración -- este test NO lo reconocerá como histórico y
-    marcará FAIL un registro que en realidad es correcto. Verificado en la
-    sesión de tests (29/jul/2026): quitarle el `>` a una entrada histórica
-    real basta para que empiece a fallar -- la exención es real, pero es
-    tan angosta como el formato que sabe reconocer. Antes de ampliar el
-    universo de documentos o de patrones que este test vigila, hay que
-    ampliar `_CAMBIO_FECHADO` en la misma medida, o se repite exactamente
-    el defecto de T07 (cobertura más angosta que el fenómeno que declara
-    medir)."""
+    LÍMITE DECLARADO -- léelo antes de tocar este test: dos marcadores
+    mecánicos reconocen "esto es historia, no estado vigente". El primero,
+    `_CAMBIO_FECHADO`, exige el formato literal `> **vX.Y — DD/mon.**` al
+    INICIO de la línea (el patrón que `estado §0` ya usa para v1.1, v1.6,
+    v1.7, v1.8). El segundo, `MARCA_HISTORICA` (ACTO T16-HISTÓRICAS,
+    18/ago/2026 -- mismo mecanismo `{cita-historica}` que T15 ya usa desde
+    ADR-72), exime SOLO la cita inmediatamente anterior a la marca: una
+    línea con dos citas y una marca deja la otra vigilada. Si un canónico
+    narra un cambio pasado con cualquier otra forma -- una tabla, una nota
+    sin blockquote ni marca, una fecha en otro lugar de la oración -- este
+    test NO lo reconocerá como histórico y marcará FAIL un registro que en
+    realidad es correcto. Verificado en la sesión de tests (29/jul/2026):
+    quitarle el `>` a una entrada histórica real basta para que empiece a
+    fallar -- la exención es real, pero es tan angosta como los dos
+    formatos que sabe reconocer. Antes de ampliar el universo de
+    documentos o de patrones que este test vigila, hay que ampliar ambos
+    marcadores en la misma medida, o se repite exactamente el defecto de
+    T07 (cobertura más angosta que el fenómeno que declara medir)."""
     real_fail, real_warn, err = _suite_real()
     if real_fail is None:
         fail("T16", f"no se pudo derivar el resultado real de la suite (subproceso): {err}")
@@ -659,12 +662,16 @@ def t16_suite_self_check():
         for i, l in enumerate(read(p).split("\n"), 1):
             historico = bool(_CAMBIO_FECHADO.match(l))
             m1 = re.search(r"\*\*(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN\*\*", l)
+            if m1 and re.match(MARCA_HISTORICA, l[m1.end():]):
+                m1 = None
             if m1 and not historico:
                 fd, wd = int(m1.group(1)), int(m1.group(2))
                 if (fd, wd) != (real_fail, real_warn):
                     fail("T16", f"{rel(p)}:{i} declara {fd} FAIL · {wd} WARN vigente; "
                                 f"la corrida real da {real_fail} FAIL · {real_warn} WARN")
             m2 = re.search(r"total de WARN de la suite es\s*\*{0,2}(\d+)", l)
+            if m2 and re.match(MARCA_HISTORICA, l[m2.end():]):
+                m2 = None
             if m2 and not historico:
                 wd = int(m2.group(1))
                 if wd != real_warn:
