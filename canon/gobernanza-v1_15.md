@@ -2013,6 +2013,46 @@ La estrategia se elige **por parámetro, no por programa** — un `AJUSTADO` pue
 
 → **Vigente.** *(ACTO COND-ATRIB, 18/ago/2026, decisión del ejecutor bajo encargo VIVO. Sesión Ubuntu con `data/raw` montado — perímetro `milpa/procedencia.yaml` (solo la entrada de C0), `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md` (cascada), `forense/hallazgos.md`, `forense/encargos/`; abrió microdato de ENCIG 2023 bajo `unshare -Urn` salvo la desviación declarada en (d).)*
 
+
+**ADR-106 · Sella la partición ya ejecutada de `modelo §3.7` y da por RESUELTO `conf.07`.** Decisión de mesa del autor, `ACTO CONF-07-CIERRE`, 18/ago/2026, sobre el encargo `forense/encargos/2026-08-18-CONF-07-CIERRE.md`. Detalle completo, comando por comando: `forense/notas/2026-08-18-conf-07-cierre.md`.
+
+**Firma de mesa que autoriza, verbatim:** *"Adopto"* — respuesta al prompt único del acto, que puso a mesa las dos mitades con su tier derivado más el resultado del requisito de salida (mecanismo `ADR-86`/`ADR-88`/`ADR-90`: selección sobre opciones redactadas por el ejecutor, no cita de texto libre; se declara sin adorno).
+
+**(a) Qué sella este ADR: un acto material ya ocurrido, no una decisión nueva.** `conf.07` denunciaba que `modelo §3.7` empaquetaba una afirmación `[FUERTE]` y una `[HIPÓTESIS]` bajo un solo tier. La partición **se ejecutó hace tres semanas y nunca se selló** — esa es la deuda que se cierra aquí. Los dos actos materiales, citados:
+
+> - `canon/modelo-decision-v4_0.md:437`, verbatim: *"Eran 42. En v2.1 la regla de transferencia directa de §3.7 **se parte en dos** (conf.07), porque empaquetaba una afirmación `[FUERTE]` y una `[HIPÓTESIS]` bajo un solo tier. **El perímetro de reglas `[FUERTE]` no cambia: sigue siendo 20.**"*
+> - `canon/glosario-v5_6.md:23` (changelog de **v5.1**), verbatim: *"Entra **`transferencia directa universal`** como constructo con tier propio, y se abre **conf.07** por el empaquetado de la regla §3.7 (§8, §11)"*.
+
+Un tercer acto la profundizó: `modelo v2.3` partió además la diagonal del `ENTONCES` (`ADR-33`), separando *"se vive como derecho"* de *"la atribución va al líder"*.
+
+**(b) Las mitades y su tier, derivadas del clon, no heredadas del encargo.** `canon/modelo-decision-v4_0.md §3.7` (bullets 3, 6 y 7):
+
+| Mitad | `id` | Tier | Procedencia |
+|---|---|---|---|
+| *"conserva autonomía de la ELECCIÓN de voto"*, con sus condiciones de cesión | `civico.voto.agencia_con_secreto` | **`[FUERTE]`** (a) | RCTs con árbitro + contrafactual 2018; es la mitad que sostiene el ascenso HIPÓTESIS→FUERTE del cambio 10 |
+| *"se vive como derecho"* — entitlement despersonalizado | `civico.transferencia.entitlement_derecho` | **`[HIPÓTESIS]`** (a) | `v2.3`, mitad A; el glosario ya tiereaba así el constructo |
+| *"la atribución va al líder y se expresa como aprobación"* | `civico.transferencia.atribucion_lider` | **`[MEDIA]`** correlacional, ⚠️ **CONFUNDIDO** | `v2.3`, mitad B; tier **leído del forense V2**, verbatim *"Tier: MEDIA (correlacional para la 4T)"* |
+
+**Distribución completa de `§3.7`, derivada bullet por bullet (9 reglas): 3 `[FUERTE]` · 3 `[MEDIA]` · 2 `[MEDIA-FUERTE]` · 1 `[HIPÓTESIS]`.** Coincide exacto con `modelo-decision:664` (*"§3.7 **3**"* en la distribución de las 20 `[FUERTE]`), y el perímetro de 20 no se mueve. *(Se corrige de paso una cifra del encargo: éste anunciaba "5F". Un `grep -o` de tiers sobre el bloque devuelve 5 porque el bullet 7 lleva **dos `[FUERTE]` en prosa histórica** —la nota que explica que *"el motor la traía dentro de un `[FUERTE]`"*— que no son tiers. Cifra derivada, no tecleada: la del clon manda sobre la del encargo.)*
+
+**(c) El requisito de salida de `conf.07`, verificado por primera vez desde que se escribió — y SATISFECHO.** La fila exigía, verbatim, que *"la regla no puede citarse como `[FUERTE]` completa en un pre-registro del Hito D hasta resolverse"*. Nunca se verificó. Barrido `grep -rn "3\.7"` sobre `canon/`, `corpus/`, `forense/` y `milpa/`, filtrando `v3.7` y los `3.7` que son numeración interna de otro documento; tabla completa de clasificación en la nota. Resultado:
+
+> - **El pre-registro cita la MITAD, no el paquete.** `forense/hitoD-preregistro-v2_0.md:166`, ficha `R7.3 · Transferencia sin monitoreo → conserva autonomía del voto `[FUERTE]`` — es exactamente `civico.voto.agencia_con_secreto`, y ya lleva incorporadas las condiciones de cesión (P-02) y la distinción *turnout* vs. *vote-choice* (P-03). **Cero fichas del Hito D** con tier dependiente del empaquetado → **cero casos de la clase (c)**, y por tanto **ningún PARA por `ADR-60(b)`**: no se tocó ningún veredicto ni ningún perímetro.
+> - **Un solo texto vivo con el defecto**, corregido en este acto: `forense/prompts-verticales-validacion.md:101-102` — plantilla de Ronda 4 que sigue en uso, que citaba las dos mitades en una sola línea bajo el rótulo *"hipótesis del modelo, §3.7"*. Cada mitad se cita ahora con su tier propio.
+> - **Los demás sitios son fósiles fechados y NO se retocan.** `forense/corrida-refutaciones.md:100`/`:129` (27/jul, primera corrida de la batería) nombra la mitad correcta y su recomendación 5 —*"Corregir el tier de `§3.7`: HIPÓTESIS → FUERTE"*— es justamente lo que el cambio 10 ejecutó: el registro es verdadero en su fecha. Igual `forense/barrido-propagacion-forense-v1_0.md:65`/`:75`, cuyo diagnóstico ya lo absorbió `v2.4`. Corregir un registro fechado hacia adelante es el defecto que `FP-52` tiene abierto, no el remedio.
+
+**(d) `conf.08` no se reabre — pero su corrección tenía una fuga viva, y se cierra.** `conf.08` está `✅ Corregido en modelo v2.3` (`glosario:322`) y este ADR no lo toca. Verificado, como pedía el encargo, que ningún texto vivo repita el *"ni broker"* retirado: `grep -rn "ni broker"` da 7 sitios, de los cuales cinco son citas del defecto **como defecto** (`glosario:40`, `:184`, `:322`) o texto correcto (`modelo:499`, la regla de *turnout buying* que sí nombra al broker). El sexto era `prompts-verticales:102`, corregido aquí citando `modelo v2.3`: **sí hay broker** de afiliación y propaganda (Langston 2025, Servidores de la Nación), **no de monitoreo del voto individual**. Los dos restantes viven en `corpus/` (`corpus/forense/Validación_Forense_del_Clientelismo…:121` y `corpus/reports/Psicología_Política…:260`) — **PARA declarado**: el corpus es la base de evidencia fechada, está fuera del perímetro de este acto, y su reescritura es decisión de mesa. Queda como `FP-57`.
+
+**Lo que este ADR NO hace.** No re-tieriza ninguna mitad — las tres cifras salen del clon tal como el motor las tiene desde `v2.1`/`v2.3`. No toca `canon/modelo-decision-v4_0.md`: la partición ya está ahí y sellarla no la reescribe. No toca ningún veredicto ni el perímetro del Hito D (`ADR-60(b)`). No reabre `conf.08`. No ejecuta `E-DEC`, `E-HIG` ni `RUTA-SELLO` — el `C0` de este acto sólo los **rotula** contra evidencia del árbol. No sube el número de versión de `glosario` ni de `gobernanza`.
+
+**Cascada.** Conteo de ADR re-derivado en vivo **dos veces**, con el comando a la vista. **Primera derivación**, contra `origin/main = f3d3f95` (`PR #263`, `COND-ATRIB`, fusionado): `grep -o "^\*\*ADR-[0-9]\+" canon/gobernanza-v1_15.md` → **105 únicos, máximo 105, sin huecos, sin duplicados** → este ADR es el **106**. *(El encargo declaraba "ADR máximo hoy 104"; la deriva lo desmiente: `ADR-105` entró con `PR #263` mientras se redactaba.)* Segunda derivación al cierre del acto, registrada abajo. Sitios de conteo propagados: `canon/estado-programa-v1_10.md:27` y `:101`, cláusula por cláusula — `ESTADO-SPLIT` **no ha fusionado** (verificado: `forense/encargos/2026-08-18-ESTADO-SPLIT.md` sigue `VIVO`), así que la cascada va donde el split aún no llegó.
+
+**Versión y nombre de archivo.** El número de versión de `gobernanza` no sube y el archivo no se renombra, mismo criterio que `ADR-48` a `ADR-105`.
+
+**Reversión.** Se revierte sólo si mesa decide que la partición de `v2.1`/`v2.3` fue un error de fondo — en cuyo caso lo que se revierte es el motor, no este sello. La corrección de `prompts-verticales` se revierte por separado, y sola, si mesa quiere conservar la plantilla en su forma de Ronda 4 como pieza de archivo.
+
+→ **Vigente.** *(ACTO CONF-07-CIERRE, 18/ago/2026, firma de mesa "Adopto". Sesión NUBE `cloud_default`, repo-only, `data/raw` no montado ni usado — perímetro `canon/glosario-v5_6.md`, `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md` (sólo cascada de conteo), `forense/encargos/` (sólo bloques de `Estado`), `forense/prompts-verticales-validacion.md`, `forense/firmas-pendientes.tsv`, `forense/notas/`, `forense/hallazgos.md`. NO tocó `canon/modelo-decision-v4_0.md`, `hitoD-*`, ni `milpa/`.)*
+
 ---
 
 
@@ -2045,7 +2085,7 @@ Contradicciones que **no se resuelven** y que sin este casillero se caen del sis
 | **conf.06** | **Magnitud de la confianza interpersonal** — 12% · 21.8% · 22% · 32.1% · 18%; **dos dicen ser la misma ENCUCI 2020 y difieren 10.3 puntos** | ✅ **Resuelto por ADR-64, 5/ago/2026.** Eran tres reactivos distintos de ENCUCI 2020, no dos cifras en conflicto: `AP5_1_1`=21.8% · `AP5_1_3` (vecinos)=32.1% · `AP5_1_2` (conocidos)=62.1%, los tres a corte ≥8/10. **Las tres quedan establecidas con esa atribución y ese corte; 12%/22%/18% (no ENCUCI) siguen sin establecer** |
 | **honor híbrido** | `foundational` sostiene un híbrido (honor rural + dignidad urbana) que ADR-05 superó | Abierto **por decisión**: es posición matizada, no error, y retirar la etiqueta para todo México podría ser sobre-corrección urbana |
 
-| **conf.07** | `modelo §3.7` empaquetaba **Fuerte + Hipótesis** bajo un solo tier | ✅ **Resuelto 28/jul: regla partida en dos** (v2.1). El ascenso HIPÓTESIS→FUERTE del cambio 10 se sostiene sobre la mitad con identificación causal ("conserva autonomía de voto"); la mitad subjetiva ("se vive como derecho") vuelve a `[HIPÓTESIS]` |
+| **conf.07** | `modelo §3.7` empaquetaba **Fuerte + Hipótesis** bajo un solo tier | ✅ **RESUELTO — sellado por `ADR-106`, 18/ago/2026** (`ACTO CONF-07-CIERRE`, firma de mesa *"Adopto"*). La partición material es del **28/jul: regla partida en dos** (v2.1), profundizada en `v2.3` al partir la diagonal; lo que faltaba —y este ADR aporta— es el **sello** y la verificación del **requisito de salida**, que resultó SATISFECHO: el pre-registro del Hito D cita la mitad (`R7.3`, `hitoD-preregistro-v2_0.md:166`), no el paquete. El ascenso HIPÓTESIS→FUERTE del cambio 10 se sostiene sobre la mitad con identificación causal ("conserva autonomía de voto"); la mitad subjetiva ("se vive como derecho") vuelve a `[HIPÓTESIS]` |
 
 ⚠️ **Antes de meter algo a este casillero, aplicar la prueba de ADR-27:** *¿es contradicción real, o alguien promedió?* Dos de los cuatro pueden ser artefactos de agregación y no choques.
 
