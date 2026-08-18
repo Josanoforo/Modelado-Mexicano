@@ -1288,6 +1288,15 @@ _T22_ARCHIVOS_CONOCIDOS = {
     "forense/notas/2026-08-14-tablero-firmas-commit3.md",            # esta misma nota cita los marcadores verbatim al documentarlos -- mismo autocaptura que ya tuvo el commit 2
     "forense/notas/2026-08-14-tablero-firmas-commit4-freeze.md",     # ídem, tercera vez
     "forense/notas/2026-08-14-tablero-firmas-commit5-colision-adr84.md",  # ídem, cuarta vez
+    # Sumado en ACTO CI-CATEGORIA, 18/ago/2026 -- la nota documenta, por
+    # nombre, el control C2 del commit 1 (que crea a propósito un archivo
+    # con el marcador RANURA para probar la protección de (b)); la cita es
+    # verbatim al describir el control, no una ranura real sin fila --
+    # mismo autocaptura ya visto en las notas de TABLERO-FIRMAS arriba.
+    # (El encargo archivado del mismo acto, 2026-08-18-CI-CATEGORIA-
+    # devolver-significado-ci.md, no lleva ninguno de los dos marcadores
+    # -- verificado, no supuesto -- así que no se añade aquí.)
+    "forense/notas/2026-08-18-ci-categoria.md",
 }
 
 def _t22_tabla():
