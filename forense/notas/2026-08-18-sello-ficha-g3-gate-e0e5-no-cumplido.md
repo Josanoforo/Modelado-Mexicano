@@ -47,3 +47,7 @@ Esto es "declara qué falta y qué lo desbloquearía", no fracaso del encargo �
 ## 5 · Perímetro y lo que no se hizo
 
 Tocado: este archivo (nuevo). **No tocado:** `canon/gobernanza-v1_15.md`, `forense/ficha-id-g3-v1_0.md`, `forense/firmas-pendientes.tsv`, `canon/estado-programa-v1_10.md`, `forense/hallazgos.md`, `forense/encargos/`. No se corrió ninguna estimación, no se abrió microdato, no se tocó MxFLS, no se re-diseñó nada de la ficha, no se movió `0 de 15`.
+
+## 6 · Marcador T22 — falso positivo, explicado (A.12)
+
+`tests/check.py` (T22, protección (b)) marcó este archivo por `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`), en la línea 3 del Estado: la línea cita, una junto a otra sin relación, "PROPUESTA DE SELLO COMPLETA" (el estado ya existente de `FP-11`, `firmas-pendientes.tsv:12`, sin cambiarlo) y "...que mesa firmó" (cita verbatim del gate del propio encargo, §2 arriba). No es una ranura nueva sin registrar: `FP-11` ya tiene su fila, sigue `FIRMADA-CONDICIONAL`, y este acto no le tocó el estado (§3, §5). Excluido vía `_T22_ARCHIVOS_CONOCIDOS` en `tests/check.py`, mismo criterio de autocaptura verbatim que las notas de `TABLERO-FIRMAS`/`CI-CATEGORIA` ya usaron para el mismo género de coincidencia.
