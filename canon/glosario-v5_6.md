@@ -313,7 +313,7 @@ Las instrucciones piden decir qué evidencia cambiaría cada patrón fuerte — 
 | # | Conflicto | Estado |
 |---|---|---|
 | **conf.01** | Calidad vs. precio (consumidor §10 vs. ADR-15/V1) | ✅ **Resuelto por precedencia**: segmentado — A/B/C+ sí, D/E no |
-| **conf.02** | **Policronía**: Trabajo y Tiempo refutan el mismo mito con **mecanismos opuestos** | ⚠️ **Abierto, sin ADR** |
+| **conf.02** | **Policronía**: se adopta el mecanismo de `Tiempo` (norma contextual + estructura) y se conserva el desenlace de `Trabajo` (el mito es falso) | ✅ **Resuelto por ADR-94, 18/ago/2026.** No es empate ni "adoptar uno y archivar el otro": la policronía sobrevive como preferencia individual medible, sin adscripción nacional; no como rasgo cultural mexicano. Razón escrita: `forense/BENCHMARK-conf02-policronia-2026-08-17.md` |
 | **conf.03** | Hofstede como evidencia | ✅ Resuelto por ADR-06 (correlato); **parchado en la fuente el 28/jul/2026** *(la v5 lo daba por hecho el 27/jul; la verificación encontró que el parche no existía en el report)* |
 | **conf.04** | **Alegría declarada vs. malestar documentado** | ✅ **Resuelto por ADR-27: es un ARTEFACTO DE AGREGACIÓN, no una contradicción.** Ambos lados son verdaderos en sus segmentos y solo chocan al promediarlos en un número nacional. *Alineado con `gobernanza §5.1` el 28/jul — la v5 lo declaraba "irresuelto" y la gobernanza "resuelto"; el texto correcto es el de la gobernanza.* **Queda vivo, separado y menor:** la escalera de Cantril mide **evaluación vital, no alegría** (desajuste de instrumento, casillero S5) |
 | **conf.05** | **Consumo compensatorio**: Fuerte (consumidor) vs. Hipótesis (salud) | ⚠️ **Abierto — no promediar** |
