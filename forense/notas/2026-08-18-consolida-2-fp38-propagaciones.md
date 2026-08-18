@@ -1,6 +1,6 @@
 # ACTO CONSOLIDA-2 (v2) — `FP-38` ejecutada, tres propagaciones de `CONSOLIDA-17AGO` cerradas, fila abierta para el corte de edad
 
-**Acto:** CONSOLIDA-2 (v2) · **Encargo:** `forense/encargos/2026-08-18-CONSOLIDA-2.md` (archivado verbatim por A.3, este PR) · **Entorno:** NUBE, repo-only, sin `data/raw` · **SHA de redacción del encargo:** `68a3466` (`origin/main`, merge #257).
+**Acto:** CONSOLIDA-2 (v2) · **Encargo:** `forense/encargos/2026-08-18-CONSOLIDA-2.md` (archivado verbatim por A.3, `PR #259`) · **Entorno:** NUBE, repo-only, sin `data/raw` · **SHA de redacción del encargo:** `68a3466` (`origin/main`, merge #257).
 
 **Contadores de medición sobre México movidos por este acto: cero — `13 de 27` · `0 de 15` · `1 de 2` intactos.** Lo que este acto mueve es la honestidad de un tier, no una medición.
 
@@ -97,7 +97,7 @@ Todas las premisas del encargo se sostienen. Ninguna obligó a un `PARA`.
 
 **1.5 · Falsador, registrado sin ejecutar.** `R1.4` ↔ ENIGH 6 olas queda anotado en `glosario:136` (dentro del texto adoptado copiado verbatim) como la ruta que devolvería el tier: una medición mexicana representativa que ligue desigualdad con gasto en bienes posicionales por decil.
 
-**Tablero.** `FP-38`: `ABIERTA` → `FIRMADA`. `firmada_en` cita la mesa del 17/ago verbatim (`CONSOLIDA-17AGO §PARTE 2`) más el texto adoptado íntegro. `ejecutada_en` queda `N/A` hasta el commit de cierre (mismo patrón que `FP-43` mostraba antes de este acto: `FIRMADA` con `ejecutada_en` vacío es un estado válido intermedio).
+**Tablero.** `FP-38`: `ABIERTA` → `FIRMADA`. `firmada_en` cita la mesa del 17/ago verbatim (`CONSOLIDA-17AGO §PARTE 2`) más el texto adoptado íntegro. `ejecutada_en` queda `N/A` hasta el commit de cierre (mismo patrón que `FP-43` mostraba antes de este acto: `FIRMADA` con `ejecutada_en` vacío es un estado válido intermedio) — completado a `PR #259` en el commit final de este acto.
 
 ---
 
@@ -109,7 +109,7 @@ Las tres son propagación de decisiones ya resueltas por otros actos. Ninguna ob
 
 **(c) `glosario:399`** (era `:398` en `CONSOLIDA-17AGO` contra `d0019a2` — el desfase de una línea que el propio acto de hoy advierte). Contra `68a3466`, la lista *"conf.02, conf.05, conf.07 — sin ADR"* ya no refleja el estado real: `glosario:317` y `:320` (§11, Conflictos abiertos) declaran ambos `✅ Resuelto por ADR-94, 18/ago/2026`. `conf.02` sale de la lista (`conf.02 ya la resolvió ADR-92(d)`/`ADR-94`, per el encargo — verificado contra el propio texto de `glosario:317`, que hoy cita `ADR-94`, y contra `estado-programa:136` §S5, que también lo confirma). `conf.05` sale por la misma vía (`ADR-94`, `estado-programa:137`). `conf.07` se queda: sigue `⚠️ Abierto` en `glosario:323`, sin ADR, y tiene acto propio gateado a éste (`CONF-07-CIERRE`, comparte `glosario`, se lanza cuando este PR fusione) — no se le adelanta ningún sello, tal como el encargo exige.
 
-**(d) `hitoD-preregistro`, `R1.4`.** El archivo es registro maestro de falsación, append-only por `gobernanza` `ADR-40`; su propio cuerpo (ej. Nota 16, Nota 18) declara el mecanismo: una nota fechada al final, nunca una edición de cuerpo. Se añadió **Nota 30 · 18/ago/2026**, siguiendo exactamente esa disciplina, declarando: (i) que `R1.4` (`:59-60`) consume la rama `consumo_compensatorio.estatus` de `conf.05` — no la rama `recompensa` —, con el título/regla ya redactados por `FP-43` (`forense/notas/2026-08-17-cierra.md` §6) citados sin editar el cuerpo; (ii) que esa rama acaba de perder su sostén de tier en este mismo PR (`FP-38`, §2 arriba). **No se tocó el veredicto archivado ni el contador `13 de 27`** — verificado tras el commit: el bloque `## Registro de veredictos archivados` no ganó ninguna línea nueva, y la Nota 30 lo dice expresamente. Esto cierra `FP-43`: `ejecutada_en` cita la Nota 30; el número de PR se añade en el commit de cierre.
+**(d) `hitoD-preregistro`, `R1.4`.** El archivo es registro maestro de falsación, append-only por `gobernanza` `ADR-40`; su propio cuerpo (ej. Nota 16, Nota 18) declara el mecanismo: una nota fechada al final, nunca una edición de cuerpo. Se añadió **Nota 30 · 18/ago/2026**, siguiendo exactamente esa disciplina, declarando: (i) que `R1.4` (`:59-60`) consume la rama `consumo_compensatorio.estatus` de `conf.05` — no la rama `recompensa` —, con el título/regla ya redactados por `FP-43` (`forense/notas/2026-08-17-cierra.md` §6) citados sin editar el cuerpo; (ii) que esa rama acaba de perder su sostén de tier en este mismo PR (`FP-38`, §2 arriba). **No se tocó el veredicto archivado ni el contador `13 de 27`** — verificado tras el commit: el bloque `## Registro de veredictos archivados` no ganó ninguna línea nueva, y la Nota 30 lo dice expresamente. Esto cierra `FP-43`: `ejecutada_en` cita la Nota 30 y `PR #259`.
 
 **Lo que `CONSOLIDA-17AGO` deja vivo — no ejecutado aquí, dicho para que no se pierda otra vez:** su `PARTE 3` (el barrido de las 212 notas de `forense/notas/` + `hallazgos.md` + `modelo-decision` + `milpa/*.yaml`, con el triaje `YA RESUELTO`/`FILA`/`SOLO ANOTADO`) y su `PARTE 4` (el ADR que sella `firmas-pendientes.tsv` como único lugar de un pendiente). Ninguna de las dos se tocó — no estaban en el perímetro de este acto.
 
@@ -209,4 +209,4 @@ $ grep -oE "^\*\*ADR-[0-9]+" canon/gobernanza-v1_15.md | sed -E 's/\*\*ADR-//' |
 
 **`CONSOLIDA-17AGO` marcada parcialmente consumida** (adenda fechada sobre su propio archivo, sin editar su cuerpo verbatim): PARTE 2 y PARTE 1(b)/(c)/(d) ejecutadas por este acto; PARTE 1(a) ya la había ejecutado `CIERRA-17AGO`/`ADR-92(d)`; PARTE 3 y PARTE 4 siguen `VIVO`, sin ejecutar.
 
-Este encargo, `forense/encargos/2026-08-18-CONSOLIDA-2.md`, queda `CONSUMIDO` con el PR de este acto.
+Este encargo, `forense/encargos/2026-08-18-CONSOLIDA-2.md`, queda `CONSUMIDO` con `PR #259`.
