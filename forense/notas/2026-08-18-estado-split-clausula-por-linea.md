@@ -74,15 +74,27 @@ Control cláusula por cláusula, independiente del hash: los 66 ítems parsean t
 
 ## §5 · Control T15/T16, antes y después — obligatorio, y cumplido
 
-La suite completa se corrió **antes** de tocar el archivo y **después**, y las dos salidas se compararon con `diff`:
+El control se hizo en **dos niveles**, y se declaran los dos por separado porque dicen cosas distintas.
+
+**Nivel 1 — el split solo** (commit 1, `canon/estado-programa` y nada más). La suite completa se corrió **antes** de tocar el archivo y **después**, y las dos salidas se compararon con `diff`:
 
 ```
-tests/check.py --baseline  (antes, f3d3f95)  → 19 FAIL · 129 WARN · LÍNEA BASE: VERDE
-tests/check.py --baseline  (después)         → 19 FAIL · 129 WARN · LÍNEA BASE: VERDE
-diff antes.txt despues.txt                   → sin diferencias, ni una línea
+tests/check.py --baseline  (antes, f3d3f95)     → 19 FAIL · 129 WARN · LÍNEA BASE: VERDE
+tests/check.py --baseline  (después del split)  → 19 FAIL · 129 WARN · LÍNEA BASE: VERDE
+diff antes.txt despues.txt                      → sin diferencias, ni una línea
 ```
 
-No es coincidencia, y por qué importa está medido antes de partir:
+**Partir la línea no mueve absolutamente nada de la suite.** Es el control que se pedía: `T15`/`T16` quedan exactamente como estaban, byte a byte en la salida.
+
+**Nivel 2 — el acto completo**, incluidos los archivos de `forense/`. Aquí sí se mueve una cifra, y es la que este acto **debe** mover: `FP-48` pasa de `FIRMADA` sin ejecutar a ejecutada, así que el WARN de `T22(c)` que la vigilaba (*"FP-48 FIRMADA sin ejecutar desde 2026-08-17"*) desaparece. **129 → 128 WARN, FAIL sin cambio en 19.** Esa es toda la diferencia, y su causa está identificada por comando, no supuesta: la corrida en un `git worktree` sobre `f3d3f95` limpio contra la corrida de aquí deja `T22` en `16 warn` y `15 warn` respectivamente, sin ningún otro test movido.
+
+Cascada obligada por ese único movimiento, y **desvío declarado del perímetro**: el encargo decía «solo la línea `:101`», pero `T16` vigila las dos declaraciones de la cifra de la suite que viven en `estado-programa:195` y `:287`, y dejarlas en `129` habría dejado el canon mintiendo y la suite en rojo. Se recifran las dos a `128`, cada una con su paréntesis de recifrado y su causa, en el formato que ya usan `NOTAS-P3`/`CONSOLIDA-2`/`MESA-18AGO` en esas mismas líneas. Es cascada mecánica de la cifra, no contenido nuevo.
+
+Un tercer efecto, atrapado por la suite y corregido antes de cerrar: la nota de este acto se llamaba `2026-08-18-estado-split.md` y `T02` marcó **colisión de nombre normalizado** con `forense/encargos/2026-08-18-ESTADO-SPLIT.md`. Renombrada a `2026-08-18-estado-split-clausula-por-linea.md` — mismo patrón que ya usa `SELLA-RUTAS` (nota corta, encargo con sufijo). `T02` vuelve a `ok`.
+
+Estado final, corrida real: **19 FAIL · 128 WARN · `LÍNEA BASE: VERDE`**, con `T15`, `T16` y `T02` los tres en `ok`.
+
+Por qué el nivel 1 sale limpio está medido **antes** de partir, no descubierto después:
 
 - **T15 (`T-ADR-COUNT`)** escanea `canon/*.md` línea por línea buscando `(\d+)\s*ADR\b`. En `:101` hay **un solo match**, `105 ADR`, en la cabecera — igual al real de `gobernanza`. Partir la línea no puede crear matches nuevos (el texto no cambia) y la cabecera se queda entera, así que T15 sigue derivando el conteo desde donde siempre. Verificado además que ninguna cláusula queda separada de una marca `{cita-historica}` suya: en `:101` no hay ninguna.
 - **T16 (`T-SUITE-SELF-CHECK`)** busca `\*\*(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN\*\*` y `total de WARN de la suite es …`. En `:101` **no hay ni un match** de ninguno de los dos patrones (los `18 FAIL`/`107 WARN` que aparecen en la prosa no van en negrita y no son lo que el regex vigila). T16 es indiferente a este cambio, y la corrida lo confirma.
@@ -115,6 +127,6 @@ Ningún carril remoto vivo tiene `estado-programa` en su perímetro activo. Revi
 ## §8 · Lo que este acto NO hace
 
 - No sella ADR ni mueve el conteo: sigue **105**, y la cabecera de `:101` lo sigue declarando. Un acto de forma no gana cláusula propia en la narración que acaba de partir.
-- No toca `:27` ni ninguna otra línea de `estado-programa`, ni ningún otro archivo de `canon/`.
+- No toca `:27`, ni ningún otro archivo de `canon/`. Las únicas líneas de `estado-programa` distintas de `:101` que cambian son `:195` y `:287`, y solo en la cifra de WARN de la suite (`129`→`128`) que `T16` obliga a mantener sincronizada — desvío del perímetro declarado en §5, con su causa única identificada.
 - No añade `merge=union` (§6).
 - No resume, no moderniza redacción, no corrige ninguna cláusula, ni siquiera el `.;` sobrante que arrastra el final de la cláusula de `ADR-102` — está en el original, se conserva en el ítem. Corregirlo habría sido contenido.
