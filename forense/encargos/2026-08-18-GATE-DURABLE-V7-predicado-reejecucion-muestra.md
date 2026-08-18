@@ -2,7 +2,7 @@
 
 **SHA de redacción:** `3e4c9f7` (`origin/main`) · rama del acto anterior `acto-b2-v7` = `6b6d43a` (`PR #255`, sin fusionar al redactar)
 **Entorno asignado:** UBUNTU, worktree `/home/pc0/Modelado-Mexicano-barrido2`. NO en la nube: necesita `.barrido2/` (~19 GB) y el corpus, que no están en ningún remoto.
-**Estado:** CONSUMIDO — ACTO GATE-DURABLE-V7, `PR #260` (rama `gate-durable-v7`), 18/ago/2026. Sella `ADR-100`. Sella `ADR-100`. El `PARO` del ARRANQUE 1 que esta cabecera declaraba se levantó cuando `PR #255` fusionó (`ae25137`); de ahí en adelante el encargo se ejecutó completo: `COMMIT 0` a `COMMIT 4`.
+**Estado:** CONSUMIDO — ACTO GATE-DURABLE-V7, `PR #260` (rama `gate-durable-v7`), 18/ago/2026. Sella `ADR-103` (nació `ADR-100`, renumerado al fusionar `origin/main = 290f9a0`). Sella `ADR-103` (nació `ADR-100`, renumerado al fusionar `origin/main = 290f9a0`). El `PARO` del ARRANQUE 1 que esta cabecera declaraba se levantó cuando `PR #255` fusionó (`ae25137`); de ahí en adelante el encargo se ejecutó completo: `COMMIT 0` a `COMMIT 4`.
 **Autoriza (D-2, mesa, al lanzar):** editar `tools/curador_registro/barrido2_material.py` sabiendo que invalida los 672 expedientes (`MATERIAL_BUILD_SHA256`) y exige re-corrida de olas (~67 min) + W0 + material.
 
 > Archivado bajo A.3 por la sesión a la que se lanzó. Texto verbatim; lo único añadido es esta cabecera y la marca de estado.

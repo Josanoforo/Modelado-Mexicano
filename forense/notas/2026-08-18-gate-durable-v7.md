@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-08-18 · **Rama:** `gate-durable-v7` · **Base al arrancar:** `origin/main = ae25137` (merge de `#255`)
 **Base al cerrar:** `origin/main = 93a4dd9` (merge de `#256`, INTEGRATE-T23), integrado por merge local
-**ADR:** `ADR-100` · **PR:** ver cierre
+**ADR:** `ADR-103` · **PR:** ver cierre
 
 ---
 

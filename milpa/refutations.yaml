@@ -109,7 +109,14 @@ conflictos_sin_resolver:
       Segmentar la refutación: sostenerla para A/B/C+ (donde el dato de Roland
       Berger es plausible) y RETIRARLA para D/E, marcando el vacío. NO entra
       como refutación universal.
-    entra: false
+    resolucion_adoptada: >
+      Resuelta por precedencia (glosario:316, sin ADR propio): segmentado --
+      A/B/C+ sí, D/E no. Es exactamente la resolucion_propuesta de arriba, ya
+      adoptada por mesa; se conserva el texto de la propuesta como evidencia
+      de que el motor ya lo había anticipado. Propagada aquí por ACTO
+      CONSOLIDA-2, 18/ago/2026 -- CONSOLIDA-17AGO PARTE 1(b) la dejó pendiente
+      cuando PR #250 cortó ese acto a medio plan.
+    entra: "segmentado -- A/B/C+ sí, D/E no"
 
   - id: conf.02.policronia
     donde: "Psicología del Trabajo, Myth 5 vs. El Mexicano y el Tiempo §9"

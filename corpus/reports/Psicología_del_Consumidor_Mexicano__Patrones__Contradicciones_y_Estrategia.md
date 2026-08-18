@@ -61,7 +61,7 @@ El consumidor mexicano opera dentro de una tensión psicológica fundamental que
 | Gen Z influye 91% decisiones hogar | **Moderada** | Google México/Julian Coulter |
 | MSI es 20% de saldos de tarjeta | **Fuerte** | Banco de México |
 | 90% prefiere tienda física | **Moderada** | Roland Berger 2024 |
-| Desigualdad → consumo compensatorio (rama estatus) | **Fuerte** | Velandia-Morales 2022, Frontiers in Psychology |
+| Desigualdad → consumo compensatorio (rama estatus) | **Fuerte** ⚠️ *sin sostén por procedencia* — experimento CIMCYC/Universidad de Granada, no población mexicana (`FP-38`, corregido 18/ago/2026) | Velandia-Morales 2022, Frontiers in Psychology |
 | Lealtad de marca es parcialmente inercia | **Hipótesis razonable** | Inferido de McKinsey (90% satisfecho al cambiar) |
 | Hofstede: Indulgencia 97, UAI 82 | **Media (c)** — *correlato descriptivo, NO causa (ADR-06, corregido 28/jul/2026)* | Hofstede Insights. Marco importado; muestra original IBM 1967-73, no poblacional mexicana |
 | OXXO procesa 50% pagos efectivo e-commerce | **Fuerte** | EBANX, PCMI |
@@ -81,7 +81,7 @@ La psicología del consumidor mexicano se explica mejor como la intersección de
 
 **Fuerza 3: Validación colectiva como prerrequisito.** Con una puntuación de Individualismo de solo 30/100, las decisiones de compra no son individuales — son sociales. La familia, los amigos, los influencers de confianza funcionan como filtros de riesgo. "Si mi familia lo aprueba, es seguro" reemplaza a "si la marca lo promete, es seguro" en un entorno de bajísima confianza institucional.
 
-**Fuerza 4: Presión de estatus intensificada por desigualdad.** La combinación de alta Masculinidad (69/100), alta Distancia de Poder (81/100) y una desigualdad extrema (Gini 0.45) produce un entorno donde el consumo es un *mecanismo de posicionamiento social*. Los estudios de Velandia-Morales (2022, Frontiers in Psychology) demuestran que la desigualdad percibida incrementa directamente la motivación por consumo de estatus, y que esto funciona como compensación psicológica — no como vanidad superficial.
+**Fuerza 4: Presión de estatus intensificada por desigualdad.** La combinación de alta Masculinidad (69/100), alta Distancia de Poder (81/100) y una desigualdad extrema (Gini 0.45) produce un entorno donde el consumo es un *mecanismo de posicionamiento social*. Los estudios de Velandia-Morales (2022, Frontiers in Psychology) demuestran que la desigualdad percibida incrementa directamente la motivación por consumo de estatus, y que esto funciona como compensación psicológica — no como vanidad superficial. ⚠️ **Corrección de procedencia (`FP-38`, 18/ago/2026):** Velandia-Morales es un experimento del CIMCYC, Universidad de Granada — evidencia sobre el mecanismo, no una medición directa de la población mexicana; el falsador mexicano propio (`R1.4`, ENIGH 6 olas) sigue sin ejecutarse.
 
 **Fuerza 5: Pragmatismo adaptativo ante restricción económica.** El 37.7% del gasto del hogar se destina a alimentos (INEGI ENIGH 2024), llegando al 50% en los hogares más pobres. Con solo 10-15% de penetración de tarjetas de crédito y 51% de la población sin bancarizar, las restricciones económicas estructurales son el *contexto* dentro del cual operan las otras cuatro fuerzas psicológicas. No confundir la adaptación racional a la escasez con un patrón psicológico intrínseco.
 

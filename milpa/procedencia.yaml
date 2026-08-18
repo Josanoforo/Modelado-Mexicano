@@ -17,7 +17,9 @@
 #                causalmente. Contesta CUÁNTO, nunca SI EL PATRÓN EXISTE
 #                (ADR-47). Exige campo `ruta:` con uno de: pseudo_panel |
 #                momentos | composicion | transversal_con_seleccion.
-#                Rutas argumentadas (propuesta sin sello, no canon) en forense/metodologia-identificacion-vs-ajuste-v0_1.md §4.
+#                Rutas: procedimiento sellado por ADR-102 (18/ago/2026) en
+#                forense/metodologia-identificacion-vs-ajuste-v0_1.md §4
+#                (v1.0 — SELLADA; ADR-49 sella la clase, ADR-102 el cómo).
 #                `ruta: composicion` exige la regla de descomposición
 #                DECLARADA ANTES de ver los datos; inventada después es
 #                post-hoc (Bloque C, validación forense). Sellada por
