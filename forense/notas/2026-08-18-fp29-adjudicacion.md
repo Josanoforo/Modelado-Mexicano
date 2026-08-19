@@ -289,3 +289,68 @@ Los dos pares de ítems mejor emparejados entre ENCUCI y WVS son casi verbatim: 
 **Y la explicación obvia no funciona — se dice en vez de ocultarse.** En §2.3 se pre-registró que Pew usa un polo negativo distinto (*"most people can't be trusted"*, una afirmación fuerte) frente al polo suave de WVS/Latinobarómetro (*"se tiene que ser muy cuidadoso"* / *"uno nunca es lo suficientemente cuidadoso"*). Un polo negativo suave es más fácil de endosar, así que debería **deprimir** el % de confianza. Eso **explica** WVS (10.5%, polo suave) **<** Pew (17-18%, polo duro), pero **queda contradicho** por Latinobarómetro (26.1%, polo suave) **>** Pew. **La redacción del polo negativo no basta para explicar la dispersión.** Queda nombrada, sin resolver.
 
 **Consecuencia para el constructo, que es lo que `FP-29` gatea:** el rango medible hoy para "confianza interpersonal generalizada en México" es **10.5% – 26.1%** entre instrumentos binarios (2018–2025), y **21.9%** en ENCUCI 0-10 a ≥8/10 (2020) — **cifra que NO se promedia con las anteriores**, porque son escalas distintas y hacerlo es el error de categoría que Bloque A-bis regla 3 prohíbe. El rango de los binarios y el punto de ENCUCI se reportan **por separado, cada uno con su escala pegada**.
+
+---
+
+## §5 · COMMIT 3 · Cierre — `ADR-110`, `FP-29` ejecutada, `FP-58` abierta
+
+**`ADR-110`**, sellado en `canon/gobernanza-v1_15.md`. Número derivado, no supuesto: contra `e563e5d`, `únicos 109 · max 109 · huecos []` → **110 contiguo**. *(El encargo decía "ADR base 104"; quedó desfasado por cuatro ADR entre su redacción y su ejecución.)* **Colisión declarada:** `PR #267`, abierto al escribir esto, reclama `ADR-107`, número ya tomado en `main` por `ADR-109`/`B2-SEMANTICO` — **esa colisión es de `PR #267`, no de este acto**; queda en `hallazgos.md`. Renumera quien fusione después; `T15` arbitra.
+
+**Cascada del conteo, derivada por la receta de `T15`** (`grep -rn "[0-9]\+ ADR" canon/ README.md`): `gobernanza-v1_15.md:2` (109→110) · `estado-programa-v1_10.md:27` (tabla) · `estado-programa-v1_10.md:101` (§L0). Verificado después: `grep -rn "109 ADR" canon/ README.md` → **sin resultados**.
+
+**Tablero.** `FP-29` → **`FIRMADA`**, con `ejecutada_en` apuntando a este acto. Sin firma nueva de mesa, y la razón está escrita en `ADR-110(a)`: `ADR-101(f)` ya había establecido que *"el pendiente real = solo la adquisición de las series"* — es decir, ejecución, no decisión. Mismo patrón que `FP-44`/`FP-45` bajo `ADR-94`. **Fila nueva `FP-58`, `ABIERTA`** (max era 57, sin huecos) para lo que sí es de mesa: qué hace el canon con una cifra sin procedencia sostenible, con las tres opciones enunciadas y sin recomendación del ejecutor. Conteo: `FIRMADA` 44→45, `ABIERTA` 10→10 (−1 por `FP-29`, +1 por `FP-58`).
+
+**Nota de método sobre la edición del tablero, porque casi se convierte en un defecto.** El primer intento usó el módulo `csv` de Python y **despojó las comillas de 11 filas ajenas** en un solo round-trip (`git diff --numstat` dio `44 43` donde debía dar `2 1`). Se revirtió con `git checkout --` y se rehizo por **edición de línea, byte-preservante**. Verificado después: `2 1`, 59 líneas × 9 columnas, `FP-33` intacta. Registrado en `hallazgos.md` — es la tercera vez que este cepo muerde en este proyecto y **ningún test lo vigila**.
+
+---
+
+## §6 · Cola derivada para el acto sucesor — las celdas que citan el 22%
+
+*Derivada por comando, no por memoria, y curada a mano para quitar los falsos positivos (Nu Bank "23% de bancarizados", Mitofsky 51.4%, ENIF 36.6% — llevan "22"/"26" pero no son magnitud de confianza interpersonal).* **Este acto no toca ninguna de estas celdas** — son de `FP-58`.
+
+| Archivo:línea | Qué dice hoy | Qué le hace `ADR-110` |
+|---|---|---|
+| `canon/glosario-v5_6.md:84` | *"quedan 12% (WVS 2012), **22% (Latinobarómetro/LAPOP)** y 18% (Pew 2025) **sin reconciliar** contra ENCUCI"* | **Ya no describe el árbol.** Están reconciliadas: 18% reproduce exacto, 22% no se sostiene, 12% indecidible. La atribución "Latinobarómetro/LAPOP" es la refutada |
+| `canon/glosario-v5_6.md:321` | entrada `conf.06`, cerrada por `ADR-64` | Sin cambio en el cierre; el residual ya no está abierto de la misma forma |
+| `canon/gobernanza-v1_15.md:2173` | tabla de pendientes, fila `conf.06` con las cinco cifras | Igual |
+| `canon/modelo-decision-v4_0.md:554` | §5.0 regla 3, *"ninguna cifra… como establecida salvo tres"* | Las otras tres dejan de estar simplemente "no establecidas": una está confirmada, una refutada, una indecidible |
+| `canon/estado-programa-v1_10.md:208` | `conf.06` resuelto por `ADR-64` | Igual |
+| `corpus/reports/Confianza_y_Desconfianza…:9` | *"~22% (WVS 2018)… 33% en 1990 → mínimo 16% en 2005, con recuperación parcial"* | **Atribución refutada** (WVS 2018 = 10.5%) **y trayectoria refutada en su punto final** |
+| `…:71` | *"baja (~16-22%)… confirmado por WVS (7 oleadas), Latinobarómetro…"* | El extremo superior del rango no tiene fuente sostenible |
+| `…:225` | *"Dinamarca 74% vs. México ~22%"* | Comparación internacional apoyada en la cifra sin procedencia |
+| `…:295` | *"la interpersonal cayó de 33% a 16% pero se recuperó parcialmente a 22%"* | La "recuperación parcial" es justamente lo que el 10.5% de 2018 no sostiene |
+| `corpus/reports/Moral_Emotions…:29, :84, :186` | *"22% (ENAFI/Encuesta Mundial de Valores)"*, *"(Latinobarómetro, ENAFI, LAPOP)"* | Tres de las cuatro atribuciones, dos refutadas y una indecidible |
+| **`milpa/refutations.yaml:453`** | `evidencia_contraria:` *"la interpersonal cayó de 33% a 16% y se recuperó…"* | **Es la única celda de la capa ejecutable en la cola** — una refutación se apoya en la trayectoria refutada. Prioridad alta para el sucesor |
+| `corpus/reports/Non-Family_Social_Capital…:12` | Pew 1/dic/2025, 18%, *"segundo más bajo tras Turquía (14%)"* | **No entra a la cola: quedó CONFIRMADA exacta contra el topline primario.** Se lista para que el sucesor no la toque por error |
+
+---
+
+## §7 · Auditoría — qué mueve este acto sobre México, y qué no
+
+**Sí mide México.** Este acto produce **cinco cantidades nuevas medidas sobre población mexicana** (WVS `Q57`/`Q58`/`Q59`/`Q60`/`Q61`, Wave 7, n=1 741), **una** más (Latinobarómetro `P10STGBS` 2024, n=1 183), **tres** de LAPOP (`it1`, 2019/2021/2023) y **lee dos** de fuente primaria (Pew 2024/2025). En total, **once cantidades** que antes no estaban medidas en este programa.
+
+**Qué mueve: magnitud de constructo.** "Confianza radial — magnitud" pasa de *"cinco cifras, tres sin reconciliar"* a: tres selladas en ENCUCI (`ADR-64`), una confirmada exacta (Pew 18%), una sin procedencia sostenible (22%) y una indecidible por falta de ola (12%). Y aporta un rango medible declarado por escala: **10.5%–26.1% entre binarios (2018-2025)**, **21.9% en ENCUCI 0-10 a ≥8/10 (2020)**, **nunca promediados entre sí**.
+
+**Qué NO mueve: coeficientes.** **Contadores movidos: 0.** Ni el de condicionales medidas (`12 de 15`), ni el de coeficientes, ni probabilidades del motor, ni fichas del Hito D. No se editó `milpa/procedencia.yaml`, no se tocó el corte ≥6/10 de `radio_confianza`, no se adjudicó `R8.3`. La reserva C3 de `C-06a` §7 sigue vigente y está repetida verbatim en `ADR-110(g)`.
+
+**Sesgo de marcos — WVS, Latinobarómetro y Pew son evidencia (c), y por eso existe la vinculación declarada.** Los tres son instrumentos comparativos internacionales diseñados fuera de México, con un reactivo binario nacido en la literatura anglosajona de capital social. Traerlos a decir algo sobre México exige exactamente lo que `ADR-80` sella: **un argumento de vinculación declarado**, no la suposición de que "confianza interpersonal" significa lo mismo en los cuatro instrumentos. Este acto lo declaró por los cuatro ejes (§2.3) **y encontró que el ancla más fuerte disponible falla** (§4.3): el orden se invierte. Es la crítica calibrada de marcos que Bloque A exige, hecha con una medición y no con una advertencia genérica.
+
+**¿Qué parte podría confundir estructura con "cultura"?** El hallazgo de §3.2 lo corta en su propio terreno: en Latinobarómetro 2024 **México es el país con MAYOR confianza interpersonal de los 17 de América Latina** (26.06%, por encima de Argentina 24.4% y Chile 21.0%; Brasil 5.0% es el más bajo). La lectura *"México, sociedad de baja confianza"* es cierta contra el promedio de la OCDE y **falsa contra su propia región** en ese instrumento y esa ola. Cualquier explicación cultural que trate la baja confianza como rasgo mexicano tiene que explicar por qué México encabeza la región.
+
+**¿Sobregeneralización desde clases medias urbanas?** No aplica a las cifras de este acto — las tres series son nacionalmente representativas con ponderador propio. Sí aplica una reserva de diseño declarada: Latinobarómetro y LAPOP **no publican identificadores formales de estrato/UPM**, así que sus IC usan proxies (`TAMCIUD`/`CIUDAD`, `estratopri`/`upm`) y son aproximados. Está dicho en §3.2, no escondido.
+
+---
+
+## §8 · Límite de lectura y de escritura declarado
+
+**Abierto en esta sesión:** microdato WVS Wave 7 México (CSV v5.1, dentro de su zip) · microdato Latinobarómetro 2024 (`.dta` español, 17 países) · microdato LAPOP México 2019/2021/2023 (`.dta`) · cuestionario WVS7 México español (PDF) · codebook WVS7 México v3.0 (PDF) · cuestionario LAPOP ABMex2023 (PDF) · topline Pew Spring 2025 (PDF) · short-read Pew (HTML). **Todo bajo `unshare -Urn`**; las descargas se hicieron fuera del namespace.
+
+**Leído del repo:** `2026-08-04-c06a…` (completo) · `benchmark-enlace-invarianza-v1_0.md` (completo) · `ADR-64`, `ADR-80`, `ADR-82`, `ADR-101(f)`, `ADR-109` en `gobernanza` · `2026-08-05-c06b…` (§3, tabla) · `2026-08-03-cal-conf-faseb-pos5-6…` (§1.1, enunciado ENCUCI) · `firmas-pendientes.tsv` (fila `FP-29`) · `instrucciones-proyecto-v2_10.md` (A.2, A.3, A.5-A.8, A.12, Bloques A-bis y B-bis) · `tests/svystat.py`, `tests/corpus.py`, `tests/manifiesto.py` · las celdas del corpus citadas una por una en §6.
+
+**NO abierto:** ENCUCI 2020 — **deliberadamente**. Su mitad está sellada por `ADR-64` sobre `C-06b` y reabrirla sin encargo sería rehacer trabajo sellado; todas sus cifras aquí se **citan** de `C-06b`, con `archivo:línea`. Tampoco WVS Wave 6, ni ENAFI (no adquiridos — es lo que los deja INDECIDIBLES).
+
+**NO editado:** `canon/glosario-v5_6.md` · `canon/modelo-decision-v4_0.md` · `milpa/procedencia.yaml` · `milpa/refutations.yaml` · `corpus/reports/**` · `forense/hitoD-preregistro-v2_0.md` · `data/cola-adquisicion-2026-08-12.tsv` · `tests/check.py` · `tests/baseline.json` (**sin `--freeze`**). Las 49 entradas del manifiesto con ruta rota **no se corrigieron** — están registradas en `hallazgos.md` y son acto sucesor.
+
+**Renombre de este archivo, declarado.** La nota se llamaba `2026-08-18-fp29-reconcilia.md` y `T02` la marcó por **colisión de nombre normalizado** con el encargo archivado (`2026-08-18-FP29-RECONCILIA.md`): `T02` normaliza quitando todo lo no alfanumérico y bajando a minúsculas, con lo que los dos daban `20260818fp29reconciliamd`. Renombrada a `2026-08-18-fp29-adjudicacion.md` — que además es lo que el encargo pide de ella ("ficha de adjudicación en notas") — y las cinco referencias se actualizaron por comando (`gobernanza`, `firmas-pendientes.tsv`, el encargo, el script y el manifiesto); `grep` posterior del nombre viejo → sin resultados. Mismo remedio que ya se autorizó en `ACTO APERTURA-ISSP`. Con eso, la corrida vuelve a **19 FAIL · 124 WARN — LÍNEA BASE: VERDE**, idéntica a la de apertura: el `T16` que también apareció era consecuencia aritmética del `FAIL` de `T02`, no un desajuste propio, y se fue con él. **`estado-programa:291` no se tocó** — su cifra sigue siendo la correcta.
+
+**Escrito:** este archivo · `forense/encargos/2026-08-18-FP29-RECONCILIA.md` · `canon/gobernanza-v1_15.md` (`ADR-110` + cabecera) · `canon/estado-programa-v1_10.md` (solo las dos líneas del contador) · `forense/firmas-pendientes.tsv` (`FP-29`, `FP-58`) · `forense/hallazgos.md` (append) · `data/manifiesto.yaml` (2 altas) · `data/fp29-series-externas-2026-08-18.json` · `tests/fp29_series_externas.py` · `data/raw/FP29_PEW_2025/` (payload, no commiteado).

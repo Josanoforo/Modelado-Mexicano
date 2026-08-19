@@ -36,3 +36,17 @@ Series abiertas (ENCUCI ya barrida por v7) → argumento de vinculación por par
 C3 · Cierre
 
 Ficha de adjudicación en notas (tabla completa) · FP-29→FIRMADA/ejecutada · ADR con la reserva C3 repetida verbatim · cascada · hallazgos · CONSUMIDO · en la nota: cola derivada de celdas que citan 22%/16-26% (para el sucesor). Auditoría: este acto SÍ mide México — di qué mueve (magnitud de constructo) y qué no (coeficientes). Sesgo de marcos: WVS/Latinobarómetro/Pew son (c) — la vinculación declarada existe para eso; dilo en la ficha.
+
+---
+
+## CONSUMIDO
+
+**Ejecutado por `ACTO FP29-RECONCILIA`, 18/ago/2026, sellado por `ADR-110`.** Base real `e563e5d` (no `57984b5`). Nota del acto: `forense/notas/2026-08-18-fp29-adjudicacion.md`. Corrida: `tests/fp29_series_externas.py`; salida: `data/fp29-series-externas-2026-08-18.json`.
+
+**C1 · Pew — `obtenido-y-alta`.** 7 intentos con salida cruda; topline primario obtenido, A.7 verificado estable entre dos generaciones; dos altas al manifiesto, `--verifica` COINCIDE en las dos. No hubo fallo que declarar bajo A.5.
+
+**C2 · Reconciliación — completa para lo testable, con lo no testable nombrado.** 18% CONFIRMADA exacta · 22% SIN PROCEDENCIA SOSTENIBLE (2 atribuciones refutadas, 1 error de categoría, 1 indecidible) · 12% INDECIDIBLE por falta de la ola 6 · las tres de ENCUCI intactas bajo `ADR-64`. Argumento de vinculación declarado por los cuatro ejes; ninguna escala promediada con otra.
+
+**C3 · Cierre — completo.** Ficha de adjudicación (§4, tabla completa) · `FP-29` → `FIRMADA` con `ejecutada_en` · `ADR-110` con la reserva C3 repetida verbatim en su inciso (g) · cascada del conteo derivada y verificada · 6 líneas en `hallazgos.md` · cola derivada para el sucesor (§6) · auditoría con qué mueve y qué no (§7).
+
+**Lo que el encargo pedía y este acto NO hizo, dicho en vez de omitido:** el encargo pedía `FP-29→FIRMADA/ejecutada` y eso se hizo; pero la decisión sobre qué debe decir el canon quedó **sin adjudicar a propósito** y abrió `FP-58` — adjudicarla habría sido el ejecutor decidiendo en vez de propagar (`ADR-76`/`ADR-79`), y el propio encargo excluía canon sustantivo del perímetro.

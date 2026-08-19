@@ -7,7 +7,7 @@ que `ADR-64(a)` dejo abiertos (12% WVS / 22% procedencia inestable /
 la corrida `C-06b` y aqui solo se cita.
 
 Especificacion congelada ANTES de correr esto:
-`forense/notas/2026-08-18-fp29-reconcilia.md` §2 (commit d264ae9).
+`forense/notas/2026-08-18-fp29-adjudicacion.md` §2 (commit d264ae9).
 
 Estimador: `tests/svystat.py::prop_ultimate_cluster` -- el mismo
 conglomerado ultimo que produjo la matriz de C-06b. No se reimplementa.
