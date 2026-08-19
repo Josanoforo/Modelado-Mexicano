@@ -1,0 +1,7 @@
+Corrección fail-closed de multi_supervisor.py:
+- workers recibidos deben coincidir exactamente con asignación;
+- cada fuente candidata se asigna exactamente una vez;
+- cada candidata aparece exactamente una vez y ninguna clave nueva/protegida entra;
+- solo CANDIDATA es modificable;
+- CONFIRMADA/NEGATIVA nueva exige referencia MAIN existente y localizador presente;
+- claves activas, negativos, resúmenes y conteos se reconcilian antes de ok=true.
