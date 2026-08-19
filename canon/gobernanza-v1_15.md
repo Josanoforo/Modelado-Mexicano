@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **114 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **115 ADR**
 
 > | | |
 > |---|---|
@@ -2220,7 +2220,7 @@ Detalle completo, comando por comando, con las dos preguntas y las dos respuesta
 ---
 
 
-**ADR-114 · El corte de `edad` para «joven» queda fijado por convención declarada — 15-29 años (INEGI/ENOE) — y propagado a los nueve sitios de `modelo` que lo citaban `corte PENDIENTE`; ninguna hipótesis ni regla se re-adjudica.** Decisión de mesa D-2 de `MESA-19AGO`, verbatim: *"**(c) Ambas** — Convención declarada ahora para desbloquear los 9 sitios, más derivación empírica con dato mexicano propio como acto en cola que puede corregirla"* (`ADR-110(b)`, fila `FP-53`). `ACTO CORTE-EDAD-CONVENCION` ejecuta la mitad (c)-convención de esa firma; no ejecuta la mitad empírica, que corresponde a `CORTE-EDAD-EMPIRICO` (gemelo en cola, sesión UBUNTU, dato mexicano propio).
+**ADR-115 · El corte de `edad` para «joven» queda fijado por convención declarada — 15-29 años (INEGI/ENOE) — y propagado a los nueve sitios de `modelo` que lo citaban `corte PENDIENTE`; ninguna hipótesis ni regla se re-adjudica.** Decisión de mesa D-2 de `MESA-19AGO`, verbatim: *"**(c) Ambas** — Convención declarada ahora para desbloquear los 9 sitios, más derivación empírica con dato mexicano propio como acto en cola que puede corregirla"* (`ADR-110(b)`, fila `FP-53`). `ACTO CORTE-EDAD-CONVENCION` ejecuta la mitad (c)-convención de esa firma; no ejecuta la mitad empírica, que corresponde a `CORTE-EDAD-EMPIRICO` (gemelo en cola, sesión UBUNTU, dato mexicano propio).
 
 **Corte adoptado y procedencia, citada por este acto — ninguna de las dos fuentes vivía citada en el árbol antes.** `edad` joven = **15 a 29 años**, corte de «población joven» de INEGI/ENOE en estadística laboral — el mismo registro en que se mide `R2.4` (rotación) y se observa el descriptor 5. Fuente: INEGI, *Panorámica de la población joven por condición de actividad* (ENOE), <https://www.inegi.org.mx/investigacion/pobjoven/>, consultado 19/ago/2026. Alterno declarado, no adoptado: 12-29 años, Ley del Instituto Mexicano de la Juventud art. 2 (DOF 06/ene/1999, reformas 02/abr/2015), <https://www.diputados.gob.mx/LeyesBiblio/pdf/LIMJ.pdf>, consultado 19/ago/2026.
 
@@ -2232,7 +2232,7 @@ Detalle completo, comando por comando, con las dos preguntas y las dos respuesta
 
 **Lo que este ADR NO hace.** No deriva el corte de dato mexicano propio — eso es `CORTE-EDAD-EMPIRICO`. No toca `milpa/*.yaml` ni ningún archivo de `data/`. No re-adjudica H-02/H-06/H-07 ni ninguna otra hipótesis o regla — cambia estatus de determinabilidad, no veredicto. No abre fila de tablero: el acto no encontró colisión de id ni deuda nueva que requiera `FP-61`.
 
-**Cascada.** Conteo de ADR re-derivado al escribir y al fusionar, per la ley del acto. Al escribir, contra `35c9c9f` (`origin/main`, con `PR #278`/`LIMPIA-CAJA` ya fusionado): `grep -oE "^\*\*ADR-[0-9]+" canon/gobernanza-v1_15.md | sort -u | wc -l` → **113 únicos, máximo 113, sin huecos** → candidato **114**. Re-derivado otra vez al fusionar (si `origin/main` avanzó mientras esta rama esperaba revisión, este número se re-verifica y, de colisionar, se renumera aquí mismo — mismo protocolo ya usado once veces esta semana). Sitios de cascada: `gobernanza-v1_15.md:2` (cabecera, 113→**114**) y `estado-programa-v1_10.md` (tabla y narrativa `L0`, misma cifra).
+**Cascada.** Conteo de ADR re-derivado al escribir y otra vez al fusionar — colisión real, no hipotética. Al escribir, contra `35c9c9f` (`origin/main`, con `PR #278`/`LIMPIA-CAJA` ya fusionado): `grep -oE "^\*\*ADR-[0-9]+" canon/gobernanza-v1_15.md | sort -u | wc -l` → **113 únicos, máximo 113, sin huecos** → candidato **114**. Al fusionar `origin/main` (`318e233`, que trae `PR #279`/`FP57-DECLARA` ya fusionado): `FP57-DECLARA` **también** candidateó `114` y llegó primero — su `ADR-114` (`FP-57` se firma opción (b)) ya vive en el árbol, verificado por comando: `grep -oE "^\*\*ADR-[0-9]+" canon/gobernanza-v1_15.md | sort -n | uniq -d` → `114`. Se corrige aquí, renumerando **este** ADR a **115** y dejando el `ADR-114` de `FP57-DECLARA` intacto — mismo protocolo ya usado doce veces esta semana (`ADR-91`→`92`→`93`→`95`, `ADR-98`→`99`, `ADR-100`→`103`, `ADR-104`→`105`, `ADR-106` dos veces, `ADR-107` dos veces, `ADR-110` tres veces, `ADR-111`/`ADR-112` dos veces). Sitios de cascada: `gobernanza-v1_15.md:2` (cabecera, 114→**115**) y `estado-programa-v1_10.md` (tabla y narrativa `L0`, misma cifra).
 
 **Contadores de medición sobre México que mueve este ADR: cero.**
 
