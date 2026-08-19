@@ -767,6 +767,151 @@ def cmd_tareas(args: argparse.Namespace) -> int:
     return 1 if resumen["rechazos"] else 0
 
 
+
+# ───────────────────────────────────────────────────────────────
+# Fase `propuestas` · el producto del §17
+#
+# ACTO B2-SEMANTICO, 18/ago/2026.  Escribe `propuestas-barrido2.tsv` con las 22
+# columnas exactas que el §17 fija y que `integrate_barrido2.PROPOSAL_FIELDS` y
+# `barrido2-semantic-proposal.schema.json` ya tenían congeladas sin que nadie
+# las escribiera nunca.
+#
+# La propuesta NO se inventa: sale de una tarea (identidad material verificada
+# por hash) más el veredicto supervisado de esa relación.  `evidencia_ref` se
+# construye como `e2_record_id:e2_record_sha256` porque el preflight del
+# integrador exige esa cadena EXACTA y no otra.
+#
+# Sobre FP-24, que es donde se pierde la gente: la unidad es LA PROPUESTA, no
+# la relación ni la fuente (ADR-92(c) y §17), y está prohibido derivar la
+# dependencia de pertenecer a la lista histórica de 20.  `dependencia_fp24=SI`
+# sólo si aceptar ESA propuesta exige resolver antes la regla de pares
+# pendiente; si puede decidirse con evidencia de la fuente o del objeto, es NO
+# aunque la relación sea una de las 20.  El bicondicional del §17
+# (dependencia=SI <-> requiere=SI y decision=FP-24) se impone aquí, no se
+# confía al que escribe: `FP-24/ADR-93` es un valor imposible, el enum sólo
+# admite `FP-24` o `NO-APLICA`.
+# ───────────────────────────────────────────────────────────────
+
+VEREDICTO_FIELDS = [
+    "relacion_id", "veredicto_a4", "confianza", "estado_supervision",
+    "supervisor_id", "dependencia_fp24", "razon_gate",
+]
+
+PROPOSAL_FIELDS_17 = [
+    "propuesta_id", "tarea_id", "reporte_id", "payload_id", "representacion_id",
+    "sha256", "objeto_logico_id", "necesidad_id", "reactivo_id",
+    "accion_propuesta", "relacion_id_actual", "veredicto_a4", "evidencia_ref",
+    "frontera_semantica", "confianza", "requiere_decision_mesa",
+    "decision_mesa_id", "dependencia_fp24", "razon_gate", "estado_supervision",
+    "supervisor_id", "fecha",
+]
+
+_VEREDICTO_A_CAPA4 = {
+    "EXISTE-SATISFACE": "EXISTE-SATISFACE",
+    "EXISTE-NO-SATISFACE": "EXISTE-NO-SATISFACE",
+    "NO-ENCONTRADO-EN-UNIVERSO-INSPECCIONADO": "NO-ENCONTRADO-EN-UNIVERSO-INSPECCIONADO",
+    "NO-ACCESIBLE": "NO-ACCESIBLE",
+    "NO-DETERMINADO": "NO-DETERMINADO",
+}
+
+
+def _accion(veredicto: str, capa4_actual: str) -> str:
+    """Regla mecánica y declarada, no juicio.
+
+    El destino de capa4 es el propio veredicto. Si ya está ahí, no hay cambio
+    que proponer; si el veredicto es un negativo de universo con frontera, la
+    celda cierra como terminal; en lo demás, es un CAMBIO de capa4.
+    """
+    destino = _VEREDICTO_A_CAPA4.get(veredicto, "NO-DETERMINADO")
+    if capa4_actual == destino:
+        return "SIN_CAMBIO"
+    if veredicto == "NO-ENCONTRADO-EN-UNIVERSO-INSPECCIONADO":
+        return "TERMINAL"
+    if veredicto in ("NO-ACCESIBLE", "NO-DETERMINADO"):
+        return "SIN_CAMBIO"
+    return "CAMBIO"
+
+
+def derivar_propuestas(
+    registry: Path, tasks_path: Path, veredictos_path: Path, fecha: str,
+) -> tuple[list[dict[str, str]], dict[str, Any]]:
+    relaciones = {r["relacion_id"]: r for r in read_tsv(registry / "relaciones.tsv")}
+    veredictos = {v["relacion_id"]: v for v in read_tsv(veredictos_path)}
+    propuestas: list[dict[str, str]] = []
+    rechazos: list[dict[str, str]] = []
+
+    for tarea in read_tsv(tasks_path):
+        relacion_id = tarea["relacion_id"]
+        veredicto = veredictos.get(relacion_id)
+        if veredicto is None:
+            rechazos.append({"tarea_id": tarea["tarea_id"], "motivo": "SIN_VEREDICTO_SUPERVISADO"})
+            continue
+        relacion = relaciones.get(relacion_id)
+        if relacion is None:
+            rechazos.append({"tarea_id": tarea["tarea_id"], "motivo": "RELACION_INEXISTENTE"})
+            continue
+
+        dep = veredicto["dependencia_fp24"]
+        if dep not in ("SI", "NO"):
+            rechazos.append({"tarea_id": tarea["tarea_id"], "motivo": "DEPENDENCIA_FP24_NO_DECLARADA"})
+            continue
+        # El bicondicional se impone, no se copia.
+        requiere = "SI" if dep == "SI" else "NO"
+        decision_mesa = "FP-24" if dep == "SI" else "NO-APLICA"
+        estado = veredicto["estado_supervision"]
+        if dep == "SI":
+            estado = "REQUIERE_DECISION_FP24"
+
+        propuestas.append({
+            "propuesta_id": stable_id("PROP-B2-", tarea["tarea_id"]),
+            "tarea_id": tarea["tarea_id"],
+            "reporte_id": tarea["reporte_id"],
+            "payload_id": tarea["payload_id"],
+            "representacion_id": tarea["representacion_id"],
+            "sha256": tarea["sha256"],
+            "objeto_logico_id": tarea["objeto_logico_id"],
+            "necesidad_id": tarea["necesidad_id"],
+            "reactivo_id": tarea["reactivo_id"],
+            "accion_propuesta": _accion(veredicto["veredicto_a4"],
+                                        relacion.get("capa4_apertura_mapeo", "")),
+            "relacion_id_actual": relacion_id,
+            "veredicto_a4": veredicto["veredicto_a4"],
+            # Cadena exacta que exige integrate_barrido2.preflight.
+            "evidencia_ref": f"{tarea['e2_record_id']}:{tarea['e2_record_sha256']}",
+            "frontera_semantica": tarea["frontera_semantica"],
+            "confianza": veredicto["confianza"],
+            "requiere_decision_mesa": requiere,
+            "decision_mesa_id": decision_mesa,
+            "dependencia_fp24": dep,
+            "razon_gate": _durable(veredicto["razon_gate"]),
+            "estado_supervision": estado,
+            "supervisor_id": veredicto["supervisor_id"],
+            "fecha": fecha,
+        })
+
+    resumen = {
+        "schema_version": SCHEMA_VERSION,
+        "propuestas": len(propuestas),
+        "rechazos": rechazos,
+        "por_accion": dict(sorted(Counter(p["accion_propuesta"] for p in propuestas).items())),
+        "por_veredicto": dict(sorted(Counter(p["veredicto_a4"] for p in propuestas).items())),
+        "por_supervision": dict(sorted(Counter(p["estado_supervision"] for p in propuestas).items())),
+        "dependencia_fp24_SI": sum(1 for p in propuestas if p["dependencia_fp24"] == "SI"),
+    }
+    return propuestas, resumen
+
+
+def cmd_propuestas(args: argparse.Namespace) -> int:
+    propuestas, resumen = derivar_propuestas(
+        args.registry.resolve(), args.tasks.resolve(),
+        args.veredictos.resolve(), args.fecha,
+    )
+    write_tsv(args.output.resolve(), PROPOSAL_FIELDS_17, propuestas)
+    resumen["salida_sha256"] = sha256_file(args.output.resolve())
+    print(json.dumps(resumen, ensure_ascii=False, indent=2, sort_keys=True))
+    return 1 if resumen["rechazos"] else 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="comando", required=True)
@@ -800,6 +945,14 @@ def main() -> int:
     t.add_argument("--fecha", required=True)
     t.add_argument("--output", type=Path, required=True)
     t.set_defaults(func=cmd_tareas)
+
+    pr = sub.add_parser("propuestas", help="escribe propuestas-barrido2.tsv (§17)")
+    pr.add_argument("--registry", type=Path, required=True)
+    pr.add_argument("--tasks", type=Path, required=True)
+    pr.add_argument("--veredictos", type=Path, required=True)
+    pr.add_argument("--fecha", required=True)
+    pr.add_argument("--output", type=Path, required=True)
+    pr.set_defaults(func=cmd_propuestas)
 
     args = parser.parse_args()
     return args.func(args)
