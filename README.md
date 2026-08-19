@@ -84,7 +84,7 @@ Un validador cuyo alcance fija quien introduce las reglas no valida nada.
 
 **S1** · Sí hay dato primario propio: 223 payloads con `sha256` <!-- grep -cE '^\s*sha256:' data/manifiesto.yaml --> y estimandos propios sobre ENVIPE/ENCIG/ENCUCI/ENIF/ENIGH, estimador respaldado contra tres casos de referencia y validado contra INEGI publicado (Encargo E-3/PR #97; Encargo K; Encargo P) · **PD-01**: 14 descartes irrecuperables, *no reconstruir*
 
-**S2** · Los **90 parámetros de dispersión** de ADR-28.d no existen en archivo — el check de varianza no puede correr · Los **30 componentes** de `confianza_institucional` por perfil, declarados y sin poblar · **7 de 8 refutaciones sin objeto ya tienen variable declarada** (19/ago/2026, ADR-114), incluida `ref.A.02`, sin calibrar · El motor **sigue sin entidad prestamista** (frontera de ADR-35; enmienda redactada, no ejecutada, `FP-61`) — `ref.A.04` sigue sin objeto
+**S2** · Los **90 parámetros de dispersión** de ADR-28.d no existen en archivo — el check de varianza no puede correr · Los **30 componentes** de `confianza_institucional` por perfil, declarados y sin poblar · **7 de 8 refutaciones sin objeto ya tienen variable declarada** (19/ago/2026, ADR-115), incluida `ref.A.02`, sin calibrar · El motor **sigue sin entidad prestamista** (frontera de ADR-35; enmienda redactada, no ejecutada, `FP-61`) — `ref.A.04` sigue sin objeto
 
 **S3** · 15 coeficientes sin validar · 36 de 49 reglas sin falsación pre-registrada corrida <!-- 49 (validador_registro_ids.py) − 13 (fichas del bloque append-only, T18) = 36; +R1.3→E, ADR-63 --> · 74 números asignados · **3 de 5 forenses sin tabla de descartes**
 

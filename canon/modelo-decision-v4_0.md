@@ -296,7 +296,7 @@ Los 90 valores puntuales eran `ASIGNADO` — juicio informado, cero medidos. `re
 
 **Qué le pasa a la deuda de los 90 parámetros de dispersión** (§6). Bajo la tabla, ADR-28.d exigía 90 parámetros de dispersión que no existían en archivo — de ahí el "conteo real es 234". Bajo condicionales, **la dispersión es parte de la especificación de θ_k** (§1.1.B, propiedad 1): no son 90 números aparte, son **15 familias de distribución sin declarar**. La deuda no se salda —sigue sin poder correr el check de 28.d—, pero **cambia de tamaño y de forma, y es enumerable**.
 
-#### 1.1.G · Ocho variables nuevas, para darles objeto a las refutaciones sin objeto *(ADR-114, ejecuta `FP-56`/`ADR-110(a)`/`ADR-111(c)`)*
+#### 1.1.G · Ocho variables nuevas, para darles objeto a las refutaciones sin objeto *(ADR-115, ejecuta `FP-56`/`ADR-110(a)`/`ADR-111(c)`)*
 
 **Qué es esto y qué no es.** `forense/corrida-refutaciones.md §3` (fuente única que enumera los ocho ids — `milpa/refutations.yaml`, `estado` y `gobernanza` solo nombran `ref.A.02`, deuda de completitud de `censo-integridad-v1_0.md` C4-05) registró ocho refutaciones que **no podían fallar** porque el modelo no tenía la variable que restringen. Mesa firmó `(a)`: ampliar el modelo, no retirarlas (`FP-56`, `ADR-110(a)`, renumerado `ADR-111(c)` al fusionar). **Darle objeto a una refutación es que exista la variable, no que esté medida** — este paso no calibra nada: no fija forma funcional, no declara θ_k, no entra a `D` (§1.1.F) hasta que un generador la multiplique y un reactivo la mida. Es del mismo tipo que la tabla 6×15 del v3.4 antes de §1.1.E: una casilla nombrada, no un número.
 

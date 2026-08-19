@@ -51,7 +51,7 @@ primera_corrida:
       · cambio 5 — familismo → familismo_apoyo + familismo_obligacion (ADR-30)
   ocho_sin_objeto:
     que_significa: >
-      DECIDIDO 19/ago/2026 (FP-56, ADR-110(a)/ADR-111(c), ejecutado por ADR-114,
+      DECIDIDO 19/ago/2026 (FP-56, ADR-110(a)/ADR-111(c), ejecutado por ADR-115,
       ACTO REFUTACIONES-SIN-OBJETO): se amplía el modelo, no se retiran (vía
       (a), no (b)). Siete de las ocho ya tienen variable declarada en
       canon/modelo-decision-v4_0.md §1.1.G — corribles no es pasadas: cada una
@@ -69,7 +69,7 @@ primera_corrida:
       modelo §1.1.G). El modelo sigue sin entidad prestamista (ref.A.04,
       bloqueada por ADR-35, ver arriba).
     decision_pendiente: >
-      RESUELTA para siete de ocho (19/ago/2026, ADR-114): tienen variable
+      RESUELTA para siete de ocho (19/ago/2026, ADR-115): tienen variable
       declarada, forma funcional PENDIENTE, sin calibrar. Sigue pendiente para
       ref.A.04 (FP-61, enmienda a ADR-35). El denominador honesto hoy: de las
       49, 30 ya se corrieron (27 pasan + 3 fallan), 7 acaban de ganar objeto y
@@ -95,7 +95,7 @@ primera_corrida:
 
   lectura_honesta: >
     27 de 49 pasan suena bien y no lo es tanto. Corregido 19/ago/2026
-    (ADR-114): ya no son 8 las que pasan por vacío, son 1 — siete ganaron
+    (ADR-115): ya no son 8 las que pasan por vacío, son 1 — siete ganaron
     variable declarada y volvieron a la batería con veredicto pendiente, sin
     correr todavía. Las que efectivamente se probaron y sobrevivieron siguen
     siendo 27 de 30 (nada corrió en este acto); las que YA PODRÍAN correrse
