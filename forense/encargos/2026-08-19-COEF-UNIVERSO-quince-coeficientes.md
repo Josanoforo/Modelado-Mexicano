@@ -4,7 +4,7 @@
 > |---|---|
 > | **SHA de redacción** | Declarado por dirección: `e6864ed` (#267) + revisión de PR #275/#276/#274. **Base real al ejecutar: `35c9c9f`** (#278) — main se movió 5 merges (#274, #275, #276, #277, #278) entre redacción y ejecución; re-derivado en el ARRANQUE, no es PARO. |
 > | **Entorno asignado** | UBUNTU (caja con corpus `/home/pc0/mm-corpus/raw`). **NO nube.** |
-> | **Estado** | `CONSUMIDO` — ejecutado por ACTO COEF-UNIVERSO, PR pendiente de número al escribir esta línea. |
+> | **Estado** | `CONSUMIDO` — ejecutado por ACTO COEF-UNIVERSO, `PR #287`. |
 > | **Modelo** | Opus (supervisión); ejecutores en Sonnet por instrucción de mesa. `--freeze` prohibido. |
 
 ---

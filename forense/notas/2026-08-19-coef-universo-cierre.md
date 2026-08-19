@@ -3,7 +3,7 @@
 > | | |
 > |---|---|
 > | **ARCHIVO** | `2026-08-19-coef-universo-cierre.md` |
-> | **QUÉ ES** | Nota de cierre del ACTO COEF-UNIVERSO. Ejecuta el encargo archivado en `forense/encargos/2026-08-19-COEF-UNIVERSO-quince-coeficientes.md`. |
+> | **QUÉ ES** | Nota de cierre del ACTO COEF-UNIVERSO. Ejecuta el encargo archivado en `forense/encargos/2026-08-19-COEF-UNIVERSO-quince-coeficientes.md`. **PR #287.** |
 > | **VERIFICAS ASÍ** | Cada cifra de esta nota trae el comando que la produce, corrido contra el clon `/home/pc0/mm-coef-universo` en la base declarada en §0. Ninguna cifra viene del espejo del proyecto. |
 > | **ENTORNO** | UBUNTU, caja con corpus. `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` sin variable; INEGI responde `200`; `data/raw` enlazada al corpus compartido. |
 
