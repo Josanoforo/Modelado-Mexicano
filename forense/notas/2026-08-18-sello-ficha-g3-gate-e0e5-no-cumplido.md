@@ -51,3 +51,16 @@ Tocado: este archivo (nuevo). **No tocado:** `canon/gobernanza-v1_15.md`, `foren
 ## 6 · Marcador T22 — falso positivo, explicado (A.12)
 
 `tests/check.py` (T22, protección (b)) marcó este archivo por `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`), en la línea 3 del Estado: la línea cita, una junto a otra sin relación, "PROPUESTA DE SELLO COMPLETA" (el estado ya existente de `FP-11`, `firmas-pendientes.tsv:12`, sin cambiarlo) y "...que mesa firmó" (cita verbatim del gate del propio encargo, §2 arriba). No es una ranura nueva sin registrar: `FP-11` ya tiene su fila, sigue `FIRMADA-CONDICIONAL`, y este acto no le tocó el estado (§3, §5). Excluido vía `_T22_ARCHIVOS_CONOCIDOS` en `tests/check.py`, mismo criterio de autocaptura verbatim que las notas de `TABLERO-FIRMAS`/`CI-CATEGORIA` ya usaron para el mismo género de coincidencia.
+
+---
+
+**2026-08-18 (re-verificación, ENCARGO SELLO-FICHA-G3 v2).** Mismo gate, mismas cuatro señales,
+re-derivadas hoy contra el árbol real, no heredadas de esta acta: `FP-15` (`firmas-pendientes.tsv:16`)
+sigue `ABIERTA`; `milpa/src/` sigue sin existir (`test -d milpa/src` → ausente); `registro-recalculo-v1_0.md:41`
+fila 5 (`ADR-50/ADR-51/ADR-57(c)`) sigue `ABIERTA`; `forense/encargos/2026-08-18-LANE-A-E0-E5.md`
+sigue `Estado: VIVO`, no `CONSUMIDO`. Las cuatro coinciden, igual que en el ARRANQUE original de
+esta acta: el gate no está cumplido. Este acto v2 se PARA en el mismo punto, por la misma razón,
+sin ejecutar C1-C4 de su propio encargo ni tocar `firmas-pendientes.tsv`, `ficha-id-g3-v1_0.md`,
+`canon/gobernanza-v1_15.md` ni `forense/encargos/`. `0 de 15` no se toca. Pregunta a mesa: sin
+novedad sobre lo ya declarado en §4 de esta acta — sigue siendo `LANE-A-E0-E5` quien debe fusionar
+y cerrar `FP-15` primero.

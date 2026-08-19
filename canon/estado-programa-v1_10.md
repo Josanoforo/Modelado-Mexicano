@@ -24,7 +24,7 @@
 |---|---|---|
 | **`modelo`** | `modelo-decision-v4.0.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
 | **`glosario`** | `glosario-v5.6.md` | CANÓNICO. Único punto legítimo de entrada de un tier |
-| **`gobernanza`** | `gobernanza-v1.15.md` | 106 ADR, protocolo de cambio |
+| **`gobernanza`** | `gobernanza-v1.15.md` | 107 ADR, protocolo de cambio |
 | **`estado`** | `estado-programa-v1.10.md` | Este archivo |
 | **`milpa-whitepaper`** | `milpa-whitepaper-v0.1.md` | El **porqué** del simulador |
 | **`milpa-spec`** | `milpa-spec-v0.2.md` | El **cómo** — incluye el gate de ADR-25/37 |
@@ -98,7 +98,7 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 
 **Llaves de identificación ejercidas: `1` de `2`.** *(Población de conteo propia, abierta por ADR-67(c); no toca el denominador 27 del Hito D. Registro: `forense/registro-llaves-identificacion-v1_0.md`; cifra derivada por la receta al pie de ese archivo. Movida 13/ago/2026, ACTO ADJ-4 — `R5.1-D2` firma `EJERCIDA_INDECISA`, la primera llave que sale de `SELLADA_NO_EJERCIDA`.)*
 
-**L0 · Gobierno — completo y al día.** 106 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos. *(Corregido 29/jul/2026: decía 32, contradiciendo §0 de este mismo archivo — `censo-integridad-v1_0.md` C1-02.
+**L0 · Gobierno — completo y al día.** 107 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos. *(Corregido 29/jul/2026: decía 32, contradiciendo §0 de este mismo archivo — `censo-integridad-v1_0.md` C1-02.
 - Subió a 39 en la misma sesión, con la aprobación de ADR-38/39 en `gobernanza §4`;
 - a 40 después, con ADR-40, misma sesión de tests;
 - a 41 después, con ADR-41, misma sesión;
@@ -165,7 +165,8 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 - a 103 después, con `ADR-103`, 18/ago/2026, `ACTO GATE-DURABLE-V7` (el gate cierra 672/672 por primera vez desde `ledger-v5`, muestra adversarial 39/39 -- ver `gobernanza` para el detalle, esta narrativa no llevaba cláusula propia hasta este acto);
 - a 104 después, con `ADR-104`, 18/ago/2026, `ACTO NOTAS-P3` (registra, con estampa de universo, el cierre del barrido `CONSOLIDA-17AGO §PARTE 3` -- universo 225 notas + `hallazgos.md` + `modelo-decision` + `milpa/*.yaml`, patrón re-validado, 148 líneas en 49 archivos, 3 filas nuevas `FP-54`/`FP-55`/`FP-56`, 0 desalineados; no sella `PARTE 4`; ningún contador de medición sobre México se mueve);
 - a 105 después, con `ADR-105`, 18/ago/2026, `ACTO COND-ATRIB` (`condicionales_escalares_confianza_generica.confianza_institucional_generico_servidores_publicos` pasa de `PENDIENTE` a `MEDIDO·PARCIAL(edad,formalidad,sexo,escolaridad,estrato)`; ningún contador de medición sobre México en escala del modelo se mueve, sigue 0 de 15);
-- a 106 después, con `ADR-106`, 18/ago/2026, `ACTO CONF-07-CIERRE` (sella la partición ya ejecutada de `modelo §3.7` y da por RESUELTO `conf.07`, la última `conf` sin sello; verifica por primera vez su requisito de salida y resulta SATISFECHO -- `hitoD-preregistro:166` cita la mitad `[FUERTE]`, no el paquete; no re-tieriza ninguna mitad, no toca veredictos ni el perímetro del Hito D, no reabre `conf.08`; **ningún contador de medición sobre México se mueve**).)*
+- a 106 después, con `ADR-106`, 18/ago/2026, `ACTO CONF-07-CIERRE` (sella la partición ya ejecutada de `modelo §3.7` y da por RESUELTO `conf.07`, la última `conf` sin sello; verifica por primera vez su requisito de salida y resulta SATISFECHO -- `hitoD-preregistro:166` cita la mitad `[FUERTE]`, no el paquete; no re-tieriza ninguna mitad, no toca veredictos ni el perímetro del Hito D, no reabre `conf.08`; **ningún contador de medición sobre México se mueve**);
+- a 107 después, con `ADR-107`, 19/ago/2026, `ACTO SELLO-FICHA-G3-V2` (sella el diseño de `ficha-id-g3-v1_0.md`, `FP-11` → `FIRMADA`, y en el mismo acto adjudica la fila `ID-X` que `CORRIDA-IDG3` (5/ago/2026) había propuesto sin adjudicar: la llave (i) de `ADR-57(c)` aplicada a `G3·horizonte_temporal` sobre ENNViH/MxFLS olas 2-3 no tiene potencia suficiente -- primaria `IC95%sup=1.483`, sensibilidad `IC95%sup=1.372`, ninguna cruza `<1.25`; no se escribe `EXEC-FICHA-G3` como corrida nueva porque la ejecución ya corrió con microdato real; **`0 de 15` no se mueve**).)*
 ---
 
 ## 4 · Deudas abiertas, por severidad
