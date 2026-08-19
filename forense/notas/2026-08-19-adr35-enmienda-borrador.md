@@ -20,13 +20,13 @@ Entra una entidad `prestamista` al espacio de atributos del motor, distinta del 
 - `gobierno_corporativo` — proxy de supervisión/regulación de la entidad, variable declarada, sin forma funcional fijada aquí.
 - `tasa_ofrecida` / `cat` — ya existe como parámetro del lado del decisor (§3.1, techo cuantificado de disposición a pagar, ADR-35 original); se declara aquí el enlace, sin duplicar el número.
 
-**Lo que esta enmienda NO hace, si se sella tal cual:** no calibra `fondeo` ni `gobierno_corporativo` — quedan `[HIPÓTESIS]`, forma PENDIENTE, igual que las siete de `ADR-116`. No reabre las dos reglas de `§3.1` que `ADR-35` original ya selló del lado del decisor. No decide si `prestamista` entra a `D` (§1.1.F) — eso depende de si algún generador la multiplica, acto propio posterior.
+**Lo que esta enmienda NO hace, si se sella tal cual:** no calibra `fondeo` ni `gobierno_corporativo` — quedan `[HIPÓTESIS]`, forma PENDIENTE, igual que las siete de `ADR-117`. No reabre las dos reglas de `§3.1` que `ADR-35` original ya selló del lado del decisor. No decide si `prestamista` entra a `D` (§1.1.F) — eso depende de si algún generador la multiplica, acto propio posterior.
 
-**Lo que esta enmienda exige si se sella:** un mecanismo estructural nombrado y con fuente para cualquier diferencial que el `prestamista` introduzca (mismo criterio de §1.5, ADR-28.c), y un reactivo verificado antes de fijar forma funcional — no basta con declarar la entidad para que la refutación "pase"; corribles no es pasadas (mismo principio que `ADR-116` aplica a las otras siete).
+**Lo que esta enmienda exige si se sella:** un mecanismo estructural nombrado y con fuente para cualquier diferencial que el `prestamista` introduzca (mismo criterio de §1.5, ADR-28.c), y un reactivo verificado antes de fijar forma funcional — no basta con declarar la entidad para que la refutación "pase"; corribles no es pasadas (mismo principio que `ADR-117` aplica a las otras siete).
 
 ## Las tres opciones que mesa tiene delante, sin aplanar
 
-1. **Sellar esta enmienda tal cual** — `ref.A.04` gana objeto, con la misma disciplina de "declarar, no calibrar" que `ADR-116` aplicó a las otras siete.
+1. **Sellar esta enmienda tal cual** — `ref.A.04` gana objeto, con la misma disciplina de "declarar, no calibrar" que `ADR-117` aplicó a las otras siete.
 2. **Sellar una versión acotada** — por ejemplo, solo `fondeo` sin `gobierno_corporativo`, o solo como modificador transversal del generador de crédito existente en vez de entidad propia — si mesa juzga que la entidad completa es alcance mayor de lo que este acto puede escalar sin más discusión.
 3. **No sellar** y declarar el alcance del motor explícitamente acotado al decisor, con `ref.A.04` retirada de la batería por alcance declarado — la vía `(b)` que `MESA-19AGO` ya descartó por firma para las otras siete, pero que sigue disponible para ésta específicamente, porque `ADR-35` la frontera **ya la declaró antes** de que existiera la firma de `(a)`.
 
