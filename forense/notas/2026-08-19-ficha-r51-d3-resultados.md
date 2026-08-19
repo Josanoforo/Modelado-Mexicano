@@ -177,7 +177,7 @@ Precedencia sellada: **`A → E → B → C → D`**.
 
 **Regla de adjudicación entre corridas, declarada al sellar y respetada:** adjudica la primaria (`U1` × deflactado). **Las tres sensibilidades caen en la misma fila** — no hay discrepancia de fila que reportar como reserva. La discrepancia que sí hay es de **magnitud** (el punto se duplica al podar), y está reportada en §2 y §6 con su reserva de universo.
 
-**La firma que falta, con su renglón abierto.** El veredicto de arriba es **PROPUESTO**. La firma de mesa que lo convertiría en registro —`estado`/`veredicto` de la fila `R5.1-D3`, y `llaves de identificación ejercidas` de `1 de 3` a `2 de 3`— queda anotada como **`FP-68`, ABIERTA**, con el precedente exacto de cómo se firma (`ACTO ADJ-4` sobre `R5.1-D2`, 13/ago/2026) y con la reserva que debe viajar con ella: **el supuesto de tendencias paralelas está escrito y NO verificado** — el placebo 2014→2018 sigue sin correr.
+**La firma que falta, con su renglón abierto.** El veredicto de arriba es **PROPUESTO**. La firma de mesa que lo convertiría en registro —`estado`/`veredicto` de la fila `R5.1-D3`, y `llaves de identificación ejercidas` de `1 de 3` a `2 de 3`— queda anotada como **`FP-69`, ABIERTA**, con el precedente exacto de cómo se firma (`ACTO ADJ-4` sobre `R5.1-D2`, 13/ago/2026) y con la reserva que debe viajar con ella: **el supuesto de tendencias paralelas está escrito y NO verificado** — el placebo 2014→2018 sigue sin correr.
 
 **La contraparte de A-bis, verificada explícitamente:** ¿algún punto satisface un umbral con un IC que no lo despeja? **No, para lo que decide.** El umbral de 10pp lo despejan los cuatro IC de corresidencia y los dos de transferencia por márgenes amplios; el piso de 33% lo despeja por debajo el IC de la razón (b), entero. La falta de significancia de la corresidencia frente a **cero** es una pregunta distinta de si cruza **10pp**, y no bloquea esta fila.
 
@@ -192,7 +192,7 @@ Precedencia sellada: **`A → E → B → C → D`**.
 1. `ADR-67(c)` selló, verbatim, que un veredicto del diseño por regla de elegibilidad *"NO cuenta como veredicto de `R5.1`"*, que *"el denominador **27 no se toca**"* y que la métrica del renglón nuevo es *"llaves de identificación ejercidas"*.
 2. Con independencia de la firma, **la mecánica lo impide**: `T18`/`T20` derivan el contador de un `set` de identificadores `RX.Y` extraídos con `_VEREDICTO_CANONICO`; `R5.1` **ya está en ese conjunto** desde el 4/ago/2026 (veredicto `A`, `ADR-58(c)`), así que una línea nueva para `R5.1` no incrementaría nada — y una línea escrita `` `R5.1-D3` → veredicto `X` `` **no coincide con el patrón** y entraría **invisible** al bloque append-only, sin disparar siquiera el guardia de forma sospechosa.
 
-Registrado como **`FP-67`, ABIERTA**. No se adjudica desde aquí: decidir si `ADR-110(a)` corrige a `ADR-67(c)` o si arrastraba una premisa vencida es firma de mesa.
+Registrado como **`FP-68`, ABIERTA**. No se adjudica desde aquí: decidir si `ADR-110(a)` corrige a `ADR-67(c)` o si arrastraba una premisa vencida es firma de mesa.
 
 ---
 

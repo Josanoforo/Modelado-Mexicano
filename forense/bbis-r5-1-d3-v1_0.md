@@ -204,7 +204,7 @@ El encargo (`forense/encargos/2026-08-19-FICHA-R51-D3.md` §3) declara que este 
 
 **Dónde sí se anota, entonces:** `forense/registro-llaves-identificacion-v1_0.md`, población de conteo **`llaves de identificación ejercidas`**, hoy `1 de 2`. Esta ficha añade la fila `R5.1-D3` como `SELLADA_NO_EJERCIDA` — el denominador pasa a `3` y el contador queda **`1 de 3`** hasta que mesa firme. Si mesa firmara un `EJERCIDA_*` para `R5.1-D3`, iría a `2 de 3`.
 
-**Lo que este acto hace con la contradicción:** la registra (`FP-67`) y la reporta. **No** la adjudica — decidir si `ADR-110(a)` corrige a `ADR-67(c)` o si `ADR-110(a)` traía una premisa vencida es firma de mesa, y auto-adjudicarla desde aquí sería exactamente lo que la convención repetida de esta cadena prohíbe (*"mesa adjudica en acto propio; este commit no firma"*).
+**Lo que este acto hace con la contradicción:** la registra (`FP-68`) y la reporta. **No** la adjudica — decidir si `ADR-110(a)` corrige a `ADR-67(c)` o si `ADR-110(a)` traía una premisa vencida es firma de mesa, y auto-adjudicarla desde aquí sería exactamente lo que la convención repetida de esta cadena prohíbe (*"mesa adjudica en acto propio; este commit no firma"*).
 
 ---
 
