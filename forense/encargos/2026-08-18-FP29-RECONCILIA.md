@@ -41,7 +41,7 @@ Ficha de adjudicación en notas (tabla completa) · FP-29→FIRMADA/ejecutada ·
 
 ## CONSUMIDO
 
-**Ejecutado por `ACTO FP29-RECONCILIA`, 18/ago/2026, sellado por `ADR-111`.** Base real `e563e5d` (no `57984b5`). Nota del acto: `forense/notas/2026-08-18-fp29-adjudicacion.md`. Corrida: `tests/fp29_series_externas.py`; salida: `data/fp29-series-externas-2026-08-18.json`.
+**Ejecutado por `ACTO FP29-RECONCILIA`, 18/ago/2026, sellado por `ADR-111`, `PR #275`.** Base real `e563e5d` (no `57984b5`). Nota del acto: `forense/notas/2026-08-18-fp29-adjudicacion.md`. Corrida: `tests/fp29_series_externas.py`; salida: `data/fp29-series-externas-2026-08-18.json`.
 
 **C1 · Pew — `obtenido-y-alta`.** 7 intentos con salida cruda; topline primario obtenido, A.7 verificado estable entre dos generaciones; dos altas al manifiesto, `--verifica` COINCIDE en las dos. No hubo fallo que declarar bajo A.5.
 

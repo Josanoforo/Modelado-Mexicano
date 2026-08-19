@@ -294,6 +294,8 @@ Los dos pares de ítems mejor emparejados entre ENCUCI y WVS son casi verbatim: 
 
 ## §5 · COMMIT 3 · Cierre — `ADR-111`, `FP-29` ejecutada, `FP-58` abierta
 
+**`PR #275`** (`https://github.com/Josanoforo/Modelado-Mexicano/pull/275`), borrador, base `main`, `MERGEABLE` verificado contra el remoto —no contra el texto del CLI, que volvió a dar `could not write config file .git/config: Device or resource busy` al empujar (`git ls-remote --heads origin fp29-reconcilia` → `26c34da`, idéntico a mi `HEAD`).
+
 **`ADR-111`**, sellado en `canon/gobernanza-v1_15.md`. Número derivado, no supuesto: contra `e563e5d`, `únicos 109 · max 109 · huecos []` → **110 contiguo**. *(El encargo decía "ADR base 104"; quedó desfasado por cuatro ADR entre su redacción y su ejecución.)* **Colisión declarada:** `PR #267`, abierto al escribir esto, reclama `ADR-107`, número ya tomado en `main` por `ADR-109`/`B2-SEMANTICO` — **esa colisión es de `PR #267`, no de este acto**; queda en `hallazgos.md`. Renumera quien fusione después; `T15` arbitra.
 
 **Cascada del conteo, derivada por la receta de `T15`** (`grep -rn "[0-9]\+ ADR" canon/ README.md`): `gobernanza-v1_15.md:2` (109→110) · `estado-programa-v1_10.md:27` (tabla) · `estado-programa-v1_10.md:101` (§L0). Verificado después: `grep -rn "109 ADR" canon/ README.md` → **sin resultados**.
