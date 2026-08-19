@@ -1,6 +1,6 @@
 # Nota del acto · ESTADO-SPLIT — `estado-programa:101` deja de ser una sola línea
 
-18/ago/2026 · rama `claude/launcher-estado-split-wglzaf` · SHA de arranque `f3d3f95` (`origin/main`, merge `#263`, `ACTO COND-ATRIB`, `ADR-105`) · encargo `forense/encargos/2026-08-18-ESTADO-SPLIT.md`.
+18/ago/2026 · `PR #264` · rama `claude/launcher-estado-split-wglzaf` · SHA de arranque `f3d3f95` (`origin/main`, merge `#263`, `ACTO COND-ATRIB`, `ADR-105`) · encargo `forense/encargos/2026-08-18-ESTADO-SPLIT.md`.
 
 Acto **de forma, no de contenido**: no sella ADR, no mueve ningún contador de medición sobre México, no reclasifica nada. Cambia una sola cosa —cómo `git` ve la línea `:101`— y la cambia entera.
 
@@ -130,3 +130,46 @@ Ningún carril remoto vivo tiene `estado-programa` en su perímetro activo. Revi
 - No toca `:27`, ni ningún otro archivo de `canon/`. Las únicas líneas de `estado-programa` distintas de `:101` que cambian son `:195` y `:287`, y solo en la cifra de WARN de la suite (`129`→`128`) que `T16` obliga a mantener sincronizada — desvío del perímetro declarado en §5, con su causa única identificada.
 - No añade `merge=union` (§6).
 - No resume, no moderniza redacción, no corrige ninguna cláusula, ni siquiera el `.;` sobrante que arrastra el final de la cláusula de `ADR-102` — está en el original, se conserva en el ítem. Corregirlo habría sido contenido.
+
+## §9 · Apéndice, 18/ago/2026 — la primera fusión sobre la línea ya partida, y un duplicado de `union` en el camino
+
+Añadido después del merge de `PR #264`, cuando `PR #265` (`ACTO CONF-07-CIERRE`, `ADR-106`) fusionó sobre este trabajo. Dos resultados, uno esperado y uno no:
+
+**1. La partición hizo su trabajo, y se puede verificar.** `#265` añadió su cláusula como **un ítem más** al final de la lista (`- a 106 después, con ``ADR-106``…`) y no tocó ninguna de las 66 anteriores. La cabecera pasó de `105 ADR` a `106 ADR` en su línea, sola. Ese merge, con `:101` como párrafo único, habría sido otra vez la ruleta que `FP-48` describe: un lado entero gana, el otro desaparece en silencio. Es la primera evidencia positiva del cambio, no una promesa.
+
+**2. `merge=union` duplicó una entrada, en `hallazgos.md`, en un merge real.** El commit de backfill del número de `PR #264` **edita una línea en medio** del archivo en vez de apendizar al final; `union` se quedó con la versión de `main` (sin backfill) **y** con la de la rama (con él), sin conflicto y sin aviso. Resuelto a mano conservando el orden de `main` y aplicando el backfill sobre esa copia. El detalle está en `forense/hallazgos.md`; lo que importa para esta nota es que **es un caso vivo del argumento de §6**: hasta hoy esa duplicación solo se había reproducido en ramas de prueba (5/ago), y bastó poner un número de PR para provocarla. Si `estado-programa` llevara `union`, la copia duplicada habría sido una cláusula de canon o una cifra que los tests derivan — no una línea de bitácora. La decisión de no extender el driver se mantiene, ahora con evidencia en vez de solo con precedente.
+
+## §10 · Dos cosas que este acto encontró y **no** arregló, con su razón
+
+Las dos salieron del barrido que siguió al duplicado de `#265`. Ninguna entra en el perímetro de `ESTADO-SPLIT`, y las dos quedan aquí escritas en vez de arregladas al paso — que es la diferencia entre un hallazgo registrado y un acto que se ensancha solo.
+
+### (a) `forense/bitacora.md:1052-1098` — dos sesiones prensadas bajo un solo encabezado
+
+El archivo tiene **26** marcadores `**Fecha:**` contra **25** encabezados `## 20…` y **25** separadores `---`: sobra exactamente un bloque de sesión sin cabecera propia. En `:1052-1098` conviven, bajo un único `## 2026-08-03`, la sesión de `sesion/hitoD-r7-2-delito-sin-seguro` y la de `sesion/cal-conf-faseb-pos4-envipe-tpervic2-tmodvic-paso2` — dos ramas y dos juegos de commits distintos, sin `---` ni `##` entre ellas.
+
+**No es de `merge=union`, y el dato importa porque la tentación era achacárselo:**
+
+```
+git log -1 --format='%h %ci %s' 3c8b44b
+  → 3c8b44b 2026-08-04 00:33:47 -0600 forense/bitacora.md: resuelve conflicto de stash pop (append-only)
+     Fecha: 22 → 23   ·   ## 20…: 22 → 22        (el bloque entra sin su encabezado)
+primer commit con merge=union en .gitattributes
+  → bec10ea 2026-08-05 17:11:09 +0000 Encargo CU: T20 cascada vigilada...
+```
+
+El defecto es del **4/ago**; el driver llegó el **5/ago**. Lo produjo una **resolución manual de conflicto** (`stash pop`), el otro modo de falla del mismo problema: donde `union` duplica sin avisar, la mano pega sin encabezado. No se toca aquí por una razón concreta además del perímetro: `forense/bitacora.md` **se genera con `tests/bitacora.py`**, así que la corrección correcta es por el generador —o por la vía que ese script defina— y no editando el archivo a mano, que es justo lo que lo rompió.
+
+### (b) Esta clase de defecto no tiene vigía, y el que se propondría es más angosto de lo que parece
+
+`T02` vigila duplicados **de archivo** (dos archivos con el mismo nombre normalizado o el mismo contenido) — de hecho atrapó la colisión de nombre de la nota de este acto. Ninguno de los 22 tests vigila una **entrada repetida dentro de un archivo**, que es exactamente lo que llevaba cinco días en `hallazgos.md`.
+
+El predicado que sí funcionaría, medido contra el árbol de hoy y no imaginado:
+
+> *ninguna entrada fechada de `forense/hallazgos.md` —línea que abre con `- **20`— aparece dos veces byte-idénticas.*
+
+Hoy daría **verde** (312 entradas, 0 repetidas) y no movería ninguna cifra de la suite: un test que pasa no añade `FAIL` ni `WARN`, así que no arrastra cascada a `estado §4`.
+
+**Lo que no funciona, y por eso el predicado no se puede escribir «para los archivos `union`» en general:** el mismo criterio aplicado a `forense/bitacora.md` da **91 líneas de commit repetidas de 287** (una llega a repetirse **5** veces), y son legítimas — el generador lista rangos que se solapan entre sesiones. Ahí la unidad no es la línea sino el bloque de sesión, y un test a nivel de bloque **nacería en rojo** por el defecto (a), no por uno nuevo. Un vigía honesto de esta clase, entonces, es: `hallazgos.md` por entrada ya; `bitacora.md` solo después de arreglar (a), y por bloque.
+
+Escribirlo es **acto propio con su encargo** —toca `tests/check.py`, que es el aparato que mide el programa entero, y este acto es de forma sobre un archivo de canon—, no una línea que se cuele en el cierre de `ESTADO-SPLIT`.
+
