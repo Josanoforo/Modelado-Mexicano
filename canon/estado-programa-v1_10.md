@@ -24,7 +24,7 @@
 |---|---|---|
 | **`modelo`** | `modelo-decision-v4.0.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
 | **`glosario`** | `glosario-v5.6.md` | CANÓNICO. Único punto legítimo de entrada de un tier |
-| **`gobernanza`** | `gobernanza-v1.15.md` | 122 ADR, protocolo de cambio |
+| **`gobernanza`** | `gobernanza-v1.15.md` | 123 ADR, protocolo de cambio |
 | **`estado`** | `estado-programa-v1.10.md` | Este archivo |
 | **`milpa-whitepaper`** | `milpa-whitepaper-v0.1.md` | El **porqué** del simulador |
 | **`milpa-spec`** | `milpa-spec-v0.2.md` | El **cómo** — incluye el gate de ADR-25/37 |
@@ -98,7 +98,7 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 
 **Llaves de identificación ejercidas: `1` de `3`.** *(Población de conteo propia, abierta por ADR-67(c); no toca el denominador 27 del Hito D. Registro: `forense/registro-llaves-identificacion-v1_0.md`; cifra derivada por la receta al pie de ese archivo. Movida 13/ago/2026, ACTO ADJ-4 — `R5.1-D2` firma `EJERCIDA_INDECISA`, la primera llave que sale de `SELLADA_NO_EJERCIDA`. Denominador movido 19/ago/2026, ACTO FICHA-R51-D3 — entra la fila `R5.1-D3` (`forense/bbis-r5-1-d3-v1_0.md`, COMMIT A) naciendo `SELLADA_NO_EJERCIDA`; el numerador no se mueve porque ese acto propone y no firma. Derivado por la receta de §4 del registro, verificado en su §6, no tecleado.)*
 
-**L0 · Gobierno — completo y al día.** 122 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos. *(Corregido 29/jul/2026: decía 32, contradiciendo §0 de este mismo archivo — `censo-integridad-v1_0.md` C1-02.
+**L0 · Gobierno — completo y al día.** 123 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos. *(Corregido 29/jul/2026: decía 32, contradiciendo §0 de este mismo archivo — `censo-integridad-v1_0.md` C1-02.
 - Subió a 39 en la misma sesión, con la aprobación de ADR-38/39 en `gobernanza §4`;
 - a 40 después, con ADR-40, misma sesión de tests;
 - a 41 después, con ADR-41, misma sesión;
