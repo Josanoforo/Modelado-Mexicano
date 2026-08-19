@@ -85,7 +85,7 @@ Las 7 `ABIERTA` restantes incluyen `FP-55`, en espera de mesa.
 
 ## 6 · Cascada y ADR
 
-`ADR-106`, multi-inciso, seis incisos (a)-(f) con las respuestas verbatim. Conteo de ADR re-derivado **dos veces**: al escribir, contra `f3d3f95` → máximo **105**, sin huecos, candidato `106` (el encargo traía «máximo hoy: 104» — foto vencida por la fusión de `ADR-105`/`COND-ATRIB`); segunda derivación obligatoria al fusionar, con renumerado si otro carril tomó el `106`. Sitios de cascada: `gobernanza-v1_15.md:2` (105→106) y `estado-programa-v1_10.md:27,101` (105→106). ⚠️ `FP-48` respetado: `estado-programa` editado **cláusula por cláusula**, nunca por bloque, mientras `ESTADO-SPLIT` no fusione.
+`ADR-107`, multi-inciso, seis incisos (a)-(f) con las respuestas verbatim. Conteo de ADR re-derivado **dos veces**: al escribir, contra `f3d3f95` → máximo **105**, sin huecos, candidato `106` (el encargo traía «máximo hoy: 104» — foto vencida por la fusión de `ADR-105`/`COND-ATRIB`); segunda derivación obligatoria al fusionar, con renumerado si otro carril tomó el `106`. Sitios de cascada: `gobernanza-v1_15.md:2` (105→106) y `estado-programa-v1_10.md:27,101` (105→106). ⚠️ `FP-48` respetado: `estado-programa` editado **cláusula por cláusula**, nunca por bloque, mientras `ESTADO-SPLIT` no fusione.
 
 ## 7 · Lo que este acto NO hizo
 
@@ -102,3 +102,23 @@ $ python3 tests/check.py --baseline
 Contra `origin/main` la corrida daba **19 FAIL · 129 WARN**. La diferencia es **−5 WARN de `T22`**, y es exactamente lo que este acto hizo: cinco filas pasan de `ABIERTA` a `FIRMADA` con `ejecutada_en` poblado, así que dejan de señalarlas tanto la rama (a) —fila abierta— como la rama (c) —firmada sin ejecutar— de `T22`. `FP-55` sigue `ABIERTA` y sigue contando: la espera de mesa no la borra del vigía.
 
 Paso intermedio, declarado porque ocurrió: al bajar el WARN a 124, `T16` (self-check de la suite) marcó **2 FAIL nuevos** — `estado-programa:129` y `:221` seguían declarando 129. Se recifraron **cláusula por cláusula** (`FP-48`, `ESTADO-SPLIT` sin fusionar), con la razón escrita en cada una, y la corrida volvió a **19 FAIL** y a **LÍNEA BASE: VERDE**. **`tests/baseline.json` no se tocó y no se usó `--freeze`** — el encargo lo prohíbe y no hizo falta: la mejora no baja la cifra congelada.
+
+## 9 · ADENDA — la fusión, y la segunda derivación que este acto se comprometió a hacer
+
+Mientras el acto esperaba la firma de `D-4`, `origin/main` avanzó de `f3d3f95` a **`cb0d98f`**: `PR #264` (`ESTADO-SPLIT`), `PR #265` (`CONF-07-CIERRE`), `PR #266` (`LANE-A-E0-E5`). `PR #267` quedó en conflicto (`mergeable_state: dirty`). Se fusionó `origin/main` en la rama —**merge, nunca rebase ni force-push**— y se resolvió a mano:
+
+**1 · El número de ADR. La contingencia ocurrió.** `ACTO CONF-07-CIERRE` fusionó primero su propio **`ADR-106`** (sello de la partición de `modelo §3.7`, `conf.07` RESUELTA). Máximo re-derivado contra `cb0d98f`: **106**, sin huecos → este acto pasa a **`ADR-107`** y se reordena **después** del `106` ajeno, cuyo texto se preserva verbatim. Noveno ejercicio del mismo protocolo. Renumerado propagado a las seis encargos, al tablero, a `hallazgos.md` y a esta nota; el `ADR-106(d)` que cita la fila `FP-57` es el de `CONF-07-CIERRE` y **no se tocó**.
+
+**2 · `FP-48` dejó de ser contingencia.** `ESTADO-SPLIT` fusionó y **partió `estado-programa:101` en 66 cláusulas, una por línea** — justo lo que la advertencia del encargo anticipaba. La cascada se rehízo **donde el split la dejó**: cláusula propia `- a 107 después, con ADR-107…` en la lista, no reinsertando el párrafo monolítico que ya no existe. Cabecera de la tabla (`:27`) y `L0` (`:101`): 106→**107**.
+
+**3 · El tablero.** Conflicto real en `forense/firmas-pendientes.tsv`: `origin` abrió **`FP-57`** (`conf.08` / *"ni broker"* en `corpus/`) inmediatamente después de mi `FP-56`. Resuelto conservando **las dos**: mi `FP-56` firmada y la `FP-57` de origin intacta. Recuento tras la fusión: **57 filas** — `FIRMADA` 45 · `ABIERTA` 7 · `FIRMADA-CONDICIONAL` 4 · `CERRADA` 1 (esta última, de `LANE-A-E0-E5`).
+
+**4 · Las cifras de la suite, recifradas dos veces en el mismo día por dos actos distintos.** `LANE-A-E0-E5` ya había recifrado 129→**128** WARN (y T03 44→**47**). Sobre esa base, las cinco firmas de este acto bajan **−5 WARN de `T22`** → **123**. Corrida final tras resolver todo:
+
+```
+$ python3 tests/check.py --baseline
+  19 FAIL · 123 WARN
+  LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json
+```
+
+`T15` (conteo de ADR) y `T16` (self-check de cifras) atraparon los tres desalineamientos intermedios —tabla en 106, y las dos declaraciones de WARN en 128— y los tres se corrigieron cláusula por cláusula antes de commitear. **`tests/baseline.json` no se tocó; no se usó `--freeze`.**

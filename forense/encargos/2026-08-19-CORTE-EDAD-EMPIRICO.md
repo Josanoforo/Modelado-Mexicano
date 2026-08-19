@@ -1,6 +1,6 @@
 # ENCARGO · ACTO CORTE-EDAD-EMPIRICO — derivar el corte de «edad joven» de dato mexicano propio
 
-SHA de redacción: derivar al lanzar (escrito el 18/ago/2026 por `ACTO MESA-19AGO`). Entorno asignado: **Ubuntu** (toca microdato). **Gateado a caja libre.** Estado: **VIVO**. Origen: firma de mesa D-2 de `MESA-19AGO` — vía **(c) ambas** —, `ADR-106(b)`, fila `FP-53`.
+SHA de redacción: derivar al lanzar (escrito el 18/ago/2026 por `ACTO MESA-19AGO`). Entorno asignado: **Ubuntu** (toca microdato). **Gateado a caja libre.** Estado: **VIVO**. Origen: firma de mesa D-2 de `MESA-19AGO` — vía **(c) ambas** —, `ADR-107(b)`, fila `FP-53`.
 
 ## 1 · Lo que la mesa firmó (verbatim)
 
