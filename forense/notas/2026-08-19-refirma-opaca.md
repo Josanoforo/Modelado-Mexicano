@@ -192,7 +192,7 @@ El acto mueve **un solo** módulo, y sólo hacia abajo. Los otros doce módulos 
 
 ---
 
-## 6 · Lo que queda abierto, y por qué no se tocó aquí — `FP-58`
+## 6 · Lo que queda abierto, y por qué no se tocó aquí — `FP-59`
 
 Las dos fallas que sobreviven **no son de este acto y son más viejas que el encargo**:
 
@@ -201,7 +201,7 @@ Las dos fallas que sobreviven **no son de este acto y son más viejas que el enc
 
 Fechadas por comando, no por lectura: el archivo de prueba **no se ha tocado desde `59d6c40`** (`BARRIDO-COMPLETO`), y el expediente `B` pasó de `repro=0, nd=1` a `repro=1, nd=0` en **`8565c17`, `U1/E4b′ commit 2` (12/ago)** — el primer resultado calculado del programa. Ese acto movió la realidad y dejó las expectativas de la prueba donde estaban. `produccion-modelo.tsv` es **byte-idéntico** entre `93a4dd9` y hoy, así que la falla `2 != 3` existía, tal cual, cuando se redactó el encargo.
 
-No se corrigen aquí por tres razones, en orden de peso: `tests/` está en `NO ESCRIBE`; son las cifras testigo de una **garantía fail-closed**, y ajustarlas es adjudicación de mesa, no higiene de un acto de re-firma; y el defecto nació seis días antes, en un acto ajeno. Queda como **`FP-58`**.
+No se corrigen aquí por tres razones, en orden de peso: `tests/` está en `NO ESCRIBE`; son las cifras testigo de una **garantía fail-closed**, y ajustarlas es adjudicación de mesa, no higiene de un acto de re-firma; y el defecto nació seis días antes, en un acto ajeno. Queda como **`FP-59`**. *(Nació `FP-58`; renumerada a `FP-59` al fusionar `origin/main = 6650047`, porque `PR #275` / `ADR-111` fusionó primero y ocupó el `FP-58`. El número se derivó del tablero fusionado —máximo ajeno `FP-58`— no se tecleó. Es la misma clase de colisión que la propia `FP-47` documenta haber sufrido dos veces: lo que le pasa a una fila que espera mientras el tablero avanza en otras ramas.)*
 
 *Lección, y es la misma que el encargo ya sabía sobre `baseline.json` pero no aplicó a sus propias cifras: **un encargo redactado donde no se puede ejecutar cuenta las fallas que alcanza a ver.** La caja de nube abortaba en el primer expediente por falta de microdato, así que el mensaje de divergencia enmascaraba todo lo que venía detrás; las dos expectativas rancias eran invisibles desde ahí. La cifra "4 fallas" del encargo era correcta para las que comparten mensaje, e incompleta para el archivo.*
 
@@ -214,5 +214,5 @@ No se corrigen aquí por tres razones, en orden de peso: `tests/` está en `NO E
 - Todo por herramienta canónica; **ninguna edición a mano** de ningún artefacto.
 - `FP-47` → `FIRMADA`, con `D-6` verbatim y el `baseline_sha256` real usado.
 - `tests/check.py --baseline` **VERDE**.
-- `FP-58` abierta por las dos expectativas rancias de `test_produccion_correctiva`.
+- `FP-59` abierta por las dos expectativas rancias de `test_produccion_correctiva` (nació `FP-58`, renumerada al fusionar `PR #275`).
 - Encargo `CONSUMIDO`.
