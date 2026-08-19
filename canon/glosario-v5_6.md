@@ -407,7 +407,7 @@ Los `params_base` no son medidos ni inventados: son la **cuantificación de etiq
 - **`trampa social`** — usado por el motor, **sin tier leído**. Ver §16. Nuevo en v5.2.
 - ~~`bandwidth tax`~~ — ✅ **retirado del motor en v2.4**: tenía veredicto forense desfavorable (P-01), no solo ausencia de tier.
 - ~~Los 6 veredictos forenses que nunca bajaron al motor~~ — ✅ **los seis aterrizados el 28/jul** (v2.4 y v2.5). Ver `barrido-propagacion-forense`.
-- **El motor no tiene entidad prestamista** — frontera declarada de **ADR-35**. El hallazgo *"el riesgo vive en el fondeo del prestamista, no en el deudor"* no puede representarse; su refutación sigue **sin objeto**. Nuevo en v5.5.
+- **El motor no tiene entidad prestamista** — frontera declarada de **ADR-35**. El hallazgo *"el riesgo vive en el fondeo del prestamista, no en el deudor"* no puede representarse; su refutación (`ref.A.04`) sigue **sin objeto**. Nuevo en v5.5. *(19/ago/2026: enmienda a ADR-35 redactada y no ejecutada — `forense/notas/2026-08-19-adr35-enmienda-borrador.md`, `FP-61`. Las otras siete refutaciones sin objeto de la misma batería ya ganaron variable declarada, `ADR-117`, `modelo §1.1.G`.)*
 - **Anotaciones de "parchado" sin fecha 28/jul** — no verificadas. Cuatro de cuatro resultaron falsas. Nuevo en v5.2.
 - **Humor organizacional** — vacío declarado por el propio report.
 - ~~Foundational y su "híbrido" de honor~~ — ✅ **resuelto por ADR-31 y parchado en la fuente el 28/jul/2026.**
