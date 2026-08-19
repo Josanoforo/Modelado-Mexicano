@@ -292,6 +292,32 @@ def resolve_sources(
             payloads, rule = sorted(por_carpeta[token]), REGLA_CARPETA
             evidence = "manifiesto:archivo carpeta " + token.casefold() + "/"
 
+        # Unión declarada R1 ∪ R7 -- ACTO B2-SEMANTICO, 18/ago/2026.
+        #
+        # La cascada de arriba es de primer match: para una fuente cuyas
+        # relaciones ya declaran un `id_manifiesto` observado, R1 acierta y
+        # corta, de modo que R7 (que vive detrás de `if not payloads`) nunca
+        # llega a correr.  Medido: ENFIH y ENBIARE se resolvían a UN payload
+        # cada una mientras el ledger tiene DOS, porque la segunda entrada de
+        # programa (`enfih2019_bd_csv_zip`, `enbiare2021_bd_csv_zip`) no la
+        # cita ninguna relación.
+        #
+        # Esa segunda entrada es justamente la que ADR-93 exige poder evaluar
+        # ("la gemela se enlaza SOLO si su objeto es evidenciable con una
+        # entrada distinta del manifiesto"), así que sin ella los pares de
+        # FP-46 son inadjudicables por evidencia.  La unión es mecánica y no
+        # decide semántica: el slug sale de `url_origen` declarado en el
+        # manifiesto, cada payload queda listado en el detalle y la regla
+        # compuesta queda escrita en `regla_resolucion`.
+        extra_slug = sorted(por_slug.get(token, set()) - set(payloads))
+        if extra_slug:
+            payloads = sorted(set(payloads) | set(extra_slug))
+            rule = REGLA_SLUG if rule == REGLA_NINGUNA else f"{rule}+{REGLA_SLUG}"
+            evidence = (
+                f"{evidence} | union R7 slug programas/{token.casefold()}: "
+                + ";".join(extra_slug[:3])
+            )
+
         reps = sorted({rep for pid in payloads for rep in rep_by_payload[pid]})
         relaciones = sorted(r["relacion_id"] for r in rows)
         out.append({
@@ -405,7 +431,16 @@ def escribe_paquetes_de_relacion(
     no propone veredicto ni elige objeto lógico.
     """
     relaciones = {row["relacion_id"]: row for row in read_tsv(registry / "relaciones.tsv")}
-    necesidades = {row["necesidad_id"]: row for row in read_tsv(registry / "necesidad-objeto-modelo.tsv")}
+    # La tabla trae 37 filas para 33 necesidades: N16/N17/N19/N27 declaran DOS
+    # objetos de modelo cada una.  Indexarla como dict por `necesidad_id` se
+    # quedaba con la última y perdía la otra mitad; se acumulan las dos.
+    # La columna es `objeto_modelo_origen` -- leerla como `descripcion` o
+    # `objeto_modelo` (nombres que esta tabla nunca tuvo) dejaba las 199 fichas
+    # con `necesidad_texto = NO-DETERMINADO`, es decir al curador sin el
+    # enunciado de lo que tiene que adjudicar.
+    necesidades: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in read_tsv(registry / "necesidad-objeto-modelo.tsv"):
+        necesidades[row["necesidad_id"]].append(row)
     evidencias: dict[str, dict[str, str]] = {}
     for row in read_tsv(registry / "evidencias.tsv"):
         evidencias.setdefault(row["relacion_id"], row)
@@ -423,12 +458,21 @@ def escribe_paquetes_de_relacion(
             relacion = relaciones.get(relacion_id)
             if relacion is None:
                 continue
-            necesidad = necesidades.get(relacion["necesidad_id"], {})
+            filas_necesidad = necesidades.get(relacion["necesidad_id"], [])
+            objetos_modelo = [
+                fila["objeto_modelo_origen"] for fila in filas_necesidad
+                if fila.get("objeto_modelo_origen")
+            ]
+            reservas = sorted({
+                fila["reserva"] for fila in filas_necesidad
+                if fila.get("reserva") and fila["reserva"] != "NINGUNA"
+            })
             paquete = {
                 "schema_version": SCHEMA_VERSION,
                 "relacion_id": relacion_id,
                 "necesidad_id": relacion["necesidad_id"],
-                "necesidad_texto": necesidad.get("descripcion") or necesidad.get("objeto_modelo") or "NO-DETERMINADO",
+                "necesidad_texto": ";".join(objetos_modelo) or "NO-DETERMINADO",
+                "necesidad_reserva": ";".join(reservas) or "NINGUNA",
                 "fuente_canonica": fuente,
                 "regla_resolucion": fila["regla_resolucion"],
                 "evidencia_resolucion": fila["evidencia_resolucion"],
