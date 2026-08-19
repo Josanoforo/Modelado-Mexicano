@@ -3,7 +3,7 @@
 - **SHA de redacción (declarado por quien escribe):** `57984b5` (`PR #262`).
 - **SHA real de arranque (derivado por quien ejecuta):** `f3d3f954823e08d3b3459ecaf4a5816a7913b36c` (`origin/main`, fusión de `PR #263`/`cond-atrib`). Deriva de **8 commits** sobre el SHA declarado, clasificada abajo.
 - **Entorno asignado:** caja Ubuntu/WSL2 (`Linux 6.18.33.2-microsoft-standard-WSL2 x86_64`); toda curación corre bajo `unshare -Urn`. Git/GitHub fuera del namespace material.
-- **Estado:** `VIVO`.
+- **Estado:** `CONSUMIDO` — `ACTO B2-SEMANTICO`, `PR #268` (borrador, no fusionado), 18/ago/2026. `ADR-106` (unión `R1 ∪ R7`, vía `lista-apertura`, fases `tareas`/`propuestas`, `build_cableado.py`, `FP-35` ejecutada) y `ADR-107` (`FP-46` adjudicada por la condición literal de `ADR-93`; 17 aperturas absorbidas; dependencia `FP-24` derivada **0 de 37**). Cierre: `COBERTURA-MATERIAL-COMPLETA · INTEGRACION-ORDINARIA-COMPLETA · DECISIONES-FP24-PENDIENTES=0`. Detalle: `forense/notas/2026-08-18-b2-semantico.md`.
 - **Worktree/rama:** `/home/pc0/mm-b2-semantico` · `b2-semantico`, creada desde `origin/main`.
 - **Raíces materiales autorizadas:** `data_raw=/home/pc0/mm-corpus/raw` (273 entradas) · `descargas_mx=/mnt/c/Users/PC0/Descargas MX` (70 entradas).
 - **LEY:** `forense/encargos/2026-08-17-BARRIDO-2-cobertura-material-cableado-universo.md` §17-§23 + §4 · §11 · §24 · §27 · §28. Este relevo actualiza el terreno, no la ley.
@@ -70,7 +70,7 @@ Regla aplicada: `instrucciones-proyecto-v2_10.md` — "Quien ejecuta verifica la
 
 Consecuencia: el denominador de `FP-46` es **20**, y las 2 restantes reciben veredicto propio y explícito en este acto — no se cuelan en el denominador ni se descartan en silencio.
 
-### Hallazgo (b) — la premisa del bloqueo de identidad es falsa
+### Hallazgo (b) — el «0/39» es real, pero no describe la columna que el §18 manda unir
 
 El relevo declara: *"Bloqueo real: identidad (0/39 `id_manifiesto`→payload) → remedio §19 PROPUESTA_CAMBIO"*. **Refutado contra el árbol, por tres superficies independientes.**
 
@@ -84,7 +84,11 @@ contra data/manifiesto.yaml  (^ id: <token>)              20/20
 
 Es decir **39/41 pares** resuelven, y los 2 que no son el mismo placeholder `NO_DETERMINADO`. La cifra "0/39" no se reproduce por ninguna vía. Las formas son homogéneas (`mex_2011_lfepie_v01_m_spss`, `za5900_v4_0_0_dta`, `116334_v1`), no hay divergencia de prefijo ni de normalización que impida el join.
 
-**Efecto sobre el acto:** §18 no está bloqueado por identidad. La absorción de M-APERTURA se hace uniendo por identidad vigente, que es exactamente lo que §18.3 ordena ("une por identidad vigente, no por subcadena"). El remedio `PROPUESTA_CAMBIO` de §19 sigue siendo la vía obligatoria para **corregir capa4**, que es cosa distinta de reparar una identidad que no está rota.
+**Dónde sí vale el «0/39».** En `data/curacion-registro/relaciones.tsv`, columna `id_manifiesto`, sobre las 19 filas `INDEXADO-NO-DESCARGADO`: **12 traen `NO_DETERMINADO`** y las **otras 7 apuntan al cuestionario** (`cses5_…_cuestionario` ×3, `za6980_q_mx` ×2, `za5900_q_mx` ×2) cuando lo que abre la celda es el codebook o el microdato. Ninguna de las 19 apunta al payload que la abriría: **0 de 19**.
+
+Ese 12/7 explica el resto: `via_capa2.py` sólo promueve cuando `id_manifiesto` resuelve a un payload `COINCIDE`, así que las 12 se quedaron en `capa2/capa3 = NO_REFERENCIADO` y las 7 que citan el cuestionario sí se promovieron — y son exactamente las 7 que hacían fallar la condición de aperturas absorbidas de T23 antes de este acto.
+
+**Efecto sobre el acto:** el §18 **no** queda bloqueado, porque la unión que ordena (§18.3, «une por identidad vigente») es la de `lista-apertura`, que resuelve 20/20. Lo que sí queda confirmado es que el remedio del §19 —`PROPUESTA_CAMBIO`, jamás edición manual— es la vía correcta, y que **no cabe en este acto**: `_apply_layer4` escribe `capa4`, nunca `id_manifiesto`. Queda declarado como sucesor con nombre propio.
 
 ### Deriva de `main` · clasificación §15
 

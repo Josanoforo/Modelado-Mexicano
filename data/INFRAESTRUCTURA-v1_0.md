@@ -83,6 +83,21 @@
 
 **Nueve de estos 14 archivos** (`estado-activos`, `familias-activos`, `fuentes-t0`, `snapshot-t0.json`, `universo-declarado-t0`, `declaraciones-activos-t0`, `objetos-recuperados-t0`, `tablero-cobertura.json`, `candidatos-reconciliacion-activos`) tienen **un único commit en toda su historia** (`59d6c40`) — ninguno se ha regenerado desde el bootstrap del pipeline.
 
+### Dominio 3-bis · Cobertura material BARRIDO-2 *(FP-35, sellada por `ADR-106`, `ACTO B2-SEMANTICO`, 18/ago/2026)*
+
+Ámbito: `data/curacion-universo/*barrido2*`. Motor: `tools/curador_registro/{barrido2_material,inspect_assets,write_barrido2_w0,write_barrido2_material,validate}.py`. Todo corre bajo `unshare -Urn`: el propio baseline declara `network_habilitada=false` y la validación lo exige.
+
+| tabla | vía de escritura | contrato (campos clave) | quién la lee | trampa conocida |
+|---|---|---|---|---|
+| `ledger-inspecciones-barrido2.tsv` | `write_barrido2_material.py --output-root` | 21 campos; `representacion_id, payload_id, root_id, sha256, estado_e0, grado_inspeccion, objetos_e1, objetos_e2, excepciones, estado_terminal` | `integrate_barrido2.preflight`, `tareas_barrido2`, `cierre-28-barrido2.py` | su `reporte_neutral_ref` es el **lote** `E2B-*`, **no** el descriptor material; el descriptor `TASK-B2-*.json` se resuelve por `representacion_id`, no por esta columna |
+| `reportes-inspeccion-barrido2-v1_0.tsv` | `write_barrido2_material.py` | 18 campos; una fila **por grupo** `(representacion, objeto_tipo, estado, privacidad, frontera)`, con un registro-muestra | `integrate_barrido2`, `build_cableado.py`, T23 | 2 717 filas resumen 1 833 802 objetos: `objeto_logico_id` es el objeto de la **muestra**, no un objeto compartido. La redacción destruye la cardinalidad en 496 filas |
+| `baseline-material-barrido2.json` | `write_barrido2_material.py` | `base_sha, manifest_sha, e2_index_sha256, ledger_sha256, counts{13}, parsers, reports, network_habilitada=false` | `integrate_barrido2.preflight` (join de hash), `cierre-28-barrido2.py` | congelado por el gate del §15; **no se regenera** en la fase semántica |
+| `prisma-material-barrido2.md` | `write_barrido2_material.py` / `write_barrido2_w0.py` | tabla Métrica/Cifra/Denominador/Comando | lectura humana | el comando declarado es el literal `CMD-MATERIAL`, no una línea ejecutable |
+| `prisma-semantico-barrido2.md` | `data/curacion-universo/prisma-semantico-derivar.py --repo .` | dos tablas: PRISMA semántico y PRISMA de M-APERTURA absorbido | lectura humana | las «esperadas» son `destino=APERTURA-PENDIENTE` (17); las 2 de `PROPUESTA-A-COLA` llevan denominador propio |
+| `muestra-adversarial-barrido2.tsv` | `data/curacion-universo/muestra-adversarial-derivar.py` + `-comparar.py` | muestra por ola, `max(3, ceil(5%))`, tope 20 | lectura humana | el veredicto 39/39 vive en prosa forense, no en la tabla |
+| `cierre-28-barrido2.py` | **es script, no tabla** | imprime los 22 criterios del §28 con estado, evidencia y comando | lectura humana, cierre de acto | un criterio sin insumo sale `NO-VERIFICABLE`, nunca «cumple» |
+
+
 ---
 
 ## Dominio 4 · Producir una estimación (especificación → expediente → producción)
@@ -107,6 +122,30 @@
 | `reglas-clasificacion-trabajo.json` | **SIN VÍA** (A MANO, precedente único `59d6c40`) | `{"rules": [...]}` | solo `classify_work.py`, vía `--rules` (nombre no hardcodeado — 0 hits de grep literal, se consume dinámicamente) | búsqueda textual del nombre de archivo no encuentra su lector real. |
 | `ejecucion-semantica/` | `semantic_run.py --repo --output [--network]` — `run_id` determinista (`stable_id("SEMRUN", seed)`) | `manifest.json` + `schemas/` (6 JSON schema) + `runs/<SEMRUN-id>/*` | `integrate.py`, `semantic_run.py` (se relee a sí mismo), `validate.py`, `test_semantic_run.py`, `tests/check.py` | **run huérfano confirmado**: `runs/` tiene 2 directorios (`SEMRUN-354ccb9d...` y `SEMRUN-1d73f40d...`), pero `manifest.json` declara como vigente solo el primero. `grep -rn "SEMRUN-1d73f40d5db91bcb0da9f3d2"` → 0 fuera de su propio contenido. `validate.py` sigue el `run_id` de `manifest.json` y nunca itera `runs/` para detectar huérfanos. |
 | `data/curacion-registro/expedientes-produccion/evidencia-neutral-produccion.json` | **SIN VÍA** (A MANO, precedente único `59d6c40`) | `{"esquema": ..., "fuentes": [...]}` | 0 por grep literal; **sí se abre dinámicamente** vía `evidencia_neutral_ref` resuelto desde `especificaciones-produccion.json` (`prepare_production.py:74`, `integrate_production.py:176,64`) | una búsqueda textual ingenua del nombre de archivo no encuentra sus lectores reales — hay que seguir la indirección. |
+
+### Dominio 4-bis · Semántica e integración BARRIDO-2 *(FP-35, sellada por `ADR-106`, `ACTO B2-SEMANTICO`, 18/ago/2026)*
+
+Ámbito: `data/curacion-registro/ejecucion-semantica/barrido2/` y `data/cableado-universo-v1_0.tsv`. Motor: `tools/curador_registro/{tareas_barrido2,integrate,integrate_barrido2,build_cableado}.py`.
+
+**Secuencia real (no se puede saltar un paso: cada uno verifica el anterior por hash):**
+1. `tareas_barrido2.py fuentes` → `cobertura-fuentes-barrido2.tsv` (+ `-detalle`).
+2. `tareas_barrido2.py paquetes --index <índice E2> --apertura <lista-apertura>` → fragmentos por payload y **ficha de lectura por relación**, ambos bajo `.barrido2/private/` (gitignored).
+3. `tareas_barrido2.py tareas --elecciones <del curador>` → `tareas-semanticas-barrido2.tsv`.
+4. `tareas_barrido2.py propuestas --veredictos <del supervisor>` → `propuestas-barrido2.tsv`.
+5. `integrate.py --barrido2 ... [--apply]` → `decisiones-integracion-barrido2.tsv`, `journal-…json`, `integracion-validada-…json`.
+6. `build_cableado.py` → `data/cableado-universo-v1_0.tsv`; lo juzga `tests/check.py --require-cableado` (T23).
+
+| tabla | vía de escritura | contrato (campos clave) | quién la lee | trampa conocida |
+|---|---|---|---|---|
+| `cobertura-fuentes-barrido2.tsv` (+ `-detalle`) | `tareas_barrido2.py fuentes --output` | 10 campos; `fuente_canonica, regla_resolucion, payloads_n, evidencia_resolucion, estado_cobertura` | `tareas_barrido2.py paquetes`/`tareas` | la cascada de reglas era de **primer match** y ocultaba la segunda entrada de programa; desde `ADR-106` la regla es **unión R1 ∪ R7** y `regla_resolucion` puede traer dos nombres unidos por `+` |
+| `tareas-semanticas-barrido2.tsv` | `tareas_barrido2.py tareas` | `TASK_FIELDS`, 20 campos | `integrate_barrido2.preflight`, `build_cableado.py`, T23 | `material_tarea_id` ≠ `tarea_id`: el primero nombra el descriptor material, y dos relaciones pueden apoyarse en la misma representación |
+| `propuestas-barrido2.tsv` | `tareas_barrido2.py propuestas` | `PROPOSAL_FIELDS`, **22 campos del §17**, orden exacto | `integrate_barrido2.preflight` (compara la lista completa), T23 | `decision_mesa_id` sólo admite `FP-24` o `NO-APLICA`: un valor como `FP-24/ADR-93` revienta schema, preflight y T23 a la vez. La cita del ADR va en `razon_gate` |
+| `decisiones-integracion-barrido2.tsv` | `integrate.py --barrido2 --output-dir` | `PROPOSAL_FIELDS` + `estado_integracion, razon_integracion, journal_id` (25) | T23 (condición 14), `build_cableado.py` | el estado se decide **por relación**, no por propuesta: basta una `dependencia_fp24=SI` o un veredicto discordante para que toda la relación cambie de estado |
+| `journal-integracion-barrido2.json` | `integrate.py --barrido2` | hashes anterior/nuevo de los 10 archivos del registro | rollback, auditoría | sin `--apply` se escribe el journal pero **no** se toca el registro |
+| `data/cableado-universo-v1_0.tsv` | `build_cableado.py --output` | **26 columnas del §21**, orden exacto, cero celdas vacías | `tests/check.py` T23 | el ensamblador mantiene su **propia** copia de la cabecera, separada de la de `check.py`, para que un error no se valide a sí mismo; `test_build_cableado.py` compara ambas |
+
+**Quién lo sella:** `ADR-106` (`ACTO B2-SEMANTICO`, `PR #268`). Es la respuesta a `FP-35`, que pedía decidir «qué dominios del índice ganan las tablas nuevas de BARRIDO-2 y quién lo sella» **después de observar los mecanismos reales** — condición que sólo se cumplió al correrlos de punta a punta en este acto.
+
 
 ---
 
