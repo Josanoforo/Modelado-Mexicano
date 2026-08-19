@@ -2,7 +2,7 @@
 
 - **SHA de redacción:** `f3873c2` (`origin/main`, verificado contra el clon de esta sesión al arrancar — `git log -1 --format="%h %s"` coincide exacto, `git status` limpio, `git diff f3873c2 HEAD --stat` vacío).
 - **Entorno asignado:** NUBE. **NO** en la caja de Codex. Sin gate, sin ADR (clase "higiene de registro", precedente ACTO C: "sin gate ni ADR").
-- **Estado:** VIVO — Commit 1 (criterios congelados: `forense/notas/2026-08-17-higiene-vivos.md`) y Commit 2 (los 17 veredictos, aplicados a las cabeceras de `Estado` de cada archivo del ANEXO) ejecutados en esta rama. Marcar `CONSUMIDO` con el PR que fusione este acto — **JAMÁS auto-fusión**.
+- **Estado:** CONSUMIDO — ACTO E-HIG/HIGIENE-VIVOS, `PR #243` (`4c9da5b`, 20 archivos), 17/ago/2026. *(Rótulo puesto por ACTO CONF-07-CIERRE, 18/ago/2026: el propio encargo pedía "marcar `CONSUMIDO` con el PR que fusione este acto" y el acto que fusionó nunca volvió a hacerlo — el vigía no lo ve porque el defecto está en la línea que el vigía usa como fuente. Evidencia: `git merge-base --is-ancestor a9fc0a7 origin/main` → cierto; `7740015` "Commit 2: aplica los 17 veredictos"; y el entregable `forense/notas/2026-08-17-higiene-vivos.md` existe en el árbol.)* Historia previa: Commit 1 (criterios congelados: `forense/notas/2026-08-17-higiene-vivos.md`) y Commit 2 (los 17 veredictos, aplicados a las cabeceras de `Estado` de cada archivo del ANEXO) ejecutados en esta rama. Marcar `CONSUMIDO` con el PR que fusione este acto — **JAMÁS auto-fusión**.
 
 ---
 
