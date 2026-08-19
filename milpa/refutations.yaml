@@ -39,8 +39,8 @@ primera_corrida:
   resultados:
     pasan: 27
     fallan: 3
-    sin_objeto: 1
-    corribles_nuevas_veredicto_pendiente: 7
+    sin_objeto: 0            # era 1 (ref.A.04); ganó objeto 19/ago/2026, ADR-125/ADR-35(b)
+    corribles_nuevas_veredicto_pendiente: 8  # era 7; entra ref.A.04
     requieren_ejecutable: 11
     total: 49
   los_tres_fallos: >
@@ -53,32 +53,35 @@ primera_corrida:
     que_significa: >
       DECIDIDO 19/ago/2026 (FP-56, ADR-110(a)/ADR-111(c), ejecutado por ADR-117,
       ACTO REFUTACIONES-SIN-OBJETO): se amplía el modelo, no se retiran (vía
-      (a), no (b)). Siete de las ocho ya tienen variable declarada en
-      canon/modelo-decision-v4_0.md §1.1.G — corribles no es pasadas: cada una
-      vuelve a la batería con veredicto pendiente, sin calibrar y sin correr.
-      La octava (ref.A.04, entidad prestamista) sigue sin objeto: choca con la
-      frontera de ADR-35 ("el motor modela al decisor, no al oferente"), y ese
-      ADR declaró explícitamente que ampliar al lado de la oferta es decisión
-      de mesa. La enmienda está redactada y no ejecutada
-      (forense/notas/2026-08-19-adr35-enmienda-borrador.md), escalada como
-      FP-61.
+      (a), no (b)). Siete de las ocho ganaron variable declarada ese mismo día
+      en canon/modelo-decision-v4_0.md §1.1.G. La octava (ref.A.04, entidad
+      prestamista) chocaba con la frontera de ADR-35 ("el motor modela al
+      decisor, no al oferente") y quedó escalada a mesa como FP-61, con la
+      enmienda redactada y sin ejecutar
+      (forense/notas/2026-08-19-adr35-enmienda-borrador.md). RESUELTA
+      19/ago/2026: el gate que ADR-117 exigía (deep research auditado de todo
+      el sector) llegó, y dirección firmó "(a) completa" sobre FP-61 — ADR-125
+      sella ADR-35(b) sin acotar y abre la entidad `prestamista`
+      (canon/modelo-decision-v4_0.md §1.1.H). Las ocho tienen ahora variable
+      declarada — corribles no es pasadas: las ocho vuelven a la batería con
+      veredicto pendiente, sin calibrar y sin correr.
     incluye: >
       ref.A.02 ("los mexicanos son flojos") — LA ÚNICA DE TIER MUY_FUERTE de
       las 49, con el dato más contundente del corpus: 2,207 h/año, el mayor de
       la OCDE. Ya tiene variable declarada (esfuerzo_laboral/horas_trabajadas,
-      modelo §1.1.G). El modelo sigue sin entidad prestamista (ref.A.04,
-      bloqueada por ADR-35, ver arriba).
+      modelo §1.1.G). El modelo ya tiene entidad prestamista (ref.A.04,
+      ADR-125/ADR-35(b), ver arriba).
     decision_pendiente: >
-      RESUELTA para siete de ocho (19/ago/2026, ADR-117): tienen variable
-      declarada, forma funcional PENDIENTE, sin calibrar. Sigue pendiente para
-      ref.A.04 (FP-61, enmienda a ADR-35). El denominador honesto hoy: de las
-      49, 30 ya se corrieron (27 pasan + 3 fallan), 7 acaban de ganar objeto y
-      vuelven a la batería con veredicto pendiente (no corridas), 11 siguen
-      esperando el ejecutable (MILPA Fase 1), y 1 sigue sin objeto. "27 de 49
-      pasan" sigue siendo, en realidad, "27 de 37 corribles" — no "27 de 30":
-      el denominador de corribles creció con la ampliación, el numerador de
-      corridas no se movió, porque este acto no corre la batería ampliada
-      (acto propio, con su pre-registro).
+      RESUELTA para las ocho (19/ago/2026: ADR-117 para siete, ADR-125 para
+      la octava): tienen variable declarada, forma funcional PENDIENTE, sin
+      calibrar. El denominador honesto hoy: de las 49, 30 ya se corrieron (27
+      pasan + 3 fallan), 8 acaban de ganar objeto y vuelven a la batería con
+      veredicto pendiente (no corridas), 11 siguen esperando el ejecutable
+      (MILPA Fase 1), y 0 siguen sin objeto. "27 de 49 pasan" sigue siendo, en
+      realidad, "27 de 38 corribles" — no "27 de 30": el denominador de
+      corribles creció con la ampliación, el numerador de corridas no se
+      movió, porque este acto no corre la batería ampliada (acto propio, con
+      su pre-registro).
   once_requieren_ejecutable:
     bloqueo: >
       Corregido 3/ago/2026 (ADR-51, cascada de ADR-50): decía "MILPA Fase 1
@@ -94,16 +97,18 @@ primera_corrida:
       cobertura real hoy es 30 de 49 refutaciones ejecutables (61%).
 
   lectura_honesta: >
-    27 de 49 pasan suena bien y no lo es tanto. Corregido 19/ago/2026
-    (ADR-117): ya no son 8 las que pasan por vacío, son 1 — siete ganaron
-    variable declarada y volvieron a la batería con veredicto pendiente, sin
-    correr todavía. Las que efectivamente se probaron y sobrevivieron siguen
-    siendo 27 de 30 (nada corrió en este acto); las que YA PODRÍAN correrse
-    son 27 de 37 (30 ya ejecutables + 7 recién con objeto); 11 siguen sin
-    ejecutable; 1 (ref.A.04) sigue sin objeto, bloqueada por ADR-35, FP-61.
-    Corribles no es pasadas: ampliar el denominador de lo ejecutable no mueve
-    el numerador de lo corrido. Descartar con rigor es entregable — pero el
-    denominador debe decirse, y derivarse, no anunciarse.
+    27 de 49 pasan suena bien y no lo es tanto. Corregido 19/ago/2026 (ADR-117
+    para siete, ADR-125 para la octava): ya no son 8 las que pasan por vacío,
+    son 0 — las ocho ganaron variable declarada y volvieron a la batería con
+    veredicto pendiente, sin correr todavía. Las que efectivamente se
+    probaron y sobrevivieron siguen siendo 27 de 30 (nada corrió en ninguno
+    de los dos actos); las que YA PODRÍAN correrse son 27 de 38 (30 ya
+    ejecutables + 8 recién con objeto); 11 siguen sin ejecutable; 0 siguen
+    sin objeto — ref.A.04, la última, ganó objeto el 19/ago/2026
+    (ADR-125/ADR-35(b), entidad `prestamista`). Corribles no es pasadas:
+    ampliar el denominador de lo ejecutable no mueve el numerador de lo
+    corrido. Descartar con rigor es entregable — pero el denominador debe
+    decirse, y derivarse, no anunciarse.
 
 meta:
   reports_con_seccion_de_mitos: 22
@@ -208,11 +213,12 @@ refutaciones:
   - id: ref.A.04.pobres_no_pagan
     tipo: A
     mito: "Los pobres no pagan o no quieren pagar"
-    evidencia_contraria: "pagan sobreprecios muy altos por conveniencia y acceso; ENSAFI 72.7% al corriente; IMOR regulado 5-16% rentable a CAT 80-97%"
-    fuente: ["report:behavioral_finance", "report:credito_popular", "validacion:V3_credito_auditado"]
+    veredicto: "REFUTADA-FUERTE (19/ago/2026, N=11 casos independientes auditados, ADR-125/ADR-35(b)) -- la forma fuerte del mito no sobrevive a los datos auditados de todo el sector; 0 CONFIRMA, ROMPE/MATIZA mayoritario. Benchmarks de reversión (qué cambiaría el veredicto) en la Ficha B-bis: forense/notas/2026-08-19-fp61-ficha-puente-a04.md §5 -- ninguno satisfecho hoy en fuente auditada."
+    evidencia_contraria: "paga a tasas comparables o solo modestamente peores que el consumo bancario tradicional, siempre que exista un mecanismo -- cobro en fuente / prenda / cobranza semanal / presión grupal -- y a un costo (CAT de dos-tres dígitos) que precarga una pérdida esperada de 6-20%. Control: tarjeta de banca múltiple IMOR-ajustado 13.7% (jun 2025) vs. Banco Azteca 10.7% / BanCoppel 15.7% -- controlando producto, el diferencial es de precio, no de conducta. (Base previa, no retirada: ENSAFI 72.7% al corriente; IMOR regulado 5-16% rentable a CAT 80-97%.)"
+    fuente: ["report:behavioral_finance", "report:credito_popular", "validacion:V3_credito_auditado", "validacion:V4_credito_popular_compass4"]
     tier: FUERTE
-    falla_si: "el sim produce el colapso de un prestamista vía impago masivo del deudor en vez de vía choque de fondeo"
-    nota: "Emparejada con bt.credito_riesgo_del_prestamista, hoy inejecutable por falta de la entidad prestamista."
+    falla_si: "el sim produce el colapso de un prestamista vía impago masivo del deudor en vez de vía fondeo/gobierno_corporativo del prestamista; o produce impago/mora del segmento popular sin un mecanismo (cobro en fuente / colateral / presión social) que lo explique; o el diferencial de mora popular vs. tarjeta de clase media no lo explica el pricing (CAT) que precarga la pérdida esperada"
+    nota: "Objeto en el modelo desde 19/ago/2026: entidad `prestamista` (fondeo, gobierno_corporativo, enlace tasa_ofrecida/cat) -- canon/modelo-decision-v4_0.md §1.1.H, ADR-125/ADR-35(b). Sin calibrar (forma funcional PENDIENTE), fuera de D hasta que un generador la multiplique -- corribles no es pasadas, mismo criterio que ADR-117 aplicó a las otras siete. Emparejada con bt.credito_riesgo_del_prestamista (antes inejecutable por falta de la entidad; re-verificar ejecutabilidad en acto propio, MILPA sigue sin implementarla -- ver modo_refutacion.nota_honestidad abajo, sin cambio)."
 
   - id: ref.A.05.no_saben_planear
     tipo: A
