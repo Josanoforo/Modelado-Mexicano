@@ -1,6 +1,6 @@
 # ENCARGO · RESCATE-CURADOR
 
-Estado: CONSUMIDO · SHA de redacción: `cb0d98f` (#266) · Ejecutado contra `cb0d98f`→`6ded00c`→`e6864ed` (re-derivado a cada paso, nunca asumido) · PR: **#274** · Cierre: `ADR-111` · Origen: `FP-55` (`NOTAS-P3`, #261) + decisión `D-4` de mesa en `MESA-19AGO` (PR #267).
+Estado: CONSUMIDO · SHA de redacción: `cb0d98f` (#266) · Ejecutado contra `cb0d98f`→`6ded00c`→`e6864ed`→`6650047` (re-derivado a cada paso, nunca asumido) · PR: **#274** · Cierre: `ADR-112` (candidato `111` al escribir; `PR #275`/`FP29-RECONCILIA` tomó `111` primero al fusionar, renumerado por comando) · `FP-59` (candidata `FP-58` al escribir; `PR #275` tomó `FP-58` primero, renumerada) · Origen: `FP-55` (`NOTAS-P3`, #261) + decisión `D-4` de mesa en `MESA-19AGO` (PR #267).
 
 Archivado retroactivamente (A.3): el texto original se recibió en dos versiones dentro de la misma conversación — v1 (alcance limitado al worktree `curador`, corrió únicamente `§0`/el bundle) y v2 (abajo, verbatim, la que gobernó el resto del acto: expande a los 26 worktrees de `w-limpieza §4`). La corrección de premisa (`ACTO Z` ya había cerrado el titular de "590 commits" un día antes de que `NOTAS-P3` abriera `FP-55`) se descubrió **verificando el repo antes de escribir**, no estaba en ninguna de las dos versiones del encargo, y se resolvió con la DIRECTIVA de mesa citada íntegra abajo, seguida de ocho precisiones adicionales de mesa (segunda adenda) que corrigieron el propio plan de ejecución de esa directiva contra el árbol real.
 
