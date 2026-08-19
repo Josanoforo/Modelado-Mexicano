@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **117 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **118 ADR**
 
 > | | |
 > |---|---|
@@ -2275,6 +2275,25 @@ Detalle completo, comando por comando, con las dos preguntas y las dos respuesta
 
 ---
 
+**ADR-118 · `FP-60` queda `CERRADA`: las dos expectativas de `test_produccion_correctiva.py` que quedaron rancias cuando `U1/E4b′` (12/ago/2026) produjo el primer resultado real del programa se adjudican `RANCIA-SE-ACTUALIZA` — la realidad nueva es la correcta, la expectativa se actualiza con su derivación a la vista, sin `--freeze`.** `ACTO FP60-ADJUDICA` ejecuta el encargo homónimo (dirección, 19/ago/2026) sobre la fila `FP-60`, abierta por `ACTO REFIRMA-OPACA` (`forense/notas/2026-08-19-refirma-opaca.md` §6) al cerrar las cinco fallas de garantía fail-closed que ese acto sí podía adjudicar.
+
+**Las dos expectativas, derivadas por comando, no heredadas de la nota que abrió la fila.** `data/curacion-registro/produccion-modelo.tsv` (12 filas, todas `CALCULO_REPRODUCIBLE`; 3 `relacion_id` con `estado_calculo_descriptivo=CALCULO_DESCRIPTIVO_DISPONIBLE`; 3 con `estado_uso_modelo=LISTA_PARA_USO_MODELO`; `ESP-OPACA-B-d13ec4fe` en `CALCULO_REPRODUCIBLE`, no en `NO_DETERMINADO`) verificado por comando en este acto — `python3 -c "..."` sobre el propio TSV, salida cruda en la nota. Coincide, número por número, con lo que `ACTO REFIRMA-OPACA` ya había medido en UBUNTU el mismo día (`verify_production_bundle(...) -> OK. filas: 12 | CALCULO_REPRODUCIBLE: 12`), y con lo que esta misma sesión NUBE reprodujo de forma independiente donde el entorno lo permite: `test_production_semantics_and_periods_are_preserved` corre completo (no depende de microdato, solo lee el TSV) y confirma 3/3/`CALCULO_REPRODUCIBLE` antes de tocar el archivo. `test_valid_bundle_is_independently_reproduced_without_analyst_manifest` no puede correr en esta caja — `validate_master_spec` aborta en el primer expediente por microdato ausente (`/home/pc0/mm-corpus/raw/...`), el mismo límite que el propio encargo `REFIRMA-OPACA` ya declaró para sesiones NUBE — así que su valor (12 filas/12 `CALCULO_REPRODUCIBLE`) se toma del artefacto trackeado y de la corrida UBUNTU ya hecha, no de una ejecución propia de este acto.
+
+**Por qué `RANCIA-SE-ACTUALIZA` y no `VIGENTE-SE-CONSERVA` ni `MAL-PLANTEADA`.** No es `VIGENTE-SE-CONSERVA`: no hay defecto en la realidad que reportar — `produccion-modelo.tsv` es exactamente lo que el motor canónico (`prepare_production.py`→`produce.py`→`integrate_production.py`) produce sobre el baseline vigente, verificado dos veces (`ACTO REFIRMA-OPACA` en UBUNTU, este acto sobre el artefacto trackeado en NUBE), sin discrepancia. No es `MAL-PLANTEADA`: las dos expectativas comparan el mismo universo que la realidad — filas y estados de un mismo bundle, un mismo TSV — no dos escalas ni dos poblaciones distintas; el predicado no necesita reescribirse, solo su valor. Es `RANCIA-SE-ACTUALIZA`: la nota de `REFIRMA-OPACA` §6 ya fechó la causa por comando — el archivo de prueba no se ha tocado desde `59d6c40` (`BARRIDO-COMPLETO`), y el expediente `ESP-OPACA-B` pasó de `repro=0/nd=1` a `repro=1/nd=0` en `8565c17` (`U1/E4b′` commit 2, 12/ago/2026) — el primer resultado calculado del programa. Ese acto movió la realidad; las cifras testigo del test se quedaron donde estaban, sin que ningún acto las adjudicara hasta hoy.
+
+**Las dos adjudicaciones no divergen, y aun así quedan como dos aserciones separadas en el test — no una fila colapsada.** Ambas expectativas resultan `RANCIA-SE-ACTUALIZA` por la misma causa (`U1/E4b′`), pero el test ya las traía en dos métodos distintos (`test_valid_bundle_is_independently_reproduced_without_analyst_manifest` y `test_production_semantics_and_periods_are_preserved`), cada uno con su propia aserción; este acto respeta esa partición y no las funde en una.
+
+**El diff, ejecutado.** `tools/curador_registro/tests/test_produccion_correctiva.py`: `:141` `11`→`12`, `:142` `10`→`12`; `:155` `2`→`3`, `:156` `1`→`3`; `:165` `"NO_DETERMINADO"`→`"CALCULO_REPRODUCIBLE"`. Cinco líneas, ningún otro carácter del archivo tocado. Verificado tras el cambio: `test_production_semantics_and_periods_are_preserved` pasa (`ok`) en esta sesión NUBE. Las otras seis pruebas del módulo (`test_1`…`test_5`, `test_valid_bundle_...`) siguen fallando/erroreando por el mismo motivo que ya fallaban antes de este acto y fuera de su perímetro — microdato ausente en esta caja —, sin cambio atribuible a este acto.
+
+**Lo que este ADR NO hace.** No toca `prepare_production.py`, `produce.py` ni `integrate_production.py` — ningún artefacto de `data/curacion-registro/` se regenera aquí. No re-abre ni re-adjudica ninguna de las cinco fallas que `ACTO REFIRMA-OPACA` ya cerró. No corre microdato ni red — declarado y saltado el punto 4 del arranque del encargo.
+
+**Cascada.** `forense/firmas-pendientes.tsv`: `FP-60` → `CERRADA`. Conteo de ADR vía `T15`: contra `20c7dee` (único `117`, máximo `117`, sin huecos) → candidato **`ADR-118`**, a re-derivar al fusionar por la concurrencia declarada (`FP58-PROPAGA-CANON`, colisión de gobernanza/tablero esperada). `canon/estado-programa-v1_10.md` (cabecera, `L0`, lista append-only §4, WARN de `T22`: 118→117 por `FP-60` saliendo de `ABIERTA`). `python3 tests/check.py --baseline`: **LÍNEA BASE VERDE**, 21 FAIL · 117 WARN, sin `--freeze`, `tests/baseline.json` sin tocar.
+
+**Contadores de medición sobre México que mueve este ADR: cero.**
+
+→ **Vigente.** *(`ACTO FP60-ADJUDICA`, 19/ago/2026. Entorno NUBE (`cloud_default`, crudo, sin sonda), repo-only, `data/raw` no tocado. Perímetro: `tools/curador_registro/tests/test_produccion_correctiva.py` (solo las dos expectativas adjudicadas) · `forense/firmas-pendientes.tsv` (solo `FP-60`) · `canon/gobernanza-v1_15.md` (este ADR, cascada de cabecera) · `canon/estado-programa-v1_10.md` (solo cascada) · `forense/hallazgos.md` · `forense/notas/2026-08-19-fp60-adjudica-cierre.md` · `forense/encargos/2026-08-19-FP60-ADJUDICA.md` (archivado, `CONSUMIDO`). No tocó `data/curacion-registro/**` (ningún artefacto de producción), `milpa/`, `canon/modelo-decision-v4_0.md`, `canon/glosario-v5_6.md`. Contadores de medición sobre México: **0**.)*
+
+---
 
 ## 5. Deuda declarada (decisiones abiertas, conscientemente)
 
