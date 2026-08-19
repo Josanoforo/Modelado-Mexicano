@@ -34,7 +34,7 @@
 > sin resolver** — `FP10-PRECEDENCIA` no las tocó (su propio cierre lo dice: "0 filas ajenas
 > tocadas", perímetro era solo los 16 pares gap-contra-real). Es un defecto **distinto** al que
 > ambas versiones de esta nota diagnosticaron (real-contra-real, no gap-contra-real) y sigue
-> abierto hoy. Registrado como fila nueva `FP-70` — ver `forense/firmas-pendientes.tsv` — en vez
+> abierto hoy. Registrado como fila nueva `FP-71` — ver `forense/firmas-pendientes.tsv` — en vez
 > de resolverse aquí, que excedería el perímetro de `FP-62`.
 >
 > **Corrección de premisa, material, dicha sin adorno:** `FP-62` cita como referencia de cierre
@@ -46,7 +46,7 @@
 >
 > **La rama `rescate/reconcilia-puertas-local` se borra al fusionar este lote** (doctrina `T0`
 > del lote, mismo tratamiento que la rama `claude/fp57-declara-…`): su contenido único queda
-> preservado aquí, con procedencia, y su residuo real ya vive en `FP-70`.
+> preservado aquí, con procedencia, y su residuo real ya vive en `FP-71`.
 >
 > Texto original de la rama, sin editar, a partir de aquí:
 >
