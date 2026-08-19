@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **112 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **113 ADR**
 
 > | | |
 > |---|---|
@@ -2190,6 +2190,20 @@ Detalle completo, comando por comando, con las dos preguntas y las dos respuesta
 
 ---
 
+
+**ADR-113 · `FP-59` se adjudica `RESCATE-A-PR` porque `main` cita 211 ids cuyos cuerpos no viven en el repositorio; y la poda física de la caja se ejecuta contra los veredictos ya sellados, no re-adjudicándolos.** `ACTO LIMPIA-CAJA` ejecuta lo que `ADR-112` §5 dejó adjudicado y explícitamente no ejecutó (*"Worktrees `PURGA-ARTIFACT`: no se borran en este acto. Limpieza física es acto aparte"*).
+
+**`FP-59`, los cuatro incisos por comando.** (a) **¿Regenerables? NO.** Los dos `SEMRUN-*` del disco ya existen en `main`, pero con **14 de 794** archivos commiteados: los 780 no-trackeados son detalle de ejecución *complementario* (441 `TOBS-SEM`, 192 `SEMTSK`, 147 `TCUR`), **cero solape de ruta** con lo trackeado — no son una segunda copia, son la mitad que nunca subió. (b) **¿Referenciados? SÍ, 211 de 211.** Todos los ids `SEMTSK-*`/`TCUR-*` presentes en disco están citados en el árbol trackeado de `main`; **cero sin citar**. Descartarlos dejaría 211 citas colgantes en un programa cuya gobernanza *es* la trazabilidad — ese es el argumento decisorio, no el volumen. (c) **Compuerta PII: limpia**, cinco ángulos; los 3 candidatos se adjudicaron **uno por uno**, no por conteo: `1786051186` es el sello de tiempo de la rama `wt-abrir4-1786051186` (no un teléfono, verificado en contexto) y el correo es la dirección institucional de soporte de ENNVIH/MxFLS (no dato personal). (d) **Ninguna regla de `.gitignore` los excluía** — no-trackeados por omisión, no por política; la omisión no era una decisión de curaduría que este acto estuviera revirtiendo.
+
+**`T02` se resuelve por el mecanismo de GRUPO, no por `--freeze`** (prohibido por el encargo). Se añade `forense/rescate/barrido-completo-untracked-20260807/` a `EXCEPTED_PREFIXES` de `t02_duplicates` — **mismo mecanismo y misma justificación que `PR #274` estableció para el rescate del curador**, y con un argumento más fuerte: los archivos son literalmente del **primer prefijo ya exceptuado** (`data/curacion-registro/ejecucion-semantica/runs/`), movidos bajo `forense/rescate/` al archivarlos. `tests/baseline.json` **sin tocar**. Extensión de perímetro declarada: el encargo no listaba `tests/`, pero sin ella el acto no cierra en verde y la alternativa era el instrumento romo que el propio encargo prohíbe.
+
+**Lo que NO se borró, y por qué la regla lo exigía.** (1) **`mm-reconcilia-puertas` tiene contenido único real**: su rama nunca existió en `origin`, y su nota trae **122 líneas ausentes de la de `main`** — porque la de `main` viene de una **ejecución distinta** (`PR #208`, nube) del mismo encargo, más una línea de `hallazgos.md` sin registrar. No estaba entre las 24 de `ADR-112` §5 (nació después del inventario del 13/ago): es exactamente el caso que la cláusula de cobertura retroactiva protege. Respaldada en bundle, **no adjudicada aquí** — no es mandato de un acto de higiene decidir qué se hace con trabajo sustantivo. (2) **`scratch/build_crosswalk.py`**, el riesgo que `ADR-112` §5 señaló *"para que no se pierda por silencio"* sin abrir fila: copiado a `~/respaldo-worktrees/` **antes** de borrar su worktree. Sigue sin fila de tablero, por la misma razón que §5 declinó abrirla.
+
+**Hallazgo mayor: el inventario de worktrees nunca fue el universo real.** `git worktree list` dio **56** worktrees, no los 26 que `w-limpieza §4` conocía; y existía un **segundo clon completo** (`~/proyectos/`, `main` en `PR #161`, 10 días stale) con **9 worktrees propios** en un tercer directorio (`~/worktrees/`) que ningún barrido había visto. Respaldado en bundle y borrado por firma de mesa en sesión. De paso corrige un estado vencido: `50344ac` (`ACTO R″`), registrado como huérfano sin PR, **sí está fusionado en `origin/main`**.
+
+**Reportado, no tocado, por estar fuera de perímetro:** `~/mm-purga.git` (12M, espejo bare de `PURGA-PRIVACIDAD` con sus artefactos `filter-repo/`) **conserva historia pre-purga** (`9301e59`) — es decir, el estado del repositorio que todavía contiene las 1,737 filas de datos personales que la purga retiró de lo público. Y `~/mm-paso5` (25M, tercer clon, `PASO 5` de la misma purga, ya fusionado). Ninguno se borra aquí: el primero es una decisión de privacidad con implicaciones forenses, no higiene de worktrees.
+
+→ **Vigente.** *(ACTO LIMPIA-CAJA, 19/ago/2026. Sesión UBUNTU, dueña única de la caja, cero procesos ajenos vivos verificados al arranque y al cierre. Perímetro: `forense/rescate/barrido-completo-untracked-20260807/` (rescate), `forense/firmas-pendientes.tsv` (solo `FP-59`), `canon/gobernanza-v1_15.md` (este ADR), `canon/estado-programa-v1_10.md` (solo cascada), `forense/hallazgos.md`, `forense/notas/2026-08-19-limpia-caja-cierre.md`, `forense/encargos/2026-08-19-LIMPIA-CAJA.md`, más la extensión declarada a `tests/check.py` arriba. No tocó `data/`, `milpa/`, `corpus/`, ni el corpus `~/mm-corpus/` (solo lectura). Contadores de medición sobre México: **0**.)*
 
 ---
 
