@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **110 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **111 ADR**
 
 > | | |
 > |---|---|
@@ -2090,7 +2090,7 @@ Detalle completo, comando por comando, con las dos preguntas y las dos respuesta
 
 → **Vigente.** *(ACTO B2-SEMANTICO, 18/ago/2026, `PR #268` borrador.)*
 
-**ADR-110 · `FP-29` queda ejecutada: ninguna fuente verificable del corpus sostiene el 22%. Dos de sus atribuciones quedan refutadas contra microdato, una es error de categoría y una es indecidible por falta del instrumento. El 18% de Pew se reproduce exacto contra fuente primaria; el 12% queda INDECIDIBLE por falta de la ola.** Decisión del ejecutor bajo el encargo `FP29-RECONCILIA` (VIVO), 18/ago/2026, con método y procedimiento **ya sellados antes de este acto** — `ADR-76(d)(4)`/`ADR-80` (estándar `argumento de vinculación declarado`) y `forense/notas/2026-08-04-c06a-cinco-cifras-conf06-localizadas.md` §5-§6 (procedimiento). El ejecutor no eligió estándar ni procedimiento: los aplicó. Detalle completo, comando por comando: `forense/notas/2026-08-18-fp29-adjudicacion.md`.
+**ADR-111 · `FP-29` queda ejecutada: ninguna fuente verificable del corpus sostiene el 22%. Dos de sus atribuciones quedan refutadas contra microdato, una es error de categoría y una es indecidible por falta del instrumento. El 18% de Pew se reproduce exacto contra fuente primaria; el 12% queda INDECIDIBLE por falta de la ola.** Decisión del ejecutor bajo el encargo `FP29-RECONCILIA` (VIVO), 18/ago/2026, con método y procedimiento **ya sellados antes de este acto** — `ADR-76(d)(4)`/`ADR-80` (estándar `argumento de vinculación declarado`) y `forense/notas/2026-08-04-c06a-cinco-cifras-conf06-localizadas.md` §5-§6 (procedimiento). El ejecutor no eligió estándar ni procedimiento: los aplicó. Detalle completo, comando por comando: `forense/notas/2026-08-18-fp29-adjudicacion.md`.
 
 **(a) Qué se adjudica, y por qué no hacía falta firma nueva de mesa.** `ADR-101(f)` ya había establecido que el **pendiente real de `FP-29` era la adquisición de las series, no una decisión** — *"método = `forense/benchmark-enlace-invarianza-v1_0.md` + estándar `ADR-76(d)(4)`/`ADR-80` · procedimiento = nota 4/ago §5-§6 · pendiente real = solo la adquisición de las series"*. Las series están adquiridas (WVS y Latinobarómetro desde el 12 y el 5/ago; **Pew se obtuvo en este acto**, §3.1 de la nota) y el procedimiento corrió. Mismo patrón que `FP-44`/`FP-45` bajo `ADR-94`: la fila pasa a `FIRMADA` **sin firma nueva de mesa, por derivación de decisiones ya selladas**. Lo que sí es decisión de mesa —qué debe decir el canon ahora— **no se adjudica aquí** y abre fila propia, `FP-58` (inciso (f)).
 
@@ -2118,7 +2118,7 @@ Detalle completo, comando por comando, con las dos preguntas y las dos respuesta
 
 **Versión y nombre de archivo.** El número de versión de `gobernanza` **no sube** y el archivo **no se renombra** — mismo criterio que `ADR-48` a `ADR-109`.
 
-**Colisión de numeración, declarada.** `110` es contiguo contra `e563e5d` (`únicos 109 · max 109 · huecos []`). `PR #267` (abierto al escribir esto) reclama `ADR-107`, número ya tomado en `main` por `ADR-109`/`B2-SEMANTICO`: **esa colisión es de `PR #267`, no de este acto**, y se registra en `hallazgos.md`. Si `main` avanza antes de fusionar, renumera quien fusione después; `T15` arbitra.
+**Colisión de numeración — ocurrió, y se resolvió por la regla, no por antigüedad.** Al sellar, `110` era contiguo contra `e563e5d` (`únicos 109 · max 109 · huecos []`), y este ADR dejó anotado que `PR #267` reclamaba `ADR-107`, número ya tomado en `main`. **Lo que pasó de verdad:** `PR #267` (`ACTO MESA-19AGO`) se dio cuenta del mismo problema por su cuenta, renumeró `107 → 110` y **fusionó primero** (`e6864ed`). Al fusionar `origin/main` en esta rama aparecieron **dos `ADR-110`**, verificado (`repetidos: {110: 2}`). Aplicada la regla que este proyecto ya tiene precedentada tres veces (`ADR-71`, `ADR-104`): **renumera quien fusione después** — este ADR pasa a **`ADR-111`**, contiguo contra el `main` real, y la cascada del conteo se rehace (110→111). `T15` confirma: `únicos 111 · max 111 · huecos []`, sin repetidos.
 
 → **Vigente.** *(ACTO FP29-RECONCILIA, 18/ago/2026. Perímetro declarado en el encargo y respetado: `data/manifiesto.yaml` (2 altas de Pew), `data/raw/FP29_PEW_2025/` (payload al corpus compartido), `data/fp29-series-externas-2026-08-18.json`, `tests/fp29_series_externas.py`, `forense/notas/`, `forense/firmas-pendientes.tsv`, `forense/hallazgos.md`, `forense/encargos/`, este ADR y su cascada de conteo. **Canon sustantivo NO tocado.**)*
 
