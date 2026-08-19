@@ -1314,6 +1314,11 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # nota (§6). Mismo criterio de autocaptura verbatim que las notas de
     # TABLERO-FIRMAS/CI-CATEGORIA ya usaron.
     "forense/notas/2026-08-18-sello-ficha-g3-gate-e0e5-no-cumplido.md",
+    # Sumado en ACTO SELLO-FICHA-G3-V2, 19/ago/2026 -- cita el estado viejo
+    # de la ficha ("PROPUESTA DE SELLO COMPLETA... mesa eligió"), dos
+    # términos sin relación, mismo patrón que la línea de arriba -- ver
+    # esa misma nota, §7.
+    "forense/notas/2026-08-19-sello-ficha-g3-v2-adjudica-idx.md",
     # Sumados en ACTO NOTAS-P3, 18/ago/2026 -- ejecuta CONSOLIDA-17AGO
     # §PARTE 3 (el barrido de firmas-pendientes.tsv en sí). El encargo
     # reproduce verbatim (A.3) el patrón de dirección, que cita "RANURA"
