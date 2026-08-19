@@ -14303,3 +14303,46 @@
     el PDF, no contra esta pagina. Se registra porque es donde vive la metodologia y el encuadre
     de 25 paises que el corpus cita. HTML renderizado: su hash NO es estable en el tiempo
     (menus, banners) -- a diferencia del topline, verificado estable en A.7.'
+
+- id: enasic2022_ipe_cv_ee_ic
+  usado_para: 'U2/EV-1 (PROPUESTA-remediacion-brecha-documental.md:16, SS2): insumo oficial
+    de precision (CV/EE/IC) de INEGI para ENASIC 2022, el insumo que el PARO de forense/notas/2026-08-19-u2-ev1-paro-red.md
+    dejo pendiente por bloqueo de egreso en la caja NUBE. Cruce oficial-vs-propio pre-registrado
+    contra la theta de familismo_obligacion (P7_12_7, ESP-OPACA-B-d13ec4fe).'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/922/download/29534
+  fecha_descarga: '2026-08-19'
+  descargado_por: 'agente, curl -L en caja Ubuntu (LOTE UBUNTU-ADQ-1, T1); doble descarga
+    y comparacion byte a byte per A.7: identicas, la fuente no trae token de solicitud'
+  archivo: enasic2022/IPE_CV-EE-IC_ENASIC_2022-00_Def_V1_260923.xlsx
+  sha256: c37b5fc687ae9fc727d0cd1d883adef00165086e54453d3070b9eae51801c540
+  tamano_bytes: 51724
+  formato: 'XLSX, 2 hojas (INDICADORES, Catalogo). Hoja INDICADORES: 21 columnas (Tipo_Programa..IntConf_Sup),
+    337 filas barridas, 2 con contenido -- ambas Nacional/Poblacion, Parametro=Total, Niv_Conf=90.
+    NO contiene el reactivo P7_12_7.'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Nombre oficial servido por Content-Disposition: IPE_CV-EE-IC_ENASIC_2022-00_Def_V1_260923.xlsx.
+    Publicado en la ficha RNM 922, seccion Indicadores de la Calidad/Evaluacion de la Calidad.
+    Version Definitivo, fecha de publicacion declarada por INEGI 2023-10-16.'
+
+- id: inegi_ipe_formato_estandarizado_cv_ee_ic
+  usado_para: 'U2/EV-1: definicion oficial del esquema de los indicadores de precision del
+    INEGI (que es CV, ErrorEst, Niv_Conf, IntConf_Inf/Sup y como se llenan). Es la ley de
+    interpretacion del archivo enasic2022_ipe_cv_ee_ic; sin ella el cruce oficial-vs-propio
+    compararia numeros sin contrato.'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/922/download/29535
+  fecha_descarga: '2026-08-19'
+  descargado_por: 'agente, curl -L en caja Ubuntu (LOTE UBUNTU-ADQ-1, T1); doble descarga
+    y comparacion byte a byte per A.7: identicas, la fuente no trae token de solicitud'
+  archivo: ipe_inegi/CV-EE-IC_IPE_Externos_Encuestas_2022_08_26.xlsx
+  sha256: 912fc9de75d95ded09db91b802b54e6db57292cf38eb5fd49796267f99759596
+  tamano_bytes: 45970
+  formato: 'XLSX, 1 hoja (CV-EE-IC), 276 filas barridas, 28 con contenido. NO trae estimaciones:
+    es la plantilla/diccionario del formato estandarizado aprobado por el Comite de Aseguramiento
+    de la Calidad del INEGI, con la definicion de las 21 columnas.'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Nombre oficial servido por Content-Disposition: CV-EE-IC_IPE_Externos_Encuestas_2022_08_26.xlsx.
+    Es institucional (cross-programa, ''Externos_Encuestas''), no de ENASIC -- por eso vive
+    en ipe_inegi/ y no en enasic2022/, aunque se obtuvo por la ficha RNM 922. Fecha declarada
+    por INEGI 2023-10-16.'
