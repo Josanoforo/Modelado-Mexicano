@@ -1,0 +1,5 @@
+Parche funcional legible (tools/ no tiene blob base en Git):
+- curador.py: explicit_need_id; evidence_object_id; puente y deduplicación por clave semántica.
+- supervisor.py: material_conflicts agrupa por (necesidad, fuente, evidencia); reconcile_seed preserva el universo.
+- multi_supervisor.py: valida asignación exclusiva, cobertura, evidencia, estados, colisiones, negativos y reconstrucción.
+- tests/test_enasic_relaciones.py: asignación N12/N13, exclusión N17, invariancia de orden y conflictos por relación.

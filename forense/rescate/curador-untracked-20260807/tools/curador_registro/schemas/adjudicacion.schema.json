@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Adjudicacion demanda-universo",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["necesidad_id", "fuente_id_canonico", "fuente_nombre", "tipo_fuente", "objeto_evidencia_id", "id_manifiesto", "sha256", "capa1_universo_indexado", "capa2_manifiesto", "capa3_disco_real", "capa4_apertura_mapeo", "clasificacion_relacion", "reason_code", "evidencia_ref", "evidencia_textual_breve", "confianza", "conflicto_material", "nota"],
+  "properties": {
+    "necesidad_id": {"type": "string", "pattern": "^N([1-9]|[12][0-9]|3[0-3])$"},
+    "fuente_id_canonico": {"type": "string"},
+    "fuente_nombre": {"type": "string"},
+    "tipo_fuente": {"type": "string"},
+    "objeto_evidencia_id": {"type": "string", "pattern": "^OE-[A-Za-z0-9-]+$"},
+    "id_manifiesto": {"type": "string"},
+    "sha256": {"type": "string", "pattern": "^$|^[0-9a-f]{64}$"},
+    "capa1_universo_indexado": {"type": "string"},
+    "capa2_manifiesto": {"type": "string"},
+    "capa3_disco_real": {"type": "string"},
+    "capa4_apertura_mapeo": {"type": "string"},
+    "clasificacion_relacion": {"enum": ["CONFIRMADA", "NEGATIVA", "CANDIDATA", "NO_ACCESIBLE", "SIN_CANDIDATO", "CONFLICTO_MATERIAL"]},
+    "reason_code": {"type": "string", "minLength": 3},
+    "evidencia_ref": {"type": "string", "minLength": 1},
+    "evidencia_textual_breve": {"type": "string", "minLength": 1},
+    "confianza": {"enum": ["ALTA", "MEDIA", "BAJA"]},
+    "conflicto_material": {"enum": ["SI", "NO"]},
+    "nota": {"type": "string"}
+  }
+}
