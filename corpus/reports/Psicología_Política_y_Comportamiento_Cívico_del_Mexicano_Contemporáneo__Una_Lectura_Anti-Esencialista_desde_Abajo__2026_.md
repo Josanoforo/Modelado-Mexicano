@@ -1,5 +1,7 @@
 # La psicología política y el comportamiento cívico del ciudadano mexicano contemporáneo — visto DESDE ABAJO
 
+> **Nota de estado (19/ago/2026 · FP-57):** este documento es base de evidencia fechada del corpus y no se retoca; «ni broker» fue retirado del motor en `modelo v2.3` (conf.08) — no leer este pasaje como posición vigente del motor.
+
 *Reporte de investigación profunda. Corpus anti-esencialista sobre la conducta y psicología del mexicano contemporáneo. Fecha: julio de 2026. Todas las afirmaciones van marcadas por tier: [FUERTE] / [MEDIA] / [HIPÓTESIS RAZONABLE] / [NARRATIVA POPULAR].*
 
 ## TL;DR
