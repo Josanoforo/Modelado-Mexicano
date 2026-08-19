@@ -39,7 +39,8 @@ primera_corrida:
   resultados:
     pasan: 27
     fallan: 3
-    sin_objeto: 8
+    sin_objeto: 1
+    corribles_nuevas_veredicto_pendiente: 7
     requieren_ejecutable: 11
     total: 49
   los_tres_fallos: >
@@ -50,17 +51,34 @@ primera_corrida:
       · cambio 5 — familismo → familismo_apoyo + familismo_obligacion (ADR-30)
   ocho_sin_objeto:
     que_significa: >
-      El modelo no tiene la variable que la refutación restringe. No es que
-      pase: es que no hay nada que falsar.
+      DECIDIDO 19/ago/2026 (FP-56, ADR-110(a)/ADR-111(c), ejecutado por ADR-114,
+      ACTO REFUTACIONES-SIN-OBJETO): se amplía el modelo, no se retiran (vía
+      (a), no (b)). Siete de las ocho ya tienen variable declarada en
+      canon/modelo-decision-v4_0.md §1.1.G — corribles no es pasadas: cada una
+      vuelve a la batería con veredicto pendiente, sin calibrar y sin correr.
+      La octava (ref.A.04, entidad prestamista) sigue sin objeto: choca con la
+      frontera de ADR-35 ("el motor modela al decisor, no al oferente"), y ese
+      ADR declaró explícitamente que ampliar al lado de la oferta es decisión
+      de mesa. La enmienda está redactada y no ejecutada
+      (forense/notas/2026-08-19-adr35-enmienda-borrador.md), escalada como
+      FP-61.
     incluye: >
       ref.A.02 ("los mexicanos son flojos") — LA ÚNICA DE TIER MUY_FUERTE de
       las 49, con el dato más contundente del corpus: 2,207 h/año, el mayor de
-      la OCDE. El modelo no tiene variable de esfuerzo ni de horas. Tampoco
-      tiene colorismo, salud mental ni entidad prestamista.
+      la OCDE. Ya tiene variable declarada (esfuerzo_laboral/horas_trabajadas,
+      modelo §1.1.G). El modelo sigue sin entidad prestamista (ref.A.04,
+      bloqueada por ADR-35, ver arriba).
     decision_pendiente: >
-      Ampliar el modelo o declarar el alcance y retirarlas de la batería.
-      Mientras no se decida, la batería reporta 49 pruebas de las que 8 son
-      inejecutables por construcción: el denominador está inflado.
+      RESUELTA para siete de ocho (19/ago/2026, ADR-114): tienen variable
+      declarada, forma funcional PENDIENTE, sin calibrar. Sigue pendiente para
+      ref.A.04 (FP-61, enmienda a ADR-35). El denominador honesto hoy: de las
+      49, 30 ya se corrieron (27 pasan + 3 fallan), 7 acaban de ganar objeto y
+      vuelven a la batería con veredicto pendiente (no corridas), 11 siguen
+      esperando el ejecutable (MILPA Fase 1), y 1 sigue sin objeto. "27 de 49
+      pasan" sigue siendo, en realidad, "27 de 37 corribles" — no "27 de 30":
+      el denominador de corribles creció con la ampliación, el numerador de
+      corridas no se movió, porque este acto no corre la batería ampliada
+      (acto propio, con su pre-registro).
   once_requieren_ejecutable:
     bloqueo: >
       Corregido 3/ago/2026 (ADR-51, cascada de ADR-50): decía "MILPA Fase 1
@@ -76,9 +94,16 @@ primera_corrida:
       cobertura real hoy es 30 de 49 refutaciones ejecutables (61%).
 
   lectura_honesta: >
-    27 de 49 pasan suena bien y no lo es tanto: 8 pasan por vacío y 11 no se
-    corrieron. Las que efectivamente se probaron y sobrevivieron son 27 de 30.
-    Descartar con rigor es entregable — pero el denominador debe decirse.
+    27 de 49 pasan suena bien y no lo es tanto. Corregido 19/ago/2026
+    (ADR-114): ya no son 8 las que pasan por vacío, son 1 — siete ganaron
+    variable declarada y volvieron a la batería con veredicto pendiente, sin
+    correr todavía. Las que efectivamente se probaron y sobrevivieron siguen
+    siendo 27 de 30 (nada corrió en este acto); las que YA PODRÍAN correrse
+    son 27 de 37 (30 ya ejecutables + 7 recién con objeto); 11 siguen sin
+    ejecutable; 1 (ref.A.04) sigue sin objeto, bloqueada por ADR-35, FP-61.
+    Corribles no es pasadas: ampliar el denominador de lo ejecutable no mueve
+    el numerador de lo corrido. Descartar con rigor es entregable — pero el
+    denominador debe decirse, y derivarse, no anunciarse.
 
 meta:
   reports_con_seccion_de_mitos: 22
