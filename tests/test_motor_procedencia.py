@@ -26,6 +26,28 @@ def main():
         igual(proc.contador_condicionales_medidas(), esperado,
               "contador de condicionales medidas:")
 
+    def test_contador_no_duplica_condicional_por_llave():
+        # FP-66: la fórmula de T19b/T19c cuenta OCURRENCIAS de la cadena
+        # `clase: "MEDIDO·...`, no condicionales DISTINTAS -- si un acto
+        # futuro mide dos veces la misma condicional (misma `llave`, dos
+        # bloques `clase:` en el árbol), el numerador sube sin que exista
+        # una condicional nueva, y ni la fórmula por cadena ni el test que
+        # la replica lo detectan. Éste sí: deriva el conteo por ESTRUCTURA
+        # (`proc.entradas`, ya parseado) y exige que la cuenta por `llave`
+        # distinta coincida con la cuenta por cadena -- si alguna vez
+        # difieren, hay una `llave` repetida y aquí se nombra cuál.
+        medidas = [e for e in proc.entradas
+                   if e.clase in (K.Clase.MEDIDO_PARCIAL, K.Clase.MEDIDO_NACIONAL)]
+        llaves = [e.llave for e in medidas]
+        repetidas = sorted({k for k in llaves if llaves.count(k) > 1})
+        cierto(not repetidas,
+               f"condicional(es) medida(s) dos veces bajo la misma llave: {repetidas}")
+        txt = proc.texto
+        por_cadena = (txt.count('clase: "MEDIDO·PARCIAL')
+                      + txt.count('clase: "MEDIDO·NACIONAL'))
+        igual(len(set(llaves)), por_cadena,
+              "condicionales distintas (por llave, vía parser) vs fórmula por cadena de T19b/T19c:")
+
     def test_clase_implicita_de_bloque_se_declara():
         # `ASIGNADO` NO aparece nunca como valor de un campo `clase:`: es la
         # clase del bloque. Un cargador que sólo buscara `clase:` reportaría
