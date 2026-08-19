@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **113 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **114 ADR**
 
 > | | |
 > |---|---|
@@ -2204,6 +2204,27 @@ Detalle completo, comando por comando, con las dos preguntas y las dos respuesta
 **Reportado, no tocado, por estar fuera de perímetro:** `~/mm-purga.git` (12M, espejo bare de `PURGA-PRIVACIDAD` con sus artefactos `filter-repo/`) **conserva historia pre-purga** (`9301e59`) — es decir, el estado del repositorio que todavía contiene las 1,737 filas de datos personales que la purga retiró de lo público. Y `~/mm-paso5` (25M, tercer clon, `PASO 5` de la misma purga, ya fusionado). Ninguno se borra aquí: el primero es una decisión de privacidad con implicaciones forenses, no higiene de worktrees.
 
 → **Vigente.** *(ACTO LIMPIA-CAJA, 19/ago/2026. Sesión UBUNTU, dueña única de la caja, cero procesos ajenos vivos verificados al arranque y al cierre. Perímetro: `forense/rescate/barrido-completo-untracked-20260807/` (rescate), `forense/firmas-pendientes.tsv` (solo `FP-59`), `canon/gobernanza-v1_15.md` (este ADR), `canon/estado-programa-v1_10.md` (solo cascada), `forense/hallazgos.md`, `forense/notas/2026-08-19-limpia-caja-cierre.md`, `forense/encargos/2026-08-19-LIMPIA-CAJA.md`, más la extensión declarada a `tests/check.py` arriba. No tocó `data/`, `milpa/`, `corpus/`, ni el corpus `~/mm-corpus/` (solo lectura). Contadores de medición sobre México: **0**.)*
+
+---
+
+
+**ADR-114 · El corte de `edad` para «joven» queda fijado por convención declarada — 15-29 años (INEGI/ENOE) — y propagado a los nueve sitios de `modelo` que lo citaban `corte PENDIENTE`; ninguna hipótesis ni regla se re-adjudica.** Decisión de mesa D-2 de `MESA-19AGO`, verbatim: *"**(c) Ambas** — Convención declarada ahora para desbloquear los 9 sitios, más derivación empírica con dato mexicano propio como acto en cola que puede corregirla"* (`ADR-110(b)`, fila `FP-53`). `ACTO CORTE-EDAD-CONVENCION` ejecuta la mitad (c)-convención de esa firma; no ejecuta la mitad empírica, que corresponde a `CORTE-EDAD-EMPIRICO` (gemelo en cola, sesión UBUNTU, dato mexicano propio).
+
+**Corte adoptado y procedencia, citada por este acto — ninguna de las dos fuentes vivía citada en el árbol antes.** `edad` joven = **15 a 29 años**, corte de «población joven» de INEGI/ENOE en estadística laboral — el mismo registro en que se mide `R2.4` (rotación) y se observa el descriptor 5. Fuente: INEGI, *Panorámica de la población joven por condición de actividad* (ENOE), <https://www.inegi.org.mx/investigacion/pobjoven/>, consultado 19/ago/2026. Alterno declarado, no adoptado: 12-29 años, Ley del Instituto Mexicano de la Juventud art. 2 (DOF 06/ene/1999, reformas 02/abr/2015), <https://www.diputados.gob.mx/LeyesBiblio/pdf/LIMJ.pdf>, consultado 19/ago/2026.
+
+**Los nueve sitios, derivados por comando (no tecleados) y re-derivados al ejecutar contra `35c9c9f`** (`grep -niE "corte PENDIENTE|Corte de .?edad.? PENDIENTE" canon/modelo-decision-v4_0.md`, receta `CONSOLIDA-2`): descriptor 5 (`modelo §1.1.D`), H-02/H-06/H-07 (`modelo §1.1.E`), `R1.4`/`R2.4`/`R5.4` en la tabla de traducción de §1.6, y las dos reglas operativas `R2.4`/`R5.4` en §3.2/§3.5. Los nueve quedan sustituidos por el corte, cada uno con `edad joven = 15-29 años, convención declarada — §1.1.A`, que trae la definición completa y la procedencia. Re-conteo tras la sustitución, mismo comando: **0 sitios `PENDIENTE`** — el número honesto derivado, no el esperado.
+
+**Lo que el corte desbloquea, propagado en el mismo acto.** El descriptor 5 (`modelo:189`) queda "Región definible" sin excepción. H-02/H-06/H-07 cambian **estatus de determinabilidad, no veredicto**: H-02 y H-07 pierden el bloqueo del corte (H-07 conserva `forma PENDIENTE` por razón funcional ajena al corte); H-06 sigue `NO DETERMINABLE EN ESTE RÉGIMEN`, pero ahora por una sola razón (`sens_estatus` sin reactivo — §1.1.F Paso 5), no por dos. `R2.4` (:457) y `R5.4` (:482) quedan disparables sobre el atributo edad ya cortado; `R1.4` (:355) queda con su unión de regiones completa. Ninguna hipótesis se re-adjudica y ninguna regla cambia de predicción — la sustitución es literal, sobre la misma condición que el `SI` ya enunciaba.
+
+**Convención, no verdad final — declarada así por escrito, como la vía (c) obliga.** `modelo §1.1.A` trae el aviso completo: `CORTE-EDAD-EMPIRICO` puede corregir este corte con derivación empírica contra dato mexicano propio, y su alcance puede vencer al de esta convención — mismo principio que la estampa de universo (`ADR-67(b)`/`ADR-78(e)`, rótulo `A.10`). Los nueve sitios están escritos contra esta convención, no contra un hallazgo empírico que todavía no existe. `P1` no verificó partición canónica de `edad` en la semilla ENIGH (`modelo §1.1.F` Paso 3) y esa afirmación no cambia: el corte es una regla externa aplicada sobre la variable ya inventariada, no una partición descubierta en el microdato — no se toca `milpa/*.yaml`.
+
+**Lo que este ADR NO hace.** No deriva el corte de dato mexicano propio — eso es `CORTE-EDAD-EMPIRICO`. No toca `milpa/*.yaml` ni ningún archivo de `data/`. No re-adjudica H-02/H-06/H-07 ni ninguna otra hipótesis o regla — cambia estatus de determinabilidad, no veredicto. No abre fila de tablero: el acto no encontró colisión de id ni deuda nueva que requiera `FP-61`.
+
+**Cascada.** Conteo de ADR re-derivado al escribir y al fusionar, per la ley del acto. Al escribir, contra `35c9c9f` (`origin/main`, con `PR #278`/`LIMPIA-CAJA` ya fusionado): `grep -oE "^\*\*ADR-[0-9]+" canon/gobernanza-v1_15.md | sort -u | wc -l` → **113 únicos, máximo 113, sin huecos** → candidato **114**. Re-derivado otra vez al fusionar (si `origin/main` avanzó mientras esta rama esperaba revisión, este número se re-verifica y, de colisionar, se renumera aquí mismo — mismo protocolo ya usado once veces esta semana). Sitios de cascada: `gobernanza-v1_15.md:2` (cabecera, 113→**114**) y `estado-programa-v1_10.md` (tabla y narrativa `L0`, misma cifra).
+
+**Contadores de medición sobre México que mueve este ADR: cero.**
+
+→ **Vigente.** *(ACTO CORTE-EDAD-CONVENCION, 19/ago/2026. Sesión NUBE, repo-only, no toca microdato. Perímetro: `canon/modelo-decision-v4_0.md` (los nueve sitios, §1.1.A, §0 cambio 38), `canon/gobernanza-v1_15.md` (este ADR, cascada de cabecera), `canon/estado-programa-v1_10.md` (solo cascada), `forense/hallazgos.md`, `forense/firmas-pendientes.tsv` (solo `FP-53`, columna `ejecutada_en` — sigue `FIRMADA`, no `CERRADA`: solo se ejecutó la mitad-convención), `forense/notas/2026-08-19-corte-edad-convencion-cierre.md`, `forense/encargos/2026-08-19-CORTE-EDAD-CONVENCION.md` (archivado, `CONSUMIDO`). No tocó `data/`, `milpa/`, `tests/**`. No abrió `FP-61`. Contadores de medición sobre México: **0**.)*
 
 ---
 
