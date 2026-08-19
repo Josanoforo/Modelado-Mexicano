@@ -1,6 +1,6 @@
 # NOTA · LOTE·NUBE-DECISIONES-1 — cierre
 
-**Acto:** `LOTE·NUBE-DECISIONES-1` · **Encargo:** `forense/encargos/2026-08-19-LOTE-NUBE-DECISIONES-1.md` (archivado, `CONSUMIDO`) · **ADR:** `ADR-126` · **Entorno:** NUBE (`cloud_default`, repo-only) · **Rama:** `claude/lote-nube-decisiones-1-ie9hgl` · **SHA de redacción:** `b4a9b3f` (#292) · **Ejecutado contra:** `b4a9b3f` (re-derivado al arrancar — coincide, sin deriva).
+**Acto:** `LOTE·NUBE-DECISIONES-1` · **Encargo:** `forense/encargos/2026-08-19-LOTE-NUBE-DECISIONES-1.md` (archivado, `CONSUMIDO`) · **ADR:** `ADR-126` · **PR:** `#293` · **Entorno:** NUBE (`cloud_default`, repo-only) · **Rama:** `claude/lote-nube-decisiones-1-ie9hgl` · **SHA de redacción:** `b4a9b3f` (#292) · **Ejecutado contra:** `b4a9b3f` (re-derivado al arrancar — coincide, sin deriva).
 
 ## 0 · ARRANQUE
 
