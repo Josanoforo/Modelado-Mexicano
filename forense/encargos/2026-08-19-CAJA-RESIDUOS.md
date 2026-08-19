@@ -1,6 +1,6 @@
 # ENCARGO · CAJA-RESIDUOS — los tres residuos que #278 reportó sin fila
 
-*(Archivado verbatim por regla A.3. Ejecutado en `ACTO CAJA-RESIDUOS`, 19/ago/2026 — ver `forense/notas/2026-08-19-caja-residuos-cierre.md`.)*
+*(Archivado verbatim por regla A.3. Ejecutado en `ACTO CAJA-RESIDUOS`, `PR #284`, `ADR-118`, 19/ago/2026 — ver `forense/notas/2026-08-19-caja-residuos-cierre.md`.)*
 
 ---
 

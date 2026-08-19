@@ -1,6 +1,6 @@
 # ACTO CAJA-RESIDUOS — los tres residuos, adjudicados por medición; y la premisa de la compuerta, refutada
 
-`ADR-118` · Base: `origin/main` = `20c7dee` (`PR #283`) al numerar; `35c9c9f` al redactarse el encargo · Sesión **UBUNTU** · Modelo: Opus · Sin `--freeze`. **La caja no fue de dueña única — ver §4.**
+`PR #284` · `ADR-118` · Base: `origin/main` = `20c7dee` (`PR #283`) al numerar; `35c9c9f` al redactarse el encargo · Sesión **UBUNTU** · Modelo: Opus · Sin `--freeze`. **La caja no fue de dueña única — ver §4.**
 
 Ejecuta lo que `ADR-113` §«Reportado, no tocado» nombró y declinó tocar, y lo que la nota de `PR #278` §8.2 cerró con *"Ninguna fila nueva"*.
 
