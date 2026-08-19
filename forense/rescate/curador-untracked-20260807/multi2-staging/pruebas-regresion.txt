@@ -1,0 +1,23 @@
+test_necesidades_distintas_de_enasic_no_conflictuan (test_enasic_relaciones.EnasicRelacionesTest.test_necesidades_distintas_de_enasic_no_conflictuan) ... ok
+test_reactivos_alimentan_solo_su_necesidad (test_enasic_relaciones.EnasicRelacionesTest.test_reactivos_alimentan_solo_su_necesidad) ... ok
+test_reordenar_filas_no_cambia_relaciones (test_enasic_relaciones.EnasicRelacionesTest.test_reordenar_filas_no_cambia_relaciones) ... ok
+test_payload_inventado (test_estados_con_evidencia.EstadosConEvidenciaTest.test_payload_inventado) ... ok
+test_satisface_sin_apertura (test_estados_con_evidencia.EstadosConEvidenciaTest.test_satisface_sin_apertura) ... ok
+test_satisface_sin_evidencia (test_estados_con_evidencia.EstadosConEvidenciaTest.test_satisface_sin_evidencia) ... ok
+test_sha_mal_formado (test_estados_con_evidencia.EstadosConEvidenciaTest.test_sha_mal_formado) ... ok
+test_archivos_no_son_identidad_de_fuente (test_fuentes_no_artefactos.FuentesNoArtefactosTest.test_archivos_no_son_identidad_de_fuente) ... ok
+test_fuente_real (test_fuentes_no_artefactos.FuentesNoArtefactosTest.test_fuente_real) ... ok
+test_semillas_prohibidas (test_fuentes_no_artefactos.FuentesNoArtefactosTest.test_semillas_prohibidas) ... ok
+test_adjudicacion_con_referencia_inexistente_falla (test_multi_supervisor_fail_closed.MultiSupervisorFailClosedTest.test_adjudicacion_con_referencia_inexistente_falla) ... ok
+test_candidata_sin_asignar_falla (test_multi_supervisor_fail_closed.MultiSupervisorFailClosedTest.test_candidata_sin_asignar_falla) ... ok
+test_estado_adjudicado_es_protegido (test_multi_supervisor_fail_closed.MultiSupervisorFailClosedTest.test_estado_adjudicado_es_protegido) ... ok
+test_union_conserva_exactamente_claves (test_multi_supervisor_fail_closed.MultiSupervisorFailClosedTest.test_union_conserva_exactamente_claves) ... ok
+test_worker_esperado_ausente_falla (test_multi_supervisor_fail_closed.MultiSupervisorFailClosedTest.test_worker_esperado_ausente_falla) ... ok
+test_estado_no_se_copia_a_todas_las_fuentes (test_negativos_conservados.NegativosConservadosTest.test_estado_no_se_copia_a_todas_las_fuentes) ... ok
+test_necesidad_secundaria_no_se_propaga (test_negativos_conservados.NegativosConservadosTest.test_necesidad_secundaria_no_se_propaga) ... ok
+test_negativa_desaparecida_se_reporta (test_negativos_conservados.NegativosConservadosTest.test_negativa_desaparecida_se_reporta) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.003s
+
+OK

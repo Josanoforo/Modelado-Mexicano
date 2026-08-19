@@ -125,6 +125,13 @@ def t02_duplicates():
         "data/curacion-registro/ejecucion-semantica/runs/",
         "data/curacion-registro/expedientes-produccion/",
         "data/curacion-registro/integracion-barrido/",
+        # forense/rescate/curador-untracked-20260807/: rescate verbatim
+        # (DIRECTIVA de cierre de RESCATE-CURADOR, FP-55) del untracked de
+        # Modelado-Mexicano-curador -- worker-N-*.tsv/json repetidos entre
+        # multi{1,2}-staging/ y su propio integrado/ es el mismo patrón
+        # por-worker/por-integración que las tres excepciones de arriba, un
+        # prototipo anterior (6-7/ago) del mismo pipeline. Archivo, no vivo.
+        "forense/rescate/curador-untracked-20260807/",
     )
     def all_excepted(paths):
         return all(p.startswith(EXCEPTED_PREFIXES) for p in paths)
@@ -143,10 +150,10 @@ def t02_duplicates():
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():
         if len(v) > 1 and not all_excepted(v):
-            fail("T02", "nombre normalizado colisiona: " + " · ".join(v))
+            fail("T02", "nombre normalizado colisiona: " + " · ".join(sorted(v)))
     for k, v in by_hash.items():
         if len(v) > 1 and not all_excepted(v):
-            fail("T02", "contenido idéntico bajo nombres distintos: " + " · ".join(v))
+            fail("T02", "contenido idéntico bajo nombres distintos: " + " · ".join(sorted(v)))
 
 
 # ───────────────────────────────────────────────────────────────
