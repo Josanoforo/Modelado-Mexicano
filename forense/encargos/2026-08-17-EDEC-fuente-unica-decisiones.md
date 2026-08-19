@@ -1,5 +1,6 @@
 # ENCARGO E-DEC · FUENTE-ÚNICA-DE-DECISIONES — consolidar, registrar firmas y abrir mesa de revisión en conversación
-- **SHA de redacción:** `b653bb4` · **Fecha:** 2026-08-17 · **Redactor:** dirección (Fable) · **Estado:** VIVO
+- **SHA de redacción:** `b653bb4` · **Fecha:** 2026-08-17 · **Redactor:** dirección (Fable) · **Estado:** CONSUMIDO — ACTO FUENTE-ÚNICA-DECISIONES, `PR #246` (`88adeb2`), 17/ago/2026. Sella `ADR-91`.
+- **Evidencia de consumo (derivada del árbol, ACTO CONF-07-CIERRE 18/ago/2026):** `git log --oneline --all --grep="FUENTE-UNICA"` → `872c206` (commit 1, *"ADR-91 sella el tablero como fuente unica de decisiones y registra verbatim las 13 firmas de mesa del 17/ago"*), `6947992` (commit 2, *"11 filas nuevas (FP-27..FP-37)"*), `5c8c806` (commit 3), `6f78d06` (backfill del número de PR real). El tablero `forense/firmas-pendientes.tsv` es hoy la fuente única y sigue creciendo bajo esa regla.
 - **Entorno asignado:** NUBE, conversación interactiva con mesa · **Modelo: Opus 4.8**. NO caja de Codex, NO Windows.
 - **Supersede:** al encargo E-CF (redactado hoy en el hilo de dirección, NO lanzado, NO archivado). Si por error
   existiera en el repo, márcalo `SUPERADO POR E-DEC · decisión de mesa 2026-08-17` y sigue.
