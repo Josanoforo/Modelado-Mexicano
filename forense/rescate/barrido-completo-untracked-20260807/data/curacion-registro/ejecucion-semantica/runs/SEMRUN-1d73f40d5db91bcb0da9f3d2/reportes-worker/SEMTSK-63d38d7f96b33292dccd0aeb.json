@@ -1,0 +1,25 @@
+{
+  "afirmaciones_semanticas_como_hecho": 0,
+  "input_sha256": "e97322201897d6167fdbac4a92453c0900ea97708d8245ac57f6cf0c788949e3",
+  "resultados": [
+    {
+      "afirmacion_tipo": "NO_DETERMINADO",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "estado": "SIN_JOIN_EXACTO_A_REPORTE_NEUTRAL",
+      "evaluacion_id": "SEMEV-c047bd4810c91d052f5ef35b",
+      "relacion_id": "REL-6c15fdac77dea33175ef25c5",
+      "reporte_inspeccion_ref_consumido": [],
+      "reserva": "El worker no adjudica y no trata ausencia de join como evidencia negativa.",
+      "siguiente_accion_original_sha256": "5959cee8bc9642cb0cf5571465361b738b08980458072b68fc90cd27b822a834"
+    }
+  ],
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "task_id": "SEMTSK-63d38d7f96b33292dccd0aeb"
+}

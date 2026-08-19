@@ -1,0 +1,23 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "criterio_cierre": "Propuesta trazable supervisada o terminal explícito SIN_EXPEDIENTE_INTEGRABLE.",
+  "fail_closed": true,
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:GDELT",
+  "fuente_canonica_normalizada": "GDELT",
+  "reglas": [
+    "No sustituir siguiente_accion_original.",
+    "No inferir identidad ni semántica desde URL, nombre o pertenencia a familia.",
+    "Consumir reportes neutrales solo por relacion→activo→reporte exactos.",
+    "Una propuesta incompleta no modifica el baseline."
+  ],
+  "relaciones_asignadas": [
+    "REL-0d9c76a2adedc9b9f59984cc",
+    "REL-0fc632a7b102c3b39b2f540c",
+    "REL-3d47f2e740a4b56741e9c6e2",
+    "REL-9ccac3c7a04b0040d317efb7"
+  ],
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-43510bd0ada8ba4669ac9d56"
+}

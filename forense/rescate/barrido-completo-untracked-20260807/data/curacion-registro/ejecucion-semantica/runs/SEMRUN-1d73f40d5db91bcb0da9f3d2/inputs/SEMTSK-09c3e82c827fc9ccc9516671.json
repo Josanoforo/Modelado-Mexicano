@@ -1,0 +1,50 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "2bd4b5d82ea3e55512b2cc5f1e591983c2271e4e01996495975a2a72eef69630",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:ENIGH",
+  "fuente_canonica_normalizada": "ENIGH",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "varias olas",
+        "unidad_observacion": "hogar/persona",
+        "universo_muestra": "México",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:canon/modelo-decision-v4_0.md;MAIN:corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md;MAIN:corpus/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md;MAIN:forense/cobertura-motor.md",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L3",
+      "evidencia_ref_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L3",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:ENIGH",
+      "fuente_canonica_normalizada": "ENIGH",
+      "input_requerido_clasificacion": "Evidencia previa exacta, mapeo necesidad→objeto y reportes neutrales disponibles.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N18",
+      "objeto_evidencia_id_canonico": "OE-908664732583bf99e4d0527e",
+      "procedencia_id": "PROV-b45ce34885062142f8c3f096",
+      "regla_clasificacion_id": "RW-06-DEFAULT",
+      "relacion_id": "REL-1677b0003626a1bd5bf971cb",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No propagar estado por fuente ni por necesidad.",
+      "reserva_original": "No se propagó el estado general de la necesidad; requiere evidencia fuente-específica.",
+      "siguiente_accion_original": "Búsqueda dirigida en diccionarios.",
+      "siguiente_accion_original_sha256": "effb634f3527f56afcf55b9ce67a10a6b7d0a83eb5d62fca40f3f50067b2541f",
+      "siguiente_accion_tipificada": "Contrastar procedencia estructurada de REL-1677b0003626a1bd5bf971cb con sus objetos de modelo permitidos y emitir propuesta o reserva.",
+      "tipo_trabajo": "CURADURIA_FUENTE"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-09c3e82c827fc9ccc9516671"
+}

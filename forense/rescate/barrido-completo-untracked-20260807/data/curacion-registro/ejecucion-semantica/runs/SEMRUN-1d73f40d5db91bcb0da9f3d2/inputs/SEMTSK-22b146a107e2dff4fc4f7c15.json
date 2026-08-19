@@ -1,0 +1,89 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "8fca3d114ea116ceeaa51c053a25a2fa1175cec91cee34f52bbd29e5fe61f66b",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:UCDP",
+  "fuente_canonica_normalizada": "UCDP",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "periodo",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "evento",
+        "universo_muestra": "México",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L14",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L14",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L14",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:UCDP",
+      "fuente_canonica_normalizada": "UCDP",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N27",
+      "objeto_evidencia_id_canonico": "OE-12db61ac071539c534e80fed",
+      "procedencia_id": "PROV-d7220ede7d823ecca97118c1",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-2a1cc2aeaa3a0d0f5e1e49d2",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir GED codebook.",
+      "siguiente_accion_original_sha256": "623a70ad87a08b2702c4109b04f42746a3983ae4b1a6f4de155544695aa5872e",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-2a1cc2aeaa3a0d0f5e1e49d2 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    },
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "periodo",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "evento",
+        "universo_muestra": "México",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L14",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L14",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L14",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:UCDP",
+      "fuente_canonica_normalizada": "UCDP",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N17",
+      "objeto_evidencia_id_canonico": "OE-36cef4421aa0ef049dcdaea3",
+      "procedencia_id": "PROV-84d2ef5e06cf6b4d95efd112",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-6e785044dd97d2658a495bb2",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir codebook.",
+      "siguiente_accion_original_sha256": "cbaa94a86de1c4fec2a241af2976841d29dc2a9bf7f0427dae2b2da32280d080",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-6e785044dd97d2658a495bb2 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-22b146a107e2dff4fc4f7c15"
+}

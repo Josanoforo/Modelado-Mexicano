@@ -1,0 +1,24 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "criterio_cierre": "Propuesta trazable supervisada o terminal explícito SIN_EXPEDIENTE_INTEGRABLE.",
+  "fail_closed": true,
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:FINANZAS",
+  "fuente_canonica_normalizada": "FINANZAS",
+  "reglas": [
+    "No sustituir siguiente_accion_original.",
+    "No inferir identidad ni semántica desde URL, nombre o pertenencia a familia.",
+    "Consumir reportes neutrales solo por relacion→activo→reporte exactos.",
+    "Una propuesta incompleta no modifica el baseline."
+  ],
+  "relaciones_asignadas": [
+    "REL-0b0dac8dd04b5f25133518f8",
+    "REL-18976f4767e5da3c5e572877",
+    "REL-21e914d37dac786386bf91dc",
+    "REL-2fbf749b083e578d4462b842",
+    "REL-aaf9d3c2e0d9b3d294df4840"
+  ],
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-04d25946f5a067cea98d00d4"
+}

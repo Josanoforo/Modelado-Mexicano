@@ -1,0 +1,93 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "9c255a7ae9abeb3d9a9eb4f88562ce025e39636753e030b4316b4e99497a477b",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:MEXICO_PANEL_STUDY_2012",
+  "fuente_canonica_normalizada": "MEXICO_PANEL_STUDY_2012",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L16",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:MEXICO_PANEL_STUDY_2012",
+      "fuente_canonica_normalizada": "MEXICO_PANEL_STUDY_2012",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N26",
+      "objeto_evidencia_id_canonico": "OE-c4924c6957c6dfd37ddc93e0",
+      "procedencia_id": "PROV-1bc49f9d9f941db5cf0d108a",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-382a1f202f13e8134f376a00",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir cuestionario y codebook 2012 y localizar las variables exactas y su llave longitudinal.",
+      "siguiente_accion_original_sha256": "ede6819bb1cd3ce12f58d9a0c61b51fb63a379c6261fdc7adc0f74514e4d87a9",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-382a1f202f13e8134f376a00 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    },
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L16",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:MEXICO_PANEL_STUDY_2012",
+      "fuente_canonica_normalizada": "MEXICO_PANEL_STUDY_2012",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N27",
+      "objeto_evidencia_id_canonico": "OE-3074d0aa35a610f7c8e280b5",
+      "procedencia_id": "PROV-2a99bafe8da43e8ffea078e7",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-ddc381f55d9879a6629a14d4",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir cuestionario y codebook 2012 y localizar las variables exactas y su llave longitudinal.",
+      "siguiente_accion_original_sha256": "ede6819bb1cd3ce12f58d9a0c61b51fb63a379c6261fdc7adc0f74514e4d87a9",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-ddc381f55d9879a6629a14d4 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-8e9b0c31206f4fad1ad03a66"
+}

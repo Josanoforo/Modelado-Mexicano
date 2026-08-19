@@ -1,0 +1,57 @@
+{
+  "afirmaciones_semanticas_como_hecho": 0,
+  "input_sha256": "7e4d33bfd00fb5ca916922aeb6b1536ea4f5e751af5cb0507d430ea7d109ba62",
+  "resultados": [
+    {
+      "afirmacion_tipo": "NO_DETERMINADO",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "estado": "SIN_JOIN_EXACTO_A_REPORTE_NEUTRAL",
+      "evaluacion_id": "SEMEV-e3269ad7adc4d38ce15789dd",
+      "relacion_id": "REL-350211bc943be8bae0c8eea2",
+      "reporte_inspeccion_ref_consumido": [],
+      "reserva": "El worker no adjudica y no trata ausencia de join como evidencia negativa.",
+      "siguiente_accion_original_sha256": "e6132f567607fb339cb3c907e9b29072e9c2d5d7cabb00cde3709c1779a00e4f"
+    },
+    {
+      "afirmacion_tipo": "NO_DETERMINADO",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "estado": "SIN_JOIN_EXACTO_A_REPORTE_NEUTRAL",
+      "evaluacion_id": "SEMEV-a3465827528fdb9fa3c00f91",
+      "relacion_id": "REL-abd2650bcf443274eb467a60",
+      "reporte_inspeccion_ref_consumido": [],
+      "reserva": "El worker no adjudica y no trata ausencia de join como evidencia negativa.",
+      "siguiente_accion_original_sha256": "e6132f567607fb339cb3c907e9b29072e9c2d5d7cabb00cde3709c1779a00e4f"
+    },
+    {
+      "afirmacion_tipo": "NO_DETERMINADO",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "estado": "SIN_JOIN_EXACTO_A_REPORTE_NEUTRAL",
+      "evaluacion_id": "SEMEV-7257e846827fa0c1d2b439c2",
+      "relacion_id": "REL-e2371e6b0d421f30c496d3da",
+      "reporte_inspeccion_ref_consumido": [],
+      "reserva": "El worker no adjudica y no trata ausencia de join como evidencia negativa.",
+      "siguiente_accion_original_sha256": "e6132f567607fb339cb3c907e9b29072e9c2d5d7cabb00cde3709c1779a00e4f"
+    }
+  ],
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "task_id": "SEMTSK-b6566cd1dcd301d7dcf62839"
+}

@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "5b4d43e8f82f47be2e9acc19da8e813517ff55be9f0ea000dac643c9cdb1c1a0",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:ENNVIH",
+  "fuente_canonica_normalizada": "ENNVIH",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:canon/gobernanza-v1_15.md;MAIN:canon/modelo-decision-v4_0.md;MAIN:corpus/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md;MAIN:corpus/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md",
+      "evidencia_ref_evidencia_original": "MAIN:forense/matriz-impacto-universal-2026-08-06.md",
+      "evidencia_ref_original": "MAIN:forense/matriz-impacto-universal-2026-08-06.md",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:ENNVIH",
+      "fuente_canonica_normalizada": "ENNVIH",
+      "input_requerido_clasificacion": "Evidencia previa exacta, mapeo necesidad→objeto y reportes neutrales disponibles.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N5",
+      "objeto_evidencia_id_canonico": "OE-2914da93c77f7bde435ccf41",
+      "procedencia_id": "PROV-57b7bc4da9699adba734d5c4",
+      "regla_clasificacion_id": "RW-06-DEFAULT",
+      "relacion_id": "REL-4773e33ebd7e704a595bbf07",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No propagar estado por fuente ni por necesidad.",
+      "reserva_original": "No se propagó el estado general de la necesidad; requiere evidencia fuente-específica.",
+      "siguiente_accion_original": "Abrir codebooks por ola y localizar indicador temporal, conducta financiera y llave individual longitudinal.",
+      "siguiente_accion_original_sha256": "30f41045c01d499d3f9a6bb096c2b78a69c9248ef91505caad5543f4acb98e66",
+      "siguiente_accion_tipificada": "Contrastar procedencia estructurada de REL-4773e33ebd7e704a595bbf07 con sus objetos de modelo permitidos y emitir propuesta o reserva.",
+      "tipo_trabajo": "CURADURIA_FUENTE"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-9f45d9d4b202bc05d4f830be"
+}

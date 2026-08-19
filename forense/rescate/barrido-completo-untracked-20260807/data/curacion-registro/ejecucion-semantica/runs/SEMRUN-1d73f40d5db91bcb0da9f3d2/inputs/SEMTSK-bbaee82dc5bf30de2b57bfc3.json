@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "8ec693c8d673df3515fad5547ed15f0a1ad551b3bddfcbf72d190d9a86cadaa3",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:CCPV",
+  "fuente_canonica_normalizada": "CCPV",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:canon/glosario-v5_6.md;MAIN:corpus/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md;MAIN:corpus/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md;MAIN:corpus/reports/Psychology_of_Mexico-US_Migration__Identity__Family__Aspiration__and_Wellbeing_in_2025.md",
+      "evidencia_ref_evidencia_original": "MAIN:forense/hitoE-campana-medicion-v2_0.md",
+      "evidencia_ref_original": "MAIN:forense/hitoE-campana-medicion-v2_0.md",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:CCPV",
+      "fuente_canonica_normalizada": "CCPV",
+      "input_requerido_clasificacion": "Evidencia previa exacta, mapeo necesidad→objeto y reportes neutrales disponibles.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N31",
+      "objeto_evidencia_id_canonico": "OE-e3e2c41b1f94b885919e010d",
+      "procedencia_id": "PROV-dc4eb00f985a3bc528805b5e",
+      "regla_clasificacion_id": "RW-06-DEFAULT",
+      "relacion_id": "REL-c6870668d94d02dded8c4126",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No propagar estado por fuente ni por necesidad.",
+      "reserva_original": "No se propagó el estado general de la necesidad; requiere evidencia fuente-específica.",
+      "siguiente_accion_original": "Abrir instrumento, ficha muestral y resultados CCPV; verificar cobertura geográfica y réplica del estimando original.",
+      "siguiente_accion_original_sha256": "bc8839c9105b983c1ec7662da6e8685968d946b6441eea23ef00a090e26477db",
+      "siguiente_accion_tipificada": "Contrastar procedencia estructurada de REL-c6870668d94d02dded8c4126 con sus objetos de modelo permitidos y emitir propuesta o reserva.",
+      "tipo_trabajo": "CURADURIA_FUENTE"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-bbaee82dc5bf30de2b57bfc3"
+}

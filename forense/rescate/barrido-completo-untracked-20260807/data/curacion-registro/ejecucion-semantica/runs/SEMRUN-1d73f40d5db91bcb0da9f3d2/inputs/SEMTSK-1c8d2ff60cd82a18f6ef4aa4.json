@@ -1,0 +1,91 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "74ee776e591e9f6ffeb76a79dd754056513f1867a3f888da6c56ffa3273326d1",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:INE",
+  "fuente_canonica_normalizada": "INE",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "México",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L97",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L97",
+      "evidencia_ref_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L97",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:INE",
+      "fuente_canonica_normalizada": "INE",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N26",
+      "objeto_evidencia_id_canonico": "OE-6487bac05f4bf89b84d72e68",
+      "procedencia_id": "PROV-e8ceeaf4c17c4b6cd9637beb",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-4945113fd8870341191221b6",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Precisar producto.",
+      "siguiente_accion_original_sha256": "a2933ad267dd4f774af3cbb7a6ca82d0e0e7a619bba45e612406024ceffdb997",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-4945113fd8870341191221b6 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    },
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "México",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L97",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L97",
+      "evidencia_ref_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L97",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:INE",
+      "fuente_canonica_normalizada": "INE",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N25",
+      "objeto_evidencia_id_canonico": "OE-629ec191998ec508c83fae05",
+      "procedencia_id": "PROV-3c7a091a92c6061293e9ffa6",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-8b5abcdb9a618f64c2639477",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Precisar producto.",
+      "siguiente_accion_original_sha256": "a2933ad267dd4f774af3cbb7a6ca82d0e0e7a619bba45e612406024ceffdb997",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-8b5abcdb9a618f64c2639477 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-1c8d2ff60cd82a18f6ef4aa4"
+}

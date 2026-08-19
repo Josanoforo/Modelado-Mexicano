@@ -1,0 +1,52 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "eb2b982a83a95cb116865858b595f05889cdfd0a70e2ddd1a7f00278014f981b",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:EARLY_CHILDHOOD_EDUCATION_PROGRAM_IMPACT_EVALUATION_2012_2014",
+  "fuente_canonica_normalizada": "EARLY_CHILDHOOD_EDUCATION_PROGRAM_IMPACT_EVALUATION_2012_2014",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "2012-2014",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv:L6",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv:L6",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv:L6",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:EARLY_CHILDHOOD_EDUCATION_PROGRAM_IMPACT_EVALUATION_2012_2014",
+      "fuente_canonica_normalizada": "EARLY_CHILDHOOD_EDUCATION_PROGRAM_IMPACT_EVALUATION_2012_2014",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N13",
+      "objeto_evidencia_id_canonico": "OE-8f78c2549f10817cc484275f",
+      "procedencia_id": "PROV-9e610ce3ad75d1943d67f647",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-894b3c5025557df7ef942f2a",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Obtener instrumentos.",
+      "siguiente_accion_original_sha256": "cef21d4b27584a48612860c4563cbdbffff41cea1d4c000a0ac1bf70a59977d9",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-894b3c5025557df7ef942f2a con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-5fe01d6b0ee36f93ad99c21c"
+}

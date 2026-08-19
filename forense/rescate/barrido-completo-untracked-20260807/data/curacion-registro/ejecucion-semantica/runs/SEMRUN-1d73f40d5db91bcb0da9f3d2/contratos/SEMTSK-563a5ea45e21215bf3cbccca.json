@@ -1,0 +1,32 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "criterio_cierre": "Propuesta trazable supervisada o terminal explícito SIN_EXPEDIENTE_INTEGRABLE.",
+  "fail_closed": true,
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:ENSAFI",
+  "fuente_canonica_normalizada": "ENSAFI",
+  "reglas": [
+    "No sustituir siguiente_accion_original.",
+    "No inferir identidad ni semántica desde URL, nombre o pertenencia a familia.",
+    "Consumir reportes neutrales solo por relacion→activo→reporte exactos.",
+    "Una propuesta incompleta no modifica el baseline."
+  ],
+  "relaciones_asignadas": [
+    "REL-01ff8326fdbe3c0a4e299a02",
+    "REL-0b6385436015c470992017f1",
+    "REL-12b348704acbcdd4b811185b",
+    "REL-641a2435b0e68b2049b73d72",
+    "REL-7c92eca186a227ee718864e6",
+    "REL-89b5a730c80b52245609d460",
+    "REL-8f6cc360dac1c16f2ea6c7ea",
+    "REL-b8a1bd303f0aac03e3b1bdd7",
+    "REL-c065ff3c4b02af2b359a6a40",
+    "REL-cf53a5e4bf5bf666390fa543",
+    "REL-d7d327e72f466b970d040e81",
+    "REL-ed3674d93fbcd45914630569",
+    "REL-f586d39d7211922886da9f95"
+  ],
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-563a5ea45e21215bf3cbccca"
+}

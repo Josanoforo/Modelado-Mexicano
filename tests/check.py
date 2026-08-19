@@ -132,6 +132,16 @@ def t02_duplicates():
         # por-worker/por-integración que las tres excepciones de arriba, un
         # prototipo anterior (6-7/ago) del mismo pipeline. Archivo, no vivo.
         "forense/rescate/curador-untracked-20260807/",
+        # forense/rescate/barrido-completo-untracked-20260807/: rescate verbatim
+        # (FP-59, ACTO LIMPIA-CAJA) del untracked de
+        # Modelado-Mexicano-barrido-completo -- son literalmente archivos bajo
+        # `data/curacion-registro/ejecucion-semantica/runs/`, el PRIMER prefijo
+        # exceptuado de arriba, movidos bajo forense/rescate/ al archivarlos:
+        # SEMTSK-*.json repetidos entre contratos/ y reportes-worker/, TCUR-*.json
+        # entre inputs/ e inputs-curador/. Misma nomenclatura por-run, mismo
+        # pipeline, misma corrida (SEMRUN-1d73f40d/354ccb9d, 07/ago). Archivo, no
+        # vivo. Mismo mecanismo de grupo que el rescate del curador (PR #274).
+        "forense/rescate/barrido-completo-untracked-20260807/",
     )
     def all_excepted(paths):
         return all(p.startswith(EXCEPTED_PREFIXES) for p in paths)

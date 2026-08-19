@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "60883251cb080c58f74e09723501baa987379453812bc55dcaf280dd8b620ecb",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_DE_LA_POBLACION",
+  "fuente_canonica_normalizada": "ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_DE_LA_POBLACION",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L2",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L2",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L2",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_DE_LA_POBLACION",
+      "fuente_canonica_normalizada": "ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_DE_LA_POBLACION",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N29",
+      "objeto_evidencia_id_canonico": "OE-730f7a0b550a1424e88ebf56",
+      "procedencia_id": "PROV-b42108949f1f3bf0ea9637d1",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-63835b1a27c62356495d6104",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir manual y microdato del año objetivo; verificar texto, codificación, comparabilidad y desenlace coobservado.",
+      "siguiente_accion_original_sha256": "62c1b6a0763e040f43017c9ae2e9950ac395e6a86e930b4ba390a3253dfbb302",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-63835b1a27c62356495d6104 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-c751b2cc702b660de290303b"
+}

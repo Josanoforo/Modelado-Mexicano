@@ -1,0 +1,51 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "fb84523734d0939d9fd4b6568f62a6c16c59193f24e4d5150dd8bc4ce9428f4f",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:AHORRO FINANCIERO Y FINANCIAMI",
+  "fuente_canonica_normalizada": "AHORRO FINANCIERO Y FINANCIAMI",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "periodo",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "indicador agregado",
+        "universo_muestra": "México",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L37",
+      "evidencia_ref_evidencia_original": "MAIN:data/inventarios/inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md:L40",
+      "evidencia_ref_original": "MAIN:data/inventarios/inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md:L40",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:AHORRO FINANCIERO Y FINANCIAMI",
+      "fuente_canonica_normalizada": "AHORRO FINANCIERO Y FINANCIAMI",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N19",
+      "objeto_evidencia_id_canonico": "OE-9b4d021444b78bf40c9878b9",
+      "procedencia_id": "PROV-dcc3228d164035a81c5a4059",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-837d54e76ebe85170870493a",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir tabla específica.",
+      "siguiente_accion_original_sha256": "07192782f803140b7b5d5446a6398ec820513e0628a66f7b177d98912f800f79",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-837d54e76ebe85170870493a con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-501759ad5c9a99a7cafbff34"
+}

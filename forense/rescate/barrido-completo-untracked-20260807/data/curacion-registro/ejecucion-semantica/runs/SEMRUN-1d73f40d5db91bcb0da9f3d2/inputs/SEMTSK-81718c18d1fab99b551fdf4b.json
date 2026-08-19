@@ -1,0 +1,93 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "8930ace09b5f5748baa6adb57242f8cb54bdd7f493f3bf2aedd1a4676ed35351",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:LATINOBARÓMETRO",
+  "fuente_canonica_normalizada": "LATINOBARÓMETRO",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L11",
+      "evidencia_ref_evidencia_original": "MAIN:forense/hitoE-campana-medicion-v2_0.md",
+      "evidencia_ref_original": "MAIN:forense/hitoE-campana-medicion-v2_0.md",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:LATINOBARÓMETRO",
+      "fuente_canonica_normalizada": "LATINOBARÓMETRO",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N30",
+      "objeto_evidencia_id_canonico": "OE-18a91d6f51832ff30efa00b4",
+      "procedencia_id": "PROV-fde8c44e5cf843af3c203bab",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-4360d0a91e5f8be30916c2b9",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Obtener el microdato bajo la licencia aplicable y mapear reactivo, codificación y desenlace para México.",
+      "siguiente_accion_original_sha256": "895a660662f6e2aff564303d117da35585b981c90bf2f123407e2eb5912d9439",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-4360d0a91e5f8be30916c2b9 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    },
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:canon/integrador-psicologia-mexicano.md;MAIN:canon/modelo-decision-v4_0.md;MAIN:corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md;MAIN:corpus/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md",
+      "evidencia_ref_evidencia_original": "MAIN:forense/hitoE-campana-medicion-v2_0.md",
+      "evidencia_ref_original": "MAIN:forense/hitoE-campana-medicion-v2_0.md",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:LATINOBARÓMETRO",
+      "fuente_canonica_normalizada": "LATINOBARÓMETRO",
+      "input_requerido_clasificacion": "Evidencia previa exacta, mapeo necesidad→objeto y reportes neutrales disponibles.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N15",
+      "objeto_evidencia_id_canonico": "OE-6f933b74f8ae06c8c38d7f95",
+      "procedencia_id": "PROV-cde0f6d4da057f96f273ac9a",
+      "regla_clasificacion_id": "RW-06-DEFAULT",
+      "relacion_id": "REL-f09043ef09997adc0bb4a3f2",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No propagar estado por fuente ni por necesidad.",
+      "reserva_original": "No se propagó el estado general de la necesidad; requiere evidencia fuente-específica.",
+      "siguiente_accion_original": "Obtener el microdato bajo la licencia aplicable y mapear reactivo, codificación y desenlace para México.",
+      "siguiente_accion_original_sha256": "895a660662f6e2aff564303d117da35585b981c90bf2f123407e2eb5912d9439",
+      "siguiente_accion_tipificada": "Contrastar procedencia estructurada de REL-f09043ef09997adc0bb4a3f2 con sus objetos de modelo permitidos y emitir propuesta o reserva.",
+      "tipo_trabajo": "CURADURIA_FUENTE"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-81718c18d1fab99b551fdf4b"
+}

@@ -1,0 +1,31 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "criterio_cierre": "Propuesta trazable supervisada o terminal explícito SIN_EXPEDIENTE_INTEGRABLE.",
+  "fail_closed": true,
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:ENFIH",
+  "fuente_canonica_normalizada": "ENFIH",
+  "reglas": [
+    "No sustituir siguiente_accion_original.",
+    "No inferir identidad ni semántica desde URL, nombre o pertenencia a familia.",
+    "Consumir reportes neutrales solo por relacion→activo→reporte exactos.",
+    "Una propuesta incompleta no modifica el baseline."
+  ],
+  "relaciones_asignadas": [
+    "REL-16d3c66af7fc856df2130139",
+    "REL-2d58abfc1b418484af3f2f7d",
+    "REL-36cde7fa0d470608a94ddb1e",
+    "REL-3b746c49c7c051083df6ee81",
+    "REL-45672e7d7c5ac7c69edaede4",
+    "REL-50e6d069fd121a8a7cd64fc5",
+    "REL-6b52ae9ea4b72a9f27f01260",
+    "REL-928de62ad3c403adf193bfc4",
+    "REL-987f01cb468fa0b51b2dffc6",
+    "REL-a63dce9852d52046595e28f0",
+    "REL-da62a7c3cdb80080258aa148",
+    "REL-fb6a1baf579c6521a638b093"
+  ],
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-39c97ebccbcabb16be3b99ac"
+}

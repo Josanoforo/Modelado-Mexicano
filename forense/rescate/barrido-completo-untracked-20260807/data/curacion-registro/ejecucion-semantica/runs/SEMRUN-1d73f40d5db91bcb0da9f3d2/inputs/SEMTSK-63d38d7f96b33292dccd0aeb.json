@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "a2cf74f78d45295a56d0c102e8887dde9294d3adc4aa41d87188b5442fe51f2b",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:BASE_DE_EVENTOS_DE_PROTESTA_EN_MEXICO",
+  "fuente_canonica_normalizada": "BASE_DE_EVENTOS_DE_PROTESTA_EN_MEXICO",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L27",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L27",
+      "evidencia_ref_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L27",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:BASE_DE_EVENTOS_DE_PROTESTA_EN_MEXICO",
+      "fuente_canonica_normalizada": "BASE_DE_EVENTOS_DE_PROTESTA_EN_MEXICO",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N27",
+      "objeto_evidencia_id_canonico": "OE-dd233626827fe6c90c301108",
+      "procedencia_id": "PROV-ab8f47c7733c80c3ffb1d2a1",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-6c15fdac77dea33175ef25c5",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Solicitar acceso puntual a la base y codebook; verificar fecha, actor, demanda, respuesta y geografía.",
+      "siguiente_accion_original_sha256": "5959cee8bc9642cb0cf5571465361b738b08980458072b68fc90cd27b822a834",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-6c15fdac77dea33175ef25c5 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-63d38d7f96b33292dccd0aeb"
+}
