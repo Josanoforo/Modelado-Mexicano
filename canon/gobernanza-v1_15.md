@@ -2207,6 +2207,18 @@ Detalle completo, comando por comando, con las dos preguntas y las dos respuesta
 
 ---
 
+**ADR-114 · `FP-57` se firma opción (b): el corpus queda declarado base de evidencia fechada que no se retoca; los dos sitios vivos ganan una nota de una línea apuntando a `modelo v2.3`/conf.08, sin editar el texto forense.** `ACTO FP57-DECLARA` sella en repo la firma de mesa del 19/ago/2026, sobre la fila `FP-57` abierta 18/ago (#267, `CONF-07-CIERRE`/`ADR-106(d)`, que había declarado el corpus fuera de perímetro de ese acto).
+
+**Firma de mesa (verbatim, conversación de dirección, 19/ago/2026).** Propuesta: *"Propongo opción (b): el corpus queda declarado base de evidencia fechada que no se retoca, con una nota de una línea en los dos sitios vivos apuntando a `modelo v2.3`/conf.08."* Respuesta: *"FP-57 si"*.
+
+**Por qué (b) y no corregir el texto.** El corpus es evidencia forense fechada — lo que un reporte concluyó con la información disponible cuando se escribió. `«ni broker»` (`corpus/forense/Validación_Forense_del_Clientelismo_Electoral…:121`, REGLA 2; `corpus/reports/Psicología_Política_y_Comportamiento_Cívico…:260`) fue una lectura correcta al momento de escribirse esos dos reports; `conf.08` retiró el supuesto del motor en `modelo v2.3` después. Editar el corpus para que coincida con el motor vigente borraría el rastro de qué sabía el forense cuando concluyó lo que concluyó — el propio patrón que `ADR-106(d)` ya había protegido al declarar el corpus fuera de perímetro de `CONF-07-CIERRE`. La nota de una línea resuelve la lectura sin tocar la evidencia.
+
+**Ejecutado.** Nota `> **Nota de estado (19/ago/2026 · FP-57):** este documento es base de evidencia fechada del corpus y no se retoca; «ni broker» fue retirado del motor en `modelo v2.3` (conf.08) — no leer este pasaje como posición vigente del motor.` añadida tras el título en los dos sitios vivos: `corpus/forense/Validación_Forense_del_Clientelismo_Electoral_en_México…:1` y `corpus/reports/Psicología_Política_y_Comportamiento_Cívico…:1`. Ningún otro carácter del corpus se tocó. `canon/glosario-v5_6.md` y `canon/modelo-decision-v4_0.md` (los otros dos hits de `grep -rln "ni broker"`) son registro del motor, fuera de perímetro de este acto por diseño.
+
+→ **Vigente.** *(ACTO FP57-DECLARA, 19/ago/2026. Sesión NUBE, repo-only, no tocó microdato. Perímetro: los dos archivos corpus citados (nota de una línea cada uno), `forense/firmas-pendientes.tsv` (solo `FP-57` → `FIRMADA`), `canon/gobernanza-v1_15.md` (este ADR), `canon/estado-programa-v1_10.md` (solo cascada), `forense/hallazgos.md`, `forense/encargos/2026-08-19-FP57-DECLARA.md`. No tocó `canon/glosario-v5_6.md` ni `canon/modelo-decision-v4_0.md`. Contadores de medición sobre México: **0**.)*
+
+---
+
 
 **ADR-114 · El corte de `edad` para «joven» queda fijado por convención declarada — 15-29 años (INEGI/ENOE) — y propagado a los nueve sitios de `modelo` que lo citaban `corte PENDIENTE`; ninguna hipótesis ni regla se re-adjudica.** Decisión de mesa D-2 de `MESA-19AGO`, verbatim: *"**(c) Ambas** — Convención declarada ahora para desbloquear los 9 sitios, más derivación empírica con dato mexicano propio como acto en cola que puede corregirla"* (`ADR-110(b)`, fila `FP-53`). `ACTO CORTE-EDAD-CONVENCION` ejecuta la mitad (c)-convención de esa firma; no ejecuta la mitad empírica, que corresponde a `CORTE-EDAD-EMPIRICO` (gemelo en cola, sesión UBUNTU, dato mexicano propio).
 
