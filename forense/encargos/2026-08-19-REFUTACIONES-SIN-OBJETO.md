@@ -1,6 +1,6 @@
 # ENCARGO · ACTO REFUTACIONES-SIN-OBJETO — ejecutar la letra de D-3 sobre las ocho sin objeto
 
-SHA de redacción: derivar al lanzar (escrito el 18/ago/2026 por `ACTO MESA-19AGO`). Entorno asignado: **NUBE** (repo-only). Estado: **VIVO**, sin gate. Origen: firma de mesa D-3 de `MESA-19AGO`, `ADR-107(c)`, fila `FP-56`.
+SHA de redacción: derivar al lanzar (escrito el 18/ago/2026 por `ACTO MESA-19AGO`). Entorno asignado: **NUBE** (repo-only). Estado: **VIVO**, sin gate. Origen: firma de mesa D-3 de `MESA-19AGO`, `ADR-110(c)`, fila `FP-56`.
 
 ## 1 · Lo que la mesa firmó (verbatim)
 

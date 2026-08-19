@@ -1,0 +1,49 @@
+{
+  "after_sha256": {
+    "aliases-fuentes.tsv": "4ea5cf366440968b94ac0ef8a25b22c7e9a503643808068be55cc17be7aabd3b",
+    "artefactos-rechazados.tsv": "0c0ac54dcd2a160da97cfc1488e9f31aa879dcdbb23764247a6a20405bfe3439",
+    "baseline.json": "a8782ca10b664cccee955b07c92eff3a70a3177385ce29b4982a3ac004d7a9b2",
+    "bootstrap-semantico.tsv": "8d88870519f3f2a857fe0843375ad31a23a0362b40f0eb37e7b93a57b0b80ee7",
+    "decisiones-humanas.tsv": "2d32cd5e06fc2901aaf1eca7505936049528fd8496761a25653b7c2bcc21dcd8",
+    "evidencias.tsv": "58f2c5d9878b9ada1b8bca4f18b7c36aa9145208ae08723b0ea1e73b5f495cae",
+    "fusiones-relaciones.tsv": "d7ab67a8a20b4f27e825a025a4ffc6326f001508f72b6a0a273b79f30cd5a7b3",
+    "relaciones.tsv": "5e4e125cd57b89b9af63c5477b09972e9a4236d0ff73a55d4732d4f1c6dbc6f2",
+    "trabajo-semantico.tsv": "230600f736fc9f1209a74e38c10db8af3f582a8043eca913e83fdfef7e059594",
+    "utilidad-modelo.tsv": "54ce501b45a12fd64a69d51b1a39fd5d19955b8eb01d138e4e2c753bad792c67"
+  },
+  "applied": true,
+  "before_sha256": {
+    "aliases-fuentes.tsv": "4ea5cf366440968b94ac0ef8a25b22c7e9a503643808068be55cc17be7aabd3b",
+    "artefactos-rechazados.tsv": "0c0ac54dcd2a160da97cfc1488e9f31aa879dcdbb23764247a6a20405bfe3439",
+    "baseline.json": "db88a09a27c3b5e569198ef6033c2a479cfe286babb7d3571011a8646e079703",
+    "bootstrap-semantico.tsv": "ef8342a9a8fd5dac63a32dea939d480a59ce325048edd9867479d44860810e5e",
+    "decisiones-humanas.tsv": "2d32cd5e06fc2901aaf1eca7505936049528fd8496761a25653b7c2bcc21dcd8",
+    "evidencias.tsv": "432b4fe581f07f454c6ece2e8766d35b992e47c82b7845e6d42f78f5c0958580",
+    "fusiones-relaciones.tsv": "d7ab67a8a20b4f27e825a025a4ffc6326f001508f72b6a0a273b79f30cd5a7b3",
+    "relaciones.tsv": "50e1e594ddb92be266919990446cf566bbc4f4e657b0dc220cae8227eed2aa86",
+    "trabajo-semantico.tsv": "bc5cc8a798ce9d93596fe78a564cf4f48c0a11377960132ceecaa1c8af0c24f6",
+    "utilidad-modelo.tsv": "31066d4e782ad55d2ccf6fd0f28a3d79e45db6d674feb40cbd65590ec4b6feae"
+  },
+  "changed": [
+    "baseline.json",
+    "bootstrap-semantico.tsv",
+    "evidencias.tsv",
+    "relaciones.tsv",
+    "trabajo-semantico.tsv",
+    "utilidad-modelo.tsv"
+  ],
+  "decisiones": {
+    "INTEGRADA": 37
+  },
+  "high_path_built": false,
+  "journal_id": "JRN-B2-720d1e43ccaad64eb2034a8039c74cc4342baeab6b6f99e8e5d5218fd8aa050c",
+  "journal_sha256": "68daf69c29567ea34d3f046a23d54403fadcfd3016cc27d041b1e9d00460ef18",
+  "material_baseline_sha256": "6eec3850f7f3f4141eb28967a1d67ac20bf9ab689f4af84980588d55ef453940",
+  "ok": true,
+  "proposals_sha256": "c92c02baf4c28c1a68ee41ad22c9c68b928d1516f8aa6656d57d38c185472676",
+  "propuestas": 37,
+  "propuestas_altas_validadas": 0,
+  "relaciones_integradas": 37,
+  "reports_sha256": "d7cba83ff2f72748d6160e148d5add84a4578dcbef6681ec1e5adadd8dd63c94",
+  "tasks_sha256": "42d3b5fff74c1cb130f76d1f81a8c6ac37aa6f23cb561f8d8a1ba21cc791532a"
+}

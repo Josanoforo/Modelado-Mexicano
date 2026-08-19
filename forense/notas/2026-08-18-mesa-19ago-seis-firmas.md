@@ -85,7 +85,7 @@ Las `ABIERTA` restantes ya no incluyen `FP-55`: la directiva de mesa la firmó (
 
 ## 6 · Cascada y ADR
 
-`ADR-107`, multi-inciso, seis incisos (a)-(f) con las respuestas verbatim. Conteo de ADR re-derivado **dos veces**: al escribir, contra `f3d3f95` → máximo **105**, sin huecos, candidato `106` (el encargo traía «máximo hoy: 104» — foto vencida por la fusión de `ADR-105`/`COND-ATRIB`); segunda derivación obligatoria al fusionar, con renumerado si otro carril tomó el `106`. Sitios de cascada: `gobernanza-v1_15.md:2` (105→106) y `estado-programa-v1_10.md:27,101` (105→106). ⚠️ `FP-48` respetado: `estado-programa` editado **cláusula por cláusula**, nunca por bloque, mientras `ESTADO-SPLIT` no fusione.
+`ADR-110`, multi-inciso, seis incisos (a)-(f) con las respuestas verbatim. Conteo de ADR re-derivado **dos veces**: al escribir, contra `f3d3f95` → máximo **105**, sin huecos, candidato `106` (el encargo traía «máximo hoy: 104» — foto vencida por la fusión de `ADR-105`/`COND-ATRIB`); segunda derivación obligatoria al fusionar, con renumerado si otro carril tomó el `106`. Sitios de cascada: `gobernanza-v1_15.md:2` (105→106) y `estado-programa-v1_10.md:27,101` (105→106). ⚠️ `FP-48` respetado: `estado-programa` editado **cláusula por cláusula**, nunca por bloque, mientras `ESTADO-SPLIT` no fusione.
 
 ## 7 · Lo que este acto NO hizo
 
@@ -107,9 +107,9 @@ Paso intermedio, declarado porque ocurrió: al bajar el WARN a 124, `T16` (self-
 
 Mientras el acto esperaba la firma de `D-4`, `origin/main` avanzó de `f3d3f95` a **`cb0d98f`**: `PR #264` (`ESTADO-SPLIT`), `PR #265` (`CONF-07-CIERRE`), `PR #266` (`LANE-A-E0-E5`). `PR #267` quedó en conflicto (`mergeable_state: dirty`). Se fusionó `origin/main` en la rama —**merge, nunca rebase ni force-push**— y se resolvió a mano:
 
-**1 · El número de ADR. La contingencia ocurrió.** `ACTO CONF-07-CIERRE` fusionó primero su propio **`ADR-106`** (sello de la partición de `modelo §3.7`, `conf.07` RESUELTA). Máximo re-derivado contra `cb0d98f`: **106**, sin huecos → este acto pasa a **`ADR-107`** y se reordena **después** del `106` ajeno, cuyo texto se preserva verbatim. Noveno ejercicio del mismo protocolo. Renumerado propagado a las seis encargos, al tablero, a `hallazgos.md` y a esta nota; el `ADR-106(d)` que cita la fila `FP-57` es el de `CONF-07-CIERRE` y **no se tocó**.
+**1 · El número de ADR. La contingencia ocurrió.** `ACTO CONF-07-CIERRE` fusionó primero su propio **`ADR-106`** (sello de la partición de `modelo §3.7`, `conf.07` RESUELTA). Máximo re-derivado contra `cb0d98f`: **106**, sin huecos → este acto pasa a **`ADR-110`** y se reordena **después** del `106` ajeno, cuyo texto se preserva verbatim. Noveno ejercicio del mismo protocolo. Renumerado propagado a las seis encargos, al tablero, a `hallazgos.md` y a esta nota; el `ADR-106(d)` que cita la fila `FP-57` es el de `CONF-07-CIERRE` y **no se tocó**.
 
-**2 · `FP-48` dejó de ser contingencia.** `ESTADO-SPLIT` fusionó y **partió `estado-programa:101` en 66 cláusulas, una por línea** — justo lo que la advertencia del encargo anticipaba. La cascada se rehízo **donde el split la dejó**: cláusula propia `- a 107 después, con ADR-107…` en la lista, no reinsertando el párrafo monolítico que ya no existe. Cabecera de la tabla (`:27`) y `L0` (`:101`): 106→**107**.
+**2 · `FP-48` dejó de ser contingencia.** `ESTADO-SPLIT` fusionó y **partió `estado-programa:101` en 66 cláusulas, una por línea** — justo lo que la advertencia del encargo anticipaba. La cascada se rehízo **donde el split la dejó**: cláusula propia `- a 107 después, con ADR-110…` en la lista, no reinsertando el párrafo monolítico que ya no existe. Cabecera de la tabla (`:27`) y `L0` (`:101`): 106→**107**.
 
 **3 · El tablero.** Conflicto real en `forense/firmas-pendientes.tsv`: `origin` abrió **`FP-57`** (`conf.08` / *"ni broker"* en `corpus/`) inmediatamente después de mi `FP-56`. Resuelto conservando **las dos**: mi `FP-56` firmada y la `FP-57` de origin intacta. Recuento tras la fusión: **57 filas** — `FIRMADA` 45 · `ABIERTA` 7 · `FIRMADA-CONDICIONAL` 4 · `CERRADA` 1 (esta última, de `LANE-A-E0-E5`).
 
@@ -168,3 +168,21 @@ $ python3 tests/check.py --baseline
   19 FAIL · 122 WARN
   LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json
 ```
+
+## 12 · ADENDA 2 — segunda fusión: el número vuelve a moverse, y dos gates se abren
+
+`origin/main` avanzó de `cb0d98f` a **`e563e5d`** (ocho PR: `#268` `B2-SEMANTICO`, `#269` `T20-LLAVES`, `#270` `CENSO-CMD`, `#271` `SELLO-FICHA-G3-V2`, `#272` `ESTADO-SPLIT` SS10, `#273` `E3-TRIAGE`, más sus merges). Fusionado en la rama —merge, nunca rebase— y resuelto a mano:
+
+**1 · Tercer conteo de ADR, segundo renumerado. `107` → `110`.** `SELLO-FICHA-G3-V2` (`PR #271`) fusionó **otro** `ADR-107`, y `B2-SEMANTICO` (`PR #268`) renumeró su propio par a `108`/`109`. Máximo re-derivado contra `e563e5d`: **109**, sin huecos → este acto queda en **`ADR-110`**, reordenado tras el `109`. **Ningún texto ajeno se tocó**: el `ADR-107` de `SELLO-FICHA-G3-V2` y el `ADR-106` de `CONF-07-CIERRE` quedan donde estaban, y la fila `FP-11`, que cita ese `ADR-107` ajeno, no se modificó. Renumerado propagado a mis seis encargos, al tablero, a `hallazgos.md` y a esta nota — y **solo** a ellos.
+
+**2 · Conflicto real en el tablero, resuelto a favor de `origin`.** `FP-14` y `FP-15` chocaron: mi lado traía el estado viejo (`FIRMADA-CONDICIONAL`, sin `ejecutada_en`), el de `origin` el nuevo — `ACTO E3-TRIAGE` cerró `FP-14` mientras este acto esperaba. **Gana `origin`**: es trabajo posterior y real, y este acto no tiene nada que decir sobre esas filas. Verificado después de resolver: contra `origin/main`, las **únicas** filas que este acto cambia son sus seis (`FP-32`, `FP-33`, `FP-53`, `FP-54`, `FP-55`, `FP-56`). El choque lo provocó el re-quoting de mi propia reescritura del TSV, no una edición de contenido — anotado para quien vuelva a editar el tablero con `csv`.
+
+**3 · Las cifras, por tercera vez.** Base de `origin` tras `CENSO-CMD`: 124 WARN. Las seis firmas de este acto quitan **−6 de `T22`** → **118**. `T15` (conteo de ADR) quedó en `ok` tras el renumerado; `T16` atrapó las dos declaraciones desalineadas y se recifraron cláusula por cláusula.
+
+```
+$ python3 tests/check.py --baseline
+  19 FAIL · 118 WARN
+  LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json
+```
+
+**4 · Consecuencia que este acto NO ejecuta pero debe dejar dicha: `B2-SEMANTICO` fusionó (`PR #268`), así que el gate de `U2-EV1` y `DOC-BACKFILL` —«`B2-SEMANTICO` fusionado»— está satisfecho.** Los dos encargos quedan **lanzables**, y siguen sin lanzarse: este acto escribe encargos, no los corre. Al abrirlos, sus propias instrucciones mandan — `U2-EV1` debe re-derivar su perímetro y verificar por comando si la fila ENASIC sigue obligatoria tras `BARRIDO-2`; `DOC-BACKFILL` debe re-derivar su población y decidir si los productos de `BARRIDO-2` ya lo absorben.
