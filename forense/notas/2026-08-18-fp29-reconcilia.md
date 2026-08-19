@@ -126,3 +126,166 @@ Bloque B-bis exige declarar qué significa cada desenlace **antes** de correr, i
 **Dentro:** `data/manifiesto.yaml` (alta de Pew si se obtiene) · `data_raw`/payload · `forense/notas/` (esta nota) · `canon/gobernanza-v1_15.md` (ADR + cascada del conteo) · `forense/firmas-pendientes.tsv` (`FP-29`) · `forense/hallazgos.md` · `forense/encargos/` · `tests/` (script de corrida).
 
 **Fuera, y declarado:** **canon sustantivo NO** — la propagación a las celdas que citan 16-26% es **acto sucesor**, con su cola derivada escrita en §6 de esta nota. No se edita `corpus/reports/` (mismo criterio que `ADR-64(c)`: corregirlos borraría la evidencia de que el error existió). No se adjudica `R8.3`. No se reabre `conf.06`. No se toca `milpa/procedencia.yaml` ni el corte ≥6/10 del motor. Sin `--freeze`.
+
+---
+
+## §3 · COMMIT 2 · La corrida — resultados, puramente aditivo sobre §2
+
+*Este commit no edita §2. Script: `tests/fp29_series_externas.py`, commiteado con estos resultados. Salida cruda: `data/fp29-series-externas-2026-08-18.json`. Estimador `prop_ultimate_cluster` de `tests/svystat.py`, sin reimplementar. Todo microdato se abrió bajo `unshare -Urn` (sin red en el namespace); las descargas se hicieron fuera de él.*
+
+### 3.1 · C1 · Pew — **OBTENIDO**, en 7 intentos, con salida cruda
+
+| # | Intento | Resultado crudo |
+|---|---|---|
+| 1 | `curl -I https://www.pewresearch.org/` | `HTTP/2 200`, `server: nginx`, `x-powered-by: WordPress VIP` |
+| 2 | `wp-json/wp/v2/search?search=interpersonal%20trust` | `HTTP 200`, cuerpo vacío (0 resultados para esa frase) |
+| 3 | `wp-json/wp/v2/search?search=trust&per_page=5` | `HTTP_CODE=200 SIZE=2744` — JSON con 5 posts |
+| 4 | `/?s=trust+other+people+Mexico` | `HTTP_CODE=301 SIZE=0` (redirección, no útil) |
+| 5 | GET del short-read `2025/12/01/where-most-people-trust-others…` | `HTTP_CODE=200 SIZE=426449` |
+| 6 | GET del topline `SR_25.12.01_social-trust_topline.pdf` | `HTTP_CODE=200 SIZE=523726 TYPE=application/pdf` |
+| 7 | **A.7** — segunda generación del mismo PDF | `HTTP_CODE=200 SIZE=523726`, **sha256 idéntico byte a byte** → sin token de solicitud |
+
+**Desenlace: `obtenido-y-alta`.** No aplica la fórmula de A.5 — no hubo fallo que declarar. **Y el conocimiento previo no se usó:** la URL del topline no se tecleó de memoria, se derivó del `href` del propio short-read, que a su vez salió del buscador JSON del sitio (intento 3). El portal **no** exige registro, pago ni afiliación.
+
+**Altas en el manifiesto**, por `tests/manifiesto.py --registra` (sha256 derivado del archivo real por la herramienta, nunca tecleado), payload al corpus compartido bajo `data/raw/FP29_PEW_2025/`:
+
+| id | archivo | sha256 | bytes | `--verifica` |
+|---|---|---|---|---|
+| `pew_gas2025_social_trust_topline` | `FP29_PEW_2025/SR_25.12.01_social-trust_topline.pdf` | `103ef06e…41c334` | 523 726 | **COINCIDE** |
+| `pew_gas2025_social_trust_shortread` | `FP29_PEW_2025/pew_shortread_20251201.html` | `34457853…10fdd3` | 426 449 | **COINCIDE** |
+
+**A.7 declarado en la entrada:** el topline es estable entre generaciones (verificado). El HTML **no** se declara estable — es una página renderizada; su hash cambiará con menús y banners. Por eso la cifra se adjudica contra el PDF, no contra la página.
+
+### 3.2 · Lo medido — cada instrumento con su escala pegada al número
+
+**Serie externa A · WVS Wave 7 · México** — `n=1 741`, `A_YEAR=2018`, campo Ene–May 2018, `B_COUNTRY_ALPHA=MEX`, archivo `v5.1` (`version` interna `6-0-0 2024-04-15`), sha256 **COINCIDE** con el manifiesto. Peso `W_WEIGHT` · UPM `I_PSU` · estrato `N_REGION_WVS`.
+
+| Reactivo | Escala | p̂ | SE | IC95% | n útil | Codebook WVS |
+|---|---|---|---|---|---|---|
+| **`Q57`** — se puede confiar en la mayoría de la gente | **binaria** | **10.51%** | 0.84pp | [8.86%, 12.15%] | 1 738 | **10.5** ✔ |
+| `Q58` familia — confía completamente+algo | 4 puntos | 91.90% | 0.70pp | [90.53%, 93.28%] | 1 741 | 73.0+18.9 = **91.9** ✔ |
+| `Q59` **vecinos** — completamente+algo | 4 puntos | **49.71%** | 1.35pp | [47.07%, 52.35%] | 1 738 | 14.0+35.6 = **49.6** ✔ |
+| `Q60` **conocidos** — completamente+algo | 4 puntos | **43.01%** | 1.24pp | [40.58%, 45.44%] | 1 740 | 10.4+32.6 = **43.0** ✔ |
+| `Q61` primera vez — completamente+algo | 4 puntos | 13.10% | 0.90pp | [11.33%, 14.87%] | 1 740 | 2.1+11.0 = **13.1** ✔ |
+
+**Verificación independiente, no buscada a propósito:** las cinco celdas se contrastaron contra el **codebook que el propio WVS publica** para México (`F00011928-World_Values_Survey_Wave_7_2017-2020_Mexico_v3.0.pdf`, tablas `Q57`-`Q61`, `(N)=1,741`). **Coinciden las cinco**, hasta la décima. No es una corroboración de la cifra del corpus: es la validación de mi recodificación y de mi estimador contra la tabulación del productor. Cero estratos singleton en las cinco.
+
+**Serie externa B · Latinobarómetro 2024 · México** — archivo de 17 países, `n_total=19 214`, `n_México=1 200`, `NUMINVES=24`, sha256 **COINCIDE**. Peso `WT` · UPM `CIUDAD` · estrato `TAMCIUD` (proxies declarados: Latinobarómetro **no publica** identificadores formales de estrato/UPM — la varianza es aproximada, y se dice).
+
+| Reactivo | Escala | p̂ | SE | IC95% | n útil |
+|---|---|---|---|---|---|
+| **`P10STGBS`** — se puede confiar en la mayoría de las personas | **binaria** | **26.06%** | 1.84pp | [22.45%, 29.67%] | 1 183 |
+
+2 estratos singleton de 8 (declarados, no forzados a cero).
+
+**Verificación independiente, tampoco buscada a propósito.** `corpus/reports/Sanción_Social_Horizontal…md:73` afirma: *"Latinobarómetro 2024: **15% regional, 26% México**"*. Recalculado desde el microdato crudo, país por país:
+
+```
+México  26.06%   ← el MÁS ALTO de los 17 países
+media simple de los 17 países : 15.62%
+mediana de los 17 países      : 15.34%
+agregado ponderado por n      : 15.60%
+```
+
+**Las dos cifras del corpus reproducen.** Y con ellas viene un hecho sobre México que el corpus tiene medido y no dice: **en Latinobarómetro 2024, México es el país con MAYOR confianza interpersonal generalizada de los 17 de América Latina** — por encima de Argentina (24.4%), Chile (21.0%), Colombia (15.3%), Perú (10.0%) y Brasil (5.0%). "Baja confianza" es cierto en absoluto; **"baja para la región" es falso en este instrumento y en esta ola.**
+
+**Serie externa C · Pew · Global Attitudes Spring 2025** — leído del topline `Q104`, no de microdato (Pew no publica microdato internacional en esta entrega). Escala **binaria**.
+
+| País | Spring 2025 | Spring 2024 |
+|---|---|---|
+| **México** | **18%** | **17%** |
+| Turquía (la más baja) | 14% | 14% |
+| Suecia (la más alta) | 83% | — |
+
+Denominador declarado por el propio Pew: 28 333 adultos en 24 países no-EE.UU., 8/ene–26/abr 2025; **presencial en México**. El topline **no publica la `n` de México ni SE por país** — por eso esta serie entra **sin IC**, y se dice.
+
+**Serie D · LAPOP/AmericasBarometer · México — `it1`, y NO es el reactivo que el racimo discute**
+
+| Ola | Reactivo | Escala | p̂ | IC95% | n útil |
+|---|---|---|---|---|---|
+| 2019 | `it1` la gente de su comunidad, muy+algo confiable | 4 puntos | 54.03% | [51.14%, 56.92%] | 1 525 |
+| 2021 | idem | 4 puntos | 53.63% | [51.49%, 55.76%] | 2 925 |
+| 2023 | idem | 4 puntos | 55.44% | [52.44%, 58.44%] | 1 609 |
+
+*Reserva de diseño en 2021: `upm` toma un valor distinto por observación (UPM = n = 2 925), es decir el identificador de conglomerado es degenerado en esa ola — el IC de 2021 se lee como aproximación de muestreo simple, no como conglomerado último. Declarado, no corregido.*
+
+**El punto sustantivo de esta serie no es su magnitud, es su existencia.** Se hizo la prueba directa sobre el cuestionario ABMex2023 (`lapop_abmex2023_cuestionario.pdf`, en el manifiesto):
+
+```
+grep -i "mayoría de las personas|mayoría de la gente|se puede confiar en la mayor|suficientemente cuidadoso"
+→ CERO coincidencias
+```
+
+**LAPOP no fielda el reactivo de confianza generalizada.** Su único ítem interpersonal es `it1`, sobre *"la gente de su comunidad"*, en escala de 4 puntos.
+
+---
+
+## §4 · La adjudicación — las cinco cifras (más la sexta), con escala y denominador
+
+*Regla de precedencia aplicada tal como se declaró en §2.4: donde una cifra converge contra su propio instrumento y diverge contra otro, manda CONVERGE para la cifra, y la divergencia se reporta como divergencia entre series.*
+
+| # | Cifra | Atribución del corpus | Veredicto | Escala y denominador |
+|---|---|---|---|---|
+| 1 | **12%** | WVS 2012 (Wave 6) | **INDECIDIBLE — falta la ola** | La Wave 6 (2012) **no está en el manifiesto**; solo la Wave 7. Lo que sí queda fijo: el punto **2018** de esa misma serie es **10.5%** (binaria), no 22% |
+| 2 | **21.8%** | ENCUCI 2020 `AP5_1_1` | **SELLADA, no se toca** (`ADR-64`) | 0-10, corte **≥8/10**, `FAC_SEL`, universo completo. `C-06b`: 21.9% [21.1, 22.7], n=21 409 |
+| 3 | **22%** | WVS 2018 · ENAFI/WVS · Latinobarómetro · LAPOP | **DIVERGE — dos atribuciones REFUTADAS, una es error de categoría, una INDECIDIBLE** | ver §4.1 |
+| 4 | **32.1%** | ENCUCI 2020 `AP5_1_3` | **SELLADA, no se toca** (`ADR-64`) | 0-10, ≥8/10. `C-06b`: 32.3% [31.3, 33.3], n=21 403 |
+| 5 | **18%** | Pew Research 2025 | **CONVERGE — REPRODUCIDA EXACTA contra fuente primaria** | binaria, `Q104`, Spring 2025 GAS, presencial en México. Topline: **18** (2025), 17 (2024). Sin IC: Pew no publica SE por país |
+| 6 | **62.1%** | ENCUCI 2020 `AP5_1_2` | **SELLADA, no se toca** (`ADR-64`) | 0-10, ≥8/10. `C-06b`: 62.2% [61.2, 63.3], n=21 445 |
+
+### 4.1 · El 22%, atribución por atribución — que es lo que `FP-29` pedía
+
+`FP-29` está redactada así: *"el 22% no es una cifra: son tres atribuciones distintas de la misma cifra en cuatro documentos… No se puede elegir entre tres cifras cuando una no sabe de dónde viene."* Este acto no elige entre cifras: **prueba cada atribución contra su propio instrumento.**
+
+| Atribución | Dónde | Prueba corrida | Resultado |
+|---|---|---|---|
+| **WVS 2018** | `Confianza_y_Desconfianza…md:9` (*"~22% (WVS 2018)"*); `Moral_Emotions…md:29,186` (*"22% (ENAFI/Encuesta Mundial de Valores)"*) | Medido `Q57` en el microdato Wave 7 México 2018 | **REFUTADA.** WVS 2018 = **10.51%** [8.86, 12.15]. El 22% queda **9.85 pp por encima del límite superior**. Doblemente confirmado: mi corrida **y** el codebook publicado por WVS (10.5) |
+| **Latinobarómetro** | `glosario-v5_6.md:84` (*"22% (Latinobarómetro/LAPOP)"*); `Moral_Emotions…md:84` | Medido `P10STGBS`, la única ola en el manifiesto (2024) | **NO SOSTENIDA para 2024** = **26.06%** [22.45, 29.67]; el 22% cae **por debajo** del límite inferior. Sin ola contemporánea a la cita, no se puede refutar para *otra* ola — se dice, no se estira |
+| **LAPOP** | `glosario-v5_6.md:84`; `Moral_Emotions…md:84` | Grep sobre el cuestionario ABMex2023 + medición de `it1` en 3 olas | **REFUTADA POR ERROR DE CATEGORÍA.** LAPOP **no tiene** el reactivo generalizado (cero coincidencias). Lo que sí mide, `it1` sobre "la gente de su comunidad" (4 puntos), da **54.0 / 53.6 / 55.4%** en 2019/2021/2023 — otro constructo, otra escala, y a 30 puntos del 22% |
+| **ENAFI** | `Moral_Emotions…md:29,84` | Búsqueda en el manifiesto | **INDECIDIBLE.** `grep -ci enafi data/manifiesto.yaml` → **0**. El instrumento no está adquirido; no se opina sobre él |
+
+**Veredicto del 22%, con la divergencia nombrada:** de las cuatro atribuciones que circulan, **dos quedan refutadas contra microdato** (WVS 2018; LAPOP, esta por error de categoría), **una no se sostiene en la única ola disponible** (Latinobarómetro 2024) y **una es indecidible por falta del instrumento** (ENAFI). **Ninguna fuente verificable en el corpus sostiene hoy el 22% como magnitud de confianza interpersonal generalizada en México.** La cifra no queda sustituida por otra: queda **sin procedencia sostenible**, que es precisamente lo que `FP-29` sospechaba y no había probado.
+
+### 4.2 · La hipótesis que emerge, declarada como hipótesis y NO adjudicada
+
+De las siete cantidades medidas o selladas para "la mayoría de las personas" en México, **una sola contiene el 22% en su IC95%: ENCUCI `AP5_1_1` a ≥8/10 — 21.9% [21.1%, 22.7%]**.
+
+Es una coincidencia numérica **sugerente y no suficiente**, y este acto se niega a convertirla en adjudicación por tres razones escritas antes de verla:
+
+1. **`ADR-64(a)` ya declaró el 22% como no-ENCUCI.** Revertir un ADR exige, por su propia cláusula de reversión, *"corrida nueva pre-registrada contra microdato que contradiga la matriz de `C-06b` §3 (no por relectura de reports, no por una cifra nueva sin corte declarado)"*. Una coincidencia de intervalo no es eso.
+2. **Es exactamente el modo de fallo que `ADR-64` existe para impedir**: identificar cifras entre sí por proximidad numérica, sin verificar reactivo y corte, es como se fabricó `conf.06` en primer lugar.
+3. **Ninguno de los cuatro documentos que citan el 22% menciona ENCUCI**; los cuatro nombran instrumentos externos. Adjudicarlo a ENCUCI sería sustituir la atribución del autor por la del ejecutor.
+
+**Se deja como hipótesis nominada para el acto sucesor**, con la prueba que la resolvería: rastrear la cadena de citas de los cuatro documentos hasta su fuente publicada. **No es una tarea de microdato — es de procedencia documental.**
+
+### 4.3 · Hallazgo nuevo de vinculación: el ancla de diseño no sostiene ni el ORDEN
+
+Esta es la aportación de este acto al estándar `ADR-80`, y no estaba pedida.
+
+Los dos pares de ítems mejor emparejados entre ENCUCI y WVS son casi verbatim: *"la mayoría de las personas que conoce personalmente"* ↔ *"people you know personally"*, y *"las personas que viven en su colonia y localidad"* ↔ *"your neighborhood"*. Bajo el ancla de diseño de `ADR-80`, ese es el mejor caso posible. Y sin embargo:
+
+| Instrumento | conocidos | vecinos | Orden |
+|---|---|---|---|
+| **ENCUCI 2020** (0-10, ≥8) | **62.2%** | 32.3% | conocidos **>** vecinos, por **29.9 pp** |
+| **ENCUCI 2020** (0-10, ≥6) | **77.9%** | 55.4% | conocidos **>** vecinos, por **22.5 pp** |
+| **WVS 2018** (4 pts, compl+algo) | 43.0% | **49.7%** | vecinos **>** conocidos, por **6.7 pp** |
+| **WVS 2018** (4 pts, solo "completamente") | 10.4% | **14.0%** | vecinos **>** conocidos, por **3.6 pp** |
+
+**El orden se invierte entre los dos instrumentos, y la inversión es robusta al corte en los dos.** Esta comparación **no viola Bloque A-bis regla 3**: no compara niveles entre escalas distintas — compara el **orden interno de cada instrumento**, que es lo único comparable sin función de enlace.
+
+**Qué significa, dicho con cuidado.** El ancla de diseño (redacción casi idéntica, misma referencia metodológica de la OCDE 2017 que `benchmark-enlace-invarianza` §D10 P5 documenta) **no garantizó ni siquiera invarianza de orden** — el nivel más débil de acuerdo imaginable. Es evidencia empírica directa, medida en este acto, de la reserva que el propio benchmark declaró: *"eso es un ancla de **diseño**, no un ancla **estadísticamente verificada** — la distinción que la literatura de invarianza exige no borrar"*. **Hipótesis nombrada y no adjudicada:** efecto de orden de batería (en WVS la secuencia es familia → vecinos → conocidos → desconocidos, que encuadra "conocidos" como *más lejano* que vecinos; en ENCUCI es mayoría → conocidos → colonia). Resolverlo exige un diseño que este acto no tiene.
+
+### 4.4 · Segunda divergencia medida: dos binarios, el mismo año, 9 puntos de diferencia
+
+| Instrumento | Año | Escala | México |
+|---|---|---|---|
+| Pew `Q104` | **2024** | binaria | **17%** |
+| Latinobarómetro `P10STGBS` | **2024** | binaria | **26.06%** [22.45, 29.67] |
+| WVS `Q57` | 2018 | binaria | 10.51% [8.86, 12.15] |
+| Pew `Q104` | 2025 | binaria | 18% |
+
+**Mismo año, misma escala, mismo constructo, y 9 puntos de separación** — con el 17% de Pew fuera del IC95% de Latinobarómetro. Esto no es ruido: es divergencia de instrumento.
+
+**Y la explicación obvia no funciona — se dice en vez de ocultarse.** En §2.3 se pre-registró que Pew usa un polo negativo distinto (*"most people can't be trusted"*, una afirmación fuerte) frente al polo suave de WVS/Latinobarómetro (*"se tiene que ser muy cuidadoso"* / *"uno nunca es lo suficientemente cuidadoso"*). Un polo negativo suave es más fácil de endosar, así que debería **deprimir** el % de confianza. Eso **explica** WVS (10.5%, polo suave) **<** Pew (17-18%, polo duro), pero **queda contradicho** por Latinobarómetro (26.1%, polo suave) **>** Pew. **La redacción del polo negativo no basta para explicar la dispersión.** Queda nombrada, sin resolver.
+
+**Consecuencia para el constructo, que es lo que `FP-29` gatea:** el rango medible hoy para "confianza interpersonal generalizada en México" es **10.5% – 26.1%** entre instrumentos binarios (2018–2025), y **21.9%** en ENCUCI 0-10 a ≥8/10 (2020) — **cifra que NO se promedia con las anteriores**, porque son escalas distintas y hacerlo es el error de categoría que Bloque A-bis regla 3 prohíbe. El rango de los binarios y el punto de ENCUCI se reportan **por separado, cada uno con su escala pegada**.

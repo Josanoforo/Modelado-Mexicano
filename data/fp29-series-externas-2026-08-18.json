@@ -1,0 +1,221 @@
+{
+  "wvs_w7_mexico": {
+    "meta": {
+      "n_filas": 1741,
+      "anio": [
+        "2018.0"
+      ],
+      "pais": [
+        "MEX"
+      ],
+      "campo_trabajo": [
+        [
+          "201801.0"
+        ],
+        [
+          "201805.0"
+        ]
+      ],
+      "version_archivo": [
+        "6-0-0 (2024-04-15)"
+      ],
+      "sha256_verificado": "cf0b774e1f6611b5531cfb66db982a8c3443e658bb0befcb1ef053d790ca4afe",
+      "sha256_coincide": true,
+      "rodeo_de_ruta": false
+    },
+    "celdas": [
+      {
+        "p_hat": 0.1050527807755779,
+        "se": 0.008411658693628215,
+        "ic95": [
+          0.08856623268195446,
+          0.12153932886920135
+        ],
+        "n_estratos": 31,
+        "n_upm_total": 496,
+        "n_estratos_singleton": 0,
+        "var": "Q57",
+        "etiqueta": "Q57 -- se puede confiar en la mayoria de la gente (binario)",
+        "n_util": 1738,
+        "n_missing": 3,
+        "positivos": [
+          1
+        ]
+      },
+      {
+        "p_hat": 0.4971145299318101,
+        "se": 0.013454669157540636,
+        "ic95": [
+          0.4707438629529402,
+          0.5234851969106801
+        ],
+        "n_estratos": 31,
+        "n_upm_total": 496,
+        "n_estratos_singleton": 0,
+        "var": "Q59",
+        "etiqueta": "Q59 -- sus vecinos: confia completamente+algo (4 puntos)",
+        "n_util": 1738,
+        "n_missing": 3,
+        "positivos": [
+          1,
+          2
+        ]
+      },
+      {
+        "p_hat": 0.43011230738078043,
+        "se": 0.012407018975092964,
+        "ic95": [
+          0.4057949970283866,
+          0.45442961773317425
+        ],
+        "n_estratos": 31,
+        "n_upm_total": 496,
+        "n_estratos_singleton": 0,
+        "var": "Q60",
+        "etiqueta": "Q60 -- sus conocidos: confia completamente+algo (4 puntos)",
+        "n_util": 1740,
+        "n_missing": 1,
+        "positivos": [
+          1,
+          2
+        ]
+      },
+      {
+        "p_hat": 0.919007946192269,
+        "se": 0.007017260204939582,
+        "ic95": [
+          0.9052543689172137,
+          0.9327615234673243
+        ],
+        "n_estratos": 31,
+        "n_upm_total": 496,
+        "n_estratos_singleton": 0,
+        "var": "Q58",
+        "etiqueta": "Q58 -- su familia: confia completamente+algo (4 puntos)",
+        "n_util": 1741,
+        "n_missing": 0,
+        "positivos": [
+          1,
+          2
+        ]
+      },
+      {
+        "p_hat": 0.13096368787017257,
+        "se": 0.009027954295051765,
+        "ic95": [
+          0.11326922259364505,
+          0.14865815314670008
+        ],
+        "n_estratos": 31,
+        "n_upm_total": 496,
+        "n_estratos_singleton": 0,
+        "var": "Q61",
+        "etiqueta": "Q61 -- gente que conoce por primera vez: compl.+algo (4 puntos)",
+        "n_util": 1740,
+        "n_missing": 1,
+        "positivos": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "latinobarometro_2024_mexico": {
+    "meta": {
+      "n_filas_total": 19214,
+      "n_filas_mexico": 1200,
+      "anio_estudio": [
+        24
+      ],
+      "paises_en_archivo": 17,
+      "archivo_interno": "Latinobarometro_2024_Stata_esp_v20250817.dta",
+      "sha256_verificado": "469a94c55395b36c4d1f013851a7e79d0619620640a64653eca79afce21f5e97",
+      "sha256_coincide": true,
+      "rodeo_de_ruta": false
+    },
+    "celdas": [
+      {
+        "p_hat": 0.26058920299702804,
+        "se": 0.01841316127411344,
+        "ic95": [
+          0.22450007004976896,
+          0.2966783359442871
+        ],
+        "n_estratos": 8,
+        "n_upm_total": 103,
+        "n_estratos_singleton": 2,
+        "var": "P10STGBS",
+        "n_util": 1183,
+        "n_missing": 17,
+        "etiqueta": "P10STGBS -- se puede confiar en la mayoria de las personas (binario)"
+      }
+    ]
+  },
+  "lapop_mexico": {
+    "celdas": [
+      {
+        "p_hat": 0.540327868852459,
+        "se": 0.014746813560311855,
+        "ic95": [
+          0.5114246453807382,
+          0.5692310923241798
+        ],
+        "n_estratos": 4,
+        "n_upm_total": 129,
+        "n_estratos_singleton": 0,
+        "var": "it1",
+        "anio": 2019,
+        "n_util": 1525,
+        "n_missing": 55,
+        "n_sin_diseno": 0,
+        "n_filas": 1580,
+        "sha256_verificado": "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57",
+        "sha256_coincide": true,
+        "rodeo_de_ruta": true,
+        "etiqueta": "it1 2019 -- la gente de su comunidad: muy+algo confiable (4 puntos)"
+      },
+      {
+        "p_hat": 0.5362571610444281,
+        "se": 0.010884666525665807,
+        "ic95": [
+          0.5149236066653881,
+          0.5575907154234682
+        ],
+        "n_estratos": 4,
+        "n_upm_total": 2925,
+        "n_estratos_singleton": 0,
+        "var": "it1",
+        "anio": 2021,
+        "n_util": 2925,
+        "n_missing": 66,
+        "n_sin_diseno": 7,
+        "n_filas": 2998,
+        "sha256_verificado": "153fb0f81acfffb41bbe247b7fce81159350e1fdfcb342a14bb034bcb7d95566",
+        "sha256_coincide": true,
+        "rodeo_de_ruta": true,
+        "etiqueta": "it1 2021 -- la gente de su comunidad: muy+algo confiable (4 puntos)"
+      },
+      {
+        "p_hat": 0.5543816034804226,
+        "se": 0.015309487006542373,
+        "ic95": [
+          0.5243755603187742,
+          0.5843876466420711
+        ],
+        "n_estratos": 4,
+        "n_upm_total": 130,
+        "n_estratos_singleton": 0,
+        "var": "it1",
+        "anio": 2023,
+        "n_util": 1609,
+        "n_missing": 13,
+        "n_sin_diseno": 0,
+        "n_filas": 1622,
+        "sha256_verificado": "4a9410a53cde9d11edeb23465bdbadce8a6abcc18330b6eebe2a4493be6e765c",
+        "sha256_coincide": true,
+        "rodeo_de_ruta": true,
+        "etiqueta": "it1 2023 -- la gente de su comunidad: muy+algo confiable (4 puntos)"
+      }
+    ]
+  }
+}

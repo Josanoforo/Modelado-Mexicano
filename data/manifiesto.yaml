@@ -42,8 +42,7 @@
     (14/ago) — Encargo W abrió también encig2023_01_sec_11 (batería XI) y publicó frecuencias
     reales de P11_1_23 en forense/notas/2026-08-04-w-coeficientes-generador-paso1.md líneas
     179 y 272, que es el objeto que ENLACE-2 (PR 236) enlazó para N1/ENCIG. Quedan tres tablas
-    sin inspeccionar — encig2023_01_sec1_A_3_4_5_8_9_10, encig2023_02_residentes_sec_2 y
-    encig2023_03_sec_6.
+    sin inspeccionar — encig2023_01_sec1_A_3_4_5_8_9_10, encig2023_02_residentes_sec_2 y encig2023_03_sec_6.
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
     texto completo de esos Términos no verificado, solo la referencia)
   verificacion_tamano: 'Página anunciaba 36.5 MB; archivo real 38,309,647 bytes. Verificado
@@ -312,7 +311,8 @@
     línea 482 declara haber contado filas de TPer_Vic2 y TMod_Vic dentro de este zip. De ahí
     salen AP7_3_10..14 y BP2_1, y por eso ENLACE-2 (PR 236) enlazó aquí N8 y N20. OJO -- ENVIPE
     2025 está registrada DOS VECES con payloads distintos; el otro es envipe_2025_bd_envipe_2025_csv
-    (microdatos de la canasta masiva, otro sha256, sin abrir). No son intercambiables por nombre.
+    (microdatos de la canasta masiva, otro sha256, sin abrir). No son intercambiables por
+    nombre.
   url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2025/datosabiertos/conjunto_de_datos_ENVIPE_2025_csv.zip
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
@@ -8613,8 +8613,9 @@
   usado_para: sin uso asignado. OJO, declarado por ACTO C (14/ago/2026) -- ENVIPE 2025 está
     registrada DOS VECES con payloads distintos. Éste es el paquete de microdatos de la canasta
     masiva (DESC-1, 5/ago). El que las mediciones abrieron de verdad es envipe2025_csv (datos
-    abiertos, sha256 8a7a99fd..., registrado un día ANTES que éste), y es el que ENLACE-2 (PR 236) enlazó para N8/AP7_3_10..14 y N20/BP2_1. Quien consuma ENVIPE 2025 debe elegir a
-    sabiendas; no son intercambiables por nombre.
+    abiertos, sha256 8a7a99fd..., registrado un día ANTES que éste), y es el que ENLACE-2
+    (PR 236) enlazó para N8/AP7_3_10..14 y N20/BP2_1. Quien consuma ENVIPE 2025 debe elegir
+    a sabiendas; no son intercambiables por nombre.
   url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2025/microdatos/bd_envipe_2025_csv.zip
   fecha_descarga: '2026-08-05'
   descargado_por: agente, vía curl directo desde inegi.org.mx (URL tomada del XML de la canasta
@@ -12818,3 +12819,42 @@
   sha256: 2b88ef960078381b9ecdc439bd57a5f1c1e06da81cb9caac21f16b9cfca343c3
   tamano_bytes: 682496
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: pew_gas2025_social_trust_topline
+  usado_para: 'FP-29 / residual de conf.06 -- fuente primaria del 18% (Pew Research 2025).
+    Topline Q104 completo: 25 paises x ola, Mexico Spring 2025=18 / Spring 2024=17, Turquia
+    14 (la mas baja), Suecia 83 (la mas alta).'
+  url_origen: https://www.pewresearch.org/wp-content/uploads/sites/20/2025/12/SR_25.12.01_social-trust_topline.pdf
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, directamente de pewresearch.org (enlace del propio short-read, sin
+    registro ni sesion)
+  archivo: FP29_PEW_2025/SR_25.12.01_social-trust_topline.pdf
+  sha256: 103ef06eafbaecee85168308aa8d9f7215943d85b56e055e7405625c5741c334
+  tamano_bytes: 523726
+  formato: PDF (topline questionnaire, Spring 2025 Global Attitudes Survey, release 1/dic/2025)
+  licencia: (c) Pew Research Center. Terminos de reuso no verificados mas alla del aviso del
+    sitio; se cita, no se redistribuye el texto.
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO FP29-RECONCILIA, C1. Sondeado y obtenido en esta sesion en 7 intentos con salida
+    cruda (ver forense/notas/2026-08-18-fp29-reconcilia.md S1). A.7: descargado DOS veces,
+    sha256 identico byte a byte en las dos generaciones -- sin token de solicitud, hash estable.
+    Pew no figuraba en data/cola-adquisicion-2026-08-12.tsv (cero filas) ni en el manifiesto
+    (cero entradas) antes de este acto.'
+
+- id: pew_gas2025_social_trust_shortread
+  usado_para: FP-29 -- short-read que publica el 18% en prosa y enlaza el topline; trae la
+    metodologia (28,333 adultos, 8/ene-26/abr 2025, presencial en Mexico) y el marco '25 paises'.
+  url_origen: https://www.pewresearch.org/short-reads/2025/12/01/where-most-people-trust-others-and-where-they-dont-around-the-world/
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, directamente de pewresearch.org (sin registro ni sesion)
+  archivo: FP29_PEW_2025/pew_shortread_20251201.html
+  sha256: 34457853193b49f95075b2cf1f369b6888c9e48b5dfb48e87dcf7c8a5110fdd3
+  tamano_bytes: 426449
+  formato: HTML (pagina renderizada, WordPress VIP)
+  licencia: (c) Pew Research Center. Terminos de reuso no verificados mas alla del aviso del
+    sitio.
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO FP29-RECONCILIA, C1. Secundario respecto del topline: la cifra se adjudica contra
+    el PDF, no contra esta pagina. Se registra porque es donde vive la metodologia y el encuadre
+    de 25 paises que el corpus cita. HTML renderizado: su hash NO es estable en el tiempo
+    (menus, banners) -- a diferencia del topline, verificado estable en A.7.'
