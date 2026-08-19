@@ -1,6 +1,6 @@
 # ACTO LIMPIA-CAJA — la caja queda con un clon, el corpus y dos worktrees vivos; `FP-59` ejecutada
 
-`ADR-113` · Base: `origin/main` = `470fa57` (`PR #277`) · Sesión **UBUNTU**, dueña única · Modelo: Opus · Sin `--freeze`.
+`PR #278` · `ADR-113` · Base: `origin/main` = `470fa57` (`PR #277`) · Sesión **UBUNTU**, dueña única · Modelo: Opus · Sin `--freeze`.
 
 Ejecuta lo que `ADR-112` §5 dejó adjudicado y explícitamente no ejecutó: *"Worktrees `PURGA-ARTIFACT`: no se borran en este acto. Limpieza física es acto aparte, con el bundle como red."*
 

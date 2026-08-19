@@ -1,6 +1,6 @@
 # ENCARGO · LIMPIA-CAJA — la caja Ubuntu queda con un clon, el corpus y nada volando
 
-**Estado: `CONSUMIDO`** · SHA de redacción: `2d08d7a` (#274/#275) · Ejecutado contra `470fa57` (re-derivado al arrancar: `#276` y `#277` ya habían fusionado, como el propio encargo anticipaba) · PR: **este** · Cierre: `ADR-113` (re-derivado al escribir, máximo `112`; a re-derivar al fusionar) · `FP-59` → `CERRADA` · Origen: `ADR-112` §4/§5 (`ACTO RESCATE-CURADOR`, `PR #274`), que declaró la limpieza física como acto aparte.
+**Estado: `CONSUMIDO`** · SHA de redacción: `2d08d7a` (#274/#275) · Ejecutado contra `470fa57` (re-derivado al arrancar: `#276` y `#277` ya habían fusionado, como el propio encargo anticipaba) · PR: **#278** · Cierre: `ADR-113` (re-derivado al escribir, máximo `112`; a re-derivar al fusionar) · `FP-59` → `CERRADA` · Origen: `ADR-112` §4/§5 (`ACTO RESCATE-CURADOR`, `PR #274`), que declaró la limpieza física como acto aparte.
 
 Archivado bajo `A.3` al cierre: el encargo llegó **inline** de dirección y no tenía archivo en el árbol; se archiva aquí para que el acto sea auditable contra su instrucción. Nota del acto: `forense/notas/2026-08-19-limpia-caja-cierre.md`.
 
