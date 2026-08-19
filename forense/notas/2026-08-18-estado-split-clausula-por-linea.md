@@ -130,3 +130,11 @@ Ningún carril remoto vivo tiene `estado-programa` en su perímetro activo. Revi
 - No toca `:27`, ni ningún otro archivo de `canon/`. Las únicas líneas de `estado-programa` distintas de `:101` que cambian son `:195` y `:287`, y solo en la cifra de WARN de la suite (`129`→`128`) que `T16` obliga a mantener sincronizada — desvío del perímetro declarado en §5, con su causa única identificada.
 - No añade `merge=union` (§6).
 - No resume, no moderniza redacción, no corrige ninguna cláusula, ni siquiera el `.;` sobrante que arrastra el final de la cláusula de `ADR-102` — está en el original, se conserva en el ítem. Corregirlo habría sido contenido.
+
+## §9 · Apéndice, 18/ago/2026 — la primera fusión sobre la línea ya partida, y un duplicado de `union` en el camino
+
+Añadido después del merge de `PR #264`, cuando `PR #265` (`ACTO CONF-07-CIERRE`, `ADR-106`) fusionó sobre este trabajo. Dos resultados, uno esperado y uno no:
+
+**1. La partición hizo su trabajo, y se puede verificar.** `#265` añadió su cláusula como **un ítem más** al final de la lista (`- a 106 después, con ``ADR-106``…`) y no tocó ninguna de las 66 anteriores. La cabecera pasó de `105 ADR` a `106 ADR` en su línea, sola. Ese merge, con `:101` como párrafo único, habría sido otra vez la ruleta que `FP-48` describe: un lado entero gana, el otro desaparece en silencio. Es la primera evidencia positiva del cambio, no una promesa.
+
+**2. `merge=union` duplicó una entrada, en `hallazgos.md`, en un merge real.** El commit de backfill del número de `PR #264` **edita una línea en medio** del archivo en vez de apendizar al final; `union` se quedó con la versión de `main` (sin backfill) **y** con la de la rama (con él), sin conflicto y sin aviso. Resuelto a mano conservando el orden de `main` y aplicando el backfill sobre esa copia. El detalle está en `forense/hallazgos.md`; lo que importa para esta nota es que **es un caso vivo del argumento de §6**: hasta hoy esa duplicación solo se había reproducido en ramas de prueba (5/ago), y bastó poner un número de PR para provocarla. Si `estado-programa` llevara `union`, la copia duplicada habría sido una cláusula de canon o una cifra que los tests derivan — no una línea de bitácora. La decisión de no extender el driver se mantiene, ahora con evidencia en vez de solo con precedente.
