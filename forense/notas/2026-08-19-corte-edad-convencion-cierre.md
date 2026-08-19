@@ -43,6 +43,6 @@ grep -niE "corte PENDIENTE|Corte de .?edad.? PENDIENTE" canon/modelo-decision-v4
 
 No toca `milpa/*.yaml` ni `data/`. No re-adjudica ninguna hipótesis o regla — cambia estatus de determinabilidad, no veredicto. No abre fila de tablero nueva (`FP-61`): no se encontró colisión de id ni deuda nueva que la requiera. `FP-53` (`FIRMADA`) se actualiza en `ejecutada_en` para reflejar que solo su mitad-convención quedó ejecutada aquí; sigue `FIRMADA`, no `CERRADA`, hasta que `CORTE-EDAD-EMPIRICO` corra.
 
-Cascada de ADR: candidato **114** al escribir contra `35c9c9f` (113 únicos, máximo 113, sin huecos). Colisión real al fusionar `origin/main` (`318e233`): `PR #279`/`FP57-DECLARA` también candidateó `114` y llegó primero. Renumerado a **`ADR-115`** — `ADR-114` de `FP57-DECLARA` queda intacto — mismo protocolo que doce ADR previos de esta semana.
+Cascada de ADR: candidato **114** al escribir contra `35c9c9f` (113 únicos, máximo 113, sin huecos). Primera colisión al fusionar `origin/main` (`318e233`): `PR #279`/`FP57-DECLARA` también candidateó `114` y llegó primero. Renumerado a `115`. Segunda colisión al re-fusionar `origin/main` (`976b31d`): `PR #282`/`FP10-PRECEDENCIA` también candidateó `115` y llegó primero. Renumerado a **`ADR-116`** — `ADR-114`/`ADR-115` ajenos quedan intactos — mismo protocolo que trece ADR previos de esta semana.
 
 Contadores de medición sobre México movidos: **0**.
