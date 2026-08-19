@@ -1,6 +1,7 @@
 # ENCARGO B2-RELEVO · recuperar BARRIDO-2 del corte de Codex y continuar desde C4
 
-- **SHA de redacción:** `1282ae3` (origin/main, merge #247) · **Fecha:** 2026-08-17 · **Estado:** VIVO
+- **SHA de redacción:** `1282ae3` (origin/main, merge #247) · **Fecha:** 2026-08-17 · **Estado:** SUPERADO — materialmente, por `PR #255` (ACTO B2-V7) y `PR #260` (ACTO GATE-DURABLE-V7), 18/ago/2026.
+- **Evidencia de supersesión (derivada del árbol, ACTO CONF-07-CIERRE 18/ago/2026):** este relevo pedía retomar BARRIDO-2 "desde C4" y seguir a C5/C6 en el worktree Ubuntu. Los dos actos que sí corrieron ahí lo hicieron: `forense/encargos/2026-08-18-B2-V7-generacion-v7-y-tres-cifras.md:5` declara *"CONSUMIDO — ACTO B2-V7, `PR #255` (rama `acto-b2-v7`), 18/ago/2026. Sella `ADR-98`"*, sobre el mismo worktree `/home/pc0/Modelado-Mexicano-barrido2`; y `forense/hallazgos.md` (entrada 2026-08-18) registra que *"`ACTO GATE-DURABLE-V7` cierra el eje durable y el gate material vuelve a verde tras tres generaciones rotas"* (`PR #260`, `6178bf9`). El bloqueo de C5 lo levantó además `ACTO INTEGRATE-T23` (hallazgos.md, 2026-08-18). El diagnóstico del corte que este relevo aporta se conserva: no se borra, no se relanza.
 - **Entorno asignado:** LA MISMA CAJA Ubuntu/WSL2 donde corría Codex. Worktree existente
   `/home/pc0/Modelado-Mexicano-barrido2`, rama `codex/barrido-2`. **Modelo: Opus.**
 - **Entorno NO asignado:** nube · checkout Windows · `/home/pc0/Modelado-Mexicano-curador` ·
