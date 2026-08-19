@@ -1,0 +1,22 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "criterio_cierre": "Propuesta trazable supervisada o terminal explícito SIN_EXPEDIENTE_INTEGRABLE.",
+  "fail_closed": true,
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:WORLD_BANK_ENTERPRISE_SURVEY_MEXICO_2023",
+  "fuente_canonica_normalizada": "WORLD_BANK_ENTERPRISE_SURVEY_MEXICO_2023",
+  "reglas": [
+    "No sustituir siguiente_accion_original.",
+    "No inferir identidad ni semántica desde URL, nombre o pertenencia a familia.",
+    "Consumir reportes neutrales solo por relacion→activo→reporte exactos.",
+    "Una propuesta incompleta no modifica el baseline."
+  ],
+  "relaciones_asignadas": [
+    "REL-3e153324c7506ed0e35a7a70",
+    "REL-dc5971db0730ed2876fdb5b3",
+    "REL-e86c10c4e19ea32e57b6a28d"
+  ],
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-aeaa5ec5cfdd3cd907e60169"
+}

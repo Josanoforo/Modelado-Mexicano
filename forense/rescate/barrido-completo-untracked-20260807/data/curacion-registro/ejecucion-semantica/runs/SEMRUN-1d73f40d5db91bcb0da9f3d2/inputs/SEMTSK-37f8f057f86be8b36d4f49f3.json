@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "7dc79d779579aa86647a5da888547985b56d29747980bce4536ad07cf98979e7",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:ELECTORAL_PRECINCT_LEVEL_DATABASE_FOR_MEXICAN_MUNICIPAL_ELECTION",
+  "fuente_canonica_normalizada": "ELECTORAL_PRECINCT_LEVEL_DATABASE_FOR_MEXICAN_MUNICIPAL_ELECTION",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv:L21",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:ELECTORAL_PRECINCT_LEVEL_DATABASE_FOR_MEXICAN_MUNICIPAL_ELECTION",
+      "fuente_canonica_normalizada": "ELECTORAL_PRECINCT_LEVEL_DATABASE_FOR_MEXICAN_MUNICIPAL_ELECTION",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N25",
+      "objeto_evidencia_id_canonico": "OE-4b45123490a5aa18fc9c597f",
+      "procedencia_id": "PROV-bb127216d80fae12f88307d2",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-374d073941162109bb37265b",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir codebook y verificar variables de sección, elección, tratamiento/exposición y resultado.",
+      "siguiente_accion_original_sha256": "9957c47d3db955f1de333864ac17809f74852dce4e6be6b2e0c1b48699595c80",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-374d073941162109bb37265b con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-37f8f057f86be8b36d4f49f3"
+}

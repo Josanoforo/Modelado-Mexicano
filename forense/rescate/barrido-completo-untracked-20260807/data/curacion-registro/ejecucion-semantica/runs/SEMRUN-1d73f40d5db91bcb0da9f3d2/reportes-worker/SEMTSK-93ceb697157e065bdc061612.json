@@ -1,0 +1,41 @@
+{
+  "afirmaciones_semanticas_como_hecho": 0,
+  "input_sha256": "c368ab9c3e44a3b6d4d28dab18397bd962c7b7a445ee37f126f116fa489a30d9",
+  "resultados": [
+    {
+      "afirmacion_tipo": "NO_DETERMINADO",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "estado": "SIN_JOIN_EXACTO_A_REPORTE_NEUTRAL",
+      "evaluacion_id": "SEMEV-9a3041d36ab7c9bec1d9b652",
+      "relacion_id": "REL-3d6a985a8dafc13fdbd39e4a",
+      "reporte_inspeccion_ref_consumido": [],
+      "reserva": "El worker no adjudica y no trata ausencia de join como evidencia negativa.",
+      "siguiente_accion_original_sha256": "833bafb3e73736976b1c32e34ee3f932173db62df98d8ae6609255ee613e1873"
+    },
+    {
+      "afirmacion_tipo": "NO_DETERMINADO",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "estado": "SIN_JOIN_EXACTO_A_REPORTE_NEUTRAL",
+      "evaluacion_id": "SEMEV-6744d9379551711f068cb8ad",
+      "relacion_id": "REL-57df012cdba3e281563c1068",
+      "reporte_inspeccion_ref_consumido": [],
+      "reserva": "El worker no adjudica y no trata ausencia de join como evidencia negativa.",
+      "siguiente_accion_original_sha256": "833bafb3e73736976b1c32e34ee3f932173db62df98d8ae6609255ee613e1873"
+    }
+  ],
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "task_id": "SEMTSK-93ceb697157e065bdc061612"
+}

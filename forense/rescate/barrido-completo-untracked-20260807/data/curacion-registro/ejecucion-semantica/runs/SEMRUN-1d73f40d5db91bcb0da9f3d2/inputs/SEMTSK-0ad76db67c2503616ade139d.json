@@ -1,0 +1,86 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "cf1da9f5c1e89febb23a5dbf07cf0cdcae1b74d5bc0b283dda96aab8ea8ddf7c",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:ENVIPE",
+  "fuente_canonica_normalizada": "ENVIPE",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "varias olas",
+        "unidad_observacion": "persona",
+        "universo_muestra": "México",
+        "variable_reactivo_tabla": "AP7_3_10..14"
+      },
+      "evidencia_ref_accion_original": "MAIN:canon/gobernanza-v1_15.md;MAIN:canon/integrador-psicologia-mexicano.md;MAIN:canon/modelo-decision-v4_0.md;MAIN:corpus/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md",
+      "evidencia_ref_evidencia_original": "MAIN:forense/matriz-impacto-universal-2026-08-06.md:L82",
+      "evidencia_ref_original": "MAIN:forense/matriz-impacto-universal-2026-08-06.md:L82",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:ENVIPE",
+      "fuente_canonica_normalizada": "ENVIPE",
+      "input_requerido_clasificacion": "Evidencia previa exacta, mapeo necesidad→objeto y reportes neutrales disponibles.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N8",
+      "objeto_evidencia_id_canonico": "OE-5e7583b82a9bd409ff3de7f4",
+      "procedencia_id": "PROV-2fcf25ae57ff23c3b26eeec4",
+      "regla_clasificacion_id": "RW-06-DEFAULT",
+      "relacion_id": "REL-0c03e53054567fc014b50bc0",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No propagar estado por fuente ni por necesidad.",
+      "reserva_original": "No se propagó el estado general de la necesidad; requiere evidencia fuente-específica.",
+      "siguiente_accion_original": "Mapear unión exacta.",
+      "siguiente_accion_original_sha256": "de812d3357fcf75a8af335c48796908ef3a13499d9475108b61b03006af2988a",
+      "siguiente_accion_tipificada": "Contrastar procedencia estructurada de REL-0c03e53054567fc014b50bc0 con sus objetos de modelo permitidos y emitir propuesta o reserva.",
+      "tipo_trabajo": "CURADURIA_FUENTE"
+    },
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "varias olas",
+        "unidad_observacion": "persona",
+        "universo_muestra": "México",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:canon/estado-programa-v1_10.md;MAIN:canon/gobernanza-v1_15.md;MAIN:canon/modelo-decision-v4_0.md;MAIN:corpus/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md",
+      "evidencia_ref_evidencia_original": "MAIN:forense/matriz-impacto-universal-2026-08-06.md:L82",
+      "evidencia_ref_original": "MAIN:forense/matriz-impacto-universal-2026-08-06.md:L82",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:ENVIPE",
+      "fuente_canonica_normalizada": "ENVIPE",
+      "input_requerido_clasificacion": "Evidencia previa exacta, mapeo necesidad→objeto y reportes neutrales disponibles.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N9",
+      "objeto_evidencia_id_canonico": "OE-d4dae09f023ab8dbde44755a",
+      "procedencia_id": "PROV-5a6db9e989b4b6eea1f1a9a5",
+      "regla_clasificacion_id": "RW-06-DEFAULT",
+      "relacion_id": "REL-32afb54be292bc8e3070dfca",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No propagar estado por fuente ni por necesidad.",
+      "reserva_original": "No se propagó el estado general de la necesidad; requiere evidencia fuente-específica.",
+      "siguiente_accion_original": "Abrir reactivos conjuntos.",
+      "siguiente_accion_original_sha256": "26b86d28d003715f1f89ac9cfafe46b35291f7befbaf05a2da3c0de37ad9289f",
+      "siguiente_accion_tipificada": "Contrastar procedencia estructurada de REL-32afb54be292bc8e3070dfca con sus objetos de modelo permitidos y emitir propuesta o reserva.",
+      "tipo_trabajo": "CURADURIA_FUENTE"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-0ad76db67c2503616ade139d"
+}

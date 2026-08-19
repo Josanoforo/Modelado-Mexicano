@@ -1,0 +1,37 @@
+{
+  "afirmaciones_semanticas_como_hecho": 0,
+  "input_sha256": "f73ac1ab0040b5b4cb07da9dd5edd29a8a6bf64ffec3b6f6b99cc1e0bb722dbb",
+  "resultados": [
+    {
+      "afirmacion_tipo": "NO_DETERMINADO",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "periodo",
+        "codificacion"
+      ],
+      "estado": "SIN_JOIN_EXACTO_A_REPORTE_NEUTRAL",
+      "evaluacion_id": "SEMEV-1d5924d98130ab6bbef48632",
+      "relacion_id": "REL-107500c8d4873fe4d05bb8e3",
+      "reporte_inspeccion_ref_consumido": [],
+      "reserva": "El worker no adjudica y no trata ausencia de join como evidencia negativa.",
+      "siguiente_accion_original_sha256": "02c72ddb81fc4dcb11d2369ff5e6cc76892dc28fd3b638a6b242e237ea25a1da"
+    },
+    {
+      "afirmacion_tipo": "NO_DETERMINADO",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "periodo",
+        "codificacion"
+      ],
+      "estado": "SIN_JOIN_EXACTO_A_REPORTE_NEUTRAL",
+      "evaluacion_id": "SEMEV-23a537801b3da44c302efe94",
+      "relacion_id": "REL-e247f2d5250d822fb74a0638",
+      "reporte_inspeccion_ref_consumido": [],
+      "reserva": "El worker no adjudica y no trata ausencia de join como evidencia negativa.",
+      "siguiente_accion_original_sha256": "5365ca824d1edd1e43902e24bcbcb96a3dab8739d978e80e0cf4dc2695299330"
+    }
+  ],
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "task_id": "SEMTSK-77bc99bf6f1590312fc55959"
+}

@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "c2b02cbf6f0a3b6bbe8dc6cf98f23e398e3d7a2e63b8e653f476949c513706e0",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:REPORTE_SOBRE_USO_Y_CONFIANZA_DE_SERVICIOS_FINANCIEROS_DIGITALES",
+  "fuente_canonica_normalizada": "REPORTE_SOBRE_USO_Y_CONFIANZA_DE_SERVICIOS_FINANCIEROS_DIGITALES",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L4",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv",
+      "evidencia_ref_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:REPORTE_SOBRE_USO_Y_CONFIANZA_DE_SERVICIOS_FINANCIEROS_DIGITALES",
+      "fuente_canonica_normalizada": "REPORTE_SOBRE_USO_Y_CONFIANZA_DE_SERVICIOS_FINANCIEROS_DIGITALES",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N24",
+      "objeto_evidencia_id_canonico": "OE-eddca7ca14da62ef97c9048e",
+      "procedencia_id": "PROV-ea1bd851adcace7bec7fe7ba",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-0ccb1f487408f4999004b321",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Recuperar el reporte canónico y localizar tabla, pregunta, muestra, periodo y codificación de confianza/uso.",
+      "siguiente_accion_original_sha256": "93f79aab5c4486e985b86b55bd381e6b706e62ebde3d523f5497a4cca6ef5cb6",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-0ccb1f487408f4999004b321 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-a51729167f0aec41496d5fb5"
+}

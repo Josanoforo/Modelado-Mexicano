@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "3a80ca4e8864387e668e9caf6e48be5c815e974b8659c4c0dfd8f769238255c4",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND",
+  "fuente_canonica_normalizada": "PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv:L19",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv:L19",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv:L19",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND",
+      "fuente_canonica_normalizada": "PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N21",
+      "objeto_evidencia_id_canonico": "OE-3f3621b9740c3f71eda9405e",
+      "procedencia_id": "PROV-09ea957f2d773cad90c37a52",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-0e3c2a3a6afd1dae2297740e",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Localizar anexos o codebook y verificar brazos, codificación de precio/información y compra efectiva.",
+      "siguiente_accion_original_sha256": "62c5651e690a09c67e2782b7cd865104d4af86b74d3fe4d9e2ad27889247b2fd",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-0e3c2a3a6afd1dae2297740e con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-6e6975b837ee9b2460e0fb32"
+}

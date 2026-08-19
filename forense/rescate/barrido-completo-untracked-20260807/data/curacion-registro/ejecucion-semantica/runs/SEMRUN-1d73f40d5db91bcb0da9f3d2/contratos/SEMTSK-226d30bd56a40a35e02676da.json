@@ -1,0 +1,32 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "criterio_cierre": "Propuesta trazable supervisada o terminal explícito SIN_EXPEDIENTE_INTEGRABLE.",
+  "fail_closed": true,
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:ISSP",
+  "fuente_canonica_normalizada": "ISSP",
+  "reglas": [
+    "No sustituir siguiente_accion_original.",
+    "No inferir identidad ni semántica desde URL, nombre o pertenencia a familia.",
+    "Consumir reportes neutrales solo por relacion→activo→reporte exactos.",
+    "Una propuesta incompleta no modifica el baseline."
+  ],
+  "relaciones_asignadas": [
+    "REL-62c97ccb92d0e95c8120d776",
+    "REL-6b71873b3adacde57117ad99",
+    "REL-72ff714a3ba6d0bab952e05f",
+    "REL-75b2ff53a19d8058eba2dbb7",
+    "REL-7751c832c7e30e4e4d7603cc",
+    "REL-845a93bc24990147a394f897",
+    "REL-8d2952203ec3678f3bd0c473",
+    "REL-9dfab617c356df5594575a3c",
+    "REL-b034b04e9ba040bd02e39b8b",
+    "REL-cd0d1c5fd7e85418603c73cd",
+    "REL-d630dc1ea394364e53631401",
+    "REL-e95e26820797a0f55c9246d7",
+    "REL-f219eb1a0e1b71beb5a36f6f"
+  ],
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-226d30bd56a40a35e02676da"
+}

@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "d8eed4d2820f545a779bdfad4b577f9aedc599b32d0d7b81a51d0ee11d95ce19",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:02-",
+  "fuente_canonica_normalizada": "02-",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:canon/glosario-v5_6.md;MAIN:canon/integrador-psicologia-mexicano.md;MAIN:canon/modelo-decision-v4_0.md;MAIN:corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "evidencia_ref_evidencia_original": "MAIN:canon/modelo-decision-v4_0.md",
+      "evidencia_ref_original": "MAIN:canon/modelo-decision-v4_0.md",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:02-",
+      "fuente_canonica_normalizada": "02-",
+      "input_requerido_clasificacion": "Evidencia previa exacta, mapeo necesidad→objeto y reportes neutrales disponibles.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N14",
+      "objeto_evidencia_id_canonico": "OE-2a65c4b42b26b46a976631ac",
+      "procedencia_id": "PROV-9c28fdc4f7ffafd07bc17466",
+      "regla_clasificacion_id": "RW-06-DEFAULT",
+      "relacion_id": "REL-02e6e4861871631dd29048bd",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No propagar estado por fuente ni por necesidad.",
+      "reserva_original": "No se propagó el estado general de la necesidad; requiere evidencia fuente-específica.",
+      "siguiente_accion_original": "Resolver ruta PDF.",
+      "siguiente_accion_original_sha256": "b51271ab23ff866a3617b7cc659c7cef831925177d4d253277273e2c0b54b5d0",
+      "siguiente_accion_tipificada": "Contrastar procedencia estructurada de REL-02e6e4861871631dd29048bd con sus objetos de modelo permitidos y emitir propuesta o reserva.",
+      "tipo_trabajo": "CURADURIA_FUENTE"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-c906685dfd65fa9409b28d20"
+}

@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "9647f1300cd3812ba347a20e53c325d456045a4f59ff3d53c5377c671528214e",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:01-",
+  "fuente_canonica_normalizada": "01-",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:canon/glosario-v5_6.md;MAIN:canon/integrador-psicologia-mexicano.md;MAIN:canon/modelo-decision-v4_0.md;MAIN:corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "evidencia_ref_evidencia_original": "MAIN:canon/glosario-v5_6.md;MAIN:canon/integrador-psicologia-mexicano.md;MAIN:canon/modelo-decision-v4_0.md;MAIN:corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "evidencia_ref_original": "MAIN:canon/glosario-v5_6.md;MAIN:canon/integrador-psicologia-mexicano.md;MAIN:canon/modelo-decision-v4_0.md;MAIN:corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:01-",
+      "fuente_canonica_normalizada": "01-",
+      "input_requerido_clasificacion": "Evidencia previa exacta, mapeo necesidad→objeto y reportes neutrales disponibles.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N14",
+      "objeto_evidencia_id_canonico": "OE-138ce4f6be7cb2ddb42c982a",
+      "procedencia_id": "PROV-f3849cc877364dbff42fac3d",
+      "regla_clasificacion_id": "RW-06-DEFAULT",
+      "relacion_id": "REL-c3e1306bb304b019d0a94e4b",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No propagar estado por fuente ni por necesidad.",
+      "reserva_original": "No se propagó el estado general de la necesidad; requiere evidencia fuente-específica.",
+      "siguiente_accion_original": "Resolver a un payload canónico local y abrir tabla/diccionario con unidad, periodo y variables de exposición y desenlace.",
+      "siguiente_accion_original_sha256": "d037550cd1426688fd2abdfa16eb77e05f030000d4b29c15b046192bde2e8c55",
+      "siguiente_accion_tipificada": "Contrastar procedencia estructurada de REL-c3e1306bb304b019d0a94e4b con sus objetos de modelo permitidos y emitir propuesta o reserva.",
+      "tipo_trabajo": "CURADURIA_FUENTE"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-344b4adb025b410eca6b7a87"
+}

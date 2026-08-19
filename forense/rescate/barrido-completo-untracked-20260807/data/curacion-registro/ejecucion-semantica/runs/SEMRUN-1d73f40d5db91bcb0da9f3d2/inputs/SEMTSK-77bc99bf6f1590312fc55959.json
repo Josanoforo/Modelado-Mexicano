@@ -1,0 +1,89 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "55bae8b1d6d1512fe48eda5bfa0315f5861caa5780754e99ee38918ef7163145",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:MASS_MOBILIZATION_PROTEST_DATA_MEXICO",
+  "fuente_canonica_normalizada": "MASS_MOBILIZATION_PROTEST_DATA_MEXICO",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "periodo",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "evento",
+        "universo_muestra": "México",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L13",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L13",
+      "evidencia_ref_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L13",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:MASS_MOBILIZATION_PROTEST_DATA_MEXICO",
+      "fuente_canonica_normalizada": "MASS_MOBILIZATION_PROTEST_DATA_MEXICO",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N27",
+      "objeto_evidencia_id_canonico": "OE-8ea8d18a90b95bcb481273e3",
+      "procedencia_id": "PROV-488b15cd36ec5d68804b3453",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-107500c8d4873fe4d05bb8e3",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Obtener archivo/codebook.",
+      "siguiente_accion_original_sha256": "02c72ddb81fc4dcb11d2369ff5e6cc76892dc28fd3b638a6b242e237ea25a1da",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-107500c8d4873fe4d05bb8e3 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    },
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "periodo",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "evento",
+        "universo_muestra": "México",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L13",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L13",
+      "evidencia_ref_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L13",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:MASS_MOBILIZATION_PROTEST_DATA_MEXICO",
+      "fuente_canonica_normalizada": "MASS_MOBILIZATION_PROTEST_DATA_MEXICO",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N17",
+      "objeto_evidencia_id_canonico": "OE-153099e060474c664f682d70",
+      "procedencia_id": "PROV-91e5de948565c10889b41221",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-e247f2d5250d822fb74a0638",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Obtener codebook.",
+      "siguiente_accion_original_sha256": "5365ca824d1edd1e43902e24bcbcb96a3dab8739d978e80e0cf4dc2695299330",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-e247f2d5250d822fb74a0638 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-77bc99bf6f1590312fc55959"
+}

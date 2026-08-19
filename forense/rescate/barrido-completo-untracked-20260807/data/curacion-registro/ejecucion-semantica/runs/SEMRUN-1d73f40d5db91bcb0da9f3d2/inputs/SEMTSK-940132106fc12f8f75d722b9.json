@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "e7da346cdfbef3889ee2dbc6c89dc1445ba8847e0fa2016594062b83ea053ba6",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:RELLABORALESPRUEBA",
+  "fuente_canonica_normalizada": "RELLABORALESPRUEBA",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:canon/estado-programa-v1_10.md;MAIN:canon/glosario-v5_6.md;MAIN:canon/gobernanza-v1_15.md;MAIN:canon/integrador-psicologia-mexicano.md",
+      "evidencia_ref_evidencia_original": "MAIN:canon/gobernanza-v1_15.md",
+      "evidencia_ref_original": "MAIN:canon/gobernanza-v1_15.md",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:RELLABORALESPRUEBA",
+      "fuente_canonica_normalizada": "RELLABORALESPRUEBA",
+      "input_requerido_clasificacion": "Evidencia previa exacta, mapeo necesidad→objeto y reportes neutrales disponibles.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N27",
+      "objeto_evidencia_id_canonico": "OE-8ca059261693f4c587a99e97",
+      "procedencia_id": "PROV-3357fac3755ec5b9f046e217",
+      "regla_clasificacion_id": "RW-06-DEFAULT",
+      "relacion_id": "REL-a8d0e6223c2d79b63a90b4f5",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No propagar estado por fuente ni por necesidad.",
+      "reserva_original": "No se propagó el estado general de la necesidad; requiere evidencia fuente-específica.",
+      "siguiente_accion_original": "Resolver si es dataset o artefacto.",
+      "siguiente_accion_original_sha256": "75172d1f12c2f64e0c2aba3be4f1b284bec275ef1decd7410a6755634a7c10b0",
+      "siguiente_accion_tipificada": "Contrastar procedencia estructurada de REL-a8d0e6223c2d79b63a90b4f5 con sus objetos de modelo permitidos y emitir propuesta o reserva.",
+      "tipo_trabajo": "CURADURIA_FUENTE"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-940132106fc12f8f75d722b9"
+}

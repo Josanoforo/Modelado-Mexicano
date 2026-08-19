@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "71ab57cc47fccebb36e20d287a0fd7056cfa91a6f42bcb5bbd6a0fc90da470c0",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:ENCUP",
+  "fuente_canonica_normalizada": "ENCUP",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L26",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L26",
+      "evidencia_ref_original": "MAIN:data/mapa-fuentes-2026-08-06.tsv:L26",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:ENCUP",
+      "fuente_canonica_normalizada": "ENCUP",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N25",
+      "objeto_evidencia_id_canonico": "OE-69905761f187f3a3ed192af6",
+      "procedencia_id": "PROV-a161225fb1bd7a14682a88aa",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-de059d547843c8fefa01197a",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir cuestionario/base ENCUP solo para confirmar unidad geográfica y turnout; si no hay municipio×tipo de elección, cerrar esta relación.",
+      "siguiente_accion_original_sha256": "e757a79abba5d75a2c85acfd52ca7470981a87a5bd346e2e0605133f62300537",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-de059d547843c8fefa01197a con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-3b18db64ab499eb0d247cee1"
+}

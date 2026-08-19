@@ -1,0 +1,93 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "d0f0eaa28c4f46f694c0a6da10c21a1f7d60b7cb624d3a699b5f3118741360dc",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:DOES_CORRUPTION_INFORMATION_INSPIRE_THE_FIGHT_OR_QUASH_THE_HOPE",
+  "fuente_canonica_normalizada": "DOES_CORRUPTION_INFORMATION_INSPIRE_THE_FIGHT_OR_QUASH_THE_HOPE",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L6",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:DOES_CORRUPTION_INFORMATION_INSPIRE_THE_FIGHT_OR_QUASH_THE_HOPE",
+      "fuente_canonica_normalizada": "DOES_CORRUPTION_INFORMATION_INSPIRE_THE_FIGHT_OR_QUASH_THE_HOPE",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N25",
+      "objeto_evidencia_id_canonico": "OE-c8e117825dd360967c8a01a5",
+      "procedencia_id": "PROV-ce930456cdf793944264b830",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-20c9e9445e7c52770b6c3b10",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir instrumento y tablas del estudio; localizar tratamiento informativo, outcome y estimando pertinente.",
+      "siguiente_accion_original_sha256": "7f036c47afc4a5bd11592b151d061aea99b8b28e82df65d53698b1eed5678ecb",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-20c9e9445e7c52770b6c3b10 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    },
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv:L2",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-academico-2026-08-06.tsv",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:DOES_CORRUPTION_INFORMATION_INSPIRE_THE_FIGHT_OR_QUASH_THE_HOPE",
+      "fuente_canonica_normalizada": "DOES_CORRUPTION_INFORMATION_INSPIRE_THE_FIGHT_OR_QUASH_THE_HOPE",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N25",
+      "objeto_evidencia_id_canonico": "OE-c0e6f88263d23f3aa80725aa",
+      "procedencia_id": "PROV-12dc272801aa331a5e478368",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-bb570a7a7c72c881de31f75d",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir instrumento y tablas del estudio; localizar tratamiento informativo, outcome y estimando pertinente.",
+      "siguiente_accion_original_sha256": "7f036c47afc4a5bd11592b151d061aea99b8b28e82df65d53698b1eed5678ecb",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-bb570a7a7c72c881de31f75d con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-ce2354d17ce132097cdf80d1"
+}

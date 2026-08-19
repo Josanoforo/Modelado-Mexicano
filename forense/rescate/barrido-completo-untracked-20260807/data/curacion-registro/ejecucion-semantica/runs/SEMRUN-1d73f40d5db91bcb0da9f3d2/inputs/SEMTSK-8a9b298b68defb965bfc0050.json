@@ -1,0 +1,93 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "cac56d6d927de8166b20f16a19d0443cd9c983d1437e0b76fa2b7186395823c4",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:MASS_MOBILIZATION_PROTEST_DATA",
+  "fuente_canonica_normalizada": "MASS_MOBILIZATION_PROTEST_DATA",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L9",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L9",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L9",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:MASS_MOBILIZATION_PROTEST_DATA",
+      "fuente_canonica_normalizada": "MASS_MOBILIZATION_PROTEST_DATA",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N17",
+      "objeto_evidencia_id_canonico": "OE-f6f64575493127412ebb0cf9",
+      "procedencia_id": "PROV-2d1fa21ea3ae0528abf8a9ee",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-435541bba7684694085356c2",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir codebook y payload México; verificar campos completos y documentar explícitamente si existe algún vínculo con trámite o gobierno digital.",
+      "siguiente_accion_original_sha256": "a359d8730c4106786103e3a28d953efd060494d50a0266f056159848d96464a2",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-435541bba7684694085356c2 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    },
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L9",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L9",
+      "evidencia_ref_original": "MAIN:data/mapa-ext-general-2026-08-06.tsv:L9",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:MASS_MOBILIZATION_PROTEST_DATA",
+      "fuente_canonica_normalizada": "MASS_MOBILIZATION_PROTEST_DATA",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N27",
+      "objeto_evidencia_id_canonico": "OE-5aa6b367a88c5019bde50c20",
+      "procedencia_id": "PROV-f022707119b11fa2aedaecf9",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-99525527adc1ae5960ac2055",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir codebook y archivo México; comprobar localización, actor, respuesta y derivabilidad urbano/rural.",
+      "siguiente_accion_original_sha256": "f56d5cf7f85dfd6c2028a279d4a141242b1e70450a33520b30be2210938306a7",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-99525527adc1ae5960ac2055 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-8a9b298b68defb965bfc0050"
+}

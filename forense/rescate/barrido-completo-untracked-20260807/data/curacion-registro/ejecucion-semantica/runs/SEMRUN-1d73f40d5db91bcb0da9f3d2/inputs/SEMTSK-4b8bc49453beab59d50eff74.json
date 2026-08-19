@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "f7f446ec568b31b77ec4812f04b6ae063197447fd8b04be1ed936a1de160c386",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_2019_2024",
+  "fuente_canonica_normalizada": "ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_2019_2024",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L3",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv",
+      "evidencia_ref_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_2019_2024",
+      "fuente_canonica_normalizada": "ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS_2019_2024",
+      "input_requerido_clasificacion": "Población, unidad, variables, codificación, faltantes, ponderación, diseño, transformación e incertidumbre.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N29",
+      "objeto_evidencia_id_canonico": "OE-63d0732feceeafcbd327963f",
+      "procedencia_id": "PROV-a87c8386c10c2972fce3ef26",
+      "regla_clasificacion_id": "RW-03-ABIERTO",
+      "relacion_id": "REL-87b4ab08a7e1b65f965ffb88",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No redefinir el estimando para producir resultado.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Mapear cuestionario y tabulados 2019–2024 a la necesidad, con periodo, unidad y codificación.",
+      "siguiente_accion_original_sha256": "3db2c3da6015f065a105aaa19edc47402835fdf0cc20d063724960adff03ec7d",
+      "siguiente_accion_tipificada": "Definir especificación completa antes de calcular sobre la evidencia abierta de REL-87b4ab08a7e1b65f965ffb88.",
+      "tipo_trabajo": "ANALISIS_MEDICION"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-4b8bc49453beab59d50eff74"
+}

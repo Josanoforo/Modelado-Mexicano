@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "209aaccbcaeb6b936b35667acee14e43dfea1a683ee47d0a163a79710664f3b5",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:ENOE",
+  "fuente_canonica_normalizada": "ENOE",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:canon/modelo-decision-v4_0.md;MAIN:corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md;MAIN:corpus/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md;MAIN:forense/cobertura-motor.md",
+      "evidencia_ref_evidencia_original": "MAIN:canon/modelo-decision-v4_0.md",
+      "evidencia_ref_original": "MAIN:canon/modelo-decision-v4_0.md",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:ENOE",
+      "fuente_canonica_normalizada": "ENOE",
+      "input_requerido_clasificacion": "Evidencia previa exacta, mapeo necesidad→objeto y reportes neutrales disponibles.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N18",
+      "objeto_evidencia_id_canonico": "OE-50dfcbc516e7e4a51facda49",
+      "procedencia_id": "PROV-fa734666970adb94f806ef1f",
+      "regla_clasificacion_id": "RW-06-DEFAULT",
+      "relacion_id": "REL-4b4d25bbe2c702aed1884440",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No propagar estado por fuente ni por necesidad.",
+      "reserva_original": "No se propagó el estado general de la necesidad; requiere evidencia fuente-específica.",
+      "siguiente_accion_original": "Buscar de forma dirigida en diccionarios ENOE una variable explícita del constructo; si no existe, delimitar ausencia por módulos revisados.",
+      "siguiente_accion_original_sha256": "a3b11c2eaa52aa88848a4f8d2b0a59f126510f46cb685a727c0c58c30d283e75",
+      "siguiente_accion_tipificada": "Contrastar procedencia estructurada de REL-4b4d25bbe2c702aed1884440 con sus objetos de modelo permitidos y emitir propuesta o reserva.",
+      "tipo_trabajo": "CURADURIA_FUENTE"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-7ab6d8e8a3185b4a6c836320"
+}

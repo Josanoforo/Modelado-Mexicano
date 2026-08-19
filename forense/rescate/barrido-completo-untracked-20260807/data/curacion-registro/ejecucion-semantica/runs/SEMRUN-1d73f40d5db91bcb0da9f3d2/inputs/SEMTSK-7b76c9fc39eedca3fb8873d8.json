@@ -1,0 +1,53 @@
+{
+  "baseline_sha256": "4dd527eb25bf9d4ed1047c7956d9ee51f20175361f9404315baae476c057cc76",
+  "contract_sha256": "4884baf3920bcc758f0abfa021e8fd9631f3e8713df744dcfa0d9b65b8d4b5b5",
+  "familia_logica_id": "SIN_ACTIVO_EXACTO:MICROCREDIT_IMPACTS_COMPARTAMOS_RCT",
+  "fuente_canonica_normalizada": "MICROCREDIT_IMPACTS_COMPARTAMOS_RCT",
+  "relaciones": [
+    {
+      "activo_id_vinculado": [],
+      "adjudicacion_vigente": "CANDIDATA",
+      "campos_materiales_no_determinados": [
+        "variable_reactivo_tabla",
+        "unidad_observacion",
+        "periodo",
+        "universo_muestra",
+        "codificacion"
+      ],
+      "conflicto_material": "NO",
+      "decision_id": "NO_APLICA",
+      "evidencia_estructurada": {
+        "codificacion": "NO_DETERMINADO",
+        "periodo": "NO_DETERMINADO",
+        "unidad_observacion": "NO_DETERMINADO",
+        "universo_muestra": "NO_DETERMINADO",
+        "variable_reactivo_tabla": "NO_DETERMINADO"
+      },
+      "evidencia_ref_accion_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L8",
+      "evidencia_ref_evidencia_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L8",
+      "evidencia_ref_original": "MAIN:data/mapa-fuentes-externas-consolidado-2026-08-06.tsv:L8",
+      "familia_logica_id": "SIN_ACTIVO_EXACTO:MICROCREDIT_IMPACTS_COMPARTAMOS_RCT",
+      "fuente_canonica_normalizada": "MICROCREDIT_IMPACTS_COMPARTAMOS_RCT",
+      "input_requerido_clasificacion": "Localizador declarado, dato requerido, beneficio informativo y criterio de parada.",
+      "input_requerido_original": "Revisión de equivalencia y codificación antes de parametrizar.",
+      "necesidad_id": "N3",
+      "objeto_evidencia_id_canonico": "OE-f651d8070c16835c9901c40f",
+      "procedencia_id": "PROV-10aef21762b3fd60a73e1e5f",
+      "regla_clasificacion_id": "RW-05-INDEXADO",
+      "relacion_id": "REL-c9a73bd2a8258784f9f08ea8",
+      "reporte_inspeccion_ref": [],
+      "requiere_decision": "NO",
+      "reserva_clasificacion": "No descargar sin decisión supervisora de adquisición.",
+      "reserva_original": "Escala/diseño/universo:",
+      "siguiente_accion_original": "Abrir codebook y buscar el reactivo literal de estatus; no inferirlo de gasto, crédito o bienestar.",
+      "siguiente_accion_original_sha256": "88d6c00e835e31d094ac93a7f945fd3e8dae764f600f5a4778e6827e30be1c07",
+      "siguiente_accion_tipificada": "Verificar el localizador exacto ya declarado de REL-c9a73bd2a8258784f9f08ea8 con máximo dos intentos y sin discovery panorámico.",
+      "tipo_trabajo": "BUSQUEDA_DIRIGIDA"
+    }
+  ],
+  "reportes_neutrales_corpus_sha256": "7ea21fde46692ea10a41f3ac4d8616d2d0f38523b3865767042fe5f3205a20e0",
+  "run_id": "SEMRUN-1d73f40d5db91bcb0da9f3d2",
+  "schema_version": "1.0.0",
+  "snapshot_t0_sha256": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "task_id": "SEMTSK-7b76c9fc39eedca3fb8873d8"
+}
