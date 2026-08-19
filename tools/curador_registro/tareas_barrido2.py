@@ -82,6 +82,7 @@ REGLA_USADO_PARA = "R5-CADENA-CANONICA-EN-USADO-PARA"
 REGLA_SLUG = "R7-SLUG-DE-PROGRAMA-INEGI"
 REGLA_CARPETA = "R8-PREFIJO-DE-CARPETA-EN-ARCHIVO"
 REGLA_NINGUNA = "R0-SIN-CANDIDATO-MATERIAL"
+REGLA_APERTURA = "R10-PAYLOAD-DECLARADO-EN-LISTA-APERTURA"
 
 TOKEN_MINIMO = 4
 
@@ -419,9 +420,33 @@ def cmd_fuentes(args: argparse.Namespace) -> int:
     return 0
 
 
+def payloads_de_apertura(apertura_path: Path | None, ledger_payloads: set[str]) -> dict[str, list[str]]:
+    """relacion_id -> payloads que `lista-apertura` declara y el ledger observa.
+
+    El §18 del encargo madre manda unir las 17 aperturas absorbidas "por
+    identidad vigente, no por subcadena", y su fuente de verdad es la columna
+    `ids_manifiesto_que_lo_proveen` de la propia lista -- NO la cobertura por
+    fuente canónica.  Medido: 16 de las 17 declaran un payload que la
+    cobertura de su fuente no ofrece (`116334_v1` bajo MICROCREDIT_*,
+    `cses5_*` bajo COMPARATIVE_STUDY_*, `dataverse_files` bajo
+    MASS_MOBILIZATION_*, `za5900_*`/`za6980_*` bajo ISSP), de modo que sin
+    esta vía el curador leería fragmentos que no son los suyos.
+    """
+    if apertura_path is None or not apertura_path.is_file():
+        return {}
+    declarados: dict[str, list[str]] = {}
+    for fila in read_tsv(apertura_path):
+        ids = [i for i in _split_ids(fila.get("ids_manifiesto_que_lo_proveen", ""))
+               if i in ledger_payloads]
+        if ids:
+            declarados[fila["relacion_id"]] = sorted(set(ids))
+    return declarados
+
+
 def escribe_paquetes_de_relacion(
     registry: Path, coverage: list[dict[str, str]], detalle: list[dict[str, str]],
     counts: dict[str, int], shard_root: Path, pack_root: Path,
+    apertura: dict[str, list[str]] | None = None,
 ) -> dict[str, int]:
     """Arma el expediente de lectura de cada relación.
 
@@ -451,13 +476,18 @@ def escribe_paquetes_de_relacion(
         destino[row["fuente_canonica"]].append(row["valor"])
     resumen = {"paquetes": 0, "con_material": 0, "sin_material": 0}
     pack_root.mkdir(parents=True, exist_ok=True)
+    apertura = apertura or {}
     for fila in coverage:
         fuente = fila["fuente_canonica"]
-        payloads = por_fuente_payload.get(fuente, [])
+        payloads_fuente = por_fuente_payload.get(fuente, [])
         for relacion_id in por_fuente_relacion.get(fuente, []):
             relacion = relaciones.get(relacion_id)
             if relacion is None:
                 continue
+            # Unión por relación: cobertura de la fuente + lo que
+            # `lista-apertura` declara para ESTA relación (§18.3).
+            declarados = apertura.get(relacion_id, [])
+            payloads = sorted(set(payloads_fuente) | set(declarados))
             filas_necesidad = necesidades.get(relacion["necesidad_id"], [])
             objetos_modelo = [
                 fila["objeto_modelo_origen"] for fila in filas_necesidad
@@ -474,7 +504,8 @@ def escribe_paquetes_de_relacion(
                 "necesidad_texto": ";".join(objetos_modelo) or "NO-DETERMINADO",
                 "necesidad_reserva": ";".join(reservas) or "NINGUNA",
                 "fuente_canonica": fuente,
-                "regla_resolucion": fila["regla_resolucion"],
+                "regla_resolucion": (
+                    fila["regla_resolucion"] + ("+" + REGLA_APERTURA if declarados else "")),
                 "evidencia_resolucion": fila["evidencia_resolucion"],
                 "capa2_manifiesto": relacion.get("capa2_manifiesto", ""),
                 "capa3_disco_real": relacion.get("capa3_disco_real", ""),
@@ -514,7 +545,16 @@ def cmd_paquetes(args: argparse.Namespace) -> int:
     for row in read_tsv(_detalle_path(coverage_path)):
         if row["tipo"] == "PAYLOAD":
             por_fuente[row["fuente_canonica"]].append(row["valor"])
+    ledger_payloads = {
+        r["payload_id"] for r in read_tsv(args.registry.resolve().parent
+                                          / "curacion-universo"
+                                          / "ledger-inspecciones-barrido2.tsv")
+        if r["payload_id"] not in {"", "NO-APLICA"}
+    }
+    apertura = payloads_de_apertura(args.apertura.resolve() if args.apertura else None,
+                                    ledger_payloads)
     wanted = {p for payloads in por_fuente.values() for p in payloads}
+    wanted |= {p for payloads in apertura.values() for p in payloads}
     counts, hashes = project_index(args.index.resolve(), wanted, args.shard_root.resolve())
     for row in coverage:
         payloads = por_fuente.get(row["fuente_canonica"], [])
@@ -522,7 +562,7 @@ def cmd_paquetes(args: argparse.Namespace) -> int:
     write_tsv(coverage_path, COVERAGE_FIELDS, coverage)
     resumen_packs = escribe_paquetes_de_relacion(
         args.registry.resolve(), coverage, read_tsv(_detalle_path(coverage_path)),
-        counts, args.shard_root.resolve(), args.pack_root.resolve(),
+        counts, args.shard_root.resolve(), args.pack_root.resolve(), apertura,
     )
     manifest_out = {
         "schema_version": SCHEMA_VERSION,
@@ -538,6 +578,193 @@ def cmd_paquetes(args: argparse.Namespace) -> int:
     print(json.dumps({k: v for k, v in manifest_out.items() if k != "fragmentos_sha256"},
                      ensure_ascii=False, indent=2, sort_keys=True))
     return 0
+
+
+
+# ───────────────────────────────────────────────────────────────
+# Fase `tareas` · convierte la elección del curador en expediente
+#
+# ACTO B2-SEMANTICO, 18/ago/2026.  El docstring de este módulo la declaraba
+# desde el principio y nunca se escribió: es el eslabón que faltaba entre
+# `paquetes` (lo que el curador lee) e `integrate_barrido2.preflight` (lo que
+# el integrador vuelve a verificar).
+#
+# NO adjudica y NO enumera candidatos: recibe la elección ya hecha y sólo
+# acepta lo que puede volver a verificar por hash.  Cada campo del expediente
+# se REDERIVA del registro E2 elegido y de los productos durables; ninguno se
+# copia de la elección salvo los tres que son del curador (el registro que
+# eligió, el reactivo que nombra y la frontera que declara).
+#
+# Cadena de verificación por fila:
+#   e2_record_id  -> presente en el fragmento del payload candidato
+#                 -> record_sha256 coincide con el declarado
+#   registro E2   -> (representacion, objeto_tipo, estado, privacidad,
+#                     frontera) identifica UNA fila de reporte durable
+#   representacion-> fila de ledger con mismo payload_id y sha256
+#   representacion-> descriptor material TASK-B2-*.json, hasheado en vivo
+# ───────────────────────────────────────────────────────────────
+
+ELECCION_FIELDS = [
+    "relacion_id", "curador_id", "estado_eleccion", "e2_record_id",
+    "e2_record_sha256", "reactivo_id", "frontera_semantica", "nota",
+]
+
+_GRUPO_REPORTE = (
+    "representacion_id", "objeto_tipo", "estado", "privacidad", "frontera_inspeccion",
+)
+
+
+def _indice_descriptores(task_root: Path) -> dict[str, tuple[str, str]]:
+    """representacion_id -> (material_tarea_id, sha256 del descriptor).
+
+    El ledger no nombra el descriptor (su `reporte_neutral_ref` es el lote
+    E2B-*), así que la correspondencia se toma del propio descriptor, que sí
+    declara su `representacion_id`.
+    """
+    indice: dict[str, tuple[str, str]] = {}
+    for ruta in sorted(task_root.glob("*.json")):
+        descriptor = json.loads(ruta.read_text(encoding="utf-8"))
+        indice[descriptor["representacion_id"]] = (
+            descriptor["tarea_id"], sha256_file(ruta),
+        )
+    return indice
+
+
+def _registros_de_payloads(shard_root: Path, payloads: Iterable[str]) -> dict[str, dict[str, Any]]:
+    registros: dict[str, dict[str, Any]] = {}
+    for payload in payloads:
+        fragmento = shard_root / f"{_nombre_fragmento(payload)}.jsonl"
+        if not fragmento.is_file():
+            continue
+        with fragmento.open(encoding="utf-8") as handle:
+            for linea in handle:
+                registro = json.loads(linea)
+                registros[registro["record_id"]] = registro
+    return registros
+
+
+def derivar_tareas(
+    registry: Path, ledger_path: Path, reports_path: Path,
+    material_baseline_path: Path, material_task_root: Path,
+    coverage_path: Path, shard_root: Path, elecciones_path: Path,
+    apertura_path: Path | None, fecha: str,
+) -> tuple[list[dict[str, str]], dict[str, Any]]:
+    relaciones = {r["relacion_id"]: r for r in read_tsv(registry / "relaciones.tsv")}
+    ledger = {r["representacion_id"]: r for r in read_tsv(ledger_path)}
+    reportes: dict[tuple[str, ...], dict[str, str]] = {}
+    for fila in read_tsv(reports_path):
+        reportes.setdefault(tuple(fila[c] for c in _GRUPO_REPORTE), fila)
+    por_fuente: dict[str, list[str]] = defaultdict(list)
+    for fila in read_tsv(_detalle_path(coverage_path)):
+        if fila["tipo"] == "PAYLOAD":
+            por_fuente[fila["fuente_canonica"]].append(fila["valor"])
+
+    apertura = payloads_de_apertura(
+        apertura_path, {r["payload_id"] for r in ledger.values()
+                        if r["payload_id"] not in {"", "NO-APLICA"}})
+    descriptores = _indice_descriptores(material_task_root)
+    baseline_sha = sha256_file(material_baseline_path)
+
+    tareas: list[dict[str, str]] = []
+    rechazos: list[dict[str, str]] = []
+    sin_objeto: list[str] = []
+
+    for eleccion in read_tsv(elecciones_path):
+        relacion_id = eleccion["relacion_id"]
+        relacion = relaciones.get(relacion_id)
+
+        def rechaza(motivo: str) -> None:
+            rechazos.append({"relacion_id": relacion_id, "motivo": motivo})
+
+        if relacion is None:
+            rechaza("RELACION_INEXISTENTE")
+            continue
+        if eleccion["estado_eleccion"] != "ELEGIDO":
+            sin_objeto.append(relacion_id)
+            continue
+
+        # Mismo universo que vio el curador en su ficha: cobertura de la
+        # fuente MÁS lo que `lista-apertura` declara para esta relación (§18.3).
+        payloads = sorted(set(por_fuente.get(relacion["fuente_canonica_normalizada"], []))
+                          | set(apertura.get(relacion_id, [])))
+        registros = _registros_de_payloads(shard_root, payloads)
+        registro = registros.get(eleccion["e2_record_id"])
+        if registro is None:
+            rechaza("REGISTRO_E2_FUERA_DE_LOS_PAYLOADS_CANDIDATOS")
+            continue
+        if registro["record_sha256"] != eleccion["e2_record_sha256"]:
+            rechaza("REGISTRO_E2_SHA_DIVERGENTE")
+            continue
+
+        reporte = reportes.get(tuple(str(registro[c]) for c in _GRUPO_REPORTE))
+        if reporte is None:
+            rechaza("SIN_FILA_DE_REPORTE_DURABLE_PARA_EL_GRUPO")
+            continue
+
+        fila_ledger = ledger.get(registro["representacion_id"])
+        if fila_ledger is None or fila_ledger["payload_id"] != registro["payload_id"] \
+                or fila_ledger["sha256"] != registro["sha256"]:
+            rechaza("LEDGER_NO_CONFIRMA_LA_REPRESENTACION")
+            continue
+
+        descriptor = descriptores.get(registro["representacion_id"])
+        if descriptor is None:
+            rechaza("SIN_DESCRIPTOR_MATERIAL")
+            continue
+
+        tareas.append({
+            "tarea_id": stable_id("TSEM-B2-", relacion_id, registro["record_id"]),
+            "relacion_id": relacion_id,
+            "reporte_id": reporte["reporte_id"],
+            "reporte_record_id": reporte["record_id"],
+            "reporte_record_sha256": reporte["record_sha256"],
+            "e2_record_id": registro["record_id"],
+            "e2_record_sha256": registro["record_sha256"],
+            "payload_id": registro["payload_id"],
+            "representacion_id": registro["representacion_id"],
+            "sha256": registro["sha256"],
+            "objeto_logico_id": registro["objeto_logico_id"],
+            "necesidad_id": relacion["necesidad_id"],
+            "reactivo_id": eleccion["reactivo_id"] or registro["objeto_logico_id"],
+            "fuente_canonica": relacion["fuente_canonica_normalizada"] or "NO-APLICA",
+            "frontera_semantica": _durable(
+                eleccion["frontera_semantica"] or registro["frontera_inspeccion"]),
+            "material_tarea_id": descriptor[0],
+            "material_task_sha256": descriptor[1],
+            "material_baseline_sha256": baseline_sha,
+            "curador_id": eleccion["curador_id"],
+            "fecha": fecha,
+        })
+
+    resumen = {
+        "schema_version": SCHEMA_VERSION,
+        "elecciones_leidas": len(tareas) + len(rechazos) + len(sin_objeto),
+        "tareas": len(tareas),
+        "sin_objeto": len(sin_objeto),
+        "rechazos": rechazos,
+        "relaciones": len({t["relacion_id"] for t in tareas}),
+        "payloads": sorted({t["payload_id"] for t in tareas}),
+        "material_baseline_sha256": baseline_sha,
+    }
+    return tareas, resumen
+
+
+def stable_id(prefix: str, *parts: str) -> str:
+    return prefix + hashlib.sha256("\x1f".join(parts).encode("utf-8")).hexdigest()
+
+
+def cmd_tareas(args: argparse.Namespace) -> int:
+    tareas, resumen = derivar_tareas(
+        args.registry.resolve(), args.ledger.resolve(), args.reports.resolve(),
+        args.material_baseline.resolve(), args.material_task_root.resolve(),
+        args.coverage.resolve(), args.shard_root.resolve(),
+        args.elecciones.resolve(),
+        args.apertura.resolve() if args.apertura else None, args.fecha,
+    )
+    write_tsv(args.output.resolve(), TASK_FIELDS, tareas)
+    resumen["salida_sha256"] = sha256_file(args.output.resolve())
+    print(json.dumps(resumen, ensure_ascii=False, indent=2, sort_keys=True))
+    return 1 if resumen["rechazos"] else 0
 
 
 def main() -> int:
@@ -557,7 +784,22 @@ def main() -> int:
     p.add_argument("--shard-root", type=Path, required=True)
     p.add_argument("--pack-root", type=Path, required=True)
     p.add_argument("--registry", type=Path, required=True)
+    p.add_argument("--apertura", type=Path, default=None)
     p.set_defaults(func=cmd_paquetes)
+
+    t = sub.add_parser("tareas", help="convierte la elección del curador en expediente de tareas")
+    t.add_argument("--registry", type=Path, required=True)
+    t.add_argument("--ledger", type=Path, required=True)
+    t.add_argument("--reports", type=Path, required=True)
+    t.add_argument("--material-baseline", type=Path, required=True)
+    t.add_argument("--material-task-root", type=Path, required=True)
+    t.add_argument("--coverage", type=Path, required=True)
+    t.add_argument("--shard-root", type=Path, required=True)
+    t.add_argument("--elecciones", type=Path, required=True)
+    t.add_argument("--apertura", type=Path, default=None)
+    t.add_argument("--fecha", required=True)
+    t.add_argument("--output", type=Path, required=True)
+    t.set_defaults(func=cmd_tareas)
 
     args = parser.parse_args()
     return args.func(args)
