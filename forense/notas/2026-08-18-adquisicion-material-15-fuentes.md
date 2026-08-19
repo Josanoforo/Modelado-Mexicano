@@ -132,4 +132,12 @@ Antes de ampliar el esquema de la cola se verificó que **ningún script la lee*
 
 **No escrito:** `canon/`, `tests/`, `milpa/` — como manda el perímetro.
 
+## §8 · Suite, fusión y el defecto que este acto se hizo a sí mismo
+
+**`T02` mordió, y el mordisco era mío.** La primera versión de esta nota se llamaba `forense/notas/2026-08-18-adq-15.md` y colisionaba por nombre normalizado con `forense/encargos/2026-08-18-ADQ-15.md` — el mismo trampolín que `ÍNDICE-2` ya había pisado con los nombres del propio encargo. `tests/check.py --baseline` lo marcó **`ROJO`, 2 entradas nuevas** (`T02` por la colisión y `T16` porque ese FAIL extra desalineaba la cifra declarada en `estado-programa`). Renombrada a `2026-08-18-adquisicion-material-15-fuentes.md` y actualizadas sus dos citas (el encargo y la fila `FP-17`), la suite vuelve a **`VERDE`**. *Un encargo con fecha y sigla, y una nota que quiera nombrarse igual, colisionan siempre: la nota tiene que llevar nombre descriptivo, no el del encargo.*
+
+**Fusión de `origin/main`, un conflicto real y dos automerges verificados a mano.** `origin/main` avanzó **12 commits** durante este acto (hasta `6650047`, `PR #275`/`FP29-RECONCILIA`). Único conflicto: `data/manifiesto.yaml`, donde **los dos lados apendizan al final** — 89 entradas `adq15_*` contra 2 entradas `pew_*`. Resuelto como unión conservando ambos bloques: **722 entradas, cero ids duplicados**, verificado con `yaml.safe_load`. `forense/hallazgos.md` y `forense/firmas-pendientes.tsv` automergearon con el driver `union`, y **se verificaron a mano contra el modo de falla que el propio `hallazgos.md` documenta dos veces esta semana**: 325 entradas con **cero duplicados exactos** y salto de línea final intacto; 58 filas de 9 columnas sin ids repetidos.
+
+**Cifra de la suite sobre el árbol fusionado**, que es la única que existe (lección de la colisión `#264`/`#265`, 18/ago): **19 FAIL · 118 WARN · `LÍNEA BASE: VERDE`**, nada nuevo frente a `tests/baseline.json`. No hay cascada a `estado-programa` desde este acto: `T16` no reporta desalineación, porque la cifra que `origin/main` ya declaraba es la que el árbol fusionado produce.
+
 **Observado y NO arreglado, porque está fuera de perímetro:** `tests/manifiesto.py --verifica` reporta **1 `NO COINCIDE` preexistente** (`endireh_2016_bd_mujeres_endireh2016_sitioinegi_dbf`, raíz `data_raw`) y **49 `AUSENTE` en `descargas_mx`**. Ninguno es de este acto —los 89 payloads nuevos dan 89/89 `COINCIDE`— y los 49 son la deuda que `FP29-RECONCILIA` (`PR #275`) ya nombró. Se declara, no se toca.
