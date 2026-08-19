@@ -12344,7 +12344,8 @@
     NO confirmada por fetch en este acto, NO CONFIRMADA POR EL AUTOR
   fecha_descarga: '2026-08-13'
   descargado_por: usuario, vía navegador
-  archivo: Descargas Manuales/MEX_2012-2014_ECEPIE_v01_M_v01_A_PUF_Stata12 - without unique Spanish characters.zip
+  archivo: Descargas Manuales/MEX_2012-2014_ECEPIE_v01_M_v01_A_PUF_Stata12 - without unique
+    Spanish characters.zip
   raiz: descargas_mx
   sha256: 7ad557106f1cb1e5c57ec2a96c4375a53fb5acd134b31c8d7e677493b732009f
   tamano_bytes: 1447314
@@ -12359,7 +12360,8 @@
     NO confirmada por fetch en este acto, NO CONFIRMADA POR EL AUTOR
   fecha_descarga: '2026-08-13'
   descargado_por: usuario, vía navegador
-  archivo: Descargas Manuales/MEX_2012-2014_ECEPIE_v01_M_v01_A_PUF_Stata12-with unique Spanish characters.zip
+  archivo: Descargas Manuales/MEX_2012-2014_ECEPIE_v01_M_v01_A_PUF_Stata12-with unique Spanish
+    characters.zip
   raiz: descargas_mx
   sha256: e2d9c865a83d6e411d9058f8a00f63171ee6bf601231d4c46559c134a3f74134
   tamano_bytes: 1669994
@@ -14346,3 +14348,185 @@
     Es institucional (cross-programa, ''Externos_Encuestas''), no de ENASIC -- por eso vive
     en ipe_inegi/ y no en enasic2022/, aunque se obtuvo por la ficha RNM 922. Fecha declarada
     por INEGI 2023-10-16.'
+
+- id: banxico_sie_cf891_operaciones_spei
+  usado_para: 'N17/N24 -- SERIES_SPEI_CODI_BANXICO, palanca 45 de data/cola-adquisicion-2026-08-12.tsv.
+    Es la serie SPEI PROPIA que ACTO ADQ-15 declaro faltante (su estado era YA-ADQUIRIDA-A.8-PARCIAL:
+    16 entradas del lado CoDi, cero del lado SPEI).'
+  url_origen: https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?accion=consultarSeries
+    (POST; idCuadro CF891, series SF336085 SF336086 SF336087 SF336088 SF355689 SF355690, anoInicial
+    2009, formatoCSV)
+  fecha_descarga: '2026-08-19'
+  descargado_por: agente, curl -L en caja Ubuntu (LOTE UBUNTU-ADQ-1, T3); doble descarga con
+    validacion estructural antes de comparar, per A.7
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_sie_CF891_numero_operaciones_spei_2009_2026.csv
+  sha256: 982df3d2979f8deda75aaa3318deafcdcb73bb8d669cdd26328965feb76699e3
+  tamano_bytes: 335581
+  formato: 'CSV latin-1, 6444 lineas. Cabecera de 9 lineas del SIE y luego serie DIARIA 01/01/2009-03/08/2026
+    con 6 columnas: total de operaciones tercero a tercero en SPEI, menores a 8 mil, mayores
+    a 8 mil y menores a 300 mil, mayores a 300 mil, bajo valor, alto valor.'
+  licencia: Terminos de uso de Banco de Mexico (https://www.banxico.org.mx/avisos/terminos-uso.html);
+    referencia citada, texto completo no verificado
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'A.7: dos descargas. El sha256 CRUDO varia entre corridas por UNA sola linea, la 7:
+    ''Fecha de consulta: DD/MM/AAAA hh:mm:ss''. Excluida esa linea el contenido es identico.
+    El sha256 registrado aqui es el del archivo tal como quedo en el corpus, que ya no cambia;
+    una re-descarga que discrepe NO es corrupcion, es esa linea. PERIODICIDAD REAL: Diaria,
+    no mensual -- la ley de T3 asumia mensual. La via GET con idCuadro solo entrega un snapshot
+    de 3 dias sin JS, que es la limitacion que ADQ-15 documento para los cuadros CoDi CF884/CF885;
+    el POST trae la serie historica completa.'
+
+- id: banxico_sie_cf890_monto_spei
+  usado_para: N17/N24 -- SERIES_SPEI_CODI_BANXICO, palanca 45. Pareja de monto de banxico_sie_cf891_operaciones_spei.
+  url_origen: https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?accion=consultarSeries
+    (POST; idCuadro CF890, series SF336081 SF336082 SF336083 SF336084 SF355691 SF355692, anoInicial
+    2009, formatoCSV)
+  fecha_descarga: '2026-08-19'
+  descargado_por: agente, curl -L en caja Ubuntu (LOTE UBUNTU-ADQ-1, T3); doble descarga con
+    validacion estructural antes de comparar, per A.7
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_sie_CF890_monto_operado_spei_2009_2026.csv
+  sha256: d4ced251a59a35e64b7292ca48f63a9760430dc1020237974a8dce580de1d2d8
+  tamano_bytes: 496547
+  formato: CSV latin-1, 6444 lineas. Serie DIARIA 01/01/2009-03/08/2026, monto operado tercero
+    a tercero en SPEI, mismas 6 aperturas que CF891.
+  licencia: Terminos de uso de Banco de Mexico (https://www.banxico.org.mx/avisos/terminos-uso.html);
+    referencia citada, texto completo no verificado
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'A.7: misma reserva que banxico_sie_cf891_operaciones_spei -- la unica linea que varia
+    entre descargas es la 7, ''Fecha de consulta''.'
+
+- id: banxico_sie_cuadro_cf891_operaciones_landing
+  usado_para: Ancla de procedencia del cuadro CF891 del SIE. Necesaria porque el CSV se obtuvo
+    por POST y no tiene URL GET persistente; esta pagina si la tiene y documenta las series
+    del cuadro.
+  url_origen: https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?sector=21&accion=consultarCuadro&idCuadro=CF891
+  fecha_descarga: '2026-08-19'
+  descargado_por: agente, curl -L en caja Ubuntu (LOTE UBUNTU-ADQ-1, T3); doble descarga con
+    validacion estructural antes de comparar, per A.7
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_sie_cuadro_CF891_operaciones.html
+  sha256: 790de350d7037fc581c3676e1432e49b801d0d9a80665599393bffe039fc9b60
+  tamano_bytes: 164217
+  formato: HTML renderizado del cuadro CF891 del SIE
+  licencia: Terminos de uso de Banco de Mexico (https://www.banxico.org.mx/avisos/terminos-uso.html);
+    referencia citada, texto completo no verificado
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'HTML de portal: su hash no es estable en el tiempo (menus, banners, fecha). El sha256
+    registrado es el del archivo tal como quedo en el corpus. Mismo patron que las 9 entradas
+    .html ya existentes del grupo R3.4_Banxico_CoDi_SPEI.'
+
+- id: banxico_sie_cuadro_cf890_monto_landing
+  usado_para: Ancla de procedencia del cuadro CF890 del SIE, pareja de banxico_sie_cuadro_cf891_operaciones_landing.
+  url_origen: https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?sector=21&accion=consultarCuadro&idCuadro=CF890
+  fecha_descarga: '2026-08-19'
+  descargado_por: agente, curl -L en caja Ubuntu (LOTE UBUNTU-ADQ-1, T3); doble descarga con
+    validacion estructural antes de comparar, per A.7
+  archivo: R3.4_Banxico_CoDi_SPEI/banxico_sie_cuadro_CF890_monto.html
+  sha256: 6cf90372a374ae3f08512dee64a7e05e34cea1851649acd8e471beef8e59f2d0
+  tamano_bytes: 163644
+  formato: HTML renderizado del cuadro CF890 del SIE
+  licencia: Terminos de uso de Banco de Mexico (https://www.banxico.org.mx/avisos/terminos-uso.html);
+    referencia citada, texto completo no verificado
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Misma reserva de estabilidad de hash que su pareja CF891.
+
+- id: banxico_encuesta_competencias_financieras_2019
+  usado_para: 'N29 -- ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS, ola 2019, palanca 32 de
+    data/cola-adquisicion-2026-08-12.tsv. La cola declaraba como condicion faltante la COMPARABILIDAD,
+    que una sola ola no da: con esta y la ola 2024 ya registrada (banxico_encuesta_competencias_financieras_2024)
+    el programa pasa de una ola a tres.'
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/encuesta-de-competencias-financieras-de-la-poblaci/microdatos/
+    (ENCF 2019, enlace de microdatos con GUID)
+  fecha_descarga: '2026-08-19'
+  descargado_por: agente, curl -L en caja Ubuntu (LOTE UBUNTU-ADQ-1, T3); doble descarga con
+    validacion estructural antes de comparar, per A.7
+  archivo: banxico_encuesta_competencias_financieras_2019.xlsx
+  sha256: 9fc9eb34e98b576991a13fbb63d60e5d61ef0e3bd018a93ca03a1c25538b698f
+  tamano_bytes: 1522196
+  formato: XLSX abierto y verificado con openpyxl en esta sesion
+  licencia: Terminos de uso de Banco de Mexico (https://www.banxico.org.mx/avisos/terminos-uso.html);
+    referencia citada, texto completo no verificado
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ENCF es coeditada por Banxico y CNBV. El landing de microdatos lista ademas las olas
+    2020, 2022 y 2023, NO descargadas aqui: quedan fuera del alcance de la palanca 32 tal
+    como la cola la escribio (2019-2024 con las dos puntas). Estan a un clic si mesa quiere
+    la serie completa.'
+
+- id: banxico_encuesta_competencias_financieras_2019_manual
+  usado_para: 'N29 -- manual/documentacion de la ola 2019 de la ENCF, pareja de banxico_encuesta_competencias_financieras_2019.
+    Es el codebook: sin el, el xlsx numerico no se interpreta.'
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/encuesta-de-competencias-financieras-de-la-poblaci/microdatos/
+    (manual de la ENCF 2019)
+  fecha_descarga: '2026-08-19'
+  descargado_por: agente, curl -L en caja Ubuntu (LOTE UBUNTU-ADQ-1, T3); doble descarga con
+    validacion estructural antes de comparar, per A.7
+  archivo: banxico_encuesta_competencias_financieras_2019_manual.pdf
+  sha256: 924ba524d3197ba293b8364242d264f64ed6736e834568d8d30bae903a3870a5
+  tamano_bytes: 624237
+  formato: PDF, marcador %%EOF verificado en esta sesion
+  licencia: Terminos de uso de Banco de Mexico (https://www.banxico.org.mx/avisos/terminos-uso.html);
+    referencia citada, texto completo no verificado
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descargado junto con el xlsx de la misma ola.
+
+- id: banxico_encuesta_competencias_financieras_2021
+  usado_para: 'N29 -- ENCUESTA_ANUAL_DE_COMPETENCIAS_FINANCIERAS, ola 2021, palanca 32 de
+    data/cola-adquisicion-2026-08-12.tsv. La cola declaraba como condicion faltante la COMPARABILIDAD,
+    que una sola ola no da: con esta y la ola 2024 ya registrada (banxico_encuesta_competencias_financieras_2024)
+    el programa pasa de una ola a tres.'
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/encuesta-de-competencias-financieras-de-la-poblaci/microdatos/
+    (ENCF 2021, enlace de microdatos con GUID)
+  fecha_descarga: '2026-08-19'
+  descargado_por: agente, curl -L en caja Ubuntu (LOTE UBUNTU-ADQ-1, T3); doble descarga con
+    validacion estructural antes de comparar, per A.7
+  archivo: banxico_encuesta_competencias_financieras_2021.xlsx
+  sha256: eee63f360c4a862381dfb1effe445849cf9bb183e7109c871493c7a6e0277cb0
+  tamano_bytes: 1555601
+  formato: XLSX abierto y verificado con openpyxl en esta sesion
+  licencia: Terminos de uso de Banco de Mexico (https://www.banxico.org.mx/avisos/terminos-uso.html);
+    referencia citada, texto completo no verificado
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ENCF es coeditada por Banxico y CNBV. El landing de microdatos lista ademas las olas
+    2020, 2022 y 2023, NO descargadas aqui: quedan fuera del alcance de la palanca 32 tal
+    como la cola la escribio (2019-2024 con las dos puntas). Estan a un clic si mesa quiere
+    la serie completa.'
+
+- id: banxico_encuesta_competencias_financieras_2021_manual
+  usado_para: 'N29 -- manual/documentacion de la ola 2021 de la ENCF, pareja de banxico_encuesta_competencias_financieras_2021.
+    Es el codebook: sin el, el xlsx numerico no se interpreta.'
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/encuesta-de-competencias-financieras-de-la-poblaci/microdatos/
+    (manual de la ENCF 2021)
+  fecha_descarga: '2026-08-19'
+  descargado_por: agente, curl -L en caja Ubuntu (LOTE UBUNTU-ADQ-1, T3); doble descarga con
+    validacion estructural antes de comparar, per A.7
+  archivo: banxico_encuesta_competencias_financieras_2021_manual.pdf
+  sha256: 0ea050743b305ac2f6f3f00a24515d680bcb1a0cc5f83b5d85bbfede5bf4d15d
+  tamano_bytes: 258473
+  formato: PDF, marcador %%EOF verificado en esta sesion
+  licencia: Terminos de uso de Banco de Mexico (https://www.banxico.org.mx/avisos/terminos-uso.html);
+    referencia citada, texto completo no verificado
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Descargado junto con el xlsx de la misma ola.
+
+- id: ift_sfd_base_de_datos_zip
+  usado_para: N24 -- REPORTE_SOBRE_USO_Y_CONFIANZA_DE_SERVICIOS_FINANCIEROS_DIGITALES, palanca
+    41 de data/cola-adquisicion-2026-08-12.tsv. Es la base de datos que ACTO ADQ-15 NO consiguio
+    en 11 intentos (el host cortaba TLS y no bajaba ni un byte); completa el par con los dos
+    PDF del reporte que ese acto si adquirio (adq15_ift_sfd_reporte_especial_SFD y _vacc).
+  url_origen: https://www.ift.org.mx/sites/default/files/contenidogeneral/usuarios-y-audiencias/basededatossfd.zip
+  fecha_descarga: '2026-08-19'
+  descargado_por: agente, curl -L en caja Ubuntu (LOTE UBUNTU-ADQ-1, T3); integro al primer
+    intento
+  archivo: ADQ15_IFT_SFD_uso_confianza/basededatossfd.zip
+  sha256: 4cf0e61a5f2e277772d2043bccf140cde48bea0e96e6905099172f89996be9f5
+  tamano_bytes: 4660022
+  formato: 'ZIP de 1 miembro: ''Base de datos/Bases_de_datos_Servicios_Financieros_Digitales
+    (SFD).xlsx'', 5235099 B, 2 hojas (Int&TV 8401x107, TelMovil 5306x76)'
+  licencia: Terminos de uso del Instituto Federal de Telecomunicaciones (https://www.ift.org.mx/);
+    referencia citada, texto completo no verificado
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'A.7 reforzada por el precedente de este mismo host: ADQ-15 midio que www.ift.org.mx
+    sirve archivos TRUNCADOS con hash repetible (un PDF llego en 4979926 B sin %%EOF y el
+    mismo objeto en 8084499 B a la segunda). Aqui se validó ESTRUCTURA antes de comparar hash:
+    zipfile.testzip() limpio. TRES descargas independientes en esta sesion, las tres byte
+    a byte identicas (sha256 4cf0e61a...), la tercera corrida por el supervisor y no por el
+    ejecutor. Sin truncamiento.'
