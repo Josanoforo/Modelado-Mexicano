@@ -138,8 +138,8 @@ class FailClosedProductionTests(unittest.TestCase):
             for manifest in analyst.glob("*/hashes.json"):
                 manifest.unlink()
             rows = verify_production_bundle(CONFIG, SNAPSHOT, BASELINE, analyst)
-            self.assertEqual(11, len(rows))
-            self.assertEqual(10, sum(row["estado"] == "CALCULO_REPRODUCIBLE" for row in rows))
+            self.assertEqual(12, len(rows))
+            self.assertEqual(12, sum(row["estado"] == "CALCULO_REPRODUCIBLE" for row in rows))
 
     def test_production_semantics_and_periods_are_preserved(self) -> None:
         with PRODUCTION.open(encoding="utf-8", newline="") as handle:
@@ -152,8 +152,8 @@ class FailClosedProductionTests(unittest.TestCase):
             row["relacion_id"] for row in rows
             if row["estado_uso_modelo"] == "LISTA_PARA_USO_MODELO"
         }
-        self.assertEqual(2, len(descriptive))
-        self.assertEqual(1, len(model_ready))
+        self.assertEqual(3, len(descriptive))
+        self.assertEqual(3, len(model_ready))
         self.assertTrue(all(
             row["periodo_referencia"] == "últimos 12 meses"
             for row in rows if ":PF1_" in row["estimando"]
@@ -162,7 +162,7 @@ class FailClosedProductionTests(unittest.TestCase):
         category3 = next(item for item in json.loads(pb22["estimacion"]) if item["codigo"] == "3")
         self.assertEqual("NO_ESTIMABLE", category3["proporcion"])
         b_row = next(row for row in rows if row["especificacion_id"].startswith("ESP-OPACA-B"))
-        self.assertEqual("NO_DETERMINADO", b_row["estado"])
+        self.assertEqual("CALCULO_REPRODUCIBLE", b_row["estado"])
 
 
 if __name__ == "__main__":
