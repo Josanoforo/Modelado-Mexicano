@@ -1,5 +1,7 @@
 # Validación forense: ¿El clientelismo compra el voto en México? Estrés-test de las reglas cívicas del modelo
 
+> **Nota de estado (19/ago/2026 · FP-57):** este documento es base de evidencia fechada del corpus y no se retoca; «ni broker» fue retirado del motor en `modelo v2.3` (conf.08) — no leer este pasaje como posición vigente del motor.
+
 ## (1) RESUMEN EJECUTIVO
 
 **Hallazgo principal (BLUF):** La apuesta de que "los regalos, despensas y transferencias compran el voto" resultó, en su versión fuerte, EQUIVOCADA para explicar los grandes desenlaces electorales mexicanos: la evidencia experimental y cuasi-experimental de mayor calidad indica que el votante mexicano típicamente toma el beneficio y conserva autonomía de voto, y que cuando las transferencias sí mueven la elección lo hacen por movilización (turnout) o por premio retrospectivo/identidad, no por compra persuasiva monitoreada. El clientelismo mueve votos solo en márgenes locales y bajo condiciones específicas (percepción de monitoreo, proximidad, redes densas). Descartamos más de lo que conservamos: la regla de la agencia (Regla 1) sobrevive con matices; la regla de la transferencia como derecho/gratitud sin compra (Regla 2) sobrevive pero se rompe parcialmente en el supuesto "sin broker"; la regla de la participación contingente al peso simbólico (Regla 3) se confirma con un dato robusto; la regla de la clase media (Regla 4) queda indeterminada por falta de evidencia causal directa.

@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **114 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **115 ADR**
 
 > | | |
 > |---|---|
@@ -2207,7 +2207,19 @@ Detalle completo, comando por comando, con las dos preguntas y las dos respuesta
 
 ---
 
-**ADR-114 · `FP-10` queda `EJECUTADA`: el diff de 16 filas `gap_mapeo_map_b` que `ADR-76(e)` selló como regla y dejó explícitamente pendiente de aplicar a `data/`, se aplica hoy — ni el gate material ni la fase semántica de `BARRIDO-2` lo habían resuelto de hecho.** `ACTO FP10-PRECEDENCIA` ejecuta el `DISPARADOR-B` de `FP-26` (`ADR-101(h)`) sobre el encargo `forense/encargos/2026-08-18-FP10-PRECEDENCIA.md`, firma de mesa `ADR-91` (`PR #246`): *"Al cierre de BARRIDO-2, un acto único adjudica `FP-10` y `FP-12`: SUPERADAS por los productos del barrido si los cubren, o ejecución de fusión + diff si no."*
+**ADR-114 · `FP-57` se firma opción (b): el corpus queda declarado base de evidencia fechada que no se retoca; los dos sitios vivos ganan una nota de una línea apuntando a `modelo v2.3`/conf.08, sin editar el texto forense.** `ACTO FP57-DECLARA` sella en repo la firma de mesa del 19/ago/2026, sobre la fila `FP-57` abierta 18/ago (#267, `CONF-07-CIERRE`/`ADR-106(d)`, que había declarado el corpus fuera de perímetro de ese acto).
+
+**Firma de mesa (verbatim, conversación de dirección, 19/ago/2026).** Propuesta: *"Propongo opción (b): el corpus queda declarado base de evidencia fechada que no se retoca, con una nota de una línea en los dos sitios vivos apuntando a `modelo v2.3`/conf.08."* Respuesta: *"FP-57 si"*.
+
+**Por qué (b) y no corregir el texto.** El corpus es evidencia forense fechada — lo que un reporte concluyó con la información disponible cuando se escribió. `«ni broker»` (`corpus/forense/Validación_Forense_del_Clientelismo_Electoral…:121`, REGLA 2; `corpus/reports/Psicología_Política_y_Comportamiento_Cívico…:260`) fue una lectura correcta al momento de escribirse esos dos reports; `conf.08` retiró el supuesto del motor en `modelo v2.3` después. Editar el corpus para que coincida con el motor vigente borraría el rastro de qué sabía el forense cuando concluyó lo que concluyó — el propio patrón que `ADR-106(d)` ya había protegido al declarar el corpus fuera de perímetro de `CONF-07-CIERRE`. La nota de una línea resuelve la lectura sin tocar la evidencia.
+
+**Ejecutado.** Nota `> **Nota de estado (19/ago/2026 · FP-57):** este documento es base de evidencia fechada del corpus y no se retoca; «ni broker» fue retirado del motor en `modelo v2.3` (conf.08) — no leer este pasaje como posición vigente del motor.` añadida tras el título en los dos sitios vivos: `corpus/forense/Validación_Forense_del_Clientelismo_Electoral_en_México…:1` y `corpus/reports/Psicología_Política_y_Comportamiento_Cívico…:1`. Ningún otro carácter del corpus se tocó. `canon/glosario-v5_6.md` y `canon/modelo-decision-v4_0.md` (los otros dos hits de `grep -rln "ni broker"`) son registro del motor, fuera de perímetro de este acto por diseño.
+
+→ **Vigente.** *(ACTO FP57-DECLARA, 19/ago/2026. Sesión NUBE, repo-only, no tocó microdato. Perímetro: los dos archivos corpus citados (nota de una línea cada uno), `forense/firmas-pendientes.tsv` (solo `FP-57` → `FIRMADA`), `canon/gobernanza-v1_15.md` (este ADR), `canon/estado-programa-v1_10.md` (solo cascada), `forense/hallazgos.md`, `forense/encargos/2026-08-19-FP57-DECLARA.md`. No tocó `canon/glosario-v5_6.md` ni `canon/modelo-decision-v4_0.md`. Contadores de medición sobre México: **0**.)*
+
+---
+
+**ADR-115 · `FP-10` queda `EJECUTADA`: el diff de 16 filas `gap_mapeo_map_b` que `ADR-76(e)` selló como regla y dejó explícitamente pendiente de aplicar a `data/`, se aplica hoy — ni el gate material ni la fase semántica de `BARRIDO-2` lo habían resuelto de hecho.** `ACTO FP10-PRECEDENCIA` ejecuta el `DISPARADOR-B` de `FP-26` (`ADR-101(h)`) sobre el encargo `forense/encargos/2026-08-18-FP10-PRECEDENCIA.md`, firma de mesa `ADR-91` (`PR #246`): *"Al cierre de BARRIDO-2, un acto único adjudica `FP-10` y `FP-12`: SUPERADAS por los productos del barrido si los cubren, o ejecución de fusión + diff si no."* Renumerado de `ADR-114` a `ADR-115` al fusionar `origin/main` (`PR #279`, `ACTO FP57-DECLARA`, tomó el 114 primero) — protocolo de renumeración con precedentes (`ALIAS-P`/`ADJ-4`, `TABLERO-FIRMAS COMMIT 5`).
 
 **(a) Precondición reverificada, no heredada del encargo.** El encargo (redactado contra `93a4dd9`) declaraba la fase semántica de `BARRIDO-2` no satisfecha. Releído hoy: gate material 672/672 (`ADR-103`, `PR #260`) y fase semántica cerrada (`ADR-108`/`ADR-109`, `ACTO B2-SEMANTICO`, `PR #268`) — ambos fusionados a `origin/main`. La precondición está satisfecha.
 
@@ -2221,7 +2233,7 @@ Detalle completo, comando por comando, con las dos preguntas y las dos respuesta
 
 **Lo que este ADR NO hace.** No sella regla nueva (la Regla 1/Regla 2 ya están selladas en `ADR-76(e)`; este acto solo ejecuta lo que ese inciso dejó pendiente por perímetro). No toca las 46→45 filas `gap_mapeo_map_b` restantes sin par real — siguen abiertas, correctamente. No resuelve `ADR-76(e)`(f) (duplicados de alias de demanda) ni (e) (alcance de `ADR-69` fuera de INEGI). No adjudica `FP-12`. No mueve ningún coeficiente, probabilidad, dato de microdato ni cifra del corpus: `13 de 27` (Hito D), `9 de 14` (condicionales), `0 de 15` (coeficientes), `1 de 2` (llaves), `4 de 144` — ninguno.
 
-**Cascada.** Conteo de ADR vía receta T15, contra `origin/main` real al momento de sellar (únicos:114 · max:114 · huecos:[], re-derivado tras fetch/merge antes del commit final — ver nota). `canon/estado-programa-v1_10.md` (cascada). `python3 tests/check.py --baseline`: **21 FAIL · 118 WARN**, LÍNEA BASE VERDE, sin `--freeze`, `tests/baseline.json` sin tocar.
+**Cascada.** Conteo de ADR vía receta T15, contra `origin/main` real al momento de sellar (únicos:115 · max:115 · huecos:[], re-derivado tras fetch/merge de `PR #279` antes del commit final). `canon/estado-programa-v1_10.md` (cascada). `python3 tests/check.py --baseline`: LÍNEA BASE VERDE, sin `--freeze`, `tests/baseline.json` sin tocar.
 
 → **Vigente.** *(`ACTO FP10-PRECEDENCIA`, 19/ago/2026. Entorno NUBE, `cloud_default`, repo-only. Perímetro: `data/universo-puertas-2026-08-14.tsv` (el diff de (c)) · `forense/notas/2026-08-19-fp10-precedencia.md` · `forense/firmas-pendientes.tsv` (solo `FP-10`) · `forense/hallazgos.md` · `forense/encargos/2026-08-18-FP10-PRECEDENCIA.md` (marcado `CONSUMIDO`) · `canon/gobernanza-v1_15.md` (este ADR) · `canon/estado-programa-v1_10.md` (solo cascada). No tocó `tests/`, `milpa/`, `data/UNIVERSO-MINIMO-FUENTE-v1_0.md`. Contadores de medición sobre México: **0**.)*
 
