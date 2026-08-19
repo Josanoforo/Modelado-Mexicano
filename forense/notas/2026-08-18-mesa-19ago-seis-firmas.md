@@ -52,7 +52,7 @@ Clase **segunda-mano `SIN-FETCH`** por declaración del propio benchmark: todo h
 
 **D-3 · las ocho sin objeto** → **`(a) Añadir variables`**. Los 8 ids estuvieron a la vista en el prompt: `ref.A.02` (esfuerzo, **MUY_FUERTE**, única de las 49), `ref.A.04` (prestamista), `ref.A.14` (salud mental), `ref.A.20` (emprendimiento), `ref.A.28` (canal de compra), `ref.B.04` (colorismo), `ref.B.06` (religiosidad), `ref.A.17` (ítem actitudinal). ⚠️ **Deliberación registrada, no aplanada:** en la primera presentación la mesa marcó `(c) Partir`; pidió re-presentar el widget y en la segunda marcó `(a)`. **Rige la última.** Ambas quedan en el acta y en la fila.
 
-**D-4 · worktree `curador`** → **en espera, por instrucción de mesa**, verbatim: *"Espera. Regreso contigo, avanza en lo demás si puedes y cuando llegues a este punto espera, hasta que te de la instrucción."* El prompt se formuló **dos veces**, con su evidencia enfrente y con la nota de perímetro (caja Ubuntu no libre → con (b) el bundle no corre en este acto). **No es `PROMPT-SIN-RESPUESTA`: es espera ordenada.** Consecuencia dicha sin suavizar: `FP-55` sigue `ABIERTA`, **no se escribió `RESCATE-CURADOR`**, **no se ejecutó bundle alguno**, y los 590 commits siguen sin respaldo — el riesgo declarado el 13/ago sigue vivo.
+**D-4 · worktree `curador`** → primero **espera ordenada**, verbatim: *"Espera. Regreso contigo, avanza en lo demás si puedes y cuando llegues a este punto espera, hasta que te de la instrucción."* El prompt se había formulado **dos veces**, con la evidencia de `ACTO W` enfrente y con la nota de perímetro (caja Ubuntu no libre). Luego llegó la instrucción, **por directiva y no por opción del widget** — ver §10, donde se registra verbatim, se verifica la nota que cita, y se corrige lo que este acto había afirmado mientras esperaba.
 
 **D-5 · `U2/EV-1`** → **`Escribir gateado`**. **D-6 · `DOC-BACKFILL`** → **`Escribir gateado`**. Ambos a «`B2-SEMANTICO` fusionado», cada uno con su A.8 citado por ruta y línea. Ninguno se lanza aquí.
 
@@ -63,7 +63,7 @@ Clase **segunda-mano `SIN-FETCH`** por declaración del propio benchmark: todo h
 | D-1 | `FP-54` → **FIRMADA** (dos sub-respuestas verbatim + sha256 del benchmark) | `2026-08-19-FICHA-R51-D3.md` — VIVO, Ubuntu, gateado a caja libre. Vía al **14 de 27** |
 | D-2 (c) | `FP-53` → **FIRMADA** | `2026-08-19-CORTE-EDAD-CONVENCION.md` (NUBE, sin gate, 9 sitios con procedencia citada) + `2026-08-19-CORTE-EDAD-EMPIRICO.md` (Ubuntu, gateado) |
 | D-3 (a) | `FP-56` → **FIRMADA** | `2026-08-19-REFUTACIONES-SIN-OBJETO.md` (NUBE) — ejecuta la letra exacta: dar objeto, cero retiros; enmienda a `ADR-35` **redactada y no ejecutada**; denominador re-derivado, no anunciado |
-| D-4 | `FP-55` → **sigue ABIERTA** | **ninguno** — espera de mesa |
+| D-4 | `FP-55` → **FIRMADA** por directiva (`PROMPT-RESPONDIDA-POR-DIRECTIVA`, §10) | **ninguno** — `RESCATE-CURADOR` no se escribe: su premisa cayó |
 | D-5 | `FP-32` → **FIRMADA** | `2026-08-19-U2-EV1.md`, GATEADO |
 | D-6 | `FP-33` → **FIRMADA** | `2026-08-19-DOC-BACKFILL.md`, GATEADO |
 
@@ -77,11 +77,11 @@ $ python3 -c "import csv,collections; r=list(csv.reader(open('forense/firmas-pen
 | | contra `origin/main` (`f3d3f95`) | después de este acto |
 |---|---|---|
 | Filas totales | 56 | **56** (ninguna fila nueva — este acto firma, no abre) |
-| `FIRMADA` | 40 | **45** (+5) |
-| `ABIERTA` | 12 | **7** (−5) |
+| `FIRMADA` | 40 | **46** (+6) |
+| `ABIERTA` | 12 | **6** (−6, tras la firma de `FP-55` por directiva) |
 | `FIRMADA-CONDICIONAL` | 4 | **4** |
 
-Las 7 `ABIERTA` restantes incluyen `FP-55`, en espera de mesa.
+Las `ABIERTA` restantes ya no incluyen `FP-55`: la directiva de mesa la firmó (§10). El recuento de esta sección es el del cuerpo del acto, antes de fusionar `origin/main`; el definitivo, 57 filas, está en §9 y §10.
 
 ## 6 · Cascada y ADR
 
@@ -113,12 +113,58 @@ Mientras el acto esperaba la firma de `D-4`, `origin/main` avanzó de `f3d3f95` 
 
 **3 · El tablero.** Conflicto real en `forense/firmas-pendientes.tsv`: `origin` abrió **`FP-57`** (`conf.08` / *"ni broker"* en `corpus/`) inmediatamente después de mi `FP-56`. Resuelto conservando **las dos**: mi `FP-56` firmada y la `FP-57` de origin intacta. Recuento tras la fusión: **57 filas** — `FIRMADA` 45 · `ABIERTA` 7 · `FIRMADA-CONDICIONAL` 4 · `CERRADA` 1 (esta última, de `LANE-A-E0-E5`).
 
-**4 · Las cifras de la suite, recifradas dos veces en el mismo día por dos actos distintos.** `LANE-A-E0-E5` ya había recifrado 129→**128** WARN (y T03 44→**47**). Sobre esa base, las cinco firmas de este acto bajan **−5 WARN de `T22`** → **123**. Corrida final tras resolver todo:
+**4 · Las cifras de la suite, recifradas dos veces en el mismo día por dos actos distintos.** `LANE-A-E0-E5` ya había recifrado 129→**128** WARN (y T03 44→**47**). Sobre esa base, las seis firmas de este acto bajan **−6 WARN de `T22`** → **122**. Corrida final tras resolver todo:
 
 ```
 $ python3 tests/check.py --baseline
-  19 FAIL · 123 WARN
+  19 FAIL · 122 WARN
   LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json
 ```
 
-`T15` (conteo de ADR) y `T16` (self-check de cifras) atraparon los tres desalineamientos intermedios —tabla en 106, y las dos declaraciones de WARN en 128— y los tres se corrigieron cláusula por cláusula antes de commitear. **`tests/baseline.json` no se tocó; no se usó `--freeze`.**
+`T15` (conteo de ADR) y `T16` (self-check de cifras) atraparon los tres desalineamientos intermedios —tabla en 106, y las dos declaraciones de WARN— y los tres se corrigieron cláusula por cláusula antes de commitear. **`tests/baseline.json` no se tocó; no se usó `--freeze`.**
+
+## 10 · D-4, respondida por directiva — y la premisa del prompt, vencida
+
+Respuesta de mesa, verbatim:
+
+> Otro: el titular 590 está VENCIDO por ACTO Z (nota z-inventario-curador, 12/ago) — historia pre-purga, cero contenido único. La fila se corrige y cierra vía el acto RESCATE ya en curso con directiva de mesa; registra esta respuesta como PROMPT-RESPONDIDA-POR-DIRECTIVA citando la nota.
+
+**La nota se verificó en el árbol; no se aceptó de palabra.** `forense/notas/2026-08-13-z-inventario-curador.md`, `ACTO Z`, siete puntos, todos por comando:
+
+| # | Lo que `ACTO Z` corrió | Resultado |
+|---|---|---|
+| 1 | Contenido único del worktree | **NINGUNO** |
+| 2 | `git merge-base origin/main HEAD` | `9301e59` (29/jul) — **misma firma pre-purga** que los seis refs `*-huerfana-20260813` |
+| 3 | `HEAD` de curador | `3d5f34c` (7/ago) — misma ventana pre-purga |
+| 4 | `git diff --diff-filter=A --name-only origin/main HEAD \| wc -l` | **0** archivos que `main` no tenga |
+| 5 | `HEAD` corto y completo en `canon/remapeo-shas-purga-2026-08-10.tsv` | 1 vez cada uno, en 626 líneas |
+| 6 | Firma completa | 590 sin empujar + `ancestor_of_origin_main=NO` = **pre-purga con 0 únicos**, «confirmada por comando, no por analogía con lo que ACTO W declaró candidato» |
+| 7 | Rama de preservación | **no se empuja**: el worktree ya existe, conocido, en el clon base — «no hay riesgo de pérdida que una preservación resuelva, y no hay contenido que preservar» |
+
+**Una discrepancia, dicha y sin efecto sobre el fondo:** la nota está fechada **13/ago**, no 12/ago como la citó la directiva. El fondo se sostiene íntegro.
+
+**Corrección a lo que este mismo acto afirmó.** Mientras `D-4` estuvo en espera, esta nota, el `ADR`, `hallazgos.md` y los mensajes de mesa dijeron que *"el riesgo declarado el 13/ago sigue vivo y sin respaldo"*. **Era falso, y lo era ya al escribirlo.** `ACTO Z` retiró ese riesgo el **mismo 13/ago**, por comando, y refutó ese mismo día a `ACTO W` —la fuente que este acto citó, y que llamó al worktree «la pieza más grande del inventario sin adjudicar» con «tooling que no existe en ningún otro lugar del árbol»—. El defecto es de método y se nombra: **la evidencia de la fila se leyó en su nota de origen y no se buscó nota posterior que la refutara**; el titular vencido viajó cinco días, del 13 al 18, dentro de una fila del tablero. La columna `dónde` de `FP-55` queda corregida in situ, con los comandos de `ACTO Z` citados.
+
+**Consecuencia operativa.** No hay contenido que rescatar ni riesgo de pérdida que un bundle resuelva: **`RESCATE-CURADOR` no se escribe** — era la propagación prevista para la vía (b) del prompt, y su premisa cayó. `FP-55` queda **FIRMADA** como `PROMPT-RESPONDIDA-POR-DIRECTIVA`; su **corrección y cierre formal ocurren en el `ACTO RESCATE` ya en curso**, por directiva de mesa, no en este acto.
+
+**Tablero, re-contado por comando tras esta firma:** 57 filas — `FIRMADA` **46** · `ABIERTA` **6** · `FIRMADA-CONDICIONAL` 4 · `CERRADA` 1.
+
+**Encargo `MESA-19AGO`: CONSUMIDO.** Las seis preguntas formuladas, las seis respondidas, las seis propagadas; los seis encargos escritos y ninguno lanzado. Contadores de medición sobre México: **0**.
+
+## 11 · Cierre — el encargo, archivado y consumido
+
+El encargo `MESA-19AGO` llegó **inline** de dirección y **no tenía archivo en el árbol**; se archiva bajo A.3 al cierre —`forense/encargos/2026-08-19-MESA-19AGO.md`— con su instrucción verbatim y una tabla de cumplimiento punto por punto, para que el acto sea auditable contra su propia orden y no contra el recuerdo de ella. Queda **`CONSUMIDO`**.
+
+Tres cosas que la tabla de cumplimiento registra en vez de callar:
+
+1. **El material de mesa que el encargo citaba —`DECISIONES-SEIS-FIRMAS-RH`— no existe en el árbol y no llegó a este acto.** `T03` lo atrapó al archivar el encargo, y por eso se nombra sin extensión. No hizo falta: la orden era preguntar, no releerlo.
+2. **Dos premisas del encargo estaban vencidas al ejecutarse:** el máximo de ADR («104» → era 105 al escribir y 106 al fusionar) y el titular de 590 commits de `FP-55` (refutado desde el 13/ago por `ACTO Z`). Ambas re-derivadas, ninguna heredada.
+3. **`RESCATE-CURADOR`, la propagación que el encargo preveía para la vía (b) de D-4, no se escribió** — la directiva de mesa retiró su premisa.
+
+Corrida final del acto completo:
+
+```
+$ python3 tests/check.py --baseline
+  19 FAIL · 122 WARN
+  LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json
+```
