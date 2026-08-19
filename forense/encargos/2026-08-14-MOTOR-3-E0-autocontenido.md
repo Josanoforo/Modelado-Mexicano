@@ -31,3 +31,30 @@ ESCRIBE: `milpa/src/**` (nuevo) · `milpa/catalogo-momentos-v0_1.md` + su tabla 
 **C3 · Cierre:** los 15 fixes de RONDA-M aplicados y listados · el estado del gate de semana 1 de ADR-68 declarado · contador nuevo del programa nace: **"momentos HOLDOUT reproducidos: 0 de M"** — y desde hoy se cuenta.
 
 **Qué NO haces bajo ninguna fase:** no calculas β/θ nuevas · no tocas la Entrada 5 (E5, ajeno) · no sellas nada · no editas la matriz (si un fix de RONDA-M exige texto nuevo de la propuesta, va como `propuesta-motor-matriz-v0_2.md` PROPUESTA a mesa, no como edición del v0_1).
+
+---
+
+## ADENDA · 18/ago/2026 — RANURAS DEL SELLO, llenas · `ACTO LANE-A-E0-E5`
+
+**Cuerpo del encargo, sin editar.** Las seis ranuras de arriba se conservan vacías tal como se lanzaron: A.3 pide el texto verbatim del encargo, y reescribirlo destruiría la auditoría de qué se pidió exactamente. Las firmas se registran **aquí**, en adenda fechada — mismo mecanismo que `ACTO CONSOLIDA-2` usó para `CONSOLIDA-17AGO`.
+
+**Gate maestro, re-corrido contra el árbol (no heredado, y con el rango del predicado ampliado a los ADR de tres dígitos que el original no contemplaba):**
+
+```bash
+grep -cE "^\*\*ADR-(8[4-9]|9[0-9]|10[0-9]) .*(motor|matriz|M1)" canon/gobernanza-v1_15.md   # → 1
+```
+
+`1 ≥ 1` = **SELLADO**. El ADR que lo cierra es `ADR-100` (`canon/gobernanza-v1_15.md:1811`). La fase **CON SELLO** se ejecutó completa: C1 (catálogo), C2 (rebanada), C3 (cierre).
+
+**Las firmas, verbatim de `ADR-100`.** Mesa no dio seis firmas separadas: dio **una firma por lote** con una cláusula propia por M dentro de la misma frase. La firma, entera y una sola vez — `ADR-91`, `PR #246`, 17/ago/2026: *"Adelante con la propuesta."* sobre el texto adoptado: *"Doy por firmadas M1-M6 con los textos recomendados del 14/ago […], CONDICIONADAS a que al cierre de BARRIDO-2 dirección re-verifique M2/M4/M5 contra el universo nuevo: si no cambian, el sello procede sin volver a mesa; si alguna cambia, vuelve a mesa solo esa."*
+
+- **M1** — *"M1 cómputo matricial como definición del ejecutable"*. Adoptado con la rama del gate: procede **antes** del gate de Fase 1 de `milpa-plan` (`ADR-100(1)`). **Incondicional.**
+- **M2** — *"M2 cortes iniciales por eje conforme a la cascada, respetando los tres ejes de hogar"*. Dueño del sello por eje: **el catálogo de momentos, en su commit 1** (`ADR-100(2)`) — ejercido en `milpa/catalogo-momentos-v0_1.md` §3. **CONDICIONADA** por el inciso (9).
+- **M3** — *"M3 campo medio para G1b con estatus HIPÓTESIS"*. **Incondicional.**
+- **M4** — *"M4 catálogo de momentos como pre-registro de gobernanza:461, roles AJUSTE/HOLDOUT sellados en su commit 1"*. **CONDICIONADA** por el inciso (9).
+- **M5** — *"M5 libro de demanda como fuente única del curador"*, con la rama "fuente única" gateada por el GO del piloto — no choca con `ADR-68(a)`, lo respeta. **CONDICIONADA** por el inciso (9).
+- **M6** — *"M6 los compass ya están en el repo y el ADR los cita"*. Era la única M que bloqueaba el sello por sí sola; con los cinco archivos del espejo en el árbol desde `PR #237` y esta firma, deja de bloquear. **Incondicional.**
+
+**La condición, no retirada.** `ADR-100(9)`: la re-verificación de `M2`/`M4`/`M5` contra los productos semánticos del barrido **queda en el carril B y NO la sustituye este sello**. `M1`/`M3`/`M6` viajan en DISPARADOR-A, que es el carril de este acto; `M2`/`M4`/`M5` llevan la condición y viajan en DISPARADOR-B.
+
+**Estado:** `CONSUMIDO` — fase FASE-PLAN por `ACTO MOTOR-3/E0` (`PR #237`, 14/ago/2026); fase **CON SELLO** por `ACTO LANE-A-E0-E5`, este PR, 18/ago/2026.

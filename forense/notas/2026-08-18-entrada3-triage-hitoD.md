@@ -200,3 +200,32 @@ maquillados:**
 eran consecuencia aritmética de mis propios `FAIL`/`WARN` nuevos, y desaparecieron al corregirlos
 — las cifras vigentes que `estado-programa` declara siguen exactas, así que no había nada que
 propagar. Es el desenlace correcto para un acto cuyo perímetro prohíbe escribir `canon/`.
+
+## §10 · Merge de `origin/main` durante el acto — un conflicto real, resuelto sin perder ninguna de las dos ediciones
+
+`origin/main` avanzó de `f3d3f95` a `155b4b8` mientras este acto estaba en vuelo (`PR #270`
+`CENSO-CMD`, `PR #271` `SELLO-FICHA-G3-V2`/`ADR-107`, y con ellos `ACTO LANE-A-E0-E5`). El `PR`
+quedó `mergeable_state: dirty`; se fusionó `origin/main` antes de seguir.
+
+**Un solo conflicto real: `forense/firmas-pendientes.tsv`.** Los dos lados tocaron filas
+**distintas y adyacentes** — yo `FP-14` (`FIRMADA-CONDICIONAL` → `FIRMADA`), `origin` `FP-15`
+(`ABIERTA` → `CERRADA`, `ACTO LANE-A-E0-E5`) — y git no pudo separarlas por adyacencia, no por
+colisión semántica. Resuelto conservando **las dos**: mi fila de `FP-14` y su fila de `FP-15`,
+verbatim, sin reescribir el texto ajeno. Verificado después: 9 columnas en todas las filas, 0
+marcadores de conflicto, `FP-14` = `FIRMADA` y `FP-15` = `CERRADA`.
+
+`forense/hallazgos.md` y `forense/registro-recalculo-v1_0.md` fusionaron **limpio**. El segundo
+merece nota: `ACTO LANE-A-E0-E5` cerró la **Entrada 5** del mismo registro en paralelo a que este
+acto cerrara la **Entrada 3** — dos entradas distintas, dos actos distintos, un acto por entrada
+tal como el Método de `ADR-72` manda. No hay contradicción ni doble adjudicación.
+
+**Universo declarado, re-verificado bajo la base nueva** (no se asumió estable, se midió):
+`data/curacion-universo/` **no cambió** entre `f3d3f95` y `155b4b8` (`git diff --stat`, vacío); el
+`sha256` del ledger sigue siendo `81b72932b406753a…` y sus 672 filas siguen `PRESENTE-INTEGRO`.
+El sello `@ f3d3f95` de la fila de la Entrada 3 describe exactamente lo que se midió y sigue
+siendo exacto. **`FP-54` re-verificada contra `155b4b8`: sigue `ABIERTA`** — el `ESPERA-FP-54` de
+`R5.1` se sostiene sin cambio.
+
+**Gates tras el merge:** `python3 tests/check.py --baseline` → **19 FAIL · 126 WARN, VERDE**, cero
+entradas nuevas. La cifra de WARN baja de 129 a 126 por el recifrado que `PR #270` ya traía
+(`FP-37` cerrada), no por nada de este acto: mi aportación a FAIL y WARN sigue siendo **0**.
