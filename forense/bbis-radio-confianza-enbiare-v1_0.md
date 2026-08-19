@@ -146,3 +146,45 @@ excl12 = sum(1 for r in filas if not ok12(r))
 excl2 = sum(1 for r in filas if not ok2(r))
 print("excluidos por codigo fuera de rango -- PB1:", excl12, " PB2:", excl2)
 ```
+
+---
+
+# COMMIT 2 · RESULTADOS — primer resultado del procedimiento congelado
+
+El script de §5 se extrajo **verbatim de este archivo** tal como quedó en el commit `eb8b8e1` y se corrió una sola vez. Ésta es esa corrida.
+
+```
+filas TENBIARE: 31166
+mu1 PB1_01 (0-10)          +5.2969  EE 0.0221  IC95 [+5.2535, +5.3403]  n=31166  sumaW=84449936  estratos_1upm=0
+mu2 PB1_02 (0-10)          +7.6159  EE 0.0205  IC95 [+7.5756, +7.6562]  n=31166  sumaW=84449936  estratos_1upm=0
+D = mu2-mu1 (puntos)       +2.3190  EE 0.0199  IC95 [+2.2800, +2.3580]  n=31166  sumaW=84449936  estratos_1upm=0
+p1 PB2_1 familia (prop)    +0.9485  EE 0.0017  IC95 [+0.9451, +0.9519]  n=31125  sumaW=84364449  estratos_1upm=0
+p2 PB2_2 no-familia (prop) +0.7224  EE 0.0043  IC95 [+0.7140, +0.7308]  n=31125  sumaW=84364449  estratos_1upm=0
+Delta = p1-p2 (pp)         +0.2262  EE 0.0045  IC95 [+0.2174, +0.2349]  n=31125  sumaW=84364449  estratos_1upm=0
+excluidos por codigo fuera de rango -- PB1: 0  PB2: 41
+```
+
+## 6 · Veredicto contra el falsador de §3
+
+**NO REFUTA.** Las dos condiciones se cumplen: `D = +2.3190` puntos con IC95% `[+2.2800, +2.3580]`, que despeja 0; y `Δ = +0.2262` con IC95% `[+0.2174, +0.2349]`, que despeja 0.
+
+**Escala, declarada.** `μ₁`, `μ₂` y `D` están en **puntos de una escala 0-10** declarada por el propio instrumento. `p₁`, `p₂` y `Δ` son **proporciones** de la población de 18 y más. Las dos escalas no se comparan entre sí, ni contra el índice del modelo.
+
+**Calidad del diseño, declarada.** `estratos_1upm = 0`: ningún estrato aportó varianza cero por tener una sola UPM. `n` efectivo 31 166 para el gradiente de escala y 31 125 para el de proporciones. Los **41 casos excluidos** en `PB2` son los que responden "sin familia", código fuera de `{1,2}`: se excluyen y se cuentan, no se imputan. Suma de pesos ≈ 84.4 millones, consistente con la población de 18 y más.
+
+## 7 · Qué compra este resultado, y qué no — contra lo escrito en §4 antes de verlo
+
+**Compra exactamente una cosa: la premisa fáctica del `razon_gate` de `ADR-109(d)` es falsa como afirmación sobre el instrumento.** Ese `razon_gate` dice *"radio_confianza exige el contraste, no un item"*. ENBIARE **sí gradúa** el contraste, por dos vías independientes: en escala continua, 7.62 contra 5.30 — brecha de 2.32 puntos con intervalo estrecho; y en batería categórica, 94.9% contra 72.2% — 22.6 puntos porcentuales. El orden es el teóricamente esperado (familia > conocidos > gente en general) en las dos.
+
+**La decisión de `ADR-109(d)` sigue siendo correcta para el objeto que evaluó.** `REL-51392f82` miró `PB1_01` **aislada**, y un ítem aislado efectivamente no es un contraste. Lo que este resultado muestra es que el objeto evaluado estaba mal elegido, no que la regla se aplicara mal — y esa elección la hizo un pipeline de grado **E2**, declarado por sí mismo como hecho **sin abrir microdatos**. Un ejecutor no revoca un ADR: esto va a mesa como **objeto nuevo**, el par.
+
+**No compra nada de lo que §4 prohibió, y se repite entero justamente porque no refutó:**
+
+1. **No es identificación. Es ASOCIACIÓN.** No hay panel, ni experimento natural, ni diseño experimental de terceros. Ninguna de las tres llaves de `ADR-57(c)` cubre esto.
+2. **No corrobora el `0.15` asignado a `G5.radio_confianza`** ni el `−0.35` de `G1.radio_confianza`. Puntos de escala 0-10 y el índice del modelo no tienen enlace declarado; sin enlace no se comparan magnitudes. Concordancia de signo tampoco corrobora (`ADR-57(a)`).
+3. **No mueve `0 de 15`.** Ningún coeficiente en escala del modelo se produjo aquí.
+4. **No mueve `Condicionales medidas 12 de 15`, y la razón es un defecto del contador que conviene decir.** El numerador se deriva por **conteo de cadena** — `txt.count('clase: "MEDIDO·PARCIAL') + txt.count('clase: "MEDIDO·NACIONAL')`, la fórmula que `tests/test_motor_procedencia.py` replica y `T19b` juzga — y `radio_confianza` **ya tiene** una entrada `MEDIDO·PARCIAL` bajo `condicionales_escalares`. Escribir una entrada nueva llevaría el contador a `13 de 15` **sin que exista una decimotercera condicional medida**: sería la misma condicional contada dos veces. Por eso **este acto no escribe en `milpa/procedencia.yaml`**, aunque su perímetro se lo autorizaba.
+5. **No es transportable** fuera de 2021 ni fuera del universo de 18 y más de ENBIARE.
+6. **No pasó por el motor formal.** `especificaciones-produccion.json` está fuera del perímetro de este acto, y la regla del Dominio 4 prohíbe que un mismo acto sea analista y supervisor. Esto es medición **exploratoria**, no producción sellada. Si mesa la quiere sellada, es acto propio, con `prepare_production.py` / `produce.py` / `integrate_production.py` y supervisor distinto.
+
+**Contadores de medición movidos por esta ficha: 0.**
