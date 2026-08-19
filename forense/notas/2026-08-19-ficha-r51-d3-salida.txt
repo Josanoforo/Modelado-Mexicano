@@ -1,0 +1,70 @@
+========================================================================
+BLOQUE 0 · Carga y chequeos de consistencia (COMMIT A §5.7)
+========================================================================
+  2018 · ancho folioviv derivado de concentradohogar = 10 · ancho numren derivado de poblacion = 1
+      hogares=74647  personas=269206  65+=22585  65+ clasificables=20751  65+ excluidas (0 filas en ingresos)=1834
+  2022 · ancho folioviv derivado de concentradohogar = 10 · ancho numren derivado de poblacion = 2
+      hogares=90102  personas=309684  65+=29974  65+ clasificables=28626  65+ excluidas (0 filas en ingresos)=1348
+
+========================================================================
+BLOQUE 1 · Hogares mixtos (COMMIT A §5.1) y universos (§5.2)
+========================================================================
+  --- umbral deflactado ---
+   2018  personas T=6160   C=14591   (65+ sin fila en ingresos=1834)
+       hogares con >=1 65+ clasificada=16469   con exactamente 1=12286   con >=2=4183   MIXTOS=1312  (31.4% de los de >=2)
+       U1 (ACOTADO, sin mezcla): 15157 hogares  T=4509  C=10648   |   U2 (completo, any-member): 16469 hogares  T=5821  C=10648
+   2022  personas T=8877   C=19749   (65+ sin fila en ingresos=1348)
+       hogares con >=1 65+ clasificada=22363   con exactamente 1=16274   con >=2=6089   MIXTOS=2194  (36.0% de los de >=2)
+       U1 (ACOTADO, sin mezcla): 20169 hogares  T=6120  C=14049   |   U2 (completo, any-member): 22363 hogares  T=8314  C=14049
+  --- umbral nominal ---
+   2018  personas T=6160   C=14591   (65+ sin fila en ingresos=1834)
+       hogares con >=1 65+ clasificada=16469   con exactamente 1=12286   con >=2=4183   MIXTOS=1312  (31.4% de los de >=2)
+       U1 (ACOTADO, sin mezcla): 15157 hogares  T=4509  C=10648   |   U2 (completo, any-member): 16469 hogares  T=5821  C=10648
+   2022  personas T=8922   C=19704   (65+ sin fila en ingresos=1348)
+       hogares con >=1 65+ clasificada=22363   con exactamente 1=16274   con >=2=6089   MIXTOS=2201  (36.1% de los de >=2)
+       U1 (ACOTADO, sin mezcla): 20162 hogares  T=6155  C=14007   |   U2 (completo, any-member): 22363 hogares  T=8356  C=14007
+
+========================================================================
+BLOQUE 2 · Corresidencia -- 4 corridas (COMMIT A §5.3)
+        desenlace: clase_hog in {3 Ampliado, 4 Compuesto}
+========================================================================
+  U1 x deflactado   d_pre=-1.85pp  d_post=-3.66pp  DiD=-1.82pp  SE=1.6813pp  IC95=(-5.11pp, +1.48pp)  singleton pre/post=0/0  <== PRIMARIA
+  U1 x nominal      d_pre=-1.85pp  d_post=-3.52pp  DiD=-1.68pp  SE=1.6810pp  IC95=(-4.97pp, +1.62pp)  singleton pre/post=0/0
+  U2 x deflactado   d_pre=-2.92pp  d_post=-3.73pp  DiD=-0.81pp  SE=1.5327pp  IC95=(-3.82pp, +2.19pp)  singleton pre/post=0/0
+  U2 x nominal      d_pre=-2.92pp  d_post=-3.66pp  DiD=-0.74pp  SE=1.5325pp  IC95=(-3.74pp, +2.26pp)  singleton pre/post=0/0
+
+========================================================================
+BLOQUE 3 · Marginal recalculado -- 3 universos (COMMIT A §5.4, A-bis r4)
+========================================================================
+  2018  U1 (ACOTADO)=0.4232  [N_hat=6882108, n=15157]   U2 (any-member)=0.4182  [N_hat=7474924, n=16469]   completo=0.2525  [N_hat=34400515, n=74647]
+  2022  U1 (ACOTADO)=0.4126  [N_hat=8441709, n=20169]   U2 (any-member)=0.4099  [N_hat=9370342, n=22363]   completo=0.2526  [N_hat=37560123, n=90102]
+  (tres universos distintos -- se reportan juntos y NO se restan uno de otro)
+
+========================================================================
+BLOQUE 4 · Transferencia P040 -- 2 corridas (COMMIT A §5.5), intocado
+========================================================================
+  U3 x deflactado   d_pre=-16.28pp  d_post=-13.96pp  DiD=+2.32pp  SE=0.9095pp  IC95=(+0.54pp, +4.10pp)  singleton pre/post=0/0
+  U3 x nominal      d_pre=-16.28pp  d_post=-13.96pp  DiD=+2.32pp  SE=0.9089pp  IC95=(+0.54pp, +4.10pp)  singleton pre/post=0/0
+
+========================================================================
+BLOQUE 5 · Monto/gasto -- la compuerta (COMMIT A §5.6), ola 2022
+        razon = media_ponderada(P104) / media_ponderada(gasto_mon per capita)
+        trimestral/trimestral, pesos corrientes, factor de concentradohogar
+========================================================================
+  (a) R5.1-D2  personas T (todas)
+      n elegibles=8877    n con P104>0=6497    (73.2% de recepcion efectiva)
+      P104 medio (trim)=$5100.83  gasto_mon per capita medio (trim)=$17560.54
+      RAZON (media ponderada) = 29.05%   [piso heredado: 33%]
+      mediana P104=$5606.55  mediana gasto pc=$12225.05  razon de medianas=45.86% (secundaria, no promovida)
+      EXPLORATORIA (no pre-declarada): IC95% de la razon por conglomerado ultimo = (26.16%, 31.94%)  SE=1.47pp  singleton=93
+  (b) R5.1-D3  personas T en hogar T de U1
+      n elegibles=6654    n con P104>0=4632    (69.6% de recepcion efectiva)
+      P104 medio (trim)=$5076.66  gasto_mon per capita medio (trim)=$19193.61
+      RAZON (media ponderada) = 26.45%   [piso heredado: 33%]
+      mediana P104=$5576.08  mediana gasto pc=$13417.31  razon de medianas=41.56% (secundaria, no promovida)
+      EXPLORATORIA (no pre-declarada): IC95% de la razon por conglomerado ultimo = (23.15%, 29.75%)  SE=1.69pp  singleton=94
+
+========================================================================
+FIN -- ninguna cantidad fuera de la lista cerrada de COMMIT A §5,
+       salvo las dos marcadas EXPLORATORIA arriba.
+========================================================================
