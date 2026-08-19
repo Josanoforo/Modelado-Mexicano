@@ -166,11 +166,12 @@ Transcritos de **dos** fuentes compuestas, porque `gobernanza:912` los *adopta* 
 **Ningún ADR nuevo.** Por §2 del propio registro, `SIN CAMBIO` no sella ADR — precedente Entradas 0, 2 y 4. El número máximo se re-derivó **dos veces** contra el árbol, como pedía el lanzamiento por la colisión esperada con la ola 1:
 
 ```
-corrida 1 (antes de escribir):  105 únicos · máximo ADR-105 · sin huecos (1..105)
-corrida 2 (antes de commitear): 105 únicos · máximo ADR-105 · sin huecos (1..105)
+corrida 1 (antes de escribir):   105 únicos · máximo ADR-105 · sin huecos (1..105)
+corrida 2 (antes de commitear):  105 únicos · máximo ADR-105 · sin huecos (1..105)
+corrida 3 (tras fusionar #265):  106 únicos · máximo ADR-106 · sin huecos (1..106)
 ```
 
-**Corrección al lanzamiento, declarada:** el lanzamiento afirma *"el ADR máximo ya es 104"*. Es **105** — `ADR-105` (`ACTO COND-ATRIB`, `PR #263`) entró con la base de este acto. No cambia ninguna conclusión (este acto no consume número), pero se dice porque heredarlo habría producido una colisión al primer acto que sí escriba uno.
+**Corrección al lanzamiento, declarada:** el lanzamiento afirma *"el ADR máximo ya es 104"*. Era **105** al redactarse —`ADR-105` (`ACTO COND-ATRIB`, `PR #263`) entró con la base de este acto— y es **106** tras fusionar `PR #265` (`ACTO CONF-07-CIERRE`, que sella `ADR-106`). No cambia ninguna conclusión, porque este acto **no consume número**: `SIN CAMBIO` no sella ADR por §2 del propio registro. Se dice porque heredar el 104 habría producido una colisión al primer acto que sí escriba uno — y porque la tercera corrida es exactamente la que el lanzamiento pedía anticipando la colisión con la ola 1: **la colisión ocurrió en el árbol y no llegó a serlo aquí sólo porque este acto no reclama número.**
 
 **`FP-15`, cerrada.** Fila localizada **por contenido** (`grep -n "^FP-15\t"`), no por número heredado: cae en la línea **16**, que coincide con lo que el lanzamiento decía. `estado` → `CERRADA` (vocabulario ya precedentado en el tablero), `ejecutada_en` → este PR con el veredicto y el universo, `encargo` → `forense/encargos/2026-08-18-E5-entrada-5-registro-recalculo.md`.
 
@@ -236,13 +237,23 @@ El plan del 14/ago la da por `PENDIENTE`; hoy las tres están `LISTO` (§3). Cif
 | | FAIL | WARN | línea base |
 |---|---|---|---|
 | árbol limpio a `f3d3f95` (medido en worktree aparte, no heredado) | 19 | 129 | VERDE |
-| tras este acto | **19** | **128** | **VERDE** |
+| tras este acto, antes de fusionar | **19** | **128** | **VERDE** |
+| árbol de `origin/main` = `b8da3bc` (`PR #265`, `ACTO CONF-07-CIERRE`) | 19 | 129 | — |
+| **tras fusionar `origin/main` en esta rama** | **19** | **128** | **VERDE** |
 
-**La diferencia es de una sola causa, verificada y no supuesta: `FP-15` deja de ser `ABIERTA` y `T22` deja de emitir su WARN.** La fase CON SELLO de `MOTOR-3/E0` **no añade ni una cita colgante**: el diff de las entradas de `T03` entre el árbol limpio y el de este acto está **vacío**, y `T03` se queda en 47 en los dos.
+**La diferencia es de una sola causa, verificada y no supuesta: `FP-15` deja de ser `ABIERTA` y `T22` deja de emitir su WARN.** Se sostiene idéntica a los dos lados de la fusión: el árbol de `CONF-07-CIERRE` trae 129 (su `+1` de `FP-57` compensó el `−1` de `FP-48` de `ESTADO-SPLIT`) y cerrar `FP-15` le resta uno. **Aritmética limpia, y aun así medida por corrida real sobre el árbol ya fusionado, no calculada.** La fase CON SELLO de `MOTOR-3/E0` **no añade ni una cita colgante**: el diff de las entradas de `T03` entre el árbol limpio y el de este acto está **vacío**, y `T03` se queda en 47 en los dos.
 
 **Las dos citas mutables sincronizadas, y sólo esas dos.** `ADR-81` enumera cuáles son mutables y cuáles no; tras `ACTO MESA-18AGO` (D-5) y `ACTO T16-HISTÓRICAS`, los únicos rastreadores vivos que quedaban eran `canon/estado-programa-v1_10.md:129` y `:221`. Se actualizaron a la corrida real con paréntesis fechado prepuesto —trayectoria histórica **ampliada, nunca reescrita**—, mismo mecanismo que ese archivo viene usando desde el 29/jul. `gobernanza:764`/`:856`/`:1274` **no se tocaron**: narran lo que cada ADR midió al sellarse y están marcadas `{cita-historica}`.
 
 **`tests/baseline.json` no se tocó y no se corrió `--freeze`**, conforme al lanzamiento. Ninguna cifra sustantiva —ningún β, θ, contador de medición o conteo de ADR— se movió.
+
+### 9.1 · La fusión de `origin/main` (`PR #265`) — un conflicto, de la clase esperada
+
+`origin/main` avanzó dos PR mientras este acto corría: `#264` (`ACTO ESTADO-SPLIT`) y `#265` (`ACTO CONF-07-CIERRE`, que sella `ADR-106`). Fusionados en esta rama con `git merge` —nunca `rebase`— **un solo conflicto**, en `canon/estado-programa-v1_10.md`, y exactamente en las dos líneas que este acto ya había declarado como el único toque a `canon/` (§10.3): los dos lados re-cifraron la misma cifra de suite el mismo día.
+
+**Resuelto sin elegir un lado por comodidad:** se conserva la prosa de `origin/main` —que narra correctamente la fusión de `#264` en `#265`, historia que este acto no presenció— y se le antepone el paréntesis fechado de este acto con la cifra **derivada de una corrida real sobre el árbol ya fusionado**, no de sumar los dos lados. Ningún otro carácter de esas líneas se tocó, y la trayectoria histórica queda ampliada, nunca reescrita.
+
+`forense/firmas-pendientes.tsv` y `forense/hallazgos.md` fusionaron solos: los tres actos escriben en filas y párrafos distintos. `FP-15` sigue `CERRADA` tras la fusión, verificado por comando, y las seis suites del motor siguen en verde.
 
 ---
 

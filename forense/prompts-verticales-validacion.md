@@ -77,6 +77,8 @@ A continuación, el vertical específico:
 ```text
 VERTICAL: ¿Qué organizaciones apostaron a un supuesto sobre el consumo aspiracional del mexicano —"premium accesible", estatus, calidad con dignidad, marca extranjera vs. orgullo nacional— y acertaron o fallaron, con MÉTRICAS (no solo narrativa publicitaria)?
 
+> ⚠️ **Parche 18/ago/2026 · ACTO CONF-07-CIERRE (`conf.07`/`conf.08`).** Las dos primeras reglas de la lista de abajo estaban escritas en la forma **empaquetada** que `conf.07` denunció: una sola cita, un solo rótulo ("hipótesis"), sobre afirmaciones de tier distinto. La regla ya está **partida** desde `modelo v2.1` (y la diagonal, desde `v2.3`) y cada mitad tiene tier propio — se cita cada mitad con el suyo. Además, el `PORQUE` decía *"sin monitoreo **ni broker**"*: `conf.08` retiró el "ni broker" en `modelo v2.3` —**sí hay broker** de afiliación y propaganda (Langston 2025, Servidores de la Nación), **no de monitoreo del voto individual**— y aquí se retira también. Una plantilla viva que repite el texto corregido reintroduce el defecto en cada corrida que la use.
+
 Reglas del modelo a estresar:
 - "Calidad y dignidad por encima de 'lo más barato' en segmentos populares" (validada parcialmente por Mamá Lucha; ¿aguanta con métricas de venta en otros casos?).
 - "Masstige / premium accesible funciona SOLO si la marca se aísla del descuento" (el matiz Costco vs. Sam's; ¿se replica?).
@@ -98,8 +100,8 @@ VERTICAL: ¿Los actores políticos que apostaron a que el clientelismo (regalos,
 NATURALEZA DEL MATERIAL: aquí el "caso" no es corporativo sino la APUESTA de un partido/campaña, y la evidencia fuerte es sobre todo ACADÉMICA (experimentos de campo, list experiments, estudios de secreto del voto), no decks. Prioriza estudios experimentales/cuasi-experimentales sobre población mexicana; trata la prensa como contexto, no como prueba.
 
 Reglas del modelo a estresar:
-- "El clientelismo desde abajo tiene AGENCIA: se acepta el beneficio pero se conserva autonomía de voto" (hipótesis del modelo, §3.7).
-- "Las transferencias directas universales se viven como derecho/gratitud al líder pero sin monitoreo ni broker" (hipótesis; ¿la evidencia la confirma o muestra compra efectiva?).
+- "El clientelismo desde abajo tiene AGENCIA: se acepta el beneficio pero se conserva autonomía de la ELECCIÓN de voto, cuando NO hay proximidad/focalización del reparto y NO hay monitoreo percibido" (`civico.voto.agencia_con_secreto`, **`[FUERTE]`** — modelo `§3.7`).
+- "La transferencia directa universal no condicionada se vive como derecho" (`civico.transferencia.entitlement_derecho`, **`[HIPÓTESIS]`**) y "la atribución va al líder y se expresa como aprobación" (`civico.transferencia.atribucion_lider`, **`[MEDIA]`** correlacional, ⚠️ CONFUNDIDO). ¿La evidencia las confirma o muestra compra efectiva?
 - "La participación es contingente al peso simbólico del acto" (validado por la brecha presidencial vs. judicial).
 - "El voto de clase media responde a estabilidad/aspiración, no es antisistema".
 

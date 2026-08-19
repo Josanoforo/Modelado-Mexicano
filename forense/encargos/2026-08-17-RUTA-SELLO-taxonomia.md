@@ -1,5 +1,6 @@
 # ENCARGO E-RUTA · RUTA-SELLO — sellar como canon la taxonomía RUTA-A/RUTA-C/RUTA-I/SIN-RUTA, con estampa
-- **SHA de redacción:** `f3873c2` · **Fecha:** 2026-08-17 · **Redactor:** dirección (Fable) · **Estado:** VIVO
+- **SHA de redacción:** `f3873c2` · **Fecha:** 2026-08-17 · **Redactor:** dirección (Fable) · **Estado:** CONSUMIDO — ACTO RUTA-SELLO, `PR #245` (`b653bb4`), 17/ago/2026. Sella `ADR-89`.
+- **Evidencia de consumo (derivada del árbol, ACTO CONF-07-CIERRE 18/ago/2026):** el sello existe — `canon/gobernanza-v1_15.md:1455`, verbatim *"ADR-89 · Sella como canon la taxonomía RUTA-A/RUTA-I/RUTA-C/SIN-RUTA (censo v1.0 §1) y estampa (A.10) el reparto de los 15 coeficientes […] y `FP-13` pasa a `FIRMADA`"*, con la firma que lo autoriza citada en `gobernanza:1457` (*"sellémosla."*, `ADR-79(f)`). El gate de arranque del encargo (`instrucciones-proyecto-v2_10.md` en `origin/main`) se cumplió: E-A10 fusionó en `PR #242`, antes de `PR #245`. Queda vigente el rótulo `VENCIBLE EN ALCANCE al cierre de BARRIDO-2` que el propio `ADR-89` le puso al reparto — es una reserva del ADR, no un pendiente de este encargo.
 - **Entorno asignado:** NUBE · Modelo: Sonnet 4.6. **NO** en la caja de Codex.
 - **GATE DE ARRANQUE (comando, duro):** `git cat-file -e origin/main:instrucciones-proyecto-v2_10.md`
   → si falla, E-A10 no ha fusionado: PARA y reporta "gate no cumplido". Este sello usa A.10 y comparte
