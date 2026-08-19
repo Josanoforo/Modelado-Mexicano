@@ -24,7 +24,7 @@
 |---|---|---|
 | **`modelo`** | `modelo-decision-v4.0.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
 | **`glosario`** | `glosario-v5.6.md` | CANÓNICO. Único punto legítimo de entrada de un tier |
-| **`gobernanza`** | `gobernanza-v1.15.md` | 121 ADR, protocolo de cambio |
+| **`gobernanza`** | `gobernanza-v1.15.md` | 122 ADR, protocolo de cambio |
 | **`estado`** | `estado-programa-v1.10.md` | Este archivo |
 | **`milpa-whitepaper`** | `milpa-whitepaper-v0.1.md` | El **porqué** del simulador |
 | **`milpa-spec`** | `milpa-spec-v0.2.md` | El **cómo** — incluye el gate de ADR-25/37 |
@@ -53,12 +53,12 @@
 
 ## 1 · Inventario verificado
 
-**59 archivos**, verificados el 28/jul/2026 por `diff` entre el índice del proyecto y el montaje de disco (sin discrepancias). ⚠️ **Corregido 29/jul/2026:** decía 56; es la suma de la propia tabla de abajo (31+5+3+3+6+4+6+1), nunca recalculada tras escribirse. *(`censo-integridad-v1_0.md` C1-01.)*
+**60 archivos**, verificados el 28/jul/2026 por `diff` entre el índice del proyecto y el montaje de disco (sin discrepancias). ⚠️ **Corregido 29/jul/2026:** decía 56; es la suma de la propia tabla de abajo (31+5+3+3+6+4+6+1), nunca recalculada tras escribirse. *(`censo-integridad-v1_0.md` C1-01.)* *(Recifrado 59→60, `ACTO FP61-ADJUDICA`, 19/ago/2026: fila "Validaciones forenses" 5→6 por `corpus/forense/compass-4-e29a28d4-credito-popular-2026.md`, archivo nuevo. Derivado de `ls corpus/forense/*.md`, no tecleado.)*
 
 | Bloque | Cuenta | Notas |
 |---|---|---|
 | **Reports temáticos** | **31** | CANÓNICO, evidencia primaria. *Se decía 30: conteo de memoria* |
-| **Validaciones forenses** | **5** | CANÓNICO por ADR-29.b |
+| **Validaciones forenses** | **6** | CANÓNICO por ADR-29.b |
 | Gobierno y estado | 3 | `instrucciones-proyecto-v2` · `gobernanza-programa` v1.2 · **este archivo** |
 | Síntesis y modelo | **3** | `glosario` v5.5 · `integrador` · `modelo` v3.0 **(absorbe la ficha)** |
 | Forenses de proceso | **6** | `hito2-modelo-fantasma` · `hitoC-prueba-generadores` · `corrida-refutaciones` · `lectura-cuatro-pivotes` · `descartes-forenses-registro` · `barrido-propagacion-forense` |
@@ -98,7 +98,7 @@ Eso no lo invalida: un tier derivado de lectura disciplinada es evidencia legít
 
 **Llaves de identificación ejercidas: `1` de `2`.** *(Población de conteo propia, abierta por ADR-67(c); no toca el denominador 27 del Hito D. Registro: `forense/registro-llaves-identificacion-v1_0.md`; cifra derivada por la receta al pie de ese archivo. Movida 13/ago/2026, ACTO ADJ-4 — `R5.1-D2` firma `EJERCIDA_INDECISA`, la primera llave que sale de `SELLADA_NO_EJERCIDA`.)*
 
-**L0 · Gobierno — completo y al día.** 121 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos. *(Corregido 29/jul/2026: decía 32, contradiciendo §0 de este mismo archivo — `censo-integridad-v1_0.md` C1-02.
+**L0 · Gobierno — completo y al día.** 122 ADR, protocolo de cambio con retropropagación bidireccional, severidades S1-S5, casillero de pendientes irresueltos. *(Corregido 29/jul/2026: decía 32, contradiciendo §0 de este mismo archivo — `censo-integridad-v1_0.md` C1-02.
 - Subió a 39 en la misma sesión, con la aprobación de ADR-38/39 en `gobernanza §4`;
 - a 40 después, con ADR-40, misma sesión de tests;
 - a 41 después, con ADR-41, misma sesión;
