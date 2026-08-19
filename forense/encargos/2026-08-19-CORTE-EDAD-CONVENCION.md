@@ -1,6 +1,6 @@
 # ENCARGO · ACTO CORTE-EDAD-CONVENCION — propagar el corte de «edad joven» a los nueve sitios
 
-SHA de redacción: derivar al lanzar (escrito el 18/ago/2026 por `ACTO MESA-19AGO`). Entorno asignado: **NUBE** (repo-only, no toca microdato). Estado: **VIVO**, sin gate. Origen: firma de mesa D-2 de `MESA-19AGO` — vía **(c) ambas** —, `ADR-110(b)`, fila `FP-53`.
+SHA de redacción: derivar al lanzar (escrito el 18/ago/2026 por `ACTO MESA-19AGO`). Entorno asignado: **NUBE** (repo-only, no toca microdato). Estado: ~~**VIVO**, sin gate~~ → **CONSUMIDO** · SHA de redacción re-derivado al lanzar: `35c9c9f` (`origin/main`, `PR #278` ya fusionado) · Ejecutado contra `35c9c9f`, fusionado sobre `318e233` y luego sobre `976b31d` tras dos colisiones de ADR (`PR #279`/`FP57-DECLARA`, `PR #282`/`FP10-PRECEDENCIA`) · Cierre: `ADR-116` (candidateaba `114`→`115`, tomados primero por esos dos actos al fusionar) · Detalle comando por comando: `forense/notas/2026-08-19-corte-edad-convencion-cierre.md`. Origen: firma de mesa D-2 de `MESA-19AGO` — vía **(c) ambas** —, `ADR-110(b)`, fila `FP-53`.
 
 ## 1 · Lo que la mesa firmó (verbatim)
 
