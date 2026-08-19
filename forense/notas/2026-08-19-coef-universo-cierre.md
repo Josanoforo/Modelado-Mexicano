@@ -256,3 +256,128 @@ $ ls data/curacion-registro/celdas-d/ | wc -l
 Ya derivado en §4 y se repite aquí porque es el defecto con más consecuencia operativa: en las 37 filas, `reactivo_id` es idéntico a `objeto_logico_id`, ninguno nombra una variable, y `texto_reactivo_recortado` guarda un descriptor de material (`COLUMNA`, `VARIABLE-SAV`, `SECCION-PDF`, `[REDACTADO-PRIVACIDAD]`…), no texto de pregunta. Quien lea el cableado creyendo que `EXISTE-SATISFACE` significa «esta variable mide este coeficiente» concluye de más: significa «este objeto material satisface, al grado de un resumen neutral compacto». La distancia entre las dos lecturas es exactamente el trabajo que falta.
 
 ---
+## 7 · FUNCIÓN C — el barrido de los 627 payloads contra los 15 coeficientes
+
+**Producto:** `data/coef-universo-v1_0.tsv`, tabla nueva autorizada por el perímetro. **50 filas**, nueve columnas, cero celdas fuera del vocabulario A.4, **cero `POR-ABRIR`**.
+
+```
+$ awk -F'\t' 'NR>1 && NF==9' data/coef-universo-v1_0.tsv | wc -l
+50
+$ awk -F'\t' 'NR>1{c[$7]++} END{for(k in c) print c[k], k}' data/coef-universo-v1_0.tsv
+27 EXISTE-SATISFACE
+19 EXISTE-NO-SATISFACE
+ 4 NO-ENCONTRADO-EN-UNIVERSO-INSPECCIONADO
+```
+
+**Método.** Los 627 payloads del censo se repartieron en seis clusters por familia de fuente —seguridad (167), dinero (96), gobierno (67), tiempo y familia (60), paneles y llaves (86), resto (151)— y se barrieron con seis ejecutores en Sonnet, con briefing común: vocabulario A.4 estricto, disciplina A-bis íntegra, y obligación de declarar universo inspeccionado y comando por fila. **La supervisión es de este acto, no de los ejecutores**: cada hallazgo de peso se re-verificó contra el archivo antes de entrar a la tabla, y tres se corrigieron (§7.4).
+
+**Cobertura: 14 de los 15 coeficientes tienen al menos una fila.** El único sin fila propia es `N6/G3.aversion_riesgo`, que comparte búsqueda cerrada con `N4` (`ADR-52 A`) y queda cubierto por la fila de `N4`, declarado ahí.
+
+### 7.1 · Lo que mueve el estado de un coeficiente
+
+**`N10/G4.horizonte_temporal` pasa de "sin candidato" a tres candidatos independientes.** El censo v1.2 lo declara `SIN-RUTA` por *"sin reactivo dedicado"*. Se encontraron tres, ninguno adjudicado:
+
+1. **Banxico, Encuesta de Competencias Financieras 2024**, variable `COND2` — elección intertemporal clásica (1 000 pesos en 13 meses contra 1 100 en 14), con variación real (1: 1 179 · 2: 800 · 98: 91, de 2 070). Límite declarado: el wording viene del codebook público de 2019 aplicado por coincidencia de nombre de columna, y su ítem hermano `COND1` sí está en ese codebook pero **no** en el header real de 2024.
+2. **Global Preferences Survey** (Falk et al., Gallup World Poll 2012), variable `patience`, n=1 000 México, escala 0-10 validada contra conducta real en el diseño original.
+3. **RCT de Compartamos**, variables `impatient_now` y `present_bias_dum` — **de línea base** (4 924/4 907 en baseline contra 1 810/1 807 en endline), es decir covariables pre-tratamiento. La llave del experimento **no** aplica a ellas: se miden antes de aleatorizar, así que no hay variación exógena en la impaciencia.
+
+**`N13/G5.familismo_obligacion` gana el contraste que `ADR-30` exige, y que el canon declaraba no resuelto.** `canon/modelo-decision-v4_0.md` dice que el check obligatorio de `ADR-30` exige el contraste apoyo/obligación **dentro del hogar** —*"la hija cuidadora carga obligación mientras su hermano recibe apoyo, bajo el mismo techo"*— y que eso *"cae exactamente en la dimensión que los tres ejes de hogar no resuelven"*, por lo que el hallazgo **persiste**. Con microdato real de ENUT 2024: el join `LLAVEHOG+N_REN` entre `tmodulo.csv` y `tsdem.csv` es **100% limpio** (74 053/74 053); hay **3 290 hogares con un hijo y una hija** (ambos `PAREN=3`) presentes a la vez; y usando la derivada de INEGI `CUID_ESP_INT_HOG_CON_CP`, entre quienes cuidan las hijas dan **mediana 9.0 h/semana contra 5.0 los hijos** (medias 16.7 contra 8.2), y cuidan más hijas que hijos (397 contra 325 sobre los mismos 8 054). **El contraste sí es construible.** Cifras **exploratorias y sin ponderar** — no son estimación poblacional, y son **ASOCIACIÓN**, no identificación.
+
+**`N12`/`N7` ganan un reactivo de universo pleno.** `P6_16_1..6` de ENUT (ayuda gratuita a otro hogar de un familiar) y su derivada `APOY_HOG_FAM` tienen **n = 74 053 sin filtro** — confirmado: no existe `FILTRO_S6_16` —, más amplio que cualquier reactivo hoy asignado a esos coeficientes. Mide la dirección **dar** frente a la dirección **recibir** de `ENIF P9_9_1..6`. Y `cuid_may1..7` de ENGASTO HOGAR (quién cuida al adulto mayor, siete categorías de institución pública a familiar en otro hogar) **rompe la circularidad C3** que inhabilita `ENIF P9_9` para G5: instrumento distinto y operacionalización distinta. Universo restringido y declarado: `integ_may=1`, 17 312/58 951 = 29.4%.
+
+**`N8/G4.exposicion_violencia` gana la dimensión digital que el propio canon declara faltante.** H-12 dice, verbatim, *"malla truncada: ENVIPE no tiene digital ni migración"*. MOCIBA trae `P4_01`–`P4_13` (13 tipos de ciberacoso) co-observados con `P12_01`–`P12_13`/`P12_99`, batería única que cubre denuncia por tres canales, evitación **y silencio literal** (`P12_08` "ignorar o no contestar", `P12_13` "ninguna"). **No arrastra el defecto de `BP1_23`**: no está condicionada a más subpoblación que haber vivido al menos una situación. Arquitectura verificada hasta la ola 2015. Frontera declarada: es violencia **digital**, no la victimización delictiva del reactivo sellado; no lo sustituye.
+
+### 7.2 · Deuda registrada del programa, cerrada
+
+`forense/hallazgos.md` dejaba **ENDIREH abierta** para G4 con la reserva explícita de que no se habían leído las 20 secciones completas. Se leyeron: `pdftotext -layout` sobre las **51 795 líneas** del FD 2021 y las **42 445** del FD 2016, buscando `protesta|manifesta|marcha|autodefensa|ronda comunitaria|policía comunitaria|grupo armado|callar|espacio público|restring|salir sola` → **cero en ambas olas**. La sección temáticamente más cercana (XV, "Decisiones y libertad personal") resultó ser control o permiso de la pareja para salir o votar: autoridad conyugal, no retracción por miedo al crimen. **C2 = `N` con certeza**, no como límite declarado.
+
+### 7.3 · Tres defectos de comparabilidad longitudinal, ninguno conocido antes
+
+1. **El mnemónico de ENVIPE cambia de constructo entre olas.** En 2011 `AP4_10_1` es *"cambiar puertas o ventanas?"* (medidas de protección de la vivienda); en 2012 ese mismo texto es `AP4_11_1`, y `AP4_10_*` pasa a ser **retracción conductual** (*"permitir que sus hijos salieran"*, *"visitar parientes o amigos"*, *"llevar dinero en efectivo"*, *"frecuentar centros comerciales"*, *"viajar por carretera"*). `AP7_3` tiene sólo `_1`/`_2` en 2011 y `_1`..`_11` en 2012. **Empalmar por mnemónico pega dos constructos distintos sin error visible.** Toca a `N8` y `N9`, ambos `RUTA-C`. (Los FD de 2011 y 2012 son `.xls` OLE/BIFF; se abrieron con `xlrd` 2.0.2, wheel de pypi extraído en el scratchpad, sin tocar el sistema.)
+2. **La lista de instituciones de `AP5_4_*` tampoco es estable.** 2013 trae nueve ítems incluyendo *"Policía Federal"* (disuelta en 2019) y **no** trae la FGR (creada 2018-19); 2025 trae `AP5_4_01`..`_11`. Una serie longitudinal de `confianza_institucional[justicia]` exige mapear qué institución ocupa cada índice **antes** de comparar años.
+3. **ENUT no es una serie: son tres instrumentos distintos.** 2002 sin unificar, con dos baterías separadas (`J1..J6` cuidado a integrante con limitación, `K1..K10` cuidado a niño del hogar); 2009 por bandas de edad del receptor (`P5_11`, `P5_12`, `P5_13`), no por discapacidad o enfermedad; 2014 y 2019 idénticos entre sí, filtro de **una** condición y **11** ítems; 2024 filtro de **dos** condiciones y **14** ítems, con tres nuevos que antes vivían comprimidos en el ítem 11. **2002 y 2009 no son reconstruibles al esquema 2014-2024 sin perder información.** Y `ENIF` sufre lo mismo: `P9_9_1..6` es literal **sólo en 2024**; en 2021 es `P9_8_1..6`, en 2018 es `P9_9_1..5` sin `P4_10`, y 2012/2015 no traen ninguna de las dos piezas.
+
+### 7.4 · Tres correcciones que este acto hizo a su propio barrido
+
+Se declaran porque un barrido que no se audita a sí mismo no vale.
+
+1. **Cuidado observado no es actitud, y la vara se aplicó parejo.** El barrido marcó `EXISTE-SATISFACE` a las variables de cuidado de **ENASEM** (`CUIDA_ADULTO_*`, `CUIDA_MENOR_*`, `CUIDA_FAM_21/24`, con `UNHHIDNP` persistente en tres olas) y de **EDER 2025** (`tarea_dom`, `hora_dom`, `paren_dom`, `inst_dom`, retrospectivo año por año). **Bajadas a `EXISTE-NO-SATISFACE` con frontera declarada**, por consistencia con la vara que descalificó a ENUT: `ADR-67(b)` fijó `P7_12_7` de ENASIC como la θ real y dejó la capa conductual **fuera de θ**. Sirven a la celda-D de conducta, no al coeficiente. Lo que sí es valor propio de ENASEM y EDER, y ENUT no tiene: **son panel**.
+2. **La batería de acción política no es un desenlace de G6.** El barrido propuso `EXISTE-SATISFACE` para `N15` alegando que `Q17` de WVS7 ("Obedience", n=1 741, 57.1% "Important") queda co-observado con `Q209`–`Q212`. **No se acepta**: los desenlaces declarados de G6 son `trabajo.jerarquia.deferencia_iniciativa_suprimida` y `comunicacion.retroalimentacion.privada_publica_capital_social` — jerarquía laboral y retroalimentación, no participación política. Un segundo ejecutor, barriendo el mismo instrumento por su cuenta, llegó a la misma conclusión. El reactivo existe; **lo que sigue faltando es el desenlace**.
+3. **El RCT de Compartamos apunta al revés, y eso decide para qué sirve.** Verificado por este acto contra el `.dta` real (21 523 filas, 124 columnas): `Treatment` asignado por `cluster`; `Q15_2_mean_people` —confianza en gente, con el círculo familia→vecinos→conocidos→extraños, textualmente el mismo que declara `radio_confianza`— tiene **0 no-nulos en "Baseline only" y 16 558 en "Endline"**, reparto 8 298/8 262. Es una **llave (iii) de `ADR-57(c)` real y viva en disco**, la única del barrido. Pero **el crédito está aleatorizado y la confianza es el desenlace**, mientras el generador `G1a` va al revés: la confianza es el driver y la adopción el desenlace. Identifica crédito→confianza, no confianza→adopción. Usarlo como instrumento de θ exigiría una restricción de exclusión —que el crédito afecte el desenlace **sólo** vía confianza— implausible de entrada, porque el microcrédito opera por muchos canales. Se registra como material de llave (iii), **no como llave ejercida**.
+
+### 7.5 · Un defecto de método que invalida negativos, y no es de este acto
+
+**En esta caja, `grep` es una función de shell que envuelve `ugrep -I`, y descarta en silencio cualquier archivo con un byte no-UTF8.** Prueba controlada:
+
+```
+$ printf 'linea uno Q01\nbyte raro \x92\nlinea tres Q01\n' > t.txt
+$ grep -c "Q01" t.txt            → (sin salida), exit=1
+$ command grep -c "Q01" t.txt    → 2, exit=0
+```
+
+Un extracto de PDF o un codebook con una comilla tipográfica Windows-1252 basta. **Cualquier `NO-ENCONTRADO` derivado con el `grep` desnudo sobre un archivo así es un falso negativo silencioso**, sin error y sin aviso. Se detectó porque una búsqueda que debía dar positivo (`Q01` sobre `cses5_Questionnaire.txt`) dio vacío. **Los negativos de esta nota se re-derivaron con `command grep` y todos se sostienen**; los archivos implicados se verificaron UTF-8 limpio uno por uno. Se reporta como riesgo vivo para el resto del programa, no como defecto propio.
+
+---
+
+## 8 · FUNCIÓN E y F — la medición, y por qué mueve cero contadores
+
+**Función E, tal como el encargo la pide, no es ejecutable.** Manda *"consumir las 7 `EXISTE-SATISFACE` ya selladas… ábrelas y mide lo medible hoy"*. Al abrirlas resulta que **no traen una variable que medir**: en las 37 filas del cableado, `reactivo_id` es idéntico a `objeto_logico_id` y ninguna nombra una variable (§4). Lo que traen es un objeto material con N objetos dentro. Para medir hay que bajar a la variable, que es trabajo aparte — y es justo lo que hizo la Función C.
+
+**Función F sí se ejecutó, con el patrón de dos commits.** `forense/bbis-radio-confianza-enbiare-v1_0.md`: especificación congelada en `eb8b8e1`, resultados en `0fdfdc7`. Objeto: el **par** `PB1_01`×`PB1_02` de ENBIARE 2021, y el par `PB2_1`×`PB2_2`. Estimadores ponderados por `FAC_ELE` con varianza de conglomerado último sobre `EST_DIS`/`UPM_DIS` y linealización de Taylor.
+
+| estimando | valor | IC95% |
+|---|---|---|
+| `μ₁` `PB1_01` "confía en la gente" | 5.2969 | [5.2535, 5.3403] |
+| `μ₂` `PB1_02` "…en la gente que conoce" | 7.6159 | [7.5756, 7.6562] |
+| **`D` = `μ₂` − `μ₁`** | **+2.3190 puntos** | **[+2.2800, +2.3580]** |
+| `p₁` la familia siempre ayuda | 0.9485 | [0.9451, 0.9519] |
+| `p₂` amigos o no-familia | 0.7224 | [0.7140, 0.7308] |
+| **`Δ` = `p₁` − `p₂`** | **+0.2262** | **[+0.2174, +0.2349]** |
+
+n = 31 166 y 31 125 · suma de pesos ≈ 84.4 millones · **`estratos_1upm` = 0** · 41 excluidos por código fuera de rango, contados y no imputados.
+
+**El falsador NO refuta.** Lo que eso compra, y sólo eso: **la premisa fáctica del `razon_gate` de `ADR-109(d)` es falsa como afirmación sobre el instrumento.** Ese `razon_gate` dice *"radio_confianza exige el contraste, no un item"*; ENBIARE **sí gradúa** el contraste, por dos vías independientes y en el orden esperado (familia > conocidos > gente en general). **La decisión de `ADR-109(d)` sigue siendo correcta para el objeto que evaluó** —`REL-51392f82` miró `PB1_01` aislada, y un ítem aislado no es un contraste—; lo que estaba mal elegido era el objeto, y esa elección la hizo un pipeline de grado **E2** que se declara a sí mismo hecho **sin abrir microdatos**. Un ejecutor no revoca un ADR: va a mesa como objeto nuevo.
+
+**Escala declarada:** puntos de una escala 0-10 y proporciones de población de 18 y más. **No hay enlace con el índice del modelo**, y sin enlace no se comparan magnitudes — ni para confirmar ni para desmentir el `0.15` de `G5.radio_confianza` ni el `−0.35` de `G1`. **Rótulo: ASOCIACIÓN.** Sin panel, sin experimento natural, sin diseño experimental de terceros: ninguna de las tres llaves de `ADR-57(c)` cubre esto.
+
+**Por qué no se escribió en `milpa/procedencia.yaml`, aunque el perímetro lo autorizaba.** El contador *"Condicionales medidas 12 de 15"* se deriva por **conteo de cadena** (`txt.count('clase: "MEDIDO·PARCIAL') + txt.count('clase: "MEDIDO·NACIONAL')`), y `radio_confianza` **ya tiene** una entrada `MEDIDO·PARCIAL` bajo `condicionales_escalares`. Una entrada nueva llevaría el contador a `13 de 15` **sin que exista una decimotercera condicional medida**: la misma condicional contada dos veces. Escribirla habría movido un contador sin haber medido una condicional nueva.
+
+---
+## 9 · Módulo de auditoría de rigor extremo
+
+Aplica porque §8 afirma algo sobre México: un gradiente de confianza estimado sobre población de 18 y más.
+
+**Contadores movidos por este acto: 0.** Ni `0 de 15`, ni `Condicionales medidas 12 de 15`, ni `13 de 27` del Hito D, ni `1 de 2` de llaves ejercidas. Se dice sin justificarlo, como manda v2.3. El porqué de la que sí estuvo a un paso de moverse está en §8.
+
+**¿Qué parte podría estar confundiendo pobreza, desigualdad, violencia o informalidad con "cultura"?** La lectura tentadora del gradiente `PB1_02 > PB1_01` es "el mexicano confía en los suyos y desconfía del extraño", que es una afirmación cultural. **No se sostiene con lo medido.** Una brecha entre confianza en conocidos y confianza en extraños es lo que predice cualquier entorno de baja aplicación de la ley, donde la confianza en desconocidos es costosa de sostener: es un incentivo racional ante un entorno, no un rasgo. Este acto **no midió la brecha condicionada por entorno** (ni por entidad, ni por tam_loc, ni por victimización), así que no puede separar las dos lecturas — y por eso no afirma ninguna.
+
+**¿Qué parte sobregeneraliza desde clases medias urbanas?** El gradiente es nacional, sin partir. ENBIARE cubre urbano y rural, pero la nota **no** reporta el gradiente por `tam_loc`, y no lo reporta porque no lo midió. Lo que sí es asimétrico por diseño: los tres candidatos nuevos de `N10` (Banxico ENCFIN, GPS, RCT de Compartamos) son **todos** de poblaciones sesgadas — la ENCFIN es de 2 070 casos con marco propio, la GPS es de 1 000 casos del Gallup World Poll, y el RCT de Compartamos es **urbano y de clientas de microcrédito**. Ninguno es una muestra poblacional comparable con ENVIPE o ENIGH.
+
+**¿Qué parte está sesgada por literatura escrita desde marcos estadounidenses o europeos, incluidas muestras mexicano-americanas?** El caso vivo es `familismo_apoyo`/`familismo_obligacion`, que llevan la **marca (b)**: sus escalas se validaron en muestras **mexicano-americanas** (Sabogal, Lugo Steidel, Knight, Calzada, Zeiders). Este acto añade candidatos mexicanos de conducta (ENUT, ENGASTO, ELCOS, ENASEM, EDER) pero **la deuda de procedencia de la marca (b) no se salda con conducta**: el constructo sigue definido por una escala actitudinal validada fuera de México. Y el par `PB2_1`/`PB2_2` de ENBIARE, que este acto sí midió, es de instrumento mexicano — pero mide **disponibilidad percibida de ayuda**, no la escala de familismo.
+
+**¿Qué cambiaría si el foco fuera México rural, indígena o popular?** Tres cosas medibles y no medidas. (1) El gradiente de §8 podría estrecharse o ensancharse por `tam_loc`; no se probó. (2) `ENPOL` quedó `EXISTE-NO-SATISFACE` por universo no poblacional (población privada de la libertad) — un universo que en cualquier lectura popular es central y que el diseño del programa deja fuera. (3) El contraste intra-hogar de ENUT se midió sobre hogares con hijo **e** hija de 12 años o más presentes, que es una estructura de hogar específica: 3 290 de 29 181 hogares. Los hogares donde no hay ese par —monoparentales, extensos, unipersonales— quedan fuera por construcción del contraste, no por muestreo.
+
+**¿Qué parece psicológico y en realidad es un incentivo racional ante un entorno?** El gradiente entero, como ya se dijo. Y la asimetría hija/hijo en horas de cuidado: puede ser norma internalizada, o puede ser el resultado de que el mercado laboral remunera distinto a hombres y mujeres, de modo que el costo de oportunidad de cuidar es menor para ellas. **Este acto no puede separarlas** — y esa es exactamente la razón por la que el resultado se rotula ASOCIACIÓN y no coeficiente.
+
+**¿Dónde hay evidencia débil pero intuición social fuerte?** En la lectura de que MOCIBA "mide violencia" para efectos del generador. La intuición es fuerte —ciberacoso es violencia— y la evidencia de constructo es débil: el reactivo sellado de `exposicion_violencia` es victimización delictiva de ENVIPE, y el propio canon declara que su malla no cubre lo digital. Sumar MOCIBA sin ADR sería ensanchar el constructo por la puerta de atrás.
+
+**¿Qué conclusiones serían peligrosas usadas de forma simplista?** Dos. (1) *"El 85.8% de los datos no sirve"* — es la lectura que este acto refuta en §5: es cobertura de cableado, no de explotación, y al menos 212 payloads tienen contacto previo documentado. Actuar sobre esa cifra podando material rompería la regla anti-poda que `ADR-83` ya selló. (2) *"Las hijas cuidan el doble que los hijos"* — cifra exploratoria, sin ponderar, sobre una estructura de hogar específica, y sin separar norma de costo de oportunidad. Citarla como hecho poblacional sería falso en escala y en universo.
+
+**¿Qué afirmación sobre el estado del corpus fue escrita a mano y no derivada?** Ninguna de esta nota: cada cifra trae su comando. Dos que **sí** están escritas a mano en otros artefactos y este acto detectó: el *"tres asociaciones marginales"* de `README.md`, que son cinco desde el 4/ago (§6.2), y el *"hoy 2 archivos"* de celdas-D en `data/INFRAESTRUCTURA-v1_0.md`, que son tres (§6.3).
+
+**Deudas asumidas que caducan al cambiar la función del programa.** La deuda relevante es *"el cableado es una proyección, no una credencial de escritura"* (§4). Fue coherente mientras la función era **integrar juicio ya supervisado**. Deja de serlo cuando la función pasa a **cablear demanda nueva desde el universo completo**, que es lo que este encargo pide: el mismo diseño que garantiza que nadie inventa filas garantiza que nadie puede dar de alta demanda. No es un defecto del cableado; es una deuda que cambió de signo al cambiar el objetivo, y por eso se reporta como hueco y no como error.
+
+**Escala de cada cantidad estimada, y contra qué se compara.**
+
+| cantidad | escala | se compara contra |
+|---|---|---|
+| `μ₁`, `μ₂`, `D` | puntos de escala 0-10 declarada por ENBIARE | **entre sí, y contra nada más.** No contra el índice del modelo: no hay enlace declarado |
+| `p₁`, `p₂`, `Δ` | proporciones de población de 18 y más | entre sí |
+| horas de cuidado hija/hijo | horas por semana, **sin ponderar** | entre sí, dentro del mismo hogar. **No es estimación poblacional** |
+| `θ` asignados de los 15 | índice del modelo | **nada de este acto** — ninguna cantidad medida aquí es comparable con ellos |
+
+---
+
+## 10 · Lo que este acto NO hizo
+
+No corrigió `canon/modelo-decision-v4_0.md` (prohibido por el encargo), ni `README.md`, ni `data/INFRAESTRUCTURA-v1_0.md`, ni el censo de explotación, ni `milpa/refutations.yaml`, ni el corpus de reports: todos fuera de perímetro. **No escribió en `milpa/procedencia.yaml`**, aunque el perímetro lo autorizaba, por la razón de §8. **No dio de alta ninguna fila en el cableado**, porque el esquema no lo admite y ese hueco es el entregable (§4). **No registró ninguna llave nueva** en `forense/registro-llaves-identificacion-v1_0.md`: ese archivo está fuera de perímetro, y además `T24` es un vigía binario que rompería la suite si la fila entrara sin actualizar a la vez la cita de `canon/estado-programa`. **No reabrió** `ID-X`/ENNViH (`ADR-107`), ni la búsqueda de `sens_estatus` (`ADR-54`), ni la de `aversion_riesgo` (`ADR-52 A`). **No revocó `ADR-109(d)`**: propone a mesa un objeto distinto. **No adjudicó** ningún veredicto del Hito D. **No usó `--freeze`**, prohibido por el encargo.
