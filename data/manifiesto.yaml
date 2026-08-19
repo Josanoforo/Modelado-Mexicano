@@ -42,8 +42,7 @@
     (14/ago) — Encargo W abrió también encig2023_01_sec_11 (batería XI) y publicó frecuencias
     reales de P11_1_23 en forense/notas/2026-08-04-w-coeficientes-generador-paso1.md líneas
     179 y 272, que es el objeto que ENLACE-2 (PR 236) enlazó para N1/ENCIG. Quedan tres tablas
-    sin inspeccionar — encig2023_01_sec1_A_3_4_5_8_9_10, encig2023_02_residentes_sec_2 y
-    encig2023_03_sec_6.
+    sin inspeccionar — encig2023_01_sec1_A_3_4_5_8_9_10, encig2023_02_residentes_sec_2 y encig2023_03_sec_6.
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
     texto completo de esos Términos no verificado, solo la referencia)
   verificacion_tamano: 'Página anunciaba 36.5 MB; archivo real 38,309,647 bytes. Verificado
@@ -312,7 +311,8 @@
     línea 482 declara haber contado filas de TPer_Vic2 y TMod_Vic dentro de este zip. De ahí
     salen AP7_3_10..14 y BP2_1, y por eso ENLACE-2 (PR 236) enlazó aquí N8 y N20. OJO -- ENVIPE
     2025 está registrada DOS VECES con payloads distintos; el otro es envipe_2025_bd_envipe_2025_csv
-    (microdatos de la canasta masiva, otro sha256, sin abrir). No son intercambiables por nombre.
+    (microdatos de la canasta masiva, otro sha256, sin abrir). No son intercambiables por
+    nombre.
   url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2025/datosabiertos/conjunto_de_datos_ENVIPE_2025_csv.zip
   fecha_descarga: '2026-07-30'
   descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
@@ -8613,8 +8613,9 @@
   usado_para: sin uso asignado. OJO, declarado por ACTO C (14/ago/2026) -- ENVIPE 2025 está
     registrada DOS VECES con payloads distintos. Éste es el paquete de microdatos de la canasta
     masiva (DESC-1, 5/ago). El que las mediciones abrieron de verdad es envipe2025_csv (datos
-    abiertos, sha256 8a7a99fd..., registrado un día ANTES que éste), y es el que ENLACE-2 (PR 236) enlazó para N8/AP7_3_10..14 y N20/BP2_1. Quien consuma ENVIPE 2025 debe elegir a
-    sabiendas; no son intercambiables por nombre.
+    abiertos, sha256 8a7a99fd..., registrado un día ANTES que éste), y es el que ENLACE-2
+    (PR 236) enlazó para N8/AP7_3_10..14 y N20/BP2_1. Quien consuma ENVIPE 2025 debe elegir
+    a sabiendas; no son intercambiables por nombre.
   url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2025/microdatos/bd_envipe_2025_csv.zip
   fecha_descarga: '2026-08-05'
   descargado_por: agente, vía curl directo desde inegi.org.mx (URL tomada del XML de la canasta
@@ -12818,3 +12819,1448 @@
   sha256: 2b88ef960078381b9ecdc439bd57a5f1c1e06da81cb9caac21f16b9cfca343c3
   tamano_bytes: 682496
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: adq15_brasdefer_actos_de_habla
+  usado_para: ADQ-15 (N15,N31), palanca 2
+  url_origen: https://pragmatics.indiana.edu/textbook/corpus/Actosdehabla.html
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_Brasdefer_corpus_pragmatico/actos_de_habla.html
+  sha256: eeff2afe7d58b3bd381aeb31f384117a75d39cbb8c7852ec1cb3952da43bbd34
+  tamano_bytes: 262019
+  formato: HTML
+  licencia: Pagina publica del sitio academico de J. Cesar Felix-Brasdefer (Indiana University);
+    sin aviso de licencia especifico verificado byte a byte en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15 (encargo 2026-08-18-ADQ-15). Corpus de interacciones reales transcritas;
+    el payload ES la pagina, no hay archivo de datos aparte (verificado: cero enlaces a pdf/zip/csv/xlsx
+    en la pagina).'
+
+- id: adq15_brasdefer_convelic_conversaciones
+  usado_para: ADQ-15 (N15,N31), palanca 2
+  url_origen: https://pragmatics.indiana.edu/textbook/corpus/Conversaciones.html
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_Brasdefer_corpus_pragmatico/convelic_conversaciones.html
+  sha256: 228079da68f26946410a8e7e89100ff7b539c1a672364087f5d9364a5fdbf5c3
+  tamano_bytes: 40435
+  formato: HTML
+  licencia: Pagina publica del sitio academico de J. Cesar Felix-Brasdefer (Indiana University);
+    sin aviso de licencia especifico verificado byte a byte en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15 (encargo 2026-08-18-ADQ-15). Corpus de interacciones reales transcritas;
+    el payload ES la pagina, no hay archivo de datos aparte (verificado: cero enlaces a pdf/zip/csv/xlsx
+    en la pagina).'
+
+- id: adq15_brasdefer_encuentros_de_servicio
+  usado_para: ADQ-15 (N15,N31), palanca 2
+  url_origen: https://pragmatics.indiana.edu/textbook/corpus/Encdeserv.html
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_Brasdefer_corpus_pragmatico/encuentros_de_servicio.html
+  sha256: 7053fcc25bf62b7061582d35b2fafb6e4810c324add22a5e2c6dace21c17ea38
+  tamano_bytes: 302364
+  formato: HTML
+  licencia: Pagina publica del sitio academico de J. Cesar Felix-Brasdefer (Indiana University);
+    sin aviso de licencia especifico verificado byte a byte en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15 (encargo 2026-08-18-ADQ-15). Corpus de interacciones reales transcritas;
+    el payload ES la pagina, no hay archivo de datos aparte (verificado: cero enlaces a pdf/zip/csv/xlsx
+    en la pagina).'
+
+- id: adq15_wb6667_313_03_conafe_bit_cora_supervisor
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347172
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/313_03_conafe_bit_cora_supervisor.pdf
+  sha256: f6553958d5d274cd3153ed3534830e7ba9521d61607e4f391ec1231c40b2a38a
+  tamano_bytes: 91324
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_313_06_egra_l_minas_simo
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347173
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/313_06_egra_l_minas_simo.pdf
+  sha256: 1a5579364bad8c5eb5315c09a2deb2700b65ed04164a32852fb7a2d35c0b6113
+  tamano_bytes: 177618
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_313_07_egma_l_minas_simo
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347174
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/313_07_egma_l_minas_simo.pdf
+  sha256: e9c79f540c17cecc3a3a52a66836b696b163c0a96e62e0224d32cbf4d84dc92a
+  tamano_bytes: 175484
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_313_08_egra_m_xico16
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347175
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/313_08_egra_m_xico16.pdf
+  sha256: 10c348ae5a42ab6df6d590c1202904ca4f36209e5fbd77027a9da8230c7d2b15
+  tamano_bytes: 946494
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_313_09_egma_m_xico16
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347176
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/313_09_egma__m_xico16.pdf
+  sha256: 57157489c448621cea3fadcc6b66e6b5797014a70099226309dea1d132d0926e
+  tamano_bytes: 509638
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_313_conafe_reporte_de_campo_modificaciones_30_08_16
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347178
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/313_conafe_reporte_de_campo_modificaciones_30_08_16.pdf
+  sha256: 3b324ad78970b8a5a67fe8e95372d27f48d4bdd2dcf9fcdc8d2aa2cf1df55b9e
+  tamano_bytes: 1309134
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_mex_2016_apipie_v01_m_metadata
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/metadata/export/6667/json
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/MEX_2016_APIPIE_v01_M.metadata.json
+  sha256: 38a7c1cfe8d87768f3c84d8e5fabb89ed59bce67f0c411593ffd82296de7e772
+  tamano_bytes: 3854
+  formato: JSON
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_mex_2016_apipie_v01_m
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/metadata/export/6667/ddi
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/MEX_2016_APIPIE_v01_M.xml
+  sha256: a85333c31112e25939419a9dff201800a9dcd274186d4198c05c68e9d42ba034
+  tamano_bytes: 1204682
+  formato: XML
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_cuest_alumnos_final
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347161
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/cuest_alumnos_final.pdf
+  sha256: a265e6bfb5f912a213e6bf2ee224c0c829a1bf606305ae7a954e6edb535f40e1
+  tamano_bytes: 401510
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_cuest_lec_final
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347169
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/cuest_lec_final.pdf
+  sha256: ff6fe3f335b50c6b27e78d931dd567a88eec5c4542cd3fc55e473049329951d8
+  tamano_bytes: 220985
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_cuest_padres_final
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347163
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/cuest_padres_final.pdf
+  sha256: bcd84087b73d29a9f8f3d3c6f04cb2c33ef85c6070e3f37b8b5e54ee389cb583
+  tamano_bytes: 397586
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_cuestionario_alumnos
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347162
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/cuestionario_alumnos.xlsx
+  sha256: 7ad4d32b3fcfc473636e66b9fc7433a5c86677766c4eaa25b0d49e8940684c63
+  tamano_bytes: 52860
+  formato: XLSX
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_cuestionario_apis
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347166
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/cuestionario_apis.xlsx
+  sha256: aec38b79045e6b224fe55adb75fb78d03cf6488a9ece380815e32350aa6c413f
+  tamano_bytes: 54133
+  formato: XLSX
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_cuestionario_docentes
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347165
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/cuestionario_docentes.xlsx
+  sha256: e80672ae011b746b4de11eff7c0c676d5c72c8b4dc3b34896d84d880a22a3e7b
+  tamano_bytes: 67015
+  formato: XLSX
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_cuestionario_padres
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347164
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/cuestionario_padres.xlsx
+  sha256: d40d407db41ec8bcf63efc2723d4826cb4535a7196281354ec41b596b940e383
+  tamano_bytes: 55217
+  formato: XLSX
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_cuestionario_supervisi_n_en_campo
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347167
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/cuestionario_supervisi_n_en_campo.xlsx
+  sha256: d1e3d73fe97422151bc760c5d3074fd46d9a1499e58563c2ff266b1f410ecf6a
+  tamano_bytes: 101600
+  formato: XLSX
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_cuestionario_suplemento_home
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347168
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/cuestionario_suplemento_home.xlsx
+  sha256: 71a5683693379230bc06bf8118e9c581bfe6db147854165b4514af63037102b5
+  tamano_bytes: 71098
+  formato: XLSX
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_home_suplemento_para_la_madre_2504_final
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347170
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/home_suplemento_para_la_madre_2504_final.pdf
+  sha256: d1ede6471b503d59a4f373a8464d36e40ef668ff49f2c084eae1a3e62c1594a7
+  tamano_bytes: 283558
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_libro_de_codigo_alumnos_api_conafe
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347179
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/libro_de_codigo_alumnos_api_conafe.xlsx
+  sha256: 3ee5c32a224ee363678b3b610d35eff0793fcf70f93e4a98ac5113f9d00c6083
+  tamano_bytes: 23219
+  formato: XLSX
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_libro_de_codigo_home_api_conafe
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347180
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/libro_de_codigo_home_api_conafe.xlsx
+  sha256: 3847dbdd6ddaee4315c7aa1ff537985f8e4cbf765d8140b5d715374e7dd86f55
+  tamano_bytes: 34678
+  formato: XLSX
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_libro_de_codigo_lec_api_conafe
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347181
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/libro_de_codigo_lec_api_conafe.xlsx
+  sha256: e174862a2c17bc584a5dd638185174383bf5d2f9665c36e2e9276988989c983d
+  tamano_bytes: 33826
+  formato: XLSX
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_libro_de_codigo_padres_api_conafe
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347182
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/libro_de_codigo_padres_api_conafe.xlsx
+  sha256: c818d2ffc555ec6c19d87e2a70dc6a6235d88daeb952ad0149a5e4e2ee160aec
+  tamano_bytes: 24666
+  formato: XLSX
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_sal_n_de_clase_hoja_de_observaci_ngb
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347171
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/sal_n_de_clase_hoja_de_observaci_ngb.pdf
+  sha256: fc54ffa84792783c901a7b0ba2378858e3399212ac86cc631ce649287e2b2ca3
+  tamano_bytes: 229412
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb6667_supervision_plan
+  usado_para: ADQ-15 (N15), palanca 5
+  url_origen: https://microdata.worldbank.org/catalog/6667/download/347177
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/supervision_plan.pdf
+  sha256: 429d6fb02727ef2f76ad110acdbc7674d6694da537d6938b7ca199b4cb3d8d30
+  tamano_bytes: 301280
+  formato: PDF
+  licencia: World Bank Microdata Library; los materiales de referencia y el DDI son de descarga
+    directa, el microdato exige cuenta gratuita
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Materiales de referencia + DDI/JSON. El microdato (6 ficheros .dta declarados
+    en el DDI) NO se obtuvo: exige login.'
+
+- id: adq15_wb870_es_lac_2010_core_mex
+  usado_para: ADQ-15 (N22,N23,N32), palanca 8
+  url_origen: https://microdata.worldbank.org/catalog/870/download/19386
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB870_Enterprise_Survey_MX_2010/ES LAC 2010 Core_Mex.pdf
+  sha256: 6f7e160047cf1a5e126bd7637369a0556dacccb30161de9592508a8d38875ed7
+  tamano_bytes: 756863
+  formato: PDF
+  licencia: World Bank Microdata Library; documentacion de descarga directa, microdato en
+    repositorio externo con registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Documentacion + DDI/JSON. El microdato vive en enterprisesurveys.org
+    y exige registro.
+
+- id: adq15_wb870_es_lac_2010_manufacturing_mex
+  usado_para: ADQ-15 (N22,N23,N32), palanca 8
+  url_origen: https://microdata.worldbank.org/catalog/870/download/19387
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB870_Enterprise_Survey_MX_2010/ES LAC 2010 Manufacturing_Mex.pdf
+  sha256: 1ca53f65a07ca56cc2b62add76416aa176e64be95c8e05cf22b58748e20641fa
+  tamano_bytes: 864561
+  formato: PDF
+  licencia: World Bank Microdata Library; documentacion de descarga directa, microdato en
+    repositorio externo con registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Documentacion + DDI/JSON. El microdato vive en enterprisesurveys.org
+    y exige registro.
+
+- id: adq15_wb870_es_lac_2010_retail_mex
+  usado_para: ADQ-15 (N22,N23,N32), palanca 8
+  url_origen: https://microdata.worldbank.org/catalog/870/download/19388
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB870_Enterprise_Survey_MX_2010/ES LAC 2010 Retail_Mex.pdf
+  sha256: 76790222088afdf5eb1a192d53bf4f02b8d7b774a8520c11c27fc53bc9ded4ca
+  tamano_bytes: 777631
+  formato: PDF
+  licencia: World Bank Microdata Library; documentacion de descarga directa, microdato en
+    repositorio externo con registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Documentacion + DDI/JSON. El microdato vive en enterprisesurveys.org
+    y exige registro.
+
+- id: adq15_wb870_es_screener_caribbean
+  usado_para: ADQ-15 (N22,N23,N32), palanca 8
+  url_origen: https://microdata.worldbank.org/catalog/870/download/19389
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB870_Enterprise_Survey_MX_2010/ES_Screener_Caribbean.pdf
+  sha256: 513f5428cb56687d9e48ca38332f675bb2812f42e6b713f2be25654d658679a9
+  tamano_bytes: 201728
+  formato: PDF
+  licencia: World Bank Microdata Library; documentacion de descarga directa, microdato en
+    repositorio externo con registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Documentacion + DDI/JSON. El microdato vive en enterprisesurveys.org
+    y exige registro.
+
+- id: adq15_wb870_mex_2010_es_v01_m_wb_metadata
+  usado_para: ADQ-15 (N22,N23,N32), palanca 8
+  url_origen: https://microdata.worldbank.org/metadata/export/870/json
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB870_Enterprise_Survey_MX_2010/MEX_2010_ES_v01_M_WB.metadata.json
+  sha256: 01a4b7365f49d58d66d221454b00e8f1dc547ca2b1b5494c630f7fbd5041458a
+  tamano_bytes: 15479
+  formato: JSON
+  licencia: World Bank Microdata Library; documentacion de descarga directa, microdato en
+    repositorio externo con registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Documentacion + DDI/JSON. El microdato vive en enterprisesurveys.org
+    y exige registro.
+
+- id: adq15_wb870_mex_2010_es_v01_m_wb
+  usado_para: ADQ-15 (N22,N23,N32), palanca 8
+  url_origen: https://microdata.worldbank.org/metadata/export/870/ddi
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB870_Enterprise_Survey_MX_2010/MEX_2010_ES_v01_M_WB.xml
+  sha256: d91582bb8e09865985d69d5a35262496cfb35d29cb21d082e335af1e3c3e101e
+  tamano_bytes: 881239
+  formato: XML
+  licencia: World Bank Microdata Library; documentacion de descarga directa, microdato en
+    repositorio externo con registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Documentacion + DDI/JSON. El microdato vive en enterprisesurveys.org
+    y exige registro.
+
+- id: adq15_wb870_mexico_2010_implementation_report_final
+  usado_para: ADQ-15 (N22,N23,N32), palanca 8
+  url_origen: https://microdata.worldbank.org/catalog/870/download/19390
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB870_Enterprise_Survey_MX_2010/Mexico 2010 Implementation Report_final.pdf
+  sha256: c2bfaf68c6cd362b332e484192d6dd4eca43274d73f189fd1597b9487acf97e5
+  tamano_bytes: 1357717
+  formato: PDF
+  licencia: World Bank Microdata Library; documentacion de descarga directa, microdato en
+    repositorio externo con registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Documentacion + DDI/JSON. El microdato vive en enterprisesurveys.org
+    y exige registro.
+
+- id: adq15_wb870_questionnairemanual2011
+  usado_para: ADQ-15 (N22,N23,N32), palanca 8
+  url_origen: https://microdata.worldbank.org/catalog/870/download/19391
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB870_Enterprise_Survey_MX_2010/QuestionnaireManual2011.pdf
+  sha256: 7f7164ea6c6f3b7549c073face03ccbed0d4fb355bf751e0b0ea7b99e6e285cf
+  tamano_bytes: 1027451
+  formato: PDF
+  licencia: World Bank Microdata Library; documentacion de descarga directa, microdato en
+    repositorio externo con registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Documentacion + DDI/JSON. El microdato vive en enterprisesurveys.org
+    y exige registro.
+
+- id: adq15_wb870_sampling_note
+  usado_para: ADQ-15 (N22,N23,N32), palanca 8
+  url_origen: https://microdata.worldbank.org/catalog/870/download/19392
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB870_Enterprise_Survey_MX_2010/Sampling_Note.pdf
+  sha256: 5b2fae33f1e4a145e9ca1f3ef3ab4dd3ea58bd3cad020567f0c87d9c9ba71398
+  tamano_bytes: 197308
+  formato: PDF
+  licencia: World Bank Microdata Library; documentacion de descarga directa, microdato en
+    repositorio externo con registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Documentacion + DDI/JSON. El microdato vive en enterprisesurveys.org
+    y exige registro.
+
+- id: adq15_wb870_mexico_2010
+  usado_para: ADQ-15 (N22,N23,N32), palanca 8
+  url_origen: https://microdata.worldbank.org/catalog/870/download/19393
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_WB870_Enterprise_Survey_MX_2010/mexico-2010.pdf
+  sha256: e1020e2b1d58e04c57c7479e568ca0e507ece7b09e3fd0653e1d0fd0e4a269fe
+  tamano_bytes: 404604
+  formato: PDF
+  licencia: World Bank Microdata Library; documentacion de descarga directa, microdato en
+    repositorio externo con registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Documentacion + DDI/JSON. El microdato vive en enterprisesurveys.org
+    y exige registro.
+
+- id: adq15_omca_omca_acerca_ocam
+  usado_para: ADQ-15 (N27), palanca 26
+  url_origen: https://omca.imta.gob.mx/omca/acerca_ocam
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_OMCA_conflictos_agua/omca_acerca_ocam.html
+  sha256: 1deee057ab943dc4bea832ea5b2dbeaf81e61385abbe622652127435a6ca2891
+  tamano_bytes: 8497
+  formato: HTML
+  licencia: Portal publico del Observatorio de Conflictos por el Agua (IMTA); sin muro de
+    registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. La base completa se obtuvo del endpoint AJAX del mapa (GET order/search),
+    no de un boton de descarga: la portada no ofrece ninguno.'
+
+- id: adq15_omca_omca_boletines
+  usado_para: ADQ-15 (N27), palanca 26
+  url_origen: https://omca.imta.gob.mx/omca/boletines
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_OMCA_conflictos_agua/omca_boletines.html
+  sha256: 02a462c9d3adb97c6636e2581faefd598788af385d15fb3bb6929785a3ab09a9
+  tamano_bytes: 17457
+  formato: HTML
+  licencia: Portal publico del Observatorio de Conflictos por el Agua (IMTA); sin muro de
+    registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. La base completa se obtuvo del endpoint AJAX del mapa (GET order/search),
+    no de un boton de descarga: la portada no ofrece ninguno.'
+
+- id: adq15_omca_omca_conflictos_base_completa
+  usado_para: ADQ-15 (N27), palanca 26
+  url_origen: https://omca.imta.gob.mx/omca/index.php/mapa/conflictos?order=ASC&search=
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_OMCA_conflictos_agua/omca_conflictos_base_completa.json
+  sha256: e91f62f8c9073329d202fbffd06593f247326e712805880247ca526be168cbc4
+  tamano_bytes: 265270
+  formato: JSON
+  licencia: Portal publico del Observatorio de Conflictos por el Agua (IMTA); sin muro de
+    registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. La base completa se obtuvo del endpoint AJAX del mapa (GET order/search),
+    no de un boton de descarga: la portada no ofrece ninguno.'
+
+- id: adq15_omca_omca_consulta
+  usado_para: ADQ-15 (N27), palanca 26
+  url_origen: https://omca.imta.gob.mx/omca/consulta
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_OMCA_conflictos_agua/omca_consulta.html
+  sha256: 5173ebad4db5bdbcd9ad1b32b90783fd6464d880368a71f8fdf998772b4e2114
+  tamano_bytes: 37208
+  formato: HTML
+  licencia: Portal publico del Observatorio de Conflictos por el Agua (IMTA); sin muro de
+    registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. La base completa se obtuvo del endpoint AJAX del mapa (GET order/search),
+    no de un boton de descarga: la portada no ofrece ninguno. A.7 APLICA: dos descargas dan
+    sha256 crudo distinto porque el ORDEN de los <option> del selector de fuente varia entre
+    peticiones (ORDER BY no determinista). Hash de contenido con ese campo neutralizado: d501a657e90b1e7b
+    -- COINCIDE entre las dos bajadas, no hay PARO. El sha256 de arriba es el crudo, para
+    reproducibilidad byte a byte.'
+
+- id: adq15_omca_omca_mapa
+  usado_para: ADQ-15 (N27), palanca 26
+  url_origen: https://omca.imta.gob.mx/omca/mapa
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_OMCA_conflictos_agua/omca_mapa.html
+  sha256: 58c1c2fe264e42d30bbcfda78dd122aefb0664821354ddf082e6eeacf4a3c32b
+  tamano_bytes: 65738
+  formato: HTML
+  licencia: Portal publico del Observatorio de Conflictos por el Agua (IMTA); sin muro de
+    registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. La base completa se obtuvo del endpoint AJAX del mapa (GET order/search),
+    no de un boton de descarga: la portada no ofrece ninguno.'
+
+- id: adq15_omca_omca_metodologia
+  usado_para: ADQ-15 (N27), palanca 26
+  url_origen: https://omca.imta.gob.mx/omca/metodologia
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_OMCA_conflictos_agua/omca_metodologia.html
+  sha256: 20dae6557e804ef298fe5ab7d5c7956176d400669e3c7701dbb72a27b4b0be92
+  tamano_bytes: 68751
+  formato: HTML
+  licencia: Portal publico del Observatorio de Conflictos por el Agua (IMTA); sin muro de
+    registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. La base completa se obtuvo del endpoint AJAX del mapa (GET order/search),
+    no de un boton de descarga: la portada no ofrece ninguno.'
+
+- id: adq15_omca_omca_numeralia
+  usado_para: ADQ-15 (N27), palanca 26
+  url_origen: https://omca.imta.gob.mx/omca/numeralia
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_OMCA_conflictos_agua/omca_numeralia.html
+  sha256: 4c3faeca674c500c07136270a3f72f25f2408cb7e475bc78d96c84e759316e81
+  tamano_bytes: 15845
+  formato: HTML
+  licencia: Portal publico del Observatorio de Conflictos por el Agua (IMTA); sin muro de
+    registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. La base completa se obtuvo del endpoint AJAX del mapa (GET order/search),
+    no de un boton de descarga: la portada no ofrece ninguno.'
+
+- id: adq15_omca_omca_objetivos
+  usado_para: ADQ-15 (N27), palanca 26
+  url_origen: https://omca.imta.gob.mx/omca/objetivos
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_OMCA_conflictos_agua/omca_objetivos.html
+  sha256: 479c5d93e015f01adf31b82f6b87f55d379bf956937c3075d9e6cc9412b42398
+  tamano_bytes: 6689
+  formato: HTML
+  licencia: Portal publico del Observatorio de Conflictos por el Agua (IMTA); sin muro de
+    registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. La base completa se obtuvo del endpoint AJAX del mapa (GET order/search),
+    no de un boton de descarga: la portada no ofrece ninguno.'
+
+- id: adq15_omca_omca_reportes
+  usado_para: ADQ-15 (N27), palanca 26
+  url_origen: https://omca.imta.gob.mx/omca/reportes
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_OMCA_conflictos_agua/omca_reportes.html
+  sha256: 67d52a05c0d0c0598f8fa0599f4aecc73db1e35b3ae5469bf4caea76b588a721
+  tamano_bytes: 5761
+  formato: HTML
+  licencia: Portal publico del Observatorio de Conflictos por el Agua (IMTA); sin muro de
+    registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. La base completa se obtuvo del endpoint AJAX del mapa (GET order/search),
+    no de un boton de descarga: la portada no ofrece ninguno.'
+
+- id: adq15_votarentrebalas_veb_datos_landing
+  usado_para: ADQ-15 (N27,N8), palanca 43
+  url_origen: https://votarentrebalas.datacivica.org/datos-votar-entre-balas
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_VotarEntreBalas_DataCivica/veb_datos_landing.html
+  sha256: a80c98d5be70a2a8dc10e673610f45e830325fc7886cbd71d2aa0eabcbd15244
+  tamano_bytes: 149090
+  formato: HTML
+  licencia: 'Data Civica / Animal Politico / Mexico Evalua: descarga publica desde el propio
+    sitio, sin registro'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. El ZIP lo genera el servidor en cada peticion (mtime de los miembros
+    = hora de la peticion): A.7 aplica.'
+
+- id: adq15_votarentrebalas_votar_entre_balas_base
+  usado_para: ADQ-15 (N27,N8), palanca 43
+  url_origen: https://votarentrebalas.datacivica.org/app/download_zip
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_VotarEntreBalas_DataCivica/votar_entre_balas_base.zip
+  sha256: ddcaaa6be7e2e009268e610bc0bd00af02010bfec8b2466c377b114cb3f6f9fe
+  tamano_bytes: 965735
+  formato: ZIP
+  licencia: 'Data Civica / Animal Politico / Mexico Evalua: descarga publica desde el propio
+    sitio, sin registro'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. El ZIP lo genera el servidor en cada peticion (mtime de los miembros
+    = hora de la peticion): A.7 aplica. A.7 APLICA: dos descargas dan sha256 crudo distinto
+    porque el ZIP lo genera el servidor al vuelo: el mtime de sus miembros es la hora de la
+    peticion. Hash de contenido con ese campo neutralizado: c1d343311977fec4 -- COINCIDE entre
+    las dos bajadas, no hay PARO. El sha256 de arriba es el crudo, para reproducibilidad byte
+    a byte.'
+
+- id: adq15_afyfem_afyfem_dic_2023
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/953507/AFyFeM_dic23.pdf
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/AFyFeM_Dic_2023.pdf
+  sha256: 6f6afb8767542943551551e67286d7ed0a691ea2607d08fb3ddc2b416419337e
+  tamano_bytes: 2380404
+  formato: PDF
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_afyfem_jun_2024
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/965132/AFyFeM_Junio24.pdf
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/AFyFeM_Jun_2024.pdf
+  sha256: 5f76e1f4156265d3c60b3bab26df54a45367bfb3694510a2521fb3e3bf1b34ac
+  tamano_bytes: 2489690
+  formato: PDF
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_afyfem_mar_2023
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/875765/AFyFeM_mar23.pdf
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/AFyFeM_Mar_2023.pdf
+  sha256: d0d074ee759367ae493a7ccf1cbfe4ac520c0c483143f22e170e71c72a9ac63e
+  tamano_bytes: 2884405
+  formato: PDF
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_afyfem_mar_2025
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1012719/AFyFeM_Mar._2025.pdf
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/AFyFeM_Mar_2025.pdf
+  sha256: dbf19ff1f02b5eeb0cd3d963673500c3df29defb0ac37c2f44c877011677351f
+  tamano_bytes: 2555812
+  formato: PDF
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_afyfem_sep_2023
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/890401/AFyFeM_sep23.pdf
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/AFyFeM_Sep_2023.pdf
+  sha256: d7ed65b90dd0a55509262cb5971dff7c24390b97beb3af3dc117d812a2a4fa63
+  tamano_bytes: 2606434
+  formato: PDF
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_afyfem_sep_2024
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/982841/AFyFeM_Sep_24.pdf
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/AFyFeM_Sep_2024.pdf
+  sha256: becbd32e0b9e309ef987b050c428f385e345459f4c6b91ea6de8136e82c81421
+  tamano_bytes: 2612071
+  formato: PDF
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_base_ahorro_financiero_y_financiamiento_2000_dic2021
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGEE/Base_Ahorro_Financiero_y_Financiamiento_2000-Dic2021.xlsx
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/Base_Ahorro_Financiero_y_Financiamiento_2000-Dic2021.xlsx
+  sha256: 2ff1a13928fd770a7dadd7a679776077f5d65204efebe2cdccea306569ea8b4c
+  tamano_bytes: 375174
+  formato: XLSX
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_base_ahorro_financiero_y_financiamiento_2000_dic2022
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGEE/2024/Base_Ahorro_Financiero_y_Financiamiento_2000-Dic2022.xlsx
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/Base_Ahorro_Financiero_y_Financiamiento_2000-Dic2022.xlsx
+  sha256: a8ddec96b0ad30cb12f1f82c7f95f1fbab8c6add00021448476896cc1fdd60d6
+  tamano_bytes: 393074
+  formato: XLSX
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_base_ahorro_financiero_y_financiamiento_2000_jun2023
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGEE/2024/Base_Ahorro_Financiero_y_Financiamiento_2000-Jun2023.xlsx
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/Base_Ahorro_Financiero_y_Financiamiento_2000-Jun2023.xlsx
+  sha256: a28d0d187a99b445795c31dc588d6b6a559b37a6d8cf63c187a42649bf891817
+  tamano_bytes: 400835
+  formato: XLSX
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_base_ahorro_financiero_y_financiamiento_2000_mar2023
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGEE/2024/Base_Ahorro_Financiero_y_Financiamiento_2000-Mar2023.xlsx
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/Base_Ahorro_Financiero_y_Financiamiento_2000-Mar2023.xlsx
+  sha256: 700caa2f2f6c0db8c042e43f78a4db66cf6501cc244fa86c8237aaf237a046fa
+  tamano_bytes: 396825
+  formato: XLSX
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_base_ahorro_financiero_y_financiamiento_2000_sep2022_datosabiertos
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGEE/Base_Ahorro_Financiero_y_Financiamiento_2000-Sep2022.xlsx
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/Base_Ahorro_Financiero_y_Financiamiento_2000-Sep2022.datosabiertos.xlsx
+  sha256: 54b40df84f831704d6430e97e2d56aab2749267deb2049a66cfe391d6f912b23
+  tamano_bytes: 387045
+  formato: XLSX
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_base_ahorro_financiero_y_financiamiento_2000_sep2022_wwwcnbv
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://www.cnbv.gob.mx/Documents/Base_Ahorro_Financiero_y_Financiamiento_2000-Sep2022.xlsx
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/Base_Ahorro_Financiero_y_Financiamiento_2000-Sep2022.wwwcnbv.xlsx
+  sha256: c1164955cfd8a8d1bd45388b53a6c36a5fcc236f0265e88e02b9a382bca51e63
+  tamano_bytes: 386483
+  formato: XLSX
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_diccionario_dgee
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGEE/Diccionario_DGEE.xlsx
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/Diccionario_DGEE.xlsx
+  sha256: 651e0d17f27e795d41bd89eed27300d55d1a5ce68c5b51d82777d17abcee80ba
+  tamano_bytes: 28031
+  formato: XLSX
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_afyfem_glosario_base_de_ahorro_financiero_y_financiamiento
+  usado_para: ADQ-15 (N19), palanca 47
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGEE/2024/Glosario_Base%20de%20Ahorro%20Financiero%20y%20Financiamiento.xlsx
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_AhorroFinanciero_Financiamiento/Glosario_Base_de_Ahorro_Financiero_y_Financiamiento.xlsx
+  sha256: 25ec5f80c23596fe0891375c1a07ed8e253fc63fa964238f4d02d9793d9c4337
+  tamano_bytes: 36214
+  formato: XLSX
+  licencia: Publicacion abierta CNBV (gob.mx / datosabiertos.cnbv.gob.mx), sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Nombre canonico truncado a 30 caracteres en las tablas del programa;
+    el real es "Ahorro Financiero y Financiamiento en Mexico" (derivado de data/mapa-fuentes-2026-08-06.tsv:L37,
+    no de busqueda web).
+
+- id: adq15_bdif_52sep2022_acceso_dem_nal
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/52Septiembre_2022/ACCESO%20DEM%20NAL.csv
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/52Sep2022_ACCESO_DEM_NAL.csv
+  sha256: 34d31c39897e6e2770474962b69b7f7bcfb3d4f12e7782e8beb1f110c6640108
+  tamano_bytes: 2569
+  formato: CSV
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_bdif_52sep2022_bd_acceso_edo
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/52Septiembre_2022/BD%20Acceso%20Edo.csv
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/52Sep2022_BD_Acceso_Edo.csv
+  sha256: 06dbac3564a1d7195d961f060de71cfa14abce3ca87d63466fe1af1132de17b0
+  tamano_bytes: 5829
+  formato: CSV
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_bdif_52sep2022_bd_acceso_mun
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/52Septiembre_2022/BD%20Acceso%20Mun.csv
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/52Sep2022_BD_Acceso_Mun.csv
+  sha256: 88f490692ed1b20b0958a80bee3a37dec6a77466ee2b9613612ae4a06664f788
+  tamano_bytes: 370175
+  formato: CSV
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_bdif_52sep2022_bd_uso_eacp_edo
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/52Septiembre_2022/BD%20Uso%20EACP%20Edo.csv
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/52Sep2022_BD_Uso_EACP_Edo.csv
+  sha256: c0c083eb3284d835eb71f55617cdced3c825b8b906b9b184036dd85867460347
+  tamano_bytes: 4356
+  formato: CSV
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_bdif_52sep2022_bd_uso_eacp_mun
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/52Septiembre_2022/BD%20Uso%20EACP%20Mun.csv
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/52Sep2022_BD_Uso_EACP_Mun.csv
+  sha256: 92d1dda53ea95f164fdc3facabb19e61efaa8a5178c8ee698f6fd7e74461d217
+  tamano_bytes: 269786
+  formato: CSV
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_bdif_52sep2022_bd_uso_edo
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/52Septiembre_2022/BD%20Uso%20Edo.csv
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/52Sep2022_BD_Uso_Edo.csv
+  sha256: d786f55b672eb3e36ddaf4cce478c9177f36d040a3258715201d3e05eb924ede
+  tamano_bytes: 8810
+  formato: CSV
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_bdif_52sep2022_bd_uso_mun
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/52Septiembre_2022/BD%20Uso%20Mun.csv
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/52Sep2022_BD_Uso_Mun.csv
+  sha256: 50d90df87e83e64a1f33b145279baad08d2b89c03b5916643397d6be58c61d0f
+  tamano_bytes: 442313
+  formato: CSV
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_bdif_52sep2022_uso_ban_nal
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/52Septiembre_2022/USO%20BAN%20NAL.csv
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/52Sep2022_USO_BAN_NAL.csv
+  sha256: 2de8c2c33a5ea362c6ba4cdb1d2e47c30d7ca7fe47218fe7ceea7b352cb9d240
+  tamano_bytes: 3600
+  formato: CSV
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_bdif_52sep2022_uso_eacp_nal
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/52Septiembre_2022/USO%20EACP%20NAL.csv
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/52Sep2022_USO_EACP_NAL.csv
+  sha256: c431315d5b981170c8ffdd33cd1d9f0e46a055b10e8bf1216c33ae3c408d643a
+  tamano_bytes: 2136
+  formato: CSV
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_bdif_datos_abiertos_dgasf_jun23_jun24
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/2024/Datos_Abiertos_DGASF_jun23_jun24.zip
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/Datos_Abiertos_DGASF_jun23_jun24.zip
+  sha256: 398140a2c0ac162953502befb580c8b0a3805f5d3f34999effa4d0ef84bbf9cb
+  tamano_bytes: 1921806
+  formato: ZIP
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_bdif_diccionario_dgpasf
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/Diccionario_DGPASF.xlsx
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/Diccionario_DGPASF.xlsx
+  sha256: 8c45e56846250baf255837a1427e45a56a5585d37b4a8eb157d0660c3e9216fb
+  tamano_bytes: 28265
+  formato: XLSX
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_bdif_glosario_datos_abiertos_dgasf
+  usado_para: ADQ-15 (N19), palanca 48
+  url_origen: https://datosabiertos.cnbv.gob.mx/Documentos/DGPASF/2024/Glosario_Datos_Abiertos_DGASF.xlsx
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_CNBV_BDIF_inclusion_financiera/Glosario_Datos_Abiertos_DGASF.xlsx
+  sha256: 18d8d88392bb5f20dd52b1ff1da40976f0b1a2386bb16d3e8f51c3473559732f
+  tamano_bytes: 27518
+  formato: XLSX
+  licencia: Datos Abiertos CNBV, descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. La pagina institucional de BDIF (cnbv.gob.mx/Inclusion/Paginas/Bases-de-Datos.aspx)
+    NO lista archivos -- ultima modificacion 15/03/2016 y contiene el marcador "aqui no va
+    nada". La via real es datosabiertos.cnbv.gob.mx.
+
+- id: adq15_enafin_ipe_cv_ee_ic_enafin_2024_00_def_v1_260625
+  usado_para: ADQ-15 (N19), palanca 49
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/1106/download/34715
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_ENAFIN_2024_RNM_INEGI/IPE_CV-EE-IC_ENAFIN_2024-00_Def_V1_260625.xlsx
+  sha256: 23056b528c280cf8d76f80f65dc3527d2128ae34ac142cfe3794e8ce757cd8ab
+  tamano_bytes: 41972
+  formato: XLSX
+  licencia: INEGI, datos abiertos; el microdato a nivel empresa es de acceso confidencial
+    (Laboratorio de Microdatos, en instalaciones del productor)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Los csv de datosabiertos son TABULADOS (DOMINIO_ESTUDIO), no registros
+    de empresa. URL derivada del JSON-LD schema.org de cada pagina de programa, no adivinada.
+
+- id: adq15_enafin_mex_inegi_eec3_05_enafin_2024
+  usado_para: ADQ-15 (N19), palanca 49
+  url_origen: https://www.inegi.org.mx/rnm/index.php/metadata/export/1106/ddi
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_ENAFIN_2024_RNM_INEGI/MEX-INEGI.EEC3.05-ENAFIN-2024.xml
+  sha256: a260660d165905f2de78a6e3cc616f6ddf2d2252c8950aee1ad1fa035f238a22
+  tamano_bytes: 2332972
+  formato: XML
+  licencia: INEGI, datos abiertos; el microdato a nivel empresa es de acceso confidencial
+    (Laboratorio de Microdatos, en instalaciones del productor)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Los csv de datosabiertos son TABULADOS (DOMINIO_ESTUDIO), no registros
+    de empresa. URL derivada del JSON-LD schema.org de cada pagina de programa, no adivinada.
+
+- id: adq15_enafin_metadatos_ipe_externos_encuestas_2022_08_26
+  usado_para: ADQ-15 (N19), palanca 49
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/1106/download/34716
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_ENAFIN_2024_RNM_INEGI/Metadatos_IPE_Externos_Encuestas_2022_08_26.xlsx
+  sha256: 1ea24ef38baeedd4d16a5372e9bbb5bbbc928bae94c29183a8a433cf535b02c7
+  tamano_bytes: 45856
+  formato: XLSX
+  licencia: INEGI, datos abiertos; el microdato a nivel empresa es de acceso confidencial
+    (Laboratorio de Microdatos, en instalaciones del productor)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Los csv de datosabiertos son TABULADOS (DOMINIO_ESTUDIO), no registros
+    de empresa. URL derivada del JSON-LD schema.org de cada pagina de programa, no adivinada.
+
+- id: adq15_enafin_conjunto_de_datos_enafin_2024_csv
+  usado_para: ADQ-15 (N19), palanca 49
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enafin/2024/datosabiertos/conjunto_de_datos_enafin_2024_csv.zip
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_ENAFIN_2024_RNM_INEGI/conjunto_de_datos_enafin_2024_csv.zip
+  sha256: 0f0ff75db3b728f218e33210c9eb08e0c20ec04fe4317aacacfef45ab8cb5e45
+  tamano_bytes: 96758
+  formato: ZIP
+  licencia: INEGI, datos abiertos; el microdato a nivel empresa es de acceso confidencial
+    (Laboratorio de Microdatos, en instalaciones del productor)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Los csv de datosabiertos son TABULADOS (DOMINIO_ESTUDIO), no registros
+    de empresa. URL derivada del JSON-LD schema.org de cada pagina de programa, no adivinada.
+
+- id: adq15_enafin_enafin2024_rnm_catalog
+  usado_para: ADQ-15 (N19), palanca 49
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/1106
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_ENAFIN_2024_RNM_INEGI/enafin2024_rnm_catalog.html
+  sha256: c9192300b410008714b2cfa0770560764acca704ef2bcb6007e1e01c031c1d97
+  tamano_bytes: 152268
+  formato: HTML
+  licencia: INEGI, datos abiertos; el microdato a nivel empresa es de acceso confidencial
+    (Laboratorio de Microdatos, en instalaciones del productor)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Los csv de datosabiertos son TABULADOS (DOMINIO_ESTUDIO), no registros
+    de empresa. URL derivada del JSON-LD schema.org de cada pagina de programa, no adivinada.
+    A.7 APLICA: dos descargas dan sha256 crudo distinto porque el contador de "Visitas a la
+    pagina" incrementa en cada peticion. Hash de contenido con ese campo neutralizado: bb2c9762acf39d69
+    -- COINCIDE entre las dos bajadas, no hay PARO. El sha256 de arriba es el crudo, para
+    reproducibilidad byte a byte.'
+
+- id: adq15_enafin_enafin2024_rnm_get_microdata
+  usado_para: ADQ-15 (N19), palanca 49
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/1106/get-microdata
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_ENAFIN_2024_RNM_INEGI/enafin2024_rnm_get_microdata.html
+  sha256: 2297e2827ee2137e2e368d956c26495e97216c89b2351c9a67c4f6e97166a046
+  tamano_bytes: 23082
+  formato: HTML
+  licencia: INEGI, datos abiertos; el microdato a nivel empresa es de acceso confidencial
+    (Laboratorio de Microdatos, en instalaciones del productor)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Los csv de datosabiertos son TABULADOS (DOMINIO_ESTUDIO), no registros
+    de empresa. URL derivada del JSON-LD schema.org de cada pagina de programa, no adivinada.
+    A.7 APLICA: dos descargas dan sha256 crudo distinto porque el contador de "Visitas a la
+    pagina" incrementa en cada peticion. Hash de contenido con ese campo neutralizado: 24e8be8db1da72b4
+    -- COINCIDE entre las dos bajadas, no hay PARO. El sha256 de arriba es el crudo, para
+    reproducibilidad byte a byte.'
+
+- id: adq15_enafin_enafin2024_rnm_metadata
+  usado_para: ADQ-15 (N19), palanca 49
+  url_origen: https://www.inegi.org.mx/rnm/index.php/metadata/export/1106/json
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_ENAFIN_2024_RNM_INEGI/enafin2024_rnm_metadata.json
+  sha256: 9a9a4a313f5202e26bfbfa3ab001335fbe8931391f63bcc43cd532b33e8b0cf8
+  tamano_bytes: 48854
+  formato: JSON
+  licencia: INEGI, datos abiertos; el microdato a nivel empresa es de acceso confidencial
+    (Laboratorio de Microdatos, en instalaciones del productor)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Los csv de datosabiertos son TABULADOS (DOMINIO_ESTUDIO), no registros
+    de empresa. URL derivada del JSON-LD schema.org de cada pagina de programa, no adivinada.
+
+- id: adq15_enafin_enafin2024_rnm_related_materials
+  usado_para: ADQ-15 (N19), palanca 49
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/1106/related-materials
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_ENAFIN_2024_RNM_INEGI/enafin2024_rnm_related_materials.html
+  sha256: 9f37a43be5bebac3979cf851ce0a5d08ab9512453ae8b7e582217bfaae653b49
+  tamano_bytes: 86418
+  formato: HTML
+  licencia: INEGI, datos abiertos; el microdato a nivel empresa es de acceso confidencial
+    (Laboratorio de Microdatos, en instalaciones del productor)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Los csv de datosabiertos son TABULADOS (DOMINIO_ESTUDIO), no registros
+    de empresa. URL derivada del JSON-LD schema.org de cada pagina de programa, no adivinada.
+    A.7 APLICA: dos descargas dan sha256 crudo distinto porque el contador de "Visitas a la
+    pagina" incrementa en cada peticion. Hash de contenido con ese campo neutralizado: 2ee69a473f2cdad0
+    -- COINCIDE entre las dos bajadas, no hay PARO. El sha256 de arriba es el crudo, para
+    reproducibilidad byte a byte.'
+
+- id: adq15_enafin_enafin_2019_2021_csv
+  usado_para: ADQ-15 (N19), palanca 49
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enafin/2021/datosabiertos/enafin_2019_2021_csv.zip
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_ENAFIN_2024_RNM_INEGI/enafin_2019_2021_csv.zip
+  sha256: 9f30bf076f056d3a0e0621b8fddb4b7fab2fa4a4fa1e0f7a441001ea0ce341d7
+  tamano_bytes: 1719111
+  formato: ZIP
+  licencia: INEGI, datos abiertos; el microdato a nivel empresa es de acceso confidencial
+    (Laboratorio de Microdatos, en instalaciones del productor)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Los csv de datosabiertos son TABULADOS (DOMINIO_ESTUDIO), no registros
+    de empresa. URL derivada del JSON-LD schema.org de cada pagina de programa, no adivinada.
+
+- id: adq15_enafin_enafin_anual_2015_csv
+  usado_para: ADQ-15 (N19), palanca 49
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enafin/2015/datosabiertos/enafin_anual_csv.zip
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_ENAFIN_2024_RNM_INEGI/enafin_anual_2015_csv.zip
+  sha256: 9089525f23ed389a2daa935e5b7e97bc9a6302beb2654bef8625c72b3b3c5676
+  tamano_bytes: 443749
+  formato: ZIP
+  licencia: INEGI, datos abiertos; el microdato a nivel empresa es de acceso confidencial
+    (Laboratorio de Microdatos, en instalaciones del productor)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15. Los csv de datosabiertos son TABULADOS (DOMINIO_ESTUDIO), no registros
+    de empresa. URL derivada del JSON-LD schema.org de cada pagina de programa, no adivinada.
+
+- id: adq15_jpal_electoral_replication_files_24ft7wz
+  usado_para: ADQ-15 (N25), palanca sin palanca (no cruza la cola)
+  url_origen: http://campuspress.yale.edu/anadelao/files/2010/11/Replication-files-24ft7wz.zip
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_JPAL_Experimento_Informacion_Electoral_2009/Replication-files-24ft7wz.zip
+  sha256: bade222ed3139d5af2579e0cb33fd286e044e79e6c0de3814a0298ea636c473e
+  tamano_bytes: 184801
+  formato: ZIP
+  licencia: Paquete de replicacion publicado por la autora (Ana De La O, Yale CampusPress);
+    sin muro de registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Fuente sin palanca derivable: no cruza cola-adquisicion-2026-08-12.tsv
+    por nombre. Datos de replicacion del articulo JOP (Chong, De La O, Karlan, Wantchekon).'
+
+- id: adq15_jpal_electoral_jpal_evaluacion_landing
+  usado_para: ADQ-15 (N25), palanca sin palanca (no cruza la cola)
+  url_origen: https://www.povertyactionlab.org/evaluation/information-dissemination-campaign-and-voters-behavior-2009-municipal-elections-mexico
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_JPAL_Experimento_Informacion_Electoral_2009/jpal_evaluacion_landing.html
+  sha256: 55206c0237981559d612fccfa0a13341a68ac6da2681a423744c6a7957a944eb
+  tamano_bytes: 104790
+  formato: HTML
+  licencia: Paquete de replicacion publicado por la autora (Ana De La O, Yale CampusPress);
+    sin muro de registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-15. Fuente sin palanca derivable: no cruza cola-adquisicion-2026-08-12.tsv
+    por nombre. Datos de replicacion del articulo JOP (Chong, De La O, Karlan, Wantchekon).
+    A.7 APLICA: dos descargas dan sha256 crudo distinto porque el token rotatorio data-cfemail
+    / cdn-cgi/l/email-protection de Cloudflare cambia en cada peticion. Hash de contenido
+    con ese campo neutralizado: 2c3c6382aaa9489e -- COINCIDE entre las dos bajadas, no hay
+    PARO. El sha256 de arriba es el crudo, para reproducibilidad byte a byte.'
+
+- id: adq15_ift_sfd_ift_sfd_landing
+  usado_para: ADQ-15 (N24), palanca 41
+  url_origen: https://www.ift.org.mx/usuarios-y-audiencias/reporte-sobre-el-uso-y-la-confianza-de-los-servicios-financieros-digitales-sfd
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_IFT_SFD_uso_confianza/ift_sfd_landing.html
+  sha256: 2b67505155a114a697987498aeede02d6f43578834c85a35b66cac2722cd3361
+  tamano_bytes: 99512
+  formato: HTML
+  licencia: Publicacion abierta del Instituto Federal de Telecomunicaciones
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15.
+
+- id: adq15_ift_sfd_reporte_especial_sfd
+  usado_para: ADQ-15 (N24), palanca 41
+  url_origen: https://www.ift.org.mx/sites/default/files/contenidogeneral/usuarios-y-audiencias/reporteespecialserviciosfinancierosdigitalessfd.pdf
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_IFT_SFD_uso_confianza/reporte_especial_SFD.pdf
+  sha256: 3238bdfeaee6d850bbaa2b8adf5d92718803aa1920cd6f36dec37d8e510e9d4d
+  tamano_bytes: 8084499
+  formato: PDF
+  licencia: Publicacion abierta del Instituto Federal de Telecomunicaciones
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15.
+
+- id: adq15_ift_sfd_reporte_especial_sfd_vacc
+  usado_para: ADQ-15 (N24), palanca 41
+  url_origen: https://www.ift.org.mx/sites/default/files/contenidogeneral/usuarios-y-audiencias/reporteespecialserviciosfinancierosdigitalesvacc.pdf
+  fecha_descarga: '2026-08-18'
+  descargado_por: agente, curl directo con verificacion TLS completa, GET real (no HEAD);
+    doble descarga por A.7 y validacion estructural del payload antes de registrar
+  archivo: ADQ15_IFT_SFD_uso_confianza/reporte_especial_SFD_vacc.pdf
+  sha256: 5c088ab9223b060e026883a73ed1a22e21d8499c342113a8e7386baa5d9a5ef5
+  tamano_bytes: 9318564
+  formato: PDF
+  licencia: Publicacion abierta del Instituto Federal de Telecomunicaciones
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-15.
