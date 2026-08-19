@@ -110,3 +110,7 @@ Mismo método de `ACTO Z`, re-corrido por comando contra `e6864ed` sobre cada un
 **Contadores de medición sobre México que mueve este cierre: cero.**
 
 `encargo` → `CONSUMIDO`.
+
+## §7 · CI rojo tras el push — bug real de no-determinismo en `T02`, no un defecto del rescate
+
+`gh pr checks 274` falló con `LÍNEA BASE: ROJO — 1 entradas nuevas`, aunque el total local ya daba `21 FAIL · 119 WARN` verde. El detalle: la misma colisión de `decisiones-humanas.tsv` (3 archivos) congelada por `PR #274`, pero con el orden de los tres nombres **distinto** entre lo congelado y lo que corrió en CI. `tests/check.py::t02_duplicates` construye la lista de cada grupo con `glob.glob(..., recursive=True)` y la imprime con `" · ".join(v)` sin ordenar -- el orden de `glob` no está garantizado y difiere entre el entorno local (WSL) donde se congeló y el runner de GitHub Actions. Verificado, no supuesto: forzar `sorted(v)` reproduce localmente el mismo orden que CI mostró. Corregido en `tests/check.py` (ambos `join` de `t02_duplicates`, `by_name` y `by_hash`, mismo patrón) y re-congelada **una** entrada de `tests/baseline.json` (la del grupo de 3; la de `AGENTS.md`, 2 archivos, ya ordenaba igual por coincidencia de mayúscula). No es un `--freeze` de todo el archivo -- edición quirúrgica de la única línea que cambiaba de forma, con el mensaje idéntico salvo el orden. `python3 tests/check.py --baseline` tras el fix: **21 FAIL · 119 WARN, LÍNEA BASE: VERDE**, mismo total, mismo contenido, ahora reproducible en cualquier entorno.

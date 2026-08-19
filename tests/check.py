@@ -150,10 +150,10 @@ def t02_duplicates():
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():
         if len(v) > 1 and not all_excepted(v):
-            fail("T02", "nombre normalizado colisiona: " + " · ".join(v))
+            fail("T02", "nombre normalizado colisiona: " + " · ".join(sorted(v)))
     for k, v in by_hash.items():
         if len(v) > 1 and not all_excepted(v):
-            fail("T02", "contenido idéntico bajo nombres distintos: " + " · ".join(v))
+            fail("T02", "contenido idéntico bajo nombres distintos: " + " · ".join(sorted(v)))
 
 
 # ───────────────────────────────────────────────────────────────
