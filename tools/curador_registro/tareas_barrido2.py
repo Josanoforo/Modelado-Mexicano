@@ -679,22 +679,38 @@ def derivar_tareas(
         if relacion is None:
             rechaza("RELACION_INEXISTENTE")
             continue
-        if eleccion["estado_eleccion"] != "ELEGIDO":
-            sin_objeto.append(relacion_id)
-            continue
+        # Un negativo NO se cae del expediente: "no encontrado en el universo
+        # inspeccionado" sólo significa algo si el universo queda declarado, y
+        # el §22 falla explícitamente un "negativo sin frontera". Se ancla a la
+        # representación que de verdad se revisó -- el primer grupo durable de
+        # su primer payload candidato -- y la frontera del curador dice qué se
+        # recorrió. La identidad es real; lo que el veredicto niega es que ahí
+        # dentro exista el objeto que la necesidad pide.
+        negativo = eleccion["estado_eleccion"] != "ELEGIDO"
 
         # Mismo universo que vio el curador en su ficha: cobertura de la
         # fuente MÁS lo que `lista-apertura` declara para esta relación (§18.3).
         payloads = sorted(set(por_fuente.get(relacion["fuente_canonica_normalizada"], []))
                           | set(apertura.get(relacion_id, [])))
         registros = _registros_de_payloads(shard_root, payloads)
-        registro = registros.get(eleccion["e2_record_id"])
-        if registro is None:
-            rechaza("REGISTRO_E2_FUERA_DE_LOS_PAYLOADS_CANDIDATOS")
-            continue
-        if registro["record_sha256"] != eleccion["e2_record_sha256"]:
-            rechaza("REGISTRO_E2_SHA_DIVERGENTE")
-            continue
+
+        if negativo:
+            if not eleccion["frontera_semantica"].strip():
+                rechaza("NEGATIVO_SIN_FRONTERA_DECLARADA")
+                continue
+            anclas = [r for r in registros.values() if r["payload_id"] == payloads[0]] if payloads else []
+            if not anclas:
+                rechaza("NEGATIVO_SIN_UNIVERSO_QUE_DECLARAR")
+                continue
+            registro = sorted(anclas, key=lambda r: r["record_id"])[0]
+        else:
+            registro = registros.get(eleccion["e2_record_id"])
+            if registro is None:
+                rechaza("REGISTRO_E2_FUERA_DE_LOS_PAYLOADS_CANDIDATOS")
+                continue
+            if registro["record_sha256"] != eleccion["e2_record_sha256"]:
+                rechaza("REGISTRO_E2_SHA_DIVERGENTE")
+                continue
 
         reporte = reportes.get(tuple(str(registro[c]) for c in _GRUPO_REPORTE))
         if reporte is None:
@@ -712,6 +728,8 @@ def derivar_tareas(
             rechaza("SIN_DESCRIPTOR_MATERIAL")
             continue
 
+        if negativo:
+            sin_objeto.append(relacion_id)
         tareas.append({
             "tarea_id": stable_id("TSEM-B2-", relacion_id, registro["record_id"]),
             "relacion_id": relacion_id,
@@ -738,9 +756,9 @@ def derivar_tareas(
 
     resumen = {
         "schema_version": SCHEMA_VERSION,
-        "elecciones_leidas": len(tareas) + len(rechazos) + len(sin_objeto),
+        "elecciones_leidas": len(tareas) + len(rechazos),
         "tareas": len(tareas),
-        "sin_objeto": len(sin_objeto),
+        "tareas_negativas_ancladas": len(sin_objeto),
         "rechazos": rechazos,
         "relaciones": len({t["relacion_id"] for t in tareas}),
         "payloads": sorted({t["payload_id"] for t in tareas}),
