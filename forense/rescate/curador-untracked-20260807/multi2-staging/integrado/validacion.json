@@ -1,0 +1,42 @@
+{
+  "head": "a83f4575e5b370198256dcc5106dccf91094dc53",
+  "execution_mode": "parallel_subagents",
+  "baseline": {
+    "relaciones_semanticas_activas": 200,
+    "artefactos_rechazados": 111,
+    "universo_contable": 311,
+    "confirmadas": 4,
+    "negativas": 32,
+    "candidatas": 157,
+    "no_accesibles": 7,
+    "conflictos_materiales": 0,
+    "decisiones_humanas": 0
+  },
+  "resultado": {
+    "relaciones_semanticas_activas": 200,
+    "artefactos_rechazados": 111,
+    "universo_contable": 311,
+    "confirmadas": 4,
+    "negativas": 42,
+    "candidatas": 147,
+    "no_accesibles": 7,
+    "conflictos_materiales": 0,
+    "decisiones_humanas": 0
+  },
+  "workers_esperados": 4,
+  "workers_recibidos": 4,
+  "candidatas_asignadas": 157,
+  "candidatas_recibidas": 157,
+  "fuentes_candidatas": 71,
+  "fuentes_asignadas": 71,
+  "claves_faltantes": 0,
+  "claves_duplicadas": 0,
+  "claves_nuevas": 0,
+  "referencias_invalidas": 0,
+  "estados_protegidos_modificados": 0,
+  "negativos_perdidos": 0,
+  "fuentes_no_canonicas": 0,
+  "narrowing_detectado": false,
+  "errores_integracion": [],
+  "ok": true
+}

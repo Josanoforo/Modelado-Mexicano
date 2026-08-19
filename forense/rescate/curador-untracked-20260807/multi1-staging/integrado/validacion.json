@@ -1,0 +1,39 @@
+{
+  "antes": {
+    "head": "a83f4575e5b370198256dcc5106dccf91094dc53",
+    "head_matches_expected": true,
+    "necesidades_totales": 33,
+    "necesidades_cubiertas": 33,
+    "relaciones_evaluadas": 332,
+    "relaciones_confirmadas": 7,
+    "relaciones_negativas": 47,
+    "candidatas": 160,
+    "no_accesibles": 7,
+    "sin_candidato": 0,
+    "artefactos_rechazados": 111,
+    "conflictos_materiales": 1,
+    "filas_sin_evidencia": 0,
+    "fuentes_no_canonicas": 0,
+    "negativos_perdidos": 0,
+    "narrowing_detectado": false,
+    "ok": true
+  },
+  "despues": {
+    "head": "a83f4575e5b370198256dcc5106dccf91094dc53",
+    "necesidades_totales": 33,
+    "necesidades_cubiertas": 33,
+    "relaciones_evaluadas": 311,
+    "relaciones_confirmadas": 4,
+    "relaciones_negativas": 32,
+    "candidatas": 157,
+    "no_accesibles": 7,
+    "artefactos_rechazados": 111,
+    "conflictos_materiales": 0,
+    "filas_sin_evidencia": 0,
+    "fuentes_no_canonicas": 0,
+    "negativos_perdidos": 0,
+    "narrowing_detectado": false,
+    "errores_integracion": [],
+    "ok": true
+  }
+}
