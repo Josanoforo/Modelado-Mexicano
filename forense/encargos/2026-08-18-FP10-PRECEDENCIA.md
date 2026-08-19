@@ -30,3 +30,9 @@ ESCRIBE (al lanzarse, no antes): `data/universo-puertas-2026-08-14.tsv` (o el vi
 ## Cierre
 
 `FP-10` con veredicto (superada o ejecutada) y evidencia · `tests/check.py --baseline` VERDE · línea en `hallazgos.md` · encargo `CONSUMIDO`.
+
+---
+
+## CONSUMIDO — 19/ago/2026, `ACTO FP10-PRECEDENCIA`
+
+Precondición reverificada (no heredada): gate material 672/672 (`ADR-103`, `PR #260`) y fase semántica de `BARRIDO-2` cerrada (`ADR-108`/`ADR-109`, `ACTO B2-SEMANTICO`, `PR #268`), ambos fusionados. Las 16 fuentes de `PROPUESTA-reconciliacion-universo-puertas.md` §2 seguían sin resolver en `data/universo-puertas-2026-08-14.tsv` — **no superada**, se ejecutó el diff: 16 filas `gap_mapeo_map_b` retiradas (122→106 filas, `gap_mapeo_map_b` 61→45, 0 duplicados, 0 filas ajenas tocadas). `FP-10` → `FIRMADA` (ejecutada). `FP-12`/`FUSION-PUERTAS` verificada sin tocar, sin colisión de perímetro. `ADR-115` sellado (renumerado de 114 a 115 al fusionar `origin/main`, `PR #279` tomó el 114 primero). `python3 tests/check.py --baseline`: LÍNEA BASE VERDE, sin `--freeze`. Detalle: `forense/notas/2026-08-19-fp10-precedencia.md`. Contadores de medición sobre México movidos: cero.
