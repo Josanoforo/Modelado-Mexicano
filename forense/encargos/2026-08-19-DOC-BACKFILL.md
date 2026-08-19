@@ -1,5 +1,7 @@
 # ENCARGO · ACTO DOC-BACKFILL — U3, las cuatro preguntas del transfer sobre las fuentes que sostienen celdas vivas
 
+**Estado:** `CONSUMIDO` — ejecutado por `ACTO DOC-BACKFILL`, 19/ago/2026, detalle en `forense/notas/2026-08-19-doc-backfill-cierre.md`, `FP-33` → `CERRADA`.
+
 SHA de redacción: derivar al lanzar (escrito el 18/ago/2026 por `ACTO MESA-19AGO`). Entorno asignado: derivar al lanzar. **GATEADO a «`B2-SEMANTICO` fusionado»** — no se lanza antes. Estado: **VIVO**. Origen: firma de mesa D-6 de `MESA-19AGO`, `ADR-110(f)`, fila `FP-33`.
 
 ## 1 · Lo que la mesa firmó (verbatim)
