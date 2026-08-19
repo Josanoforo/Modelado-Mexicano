@@ -83,7 +83,7 @@
 
 **Nueve de estos 14 archivos** (`estado-activos`, `familias-activos`, `fuentes-t0`, `snapshot-t0.json`, `universo-declarado-t0`, `declaraciones-activos-t0`, `objetos-recuperados-t0`, `tablero-cobertura.json`, `candidatos-reconciliacion-activos`) tienen **un único commit en toda su historia** (`59d6c40`) — ninguno se ha regenerado desde el bootstrap del pipeline.
 
-### Dominio 3-bis · Cobertura material BARRIDO-2 *(FP-35, sellada por `ADR-106`, `ACTO B2-SEMANTICO`, 18/ago/2026)*
+### Dominio 3-bis · Cobertura material BARRIDO-2 *(FP-35, sellada por `ADR-108`, `ACTO B2-SEMANTICO`, 18/ago/2026)*
 
 Ámbito: `data/curacion-universo/*barrido2*`. Motor: `tools/curador_registro/{barrido2_material,inspect_assets,write_barrido2_w0,write_barrido2_material,validate}.py`. Todo corre bajo `unshare -Urn`: el propio baseline declara `network_habilitada=false` y la validación lo exige.
 
@@ -123,7 +123,7 @@
 | `ejecucion-semantica/` | `semantic_run.py --repo --output [--network]` — `run_id` determinista (`stable_id("SEMRUN", seed)`) | `manifest.json` + `schemas/` (6 JSON schema) + `runs/<SEMRUN-id>/*` | `integrate.py`, `semantic_run.py` (se relee a sí mismo), `validate.py`, `test_semantic_run.py`, `tests/check.py` | **run huérfano confirmado**: `runs/` tiene 2 directorios (`SEMRUN-354ccb9d...` y `SEMRUN-1d73f40d...`), pero `manifest.json` declara como vigente solo el primero. `grep -rn "SEMRUN-1d73f40d5db91bcb0da9f3d2"` → 0 fuera de su propio contenido. `validate.py` sigue el `run_id` de `manifest.json` y nunca itera `runs/` para detectar huérfanos. |
 | `data/curacion-registro/expedientes-produccion/evidencia-neutral-produccion.json` | **SIN VÍA** (A MANO, precedente único `59d6c40`) | `{"esquema": ..., "fuentes": [...]}` | 0 por grep literal; **sí se abre dinámicamente** vía `evidencia_neutral_ref` resuelto desde `especificaciones-produccion.json` (`prepare_production.py:74`, `integrate_production.py:176,64`) | una búsqueda textual ingenua del nombre de archivo no encuentra sus lectores reales — hay que seguir la indirección. |
 
-### Dominio 4-bis · Semántica e integración BARRIDO-2 *(FP-35, sellada por `ADR-106`, `ACTO B2-SEMANTICO`, 18/ago/2026)*
+### Dominio 4-bis · Semántica e integración BARRIDO-2 *(FP-35, sellada por `ADR-108`, `ACTO B2-SEMANTICO`, 18/ago/2026)*
 
 Ámbito: `data/curacion-registro/ejecucion-semantica/barrido2/` y `data/cableado-universo-v1_0.tsv`. Motor: `tools/curador_registro/{tareas_barrido2,integrate,integrate_barrido2,build_cableado}.py`.
 
@@ -137,14 +137,14 @@
 
 | tabla | vía de escritura | contrato (campos clave) | quién la lee | trampa conocida |
 |---|---|---|---|---|
-| `cobertura-fuentes-barrido2.tsv` (+ `-detalle`) | `tareas_barrido2.py fuentes --output` | 10 campos; `fuente_canonica, regla_resolucion, payloads_n, evidencia_resolucion, estado_cobertura` | `tareas_barrido2.py paquetes`/`tareas` | la cascada de reglas era de **primer match** y ocultaba la segunda entrada de programa; desde `ADR-106` la regla es **unión R1 ∪ R7** y `regla_resolucion` puede traer dos nombres unidos por `+` |
+| `cobertura-fuentes-barrido2.tsv` (+ `-detalle`) | `tareas_barrido2.py fuentes --output` | 10 campos; `fuente_canonica, regla_resolucion, payloads_n, evidencia_resolucion, estado_cobertura` | `tareas_barrido2.py paquetes`/`tareas` | la cascada de reglas era de **primer match** y ocultaba la segunda entrada de programa; desde `ADR-108` la regla es **unión R1 ∪ R7** y `regla_resolucion` puede traer dos nombres unidos por `+` |
 | `tareas-semanticas-barrido2.tsv` | `tareas_barrido2.py tareas` | `TASK_FIELDS`, 20 campos | `integrate_barrido2.preflight`, `build_cableado.py`, T23 | `material_tarea_id` ≠ `tarea_id`: el primero nombra el descriptor material, y dos relaciones pueden apoyarse en la misma representación |
 | `propuestas-barrido2.tsv` | `tareas_barrido2.py propuestas` | `PROPOSAL_FIELDS`, **22 campos del §17**, orden exacto | `integrate_barrido2.preflight` (compara la lista completa), T23 | `decision_mesa_id` sólo admite `FP-24` o `NO-APLICA`: un valor como `FP-24/ADR-93` revienta schema, preflight y T23 a la vez. La cita del ADR va en `razon_gate` |
 | `decisiones-integracion-barrido2.tsv` | `integrate.py --barrido2 --output-dir` | `PROPOSAL_FIELDS` + `estado_integracion, razon_integracion, journal_id` (25) | T23 (condición 14), `build_cableado.py` | el estado se decide **por relación**, no por propuesta: basta una `dependencia_fp24=SI` o un veredicto discordante para que toda la relación cambie de estado |
 | `journal-integracion-barrido2.json` | `integrate.py --barrido2` | hashes anterior/nuevo de los 10 archivos del registro | rollback, auditoría | sin `--apply` se escribe el journal pero **no** se toca el registro |
 | `data/cableado-universo-v1_0.tsv` | `build_cableado.py --output` | **26 columnas del §21**, orden exacto, cero celdas vacías | `tests/check.py` T23 | el ensamblador mantiene su **propia** copia de la cabecera, separada de la de `check.py`, para que un error no se valide a sí mismo; `test_build_cableado.py` compara ambas |
 
-**Quién lo sella:** `ADR-106` (`ACTO B2-SEMANTICO`, `PR #268`). Es la respuesta a `FP-35`, que pedía decidir «qué dominios del índice ganan las tablas nuevas de BARRIDO-2 y quién lo sella» **después de observar los mecanismos reales** — condición que sólo se cumplió al correrlos de punta a punta en este acto.
+**Quién lo sella:** `ADR-108` (`ACTO B2-SEMANTICO`, `PR #268`). Es la respuesta a `FP-35`, que pedía decidir «qué dominios del índice ganan las tablas nuevas de BARRIDO-2 y quién lo sella» **después de observar los mecanismos reales** — condición que sólo se cumplió al correrlos de punta a punta en este acto.
 
 
 ---

@@ -1,7 +1,7 @@
 # Nota · ACTO B2-SEMANTICO — la fase semántica de BARRIDO-2 (C4/C5/C6)
 
 **Fecha:** 2026-08-18 · **Rama:** `b2-semantico` · **PR:** #268 (borrador, no fusionado)
-**Base:** `origin/main = f3d3f95` (fusión de `PR #263`). **ADR:** `ADR-106`, `ADR-107`.
+**Base:** `origin/main = f3d3f95` (fusión de `PR #263`). **ADR:** `ADR-108`, `ADR-109`.
 **Encargo:** `forense/encargos/2026-08-18-B2-SEMANTICO-C4-C5-C6.md`. **Ley:** encargo madre §17-§23.
 
 Entorno (A.2, tres partes): sin `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` (local, Ubuntu/WSL2);
@@ -59,9 +59,10 @@ exige por separado. Escribirlo revienta tres validadores a la vez. La cita de `A
 ### (d) Otras dos cifras del relevo, corregidas
 
 `ADR` vigentes eran **105**, no 104 (`canon/gobernanza-v1_15.md:2`, receta de T15: 105 únicos, sin
-huecos), así que este acto usa 106 y 107. Y `ESTADO-SPLIT` **no** ha fusionado:
-`estado-programa-v1_10.md:101` sigue siendo una sola línea de 31 462 caracteres, de modo que la
-cascada va a `:27` y `:101` como siempre, cláusula por cláusula (FP-48).
+huecos). Y al arrancar, `ESTADO-SPLIT` **no** había fusionado: `estado-programa-v1_10.md:101` seguía
+siendo una sola línea de 31 462 caracteres.
+
+**Las dos cosas cambiaron mientras este acto corría, y se rehicieron contra el árbol nuevo** — ver §8.
 
 ---
 
@@ -260,3 +261,35 @@ derivados por script, cada cifra con denominador y comando.
 contador de coeficientes en escala del modelo, que sigue **0 de 15**. Lo que produce es cobertura
 semántica — qué reactivo de qué instrumento abierto responde a qué necesidad — y eso es insumo de
 medición, no medición.
+
+
+---
+
+## 8 · La deriva de `main` durante el acto, y cómo se rehízo
+
+Entre el arranque (`f3d3f95`) y el cierre, `origin/main` avanzó **hasta `6ded00c`** con los `PR`
+**#264 a #273**. Clasificación §15, derivada por comando y no supuesta:
+
+```text
+¿tocó manifiesto / raíces / parser / contrato E2?          NO  -> no es clase A
+¿tocó relaciones / evidencias / N1-N33 / canon semántico?  NO  -> no es clase B
+                                                           -> CLASE C · NO-INVALIDA
+```
+
+El material y los productos semánticos de este acto **se conservan íntegros**: no se reejecutó un
+solo byte de E2. Lo que sí hubo que rehacer es gobernanza, y por tres motivos concretos:
+
+1. **Colisión de ADR.** `ADR-106` lo tomó `ACTO CONF-07-CIERRE` (`PR #265`) y `ADR-107`
+   `ACTO SELLO-FICHA-G3-V2` (`PR #271`), ambos fusionados mientras este acto corría. Los de este
+   acto se **renumeraron a `ADR-108` y `ADR-109`**, con el conteo a **109**. Es el mismo patrón que
+   `ADR-104` ya había pagado en `ACTO COND-ATRIB`: el número se re-deriva al fusionar, nunca se
+   hereda del que se escribió.
+2. **`ESTADO-SPLIT` fusionó** (`PR #264`). `estado-programa:101` ya **no** es una línea: son 66
+   cláusulas, una por línea. La cascada de este acto se rehízo **donde el split la dejó** — dos
+   bullets nuevos tras el de `ADR-107`—, no donde se había escrito originalmente.
+3. **Recifrado de WARN.** `main` ya había recifrado 127→126 al cerrar `FP-37`. La cifra final de
+   este acto se volvió a derivar de la corrida real tras el merge, no se arrastró.
+
+`forense/firmas-pendientes.tsv` y `forense/hallazgos.md` fusionaron por unión sin conflicto y **sin
+duplicados** (verificado: 0 ids repetidos en 57 filas, 0 líneas repetidas), que es la trampa que
+`ACTO ESTADO-SPLIT` y `ACTO CENSO-CMD` documentaron dos veces esta misma semana.
