@@ -1,5 +1,7 @@
 # ENCARGO · FUSION-PUERTAS — fusionar UNIVERSO-MINIMO-FUENTE y universo-puertas en una sola tabla
 
+> **Estado: CONSUMIDO** — ver cierre al pie.
+
 **SHA de redacción:** `93a4dd9` (`origin/main`, tras `ADR-100`/`ADR-101`, ACTO MESA-18AGO, 18/ago/2026)
 **Entorno asignado:** **NUBE** (`cloud_default`, repo-only) — fusión de dos archivos ya en el repo, sin microdato.
 **Estado:** VIVO — **DISPARADOR-B** de `FP-26` (`ADR-101(h)`), mismo gate que `FP10-PRECEDENCIA`: espera el cierre de la fase semántica de `BARRIDO-2`.
@@ -30,3 +32,13 @@ ESCRIBE: tabla fusionada nueva (nombre a derivar, p. ej. `data/universo-fuentes-
 ## Cierre
 
 Tabla fusionada (o superación declarada) · `FP-12` con veredicto y evidencia · `tests/check.py --baseline` VERDE · línea en `hallazgos.md` · encargo `CONSUMIDO`.
+
+---
+
+## CONSUMIDO
+
+**Ejecutado por `ACTO FUSION-PUERTAS`, 19/ago/2026.** Base real `35c9c9f` (`origin/main`, merge de `PR #278`) — el clon nació superficial (`origin/main` en `f8eb2e3`, seis días viejo); corregido con `git fetch --unshallow` antes de leer nada, mismo defecto ya medido dos veces por actos anteriores. Nota del acto: `forense/notas/2026-08-19-fusion-puertas.md`.
+
+**Ni superación ni fusión.** Releídas ambas tablas contra el universo nuevo (Tarea, paso 1): `UNIVERSO-MINIMO-FUENTE-v1_0.md` no es una tabla — es una receta procedimental de 6 pasos, cero filas de datos; `universo-puertas-2026-08-14.tsv` es un censo de 122 puertas, 15 columnas. No superada por los productos semánticos de `BARRIDO-2` (paso 2): `data/curacion-universo/` es inventario de activos INEGI internos, dominio distinto del censo de puertas externas. Y el paso 3 (fusión + diff) no es ejecutable tal como está escrito: `ACTO RECONCILIA-PUERTAS` (13/ago/2026, cuatro días antes de que `ADR-91` reafirmara la condición sin releerlo) ya midió por comando que los dos artefactos no comparten columna ni llave — "fusionarlos sería forzar una receta y su bitácora en una sola forma". Re-verificado hoy: sigue siendo cierto.
+
+**Cierre.** `FP-12` → `CERRADA`, con veredicto y evidencia en su fila de `forense/firmas-pendientes.tsv` y en la nota del acto. Ningún archivo de `data/` se toca — ni fusión, ni `SUPERADO POR` (sería falso sin tabla de reemplazo real). Línea en `hallazgos.md`. `tests/check.py --baseline` → **VERDE**, sin cambio (21 FAIL · 118 WARN). `FP-10` (adjudicación paralela, `FP10-PRECEDENCIA`, concurrente hoy) no se toca — distinta fila, distinto perímetro. `canon/`, `tests/`, `milpa/` intactos, como el perímetro de este encargo exige. Ningún contador de medición sobre México se mueve.
