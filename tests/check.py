@@ -2148,6 +2148,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-18-MESA-18AGO-nueve-firmas.md",
     "forense/encargos/2026-08-18-NOTAS-P3.md",
     "forense/encargos/2026-08-20-SELLA-ADV.md",
+    "forense/encargos/2026-08-20-T-SELLO.md",
     "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md",
     "forense/hallazgos.md",
     "forense/historico/TRANSFER-maestra-7.md",
