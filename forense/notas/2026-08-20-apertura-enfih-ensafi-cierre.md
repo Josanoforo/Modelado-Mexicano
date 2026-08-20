@@ -187,3 +187,25 @@ El FAIL núcleo (21) coincide exacto con el que este acto ya tenía antes de des
 Tras empujar el commit de `§6`, `origin/main` avanzó una tercera vez: `PR #300` (`ACTO DUELO-PREREG-V2`, sucesor de `T-SELLO` bajo el mismo plan `APERTURA-FASE-CALCULO`, corriendo en NUBE mientras este acto seguía abierto). Reportado en el cierre de esa misma sesión que dejó el PR de este acto en `mergeable: CONFLICTING` — declarado y no perseguido en ese momento.
 
 **Diferencia con la segunda fusión (`§6`): esta no colisiona.** `git diff a72ead3 origin/main` muestra que `PR #300` solo tocó `forense/firmas-pendientes.tsv` (una línea, la columna `dónde` de `FP-90`, sin tocar su `estado`) y `forense/hallazgos.md` (una línea nueva, append-only) — ningún ADR nuevo, `canon/gobernanza-v1_15.md` y `canon/estado-programa-v1_10.md` sin tocar. `git merge origin/main` resolvió **sin un solo conflicto** (`git status` limpio tras el merge, ningún marcador `<<<<<<<`). Re-verificado con `python3 tests/check.py --baseline`, las tres pasadas (corpus enlazado, `data/raw` desenlazada, gitignorados retirados): **LÍNEA BASE: VERDE, 21 FAIL núcleo · 138 WARN, sin cambio en ninguna de las tres cifras** frente a `§6`. `mergeable` vuelve a `MERGEABLE` en `PR #302` tras empujar este commit — no queda declarado ningún hallazgo nuevo, la fusión fue mecánica.
+
+---
+
+## 8 · Cuarta fusión — `PR #301`/`ACTO LOTE-MOTOR2`, tercera colisión real de este acto
+
+Al re-verificar `mergeable` tras `§7`, `gh pr view 302` seguía en `CONFLICTING`. `git fetch origin main` mostró que `origin/main` había avanzado una **cuarta** vez, a `126f1a5` (`PR #301`, `ACTO LOTE-MOTOR2`, sucesor independiente en el mismo plan `APERTURA-FASE-CALCULO`) — mientras `§7` verificaba el estado del PR, no antes. Diagnosticado por comando (`git diff 50b17bf origin/main --stat`), no por suposición: `LOTE-MOTOR2` tocó `canon/gobernanza-v1_15.md` (27 líneas, `ADR-133` propio) y `canon/estado-programa-v1_10.md` (8 líneas, cascada) — **tercera colisión real de numeración de este acto**, mismo patrón que `§6`: candidateó `ADR-134` (mi `ADR-133` local ya renumerado por `T-SELLO` colisiona ahora con el `ADR-133` de `LOTE-MOTOR2`, que llegó a `origin/main` primero).
+
+`git merge origin/main`: conflicto real en los mismos dos archivos que `§6` (`gobernanza`, `estado-programa`); `forense/firmas-pendientes.tsv` (30 líneas, múltiples filas re-verificadas/cerradas por `LOTE-MOTOR2` incluida `FP-26`) y `canon/PLAN-CALCULO-TOTAL-v1_1.md` (el mismo fix `{cita-historica}` que este acto ya había aplicado en `§0`/commit previo — `LOTE-MOTOR2` llegó a la **misma corrección exacta** de forma independiente, "Fix CI: mark stale ADR counts... as {cita-historica}") resolvieron **sin conflicto**, texto idéntico en ambos lados. Resuelto a mano, conservando `LOTE-MOTOR2` íntegro y renumerando lo propio: `ADR-133`→**`ADR-134`**, párrafo (e) sin tocar (el contenido de fondo no cambia, solo el número), `L0`/tabla `§0`/línea de suite de `canon/estado-programa-v1_10.md` propagados hasta punto fijo.
+
+```
+$ python3 tests/check.py --baseline   (con corpus enlazado)
+21 FAIL · 137 WARN
+LÍNEA BASE: VERDE
+
+$ python3 tests/check.py --baseline   (con data/raw desenlazada)
+LÍNEA BASE: VERDE — sin cambio
+
+$ python3 tests/check.py --baseline   (con data/raices.local.yaml y data/secretos.local.yaml retirados)
+LÍNEA BASE: VERDE — sin cambio
+```
+
+El WARN baja de 138 a 137 — **enteramente de `LOTE-MOTOR2`** (cierre de `FP-26`), este acto sigue sin abrir ninguna fila de tablero. Con esta jornada, el acto paga **tres** renumeraciones de su propio ADR (`132`→`133`→`134`) por tres fusiones concurrentes distintas sobre el mismo plan `APERTURA-FASE-CALCULO` — declarado en `ADR-134`, `§0` de este archivo sin editar hacia atrás.
