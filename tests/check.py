@@ -2111,6 +2111,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-05-m4bis-encup-lapop-latinobarometro.md",
     "forense/encargos/2026-08-05-m5bis-cierre-inventarios-catalogo-cruce.md",
     "forense/encargos/2026-08-11-E4b.md",
+    # ACT-PIL-2, 20/ago/2026: encargo archivado VERBATIM (convencion de
+    # forense/encargos/: "el texto completo del encargo tal como se lanzo").
+    # Sus `M1` pelados son ADV1-M1, ya censados en canon/registro-rotulos.tsv
+    # filas 12-13, que fijan justo esta regla: el documento fuente queda
+    # verbatim sin prefijo, es la CITA la que se prefija -- y las citas de
+    # este acto (ADR-130, nota) van todas con ADV1-.
+    "forense/encargos/2026-08-20-ACT-PIL-2.md",
     "forense/encargos/2026-08-12-C-universo-minimo.md",
     "forense/encargos/2026-08-12-E4a.md",
     "forense/encargos/2026-08-12-E4c-paso3-corrida.md",
