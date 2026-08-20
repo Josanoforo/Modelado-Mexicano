@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-08-20 · **Rama:** `claude/tsello-nube-opus-arranque-vad18w` · **Encargo:** `forense/encargos/2026-08-20-T-SELLO.md`.
 **Base al arrancar:** `906203a0a732b1e138427bfa2b4dfe284cf51e35` (`origin/main`, `PR #296`, `ACT-PIL-1 · CONTRATO-v0_5` — el gate declarado en la cabecera del encargo, ya cumplido).
-**Base al cerrar:** `origin/main = 867948cef80a717b9afed812e22b5eb6632846fa` (`PR #297`, `ACT-PIL-2`), fusionada dentro de esta rama a mitad de acto — ver §2.
+**Base al cerrar:** `origin/main = 9f4ea6016884b76692ebe04e7790557af7d0a909` (`PR #298`, `ACTO LOTE-RETRIAGE`, encima de `PR #297`/`ACT-PIL-2`), ambas fusionadas dentro de esta rama a mitad de acto — ver §2.
 **Entorno:** `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default` (NUBE), crudo, sin sonda — coincide con P4 del ARRANQUE. `data/raw`: no se usa, no montada, no consultada, no enlazada (P3). Espejo: no consultado — `PLAN-CALCULO-TOTAL` llegó como adjunto, `/mnt/project/` no existe en este entorno (P5).
 
 ---
@@ -24,15 +24,17 @@ git ls-tree -r --name-only HEAD | wc -l  (al arrancar, contra 906203a) → 1727
 
 Coincide con el punto (2) del encargo — cero archivos en los tres casos. Diverge del punto (2) en el universo: el encargo declaraba **1 717**; esta compuerta, contra la base real del acto, dio **1 727** — diez archivos de diferencia, todos legítimos (`PR #295`/`ACT SELLA-ADV` y `PR #296`/`ACT-PIL-1` fusionaron entre que Fable escribió el encargo el 19/ago y este acto arrancó el 20/ago). `data/INFRAESTRUCTURA-v1_0.md` sigue sin cubrir el dominio de archivo de documentos adversariales/compass — mismo hueco que `ACTO SELLA-ADV` ya declaró el 19/ago (`grep -n "forense\|adversarial\|compass" data/INFRAESTRUCTURA-v1_0.md` no da entrada gobernante), re-verificado aquí, no resuelto por ninguno de los dos actos. Punto (3): sin brecha retroactiva, confirmado — nada que este acto toca antecede a las tablas que lo gobiernan.
 
-## 2 · Concurrencia: `origin/main` se movió dos veces mientras este acto corría
+## 2 · Concurrencia: `origin/main` se movió TRES veces mientras este acto corría
 
-`git fetch` a mitad de T1 mostró `origin/main` en `867948c` (`PR #297`, `ACT-PIL-2`), por delante del `906203a` contra el que arrancó el acto. Por ARRANQUE P2 ("si main se movió no es PARO: refresca, re-deriva, reporta"), se hizo `git merge origin/main` (limpio, sin conflictos ni en `tests/check.py`) y se re-derivó lo que dependía del perímetro:
+`git fetch` a mitad de `T1` mostró `origin/main` en `867948c` (`PR #297`, `ACT-PIL-2`), por delante del `906203a` contra el que arrancó el acto. Por ARRANQUE P2 ("si main se movió no es PARO: refresca, re-deriva, reporta"), se hizo `git merge origin/main` (limpio, sin conflictos ni en `tests/check.py`) y se re-derivó lo que dependía del perímetro:
 
 - `ADR-130` ya estaba tomado por `ACT-PIL-2 · MARCO-M1-A` — las siete auto-citas a "ADR-130" que `T1` ya había escrito en las cabeceras de procedencia de los tres documentos se renumeraron a `ADR-131` (commit separado, `9ce5686`).
 - `FP-84` era el máximo real del tablero, no `78` como el encargo (fechado 19/ago) asumía — las cinco filas nuevas de `T4` nacieron en `FP-85`…`FP-89`, re-derivadas por `awk` sobre la columna `id`, no heredadas.
-- `ACT-PIL-2` ya había ejercido sustantivamente la autorización de `D-iii` (construyó el marco de 60 candidatas bajo `ADV1-M1`/`ADR-128(e)`) antes de que `D-iii` tuviera su propia fila de tablero — declarado en `ADR-131(a)` y en `forense/hallazgos.md` como backfill, no como desbloqueo nuevo.
+- `ACT-PIL-2` ya había ejercido sustantivamente la autorización de `D-iii` (construyó el marco de 60 candidatas bajo `ADV1-M1`/`ADR-128(e)`) antes de que `D-iii` tuviera su propia fila de tablero — declarado en el ADR de este acto y en `forense/hallazgos.md` como backfill, no como desbloqueo nuevo.
 
-Segunda verificación de `git fetch` antes de escribir `ADR-131`: sin cambio contra `867948c`. Tercera, antes de cerrar esta nota: sin cambio.
+Antes de escribir la nota de cierre, un tercer `git fetch` mostró `origin/main` avanzado otra vez, a `9f4ea60` (`PR #298`, `ACTO LOTE-RETRIAGE`) — colisión real, no solo de número: ese acto también candidateó `ADR-131` y también tomó `FP-85`/`FP-86` para sus propios hallazgos (contenido no relacionado: una discrepancia de conteo en una ficha `hitoD-R7.2-bbis` y las cuatro candidatas reales para mover `Hito D`). `git merge origin/main` esta vez **sí** produjo conflicto real — tres archivos (`canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `canon/estado-programa-v1_10.md`), los tres en el mismo punto: dos actos prependiendo su propia entrada al mismo lugar. Resuelto a mano, conservando las dos contribuciones completas en las dos veces: `ADR-131` de `LOTE-RETRIAGE` queda como fusionó (primero), el ADR de este acto se renumera `ADR-131`→`ADR-132` y sus cinco filas de tablero `FP-85`…`FP-89`→`FP-87`…`FP-91` (`FP-85`/`FP-86` ya eran de `LOTE-RETRIAGE`). Verificado que ninguna sustitución mecánica de números colisionara consigo misma (se usó una pasada con tokens intermedios, no sustitución secuencial directa). Dos declaraciones de `T03`/`T16` quedaron duplicadas tras el merge textual — el propio encabezado en negritas de `LOTE-RETRIAGE` sobreviviendo dentro de la misma línea que la nueva nota de fusión — detectadas por `T16` mismo y corregidas.
+
+Cuarta verificación de `git fetch`, justo antes del commit final de este acto: sin cambio contra `9f4ea60`.
 
 ## 3 · T1 — aterrizaje verbatim
 
@@ -50,18 +52,19 @@ Los tres documentos se copiaron byte-idénticos desde el adjunto (`cp` + `diff -
 
 `FP-78` cierra `FIRMADA`, no porque una carpeta gane sobre otra, sino porque la pregunta real —"¿de dónde se derivan cifras: repo o espejo?"— ya tenía regla firmada en `TRANSFER §8`. El sitio exacto dentro del repo (`forense/` vs `corpus/forense/` vs `forense/adv-duelo/`) queda como estaba, sin adjudicar cuál "gana" — porque los tres son repo. `data/INFRAESTRUCTURA-v1_0.md` sigue con el hueco declarado (§1, arriba); `ADR-70(c)` sigue pendiente.
 
-## 5 · T3/T4 — `ADR-131` y tablero
+## 5 · T3/T4 — `ADR-132` y tablero
 
-`ADR-131` sella `D-i`–`D-iv` verbatim del `TRANSFER §4` (idéntico a `CAREO §C`), con la prohibición operativa de "supera" (`ADV1-M4`) citada en `(a)`; declara ABIERTA en canon la Fase de Cálculo bajo `APERTURA-FASE-CALCULO-v1_2.md` en `(b)`, distinguiendo explícitamente gobernanza (hoy) de resultado (`GO`/`NO-GO` de `PILOTO-E1E3`, sin correr); registra sin resolver, en `(c)`, la contradicción de tres textos vigentes sobre el criterio de cierre de `PILOTO-E1E3 T4` (`ADR-128` vence los 7 umbrales salvo el 1; `ADV1-M6` conserva y endurece 3 de los mismos 7; `PLAN-CALCULO-TOTAL` OLA 4 sigue citando los 7 como `GO`/`NO-GO`); estampa `A.10` en `(d)`.
+`ADR-132` sella `D-i`–`D-iv` verbatim del `TRANSFER §4` (idéntico a `CAREO §C`), con la prohibición operativa de "supera" (`ADV1-M4`) citada en `(a)`; declara ABIERTA en canon la Fase de Cálculo bajo `APERTURA-FASE-CALCULO-v1_2.md` en `(b)`, distinguiendo explícitamente gobernanza (hoy) de resultado (`GO`/`NO-GO` de `PILOTO-E1E3`, sin correr); registra sin resolver, en `(c)`, la contradicción de tres textos vigentes sobre el criterio de cierre de `PILOTO-E1E3 T4` (`ADR-128` vence los 7 umbrales salvo el 1; `ADV1-M6` conserva y endurece 3 de los mismos 7; `PLAN-CALCULO-TOTAL` OLA 4 sigue citando los 7 como `GO`/`NO-GO`); estampa `A.10` en `(d)`.
 
-Tablero: `FP-78` `ABIERTA`→`FIRMADA`; `FP-85`…`FP-88` nacen y cierran `FIRMADA` (una por cada `D-i`…`D-iv`); `FP-89` nace `ABIERTA`, gatea `PILOTO-E1E3 T4`. Total re-derivado por `awk` sobre la columna `estado`, no heredado:
+Tablero: `FP-78` `ABIERTA`→`FIRMADA`; `FP-87`…`FP-90` nacen y cierran `FIRMADA` (una por cada `D-i`…`D-iv`); `FP-91` nace `ABIERTA`, gatea `PILOTO-E1E3 T4`. Total re-derivado por `awk` sobre la columna `estado`, no heredado:
 
 ```
 awk -F'\t' 'NR>1{print $6}' forense/firmas-pendientes.tsv | sort | uniq -c
-     11 ABIERTA
+     13 ABIERTA
      15 CERRADA
      63 FIRMADA
 ```
+(13 `ABIERTA` incluye `FP-85`/`FP-86` de `LOTE-RETRIAGE`, fusionadas junto con el resto de `origin/main` — ver §2.)
 
 ## 6 · Desviación de perímetro declarada — `tests/check.py` y `tests/baseline.json`
 
@@ -78,15 +81,16 @@ Ambas desviaciones se declaran aquí y en `forense/hallazgos.md`; ninguna se ocu
 ```
 python3 tests/check.py --baseline | tail -6
 ════════════════════════════════════════════════════════════════════════
-  23 FAIL · 136 WARN
+  25 FAIL · 138 WARN
 ════════════════════════════════════════════════════════════════════════
 ────────────────────────────────────────────────────────────────────────
   LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado e24d033ed3c095f1e81c2fbb8248f108e9d3ef65)
   (1 entradas de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
 ```
+(25 FAIL es el total crudo, incluye `T16` disparando dos veces mientras se re-derivaban las cifras del merge; núcleo sin `T16` — `CHECK_SELFCHECK_CHILD=1 python3 tests/check.py` — **23 FAIL · 138 WARN**, la cifra que `estado-programa` declara y que coincide exacto tras cerrar.)
 
-`canon/estado-programa-v1_10.md`: cascada de ADR (`130→131`) y de WARN/FAIL (`126→134`/`21→23`, núcleo sin `T16`), ambas por corrida real. `pgrep -af claude` al arrancar: un solo proceso `claude` — dueña única confirmada.
+`canon/estado-programa-v1_10.md`: cascada de ADR (`131→132`, dos saltos por la doble colisión — ver §2) y de WARN/FAIL (`128→138`/`21→23`, núcleo sin `T16`, re-derivada por corrida real sobre el árbol ya fusionado con `LOTE-RETRIAGE` — ninguna de las dos ramas tenía la cifra fusionada, misma doctrina que el propio archivo documenta para cada merge anterior). `pgrep -af claude` al arrancar: un solo proceso `claude` — dueña única confirmada.
 
 **Contador: medición sobre México = 0, dicho.** Este acto sella firmas de mesa, aterriza documentos, mueve archivos y registra una contradicción de gobernanza — no corre ninguna celda-D, no produce ninguna estimación. `candidatas del marco: 60 de 60`, `Hito D: 13 de 27`, `condicionales 12/15`, `coeficientes 0/15`, `llaves 1/2` — ninguno se mueve.
 
-**La fase queda abierta en el canon, no en una conversación** — `canon/APERTURA-FASE-CALCULO-v1_2.md` vive en `main` (tras fusionar), citado por `ADR-131(b)`. Lo que sigue, sin adjudicar aquí: `PILOTO-E1E3 T4` no puede correr su `GO`/`NO-GO` hasta que mesa firme cuál de los tres criterios de `FP-89` gobierna; `DUELO-PREREG-V2` (acto sucesor nombrado por `CAREO §D` y por `TRANSFER §5`) sigue sin lanzar.
+**La fase queda abierta en el canon, no en una conversación** — `canon/APERTURA-FASE-CALCULO-v1_2.md` vive en `main` (tras fusionar), citado por `ADR-132(b)`. Lo que sigue, sin adjudicar aquí: `PILOTO-E1E3 T4` no puede correr su `GO`/`NO-GO` hasta que mesa firme cuál de los tres criterios de `FP-91` gobierna; `DUELO-PREREG-V2` (acto sucesor nombrado por `CAREO §D` y por `TRANSFER §5`) sigue sin lanzar.

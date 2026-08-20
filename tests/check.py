@@ -2246,6 +2246,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/red-team-A_auditoria-adversarial.md",
     "forense/red-team-auditoria-benchmarks.md",
     "forense/red_team_A_auditoria.md",
+    "forense/notas/2026-08-20-lote-retriage-cierre.md",
     "forense/registro-recalculo-v1_0.md",
 }
 
