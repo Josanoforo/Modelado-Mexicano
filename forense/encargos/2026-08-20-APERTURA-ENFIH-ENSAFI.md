@@ -4,7 +4,7 @@ SHA de redacción: no declarado por el encargo (a diferencia de AI-apertura-issp
 
 Entorno asignado: UBUNTU (explícito en el encargo). NO nube (explícito, 🚫). Modelo: Opus (explícito). Dueña única (explícito) — no se lanza en paralelo desde otra sesión.
 
-Estado: `CONSUMIDO` — `PR #302` (rama `apertura-enfih-ensafi`), `ADR-133` (renumerado de `ADR-132` al fusionar con `PR #299`/`ACTO T-SELLO`, colisión real, ver `forense/notas/2026-08-20-apertura-enfih-ensafi-cierre.md §6`). Resultado: 0 de 8 celdas `EXISTE-SATISFACE`, `SIN-RUTA` con ruta `0 de 4` → `0 de 4`. `origin/main` volvió a moverse tras el push de este PR (`PR #300`, `ACTO DUELO-PREREG-V2`) — no se persigue una tercera vez en este acto; queda para quien fusione `PR #302`, misma regla de la casa (quien fusiona segundo renumera).
+Estado: `CONSUMIDO` — `PR #302` (rama `apertura-enfih-ensafi`), `ADR-133` (renumerado de `ADR-132` al fusionar con `PR #299`/`ACTO T-SELLO`, colisión real, ver `forense/notas/2026-08-20-apertura-enfih-ensafi-cierre.md §6`). Resultado: 0 de 8 celdas `EXISTE-SATISFACE`, `SIN-RUTA` con ruta `0 de 4` → `0 de 4`. `origin/main` volvió a moverse una tercera vez (`PR #300`, `ACTO DUELO-PREREG-V2`) mientras este PR seguía abierto — a diferencia de la segunda, esta fusión no colisionó (`PR #300` no tocó `gobernanza`/`estado-programa`, ningún ADR nuevo): `git merge origin/main` limpio, `LÍNEA BASE: VERDE` sin cambio en las tres cifras, ver `§7` de la nota. `PR #302` mergeable tras este commit.
 
 Archivado per forense/encargos/convencion.md (Regla A.3), commit propio, antes de T1 (COMMIT A).
 

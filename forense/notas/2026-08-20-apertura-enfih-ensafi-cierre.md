@@ -179,3 +179,11 @@ LÍNEA BASE: VERDE — sin cambio
 ```
 
 El FAIL núcleo (21) coincide exacto con el que este acto ya tenía antes de descubrir la fusión — la subida transitoria a 22-26 durante la resolución fue enteramente mecánica (conteo de ADR desincronizado en tres sitios, más dos citas históricas de `canon/PLAN-CALCULO-TOTAL-v1_1.md:8`, heredadas de `T-SELLO`, que quedaron colgantes contra `T15` en cuanto el conteo de ADR subió con `ADR-133`; marcadas `{cita-historica}` dentro de sus negritas, no reescritas — mismo mecanismo que `T15` ya usa en todo el archivo). El WARN (138) es enteramente de `T-SELLO`: este acto no abre ninguna fila de tablero.
+
+---
+
+## 7 · Tercera fusión — `PR #300`/`ACTO DUELO-PREREG-V2`, limpia
+
+Tras empujar el commit de `§6`, `origin/main` avanzó una tercera vez: `PR #300` (`ACTO DUELO-PREREG-V2`, sucesor de `T-SELLO` bajo el mismo plan `APERTURA-FASE-CALCULO`, corriendo en NUBE mientras este acto seguía abierto). Reportado en el cierre de esa misma sesión que dejó el PR de este acto en `mergeable: CONFLICTING` — declarado y no perseguido en ese momento.
+
+**Diferencia con la segunda fusión (`§6`): esta no colisiona.** `git diff a72ead3 origin/main` muestra que `PR #300` solo tocó `forense/firmas-pendientes.tsv` (una línea, la columna `dónde` de `FP-90`, sin tocar su `estado`) y `forense/hallazgos.md` (una línea nueva, append-only) — ningún ADR nuevo, `canon/gobernanza-v1_15.md` y `canon/estado-programa-v1_10.md` sin tocar. `git merge origin/main` resolvió **sin un solo conflicto** (`git status` limpio tras el merge, ningún marcador `<<<<<<<`). Re-verificado con `python3 tests/check.py --baseline`, las tres pasadas (corpus enlazado, `data/raw` desenlazada, gitignorados retirados): **LÍNEA BASE: VERDE, 21 FAIL núcleo · 138 WARN, sin cambio en ninguna de las tres cifras** frente a `§6`. `mergeable` vuelve a `MERGEABLE` en `PR #302` tras empujar este commit — no queda declarado ningún hallazgo nuevo, la fusión fue mecánica.
