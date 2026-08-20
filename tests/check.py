@@ -2044,6 +2044,221 @@ def t24_llaves_ejercidas():
                      f"ejercidas; {rel(r)} (receta §4) deriva {ejercidas} de {total}")
 
 
+# ───────────────────────────────────────────────────────────────
+# T25 · T-ROTULOS — D-6 (`ADR-128`, `ACTO SELLA-ADV`, 20/ago/2026):
+#   lo que ya está en uso se registra (`canon/registro-rotulos.tsv`), no se
+#   renombra; ningún rótulo NUEVO puede ser letra+número pelado desde hoy.
+#   Motivado por la colisión medida el mismo día: `M5` con cuatro
+#   habitantes distintos (`forense/RONDA-M-...:61`, `forense/hallazgos.md:65`,
+#   `ADR-100`, y desde hoy `ADV1-M5`) y siete rótulos `E<n>` distintos en el
+#   rango `E0`-`E5`, uno de ellos citado por nombre en la fila `FP-26`
+#   (`ABIERTA`) del tablero.
+#
+#   FAIL si un archivo `.md` NUEVO de `canon/` o `forense/` trae un rótulo
+#   pelado de las dos familias que colisionan hoy — `M<n>` o `E<n>`/`E-<n>`
+#   sin prefijo de espacio delante (p.ej. `ADV1-M5`, no `M5` a secas) — y
+#   ese archivo no está en el snapshot conocido de abajo.
+#
+#   LÍMITE DECLARADO — léelo antes de tocar este test, mismo patrón que
+#   T22(b). (1) Granularidad de ARCHIVO, no de rótulo ni de línea: protege
+#   contra la clase de defecto real — un documento NUEVO que inventa o
+#   repite `M<n>`/`E<n>` pelado sin que nadie lo registre —, no contra cada
+#   mención nueva dentro de un archivo ya vigilado. (2) Solo cubre las DOS
+#   familias medidas colisionando hoy (`M`, `E`); no intenta detectar
+#   cualquier espacio de rótulo que alguien pueda inventar a futuro
+#   (`K3`, `P7`, …) — un regex general para "cualquier letra+número nuevo"
+#   se ahoga en falsos positivos de prosa (149 de los ~380 `.md` de
+#   `canon/`+`forense/` ya usan `M`/`E`+dígito de forma legítima; extender
+#   el patrón a todo el alfabeto multiplicaría ese ruido sin acotar nada
+#   nuevo). `canon/registro-rotulos.tsv` documenta el censo humano de las
+#   dos colisiones reales; este test es la mitad mecánica, no todo D-6.
+#   Falsador y caducidad: mismo criterio que A.3/A.8/A.9/A.10/A.12 — si en
+#   tres meses `T-ROTULOS` nunca dispara y ninguna colisión nueva se evita,
+#   se retira y se anota.
+# ───────────────────────────────────────────────────────────────
+_T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_.])")
+
+# Snapshot verificado por `python3 -c` sobre `canon/**/*.md` + `forense/**/*.md`
+# al sellar T25 — `ACTO SELLA-ADV`, 20/ago/2026, contra `5a60e98` + lo que
+# el propio acto escribió (T1/T4/T6). Cada archivo de esta lista ya trae
+# `M<n>` o `E<n>` pelado hoy, de forma ya conocida (censada en
+# `canon/registro-rotulos.tsv` para los casos que colisionan de verdad).
+# Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
+# defecto que este test existe para atrapar.
+_T25_ARCHIVOS_CONOCIDOS = {
+    "canon/estado-programa-v1_10.md",
+    "canon/gobernanza-v1_15.md",
+    "canon/modelo-decision-v4_0.md",
+    "canon/protocolo-sesion-v1_0.md",
+    "forense/ADR-MOTOR-2-esqueleto-2026-08-14.md",
+    "forense/ADV-1_demolicion_duelo_L_vs_M.md",
+    "forense/BENCHMARKS-metodologicos-D-ABC.md",
+    "forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md",
+    "forense/CAREO-benchmarks-4RT-archivo-proyecto.md",
+    "forense/CASCADA-M1-2026-08-14.md",
+    "forense/EDGE-CASES-y-literatura-reciente.md",
+    "forense/RONDA-M-motor-matriz-veredicto-opus-2026-08-13-v1_0.md",
+    "forense/RONDA1-motor-adaptativo-celda-adjudicacion-v1_0.md",
+    "forense/RONDA1-motor-adaptativo-celda-veredicto-fable-2026-08-11-v1_0.md",
+    "forense/auditoria_adversarial_benchmarks.md",
+    "forense/bbis-radio-confianza-enbiare-v1_0.md",
+    "forense/benchmark-enlace-invarianza-v1_0.md",
+    "forense/bitacora.md",
+    "forense/compass-5-d3f09137-estado-arte-duelo-2026.md",
+    "forense/encargos/2026-08-05-m1-ensanut.md",
+    "forense/encargos/2026-08-05-m4bis-encup-lapop-latinobarometro.md",
+    "forense/encargos/2026-08-05-m5bis-cierre-inventarios-catalogo-cruce.md",
+    "forense/encargos/2026-08-11-E4b.md",
+    "forense/encargos/2026-08-12-C-universo-minimo.md",
+    "forense/encargos/2026-08-12-E4a.md",
+    "forense/encargos/2026-08-12-E4c-paso3-corrida.md",
+    "forense/encargos/2026-08-12-M6-sello.md",
+    "forense/encargos/2026-08-12-S-svystat-4celdas.md",
+    "forense/encargos/2026-08-12-V-vocabulario-celda-d.md",
+    "forense/encargos/2026-08-13-AI-apertura-issp.md",
+    "forense/encargos/2026-08-13-FIRMAS2-carril-caja.md",
+    "forense/encargos/2026-08-13-MOTOR-COND-v2-encargos-finales.md",
+    "forense/encargos/2026-08-13-PROC-10-BIS-clase-septima-y-anexos.md",
+    "forense/encargos/2026-08-13-VP-verifica-puertas.md",
+    "forense/encargos/2026-08-13-censo-v1_1.md",
+    "forense/encargos/2026-08-13-r5-1-d3.md",
+    "forense/encargos/2026-08-14-B2-mantenimiento-via-capa3.md",
+    "forense/encargos/2026-08-14-ENLACE-2-adjudicacion-68-y-19.md",
+    "forense/encargos/2026-08-14-MOTOR-1-consolidado.md",
+    "forense/encargos/2026-08-14-MOTOR-3-E0-autocontenido.md",
+    "forense/encargos/2026-08-14-RECONCILIA-SPEC-encargo.md",
+    "forense/encargos/2026-08-17-B2-RELEVO-recuperar-barrido2-desde-c4.md",
+    "forense/encargos/2026-08-17-BARRIDO-2-cobertura-material-cableado-universo.md",
+    "forense/encargos/2026-08-17-EDEC-fuente-unica-decisiones.md",
+    "forense/encargos/2026-08-17-REGISTRA-17AGO.md",
+    "forense/encargos/2026-08-18-B2-SEMANTICO-C4-C5-C6.md",
+    "forense/encargos/2026-08-18-B2-V7-generacion-v7-y-tres-cifras.md",
+    "forense/encargos/2026-08-18-E3-TRIAGE.md",
+    "forense/encargos/2026-08-18-E5-entrada-5-registro-recalculo.md",
+    "forense/encargos/2026-08-18-LANE-A-E0-E5.md",
+    "forense/encargos/2026-08-18-MESA-18AGO-nueve-firmas.md",
+    "forense/encargos/2026-08-18-NOTAS-P3.md",
+    "forense/encargos/2026-08-20-SELLA-ADV.md",
+    "forense/hallazgos.md",
+    "forense/historico/TRANSFER-maestra-7.md",
+    "forense/hitoD-R1_1-bbis-triage-v1_0.md",
+    "forense/hitoD-R1_3-especificacion-v1_0.md",
+    "forense/hitoD-R3_1-especificacion-v1_0.md",
+    "forense/hitoD-R4_1-bbis-triage-v1_0.md",
+    "forense/hitoD-R4_2-bbis-triage-v1_0.md",
+    "forense/hitoD-R4_3-bbis-triage-v1_0.md",
+    "forense/hitoD-R7_2-bbis-triage-v1_0.md",
+    "forense/hitoD-R9_1-bbis-triage-v1_0.md",
+    "forense/hitoD-R9_2-bbis-triage-v1_0.md",
+    "forense/hitoD-preregistro-v2_0.md",
+    "forense/hitoE-campana-medicion-v2_0.md",
+    "forense/informe_ADV2_estado_del_arte_y_rubrica.md",
+    "forense/notas/2026-07-30-verificacion-premisas-hitoE.md",
+    "forense/notas/2026-07-31-encargo-c-familismo-deferencia-reactivo.md",
+    "forense/notas/2026-08-03-cbis-deferencia-externas.md",
+    "forense/notas/2026-08-04-d2-descargas-endutih-mociba-enasem.md",
+    "forense/notas/2026-08-04-encargo-e-envipe-g4-paso1.md",
+    "forense/notas/2026-08-04-encup-certificado-fijado.md",
+    "forense/notas/2026-08-04-encup-paso1-deferencia.md",
+    "forense/notas/2026-08-04-encup-paso2-deferencia.md",
+    "forense/notas/2026-08-04-m1-adjudicacion-r3-1-adr-60.md",
+    "forense/notas/2026-08-04-m1-adjudicacion-r3-1-paro.md",
+    "forense/notas/2026-08-04-m2-adjudicacion-adr-61.md",
+    "forense/notas/2026-08-04-p3-lca-segmentacion.md",
+    "forense/notas/2026-08-04-svystat-casos-referencia.md",
+    "forense/notas/2026-08-04-w1-p-policial.md",
+    "forense/notas/2026-08-05-a5-portada-publica-falsas.md",
+    "forense/notas/2026-08-05-conf17-fetch-corrida-A.md",
+    "forense/notas/2026-08-05-conf17-fetch-corrida-B.md",
+    "forense/notas/2026-08-05-desc1-descarga.md",
+    "forense/notas/2026-08-05-e-encig-bloqueos.md",
+    "forense/notas/2026-08-05-m1-ensanut-mapa.md",
+    "forense/notas/2026-08-05-m2-incognitas.md",
+    "forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md",
+    "forense/notas/2026-08-05-m4-adjudicacion-adr-63.md",
+    "forense/notas/2026-08-05-m4bis-encup-lapop-latinobarometro-bloqueo.md",
+    "forense/notas/2026-08-05-m5-adr64-conf06.md",
+    "forense/notas/2026-08-05-p2-cierre-documental.md",
+    "forense/notas/2026-08-05-p3-r8-1-contradiccion-inventario.md",
+    "forense/notas/2026-08-06-map2-cruce.md",
+    "forense/notas/2026-08-08-explora2.md",
+    "forense/notas/2026-08-11-e4b-sello-b-corrida-b.md",
+    "forense/notas/2026-08-11-e4c-r5-1-d2-especificacion.md",
+    "forense/notas/2026-08-12-acto-v-vocabulario-celda-d.md",
+    "forense/notas/2026-08-12-e4a-radio-celda-d.md",
+    "forense/notas/2026-08-12-e4c-r5-1-d2-commit6-reconciliacion-fila-e.md",
+    "forense/notas/2026-08-12-j-alcance-folioviv.md",
+    "forense/notas/2026-08-13-alias-p-motor-diag.md",
+    "forense/notas/2026-08-13-apertura-issp.md",
+    "forense/notas/2026-08-13-benchmark-enlace-invarianza.md",
+    "forense/notas/2026-08-13-e2-cierre.md",
+    "forense/notas/2026-08-13-firmas-2.md",
+    "forense/notas/2026-08-13-invarianza-encuci-enbiare.md",
+    "forense/notas/2026-08-13-proc-10.md",
+    "forense/notas/2026-08-13-proc-11.md",
+    "forense/notas/2026-08-13-reapertura-52a-54-commit2-barrido.md",
+    "forense/notas/2026-08-13-res-reserva.md",
+    "forense/notas/2026-08-13-sella-3.md",
+    "forense/notas/2026-08-13-sella-mesa.md",
+    "forense/notas/2026-08-14-acto-b2-via-capa3.md",
+    "forense/notas/2026-08-14-motor-1.md",
+    "forense/notas/2026-08-14-motor3-plan.md",
+    "forense/notas/2026-08-14-reconcilia-spec.md",
+    "forense/notas/2026-08-14-tablero-firmas-commit3.md",
+    "forense/notas/2026-08-14-tablero-firmas-commit4-freeze.md",
+    "forense/notas/2026-08-14-tablero-firmas.md",
+    "forense/notas/2026-08-17-b2-derivaciones-c4.md",
+    "forense/notas/2026-08-17-b2-recupera.md",
+    "forense/notas/2026-08-17-b2-relevo.md",
+    "forense/notas/2026-08-17-celda-d-complemento.md",
+    "forense/notas/2026-08-17-consolida.md",
+    "forense/notas/2026-08-17-fuente-unica-decisiones.md",
+    "forense/notas/2026-08-17-higiene-vivos.md",
+    "forense/notas/2026-08-17-registra-17ago-comandos.md",
+    "forense/notas/2026-08-17-t22-deriva.md",
+    "forense/notas/2026-08-18-b2-semantico.md",
+    "forense/notas/2026-08-18-b2-transfer.md",
+    "forense/notas/2026-08-18-b2-v7.md",
+    "forense/notas/2026-08-18-entrada3-triage-hitoD.md",
+    "forense/notas/2026-08-18-estado-split-clausula-por-linea.md",
+    "forense/notas/2026-08-18-gate-durable-v7.md",
+    "forense/notas/2026-08-18-integrate-t23.md",
+    "forense/notas/2026-08-18-mesa-18ago.md",
+    "forense/notas/2026-08-18-mesa-19ago-seis-firmas.md",
+    "forense/notas/2026-08-18-motor3-con-sello-y-entrada-5.md",
+    "forense/notas/2026-08-18-p3-barrido-final.md",
+    "forense/notas/2026-08-18-sello-ficha-g3-gate-e0e5-no-cumplido.md",
+    "forense/notas/2026-08-19-coef-universo-cierre.md",
+    "forense/notas/2026-08-20-sella-adv-cierre.md",
+    "forense/p3-lca-preregistro-v1_0.md",
+    "forense/r5-1-diseno-por-regla-preregistro-v1_0.md",
+    "forense/red-team-A_auditoria-adversarial.md",
+    "forense/red-team-auditoria-benchmarks.md",
+    "forense/red_team_A_auditoria.md",
+    "forense/registro-recalculo-v1_0.md",
+}
+
+
+def t25_rotulos():
+    reg = os.path.join(ROOT, "canon", "registro-rotulos.tsv")
+    if not os.path.exists(reg):
+        fail("T25", "no existe `canon/registro-rotulos.tsv` -- D-6/ADR-128 lo exige "
+                     "como registro de rótulos ya en uso")
+        return
+    for base in ("canon", "forense"):
+        for p in glob.glob(os.path.join(ROOT, base, "**", "*.md"), recursive=True):
+            relp = rel(p)
+            if relp in _T25_ARCHIVOS_CONOCIDOS:
+                continue
+            m = _T25_ROTULO_BARE.search(read(p))
+            if m:
+                fail("T25", f"{relp}: trae rótulo pelado nuevo `{m.group(0)}` sin "
+                             f"prefijo de espacio (D-6/ADR-128) -- dale prefijo "
+                             f"(p.ej. `ADV1-{m.group(0)}`) o, si ya estaba en uso "
+                             f"y solo faltaba censarlo, añádelo a `_T25_ARCHIVOS_"
+                             f"CONOCIDOS` y a `canon/registro-rotulos.tsv`")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -2071,6 +2286,7 @@ def main():
         ("T22 T-FIRMAS",                          t22_firmas),
         ("T23 T-CABLEADO",                        t23_cableado),
         ("T24 T-LLAVES-EJERCIDAS",                t24_llaves_ejercidas),
+        ("T25 T-ROTULOS",                         t25_rotulos),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
