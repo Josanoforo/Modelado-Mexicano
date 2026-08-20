@@ -1,0 +1,24 @@
+espacio	valor	que_significa	donde_vive
+ADR-NNN	001-128	Architecture Decision Record del programa, secuencial, un numero = una decision de mesa, sin huecos verificado	canon/gobernanza-v1_15.md
+FP-NN	01-78	Fila del tablero de firmas pendientes, secuencial	forense/firmas-pendientes.tsv
+FP-NN	99	Centinela ficticio de prueba (no es fila huerfana), verificado en forense/notas/2026-08-18-ci-categoria.md	tests/check.py (fixture de T22)
+TNN	01-24	Chequeo o tarea del vigia tests/check.py, secuencial	tests/check.py
+conf.NN	01-08	Conflicto o discrepancia entre reports del corpus, adjudicado o abierto	canon/gobernanza-v1_15.md (SS Conflictos)
+A.N	1-12	Regla de instrucciones del proyecto (A.1 identidad de artefacto por contenido ... A.12 tablero derivado, no recordado)	instrucciones-proyecto-v2_10.md
+A.N	01-28	Id de refutacion de la bateria (tipo A mecanica / B parametrica / C de lectura); serie independiente de la anterior, forma de cadena A.10-A.12 identica por coincidencia -- frontera ya declarada en instrucciones-proyecto-v2_10.md (A.10, nota de numeracion); sin colision practica porque viven en documentos distintos	milpa/refutations.yaml
+M	M5	HABITANTE 1 de 4: fila de defecto en la matriz de veredicto de RONDA-M ("el 15 de S1.4 y el 15 de S4.2/4.3 no son el mismo objeto")	forense/RONDA-M-motor-matriz-veredicto-opus-2026-08-13-v1_0.md:61
+M	M5	HABITANTE 2 de 4: paso de un renombre distinto ("Ejecutar M5 = renombre a modelo-decision-v4_0.md conforme a ADR-36")	forense/hallazgos.md:65
+M	M5	HABITANTE 3 de 4: una de las seis M del sello del motor (M1-M6), ADR-100	canon/gobernanza-v1_15.md ADR-100 (linea 1815)
+M	M5	HABITANTE 4 de 4, desde 20/ago/2026: tabla de consecuencias de cinco casillas del piloto L-vs-M, firmada antes de la primera celda; citada en el repo con prefijo ADV1- desde este acto (D-6) -- el documento fuente (careo) queda verbatim sin prefijo, es la cita la que se prefija	forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md SB; canon/gobernanza-v1_15.md ADR-128(e)
+M	M1, M2, M3, M4, M6	Mecanismos del diseno v2 del piloto L-vs-M (marco+filtros, elicitacion ciega, scoring propio, veredicto sin ganador, GO con dientes); citados en el repo con prefijo ADV1- desde ADR-128 (D-6) -- no auditados uno a uno contra otros usos historicos de M1..M4/M6 en este acto, ver nota de metodo en forense/hallazgos.md	forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md SB; canon/gobernanza-v1_15.md ADR-128(e)
+M	M01-M22 (con cero)	Momentos del catalogo de milpa; no compiten con "M" sin cero por llevar cero a la izquierda	milpa/catalogo-momentos-v0_1.md
+E	E0	HABITANTE 1 de 7: fase E0 del acto MOTOR-3, autocontenido	forense/encargos/2026-08-14-MOTOR-3-E0-autocontenido.md
+E	E2	HABITANTE 2 de 7: pipeline de barrido semantico (declarado sin abrir microdatos), citado por ADR-109(d)/FP-65	forense/firmas-pendientes.tsv fila FP-65
+E	E3-TRIAGE	HABITANTE 3 de 7: encargo de triage de la entrada 3	forense/encargos/2026-08-18-E3-TRIAGE.md
+E	E4a	HABITANTE 4 de 7: encargo de la entrada 4, parte a	forense/encargos/2026-08-12-E4a.md
+E	E4b	HABITANTE 5 de 7: encargo de la entrada 4, parte b	forense/encargos/2026-08-11-E4b.md
+E	E4c	HABITANTE 6 de 7: encargo de la entrada 4, parte c	forense/encargos/2026-08-12-E4c-commit4.md; forense/encargos/2026-08-12-E4c-paso3-corrida.md
+E	E5	HABITANTE 7 de 7: entrada 5, registro de recalculo	forense/encargos/2026-08-18-E5-entrada-5-registro-recalculo.md
+E	(referencia cruzada, no es rotulo propio)	FP-26, ABIERTA, cita por nombre la cadena completa "MOTOR-3/E0 -> E5/FP-15 ... E3-TRIAGE/FP-14" en su propia fila -- un renombre retroactivo de cualquiera de esos rotulos le rompe la cita	forense/firmas-pendientes.tsv fila FP-26
+G	G1, G1a, G1b, G2, G3, G4, G5, G6	Generadores del modelo de decision	canon/modelo-decision-v4_0.md
+N, R, H, S, U, D	no derivado fila por fila en este acto	Necesidades / fichas-reglas / hallazgos / sellos / universos / dominios -- namespaces nombrados por el paquete de lanzamiento (8-33 usos c/u); este acto no re-derivo cada valor individualmente, ver nota de metodo en forense/hallazgos.md	varios (data/curacion-registro/*, canon/modelo-decision-v4_0.md)
