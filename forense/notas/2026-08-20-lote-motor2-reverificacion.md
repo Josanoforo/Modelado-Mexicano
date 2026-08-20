@@ -139,17 +139,34 @@ este acto no corre una estimación, no mueve el contador de coeficientes en esca
 
 ## 5 · Suite y línea base
 
+Primera corrida tras T1-T3, antes de tocar `PLAN-CALCULO-TOTAL`:
+
 ```
 python3 tests/check.py --baseline
 ```
-→ `23 FAIL · 137 WARN` — `LÍNEA BASE: ROJO`, dos entradas nuevas, ambas la misma causa declarada y no
-oculta: `T15` sobre `canon/PLAN-CALCULO-TOTAL-v1_1.md`, que cita dos cifras de ADR ya vencidas
-(históricas, fijas) contra el conteo vigente de `gobernanza` — ese mensaje incrusta el conteo real en
-su propio texto, así que **cambia en cada acto que sella un ADR nuevo**, sin que el archivo citado
-cambie un byte. `tests/baseline.json` sólo puede congelarlo exacto para el conteo del momento del
-último `--freeze` (132, congelado por `ACTO T-SELLO`); recongelarlo aquí violaría `🚫 --freeze` de
-este mismo encargo. No es una regresión de contenido — es la misma cita histórica desactualizada de
-siempre, rotando de texto porque el conteo real avanzó de 132 a 133. Declarado, no corregido.
-Ambas cifras del propio `estado-programa` (`23 FAIL · 137 WARN`, `T03` en 55) resincronizadas contra
-la corrida real en este mismo acto (`T16`, antes ROJO por citar la cifra vieja de `T-SELLO`, ahora
-verde). Cero `--freeze` en este acto.
+→ `23 FAIL · 137 WARN` — `LÍNEA BASE: ROJO`, dos entradas nuevas, ambas la misma causa: `T15` sobre
+`canon/PLAN-CALCULO-TOTAL-v1_1.md:8`, cuya "FOTO VERIFICADA" (fechada 12/ago/2026, `A.10` corolario 1,
+cuerpo intacto) cita dos cifras de ADR ya vencidas (71, y el `178` de "`#178 ADR-71`") contra el
+conteo vigente de `gobernanza` — el mensaje de `T15` incrusta el conteo vigente en su propio texto,
+así que dispara de nuevo en **cada** acto que sella un ADR, sin que el archivo citado cambie un byte.
+
+Confirmado en CI real (`PR #301`, run `32425349524`, disparado a mano vía `workflow_dispatch` porque
+el evento `pull_request` no había corrido): mismo fallo, mismas dos líneas de `T15`, nada más — sin
+regresión ajena a esta causa. Consultada dirección (`AskUserQuestion`, tres opciones: autorizar
+`--freeze`, dejarlo ROJO documentado, o corregir la cita) — **"Fix PLAN-CALCULO-TOTAL instead"**: se
+marcan las dos cifras `{cita-historica}` en `canon/PLAN-CALCULO-TOTAL-v1_1.md:8` (mismo mecanismo que
+`MARCA_HISTORICA`/`T03` ya usa en decenas de sitios de `gobernanza`/`estado-programa` — el cuerpo
+`FOTO VERIFICADA` no se toca, solo se declara que la cifra ya no es la vigente). `T15` vuelve a verde
+sin `--freeze`.
+
+Con `T15` verde, `T16` (auto-chequeo del propio `estado-programa`) expuso un punto fijo: declarar
+`22 FAIL` (el total ingenuo tras restar solo la causa de `T15`) todavía dejaba a `T16` disparando un
+FAIL propio por el desfase transitorio contra el `23` declarado antes — declarar en cambio `21 FAIL`
+(el número que deja a `T16` en silencio) converge. Verificado corriendo `tests/check.py` sin
+`--baseline` hasta que `T16` deja de aparecer en la lista de FAIL.
+
+```
+python3 tests/check.py --baseline
+```
+→ `21 FAIL · 137 WARN` — `LÍNEA BASE: VERDE` (HEAD congelado `e24d033`, 3 entradas de la línea base ya
+no aparecen — mejora, no baja la cifra sin `--freeze`). Cero `--freeze` en todo este acto.
