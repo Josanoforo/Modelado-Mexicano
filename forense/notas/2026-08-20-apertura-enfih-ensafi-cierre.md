@@ -89,3 +89,61 @@ Contraste contra `forense/censo-estimabilidad-coeficientes-v1_2.md` (el censo β
 **Precedencia declarada al sellar:** si una celda de `ENSAFI` satisface por columna/valor pero el texto del reactivo no es verificable, manda la ausencia de texto — no se sella `EXISTE-SATISFACE` aunque el patrón sea sugestivo (misma regla que ya aplicó `ABRIR-4` a `CONF_FINAN`, y que reaparece aquí porque hay dos hallazgos previos de ese instrumento —`IMPULSIVID` y `CONF_FINAN`— que son exactamente el caso límite).
 
 Cierra el commit con: **el primer resultado que produzca este procedimiento es el que se reporta.**
+
+---
+
+## 2 · T2 — COMMIT B: los veredictos, celda por celda
+
+No edita `COMMIT A` (§1). Produce `data/apertura-enfih-ensafi-v1_0.tsv`, 8 filas, contrato idéntico de 14 columnas a `abrir4-variables-2026-08-08.tsv`/`apertura-issp-variables-2026-08-13.tsv`/`reapertura-52a-54-variables-2026-08-13.tsv` (verificado por comparación de encabezado, las tres son byte-idénticas entre sí). Resultado, por celda:
+
+| Instrumento | Necesidad | `clasificacion_a4` | Resumen |
+|---|---|---|---|
+| ENSAFI 2023 | `N3`/G2.sens_estatus | `NO-ENCONTRADO` | 0/369 encabezados, incluidas las 15 columnas derivadas con nombre legible |
+| ENSAFI 2023 | `N4`/G2.aversion_riesgo | `EXISTE-NO-SATISFACE` | `IMPULSIVID`/`GRA_CONTROL` reconfirmados, sin texto verificable (sin diccionario en el corpus) |
+| ENSAFI 2023 | `N11`/G4.sens_estatus | `NO-ENCONTRADO` | Mismo universo que `N3` sobre este payload (ADR-54, un solo reactivo cerrado para ambos) |
+| ENSAFI 2023 | `N15`/G6.deferencia | `NO-ENCONTRADO` | 0/369, primera vez que se busca en este instrumento |
+| ENFIH 2019 | `N3`/G2.sens_estatus | `NO-ENCONTRADO` | 0/780 variables (Nemónico no vacío) de las 16 hojas |
+| ENFIH 2019 | `N4`/G2.aversion_riesgo | `EXISTE-NO-SATISFACE` | `P9_12_1..6` reconfirmado, tenencia de seguro, no actitud |
+| ENFIH 2019 | `N11`/G4.sens_estatus | `NO-ENCONTRADO` | Mismo universo que `N3` sobre este payload |
+| ENFIH 2019 | `N15`/G6.deferencia | `NO-ENCONTRADO` | 2 candidatos de superficie (`PAREN`, `SX_JEFE`), ambos jefatura de hogar por parentesco, descartados por dominio; primera vez que se busca en este instrumento |
+
+**Discrepancia de conteo declarada, no reconciliada.** Este acto extrajo **780** variables de `enfih2019_fd_xlsx` (filas con `Nemónico` no vacío, vía `openpyxl`); `ABRIR-4` (8/ago) declaró **838** sobre el mismo archivo. Metodologías de conteo distintas — no se reprodujo la receta de `ABRIR-4` para reconciliar la diferencia, y no cambia el resultado sustantivo: ampliar la ventana de lectura (todas las 16 hojas, no solo las que `ABRIR-4` había citado) no encontró ninguna variable adicional relevante a los términos de `N3`/`N4`/`N11`/`N15`. Se declara por la misma regla que obliga a probar una receta de conteo antes de usarla (`instrucciones-proyecto-v2_10.md`, "y la receta de derivación también se verifica") — no se fuerza la coincidencia con una cifra heredada.
+
+`ENSAFI`: **369** encabezados coincide exacto con lo que `ABRIR-4` ya reportó — misma cifra, dos sesiones, mismo comando (`zipfile`+`csv` sobre las 4 tablas).
+
+`data/coef-universo-v1_0.tsv`: 8 filas anexadas (51→59 líneas, solo la columna de ruta, esquema de 13 columnas sin tocar), una por cada celda de la tabla de arriba, con `variable_id_estado=SIN-RUTA (sin cambio)` en las 8 — ninguna celda cambió de estado. Verificado `git diff --numstat` antes de commitear: `8 0`, cero líneas preexistentes tocadas (el riesgo conocido del módulo `csv` de este proyecto — corrompe comillas de filas ajenas — no aplica porque ambos archivos se escribieron con `'\t'.join(...)` línea por línea, nunca con `csv.writer`).
+
+## 3 · T3 — la contingencia de `ADR-52A`/`ADR-54`: no se dispara
+
+Los dos únicos candidatos con valores reales de las 8 celdas (`IMPULSIVID`/`GRA_CONTROL` en `ENSAFI`, `P9_12_1..6` en `ENFIH`, ambos bajo `N4`/`aversion_riesgo`) **no son reactivos nuevos**: son exactamente los mismos que `ABRIR-4` ya declaró el 8/ago/2026 y que `censo-estimabilidad-coeficientes-v1_1.md` fila 4 ya incorporó a la evidencia de "búsqueda cerrada" de `ADR-52 A`. Este acto los reconfirma con una extracción independiente (780 variables de ENFIH, no heredadas; 369 encabezados de ENSAFI, con lectura manual ampliada) y no encuentra nada que no estuviera ya sobre la mesa. `N3`/`N11` no producen ningún candidato, nuevo o viejo, en ninguno de los dos instrumentos.
+
+**Conclusión: `T3` no aplica.** No se escribe propuesta acotada, no se abre fila de reapertura en `forense/firmas-pendientes.tsv` para `ADR-52A`/`ADR-54` — no hay reactivo que reabrirlos. La única fila nueva del tablero de este acto (`FP-87`) es sobre la premisa "APERTURA v1.2 §3" (§0), no sobre `ADR-52A`/`ADR-54`.
+
+## 4 · T4 — cierre
+
+**Contador del encargo, los dos números derivados: `SIN-RUTA` con ruta, antes → después = `0 de 4` → `0 de 4`.** Ninguna de las cuatro celdas objetivo (`N3`, `N4`, `N11`, `N15`) ganó ruta. Dentro de lo pre-registrado en `COMMIT A` (§1.4): la tasa base medida por `ABRIR-4` sobre estos mismos dos instrumentos era `0` de `14` en `EXISTE-SATISFACE`; este acto suma `0` de `8` más, sin romper el patrón. Acota, no refuta, y no es fracaso — es la ejecución honesta del procedimiento pre-registrado.
+
+**Fichas B-bis nuevas: cero.** Ninguna de las 8 celdas alcanzó `EXISTE-SATISFACE`; no hay nada "medible ya" que congelar en una ficha B-bis. Declarado explícitamente porque el encargo pide fichas "para lo medible ya" — la respuesta honesta a esa instrucción es que el conjunto está vacío, no que se omitió.
+
+**Lo que este acto deliberadamente no hace.** No calcula ningún β ni ninguna θ. No reabre `ADR-52A`/`ADR-54` (§3). No toca `data/manifiesto.yaml`, `data/curacion-registro/**`, `canon/modelo-decision-v4_0.md`, `milpa/`, ni `data/diseno-muestral.yaml`. No escribe en `data/raw/` — microdato solo lectura, verificado (`--verifica` recomputa `sha256`, no escribe).
+
+**La "palanca más grande dormida del corpus" — lo que este acto encuentra sobre esa frase.** El único candidato con valores reales y sin texto verificable que sigue "dormido" en sentido literal es el par `IMPULSIVID`/`GRA_CONTROL`/`CONF_FINAN`/`ORIEN_FUT`/`OPTIMISMO` de `ENSAFI` — y su despertar no depende de un acto de apertura más cuidadoso: depende de que exista un diccionario que este corpus no tiene y que este acto verificó, por segunda vez, que no está (§0). Si la "palanca" que el plan maestro describe es esa, el acto que la acciona es una adquisición (bajar el cuestionario/codebook real de ENSAFI 2023 de INEGI, si existe), no una apertura — declarado para que el sucesor no repita esta misma búsqueda sobre el mismo corpus sin ese archivo.
+
+## 5 · Suite y cierre de commit
+
+```
+$ python3 tests/check.py --baseline   (con corpus enlazado)
+21 FAIL · 129 WARN
+LÍNEA BASE: VERDE
+
+$ python3 tests/check.py --baseline   (con data/raw desenlazada)
+LÍNEA BASE: VERDE — sin cambio
+
+$ python3 tests/check.py --baseline   (con data/raices.local.yaml y data/secretos.local.yaml retirados)
+21 FAIL · 129 WARN
+LÍNEA BASE: VERDE — sin cambio
+```
+
+`T02`/`T03`/`T25` no disparan sobre ningún archivo de este acto, verificado por comando (no de memoria) contra la corrida completa. La cascada de la cabecera de ADR (`gobernanza` 131→132, `estado` en sus **tres** sitios que la citan — cabecera, tabla `§0` línea 27, y `§7` línea 207 — más el WARN 128→129 por `FP-87`) se propagó hasta punto fijo: la primera corrida tras escribir `ADR-132` sin propagar el resto dio `24 FAIL · 129 WARN` con `T15`/dos `T16` disparando; declarado aquí en vez de ocultar el paso intermedio, porque es exactamente la mecánica que `T15`/`T16` existen para vigilar.
+
+Sin `--freeze` (prohibido por el encargo). `data/apertura-enfih-ensafi-v1_0.tsv` y `data/coef-universo-v1_0.tsv` cierran con la tercera pasada de la suite (gitignorados retirados) antes del commit final.
