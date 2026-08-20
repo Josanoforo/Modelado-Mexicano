@@ -1,6 +1,8 @@
 # El motor adaptativo por celda: seleccionar el estimador, no imponerlo
 ### Propuesta sin sello · v0.4 · 12/ago/2026
 
+> ⚠️ **Superseded 20/ago/2026 en §3 por `propuesta-motor-adaptativo-celda-v0_5.md`** (`ACT-PIL-1 · CONTRATO-v0_5`, `ADR-129`): el campo `rol` se abre a `BASELINE_INGENUO`/`ENSAMBLE` (+ `variante_corredor`), el campo `resultado` se parte en `resultado` (prosa) + `estado_decidibilidad` (enum validado), nace `margen_material` y `vocabulario_version` sube a `0.5`. Este archivo no se edita — historia de la propuesta.
+
 > | | |
 > |---|---|
 > | **ARCHIVO** | `propuesta-motor-adaptativo-celda-v0_4.md` |
