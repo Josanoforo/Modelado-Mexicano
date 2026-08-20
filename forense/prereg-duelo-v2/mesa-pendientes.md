@@ -14,7 +14,7 @@ Regla que gobierna este archivo: cuando el texto fuente no especifica con clarid
 
 1. **Lectura popperiana literal** — "el falsador" = quien intenta refutar un corredor (L o M) mostrando que su predicción cae fuera del IC de R; "no refute" = el intento de refutación falla, es decir el corredor sobrevive el intento de falsación de esa celda. Bajo esta lectura, `ADV1-M5` sería en parte una tabla de qué corredor "sobrevive" el intento de falsación, casilla por casilla.
 2. **Lectura de robustez del diseño** — "el falsador" = un lector adversarial del propio piloto (rol que las cuatro corridas ADV-1/ADV-2 ya ocuparon); "no refute" = que el diseño del piloto mismo resista una nueva ronda de demolición adversarial, sin que ninguna casilla de `ADV1-M5` le dé munición nueva.
-3. **Lectura de M6 (gates de proceso)** — "el falsador" se refiere a los 7 umbrales de `ADV1-M6` (`FP-91`, `ABIERTA` — contradicción de qué criterio GO/NO-GO gobierna, ya registrada); "no refute" = que ninguno de los umbrales activos falle. Esta lectura conectaría el término con una fila ya abierta y sin resolver del tablero (`FP-91`).
+3. **Lectura de `ADV1-M6` (gates de proceso)** — "el falsador" se refiere a los 7 umbrales de `ADV1-M6` (`FP-91`, `ABIERTA` — contradicción de qué criterio GO/NO-GO gobierna, ya registrada); "no refute" = que ninguno de los umbrales activos falle. Esta lectura conectaría el término con una fila ya abierta y sin resolver del tablero (`FP-91`).
 4. **Error de transcripción / paráfrasis de mesa** de una idea que sí está en el corpus bajo otras palabras — p. ej. la cláusula de alcance de `ADV1-M5` ("ningún resultado autoriza abandonar L ni M para usos no muestreados") o la condición `INDECIDIBLE` de `ADV1-M3`. Ninguna de las dos usa el verbo "refutar".
 
 **Este acto no elige entre las cuatro.** Pide a mesa: (a) confirmar cuál lectura rige, o (b) declarar que el término no aplica a `ADV1-M5` y retirarlo de la compuerta B-bis para actos futuros.
@@ -23,7 +23,7 @@ Regla que gobierna este archivo: cuando el texto fuente no especifica con clarid
 
 ## §2 · Precedencia entre las cinco casillas de `ADV1-M5`
 
-El párrafo `M5` de la careo (copiado verbatim en `forense/escala-cinco-casillas-piloto-v1_0.md`) enumera cinco casillas (1)-(5) sin declarar orden de prelación. Los ejes que miden no son mutuamente excluyentes por construcción:
+El párrafo `ADV1-M5` de la careo (copiado verbatim en `forense/escala-cinco-casillas-piloto-v1_0.md`) enumera cinco casillas (1)-(5) sin declarar orden de prelación. Los ejes que miden no son mutuamente excluyentes por construcción:
 
 - (1)/(2) comparan **L contra M** (quién quedó más cerca del dato).
 - (3) compara **L contra M** con una banda de indiferencia (TOST).
@@ -34,9 +34,9 @@ Una misma celda, o el conjunto del piloto, puede satisfacer simultáneamente, po
 
 **Opciones abiertas, ninguna elegida por este acto:**
 
-- **Opción A — sin jerarquía, reporte conjunto.** Cada celda se etiqueta con TODAS las casillas que satisface; el resumen del piloto es un conteo por casilla, no una asignación exclusiva. Consistente con que M4 ya pide "conteo de INDECIDIBLES y SKIPS publicado al mismo tamaño que el marcador" — sugiere que el diseño tolera categorías no excluyentes.
+- **Opción A — sin jerarquía, reporte conjunto.** Cada celda se etiqueta con TODAS las casillas que satisface; el resumen del piloto es un conteo por casilla, no una asignación exclusiva. Consistente con que `ADV1-M4` ya pide "conteo de INDECIDIBLES y SKIPS publicado al mismo tamaño que el marcador" — sugiere que el diseño tolera categorías no excluyentes.
 - **Opción B — precedencia por severidad decreciente:** (5) > (4) > (3) > {(1),(2)}. Razonamiento posible: (5) y (4) son las casillas que el careo marca en negrita como las de mayor consecuencia ("ninguno utilizable v1", "el fenómeno no es predecible"), así que si aplican deberían dominar la lectura sobre una comparación L-vs-M que en ese contexto sería secundaria.
-- **Opción C — precedencia por orden de evaluación del script de scoring:** primero se evalúa (4) contra B (si nadie supera a B, ahí termina la lectura de esa celda); solo si alguien supera a B se evalúa (3) INDECIDIBLE (`ADV1-M3`) y luego (1)/(2); (5) se calcula siempre en paralelo como diagnóstico independiente, nunca sustituyendo a las otras cuatro. Esta opción es la que mejor encaja con cómo `ADV1-M3`/`ADV1-M4` de la careo están redactadas (skill se define relativo a B primero), pero el texto de `M5` no lo dice explícitamente para las cinco casillas como conjunto.
+- **Opción C — precedencia por orden de evaluación del script de scoring:** primero se evalúa (4) contra B (si nadie supera a B, ahí termina la lectura de esa celda); solo si alguien supera a B se evalúa (3) INDECIDIBLE (`ADV1-M3`) y luego (1)/(2); (5) se calcula siempre en paralelo como diagnóstico independiente, nunca sustituyendo a las otras cuatro. Esta opción es la que mejor encaja con cómo `ADV1-M3`/`ADV1-M4` de la careo están redactadas (skill se define relativo a B primero), pero el texto de `ADV1-M5` no lo dice explícitamente para las cinco casillas como conjunto.
 
 **Este acto no elige entre las tres.** El script de scoring (`forense/prereg-duelo-v2/scoring-adv1-m3.py`) implementa las funciones necesarias para calcular las cinco condiciones de forma independiente y las deja sin componer en una única etiqueta por celda — la composición/precedencia se deja como parámetro configurable pendiente de que mesa elija A, B, C, u otra.
 
