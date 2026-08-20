@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Validador de las celdas-D (data/curacion-registro/celdas-d/) contra el
-contrato propuesta-motor-adaptativo-celda-v0_3.md §3 (con las adiciones H1/H2
-de esa misma versión) y contra el invariante de identidad de §2 ("celda-D =
+contrato propuesta-motor-adaptativo-celda-v0_5.md §3 (con las adiciones H1/H2
+de v0.3, la partición de `fuerza` de v0.4, y los cinco cambios de v0.5) y
+contra el invariante de identidad de §2 ("celda-D =
 (estimando) x (población objetivo). Dominio derivado; fuente y diseño nunca
 en la clave, solo en candidatos").
 
@@ -10,33 +11,51 @@ Encargo CABLEADO-100 (12/ago/2026), G4/TAREA 4.2: hoy hay 2 celdas-D
 piloto va a escribir 10-15 más. Este validador llega antes que ellas -- no
 después, cuando ya haya 10 formas distintas de omitir un campo.
 
-Qué valida (alcance del encargo):
+Qué valida (alcance del encargo, ampliado por CONTRATO-v0_5 -- ver ese
+changelog para el porqué de cada campo nuevo):
   1. campos obligatorios de §3, a nivel celda_d y a nivel de cada candidato.
-  2. rol de candidato en BASELINE | CHALLENGER | COMPLEMENTO (§3), y que un
-     candidato COMPLEMENTO declare resultado NO-APLICA (§3: "no compiten, no
-     ganan ni pierden").
+  2. rol de candidato en BASELINE | CHALLENGER | COMPLEMENTO |
+     BASELINE_INGENUO | ENSAMBLE (§3, ampliado v0.5), que un candidato
+     COMPLEMENTO declare resultado NO-APLICA (§3: "no compiten, no ganan ni
+     pierden"), y variante_corredor en L-solo | L+corpus cuando el campo
+     está presente (v0.5 -- opcional, no ata a un valor de rol porque L
+     puede jugar BASELINE o CHALLENGER según la celda).
   3. tipo_adjudicacion en COMPARACION | FALSACION | CALIBRACION_CONJUNTA.
   4. escala/universo por candidato (H1): universo_instrumento no vacío por
      candidato; criterio_adjudicacion.escala y output_nativo.escala no
      vacíos a nivel celda (ambos nuevos en v0.3, el segundo obligatorio sin
      condición, el primero declarado explícito aun cuando no aplique -- así
-     lo hacen las dos celdas ya selladas, con "NO-APLICA", no con ausencia).
+     lo hacen las tres celdas ya selladas, con "NO-APLICA", no con ausencia).
   5. clave sin fuente (§2): celda_d no lleva fuente/fuentes/diseno/
      diseno_datos a su propio nivel -- esos campos existen SOLO dentro de
      cada candidato.
+  6. estado_decidibilidad (v0.5, §3(b)): enum PUNTUADA | INDECIDIBLE |
+     SKIP:<motivo> | CONTROL-MEMORIA | NO-APLICA, a nivel celda_d --
+     OBLIGATORIO solo si vocabulario_version == 0.5. No se exige bajo
+     vocabulario_version == 0.4 -- así es como las tres celdas existentes,
+     que declaran 0.4 y no se editan por este acto, siguen validando
+     (D-2/ADR-128: "el cambio se corrige, no las celdas").
+  7. margen_material (v0.5, §3(c)): si está presente, número o el string
+     literal "PENDIENTE-DERIVACION" -- nunca obligatorio.
+  8. vocabulario_version (v0.5, §3(d)): si está presente, 0.4 o 0.5 -- nunca
+     obligatorio (sigue siendo el único campo top-level opcional).
 
-Qué NO valida (declarado, no es descuido): el valor libre de `resultado` y
-de `fuerza` fuera del caso COMPLEMENTO. Las dos celdas ya selladas usan
-valores fuera del enum terso de §3 ("vigente", "NO_DETERMINADO",
-"MEDIDO·PARCIAL(x)") con razón declarada en su propio YAML -- v0.3 §4-bis
-ya ejemplifica "vigente" en su propio caso trabajado, y el encabezado de
-ambos archivos invoca la regla "§3/§4 difieren -- §4 manda". Forzar aquí un
-enum más estricto que el que la propia propuesta ejemplifica rompería los
-dos archivos sellados que este validador debe aceptar. La consistencia
-entre candidatos BASELINE/CHALLENGER de una misma celda (mismo estimando,
-escala comparable, §3.1) tampoco se valida aquí -- es un chequeo entre
-celdas relacionadas, no dentro de un solo archivo; queda para el acto de
-consolidación cuando existan celdas suficientes para que aplique.
+Qué NO valida (declarado, no es descuido): el valor libre de `resultado`
+fuera del caso COMPLEMENTO -- exactamente la razón por la que v0.5 le abre
+un campo hermano validado (`estado_decidibilidad`) en vez de apretar el
+enum de `resultado` mismo. Las tres celdas ya selladas usan valores de
+`resultado` fuera de cualquier enum terso, con razón declarada en su propio
+YAML -- forzar aquí un enum estricto sobre `resultado` rompería los tres
+archivos sellados que este validador debe aceptar. La consistencia entre
+candidatos BASELINE/CHALLENGER de una misma celda (mismo estimando, escala
+comparable, §3.1) tampoco se valida aquí -- es un chequeo entre celdas
+relacionadas, no dentro de un solo archivo; queda para el acto de
+consolidación cuando existan celdas suficientes para que aplique. Y, nuevo
+en v0.5: si el valor de `estado_decidibilidad` elegido (`PUNTUADA` vs
+`INDECIDIBLE`, etc.) respeta las dos condiciones verbatim de `ADV1-M3`
+sobre el dato real de esa celda -- eso es un juicio sobre contenido, no
+algo que un validador de esquema pueda comprobar; el esquema sólo exige
+que el valor elegido sea uno de los cinco legales.
 """
 import glob
 import os
@@ -50,11 +69,26 @@ CELDAS_DIR = os.path.join(ROOT, "data", "curacion-registro", "celdas-d")
 TIPOS_ADJUDICACION = {"COMPARACION", "FALSACION", "CALIBRACION_CONJUNTA"}
 DOMINIOS = {"FIN", "MIG", "TEC", "CAP", "CUL", "SAL", "SEG", "TRA", "EST", "TIE"}
 UNIDADES_OBJETIVO = {"persona", "hogar", "establecimiento", "agregado_geografico"}
-ROLES = {"BASELINE", "CHALLENGER", "COMPLEMENTO"}
+ROLES = {"BASELINE", "CHALLENGER", "COMPLEMENTO", "BASELINE_INGENUO", "ENSAMBLE"}
 DISENOS_DATOS = {
     "panel", "pseudo_panel", "transversal", "registro_administrativo",
     "experimento_natural", "auditoria_campo", "enlace_ecologico",
 }
+# v0.5 §3(a): dos dietas de información del corredor L, campo hermano de
+# `rol` -- no duplica el enum porque L puede jugar BASELINE o CHALLENGER
+# según la celda; opcional, solo se valida el valor cuando está presente.
+VARIANTES_CORREDOR = {"L-solo", "L+corpus"}
+
+# v0.5 §3(b): veredicto de celda del piloto ADV-DUELO (D-4/M4/M5,
+# ADR-128(e)). SKIP:<motivo> lleva sufijo libre -- se valida por prefijo,
+# no por pertenencia al set (mismo patrón que PERDIO:<margen> en
+# `resultado`, nunca cerrado a un catálogo de motivos).
+ESTADOS_DECIDIBILIDAD = {"PUNTUADA", "INDECIDIBLE", "CONTROL-MEMORIA", "NO-APLICA"}
+
+# v0.5 §3(d): las dos versiones que hoy tienen celdas reales -- 0.4 (las
+# tres existentes) y 0.5 (lo que este contrato introduce). Comparación
+# numérica: YAML parsea `0.4`/`0.5` sin comillas como float.
+VOCABULARIO_VERSIONES = {0.4, 0.5}
 ESTRATEGIAS = {"pseudo_panel", "momentos", "composicion", "transversal_con_seleccion", "NO-APLICA"}
 ESTADOS_OPERATIVOS = {"LISTO", "LEGACY", "PENDIENTE", "EXCLUIDO"}
 
@@ -108,6 +142,48 @@ def errors_for(celda_d, filename):
     if "momentos_holdout_refs" in celda_d and not isinstance(celda_d["momentos_holdout_refs"], list):
         errs.append(f"{filename}: momentos_holdout_refs debe ser una lista")
 
+    # v0.5 §3(d): vocabulario_version, si está presente, tiene que ser una
+    # de las dos versiones que hoy tienen celdas reales.
+    vocabulario_version = celda_d.get("vocabulario_version")
+    if vocabulario_version is not None and vocabulario_version not in VOCABULARIO_VERSIONES:
+        errs.append(
+            f"{filename}: vocabulario_version inválida: {vocabulario_version!r} "
+            f"(v0.5 §3(d): 0.4 o 0.5)"
+        )
+
+    # v0.5 §3(b): el valor, cuando está presente, siempre se valida contra
+    # el enum; la OBLIGATORIEDAD está gateada por vocabulario_version == 0.5
+    # -- las tres celdas selladas declaran 0.4 y no se editan por este acto
+    # (D-2/ADR-128), así que exigir el campo sin esa compuerta las rompería.
+    # El propio encargo lo dice: "si alguna falla, el cambio está mal
+    # diseñado -- se corrige el cambio, no las celdas".
+    estado_decid = celda_d.get("estado_decidibilidad")
+    if estado_decid is None:
+        if vocabulario_version == 0.5:
+            errs.append(
+                f"{filename}: falta 'estado_decidibilidad' (v0.5 §3(b), obligatorio "
+                f"bajo vocabulario_version 0.5)"
+            )
+    elif estado_decid not in ESTADOS_DECIDIBILIDAD and not (
+        isinstance(estado_decid, str) and estado_decid.startswith("SKIP:")
+        and len(estado_decid) > len("SKIP:")
+    ):
+        errs.append(
+            f"{filename}: estado_decidibilidad inválido: {estado_decid!r} (v0.5 §3(b): "
+            f"PUNTUADA|INDECIDIBLE|SKIP:<motivo>|CONTROL-MEMORIA|NO-APLICA)"
+        )
+
+    # v0.5 §3(c): opcional siempre -- cuando existe, número (interpretado
+    # sobre criterio_adjudicacion.escala) o el centinela explícito.
+    margen = celda_d.get("margen_material")
+    if margen is not None:
+        es_numero = isinstance(margen, (int, float)) and not isinstance(margen, bool)
+        if not es_numero and margen != "PENDIENTE-DERIVACION":
+            errs.append(
+                f"{filename}: margen_material inválido: {margen!r} (v0.5 §3(c): "
+                f"número o PENDIENTE-DERIVACION)"
+            )
+
     criterio = celda_d.get("criterio_adjudicacion")
     if not isinstance(criterio, dict) or not criterio.get("texto") or not criterio.get("escala"):
         errs.append(f"{filename}: criterio_adjudicacion.{{texto,escala}} obligatorios (escala: H1, v0.3 §3)")
@@ -136,7 +212,19 @@ def errors_for(celda_d, filename):
 
         rol = cand.get("rol")
         if rol not in ROLES:
-            errs.append(f"{etiqueta}: rol inválido: {rol!r} (v0.3 §3: BASELINE|CHALLENGER|COMPLEMENTO)")
+            errs.append(
+                f"{etiqueta}: rol inválido: {rol!r} (v0.5 §3(a): BASELINE|CHALLENGER|"
+                f"COMPLEMENTO|BASELINE_INGENUO|ENSAMBLE)"
+            )
+
+        # v0.5 §3(a): opcional siempre -- distingue la dieta de información
+        # del corredor L sin duplicar el enum de rol.
+        variante = cand.get("variante_corredor")
+        if variante is not None and variante not in VARIANTES_CORREDOR:
+            errs.append(
+                f"{etiqueta}: variante_corredor inválida: {variante!r} (v0.5 §3(a): "
+                f"L-solo|L+corpus)"
+            )
 
         if not cand.get("universo_instrumento"):
             errs.append(f"{etiqueta}: universo_instrumento vacío (obligatorio, H1 v0.3 §3)")
@@ -193,7 +281,7 @@ def main():
             print(f"  {e}")
         return 1
 
-    print(f"{len(paths)} archivo(s) de celda-D validan contra propuesta-motor-adaptativo-celda-v0_3.md §3.")
+    print(f"{len(paths)} archivo(s) de celda-D validan contra propuesta-motor-adaptativo-celda-v0_5.md §3.")
     return 0
 
 
