@@ -129,7 +129,9 @@ Los dos únicos candidatos con valores reales de las 8 celdas (`IMPULSIVID`/`GRA
 
 **La "palanca más grande dormida del corpus" — lo que este acto encuentra sobre esa frase.** El único candidato con valores reales y sin texto verificable que sigue "dormido" en sentido literal es el par `IMPULSIVID`/`GRA_CONTROL`/`CONF_FINAN`/`ORIEN_FUT`/`OPTIMISMO` de `ENSAFI` — y su despertar no depende de un acto de apertura más cuidadoso: depende de que exista un diccionario que este corpus no tiene y que este acto verificó, por segunda vez, que no está (§0). Si la "palanca" que el plan maestro describe es esa, el acto que la acciona es una adquisición (bajar el cuestionario/codebook real de ENSAFI 2023 de INEGI, si existe), no una apertura — declarado para que el sucesor no repita esta misma búsqueda sobre el mismo corpus sin ese archivo.
 
-## 5 · Suite y cierre de commit
+## 5 · Suite y cierre de commit — cifras previas a la fusión con `origin/main`
+
+Antes de descubrir la fusión concurrente de `§6` (abajo), este acto llegó a punto fijo sobre `origin/main = 9f4ea60`:
 
 ```
 $ python3 tests/check.py --baseline   (con corpus enlazado)
@@ -144,6 +146,36 @@ $ python3 tests/check.py --baseline   (con data/raices.local.yaml y data/secreto
 LÍNEA BASE: VERDE — sin cambio
 ```
 
-`T02`/`T03`/`T25` no disparan sobre ningún archivo de este acto, verificado por comando (no de memoria) contra la corrida completa. La cascada de la cabecera de ADR (`gobernanza` 131→132, `estado` en sus **tres** sitios que la citan — cabecera, tabla `§0` línea 27, y `§7` línea 207 — más el WARN 128→129 por `FP-87`) se propagó hasta punto fijo: la primera corrida tras escribir `ADR-132` sin propagar el resto dio `24 FAIL · 129 WARN` con `T15`/dos `T16` disparando; declarado aquí en vez de ocultar el paso intermedio, porque es exactamente la mecánica que `T15`/`T16` existen para vigilar.
+`T02`/`T03`/`T25` no disparaban sobre ningún archivo de este acto. La cascada de la cabecera de ADR (`gobernanza` 131→132, `estado` en sus **tres** sitios que la citan — más el WARN 128→129 por `FP-87`) se propagó hasta punto fijo: la primera corrida tras escribir `ADR-132` sin propagar el resto dio `24 FAIL · 129 WARN` con `T15`/dos `T16` disparando; declarado en vez de ocultar el paso intermedio. **Estas cifras quedaron superadas por la fusión de `§6` — ver ahí las vigentes.**
 
-Sin `--freeze` (prohibido por el encargo). `data/apertura-enfih-ensafi-v1_0.tsv` y `data/coef-universo-v1_0.tsv` cierran con la tercera pasada de la suite (gitignorados retirados) antes del commit final.
+Sin `--freeze` (prohibido por el encargo).
+
+---
+
+## 6 · Corrección post-fusión — §0 quedó correcto contra su terreno y superado por uno nuevo, en el mismo acto
+
+**No se edita §0 hacia atrás** (`A.10`, corolario 1): el texto de arriba es exactamente lo que este acto verificó, con el comando a la vista, contra `origin/main = 9f4ea60`. Lo que sigue es lo que cambió entre ese commit y el cierre de este acto, declarado en el mismo acto y no en uno posterior.
+
+Al fusionar `origin/main` antes del push final, `git log` mostró un commit nuevo: `a72ead3`, merge de `PR #299` (`ACTO T-SELLO`, rama distinta, corriendo en paralelo a este acto sin que ninguna de las dos sesiones lo supiera). Ese PR aterriza `canon/APERTURA-FASE-CALCULO-v1_2.md` — el documento exacto cuya existencia §0 había buscado y no encontrado. Leído completo tras la fusión: su **§3** es, casi verbatim, el `T1`-`T4` que este acto ejecutó —
+
+> *"Ley de fondo: PLAN-CALCULO-TOTAL §3-OLA2 + celdas objetivo del censo de β (re-derivado de `data/coef-universo-v1_0.tsv`, filas ENFIH/ENSAFI)... T1 · Abre ENFIH 2019 y ENSAFI 2023 a nivel variable contra las celdas objetivo, con términos pre-registrados en tu COMMIT A antes de abrir un solo archivo... T2 · Por celda objetivo: veredicto A.4... T3 · Si aparece reactivo que reabre ADR-52A/54: NO reabres... T4 · Cierra: cuántos de los SIN-RUTA ganaron ruta..."*
+
+— casi palabra por palabra el encargo que esta sesión recibió y ejecutó. **La premisa "APERTURA v1.2 §3, ya en canon tras T-SELLO" no se sostenía cuando este acto la verificó, y se sostiene ahora.** No fue un error de verificación: `canon/APERTURA-FASE-CALCULO-v1_2.md` genuinamente no existía en el árbol contra el que se corrió `git log --all -S` en `§0` — el commit que lo trae (`0ec4721` era el único con "APERTURA v1.2" en toda la historia hasta ese punto) es, precisamente, el mismo `T-SELLO` que después lo completó con `v1.2`, en una rama que este acto no podía ver hasta que se fusionó.
+
+**Lo que esto cambia y lo que no cambia.** No cambia ningún resultado de `§2`-`§4`: los 8 veredictos A.4, el contador `0 de 4`, la no-activación de `T3`, son independientes de si el documento canónico existía. Cambia el estatus de la propia observación de `§0`: de "hallazgo de premisa mal fundada" a "condición de carrera entre dos sesiones concurrentes, resuelta al fusionar". La fila de tablero que este acto había preparado (`FP-87`, "mesa decide si vale la pena sellar un documento real") se retira antes de commitear — no hay pregunta pendiente, el documento ya existe y ya está en canon vía `ADR-132` de `T-SELLO`.
+
+**Mecánica de la fusión.** `git merge origin/main` produjo conflicto real en tres archivos — los mismos que `ACTO T-SELLO` ya había identificado como su propio punto de colisión con `LOTE-RETRIAGE`: `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md`, `forense/firmas-pendientes.tsv`. Resuelto a mano, conservando la contribución de `T-SELLO` íntegra (su `ADR-132`, sus `FP-87`…`FP-91`) y renumerando la propia: el `ADR-132` de este acto candidateado contra `9f4ea60` pasa a **`ADR-133`** (T-SELLO fusionó primero con el mismo número), con el párrafo `(e)` reescrito para reflejar lo de arriba en vez de mantener una afirmación que el propio acto ya sabía superada. `FP-87` de este acto se retira sin dejar hueco (el tablero no re-usa números: el máximo queda en `91`, de `T-SELLO`). `hallazgos.md` recibe una entrada nueva junto a la original, marcada `{cita-historica}`, en vez de editar la primera — mismo mecanismo que el resto del archivo ya usa para toda corrección.
+
+```
+$ python3 tests/check.py --baseline   (tras la fusión y la resolución de conflictos, con corpus enlazado)
+21 FAIL · 138 WARN
+LÍNEA BASE: VERDE
+
+$ python3 tests/check.py --baseline   (con data/raw desenlazada)
+LÍNEA BASE: VERDE — sin cambio
+
+$ python3 tests/check.py --baseline   (con data/raices.local.yaml y data/secretos.local.yaml retirados)
+LÍNEA BASE: VERDE — sin cambio
+```
+
+El FAIL núcleo (21) coincide exacto con el que este acto ya tenía antes de descubrir la fusión — la subida transitoria a 22-26 durante la resolución fue enteramente mecánica (conteo de ADR desincronizado en tres sitios, más dos citas históricas de `canon/PLAN-CALCULO-TOTAL-v1_1.md:8`, heredadas de `T-SELLO`, que quedaron colgantes contra `T15` en cuanto el conteo de ADR subió con `ADR-133`; marcadas `{cita-historica}` dentro de sus negritas, no reescritas — mismo mecanismo que `T15` ya usa en todo el archivo). El WARN (138) es enteramente de `T-SELLO`: este acto no abre ninguna fila de tablero.
