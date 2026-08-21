@@ -1353,6 +1353,38 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # el mismo commit -- eso es lo que (b) protege, y sigue protegido.
     "forense/encargos/2026-08-18-NOTAS-P3.md",
     "forense/notas/2026-08-18-p3-barrido-final.md",
+    # Sumados en ACTO REPARA-T22, 21/ago/2026 -- ambos citan verbatim el
+    # bloque de patrones de la Parte 3 de CONSOLIDA-17AGO como sus propios
+    # ejemplos ("queda (a|para) mesa | pendiente de mesa | decisión de
+    # mesa pendiente | ..."), no un pendiente real sin registrar. Ya
+    # diagnosticado el mismo día en la propia nota, que dejó el ajuste a
+    # `_T22_ARCHIVOS_CONOCIDOS` para un acto sucesor con `tests/**` en su
+    # perímetro (`forense/notas/2026-08-17-consolida.md`, entrada `T22`).
+    "forense/encargos/2026-08-17-CONSOLIDA-17AGO.md",
+    "forense/notas/2026-08-17-consolida.md",
+    # Descubiertos por el acotamiento de (b) a filas ABIERTA/FIRMADA del
+    # mismo ACTO REPARA-T22 -- antes exentos por una fila CERRADA de otro
+    # archivo que citaba su nombre; verificados uno por uno, mismo
+    # mecanismo de autocaptura verbatim que las entradas de arriba, no un
+    # pendiente sin registrar:
+    #  - EDEC cita el propio comando `grep -n "pendiente nombrado\|queda
+    #    para mesa\|sigue en mesa"` que corre contra `gobernanza-v1_15.md`
+    #    ("hits sin fila" -- describe el resultado del grep, no crea uno).
+    #  - la nota de fuente-única lo reproduce verbatim y lo declara: "Los
+    #    dos archivos nuevos de este acto disparan el marcador por
+    #    construcción" (línea 233 propia).
+    #  - LANE-A-E0-E5 usa "RANURAS DEL SELLO" como nombre de sección del
+    #    propio encargo (a llenar con firmas de ADR-100 ya existentes),
+    #    no una ranura nueva sin fila.
+    "forense/encargos/2026-08-17-EDEC-fuente-unica-decisiones.md",
+    "forense/notas/2026-08-17-fuente-unica-decisiones.md",
+    "forense/encargos/2026-08-18-LANE-A-E0-E5.md",
+    # El propio encargo de este acto, archivado verbatim (A.3): reproduce
+    # citas literales del bloque T22 (RANURA/PENDIENTE de mesa/PROPUESTA)
+    # como parte de su propia descripción del defecto que repara -- mismo
+    # autocaptura, no un pendiente real sin fila.
+    "forense/encargos/2026-08-21-REPARA-T22.md",
+    "forense/notas/2026-08-21-repara-t22-cierre.md",  # ídem, cita verbatim las mismas fuentes al documentarlas -- mismo autocaptura
 }
 
 def _t22_tabla():
@@ -1417,8 +1449,16 @@ def t22_firmas():
 
     # (b) auto-protección: archivo nuevo de canon/forense con marcador de
     # ranura o de pendiente-de-mesa, sin fila que lo cite en `dónde`.
+    # Acotado a filas ABIERTA/FIRMADA -- ACTO REPARA-T22, 21/ago/2026.
+    # Antes, cualquier fila (incluida CERRADA) exentaba el archivo entero
+    # para siempre; una fila ya cerrada no puede blindar contra un
+    # pendiente nuevo que el mismo archivo traiga después. Medido antes de
+    # commitear: 21 archivos dejan de estar exentos, 3 FAIL nuevos (dentro
+    # del límite de 3 acordado con mesa) -- ver nota del acto.
     citados = set()
     for f in filas:
+        if f.get("estado") not in ("ABIERTA", "FIRMADA"):
+            continue
         for m in re.finditer(r"[\w./-]+\.(?:md|tsv|yaml|json)", f.get("dónde", "")):
             citados.add(os.path.basename(m.group(0)))
 
