@@ -1275,6 +1275,12 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # forense/notas/2026-08-20-emisor-m-verificacion-premisas.md:26 -- "⊕ sigue
+    # PROPUESTA sin sellar (mesa-pendientes §3)" es una referencia de solo
+    # lectura a un pendiente YA existente y ya rastreado en `mesa-pendientes.md`
+    # (§3), no un marcador nuevo que necesite fila propia en firmas-pendientes.tsv
+    # -- ACTO LANDING-EMISOR-M1, 21/ago/2026.
+    "forense/notas/2026-08-20-emisor-m-verificacion-premisas.md",
     "canon/gobernanza-v1_15.md",
     "forense/encargos/2026-08-11-A-renglon-llaves.md",
     "forense/encargos/2026-08-12-E4c-commit4.md",
@@ -2126,6 +2132,8 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    "forense/BENCHMARK-INTERVALO-CORREDOR-M-2026-08-20.md",
+    "forense/encargos/2026-08-21-emisor-m1b.md",
     "canon/APERTURA-FASE-CALCULO-v1_2.md",
     "canon/PLAN-CALCULO-TOTAL-v1_1.md",
     "canon/estado-programa-v1_10.md",

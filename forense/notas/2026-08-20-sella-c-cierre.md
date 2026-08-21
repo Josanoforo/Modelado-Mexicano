@@ -12,7 +12,7 @@ Gate `FP-91`, firma de mesa de `SELLA-C`, verbatim: **«C: 2 mueren y ADV1-M6 se
 - `forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md:44` — confirmado por lectura completa del §B: la línea `ADV1-M6` dice exactamente *"GO con dientes. De los 7 umbrales, ≥3 de resultado: cuotas de ADV1-M1 cumplidas por comando (P2, CV, sondas corridas) · cobertura de intervalos de M ≥60% de celdas puntuadas · M>B en ≥2/3 de celdas puntuadas. Al menos un umbral lo determina la naturaleza, no el equipo."* Los tres criterios de resultado citados por la tarea coinciden exactamente con esta línea — no hizo falta reinterpretarlos.
 - Los seis sitios de enmienda (`PLAN-CALCULO-TOTAL-v1_1.md:40,62,67`; `APERTURA-FASE-CALCULO-v1_2.md:17,25,41`) se localizaron por contenido citado, no ciegamente por número de línea — los seis coincidieron exactamente con los números de línea reales del árbol al momento de escribir. Ninguno resultó `NO-ENCONTRADO`.
 - `forense/firmas-pendientes.tsv`: `FP-91` confirmada `ABIERTA` antes de este acto (`grep`, línea 92).
-- ADR máximo re-verificado: `grep -oE 'ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` → `137`, único, sin huecos → candidato `ADR-138`.
+- ADR máximo re-verificado: `grep -oE 'ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` → `137`, único, sin huecos → candidato `ADR-140`.
 - FP máximo re-verificado: `grep -oE 'FP-[0-9]+' forense/firmas-pendientes.tsv | sort -t- -k2 -n -u | tail -1` → `102` — sin filas nuevas necesarias, solo el cierre de `FP-91`.
 
 ## Patrón `ADV1-M5`→`ADV1-M5 v2` (`ADR-136`) replicado
@@ -29,8 +29,8 @@ La primera redacción del documento nuevo y del encargo traía los tres rótulos
 |---|---|---|
 | T1 | `forense/adv-duelo/ADV1-M6-v2-2026-08-20.md` (nuevo) | Capa nueva sobre `ADV1-M6`, tres criterios como conjunto completo, careo intacto |
 | T2 | Enmiendas in situ, 20/ago/2026, en `PLAN-CALCULO-TOTAL-v1_1.md:40,62,67` y `APERTURA-FASE-CALCULO-v1_2.md:17,25,41` | Seis sitios localizados y enmendados; cero `NO-ENCONTRADO`; texto original intacto en los seis |
-| T3 | Cláusula de compuerta, sellada en `ADR-138(c)` | El `GO` de `ADV1-M6 v2` ocupa el lugar reservado a los siete umbrales — nueva compuerta formal de apertura de la fase de cálculo |
-| T4 | `ADR-138` (`canon/gobernanza-v1_15.md`) · `FP-91` → `FIRMADA` (`forense/firmas-pendientes.tsv`) · `forense/hallazgos.md` (una línea) · `canon/estado-programa-v1_10.md` (cascada `137→138` ADR, `142→141` WARN) · `forense/encargos/2026-08-20-SELLA-C.md` (`CONSUMIDO`) · esta nota | Cerrado |
+| T3 | Cláusula de compuerta, sellada en `ADR-140(c)` | El `GO` de `ADV1-M6 v2` ocupa el lugar reservado a los siete umbrales — nueva compuerta formal de apertura de la fase de cálculo |
+| T4 | `ADR-140` (`canon/gobernanza-v1_15.md`) · `FP-91` → `FIRMADA` (`forense/firmas-pendientes.tsv`) · `forense/hallazgos.md` (una línea) · `canon/estado-programa-v1_10.md` (cascada `137→138` ADR, `142→141` WARN) · `forense/encargos/2026-08-20-SELLA-C.md` (`CONSUMIDO`) · esta nota | Cerrado |
 
 ## Fila `ABIERTA` nueva — evaluación
 
@@ -48,9 +48,9 @@ LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado e
 (5 entradas de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
 ```
 
-Recifrado `142→141` WARN (`FP-91` `ABIERTA`→`FIRMADA`, `T22`), FAIL sin cambio en `19`. `gobernanza`/`estado` recifrados `137→138` ADR (`ADR-138`). Sin `--freeze` en ningún punto.
+Recifrado `142→141` WARN (`FP-91` `ABIERTA`→`FIRMADA`, `T22`), FAIL sin cambio en `19`. `gobernanza`/`estado` recifrados `137→138` ADR (`ADR-140`). Sin `--freeze` en ningún punto.
 
 ## Perímetro
 
-Tocado: `forense/adv-duelo/ADV1-M6-v2-2026-08-20.md` (nuevo) · enmiendas in situ en `canon/PLAN-CALCULO-TOTAL-v1_1.md` y `canon/APERTURA-FASE-CALCULO-v1_2.md` (solo notas añadidas, cuerpo original intacto) · `canon/gobernanza-v1_15.md` (`ADR-138`, cabecera) · `canon/estado-programa-v1_10.md` (cascada, cabecera) · `forense/firmas-pendientes.tsv` (fila `FP-91`) · `forense/hallazgos.md` (una línea) · `forense/encargos/2026-08-20-SELLA-C.md` (nuevo) · esta nota.
+Tocado: `forense/adv-duelo/ADV1-M6-v2-2026-08-20.md` (nuevo) · enmiendas in situ en `canon/PLAN-CALCULO-TOTAL-v1_1.md` y `canon/APERTURA-FASE-CALCULO-v1_2.md` (solo notas añadidas, cuerpo original intacto) · `canon/gobernanza-v1_15.md` (`ADR-140`, cabecera) · `canon/estado-programa-v1_10.md` (cascada, cabecera) · `forense/firmas-pendientes.tsv` (fila `FP-91`) · `forense/hallazgos.md` (una línea) · `forense/encargos/2026-08-20-SELLA-C.md` (nuevo) · esta nota.
 No tocado: `forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md` (el careo original, verificado ausente del diff) · `milpa/` · `data/` · `tests/`.
