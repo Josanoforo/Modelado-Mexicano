@@ -1,3 +1,5 @@
+> **Banner de este acto (`SELLA-M5-V2`, 20/ago/2026):** la capa de cómputo vigente de `ADV1-M5` es `forense/escala-cinco-casillas-piloto-v2_0.md` — este documento (`v1_0`) queda íntegro, no se edita, y sigue siendo la fuente del párrafo original citado en `v2_0` §1.
+
 # `ADV1-M5` · escala de cinco casillas del piloto — 20/ago/2026
 
 **Acto:** `DUELO-PREREG-V2` (nube, Opus; gate `T-SELLO` + `ACT-PIL-2` fusionados). Nombre estable de este mecanismo: **`ADV1-M5`** — nunca el rótulo pelado a secas (colisiona con el mismo rótulo pelado usado en `ADR-MOTOR-2-esqueleto`, mecanismo distinto).
