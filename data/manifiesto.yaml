@@ -14530,3 +14530,412 @@
     zipfile.testzip() limpio. TRES descargas independientes en esta sesion, las tres byte
     a byte identicas (sha256 4cf0e61a...), la tercera corrida por el supervisor y no por el
     ejecutor. Sin truncamiento.'
+
+- id: enoe_2016_1t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2016trim1_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2016trim1_csv.zip
+  sha256: 8e29abc983fadf367ef347b40806987d51ad412051b3684ac45fd91f4cadde5d
+  tamano_bytes: 29867488
+  formato: 'ZIP (microdatos ENOE 2016 trimestre 1, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2016_2t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2016trim2_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2016trim2_csv.zip
+  sha256: 4aa9a8e2083378fa60aa965a2236bc81ca1a011c1a80cfb5907c462dc3f5a56f
+  tamano_bytes: 26779138
+  formato: 'ZIP (microdatos ENOE 2016 trimestre 2, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2016_3t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2016trim3_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2016trim3_csv.zip
+  sha256: 9103423fdceceed4922d6fcd53dee9357c1fb9815854bd58314a726816d2cc28
+  tamano_bytes: 26452611
+  formato: 'ZIP (microdatos ENOE 2016 trimestre 3, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2016_4t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2016trim4_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2016trim4_csv.zip
+  sha256: f5846e8416dbbdb0a907b3f2321e9607083a269878657225fd3c82c708465500
+  tamano_bytes: 26466686
+  formato: 'ZIP (microdatos ENOE 2016 trimestre 4, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2017_1t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2017trim1_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2017trim1_csv.zip
+  sha256: 945d848a236630474d1798cf39f5098a8e1f63162550d6728b354cd05b5a73a8
+  tamano_bytes: 29455399
+  formato: 'ZIP (microdatos ENOE 2017 trimestre 1, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2017_2t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2017trim2_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2017trim2_csv.zip
+  sha256: bd58ed29a986e3f8b3642e6e6aa8ea7dbf7277116888cd60f799b562fd545066
+  tamano_bytes: 27024159
+  formato: 'ZIP (microdatos ENOE 2017 trimestre 2, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2017_3t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2017trim3_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2017trim3_csv.zip
+  sha256: 1c3c9ad09ab726b6b4546fdb86d68759749758b31d74a97718d4d665e0bb5973
+  tamano_bytes: 26498706
+  formato: 'ZIP (microdatos ENOE 2017 trimestre 3, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2017_4t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2017trim4_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2017trim4_csv.zip
+  sha256: af96a2420779c1cdf82b49bb7ddd5b489771bb791938db9b799da6f8b43d3be4
+  tamano_bytes: 26664215
+  formato: 'ZIP (microdatos ENOE 2017 trimestre 4, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2018_1t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2018trim1_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2018trim1_csv.zip
+  sha256: e078fbd23a6c62a91eb26070818d7c2f5ac2b3ed4f4af698be20a8e522a13d33
+  tamano_bytes: 29646952
+  formato: 'ZIP (microdatos ENOE 2018 trimestre 1, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2018_2t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2018trim2_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2018trim2_csv.zip
+  sha256: 2ca4002f7209b029a470caa3174353a2766ca9fc1f4e1ea3c87a063d1218c00f
+  tamano_bytes: 26835694
+  formato: 'ZIP (microdatos ENOE 2018 trimestre 2, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2018_3t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2018trim3_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2018trim3_csv.zip
+  sha256: 7273d867ef6b9c5cad0264451b195f41606c6e1a9c84d1662de9139f563487c7
+  tamano_bytes: 26606485
+  formato: 'ZIP (microdatos ENOE 2018 trimestre 3, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2018_4t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2018trim4_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2018trim4_csv.zip
+  sha256: 9259fcb81747ebfad7fbbd75b9dc9a65825142bc10366c447f645489b3383774
+  tamano_bytes: 26724182
+  formato: 'ZIP (microdatos ENOE 2018 trimestre 4, ruta /microdatos/) -- 5 tablas CSV: COE1T
+    COE2T HOGT SDEMT VIVT'
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2005_1t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar -- sonda de era para el diferencial exhaustivo de variables pre-vs-post'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2005trim1_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2005trim1_csv.zip
+  sha256: a9c7823dc60a8ce85478ab115409eeeacd35e6e4aaf604f3c4cbd8c802171a33
+  tamano_bytes: 33534030
+  formato: ZIP (microdatos ENOE 2005 trimestre 1, ruta /microdatos/) -- 5 tablas CSV
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2008_1t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar -- sonda de era para el diferencial exhaustivo de variables pre-vs-post'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2008trim1_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2008trim1_csv.zip
+  sha256: a8a8c1917a5e083bdad9f6ddba29e7d9efd0b21cc8137aad7ed36dd63100ad94
+  tamano_bytes: 27278375
+  formato: ZIP (microdatos ENOE 2008 trimestre 1, ruta /microdatos/) -- 5 tablas CSV
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2012_1t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar -- sonda de era para el diferencial exhaustivo de variables pre-vs-post'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2012trim1_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2012trim1_csv.zip
+  sha256: fea732fdf1c14349098a16a1d9c635a7621992c21b8688b3f26c7d2f2f0533b5
+  tamano_bytes: 31269330
+  formato: ZIP (microdatos ENOE 2012 trimestre 1, ruta /microdatos/) -- 5 tablas CSV
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2014_1t_csv_microdatos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar -- sonda de era para el diferencial exhaustivo de variables pre-vs-post'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2014trim1_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: 2014trim1_csv.zip
+  sha256: fbb779cab476cf97ccd7483cdf02b87c19b1315a3147ea1797db06ab356fcbd2
+  tamano_bytes: 25134524
+  formato: ZIP (microdatos ENOE 2014 trimestre 1, ruta /microdatos/) -- 5 tablas CSV
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2018_4t_csv_datosabiertos
+  usado_para: 'ADQ-ENOE-PRE2019 / llave (ii) ADR-57(c) -- antes/despues del decreto de la
+    Zona Libre de la Frontera Norte (rige 1/ene/2019). Pendiente de pre-registro de diseno:
+    adquirir no es disenar -- puente de distribucion: la misma ola que enoe_2018_4t_csv_microdatos,
+    por la otra ruta de INEGI'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2018/conjunto_de_datos_enoe_2018_4t_csv.zip
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: conjunto_de_datos_enoe_2018_4t_csv.zip
+  sha256: 33863942d1b4b3bcf27007a9621f48647eb69f611d759cb128c651a7892e1531
+  tamano_bytes: 41902692
+  formato: ZIP (datos abiertos ENOE 2018 trimestre 4, ruta /datosabiertos/) -- 5 tablas mas
+    catalogos y diccionarios
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_fd_c_amp_v1_pdf
+  usado_para: ADQ-ENOE-PRE2019 / T2 -- descriptor de instrumento por era, universo del barrido
+    de los 9 constructos
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_amp_v1.pdf
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: fd_c_amp_v1.pdf
+  sha256: cf408338e90516148a00a644921dd8b9fbbbb297d30b0008906d3020cb783828
+  tamano_bytes: 303437
+  formato: PDF (INEGI, ENOE, Descripcion de archivos -- era 14ymas)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_fd_c_amp_v2_pdf
+  usado_para: ADQ-ENOE-PRE2019 / T2 -- descriptor de instrumento por era, universo del barrido
+    de los 9 constructos
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_amp_v2.pdf
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: fd_c_amp_v2.pdf
+  sha256: 41257e6f04014146e0f9cdfc0d92bdcdd5c2c1b63bb8b5c9d289944ca0f71f79
+  tamano_bytes: 293353
+  formato: PDF (INEGI, ENOE, Descripcion de archivos -- era 14ymas)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_fd_c_amp_v3_pdf
+  usado_para: ADQ-ENOE-PRE2019 / T2 -- descriptor de instrumento por era, universo del barrido
+    de los 9 constructos
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_amp_v3.pdf
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: fd_c_amp_v3.pdf
+  sha256: 027d2ff97cc7cafcba99c4e9524fbf77254dfcb46dd7933880315466f17a39d1
+  tamano_bytes: 959621
+  formato: PDF (INEGI, ENOE, Descripcion de archivos -- era 14ymas)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_fd_c_amp_v4_pdf
+  usado_para: ADQ-ENOE-PRE2019 / T2 -- descriptor de instrumento por era, universo del barrido
+    de los 9 constructos
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_amp_v4.pdf
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: fd_c_amp_v4.pdf
+  sha256: 3a53af8acbf312f0cf9164c44ceab624a6b31949ce758d756e0ceb519124b9d7
+  tamano_bytes: 1082006
+  formato: PDF (INEGI, ENOE, Descripcion de archivos -- era 14ymas)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_fd_c_bas_v1_pdf
+  usado_para: ADQ-ENOE-PRE2019 / T2 -- descriptor de instrumento por era, universo del barrido
+    de los 9 constructos
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_bas_v1.pdf
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: fd_c_bas_v1.pdf
+  sha256: 775f0f00ab5d247aef6b20e77bd6ec57ab81db50adae6a13646c3f82980ae8cc
+  tamano_bytes: 292326
+  formato: PDF (INEGI, ENOE, Descripcion de archivos -- era 14ymas)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_fd_c_bas_v2_pdf
+  usado_para: ADQ-ENOE-PRE2019 / T2 -- descriptor de instrumento por era, universo del barrido
+    de los 9 constructos
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_bas_v2.pdf
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: fd_c_bas_v2.pdf
+  sha256: 21e1d7c4316a63c1cae2dd8882b2a6e99b43567379b9c176a3e2781331561bbe
+  tamano_bytes: 1091129
+  formato: PDF (INEGI, ENOE, Descripcion de archivos -- era 14ymas)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_fd_c_bas_amp_conapo_pdf
+  usado_para: ADQ-ENOE-PRE2019 / T2 -- descriptor de instrumento por era, universo del barrido
+    de los 9 constructos
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_bas_amp_conapo.pdf
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: fd_c_bas_amp_conapo.pdf
+  sha256: b30dcfe76a5af601000c28d9f5101f26251ff83b948b722665871adb3ccdb5d2
+  tamano_bytes: 1211513
+  formato: PDF (INEGI, ENOE, Descripcion de archivos -- era 14ymas)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_fd_c_bas_amp_15ymas_pdf
+  usado_para: ADQ-ENOE-PRE2019 / T2 -- descriptor de instrumento por era, universo del barrido
+    de los 9 constructos
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/fd_c_bas_amp_15ymas.pdf
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: fd_c_bas_amp_15ymas.pdf
+  sha256: f2f6cc39d88a10c89a819727f371150e1981940fb162c5563338debee0b01224
+  tamano_bytes: 4383629
+  formato: PDF (INEGI, ENOE, Estructura de la base de datos -- era 15ymas)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_123_fd_c_bas_amp_pdf
+  usado_para: ADQ-ENOE-PRE2019 / T2 -- descriptor de instrumento por era, universo del barrido
+    de los 9 constructos
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_123_fd_c_bas_amp.pdf
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: enoe_123_fd_c_bas_amp.pdf
+  sha256: 920a1db58ee30527bae48d0d1f45e47c8f17a9302b2dc743cf296228aa205a61
+  tamano_bytes: 2124901
+  formato: PDF (INEGI, ENOE, Estructura de la base de datos -- era 15ymas)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_325_fd_c_bas_amp_pdf
+  usado_para: ADQ-ENOE-PRE2019 / T2 -- descriptor de instrumento por era, universo del barrido
+    de los 9 constructos
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_325_fd_c_bas_amp.pdf
+  fecha_descarga: '2026-08-20'
+  descargado_por: ACTO ADQ-ENOE-PRE2019, 20/ago/2026, entorno UBUNTU, via tools/adq_enoe_pre2019.py
+    (microdato) y tools/adq_enoe_docs.py / tools/adq_enoe_sonda_eras.py
+  archivo: enoe_325_fd_c_bas_amp.pdf
+  sha256: 589b8e51cead1c3dbba5db68f4137aff23bbd9a1e1bd9c118e5f00fca148e9a2
+  tamano_bytes: 2124734
+  formato: PDF (INEGI, ENOE, Estructura de la base de datos -- era 15ymas)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
