@@ -40,6 +40,8 @@ Una misma celda, o el conjunto del piloto, puede satisfacer simultáneamente, po
 
 **Este acto no elige entre las tres.** El script de scoring (`forense/prereg-duelo-v2/scoring-adv1-m3.py`) implementa las funciones necesarias para calcular las cinco condiciones de forma independiente y las deja sin componer en una única etiqueta por celda — la composición/precedencia se deja como parámetro configurable pendiente de que mesa elija A, B, C, u otra.
 
+**RESUELTA, 2026-08-21.** Mesa adoptó la **Opción C** (precedencia por orden de evaluación) vía la firma verbatim «Vamos con 1» sobre el benchmark de `forense/adv-duelo/ADV1-M5-v2-propuesta-2026-08-20.md`. Sello: `canon/gobernanza-v1_15.md` ADR-136, formalizado en el tablero como `FP-102` (`ADR-137(a)`). Detalle de la secuencia adoptada: `forense/escala-cinco-casillas-piloto-v2_0.md` §4.
+
 ---
 
 ## §3 · Definición mecánica de `⊕` (combinación L⊕M del corredor E)
