@@ -2193,6 +2193,10 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # que ACT-PIL-2 arriba). Su `E3` pelado es la cita del acto E3-TRIAGE,
     # cuyo propio encargo ya esta censado en esta misma lista.
     "forense/encargos/2026-08-20-RETRIAGE-4.md",
+    # RETRIAGE-4, 20/ago/2026: la nota del acto cita E3-TRIAGE (precedente de
+    # escala B-bis) y ACT-PIL-2 (precedente de censo). Mismos `E3` pelados que
+    # el encargo, misma razon: es cita del acto, no rotulo nuevo.
+    "forense/notas/2026-08-20-retriage-4-cierre.md",
     "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md",
     "forense/hallazgos.md",
     "forense/historico/TRANSFER-maestra-7.md",
