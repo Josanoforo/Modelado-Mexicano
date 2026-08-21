@@ -1,0 +1,88 @@
+==============================================================================
+HITO D · R7.3 — constructibilidad del RDD · ACTO RETRIAGE-4 · 20/ago/2026
+spec congelada: forense/hitoD-R7_3-especificacion-v1_0.md
+==============================================================================
+
+P1 variable de asignacion continua con corte conocido
+P2 el programa NOMBRADO (Pension del Bienestar), no ayuda generica
+P3 desenlace electoral (eleccion de voto, no solo participacion)
+P4 aprobacion presidencial en la MISMA unidad
+
+──────────────────────────────────────────────────────────────────────────────
+§1 · r7_3_pub_beneficiarios_bienestar_csv — Padron Unico, recurso CKAN
+  filas x columnas                              : 748 x 14
+  columnas                                      : CVEENT, entidad, beneficiarios, intervenciones, dependencias, padrones, programas, periodo, periodo_cve, trimestre, anio, fecha, entidad_etiqueta, entidad_etq
+  unidad de observacion real                    : entidad x periodo
+  filas unicas por (CVEENT, periodo_cve)        : 748 de 748
+  P1 variable de asignacion continua            : NO — ninguna columna es
+     edad ni ninguna otra variable de persona; el registro es un conteo.
+  P2 programa nombrado                          : el dataset ES del programa,
+     pero AGREGADO: no hay unidad elegible/no elegible que comparar.
+  P3 desenlace electoral                        : NO — cero columnas electorales
+  P4 aprobacion presidencial                    : NO
+  VEREDICTO DE INSTRUMENTO: P1 NO · P2 parcial-inutilizable · P3 NO · P4 NO
+
+──────────────────────────────────────────────────────────────────────────────
+§2 · zenodo_electoral_precinct_level_mexico_municipal — seccion x ano
+  columnas                                      : 44
+  columnas con edad/programa/aprobacion         : NINGUNA
+  P1 NO · P2 NO · P3 SI (voto por seccion) · P4 NO
+  VEREDICTO DE INSTRUMENTO: trae SOLO P3.
+
+──────────────────────────────────────────────────────────────────────────────
+§3 · LAPOP AmericasBarometer Mexico — 2021 y 2023
+  ── ola 2021 · MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta
+     variables                                  : 262
+     P2 variables que nombran el programa       : NINGUNA
+     P2 lo mas cercano (ayuda GENERICA)         : [('mil10a', 'Confiabilidad del gobierno chino'), ('mil10e', 'Confiabilidad del gobierno estadounidense')]
+     P1 q2 (edad) presente                      : True
+     P3 vb3n/vb20/vb2 presentes                 : False/False/False
+     P4 m1 (aprobacion ejecutivo) presente      : True
+     diseno: wt=True strata=True upm=True cluster=False
+     n total de la ola                          : 2998
+     edad: min=18 max=89 validos=2998
+     ventana +-10 alrededor del corte 68      : n= 511  (izq 367 / der 144)
+     ventana +- 5 alrededor del corte 68      : n= 256  (izq 145 / der 111)
+     ventana +- 3 alrededor del corte 68      : n= 171  (izq  87 / der  84)
+     ventana +-5 con aprobacion presidencial    : n=117
+     MDE — ancho minimo de IC95% alcanzable con esos n (p=0.5, sin
+     penalizacion por efecto de diseno ni por ajuste local del RDD):
+       ventana +-5: n=145/111  EE minimo 6.31 pp  semiancho IC95% 12.36 pp
+         -> un efecto de 10 pp NO seria distinguible de cero
+       ventana +-3: n=87/84  EE minimo 7.65 pp  semiancho IC95% 14.99 pp
+         -> un efecto de 10 pp NO seria distinguible de cero
+
+  ── ola 2023 · MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta
+     variables                                  : 195
+     P2 variables que nombran el programa       : NINGUNA
+     P2 lo mas cercano (ayuda GENERICA)         : [('d3', 'Aprobación del derecho de los críticos del gobierno a postularse para un cargo'), ('d4', 'Aprobación del derecho de los críticos del gobierno a dar discursos'), ('mexwf1_19', 'Recibir ayuda (dinero en efectivo, alimentos, productos básicos) del gobierno')]
+     P1 q2 (edad) presente                      : True
+     P3 vb3n/vb20/vb2 presentes                 : True/True/True
+     P4 m1 (aprobacion ejecutivo) presente      : True
+     diseno: wt=True strata=True upm=True cluster=True
+     n total de la ola                          : 1622
+     edad: min=18 max=94 validos=1622
+     ventana +-10 alrededor del corte 65      : n= 310  (izq 176 / der 134)
+     ventana +- 5 alrededor del corte 65      : n= 160  (izq  89 / der  71)
+     ventana +- 3 alrededor del corte 65      : n=  89  (izq  49 / der  40)
+     ventana +-5 CON ayuda-generica Y voto      : n=143
+     ventana +-5 con aprobacion presidencial    : n=160
+     MDE — ancho minimo de IC95% alcanzable con esos n (p=0.5, sin
+     penalizacion por efecto de diseno ni por ajuste local del RDD):
+       ventana +-5: n=89/71  EE minimo 7.96 pp  semiancho IC95% 15.59 pp
+         -> un efecto de 10 pp NO seria distinguible de cero
+       ventana +-3: n=49/40  EE minimo 10.65 pp  semiancho IC95% 20.88 pp
+         -> un efecto de 10 pp NO seria distinguible de cero
+
+──────────────────────────────────────────────────────────────────────────────
+§4 · latinobarometro2024_bd_stata
+  .dta dentro del zip                           : ['Latinobarometro_2024_Stata_eng_v20250817.dta', 'Latinobarometro_2024_Stata_esp_v20250817.dta']
+  variables                                     : 332
+  P2 variables que nombran el programa          : NINGUNA
+  nota: instrumento REGIONAL (18 paises); el submuestreo mexicano
+        no lo convierte en base con corte de elegibilidad.
+
+==============================================================================
+CIERRE — ningun instrumento en disco reune P1+P2+P3+P4 a la misma unidad.
+Ningun RDD se corrio. Ningun sustituto se corrio (spec §5.3).
+==============================================================================
