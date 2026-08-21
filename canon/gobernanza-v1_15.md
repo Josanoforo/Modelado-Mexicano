@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **136 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **137 ADR**
 
 > | | |
 > |---|---|
@@ -2737,6 +2737,48 @@ Verificado además, por sesión, que el validador SÍ detecta lo que dice detect
 **Cascada.** Candidateó `ADR-136` contra el máximo verificado por `grep -oE 'ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` → `135`, único, sin huecos. `forense/firmas-pendientes.tsv`: fila nueva `FIRMADA` por `ADV1-M5 v2` y el cumplimiento de `D-ii` · fila nueva `ABIERTA` preguntando si la composición de `scoring-adv1-m3.py` se implementa en este acto o en el sucesor (gatea: la primera celda puntuada) · fila nueva `ABIERTA` con reserva escrita sobre la lectura de `FP-83` en §2 de la propuesta (propuesta de dirección, no derivación verificada) — máximo previo `95` verificado por `awk`/`cut`, no heredado del encargo. `forense/hallazgos.md`: dos líneas nuevas (solapamiento de las cinco casillas sobre tres ejes; `E` sin casilla en la tabla de consecuencias). `forense/notas/2026-08-20-sella-m5-v2-cierre.md`: nuevo, detalle comando por comando. `forense/encargos/2026-08-20-SELLA-M5-V2.md`: nuevo, verbatim, `CONSUMIDO`. **No toca** `milpa/`, `data/`, `corpus/`, `tests/` (ni `scoring-adv1-m3.py` — la composición es del sucesor), `forense/marco-candidatas-piloto-v1_0.tsv`, `forense/prereg-duelo-v2/` (salvo lectura), ni el párrafo original del careo. Microdato: no aplica, este acto no lo toca (entorno nube, sin red de datos).
 
 → **Vigente.** *(`ACTO SELLA-M5-V2`, 20/ago/2026. Entorno **NUBE** (`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default`, repo-only, sin sonda de red de datos). Dueña única verificada por `pgrep -af claude` al arrancar: un solo proceso, sin concurrencia detectada. `LÍNEA BASE`: `python3 tests/check.py --baseline` — salida en la nota del acto.)*
+---
+
+**ADR-137 · `ACTO REPARA-T22` repara dos defectos medidos del vigía de firmas (`T22`) y sube al tablero cuatro decisiones que se le habían escapado.** Decisión del ejecutor (reparación mecánica + medición, no de diseño), gateada por la fusión de `PR #303`/`PR #304` (`ADR-135`/`ADR-136`), compuerta verificada por comando sobre `origin/main = fc7f0c7` (`main` avanzó de `8b73aee` a `fc7f0c7` entre el encargo y el arranque de este acto — `ACTO SELLA-M5-V2` fusionado, `PR #304`; no es `PARO`, se refresca y re-deriva). Entorno **NUBE** (repo-only). Detalle completo: nota del acto en `forense/notas/2026-08-21-repara-t22-cierre.md`.
+
+**(a) Declarado sin adorno: `ADR-91` selló el tablero como fuente única de decisiones y no lo era.** `T22`, el vigía que lo vigila, tenía dos defectos medidos el 21/ago/2026: distingue mayúsculas (`PENDIENTE de mesa` se atrapa; `pendiente de mesa` no) y su exención opera por archivo completo, no por pendiente (un archivo citado por cualquier fila —incluida una fila `CERRADA`— queda exento con todo lo que traiga dentro, para siempre). Dos caminos al mismo agujero, verificados por comando contra `tests/check.py:1265-1432`, `forense/prereg-duelo-v2/mesa-pendientes.md` y `forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md` — ver tabla de costo en (b).
+
+**(b) Reparaciones mecánicas, medidas antes de tocar el regex — tabla de costo de `T1` (patrón · archivos de `canon/`+`forense/` que lo contienen · de esos, cuántos sin fila que los cite):**
+
+| patrón | archivos | sin cita |
+|---|---|---|
+| `pendiente de mesa` | 16 | 9 |
+| `mesa decide` | 38 | 28 |
+| `decide mesa` | 4 | 2 |
+| `sin sellar` | 34 | 24 |
+| `NO SELLADO` | 14 | 8 |
+| `acto sucesor` | 26 | 14 |
+| `queda abierto` | 16 | 9 |
+| `sin resolver` | 69 | 54 |
+| `no se resuelve aquí` | 12 | 9 |
+| `pendiente de firma` | 1 | 0 |
+| `ninguna elegida por este acto` | 1 | 1 |
+| `este acto no elige` | 3 | 1 |
+| `PROPUESTA` | 184 | 140 |
+| `REGISTRADO, NO SELLADO` | 6 | 3 |
+| `desvío de alcance` | 5 | 3 |
+| `requiere_decision` | 50 | 39 |
+
+Ningún patrón se ensancha en este acto (ver (f)). Las dos reparaciones sí ejecutadas: **(i)** los dos falsos positivos vivos de `T22` (`forense/encargos/2026-08-17-CONSOLIDA-17AGO.md`, `forense/notas/2026-08-17-consolida.md` — citan verbatim el bloque de patrones de su propia Parte 3 como ejemplo, ya diagnosticado el mismo día en `forense/notas/2026-08-17-consolida.md`) se suman a `_T22_ARCHIVOS_CONOCIDOS` con la razón en el comentario. **(ii)** la exención por archivo de `t22_firmas` (b) se acota a filas `ABIERTA`/`FIRMADA` — una fila `CERRADA` no puede eximir un archivo para siempre. Medido antes de commitear: 21 archivos dejan de estar exentos, 3 `FAIL` nuevos (dentro del límite de `≤3` acordado en el encargo) — los tres, verificados uno por uno, resultaron ser el mismo mecanismo de autocaptura verbatim que (i) (`forense/encargos/2026-08-17-EDEC-fuente-unica-decisiones.md`, `forense/notas/2026-08-17-fuente-unica-decisiones.md`, `forense/encargos/2026-08-18-LANE-A-E0-E5.md`), así que se suman también a `_T22_ARCHIVOS_CONOCIDOS` con su razón — no una fila nueva fabricada para un pendiente que no existe. El propio encargo archivado de este acto (`forense/encargos/2026-08-21-REPARA-T22.md`, verbatim por `A.3`) y esta misma nota de cierre disparan el mismo mecanismo al citar los patrones de `T22` para documentarlo — sumados también, mismo criterio, ya sin defecto real que ese ciclo produzca. `T22` vuelve a 0 `FAIL`.
+
+**(c) Cuatro filas nuevas al tablero — las decisiones que se habían escapado:** `FP-99` (`ABIERTA`, definición mecánica de `⊕` del corredor E, `mesa-pendientes.md` §3) · `FP-100` (`ABIERTA`, línea `v2.11` del `ARRANQUE` sobre negativos de comando sin inspección de archivos, higiene de método) · `FP-101` (`ABIERTA`, `mesa-pendientes.md` §1 — "qué significa que el falsador no refute": el encargo que originó este acto proponía cerrarla `FIRMADA` citando `escala-cinco-casillas-piloto-v2_0.md` §4/`ADR-136`, pero esa misma nota declara, verbatim y en su propia sección de alcance, que **no** elige entre las cuatro lecturas candidatas y que la pregunta sigue abierta a mesa — verificado leyendo el archivo, corregido aquí, no asumido de la firma «Vamos con 1»; sigue `ABIERTA`) · `FP-102` (`FIRMADA`, `mesa-pendientes.md` §2 — precedencia entre las cinco casillas de `ADV1-M5`: mesa adoptó Opción C vía la misma firma «Vamos con 1», verificado en `escala-cinco-casillas-piloto-v2_0.md` §4, que sí la resuelve explícitamente). `mesa-pendientes.md` §2 se marca `RESUELTA` con cita a `FP-102`; §1 y §3 no se tocan — siguen abiertas, ahora con fila propia.
+
+**(d) Estampa `A.10`.** SHA de `HEAD` al escribir/re-derivar: `fc7f0c7` (`git log -1 --format="%h %s"`, `main` avanzó desde el `8b73aee` declarado por el encargo — `PR #304` fusionado entretanto). `tests/check.py:1265-1432` (bloque `T22` citado arriba). Conteo de archivos examinados por patrón: `canon/*.md` + `forense/**/*.md` + `forense/**/*.tsv`, la misma lista que recorre `t22_firmas` (b) — cifras en la tabla de (b). Fecha: **2026-08-21**.
+
+**(e) Contadores de medición sobre México que mueve este ADR: cero**, dicho (`v2.3`). Este acto no calcula ningún β ni ninguna θ; repara un vigía y sube pendientes al tablero.
+
+**(f) Lo que este ADR NO decide, declarado:** no ensancha el regex de `T22` (`_T22_MARCADOR_PENDIENTE` sigue como estaba; la tabla de costo de (b) queda a la vista de mesa, sin patrón ganador propuesto por el ejecutor — fila propia abajo) · no adjudica ninguna de las diez filas `ABIERTA` heredadas de antes de este acto · no toca `T25` ni ningún otro test fuera del bloque `T22`.
+
+**Fila propia, `ABIERTA`:** el ensanchamiento de `_T22_MARCADOR_PENDIENTE`/`_T22_MARCADOR_RANURA` (insensible a mayúsculas, y/o patrones adicionales de la tabla de (b)) queda a mesa — el ejecutor mide el costo, mesa elige el patrón, mismo precedente que `CONTRATO-v0_5` sobre `T25` (ensanchar `(M|E)` a `(M|E|D)` sin medir rompió 67 archivos preexistentes).
+
+**Cascada.** Candidateó `ADR-137` contra el máximo verificado por `grep -oE 'ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` → `136`, único, sin huecos. `forense/firmas-pendientes.tsv`: cuatro filas nuevas — `FP-99`, `FP-100`, `FP-101` `ABIERTA`; `FP-102` `FIRMADA` — máximo previo `98` verificado por `grep -oE 'FP-[0-9]+' forense/firmas-pendientes.tsv | sort -t- -k2 -n | tail -1`, no heredado del encargo (el encargo declaraba `95`; `ADR-136`/`PR #304` ya lo había subido a `98`). `forense/hallazgos.md`: dos líneas nuevas (mayúsculas del regex de `T22`; exención por archivo, no por pendiente). `forense/notas/2026-08-21-repara-t22-cierre.md`: nuevo, detalle comando por comando. `forense/encargos/2026-08-21-REPARA-T22.md`: nuevo, verbatim, `CONSUMIDO`. `canon/estado-programa-v1_10.md`: desviación de perímetro declarada (fuera de la lista original del encargo) — solo se recifran las cifras de cascada `ADR`/`FAIL`/`WARN` que `T15`/`T16` vigilan (`136`→`137`; `21 FAIL · 138 WARN`→`19 FAIL · 142 WARN`), consecuencia mecánica obligada de sellar este ADR y exigida por el `Cierre` del encargo (`--baseline` `VERDE`), mismo patrón que `ADR-136` ya dejó precedentado (`4527a45`); detalle en la nota del acto. **No toca** `milpa/`, `data/`, `corpus/`, `T25` ni ningún otro test, `forense/escala-cinco-casillas-piloto-*`, `forense/marco-candidatas-piloto-v1_0.tsv`, `forense/prereg-duelo-v2/*.py`. Microdato: no aplica, este acto no lo toca (entorno nube, sin red de datos).
+
+→ **Vigente.** *(`ACTO REPARA-T22`, 21/ago/2026. Entorno **NUBE** (`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default`, repo-only, sin sonda de red de datos). Dueña única verificada por `pgrep -af claude` al arrancar: un solo proceso de sesión, sin concurrencia detectada. `LÍNEA BASE`: `python3 tests/check.py --baseline` — salida en la nota del acto, `T22` en 0 `FAIL`.)*
 ---
 
 ## 5. Deuda declarada (decisiones abiertas, conscientemente)
