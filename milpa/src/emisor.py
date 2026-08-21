@@ -242,6 +242,11 @@ class GateR34:
     huecos: tuple[str, ...]
     notas: tuple[str, ...]
     veredicto: str
+    # Estampa de base empírica (advertencia de mesa, 20/ago/2026): un cálculo
+    # correcto sobre insumos sin base medida no debe poder confundirse con uno
+    # medido. Instrucciones A-bis(3)/A.10 aplicadas al resultado computado.
+    insumos_clase: tuple[tuple[str, int], ...] = ()
+    estampa: str = ""
 
 
 def gate_r3_4(reglas: tuple[Regla, ...] | None = None) -> GateR34:
@@ -314,10 +319,26 @@ def gate_r3_4(reglas: tuple[Regla, ...] | None = None) -> GateR34:
             "cargan G1a): reducción 0% por construcción. Un C no-trivial "
             "exige el enlace índice→adopción (h_r) — OLA futura, declarado.")
 
+    # Estampa: las clases se DERIVAN de las salidas consumidas, no se teclean.
+    clases: dict[str, int] = {}
+    for res in (rA, rB):
+        (regla,) = res.reglas
+        for s in regla.entonces:
+            if s.conducta == "adopta" and s.p is not None:
+                clases[s.clase or "SIN-CLASE"] = clases.get(s.clase or "SIN-CLASE", 0) + 1
+    n_medido = sum(v for k, v in clases.items() if k.startswith("MEDIDO"))
+    estampa = (
+        f"insumos del cálculo: {sum(clases.values())} probabilidades consumidas, "
+        f"clases {clases}; base medida: {n_medido} de {sum(clases.values())} — "
+        "B y C son propiedades estructurales del par ASIGNADO, no hallazgos "
+        "empíricos (advertencia de mesa, 20/ago/2026); universo: tramite.yaml + "
+        "procedencia.yaml + modelo §7")
+
     veredicto = ("NO-ADJUDICADO — B y C computados; A espera el comparador "
                  "(huecos H1/H2 a mesa)")
     return GateR34(codi_A, util, retail, razon_pareja, colapso, reduccion,
-                   pasa_B, pasa_C, tuple(huecos), tuple(notas), veredicto)
+                   pasa_B, pasa_C, tuple(huecos), tuple(notas), veredicto,
+                   tuple(sorted(clases.items())), estampa)
 
 
 def _busca_detalle(nodo) -> list | None:
@@ -375,7 +396,7 @@ def construir_crosswalk(salida: Path) -> int:
     n = 0
     with RUTA_MARCO.open(encoding="utf-8") as fh, salida.open("w", encoding="utf-8", newline="") as out:
         lector = csv.DictReader(fh, delimiter="\t")
-        w = csv.writer(out, delimiter="\t")
+        w = csv.writer(out, delimiter="\t", lineterminator="\n")  # LF: regeneración byte-estable (A.7, revisión 21/ago)
         w.writerow(["candidata_id", "encuesta", "variable", "emisibilidad_p1",
                     "evidencia", "universo_buscado"])
         for fila in lector:
@@ -399,3 +420,4 @@ if __name__ == "__main__":  # pragma: no cover
         print(f"  HUECO · {h}")
     for nnota in g.notas:
         print(f"  NOTA  · {nnota}")
+    print(f"  ESTAMPA · {g.estampa}")

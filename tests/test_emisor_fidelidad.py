@@ -99,3 +99,17 @@ def test_emision_binaria_forma_prediccion_corredor():
     assert (p.tipo_escala, p.valor_punto, p.clase) == ("binaria", 0.71, "ASIGNADO")
     assert p.intervalo_lo is None and p.intervalo_hi is None
     assert p.confianza_declarada is None, "la clase NO se convierte a número (doctrina IPCC)"
+
+
+def test_estampa_de_base_empirica_en_el_gate():
+    """Advertencia de mesa (20/ago/2026): un cálculo correcto sobre insumos
+    sin base medida no debe poder confundirse con uno medido. El gate deriva
+    la clase de procedencia de cada probabilidad que consumió y la estampa en
+    el resultado: hoy, 2 de 2 ASIGNADO y base medida 0 de 2. El día que un
+    coeficiente del par gradúe a MEDIDO, este test truena y obliga a leer la
+    estampa nueva — es la parte que se actualiza sola."""
+    g = emisor.gate_r3_4()
+    assert dict(g.insumos_clase) == {"ASIGNADO": 2}
+    assert "base medida: 0 de 2" in g.estampa
+    assert "estructurales" in g.estampa, \
+        "la estampa debe decir que B y C son propiedades del par asignado, no hallazgos"

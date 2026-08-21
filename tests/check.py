@@ -2093,6 +2093,7 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
     "forense/BENCHMARK-INTERVALO-CORREDOR-M-2026-08-20.md",
+    "forense/encargos/2026-08-21-emisor-m1b.md",
     "canon/APERTURA-FASE-CALCULO-v1_2.md",
     "canon/PLAN-CALCULO-TOTAL-v1_1.md",
     "canon/estado-programa-v1_10.md",
