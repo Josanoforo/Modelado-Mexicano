@@ -50,6 +50,8 @@ El careo nombra el corredor E como "combinación mecánica L⊕M pre-registrada,
 
 **Este acto propone, sin sellar, la combinación mecánica más simple posible** (documentada como propuesta en `forense/prereg-duelo-v2/corredor-E-combinacion-LM.py`): promedio simple por celda para variables continuas (media aritmética de la mediana pre-registrada de L y del punto de M) y voto por mayoría con desempate por confianza declarada para variables categóricas/ordinales. Se documenta explícitamente en el script que esto es una propuesta, no una definición sellada de `⊕`; mesa puede sustituirla por ponderación por skill histórico, por inversa de varianza, u otra regla, antes de que el script se ejecute (este acto no lo ejecuta).
 
+**RESUELTA, 2026-08-21.** Mesa selló la definición de `⊕`, firma verbatim «D-a» (`ACTO SELLA-OPLUS`, nube, Opus, gate `#3`/`ADR-140` fusionado). Sello: `canon/gobernanza-v1_15.md` `ADR-141`, formalizado en el tablero como `FP-99` (`ABIERTA`→`FIRMADA`). Definición sellada: `E = mediana_por_cuantil({L-solo, L+corpus, M})` — tres corredores, no dos (`L-solo` y `L+corpus`, las dos variantes de `L` de `ADV1-M2`, más `M`), peso igual, sin entrenar, mediana en vez de media. Las tres razones (forecast combination puzzle, robustez de la mediana frente a la media, y la mediana solo está bien definida con tres o más componentes) quedan citadas en la cabecera de `forense/prereg-duelo-v2/corredor-E-combinacion-LM.py`, que implementa la definición sellada y sustituye la PROPUESTA de dos corredores de este párrafo. Sin entrenar por falta de historial de desempeño (este es el primer piloto) — razón escrita, no preferencia. El script sigue sin ejecutarse en este acto.
+
 ---
 
 ## Cómo cerrar este archivo

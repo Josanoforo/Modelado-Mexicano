@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **140 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **141 ADR**
 
 > | | |
 > |---|---|
@@ -2839,6 +2839,23 @@ Ningún patrón se ensancha en este acto (ver (f)). Las dos reparaciones sí eje
 **Cascada.** Candidateó originalmente `ADR-138` contra el máximo verificado al arrancar el merge (`137`, único, sin huecos, tras fusionar `ACTO REPARA-T22`). `origin/main` fusionó `PR #305` (`ACTO LANDING-EMISOR-M1`/`ADR-138`, `ACTO EMISOR-M-1b`/`ADR-139`) mientras esta rama seguía abierta — colisión de numeración con este ADR, regla de la casa, quien fusiona segundo renumera (mismo patrón que `e09bf17`, `ADR-120`→`ADR-121`): re-derivado tras el merge de `origin/main` contra el máximo real (`139`, ya fusionado) → **`ADR-140`**, único, sin huecos. `forense/firmas-pendientes.tsv`: `FP-91` `ABIERTA`→`FIRMADA` — máximo previo `102` verificado por `grep -oE 'FP-[0-9]+' forense/firmas-pendientes.tsv | sort -t- -k2 -n -u | tail -1`, sin filas nuevas (el perímetro de este acto cierra una fila existente, no abre ninguna: T1-T3 no dejaron nada pendiente que justifique una fila `ABIERTA` nueva — ver nota del acto). `forense/hallazgos.md`: línea nueva sobre el criterio "≥3 de 7" perdiendo su denominador al morir el universo de siete. `forense/notas/2026-08-20-sella-c-cierre.md`: nuevo, detalle comando por comando. `forense/encargos/2026-08-20-SELLA-C.md`: nuevo, verbatim, `CONSUMIDO`. `canon/estado-programa-v1_10.md`: recifra cabecera y `L0` `139→140` (tras fusionar `origin/main`, no `137→138`). **No toca** `milpa/`, `data/`, `corpus/`, `tests/`, `forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md` (el párrafo original del careo). Microdato: no aplica, este acto no lo toca (entorno nube, sin red de datos).
 
 → **Vigente.** *(`ACTO SELLA-C`, 20/ago/2026. Entorno **NUBE** (`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default`, repo-only, sin sonda de red de datos). `LÍNEA BASE`: `python3 tests/check.py --baseline` — salida en la nota del acto.)*
+---
+
+**ADR-141 · `ACTO SELLA-OPLUS` sella la definición mecánica del operador `⊕` del corredor `E`: `E = mediana_por_cuantil({L-solo, L+corpus, M})` — tres corredores, peso igual, sin entrenar.** Firma de mesa, verbatim: «D-a». Gate: `#3` (`ADR-140`, `PR #307`) fusionado. Entorno **NUBE** (repo-only, sin red de datos).
+
+**(a) Por qué tres corredores, no dos.** `L-solo` y `L+corpus` son las dos variantes de `L` que `ADV1-M2` ya exige correr por separado (`pipeline-L-adv1-m2.py` §1); `M` es el tercero. Con dos corredores la mediana degenera en la media y la robustez se pierde; con tres, la mediana está bien definida y un corredor descarrilado no arrastra al ensamble.
+
+**(b) Por qué mediana, no media.** De las opciones de ensamble evaluadas por mesa, la más influyente fue usar la mediana en vez de la media, sin importar el método de ponderación — pronósticos anómalos en un ensamble de media producen incertidumbre extremadamente ancha (precedente operativo citado por mesa: el hub europeo de pronóstico lo cambió en producción por esta razón).
+
+**(c) Por qué peso igual, no óptimo.** Es el forecast combination puzzle: la combinación con pesos óptimos estimados típicamente no supera a la media/mediana con peso fijo — cuando el peso óptimo verdadero es ½, el ruido de estimarlo introduce una penalización que suele tapar la ganancia teórica del peso óptimo.
+
+**(d) Por qué sin entrenar.** Los ensambles entrenados con selección de componentes sí superaron al de mediana con peso igual en la evidencia que mesa citó — pero exigen historial de desempeño, y `DUELO-PREREG-V2`/`SELLA-OPLUS` es el primer piloto: no hay qué entrenar. Razón escrita, no preferencia.
+
+**(e) `FP-99` cierra `FIRMADA`.** Fila abierta por `ACTO REPARA-T22` (`ADR-137(c)`), verificada existente antes de tocarla (no se duplica — precedente `FP-58`, citado por el propio encargo de `REPARA-T22`). `forense/firmas-pendientes.tsv`: `FP-99` `ABIERTA`→`FIRMADA`, `firmada_en=2026-08-21`, cita este ADR.
+
+**(f) Cascada.** `forense/prereg-duelo-v2/corredor-E-combinacion-LM.py`: la PROPUESTA de dos corredores (promedio simple / voto por mayoría) se sustituye por la definición sellada de tres corredores, con la definición y las cuatro razones citadas en la cabecera del script — **no se ejecuta en este acto**. `forense/prereg-duelo-v2/mesa-pendientes.md` §3: RESUELTA, fecha y cita de este ADR (texto original no se borra). `forense/hallazgos.md`: línea nueva. `forense/notas/2026-08-21-sella-oplus-cierre.md`: nuevo. `forense/encargos/2026-08-21-SELLA-OPLUS.md`: nuevo, verbatim, `CONSUMIDO`. **No toca** `milpa/`, `data/`, `corpus/`, `tests/`, ni el párrafo original de la careo. Contadores de medición sobre México: **cero** — el corredor `E` deja de estar bloqueado, no se corre.
+
+→ **Vigente.** *(`ACTO SELLA-OPLUS`, 21/ago/2026. Entorno **NUBE** (`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default`, repo-only, sin sonda de red de datos).)*
 ---
 
 
