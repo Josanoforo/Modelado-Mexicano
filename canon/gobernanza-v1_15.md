@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **141 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **142 ADR**
 
 > | | |
 > |---|---|
@@ -2842,6 +2842,14 @@ Ningún patrón se ensancha en este acto (ver (f)). Las dos reparaciones sí eje
 ---
 
 **ADR-141 · `ACTO SELLA-OPLUS` sella la definición mecánica del operador `⊕` del corredor `E`: `E = mediana_por_cuantil({L-solo, L+corpus, M})` — tres corredores, peso igual, sin entrenar.** Firma de mesa, verbatim: «D-a». Gate: `#3` (`ADR-140`, `PR #307`) fusionado. Entorno **NUBE** (repo-only, sin red de datos).
+
+**ADR-142 · `ACTO INSTRUCCIONES-v2_11` sella `instrucciones-proyecto-v2_11.md`: copia íntegra de v2.10 —contención verificada, `diff` sin una sola línea suprimida, 384→400 líneas— más una línea nueva al punto 4 del ARRANQUE (Bloque D) y la sección `A.13` completa; adjudica `FP-100` → `FIRMADA`.** Firma de mesa, verbatim: *"Grep, agreguémosla a las instrucciones."* `A.13 · Un negativo producido por un comando que no examinó archivos no es un negativo`, sobre tres defectos ya medidos por `ADR-137(c)`/`forense/notas/2026-08-21-repara-t22-cierre.md`: el `grep` de la caja UBUNTU envuelve `ugrep -I` y tira no-UTF8 en silencio · `xargs -0 command grep` puede devolver vacío sin correr · un patrón sin backticks falló contra `` `FP-55` ``. Rótulo verificado antes de escribir: máximo del espacio `A.N` de instrucciones, por comando (`grep -oE "^#{0,3} ?A\.[0-9]+ ·" instrucciones-proyecto-v2_10.md`) → `A.12`, sin huecos; de ahí `A.13`. No colisiona con la serie independiente `A.N` de `milpa/refutations.yaml` (`01`–`28`) — frontera ya declarada en `A.10` y en `canon/registro-rotulos.tsv`, dos habitantes en documentos distintos.
+
+**(a) `A.9`, y es la mitad del acto.** *"Una versión de instrucciones no está sellada hasta que está en los dos lados."* Este ADR sella el repo. El pegado en el proyecto de Claude **queda `PENDIENTE`** — ningún acto con herramientas de repo puede ejecutarlo, misma limitación que `A.9` ya declara sobre sí misma (`gobernanza:1146`) y que `ADR-78`/`ADR-81(c)` ya dejaron precedentada para v2.8. **Fecha en que `instrucciones-proyecto-v2_11.md` se pegó en el proyecto de Claude: `PENDIENTE — no sellada hasta el pegado`.** `A.13` queda sellada en el repo y no en los dos lados hasta que una sesión futura registre aquí, o en enmienda in situ, la fecha del pegado que mesa dé el mismo día que lea este ADR.
+
+**(b) Tablero.** `FP-100` (*"línea `v2.11` del ARRANQUE"*, abierta por `ACTO REPARA-T22`, `ADR-137(c)`) pasa **`ABIERTA`→`FIRMADA`**: verificado antes de tocarla, sin duplicado (`grep -n "FP-100" forense/firmas-pendientes.tsv` → una sola fila). Estado del tablero tras este ADR: **104 filas · 75 `FIRMADA` · 13 `ABIERTA` · 1 `CERRADA POR PREMISA REFUTADA` · 16 `CERRADA`** — no heredado, re-derivado por comando.
+
+**Lo que este ADR NO hace.** No toca `instrucciones-proyecto-v2_10.md`, que se conserva íntegro. No adjudica el rótulo `A.7`, disputado y sin firma de mesa sobre ese punto — `FP-07` sigue `ABIERTA`. No reclama `A.11`, libre desde v2.9. No mueve ningún contador de medición sobre México: es higiene de método, misma exención que `A.1`–`A.3`, `A.8` y `A.9` ya declararon para sí mismas. Detalle completo: `forense/notas/2026-08-21-instrucciones-v2_11-cierre.md`.
 
 **(a) Por qué tres corredores, no dos.** `L-solo` y `L+corpus` son las dos variantes de `L` que `ADV1-M2` ya exige correr por separado (`pipeline-L-adv1-m2.py` §1); `M` es el tercero. Con dos corredores la mediana degenera en la media y la robustez se pierde; con tres, la mediana está bien definida y un corredor descarrilado no arrastra al ensamble.
 
