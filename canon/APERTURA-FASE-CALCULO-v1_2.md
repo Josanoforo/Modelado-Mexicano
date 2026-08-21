@@ -17,12 +17,16 @@ El whitepaper lo dice en espejo: el riesgo central del simulador es volverse *"b
 | **4** | **Piloto celda-D**: E0 nube → E1-E2 auditor/veto → E3 caja → 10-15 celdas FIN → **7 umbrales por comando → mesa firma GO/NO-GO** | E0 **aterrizado** (#266: `milpa/src/celdas.py`, `clases.py`, validador en main). E1-E3: **sin correr**. `milpa-spec`/`plan` cargan banner de incompatibilidad parcial (gobernanza:754) — declarado, no bloquea | **PILOTO-E1E3** (§4) — esto ES abrir la fase de cálculo |
 | **5** | Catálogo de momentos · AJUSTADO · ENNViH ejerce llave (ii) | Catálogo v0.1 en `milpa/` · **ENNViH murió como llave (ADR-107)**; FP-64/T3 deriva candidatos | Post-GO, como el plan manda |
 
+> ⚠️ **Enmienda in situ a la fila OLA 4 de esta tabla (20/ago/2026, `SELLA-C`, `ADR-138`).** «7 umbrales por comando → mesa firma GO/NO-GO»: `VENCIDO EN ALCANCE` (`A.10`) — sustituido como criterio vigente por `ADV1-M6 v2` (`forense/adv-duelo/ADV1-M6-v2-2026-08-20.md`). Fila original intacta arriba.
+
 **Traducción de §4 del plan, vigente hoy:** *"Nada nuevo de estructura"* sigue siendo cierto. Lo que falta para calcular son **tres actos y un marcador** — no más infraestructura, no más reglas.
 
 ## §2 · Los cuatro desbloqueos, en orden
 **D1 — Residuo OLA 1** → ya escrito: LOTE-UBUNTU-ADQ-1 T1 (material de U2) + LOTE-NUBE T4 (liberación-8-radio: declarar estado).
 **D2 — APERTURA-ENFIH-ENSAFI (§3)** → la ola de mayor β-por-sesión del tablero, intacta desde el 12/ago.
 **D3 — PILOTO-E1E3 (§4)** → el simulador corre sus primeras 10-15 celdas y produce los 7 umbrales; mesa firma GO/NO-GO. **Ese GO es la apertura formal de la fase de cálculo.**
+
+> ⚠️ **Enmienda in situ (20/ago/2026, `SELLA-C`, `ADR-138`).** «produce los 7 umbrales»: `VENCIDO EN ALCANCE` (`A.10`) — los siete umbrales de `ADR-68(c)` ya no gobiernan este `GO` (`ADR-128(b)`). La cláusula que sigue vigente sin cambio, y se declara explícitamente aquí: **el `GO` de `ADV1-M6 v2` (`forense/adv-duelo/ADV1-M6-v2-2026-08-20.md`) ocupa ese lugar — es la nueva compuerta formal de apertura de la fase de cálculo.** Texto original intacto arriba.
 **D4 — DUELO-PREREGISTRO (§5)** → la esencia, por fin escrita como B-bis del programa entero. Sin esto, el piloto produce números sin árbitro y "superar" queda a opinión.
 
 ## §3 · ENCARGO embebido · APERTURA-ENFIH-ENSAFI — UBUNTU · Opus · tras LOTE-UBUNTU-ADQ-1
@@ -39,6 +43,8 @@ Ley de fondo: PLAN-CALCULO-TOTAL §3-OLA4 + `milpa-spec` (con su banner: donde s
 **T2 (nube)** · E2: corrida de las celdas emitidas; salidas con universo y escala declarados (A-bis 3/4); **ninguna celda se compara contra otra escala sin enlace**.
 **T3 (caja)** · E3: el gate de semana-1 contra microdato (ENFIH/ENSAFI ya abiertas por §3 lo vuelven casi gratis — el plan lo predijo).
 **T4** · Los **7 umbrales del plan, por comando**, en tabla, sin adjetivos → fila de mesa **GO/NO-GO**. Contador: celdas FIN (meta 10-15), umbrales cumplidos N/7.
+
+> ⚠️ **Enmienda in situ (20/ago/2026, `SELLA-C`, `ADR-138`).** «Los 7 umbrales del plan, por comando... umbrales cumplidos N/7»: `VENCIDO EN ALCANCE` (`A.10`). `T4` aplica, desde este ADR, los tres criterios de `ADV1-M6 v2` (`forense/adv-duelo/ADV1-M6-v2-2026-08-20.md §2`) como conjunto completo — contador corregido: **umbrales cumplidos N/3**, no N/7. Texto original intacto arriba.
 Desde E0 rige el congelamiento del motor (ADR-68(a)): el piloto NO edita reglas del motor; lo que quiera editar se anota como candidato de OLA 5.
 
 ## §5 · DUELO-PREREGISTRO — la esencia como B-bis, para firma de mesa

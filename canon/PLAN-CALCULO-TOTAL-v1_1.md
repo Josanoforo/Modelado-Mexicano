@@ -39,6 +39,8 @@
 
 **OLA 4 · EL PILOTO CELDA-D (E0-E2 nube · E3 caja).** E0: agentes + cola emitida como celdas-D (validador `test_celdas_d.py` ya en main) + las 3 semillas primero · E1-E2 con auditor y veto · E3 = gate de semana 1 (ENFIH/ENSAFI ya abiertas por OLA 2 lo vuelven casi gratis) · 10-15 celdas FIN · **los 7 umbrales con conteos por comando → mesa firma GO/NO-GO.** Desde E0 rige el congelamiento del motor (ADR-68(a) enmendado).
 
+> ⚠️ **Enmienda in situ (20/ago/2026, `SELLA-C`, `ADR-138`).** Los «7 umbrales con conteos por comando» de esta línea quedan `VENCIDOS EN ALCANCE` — no refutados, no borrados, no vigentes para el territorio nuevo (`A.10`, las tres cosas a la vez; mismo patrón que `ADR-112`→`ADR-110(d)`). El criterio de cierre de `PILOTO-E1E3 T4` es, desde este ADR, `ADV1-M6 v2` (`forense/adv-duelo/ADV1-M6-v2-2026-08-20.md`): los tres criterios de resultado que `M6` ya nombraba, presentados como conjunto completo. Texto original arriba, intacto.
+
 **OLA 5 · EL AJUSTE (post-GO).** Catálogo de momentos commit 1 (motor-matriz M4, con la brecha actitud-conducta como candidato) → primer ejercicio `AJUSTADO` con la matriz entrando como **challenger de `estrategia: momentos`** → ahí, y solo ahí, entran NROY (condición ADR-68(d)) y la decisión M1. Re-corridas de FIX-JOIN si J dio magnitud. ENNViH ejerce la segunda llave.
 
 ## §4 · Qué se necesita para "ahora sí, calcular" — la respuesta corta
@@ -62,8 +64,12 @@
 | **4** | **Piloto celda-D**: E0 nube → E1-E2 auditor/veto → E3 caja → 10-15 celdas FIN → **7 umbrales por comando → mesa firma GO/NO-GO** | E0 **aterrizado** (#266: `milpa/src/celdas.py`, `clases.py`, validador en main). E1-E3: **sin correr**. `milpa-spec`/`plan` cargan banner de incompatibilidad parcial (gobernanza:754) — declarado, no bloquea | **PILOTO-E1E3** (§4) — esto ES abrir la fase de cálculo |
 | **5** | Catálogo de momentos · AJUSTADO · ENNViH ejerce llave (ii) | Catálogo v0.1 en `milpa/` · **ENNViH murió como llave (ADR-107)**; FP-64/T3 deriva candidatos | Post-GO, como el plan manda |
 
+> ⚠️ **Enmienda in situ a la fila OLA 4 de esta tabla (20/ago/2026, `SELLA-C`, `ADR-138`).** «7 umbrales por comando → mesa firma GO/NO-GO»: `VENCIDO EN ALCANCE` (`A.10`) — sustituido como criterio vigente por `ADV1-M6 v2` (`forense/adv-duelo/ADV1-M6-v2-2026-08-20.md`), que es ahora la compuerta formal de apertura de la fase de cálculo. Fila original intacta arriba.
+
 *(Tabla verbatim, incluida la grafía "census" de la fila OLA 2 — no se corrige aquí, mismo trato que cualquier otra cita textual; y los "§3"/"§4" de las columnas "Queda" refieren a `APERTURA-FASE-CALCULO-v1_2.md`, no a este documento.)*
 
 **⚠️ Contradicción registrada sobre OLA 4, no resuelta aquí — ver `ADR-131(c)`:** los "7 umbrales por comando → GO/NO-GO" que esta fila cita como criterio de OLA 4 son el mismo `ADR-68(c)` que `ADR-128` (20/ago/2026) declaró VENCIDO EN ALCANCE salvo su umbral (1), mientras que `M6` del careo (`CAREO-ADV-DUELO-diseno-v2-2026-08-19.md §B`, adoptado por `D-4`) dice *"De los 7 umbrales, ≥3 de resultado"* — conserva y endurece tres, no los siete ni solo el uno. Los tres textos (esta fila, `ADR-128`, `M6`) están vigentes y dicen cosas distintas sobre el mismo GO. `ADR-131(c)` abre fila de tablero, no adjudica.
+
+> ⚠️ **Enmienda in situ (20/ago/2026, `SELLA-C`, `ADR-138`).** `FP-91` — la contradicción que este párrafo registra — queda `FIRMADA`. Firma de mesa verbatim: «C: 2 mueren y M6 se reescribe». Los siete umbrales de `ADR-68(c)` mueren (quedan `VENCIDOS EN ALCANCE`, ya declarado por `ADR-128(b)`, no repetido aquí); `M6` se reescribe como `ADV1-M6 v2` (`forense/adv-duelo/ADV1-M6-v2-2026-08-20.md`), cuyos tres criterios de resultado son, desde este ADR, el único criterio de cierre de `PILOTO-E1E3 T4` y la compuerta formal de apertura de la fase de cálculo. Párrafo original intacto arriba.
 
 **Traducción vigente hoy, sin editar la de arriba:** de los tres actos y un marcador que el plan original pedía para "ahora sí, calcular", **D3 (PILOTO-E1E3)** y **D4 (DUELO-PREREGISTRO)** son los que faltan — ver `APERTURA-FASE-CALCULO-v1_2.md §2`.
