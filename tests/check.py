@@ -2071,7 +2071,49 @@ def t24_llaves_ejercidas():
     if not filas:
         fail("T24", f"{rel(r)}: `## 3 · Tabla de llaves` no trae filas de datos")
         return
-    estados = [l.split("|")[5].strip() for l in filas]
+
+    # `ADQ-ENOE-PRE2019` T3 (`ADR-143`): el indice 5 estaba tecleado aqui, y la
+    # receta congelada de §4 del registro lo tiene tecleado tambien (`awk
+    # -F'|' '{print $6}'`). Las dos se mueven juntas si alguien altera las
+    # columnas de la tabla, y ninguna se queja. Medido sobre la tabla real al
+    # escribir esto: el indice 6 (`veredicto`) contiene `EJERCIDA_` en 2 de 3
+    # filas, exactamente igual que `estado` -- asi que QUITAR una columna
+    # antes de `estado` desplaza `veredicto` al indice 5 y el vigia sigue
+    # derivando `2 de 3`, **en verde, contando la columna equivocada**.
+    # Insertar una columna da el modo benigno (falla, pero culpando a
+    # `estado-programa` de una discrepancia que no es suya). Se deriva la
+    # posicion del encabezado y se cruza contra la que la receta congela: si
+    # divergen, hay que reescribir §4, y esto lo dice en vez de contar mal.
+    POS_RECETA = 5
+    cab = next((l for l in m.group(1).split("\n")
+                if l.startswith("| llave_id")), None)
+    if cab is None:
+        fail("T24", f"{rel(r)}: `## 3 · Tabla de llaves` no trae encabezado "
+                     f"`| llave_id | …`")
+        return
+    campos = [c.strip() for c in cab.split("|")]
+    if "estado" not in campos:
+        fail("T24", f"{rel(r)}: el encabezado de `## 3 · Tabla de llaves` no "
+                     f"declara una columna `estado`: {campos}")
+        return
+    pos = campos.index("estado")
+    if pos != POS_RECETA:
+        fail("T24", f"{rel(r)}: la columna `estado` esta en la posicion {pos} "
+                     f"del encabezado, pero la receta congelada de §4 lee la "
+                     f"{POS_RECETA} (`awk -F'|' '{{print ${POS_RECETA+1}}}'`). "
+                     f"Se {'insertó' if pos > POS_RECETA else 'quitó'} "
+                     f"{abs(pos - POS_RECETA)} columna(s) antes de `estado`: "
+                     f"reescribe §4 del registro y esta constante en el mismo "
+                     f"acto, o el conteo sale de la columna equivocada")
+        return
+    anchos = {len(l.split("|")) for l in filas}
+    if len(anchos) != 1:
+        fail("T24", f"{rel(r)}: las filas de `## 3 · Tabla de llaves` no tienen "
+                     f"el mismo número de columnas ({sorted(anchos)}) — alguna "
+                     f"fila trae un `|` sin escapar y la columna `estado` no "
+                     f"cae en el mismo sitio en todas")
+        return
+    estados = [l.split("|")[pos].strip() for l in filas]
     ejercidas = sum(1 for e in estados if "EJERCIDA_" in e)
     total = len(filas)
 
