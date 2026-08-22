@@ -16,6 +16,8 @@
 
 **Concurrencia.** `pgrep -af claude` sólo vio mi propio shell — y eso no prueba que no haya otra sesión (`CAJA-RESIDUOS` ya midió que `pgrep` no ve una sesión de agente concurrente). Cruzado con `git reflog`: última entrada `2026-08-20 19:29`, la mía. Dueña única.
 
+**Reloj del host, declarado porque el `PR` lo va a contradecir.** Los cuatro commits de este acto están estampados **`2026-08-20`, entre las 19:40 y las 20:11 −0600** (`git log --date=iso`), y `fecha_descarga` de los 27 payloads dice `2026-08-20` en los 27 — el registrador la deriva, no se teclea. Después del último commit el reloj de la máquina saltó a `2026-08-22`, así que el `PR` quedará fechado ahí. **El acto es del 20**; el salto es del host y no hay ~40 minutos de trabajo que se hayan vuelto dos días.
+
 **Gate.** `#1` del lote. `gh pr list --state open` → **vacío**: todo el lote estaba fusionado al arrancar, así que el gate se cumple sea cual sea el item que ocupe el `#1`.
 
 ---
