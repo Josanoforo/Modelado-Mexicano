@@ -1,6 +1,6 @@
 # ACTO RETRIAGE-4 — nota de cierre
 
-**20 de agosto de 2026 · entorno UBUNTU · modelo Opus · `origin/main = 54da215` · `ADR-138`**
+**20 de agosto de 2026 · entorno UBUNTU · modelo Opus · `origin/main = 54da215` · `ADR-143`**
 **Encargo:** `forense/encargos/2026-08-20-RETRIAGE-4.md` (`FP-86`, firma de mesa verbatim: «**A1**»).
 
 ---
@@ -92,8 +92,8 @@ El encargo afirmaba que `R7.1` · `R7.3` · `R8.1` · `R10.1` son *"las únicas 
 
 | ficha | COMMIT A | COMMIT B | desenlace | ¿archiva? |
 |---|---|---|---|---|
-| **`R7.1`** | spec congelada | Δ pareado **6.5330 pp**, `IC95% [0.7331, 12.3329]`, n=40,162 | **rama 1 → propuesta `A`** | **no** — mesa adjudica (`FP-103`) |
-| **`R7.3`** | spec congelada | ningún instrumento reúne las 4 piezas del RDD | **rama 1+2 → propuesta `C`** | **no** — clase de `C` a firma (`FP-104`) |
+| **`R7.1`** | spec congelada | Δ pareado **6.5330 pp**, `IC95% [0.7331, 12.3329]`, n=40,162 | **rama 1 → propuesta `A`** | **no** — mesa adjudica (`FP-105`) |
+| **`R7.3`** | spec congelada | ningún instrumento reúne las 4 piezas del RDD | **rama 1+2 → propuesta `C`** | **no** — clase de `C` a firma (`FP-106`) |
 | **`R8.1`** | spec congelada | `Q3` con cobertura **cero** en 4 instrumentos | **rama 4 → `D`** | **sí** — `ADR-55`/`ADR-56` |
 | **`R10.1`** | spec congelada | 3/6 vs 3/6, Δ **0.00 pp**, `IC95% [−56.58, +56.58]` | **rama 4 → no adjudica** | **no** — sin fila |
 
@@ -111,7 +111,7 @@ Y un **tercer commit** en `R10.1`, el primero que este programa ejerce: la spec 
 
 **Lo mueve `R8.1` → `D`, y solo `R8.1`.** `R7.1` (propuesta `A`) y `R7.3` (propuesta `C`) **no** lo mueven, por la doctrina que `ADR-55` fijó verbatim: *"se propone, mesa adjudica"*. `R10.1` no lo mueve porque no propone fila.
 
-**Si mesa firma `FP-103` y `FP-104`, el contador llega a `16 de 27` sin una corrida nueva** — las dos corridas ya están hechas y archivadas.
+**Si mesa firma `FP-105` y `FP-106`, el contador llega a `16 de 27` sin una corrida nueva** — las dos corridas ya están hechas y archivadas.
 
 **Cascada, ocho sitios marcados más un complementario:** `README.md:36` (y su desglose `7D`→`8D`) · `estado:95`, `estado:275` · `gobernanza:360`, `gobernanza:2796` · `modelo:65`, `modelo:700`, `modelo:885` · `estado:201` (`49−14=35`, `27−14=13`).
 
@@ -136,7 +136,7 @@ El perímetro del encargo era: *"forense/hitoD-R7_1|R7_3|R8_1|R10_1-\*.md · for
 - **No tocó las nueve pre-registradas como probable `D`.**
 - **No corrió ningún diseño sustituto.** La prohibición se escribió en `hitoD-R7.3-especificacion §5.3` **antes** de saber si el original corría, y se respetó: no hay RDD por edad sobre ayuda genérica, no hay correlación ecológica padrón×voto, no hay dif-en-dif entre entidades, no hay tasa de pago de agua de LAPOP 2021.
 - **No recodificó las 12 transcripciones de `R10.1`** tras encontrar que la regla léxica fallaba. La razón está en `hitoD-R10.1-defecto-spec §3` y es la frase más importante del acto: un codificador único que ya vio el resultado equivocado y sabe qué número le conviene no produce una corrección, produce un sesgo con etiqueta de corrección.
-- **No numeró `D-07` ni `D-08`.** Se proponen (`FP-105`, `FP-106`).
+- **No numeró `D-07` ni `D-08`.** Se proponen (`FP-107`, `FP-108`).
 - **No tocó `milpa/`.** Falsar una regla no es calibrar un coeficiente (`ADR-47`).
 
 ---
@@ -149,8 +149,29 @@ El perímetro del encargo era: *"forense/hitoD-R7_1|R7_3|R8_1|R10_1-\*.md · for
 
 ## 9 · Sucesores nombrados, para que no haya que re-derivarlos
 
-1. **Adjudicación de `FP-103` y `FP-104`** — dos filas de contador ya medidas, esperando firma. Es la vía más barata que existe hoy al `16 de 27`.
+1. **Adjudicación de `FP-105` y `FP-106`** — dos filas de contador ya medidas, esperando firma. Es la vía más barata que existe hoy al `16 de 27`.
 2. **`hitoD-R10.1-especificacion-v2_0`** — codificación pragmática, segundo codificador con acuerdo reportado, arista rama-4 → `C`, y techo de `n` declarado en la primera página. **Con 6 por brazo ninguna codificación resuelve 15 pp**, y una v2.0 que no lo diga repetirá este acto con mejor coloración.
 3. **Adquirir PRESEEA** (`NO-ACCESIBLE` desde el 5/ago, ausente del corpus, verificado) — es lo único que subiría el `n` de `R10.1`.
 4. **Dos ítems, no un instrumento**, para `R8.1`: repetir el módulo de agua de LAPOP 2021 en una segunda ola y añadirle un ítem de corte de servicio. **Lo que NO desbloquea `R8.1` es más inventarios de comités** — el brazo de control no puede estar en ningún inventario, por construcción.
 5. **`R7.3` tiene ventana con fecha de caducidad**: su discontinuidad natural vivió en 2019-2021 y la universalización de 2022 la borró. Si alguien va a intentarlo, es contra datos de esos años.
+
+---
+
+## 10 · Colisión de concurrencia al fusionar — cuarta vez que este programa la paga en una semana
+
+Mientras este acto corría, `origin/main` avanzó **13 commits** con tres actos ajenos: `EMISOR-M-1`/`EMISOR-M-1b` (`PR #305`), `SELLA-C` (`PR #307`), `SELLA-OPLUS` (`PR #308`) e `INSTRUCCIONES-v2.11` (`PR #309`). **No es PARO** — es la regla de la casa, y se aplicó:
+
+| lo que colisionó | candidateado | quedó |
+|---|---|---|
+| ADR del acto | `ADR-138` contra máximo `137` en `54da215` | **`ADR-143`** — el árbol fusionado (`89c939b`) tiene máximo `142` |
+| filas de tablero | `FP-103`…`FP-106` contra máximo `102` | **`FP-105`…`FP-108`** — `PR #305` ya había tomado `FP-103` y `FP-104` |
+
+**Quien fusiona segundo renumera**, mismo precedente que `ADR-130`, `ADR-131` y `ADR-134` ya pagaron. La renumeración se anotó **dentro de cada fila** del tablero, no solo en el ADR, para que quien audite después no tenga que reconstruirla.
+
+**Tres conflictos de contenido, resueltos por comando y no por elección:**
+
+1. **`forense/firmas-pendientes.tsv`** — unión: primero las filas ajenas ya en `main`, después las mías renumeradas. Verificado: **9 columnas en todas las filas**, cero ids duplicados.
+2. **`canon/gobernanza-v1_15.md`** — dos conflictos. La cabecera de conteo pasa a **143 ADR**; el cuerpo conserva `ADR-139`…`ADR-142` ajenos **y** el mío renumerado detrás. Verificado: máximo `143`, sin duplicados, sin huecos.
+3. **`canon/estado-programa-v1_10.md`** — cuatro conflictos. Los dos de conteo de `ADR` se resuelven por número (`143`) conservando **las dos** notas de recifrado, la ajena y la mía. **Los dos de `FAIL`/`WARN` no se resolvieron eligiendo una cifra: se tomó el texto ajeno, se le antepuso mi nota, y la cifra se re-derivó corriendo la suite sobre el árbol ya fusionado.** Elegir entre `142` y `145` habría sido adivinar; el árbol fusionado da **19 FAIL · 145 WARN** y esa es la que queda.
+
+**Y la comprobación que cierra el punto:** `diff` de la lista de tests entre la corrida de arranque del acto y la corrida post-fusión da **una sola línea de diferencia** — `T22` de 19 a 22 WARN. Ningún `FAIL` nuevo entró por la fusión.
