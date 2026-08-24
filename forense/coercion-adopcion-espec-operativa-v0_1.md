@@ -1,6 +1,6 @@
 # PROPUESTA·PARCIAL — Especificación operativa coerción/adopción (v0.1)
 
-*(`ACTO EMISOR-M-2`, 24/ago/2026. Fuente: `COERCION-Y-ADOPCION-rediseno-2026-08-20.md` §4, §6 — documento de mesa, **no commiteado**. Este acto no lo tiene adjunto; por `transfer §9` NO se reconstruye. Lo que sigue es solo el bloque operativo que dirección pegó inline en el encargo `2026-08-24-EMISOR-M-2.md`, copiado aquí verbatim. Rotulado `PROPUESTA·PARCIAL` porque es un fragmento, no el documento íntegro — ver la fila de tablero al final pidiendo a mesa el documento completo.)*
+*(`ACTO EMISOR-M-2`, 24/ago/2026. Fuente: `COERCION-Y-ADOPCION-rediseno-2026-08-20.md` {cita-ilustrativa} §4, §6 — documento de mesa, **no commiteado**. Este acto no lo tiene adjunto; por `transfer §9` NO se reconstruye. Lo que sigue es solo el bloque operativo que dirección pegó inline en el encargo `2026-08-24-EMISOR-M-2.md`, copiado aquí verbatim. Rotulado `PROPUESTA·PARCIAL` porque es un fragmento, no el documento íntegro — ver la fila de tablero al final pidiendo a mesa el documento completo.)*
 
 ## Objeto
 
@@ -46,4 +46,4 @@ Pares de una sola variable, que consumirá la condición A re-especificada de `R
 Ninguna cifra de terceros del documento de mesa original — regla del propio documento. No es el `.md` íntegro: es el fragmento inline del encargo, transcrito una sola vez.
 
 ---
-**Pendiente a mesa (A.12):** el documento íntegro `COERCION-Y-ADOPCION-rediseno-2026-08-20.md` no llegó adjunto a este acto. Fila añadida a `forense/firmas-pendientes.tsv` pidiéndolo — si llega, un acto futuro lo commitea íntegro, byte-idéntico, rotulado `PROPUESTA` (no `PROPUESTA·PARCIAL`), reemplazando este archivo.
+**Pendiente a mesa (A.12):** el documento íntegro `COERCION-Y-ADOPCION-rediseno-2026-08-20.md` {cita-ilustrativa} no llegó adjunto a este acto. Fila añadida a `forense/firmas-pendientes.tsv` pidiéndolo — si llega, un acto futuro lo commitea íntegro, byte-idéntico, rotulado `PROPUESTA` (no `PROPUESTA·PARCIAL`), reemplazando este archivo.

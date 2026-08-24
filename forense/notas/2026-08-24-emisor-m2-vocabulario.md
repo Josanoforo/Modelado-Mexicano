@@ -39,7 +39,7 @@ $ python -m pytest tests/test_emisor_m2.py tests/test_emisor_fidelidad.py tests/
 
 ## T4 — documento fuente
 
-`COERCION-Y-ADOPCION-rediseno-2026-08-20.md` no llegó adjunto a este acto. Por `transfer §9` NO se reconstruye. Se creó `forense/coercion-adopcion-espec-operativa-v0_1.md`, rotulado `PROPUESTA·PARCIAL`, solo con el bloque inline que dirección pegó en el encargo. Fila `FP-113` añadida a `firmas-pendientes.tsv` pidiendo a mesa el documento íntegro.
+`COERCION-Y-ADOPCION-rediseno-2026-08-20.md` {cita-ilustrativa} no llegó adjunto a este acto. Por `transfer §9` NO se reconstruye. Se creó `forense/coercion-adopcion-espec-operativa-v0_1.md`, rotulado `PROPUESTA·PARCIAL`, solo con el bloque inline que dirección pegó en el encargo. Fila `FP-113` añadida a `firmas-pendientes.tsv` pidiendo a mesa el documento íntegro.
 
 ## T5 — discrepancia CoDi
 
