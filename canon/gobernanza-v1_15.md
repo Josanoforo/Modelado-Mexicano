@@ -3026,6 +3026,10 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 
 **(b) Ningún archivo del perímetro editado.** `README.md`, `canon/modelo-decision-v4_0.md`: sin cambios — verificado, no declarado. Este ADR y la línea de `forense/hallazgos.md` son el único producto del acto.
 
+**(c) Extensión de perímetro.** `canon/estado-programa-v1_10.md` recifrado 146→147 bajo adenda de dirección, tras `PARA` correcto del ejecutor — el encargo original mandaba emitir este ADR sin incluir el recifrado que todo ADR arrastra. Perímetro corto de dirección, segundo del día y de la misma clase que el defecto que este acto vino a reparar.
+
+**(d) Defecto de premisa, registrado.** La «propagación pendiente» que este encargo mandaba reparar ya no existía al lanzarse: la cerró el commit `f585f6f` («Solve CI: propagate Hito D 14→15…») dentro del propio PR de `SELLA-AGO24`, posterior a la nota de corroboración de `CORROBORA-MOTOR` y anterior a la fusión de ese PR. Dirección derivó la premisa del encargo de esa nota de corroboración — foto intermedia del acto — y no de comando sobre los archivos, violando `A.8(2)` en el propio bloque del encargo que lo cita. Clase `§7-1` del transfer. Verificado por dirección mediante adenda del 24/ago/2026, tras el cierre por no-existencia de (a).
+
 **Cascada.** Candidatea `ADR-147` contra el máximo re-derivado por `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` sobre el árbol al arrancar este acto: `146` (`ADR-146`/`ACTO EMISOR-M-2`, ya fusionado), único, sin huecos — de ahí `147`. `canon/gobernanza-v1_15.md` (este documento): este ADR. `forense/hallazgos.md`: una línea. `forense/encargos/2026-08-24-REPARA-PROPAGA-15.md`: consumido, cerrado. Ningún contador de Hito D se mueve — no había nada que mover.
 
 → **Vigente — cerrado por no-existencia del defecto.** *(`ACTO REPARA-PROPAGA-15`, 24/ago/2026. Entorno **NUBE** (`cloud_default`), modelo Sonnet. `origin/main = fb02421`, sin cambio desde el arranque del acto. Sin red de datos, `data/raw` no aplica, no se toca ningún microdato.)*
