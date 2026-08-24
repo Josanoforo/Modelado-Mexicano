@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **146 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **147 ADR**
 
 > | | |
 > |---|---|
@@ -3017,6 +3017,18 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 **Cascada.** Candidatea `ADR-146` contra el máximo re-derivado por `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` sobre el árbol al arrancar este acto: `145` (`ADR-145`/`ACTO SELLA-AGO24`, ya fusionado, `origin/main = bcd318f`), único, sin huecos — de ahí `146`. Si otro PR fusiona primero y colisiona, regla de la casa: quien fusiona segundo renumera. `firmas-pendientes.tsv`: fila nueva `FP-113`, máximo previo `112` derivado por `grep -oE "FP-[0-9]+" forense/firmas-pendientes.tsv | sort -t- -k2 -n | uniq | tail -1`, no tecleado. `milpa/src/emisor.py`: vocabulario M-2 nuevo (`VARIABLES_DEPENDIENTES_M2`, `DISPARADORES_COMPONENTE_M2`, `valida_dv_celda_m2`, `estampa_base_extendida_m2`). `tests/test_emisor_m2.py`: nuevo. `forense/coercion-adopcion-espec-operativa-v0_1.md`: nuevo. `forense/notas/2026-08-24-emisor-m2-vocabulario.md`: nuevo. `canon/gobernanza-v1_15.md` (este documento): este ADR. Ningún contador de Hito D ni de medición sobre México se mueve.
 
 → **Vigente.** *(`ACTO EMISOR-M-2`, 24/ago/2026. Entorno **NUBE** (`cloud_default`), modelo Opus. `origin/main = bcd318f` (`PR #310`/`SELLA-AGO24` fusionado, sin cambio desde el arranque del acto). Sin red de datos, `data/raw` no aplica, no se toca ningún microdato.)*
+
+---
+
+**ADR-147 · `ACTO REPARA-PROPAGA-15` verifica el defecto reportado por `CORROBORA-MOTOR` (B1, `forense/notas/2026-08-24-corrobora-motor.md`) — propagación de `14 de 27` a `15 de 27` presuntamente incompleta en `README.md` y `canon/modelo-decision-v4_0.md` — y lo cierra por no-existencia: las tres citas vivas ya estaban en `15 de 27` al arrancar este acto.** Encargo, dirección, 24/ago/2026. Gate: clon propio, `origin/main = fb02421`, sin cambio desde el arranque del acto. Entorno **NUBE** (`cloud_default`), modelo Sonnet, sin red ni microdato — sonda saltada.
+
+**(a) Re-derivación, no confianza en el reporte.** `grep -n "14 de 27" README.md canon/modelo-decision-v4_0.md`: cero coincidencias en `README.md` (ya cita `**15 de 27**`, `README.md:36`); dos coincidencias en `canon/modelo-decision-v4_0.md` (`:65` y `:700`), y en ambas la cita viva del contador ya dice `**15 de 27 corridas archivadas**` — el texto `14 de 27` que el grep encuentra vive exclusivamente dentro de la narración fechada de la bitácora de correcciones de cada línea (`"... 13 de 27 → 14 de 27 ... 14 de 27 → 15 de 27"`), historia con fecha (20/ago y 24/ago) de transiciones ya cerradas, no un valor sin propagar. Por la regla del encargo (una línea que narra un estado con fecha es historia y se queda), ninguna de las tres citas requería edición. `python3 tests/check.py --baseline` corrido antes de tocar nada: `T20 T-CASCADA-MARCADA` en `[ ok ]`, línea base `VERDE — nada nuevo frente a tests/baseline.json`, 19 FAIL / 147 WARN preexistentes sin relación con el Hito D. El defecto declarado por `CORROBORA-MOTOR` no reprodujo: el perímetro de `SELLA-AGO24`/`ADR-145` sí alcanzó las tres citas.
+
+**(b) Ningún archivo del perímetro editado.** `README.md`, `canon/modelo-decision-v4_0.md`: sin cambios — verificado, no declarado. Este ADR y la línea de `forense/hallazgos.md` son el único producto del acto.
+
+**Cascada.** Candidatea `ADR-147` contra el máximo re-derivado por `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` sobre el árbol al arrancar este acto: `146` (`ADR-146`/`ACTO EMISOR-M-2`, ya fusionado), único, sin huecos — de ahí `147`. `canon/gobernanza-v1_15.md` (este documento): este ADR. `forense/hallazgos.md`: una línea. `forense/encargos/2026-08-24-REPARA-PROPAGA-15.md`: consumido, cerrado. Ningún contador de Hito D se mueve — no había nada que mover.
+
+→ **Vigente — cerrado por no-existencia del defecto.** *(`ACTO REPARA-PROPAGA-15`, 24/ago/2026. Entorno **NUBE** (`cloud_default`), modelo Sonnet. `origin/main = fb02421`, sin cambio desde el arranque del acto. Sin red de datos, `data/raw` no aplica, no se toca ningún microdato.)*
 
 ---
 
