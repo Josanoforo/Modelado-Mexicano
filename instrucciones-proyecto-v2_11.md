@@ -1,4 +1,4 @@
-Instrucciones del proyecto — "Psicología del Mexicano Contemporáneo" · v2.9
+Instrucciones del proyecto — "Psicología del Mexicano Contemporáneo" · v2.11
 
 Por qué v2. La v1 (Bloque A + Bloque B) se diseñó para escribir un report temático. El proyecto creció a un programa multi-artefacto: reports temáticos + un integrador (meta-síntesis) + un modelo de decisión + validaciones forenses. Esta v2 conserva casi toda la v1 verbatim y solo añade o precisa lo que el proyecto probó que necesita. Cada cambio está marcado [NUEVO], [REFINADO] u [OPCIONAL] para que sea fácil aprobarlo o cortarlo. Todo lo no marcado es v1 sin cambios.
 
