@@ -1,0 +1,111 @@
+==============================================================================
+HITO D · R8.1 — corrida del falsador · ACTO RETRIAGE-4 · 20/ago/2026
+spec congelada: forense/hitoD-R8_1-especificacion-v1_0.md
+==============================================================================
+
+Q1 bien publico identificado con TASA (numerador sobre denominador)
+Q2 sostenida >=2 anos sobre la MISMA unidad-bien
+Q3 ausencia IDENTIFICABLE de sancion y de liderazgo con capacidad de excluir
+Q4 fuera del sistema comunal (ADR-10): mestizo o urbano identificable
+
+──────────────────────────────────────────────────────────────────────────────
+§1 · r8_1_contraloria_social_2019_2025_csv
+  filas x columnas                              : 7 x 9
+  columnas                                      : ejercicio_fiscal, estrategias_validadas, programas_validados, comites_constituidos, integrantes, integrantes_mujeres, integrantes_hombres, beneficios_vigilados, capacitaciones
+  contenido integro (son 7 filas, se pegan todas):
+     ejercicio_fiscal  estrategias_validadas  programas_validados  comites_constituidos  integrantes  integrantes_mujeres  integrantes_hombres  beneficios_vigilados  capacitaciones
+                 2019                    106                   68                 78884       325137               222314               102823                 86116             136
+                 2020                     97                   68                 68624       275410               180859                94551                 76650              98
+                 2021                     92                   60                 62667       266724               171595                95129                 74671             137
+                 2022                    125                   72                 89373       345273               235828               109445                103609             169
+                 2023                    161                   80                149105       497309               357014               140295                178724             216
+                 2024                    163                   83                144042       460842               333830               127012                148185             274
+                 2025                    167                   83                162230       509416               369846               139570                165762              79
+  Q1 columna de tasa o de denominador           : NINGUNA
+  Q1 identificador de bien publico o de comite  : ['estrategias_validadas', 'programas_validados', 'comites_constituidos']
+  Q2 unidad-bien repetida en >=2 anos           : NO — la unidad es el ANO, no el bien
+  Q3 columna de sancion / monitoreo / exclusion : ['beneficios_vigilados']
+     ^ FALSO POSITIVO del propio patron: 'beneficios_vigilados' es un CONTEO
+       de beneficios vigilados, no una variable de sancion ni de exclusion.
+       Q3 real en este instrumento: NINGUNA.
+  Q4 columna geografica o de regimen comunal    : NINGUNA
+  ESTRUCTURAL, y es el punto: 'comites_constituidos' enumera SOLO el brazo
+  monitoreado. El bien publico sin comite no aparece aqui por construccion.
+  VEREDICTO DE INSTRUMENTO: Q1 NO · Q2 NO · Q3 NO · Q4 NO
+
+──────────────────────────────────────────────────────────────────────────────
+§2 · ADQ15_OMCA_conflictos_agua / omca_conflictos_base_completa.json
+  registros                                     : 375
+  campos de primer nivel                        : acuifero, anio, conflicto, cuenca, escala, estatus, evidencia, id, presencia_indigena, rha, sistemas_independientes, tipo, ubicaciones
+  Q1 campo de tasa/contribucion                 : NINGUNA
+  Q3 campo de sancion/monitoreo                 : NINGUNA
+  Q2 anios cubiertos                            : 1926..20´18 (45 distintos)
+  Q4 presencia_indigena, valores                : ['', 'Chatinos', 'Chinantecos', 'Huaves', "IT doesn't have", 'Lacandones']
+  la unidad de observacion es el CONFLICTO, no el bien publico ni la
+  contribucion: registra disputas, no tasas de aportacion.
+  VEREDICTO DE INSTRUMENTO: Q1 NO · Q2 parcial (anio del conflicto) · Q3 NO · Q4 SI
+
+──────────────────────────────────────────────────────────────────────────────
+§3 · LAPOP AmericasBarometer Mexico — participacion comunitaria
+  ── ola 2021 · variables cp*: NINGUNA
+     Q3 variables de sancion/monitoreo de bien publico: NINGUNA
+     Q1 variables de contribucion/cooperacion          : [('pr3enr', 'Probabilidad de tener que pagar una coima para construir o renovar'), ('psc2r2_1', 'Persona que paga el servicio de agua: Encuestado(a)'), ('psc2r2_2', 'Persona que paga el servicio de agua: Esposo/pareja (hombre)'), ('psc2r2_3', 'Persona que paga el servicio de agua: Esposa/pareja (mujer)'), ('psc2r2_4', 'Persona que paga el servicio de agua: Padre/suegro'), ('psc2r2_5', 'Persona que paga el servicio de agua: Madre/suegra'), ('psc2r2_6', 'Persona que paga el servicio de agua: Hijo'), ('psc2r2_7', 'Persona que paga el servicio de agua: Hija'), ('psc2r2_8', 'Persona que paga el servicio de agua: Hermano/cuñado'), ('psc2r2_9', 'Persona que paga el servicio de agua: Hermana/cuñada'), ('psc2r2_10', 'Persona que paga el servicio de agua: Abuelo'), ('psc2r2_11', 'Persona que paga el servicio de agua: Abuela'), ('psc2r2_12', 'Persona que paga el servicio de agua: Otro familiar (hombre)'), ('psc2r2_13', 'Persona que paga el servicio de agua: Otro familiar (mujer)'), ('psc2r2_14', 'Persona que paga el servicio de agua: Servicio doméstico/Empleado (hombre)'), ('psc2r2_15', 'Persona que paga el servicio de agua: Servicio doméstico/Empleada (mujer)'), ('psc2r2_16', 'Persona que paga el servicio de agua: Otra persona (hombre)'), ('psc2r2_17', 'Persona que paga el servicio de agua: Otra persona (mujer)'), ('psc2r2_18', 'Persona que paga el servicio de agua: Cualquiera'), ('psc2r2_19', 'Persona que paga el servicio de agua: Nadie (sistema de débito/gastos comunes)'), ('psc2r2_99', 'Persona que paga el servicio de agua: No pagan por el agua que consumen'), ('psc2r2_77', 'Persona que paga el servicio de agua: Otra'), ('psc2f4_2', 'Costos adicionales: Pagarle al de la canilla pública'), ('psc2f4_3', 'Costos adicionales: Pagarle al propietario del lote')]
+     MODULO DE AGUA (solo esta ola): 21 dummies psc2r2_*
+       incluye psc2r2_99 'No pagan por el agua que consumen' -> es lo mas
+       cerca que hay de una tasa de aportacion a un bien publico.
+       Falla Q2: la bateria NO existe en la ola 2023 (una sola ola).
+       Falla Q3: cero variables de corte de servicio, multa o exclusion.
+  ── ola 2023 · variables cp*: ['cp8', 'cp13', 'cp20']
+       cp8        Asiste a reuniones de un comité o junta de mejoras para la comunidad
+       cp13       Asiste a reuniones de un partido o movimiento político
+       cp20       Asiste a reuniones o grupos de mujeres o amas de casa
+     Q3 variables de sancion/monitoreo de bien publico: NINGUNA
+     Q1 variables de contribucion/cooperacion          : [('exc2', 'Pidió pagar un mordida/soborno por un oficial de policía en los últimos 12 meses'), ('exc6', 'Pidió pagar una coima por parte de un empleado público en los últimos 12 meses'), ('exc20', 'Pidió pagar una mordida/soborno por un oficial militar en los últimos 12 meses'), ('exc11', 'Pidió pagar una tarifa extra por parte del municipio'), ('exc14', 'Pidió pagar un soborno/coima por un tribunal en el último año'), ('formal', 'Contribuye a la pensión/jubilación')]
+  cp8 mide ASISTENCIA A REUNIONES de un comite, no aportacion a un bien.
+  Y no existe ninguna variable que registre si ese comite tiene sancion.
+  VEREDICTO DE INSTRUMENTO: Q1 NO (asistencia != contribucion) · Q3 NO
+
+──────────────────────────────────────────────────────────────────────────────
+§4 · encup_2012_base_datos_xlsx
+  hojas                                         : ['BaseDatos_ENCUP_2012_Final', 'Hoja1']
+  hoja 1: columnas                              : 282
+  ponderador declarado en columnas              : ['factor', 'POND']
+  estrato / UPM declarados en columnas          : NINGUNO
+  Q3 columnas de sancion/monitoreo              : NINGUNA
+  Q1 columnas de contribucion/cooperacion       : ['P38. En su opinión, ¿la política contribuye o no a mejorar el nivel de vida de todos los mexicanos?', 'P57_9. Durante el último año, ¿asistió a alguna reunión de las siguientes organizaciones? De cooperativas o asamblea ejidal', 'A1. Pensando en la persona que aporta la mayor parte del ingreso en este hogar, ¿cuál fue el último año de estudios que completó?,¿Realizó otros estudios?']
+  bateria de participacion/organizacion (30 columnas):
+     · P26C. A cambio de vivir sin presiones económicas, estaría usted dispuesto a sacrificar su Libertad de organización
+     · P30_10. En una escala de calificación de 0 a 10 donde 0 es nada y 10 es mucho, por favor dígame ¿Qué tanto confía en…? Los vecinos
+     · P30_13. En una escala de calificación de 0 a 10 donde 0 es nada y 10 es mucho, por favor dígame ¿Qué tanto confía en…? Las organiz
+     · P30_27. En una escala de calificación de 0 a 10 donde 0 es nada y 10 es mucho, por favor dígame ¿Qué tanto confía en…? Las organiz
+     · P57_1. Durante el último año, ¿asistió a alguna reunión de las siguientes organizaciones? Juntas de vecinos
+     · P57_2. Durante el último año, ¿asistió a alguna reunión de las siguientes organizaciones? Junta de colonos
+     · P57_3. Durante el último año, ¿asistió a alguna reunión de las siguientes organizaciones? Reunión de condóminos
+     · P57_4. Durante el último año, ¿asistió a alguna reunión de las siguientes organizaciones? Agrupación u organización de ciudadanos
+     · P57_5. Durante el último año, ¿asistió a alguna reunión de las siguientes organizaciones? Asambleas de la comunidad
+     · P57_6. Durante el último año, ¿asistió a alguna reunión de las siguientes organizaciones? Asociación de padres de familia
+     · P57_7. Durante el último año, ¿asistió a alguna reunión de las siguientes organizaciones? Algún partido o agrupación política
+     · P57_8. Durante el último año, ¿asistió a alguna reunión de las siguientes organizaciones? Sindicato
+     · P57_9. Durante el último año, ¿asistió a alguna reunión de las siguientes organizaciones? De cooperativas o asamblea ejidal
+     · P59_11. ¿Alguna vez usted ha llevado a cabo las siguientes acciones? Ha hecho donativos o prestado ayuda alguna organización socia
+     · P69_1. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Organización estudiantil
+     · P69_2. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Voluntariado o beneficencia
+     · P69_3. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Asociación de padres de fami
+     · P69_4. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Sindicato
+     · P69_5. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Partido político
+     · P69_6. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Agrupación profesional
+     · P69_7. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Agrupación política
+     · P69_8. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Agrupación religiosa
+     · P69_9. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Organización de ciudadanos
+     · P69_10. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Asociación de la industria 
+     · P69_11. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  De vecinos, colonos, condóm
+     · P69_12. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  De pensionados y jubilados
+     · P69_13. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  De arte y cultura
+     · P69_14. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Deportiva
+     · P69_15. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  De defensa del medio ambien
+     · P69_16. Usted es o ha sido miembro de alguna de las siguientes organizaciones  que le voy a mencionar  Otro grupo organizado ¿Cuál
+
+==============================================================================
+CIERRE — ningun instrumento en disco construye Q1+Q2+Q3+Q4.
+Q3 (ausencia identificable de sancion) tiene CERO cobertura en los cuatro.
+==============================================================================
