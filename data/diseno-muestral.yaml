@@ -387,63 +387,69 @@
     explícitamente un falso-positivo por convención de nombres compartida con notas de ENSANUT).
     El patrón ESTRATO(sustantivo)/EST_DIS(diseño) y UPM(llave)/UPM_DIS(diseño) se repite entre
     encuestas INEGI recientes -- mismo patrón que ENVIPE ya advertía en su propia nota.
-- fuente: ENNViH / MxFLS (Encuesta Nacional sobre Niveles de Vida de los Hogares / Mexican Family
-    Life Survey)
-  estado: PENDIENTE
-  ponderador: Archivos de ponderador existen por convención de nombre (ehh0Xw_all.zip = transversal,
-    ehh0Xlw_all.zip = longitudinal, uno por ola) -- nombre de COLUMNA dentro del .dta no confirmado
-    en ningún documento leído.
-  estrato: 'No confirmado como nombre de columna. El método SÍ está documentado: diseño estratificado
-    bietápico por región -> estrato -> UPM (con probabilidad igual) -> USM (6 por UPM, probabilidad
-    proporcional al tamaño) -> vivienda.'
-  upm: No confirmado como nombre de columna (mismo estado que estrato -- el documento de método
-    usa notación matemática genérica "i-ésima UPM", no un nombre de campo real).
-  donde_vive: 'El documento calculo-de-factores-de-expansion.pdf (ola 3) explica la fórmula
-    completa de construcción del factor de expansión (selección con probabilidad proporcional
-    al tamaño de USM, ajuste por no respuesta a nivel estrato, calibración con variables auxiliares)
-    -- pero nunca declara los nombres de columna reales del archivo de datos liberado. La guía
-    de usuario de la ola 3 (guia_de_usuario_ennvih-3.pdf) tampoco los declara (se revisó completa:
-    es una guía de fusión de "libros"/tablas, no un diccionario de variables de diseño).'
-  procedencia: 'Abierto en FASE B de este acto (2026-08-04): data/raw/ennvih/calculo-de-factores-de-expansion.pdf
-    (id ennvih3_2009_factores_exp, líneas 52-121 del texto extraído con pdftotext -layout) y
-    data/raw/ennvih/guia_de_usuario_ennvih-3.pdf (id ennvih3_2009_guia, grep completo sin coincidencias
-    de "estrato"/"upm"/"conglomerado" como nombre de columna -- solo aparece "peso" en el sentido
-    antropométrico).'
-  notas: 'FASE A ya tenía una cita parcial (forense/hitoD-preregistro-v2_0.md:499,622) que solo
-    nombraba la FAMILIA de archivo del ponderador por ola, sin fórmula ni estructura de diseño.
-    FASE B añadió la mecánica completa del diseño (región/estrato/UPM/USM, PPS, calibración)
-    pero NO resolvió el nombre de columna real -- por eso el estado se queda en PENDIENTE y
-    no sube a MAPEADO: dos de los tres campos exigidos (estrato, upm) no tienen un nombre de
-    columna citado con archivo:línea, solo un rol conceptual. Candidato para cerrarlo en un
-    futuro acto: abrir el encabezado del .dta de ponderador (ehh09w_all.zip) -- eso ya sería
-    microdato, no FD, y requeriría su propia declaración de contaminación.'
+- fuente: ENNViH / MxFLS (Encuesta Nacional sobre Niveles de Vida de los Hogares / Mexican Family Life
+    Survey)
+  estado: SIN_DISEÑO_PUBLICADO
+  ponderador: 'RESUELTO a nivel de columna en este acto, pero desde el microdato, no desde un documento:
+    los archivos de ponderador traen una columna por "libro" de la encuesta. En data/raw/ennvih/ehh09w_all.zip
+    (ola 3, 2009) los nombres son fac_1, fac_2, fac_3a, fac_3b, fac_4, fac_5, fac_c, fac_ea, fac_en, fac_s
+    y, en ehh09w_bx.dta, fac_3a_px/fac_3b_px/fac_4_px; la etiqueta de Stata de cada uno es "FACTOR DE
+    EXPANSION LIBRO <X>". Universo: hogar -- la llave de union es folio, etiquetado "IDENTIFICADOR DEL
+    HOGAR" (los archivos por libro con seleccion de persona traen ademas ls). Los ponderadores longitudinales
+    viven en ehh0Xlw_all.zip con el mismo patron.'
+  estrato: 'NO EXISTE como columna de diseno en este corpus. El unico campo llamado estrato en las tres
+    olas esta en c_portad.dta (ehh0Xdta_all.zip) y NO es el estrato de muestreo: sus cuatro valores son
+    clases de tamano de localidad ("<2500", "2500-14,999", "15,000-9,999", ">=10,000" -- el tercero trae
+    una errata de la propia fuente). El metodo SI esta documentado en data/raw/ennvih/calculo-de-factores-de-expansion.pdf
+    (region -> estrato -> UPM con probabilidad igual -> USM 6 por UPM con PPS -> vivienda), pero en notacion
+    matematica, sin nombre de campo.'
+  upm: 'NO EXISTE, ni en documento ni en microdato. Negativo con conteo (A.13): se leyo la cabecera de
+    TODOS los .dta de las tres olas -- 137 en ehh02dta_all.zip, 147 en ehh05dta_all.zip y 141 en ehh09dta_all.zip,
+    425 archivos, 425 examinados sin fallo de lectura -- buscando nombre o etiqueta que casara con estrat|upm|usm|conglom|psu|strat.
+    Unico acierto en las tres olas: la columna estrato de c_portad.dta descrita arriba. Cero columnas
+    de UPM/conglomerado.'
+  donde_vive: 'El ponderador vive en archivos .dta propios (ehh0Xw_all.zip / ehh0Xlw_all.zip), separados
+    del microdato de contenido (ehh0Xdta_all.zip): hay que unir por folio. El identificador de conglomerado
+    no vive en ninguna parte del payload liberado.'
+  procedencia: 'Este acto abrio, en data/raw/ennvih/: las cabeceras de los 11 .dta de ehh09w_all.zip y
+    las de los 425 .dta de las tres olas de microdato, con pandas.read_stata en modo iterador (solo etiquetas
+    de variable, sin leer datos salvo la columna estrato de c_portad.dta para confirmar sus valores).
+    FASE A y FASE B del ACTO M (2026-08-04) ya habian revisado calculo-de-factores-de-expansion.pdf y
+    guia_de_usuario_ennvih-3.pdf sin resolver nombres de columna.'
+  notas: 'Cambia de PENDIENTE a SIN_DISEÑO_PUBLICADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno
+    UBUNTU, corpus montado), y el cambio importa: PENDIENTE decia "no examinado o falta 1 de 3"; lo medido
+    es que el corpus NO CONTIENE el identificador de UPM de ENNViH ni un estrato de diseno, y ningun documento
+    los nombra. CONSECUENCIA DIRECTA PARA LA CORRIDA CAL-G3: sobre ENNViH se pueden calcular estimaciones
+    puntuales ponderadas (fac_* existe y esta completo) pero NO errores estandar basados en diseno --
+    no hay con que declarar strata ni id/cluster en un svydesign. Quien necesite varianza sobre ENNViH
+    tiene que (i) declarar explicitamente un supuesto de muestreo aleatorio simple y asumir el sesgo,
+    o (ii) conseguir de la fuente el archivo de identificadores de diseno, que no esta en ennvih-mxfls.org/assets
+    segun lo adquirido. Esto es hallazgo de este acto, no supuesto heredado.'
 - fuente: ENOE / ENOEN (Encuesta Nacional de Ocupación y Empleo / ENOE Nueva Edición)
-  estado: PENDIENTE
-  ponderador: FAC (ediciones 2005T1-2020T1) / FAC_TRI + FAC_MEN ("los tres transversales", desde
-    2020T3) -- nombres de columna confirmados por nota previa, no por FASE B directamente.
-  estrato: No confirmado como nombre de columna. Documentado como concepto ("estrato" genérico,
-    sujeto a colapsamiento en pseudo-estratos cuando tiene menos de 2 UPM) -- el documento de
-    diseño muestral nunca usa un nombre de campo en mayúsculas para él.
-  upm: UPM (Unidad Primaria de Muestreo) -- confirmado como columna real de enlace/llave por
-    nota previa, y confirmado en su ROL de conglomerado/PSU por el documento de diseño abierto
-    en FASE B ("diseño...bietápico...entre las unidades primarias de muestreo (UPM)").
-  donde_vive: El diseño muestral formal (probabilístico, bietápico, estratificado, por conglomerados;
-    ajuste de factores por colapsamiento de estratos, no respuesta y proyecciones de población;
-    estimación de varianza) vive en enoe_n_diseno_muestral.pdf, dentro de "3. Metodología/Metodologías/"
-    del zip de documentación ya descargado. Los NOMBRES de columna reales viven en el Descriptor
-    de Archivos (enoe_n_fd_c_bas_amp.pdf), que este entorno no tiene -- confirmado ausente.
-  procedencia: 'Abierto en FASE B de este acto (2026-08-04): se extrajo (sin tocar el resto
-    del zip) "3. Metodología/Metodologías/enoe_n_diseno_muestral.pdf" de data/raw/enoe_n_trim3_2020-trim4_2022.zip
-    (id enoen_trim3_2020_trim4_2022_documentacion_zip) y se leyó completo con pdftotext -layout
-    (423 líneas) -- confirma "diseño...bietápico, estratificado y por conglomerados" (§4) y
-    el procedimiento de colapsamiento de estratos (§6.1), pero es puramente narrativo/matemático
-    (subíndices h/i/e), cero nombres de columna en mayúsculas en todo el documento. Los nombres
-    FAC/FAC_TRI/FAC_MEN/UPM ya estaban citados en forense/notas/2026-07-31-cal-enoe-fasea.md:126-127.'
-  notas: FASE A ya tenía una cita parcial de la misma nota (cal-enoe-fasea.md). FASE B confirmó
-    el TIPO de diseño y el procedimiento de colapsamiento, pero no puede cerrar "estrato" como
-    nombre de columna porque el único documento con esa información (el FD/descriptor de archivos)
-    no está en el corpus en este entorno. No sube a MAPEADO por esa única pieza faltante --
-    2 de 3 campos sí tienen nombre de columna citado (ponderador, UPM).
+  estado: MAPEADO
+  ponderador: 'Dos eras, nombres distintos. ENOE clasica (hasta 2019/2020): FAC, "Ponderador", citado
+    en data/raw/fd_c_bas_amp_15ymas.pdf linea 399 del texto extraido. ENOE Nueva Edicion (ENOEN, 2020
+    en adelante): FAC_TRI (trimestral) y FAC_MEN (mensual), citados en data/raw/enoe_325_fd_c_bas_amp.pdf
+    lineas 347 y 349. No son intercambiables: una estimacion trimestral usa FAC_TRI, una mensual FAC_MEN.'
+  estrato: 'ENOE clasica: EST_D, "Estrato de diseno", C(4) -- data/raw/fd_c_bas_amp_15ymas.pdf linea 239.
+    ENOEN: EST_D_TRI y EST_D_MEN, ambos "Estrato de diseno" C(4) -- data/raw/enoe_325_fd_c_bas_amp.pdf
+    lineas 155 y 157. El campo EST (C(2)) que aparece junto a ellos NO es el estrato de diseno: es la
+    clave cuyo primer caracter identifica el ambito.'
+  upm: UPM, "Unidad primaria de muestreo", C(7) -- data/raw/fd_c_bas_amp_15ymas.pdf linea 340 y data/raw/enoe_325_fd_c_bas_amp.pdf
+    linea 276. Mismo nombre en las dos eras.
+  donde_vive: 'Las tres variables viven como columnas dentro de cada tabla trimestral de microdato (conjunto_de_datos_{viv,hog,sdem,coe1,coe2}_enoe_<ano>_<n>t.csv),
+    dentro de data/raw/conjunto_de_datos_enoe_<ano>_<n>t_csv.zip. Las tablas coe1/coe2 traen ponderador
+    y UPM pero NO el estrato de diseno: el estrato hay que traerlo por union con sdem/hog/viv.'
+  procedencia: 'Descriptores de archivos de ENOE ya en el corpus, abiertos en este acto: data/raw/fd_c_bas_amp_15ymas.pdf
+    (4797 lineas) y data/raw/enoe_325_fd_c_bas_amp.pdf (4918 lineas), extraidos con "pdftotext -layout
+    <archivo> - | grep -n".'
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+    corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
+    no-vacios y distintos; ningun numero entra al canon). En conjunto_de_datos_enoe_2025_4t_csv.zip (2000
+    filas leidas por tabla): fac_tri, fac_men y upm no vacios en las cinco tablas; est_d_tri completo
+    y est_d_men 1845/2000 en viv/hog (el faltante es la parte de la muestra sin panel mensual, no un defecto
+    de lectura). En conjunto_de_datos_enoe_2019_1t_csv.zip: fac, est_d y upm no vacios en viv/hog/sdem;
+    coe1/coe2 sin est_d, como declara el FD.'
 - fuente: ENCUP (Encuesta Nacional sobre Cultura Política y Prácticas Ciudadanas) 2012
   estado: SIN_DISEÑO_PUBLICADO
   ponderador: no encontrado
@@ -482,64 +488,96 @@
     por la sesión que lo abrió) podría cerrar esto -- eso es descarga, fuera de perímetro de
     este acto (P-B).'
 - fuente: ENDIREH 2021 (Encuesta Nacional sobre la Dinámica de las Relaciones en los Hogares)
-  estado: PENDIENTE
-  ponderador: no encontrado
-  estrato: no encontrado
-  upm: no encontrado
-  donde_vive: 'No determinable en este entorno. El único candidato (FD "Estructura de la base
-    de datos ENDIREH 2021", 730 pp.) está registrado en data/manifiesto.yaml (id endireh2021_fd_pdf,
-    raíz data_raw) pero AUSENTE físicamente en este sandbox Ubuntu -- verificado con tests/manifiesto.py
-    --verifica --id endireh2021_fd_pdf ANTES de intentar abrir nada ("AUSENTE -- endireh2021/endireh2021_fd.pdf
-    no está en la raíz data_raw"). No es un hallazgo sobre el diseño de ENDIREH: es un hallazgo
-    sobre este entorno.'
-  procedencia: 'Dos menciones parciales sin confirmar: forense/notas/2026-08-04-endireh-paso1bis-verificacion-microdato.md:347-348
-    y forense/hitoE-campana-medicion-v2_0.md mencionan candidatos (FAC_MUJ, EST_DIS/UPM_DIS/ESTRATO)
-    como trabajo futuro, no confirmados contra el archivo real.'
-  notas: 'FASE B no se intentó para esta fuente: no hay nada que abrir en este entorno (no es
-    una decisión, es una imposibilidad verificada). Cuando un entorno con acceso a data_raw
-    completo (o a la raíz descargas_mx) retome esto, el candidato de FASE B es el mismo FD ya
-    identificado.'
+  estado: MAPEADO
+  ponderador: 'Dos ponderadores por universo. FAC_VIV, "Ponderador que se utiliza", N(4) -- data/raw/endireh2021/endireh2021_fd.pdf
+    linea 883 del texto extraido (universo: vivienda/hogar). FAC_MUJ, N(4) -- misma fuente, linea 1225
+    (universo: mujer elegida de 15 anos y mas). El propio FD, linea 259-260, declara la particion: el
+    primero corresponde a la vivienda y el segundo a la mujer elegida.'
+  estrato: 'EST_DIS, "Estrato de diseno muestral", N(4), rango 0001...9999 -- data/raw/endireh2021/endireh2021_fd.pdf
+    linea 897. Cuidado: la variable ESTRATO (N(1), rango 1...4, linea 907) es el estrato socioeconomico,
+    NO el de diseno.'
+  upm: UPM_DIS, "Unidad primaria de muestreo", N(5), rango 00001...99999 -- data/raw/endireh2021/endireh2021_fd.pdf
+    linea 904. La variable UPM (sin sufijo) es parte de la llave primaria de las tablas, no el conglomerado
+    de diseno.
+  donde_vive: Las cuatro variables viven como columnas en cada tabla de data/raw/endireh2021/bd_endireh_2021_csv.zip
+    (TVIV, TSDem, TB_SEC_*, TB_VD).
+  procedencia: data/raw/endireh2021/endireh2021_fd.pdf (51795 lineas de texto extraido), abierto en este
+    acto con "pdftotext -layout <archivo> - | grep -n".
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+    corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
+    no-vacios y distintos; ningun numero entra al canon). 28 tablas leidas de bd_endireh_2021_csv.zip,
+    3000 filas por tabla: FAC_VIV, FAC_MUJ, EST_DIS, UPM_DIS y ESTRATO no vacios en todas. TVIV no trae
+    FAC_MUJ (correcto: no hay mujer elegida a nivel vivienda).'
 - fuente: ENDUTIH 2024 (Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información
     en los Hogares)
-  estado: PENDIENTE
-  ponderador: no encontrado
-  estrato: no encontrado
-  upm: no encontrado
-  donde_vive: 'No determinable en este entorno. Único payload registrado (endutih2024_bd_dbf_zip)
-    sin FD/diccionario separado en el manifiesto -- y ese único payload está AUSENTE en este
-    entorno (verificado con tests/manifiesto.py --verifica --id endutih2024_bd_dbf_zip: "AUSENTE").'
-  procedencia: ninguna nota lo documenta
-  notas: 'FASE B no se intentó: no hay ningún archivo de ENDUTIH en este entorno, ni FD ni BD.
-    A diferencia de ENDIREH, aquí ni siquiera hay un candidato nombrado en manifiesto para un
-    FD separado -- si existe, no está registrado.'
+  estado: MAPEADO
+  ponderador: 'Cuatro ponderadores, uno por tabla/universo, todos en data/raw/endutih2024/fd_endutih2024.xlsx:
+    FAC_VIV (hoja tic_2024_viviendas, fila 35), FAC_HOG (hoja tic_2024_hogares, fila 236), FAC_HOGAR (hoja
+    tic_2024_residentes, fila 71 -- nombre distinto para el universo de residentes, no es erratum), FAC_PER
+    (hojas tic_2024_usuarios fila 458 y tic_2024_usuarios2 fila 188). Elegir el que corresponda al universo
+    de la estimacion.'
+  estrato: 'EST_DIS, "Estrato de diseno muestral", alfanumerico(3), en las cinco hojas: filas 37, 238,
+    73, 460 y 190 de data/raw/endutih2024/fd_endutih2024.xlsx. La variable ESTRATO (alfanumerico(1), rango
+    1-4, filas 43 y 244) es el estrato socioeconomico, NO el de diseno.'
+  upm: 'UPM_DIS, "Unidad primaria de muestreo", alfanumerico(5), en las cinco hojas: filas 36, 237, 72,
+    459 y 189 de data/raw/endutih2024/fd_endutih2024.xlsx. La variable UPM (alfanumerico(7), fila 7 de
+    cada hoja) es la llave de identificacion, no el conglomerado de diseno.'
+  donde_vive: Las tres viven como columnas en cada tabla de data/raw/endutih2024/endutih2024_bd_dbf.zip
+    (tic_2024_viviendas.DBF, tic_2024_hogares.DBF, tic_2024_residentes.DBF, tic_2024_usuarios.DBF, tic_2024_usuarios2.DBF).
+    El corpus tambien tiene las ediciones 2023 y 2025 con sus FD.
+  procedencia: data/raw/endutih2024/fd_endutih2024.xlsx (1413 filas en 8 hojas), abierto en este acto
+    con openpyxl.
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+    corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
+    no-vacios y distintos; ningun numero entra al canon). Las cinco DBF leidas (3000 registros cada una,
+    lector tests/dbfmini.py): el ponderador de cada tabla, EST_DIS y UPM_DIS no vacios en el 100% de los
+    registros leidos. Corrige la cita de FP-84, que atribuia a ENDUTIH un solo ponderador FAC_PER: son
+    cuatro y FAC_PER es el de usuarios, no el de la encuesta.'
 - fuente: MOCIBA (Módulo sobre Ciberacoso) 2024
-  estado: PENDIENTE
-  ponderador: no encontrado
-  estrato: no encontrado
-  upm: no encontrado
-  donde_vive: 'No determinable en este entorno. Único payload (mociba2024_bd_csv_zip) AUSENTE
-    -- verificado con tests/manifiesto.py --verifica --id mociba2024_bd_csv_zip: "AUSENTE".'
-  procedencia: ninguna nota lo documenta
-  notas: 'MOCIBA es un módulo aplicado sobre otra encuesta base (candidato: ENDUTIH, dado el
-    eje acceso_digital con que ambos se registraron en Encargo E) -- si algún día se confirma
-    esa relación, su diseño muestral podría heredarse del de la encuesta base en vez de resolverse
-    por separado. No verificado en este acto -- especulación declarada, no hallazgo.'
+  estado: MAPEADO
+  ponderador: 'FACTOR, "Factor de expansion", alfanumerico(5), rango 1...99999 -- data/raw/mociba2024/mociba2024_fd.xlsx
+    hoja TMociba fila 2795. Un solo ponderador: MOCIBA es un modulo de persona elegida, tabla unica.'
+  estrato: 'EST_DIS, "Estrato de diseno muestral", alfanumerico(4), rango 0001...9999 -- data/raw/mociba2024/mociba2024_fd.xlsx
+    hoja TMociba fila 2807. Cuidado: ESTRATO (fila 2798) es el estrato sociodemografico de 4 categorias,
+    NO el de diseno.'
+  upm: UPM_DIS, "Unidad primaria de muestreo de diseno", alfanumerico(5) -- data/raw/mociba2024/mociba2024_fd.xlsx
+    hoja TMociba fila 2806. La variable UPM (fila 12, alfanumerico(7)) es la llave, no el conglomerado
+    de diseno.
+  donde_vive: Las tres viven como columnas de la tabla unica MOCIBA2024.dbf dentro de data/raw/mociba2024/mociba2024_bd_dbf.zip.
+    El corpus tiene once ediciones (2015-2025) con el mismo patron de nombres.
+  procedencia: data/raw/mociba2024/mociba2024_fd.xlsx (2867 filas, 1 hoja), abierto en este acto con openpyxl.
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+    corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
+    no-vacios y distintos; ningun numero entra al canon). MOCIBA2024.dbf, 3000 registros leidos: FACTOR
+    (1701 valores distintos), EST_DIS (32), UPM_DIS (690) y ESTRATO (4) no vacios en el 100%. Confirma
+    la cita de FP-84 ("MOCIBA FACTOR") y le anade estrato y UPM.'
 - fuente: LAPOP / AmericasBarometer (Barómetro de las Américas), muestra México
-  estado: PENDIENTE
-  ponderador: no encontrado
-  estrato: no encontrado
-  upm: no encontrado
-  donde_vive: No vive en ningún archivo del corpus. El único artefacto de LAPOP registrado es
-    un cuestionario en PDF (lapop_abmex2023_cuestionario.pdf, 77 páginas) -- no hay ficha técnica,
-    FD ni informe metodológico.
-  procedencia: ninguna nota lo documenta
-  notas: 'Deliberadamente NO abierto en FASE B de este acto, a diferencia de CPV/ENADID/ENNViH/ENOE:
-    el único candidato es un cuestionario (no un documento de diseño), y abrirlo pagaría el
-    mismo costo de contaminación ADR-46 que los otros cuatro por una probabilidad de éxito baja
-    (los cuestionarios de LAPOP no suelen traer el anexo metodológico con estrato/UPM/ponderador
-    -- eso vive en el "Technical/Methodology Report" o en el codebook del archivo de datos,
-    ninguno de los cuales está en este corpus). Se deja la decisión de pagar ese costo a una
-    sesión futura o a mesa, en vez de gastarlo aquí especulativamente.'
+  estado: MAPEADO
+  ponderador: 'wt, "Peso de la muestra" (country weight), para estudios de un solo pais y una sola ola;
+    weight1500 para estudios comparados entre paises u olas. Ambos nombrados literalmente en "Descargas
+    Manuales/ABMEX2023-Technical-Report-v4.0-FINAL-eng-231117.pdf" lineas 143-152 del texto extraido (raiz
+    descargas_mx). El reporte da la receta completa de Stata: "svyset upm [pw=wt], strata(strata)" para
+    un pais/ola, "svyset upm [pw=weight1500], strata(strata)" para comparados.'
+  estrato: 'strata -- misma fuente, linea 151. Ojo con la etiqueta: en el .dta la variable strata esta
+    etiquetada "Peso estandarizado", etiqueta que NO corresponde a su rol (es el estrato del svyset, con
+    4 valores). Las variables estratopri ("Region", 4 categorias) y estratosec ("Tamano de la municipalidad",
+    3 categorias) son los estratos sustantivos descritos en las lineas 77-83 del reporte.'
+  upm: upm, "Unidad de muestreo primaria" -- misma fuente, linea 150-151 (el id del svyset). La variable
+    cluster ("Lugar de muestreo") es mas fina que upm y no es la que el reporte manda usar.
+  donde_vive: 'Las variables viven como columnas del propio .dta de microdato, p. ej. "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta"
+    (raiz descargas_mx, 195 columnas). No hay catalogo de diseno separado: el reporte tecnico da los nombres
+    y el .dta los contiene.'
+  procedencia: Reporte tecnico ya en el corpus, abierto en este acto con "pdftotext -layout <archivo>
+    - | grep -n" (252 lineas). Microdato leido con pandas.read_stata solo para confirmar existencia de
+    columnas.
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+    corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
+    no-vacios y distintos; ningun numero entra al canon). Sobre MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta
+    (1622 filas): upm 1622/1622 no vacios con 130 valores distintos; strata 1622/1622 con 4; wt 1622/1622
+    pero con UN SOLO valor distinto (1) -- en esta edicion de un solo pais el peso de pais es constante,
+    lo que es correcto y no un defecto, pero significa que ponderar por wt aqui no cambia el punto estimado.
+    weight1500 NO existe en este archivo (es la variable de los conjuntos comparados); quien la necesite
+    debe usar el archivo pooled.'
 - fuente: ACS — American Community Survey (ACS) y Puerto Rico Community Survey (PRCS)
   estado: PENDIENTE
   ponderador: no examinado
@@ -628,30 +666,47 @@
     a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
     pasa a examinarse en un acto futuro.'
 - fuente: EDER — Encuesta Demográfica Retrospectiva (EDER)
-  estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
-- fuente: EDR — Estadísticas de Defunciones Registradas (EDR) — subconjunto de defunciones por
-    homicidio
-  estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
+  estado: MAPEADO
+  ponderador: 'Dos ponderadores por universo: factor (vivienda) y factor_per (persona). Nombrados literalmente
+    en data/raw/eder2017/eder2017_descripcion_calculoR.pdf lineas 189 y 176 del texto extraido, y usados
+    en la receta oficial de INEGI de la linea 264: "DIS <- svydesign(id=~upm, strata=~est_dis, data=tabla_fin,
+    weights=~factor_per)".'
+  estrato: 'est_dis, "Estrato de diseno muestral", C(4) -- data/raw/eder2017/eder2017_fd.pdf lineas 551
+    y 2289 (entrada #107 del catalogo de variables), y en la receta svydesign citada arriba.'
+  upm: upm -- data/raw/eder2017/eder2017_descripcion_calculoR.pdf lineas 189 y 264 (el id del svydesign).
+    El documento tambien advierte, linea 101, que hay estratos con una sola UPM y da la opcion de R para
+    tratarlos.
+  donde_vive: Las tres viven como columnas de vivienda.csv (est_dis, upm, factor) y antecedentes.csv (factor_per)
+    dentro de data/raw/eder2017/eder2017_bases_csv.zip. El corpus tambien tiene las ediciones 2011 (solo
+    .xls de descripcion) y 2025 (descripcion_bd.pdf) sin re-verificar aqui.
+  procedencia: data/raw/eder2017/eder2017_fd.pdf (7522 lineas) y data/raw/eder2017/eder2017_descripcion_calculoR.pdf,
+    ambos ya en el corpus y abiertos en este acto con "pdftotext -layout <archivo> - | grep -n".
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+    corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
+    no-vacios y distintos; ningun numero entra al canon). vivienda.csv (3000 filas): factor 363 distintos,
+    est_dis 38, upm 564, ninguno vacio. antecedentes.csv: factor_per 987 distintos, ninguno vacio. La
+    cita se ancla en la edicion 2017 porque es la que trae la receta svydesign de INEGI; 2011 y 2025 quedan
+    sin verificar en este acto y podrian usar otros nombres.'
+- fuente: EDR — Estadísticas de Defunciones Registradas (EDR) — subconjunto de defunciones por homicidio
+  estado: SIN_DISEÑO_PUBLICADO
+  ponderador: 'NO APLICA: EDR no es una encuesta por muestreo. Su propio descriptor la define como estadistica
+    "proveniente del aprovechamiento de los registros administrativos generados por el Registro Civil,
+    el Servicio Medico Forense..." (Descripcion_BD_Defunciones_2024.pdf, linea 122 del texto extraido).
+    Es un censo de actas registradas: no hay factor de expansion porque no hay muestra que expandir.'
+  estrato: NO APLICA, misma razon.
+  upm: NO APLICA, misma razon.
+  donde_vive: 'El unico descriptor viene DENTRO del zip de datos: data/raw/edr2024/defunciones_base_datos_2024_dbf.zip
+    -> Descripcion_BD_Defunciones_2024.pdf. El zip trae 12 .dbf (DEFUN24.dbf mas 11 catalogos) y ese PDF.
+    Las variables de la base son de registro (Ent_regis, Mun_regis, Tloc_regis...), no de diseno.'
+  procedencia: 'Extraido del zip con zipfile y leido con "pdftotext -layout" en este acto: 2327 lineas.'
+  notas: 'Cambia de PENDIENTE a SIN_DISEÑO_PUBLICADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno
+    UBUNTU, corpus montado). Negativo con control positivo (A.13): sobre las 2327 lineas del descriptor,
+    el patron (FACTOR|FAC_|PONDERAD|EST_DIS|UPM|Estrato de dise|expansi) da 0 aciertos, mientras el control
+    positivo (Ent_regis|defunci) da 142 -- el comando SI examino el archivo. DEFECTO DE VOCABULARIO QUE
+    ESTE ACTO NO PUEDE ARREGLAR SOLO: SIN_DISEÑO_PUBLICADO es el unico de los tres valores del archivo
+    que no miente aqui, pero sigue leyendose como "la fuente deberia publicar diseno y no lo hace", cuando
+    lo correcto es "no hay diseno muestral que publicar". Se propone a mesa un cuarto valor NO_APLICA_REGISTRO_ADMINISTRATIVO;
+    mientras no lo selle, esta fila hay que leerla con esta nota. Ver FP-116.'
 - fuente: EIC — Encuesta Intercensal (EIC) 2015
   estado: PENDIENTE
   ponderador: no examinado
@@ -665,127 +720,236 @@
     a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
     pasa a examinarse en un acto futuro.'
 - fuente: ELCOS — Encuesta Laboral y de Corresponsabilidad Social (ELCOS) **[parcialmente verificado]**
+  estado: SIN_DISEÑO_PUBLICADO
+  ponderador: 'Dos ponderadores por universo, ambos con nombre de columna citado: FAC_VIV, "Ponderador
+    que se utiliza para estimar resultados de las preguntas que se refieren a las viviendas, los hogares
+    y la poblacion en general", N(6) -- data/raw/elcos2012/elcos_fd.xls hoja Vivienda fila 143 (repetido
+    en hojas Hogar fila 231 y Residente fila 326); y FAC_ELE, "...que se refieren a las mujeres elegidas,
+    seccion IV a X", N(6) -- hoja "Mujer elegida" fila 1334.'
+  estrato: 'NO EXISTE como nombre de columna. El diseno SI esta documentado, y con detalle: ELCOS2012_Diseno_muestral.pdf
+    (dentro de data/raw/elcos2012/ELCOS_BD_dbf.zip) describe la formacion de estratos por ciudad y ambito,
+    la afijacion proporcional y la formula del factor de expansion (lineas 106-262 del texto extraido)
+    -- pero en notacion matematica generica ("h-esimo estrato, c-esima ciudad"), nunca como nombre de
+    campo.'
+  upm: 'NO EXISTE como nombre de columna. Mismo documento, mismas lineas: describe la seleccion de UPM
+    con PPS desde la muestra maestra y el ajuste por no respuesta a nivel UPM, sin nombrar el campo.'
+  donde_vive: FAC_VIV y FAC_ELE viven como columnas en los .dbf de data/raw/elcos2012/ELCOS_BD_dbf.zip
+    (VIVIENDA.dbf, HOGAR.dbf, RESIDENT.dbf traen FAC_VIV; MUJ_ELEG.dbf trae FAC_ELE). Estrato y UPM no
+    viven en ninguno.
+  procedencia: 'data/raw/elcos2012/elcos_fd.xls (2253 filas en 7 hojas), leido en este acto con xlrd;
+    y ELCOS2012_Diseno_muestral.pdf extraido del zip de datos y leido con "pdftotext -layout" (483 lineas).
+    Hallazgo de paso: el zip de microdato ELCOS_BD_dbf.zip trae, ademas de los .dbf, tres documentos que
+    no estan sueltos en el corpus (ELCOS_FD.xls, cuest_elcos.pdf, marco_concept_elcos.pdf y el propio
+    ELCOS2012_Diseno_muestral.pdf).'
+  notas: 'Cambia de PENDIENTE a SIN_DISEÑO_PUBLICADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno
+    UBUNTU, corpus montado) -- ELCOS ya venia marcada "**[parcialmente verificado]**" en el nombre de
+    la fila. Negativo con control positivo (A.13): en elcos_fd.xls, sobre 2253 filas de 7 hojas, el patron
+    (EST_DIS|ESTRATO|UPM|UPM_DIS|CONGLOM|EST_D) da 0 aciertos mientras el control positivo FAC_VIV da
+    3. Confirmado ademas contra el microdato: VIVIENDA.dbf tiene 29 campos y MUJ_ELEG.dbf 208, y en ninguno
+    de los dos hay un campo cuyo nombre contenga EST, UPM o CONGLOM. Es decir: faltan DOS de los tres
+    campos y no es que no se haya buscado, es que no estan.'
+- fuente: ENAPROCE — Encuesta Nacional sobre Productividad y Competitividad de las Micro, Pequeñas y Medianas
+    Empresas (ENAPROCE)
   estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
-- fuente: ENAPROCE — Encuesta Nacional sobre Productividad y Competitividad de las Micro, Pequeñas
-    y Medianas Empresas (ENAPROCE)
-  estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
-- fuente: ENASEM — Encuesta Nacional sobre Salud y Envejecimiento en México (ENASEM) / Mexican
-    Health and Aging Study (MHAS)
-  estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
+  ponderador: 'FAC_EXPA es el unico campo de diseno presente, y esta en un payload que NO es el microdato
+    de la encuesta (ver donde_vive). Sin descriptor en el corpus, no se puede citar su definicion: el
+    nombre sale de la cabecera del CSV, no de un FD.'
+  estrato: NO PRESENTE en el payload disponible.
+  upm: NO PRESENTE en el payload disponible.
+  donde_vive: 'HALLAZGO CENTRAL DE ESTA FILA: los 13 payloads de ENAPROCE registrados en data/manifiesto.yaml
+    (slug enaproce de INEGI, ediciones 2015 y 2018) son TODOS archivos "ejem_base_micro_ciega" y "ejem_base_pyme_ciega"
+    -- bases DE EJEMPLO, no el microdato. Pesan entre 4006 y 33207 bytes; el CSV de ejem_base_micro_ciega_csv.zip
+    tiene 288 columnas pero solo 21 filas de datos. La encuesta real de ENAPROCE nunca se ha descargado
+    a este corpus. Cuenta como "payload material" para el cruce de FP-95 y por eso entro al universo de
+    este acto, pero no es material sobre el que se pueda censar diseno.'
+  procedencia: Cabecera de ejem_base_micro_ciega.csv y ejem_base_pyme_ciega.csv (ediciones 2015 y 2018)
+    leidas en este acto con zipfile+csv; inventario de payloads derivado de data/manifiesto.yaml filtrando
+    por /programas/enaproce/ en url_origen.
+  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU, corpus montado),
+    pero por una razon distinta a la que decia: no es "sin payload en data/manifiesto.yaml", es "payload
+    presente pero es una base de ejemplo de 21 filas". Receta manual para cerrarla (A.5, NO ejecutada
+    aqui -- este acto no descarga): bajar de https://www.inegi.org.mx/programas/enaproce/2018/#microdatos
+    el conjunto de datos completo y su descripcion de archivos (FD), registrarlos con tests/manifiesto.py
+    --registra, y re-censar. Mientras tanto ENAPROCE no puede sostener ninguna estimacion ponderada. Ver
+    FP-115.'
+- fuente: ENASEM — Encuesta Nacional sobre Salud y Envejecimiento en México (ENASEM) / Mexican Health
+    and Aging Study (MHAS)
+  estado: MAPEADO
+  ponderador: 'Dos ponderadores por universo, con SUFIJO DE OLA en el archivo de datos. En el FD de 2021
+    la columna nombra las tres olas a la vez: FACTORH / FACTORH_18 / FACTORH_21 (factor de hogar) y FACTORI
+    / FACTORI_18 / FACTORI_21 (factor individual) -- data/raw/enasem2021/enasem_2021_fd.xlsx hoja SECT_A_C_D_E_PC_F_H_I_2021
+    filas 57 y 58. En el microdato de 2021 los nombres reales llevan el sufijo _21.'
+  estrato: EST_DIS / EST_DIS_21, "Estrato de diseno", alfanumerico(1), rango 1...4 -- data/raw/enasem2021/enasem_2021_fd.xlsx
+    hoja SECT_A_C_D_E_PC_F_H_I_2021 fila 67.
+  upm: UPM_DIS / UPM_DIS_21, "Unidad primaria de muestreo de diseno", alfanumerico(8), rango 00000001...00012514
+    -- data/raw/enasem2021/enasem_2021_fd.xlsx hoja SECT_A_C_D_E_PC_F_H_I_2021 fila 66.
+  donde_vive: Las cuatro viven como columnas en las tablas de data/raw/enasem2021/enasem_2021_bd_csv.zip.
+    El corpus tiene tambien 2018 y 2024 con sus propios FD, no re-verificados en este acto.
+  procedencia: data/raw/enasem2021/enasem_2021_fd.xlsx (7887 filas en 8 hojas), abierto en este acto con
+    openpyxl.
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+    corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
+    no-vacios y distintos; ningun numero entra al canon). Ocho CSV leidos: FACTORH_21, FACTORI_21, EST_DIS_21
+    y UPM_DIS_21 presentes y no vacios. Dos matices medidos, no inferidos: (i) en MASTER_FOLLOW_UP_FILE_2021.csv
+    solo 1587 de 3000 filas leidas traen valor -- es un archivo de seguimiento que incluye casos sin entrevista
+    2021, no un defecto; (ii) SECT_G_J_K_SA_2021.csv trae FACTORH_21 pero NO FACTORI_21 ni las variables
+    de diseno: quien estime sobre esa tabla debe unirla contra SECT_A_... para obtener estrato y UPM.
+    Corrige la cita de FP-84 ("ENASEM FACTORI_NN"): el nombre real lleva sufijo de ola, FACTORI_21.'
 - fuente: ENCUESTA NACIONAL DE BIENESTAR — Encuesta Nacional de Bienestar Autorreportado
-  estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
+  estado: MAPEADO
+  ponderador: 'Tres ponderadores por universo, todos en data/raw/enbiare2021/enbiare_2021_fd.pdf del texto
+    extraido: FAC_VIV, "Factor de expansion de vivienda", N(4) rango 122...8364 (linea 139); FAC_HOG,
+    "Factor de expansion de hogar", N(4) (linea 246); FAC_ELE, "Factor de expansion del elegido", N(5)
+    rango 122...45955 (linea 2317).'
+  estrato: EST_DIS, "Estrato de diseno muestral", alfanumerico(3), rango 001...472 -- data/raw/enbiare2021/enbiare_2021_fd.pdf
+    lineas 140, 247, 392 y 2318 (se repite por tabla, mismo nombre).
+  upm: UPM_DIS, "UPM de diseno muestral", alfanumerico(7), rango 0000001...0004716 -- data/raw/enbiare2021/enbiare_2021_fd.pdf
+    lineas 141, 248, 393 y 2319.
+  donde_vive: 'Las cinco variables viven como columnas en las cuatro tablas de data/raw/enbiare2021/enbiare_2021_base_de_datos_csv.zip:
+    TVIVIENDA.csv, THOGAR.csv, TSDEM.csv y TENBIARE.csv (esta ultima es la del modulo de bienestar autorreportado,
+    la que trae FAC_ELE).'
+  procedencia: data/raw/enbiare2021/enbiare_2021_fd.pdf (2327 lineas), abierto en este acto con "pdftotext
+    -layout <archivo> - | grep -n".
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+    corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
+    no-vacios y distintos; ningun numero entra al canon). Cuatro CSV, 3000 filas cada uno: FAC_VIV/FAC_HOG/FAC_ELE
+    segun tabla, EST_DIS y UPM_DIS no vacios en el 100%. La fila del censo se llamaba "ENCUESTA NACIONAL
+    DE BIENESTAR"; la fuente es ENBIARE 2021 y su payload vive en data/raw/enbiare2021/ bajo el slug enbiare
+    de INEGI.'
 - fuente: ENCUESTA NACIONAL PARA EL SIST — Encuesta Nacional para el Sistema de Cuidados
-  estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
+  estado: MAPEADO
+  ponderador: 'CINCO ponderadores, uno por tabla/universo, todos en data/raw/enasic2022/enasic_2022_fd.xlsx:
+    FAC_VIV "Factor vivienda de expansion" N(6) (hoja TVIVIENDA fila 123); FAC_HOG "Factor hogar de expansion"
+    (hoja THOGAR fila 265, y repetido en hoja TCSDemPO fila 770); FAC_CUI (hoja TPOB_CUI fila 1483, universo
+    poblacion cuidadora); FAC_UNI (hoja THOG_UNIP fila 1068, universo hogar unipersonal); FAC_ELE (hoja
+    TPER_ELE fila 1067, universo persona elegida, rango 702...166061). ADVERTENCIA medida, no inferida:
+    la etiqueta larga que el propio FD de INEGI pone a FAC_CUI, FAC_UNI y FAC_ELE dice "FACTOR HOGAR DE
+    EXPANSION" en las tres, aunque el nombre de variable y el rango difieren -- la etiqueta esta copiada,
+    el universo real lo da la tabla en que vive.'
+  estrato: EST_DIS, "Estrato de diseno muestral", alfanumerico(4), rango 0001...0148 -- data/raw/enasic2022/enasic_2022_fd.xlsx
+    filas 122 (TVIVIENDA), 264 (THOGAR), 769 (TCSDemPO), 1482 (TPOB_CUI), 1067 (THOG_UNIP) y 1066 (TPER_ELE).
+  upm: UPM_DIS, "UPM de diseno muestral", alfanumerico(5), rango 00001...00897 -- data/raw/enasic2022/enasic_2022_fd.xlsx
+    filas 121, 263, 768, 1481, 1066 y 1065 de las mismas seis hojas.
+  donde_vive: 'Las tres viven como columnas en las seis tablas de data/raw/enasic2022/enasic_2022_bd_csv.zip:
+    TVIVIENDA.csv, THOGAR.csv, TCSDEMPO.csv, TPOB_CUI.csv, THOG_UNIP.csv y TPER_ELE.csv.'
+  procedencia: data/raw/enasic2022/enasic_2022_fd.xlsx (5123 filas en 6 hojas), abierto en este acto con
+    openpyxl.
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+    corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
+    no-vacios y distintos; ningun numero entra al canon). Seis CSV leidos: el ponderador propio de cada
+    tabla, EST_DIS y UPM_DIS no vacios en el 100% de las filas leidas (3000 por tabla, salvo THOG_UNIP.csv
+    que tiene 928 filas en total y las trae todas llenas). Corrige la cita de FP-84 ("ENASIC FAC_HOG/FAC_ELE"):
+    son CINCO ponderadores, no dos, y elegir mal el universo cambia la estimacion. Esta fila se llama
+    "ENCUESTA NACIONAL PARA EL SIST" en el censo de agosto; la fuente es ENASIC 2022 (Encuesta Nacional
+    para el Sistema de Cuidados), slug enasic de INEGI, payload en data/raw/enasic2022/.'
 - fuente: ENFIH — Encuesta Nacional sobre las Finanzas de los Hogares (ENFIH)
-  estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
+  estado: MAPEADO
+  ponderador: 'Dos ponderadores por universo: FAC_VIV, "Factor de expansion", N(5) rango 24...22850 --
+    data/raw/enfih2019/enfih_2019_fd.xlsx hoja TVivienda fila 437; y FAC_HOG, mismo tipo y rango -- hoja
+    THogar fila 40 (repetido en hoja TCONCENTRADORA).'
+  estrato: 'EDIS, "Estrato de diseno", alfanumerico(3), rango 001...407 -- data/raw/enfih2019/enfih_2019_fd.xlsx
+    hoja TVivienda fila 435 y hoja THogar fila 38. ENFIH no usa EST_DIS: usa EDIS. Cuidado: la variable
+    ESTRATO (alfanumerico(1), rango 1...4, hoja TVivienda fila 442) es el estrato socioeconomico, NO el
+    de diseno.'
+  upm: UPM_DIS, "Unidad primaria de muestreo de diseno", alfanumerico(7), rango 0000001...0003307 -- data/raw/enfih2019/enfih_2019_fd.xlsx
+    hoja TVivienda fila 436 y hoja THogar fila 39.
+  donde_vive: 'Las tres viven como columnas en las 16 tablas de data/raw/enfih2019/enfih_2019_base_de_datos_csv.zip.
+    EDIS y UPM_DIS estan en las 16; el ponderador solo en TVIVIENDA.csv (FAC_VIV) y en THOGAR.csv / TCONCENTRADORA.csv
+    (FAC_HOG): las tablas de detalle (TAUTO, TBANCA, TDEPAR, TNOMINA...) NO traen ponderador y hay que
+    unirlas contra la concentradora.'
+  procedencia: data/raw/enfih2019/enfih_2019_fd.xlsx (3653 filas en 16 hojas), abierto en este acto con
+    openpyxl.
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+    corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
+    no-vacios y distintos; ningun numero entra al canon). 16 CSV leidos: EDIS y UPM_DIS no vacios en el
+    100% de las filas leidas de las 16; FAC_VIV en TVIVIENDA (520 distintos) y FAC_HOG en THOGAR/TCONCENTRADORA
+    (513). Corrige la cita de FP-84 ("ENFIH FACTOR"): la variable no se llama FACTOR, se llama FAC_VIV
+    o FAC_HOG segun el universo, y el estrato es EDIS, no EST_DIS.'
 - fuente: ENPOL — Encuesta Nacional de Población Privada de la Libertad (ENPOL)
   estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
+  ponderador: 'FAC_PER, Numerico, rango 1.00000...24.13333, ancho 16 -- data/raw/enpol2021/fd_enpol2021.pdf
+    lineas 2162, 3690, 4630, 6301, 7229 y 8902 del texto extraido (se repite por tabla, mismo nombre).
+    El propio FD, linea 135, declara que el primero de los dos ponderadores esta asociado a la persona
+    (FAC_PER) y el segundo a la poblacion. Universo: persona privada de la libertad.'
+  estrato: EST_DIS, Numerico, rango 0101.1...3204.2, ancho 6 -- data/raw/enpol2021/fd_enpol2021.pdf lineas
+    2160, 3688, 4628, 6299, 7227, 8895 y 9888. Resuelto a nivel de columna.
+  upm: 'NO RESUELTO -- este es el campo que falta. Negativo con control positivo (A.13): sobre las 11096
+    lineas del texto extraido de fd_enpol2021.pdf, el patron (UPM|CONGLOM) da 0 aciertos mientras el control
+    positivo EST_DIS da 7 -- el comando si examino el archivo. Confirmado contra el microdato: en las
+    siete tablas CSV de bd_enpol_2021_csv.zip no hay columna UPM ni UPM_DIS.'
+  donde_vive: FAC_PER y EST_DIS viven como columnas en las siete tablas de data/raw/enpol2021/bd_enpol_2021_csv.zip
+    (ENPOL2021_2_3, _4, _5, _6, _7, _8_9_10_11 y _SOC).
+  procedencia: data/raw/enpol2021/fd_enpol2021.pdf (11096 lineas), abierto en este acto con "pdftotext
+    -layout"; cabeceras de los siete CSV leidas con zipfile+csv.
+  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU, corpus montado)
+    -- exactamente el caso que la cabecera de este archivo describe como "examinado sin resolver del todo
+    (falta 1 de 3 campos)". Dos de tres resueltos a nivel de columna; falta el conglomerado. Verificacion
+    cruda: FAC_PER y EST_DIS no vacios en 3000/3000 filas de las seis tablas principales (253 y 273 valores
+    distintos) y en ENPOL2021_SOC (9 y 9). Corrige y amplia la cita de FP-84 ("ENPOL FAC_PER"): el ponderador
+    es correcto, pero el acto que la escribio no reviso que ENPOL no publica UPM. ENPOL es una encuesta
+    en centros penitenciarios: es plausible que el conglomerado sea el centro, pero el FD no lo dice y
+    este acto NO infiere diseno de encuestas parecidas. Sin UPM, sobre ENPOL solo hay estimacion puntual
+    ponderada y estrato, no varianza por conglomerado. Ver FP-114.'
 - fuente: ENSAFI — Encuesta Nacional sobre Salud Financiera (ENSAFI)
   estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
+  ponderador: FAC_VIV (TVIVIENDA), FAC_HOG (TSDEM, THOGAR) y FAC_ELE (TMODULO) existen como columnas del
+    microdato -- cabecera (linea 1) de cada CSV dentro de data/raw/ensafi2023/ensafi_2023_bd_csv.zip.
+    Pero NO hay descriptor en el corpus que defina el universo de cada uno, y este acto no lo infiere
+    de otras encuestas de INEGI.
+  estrato: 'EST_DIS existe como columna en las cuatro tablas (misma cita: cabecera de cada CSV). Sin FD
+    no se puede confirmar que sea el estrato de diseno y no otro estrato.'
+  upm: UPM_DIS existe como columna en las cuatro tablas (misma cita). Misma reserva.
+  donde_vive: 'Las tres viven como columnas en las cuatro tablas de data/raw/ensafi2023/ensafi_2023_bd_csv.zip:
+    TSDEM.csv, TVIVIENDA.csv, THOGAR.csv y TMODULO.csv. La tabla TVIVIENDA tambien trae una columna UPM
+    (sin sufijo), que es llave, no conglomerado.'
+  procedencia: 'Cabeceras leidas en este acto con zipfile+csv. Inventario de payloads: data/manifiesto.yaml
+    filtrando /programas/ensafi/ -> UN solo payload registrado (ensafi2023_bd_csv_zip), el de datos.'
+  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU, corpus montado)
+    por falta de DESCRIPTOR, no por falta de payload. Verificacion cruda (2000 filas por tabla): FAC_VIV/FAC_HOG/FAC_ELE,
+    EST_DIS y UPM_DIS no vacios en el 100% de las cuatro tablas. El obstaculo es de procedencia, no de
+    existencia: el archivo de descripcion de archivos (FD) de ENSAFI 2023 no esta en el corpus y el zip
+    de datos no lo trae dentro. Receta manual (A.5, NO ejecutada aqui): bajar el FD de https://www.inegi.org.mx/programas/ensafi/2023/#microdatos
+    (mismo patron de URL que enasic_2022_fd.xlsx y enfih_2019_fd.xlsx, ambos ya en el corpus), registrarlo
+    y re-censar. Con el FD en mano esta fila deberia cerrar a MAPEADO en minutos. Ver FP-115.'
 - fuente: ENSU — Encuesta Nacional de Seguridad Pública Urbana (ENSU)
   estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
+  ponderador: FAC_VIV y FAC_SEL existen como columnas del microdato -- cabecera (linea 1) de ENSU_CB_0325.csv,
+    ENSU_CS_0325.csv y ENSU_VIV_0325.csv, dentro de data/raw/ensu2025/ensu_bd_2025_csv.zip -> ensu_bd_marzo_2025_csv.zip.
+    FAC_SEL solo aparece en las tablas CB y CS (persona seleccionada); ENSU_VIV solo trae FAC_VIV. Sin
+    descriptor en el corpus no se puede citar la definicion de universo de ninguno de los dos.
+  estrato: EST_DIS existe como columna en las tres tablas (misma cita). Sin FD, misma reserva que ENSAFI.
+  upm: UPM_DIS existe como columna en las tres tablas (misma cita). Misma reserva.
+  donde_vive: 'El payload es un zip de zips: data/raw/ensu2025/ensu_bd_2025_csv.zip contiene un zip por
+    trimestre (marzo, junio, septiembre, diciembre de 2025) y dentro de cada uno las tablas CB/CS/VIV.
+    Solo se abrio el de marzo en este acto.'
+  procedencia: 'Cabeceras leidas en este acto con zipfile anidado + csv. Inventario: data/manifiesto.yaml
+    filtrando /programas/ensu/ -> UN solo payload registrado (ensu2025_bd_csv_zip), el de datos.'
+  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU, corpus montado)
+    por falta de DESCRIPTOR, igual que ENSAFI. Verificacion cruda sobre el trimestre de marzo (2000 filas
+    por tabla): FAC_VIV, FAC_SEL, EST_DIS y UPM_DIS no vacios en el 100%. Receta manual (A.5, NO ejecutada
+    aqui): bajar el FD de https://www.inegi.org.mx/programas/ensu/#microdatos, registrarlo y re-censar.
+    Ver FP-115.'
 - fuente: ENTI — Encuesta Nacional de Trabajo Infantil (ENTI)
-  estado: PENDIENTE
-  ponderador: no examinado
-  estrato: no examinado
-  upm: no examinado
-  donde_vive: no examinado -- sin payload en data/manifiesto.yaml, catalogado como operable
-    (microdato + acceso libre) pero nunca descargado
-  procedencia: data/catalogo_unico.json (derivado de data/catalogo-fuentes-v2_0.md via tests/catalogo.py
-    && tests/dedup.py, 4/ago/2026)
-  notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
-    a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
-    pasa a examinarse en un acto futuro.'
+  estado: MAPEADO
+  ponderador: FAC, "Ponderador", N(6) -- data/raw/enti2022/enti_2022_fd.pdf lineas 413, 1192 ("Ponderador
+    de hogar") y 2180 del texto extraido. Un solo nombre para todas las tablas; la etiqueta cambia de
+    "Ponderador" a "Ponderador de hogar" segun la tabla, el nombre de columna no.
+  estrato: 'EST_D, "Estrato de diseno", C(3) -- data/raw/enti2022/enti_2022_fd.pdf lineas 136, 437, 1229
+    y 3626. Cuidado: la variable EST (C(2), lineas 132/435/1227) es el estrato cuyo primer digito da el
+    ambito, NO el estrato de diseno.'
+  upm: UPM_DIS, "Numero de la unidad primaria de muestreo de diseno", C(7) -- data/raw/enti2022/enti_2022_fd.pdf
+    lineas 409, 1188, 2176 y 3156. La variable UPM (C(7), linea 183) es la llave de identificacion.
+  donde_vive: Las tres viven como columnas en las siete tablas DBF de data/raw/enti2022/enti_2022_bd_dbf.zip
+    (ENTI2022_VIV, _HOG, _SDEM, _COE1, _COE2, _05A11, _12A17).
+  procedencia: data/raw/enti2022/enti_2022_fd.pdf (4878 lineas), abierto en este acto con "pdftotext -layout
+    <archivo> - | grep -n".
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+    corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
+    no-vacios y distintos; ningun numero entra al canon). Siete DBF leidos con tests/dbfmini.py, 3000
+    registros cada uno: FAC y UPM_DIS no vacios en el 100% de los siete. EST_D no vacio en cinco de siete;
+    en ENTI2022_HOG 2037/3000 y en ENTI2022_SDEM 2833/3000, y las tablas ENTI2022_COE1 y ENTI2022_COE2
+    NO traen EST_D en absoluto -- quien estime sobre los cuestionarios COE debe unir contra SDEM/VIV para
+    obtener el estrato. Confirma la cita de FP-84 ("ENTI FAC").'
 - fuente: ESTADÍSTICA EDUCATIVA — Estadística educativa — Formato 911 / SIGED
   estado: PENDIENTE
   ponderador: no examinado
