@@ -2,7 +2,7 @@
 
 - **SHA de redacción:** `fb02421` (clon propio de dirección, `origin/main` al redactar). **Base efectiva del acto:** `22d792f` — `main` avanzó 3 commits entre redacción y arranque; se refrescó y re-derivó conforme al propio bloque ARRANQUE punto 2.
 - **Entorno asignado:** **UBUNTU** (corpus montado). **NO NUBE.**
-- **Estado:** `CONSUMIDO` — ejecutado el 24/ago/2026, `ADR-148`, nota `forense/notas/2026-08-24-recenso-diseno.md`.
+- **Estado:** `CONSUMIDO` — ejecutado el 24/ago/2026, `ADR-149`, nota `forense/notas/2026-08-24-recenso-diseno.md`.
 
 ---
 
@@ -42,7 +42,7 @@ Concurrencia: TRIAGE-UNIVERSO-12 corre en NUBE en paralelo (disjunto salvo gober
 
 ## Cierre
 
-- **Universo derivado:** 18, no 14. La discrepancia se reportó antes de censar y se resolvió por la regla del propio encargo (la lista manda sobre la cifra). Ver `ADR-148(a)`.
+- **Universo derivado:** 18, no 14. La discrepancia se reportó antes de censar y se resolvió por la regla del propio encargo (la lista manda sobre la cifra). Ver `ADR-149(a)`.
 - **Resultado:** 11 `EXISTE-SATISFACE`, 7 `EXISTE-NO-SATISFACE`, 0 `NO-ENCONTRADO`.
 - **`FP-95`** → `FIRMADA`. Abiertas `FP-114` a `FP-118`.
-- **Perímetro:** respetado. `PARA` en `canon/estado-programa-v1_10.md:27,103` (contador de ADR), fuera de la lista — pendiente de adenda de dirección, ver `ADR-148(f)`.
+- **Perímetro:** respetado. `PARA` en `canon/estado-programa-v1_10.md` (contador de ADR y de FAIL/WARN, 4 líneas), fuera de la lista. Dirección concedió adenda; recifrado aplicado, suite en LÍNEA BASE VERDE. Ver `ADR-149(f)`.

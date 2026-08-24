@@ -1,6 +1,6 @@
 # ACTO RECENSO-DISEÑO-14 — re-censo acotado de diseño muestral
 
-**Fecha:** 2026-08-24 · **Entorno:** UBUNTU (corpus montado) · **Firma que ejecuta:** `ADR-135(f)` (mesa, 20/ago/2026) · **Cierra:** `FP-95` · **ADR de este acto:** `ADR-148`
+**Fecha:** 2026-08-24 · **Entorno:** UBUNTU (corpus montado) · **Firma que ejecuta:** `ADR-135(f)` (mesa, 20/ago/2026) · **Cierra:** `FP-95` · **ADR de este acto:** `ADR-149`
 
 Este acto no decide nada de diseño: ejecuta el re-censo que `ADR-135(f)` ordenó y `FP-95` registró como pendiente.
 
@@ -41,7 +41,7 @@ Derivación (`scratchpad/deriva_universo.py`, reproducible):
 
 `FP-84` explica su propia aritmética: «14 de sus 32 fuentes PENDIENTE ya tienen payload material en data/raw hoy (**13 directorios propios más ENOE como zip**)». Hoy `ls -d data/raw/*/` muestra **16** directorios propios de fuentes `PENDIENTE` (`eder*`, `edr2024`, `elcos2012`, `enaproce*`, `enasem*`, `enasic2022`, `enbiare2021`, `endireh*`, `endutih*`, `enfih2019`, `ennvih`, `enpol2021`, `ensafi2023`, `ensu2025`, `enti2022`, `mociba*`), no 13, y el conteo se acotó a `data/raw`, lo que dejó fuera a LAPOP (raíz `descargas_mx`).
 
-**No es deriva del universo desde el 20/ago:** `min`/`max` de `fecha_descarga` por fuente da `2026-07-30 … 2026-08-20`; ninguna de las 18 se adquirió después de que se escribiera `FP-84`. Es un **subconteo en el origen**. Se aplica la regla del encargo — la lista manda sobre la cifra — y se censan las 18, con la discrepancia declarada aquí y en `ADR-148`.
+**No es deriva del universo desde el 20/ago:** `min`/`max` de `fecha_descarga` por fuente da `2026-07-30 … 2026-08-20`; ninguna de las 18 se adquirió después de que se escribiera `FP-84`. Es un **subconteo en el origen**. Se aplica la regla del encargo — la lista manda sobre la cifra — y se censan las 18, con la discrepancia declarada aquí y en `ADR-149`.
 
 Coincidencia que conviene no confundir: las filas `PENDIENTE` **sin** payload material son exactamente **14**. El 14 correcto describe el complemento, no el universo.
 
@@ -158,6 +158,8 @@ Herramientas: `zipfile` + `csv` (sin `unzip`/`7z` en esta caja), `tests/dbfmini.
 
 ## 6 · Perímetro
 
-Escrito: `data/diseno-muestral.yaml` (solo las 18 filas objetivo) · `forense/notas/2026-08-24-recenso-diseno.md` (esta) · `forense/firmas-pendientes.tsv` · `canon/gobernanza-v1_15.md` (`ADR-148`) · `forense/encargos/2026-08-24-RECENSO-DISENO-14.md`.
+**Perímetro corto, `PARA` y adenda.** El perímetro del encargo no incluía `canon/estado-programa-v1_10.md`, que cifra el conteo de ADR en cuatro líneas vivas (`:27`, `:103`, `:207`, `:299`) y el de `FAIL`/`WARN` en dos. Se paró, se midió el costo (`--baseline` en `ROJO` con 6 entradas nuevas, las 6 en ese archivo, cero en los archivos de este acto) y se preguntó a dirección antes de tocarlo. Concedida la adenda, se recifró y la suite volvió a **`LÍNEA BASE VERDE` · 19 FAIL · 151 WARN**. El alza de `WARN` es `T22` haciendo su trabajo: `FP-95` cerrada (−1), `FP-114`..`FP-118` abiertas (+5). Hallazgo de paso no corregido por caer fuera de la adenda: `estado-programa-v1_10.md:207` afirma que «`T03` produce hoy 52 WARN» y la corrida real da **55**; la suite no vigila esa cifra.
+
+Escrito: `data/diseno-muestral.yaml` (solo las 18 filas objetivo) · `forense/notas/2026-08-24-recenso-diseno.md` (esta) · `forense/firmas-pendientes.tsv` · `canon/gobernanza-v1_15.md` (`ADR-149`) · `forense/encargos/2026-08-24-RECENSO-DISENO-14.md` · `canon/estado-programa-v1_10.md` (por adenda).
 
 No se tocó `data/manifiesto.yaml`, `data/censo-explotacion-2026-08-17.tsv` (ambos solo lectura, como manda el encargo), `milpa/`, `tests/`, `corpus/`, ni ningún `resultado.tsv`. **Cero escrituras sobre `data/raw/`**: el corpus se abrió en solo lectura y los archivos extraídos de zips se escribieron en el scratchpad. Este acto **no descargó nada**.

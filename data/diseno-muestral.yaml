@@ -416,7 +416,7 @@
     de variable, sin leer datos salvo la columna estrato de c_portad.dta para confirmar sus valores).
     FASE A y FASE B del ACTO M (2026-08-04) ya habian revisado calculo-de-factores-de-expansion.pdf y
     guia_de_usuario_ennvih-3.pdf sin resolver nombres de columna.'
-  notas: 'Cambia de PENDIENTE a SIN_DISEÑO_PUBLICADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno
+  notas: 'Cambia de PENDIENTE a SIN_DISEÑO_PUBLICADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno
     UBUNTU, corpus montado), y el cambio importa: PENDIENTE decia "no examinado o falta 1 de 3"; lo medido
     es que el corpus NO CONTIENE el identificador de UPM de ENNViH ni un estrato de diseno, y ningun documento
     los nombra. CONSECUENCIA DIRECTA PARA LA CORRIDA CAL-G3: sobre ENNViH se pueden calcular estimaciones
@@ -443,7 +443,7 @@
   procedencia: 'Descriptores de archivos de ENOE ya en el corpus, abiertos en este acto: data/raw/fd_c_bas_amp_15ymas.pdf
     (4797 lineas) y data/raw/enoe_325_fd_c_bas_amp.pdf (4918 lineas), extraidos con "pdftotext -layout
     <archivo> - | grep -n".'
-  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU,
     corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
     no-vacios y distintos; ningun numero entra al canon). En conjunto_de_datos_enoe_2025_4t_csv.zip (2000
     filas leidas por tabla): fac_tri, fac_men y upm no vacios en las cinco tablas; est_d_tri completo
@@ -503,7 +503,7 @@
     (TVIV, TSDem, TB_SEC_*, TB_VD).
   procedencia: data/raw/endireh2021/endireh2021_fd.pdf (51795 lineas de texto extraido), abierto en este
     acto con "pdftotext -layout <archivo> - | grep -n".
-  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU,
     corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
     no-vacios y distintos; ningun numero entra al canon). 28 tablas leidas de bd_endireh_2021_csv.zip,
     3000 filas por tabla: FAC_VIV, FAC_MUJ, EST_DIS, UPM_DIS y ESTRATO no vacios en todas. TVIV no trae
@@ -527,7 +527,7 @@
     El corpus tambien tiene las ediciones 2023 y 2025 con sus FD.
   procedencia: data/raw/endutih2024/fd_endutih2024.xlsx (1413 filas en 8 hojas), abierto en este acto
     con openpyxl.
-  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU,
     corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
     no-vacios y distintos; ningun numero entra al canon). Las cinco DBF leidas (3000 registros cada una,
     lector tests/dbfmini.py): el ponderador de cada tabla, EST_DIS y UPM_DIS no vacios en el 100% de los
@@ -546,7 +546,7 @@
   donde_vive: Las tres viven como columnas de la tabla unica MOCIBA2024.dbf dentro de data/raw/mociba2024/mociba2024_bd_dbf.zip.
     El corpus tiene once ediciones (2015-2025) con el mismo patron de nombres.
   procedencia: data/raw/mociba2024/mociba2024_fd.xlsx (2867 filas, 1 hoja), abierto en este acto con openpyxl.
-  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU,
     corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
     no-vacios y distintos; ningun numero entra al canon). MOCIBA2024.dbf, 3000 registros leidos: FACTOR
     (1701 valores distintos), EST_DIS (32), UPM_DIS (690) y ESTRATO (4) no vacios en el 100%. Confirma
@@ -570,7 +570,7 @@
   procedencia: Reporte tecnico ya en el corpus, abierto en este acto con "pdftotext -layout <archivo>
     - | grep -n" (252 lineas). Microdato leido con pandas.read_stata solo para confirmar existencia de
     columnas.
-  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU,
     corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
     no-vacios y distintos; ningun numero entra al canon). Sobre MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta
     (1622 filas): upm 1622/1622 no vacios con 130 valores distintos; strata 1622/1622 con 4; wt 1622/1622
@@ -681,7 +681,7 @@
     .xls de descripcion) y 2025 (descripcion_bd.pdf) sin re-verificar aqui.
   procedencia: data/raw/eder2017/eder2017_fd.pdf (7522 lineas) y data/raw/eder2017/eder2017_descripcion_calculoR.pdf,
     ambos ya en el corpus y abiertos en este acto con "pdftotext -layout <archivo> - | grep -n".
-  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU,
     corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
     no-vacios y distintos; ningun numero entra al canon). vivienda.csv (3000 filas): factor 363 distintos,
     est_dis 38, upm 564, ninguno vacio. antecedentes.csv: factor_per 987 distintos, ninguno vacio. La
@@ -699,7 +699,7 @@
     -> Descripcion_BD_Defunciones_2024.pdf. El zip trae 12 .dbf (DEFUN24.dbf mas 11 catalogos) y ese PDF.
     Las variables de la base son de registro (Ent_regis, Mun_regis, Tloc_regis...), no de diseno.'
   procedencia: 'Extraido del zip con zipfile y leido con "pdftotext -layout" en este acto: 2327 lineas.'
-  notas: 'Cambia de PENDIENTE a SIN_DISEÑO_PUBLICADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno
+  notas: 'Cambia de PENDIENTE a SIN_DISEÑO_PUBLICADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno
     UBUNTU, corpus montado). Negativo con control positivo (A.13): sobre las 2327 lineas del descriptor,
     el patron (FACTOR|FAC_|PONDERAD|EST_DIS|UPM|Estrato de dise|expansi) da 0 aciertos, mientras el control
     positivo (Ent_regis|defunci) da 142 -- el comando SI examino el archivo. DEFECTO DE VOCABULARIO QUE
@@ -741,7 +741,7 @@
     Hallazgo de paso: el zip de microdato ELCOS_BD_dbf.zip trae, ademas de los .dbf, tres documentos que
     no estan sueltos en el corpus (ELCOS_FD.xls, cuest_elcos.pdf, marco_concept_elcos.pdf y el propio
     ELCOS2012_Diseno_muestral.pdf).'
-  notas: 'Cambia de PENDIENTE a SIN_DISEÑO_PUBLICADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno
+  notas: 'Cambia de PENDIENTE a SIN_DISEÑO_PUBLICADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno
     UBUNTU, corpus montado) -- ELCOS ya venia marcada "**[parcialmente verificado]**" en el nombre de
     la fila. Negativo con control positivo (A.13): en elcos_fd.xls, sobre 2253 filas de 7 hojas, el patron
     (EST_DIS|ESTRATO|UPM|UPM_DIS|CONGLOM|EST_D) da 0 aciertos mientras el control positivo FAC_VIV da
@@ -765,7 +765,7 @@
   procedencia: Cabecera de ejem_base_micro_ciega.csv y ejem_base_pyme_ciega.csv (ediciones 2015 y 2018)
     leidas en este acto con zipfile+csv; inventario de payloads derivado de data/manifiesto.yaml filtrando
     por /programas/enaproce/ en url_origen.
-  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU, corpus montado),
+  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU, corpus montado),
     pero por una razon distinta a la que decia: no es "sin payload en data/manifiesto.yaml", es "payload
     presente pero es una base de ejemplo de 21 filas". Receta manual para cerrarla (A.5, NO ejecutada
     aqui -- este acto no descarga): bajar de https://www.inegi.org.mx/programas/enaproce/2018/#microdatos
@@ -787,7 +787,7 @@
     El corpus tiene tambien 2018 y 2024 con sus propios FD, no re-verificados en este acto.
   procedencia: data/raw/enasem2021/enasem_2021_fd.xlsx (7887 filas en 8 hojas), abierto en este acto con
     openpyxl.
-  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU,
     corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
     no-vacios y distintos; ningun numero entra al canon). Ocho CSV leidos: FACTORH_21, FACTORI_21, EST_DIS_21
     y UPM_DIS_21 presentes y no vacios. Dos matices medidos, no inferidos: (i) en MASTER_FOLLOW_UP_FILE_2021.csv
@@ -810,7 +810,7 @@
     la que trae FAC_ELE).'
   procedencia: data/raw/enbiare2021/enbiare_2021_fd.pdf (2327 lineas), abierto en este acto con "pdftotext
     -layout <archivo> - | grep -n".
-  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU,
     corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
     no-vacios y distintos; ningun numero entra al canon). Cuatro CSV, 3000 filas cada uno: FAC_VIV/FAC_HOG/FAC_ELE
     segun tabla, EST_DIS y UPM_DIS no vacios en el 100%. La fila del censo se llamaba "ENCUESTA NACIONAL
@@ -834,7 +834,7 @@
     TVIVIENDA.csv, THOGAR.csv, TCSDEMPO.csv, TPOB_CUI.csv, THOG_UNIP.csv y TPER_ELE.csv.'
   procedencia: data/raw/enasic2022/enasic_2022_fd.xlsx (5123 filas en 6 hojas), abierto en este acto con
     openpyxl.
-  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU,
     corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
     no-vacios y distintos; ningun numero entra al canon). Seis CSV leidos: el ponderador propio de cada
     tabla, EST_DIS y UPM_DIS no vacios en el 100% de las filas leidas (3000 por tabla, salvo THOG_UNIP.csv
@@ -859,7 +859,7 @@
     unirlas contra la concentradora.'
   procedencia: data/raw/enfih2019/enfih_2019_fd.xlsx (3653 filas en 16 hojas), abierto en este acto con
     openpyxl.
-  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU,
     corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
     no-vacios y distintos; ningun numero entra al canon). 16 CSV leidos: EDIS y UPM_DIS no vacios en el
     100% de las filas leidas de las 16; FAC_VIV en TVIVIENDA (520 distintos) y FAC_HOG en THOGAR/TCONCENTRADORA
@@ -881,7 +881,7 @@
     (ENPOL2021_2_3, _4, _5, _6, _7, _8_9_10_11 y _SOC).
   procedencia: data/raw/enpol2021/fd_enpol2021.pdf (11096 lineas), abierto en este acto con "pdftotext
     -layout"; cabeceras de los siete CSV leidas con zipfile+csv.
-  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU, corpus montado)
+  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU, corpus montado)
     -- exactamente el caso que la cabecera de este archivo describe como "examinado sin resolver del todo
     (falta 1 de 3 campos)". Dos de tres resueltos a nivel de columna; falta el conglomerado. Verificacion
     cruda: FAC_PER y EST_DIS no vacios en 3000/3000 filas de las seis tablas principales (253 y 273 valores
@@ -904,7 +904,7 @@
     (sin sufijo), que es llave, no conglomerado.'
   procedencia: 'Cabeceras leidas en este acto con zipfile+csv. Inventario de payloads: data/manifiesto.yaml
     filtrando /programas/ensafi/ -> UN solo payload registrado (ensafi2023_bd_csv_zip), el de datos.'
-  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU, corpus montado)
+  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU, corpus montado)
     por falta de DESCRIPTOR, no por falta de payload. Verificacion cruda (2000 filas por tabla): FAC_VIV/FAC_HOG/FAC_ELE,
     EST_DIS y UPM_DIS no vacios en el 100% de las cuatro tablas. El obstaculo es de procedencia, no de
     existencia: el archivo de descripcion de archivos (FD) de ENSAFI 2023 no esta en el corpus y el zip
@@ -924,7 +924,7 @@
     Solo se abrio el de marzo en este acto.'
   procedencia: 'Cabeceras leidas en este acto con zipfile anidado + csv. Inventario: data/manifiesto.yaml
     filtrando /programas/ensu/ -> UN solo payload registrado (ensu2025_bd_csv_zip), el de datos.'
-  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU, corpus montado)
+  notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU, corpus montado)
     por falta de DESCRIPTOR, igual que ENSAFI. Verificacion cruda sobre el trimestre de marzo (2000 filas
     por tabla): FAC_VIV, FAC_SEL, EST_DIS y UPM_DIS no vacios en el 100%. Receta manual (A.5, NO ejecutada
     aqui): bajar el FD de https://www.inegi.org.mx/programas/ensu/#microdatos, registrarlo y re-censar.
@@ -943,7 +943,7 @@
     (ENTI2022_VIV, _HOG, _SDEM, _COE1, _COE2, _05A11, _12A17).
   procedencia: data/raw/enti2022/enti_2022_fd.pdf (4878 lineas), abierto en este acto con "pdftotext -layout
     <archivo> - | grep -n".
-  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-148, entorno UBUNTU,
+  notas: 'Sube de PENDIENTE a MAPEADO en ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU,
     corpus montado). Verificacion cruda de existencia hecha en este acto (no es estimacion: solo se contaron
     no-vacios y distintos; ningun numero entra al canon). Siete DBF leidos con tests/dbfmini.py, 3000
     registros cada uno: FAC y UPM_DIS no vacios en el 100% de los siete. EST_D no vacio en cinco de siete;
