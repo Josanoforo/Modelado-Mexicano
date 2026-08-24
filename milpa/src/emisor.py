@@ -359,6 +359,104 @@ def _busca_detalle(nodo) -> list | None:
     return None
 
 
+# ── Vocabulario M-2 — dos variables dependientes, disparadores por
+#    componente (ACTO EMISOR-M-2 · 24/ago/2026) ─────────────────────────────
+# Firma de mesa que autoriza (24/ago, verbatim): "entiendo la reformulación
+# pero lo que inicialmente queremos medir es adopción vs cohersión, aun
+# cuando tenemos casos base si es importante asegurar que estamos teniendo
+# esto en consideración, el motor debe poder considerar estas dos variables
+# para predecir el comportamiento."
+#
+# Hoy el motor funde en una sola conducta ("adopta"/"rechaza_servicio") dos
+# que mesa separa: cumplir bajo mandato con sanción, y adoptar por elección.
+# Este bloque declara el vocabulario; no adjudica ninguna celda ni abre red.
+# Fuente operativa: COERCION-Y-ADOPCION-rediseno-2026-08-20.md §4, §6 (no
+# commiteado — ver forense/coercion-adopcion-espec-operativa-v0_1.md, T4).
+
+VARIABLES_DEPENDIENTES_M2 = {"cumplimiento", "adopcion"}
+
+# Dominios celda-D (tests/test_celdas_d.py: DOMINIOS) donde el encargo exige
+# DV declarada. "tecnología/pagos/registros" del encargo mapea al único
+# dominio del enum que los cubre: TEC.
+DOMINIOS_EXIGEN_DV_M2 = {"TEC"}
+
+DISPARADORES_COMPONENTE_M2 = {
+    "riesgo_fiscal_percibido": bool,                       # existe, Nota 3 de R3.4
+    "friccion_uso": bool,
+    "utilidad_marginal_sobre_sustituto": bool,
+    "lado_obligado": {"ninguno", "oferta", "usuario"},
+    "sancion": {"ninguna", "suspension", "bloqueo"},
+    "dato_sensible": {"no", "identificador", "biometrico"},
+}
+
+
+def valida_dv_celda_m2(celda: dict, filename: str = "<celda>") -> tuple[str, ...]:
+    """Válida el vocabulario M-2 de una celda-D (o de cualquier mapeo con
+    forma celda_d). NO adjudica nada: solo exige que las celdas del dominio
+    que el encargo cubre declaren cuál de las dos variables dependientes
+    miden, y que los disparadores por componente que declaren, si los
+    declaran, estén bien formados. Devuelve la tupla de errores (vacía si
+    pasa). El emisor se niega ante una celda sin DV declarada —
+    ACTO EMISOR-M-2, 24/ago/2026."""
+    errs: list[str] = []
+    dominio = celda.get("dominio")
+    dv = celda.get("variable_dependiente")
+
+    if dominio in DOMINIOS_EXIGEN_DV_M2:
+        if dv is None:
+            errs.append(
+                f"{filename}: falta 'variable_dependiente' (ACTO EMISOR-M-2, "
+                f"24/ago/2026 — toda celda-D de dominio {dominio!r} declara si "
+                f"mide cumplimiento o adopción; el emisor se niega sin DV declarada)"
+            )
+        elif dv not in VARIABLES_DEPENDIENTES_M2:
+            errs.append(
+                f"{filename}: variable_dependiente inválida: {dv!r} "
+                f"(ACTO EMISOR-M-2: {sorted(VARIABLES_DEPENDIENTES_M2)})"
+            )
+    elif dv is not None and dv not in VARIABLES_DEPENDIENTES_M2:
+        errs.append(f"{filename}: variable_dependiente inválida: {dv!r}")
+
+    disparadores = celda.get("disparadores_m2") or {}
+    for clave, valor in disparadores.items():
+        regla = DISPARADORES_COMPONENTE_M2.get(clave)
+        if regla is None:
+            errs.append(f"{filename}: disparador_m2 desconocido: {clave!r}")
+        elif regla is bool:
+            if not isinstance(valor, bool):
+                errs.append(f"{filename}: disparador_m2 {clave!r} debe ser booleano, no {valor!r}")
+        elif valor not in regla:
+            errs.append(f"{filename}: disparador_m2 {clave!r} inválido: {valor!r} ({sorted(regla)})")
+
+    return tuple(errs)
+
+
+def estampa_base_extendida_m2(reglas: tuple[Regla, ...] | None = None) -> str:
+    """T2: por disparador M-2, ¿tiene base medida hoy? Deriva de las clases
+    (`clase:`) realmente consumidas por las reglas del dominio tramite —
+    no se teclea. La respuesta esperable es 'casi ninguno': se reporta tal
+    cual, sin maquillar (v0.3.0 de tramite.yaml: las 10 probabilidades del
+    dominio son clase ASIGNADO, ninguna MEDIDO)."""
+    reglas = reglas if reglas is not None else cargar_reglas()
+    lineas = []
+    for disparador in sorted(DISPARADORES_COMPONENTE_M2):
+        clases: set[str] = set()
+        for r in reglas:
+            if disparador in dict(r.condiciones()):
+                for s in r.entonces:
+                    if s.clase:
+                        clases.add(s.clase)
+        if not clases:
+            estado = "SIN-REGLA-QUE-LO-USE — el disparador no está aún cableado a ninguna regla"
+        elif any(c.startswith("MEDIDO") for c in clases):
+            n_medido = sum(1 for c in clases if c.startswith("MEDIDO"))
+            estado = f"BASE MEDIDA parcial: {n_medido}/{len(clases)} clases MEDIDO ({sorted(clases)})"
+        else:
+            estado = f"SIN BASE MEDIDA — clases consumidas: {sorted(clases)} (ninguna MEDIDO)"
+        lineas.append(f"  {disparador}: {estado}")
+    return "estampa de base extendida EMISOR-M-2 (T2, casi ninguno tiene base medida):\n" + "\n".join(lineas)
+
+
 # ── Emisión al marcador (forma PrediccionCorredor, campos núcleo idénticos) ─
 
 @dataclass(frozen=True)

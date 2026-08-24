@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **145 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **146 ADR**
 
 > | | |
 > |---|---|
@@ -2995,6 +2995,28 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 **Antes de cualquier corrida nueva:** verificar que la ficha canónica esté sincronizada con el modelo (§3). ⚠️ **Hoy no lo está: la ficha es foto del v1.**
 
 **Regla nueva de plantilla forense** *(Hito 2)*: toda regla que un encargo mande estresar se **cita textualmente del motor §3**, con tier, dominio y perfiles. Si no trae cita, se marca como propuesta nueva y su veredicto **no cuenta como validación del modelo**.
+
+---
+
+**ADR-146 · `ACTO EMISOR-M-2` ejecuta la reformulación de `FP-104` (`D3`, `ADR-145`): dos variables dependientes (`cumplimiento`, `adopcion`) y seis disparadores por componente entran al vocabulario del emisor, con validación dura y sin adjudicar ningún caso.** Firma de mesa que este acto ejecuta, verbatim (24/ago/2026): *"entiendo la reformulación pero lo que inicialmente queremos medir es adopción vs cohersión, aun cuando tenemos casos base si es importante asegurar que estamos teniendo esto en consideración, el motor debe poder considerar estas dos variables para predecir el comportamiento."* Gate: `SELLA-AGO24`/`PR #310` fusionado (verificado por la presencia de `forense/notas/2026-08-24-corrobora-motor.md` en el árbol al arrancar). Entorno **NUBE** (`cloud_default`), modelo Opus.
+
+**(a) Vocabulario — dónde vive y por qué.** `milpa/src/emisor.py` (sección "Vocabulario M-2"), no un contrato nuevo ni el crosswalk pregunta↔regla: `emisor.py` ya gobierna el vocabulario de disparadores del gate (`CTX_A`/`CTX_B`, `riesgo_fiscal_percibido`, `emisor.py:227-229`), y las celdas-D lo consumen vía su campo `dominio` ya existente (`tests/test_celdas_d.py:70`, enum `DOMINIOS`). `VARIABLES_DEPENDIENTES_M2 = {cumplimiento, adopcion}`; `DISPARADORES_COMPONENTE_M2` con los seis nombrados por el encargo — `riesgo_fiscal_percibido` (existe, se integra, no se re-crea) más `friccion_uso`, `utilidad_marginal_sobre_sustituto`, `lado_obligado`, `sancion`, `dato_sensible` (los cinco, `NO-ENCONTRADO` verificado por grep combinado sobre 1,013 archivos `.py`/`.yaml`/`.json` del árbol al arrancar este acto — el único hit previo fue `estado_decidibilidad`, abierto y confirmado ajeno al contrato v0.5). "Dominio tecnología/pagos/registros" del encargo mapea al único valor del enum `DOMINIOS` que los cubre: `TEC` (`DOMINIOS_EXIGEN_DV_M2 = {TEC}`).
+
+**(b) Validación dura — el emisor se niega, no adjudica.** `valida_dv_celda_m2(celda, filename)`: una celda de dominio `TEC` sin `variable_dependiente` produce error que nombra este acto (`ACTO EMISOR-M-2`); una `variable_dependiente` fuera del enum, igual; los `disparadores_m2` declarados, si los hay, se validan de forma (booleano o enum), sin adjudicar ningún caso — mismo patrón que el emisor ya usa con la base medida (`estampa`, `emisor.py:245-249`).
+
+**(c) `T2` — estampa de base extendida, la respuesta esperable, sin maquillar.** `estampa_base_extendida_m2()`, derivada de las clases (`clase:`) que las reglas de `milpa/tramite.yaml` realmente consumen, no tecleada: **cinco de los seis disparadores no están cableados a ninguna regla del dominio `tramite`**; el sexto, `riesgo_fiscal_percibido` (el único preexistente), solo tiene clase `ASIGNADO` — las 10 probabilidades de `tramite.yaml` v0.3.0 son ASIGNADAS por mesa, ninguna `MEDIDO` (`milpa/tramite.yaml:9-16`). **Casi ninguno tiene base medida**, reportado tal cual.
+
+**(d) `T3` — tests, verificados corriendo, no supuestos.** `tests/test_emisor_m2.py`, 7 casos: celda `TEC` sin DV → rechazo con mensaje que nombra el acto; DV inválida → rechazo; DV + disparadores bien formados → `errs == ()` sin adjudicar; disparador desconocido y enum inválido → rechazo; dominio no cubierto (`FIN`) → no exige DV; la estampa reporta los seis disparadores. Los tests existentes del emisor y de celdas-D (`tests/test_emisor_fidelidad.py`, `tests/aceptacion_r3_4.py`, `tests/test_celdas_d.py`) corren sin editarse y siguen verdes — verificado con `python -m pytest`, no supuesto.
+
+**(e) `T4` — documento fuente, ruta 2 ejercida.** `COERCION-Y-ADOPCION-rediseno-2026-08-20.md` no llegó adjunto a este acto; por `transfer §9` NO se reconstruye. Se creó `forense/coercion-adopcion-espec-operativa-v0_1.md`, rotulado `PROPUESTA·PARCIAL`, solo con el bloque inline que dirección pegó en el encargo (variables, disparadores, tabla de casos rotulada HIPÓTESIS DE CLASIFICACIÓN, pares de una sola variable). `FP-113` nueva, `ABIERTA`, pidiendo a mesa el documento íntegro.
+
+**(f) `T5` — la discrepancia CoDi, citada donde ya vive, no resuelta.** `tramite.yaml:61` dice 3.09M cuentas backtest; el report que sostiene el tier da 21.8M cuentas / Banxico >20M. No se abre red en este acto: la discrepancia se cita en `forense/coercion-adopcion-espec-operativa-v0_1.md` apuntando a `forense/hitoD-preregistro-v2_0.md` (ficha de R3.4, sección "Discrepancia numérica encontrada al verificar la ancla", ≈línea 810), donde ya vivía desde antes de este acto.
+
+**Lo que este acto deliberadamente NO hace.** No re-especifica la condición A de `R3.4` (eso es el sucesor, con `FP-104` ya reformulada por `ADR-145`). No toca `milpa/refutations.yaml` ni `milpa/tramite.yaml`: sin red no se puede resolver la discrepancia CoDi. No abre red. No mide nada — todo lo emitido es vocabulario y validación de forma. No adjudica ninguna fila de la tabla de casos (todas HIPÓTESIS DE CLASIFICACIÓN). No mueve ningún contador de Hito D ni de medición sobre México.
+
+**Cascada.** Candidatea `ADR-146` contra el máximo re-derivado por `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` sobre el árbol al arrancar este acto: `145` (`ADR-145`/`ACTO SELLA-AGO24`, ya fusionado, `origin/main = bcd318f`), único, sin huecos — de ahí `146`. Si otro PR fusiona primero y colisiona, regla de la casa: quien fusiona segundo renumera. `firmas-pendientes.tsv`: fila nueva `FP-113`, máximo previo `112` derivado por `grep -oE "FP-[0-9]+" forense/firmas-pendientes.tsv | sort -t- -k2 -n | uniq | tail -1`, no tecleado. `milpa/src/emisor.py`: vocabulario M-2 nuevo (`VARIABLES_DEPENDIENTES_M2`, `DISPARADORES_COMPONENTE_M2`, `valida_dv_celda_m2`, `estampa_base_extendida_m2`). `tests/test_emisor_m2.py`: nuevo. `forense/coercion-adopcion-espec-operativa-v0_1.md`: nuevo. `forense/notas/2026-08-24-emisor-m2-vocabulario.md`: nuevo. `canon/gobernanza-v1_15.md` (este documento): este ADR. Ningún contador de Hito D ni de medición sobre México se mueve.
+
+→ **Vigente.** *(`ACTO EMISOR-M-2`, 24/ago/2026. Entorno **NUBE** (`cloud_default`), modelo Opus. `origin/main = bcd318f` (`PR #310`/`SELLA-AGO24` fusionado, sin cambio desde el arranque del acto). Sin red de datos, `data/raw` no aplica, no se toca ningún microdato.)*
 
 ---
 
