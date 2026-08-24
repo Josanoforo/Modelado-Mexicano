@@ -2072,7 +2072,7 @@ def t24_llaves_ejercidas():
         fail("T24", f"{rel(r)}: `## 3 · Tabla de llaves` no trae filas de datos")
         return
 
-    # `ADQ-ENOE-PRE2019` T3 (`ADR-143`): el indice 5 estaba tecleado aqui, y la
+    # `ADQ-ENOE-PRE2019` T3 (`ADR-144`): el indice 5 estaba tecleado aqui, y la
     # receta congelada de §4 del registro lo tiene tecleado tambien (`awk
     # -F'|' '{print $6}'`). Las dos se mueven juntas si alguien altera las
     # columnas de la tabla, y ninguna se queja. Medido sobre la tabla real al
@@ -2239,6 +2239,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-18-NOTAS-P3.md",
     "forense/encargos/2026-08-20-SELLA-ADV.md",
     "forense/encargos/2026-08-20-T-SELLO.md",
+    # RETRIAGE-4, 20/ago/2026: encargo archivado VERBATIM (misma convencion
+    # que ACT-PIL-2 arriba). Su `E3` pelado es la cita del acto E3-TRIAGE,
+    # cuyo propio encargo ya esta censado en esta misma lista.
+    "forense/encargos/2026-08-20-RETRIAGE-4.md",
+    # RETRIAGE-4, 20/ago/2026: la nota del acto cita E3-TRIAGE (precedente de
+    # escala B-bis) y ACT-PIL-2 (precedente de censo). Mismos `E3` pelados que
+    # el encargo, misma razon: es cita del acto, no rotulo nuevo.
+    "forense/notas/2026-08-20-retriage-4-cierre.md",
     "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md",
     "forense/hallazgos.md",
     "forense/historico/TRANSFER-maestra-7.md",

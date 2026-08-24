@@ -1,6 +1,6 @@
 # ACTO ADQ-ENOE-PRE2019 — cierre
 
-*20 de agosto de 2026 · entorno UBUNTU · Opus · `ADR-143` · gate `#1` fusionado · base `89c939b` (`PR #309`)*
+*20 de agosto de 2026 · entorno UBUNTU · Opus · `ADR-144` · gate `#1` fusionado · base `89c939b` (`PR #309`)*
 
 ---
 
@@ -83,22 +83,22 @@ El encargo advierte que `T24` es binario y que *«cualquier fila nueva rompe la 
 | **`llaves de identificación ejercidas`** | `2 de 3` | **`2 de 3`** | Adjudicar la **clase** de una fila existente no toca su `estado`, y `T24` deriva numerador y denominador sólo de `estado`. Derivado con la receta congelada de §4 después de escribir la columna, no supuesto |
 | **`β con ruta`** | `9 de 15` | **`9 de 15`** | Derivado de `censo-estimabilidad-coeficientes-v1_2` (`RUTA-A` 3 · `RUTA-I` 1 · `RUTA-C` 5 · `SIN-RUTA` 6). Este acto **no toca** el censo, `milpa/procedencia.yaml` ni `data/coef-universo-v1_0.tsv`. `N5` (`G3.horizonte_temporal`) ya decía *«ruta ENOE de ADR-49 D1 NO se re-propone»* — el barrido de T2 confirma que eso era correcto, y no lo cambia |
 | `13 de 27` (Hito D) · `15 coeficientes, cero medidos` · `9 de 14` · `4 de 144` | — | **sin mover** | Ninguno entra al perímetro |
-| conteo de ADR | `142` | **`143`** | Cascada obligada, propagada a `gobernanza` (cabecera) y `estado-programa` (cabecera y `L0`) en el mismo acto |
-| suite | `19 FAIL · 142 WARN` | **`19 FAIL · 144 WARN`** | +3 filas `ABIERTA` (`FP-105`/`106`/`107`), −1 porque `FP-64` sale de `ABIERTA` a `FIRMADA` **con `ejecutada_en` puesto**. Cero FAIL nuevos |
+| conteo de ADR | `143` | **`144`** | Cascada obligada, propagada a `gobernanza` (cabecera) y `estado-programa` (cabecera y `L0`) en el mismo acto *(al fusionar: `PR #311`/`ACTO RETRIAGE-4` tomó el `143` primero, así que este acto es `ADR-144` — ver la Cascada de `ADR-144` en `gobernanza`.)* |
+| suite | `19 FAIL · 145 WARN` | **`19 FAIL · 147 WARN`** | +3 filas `ABIERTA` (`FP-109`/`FP-110`/`FP-111`), −1 porque `FP-64` sale de `ABIERTA` a `FIRMADA` **con `ejecutada_en` puesto**. Cero FAIL nuevos *(Cifras re-derivadas sobre el árbol fusionado con `origin/main = 496e1e2`; la rama sola daba `142`→`144`, y `PR #311`/`ACTO RETRIAGE-4` fusionó `145` en medio.)* |
 
-**Tablero.** `FP-64` `ABIERTA`→`FIRMADA` (mesa firmó (b), este acto lo ejecutó, las dos mitades). Nacen `FP-105` (la contradicción entre `ADR-57(c)` y la Razón 1), `FP-106` (las dos rutas de INEGI no son intercambiables y el corpus ya las mezcla sobre el corte), `FP-107` (un `NO-ENCONTRADO` del programa derivado sobre un tercio del texto de sus PDF).
+**Tablero.** `FP-64` `ABIERTA`→`FIRMADA` (mesa firmó (b), este acto lo ejecutó, las dos mitades). Nacen `FP-109` (la contradicción entre `ADR-57(c)` y la Razón 1), `FP-110` (las dos rutas de INEGI no son intercambiables y el corpus ya las mezcla sobre el corte), `FP-111` (un `NO-ENCONTRADO` del programa derivado sobre un tercio del texto de sus PDF).
 
 ---
 
 ## 7 · Lo que vuelve a mesa, y por qué no lo decidí yo
 
-**`FP-105` es la fila que gobierna lo que sigue, y nació de tener que ejecutar el encargo.** El encargo dice que si el barrido sale negativo, *«ENOE queda descartado por Razón 1 … y la llave (ii) vuelve a mesa»*. Escribí el negativo. Pero **no puedo escribir «ENOE queda descartado de la llave (ii)»**, porque `ADR-57(c)` —sellado— dice de ENOE exactamente lo contrario, y lo dice **citando como razón el mismo hallazgo** que `FP-64` usa como Razón 1:
+**`FP-109` es la fila que gobierna lo que sigue, y nació de tener que ejecutar el encargo.** El encargo dice que si el barrido sale negativo, *«ENOE queda descartado por Razón 1 … y la llave (ii) vuelve a mesa»*. Escribí el negativo. Pero **no puedo escribir «ENOE queda descartado de la llave (ii)»**, porque `ADR-57(c)` —sellado— dice de ENOE exactamente lo contrario, y lo dice **citando como razón el mismo hallazgo** que `FP-64` usa como Razón 1:
 
 > *«su panel rotativo queda refutado como ruta de conducta financiera (`CAL-ENOE` Fase A, 31/jul: el instrumento no trae reactivo de ahorro/crédito/deuda/planeación); **permanece elegible únicamente como portador de desenlaces laborales para experimentos naturales** (p. ej. salario mínimo de franja fronteriza).»*
 
 `ADR-57(c)` separó las dos mitades a propósito: la ausencia de reactivo de θ refuta la ruta **(i)** —el panel, que necesita el desenlace *en el instrumento*— y **no toca la (ii)**, porque en un experimento natural la exposición la pone la **política**, no el cuestionario. Y el ejemplo que nombra es el mismo decreto del 1/ene/2019 que esta adquisición acaba de habilitar.
 
-**Lo que el barrido descartó es a ENOE como fuente de exposición θ** —que ya estaba dicho desde el 31/jul y que este acto extiende de un constructo a los nueve y de una era a todas—, **no a ENOE de la llave (ii)**. Son dos cosas distintas, y sólo mesa puede decidir cuál gobierna, porque enmendar `ADR-57(c)` es firma suya. Las tres opciones están escritas en `FP-105`.
+**Lo que el barrido descartó es a ENOE como fuente de exposición θ** —que ya estaba dicho desde el 31/jul y que este acto extiende de un constructo a los nueve y de una era a todas—, **no a ENOE de la llave (ii)**. Son dos cosas distintas, y sólo mesa puede decidir cuál gobierna, porque enmendar `ADR-57(c)` es firma suya. Las tres opciones están escritas en `FP-109`.
 
 **Y esto es exactamente lo que la firma de mesa pedía.** *«No hicimos una estructura tan robusta para que el resultado sea por no adquirir»*: el dato está adquirido, registrado y verificado, la Razón 2 está cerrada por medición, y la llave (ii) vuelve a mesa con la adquisición hecha y con dos renglones ejercidos que nadie había contado — no como excusa.
 
@@ -106,4 +106,4 @@ El encargo advierte que `T24` es binario y que *«cualquier fila nueva rompe la 
 
 ## 8 · Lo que este acto NO hizo
 
-No enmendó `ADR-57(c)` ni `ADR-67(c)`. No escribió ningún pre-registro de diseño sobre ENOE — adquirir no es diseñar, y `FP-105` gatea esa escritura. No leyó el `DOF` ni derivó los municipios de la franja fronteriza (se intentó; `dof.gob.mx` respondió `200` a la raíz pero la nota redirigió a otra fecha y el índice del día devolvió 0 coincidencias sobre **1** archivo descargado, que por `A.13` es un negativo sobre esa descarga y no sobre el `DOF`). No midió potencia: nada dice sobre si el `n` por municipio fronterizo sostiene un DiD. No cubrió los módulos temáticos anexos de la ENOE, que no viajan en el ZIP trimestral — hueco nombrado, no cerrado. No editó `bbis-adq-enoe-pre2019`, congelado antes de la primera descarga. No usó agentes: el acto entero corrió en una sola sesión, así que la instrucción de que fueran Sonnet no llegó a aplicarse.
+No enmendó `ADR-57(c)` ni `ADR-67(c)`. No escribió ningún pre-registro de diseño sobre ENOE — adquirir no es diseñar, y `FP-109` gatea esa escritura. No leyó el `DOF` ni derivó los municipios de la franja fronteriza (se intentó; `dof.gob.mx` respondió `200` a la raíz pero la nota redirigió a otra fecha y el índice del día devolvió 0 coincidencias sobre **1** archivo descargado, que por `A.13` es un negativo sobre esa descarga y no sobre el `DOF`). No midió potencia: nada dice sobre si el `n` por municipio fronterizo sostiene un DiD. No cubrió los módulos temáticos anexos de la ENOE, que no viajan en el ZIP trimestral — hueco nombrado, no cerrado. No editó `bbis-adq-enoe-pre2019`, congelado antes de la primera descarga. No usó agentes: el acto entero corrió en una sola sesión, así que la instrucción de que fueran Sonnet no llegó a aplicarse.

@@ -1,0 +1,88 @@
+==============================================================================
+HITO D · R7.1 — corrida del falsador · ACTO RETRIAGE-4 · 20/ago/2026
+spec congelada: forense/hitoD-R7_1-especificacion-v1_0.md
+==============================================================================
+
+§1 · UNIVERSO
+  filas crudas del CSV                          : 456051
+  filas parseables                              : 454586
+  filas NO parseables                           : 1465
+      campo no numerico: registered_voters      1464
+      campo no numerico: state_code             3
+      campo no numerico: mun_code               3
+      campo no numerico: year                   2
+      campo no numerico: total                  2
+  excluidas por registered_voters<=0            : 31
+  excluidas por total ausente                   : 0
+  excluidas por precinct ausente                : 9
+  UNIVERSO REAL (filas)                         : 454546
+  anos presentes                                : 1994..2019 (26 distintos)
+  estados                                       : 31
+  filas concurrentes (year%3==2)                : 214108
+  filas no concurrentes                         : 240438
+  anos concurrentes observados                  : [1994, 1997, 2000, 2003, 2006, 2009, 2012, 2015, 2018]
+  anos NO concurrentes observados               : [1995, 1996, 1998, 1999, 2001, 2002, 2004, 2005, 2007, 2008, 2010, 2011, 2013, 2014, 2016, 2017, 2019]
+
+§2 · CONTROL DE CANALIZACION — turnout recalculado vs. publicado
+  filas con turnout publicado                   : 454546
+  |recalculado - publicado| max                 : 0.0000000000
+  filas con diferencia > 1e-6                   : 0
+  -> la columna publicada ES total/registered_voters: SI
+
+  filas con participacion > 100%                : 2965
+
+§3 · PRIMARIO — diferencia pareada dentro de SECCION (spec §5.1)
+  Delta pareado (concurrente - no concurrente)     6.5330 pp   EE 2.7490   IC95% [  0.7331,  12.3329]   n=40162    G=18
+  secciones pareadas                            : 40162
+  estados que aportan secciones pareadas        : 18
+
+§4 · MARGINAL — diferencia de medias sin parear (spec §5.2, obligatorio)
+  Delta marginal (concurrente - no concurrente)    4.2140 pp   EE 1.5056   IC95% [  1.1392,   7.2889]   n=454546   G=31
+  media participacion, concurrentes             : 59.5210 pp
+  media participacion, NO concurrentes          : 55.3070 pp
+
+§5 · SENSIBILIDADES PRE-DECLARADAS (spec §7)
+  S2 · misma prueba con la unidad agregada a MUNICIPIO
+  S2 Delta pareado por municipio                   6.0752 pp   EE 2.5660   IC95% [  0.6615,  11.4888]   n=1477     G=18
+      municipios pareados                       : 1477
+  S3 · secciones con >=2 observaciones en CADA brazo
+  S3 Delta pareado (>=2 por brazo)                 6.4628 pp   EE 1.6665   IC95% [  2.6929,  10.2328]   n=10147    G=10
+      secciones                                 : 10147
+  S4 · solo observaciones de 2015 en adelante (alineacion post-reforma)
+  S4 Delta pareado (>=2015)                        4.6531 pp   EE 1.7784   IC95% [  0.5522,   8.7541]   n=14823    G=9
+      secciones                                 : 14823
+  S5 · par de anos mas cercano, separado por <=6 anos
+  S5 Delta par mas cercano (<=6 anos)              6.3109 pp   EE 3.6254   IC95% [ -1.3381,  13.9598]   n=40100    G=18
+      secciones                                 : 40100
+
+§6 · A-bis r4 — el universo del pareado NO es el universo completo
+  filas del universo completo                   : 454546
+  filas dentro de secciones pareadas            : 299476
+  estados del universo completo (31)             : [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+  estado(s) AUSENTE(s) del instrumento          : 9 Ciudad de Mexico
+  estados que aportan secciones pareadas (18)    : 3 Baja California Sur, 5 Coahuila, 7 Chiapas, 8 Chihuahua, 12 Guerrero, 14 Jalisco, 15 Mexico, 16 Michoacan, 17 Morelos, 20 Oaxaca, 21 Puebla, 23 Quintana Roo, 25 Sinaloa, 27 Tabasco, 28 Tamaulipas, 30 Veracruz, 31 Yucatan, 32 Zacatecas
+  estados SIN variacion de regimen (13)          : 1 Aguascalientes, 2 Baja California, 4 Campeche, 6 Colima, 10 Durango, 11 Guanajuato, 13 Hidalgo, 18 Nayarit, 19 Nuevo Leon, 22 Queretaro, 24 San Luis Potosi, 26 Sonora, 29 Tlaxcala
+  -> el pareado esta ACOTADO a esa subpoblacion; A-bis r4 exige recalcular
+     el marginal SOBRE EL MISMO UNIVERSO, y no compararlo contra el nacional.
+  Marginal RECALCULADO sobre el universo pareado   4.3664 pp   EE 1.4719   IC95% [  1.2610,   7.4717]   n=299476   G=18
+
+§6-bis · DIAGNOSTICO POST-HOC, NO PRE-REGISTRADO — participacion > 100%%
+  La spec no anticipo filas con total > registered_voters. Se reportan
+  por separado y NO sustituyen al primario (la spec no se corrige hacia atras).
+  filas excluidas por y>100pp                   : 2965 (0.652% del universo)
+  POST-HOC Delta pareado (y<=100pp)                6.6811 pp   EE 2.7126   IC95% [  0.9579,  12.4042]   n=40089    G=18
+      secciones                                 : 40089
+
+§7 · DECISION contra el Umbral (<15 pp) — arbol de la spec §5.4
+  Delta primario  = 6.5330 pp    IC95% [0.7331, 12.3329]
+  RAMA 1 -> fila A  (IC95% ENTERO por debajo de 15 pp)
+  Discordancia marginal vs. pareado: marginal=4.2140 pp, pareado=6.5330 pp, brecha=-2.3190 pp
+
+§8 · VERIFICACION INDEPENDIENTE DEL EE — bootstrap por conglomerado (estado)
+  No pre-registrado: control adversarial del EE cluster-robusto de §3.
+  bootstrap 2000 reps, semilla 20260820, remuestreo de 18 estados
+  EE bootstrap                                  : 2.6454 pp  (CR1 dio 2.7490)
+  IC95% percentil                               : [0.9970, 11.5544]
+  reps con Delta >= 15 pp                        : 0 de 2000
+
+==============================================================================
