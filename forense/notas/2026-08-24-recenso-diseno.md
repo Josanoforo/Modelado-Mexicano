@@ -1,6 +1,6 @@
 # ACTO RECENSO-DISEÑO-14 — re-censo acotado de diseño muestral
 
-**Fecha:** 2026-08-24 · **Entorno:** UBUNTU (corpus montado) · **Firma que ejecuta:** `ADR-135(f)` (mesa, 20/ago/2026) · **Cierra:** `FP-95` · **ADR de este acto:** `ADR-149`
+**Fecha:** 2026-08-24 · **Entorno:** UBUNTU (corpus montado) · **Firma que ejecuta:** `ADR-135(f)` (mesa, 20/ago/2026) · **Cierra:** `FP-95` · **ADR de este acto:** `ADR-149` *(candidateado `ADR-148` al escribir; renumerado al fusionar segundo — `AMPLIA-MARCO-SATURA`, `PR #316`, tomó el `148`. La cláusula de concurrencia del encargo lo anticipaba.)*
 
 Este acto no decide nada de diseño: ejecuta el re-censo que `ADR-135(f)` ordenó y `FP-95` registró como pendiente.
 
@@ -14,6 +14,7 @@ Este acto no decide nada de diseño: ejecuta el re-censo que `ADR-135(f)` orden�
 | Base declarada por dirección | `git merge-base --is-ancestor fb02421 origin/main` | `fb02421` **sí** es ancestro; `main` avanzó **3** commits más allá |
 | `REPARA-PROPAGA-15` (⛔ ORDEN) | `git log --oneline fb02421..origin/main` | fusionado en `4f5603b` (+ adenda `3491e04`), luego `22d792f` (PR #314). **Compuerta abierta** |
 | Base efectiva del acto | `git worktree add … origin/main` | `22d792f` — se refrescó y re-derivó, no se trabajó sobre `fb02421` |
+| Base final tras rebase | `git rebase origin/main` ×2 | `a6a809d` — `main` se movió **dos veces** durante el acto: `TRIAGE-UNIVERSO-12` (`PR #315`, sin ADR ni `FP`, sin colisión) y `AMPLIA-MARCO-SATURA` (`PR #316`, `ADR-148`, colisión de numeración resuelta renumerando) |
 | `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` | `echo` | `sin_variable` ✔ (UBUNTU) |
 | Red | `curl -s -o /dev/null -w "%{http_code}" --max-time 10 https://www.inegi.org.mx/` | `200` |
 | Corpus | `ls data/raw/ \| wc -l` | **316** entradas. `data/raw` **ya existía** como symlink a `/home/pc0/mm-corpus/raw` (no hubo que crearla ni enlazarla) |
