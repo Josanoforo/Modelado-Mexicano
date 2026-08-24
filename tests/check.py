@@ -2208,6 +2208,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # verbatim sin prefijo, es la CITA la que se prefija -- y las citas de
     # este acto (ADR-130, nota) van todas con ADV1-.
     "forense/encargos/2026-08-20-ACT-PIL-2.md",
+    # TRIAGE-UNIVERSO-12, 24/ago/2026: mismo precedente que ACT-PIL-2 --
+    # encargo archivado VERBATIM (convencion de forense/encargos/: "el texto
+    # completo del encargo tal como se lanzo"). Su `E-0` pelado cita el acto
+    # previo `ACTO E-0`/`SELLA-AGO24`, ya censado; el documento fuente queda
+    # sin prefijo, la cita del propio triaje (forense/notas/2026-08-24-
+    # triaje-universo-12.md) no repite el rotulo pelado.
+    "forense/encargos/2026-08-24-TRIAGE-UNIVERSO-12.md",
     "forense/encargos/2026-08-12-C-universo-minimo.md",
     "forense/encargos/2026-08-12-E4a.md",
     "forense/encargos/2026-08-12-E4c-paso3-corrida.md",
