@@ -2191,6 +2191,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # canon/registro-rotulos.tsv; el texto de direccion no se edita para
     # complacer a un test. Mismo movimiento y misma razon que ACT-PIL-2.
     "forense/encargos/2026-08-24-SELLA-AGO24-C-v2.md",
+    # ADQ-CORRE-R74R75, 24/ago/2026 (ADR-158): encargo archivado VERBATIM,
+    # misma convencion. Su `E-3` pelado ("E-3 espera a este", linea ORDEN)
+    # es el Encargo E-3 real del 4/ago/2026 (tests/svystat.py, PR #97,
+    # forense/hallazgos.md:106/:138 -- ese archivo ya esta en esta misma
+    # lista), citado por nombre, no declarado de nuevo; censado tambien en
+    # canon/registro-rotulos.tsv. El texto de direccion no se edita para
+    # complacer a un test.
+    "forense/encargos/2026-08-24-ADQ-CORRE-R74R75.md",
+    # misma razon que la entrada de arriba: esta nota cita "E-3" en prosa al
+    # narrar el propio hallazgo de T25 sobre el encargo.
+    "forense/notas/2026-08-24-adq-corre-r74r75-cierre.md",
     "forense/BENCHMARK-INTERVALO-CORREDOR-M-2026-08-20.md",
     "forense/encargos/2026-08-21-emisor-m1b.md",
     "canon/APERTURA-FASE-CALCULO-v1_2.md",
