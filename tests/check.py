@@ -145,6 +145,19 @@ def t02_duplicates():
     )
     def all_excepted(paths):
         return all(p.startswith(EXCEPTED_PREFIXES) for p in paths)
+    # Grupos por-contenido exceptuados uno a uno, no por prefijo: pares donde
+    # el segundo archivo es deliberadamente una copia byte a byte del primero
+    # -- un CONGELADO (compromiso criptográfico), no una duplicación
+    # accidental. `ADR-179`, `ACTO CONGELA-SORTEA`, 25/ago/2026: el marco de
+    # candidatas del piloto y su congelado deben coincidir byte a byte por
+    # diseño (`cmp` verificado al crear el congelado; `CONGELADO-v1_0.sha256`
+    # registra el pin) -- mismo patrón de censo mecánico que `ADR-177`/`ADR-178`.
+    EXCEPTED_HASH_GROUPS = (
+        frozenset({
+            "forense/marco-candidatas-piloto-v1_0.tsv",
+            "forense/prereg-duelo-v2/marco-congelado-piloto-v1_0.tsv",
+        }),
+    )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
         if ".git" in p or "/tests/" in p or "/data/raw" in p:
@@ -162,7 +175,7 @@ def t02_duplicates():
         if len(v) > 1 and not all_excepted(v):
             fail("T02", "nombre normalizado colisiona: " + " · ".join(sorted(v)))
     for k, v in by_hash.items():
-        if len(v) > 1 and not all_excepted(v):
+        if len(v) > 1 and not all_excepted(v) and frozenset(v) not in EXCEPTED_HASH_GROUPS:
             fail("T02", "contenido idéntico bajo nombres distintos: " + " · ".join(sorted(v)))
 
 
