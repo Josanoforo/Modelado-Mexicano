@@ -44,6 +44,12 @@ try:
         expected_index_sha,
         is_variable_seed,
     )
+    from .primary_metadata_projectors import (
+        NOT_PROJECTABLE,
+        SOURCE_NOT_PRESENT,
+        MetadataProjection,
+        PrimaryMetadataRegistry,
+    )
 except ImportError:
     from autoridad_semantica_marco import (
         AutoridadSemanticaError,
@@ -59,6 +65,12 @@ except ImportError:
         ProvenanceIndex,
         expected_index_sha,
         is_variable_seed,
+    )
+    from primary_metadata_projectors import (
+        NOT_PROJECTABLE,
+        SOURCE_NOT_PRESENT,
+        MetadataProjection,
+        PrimaryMetadataRegistry,
     )
 
 
@@ -535,6 +547,44 @@ def _load_profiles(path: Path) -> dict[str, Any]:
                 raise ProductiveAuthorityError(
                     f"PERFIL_CITAS_CONTEXTO_VACIAS:{payload_id}:{table_name}"
                 )
+            universe_semantics = table.get("universe_semantics")
+            if universe_semantics is not None:
+                if not isinstance(universe_semantics, dict):
+                    raise ProductiveAuthorityError(
+                        f"PERFIL_UNIVERSO_VARIABLE_INVALIDO:{payload_id}:{table_name}"
+                    )
+                assignments = universe_semantics.get("assignments")
+                unresolved = universe_semantics.get("unresolved_variables")
+                if not isinstance(assignments, list) or not isinstance(unresolved, list):
+                    raise ProductiveAuthorityError(
+                        f"PERFIL_UNIVERSO_VARIABLE_INCOMPLETO:{payload_id}:{table_name}"
+                    )
+                assigned: set[str] = set()
+                for assignment in assignments:
+                    variables = assignment.get("variables") if isinstance(assignment, dict) else None
+                    if (
+                        not isinstance(variables, list)
+                        or any(not isinstance(value, str) or not value for value in variables)
+                        or not _text(assignment.get("universo_poblacional"))
+                        or not _text(assignment.get("unidad_observacion"))
+                    ):
+                        raise ProductiveAuthorityError(
+                            f"PERFIL_UNIVERSO_ASIGNACION_INVALIDA:{payload_id}:{table_name}"
+                        )
+                    overlap_variables = assigned & set(variables)
+                    if overlap_variables:
+                        raise ProductiveAuthorityError(
+                            f"PERFIL_UNIVERSO_VARIABLE_DUPLICADA:{payload_id}:{table_name}"
+                        )
+                    assigned.update(variables)
+                if (
+                    len(unresolved) != len(set(unresolved))
+                    or any(not isinstance(value, str) or not value for value in unresolved)
+                    or assigned & set(unresolved)
+                ):
+                    raise ProductiveAuthorityError(
+                        f"PERFIL_UNIVERSO_CLASIFICACION_CONFLICTIVA:{payload_id}:{table_name}"
+                    )
         by_payload[payload_id] = raw
     overlap = set(by_payload) & set(blocked_payloads)
     if overlap:
@@ -617,6 +667,36 @@ def _citation(
     }
 
 
+def _variable_universe(
+    table: Mapping[str, Any], variable_name: str
+) -> tuple[str, str] | None:
+    semantics = table.get("universe_semantics")
+    if semantics is None:
+        return (
+            _text(table.get("universo_poblacional")),
+            _text(table.get("unidad_observacion")),
+        )
+    if variable_name in semantics["unresolved_variables"]:
+        return None
+    for assignment in semantics["assignments"]:
+        if variable_name in assignment["variables"]:
+            return (
+                _text(assignment["universo_poblacional"]),
+                _text(assignment["unidad_observacion"]),
+            )
+    return None
+
+
+def _universe_semantics_reason(
+    table: Mapping[str, Any], variable_name: str
+) -> str | None:
+    return (
+        None
+        if _variable_universe(table, variable_name) is not None
+        else "UNIVERSO_REACTIVO_NO_RESUELTO"
+    )
+
+
 def _authority_from_record(
     record: Mapping[str, Any],
     profile: Mapping[str, Any],
@@ -678,6 +758,12 @@ def _authority_from_record(
         locator=_text(table["design_locator"]),
         fields=WEIGHT_FIELDS,
     )
+    variable_universe = _variable_universe(table, variable.name)
+    if variable_universe is None:
+        raise ProductiveAuthorityError(
+            f"UNIVERSO_REACTIVO_NO_RESUELTO:{profile['payload_id']}:{variable.name}"
+        )
+    universe, observation_unit = variable_universe
     row = {
         "schema_version": "AUTORIDAD-SEMANTICA-MARCO-1.0",
         "representacion_id": key.representacion_id,
@@ -690,8 +776,8 @@ def _authority_from_record(
         "variable": key.variable,
         "encuesta": _text(profile["encuesta"]),
         "ola": _text(profile["ola"]),
-        "universo_poblacional": _text(table["universo_poblacional"]),
-        "unidad_observacion": _text(table["unidad_observacion"]),
+        "universo_poblacional": universe,
+        "unidad_observacion": observation_unit,
         "tipo_estadistico": kind,
         "respuesta_multiple": False,
         "categorias_excluyentes": True,
@@ -743,8 +829,14 @@ def _response_semantics_reason(
     return None
 
 
-def _specific_blocker(record: Mapping[str, Any], declared: str = "") -> str:
-    """Convierte una ausencia de perfil en una insuficiencia material observable."""
+def _specific_blocker(
+    record: Mapping[str, Any],
+    declared: str = "",
+    projection: MetadataProjection | None = None,
+    *,
+    contextual_survey_documented: bool = False,
+) -> str:
+    """Clasifica solo despues de intentar la fuente primaria estructurada."""
 
     normalized = {
         "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS": "UNIVERSO_REACTIVO_NO_RESUELTO",
@@ -762,29 +854,39 @@ def _specific_blocker(record: Mapping[str, Any], declared: str = "") -> str:
     }
     if declared:
         return normalized.get(declared, declared)
-    kind = _text(record.get("objeto_tipo")).upper()
-    if kind in {"VARIABLE-DTA", "VARIABLE-SAV"}:
-        if record.get("value_labels"):
-            # E2 conserva las etiquetas pero no el par código→etiqueta ni los
-            # user-missing necesarios para construir el dominio autorizado.
-            return "CODIFICACION_INCOMPLETA"
+    if projection is not None and projection.status == SOURCE_NOT_PRESENT:
+        return "FUENTE_PRIMARIA_NO_PRESENTE"
+    if projection is None or projection.status == NOT_PROJECTABLE:
+        return "METADATA_PRIMARIA_NO_PROYECTABLE"
+    recovered = set(projection.recovered_fields)
+    if contextual_survey_documented:
+        # El id literal dentro de una entrada de diseño prueba la familia de
+        # encuesta, pero no se interpreta la prosa para inventar ola o scope.
+        return "OLA_NO_DOCUMENTADA"
+    # El Title oficial en los paquetes CSV resuelve identidad de encuesta, no
+    # una ola separada ni los scopes estadisticos restantes.
+    if projection.survey_title_documented:
+        return "OLA_NO_DOCUMENTADA"
+    if "codigo_etiqueta" in recovered or "dominio_declarado" in recovered:
+        return "ENCUESTA_NO_DOCUMENTADA"
+    if "tipo_almacenamiento" in recovered:
+        # El tipo de almacenamiento fue efectivamente leido, pero no se
+        # transforma en naturaleza estadistica por dtype.
         return "TIPO_ESTADISTICO_NO_DOCUMENTADO"
-    if kind == "VARIABLE-DICCIONARIO":
-        # El parser material emitió una semilla por fila de catálogo. Los
-        # códigos se pueden agrupar por clave, pero E2 no conservó la etiqueta
-        # de cada código como par autorizado.
+    if "etiqueta_variable" in recovered:
         return "CODIFICACION_INCOMPLETA"
-    if kind in {"VARIABLE-DICCIONARIO-XLS", "VARIABLE-DICCIONARIO-XLSX"}:
-        if not record.get("categorias"):
-            return "DOMINIO_NO_ENUMERADO"
-        return "UNIVERSO_POBLACIONAL_NO_DOCUMENTADO"
-    return "FUENTE_PRIMARIA_NO_PRESENTE"
+    return "CODIFICACION_INCOMPLETA"
 
 
 def _seed_outcome(
-    record: Mapping[str, Any], estado: str, razon: str = ""
+    record: Mapping[str, Any],
+    estado: str,
+    razon: str = "",
+    *,
+    clase_bloqueo: str = "",
+    projection: MetadataProjection | None = None,
 ) -> dict[str, Any]:
-    return {
+    outcome = {
         "e2_record_id": _text(record.get("record_id")),
         "estado_final": estado,
         "payload_id": _text(record.get("payload_id")),
@@ -793,7 +895,30 @@ def _seed_outcome(
         or _text(record.get("tabla")),
         "variable": _text(record.get("nombre")),
         "razon": razon,
+        "clase_bloqueo": clase_bloqueo,
     }
+    if projection is not None:
+        outcome["metadata_primaria"] = projection.as_summary()
+    return outcome
+
+
+def _structural_locators(index_path: Path, expected_sha: str) -> dict[str, str]:
+    locators: dict[str, str] = {}
+    reader = E2IndexReader(index_path)
+    for record in reader:
+        if _text(record.get("objeto_tipo")).upper() not in {
+            "HOJA-XLS",
+            "HOJA-XLSX",
+            "TABLA-DTA",
+            "TABLA-SAV",
+        }:
+            continue
+        object_id = _text(record.get("objeto_logico_id"))
+        locator = _text(record.get("localizador"))
+        if object_id and locator and locator != "[REDACTADO-PRIVACIDAD]":
+            locators[object_id] = locator
+    reader.require_sha(expected_sha)
+    return locators
 
 
 def _load_base_authorities(
@@ -1105,7 +1230,9 @@ def _materialize_pr346(
             "proyector": SUPPORTED_PROJECTOR,
             "receta": (
                 "python3 tools/curador_registro/autoridad_semantica_productiva.py "
-                "--corpus-root <CORPUS_RAW> --indice-e2 <E2_PRIVADO> "
+                "--corpus-root <CORPUS_RAW> "
+                "--source-root descargas_mx=<DESCARGAS_MX> "
+                "--indice-e2 <E2_PRIVADO> "
                 "--output data/curacion-universo/autoridad-semantica-marco-v1_0.jsonl "
                 "--diagnostico "
                 "data/curacion-universo/diagnostico-autoridad-semantica-marco-v1_0.json "
@@ -1192,6 +1319,7 @@ def materialize(
     base_authority_path: Path,
     residual_output: Path | None = None,
     inventory_output: Path | None = None,
+    source_roots: Mapping[str, Path] | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Agota el universo E2 y asigna un estado final a cada semilla."""
 
@@ -1199,6 +1327,16 @@ def materialize(
     profiles: dict[str, dict[str, Any]] = profile_doc["profiles_by_payload"]
     blocked_payloads: dict[str, str] = profile_doc["blocked_payloads"]
     manifest = yaml.safe_load((repo / "data/manifiesto.yaml").read_text(encoding="utf-8"))
+    expected_sha = expected_index_sha(
+        repo / "data/curacion-universo/baseline-material-barrido2.json"
+    )
+    primary_metadata = PrimaryMetadataRegistry(
+        corpus_root=corpus_root,
+        manifest=manifest,
+        design_text=(repo / "data/diseno-muestral.yaml").read_text(encoding="utf-8"),
+        structural_locators=_structural_locators(index_path, expected_sha),
+        source_roots=source_roots,
+    )
     provenance = ProvenanceIndex(
         manifest,
         _read_tsv(repo / "data/censo-explotacion-2026-08-17.tsv"),
@@ -1236,6 +1374,12 @@ def materialize(
     seed_keys: dict[str, Any] = {}
     inventory_groups: dict[tuple[str, ...], dict[str, Any]] = {}
     inventory_seed_count = 0
+    metadata_statuses: Counter[str] = Counter()
+    metadata_fields: Counter[str] = Counter()
+    metadata_by_projector: dict[str, Counter[str]] = defaultdict(Counter)
+    metadata_technical_reasons: Counter[str] = Counter()
+    metadata_source_absence_reasons: Counter[str] = Counter()
+    blocker_classes: Counter[str] = Counter()
 
     reader = E2IndexReader(index_path)
     for record in reader:
@@ -1243,6 +1387,7 @@ def materialize(
             continue
         record_id = _text(record.get("record_id"))
         payload_id = _text(record.get("payload_id"))
+        inventory_group = None
         seeds_by_type[_text(record.get("objeto_tipo")).upper()] += 1
         strict_join = provenance.resolve(record)
         strict_joins[strict_join.status] += 1
@@ -1337,6 +1482,36 @@ def materialize(
             ] or _text(record.get("objeto_tipo")).upper().startswith(
                 "VARIABLE-DICCIONARIO"
             )
+            profile_context = profiles.get(payload_id)
+            design_context = primary_metadata.design_context(payload_id)
+            if profile_context is not None:
+                group["documentacion_diseno_disponible"] = True
+                group["ponderadores_documentados"] = sorted(
+                    {
+                        _text(table["ponderador"])
+                        for table in profile_context["tables"].values()
+                    }
+                )
+                group["cuestionario_metodologia_disponible"] = bool(
+                    any(
+                        table.get("context_citations")
+                        for table in profile_context["tables"].values()
+                    )
+                )
+                group["estado_documentacion_contextual"] = "PERFIL_DECLARATIVO_CITABLE"
+                group["encuesta_documentada"] = profile_context["encuesta"]
+                group["ola_documentada"] = profile_context["ola"]
+            elif design_context is not None:
+                group["documentacion_diseno_disponible"] = True
+                group["ponderadores_documentados"] = design_context[
+                    "ponderadores_documentados"
+                ]
+                group["estado_documentacion_contextual"] = (
+                    "ENLACE_ID_LITERAL_A_DISENO_MUESTRAL;SCOPE_NO_ESTRUCTURADO"
+                )
+                if len(design_context["fuentes"]) == 1:
+                    group["encuesta_documentada"] = design_context["fuentes"][0]
+            inventory_group = group
 
         if join.status not in {"EXACTA", "EXACTA_REPARADA"}:
             cards = component_cards or provenance.component_cardinalities(record)
@@ -1349,12 +1524,50 @@ def materialize(
                 else "PROCEDENCIA_COMPONENTES_NO_RECONCILIADOS:" + ",".join(missing)
             )
             outcome = _seed_outcome(
-                record, "PROCEDENCIA_NO_RECONCILIADA", reason
+                record,
+                "PROCEDENCIA_NO_RECONCILIADA",
+                reason,
+                clase_bloqueo="PROCEDENCIA_NO_RECONCILIADA",
             )
             outcomes.append(outcome)
             outcome_index[record_id] = len(outcomes) - 1
             source_attempts[payload_id][reason] += 1
             continue
+
+        projection = None
+        if _text(record.get("objeto_tipo")).upper() in {
+            "VARIABLE-DTA",
+            "VARIABLE-SAV",
+            "VARIABLE-DICCIONARIO",
+            "VARIABLE-DICCIONARIO-XLS",
+            "VARIABLE-DICCIONARIO-XLSX",
+        }:
+            projection = primary_metadata.project(record)
+            metadata_statuses[projection.status] += 1
+            metadata_by_projector[projection.projector][projection.status] += 1
+            metadata_by_projector[projection.projector]["SEMILLAS"] += 1
+            metadata_by_projector[projection.projector]["PARES_CODIGO_ETIQUETA"] += (
+                projection.code_label_pairs
+            )
+            metadata_by_projector[projection.projector]["USER_MISSING"] += (
+                projection.user_missing
+            )
+            for field in projection.recovered_fields:
+                metadata_fields[field] += 1
+            if projection.status == NOT_PROJECTABLE and projection.technical_reason:
+                metadata_technical_reasons[projection.technical_reason] += 1
+            elif projection.status == SOURCE_NOT_PRESENT and projection.technical_reason:
+                metadata_source_absence_reasons[projection.technical_reason] += 1
+            if inventory_group is not None:
+                inventory_group.setdefault("proyectores_metadata_primaria", Counter())[
+                    projection.projector
+                ] += 1
+                inventory_group.setdefault("estados_metadata_primaria", Counter())[
+                    projection.status
+                ] += 1
+                inventory_group.setdefault("campos_metadata_primaria", Counter()).update(
+                    projection.recovered_fields
+                )
 
         reason = "" if key is not None else "CLAVE_MATERIAL_NO_RESUELTA"
         if key is not None and key in rows_by_key:
@@ -1367,6 +1580,8 @@ def materialize(
                     record,
                     "DUPLICADO_COMPATIBLE",
                     "MISMA_CLAVE_MATERIAL_Y_ESPECIFICACION",
+                    clase_bloqueo="DUPLICADO_COMPATIBLE",
+                    projection=projection,
                 )
             outcomes.append(outcome)
             outcome_index[record_id] = len(outcomes) - 1
@@ -1377,7 +1592,12 @@ def materialize(
         profile = profiles.get(payload_id)
         if not reason and profile is None:
             reason = _specific_blocker(
-                record, blocked_payloads.get(payload_id, "")
+                record,
+                blocked_payloads.get(payload_id, ""),
+                projection,
+                contextual_survey_documented=primary_metadata.has_design_id_link(
+                    payload_id
+                ),
             )
             weight_scopes["NO_RESUELTO"] += 1
         table = None
@@ -1390,6 +1610,7 @@ def materialize(
                     profile.get("blocked_tables", {}).get(
                         sheet, "PONDERADOR_SCOPE_NO_RESUELTO"
                     ),
+                    projection,
                 )
                 weight_scopes["NO_RESUELTO"] += 1
             elif table is not None:
@@ -1404,10 +1625,26 @@ def materialize(
             elif parsed is not None and parsed.reason:
                 reason = _specific_blocker(record, parsed.reason)
             elif parsed is not None:
-                reason = _response_semantics_reason(table, parsed.name) or ""
+                reason = (
+                    _universe_semantics_reason(table, parsed.name)
+                    or _response_semantics_reason(table, parsed.name)
+                    or ""
+                )
         if reason:
+            blocker_class = (
+                "METADATA_PRIMARIA_NO_PROYECTABLE/PARO_TECNICO"
+                if reason == "METADATA_PRIMARIA_NO_PROYECTABLE"
+                else "FUENTE_PRIMARIA_NO_PRESENTE"
+                if reason == "FUENTE_PRIMARIA_NO_PRESENTE"
+                else "INSUFICIENCIA_DE_LA_FUENTE"
+            )
+            blocker_classes[blocker_class] += 1
             outcome = _seed_outcome(
-                record, "INSUFICIENCIA_SEMANTICA_ESPECIFICA", reason
+                record,
+                "INSUFICIENCIA_SEMANTICA_ESPECIFICA",
+                reason,
+                clase_bloqueo=blocker_class,
+                projection=projection,
             )
             outcomes.append(outcome)
             outcome_index[record_id] = len(outcomes) - 1
@@ -1431,14 +1668,13 @@ def materialize(
                 + _canonical_json(authority_key.as_dict())
             )
         rows_by_key.setdefault(authority_key, authority)
-        outcome = _seed_outcome(record, "AUTORIDAD_EMITIDA")
+        outcome = _seed_outcome(
+            record, "AUTORIDAD_EMITIDA", projection=projection
+        )
         outcomes.append(outcome)
         outcome_index[record_id] = len(outcomes) - 1
         source_attempts[payload_id]["AUTORIDAD_PROYECTADA"] += 1
 
-    expected_sha = expected_index_sha(
-        repo / "data/curacion-universo/baseline-material-barrido2.json"
-    )
     reader.require_sha(expected_sha)
     initial_counts = {
         "semillas_variables_totales": sum(seeds_by_type.values()),
@@ -1482,6 +1718,7 @@ def materialize(
                 index = outcome_index[row["e2_record_id"]]
                 outcomes[index]["estado_final"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
                 outcomes[index]["razon"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
+                outcomes[index]["clase_bloqueo"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
         elif len(ordered) > 1:
             compatible_duplicate_details.append(
                 {
@@ -1495,6 +1732,7 @@ def materialize(
                 index = outcome_index[row["e2_record_id"]]
                 outcomes[index]["estado_final"] = "DUPLICADO_COMPATIBLE"
                 outcomes[index]["razon"] = "MISMA_ESPECIFICACION_SEMANTICA"
+                outcomes[index]["clase_bloqueo"] = "DUPLICADO_COMPATIBLE"
 
     conflict_identities = set(conflicts)
     conflict_material_keys = {
@@ -1507,6 +1745,7 @@ def materialize(
             index = outcome_index[record_id]
             outcomes[index]["estado_final"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
             outcomes[index]["razon"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
+            outcomes[index]["clase_bloqueo"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
     all_rows = [
         row
         for row in projected_rows
@@ -1569,6 +1808,12 @@ def materialize(
                 sorted(row["metadatos_estructurados"].items())
             )
             row["semillas_resolubles_por_unidad_implementacion"] = row["semillas"]
+            for field in (
+                "proyectores_metadata_primaria",
+                "estados_metadata_primaria",
+                "campos_metadata_primaria",
+            ):
+                row[field] = dict(sorted(row.get(field, {}).items()))
             inventory_rows.append(row)
         inventory_rows.sort(
             key=lambda row: (
@@ -1594,10 +1839,13 @@ def materialize(
             "perfiles_sha256": _sha256_path(profiles_path),
             "proyectores": sorted(
                 {profile["projector"] for profile in profiles.values()}
+                | set(metadata_by_projector)
             ),
             "receta": (
                 "python3 tools/curador_registro/autoridad_semantica_productiva.py "
-                "--corpus-root <CORPUS_RAW> --indice-e2 <E2_PRIVADO> "
+                "--corpus-root <CORPUS_RAW> "
+                "--source-root descargas_mx=<DESCARGAS_MX> "
+                "--indice-e2 <E2_PRIVADO> "
                 "--output data/curacion-universo/autoridad-semantica-marco-v1_0.jsonl "
                 "--diagnostico data/curacion-universo/diagnostico-autoridad-semantica-marco-v1_0.json "
                 "--inventario data/curacion-universo/inventario-autoridad-semantica-marco-v1_0.jsonl "
@@ -1636,6 +1884,15 @@ def materialize(
             "autoridades_huerfanas": 0,
             "sin_proyector_o_perfil_semantico_implementado": 0,
             "semillas_no_emitidas": len(residual_rows),
+            "insuficiencia_de_la_fuente": blocker_classes[
+                "INSUFICIENCIA_DE_LA_FUENTE"
+            ],
+            "metadata_primaria_no_proyectable_paro_tecnico": blocker_classes[
+                "METADATA_PRIMARIA_NO_PROYECTABLE/PARO_TECNICO"
+            ],
+            "fuente_primaria_no_presente": blocker_classes[
+                "FUENTE_PRIMARIA_NO_PRESENTE"
+            ],
         },
         "antes_pr346_despues": {
             "candidatas": {"antes": 142, "despues": len(final_by_identity)},
@@ -1687,6 +1944,22 @@ def materialize(
         ],
         "duplicados_compatibles_detalle": compatible_duplicate_details,
         "razones_finales_residual": dict(sorted(reason_counts.items())),
+        "clases_bloqueo_residual": dict(sorted(blocker_classes.items())),
+        "metadata_primaria": {
+            "estados": dict(sorted(metadata_statuses.items())),
+            "campos_recuperados": dict(sorted(metadata_fields.items())),
+            "por_proyector": {
+                projector: dict(sorted(counts.items()))
+                for projector, counts in sorted(metadata_by_projector.items())
+            },
+            "razones_tecnicas": dict(sorted(metadata_technical_reasons.items())),
+            "razones_fuente_no_presente": dict(
+                sorted(metadata_source_absence_reasons.items())
+            ),
+            "payloads_vinculados_por_id_literal_a_diseno_muestral": sorted(
+                primary_metadata.design_linked_payloads
+            ),
+        },
         "top_razones_insuficiencia": [
             {"razon": reason, "semillas": count}
             for reason, count in sorted(
@@ -1716,6 +1989,13 @@ def main(argv: list[str] | None = None) -> int:
     repo = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--corpus-root", type=Path, required=True)
+    parser.add_argument(
+        "--source-root",
+        action="append",
+        default=[],
+        metavar="NOMBRE=RUTA",
+        help="Root adicional nombrado por data/manifiesto.yaml; repetible.",
+    )
     parser.add_argument("--indice-e2", type=Path, required=True)
     parser.add_argument(
         "--perfiles",
@@ -1733,6 +2013,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--inventario", type=Path)
     args = parser.parse_args(argv)
     try:
+        source_roots: dict[str, Path] = {}
+        for value in args.source_root:
+            name, separator, raw_path = value.partition("=")
+            if not separator or not name.strip() or not raw_path.strip():
+                raise ProductiveAuthorityError(
+                    f"SOURCE_ROOT_INVALIDO:{value};esperado=NOMBRE=RUTA"
+                )
+            if name in source_roots:
+                raise ProductiveAuthorityError(f"SOURCE_ROOT_DUPLICADO:{name}")
+            source_roots[name] = Path(raw_path)
         rows, diagnostics = materialize(
             repo=repo,
             corpus_root=args.corpus_root,
@@ -1741,6 +2031,7 @@ def main(argv: list[str] | None = None) -> int:
             base_authority_path=args.base_autoridad,
             residual_output=args.residuales,
             inventory_output=args.inventario,
+            source_roots=source_roots,
         )
     except (AutoridadSemanticaError, ProductiveAuthorityError, OSError, ValueError) as exc:
         print(f"ERROR:{exc}", file=sys.stderr)
