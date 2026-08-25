@@ -1,22 +1,49 @@
 {
+  "auditoria_reparacion_pr_346": {
+    "autoridades_actuales_examinadas": 148,
+    "autoridades_permanecen": 142,
+    "dependientes_no_aplica_como_missing": [
+      "enif2024_fd_xlsx|TMODULO|P11_6_1",
+      "enif2024_fd_xlsx|TMODULO|P11_6_2",
+      "enif2024_fd_xlsx|TMODULO|P11_6_3",
+      "enif2024_fd_xlsx|TMODULO|P11_6_4"
+    ],
+    "dependientes_no_aplica_como_missing_conservadas": 0,
+    "rendimiento_antes_reparacion": {
+      "autoridades_emitidas": 148,
+      "evaluadas_con_diagnostico_especifico_y_no_emitidas": 5422,
+      "semillas_exactas": 113013,
+      "semillas_no_emitidas": 112865,
+      "sin_proyector_o_perfil": 107443
+    },
+    "retiradas_exclusividad_multiplicidad_no_resuelta": [
+      "enif2024_fd_xlsx|TMODULO|REGION",
+      "enif2024_fd_xlsx|TMODULO|TLOC"
+    ],
+    "retiradas_exclusividad_multiplicidad_no_resuelta_total": 2,
+    "retiradas_multirrespuesta": [],
+    "retiradas_multirrespuesta_total": 0,
+    "retiradas_no_aplica_semantica_no_resuelta": 4,
+    "retiradas_total": 6
+  },
   "autoridades_por_encuesta_ola": {
-    "Encuesta Nacional de Inclusión Financiera 2024 | 2024": 121,
+    "Encuesta Nacional de Inclusión Financiera 2024 | 2024": 115,
     "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022 | 2022": 27
   },
   "candidatas_por_encuesta_ola": {
-    "Encuesta Nacional de Inclusión Financiera 2024 | 2024": 121,
+    "Encuesta Nacional de Inclusión Financiera 2024 | 2024": 115,
     "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022 | 2022": 27
   },
   "candidatas_por_tipo_estadistico": {
-    "BINARIA": 111,
-    "CATEGORICA": 37
+    "BINARIA": 107,
+    "CATEGORICA": 35
   },
   "conflictos_conceptuales": [
     {
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-6ff76255d895ddd116d1202b",
+          "autoridad_id": "ASM-0a008fd832533db97f8bb153",
           "e2_record_id": "E2R-5732541010373824f0fbe2e4c7bd593813f888144dad0e933dea55c9e766008b",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -28,7 +55,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-fd79a60206e4691f7b519017",
+          "autoridad_id": "ASM-56121851d6030da4edb28083",
           "e2_record_id": "E2R-e1a3636386b09a9b981c1d6c651bc731eb3162b403bfe88d883b369434b1ba7a",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -47,7 +74,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-e59ae016786a2763d152da27",
+          "autoridad_id": "ASM-6adf9debd931998af354a0a5",
           "e2_record_id": "E2R-85ffcb851f0cefeb90f7bf464d4e9e59c3cd5150f43dbd62c5a5471b0f320773",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -59,7 +86,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-b2f6ee65b6e2d5a3ce27a6d4",
+          "autoridad_id": "ASM-1423a1ac30a689a4a51eb1d9",
           "e2_record_id": "E2R-5604dd9d9b32cd9da6d2144d621809b3555a923c893932828cd3133b50e54246",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -78,7 +105,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-19a9bf08961ef40332a97464",
+          "autoridad_id": "ASM-8f250ffc0bae9f941cdd2e91",
           "e2_record_id": "E2R-77811b19ff9d31bffc93969661fb9ff8e990ede74c863f7725dfe40d2a199299",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -90,7 +117,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-d18a796fc5e0731747f24fe2",
+          "autoridad_id": "ASM-f527e492d44650357a3cc21e",
           "e2_record_id": "E2R-3fa11e4783351a35d880af3674caf6dcbab69dbbb31c00fe1e68fbc7b24eb650",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -109,7 +136,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-bbf4d4a598c19e8514a8f4fb",
+          "autoridad_id": "ASM-4ebd9d64f95f1375245bf7a2",
           "e2_record_id": "E2R-badc6310aea2ae252d7d3031ba07370ba4e0845cd320692738c968b7229368c3",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -121,7 +148,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-1aee404fc141a854545be513",
+          "autoridad_id": "ASM-1fb11225245c4ec0c0b7d572",
           "e2_record_id": "E2R-e143733b05af0e036cbd1febf6fa8bdeab1be8faf2834c892e77034341c336c8",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -140,7 +167,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-0be7d309aa42d65e11d8eed8",
+          "autoridad_id": "ASM-c352f040b8240565743059ef",
           "e2_record_id": "E2R-9619e4e72a33ca9044849150b0fc58c8b34454bba153ea88f8cefc695bd93983",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -152,7 +179,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-ffafb5f5ad4056aa3e519f2b",
+          "autoridad_id": "ASM-498f01cf074c43a62ee20a25",
           "e2_record_id": "E2R-232194d380e602204980a7271a391077a55348efa65c1d14e8652bd11cd08c31",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -171,7 +198,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-0474f7c1dc6aed7779df87da",
+          "autoridad_id": "ASM-7a03a15ba13e6acb1a6d5908",
           "e2_record_id": "E2R-bdb00bc2ac97731dbb3fa8af31a771b2bcbefdb8ab0d95e0d8800106878ba017",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -183,7 +210,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-a85897236af817b15b46fd30",
+          "autoridad_id": "ASM-9c09e974f60ad35e351d5209",
           "e2_record_id": "E2R-e927af03eb30d98b9b1f8f3bb4213f3036e0145987812f062b5d8439d2f476eb",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -202,7 +229,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-7586fa480aa357f28f5417b4",
+          "autoridad_id": "ASM-fe94ba11aa92356531762a60",
           "e2_record_id": "E2R-c19d12b4c0db5416d0adbe13f23b3431a770d04ea839e04b2bfeb66eac8665ab",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -214,7 +241,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-be48f28048892e8f924eac24",
+          "autoridad_id": "ASM-798201c53cae49722fb6a7c7",
           "e2_record_id": "E2R-33bf149454d8950a500a99382cdf67ec66207bc2eb9ae3278c209023a70b20c8",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -233,7 +260,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-4602658645daebea463c96c3",
+          "autoridad_id": "ASM-7dc7b2a924b3d694873baab8",
           "e2_record_id": "E2R-63dfe22482038e49398f4a594198a5ac16d84caeb8187c055ec0c825df39c3b3",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -245,7 +272,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-cf544e5de058ea56e18d4c6e",
+          "autoridad_id": "ASM-909848d6018649e264243da6",
           "e2_record_id": "E2R-d6cbadc14bc0d04b3ffa3d9433456daaf877dccd8e9142d1c639467824d6f0cf",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -264,7 +291,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-411766689e023ac99a8e0ea3",
+          "autoridad_id": "ASM-269718ee1077fda15e253612",
           "e2_record_id": "E2R-b9345042f9a1fbf937de49d57e5f51e8e8e18d0bb126b5b26642fecd63f8fcca",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -276,7 +303,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-7546881ff3549aa79996dd49",
+          "autoridad_id": "ASM-48529753971bcb0ff3f1118a",
           "e2_record_id": "E2R-53a30c30e272d774d86a1122318612cf9923e388de5727ff1bc7a654c8cc1be7",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -295,7 +322,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-01b644b9d2f9d43dae535d1c",
+          "autoridad_id": "ASM-9df357cd91e3464f035d8a84",
           "e2_record_id": "E2R-d2e3cf4d25e73600c5ab308fc7742526c4907aab753a2bb59ca1fcedec442d41",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -307,7 +334,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-b1936424650111657dfdc6c6",
+          "autoridad_id": "ASM-4f1cef65fd65d72ef6d43da5",
           "e2_record_id": "E2R-800656dd477a5dd20cd27195777aeada4d990f0b9de0bb4ef2042cbc0c055c1f",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -326,7 +353,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-8fe8d7b7a6791efdc4260e23",
+          "autoridad_id": "ASM-17060777d7b458fdfb16b0b5",
           "e2_record_id": "E2R-41a3718dc92629975aa553a06f174f695db0c3661a6e0be10680623c15509812",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -338,7 +365,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-27ee1ef7974ffb279d9c0b98",
+          "autoridad_id": "ASM-860a7ae94eb3554bf9770a6c",
           "e2_record_id": "E2R-8f447d09b286c9432c51c1279dba07a4119cbec0e652bf11c347f10a27127964",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -357,7 +384,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-8bd9e749f79c1313452d181f",
+          "autoridad_id": "ASM-530c36cb20401a81b8dad16d",
           "e2_record_id": "E2R-68f90b99dba00be08f05f800ac60dcce0f6931a6262a10a3efd2631b17988a76",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -369,7 +396,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-101da0c51f7d239fb02da7d8",
+          "autoridad_id": "ASM-d2450d0205f43dfa1f091b51",
           "e2_record_id": "E2R-257a985a51c8725609b2b547b4edbeb1c5117335a1f9e78f806f91ca8c8227ec",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -388,7 +415,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-5dfbcaa5a31fc08cb50ab51a",
+          "autoridad_id": "ASM-c0075debf42407c4ae004524",
           "e2_record_id": "E2R-33b897cfe8c6141648f8dd46d0c03f636d9e45b77caf2620e0c04c13b1d0ef4b",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -400,7 +427,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-feeb14609507de97f6a7a383",
+          "autoridad_id": "ASM-eed3ac33afa0b26731a696a0",
           "e2_record_id": "E2R-0153c7edcd3e913984cafc07c865a03b9ce4476d82de734478d0f339349c30b3",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -419,7 +446,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-f263946dbe4529f1fb40f506",
+          "autoridad_id": "ASM-144f9fa1094b483021a97793",
           "e2_record_id": "E2R-a69485c582cf1bc728c2d6d98b15f8a9476e0c68054559e5c903a0e8276d94a7",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -431,7 +458,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-fb08a2b3aa9b35ea12f65e6b",
+          "autoridad_id": "ASM-4dd891d3840e1241d73f45f1",
           "e2_record_id": "E2R-653db87f777e91b2dfe8f961987eb4ca6edb9ba560efb6679eea36f805aa8b78",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -450,7 +477,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-3c457390f1a0e152b4a84b7b",
+          "autoridad_id": "ASM-7b27461e27d70518471d4ce3",
           "e2_record_id": "E2R-24c25a3910ebdb234db30b37ebc73feb1022535d37d794e2bb909e41ce8a56be",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -462,7 +489,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-0a45e8e5d29ce9dbcdd71850",
+          "autoridad_id": "ASM-ccf4d8f851b19028bd5351d3",
           "e2_record_id": "E2R-568e71d508f787c516331b9ed09e35921933f0756c6bed2e616606b69aa17456",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -481,7 +508,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-68298b1d294272a67e63dd7a",
+          "autoridad_id": "ASM-13f2835fb4f8e14b6b8a487f",
           "e2_record_id": "E2R-02621efa2e44ddb4cc8dcc1146509b97837b694b1ac003ab4b6395c9c6b15dda",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -493,7 +520,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-4fbe48b3b783617422da4b6f",
+          "autoridad_id": "ASM-3e346c185448b99e95c3f845",
           "e2_record_id": "E2R-47ff76c1fe253d7247bb902a904c9a4537c1b90877f1c4240ac08ba3904a38ae",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -512,7 +539,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-9dd55bc21e1c1b6a7988fcef",
+          "autoridad_id": "ASM-7cdd335ae77a17f1a12d2d38",
           "e2_record_id": "E2R-43881695ec2b5c5c2465fccf3f36f2ee3ae51341fc23075633b9504d578a0e72",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -524,7 +551,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-8ce1f728d86a68afd112e077",
+          "autoridad_id": "ASM-c0dd98a355c370c4dbaca020",
           "e2_record_id": "E2R-e00b303369cc5b51a8d6bc27c69276d9c0c0a668031fd83479f66e97be252580",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -543,7 +570,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-053fada0845cf5edfbc28e66",
+          "autoridad_id": "ASM-f5386d7a828b18e0fc5ca3c0",
           "e2_record_id": "E2R-d21202e304b93ba83e24fe48072bf564cd8d789af0259a77f4f31224f8c188ef",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -555,7 +582,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-011ca322ec844f45ae8a74e1",
+          "autoridad_id": "ASM-d6aca8a2617e290348de496e",
           "e2_record_id": "E2R-aac7897f5e397723f2045696503f18d0291f829445a35dff188e8c64bca7f67c",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -574,7 +601,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-05ce5d573f1f8e8aaa80e556",
+          "autoridad_id": "ASM-0bde977bda5f7e11305f3069",
           "e2_record_id": "E2R-c274311c0d343f500ead8cb5c4fa7cad1d5fda37a5f98e30f772d5d670271103",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -586,7 +613,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-0517d20889831ba4776397f0",
+          "autoridad_id": "ASM-9d52183be008edae603e1360",
           "e2_record_id": "E2R-62d4261d1db994dcf5d75a5fb385193d09b163e4165814a8191a9549a3f1489c",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -605,7 +632,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-a47adcc9c7102a8e2a254ad5",
+          "autoridad_id": "ASM-e203404718269165025c70e4",
           "e2_record_id": "E2R-291c2844c7a710e2b0d34ce7201dba731e20743464adfa4415b12a134d27a43e",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -617,7 +644,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-72819c3a803eea7522471251",
+          "autoridad_id": "ASM-8761ac6db4ab99ca3d50d16a",
           "e2_record_id": "E2R-9e7c483287667756d35d88f2e151941c89a8eeefeb18d31954ed77edaab49aae",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -636,7 +663,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-646f910b12875512d43f7207",
+          "autoridad_id": "ASM-688e718014011ce960ce4993",
           "e2_record_id": "E2R-ec7fe6bc87c001a897add35661f81323d96387d9828215309fd2935d5c02eb33",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -648,7 +675,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-a90327ecd29de6e6aa10cead",
+          "autoridad_id": "ASM-0569a78debe93664de5a59a8",
           "e2_record_id": "E2R-feb53cdebd37629d4a605b136506b7a77623811be425701e50baceefff5e4db1",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -667,7 +694,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-ddeb1b83a036592b81c7dec9",
+          "autoridad_id": "ASM-1ebae4b62cf1a7389c35774e",
           "e2_record_id": "E2R-68ccb784263c4ca06279a05e26b1645b04d1ed93b0ec540675e1952cfe1b2fb2",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -679,7 +706,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-273d3941cd11d9675def6bc3",
+          "autoridad_id": "ASM-b175a5d101573058dceba4b0",
           "e2_record_id": "E2R-6395c30f8c6f69843617b6760201756210dad89065327b1d2e8f0f23abeb26ce",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -698,7 +725,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-4a1eefa4988e3b0f73f3bb56",
+          "autoridad_id": "ASM-c07e207f908edd7463d3c684",
           "e2_record_id": "E2R-d828e994bddf0fe23e4d7c32e2ec543e3f33251a808b13a1c3cff84efd3a4bdd",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -710,7 +737,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-c9e3aedb2ff2247a90c40535",
+          "autoridad_id": "ASM-f3519d026ddda78d45412240",
           "e2_record_id": "E2R-20e65b6104700b570d47e6eba9868230880729659758d847ae712404e1bb0798",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -729,7 +756,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-726889aeaad21ef79f8fd0ad",
+          "autoridad_id": "ASM-af82ae318029f28047181408",
           "e2_record_id": "E2R-0e9844fc78a3e7900803f96e3a2aeeb807e2c8cb729ea5291b60bd8f106fa4bf",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -741,7 +768,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-4eb70e75bdd9deebea239896",
+          "autoridad_id": "ASM-526542319935c5de00e227c3",
           "e2_record_id": "E2R-712b0d0797887d5a0e5e21c2d4b9cb84104d2bd8d17281139b07d7dc99d45a63",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -760,7 +787,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-762800647072a8e7365d3382",
+          "autoridad_id": "ASM-b52f519fff5576e07ce486cb",
           "e2_record_id": "E2R-7f02846fffa6aca6d9b0239afeee581dac6b7173cbabd5e97a1e5685be949c4f",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -772,7 +799,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-fe5741e4449b3d7f1517a9eb",
+          "autoridad_id": "ASM-b54a978c730949aba18ab871",
           "e2_record_id": "E2R-0d51f9c5b76273cf2949c50d73d91023c9f4f1afed0c5b58177d4e97e611803f",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -791,7 +818,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-3fa120e1bedd140ebbc48456",
+          "autoridad_id": "ASM-b1d5ac3db18c78467853bd66",
           "e2_record_id": "E2R-a7ccf92dee66bfe381b440186f48f266298f8185a5e654fabf107786b6281b3a",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -803,7 +830,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-615ac2c85e34bf5347430881",
+          "autoridad_id": "ASM-08ee039e8acd0873f578e6a7",
           "e2_record_id": "E2R-13e7ba2fe9c795667c7ddf9add0a1bb31ef850a2c035ee396a740373ab8012aa",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -822,7 +849,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-ff7eef5067c5ae1a66f1f368",
+          "autoridad_id": "ASM-2ca196b18c133483d069aca3",
           "e2_record_id": "E2R-e90521d1388aa708ec0521388aae8ec0b2290822f6f235bec026bcf52383fdea",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -834,7 +861,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-9a1185810cc0d3e96a6838a4",
+          "autoridad_id": "ASM-f1f515b6b0bdaeb55f22a042",
           "e2_record_id": "E2R-057ef8fbca631f1e0403323c0a9f8c33c036fea32242b6be748973559691c044",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -853,7 +880,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-bfcabe0ac3d1f086572c0ef2",
+          "autoridad_id": "ASM-5e838378f33f173caa388937",
           "e2_record_id": "E2R-20759bd1e2f6f73df60db47e7fffd0ba9caa483ecb732b31a7a16ef7c1e4a066",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -865,7 +892,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-e46abe76eea573c6b1f95f1f",
+          "autoridad_id": "ASM-af59f5048f9a9f0394687bf6",
           "e2_record_id": "E2R-f0ef147dd7ce40ca2a45a42c5f3e60918937a6af9ebb93c82b6014c6f9db0761",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -884,7 +911,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-f1c336573391d74ac8ff78b4",
+          "autoridad_id": "ASM-6ea8dd22cdd824940b6c8397",
           "e2_record_id": "E2R-6bdfdb3d6167f72f08b11f42d81687bc5c669a6931e123e30e2c50ce1c9a9366",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -896,7 +923,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-98b16d7fcf4f5f4d13209b35",
+          "autoridad_id": "ASM-ee067e54fa837b9c9a9bedd3",
           "e2_record_id": "E2R-b6d5d0560f4d2e64f9748bcd928033441266092ed26fcb6ee9eec046920977a7",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -915,7 +942,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-cf718ea42424e0f74471b38c",
+          "autoridad_id": "ASM-cd9f037f6927b4ec30a9936d",
           "e2_record_id": "E2R-690ab335dc39152b6084ca0fe94119706a887f164cb7f0cf0bd4c02349a87131",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -927,7 +954,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-e4cc8d1dfe6eb65c37cabe3a",
+          "autoridad_id": "ASM-3319c858dab30e2a734f3757",
           "e2_record_id": "E2R-81ffbb6916729fcc8d257c3ae93d6639726810afd0ef588e89c0055db4782b97",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -946,7 +973,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-671021f35824d8ec1a583810",
+          "autoridad_id": "ASM-c5167b3467e68305043d6ec6",
           "e2_record_id": "E2R-17d349cbaa3c5057c79ecb2299145ecd611472d29779bc05967b4ea898227016",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -958,7 +985,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-43dae694acd8651144441953",
+          "autoridad_id": "ASM-02e1ffa8ac28706669d83700",
           "e2_record_id": "E2R-e72a6cac6cddc53ce0f0355c2b85fe75eec0bd4c41c63cdb9a5fbb9b8924ca6c",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -977,7 +1004,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-f7800883627919e318321f8a",
+          "autoridad_id": "ASM-c30316f5310cc540de4bce34",
           "e2_record_id": "E2R-3a93db33b4adce1c0d79dfc06ed03a4c8a7cbef0beb6e22b5b2e792c2e2bb621",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -989,7 +1016,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-2b90704f33fc51422828f7aa",
+          "autoridad_id": "ASM-1f21472704b4e5c4487565b8",
           "e2_record_id": "E2R-555a4ef901331d84a585a79affe7c127ee2b62d65313aaf1b42457fb4bb59c54",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -1008,7 +1035,7 @@
       "encuesta": "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-b5f233d28727066c4fcd759a",
+          "autoridad_id": "ASM-0e4156292e48c10ca055fcb8",
           "e2_record_id": "E2R-65627db6e346ddb2956a23730de6f44286351493be6bff3e72ccbaf76a0850f1",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_CUI",
@@ -1020,7 +1047,7 @@
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
         },
         {
-          "autoridad_id": "ASM-b9eeff3ae16a1d6a65819e50",
+          "autoridad_id": "ASM-817953823d08b7063ebb9600",
           "e2_record_id": "E2R-3a373fd4d8f32a31ad1a75ab2f7fac9c9a4060d0b652c9cd1c4d095687970151",
           "payload_id": "enasic2022_fd_xlsx",
           "ponderador": "FAC_UNI",
@@ -1039,55 +1066,55 @@
   "duplicados_compatibles_detalle": [],
   "fuentes": {
     "cpv2020_caas_descriptor_bd_xlsx": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 260
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 260
     },
     "cpv2020_ceu_descriptor_bd_xlsx": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 116
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 116
     },
     "cpv2020_diccionario_cuestionario_ampliado_xlsx": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 201
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 201
     },
     "eder_2017_eder2017_bases_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 232
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 232
     },
     "eder_2017_eder2017_bases_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 232
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 232
     },
     "eder_2025_eder2025_bases_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 483
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 483
     },
     "eder_2025_eder2025_bases_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 320
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 320
     },
     "elcos2012_bd_dbf_zip": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 29
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 29
     },
     "elcos2012_fd_xls": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 29
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 29
     },
     "enadid2023_fd_xlsx": {
       "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 683
     },
     "enaproce_2015_ejem_base_micro_ciega_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 188
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 188
     },
     "enaproce_2015_ejem_base_pyme_ciega_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 235
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 235
     },
     "enaproce_2018_ejem_base_micro_ciega_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 288
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 288
     },
     "enaproce_2018_ejem_base_pyme_ciega_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 367
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 367
     },
     "enasem2018_fd_xlsx": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2167
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2167
     },
     "enasem2021_fd_xlsx": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2092
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2092
     },
     "enasem2024_fd_xlsx": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2212
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2212
     },
     "enasic2022_fd_xlsx": {
       "AUTORIDAD_FINAL": 27,
@@ -1101,178 +1128,178 @@
       "UNIVERSO_REACTIVO_CONDICIONADO": 626
     },
     "encig2015_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 323
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 323
     },
     "encig2017_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 1542
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1542
     },
     "encig2019_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2216
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2216
     },
     "encig2021_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2227
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2227
     },
     "encig2023_datosabiertos_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 1820
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1820
     },
     "encig_2021_encig21_base_datos_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 435
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 435
     },
     "encig_2021_encig21_base_datos_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 435
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 435
     },
     "encig_2023_encig23_base_datos_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 460
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 460
     },
     "encig_2023_encig23_base_datos_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 460
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 460
     },
     "encig_2025_encig25_base_datos_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 477
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 477
     },
     "encig_2025_encig25_base_datos_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 477
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 477
     },
     "endireh_2003_bd_endireh_2003_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 145
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 145
     },
     "endireh_2003_bd_endireh_2003_dbf": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 145
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 145
     },
     "endireh_2003_bd_endireh_2003_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 798
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 798
     },
     "endireh_2003_bd_endireh_2003_rdata": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 145
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 145
     },
     "endireh_2003_bd_endireh_2003_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 798
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 798
     },
     "endireh_2006_bd_endireh_2006_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 281
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 281
     },
     "endireh_2006_bd_endireh_2006_dbf": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 281
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 281
     },
     "endireh_2006_bd_endireh_2006_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 1702
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1702
     },
     "endireh_2006_bd_endireh_2006_rdata": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 281
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 281
     },
     "endireh_2006_bd_endireh_2006_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 1702
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1702
     },
     "endireh_2006_fd_endireh06": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 281
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 281
     },
     "endireh_2011_bd_endireh_2011_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 80
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 80
     },
     "endireh_2011_bd_endireh_2011_dbf": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 80
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 80
     },
     "endireh_2011_bd_endireh_2011_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 1214
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1214
     },
     "endireh_2011_bd_endireh_2011_rdata": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 80
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 80
     },
     "endireh_2011_bd_endireh_2011_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 1934
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1934
     },
     "endireh_2011_fd_endireh11": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 80
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 80
     },
     "endireh_2016_bd_mujeres_endireh2016_sitioinegi_spss": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2175
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2175
     },
     "endireh_2016_bd_sd_endireh2016_sitioinegi_spss": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 54
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 54
     },
     "endireh_2016_bd_sd_endireh2016_sitioinegi_stata": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 54
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 54
     },
     "endireh_2016_bd_viviendas_endireh2016_sitioinegi_spss": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 36
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 36
     },
     "endireh_2016_bd_viviendas_endireh2016_sitioinegi_stata": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 36
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 36
     },
     "endireh_2021_bd_endireh_2021_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 97
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 97
     },
     "endireh_2021_bd_endireh_2021_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2309
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2309
     },
     "endutih2024_fd_xlsx": {
       "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 477
     },
     "endutih_2023_fd_endutih2023": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 467
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 467
     },
     "endutih_2025_fd_endutih2025": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 499
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 499
     },
     "enestyc_1992_ejemplobd_enestyc_1992_stata": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 835
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 835
     },
     "enestyc_1995_ejemplobd_enestyc_1995_stata": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 356
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 356
     },
     "enestyc_1999_ejemplobd_enestyc_1999_stata": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 570
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 570
     },
     "enestyc_2001_ejemplobd_enestyc_2001_stata": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 666
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 666
     },
     "enestyc_2005_ejemplobd_enestyc_2005_stata": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 1520
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1520
     },
     "enfih2019_fd_xlsx": {
       "UNIVERSO_UNIDAD_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 664
     },
     "engasto2012_gasto_mujeres_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 12
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 12
     },
     "engasto2012_hogar_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 161
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 161
     },
     "engasto2012_persona_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 42
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 42
     },
     "engasto_2012_gasto_mujeres_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 13
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 13
     },
     "engasto_2012_hogar_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 173
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 173
     },
     "engasto_2012_lugar_compra_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 81
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 81
     },
     "engasto_2012_persona_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 42
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 42
     },
     "engasto_2012_vivienda_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 69
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 69
     },
     "engasto_2012_vivienda_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 69
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 69
     },
     "engasto_2013_viviendas_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 72
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 72
     },
     "engasto_2013_viviendas_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 72
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 72
     },
     "enif2018_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 394
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 394
     },
     "enif2018_fd_xlsx": {
       "PONDERADOR_OLA_SCOPE_NO_DOCUMENTADO": 394
     },
     "enif2021_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 420
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 420
     },
     "enif2021_fd_zip": {
       "PONDERADOR_OLA_SCOPE_NO_DOCUMENTADO": 420
@@ -1280,300 +1307,302 @@
     "enif2024_csv": {
       "AUTORIDAD_FINAL": 1,
       "AUTORIZADA_PREEXISTENTE": 1,
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 442
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 442
     },
     "enif2024_fd_xlsx": {
-      "AUTORIDAD_FINAL": 120,
-      "AUTORIDAD_PROYECTADA": 120,
+      "AUTORIDAD_FINAL": 114,
+      "AUTORIDAD_PROYECTADA": 114,
       "DOMINIO_NO_ENUMERADO_O_SIN_ETIQUETA": 13,
+      "EXCLUSIVIDAD_MULTIPLICIDAD_NO_RESUELTA": 2,
+      "NO_APLICA_SEMANTICA_NO_RESUELTA": 4,
       "PONDERADOR_SCOPE_NO_DOCUMENTADO_PARA_AUTORIDAD": 45,
       "RESPUESTA_MULTIPLE_DOCUMENTADA": 7,
       "UNIVERSO_REACTIVO_CONDICIONADO": 258
     },
     "enif_2012_bases_enif2012_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 345
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 345
     },
     "enif_2012_fd_enif2012": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 345
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 345
     },
     "enif_2015_enif_2015_bd_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 760
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 760
     },
     "enif_2015_enif_2015_fd": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 583
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 583
     },
     "enigh2012_nc_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 729
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 729
     },
     "enigh2014_nc_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 766
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 766
     },
     "enigh2016_nc_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 630
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 630
     },
     "enigh2018_nc_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 807
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 807
     },
     "ennvih1_2002_hogar_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 5425
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 5425
     },
     "ennvih1_2002_ponderador": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 32
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 32
     },
     "ennvih2_2005_hogar_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 5992
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 5992
     },
     "ennvih2_2005_local_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 992
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 992
     },
     "ennvih2_2005_ponderador_longitudinal": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 32
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 32
     },
     "ennvih2_2005_ponderador_transversal": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 32
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 32
     },
     "ennvih3_2009_hogar_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 5508
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 5508
     },
     "ennvih3_2009_local_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 1368
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1368
     },
     "ennvih3_2009_ponderador_longitudinal": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 32
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 32
     },
     "ennvih3_2009_ponderador_transversal": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 32
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 32
     },
     "enoe_2019_1t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 466
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 466
     },
     "enoe_2019_2t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 394
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 394
     },
     "enoe_2019_3t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 394
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 394
     },
     "enoe_2019_4t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 394
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 394
     },
     "enoe_2020_1t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 466
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 466
     },
     "enoe_2023_1t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 502
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 502
     },
     "enoe_2023_2t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 430
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
     },
     "enoe_2023_3t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 430
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
     },
     "enoe_2023_4t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 430
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
     },
     "enoe_2024_1t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 502
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 502
     },
     "enoe_2024_2t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 430
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
     },
     "enoe_2024_3t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 430
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
     },
     "enoe_2024_4t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 430
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
     },
     "enoe_2025_1t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 502
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 502
     },
     "enoe_2025_2t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 430
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
     },
     "enoe_2025_3t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 437
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 437
     },
     "enoe_2025_4t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 437
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 437
     },
     "enoe_2026_1t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 509
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 509
     },
     "enoen_2020_3t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 420
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 420
     },
     "enoen_2020_4t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 420
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 420
     },
     "enoen_2021_1t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 492
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 492
     },
     "enoen_2021_2t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 420
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 420
     },
     "enoen_2021_3t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 429
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 429
     },
     "enoen_2021_4t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 429
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 429
     },
     "enoen_2022_1t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 501
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 501
     },
     "enoen_2022_2t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 429
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 429
     },
     "enoen_2022_3t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 429
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 429
     },
     "enoen_2022_4t_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 429
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 429
     },
     "enut2014_fd_xls": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 53
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 53
     },
     "enut2019_fd_xlsx": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 656
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 656
     },
     "enut2024_fd_xlsx": {
       "UNIVERSO_EFECTIVO_Y_RESPUESTA_EXCLUSIVA_NO_DOCUMENTADOS": 885
     },
     "envipe2018_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2013
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2013
     },
     "envipe2019_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 1905
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1905
     },
     "envipe2020_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2020
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2020
     },
     "envipe2021_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 1868
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1868
     },
     "envipe2022_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 1871
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1871
     },
     "envipe2023_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2119
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2119
     },
     "envipe2024_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2315
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2315
     },
     "envipe2025_csv": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 2217
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2217
     },
     "envipe_2011_base_de_datos_envipe_2011_dbf": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 23
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 23
     },
     "envipe_2011_fd_envipe2011": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 23
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 23
     },
     "envipe_2012_base_de_datos_envipe_2012_dbf": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 23
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 23
     },
     "envipe_2012_fd_envipe2012": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 23
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 23
     },
     "envipe_2013_bd_envipe13_dbf": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 410
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 410
     },
     "envipe_2013_fd_envipe2013": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 410
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 410
     },
     "envipe_2021_bd_envipe_2021_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 522
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 522
     },
     "envipe_2021_bd_envipe_2021_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 522
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 522
     },
     "envipe_2022_bd_envipe_2022_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 523
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 523
     },
     "envipe_2022_bd_envipe_2022_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 523
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 523
     },
     "envipe_2023_bd_envipe_2023_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 524
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 524
     },
     "envipe_2023_bd_envipe_2023_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 524
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 524
     },
     "envipe_2024_bd_envipe_2024_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 573
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 573
     },
     "envipe_2024_bd_envipe_2024_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 573
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 573
     },
     "envipe_2025_bd_envipe_2025_dta": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 590
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 590
     },
     "envipe_2025_bd_envipe_2025_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 590
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 590
     },
     "latinobarometro2024_bd_stata": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 664
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 664
     },
     "mociba2024_fd_xlsx": {
       "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 284
     },
     "mociba_2015_mociba2015_bd_spss": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 201
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 201
     },
     "mociba_2015_mociba2015_fd": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 158
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 158
     },
     "mociba_2016_mociba2016_bd_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 208
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 208
     },
     "mociba_2016_mociba2016_fd": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 208
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 208
     },
     "mociba_2017_mociba2017_bd_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 171
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 171
     },
     "mociba_2017_mociba2017_fd": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 171
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 171
     },
     "mociba_2019_mociba2019_bd_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 177
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 177
     },
     "mociba_2019_mociba2019_fd": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 177
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 177
     },
     "mociba_2020_mociba2020_bd_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 228
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 228
     },
     "mociba_2020_mociba2020_fd": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 228
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 228
     },
     "mociba_2021_mociba2021_bd_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 277
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 277
     },
     "mociba_2021_mociba2021_fd": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 277
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 277
     },
     "mociba_2022_mociba2022_bd_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 277
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 277
     },
     "mociba_2022_mociba2022_fd": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 277
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 277
     },
     "mociba_2023_mociba2023_bd_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 284
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 284
     },
     "mociba_2023_mociba2023_fd": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 284
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 284
     },
     "mociba_2024_mociba2024_bd_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 284
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 284
     },
     "mociba_2025_mociba2025_bd_sav": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 286
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 286
     },
     "mociba_2025_mociba2025_fd": {
-      "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 286
+      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 286
     }
   },
-  "fuentes_sin_semantica_suficiente": [
+  "fuentes_sin_autoridad_emitida": [
     "cpv2020_caas_descriptor_bd_xlsx",
     "cpv2020_ceu_descriptor_bd_xlsx",
     "cpv2020_diccionario_cuestionario_ampliado_xlsx",
@@ -1749,31 +1778,37 @@
     "CONFLICTO_IDENTIDAD_CONCEPTUAL": 66,
     "CONFLICTO_PONDERADOR_FAC_SEL_FAC_ELE": 275,
     "DOMINIO_NO_ENUMERADO_O_SIN_ETIQUETA": 27,
-    "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO": 107443,
+    "EXCLUSIVIDAD_MULTIPLICIDAD_NO_RESUELTA": 2,
+    "NO_APLICA_SEMANTICA_NO_RESUELTA": 4,
     "PONDERADOR_NO_COMPATIBLE_CON_UNIDAD_OBSERVACION": 181,
     "PONDERADOR_OLA_SCOPE_NO_DOCUMENTADO": 814,
     "PONDERADOR_SCOPE_NO_DOCUMENTADO_PARA_AUTORIDAD": 45,
     "RESPUESTA_MULTIPLE_DOCUMENTADA": 21,
     "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 1444,
+    "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 107443,
     "UNIVERSO_EFECTIVO_Y_RESPUESTA_EXCLUSIVA_NO_DOCUMENTADOS": 885,
     "UNIVERSO_POBLACIONAL_OBJETIVO_NO_DOCUMENTADO": 116,
     "UNIVERSO_REACTIVO_CONDICIONADO": 884,
     "UNIVERSO_UNIDAD_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 664
   },
   "resumen": {
-    "autoridades_emitidas_en_acto": 147,
+    "autoridades_emitidas": 142,
+    "autoridades_emitidas_en_acto": 141,
     "autoridades_huerfanas": 0,
-    "autoridades_totales": 148,
-    "candidatas_nuevas_en_acto": 147,
-    "candidatas_totales": 148,
+    "autoridades_totales": 142,
+    "candidatas_nuevas_en_acto": 141,
+    "candidatas_totales": 142,
     "conflictos_identidad_conceptual": 33,
     "duplicados_compatibles": 0,
     "encuestas_con_candidatas": 2,
+    "evaluadas_con_diagnostico_especifico_y_no_emitidas": 5428,
     "olas_con_candidatas": 2,
+    "semillas_exactas": 113013,
     "semillas_exactas_examinadas": 113013,
-    "semillas_exactas_no_autorizables": 112865,
+    "semillas_no_emitidas": 112871,
     "semillas_variables_totales": 129845,
-    "tasa_autorizable": 0.0013095838531850318,
+    "sin_proyector_o_perfil": 107443,
+    "tasa_emision_sobre_semillas_exactas": 0.0012564926158937467,
     "uniones_ambiguas": 0,
     "uniones_ausentes": 16832,
     "uniones_exactas": 113013
@@ -1792,7 +1827,7 @@
   },
   "top_razones_insuficiencia": [
     {
-      "razon": "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO",
+      "razon": "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO",
       "semillas": 107443
     },
     {
@@ -1835,7 +1870,7 @@
   "trazabilidad": {
     "indice_e2_sha256": "6e87c0347f0d0fa8736836e4ef7521b8dc6e700bb220cf07a9c494f8bf9bb79c",
     "origin_main_inicial": "f6f8e00fa8410ac4744b88c28f553f39479f598d",
-    "perfiles_sha256": "4448d8fc48095d6f35cb7242388b6bf8cb923565fa69e0060ee3c702adafee1a",
+    "perfiles_sha256": "88e632886096ad192bda9d8905ac73dc613d21336a0b16fd2d6026be285b7513",
     "pr_343_merge_commit": "620cf0d9c1071993ddacedeb41a74edc602322dc",
     "proyector": "INEGI-FD-CODIGOS-VALIDOS-7COL-1.0",
     "receta": "python3 tools/curador_registro/autoridad_semantica_productiva.py --corpus-root <CORPUS_RAW> --indice-e2 <E2_PRIVADO> --output data/curacion-universo/autoridad-semantica-marco-v1_0.jsonl --diagnostico data/curacion-universo/diagnostico-autoridad-semantica-marco-v1_0.json --residuales /tmp/semillas-exactas-no-autorizables.jsonl"

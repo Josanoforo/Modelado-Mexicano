@@ -80,15 +80,14 @@ WEIGHT_FIELDS = sorted(
 )
 CODEBOOK_FIELDS = sorted(
     {
-        "categorias_excluyentes",
         "codificacion",
         "encuesta",
         "missing",
         "ola",
-        "respuesta_multiple",
         "tipo_estadistico",
     }
 )
+RESPONSE_FIELDS = ["categorias_excluyentes", "respuesta_multiple"]
 
 
 class ProductiveAuthorityError(ValueError):
@@ -180,9 +179,14 @@ def _is_documented_missing(label: str) -> bool:
         "SIN INFORMACION",
         "NO DECLARADO",
         "NO DECLARADA",
-        "NO APLICA (SOLO OPCION 1 Y 2)",
     }
     return folded in exact
+
+
+def _is_unresolved_no_aplica(label: str) -> bool:
+    """Detecta la etiqueta cuyo papel no puede decidirse de forma global."""
+
+    return _fold(label) == "NO APLICA (SOLO OPCION 1 Y 2)"
 
 
 def _is_multiple_response_indicator(label: str) -> bool:
@@ -256,6 +260,8 @@ def _finalize_variable(
             continue
         if _is_multiple_response_indicator(label):
             reason = reason or "RESPUESTA_MULTIPLE_DOCUMENTADA"
+        if _is_unresolved_no_aplica(label):
+            reason = reason or "NO_APLICA_SEMANTICA_NO_RESUELTA"
         if _is_documented_missing(label):
             missing.add(code)
             continue
@@ -431,11 +437,47 @@ def _load_profiles(path: Path) -> dict[str, Any]:
                 raise ProductiveAuthorityError(
                     f"PERFIL_TABLA_NO_ES_OBJETO:{payload_id}:{table_name}"
                 )
-            if table.get("respuesta_multiple") is not False or table.get(
-                "categorias_excluyentes"
-            ) is not True:
+            response = table.get("response_semantics")
+            if not isinstance(response, dict):
                 raise ProductiveAuthorityError(
-                    f"PERFIL_RESPUESTA_ESCALAR_NO_DECLARADA:{payload_id}:{table_name}"
+                    f"PERFIL_RESPUESTA_VARIABLE_AUSENTE:{payload_id}:{table_name}"
+                )
+            response_sets: dict[str, set[str]] = {}
+            for field in (
+                "scalar_exclusive_variables",
+                "multiple_response_variables",
+                "unresolved_variables",
+            ):
+                values = response.get(field)
+                if (
+                    not isinstance(values, list)
+                    or len(values) != len(set(values))
+                    or any(not isinstance(value, str) or not value for value in values)
+                ):
+                    raise ProductiveAuthorityError(
+                        f"PERFIL_RESPUESTA_VARIABLES_INVALIDAS:{payload_id}:"
+                        f"{table_name}:{field}"
+                    )
+                response_sets[field] = set(values)
+            if any(
+                response_sets[left] & response_sets[right]
+                for left, right in (
+                    ("scalar_exclusive_variables", "multiple_response_variables"),
+                    ("scalar_exclusive_variables", "unresolved_variables"),
+                    ("multiple_response_variables", "unresolved_variables"),
+                )
+            ):
+                raise ProductiveAuthorityError(
+                    f"PERFIL_RESPUESTA_VARIABLE_CLASIFICACION_CONFLICTIVA:"
+                    f"{payload_id}:{table_name}"
+                )
+            response_citation = response.get("citation")
+            if not isinstance(response_citation, dict) or any(
+                not _text(response_citation.get(field))
+                for field in ("source_id", "uri", "sha256", "locator")
+            ):
+                raise ProductiveAuthorityError(
+                    f"PERFIL_CITA_RESPUESTA_INVALIDA:{payload_id}:{table_name}"
                 )
             citations = table.get("context_citations")
             if not isinstance(citations, list) or not citations:
@@ -449,6 +491,26 @@ def _load_profiles(path: Path) -> dict[str, Any]:
             "PERFILES_PAYLOAD_RESUELTO_Y_BLOQUEADO:" + ",".join(sorted(overlap))
         )
     payload["profiles_by_payload"] = by_payload
+    repair_audit = payload.get("repair_audit")
+    if not isinstance(repair_audit, dict):
+        raise ProductiveAuthorityError("PERFILES_AUDITORIA_REPARACION_AUSENTE")
+    audit_lists = (
+        "retiradas_multirrespuesta",
+        "retiradas_exclusividad_multiplicidad_no_resuelta",
+        "dependientes_no_aplica_como_missing",
+    )
+    if any(
+        not isinstance(repair_audit.get(field), list)
+        or len(repair_audit[field]) != len(set(repair_audit[field]))
+        or any(not isinstance(value, str) or not value for value in repair_audit[field])
+        for field in audit_lists
+    ):
+        raise ProductiveAuthorityError("PERFILES_AUDITORIA_REPARACION_LISTAS_INVALIDAS")
+    examined = repair_audit.get("autoridades_actuales_examinadas")
+    remain = repair_audit.get("autoridades_permanecen")
+    removed = sum(len(repair_audit[field]) for field in audit_lists)
+    if not isinstance(examined, int) or not isinstance(remain, int) or examined != remain + removed:
+        raise ProductiveAuthorityError("PERFILES_AUDITORIA_REPARACION_CONTEOS_INVALIDOS")
     return payload
 
 
@@ -464,7 +526,11 @@ def _validate_profile_sources(
             f"FUENTE_SHA_DIVERGENTE:{payload_id}:{expected_sha}!={observed_sha}"
         )
     for table in profile["tables"].values():
-        for citation in table["context_citations"]:
+        citations = [
+            *table["context_citations"],
+            table["response_semantics"]["citation"],
+        ]
+        for citation in citations:
             local_path = _text(citation.get("local_path"))
             if not local_path:
                 continue
@@ -525,6 +591,18 @@ def _authority_from_record(
         locator=source_locator,
         fields=CODEBOOK_FIELDS,
     )
+    response_source = table["response_semantics"]["citation"]
+    response_locator = (
+        f"{_text(response_source['locator'])};hoja={variable.sheet};"
+        f"filas_fd={variable.start_row}-{variable.end_row};variable={variable.name}"
+    )
+    response_citation = _citation(
+        source_id=_text(response_source["source_id"]),
+        uri=_text(response_source["uri"]),
+        sha256=_text(response_source["sha256"]).lower(),
+        locator=response_locator,
+        fields=RESPONSE_FIELDS,
+    )
     context_citations = [
         _citation(
             source_id=_text(source["source_id"]),
@@ -557,8 +635,8 @@ def _authority_from_record(
         "universo_poblacional": _text(table["universo_poblacional"]),
         "unidad_observacion": _text(table["unidad_observacion"]),
         "tipo_estadistico": kind,
-        "respuesta_multiple": table["respuesta_multiple"],
-        "categorias_excluyentes": table["categorias_excluyentes"],
+        "respuesta_multiple": False,
+        "categorias_excluyentes": True,
         "codificacion": coding,
         "missing": missing,
         "unidad_medida": None,
@@ -573,7 +651,7 @@ def _authority_from_record(
         "ponderador_scope_id": _text(table.get("ponderador_scope_id", variable.sheet)),
         "no_aplica_ponderador_documentado": False,
         "cita_procedencia": sorted(
-            [semantic_citation, *context_citations, weight_citation],
+            [semantic_citation, response_citation, *context_citations, weight_citation],
             key=_canonical_json,
         ),
     }
@@ -588,6 +666,19 @@ def _semantic_spec(row: Mapping[str, Any]) -> str:
 
 def _conceptual_identity(row: Mapping[str, Any]) -> tuple[str, str, str]:
     return (_text(row.get("encuesta")), _text(row.get("ola")), _text(row.get("variable")))
+
+
+def _response_semantics_reason(
+    table: Mapping[str, Any], variable_name: str
+) -> str | None:
+    """Resuelve multiplicidad sólo desde la clasificación declarativa exacta."""
+
+    response = table["response_semantics"]
+    if variable_name in response["multiple_response_variables"]:
+        return "RESPUESTA_MULTIPLE_DOCUMENTADA"
+    if variable_name not in response["scalar_exclusive_variables"]:
+        return "EXCLUSIVIDAD_MULTIPLICIDAD_NO_RESUELTA"
+    return None
 
 
 def _load_base_authorities(
@@ -686,7 +777,7 @@ def materialize(
             profile = profiles.get(payload_id)
             if not reason and profile is None:
                 reason = blocked_payloads.get(
-                    payload_id, "FUENTE_SIN_PERFIL_SEMANTICO_AUTORIZADO"
+                    payload_id, "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO"
                 )
                 weight_scopes["NO_RESUELTO"] += 1
             table = None
@@ -709,6 +800,8 @@ def materialize(
                     reason = "VARIABLE_NO_RESUELTA_EN_DESCRIPTOR"
                 elif parsed is not None and parsed.reason:
                     reason = parsed.reason
+                elif parsed is not None:
+                    reason = _response_semantics_reason(table, parsed.name) or ""
             if reason:
                 reasons[reason] += 1
                 source_attempts[payload_id][reason] += 1
@@ -853,6 +946,40 @@ def materialize(
             reasons.items(), key=lambda item: (-item[1], item[0])
         )[:10]
     ]
+    without_projector = reasons["SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO"]
+    exact_not_emitted = exact - len(all_rows)
+    specifically_evaluated_not_emitted = exact_not_emitted - without_projector
+    repair_audit = dict(profile_doc["repair_audit"])
+    if len(all_rows) != repair_audit["autoridades_permanecen"]:
+        raise ProductiveAuthorityError(
+            "AUDITORIA_REPARACION_RESULTADO_DIVERGENTE:"
+            f"esperado={repair_audit['autoridades_permanecen']}:observado={len(all_rows)}"
+        )
+    repair_audit["retiradas_no_aplica_semantica_no_resuelta"] = len(
+        repair_audit["dependientes_no_aplica_como_missing"]
+    )
+    repair_audit["retiradas_multirrespuesta_total"] = len(
+        repair_audit["retiradas_multirrespuesta"]
+    )
+    repair_audit["retiradas_exclusividad_multiplicidad_no_resuelta_total"] = len(
+        repair_audit["retiradas_exclusividad_multiplicidad_no_resuelta"]
+    )
+    repair_audit["dependientes_no_aplica_como_missing_conservadas"] = 0
+    repair_audit["retiradas_total"] = (
+        repair_audit["autoridades_actuales_examinadas"]
+        - repair_audit["autoridades_permanecen"]
+    )
+    repair_audit["rendimiento_antes_reparacion"] = {
+        "semillas_exactas": exact,
+        "autoridades_emitidas": repair_audit["autoridades_actuales_examinadas"],
+        "semillas_no_emitidas": (
+            exact - repair_audit["autoridades_actuales_examinadas"]
+        ),
+        "sin_proyector_o_perfil": without_projector,
+        "evaluadas_con_diagnostico_especifico_y_no_emitidas": (
+            exact - repair_audit["autoridades_actuales_examinadas"] - without_projector
+        ),
+    }
     diagnostics = {
         "schema_version": DIAGNOSTIC_SCHEMA_VERSION,
         "trazabilidad": {
@@ -872,13 +999,21 @@ def materialize(
         },
         "resumen": {
             "autoridades_totales": len(all_rows),
+            "autoridades_emitidas": len(all_rows),
             "candidatas_totales": len(final_by_identity),
             "autoridades_emitidas_en_acto": len(all_rows) - len(base_rows),
             "candidatas_nuevas_en_acto": len(final_identities - base_identities),
             "semillas_exactas_examinadas": exact,
-            "semillas_exactas_no_autorizables": exact - len(all_rows),
+            "semillas_exactas": exact,
+            "semillas_no_emitidas": exact_not_emitted,
+            "sin_proyector_o_perfil": without_projector,
+            "evaluadas_con_diagnostico_especifico_y_no_emitidas": (
+                specifically_evaluated_not_emitted
+            ),
             "semillas_variables_totales": sum(seeds_by_type.values()),
-            "tasa_autorizable": (len(final_by_identity) / exact if exact else 0.0),
+            "tasa_emision_sobre_semillas_exactas": (
+                len(all_rows) / exact if exact else 0.0
+            ),
             "encuestas_con_candidatas": len({identity[0] for identity in final_by_identity}),
             "olas_con_candidatas": len(
                 {(identity[0], identity[1]) for identity in final_by_identity}
@@ -890,6 +1025,7 @@ def materialize(
             "uniones_ausentes": joins["AUSENTE"],
             "uniones_ambiguas": joins["AMBIGUA"],
         },
+        "auditoria_reparacion_pr_346": repair_audit,
         "autoridades_por_encuesta_ola": dict(sorted(authority_by_wave.items())),
         "candidatas_por_encuesta_ola": dict(sorted(candidate_by_wave.items())),
         "candidatas_por_tipo_estadistico": dict(sorted(candidates_by_type.items())),
@@ -926,7 +1062,7 @@ def materialize(
             payload_id: dict(sorted(counts.items()))
             for payload_id, counts in sorted(source_attempts.items())
         },
-        "fuentes_sin_semantica_suficiente": source_without_authority,
+        "fuentes_sin_autoridad_emitida": source_without_authority,
         "semillas_por_objeto_tipo": dict(sorted(seeds_by_type.items())),
     }
     return all_rows, diagnostics

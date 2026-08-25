@@ -7,6 +7,7 @@ from pathlib import Path
 from openpyxl import Workbook
 
 from tools.curador_registro.autoridad_semantica_productiva import (
+    _response_semantics_reason,
     parse_inegi_fd_7col,
 )
 
@@ -62,17 +63,53 @@ class AutoridadSemanticaProductivaTests(unittest.TestCase):
             parsed[("TABLA", "Q_MULTI")].reason,
         )
 
-    def test_no_aplica_is_missing_and_ranges_are_not_categories(self) -> None:
+    def test_no_aplica_is_fail_closed_and_ranges_are_not_categories(self) -> None:
         temporary, path = self._descriptor()
         self.addCleanup(temporary.cleanup)
         parsed = parse_inegi_fd_7col(path, ["TABLA"])
 
-        self.assertIsNone(parsed[("TABLA", "Q_NA")].reason)
-        self.assertEqual((("1", "Sí"), ("2", "No")), parsed[("TABLA", "Q_NA")].coding)
-        self.assertEqual(("3",), parsed[("TABLA", "Q_NA")].missing)
+        self.assertEqual(
+            "NO_APLICA_SEMANTICA_NO_RESUELTA",
+            parsed[("TABLA", "Q_NA")].reason,
+        )
+        self.assertEqual(
+            (
+                ("1", "Sí"),
+                ("2", "No"),
+                ("3", "No aplica (solo opción 1 y 2)"),
+            ),
+            parsed[("TABLA", "Q_NA")].coding,
+        )
+        self.assertEqual((), parsed[("TABLA", "Q_NA")].missing)
         self.assertEqual(
             "DOMINIO_NO_ENUMERADO_O_SIN_ETIQUETA",
             parsed[("TABLA", "Q_RANGE")].reason,
+        )
+
+    def test_response_semantics_is_exact_per_variable(self) -> None:
+        table = {
+            # Estos defaults históricos no autorizan ninguna variable.
+            "respuesta_multiple": False,
+            "categorias_excluyentes": True,
+            "response_semantics": {
+                "scalar_exclusive_variables": ["Q_SCALAR"],
+                "multiple_response_variables": ["Q_MULTI"],
+                "unresolved_variables": ["Q_UNRESOLVED"],
+            },
+        }
+
+        self.assertIsNone(_response_semantics_reason(table, "Q_SCALAR"))
+        self.assertEqual(
+            "RESPUESTA_MULTIPLE_DOCUMENTADA",
+            _response_semantics_reason(table, "Q_MULTI"),
+        )
+        self.assertEqual(
+            "EXCLUSIVIDAD_MULTIPLICIDAD_NO_RESUELTA",
+            _response_semantics_reason(table, "Q_UNRESOLVED"),
+        )
+        self.assertEqual(
+            "EXCLUSIVIDAD_MULTIPLICIDAD_NO_RESUELTA",
+            _response_semantics_reason(table, "Q_NOT_DECLARED"),
         )
 
 
