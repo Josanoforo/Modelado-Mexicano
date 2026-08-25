@@ -1,0 +1,70 @@
+==============================================================================
+PARTE A -- RECTORA: constructibilidad del Umbral de R1.4, pieza por pieza
+==============================================================================
+  archivos .dta examinados: 425 (tres olas)   fallos de lectura: 0
+
+  --- Q1/Q2  MARCA o SUSTITUTO: 1 columnas ---
+       ('ehh09', 'iiib_gh.dta', 'gh01_1e', 'FIESTAS GUSTA TOMAR:RON/BRANDY')
+
+  --- Q3     COMPRA/GASTO (CONTROL+): 1274 columnas ---
+       ('ehh02', 'p_cr.dta', 'cr01', 'COMPRAS TARJETA CREDITO?')
+       ('ehh02', 'p_ed.dta', 'ed18', 'ID OTRO GASTO ESCOLAR')
+       ('ehh02', 'p_ed.dta', 'ed161', 'GASTO EN INSCRIPCION')
+       ('ehh02', 'p_ed.dta', 'ed162', 'GASTO EN COLEGIATURA')
+       ('ehh02', 'p_ed.dta', 'ed163', 'GASTO EN EXAMENES')
+       ('ehh02', 'p_ed.dta', 'ed164', 'GASTO EN CURSOS ESPECIALES')
+       ... (+1268)
+
+  --- Q4     ESTRATO D/E vs A/B: 0 columnas ---
+
+  --- Q6     PRESION DE ESTATUS: 0 columnas ---
+
+  LECTURA: el control positivo Q3 devuelve aciertos, luego el barrido lee
+  etiquetas de verdad; los ceros de Q1/Q2, Q4 y Q6 son ausencia medida.
+==============================================================================
+PARTE B -- SUBORDINADA, ROTULADA NO-UMBRAL. No adjudica ninguna fila.
+==============================================================================
+  Ola: ENNViH-3 (2009). Sin SE ni IC: FP-118 ABIERTA (solo estimacion puntual ponderada).
+
+  DEFECTO DETECTADO EN LA CORRIDA (la spec no lo previo):
+   'ed05' (propia) usa 10 codigos y 'tp11m/tp11p' (padres) usan 8 -- NO son la
+   misma escala. Codigo 5 = 'Secundaria Abierta' en la propia y 'Prep./bachillerato'
+   en la de padres; codigo 8 = 'Normal basica' vs 'Posgrado'. Compararlas en crudo,
+   que es lo que la spec escribio literalmente, mezclaria dos escalas (A-bis regla 3).
+   Se armonizan a una escalera comun de logro antes de comparar. 98 = NS -> perdido.
+   Verificado contra ehh09cb_b3a.pdf (ed06) y ehh09cb_b3b.pdf (tp11m/tp11p).
+
+  personas con AMBOS datos tras armonizar: 1383
+    movilidad BLOQUEADA (propia <= padres): 398   ascendente: 985
+    con ponderador fac_3b: 1353 de 1383
+    personas ligadas a precio de su hogar: 1329
+
+  Precio unitario ponderado pagado (pesos por kg/lt), por movilidad:
+  rubro                        BLOQUEADA  ASCENDENTE       dif    n_b   n_a
+  tortilla de maiz (kg)      celda menor a 30, no se estima  (n_b=4, n_a=8)
+  bolillo/telera (kg)        celda menor a 30, no se estima  (n_b=0, n_a=0)
+  pollo (kg)                 celda menor a 30, no se estima  (n_b=24, n_a=44)
+  bistec/milanesa (kg)       celda menor a 30, no se estima  (n_b=7, n_a=11)
+  leche pasteurizada (lt)    celda menor a 30, no se estima  (n_b=2, n_a=7)
+  huevo de gallina (kg)      celda menor a 30, no se estima  (n_b=25, n_a=62)
+  jitomate rojo (kg)         celda menor a 30, no se estima  (n_b=3, n_a=10)
+  frijoles (kg)              celda menor a 30, no se estima  (n_b=7, n_a=8)
+  azucar (kg)                celda menor a 30, no se estima  (n_b=0, n_a=0)
+  refrescos (lt)             celda menor a 30, no se estima  (n_b=8, n_a=13)
+
+  NO-UMBRAL: un precio unitario mas alto por el mismo rubro mezcla marca, tamano
+  de empaque, tipo de establecimiento y calidad. NO es 'prima por marca sobre
+  sustituto funcional equivalente': no hay marca ni par de sustitutos en ENNViH.
+  Sin SE ni IC (FP-118 ABIERTA): estas diferencias no traen precision y no
+  sostienen ninguna afirmacion de signo. NO adjudican ninguna fila.
+------------------------------------------------------------------------------
+  COBERTURA REAL DEL BLOQUE DE PRECIO UNITARIO (cs13), las tres olas
+------------------------------------------------------------------------------
+  ola       hogares      tortilla         pollo         leche         huevo     refrescos
+  ehh02        8051    44 ( 0.5%)   193 ( 2.4%)    91 ( 1.1%)   208 ( 2.6%)   340 ( 4.2%)
+  ehh05        8116    32 ( 0.4%)   242 ( 3.0%)    58 ( 0.7%)   175 ( 2.2%)   272 ( 3.4%)
+  ehh09        9072    46 ( 0.5%)   401 ( 4.4%)    91 ( 1.0%)   560 ( 6.2%)   166 ( 1.8%)
+
+  El bloque cs13 cubre entre 0.4% y 6.2% de los hogares segun rubro y ola: es una
+  sub-pregunta residual, no una medicion poblacional. Aun sin la prohibicion de
+  re-anclar, no sostendria una comparacion entre segmentos.
