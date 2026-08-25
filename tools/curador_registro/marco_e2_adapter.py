@@ -290,6 +290,69 @@ class ProvenanceIndex:
         self._ledger_routes = ledger_routes
         self._t0_by_hash = t0_by_hash
 
+    def component_cardinalities(self, record: Mapping[str, Any]) -> dict[str, int]:
+        """Expone cardinalidades de la unión sin atribuirles semántica."""
+
+        representation = _text(record.get("representacion_id"))
+        batch = _text(record.get("batch_id"))
+        content_hash = _text(record.get("sha256")).lower()
+        payload = _text(record.get("payload_id"))
+        key = (representation, batch)
+        census_routes = [
+            row
+            for row in self._census_routes.get(key, [])
+            if not row["sha256"] or row["sha256"] == content_hash
+        ]
+        ledger_routes = [
+            row
+            for row in self._ledger_routes.get(key, [])
+            if row["sha256"] == content_hash and row["payload_id"] == payload
+        ]
+        return {
+            "censo": len(census_routes),
+            "ledger": len(ledger_routes),
+            "t0": len(self._t0_by_hash.get(content_hash, [])),
+        }
+
+    def resolve_repaired(self, record: Mapping[str, Any]) -> JoinResolution:
+        """Repara sólo T0 ausente cuando censo y ledger son 1:1 exactos.
+
+        Hash, representación, batch y payload deben coincidir. Una ruta de
+        censo ausente nunca se adjudica por nombre o semejanza.
+        """
+
+        strict = self.resolve(record)
+        if strict.status != "AUSENTE":
+            return strict
+        cardinalities = self.component_cardinalities(record)
+        if cardinalities != {"censo": 1, "ledger": 1, "t0": 0}:
+            return strict
+        representation = _text(record.get("representacion_id"))
+        batch = _text(record.get("batch_id"))
+        content_hash = _text(record.get("sha256")).lower()
+        payload = _text(record.get("payload_id"))
+        census_route = next(
+            row
+            for row in self._census_routes[(representation, batch)]
+            if not row["sha256"] or row["sha256"] == content_hash
+        )
+        provenance = Provenance(
+            manifest_id=census_route["manifest_id"],
+            representacion_id=representation,
+            batch_id=batch,
+            payload_id=payload,
+            hash_local=content_hash,
+            objeto_logico_id=_text(record.get("objeto_logico_id")),
+            record_id=_text(record.get("record_id")),
+            tabla=_text(record.get("tabla")),
+            objeto_padre_id=_text(record.get("objeto_padre_id")),
+        )
+        return JoinResolution(
+            "EXACTA_REPARADA",
+            provenance,
+            "T0_AUSENTE_RECONSTRUIDO_POR_CENSO_LEDGER_HASH",
+        )
+
     def resolve(self, record: Mapping[str, Any]) -> JoinResolution:
         representation = _text(record.get("representacion_id"))
         batch = _text(record.get("batch_id"))
