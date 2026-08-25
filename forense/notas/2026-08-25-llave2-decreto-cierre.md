@@ -6,7 +6,7 @@
 > |---|---|
 > | **ARCHIVO** | `2026-08-25-llave2-decreto-cierre.md` |
 > | **NOMBRE ESTABLE** | **`llave2-decreto`** — cítalo así, nunca por nombre de archivo |
-> | **CORRECCIÓN DE NOMBRE DECLARADA** | El encargo pide `2026-08-25-llave2-decreto.md` (sin `-cierre`). Normalizado (`T02`, `tests/check.py:111-112`, minúsculas + solo alfanumérico) ese nombre colisiona byte a byte con `forense/encargos/2026-08-25-LLAVE2-DECRETO.md` (el archivo del propio encargo, que este mismo acto crea en el cierre) — `"20260825llavedecretomd"` en ambos casos. Es el mismo defecto que [[feedback_t02_autocolision_encargo_nota]] ya documentó (`ACTO T02` autocolisión encargo↔nota): se corrige con el sufijo `-cierre`, verificado abajo en §6. |
+> | **CORRECCIÓN DE NOMBRE DECLARADA** | El encargo pide `2026-08-25-llave2-decreto.md`{cita-ilustrativa} (sin `-cierre`; ese nombre no se crea — la referencia es sólo para explicar la corrección, no un archivo real). Normalizado (`T02`, `tests/check.py:111-112`, minúsculas + solo alfanumérico) colisiona byte a byte con `forense/encargos/2026-08-25-LLAVE2-DECRETO.md` (el archivo del propio encargo, que este mismo acto crea en el cierre) — `"20260825llavedecretomd"` en ambos casos. Mismo defecto ya documentado en el programa (autocolisión encargo↔nota): se corrige con el sufijo `-cierre`; `python3 tests/check.py --baseline` sin `T02`/`T03` nuevos lo verifica. |
 > | **QUÉ ES** | Pre-registro (COMMIT 1, congelado antes de abrir microdato) y corrida (COMMIT 2) de un diseño de diferencias-en-diferencias sobre encuestas repetidas — llave de clase **(ii)** de `ADR-57(c)` — usando el decreto de estímulos fiscales de la Región Fronteriza Norte (`DOF` 31/dic/2018, vigor 1/ene/2019) como corte natural sobre `ENOE`. |
 > | **QUÉ NO ES** | No adjudica ningún veredicto de Hito D (`27` no se toca). No escribe nada en `milpa/procedencia.yaml` — el efecto queda `PROPUESTO`. No re-abre `FP-64` ni enmienda `ADR-57(c)`. |
 
@@ -182,3 +182,77 @@ Por cada desenlace, por separado (regla 3), cinco filas con su fila de no-refuta
 **Contador que gobierna esta fila:** `forense/registro-llaves-identificacion-v1_0.md` §3, receta de §4. Vigente al congelar este COMMIT 1: **`3` llaves ejercidas de `4` filas** (`CAL-G3`=(i) `EJERCIDA_ACOTA`, `R5.1-D2`/`R5.1-D3`=(ii) ambas `EJERCIDA_INDECISA`, `EXP-COMPARTAMOS-1`=(iii) `SELLADA_NO_EJERCIDA`). Esta fila es la **quinta** de la tabla y la **tercera** de clase (ii) — el denominador sube a `5` con este COMMIT 1 (nace `SELLADA_NO_EJERCIDA`) y el numerador se moverá en COMMIT 2 si el veredicto cae en cualquier `EJERCIDA_*`.
 
 **El primer resultado que produzca este procedimiento es el que se reporta.**
+
+---
+
+## COMMIT 2 · Corrida
+
+Script: `tests/llave2_decreto_did.py`. Corre sobre las 14 olas de §1.3, columna por columna contra el diccionario, sin abrir nada del microdato antes del COMMIT 1.
+
+### 5 · Correcciones de mecánica encontradas al abrir el microdato — declaradas, no retropropagadas
+
+Dos correcciones a la mecánica operativa del pre-registro, medidas al abrir la primera tabla y verificadas en las 14:
+
+1. **La columna real es `mun`, no `cve_mun`, en las dos eras.** El FD de `ENOEN` (`enoe_325_fd_c_bas_amp.pdf`) documenta el mnemónico `CVE_MUN` para la era nueva (§1.4 de este pre-registro lo cita así), pero la tabla `SDEM` exportada de `enoe_n_2020_trim3_csv.zip`/`enoe_n_2020_trim4_csv.zip` trae la columna con el mismo nombre `mun` que la era clásica — verificado leyendo el encabezado real de `ENOEN_SDEMT320.csv` (110 columnas). No cambia nada del diseño, sólo el nombre de columna a leer.
+2. **`TRANS_PPAL` no discrimina trabajo transfronterizo físico — el filtro de §1.5 no se pudo aplicar como se pre-registró.** Medido sobre `SDEMT418.csv` (390,612 personas, nacional): `TRANS_PPAL` sólo toma los valores `0` (389,914 casos) y `1` (398 casos) — **el código `2` "Dentro del país" que el FD documenta nunca aparece**, en ninguna fila, de ningún estado. La lectura correcta (contraria a la que el pre-registro asumió del texto del FD): `TRANS_PPAL` clasifica si el empleador es una entidad extranjera/embajada/consulado (`1`, rarísimo) o no aplica (`0`, la inmensa mayoría) — **no** si la persona trabaja físicamente en México o en EE.UU. `ENOE` es una encuesta de vivienda mexicana y no tiene ningún campo que capture conmuting físico transfronterizo diario. **Se retira el filtro `TRANS_PPAL=2` de §1.5** — habría vaciado el universo a cero. El universo de persona queda: `EMP_PPAL` ∈ {`1`,`2`} (ocupados) **y** `MUN` no vacío. Es corrección de mecánica de una variable de filtro, no una re-especificación de tratamiento/desenlace/ventana — la escala de falsación y los umbrales de §4 no se tocan.
+
+### 6 · Cobertura realizada (medida, no supuesta — §1.1/§1.2)
+
+`475,702` personas-ola en el universo (6 estados fronterizos, ocupados, municipio no suprimido), de `5,057,143` leídas en las 14 tablas. `157,033` en municipios tratados, `318,669` en municipios de control.
+
+**Municipios tratados con al menos una observación: `34` de `43`.** Los `9` sin ninguna observación en las 14 olas (`MUN` suprimido por baja densidad, o muestra cero en estas olas): `(05,13)` Hidalgo-Coahuila · `(05,14)` Jiménez-Coahuila · `(08,15)` Coyame del Sotol · `(08,28)` Guadalupe-Chihuahua · `(08,42)` Manuel Benavides · `(26,59)` Santa Cruz-Sonora · `(26,70)` General Plutarco Elías Calles · `(28,07)` Camargo-Tamaulipas · `(28,14)` Guerrero-Tamaulipas. Los 34 presentes incluyen las 5 ciudades autorrepresentadas de la frontera del catálogo `CD_A` (`Tijuana`, `Mexicali`, `Ciudad Juárez`, `Reynosa`, `Nogales`) más 29 municipios menores con muestra suficiente para sobrevivir la supresión.
+
+**Municipios de control con al menos una observación: `128` de `235` candidatos.**
+
+**Compuerta `NO_EJECUTABLE` (§4, se verifica primero):** `3,266` UPM distintas tratadas (pool pre+post) ≫ 15 · `157,033` personas-ola tratadas (informalidad) / `108,725` (log-ingreso) ≫ 300. **La compuerta NO se activa — el diseño es ejecutable.**
+
+**Cobertura por desenlace:** `log(ing_x_hrs)`: N_tratado=`108,725`, N_control=`232,297` (se pierde observación con `ing_x_hrs` vacío o ≤0 — sin ingreso registrado, trabajador no remunerado). `informal`: N_tratado=`157,033`, N_control=`318,669` (universo completo, `EMP_PPAL` siempre aplica a ocupados). **Reserva declarada:** la tasa de pérdida por ingreso-vacío es **30.8%** en tratados contra **27.1%** en control (3.7pp de diferencia) — se reporta, no se corrige; no cambia qué fila de la escala de falsación aplica (ver §8).
+
+### 7 · Tendencias paralelas — inspeccionadas, no probadas (§3)
+
+Brecha tratamiento-menos-control por ola, ponderada por `FAC`, las 8 olas pre (`tests/llave2_decreto_did.py`, salida cruda en `scratchpad/did_output.txt`):
+
+| ola | log-ingreso T | log-ingreso C | brecha | informalidad T | informalidad C | brecha |
+|---|---|---|---|---|---|---|
+| 2017T1 | 3.4668 | 3.4784 | −0.0115 | 36.63% | 40.82% | −4.19pp |
+| 2017T2 | 3.4746 | 3.5022 | −0.0277 | 38.03% | 40.16% | −2.13pp |
+| 2017T3 | 3.4688 | 3.4899 | −0.0212 | 37.73% | 40.49% | −2.76pp |
+| 2017T4 | 3.5081 | 3.5162 | −0.0081 | 37.94% | 40.33% | −2.39pp |
+| 2018T1 | 3.5262 | 3.5359 | −0.0096 | 37.86% | 39.59% | −1.73pp |
+| 2018T2 | 3.5608 | 3.5627 | −0.0019 | 38.15% | 39.72% | −1.57pp |
+| 2018T3 | 3.5708 | 3.5538 | +0.0170 | 37.92% | 39.78% | −1.86pp |
+| 2018T4 | 3.5515 | 3.5600 | −0.0085 | 37.52% | 39.86% | −2.34pp |
+
+**Lectura, declarada sin forzar una prueba formal (que este diseño no pre-registró):** la brecha de log-ingreso oscila sin tendencia sistemática (`−0.03` a `+0.02`, sin deriva direccional). La brecha de informalidad es consistentemente negativa (tratados siempre menos informales que control, `−1.6pp` a `−4.2pp`) con una leve compresión de `2017T1` a `2018` — un nivel-fijo estable con posible achicamiento suave, no una divergencia creciente que amenazara identificación. Se declara como reserva razonable, no como supuesto verificado con prueba formal.
+
+### 8 · Resultado del DiD
+
+Ponderado por `FAC`/`FAC_TRI` según era, errores estándar por conglomerado. Modelo: `Y = β0 + β1·tratado + β2·post + β3·(tratado×post) + ε`; `β3` es el efecto DiD.
+
+| desenlace | β3 (DiD) | SE (cluster UPM) | IC95% (cluster UPM) | SE (cluster municipio) | IC95% (cluster municipio) | clusters (UPM / municipio) |
+|---|---|---|---|---|---|---|
+| `log(ing_x_hrs)` | **+0.0043** | 0.0127 | (−0.0205, +0.0291) | 0.0195 | (−0.0340, +0.0426) | 9,002 / 162 |
+| `informal` (`EMP_PPAL==1`) | **−0.0013** (−0.13pp) | 0.0095 | (−0.0200, +0.0174) | 0.0091 | (−0.0191, +0.0165) | 9,052 / 162 |
+
+`β2` (tendencia común post, ambas escalas): log-ingreso `+0.1423` (~14% de crecimiento nominal común 2017-18→post, plausible con inflación + crecimiento salarial nacional del período); informalidad `−0.0058` (leve baja común, sin relación con el decreto). `β1` (brecha nivel tratado-control, constante): log-ingreso `−0.0090`; informalidad `−0.0236` — consistente con la tabla de §7.
+
+### 9 · Veredicto — aplicando la escala de §4, sin re-declarar umbrales
+
+**`log(ing_x_hrs)`:** IC95% (las dos formas de conglomerado) cae **enteramente dentro de `±0.05`** — excluye el umbral de magnitud en las dos direcciones. → **`EJERCIDA_REFUTA`**.
+
+**`informal`:** IC95% (las dos formas de conglomerado) cae **enteramente dentro de `±5pp`** — excluye el umbral de magnitud en las dos direcciones. → **`EJERCIDA_REFUTA`**.
+
+**Los dos desenlaces caen en la misma fila bajo las dos formas de conglomerado — no hay discrepancia que resolver por la regla de agregación de §4.** Veredicto de la llave: **`EJERCIDA_REFUTA`**. Con la reserva de identificación ya declarada en §3 del `COMMIT 1`: esto refuta el efecto del **paquete** de política fronteriza 2019 (estímulo fiscal + salario mínimo diferenciado) sobre el ingreso real por hora y la informalidad de la población ocupada de los municipios cubiertos, dentro de esta ventana (`2017`–`2020T4`, excluyendo el hueco `2020T2`) y esta población (los 34/43 municipios tratados con muestra, contra 128/235 municipios de control de los mismos 6 estados) — **no** refuta que el decreto haya tenido algún efecto fuera de esta ventana, esta población o estos dos desenlaces, y **no** separa el mecanismo fiscal del salarial dentro del paquete.
+
+### 10 · Registro de llave
+
+Nueva fila en `forense/registro-llaves-identificacion-v1_0.md` §3 (ver COMMIT 2 de ese archivo, en el mismo PR): `llave_id=LLAVE2-DECRETO`, clase **(ii)**, estado **`EJERCIDA_REFUTA`**. **Contador de la tabla: `3 de 4` → `4 de 5`** (`REFUTA` cuenta como `EJERCIDA_*`, §2 del registro: *"Solo `EJERCIDA_*` cuenta como llave ejercida"*). Primera fila de la tabla que llega a `REFUTA` — hasta hoy el registro sólo tenía `ACOTA` (`CAL-G3`, clase i) e `INDECISA` (`R5.1-D2`/`R5.1-D3`, clase ii); es también la primera vez que la clase (ii) produce un veredicto no-ambiguo.
+
+### 11 · Lo que este acto NO decide
+
+Este resultado **no** reabre `FP-64` ni enmienda `ADR-57(c)` — mesa decide si un `REFUTA` sobre esta ventana/población específica cambia algo del estatus de `ENOE` como candidato de la llave (ii) en general (probablemente no: la llave sigue siendo ejercible, sólo que este experimento natural concreto no encontró efecto). Tampoco escribe nada en `milpa/procedencia.yaml` — no hay generador de `formalidad`/`ingreso` que cite `ENOE` hoy (verificado, §12 abajo) para que este efecto alimente.
+
+### 12 · Mapeo a generador/necesidad — hueco declarado, no improvisado
+
+Barrido de `canon/modelo-decision-v4_0.md` y `data/curacion-registro/necesidad-objeto-modelo.tsv` (37 filas, universo completo) por `enoe`: **0 de 37 necesidades citan `ENOE`**. El único lugar donde `modelo-decision-v4_0.md` nombra a `ENOE` como candidato es `:317` (`ref.A.02 esfuerzo_laboral`, horas trabajadas) — y ese mismo renglón dice explícitamente *"no se buscó en este acto — declarar la variable no es medirla"*, nunca llegó a generador. Y `milpa/procedencia.yaml:1061` es explícito en sentido contrario para `horizonte_temporal`: *"ruta ENOE de ADR-49 D1 NO se re-propone"*. **No hay generador de `formalidad` ni de `ingreso` que consuma `ENOE` hoy** — el mapeo que el encargo pedía derivar es, medido, **vacío**. Se declara aquí como hallazgo, no se inventa un consumidor para que el resultado tenga a quién alimentar.
+
