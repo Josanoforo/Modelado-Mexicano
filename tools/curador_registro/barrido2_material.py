@@ -33,6 +33,11 @@ import openpyxl
 import yaml
 from jsonschema import Draft202012Validator
 
+try:
+    from .pdf_extract import PdfExtractError, extract_pdf
+except ImportError:
+    from pdf_extract import PdfExtractError, extract_pdf
+
 
 AUTHORIZED_ROOTS = ("data_raw", "descargas_mx")
 MATERIAL_BUILD_VERSION = "BARRIDO2-MATERIAL-1.1"
@@ -1579,56 +1584,43 @@ def _xls_objects(path: Path) -> list[dict[str, Any]]:
     return objects
 
 
-def _pdf_objects(path: Path) -> list[dict[str, Any]]:
-    info = subprocess.run(["pdfinfo", str(path)], capture_output=True, text=True, timeout=60)
-    if info.returncode:
-        raise ValueError(f"PDFINFO:{info.stderr[:300]}")
-    metadata = dict(line.split(":", 1) for line in info.stdout.splitlines() if ":" in line)
-    pages = int(metadata.get("Pages", "0").strip() or 0)
-    encrypted = metadata.get("Encrypted", "no").strip().casefold()
-    cifrado_declarado = "NO"
+def _pdf_objects(path: Path, pdf_mode: str = "union") -> list[dict[str, Any]]:
+    metadata: dict[str, str] = {}
+    metadata_warning = "NINGUNA"
+    try:
+        info = subprocess.run(["pdfinfo", str(path)], capture_output=True, text=True, timeout=60)
+        if info.returncode:
+            metadata_warning = f"PDFINFO_FALLO:rc={info.returncode}"
+        else:
+            metadata = dict(line.split(":", 1) for line in info.stdout.splitlines() if ":" in line)
+    except (OSError, subprocess.SubprocessError) as exc:
+        metadata_warning = f"PDFINFO_NO_DISPONIBLE:{type(exc).__name__}"
+    encrypted = metadata.get("Encrypted", "NO_DETERMINADO").strip().casefold()
+    cifrado_declarado = "NO" if encrypted == "no" else "NO_DETERMINADO"
     if encrypted.startswith("yes"):
-        # `Encrypted: yes` NO es un descarte: es un caso a intentar. La mayoría de
-        # los PDF oficiales mexicanos vienen con banderas de permiso puestas y la
-        # contraseña de usuario vacía — se leen sin clave. Descartarlos por la
-        # bandera costó 83 de 169 PDF (49 %) y 5 996 páginas, entre ellas 25
-        # cuestionarios y 7 diccionarios que el programa lleva semanas buscando
-        # por otras vías. Se intenta extraer; sólo si el intento falla de verdad
-        # se declara PDF_CIFRADO, y con la salida cruda del intento.
-        sonda = subprocess.run(
-            ["pdftotext", "-f", "1", "-l", "1", str(path), "-"],
-            capture_output=True, timeout=120,
-        )
-        texto_sonda, _ = _decode_text(sonda.stdout)
-        if sonda.returncode != 0 or not texto_sonda.strip():
-            raise PermissionError(
-                "PDF_CIFRADO;intento=pdftotext -f 1 -l 1"
-                f";rc={sonda.returncode}"
-                f";stderr={safe_text(sonda.stderr.decode('utf-8', 'replace'))[0][:120]}"
-                f";bytes_texto={len(sonda.stdout)}"
-            )
+        cifrado_declarado = f"SI-DECLARADO;permisos={safe_text(encrypted)[0][:80]}"
+    try:
+        extraction = extract_pdf(path, mode=pdf_mode)
+    except PdfExtractError as exc:
+        if encrypted.startswith("yes"):
+            raise PermissionError(f"PDF_CIFRADO;extraccion={exc}") from exc
+        raise ValueError(f"PDF_EXTRACCION:{exc}") from exc
+    if encrypted.startswith("yes"):
         cifrado_declarado = f"SI-EXTRAIBLE;permisos={safe_text(encrypted)[0][:80]}"
+    extractor_label = "+".join(extraction.extractors)
+    extraction_warnings = list(extraction.warnings)
+    if metadata_warning != "NINGUNA":
+        extraction_warnings.append(metadata_warning)
+    warning_label = "|".join(extraction_warnings) if extraction_warnings else "NINGUNA"
     objects: list[dict[str, Any]] = []
-    for page in range(1, pages + 1):
-        result = subprocess.run(
-            ["pdftotext", "-f", str(page), "-l", str(page), str(path), "-"],
-            capture_output=True, timeout=120,
-        )
-        if result.returncode != 0:
-            objects.append({
-                "locator": f"pagina={page}", "type": "PAGINA-PDF",
-                "name": f"Página {page}",
-                "definition": f"EXCEPCION-ESPECIFICA:PDFTOTEXT;stderr_sha256={hashlib.sha256(result.stderr).hexdigest()}",
-                "page": page, "state": "EXCEPCION-ESPECIFICA",
-            })
-            continue
-        text, _ = _decode_text(result.stdout)
+    for page, text in zip(extraction.page_numbers, extraction.pages):
         lines = [" ".join(line.split()) for line in text.splitlines() if line.strip()]
         objects.append({
             "locator": f"pagina={page}", "type": "PAGINA-PDF", "name": f"Página {page}",
             "definition": (
                 f"lineas_texto={len(lines)};texto_extraible={'SI' if lines else 'NO'}"
-                f";cifrado={cifrado_declarado}"
+                f";cifrado={cifrado_declarado};extractores={extractor_label}"
+                f";advertencias={warning_label}"
             ), "page": page,
         })
         for ordinal, line in enumerate(lines):
@@ -2029,7 +2021,7 @@ def inspect_e2(path: Path) -> tuple[list[dict[str, Any]], str, str]:
     if suffix == ".zip":
         return _zip_objects(path), parser + "+zipfile", "contenedor y miembros completos; anidados hasta profundidad 4"
     if suffix == ".pdf":
-        return _pdf_objects(path), parser + "+poppler", "todas las páginas; texto no extraíble se declara por página"
+        return _pdf_objects(path), parser + "+pdf-union(pypdf+poppler-layout)", "todas las páginas; texto no extraíble se declara por página"
     if suffix == ".xlsx":
         return _xlsx_objects(path), parser + "+openpyxl", "todas las hojas/tablas y encabezados; celdas de observación no persistidas"
     if suffix == ".xls":

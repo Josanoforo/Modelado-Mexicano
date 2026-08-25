@@ -14,19 +14,18 @@ la misma razón.
 
 `_pdf_objects` (ARREGLO 2) corrige el lado del PDF: `Encrypted: yes` dejaba el
 archivo entero en `PermissionError` sin intentar nada. La mayoría de los PDF
-oficiales mexicanos traen la bandera puesta y la contraseña de usuario vacía,
-así que ahora se sondea con `pdftotext -f 1 -l 1` antes de descartar; sólo si
-el sondeo de verdad falla se declara `PDF_CIFRADO`, y con la salida cruda del
-intento. Medido: 77 de 78 PDF que antes daban cero objetos abren ahora.
+oficiales mexicanos traen la bandera puesta y la contraseña de usuario vacía;
+la extracción compartida intenta los extractores configurados y solo declara
+`PDF_CIFRADO` cuando el intento real falla. Medido: 77 de 78 PDF que antes
+daban cero objetos abren ahora.
 
 Estas pruebas son sintéticas a propósito: el corpus vive fuera de git y una
 prueba que dependa de él no corre en otra caja. Para el PDF sin cifrar se usa
 un generador mínimo propio (sin librerías externas) porque `pdfinfo` y
 `pdftotext` sí están instalados en esta caja y demuestran el comportamiento
-real; para los dos casos cifrados no hay en esta caja ninguna herramienta que
-produzca un PDF cifrado de verdad (no hay `qpdf` ni `pdftk`, y no están
-instalados `pypdf`/`PyPDF2`/`reportlab`), así que esos dos casos se fijan con
-`mock.patch` sobre `subprocess.run`, siguiendo el precedente de
+real; para los dos casos cifrados no hay en esta caja una fixture que
+reproduzca el caso exacto de permisos oficiales, así que se fijan con
+`mock.patch` sobre los límites de extracción, siguiendo el precedente de
 `test_barrido2_material.py`.
 """
 
@@ -45,6 +44,7 @@ from tools.curador_registro.barrido2_material import (
     _pdf_objects,
     safe_text_compuesto,
 )
+from tools.curador_registro.pdf_extract import PdfExtraction
 
 
 def _pdf_sin_cifrar(path: Path, pages: int = 1) -> None:
@@ -201,12 +201,9 @@ class CamposMaquinaContratoTests(unittest.TestCase):
 class PdfCifradoTests(unittest.TestCase):
     """`Encrypted: yes` deja de ser descarte automático y pasa a ser intento.
 
-    `pdfinfo` y `pdftotext` (poppler-utils) sí están instalados en esta caja,
-    pero no hay ninguna herramienta para PRODUCIR un PDF cifrado de verdad
-    (`qpdf`, `pdftk` ausentes; `pypdf`, `PyPDF2` y `reportlab` no instalados).
-    Los dos casos con `Encrypted: yes` se fijan mockeando `subprocess.run`
-    para simular el `pdfinfo`/`pdftotext` reales; el caso sin cifrar corre
-    contra los binarios reales sobre un PDF sintético.
+    Los casos con `Encrypted: yes` se fijan mockeando los límites de
+    extracción para reproducir permisos y fallos concretos; el caso sin cifrar
+    corre contra los extractores reales sobre un PDF sintético.
     """
 
     def setUp(self) -> None:
@@ -231,7 +228,7 @@ class PdfCifradoTests(unittest.TestCase):
         def _run(cmd, **kwargs):
             if cmd[0] == "pdfinfo":
                 return subprocess.CompletedProcess(cmd, 0, stdout=pdfinfo_stdout, stderr="")
-            if cmd[0] == "pdftotext":
+            if Path(cmd[0]).name == "pdftotext":
                 return subprocess.CompletedProcess(
                     cmd, pdftotext_returncode, stdout=pdftotext_stdout, stderr=pdftotext_stderr
                 )
@@ -249,16 +246,22 @@ class PdfCifradoTests(unittest.TestCase):
         )
         with mock.patch(
             "tools.curador_registro.barrido2_material.subprocess.run", side_effect=corrida
+        ), mock.patch(
+            "tools.curador_registro.barrido2_material.extract_pdf",
+            return_value=PdfExtraction(
+                ("Texto extraido de la pagina uno.",), (1,),
+                ("pypdf", "pdftotext-layout"), (),
+            ),
         ):
             objetos = _pdf_objects(self.pdf_path)
         paginas = [o for o in objetos if o["type"] == "PAGINA-PDF"]
         self.assertEqual(1, len(paginas))
         self.assertIn("cifrado=SI-EXTRAIBLE", paginas[0]["definition"])
 
-    def test_encrypted_yes_con_sondeo_vacio_lanza_permission_error_con_diagnostico(self) -> None:
+    def test_encrypted_yes_con_extraccion_fallida_lanza_permission_error_con_diagnostico(self) -> None:
         """Caso (b): el único de los 78 PDF medidos que sigue sin abrir
-        (`enut2002_fd.pdf`) es exactamente este — el sondeo falla de verdad.
-        El mensaje debe traer `PDF_CIFRADO`, `rc=` y `bytes_texto=`, no un
+        (`enut2002_fd.pdf`) es exactamente este — la extracción falla de
+        verdad. El mensaje debe traer el diagnóstico compartido, no un
         `PermissionError("PDF_CIFRADO")` desnudo."""
         corrida = self._subprocess_run_simulado(
             pdfinfo_stdout="Pages: 3\nEncrypted: yes (print:no copy:no)\n",
@@ -273,13 +276,12 @@ class PdfCifradoTests(unittest.TestCase):
                 _pdf_objects(self.pdf_path)
         mensaje = str(contexto.exception)
         self.assertIn("PDF_CIFRADO", mensaje)
-        self.assertIn("rc=", mensaje)
-        self.assertIn("bytes_texto=", mensaje)
+        self.assertIn("extraccion=", mensaje)
 
-    def test_encrypted_yes_con_sondeo_vacio_por_texto_en_blanco_tambien_lanza(self) -> None:
+    def test_encrypted_yes_con_extractores_sin_resultado_tambien_lanza(self) -> None:
         """Variante del caso (b): `pdftotext` puede salir con rc=0 y no
-        obstante no extraer nada (texto en blanco). El sondeo exige texto no
-        vacío, no sólo un código de salida limpio."""
+        obstante no extraer nada (texto en blanco). Si pypdf también falla,
+        no se devuelve un resultado vacío."""
         corrida = self._subprocess_run_simulado(
             pdfinfo_stdout="Pages: 1\nEncrypted: yes (print:no copy:no)\n",
             pdftotext_stdout=b"   \n\x0c",
@@ -292,7 +294,7 @@ class PdfCifradoTests(unittest.TestCase):
                 _pdf_objects(self.pdf_path)
         mensaje = str(contexto.exception)
         self.assertIn("PDF_CIFRADO", mensaje)
-        self.assertIn("bytes_texto=", mensaje)
+        self.assertIn("extraccion=", mensaje)
 
     def test_pdf_sin_cifrar_declara_cifrado_no(self) -> None:
         """Caso (c), control: contra los binarios reales de poppler, un PDF
