@@ -1041,3 +1041,295 @@
   notas: 'Universo del censo: operable segun catalogo pero SIN payload en data/manifiesto.yaml
     a la fecha de este acto. No se descarga aqui (perimetro de P-B). Si P-B lo baja, esta entrada
     pasa a examinarse en un acto futuro.'
+
+# ACTO RECENSO-DISEÑO-2 (2026-08-24, ADR-153) -- re-derivación de FP-117 y alta
+# de las llaves con payload material que la re-derivación confirmó, cruzando
+# data/manifiesto.yaml (host de url_origen / slug /programas/<slug>/ de INEGI)
+# contra las filas ya existentes arriba (script: scratchpad/deriva.py, no
+# commiteado, reproducible con el comando documentado en la cabecera de este
+# archivo mas el criterio de host/slug). La cifra de FP-117 era 37; la
+# re-derivación de hoy da 13 llaves reales -- ver forense/notas/2026-08-24-recenso-diseno-2.md
+# §1 para la conciliación completa (duplicados ya cubiertos por filas
+# existentes -- ENSANUT/LAPOP -- y hosts administrativos/documentales que no
+# son una encuesta muestral nombrada quedan fuera, no cuentan como "llave").
+- fuente: ENGASTO (Encuesta Nacional de Gasto de los Hogares) 2012-2013
+  estado: MAPEADO
+  ponderador: 'FACTOR_VIV (columna FACTOR_VIV en la tabla vivienda, "Factor de expansión de la
+    vivienda") y FACTOR_HOG (columna factor_hog en la tabla hogar, "Factor de expansión del
+    hogar"), ambos N(5). Universo: vivienda y hogar respectivamente.'
+  estrato: EST_DIS ("Estrato de diseño muestral", C(4) -- estratos de la segunda etapa, grupos
+    de UPM por estrato geográfico entidad-ámbito-zona). NO confundir con EST_SOCIO ("Estrato
+    socioeconómico"), campo distinto que convive en la misma tabla.
+  upm: UPM (C(5) -- unidad primaria de muestreo, primera etapa del muestreo, agrupación de
+    viviendas con límites geográficos identificables)
+  donde_vive: Las cuatro variables viven como columnas de las tablas `vivienda.dbf` (EST_SOCIO,
+    EST_DIS, UPM, FACTOR_VIV) y `hogar.dbf` (factor_hog) de ambas ediciones (2012 y 2013), dentro
+    de `data/raw/engasto2012/` y `data/raw/engasto2013/` (vivienda_dbf.zip / hogar_dbf.zip,
+    viviendas_dbf.zip / hogar_dbf.zip respectivamente).
+  procedencia: 'data/raw/engasto2012/engasto12_fd.pdf (Ficha Descriptiva 2012, extraída con
+    pdftotext -layout), definiciones a nivel de campo #66-69 y #161: línea 1909 ("#66 est_socio:
+    Estrato socioeconómico"), línea 1937 ("#67 est_dis: Estrato de diseño muestral" -- "Son los
+    estratos seleccionados en la segunda etapa del muestreo y corresponden a grupos de UPMs de
+    acuerdo con su estrato geográfico (entidad-ámbito-zona)"), línea 1948 ("#68 upm: Unidad
+    primaria de muestreo" -- "constituidas por agrupaciones de viviendas... seleccionadas en la
+    primera etapa del muestreo"), línea 1965 ("#69 factor_viv: Factor de expansión de la
+    vivienda"), línea 3818 ("#161 factor_hog: Factor de expansión del hogar"). Corroborado por
+    línea 239-247 (sección "1.2.3 Factor de expansión": "En la ENGASTO 2012 hay dos factores de
+    expansión, uno asociado a la vivienda... y otro asociado al hogar").'
+  notas: 'La edición 2013 NO tiene FD propia en el corpus (solo los archivos de datos). Verificación
+    cruda con tests/dbfmini.py sobre vivienda_dbf.zip/viviendas_dbf.zip de ambas ediciones: los
+    nombres de columna de diseño (EST_SOCIO, EST_DIS, UPM, FACTOR_VIV) son byte-idénticos entre
+    2012 y 2013 -- no se infirió el diseño de 2013 "por parecido", se confirmó identidad de
+    columnas y se aplica la misma FD porque describe exactamente esas columnas, no un instrumento
+    distinto. Si mesa prefiere una fila separada para 2013 hasta tener su propia FD, es una
+    decisión de alcance, no de hecho: la estructura es idéntica. 46 payloads en data/manifiesto.yaml
+    (host /programas/engasto/), 0 sin fila tras esta alta.'
+- fuente: ENESTYC (Encuesta Nacional de Empleo, Salarios, Tecnología y Capacitación) — ediciones
+    1992-2005
+  estado: PENDIENTE
+  ponderador: no determinable en este acto
+  estrato: no determinable en este acto
+  upm: no determinable en este acto
+  donde_vive: 'data/raw/ejemplobd_enestyc_*_dbf.zip (5 ediciones: 1992, 1995, 1999, 2001, 2005),
+    cada una con 8 tablas .dbf (a-h)'
+  procedencia: Verificación cruda con tests/dbfmini.py sobre las 8 tablas de la edición 2005 (patrón
+    repetido en las otras 4 ediciones, mismo prefijo "ejemplobd_")
+  notas: 'Los 15 payloads son TODOS "ejemplobd" (bases de ejemplo), no el microdato real: cada
+    una de las 8 tablas .dbf de la edición 2005 tiene exactamente 10 registros (contado con
+    struct.unpack sobre el encabezado .dbf, campo nrecords) -- mismo patrón que ENAPROCE en
+    RECENSO-DISEÑO-14 §4.2. El microdato real de ENESTYC nunca se descargó en este corpus. No
+    se examinaron columnas de diseño porque no hay caso que censar: 10 filas de ejemplo no son
+    una muestra. EXISTE-NO-SATISFACE en vocabulario A.4 del encargo (documento existe, pero no
+    es microdato) -- se usa PENDIENTE por ser el vocabulario real de este archivo.'
+- fuente: ENAFIN (Encuesta Nacional de Financiamiento de las Empresas) 2024
+  estado: PENDIENTE
+  ponderador: no determinable en este acto (ver notas)
+  estrato: no determinable en este acto (ver notas)
+  upm: no aplica (diseño estratificado de una sola etapa, sin conglomeración -- ver notas)
+  donde_vive: 'DDI en data/raw/ADQ15_ENAFIN_2024_RNM_INEGI/MEX-INEGI.EEC3.05-ENAFIN-2024.xml
+    (elemento <sampProc>, prosa); microdato descargado en conjunto_de_datos_enafin_2024_csv.zip
+    son DOS tablas de TABULADOS agregados (tr_enafin_tam_sec_loc_2024.csv, tr_enafin_tot_2024.csv),
+    no microdato de caso.'
+  procedencia: 'MEX-INEGI.EEC3.05-ENAFIN-2024.xml, nodo <sampProc> (extraído con regex sobre el
+    XML, offsets 12589-25201 del texto decodificado): diseño "probabilístico y estratificado, con
+    selección independiente en cada estrato por dominio de estudio" (empresa como unidad de
+    muestreo, estratos por tamaño de empresa/sector, SIN mención de UPM ni conglomerado -- es
+    diseño de una etapa sobre marco de empresas, no vivienda/UPM como en las encuestas de
+    hogares); nodo <weight> (offset 29269) da la fórmula del factor de expansión f_dh =
+    N_dh/n_dh por estrato-dominio, sin nombrar la columna. El archivo de datos descargado
+    (conjunto_de_datos_enafin_2024_csv.zip/diccionario_de_datos/) confirma que las columnas
+    entregadas (C_0, C_1a, D_1a... ) son ya AGREGADOS por dominio de estudio, no casos
+    individuales con una columna de ponderador -- verificado abriendo el diccionario de datos
+    completo, cero columnas tipo "FACTOR"/"PONDERAD"/"EST_"/"UPM".'
+  notas: 'Mismo patrón que ENAPROCE (RECENSO-DISEÑO-14 §4.2): el diseño SÍ está documentado en
+    prosa detallada (población objetivo, marco RENEM, estratificación por tamaño de empresa,
+    fórmula del factor de expansión), pero el payload descargado no es microdato de caso sobre
+    el que se pueda citar una columna de ponderador -- es tabulado. No se infiere columna
+    porque no existe archivo de caso en este corpus. 3 payloads en manifiesto (host
+    /programas/enafin/).'
+- fuente: MMSI (Módulo de Movilidad Social Intergeneracional) 2016
+  estado: PENDIENTE
+  ponderador: no determinable en este acto
+  estrato: no determinable en este acto
+  upm: no determinable en este acto
+  donde_vive: 'data/raw/inegi_mmsi_2016/ -- solo manual_entrevistador_mmsi_2016.pdf y
+    cuestionario_mmsi_2016.pdf'
+  procedencia: 'command grep -niE "factor|ponderad|estrato|upm|conglomer|dise.o muestral"
+    sobre ambos PDF (extraídos con pdftotext -layout): 0 aciertos en 2 documentos, control
+    positivo "MMSI" da 12 aciertos combinados -- los comandos sí examinaron los archivos.'
+  notas: 'No hay microdato en el corpus para MMSI 2016: los 2 payloads registrados son el
+    manual del entrevistador y el cuestionario de campo, ningún archivo de datos ni FD.
+    Búsqueda negativa con conteo (regla A.13): 2 documentos examinados, 0 aciertos de diseño
+    muestral, control positivo confirmado. No se puede citar ninguna columna porque no hay
+    tabla que examinar.'
+- fuente: ENCOAP (Encuesta Nacional de Cohesión y Participación) 2023
+  estado: PENDIENTE
+  ponderador: 'FAC_VIV (tabla TVIV, "factor de expansión de vivienda") y FAC_SEL (tabla TSDEM,
+    factor de expansión a nivel persona) -- nombres de columna confirmados en el microdato,
+    sin FD ni diccionario de datos en el corpus que los defina'
+  estrato: EST_DIS -- confirmado en el microdato (tablas TVIV y TSDEM), sin FD que lo defina
+  upm: 'UPM_DIS -- confirmado en el microdato; ojo, UPM (sin sufijo) también existe en ambas
+    tablas pero es la llave de identificación de la unidad, no necesariamente la variable de
+    diseño (mismo patrón UPM vs UPM_DIS documentado para ENCIG/ENCUCI en este archivo)'
+  donde_vive: data/raw/inegi_encoap_2023_csv.zip (TB_SEC_IVaIX.csv, TSDEM.csv, TVIV.csv) -- único
+    payload registrado, sin FD ni diccionario de datos acompañante
+  procedencia: Verificación cruda directa del microdato con csv.reader (Python), sin documento de
+    diseño que citar -- este acto NO tiene un FD/DDI de ENCOAP en el corpus, solo el encabezado
+    y contenido del csv mismo.
+  notas: 'Mismo patrón que ENSAFI/ENSU en RECENSO-DISEÑO-14 §4.3: las variables de diseño SÍ están
+    en el microdato y completas (TVIV: FAC_VIV 1965/1965 no vacío, 136 distintos; UPM_DIS
+    1965/1965, 467 distintos; EST_DIS 1965/1965, 132 distintos. TSDEM, primeras 2000 filas de
+    6324: FAC_VIV y FAC_SEL 2000/2000 no vacíos, UPM_DIS 147 distintos, EST_DIS 44 distintos),
+    pero sin FD en el corpus no se puede citar la DEFINICIÓN de esas columnas (universo exacto,
+    metodología de estratificación) -- este acto no infiere diseño de encuestas parecidas por
+    convención de nombre. 1 payload en manifiesto.'
+- fuente: WVS7 — World Values Survey, Wave 7, México 2018
+  estado: MAPEADO
+  ponderador: 'W_WEIGHT ("Weight"), confirmado como columna del .dta de México (N=1741, mismo
+    N que declara el documento de diseño muestral)'
+  estrato: H_URBRURAL ("Urban-Rural") -- la variable de estratificación que el documento de
+    diseño describe en prosa ("stratified by urban-rural-mixed categories by INE")
+  upm: I_PSU ("Primary Sampling Unit ID") -- la sección electoral (496 secciones electorales
+    seleccionadas de 68,364), unidad de primera etapa
+  donde_vive: 'Descargas Manuales/F00013084-WVS_Wave_7_Mexico_Stata_v5.1.zip (raíz descargas_mx,
+    archivo único WVS_Wave_7_Mexico_Stata_v5.1.dta, 1741 filas -- es el archivo específico de
+    México, no el pooled de 76 países)'
+  procedencia: 'Descargas Manuales/F00010701-WVS7_Sample_Design_Mexico_2018.pdf (raíz descargas_mx,
+    extraído con pdftotext -layout, documento completo de 45 líneas): "A multi-stage probability
+    sampling was employed using the National Elections Institute (INE) list of electoral sections
+    updated for the 2018 presidential elections and stratified by urban-rural-mixed categories by
+    INE... A total of 496 electoral sections were selected... The dataset included a weight
+    variable based on population distributions by sex, age, and education." Nombres de columna
+    (W_WEIGHT, I_PSU, H_URBRURAL) confirmados abriendo WVS_Wave_7_Mexico_Stata_v5.1.dta con
+    pandas.read_stata (variable_labels()), no están en el PDF de diseño (que no nombra columnas).'
+  notas: 'Verificación cruda: W_WEIGHT, I_PSU, H_URBRURAL las tres 1741/1741 no vacías; I_PSU con
+    454 valores distintos (consistente con conglomeración -- más de 1 entrevista por PSU en
+    promedio, 496 secciones electorales declaradas en el documento pero solo 454 con al menos
+    un caso en la muestra final tras sustituciones); H_URBRURAL con 2 valores (el documento
+    describe 3 categorías "urban-rural-mixed", la columna solo distingue 2 -- posible colapso
+    de categorías, no verificado a fondo por no ser el objeto de este acto). 11 payloads en
+    manifiesto (host worldvaluessurvey.org).'
+- fuente: ISSP 2017 — Social Networks and Social Resources, módulo México (ZA6980)
+  estado: SIN_DISEÑO_PUBLICADO
+  ponderador: 'WEIGHT ("Weighting factor"), confirmado como columna del .dta (ZA6980_v2-0-0.dta,
+    variable_labels vía pandas.read_stata)'
+  estrato: '✗ no publicado -- ningún documento del corpus ni columna del .dta nombra un estrato
+    de diseño para el módulo de México'
+  upm: '✗ no publicado -- ídem, sin columna ni documento que nombre PSU/conglomerado'
+  donde_vive: Descargas Manuales/ZA6980_v2-0-0.dta.zip (raíz descargas_mx, único CSV/dta del
+    payload; N=44492 pooled, submuestra México c_alphan=MX con N=1002)
+  procedencia: 'ZA6980_v2-0-0.dta abierto con pandas.read_stata (variable_labels()): de 356
+    columnas, ninguna con etiqueta que contenga WEIGHT salvo WEIGHT misma, ninguna con STRAT/PSU/CLUSTER
+    en nombre o etiqueta. Descargas Manuales/ZA6980_backgroundvar_mx.pdf (documentación de
+    variables de trasfondo) extraído con pdftotext -layout (2836 líneas): command grep -niE
+    "sample design|strat|psu|cluster|multi-stage|multistage" da 0 aciertos de diseño muestral
+    (el único acierto, línea 2783, es la definición de la variable MODE, sin relación).'
+  notas: 'Negativo con control positivo: el .dta y el PDF de variables de trasfondo SÍ se abrieron
+    (356 columnas leídas, 2836 líneas de PDF procesadas), y ninguno de los dos nombra estrato o
+    UPM para el módulo de México -- práctica habitual de ISSP (publica ponderador de
+    post-estratificación, no identificadores de diseño primario). 9 payloads en manifiesto
+    (host gesis.org).'
+- fuente: CSES Módulo 5 (Comparative Study of Electoral Systems), submuestra México 2018
+  estado: SIN_DISEÑO_PUBLICADO
+  ponderador: 'E1010_1 ("Original weight: sample") y E1010_2 ("Original weight: demographic"),
+    confirmadas como columnas de cses5.csv (N=1239 filas con E1006_UNALPHA3=MEX, mismo N que
+    declara el codebook)'
+  estrato: 'descrito solo en prosa, sin columna publicada -- ver procedencia'
+  upm: 'descrito solo en prosa (el municipio-cluster sirvió de PSU), sin columna identificadora
+    publicada en el archivo pooled -- ver procedencia'
+  donde_vive: data/raw/cses5_csv.zip (cses5.csv, archivo pooled cross-nacional de 605 columnas,
+    filtrado por E1006_UNALPHA3=MEX)
+  procedencia: 'data/raw/cses5_codebook.zip, archivo cses5_codebook_part6_designs_and_weights.txt
+    (extraído del zip, 197000 caracteres), sección ">>> OVERVIEW OF STUDY DESIGN AND WEIGHTS -
+    MEXICO (2018)" (línea 2206 del texto extraído): "The study was realized as a stratified
+    multi-stage random cluster sample. In the first stage, the universe was divided into three
+    regions [PAN/PRI/PRD]... precincts were clustered by county (municipalities)... These
+    resulting clusters served as the primary sampling unit (PSU)... POLITY WEIGHTS: The 2018
+    Mexico Study provides one COMBINED SAMPLE and DEMOGRAPHIC WEIGHT" (línea 2256). Nombres de
+    columna del peso (E1010_1/E1010_2) confirmados en cses5_codebook_part2_variables.txt línea
+    550-551, y verificados no vacíos abriendo cses5.csv con csv.DictReader (1239/1239 filas
+    México con E1010_1 no vacío).'
+  notas: 'El diseño de PSU/estrato está descrito con detalle inusual (regiones por partido
+    gobernante, clusters municipales por cuartil de voto PRI, PPS en dos etapas), pero el
+    codebook NO publica una columna identificadora de PSU o estrato en el archivo pooled --
+    command grep -niE "psu|cluster|strat|precinct" sobre las partes 2 y 6 del codebook solo
+    encuentra menciones descriptivas, ninguna definición de columna para México. Por eso queda
+    SIN_DISEÑO_PUBLICADO y no MAPEADO: el ponderador sí tiene columna citable, estrato/UPM no.
+    3 payloads en manifiesto (host cses.org).'
+- fuente: GPS — Global Preferences Survey, submuestra México
+  estado: SIN_DISEÑO_PUBLICADO
+  ponderador: 'wgt ("Sampling weight"), confirmada como columna de individual_new.dta
+    (submuestra isocode=MEX, N=1000)'
+  estrato: '✗ no publicado como variable de diseño -- existe `region` ("Subnational region of
+    interview") pero es una covariable geográfica, no una variable de diseño documentada como
+    estrato de muestreo'
+  upm: '✗ no publicado -- ninguna columna ni documento nombra PSU/conglomerado'
+  donde_vive: 'Descargas Manuales/GPS_Dataset.zip → GPS_dataset_individual_level.zip →
+    individual_new.dta (raíz descargas_mx)'
+  procedencia: 'individual_new.dta abierto con pandas.read_stata (variable_labels()): 17 columnas
+    totales, listadas completas (country, isocode, ison, region, language, date, id_gallup, wgt,
+    patience, risktaking, posrecip, negrecip, altruism, trust, subj_math_skills, gender, age) --
+    ninguna con nombre o etiqueta de estrato/PSU. readme.txt del zip no describe diseño muestral,
+    solo compatibilidad de versión de Stata. La encuesta es levantada sobre el marco muestral del
+    Gallup World Poll (76 países) según el nombre de archivo y estructura, pero ningún documento
+    de diseño específico de México está en este corpus.'
+  notas: 'wgt confirmada 1000/1000 no vacía, 110 valores distintos, submuestra México (isocode=MEX)
+    de N=1000 dentro del individual_new.dta global. GPS_Questionnaires.zip y gps_do_files_*
+    (host gps.econ.uni-bonn.de) son instrumentos/scripts de análisis, no documentos de diseño.
+    5+3 payloads en manifiesto (5 vía host gps.econ.uni-bonn.de, 3 copias vía descargas_mx con
+    id "gps_dataset*").'
+- fuente: Banco Mundial — Early Childhood Education Program Impact Evaluation 2012-2014, México
+    (catálogo 2661)
+  estado: PENDIENTE
+  ponderador: no determinable en este acto
+  estrato: no determinable en este acto
+  upm: no determinable en este acto
+  donde_vive: 'data/raw/wb2661_ASQ_Questionnaires.zip, wb2661_Baseline.zip, wb2661_Year1.zip,
+    wb2661_Endline.zip (instrumentos de campo, PDF por ola/tratamiento), wb2661_Baseline_Report.pdf,
+    wb2661_Year1_Report.pdf, wb2661_Endline_Report.pdf (reportes)'
+  procedencia: 'Listado de contenidos con zipfile.ZipFile.namelist() sobre los tres zips de
+    instrumentos: wb2661_Baseline.zip trae "Caregiver Control Baseline.pdf", "Home Treatment
+    Baseline.pdf", etc. -- todos cuestionarios de campo en PDF, cero .csv/.dta/.sav. Confirmado
+    en el propio manifiesto: los 7 payloads con "usado_para" describen "ficha documental" e
+    "instrumentos", ninguno dice "microdato".'
+  notas: 'El catálogo de Banco Mundial separa la pestaña "Documentation" (descargable sin sesión,
+    de donde salieron estos 7 payloads) de "Get Microdata" (exige cuenta) -- el microdato de
+    caso nunca se descargó en este entorno. El diseño muestral del RCT (tratamiento/control,
+    tres olas) está descrito en los reportes en prosa pero no hay archivo de caso que citar a
+    nivel columna. 62 payloads en manifiesto son documentación/instrumentos, no microdato (host
+    microdata.worldbank.org).'
+- fuente: Pew Research Center — Global Attitudes Survey 2025, submuestra México ("Where Most
+    People Trust Others")
+  estado: PENDIENTE
+  ponderador: no determinable en este acto
+  estrato: no determinable en este acto
+  upm: no determinable en este acto
+  donde_vive: data/raw/FP29_PEW_2025/ (SR_25.12.01_social-trust_topline.pdf, pew_shortread_20251201.html)
+  procedencia: 'SR_25.12.01_social-trust_topline.pdf extraído con pdftotext -layout: línea 13
+    ("Survey results are based on national samples. For further details on sample designs, refer
+    to the [documento de metodología, no incluido en este corpus]"); línea 97 da solo la cifra
+    agregada de México (18% confía, tamaño de muestra no desglosado en esta tabla).'
+  notas: 'El payload de este corpus es solo el topline (tabla de resultados agregados) y el
+    short-read en prosa -- ningún microdato ni el documento de metodología detallado que el
+    propio topline referencia. No hay columna que verificar porque no hay archivo de caso. Es
+    el mismo hallazgo que ya señaló FP-29 (residual de conf.06): el 18% es una cifra agregada
+    sin procedencia de diseño reconstruible en este corpus. 2 payloads en manifiesto (host
+    pewresearch.org).'
+- fuente: OSF — "Interacting as Equals" (paquete de réplica, polarización partidista México)
+  estado: NO_APLICA_REGISTRO_ADMINISTRATIVO
+  ponderador: no aplica
+  estrato: no aplica
+  upm: no aplica
+  donde_vive: data/raw/osf_interacting_as_equals/ (Master_Data.dta, Dip_Municipality_2021.dta,
+    Concentrado_indicadores_de_pobreza_2020_modificado.dta, 2018_SEE_PRE_NAL_MUN.xlsx, y
+    resultados intermedios SI_F9_*.dta)
+  procedencia: Listado de archivos del paquete de réplica (zipfile.ZipFile.namelist() /
+    inspección de nombres) -- "Dip_Municipality_2021" (resultados electorales de diputados por
+    municipio 2021), "2018_SEE_PRE_NAL_MUN" (resultados electorales presidenciales nacional-municipio
+    2018), "Concentrado_indicadores_de_pobreza_2020" (indicadores CONEVAL agregados) son, por
+    nombre y estructura, bases a nivel MUNICIPIO de resultados electorales y pobreza publicados
+    por autoridades (INE/CONEVAL), no una encuesta muestral de individuos.
+  notas: 'No es una encuesta con factor de expansión: es un paquete de réplica de un estudio que
+    combina registros electorales oficiales y estadística de pobreza, ambos ya censales/administrativos
+    a nivel municipio, no muestrales. Mismo criterio que EDR (censo de registros administrativos,
+    no hay factor de expansión porque no hay muestra que expandir). Si algún payload de este
+    paquete SÍ resulta ser una encuesta de individuos con su propio diseño, es hallazgo para un
+    acto que abra los .dta a nivel de caso (no se hizo aquí, fuera del método de este acto que
+    solo lista contenidos para esta fuente). 10 payloads en manifiesto (host osf.io).'
+- fuente: openicpsr — Compartamos AEJ (paquete de réplica, RCT de expansión de microcrédito)
+  estado: PENDIENTE
+  ponderador: no determinable en este acto
+  estrato: no determinable en este acto
+  upm: no determinable en este acto
+  donde_vive: Descargas Manuales/116334-V1.zip → Compartamos_AEJ/Main/data/analysis_data_AEJ_pub.dta
+    (raíz descargas_mx)
+  procedencia: Listado de contenidos del paquete de réplica (98 archivos, zipfile.ZipFile.namelist()) --
+    estructura de un experimento aleatorizado por conglomerados (do-files de "Quantile-bootstrap",
+    tablas de resultados), no de una encuesta de muestreo probabilístico convencional.
+  notas: 'No se abrió analysis_data_AEJ_pub.dta a nivel de columna en este acto (quedó fuera por
+    presupuesto de tiempo del acto, no por hallazgo negativo). Es un RCT (aleatorización de
+    tratamiento, no muestreo estratificado/por conglomerados de una encuesta nacional): el
+    vocabulario de "ponderador/estrato/UPM" de este censo está pensado para encuestas
+    probabilísticas nacionales y puede no aplicar de la misma forma a un experimento -- si mesa
+    quiere que este censo cubra RCTs con su propio criterio, es una decisión de alcance nueva,
+    no ejecutada aquí. 2 payloads en manifiesto (host openicpsr.org).'
