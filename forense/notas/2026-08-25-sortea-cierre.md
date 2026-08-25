@@ -1,6 +1,6 @@
 # Cierre `ACTO SORTEA` (Acto B) — sorteo real de `ACT-PIL-3`
 
-**Fecha:** 25/ago/2026. **Entorno:** NUBE (`cloud_default`). **ADR:** `ADR-186` (`canon/gobernanza-v1_15.md`). **Fila de tablero:** `FP-154` (`forense/firmas-pendientes.tsv`), recibe `ejecutada_en`. **Pack padre:** `forense/encargos/2026-08-25-PACK-CONGELA-SORTEA.md`, queda `CONSUMIDO`.
+**Fecha:** 25/ago/2026. **Entorno:** NUBE (`cloud_default`). **ADR:** `ADR-188` (`canon/gobernanza-v1_15.md`). **Fila de tablero:** `FP-154` (`forense/firmas-pendientes.tsv`), recibe `ejecutada_en`. **Pack padre:** `forense/encargos/2026-08-25-PACK-CONGELA-SORTEA.md`, queda `CONSUMIDO`.
 
 ## Compuertas verificadas antes de escribir (F0)
 
@@ -18,9 +18,9 @@
 
 ## Registro y gobernanza (F2)
 
-- `ADR-186` (`canon/gobernanza-v1_15.md`): adjudica el set v1 de `ACT-PIL-3` y su semilla pública — **PILOTO SIN VEREDICTO** (D-i del CAREO). CV/`n` se miden solo sobre estas 15 en el acto árbitro (`FP-79`).
+- `ADR-188` (`canon/gobernanza-v1_15.md`): adjudica el set v1 de `ACT-PIL-3` y su semilla pública — **PILOTO SIN VEREDICTO** (D-i del CAREO). CV/`n` se miden solo sobre estas 15 en el acto árbitro (`FP-79`).
 - `FP-154.ejecutada_en` = este acto.
-- `canon/estado-programa-v1_10.md`: recifrado de ADR (185→186, cabecera y `L0`) y línea de estado del duelo actualizada — «15 celdas sorteadas, semilla pública, `L` pendiente».
+- `canon/estado-programa-v1_10.md`: recifrado de ADR (187→188, cabecera y `L0`, tras resolver la colisión con `ADR-186`/`ADR-187` de `PR #357`) y línea de estado del duelo actualizada — «15 celdas sorteadas, semilla pública, `L` pendiente».
 - Pack padre `forense/encargos/2026-08-25-PACK-CONGELA-SORTEA.md` marcado `CONSUMIDO`.
 - Suite: `tests_sorteo_v2.py` 12/12 antes y después (sin `--freeze`); T22/T25 no aplican en este entorno sin corredor de suite general — este acto solo escribe los archivos de su propio perímetro.
 
@@ -32,4 +32,4 @@ No corrió `L` (sesiones limpias fuera del proyecto, D-iii/`ADV1-M2` — las lan
 
 ## Perímetro tocado (lista cerrada, sin excedente)
 
-`forense/prereg-duelo-v2/sorteo-resultados-v1_0.md` (nuevo) · `canon/gobernanza-v1_15.md` (`ADR-186`) · `canon/estado-programa-v1_10.md` (recifrado + línea de estado) · `forense/firmas-pendientes.tsv` (`FP-154.ejecutada_en`) · esta nota · `forense/encargos/2026-08-25-PACK-CONGELA-SORTEA.md` (marca `CONSUMIDO`). No se tocó: marco, congelado, `sorteo_v2.py`, reglamento, pool de 253, `tools/`, `milpa/`, `README.md`.
+`forense/prereg-duelo-v2/sorteo-resultados-v1_0.md` (nuevo) · `canon/gobernanza-v1_15.md` (`ADR-188`) · `canon/estado-programa-v1_10.md` (recifrado + línea de estado) · `forense/firmas-pendientes.tsv` (`FP-154.ejecutada_en`) · esta nota · `forense/encargos/2026-08-25-PACK-CONGELA-SORTEA.md` (marca `CONSUMIDO`). No se tocó: marco, congelado, `sorteo_v2.py`, reglamento, pool de 253, `tools/`, `milpa/`, `README.md`.
