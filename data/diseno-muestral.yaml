@@ -84,6 +84,19 @@
 #                         forense/registro-llaves-identificacion-v1_0.md) y no
 #                         autoriza al motor a consumir el paquete.
 #
+# supuesto_varianza (campo, no estado -- alta de vocabulario, ACTO
+# PACK-NUBE2-CIERRE-R101, 2026-08-25, ADR-183, ejecuta FP-118 FIRMADA):
+# campo propio de una fila SIN_DISEÑO_PUBLICADO cuando mesa firma qué
+# hacer con la falta de estrato/UPM para efectos de VARIANZA (no de
+# estimación puntual, que no la necesita). No es un quinto valor de
+# `estado` -- no se buscó token existente que sirviera (precedente
+# FP-116) porque esto no describe la fuente, describe una decisión de
+# mesa sobre cómo correr sobre ella; se declara aquí como campo nuevo
+# en vez de forzarlo dentro de `notas`. Valores hoy: SRS_ASUMIDO
+# (mesa firmó declarar explícitamente un supuesto de muestreo aleatorio
+# simple para toda corrida que exija varianza, con la subestimación del
+# error estándar escrita en la ficha de esa corrida).
+#
 # Lo que este archivo NO decide: qué fuente se usa para qué constructo
 # (eso es mesa/fichas), ni si el payload existe en disco AHORA MISMO en
 # TU entorno (para eso, tests/manifiesto.py --verifica sigue siendo la
@@ -481,7 +494,15 @@
     no hay con que declarar strata ni id/cluster en un svydesign. Quien necesite varianza sobre ENNViH
     tiene que (i) declarar explicitamente un supuesto de muestreo aleatorio simple y asumir el sesgo,
     o (ii) conseguir de la fuente el archivo de identificadores de diseno, que no esta en ennvih-mxfls.org/assets
-    segun lo adquirido. Esto es hallazgo de este acto, no supuesto heredado.'
+    segun lo adquirido. Esto es hallazgo de este acto, no supuesto heredado. FIRMADO 2026-08-25 (FP-118,
+    ranura F0 de PACK NUBE-2, ADR-183): mesa adopta (i) sin variante -- ver campo supuesto_varianza abajo;
+    (ii) queda abierta en paralelo, sin bloquear (i).'
+  supuesto_varianza: 'SRS_ASUMIDO -- firma de mesa 2026-08-25 (FP-118): toda corrida CAL-G3 sobre ENNViH
+    que exija varianza declara explicitamente un supuesto de muestreo aleatorio simple, con la subestimacion
+    del error estandar de un diseno por conglomerados ESCRITA en la ficha de esa corrida; la estimacion
+    puntual ponderada no espera a esta firma. La via (ii) -- receta A.5 a la fuente por los identificadores
+    de diseno -- queda abierta en paralelo, sin bloquear nada. Campo de alta de vocabulario, ver cabecera
+    del archivo.'
 - fuente: ENOE / ENOEN (Encuesta Nacional de Ocupación y Empleo / ENOE Nueva Edición)
   estado: MAPEADO
   ponderador: 'Dos eras, nombres distintos. ENOE clasica (hasta 2019/2020): FAC, "Ponderador", citado

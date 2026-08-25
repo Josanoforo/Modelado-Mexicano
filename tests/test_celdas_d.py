@@ -6,6 +6,12 @@ contra el invariante de identidad de §2 ("celda-D =
 (estimando) x (población objetivo). Dominio derivado; fuente y diseño nunca
 en la clave, solo en candidatos").
 
+DISENOS_DATOS gana un octavo valor, `experimento_aleatorizado_terceros`,
+en ACTO PACK-NUBE2-CIERRE-R101 (2026-08-25, ADR-184), ejecutando la
+PROPUESTA-SELLADA de FP-131 que FP-144 firmó implementar -- addendum
+fechado de propuesta-motor-adaptativo-celda-v0_5.md §3, sin bumpear
+versión ni tocar los cinco cambios que v0.5 ya declaró.
+
 Encargo CABLEADO-100 (12/ago/2026), G4/TAREA 4.2: hoy hay 2 celdas-D
 (G5.familismo_obligacion.actitud, G5.radio_confianza.encuci_vs_enbiare); el
 piloto va a escribir 10-15 más. Este validador llega antes que ellas -- no
@@ -73,6 +79,7 @@ ROLES = {"BASELINE", "CHALLENGER", "COMPLEMENTO", "BASELINE_INGENUO", "ENSAMBLE"
 DISENOS_DATOS = {
     "panel", "pseudo_panel", "transversal", "registro_administrativo",
     "experimento_natural", "auditoria_campo", "enlace_ecologico",
+    "experimento_aleatorizado_terceros",
 }
 # v0.5 §3(a): dos dietas de información del corredor L, campo hermano de
 # `rol` -- no duplica el enum porque L puede jugar BASELINE o CHALLENGER
