@@ -14939,3 +14939,380 @@
   formato: PDF (INEGI, ENOE, Estructura de la base de datos -- era 15ymas)
   licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ennvih1_muestra_diseno
+  usado_para: 'T1 ADQ-DISENO-1 / FP-118 -- nota metodologica de muestra ENNViH-1: UPM/estrato/USM,
+    esquema polietapico estratificado por conglomerados'
+  url_origen: http://ennvih-mxfls.org/assets/ennvih-1_muestra.pdf
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: ennvih_diseno/ennvih-1_muestra.pdf
+  sha256: 9f90df10338c7749cf46f86edc0664fc300c913e4fc4b1eee5e360d2970e91f0
+  tamano_bytes: 56225
+  formato: pdf
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2024_2t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2024_trim2_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2024_trim2_csv.zip
+  sha256: 13922f8902f587939145e0302ec8e6e5fa9fb0df4207229f7447deaaab96e285
+  tamano_bytes: 31773308
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2019_1t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2019trim1_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/2019trim1_csv.zip
+  sha256: 9337691044a70d935f3b7e6858730640a726ac5e37145d2dafe34cb9f77e7e89
+  tamano_bytes: 31269571
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2019_2t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2019trim2_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/2019trim2_csv.zip
+  sha256: 721bf45739241179cca3685c42e65a0270cbe02019602571ee79cc1a157a8d36
+  tamano_bytes: 28592043
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2019_3t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2019trim3_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/2019trim3_csv.zip
+  sha256: 6809243e8fa1bc4fe836ab2337b51b387f2bc4b9e28907b70ddcaf9fd67b584b
+  tamano_bytes: 31116800
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2019_4t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2019trim4_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/2019trim4_csv.zip
+  sha256: d91658be67f515a26f501fc130731e866b7c77c992ed91471217074f4f18ad58
+  tamano_bytes: 28058037
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2020_1t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2020trim1_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/2020trim1_csv.zip
+  sha256: 8f24f571dee610e9ab147c7f2a01ac2770fef016cd13d8428160550b833b176b
+  tamano_bytes: 27350239
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2023_1t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2023_trim1_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2023_trim1_csv.zip
+  sha256: ae627ebd3b749f15b5faf27fdc59dadb69a696a5f359d1faa7aae5eae856041c
+  tamano_bytes: 37487716
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2023_2t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2023_trim2_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2023_trim2_csv.zip
+  sha256: e2035d3a3e3d0789ee10fac875c792c5833fc90f7e1ccb9345e0690dd8c40eb5
+  tamano_bytes: 39500761
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2023_3t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2023_trim3_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2023_trim3_csv.zip
+  sha256: cb91900ad406e1d7435cc51ed418866cbdd08808892d2dd60644516e82be9752
+  tamano_bytes: 40893331
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2023_4t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2023_trim4_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2023_trim4_csv.zip
+  sha256: 24f15e1ab8ad942b479b32f491b9e2d8b640ac3c8e79dbea02e74baa78ae9d2e
+  tamano_bytes: 40681812
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2024_1t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2024_trim1_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2024_trim1_csv.zip
+  sha256: 5ef594c06487cd277de1ae9f9b0846f9ba64dbd8d743c983002dcf431974d02b
+  tamano_bytes: 37004177
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2024_3t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2024_trim3_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2024_trim3_csv.zip
+  sha256: 6594158c1a3f9732d9844061e46f95c0abe7ef9f8fe4f7605b72be31c3628ef3
+  tamano_bytes: 43272328
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2024_4t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2024_trim4_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2024_trim4_csv.zip
+  sha256: 817f28d20a43fa4fed08195e62df58bf320b31c323a3049fe09b5194a1677305
+  tamano_bytes: 43410469
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2025_1t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2025_trim1_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2025_trim1_csv.zip
+  sha256: dddbb698e7f18f63bc256ece61ac0038a5ad062d42aca13390d88828fb27796e
+  tamano_bytes: 40919680
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2025_2t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2025_trim2_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2025_trim2_csv.zip
+  sha256: 291db61afcc472a0933d2bebf46720cfd024df8912dc899d541d8109bd406722
+  tamano_bytes: 38752236
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2025_3t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2025_trim3_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2025_trim3_csv.zip
+  sha256: d2817a14201694e119a3fd6fcb8b8ed7619ea7e26cf8b353761a1ac1f23d6022
+  tamano_bytes: 40062680
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2025_4t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2025_trim4_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2025_trim4_csv.zip
+  sha256: e675b41bde4fb3c183a0abd067738109c6aaf30ed314bc9fc548669fb8a1565d
+  tamano_bytes: 43383478
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2026_1t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2026_trim1_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_2026_trim1_csv.zip
+  sha256: 934a1b403d839c9bc777f40ef39f7d0a5b2b43c9852b748b4cd7165bf0f41666
+  tamano_bytes: 40843186
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_n_2020_3t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2020_trim3_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_n_2020_trim3_csv.zip
+  sha256: 924e18a5fc1f4794cf5d04ac3b89fd3ab16d555626f91fe88e22ca097d04dad3
+  tamano_bytes: 19827422
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_n_2020_4t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2020_trim4_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_n_2020_trim4_csv.zip
+  sha256: 5d6ce8a6dcc2cace4a1e6e5cbaf9d9c61ad7bbbfa3217ecc9cd2184e2093f6f3
+  tamano_bytes: 23007909
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_n_2021_1t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2021_trim1_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_n_2021_trim1_csv.zip
+  sha256: 208c114079eb368201c281e1e84ce34ad1c885a738f63da4dad04e85bd2c0a52
+  tamano_bytes: 24586788
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_n_2021_2t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2021_trim2_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_n_2021_trim2_csv.zip
+  sha256: a9bfb1f1291217714fd27a0dc5d30ee39064ad99f637867808d445294a25b96b
+  tamano_bytes: 23887444
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_n_2021_3t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2021_trim3_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_n_2021_trim3_csv.zip
+  sha256: 853512291ddb62ea3e19caff5b008e39bddbc65f8cddd98fe8b5d36e75dec00d
+  tamano_bytes: 32559052
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_n_2021_4t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2021_trim4_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_n_2021_trim4_csv.zip
+  sha256: 1baabe0098ce5b1bdeeb4bba8eebe2d4b51eedae3745bc48dad1cd199b736a9b
+  tamano_bytes: 27117836
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_n_2022_1t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2022_trim1_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_n_2022_trim1_csv.zip
+  sha256: 5d2792afcac72a3e2c049701bcfeb8111a565d80aed099df5a9b4b5a495fb7d6
+  tamano_bytes: 27691497
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_n_2022_2t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2022_trim2_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_n_2022_trim2_csv.zip
+  sha256: 19e194fbdcc70549db19b718c6581ec2fadce883e9683369424bf758f76b705a
+  tamano_bytes: 30537564
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_n_2022_3t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2022_trim3_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_n_2022_trim3_csv.zip
+  sha256: fc47029e5b11943d3006929252e2d378c5f555bbaabe67d704a89c81878596e5
+  tamano_bytes: 29571337
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_n_2022_4t_microdatos
+  usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
+    (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2022_trim4_csv.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
+  archivo: enoe_microdatos_post2019/enoe_n_2022_trim4_csv.zip
+  sha256: 1c22244fcd4a9f11625fa3cdb68d8c10f5143ba84c076b4e99a61ba822687e5d
+  tamano_bytes: 29670618
+  formato: zip
+  licencia: no declarada por la fuente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
