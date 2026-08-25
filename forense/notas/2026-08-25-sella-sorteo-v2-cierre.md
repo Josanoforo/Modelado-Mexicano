@@ -6,7 +6,7 @@
 
 1. **Repo**: clon existente en `/home/user/Modelado-Mexicano`, rama `claude/sella-sorteo-v2-firma-cn7hr9`. `git log -1` al arrancar: `769fa97 Merge pull request #350 from Josanoforo/claude/new-session-37oj2p`.
 2. **SHA**: el encargo declaraba `c502a43`; `origin/main` había avanzado a `769fa97` (incluye el merge de `SELLA-A1-CODI`/`ADR-177`, `PR #350`). No es PARO — `c502a43` es ancestro de `HEAD`. Re-derivado en fresco: `FP-150` seguía `ABIERTA`, sha256 del reglamento coincidía exacto con el pin, `grep -ci "SELLAD"` → 0, máximo ADR vigente `ADR-177` (subió de `ADR-175` citado en el encargo) → nuevo ADR es `ADR-178`.
-3. **data/raw**: ausente. Este acto no toca `data/` ni descarga nada — no se crea ni se enlaza, mismo patrón que precedentes documentados en `CLAUDE.md`.
+3. **data/raw**: ausente. Este acto no toca `data/` ni descarga nada — no se crea ni se enlaza, mismo patrón que precedentes ya registrados en `canon/estado-programa-v1_10.md` (p. ej. línea 234).
 4. **Entorno**: `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default`. Este acto no toca microdato ni red de datos — sonda saltada.
 5. **Espejo**: ninguna cifra de este acto sale del espejo del proyecto; todas de comandos corridos en este clon.
 

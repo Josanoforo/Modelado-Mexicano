@@ -1429,6 +1429,18 @@ _T22_ARCHIVOS_CONOCIDOS = {
     "forense/COERCION-Y-ADOPCION-rediseno-2026-08-20.md",
     "forense/encargos/2026-08-24-ACTO-COMMIT-DOC-COERCION.md",
     "forense/notas/2026-08-24-commit-doc-coercion.md",
+    # forense/encargos/2026-08-25-SELLA-SORTEO-V2.md -- encargo archivado
+    # verbatim (convencion de forense/encargos/, A.3), incluye la RANURA
+    # de firma de mesa tal como se lanzo. La firma que esa ranura pedia
+    # ya esta capturada: FP-150 en firmas-pendientes.tsv paso a FIRMADA
+    # con el verbatim exacto y ADR-178 la sella -- no es un marcador
+    # nuevo sin dueno, es la copia fiel de uno ya resuelto. Su nota de
+    # cierre cita el mismo verbatim al documentarlo -- mismo autocaptura.
+    # Extension minima de perimetro por desviacion mecanica, mismo
+    # precedente que ADR-147(c)/ADR-149(f)/ADR-151/ADR-164/ADR-177 --
+    # ACTO SELLA-SORTEO-V2, 25/ago/2026 (PR #351, CI del propio acto).
+    "forense/encargos/2026-08-25-SELLA-SORTEO-V2.md",
+    "forense/notas/2026-08-25-sella-sorteo-v2-cierre.md",
 }
 
 def _t22_tabla():
