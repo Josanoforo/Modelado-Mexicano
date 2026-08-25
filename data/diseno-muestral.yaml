@@ -38,6 +38,51 @@
 #                         2026-08-24 (firma "5, agreguémosla" -> FP-116
 #                         FIRMADA+ejecutada), aplicado primero a la fila
 #                         EDR (ver su nota).
+#   DISENO_EXPERIMENTAL   la fuente NO ES UNA MUESTRA PROBABILISTICA sino un
+#                         EXPERIMENTO ALEATORIZADO de terceros: no hay
+#                         ponderador/estrato/UPM porque no hay marco muestral
+#                         que expandir -- hay BRAZOS de asignacion, y la
+#                         inferencia corre sobre la unidad de aleatorizacion,
+#                         no sobre la UPM de un diseno de muestreo. Se
+#                         distingue de NO_APLICA_REGISTRO_ADMINISTRATIVO (que
+#                         describe un censo/registro: tampoco es muestra, pero
+#                         tampoco tiene asignacion) y de SIN_DISENO_PUBLICADO
+#                         (encuesta que si deberia publicar diseno y no lo
+#                         hace). Valor anadido por ACTO EVAL-COMPARTAMOS-LLAVE3,
+#                         2026-08-25, firma de mesa verbatim (D2): "Valor
+#                         propio, GO, pero asegurandonos que el motor lo
+#                         soporta y que va ligado a lo que queremos construir."
+#                         -> FP-123 FIRMADA+ejecutada.
+#
+#                         CRITERIO PROPIO -- que llena una fila DISENO_EXPERIMENTAL.
+#                         Los tres campos heredados (ponderador/estrato/upm) se
+#                         escriben "no aplica -- experimento" y NO se dejan
+#                         vacios; encima de ellos, cinco campos propios, cada
+#                         uno con CITA (archivo-dentro-del-zip, tabla del repo,
+#                         o columna del microdato), y los cinco son obligatorios:
+#                           1. unidad_y_nivel_aleatorizacion -- que objeto se
+#                              sorteo (individuo/conglomerado/localidad), a que
+#                              nivel, cuantas unidades por brazo, y si hay
+#                              bloqueo/estratificacion del sorteo.
+#                           2. brazos -- cuantos, como se llaman, y que recibio
+#                              cada uno. Si hay mas de dos, se enumeran.
+#                           3. variable_asignacion -- el NOMBRE DE COLUMNA en el
+#                              microdato que porta la asignacion, verificado
+#                              constante dentro de la unidad de aleatorizacion.
+#                              Sin este campo la fila no es DISENO_EXPERIMENTAL:
+#                              es un paquete de replica sin asignacion legible.
+#                           4. cumplimiento_y_atricion -- las columnas que miden
+#                              toma-del-tratamiento y perdida de seguimiento, con
+#                              su universo; "el paquete no lo reporta" si no las
+#                              trae, nunca silencio.
+#                           5. cita_publicacion -- la referencia bibliografica del
+#                              articulo que el paquete replica, con su procedencia
+#                              (si el propio zip no la trae, se dice y se cita de
+#                              donde sale).
+#                         Lo que este estado NO hace: no estima ningun efecto, no
+#                         adjudica llave de identificacion (eso vive en
+#                         forense/registro-llaves-identificacion-v1_0.md) y no
+#                         autoriza al motor a consumir el paquete.
 #
 # Lo que este archivo NO decide: qué fuente se usa para qué constructo
 # (eso es mesa/fichas), ni si el payload existe en disco AHORA MISMO en
@@ -1317,19 +1362,108 @@
     acto que abra los .dta a nivel de caso (no se hizo aquí, fuera del método de este acto que
     solo lista contenidos para esta fuente). 10 payloads en manifiesto (host osf.io).'
 - fuente: openicpsr — Compartamos AEJ (paquete de réplica, RCT de expansión de microcrédito)
-  estado: PENDIENTE
-  ponderador: no determinable en este acto
-  estrato: no determinable en este acto
-  upm: no determinable en este acto
-  donde_vive: Descargas Manuales/116334-V1.zip → Compartamos_AEJ/Main/data/analysis_data_AEJ_pub.dta
-    (raíz descargas_mx)
-  procedencia: Listado de contenidos del paquete de réplica (98 archivos, zipfile.ZipFile.namelist()) --
-    estructura de un experimento aleatorizado por conglomerados (do-files de "Quantile-bootstrap",
-    tablas de resultados), no de una encuesta de muestreo probabilístico convencional.
-  notas: 'No se abrió analysis_data_AEJ_pub.dta a nivel de columna en este acto (quedó fuera por
-    presupuesto de tiempo del acto, no por hallazgo negativo). Es un RCT (aleatorización de
-    tratamiento, no muestreo estratificado/por conglomerados de una encuesta nacional): el
-    vocabulario de "ponderador/estrato/UPM" de este censo está pensado para encuestas
-    probabilísticas nacionales y puede no aplicar de la misma forma a un experimento -- si mesa
-    quiere que este censo cubra RCTs con su propio criterio, es una decisión de alcance nueva,
-    no ejecutada aquí. 2 payloads en manifiesto (host openicpsr.org).'
+  estado: DISENO_EXPERIMENTAL
+  ponderador: 'no aplica — experimento. Barrido sobre las 124 columnas del .dta (nombres que
+    contengan weight/wt/pond/fac/id/folio/hh): cero columnas de expansión, cero identificador
+    de persona u hogar. El propio paquete no usa ninguna: las 60 regresiones de
+    Compartamos_AEJ/Main/Compartamos-AEJ-tables-2-8.do:9-79 corren `regress` sin `[pw=]` y
+    sin `svyset`.'
+  estrato: 'no aplica — experimento. Lo que ocupa el lugar del estrato es el bloque de
+    efectos fijos `supercluster_xi` (etiqueta: "Supercluster - used for fixed effects"),
+    45 valores no vacíos en la ola de seguimiento, entrando como `xi i.supercluster_xi`
+    (Compartamos_AEJ/Main/Compartamos-AEJ-tables-2-8.do:5). No es un estrato de muestreo:
+    es un control de regresión.'
+  upm: 'no aplica — experimento. La unidad de inferencia es el conglomerado de
+    aleatorización, columna `cluster`, y el paquete lo declara al agrupar ahí todos sus
+    errores estándar: `vce(cl cluster)` en las 60 regresiones
+    (Compartamos_AEJ/Main/Compartamos-AEJ-tables-2-8.do:9-79); la nota al pie de sus tablas
+    lo dice con esas palabras — "standard errors clustered by the unit of randomization"
+    (Compartamos_AEJ/Source/Analysis/tables_descriptive/Table-1.do:453, repetida en
+    Appendix-Table-1.do:174-175).'
+  unidad_y_nivel_aleatorizacion: 'CONGLOMERADO (vecindario/zona), no individuo. Derivado del
+    microdato, no supuesto: `Treatment` es constante dentro de los 238 conglomerados de la
+    ola de seguimiento (0 de 238 conglomerados con más de un valor) y `BTreatment` es
+    constante dentro de los 34 conglomerados de línea base (0 de 34). Reparto por brazo —
+    seguimiento: 120 conglomerados tratados y 118 control (238 en total); línea base: 17 y
+    17 (34 en total, partición exacta que sugiere sorteo pareado, no verificado aquí porque
+    el paquete no trae el documento de aleatorización). Bloqueo declarado: ninguno como
+    variable de diseño; lo más cercano es `supercluster_xi` (45 valores en seguimiento),
+    que el paquete usa como efecto fijo de regresión, no como estrato del sorteo. Nivel de
+    agrupación de la inferencia = el mismo conglomerado, ver campo `upm`. Cobertura
+    geográfica según la tabla del propio repo (no según el zip, que no la nombra):
+    "Nogales, Agua Prieta y Caborca, Sonora" (data/mapa-ext-academico-2026-08-06.tsv:4);
+    la nota al pie del paquete solo dice "outlying areas of Nogales"
+    (Compartamos_AEJ/Source/Analysis/tables_descriptive/Appendix-Table-1.do:159-160).'
+  brazos: 'DOS, binarios. `Treatment` (etiqueta "Treatment"): 1 = tratamiento, 0 = control,
+    codificación declarada verbatim por el propio paquete — "treatment assignment
+    (1=Treatment, 0=Control)"
+    (Compartamos_AEJ/Source/Analysis/tables_descriptive/Table-1.do:447-448 y
+    Appendix-Table-1.do:160-161). Reparto de personas en la ola de seguimiento: 8,262
+    tratamiento y 8,298 control, N=16,560. El brazo tratado es apertura de sucursal y
+    promoción de crédito grupal en el conglomerado (expansión de colocación), no entrega
+    de crédito al individuo: la toma es voluntaria, ver `cumplimiento_y_atricion`. No hay
+    tercer brazo ni sub-brazos en el microdato público.'
+  variable_asignacion: '`Treatment` para la ola de seguimiento (definida solo ahí: 16,560
+    no nulos; nula en las 4,963 filas de "Baseline only") y `BTreatment` ("Treatment
+    Assignment") para la línea base (6,778 no nulos, 2,770 tratamiento y 4,008 control).
+    Las dos existen, están etiquetadas y son constantes dentro de su conglomerado
+    respectivo (`cluster` / `BCluster`) — verificado por conteo, no por lectura del
+    codebook. `BTreatment` es la que el paquete usa para la prueba de atrición
+    (Compartamos_AEJ/Source/Analysis/tables_descriptive/Appendix-Table-1.do:117). Origen:
+    apertura del .dta a nivel de columna (nombres + etiquetas) con
+    pandas.io.stata.StataReader, ACTO EVAL-COMPARTAMOS-LLAVE3.'
+  cumplimiento_y_atricion: 'LAS DOS COSAS LAS REPORTA EL PAQUETE, con columna propia.
+    CUMPLIMIENTO (toma del tratamiento): `in_admin` — "Any loan from Compartamos - admin
+    data", registro administrativo del banco, 2,048 de 16,560 = 12.37% en la ola de
+    seguimiento; y `Q21_3_comp` — "Any loan from Compartamos - survey data", lo declarado
+    en encuesta, 1,331 de 15,845 = 8.40%. Las dos cifras son del universo completo de la
+    ola, SIN desglose por brazo: este censo identifica, no mide (la diferencia entre brazos
+    es un efecto y no se calcula aquí). Complemento de conducta de pago:
+    `A_ever_late_not_cond` ("Client was ever late on payments"). ATRICIÓN: `attrited`
+    ("Attrited from baseline survey") y su complemento `surveyed` ("Surveyed from baseline
+    target sample"), definidos solo sobre la muestra buscada para seguimiento (`Targeted`,
+    definida como `!mi(attrited)` en
+    Compartamos_AEJ/Source/ado/Enumerated-types/compartamos_sample.mata:196-197): 2,912
+    personas, de las cuales 1,090 no se volvieron a encontrar (37.43%) y 1,822 sí. El
+    paquete no se limita a marcarla: le dedica una tabla entera de prueba de atrición
+    diferencial (Compartamos_AEJ/Source/Analysis/tables_descriptive/Appendix-Table-1.do,
+    "Appendix Table 1: Attrition", regresión de `surveyed` sobre la asignación y sus
+    interacciones, agrupada por `BCluster`, línea 117).'
+  cita_publicacion: 'EL ZIP NO TRAE LA CITA BIBLIOGRÁFICA — hallazgo, no omisión de este
+    censo. Barrido sobre los 98 archivos del paquete por apellidos, título, revista y DOI
+    (angelucci/karlan/zinman/american economic journal/doi/10.1257): cero coincidencias
+    fuera de los archivos de ayuda de paquetes SSC de terceros. Lo que el zip sí dice de sí
+    mismo: "Readme for AEJ Compartamos source code" (Compartamos_AEJ/Readme.pdf, página 1)
+    y "COPYRIGHT 2015 American Economic Association" (LICENSE.txt:11). La cita completa
+    viene de una tabla del propio repositorio, no del paquete: "Microcredit Impacts:
+    Randomized Microcredit Program Placement Experiment" · "OpenICPSR; Compartamos Banco;
+    Angelucci, Karlan y Zinman" · 2008-2012, seguimiento medio 26-27 meses
+    (data/mapa-ext-academico-2026-08-06.tsv:4). Repositorio de origen:
+    https://www.openicpsr.org/openicpsr/project/116334/version/V1/view
+    (data/manifiesto.yaml, entrada `116334_v1`). El número de volumen/páginas del artículo
+    NO se declara aquí: no está en el corpus y openicpsr.org no se alcanzó en este acto.'
+  donde_vive: 'Descargas Manuales/116334-V1.zip → Compartamos_AEJ/Main/data/analysis_data_AEJ_pub.dta
+    (raíz descargas_mx). sha256 del zip verificado contra manifiesto en este acto —
+    776d56bf91535beaecef9480c352b022c3aec1ec7fae36c969ccdf6c8cc89d1c, coincide.'
+  procedencia: 'Apertura a nivel de COLUMNA del .dta (124 variables, nombres y etiquetas,
+    21,523 filas) más lectura de los do-files y del Readme.pdf del propio paquete, ACTO
+    EVAL-COMPARTAMOS-LLAVE3, 2026-08-25. Sustituye —no borra— la procedencia anterior de
+    esta fila, que era listado de nombres de archivo (98 archivos,
+    zipfile.ZipFile.namelist(), RECENSO-DISEÑO-2, 24/ago/2026). Cada dato de los cinco
+    campos propios cita su archivo-dentro-del-zip; los conteos (238/34 conglomerados,
+    120/118 y 17/17, 16,560, 2,912, 12.37%, 37.43%) se derivan del microdato, no del
+    codebook — el paquete no trae codebook, su Readme remite a un "Data Appendix" que NO
+    viene dentro del zip (Compartamos_AEJ/Readme.pdf, página 1).'
+  notas: 'Fila que estrena el estado DISENO_EXPERIMENTAL y cierra FP-123 (el vocabulario de
+    cuatro valores no tenía dónde poner un experimento). Los tres campos heredados quedan
+    "no aplica — experimento" CON razón escrita, no vacíos. Discrepancia declarada, no
+    resuelta: data/mapa-ext-academico-2026-08-06.tsv:4 dice "16,560 mujeres; 250
+    vecindarios" — el N coincide exacto, el número de conglomerados NO: el microdato trae
+    238 en la ola de seguimiento. No se corrige esa tabla desde aquí (fuera del perímetro
+    de este acto); queda como hallazgo. Lo que esta fila NO hace: no estima ningún efecto
+    (ni siquiera la toma de tratamiento por brazo), no adjudica la llave de identificación
+    —eso vive en forense/registro-llaves-identificacion-v1_0.md, fila CAL-EXP-1, que este
+    mismo acto abre SELLADA_NO_EJERCIDA— y no autoriza al motor a consumir el paquete: el
+    censo de procedencia de milpa/ no tiene clase para evidencia experimental de terceros
+    y el contrato de celda-D no tiene valor de `diseno_datos` para ella (propuesta mínima
+    en la nota del acto, sin implementar). 2 payloads en manifiesto (host openicpsr.org).'
