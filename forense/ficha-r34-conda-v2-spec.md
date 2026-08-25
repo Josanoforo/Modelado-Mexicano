@@ -264,3 +264,133 @@ función de enlace), dejando la ejecución al acto sucesor. `FP-104` se actualiz
 `ABIERTA` hasta que `FP-136` corra y la escala de §5 se reevalúe con la serie nueva.
 
 **Perímetro de esta enmienda.** Solo este §9, añadido; ningún párrafo de §1–§8 se edita hacia atrás.
+
+---
+
+## 10 · Enmienda fechada — serie homogénea localizada, 25/ago/2026 (`ACTO SERIE-HOMOGENEA-CODI`, `FP-142`)
+
+**Esta enmienda se escribe ANTES de adoptar veredicto.** Congela la re-especificación; la razón se computa en el
+commit siguiente y **el primer resultado que produzca es el que se reporta** (§8, sin cambio). Declaración honesta
+de límite: el barrido que localiza la serie necesariamente ve las magnitudes —viven en la misma celda que el
+rótulo—, así que lo que este §10 congela no es la ignorancia del número sino **el procedimiento, la ventana, la
+dirección de la razón y las reservas**, todos fijados aquí y no reabiertos después.
+
+### 10.1 · La premisa del encargo, verificada contra el árbol y corregida
+
+El encargo enuncia lo que falta como «**cuentas SPEI** (para cuenta↔cuenta) o **personas CoDi** (para
+persona↔persona)». Las dos son `NO-ENCONTRADO`. Lo que sí existe es una **tercera unidad que el encargo no
+enumera**: `operaciones ↔ operaciones`. El texto que gobierna es el de `FP-142` —«una serie que reporte, **en la
+misma unidad, el mismo constructo** para CoDi y para SPEI»—, que no fija cuál unidad; la enumeración del encargo
+se queda corta, no es falsa.
+
+Segunda premisa corregida: el encargo dice «**22 payloads**» de `EXPLORA-2`. Son **20**, los 20 del directorio
+`R3.4_Banxico_CoDi_SPEI` y los 20 registrados en `data/manifiesto.yaml` (`grep` por `archivo`). El «22» del encargo
+de `EXPLORA-2` es su `22/22 COINCIDE+ÍNTEGRO` de las **cinco olas de ENIF**, otra cosa.
+
+### 10.2 · Universo del barrido (A.4) y prueba de que los comandos corrieron (A.13)
+
+**Universo:** los **seis** Informes Anuales IdMF del corpus (2019, 2020, 2021, 2022, 2023, 2024), 547 páginas,
+volcados con **doble extractor** — `pdftotext -layout` (poppler) y `pypdf` 6.16.1 — a **12 archivos** de texto
+paginado. Ninguna fuente fuera de esos seis; este acto **no adquiere**.
+
+| candidato de constructo homogéneo | lado SPEI | lado CoDi | veredicto (A.4) |
+|---|---|---|---|
+| **número de operaciones** | Cuadro A 1, «Número de operaciones (millones)» | Cuadro A 8, «Número de operaciones (millones/miles)» | **`EXISTE-SATISFACE`** |
+| **monto** (pesos constantes) | Cuadro A 1, «Monto (miles de millones …)» | Cuadro A 8, «Monto (miles de millones / millones …)» | **`EXISTE-SATISFACE`** |
+| personas | Cuadro A 3, «Número de personas (millones)» | — | `NO-ENCONTRADO` |
+| cuentas | — | «Número de cuentas validadas (miles)» | `NO-ENCONTRADO` |
+
+Los dos negativos, con su conteo de archivos examinados y su control positivo, corridos con `command grep` (el
+`grep` de esta caja envuelve `ugrep -I` y descarta no-UTF8 en silencio):
+
+- **personas del lado CoDi:** `codi.*personas|personas.*codi` sobre los **12** volcados → 5 líneas, **las 5 prosa**
+  («CoDi permite que las personas que cobran…», y una cabecera de un cuadro de *cuentas* en CoDi por tipo de
+  persona), **ninguna serie**. Control positivo en los mismos 12 archivos: `personas` a secas → 7/22/19/34/43/53
+  líneas por año.
+- **cuentas del lado SPEI:** `spei.*cuenta|cuenta.*spei` sobre los 6 volcados → 13 líneas, **las 13 prosa**.
+  Control positivo: `cuenta` → 38/72/57/53/45/37 líneas por año.
+- **CoDi en las series vivas del SIE no sirve de alternativa:** `CF884` (operaciones CoDi) trae **4 fechas
+  distintas** en todo el HTML (25, 26, 27/jul/2026 y 30/sep/2019) — confirma la limitación 2 del §7 y descarta la
+  vía SIE para el lado CoDi.
+
+### 10.3 · La serie re-especificada
+
+**Constructo:** *transferencias liquidadas — número de operaciones.* **Unidad: operaciones.** Los dos lados salen
+del **mismo documento**, del **mismo apéndice estadístico** y de la **misma fuente primaria**.
+
+**Ancla, donde la homogeneidad es literal y no necesita ni conversión de prefijo — Informe Anual IdMF 2023:**
+
+| lado | cuadro | página física / impresa | rótulo verbatim | 2023 |
+|---|---|---|---|---|
+| SPEI | Cuadro A 1 · «Evolución de transferencias en SPEI 1/», fila `Total` | 67 / 57 | **«Número de operaciones (millones)»** | **3 823.0** |
+| CoDi | Cuadro A 8 · «Evolución de transferencias en CoDi, 2023» | 72 / 62 | **«Número de operaciones (millones)»** | **4.017** |
+
+**Serie completa** (los dos lados en millones de operaciones; el Informe 2024 publica el lado CoDi en *miles*, que
+es el mismo rótulo con otro prefijo decimal):
+
+| año | CoDi | SPEI | fuente CoDi | fuente SPEI |
+|---|---|---|---|---|
+| 2020 | 1.012 | 1 226.1 | Inf. 2022 p69/59 y Inf. 2023 p72/62 | Inf. 2022 p65/55 |
+| 2021 | 2.453 (= 2 453.4 miles) | 1 991.7 | Inf. 2022/2023/2024 | Inf. 2022/2023/2024 |
+| 2022 | 3.008 (= 3 008.0 miles) | 2 787.0 | Inf. 2022/2023/2024 | Inf. 2022/2023/2024 |
+| 2023 | 4.017 (= 4 016.7 miles) | 3 823.0 | Inf. 2023 p72/62 · Inf. 2024 p86/76 | Inf. 2023 p67/57 · Inf. 2024 p83/73 |
+| 2024 | 4 164.2 miles | 5 336.6 | Inf. 2024 p86/76 | Inf. 2024 p83/73 |
+
+**Control de reconciliación entre ediciones, no cosmético:** SPEI 2021/2022/2023 sale **idéntico** en las tres
+ediciones que lo publican, y CoDi 2021/2022/2023 reconcilia entre la edición que lo da en millones y la que lo da
+en miles hasta el redondeo (`2.453` ↔ `2 453.4` · `3.008` ↔ `3 008.0` · `4.017` ↔ `4 016.7`). Una cifra que
+sobrevive a tres impresiones distintas del mismo emisor no es un artefacto de extracción.
+
+### 10.4 · Por qué esto no es la razón que `A-bis` regla 3 prohíbe
+
+La regla prohíbe comparar **escalas distintas** y llama a eso *«un error de categoría»*
+(`instrucciones-proyecto-v2_11.md:85`, citado ya en §3). `cuentas` contra `personas físicas` es un error de
+categoría: son universos de objetos distintos y hace falta una función de enlace que nadie firmó. `miles de
+operaciones` contra `millones de operaciones` **no es una categoría distinta**: es **la misma unidad** con otro
+prefijo decimal, y en el ancla de 2023 **ni siquiera hay prefijo que convertir**. Esta lectura es **la que este
+acto propone**; no es firma de mesa.
+
+### 10.5 · Ventana — se re-declara, y se dice por qué
+
+La ventana **`4T-2024`** del §6 **se retira para esta re-especificación** y se sustituye por **año calendario**,
+con ancla en **2023** y serie de robustez **2020-2024**. Razón medida, no de conveniencia: en el lado SPEI el
+Cuadro A 1 sólo publica **anual**; el único desglose mensual de SPEI vive en el **Cuadro A 2**, cuyo universo
+**no es el del Cuadro A 1** (A 2 excluye DALI, CLS y devoluciones; A 1 excluye además pagos de terceros a
+participantes, de participantes a terceros y de participantes a participantes). Partir el año con A 2 y compararlo
+contra un CoDi tomado de A 8 mezclaría dos universos — exactamente lo que `A-bis` regla 4 prohíbe. La ventana
+nueva es **más larga y mejor formada** que la que sustituye, no un recorte.
+
+### 10.6 · Reservas pre-declaradas, antes de correr
+
+1. **⚠️ Contención — reserva nueva, que la ficha no tenía.** La nota `1/` del Cuadro A 1 dice, verbatim, que en
+   usuarios finales **«se incluye … las transferencias de CoDi»**. Es decir: **CoDi está dentro de SPEI**, no
+   enfrente. La razón es parte/todo, no tratado/comparador. Se declara aquí y se computa además la variante
+   `CoDi / (SPEI − CoDi)` en la corrida, para que se vea si el veredicto depende de ello.
+2. **Antigüedad (§2), intacta.** Quince años de mercado separan a los dos lados; ninguna lectura atribuye la
+   brecha entera a `utilidad_marginal_sobre_sustituto`.
+3. **Sin intervalo de confianza.** Son puntos de informe anual. Rige la contraparte de `A-bis`: un punto sin IC
+   **no adjudica solo**; el resultado sube como **propuesta**, y adjudica mesa.
+4. **El constructo cambia respecto del §3.** El §3 eligió el constructo (ii), *«cuentas que utilizaron CoDi
+   durante el trimestre»*, y ese término sellado **no se retira**: sigue siendo el término correcto para el lado
+   CoDi. Lo que este §10 constata es que **no tiene contraparte SPEI en ninguna unidad**, y que la homogeneidad
+   que `L3`-`b` ordena sólo se alcanza sobre *operaciones*. Se declara que `operaciones` es **uso agregado** y
+   mezcla margen extensivo e intensivo: no es idéntico a «cuántos usaron».
+5. **El umbral no se mueve.** `A < 10 %`, `ASIGNADO`, heredado (§5).
+
+### 10.7 · Cómo se lee la escala del §5 por esta vía
+
+Las filas `A1` y `A2` del §5 condicionan a *«razón computada con enlace firmado»*, y la `A3` a *«enlace de escala
+sin firmar»*. Bajo la opción `b` de `L3` **no hay enlace que firmar**: mesa retiró esa vía entera. Por tanto:
+
+- **`A3` deja de aplicar** a este par — no porque se resuelva un enlace, sino porque el par ya no cruza escalas.
+- **`A1`/`A2` se leen con la cláusula sustituida**: «razón computada **sobre unidad homogénea, sin enlace**».
+  Sustitución **propuesta por este acto**, no sellada; si mesa la rechaza, el par vuelve a `A3` y `FP-104` sigue
+  abierta.
+- La fila de no-refutación (`B-bis`) del §5 sigue rigiendo tal cual: si el par no refuta, la regla queda
+  **acotada**, no corroborada.
+
+Las dos lecturas que el §3 dejó escritas por adelantado —**0.35 %**{cita-historica} (cuentas/personas, la que
+`A-bis` 3 prohíbe) y **12.7 %**{cita-historica} (capa máquina pre-D3, que `ADR-146` no hereda)— **siguen sin
+adoptarse**, ni como confirmación ni como contraste.
+
+**Perímetro de esta enmienda.** Sólo este §10, añadido. Ningún párrafo de §1-§9 se edita hacia atrás.
