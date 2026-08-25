@@ -15316,3 +15316,111 @@
   formato: zip
   licencia: no declarada por la fuente
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: adqcorre_r74r75_gdelt_masterreducedv2
+  usado_para: 'R7.4/R7.5 (ACTO ADQ-CORRE-R74R75) -- candidata a insumo del falsador compartido:
+    universo de eventos GDELT global 1979-2013, formato reducido (GDELT 1.0 Event Database,
+    GLOBALEVENTID/EventRootCode/ActionGeo_*). NO trae universo Mexico construido, NO trae
+    deduplicacion de noticias, NO trae clasificacion agravio/respuesta ni entorno rural/urbano
+    -- todo eso lo declara pendiente la cola (fila GDELT, columna destraba_condicional_faltante)
+    y debe construirse en la spec de medicion.'
+  url_origen: https://data.gdeltproject.org/events/GDELT.MASTERREDUCEDV2.1979-2013.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: agente, vía data.gdeltproject.org, curl -sL (redirect 301 http->https),
+    HTTP 200
+  archivo: ADQCORRE_R74R75_GDELT/GDELT.MASTERREDUCEDV2.1979-2013.zip
+  sha256: a9f0a4ff225803c35a86a8b34a1f02328b90e3f1491b402c47b877e625430e6f
+  tamano_bytes: 1088704384
+  formato: 'ZIP (1 miembro: GDELT.MASTERREDUCEDV2.TXT, 6581409407 bytes descomprimido, TSV
+    sin encabezado, formato GDELT 1.0 Event Database reducido)'
+  licencia: GDELT Global Knowledge Graph/Event Database -- datos derivados de fuentes de noticias
+    abiertas, uso libre citando GDELT Project (https://www.gdeltproject.org/about.html#termsofuse);
+    texto completo no verificado, solo la referencia
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-CORRE-R74R75, PARTE A. url_conocida de la cola (linea 12) es www.gdeltproject.org/data.html,
+    una pagina indice, no un archivo -- este es el enlace de descarga masiva historica que
+    esa pagina ofrece directamente bajo ''Raw Data Files''. No se descargo el stream diario
+    GDELT 2.0 (2015-presente, miles de archivos) por alcance: este acto adquiere el bulk historico
+    que la propia pagina destaca como punto de entrada; el stream 2.0 queda fuera y no se
+    declara adquirido.'
+
+- id: adqcorre_r74r75_gdelt2_export_mx_20260824
+  usado_para: 'R7.4/R7.5 (ACTO ADQ-CORRE-R74R75) -- CORRECCION de adquisicion: el archivo
+    adqcorre_r74r75_gdelt_masterreducedv2 (GDELT 1.0 reducido, 1979-2013) resulto, al inspeccionarlo
+    byte a byte, ser un agregado diario actor-par-CAMEO SIN columna de pais (Source/Target
+    son codigos CAMEO de 3 letras que mezclan pais/region/rol, no ISO), sin texto de articulo/headline,
+    geo casi siempre vacio -- estructuralmente inservible para aislar Mexico o clasificar
+    agravio/respuesta. Este archivo es el correcto: 96 archivos .export.CSV.zip reales de
+    gdeltv2 (GDELT 2.0), un dia UTC completo (2026-08-24, 00:00-23:45, 15 min de cobertura
+    c/u), tar.gz de los 96 zips originales sin modificar. Filtrado a Mexico por ActionGeo_CountryCode==''MX''
+    (columna 54, mecanismo ya validado por acto previo GDELT-UCDP-RECON, 2026-08-13): 487
+    de 97,839 filas totales del dia. EventRootCode en esas 487: PROTESTA (14) = 1 fila (0.2%);
+    codigos adyacentes a violencia (18/19/20) = 26 filas (19:19, 18:7, 20:0), las 26 inspeccionadas una por una -- articulos
+    reales sobre entretenimiento, deportes, economia, narcotrafico generico, NINGUNO describe
+    un caso real de agravio+entorno->autodefensa. Confirma en datos reales el caveat de la
+    cola (ruido/dedup/cobertura) y ademas: ActionGeo_FullName da solo nombre de lugar en texto
+    libre, no hay bandera rural/urbano codificada -- mismo hueco de construccion que MassMobilization
+    y UCDP.'
+  url_origen: https://data.gdeltproject.org/gdeltv2/ + masterfilelist.txt (indice), 96 URLs
+    individuales 20260824000000..20260824234500.export.CSV.zip
+  fecha_descarga: '2026-08-24'
+  descargado_por: agente, vía data.gdeltproject.org/gdeltv2/, curl -sL en paralelo (xargs
+    -P8), 96/96 HTTP 200, 96/96 ZIP validos (zipfile.testzip, sin CRC-FAIL)
+  archivo: ADQCORRE_R74R75_GDELT2_MX20260824/gdeltv2-export-20260824-96files.tar.gz
+  sha256: d5149334cb9ea96d08f997a164ded55b76bb4dc31d7fa905a238e75f0f6a0d64
+  tamano_bytes: 6201400
+  formato: tar.gz de 96 miembros ZIP (gdeltv2 .export.CSV.zip nativos, TSV de 61 columnas
+    sin encabezado, esquema GDELT 2.0 Event); 97,839 filas totales el dia, 487 con ActionGeo_CountryCode=MX
+  licencia: GDELT Global Knowledge Graph/Event Database -- uso libre citando GDELT Project
+    (https://www.gdeltproject.org/about.html#termsofuse); texto completo no verificado, solo
+    la referencia
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO ADQ-CORRE-R74R75, PARTE A, corrida de correccion tras inspeccionar adqcorre_r74r75_gdelt_masterreducedv2.
+    Ventana de 1 dia UTC (96 archivos de 96 posibles, cobertura completa) elegida por ser
+    la mas reciente totalmente cerrada segun gdeltv2/lastupdate.txt (ultimo timestamp real
+    20260825041500 al momento de la corrida). 487 filas MX de 1 dia es consistente con la
+    extrapolacion previa de GDELT-UCDP-RECON (~532 filas MX/dia estimadas desde una muestra
+    de 13/96 archivos, factor x7.4) -- validacion cruzada entre dos actos independientes.
+    Extraccion mx_rows.tsv (las 487 filas) vive en scratchpad de este acto, no en data/raw
+    (es derivado, no payload crudo).
+
+- id: adqcorre_r74r75_massmobilization_mmall_v16
+  usado_para: 'R7.4/R7.5 (ACTO ADQ-CORRE-R74R75) -- candidata a insumo del falsador compartido:
+    Mass Mobilization Project, dataset global mmALL v16 (transnacional, 1990-2020, un registro
+    por evento de protesta). 17,145 filas totales, 153 con country==''Mexico'' (rango real
+    1990-2020 -- CORRIGE el caveat de la cola linea 15/16, que dice ''termina 2018'': el archivo
+    v16 real llega a 2020). Es dataset SOLO de protesta por diseno de inclusion -- no puede,
+    por construccion, contener la rama ''autodefensa'' del falsador de R7.4/R7.5 (0 de 153
+    filas describen autodefensa/vigilantismo mas alla de 1 mencion tangencial en texto libre).
+    Campo ''location'' es texto libre de lugar (ej. ''Taxco'', ''western Michoacan state'')
+    -- no trae bandera rural/urbano codificada.'
+  url_origen: https://dataverse.harvard.edu/api/access/datafile/4291457 (Harvard Dataverse,
+    doi:10.7910/DVN/HTTWYL, archivo mmALL_073120_v16.tab)
+  fecha_descarga: '2026-08-24'
+  descargado_por: agente, vía dataverse.harvard.edu, curl -sL (redirect 303 a descarga directa),
+    HTTP 200
+  archivo: ADQCORRE_R74R75_MASSMOB/mmALL_073120_v16.tab
+  sha256: 3a175c20bc1d552c965fad4f84921b9dc13a84b110b0fcfdf76b7115c33c2d7c
+  tamano_bytes: 15534524
+  formato: TSV con encabezado, 30 columnas (id,country,ccode,year,region,protest,protestnumber,fechas,protesterviolence,location,participants_category,participants,protesteridentity,protesterdemand1-4,stateresponse1-7,sources,notes)
+  licencia: CC0 1.0 (Harvard Dataverse, dataset publico); texto completo no verificado, solo
+    la referencia de la pagina del dataset
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO ADQ-CORRE-R74R75, PARTE A. url_conocida de la cola (linea 15, MASS_MOBILIZATION_PROTEST_DATA)
+    es massmobilization.github.io/, un sitio de presentacion sin enlace directo al dato --
+    el dato real vive en Harvard Dataverse (enlazado desde ese sitio: ''https://dataverse.harvard.edu/dataverse/MMdata''),
+    un solo dataset (doi:10.7910/DVN/HTTWYL) con 2 versiones del mismo archivo global (mmALL_073120_csv.tab
+    y _v16.tab) mas un manual de usuario PDF. Se registra la v16 por ser la version mas reciente
+    segun su propio nombre. HALLAZGO DE TERRENO, verificado, que afecta a 2 de las 5 filas
+    de la cola: MASS_MOBILIZATION_DATA_PROJECT_EVENTOS_MEXICO (linea 14) y MASS_MOBILIZATION_PROTEST_DATA_MEXICO
+    (linea 16) NO son fuentes separadas -- son el mismo dataset global mmALL filtrado a Mexico
+    (country==''Mexico''), no un archivo/endpoint propio. Verificado por: (a) la coleccion
+    Dataverse del proyecto tiene exactamente 1 dataset con 2 archivos de datos, ambos globales,
+    ninguno con ''Mexico'' en nombre/metadato; (b) sitio massmobilization.github.io (index/about/maps/mmChangepoint)
+    sin mencion de ''Mexico'' en ninguna pagina (grep -io vacio en las 4); (c) github.com/MassMobilization
+    vía API devuelve 404 (no es una organizacion con repos publicos); (d) tests/manifiesto.py
+    --registra confirmo por su propia regla de dedup por sha256 que no hay un segundo archivo
+    distinto que registrar bajo otro id -- intentarlo habria producido el mismo error que
+    produjo para UCDP. Las columnas estado_adquisicion_R74R75/ids_manifiesto_R74R75 de esas
+    2 filas en la cola apuntan a este mismo id, con la leyenda explicita de que no es una
+    adquisicion nueva.'
