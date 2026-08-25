@@ -1,5 +1,5 @@
 # ACTO EVAL-COMPARTAMOS-LLAVE3 — el primer renglón de la clase (iii)
-### Nota de cierre · 25 de agosto de 2026 · entorno UBUNTU · modelo Opus · `ADR-161`
+### Nota de cierre · 25 de agosto de 2026 · entorno UBUNTU · modelo Opus · `ADR-162`
 
 > | | |
 > |---|---|
@@ -23,7 +23,7 @@ Y el amarre al motor que la firma de mesa exigió — *«asegurándonos que el m
 
 **1 · REPO.** Clon existente `/home/pc0/Modelado-Mexicano`; worktree propio `/home/pc0/mm-eval-compartamos`, rama `eval-compartamos`. No se clonó nada nuevo.
 
-**2 · SHA.** Base al arrancar: `21ab042` (`Merge pull request #326`, `ACTO ADQ-CORRE-R74R75`). `origin/main` **se movió dos veces mientras este acto estaba abierto**, y las dos se absorbieron antes de cerrar: primero a `e8ce5ef` (`PR #327`, `ACTO SPEC-R10.1-v2`, que trajo `ADR-159`), fusionado en la rama antes de numerar, sin conflicto; después a `e70b424` (`PR #328`, `ACTO R34-CONDA-V2`), que se llevó `ADR-160` y las filas `FP-129`/`FP-130` — los tres rótulos que este acto ya había candidateado. Se rebasó sobre esa punta y se renumeró (ver §9). Base final del acto: **`e70b424`**.
+**2 · SHA.** Base al arrancar: `21ab042` (`Merge pull request #326`, `ACTO ADQ-CORRE-R74R75`). `origin/main` **se movió tres veces mientras este acto estaba abierto**, y las tres se absorbieron antes de cerrar: a `e8ce5ef` (`PR #327`, `ACTO SPEC-R10.1-v2`, que trajo `ADR-159`), fusionado sin conflicto antes de numerar; a `e70b424` (`PR #328`, `ACTO R34-CONDA-V2`), que se llevó `ADR-160` **y** las filas `FP-129`/`FP-130` — los tres rótulos que este acto ya había candidateado; y a `a5f1bf6` (`PR #329`, `ACTO BANDAS-DOC-6`), que se llevó el `ADR-161` al que este acto acababa de renumerar. Se rebasó sobre cada punta y se renumeró cada vez (ver §9). Base final: **`a5f1bf6`**.
 
 **3 · `data/raw`.** Enlace simbólico al corpus compartido (`/home/pc0/mm-corpus/raw`). Cero descargas en todo el acto.
 
@@ -243,13 +243,20 @@ Tres piezas, en este orden, ninguna ejecutada en este acto (`milpa/` no se toca,
 
 Las dos filas nuevas citan en `dónde` los archivos nuevos del acto, que es lo que `T22`(b) exige de todo documento nuevo que traiga un marcador de decisión sin resolver.
 
-**Cascada, con doble renumeración.** `ADR-161` se candidateó primero como `ADR-160`, contra el máximo verificado sobre el árbol ya fusionado con `origin/main = e8ce5ef`. **`PR #328` (`ACTO R34-CONDA-V2`) fusionó mientras esto corría y se llevó `ADR-160`** — y, por la misma coincidencia de fecha, también `FP-129` y `FP-130`, que este acto había candidateado para sus dos filas de tablero. Aplicada la regla del encargo —*renumera quien fusiona segundo*—, este acto se rebasó sobre `e70b424` y quedó en **`ADR-161`**, **`FP-131`** y **`FP-132`**.
+**Cascada, con TRES renumeraciones.** El ADR de este acto se candidateó primero como `ADR-160`, contra el máximo verificado sobre el árbol ya fusionado con `origin/main = e8ce5ef`. Después:
 
-**Cómo se resolvió la colisión, y qué se verificó.** Los tres archivos que chocaron (`canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md`, `forense/firmas-pendientes.tsv`) se resolvieron **por unión**, nunca eligiendo un lado: el cuerpo del `ADR-160` ajeno queda intacto y el mío entra después como `ADR-161`; las filas `FP-129`/`FP-130` de `R34-CONDA-V2` quedan intactas y las mías entran después; y en `estado` cada entrada de recifrado ajena se conserva completa con la mía antepuesta. Una primera pasada de renumeración tocó por error tres referencias ajenas dentro de líneas compartidas —esas líneas son párrafos enteros donde conviven entradas de varios actos—; se detectó comparando contra `origin/main` y se corrigió restaurando el archivo desde la punta y re-aplicando las ediciones una por una. Verificación final: `161` ADR sin huecos, `132` filas de tablero sin ids duplicados y con 9 columnas cada una, y ninguna referencia ajena movida.
+| fusionó | se llevó | este acto pasó a |
+|---|---|---|
+| `PR #328` · `ACTO R34-CONDA-V2` | `ADR-160`, `FP-129`, `FP-130` | `ADR-161`, `FP-131`, `FP-132` |
+| `PR #329` · `ACTO BANDAS-DOC-6` | `ADR-161` | **`ADR-162`** (las filas de tablero no vuelven a moverse) |
 
-`canon/estado-programa-v1_10.md` recifra `160` → `161` ADR, llaves `3 de 3` → `3 de 4`, y `147` → `148` WARN. Ningún otro contador se mueve.
+Aplicada cada vez la regla del encargo —*renumera quien fusiona segundo*—, con el máximo re-derivado por `grep` sobre el árbol ya fusionado, nunca por aritmética. Estado final: **`ADR-162`**, **`FP-131`**, **`FP-132`**, sobre `a5f1bf6`.
 
-**Suite.** Corrida con `--baseline`, que es el modo que gobierna (el modo plano da su cifra de siempre y no dice si algo es **nuevo**). Resultado al cierre: **19 FAIL · 148 WARN · LÍNEA BASE VERDE**, sin entradas nuevas frente a `tests/baseline.json`. El movimiento neto de WARN es **+1** sobre la punta (`147`): `+2` de `T22`(a) por `FP-131` y `FP-132`, `−1` porque `FP-123` sale de `ABIERTA` con `ejecutada_en` lleno el mismo día —así que tampoco entra al WARN de `T22`(c)—. Los dos FAIL propios fueron de `T15` (`gobernanza`/`estado` desincronizados tras renumerar a `ADR-161`), cerrados dentro del acto. Se verificó también que la base estaba VERDE **antes** de tocar nada, para no atribuirse un desfase heredado — lo estaba. `tests/baseline.json` no se recongela: `ADR-76(f)` exige ADR de mesa para eso y este acto no lo trae firmado.
+**Cómo se resolvió la colisión, y qué se verificó.** Los tres archivos que chocaron (`canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md`, `forense/firmas-pendientes.tsv`) se resolvieron **por unión**, nunca eligiendo un lado: el cuerpo del `ADR-160` ajeno queda intacto y el mío entra después como `ADR-162`; las filas `FP-129`/`FP-130` de `R34-CONDA-V2` quedan intactas y las mías entran después; y en `estado` cada entrada de recifrado ajena se conserva completa con la mía antepuesta. Una primera pasada de renumeración tocó por error tres referencias ajenas dentro de líneas compartidas —esas líneas son párrafos enteros donde conviven entradas de varios actos—; se detectó comparando contra `origin/main` y se corrigió restaurando el archivo desde la punta y re-aplicando las ediciones una por una. Verificación final: `161` ADR sin huecos, `132` filas de tablero sin ids duplicados y con 9 columnas cada una, y ninguna referencia ajena movida.
+
+`canon/estado-programa-v1_10.md` recifra `161` → `162` ADR, llaves `3 de 3` → `3 de 4`, y `145` → `146` WARN. Ningún otro contador se mueve.
+
+**Suite.** Corrida con `--baseline`, que es el modo que gobierna (el modo plano da su cifra de siempre y no dice si algo es **nuevo**). Resultado al cierre: **19 FAIL · 146 WARN · LÍNEA BASE VERDE**, sin entradas nuevas frente a `tests/baseline.json`. El movimiento neto de WARN es **+1** sobre la punta (`145`): `+2` de `T22`(a) por `FP-131` y `FP-132`, `−1` porque `FP-123` sale de `ABIERTA` con `ejecutada_en` lleno el mismo día —así que tampoco entra al WARN de `T22`(c)—. Los FAIL propios fueron de `T15` y `T16` (`gobernanza`/`estado` desincronizados tras cada renumeración, y dos cifras de un acto ajeno que mi `+1` volvió históricas — se les puso `{cita-historica}`, que es el mecanismo que la casa ya usa), cerrados dentro del acto. Se verificó también que la base estaba VERDE **antes** de tocar nada, para no atribuirse un desfase heredado — lo estaba. `tests/baseline.json` no se recongela: `ADR-76(f)` exige ADR de mesa para eso y este acto no lo trae firmado.
 
 ---
 
