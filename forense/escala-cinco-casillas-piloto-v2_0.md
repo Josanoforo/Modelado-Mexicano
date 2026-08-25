@@ -26,7 +26,9 @@ Copiado verbatim de `forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md:42` (§B, p
 
 Tomada íntegra de `forense/adv-duelo/ADV1-M5-v2-propuesta-2026-08-20.md`, sellada por la firma de mesa de la cabecera. Remito a esa propuesta para el detalle completo; aquí queda la capa operativa:
 
-**Eje único (§2 de la propuesta).** Ya implementado en `forense/prereg-duelo-v2/scoring-adv1-m3.py:74` (`def skill`): `s = 1 − error_corredor / error_baseline`, contra `B` como baseline, uno por corredor (`s_L-solo`, `s_L+corpus`, `s_M`, `s_E`). `Δs = s_A − s_B` entre corredores. El intervalo del agregado sale de remuestreo pareado entre celdas, no del `EE` del árbitro por celda.
+**Eje único (§2 de la propuesta).** Ya implementado en `forense/prereg-duelo-v2/scoring-adv1-m3.py` (`def skill`): `s = 1 − error_corredor / error_baseline`, contra `B` como baseline, uno por corredor (`s_L-solo`, `s_L+corpus`, `s_M`, `s_E`). `Δs = s_A − s_B` entre corredores. El intervalo del agregado sale de remuestreo pareado entre celdas, no del `EE` del árbitro por celda.
+
+**Nota de implementación post-`PR #330` — 25/ago/2026 · reserva de interfaz, no enmienda normativa.** La capa sellada mantiene `L-solo`, `L+corpus`, `M` y `E`, y sigue sin resolver cuál variante `L` ocupa el rol adjudicante cuando ambas existen. Por esa razón, el ejecutable materializado por `PR #330` exige `comparacion_principal_id` predeclarada y sin *default*. El universo principal implementado es el pareo de esa `L` seleccionada con `M`. `E` y la `L` no seleccionada tienen universos auxiliares propios; su ausencia no elimina celdas del *scope* principal. Esta nota describe la interfaz del ejecutable y no resuelve normativamente la reserva de cuál-`L`.
 
 **Márgenes (§3 de la propuesta).** Línea del mínimo `s = 0`, no negociable. Banda de indiferencia `±Δ`: **no se fija aquí** — `D-iv` (FIRMADA 19/ago) ordena que el acto de pre-registro la derive de los `EE` reales del set y traiga el número con su justificación; mesa la firma aparte. El estimado puntual nunca adjudica: solo la posición del intervalo.
 
