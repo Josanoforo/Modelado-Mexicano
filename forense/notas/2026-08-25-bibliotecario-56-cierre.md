@@ -1,6 +1,6 @@
 # ACTO BIBLIOTECARIO-56 — la prueba pendiente del marco (`FP-93`), corrida
 
-**Cierre.** 25/ago/2026 · Entorno **UBUNTU** · Modelo Opus · Encargo: `forense/encargos/2026-08-25-BIBLIOTECARIO-56.md` · ADR: **`ADR-162`** (candidateado, a re-verificar por quien fusione) · Base `21ab042`, fusionada a `a5f1bf6` a mitad del acto.
+**Cierre.** 25/ago/2026 · Entorno **UBUNTU** · Modelo Opus · Encargo: `forense/encargos/2026-08-25-BIBLIOTECARIO-56.md` · ADR: **`ADR-163`** (candidateado, a re-verificar por quien fusione — es la **tercera** renumeración de este acto) · Base `21ab042`, fusionada a `e70b424`, `a5f1bf6` y `7848b97` durante el acto.
 
 > **Nota de nombre de archivo.** El encargo pide la nota como `2026-08-25-bibliotecario-56.md` {cita-ilustrativa}. Se escribe con sufijo `-cierre` porque el nombre literal colisiona bajo `T02` con el propio encargo archivado (`2026-08-25-BIBLIOTECARIO-56.md`): `T02` normaliza a minúsculas y quita todo lo que no sea alfanumérico, así que los dos nombres caen en `20260825bibliotecario56md`. Es la autocolisión encargo↔nota ya documentada; la convención de la casa (`-cierre` en la nota) la resuelve sin inventar nada.
 
@@ -142,7 +142,7 @@ grep -ic inegi data/indice-canastas-2026-08-08.tsv          → 17163  (de 17163
 'compartamos' · 'findep' · 'azteca'                          → 0 y 0 en los dos índices
 ```
 
-Ocho filas quedan por tanto fuera del alcance **por construcción, no por fallo de búsqueda**: `DIN-07`, `DIN-08`, `DIN-09`, `DIN-10`, `DIN-12` (Encuesta de Competencias Financieras, Banxico/CNBV) y `DOC-03`, `DOC-05`, `DOC-06` (CNBV / BMV / HR Ratings). Su `NO` estructural previo **no se toca**; se etiquetan `PENDIENTE-FUERA-DE-INDICE` y abren **`FP-132`**: si mesa quiere un segundo universo de búsqueda fuera de INEGI, y con qué índice.
+Ocho filas quedan por tanto fuera del alcance **por construcción, no por fallo de búsqueda**: `DIN-07`, `DIN-08`, `DIN-09`, `DIN-10`, `DIN-12` (Encuesta de Competencias Financieras, Banxico/CNBV) y `DOC-03`, `DOC-05`, `DOC-06` (CNBV / BMV / HR Ratings). Su `NO` estructural previo **no se toca**; se etiquetan `PENDIENTE-FUERA-DE-INDICE` y abren **`FP-134`**: si mesa quiere un segundo universo de búsqueda fuera de INEGI, y con qué índice.
 
 Un límite más, declarado y no explotado: la canasta `sala_de_prensa` (70 filas, boletines y comunicados por año) **no trae columna `programa`**, así que el filtrado «por programa + año» que `FP-93` diseñó no la alcanza. Un boletín es el caso paradigmático de «cifra publicada»; este acto no extendió el diseño para incluirlo, y lo deja nombrado.
 
@@ -161,7 +161,7 @@ Reparto por grado de dependencia, re-derivado por comando sobre el archivo ya es
 
 Antes de este acto la cuota se reportaba **CUMPLE con `4 = 6.7 %`**. Esa cifra era correcta **dado lo que se sabía**: sólo se habían contado las 4 filas con evidencia positiva en la mano, y las 56 restantes estaban declaradas indeterminadas. Ejecutada la prueba, la cuota se pasa por un factor de **2.3**.
 
-**El ejecutor mide y no decide.** `FP-131` queda `ABIERTA` con las cuatro salidas nombradas, sin recomendar ninguna:
+**El ejecutor mide y no decide.** `FP-133` queda `ABIERTA` con las cuatro salidas nombradas, sin recomendar ninguna:
 
 1. **Podar** filas `SI` hasta el tope y re-congelar el marco (rompe el pre-registro si se hace después del sorteo; antes, no).
 2. **Subir el tope** con razón escrita.
@@ -191,7 +191,7 @@ filas: 60   ·   campos por fila: 17 en todas
 
 Los **929 MB** descargados viven en `scratchpad`, **no** en el repo ni en `data/raw`: este acto **no registra ningún payload nuevo** en `data/manifiesto.yaml` y por tanto no ejerce `A.1` ni `A.7`. Fuera del marco sólo se tocaron `forense/firmas-pendientes.tsv`, `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md`, esta nota y el encargo.
 
-**Concurrencia.** A mitad del acto la rama apareció fusionada con `origin/main` por una sesión concurrente (`e70b424`, `git reflog` lo muestra: *«merge origin/main: Fast-forward»*, que este acto no ordenó), y `origin/main` volvió a moverse a `a5f1bf6` (`PR #328`, `PR #329`). Se fusionó a mano, con **un conflicto real** en `forense/firmas-pendientes.tsv`: `BANDAS-DOC-6` marcó `FP-94` como ejecutada en la misma región donde este acto marcó `FP-93`. Resuelto por unión, línea por línea, conservando las dos. También por eso el número de ADR se re-derivó tres veces: `160` al arrancar, `161` tras la primera fusión, **`162`** tras la segunda.
+**Concurrencia — cuatro movimientos de `main` durante el acto, y tres renumeraciones.** La rama apareció fusionada con `origin/main` por una sesión concurrente que este acto no ordenó (`e70b424`; `git reflog` lo muestra: *«merge origin/main: Fast-forward»*), y `origin/main` volvió a moverse dos veces más: a `a5f1bf6` (`PR #328`, `PR #329`) y a `7848b97` (`PR #331`, `PR #332`). Dos fusiones a mano, con **conflictos reales** las dos veces: (1) en `forense/firmas-pendientes.tsv`, `BANDAS-DOC-6` marcó `FP-94` como ejecutada en la misma región donde este acto marcó `FP-93` — resuelto por unión, conservando las dos; (2) en el tablero, en `gobernanza` y en `estado` a la vez, porque `ACTO EVAL-COMPARTAMOS-LLAVE3` tomó **`ADR-162`**, **`FP-131`** y **`FP-132`**, exactamente los tres números que este acto ya había escrito. Renumerado a `ADR-163`, `FP-133` y `FP-134`, re-derivado por comando sobre `origin/main = 7848b97` (máximo `162`, únicos `162`, sin huecos) — misma regla de la casa: renumera quien fusiona segundo. El número de ADR se re-derivó cuatro veces en total: `160` al arrancar (mal, ver abajo), `162` tras la primera fusión, `162` de nuevo tras la segunda, **`163`** tras la tercera.
 
 **Un tropiezo propio, y la regla que lo atrapó.** El primer intento de derivar el máximo de ADR usó `grep -oE '^\*\*ADR-[0-9]+' | sort -t- -k2 -n | tail -3` y devolvió `156 · 157 · 158`, cuando el árbol ya tenía `160`: `sort -t-` parte en el **primer** guion, así que el campo 2 de `**ADR-158` es `ADR` y no `158`, y el orden numérico se calcula sobre un campo vacío. La re-derivación con un regex explícito dio `máximo 160, únicos 160, sin huecos`. Si se hubiera creído la primera salida, `T15` habría fallado por hueco en la secuencia.
 
@@ -199,11 +199,11 @@ Los **929 MB** descargados viven en `scratchpad`, **no** en el repo ni en `data/
 
 ## 9 · Lo que este acto deliberadamente NO hace
 
-- **No poda ninguna fila** del marco ni re-congela nada: la cuota rota es una medición, y qué hacer con ella es firma de mesa (`FP-131`).
+- **No poda ninguna fila** del marco ni re-congela nada: la cuota rota es una medición, y qué hacer con ella es firma de mesa (`FP-133`).
 - **No escribe `marco-candidatas-piloto-v1_1.tsv`.** La saturación de `FP-82` sigue sin ejecutar, con sus dos `PARO` previos, y este acto no la intenta.
 - **No toca `cv_arbitro` ni `n_no_ponderado`** pese al hallazgo (a): están fuera del perímetro.
 - **No corre el sorteo de `ACT-PIL-3`.**
-- **No abre un segundo universo de búsqueda** fuera de INEGI (`FP-132`).
+- **No abre un segundo universo de búsqueda** fuera de INEGI (`FP-134`).
 - **No registra payloads.** Los 922 archivos publicados se bajaron para leerlos, no para incorporarlos al corpus.
 
 ---
@@ -213,8 +213,10 @@ Los **929 MB** descargados viven en `scratchpad`, **no** en el repo ni en `data/
 | Archivo | Qué cambió |
 |---|---|
 | `forense/marco-candidatas-piloto-v1_0.tsv` | columna `publicada`, 56 celdas, con veredicto `A.4`, universo examinado y cifra |
-| `forense/firmas-pendientes.tsv` | `FP-93` → `FIRMADA` + `ejecutada_en`; `FP-131` y `FP-132` nuevas, `ABIERTAS` |
-| `canon/gobernanza-v1_15.md` | `ADR-162` y su fila de bitácora |
-| `canon/estado-programa-v1_10.md` | línea de candidatas del marco con el reparto de `publicada`; conteo de ADR `161`→`162`; recifrado de suite |
+| `forense/firmas-pendientes.tsv` | `FP-93` → `FIRMADA` + `ejecutada_en`; `FP-133` y `FP-134` nuevas, `ABIERTAS` |
+| `canon/gobernanza-v1_15.md` | `ADR-163` y su fila de bitácora |
+| `canon/estado-programa-v1_10.md` | línea de candidatas del marco con el reparto de `publicada`; conteo de ADR `162`→`163`; recifrado de suite |
 | `forense/notas/2026-08-25-bibliotecario-56-cierre.md` | esta nota |
 | `forense/encargos/2026-08-25-BIBLIOTECARIO-56.md` | encargo archivado, `CONSUMIDO` |
+
+**Suite.** `LÍNEA BASE: VERDE`, núcleo **19 FAIL · 147 WARN** (`CHECK_SELFCHECK_CHILD=1 python3 tests/check.py`, iterado a punto fijo y verificado con `--baseline`). El movimiento propio de este acto es **`+1 WARN` y cero `FAIL`**: `T22` sube de 23 a 24 por las dos filas `ABIERTA` que abre (`FP-133`, `FP-134`), que es exactamente lo que `A.12` existe para hacer visible. `T02` se evitó por construcción (sufijo `-cierre`), `T03` por la marca `{cita-ilustrativa}` pegada a la única cita a un archivo que no existe, `T15` por recifrar las tres citas vivas a `163 ADR`. Aparte, y medido **antes** de escribir una sola línea: la base ya venía `ROJO` con dos entradas `T16` heredadas (la línea de `estado` declaraba `145 WARN` y la corrida real daba `146`); se corrigieron en el mismo paso de recifrado, así que este acto **cierra en verde una base que recibió en rojo**.
