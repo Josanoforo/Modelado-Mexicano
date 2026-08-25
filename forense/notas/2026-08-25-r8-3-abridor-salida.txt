@@ -1,0 +1,203 @@
+FUENTE PRINCIPAL: WVS Wave 7 Mexico 2018 -- filas leidas: 1741
+==============================================================================
+EJE 1 -- enforcement percibido individual (sesga EN CONTRA de la fila A)
+==============================================================================
+  [SIN PUENTE] Q70 Justice System/Courts
+     p_T=  9.0514%   p_C=  3.9553%
+     d  =  5.0961 pp   SE=2.5213 pp   IC95%=[0.1544, 10.0378]
+     |d|<10? SI   IC despeja 10? NO   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [universo completo] Q70 Justice System/Courts
+     p_T= 24.2813%   p_C= 10.0323%
+     d  = 14.2489 pp   SE=2.3147 pp   IC95%=[9.7122, 18.7857]
+     |d|<10? NO   IC despeja 10? NO   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [SIN PUENTE] Q69 The Police
+     p_T= 11.1994%   p_C=  3.3712%
+     d  =  7.8283 pp   SE=2.5337 pp   IC95%=[2.8623, 12.7942]
+     |d|<10? SI   IC despeja 10? NO   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [universo completo] Q69 The Police
+     p_T= 22.9020%   p_C= 10.4820%
+     d  = 12.4199 pp   SE=2.3627 pp   IC95%=[7.7891, 17.0508]
+     |d|<10? NO   IC despeja 10? NO   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+==============================================================================
+EJE 2 -- enforcement CONTEXTUAL por entidad (el que manda)
+==============================================================================
+  entidades con n>=30: 19 de 31   (excluidas 12 por n<30)
+  mediana de p_enf entre elegibles = 24.3483%
+  contexto ALTO: 9 entidades  ·  contexto BAJO: 10 entidades
+  --- tabla completa de entidades elegibles (p_enf ponderada) ---
+     MX-CHP Chiapas                             n=  71  p_enf=13.6577%  BAJO
+     MX-JAL Jalisco                             n= 119  p_enf=17.8681%  BAJO
+     MX-BCN Baja California                     n=  50  p_enf=18.2226%  BAJO
+     MX-PUE Puebla                              n=  89  p_enf=18.2928%  BAJO
+     MX-VER Veracruz de Ignacio de la Llave     n= 119  p_enf=18.5535%  BAJO
+     MX-MEX Mexico                              n= 228  p_enf=22.7554%  BAJO
+     MX-SLP San Luis Potosi                     n=  41  p_enf=23.2411%  BAJO
+     MX-HID Hidalgo                             n=  42  p_enf=23.9411%  BAJO
+     MX-CHH Chihuahua                           n=  52  p_enf=24.0840%  BAJO
+     MX-SIN Sinaloa                             n=  42  p_enf=24.3483%  BAJO
+     MX-MIC Michoacan de Ocampo                 n=  62  p_enf=24.3692%  ALTO
+     MX-SON Sonora                              n=  42  p_enf=24.4295%  ALTO
+     MX-OAX Oaxaca                              n=  61  p_enf=25.6160%  ALTO
+     MX-CMX Ciudad de Mexico                    n= 151  p_enf=26.9745%  ALTO
+     MX-GRO Guerrero                            n=  40  p_enf=28.6225%  ALTO
+     MX-TAM Tamaulipas                          n=  47  p_enf=28.9758%  ALTO
+     MX-GUA Guanajuato                          n=  81  p_enf=29.0808%  ALTO
+     MX-NLE Nuevo Leon                          n=  76  p_enf=29.2358%  ALTO
+     MX-COA Coahuila de Zaragoza                n=  42  p_enf=30.5270%  ALTO
+  [SIN PUENTE] contexto de entidad
+     p_T=  4.5580%   p_C=  5.0002%
+     d  = -0.4422 pp   SE=1.4872 pp   IC95%=[-3.3572, 2.4727]
+     |d|<10? SI   IC despeja 10? SI   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [universo completo] contexto de entidad
+     p_T= 13.1284%   p_C= 12.8243%
+     d  =  0.3041 pp   SE=1.8374 pp   IC95%=[-3.2972, 3.9054]
+     |d|<10? SI   IC despeja 10? SI   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+==============================================================================
+CONTROLES POR ESTRATIFICACION (ingreso Q288R x victimizacion Q144)
+==============================================================================
+  ninguna celda se promueve a 'el verdadero valor' (A-bis regla 2)
+  [ingreso=Low    victima=No ] n=283 (eje 1, Q70)
+     p_T=  2.5033%   p_C=  3.2649%
+     d  = -0.7616 pp   SE=2.7687 pp   IC95%=[-6.1882, 4.6649]
+     |d|<10? SI   IC despeja 10? SI   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [ingreso=Low    victima=Yes] n=112 (eje 1, Q70)
+     p_T=  9.3500%   p_C=  3.2417%
+     d  =  6.1083 pp   SE=9.1103 pp   IC95%=[-11.7476, 23.9642]
+     |d|<10? SI   IC despeja 10? NO   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [ingreso=Medium victima=No ] n=330 (eje 1, Q70)
+     p_T= 11.9941%   p_C=  4.5032%
+     d  =  7.4908 pp   SE=5.2523 pp   IC95%=[-2.8036, 17.7852]
+     |d|<10? SI   IC despeja 10? NO   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [ingreso=Medium victima=Yes] n=145 (eje 1, Q70)
+     p_T= 12.3179%   p_C=  4.3269%
+     d  =  7.9910 pp   SE=7.0567 pp   IC95%=[-5.8399, 21.8219]
+     |d|<10? SI   IC despeja 10? NO   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [ingreso=High   victima=No ] n=63 (eje 1, Q70)
+     p_T= 16.2927%   p_C=  5.7809%
+     d  = 10.5117 pp   SE=9.5601 pp   IC95%=[-8.2256, 29.2491]
+     |d|<10? NO   IC despeja 10? NO   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [ingreso=High   victima=Yes] n=31 (eje 1, Q70)
+     p_T=  0.0000%   p_C=  3.0383%
+     d  = -3.0383 pp   SE=3.0092 pp   IC95%=[-8.9361, 2.8596]
+     |d|<10? SI   IC despeja 10? SI   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+
+  --- LOS MISMOS CONTROLES SOBRE EL EJE 2 (contextual), que es el que manda ---
+  [ingreso=Low    victima=No ] n=292 (eje 2, contexto de entidad)
+     p_T=  2.7647%   p_C=  3.4034%
+     d  = -0.6387 pp   SE=2.4942 pp   IC95%=[-5.5272, 4.2497]
+     |d|<10? SI   IC despeja 10? SI   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [ingreso=Low    victima=Yes] n=115 (eje 2, contexto de entidad)
+     p_T=  4.2315%   p_C=  4.0284%
+     d  =  0.2031 pp   SE=4.1125 pp   IC95%=[-7.8572, 8.2634]
+     |d|<10? SI   IC despeja 10? SI   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [ingreso=Medium victima=No ] n=332 (eje 2, contexto de entidad)
+     p_T=  7.6920%   p_C=  5.0972%
+     d  =  2.5947 pp   SE=3.1841 pp   IC95%=[-3.6460, 8.8355]
+     |d|<10? SI   IC despeja 10? SI   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [ingreso=Medium victima=Yes] n=146 (eje 2, contexto de entidad)
+     p_T=  3.8017%   p_C=  7.1113%
+     d  = -3.3096 pp   SE=4.1158 pp   IC95%=[-11.3764, 4.7573]
+     |d|<10? SI   IC despeja 10? NO   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [ingreso=High   victima=No ] n=63 (eje 2, contexto de entidad)
+     p_T=  0.0000%   p_C= 12.9408%
+     d  =-12.9408 pp   SE=5.7773 pp   IC95%=[-24.2641, -1.6176]
+     |d|<10? NO   IC despeja 10? NO   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+  [ingreso=High   victima=Yes] n=32 (eje 2, contexto de entidad)
+     p_T=  8.2619%   p_C=  0.0000%
+     d  =  8.2619 pp   SE=7.9783 pp   IC95%=[-7.3754, 23.8991]
+     |d|<10? SI   IC despeja 10? NO   IC inferior>10? NO
+     UPM=454  estratos=1  SINGLETON=0
+==============================================================================
+DESCRIPTIVOS PONDERADOS de referencia (escala WVS, 4 puntos dicotomizada)
+==============================================================================
+  confia en desconocido (Q61) -- universo: p=13.1027%  SE=0.9252  IC95%=[11.2893, 14.9161]  n=1739
+  confia en desconocido (Q61) -- SIN PUENTE: p=4.6256%  SE=0.7097  IC95%=[3.2345, 6.0166]  n=992
+  tiene puente personal (Q60) -- universo: p=42.9862%  SE=1.2615  IC95%=[40.5137, 45.4588]  n=1739
+==============================================================================
+EJE 3 -- ISSP 2017 ZA6980 multipais (CORROBORACION, NO ADJUDICA)
+==============================================================================
+  reserva pre-declarada: ZA6980 no trae reactivo de victimizacion (0/356),
+  asi que NO satisface el conjunto de controles del Umbral. Sin UPM en el
+  archivo: cifras bajo supuesto MAS, que SUBESTIMA el error.
+  filas: 44492
+  --- categorias v35 (desenlace) ---
+     People can usually be trusted                              17715
+     You usually can't be too careful in dealing with people    16087
+     You almost always can't be too careful in dealing with peo 5297
+     People can almost always be trusted                        3467
+     Can't choose                                               1546
+     No answer                                                  380
+  --- categorias v36 (enforcement) ---
+     05                                                         7664
+     08                                                         5663
+     07                                                         5302
+     06                                                         4003
+     03                                                         3335
+     04                                                         3209
+     10 - Complete trust                                        2917
+     Can't choose                                               2784
+     00 - No trust at all                                       2721
+     09                                                         2624
+     02                                                         2185
+     01                                                         1465
+     No answer                                                  620
+  ponderador ISSP leido numerico: min 0.0001 max 10.7187 suma 44492.39
+  casos utiles (v35 sustantivo y v36 numerico): 35037 de 44492
+  paises: 30   mediana de confianza en tribunales (0-10) = 5.6192
+  --- paises por confianza media en tribunales nacionales (v36, 0-10) ---
+     HR     n=  801  enf=3.3908  BAJO
+     MX     n=  775  enf=3.5755  BAJO  <<< MEXICO
+     SK     n= 1156  enf=4.0362  BAJO
+     TW     n= 1568  enf=4.1344  BAJO
+     SI     n=  784  enf=4.2717  BAJO
+     RU     n= 1153  enf=4.5754  BAJO
+     ES     n= 1433  enf=4.7868  BAJO
+     CZ     n= 1245  enf=5.0533  BAJO
+     ZA     n= 2321  enf=5.0925  BAJO
+     SR     n=  550  enf=5.1388  BAJO
+     LT     n=  805  enf=5.2758  BAJO
+     FR     n= 1110  enf=5.2989  BAJO
+     HU     n=  886  enf=5.3749  BAJO
+     US     n= 1016  enf=5.4720  BAJO
+     AU     n= 1096  enf=5.4897  BAJO
+     PH     n=  858  enf=5.7487  ALTO
+     IS     n= 1248  enf=5.8149  ALTO
+     IL     n= 1016  enf=5.8917  ALTO
+     TH     n=  956  enf=6.0492  ALTO
+     NZ     n= 1136  enf=6.0917  ALTO
+     IN     n= 1103  enf=6.2430  ALTO
+     GB-GBN n= 1314  enf=6.2609  ALTO
+     JP     n=  978  enf=6.3609  ALTO
+     SE     n=  932  enf=6.4914  ALTO
+     DE     n= 1478  enf=6.5442  ALTO
+     CN     n= 3526  enf=6.5849  ALTO
+     AT     n= 1050  enf=6.6925  ALTO
+     FI     n=  910  enf=7.1497  ALTO
+     CH     n=  914  enf=7.2374  ALTO
+     DK     n=  919  enf=7.7797  ALTO
+
+  [ISSP, MAS -- una UPM por observacion; SUBESTIMA el error]
+    contexto de pais (ALTO vs BAJO)
+     p_T= 65.1202%   p_C= 48.4959%
+     d  = 16.6243 pp   SE=0.5859 pp   IC95%=[15.4758, 17.7727]
+     |d|<10? NO   IC despeja 10? NO   IC inferior>10? SI
+     UPM=35037  estratos=1  SINGLETON=0
+  MEXICO por separado (nunca disuelto): p=58.0645%  SE=1.7737  IC95%=[54.5882, 61.5409]  n=775
+  posicion de Mexico: contexto BAJO, enf=3.5755 contra mediana 5.6192
