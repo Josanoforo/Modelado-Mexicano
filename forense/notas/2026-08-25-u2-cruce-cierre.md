@@ -63,8 +63,8 @@ enasic2022_fd_xlsx [data_raw]: COINCIDE -- sha256 y tamaño (266488 bytes) verif
 
 Todo el diseño vive en `bbis-u2-cruce-v1_0.md`, Commit 1, `df3eeeb`. Lo que este acto necesita repetir aquí es sólo lo que la corrida usa:
 
-* **Estimandos.** `E1` = `Población total` y `E2` = `Sí requirió apoyo o cuidados`, hoja `INDICADORES` filas 2 y 3 del IPE oficial (§1 de la ficha los cita celda por celda). Los dos con `Unidad_Obs = Población`, `Parametro = Total`, `Niv_Conf = 90`.
-* **Reserva (i), resuelta.** Se convierte el **lado oficial** con `IC95 = Estimación ± 1.9599639845400536 × ErrorEst`. Congelados en la ficha: `E1` → `[125 341 905.029395 , 132 372 870.970605]`; `E2` → `[56 751 384.429881 , 60 437 557.570119]`.
+* **Estimandos.** `U2-E1` = `Población total` y `U2-E2` = `Sí requirió apoyo o cuidados`, hoja `INDICADORES` filas 2 y 3 del IPE oficial (§1 de la ficha los cita celda por celda). Los dos con `Unidad_Obs = Población`, `Parametro = Total`, `Niv_Conf = 90`.
+* **Reserva (i), resuelta.** Se convierte el **lado oficial** con `IC95 = Estimación ± 1.9599639845400536 × ErrorEst`. Congelados en la ficha: `U2-E1` → `[125 341 905.029395 , 132 372 870.970605]`; `U2-E2` → `[56 751 384.429881 , 60 437 557.570119]`.
 * **Reserva (ii), resuelta.** Factor **`FAC_HOG` de `TCSDEMPO.csv`**, sin reescalar. Lo que fija la unidad no es el nombre del factor sino la unidad de fila del archivo — y el descriptor etiqueta *«FACTOR HOGAR DE EXPANSIÓN»* también a `FAC_ELE`, que es de persona elegida y tiene otro rango, así que la etiqueta no sirve de oráculo.
 * **Universo.** `TCSDEMPO.csv` menos los renglones con `EDAD = '99'` (*«No sabe, en personas menores de 15 años»*, el único código que corresponde a la exclusión que el renglón oficial declara).
 * **Criterio, uno solo.** **El punto propio cae dentro del `IC95` oficial.**
@@ -161,10 +161,10 @@ def total_con_diseno(filas, y_de, w="FAC_HOG", h="EST_DIS", i="UPM_DIS"):
 TCSDEMPO.csv: 21776 renglones-persona · THOGAR.csv: 6508 renglones-hogar
 
 n(U, EDAD != '99')            = 21775 renglones-persona   (excluidos por EDAD=='99': 1)
-n(E2, dominio 'requirio')     = 9864 renglones-persona
-estratos = 148 · UPM = 896 · estratos con una sola UPM = 0
+n(U2-E2, dominio 'requirio')  = 9864 renglones-persona
+estratos = 148 · UPM = 896 · estratos con una sola UPM = 0 
 
-===== E1 · Poblacion total =====
+===== U2-E1 · Poblacion total =====
   PROPIO   Y = 128,836,298.000000   EE = 1,793,474.858412   CV = 1.3920571192 %
            IC95 propio  = [125,321,151.870334 , 132,351,444.129666]
   OFICIAL  Y = 128,857,388   EE = 1,793,646.719192   CV = 1.3919626550 %
@@ -173,7 +173,7 @@ estratos = 148 · UPM = 896 · estratos con una sola UPM = 0
   dif absoluta punto = -21,090.000000   dif relativa = -0.0163669312 %
   (c) razon EE = |1,793,474.858412 - 1,793,646.719192| / 1,793,646.719192 = 0.0000958164  contra 0.15 -> DENTRO
 
-===== E2 · Si requirio apoyo o cuidados =====
+===== U2-E2 · Si requirio apoyo o cuidados =====
   PROPIO   Y = 58,594,471.000000   EE = 940,367.570352   CV = 1.6048742386 %
            IC95 propio  = [56,751,384.429881 , 60,437,557.570119]
   OFICIAL  Y = 58,594,471   EE = 940,367.570352   CV = 1.6048742386 %
@@ -206,7 +206,7 @@ estratos = 148 · UPM = 896 · estratos con una sola UPM = 0
   LLAVESDE=27603103  EST_DIS=0037  UPM_DIS=00276  FAC_HOG=21090
   SEXO=2  PAREN=3  EDAD='99'
   banderas de la Seccion 4: PN_CDISC='2' · PN_C0005='' · PN_C0617='' · PN_C60MA='' · PN_CETEM=''
-  -> entra al dominio E2? NO
+  -> entra al dominio U2-E2? NO
 
 === distribucion de EDAD en los codigos de no-respuesta ===
   EDAD=='98': 12 renglones · suma FAC_HOG = 118,305
@@ -221,8 +221,8 @@ estratos = 148 · UPM = 896 · estratos con una sola UPM = 0
 
 | estimando | punto propio | `IC95` oficial | ¿dentro? | dif. relativa | diagnóstico (c) EE |
 |---|---|---|---|---|---|
-| **`E1`** Población total | `128 836 298` | `[125 341 905.03 , 132 372 870.97]` | **SÍ** | **−0.0164 %** | `0.0000958` ≤ 0.15 · **dentro** |
-| **`E2`** Sí requirió apoyo o cuidados | `58 594 471` | `[56 751 384.43 , 60 437 557.57]` | **SÍ** | **+0.0000000000 %** | `0.0000000` ≤ 0.15 · **dentro** |
+| **`U2-E1`** Población total | `128 836 298` | `[125 341 905.03 , 132 372 870.97]` | **SÍ** | **−0.0164 %** | `0.0000958` ≤ 0.15 · **dentro** |
+| **`U2-E2`** Sí requirió apoyo o cuidados | `58 594 471` | `[56 751 384.43 , 60 437 557.57]` | **SÍ** | **+0.0000000000 %** | `0.0000000` ≤ 0.15 · **dentro** |
 
 **Los dos satisfacen el criterio. Los dos diagnósticos de `EE` caen dentro del umbral heredado.** Por la escala `B-bis` de la ficha, eso es la **fila 1 · `PIPELINE CORROBORADO`**, salvo que una fila de mayor precedencia aplique. Se revisan las tres, una por una, en §5.4.
 
@@ -230,8 +230,8 @@ estratos = 148 · UPM = 896 · estratos con una sola UPM = 0
 
 El criterio pedía caer dentro de un intervalo de ±2.7 %. Lo que ocurrió es de otro orden:
 
-* **`E2` reproduce al peso.** Nuestro total es `58 594 471` y el oficial es `58 594 471`. **Diferencia: cero.** Y el error estándar propio es `940 367.570352` contra `940 367.570351719` — **coincide en las seis decimales publicadas**.
-* **`E1`, bajo el universo de la comprobación (a), reproduce al peso y el `EE` a la novena decimal.** `128 857 388.000000` contra `128 857 388`, diferencia cero; `EE = 1 793 646.719192269` contra `1 793 646.719192270`, diferencia **`−1 × 10⁻⁹`** — ruido de punto flotante, no discrepancia.
+* **`U2-E2` reproduce al peso.** Nuestro total es `58 594 471` y el oficial es `58 594 471`. **Diferencia: cero.** Y el error estándar propio es `940 367.570352` contra `940 367.570351719` — **coincide en las seis decimales publicadas**.
+* **`U2-E1`, bajo el universo de la comprobación (a), reproduce al peso y el `EE` a la novena decimal.** `128 857 388.000000` contra `128 857 388`, diferencia cero; `EE = 1 793 646.719192269` contra `1 793 646.719192270`, diferencia **`−1 × 10⁻⁹`** — ruido de punto flotante, no discrepancia.
 
 Reproducir el punto es reproducir una suma. **Reproducir el error estándar de diseño a nueve decimales es otra cosa:** significa que el estimador de varianza de este programa —partición por `EST_DIS`, conglomerados últimos `UPM_DIS`, factor `m/(m−1)`, sin corrección por población finita, sin ajuste por calibración— **es exactamente el que el INEGI usó** para publicar esas cifras. Eso no se podía saber antes de correr: §10 de la ficha lo listaba explícitamente como una de las cuatro cosas que el acto *no* podría concluir, porque *«el archivo oficial publica el número, no la fórmula»*. La coincidencia a nueve decimales la resuelve por identificación numérica, que es más fuerte que la cita que faltaba.
 
@@ -239,14 +239,14 @@ Reproducir el punto es reproducir una suma. **Reproducir el error estándar de d
 
 Esto es lo que la comprobación (a) atrapó, y es un defecto **del archivo oficial**, no del pipeline:
 
-* El renglón `E1` se titula, verbatim: *«Población total **(Se excluyen 21,090 casos que no especificaron la edad de la población menor de 15 años)**»*.
+* El renglón `U2-E1` se titula, verbatim: *«Población total **(Se excluyen 21,090 casos que no especificaron la edad de la población menor de 15 años)**»*.
 * La suma sobre el universo que esa exclusión define —`EDAD ≠ '99'`— da **`128 836 298`**.
 * La suma **sin** excluir nada da **`128 857 388`**, que es **exactamente** la cifra publicada.
 * La diferencia es **`21 090.000000`**, **exactamente** el valor pre-declarado en la ficha antes de correr.
 
 Es decir: **el `Población total` publicado incluye los casos que su propia etiqueta declara excluidos.** Y hay un segundo dato que la ampliación de (a) deja a la vista: los *«21 090 casos»* del texto oficial **no son 21 090 registros — son uno solo**, `LLAVESDE 27603103`, cuyo `FAC_HOG` vale precisamente `21 090`. El archivo oficial llama *«casos»* a un conteo **expandido**, no muestral. Las dos cosas juntas explican por qué la etiqueta se lee mal: describe una exclusión en escala de población que, además, no está aplicada.
 
-Para `E2` la etiqueta es **inocua**: el único renglón afectado trae `PN_CDISC = '2'` y las otras cuatro banderas en blanco, así que no entra al dominio de `E2` bajo ninguna lectura — de ahí que `E2` reproduzca exacto tanto excluyéndolo como sin excluirlo.
+Para `U2-E2` la etiqueta es **inocua**: el único renglón afectado trae `PN_CDISC = '2'` y las otras cuatro banderas en blanco, así que no entra al dominio de `U2-E2` bajo ninguna lectura — de ahí que `U2-E2` reproduzca exacto tanto excluyéndolo como sin excluirlo.
 
 **Lo que este hallazgo NO es.** No es una corrección al INEGI ni una impugnación de sus cifras: `128 857 388` es un total poblacional coherente con el resto de su publicación, y la discrepancia está enteramente en la glosa del renglón. Este acto lo registra porque **cualquiera que use ese archivo como referencia de precisión reproducirá 128 836 298 si obedece la etiqueta**, y creerá que su pipeline falla. Es exactamente el defecto que una validación externa existe para encontrar.
 
@@ -256,7 +256,7 @@ Para `E2` la etiqueta es **inocua**: el único renglón afectado trae `PN_CDISC 
 
 **Fila 5 · `PRUEBA DÉBIL`** — exige descubrir, al correr, que el criterio **no podía fallar**. No es el caso, y se justifica en vez de afirmarse: lecturas plausiblemente equivocadas del mismo ZIP caen fuera del intervalo por órdenes de magnitud, no por poco — `THOGAR`/`FAC_HOG` da `38 785 744` (hogares, comprobación (b)), `TPER_ELE`/`FAC_ELE` expande sólo personas elegidas de 15 a 60 años, y `TVIVIENDA`/`FAC_VIV` expande viviendas. El criterio discrimina. **No aplica** — pero ver la reserva de §5.5, que es real y no se tapa.
 
-**Fila 3 · `NO CONCLUYENTE POR OPERACIONALIZACIÓN`** — exige `Ŷ₂` fuera. Está dentro, y además **exacto**. Eso resuelve por la vía de los hechos la reserva que §6 de la ficha había dejado escrita: la operacionalización derivada de `E2` —disyunción de las cinco banderas `PN_CDISC`/`PN_C0005`/`PN_C0617`/`PN_C60MA`/`PN_CETEM`— **es** la definición del INEGI para *«Sí requirió apoyo o cuidados»*. Un total que coincide al peso sobre `9 864` renglones-persona de `21 776` no es compatible con una operacionalización distinta. **No aplica.**
+**Fila 3 · `NO CONCLUYENTE POR OPERACIONALIZACIÓN`** — exige `Ŷ₂` fuera. Está dentro, y además **exacto**. Eso resuelve por la vía de los hechos la reserva que §6 de la ficha había dejado escrita: la operacionalización derivada de `U2-E2` —disyunción de las cinco banderas `PN_CDISC`/`PN_C0005`/`PN_C0617`/`PN_C60MA`/`PN_CETEM`— **es** la definición del INEGI para *«Sí requirió apoyo o cuidados»*. Un total que coincide al peso sobre `9 864` renglones-persona de `21 776` no es compatible con una operacionalización distinta. **No aplica.**
 
 **Fila 2 · `CORROBORADO · DISCREPANCIA ACOTADA`** — exige razón de `EE` > `0.15` en al menos uno. Las dos razones son `0.0000958` y `0.0000000`. **No aplica.**
 
@@ -264,11 +264,11 @@ Para `E2` la etiqueta es **inocua**: el único renglón afectado trae `PN_CDISC 
 
 ### 5.5 · La reserva, escrita y no maquillada — el criterio elegido fue más laxo que la evidencia
 
-El criterio de §7 de la ficha **absorbió sin inmutarse una discrepancia determinista de 21 090 personas** en `E1`: la dio por buena porque caía dentro de un intervalo de ±3.5 millones. Quien leyera sólo el criterio concluiría *«reprodujo»* y no vería nada más. Lo que localizó la discrepancia —y la explicó entera— fue la **comprobación (a)**, que la ficha había declarado explícitamente como *«no adjudica»*.
+El criterio de §7 de la ficha **absorbió sin inmutarse una discrepancia determinista de 21 090 personas** en `U2-E1`: la dio por buena porque caía dentro de un intervalo de ±3.5 millones. Quien leyera sólo el criterio concluiría *«reprodujo»* y no vería nada más. Lo que localizó la discrepancia —y la explicó entera— fue la **comprobación (a)**, que la ficha había declarado explícitamente como *«no adjudica»*.
 
 Es una lección sobre elección de criterio, y se escribe aquí porque el acto la pagó: **contra un valor publicado con `CV` de 1.4 %, un criterio de pertenencia a intervalo es del orden de 170 veces más laxo que la precisión que el propio procedimiento alcanza.** Las tres razones que la ficha dio para elegirlo (§7) siguen siendo correctas —es el más exigente de los dos que el encargo ofrecía, aísla el confundido metodológico de la varianza, y sí puede fallar—, pero las tres razonaban contra la *otra* opción del encargo, no contra un criterio de reproducción exacta que el encargo no ofrecía. El criterio **no se cambia** ahora: adjudicar con un criterio elegido después de ver el dato es precisamente lo que el pre-registro existe para impedir. Se adjudica con el criterio congelado, y la reserva queda escrita para el acto que fije el criterio de la siguiente validación externa.
 
-**Contraparte de `A-bis`, aplicada.** El veredicto es **propuesto**, no firmado por el ejecutor. Y se anota el dato que la exige: **nuestro `IC95` propio de `E1` no está contenido** en el oficial (`[125 321 151.87 , 132 351 444.13]` contra `[125 341 905.03 , 132 372 870.97]` — se traslapan casi enteramente, pero el propio está desplazado 20 753 a la izquierda, que es el mismo `21 090` de §5.3 propagado). Bajo el universo de la comprobación (a) los dos intervalos **coinciden a la sexta decimal**.
+**Contraparte de `A-bis`, aplicada.** El veredicto es **propuesto**, no firmado por el ejecutor. Y se anota el dato que la exige: **nuestro `IC95` propio de `U2-E1` no está contenido** en el oficial (`[125 321 151.87 , 132 351 444.13]` contra `[125 341 905.03 , 132 372 870.97]` — se traslapan casi enteramente, pero el propio está desplazado 20 753 a la izquierda, que es el mismo `21 090` de §5.3 propagado). Bajo el universo de la comprobación (a) los dos intervalos **coinciden a la sexta decimal**.
 
 ---
 
@@ -300,6 +300,25 @@ Todas las cantidades de §4 y §5 están en **personas** (`Ŷ`, `EE`) o son **ad
 
 ---
 
+**Suite, medida y no supuesta.** Base de la caja **antes de escribir una sola línea**: `19 FAIL · 147 WARN`, `LÍNEA BASE: VERDE` — coincide exactamente con lo que `canon/estado-programa-v1_10.md` declaraba al arrancar, así que este acto no heredó desfase. Al cierre:
+
+```
+════════════════════════════════════════════════════════════════════════
+  19 FAIL · 146 WARN
+════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────
+  LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado e24d033ed3c095f1e81c2fbb8248f108e9d3ef65)
+  (5 entradas de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
+────────────────────────────────────────────────────────────────────────
+```
+
+El **`−1` de WARN es de este acto y de una sola causa**: `T22` baja de 24 a 23 — dos WARN menos porque `FP-70` y `FP-125` reciben `ejecutada_en`, uno más porque nace `FP-135` `ABIERTA`, que es exactamente lo que `A.12` existe para hacer visible. `T03` no se mueve (55). **`FAIL` sin cambio, y las seis categorías son las mismas** (`T09:8 · T05:5 · T02:2 · T06:2 · T08:1 · T11:1`).
+
+**Los tres `FAIL` que este acto sí produjo, y cerró dentro de sí mismo** — se declaran en vez de omitirse, porque el neto en cero los haría invisibles: `T15` una vez, por el recifrado de `ADR` (`gobernanza` a `164`, `estado` en sus dos citas vivas, y una tercera cita que dejó de ser vigente y recibió su marca de cita histórica); y **`T25` dos veces**, las dos por rótulos pelados de la familia que `D-6`/`ADR-128` prohíbe — la primera por los rótulos de la ficha (§9), y **la segunda porque el bloque que narraba esa misma corrección los reproducía verbatim**. El segundo es el defecto de mención-contra-uso: un test de rótulos no distingue narrar un rótulo de usarlo, y la corrección volvió a crear lo que corregía. Cifra declarada = núcleo sin `T16` (`CHECK_SELFCHECK_CHILD=1 python3 tests/check.py`), sin `--freeze` en ningún momento.
+
+---
+
 ## §8 · Numeración, y la colisión que se espera
 
 `ADR-164` candidatea contra el máximo re-derivado **por regex sobre el árbol** (`grep -oE '^\*\*ADR-[0-9]+' | grep -oE '[0-9]+' | sort -n -u`), no por `sort -t- -k2`, que en este archivo parte en el primer guion y devuelve un máximo falso: sobre `bd70166` el máximo es **`163`**, con **163 ADR únicos y sin huecos**. `FP-135` candidatea contra el máximo `134`, derivado igual.
@@ -308,6 +327,28 @@ Todas las cantidades de §4 y §5 están en **personas** (`Ŷ`, `EE`) o son **ad
 
 ---
 
-## §9 · El párrafo a mesa
+## §9 · Enmienda del Commit 3 — la ficha estaba mal en un punto
+
+**El defecto.** La ficha del Commit 1 nombró sus dos estimandos con la letra `E` seguida de un dígito, sin prefijo de espacio. Eso es un rótulo **pelado** de una familia que `D-6` (`ADR-128`, `ACTO SELLA-ADV`, 20/ago/2026) prohíbe crear desde ese día, y `T25` marcó `FAIL` los dos archivos nuevos de este acto — que es exactamente para lo que ese test existe. El defecto es del ejecutor y de la ficha, no del encargo.
+
+**Cómo se corrige.** Con un tercer commit que **lo dice**, tal como el encargo lo previó (*«Si la ficha estaba mal: tercer commit que lo diga; nunca hacia atrás»*), no arreglándolo en silencio dentro del Commit 2. Los rótulos pasan a **`U2-E1`** y **`U2-E2`**, prefijo de espacio del propio acto. Nada más cambia: ni un estimando, ni un intervalo, ni el criterio, ni la escala, ni una cifra.
+
+**Por qué no viola §12 ni la congelación de la ficha.** La cláusula protege contra mover la *especificación* después de ver el resultado. Un rótulo no es especificación, y `D-6` es canon: manda sobre la auto-congelación de una ficha. Los rótulos viejos no se reproducen en su forma pelada en ningún archivo de este acto, a propósito — para un test de rótulos, mención y uso no se distinguen, así que escribirlos volvería a crear el defecto.
+
+**Trazabilidad, y es la parte que importa.** El script imprimía los rótulos en **cuatro** cadenas. Se produjo una `v2` que cambia **sólo esas cuatro** (`sha256 3b36e1c46bf06985490182f10cea05a13b8dd676ef8eff6d53d693fe5ea81884` → `f25e84a995e264313aa5835bf283b6b570772b3802ce770d10142a8703988bc0`) y se volvió a correr. El diff entre las dos salidas es **de tres líneas, todas de rótulo**:
+
+| # | línea de la corrida 2, **verbatim** | qué cambió respecto de la corrida 1 |
+|---|---|---|
+| 1 | `n(U2-E2, dominio 'requirio')  = 9864 renglones-persona` | el token del rótulo, y dos espacios de alineación |
+| 2 | `===== U2-E1 · Poblacion total =====` | el token del rótulo |
+| 3 | `===== U2-E2 · Si requirio apoyo o cuidados =====` | el token del rótulo |
+
+*(El diff se presenta así, y no pegado, por la misma razón que la enmienda declara: las líneas eliminadas contienen los rótulos viejos en su forma pelada, y pegarlas volvería a disparar `T25` sobre esta nota — mención y uso no se distinguen para un test de rótulos. El diff crudo, con sus tres pares de líneas, vive en `scratchpad` junto a las dos salidas.)*
+
+Y normalizando los rótulos, `cmp` las declara **idénticas byte a byte**. La transcripción de §4 es la de esta segunda corrida, verbatim. **Ninguna cifra reportada cambia**, así que lo que se reporta sigue siendo el primer —y único— resultado del procedimiento.
+
+---
+
+## §10 · El párrafo a mesa
 
 **¿El pipeline reproduce al INEGI, sí o no, y con qué holgura?** **Sí, y no con holgura: con identidad.** Los dos totales oficiales de ENASIC 2022 se reprodujeron **al peso** —`58 594 471` contra `58 594 471`, y `128 857 388` contra `128 857 388`— y los dos errores estándar de diseño se reprodujeron **a la novena cifra decimal**, con una diferencia de `10⁻⁹` que es ruido de punto flotante. Eso significa que la maquinaria que este programa usa para ponderar y para calcular precisión —el mismo estimador de conglomerados últimos que produjo el `IC95` de la única θ sellada del programa— **es la misma que usó el INEGI**, y no una aproximación parecida: coincide en la fórmula, en el factor `m/(m−1)`, en no aplicar corrección por población finita y en no ajustar por calibración de los factores. Hasta hoy eso era un supuesto declarado que ningún tercero había contrastado; ahora está identificado numéricamente. Dos cosas que mesa debe leer junto al sí. **La primera:** el criterio que el encargo hizo elegir —punto dentro del `IC95` oficial— resultó unas 170 veces más laxo que la precisión realmente alcanzada, y por sí solo habría dado por buena una discrepancia determinista de 21 090 personas sin verla; quien fije el criterio de la próxima validación externa debería exigir reproducción exacta, no pertenencia a intervalo. **La segunda:** el cruce encontró un defecto, y no es nuestro — el renglón `Población total` del archivo oficial de precisión publica una cifra que **incluye** los casos que su propia etiqueta declara excluidos, y llama *«21 090 casos»* a lo que es **un solo registro muestral con factor de expansión 21 090**. Cualquiera que obedezca esa etiqueta obtendrá `128 836 298`, no reproducirá la cifra publicada, y concluirá que su pipeline falla. El nuestro no falla: la etiqueta miente. Eso, y no el «sí», es lo que hace que esta validación externa haya valido lo que costó.

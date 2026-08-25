@@ -33,7 +33,7 @@
 
 Fuente única, ya en corpus con `sha256` verificado: **`enasic2022_ipe_cv_ee_ic`** → `IPE_CV-EE-IC_ENASIC_2022-00_Def_V1_260923.xlsx`, `sha256 c37b5fc687ae9fc727d0cd1d883adef00165086e54453d3070b9eae51801c540`, 51 724 B. Es un `.xlsx`, no tiene paginación; **la coordenada equivalente a la página es hoja + fila**, y se cita así: **hoja `INDICADORES` (1 de 2; la otra es `Catálogo`), fila 2 y fila 3** — las dos únicas filas con contenido de las 337 barridas. Los encabezados son la fila 1, 21 columnas (`Tipo_Programa` … `IntConf_Sup`).
 
-**Fila 2 — estimando E1**, celda por celda, verbatim:
+**Fila 2 — estimando U2-E1**, celda por celda, verbatim:
 
 | columna | valor |
 |---|---|
@@ -52,7 +52,7 @@ Fuente única, ya en corpus con `sha256` verificado: **`enasic2022_ipe_cv_ee_ic`
 | `Niv_Conf` | **`90`** |
 | `IntConf_Inf` / `IntConf_Sup` | `125907101.688467` / `131807674.311533` |
 
-**Fila 3 — estimando E2**, mismas 13 primeras columnas salvo `Variable`:
+**Fila 3 — estimando U2-E2**, mismas 13 primeras columnas salvo `Variable`:
 
 | columna | valor |
 |---|---|
@@ -67,10 +67,10 @@ Fuente única, ya en corpus con `sha256` verificado: **`enasic2022_ipe_cv_ee_ic`
 **Coherencia interna del archivo oficial, verificada aquí y no supuesta** (aritmética sobre el lado oficial, no una estimación nuestra):
 
 ```
-E1:  CV/100 x Estimación = 1.391962655/100 x 128857388 = 1793646.719168   (publicado 1793646.71919227; dif -0.000024)
+U2-E1:  CV/100 x Estimación = 1.391962655/100 x 128857388 = 1793646.719168   (publicado 1793646.71919227; dif -0.000024)
      (Estimación - IntConf_Inf)/ErrorEst = 1.644853627
      (IntConf_Sup - Estimación)/ErrorEst = 1.644853627
-E2:  CV/100 x Estimación = 1.6048742386/100 x 58594471 =  940367.570323   (publicado  940367.570351719; dif -0.000029)
+U2-E2:  CV/100 x Estimación = 1.6048742386/100 x 58594471 =  940367.570323   (publicado  940367.570351719; dif -0.000029)
      (Estimación - IntConf_Inf)/ErrorEst = 1.644853627
      (IntConf_Sup - Estimación)/ErrorEst = 1.644853627
 ```
@@ -114,7 +114,7 @@ z(0.975) = 1.9599639845400536      ← el que este cruce necesita
 **La aritmética, completa, para los dos estimandos:**
 
 ```
-E1 · Población total
+U2-E1 · Población total
    semiamplitud IC95 = 1.9599639845400536 × 1793646.71919227 = 3515482.970605
    IC95 oficial      = 128857388 − 3515482.970605  ,  128857388 + 3515482.970605
                      = [ 125341905.029395 , 132372870.970605 ]
@@ -122,7 +122,7 @@ E1 · Población total
    (a modo de control: el IC90 publicado es [125907101.688467 , 131807674.311533],
     semiamplitud 2950286.311533 = 1.6448536… × 1793646.71919227 ✓)
 
-E2 · Sí requirió apoyo o cuidados
+U2-E2 · Sí requirió apoyo o cuidados
    semiamplitud IC95 = 1.9599639845400536 × 940367.570351719 = 1843086.570119
    IC95 oficial      = 58594471 − 1843086.570119  ,  58594471 + 1843086.570119
                      = [ 56751384.429881 , 60437557.570119 ]
@@ -176,7 +176,7 @@ Es la **única** diferencia con el código sellado: donde `produce.py` acumula `
 
 **Tres convenciones de estimación que se fijan aquí y no después:**
 
-1. **La estructura de diseño (`m_h`, qué UPM existen en cada estrato) se cuenta sobre la muestra COMPLETA de `TCSDEMPO.csv`**, no sobre el dominio. Una UPM sin ningún miembro del dominio aporta `z_{h,i} = 0`, no desaparece. Es la convención estándar de estimación por dominios, y es la que evita inflar artificialmente la varianza de `E2`.
+1. **La estructura de diseño (`m_h`, qué UPM existen en cada estrato) se cuenta sobre la muestra COMPLETA de `TCSDEMPO.csv`**, no sobre el dominio. Una UPM sin ningún miembro del dominio aporta `z_{h,i} = 0`, no desaparece. Es la convención estándar de estimación por dominios, y es la que evita inflar artificialmente la varianza de `U2-E2`.
 2. **Estratos con una sola UPM:** si aparece alguno, el acto lo **reporta con su lista y su conteo** y no lo colapsa en silencio — misma respuesta que `produce.py` (que levanta `ESTRATOS_UNA_UPM`). Si aparecen, el resultado se declara `NO_ESTIMABLE` para el estimando afectado y eso **es** el resultado que se reporta (§12).
 3. **Sin corrección por población finita, sin recalibración, sin recorte de pesos.** Los pesos se toman tal cual vienen del archivo.
 
@@ -192,8 +192,8 @@ Es la **única** diferencia con el código sellado: donde `produce.py` acumula `
 
 | cantidad | símbolo | escala declarada |
 |---|---|---|
-| E1 · Población total | `Ŷ₁` | **personas** (conteo poblacional expandido) |
-| E2 · Sí requirió apoyo o cuidados | `Ŷ₂` | **personas** (conteo poblacional expandido) |
+| U2-E1 · Población total | `Ŷ₁` | **personas** (conteo poblacional expandido) |
+| U2-E2 · Sí requirió apoyo o cuidados | `Ŷ₂` | **personas** (conteo poblacional expandido) |
 | error estándar de diseño de cada uno | `EE(Ŷ)` | **personas** |
 | coeficiente de variación | `CV` | **porcentaje** (adimensional) |
 | razón de discrepancia de EE (§9c) | `\|EE_propio − EE_oficial\| / EE_oficial` | **adimensional** |
@@ -201,9 +201,9 @@ Es la **única** diferencia con el código sellado: donde `produce.py` acumula `
 
 **Prohibido por esta ficha, y es `A-bis` regla 3:** comparar cualquiera de estas cantidades contra la θ sellada de `familismo_obligacion` (0.6933) o contra su EE (0.0106). Son proporciones sobre otra tabla y otra subpoblación; no hay función de enlace declarada y no la habrá aquí.
 
-**Operacionalización de `E2`, congelada, con su reserva.** `y₂ = 1` si el renglón trae **`1` (= Sí)** en **cualquiera** de las cinco banderas de identificación de la Sección 4 del propio archivo —`PN_CDISC`, `PN_C0005`, `PN_C0617`, `PN_C60MA`, `PN_CETEM`—, `0` en otro caso. La sección se titula, verbatim en el descriptor, *«SECCIÓN 4. IDENTIFICACIÓN DE PERSONAS DEL HOGAR QUE NECESITAN CUIDADOS»*, y las cinco banderas son sus identificadores derivados (`1` = Sí · `2` = No · `b` = Blanco por secuencia), una por módulo: discapacidad, 0-5 años, 6-17 años, 60 y más, enfermedad temporal. La disyunción evita el doble conteo de quien cae en dos módulos.
+**Operacionalización de `U2-E2`, congelada, con su reserva.** `y₂ = 1` si el renglón trae **`1` (= Sí)** en **cualquiera** de las cinco banderas de identificación de la Sección 4 del propio archivo —`PN_CDISC`, `PN_C0005`, `PN_C0617`, `PN_C60MA`, `PN_CETEM`—, `0` en otro caso. La sección se titula, verbatim en el descriptor, *«SECCIÓN 4. IDENTIFICACIÓN DE PERSONAS DEL HOGAR QUE NECESITAN CUIDADOS»*, y las cinco banderas son sus identificadores derivados (`1` = Sí · `2` = No · `b` = Blanco por secuencia), una por módulo: discapacidad, 0-5 años, 6-17 años, 60 y más, enfermedad temporal. La disyunción evita el doble conteo de quien cae en dos módulos.
 
-> **Reserva de `E2`, escrita antes de correr y no después:** el archivo oficial **no publica el mnemónico** de su renglón *«Sí requirió apoyo o cuidados»* — sólo la etiqueta en prosa. La operacionalización de arriba es una **derivación del descriptor**, no una lectura de la definición oficial. En consecuencia, una discrepancia en `E2` es **ambigua** entre defecto de pipeline y operacionalización distinta, y §8 la trata como tal. `E1` no tiene esta ambigüedad: su universo lo define el propio renglón oficial.
+> **Reserva de `U2-E2`, escrita antes de correr y no después:** el archivo oficial **no publica el mnemónico** de su renglón *«Sí requirió apoyo o cuidados»* — sólo la etiqueta en prosa. La operacionalización de arriba es una **derivación del descriptor**, no una lectura de la definición oficial. En consecuencia, una discrepancia en `U2-E2` es **ambigua** entre defecto de pipeline y operacionalización distinta, y §8 la trata como tal. `U2-E1` no tiene esta ambigüedad: su universo lo define el propio renglón oficial.
 
 ---
 
@@ -213,8 +213,8 @@ El encargo ofrece dos y exige elegir **uno**. Se elige:
 
 > ### **Nuestro punto estimado cae dentro del IC95 oficial.**
 > Formalmente, para cada estimando `k ∈ {1,2}`:  `IC95_oficial_inf(k) ≤ Ŷ_k ≤ IC95_oficial_sup(k)`, con los dos intervalos que §3 dejó calculados:
-> * **E1:** `125 341 905.03 ≤ Ŷ₁ ≤ 132 372 870.97`
-> * **E2:** ` 56 751 384.43 ≤ Ŷ₂ ≤  60 437 557.57`
+> * **U2-E1:** `125 341 905.03 ≤ Ŷ₁ ≤ 132 372 870.97`
+> * **U2-E2:** ` 56 751 384.43 ≤ Ŷ₂ ≤  60 437 557.57`
 
 **Por qué éste y no el traslape de intervalos.** Tres razones, todas escritas antes de ver el resultado:
 
@@ -222,7 +222,7 @@ El encargo ofrece dos y exige elegir **uno**. Se elige:
 2. **Aísla el confundido metodológico.** El traslape depende de **nuestro** EE, y nuestro EE puede diferir del oficial por método de varianza (calibración, corrección por población finita, bootstrap) sin que haya defecto alguno en el pipeline. El criterio de punto-dentro depende sólo de nuestro **estimador puntual** y del EE **oficial** — el confundido se sale de la adjudicación y baja a diagnóstico (§9c).
 3. **Es el que puede fallar de verdad.** Ŷ es aritmética determinista sobre el archivo: si nuestra lectura del ponderador, del universo o de la tabla está mal, el punto se va y se va lejos, no un poco.
 
-**Regla de suficiencia, pre-declarada:** el criterio se evalúa **por separado** para `E1` y `E2`, y **`E1` es el estimando primario** — porque su operacionalización no tiene la ambigüedad de `E2` (§6, reserva).
+**Regla de suficiencia, pre-declarada:** el criterio se evalúa **por separado** para `U2-E1` y `U2-E2`, y **`U2-E1` es el estimando primario** — porque su operacionalización no tiene la ambigüedad de `U2-E2` (§6, reserva).
 
 **`A-bis`, la contraparte, aplicada por adelantado:** un punto que satisface el umbral con un intervalo **propio** que no lo despeja no adjudica; se reporta como **propuesta con la reserva escrita**. Todo veredicto de este acto es, por tanto, **propuesto**, nunca firmado por el ejecutor.
 
@@ -236,11 +236,11 @@ El encargo ofrece dos y exige elegir **uno**. Se elige:
 |---|---|---|---|
 | **1** | **`PIPELINE CORROBORADO`** | `Ŷ₁` y `Ŷ₂` dentro de su IC95 oficial **y** la razón de discrepancia de EE (§9c) ≤ 0.15 en los dos | La maquinaria de ponderación + diseño + varianza **reproduce al INEGI** sobre este instrumento. Primera validación externa material del programa: pasa de 0 a **1** |
 | **2** | **`PIPELINE CORROBORADO · DISCREPANCIA ACOTADA`** | `Ŷ₁` y `Ŷ₂` dentro **pero** la razón de EE > 0.15 en al menos uno | El **estimador puntual** reproduce; el de **varianza** difiere, y la diferencia queda **medida y acotada**. No adjudica cuál de los dos métodos de varianza es el correcto — eso exigiría el documento metodológico de INEGI a nivel de fórmula, que este acto no tiene. Cuenta como validación externa **con reserva** |
-| **3** | **`NO CONCLUYENTE POR OPERACIONALIZACIÓN`** | `Ŷ₁` dentro, `Ŷ₂` fuera | La operacionalización derivada de `E2` (§6) no coincide con la del INEGI. **No es evidencia de defecto de pipeline** y no se reporta como tal: `E1` ya mostró que la maquinaria lee bien. Se reporta el tamaño de la brecha de `E2` como dato, sin veredicto |
+| **3** | **`NO CONCLUYENTE POR OPERACIONALIZACIÓN`** | `Ŷ₁` dentro, `Ŷ₂` fuera | La operacionalización derivada de `U2-E2` (§6) no coincide con la del INEGI. **No es evidencia de defecto de pipeline** y no se reporta como tal: `U2-E1` ya mostró que la maquinaria lee bien. Se reporta el tamaño de la brecha de `U2-E2` como dato, sin veredicto |
 | **4** | **`REFUTADO · DEFECTO DE PIPELINE`** | `Ŷ₁` **fuera** de su IC95 oficial | Defecto material en la lectura de microdato, ponderador o universo. **Bloquea** el uso de todo resultado producido por la misma vía hasta remediarse, y es el desenlace más informativo de los cinco |
 | **5** | **`PRUEBA DÉBIL`** | El criterio se satisface pero se descubre, al correr, que no podía fallar — p. ej. si el IC95 oficial resultara tan ancho que cualquier lectura plausible cayera dentro | El acto no informa sobre el pipeline. Se dice, no se maquilla como corroboración |
 
-**Regla de precedencia, exigida por `B-bis` y fijada aquí:** si dos filas pudieran satisfacerse a la vez, **manda la fila 4** sobre todas (un `E1` fuera es defecto, y ningún acierto en `E2` lo compensa); después manda la **fila 5** sobre 1, 2 y 3 (una prueba que no podía fallar no corrobora nada, aunque el criterio se cumpla); después la **fila 3** sobre 1 y 2 (`E2` fuera bloquea la lectura fuerte aunque `E1` acierte); y **la fila 2 manda sobre la 1**. Esta escala gobierna sobre cualquier lectura genérica de «pasó / no pasó».
+**Regla de precedencia, exigida por `B-bis` y fijada aquí:** si dos filas pudieran satisfacerse a la vez, **manda la fila 4** sobre todas (un `U2-E1` fuera es defecto, y ningún acierto en `U2-E2` lo compensa); después manda la **fila 5** sobre 1, 2 y 3 (una prueba que no podía fallar no corrobora nada, aunque el criterio se cumpla); después la **fila 3** sobre 1 y 2 (`U2-E2` fuera bloquea la lectura fuerte aunque `U2-E1` acierte); y **la fila 2 manda sobre la 1**. Esta escala gobierna sobre cualquier lectura genérica de «pasó / no pasó».
 
 **Lo que este acto declara ANTES de ver el dato que sería interesante si NO refuta** —`B-bis` lo pide expresamente—: la corroboración es aquí **más informativa que la refutación para el programa**, porque hoy el programa tiene **cero** validaciones externas y una θ sellada (`familismo_obligacion`, 69.33 %) cuyo IC95 se produjo por esta misma maquinaria de varianza sin que nadie de fuera la haya contrastado nunca. Si el desenlace es 1 o 2, ese IC95 gana por primera vez respaldo externo — y eso se dice ahora, no después, para que nadie lea la corroboración como un acto sin hallazgo.
 
@@ -258,7 +258,7 @@ Se calculan y se reportan **siempre**, sea cual sea el desenlace. Ninguna mueve 
 Σ FAC_HOG sobre TODOS los renglones de TCSDEMPO  −  Σ FAC_HOG sobre {EDAD ≠ '99'}  =  21 090
 ```
 
-Se pre-declara el valor esperado **exacto**: `21 090`. Si sale otra cosa, la regla de universo de §6 no es la del INEGI y eso se reporta como reserva de `E1`, **sin cambiar el criterio de §7** — el criterio ya está congelado y se evalúa igual.
+Se pre-declara el valor esperado **exacto**: `21 090`. Si sale otra cosa, la regla de universo de §6 no es la del INEGI y eso se reporta como reserva de `U2-E1`, **sin cambiar el criterio de §7** — el criterio ya está congelado y se evalúa igual.
 
 **(b) Coherencia persona/hogar del factor.** `Σ FAC_HOG` sobre `TCSDEMPO.csv` (renglones-persona) dividido entre `Σ FAC_HOG` sobre `THOGAR.csv` (renglones-hogar) debe dar el **tamaño medio de hogar**, que para México en 2022 está en el orden de **3.3 a 3.8**. Es la comprobación de que §4 no confundió la unidad. Fuera de ese rango, la decisión de factor queda en duda y se dice.
 
@@ -280,7 +280,7 @@ El **0.15 no se inventa en esta ficha**: es el mismo umbral de discrepancia mate
 
 1. **No puede concluir que el EE del motor sea correcto en general.** Reproduce (o no) un EE de **total** bajo un diseño estratificado por conglomerados últimos. La θ sellada es una **proporción** sobre otra tabla; que la varianza de un total coincida no demuestra que la de una razón coincida, aunque comparten el estimador.
 2. **No puede distinguir «nuestro método de varianza» de «el método de varianza del INEGI»** si difieren. El archivo oficial publica el número, no la fórmula; el documento metodológico que declara *«Conglomerados Últimos junto con… Series de Taylor»* no fija si hay corrección por población finita ni cómo se trata la calibración de los factores.
-3. **No puede validar la operacionalización de `E2`** (§6, reserva). Un acierto en `E2` es *compatible* con que nuestra derivación coincida con la del INEGI; no la demuestra.
+3. **No puede validar la operacionalización de `U2-E2`** (§6, reserva). Un acierto en `U2-E2` es *compatible* con que nuestra derivación coincida con la del INEGI; no la demuestra.
 4. **No puede convertirse en una validación del instrumento.** Nuestro estimador y el del INEGI se calculan sobre **la misma muestra**: no son dos mediciones independientes de México, son dos lecturas del mismo archivo. Lo que se prueba es la lectura, no el dato. Esto es exactamente lo que hace de la fila 5 (`PRUEBA DÉBIL`) un desenlace posible y no una formalidad.
 
 ---
@@ -296,4 +296,16 @@ El **0.15 no se inventa en esta ficha**: es el mismo umbral de discrepancia mate
 
 ## 12 · La cláusula de reporte
 
-**El primer resultado que produzca este procedimiento es el que se reporta.** No hay segunda corrida, no hay variante de universo, no hay factor alternativo, no hay ajuste de la operacionalización de `E2` para acercarse al número oficial. Si el resultado contradice esta ficha, el Commit 2 lo dice y un commit posterior explica en qué se equivocó la ficha — **nunca se corrige hacia atrás**.
+**El primer resultado que produzca este procedimiento es el que se reporta.** No hay segunda corrida, no hay variante de universo, no hay factor alternativo, no hay ajuste de la operacionalización de `U2-E2` para acercarse al número oficial. Si el resultado contradice esta ficha, el Commit 2 lo dice y un commit posterior explica en qué se equivocó la ficha — **nunca se corrige hacia atrás**.
+
+---
+
+## Enmienda in situ · 25 de agosto de 2026 · `ACTO U2-CRUCE`, Commit 3 — **la ficha estaba mal en un punto**
+
+**Qué estaba mal.** Esta ficha nombró sus dos estimandos con la letra `E` seguida de un dígito, sin prefijo de espacio: rótulos **pelados** de esa familia, que es exactamente lo que `D-6` (`ADR-128`, `ACTO SELLA-ADV`, 20/ago/2026) prohíbe crear desde ese día — *«lo que ya está en uso se registra, no se renombra; ningún rótulo NUEVO puede ser letra+número pelado»*. La regla nació de una colisión medida: siete rótulos distintos de esa misma familia conviviendo en el rango de `0` a `5`, uno de ellos citado por nombre en una fila del tablero. `T25` marcó `FAIL` los dos archivos nuevos de este acto, que es precisamente para lo que existe. Los rótulos viejos no se reproducen aquí en su forma pelada, a propósito: escribirlos volvería a crear el defecto que esta enmienda corrige — mención y uso no se distinguen para un test de rótulos.
+
+**Qué se corrige, y qué NO.** Se renombran los **30** rótulos de esta ficha a **`U2-E1`** y **`U2-E2`** — prefijo de espacio del propio acto, la forma que `D-6` exige. **Ninguna otra cosa cambia**: ni un estimando, ni un intervalo, ni el criterio, ni la escala `B-bis`, ni una cifra. El renombrado es de token, no de sustancia.
+
+**Por qué esto no es «corregir hacia atrás».** La cláusula §12 y la del encabezado protegen contra mover la *especificación* después de ver el resultado, que es lo que falsearía el pre-registro. Un rótulo que viola una regla de canon no es especificación: es forma, y `D-6` manda sobre la auto-congelación de cualquier ficha. El encargo lo previó con estas palabras — *«Si la ficha estaba mal: tercer commit que lo diga; nunca hacia atrás»* — y esto es ese commit: **lo dice**, en vez de arreglarlo en silencio dentro del Commit 2.
+
+**Trazabilidad de la corrida.** El script usaba los mismos rótulos en cuatro cadenas de impresión. Se produjo una `v2` que cambia **sólo esas cuatro cadenas** (`sha256 3b36e1c4…` → `f25e84a9…`) y se volvió a correr. Las dos salidas son **idénticas byte a byte tras normalizar los rótulos**, verificado por `cmp`; el diff completo va en la nota del acto. **Ninguna cifra reportada cambia**, así que §12 se mantiene: lo que se reporta sigue siendo el primer —y único— resultado del procedimiento.
