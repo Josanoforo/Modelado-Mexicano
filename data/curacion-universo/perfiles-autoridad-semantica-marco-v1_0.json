@@ -4,9 +4,7 @@
     "endutih2024_fd_xlsx": "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS",
     "enfih2019_fd_xlsx": "UNIVERSO_UNIDAD_Y_SCOPE_PONDERADOR_NO_RESUELTOS",
     "enif2018_fd_xlsx": "PONDERADOR_OLA_SCOPE_NO_DOCUMENTADO",
-    "enif2021_fd_zip": "PONDERADOR_OLA_SCOPE_NO_DOCUMENTADO",
-    "enut2024_fd_xlsx": "UNIVERSO_EFECTIVO_Y_RESPUESTA_EXCLUSIVA_NO_DOCUMENTADOS",
-    "mociba2024_fd_xlsx": "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS"
+    "enif2021_fd_zip": "PONDERADOR_OLA_SCOPE_NO_DOCUMENTADO"
   },
   "expected_counts": {
     "semillas_variables_totales": 129845,
@@ -14,7 +12,7 @@
     "uniones_ausentes": 16832,
     "uniones_exactas": 113013
   },
-  "origin_main_inicial": "f6f8e00fa8410ac4744b88c28f553f39479f598d",
+  "origin_main_inicial": "b93bf3651ff80784cdc154c01c1ac28e1f0f24ce",
   "preserve_authority_ids": [
     "ASM-103aaa4e84c4b50e4ccce15f"
   ],
@@ -388,6 +386,225 @@
           },
           "unidad_observacion": "Una persona cuidadora de 15 años y más.",
           "universo_poblacional": "Población cuidadora de 15 años y más que, durante la semana anterior a la fecha de referencia, declaró que brindó cuidados a por lo menos una población susceptible."
+        }
+      },
+      "type_rule": "DOS_CODIGOS_BINARIA_OTRO_ENUMERADO_CATEGORICA"
+    },
+    {
+      "encuesta": "Módulo sobre Ciberacoso (MOCIBA) 2024",
+      "missing_rule": "CODIGOS_VALIDOS_EXHAUSTIVOS",
+      "ola": "2024",
+      "payload_id": "mociba2024_fd_xlsx",
+      "projector": "INEGI-FD-CLASES-VALOR-ETIQUETA-1.0",
+      "source_id": "INEGI-MOCIBA-2024-FD",
+      "source_path": "mociba2024/mociba2024_fd.xlsx",
+      "source_sha256": "9d6fb1979576f30b5aee0f61f11ab7afefd56d5b77c596df95cf11103b35d080",
+      "source_uri": "https://www.inegi.org.mx/contenidos/programas/mociba/2024/doc/mociba2024_fd.xlsx",
+      "tables": {
+        "TMociba": {
+          "context_citations": [
+            {
+              "fields": [
+                "encuesta",
+                "ola"
+              ],
+              "local_path": "mociba2024/mociba2024_fd.xlsx",
+              "locator": "hoja=TMociba;filas=1,4,15: título MOCIBA 2024 y número de renglón del elegido",
+              "sha256": "9d6fb1979576f30b5aee0f61f11ab7afefd56d5b77c596df95cf11103b35d080",
+              "source_id": "INEGI-MOCIBA-2024-FD",
+              "uri": "https://www.inegi.org.mx/contenidos/programas/mociba/2024/doc/mociba2024_fd.xlsx"
+            },
+            {
+              "fields": [
+                "unidad_observacion",
+                "universo_poblacional"
+              ],
+              "locator": "$['nivel'][titulo='Diseño conceptual'].texto, Población objetivo: personas de 12 y más años que usan internet en cualquier dispositivo en los tres meses anteriores a la captación; $['nivel'][titulo='Diseño estadístico'].texto, Unidad de análisis: esa población residente de las viviendas particulares seleccionadas",
+              "sha256": "2d18ae5574d451a40832dbf20e4391c1291da46fd56e4fd8a0b23a8db5dbf2ca",
+              "source_id": "INEGI-MOCIBA-2024-PRESENTACION",
+              "uri": "https://www.inegi.org.mx/programas/mociba/2024/data/presentacion/presentacionData.js"
+            }
+          ],
+          "design_locator": "fuente=MOCIBA (Módulo sobre Ciberacoso) 2024; ponderador=FACTOR; donde_vive=tabla única MOCIBA2024/TMociba",
+          "ponderador": "FACTOR",
+          "ponderador_scope_id": "TMociba",
+          "response_semantics": {
+            "citation": {
+              "local_path": "mociba2024/mociba2024_fd.xlsx",
+              "locator": "hoja=TMociba;filas=10-11: un campo por mnemónico y dominio oficial Clases→Valor/Etiqueta",
+              "sha256": "9d6fb1979576f30b5aee0f61f11ab7afefd56d5b77c596df95cf11103b35d080",
+              "source_id": "INEGI-MOCIBA-2024-FD",
+              "uri": "https://www.inegi.org.mx/contenidos/programas/mociba/2024/doc/mociba2024_fd.xlsx"
+            },
+            "multiple_response_variables": [],
+            "rule": "CAMPO_ESCALAR_CON_DOMINIO_ESTRUCTURADO",
+            "scalar_exclusive_variables": [],
+            "unresolved_variables": []
+          },
+          "universe_semantics": {
+            "assignments": [
+              {
+                "unidad_observacion": "Una persona de 12 años o más que usó internet en cualquier dispositivo en los tres meses anteriores a la captación.",
+                "universo_poblacional": "Personas de 12 años o más que usaron internet en cualquier dispositivo durante los tres meses anteriores a la captación de información.",
+                "variables": [
+                  "CVE_ENT",
+                  "DOMINIO",
+                  "ESTRATO",
+                  "NIVEL",
+                  "P1",
+                  "P12A_1",
+                  "P12A_2",
+                  "P12A_3",
+                  "P13",
+                  "P14",
+                  "P3",
+                  "P4_01",
+                  "P4_02",
+                  "P4_03",
+                  "P4_04",
+                  "P4_05",
+                  "P4_06",
+                  "P4_07",
+                  "P4_08",
+                  "P4_09",
+                  "P4_10",
+                  "P4_11",
+                  "P4_12",
+                  "P4_13",
+                  "SEXO",
+                  "TLOC"
+                ]
+              }
+            ],
+            "unresolved_variables": [
+              "P7_1"
+            ]
+          }
+        }
+      },
+      "type_rule": "DOS_CODIGOS_BINARIA_OTRO_ENUMERADO_CATEGORICA"
+    },
+    {
+      "blocked_tables": {
+        "THOGAR": "PONDERADOR_SCOPE_NO_RESUELTO",
+        "TSDEM": "PONDERADOR_SCOPE_NO_RESUELTO",
+        "TVIVIENDA": "PONDERADOR_SCOPE_NO_RESUELTO"
+      },
+      "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
+      "missing_rule": "CODIGOS_VALIDOS_EXHAUSTIVOS",
+      "ola": "2024",
+      "payload_id": "enut2024_fd_xlsx",
+      "projector": "INEGI-FD-CODIGOS-VALIDOS-7COL-1.0",
+      "source_id": "INEGI-ENUT-2024-FD",
+      "source_path": "enut2024_fd.xlsx",
+      "source_sha256": "4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58",
+      "source_uri": "https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_fd.xlsx",
+      "tables": {
+        "TMODULO": {
+          "context_citations": [
+            {
+              "fields": [
+                "encuesta",
+                "ola"
+              ],
+              "local_path": "enut2024_fd.xlsx",
+              "locator": "hoja=TMODULO;filas=2-4: nombre, edición y tabla oficiales",
+              "sha256": "4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58",
+              "source_id": "INEGI-ENUT-2024-FD",
+              "uri": "https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_fd.xlsx"
+            },
+            {
+              "fields": [
+                "unidad_observacion",
+                "universo_poblacional"
+              ],
+              "locator": "$['nivel'][titulo='Diseño conceptual'].texto, Población objetivo: población de 12 años y más; $['nivel'][titulo='Diseño estadístico'].texto, Unidad de observación: viviendas, hogares y personas de 12 años y más",
+              "sha256": "ab3a33d03820867728a5ca1db9c4307f8da3046e5dc9b38be74c7f98ff555d0f",
+              "source_id": "INEGI-ENUT-2024-PRESENTACION",
+              "uri": "https://www.inegi.org.mx/programas/enut/2024/data/presentacion/presentacionData.js"
+            },
+            {
+              "fields": [
+                "rango_valido"
+              ],
+              "local_path": "enut2024_fd.xlsx",
+              "locator": "hoja=TMODULO;fila=34;variable=EDAD_V;rango válido oficial 12 - 96 años",
+              "sha256": "4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58",
+              "source_id": "INEGI-ENUT-2024-FD",
+              "uri": "https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_fd.xlsx"
+            }
+          ],
+          "design_locator": "fuente=ENUT (Encuesta Nacional sobre Uso del Tiempo); ponderador=FAC_PER; donde_vive=tmodulo/tvar_crea ENUT 2024",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TMODULO",
+          "response_semantics": {
+            "citation": {
+              "local_path": "enut2024_fd.xlsx",
+              "locator": "hoja=TMODULO;filas=15-16: un campo por mnemónico y columnas Códigos válidos/Concepto",
+              "sha256": "4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58",
+              "source_id": "INEGI-ENUT-2024-FD",
+              "uri": "https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_fd.xlsx"
+            },
+            "multiple_response_variables": [],
+            "rule": "CAMPO_ESCALAR_CON_DOMINIO_ESTRUCTURADO",
+            "scalar_exclusive_variables": [],
+            "unresolved_variables": []
+          },
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        },
+        "TVAR_CREA": {
+          "context_citations": [
+            {
+              "fields": [
+                "encuesta",
+                "ola"
+              ],
+              "local_path": "enut2024_fd.xlsx",
+              "locator": "hoja=TVAR_CREA;filas=2-4: nombre, edición y tabla oficiales",
+              "sha256": "4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58",
+              "source_id": "INEGI-ENUT-2024-FD",
+              "uri": "https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_fd.xlsx"
+            },
+            {
+              "fields": [
+                "unidad_observacion",
+                "universo_poblacional"
+              ],
+              "locator": "$['nivel'][titulo='Diseño conceptual'].texto, Población objetivo: población de 12 años y más; $['nivel'][titulo='Diseño estadístico'].texto, Unidad de observación: viviendas, hogares y personas de 12 años y más",
+              "sha256": "ab3a33d03820867728a5ca1db9c4307f8da3046e5dc9b38be74c7f98ff555d0f",
+              "source_id": "INEGI-ENUT-2024-PRESENTACION",
+              "uri": "https://www.inegi.org.mx/programas/enut/2024/data/presentacion/presentacionData.js"
+            },
+            {
+              "fields": [
+                "rango_valido"
+              ],
+              "local_path": "enut2024_fd.xlsx",
+              "locator": "hoja=TVAR_CREA;fila=70;variable=EDAD;rango válido oficial 12 - 96 años",
+              "sha256": "4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58",
+              "source_id": "INEGI-ENUT-2024-FD",
+              "uri": "https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_fd.xlsx"
+            }
+          ],
+          "design_locator": "fuente=ENUT (Encuesta Nacional sobre Uso del Tiempo); ponderador=FAC_PER; donde_vive=tmodulo/tvar_crea ENUT 2024",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TVAR_CREA",
+          "response_semantics": {
+            "citation": {
+              "local_path": "enut2024_fd.xlsx",
+              "locator": "hoja=TVAR_CREA;filas=15-16: un campo por mnemónico y columnas Códigos válidos/Concepto",
+              "sha256": "4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58",
+              "source_id": "INEGI-ENUT-2024-FD",
+              "uri": "https://www.inegi.org.mx/contenidos/programas/enut/2024/microdatos/enut_2024_fd.xlsx"
+            },
+            "multiple_response_variables": [],
+            "rule": "CAMPO_ESCALAR_CON_DOMINIO_ESTRUCTURADO",
+            "scalar_exclusive_variables": [],
+            "unresolved_variables": []
+          },
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         }
       },
       "type_rule": "DOS_CODIGOS_BINARIA_OTRO_ENUMERADO_CATEGORICA"

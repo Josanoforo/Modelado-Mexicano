@@ -1,4 +1,23 @@
 {
+  "antes_pr346_despues": {
+    "candidatas": {
+      "antes": 142,
+      "despues": 253
+    },
+    "insuficiencias_especificas": {
+      "antes": 5428,
+      "despues": 128664,
+      "reevaluadas": 5428
+    },
+    "procedencias_ausentes": {
+      "antes": 16832,
+      "despues": 850
+    },
+    "sin_proyector_o_perfil": {
+      "antes": 107443,
+      "despues": 0
+    }
+  },
   "auditoria_reparacion_pr_346": {
     "autoridades_actuales_examinadas": 148,
     "autoridades_permanecen": 142,
@@ -8,35 +27,32 @@
       "enif2024_fd_xlsx|TMODULO|P11_6_3",
       "enif2024_fd_xlsx|TMODULO|P11_6_4"
     ],
-    "dependientes_no_aplica_como_missing_conservadas": 0,
-    "rendimiento_antes_reparacion": {
-      "autoridades_emitidas": 148,
-      "evaluadas_con_diagnostico_especifico_y_no_emitidas": 5422,
-      "semillas_exactas": 113013,
-      "semillas_no_emitidas": 112865,
-      "sin_proyector_o_perfil": 107443
-    },
+    "insuficiencias_previas_reevaluadas": 5428,
     "retiradas_exclusividad_multiplicidad_no_resuelta": [
       "enif2024_fd_xlsx|TMODULO|REGION",
       "enif2024_fd_xlsx|TMODULO|TLOC"
     ],
-    "retiradas_exclusividad_multiplicidad_no_resuelta_total": 2,
-    "retiradas_multirrespuesta": [],
-    "retiradas_multirrespuesta_total": 0,
-    "retiradas_no_aplica_semantica_no_resuelta": 4,
-    "retiradas_total": 6
+    "retiradas_multirrespuesta": []
   },
   "autoridades_por_encuesta_ola": {
     "Encuesta Nacional de Inclusión Financiera 2024 | 2024": 115,
-    "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022 | 2022": 27
+    "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022 | 2022": 27,
+    "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024 | 2024": 85,
+    "Módulo sobre Ciberacoso (MOCIBA) 2024 | 2024": 26
   },
   "candidatas_por_encuesta_ola": {
     "Encuesta Nacional de Inclusión Financiera 2024 | 2024": 115,
-    "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022 | 2022": 27
+    "Encuesta Nacional para el Sistema de Cuidados (ENASIC) 2022 | 2022": 27,
+    "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024 | 2024": 85,
+    "Módulo sobre Ciberacoso (MOCIBA) 2024 | 2024": 26
   },
   "candidatas_por_tipo_estadistico": {
-    "BINARIA": 107,
-    "CATEGORICA": 35
+    "BINARIA": 195,
+    "CATEGORICA": 58
+  },
+  "clases_bloqueo_residual": {
+    "CONTEXTO_SEMANTICO_NO_RESUELTO_TRAS_PROYECCION_PRIMARIA": 69154,
+    "INSUFICIENCIA_DE_LA_FUENTE": 59510
   },
   "conflictos_conceptuales": [
     {
@@ -1061,551 +1077,972 @@
       ],
       "ola": "2022",
       "variable": "SEXO"
+    },
+    {
+      "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
+      "evidencias_materiales": [
+        {
+          "autoridad_id": "ASM-41216771ee00175bcd464eb7",
+          "e2_record_id": "E2R-12240d671fdc50c4007ddad3d89c471c7f0abfdb685c39eedb4534db1b629a86",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TVAR_CREA",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        },
+        {
+          "autoridad_id": "ASM-a5a97da2272f0c4e46fbd491",
+          "e2_record_id": "E2R-fce1107f17d81db9d0d475623c8df1c27b2dd66d6b8b647b3cf5973afd34a1b0",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TMODULO",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        }
+      ],
+      "ola": "2024",
+      "variable": "CVEGEO"
+    },
+    {
+      "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
+      "evidencias_materiales": [
+        {
+          "autoridad_id": "ASM-6a46185ce2a8214af723d0ba",
+          "e2_record_id": "E2R-e7126ccb2c5a76d50f403dc53498f4edb5d8acf47a430f1c9806b5a6059d34e3",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TVAR_CREA",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        },
+        {
+          "autoridad_id": "ASM-163e154397e9fa0eed06512d",
+          "e2_record_id": "E2R-635ebf4d26900fc32a4c736ee9477dd5a9bf4fca1bb9a135fea0fe15a0993667",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TMODULO",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        }
+      ],
+      "ola": "2024",
+      "variable": "CVE_ENT"
+    },
+    {
+      "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
+      "evidencias_materiales": [
+        {
+          "autoridad_id": "ASM-7add9f4ba6567dfc7469fbd2",
+          "e2_record_id": "E2R-0abe8e5fc86d62a0a73ccf80092dab2c2798f5d134018429bdbb92f8cf5e9178",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TVAR_CREA",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        },
+        {
+          "autoridad_id": "ASM-01bbfee1a87294542c886678",
+          "e2_record_id": "E2R-7fbdd7ec5550c11f0681f4053bd747537b82b24a51f475b117d0c1f8465b1479",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TMODULO",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        }
+      ],
+      "ola": "2024",
+      "variable": "MENOR10"
+    },
+    {
+      "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
+      "evidencias_materiales": [
+        {
+          "autoridad_id": "ASM-810978d7ea2bcb25006e9bb1",
+          "e2_record_id": "E2R-66802623f867cd41086483c01b45d3b51c6cdfa6f4202c070931b0785fa93a44",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TVAR_CREA",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        },
+        {
+          "autoridad_id": "ASM-c55aad72d509d329e1d78c9d",
+          "e2_record_id": "E2R-b7e715de2c10f8b1e80902a71934cf5949c500f01bb46c70bf78969d564b9eff",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TMODULO",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        }
+      ],
+      "ola": "2024",
+      "variable": "NIV"
+    },
+    {
+      "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
+      "evidencias_materiales": [
+        {
+          "autoridad_id": "ASM-825e2d4386608f9d21eac4a9",
+          "e2_record_id": "E2R-00a9e41217bae0804087b1d1c76d5a4417233fd83233ed7e6fc7e06f1d641b2e",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TVAR_CREA",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        },
+        {
+          "autoridad_id": "ASM-26fffddb85d2a9759df80168",
+          "e2_record_id": "E2R-d0b4421f3ae7dc7cfabee23130c27f1b7c4f6b5467c61c02cc48ebd11c189a50",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TMODULO",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        }
+      ],
+      "ola": "2024",
+      "variable": "SEXO"
+    },
+    {
+      "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
+      "evidencias_materiales": [
+        {
+          "autoridad_id": "ASM-239f5518c5a865ccd00f3c1c",
+          "e2_record_id": "E2R-9c52698145743459a254885e2cf3a49e2cda1893e83bd014622528677dfca03e",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TVAR_CREA",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        },
+        {
+          "autoridad_id": "ASM-ec27a972896a7a77ac931949",
+          "e2_record_id": "E2R-ff9cbd0bfe02c3de074adf8ccb30325584bc98c7971e6eb5d4a0ae51c01dd446",
+          "payload_id": "enut2024_fd_xlsx",
+          "ponderador": "FAC_PER",
+          "ponderador_scope_id": "TMODULO",
+          "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
+          "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
+          "scope_tipo": "OBJETO_PADRE_ID",
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
+        }
+      ],
+      "ola": "2024",
+      "variable": "TLOC"
     }
   ],
   "duplicados_compatibles_detalle": [],
+  "estados_finales": {
+    "AUTORIDAD_EMITIDA": 253,
+    "CONFLICTO_IDENTIDAD_CONCEPTUAL": 78,
+    "DUPLICADO_COMPATIBLE": 0,
+    "INSUFICIENCIA_SEMANTICA_ESPECIFICA": 128664,
+    "PROCEDENCIA_NO_RECONCILIADA": 850
+  },
   "fuentes": {
+    "1008973606mexico_lapop_final_2006_data_set_092906": {
+      "ENCUESTA_NO_DOCUMENTADA": 169,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 56
+    },
+    "116334_v1": {
+      "OLA_NO_DOCUMENTADA": 124
+    },
+    "1658622845mexico_2004_export_version": {
+      "ENCUESTA_NO_DOCUMENTADA": 206,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 29
+    },
+    "518939279mexico_lapop_final_2006_data_set_092906": {
+      "ENCUESTA_NO_DOCUMENTADA": 169,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 56
+    },
+    "642348348mexico_2004_export_version": {
+      "ENCUESTA_NO_DOCUMENTADA": 206,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 29
+    },
+    "NO-APLICA": {
+      "RUTA_CENSO_AUSENTE_PAYLOAD_NO_IDENTIFICADO": 655,
+      "RUTA_CENSO_Y_T0_AUSENTES_PAYLOAD_NO_IDENTIFICADO": 195
+    },
+    "adolescentes_ensanut2024_w_stata_stata": {
+      "ENCUESTA_NO_DOCUMENTADA": 337,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 141
+    },
+    "adultos_ensanut2024_w_catlogo": {
+      "CODIFICACION_INCOMPLETA": 843
+    },
+    "adultos_ensanut2024_w_catlogo_csv_csv": {
+      "CODIFICACION_INCOMPLETA": 843
+    },
     "cpv2020_caas_descriptor_bd_xlsx": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 260
+      "CODIFICACION_INCOMPLETA": 1,
+      "ENCUESTA_NO_DOCUMENTADA": 259
     },
     "cpv2020_ceu_descriptor_bd_xlsx": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 116
+      "ENCUESTA_NO_DOCUMENTADA": 116
     },
     "cpv2020_diccionario_cuestionario_ampliado_xlsx": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 201
+      "OLA_NO_DOCUMENTADA": 201
+    },
+    "dataverse_files": {
+      "ENCUESTA_NO_DOCUMENTADA": 1,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 30
     },
     "eder_2017_eder2017_bases_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 232
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 232
     },
     "eder_2017_eder2017_bases_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 232
+      "ENCUESTA_NO_DOCUMENTADA": 179,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 53
     },
     "eder_2025_eder2025_bases_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 483
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 483
     },
     "eder_2025_eder2025_bases_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 320
+      "ENCUESTA_NO_DOCUMENTADA": 138,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 182
     },
     "elcos2012_bd_dbf_zip": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 29
+      "ENCUESTA_NO_DOCUMENTADA": 29
     },
     "elcos2012_fd_xls": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 29
+      "ENCUESTA_NO_DOCUMENTADA": 29
     },
     "enadid2023_fd_xlsx": {
-      "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 683
+      "UNIVERSO_REACTIVO_NO_RESUELTO": 683
     },
     "enaproce_2015_ejem_base_micro_ciega_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 188
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 188
     },
     "enaproce_2015_ejem_base_pyme_ciega_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 235
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 235
     },
     "enaproce_2018_ejem_base_micro_ciega_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 288
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 288
     },
     "enaproce_2018_ejem_base_pyme_ciega_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 367
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 367
     },
     "enasem2018_fd_xlsx": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2167
+      "CODIFICACION_INCOMPLETA": 5,
+      "ENCUESTA_NO_DOCUMENTADA": 2162
     },
     "enasem2021_fd_xlsx": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2092
+      "ENCUESTA_NO_DOCUMENTADA": 2092
     },
     "enasem2024_fd_xlsx": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2212
+      "CODIFICACION_INCOMPLETA": 2,
+      "ENCUESTA_NO_DOCUMENTADA": 2210
     },
     "enasic2022_fd_xlsx": {
       "AUTORIDAD_FINAL": 27,
       "AUTORIDAD_PROYECTADA": 93,
-      "CONFLICTO_IDENTIDAD_CONCEPTUAL": 66,
-      "CONFLICTO_PONDERADOR_FAC_SEL_FAC_ELE": 275,
-      "DOMINIO_NO_ENUMERADO_O_SIN_ETIQUETA": 14,
-      "PONDERADOR_NO_COMPATIBLE_CON_UNIDAD_OBSERVACION": 181,
+      "CONFLICTO_PONDERADOR": 275,
+      "DOMINIO_NO_ENUMERADO": 14,
+      "PONDERADOR_SCOPE_NO_RESUELTO": 181,
       "RESPUESTA_MULTIPLE_DOCUMENTADA": 14,
-      "UNIVERSO_POBLACIONAL_OBJETIVO_NO_DOCUMENTADO": 116,
-      "UNIVERSO_REACTIVO_CONDICIONADO": 626
+      "UNIVERSO_POBLACIONAL_NO_DOCUMENTADO": 116,
+      "UNIVERSO_REACTIVO_NO_RESUELTO": 626
     },
     "encig2015_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 323
+      "OLA_NO_DOCUMENTADA": 323
     },
     "encig2017_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1542
+      "OLA_NO_DOCUMENTADA": 1542
     },
     "encig2019_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2216
+      "OLA_NO_DOCUMENTADA": 2216
     },
     "encig2021_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2227
+      "OLA_NO_DOCUMENTADA": 2227
     },
     "encig2023_datosabiertos_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1820
+      "OLA_NO_DOCUMENTADA": 1820
     },
     "encig_2021_encig21_base_datos_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 435
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 435
     },
     "encig_2021_encig21_base_datos_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 435
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 435
     },
     "encig_2023_encig23_base_datos_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 460
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 460
     },
     "encig_2023_encig23_base_datos_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 460
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 460
     },
     "encig_2025_encig25_base_datos_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 477
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 477
     },
     "encig_2025_encig25_base_datos_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 477
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 477
     },
     "endireh_2003_bd_endireh_2003_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 145
+      "CODIFICACION_INCOMPLETA": 3,
+      "ENCUESTA_NO_DOCUMENTADA": 142
     },
     "endireh_2003_bd_endireh_2003_dbf": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 145
+      "CODIFICACION_INCOMPLETA": 3,
+      "ENCUESTA_NO_DOCUMENTADA": 142
     },
     "endireh_2003_bd_endireh_2003_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 798
+      "CODIFICACION_INCOMPLETA": 3,
+      "ENCUESTA_NO_DOCUMENTADA": 142,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 653
     },
     "endireh_2003_bd_endireh_2003_rdata": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 145
+      "CODIFICACION_INCOMPLETA": 3,
+      "ENCUESTA_NO_DOCUMENTADA": 142
     },
     "endireh_2003_bd_endireh_2003_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 798
+      "CODIFICACION_INCOMPLETA": 3,
+      "ENCUESTA_NO_DOCUMENTADA": 142,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 653
     },
     "endireh_2006_bd_endireh_2006_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 281
+      "ENCUESTA_NO_DOCUMENTADA": 281
     },
     "endireh_2006_bd_endireh_2006_dbf": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 281
+      "ENCUESTA_NO_DOCUMENTADA": 281
     },
     "endireh_2006_bd_endireh_2006_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1702
+      "ENCUESTA_NO_DOCUMENTADA": 281,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 1421
     },
     "endireh_2006_bd_endireh_2006_rdata": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 281
+      "ENCUESTA_NO_DOCUMENTADA": 281
     },
     "endireh_2006_bd_endireh_2006_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1702
+      "ENCUESTA_NO_DOCUMENTADA": 281,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 1421
     },
     "endireh_2006_fd_endireh06": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 281
+      "ENCUESTA_NO_DOCUMENTADA": 281
     },
     "endireh_2011_bd_endireh_2011_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 80
+      "ENCUESTA_NO_DOCUMENTADA": 80
     },
     "endireh_2011_bd_endireh_2011_dbf": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 80
+      "ENCUESTA_NO_DOCUMENTADA": 80
     },
     "endireh_2011_bd_endireh_2011_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1214
+      "ENCUESTA_NO_DOCUMENTADA": 80,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 1134
     },
     "endireh_2011_bd_endireh_2011_rdata": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 80
+      "ENCUESTA_NO_DOCUMENTADA": 80
     },
     "endireh_2011_bd_endireh_2011_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1934
+      "ENCUESTA_NO_DOCUMENTADA": 80,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 1854
     },
     "endireh_2011_fd_endireh11": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 80
+      "ENCUESTA_NO_DOCUMENTADA": 80
     },
     "endireh_2016_bd_mujeres_endireh2016_sitioinegi_spss": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2175
+      "ENCUESTA_NO_DOCUMENTADA": 2082,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 93
     },
     "endireh_2016_bd_sd_endireh2016_sitioinegi_spss": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 54
+      "ENCUESTA_NO_DOCUMENTADA": 30,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 24
     },
     "endireh_2016_bd_sd_endireh2016_sitioinegi_stata": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 54
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 54
     },
     "endireh_2016_bd_viviendas_endireh2016_sitioinegi_spss": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 36
+      "ENCUESTA_NO_DOCUMENTADA": 21,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 15
     },
     "endireh_2016_bd_viviendas_endireh2016_sitioinegi_stata": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 36
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 36
     },
     "endireh_2021_bd_endireh_2021_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 97
+      "ENCUESTA_NO_DOCUMENTADA": 9,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 88
     },
     "endireh_2021_bd_endireh_2021_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2309
+      "ENCUESTA_NO_DOCUMENTADA": 12,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 2297
     },
     "endutih2024_fd_xlsx": {
-      "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 477
+      "UNIVERSO_REACTIVO_NO_RESUELTO": 477
     },
     "endutih_2023_fd_endutih2023": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 467
+      "ENCUESTA_NO_DOCUMENTADA": 467
     },
     "endutih_2025_fd_endutih2025": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 499
+      "ENCUESTA_NO_DOCUMENTADA": 499
     },
     "enestyc_1992_ejemplobd_enestyc_1992_stata": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 835
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 835
     },
     "enestyc_1995_ejemplobd_enestyc_1995_stata": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 356
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 356
     },
     "enestyc_1999_ejemplobd_enestyc_1999_stata": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 570
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 570
     },
     "enestyc_2001_ejemplobd_enestyc_2001_stata": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 666
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 666
     },
     "enestyc_2005_ejemplobd_enestyc_2005_stata": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1520
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 1520
     },
     "enfih2019_fd_xlsx": {
-      "UNIVERSO_UNIDAD_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 664
+      "UNIVERSO_POBLACIONAL_NO_DOCUMENTADO": 664
     },
     "engasto2012_gasto_mujeres_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 12
+      "ENCUESTA_NO_DOCUMENTADA": 5,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 7
     },
     "engasto2012_hogar_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 161
+      "ENCUESTA_NO_DOCUMENTADA": 132,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 29
     },
     "engasto2012_persona_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 42
+      "ENCUESTA_NO_DOCUMENTADA": 34,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 8
     },
     "engasto_2012_gasto_mujeres_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 13
+      "ENCUESTA_NO_DOCUMENTADA": 6,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 7
     },
     "engasto_2012_hogar_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 173
+      "ENCUESTA_NO_DOCUMENTADA": 141,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 32
     },
     "engasto_2012_lugar_compra_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 81
+      "ENCUESTA_NO_DOCUMENTADA": 78,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 3
     },
     "engasto_2012_persona_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 42
+      "ENCUESTA_NO_DOCUMENTADA": 34,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 8
     },
     "engasto_2012_vivienda_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 69
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 69
     },
     "engasto_2012_vivienda_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 69
+      "ENCUESTA_NO_DOCUMENTADA": 47,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 22
     },
     "engasto_2013_viviendas_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 72
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 72
     },
     "engasto_2013_viviendas_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 72
+      "ENCUESTA_NO_DOCUMENTADA": 47,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 25
     },
     "enif2018_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 394
+      "OLA_NO_DOCUMENTADA": 394
     },
     "enif2018_fd_xlsx": {
-      "PONDERADOR_OLA_SCOPE_NO_DOCUMENTADO": 394
+      "PONDERADOR_SCOPE_NO_RESUELTO": 394
     },
     "enif2021_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 420
+      "OLA_NO_DOCUMENTADA": 420
     },
     "enif2021_fd_zip": {
-      "PONDERADOR_OLA_SCOPE_NO_DOCUMENTADO": 420
+      "PONDERADOR_SCOPE_NO_RESUELTO": 420
     },
     "enif2024_csv": {
       "AUTORIDAD_FINAL": 1,
       "AUTORIZADA_PREEXISTENTE": 1,
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 442
+      "OLA_NO_DOCUMENTADA": 442
     },
     "enif2024_fd_xlsx": {
       "AUTORIDAD_FINAL": 114,
       "AUTORIDAD_PROYECTADA": 114,
-      "DOMINIO_NO_ENUMERADO_O_SIN_ETIQUETA": 13,
+      "DOMINIO_NO_ENUMERADO": 13,
       "EXCLUSIVIDAD_MULTIPLICIDAD_NO_RESUELTA": 2,
       "NO_APLICA_SEMANTICA_NO_RESUELTA": 4,
-      "PONDERADOR_SCOPE_NO_DOCUMENTADO_PARA_AUTORIDAD": 45,
+      "PONDERADOR_SCOPE_NO_RESUELTO": 45,
       "RESPUESTA_MULTIPLE_DOCUMENTADA": 7,
-      "UNIVERSO_REACTIVO_CONDICIONADO": 258
+      "UNIVERSO_REACTIVO_NO_RESUELTO": 258
     },
     "enif_2012_bases_enif2012_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 345
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 345
     },
     "enif_2012_fd_enif2012": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 345
+      "ENCUESTA_NO_DOCUMENTADA": 345
     },
     "enif_2015_enif_2015_bd_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 760
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 760
     },
     "enif_2015_enif_2015_fd": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 583
+      "ENCUESTA_NO_DOCUMENTADA": 583
     },
     "enigh2012_nc_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 729
+      "ENCUESTA_NO_DOCUMENTADA": 729
     },
     "enigh2014_nc_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 766
+      "ENCUESTA_NO_DOCUMENTADA": 766
     },
     "enigh2016_nc_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 630
+      "OLA_NO_DOCUMENTADA": 630
     },
     "enigh2018_nc_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 807
+      "OLA_NO_DOCUMENTADA": 807
     },
     "ennvih1_2002_hogar_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 5425
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 5425
     },
     "ennvih1_2002_ponderador": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 32
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 32
     },
     "ennvih2_2005_hogar_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 5992
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 5992
     },
     "ennvih2_2005_local_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 992
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 992
     },
     "ennvih2_2005_ponderador_longitudinal": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 32
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 32
     },
     "ennvih2_2005_ponderador_transversal": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 32
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 32
     },
     "ennvih3_2009_hogar_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 5508
+      "ENCUESTA_NO_DOCUMENTADA": 2,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 5506
     },
     "ennvih3_2009_local_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1368
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 1368
     },
     "ennvih3_2009_ponderador_longitudinal": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 32
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 32
     },
     "ennvih3_2009_ponderador_transversal": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 32
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 32
     },
     "enoe_2019_1t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 466
+      "OLA_NO_DOCUMENTADA": 466
     },
     "enoe_2019_2t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 394
+      "OLA_NO_DOCUMENTADA": 394
     },
     "enoe_2019_3t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 394
+      "OLA_NO_DOCUMENTADA": 394
     },
     "enoe_2019_4t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 394
+      "OLA_NO_DOCUMENTADA": 394
     },
     "enoe_2020_1t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 466
+      "OLA_NO_DOCUMENTADA": 466
     },
     "enoe_2023_1t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 502
+      "OLA_NO_DOCUMENTADA": 502
     },
     "enoe_2023_2t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
+      "OLA_NO_DOCUMENTADA": 430
     },
     "enoe_2023_3t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
+      "OLA_NO_DOCUMENTADA": 430
     },
     "enoe_2023_4t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
+      "OLA_NO_DOCUMENTADA": 430
     },
     "enoe_2024_1t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 502
+      "OLA_NO_DOCUMENTADA": 502
     },
     "enoe_2024_2t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
+      "OLA_NO_DOCUMENTADA": 430
     },
     "enoe_2024_3t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
+      "OLA_NO_DOCUMENTADA": 430
     },
     "enoe_2024_4t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
+      "OLA_NO_DOCUMENTADA": 430
     },
     "enoe_2025_1t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 502
+      "OLA_NO_DOCUMENTADA": 502
     },
     "enoe_2025_2t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 430
+      "OLA_NO_DOCUMENTADA": 430
     },
     "enoe_2025_3t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 437
+      "OLA_NO_DOCUMENTADA": 437
     },
     "enoe_2025_4t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 437
+      "OLA_NO_DOCUMENTADA": 437
     },
     "enoe_2026_1t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 509
+      "OLA_NO_DOCUMENTADA": 509
     },
     "enoen_2020_3t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 420
+      "OLA_NO_DOCUMENTADA": 420
     },
     "enoen_2020_4t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 420
+      "OLA_NO_DOCUMENTADA": 420
     },
     "enoen_2021_1t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 492
+      "OLA_NO_DOCUMENTADA": 492
     },
     "enoen_2021_2t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 420
+      "OLA_NO_DOCUMENTADA": 420
     },
     "enoen_2021_3t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 429
+      "OLA_NO_DOCUMENTADA": 429
     },
     "enoen_2021_4t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 429
+      "OLA_NO_DOCUMENTADA": 429
     },
     "enoen_2022_1t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 501
+      "OLA_NO_DOCUMENTADA": 501
     },
     "enoen_2022_2t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 429
+      "OLA_NO_DOCUMENTADA": 429
     },
     "enoen_2022_3t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 429
+      "OLA_NO_DOCUMENTADA": 429
     },
     "enoen_2022_4t_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 429
+      "OLA_NO_DOCUMENTADA": 429
     },
     "enut2014_fd_xls": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 53
+      "ENCUESTA_NO_DOCUMENTADA": 53
     },
     "enut2019_fd_xlsx": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 656
+      "ENCUESTA_NO_DOCUMENTADA": 656
     },
     "enut2024_fd_xlsx": {
-      "UNIVERSO_EFECTIVO_Y_RESPUESTA_EXCLUSIVA_NO_DOCUMENTADOS": 885
+      "AUTORIDAD_FINAL": 85,
+      "AUTORIDAD_PROYECTADA": 97,
+      "DOMINIO_NO_ENUMERADO": 85,
+      "PONDERADOR_SCOPE_NO_RESUELTO": 131,
+      "UNIVERSO_REACTIVO_NO_RESUELTO": 572
     },
     "envipe2018_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2013
+      "OLA_NO_DOCUMENTADA": 2013
     },
     "envipe2019_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1905
+      "OLA_NO_DOCUMENTADA": 1905
     },
     "envipe2020_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2020
+      "OLA_NO_DOCUMENTADA": 2020
     },
     "envipe2021_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1868
+      "OLA_NO_DOCUMENTADA": 1868
     },
     "envipe2022_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 1871
+      "OLA_NO_DOCUMENTADA": 1871
     },
     "envipe2023_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2119
+      "OLA_NO_DOCUMENTADA": 2119
     },
     "envipe2024_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2315
+      "OLA_NO_DOCUMENTADA": 2315
     },
     "envipe2025_csv": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 2217
+      "OLA_NO_DOCUMENTADA": 2217
     },
     "envipe_2011_base_de_datos_envipe_2011_dbf": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 23
+      "CODIFICACION_INCOMPLETA": 4,
+      "ENCUESTA_NO_DOCUMENTADA": 19
     },
     "envipe_2011_fd_envipe2011": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 23
+      "CODIFICACION_INCOMPLETA": 4,
+      "ENCUESTA_NO_DOCUMENTADA": 19
     },
     "envipe_2012_base_de_datos_envipe_2012_dbf": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 23
+      "ENCUESTA_NO_DOCUMENTADA": 23
     },
     "envipe_2012_fd_envipe2012": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 23
+      "ENCUESTA_NO_DOCUMENTADA": 23
     },
     "envipe_2013_bd_envipe13_dbf": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 410
+      "ENCUESTA_NO_DOCUMENTADA": 410
     },
     "envipe_2013_fd_envipe2013": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 410
+      "ENCUESTA_NO_DOCUMENTADA": 410
     },
     "envipe_2021_bd_envipe_2021_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 522
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 522
     },
     "envipe_2021_bd_envipe_2021_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 522
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 522
     },
     "envipe_2022_bd_envipe_2022_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 523
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 523
     },
     "envipe_2022_bd_envipe_2022_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 523
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 523
     },
     "envipe_2023_bd_envipe_2023_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 524
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 524
     },
     "envipe_2023_bd_envipe_2023_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 524
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 524
     },
     "envipe_2024_bd_envipe_2024_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 573
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 573
     },
     "envipe_2024_bd_envipe_2024_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 573
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 573
     },
     "envipe_2025_bd_envipe_2025_dta": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 590
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 590
     },
     "envipe_2025_bd_envipe_2025_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 590
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 590
+    },
+    "f00013032_wvs_wave_7_mexico_spss_v5_1": {
+      "ENCUESTA_NO_DOCUMENTADA": 339,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 64
+    },
+    "f00013084_wvs_wave_7_mexico_stata_v5_1": {
+      "ENCUESTA_NO_DOCUMENTADA": 338,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 65
+    },
+    "gps_dataset": {
+      "OLA_NO_DOCUMENTADA": 50
+    },
+    "gps_dataset_country_level": {
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 16
+    },
+    "hogar_ensanut2024_w_icb_catlogo": {
+      "CODIFICACION_INCOMPLETA": 204
+    },
+    "integrantes_ensanut2024_w_icb_catlogo": {
+      "OLA_NO_DOCUMENTADA": 261
     },
     "latinobarometro2024_bd_stata": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 664
+      "ENCUESTA_NO_DOCUMENTADA": 560,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 104
+    },
+    "menores_ensanut2024_w_catlogo": {
+      "CODIFICACION_INCOMPLETA": 484
+    },
+    "menores_ensanut2024_w_stata_stata": {
+      "ENCUESTA_NO_DOCUMENTADA": 331,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 152
+    },
+    "mex_2010_iepep_v01_m_v01_a_puf_spss": {
+      "ENCUESTA_NO_DOCUMENTADA": 1154,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 134
+    },
+    "mex_2010_iepep_v01_m_v01_a_puf_stata8": {
+      "ENCUESTA_NO_DOCUMENTADA": 1154,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 134
+    },
+    "mex_2011_lfepie_v01_m_spss": {
+      "ENCUESTA_NO_DOCUMENTADA": 106,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 68
+    },
+    "mex_2011_lfepie_v01_m_stata8": {
+      "ENCUESTA_NO_DOCUMENTADA": 106,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 68
+    },
+    "mex_2012_2014_ecepie_v01_m_v01_a_puf_spss": {
+      "ENCUESTA_NO_DOCUMENTADA": 344,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 213
+    },
+    "mex_2012_2014_ecepie_v01_m_v01_a_puf_stata12_with_unique_spanish_characters": {
+      "ENCUESTA_NO_DOCUMENTADA": 345,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 212
+    },
+    "mex_2012_2014_ecepie_v01_m_v01_a_puf_stata12_without_unique_spanish_characters": {
+      "ENCUESTA_NO_DOCUMENTADA": 345,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 212
+    },
+    "mex_2021_lapop_americasbarometer_v1_2_w": {
+      "ENCUESTA_NO_DOCUMENTADA": 250,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 12
+    },
+    "mex_2023_lapop_americasbarometer_v1_0_w": {
+      "ENCUESTA_NO_DOCUMENTADA": 185,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 10
+    },
+    "mex_2023_lapop_americasbarometer_v1_0_w_2": {
+      "ENCUESTA_NO_DOCUMENTADA": 194,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 1
+    },
+    "mexico_lapop_americasbarometer_2019_v1_0_w": {
+      "ENCUESTA_NO_DOCUMENTADA": 213,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 8
     },
     "mociba2024_fd_xlsx": {
-      "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 284
+      "AUTORIDAD_FINAL": 26,
+      "AUTORIDAD_PROYECTADA": 26,
+      "DOMINIO_NO_ENUMERADO": 11,
+      "UNIVERSO_REACTIVO_NO_RESUELTO": 247
     },
     "mociba_2015_mociba2015_bd_spss": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 201
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 201
     },
     "mociba_2015_mociba2015_fd": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 158
+      "CODIFICACION_INCOMPLETA": 2,
+      "ENCUESTA_NO_DOCUMENTADA": 156
     },
     "mociba_2016_mociba2016_bd_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 208
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 208
     },
     "mociba_2016_mociba2016_fd": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 208
+      "ENCUESTA_NO_DOCUMENTADA": 208
     },
     "mociba_2017_mociba2017_bd_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 171
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 171
     },
     "mociba_2017_mociba2017_fd": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 171
+      "ENCUESTA_NO_DOCUMENTADA": 171
     },
     "mociba_2019_mociba2019_bd_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 177
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 177
     },
     "mociba_2019_mociba2019_fd": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 177
+      "ENCUESTA_NO_DOCUMENTADA": 177
     },
     "mociba_2020_mociba2020_bd_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 228
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 228
     },
     "mociba_2020_mociba2020_fd": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 228
+      "CODIFICACION_INCOMPLETA": 228
     },
     "mociba_2021_mociba2021_bd_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 277
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 277
     },
     "mociba_2021_mociba2021_fd": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 277
+      "ENCUESTA_NO_DOCUMENTADA": 277
     },
     "mociba_2022_mociba2022_bd_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 277
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 277
     },
     "mociba_2022_mociba2022_fd": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 277
+      "ENCUESTA_NO_DOCUMENTADA": 277
     },
     "mociba_2023_mociba2023_bd_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 284
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 284
     },
     "mociba_2023_mociba2023_fd": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 284
+      "CODIFICACION_INCOMPLETA": 1,
+      "ENCUESTA_NO_DOCUMENTADA": 283
     },
     "mociba_2024_mociba2024_bd_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 284
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 284
     },
     "mociba_2025_mociba2025_bd_sav": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 286
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 286
     },
     "mociba_2025_mociba2025_fd": {
-      "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 286
+      "CODIFICACION_INCOMPLETA": 1,
+      "ENCUESTA_NO_DOCUMENTADA": 285
+    },
+    "nse_hogar_ensanut_2024_catlogo": {
+      "CODIFICACION_INCOMPLETA": 5
+    },
+    "nse_integrantes_ensanut_2024_catlogo": {
+      "CODIFICACION_INCOMPLETA": 7
+    },
+    "osf_iae_concentrado_indicadores_de_pobreza_2020_modificado": {
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 7
+    },
+    "osf_iae_data_si_f9": {
+      "ENCUESTA_NO_DOCUMENTADA": 15,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 1
+    },
+    "osf_iae_dip_municipality_2021": {
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 2
+    },
+    "osf_iae_master_data": {
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 111
+    },
+    "osf_iae_si_f9_results": {
+      "ENCUESTA_NO_DOCUMENTADA": 1,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 7
+    },
+    "osf_iae_si_f9_results_combined": {
+      "ENCUESTA_NO_DOCUMENTADA": 1,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 5
+    },
+    "osf_iae_si_f9_results_pid": {
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 4
+    },
+    "osf_iae_si_f9_results_vote": {
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 4
+    },
+    "utilizadores_ensanut2024_w_catlogo": {
+      "CODIFICACION_INCOMPLETA": 122
+    },
+    "utilizadores_ensanut2024_w_stata_stata": {
+      "ENCUESTA_NO_DOCUMENTADA": 41,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 80
+    },
+    "za5900_v4_0_0_dta": {
+      "ENCUESTA_NO_DOCUMENTADA": 416,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 4
+    },
+    "za5900_v4_0_0_sav": {
+      "ENCUESTA_NO_DOCUMENTADA": 416,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 4
+    },
+    "za6980_v2_0_0_dta": {
+      "ENCUESTA_NO_DOCUMENTADA": 352,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 4
+    },
+    "za6980_v2_0_0_sav": {
+      "ENCUESTA_NO_DOCUMENTADA": 352,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 4
+    },
+    "za7600_v3_0_0_dta": {
+      "ENCUESTA_NO_DOCUMENTADA": 353,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 4
+    },
+    "za7600_v3_0_0_sav": {
+      "ENCUESTA_NO_DOCUMENTADA": 353,
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 4
+    },
+    "zenodo_electoral_precinct_level_mexico_municipal": {
+      "TIPO_ESTADISTICO_NO_DOCUMENTADO": 2292
     }
   },
   "fuentes_sin_autoridad_emitida": [
+    "1008973606mexico_lapop_final_2006_data_set_092906",
+    "116334_v1",
+    "1658622845mexico_2004_export_version",
+    "518939279mexico_lapop_final_2006_data_set_092906",
+    "642348348mexico_2004_export_version",
+    "NO-APLICA",
+    "adolescentes_ensanut2024_w_stata_stata",
+    "adultos_ensanut2024_w_catlogo",
+    "adultos_ensanut2024_w_catlogo_csv_csv",
     "cpv2020_caas_descriptor_bd_xlsx",
     "cpv2020_ceu_descriptor_bd_xlsx",
     "cpv2020_diccionario_cuestionario_ampliado_xlsx",
+    "dataverse_files",
     "eder_2017_eder2017_bases_dta",
     "eder_2017_eder2017_bases_sav",
     "eder_2025_eder2025_bases_dta",
@@ -1727,7 +2164,6 @@
     "enoen_2022_4t_csv",
     "enut2014_fd_xls",
     "enut2019_fd_xlsx",
-    "enut2024_fd_xlsx",
     "envipe2018_csv",
     "envipe2019_csv",
     "envipe2020_csv",
@@ -1752,8 +2188,26 @@
     "envipe_2024_bd_envipe_2024_sav",
     "envipe_2025_bd_envipe_2025_dta",
     "envipe_2025_bd_envipe_2025_sav",
+    "f00013032_wvs_wave_7_mexico_spss_v5_1",
+    "f00013084_wvs_wave_7_mexico_stata_v5_1",
+    "gps_dataset",
+    "gps_dataset_country_level",
+    "hogar_ensanut2024_w_icb_catlogo",
+    "integrantes_ensanut2024_w_icb_catlogo",
     "latinobarometro2024_bd_stata",
-    "mociba2024_fd_xlsx",
+    "menores_ensanut2024_w_catlogo",
+    "menores_ensanut2024_w_stata_stata",
+    "mex_2010_iepep_v01_m_v01_a_puf_spss",
+    "mex_2010_iepep_v01_m_v01_a_puf_stata8",
+    "mex_2011_lfepie_v01_m_spss",
+    "mex_2011_lfepie_v01_m_stata8",
+    "mex_2012_2014_ecepie_v01_m_v01_a_puf_spss",
+    "mex_2012_2014_ecepie_v01_m_v01_a_puf_stata12_with_unique_spanish_characters",
+    "mex_2012_2014_ecepie_v01_m_v01_a_puf_stata12_without_unique_spanish_characters",
+    "mex_2021_lapop_americasbarometer_v1_2_w",
+    "mex_2023_lapop_americasbarometer_v1_0_w",
+    "mex_2023_lapop_americasbarometer_v1_0_w_2",
+    "mexico_lapop_americasbarometer_2019_v1_0_w",
     "mociba_2015_mociba2015_bd_spss",
     "mociba_2015_mociba2015_fd",
     "mociba_2016_mociba2016_bd_sav",
@@ -1772,51 +2226,150 @@
     "mociba_2023_mociba2023_fd",
     "mociba_2024_mociba2024_bd_sav",
     "mociba_2025_mociba2025_bd_sav",
-    "mociba_2025_mociba2025_fd"
+    "mociba_2025_mociba2025_fd",
+    "nse_hogar_ensanut_2024_catlogo",
+    "nse_integrantes_ensanut_2024_catlogo",
+    "osf_iae_concentrado_indicadores_de_pobreza_2020_modificado",
+    "osf_iae_data_si_f9",
+    "osf_iae_dip_municipality_2021",
+    "osf_iae_master_data",
+    "osf_iae_si_f9_results",
+    "osf_iae_si_f9_results_combined",
+    "osf_iae_si_f9_results_pid",
+    "osf_iae_si_f9_results_vote",
+    "utilizadores_ensanut2024_w_catlogo",
+    "utilizadores_ensanut2024_w_stata_stata",
+    "za5900_v4_0_0_dta",
+    "za5900_v4_0_0_sav",
+    "za6980_v2_0_0_dta",
+    "za6980_v2_0_0_sav",
+    "za7600_v3_0_0_dta",
+    "za7600_v3_0_0_sav",
+    "zenodo_electoral_precinct_level_mexico_municipal"
   ],
-  "razones_insuficiencia": {
-    "CONFLICTO_IDENTIDAD_CONCEPTUAL": 66,
-    "CONFLICTO_PONDERADOR_FAC_SEL_FAC_ELE": 275,
-    "DOMINIO_NO_ENUMERADO_O_SIN_ETIQUETA": 27,
+  "inventario_inicial_sin_proyector_perfil": {
+    "semillas": 107443,
+    "unidades": 1377
+  },
+  "metadata_primaria": {
+    "campos_recuperados": {
+      "codigo_etiqueta": 58835,
+      "dominio_declarado": 61938,
+      "etiqueta_variable": 102329,
+      "tipo_almacenamiento": 64023,
+      "titulo_encuesta_estructurado": 39561,
+      "user_missing": 22707
+    },
+    "estados": {
+      "METADATA_PRIMARIA_PROYECTADA": 128995
+    },
+    "payloads_vinculados_por_id_literal_a_diseno_muestral": [
+      "116334_v1",
+      "cpv2020_diccionario_cuestionario_ampliado_xlsx",
+      "enadid2023_fd_xlsx",
+      "encup_2012_base_datos_xlsx",
+      "enif2018_csv",
+      "enif2021_csv",
+      "enif2024_csv",
+      "enigh2022_nc_csv",
+      "ensafi2023_bd_csv_zip",
+      "ensu2025_bd_csv_zip",
+      "enut2024_bd_csv",
+      "gps_dataset",
+      "inegi_encoap_2023_csv",
+      "integrantes_ensanut2024_w_icb_catlogo",
+      "integrantes_ensanut2024_w_icb_csv_csv",
+      "latinobarometro2024_fichas_tecnicas"
+    ],
+    "por_proyector": {
+      "CSV-DICCIONARIO-CATALOGO-1.0": {
+        "METADATA_PRIMARIA_PROYECTADA": 41056,
+        "PARES_CODIGO_ETIQUETA": 23471754,
+        "SEMILLAS": 41056,
+        "USER_MISSING": 25812
+      },
+      "DTA-VALUE-LABELS-PANDAS-1.0": {
+        "METADATA_PRIMARIA_PROYECTADA": 41837,
+        "PARES_CODIGO_ETIQUETA": 105836,
+        "SEMILLAS": 41837,
+        "USER_MISSING": 2233
+      },
+      "SAV-DICCIONARIO-CLASICO-1.0": {
+        "METADATA_PRIMARIA_PROYECTADA": 22186,
+        "PARES_CODIGO_ETIQUETA": 143895,
+        "SEMILLAS": 22186,
+        "USER_MISSING": 6196
+      },
+      "XLS-DICCIONARIO-BIFF8-1.0": {
+        "METADATA_PRIMARIA_PROYECTADA": 3094,
+        "PARES_CODIGO_ETIQUETA": 90,
+        "SEMILLAS": 3094,
+        "USER_MISSING": 0
+      },
+      "XLSX-DICCIONARIO-OPENPYXL-1.0": {
+        "METADATA_PRIMARIA_PROYECTADA": 20822,
+        "PARES_CODIGO_ETIQUETA": 12325,
+        "SEMILLAS": 20822,
+        "USER_MISSING": 0
+      }
+    },
+    "razones_fuente_no_presente": {},
+    "razones_tecnicas": {}
+  },
+  "procedencia_ausente_inicial_por_componente": {
+    "CENSO": 655,
+    "CENSO+T0": 195,
+    "T0": 15982
+  },
+  "razones_finales_residual": {
+    "CODIFICACION_INCOMPLETA": 2771,
+    "CONFLICTO_IDENTIDAD_CONCEPTUAL": 78,
+    "CONFLICTO_PONDERADOR": 275,
+    "DOMINIO_NO_ENUMERADO": 123,
+    "ENCUESTA_NO_DOCUMENTADA": 28958,
     "EXCLUSIVIDAD_MULTIPLICIDAD_NO_RESUELTA": 2,
     "NO_APLICA_SEMANTICA_NO_RESUELTA": 4,
-    "PONDERADOR_NO_COMPATIBLE_CON_UNIDAD_OBSERVACION": 181,
-    "PONDERADOR_OLA_SCOPE_NO_DOCUMENTADO": 814,
-    "PONDERADOR_SCOPE_NO_DOCUMENTADO_PARA_AUTORIDAD": 45,
+    "OLA_NO_DOCUMENTADA": 40196,
+    "PONDERADOR_SCOPE_NO_RESUELTO": 1171,
     "RESPUESTA_MULTIPLE_DOCUMENTADA": 21,
-    "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 1444,
-    "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO": 107443,
-    "UNIVERSO_EFECTIVO_Y_RESPUESTA_EXCLUSIVA_NO_DOCUMENTADOS": 885,
-    "UNIVERSO_POBLACIONAL_OBJETIVO_NO_DOCUMENTADO": 116,
-    "UNIVERSO_REACTIVO_CONDICIONADO": 884,
-    "UNIVERSO_UNIDAD_Y_SCOPE_PONDERADOR_NO_RESUELTOS": 664
+    "RUTA_CENSO_AUSENTE_PAYLOAD_NO_IDENTIFICADO": 655,
+    "RUTA_CENSO_Y_T0_AUSENTES_PAYLOAD_NO_IDENTIFICADO": 195,
+    "TIPO_ESTADISTICO_NO_DOCUMENTADO": 51500,
+    "UNIVERSO_POBLACIONAL_NO_DOCUMENTADO": 780,
+    "UNIVERSO_REACTIVO_NO_RESUELTO": 2863
+  },
+  "reparacion_procedencia": {
+    "T0_AUSENTE_RECONSTRUIDO_POR_CENSO_LEDGER_HASH": 15982
   },
   "resumen": {
-    "autoridades_emitidas": 142,
-    "autoridades_emitidas_en_acto": 141,
     "autoridades_huerfanas": 0,
-    "autoridades_totales": 142,
-    "candidatas_nuevas_en_acto": 141,
-    "candidatas_totales": 142,
-    "conflictos_identidad_conceptual": 33,
+    "autoridades_nuevas": 111,
+    "autoridades_totales": 253,
+    "candidatas_nuevas": 111,
+    "candidatas_totales": 253,
+    "conflictos_identidad_conceptual": 39,
+    "contexto_semantico_no_resuelto_tras_proyeccion_primaria": 69154,
     "duplicados_compatibles": 0,
-    "encuestas_con_candidatas": 2,
-    "evaluadas_con_diagnostico_especifico_y_no_emitidas": 5428,
-    "olas_con_candidatas": 2,
-    "semillas_exactas": 113013,
-    "semillas_exactas_examinadas": 113013,
-    "semillas_no_emitidas": 112871,
-    "semillas_variables_totales": 129845,
-    "sin_proyector_o_perfil": 107443,
-    "tasa_emision_sobre_semillas_exactas": 0.0012564926158937467,
-    "uniones_ambiguas": 0,
-    "uniones_ausentes": 16832,
-    "uniones_exactas": 113013
+    "encuestas_con_candidatas": 4,
+    "fuente_primaria_no_presente": 0,
+    "insuficiencia_de_la_fuente": 59510,
+    "metadata_primaria_no_proyectable_paro_tecnico": 0,
+    "olas_con_candidatas": 4,
+    "procedencia_no_reconciliada": 850,
+    "semillas_ausentes_iniciales": 16832,
+    "semillas_exactas_iniciales": 113013,
+    "semillas_no_emitidas": 129592,
+    "semillas_totales": 129845,
+    "sin_proyector_o_perfil_semantico_implementado": 0,
+    "tasa_emision_sobre_semillas_exactas": 0.0019613163300903134,
+    "tasa_emision_sobre_semillas_totales": 0.001948477030305364,
+    "uniones_exactas_finales": 128995,
+    "uniones_reparadas": 15982
   },
   "schema_version": "DIAGNOSTICO-AUTORIDAD-SEMANTICA-MARCO-1.0",
   "scopes_ponderador": {
-    "NO_RESUELTO": 111867,
-    "RESUELTO": 1146
+    "NO_RESUELTO": 126811,
+    "RESUELTO": 2184
   },
   "semillas_por_objeto_tipo": {
     "VARIABLE-DICCIONARIO": 41056,
@@ -1827,52 +2380,60 @@
   },
   "top_razones_insuficiencia": [
     {
-      "razon": "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO",
-      "semillas": 107443
+      "razon": "TIPO_ESTADISTICO_NO_DOCUMENTADO",
+      "semillas": 51500
     },
     {
-      "razon": "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS",
-      "semillas": 1444
+      "razon": "OLA_NO_DOCUMENTADA",
+      "semillas": 40196
     },
     {
-      "razon": "UNIVERSO_EFECTIVO_Y_RESPUESTA_EXCLUSIVA_NO_DOCUMENTADOS",
-      "semillas": 885
+      "razon": "ENCUESTA_NO_DOCUMENTADA",
+      "semillas": 28958
     },
     {
-      "razon": "UNIVERSO_REACTIVO_CONDICIONADO",
-      "semillas": 884
+      "razon": "UNIVERSO_REACTIVO_NO_RESUELTO",
+      "semillas": 2863
     },
     {
-      "razon": "PONDERADOR_OLA_SCOPE_NO_DOCUMENTADO",
-      "semillas": 814
+      "razon": "CODIFICACION_INCOMPLETA",
+      "semillas": 2771
     },
     {
-      "razon": "UNIVERSO_UNIDAD_Y_SCOPE_PONDERADOR_NO_RESUELTOS",
-      "semillas": 664
+      "razon": "PONDERADOR_SCOPE_NO_RESUELTO",
+      "semillas": 1171
     },
     {
-      "razon": "CONFLICTO_PONDERADOR_FAC_SEL_FAC_ELE",
+      "razon": "UNIVERSO_POBLACIONAL_NO_DOCUMENTADO",
+      "semillas": 780
+    },
+    {
+      "razon": "RUTA_CENSO_AUSENTE_PAYLOAD_NO_IDENTIFICADO",
+      "semillas": 655
+    },
+    {
+      "razon": "CONFLICTO_PONDERADOR",
       "semillas": 275
     },
     {
-      "razon": "PONDERADOR_NO_COMPATIBLE_CON_UNIDAD_OBSERVACION",
-      "semillas": 181
-    },
-    {
-      "razon": "UNIVERSO_POBLACIONAL_OBJETIVO_NO_DOCUMENTADO",
-      "semillas": 116
-    },
-    {
-      "razon": "CONFLICTO_IDENTIDAD_CONCEPTUAL",
-      "semillas": 66
+      "razon": "RUTA_CENSO_Y_T0_AUSENTES_PAYLOAD_NO_IDENTIFICADO",
+      "semillas": 195
     }
   ],
   "trazabilidad": {
     "indice_e2_sha256": "6e87c0347f0d0fa8736836e4ef7521b8dc6e700bb220cf07a9c494f8bf9bb79c",
-    "origin_main_inicial": "f6f8e00fa8410ac4744b88c28f553f39479f598d",
-    "perfiles_sha256": "88e632886096ad192bda9d8905ac73dc613d21336a0b16fd2d6026be285b7513",
+    "origin_main_inicial": "b93bf3651ff80784cdc154c01c1ac28e1f0f24ce",
+    "perfiles_sha256": "d20a24ecfeb09f575c875f9fd0329328a5c0bb7a20b8d3ac82ba1774f147d0ad",
     "pr_343_merge_commit": "620cf0d9c1071993ddacedeb41a74edc602322dc",
-    "proyector": "INEGI-FD-CODIGOS-VALIDOS-7COL-1.0",
-    "receta": "python3 tools/curador_registro/autoridad_semantica_productiva.py --corpus-root <CORPUS_RAW> --indice-e2 <E2_PRIVADO> --output data/curacion-universo/autoridad-semantica-marco-v1_0.jsonl --diagnostico data/curacion-universo/diagnostico-autoridad-semantica-marco-v1_0.json --residuales /tmp/semillas-exactas-no-autorizables.jsonl"
+    "proyectores": [
+      "CSV-DICCIONARIO-CATALOGO-1.0",
+      "DTA-VALUE-LABELS-PANDAS-1.0",
+      "INEGI-FD-CLASES-VALOR-ETIQUETA-1.0",
+      "INEGI-FD-CODIGOS-VALIDOS-7COL-1.0",
+      "SAV-DICCIONARIO-CLASICO-1.0",
+      "XLS-DICCIONARIO-BIFF8-1.0",
+      "XLSX-DICCIONARIO-OPENPYXL-1.0"
+    ],
+    "receta": "python3 tools/curador_registro/autoridad_semantica_productiva.py --corpus-root <CORPUS_RAW> --source-root descargas_mx=<DESCARGAS_MX> --indice-e2 <E2_PRIVADO> --output data/curacion-universo/autoridad-semantica-marco-v1_0.jsonl --diagnostico data/curacion-universo/diagnostico-autoridad-semantica-marco-v1_0.json --inventario data/curacion-universo/inventario-autoridad-semantica-marco-v1_0.jsonl --residuales /tmp/semillas-no-emitidas.jsonl"
   }
 }

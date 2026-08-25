@@ -157,6 +157,39 @@ class ProvenanceIndexTests(unittest.TestCase):
         changed = e2_record(sha256="8" * 64)
         self.assertEqual("AUSENTE", self.index().resolve(changed).status)
 
+    def test_repairs_only_t0_absent_with_exact_census_and_ledger(self) -> None:
+        record = e2_record()
+        index = ProvenanceIndex(
+            [{"id": "MAN-1"}],
+            [
+                {
+                    "id_manifiesto": "MAN-1",
+                    "representacion_id": record["representacion_id"],
+                    "reporte_neutral_ref": record["batch_id"],
+                    "sha256_observado": record["sha256"],
+                }
+            ],
+            [
+                {
+                    "representacion_id": record["representacion_id"],
+                    "reporte_neutral_ref": record["batch_id"],
+                    "payload_id": record["payload_id"],
+                    "sha256": record["sha256"],
+                }
+            ],
+            [],
+        )
+
+        self.assertEqual("AUSENTE", index.resolve(record).status)
+        repaired = index.resolve_repaired(record)
+        self.assertEqual("EXACTA_REPARADA", repaired.status)
+        self.assertEqual(
+            "T0_AUSENTE_RECONSTRUIDO_POR_CENSO_LEDGER_HASH", repaired.reason
+        )
+
+        no_census = ProvenanceIndex([{"id": "MAN-1"}], [], [], [])
+        self.assertEqual("AUSENTE", no_census.resolve_repaired(record).status)
+
 
 if __name__ == "__main__":
     unittest.main()

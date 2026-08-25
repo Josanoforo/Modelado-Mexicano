@@ -112,6 +112,51 @@ class AutoridadSemanticaProductivaTests(unittest.TestCase):
             _response_semantics_reason(table, "Q_NOT_DECLARED"),
         )
 
+    def test_two_row_classes_header_is_a_reusable_projector(self) -> None:
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        path = Path(temporary.name) / "fd-clases.xlsx"
+        workbook = Workbook()
+        sheet = workbook.active
+        sheet.title = "TABLA"
+        sheet.append(["Pregunta", "Mnemónico", "Clases", None])
+        sheet.append([None, None, "Valor", "Etiqueta"])
+        sheet.append(["Pregunta escalar", "Q_OK", 1, "Sí"])
+        sheet.append([None, None, 2, "No"])
+        sheet.append(["Pregunta filtrada", "Q_SKIP", 1, "Sí"])
+        sheet.append([None, None, 2, "No"])
+        sheet.append([None, None, "b", "Blanco por secuencia"])
+        workbook.save(path)
+        workbook.close()
+
+        parsed = parse_inegi_fd_7col(path, ["TABLA"])
+        self.assertEqual((("1", "Sí"), ("2", "No")), parsed[("TABLA", "Q_OK")].coding)
+        self.assertIsNone(parsed[("TABLA", "Q_OK")].reason)
+        self.assertEqual(
+            "UNIVERSO_REACTIVO_CONDICIONADO",
+            parsed[("TABLA", "Q_SKIP")].reason,
+        )
+
+    def test_structural_scalar_rule_still_honors_variable_exceptions(self) -> None:
+        table = {
+            "response_semantics": {
+                "rule": "CAMPO_ESCALAR_CON_DOMINIO_ESTRUCTURADO",
+                "scalar_exclusive_variables": [],
+                "multiple_response_variables": ["Q_MULTI"],
+                "unresolved_variables": ["Q_UNRESOLVED"],
+            }
+        }
+
+        self.assertIsNone(_response_semantics_reason(table, "Q_SCALAR"))
+        self.assertEqual(
+            "RESPUESTA_MULTIPLE_DOCUMENTADA",
+            _response_semantics_reason(table, "Q_MULTI"),
+        )
+        self.assertEqual(
+            "EXCLUSIVIDAD_MULTIPLICIDAD_NO_RESUELTA",
+            _response_semantics_reason(table, "Q_UNRESOLVED"),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

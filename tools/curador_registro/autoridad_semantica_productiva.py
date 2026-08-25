@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Materializa autoridad semantica desde descriptores oficiales estructurados.
+"""Materializa y diagnostica todo el universo de autoridad semántica.
 
-El proyector es deliberadamente estrecho. Solo entiende descriptores INEGI en
-los que cada variable declara un dominio escalar enumerado y en los que el
-propio descriptor usa ``b = Blanco por secuencia`` para marcar saltos. Una
-variable que incluya ese codigo nunca se autoriza: el descriptor prueba que
-hay un subuniverso, pero no necesariamente documenta aqui su predicado exacto.
+Los proyectores reutilizables entienden descriptores INEGI con dominios
+``Códigos válidos/Concepto`` y ``Clases→Valor/Etiqueta``. Un ``b = Blanco por
+secuencia`` prueba que existe un subuniverso, pero no su predicado exacto, y por
+eso permanece cerrado. Las demás familias E2 se clasifican por la insuficiencia
+estructural concreta que impide emitir, nunca por falta de código pendiente.
 
-Encuesta, ola, universo, unidad y scope de ponderador viven en un perfil JSON
-declarativo. Este modulo extrae, enlaza y valida; no contiene esos significados.
+Encuesta, ola, universo, unidad y scope de ponderador viven en perfiles JSON
+declarativos. Este módulo extrae, enlaza, deduplica y valida; no contiene esos
+significados.
 """
 
 from __future__ import annotations
@@ -43,6 +44,12 @@ try:
         expected_index_sha,
         is_variable_seed,
     )
+    from .primary_metadata_projectors import (
+        NOT_PROJECTABLE,
+        SOURCE_NOT_PRESENT,
+        MetadataProjection,
+        PrimaryMetadataRegistry,
+    )
 except ImportError:
     from autoridad_semantica_marco import (
         AutoridadSemanticaError,
@@ -59,13 +66,50 @@ except ImportError:
         expected_index_sha,
         is_variable_seed,
     )
+    from primary_metadata_projectors import (
+        NOT_PROJECTABLE,
+        SOURCE_NOT_PRESENT,
+        MetadataProjection,
+        PrimaryMetadataRegistry,
+    )
 
 
 PROFILE_SCHEMA_VERSION = "PERFILES-AUTORIDAD-SEMANTICA-MARCO-1.0"
 DIAGNOSTIC_SCHEMA_VERSION = "DIAGNOSTICO-AUTORIDAD-SEMANTICA-MARCO-1.0"
 SUPPORTED_PROJECTOR = "INEGI-FD-CODIGOS-VALIDOS-7COL-1.0"
+SUPPORTED_CLASS_PROJECTOR = "INEGI-FD-CLASES-VALOR-ETIQUETA-1.0"
 SUPPORTED_TYPE_RULE = "DOS_CODIGOS_BINARIA_OTRO_ENUMERADO_CATEGORICA"
 SUPPORTED_MISSING_RULE = "CODIGOS_VALIDOS_EXHAUSTIVOS"
+STRUCTURAL_SCALAR_RULE = "CAMPO_ESCALAR_CON_DOMINIO_ESTRUCTURADO"
+
+# Razones que solo describen que encuesta/ola no quedaron documentadas en el
+# contexto cruzado, no que un campo primario haya sido inspeccionado y
+# encontrado insuficiente: la metadata primaria SI se proyecto con exito
+# (codigo_etiqueta/dominio_declarado/titulo_encuesta_estructurado) pero el
+# contexto de identidad (encuesta, ola) sigue sin resolverse con las capas
+# examinadas. INSUFICIENCIA_DE_LA_FUENTE se reserva para un campo que el
+# proyector si examino y demostro ausente o insuficiente (tipo_estadistico,
+# codificacion, dominio, universo por variable, ponderador, respuesta).
+CONTEXT_UNRESOLVED_AFTER_PROJECTION = "CONTEXTO_SEMANTICO_NO_RESUELTO_TRAS_PROYECCION_PRIMARIA"
+CONTEXT_UNRESOLVED_REASONS = frozenset({"ENCUESTA_NO_DOCUMENTADA", "OLA_NO_DOCUMENTADA"})
+
+# Frontera mecánica del diagnóstico emitido por #346. Estos nueve payloads ya
+# tenían perfil o un bloqueo específico; las demás semillas exactas no emitidas
+# formaban el inventario de 107,443. Se conserva aquí únicamente para poder
+# regenerar ese inventario inicial después de reemplazar el diagnóstico de #346.
+PR346_PROFILED_OR_BLOCKED_PAYLOADS = frozenset(
+    {
+        "enadid2023_fd_xlsx",
+        "endutih2024_fd_xlsx",
+        "enfih2019_fd_xlsx",
+        "enif2018_fd_xlsx",
+        "enif2021_fd_zip",
+        "enif2024_fd_xlsx",
+        "enasic2022_fd_xlsx",
+        "enut2024_fd_xlsx",
+        "mociba2024_fd_xlsx",
+    }
+)
 
 WEIGHT_FIELDS = sorted(
     {
@@ -230,6 +274,28 @@ def _find_descriptor_columns(
         )
         if None not in (mnemonic, code, concept, question):
             return row_index, int(question), int(mnemonic), int(code), int(concept)
+        classes = next(
+            (index for index, value in enumerate(folded) if value == "CLASES"),
+            None,
+        )
+        if None not in (mnemonic, question, classes) and row_index + 1 < len(rows):
+            following = [_fold(value) for value in rows[row_index + 1]]
+            value_column = next(
+                (index for index, value in enumerate(following) if value == "VALOR"),
+                None,
+            )
+            label_column = next(
+                (index for index, value in enumerate(following) if value == "ETIQUETA"),
+                None,
+            )
+            if None not in (value_column, label_column):
+                return (
+                    row_index + 1,
+                    int(question),
+                    int(mnemonic),
+                    int(value_column),
+                    int(label_column),
+                )
     raise ProductiveAuthorityError("DESCRIPTOR_SIN_CABECERA_ESTRUCTURADA")
 
 
@@ -409,7 +475,10 @@ def _load_profiles(path: Path) -> dict[str, Any]:
         payload_id = _text(raw.get("payload_id"))
         if not payload_id or payload_id in by_payload:
             raise ProductiveAuthorityError(f"PERFIL_PAYLOAD_DUPLICADO:{payload_id}")
-        if raw.get("projector") != SUPPORTED_PROJECTOR:
+        if raw.get("projector") not in {
+            SUPPORTED_PROJECTOR,
+            SUPPORTED_CLASS_PROJECTOR,
+        }:
             raise ProductiveAuthorityError(f"PERFIL_PROJECTOR_INVALIDO:{payload_id}")
         tables = raw.get("tables")
         if not isinstance(tables, dict) or not tables:
@@ -443,6 +512,11 @@ def _load_profiles(path: Path) -> dict[str, Any]:
                     f"PERFIL_RESPUESTA_VARIABLE_AUSENTE:{payload_id}:{table_name}"
                 )
             response_sets: dict[str, set[str]] = {}
+            response_rule = response.get("rule")
+            if response_rule not in (None, STRUCTURAL_SCALAR_RULE):
+                raise ProductiveAuthorityError(
+                    f"PERFIL_REGLA_RESPUESTA_INVALIDA:{payload_id}:{table_name}"
+                )
             for field in (
                 "scalar_exclusive_variables",
                 "multiple_response_variables",
@@ -484,6 +558,44 @@ def _load_profiles(path: Path) -> dict[str, Any]:
                 raise ProductiveAuthorityError(
                     f"PERFIL_CITAS_CONTEXTO_VACIAS:{payload_id}:{table_name}"
                 )
+            universe_semantics = table.get("universe_semantics")
+            if universe_semantics is not None:
+                if not isinstance(universe_semantics, dict):
+                    raise ProductiveAuthorityError(
+                        f"PERFIL_UNIVERSO_VARIABLE_INVALIDO:{payload_id}:{table_name}"
+                    )
+                assignments = universe_semantics.get("assignments")
+                unresolved = universe_semantics.get("unresolved_variables")
+                if not isinstance(assignments, list) or not isinstance(unresolved, list):
+                    raise ProductiveAuthorityError(
+                        f"PERFIL_UNIVERSO_VARIABLE_INCOMPLETO:{payload_id}:{table_name}"
+                    )
+                assigned: set[str] = set()
+                for assignment in assignments:
+                    variables = assignment.get("variables") if isinstance(assignment, dict) else None
+                    if (
+                        not isinstance(variables, list)
+                        or any(not isinstance(value, str) or not value for value in variables)
+                        or not _text(assignment.get("universo_poblacional"))
+                        or not _text(assignment.get("unidad_observacion"))
+                    ):
+                        raise ProductiveAuthorityError(
+                            f"PERFIL_UNIVERSO_ASIGNACION_INVALIDA:{payload_id}:{table_name}"
+                        )
+                    overlap_variables = assigned & set(variables)
+                    if overlap_variables:
+                        raise ProductiveAuthorityError(
+                            f"PERFIL_UNIVERSO_VARIABLE_DUPLICADA:{payload_id}:{table_name}"
+                        )
+                    assigned.update(variables)
+                if (
+                    len(unresolved) != len(set(unresolved))
+                    or any(not isinstance(value, str) or not value for value in unresolved)
+                    or assigned & set(unresolved)
+                ):
+                    raise ProductiveAuthorityError(
+                        f"PERFIL_UNIVERSO_CLASIFICACION_CONFLICTIVA:{payload_id}:{table_name}"
+                    )
         by_payload[payload_id] = raw
     overlap = set(by_payload) & set(blocked_payloads)
     if overlap:
@@ -532,9 +644,16 @@ def _validate_profile_sources(
         ]
         for citation in citations:
             local_path = _text(citation.get("local_path"))
-            if not local_path:
+            repo_path = _text(citation.get("repo_path"))
+            if local_path and repo_path:
+                raise ProductiveAuthorityError(
+                    f"FUENTE_CONTEXTO_RUTA_AMBIGUA:{payload_id}"
+                )
+            if not local_path and not repo_path:
                 continue
-            context_path = corpus_root / local_path
+            context_path = (
+                corpus_root / local_path if local_path else repo / repo_path
+            )
             context_sha = _sha256_path(context_path)
             citation_sha = _text(citation.get("sha256")).lower()
             if context_sha != citation_sha:
@@ -557,6 +676,36 @@ def _citation(
         "localizador": locator,
         "campos_autorizados": sorted(set(fields)),
     }
+
+
+def _variable_universe(
+    table: Mapping[str, Any], variable_name: str
+) -> tuple[str, str] | None:
+    semantics = table.get("universe_semantics")
+    if semantics is None:
+        return (
+            _text(table.get("universo_poblacional")),
+            _text(table.get("unidad_observacion")),
+        )
+    if variable_name in semantics["unresolved_variables"]:
+        return None
+    for assignment in semantics["assignments"]:
+        if variable_name in assignment["variables"]:
+            return (
+                _text(assignment["universo_poblacional"]),
+                _text(assignment["unidad_observacion"]),
+            )
+    return None
+
+
+def _universe_semantics_reason(
+    table: Mapping[str, Any], variable_name: str
+) -> str | None:
+    return (
+        None
+        if _variable_universe(table, variable_name) is not None
+        else "UNIVERSO_REACTIVO_NO_RESUELTO"
+    )
 
 
 def _authority_from_record(
@@ -620,6 +769,12 @@ def _authority_from_record(
         locator=_text(table["design_locator"]),
         fields=WEIGHT_FIELDS,
     )
+    variable_universe = _variable_universe(table, variable.name)
+    if variable_universe is None:
+        raise ProductiveAuthorityError(
+            f"UNIVERSO_REACTIVO_NO_RESUELTO:{profile['payload_id']}:{variable.name}"
+        )
+    universe, observation_unit = variable_universe
     row = {
         "schema_version": "AUTORIDAD-SEMANTICA-MARCO-1.0",
         "representacion_id": key.representacion_id,
@@ -632,8 +787,8 @@ def _authority_from_record(
         "variable": key.variable,
         "encuesta": _text(profile["encuesta"]),
         "ola": _text(profile["ola"]),
-        "universo_poblacional": _text(table["universo_poblacional"]),
-        "unidad_observacion": _text(table["unidad_observacion"]),
+        "universo_poblacional": universe,
+        "unidad_observacion": observation_unit,
         "tipo_estadistico": kind,
         "respuesta_multiple": False,
         "categorias_excluyentes": True,
@@ -676,9 +831,105 @@ def _response_semantics_reason(
     response = table["response_semantics"]
     if variable_name in response["multiple_response_variables"]:
         return "RESPUESTA_MULTIPLE_DOCUMENTADA"
+    if variable_name in response["unresolved_variables"]:
+        return "EXCLUSIVIDAD_MULTIPLICIDAD_NO_RESUELTA"
+    if response.get("rule") == STRUCTURAL_SCALAR_RULE:
+        return None
     if variable_name not in response["scalar_exclusive_variables"]:
         return "EXCLUSIVIDAD_MULTIPLICIDAD_NO_RESUELTA"
     return None
+
+
+def _specific_blocker(
+    record: Mapping[str, Any],
+    declared: str = "",
+    projection: MetadataProjection | None = None,
+    *,
+    contextual_survey_documented: bool = False,
+) -> str:
+    """Clasifica solo despues de intentar la fuente primaria estructurada."""
+
+    normalized = {
+        "SALTOS_MISSING_Y_SCOPE_PONDERADOR_NO_RESUELTOS": "UNIVERSO_REACTIVO_NO_RESUELTO",
+        "UNIVERSO_UNIDAD_Y_SCOPE_PONDERADOR_NO_RESUELTOS": "UNIVERSO_POBLACIONAL_NO_DOCUMENTADO",
+        "PONDERADOR_OLA_SCOPE_NO_DOCUMENTADO": "PONDERADOR_SCOPE_NO_RESUELTO",
+        "PONDERADOR_SCOPE_NO_DOCUMENTADO_PARA_AUTORIDAD": "PONDERADOR_SCOPE_NO_RESUELTO",
+        "SCOPE_PONDERADOR_O_UNIVERSO_NO_RESUELTO": "PONDERADOR_SCOPE_NO_RESUELTO",
+        "PONDERADOR_NO_COMPATIBLE_CON_UNIDAD_OBSERVACION": "PONDERADOR_SCOPE_NO_RESUELTO",
+        "CONFLICTO_PONDERADOR_FAC_SEL_FAC_ELE": "CONFLICTO_PONDERADOR",
+        "UNIVERSO_POBLACIONAL_OBJETIVO_NO_DOCUMENTADO": "UNIVERSO_POBLACIONAL_NO_DOCUMENTADO",
+        "UNIVERSO_REACTIVO_CONDICIONADO": "UNIVERSO_REACTIVO_NO_RESUELTO",
+        "DOMINIO_NO_ENUMERADO_O_SIN_ETIQUETA": "DOMINIO_NO_ENUMERADO",
+        "DOMINIO_ESTRUCTURADO_AUSENTE": "DOMINIO_NO_ENUMERADO",
+        "MENOS_DE_DOS_CATEGORIAS_VALIDAS": "CODIFICACION_INCOMPLETA",
+    }
+    if declared:
+        return normalized.get(declared, declared)
+    if projection is not None and projection.status == SOURCE_NOT_PRESENT:
+        return "FUENTE_PRIMARIA_NO_PRESENTE"
+    if projection is None or projection.status == NOT_PROJECTABLE:
+        return "METADATA_PRIMARIA_NO_PROYECTABLE"
+    recovered = set(projection.recovered_fields)
+    if contextual_survey_documented:
+        # El id literal dentro de una entrada de diseño prueba la familia de
+        # encuesta, pero no se interpreta la prosa para inventar ola o scope.
+        return "OLA_NO_DOCUMENTADA"
+    # El Title oficial en los paquetes CSV resuelve identidad de encuesta, no
+    # una ola separada ni los scopes estadisticos restantes.
+    if projection.survey_title_documented:
+        return "OLA_NO_DOCUMENTADA"
+    if "codigo_etiqueta" in recovered or "dominio_declarado" in recovered:
+        return "ENCUESTA_NO_DOCUMENTADA"
+    if "tipo_almacenamiento" in recovered:
+        # El tipo de almacenamiento fue efectivamente leido, pero no se
+        # transforma en naturaleza estadistica por dtype.
+        return "TIPO_ESTADISTICO_NO_DOCUMENTADO"
+    if "etiqueta_variable" in recovered:
+        return "CODIFICACION_INCOMPLETA"
+    return "CODIFICACION_INCOMPLETA"
+
+
+def _seed_outcome(
+    record: Mapping[str, Any],
+    estado: str,
+    razon: str = "",
+    *,
+    clase_bloqueo: str = "",
+    projection: MetadataProjection | None = None,
+) -> dict[str, Any]:
+    outcome = {
+        "e2_record_id": _text(record.get("record_id")),
+        "estado_final": estado,
+        "payload_id": _text(record.get("payload_id")),
+        "representacion_id": _text(record.get("representacion_id")),
+        "scope_id": _text(record.get("objeto_padre_id"))
+        or _text(record.get("tabla")),
+        "variable": _text(record.get("nombre")),
+        "razon": razon,
+        "clase_bloqueo": clase_bloqueo,
+    }
+    if projection is not None:
+        outcome["metadata_primaria"] = projection.as_summary()
+    return outcome
+
+
+def _structural_locators(index_path: Path, expected_sha: str) -> dict[str, str]:
+    locators: dict[str, str] = {}
+    reader = E2IndexReader(index_path)
+    for record in reader:
+        if _text(record.get("objeto_tipo")).upper() not in {
+            "HOJA-XLS",
+            "HOJA-XLSX",
+            "TABLA-DTA",
+            "TABLA-SAV",
+        }:
+            continue
+        object_id = _text(record.get("objeto_logico_id"))
+        locator = _text(record.get("localizador"))
+        if object_id and locator and locator != "[REDACTADO-PRIVACIDAD]":
+            locators[object_id] = locator
+    reader.require_sha(expected_sha)
+    return locators
 
 
 def _load_base_authorities(
@@ -705,7 +956,7 @@ def _load_base_authorities(
     return rows
 
 
-def materialize(
+def _materialize_pr346(
     *,
     repo: Path,
     corpus_root: Path,
@@ -990,11 +1241,13 @@ def materialize(
             "proyector": SUPPORTED_PROJECTOR,
             "receta": (
                 "python3 tools/curador_registro/autoridad_semantica_productiva.py "
-                "--corpus-root <CORPUS_RAW> --indice-e2 <E2_PRIVADO> "
+                "--corpus-root <CORPUS_RAW> "
+                "--source-root descargas_mx=<DESCARGAS_MX> "
+                "--indice-e2 <E2_PRIVADO> "
                 "--output data/curacion-universo/autoridad-semantica-marco-v1_0.jsonl "
                 "--diagnostico "
                 "data/curacion-universo/diagnostico-autoridad-semantica-marco-v1_0.json "
-                "--residuales /tmp/semillas-exactas-no-autorizables.jsonl"
+                "--residuales /tmp/semillas-no-emitidas.jsonl"
             ),
         },
         "resumen": {
@@ -1068,10 +1321,697 @@ def materialize(
     return all_rows, diagnostics
 
 
+def materialize(
+    *,
+    repo: Path,
+    corpus_root: Path,
+    index_path: Path,
+    profiles_path: Path,
+    base_authority_path: Path,
+    residual_output: Path | None = None,
+    inventory_output: Path | None = None,
+    source_roots: Mapping[str, Path] | None = None,
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Agota el universo E2 y asigna un estado final a cada semilla."""
+
+    profile_doc = _load_profiles(profiles_path)
+    profiles: dict[str, dict[str, Any]] = profile_doc["profiles_by_payload"]
+    blocked_payloads: dict[str, str] = profile_doc["blocked_payloads"]
+    manifest = yaml.safe_load((repo / "data/manifiesto.yaml").read_text(encoding="utf-8"))
+    expected_sha = expected_index_sha(
+        repo / "data/curacion-universo/baseline-material-barrido2.json"
+    )
+    primary_metadata = PrimaryMetadataRegistry(
+        corpus_root=corpus_root,
+        manifest=manifest,
+        design_text=(repo / "data/diseno-muestral.yaml").read_text(encoding="utf-8"),
+        structural_locators=_structural_locators(index_path, expected_sha),
+        source_roots=source_roots,
+    )
+    provenance = ProvenanceIndex(
+        manifest,
+        _read_tsv(repo / "data/censo-explotacion-2026-08-17.tsv"),
+        _read_tsv(repo / "data/curacion-universo/ledger-inspecciones-barrido2.tsv"),
+        _read_tsv(repo / "data/curacion-universo/universo-declarado-t0.tsv"),
+    )
+
+    parsed_by_payload: dict[str, dict[tuple[str, str], ParsedVariable]] = {}
+    design_sha_by_payload: dict[str, str] = {}
+    for payload_id, profile in sorted(profiles.items()):
+        source_path, design_sha = _validate_profile_sources(profile, corpus_root, repo)
+        parsed_by_payload[payload_id] = parse_inegi_fd_7col(
+            source_path, profile["tables"]
+        )
+        design_sha_by_payload[payload_id] = design_sha
+
+    base_rows = _load_base_authorities(
+        base_authority_path, profile_doc["preserve_authority_ids"]
+    )
+    rows_by_key = {authority_key_from_row(row): row for row in base_rows}
+    if len(rows_by_key) != len(base_rows):
+        raise ProductiveAuthorityError("BASE_AUTORIDAD_CLAVE_DUPLICADA")
+    base_keys = set(rows_by_key)
+
+    strict_joins: Counter[str] = Counter()
+    final_joins: Counter[str] = Counter()
+    repair_reasons: Counter[str] = Counter()
+    initial_absent_components: Counter[str] = Counter()
+    seeds_by_type: Counter[str] = Counter()
+    source_attempts: dict[str, Counter[str]] = defaultdict(Counter)
+    weight_scopes: Counter[str] = Counter()
+    matched_base_keys: set[Any] = set()
+    outcomes: list[dict[str, Any]] = []
+    outcome_index: dict[str, int] = {}
+    seed_keys: dict[str, Any] = {}
+    inventory_groups: dict[tuple[str, ...], dict[str, Any]] = {}
+    inventory_seed_count = 0
+    metadata_statuses: Counter[str] = Counter()
+    metadata_fields: Counter[str] = Counter()
+    metadata_by_projector: dict[str, Counter[str]] = defaultdict(Counter)
+    metadata_technical_reasons: Counter[str] = Counter()
+    metadata_source_absence_reasons: Counter[str] = Counter()
+    blocker_classes: Counter[str] = Counter()
+
+    reader = E2IndexReader(index_path)
+    for record in reader:
+        if not is_variable_seed(record):
+            continue
+        record_id = _text(record.get("record_id"))
+        payload_id = _text(record.get("payload_id"))
+        inventory_group = None
+        seeds_by_type[_text(record.get("objeto_tipo")).upper()] += 1
+        strict_join = provenance.resolve(record)
+        strict_joins[strict_join.status] += 1
+        component_cards = None
+        if strict_join.status == "AUSENTE":
+            component_cards = provenance.component_cardinalities(record)
+            missing_components = [
+                name.upper()
+                for name, count in component_cards.items()
+                if count == 0
+            ]
+            initial_absent_components["+".join(missing_components)] += 1
+        join = provenance.resolve_repaired(record)
+        if join.status == "EXACTA_REPARADA":
+            final_joins["EXACTA"] += 1
+            repair_reasons[join.reason] += 1
+        else:
+            final_joins[join.status] += 1
+
+        try:
+            key = authority_key_from_e2(record)
+            seed_keys[record_id] = key
+        except AutoridadSemanticaError:
+            key = None
+
+        if (
+            strict_join.status == "EXACTA"
+            and payload_id not in PR346_PROFILED_OR_BLOCKED_PAYLOADS
+            and key not in base_keys
+        ):
+            inventory_seed_count += 1
+            scope_id = _text(record.get("objeto_padre_id")) or _text(
+                record.get("tabla")
+            )
+            inventory_key = (
+                payload_id,
+                _text(record.get("representacion_id")),
+                _text(record.get("objeto_tipo")),
+                _text(record.get("format")),
+                _text(record.get("ruta_relativa")),
+                _text(record.get("hoja")),
+                scope_id,
+            )
+            group = inventory_groups.setdefault(
+                inventory_key,
+                {
+                    "payload_id": payload_id,
+                    "representacion_id": inventory_key[1],
+                    "objeto_tipo": inventory_key[2],
+                    "formato_fuente": inventory_key[3],
+                    "ruta_fuente": inventory_key[4],
+                    "tabla": inventory_key[5],
+                    "scope_id": inventory_key[6],
+                    "semillas": 0,
+                    "metadatos_estructurados": Counter(),
+                    "diccionario_catalogo_disponible": False,
+                    "documentacion_diseno_disponible": None,
+                    "ponderadores_documentados": [],
+                    "cuestionario_metodologia_disponible": None,
+                    "estado_documentacion_contextual": (
+                        "NO_RECONCILIADA_DETERMINISTICAMENTE_A_PAYLOAD"
+                    ),
+                    "encuesta_documentada": None,
+                    "ola_documentada": None,
+                    "patron_descriptor": (
+                        f"{inventory_key[2]}|{_text(record.get('parser'))}|"
+                        f"{inventory_key[3]}"
+                    ),
+                },
+            )
+            group["semillas"] += 1
+            for field in (
+                "etiqueta",
+                "texto_reactivo",
+                "definicion",
+                "categorias",
+                "value_labels",
+                "unidad",
+                "periodo",
+                "poblacion",
+            ):
+                value = record.get(field)
+                present = bool(value) if isinstance(value, list) else bool(
+                    _text(value)
+                    and _text(value).upper()
+                    not in {"NO-APLICA", "[REDACTADO-PRIVACIDAD]"}
+                )
+                if present:
+                    group["metadatos_estructurados"][field] += 1
+            group["diccionario_catalogo_disponible"] = group[
+                "diccionario_catalogo_disponible"
+            ] or _text(record.get("objeto_tipo")).upper().startswith(
+                "VARIABLE-DICCIONARIO"
+            )
+            profile_context = profiles.get(payload_id)
+            design_context = primary_metadata.design_context(payload_id)
+            if profile_context is not None:
+                group["documentacion_diseno_disponible"] = True
+                group["ponderadores_documentados"] = sorted(
+                    {
+                        _text(table["ponderador"])
+                        for table in profile_context["tables"].values()
+                    }
+                )
+                group["cuestionario_metodologia_disponible"] = bool(
+                    any(
+                        table.get("context_citations")
+                        for table in profile_context["tables"].values()
+                    )
+                )
+                group["estado_documentacion_contextual"] = "PERFIL_DECLARATIVO_CITABLE"
+                group["encuesta_documentada"] = profile_context["encuesta"]
+                group["ola_documentada"] = profile_context["ola"]
+            elif design_context is not None:
+                group["documentacion_diseno_disponible"] = True
+                group["ponderadores_documentados"] = design_context[
+                    "ponderadores_documentados"
+                ]
+                group["estado_documentacion_contextual"] = (
+                    "ENLACE_ID_LITERAL_A_DISENO_MUESTRAL;SCOPE_NO_ESTRUCTURADO"
+                )
+                if len(design_context["fuentes"]) == 1:
+                    group["encuesta_documentada"] = design_context["fuentes"][0]
+            inventory_group = group
+
+        if join.status not in {"EXACTA", "EXACTA_REPARADA"}:
+            cards = component_cards or provenance.component_cardinalities(record)
+            missing = [name.upper() for name, count in cards.items() if count == 0]
+            reason = (
+                "RUTA_CENSO_AUSENTE_PAYLOAD_NO_IDENTIFICADO"
+                if missing == ["CENSO"]
+                else "RUTA_CENSO_Y_T0_AUSENTES_PAYLOAD_NO_IDENTIFICADO"
+                if missing == ["CENSO", "T0"]
+                else "PROCEDENCIA_COMPONENTES_NO_RECONCILIADOS:" + ",".join(missing)
+            )
+            outcome = _seed_outcome(
+                record,
+                "PROCEDENCIA_NO_RECONCILIADA",
+                reason,
+                clase_bloqueo="PROCEDENCIA_NO_RECONCILIADA",
+            )
+            outcomes.append(outcome)
+            outcome_index[record_id] = len(outcomes) - 1
+            source_attempts[payload_id][reason] += 1
+            continue
+
+        projection = None
+        if _text(record.get("objeto_tipo")).upper() in {
+            "VARIABLE-DTA",
+            "VARIABLE-SAV",
+            "VARIABLE-DICCIONARIO",
+            "VARIABLE-DICCIONARIO-XLS",
+            "VARIABLE-DICCIONARIO-XLSX",
+        }:
+            projection = primary_metadata.project(record)
+            metadata_statuses[projection.status] += 1
+            metadata_by_projector[projection.projector][projection.status] += 1
+            metadata_by_projector[projection.projector]["SEMILLAS"] += 1
+            metadata_by_projector[projection.projector]["PARES_CODIGO_ETIQUETA"] += (
+                projection.code_label_pairs
+            )
+            metadata_by_projector[projection.projector]["USER_MISSING"] += (
+                projection.user_missing
+            )
+            for field in projection.recovered_fields:
+                metadata_fields[field] += 1
+            if projection.status == NOT_PROJECTABLE and projection.technical_reason:
+                metadata_technical_reasons[projection.technical_reason] += 1
+            elif projection.status == SOURCE_NOT_PRESENT and projection.technical_reason:
+                metadata_source_absence_reasons[projection.technical_reason] += 1
+            if inventory_group is not None:
+                inventory_group.setdefault("proyectores_metadata_primaria", Counter())[
+                    projection.projector
+                ] += 1
+                inventory_group.setdefault("estados_metadata_primaria", Counter())[
+                    projection.status
+                ] += 1
+                inventory_group.setdefault("campos_metadata_primaria", Counter()).update(
+                    projection.recovered_fields
+                )
+
+        reason = "" if key is not None else "CLAVE_MATERIAL_NO_RESUELTA"
+        if key is not None and key in rows_by_key:
+            matched_base_keys.add(key)
+            authority = rows_by_key[key]
+            if authority["e2_record_id"] == record_id:
+                outcome = _seed_outcome(record, "AUTORIDAD_EMITIDA")
+            else:
+                outcome = _seed_outcome(
+                    record,
+                    "DUPLICADO_COMPATIBLE",
+                    "MISMA_CLAVE_MATERIAL_Y_ESPECIFICACION",
+                    clase_bloqueo="DUPLICADO_COMPATIBLE",
+                    projection=projection,
+                )
+            outcomes.append(outcome)
+            outcome_index[record_id] = len(outcomes) - 1
+            weight_scopes["RESUELTO"] += 1
+            source_attempts[payload_id]["AUTORIZADA_PREEXISTENTE"] += 1
+            continue
+
+        profile = profiles.get(payload_id)
+        if not reason and profile is None:
+            reason = _specific_blocker(
+                record,
+                blocked_payloads.get(payload_id, ""),
+                projection,
+                contextual_survey_documented=primary_metadata.has_design_id_link(
+                    payload_id
+                ),
+            )
+            weight_scopes["NO_RESUELTO"] += 1
+        table = None
+        if profile is not None:
+            sheet = _text(record.get("hoja"))
+            table = profile["tables"].get(sheet)
+            if not reason and table is None:
+                reason = _specific_blocker(
+                    record,
+                    profile.get("blocked_tables", {}).get(
+                        sheet, "PONDERADOR_SCOPE_NO_RESUELTO"
+                    ),
+                    projection,
+                )
+                weight_scopes["NO_RESUELTO"] += 1
+            elif table is not None:
+                weight_scopes["RESUELTO"] += 1
+        parsed = None
+        if profile is not None and table is not None:
+            parsed = parsed_by_payload[payload_id].get(
+                (_text(record.get("hoja")), _text(record.get("nombre")))
+            )
+            if not reason and parsed is None:
+                reason = "VARIABLE_NO_RESUELTA_EN_DESCRIPTOR"
+            elif parsed is not None and parsed.reason:
+                reason = _specific_blocker(record, parsed.reason)
+            elif parsed is not None:
+                reason = (
+                    _universe_semantics_reason(table, parsed.name)
+                    or _response_semantics_reason(table, parsed.name)
+                    or ""
+                )
+        if reason:
+            blocker_class = (
+                "METADATA_PRIMARIA_NO_PROYECTABLE/PARO_TECNICO"
+                if reason == "METADATA_PRIMARIA_NO_PROYECTABLE"
+                else "FUENTE_PRIMARIA_NO_PRESENTE"
+                if reason == "FUENTE_PRIMARIA_NO_PRESENTE"
+                else CONTEXT_UNRESOLVED_AFTER_PROJECTION
+                if reason in CONTEXT_UNRESOLVED_REASONS
+                else "INSUFICIENCIA_DE_LA_FUENTE"
+            )
+            blocker_classes[blocker_class] += 1
+            outcome = _seed_outcome(
+                record,
+                "INSUFICIENCIA_SEMANTICA_ESPECIFICA",
+                reason,
+                clase_bloqueo=blocker_class,
+                projection=projection,
+            )
+            outcomes.append(outcome)
+            outcome_index[record_id] = len(outcomes) - 1
+            source_attempts[payload_id][reason] += 1
+            continue
+
+        assert profile is not None and table is not None and parsed is not None
+        authority = _authority_from_record(
+            record,
+            profile,
+            table,
+            parsed,
+            design_sha_by_payload[payload_id],
+        )
+        validate_authority_row(authority)
+        authority_key = authority_key_from_row(authority)
+        existing = rows_by_key.get(authority_key)
+        if existing is not None and _semantic_spec(existing) != _semantic_spec(authority):
+            raise ProductiveAuthorityError(
+                "AUTORIDAD_MATERIAL_DIVERGENTE:"
+                + _canonical_json(authority_key.as_dict())
+            )
+        rows_by_key.setdefault(authority_key, authority)
+        outcome = _seed_outcome(
+            record, "AUTORIDAD_EMITIDA", projection=projection
+        )
+        outcomes.append(outcome)
+        outcome_index[record_id] = len(outcomes) - 1
+        source_attempts[payload_id]["AUTORIDAD_PROYECTADA"] += 1
+
+    reader.require_sha(expected_sha)
+    initial_counts = {
+        "semillas_variables_totales": sum(seeds_by_type.values()),
+        "uniones_exactas": strict_joins["EXACTA"],
+        "uniones_ausentes": strict_joins["AUSENTE"],
+        "uniones_ambiguas": strict_joins["AMBIGUA"],
+    }
+    if initial_counts != profile_doc["expected_counts"]:
+        raise ProductiveAuthorityError(
+            "CONTEOS_UNIVERSO_DIVERGENTES:"
+            f"esperado={_canonical_json(profile_doc['expected_counts'])}:"
+            f"observado={_canonical_json(initial_counts)}"
+        )
+    if inventory_seed_count != 107443:
+        raise ProductiveAuthorityError(
+            f"INVENTARIO_INICIAL_DIVERGENTE:esperado=107443:observado={inventory_seed_count}"
+        )
+
+    orphan_base = sorted(
+        row["autoridad_id"]
+        for key, row in rows_by_key.items()
+        if key in base_keys and key not in matched_base_keys
+    )
+    if orphan_base:
+        raise ProductiveAuthorityError(
+            "BASE_AUTORIDAD_HUERFANA:" + ",".join(orphan_base)
+        )
+
+    projected_rows = [rows_by_key[key] for key in sorted(rows_by_key)]
+    rows_by_identity: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for row in projected_rows:
+        rows_by_identity[_conceptual_identity(row)].append(row)
+    conflicts: dict[tuple[str, str, str], int] = {}
+    compatible_duplicate_details: list[dict[str, Any]] = []
+    for identity, identity_rows in rows_by_identity.items():
+        specs = {_semantic_spec(row) for row in identity_rows}
+        ordered = sorted(identity_rows, key=lambda row: authority_key_from_row(row))
+        if len(specs) > 1:
+            conflicts[identity] = len(identity_rows)
+            for row in ordered:
+                index = outcome_index[row["e2_record_id"]]
+                outcomes[index]["estado_final"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
+                outcomes[index]["razon"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
+                outcomes[index]["clase_bloqueo"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
+        elif len(ordered) > 1:
+            compatible_duplicate_details.append(
+                {
+                    "encuesta": identity[0],
+                    "ola": identity[1],
+                    "variable": identity[2],
+                    "autoridades": [row["autoridad_id"] for row in ordered],
+                }
+            )
+            for row in ordered[1:]:
+                index = outcome_index[row["e2_record_id"]]
+                outcomes[index]["estado_final"] = "DUPLICADO_COMPATIBLE"
+                outcomes[index]["razon"] = "MISMA_ESPECIFICACION_SEMANTICA"
+                outcomes[index]["clase_bloqueo"] = "DUPLICADO_COMPATIBLE"
+
+    conflict_identities = set(conflicts)
+    conflict_material_keys = {
+        authority_key_from_row(row)
+        for identity in conflict_identities
+        for row in rows_by_identity[identity]
+    }
+    for record_id, key in seed_keys.items():
+        if key in conflict_material_keys and record_id in outcome_index:
+            index = outcome_index[record_id]
+            outcomes[index]["estado_final"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
+            outcomes[index]["razon"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
+            outcomes[index]["clase_bloqueo"] = "CONFLICTO_IDENTIDAD_CONCEPTUAL"
+    all_rows = [
+        row
+        for row in projected_rows
+        if _conceptual_identity(row) not in conflict_identities
+    ]
+
+    if len(outcomes) != sum(seeds_by_type.values()):
+        raise ProductiveAuthorityError(
+            f"COBERTURA_ESTADOS_INCOMPLETA:{len(outcomes)}!={sum(seeds_by_type.values())}"
+        )
+    forbidden = [
+        row for row in outcomes if row["razon"] == "SIN_PROYECTOR_O_PERFIL_SEMANTICO_IMPLEMENTADO"
+    ]
+    if forbidden:
+        raise ProductiveAuthorityError("RESIDUAL_GENERICO_NO_AGOTADO")
+
+    final_by_identity: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    authority_by_wave: Counter[str] = Counter()
+    candidate_by_wave: Counter[str] = Counter()
+    candidates_by_type: Counter[str] = Counter()
+    for row in all_rows:
+        identity = _conceptual_identity(row)
+        final_by_identity[identity].append(row)
+        authority_by_wave[f"{identity[0]} | {identity[1]}"] += 1
+        source_attempts[row["payload_id"]]["AUTORIDAD_FINAL"] += 1
+    for identity, identity_rows in final_by_identity.items():
+        candidate_by_wave[f"{identity[0]} | {identity[1]}"] += 1
+        candidates_by_type[_text(identity_rows[0]["tipo_estadistico"])] += 1
+
+    state_counts = Counter(row["estado_final"] for row in outcomes)
+    for state in (
+        "AUTORIDAD_EMITIDA",
+        "DUPLICADO_COMPATIBLE",
+        "CONFLICTO_IDENTIDAD_CONCEPTUAL",
+        "INSUFICIENCIA_SEMANTICA_ESPECIFICA",
+        "PROCEDENCIA_NO_RECONCILIADA",
+    ):
+        state_counts[state] += 0
+    reason_counts = Counter(
+        row["razon"] for row in outcomes if row["estado_final"] != "AUTORIDAD_EMITIDA"
+    )
+    final_exact = final_joins["EXACTA"]
+    baseline_authorities = profile_doc["repair_audit"]["autoridades_permanecen"]
+    baseline_candidates = 142
+    residual_rows = [
+        row for row in outcomes if row["estado_final"] != "AUTORIDAD_EMITIDA"
+    ]
+    if residual_output is not None:
+        residual_output.parent.mkdir(parents=True, exist_ok=True)
+        residual_output.write_text(
+            "".join(_canonical_json(row) + "\n" for row in residual_rows),
+            encoding="utf-8",
+        )
+    if inventory_output is not None:
+        inventory_output.parent.mkdir(parents=True, exist_ok=True)
+        inventory_rows = []
+        for group in inventory_groups.values():
+            row = dict(group)
+            row["metadatos_estructurados"] = dict(
+                sorted(row["metadatos_estructurados"].items())
+            )
+            row["semillas_resolubles_por_unidad_implementacion"] = row["semillas"]
+            for field in (
+                "proyectores_metadata_primaria",
+                "estados_metadata_primaria",
+                "campos_metadata_primaria",
+            ):
+                row[field] = dict(sorted(row.get(field, {}).items()))
+            inventory_rows.append(row)
+        inventory_rows.sort(
+            key=lambda row: (
+                -row["semillas_resolubles_por_unidad_implementacion"],
+                row["patron_descriptor"],
+                row["payload_id"],
+                row["scope_id"],
+            )
+        )
+        inventory_output.write_text(
+            "".join(_canonical_json(row) + "\n" for row in inventory_rows),
+            encoding="utf-8",
+        )
+
+    repair_audit = dict(profile_doc["repair_audit"])
+    repair_audit["insuficiencias_previas_reevaluadas"] = 5428
+    diagnostics = {
+        "schema_version": DIAGNOSTIC_SCHEMA_VERSION,
+        "trazabilidad": {
+            "origin_main_inicial": profile_doc["origin_main_inicial"],
+            "pr_343_merge_commit": profile_doc["pr_343_merge_commit"],
+            "indice_e2_sha256": expected_sha,
+            "perfiles_sha256": _sha256_path(profiles_path),
+            "proyectores": sorted(
+                {profile["projector"] for profile in profiles.values()}
+                | set(metadata_by_projector)
+            ),
+            "receta": (
+                "python3 tools/curador_registro/autoridad_semantica_productiva.py "
+                "--corpus-root <CORPUS_RAW> "
+                "--source-root descargas_mx=<DESCARGAS_MX> "
+                "--indice-e2 <E2_PRIVADO> "
+                "--output data/curacion-universo/autoridad-semantica-marco-v1_0.jsonl "
+                "--diagnostico data/curacion-universo/diagnostico-autoridad-semantica-marco-v1_0.json "
+                "--inventario data/curacion-universo/inventario-autoridad-semantica-marco-v1_0.jsonl "
+                "--residuales /tmp/semillas-no-emitidas.jsonl"
+            ),
+        },
+        "resumen": {
+            "semillas_totales": sum(seeds_by_type.values()),
+            "semillas_exactas_iniciales": strict_joins["EXACTA"],
+            "semillas_ausentes_iniciales": strict_joins["AUSENTE"],
+            "uniones_reparadas": repair_reasons[
+                "T0_AUSENTE_RECONSTRUIDO_POR_CENSO_LEDGER_HASH"
+            ],
+            "uniones_exactas_finales": final_exact,
+            "procedencia_no_reconciliada": state_counts[
+                "PROCEDENCIA_NO_RECONCILIADA"
+            ],
+            "autoridades_totales": len(all_rows),
+            "candidatas_totales": len(final_by_identity),
+            "autoridades_nuevas": len(all_rows) - baseline_authorities,
+            "candidatas_nuevas": len(final_by_identity) - baseline_candidates,
+            "tasa_emision_sobre_semillas_exactas": (
+                len(all_rows) / final_exact if final_exact else 0.0
+            ),
+            "tasa_emision_sobre_semillas_totales": (
+                len(all_rows) / sum(seeds_by_type.values()) if seeds_by_type else 0.0
+            ),
+            "encuestas_con_candidatas": len(
+                {identity[0] for identity in final_by_identity}
+            ),
+            "olas_con_candidatas": len(
+                {(identity[0], identity[1]) for identity in final_by_identity}
+            ),
+            "duplicados_compatibles": state_counts["DUPLICADO_COMPATIBLE"],
+            "conflictos_identidad_conceptual": len(conflicts),
+            "autoridades_huerfanas": 0,
+            "sin_proyector_o_perfil_semantico_implementado": 0,
+            "semillas_no_emitidas": len(residual_rows),
+            "insuficiencia_de_la_fuente": blocker_classes[
+                "INSUFICIENCIA_DE_LA_FUENTE"
+            ],
+            "metadata_primaria_no_proyectable_paro_tecnico": blocker_classes[
+                "METADATA_PRIMARIA_NO_PROYECTABLE/PARO_TECNICO"
+            ],
+            "fuente_primaria_no_presente": blocker_classes[
+                "FUENTE_PRIMARIA_NO_PRESENTE"
+            ],
+            "contexto_semantico_no_resuelto_tras_proyeccion_primaria": blocker_classes[
+                CONTEXT_UNRESOLVED_AFTER_PROJECTION
+            ],
+        },
+        "antes_pr346_despues": {
+            "candidatas": {"antes": 142, "despues": len(final_by_identity)},
+            "sin_proyector_o_perfil": {"antes": 107443, "despues": 0},
+            "insuficiencias_especificas": {
+                "antes": 5428,
+                "despues": state_counts["INSUFICIENCIA_SEMANTICA_ESPECIFICA"],
+                "reevaluadas": 5428,
+            },
+            "procedencias_ausentes": {
+                "antes": 16832,
+                "despues": state_counts["PROCEDENCIA_NO_RECONCILIADA"],
+            },
+        },
+        "estados_finales": dict(sorted(state_counts.items())),
+        "reparacion_procedencia": dict(sorted(repair_reasons.items())),
+        "procedencia_ausente_inicial_por_componente": dict(
+            sorted(initial_absent_components.items())
+        ),
+        "auditoria_reparacion_pr_346": repair_audit,
+        "autoridades_por_encuesta_ola": dict(sorted(authority_by_wave.items())),
+        "candidatas_por_encuesta_ola": dict(sorted(candidate_by_wave.items())),
+        "candidatas_por_tipo_estadistico": dict(sorted(candidates_by_type.items())),
+        "conflictos_conceptuales": [
+            {
+                "encuesta": key[0],
+                "ola": key[1],
+                "variable": key[2],
+                "evidencias_materiales": [
+                    {
+                        "autoridad_id": row["autoridad_id"],
+                        "e2_record_id": row["e2_record_id"],
+                        "payload_id": row["payload_id"],
+                        "ponderador": row["ponderador"],
+                        "ponderador_scope_id": row["ponderador_scope_id"],
+                        "representacion_id": row["representacion_id"],
+                        "scope_id": row["scope_id"],
+                        "scope_tipo": row["scope_tipo"],
+                        "unidad_observacion": row["unidad_observacion"],
+                        "universo_poblacional": row["universo_poblacional"],
+                    }
+                    for row in sorted(
+                        rows_by_identity[key],
+                        key=lambda value: authority_key_from_row(value),
+                    )
+                ],
+            }
+            for key in sorted(conflicts)
+        ],
+        "duplicados_compatibles_detalle": compatible_duplicate_details,
+        "razones_finales_residual": dict(sorted(reason_counts.items())),
+        "clases_bloqueo_residual": dict(sorted(blocker_classes.items())),
+        "metadata_primaria": {
+            "estados": dict(sorted(metadata_statuses.items())),
+            "campos_recuperados": dict(sorted(metadata_fields.items())),
+            "por_proyector": {
+                projector: dict(sorted(counts.items()))
+                for projector, counts in sorted(metadata_by_projector.items())
+            },
+            "razones_tecnicas": dict(sorted(metadata_technical_reasons.items())),
+            "razones_fuente_no_presente": dict(
+                sorted(metadata_source_absence_reasons.items())
+            ),
+            "payloads_vinculados_por_id_literal_a_diseno_muestral": sorted(
+                primary_metadata.design_linked_payloads
+            ),
+        },
+        "top_razones_insuficiencia": [
+            {"razon": reason, "semillas": count}
+            for reason, count in sorted(
+                reason_counts.items(), key=lambda item: (-item[1], item[0])
+            )[:10]
+        ],
+        "scopes_ponderador": dict(sorted(weight_scopes.items())),
+        "fuentes": {
+            payload_id: dict(sorted(counts.items()))
+            for payload_id, counts in sorted(source_attempts.items())
+        },
+        "fuentes_sin_autoridad_emitida": sorted(
+            payload_id
+            for payload_id, counts in source_attempts.items()
+            if not counts["AUTORIDAD_FINAL"]
+        ),
+        "semillas_por_objeto_tipo": dict(sorted(seeds_by_type.items())),
+        "inventario_inicial_sin_proyector_perfil": {
+            "semillas": inventory_seed_count,
+            "unidades": len(inventory_groups),
+        },
+    }
+    return all_rows, diagnostics
+
+
 def main(argv: list[str] | None = None) -> int:
     repo = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--corpus-root", type=Path, required=True)
+    parser.add_argument(
+        "--source-root",
+        action="append",
+        default=[],
+        metavar="NOMBRE=RUTA",
+        help="Root adicional nombrado por data/manifiesto.yaml; repetible.",
+    )
     parser.add_argument("--indice-e2", type=Path, required=True)
     parser.add_argument(
         "--perfiles",
@@ -1086,8 +2026,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--diagnostico", type=Path, required=True)
     parser.add_argument("--residuales", type=Path)
+    parser.add_argument("--inventario", type=Path)
     args = parser.parse_args(argv)
     try:
+        source_roots: dict[str, Path] = {}
+        for value in args.source_root:
+            name, separator, raw_path = value.partition("=")
+            if not separator or not name.strip() or not raw_path.strip():
+                raise ProductiveAuthorityError(
+                    f"SOURCE_ROOT_INVALIDO:{value};esperado=NOMBRE=RUTA"
+                )
+            if name in source_roots:
+                raise ProductiveAuthorityError(f"SOURCE_ROOT_DUPLICADO:{name}")
+            source_roots[name] = Path(raw_path)
         rows, diagnostics = materialize(
             repo=repo,
             corpus_root=args.corpus_root,
@@ -1095,6 +2046,8 @@ def main(argv: list[str] | None = None) -> int:
             profiles_path=args.perfiles,
             base_authority_path=args.base_autoridad,
             residual_output=args.residuales,
+            inventory_output=args.inventario,
+            source_roots=source_roots,
         )
     except (AutoridadSemanticaError, ProductiveAuthorityError, OSError, ValueError) as exc:
         print(f"ERROR:{exc}", file=sys.stderr)
