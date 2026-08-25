@@ -81,6 +81,27 @@
 
 **A** diferencia <20% con canal pareado · **B** diferencia grande pero sin pareo de canal ni sector · **C** exigiría experimento de campo con canal aleatorizado · **D** **probable**: no se conoce dato mexicano de tasa de disenso ascendente por tipo de organización.
 
+**Enmienda fechada, 25/ago/2026, `ACTO R21-FALSADOR-V2-RESPEC` (RANURA, decisión de mesa «A»).** El párrafo original arriba (v1) **queda intacto y sin editar**: es el techo experimental, vigente **sólo** para la letra `A` fuerte — par organizacional con canal pareado. Este append re-especifica el falsador a nivel empleado/segmento, sobre la misma sustancia (SI jerarquía tradicional ENTONCES voz suprimida — PORQUE `G6`+`G1`), degradando con honestidad la letra máxima alcanzable por esta vía nueva.
+
+**(a) Precedencia v1/v2.** `v1` (par organizacional, canal pareado) es el **techo histórico**: sólo por él se alcanza la letra `A` fuerte. `v2` (abajo) es una vía adicional, no un reemplazo — nunca sustituye ni degrada `v1`.
+
+**(b) Falsador v2.** En microdato mexicano **a nivel individuo**, con indicador de jerarquía/tipo de organización (o proxy declarado y justificado **antes** de abrir dato), la asociación {jerarquía tradicional} ↔ {no propone / no reporta errores / evita disenso} **desaparece o se invierte** controlando los confusores declarados: canal disponible, sector, tamaño, escolaridad.
+
+**(c) Letra máxima alcanzable por v2: `correlacional [FUERTE como correlación]`** — no identificación causal; v2 no compite por la letra `A` fuerte, esa queda reservada a `v1`.
+
+**(d) Escala B-bis v2.**
+- **A-corr** (correlacional fuerte): la asociación desaparece o se invierte con los confusores controlados — se lee como corroboración fuerte por correlación, no como identificación causal.
+- **Corrobora (correlación):** la asociación se sostiene con los confusores controlados, en la dirección de la regla — el falsador **no refuta**; corrobora como correlación, no decide `A` (eso lo reserva `v1`).
+- **Acota:** la asociación se sostiene sólo parcialmente o en un subconjunto de confusores controlables con el dato disponible — declarado explícitamente qué confusor no pudo controlarse.
+- **Demasiado débil:** el microdato disponible no permite controlar los cuatro confusores declarados (canal, sector, tamaño, escolaridad) a la vez — el falsador **no corre**, no se declara ni corroboración ni refutación.
+- **Precedencia declarada al sellar, no después:** cualquier resultado de `v2` se lee **subordinado** al techo `v1` — `v2` nunca puede, por sí sola, producir la letra `A` fuerte que sólo `v1` otorga; como máximo produce `A-corr`.
+
+**(e) Candado de contaminación (nominal).** Toda fuente cuyo resultado direccional **ya está citado** en el censo (`forense/R21-censo-fuentes-v1_0.md`) **sólo puede refutar, nunca corroborar** en `v2` — nombradas: Madlock (2012, evitación/distancia al poder), World Management Survey / Lemos-Scur (control familiar ↔ peores prácticas gerenciales), cifras de líneas éticas **auto-reportadas** (Resguarda "Línea ética en cifras 2024-2025", ECI GBES). Corroboración exige dato **no digerido direccionalmente** — primer candidato declarado: microdato **HSOPS mexicano** (el censo cita sus dimensiones y fiabilidad — "frecuencia de reporte de eventos", α=0.88 — no un resultado familiar/plana ya direccionado).
+
+**(f) Sucesor declarado, no lanzado.** La spec exacta de `v2` (fuente, ítems verbatim, universo, umbrales) **no se escribe en este append**: la escribe el acto **MEDIDOR** sucesor (entorno UBUNTU, dos commits, `A-bis` completo, propone sin archivar). Este acto sólo deja el sucesor declarado.
+
+**Origen y procedencia del censo citado en (e):** `forense/R21-censo-fuentes-v1_0.md` — corrido por mesa en sesión del proyecto con web search, 25/ago/2026 (no por un asistente externo; cualquier atribución previa de dirección a otra herramienta queda corregida en `gobernanza`, `ADR-190`).
+
 ## R2.2 · Liderazgo benévolo → lealtad `[MEDIA-FUERTE]`
 > **SI** el liderazgo es **benévolo ENTONCES** lealtad y satisfacción altas; **SI** es autoritario no-benévolo **ENTONCES** peor desempeño — PORQUE **solo el paternalismo benévolo legitima**
 
