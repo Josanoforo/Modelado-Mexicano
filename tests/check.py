@@ -1385,6 +1385,17 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # autocaptura, no un pendiente real sin fila.
     "forense/encargos/2026-08-21-REPARA-T22.md",
     "forense/notas/2026-08-21-repara-t22-cierre.md",  # ídem, cita verbatim las mismas fuentes al documentarlas -- mismo autocaptura
+    # Sumados en ACTO COMMIT-DOC-COERCION, 24/ago/2026 -- disparan
+    # `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) por la cabecera nueva
+    # que el propio acto rotula, verbatim, en el documento que commitea:
+    # "PROPUESTA (no sellada) -- adjunto de mesa 24/ago". No es una
+    # decisión nueva sin registrar -- es exactamente lo que `FP-113` ya
+    # rastrea, y este mismo acto cierra esa fila a `FIRMADA` en el mismo
+    # commit. El documento y su encargo/nota citan el rótulo verbatim al
+    # describirlo -- mismo autocaptura ya visto arriba.
+    "forense/COERCION-Y-ADOPCION-rediseno-2026-08-20.md",
+    "forense/encargos/2026-08-24-ACTO-COMMIT-DOC-COERCION.md",
+    "forense/notas/2026-08-24-commit-doc-coercion.md",
 }
 
 def _t22_tabla():
