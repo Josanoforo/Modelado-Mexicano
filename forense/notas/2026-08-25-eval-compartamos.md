@@ -1,5 +1,5 @@
 # ACTO EVAL-COMPARTAMOS-LLAVE3 — el primer renglón de la clase (iii)
-### Nota de cierre · 25 de agosto de 2026 · entorno UBUNTU · modelo Opus · `ADR-160`
+### Nota de cierre · 25 de agosto de 2026 · entorno UBUNTU · modelo Opus · `ADR-161`
 
 > | | |
 > |---|---|
@@ -23,7 +23,7 @@ Y el amarre al motor que la firma de mesa exigió — *«asegurándonos que el m
 
 **1 · REPO.** Clon existente `/home/pc0/Modelado-Mexicano`; worktree propio `/home/pc0/mm-eval-compartamos`, rama `eval-compartamos`. No se clonó nada nuevo.
 
-**2 · SHA.** Base al arrancar: `21ab042` (`Merge pull request #326`, `ACTO ADQ-CORRE-R74R75`). `origin/main` **se movió a mitad de acto** a `e8ce5ef` (`PR #327`, `ACTO SPEC-R10.1-v2`, que trajo `ADR-159`); se fusionó en la rama antes de numerar, sin conflicto (fast-forward), y el ADR de este acto se candidateó **contra el árbol fusionado**, no contra la base vieja.
+**2 · SHA.** Base al arrancar: `21ab042` (`Merge pull request #326`, `ACTO ADQ-CORRE-R74R75`). `origin/main` **se movió dos veces mientras este acto estaba abierto**, y las dos se absorbieron antes de cerrar: primero a `e8ce5ef` (`PR #327`, `ACTO SPEC-R10.1-v2`, que trajo `ADR-159`), fusionado en la rama antes de numerar, sin conflicto; después a `e70b424` (`PR #328`, `ACTO R34-CONDA-V2`), que se llevó `ADR-160` y las filas `FP-129`/`FP-130` — los tres rótulos que este acto ya había candidateado. Se rebasó sobre esa punta y se renumeró (ver §9). Base final del acto: **`e70b424`**.
 
 **3 · `data/raw`.** Enlace simbólico al corpus compartido (`/home/pc0/mm-corpus/raw`). Cero descargas en todo el acto.
 
@@ -179,7 +179,7 @@ Las dos son sobre **precio, mora y daño**, ninguna sobre **acceso aleatorizado*
 
 **Hallazgo lateral del mismo cruce, no buscado:** la terna del curador **no cubre** `dinero.credito.baja_friccion_usura_dano_downstream`. De las dos reglas `dinero.credito.*` del motor, solo una tiene necesidad declarada. Se registra aquí; corregir la terna está fuera del perímetro de este acto.
 
-**Consecuencia, y es la que va a mesa:** hay evidencia causal de primera clase —un sorteo por conglomerado, con 238 unidades, cumplimiento y atrición medidos, publicada y replicable— **sin ningún consumidor declarado en el programa**. Eso es `FP-130`.
+**Consecuencia, y es la que va a mesa:** hay evidencia causal de primera clase —un sorteo por conglomerado, con 238 unidades, cumplimiento y atrición medidos, publicada y replicable— **sin ningún consumidor declarado en el programa**. Eso es `FP-132`.
 
 ---
 
@@ -209,7 +209,7 @@ Es decir: la distinción que `ADR-57(c)` selló —evidencia identificada frente
 
 ### 7.1 · PROPUESTA MÍNIMA — escrita, no implementada
 
-Tres piezas, en este orden, ninguna ejecutada en este acto (`milpa/` no se toca, y el contrato de celda-D no es de este perímetro). Va a mesa como `FP-129`:
+Tres piezas, en este orden, ninguna ejecutada en este acto (`milpa/` no se toca, y el contrato de celda-D no es de este perímetro). Va a mesa como `FP-131`:
 
 1. **Un valor nuevo de `diseno_datos`** en el contrato de celda-D: `experimento_aleatorizado_terceros`, con su `vocabulario_version` propia — el mecanismo de versión de vocabulario ya existe y ya se usó para `BASELINE_INGENUO`/`ENSAMBLE` en v0.5, así que no hay maquinaria que inventar.
 2. **Una octava clase de procedencia** en `milpa/procedencia.yaml` que marque el número como sostenido por evidencia identificada de terceros, con **dos campos obligatorios**: la cita de la publicación (que es lo que `ADR-57(c)` exige textualmente, *"usado como evidencia (a) con su cita"*) y el `llave_id` del registro de llaves que la respalda. Sin el segundo campo la clase sería una etiqueta sin trazabilidad, que es el defecto que `MEDIDO·PARCIAL(x)` evitó al obligar a listar los ejes.
@@ -225,9 +225,9 @@ Tres piezas, en este orden, ninguna ejecutada en este acto (`milpa/` no se toca,
 
 **Qué falta, y son dos cosas independientes.** **Primera:** nadie ha declarado qué θ o qué generador del modelo informa esta evidencia. El cruce contra las 37 necesidades del curador dio cero. Sin esa declaración no hay spec B-bis que escribir, y sin spec B-bis la llave no se ejerce — es la regla de `ADR-57(c)`, no una preferencia de este acto. **Segunda, y es la que sorprende:** aunque mesa firmara mañana qué θ informa, **el resultado no tendría dónde entrar al ejecutable**. Ninguna de las tres piezas del motor tiene clase para evidencia experimental de terceros, y la comprobación de que el hueco es real —y no un descuido de este acto— es que el motor ya cita `Progresa_RCT` dos veces sin poder marcarlo como lo que es.
 
-**Lo que este acto pide.** Dos firmas, `FP-129` (el conducto) y `FP-130` (el consumidor), en ese orden de dependencia lógica pero no necesariamente de tiempo: `FP-130` puede firmarse primero y dejar la llave esperando conducto; `FP-129` puede firmarse primero y dejar el conducto esperando quién lo use. **Lo que no debería pasar es que se firme una y se dé por atado el motor**: la firma D2 pedía las dos mitades, y las dos están abiertas.
+**Lo que este acto pide.** Dos firmas, `FP-131` (el conducto) y `FP-132` (el consumidor), en ese orden de dependencia lógica pero no necesariamente de tiempo: `FP-132` puede firmarse primero y dejar la llave esperando conducto; `FP-131` puede firmarse primero y dejar el conducto esperando quién lo use. **Lo que no debería pasar es que se firme una y se dé por atado el motor**: la firma D2 pedía las dos mitades, y las dos están abiertas.
 
-**Una observación que no se convierte en propuesta, a propósito.** El instrumento de seguimiento trae, a nivel de columna, `Q15_2_mean_formal` ("Trust in institutions index") y `Q15_2_mean_people` ("Trust in people index") — medidos en el brazo de un sorteo. Los nombres se parecen a `confianza_institucional` (`G1`) y `radio_confianza` (`G1`/`G5`) del modelo. **Este acto no afirma que sean el mismo constructo**, y esa contención es deliberada: establecerlo exige abrir el reactivo, verificar escala y universo, y una decisión de mesa. Afirmarlo por parecido de nombre sería exactamente lo que `ADR-57(c)` existe para impedir. Queda nombrado en `FP-130` como una de las vías que mesa puede tomar, no como una conclusión.
+**Una observación que no se convierte en propuesta, a propósito.** El instrumento de seguimiento trae, a nivel de columna, `Q15_2_mean_formal` ("Trust in institutions index") y `Q15_2_mean_people` ("Trust in people index") — medidos en el brazo de un sorteo. Los nombres se parecen a `confianza_institucional` (`G1`) y `radio_confianza` (`G1`/`G5`) del modelo. **Este acto no afirma que sean el mismo constructo**, y esa contención es deliberada: establecerlo exige abrir el reactivo, verificar escala y universo, y una decisión de mesa. Afirmarlo por parecido de nombre sería exactamente lo que `ADR-57(c)` existe para impedir. Queda nombrado en `FP-132` como una de las vías que mesa puede tomar, no como una conclusión.
 
 ---
 
@@ -238,14 +238,18 @@ Tres piezas, en este orden, ninguna ejecutada en este acto (`milpa/` no se toca,
 | fila | movimiento |
 |---|---|
 | `FP-123` | `ABIERTA` → **`FIRMADA`**, con la firma D2 verbatim en `firmada_en` y `ejecutada_en` lleno el mismo día |
-| `FP-129` | **nueva, `ABIERTA`** — mesa decide si el motor gana el conducto para la clase (iii) (la propuesta de §7.1) |
-| `FP-130` | **nueva, `ABIERTA`** — mesa decide qué necesidad/θ reclama la evidencia, o declara que se queda sin consumidor |
+| `FP-131` | **nueva, `ABIERTA`** — mesa decide si el motor gana el conducto para la clase (iii) (la propuesta de §7.1) |
+| `FP-132` | **nueva, `ABIERTA`** — mesa decide qué necesidad/θ reclama la evidencia, o declara que se queda sin consumidor |
 
 Las dos filas nuevas citan en `dónde` los archivos nuevos del acto, que es lo que `T22`(b) exige de todo documento nuevo que traiga un marcador de decisión sin resolver.
 
-**Cascada.** `ADR-160` candidateado contra el máximo verificado **sobre el árbol ya fusionado con `origin/main = e8ce5ef`** (`159`, `ADR-159`/`ACTO SPEC-R10.1-v2`, fusionado por `PR #327` a mitad de este acto): único `160`, sin huecos. **Colisión viva, declarada:** `PR #328` (`ACTO R34-CONDA-V2`, abierto mientras esto corría) reclama `ADR-159`, número que `PR #327` ya se llevó — ese PR tendrá que renumerar, y si toma `160` antes que éste, este acto renumera a `161`. Regla del encargo, aplicada: renumera quien fusione segundo. `canon/estado-programa-v1_10.md` recifra ADR y llaves; ningún otro contador se mueve.
+**Cascada, con doble renumeración.** `ADR-161` se candidateó primero como `ADR-160`, contra el máximo verificado sobre el árbol ya fusionado con `origin/main = e8ce5ef`. **`PR #328` (`ACTO R34-CONDA-V2`) fusionó mientras esto corría y se llevó `ADR-160`** — y, por la misma coincidencia de fecha, también `FP-129` y `FP-130`, que este acto había candidateado para sus dos filas de tablero. Aplicada la regla del encargo —*renumera quien fusiona segundo*—, este acto se rebasó sobre `e70b424` y quedó en **`ADR-161`**, **`FP-131`** y **`FP-132`**.
 
-**Suite.** Corrida con `--baseline`, que es el modo que gobierna (el modo plano da su cifra de siempre y no dice si algo es **nuevo**). Resultado al cierre: **LÍNEA BASE VERDE**, sin entradas nuevas frente a `tests/baseline.json`. Se verificó también que la base estaba VERDE **antes** de tocar nada, para no atribuirse un desfase heredado — lo estaba. `tests/baseline.json` no se recongela: `ADR-76(f)` exige ADR de mesa para eso y este acto no lo trae firmado.
+**Cómo se resolvió la colisión, y qué se verificó.** Los tres archivos que chocaron (`canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md`, `forense/firmas-pendientes.tsv`) se resolvieron **por unión**, nunca eligiendo un lado: el cuerpo del `ADR-160` ajeno queda intacto y el mío entra después como `ADR-161`; las filas `FP-129`/`FP-130` de `R34-CONDA-V2` quedan intactas y las mías entran después; y en `estado` cada entrada de recifrado ajena se conserva completa con la mía antepuesta. Una primera pasada de renumeración tocó por error tres referencias ajenas dentro de líneas compartidas —esas líneas son párrafos enteros donde conviven entradas de varios actos—; se detectó comparando contra `origin/main` y se corrigió restaurando el archivo desde la punta y re-aplicando las ediciones una por una. Verificación final: `161` ADR sin huecos, `132` filas de tablero sin ids duplicados y con 9 columnas cada una, y ninguna referencia ajena movida.
+
+`canon/estado-programa-v1_10.md` recifra `160` → `161` ADR, llaves `3 de 3` → `3 de 4`, y `147` → `148` WARN. Ningún otro contador se mueve.
+
+**Suite.** Corrida con `--baseline`, que es el modo que gobierna (el modo plano da su cifra de siempre y no dice si algo es **nuevo**). Resultado al cierre: **19 FAIL · 148 WARN · LÍNEA BASE VERDE**, sin entradas nuevas frente a `tests/baseline.json`. El movimiento neto de WARN es **+1** sobre la punta (`147`): `+2` de `T22`(a) por `FP-131` y `FP-132`, `−1` porque `FP-123` sale de `ABIERTA` con `ejecutada_en` lleno el mismo día —así que tampoco entra al WARN de `T22`(c)—. Los dos FAIL propios fueron de `T15` (`gobernanza`/`estado` desincronizados tras renumerar a `ADR-161`), cerrados dentro del acto. Se verificó también que la base estaba VERDE **antes** de tocar nada, para no atribuirse un desfase heredado — lo estaba. `tests/baseline.json` no se recongela: `ADR-76(f)` exige ADR de mesa para eso y este acto no lo trae firmado.
 
 ---
 
