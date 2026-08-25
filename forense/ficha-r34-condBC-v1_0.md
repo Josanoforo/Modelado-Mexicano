@@ -145,4 +145,61 @@ Cláusula, tal como el encargo la pide: **el primer resultado que produzca este 
 
 ---
 
-*(Hasta aquí el **Commit 1**: censo y criterio de aceptación, congelados antes de escribir ninguna propuesta. El `Commit 2` de este mismo acto añade §5-§9 sin tocar nada de §0-§4 — disciplina append-only de `ADR-40`.)*
+*(Hasta aquí el **Commit 1**: censo y criterio de aceptación, congelados antes de escribir ninguna propuesta. Lo que sigue es el **Commit 2** del mismo acto, añadido sin tocar una línea de §0-§4 — disciplina append-only de `ADR-40`.)*
+
+---
+
+## 5 · `F3` · PROPUESTA por condición
+
+> **`B` · prueba de mecanismo — `INDETERMINADA` (inejecutable por diseño de fuente, no por falta de búsqueda).**
+> Ninguna fuente del corpus mide percepción de riesgo fiscal/vigilancia al usar un medio de pago digital. Las dos fuentes que traen el desenlace correcto (`ENDUTIH` `P7_32_6`, `IFT SFD 2024`) no traen la exposición; la única que trae una exposición fiscal (`ENIF` 2021/2024) la cuelga de otro objeto y en formato de respuesta única, que impide la conjunción que `B` exige. **No se propone `no satisfecha`**: no hay cifra que haya fallado un umbral.
+
+> **`C` · anti-confusión — `INDETERMINADA` (inejecutable por dependencia, no por ausencia del canal).**
+> Aquí la pieza cara **sí existe y es buena**: `ENCIG` separa canal personal (`P11_1_09`, `P11_1_11`, `P11_1_07`) de canal institucional (`P11_1_04`, `P11_1_23`) en la misma batería, misma escala, mismos individuos, y en la misma encuesta mide adopción de gobierno digital (`P10_1_2`, `P10_1_3`, `P10_1_5`). Lo que falta es **la otra mitad de la condición**: `C` está definida *«con `riesgo_fiscal_percibido` **encendido**»*, y esa variable no existe en ninguna parte. Sin ella `C` no es evaluable **aunque su canal esté perfectamente medido**. `ENCIG` tampoco trae CoDi, así que el desenlace tendría que sustituirse por adopción de gobierno digital — una sustitución de constructo que este acto **no hace**.
+
+**Base medida de `B`/`C`: sigue en `0 de 2`, declarada y no maquillada.** Este acto no produjo dato mexicano sobre los umbrales de `B` ni de `C`, porque no hay fuente de la que producirlo. Lo que sí produjo, y es medido, es el **universo del negativo**: qué se buscó, dónde, con qué mecanismo, y cuál es la única variable que falta.
+
+---
+
+## 6 · Un defecto del propio pre-registro, encontrado al aterrizar este censo
+
+El `Respaldo 2` de la ficha de `R3.4` (`hitoD-preregistro-v2_0.md:844`) pre-registró, en julio, exactamente este desenlace, y dice verbatim que al confirmarse «*…este respaldo degrada automáticamente B y C a inejecutables, y el gate completo cae en la **fila D** de la escala para B/C, aunque A sí sea medible con series agregadas.*»
+
+**Ese destino contradice la escala de la misma ficha**, cuatro párrafos más abajo:
+
+- fila **`B`** = «*`A` se cumple, pero `B` o `C` (o ambas) **no se pueden evaluar** con las fuentes fijadas — **el Respaldo 2 se disparó**.*»
+- fila **`D`** = «*`A` **mismo no se cumple**, o ninguna fuente pública permite evaluar ni siquiera `A`.*»
+
+La fila `D` exige que `A` falle. `A` **no** falló: está `SELLADA` en fila `A1` por `ADR-177` (25/ago/2026). Y la fila `B` nombra el `Respaldo 2` por su nombre. Bajo la regla de precedencia estricta que la propia ficha declara —se leen en orden `A → B → C → D`, y cada una exige el estado de las anteriores ya resuelto— **el aterrizaje correcto es la fila `B`, no la `D`**.
+
+**Este acto no adjudica la fila.** La señala, propone `B`, y la lleva al tablero: es afirmación sobre el instrumental del programa y sobre la lectura de un pre-registro sellado, y `ADR-55` fija que se propone y mesa adjudica. Se declara además que el defecto es **de redacción del `Respaldo 2`, no de la escala**: la escala es internamente coherente y anticipó el caso con nombre propio.
+
+---
+
+## 7 · La vía — qué desbloquea `B` y `C`, en orden de costo
+
+Ninguna de las tres es un acto de este encargo; se proponen, no se ejecutan.
+
+1. **Adquisición dirigida, y es barata y acotada.** El hueco **no** es «una encuesta»: es **un descriptor** y **un reactivo**. (a) `ENSAFI 2023` es la única candidata cuyo veredicto es `NO-ACCESIBLE` y no `EXISTE-NO-SATISFACE` — su `FD` falta del corpus (`FP-115`(c) ya lo registró, y anota que su URL sigue el patrón ya ejercido de `enasic_2022_fd.xlsx`/`enfih_2019_fd.xlsx`). Hasta que exista, `ENSAFI` no está censada, está **sin abrir**. Es lo primero, y cuesta una descarga. (b) Con el `FD` en mano, `ENSAFI` es la única fuente del corpus cuyo dominio —salud/seguridad financiera— hace **plausible a priori** un reactivo de riesgo percibido; si tampoco lo trae, el negativo de §3.3 pasa de «11 bloques» a «11 bloques y el corpus entero», y queda cerrado.
+2. **Llave de identificación.** Ninguna de las llaves de `ADR-57(c)` cubre esta relación. No hay candidato, y este acto no siembra uno.
+3. **Fila `B` y `R3.4` cerrada como está.** Si (1) confirma el hueco, la lectura honesta es que **ninguna fuente pública mexicana fue diseñada para separar coerción fiscal de fricción dentro de un mismo producto de pago** — que es, palabra por palabra, lo que la `Nota 3` del pre-registro anticipó el 29/jul/2026 y lo que `ADR-37` dejó explícitamente vigente y no resuelto. `R3.4` aterrizaría en fila `B`: `A` satisfecha y sellada, `B`/`C` inejecutables **por diseño de fuente, no por accidente**, y el gate de Fase 1 **sostenido, no cerrado**.
+
+**Lo que este acto NO propone:** correr `B` o `C` sobre `ENIF`, `ENDUTIH`, `IFT SFD` o `ENCIG` con sustitución de constructo. Cualquiera de las cuatro produciría un número, y ese número sería exactamente el defecto que `ADR-25` creó y `ADR-37` corrigió: un gate que pasa por la razón equivocada.
+
+---
+
+## 8 · Reservas que viajan con esta propuesta
+
+1. **Es un censo, no una medición.** Nada de aquí es afirmación sobre México: es afirmación sobre el instrumental del corpus. `CONTADOR: cero`.
+2. **El barrido mecánico no lee reactivos en `.csv`.** Una batería cuyo texto viva sólo en un descriptor ausente es invisible para él — declarado en §3, y es precisamente el caso de `ENSAFI 2023`.
+3. **`ENCIG` no tiene CoDi.** Su valor para `C` depende de aceptar «adopción de gobierno digital» como desenlace, sustitución que este acto no hace y que exigiría firma.
+4. **`IFT SFD 2024` no tiene diseño muestral publicado en el corpus:** sólo factores de expansión calibrados por post-estratificación, **sin `UPM` ni estrato** (verificado columna por columna en las dos bases). No tiene fila en `data/diseno-muestral.yaml`. Cualquier uso futuro exige la reserva de varianza sin diseño, o el alta de la fila.
+5. **La `ECF` de Banxico tampoco:** `PESO1`/`PESO2`/`PESO`, sin `UPM` ni estrato, en las 145 columnas de la ola 2024.
+6. **`ENIF` y `ENDUTIH` sí tienen diseño completo y `MAPEADO`** (`data/diseno-muestral.yaml`: `ENIF` → `fac_per`/`est_dis`/`upm_dis`; `ENDUTIH 2024` → cuatro ponderadores por tabla, `EST_DIS`, `UPM_DIS`). Si un sucesor los usa, no hereda reserva de varianza.
+7. **El censo es de 25/ago/2026 y del corpus de esa fecha.** `ENIF` publica cada tres años y `ENDUTIH` cada año: una ola futura puede añadir el reactivo que falta y el veredicto caducaría. Estampa de alcance conforme a `A.10`.
+
+---
+
+## 9 · Cierre
+
+`R3.4` **no se adjudica** en este acto. `tests/aceptacion_r3_4.py` **no se toca**. La condición `A` **no se re-abre**. Lo que este acto entrega es: el censo con universo declarado, el nombre exacto de la única variable que bloquea `B` y `C`, el defecto de redacción del `Respaldo 2` frente a la escala, y la vía más barata para cerrar el hueco. El veredicto integrado `A ∧ B ∧ C` es de mesa, y va al tablero como fila nacida `ABIERTA`.
