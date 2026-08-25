@@ -169,6 +169,11 @@ Lo que **no** hace este acto, declarado:
   0 de 2, ambos `ASIGNADO`). `R3.4` sigue **sin veredicto** y el contador del Hito D **no se mueve**: sigue en
   **13 de 27**{cita-historica}, y el «19 de 27» que el encargo nombra es lo que este acto **arma**, no lo que
   entrega.
+  *(Enmienda in situ, 25/ago/2026, `ACTO SELLA-G`.)* El contador vigente cuando este acto se fusionó era **18 de
+  27**{cita-historica} (`canon/estado-programa-v1_10.md:279`, `ACTO ADQ-CORRE-R74R75`, 24/ago/2026) — **13**
+  era ya la cifra histórica que este archivo cita, no el contador en vivo del árbol. Este acto **no mueve** el
+  contador: se limita a dejar escrito, con fecha, cuál era el número real al momento de fusionar, para que nadie
+  lea «13 de 27» de este archivo como si fuera la cifra de hoy.
 - **No retira el confusor de antigüedad** (§2 de la ficha): quince años de mercado separan a los dos lados y
   ninguna lectura atribuye la brecha entera a `utilidad_marginal_sobre_sustituto`.
 - **No adopta** las dos lecturas viejas —**0.35 %**{cita-historica} y **12.7 %**{cita-historica}—, ni como
