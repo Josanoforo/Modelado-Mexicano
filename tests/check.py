@@ -2185,6 +2185,12 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # SELLA-AGO24-C-v2, 24/ago/2026 (ADR-153): encargo archivado VERBATIM
+    # (convencion de forense/encargos/: "el texto completo del encargo tal
+    # como se lanzo"). Su `M5` pelado es ADV1-M5, ya censado en
+    # canon/registro-rotulos.tsv; el texto de direccion no se edita para
+    # complacer a un test. Mismo movimiento y misma razon que ACT-PIL-2.
+    "forense/encargos/2026-08-24-SELLA-AGO24-C-v2.md",
     "forense/BENCHMARK-INTERVALO-CORREDOR-M-2026-08-20.md",
     "forense/encargos/2026-08-21-emisor-m1b.md",
     "canon/APERTURA-FASE-CALCULO-v1_2.md",
