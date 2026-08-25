@@ -1290,6 +1290,14 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # ADR-149(f)/ADR-151/ADR-164 -- ACTO SELLA-AGO25-F, 25/ago/2026.
     "forense/notas/2026-08-25-sella-f.md",
     "forense/encargos/2026-08-25-SELLA-AGO25-F.md",
+    # forense/notas/2026-08-25-sella-f-hoja.md y su encargo -- continuación de
+    # SELLA-AGO25-F, ejecuta las diez letras de mesa (L1-L10) ya resueltas y
+    # abre seis actos sucesores declarados (FP-135..FP-140), todos ya con fila
+    # propia en firmas-pendientes.tsv -- ninguna es un marcador nuevo sin
+    # rastro. Misma extensión mínima de perímetro que ADR-164/ADR-165 --
+    # ACTO SELLA-AGO25-F (continuación), 25/ago/2026.
+    "forense/notas/2026-08-25-sella-f-hoja.md",
+    "forense/encargos/2026-08-25-SELLA-AGO25-F-HOJA.md",
     # forense/notas/2026-08-20-emisor-m-verificacion-premisas.md:26 -- "⊕ sigue
     # PROPUESTA sin sellar (mesa-pendientes §3)" es una referencia de solo
     # lectura a un pendiente YA existente y ya rastreado en `mesa-pendientes.md`
@@ -2200,6 +2208,12 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # SELLA-AGO25-F (continuación), 25/ago/2026 (ADR-166): la nota cita
+    # verbatim, entre comillas, la firma ya sellada de FP-46/ADR-109 ("la
+    # condicion literal de ADR-93 sobre material E2") -- el "E2" pelado es
+    # el rotulo del propio ACTO ENLACE-2/B2-SEMANTICO, no un espacio nuevo
+    # de este acto. Cita, no declaracion.
+    "forense/notas/2026-08-25-sella-f-hoja.md",
     # SELLA-AGO24-C-v2, 24/ago/2026 (ADR-155): encargo archivado VERBATIM
     # (convencion de forense/encargos/: "el texto completo del encargo tal
     # como se lanzo"). Su `M5` pelado es ADV1-M5, ya censado en

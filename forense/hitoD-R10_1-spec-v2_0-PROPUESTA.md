@@ -1,4 +1,6 @@
-# HITO D · `R10.1` — spec sucesora v2.0, PROPUESTA (no sellada)
+# HITO D · `R10.1` — spec sucesora v2.0, SELLADA
+
+**SELLADA, 25/ago/2026, ACTO SELLA-AGO25-F — L2/FP-128, firma de mesa verbatim "sí".** Texto operativo sin cambio; solo esta línea de cabecera se edita (`ADR-166`).
 
 ### `hitoD-R10.1-spec-v2_0-propuesta` · **v2.0-PROPUESTA** · 25 de agosto de 2026 · ENTORNO NUBE
 
