@@ -207,7 +207,7 @@ diseno_datos: panel | pseudo_panel | transversal | registro_administrativo |
 
 Es decir: la distinción que `ADR-57(c)` selló —evidencia identificada frente a asociación— **ya está siendo usada en el ejecutable sin que exista un campo que la marque**. Un lector del yaml no puede distinguir hoy un `ASIGNADO` sostenido por un RCT de un `ASIGNADO` sostenido por un reporte de consultoría.
 
-### 7.1 · PROPUESTA MÍNIMA — escrita, no implementada
+### 7.1 · PROPUESTA-SELLADA, 25/ago/2026 (`ACTO SELLA-AGO25-F`, L7/`FP-131`, firma de mesa verbatim "sí") — escrita, no implementada
 
 Tres piezas, en este orden, ninguna ejecutada en este acto (`milpa/` no se toca, y el contrato de celda-D no es de este perímetro). Va a mesa como `FP-131`:
 

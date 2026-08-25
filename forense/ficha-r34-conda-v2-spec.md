@@ -231,3 +231,36 @@ tienen cifra publicada del mismo constructo en la misma fuente primaria.
 **El primer resultado que produzca este procedimiento es el que se reporta.** Esta ficha queda congelada antes de
 abrir payload; si la corrida la desmiente, se corrige **hacia adelante**, en un commit que lo diga, nunca editando
 esta ficha hacia atrás.
+
+---
+
+## 9 · Enmienda fechada — firma de mesa L3/L4, 25/ago/2026 (`ACTO SELLA-AGO25-F`)
+
+**L4/`FP-130`, opción `a` — «cuentas activas» se retira, queda el término textual.** Mesa confirma: la paráfrasis
+«cuentas activas» **no** es el término del corpus fuente y **no** se adopta en ninguna forma — el §3 de esta misma
+ficha ya la había apartado por análisis propio (constructo (iii), «NO EXISTE»), y esta firma la sella como decisión,
+no como cautela. Grep de `activas` sobre este archivo (`grep -n "activas" forense/ficha-r34-conda-v2-spec.md`,
+corrido antes de esta enmienda): **4 coincidencias**, líneas 82, 93, 95, 101 — las cuatro dentro de §3, todas en el
+razonamiento que **descarta** el constructo (iii) y elige (ii); ninguna la usa como término operativo. **Cero sitios
+vivos que enmendar**: el término sellado que gobierna esta ficha ya era, antes de esta firma, «cuentas que utilizaron
+CoDi durante el trimestre» (§3, constructo (ii)) — el mismo que la opción `a` exige. Historia intacta, sin editar
+§3 hacia atrás.
+
+**L3/`FP-129`, opción `b` — re-especificar sobre la misma unidad, no declarar enlace ni dejar en A3.** Mesa rechaza
+tanto declarar una función de enlace `cuenta ↔ persona` (opción `a`) como dejar la condición A congelada en fila A3
+sin veredicto (opción `c`, el estado que esta ficha traía en §5 antes de hoy). En su lugar, ordena **eliminar el
+cruce de escalas re-derivando ambos lados en la misma unidad** — no convertir cuentas a personas por una regla de
+enlace inventada, sino localizar en los Informes Banxico ya presentes en el corpus (los mismos IdMF que ya citan
+§3) una serie que reporte **el mismo constructo, en la misma unidad, para los dos servicios**, en vez de mezclar
+«cuentas» (CoDi) con «personas físicas» (SPEI). Esta ficha **no localiza esa serie aquí** — es trabajo de un acto
+propio, con perímetro de búsqueda en el corpus ya adquirido, no de adquisición nueva. Fila `FIRMADA` nueva en el
+tablero, `FP-136`, nombra ese acto sucesor.
+
+**Efecto sobre `FP-104` y la escala de §5.** La fila `A3` («no se puede evaluar») que el §5 declaraba como estado
+vigente **no se retira todavía**: sigue siendo la lectura correcta *hasta que* `FP-136` localice la serie homogénea
+y produzca una razón en una sola unidad. Esta enmienda no re-corre el procedimiento ni adjudica `A1`/`A2` por
+adelantado — solo cierra la pregunta de **qué camino** toma la ficha (re-especificación por unidad homogénea, no
+función de enlace), dejando la ejecución al acto sucesor. `FP-104` se actualiza para citar esta decisión y sigue
+`ABIERTA` hasta que `FP-136` corra y la escala de §5 se reevalúe con la serie nueva.
+
+**Perímetro de esta enmienda.** Solo este §9, añadido; ningún párrafo de §1–§8 se edita hacia atrás.

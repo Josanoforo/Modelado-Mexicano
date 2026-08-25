@@ -288,3 +288,31 @@ $ sed -n '/^## 3 · Tabla de llaves/,/^## /p' forense/registro-llaves-identifica
 **Hito D no se mueve, y esta alta no lo toca por ninguna vía.** Población de conteo distinta desde que `ADR-67(c)` abrió este registro (§1). Ninguna línea de `forense/hitoD-preregistro-v2_0.md` se edita; el contador de fichas del Hito D queda como esté al leer esto.
 
 **Lo que esta alta NO hace.** No estima ningún efecto del experimento — ni siquiera la toma de tratamiento por brazo. No adjudica que los reactivos de confianza que el instrumento sí trae a nivel de columna (`Q15_2_mean_formal`, "Trust in institutions index"; `Q15_2_mean_people`, "Trust in people index") sean el mismo constructo que `confianza_institucional` o `radio_confianza` del modelo: el parecido de nombre no es identidad de constructo, y establecerla exige abrir el reactivo y una decisión de mesa (`FP-132`). No toca `milpa/`, `canon/modelo-decision-v4_0.md` ni el contrato de celda-D. No corrige `data/mapa-ext-academico-2026-08-06.tsv:4`, que dice "250 vecindarios" donde el microdato trae 238 conglomerados — discrepancia declarada en el censo de diseño, fuera del perímetro de este acto.
+
+---
+
+## 11 · Firma de mesa — `L1`/`FP-127`, opción `b`, 25/ago/2026 (`ACTO SELLA-AGO25-F`)
+
+**Firma, verbatim:** *"El primer β (signo opuesto al −0.60 sin escala): b) mantener con nota + acto de escalas."* Mesa rechaza tanto revisar el asignado (opción `a`) como declarar los dos valores inconmensurables sin más trámite (opción `c`): el β **se mantiene** registrado tal como `ACTO CAL-G3-PUNTUAL` lo dejó — `PROPUESTO`, no escrito en `milpa/procedencia.yaml` (`FP-127` en `forense/firmas-pendientes.tsv`, sin tocar por esta firma en cuanto a su valor) — y se le añade nota de discrepancia y un acto de escalas sucesor.
+
+**Nota registrada, sin tocar `milpa/`.** La fila `CAL-G3` de §3 (arriba) queda anotada aquí, no editada hacia atrás: el β resultante (+0.0146) se registra con la etiqueta descriptiva **`MEDIDO·ACOTADO`** — no una clase de `milpa/procedencia.yaml` (que sigue teniendo siete clases, ninguna nueva por esta firma), sino una anotación de este registro que distingue "medido con diseño propio, pero con escala/signo sin enlace declarado frente al asignado" de un `MEDIDO` liso. Es descriptiva, no ejecutable: no cambia el `−0.60` de `milpa/procedencia.yaml:` `G3 → horizonte_temporal`, ni el pre-registro de `CAL-G3` en §3.
+
+**Discrepancia de signo, visible junto al `−0.60`.** El `−0.60` vive, dentro de este mismo archivo, en la fila `CAL-G3` de §3 (columna `coeficiente_o_regla`: *"`G3 → horizonte_temporal` (−0.60), fila 5 de `censo-estimabilidad-coeficientes-v1_0.md` §5, única fila `RUTA-I` de las 15"*). Nota de discrepancia, pegada al mismo lugar donde ese valor se cita en este archivo: **el β medido (+0.0146) y el asignado (−0.60) tienen signos opuestos, y esta firma de mesa no los reconcilia** — solo confirma que el β medido se mantiene, `MEDIDO·ACOTADO`, mientras un acto de escalas declare si son comparables bajo alguna transformación.
+
+**Acto de escalas — fila nueva `FP-135`.** Entra a `forense/firmas-pendientes.tsv`, `FIRMADA`, `ejecutada_en` vacío: declarar la escala de los 15 asignados de `milpa/procedencia.yaml` (la población completa de coeficientes `ASIGNADO`, de la que `G3 → horizonte_temporal` es una fila), para que una discrepancia de signo como esta se pueda leer contra una escala declarada en vez de compararse a ciegas. Este acto no la ejecuta — es trabajo de `ACTO ESCALA-ASIGNADOS`, sin fecha de arranque fijada.
+
+**Lo que esta firma NO hace.** No escribe nada en `milpa/procedencia.yaml`. No re-adjudica `CAL-G3` (sigue `EJERCIDA_ACOTA`, sin cambio). No mueve el contador de llaves ejercidas (`3` de `4`, sin cambio — esta firma no ejerce ni abre ninguna llave, solo anota una ya ejercida).
+
+---
+
+## 12 · Firma de mesa — `L8`/`FP-132`, 25/ago/2026 (`ACTO SELLA-AGO25-F`) — CORREGIDA a opción `b`
+
+**Primera lectura (superada).** La firma inicial de la hoja —*"¿Qué necesidad/θ reclama a Compartamos? (el acto dejó el mapeo candidato) → el que el acto propuso"*— se leyó como adopción del único candidato que `ACTO EVAL-COMPARTAMOS-LLAVE3` había dejado nombrado sin afirmar (`Q15_2_mean_formal`/`Q15_2_mean_people` ~ `confianza_institucional`(`G1`)/`radio_confianza`(`G1`,`G5`)). Dirección corrigió esa lectura: la opción firmada es **`b` — se abre necesidad nueva**, no la reutilización de una θ existente.
+
+**Firma vigente, verbatim:** *"L8:b"*, sobre las opciones de `FP-132`: *"(a) que necesidad/theta lo reclama... (b) se abre necesidad nueva; o (c) se declara evidencia sin consumidor"*. Mesa firma **(b)**: la evidencia de `EXP-COMPARTAMOS-1` no se ata a `confianza_institucional`/`radio_confianza` ni a ninguna θ ya existente en el modelo — se abre una necesidad nueva, propia, en `data/curacion-registro/necesidad-objeto-modelo.tsv`.
+
+**Qué queda escrito, y qué falta.** La fila `EXP-COMPARTAMOS-1` (§3, §10) espera una necesidad **nueva** del curador, no una reclasificación de `G1`. La observación de §10/§8 sobre el parecido de nombre con `confianza_institucional`/`radio_confianza` **sigue sin afirmarse** como identidad de constructo — esta firma no la usa. **Esto no ejerce la llave**: `preregistro_ref` de `EXP-COMPARTAMOS-1` sigue `NINGUNO` — abrir la necesidad nueva, declarar qué θ le corresponde y escribir la spec B-bis son trabajo de un acto propio. `FP-132` cierra `FIRMADA` con esta corrección; la llave sigue `SELLADA_NO_EJERCIDA`.
+
+**`data/curacion-registro/necesidad-objeto-modelo.tsv` — no se edita en esta firma.** Abrir la necesidad nueva es un acto de curación de datos con su propio proceso (`data/curacion-registro/`) — escribirla aquí, sin ese proceso, fabricaría una fila del curador por fuera de su propio mecanismo. Fila nueva en el tablero, `FP-147`, `FIRMADA`, sin ejecutar: ese acto de curación.
+
+**Lo que esta firma NO hace.** No abre el reactivo `Q15_2_mean_formal`/`Q15_2_mean_people` del microdato. No escribe spec B-bis. No mueve el contador de llaves ejercidas (`3` de `4`, sin cambio). No toca `milpa/`.
