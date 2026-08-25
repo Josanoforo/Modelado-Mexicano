@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **173 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **174 ADR**
 
 > | | |
 > |---|---|
@@ -3571,6 +3571,10 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 **ADR-173 · `ACTO SELLA-G` sella dos firmas de mesa verbatim del 25/ago/2026 y aplica dos micro-enmiendas de revisión.** `FP-149` (opción (d): completar las escalas de los 15 `ASIGNADO` en tres pasos — derivación dimensional forzada, elección ciega pre-registrada para el residuo, relectura de `CAL-G3` bajo la escala resultante; "solo-signo" queda declarado estatus **TRANSITORIO**, no doctrina) pasa a `FIRMADA`, con fila mini nueva `FP-152` (`ESCALAS-COMPLETAS`, apuntando al `ACTO 2` de este mismo pack para el Paso 1). `FP-151` (segundo espejo, `~/BACKUP-mm-mirror-2026-08-10.git`) pasa a `FIRMADA` bajo la cadena `AUTORIZO DESTRUIR BACKUP-mm-mirror-2026-08-10.git`, único referente del registro; fila mini nueva `FP-153` (encargo UBUNTU **autorizado y sin ejecutar** — el path no existe en este entorno NUBE, verificado antes de escribir, sin fabricar una destrucción que no ocurrió). Micro-enmiendas: una línea fechada en `forense/notas/2026-08-25-serie-homogenea.md` aclarando que el contador vigente al fusionarse ese acto era **18 de 27**, no el 13 histórico que la nota cita; y un recordatorio, en la nota propia de este acto, de que `L14`/`L16` de la hoja de letras siguen sin carta de mesa. Encargo, dirección, 25/ago/2026, `forense/encargos/2026-08-25-SELLA-G-encargo.md` (`ACTO 1` de `PACK NUBE-3`). Entorno **NUBE**. **CONTADOR: cero** — ningún número de medición sobre México se mueve, este acto es tablero puro.
 
 **Cascada.** Candidateó `ADR-173` contra el máximo re-derivado por `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` → `ADR-172` sin huecos → `173`. **Se re-deriva y se renumera al fusionar si colisiona.**
+
+**ADR-174 · `ACTO ESCALAS-COMPLETAS-P1` ejecuta el Paso 1 que `FP-149`/`ADR-173` firmó: busca la escala de los 15 `ASIGNADO` por los dos extremos de cada relación (la θ que el coeficiente multiplica, la salida del generador que lo porta), no por la fuente de asignación que `FP-141` ya agotó.** Blindado a fuentes fechadas 24/ago/2026 o antes, sin citar el β medido de `CAL-G3`. Resultado: **0 de 15 `DERIVADA`, 15 de 15 `SUBDETERMINADA`** — `canon/modelo-decision-v4_0.md` §2 no declara escala ni unidad para la salida de ninguno de los siete generadores, así que la forma no queda forzada aunque 7 de las 15 sí tengan su extremo θ declarado (proporción ponderada, `milpa/procedencia.yaml`, secciones `condicionales_escalares*`). `G3.horizonte_temporal` es una de las 8 sin ningún extremo declarado — la condición de la propia firma para releer `CAL-G3` no se cumple, y este acto no la relee. `FP-149` recibe `ejecutada_en`; `FP-152` recibe la lista de subdeterminadas para un futuro Paso 2. Encargo, `forense/encargos/2026-08-25-ESCALAS-COMPLETAS-P1-encargo.md` (`ACTO 2` de `PACK NUBE-3`). Entorno **NUBE**. **CONTADOR: cero** — ningún número de medición sobre México se mueve; campo nuevo `escala_derivada:` en las 15 filas de `milpa/procedencia.yaml:rutas_estimabilidad_coeficiente.detalle`, único cambio al archivo.
+
+**Cascada.** Candidateó `ADR-174` contra el máximo re-derivado (`grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` → `ADR-173` sin huecos) → `174`. **Se re-deriva y se renumera al fusionar si colisiona.**
 
 ---
 
