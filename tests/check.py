@@ -1282,6 +1282,14 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # mínima de perímetro por desviación mecánica, mismo precedente que
     # ADR-147(c)/ADR-149(f)/ADR-151 -- ACTO SELLA-AGO25-E, 25/ago/2026.
     "forense/notas/2026-08-25-sella-e.md",
+    # forense/notas/2026-08-25-sella-f.md y su encargo -- discuten ocho letras
+    # de mesa (L1-L8) y FP-118, todas ya rastreadas en firmas-pendientes.tsv
+    # (FP-127..FP-132, FP-63, FP-24, FP-118) o explícitamente reportadas como
+    # sin ruling verbatim en el repo -- ninguna es un marcador nuevo. Misma
+    # extensión mínima de perímetro por desviación mecánica que ADR-147(c)/
+    # ADR-149(f)/ADR-151/ADR-164 -- ACTO SELLA-AGO25-F, 25/ago/2026.
+    "forense/notas/2026-08-25-sella-f.md",
+    "forense/encargos/2026-08-25-SELLA-AGO25-F.md",
     # forense/notas/2026-08-20-emisor-m-verificacion-premisas.md:26 -- "⊕ sigue
     # PROPUESTA sin sellar (mesa-pendientes §3)" es una referencia de solo
     # lectura a un pendiente YA existente y ya rastreado en `mesa-pendientes.md`
