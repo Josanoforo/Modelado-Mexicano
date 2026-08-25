@@ -24,7 +24,7 @@ Redactado por dirección, 24/ago/2026. Firmas que ejecuta: respuesta 2 de mesa (
 - `forense/registro-llaves-identificacion-v1_0.md` — fila `CAL-G3`, contador `2→3`.
 - `forense/firmas-pendientes.tsv` — fila añadida.
 - `canon/estado-programa-v1_10.md` — línea de llaves y recifrado `154→155`.
-- `canon/gobernanza-v1_15.md` — `ADR-155`.
+- `canon/gobernanza-v1_15.md` — `ADR-157`.
 - Suite: 19 FAIL preexistentes sin cambio; sin FAIL nuevo en T02/T15/T16 atribuible a este acto.
 - Perímetro respetado; no se tocó `milpa/procedencia.yaml`, `hitoD-preregistro`, ni `diseno-muestral.yaml` (solo lectura).
 - Push/PR: **no realizado** — trabajo dejado en rama local para revisión del supervisor, por instrucción explícita.

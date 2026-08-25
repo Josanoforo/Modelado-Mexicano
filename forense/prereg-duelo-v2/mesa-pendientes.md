@@ -19,6 +19,14 @@ Regla que gobierna este archivo: cuando el texto fuente no especifica con clarid
 
 **Este acto no elige entre las cuatro.** Pide a mesa: (a) confirmar cuál lectura rige, o (b) declarar que el término no aplica a `ADV1-M5` y retirarlo de la compuerta B-bis para actos futuros.
 
+**RESUELTA, 2026-08-24 — enmienda fechada, texto original intacto arriba.** Mesa firmó `FP-101` el 24/ago/2026 (`ACTO SELLA-AGO24-C-v2`, sello `canon/gobernanza-v1_15.md` `ADR-155`). La resolución **no elige entre las cuatro lecturas candidatas**: declara que el término ya tenía definición operativa en el corpus y que este archivo no la había localizado. **El origen es el Bloque B-bis de `instrucciones-proyecto-v2_11.md`, líneas 111-113** — el mismo bloque cuyo nombre lleva la compuerta que abrió esta pregunta. Cita verbatim de la definición, `instrucciones-proyecto-v2_11.md:113`:
+
+> *«La ficha declara, antes de correr, qué significa que el falsador no refute: si la regla queda corroborada, si queda acotada, o si el falsador era demasiado débil para decir nada. Si el resultado esperado bajo corroboración es interesante —y suele serlo más que la refutación— se dice también, antes de ver el dato.»*
+
+Es decir: **el término no nombra un agente ni un evento, sino un desenlace que la ficha debe pre-declarar, con tres valores — corroborada / acotada / falsador débil.** Eso disuelve las lecturas 1, 2 y 3 (las tres suponían un agente: el refutador, el lector adversarial, los umbrales de `ADV1-M6`) y confirma la 4 en su forma más benigna: no era error de transcripción, era una cita del corpus normativo (`instrucciones`) que la búsqueda original de este archivo no alcanzó porque se restringió al corpus **forense** (`CAREO-ADV-DUELO-diseno-v2`, `TRANSFER-MAESTRA-FASE-CALCULO`, `forense/adv-duelo/`) — verificado leyendo el propio párrafo de «Origen del término» de arriba, que enumera esos cuatro sitios y ninguno de `instrucciones`. `forense/escala-cinco-casillas-piloto-v2_0.md:82` ya citaba este mismo bloque B-bis (contra `instrucciones-proyecto-v2_10.md:113`) sin conectarlo con esta pregunta.
+
+**Lo que esta enmienda NO hace, declarado:** no edita `forense/escala-cinco-casillas-piloto-v1_0.md` —el sitio donde la `COMPUERTA B-bis` de `DUELO-PREREG-V2` está materialmente activada (`:13`, `:25`)— ni `forense/escala-cinco-casillas-piloto-v2_0.md:82`. Los dos archivos viven **fuera** de `forense/prereg-duelo-v2/` y por tanto fuera del perímetro que el encargo de este acto declaró; el encargo suponía que la compuerta vivía dentro de ese directorio y no vive ahí. `PARO` conforme a la cláusula del propio encargo, discrepancia declarada en `ADR-155` y en `forense/notas/2026-08-24-sella-c-v2.md`, no improvisada. La compuerta sigue activada hasta que un acto con el perímetro correcto la cierre.
+
 ---
 
 ## §2 · Precedencia entre las cinco casillas de `ADV1-M5`

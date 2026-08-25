@@ -125,7 +125,7 @@ Script: `/tmp/.../calg3_run.py` (scratchpad — reproducible desde esta nota; no
 - Registro de llaves: `forense/registro-llaves-identificacion-v1_0.md` — fila `CAL-G3` actualizada, contador `2→3`.
 - `forense/firmas-pendientes.tsv`: fila añadida para que mesa firme la entrada (o rechazo) del β al ejecutable.
 - `canon/estado-programa-v1_10.md`: línea de llaves `2 de 3 → 3 de 3`, recifrado de la línea L0 (`155`).
-- `canon/gobernanza-v1_15.md`: `ADR-155`.
+- `canon/gobernanza-v1_15.md`: `ADR-157`.
 - Suite: ver tail en el encargo de cierre — 19 FAIL preexistentes (no causados por este acto, verificados contra baseline `git stash`/pre-edición), sin FAIL nuevo en `T02`/`T15`/`T16`.
 - Encargo `2026-08-24-CAL-G3-PUNTUAL.md`: CONSUMIDO.
 - La spec no salió mal — no hay tercer commit de corrección.
