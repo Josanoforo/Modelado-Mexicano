@@ -85,7 +85,7 @@
 #                         autoriza al motor a consumir el paquete.
 #
 # supuesto_varianza (campo, no estado -- alta de vocabulario, ACTO
-# PACK-NUBE2-CIERRE-R101, 2026-08-25, ADR-181, ejecuta FP-118 FIRMADA):
+# PACK-NUBE2-CIERRE-R101, 2026-08-25, ADR-183, ejecuta FP-118 FIRMADA):
 # campo propio de una fila SIN_DISEÑO_PUBLICADO cuando mesa firma qué
 # hacer con la falta de estrato/UPM para efectos de VARIANZA (no de
 # estimación puntual, que no la necesita). No es un quinto valor de
@@ -495,7 +495,7 @@
     tiene que (i) declarar explicitamente un supuesto de muestreo aleatorio simple y asumir el sesgo,
     o (ii) conseguir de la fuente el archivo de identificadores de diseno, que no esta en ennvih-mxfls.org/assets
     segun lo adquirido. Esto es hallazgo de este acto, no supuesto heredado. FIRMADO 2026-08-25 (FP-118,
-    ranura F0 de PACK NUBE-2, ADR-181): mesa adopta (i) sin variante -- ver campo supuesto_varianza abajo;
+    ranura F0 de PACK NUBE-2, ADR-183): mesa adopta (i) sin variante -- ver campo supuesto_varianza abajo;
     (ii) queda abierta en paralelo, sin bloquear (i).'
   supuesto_varianza: 'SRS_ASUMIDO -- firma de mesa 2026-08-25 (FP-118): toda corrida CAL-G3 sobre ENNViH
     que exija varianza declara explicitamente un supuesto de muestreo aleatorio simple, con la subestimacion

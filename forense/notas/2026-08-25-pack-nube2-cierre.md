@@ -27,11 +27,11 @@ Dos filas nuevas en `data/curacion-registro/necesidad-objeto-modelo.tsv`: `N34` 
 
 ## Suite
 
-`python3 tests/check.py --baseline`: VERDE antes y después de cada acto. Total pasó de **19 FAIL · 132 WARN** a **19 FAIL · 128 WARN** (neto −4: las cuatro firmas ejecutadas dejan de imprimirse en `T22`). `T15`/`T16` resincronizados (conteo de ADR 180→183, cifra de WARN vigente 132→128) en `canon/gobernanza-v1_15.md` y `canon/estado-programa-v1_10.md`. Sin `--freeze` en ningún punto.
+`python3 tests/check.py --baseline`: VERDE antes y después de cada acto. Total pasó de **19 FAIL · 132 WARN** a **19 FAIL · 128 WARN** (neto −4: las cuatro firmas ejecutadas dejan de imprimirse en `T22`). `T15`/`T16` resincronizados (conteo de ADR 182→185 (renumerado tras colisión con `PACK-UBUNTU-2`/`PR #355`, quien fusiona segundo renumera), cifra de WARN vigente 132→128) en `canon/gobernanza-v1_15.md` y `canon/estado-programa-v1_10.md`. Sin `--freeze` en ningún punto.
 
 ## ADR
 
-`ADR-181` (Acto 1), `ADR-182` (Acto 2), `ADR-183` (Acto 3) en `canon/gobernanza-v1_15.md`.
+`ADR-183` (Acto 1), `ADR-184` (Acto 2), `ADR-185` (Acto 3) en `canon/gobernanza-v1_15.md`.
 
 ## Perímetro
 

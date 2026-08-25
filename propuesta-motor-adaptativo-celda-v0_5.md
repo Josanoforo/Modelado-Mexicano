@@ -150,7 +150,7 @@ Ninguna pregunta nueva. Las diez de v0.3 §8 y la de v0.4 §8 siguen resueltas c
 
 ---
 
-## Addendum fechado · 25/ago/2026 (`ACTO PACK-NUBE2-CIERRE-R101`, `ADR-182`, ejecuta `FP-144`/`FP-131`)
+## Addendum fechado · 25/ago/2026 (`ACTO PACK-NUBE2-CIERRE-R101`, `ADR-184`, ejecuta `FP-144`/`FP-131`)
 
 *Mismo criterio que las enmiendas in situ de `canon/gobernanza-v1_15.md` (ADR-48 y siguientes): el número de versión NO sube, el archivo NO se renombra — el contrato vigente sigue siendo v0.5, este addendum es su sexto cambio.*
 

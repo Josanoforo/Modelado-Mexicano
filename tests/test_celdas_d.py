@@ -7,7 +7,7 @@ contra el invariante de identidad de §2 ("celda-D =
 en la clave, solo en candidatos").
 
 DISENOS_DATOS gana un octavo valor, `experimento_aleatorizado_terceros`,
-en ACTO PACK-NUBE2-CIERRE-R101 (2026-08-25, ADR-182), ejecutando la
+en ACTO PACK-NUBE2-CIERRE-R101 (2026-08-25, ADR-184), ejecutando la
 PROPUESTA-SELLADA de FP-131 que FP-144 firmó implementar -- addendum
 fechado de propuesta-motor-adaptativo-celda-v0_5.md §3, sin bumpear
 versión ni tocar los cinco cambios que v0.5 ya declaró.
