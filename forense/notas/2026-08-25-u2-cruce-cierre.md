@@ -5,7 +5,7 @@
 > | **ENCARGO** | `forense/encargos/2026-08-25-U2-CRUCE.md` (dirección, 24/ago/2026) — **CONSUMIDO** |
 > | **FIRMA QUE EJECUTA** | `FP-70` opción **(a)** (`ADR-155(d)`) por su fila sucesora `FP-125` |
 > | **FICHA CONGELADA** | `bbis-u2-cruce-v1_0.md` — Commit 1, `df3eeeb`, **sin un solo número estimado en su diff** |
-> | **ADR** | `ADR-164` |
+> | **ADR** | `ADR-165` |
 > | **VEREDICTO** | **Fila 1 de la escala `B-bis` — `PIPELINE CORROBORADO`**, propuesto, no firmado |
 > | **EN UNA LÍNEA** | El pipeline reproduce a INEGI **exactamente**: los dos totales al peso, y los dos errores estándar de diseño a la **novena** cifra decimal |
 
@@ -31,7 +31,7 @@ La sonda se corrió porque `A.2` la exige como firma, **no** porque el acto la u
 
 **5 · ESPEJO.** Nada del espejo.
 
-**Concurrencia.** `pgrep -af claude` sólo ve el propio shell de esta sesión — ya está medido que no detecta sesiones de agente concurrentes. El detector que sí sirve es el remoto: `origin/main` se movió **una vez** durante el arranque (`7848b97 → bd70166`), y `PR #330` (`ADV1-M3`, `codex/scoring-adv1-m3`) sigue abierto. Colisión de `ADR`/fila esperada y tratada por la regla de la casa: renumera quien fusiona segundo.
+**Concurrencia.** `origin/main` se movió **dos veces** durante este acto: `7848b97 → bd70166` en el arranque (§ARRANQUE 2) y `bd70166 → 8aff7cb` mientras se escribía el cierre (`ACTO SELLA-AGO25-E`, `PR #334`), lo que obligó a fusionar y renumerar — ver §8. `pgrep -af claude` sólo ve el propio shell de esta sesión — ya está medido que no detecta sesiones de agente concurrentes. El detector que sí sirve es el remoto: `origin/main` se movió **una vez** durante el arranque (`7848b97 → bd70166`), y `PR #330` (`ADV1-M3`, `codex/scoring-adv1-m3`) sigue abierto. Colisión de `ADR`/fila esperada y tratada por la regla de la casa: renumera quien fusiona segundo.
 
 ---
 
@@ -286,25 +286,25 @@ Todas las cantidades de §4 y §5 están en **personas** (`Ŷ`, `EE`) o son **ad
 
 **`forense/firmas-pendientes.tsv`:**
 
-* **`FP-125`** → `ejecutada_en = ADR-164`. Es la fila que este acto ejecuta.
-* **`FP-70`** → `ejecutada_en = ADR-164` (el encargo lo pide por nombre), **y** corrección del texto de su `firmada_en`: la referencia a la fila sucesora decía `FP-124` y la sucesora real es `FP-125` (§1). Se corrige la referencia, no el contenido de la firma.
+* **`FP-125`** → `ejecutada_en = ADR-165`. Es la fila que este acto ejecuta.
+* **`FP-70`** → `ejecutada_en = ADR-165` (el encargo lo pide por nombre), **y** corrección del texto de su `firmada_en`: la referencia a la fila sucesora decía `FP-124` y la sucesora real es `FP-125` (§1). Se corrige la referencia, no el contenido de la firma.
 * **Fila nueva `FP-135`, `ABIERTA`** (`A.12`): el veredicto de §5.4 es **propuesto** y mueve un contador; la firma de mesa que pide es la de archivarlo y la de qué hacer con el hallazgo de §5.3.
 
-**`canon/gobernanza-v1_15.md`:** `ADR-164`, con el veredicto, el hallazgo y la reserva de criterio.
+**`canon/gobernanza-v1_15.md`:** `ADR-165`, con el veredicto, el hallazgo y la reserva de criterio.
 
 **`canon/estado-programa-v1_10.md`:** conteo de `ADR` `163 → 164` (`L0`); contador nuevo **`Validaciones externas materiales: 1 de 1`**, población de conteo propia que nace con este acto tal como el encargo la declara bajo `v2.3`; recifrado de la suite.
 
 **Contadores de medición sobre México que este acto mueve: cero.** No archiva ninguna corrida del Hito D (`18 de 27` no se mueve), no estima ningún coeficiente (`0/15` no se mueve), no re-etiqueta ningún resultado sellado, no toca `milpa/` ni el pre-registro del Hito D.
 
-**Fuera de perímetro, declarado y no ejecutado.** `forense/hallazgos.md` **no** está en el `PERÍMETRO` del encargo, y el encargo dice *«Fuera de la lista: PARA»*. Los dos hallazgos de este acto —la etiqueta del renglón oficial (§5.3) y la referencia obsoleta a `FP-124`, ya corregida en el propio tablero (§1)— viven por tanto en esta nota y en `ADR-164`, **no** en el registro de hallazgos. Queda nombrado como deuda de un acto sucesor con ese archivo en su perímetro, no como omisión silenciosa.
+**Fuera de perímetro, declarado y no ejecutado.** `forense/hallazgos.md` **no** está en el `PERÍMETRO` del encargo, y el encargo dice *«Fuera de la lista: PARA»*. Los dos hallazgos de este acto —la etiqueta del renglón oficial (§5.3) y la referencia obsoleta a `FP-124`, ya corregida en el propio tablero (§1)— viven por tanto en esta nota y en `ADR-165`, **no** en el registro de hallazgos. Queda nombrado como deuda de un acto sucesor con ese archivo en su perímetro, no como omisión silenciosa.
 
 ---
 
-**Suite, medida y no supuesta.** Base de la caja **antes de escribir una sola línea**: `19 FAIL · 147 WARN`, `LÍNEA BASE: VERDE` — coincide exactamente con lo que `canon/estado-programa-v1_10.md` declaraba al arrancar, así que este acto no heredó desfase. Al cierre:
+**Suite, medida y no supuesta — y re-medida tras la fusión.** Base de la caja **antes de escribir una sola línea**, sobre `bd70166`: `19 FAIL · 147 WARN`, `LÍNEA BASE: VERDE` — coincidía exactamente con lo que `canon/estado-programa-v1_10.md` declaraba al arrancar, así que este acto no heredó desfase. Sobre esa base el acto cerró en `19 FAIL · 146 WARN`. Después `origin/main` volvió a moverse (`ACTO SELLA-AGO25-E`, `PR #334`, que palomea seis filas del tablero y baja el `WARN` de `T22` por su cuenta), se fusionó, y la cifra se **volvió a medir** en vez de aritmetizarse:
 
 ```
 ════════════════════════════════════════════════════════════════════════
-  19 FAIL · 146 WARN
+  19 FAIL · 140 WARN
 ════════════════════════════════════════════════════════════════════════
 
 ────────────────────────────────────────────────────────────────────────
@@ -313,17 +313,27 @@ Todas las cantidades de §4 y §5 están en **personas** (`Ŷ`, `EE`) o son **ad
 ────────────────────────────────────────────────────────────────────────
 ```
 
-El **`−1` de WARN es de este acto y de una sola causa**: `T22` baja de 24 a 23 — dos WARN menos porque `FP-70` y `FP-125` reciben `ejecutada_en`, uno más porque nace `FP-135` `ABIERTA`, que es exactamente lo que `A.12` existe para hacer visible. `T03` no se mueve (55). **`FAIL` sin cambio, y las seis categorías son las mismas** (`T09:8 · T05:5 · T02:2 · T06:2 · T08:1 · T11:1`).
+El **`−1` de WARN sobre el árbol fusionado (141 → 140) es de este acto y de una sola causa**: `T22` — dos WARN menos porque `FP-70` y `FP-125` reciben `ejecutada_en`, uno más porque nace `FP-135` `ABIERTA`, que es exactamente lo que `A.12` existe para hacer visible. `T03` no se mueve (55). **`FAIL` sin cambio, y las seis categorías son las mismas** (`T09:8 · T05:5 · T02:2 · T06:2 · T08:1 · T11:1`).
 
-**Los tres `FAIL` que este acto sí produjo, y cerró dentro de sí mismo** — se declaran en vez de omitirse, porque el neto en cero los haría invisibles: `T15` una vez, por el recifrado de `ADR` (`gobernanza` a `164`, `estado` en sus dos citas vivas, y una tercera cita que dejó de ser vigente y recibió su marca de cita histórica); y **`T25` dos veces**, las dos por rótulos pelados de la familia que `D-6`/`ADR-128` prohíbe — la primera por los rótulos de la ficha (§9), y **la segunda porque el bloque que narraba esa misma corrección los reproducía verbatim**. El segundo es el defecto de mención-contra-uso: un test de rótulos no distingue narrar un rótulo de usarlo, y la corrección volvió a crear lo que corregía. Cifra declarada = núcleo sin `T16` (`CHECK_SELFCHECK_CHILD=1 python3 tests/check.py`), sin `--freeze` en ningún momento.
+**Los `FAIL` que este acto sí produjo, y cerró dentro de sí mismo** — se declaran en vez de omitirse, porque el neto en cero los haría invisibles. Fueron cuatro, de tres clases:
+
+1. **`T15`, antes de la fusión** — el recifrado de `ADR` deja desincronizadas las citas vivas de `canon/`; se resincronizaron las dos vivas y la tercera, que dejó de ser vigente, recibió su marca de cita histórica.
+2. **`T25`, dos veces** — las dos por rótulos pelados de la familia que `D-6`/`ADR-128` prohíbe. La primera por los rótulos de la ficha (§9). **La segunda porque el bloque que narraba esa misma corrección los reproducía verbatim**: un test de rótulos no distingue narrar un rótulo de usarlo, y la corrección volvió a crear lo que corregía.
+3. **`T15` otra vez y `T16` una vez, después de la fusión** — la renumeración a `ADR-165` dejó dos citas de conteo desfasadas (una en `estado §Registro de artefactos`, otra dentro de la propia cascada de este ADR), y la cifra de suite que `ACTO SELLA-AGO25-E` había escrito **correcta al escribirse** quedó superada por este acto: recibió `{cita-historica}`, que es el mecanismo previsto, en vez de reescribirse — sobreescribirla falsearía lo que ese acto midió.
+
+Cifra declarada = núcleo sin `T16` (`CHECK_SELFCHECK_CHILD=1 python3 tests/check.py`), sin `--freeze` en ningún momento.
 
 ---
 
-## §8 · Numeración, y la colisión que se espera
+## §8 · Numeración — la colisión anunciada ocurrió, dos veces
 
-`ADR-164` candidatea contra el máximo re-derivado **por regex sobre el árbol** (`grep -oE '^\*\*ADR-[0-9]+' | grep -oE '[0-9]+' | sort -n -u`), no por `sort -t- -k2`, que en este archivo parte en el primer guion y devuelve un máximo falso: sobre `bd70166` el máximo es **`163`**, con **163 ADR únicos y sin huecos**. `FP-135` candidatea contra el máximo `134`, derivado igual.
+`ADR` y `FP` se candidatearon contra el máximo re-derivado **por regex sobre el árbol** (`grep -oE '^\*\*ADR-[0-9]+' | grep -oE '[0-9]+' | sort -n -u`), **no** por `sort -t- -k2 -n`, que en este archivo parte en el primer guion y devuelve un máximo falso. Sobre `bd70166`: máximo `163`, 163 únicos, sin huecos → candidato `ADR-164`; máximo de tablero `134` → `FP-135`.
 
-`PR #330` sigue abierto y hubo un `merge` a `main` durante el propio arranque de este acto. **Los dos números se re-derivan al fusionar**, y si colisionan renumera este acto por ser el segundo — regla de la casa, precedente de sobra en este mismo archivo.
+**Y la colisión ocurrió.** `ACTO SELLA-AGO25-E` (`PR #334`) fusionó primero y tomó `ADR-164`. Por la regla de la casa —*renumera quien fusiona segundo*— este acto pasa a **`ADR-165`**, re-verificado sobre el árbol ya fusionado: **165 únicos, máximo 165, sin duplicados ni huecos**. `FP-135` **no** colisionó: ese acto abrió hasta `FP-134`, y el tablero fusionado tiene 137 filas, 9 columnas cada una, sin ids duplicados y con el conteo de comillas dobles cuadrando exactamente (`87` mías + `88` suyas sobre una base de `87` → `88`), es decir cero corrupción.
+
+**La renumeración se hizo con anclas, no con buscar-y-reemplazar.** Un `ADR-164` global habría pisado las referencias del acto ajeno, que ahora vive en el mismo archivo: el renombrado se acotó al rango de líneas del bloque propio y a las tres filas propias del tablero, y se verificó después que **ninguna** fila ajena cambiara (`ADR-164` en el tablero: `0` antes de la fusión en `origin/main` y `0` después — ese acto no lo cita ahí).
+
+**`origin/main` se movió dos veces durante este acto** (`7848b97 → bd70166` en el arranque, `bd70166 → 8aff7cb` mientras se escribía el cierre). Es el detector real de concurrencia de esta caja: `pgrep -af claude` sólo ve el propio shell.
 
 ---
 
