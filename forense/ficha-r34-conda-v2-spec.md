@@ -394,3 +394,7 @@ Las dos lecturas que el §3 dejó escritas por adelantado —**0.35 %**{cita-his
 adoptarse**, ni como confirmación ni como contraste.
 
 **Perímetro de esta enmienda.** Sólo este §10, añadido. Ningún párrafo de §1-§9 se edita hacia atrás.
+
+### 10.8 · Fila A1 SELLADA (25/ago/2026, `ACTO SELLA-A1-CODI`)
+
+Fila `A1` SELLADA por `ADR-177`, firma de mesa verbatim: *"FIRMO FP-104: fila A1 con enmienda 10.7 (unidad homogénea, sin enlace), solo pata A, reservas de la ficha + benchmark CoDi-SPEI incluidos."* La cláusula de §10.7 queda adoptada: las filas `A1`/`A2` del §5 se leen sustituidas por «razón computada sobre unidad homogénea, sin enlace»; `A3` deja de aplicar a este par. Insumo: `forense/benchmark-unidad-homogenea-codi-spei-v1_0.md`, que estresó la cláusula contra bordes del programa (B1-B6) y crítica publicada (C1-C6) sin que ninguno la rompiera. Reservas §10.6/§2 viajan con la firma, sin retirarse; se añade B6 del benchmark (circularidad de emisor, límite declarado). `R3.4` SIGUE SIN VEREDICTO: el gate exige `A ∧ B ∧ C` y `B`/`C` siguen con base medida 0 de 2. Hito D no se mueve (18 de 27). **Perímetro de esta enmienda.** Sólo este §10.8, añadido. Ningún párrafo de §1-§10.7 se edita hacia atrás.
