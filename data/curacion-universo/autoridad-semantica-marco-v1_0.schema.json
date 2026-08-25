@@ -1,0 +1,253 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://modelado-mexicano.local/schemas/autoridad-semantica-marco-v1_0.schema.json",
+  "title": "Autoridad semántica para el marco candidato",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "autoridad_id",
+    "representacion_id",
+    "semilla_objeto_logico_id",
+    "e2_record_id",
+    "payload_id",
+    "sha256_contenido",
+    "scope_tipo",
+    "scope_id",
+    "variable",
+    "encuesta",
+    "ola",
+    "universo_poblacional",
+    "unidad_observacion",
+    "tipo_estadistico",
+    "respuesta_multiple",
+    "categorias_excluyentes",
+    "codificacion",
+    "missing",
+    "unidad_medida",
+    "rango_valido",
+    "operacion_estimador",
+    "ponderador",
+    "ponderador_exacto",
+    "ponderador_fuente_ola_tabla",
+    "ponderador_fuente",
+    "ponderador_ola",
+    "ponderador_scope_tipo",
+    "ponderador_scope_id",
+    "no_aplica_ponderador_documentado",
+    "cita_procedencia"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "AUTORIDAD-SEMANTICA-MARCO-1.0"
+    },
+    "autoridad_id": {
+      "type": "string",
+      "pattern": "^ASM-[0-9a-f]{24}$"
+    },
+    "representacion_id": {
+      "type": "string",
+      "pattern": "^REP-[0-9a-f]{64}$"
+    },
+    "semilla_objeto_logico_id": {
+      "type": "string",
+      "pattern": "^OBJ-B2-[0-9a-f]{64}$"
+    },
+    "e2_record_id": {
+      "type": "string",
+      "pattern": "^E2R-[0-9a-f]{64}$"
+    },
+    "payload_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sha256_contenido": {
+      "$ref": "#/$defs/sha256"
+    },
+    "scope_tipo": {
+      "$ref": "#/$defs/scope_tipo"
+    },
+    "scope_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "variable": {
+      "type": "string",
+      "minLength": 1
+    },
+    "encuesta": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ola": {
+      "type": "string",
+      "minLength": 1
+    },
+    "universo_poblacional": {
+      "type": "string",
+      "minLength": 1
+    },
+    "unidad_observacion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tipo_estadistico": {
+      "enum": [
+        "BINARIA",
+        "CATEGORICA",
+        "NUMERICA_CONTINUA",
+        "ADMINISTRATIVA",
+        "CENSAL"
+      ]
+    },
+    "respuesta_multiple": {
+      "type": "boolean"
+    },
+    "categorias_excluyentes": {
+      "type": "boolean"
+    },
+    "codificacion": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["codigo", "etiqueta"],
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "minLength": 1
+          },
+          "etiqueta": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "missing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["codigos", "ausencia_documentada"],
+      "properties": {
+        "codigos": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "ausencia_documentada": {
+          "type": "boolean"
+        }
+      }
+    },
+    "unidad_medida": {
+      "type": ["string", "null"]
+    },
+    "rango_valido": {
+      "type": ["object", "null"]
+    },
+    "operacion_estimador": {
+      "type": ["string", "null"]
+    },
+    "ponderador": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ponderador_exacto": {
+      "type": "boolean"
+    },
+    "ponderador_fuente_ola_tabla": {
+      "type": "boolean"
+    },
+    "ponderador_fuente": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ponderador_ola": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ponderador_scope_tipo": {
+      "$ref": "#/$defs/scope_tipo"
+    },
+    "ponderador_scope_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "no_aplica_ponderador_documentado": {
+      "type": "boolean"
+    },
+    "cita_procedencia": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "fuente_id",
+          "ruta_o_uri",
+          "sha256",
+          "localizador",
+          "campos_autorizados"
+        ],
+        "properties": {
+          "fuente_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ruta_o_uri": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "localizador": {
+            "type": "string",
+            "minLength": 1
+          },
+          "campos_autorizados": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "encuesta",
+                "ola",
+                "universo_poblacional",
+                "unidad_observacion",
+                "tipo_estadistico",
+                "respuesta_multiple",
+                "categorias_excluyentes",
+                "codificacion",
+                "missing",
+                "unidad_medida",
+                "rango_valido",
+                "operacion_estimador",
+                "ponderador",
+                "ponderador_exacto",
+                "ponderador_fuente_ola_tabla",
+                "ponderador_fuente",
+                "ponderador_ola",
+                "ponderador_scope_tipo",
+                "ponderador_scope_id",
+                "no_aplica_ponderador_documentado"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "scope_tipo": {
+      "enum": ["OBJETO_PADRE_ID", "TABLA"]
+    }
+  }
+}
