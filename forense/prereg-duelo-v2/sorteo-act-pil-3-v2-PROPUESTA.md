@@ -314,3 +314,11 @@ RESULTADO: 12 NO + 3 SI = 15 filas. count(SI) = 3 = cuota_max exacto --
 ## 7 · Lo que este acto NO hace
 
 No corre ningún sorteo real, con datos ni con semilla simulada. No amplía el marco de 60. No resuelve las 8 `PENDIENTE-FUERA-DE-INDICE` (`FP-146`, acto aparte). No modifica `forense/marco-candidatas-piloto-v1_0.tsv`. No toca `milpa/`. No toca ningún directorio de espejo (no existe tal directorio en el árbol).
+
+## Sello de mesa — 25/ago/2026
+
+Firma de mesa verbatim: *"FIRMO FP-150: sello sorteo-v2 sobre cifras post-#345 (33/60=55.0% · 27/50=54.0%)."*
+
+`ADR-178` (`canon/gobernanza-v1_15.md`) propaga esta firma: sella el algoritmo determinista de este documento (§2-§2.3 — cuota del 20 % como restricción dura, regla de infactibilidad por estrato verificada antes de sortear con fallback §2.3, protocolo de semilla §3, determinismo, 3 casos de prueba) sobre las cifras vivas post-`#345` que `ADR-175` ya re-derivó (marco completo 33/60 = 55.0 %, marcador puntuable 27/50 = 54.0 %). Pin de integridad verificado al sellar: sha256 `92c017765820585e7ab2471e187f4cb7221d35ba59e3c215bef1b076bc487a79`.
+
+Este sello NO congela el marco de candidatas y NO corre el sorteo real. El sorteo real corre en el acto sucesor de congelado; la semilla nace del SHA de merge de ESE acto, conforme a §3 — este sello no la fija.
