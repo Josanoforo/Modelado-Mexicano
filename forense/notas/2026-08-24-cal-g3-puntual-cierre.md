@@ -62,3 +62,70 @@ Reglas A-bis recordadas para PASO 2: co-observación no es identificación (se r
 
 ---
 
+## PASO 2 · Corrida (Commit 2)
+
+Script: `/tmp/.../calg3_run.py` (scratchpad — reproducible desde esta nota; no vive en el perímetro por instrucción del encargo).
+
+**Universo, con conteos de cada filtro (nada se descarta en silencio):**
+
+| filtro | N |
+|---|---|
+| `pid_link` en `iiib_pr`+`iiib_cr` ola 2 (`ehh05dta_all.zip`), unión externa | 22,173 |
+| `iiib_pr`+`iiib_cr` ola 3 (`ehh09dta_all.zip`), unión externa | 24,929 |
+| ola 3, ronda `C`/`CH`/`CP` (nuevo entrante 2009) — **excluidos antes de emparejar** | 1,096 |
+| ola 3 elegible a emparejar tras excluir ronda `C` | 23,833 |
+| intra-persona (`pid_link` en ambas olas, pre-filtro sustantivo) | 17,479 |
+| `pr02` inválido/faltante (8, 98, NaN) — ola 2 | 4,263 |
+| `pr02` inválido/faltante — ola 3 | 8,565 |
+| `cr27` inválido/faltante (≠1,3) — ola 2 | 176 |
+| `cr27` inválido/faltante — ola 3 | 832 |
+| **universo analítico** (`pr02` y `cr27` válidos en ambas olas) | **6,807** |
+| sin `fac_3b` (ponderador faltante) — excluidos | 502 |
+| **universo final, con ponderador** | **6,305** |
+
+**Resultado puntual (primeras diferencias, ponderado por `fac_3b` ola 2, EE tipo HC1 bajo MAS declarado):**
+
+- N = 6,305
+- **θ = +0.0146** (un punto de aumento en la categoría de horizonte temporal entre olas se asocia con +1.46 puntos porcentuales de probabilidad de tener ahorros, dentro de la misma persona)
+- SE = 0.00506
+- **IC95% = [+0.0047, +0.0245]** — excluye 0.
+
+**Sensibilidad informal (remuestreo por hogar, 500 réplicas, rotulada informal):**
+- SE bootstrap-hogar = 0.00503
+- **IC percentil 95% = [+0.0056, +0.0248]** — también excluye 0. La sensibilidad **no cambia la conclusión de "cruza o no cruza cero"** frente a la primaria (misma dirección, magnitud de IC casi idéntica) — no hay discrepancia que resolver por la regla de precedencia.
+
+**Correlación simple de niveles (informativa, co-observación, no identificación):** horizonte~ahorro, ola 2 r=0.070; ola 3 r=0.080 — misma dirección, coherente con el resultado de primeras diferencias.
+
+**Aplicación de las reglas A-bis:** este es un resultado de **asociación intra-persona** (co-observación), no un coeficiente causal — no hay argumento explícito en esta spec que lo eleve a tal. No se condicionó por nada fuera de la persona-como-su-propio-control. Las escalas (puntos de categoría ordinal → puntos porcentuales de probabilidad) **no tienen enlace** con la escala del `−0.60` asignado en el generador — no se compara magnitud, solo signo, por instrucción explícita del encargo.
+
+**Comparación con el asignado (`G3 → horizonte_temporal = −0.60`), solo en signo:** el asignado es **negativo**; el resultado medido es **positivo**. **Los signos no coinciden.** Advertencia de escala: el asignado no trae unidades declaradas en el censo (`censo-estimabilidad-coeficientes-v1_0.md` §5), mientras que este resultado sí las trae (pp de probabilidad por categoría ordinal) — no hay forma honesta de decir si serían compatibles bajo una transformación de escala sin que alguien la declare primero; esta spec no la inventa.
+
+**Veredicto de la llave, por la escala de falsación de PASO 1:** IC excluye 0 en ambas variantes de varianza (sin discrepancia entre ellas) → no es `INDECISA`. Signo no coincide con el asignado → no es `CORROBORA`. No hay enlace de escala que sostenga una `REFUTA` formal del asignado (la regla exige enlace explícito, que no existe). **→ `EJERCIDA_ACOTA`**: la llave `CAL-G3` se ejerce por primera vez; produce una asociación intra-persona medida, bien definida en su escala propia, acotada a la subpoblación de 6,305 personas descrita arriba, de signo opuesto al valor hoy asignado en el generador.
+
+**Registro de la llave:** `CAL-G3` pasa de `SELLADA_NO_EJERCIDA` a **`EJERCIDA_ACOTA`** en `forense/registro-llaves-identificacion-v1_0.md`. Contador de llaves ejercidas: **`2` de `3` → `3` de `3`** (tercera y última fila de la lista actual del registro).
+
+**El β propuesto — fila de tablero para que mesa firme, NO escrito en `milpa/procedencia.yaml`:**
+
+| campo | valor |
+|---|---|
+| construcción | `G3 → horizonte_temporal` |
+| β propuesto | `+0.0146` (IC95% `[+0.0047, +0.0245]`, HC1/MAS; `[+0.0056, +0.0248]` bootstrap-hogar) |
+| escala | pp de probabilidad de "tener ahorros" por punto de categoría ordinal de horizonte temporal (`pr02`, 1-7), primeras diferencias intra-persona, ENNViH olas 2-3 (2005-06 → 2009-12) |
+| universo | 6,305 personas con panel retenido, módulo `PR`/`CR` aplicable, respuesta sustantiva a `pr02` y `cr27` en ambas olas — **no** generalizable fuera de esa subpoblación (regla A-bis 4) |
+| naturaleza | asociación intra-persona (co-observación), **no** coeficiente causal |
+| comparación con asignado (−0.60) | signo **opuesto**; magnitud **no comparable** (escalas sin enlace declarado) |
+| qué firmaría este acto | que la llave quede `EJERCIDA_ACOTA` y que el β **no** reemplace el `−0.60` del generador sin que mesa decida primero si el signo opuesto es motivo para revisar el asignado, mantenerlo con nota de discrepancia, o declarar las dos magnitudes inconmensurables sin más acción |
+| reserva | el `−0.60` asignado no trae escala declarada — la discrepancia de signo no puede resolverse sin que alguien primero declare en qué escala vive ese número |
+
+---
+
+## Cierre
+
+- Nota: este archivo.
+- Registro de llaves: `forense/registro-llaves-identificacion-v1_0.md` — fila `CAL-G3` actualizada, contador `2→3`.
+- `forense/firmas-pendientes.tsv`: fila añadida para que mesa firme la entrada (o rechazo) del β al ejecutable.
+- `canon/estado-programa-v1_10.md`: línea de llaves `2 de 3 → 3 de 3`, recifrado de la línea L0 (`155`).
+- `canon/gobernanza-v1_15.md`: `ADR-155`.
+- Suite: ver tail en el encargo de cierre — 19 FAIL preexistentes (no causados por este acto, verificados contra baseline `git stash`/pre-edición), sin FAIL nuevo en `T02`/`T15`/`T16`.
+- Encargo `2026-08-24-CAL-G3-PUNTUAL.md`: CONSUMIDO.
+- La spec no salió mal — no hay tercer commit de corrección.
