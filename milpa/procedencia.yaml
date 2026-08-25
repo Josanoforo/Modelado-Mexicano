@@ -56,6 +56,31 @@
 #                ejecutada aquí; ver `forense/notas/2026-08-13-proc-11.md`
 #                §5). Sus primeros usos, ver
 #                `condicionales_escalares_medido_nacional` abajo.
+#   EVIDENCIA_EXPERIMENTAL_TERCEROS — octava clase, sellada 25/ago/2026
+#                (FP-144, ejecuta la PROPUESTA-SELLADA de FP-131,
+#                `forense/notas/2026-08-25-eval-compartamos.md` §7.1;
+#                ACTO PACK-NUBE2-CIERRE-R101, ADR-182). Un número
+#                sostenido por evidencia identificada de un EXPERIMENTO
+#                ALEATORIZADO DE TERCEROS -- la clase (iii) de
+#                `ADR-57(c)`, distinta de ASIGNADO (que no exige que la
+#                fuente sea ella misma un diseño aleatorizado) y de
+#                AJUSTADO (que reproduce momentos, no cita un
+#                experimento). Dos campos obligatorios, cada valor con
+#                su propia cita: `cita` (referencia bibliográfica o
+#                identificador del paquete de réplica) y `llave_id`
+#                (fila de `forense/registro-llaves-identificacion-v1_0.md`
+#                que ejerce esa evidencia -- sin llave no hay dónde
+#                anclar la procedencia, y esta clase no admite "llave
+#                pendiente"). Nace VACÍA: cero números en esta clase
+#                hoy -- las dos citas de `Progresa_RCT` que ya vivían en
+#                el corpus (`asignados_probabilidad` abajo y
+#                `milpa/refutations.yaml` `ref.A.05.no_saben_planear`)
+#                NO se reclasifican aquí: no existe fila de llave para
+#                `Progresa_RCT` en el registro de llaves (solo existe
+#                `EXP-COMPARTAMOS-1`, un paquete distinto), así que
+#                falta el `llave_id` obligatorio -- quedan declaradas
+#                EXCEPCIÓN FECHADA 25/ago/2026 en su propio sitio, no
+#                movidas sin llave.
 #
 # ADVERTENCIA DE LECTURA. Que 96% de los números no sea MEDIDO no es un
 # escándalo por los estándares del campo: los ABM asignan parámetros de forma
@@ -715,6 +740,12 @@ asignados_probabilidad:
     fuente_citada: [ENIF2024, Progresa_RCT, "report:tiempo"]
     que_sostiene_de_verdad: "Progresa prueba la DIRECCIÓN causal (estabilizar ingreso alarga horizonte), no la proporción"
     calibrable_con: "ENIF tenencia de afore/seguro por condición de formalidad"
+    excepcion_fechada: "25/ago/2026 (FP-144, ejecuta FP-131): esta cita de Progresa_RCT NO se reclasifica a
+      EVIDENCIA_EXPERIMENTAL_TERCEROS -- la regla sigue ASIGNADO (la fuente citada, en conjunto con
+      ENIF2024/report:tiempo, sostiene dirección, no magnitud, y el valor no es sostenido en solitario por
+      el experimento). Falta además el llave_id obligatorio de la octava clase: no existe fila para
+      Progresa_RCT en forense/registro-llaves-identificacion-v1_0.md (solo EXP-COMPARTAMOS-1, paquete
+      distinto)."
 
   - regla: dinero.credito.scoring_alternativo
     valores: [0.71, 0.29]

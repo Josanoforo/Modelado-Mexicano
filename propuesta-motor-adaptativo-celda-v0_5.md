@@ -147,3 +147,13 @@ Ninguna pregunta nueva. Las diez de v0.3 §8 y la de v0.4 §8 siguen resueltas c
 5. §3(e): el espacio de rótulos `D` entra a `canon/registro-rotulos.tsv`; `tests/check.py` `T25` extiende su regex de `(M|E)` a `(M|E|D)`.
 6. `tests/test_celdas_d.py` actualizado en consecuencia (detalle y salida cruda: nota de cierre del acto).
 7. Ningún otro cambio: `data/curacion-registro/celdas-d/*.yaml` no se toca, `milpa/src/` no se toca, ningún `margen_material` real se fija, ninguna celda-D nueva se escribe, ningún contador de medición sobre México se mueve.
+
+---
+
+## Addendum fechado · 25/ago/2026 (`ACTO PACK-NUBE2-CIERRE-R101`, `ADR-182`, ejecuta `FP-144`/`FP-131`)
+
+*Mismo criterio que las enmiendas in situ de `canon/gobernanza-v1_15.md` (ADR-48 y siguientes): el número de versión NO sube, el archivo NO se renombra — el contrato vigente sigue siendo v0.5, este addendum es su sexto cambio.*
+
+`diseno_datos` (§3, enum heredado sin tocar por v0.4/v0.5 hasta ahora) gana un octavo valor: **`experimento_aleatorizado_terceros`** — la clase (iii) de `ADR-57(c)`, evidencia experimental de terceros usada con su cita, distinta de `experimento_natural` (que sigue siendo exposición generada por una política sobre encuestas repetidas, no un sorteo de terceros). `tests/test_celdas_d.py` `DISENOS_DATOS` actualizado en consecuencia (ninguna celda-D existente lo usa hoy; las tres celdas selladas siguen validando sin tocarse). Ningún otro campo del contrato cambia; ninguna celda-D se escribe en este acto.
+
+Congruente con la propuesta mínima que `FP-131` selló (`forense/notas/2026-08-25-eval-compartamos.md` §7.1): esto abre el conducto del motor para la clase (iii) — deja lista la puerta que la llave `EXP-COMPARTAMOS-1` necesitará cuando exista su spec B-bis (no ejercida por este acto).

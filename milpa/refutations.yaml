@@ -227,6 +227,7 @@ refutaciones:
     fuente: ["report:tiempo", "report:behavioral_finance", "Progresa_RCT"]
     tier: FUERTE
     falla_si: "el horizonte temporal permanece corto tras estabilizar el ingreso, o el sim lo alarga por una regla cableada en vez de por G3"
+    excepcion_fechada: "25/ago/2026 (FP-144, ejecuta FP-131): cita de Progresa_RCT NO reclasificada -- milpa/refutations.yaml no tiene clase de procedencia propia (A/B/C tipan el modo de refutación, no la evidencia), y la octava clase EVIDENCIA_EXPERIMENTAL_TERCEROS de milpa/procedencia.yaml exige llave_id, que no existe para Progresa_RCT (solo EXP-COMPARTAMOS-1, paquete distinto). Declarado, no movido sin llave."
 
   - id: ref.A.06.impuntualidad_como_rasgo
     tipo: A
