@@ -15,7 +15,7 @@
 # nombradas (PENDIENTE) las 26 operables del catálogo que aún no
 # tienen payload.
 #
-# estado (tres valores, sin un cuarto informal):
+# estado (cuatro valores, sin un quinto informal):
 #   MAPEADO               ponderador + estrato + upm, los tres con
 #                         nombre de COLUMNA citado archivo:línea/fila.
 #   SIN_DISEÑO_PUBLICADO   la fuente no publica (en este corpus) un
@@ -26,6 +26,18 @@
 #   PENDIENTE              no examinado, examinado sin resolver del
 #                         todo (falta 1 de 3 campos), o payload
 #                         registrado pero AUSENTE en este entorno.
+#   NO_APLICA_REGISTRO_ADMINISTRATIVO  la fuente NO ES UNA MUESTRA -- es
+#                         un censo/registro administrativo (p. ej. actas
+#                         del Registro Civil): no hay factor de expansión
+#                         porque no hay muestra que expandir. Se distingue
+#                         de SIN_DISEÑO_PUBLICADO, que describe una
+#                         encuesta cuyo diseño simplemente no se publica
+#                         (esa sí debería tener diseño y no lo tiene;
+#                         ésta no debería tenerlo porque no es muestral).
+#                         Valor añadido por mesa, ACTO SELLA-AGO24-D,
+#                         2026-08-24 (firma "5, agreguémosla" -> FP-116
+#                         FIRMADA+ejecutada), aplicado primero a la fila
+#                         EDR (ver su nota).
 #
 # Lo que este archivo NO decide: qué fuente se usa para qué constructo
 # (eso es mesa/fichas), ni si el payload existe en disco AHORA MISMO en
@@ -688,7 +700,7 @@
     cita se ancla en la edicion 2017 porque es la que trae la receta svydesign de INEGI; 2011 y 2025 quedan
     sin verificar en este acto y podrian usar otros nombres.'
 - fuente: EDR — Estadísticas de Defunciones Registradas (EDR) — subconjunto de defunciones por homicidio
-  estado: SIN_DISEÑO_PUBLICADO
+  estado: NO_APLICA_REGISTRO_ADMINISTRATIVO
   ponderador: 'NO APLICA: EDR no es una encuesta por muestreo. Su propio descriptor la define como estadistica
     "proveniente del aprovechamiento de los registros administrativos generados por el Registro Civil,
     el Servicio Medico Forense..." (Descripcion_BD_Defunciones_2024.pdf, linea 122 del texto extraido).
@@ -706,7 +718,13 @@
     ESTE ACTO NO PUEDE ARREGLAR SOLO: SIN_DISEÑO_PUBLICADO es el unico de los tres valores del archivo
     que no miente aqui, pero sigue leyendose como "la fuente deberia publicar diseno y no lo hace", cuando
     lo correcto es "no hay diseno muestral que publicar". Se propone a mesa un cuarto valor NO_APLICA_REGISTRO_ADMINISTRATIVO;
-    mientras no lo selle, esta fila hay que leerla con esta nota. Ver FP-116.'
+    mientras no lo selle, esta fila hay que leerla con esta nota. Ver FP-116.
+
+
+    ENMIENDA 2026-08-24 (ACTO SELLA-AGO24-D): mesa firma "5, agreguemosla" -- FP-116 FIRMADA+ejecutada.
+    Vocabulario extendido a cuatro valores (ver cabecera del archivo); estado de esta fila cambia de
+    SIN_DISEÑO_PUBLICADO a NO_APLICA_REGISTRO_ADMINISTRATIVO. El original de arriba (RECENSO-DISENO-14,
+    ADR-149) queda intacto, no se borra: registra el hallazgo que motivo la propuesta.'
 - fuente: EIC — Encuesta Intercensal (EIC) 2015
   estado: PENDIENTE
   ponderador: no examinado

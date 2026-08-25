@@ -30,7 +30,17 @@ entre clases de delito**; no varía — existe como concepto medido para 1 de la
 La ficha previó exactamente este desenlace en su fila `D`: *"D si ENVIPE no cruza cobertura de
 seguro con tipo de delito"*.
 
-### 2 · ¿El instrumento estaba en disco? — **SÍ, y en cantidad: 44 payloads ENVIPE, quince años.**
+### 2 · ¿El instrumento estaba en disco? — **SÍ, y en cantidad: ~~44~~ 76 payloads ENVIPE, quince años.**
+
+> **ENMIENDA fechada 2026-08-24 (`ACTO SELLA-AGO24-D`, `FP-85` → FIRMADA+ejecutada, mesa "corregirla. A." — respuesta 7).** La cifra
+> original de esta ficha (`44`) es falsa: medido de nuevo hoy sobre
+> `data/curacion-universo/ledger-inspecciones-barrido2.tsv` con el mismo `sha256`
+> (`81b72932b406753a`) que cita la Entrada 3 de `registro-recalculo` — `grep -c envipe` sobre el
+> archivo da **76** filas, no 44 (verificado también en `f3d3f95`, el SHA contra el que esta ficha
+> corrió originalmente — mismo resultado). El texto original de abajo queda **intacto**, tachado, no
+> borrado: es el registro de qué decía la ficha sellada. **No mueve el veredicto D de R7.2** (76 ≥
+> 44 lo hace más cierto, no menos) — mismo criterio que `ACTO E3-TRIAGE` ya fijó al declarar T-3
+> aunque el veredicto no se moviera. Ver `FP-85`, `forense/notas/2026-08-24-sella-d.md`.
 
 Medido contra `data/curacion-universo/ledger-inspecciones-barrido2.tsv`: **44 filas** con
 `payload_id` de familia `envipe`, todas `PRESENTE-INTEGRO`, `estado_terminal=SI`. Años cubiertos,
