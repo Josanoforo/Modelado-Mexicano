@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **174 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **175 ADR**
 
 > | | |
 > |---|---|
@@ -3575,6 +3575,10 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 **ADR-174 · `ACTO ESCALAS-COMPLETAS-P1` ejecuta el Paso 1 que `FP-149`/`ADR-173` firmó: busca la escala de los 15 `ASIGNADO` por los dos extremos de cada relación (la θ que el coeficiente multiplica, la salida del generador que lo porta), no por la fuente de asignación que `FP-141` ya agotó.** Blindado a fuentes fechadas 24/ago/2026 o antes, sin citar el β medido de `CAL-G3`. Resultado: **0 de 15 `DERIVADA`, 15 de 15 `SUBDETERMINADA`** — `canon/modelo-decision-v4_0.md` §2 no declara escala ni unidad para la salida de ninguno de los siete generadores, así que la forma no queda forzada aunque 7 de las 15 sí tengan su extremo θ declarado (proporción ponderada, `milpa/procedencia.yaml`, secciones `condicionales_escalares*`). `G3.horizonte_temporal` es una de las 8 sin ningún extremo declarado — la condición de la propia firma para releer `CAL-G3` no se cumple, y este acto no la relee. `FP-149` recibe `ejecutada_en`; `FP-152` recibe la lista de subdeterminadas para un futuro Paso 2. Encargo, `forense/encargos/2026-08-25-ESCALAS-COMPLETAS-P1-encargo.md` (`ACTO 2` de `PACK NUBE-3`). Entorno **NUBE**. **CONTADOR: cero** — ningún número de medición sobre México se mueve; campo nuevo `escala_derivada:` en las 15 filas de `milpa/procedencia.yaml:rutas_estimabilidad_coeficiente.detalle`, único cambio al archivo.
 
 **Cascada.** Candidateó `ADR-174` contra el máximo re-derivado (`grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` → `ADR-173` sin huecos) → `174`. **Se re-deriva y se renumera al fusionar si colisiona.**
+
+**ADR-175 · `ACTO ENMIENDA-CUADRO-SORTEO` propaga `#345`/`FP-146` a `sorteo-act-pil-3-v2-PROPUESTA.md` — propagación de hecho, no una decisión nueva.** Las 8 filas `PENDIENTE-FUERA-DE-INDICE` que §1 citaba quedaron **5 `SI` + 3 `NO`**, todas `P2|dinero` (mapeo verificado contra `forense/marco-candidatas-piloto-v1_0.tsv`). Cuadro re-derivado directo del framework: marco completo **33/60 = 55.0 %** (exceso +21 sobre tope de 12); marcador puntuable **27/50 = 54.0 %** (exceso +17 sobre tope de 10). **Discrepancia encontrada y declarada** contra la nota de `#345` §5 (que reporta 33/50 = 66.0 % para el marcador, usando el numerador del marco completo sobre el denominador del marcador) — este acto usa la cifra re-derivada directamente del framework, no la de esa nota, con la discrepancia escrita en la propia enmienda para auditoría. §2-§2.3 del `PROPUESTA` (reglas duras, pseudocódigo, protocolo de semilla) quedan **byte a byte intactas** — nada de la regla cambia, solo la cifra ilustrativa de §1. `FP-150` sigue `ABIERTA`, nota actualizada "lista para sello de mesa sobre cifras post-#345" — **no** se firma en este acto. Encargo, `forense/encargos/2026-08-25-ENMIENDA-CUADRO-SORTEO-encargo.md` (`ACTO 3` de `PACK NUBE-3`). Entorno **NUBE**. **CONTADOR: cero**.
+
+**Cascada.** Candidateó `ADR-175` contra el máximo re-derivado (`grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` → `ADR-174` sin huecos) → `175`. **Se re-deriva y se renumera al fusionar si colisiona.**
 
 ---
 

@@ -55,6 +55,64 @@ $ awk -F'\t' 'NR>1{split($10,a," "); print a[1]}' forense/marco-candidatas-pilot
 
 **Las 8 `PENDIENTE-FUERA-DE-INDICE`** son las filas cuyo publicador (Banxico/CNBV/BMV/HR Ratings) el diseño de dos pasos de `FP-93` no alcanza por construcción (`FP-134`, `canon/gobernanza-v1_15.md:3353`, `ADR-168(i)`). **Regla de elegibilidad:** estas 8 celdas son elegibles para el sorteo **si y solo si `FP-146` (índice nuevo Banxico/CNBV/BMV) las resuelve a `SI`/`NO` antes de que corra el sorteo real.** Mientras sigan `PENDIENTE-FUERA-DE-INDICE`, el algoritmo de §2 las trata como **no elegibles** (ni cuentan en `n_estrato` ni pueden salir sorteadas) — no se tratan como `publicada=SI` ni como `publicada=NO` por default, porque ninguna de las dos es verificada.
 
+---
+
+### Enmienda in situ, 25/ago/2026, `ACTO ENMIENDA-CUADRO-SORTEO` — las 8 `PENDIENTE-FUERA-DE-INDICE` de arriba quedan resueltas, texto original intacto
+
+El texto de §1 arriba **no se toca**: es el registro de lo que el marco era cuando esta propuesta se escribió,
+25/ago/2026, antes de que `FP-146` corriera. `ACTO INDICE-NO-INEGI` (`PR #345`, mismo día, más tarde) resolvió
+las 8 `PENDIENTE-FUERA-DE-INDICE` a **5 `SI` + 3 `NO`** (`DIN-07/08/09/10/12` → `SI`; `DOC-03/05/06` → `NO`,
+todas `P2|dinero`, verificado contra `forense/marco-candidatas-piloto-v1_0.tsv` columnas `id`/`grado_dependencia`/
+`dominio`) — `forense/notas/2026-08-25-indice-no-inegi.md`. Esto es **propagación de hecho, no una decisión
+nueva**: las §2-§2.3 (reglas duras, pseudocódigo, protocolo de semilla) que este documento propone no cambian en
+absolutamente nada — la regla de elegibilidad de arriba ya preveía este caso ("elegibles ... si y solo si
+`FP-146` las resuelve"), y lo que sigue es exactamente esa cláusula ejecutándose.
+
+**Cuadro vigente, re-derivado directo de `forense/marco-candidatas-piloto-v1_0.tsv` (framework v1_0), no copiado
+de la nota de `FP-146`:**
+
+```
+$ awk -F'\t' 'NR>1{split($10,a," "); print a[1]}' forense/marco-candidatas-piloto-v1_0.tsv | sort | uniq -c
+     27 NO
+     33 SI
+(0 PENDIENTE — verificado: sin filas PENDIENTE-FUERA-DE-INDICE que queden)
+
+$ awk -F'\t' 'NR>1 && ($9=="P1"||$9=="P2"){split($10,a," "); print a[1]}' forense/marco-candidatas-piloto-v1_0.tsv | sort | uniq -c
+     23 NO
+     27 SI
+(marcador puntuable, 50 filas — P1 ∪ P2)
+```
+
+| | filas | `SI` | % `SI` | tope 20% | exceso |
+|---|---|---|---|---|---|
+| marco completo | 60 | 33 | 55.0 % | 12 | +21 |
+| marcador puntuable (P1∪P2) | 50 | 27 | 54.0 % | 10 | +17 |
+
+**Discrepancia declarada, no callada.** El cuadro de `forense/notas/2026-08-25-indice-no-inegi.md` §5 reporta
+*"SI sobre el marcador 50: 33/50 = 66.0 %, exceso +23"* — esa cifra usa el total de `SI` del marco completo (33,
+que incluye las 6 `SI` de las 10 filas `P0`) dividido entre el denominador del marcador puntuable (50), no el
+conteo de `SI` **dentro** del marcador puntuable. Re-derivado directo del framework arriba: el marcador
+puntuable tiene **27** `SI` (no 33), así que la cifra correcta es **27/50 = 54.0 %**, exceso **+17** (no +23).
+El marco completo (33/60 = 55.0 %, exceso +21) sí coincide con la nota de `FP-146` — la discrepancia está
+acotada al recorte por `P0`/`P1`/`P2`. Este documento usa el número **re-derivado aquí**, no el de la nota,
+porque §1 ya declaraba (antes de esta enmienda) que el algoritmo de §2 opera **solo** sobre el marcador
+puntuable de 50 — es la cifra que este documento necesita, y la que el propio marco produce al filtrarse por
+`grado_dependencia`.
+
+**Lectura para el sorteo (§2, sin tocarla).** El cierre del filtro (i) no alivia la cuota bajo ninguna de las
+dos lecturas: el marco pasa de **28/60 (46.7 %) con 8 sin evaluar** a **33/60 (55.0 %) con cero sin evaluar**, y
+el marcador puntuable de **22/50 (44.0 %) con 8 sin evaluar** (de los cuales las 8 pendientes eran todas del
+marcador puntuable) a **27/50 (54.0 %) con cero sin evaluar**. El algoritmo de §2 —cuota como restricción
+**dura**, no objetivo blando— sigue siendo exactamente el mecanismo correcto para un marco con exceso de `SI`;
+nada de §2-§2.3 necesita cambiar para acomodar esta cifra, la restricción dura ya estaba diseñada para un marco
+que la rebasa.
+
+**La rama de exclusión de §1 queda satisfecha, no cerrada por decisión.** Ya no hay ninguna fila `marco` en
+estado `PENDIENTE-FUERA-DE-INDICE`: las 8 quedaron resueltas a `SI`/`NO` reales por `FP-146`, así que la regla
+de elegibilidad de arriba ("si y solo si `FP-146` las resuelve") se cumplió por sí sola — no fue necesario que
+mesa decidiera nada nuevo. `FP-150` (sello de mesa sobre `sorteo-v2`) sigue **ABIERTA**: lista para sello sobre
+estas cifras post-`#345`, no firmada en este acto.
+
 ## 2 · Algoritmo — cuota como restricción DURA del muestreo
 
 **Entradas:**
