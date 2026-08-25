@@ -1275,6 +1275,13 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # forense/notas/2026-08-25-sella-e.md -- discute cinco letras de mesa
+    # (L1-L5) y FP-24, todas ya rastreadas en firmas-pendientes.tsv
+    # (FP-127..FP-130, FP-63, FP-24) o explícitamente reportadas como sin
+    # ruling verbatim en el repo -- ninguna es un marcador nuevo. Extensión
+    # mínima de perímetro por desviación mecánica, mismo precedente que
+    # ADR-147(c)/ADR-149(f)/ADR-151 -- ACTO SELLA-AGO25-E, 25/ago/2026.
+    "forense/notas/2026-08-25-sella-e.md",
     # forense/notas/2026-08-20-emisor-m-verificacion-premisas.md:26 -- "⊕ sigue
     # PROPUESTA sin sellar (mesa-pendientes §3)" es una referencia de solo
     # lectura a un pendiente YA existente y ya rastreado en `mesa-pendientes.md`
