@@ -65,19 +65,16 @@ def documento(celdas, principal: str = "L_SOLO_vs_M", **cambios_config):
     }
 
 
-def agregados_para_intervalo(lo: float, hi: float, puntos=None):
+def paquete_para_intervalo(lo: float, hi: float, puntos=None):
     puntos = puntos or {}
-    corredores = {
-        "L_SOLO": {"ic_lo": 0.20, "ic_hi": 0.40, "punto": puntos.get("L", 0.30)},
-        "L_CORPUS": {"ic_lo": 100.0, "ic_hi": 200.0, "punto": 150.0},
-        "M": {"ic_lo": 0.10, "ic_hi": 0.30, "punto": puntos.get("M", 0.20)},
-        "E": {"ic_lo": -999.0, "ic_hi": 999.0, "punto": 0.0},
+    return {
+        "a": {"ic_lo": 0.20, "ic_hi": 0.40, "punto": puntos.get("L", 0.30)},
+        "a_id": "L_SOLO",
+        "b": {"ic_lo": 0.10, "ic_hi": 0.30, "punto": puntos.get("M", 0.20)},
+        "b_id": "M",
+        "diferencia": {"ic_lo": lo, "ic_hi": hi, "punto": puntos.get("D", 0.0)},
+        "n_celdas": 2,
     }
-    comparaciones = {
-        "L_SOLO_vs_M": {"ic_lo": lo, "ic_hi": hi, "punto": puntos.get("D", 0.0)},
-        "L_CORPUS_vs_M": {"ic_lo": 99.0, "ic_hi": 199.0, "punto": 149.0},
-    }
-    return corredores, comparaciones
 
 
 class ConfiguracionTests(unittest.TestCase):
@@ -169,30 +166,37 @@ class ConfiguracionTests(unittest.TestCase):
 
 
 class PareoYBootstrapTests(unittest.TestCase):
-    def test_todos_los_corredores_usan_una_sola_secuencia_de_indices(self):
+    def test_comparacion_reutiliza_indices_para_extremos_y_diferencia(self):
         cfg = SCORING.validar_configuracion(configuracion(replicas=2))
-        conjunto = SCORING.construir_conjunto_pareado(
-            [celda("A", 0.0, 10.0, 1.0, 3.0), celda("B", 2.0, 20.0, 5.0, 7.0)], cfg
+        matriz = SCORING.construir_matriz_mediciones(
+            [celda("A", 0.0, 10.0, 1.0, 3.0), celda("B", 2.0, 20.0, 5.0, 7.0)],
+            cfg,
+        )
+        conjunto = SCORING.construir_universo_pareado(
+            matriz, "L_SOLO", "M", "L_SOLO_vs_M"
         )
         secuencia = ((0, 0), (1, 1))
+        seed_scope = SCORING.derivar_seed_scope(cfg.seed, conjunto.scope_id)
         with mock.patch.object(
             SCORING, "generar_indices_bootstrap", return_value=secuencia
         ) as generador:
             resultado = SCORING.bootstrap_pareado(conjunto, cfg)
-        generador.assert_called_once_with(2, 2, cfg.seed)
+        generador.assert_called_once_with(2, 2, seed_scope)
         self.assertTrue(resultado["bootstrap"]["indices_compartidos"])
-        # Las réplicas de la diferencia salen de las mismas réplicas de ambos corredores.
-        self.assertAlmostEqual(-2.0, resultado["comparaciones"]["L_SOLO_vs_M"]["punto"])
+        self.assertAlmostEqual(-2.0, resultado["diferencia"]["punto"])
 
-    def test_celdas_ausentes_no_evaluables_se_excluyen_pareadas(self):
+    def test_ausencia_auxiliar_no_excluye_scope_principal(self):
         completa = celda("OK", 0.4, 0.5, 0.2, 0.3)
         ausente = celda("FALTA", 0.4, 0.5, 0.2, 0.3)
         del ausente["mediciones"]["E"]
         no_evaluable = celda("NO", 0.4, 0.5, 0.2, 0.3, estado="NO_EVALUABLE")
         resultado = SCORING.ejecutar_scoring(documento([ausente, completa, no_evaluable]))
-        self.assertEqual(["OK"], [fila["id_celda"] for fila in resultado["celdas"]["incluidas"]])
-        self.assertEqual(2, resultado["celdas"]["n_excluidas"])
-        self.assertEqual(1, resultado["agregados"]["corredores"]["L_SOLO"]["n_celdas"])
+        self.assertEqual(
+            ["FALTA", "OK"],
+            [fila["id_celda"] for fila in resultado["celdas"]["incluidas"]],
+        )
+        self.assertEqual(1, resultado["celdas"]["n_excluidas"])
+        self.assertEqual(2, resultado["agregados"]["corredores"]["L_SOLO"]["n_celdas"])
 
     def test_disponibilidad_no_puede_cambiar_la_l_seleccionada(self):
         cfg = SCORING.validar_configuracion(configuracion("L_SOLO_vs_M"))
@@ -224,11 +228,100 @@ class PareoYBootstrapTests(unittest.TestCase):
         self.assertEqual(directo, inverso)
 
 
+class UniversosPorScopeTests(unittest.TestCase):
+    def fixture(self):
+        return [
+            celda("A", 0.8, 0.4, 0.2, 0.5),
+            celda("B", 0.2, 0.6, 0.8, 0.7),
+            celda("C", 0.5, 0.3, 0.1, 0.4),
+        ]
+
+    def test_scope_principal_es_identico_si_falta_e(self):
+        completo = SCORING.ejecutar_scoring(documento(self.fixture()))
+        sin_e = self.fixture()
+        del sin_e[1]["mediciones"]["E"]
+        reducido = SCORING.ejecutar_scoring(documento(sin_e))
+        self.assertEqual(completo["scope_principal"], reducido["scope_principal"])
+
+    def test_scope_principal_es_identico_si_falta_l_no_seleccionada(self):
+        completo = SCORING.ejecutar_scoring(documento(self.fixture()))
+        sin_l_auxiliar = self.fixture()
+        del sin_l_auxiliar[1]["mediciones"]["L_CORPUS"]
+        reducido = SCORING.ejecutar_scoring(documento(sin_l_auxiliar))
+        self.assertEqual(completo["scope_principal"], reducido["scope_principal"])
+
+    def test_falta_l_seleccionada_excluye_solo_del_principal(self):
+        celdas = self.fixture()
+        del celdas[1]["mediciones"]["L_SOLO"]
+        resultado = SCORING.ejecutar_scoring(documento(celdas))
+        universo = resultado["scope_principal"]["universo"]
+        self.assertEqual(["A", "C"], universo["ids_incluidos"])
+        exclusion = next(fila for fila in universo["excluidas"] if fila["id_celda"] == "B")
+        self.assertEqual(
+            ["MEDICION_AUSENTE_O_NO_EVALUABLE:L_SOLO"], exclusion["motivos"]
+        )
+
+    def test_falta_m_excluye_solo_del_principal(self):
+        celdas = self.fixture()
+        del celdas[1]["mediciones"]["M"]
+        resultado = SCORING.ejecutar_scoring(documento(celdas))
+        universo = resultado["scope_principal"]["universo"]
+        self.assertEqual(["A", "C"], universo["ids_incluidos"])
+        exclusion = next(fila for fila in universo["excluidas"] if fila["id_celda"] == "B")
+        self.assertEqual(["MEDICION_AUSENTE_O_NO_EVALUABLE:M"], exclusion["motivos"])
+
+    def test_cada_comparacion_y_marginal_declara_n_e_ids(self):
+        resultado = SCORING.ejecutar_scoring(documento(self.fixture()))
+        for agregado in resultado["agregados"]["corredores"].values():
+            self.assertEqual(agregado["n_celdas"], len(agregado["ids_incluidos"]))
+            self.assertEqual(
+                agregado["ids_incluidos"], agregado["universo"]["ids_incluidos"]
+            )
+        for agregado in resultado["agregados"]["comparaciones"].values():
+            self.assertEqual(agregado["n_celdas"], len(agregado["ids_incluidos"]))
+            self.assertEqual(
+                agregado["ids_incluidos"], agregado["universo"]["ids_incluidos"]
+            )
+
+    def test_comparaciones_e_son_pareadas_sin_imputacion(self):
+        celdas = self.fixture()
+        del celdas[1]["mediciones"]["E"]
+        del celdas[2]["mediciones"]["L_SOLO"]
+        resultado = SCORING.ejecutar_scoring(documento(celdas))
+        comparaciones = resultado["agregados"]["comparaciones"]
+        self.assertEqual(["A"], comparaciones["E_vs_L_SOLO"]["ids_incluidos"])
+        self.assertEqual(["A", "C"], comparaciones["E_vs_M"]["ids_incluidos"])
+        self.assertEqual(
+            comparaciones["E_vs_L_SOLO"]["a"]["n_celdas"],
+            comparaciones["E_vs_L_SOLO"]["diferencia"]["n_celdas"],
+        )
+        self.assertEqual(
+            comparaciones["E_vs_L_SOLO"]["b"]["n_celdas"],
+            comparaciones["E_vs_L_SOLO"]["diferencia"]["n_celdas"],
+        )
+
+    def test_seed_determinista_y_composicion_independiente_del_seed(self):
+        celdas = self.fixture()
+        uno = SCORING.ejecutar_scoring(documento(celdas, seed=11))
+        repetido = SCORING.ejecutar_scoring(documento(celdas, seed=11))
+        otro = SCORING.ejecutar_scoring(documento(celdas, seed=12))
+        self.assertEqual(SCORING.serializar_json(uno), SCORING.serializar_json(repetido))
+        self.assertEqual(
+            uno["scope_principal"]["universo"], otro["scope_principal"]["universo"]
+        )
+        self.assertNotEqual(
+            uno["scope_principal"]["bootstrap"]["sha256_indices"],
+            otro["scope_principal"]["bootstrap"]["sha256_indices"],
+        )
+
+
 class SecuenciaTests(unittest.TestCase):
     def adjudicar(self, lo, hi, puntos=None, principal="L_SOLO_vs_M"):
         cfg = SCORING.validar_configuracion(configuracion(principal))
-        corredores, comparaciones = agregados_para_intervalo(lo, hi, puntos)
-        return SCORING.adjudicar_secuencia(cfg, corredores, comparaciones)
+        paquete = paquete_para_intervalo(lo, hi, puntos)
+        if principal == "L_CORPUS_vs_M":
+            paquete["a_id"] = "L_CORPUS"
+        return SCORING.adjudicar_secuencia(cfg, paquete)
 
     def test_seleccion_l_solo_gobierna_aunque_l_corpus_sea_mejor(self):
         celdas = [celda("A", -0.4, 5.0, 0.4, 100.0), celda("B", -0.4, 5.0, 0.4, 100.0)]
@@ -262,10 +355,10 @@ class SecuenciaTests(unittest.TestCase):
 
     def test_ninguno_supera_b_detiene_despues_de_paso_1(self):
         cfg = SCORING.validar_configuracion(configuracion())
-        corredores, comparaciones = agregados_para_intervalo(-0.3, 0.3)
-        corredores["L_SOLO"]["ic_lo"] = -0.2
-        corredores["M"]["ic_lo"] = 0.0
-        resultado = SCORING.adjudicar_secuencia(cfg, corredores, comparaciones)
+        paquete = paquete_para_intervalo(-0.3, 0.3)
+        paquete["a"]["ic_lo"] = -0.2
+        paquete["b"]["ic_lo"] = 0.0
+        resultado = SCORING.adjudicar_secuencia(cfg, paquete)
         self.assertEqual("NINGUNO_SUPERA_B", resultado["veredicto"]["codigo"])
         self.assertIsNone(resultado["paso_2"])
         self.assertIsNone(resultado["veredicto"]["ganador_id"])

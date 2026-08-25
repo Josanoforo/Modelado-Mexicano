@@ -7,6 +7,9 @@ declara los cuatro corredores separados (L-solo, L+corpus, M y E), todas las
 comparaciones L↔M, el scope adjudicante y los parámetros del bootstrap. Cada
 celda declara ``id_celda``, ``estado`` y ``mediciones``; cada medición puede ser
 un ``skill`` ya calculado o ``error`` junto con ``error_baseline`` en la celda.
+Las mediciones forman una matriz celda × corredor. Cada marginal y cada
+comparación materializa su propio universo estricto; no existe una intersección
+global que exija L-solo, L+corpus, M y E simultáneamente.
 
 Para efectos de adjudicación, PASO 1/PASO 2 operan sobre el scope adjudicante
 predeclarado {L seleccionado, M}. L no seleccionado y E permanecen visibles
@@ -44,6 +47,12 @@ REPLICAS_DEFAULT = 10_000
 ESTADOS_INCLUIBLES = frozenset({"EVALUABLE", "INDECIDIBLE"})
 CODIGO_SCOPE_AUSENTE = "SCOPE_ADJUDICANTE_NO_PREDECLARADO"
 CODIGO_POSICION_NO_DEFINIDA = "POSICION_NO_DEFINIDA_POR_SPEC"
+RESERVA_SCOPE = (
+    "Para efectos de adjudicación, PASO 1/PASO 2 operan sobre el scope "
+    "adjudicante predeclarado {L seleccionado, M}. L no seleccionado y E "
+    "permanecen visibles como resultados auxiliares. La selección del scope "
+    "no tiene default ni puede depender de resultados."
+)
 
 
 class ErrorScoring(ValueError):
@@ -129,7 +138,24 @@ class Configuracion:
 
 
 @dataclasses.dataclass(frozen=True)
+class CeldaMedida:
+    """Fila validada de la matriz celda × corredor, sin intersección global."""
+
+    id_celda: str
+    estado: str
+    skills: dict[str, float]
+    cobertura_r: dict[str, bool | None]
+
+
+@dataclasses.dataclass(frozen=True)
+class MatrizMediciones:
+    celdas: tuple[CeldaMedida, ...]
+
+
+@dataclasses.dataclass(frozen=True)
 class CeldaPareada:
+    """Celda incluida en un scope explícito, solo con sus corredores extremos."""
+
     id_celda: str
     estado: str
     skills: dict[str, float]
@@ -138,6 +164,10 @@ class CeldaPareada:
 
 @dataclasses.dataclass(frozen=True)
 class ConjuntoPareado:
+    """Universo estricto de un único scope; nunca exige los cuatro corredores."""
+
+    scope_id: str
+    corredor_ids: tuple[str, ...]
     incluidas: tuple[CeldaPareada, ...]
     excluidas: tuple[dict[str, Any], ...]
 
@@ -459,7 +489,7 @@ class ResultadoCelda:
 
 
 # ---------------------------------------------------------------------------
-# Celda -> mediciones/estado -> conjunto canónico pareado
+# Celda -> matriz de mediciones -> universos marginales y pareados por scope
 # ---------------------------------------------------------------------------
 
 
@@ -505,13 +535,14 @@ def _cobertura_de_medicion(
     return None
 
 
-def construir_conjunto_pareado(
+def construir_matriz_mediciones(
     celdas: Any, configuracion: Configuracion
-) -> ConjuntoPareado:
-    """Excluye una celda completa si falta un corredor activo o no es evaluable.
+) -> MatrizMediciones:
+    """Valida cada medición por separado, sin crear una intersección global.
 
-    ``INDECIDIBLE`` permanece como estado visible y, si sus skills existen, se
-    incluye: el estado por celda no vota ni sustituye el agregado.
+    ``INDECIDIBLE`` permanece como estado visible y no vota. Una medición
+    ausente solo queda ausente para su corredor; los universos se materializan
+    después, scope por scope.
     """
     if not isinstance(celdas, list) or not all(isinstance(celda, Mapping) for celda in celdas):
         raise ErrorScoring("MEDICIONES_INVALIDAS", "celdas debe ser una lista de objetos")
@@ -522,8 +553,7 @@ def construir_conjunto_pareado(
     if len(ids) != len(set(ids)):
         raise ErrorScoring("MEDICIONES_INVALIDAS", "hay id_celda duplicados")
 
-    incluidas: list[CeldaPareada] = []
-    excluidas: list[dict[str, Any]] = []
+    filas: list[CeldaMedida] = []
     ordenadas = sorted(zip(ids, celdas), key=lambda par: par[0])
     for id_celda, celda in ordenadas:
         estado = str(celda.get("estado", "EVALUABLE")).strip().upper()
@@ -531,37 +561,83 @@ def construir_conjunto_pareado(
         mediciones = mediciones if isinstance(mediciones, Mapping) else {}
         skills: dict[str, float] = {}
         cobertura: dict[str, bool | None] = {}
-        motivos: list[str] = []
-        if estado not in ESTADOS_INCLUIBLES:
-            motivos.append(f"ESTADO_NO_EVALUABLE:{estado or 'VACIO'}")
         for corredor in configuracion.corredores_activos:
             medicion = mediciones.get(corredor.id)
             valor = _skill_de_medicion(medicion, celda)
-            if valor is None:
-                motivos.append(f"MEDICION_AUSENTE_O_NO_EVALUABLE:{corredor.id}")
-            else:
+            if valor is not None:
                 skills[corredor.id] = valor
             cobertura[corredor.id] = _cobertura_de_medicion(corredor.id, medicion, celda)
+        filas.append(
+            CeldaMedida(
+                id_celda=id_celda,
+                estado=estado,
+                skills=skills,
+                cobertura_r=cobertura,
+            )
+        )
+    return MatrizMediciones(tuple(filas))
+
+
+def _construir_universo(
+    matriz: MatrizMediciones,
+    corredor_ids: tuple[str, ...],
+    scope_id: str,
+) -> ConjuntoPareado:
+    incluidas: list[CeldaPareada] = []
+    excluidas: list[dict[str, Any]] = []
+    for celda in matriz.celdas:
+        motivos: list[str] = []
+        if celda.estado not in ESTADOS_INCLUIBLES:
+            motivos.append(f"ESTADO_NO_EVALUABLE:{celda.estado or 'VACIO'}")
+        for corredor_id in corredor_ids:
+            if corredor_id not in celda.skills:
+                motivos.append(f"MEDICION_AUSENTE_O_NO_EVALUABLE:{corredor_id}")
         if motivos:
             excluidas.append(
                 {
-                    "estado": estado,
-                    "id_celda": id_celda,
+                    "estado": celda.estado,
+                    "id_celda": celda.id_celda,
                     "motivos": sorted(set(motivos)),
                 }
             )
-        else:
-            incluidas.append(
-                CeldaPareada(
-                    id_celda=id_celda,
-                    estado=estado,
-                    skills=skills,
-                    cobertura_r=cobertura,
-                )
+            continue
+        incluidas.append(
+            CeldaPareada(
+                id_celda=celda.id_celda,
+                estado=celda.estado,
+                skills={corredor_id: celda.skills[corredor_id] for corredor_id in corredor_ids},
+                cobertura_r={
+                    corredor_id: celda.cobertura_r[corredor_id]
+                    for corredor_id in corredor_ids
+                },
             )
-    if not incluidas:
-        raise ErrorScoring("SIN_CELDAS_PAREADAS", "ninguna celda contiene todos los corredores activos")
-    return ConjuntoPareado(tuple(incluidas), tuple(excluidas))
+        )
+    return ConjuntoPareado(scope_id, corredor_ids, tuple(incluidas), tuple(excluidas))
+
+
+def construir_universo_marginal(
+    matriz: MatrizMediciones, corredor_id: str
+) -> ConjuntoPareado:
+    return _construir_universo(matriz, (corredor_id,), f"MARGINAL:{corredor_id}")
+
+
+def construir_universo_pareado(
+    matriz: MatrizMediciones, a_id: str, b_id: str, comparacion_id: str
+) -> ConjuntoPareado:
+    return _construir_universo(
+        matriz, (a_id, b_id), f"COMPARACION:{comparacion_id}"
+    )
+
+
+def construir_conjunto_pareado(
+    celdas: Any, configuracion: Configuracion
+) -> ConjuntoPareado:
+    """Compatibilidad: devuelve solo el universo de la comparación principal."""
+    matriz = construir_matriz_mediciones(celdas, configuracion)
+    principal = configuracion.comparacion_principal
+    return construir_universo_pareado(
+        matriz, principal.l_id, principal.m_id, principal.id
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -570,7 +646,7 @@ def construir_conjunto_pareado(
 
 
 def generar_indices_bootstrap(n_celdas: int, replicas: int, seed: int) -> tuple[tuple[int, ...], ...]:
-    """Genera una sola secuencia local y compartida por todos los corredores."""
+    """Genera una secuencia local compartida dentro de un scope explícito."""
     if n_celdas <= 0:
         raise ValueError("n_celdas debe ser positivo")
     rng = random.Random(seed)
@@ -606,7 +682,92 @@ def _resumen_bootstrap(punto: float, replicas: Sequence[float], nivel_ic: float,
     }
 
 
-def _comparaciones_agregadas(configuracion: Configuracion) -> tuple[dict[str, str], ...]:
+def derivar_seed_scope(seed: int, scope_id: str) -> int:
+    """Deriva una semilla estable con SHA-256; nunca usa ``hash()`` de Python."""
+    carga = json.dumps([seed, scope_id], ensure_ascii=False, separators=(",", ":"))
+    return int.from_bytes(hashlib.sha256(carga.encode("utf-8")).digest()[:16], "big")
+
+
+def _descripcion_universo(conjunto: ConjuntoPareado) -> dict[str, Any]:
+    return {
+        "corredor_ids": list(conjunto.corredor_ids),
+        "excluidas": list(conjunto.excluidas),
+        "ids_incluidos": [celda.id_celda for celda in conjunto.incluidas],
+        "incluidas": [
+            {
+                "estado": celda.estado,
+                "id_celda": celda.id_celda,
+                "skills": dict(sorted(celda.skills.items())),
+            }
+            for celda in conjunto.incluidas
+        ],
+        "n_excluidas": len(conjunto.excluidas),
+        "n_incluidas": len(conjunto.incluidas),
+        "scope_id": conjunto.scope_id,
+    }
+
+
+def _bootstrap_metadata(
+    conjunto: ConjuntoPareado,
+    configuracion: Configuracion,
+    indices: Sequence[Sequence[int]],
+) -> dict[str, Any]:
+    hash_indices = hashlib.sha256()
+    for replica in indices:
+        hash_indices.update((",".join(map(str, replica)) + "\n").encode("ascii"))
+    return {
+        "indices_compartidos": True,
+        "metodo_ic": "percentil_central_tipo_7",
+        "nivel_ic": configuracion.nivel_ic,
+        "replicas": configuracion.replicas,
+        "scope_id": conjunto.scope_id,
+        "seed_base": configuracion.seed,
+        "seed_scope": derivar_seed_scope(configuracion.seed, conjunto.scope_id),
+        "sha256_indices": hash_indices.hexdigest(),
+    }
+
+
+def _resumen_vacio() -> dict[str, Any]:
+    return {"ic_hi": None, "ic_lo": None, "n_celdas": 0, "punto": None}
+
+
+def bootstrap_marginal(
+    conjunto: ConjuntoPareado, configuracion: Configuracion
+) -> dict[str, Any]:
+    if len(conjunto.corredor_ids) != 1:
+        raise ValueError("bootstrap_marginal requiere un único corredor")
+    corredor_id = conjunto.corredor_ids[0]
+    n = len(conjunto.incluidas)
+    if n == 0:
+        resumen = _resumen_vacio()
+        resumen.update(
+            {
+                "bootstrap": _bootstrap_metadata(conjunto, configuracion, ()),
+                "corredor_id": corredor_id,
+                "ids_incluidos": [],
+                "universo": _descripcion_universo(conjunto),
+            }
+        )
+        return resumen
+    seed_scope = derivar_seed_scope(configuracion.seed, conjunto.scope_id)
+    indices = generar_indices_bootstrap(n, configuracion.replicas, seed_scope)
+    valores = tuple(celda.skills[corredor_id] for celda in conjunto.incluidas)
+    replicas = [
+        math.fsum(valores[indice] for indice in replica) / n for replica in indices
+    ]
+    resumen = _resumen_bootstrap(_media(valores), replicas, configuracion.nivel_ic, n)
+    resumen.update(
+        {
+            "bootstrap": _bootstrap_metadata(conjunto, configuracion, indices),
+            "corredor_id": corredor_id,
+            "ids_incluidos": [celda.id_celda for celda in conjunto.incluidas],
+            "universo": _descripcion_universo(conjunto),
+        }
+    )
+    return resumen
+
+
+def _definiciones_comparaciones(configuracion: Configuracion) -> tuple[dict[str, str], ...]:
     definiciones = [
         {"a_id": comparacion.l_id, "b_id": comparacion.m_id, "id": comparacion.id, "tipo": "L_M"}
         for comparacion in configuracion.comparaciones_l_m
@@ -630,56 +791,78 @@ def _comparaciones_agregadas(configuracion: Configuracion) -> tuple[dict[str, st
 def bootstrap_pareado(
     conjunto: ConjuntoPareado, configuracion: Configuracion
 ) -> dict[str, Any]:
-    """Remuestrea índices una vez por réplica y los aplica a L-solo/L+corpus/M/E."""
+    """Bootstrap estricto de dos extremos y su diferencia sobre el mismo scope."""
+    if len(conjunto.corredor_ids) != 2:
+        raise ValueError("bootstrap_pareado requiere exactamente dos corredores")
     n = len(conjunto.incluidas)
-    indices = generar_indices_bootstrap(n, configuracion.replicas, configuracion.seed)
-    corredor_ids = [corredor.id for corredor in configuracion.corredores_activos]
-    valores = {
-        corredor_id: tuple(celda.skills[corredor_id] for celda in conjunto.incluidas)
-        for corredor_id in corredor_ids
-    }
-    puntos = {corredor_id: _media(valores[corredor_id]) for corredor_id in corredor_ids}
-    replicas_corredor: dict[str, list[float]] = {corredor_id: [] for corredor_id in corredor_ids}
-    hash_indices = hashlib.sha256()
+    a_id, b_id = conjunto.corredor_ids
+    universo = _descripcion_universo(conjunto)
+    if n == 0:
+        vacio = _resumen_vacio()
+        return {
+            "a": dict(vacio),
+            "a_id": a_id,
+            "b": dict(vacio),
+            "b_id": b_id,
+            "bootstrap": _bootstrap_metadata(conjunto, configuracion, ()),
+            "diferencia": dict(vacio),
+            "ids_incluidos": [],
+            "ic_hi": None,
+            "ic_lo": None,
+            "n_celdas": 0,
+            "punto": None,
+            "universo": universo,
+        }
+    seed_scope = derivar_seed_scope(configuracion.seed, conjunto.scope_id)
+    indices = generar_indices_bootstrap(n, configuracion.replicas, seed_scope)
+    valores_a = tuple(celda.skills[a_id] for celda in conjunto.incluidas)
+    valores_b = tuple(celda.skills[b_id] for celda in conjunto.incluidas)
+    replicas_a: list[float] = []
+    replicas_b: list[float] = []
     for replica in indices:
-        hash_indices.update((",".join(map(str, replica)) + "\n").encode("ascii"))
-        for corredor_id in corredor_ids:
-            replicas_corredor[corredor_id].append(
-                math.fsum(valores[corredor_id][indice] for indice in replica) / n
-            )
-    corredores = {
-        corredor_id: _resumen_bootstrap(
-            puntos[corredor_id],
-            replicas_corredor[corredor_id],
-            configuracion.nivel_ic,
-            n,
-        )
-        for corredor_id in corredor_ids
+        replicas_a.append(math.fsum(valores_a[indice] for indice in replica) / n)
+        replicas_b.append(math.fsum(valores_b[indice] for indice in replica) / n)
+    agregado_a = _resumen_bootstrap(
+        _media(valores_a), replicas_a, configuracion.nivel_ic, n
+    )
+    agregado_b = _resumen_bootstrap(
+        _media(valores_b), replicas_b, configuracion.nivel_ic, n
+    )
+    replicas_diferencia = [a - b for a, b in zip(replicas_a, replicas_b)]
+    diferencia = _resumen_bootstrap(
+        agregado_a["punto"] - agregado_b["punto"],
+        replicas_diferencia,
+        configuracion.nivel_ic,
+        n,
+    )
+    return {
+        "a": agregado_a,
+        "a_id": a_id,
+        "b": agregado_b,
+        "b_id": b_id,
+        "bootstrap": _bootstrap_metadata(conjunto, configuracion, indices),
+        "diferencia": diferencia,
+        "ids_incluidos": [celda.id_celda for celda in conjunto.incluidas],
+        "ic_hi": diferencia["ic_hi"],
+        "ic_lo": diferencia["ic_lo"],
+        "n_celdas": n,
+        "punto": diferencia["punto"],
+        "universo": universo,
     }
 
-    comparaciones: dict[str, dict[str, Any]] = {}
-    for definicion in _comparaciones_agregadas(configuracion):
-        a_id, b_id = definicion["a_id"], definicion["b_id"]
-        replicas_diferencia = [
-            a - b for a, b in zip(replicas_corredor[a_id], replicas_corredor[b_id])
-        ]
-        resumen = _resumen_bootstrap(
-            puntos[a_id] - puntos[b_id], replicas_diferencia, configuracion.nivel_ic, n
+
+def _comparaciones_agregadas(
+    matriz: MatrizMediciones, configuracion: Configuracion
+) -> dict[str, dict[str, Any]]:
+    resultados: dict[str, dict[str, Any]] = {}
+    for definicion in _definiciones_comparaciones(configuracion):
+        conjunto = construir_universo_pareado(
+            matriz, definicion["a_id"], definicion["b_id"], definicion["id"]
         )
-        resumen.update(definicion)
-        comparaciones[definicion["id"]] = resumen
-    return {
-        "bootstrap": {
-            "indices_compartidos": True,
-            "metodo_ic": "percentil_central_tipo_7",
-            "nivel_ic": configuracion.nivel_ic,
-            "replicas": configuracion.replicas,
-            "seed": configuracion.seed,
-            "sha256_indices": hash_indices.hexdigest(),
-        },
-        "comparaciones": comparaciones,
-        "corredores": corredores,
-    }
+        resultado = bootstrap_pareado(conjunto, configuracion)
+        resultado.update(definicion)
+        resultados[definicion["id"]] = resultado
+    return resultados
 
 
 # ---------------------------------------------------------------------------
@@ -689,16 +872,23 @@ def bootstrap_pareado(
 
 def adjudicar_secuencia(
     configuracion: Configuracion,
-    agregados_corredores: Mapping[str, Mapping[str, Any]],
-    agregados_comparaciones: Mapping[str, Mapping[str, Any]],
+    paquete_principal: Mapping[str, Any],
 ) -> dict[str, Any]:
-    """Aplica PASO 1/PASO 2 mirando exclusivamente límites de intervalos.
+    """Adjudica solo el paquete pareado completo de la comparación principal.
 
     Deliberadamente no lee la clave ``punto`` de ningún agregado.
     """
     principal = configuracion.comparacion_principal
-    l_agregado = agregados_corredores[principal.l_id]
-    m_agregado = agregados_corredores[principal.m_id]
+    if (
+        paquete_principal.get("a_id") != principal.l_id
+        or paquete_principal.get("b_id") != principal.m_id
+    ):
+        raise ErrorScoring(
+            "SCOPE_PRINCIPAL_INVALIDO",
+            "el paquete principal no coincide con la comparación predeclarada",
+        )
+    l_agregado = paquete_principal["a"]
+    m_agregado = paquete_principal["b"]
     l_supera_cero = float(l_agregado["ic_lo"]) > 0
     m_supera_cero = float(m_agregado["ic_lo"]) > 0
     paso_1 = {
@@ -707,6 +897,7 @@ def adjudicar_secuencia(
         "l_supera_cero": l_supera_cero,
         "m_id": principal.m_id,
         "m_supera_cero": m_supera_cero,
+        "n_celdas": paquete_principal["n_celdas"],
         "regla": "supera cero solo si ic_lo > 0",
     }
     if not paso_1["continua"]:
@@ -723,7 +914,7 @@ def adjudicar_secuencia(
             },
         }
 
-    diferencia = agregados_comparaciones[principal.id]
+    diferencia = paquete_principal["diferencia"]
     lo, hi = float(diferencia["ic_lo"]), float(diferencia["ic_hi"])
     delta = configuracion.delta
     paso_2 = {
@@ -768,10 +959,11 @@ def adjudicar_secuencia(
     }
 
 
-def calcular_paso_0(conjunto: ConjuntoPareado, configuracion: Configuracion) -> dict[str, Any]:
-    """Calcula cobertura contra R para todos; su resultado nunca entra al adjudicador."""
+def calcular_paso_0(matriz: MatrizMediciones, configuracion: Configuracion) -> dict[str, Any]:
+    """Cobertura marginal contra R por corredor; nunca entra al adjudicador."""
     cobertura: dict[str, dict[str, Any]] = {}
     for corredor in configuracion.corredores_activos:
+        conjunto = construir_universo_marginal(matriz, corredor.id)
         disponibles = [
             celda.cobertura_r[corredor.id]
             for celda in conjunto.incluidas
@@ -781,6 +973,7 @@ def calcular_paso_0(conjunto: ConjuntoPareado, configuracion: Configuracion) -> 
         cobertura[corredor.id] = {
             "cobertura_empirica": cubiertas / len(disponibles) if disponibles else None,
             "cubiertas": cubiertas,
+            "ids_incluidos": [celda.id_celda for celda in conjunto.incluidas],
             "n_con_cobertura": len(disponibles),
             "n_celdas_puntuadas": len(conjunto.incluidas),
         }
@@ -804,33 +997,54 @@ def ejecutar_scoring(documento: Mapping[str, Any]) -> dict[str, Any]:
         raise ErrorScoring("ENTRADA_INVALIDA", "la entrada debe ser un objeto JSON")
     configuracion = validar_configuracion(_extraer_configuracion(documento))
     # Solo después de validar el scope se consulta la colección de mediciones.
-    conjunto = construir_conjunto_pareado(documento.get("celdas"), configuracion)
-    agregados = bootstrap_pareado(conjunto, configuracion)
-    paso_0 = calcular_paso_0(conjunto, configuracion)
-    secuencia = adjudicar_secuencia(
-        configuracion, agregados["corredores"], agregados["comparaciones"]
-    )
+    matriz = construir_matriz_mediciones(documento.get("celdas"), configuracion)
+    marginales = {
+        corredor.id: bootstrap_marginal(
+            construir_universo_marginal(matriz, corredor.id), configuracion
+        )
+        for corredor in configuracion.corredores_activos
+    }
+    comparaciones = _comparaciones_agregadas(matriz, configuracion)
+    paquete_principal = comparaciones[configuracion.comparacion_principal_id]
+    if paquete_principal["n_celdas"] == 0:
+        raise ErrorScoring(
+            "SIN_CELDAS_PAREADAS",
+            "ninguna celda contiene L seleccionada y M evaluables",
+        )
+    paso_0 = calcular_paso_0(matriz, configuracion)
+    secuencia = adjudicar_secuencia(configuracion, paquete_principal)
+    agregados = {
+        "bootstrap": {
+            "estrategia_seed": "SHA-256(seed, scope_id)",
+            "indices_compartidos_dentro_de_comparacion": True,
+            "replicas": configuracion.replicas,
+            "seed_base": configuracion.seed,
+        },
+        "comparaciones": comparaciones,
+        "corredores": marginales,
+    }
     l_no_seleccionadas = list(configuracion.l_ids_no_seleccionados)
     comparaciones_auxiliares = {
         comparacion_id: valor
-        for comparacion_id, valor in agregados["comparaciones"].items()
+        for comparacion_id, valor in comparaciones.items()
         if comparacion_id != configuracion.comparacion_principal_id
+    }
+    universo_principal = paquete_principal["universo"]
+    scope_principal = {
+        "bootstrap": paquete_principal["bootstrap"],
+        "comparacion_principal_id": configuracion.comparacion_principal_id,
+        "diferencia": paquete_principal["diferencia"],
+        "l": paquete_principal["a"],
+        "l_id": configuracion.l_id_adjudicado,
+        "m": paquete_principal["b"],
+        "m_id": configuracion.m_id_adjudicado,
+        "reserva_normativa": RESERVA_SCOPE,
+        "secuencia": secuencia,
+        "universo": universo_principal,
     }
     return {
         "agregados": agregados,
-        "celdas": {
-            "excluidas": list(conjunto.excluidas),
-            "incluidas": [
-                {
-                    "estado": celda.estado,
-                    "id_celda": celda.id_celda,
-                    "skills": dict(sorted(celda.skills.items())),
-                }
-                for celda in conjunto.incluidas
-            ],
-            "n_excluidas": len(conjunto.excluidas),
-            "n_incluidas": len(conjunto.incluidas),
-        },
+        "celdas": universo_principal,
         "comparacion_principal_id": configuracion.comparacion_principal_id,
         "configuracion": configuracion.normalizada(),
         "delta": configuracion.delta,
@@ -843,11 +1057,11 @@ def ejecutar_scoring(documento: Mapping[str, Any]) -> dict[str, Any]:
         "resultados_auxiliares": {
             "comparaciones": comparaciones_auxiliares,
             "e": {
-                "agregado": agregados["corredores"][configuracion.e_id],
+                "agregado": marginales[configuracion.e_id],
                 "id": configuracion.e_id,
             },
             "l_no_seleccionadas": [
-                {"agregado": agregados["corredores"][l_id], "id": l_id}
+                {"agregado": marginales[l_id], "id": l_id}
                 for l_id in l_no_seleccionadas
             ],
         },
@@ -858,9 +1072,21 @@ def ejecutar_scoring(documento: Mapping[str, Any]) -> dict[str, Any]:
             "regla": (
                 "scope predeclarado; sin default; selección independiente de resultados"
             ),
+            "reserva_normativa": RESERVA_SCOPE,
         },
+        "scope_principal": scope_principal,
         "seed": configuracion.seed,
         "secuencia": secuencia,
+        "universos": {
+            "comparaciones": {
+                comparacion_id: valor["universo"]
+                for comparacion_id, valor in comparaciones.items()
+            },
+            "marginales": {
+                corredor_id: valor["universo"]
+                for corredor_id, valor in marginales.items()
+            },
+        },
     }
 
 
