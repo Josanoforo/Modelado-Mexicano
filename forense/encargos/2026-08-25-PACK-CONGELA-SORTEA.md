@@ -1,6 +1,6 @@
 # PACK `CONGELA-SORTEA` — ruling de mesa (marco v1 · pool 253 · n_sorteo) + congelado + sorteo real de `ACT-PIL-3` · dos actos, dos PR
 
-**Estado de este archivo:** activo tras el cierre del `ACTO A` (`CONGELA-SORTEA`, `ADR-179`, `FP-154`). Queda **CONSUMIDO** al cerrar el `ACTO B` (`ACTO SORTEA`) — no antes.
+**Estado de este archivo:** **CONSUMIDO**. `ACTO A` (`CONGELA-SORTEA`, `ADR-179`, `FP-154`) y `ACTO B` (`SORTEA`, `ADR-186`) cerrados — ver `forense/notas/2026-08-25-congela-cierre.md` y `forense/notas/2026-08-25-sortea-cierre.md`.
 
 SHA de redacción: `dfdf4fd` (`origin/main` al redactar, verificado por clon; merge de `#352`). Redactado por: sesión de dirección (maestra), 25/ago/2026. Mandato de mesa verbatim: «traigo un elemento de chatgpt, revísalo y dame el encargo extendido, necesitamos desbloquear las firmas, sellos o congelados para avanzar con esta entrega».
 
