@@ -154,3 +154,33 @@ pudo.
 (fila `FP-82`, columna `ejecutada_en`), `forense/encargos/2026-08-24-AMPLIA-MARCO-SATURA.md`
 (archivado verbatim, `CONSUMIDO`). No se tocó `forense/marco-candidatas-piloto-v1_0.tsv`
 (nada que congelar), ni ningún archivo de `Hito D`/`data/`.
+
+---
+
+## ENMIENDA fechada 2026-08-24 (`ACTO SELLA-AGO24-D`) — el original de arriba queda intacto
+
+**Hallazgo: el `NO-ENCONTRADO` de este acto era del nombre, no de la cosa.** La infraestructura
+CODEX que `ADR-135(d)` cita **sí existe**: `tools/curador_registro/` (28 módulos,
+`GUIA-CURADOR-REGISTRO.md`), construida en ramas `codex/` — `PR #164`/`codex/barrido-completo-n1-n33`
+y `PR #244`/`codex/barrido-2`, verificado hoy con `git log --all --oneline | grep -i codex` → 9
+commits, incluidas ambas fusiones.
+
+**Por qué este acto no la encontró: el clon en el que corrió era parcial.** `ACTO SELLA-AGO24-D`
+arrancó en el mismo tipo de entorno (NUBE, `cloud_default`) y midió, antes de tocar nada,
+`git log --all --oneline | grep -i codex` → **0** resultados — el mismo negativo que registra este
+acto arriba. `git fetch --unshallow` trajo **1152 commits más** que este clon no tenía; repetido el
+mismo comando después → **9** resultados. El árbol que este acto examinó el 24/ago no traía las
+ramas `codex/*` fusionadas — no porque no existieran, sino porque el clon no las había traído. La
+búsqueda por la cadena `"codex"` sobre `.md`/`.tsv` (37 archivos, línea "1 · Estructura" arriba)
+tampoco la habría encontrado por otra razón distinta: la estructura se llama `curador_registro`, no
+`codex` — el nombre "Codex" en este repo es el **rol ejecutor** (`AGENTS.md:1`), no la herramienta,
+tal como esta misma nota ya había concluido correctamente en su sección "La infraestructura CODEX
+que la firma cita" — esa parte del razonamiento se sostiene; lo que faltaba era el árbol completo
+para verla.
+
+**No se revierte ningún hallazgo de arriba** — el marco de candidatas (`forense/marco-candidatas-piloto-v1_0.tsv`,
+60 filas) sigue sin ampliarse, `ADR-148` sigue vigente como `PARO` correcto dado lo que ese acto podía
+ver, y esta enmienda no reescribe su texto. Se abre `FP-121`/sucesor `MARCO-SATURA-CODEX`
+(`forense/firmas-pendientes.tsv`) para re-correr la ampliación en **UBUNTU** con `tools/curador_registro/`
+localizado. Ver `forense/hallazgos.md` (línea nueva 2026-08-24) y
+`forense/notas/2026-08-24-sella-d.md`.
