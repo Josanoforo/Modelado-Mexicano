@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **150 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **151 ADR**
 
 > | | |
 > |---|---|
@@ -3110,6 +3110,20 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 **Cascada.** Candidateó `ADR-150` contra el máximo verificado por `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` sobre el árbol al arrancar (`149`, `ADR-149`/`ACTO RECENSO-DISEÑO-14`, ya fusionado, `origin/main = a664ea5`): único `150`, sin huecos. `gobernanza` (cabecera y aquí) y `estado` (cabecera) citan `150`. Suite `python3 tests/check.py --baseline` antes y después de este acto: **19 FAIL · 151 WARN, LÍNEA BASE VERDE**, sin cambio — este acto no toca `tests/`, `milpa/` ni ningún archivo que la suite vigile por contenido más allá del conteo de ADR.
 
 → **Vigente.** *(`ACTO SELLA-AGO24-D`, 24/ago/2026. Entorno **NUBE** (`cloud_default`), modelo Sonnet 5. `origin/main = a664ea5` al arrancar, sin cambio durante el acto. Sin red de datos, sin microdato — declarados, no sondeados. Detalle completo, comando a comando: `forense/notas/2026-08-24-sella-d.md`.)*
+
+---
+
+**ADR-151 · `ACTO COMMIT-DOC-COERCION` commitea el documento íntegro `COERCION-Y-ADOPCION-rediseno-2026-08-20.md`, adjunto de mesa recibido el 24/ago, y cierra `FP-113`.** Encargo, dirección, 24/ago/2026, adjunto obligatorio del encargo. Gate: `⛔ ORDEN` exigía `SELLA-AGO24-D`/`ADR-150` fusionado — verificado por `git log -1` (`8791bcf`, `PR #318`, ya en el árbol al arrancar). Entorno **NUBE** (`cloud_default`), modelo Sonnet, sin red ni microdato — declarados, sonda saltada; `data/raw` no aplica, declarado.
+
+**Verificación de existencia.** El destino existía como parcial, `forense/coercion-adopcion-espec-operativa-v0_1.md`, rotulado `PROPUESTA·PARCIAL` por `ACTO EMISOR-M-2` (`ADR-146`) al no llegarle el adjunto — `FP-113` lo dejó `ABIERTA`. El íntegro no vivía en el repo (verificado por `EMISOR-M-2`: 607 `.md`, cero hits). Este acto recibe el adjunto de mesa, calcula `sha256sum` sobre el archivo tal como llegó — `f77d705eac4b9f5eadd846e96503c4add5ef798b779de52e3e4f8080c107f5cb` — y lo commitea a `forense/COERCION-Y-ADOPCION-rediseno-2026-08-20.md` byte-idéntico salvo la única edición permitida y declarada: una cabecera nueva de una línea, `**PROPUESTA (no sellada) — adjunto de mesa 24/ago, sha256 f77d705ea…c107f5cb**`, insertada tras el título; verificado por `diff` contra el original sin esa línea, cero diferencias en el resto del archivo.
+
+**La parcial no se borra.** `forense/coercion-adopcion-espec-operativa-v0_1.md` recibe una línea de cabecera, fechada: *«SUPERADA por el íntegro — ver `forense/COERCION-Y-ADOPCION-rediseno-2026-08-20.md`, 24/ago/2026.»* El resto del archivo queda intacto — es historia del acto que lo produjo, no el objeto vigente. Ninguna cita `{cita-ilustrativa}` existente que apunte a la parcial se toca.
+
+**`FP-113` → `FIRMADA`, `ejecutada_en` = `ADR-151`.** `firmas-pendientes.tsv` columna `estado` de `ABIERTA` a `FIRMADA`, `firmada_en` cita este ADR y la fecha, `ejecutada_en` = `ADR-151`. Gatea que el documento fuente íntegro entrara al repo — entró; no gatea ningún test.
+
+**Cascada.** Candidateó `ADR-151` contra el máximo verificado por `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | sort -t- -k2 -n -u | tail -1` sobre el árbol al arrancar (`150`, `ADR-150`/`ACTO SELLA-AGO24-D`, ya fusionado, `origin/main = 8791bcf`): único `150`, sin huecos → `151`. Si otro PR fusiona primero y colisiona, regla de la casa: quien fusiona segundo renumera. `forense/COERCION-Y-ADOPCION-rediseno-2026-08-20.md`: nuevo, commiteado. `forense/coercion-adopcion-espec-operativa-v0_1.md`: una línea de cabecera. `forense/firmas-pendientes.tsv`: fila `FP-113` cerrada. `canon/gobernanza-v1_15.md` (cabecera y aquí): citan `151`. `canon/estado-programa-v1_10.md`: conteo de ADR recifrado (`150→151`, `150 ADR`{cita-historica} de `ADR-150` marcado histórico) y WARN vigente recifrado (`149→148`). `forense/notas/2026-08-24-commit-doc-coercion.md`: nueva, comando a comando. `forense/encargos/2026-08-24-ACTO-COMMIT-DOC-COERCION.md`: archivado verbatim, `CONSUMIDO`. **Extensión de perímetro por deviación mecánica, mismo precedente que `ADR-147(c)`/`ADR-149(f)`:** `tests/check.py`, tres líneas en `_T22_ARCHIVOS_CONOCIDOS` (el rótulo nuevo `PROPUESTA...mesa` de la cabecera commiteada dispara `_T22_MARCADOR_PENDIENTE` por autocaptura verbatim, mismo mecanismo que toda la lista existente) — sin este ajuste la suite quedaba en rojo con `FAIL` nuevos fuera del perímetro declarado por el encargo. Suite `python3 tests/check.py --baseline` antes y después: **19 FAIL · 148 WARN, LÍNEA BASE VERDE**, WARN neto −1 porque `FP-113` cierra `FIRMADA` (T22 deja de señalar su fila `ABIERTA`). **No toca** `canon/modelo-decision-v4_0.md`, `milpa/`, `corpus/`, ni ningún `resultado.tsv`. Ningún contador de Hito D, condicionales o coeficientes se mueve — este acto no mide México, solo archiva un documento de criterio.
+
+→ **Vigente.** *(`ACTO COMMIT-DOC-COERCION`, 24/ago/2026. Entorno **NUBE** (`cloud_default`), modelo Sonnet 5. `origin/main = 8791bcf` al arrancar, sin cambio durante el acto. Sin red de datos, sin microdato — declarados, no sondeados. Detalle completo: `forense/notas/2026-08-24-commit-doc-coercion.md`.)*
 
 ---
 

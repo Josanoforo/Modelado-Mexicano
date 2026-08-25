@@ -1,5 +1,7 @@
 # PROPUESTA·PARCIAL — Especificación operativa coerción/adopción (v0.1)
 
+**SUPERADA por el íntegro — ver `forense/COERCION-Y-ADOPCION-rediseno-2026-08-20.md`, 24/ago/2026.**
+
 *(`ACTO EMISOR-M-2`, 24/ago/2026. Fuente: `COERCION-Y-ADOPCION-rediseno-2026-08-20.md` {cita-ilustrativa} §4, §6 — documento de mesa, **no commiteado**. Este acto no lo tiene adjunto; por `transfer §9` NO se reconstruye. Lo que sigue es solo el bloque operativo que dirección pegó inline en el encargo `2026-08-24-EMISOR-M-2.md`, copiado aquí verbatim. Rotulado `PROPUESTA·PARCIAL` porque es un fragmento, no el documento íntegro — ver la fila de tablero al final pidiendo a mesa el documento completo.)*
 
 ## Objeto
