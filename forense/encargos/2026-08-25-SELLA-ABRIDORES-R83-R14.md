@@ -1,6 +1,6 @@
 # Encargo · SELLA-ABRIDORES-R83-R14 — archivar los veredictos propuestos por #355 con firma de mesa · Hito D 18→20
 
-*(Archivado verbatim por regla A.3. **Estado: `CONSUMIDO` (parcial)** — ejecutado en `ACTO SELLA-ABRIDORES-R83-R14`, `ADR-186`, 25/ago/2026; ver `forense/notas/2026-08-25-sella-abridores-r83-r14-cierre.md`. **Solo RANURA 1 (`R8.3`) trajo firma de mesa; RANURA 2 (`R1.4`) llegó sin firmar.** Por la propia compuerta del lanzamiento (ausente cualquiera → se ejecuta solo la firmada), este acto archiva `R8.3` → fila `A` y deja `R1.4` intacta. El título habla de "18→20"; el resultado real es **18→19**, porque la segunda mitad de la compuerta no se cumplió — desviación declarada, no silenciosa.)*
+*(Archivado verbatim por regla A.3. **Estado: `CONSUMIDO` (completo)** — RANURA 1 (`R8.3`) ejecutada al lanzar, `ADR-186`, 25/ago/2026; RANURA 2 (`R1.4`) llegó firmada en turno posterior el mismo día y se ejecutó como continuación del mismo acto, `ADR-187`. Ver `forense/notas/2026-08-25-sella-abridores-r83-r14-cierre.md` y su Adenda. El título hablaba de "18→20"; el resultado final, sumando las dos ranuras en dos turnos, **es exactamente 18→20** — el texto de abajo describe el estado al momento del primer lanzamiento, cuando solo `R8.3` traía firma; no se reescribe, por A.3.)*
 
 SHA de redacción: `2b7d787` (main al redactar; verificado igual a `origin/main` al lanzar, sin avance). Dirección, 25/ago/2026. ENTORNO: NUBE (`cloud_default`). No UBUNTU, no doble. REQUERIDO al lanzar: las firmas de mesa de F0 como líneas propias — sin ellas, PARO sin tocar nada.
 
@@ -29,3 +29,18 @@ Las dos propuestas EXISTÍAN y NO estaban archivadas: `forense/hitoD-R8_3-abrido
 ## No hace
 
 No relee las corridas ni re-estima nada. No toca `R10.1`. No adjudica el eje 3 de `R8.3` (queda reserva abierta). No toca `milpa/`, corpus, duelo ni pool. No archiva `R1.4` — sin firma, no hay compuerta que ejecutar sobre esa ranura.
+
+---
+
+## Adenda · 25/ago/2026 — RANURA 2 llega firmada; el encargo se cierra completo
+
+*(Añadida al final, fechada, sin tocar el cuerpo de arriba — misma disciplina de A.3 que el resto de este archivo.)*
+
+Mesa envió, en turno posterior, la firma que faltaba:
+
+> "FIRMO R1.4: se archiva el veredicto propuesto D por el abridor de #355. La colisión con ADR-55/56 se resuelve así: la regla general aplica y el archivado es trámite del acto sucesor cuando el perímetro del acto que establece lo prohíbe — este acto es ese sucesor."
+> "[SÍ a la reescritura de la fila C de su escala para que nombre el hueco real."
+
+Ejecutado como continuación de este mismo acto (mismo SHA de redacción `2b7d787`, mismo entorno NUBE): `R1.4` → veredicto `D` archivado en `hitoD-preregistro`, `ADR-187` sella el verbatim y la resolución de la colisión, la fila `C` de la escala de `R1.4` recibe la enmienda fechada que el SÍ de mesa autorizó, `FP-156` nace `FIRMADA` en el tablero con `ejecutada_en` = este acto. Hito D: **19 de 27 → 20 de 27**. `python3 tests/check.py --baseline`: 19 FAIL · 128 WARN antes y después, línea base VERDE. Detalle completo: Adenda de `forense/notas/2026-08-25-sella-abridores-r83-r14-cierre.md`.
+
+**CONTADOR total del encargo, sumando las dos ranuras: +2** (`R8.3` → `A`, `R1.4` → `D`). Título del encargo cumplido: 18→20.

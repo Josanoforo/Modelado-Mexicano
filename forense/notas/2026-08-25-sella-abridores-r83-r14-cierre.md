@@ -32,3 +32,34 @@ Solo **RANURA 1** (`R8.3`) trajo firma de mesa verbatim:
 `python3 tests/check.py --baseline` antes y después de los cambios: **19 FAIL · 128 WARN** en ambos casos, línea base VERDE, sin `--freeze`. `T18`/`T20` (Hito D, cascada marcada) pasan limpio tras la propagación completa; `T15` (conteo de ADR) y `T16` (autoverificación FAIL/WARN) también, una vez sincronizados los conteos de ADR y de Hito D en los cinco sitios que los citan.
 
 **CONTADOR: +1** — única corrida que este acto mueve (`R8.3` → `A`). `R1.4` sigue en 0.
+
+---
+
+## Adenda · 25/ago/2026 — RANURA 2 (`R1.4`) llega firmada; continuación del mismo acto
+
+*(Añadida al final, fechada, sin tocar el cuerpo de arriba — misma disciplina que las notas de otros actos de este programa.)*
+
+Mesa envió, en turno posterior, la firma que faltaba:
+
+> "FIRMO R1.4: se archiva el veredicto propuesto D por el abridor de #355. La colisión con ADR-55/56 se resuelve así: la regla general aplica y el archivado es trámite del acto sucesor cuando el perímetro del acto que establece lo prohíbe — este acto es ese sucesor."
+
+seguida de:
+
+> "[SÍ a la reescritura de la fila C de su escala para que nombre el hueco real."
+
+**Cómo se leyó la resolución de la colisión.** `ADR-182` había declarado que, bajo `ADR-55`/`ADR-56`, un veredicto `D` lo archiva el acto que lo establece — pero el perímetro de `ACTO PACK-UBUNTU-2` (el acto que estableció la propuesta) lo prohibía expresamente, así que no se archivó ahí. La firma de mesa no crea una excepción: fija que la regla general sigue gobernando, y que cuando el establecedor tiene el perímetro cerrado, el trámite pasa al **acto sucesor** que sí trae el perímetro abierto. Este acto (`ACTO SELLA-ABRIDORES-R83-R14`) es ese sucesor.
+
+### Qué se ejecutó, además de lo ya narrado arriba
+
+1. **`forense/hitoD-preregistro-v2_0.md`** — línea nueva en el Registro: `R1.4` → veredicto `D`, con el verbatim y la razón medida (Umbral no construible: 0 columnas de marca/sustituto en 425 archivos `.dta`, contra 1274 columnas de control positivo). **Enmienda fechada de la fila `C`** en la propia ficha de `R1.4` (§3.1): texto viejo *"exigiría panel D/E de consumo popular — hueco declarado"* → nuevo *"identificación de marca y el par de sustitutos funcionales dentro del acto de compra — hueco real"*, con el SÍ de mesa citado inline.
+2. **`README.md:36`** — 19 de 27 → **20 de 27**, desglose `10D·2B·4A·2E·1C` → `11D·2B·4A·2E·1C`.
+3. **`canon/gobernanza-v1_15.md`** — `ADR-187` nuevo, sella la firma con el verbatim íntegro, ejecuta la propuesta de `ADR-182` y documenta la resolución de la colisión; cabecera (187 ADR) y las dos citas vivas del Hito D re-derivadas a 20/27. Cascada: candidateó contra el máximo re-derivado (`186`, sin huecos) → `187`.
+4. **`canon/estado-programa-v1_10.md`** — L0 (186→187 ADR, nota nueva), L5 (19→20 de 27, línea `R1.4`→`D` añadida, aviso de "propuesta esperando firma" reescrito: ya no queda ninguna pendiente), líneas 204 y 280 re-derivadas (30→29 de 49, 8→7 de 27 sin corrida).
+5. **`canon/modelo-decision-v4_0.md`** — las tres citas vivas re-derivadas a 20/27 con `R1.4`→`D` añadido.
+6. **`forense/firmas-pendientes.tsv`** — fila nueva `FP-156` (la ranura de esta firma), nacida `FIRMADA` con el verbatim, `ejecutada_en` = este acto.
+
+### Verificación
+
+`python3 tests/check.py --baseline` antes y después: **19 FAIL · 128 WARN** en ambos, línea base VERDE, sin `--freeze`. `T15`/`T16`/`T18`/`T20` limpios tras la segunda propagación.
+
+**CONTADOR: +1 adicional** (`R1.4` → `D`) — Hito D queda en **20 de 27**, cerrando por completo el encargo `SELLA-ABRIDORES-R83-R14` (las dos ranuras, en dos turnos).
