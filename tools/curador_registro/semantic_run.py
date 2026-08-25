@@ -32,6 +32,11 @@ from typing import Any, Iterable
 
 import yaml
 
+try:
+    from .pdf_extract import extract_pdf
+except ImportError:
+    from pdf_extract import extract_pdf
+
 
 ENGINE_VERSION = "2.0.0"
 UNKNOWN = {"", "NO_DETERMINADO", "NO_APLICA", "—"}
@@ -268,15 +273,15 @@ def zip_structure(path: Path) -> str:
         return trim_text(f"miembros={len(names)}; nombres={';'.join(names[:80])}; encabezados={' | '.join(headers)}", 3000)
 
 
-def open_local_object(path: Path, label: str) -> dict[str, str]:
+def open_local_object(path: Path, label: str, pdf_mode: str = "union") -> dict[str, str]:
     if not path.is_file():
         return {"objeto": label, "ruta": str(path), "resultado": "ARCHIVO_NO_EXISTE", "sha256": "NO_DETERMINADO", "descripcion": ""}
     suffix = path.suffix.lower()
     try:
         if suffix == ".pdf":
-            process = subprocess.run(["pdftotext", str(path), "-"], check=False, capture_output=True, timeout=40)
-            description = trim_text(process.stdout.decode("utf-8", errors="replace"), 3000)
-            result = "ABIERTO_PDF_TEXTO" if process.returncode == 0 else f"PDF_ERROR_{process.returncode}"
+            extraction = extract_pdf(path, mode=pdf_mode)
+            description = trim_text(extraction.text, 3000)
+            result = "ABIERTO_PDF_TEXTO"
         elif suffix == ".xlsx":
             description, result = xlsx_structure(path), "ABIERTO_XLSX_ESTRUCTURA"
         elif suffix == ".zip":
@@ -289,7 +294,11 @@ def open_local_object(path: Path, label: str) -> dict[str, str]:
             result = "ABIERTO_BINARIO_CARACTERIZADO"
     except Exception as exc:
         description, result = trim_text(str(exc)), f"ERROR_APERTURA_{type(exc).__name__}"
-    return {"objeto": label, "ruta": str(path), "resultado": result, "sha256": sha256(path), "descripcion": description}
+    opened = {"objeto": label, "ruta": str(path), "resultado": result, "sha256": sha256(path), "descripcion": description}
+    if suffix == ".pdf" and result == "ABIERTO_PDF_TEXTO":
+        opened["extractores_pdf"] = ";".join(extraction.extractors)
+        opened["advertencias_pdf"] = ";".join(extraction.warnings) or "NINGUNA"
+    return opened
 
 
 def parse_manifest(path: Path, corpus: Path) -> list[dict[str, Any]]:

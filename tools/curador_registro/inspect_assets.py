@@ -21,8 +21,10 @@ import openpyxl
 
 try:
     from .barrido2_material import inspect_task, materialize_tasks
+    from .pdf_extract import extract_pdf
 except ImportError:
     from barrido2_material import inspect_task, materialize_tasks
+    from pdf_extract import extract_pdf
 
 
 FORBIDDEN_TASK_FIELDS = {
@@ -243,27 +245,41 @@ def inspect_csv(path: Path) -> tuple[dict[str, Any], list[dict[str, str]], str]:
     return {"tipo": "TABLA_DELIMITADA", "campos": len(fields), "encoding": encoding}, objects, "Se leyó el encabezado; no se recorrieron todas las filas."
 
 
-def inspect_pdf(path: Path) -> tuple[dict[str, Any], list[dict[str, str]], str]:
-    info = subprocess.run(["pdfinfo", str(path)], capture_output=True, text=True, timeout=30)
-    if info.returncode != 0:
-        raise ValueError(f"PDFINFO_FALLO:{info.stderr.strip()[:300]}")
+def inspect_pdf(path: Path, pdf_mode: str = "union") -> tuple[dict[str, Any], list[dict[str, str]], str]:
     metadata: dict[str, str] = {}
-    for line in info.stdout.splitlines():
-        if ":" in line:
-            key, value = line.split(":", 1)
-            metadata[key.strip()] = value.strip()
-    pages = int(metadata.get("Pages", "0") or "0")
-    extraction_pages = min(pages, 5)
-    text = ""
-    if extraction_pages:
-        result = subprocess.run(["pdftotext", "-f", "1", "-l", str(extraction_pages), str(path), "-"], capture_output=True, text=True, timeout=45)
-        if result.returncode == 0:
-            text = result.stdout
+    metadata_warning = "NINGUNA"
+    try:
+        info = subprocess.run(["pdfinfo", str(path)], capture_output=True, text=True, timeout=30)
+        if info.returncode != 0:
+            metadata_warning = f"PDFINFO_FALLO:rc={info.returncode}"
+        else:
+            for line in info.stdout.splitlines():
+                if ":" in line:
+                    key, value = line.split(":", 1)
+                    metadata[key.strip()] = value.strip()
+    except (OSError, subprocess.SubprocessError) as exc:
+        metadata_warning = f"PDFINFO_NO_DISPONIBLE:{type(exc).__name__}"
+    declared_pages = int(metadata.get("Pages", "0") or "0")
+    selected = range(1, min(declared_pages, 5) + 1) if declared_pages else None
+    extraction = extract_pdf(path, mode=pdf_mode, pages=selected)
+    extracted_pages = len(extraction.pages)
+    if len(extraction.pages) > 5:
+        extraction = type(extraction)(
+            extraction.pages[:5], extraction.page_numbers[:5],
+            extraction.extractors, extraction.warnings,
+        )
+    pages = declared_pages or extracted_pages
+    extraction_pages = len(extraction.pages)
+    text = extraction.text
     lines = [" ".join(line.split()) for line in text.splitlines() if line.strip()]
     headings = [line for line in lines if len(line) <= 140 and (line.isupper() or re.match(r"^(\d+\.?|[IVX]+\.)\s", line))][:100]
     objects = [{"objeto": value, "tipo": "ENCABEZADO_PDF_OBSERVADO", "tamano": "NO_APLICA", "campos": "[]", "detalle": f"paginas_1_a_{extraction_pages}"} for value in headings]
-    structure = {"tipo": "PDF", "paginas": pages, "cifrado": metadata.get("Encrypted", "NO_DETERMINADO"), "titulo": metadata.get("Title", ""), "paginas_texto_inspeccionadas": extraction_pages, "encabezados_observados": len(headings)}
-    boundary = f"Se abrió el PDF, se leyó metadato de {pages} páginas y texto de páginas 1-{extraction_pages}; páginas posteriores y elementos no textuales no se inspeccionaron semánticamente."
+    visible_warnings = list(extraction.warnings)
+    if metadata_warning != "NINGUNA":
+        visible_warnings.append(metadata_warning)
+    structure = {"tipo": "PDF", "paginas": pages, "cifrado": metadata.get("Encrypted", "NO_DETERMINADO"), "titulo": metadata.get("Title", ""), "paginas_texto_inspeccionadas": extraction_pages, "encabezados_observados": len(headings), "extractores_texto": list(extraction.extractors), "advertencias_extraccion": visible_warnings}
+    warning_text = "|".join(visible_warnings) if visible_warnings else "NINGUNA"
+    boundary = f"Se abrió el PDF, se leyó metadato de {pages} páginas y texto de páginas 1-{extraction_pages}; páginas posteriores y elementos no textuales no se inspeccionaron semánticamente; advertencias={warning_text}."
     return structure, objects, boundary
 
 
