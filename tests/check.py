@@ -2412,6 +2412,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/notas/2026-08-20-lote-motor2-reverificacion.md",
     "forense/encargos/2026-08-20-LOTE-MOTOR2.md",
     "forense/registro-recalculo-v1_0.md",
+    "forense/notas/nota-2026-08-25-propaga-330-337.md",
 }
 
 
