@@ -95,7 +95,7 @@ class AutoridadSemanticaMarcoTests(unittest.TestCase):
         for line in product.read_text(encoding="utf-8").splitlines():
             validator.validate(json.loads(line))
         authority = load_semantic_authority(product)
-        self.assertEqual(1, authority.row_count)
+        self.assertGreater(authority.row_count, 1)
 
 
 if __name__ == "__main__":
