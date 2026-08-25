@@ -30,6 +30,11 @@ from typing import Any, Iterable, Mapping
 import yaml
 
 try:
+    from .autoridad_semantica_marco import (
+        AutoridadSemanticaError,
+        SemanticAuthorityIndex,
+        load_semantic_authority,
+    )
     from .marco_e2_adapter import (
         E2AdapterError,
         E2IndexReader,
@@ -43,6 +48,11 @@ try:
         resolve_private_index,
     )
 except ImportError:
+    from autoridad_semantica_marco import (
+        AutoridadSemanticaError,
+        SemanticAuthorityIndex,
+        load_semantic_authority,
+    )
     from marco_e2_adapter import (
         E2AdapterError,
         E2IndexReader,
@@ -86,6 +96,29 @@ REQUIRED_COMPONENTS = (
     "estimador",
     "ponderador",
     "escala",
+)
+
+SEMANTIC_AUTHORITY_SPEC_FIELDS = (
+    "encuesta",
+    "ola",
+    "universo_poblacional",
+    "unidad_observacion",
+    "tipo_estadistico",
+    "respuesta_multiple",
+    "categorias_excluyentes",
+    "codificacion",
+    "missing",
+    "unidad_medida",
+    "rango_valido",
+    "operacion_estimador",
+    "ponderador",
+    "ponderador_exacto",
+    "ponderador_fuente_ola_tabla",
+    "ponderador_fuente",
+    "ponderador_ola",
+    "ponderador_scope_tipo",
+    "ponderador_scope_id",
+    "no_aplica_ponderador_documentado",
 )
 
 PENDING = "PENDIENTE-FILTRO"
@@ -138,71 +171,42 @@ def _normal_type(value: Any) -> str:
     return re.sub(r"[^A-Z0-9]+", "_", _text(value).upper()).strip("_")
 
 
-def _scope_matches(record: Mapping[str, Any], authority: Mapping[str, Any]) -> bool:
-    if _text(authority.get("representacion_id")) != _text(record.get("representacion_id")):
-        return False
-    if _text(authority.get("variable")) != _text(record.get("nombre")):
-        return False
-    table_matches = bool(
-        is_meaningful(record.get("tabla"))
-        and _text(authority.get("tabla")) == _text(record.get("tabla"))
+def _canonical_json(value: Any) -> str:
+    return json.dumps(
+        value,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
     )
-    parent_matches = bool(
-        is_meaningful(record.get("objeto_padre_id"))
-        and _text(authority.get("objeto_padre_id"))
-        == _text(record.get("objeto_padre_id"))
-    )
-    return table_matches or parent_matches
 
 
-def _authority_matches(
-    record: Mapping[str, Any],
-    semantic_authority: Iterable[Mapping[str, Any]],
-) -> list[dict[str, str]]:
-    return [
-        {str(key): _text(value) for key, value in row.items()}
-        for row in semantic_authority
-        if _scope_matches(record, row)
-    ]
+def _semantic_authority_spec(authority: Mapping[str, Any]) -> str:
+    """Spec conceptual sin clave material, aserciones E2 ni citas."""
 
-
-def _categories(record: Mapping[str, Any], authority: Mapping[str, Any]) -> str:
-    explicit = authority.get("categorias")
-    if is_meaningful(explicit):
-        return _text(explicit)
-    categories = record.get("categorias")
-    labels = record.get("value_labels")
-    material: dict[str, Any] = {}
-    if isinstance(categories, list) and categories:
-        material["categorias"] = categories
-    if isinstance(labels, list) and labels:
-        material["value_labels"] = labels
-    return (
-        json.dumps(material, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
-        if material
-        else ""
+    return _canonical_json(
+        {field: authority.get(field) for field in SEMANTIC_AUTHORITY_SPEC_FIELDS}
     )
 
 
 def _derive_estimator(authority: Mapping[str, Any]) -> tuple[str | None, str | None]:
     kind = _normal_type(authority.get("tipo_estadistico"))
-    if kind in {"BINARIA", "BINARIO", "BINARY"}:
+    if kind == "BINARIA":
         return "PROPORCION_PONDERADA", None
-    if kind in {"CATEGORICA", "CATEGORICA_EXCLUYENTE", "CATEGORICAL"}:
-        if _text(authority.get("categorias_excluyentes")).upper() != "SI":
+    if kind == "CATEGORICA":
+        if authority.get("respuesta_multiple") or not authority.get(
+            "categorias_excluyentes"
+        ):
             return None, "CATEGORIAS_NO_DOCUMENTADAS_COMO_EXCLUYENTES"
         return "DISTRIBUCION_PONDERADA", None
-    if kind in {"NUMERICA_CONTINUA", "CONTINUA", "CONTINUOUS"}:
-        if not is_meaningful(authority.get("unidad")):
+    if kind == "NUMERICA_CONTINUA":
+        if not is_meaningful(authority.get("unidad_medida")):
             return None, "NUMERICA_SIN_UNIDAD"
         return "MEDIA_PONDERADA", None
-    if kind in {"ADMINISTRATIVA", "CENSAL", "ADMINISTRATIVO"}:
+    if kind in {"ADMINISTRATIVA", "CENSAL"}:
         operation = _text(authority.get("operacion_estimador"))
         if not is_meaningful(operation):
             return None, "OPERACION_ADMINISTRATIVA_NO_DOCUMENTADA"
         return operation, None
-    if kind in {"MULTIRRESPUESTA", "INDICE", "TEXTO", "TRANSFORMACION_AMBIGUA"}:
-        return None, f"TIPO_NO_DERIVABLE:{kind}"
     return None, "TIPO_ESTADISTICO_AUSENTE_EN_CONTRATO"
 
 
@@ -210,40 +214,25 @@ def _derive_scale(
     record: Mapping[str, Any], authority: Mapping[str, Any]
 ) -> tuple[str | None, str | None]:
     kind = _normal_type(authority.get("tipo_estadistico"))
-    coding = _text(authority.get("codificacion"))
-    missing = _text(authority.get("missing"))
-    if not is_meaningful(coding) or not is_meaningful(missing):
+    coding = authority.get("codificacion")
+    missing = authority.get("missing")
+    if not isinstance(coding, list) or not coding or not isinstance(missing, dict):
         return None, "CODIFICACION_O_MISSING_AUSENTE_EN_CONTRATO"
-    if kind in {
-        "BINARIA",
-        "BINARIO",
-        "BINARY",
-        "CATEGORICA",
-        "CATEGORICA_EXCLUYENTE",
-        "CATEGORICAL",
-    }:
-        categories = _categories(record, authority)
-        if not categories:
-            return None, "CATEGORIAS_AUSENTES_EN_CONTRATO"
+    if kind in {"BINARIA", "CATEGORICA"}:
         return (
-            f"tipo={kind};codificacion={coding};categorias={categories};missing={missing}",
+            f"tipo={kind};codificacion={_canonical_json(coding)};"
+            f"missing={_canonical_json(missing)}",
             None,
         )
-    if kind in {
-        "NUMERICA_CONTINUA",
-        "CONTINUA",
-        "CONTINUOUS",
-        "ADMINISTRATIVA",
-        "CENSAL",
-        "ADMINISTRATIVO",
-    }:
-        range_value = _text(authority.get("rango"))
-        unit = _text(authority.get("unidad"))
-        if not is_meaningful(range_value) or not is_meaningful(unit):
+    if kind in {"NUMERICA_CONTINUA", "ADMINISTRATIVA", "CENSAL"}:
+        range_value = authority.get("rango_valido")
+        unit = _text(authority.get("unidad_medida"))
+        if not isinstance(range_value, dict) or not is_meaningful(unit):
             return None, "ESCALA_NUMERICA_SIN_RANGO_O_UNIDAD"
         return (
-            f"tipo={kind};codificacion={coding};rango={range_value};"
-            f"unidad={unit};missing={missing}",
+            f"tipo={kind};codificacion={_canonical_json(coding)};"
+            f"rango={_canonical_json(range_value)};unidad={unit};"
+            f"missing={_canonical_json(missing)}",
             None,
         )
     return None, "TIPO_ESTADISTICO_AUSENTE_EN_CONTRATO"
@@ -252,14 +241,14 @@ def _derive_scale(
 def _derive_weight(authority: Mapping[str, Any]) -> tuple[str | None, str | None]:
     kind = _normal_type(authority.get("tipo_estadistico"))
     weight = _text(authority.get("ponderador"))
-    if kind in {"ADMINISTRATIVA", "CENSAL", "ADMINISTRATIVO"}:
-        documented = _text(authority.get("no_aplica_ponderador_documentado")).upper()
-        if weight.replace("_", " ").upper() == "NO APLICA" and documented == "SI":
+    if kind in {"ADMINISTRATIVA", "CENSAL"}:
+        documented = authority.get("no_aplica_ponderador_documentado")
+        if weight.replace("_", " ").upper() == "NO APLICA" and documented is True:
             return "NO APLICA", None
         return None, "NO_APLICA_PONDERADOR_NO_DOCUMENTADO"
-    exact = _text(authority.get("ponderador_exacto")).upper()
-    scope = _text(authority.get("ponderador_fuente_ola_tabla")).upper()
-    if is_meaningful(weight) and exact == "SI" and scope == "SI":
+    exact = authority.get("ponderador_exacto")
+    scope = authority.get("ponderador_fuente_ola_tabla")
+    if is_meaningful(weight) and exact is True and scope is True:
         return weight, None
     return None, "PONDERADOR_EXACTO_SCOPE_AUSENTE_EN_CONTRATO"
 
@@ -268,7 +257,7 @@ def _classify_seed(
     record: Mapping[str, Any],
     join: JoinResolution,
     provenance_index: ProvenanceIndex,
-    authorities: list[dict[str, str]],
+    authority: Mapping[str, Any] | None,
 ) -> tuple[dict[str, str], list[str]]:
     states = {field: "AUSENTE_EN_CONTRATO" for field in REQUIRED_COMPONENTS}
     states["variable"] = "EXISTE_ESTRUCTURADO"
@@ -276,22 +265,16 @@ def _classify_seed(
 
     if join.status != "EXACTA":
         reasons.append(join.reason)
-    if len(authorities) > 1:
-        for field in ("encuesta", "ola", "estimador", "ponderador", "escala"):
-            states[field] = "CONFLICTIVO"
-        reasons.append("AUTORIDAD_SEMANTICA_CONFLICTIVA")
-        if is_meaningful(record.get("poblacion")):
-            states["universo"] = "EXISTE_ESTRUCTURADO"
-        return states, reasons
-
-    authority: Mapping[str, Any] = authorities[0] if authorities else {}
+    if authority is None:
+        reasons.append("AUTORIDAD_SEMANTICA_AUSENTE")
+    material: Mapping[str, Any] = authority or {}
     t0 = (
         provenance_index.t0_semantic_fields(join.provenance.hash_local)
         if join.provenance is not None
         else {}
     )
     for field, t0_field in (("encuesta", "fuente_programa"), ("ola", "edicion_periodo")):
-        if is_meaningful(authority.get(field)):
+        if is_meaningful(material.get(field)):
             states[field] = "DERIVABLE_EXACTO"
         elif is_meaningful(t0.get(t0_field)):
             states[field] = "NO_SEMANTICAMENTE_APTO"
@@ -299,40 +282,40 @@ def _classify_seed(
         else:
             reasons.append(f"{field.upper()}_AUSENTE_EN_CONTRATO")
 
-    if is_meaningful(authority.get("universo_poblacional")):
+    if is_meaningful(material.get("universo_poblacional")):
         states["universo"] = "DERIVABLE_EXACTO"
     elif is_meaningful(record.get("poblacion")):
         states["universo"] = "EXISTE_ESTRUCTURADO"
     else:
         reasons.append("UNIVERSO_POBLACIONAL_AUSENTE_EN_CONTRATO")
 
-    estimator, estimator_error = _derive_estimator(authority)
+    estimator, estimator_error = _derive_estimator(material)
     if estimator:
         states["estimador"] = "DERIVABLE_EXACTO"
     else:
         reasons.append(estimator_error or "ESTIMADOR_AUSENTE_EN_CONTRATO")
-    weight, weight_error = _derive_weight(authority)
+    weight, weight_error = _derive_weight(material)
     if weight:
         states["ponderador"] = "DERIVABLE_EXACTO"
     else:
         reasons.append(weight_error or "PONDERADOR_AUSENTE_EN_CONTRATO")
-    scale, scale_error = _derive_scale(record, authority)
+    scale, scale_error = _derive_scale(record, material)
     if scale:
         states["escala"] = "DERIVABLE_EXACTO"
     else:
         reasons.append(scale_error or "ESCALA_AUSENTE_EN_CONTRATO")
-    if authorities and not is_meaningful(authority.get("cita_procedencia")):
+    if authority is not None and not material.get("cita_procedencia"):
         reasons.append("CITA_PROCEDENCIA_AUSENTE_EN_CONTRATO")
     return states, sorted(set(reasons))
 
 
-def _candidate_id(identity: tuple[str, str, str]) -> str:
+def _candidate_id(identity: tuple[str, ...]) -> str:
     encoded = "\x1f".join(identity).encode("utf-8")
     return "CAND-" + hashlib.sha256(encoded).hexdigest()[:20]
 
 
 def _cv(authority: Mapping[str, Any], kind: str) -> tuple[str, bool]:
-    if kind in {"ADMINISTRATIVA", "CENSAL", "ADMINISTRATIVO"}:
+    if kind in {"ADMINISTRATIVA", "CENSAL"}:
         return "NO APLICA", True
     value = _text(authority.get("cv"))
     if not value:
@@ -368,7 +351,7 @@ def _build_candidate(
     for field, value in (("ENCUESTA", survey), ("OLA", wave), ("UNIVERSO", population)):
         if not is_meaningful(value):
             reasons.append(f"{field}_AUSENTE_EN_CONTRATO")
-    if not is_meaningful(authority.get("cita_procedencia")):
+    if not authority.get("cita_procedencia"):
         reasons.append("CITA_PROCEDENCIA_AUSENTE_EN_CONTRATO")
 
     estimator, estimator_error = _derive_estimator(authority)
@@ -435,13 +418,23 @@ def generate_from_e2_paths(
     baseline_path: Path,
     index_path: Path | None = None,
     compact_report_path: Path | None = None,
-    semantic_authority: Iterable[Mapping[str, Any]] = (),
+    semantic_authority: (
+        Iterable[Mapping[str, Any]] | SemanticAuthorityIndex | None
+    ) = None,
 ) -> E2GenerationResult:
     manifest = read_manifest(manifest_path)
     census = read_tsv(census_path)
     ledger = read_tsv(ledger_path)
     declared_universe = read_tsv(declared_universe_path)
-    authority = tuple(semantic_authority)
+    if isinstance(semantic_authority, SemanticAuthorityIndex):
+        authority_index = semantic_authority
+    elif semantic_authority is None:
+        authority_index = None
+    else:
+        authority_rows = tuple(semantic_authority)
+        authority_index = (
+            SemanticAuthorityIndex(authority_rows) if authority_rows else None
+        )
     private_index, contract = resolve_private_index(repo, contract_path, index_path)
     expected_sha = expected_index_sha(baseline_path)
     if compact_report_path is None:
@@ -464,7 +457,9 @@ def generate_from_e2_paths(
     }
     insufficiency_reasons: Counter[str] = Counter()
     rows_by_identity: dict[tuple[str, str, str], dict[str, str]] = {}
+    specs_by_identity: dict[tuple[str, str, str], str] = {}
     rejected_identities: set[tuple[str, str, str]] = set()
+    conceptual_conflicts: set[tuple[str, str, str]] = set()
     insufficient_count = 0
     duplicates = 0
     conflicts = 0
@@ -483,23 +478,23 @@ def generate_from_e2_paths(
                 structured_e2_evidence[field] += 1
         join = provenance_index.resolve(record)
         joins[join.status.lower()] += 1
-        matches = _authority_matches(record, authority)
-        states, reasons = _classify_seed(record, join, provenance_index, matches)
+        authority = authority_index.lookup(record) if authority_index is not None else None
+        states, reasons = _classify_seed(record, join, provenance_index, authority)
         for field, state in states.items():
             field_coverage[field][state] += 1
 
         candidate: dict[str, str] | None = None
         candidate_reasons: list[str] = []
-        if join.provenance is not None and len(matches) == 1:
+        if join.provenance is not None and authority is not None:
             candidate, candidate_reasons = _build_candidate(
-                record, join.provenance, matches[0]
+                record, join.provenance, authority
             )
         reasons = sorted(set(reasons + candidate_reasons))
         if candidate is None:
             insufficient_count += 1
             for reason in reasons or ("SPEC_INCOMPLETA",):
                 insufficiency_reasons[reason] += 1
-            if join.status == "AMBIGUA" or len(matches) > 1:
+            if join.status == "AMBIGUA":
                 conflicts += 1
             continue
 
@@ -508,12 +503,14 @@ def generate_from_e2_paths(
             candidate["ola"],
             candidate["variable"],
         )
+        semantic_spec = _semantic_authority_spec(authority)
         if identity in rejected_identities:
             continue
         previous = rows_by_identity.get(identity)
         if previous is None:
             rows_by_identity[identity] = candidate
-        elif all(
+            specs_by_identity[identity] = semantic_spec
+        elif specs_by_identity[identity] == semantic_spec and all(
             previous[field] == candidate[field]
             for field in MARCO_FIELDS
             if field not in {"id", "origen_manifiesto_id"}
@@ -525,9 +522,21 @@ def generate_from_e2_paths(
             duplicates += 1
             conflicts += 1
             rejected_identities.add(identity)
+            conceptual_conflicts.add(identity)
             rows_by_identity.pop(identity, None)
+            specs_by_identity.pop(identity, None)
 
     reader.require_sha(expected_sha)
+    if authority_index is not None:
+        authority_index.assert_no_orphans()
+    if conceptual_conflicts:
+        identities = ",".join(
+            _canonical_json(
+                {"encuesta": survey, "ola": wave, "variable": variable}
+            )
+            for survey, wave, variable in sorted(conceptual_conflicts)
+        )
+        raise MarcoError(f"CONFLICTO_IDENTIDAD_CONCEPTUAL:{identities}")
     rows = tuple(
         sorted(
             rows_by_identity.values(),
@@ -550,6 +559,12 @@ def generate_from_e2_paths(
             for field in ("categorias", "value_labels", "unidad", "periodo", "poblacion")
         },
         "resumen": {
+            "autoridades_declaradas": (
+                authority_index.row_count if authority_index is not None else 0
+            ),
+            "autoridades_enlazadas": (
+                authority_index.matched_count if authority_index is not None else 0
+            ),
             "candidatas_emitidas": len(rows),
             "conflictos": conflicts,
             "duplicados": duplicates,
@@ -633,11 +648,20 @@ def main(argv: list[str] | None = None) -> int:
         default=repo / "data/curacion-universo/reportes-inspeccion-barrido2-v1_0.tsv",
         help="Solo conteo de control; nunca crea semillas",
     )
+    parser.add_argument(
+        "--autoridad-semantica",
+        type=Path,
+        default=(
+            repo
+            / "data/curacion-universo/autoridad-semantica-marco-v1_0.jsonl"
+        ),
+    )
     parser.add_argument("--indice-e2", type=Path)
     parser.add_argument("--output", type=Path, help="TSV; use /tmp para el smoke real")
     parser.add_argument("--diagnostico", type=Path, help="JSON diagnóstico")
     args = parser.parse_args(argv)
     try:
+        semantic_authority = load_semantic_authority(args.autoridad_semantica)
         result = generate_from_e2_paths(
             repo=repo,
             manifest_path=args.manifest,
@@ -648,8 +672,9 @@ def main(argv: list[str] | None = None) -> int:
             baseline_path=args.baseline_material,
             index_path=args.indice_e2,
             compact_report_path=args.reporte_compacto,
+            semantic_authority=semantic_authority,
         )
-    except (MarcoError, E2AdapterError) as exc:
+    except (AutoridadSemanticaError, MarcoError, E2AdapterError) as exc:
         print(f"ERROR:{exc}", file=sys.stderr)
         return 2
 

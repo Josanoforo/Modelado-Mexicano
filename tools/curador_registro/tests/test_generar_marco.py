@@ -10,8 +10,13 @@ from pathlib import Path
 
 import yaml
 
+from tools.curador_registro.autoridad_semantica_marco import (
+    AutoridadSemanticaError,
+    with_authority_id,
+)
 from tools.curador_registro.generar_marco import (
     MARCO_FIELDS,
+    MarcoError,
     diagnostics_bytes,
     generate_from_e2_paths,
     tsv_bytes,
@@ -34,25 +39,76 @@ def tsv_text(rows: list[dict[str, object]]) -> str:
     return stream.getvalue()
 
 
-def complete_authority(variable: str = "Q_REAL", **overrides: str) -> dict[str, str]:
-    authority = {
+def tsv_rows(path: Path) -> list[dict[str, str]]:
+    with path.open(encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle, delimiter="\t"))
+
+
+def complete_authority(variable: str = "Q_REAL", **overrides: object) -> dict[str, object]:
+    authority: dict[str, object] = {
+        "schema_version": "AUTORIDAD-SEMANTICA-MARCO-1.0",
         "representacion_id": "REP-" + "4" * 64,
-        "tabla": "hogar",
-        "objeto_padre_id": "OBJ-B2-" + "7" * 64,
+        "semilla_objeto_logico_id": "OBJ-B2-" + "6" * 64,
+        "e2_record_id": "E2R-" + "1" * 64,
+        "payload_id": "MAN-1",
+        "sha256_contenido": "5" * 64,
+        "scope_tipo": "OBJETO_PADRE_ID",
+        "scope_id": "OBJ-B2-" + "7" * 64,
         "variable": variable,
         "encuesta": "ENCUESTA-CANONICA",
         "ola": "2024",
         "universo_poblacional": "personas adultas residentes",
+        "unidad_observacion": "persona elegida",
         "tipo_estadistico": "BINARIA",
-        "codificacion": "0=No|1=Sí",
-        "missing": "9=No especificado",
+        "respuesta_multiple": False,
+        "categorias_excluyentes": True,
+        "codificacion": [
+            {"codigo": "0", "etiqueta": "No"},
+            {"codigo": "1", "etiqueta": "Sí"},
+        ],
+        "missing": {"codigos": ["9"], "ausencia_documentada": False},
+        "unidad_medida": None,
+        "rango_valido": None,
+        "operacion_estimador": None,
         "ponderador": "FAC_EXACTO",
-        "ponderador_exacto": "SI",
-        "ponderador_fuente_ola_tabla": "SI",
-        "cita_procedencia": "DOC-ESTRUCTURADO-1#tabla=hogar#variable=Q_REAL",
+        "ponderador_exacto": True,
+        "ponderador_fuente_ola_tabla": True,
+        "ponderador_fuente": "ENCUESTA-CANONICA",
+        "ponderador_ola": "2024",
+        "ponderador_scope_tipo": "TABLA",
+        "ponderador_scope_id": "hogar",
+        "no_aplica_ponderador_documentado": False,
+        "cita_procedencia": [
+            {
+                "fuente_id": "DOC-ESTRUCTURADO-1",
+                "ruta_o_uri": "corpus/doc-estructurado-1",
+                "sha256": "a" * 64,
+                "localizador": "tabla=hogar#variable=Q_REAL",
+                "campos_autorizados": sorted(
+                    [
+                        "encuesta",
+                        "ola",
+                        "universo_poblacional",
+                        "unidad_observacion",
+                        "tipo_estadistico",
+                        "respuesta_multiple",
+                        "categorias_excluyentes",
+                        "codificacion",
+                        "missing",
+                        "ponderador",
+                        "ponderador_exacto",
+                        "ponderador_fuente_ola_tabla",
+                        "ponderador_fuente",
+                        "ponderador_ola",
+                        "ponderador_scope_tipo",
+                        "ponderador_scope_id",
+                    ]
+                ),
+            }
+        ],
     }
     authority.update(overrides)
-    return authority
+    return with_authority_id(authority)
 
 
 class CorpusFixture:
@@ -133,11 +189,35 @@ class CorpusFixture:
             encoding="utf-8",
         )
 
+    def add_exact_route(self, record: dict[str, object]) -> None:
+        census = tsv_rows(self.census)
+        census.append(
+            {
+                "id_manifiesto": "MAN-1",
+                "representacion_id": str(record["representacion_id"]),
+                "reporte_neutral_ref": str(record["batch_id"]),
+                "sha256_observado": str(record["sha256"]),
+                "objetos_logicos": "999",
+                "universo_declarado": "universo operativo de activos",
+            }
+        )
+        self.census.write_text(tsv_text(census), encoding="utf-8")
+        ledger = tsv_rows(self.ledger)
+        ledger.append(
+            {
+                "representacion_id": str(record["representacion_id"]),
+                "reporte_neutral_ref": str(record["batch_id"]),
+                "payload_id": str(record["payload_id"]),
+                "sha256": str(record["sha256"]),
+            }
+        )
+        self.ledger.write_text(tsv_text(ledger), encoding="utf-8")
+
     def run(
         self,
         records: list[dict[str, object]],
         *,
-        authority: list[dict[str, str]] | None = None,
+        authority: list[dict[str, object]] | None = None,
     ):
         payload = jsonl_bytes(records)
         self.index.write_bytes(payload)
@@ -218,48 +298,37 @@ class GenerarMarcoCorpusRealTests(unittest.TestCase):
             ],
         )
 
-    def test_ambiguous_weight_authority_is_conflictive(self) -> None:
+    def test_duplicate_material_authority_fails_closed(self) -> None:
         authority = complete_authority()
-        result = self.fixture.run([e2_record()], authority=[authority, dict(authority)])
-        self.assertEqual(0, len(result.rows))
-        self.assertEqual(1, result.diagnostics["resumen"]["conflictos"])
-        self.assertEqual(
-            1,
-            result.diagnostics["cobertura_campos"]["ponderador"]["CONFLICTIVO"],
-        )
+        with self.assertRaisesRegex(
+            AutoridadSemanticaError, "AUTORIDAD_CLAVE_DUPLICADA"
+        ):
+            self.fixture.run([e2_record()], authority=[authority, dict(authority)])
 
     def test_n1_enrichment_without_e2_seed_cannot_create_candidate(self) -> None:
-        n1_enrichment = complete_authority()
-        n1_enrichment["record_id"] = "N1-1"
-        result = self.fixture.run([], authority=[n1_enrichment])
-        self.assertEqual(0, result.diagnostics["resumen"]["semillas_reales"])
-        self.assertEqual((), result.rows)
+        with self.assertRaisesRegex(AutoridadSemanticaError, "AUTORIDAD_HUERFANA"):
+            self.fixture.run([], authority=[complete_authority()])
 
     def test_complete_candidate_requires_explicit_structured_authority(self) -> None:
         incomplete = complete_authority()
         incomplete.pop("missing")
-        self.assertEqual(
-            (), self.fixture.run([e2_record()], authority=[incomplete]).rows
-        )
+        with self.assertRaisesRegex(AutoridadSemanticaError, "AUTORIDAD_CAMPOS_INVALIDOS"):
+            self.fixture.run([e2_record()], authority=[incomplete])
         complete = self.fixture.run(
             [e2_record(poblacion="personas adultas residentes")],
-            authority=[complete_authority(universo_poblacional="")],
+            authority=[complete_authority()],
         )
         self.assertEqual(1, len(complete.rows))
         self.assertEqual("Q_REAL", complete.rows[0]["variable"])
         self.assertEqual("PROPORCION_PONDERADA", complete.rows[0]["estimador"])
-        self.assertIn("value_labels", complete.rows[0]["escala"])
+        self.assertIn('"codigo":"1"', complete.rows[0]["escala"])
 
     def test_weight_requires_exact_source_wave_table_attestation(self) -> None:
-        authority = complete_authority(ponderador_fuente_ola_tabla="NO")
-        result = self.fixture.run([e2_record()], authority=[authority])
-        self.assertEqual((), result.rows)
-        self.assertEqual(
-            1,
-            result.diagnostics["razones_insuficiencia"][
-                "PONDERADOR_EXACTO_SCOPE_AUSENTE_EN_CONTRATO"
-            ],
-        )
+        authority = complete_authority(ponderador_fuente_ola_tabla=False)
+        with self.assertRaisesRegex(
+            AutoridadSemanticaError, "AUTORIDAD_PONDERADOR_SCOPE_NO_EXACTO"
+        ):
+            self.fixture.run([e2_record()], authority=[authority])
 
     def test_unweighted_n_is_non_excluding_and_output_has_18_columns(self) -> None:
         result = self.fixture.run([e2_record()], authority=[complete_authority()])
@@ -272,13 +341,66 @@ class GenerarMarcoCorpusRealTests(unittest.TestCase):
         self.assertEqual(18, len(header))
         self.assertEqual(list(MARCO_FIELDS), header)
 
+    def test_two_material_representations_emit_one_conceptual_candidate(self) -> None:
+        first = e2_record()
+        second = e2_record(
+            representacion_id="REP-" + "8" * 64,
+            record_id="E2R-" + "8" * 64,
+            objeto_logico_id="OBJ-B2-" + "9" * 64,
+            objeto_padre_id="OBJ-B2-" + "a" * 64,
+        )
+        first_authority = complete_authority()
+        single = self.fixture.run([first], authority=[first_authority])
+        self.fixture.add_exact_route(second)
+        second_authority = complete_authority(
+            representacion_id=second["representacion_id"],
+            semilla_objeto_logico_id=second["objeto_logico_id"],
+            e2_record_id=second["record_id"],
+            scope_id=second["objeto_padre_id"],
+        )
+        combined = self.fixture.run(
+            [first, second], authority=[first_authority, second_authority]
+        )
+        self.assertEqual(single.rows, combined.rows)
+        self.assertEqual(1, len(combined.rows))
+        self.assertEqual(1, combined.diagnostics["resumen"]["duplicados"])
+
+    def test_incompatible_material_specs_fail_conceptual_identity_closed(self) -> None:
+        first = e2_record()
+        second = e2_record(
+            representacion_id="REP-" + "8" * 64,
+            record_id="E2R-" + "8" * 64,
+            objeto_logico_id="OBJ-B2-" + "9" * 64,
+            objeto_padre_id="OBJ-B2-" + "a" * 64,
+        )
+        self.fixture.add_exact_route(second)
+        authorities = [
+            complete_authority(),
+            complete_authority(
+                representacion_id=second["representacion_id"],
+                semilla_objeto_logico_id=second["objeto_logico_id"],
+                e2_record_id=second["record_id"],
+                scope_id=second["objeto_padre_id"],
+                unidad_observacion="unidad semántica incompatible",
+            ),
+        ]
+        with self.assertRaisesRegex(MarcoError, "CONFLICTO_IDENTIDAD_CONCEPTUAL"):
+            self.fixture.run([first, second], authority=authorities)
+
     def test_order_and_serialization_are_deterministic(self) -> None:
         second = e2_record(
             record_id="E2R-" + "8" * 64,
             objeto_logico_id="OBJ-B2-" + "9" * 64,
             nombre="Q_2",
         )
-        authority = [complete_authority(), complete_authority("Q_2")]
+        authority = [
+            complete_authority(),
+            complete_authority(
+                "Q_2",
+                semilla_objeto_logico_id="OBJ-B2-" + "9" * 64,
+                e2_record_id="E2R-" + "8" * 64,
+            ),
+        ]
         left = self.fixture.run([e2_record(), second], authority=authority)
         repeated = self.fixture.run([e2_record(), second], authority=authority)
         right = self.fixture.run([second, e2_record()], authority=authority)
