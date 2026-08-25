@@ -525,8 +525,7 @@
             },
             {
               "fields": [
-                "unidad_observacion",
-                "universo_poblacional"
+                "rango_valido"
               ],
               "local_path": "enut2024_fd.xlsx",
               "locator": "hoja=TMODULO;fila=34;variable=EDAD_V;rango válido oficial 12 - 96 años",
@@ -551,8 +550,8 @@
             "scalar_exclusive_variables": [],
             "unresolved_variables": []
           },
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         },
         "TVAR_CREA": {
           "context_citations": [
@@ -579,8 +578,7 @@
             },
             {
               "fields": [
-                "unidad_observacion",
-                "universo_poblacional"
+                "rango_valido"
               ],
               "local_path": "enut2024_fd.xlsx",
               "locator": "hoja=TVAR_CREA;fila=70;variable=EDAD;rango válido oficial 12 - 96 años",
@@ -605,8 +603,8 @@
             "scalar_exclusive_variables": [],
             "unresolved_variables": []
           },
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TVAR_CREA/TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         }
       },
       "type_rule": "DOS_CODIGOS_BINARIA_OTRO_ENUMERADO_CATEGORICA"

@@ -51,7 +51,8 @@
     "CATEGORICA": 58
   },
   "clases_bloqueo_residual": {
-    "INSUFICIENCIA_DE_LA_FUENTE": 128664
+    "CONTEXTO_SEMANTICO_NO_RESUELTO_TRAS_PROYECCION_PRIMARIA": 69154,
+    "INSUFICIENCIA_DE_LA_FUENTE": 59510
   },
   "conflictos_conceptuales": [
     {
@@ -1081,7 +1082,7 @@
       "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-3f7ff6e0653867f5023bbfba",
+          "autoridad_id": "ASM-41216771ee00175bcd464eb7",
           "e2_record_id": "E2R-12240d671fdc50c4007ddad3d89c471c7f0abfdb685c39eedb4534db1b629a86",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1089,11 +1090,11 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TVAR_CREA/TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         },
         {
-          "autoridad_id": "ASM-9976c4082ffc963940f18f1b",
+          "autoridad_id": "ASM-a5a97da2272f0c4e46fbd491",
           "e2_record_id": "E2R-fce1107f17d81db9d0d475623c8df1c27b2dd66d6b8b647b3cf5973afd34a1b0",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1101,8 +1102,8 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         }
       ],
       "ola": "2024",
@@ -1112,7 +1113,7 @@
       "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-300666e70a6cdfa13eb65bbb",
+          "autoridad_id": "ASM-6a46185ce2a8214af723d0ba",
           "e2_record_id": "E2R-e7126ccb2c5a76d50f403dc53498f4edb5d8acf47a430f1c9806b5a6059d34e3",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1120,11 +1121,11 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TVAR_CREA/TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         },
         {
-          "autoridad_id": "ASM-46ef84dcb28cf5eff960828c",
+          "autoridad_id": "ASM-163e154397e9fa0eed06512d",
           "e2_record_id": "E2R-635ebf4d26900fc32a4c736ee9477dd5a9bf4fca1bb9a135fea0fe15a0993667",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1132,8 +1133,8 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         }
       ],
       "ola": "2024",
@@ -1143,7 +1144,7 @@
       "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-dae1b8f83be916601129f693",
+          "autoridad_id": "ASM-7add9f4ba6567dfc7469fbd2",
           "e2_record_id": "E2R-0abe8e5fc86d62a0a73ccf80092dab2c2798f5d134018429bdbb92f8cf5e9178",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1151,11 +1152,11 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TVAR_CREA/TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         },
         {
-          "autoridad_id": "ASM-a4d6292488f409b26c42fc7c",
+          "autoridad_id": "ASM-01bbfee1a87294542c886678",
           "e2_record_id": "E2R-7fbdd7ec5550c11f0681f4053bd747537b82b24a51f475b117d0c1f8465b1479",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1163,8 +1164,8 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         }
       ],
       "ola": "2024",
@@ -1174,7 +1175,7 @@
       "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-a071b713c806051a1ed65f66",
+          "autoridad_id": "ASM-810978d7ea2bcb25006e9bb1",
           "e2_record_id": "E2R-66802623f867cd41086483c01b45d3b51c6cdfa6f4202c070931b0785fa93a44",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1182,11 +1183,11 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TVAR_CREA/TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         },
         {
-          "autoridad_id": "ASM-ca18541a14a4c2bc46c9661d",
+          "autoridad_id": "ASM-c55aad72d509d329e1d78c9d",
           "e2_record_id": "E2R-b7e715de2c10f8b1e80902a71934cf5949c500f01bb46c70bf78969d564b9eff",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1194,8 +1195,8 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         }
       ],
       "ola": "2024",
@@ -1205,7 +1206,7 @@
       "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-e2771240683cb75fcc8d1763",
+          "autoridad_id": "ASM-825e2d4386608f9d21eac4a9",
           "e2_record_id": "E2R-00a9e41217bae0804087b1d1c76d5a4417233fd83233ed7e6fc7e06f1d641b2e",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1213,11 +1214,11 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TVAR_CREA/TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         },
         {
-          "autoridad_id": "ASM-17c45428876a1cff0181bd20",
+          "autoridad_id": "ASM-26fffddb85d2a9759df80168",
           "e2_record_id": "E2R-d0b4421f3ae7dc7cfabee23130c27f1b7c4f6b5467c61c02cc48ebd11c189a50",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1225,8 +1226,8 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         }
       ],
       "ola": "2024",
@@ -1236,7 +1237,7 @@
       "encuesta": "Encuesta Nacional sobre Uso del Tiempo (ENUT) 2024",
       "evidencias_materiales": [
         {
-          "autoridad_id": "ASM-7d61782f6b405e710f9d1328",
+          "autoridad_id": "ASM-239f5518c5a865ccd00f3c1c",
           "e2_record_id": "E2R-9c52698145743459a254885e2cf3a49e2cda1893e83bd014622528677dfca03e",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1244,11 +1245,11 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-031e82c563758255d7e1ceba65bd940d46dc7106c44238f37f0515b7d3eadd20",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TVAR_CREA/TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         },
         {
-          "autoridad_id": "ASM-76773e7f3394f908828530e9",
+          "autoridad_id": "ASM-ec27a972896a7a77ac931949",
           "e2_record_id": "E2R-ff9cbd0bfe02c3de074adf8ccb30325584bc98c7971e6eb5d4a0ae51c01dd446",
           "payload_id": "enut2024_fd_xlsx",
           "ponderador": "FAC_PER",
@@ -1256,8 +1257,8 @@
           "representacion_id": "REP-d6184a1bb7cb53e7a8b4704e1082945a8a102ffa78a2a2c4d25b1c7235cc8f18",
           "scope_id": "OBJ-B2-39bcb4bf702b45c737fb1891e792e2c4fc7bf27ee80008281cf3a4876b794d1a",
           "scope_tipo": "OBJETO_PADRE_ID",
-          "unidad_observacion": "Una persona informante elegida de 12 a 96 años.",
-          "universo_poblacional": "Personas de 12 a 96 años en el universo de TMODULO."
+          "unidad_observacion": "Una persona de 12 años y más residente habitual de la vivienda seleccionada.",
+          "universo_poblacional": "Población de 12 años y más, residente habitual en viviendas particulares habitadas dentro del territorio nacional de México."
         }
       ],
       "ola": "2024",
@@ -2347,10 +2348,11 @@
     "candidatas_nuevas": 111,
     "candidatas_totales": 253,
     "conflictos_identidad_conceptual": 39,
+    "contexto_semantico_no_resuelto_tras_proyeccion_primaria": 69154,
     "duplicados_compatibles": 0,
     "encuestas_con_candidatas": 4,
     "fuente_primaria_no_presente": 0,
-    "insuficiencia_de_la_fuente": 128664,
+    "insuficiencia_de_la_fuente": 59510,
     "metadata_primaria_no_proyectable_paro_tecnico": 0,
     "olas_con_candidatas": 4,
     "procedencia_no_reconciliada": 850,
@@ -2421,7 +2423,7 @@
   "trazabilidad": {
     "indice_e2_sha256": "6e87c0347f0d0fa8736836e4ef7521b8dc6e700bb220cf07a9c494f8bf9bb79c",
     "origin_main_inicial": "b93bf3651ff80784cdc154c01c1ac28e1f0f24ce",
-    "perfiles_sha256": "1ff26efe1bc76b6e6c54e08c8950e5deb8ee98f02c02c62d8b604ceb94822fe8",
+    "perfiles_sha256": "d20a24ecfeb09f575c875f9fd0329328a5c0bb7a20b8d3ac82ba1774f147d0ad",
     "pr_343_merge_commit": "620cf0d9c1071993ddacedeb41a74edc602322dc",
     "proyectores": [
       "CSV-DICCIONARIO-CATALOGO-1.0",

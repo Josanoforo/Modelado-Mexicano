@@ -82,6 +82,17 @@ SUPPORTED_TYPE_RULE = "DOS_CODIGOS_BINARIA_OTRO_ENUMERADO_CATEGORICA"
 SUPPORTED_MISSING_RULE = "CODIGOS_VALIDOS_EXHAUSTIVOS"
 STRUCTURAL_SCALAR_RULE = "CAMPO_ESCALAR_CON_DOMINIO_ESTRUCTURADO"
 
+# Razones que solo describen que encuesta/ola no quedaron documentadas en el
+# contexto cruzado, no que un campo primario haya sido inspeccionado y
+# encontrado insuficiente: la metadata primaria SI se proyecto con exito
+# (codigo_etiqueta/dominio_declarado/titulo_encuesta_estructurado) pero el
+# contexto de identidad (encuesta, ola) sigue sin resolverse con las capas
+# examinadas. INSUFICIENCIA_DE_LA_FUENTE se reserva para un campo que el
+# proyector si examino y demostro ausente o insuficiente (tipo_estadistico,
+# codificacion, dominio, universo por variable, ponderador, respuesta).
+CONTEXT_UNRESOLVED_AFTER_PROJECTION = "CONTEXTO_SEMANTICO_NO_RESUELTO_TRAS_PROYECCION_PRIMARIA"
+CONTEXT_UNRESOLVED_REASONS = frozenset({"ENCUESTA_NO_DOCUMENTADA", "OLA_NO_DOCUMENTADA"})
+
 # Frontera mecánica del diagnóstico emitido por #346. Estos nueve payloads ya
 # tenían perfil o un bloqueo específico; las demás semillas exactas no emitidas
 # formaban el inventario de 107,443. Se conserva aquí únicamente para poder
@@ -1636,6 +1647,8 @@ def materialize(
                 if reason == "METADATA_PRIMARIA_NO_PROYECTABLE"
                 else "FUENTE_PRIMARIA_NO_PRESENTE"
                 if reason == "FUENTE_PRIMARIA_NO_PRESENTE"
+                else CONTEXT_UNRESOLVED_AFTER_PROJECTION
+                if reason in CONTEXT_UNRESOLVED_REASONS
                 else "INSUFICIENCIA_DE_LA_FUENTE"
             )
             blocker_classes[blocker_class] += 1
@@ -1892,6 +1905,9 @@ def materialize(
             ],
             "fuente_primaria_no_presente": blocker_classes[
                 "FUENTE_PRIMARIA_NO_PRESENTE"
+            ],
+            "contexto_semantico_no_resuelto_tras_proyeccion_primaria": blocker_classes[
+                CONTEXT_UNRESOLVED_AFTER_PROJECTION
             ],
         },
         "antes_pr346_despues": {
