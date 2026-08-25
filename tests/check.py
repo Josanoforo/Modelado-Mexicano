@@ -1289,6 +1289,16 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # extensión mínima de perímetro por desviación mecánica que ADR-147(c)/
     # ADR-149(f)/ADR-151/ADR-164 -- ACTO SELLA-AGO25-F, 25/ago/2026.
     "forense/notas/2026-08-25-sella-f.md",
+    # forense/encargos/2026-08-25-SELLA-A1-CODI.md -- encargo archivado
+    # verbatim (convencion de forense/encargos/, A.3), incluye la RANURA
+    # de firma de mesa tal como se lanzo. La firma que esa ranura pedia
+    # ya esta capturada: FP-104 en firmas-pendientes.tsv paso a FIRMADA
+    # con el verbatim exacto y ADR-177 la sella -- no es un marcador
+    # nuevo sin dueno, es la copia fiel de uno ya resuelto. Extension
+    # minima de perimetro por desviacion mecanica, mismo precedente que
+    # ADR-147(c)/ADR-149(f)/ADR-151/ADR-164 -- ACTO SELLA-A1-CODI,
+    # 25/ago/2026 (PR #350, CI del propio acto).
+    "forense/encargos/2026-08-25-SELLA-A1-CODI.md",
     "forense/encargos/2026-08-25-SELLA-AGO25-F.md",
     # forense/notas/2026-08-25-sella-f-hoja.md y su encargo -- continuación de
     # SELLA-AGO25-F, ejecuta las diez letras de mesa (L1-L10) ya resueltas y
@@ -2231,6 +2241,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # misma razon que la entrada de arriba: esta nota cita "E-3" en prosa al
     # narrar el propio hallazgo de T25 sobre el encargo.
     "forense/notas/2026-08-24-adq-corre-r74r75-cierre.md",
+    # ACTO SELLA-A1-CODI, 25/ago/2026 (ADR-177, PR #350): adjunto de mesa
+    # aterrizado verbatim (ADR-151, cero ediciones). Su `§E5` pelado cita
+    # por nombre el espacio real de forense/EDGE-CASES-y-literatura-
+    # reciente.md §E5 (linea 39, "## E5 - Invariancia de medicion"), ya
+    # existente y censado -- no declara un espacio nuevo. Mismo patron que
+    # benchmark-enlace-invarianza. Extension minima de perimetro por
+    # desviacion mecanica (CI del propio acto, PR #350).
+    "forense/benchmark-unidad-homogenea-codi-spei-v1_0.md",
     "forense/BENCHMARK-INTERVALO-CORREDOR-M-2026-08-20.md",
     "forense/encargos/2026-08-21-emisor-m1b.md",
     "canon/APERTURA-FASE-CALCULO-v1_2.md",
