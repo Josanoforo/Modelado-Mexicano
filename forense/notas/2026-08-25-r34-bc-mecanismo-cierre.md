@@ -61,7 +61,9 @@ Tres cosas se corrigieron durante el cierre, todas de contabilidad del programa 
 
 1. **`T15` ×2** — `canon/estado-programa-v1_10.md:27` y `canon/gobernanza-v1_15.md:2` citaban `185 ADR`; con `ADR-189` son `186`. Recifradas las dos cabeceras.
 2. **`T22` ×1** — el encargo archivado dispara `_T22_MARCADOR_PENDIENTE` (patrón `PROPUESTA.*mesa`) y ninguna fila lo citaba. **No se añadió a `_T22_ARCHIVOS_CONOCIDOS`**: el pendiente es real, así que la corrección correcta era la contraria — `FP-157` cita ahora en su columna `dónde` el encargo, la ficha y esta nota. El test hacía bien su trabajo.
-3. **`T16` ×2** — `estado:303`/`:305` declaraban `128 WARN`. Recifradas a `129`; y la cifra vieja de `ACTO PACK-NUBE2-CIERRE-R101` en `:305` recibió su marca `{cita-historica}` inmediatamente después del cierre de negritas, que es la convención que el propio archivo ya usa en sus otras diez cifras históricas.
+3. **Medido de paso, y corrige una creencia del programa: `T15` y `T16` exigen la marca `{cita-historica}` en posiciones DISTINTAS.** `T15` empareja `(\d+)\s*ADR\b` (`tests/check.py:587`), así que `m.end()` cae justo tras `ADR` y la marca va **dentro** de las negritas: `**186 ADR{cita-historica}**`. `T16` empareja `\*\*(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN\*\*` (`:695`) — **el patrón incluye el cierre de negritas**, así que `m.end()` cae después y la marca va **fuera**: `**19 FAIL · 128 WARN**{cita-historica}`. Las dos formas son correctas, cada una para su test; generalizar la de `T15` a `T16` deja el `FAIL` vivo. Corolario medido: una cifra `FAIL/WARN` **sin negritas** no la empareja `T16` en absoluto, y marcarla es ruido — se retiró una marca así de `estado:212`.
+
+4. **`T16` ×2** — `estado:303`/`:305` declaraban `128 WARN`. Recifradas a `129`; y la cifra vieja de `ACTO PACK-NUBE2-CIERRE-R101` en `:305` recibió su marca `{cita-historica}` inmediatamente después del cierre de negritas, que es la convención que el propio archivo ya usa en sus otras diez cifras históricas.
 
 ## 9 · Qué queda vivo
 
