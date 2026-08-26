@@ -1,6 +1,6 @@
 # `EXP-COMPARTAMOS-1` — ejercicio de la llave: resultado
 
-### `resultado-exp-compartamos-v1_0` · **v1.0** · 26 de agosto de 2026 · ENTORNO UBUNTU · `ACTO E3 · EJERCE-LLAVE-COMPARTAMOS`
+### `resultado-exp-compartamos-v1_0` · **v1.0** · 26 de agosto de 2026 · ENTORNO UBUNTU · `ACTO MAESTRA30-E3 · EJERCE-LLAVE-COMPARTAMOS`
 
 > | | |
 > |---|---|
