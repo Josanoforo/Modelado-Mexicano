@@ -1,0 +1,140 @@
+==============================================================================
+HITO D · R10.1 — FASE B de ACTO CORRE-R10.1-v2 · kappa, consenso, recuento
+spec: forense/hitoD-R10_1-spec-v2_0-PROPUESTA.md (SELLADA, FP-128)
+entorno: UBUNTU · computo puro, sin corpus ni red
+==============================================================================
+
+§1 · LAS DOS CODIFICACIONES, LADO A LADO
+  unid  brazo  | cod1 N1      cod1 N2       | cod2 N1      cod2 N2       | acuerdo
+  U01   +P     | NO-RECHAZO   NO-RECHAZO    | NO-RECHAZO   NO-RECHAZO    | N1+N2
+  U02   +P     | INDIRECTO    APLAZAMIENTO  | NO-RECHAZO   NO-RECHAZO    | NINGUNO
+  U03   +P     | INDIRECTO    EXCUSA        | INDIRECTO    EXCUSA        | N1+N2
+  U04   +P     | INDIRECTO    ALTERNATIVA   | INDIRECTO    ALTERNATIVA   | N1+N2
+  U05   +P     | INDIRECTO    EXCUSA        | INDIRECTO    EXCUSA        | N1+N2
+  U06   +P     | INDIRECTO    EXCUSA        | INDIRECTO    EXCUSA        | N1+N2
+  U07   -P     | NO-RECHAZO   NO-RECHAZO    | NO-RECHAZO   NO-RECHAZO    | N1+N2
+  U08   -P     | NO-RECHAZO   NO-RECHAZO    | NO-RECHAZO   NO-RECHAZO    | N1+N2
+  U09   -P     | DIRECTO      DIRECTO       | DIRECTO      DIRECTO       | N1+N2
+  U10   -P     | NO-RECHAZO   NO-RECHAZO    | NO-RECHAZO   NO-RECHAZO    | N1+N2
+  U11   -P     | DIRECTO      DIRECTO       | INDIRECTO    EXCUSA        | NINGUNO
+  U12   -P     | INDIRECTO    ALTERNATIVA   | INDIRECTO    EXCUSA        | solo N1
+
+§2 · COHEN'S KAPPA (spec §3.3) — dos niveles
+  El universo de 11 excluye U10, PRE-REGISTRADA en la Fase A como
+  pre-decidida para ambos codificadores: la regla 2.5 nombra 'Rechazo 10'
+  dentro del esquema, y el esquema viajo verbatim en el paquete.
+  Es DIAGNOSTICO. El gate de §3.4 es el kappa sobre las 12.
+
+  12 (gate)                  Nivel 1  : kappa = 0.7209   (Po = 0.8333 = 10/12, Pe = 0.4028)
+    matriz de confusion (Nivel 1) — filas cod1, columnas cod2:
+                  | DIRECTO     INDIRECTO   NO-RECHAZO 
+      DIRECTO     | 1           1           0          
+      INDIRECTO   | 0           5           1          
+      NO-RECHAZO  | 0           0           4          
+  12 (gate)                  Nivel 2  : kappa = 0.6571   (Po = 0.7500 = 9/12, Pe = 0.2708)
+    matriz de confusion (Nivel 2) — filas cod1, columnas cod2:
+                    | ALTERNATIVA   APLAZAMIENTO  DIRECTO       EXCUSA        NO-RECHAZO   
+      ALTERNATIVA   | 1             0             0             1             0            
+      APLAZAMIENTO  | 0             0             0             0             1            
+      DIRECTO       | 0             0             1             1             0            
+      EXCUSA        | 0             0             0             3             0            
+      NO-RECHAZO    | 0             0             0             0             4            
+  11 (diagnostico, sin U10)  Nivel 1  : kappa = 0.6901   (Po = 0.8182 = 9/11, Pe = 0.4132)
+  11 (diagnostico, sin U10)  Nivel 2  : kappa = 0.6333   (Po = 0.7273 = 8/11, Pe = 0.2562)
+
+§3 · GATE (spec §3.4) — kappa Nivel 1 sobre las 12 contra 0.60
+  kappa(N1, 12) = 0.7209
+  Landis & Koch: 0.61-0.80 = acuerdo SUSTANCIAL
+  GATE APROBADO -> se habilita el conteo POR CONSENSO (sin tercer codificador)
+
+  Control de la reserva pre-registrada: los cuatro kappa caen del mismo
+  lado de 0.60?  SI — la distincion 12/11 no cambia nada
+    12 (gate)                  Nivel 1  = 0.7209  (>= 0.60)
+    12 (gate)                  Nivel 2  = 0.6571  (>= 0.60)
+    11 (diagnostico, sin U10)  Nivel 1  = 0.6901  (>= 0.60)
+    11 (diagnostico, sin U10)  Nivel 2  = 0.6333  (>= 0.60)
+
+§4 · CONSENSO UNIDAD POR UNIDAD (spec §3.4, sin tercer codificador)
+  U02 · cod1 = INDIRECTO/APLAZAMIENTO   cod2 = NO-RECHAZO/NO-RECHAZO   -> CONSENSO = NO-RECHAZO/NO-RECHAZO (a favor de cod2)
+      2.5 dispara: el estudiante nunca niega —pregunta por la posibilidad de
+       posponer— y la interaccion cierra con el estudiante ACEPTANDO la cont
+      rapropuesta del asesor ('lo analicemos con calma' / 'Me parece bien').
+       Satisface dos gatillos literales de 2.5: 'termina aceptando' y 'aplaz
+      ando sin resolver hacia el rechazo'. La objecion de cod1 —que 2.5 vaci
+      aria al subtipo APLAZAMIENTO de 2.2— es de diseno del esquema, no evid
+      encia sobre este turno: 2.2 conserva los casos donde el aplazamiento d
+      el rechazante es la ultima palabra y el peticionario desiste.
+
+  U11 · cod1 = DIRECTO/DIRECTO   cod2 = INDIRECTO/EXCUSA   -> CONSENSO = DIRECTO/DIRECTO (a favor de cod1)
+      Prueba de remocion de 2.1: el primer turno de Lisandro ('todavia no ac
+      abo de comer, y la clase empieza en diez minutos') NO consuma el recha
+      zo —Jorge sigue insistiendo cuatro turnos mas—; el que lo consuma es '
+      Me cay que no puedo, guey, por mas que intente, no..', tras el cual Jo
+      rge desiste. Las razones que cod2 cita son adjuntos de un turno distin
+      to del acto nuclear. La razon adyacente al acto nuclear ('no me gusta 
+      salir de mi clase') es INTERNA, y 2.2/2.3 exigen razon EXTERNA para qu
+      e la negacion deje de contar directa. La nota del propio cod2 las rotu
+      la 'externas/personales'.
+
+  U12 · cod1 = INDIRECTO/ALTERNATIVA   cod2 = INDIRECTO/EXCUSA   -> CONSENSO = INDIRECTO/ALTERNATIVA (a favor de cod1)
+      Nivel 1 ya coincidia (INDIRECTO): esta discrepancia es de Nivel 2 y NO
+       mueve el denominador ni la tasa. Se resuelve a ALTERNATIVA porque el 
+      cierre de Jorge —'Pues, sale, entons’ te espero'— responde a la opcion
+       que Omar ofrecio ('ve tu y yo te alcanzo, termino mi clase'), no a la
+       razon. Reserva: la lectura EXCUSA de cod2 ('voy retrasado en esta mat
+      eria', 'primero los deberes') es defendible y viaja escrita.
+
+  unidades sin discrepancia alguna (no requieren consenso): 9 de 12 — U01 U03 U04 U05 U06 U07 U08 U09 U10
+
+§5 · COBERTURA DEL UNIVERSO (spec §6: se reportan, no se descartan en silencio)
+  brazo +P : 6 transcripciones · 4 codificables como rechazo · 2 NO-RECHAZO
+      U01 excluida del denominador — 2.5 (a) termina aceptando: 'ya si la tengo que tomar, pues la tomo'
+      U02 excluida del denominador — 2.5 por consenso: cierra aceptando 'lo analicemos con calma'
+  brazo -P : 6 transcripciones · 3 codificables como rechazo · 3 NO-RECHAZO
+      U07 excluida del denominador — 2.5 (a) termina aceptando: acuerdan hora y lugar para los apuntes
+      U08 excluida del denominador — 2.5 (a) termina aceptando: 'Pos orale'
+      U10 excluida del denominador — 2.5 nombrada en la propia regla (Rechazo 10): 'si salgo antes, pues llego'
+
+§6 · TASAS DIRECTO/INDIRECTO POR BRAZO (denominador sin NO-RECHAZO)
+  brazo +P : indirectos 4 de 4 = 100.00 pp   IC95% Wilson [51.01, 100.00]
+      U03=IND  U04=IND  U05=IND  U06=IND
+  brazo -P : indirectos 1 de 3 = 33.33 pp   IC95% Wilson [6.15, 79.23]
+      U09=DIR  U11=DIR  U12=IND
+
+§7 · DIFERENCIA, IC95% Y RAMA DEL ARBOL (spec §4.1)
+  tasa(+P) = 100.00 pp (4/4)   tasa(-P) = 33.33 pp (1/3)
+  diferencia (+P menos -P) : 66.67 pp
+  EE Wald                  : 27.22 pp
+  IC95% Wald              : [13.32, 120.01]
+
+  ADVERTENCIA declarada: con p1 = 1.00 el termino Wald del brazo +P es
+  EXACTAMENTE CERO, y Wald es conocido por fallar en el borde. El IC Wald
+  de arriba esta ESTRECHADO por un artefacto, no por potencia. Se reporta
+  ademas el intervalo de Newcombe (hibrido de Wilson), que no degenera:
+  IC95% Newcombe          : [-0.47, 93.85]
+  Fisher exacto 2x2, p = 0.1429   tabla [ind, dir]: +P [4, 0] / -P [1, 2]
+
+  Contra el umbral de 15 pp:
+    IC Wald      [  13.32,  120.01] -> CRUZA el umbral
+    IC Newcombe  [  -0.47,   93.85] -> CRUZA el umbral
+
+  RAMA 4 -> fila C
+  §4.2: se registra TAMBIEN como 'no adjudica' bajo A-bis. Son respuestas
+  a preguntas distintas: A-bis dice que el numero no decide; C dice que
+  la via es replicar fuera de poblacion universitaria/elicitada.
+  §4.3 precedencia 4: C manda sobre 'no adjudica' puro porque el IC cruza
+  el umbral Y el instrumento es universitario/elicitado.
+  §6 B-bis: 'corroborada' excluida por diseno; 'falsador demasiado debil'
+  (D) NO aplica — ningun brazo quedo vacio (4 y 3).
+
+§8 · TECHO DE n, RE-DERIVADO CONTRA LO PRE-DECLARADO (spec §5.1)
+  §5.1 declaro ±56.58 pp suponiendo n=6 por brazo y las dos tasas en 50%.
+  Denominadores REALES tras excluir NO-RECHAZO por 2.5: +P n=4, -P n=3.
+  El techo se cumple y EMPEORA: la exclusion de las 5 unidades NO-RECHAZO
+  bajo la regla 2.5 recorta los brazos de 6/6 a 4/3. El semiancho Newcombe
+  hacia abajo es 67.13 pp. Recodificar mejor la VALIDEZ (defecto 1) no compra
+  POTENCIA: §5.2 lo predijo antes de correr y la corrida lo confirma.
+
+==============================================================================
+VEREDICTO DE LA CORRIDA: fila C · kappa(N1,12) = 0.7209 · diferencia 66.67 pp
+==============================================================================
