@@ -203,3 +203,82 @@ Ninguna de las tres es un acto de este encargo; se proponen, no se ejecutan.
 ## 9 · Cierre
 
 `R3.4` **no se adjudica** en este acto. `tests/aceptacion_r3_4.py` **no se toca**. La condición `A` **no se re-abre**. Lo que este acto entrega es: el censo con universo declarado, el nombre exacto de la única variable que bloquea `B` y `C`, el defecto de redacción del `Respaldo 2` frente a la escala, y la vía más barata para cerrar el hueco. El veredicto integrado `A ∧ B ∧ C` es de mesa, y va al tablero como fila nacida `ABIERTA`.
+
+---
+
+## Anexo ENSAFI, 25/ago/2026
+
+> **Append de `ACTO R34-ENSAFI-CENSA` (`ADR-193`), posterior al cierre de §9.** No modifica ni una
+> línea de lo anterior: la fila 10 de la tabla de §3 (`ENSAFI 2023` → `NO-ACCESIBLE`) **se
+> confirma**, ahora medida en vez de inferida, y se le añade lo que faltaba — el censo a nivel
+> reactivo contra los cuatro constructos, y el nombre del archivo que levantaría el bloqueo.
+> Cierre completo con universos, tablas y salidas crudas:
+> `forense/notas/2026-08-25-r34-ensafi-censa-cierre.md`. **CONTADOR: cero.**
+
+**(1) La premisa «no abierta» era falsa; el veredicto que produjo, no.** `ENSAFI 2023` ya había
+sido abierta dos veces antes de este anexo —`ABRIR-4` (8/ago) y `ACTO APERTURA-ENFIH-ENSAFI`
+(20/ago, `ADR-133`, `PR #302`, `data/apertura-enfih-ensafi-v1_0.tsv`, 4 filas `ENSAFI`)— y este
+acto la abre una tercera vez. Lo que la bloquea **no es la apertura: es el descriptor**. La fila 10
+ya lo decía (*«el microdato está, el descriptor no»*); lo que este anexo añade es la verificación a
+nivel de bytes en lugar de la inferencia.
+
+**(2) El techo, medido.** El zip trae **4 `.csv` y nada más** (`TSDEM` 25 col · `TVIVIENDA` 36 ·
+`THOGAR` 55 · `TMODULO` 253 = **369 cabeceras**; 0 `.pdf`, 0 `.xlsx`). Ningún descriptor de
+`ENSAFI` existe en ninguna de las tres raíces: **987 archivos examinados** (718 `data_raw` + 122
+`descargas_mx` + 147 `downloads`), **2** rutas `*ensafi*` y ambas son el directorio y el zip de
+datos. Control positivo del patrón en la misma pasada: **32** descriptores `*_fd*` de otras
+encuestas sí aparecen. En el árbol versionado (1 960 archivos) ningún documento mapea código
+`P`-numerado a texto de pregunta.
+
+**(3) El censo, cuatro constructos, `A.4` con universo.** Barrido de términos sobre las 369
+cabeceras leídas íntegras (`zipfile`+`csv`), 25/ago/2026; control positivo del extractor: 12
+términos financieros → **11 coincidencias**.
+
+| constructo | términos | hallazgo | veredicto |
+|---|---:|---|---|
+| Riesgo fiscal / SAT / vigilancia al usar pagos o servicios digitales | 16 | 0 | **`NO-ACCESIBLE`** |
+| Razones de no-uso de pagos/servicios digitales (`CoDi`) | 15 | 0 — `CoDi` no aparece en ninguna cabecera | **`NO-ACCESIBLE`** |
+| Fricción declarada | 11 | 0 | **`NO-ACCESIBLE`** |
+| Confianza: canal personal vs. institucional | 9 | 1 candidato legible, `CONF_FINAN` (columna **única**, binaria, 20 448/20 448) | **`NO-ACCESIBLE`**, y el único candidato legible queda descartado **por forma**: una variable única no puede separar canal personal de institucional dentro de una batería |
+
+**`NO-ACCESIBLE`, no `NO-ENCONTRADO`.** Los 354 códigos `P`-numerados restantes **no son buscables
+por término**: sin descriptor no tienen texto en ningún documento del repositorio. Por eso el censo
+de esta ficha **no queda exhaustivo** con este anexo — queda exhaustivo *hasta el techo del
+corpus*, y el techo tiene ahora nombre y URL.
+
+**(4) Lo que sí se pudo cerrar sin descriptor: el formato de respuesta.** Contando marcas por fila
+sobre las 20 448 filas de `TMODULO`, **las 18 baterías del módulo son de respuesta múltiple** —
+todas tienen filas con más de una marca (de 2.0 % en `P6_5_*` a 98.5 % en `P5_2_*`). El defecto que
+descalificó a `ENIF` para la conjunción de `B` —pregunta de respuesta única— **no aplica
+estructuralmente a ninguna batería de `ENSAFI`**. Los universos también están completos y son
+legibles del propio microdato (`FILTRO_S5_4 = 1` → 5 707, exactamente el universo de `P5_23_*`).
+
+**(5) El hallazgo que cambia el costo de la vía §7·1.** Sonda de solo-lectura, 12 URLs, **ningún
+byte guardado** (`curl -sL -o /dev/null`, sólo estado/tamaño/tipo), con control negativo
+deliberado que fija la firma del soft-404 del portal en **2 263 bytes `text/html`**:
+
+- **`https://www.inegi.org.mx/contenidos/programas/ensafi/2023/doc/ensafi_2023_cuestionario.pdf`
+  → `http=200`, `1 182 405` bytes, `application/pdf`. EXISTE.**
+- Las otras 11 —incluidas todas las variantes del `FD` y el control negativo inventado— devuelven
+  el soft-404.
+
+Los actos previos buscaron el **`FD`** (patrón `enasic_2022_fd.xlsx` / `enfih_2019_fd.xlsx`), y esa
+conclusión sigue en pie: el `FD` de `ENSAFI` no está publicado bajo ningún patrón probado. Pero el
+**cuestionario** es otro artefacto, bajo otro patrón de nombre, y es donde vive el **texto verbatim
+del reactivo** — que es exactamente lo único que le falta a este censo. §7·1 de esta ficha decía
+*«el hueco no es una encuesta: es un descriptor y un reactivo»*; con esta sonda el hueco se estrecha
+a **un archivo de 1.18 MB con URL verificada hoy**.
+
+**Este acto no lo descarga** (`data/manifiesto.yaml` y `data/raw/` en escritura están fuera de su
+perímetro, y el encargo lo prohíbe explícitamente). La receta `A.5` completa —con la verificación
+de tamaño que distingue el `PDF` real del soft-404, y con la reserva honesta de que el cuestionario
+no trae nombres de columna y el puente código↔reactivo habrá que armarlo por sección— está en §4 de
+la nota de cierre.
+
+**(6) Lo que este anexo NO hace.** No adjudica `FP-157`. No propone veredicto para `B` ni para `C`
+— la propuesta de este acto (`B` `INDETERMINADA`, `C` `INDETERMINADA`) queda intacta. No toca
+`tests/aceptacion_r3_4.py`. No reclasifica `CONF_FINAN` para la necesidad 14. No mueve
+`data/diseno-muestral.yaml`, donde `ENSAFI` sigue `PENDIENTE` por la misma causa. **Base medida de
+`B`/`C`: sigue en `0 de 2`.** Y no afirma que el reactivo fiscal exista: que el cuestionario esté
+publicado no implica que `ENSAFI` pregunte por riesgo fiscal al usar un medio de pago digital —
+eso es **plausible a priori y no verificado**, y sólo el `PDF` puede confirmarlo o cerrarlo en firme.
