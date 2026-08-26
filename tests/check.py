@@ -1327,6 +1327,15 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # patron ya vigente en pipeline-L-adv1-m2.py). No es un marcador nuevo
     # sin dueno, es la copia fiel de uno ya resuelto y otro ya adoptado.
     "forense/encargos/2026-08-26-PREREG-CORRIDA.md",
+    # forense/encargos/2026-08-26-E1-CIERRA-FP157.md y su nota -- encargo
+    # archivado verbatim (convencion de forense/encargos/, A.3), incluye la
+    # RANURA de firma de mesa (FIRMA M-FP157) tal como se lanzo. La firma que
+    # esa ranura pedia ya esta capturada: FP-157 en firmas-pendientes.tsv pasa
+    # a FIRMADA con el verbatim exacto y ADR-200 la sella -- no es un marcador
+    # nuevo sin dueno. Mismo precedente que SELLA-A1-CODI/PREREG-CORRIDA --
+    # ACTO CIERRA-FP157, 26/ago/2026.
+    "forense/encargos/2026-08-26-E1-CIERRA-FP157.md",
+    "forense/notas/2026-08-26-cierra-fp157-cierre.md",
     # forense/notas/2026-08-25-sella-f-hoja.md y su encargo -- continuación de
     # SELLA-AGO25-F, ejecuta las diez letras de mesa (L1-L10) ya resueltas y
     # abre seis actos sucesores declarados (FP-135..FP-140), todos ya con fila
@@ -2270,6 +2279,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # complacer a un test. Mismo movimiento y misma razon que ACT-PIL-2/
     # SELLA-AGO24-C-v2.
     "forense/encargos/2026-08-26-PREREG-CORRIDA.md",
+    # CIERRA-FP157, 26/ago/2026 (ADR-200): encargo archivado VERBATIM
+    # (convencion de forense/encargos/), y la nota de cierre que lo narra.
+    # Su `E1` pelado es el rotulo del propio acto (Encargo E1, dirección
+    # maestra-30), no un espacio de rotulos nuevo -- ya censado en
+    # canon/registro-rotulos.tsv. El texto de direccion no se edita para
+    # complacer a un test.
+    "forense/encargos/2026-08-26-E1-CIERRA-FP157.md",
+    "forense/notas/2026-08-26-cierra-fp157-cierre.md",
     # SELLA-AGO24-C-v2, 24/ago/2026 (ADR-155): encargo archivado VERBATIM
     # (convencion de forense/encargos/: "el texto completo del encargo tal
     # como se lanzo"). Su `M5` pelado es ADV1-M5, ya censado en
