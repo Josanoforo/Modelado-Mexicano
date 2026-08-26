@@ -15355,12 +15355,12 @@
     c/u), tar.gz de los 96 zips originales sin modificar. Filtrado a Mexico por ActionGeo_CountryCode==''MX''
     (columna 54, mecanismo ya validado por acto previo GDELT-UCDP-RECON, 2026-08-13): 487
     de 97,839 filas totales del dia. EventRootCode en esas 487: PROTESTA (14) = 1 fila (0.2%);
-    codigos adyacentes a violencia (18/19/20) = 26 filas (19:19, 18:7, 20:0), las 26 inspeccionadas una por una -- articulos
-    reales sobre entretenimiento, deportes, economia, narcotrafico generico, NINGUNO describe
-    un caso real de agravio+entorno->autodefensa. Confirma en datos reales el caveat de la
-    cola (ruido/dedup/cobertura) y ademas: ActionGeo_FullName da solo nombre de lugar en texto
-    libre, no hay bandera rural/urbano codificada -- mismo hueco de construccion que MassMobilization
-    y UCDP.'
+    codigos adyacentes a violencia (18/19/20) = 26 filas (19:19, 18:7, 20:0), las 26 inspeccionadas
+    una por una -- articulos reales sobre entretenimiento, deportes, economia, narcotrafico
+    generico, NINGUNO describe un caso real de agravio+entorno->autodefensa. Confirma en datos
+    reales el caveat de la cola (ruido/dedup/cobertura) y ademas: ActionGeo_FullName da solo
+    nombre de lugar en texto libre, no hay bandera rural/urbano codificada -- mismo hueco
+    de construccion que MassMobilization y UCDP.'
   url_origen: https://data.gdeltproject.org/gdeltv2/ + masterfilelist.txt (indice), 96 URLs
     individuales 20260824000000..20260824234500.export.CSV.zip
   fecha_descarga: '2026-08-24'
@@ -15424,3 +15424,43 @@
     produjo para UCDP. Las columnas estado_adquisicion_R74R75/ids_manifiesto_R74R75 de esas
     2 filas en la cola apuntan a este mismo id, con la leyenda explicita de que no es una
     adquisicion nueva.'
+
+- id: ensafi2023_fd_xlsx_zip
+  usado_para: 'ACTO ENSAFI-DESCRIPTOR (25/ago/2026): descriptor de archivos (FD) de ENSAFI
+    2023, la pieza que ADR-194 (#365) declaro NO-ACCESIBLE y de la que depende FP-157. Hallazgo
+    del acto: la API archivoscompaginacion (idBiinegi=3364, tipodocto=4, params derivados
+    del JS vivo descargaMasivaV2.min.js) declara formato ''_xlsx.zip'', NO ''.xlsx'' -- todos
+    los actos previos (B-3 4/ago, M-3 5/ago, M-ADQ 12/ago, R34-ENSAFI-CENSA 25/ago) sondearon
+    ensafi_2023_fd.xlsx y recibieron el soft-404 de 2263 B. La extension era el obstaculo,
+    no la publicacion. Insumo del re-censo C1 de R3.4 condicion B/C.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ensafi/2023/microdatos/ensafi_2023_fd_xlsx.zip
+  fecha_descarga: '2026-08-25'
+  descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/ensafi/2023/data/pestana/pestanadata.js
+    -> data-id=3364, data-tipoinformacion=4; API descargamasiva/lista/archivoscompaginacion
+    con el juego de parametros derivado de /componentes/descargaMasiva/js/descargaMasivaV2.min.js;
+    pathLogico+formato reales, no adivinados; verificado -r 0-0 antes de bajar: Content-Range
+    bytes 0-0/1108577, coincide con lo bajado)'
+  archivo: ensafi2023/ensafi_2023_fd_xlsx.zip
+  sha256: 37bd0cb6dd54ddb8d8962114971e60e06d2628e97eeb8b4e32269129d556ff4b
+  tamano_bytes: 1108577
+  formato: ZIP (contiene XLSX) -- Descriptor de archivos (FD) de ENSAFI 2023.
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensafi2023_cuestionario_pdf
+  usado_para: 'ACTO ENSAFI-DESCRIPTOR (25/ago/2026): cuestionario de ENSAFI 2023, donde vive
+    el texto verbatim de cada reactivo. URL NO derivada por analogia: la declara el propio
+    portal en /programas/ensafi/2023/data/arbol/arbolData.js (nodo ''Cuestionario'', tamnio
+    1.13 MB). Verificado byte a byte el 12/ago (forense/notas/2026-08-12-acto-m-adq-ensafi-enfih.md)
+    y re-verificado por ADR-194 (#365) sin bajarse. Insumo del re-censo C1 de R3.4 condicion
+    B/C: pareja del FD (el FD da codigos y universos, el cuestionario da el texto de la pregunta).'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ensafi/2023/doc/ensafi_2023_cuestionario.pdf
+  fecha_descarga: '2026-08-25'
+  descargado_por: 'agente, directamente de inegi.org.mx (portal /programas/ensafi/2023/data/arbol/arbolData.js
+    -> url declarada por el servidor; verificado: http 200, 1182405 bytes, application/pdf)'
+  archivo: ensafi2023/ensafi_2023_cuestionario.pdf
+  sha256: d86c69f26d8b77de1d00b94d794b1e2ac01bd26aa101d3fca9e17287380c85fb
+  tamano_bytes: 1182405
+  formato: PDF -- Cuestionario de ENSAFI 2023 (10 secciones).
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
