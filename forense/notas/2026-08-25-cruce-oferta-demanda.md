@@ -322,9 +322,15 @@ El shortlist se calculó después de crear `cobertura-completa.ok` y contiene qu
 
 ### Cita literal de ADENDA 1
 
-> **(a) El defecto, nombrado sin adorno.** El punto (3) de `CAL-G3` declaró el desenlace primario "recodificada en tres estados exhaustivos: formal / informal / ninguno" — una partición mutuamente excluyente. El instrumento no la sostiene: `CRH01`, verbatim en las tres olas, dice **"(CIRCULE TODAS LAS QUE APLIQUEN)"** — es una pregunta de selección múltiple. Un hogar puede marcar Banco y Tanda a la vez; tres estados excluyentes no son construibles desde ahí sin una regla de agregación que la ficha nunca declaró.
-
-Fuente literal: `forense/hitoD-preregistro-v2_0.md:553`.
+> **ADENDA 1 al encargo CRUCE-OFERTA-DEMANDA — dirección, 25/ago/2026**
+>
+> Mantener la excepción de ADENDA 1:
+>
+> `parametro_motor = milpa/procedencia.yaml:<línea de definición de C>`
+>
+> `que_convierte = primera entrada viva de clase C`
+>
+> La vía nombrada por la clase sirve como semilla de búsqueda de oferta, pero no prueba satisfacción.
 
 ### Regla de mantenimiento
 
