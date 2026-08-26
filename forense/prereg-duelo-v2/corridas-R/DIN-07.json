@@ -1,0 +1,17 @@
+{
+ "EE_R": null,
+ "R": null,
+ "cv": null,
+ "encuesta": "Encuesta de Competencias Financieras (Banxico/CNBV)",
+ "escala": "binaria",
+ "estado": "RESERVA-SIN-MICRODATO",
+ "estimador": "proporción ponderada",
+ "id_celda": "DIN-07",
+ "ola": "2019",
+ "payload_id": "banxico_encuesta_competencias_financieras_2019",
+ "payload_sha256": "9fc9eb34e98b576991a13fbb63d60e5d61ef0e3bd018a93ca03a1c25538b698f",
+ "razon_no_computable": "La ECF Banxico/CNBV 2019 no tiene microdato en el corpus: el payload de la ola es un XLSX de tabulados mas un PDF de manual. PESOP y SF2 solo existen a nivel de registro.",
+ "regla": "No se computa R. No se sustituye por tabulado, ni por diseno inferido de otra encuesta, ni por una spec elegida por el ejecutor.",
+ "universo": "personas de 18 años y más que administran o aportan dinero al hogar, de nivel socioeconómico D o E (AMAI)",
+ "variable": "SF2"
+}

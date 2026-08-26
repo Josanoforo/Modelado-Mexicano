@@ -1,0 +1,17 @@
+{
+ "EE_R": null,
+ "R": null,
+ "cv": null,
+ "encuesta": "BMV / HR Ratings, Financiera Independencia (desenlace documentado no-encuesta) -- OLA RETENIDA",
+ "escala": "continua (porcentaje)",
+ "estado": "RESERVA-SIN-PAYLOAD",
+ "estimador": "razon sobre censo regulatorio",
+ "id_celda": "DOC-06",
+ "ola": "4T2024 parametriza, 4T2026 arbitra",
+ "payload_id": "(ninguno)",
+ "payload_sha256": "",
+ "razon_no_computable": "Cero payloads en data/manifiesto.yaml para BMV / HR Ratings / Financiera Independencia. Ademas la SpecCelda dice '4T2026 arbitra': la ola del arbitro es futura respecto del 26/ago/2026.",
+ "regla": "No se computa R. No se sustituye por tabulado, ni por diseno inferido de otra encuesta, ni por una spec elegida por el ejecutor.",
+ "universo": "cartera de credito personal popular no bancario de Financiera Independencia (Findep)",
+ "variable": "IMOR ajustado de la cartera total"
+}

@@ -1,0 +1,17 @@
+{
+ "acto": "ACTO E7 · R-SCORING",
+ "que_es": "Registro del intento REAL de correr scoring-adv1-m3.py con lo que el piloto tiene. No es una explicacion de por que no se corrio: es la salida del script.",
+ "script": "forense/prereg-duelo-v2/scoring-adv1-m3.py",
+ "sha256_script": "beec0e1c2e86605bb751601a36c312e34ade4a82a8204e0ab96527beba8e0efb",
+ "invocacion": "ejecutar_scoring(documento) con corredores_activos=[L_solo] -- el unico corredor que el piloto tiene",
+ "resultado": "ErrorScoring",
+ "mensaje_verbatim": "CONFIGURACION_INVALIDA: se requiere exactamente 1 corredor L/corpus; hay 0",
+ "causa": "validar_configuracion exige roles_requeridos = {(L,solo):1, (L,corpus):1, (M,principal):1, (E,combinacion):1} y ademas len(corredores)==4. El contrato del script pide LOS CUATRO corredores activos.",
+ "por_que_faltan_tres": {
+  "L+corpus": "no ejecutado por FP-165 FIRMADA (mesa: 'el programa no hara mas llamadas API; L+corpus NO se ejecutara')",
+  "M": "0 de 15 puntos derivables de procedimiento sellado -- ver DERIVACION-M-v1_0.md",
+  "E": "INEJECUTABLE tal como ADR-141 lo sello (mediana_por_cuantil sobre TRES corredores); consecuencia declarada en la propia FP-165"
+ },
+ "lectura": "El scoring no 'no adjudica': no arranca. Falla cerrado en la validacion de scope, antes de consultar una sola medicion -- que es exactamente como su docstring dice que debe comportarse. No se le pasa una configuracion falsa para que produzca numeros.",
+ "lo_que_si_se_reporta": "Las comparaciones marginales L-solo contra R se computan en el marcador con aritmetica declarada (diferencia y banda TOST = 0.5*EE(R) de F3), sin invocar la maquinaria de adjudicacion pareada que este error bloquea. PILOTO SIN VEREDICTO (D-i) ya mandaba no adjudicar."
+}

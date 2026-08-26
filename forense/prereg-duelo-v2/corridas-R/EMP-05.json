@@ -1,0 +1,17 @@
+{
+ "EE_R": null,
+ "R": null,
+ "cv": null,
+ "encuesta": "CPV Censo de Poblacion y Vivienda -- Cuestionario Ampliado",
+ "escala": "categorica k=8",
+ "estado": "RESERVA-SIN-MICRODATO",
+ "estimador": "proporcion ponderada",
+ "id_celda": "EMP-05",
+ "ola": "2020",
+ "payload_id": "cpv2020_caas_eum_csv",
+ "payload_sha256": "10b56a3b724c14c000464f3a632a9eb845dd5fa0ffc800d16644840d74b7c125",
+ "razon_no_computable": "Los tres payloads CPV del corpus son CAAS (unidad area), ITER (localidad) y CEU (manzana/vialidad). SITUA_CONYUGAL no aparece como columna en ninguno de los 6 CSV examinados. La muestra del Cuestionario Ampliado a nivel PERSONA no esta en el corpus.",
+ "regla": "No se computa R. No se sustituye por tabulado, ni por diseno inferido de otra encuesta, ni por una spec elegida por el ejecutor.",
+ "universo": "personas de 20 a 29 anos residentes en viviendas particulares habitadas",
+ "variable": "SITUA_CONYUGAL"
+}
