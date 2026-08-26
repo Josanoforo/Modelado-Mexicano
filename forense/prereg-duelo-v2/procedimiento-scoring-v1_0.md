@@ -158,3 +158,40 @@ cambió desde `E6`/`E7`).
 
 **El primer resultado que produzca este procedimiento es el que se
 reporta.**
+
+---
+
+## 6 · Resultado (COMMIT-2)
+
+`python3 forense/prereg-duelo-v2/corridas-M/intento_scoring_e9.py`, salida
+verbatim:
+
+```json
+{
+ "resultado": "ErrorScoring",
+ "codigo": "CONFIGURACION_INVALIDA",
+ "mensaje": "faltan parámetros obligatorios: delta, nivel_ic, seed"
+}
+```
+
+**El scoring real arranca un nivel más allá que en `E7`** (supera la
+validación de corredores que `E8` relajó) **y falla cerrado en el
+siguiente**: los tres parámetros de bootstrap que ningún acto anterior
+pre-registró. Es el resultado que §3 anticipó antes de correr, verbatim,
+sin segunda corrida con valores inventados para ver qué pasa después —
+el hallazgo estructural adicional de §4 (`SIN_CELDAS_PAREADAS` esperado
+incluso si los tres existieran) se deja como lectura de código, declarada
+y citada, no como una segunda ejecución contaminada. Registro completo,
+con el documento de entrada íntegro: `corridas-M/_intento-scoring-v1_1.json`.
+
+**Esto no es un defecto de este acto ni, estrictamente, de `E8`**: `E8`
+resolvió exactamente lo que su propio encargo le pedía (el contrato de
+corredores). El hueco de `nivel_ic`/`seed` viene de más atrás —
+`PREREG-CORRIDA`/`ADR-197` (25-26/ago/2026) selló `F0`-`F3` sin cubrir
+estos dos de los cuatro campos que el script declara sin default. Se
+reporta la genealogía, no se le asigna culpa a quien no la tiene:
+ningún acto previo tenía en su encargo la instrucción de fijarlos.
+
+Las cifras `dif`/banda TOST del marcador v1.1 (§5) no dependen de este
+resultado — se computan directo contra el árbitro, celda por celda, sin
+pasar por `ejecutar_scoring`.
