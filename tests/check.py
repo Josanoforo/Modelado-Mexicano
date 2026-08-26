@@ -2292,14 +2292,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # bare. Mismo patron exacto que forense/notas/2026-08-24-adq-corre-
     # r74r75-cierre.md, que esta en esta lista por citar "E-3" en prosa.
     "forense/notas/2026-08-26-ejerce-llave-compartamos-cierre.md",
-    # MAESTRA30-E3 / EJERCE-LLAVE-COMPARTAMOS, 26/ago/2026 (ADR-202):
+    # MAESTRA30-E3 / EJERCE-LLAVE-COMPARTAMOS, 26/ago/2026 (ADR-203):
     # encargo archivado VERBATIM (A.3 + convencion de forense/encargos/).
     # Direccion lo lanzo rotulado "ENCARGO E3", y "E3" pelado ya tiene dos
     # habitantes censados en canon/registro-rotulos.tsv (E3-TRIAGE y el
     # Encargo E-3 de tests/svystat.py) -- este seria un tercero, que es
     # exactamente la colision que D-6 existe para evitar. Resuelto donde
     # se puede resolver: el acto se declara MAESTRA30-E3 en TODOS los
-    # archivos que escribe (resultado, nota, registro de llaves, ADR-202,
+    # archivos que escribe (resultado, nota, registro de llaves, ADR-203,
     # estado-programa) y asi queda censado; el encargo archivado NO se
     # edita, porque A.3 pide el texto de direccion verbatim y el texto de
     # direccion no se edita para complacer a un test. Mismo movimiento y
@@ -2541,6 +2541,18 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-20-LOTE-MOTOR2.md",
     "forense/registro-recalculo-v1_0.md",
     "forense/notas/nota-2026-08-25-propaga-330-337.md",
+    # ACTO DISENO-ENSAFI, 26/ago/2026: encargo archivado VERBATIM (convencion
+    # de forense/encargos/) y su nota de cierre. El `E4` pelado es el nombre
+    # que direccion (maestra-30) le dio a este mismo encargo; queda censado en
+    # canon/registro-rotulos.tsv como HABITANTE adicional del espacio E, con
+    # su colision declarada contra E4a/E4b/E4c (que son las partes a/b/c de la
+    # entrada 4 del motor, referente distinto). La nota de cierre entra por la
+    # misma razon que 2026-08-24-adq-corre-r74r75-cierre.md: narra el hallazgo
+    # de T25 y al narrarlo vuelve a escribir el token. El texto de direccion no
+    # se edita para complacer a un test. Extension minima de perimetro por
+    # desviacion mecanica (CI del propio acto), declarada en la nota de cierre.
+    "forense/encargos/2026-08-26-E4-DISENO-ENSAFI.md",
+    "forense/notas/2026-08-26-diseno-ensafi-cierre.md",
 }
 
 
