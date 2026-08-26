@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-08",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "# Estimación para P7_15 de la ENDUTIH 2024\n\n## Identificación del reactivo\n\nLa variable **P7_15** en la ENDUTIH corresponde históricamente al módulo de uso de TIC por la persona seleccionada. En ediciones anteriores de la ENDUTIH, las preguntas de la serie P7_X se refieren a **usos específicos de internet**. Concretamente, **P7_15** ha correspondido a si la persona utilizó internet para **interactuar con el gobierno / realizar trámites gubernamentales en línea** (o un uso similar dentro del catálogo de actividades en internet), con respuesta binaria (1 = Sí, 2 = No).\n\n## Mi estimación\n\n**No cuento con el dato puntual de la ENDUTIH ola 2024** para esta variable, ni desagregado por estrato socioeconómico. La ENDUTIH 2024 fue levantada por INEGI, pero al momento de mi último corte de conocimiento no tengo acceso a los tabulados oficiales publicados de esta edición ni a microdatos procesados que me permitan calcular la proporción ponderada de P7_15 por estrato.\n\n### Lo que puedo ofrecer como referencia histórica\n\nEn ediciones anteriores (ENDUTIH 2022-2023), la proporción de usuarios de internet que declaraban haber realizado trámites o interacciones con el gobierno en línea se situaba aproximadamente entre **30% y 40%** a nivel nacional, con variación importante por estrato socioeconómico:\n\n- **Estrato alto/medio alto**: proporción más elevada (~40-50%)\n- **Estrato medio bajo**: proporción intermedia (~30-40%)\n- **Estrato bajo**: proporción más baja (~20-30%)\n\nSin embargo, **estas cifras son aproximaciones basadas en tendencias generales y no constituyen una estimación puntual confiable para la ola 2024**.\n\n## Declaración explícita\n\n**No conozco el dato exacto de P7_15 en la ENDUTIH 2024.** No tengo acceso a los microdatos, tabulados oficiales ni a documentos adjuntos de este proyecto. Cualquier cifra que proporcionara sería especulativa.\n\n**Fuente recomendada**: INEGI, *Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información en los Hogares (ENDUTIH) 2024*, tabulados y microdatos disponibles en [https://www.inegi.org.mx/programas/endutih/](https://www.inegi.org.mx/programas/endutih/).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T19:55:42.365515+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "d5694faecef5e601872f2773783dd97f0a8aae84c969eedd0048020c694d08d7"
+}

@@ -1,0 +1,18 @@
+{
+  "id_celda": "DOC-06",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "# Estimación del IMOR ajustado de Financiera Independencia (Findep)\n\n## Mi mejor estimación\n\nTengo conocimiento parcial de este dato basado en información pública disponible hasta mi fecha de corte.\n\n**Estimación puntual:** ~14.5%\n\n**Intervalo de confianza subjetivo (80%):** 11% – 19%\n\n## Fuente y razonamiento\n\nMi estimación se basa en:\n\n1. **Reportes regulatorios ante la CNBV y reportes trimestrales ante la BMV** de Financiera Independencia (ticker: FINDEP), que son públicos. Findep, como SOFOM ENR (y previamente SOFOL), reporta indicadores de morosidad a la CNBV/BMV.\n\n2. **Contexto histórico:** Financiera Independencia ha operado históricamente en el segmento de crédito personal popular (microcréditos y créditos personales a segmentos de bajos ingresos), donde los índices de morosidad tienden a ser significativamente más altos que en la banca comercial. El IMOR ajustado (que incluye castigos/write-offs de los últimos 12 meses en el denominador y numerador) de Findep ha fluctuado históricamente en rangos de ~10%–20%+, dependiendo del ciclo económico y la política de castigos.\n\n3. **Para el 4T2024 específicamente:** No tengo acceso directo al reporte trimestral 4T2024 de Findep ni al reporte de HR Ratings correspondiente a esa ola.\n\n## Advertencia explícita\n\n**No tengo certeza del dato exacto para 4T2024.** La cifra de 14.5% es una estimación informada pero no verificada contra el documento fuente específico (reporte BMV/CNBV del 4T2024 o el reporte de HR Ratings de esa ola). El IMOR ajustado es particularmente sensible a la política de castigos de cartera que Findep aplique en cada trimestre, lo que puede generar variaciones importantes.\n\n**Fuente textual declarada:** Reportes trimestrales de Financiera Independencia ante la BMV (sección de indicadores financieros) y metodología de IMOR ajustado conforme a definición CNBV (cartera vencida + castigos 12 meses) / (cartera total + castigos 12 meses). No dispongo del documento específico de la ola referida.\n\nSi requieres el dato preciso, recomiendo consultar directamente el reporte 4T2024 en la página de la BMV (emisora FINDEP) o el comunicado de HR Ratings correspondiente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:05:08.507559+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "a18aa64e71e1b9ee97430790dd41f075f6daf9ca2f38ce7dc0a0f213c04a2cde"
+}

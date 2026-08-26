@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-11",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "# Estimación para P5_3 de la ENIF 2018\n\n## Identificación del reactivo\n\nLa ENIF 2018 (Encuesta Nacional de Inclusión Financiera), levantada por el INEGI en coordinación con la CNBV, tiene en su sección 5 preguntas relacionadas con **ahorro**. El reactivo P5_3 se refiere típicamente a si la persona **ahorra o guarda dinero de manera informal** (por ejemplo, en tandas, con familiares, en casa, etc.), o bien a una modalidad específica de ahorro. En el cuestionario de la ENIF 2018, la sección 5 aborda mecanismos de ahorro y P5_3 se ubica en el contexto de ahorro informal.\n\n## Mi estimación\n\nBasándome en los reportes públicos de la CNBV sobre resultados de la ENIF 2018 (Reporte Nacional de Inclusión Financiera 9 y bases de datos publicadas por INEGI):\n\n- La proporción de personas que reportaron ahorrar de manera informal (en casa, tandas, con conocidos, etc.) se ubicó en torno al **30–35%** de la población adulta.\n\nSin embargo, **no tengo certeza exacta** de qué pregunta específica corresponde a P5_3 en el cuestionario, ya que la numeración puede referirse a distintos sub-ítems dentro de la sección de ahorro (por ejemplo, \"¿guarda dinero en su casa?\", \"¿participa en tandas?\", \"¿ahorra con familiares?\").\n\n**No cuento con el dato puntual ponderado preciso de P5_3.**\n\n## Declaración de honestidad\n\nNo tengo acceso a la base de microdatos ni al tabulado exacto de P5_3 con su ponderador. Proporcionar una cifra específica (por ejemplo, 32.4%) sería una invención con apariencia de precisión.\n\n**No conozco el dato puntual exacto de P5_3 de la ENIF 2018.**\n\n## Fuente\n\nLos resultados generales de la ENIF 2018 fueron publicados por:\n- **INEGI-CNBV**, *Encuesta Nacional de Inclusión Financiera 2018*, bases de datos y tabulados, disponibles en [inegi.org.mx](https://www.inegi.org.mx) y en el *Reporte Nacional de Inclusión Financiera 9* de la CNBV.\n\nPara obtener la estimación ponderada exacta sería necesario procesar la base de microdatos con el factor de expansión correspondiente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:00:59.864699+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "07e544ce8d197731630cd744c89cb0672540a675a79c1a893ead39f55cf1d0d4"
+}

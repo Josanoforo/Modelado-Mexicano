@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-06",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "# Estimación: Proporción ponderada de \"Tiene menos de un año en este trabajo\" (P2, ENTI 2022) – Población 12-17 años con trabajo actual, por sexo\n\n## Mi respuesta honesta\n\n**No conozco el dato exacto.** No tengo acceso a los microdatos de la ENTI 2022 (Encuesta Nacional de Trabajo Infantil, INEGI) ni a tabulados publicados que desglosen específicamente la variable P2 de la tabla ENTI2022_CB12A17.DBF con ponderadores, por sexo.\n\n## Razonamiento contextual (no es una cifra verificada)\n\nDicho lo anterior, puedo ofrecer un razonamiento cualitativo basado en lo que se conoce del trabajo infantil y adolescente en México:\n\n- La población de 12 a 17 años tiende a tener **alta rotación laboral** y muchos se incorporan al mercado de trabajo de manera reciente o intermitente.\n- En encuestas previas (MTI 2017 y ENTI 2019), la proporción de menores trabajadores con menos de un año en su trabajo actual solía ser **sustancialmente alta**, frecuentemente en el rango de **40-55%** del total con trabajo actual.\n- Por sexo, los hombres suelen tener una proporción ligeramente menor de \"menos de un año\" que las mujeres (dado que algunos varones se incorporan más temprano a trabajos familiares agrícolas con mayor permanencia), pero las diferencias no suelen ser dramáticas.\n\n## Estimación tentativa (con alta incertidumbre)\n\n| Categoría | Estimación puntual | Nota |\n|---|---|---|\n| **Total** | ~45-50% | No verificada |\n| **Hombres** | ~43-48% | No verificada |\n| **Mujeres** | ~48-55% | No verificada |\n\n⚠️ **Advertencia explícita:** Estas cifras son conjeturas informadas por el patrón general del fenómeno, **no son datos observados ni estimaciones basadas en los microdatos de la ENTI 2022**. No deben citarse como dato oficial.\n\n## Fuente recomendada\n\nEl dato preciso debe obtenerse procesando los microdatos de la **ENTI 2022** disponibles en el sitio del INEGI (https://www.inegi.org.mx/programas/enti/2022/), aplicando el factor de expansión correspondiente (variable FAC_VIV o FAC_PER según corresponda en la tabla CB12A17) y tabulando P2 por SEX.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:21:25.654264+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "27dd129bf323b8dfedbf96bbfce9d7925282ec2b02408427ec6372a1ad7e5f32"
+}

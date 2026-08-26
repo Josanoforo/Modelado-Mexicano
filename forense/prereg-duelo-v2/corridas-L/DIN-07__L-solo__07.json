@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-07",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "# Estimación solicitada: SF2 — Encuesta de Competencias Financieras 2019 (Banxico/CNBV)\n\n## Identificación del reactivo\n\nLa Encuesta Nacional de Inclusión Financiera y la Encuesta de Competencias Financieras (ENF/ECF 2019), levantada conjuntamente por Banxico y la CNBV, incluye el reactivo **SF2**, que en el cuestionario se refiere típicamente a si la persona **tiene o ha tenido alguna cuenta de ahorro formal** (o un reactivo asociado a tenencia de productos financieros básicos). En la sección \"SF\" del cuestionario, SF2 suele capturar una respuesta binaria (sí/no).\n\n## Mi respuesta honesta\n\n**No tengo acceso directo a las tabulaciones ponderadas de la ECF 2019 desagregadas por nivel socioeconómico AMAI D/E para el reactivo SF2.** Las publicaciones oficiales de Banxico/CNBV que conozco presentan resultados agregados o desagregados por otras variables (sexo, región, urbano/rural, ingreso), pero la estratificación específica por nivel AMAI D/E no es la forma estándar en que se reportan los resultados en los documentos públicos principales.\n\nPor lo tanto:\n\n> **No cuento con el dato preciso ni con una fuente textual que me permita dar una estimación puntual confiable para la proporción ponderada de SF2 en el subuniverso de NSE D/E (AMAI).**\n\nInventar una cifra \"plausible\" sin respaldo documental iría en contra del protocolo solicitado.\n\n## Recomendación\n\nPara obtener este dato con precisión se puede:\n\n1. **Acceder a los microdatos** de la ECF 2019 disponibles en el sitio de la CNBV/Banxico y realizar la estimación ponderada filtrando por la clasificación AMAI D/E.\n2. Consultar los **tabulados especiales** que Banxico o la CNBV pueden haber publicado o que se pueden solicitar vía transparencia.\n\n**Fuente de referencia general:** Banxico & CNBV (2019). *Encuesta Nacional de Inclusión Financiera / Competencias Financieras 2019*. Disponible en: https://www.cnbv.gob.mx/Inclusi%C3%B3n/Paginas/Encuestas.aspx",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:24:39.871691+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "1296bd81cede6b69509f549326427bdbc751e6b99e816cabef11485c773aa72c"
+}

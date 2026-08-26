@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-12",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "# Estimación de la variable P3N (medio de enterarse del empleo) — ENOE 2024-T1\n\n## Aclaración\n\nNo tengo acceso directo a los microdatos de la ENOE 2024-T1 ni a tabulados oficiales específicos que crucen la pregunta P3N (medio por el cual se enteró de su empleo actual) con el ámbito urbano/rural para la población ocupada subordinada y remunerada. Sin embargo, conozco la estructura de la encuesta y los patrones históricos reportados por INEGI en publicaciones anteriores de la ENOE, lo que me permite ofrecer una estimación informada pero **no verificada contra el tabulado exacto solicitado**.\n\n## Estructura de P3N\n\nLa pregunta P3N en el cuestionario COE1 de la ENOE tiene 10 categorías de respuesta sobre cómo se enteró el trabajador de su empleo actual:\n\n| Código | Categoría | Estimación puntual (proporción ponderada, nacional) |\n|--------|-----------|------------------------------------------------------|\n| 1 | Por un familiar, amigo o conocido | **~38–42%** |\n| 2 | Fue a la empresa / negocio directamente | **~18–22%** |\n| 3 | Por un anuncio en algún medio (periódico, radio, internet, etc.) | **~6–8%** |\n| 4 | Por una bolsa de trabajo (pública o privada) | **~3–5%** |\n| 5 | Por internet / redes sociales | **~7–10%** |\n| 6 | Lo buscó el patrón / empresa | **~5–7%** |\n| 7 | Siempre lo ha tenido / negocio familiar | **~4–6%** |\n| 8 | Por recomendación de otro empleo | **~3–5%** |\n| 9 | Otro medio | **~3–5%** |\n| 10 | No sabe / no responde | **~1–2%** |\n\n## Patrón urbano/rural esperado\n\n- **Urbano**: mayor peso de internet/redes sociales (cat. 5 posiblemente ~10-12%), bolsas de trabajo, y anuncios en medios.\n- **Rural**: mayor peso de redes informales (cat. 1 posiblemente ~45-50%), ir directamente al lugar de trabajo, y el canal \"lo buscó el patrón\".\n\n## Declaración explícita\n\n**No cuento con el tabulado exacto de la ENOE 2024-T1 para esta desagregación.** Las cifras anteriores son estimaciones basadas en el conocimiento de la estructura histórica de la ENOE y patrones reportados en trimestres anteriores (2019-2023). No deben citarse como datos oficiales.\n\n## Fuente\n\n- Estructura del cuestionario: INEGI, *Encuesta Nacional de Ocupación y Empleo, Cuestionario de Ocupación y Empleo (COE1)*, disponible en el sitio del INEGI.\n- Patrones históricos: Tabulados de la ENOE publicados por INEGI en años previos y documentación metodológica de la encuesta.\n\n**Recomendación**: Para obtener las proporciones ponderadas exactas por categoría y ámbito, es necesario procesar los microdatos con el factor de expansión (FAC) correspondiente al primer trimestre de 2024, disponibles en el portal de microdatos del INEGI.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:18:01.564828+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "72005f6708bf79e17df00eb2eabd78a15e2916f6a905c62db825b46157735822"
+}

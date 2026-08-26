@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-04",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "# Estimación: Razón de aprobación de créditos por tamaño de localidad (ENAFIN 2024)\n\n## Contexto\n\nLa ENAFIN es levantada por el INEGI en colaboración con la CNBV. La edición más reciente disponible públicamente durante mi periodo de entrenamiento es la ENAFIN 2021 (levantada en 2022, con datos referidos a 2021). **No tengo acceso a los microdatos ni tabulados de una ola ENAFIN 2024**, ya que hasta mi fecha de corte de conocimiento (abril 2024) no se había publicado dicha edición.\n\n## Lo que puedo decir\n\n**No conozco el dato solicitado.** No tengo acceso a:\n\n1. Los microdatos de la ENAFIN 2024.\n2. Tabulados oficiales que desglosen la tasa de aprobación de créditos por tamaño de localidad para esa ola.\n3. El documento adjunto del proyecto de investigación que podría contener esta información.\n\n## Aproximación basada en ediciones anteriores (con todas las reservas)\n\nEn la ENAFIN 2021, la tasa de aprobación de créditos solicitados por empresas era alta en general (~85–90% a nivel agregado). Las diferencias por tamaño de localidad tendían a ser moderadas, con localidades grandes mostrando tasas ligeramente mayores de aprobación (mayor presencia de sucursales, más competencia bancaria, empresas más formalizadas).\n\nSi me obligaran a una estimación especulativa de la **razón (tasa en localidades ≥500 mil) / (tasa en localidades 50 mil–499 999)**:\n\n- **Estimación puntual:** ~1.03 a 1.07 (es decir, la tasa de aprobación en localidades grandes sería entre 3% y 7% mayor en términos relativos)\n- **Intervalo subjetivo al 90%:** [0.95 – 1.15]\n\nPero **subrayo que esto es una conjetura informada por patrones generales, no un dato**. La razón podría incluso ser menor que 1 si las empresas en localidades medianas tienen mejor relación con instituciones financieras locales.\n\n## Fuente\n\nNo tengo fuente textual para la ENAFIN 2024. Mi referencia general es la ENAFIN 2021 (INEGI/CNBV), pero no para este cruce específico por tamaño de localidad.\n\n**Recomendación:** Consultar los microdatos de la ENAFIN 2024 directamente en el sitio del INEGI o en la plataforma de la CNBV, aplicando los factores de expansión correspondientes para obtener la razón ponderada solicitada.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:09:22.049584+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "8a2016ec998a2e49bd5ee499723188fcd2363182c71bc9b20851f4b1055a417c"
+}

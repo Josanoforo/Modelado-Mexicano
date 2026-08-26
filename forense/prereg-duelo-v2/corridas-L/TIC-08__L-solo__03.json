@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-08",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "# Estimación para P7_15 de la ENDUTIH 2024\n\n## Identificación del reactivo\n\nLa variable **P7_15** en la ENDUTIH corresponde, según la estructura histórica de este cuestionario (módulo de usuarios de TIC), a una pregunta sobre **uso de internet para interactuar con el gobierno (e-government)** o, en versiones recientes, sobre alguna actividad específica en línea. En la ola 2024, siguiendo la codificación del cuestionario de la ENDUTIH, P7_15 típicamente se ubica dentro del bloque de preguntas sobre actividades realizadas en internet.\n\n## Mi respuesta honesta\n\n**No conozco con certeza el dato puntual.** La ENDUTIH 2024 fue levantada por INEGI y sus microdatos/tabulados pueden haber sido publicados a finales de 2024 o inicios de 2025, pero **no tengo acceso a los resultados específicos de la ola 2024 para esta variable**, ni al documento o tabulado adjunto de este proyecto de investigación que desglosaría P7_15 por estrato socioeconómico con ponderadores.\n\n## Lo que puedo indicar\n\n- No dispongo de una fuente textual que me permita dar una estimación puntual confiable de la proporción ponderada de P7_15 en la ENDUTIH 2024, ni global ni por estrato.\n- Inventar una cifra \"plausible\" basándome en olas anteriores (2021–2023) sería especulación, y el instrumento puede haber modificado reactivos entre olas.\n\n## Recomendación\n\nPara obtener el dato preciso:\n1. **Microdatos INEGI**: https://www.inegi.org.mx/programas/dutih/2024/ — descargar la tabla `tic_2024_usuarios`, aplicar el factor de expansión (FAC_PER o equivalente) y calcular la proporción de P7_15 = 1 por ESTRATO.\n2. **Tabulados predefinidos** del INEGI para la ENDUTIH 2024.\n\n**No tengo el dato; no invento una cifra.**",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T19:55:57.484354+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "d5694faecef5e601872f2773783dd97f0a8aae84c969eedd0048020c694d08d7"
+}

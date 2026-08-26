@@ -1,0 +1,18 @@
+{
+  "id_celda": "SFT-04",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "# Estimación para H16D_18 — ENASEM 2018\n\n## Identificación de la variable\n\nEn la ENASEM (Estudio Nacional de Salud y Envejecimiento en México), las variables del módulo H corresponden a la sección de **salud y funcionalidad**. La serie H16 se refiere típicamente a **diagnósticos médicos o condiciones de salud** reportadas por el entrevistado. La variante H16D_18 se ubica dentro de los reactivos sobre si un médico le ha diagnosticado alguna condición específica.\n\nDentro de la codificación habitual de la ENASEM, **H16D** se asocia con **diabetes** (específicamente, si un médico le ha dicho que tiene diabetes o azúcar alta en la sangre), y el sufijo \"_18\" indica la ola 2018. Sin embargo, las subvariantes con letras adicionales (H16A, H16B, H16C, H16D…) pueden referirse a distintas condiciones o a sub-preguntas de seguimiento (por ejemplo, si actualmente toma medicamento para esa condición).\n\n## Estimación puntual\n\n**No cuento con el dato exacto de la proporción ponderada de H16D_18** a partir de una tabulación directa de los microdatos de la ENASEM 2018.\n\nSi H16D_18 corresponde a una pregunta sobre **diagnóstico de diabetes** o **uso actual de medicamento para diabetes**, las prevalencias ponderadas típicas en la ENASEM 2018 para población de 50+ oscilan entre:\n\n- Diagnóstico de diabetes: ~25–27%\n- Toma actualmente medicamento para diabetes: ~20–23%\n\nPero **no puedo confirmar con certeza a qué reactivo específico corresponde H16D_18** sin acceso al cuestionario codificado o a los microdatos, y no quiero asignar una cifra inventada a una variable que podría referirse a otra condición o subpregunta.\n\n## Declaración explícita\n\n**No conozco el dato preciso de la proporción ponderada de H16D_18.** No dispongo de una tabulación verificada de esta variable específica de los microdatos ENASEM 2018, ni tengo acceso al documento adjunto del proyecto.\n\n## Fuente\n\nNo cuento con una fuente textual declarada para este valor específico. Las referencias generales serían:\n- **ENASEM 2018, microdatos públicos**: [www.enasem.org](http://www.enasem.org)\n- Wong R, Michaels-Obregon A, Palloni A. \"Cohort Profile: The Mexican Health and Aging Study (MHAS).\" *Int J Epidemiol.* 2017.\n\nPara obtener el dato exacto se requiere procesar los microdatos con los pesos muestrales de la ENASEM 2018 (variable de ponderación correspondiente a entrevista directa).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:16:21.261805+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "6a425cf17945ae22b1b5f3e96f6e24dd862a7d7b704e8997ce8b6e754dc8498e"
+}

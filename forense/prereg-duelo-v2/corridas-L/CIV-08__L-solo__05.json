@@ -1,0 +1,18 @@
+{
+  "id_celda": "CIV-08",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "# Estimación para AP4_4_03 — ENVIPE 2023\n\n## Identificación del reactivo\n\nEn la ENVIPE (Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública) 2023 del INEGI, la variable **AP4_4_03** se ubica en la sección de **percepción de inseguridad** o **atestiguación/conocimiento de conductas delictivas o antisociales** en el entorno. Específicamente, las variables AP4_4_XX corresponden a la pregunta sobre si la persona entrevistada sabe o ha escuchado que en los alrededores de su vivienda suceden determinadas situaciones.\n\nLa variable **AP4_4_03** típicamente se refiere a: **\"Se consumen drogas\"** (consumo de drogas en los alrededores de la vivienda), con respuesta binaria (Sí / No).\n\n## Mi mejor estimación puntual\n\nBasándome en resultados publicados de la ENVIPE 2023 y de olas anteriores (donde el consumo de drogas en los alrededores ha sido consistentemente una de las conductas antisociales más reportadas):\n\n**Proporción ponderada estimada (Sí): ≈ 0.61 – 0.63 (61%–63%)**\n\nMi estimación puntual central: **~0.62 (62%)**\n\n## Nivel de confianza en esta estimación\n\n**Moderado.** Las cifras de consumo de drogas en los alrededores en ENVIPE han rondado entre 58% y 65% en olas recientes (2021–2023), y el INEGI ha reportado que es una de las tres conductas antisociales más frecuentemente atestiguadas. Sin embargo:\n\n- No tengo acceso directo a las bases de microdatos de la ENVIPE 2023 para calcular la proporción ponderada exacta con el factor de expansión TPer_Vic1.\n- No puedo confirmar al 100% que AP4_4_03 corresponda exactamente a \"consumo de drogas\" y no a otra categoría de la batería (como \"robos o asaltos\" o \"venta de drogas\"), ya que la numeración puede variar ligeramente entre olas.\n\n## Fuente\n\n- INEGI, Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública (ENVIPE) 2023, resultados principales y tabulados publicados.\n- Comunicado de prensa ENVIPE 2023 (septiembre 2023), donde se reportan las conductas antisociales en los alrededores de la vivienda.\n\n**Nota de transparencia:** No cuento con el cálculo exacto derivado de microdatos con el ponderador TPer_Vic1. Si se requiere precisión, recomiendo consultar directamente las bases de datos en el sitio del INEGI o los tabulados predefinidos de la ENVIPE 2023.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T19:54:21.564755+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "96f2285eae5c7cc50f64f5857925bc3351e3a333d930172eaaff4dad2e6a65d4"
+}

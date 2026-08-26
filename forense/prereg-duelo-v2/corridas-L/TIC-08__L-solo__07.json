@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-08",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "# Estimación para P7_15 de la ENDUTIH 2024\n\n## Identificación del reactivo\n\nLa variable **P7_15** en la ENDUTIH corresponde históricamente a una pregunta dentro del módulo de uso de TIC por parte de la persona elegida. En ediciones recientes de la ENDUTIH, las preguntas de la serie P7_X se refieren a **actividades realizadas en internet** o **uso de dispositivos/servicios específicos**. Específicamente, P7_15 ha estado asociada en algunas ediciones a preguntas como si la persona usó internet para **interactuar con el gobierno (trámites o servicios gubernamentales en línea)** o actividades similares.\n\n## Mi respuesta honesta\n\n**No conozco con certeza el dato puntual de P7_15 de la ola 2024 de la ENDUTIH**, ni desagregado por estrato socioeconómico ni a nivel nacional. Las razones son:\n\n1. **La ENDUTIH 2024** (levantada típicamente en el segundo o tercer trimestre de 2024, con resultados publicados por INEGI hacia finales de 2024 o inicios de 2025) puede no estar aún en mis datos de entrenamiento, o estarlo de forma incompleta.\n\n2. **El reactivo P7_15 específico** puede haber cambiado de contenido entre ediciones del cuestionario, y sin acceso al cuestionario 2024 ni a las bases de datos, no puedo confirmar qué mide exactamente en esta ola.\n\n3. **La desagregación por ESTRATO** (bajo, medio bajo, medio alto, alto) requiere las estimaciones ponderadas con los factores de expansión (FAC_PER), que solo están disponibles en las bases de microdatos.\n\n## Lo que no haré\n\nNo voy a inventar una cifra plausible. Hacerlo violaría el principio de honestidad epistémica que me has solicitado.\n\n## Recomendación\n\nPara obtener este dato:\n- **Fuente primaria**: Microdatos de la ENDUTIH 2024 en el sitio del INEGI (https://www.inegi.org.mx/programas/dutih/2024/).\n- **Procesamiento**: Calcular la proporción ponderada de P7_15 usando el factor de expansión FAC_PER, filtrando por EDAD ≥ 6 y desagregando por ESTRATO.\n\n**Fuente de mi conocimiento general**: Ediciones previas de la ENDUTIH (2020-2023) publicadas por INEGI, pero no tengo el dato puntual solicitado para la ola 2024.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T19:57:07.426009+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "d5694faecef5e601872f2773783dd97f0a8aae84c969eedd0048020c694d08d7"
+}

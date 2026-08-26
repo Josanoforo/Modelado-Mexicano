@@ -1,0 +1,18 @@
+{
+  "id_celda": "DOC-06",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "# Estimación del IMOR ajustado de Financiera Independencia (Findep)\n\n## Mi estimación\n\nTengo conocimiento parcial de este dato basado en información pública que he procesado en mi entrenamiento.\n\n**Estimación puntual: ~14–16% de IMOR ajustado (cartera total)**\n\n**Intervalo de confianza subjetivo (80%): 12% – 20%**\n\n## Razonamiento y fuentes\n\n**Fuente declarada:** Reportes trimestrales de Financiera Independencia publicados ante la BMV/CNBV y reportes de calificación de HR Ratings. Mi conocimiento proviene de datos procesados hasta mi fecha de corte de entrenamiento.\n\n**Contexto que sustenta la estimación:**\n\n1. **Findep opera en el segmento de crédito personal popular no bancario**, dirigido a la base de la pirámide, donde históricamente los índices de morosidad son sustancialmente más altos que en la banca comercial.\n\n2. **El IMOR ajustado** (que incluye castigos/write-offs de los últimos 12 meses en el numerador, además de la cartera vencida) tiende a ser significativamente mayor que el IMOR simple en este tipo de entidades. Findep ha reportado históricamente IMOR simples en rangos de 7–12%, y el IMOR ajustado típicamente duplica o supera esos niveles dependiendo de la política de castigos.\n\n3. **Para el período 4T2024 específicamente**, no tengo certeza del dato exacto publicado.\n\n## Advertencia explícita\n\n**No tengo acceso al dato censal regulatorio exacto del 4T2024 ni al reporte de HR Ratings correspondiente a esa ola.** Mi estimación se basa en tendencias históricas del emisor y del segmento. Si el proyecto requiere el dato preciso documentado, es necesario consultar:\n\n- El reporte trimestral 4T2024 de Findep ante la BMV (Serie R regulatoria CNBV)\n- El reporte de calificación de HR Ratings vigente para ese período\n\nLa incertidumbre de mi intervalo refleja que Findep ha mostrado volatilidad importante en este indicador entre trimestres, y que la política de castigos puede generar saltos discretos en el IMOR ajustado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:04:30.721610+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "a18aa64e71e1b9ee97430790dd41f075f6daf9ca2f38ce7dc0a0f213c04a2cde"
+}

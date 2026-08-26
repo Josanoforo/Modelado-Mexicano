@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-05",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "# Estimación solicitada: ENFIH 2019, variable P8_1_1, localidades < 2,500 habitantes\n\n## Mi respuesta honesta\n\n**No conozco el dato específico.** No tengo acceso a tabulados o microdatos de la ENFIH (Encuesta Nacional sobre las Finanzas de los Hogares) 2019 del INEGI/CNBV con el nivel de desagregación que solicitas (proporción ponderada de P8_1_1, restringida a localidades de menos de 2,500 habitantes).\n\n## Lo que sí puedo contextualizar\n\n- La **ENFIH 2019** (segunda ola; la primera fue 2014) es levantada por INEGI en colaboración con la CNBV y el Banco de México.\n- La sección **P8** de la ENFIH generalmente se refiere a temas de **ahorro, crédito o uso de servicios financieros** (dependiendo de la versión exacta del cuestionario). La variable P8_1_1 probablemente captura si la persona (o el hogar) tiene/usa algún producto o servicio financiero específico (respuesta binaria: sí/no).\n- En localidades rurales (< 2,500 habitantes), las tasas de inclusión financiera suelen ser sustancialmente más bajas que el promedio nacional. Por ejemplo, la tenencia de cuenta bancaria formal en zonas rurales se ha reportado en rangos de ~20-35% según diversas fuentes (ENIF 2018, CNBV), pero **no puedo asegurar que esto corresponda exactamente a P8_1_1 de la ENFIH**.\n\n## Conclusión\n\n**No tengo el dato y no voy a fabricar una cifra puntual.** Para obtenerlo se requeriría:\n\n1. Acceder a los microdatos de la ENFIH 2019 en el sitio del INEGI.\n2. Filtrar por tamaño de localidad < 2,500 habitantes y personas ≥ 18 años.\n3. Calcular la proporción ponderada de P8_1_1 usando los factores de expansión correspondientes.\n\n**Fuente declarada:** Ninguna fuente textual; no dispongo de tabulados publicados que reporten este cruce específico.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:10:59.957472+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "651a6746cfbd71d2d83c398e44827911b11f8186ccd495b38820b66ac05b8609"
+}

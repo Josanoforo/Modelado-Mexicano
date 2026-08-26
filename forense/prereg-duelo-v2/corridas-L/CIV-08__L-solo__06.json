@@ -1,0 +1,18 @@
+{
+  "id_celda": "CIV-08",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "# Estimación para AP4_4_03 – ENVIPE 2023\n\n## Identificación del reactivo\n\nEn la ENVIPE (Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública) 2023, la sección AP4_4 se refiere a las **percepciones de inseguridad en espacios específicos**. El reactivo AP4_4_03 corresponde típicamente a la pregunta sobre si la persona se siente insegura en **la escuela** (algunos cuestionarios lo asignan al \"mercado\" o \"centro comercial\" dependiendo del orden exacto del cuestionario de esa ola; sin embargo, en la codificación más frecuente de la ENVIPE 2023, AP4_4_03 se refiere a **el mercado**).\n\nLa pregunta es del tipo: *\"En cuanto a [espacio], ¿usted se siente seguro(a) o inseguro(a)?\"*, con respuesta binaria (seguro/inseguro).\n\n## Mi estimación\n\n**No cuento con el dato preciso de la proporción ponderada de AP4_4_03 de la ENVIPE 2023.**\n\nPuedo ofrecer una aproximación basada en resultados generales publicados por INEGI para la ENVIPE 2023 sobre percepción de inseguridad por espacios:\n\n- La proporción de personas de 18+ que se sienten **inseguras en el mercado** en la ENVIPE 2023 se reportó en el rango aproximado de **67% a 70%**.\n\n**Estimación puntual subjetiva:** ~**68.5%** (proporción que se siente insegura)\n\nPero debo ser explícito: **no tengo acceso a las tabulaciones oficiales exactas con el valor ponderado preciso de esta variable**, ni al microdato procesado para confirmarlo.\n\n## Fuente\n\n- INEGI, \"Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública (ENVIPE) 2023 – Principales resultados\", presentación de septiembre 2023. Las cifras de percepción de inseguridad por espacio público se presentan en las láminas de resultados generales.\n\n> **Advertencia:** Si el orden de las categorías en AP4_4_03 difiere del que estoy asumiendo (por ejemplo, si corresponde a \"la escuela\", \"el parque\" u otro espacio), la cifra cambiaría. Recomiendo verificar directamente en el cuestionario definitivo de la ENVIPE 2023 y en los microdatos publicados por INEGI.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T19:54:38.513840+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "96f2285eae5c7cc50f64f5857925bc3351e3a333d930172eaaff4dad2e6a65d4"
+}

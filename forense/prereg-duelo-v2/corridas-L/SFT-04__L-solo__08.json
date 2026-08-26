@@ -1,0 +1,18 @@
+{
+  "id_celda": "SFT-04",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "Voy a analizar lo que sé sobre esta variable.\n\n## Identificación de la variable\n\n**H16D_18** pertenece a la sección H de la ENASEM 2018, que corresponde a **salud y funcionalidad**. Las variables H16 en la ENASEM se refieren típicamente a **conductas de salud o diagnósticos específicos**. La serie H16A, H16B, H16C, H16D suele referirse a subpreguntas sobre un mismo tema.\n\nEn la ENASEM 2018, las variables H16 están relacionadas con **caídas**: específicamente, H16D_18 se refiere típicamente a si la persona **recibió tratamiento médico como resultado de una caída** (o una subpregunta relacionada con las consecuencias de caídas), con respuesta binaria (Sí/No).\n\n## Mi estimación\n\n**No tengo acceso directo a las microdatos ponderados de la ENASEM 2018** para calcular la proporción ponderada exacta de H16D_18, y no cuento con una fuente textual que reporte este dato específico.\n\n**No puedo proporcionar una estimación puntual confiable.**\n\nSi H16D_18 efectivamente se refiere a si recibió tratamiento médico tras una caída (condicional a haber reportado caída), la literatura sobre adultos mayores en México sugiere que entre un 30% y 50% de quienes caen buscan atención médica. Pero si es sobre el universo completo, la proporción sería considerablemente menor. Sin embargo, **no tengo certeza sobre la redacción exacta del reactivo ni sobre la estimación ponderada**, por lo que prefiero declarar explícitamente que **no conozco el dato**.\n\n## Fuente\n\nNo cuento con una fuente textual declarada que reporte la proporción ponderada de H16D_18 en la ENASEM 2018. Los microdatos están disponibles públicamente en [www.enasem.org](http://www.enasem.org), donde se podría calcular directamente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:17:42.127624+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "6a425cf17945ae22b1b5f3e96f6e24dd862a7d7b704e8997ce8b6e754dc8498e"
+}

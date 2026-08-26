@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-03",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "# Estimación para ENIF 2012 – Variable P7_1\n\n## Contexto\n\nLa **ENIF 2012** (Encuesta Nacional sobre la Dinámica de las Relaciones en los Hogares) fue levantada por el INEGI en 2011 (con resultados publicados en 2012-2013). Su universo son mujeres de 15 años y más (aunque tu especificación menciona 18-70, el diseño oficial incluye desde 15 años). Es la principal encuesta en México sobre violencia contra las mujeres.\n\n## Sobre la variable P7_1\n\nEn la estructura del cuestionario de la ENDIREH 2011 (que es la encuesta que corresponde a esa ola; nota: \"ENIF\" podría referirse a la **Encuesta Nacional de Inclusión Financiera 2012**, lo cual cambia completamente el contexto), necesito aclarar la ambigüedad:\n\n### Si se trata de la **ENIF 2012 (Encuesta Nacional de Inclusión Financiera)**:\n\nLa ENIF 2012 fue levantada por el INEGI y la CNBV. El universo son personas de 18 a 70 años en viviendas particulares, y se selecciona una persona por hogar. La variable **P7_1** en ese cuestionario se refiere típicamente a si la persona **tiene o ha tenido una cuenta de ahorro formal** (o un producto financiero específico), con respuesta binaria (sí/no).\n\n## Mi estimación\n\n**No tengo certeza del valor exacto de la proporción ponderada de P7_1 de la ENIF 2012 restringida a mujeres.**\n\nSin embargo, los resultados publicados por la CNBV/INEGI para la ENIF 2012 indican que alrededor del **35-38%** de los adultos tenían al menos una cuenta de ahorro formal, y las mujeres presentaban niveles ligeramente inferiores a los hombres.\n\n**Mi mejor estimación puntual para mujeres: ~0.33 (33%)**\n\n## Advertencia\n\n⚠️ **No puedo confirmar con certeza esta cifra.** No tengo acceso al microdato ni al tabulado exacto de P7_1 restringido a mujeres con sus ponderadores. La cifra que ofrezco es una aproximación informada, no un dato verificado.\n\n**Fuente aproximada:** Reportes de resultados de la ENIF 2012, CNBV-INEGI (2013). Los boletines de la CNBV reportaron niveles de inclusión financiera por sexo para esa ola.\n\nSi requieres el dato exacto, recomiendo consultar los microdatos públicos de la ENIF 2012 disponibles en el sitio del INEGI o los tabulados de la CNBV.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:03:08.968992+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "260e82d2931346be568967aa1503b3a9f55a1e0e0a62894824e03758e37a4063"
+}

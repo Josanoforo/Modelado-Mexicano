@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-12",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "# Estimación de la variable P3N (medio de enterarse del empleo) – ENOE 2024-T1\n\n## Contexto\n\nLa pregunta **P3N** del cuestionario COE1 de la ENOE indaga: **\"¿Cómo se enteró de este empleo / cómo le hizo para conseguirlo?\"** Es una variable categórica con **k = 10** categorías (puede variar ligeramente según versión del cuestionario, pero el diseño estándar maneja alrededor de 10 opciones).\n\n## Mi estimación\n\n**No cuento con el tabulado exacto de la ENOE 2024-T1 para esta variable desagregada por ámbito urbano/rural con ponderadores.** Dar proporciones ponderadas precisas por cada una de las 10 categorías requiere acceso al microdato y procesamiento con los factores de expansión (FAC), algo que no tengo disponible en este momento.\n\nSin embargo, con base en resultados históricos publicados por INEGI y análisis previos de la ENOE, puedo ofrecer una **aproximación cualitativa del ordenamiento típico** (nacional, sin desagregar urbano/rural):\n\n| Categoría P3N | Proporción aproximada (nacional) |\n|---|---|\n| 1. Por un familiar, amigo o conocido | ~45–55% |\n| 2. Fue directamente a la empresa/negocio | ~12–18% |\n| 3. Por un anuncio (periódico, internet, etc.) | ~8–12% |\n| 4. Fue contactado por el patrón/empleador | ~5–8% |\n| 5. Por una bolsa de trabajo / agencia de colocación | ~3–5% |\n| 6. Por internet / redes sociales (si se separa) | ~3–6% |\n| 7. Puso un negocio propio (no aplica estrictamente a subordinados) | — |\n| 8–10. Otras categorías (sindicato, otro medio, no especificado) | ~3–7% (acumulado) |\n\n**Estas cifras son aproximaciones basadas en la estructura histórica de la ENOE y NO son el dato puntual del 2024-T1.**\n\n## Diferencias esperadas urbano/rural\n\n- **Urbano**: mayor peso de anuncios/internet y bolsas de trabajo.\n- **Rural**: mayor peso de redes informales (familiares, amigos, contacto directo).\n\n## Declaración explícita\n\n**No tengo el dato exacto.** Para obtener las proporciones ponderadas precisas por categoría y ámbito se requiere procesar los microdatos de la ENOE 2024-T1 disponibles en:\n\n> **Fuente**: INEGI, Encuesta Nacional de Ocupación y Empleo (ENOE), microdatos trimestrales. Disponibles en: https://www.inegi.org.mx/programas/enoe/15ymas/\n\nSe necesitaría cruzar la tabla COE1 (variable `p3n`) con la variable `ur` (urbano/rural), filtrando por población ocupada subordinada y remunerada, y aplicando el factor de expansión correspondiente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:19:00.307633+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "72005f6708bf79e17df00eb2eabd78a15e2916f6a905c62db825b46157735822"
+}

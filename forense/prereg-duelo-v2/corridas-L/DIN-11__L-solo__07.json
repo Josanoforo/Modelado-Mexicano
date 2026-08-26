@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-11",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "# Estimación para P5_3 de la ENIF 2018\n\n## Identificación del reactivo\n\nLa **ENIF 2018** (Encuesta Nacional de Inclusión Financiera), levantada por INEGI y CNBV, en su sección 5 aborda temas relacionados con **ahorro**. La pregunta **P5_3** se refiere típicamente a si la persona **ahorró de manera informal** (por ejemplo, en tandas, guardando dinero en casa, con familiares, etc.) o a una modalidad específica de ahorro.\n\nMás precisamente, en la estructura de la ENIF 2018, P5_3 suele corresponder a algo como: **\"¿Ahorró guardando dinero en su casa o con conocidos?\"** (o una pregunta binaria sobre una forma particular de ahorro informal).\n\n## Mi estimación\n\nSegún datos publicados por CNBV/INEGI sobre la ENIF 2018, las cifras de ahorro informal (guardar dinero en casa, tandas, etc.) reportadas fueron bastante elevadas. La proporción de personas que declararon ahorrar de manera informal (guardando en casa o con conocidos) se ubicó en torno al **30–40%** del universo encuestado.\n\n**Sin embargo, debo ser honesto: no tengo certeza del texto exacto de P5_3 ni de su estimación ponderada precisa.** No dispongo del cuestionario ni de las bases de microdatos para calcular la proporción ponderada con exactitud.\n\n## Respuesta explícita\n\n**No conozco con certeza el dato puntual de la proporción ponderada de P5_3 (respuesta binaria) en la ENIF 2018.** Dar una cifra específica (por ejemplo, 0.35) sería una conjetura informada pero no un dato verificado.\n\nSi tuviera que ofrecer una estimación tentativa basada en los reportes agregados de la CNBV sobre ahorro informal en la ENIF 2018, diría:\n\n- **Estimación puntual tentativa: ~0.33 (33%)**\n\nPero **no tengo una fuente textual exacta** que respalde este número para esa variable específica (P5_3) con su ponderador aplicado.\n\n**Fuente general:** CNBV-INEGI, *Encuesta Nacional de Inclusión Financiera 2018, Reporte de resultados*, disponible en el sitio de la CNBV. Para el dato preciso sería necesario procesar los microdatos con el factor de expansión correspondiente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:01:17.675327+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "07e544ce8d197731630cd744c89cb0672540a675a79c1a893ead39f55cf1d0d4"
+}

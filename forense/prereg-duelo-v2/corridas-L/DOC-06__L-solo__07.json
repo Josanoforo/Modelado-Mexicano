@@ -1,0 +1,18 @@
+{
+  "id_celda": "DOC-06",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "# Estimación: IMOR ajustado de la cartera total de Financiera Independencia (Findep)\n\n## Contexto de mi conocimiento\n\nFinanciera Independencia (Findep) es una sociedad financiera de objeto múltiple (SOFOM) no regulada que cotiza en la BMV y que se dedica principalmente al crédito personal popular (segmento de bajos ingresos). Históricamente ha reportado niveles de morosidad significativamente más altos que la banca tradicional, lo cual es consistente con su segmento de mercado.\n\n## Estimación puntual y rango\n\nPara el **4T2024**, mi mejor estimación es:\n\n- **Estimación puntual del IMOR ajustado:** ~**14–16%**\n- **Intervalo de confianza subjetivo (80%):** **11% – 20%**\n\n### Notas sobre el \"IMOR ajustado\"\n\nEl IMOR ajustado incorpora no solo la cartera vencida vigente sino también los castigos (write-offs) realizados en el periodo, lo que típicamente eleva sustancialmente la cifra respecto al IMOR simple. La fórmula convencional es:\n\n> IMOR ajustado = (Cartera vencida + Castigos acumulados 12m) / (Cartera total + Castigos acumulados 12m)\n\nEsto históricamente ha situado el IMOR ajustado de Findep **varios puntos porcentuales por encima** de su IMOR simple (que en trimestres recientes ha rondado el 8–12%).\n\n## Fuente y honestidad epistémica\n\n**Debo ser explícito:** no tengo acceso al reporte trimestral 4T2024 de Findep, ni a los reportes de HR Ratings correspondientes a esa fecha. Mi estimación se basa en:\n\n1. Reportes trimestrales previos de Findep (hasta mi fecha de corte de entrenamiento).\n2. Reportes de calificación de HR Ratings sobre Findep que he visto en datos de entrenamiento (donde históricamente se ha documentado un IMOR ajustado en el rango de 12–20%).\n3. Tendencias del sector SOFOM de crédito popular.\n\n**No puedo confirmar la cifra exacta del 4T2024.** Si el proyecto requiere el dato preciso documentado, recomiendo consultar directamente:\n- El reporte trimestral de Findep en la BMV (EMISNET/STIV2).\n- El reporte de seguimiento de HR Ratings vigente.\n\n¿Deseas que refine la estimación con algún dato adicional que puedas proporcionarme?",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:05:42.526359+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "a18aa64e71e1b9ee97430790dd41f075f6daf9ca2f38ce7dc0a0f213c04a2cde"
+}

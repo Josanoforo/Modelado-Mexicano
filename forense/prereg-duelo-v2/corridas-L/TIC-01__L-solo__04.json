@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-01",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "# Estimación: Variable p3i de la ENOE (2024-T1)\n\n## Identificación de la variable\n\nEn la tabla COE1 de la ENOE, la pregunta **p3i** se refiere a si el trabajador subordinado y remunerado cuenta con **aguinaldo** como prestación laboral en su empleo actual. Es una variable binaria (sí/no).\n\n## Mi estimación puntual\n\nBasándome en el conocimiento de series históricas de la ENOE y las tendencias en prestaciones laborales en México:\n\n| Sexo | Proporción estimada (sí tiene aguinaldo) |\n|------|------------------------------------------|\n| **Hombres** | ~62–64% |\n| **Mujeres** | ~65–67% |\n| **Total** | ~63–65% |\n\nLas mujeres en empleo subordinado y remunerado suelen reportar tasas ligeramente más altas de aguinaldo porque se concentran más en el sector formal (aunque son menos en número absoluto dentro del universo subordinado y remunerado).\n\n## Advertencia importante\n\n**No tengo acceso directo a los microdatos de la ENOE 2024-T1 ni a tabulados oficiales específicos de este trimestre.** Estas cifras son aproximaciones basadas en:\n\n- Patrones históricos conocidos de la ENOE (la proporción de subordinados con aguinaldo ha oscilado entre 60% y 67% en años recientes).\n- La tendencia al alza en formalización laboral observada hacia 2023-2024.\n\n## Fuente\n\nNo cuento con una fuente textual exacta para el dato de 2024-T1. La referencia institucional sería:\n\n> INEGI, Encuesta Nacional de Ocupación y Empleo (ENOE), primer trimestre de 2024, tabla COE1, variable p3i. Disponible en: https://www.inegi.org.mx/programas/enoe/\n\nPara obtener el dato preciso se requiere procesar los microdatos con el ponderador apropiado (`fac_tri`) o consultar los tabulados interactivos del INEGI.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T19:58:23.679094+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "cca49f2c6ecbb43cee179334a9044e28c402fa96ebcbe4313f0d760170a82991"
+}

@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-06",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "# Estimación: ENTI 2022 – Proporción con \"Tiene menos de un año en este trabajo\" (P2), por sexo\n\n## Mi respuesta honesta\n\n**No conozco el dato exacto.** No tengo acceso a los microdatos de la ENTI 2022 (Encuesta Nacional de Trabajo Infantil, INEGI) ni a tabulados publicados que desglosen la variable P2 de la tabla `ENTI2022_CB12A17.DBF` con la proporción ponderada de la categoría \"Tiene menos de un año en este trabajo\" por sexo.\n\n## Mejor estimación subjetiva (con advertencia explícita de que es aproximada)\n\nBasándome en el conocimiento general sobre trabajo infantil y adolescente en México —donde la rotación laboral en este grupo etario tiende a ser alta y una proporción considerable reporta antigüedad menor a un año—, mi estimación tentativa sería:\n\n| Sexo | Proporción ponderada estimada (P2 = \"Menos de 1 año\") |\n|------|-------------------------------------------------------|\n| Hombres | ~45–55% |\n| Mujeres | ~50–60% |\n| Total | ~47–55% |\n\n**Pero debo ser claro: estas cifras son conjeturas informadas, no datos verificados.** La proporción de mujeres con menos de un año podría ser ligeramente mayor dada la mayor intermitencia laboral observada en trabajadoras adolescentes, pero esto es especulativo.\n\n## Fuente\n\nNo cuento con una fuente textual declarada. El dato preciso requiere procesamiento directo de los microdatos de la ENTI 2022 disponibles en el sitio del INEGI (https://www.inegi.org.mx/programas/enti/2022/), aplicando el factor de expansión correspondiente y filtrando por la variable `SEX` y la categoría relevante de `P2`.\n\n**Recomiendo encarecidamente calcular la estimación directamente de los microdatos con el ponderador adecuado en lugar de usar estas cifras.**",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:21:39.598471+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "27dd129bf323b8dfedbf96bbfce9d7925282ec2b02408427ec6372a1ad7e5f32"
+}

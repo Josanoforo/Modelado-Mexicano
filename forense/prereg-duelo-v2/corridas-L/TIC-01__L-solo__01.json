@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-01",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "# Estimación de p3i en la ENOE 2024-T1 (Población Subordinada y Remunerada, por sexo)\n\n## Identificación de la variable\n\nLa variable **p3i** del cuestionario COE1 de la ENOE corresponde a la pregunta sobre si el trabajador subordinado y remunerado **tiene acceso a guarderías o estancias infantiles** como prestación laboral en su empleo actual.\n\nEs una variable binaria (sí/no).\n\n## Mi estimación\n\nBasándome en el conocimiento de resultados históricos de la ENOE (series 2019–2023), donde la proporción de trabajadores subordinados y remunerados que reportan contar con acceso a guarderías/estancias infantiles ha oscilado típicamente entre el **20% y 28%** del total, con diferencias por sexo:\n\n| Categoría | Estimación puntual (proporción ponderada con \"Sí\") |\n|---|---|\n| **Total** | ~23–25% |\n| **Hombres** | ~22–24% |\n| **Mujeres** | ~24–27% |\n\n## Advertencia de honestidad\n\n**No tengo acceso directo a los microdatos de la ENOE 2024-T1 ni a tabulados oficiales exactos de este trimestre específico para esta variable.** Las cifras anteriores son aproximaciones basadas en la tendencia histórica observada en publicaciones del INEGI y en ejercicios previos con microdatos de la ENOE. No puedo garantizar la precisión puntual.\n\n## Fuente referencial\n\n- **INEGI**, Encuesta Nacional de Ocupación y Empleo (ENOE), serie trimestral. Cuestionario COE1, sección de prestaciones laborales. Tabulados disponibles en: https://www.inegi.org.mx/programas/enoe/\n- La identificación de p3i como prestación de guarderías proviene del diseño del cuestionario COE1 publicado por INEGI.\n\n---\n\nSi necesitas el dato exacto, recomiendo procesarlo directamente desde los microdatos de la ENOE 2024-T1 disponibles en el sitio del INEGI, aplicando el factor de expansión correspondiente (`fac_tri`).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T19:57:40.186746+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "cca49f2c6ecbb43cee179334a9044e28c402fa96ebcbe4313f0d760170a82991"
+}

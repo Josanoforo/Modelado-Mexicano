@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-02",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "# Estimación: Tasa de rechazo de créditos por tamaño de empresa (ENAFIN 2024)\n\n## Lo que sé con certeza\n\nLa ENAFIN ha tenido ediciones anteriores (2015, 2018, 2021), pero la **ola 2024** fue levantada recientemente y, hasta mi fecha de corte de conocimiento, **no tengo acceso a los microdatos ni a los tabulados oficiales de la ENAFIN 2024**. No puedo confirmar si los resultados ya fueron publicados por INEGI/CNBV.\n\n## Lo que puedo ofrecer: estimaciones basadas en ediciones previas\n\nCon base en las ediciones anteriores de la ENAFIN (particularmente 2018 y 2021), las tasas de rechazo de crédito solicitado por las empresas seguían un patrón consistente:\n\n| Tamaño de empresa | Estimación puntual (tasa de rechazo) | Intervalo subjetivo (90%) |\n|---|---|---|\n| **Microempresas** | ~20–25% | [15%, 32%] |\n| **Pequeñas** | ~12–16% | [8%, 22%] |\n| **Medianas** | ~7–10% | [4%, 15%] |\n| **Grandes** | ~3–6% | [2%, 10%] |\n| **Total** | ~14–18% | [10%, 24%] |\n\n## Advertencias importantes\n\n1. **No tengo el dato de la ENAFIN 2024.** Las cifras anteriores son extrapolaciones del patrón histórico observado en ediciones previas. **No deben citarse como resultados oficiales.**\n\n2. El contexto macroeconómico de 2024 (tasas de interés elevadas, desaceleración selectiva) podría haber modificado tanto la demanda de crédito como los criterios de aprobación, por lo que las tasas podrían diferir significativamente.\n\n3. La definición exacta de \"rechazo\" en la ENAFIN incluye tanto rechazos formales como casos en que el monto aprobado fue cero; la operacionalización precisa afecta la cifra.\n\n## Fuente\n\n- **ENAFIN 2018 y 2021** (INEGI-CNBV): tabulados públicos donde se reportan tasas de rechazo por estrato de tamaño.\n- **No dispongo de fuente textual para la ENAFIN 2024.** Si ya fue publicada, recomiendo consultar directamente: https://www.inegi.org.mx/programas/enafin/\n\n**En resumen: no conozco el dato específico de la ENAFIN 2024 y lo declaro explícitamente. Las cifras ofrecidas son proyecciones subjetivas basadas en el patrón histórico.**",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:06:34.414910+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "18fc5a2209f544f3329be1632acaa3a31e8b8979142cc88966e92d85987c99c8"
+}

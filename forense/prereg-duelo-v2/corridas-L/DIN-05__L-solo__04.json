@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-05",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "# Estimación solicitada: ENFIH 2019, P8_1_1, localidades < 2,500 habitantes\n\n## Mi respuesta honesta\n\n**No conozco el dato específico.** No tengo acceso al microdato ni a tabulados publicados de la ENFIH (Encuesta Nacional sobre las Finanzas de los Hogares) ola 2019 del INEGI/CNBV con el nivel de desagregación que solicitas (proporción ponderada de P8_1_1 restringida a localidades menores de 2,500 habitantes).\n\n## Lo que puedo contextualizar\n\n- La **ENFIH 2019** es levantada por INEGI en colaboración con la CNBV y el Banco de México. Su objetivo es captar información sobre activos, deudas, ingresos y uso de servicios financieros de los hogares.\n- **P8_1** en la sección 8 de la encuesta se refiere típicamente a tenencia o uso de productos financieros específicos (por ejemplo, si la persona tiene alguna cuenta de ahorro, tarjeta de crédito, seguro, etc.). El sufijo **_1** suele indicar el primer ítem de una batería.\n- En localidades rurales (< 2,500 habitantes), las tasas de inclusión financiera suelen ser sustancialmente menores que en zonas urbanas. Para muchos productos financieros, la proporción de tenencia en zonas rurales puede oscilar entre **10% y 35%**, dependiendo del producto, pero **no puedo precisar cuál producto captura P8_1_1 sin la documentación del cuestionario, ni dar una cifra confiable**.\n\n## Conclusión\n\n**No tengo una estimación puntual confiable que ofrecer.** Dar una cifra sería fabricar un número, lo cual explícitamente evito.\n\n**Fuente recomendada para obtener el dato exacto:**\n- Microdatos y documentación de la ENFIH 2019: [https://www.inegi.org.mx/programas/enfih/2019/](https://www.inegi.org.mx/programas/enfih/2019/)\n- Tabulados interactivos del INEGI o procesamiento directo en R/Stata con el diseño muestral y los factores de expansión correspondientes.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:11:29.425150+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "651a6746cfbd71d2d83c398e44827911b11f8186ccd495b38820b66ac05b8609"
+}

@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-02",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "# Estimación: Tasa de rechazo de crédito por tamaño de empresa (ENAFIN 2024)\n\n## Lo que sé y lo que no sé\n\nDebo ser explícito: **no tengo acceso a los microdatos ni a los tabulados oficiales de la ENAFIN 2024**. La ola 2024 de la ENAFIN fue levantada por INEGI en colaboración con la CNBV, y al momento de mi corte de conocimiento (abril 2024), los resultados detallados de esta edición aún no estaban plenamente publicados o no fueron incorporados en mi entrenamiento.\n\nSin embargo, puedo ofrecer estimaciones informadas con base en las olas anteriores de la ENAFIN (2018, 2021) y la ENAPROCE, que reportan tasas de rechazo de crédito por tamaño de empresa.\n\n## Estimaciones puntuales (subjetivas, basadas en ediciones previas)\n\n| Tamaño de empresa | Estimación puntual (tasa de rechazo) | Intervalo subjetivo 90% |\n|---|---|---|\n| **Micro** (hasta 10 empleados) | **0.25** (25%) | [0.18 – 0.35] |\n| **Pequeña** (11–50 empleados) | **0.17** (17%) | [0.10 – 0.25] |\n| **Mediana** (51–250 empleados) | **0.10** (10%) | [0.05 – 0.16] |\n| **Grande** (251+ empleados) | **0.05** (5%) | [0.02 – 0.10] |\n| **Total** (todas las empresas) | **0.20** (20%) | [0.13 – 0.28] |\n\n## Justificación\n\n- En la **ENAFIN 2018**, la tasa de rechazo agregada rondaba el 15–20% de las solicitudes, con un gradiente claro por tamaño: las microempresas enfrentan tasas de rechazo sustancialmente mayores.\n- En la **ENAFIN 2021** (levantada en contexto post-COVID), las tasas de rechazo se elevaron, particularmente para empresas más pequeñas, con reportes de hasta 25–30% para microempresas.\n- Para 2024, esperaría una ligera moderación respecto a 2021 pero no un retorno a niveles pre-pandemia, dado el endurecimiento de estándares crediticios y la aversión al riesgo persistente en la banca comercial mexicana.\n\n## Advertencia\n\n> **Estas cifras son estimaciones subjetivas informadas, no datos observados de la ENAFIN 2024.** Para obtener las cifras oficiales ponderadas, es necesario consultar los tabulados publicados por INEGI/CNBV en: https://www.inegi.org.mx/programas/enafin/\n\n**Fuente base**: ENAFIN 2018 y 2021 (INEGI-CNBV), tabulados de solicitud y otorgamiento de crédito por tamaño de empresa. No cuento con una fuente textual directa para la ola 2024.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:06:17.986811+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "18fc5a2209f544f3329be1632acaa3a31e8b8979142cc88966e92d85987c99c8"
+}

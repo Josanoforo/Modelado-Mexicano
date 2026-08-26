@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-02",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "# Estimación: Tasa de rechazo de crédito por tamaño de empresa (ENAFIN 2024)\n\n## Lo que sé y lo que no sé\n\nDebo ser transparente: **no tengo acceso directo a los microdatos ni tabulados oficiales de la ENAFIN 2024** (cuya recolección y publicación de resultados puede estar aún en proceso o haberse publicado después de mi fecha de corte de conocimiento). Por lo tanto, no puedo proporcionar la cifra exacta de esta ola.\n\n## Lo que puedo ofrecer como referencia\n\nCon base en las olas anteriores de la ENAFIN (2018 y 2021, publicadas por INEGI en colaboración con CNBV), las tasas de rechazo de crédito solicitado por empresas presentaban el siguiente patrón general:\n\n| Tamaño de empresa | Tasa de rechazo (referencia ENAFIN 2018/2021) |\n|---|---|\n| **Microempresas** | ~15–25% |\n| **Pequeñas** | ~10–18% |\n| **Medianas** | ~5–12% |\n| **Grandes** | ~3–8% |\n| **Total** | ~10–18% |\n\nEl patrón consistente es que **la tasa de rechazo disminuye conforme aumenta el tamaño de la empresa**, reflejando menor riesgo percibido, mejor historial crediticio y mayor capacidad de garantía.\n\n## Mi mejor estimación puntual (subjetiva, condicional) para 2024\n\nSi tuviera que estimar, proyectando las tendencias y el contexto de política monetaria restrictiva de 2023-2024:\n\n| Tamaño | Estimación puntual | IC subjetivo 90% |\n|---|---|---|\n| **Micro** | 0.20 | [0.14, 0.28] |\n| **Pequeña** | 0.14 | [0.09, 0.20] |\n| **Mediana** | 0.08 | [0.04, 0.14] |\n| **Grande** | 0.05 | [0.02, 0.09] |\n| **Total** | 0.13 | [0.08, 0.19] |\n\n## Declaración explícita\n\n**No conozco el dato preciso de la ENAFIN 2024.** Las cifras anteriores son extrapolaciones subjetivas basadas en olas previas de la misma encuesta. No deben citarse como datos oficiales.\n\n**Fuente de referencia:** INEGI-CNBV, Encuesta Nacional de Financiamiento de las Empresas (ENAFIN), olas 2018 y 2021. Los tabulados están disponibles en el sitio del INEGI. No tengo una fuente textual directa para la ola 2024.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:07:10.683522+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "18fc5a2209f544f3329be1632acaa3a31e8b8979142cc88966e92d85987c99c8"
+}

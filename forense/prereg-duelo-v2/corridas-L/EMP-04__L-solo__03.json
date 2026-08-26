@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-04",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "# Estimación: Razón de aprobación de créditos por tamaño de localidad (ENAFIN 2024)\n\n## Declaración de conocimiento\n\n**No cuento con el dato preciso.** La ENAFIN 2024 fue levantada por INEGI y CNBV, y aunque conozco resultados generales de olas anteriores (ENAFIN 2018 y ENAFIN 2021), no tengo acceso directo a los tabulados de la ola 2024 desagregados por tamaño de localidad, ni a un documento adjunto que los contenga. Por lo tanto, lo que ofrezco a continuación es una **estimación subjetiva informada**, no un dato observado.\n\n## Contextualización a partir de olas previas\n\nEn olas anteriores de la ENAFIN:\n\n- La **tasa de aprobación de créditos** a nivel nacional ha oscilado entre aproximadamente **75% y 88%** del total de créditos solicitados.\n- Las localidades de **mayor tamaño** (≥500 mil habitantes) suelen mostrar tasas de aprobación ligeramente superiores a las de localidades medianas, dado el mayor acceso a infraestructura financiera, mayor formalización empresarial y mayor competencia bancaria.\n- La diferencia entre estratos de localidad típicamente no es dramática, pero sí consistente.\n\n## Estimación puntual y razonamiento\n\nSe solicita la **razón**:\n\n$$R = \\frac{\\text{Tasa de aprobación en localidades de 500 mil o más}}{\\text{Tasa de aprobación en localidades de 50 mil a 499,999}}$$\n\n- Estimo que la tasa de aprobación en localidades ≥500 mil hab. podría situarse alrededor de **85%**.\n- Estimo que la tasa en localidades de 50 mil a 499,999 hab. podría rondar **80%**.\n\n### Estimación puntual de la razón:\n\n$$\\hat{R} = \\frac{0.85}{0.80} \\approx \\mathbf{1.06}$$\n\n### Intervalo de confianza subjetivo (≈90%):\n\n$$\\left[0.98,\\quad 1.15\\right]$$\n\nEsto refleja que:\n- Es más probable que las localidades grandes tengan una ventaja modesta (razón >1).\n- No descarto que en 2024 las tasas se hayan igualado o incluso invertido ligeramente (razón ≤1), lo que justifica que el extremo inferior del intervalo baje de 1.\n- Una ventaja superior al 15% sería inusualmente grande para este contraste.\n\n## Fuente\n\nNo tengo una fuente textual directa para la ENAFIN 2024. Mi estimación se basa en el conocimiento de patrones de las olas ENAFIN 2018 y 2021 publicadas por **INEGI/CNBV**, así como en la literatura sobre inclusión financiera territorial en México. **Si se requiere el dato exacto, debe consultarse el tabulado oficial de INEGI para la ENAFIN 2024** (disponible en el sitio de INEGI o mediante solicitud a la CNBV).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:09:04.136034+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "8a2016ec998a2e49bd5ee499723188fcd2363182c71bc9b20851f4b1055a417c"
+}

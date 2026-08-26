@@ -1,0 +1,18 @@
+{
+  "id_celda": "SFT-06",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "# Estimación para F55_24 – ENASEM 2024\n\n## Identificación de la variable\n\nLa variable **F55_24** se encuentra en la **Sección F** del cuestionario ENASEM, que corresponde a **Salud** (específicamente, aspectos relacionados con condiciones de salud, funcionalidad o comportamientos de salud). En la nomenclatura ENASEM, las variables F55 y cercanas en olas anteriores han abordado temas como **caídas, dolor, síntomas depresivos o limitaciones funcionales**, dependiendo de la sub-sección exacta.\n\n## Mi respuesta honesta\n\n**No conozco el dato con certeza.** La ola 2024 de la ENASEM es muy reciente y no tengo acceso a:\n\n1. Los microdatos liberados de la ola 2024.\n2. El cuestionario definitivo de 2024 con el mapeo exacto de F55_24.\n3. Ningún documento adjunto de este proyecto de investigación.\n4. Tabulados oficiales publicados con la proporción ponderada de esta variable.\n\n## ¿Por qué no estimo una cifra?\n\nDado que:\n- No puedo confirmar el fraseo exacto del reactivo F55_24 en la ola 2024 (la numeración de ítems puede cambiar entre olas),\n- No tengo los microdatos ni ponderadores de la ola 2024,\n- Inventar una cifra \"plausible\" basada en olas anteriores sin saber si el reactivo es el mismo sería irresponsable,\n\n**declaro explícitamente que no tengo este dato y no puedo ofrecer una estimación puntual confiable.**\n\n## Recomendación\n\nPara obtener la proporción ponderada de F55_24:\n- Consultar los microdatos en **www.enasem.org** o en el sitio del INEGI.\n- Aplicar los ponderadores de persona (`peso_per` o equivalente de la ola 2024) a la variable F55_24.\n- Calcular la proporción con software estadístico que incorpore el diseño muestral complejo.\n\n**Fuente referida:** ENASEM, sitio oficial (enasem.org), financiado por NIA/NIH y coordinado por INEGI y Universidad de Texas Medical Branch.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:14:23.042381+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "d451514879cf73e520e6c23321e959977eeaba9f27acaaac7837fc2aabb343fb"
+}

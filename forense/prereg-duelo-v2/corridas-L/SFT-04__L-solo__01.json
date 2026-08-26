@@ -1,0 +1,18 @@
+{
+  "id_celda": "SFT-04",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "# Estimación para H16D_18 – ENASEM 2018\n\n## Identificación de la variable\n\nEn la ENASEM 2018, las variables de la sección H corresponden al módulo de **salud y condiciones funcionales**. La serie H16x generalmente se refiere a **dificultades con actividades instrumentales de la vida diaria (AIVD)** o actividades específicas de funcionamiento. Específicamente, **H16D_18** suele referirse a la pregunta sobre si la persona tiene dificultad para **preparar una comida caliente** (o una actividad instrumental similar, siendo el sufijo \"D\" la cuarta actividad listada en esa batería).\n\nLa escala es **binaria** (típicamente 1 = Sí tiene dificultad / 0 = No tiene dificultad).\n\n## Mi estimación\n\n**No cuento con el dato exacto de la proporción ponderada de H16D_18 en la ENASEM 2018.** No tengo acceso directo a las microdatos procesados ni a tabulados oficiales que reporten esta variable específica con su ponderador.\n\n### Aproximación razonada (con advertencia explícita)\n\nBasándome en el conocimiento general de la ENASEM y la literatura sobre limitaciones en AIVD en adultos mayores mexicanos:\n\n- Las prevalencias de dificultad en actividades instrumentales individuales en la ENASEM suelen oscilar entre **8% y 20%** dependiendo de la actividad específica.\n- \"Preparar una comida caliente\" (si esa es la actividad) típicamente reporta prevalencias en el rango de **10%–16%** en poblaciones de 50+.\n\nSin embargo, **no puedo confirmar con certeza cuál es la actividad exacta codificada como H16D_18**, ni proporcionar la proporción ponderada precisa.\n\n## Fuente\n\nNo dispongo de una fuente textual declarada con el valor puntual. La referencia general sería:\n\n> INEGI/INSP/University of Texas Medical Branch. *Estudio Nacional de Salud y Envejecimiento en México (ENASEM), ola 2018.* Disponible en: www.enasem.org\n\n**Recomendación:** Para obtener el dato exacto, es necesario procesar los microdatos públicos de la ENASEM 2018 aplicando el ponderador correspondiente (variable de peso muestral de la sección de entrevista directa).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:15:47.270551+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "6a425cf17945ae22b1b5f3e96f6e24dd862a7d7b704e8997ce8b6e754dc8498e"
+}

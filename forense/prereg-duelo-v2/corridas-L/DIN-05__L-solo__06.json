@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-05",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "# Estimación solicitada: ENFIH 2019 – P8_1_1 (localidades < 2,500 habitantes)\n\n## Identificación del reactivo\n\nLa **ENFIH** (Encuesta Nacional sobre las Finanzas de los Hogares) es levantada por el **INEGI** en coordinación con la **CNBV**. La ola 2019 corresponde a la segunda edición de esta encuesta (la primera fue en 2015).\n\nEl reactivo **P8_1_1** se ubica en la sección 8 del cuestionario, que aborda **productos financieros / ahorro / crédito**. En la estructura típica de la ENFIH, P8_1_1 suele referirse a la tenencia o uso de algún producto financiero específico (por ejemplo, si la persona cuenta con una **cuenta de ahorro formal**, o si ha utilizado algún tipo de crédito formal). En la codificación habitual de la ENFIH 2019, P8_1_1 corresponde a una pregunta binaria (Sí/No) dentro del módulo de crédito o endeudamiento.\n\n## Mi respuesta honesta\n\n**No cuento con el dato preciso.**\n\nNo tengo acceso a las bases de microdatos ponderados de la ENFIH 2019 desagregados por tamaño de localidad (< 2,500 habitantes), ni dispongo de una tabulación publicada que reporte exactamente la proporción ponderada de P8_1_1 para ese subuniverso rural.\n\nProporcionar una cifra \"plausible\" sería especulativo. Si bien podría inferir rangos generales (por ejemplo, la penetración de productos financieros formales en localidades rurales suele ser considerablemente menor que en zonas urbanas, oscilando típicamente entre 15% y 35% dependiendo del producto), **no tengo certeza de qué producto o comportamiento financiero específico captura P8_1_1** en la versión definitiva del cuestionario 2019, ni del estimador ponderado resultante.\n\n## Fuente que debería consultarse\n\n- **INEGI – Encuesta Nacional sobre las Finanzas de los Hogares (ENFIH) 2019**: microdatos y tabulados disponibles en [https://www.inegi.org.mx/programas/enfih/2019/](https://www.inegi.org.mx/programas/enfih/2019/)\n- La estimación requiere procesar los microdatos con los factores de expansión, filtrando por tamaño de localidad < 2,500 habitantes.\n\n**No declaro ninguna fuente textual que respalde un valor puntual, porque no dispongo de ella.**",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:12:03.045491+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "651a6746cfbd71d2d83c398e44827911b11f8186ccd495b38820b66ac05b8609"
+}

@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-02",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "# Estimación: Tasa de rechazo de créditos por tamaño de empresa (ENAFIN 2024)\n\n## Lo que sé con certeza\n\nLa ENAFIN ha tenido ediciones anteriores (2018, 2021) levantadas por INEGI en colaboración con la CNBV. La edición 2024 fue anunciada/levantada, pero **no tengo acceso a los microdatos ni a los tabulados oficiales de la ENAFIN 2024**. Mi fecha de corte de conocimiento no me garantiza disponer de resultados publicados de esa ola.\n\n## Lo que puedo ofrecer: referencia histórica\n\nCon base en la **ENAFIN 2021** (última edición cuyos resultados conozco con razonable confianza):\n\n| Tamaño de empresa | Tasa de rechazo estimada | Intervalo subjetivo (90%) |\n|---|---|---|\n| **Micro** (6–10 empleados) | ~15–18% | [12%, 22%] |\n| **Pequeña** (11–50) | ~10–14% | [8%, 18%] |\n| **Mediana** (51–250) | ~7–10% | [5%, 13%] |\n| **Grande** (251+) | ~4–7% | [3%, 10%] |\n\nEstas cifras reflejan el patrón consistente: **la tasa de rechazo es inversamente proporcional al tamaño de la empresa**.\n\n## Para la ola 2024: declaración explícita\n\n**No conozco el dato específico de la ENAFIN 2024.** No tengo acceso a:\n- Los tabulados oficiales publicados por INEGI/CNBV de esa ola.\n- Los microdatos para calcular la razón ponderada solicitada.\n- Ningún documento adjunto de este proyecto.\n\nCualquier cifra que ofreciera para 2024 sería una **extrapolación especulativa** a partir de ediciones anteriores, no un dato observado.\n\n## Fuente de la referencia histórica\n\n- **INEGI–CNBV, Encuesta Nacional de Financiamiento de las Empresas (ENAFIN) 2021.** Tabulados básicos y comunicado de prensa. Disponibles en: https://www.inegi.org.mx/programas/enafin/\n\n> ⚠️ No puedo confirmar textualmente las cifras exactas de 2021 con precisión decimal; las reporto de memoria y podrían tener error de ±2–3 puntos porcentuales.\n\nSi tienes acceso a los tabulados de la ENAFIN 2024, con gusto te ayudo a interpretar o procesar los datos.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:08:10.062614+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "18fc5a2209f544f3329be1632acaa3a31e8b8979142cc88966e92d85987c99c8"
+}

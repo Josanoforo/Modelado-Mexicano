@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-06",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "# Estimación solicitada: ENTI 2022 – Proporción ponderada de P2 (\"Tiene menos de un año en este trabajo\") por sexo\n\n## Mi respuesta honesta\n\n**No conozco el dato exacto.** No tengo acceso a las tabulaciones específicas de la variable P2 de la tabla ENTI2022_CB12A17.DBF, ni he encontrado en mi entrenamiento una fuente textual que reporte esta cifra desagregada por sexo con precisión suficiente.\n\n## Lo que sé contextualmente\n\nLa **Encuesta Nacional de Trabajo Infantil (ENTI) 2022**, levantada por INEGI como módulo de la ENOE, capta información sobre las condiciones laborales de la población de 5 a 17 años. La variable P2 en la tabla de ocupados de 12 a 17 años se refiere a la antigüedad en el trabajo actual, con una escala categórica de k=3 categorías (típicamente: menos de un año, de uno a tres años, más de tres años, o similar).\n\n## Por qué no estimo\n\nDado que:\n\n1. No tengo acceso al microdato ni al tabulado ponderado específico.\n2. La proporción de adolescentes con menos de un año en su trabajo actual depende de dinámicas de rotación laboral juvenil que varían por sexo de forma no trivial.\n3. Inventar una cifra \"plausible\" sin fuente violaría la instrucción explícita de no hacerlo.\n\n**No proporciono una estimación puntual.**\n\n## Fuente que debería consultarse\n\n- **INEGI**, microdatos de la ENTI 2022, tabla `ENTI2022_CB12A17.DBF`, variable P2, ponderando con el factor de expansión correspondiente (FAC_CB12), desagregando por la variable SEX.\n- Disponible en: https://www.inegi.org.mx/programas/enti/2022/#microdatos\n\n---\n\n*No cuento con una fuente textual declarada que reporte este indicador. Declaro explícitamente que no conozco el dato.*",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:20:30.898174+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "27dd129bf323b8dfedbf96bbfce9d7925282ec2b02408427ec6372a1ad7e5f32"
+}

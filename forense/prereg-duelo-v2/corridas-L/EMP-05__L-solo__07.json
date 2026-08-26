@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-05",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "# Estimación: SITUA_CONYUGAL para personas de 20-29 años (CPV 2020, Cuestionario Ampliado)\n\n## Contexto\n\nLa variable **SITUA_CONYUGAL** en el Cuestionario Ampliado del Censo de Población y Vivienda 2020 de INEGI tiene **8 categorías**:\n\n1. Unión libre\n2. Casada(o) solo por lo civil\n3. Casada(o) solo religiosamente\n4. Casada(o) civil y religiosamente\n5. Separada(o)\n6. Divorciada(o)\n7. Viuda(o)\n8. Soltera(o)\n\n## Mi mejor estimación puntual (proporciones ponderadas, personas 20-29 años)\n\n| Categoría | Proporción estimada |\n|---|---|\n| **Soltera(o)** | ~0.47 (47%) |\n| **Unión libre** | ~0.24 (24%) |\n| **Casada(o) civil y religiosamente** | ~0.11 (11%) |\n| **Casada(o) solo por lo civil** | ~0.10 (10%) |\n| **Separada(o)** | ~0.04 (4%) |\n| **Casada(o) solo religiosamente** | ~0.01 (1%) |\n| **Divorciada(o)** | ~0.02 (2%) |\n| **Viuda(o)** | ~0.005 (0.5%) |\n\n*(Las proporciones suman aproximadamente 1.0, con redondeo.)*\n\n## Fuente y nivel de confianza\n\n**Fuente:** Estas estimaciones se basan en mi conocimiento de los microdatos y tabulados publicados por el **INEGI, Censo de Población y Vivienda 2020** (cuestionario ampliado), así como en las tendencias documentadas para este grupo etario en México (crecimiento de la soltería y la unión libre entre jóvenes). No estoy consultando directamente los microdatos ni un tabulado en este momento.\n\n**Advertencia de incertidumbre:** Tengo confianza moderada-alta en el ordenamiento de las categorías y en los órdenes de magnitud (especialmente que soltería ≈ 45-50%, unión libre ≈ 22-26%, y las categorías de casado suman ≈ 20-23%). Sin embargo, **no puedo garantizar la precisión al punto porcentual** sin correr directamente la consulta ponderada sobre los microdatos de la muestra ampliada. Las cifras de separación, divorcio y viudez en este grupo etario son pequeñas y más difíciles de estimar con precisión.\n\n**Recomendación:** Para valores exactos, se pueden consultar los microdatos del cuestionario ampliado del CPV 2020 disponibles en el sitio de INEGI, aplicando los factores de expansión (variable FACTOR) y filtrando por edad 20-29.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:26:45.901812+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "81b785fe9cec5f16df68777ab2e737c90e84b849cd5686a6a4c0a079a09b9338"
+}

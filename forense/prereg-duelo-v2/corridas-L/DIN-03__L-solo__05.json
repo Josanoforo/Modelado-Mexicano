@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-03",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "# Estimación para P7_1 – ENIF 2012\n\n## Contexto\n\nLa **ENIF 2012** (Encuesta Nacional sobre la Dinámica de las Relaciones en los Hogares) fue levantada por el INEGI en 2011, con resultados publicados en 2012. Su universo son mujeres de 15 años y más (en la práctica, la muestra se enfoca en mujeres de 15 a 70+ años residentes en viviendas particulares). La referencia a \"18 a 70 años\" que mencionas podría ser un subconjunto o una ligera variación en la definición operativa.\n\n## Sobre la variable P7_1\n\nEn el cuestionario de la ENDIREH/ENIF 2011 (ola publicada como 2012), las preguntas de la sección 7 típicamente abordan **violencia en el ámbito comunitario o laboral**. La pregunta P7_1 con escala binaria (sí/no) suele referirse a si la mujer ha experimentado algún tipo de situación específica de violencia o discriminación.\n\n## Mi respuesta honesta\n\n**No conozco con certeza el dato puntual de la proporción ponderada de P7_1 de la ENIF 2012.** Tengo varias razones:\n\n1. **Ambigüedad en la sigla**: \"ENIF\" puede referirse a la *Encuesta Nacional de Inclusión Financiera* (ENIF 2012, levantada por INEGI/CNBV), no a la ENDIREH. Si se trata de la **Encuesta Nacional de Inclusión Financiera 2012**, la variable P7_1 correspondería a un reactivo sobre productos o servicios financieros, pero no tengo memorizado el valor puntual de esa variable específica.\n\n2. **No tengo acceso al microdato** ni a tabulados oficiales que me permitan calcular o verificar la proporción ponderada exacta.\n\n3. No quiero fabricar una cifra que parezca plausible pero sea incorrecta.\n\n## Declaración explícita\n\n**No conozco el dato exacto de la proporción ponderada de P7_1 de la ENIF 2012 y no puedo proporcionar una estimación puntual confiable.**\n\n**Fuente recomendada para obtenerlo:**\n- Microdatos de la ENIF 2012 disponibles en el sitio del INEGI: [https://www.inegi.org.mx/programas/enif/2012/](https://www.inegi.org.mx/programas/enif/2012/)\n- Tabulados predefinidos de la CNBV/INEGI.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:02:51.557387+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "260e82d2931346be568967aa1503b3a9f55a1e0e0a62894824e03758e37a4063"
+}
