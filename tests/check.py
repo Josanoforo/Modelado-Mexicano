@@ -1302,6 +1302,11 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # extensión mínima de perímetro por desviación mecánica que ADR-147(c)/
     # ADR-149(f)/ADR-151/ADR-164 -- ACTO SELLA-AGO25-F, 25/ago/2026.
     "forense/notas/2026-08-25-sella-f.md",
+    # forense/notas/2026-08-26-prereg-corrida-cierre.md -- discute RANURA 1
+    # y RANURA 2 de ACTO PREREG-CORRIDA, ambas ya rastreadas: RANURA 1 es
+    # FP-161 (FIRMADA, ADR-194) y RANURA 2 queda adoptada en el mismo ADR
+    # sin fila propia (no pide firma de mesa). No es un marcador nuevo.
+    "forense/notas/2026-08-26-prereg-corrida-cierre.md",
     # forense/encargos/2026-08-25-SELLA-A1-CODI.md -- encargo archivado
     # verbatim (convencion de forense/encargos/, A.3), incluye la RANURA
     # de firma de mesa tal como se lanzo. La firma que esa ranura pedia
@@ -1313,6 +1318,15 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # 25/ago/2026 (PR #350, CI del propio acto).
     "forense/encargos/2026-08-25-SELLA-A1-CODI.md",
     "forense/encargos/2026-08-25-SELLA-AGO25-F.md",
+    # forense/encargos/2026-08-26-PREREG-CORRIDA.md -- encargo archivado
+    # verbatim (convencion de forense/encargos/, A.3), incluye las dos
+    # RANURAS de firma de mesa tal como se lanzaron. RANURA 1 (cual-L) ya
+    # esta capturada: FP-161 en firmas-pendientes.tsv nace FIRMADA con el
+    # verbatim exacto y ADR-194 la sella; RANURA 2 (D-iii) queda adoptada
+    # en el mismo ADR sin fila propia (no pide firma de mesa, designa un
+    # patron ya vigente en pipeline-L-adv1-m2.py). No es un marcador nuevo
+    # sin dueno, es la copia fiel de uno ya resuelto y otro ya adoptado.
+    "forense/encargos/2026-08-26-PREREG-CORRIDA.md",
     # forense/notas/2026-08-25-sella-f-hoja.md y su encargo -- continuación de
     # SELLA-AGO25-F, ejecuta las diez letras de mesa (L1-L10) ya resueltas y
     # abre seis actos sucesores declarados (FP-135..FP-140), todos ya con fila
@@ -2249,6 +2263,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # el rotulo del propio ACTO ENLACE-2/B2-SEMANTICO, no un espacio nuevo
     # de este acto. Cita, no declaracion.
     "forense/notas/2026-08-25-sella-f-hoja.md",
+    # PREREG-CORRIDA, 26/ago/2026 (ADR-194): encargo archivado VERBATIM
+    # (convencion de forense/encargos/: "el texto completo del encargo tal
+    # como se lanzo"). Su `M2` pelado es ADV1-M2, ya censado en
+    # canon/registro-rotulos.tsv; el texto de direccion no se edita para
+    # complacer a un test. Mismo movimiento y misma razon que ACT-PIL-2/
+    # SELLA-AGO24-C-v2.
+    "forense/encargos/2026-08-26-PREREG-CORRIDA.md",
     # SELLA-AGO24-C-v2, 24/ago/2026 (ADR-155): encargo archivado VERBATIM
     # (convencion de forense/encargos/: "el texto completo del encargo tal
     # como se lanzo"). Su `M5` pelado es ADV1-M5, ya censado en
