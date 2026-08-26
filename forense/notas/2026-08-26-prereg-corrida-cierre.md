@@ -5,8 +5,8 @@
 ## Qué produjo este acto
 
 1. `forense/prereg-duelo-v2/prereg-corrida-v1_0.md` — pre-registro de la corrida del duelo `ADV1-M2`: hashes de los cuatro corredores comprometidos antes de que `R` exista (F1), spec de elicitación ADV1-M2 congelada con modelo/temperatura/k/agregado/formato/plantilla/`comparacion_principal_id` sellados (F2), banda TOST/margen material citados sin re-derivar y dejados abiertos para mesa (F3).
-2. `canon/gobernanza-v1_15.md` `ADR-194` — registra RANURA 1 (cuál-`L`) y RANURA 2 (quién corre `L`), con el razonamiento de mesa y la respuesta de dirección verbatim.
-3. `forense/firmas-pendientes.tsv` `FP-161` (`FIRMADA` — RANURA 1, gatea corridas `L` y scoring) y `FP-162` (`ABIERTA` — banda TOST/margen material del piloto, para mesa).
+2. `canon/gobernanza-v1_15.md` `ADR-197` — registra RANURA 1 (cuál-`L`) y RANURA 2 (quién corre `L`), con el razonamiento de mesa y la respuesta de dirección verbatim.
+3. `forense/firmas-pendientes.tsv` `FP-162` (`FIRMADA` — RANURA 1, gatea corridas `L` y scoring) y `FP-163` (`ABIERTA` — banda TOST/margen material del piloto, para mesa).
 4. `canon/estado-programa-v1_10.md` — recifra de ADR (193→194) y línea del duelo actualizada: «pre-registro sellado; L listas para correr; árbitro después de L».
 5. `forense/encargos/2026-08-26-PREREG-CORRIDA.md` — encargo archivado, `CONSUMIDO`.
 
@@ -26,4 +26,4 @@ No corrió ninguna `L`. No computó ningún `R` ni CV. No tocó el sorteo, el ma
 
 ## Qué sigue
 
-Mesa sella `FP-162` (banda TOST/margen material) cuando decida. Una sesión limpia fuera de este proyecto, conforme a RANURA 2, corre las 30 entradas de `L` (15 celdas × 2 variantes × `k=8`) siguiendo la spec congelada en `prereg-corrida-v1_0.md` §F2, sin haber leído este pre-registro ni el árbol `forense/prereg-duelo-v2/`. Solo después de que `L` complete y sus hashes queden comprometidos (ya lo están, F1) corre el árbitro `R`.
+Mesa sella `FP-163` (banda TOST/margen material) cuando decida. Una sesión limpia fuera de este proyecto, conforme a RANURA 2, corre las 30 entradas de `L` (15 celdas × 2 variantes × `k=8`) siguiendo la spec congelada en `prereg-corrida-v1_0.md` §F2, sin haber leído este pre-registro ni el árbol `forense/prereg-duelo-v2/`. Solo después de que `L` complete y sus hashes queden comprometidos (ya lo están, F1) corre el árbitro `R`.

@@ -1,6 +1,6 @@
 **SHA de redacción:** `9c25f28`
 **Entorno asignado:** NUBE (`cloud_default`). No UBUNTU, no doble.
-**Estado:** CONSUMIDO — ver `forense/prereg-duelo-v2/prereg-corrida-v1_0.md`, `canon/gobernanza-v1_15.md` ADR-194, `forense/firmas-pendientes.tsv` FP-161/FP-162, `forense/notas/2026-08-26-prereg-corrida-cierre.md`.
+**Estado:** CONSUMIDO — ver `forense/prereg-duelo-v2/prereg-corrida-v1_0.md`, `canon/gobernanza-v1_15.md` ADR-197, `forense/firmas-pendientes.tsv` FP-162/FP-163, `forense/notas/2026-08-26-prereg-corrida-cierre.md`.
 
 ---
 

@@ -127,13 +127,13 @@ Ya congelada en `pipeline-L-adv1-m2.py` §3 (`PLANTILLA_L_SOLO`, `PLANTILLA_L_CO
 - **Insumo real:** los únicos dos EE empíricos que el corpus adquirido trae (`U2/EV-1`: CV 1.39% y 1.60%, ambos totales poblacionales, banda Alta de CAC-007/01/2018) — no hay artefacto oficial de EE por reactivo para ninguna de las 15 celdas sorteadas (verificado por las cinco vías de `banda-tost-margen-v1_0.md §1`, no re-verificado aquí).
 - **Límite explícito, propagado sin editar:** la banda es una **regla de forma** (fracción del EE propio de cada celda, calculado por `ArbitroR.ee` cuando `R` corra), no una constante numérica fija — porque solo hay 2 filas de EE reales y ninguna del mismo tipo de reactivo que el piloto evalúa. Donde una celda no tenga su `EE(R)` calculable aún (porque `R` no ha corrido), la banda de esa celda queda condicionada al árbitro y se dice así — no se rellena con un EE de otra variable ni con un EE de diseño teórico.
 
-**Este acto no sella la constante `0.5`.** Conforme al mismo mandato citado por el encargo — «firmar una constante a ciegas sería el defecto v2.1 de siempre» (`CAREO` D-iv, verbatim) — la fila queda abierta para mesa en `firmas-pendientes.tsv` (`FP-162`, ver F4). Lo que faltaba y que `banda-tost-margen-v1_0.md §4` ya enumeraba (confirmar/rechazar `0.5·EE(R)`, decidir si la banda es siempre fracción del EE o si mesa prefiere una constante absoluta por subclase de reactivo, y registrar la firma) sigue pendiente en esos mismos términos — este acto no los resuelve, solo confirma que la derivación sigue siendo la única disponible y la propaga al set de 15 celdas ya sorteadas.
+**Este acto no sella la constante `0.5`.** Conforme al mismo mandato citado por el encargo — «firmar una constante a ciegas sería el defecto v2.1 de siempre» (`CAREO` D-iv, verbatim) — la fila queda abierta para mesa en `firmas-pendientes.tsv` (`FP-163`, ver F4). Lo que faltaba y que `banda-tost-margen-v1_0.md §4` ya enumeraba (confirmar/rechazar `0.5·EE(R)`, decidir si la banda es siempre fracción del EE o si mesa prefiere una constante absoluta por subclase de reactivo, y registrar la firma) sigue pendiente en esos mismos términos — este acto no los resuelve, solo confirma que la derivación sigue siendo la única disponible y la propaga al set de 15 celdas ya sorteadas.
 
 ---
 
 ## F4 · Cierre
 
-Ver tablero (`forense/firmas-pendientes.tsv` `FP-161`/`FP-162`), `canon/gobernanza-v1_15.md` `ADR-194`, `canon/estado-programa-v1_10.md`, y la nota `forense/notas/2026-08-26-prereg-corrida-cierre.md`.
+Ver tablero (`forense/firmas-pendientes.tsv` `FP-162`/`FP-163`), `canon/gobernanza-v1_15.md` `ADR-197`, `canon/estado-programa-v1_10.md`, y la nota `forense/notas/2026-08-26-prereg-corrida-cierre.md`.
 
 ## Lo que este acto NO hace
 
