@@ -71,8 +71,11 @@
 #                (fila de `forense/registro-llaves-identificacion-v1_0.md`
 #                que ejerce esa evidencia -- sin llave no hay dónde
 #                anclar la procedencia, y esta clase no admite "llave
-#                pendiente"). Nace VACÍA: cero números en esta clase
-#                hoy -- las dos citas de `Progresa_RCT` que ya vivían en
+#                pendiente"). Nació VACÍA 25/ago/2026; primer consumo
+#                26/ago/2026 (FP-164 opción (b), ADR-204,
+#                `evidencia_experimental_terceros` abajo, llave_id
+#                EXP-COMPARTAMOS-1). Las dos citas de `Progresa_RCT` que
+#                ya vivían en
 #                el corpus (`asignados_probabilidad` abajo y
 #                `milpa/refutations.yaml` `ref.A.05.no_saben_planear`)
 #                NO se reclasifican aquí: no existe fila de llave para
@@ -802,6 +805,27 @@ asignados_probabilidad:
     valores: [0.78, 0.22]
     fuente_citada: [ENVIPE2025]
     que_sostiene_de_verdad: "la dirección (el trámite del seguro vuelve racional denunciar); ENVIPE no publica esta condicional en esa forma"
+
+# ══════════════════════════════════════════════════════════════════
+# OCTAVA CLASE: primer consumo -- EVIDENCIA_EXPERIMENTAL_TERCEROS
+# (26/ago/2026, ADR-204, FP-164 opción (b) firmada en mesa. Estrena el
+#  conducto que ADR-184 dejó VACÍO; no toca el [MEDIA](a) de
+#  canon/modelo-decision-v4_0.md:501 -- eso sería acto propio de mesa.)
+# ══════════════════════════════════════════════════════════════════
+
+evidencia_experimental_terceros:
+  - regla: dinero.credito.baja_friccion_usura_dano_downstream
+    clase: "EVIDENCIA_EXPERIMENTAL_TERCEROS"
+    llave_id: EXP-COMPARTAMOS-1
+    cita: "Angelucci, Karlan & Zinman, AEJ: Applied — openICPSR 116334-V1"
+    valor: "ITT +1.1009 pp sobre A_ever_late_not_cond (\"client was ever late on payments\", registro administrativo de Compartamos), IC95% [+0.6423, +1.5595], N=16,560, G=238 conglomerados, t de 237 gl, ola de seguimiento del paquete 116334-V1"
+    primera_etapa: "adopción administrativa +11.4735 pp, IC95% [+9.7022, +13.2448], sobre una base de 5.845 pp (contexto de identificación, no un segundo número que sostener)"
+    escala: "pp de A_ever_late_not_cond, ITT por conglomerado -- JAMÁS comparada contra el techo de mora 15-20% ni contra el umbral de IMOR 25-30% de dinero.credito.scoring_alternativo (otro objeto, otra escala, sin enlace declarado, A-bis regla 3)"
+    que_sostiene: "corrobora la DIRECCIÓN del mecanismo -- baja fricción + expansión de acceso administrativo produce daño downstream medible en mora. NO calibra ni sustituye la magnitud del [MEDIA](a) vigente de esta regla (canon/modelo-decision-v4_0.md:501, puramente cualitativo, sin cifra ni umbral -- ese reemplazo sigue siendo acto propio de mesa, no ejecutado aquí)"
+    universo: "Este paquete de réplica (openICPSR 116334-V1), esta ola de seguimiento, este N=16,560/G=238 -- un experimento, un estado (cobertura de Compartamos), un producto de crédito. No se reconcilia ni se extrapola contra ningún marginal de otra fuente (A.10)."
+    reservas: "(i) el desenlace secundario Q9_4_soldloan_none dio +0.9908 pp, IC95% [+0.2357, +1.7460] -- signo CONTRARIO al postulado, con IC que excluye cero; admite la lectura alternativa de que el crédito SUSTITUYE la venta de activos, no decidió la fila solo porque el ancla de adjudicación fue el desenlace primario a ciegas de este dato; (ii) la corroboración descansa sobre 144 eventos de mora (28/8,298 control vs 116/8,262 tratados), tasa base 0.34%; (iii) dos de las tres condiciones estructurales del mecanismo de la regla (CAT>100% y reporte crediticio incompleto) NO se miden en este microdato -- corroboración de DIRECCIÓN, no de la cláusula condicional completa"
+    fecha: "26/ago/2026"
+    adr: "ADR-204 (FP-164, opción (b) firmada en mesa 26/ago/2026)"
 
 # ══════════════════════════════════════════════════════════════════
 # LOS 15 COEFICIENTES DE GENERADOR: todos asignados
