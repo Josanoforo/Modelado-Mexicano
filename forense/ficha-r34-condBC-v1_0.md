@@ -282,3 +282,96 @@ la nota de cierre.
 `B`/`C`: sigue en `0 de 2`.** Y no afirma que el reactivo fiscal exista: que el cuestionario esté
 publicado no implica que `ENSAFI` pregunte por riesgo fiscal al usar un medio de pago digital —
 eso es **plausible a priori y no verificado**, y sólo el `PDF` puede confirmarlo o cerrarlo en firme.
+
+---
+
+## Anexo 2 · ENSAFI-descriptor, 26/ago/2026 — el descriptor **sí** existe, y el veredicto de `C1` pasa de `NO-ACCESIBLE` a `NO-ENCONTRADO`
+
+> **Append de `ACTO ENSAFI-DESCRIPTOR` (`ADR-198`), posterior al `Anexo ENSAFI` de `ADR-194`.** No
+> modifica ni una línea de lo anterior. Ejecuta el paso que aquel anexo dejó escrito en su §5 y en
+> su §6 (*«sólo el `PDF` puede confirmarlo o cerrarlo en firme»*), y lo cierra en firme —con un
+> archivo más de los que aquel anexo sabía que existían. Cierre completo, comando a comando:
+> `forense/notas/2026-08-26-ensafi-descriptor-cierre.md`. **CONTADOR: cero.**
+
+**(1) El obstáculo era la extensión, no la publicación.** El `FD` de `ENSAFI 2023` **está publicado
+y vivo**. Cuatro actos —`B-3` (4/ago), el lote de reactivos del 5/ago (`forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md`), `M-ADQ` (12/ago), `R34-ENSAFI-CENSA`
+(25/ago)— sondearon `…/microdatos/ensafi_2023_fd.xlsx`, el patrón vivo de `ENASIC`/`ENFIH`, y los
+cuatro recibieron el soft-404 de 2 263 B. El catálogo del propio portal
+(`archivoscompaginacion`, `idBiinegi=3364`, `tipodocto=4`, parámetros derivados del JS vivo
+`descargaMasivaV2.min.js`, no adivinados) declara para esa misma pieza el formato **`_xlsx.zip`**:
+
+> `https://www.inegi.org.mx/contenidos/programas/ensafi/2023/microdatos/ensafi_2023_fd_xlsx.zip`
+> → `206 Partial Content`, `Content-Range: bytes 0-0/1108577`, `application/x-zip-compressed`.
+
+La conclusión de los cuatro actos era **correcta sobre la URL que probaron y falsa sobre el
+hecho**. El propio `manifiesto.yaml` ya tenía el precedente de la forma comprimida
+(`enif2021_fd_zip` → `enif_2021_fd_pdf.zip`) y nadie lo cruzó contra `ENSAFI`.
+**Receta transferible: ante un soft-404 de INEGI, consultar `archivoscompaginacion` y usar el
+`formato` que declara, en vez de asumir la extensión del patrón hermano.**
+
+**(2) Bajado, al corpus compartido, y verificado (`A.1`).** Dos payloads nuevos en
+`data/manifiesto.yaml` y en `/home/pc0/mm-corpus/raw/ensafi2023/`:
+`ensafi2023_fd_xlsx_zip` (1 108 577 B) y `ensafi2023_cuestionario_pdf` (1 182 405 B, la pieza que
+el `Anexo ENSAFI` localizó y dejó sin bajar por perímetro). Una invocación de `--verifica` por
+`--id`: **3/3 `COINCIDE`** con la base ya registrada.
+
+**(3) El techo del corpus se levantó, y se midió que no quedó hueco.** El `ZIP` trae `FD` en `PDF`
+y en `XLSX`; el libro tiene 4 hojas, una por tabla, con `Pregunta` textual · `Nemónico` · `Tipo` ·
+`Tamaño` · `Códigos válidos` · `Concepto`. Cruce de sus nemónicos contra las cabeceras reales del
+microdato ya en corpus: **369 en la BD, 369 en el `FD`, 0 sólo-BD, 0 sólo-FD** — correspondencia
+**1:1 exacta** por las cuatro tablas. **Los «354 códigos `P`-numerados no buscables por término» de
+`ADR-194` dejan de existir como categoría: las 369 columnas tienen texto verbatim.**
+
+**(4) El re-censo, con el mismo instrumento de `ADR-194` y control positivo 12/12.** Los mismos 16
+términos de `C1` sobre los 369 reactivos (buscando en enunciado **+** nemónico **+** concepto de
+cada opción de respuesta): **5 términos coinciden, los 5 falsos positivos** — cuatro por subcadena
+(`SATELITAL`, `SATISFACTORIO`, `HACIENDO`, `IMPREVISTO`/`ENTREVISTA`, `AUDITIVO`) y uno por sentido
+(`GOBIERNO`, 9 reactivos, los 9 sobre **recibir** apoyos). Barrido ampliado con **27 términos más**
+(`RFC`, `CONTRIBU`, `RECAUD`, `FACTUR`, `DECLARACION`, `TRIBUT`, `SUPERVIS`, `SANCION`, `CFDI`…):
+tres no-cero, los tres subcadena (`LAVADORA`, cuenta de `NÓMINA`, `PRIVADA`). Contraste
+independiente sobre el `PDF` del cuestionario (`pdftotext`, 195 679 caracteres, otro artefacto y
+otra herramienta): mismo cero; sus tres hits propios son la portada legal `LSNIEG` (`AUTORIDADES`),
+el encabezado «**PRIVACIÓN** ECONÓMICA» y «ahorro/crédito **INFORMAL**» (canal, no formalidad
+fiscal). **43 términos, 2 artefactos, 369 de 369 reactivos: 0 reactivos genuinos.**
+
+**(5) El veredicto que `ADR-194` no pudo dar.**
+
+> **`C1` · Percepción de riesgo fiscal / `SAT` / vigilancia al usar pagos o servicios digitales en
+> `ENSAFI 2023` → `NO-ENCONTRADO`.**
+
+Ya no `NO-ACCESIBLE`. Era «no pude alcanzar la fuente»; es «**la fuente no tiene el dato**». La
+**fila 10** de la tabla de §3.1 se actualiza en consecuencia, y **§3.3 no se toca**: su negativo
+—*ningún instrumento del corpus mide la percepción de riesgo fiscal o de vigilancia al usar un
+medio de pago o un servicio de gobierno digital*— **se confirma**, ahora con `ENSAFI` medida en vez
+de inaccesible.
+
+Los otros tres constructos, censados en la misma pasada: **`C2` `NO-ENCONTRADO`** (`CoDi` no
+aparece ni una vez; `SPEI` cero; los 3 hits de `CODI` son la palabra `CÓDIGO` en instrucciones de
+filtro — sí hay **tenencia** digital en `P7_2_4`/`P6_2_08`/`P6_6_8`, pero la única batería de
+razones del instrumento, `7.5`, es sobre llevar registro de ingresos y gastos). **`C3`
+`NO-ENCONTRADO`** (ninguna fricción de servicio financiero o digital: `DIFIC` es discapacidad,
+procrastinación y dificultad de ahorrar; `COMISION` es el nombre de la `CONDUSEF`). **`C4`
+`EXISTE-NO-SATISFACE`**, y ahora por contenido: la batería `7.9` mide **autoeficacia** («¿qué tanto
+confía en **su habilidad** para…?»), y `CONF_FINAN` resulta ser una **derivada** — lo que confirma
+su descarte por forma en `ADR-194` y le añade la causa. *(Hallazgo lateral que sólo el descriptor
+permitía ver: `8.6`/Tarjeta 8 **sí** separa canal personal e institucional ítem por ítem, misma
+batería, mismos individuos, respuesta múltiple —`P8_6_01` «préstamo a familiares o amistades»
+frente a `P8_6_02` «crédito en banco o institución financiera»—, e igual `6.1`/`6.5`. Pero las tres
+miden **recurso o tenencia, no confianza**, y no desplazan a `ENCIG`, que sigue siendo la fuente de
+`C`.)*
+
+**(6) Lo que esto le entrega a `FP-157`: el censo de `B` queda exhaustivo.** `ENSAFI 2023` era la
+última candidata del censo de §3.1 que no estaba abierta hasta el fondo. Las siete —`ENIF`,
+`ENDUTIH`, `IFT SFD`, `ENCIG`, `ECF`, `ENAFIN`, `ENSAFI`— están ahora abiertas a nivel de reactivo
+con texto verbatim, y las siete dan cero para `riesgo_fiscal_percibido`. **Mesa ya no decide a
+ciegas ni sobre terreno incompleto.** Y `ENSAFI` falla por partida doble, lo que cierra su puerta
+sin ambigüedad: le falta la **exposición** de `B` **y** su **desenlace** — `CoDi` no aparece ni en
+los 369 reactivos ni en el cuestionario completo.
+
+**(7) Lo que este anexo NO hace.** No adjudica `FP-157`. La propuesta del acto original —`B`
+`INDETERMINADA`, `C` `INDETERMINADA`— **queda intacta y no se re-propone**. No toca
+`tests/aceptacion_r3_4.py`. No re-abre `A`. No reclasifica `CONF_FINAN` para la necesidad 14 de
+`ABRIR-4`. **Base medida de `B`/`C`: sigue en `0 de 2`.** Y deja nombrada, sin ejecutarla, la deuda
+que el propio descargue abre: `ENSAFI` está `PENDIENTE` en `data/diseno-muestral.yaml`
+**por falta de descriptor** (`FP-95` / `ADR-135(f)`), y esa causa acaba de desaparecer —
+el `FD` trae `FAC_ELE`, `UPM_DIS` y `EST_DIS`.
