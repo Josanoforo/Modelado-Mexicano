@@ -1,7 +1,7 @@
 # ENCARGO `R34-ENSAFI-CENSA` — archivado verbatim (`A.3`)
 
 > **Estado: `CONSUMIDO`** · consumido el 25/ago/2026 por el acto homónimo.
-> Cierre: `forense/notas/2026-08-25-r34-ensafi-censa-cierre.md` · `ADR-193` ·
+> Cierre: `forense/notas/2026-08-25-r34-ensafi-censa-cierre.md` · `ADR-194` ·
 > anexo en `forense/ficha-r34-condBC-v1_0.md` («Anexo ENSAFI, 25/ago/2026»).
 > **CONTADOR: cero**, declarado en el propio encargo.
 

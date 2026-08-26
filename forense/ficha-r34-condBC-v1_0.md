@@ -208,7 +208,7 @@ Ninguna de las tres es un acto de este encargo; se proponen, no se ejecutan.
 
 ## Anexo ENSAFI, 25/ago/2026
 
-> **Append de `ACTO R34-ENSAFI-CENSA` (`ADR-193`), posterior al cierre de §9.** No modifica ni una
+> **Append de `ACTO R34-ENSAFI-CENSA` (`ADR-194`), posterior al cierre de §9.** No modifica ni una
 > línea de lo anterior: la fila 10 de la tabla de §3 (`ENSAFI 2023` → `NO-ACCESIBLE`) **se
 > confirma**, ahora medida en vez de inferida, y se le añade lo que faltaba — el censo a nivel
 > reactivo contra los cuatro constructos, y el nombre del archivo que levantaría el bloqueo.

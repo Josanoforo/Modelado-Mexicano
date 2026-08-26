@@ -1,6 +1,6 @@
 # `ACTO R34-ENSAFI-CENSA` · cierre
 
-**25/ago/2026 · entorno UBUNTU · modelo Opus · `SHA` de redacción `ba0a7e4` · `ADR-193` · CONTADOR: cero**
+**25/ago/2026 · entorno UBUNTU · modelo Opus · `SHA` de redacción `ba0a7e4` · `ADR-194` · CONTADOR: cero**
 
 > **Qué hace este acto.** Abre `ENSAFI 2023` — el payload que `#359` dejó como única candidata
 > `NO-ACCESIBLE` del censo de `B`/`C` de `R3.4` — y la censa contra los cuatro constructos que
@@ -358,31 +358,53 @@ veredicto. **Base medida de `B`/`C`: sigue en `0 de 2`.** **CONTADOR: cero.**
 
 **Perímetro respetado, lista cerrada:** `forense/ficha-r34-condBC-v1_0.md` (append) ·
 `forense/notas/2026-08-25-r34-ensafi-censa-cierre.md` (este archivo) ·
-`canon/gobernanza-v1_15.md` (`ADR-193`) · `canon/estado-programa-v1_10.md` (línea `R3.4` y conteo
+`canon/gobernanza-v1_15.md` (`ADR-194`) · `canon/estado-programa-v1_10.md` (línea `R3.4` y conteo
 de `ADR`) · `forense/firmas-pendientes.tsv` (**sólo** la enmienda a `FP-157`) ·
 `forense/encargos/2026-08-25-R34-ENSAFI-CENSA.md` (archivado, `CONSUMIDO`) ·
 `data/raw/` **en lectura**. Nada fuera de la lista se tocó: `tests/aceptacion_r3_4.py` intacto,
 `data/manifiesto.yaml` intacto, `data/diseno-muestral.yaml` intacto, `data/` sin archivos nuevos
 (por eso la tabla del censo vive en esta nota y no en un `.tsv`).
 
-**Concurrencia.** `CORRE-R10.1` y `SPEC-EXPCOMP-BBIS` corren en paralelo; Codex-CLI, disjunto.
-`ADR-193` se candidateó contra el máximo re-derivado en esta sesión —
-`grep -aoE "ADR-[0-9]+" canon/gobernanza-v1_15.md | grep -oE "[0-9]+" | sort -n | uniq | tail`
-→ `188 189 190 191 192`, sin huecos → **193**. **Se re-deriva y se renumera al fusionar si
-colisiona** — renumera quien fusiona segundo.
+**Concurrencia — la colisión declarada ocurrió, y se resolvió por la regla de la casa.** El acto
+candidateó `ADR-193` contra el máximo re-derivado en su propia sesión
+(`grep -aoE "ADR-[0-9]+" canon/gobernanza-v1_15.md | grep -oE "[0-9]+" | sort -n | uniq | tail`
+→ `188 189 190 191 192`, sin huecos → **193**) y **declaró al escribir** que se renumeraría si
+colisionaba. Colisionó: `SPEC-EXPCOMP-BBIS` (`PR #364`) candidateó el mismo `193` y **fusionó
+primero** — `origin/main` avanzó **8 commits** (`ba0a7e4` → `9c25f28`) mientras esta rama estaba
+abierta. Renumera quien fusiona segundo: **`ADR-193` → `ADR-194`**, máximo re-derivado contra
+`origin/main` al resolver (`git show origin/main:canon/gobernanza-v1_15.md | grep -aoE "ADR-[0-9]+"
+… | tail` → `193`, sin huecos) → **194**. Cabecera de `gobernanza`: 193 → 194 `ADR`.
 
-**Suite (`--baseline`, nunca `--freeze`).** Corrida en la caja del acto:
-**19 `FAIL` · 129 `WARN`**, **LÍNEA BASE: VERDE** — nada nuevo frente a `tests/baseline.json`
-(`HEAD` congelado `e24d033`). Coincide con la cifra que `estado:303` cita para el 25/ago, y con la
-corrida de arranque de este acto, antes de escribir nada.
+**Colisión viva, declarada al escribir esto — segunda vuelta de la misma regla.** `ACTO
+CORRE-R10.1-v2` (`PR #366`, rama `acto/corre-r10-1-v2`, **abierto y sin fusionar** al momento de
+resolver este conflicto) candidatea **también `ADR-194`**. Si fusiona primero, **este acto vuelve a
+renumerar a `ADR-195`** y la cascada es la misma: cabecera de `gobernanza`, `estado:27`,
+`estado:105` y `estado:193`. Se declara aquí para que la segunda renumeración no aparezca como
+sorpresa, igual que `ADR-190` declaró la suya.
 
-*Dos defectos propios, atrapados por la suite y corregidos en la misma sesión, declarados porque
-la corrida intermedia los vio:* (i) `T15` — sellar `ADR-193` volvió histórica la cita `192 ADR` de
-la cascada de `ADR-192` y la del registro de artefactos de `estado:27`; la primera recibió
-`{cita-historica}` **dentro** de las negritas (fuera de ellas el regex de `T15` no la ve — el
-marcador exime sólo la cita inmediatamente anterior) y la segunda se recifró a `193`, que es su
-valor vigente. (ii) `T25` — esta nota citaba un rótulo `M`-pelado al enumerar los actos que
-buscaron el `FD`; se sustituyó por la ruta de su nota, que no dispara el patrón. Ningún test se
-tocó, ninguna exención se añadió.
+**Numeración de tablero: sin colisión posible.** Este acto **no crea fila nueva** —sólo enmienda
+`FP-157`, que `origin/main` no tocó (verificado byte a byte contra `ba0a7e4`: idéntica)—, así que
+`FP-160` de `SPEC-EXPCOMP-BBIS` entra intacta. De las tres filas en conflicto textual
+(`FP-154`/`FP-155`/`FP-156`, diferencias de comillas y una cita de `ADR-186`) **manda `origin/main`**;
+de `FP-157`, esta rama, porque es la única que la tocó. El archivo queda en **156 filas `FP`** y
+**9 campos por fila**, verificado tras resolver.
+
+**Suite (`--baseline`, nunca `--freeze`).** Dos corridas, las dos **VERDE**:
+**19 `FAIL` · 129 `WARN`** antes de fusionar `origin/main` (idéntico al arranque de este acto,
+antes de escribir nada) y **19 `FAIL` · 130 `WARN`** después de resolver el conflicto — el `WARN`
+de más entra con `SPEC-EXPCOMP-BBIS`, no con este acto, y es la cifra que `estado:303` ya trae de
+`origin/main`. Nada nuevo frente a `tests/baseline.json` (`HEAD` congelado `e24d033`).
+
+*Tres defectos propios, atrapados por la suite y corregidos en la misma sesión, declarados porque
+la corrida intermedia los vio:* (i) `T15` — sellar el `ADR` de este acto volvió histórica la cita
+`192 ADR` de la cascada de `ADR-192` y la del registro de artefactos de `estado:27`; la primera
+recibió `{cita-historica}` **dentro** de las negritas (fuera de ellas el regex de `T15` no la ve —
+el marcador exime sólo la cita inmediatamente anterior) y la segunda se recifró a su valor vigente.
+(ii) `T25` — esta nota citaba un rótulo `M`-pelado al enumerar los actos que buscaron el `FD`; se
+sustituyó por la ruta de su nota, que no dispara el patrón. (iii) **Al fusionar**, la renumeración
+a `ADR-194` volvió histórica también la cita `193 ADR` de la cascada del `ADR` de
+`SPEC-EXPCOMP-BBIS` (`gobernanza:3647`), que llegó de `origin/main` sin marca porque allí era
+vigente; recibió `{cita-historica}` dentro de sus negritas. Ningún test se tocó, ninguna exención
+se añadió.
 
 **Encargo: `CONSUMIDO`.**
