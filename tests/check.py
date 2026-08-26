@@ -1490,6 +1490,17 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # ACTO SELLA-SORTEO-V2, 25/ago/2026 (PR #351, CI del propio acto).
     "forense/encargos/2026-08-25-SELLA-SORTEO-V2.md",
     "forense/notas/2026-08-25-sella-sorteo-v2-cierre.md",
+    # forense/encargos/2026-08-26-E5-SELLA-FP164-OCTAVA.md -- encargo
+    # archivado verbatim (A.3), incluye la RANURA de firma de mesa tal
+    # como se lanzo. La firma que esa ranura pedia ya esta capturada:
+    # FP-164 en firmas-pendientes.tsv paso a FIRMADA con el verbatim
+    # exacto y ADR-204 la ejecuta -- no es un marcador nuevo sin dueno.
+    # Su nota de cierre cita el mismo verbatim al documentarlo -- mismo
+    # autocaptura visto arriba. Extension minima de perimetro por
+    # desviacion mecanica, mismo precedente que ADR-177/ADR-201/ADR-203
+    # -- ACTO E5-SELLA-FP164-OCTAVA, 26/ago/2026.
+    "forense/encargos/2026-08-26-E5-SELLA-FP164-OCTAVA.md",
+    "forense/notas/2026-08-26-sella-fp164-cierre.md",
 }
 
 def _t22_tabla():
@@ -2553,6 +2564,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # desviacion mecanica (CI del propio acto), declarada en la nota de cierre.
     "forense/encargos/2026-08-26-E4-DISENO-ENSAFI.md",
     "forense/notas/2026-08-26-diseno-ensafi-cierre.md",
+    # ACTO E5-SELLA-FP164-OCTAVA, 26/ago/2026: encargo archivado VERBATIM
+    # (convencion de forense/encargos/) y su nota de cierre. El `E5` pelado
+    # es el nombre que direccion (maestra-30) le dio a este mismo encargo;
+    # queda censado en canon/registro-rotulos.tsv como HABITANTE adicional
+    # del espacio E, con su colision declarada contra E4x/E4/E-3/E3-TRIAGE/
+    # MAESTRA30-E1..E4 (referentes distintos, ninguno gana, mismo patron
+    # que M5). El texto de direccion no se edita para complacer a un test.
+    # Extension minima de perimetro por desviacion mecanica (CI del propio
+    # acto), declarada en la nota de cierre.
+    "forense/encargos/2026-08-26-E5-SELLA-FP164-OCTAVA.md",
+    "forense/notas/2026-08-26-sella-fp164-cierre.md",
 }
 
 
