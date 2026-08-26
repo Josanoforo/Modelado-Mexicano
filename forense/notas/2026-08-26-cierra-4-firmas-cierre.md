@@ -1,6 +1,6 @@
 # Nota de cierre — `ACTO CIERRA-4-FIRMAS`, 26/ago/2026
 
-Ejecuta el mensaje de lanzamiento del 26/ago/2026 (cuatro firmas de mesa, ninguna ranura ausente), propagado en `canon/gobernanza-v1_15.md` `ADR-198`. Entorno **NUBE** (`cloud_default`).
+Ejecuta el mensaje de lanzamiento del 26/ago/2026 (cuatro firmas de mesa, ninguna ranura ausente), propagado en `canon/gobernanza-v1_15.md` `ADR-199`. Entorno **NUBE** (`cloud_default`).
 
 ## §1 · Las cuatro firmas, verbatim
 
@@ -36,7 +36,7 @@ Mesa sella la banda TOST y el margen material del piloto (`Δ_material = 0.5·EE
 
 ## §5 · `FP-160` (L4) → FIRMADA (spec B-bis sellada)
 
-Mesa sella la spec B-bis de `EXP-COMPARTAMOS-1` (`forense/spec-bbis-exp-compartamos-v1_0-PROPUESTA.md`, COMMIT 1) tal como está propuesta — opción (a) de la fila: pasa a v1.0 congelada, habilita el acto `EJERCE-LLAVE` posterior en `UBUNTU`. **Enmienda de ESTADO, no de archivo**: el archivo conserva su nombre —las citas vivas de `modelo-decision`/`registro-llaves-identificacion` siguen apuntando a él sin cambio— pero queda declarada **sellada, vigente** en `ADR-198` y en `forense/firmas-pendientes.tsv`. Gatea, sin ejecutarlo, el acto futuro `EJERCE-LLAVE` (abriría el microdato de `116334-V1.zip` bajo esta spec ahora congelada) — este acto no abre ningún microdato.
+Mesa sella la spec B-bis de `EXP-COMPARTAMOS-1` (`forense/spec-bbis-exp-compartamos-v1_0-PROPUESTA.md`, COMMIT 1) tal como está propuesta — opción (a) de la fila: pasa a v1.0 congelada, habilita el acto `EJERCE-LLAVE` posterior en `UBUNTU`. **Enmienda de ESTADO, no de archivo**: el archivo conserva su nombre —las citas vivas de `modelo-decision`/`registro-llaves-identificacion` siguen apuntando a él sin cambio— pero queda declarada **sellada, vigente** en `ADR-199` y en `forense/firmas-pendientes.tsv`. Gatea, sin ejecutarlo, el acto futuro `EJERCE-LLAVE` (abriría el microdato de `116334-V1.zip` bajo esta spec ahora congelada) — este acto no abre ningún microdato.
 
 **Estado de llaves de identificación** (`canon/estado-programa-v1_10.md`, población de conteo propia, `ADR-67(c)`): el conteo sigue **`4` de `5`**, sin movimiento — lo que cambia es la descripción de la spec de la 5ª llave (`EXP-COMPARTAMOS-1`), de "en mesa" a **sellada, ejercicio pendiente**. El numerador solo sube a `5` de `5` cuando el acto `EJERCE-LLAVE` corra el diseño sobre el microdato, congelado por esta spec.
 
@@ -44,10 +44,10 @@ Mesa sella la spec B-bis de `EXP-COMPARTAMOS-1` (`forense/spec-bbis-exp-comparta
 
 `python3 tests/check.py --baseline` (nunca `--freeze`): **19 FAIL · 129 WARN, LÍNEA BASE VERDE** contra `tests/baseline.json`. Neto de WARN −2 sobre la corrida anterior: `FP-163` y `FP-160` salen de `ABIERTA` (pasan a `FIRMADA`) y dejan el vigía `T22`(a).
 
-`ADR-198` con las cuatro firmas verbatim. Set de sincronía: `README.md:36` (23 de 27, `13D·3B·4A·2E·1C`); `canon/estado-programa-v1_10.md` (Hito D, cabecera de ADR 198, suite); `canon/gobernanza-v1_15.md` (cabecera 198 ADR, línea de Hito D); citas vivas de `canon/modelo-decision-v4_0.md` (`:65`, `:700`, `:885`); `forense/firmas-pendientes.tsv` (`FP-160`/`FP-163` → `FIRMADA`); esta nota-cierre; encargo `CONSUMIDO`.
+`ADR-199` con las cuatro firmas verbatim. Set de sincronía: `README.md:36` (23 de 27, `13D·3B·4A·2E·1C`); `canon/estado-programa-v1_10.md` (Hito D, cabecera de ADR 199, suite); `canon/gobernanza-v1_15.md` (cabecera 199 ADR, línea de Hito D); citas vivas de `canon/modelo-decision-v4_0.md` (`:65`, `:700`, `:885`); `forense/firmas-pendientes.tsv` (`FP-160`/`FP-163` → `FIRMADA`); esta nota-cierre; encargo `CONSUMIDO`.
 
 ## Perímetro y NO-hace
 
-Lista cerrada: Registro del pre-registro + fichas `R8.2`/`R2.2` (enmiendas fechadas) + `forense/R22-censo-liderazgo-v1_0.md` [nuevo, copia byte-idéntica] + `README.md:36` + citas `modelo-decision` + `gobernanza` (`ADR-198`) + `estado` + tablero de firmas (`forense/firmas-pendientes.tsv`) + notas + encargo. Fuera de esta lista, PARA.
+Lista cerrada: Registro del pre-registro + fichas `R8.2`/`R2.2` (enmiendas fechadas) + `forense/R22-censo-liderazgo-v1_0.md` [nuevo, copia byte-idéntica] + `README.md:36` + citas `modelo-decision` + `gobernanza` (`ADR-199`) + `estado` + tablero de firmas (`forense/firmas-pendientes.tsv`) + notas + encargo. Fuera de esta lista, PARA.
 
 No ejerce la llave de `FP-160` — no se abrió ningún byte de `116334-V1.zip`. No corre ninguna `L` ni calcula `R`/CV de `FP-163`. No convierte el `D` de `R2.2` en juicio sobre la regla del constructo — **el ataque nunca corrió**, y se dice con esas palabras en la entrada del Registro. No toca `R2.1`/`R3.4`/`R10.1`/duelo-corredores/pool/milpa. No renombra `forense/spec-bbis-exp-compartamos-v1_0-PROPUESTA.md` — las citas viven con ese nombre.

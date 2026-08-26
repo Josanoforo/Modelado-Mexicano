@@ -15,11 +15,11 @@ No hubo archivo de encargo previo a la ejecución: las cuatro firmas de mesa lle
 
 Adjunto: `forense/R22-censo-liderazgo-v1_0.md`, sha256 `3a865d27e71e3e1763d46cff9354095925d47b2fd698edb0563aee1f2f9130bd` (verificado igual tras la copia byte-idéntica), veredicto propio `SIN-DATO` sobre liderazgo × desenlaces del empleado en población trabajadora en México.
 
-F1 · Registro: `R8.2` → `B` (L1). F2 · copia del censo + Registro: `R2.2` → `D` (L2). F3 · `FP-163` → `FIRMADA` (L3). F4 · `FP-160` → `FIRMADA`/spec sellada (L4). F5 · cierre: `ADR-198`, README, estado, modelo-decision, tablero de firmas, nota de cierre.
+F1 · Registro: `R8.2` → `B` (L1). F2 · copia del censo + Registro: `R2.2` → `D` (L2). F3 · `FP-163` → `FIRMADA` (L3). F4 · `FP-160` → `FIRMADA`/spec sellada (L4). F5 · cierre: `ADR-199`, README, estado, modelo-decision, tablero de firmas, nota de cierre.
 
 ## Detalle
 
-Ver `forense/notas/2026-08-26-cierra-4-firmas-cierre.md` (nota de cierre completa) y `canon/gobernanza-v1_15.md` `ADR-198`.
+Ver `forense/notas/2026-08-26-cierra-4-firmas-cierre.md` (nota de cierre completa) y `canon/gobernanza-v1_15.md` `ADR-199`.
 
 ## Perímetro
 
