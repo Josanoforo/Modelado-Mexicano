@@ -1,0 +1,17 @@
+{
+ "EE_R": null,
+ "R": null,
+ "cv": null,
+ "encuesta": "ENTI",
+ "escala": "categorica k=3",
+ "estado": "RESERVA-SPEC-INCONSISTENTE",
+ "estimador": "proporcion ponderada (categoria 'Tiene menos de un anio en este trabajo')",
+ "id_celda": "TIC-06",
+ "ola": "2022",
+ "payload_id": "enti2022_bd_dbf_zip",
+ "payload_sha256": "9443db5e0970d73795925766fe5bccd8c56687d3fe5b8946a9b67b4e10bceaf5",
+ "razon_no_computable": "SpecCelda con cuatro referentes incompatibles: variable P2 es '¿comparten un mismo gasto para comer?' (tabla VIV); el universo nombra ENTI2022_CB12A17.DBF, que no existe; el estimador nombra la categoria 'Tiene menos de un anio en este trabajo', que es P5F15 de COE1; y la frase de discriminacion nombra 'Trabaja todos los meses del anio', que es P5F14. El marco esta sellado y este acto no lo edita. Ver ENMIENDA-1 seccion B.",
+ "regla": "No se computa R. No se sustituye por tabulado, ni por diseno inferido de otra encuesta, ni por una spec elegida por el ejecutor.",
+ "universo": "poblacion de 12 a 17 anios residente en viviendas particulares con trabajo actual (tabla ENTI2022_CB12A17.DBF), por sexo (variable SEX de la misma tabla)",
+ "variable": "P2"
+}

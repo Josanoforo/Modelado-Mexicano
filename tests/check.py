@@ -2290,6 +2290,16 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO E7 · R-SCORING, 26/ago/2026 (ADR-207): encargo archivado VERBATIM
+    # (A.3) y su nota de cierre. Direccion lo lanzo rotulado "ENCARGO E7", y
+    # "E7" pelado colisiona con los habitantes ya censados del espacio E.
+    # D-6 aplicado donde se puede aplicar: el acto se declara ACTO E7 ·
+    # R-SCORING en todo archivo que escribe y queda censado en
+    # canon/registro-rotulos.tsv; el encargo NO se edita, porque A.3 pide el
+    # texto de direccion verbatim. Mismo movimiento y misma razon que E4, E5
+    # y E6, tres entradas de esta misma lista.
+    "forense/encargos/2026-08-26-E7-R-SCORING.md",
+    "forense/notas/2026-08-26-r-scoring-cierre.md",
     # SELLA-AGO25-F (continuación), 25/ago/2026 (ADR-166): la nota cita
     # verbatim, entre comillas, la firma ya sellada de FP-46/ADR-109 ("la
     # condicion literal de ADR-93 sobre material E2") -- el "E2" pelado es

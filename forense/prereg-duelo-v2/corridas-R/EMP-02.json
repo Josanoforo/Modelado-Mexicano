@@ -1,0 +1,17 @@
+{
+ "EE_R": null,
+ "R": null,
+ "cv": null,
+ "encuesta": "ENAFIN (Encuesta Nacional de Financiamiento de las Empresas)",
+ "escala": "continua (proporcion)",
+ "estado": "RESERVA-SIN-MICRODATO",
+ "estimador": "razon ponderada",
+ "id_celda": "EMP-02",
+ "ola": "2024",
+ "payload_id": "adq15_enafin_conjunto_de_datos_enafin_2024_csv",
+ "payload_sha256": "0f0ff75db3b728f218e33210c9eb08e0c20ec04fe4317aacacfef45ab8cb5e45",
+ "razon_no_computable": "El conjunto de datos publicado de ENAFIN 2024 son TABULADOS (prefijo tr_), no registros. FAC_EXPA no aparece porque no hay registro que ponderar. ENAFIN esta PENDIENTE en data/diseno-muestral.yaml.",
+ "regla": "No se computa R. No se sustituye por tabulado, ni por diseno inferido de otra encuesta, ni por una spec elegida por el ejecutor.",
+ "universo": "solicitudes de credito hechas por empresas en 2024, por tamano de empresa",
+ "variable": "razon derivada de Creditos que fueron rechazados a las empresas sobre Total de creditos que solicitaron las empresas, por tamano de empresa"
+}

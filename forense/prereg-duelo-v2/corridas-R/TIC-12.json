@@ -1,0 +1,72 @@
+{
+ "EE_R": 0.0028763676539986243,
+ "R": 0.5624593765397904,
+ "categoria_principal": "8",
+ "codificacion": "R principal: y=1 si p3n=='8' (familiar/amigo/conocido); y=0 si p3n en 1..10 distinto de 8; 99 y vacio fuera",
+ "cv": 0.0051139118200746,
+ "cv_pct": 0.51139118200746,
+ "encuesta": "ENOE",
+ "estado": "COMPUTADO",
+ "estrato": "est_d_tri (de SDEM)",
+ "ic95_hi": 0.5680969535492466,
+ "ic95_lo": 0.5568217995303342,
+ "id_celda": "TIC-12",
+ "n_codigo_no_valido": 214099,
+ "n_efectivo": 133267,
+ "n_estratos": 476,
+ "n_estratos_singleton": 0,
+ "n_filas_leidas": 347366,
+ "n_fuera_de_universo": 0,
+ "n_sin_ponderador": 0,
+ "n_upm_total": 20563,
+ "nota_join": "p3n vive en COE1; est_d_tri en SDEM. Llave: cd_a+ent+con+v_sel+n_hog+h_mud+n_ren",
+ "ola": "2024 1er trimestre",
+ "payload_id": "enoe_2024_1t_csv",
+ "ponderador": "fac_tri",
+ "tabla": "COE1 join SDEM",
+ "universo": "poblacion ocupada subordinada y remunerada de 15+ con empleo actual (COE1)",
+ "upm": "upm",
+ "variable": "p3n",
+ "vector_categorias": {
+  "1": {
+   "EE_R": 0.0020230424382354484,
+   "R": 0.1496200424874631
+  },
+  "10": {
+   "EE_R": 0.00039215485465314163,
+   "R": 0.0055900832044485605
+  },
+  "2": {
+   "EE_R": 0.00036814521029901177,
+   "R": 0.004932980918251745
+  },
+  "3": {
+   "EE_R": 0.00029809387749067445,
+   "R": 0.0019462000847828744
+  },
+  "4": {
+   "EE_R": 0.0003651709204923258,
+   "R": 0.0033582560574843094
+  },
+  "5": {
+   "EE_R": 0.0005081937708408418,
+   "R": 0.008128468060682773
+  },
+  "6": {
+   "EE_R": 0.001430338765589444,
+   "R": 0.07603751492152583
+  },
+  "7": {
+   "EE_R": 0.0014290967191878195,
+   "R": 0.07110065795751694
+  },
+  "8": {
+   "EE_R": 0.0028763676539986243,
+   "R": 0.5624593765397904
+  },
+  "9": {
+   "EE_R": 0.0018011382793580335,
+   "R": 0.11682641976805343
+  }
+ }
+}

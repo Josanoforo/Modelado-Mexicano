@@ -1,0 +1,17 @@
+{
+ "EE_R": null,
+ "R": null,
+ "cv": null,
+ "encuesta": "ENAFIN (Encuesta Nacional de Financiamiento de las Empresas)",
+ "escala": "continua (proporcion)",
+ "estado": "RESERVA-SIN-MICRODATO",
+ "estimador": "razon ponderada",
+ "id_celda": "EMP-04",
+ "ola": "2024",
+ "payload_id": "adq15_enafin_conjunto_de_datos_enafin_2024_csv",
+ "payload_sha256": "0f0ff75db3b728f218e33210c9eb08e0c20ec04fe4317aacacfef45ab8cb5e45",
+ "razon_no_computable": "Identica a EMP-02: mismo payload, mismos tabulados, mismo estado PENDIENTE del censo de diseno.",
+ "regla": "No se computa R. No se sustituye por tabulado, ni por diseno inferido de otra encuesta, ni por una spec elegida por el ejecutor.",
+ "universo": "creditos solicitados por empresas en 2024, por tamano de localidad",
+ "variable": "razon derivada de Creditos que fueron aprobados sobre Total de creditos que solicitaron, contrastando localidades de 500 mil o mas habitantes contra 50 mil a 499 999"
+}
