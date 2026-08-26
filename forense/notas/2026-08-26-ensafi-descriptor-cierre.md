@@ -399,6 +399,16 @@ ediciones futuras de `ENSAFI`: el veredicto es sobre **2023**, la única levanta
 **Corrida final:** `19 FAIL · 131 WARN`, `LÍNEA BASE: VERDE` contra `tests/baseline.json`
 (`HEAD` congelado `e24d033`). **Nunca `--freeze`.**
 
+> **Corrección de este mismo párrafo, escrita al resolver el CI (§6).** La corrida que dio esa
+> cifra se lanzó **antes** de que se apendara la tabla de abajo, y esa tabla reintrodujo el
+> `T25` que narra —el defecto exacto que la fila `T25` describe: *mencionar el rótulo es
+> usarlo*—. El commit `3235410` entró, por tanto, con **20 `FAIL`**, no 19, y la cifra
+> declarada arriba no correspondía al árbol commiteado. Detectado al re-correr la suite en el
+> commit del CI, corregido ahí (la fila ya no transcribe el rótulo) y re-medido sobre el árbol
+> real: **`19 FAIL · 131 WARN`, `LÍNEA BASE: VERDE`**. Se declara en vez de reescribirse en
+> silencio: una cifra de suite en un forense es una afirmación verificable, y ésta estuvo mal
+> un commit.
+
 **Los `FAIL` no se movieron ni un punto en todo el acto.** Los que este acto llegó a introducir se
 atraparon y cerraron dentro de él — **6 entradas nuevas en la corrida intermedia, las 6
 autoinfligidas y las 6 cerradas**:
@@ -407,14 +417,74 @@ autoinfligidas y las 6 cerradas**:
 |---|---|---|
 | `T15` ×2 | la cabecera de `gobernanza` y la fila de registro de `estado` seguían citando `197 ADR` tras el recifrado a `198` | actualizadas a `198` |
 | `T15` ×1 | la línea de cascada de `ADR-197` dice `**196 → 197 ADR**`, cifra **correcta cuando se escribió** y ahora vencida | se le añade `{cita-historica}` **dentro** de las negritas, inmediatamente tras `ADR` (`T15` exime *sólo* la cita inmediatamente anterior a la marca). No se edita hacia atrás la sustancia de un acto ajeno: se marca como historia, que es lo que es |
-| `T25` ×2 | la ficha y esta nota traían el rótulo pelado `M-3` al citar el acto del 5/ago | sustituido por su nota (`forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md`), que no es rótulo pelado. **No** se tocó `tests/check.py` ni `_T25_ARCHIVOS_CONOCIDOS`: está fuera de la lista cerrada del perímetro, y la vía dentro del perímetro existía |
+| `T25` ×2 | la ficha y esta nota traían el rótulo pelado del acto del 5/ago (el que `T25` vigila; no se transcribe aquí — **escribirlo vuelve a crear el defecto**) | sustituido por su nota (`forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md`), que no es rótulo pelado. **No** se tocó `tests/check.py` ni `_T25_ARCHIVOS_CONOCIDOS`: está fuera de la lista cerrada del perímetro, y la vía dentro del perímetro existía |
 | `T16` ×2 | consecuencia mecánica de los `FAIL` de arriba: `canon` declaraba `19 FAIL · 131 WARN` vigente y la corrida real daba otra cifra | desapareció al cerrar las causas; la cifra declarada vuelve a ser la real |
 
 **Cascada de numeración.** `ADR-198`, contra el máximo re-derivado **por conteo entero** —
 `re.findall(r'ADR-(\d+)')` → `197`, sin huecos. **No** con `sort -t- -k2 -n`, que parte en el primer
-guion y devuelve un máximo falso. `gh pr list --state open` → **vacío**: cero PRs abiertos al
-arrancar, ninguna colisión viva que declarar. Recifrado `197 → 198` propagado a la cabecera de
+guion y devuelve un máximo falso. `gh pr list --state open` al arrancar → **vacío**, y así queda
+registrado — ver §6, donde se declara la colisión viva que apareció después. Recifrado `197 → 198` propagado a la cabecera de
 `gobernanza`, a `estado §L0` y a la fila de registro de artefactos de `estado`.
 
 **Perímetro, verificado por `git diff --name-only` al cerrar** — nada fuera de la lista cerrada, y
 `tests/aceptacion_r3_4.py` ausente del `diff`.
+
+---
+
+## 6 · Adenda de cierre — el CI y una colisión que apareció después
+
+Escrita al resolver el CI de `PR #370`, después de §5. No modifica nada de lo anterior.
+
+### 6.1 · El `startup_failure` no fue de esta rama
+
+El primer run del workflow (`32985370802`, `2026-08-26T15:31:15Z`) murió en **`startup_failure`, 0
+segundos** — sin ejecutar una línea. GitHub imprime *«This run likely failed because of a workflow
+file issue»*, y eso es texto genérico, no diagnóstico. **Verificado que es falso para esta rama:**
+
+```
+$ git diff origin/main HEAD -- .github/ --stat        # vacío
+$ git rev-parse HEAD:.github/workflows/verify.yml      49d4e0414c83b98a11977e8eae6b57b0ead5fa31
+$ git rev-parse origin/main:.github/workflows/verify.yml
+                                                       49d4e0414c83b98a11977e8eae6b57b0ead5fa31
+```
+
+**Mismo blob, byte a byte**, y ese mismo archivo corrió **verde** en `main` doce horas antes
+(`32925827992`, `PR #367`). El YAML parsea. Este acto **no toca `.github/`** — está fuera de su
+lista cerrada.
+
+Es la clase de fallo que la **cabecera del propio workflow ya documenta** (endurecimiento del
+7/ago tras `PR #149`/`#150`/`#151`: *«`#151` murió en "Set up job" con Service Unavailable bajando
+la definición de la action, antes de ejecutar una línea de código»*). Señal de degradación
+concurrente, no de contenido: el `PR #369` hermano tenía su run **encolado 27 minutos** en la misma
+ventana.
+
+`gh run rerun` **no sirve** para esta clase: responde *«run … cannot be rerun; its workflow file may
+be broken»* — un `startup_failure` no tiene jobs que relanzar. La vía es **re-disparar el evento
+`pull_request`** con un commit nuevo sobre la rama, que es lo que hace el commit de esta adenda.
+
+### 6.2 · Colisión viva de `ADR`, declarada
+
+`gh pr list --state open` corrió al arrancar y salió **vacío**; queda registrado como salió. Al
+resolver el CI apareció que **`PR #369`** (`ACTO CIERRA-4-FIRMAS`, rama
+`claude/cierra-4-firmas-8b6f2r`) candidatea **también `ADR-198`**.
+
+| hecho | marca de tiempo |
+|---|---|
+| `PR #369` creado | `2026-08-26T15:11:17Z` |
+| commit de este acto | `2026-08-26T15:27:06Z` |
+| `PR #370` creado | `2026-08-26T15:27:54Z` |
+
+La consulta de arranque cayó **dentro de esa ventana de minutos**. **No se reclama precisión sobre
+cuál instante fue primero** — se declara la consulta como salió y el hecho como es, en vez de
+inventar un orden que justifique el número propio.
+
+**Regla aplicada, la misma que `ADR-194` ya aplicó sobre sí mismo: el que fusione primero se queda
+con el número.** Si `PR #369` fusiona antes, este acto pasa a **`ADR-199`** al resolver el merge, y
+**la contribución ajena se conserva íntegra — nunca se edita hacia atrás lo ya commiteado por
+otro**. `PR #369` toca además `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md` y
+`forense/firmas-pendientes.tsv`: conflicto de `git merge` esperado en los tres, a resolver a mano
+conservando lo ajeno y renumerando lo propio (incluida la cabecera de conteo y `estado §L0`).
+
+La corrección de §5 es de esa clase: la línea de cascada decía *«ninguna colisión viva que
+declarar»* — cierto cuando se escribió, **vencido** al empujar. Se corrige en vez de dejarse, porque
+es una afirmación de hecho dentro de `canon`.
