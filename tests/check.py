@@ -2290,6 +2290,18 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA30-E10 · R21-ADJUDICA, 26/ago/2026 (ADR-208): encargo
+    # archivado VERBATIM (A.3) y su nota de cierre. Direccion lo lanzo
+    # rotulado "ENCARGO E10", y "E10" pelado colisiona con la referencia
+    # previa "E10 · EL SIMULADOR" de forense/encargos/2026-08-14-ENLACE-2-
+    # adjudicacion-68-y-19.md:51 -- un referente distinto, no un espacio
+    # nuevo. D-6 aplicado donde se puede aplicar: el acto se declara ACTO
+    # MAESTRA30-E10 en todo archivo que escribe y queda censado en
+    # canon/registro-rotulos.tsv; el encargo NO se edita, porque A.3 pide
+    # el texto de direccion verbatim. Mismo movimiento y misma razon que
+    # E4, E5, E6 y E7, cuatro entradas de esta misma lista.
+    "forense/encargos/2026-08-26-E10-R21-ADJUDICA.md",
+    "forense/notas/2026-08-26-e10-r21-adjudica-cierre.md",
     # ACTO E7 · R-SCORING, 26/ago/2026 (ADR-207): encargo archivado VERBATIM
     # (A.3) y su nota de cierre. Direccion lo lanzo rotulado "ENCARGO E7", y
     # "E7" pelado colisiona con los habitantes ya censados del espacio E.
