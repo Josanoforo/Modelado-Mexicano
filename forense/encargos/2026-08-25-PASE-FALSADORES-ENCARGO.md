@@ -1,6 +1,6 @@
 # Encargo — PASE-FALSADORES, 25/ago/2026
 
-**Estado: CONSUMIDO.** Ejecutado el 25/ago/2026 en rama `claude/pase-falsadores-fichas-culsj4`; cierre en `forense/notas/2026-08-25-pase-falsadores.md`. `SHA` de redacción `9e9132d` verificado desactualizado contra `HEAD` real `c6a5ab3` al arrancar (4 commits, `PR #359` — exactamente la vía de `R3.4` que este encargo ya excluye); refrescado y reportado, sin discrepancia material.
+**Estado: CONSUMIDO.** Ejecutado el 25/ago/2026 en rama `claude/pase-falsadores-fichas-culsj4` (`PR #361`); cierre en `forense/notas/2026-08-25-pase-falsadores.md`. `SHA` de redacción `9e9132d` verificado desactualizado contra `HEAD` real `c6a5ab3` al arrancar (4 commits, `PR #359` — exactamente la vía de `R3.4` que este encargo ya excluye); refrescado y reportado, sin discrepancia material.
 
 ---
 
