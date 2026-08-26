@@ -2,7 +2,7 @@
 
 `ENCARGO E4 · DISEÑO-ENSAFI — abre el FD ya descargado y cierra la fila ENSAFI de
 data/diseno-muestral.yaml a MAPEADO`, dirección (maestra-30), 26/ago/2026, SHA de redacción
-`186f090`. Worktree `/home/pc0/mm-e4-diseno-ensafi`, rama `acto/e4-diseno-ensafi`.
+`186f090`. Worktree `/home/pc0/mm-e4-diseno-ensafi`, rama `acto/e4-diseno-ensafi`, **`PR #373`**.
 **Entorno UBUNTU** (el FD vive en el corpus). Sin descarga, sin firma de mesa, sin estimación.
 Encargo archivado íntegro en `forense/encargos/2026-08-26-E4-DISENO-ENSAFI.md` (`A.3`).
 
