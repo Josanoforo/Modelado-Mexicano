@@ -2,7 +2,7 @@
 
 > **PILOTO SIN VEREDICTO (D-i) — este documento puntúa; no adjudica ADV1-M5, no mueve tier alguno, no abre fila de tablero.**
 
-**ACTO E7 · R-SCORING**, 26/ago/2026. Duelo `ADV1-M2`, 15 celdas sorteadas del marco congelado. `main` en `3bc28b1`.
+**ACTO MAESTRA30-E7 · R-SCORING**, 26/ago/2026. Duelo `ADV1-M2`, 15 celdas sorteadas del marco congelado. `main` en `3bc28b1`.
 
 **Escalas, declaradas antes de la tabla (A-bis 3).** `L-solo` se elicitó en **porcentaje** (mediana de sus `k` capturas válidas); `R` se computa como **proporción**. El enlace entre ambas es exactamente `L% / 100`, aplicado a `L` y a nada más. `EE`, `dif` y `banda` van en **puntos porcentuales**. Ninguna otra escala se cruza en este documento.
 
@@ -34,7 +34,7 @@
 
 | corredor | estado | de dónde sale ese estado |
 |---|---|---|
-| **L-solo** | **corrió** | 120 capturas de `ACTO E6` (`ADR-206`), 15 celdas × `k=8`, temperatura `1.0`, cero descartes. **Es el único corredor con valores.** |
+| **L-solo** | **corrió** | 120 capturas de `ACTO MAESTRA30-E6 · L-RUN` (`ADR-206`), 15 celdas × `k=8`, temperatura `1.0`, cero descartes. **Es el único corredor con valores.** |
 | **L+corpus** | no ejecutado | `FP-165` **FIRMADA**: mesa cerró la puerta a nuevas llamadas API. «El hueco no se tapa, se declara permanente.» |
 | **M** | `NO-EMITE` en las 15 | `DERIVACION-M-v1_0.md`: el crosswalk sellado cubre las 15 pero da `NO-EMITE` en 12, y los 3 `CANDIDATO-EMITE` son falsos positivos de subcadena que cruzan encuesta. **Cero puntos M.** |
 | **B** | `SIN_BASELINE` en las 15 | `elegir_baseline` invocado por su propia firma. Las 9 arbitrables tienen `publicada = NO` en el marco — la prueba del bibliotecario `FP-93` no halló el reactivo publicado en ninguna. Sin ola pública previa y sin serie, aplica la rama (3) del propio corredor. |

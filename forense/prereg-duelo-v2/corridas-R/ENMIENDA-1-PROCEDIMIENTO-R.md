@@ -1,6 +1,6 @@
 # ENMIENDA 1 al PROCEDIMIENTO R v1.0 — antes de correr, no hacia atrás
 
-**ACTO E7 · R-SCORING**, 26/ago/2026. Commit propio, posterior al `COMMIT-1` y **anterior** al `COMMIT-2`. El `PROCEDIMIENTO-R-v1_0.md` **no se edita**: lo que sigue lo enmienda por adición, conforme al mandato del encargo («si el COMMIT-1 tenía un error, tercer commit lo dice; nunca se corrige hacia atrás»).
+**ACTO MAESTRA30-E7 · R-SCORING**, 26/ago/2026. Commit propio, posterior al `COMMIT-1` y **anterior** al `COMMIT-2`. El `PROCEDIMIENTO-R-v1_0.md` **no se edita**: lo que sigue lo enmienda por adición, conforme al mandato del encargo («si el COMMIT-1 tenía un error, tercer commit lo dice; nunca se corrige hacia atrás»).
 
 **Ninguno de los tres puntos de abajo se descubrió mirando un valor.** Los tres salen de catálogos y descriptores de archivo — nombres y etiquetas de variable, que es lo que esta fase permite leer. Al cerrar esta enmienda **sigue sin abrirse un solo valor de microdato**.
 

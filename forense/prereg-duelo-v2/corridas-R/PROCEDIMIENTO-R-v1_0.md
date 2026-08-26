@@ -1,6 +1,6 @@
 # PROCEDIMIENTO R v1.0 — congelado antes de abrir un solo valor de microdato
 
-**ACTO E7 · R-SCORING**, 26/ago/2026. `COMMIT-1` de la regla de dos commits del Bloque D.
+**ACTO MAESTRA30-E7 · R-SCORING**, 26/ago/2026. `COMMIT-1` de la regla de dos commits del Bloque D.
 
 **Qué es.** La especificación completa de cómo se computará `R` — el valor del microdato — para cada una de las 15 celdas del piloto ADV1-M2, y de cómo se computará su `EE(R)` de diseño. Se congela **antes** de que este acto lea un solo valor. Lo único que se leyó para escribirlo fueron **nombres de columna y etiquetas de variable**, que es exactamente lo que el encargo permite («permitido leer nombres/etiquetas de variables para localizar la columna; prohibido mirar un valor antes de este commit»).
 
@@ -250,6 +250,6 @@ Las dos `RESERVA-*` **se escriben, no se silencian**, y ninguna se corre con dis
 
 ## 6 · Cierre
 
-Este procedimiento queda congelado en el `COMMIT-1` de `ACTO E7 · R-SCORING`. El `COMMIT-2` lo ejecuta **sin editarlo**. Si el `COMMIT-1` resultara tener un error, un **tercer** commit lo dice — nunca se corrige hacia atrás.
+Este procedimiento queda congelado en el `COMMIT-1` de `ACTO MAESTRA30-E7 · R-SCORING`. El `COMMIT-2` lo ejecuta **sin editarlo**. Si el `COMMIT-1` resultara tener un error, un **tercer** commit lo dice — nunca se corrige hacia atrás.
 
 «el primer resultado que produzca este procedimiento es el que se reporta»

@@ -1,6 +1,6 @@
-# DERIVACIÓN DE MECÁNICA M — paso 2 del ENCARGO E7, del árbol y no de memoria
+# DERIVACIÓN DE MECÁNICA M — paso 2 del ENCARGO `MAESTRA30-E7`, del árbol y no de memoria
 
-**ACTO E7 · R-SCORING**, 26/ago/2026. Se commitea junto al `COMMIT-1` porque **no toca un solo valor de microdato**: es un censo del procedimiento, no una corrida.
+**ACTO MAESTRA30-E7 · R-SCORING**, 26/ago/2026. Se commitea junto al `COMMIT-1` porque **no toca un solo valor de microdato**: es un censo del procedimiento, no una corrida.
 
 ## Qué pedía el encargo
 
