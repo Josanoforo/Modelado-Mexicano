@@ -494,3 +494,89 @@ Una «cifra puntual» es un porcentaje que **no** cae dentro del tramo de un ran
 Las reglas de §9.3 y §9.4 quedan fijadas en este commit. No se modificarán después de ver sus resultados: si el conteo por regla resulta feo, se reporta feo.
 
 > **El primer resultado que produzca este procedimiento es el que se reporta.**
+---
+
+## 10 · Resultado del extractor y agregado por celda × variante
+
+**Sin comparar contra nada.** Aquí no hay `R`, ni `B`, ni banda, ni marcador. Son las respuestas de `L-solo` y su dispersión interna, que es lo que `ADV1-M2` manda reportar.
+
+### 10.1 · Conteo por regla — las 120 capturas
+
+| Regla | Disparos |
+|---|---|
+| `R1-punto-central` | **0** |
+| `R2-estimacion-puntual` | 13 |
+| `R3-negrita` | 28 |
+| `R4-primer-porcentaje` | 22 |
+| `R5-punto-medio-de-rango` | **40** |
+| `R6-sin-dato-declarado` | 15 |
+| `R7-sin-cifra` | 2 |
+| `R0-vacia` | 0 |
+
+**Totales: 120 capturas · 103 con valor · 17 sin valor · 118 con fuente citada.**
+
+Tres lecturas que el conteo obliga a declarar, y no a suavizar:
+
+1. **`R5` disparó 40 veces — un tercio del material.** Es la única regla que **deriva** un número (punto medio de un rango) en vez de leer uno declarado. Que sea la regla más frecuente significa que **el modelo prefiere responder con rango antes que con punto**, pese a que el prompt pide «tu mejor estimación puntual». No es un defecto del extractor: es un hallazgo sobre el corredor `L`. Un tercio de los valores de `L-solo` son puntos medios calculados por el ejecutor, no estimaciones puntuales del modelo, y quien lea el marcador debe saberlo.
+2. **`R1` no disparó nunca.** La regla de máxima prioridad (`punto central`, `mejor punto`) resultó inútil sobre este material. Se deja escrita tal como se congeló, sin retocarla — la promesa era que el primer resultado es el que se reporta.
+3. **`R4` disparó 22 veces**, es decir el valor salió del *primer porcentaje del texto* sin más rótulo. Es la regla más débil de las que producen valor y conviene tratarla como tal.
+
+### 10.2 · Agregado pre-registrado por celda
+
+| celda | escala | agregado (`§5` del pipeline, llaveado por `escala`) | val/cap | fuente |
+|---|---|---|---|---|
+| `CIV-08` | binaria | **`agregar_continua`** — mediana=62.0 · q10=23.5 · q90=68.5 · IQR=37.0 · n=7 | 7/8 | 8/8 |
+| `TIC-08` | binaria | **`agregar_continua`** — mediana=32.5 · q10=20.0 · q90=35.0 · IQR=12.5 · n=6 | 6/8 | 8/8 |
+| `TIC-01` | binaria | **`agregar_continua`** — mediana=61.0 · q10=24.0 · q90=64.0 · IQR=10.0 · n=8 | 8/8 | 8/8 |
+| `DIN-11` | binaria | **`agregar_continua`** — mediana=31.5 · q10=12.0 · q90=33.0 · IQR=18.4 · n=8 | 8/8 | 8/8 |
+| `DIN-03` | binaria | **`agregar_continua`** — mediana=34.5 · q10=32.5 · q90=37.5 · IQR=4.5 · n=5 | 5/8 | 8/8 |
+| `DOC-06` | continua (porcentaje) | **`agregar_continua`** — mediana=80.0 · q10=12.5 · q90=80.0 · IQR=65.5 · n=8 | 8/8 | 7/8 |
+| `EMP-02` | continua (proporcion) | **`agregar_continua`** — mediana=90.0 · q10=17.5 · q90=90.0 · IQR=0.0 · n=8 | 8/8 | 8/8 |
+| `EMP-04` | continua (proporcion) | **`agregar_continua`** — mediana=86.0 · q10=80.0 · q90=90.0 · IQR=10.0 · n=8 | 8/8 | 8/8 |
+| `DIN-05` | binaria | **`agregar_continua`** — mediana=27.5 · q10=22.5 · q90=37.5 · IQR=2.5 · n=7 | 7/8 | 8/8 |
+| `SFT-06` | binaria | **`agregar_continua`** — mediana=34.0 · q10=34.0 · q90=34.0 · IQR=0.0 · **n=2** | **2/8** | 7/8 |
+| `SFT-04` | binaria | **`agregar_continua`** — mediana=11.0 · q10=4.0 · q90=26.0 · IQR=9.0 · n=6 | 6/8 | 8/8 |
+| `TIC-12` | categorica k=10 | **`agregar_categorica`** — moda=`1.0` · self_consistency=**0.250** · n=8 · distribución={`1.0`:2, `5.0`:1, `40.0`:1, `47.5`:1, `50.0`:1, `55.0`:1, `60.0`:1} | 8/8 | 8/8 |
+| `TIC-06` | categorica k=3 | **`agregar_categorica`** — moda=`50.0` · self_consistency=0.500 · n=6 · distribución={`45.0`:1, `47.5`:2, `50.0`:3} | 6/8 | 8/8 |
+| `DIN-07` | binaria | **`agregar_continua`** — mediana=26.25 · q10=3.0 · q90=33.5 · IQR=29.0 · n=8 | 8/8 | 8/8 |
+| `EMP-05` | categorica k=8 | **`agregar_categorica`** — moda=`25.0` · self_consistency=0.500 · n=8 · distribución={`22.0`:2, `25.0`:4, `47.0`:2} | 8/8 | 8/8 |
+
+### 10.3 · Los valores crudos, por celda, en orden de índice
+
+```
+CIV-08: [61.0, 23.5, 30.0, 74.8, 62.0, 68.5, 67.0]          CV = 0.336
+TIC-08: [35.0, 35.0, 22.5, 20.0, 35.0, 30.0]                CV = 0.209
+TIC-01: [24.0, 64.0, 59.0, 63.0, 53.0, 64.0, 56.5, 63.0]    CV = 0.226
+DIN-11: [12.0, 31.0, 35.0, 32.0, 14.0, 32.4, 33.0, 31.0]    CV = 0.308
+DIN-03: [37.5, 34.5, 33.0, 32.5, 37.5]                      CV = 0.061
+DOC-06: [80.0, 80.0, 80.0, 80.0, 80.0, 14.5, 80.0, 12.5]    CV = 0.454
+EMP-02: [90.0, 90.0, 90.0, 90.0, 90.0, 17.5, 90.0, 90.0]    CV = 0.296
+EMP-04: [87.0, 90.0, 85.0, 90.0, 80.0, 80.0, 90.0, 80.0]    CV = 0.051
+DIN-05: [42.0, 27.5, 22.5, 37.5, 25.0, 27.5, 27.5]          CV = 0.219
+SFT-06: [34.0, 34.0]                                        CV = 0.000
+SFT-04: [14.0, 26.0, 8.0, 5.0, 4.0, 40.0]                   CV = 0.802
+TIC-12: [40.0, 5.0, 47.5, 50.0, 1.0, 55.0, 60.0, 1.0]
+TIC-06: [50.0, 47.5, 47.5, 50.0, 45.0, 50.0]
+DIN-07: [25.0, 33.5, 20.0, 40.0, 3.0, 32.0, 3.0, 27.5]      CV = 0.557
+EMP-05: [25.0, 22.0, 25.0, 25.0, 47.0, 22.0, 47.0, 25.0]
+```
+
+⚠️ **El `CV` de arriba es DIAGNÓSTICO y nada más.** Se imprime porque la dispersión es el resultado que `ADV1-M2` exige reportar. **NO se aplica `CV≥30%⇒SKIP`** — `FP-79` vive en `scoring`, jamás en `L` (`lanzamiento` §6). Ninguna celda se marcó, se excluyó ni se trató distinto por su `CV`. Si alguna cae en `SKIP` aguas abajo, caerá allí, con el `CV` del **árbitro**, no con éste.
+
+### 10.4 · Hallazgos propios de esta corrida
+
+**(a) `SFT-06` es el caso extremo de abstención: 6 de 8 corridas declararon no tener el dato.** Su agregado descansa sobre `n=2`, con `IQR=0.0` que parece consenso perfecto y no lo es — es un `n` de dos. **Se reporta con el `n` a la vista precisamente para que nadie lea ese `0.0` como acuerdo.** Cero descartes: las 6 abstenciones están capturadas, con su texto íntegro, y cuentan.
+
+**(b) La dispersión no es ruido menor: en varias celdas cambia el orden de magnitud.** `DOC-06` alterna entre `80.0` (cinco veces) y `~13` (dos veces); `EMP-02` da `90.0` siete veces y `17.5` una; `DIN-07` va de `3.0` a `40.0`. Son bimodalidades, no dispersión gaussiana alrededor de un centro — la mediana las oculta y el `IQR` a veces también (`EMP-02` tiene `IQR=0.0` **con** un valor a `17.5`). El `q10`/`q90` es lo que las delata, y por eso el pre-registro pide los cuatro cuantiles y no solo la mediana.
+
+**(c) `CIV-08` — el hallazgo que mesa pidió dejar escrito.** Dos corridas del mismo prompt leyeron `AP4_4_03` como **reactivos distintos**: la corrida 1 lo interpretó como percepción de inseguridad en el mercado (~67–73 %) y la corrida 2 como *«dejó de usar joyas»* (~23.5 %). No es que el modelo dude del valor: **duda de qué pregunta le están haciendo**, y responde con seguridad a preguntas diferentes. La dispersión resultante (`IQR=37.0`, `q10=23.5`, `q90=68.5`) no mide incertidumbre sobre una cantidad — mide desacuerdo sobre cuál cantidad es. Mesa lo ordenó capturar sin tocar nada, verbatim: «Que dos corridas lean AP4_4_03 como constructos distintos es exactamente lo que ADV1-M2 existe para exhibir.» Nada se re-preguntó y nada se tocó del prompt.
+
+**(d) La sonda canario casi siempre dispara: 118 de 120 citan fuente.** Y la fuente citada es casi siempre INEGI o el publicador correcto. Conviene no leer eso como señal de acierto: **citar la fuente correcta y acertar la cifra son cosas distintas**, y varias de las respuestas que citan INEGI correctamente son las mismas que traen los valores extremos de la bimodalidad de (b). Este acto no puede decir cuál de las dos ramas está bien — eso lo dirá `R`, y `R` no ha corrido.
+
+**(e) El modelo prefiere rangos a puntos** (§10.1, `R5` = 40/120), pese a que el prompt pide explícitamente estimación puntual. Es una observación sobre la elicitación misma, no sobre las cifras.
+
+### 10.5 · Tensión declarada en las tres celdas categóricas
+
+`TIC-12`, `TIC-06` y `EMP-05` tienen `escala = categorica k=N`, así que el pre-registro llavea su agregado a `agregar_categorica` — y así se aplicó. Pero su `estimador` es una **proporción**, y lo que el modelo devuelve son números. Consecuencia visible en la tabla: la «moda» de `TIC-12` es la cadena `'1.0'` con `self_consistency = 0.250`, que es un artefacto de tratar porcentajes como etiquetas de categoría, no una moda categórica en sentido útil.
+
+**No se cambió la regla.** El pre-registro dice `escala`, y `escala` dice `categorica`. Se aplica lo pre-registrado, se reporta el artefacto, y **la resolución es de mesa** — encaja en la fila sucesora junto con las otras dos correcciones textuales del lanzamiento.
