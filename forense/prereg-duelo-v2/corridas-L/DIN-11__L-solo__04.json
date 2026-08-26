@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-11",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "# Estimación para P5_3 de la ENIF 2018\n\n## Identificación de la variable\n\nLa ENIF 2018 (Encuesta Nacional de Inclusión Financiera), levantada por el INEGI en colaboración con la CNBV, incluye en su sección 5 preguntas relacionadas con **ahorro**. La variable **P5_3** típicamente indaga si la persona **ahorra de manera informal** (por ejemplo, en tandas, con familiares, guardando dinero en casa, etc.) o bien se refiere a un mecanismo específico de ahorro.\n\n## Mi conocimiento directo\n\nConozco los resultados generales publicados por la CNBV/INEGI de la ENIF 2018, pero **no tengo certeza exacta de qué pregunta específica corresponde al código P5_3** en el cuestionario, ya que la numeración interna de las variables puede diferir de los reportes temáticos públicos.\n\nSin embargo, basándome en la estructura del cuestionario de la ENIF 2018:\n\n- La sección 5 aborda **ahorro formal e informal**.\n- P5_3 suele referirse a si la persona **ahorra de manera informal** (por ejemplo, guardando dinero en casa, en tandas, con conocidos, etc.).\n\n## Estimación puntual\n\nSegún los reportes de resultados de la ENIF 2018 publicados por la CNBV:\n\n- Aproximadamente **31-33%** de la población adulta reportó ahorrar de manera informal.\n\n**Estimación puntual: ~32%** (proporción ponderada ≈ 0.32)\n\n## Advertencia de honestidad\n\n**No puedo confirmar con total certeza** que P5_3 corresponda exactamente a esta pregunta sin acceso al cuestionario codificado o a las bases de datos. La cifra que proporciono se basa en mi conocimiento de los resultados publicados de la ENIF 2018, pero podría estar asignando la variable incorrecta al código P5_3.\n\n## Fuente\n\n- CNBV-INEGI, *Encuesta Nacional de Inclusión Financiera 2018: Resultados*, disponible en el sitio de la CNBV (gob.mx/cnbv) y en el portal del INEGI.\n- Reporte de Inclusión Financiera (RIF) 10, CNBV, 2019.\n\nSi necesitas el dato exacto, recomiendo consultar directamente las bases de microdatos de la ENIF 2018 en el sitio del INEGI y calcular la proporción ponderada con el factor de expansión correspondiente.",
+  "valor_extraido": 32.0,
+  "fuente_citada": "CNBV-INEGI, *Encuesta Nacional de Inclusión Financiera 2018: Resultados*, disponible en el sitio de la CNBV (gob.mx/cnbv) y en el portal del INEGI.",
+  "timestamp": "2026-08-26T20:00:25.149978+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "07e544ce8d197731630cd744c89cb0672540a675a79c1a893ead39f55cf1d0d4"
+}

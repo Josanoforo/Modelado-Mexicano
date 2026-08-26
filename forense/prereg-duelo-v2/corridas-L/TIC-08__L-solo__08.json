@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-08",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "# Estimación para P7_15 de la ENDUTIH 2024\n\n## Identificación del reactivo\n\nLa variable **P7_15** en la ENDUTIH se ubica dentro de la sección de usos de internet/TIC por parte de la persona seleccionada. En ediciones anteriores de la ENDUTIH, las preguntas de la serie P7_X han abordado actividades específicas realizadas en internet (por ejemplo: interacción con gobierno, banca electrónica, compras en línea, uso de inteligencia artificial, etc.). En la ola 2024, **P7_15** corresponde —según la estructura del cuestionario que se ha mantenido en años recientes— a una pregunta sobre si la persona realizó alguna actividad específica en línea (probablemente relacionada con **uso de inteligencia artificial** o alguna actividad digital emergente incorporada en la edición 2024, dado que el INEGI añadió reactivos sobre IA en esta ola).\n\n## Mi respuesta honesta\n\n**No conozco con certeza el dato puntual de la proporción ponderada de P7_15 de la ENDUTIH 2024**, ni desagregado por estrato socioeconómico. Las razones son:\n\n1. Los microdatos de la ENDUTIH 2024 fueron publicados por el INEGI, pero no tengo acceso directo a los tabulados procesados con los ponderadores correspondientes de esta ola específica.\n2. No cuento con el documento adjunto del proyecto que podría contener esta estimación.\n3. No tengo una fuente textual declarada que me permita citar un valor preciso.\n\n## Aproximación condicionada (con advertencia explícita)\n\nSi P7_15 se refiere al **uso de herramientas de inteligencia artificial**, las cifras que circularon en comunicados del INEGI para 2024 sugieren proporciones en el rango de **~15-25% de los usuarios de internet**, pero esto varía fuertemente por estrato socioeconómico (estratos altos posiblemente >30%, estratos bajos posiblemente <10%).\n\n**⚠️ Sin embargo, declaro explícitamente que no tengo la cifra precisa ni la fuente textual verificada. No debo inventar un valor puntual como si fuera confiable.**\n\n## Recomendación\n\nPara obtener la estimación correcta:\n- Procesar los microdatos de `tic_2024_usuarios` con la variable de ponderación (`FAC_PER` o el factor de expansión correspondiente), filtrando por `EDAD ≥ 6` y desagregando por `ESTRATO`.\n- Consultar los tabulados predefinidos en el sitio del INEGI para la ENDUTIH 2024.\n\n**Fuente referida (no verificada textualmente):** INEGI, Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información en los Hogares (ENDUTIH) 2024, microdatos y comunicado de prensa.",
+  "valor_extraido": 30.0,
+  "fuente_citada": "La variable **P7_15** en la ENDUTIH se ubica dentro de la sección de usos de internet/TIC por parte de la persona seleccionada. En ediciones anteriores de la ENDUTIH, las preguntas de la serie P7_X han abordado actividades específicas realizadas en internet (por ejemplo: interacción con gobierno, banca electrónica, compras en línea, uso de inteligencia artificial, etc.). En la ola 2024, **P7_15** corresponde —según la estructura del cuestionario que se ha mantenido en años recientes— a una pregu",
+  "timestamp": "2026-08-26T19:57:26.551458+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "d5694faecef5e601872f2773783dd97f0a8aae84c969eedd0048020c694d08d7"
+}

@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-11",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "# Estimación para P5_3 de la ENIF 2018\n\n## Identificación del reactivo\n\nLa ENIF 2018 (Encuesta Nacional de Inclusión Financiera), levantada por el INEGI en colaboración con la CNBV, en su sección 5 aborda temas relacionados con **ahorro**. La pregunta P5_3 típicamente se refiere a si la persona **ahorra de manera informal** (por ejemplo, en tandas, guardando dinero en casa, con familiares, etc.) o bien a una modalidad específica de ahorro.\n\n## Mi estimación\n\n**No tengo certeza exacta del fraseo ni del dato puntual de P5_3 de la ENIF 2018.**\n\nSin embargo, con base en mi conocimiento de los resultados publicados de la ENIF 2018:\n\n- Si P5_3 se refiere a **\"¿Ahorra mediante algún mecanismo informal?\"** (tandas, guardar en casa, prestar a conocidos, etc.), los reportes de la CNBV/INEGI situaban el ahorro informal en torno al **30–40%** de la población adulta.\n\n- Una estimación puntual plausible sería aproximadamente **0.35** (35%).\n\n## Advertencia de transparencia\n\n⚠️ **No cuento con acceso al cuestionario exacto ni a las bases de microdatos de la ENIF 2018 para verificar el fraseo preciso de P5_3 ni para calcular la proporción ponderada.** La cifra que ofrezco es una aproximación basada en resultados agregados que he visto en publicaciones de la CNBV y el INEGI (particularmente el *Reporte Nacional de Inclusión Financiera 9*, CNBV, 2018, y los tabulados básicos de la ENIF 2018 del INEGI), pero **no puedo confirmar que corresponda exactamente a este reactivo**.\n\n## Fuente referida\n\n- CNBV-INEGI, *Encuesta Nacional de Inclusión Financiera 2018: Resultados*, disponible en el sitio del INEGI y de la CNBV.\n- CNBV, *Reporte Nacional de Inclusión Financiera No. 9* (2018).\n\nSi necesitas el dato exacto, recomiendo consultar los tabulados o microdatos oficiales en: https://www.inegi.org.mx/programas/enif/2018/",
+  "valor_extraido": 35.0,
+  "fuente_citada": "La ENIF 2018 (Encuesta Nacional de Inclusión Financiera), levantada por el INEGI en colaboración con la CNBV, en su sección 5 aborda temas relacionados con **ahorro**. La pregunta P5_3 típicamente se refiere a si la persona **ahorra de manera informal** (por ejemplo, en tandas, guardando dinero en casa, con familiares, etc.) o bien a una modalidad específica de ahorro.",
+  "timestamp": "2026-08-26T20:00:05.832885+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "07e544ce8d197731630cd744c89cb0672540a675a79c1a893ead39f55cf1d0d4"
+}

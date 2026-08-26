@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-04",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "# Estimación: Razón de aprobación de créditos por tamaño de localidad (ENAFIN 2024)\n\n## Mi respuesta honesta\n\n**No conozco el dato específico.** La ENAFIN 2024 (levantada por INEGI en colaboración con la CNBV) fue publicada en sus resultados más recientes, pero no tengo acceso directo a los microdatos ni a tabulados cruzados que desglosen la tasa de aprobación de créditos por tamaño de localidad, y mucho menos la **razón ponderada** entre localidades de 500 mil o más habitantes versus localidades de 50 mil a 499,999 habitantes.\n\n## Lo que puedo ofrecer como contexto\n\nCon base en ediciones anteriores de la ENAFIN (2018, 2021):\n\n- Las tasas de aprobación de créditos empresariales en México han oscilado típicamente entre **75% y 90%** a nivel nacional.\n- Las localidades más grandes (500 mil+) suelen tener tasas de aprobación ligeramente más altas que las localidades medianas, debido a mayor presencia de instituciones financieras y mayor formalización empresarial.\n- La **razón** (tasa en localidades de 500 mil+ / tasa en localidades de 50 mil a 499,999) en ediciones previas sugeriría un valor **cercano a 1.0**, probablemente entre **1.02 y 1.10**, reflejando una ventaja modesta para las localidades grandes.\n\n## Estimación puntual tentativa (con alta incertidumbre)\n\n| Parámetro | Valor |\n|---|---|\n| **Estimación puntual** | ~1.05 |\n| **Intervalo subjetivo al 80%** | [0.98 – 1.12] |\n\n## Advertencia importante\n\n⚠️ **Esta es una conjetura informada, no un dato.** No tengo acceso a los tabulados de la ENAFIN 2024 con este cruce específico. La cifra podría diferir sustancialmente dependiendo de:\n\n- La definición operativa de \"crédito solicitado\" vs. \"crédito aprobado\" en el cuestionario 2024.\n- El esquema de ponderación específico por tamaño de localidad.\n- Cambios en la composición sectorial o de tamaño de empresa entre localidades.\n\n**Fuente declarada:** No cuento con fuente textual directa. Mi razonamiento se basa en patrones generales de ediciones previas de la ENAFIN (INEGI/CNBV), sin acceso a los microdatos ni tabulados de la ola 2024.",
+  "valor_extraido": 80.0,
+  "fuente_citada": "No conozco el dato específico.** La ENAFIN 2024 (levantada por INEGI en colaboración con la CNBV) fue publicada en sus resultados más recientes, pero no tengo acceso directo a los microdatos ni a tabulados cruzados que desglosen la tasa de aprobación de créditos por tamaño de localidad, y mucho menos la **razón ponderada** entre localidades de 500 mil o más habitantes versus localidades de 50 mil a 499,999 habitantes.",
+  "timestamp": "2026-08-26T20:09:37.727156+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "8a2016ec998a2e49bd5ee499723188fcd2363182c71bc9b20851f4b1055a417c"
+}

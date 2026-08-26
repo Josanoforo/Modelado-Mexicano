@@ -1,0 +1,18 @@
+{
+  "id_celda": "CIV-08",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "# Estimación para AP4_4_03 – ENVIPE 2023\n\n## Identificación del reactivo\n\nEn la ENVIPE (Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública) 2023, la sección AP4_4 se refiere a las **medidas de protección o cambios de hábitos** que la población de 18 años y más ha adoptado por temor a ser víctima de delito. El reactivo **AP4_4_03** corresponde típicamente a:\n\n> **\"Dejó de usar joyas\"** (como medida de autoprotección por inseguridad).\n\n## Mi estimación puntual\n\nBasándome en resultados publicados por el INEGI de ediciones anteriores y tabulados de la ENVIPE 2023:\n\n- **Estimación puntual: aproximadamente 22–25%** de la población de 18 años y más declaró haber dejado de usar joyas como medida de protección.\n\nMi mejor punto central sería **~23.5%**.\n\n## Advertencia de incertidumbre\n\n**No tengo acceso directo a los microdatos ni a los tabulados oficiales exactos de la ENVIPE 2023 para este reactivo específico.** Esta cifra se basa en mi conocimiento de los comunicados de prensa y tabulados predefinidos del INEGI para la ENVIPE, donde \"dejar de usar joyas\" ha figurado consistentemente como una de las medidas de autoprotección reportadas con frecuencia intermedia (por debajo de \"no salir de noche\" o \"no llevar dinero en efectivo\", pero por encima de otras medidas menos comunes).\n\n## Fuente\n\n- **INEGI, Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública (ENVIPE) 2023**, comunicado de prensa y tabulados básicos. Los principales resultados sobre medidas de autoprotección se publican en los cuadros del apartado de \"Percepción sobre Seguridad Pública\".\n\n---\n\n**Si se requiere el dato exacto**, recomiendo consultar los tabulados interactivos del INEGI o procesar los microdatos de la ENVIPE 2023 con los factores de expansión (FAC_ELE) aplicados al universo TPer_Vic1.",
+  "valor_extraido": 23.5,
+  "fuente_citada": "INEGI, Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública (ENVIPE) 2023**, comunicado de prensa y tabulados básicos. Los principales resultados sobre medidas de autoprotección se publican en los cuadros del apartado de \"Percepción sobre Seguridad Pública\".",
+  "timestamp": "2026-08-26T19:53:33.165626+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "96f2285eae5c7cc50f64f5857925bc3351e3a333d930172eaaff4dad2e6a65d4"
+}

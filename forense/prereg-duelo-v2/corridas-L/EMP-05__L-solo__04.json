@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-05",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "# Estimación: SITUA_CONYUGAL para personas de 20-29 años (CPV 2020, Cuestionario Ampliado)\n\n## Fuente de mi estimación\n\nMe baso en los resultados publicados por el INEGI del Censo de Población y Vivienda 2020 (tabulados del cuestionario ampliado), así como en microdatos públicos del mismo censo que he procesado en mi entrenamiento. No tengo acceso a un documento adjunto específico de este proyecto.\n\n## Categorías y estimaciones puntuales (proporción ponderada)\n\nLa variable SITUA_CONYUGAL en el cuestionario ampliado del CPV 2020 tiene 8 categorías. Para el grupo de 20 a 29 años, mi mejor estimación es:\n\n| Categoría | Proporción estimada |\n|---|---|\n| 1. Unión libre | ~0.25 (25%) |\n| 2. Casada/o (solo por lo civil) | ~0.10 (10%) |\n| 3. Casada/o (solo religiosamente) | ~0.02 (2%) |\n| 4. Casada/o (civil y religiosamente) | ~0.12 (12%) |\n| 5. Separada/o | ~0.04 (4%) |\n| 6. Divorciada/o | ~0.01 (1%) |\n| 7. Viuda/o | ~0.003 (0.3%) |\n| 8. Soltera/o | ~0.46 (46%) |\n\n*(Las proporciones suman aproximadamente 1.00; puede haber un residual por no especificado.)*\n\n## Justificación cualitativa\n\n- En este grupo etario, la **soltería** es la categoría modal, dado que muchas personas de 20-24 años aún no han formado pareja conyugal.\n- La **unión libre** ha crecido significativamente en cohortes jóvenes mexicanas, superando al matrimonio civil o religioso como forma de primera unión.\n- El **matrimonio civil y religioso combinado** ha perdido peso relativo entre jóvenes respecto a generaciones anteriores.\n- Las categorías de disolución (separación, divorcio, viudez) son proporcionalmente bajas en este rango de edad.\n\n## Advertencia\n\nEstas son estimaciones basadas en mi conocimiento de los tabulados censales del INEGI 2020 y tendencias demográficas documentadas. **No tengo certeza de las cifras exactas al decimal** y no cuento con el documento adjunto del proyecto. Las cifras deben verificarse contra los microdatos oficiales o el tabulador interactivo del INEGI.",
+  "valor_extraido": 25.0,
+  "fuente_citada": "Me baso en los resultados publicados por el INEGI del Censo de Población y Vivienda 2020 (tabulados del cuestionario ampliado), así como en microdatos públicos del mismo censo que he procesado en mi entrenamiento. No tengo acceso a un documento adjunto específico de este proyecto.",
+  "timestamp": "2026-08-26T20:25:56.830260+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "81b785fe9cec5f16df68777ab2e737c90e84b849cd5686a6a4c0a079a09b9338"
+}

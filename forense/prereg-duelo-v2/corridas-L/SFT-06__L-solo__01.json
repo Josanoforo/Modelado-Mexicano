@@ -1,0 +1,18 @@
+{
+  "id_celda": "SFT-06",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "# Estimación para F55_24 – ENASEM 2024\n\n## Identificación de la variable\n\nLa variable **F55_24** se encuentra en la **Sección F** de la ENASEM, que corresponde a **Salud** (específicamente aspectos de funcionalidad, condiciones de salud o uso de servicios de salud). En la codificación histórica de la ENASEM, las variables F55 y cercanas han abordado temas como **caídas, dolor, o síntomas depresivos**, dependiendo de la ola y la versión del cuestionario.\n\nSin embargo, dado que se trata de la **ola 2024** — cuyos microdatos, hasta donde llega mi conocimiento (corte: julio 2025), **no han sido publicados de forma abierta** o no forman parte de mi base de entrenamiento — debo ser explícito:\n\n## Declaración\n\n**No conozco el dato.** No tengo acceso a:\n\n1. Los microdatos de la ENASEM ola 2024.\n2. El cuestionario definitivo de la ola 2024 que me permita confirmar con certeza el fraseo exacto de F55_24.\n3. Ningún documento adjunto de este proyecto de investigación.\n4. Tabulados oficiales publicados con la proporción ponderada de esta variable.\n\nPor lo tanto, **no puedo proporcionar una estimación puntual fundamentada** ni un intervalo de confianza subjetivo sin riesgo de fabricar una cifra.\n\n## Recomendación\n\n- Consultar los microdatos en el sitio oficial: [www.enasem.org](http://www.enasem.org) o en el portal del INEGI.\n- Verificar el cuestionario 2024 para confirmar el contenido exacto de F55_24.\n- Calcular la proporción ponderada utilizando los factores de expansión provistos en la base de datos.\n\n**Fuente declarada:** Ninguna fuente textual disponible — no cuento con el dato (sonda canario: sin fuente textual).",
+  "valor_extraido": null,
+  "fuente_citada": "Consultar los microdatos en el sitio oficial: [www.enasem.org](http://www.enasem.org) o en el portal del INEGI.",
+  "timestamp": "2026-08-26T20:12:47.838235+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "d451514879cf73e520e6c23321e959977eeaba9f27acaaac7837fc2aabb343fb"
+}

@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-01",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "# Estimación sobre p3i de la ENOE 2024 T1\n\n## Identificación del reactivo\n\nLa variable **p3i** en la tabla COE1 de la ENOE se refiere a la pregunta sobre si el trabajador subordinado y remunerado **tiene contrato escrito** en su empleo actual. Es una variable binaria (sí/no).\n\n## Mi estimación\n\nPara la población ocupada subordinada y remunerada de 15 años y más, la proporción que **sí cuenta con contrato escrito** ha oscilado históricamente en la ENOE alrededor del 55-58% en años recientes, con una tendencia ligeramente creciente tras las reformas laborales (especialmente la reforma de subcontratación de 2021).\n\n**Estimación puntual (proporción ponderada con respuesta afirmativa):**\n\n| Desglose | Estimación |\n|----------|-----------|\n| **Total** | ~57–58% |\n| **Hombres** | ~55–56% |\n| **Mujeres** | ~60–62% |\n\nLas mujeres subordinadas y remuneradas suelen reportar una tasa de contrato escrito ligeramente mayor que los hombres, en parte porque se concentran más en sectores formales como servicios, educación, salud y gobierno.\n\n## Advertencia de honestidad\n\n**No tengo acceso directo a los microdatos de la ENOE 2024 T1 ni a tabulados oficiales específicos de este trimestre.** Estas cifras son estimaciones basadas en mi conocimiento de la serie histórica de la ENOE publicada por el INEGI y las tendencias observadas hasta los datos con los que fui entrenado. La cifra exacta podría diferir en algunos puntos porcentuales.\n\n## Fuente\n\n- INEGI, Encuesta Nacional de Ocupación y Empleo (ENOE), series históricas trimestrales. Tabulados sobre condiciones laborales de la población subordinada y remunerada.\n- No dispongo de una fuente textual exacta para el dato puntual del 2024 T1.",
+  "valor_extraido": 56.5,
+  "fuente_citada": "INEGI, Encuesta Nacional de Ocupación y Empleo (ENOE), series históricas trimestrales. Tabulados sobre condiciones laborales de la población subordinada y remunerada.",
+  "timestamp": "2026-08-26T19:59:04.265359+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "cca49f2c6ecbb43cee179334a9044e28c402fa96ebcbe4313f0d760170a82991"
+}

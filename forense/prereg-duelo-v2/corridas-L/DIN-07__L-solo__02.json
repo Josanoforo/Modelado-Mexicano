@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-07",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "# Estimación solicitada: SF2 de la Encuesta Nacional de Competencias Financieras (ENIF) 2019\n\n## Contexto de la variable\n\nLa Encuesta de Competencias Financieras (también conocida como ENIF 2019), levantada por INEGI con el patrocinio de CNBV y Banxico, incluye reactivos sobre inclusión y comportamiento financiero. El reactivo **SF2** se ubica típicamente en la sección de **\"Salud Financiera\"** o **\"Situación Financiera\"**, y en la versión 2019 suele referirse a algo como:\n\n> *\"En los últimos 12 meses, ¿le ha sobrado dinero al final del mes?\"* o una formulación similar sobre si los ingresos cubren los gastos.\n\n(La codificación exacta como \"SF2\" puede variar según el cuestionario; en algunas versiones se refiere a si la persona **podría cubrir un gasto imprevisto equivalente a un mes de ingresos**.)\n\n## Mi respuesta honesta\n\n**No tengo acceso al microdato ni a tabulados oficiales desagregados por nivel socioeconómico AMAI (D y E) para este reactivo específico (SF2) de la ENIF 2019.**\n\nLas publicaciones oficiales de la CNBV/Banxico reportan resultados generalmente por quintil de ingreso, localidad urbana/rural, sexo y región, pero la estratificación por nivel AMAI (D y E) requiere una construcción ad hoc con la regla AMAI 2018 aplicada a los microdatos, lo cual no está disponible en los reportes estándar.\n\n## Aproximación razonada (con caveats explícitos)\n\nSi SF2 se refiere a la capacidad de enfrentar un gasto imprevisto (formulación habitual en encuestas alineadas a OCDE/INFE):\n\n- A nivel **nacional**, la ENIF 2018 reportó que alrededor del **32-35%** de los adultos dijo poder enfrentar un gasto imprevisto equivalente a un mes de ingresos.\n- Para los **niveles D y E**, que representan los estratos de menor ingreso y menor acceso a servicios financieros, esta proporción se esperaría **sustancialmente menor**.\n\n**Mi mejor estimación puntual (condicional a que SF2 = capacidad de enfrentar gasto imprevisto, respuesta \"Sí\"):**\n\n| Parámetro | Estimación |\n|---|---|\n| Proporción ponderada (Sí) para NSE D/E | **~15–20%** |\n| Estimación puntual central | **≈ 0.17** |\n\n⚠️ **Advertencia importante:** Esta es una aproximación inferida por razonamiento, **no un dato calculado a partir de microdatos**. No dispongo de la cifra exacta ni de la fuente textual que la respalde con precisión para ese subuniverso específico (AMAI D+E).\n\n## Fuente\n\n- CNBV/INEGI, *Encuesta Nacional de Inclusión Financiera (ENIF) 2018* — Reporte de resultados.\n- Banxico/CNBV, *Encuesta Nacional de Competencias Financieras 2019* — No tengo acceso al tabulado específico de SF2 × AMAI.\n\n**Recomendación:** Para obtener el dato preciso, sería necesario procesar los microdatos de la ENIF/Competencias Financieras 2019 (disponibles en el sitio de INEGI o CNBV) y construir la variable AMAI con la regla 8x7 (2018) a partir de las características del hogar reportadas en el cuestionario.",
+  "valor_extraido": 33.5,
+  "fuente_citada": "CNBV/INEGI, *Encuesta Nacional de Inclusión Financiera (ENIF) 2018* — Reporte de resultados.",
+  "timestamp": "2026-08-26T20:23:05.795031+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "1296bd81cede6b69509f549326427bdbc751e6b99e816cabef11485c773aa72c"
+}

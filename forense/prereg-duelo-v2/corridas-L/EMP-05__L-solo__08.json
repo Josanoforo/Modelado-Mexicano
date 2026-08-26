@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-05",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "# Estimación: Situación Conyugal (SITUA_CONYUGAL) — Personas de 20 a 29 años, México, CPV 2020 (Cuestionario Ampliado)\n\n## Fuente de mi estimación\n\nMi conocimiento se basa en los resultados publicados del **Censo de Población y Vivienda 2020 del INEGI**, incluyendo tabulados del cuestionario ampliado. No tengo acceso a un documento adjunto de este proyecto, pero los datos censales de INEGI son de dominio público y los he procesado/consultado en su forma publicada.\n\n## Categorías y estimaciones puntuales (proporción ponderada, k=8)\n\nLas 8 categorías típicas de SITUA_CONYUGAL en el cuestionario ampliado del CPV 2020 son:\n\n| # | Categoría | Proporción estimada |\n|---|-----------|-------------------|\n| 1 | Unión libre | **0.25** (25%) |\n| 2 | Casada/o solo por lo civil | **0.10** (10%) |\n| 3 | Casada/o solo religiosamente | **0.01** (1%) |\n| 4 | Casada/o civil y religiosamente | **0.10** (10%) |\n| 5 | Separada/o | **0.04** (4%) |\n| 6 | Divorciada/o | **0.01** (1%) |\n| 7 | Viuda/o | **0.003** (~0.3%) |\n| 8 | Soltera/o | **0.49** (49%) |\n\n## Justificación\n\n- **Solteros/as** constituyen la categoría modal en este grupo etario (20-29). En el censo 2020, cerca de la mitad de las personas de 20-29 años reportaron no haber estado en unión.\n- **Unión libre** ha crecido notablemente en México, especialmente entre jóvenes, y para este grupo supera al matrimonio como forma de unión.\n- **Matrimonio** (civil, religioso, o ambos): la tendencia secular muestra un declive, particularmente el matrimonio religioso+civil entre jóvenes.\n- **Separación, divorcio y viudez** son poco frecuentes en este rango de edad.\n\n## Advertencia\n\nEstas son estimaciones basadas en mi conocimiento de los datos publicados del INEGI (Censo 2020). Las proporciones exactas con factores de expansión del cuestionario ampliado podrían diferir ligeramente. Recomiendo consultar los microdatos del cuestionario ampliado en el sitio del INEGI o el Sistema de Consulta de Datos del Censo 2020 para cifras precisas con ponderadores.",
+  "valor_extraido": 25.0,
+  "fuente_citada": "Mi conocimiento se basa en los resultados publicados del **Censo de Población y Vivienda 2020 del INEGI**, incluyendo tabulados del cuestionario ampliado. No tengo acceso a un documento adjunto de este proyecto, pero los datos censales de INEGI son de dominio público y los he procesado/consultado en su forma publicada.",
+  "timestamp": "2026-08-26T20:27:00.714772+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "81b785fe9cec5f16df68777ab2e737c90e84b849cd5686a6a4c0a079a09b9338"
+}

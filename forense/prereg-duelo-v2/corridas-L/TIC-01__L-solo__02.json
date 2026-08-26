@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-01",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "# Estimación sobre la variable p3i de la ENOE (2024-T1)\n\n## Identificación del reactivo\n\nLa variable **p3i** en la tabla COE1 de la ENOE corresponde a la pregunta sobre si el trabajador subordinado y remunerado **tiene acceso a instituciones de salud como prestación laboral** (servicios médicos por parte de su trabajo). Es una variable binaria (sí/no).\n\n## Mi mejor estimación puntual\n\nPara la población ocupada subordinada y remunerada de 15 años y más, la proporción que reporta **sí tener acceso a servicios de salud como prestación laboral** en el primer trimestre de 2024, por sexo:\n\n- **Total:** ~63–65%\n- **Hombres:** ~63–64%\n- **Mujeres:** ~64–66%\n\n**Estimación puntual central (total):** ~64%\n\n## Justificación y advertencias\n\nEsta estimación se basa en la tendencia histórica conocida de la ENOE: la proporción de trabajadores subordinados y remunerados con acceso a servicios de salud ha venido creciendo gradualmente, pasando de niveles cercanos al 58–60% a inicios de la década de 2020 hacia niveles superiores al 63% en trimestres recientes, en parte debido a las reformas de formalización laboral (subcontratación, salario mínimo, etc.).\n\n## Declaración de incertidumbre\n\n**No tengo acceso directo a las bases de microdatos de la ENOE 2024-T1 ni a tabulados oficiales específicos para este cruce exacto (p3i × sexo, con ponderadores).** Por lo tanto, esta cifra es una estimación informada basada en tendencias conocidas, **no un dato verificado**. Para el dato preciso se debe consultar:\n\n- **Fuente oficial:** INEGI, Encuesta Nacional de Ocupación y Empleo (ENOE), microdatos del 1er trimestre de 2024, disponibles en [inegi.org.mx](https://www.inegi.org.mx/programas/enoe/15ymas/).\n\nSi la pregunta p3i se refiere a un reactivo diferente al que estoy asumiendo (dado que la codificación exacta puede variar entre versiones del cuestionario), mi estimación podría no aplicar. Te recomendaría verificar el significado exacto en el cuestionario COE1 vigente para 2024.",
+  "valor_extraido": 64.0,
+  "fuente_citada": "Fuente oficial:** INEGI, Encuesta Nacional de Ocupación y Empleo (ENOE), microdatos del 1er trimestre de 2024, disponibles en [inegi.org.mx](https://www.inegi.org.mx/programas/enoe/15ymas/).",
+  "timestamp": "2026-08-26T19:57:55.730112+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "cca49f2c6ecbb43cee179334a9044e28c402fa96ebcbe4313f0d760170a82991"
+}

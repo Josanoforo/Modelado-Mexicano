@@ -1,0 +1,18 @@
+{
+  "id_celda": "CIV-08",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "# Estimación para AP4_4_03 – ENVIPE 2023\n\n## Identificación del reactivo\n\nEn la ENVIPE (Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública) 2023, la sección AP4_4 se refiere a la **percepción de inseguridad en espacios específicos**. El reactivo AP4_4_03 corresponde típicamente a:\n\n**\"¿En términos de delincuencia, considera que vivir en su municipio/demarcación territorial es inseguro?\"**\n\no bien, dependiendo del ordenamiento exacto de la batería, puede referirse a la percepción de inseguridad en la **escuela** o en el **mercado**. En la codificación más habitual de la ENVIPE 2023, AP4_4_03 corresponde a la percepción de inseguridad en el **mercado**.\n\n## Mi estimación\n\n**No cuento con el dato puntual exacto de la proporción ponderada de AP4_4_03** con suficiente certeza para darte una cifra precisa.\n\nLo que sí puedo señalar:\n\n- Los tabulados públicos de la ENVIPE 2023 (publicados por INEGI en septiembre de 2023) reportan que la percepción de inseguridad en **mercados** rondó aproximadamente **67–73%** a nivel nacional en olas recientes.\n- En la ENVIPE 2023, la percepción general de inseguridad fue de **61.0%** (dato público de INEGI), y los mercados suelen ubicarse por encima de ese promedio general.\n\nSin embargo, **no tengo acceso directo a los microdatos ni a los tabulados exactos que me permitan calcular la proporción ponderada precisa de este reactivo específico**, por lo que declaro explícitamente que **no conozco el dato exacto**.\n\n## Fuente\n\nNo dispongo de una fuente textual que reporte específicamente la proporción ponderada de AP4_4_03. La referencia general es:\n\n> INEGI. Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública (ENVIPE) 2023. Tabulados básicos y principales resultados. Disponible en: https://www.inegi.org.mx/programas/envipe/2023/\n\n**Recomendación:** Para obtener el dato exacto, consultar los microdatos de la ENVIPE 2023 en el sitio del INEGI o los tabulados predefinidos de la sección de percepción de inseguridad en espacios específicos.",
+  "valor_extraido": 61.0,
+  "fuente_citada": "No dispongo de una fuente textual que reporte específicamente la proporción ponderada de AP4_4_03. La referencia general es:",
+  "timestamp": "2026-08-26T19:53:18.827904+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "96f2285eae5c7cc50f64f5857925bc3351e3a333d930172eaaff4dad2e6a65d4"
+}

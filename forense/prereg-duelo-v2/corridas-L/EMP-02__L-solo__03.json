@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-02",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "# Estimación: Tasa de rechazo de créditos por tamaño de empresa (ENAFIN 2024)\n\n## Lo que sé con certeza\n\nLa ENAFIN ha tenido ediciones anteriores (2015, 2018, 2021) levantadas por INEGI en colaboración con la CNBV. La edición 2024 fue anunciada/levantada, pero **no tengo acceso a los microdatos ni a los tabulados oficiales de la ENAFIN 2024** en mi base de conocimiento (mi corte de entrenamiento no incluye resultados publicados de esa ola).\n\n## Lo que puedo ofrecer: estimaciones basadas en ediciones anteriores\n\nEn ediciones previas de la ENAFIN, las tasas de rechazo de crédito (solicitudes rechazadas / solicitudes totales) por tamaño de empresa han mostrado el siguiente patrón:\n\n| Tamaño de empresa | ENAFIN 2018 (aprox.) | ENAFIN 2021 (aprox.) | Estimación puntual 2024 | IC subjetivo 90% |\n|---|---|---|---|---|\n| **Micro** (hasta 10 empleados) | ~15–20% | ~18–22% | **~18%** | [12%, 25%] |\n| **Pequeña** (11–50) | ~10–15% | ~12–16% | **~13%** | [8%, 19%] |\n| **Mediana** (51–250) | ~6–10% | ~7–11% | **~8%** | [4%, 14%] |\n| **Grande** (251+) | ~3–6% | ~3–7% | **~5%** | [2%, 9%] |\n\n## Patrón robusto\n\nEl gradiente por tamaño es el hallazgo más confiable: **las empresas más pequeñas enfrentan tasas de rechazo 3 a 4 veces mayores que las grandes**. Esto es consistente a lo largo de todas las olas.\n\n## Advertencias importantes\n\n1. **No tengo el dato oficial de la ENAFIN 2024.** Las cifras anteriores son reconstrucciones de memoria de publicaciones del INEGI/CNBV de olas previas, extrapoladas. **No deben citarse como dato oficial.**\n\n2. Las condiciones crediticias en 2023-2024 (tasas de interés elevadas por política monetaria restrictiva de Banxico, pero crecimiento moderado del crédito empresarial) podrían haber modificado tanto la demanda como el rechazo.\n\n3. La definición exacta de la razón (si incluye rechazos parciales, si pondera por monto o por número de solicitudes) afecta significativamente el resultado.\n\n## Fuente declarada\n\n> Estimaciones propias basadas en memoria de resultados publicados de ENAFIN 2018 y ENAFIN 2021 (INEGI-CNBV). **No cuento con los tabulados de la ENAFIN 2024.** Si la ola 2024 ya fue publicada, recomiendo consultar directamente: https://www.inegi.org.mx/programas/enafin/\n\n**En resumen: no conozco el dato específico de la ENAFIN 2024. Lo que ofrezco es una extrapolación informada por ediciones anteriores, con incertidumbre amplia.**",
+  "valor_extraido": 90.0,
+  "fuente_citada": "La ENAFIN ha tenido ediciones anteriores (2015, 2018, 2021) levantadas por INEGI en colaboración con la CNBV. La edición 2024 fue anunciada/levantada, pero **no tengo acceso a los microdatos ni a los tabulados oficiales de la ENAFIN 2024** en mi base de conocimiento (mi corte de entrenamiento no incluye resultados publicados de esa ola).",
+  "timestamp": "2026-08-26T20:06:54.335183+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "18fc5a2209f544f3329be1632acaa3a31e8b8979142cc88966e92d85987c99c8"
+}

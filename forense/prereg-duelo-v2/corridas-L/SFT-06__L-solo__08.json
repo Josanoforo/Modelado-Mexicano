@@ -1,0 +1,18 @@
+{
+  "id_celda": "SFT-06",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "# Estimación para F55_24 de la ENASEM 2024\n\n## Identificación de la variable\n\nLa variable **F55_24** se encuentra en la **Sección F** de la ENASEM, que corresponde a **Salud** (específicamente aspectos de funcionalidad, dolor, o comportamientos de salud). En la codificación histórica de la ENASEM, las variables F55 y cercanas han estado asociadas a preguntas sobre **caídas** — específicamente, si la persona ha sufrido una caída en los últimos dos años.\n\nEn olas anteriores (2012, 2015, 2018, 2021), la pregunta equivalente (F55) típicamente se formula como:\n\n> *\"¿Se ha caído en los últimos dos años?\"* (Sí/No)\n\n## Mi estimación\n\n**No tengo acceso a los microdatos de la ola 2024 de la ENASEM**, que al momento de mi último corte de conocimiento no habían sido publicados en su totalidad o no los he procesado.\n\nSin embargo, basándome en las olas previas de la ENASEM:\n\n- **ENASEM 2012**: La prevalencia de caídas en los últimos 2 años fue aproximadamente **33-35%**.\n- **ENASEM 2015**: Aproximadamente **33-34%**.\n- **ENASEM 2018**: Aproximadamente **34-36%**.\n- **ENASEM 2021**: Aproximadamente **33-37%** (con posible efecto de la pandemia sobre movilidad).\n\n### Estimación puntual (proporción ponderada de respuesta \"Sí\"):\n\n**~0.34 (34%)**\n\n### Intervalo subjetivo al 90% de confianza:\n\n**[0.30 – 0.38]**\n\n## Advertencia importante\n\n**No puedo confirmar con certeza** que F55_24 en la ola 2024 corresponda exactamente a la pregunta sobre caídas, ni tengo acceso a los microdatos ni al cuestionario definitivo de la ola 2024. Esta estimación está basada en la consistencia histórica de la codificación de la ENASEM y en los resultados de olas anteriores.\n\n**Fuente declarada**: Estimación propia basada en patrones de olas anteriores de la ENASEM (2012-2021), disponibles en el sitio oficial del ENASEM (www.enasem.org) y publicaciones asociadas. No cuento con fuente textual directa para la ola 2024.",
+  "valor_extraido": 34.0,
+  "fuente_citada": null,
+  "timestamp": "2026-08-26T20:15:30.961364+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "d451514879cf73e520e6c23321e959977eeaba9f27acaaac7837fc2aabb343fb"
+}

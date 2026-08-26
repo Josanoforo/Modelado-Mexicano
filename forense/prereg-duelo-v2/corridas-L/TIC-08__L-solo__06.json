@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-08",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "# Estimación sobre P7_15 de la ENDUTIH 2024\n\n## Identificación del reactivo\n\nLa variable **P7_15** en la ENDUTIH corresponde, según la estructura histórica de esta encuesta, a una pregunta dentro del módulo de usos de TIC. En las ediciones recientes de la ENDUTIH, las preguntas P7_X se refieren a **actividades realizadas por los usuarios de internet**. Específicamente, P7_15 ha correspondido en ediciones anteriores a actividades como **interactuar con el gobierno (realizar trámites gubernamentales en línea)** o usos similares de internet.\n\nSin embargo, la **ola 2024** de la ENDUTIH puede haber modificado el cuestionario respecto a ediciones previas, y el número exacto de reactivo puede haberse recorrido o redefinido.\n\n## Mi respuesta honesta\n\n**No conozco con certeza el dato.** Específicamente:\n\n1. **No tengo acceso** a los microdatos ni tabulados oficiales de la ENDUTIH 2024 publicados por el INEGI.\n2. **No puedo confirmar** el fraseo exacto de P7_15 en la ola 2024, ya que el cuestionario puede haber cambiado respecto a ediciones que conozco (2021-2023).\n3. **No cuento con la proporción ponderada** de esta variable desagregada por estrato socioeconómico (variable ESTRATO).\n\n## Lo que puedo señalar como referencia\n\nSi P7_15 se refiere a \"realizar trámites gubernamentales en línea\", en ediciones anteriores (2022-2023) la proporción ponderada nacional rondaba entre **30% y 40%** de los usuarios de internet, con variación importante por estrato socioeconómico (más alta en estratos altos, más baja en estratos bajos). Pero **no presento esto como estimación puntual** porque no puedo verificar que el reactivo sea el mismo ni que los niveles se mantengan.\n\n## Fuente recomendada\n\n- **INEGI**, microdatos y tabulados de la ENDUTIH 2024: [https://www.inegi.org.mx/programas/dutih/2024/](https://www.inegi.org.mx/programas/dutih/2024/)\n- Tabla `tic_2024_usuarios`, variables P7_15, ESTRATO y factor de expansión correspondiente.\n\n**No invento una cifra puntual porque no dispongo del dato real.**",
+  "valor_extraido": 35.0,
+  "fuente_citada": "1. **No tengo acceso** a los microdatos ni tabulados oficiales de la ENDUTIH 2024 publicados por el INEGI.",
+  "timestamp": "2026-08-26T19:56:50.725014+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "d5694faecef5e601872f2773783dd97f0a8aae84c969eedd0048020c694d08d7"
+}

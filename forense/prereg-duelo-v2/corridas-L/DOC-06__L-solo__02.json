@@ -1,0 +1,18 @@
+{
+  "id_celda": "DOC-06",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "# Estimación del IMOR ajustado de Financiera Independencia (Findep)\n\n## Mi estimación\n\nPuedo ofrecer una estimación informada basada en datos públicos que conozco sobre Findep hasta mi fecha de corte de conocimiento:\n\n**Estimación puntual: ~14–16% de IMOR ajustado (cartera total)**\n\n**Intervalo de confianza subjetivo (80%):** 11% – 20%\n\n## Razonamiento y fuentes\n\n**Fuente:** Reportes trimestrales de Financiera Independencia publicados en la BMV (Bolsa Mexicana de Valores) y reportes de calificación de HR Ratings. También informes de la CNBV para entidades financieras no bancarias (SOFOM ENR).\n\n**Contexto que sustenta la estimación:**\n\n1. **Findep** opera en el segmento de crédito personal popular (microcréditos, créditos personales a segmentos de bajos ingresos), un nicho estructuralmente asociado a IMOR elevados comparado con la banca comercial.\n\n2. Históricamente, el IMOR reportado de Findep ha fluctuado en rangos de **8%–20%+**, dependiendo del ciclo económico, y el **IMOR ajustado** (que incorpora castigos/write-offs) suele ser significativamente mayor que el IMOR contable simple.\n\n3. Para el periodo **4T2024**, considerando el entorno de tasas altas en México y la presión sobre segmentos populares, un IMOR ajustado en el rango de 14–16% es consistente con la trayectoria observada.\n\n## Advertencia explícita\n\n**No tengo acceso al dato exacto del 4T2024 ni al dato parametrizado para 4T2026.** Mi estimación se basa en la trayectoria histórica pública de Findep y las condiciones macroeconómicas conocidas hasta mi fecha de corte. Si la \"ola retenida\" implica un dato específico documentado post-publicación, **no lo conozco con certeza** y recomiendo verificar directamente en:\n\n- Portal de la BMV (eventos relevantes / reportes trimestrales de Findiera Independencia)\n- Reportes de calificación de HR Ratings sobre Findep\n- Portafolio de información de la CNBV (R04/R08)\n\nNo estoy inventando una cifra arbitraria, pero reconozco que mi estimación tiene incertidumbre considerable dada la naturaleza del segmento y la falta de acceso al documento específico de la encuesta.",
+  "valor_extraido": 80.0,
+  "fuente_citada": "** Reportes trimestrales de Financiera Independencia publicados en la BMV (Bolsa Mexicana de Valores) y reportes de calificación de HR Ratings. También informes de la CNBV para entidades financieras no bancarias (SOFOM ENR).",
+  "timestamp": "2026-08-26T20:04:15.632488+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "a18aa64e71e1b9ee97430790dd41f075f6daf9ca2f38ce7dc0a0f213c04a2cde"
+}

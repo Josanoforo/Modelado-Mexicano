@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-08",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "# Estimación para P7_15 de la ENDUTIH 2024\n\n## Identificación del reactivo\n\nLa variable **P7_15** en la ENDUTIH corresponde al módulo de uso de TIC por parte de la persona elegida. En ediciones recientes de la ENDUTIH, las preguntas del bloque P7 se refieren a **usos específicos de internet**. Según la estructura habitual de la encuesta, P7_15 se ubica en el rango de preguntas sobre actividades realizadas en internet, y en la ola 2024 probablemente se refiere a un uso específico como **realizar transacciones (compras/pagos) por internet** o una actividad digital particular (interacción con gobierno electrónico, banca en línea, etc.).\n\n## Mi respuesta honesta\n\n**No conozco con certeza el dato puntual de la proporción ponderada de P7_15 de la ENDUTIH 2024**, ni desagregada por estrato socioeconómico. Las razones son:\n\n1. **La ENDUTIH 2024** (levantada por INEGI) tiene microdatos cuya publicación típicamente ocurre meses después del levantamiento. No tengo acceso confirmado a los tabulados oficiales de la ola 2024 con este nivel de detalle.\n\n2. **No tengo acceso al documento adjunto** del proyecto de investigación que podría contener la definición precisa de P7_15 en esta ola específica.\n\n3. **No cuento con una fuente textual declarada** que me permita citar un valor concreto.\n\n## Lo que puedo decir como referencia (sin inventar)\n\nEn olas anteriores (2022–2023), variables similares del bloque P7 sobre usos específicos de internet han arrojado proporciones ponderadas que varían considerablemente por estrato socioeconómico (por ejemplo, desde ~15–25% en estratos bajos hasta ~45–60% en estratos altos para actividades como compras en línea o banca electrónica), pero **no puedo extrapolar responsablemente estos rangos a P7_15 de 2024 sin saber exactamente qué mide**.\n\n## Recomendación\n\nPara obtener el dato preciso:\n- Consultar los **microdatos de la ENDUTIH 2024** en el sitio del INEGI y calcular la proporción ponderada usando los factores de expansión (variable FAC_PER o equivalente).\n- Revisar los **tabulados predefinidos** que INEGI publica en su página de la ENDUTIH.\n\n**No invento una cifra puntual.**",
+  "valor_extraido": 20.0,
+  "fuente_citada": "1. **La ENDUTIH 2024** (levantada por INEGI) tiene microdatos cuya publicación típicamente ocurre meses después del levantamiento. No tengo acceso confirmado a los tabulados oficiales de la ola 2024 con este nivel de detalle.",
+  "timestamp": "2026-08-26T19:56:34.292187+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "d5694faecef5e601872f2773783dd97f0a8aae84c969eedd0048020c694d08d7"
+}

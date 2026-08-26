@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-03",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "# Estimación para ENIF 2012 – Variable P7_1\n\n## Identificación del reactivo\n\nLa **ENIF 2012** (Encuesta Nacional sobre la Dinámica de las Relaciones en los Hogares) fue levantada por el INEGI en 2011 (publicada en 2012, aunque frecuentemente se le refiere como ENDIREH 2011). Sin embargo, \"ENIF 2012\" como tal no corresponde exactamente a la ENDIREH. Existe también la posibilidad de que se refiera a otra encuesta con esa sigla.\n\n**Debo ser honesto:**\n\n## Declaración explícita\n\n**No conozco con certeza el dato.** Las razones son las siguientes:\n\n1. **La sigla \"ENIF\"** no corresponde de manera estándar a una encuesta de INEGI ampliamente conocida con ola específica en 2012. Podría tratarse de la **Encuesta Nacional de Inclusión Financiera (ENIF 2012)**, levantada por la CNBV/INEGI. Si es esta, el universo de mujeres de 18 a 70 años es consistente con su diseño.\n\n2. **La variable P7_1** en la ENIF 2012 (Inclusión Financiera) se refiere típicamente a una pregunta sobre **tenencia o uso de algún producto financiero** (por ejemplo, \"¿Tiene usted alguna cuenta de ahorro en un banco o institución financiera?\"), pero **no tengo acceso al cuestionario exacto ni a las tabulaciones oficiales ponderadas** que me permitan dar una estimación puntual confiable.\n\n3. Si P7_1 se refiere a tenencia de cuenta de ahorro formal entre mujeres, estimaciones generales de la ENIF 2012 sitúan la inclusión financiera femenina en torno al **30-35%**, pero **no puedo confirmar que este sea el reactivo específico ni el valor ponderado exacto**.\n\n## Conclusión\n\n**No cuento con el dato preciso de la proporción ponderada de P7_1 de la ENIF 2012 para el universo descrito.** Proporcionar una cifra sería una conjetura sin respaldo verificable.\n\n**Fuente que necesitaría consultar:** Microdatos y tabulaciones de la Encuesta Nacional de Inclusión Financiera 2012 (CNBV-INEGI), disponibles en el sitio del INEGI o de la CNBV.",
+  "valor_extraido": 32.5,
+  "fuente_citada": "La **ENIF 2012** (Encuesta Nacional sobre la Dinámica de las Relaciones en los Hogares) fue levantada por el INEGI en 2011 (publicada en 2012, aunque frecuentemente se le refiere como ENDIREH 2011). Sin embargo, \"ENIF 2012\" como tal no corresponde exactamente a la ENDIREH. Existe también la posibilidad de que se refiera a otra encuesta con esa sigla.",
+  "timestamp": "2026-08-26T20:03:24.803402+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "260e82d2931346be568967aa1503b3a9f55a1e0e0a62894824e03758e37a4063"
+}

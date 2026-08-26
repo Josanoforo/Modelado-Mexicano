@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-12",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "# Estimación de la variable P3N (medio de entero al empleo) – ENOE 2024-T1\n\n## Universo\n\nPoblación ocupada subordinada y remunerada de 15 años y más, residente en viviendas particulares, con empleo actual (tabla COE1), desagregada por ámbito urbano/rural.\n\n## Variable P3N\n\nLa pregunta P3N del cuestionario COE1 de la ENOE se refiere a: **\"¿Cómo se enteró de este empleo o cómo le hizo para conseguirlo?\"**, con 10 categorías de respuesta.\n\n## Mi estimación\n\n**No cuento con el dato preciso de la distribución ponderada por categoría para el primer trimestre de 2024**, ni tengo acceso a los microdatos o tabulados oficiales de ese periodo específico.\n\nSin embargo, con base en trimestres anteriores de la ENOE que he visto referenciados, las proporciones aproximadas históricas (que podrían o no coincidir con 2024-T1) suelen seguir un patrón como:\n\n| Categoría P3N | Descripción aproximada | Estimación histórica aproximada |\n|---|---|---|\n| 1 | Por un familiar, amigo o conocido | ~50-55% |\n| 2 | Por bolsa de trabajo / internet | ~5-8% |\n| 3 | Fue a la empresa directamente | ~12-16% |\n| 4 | Por un anuncio en medios | ~2-4% |\n| 5 | Por una agencia de colocación | ~1-2% |\n| 6 | Por el sindicato | ~1-2% |\n| 7 | Puso un negocio propio (no aplica bien a subordinados) | — |\n| 8-10 | Otras categorías | Residual |\n\n**Estas cifras son aproximaciones basadas en la estructura histórica conocida de la ENOE, NO son el dato del trimestre 2024-T1 con su ponderación oficial.**\n\n## Desagregación urbano/rural\n\nHistóricamente, el canal de redes personales (familiares/amigos) tiende a ser aún más predominante en el ámbito **rural** (posiblemente >60%) respecto al **urbano** (~48-52%), mientras que medios formales (internet, bolsas de trabajo, agencias) tienen mayor peso relativo en zonas urbanas.\n\n## Declaración explícita\n\n**No tengo el dato puntual exacto con ponderadores de la ENOE 2024-T1 para esta variable.** Las cifras arriba son aproximaciones históricas que no deben citarse como dato oficial. Para el dato preciso se requiere procesar los microdatos disponibles en el sitio del INEGI (https://www.inegi.org.mx/programas/enoe/) con los factores de expansión correspondientes (variable FAC_TRI).\n\n**Fuente de referencia general:** INEGI, Encuesta Nacional de Ocupación y Empleo (ENOE), cuestionario COE1, microdatos trimestrales. No dispongo de una fuente textual específica para 2024-T1.",
+  "valor_extraido": 60.0,
+  "fuente_citada": "No tengo el dato puntual exacto con ponderadores de la ENOE 2024-T1 para esta variable.** Las cifras arriba son aproximaciones históricas que no deben citarse como dato oficial. Para el dato preciso se requiere procesar los microdatos disponibles en el sitio del INEGI (https://www.inegi.org.mx/programas/enoe/) con los factores de expansión correspondientes (variable FAC_TRI).",
+  "timestamp": "2026-08-26T20:19:55.283636+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "72005f6708bf79e17df00eb2eabd78a15e2916f6a905c62db825b46157735822"
+}

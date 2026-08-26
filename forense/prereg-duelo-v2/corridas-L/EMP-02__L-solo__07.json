@@ -1,0 +1,18 @@
+{
+  "id_celda": "EMP-02",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "# Estimación: Tasa de rechazo de crédito por tamaño de empresa (ENAFIN 2024)\n\n## Lo que sé con certeza\n\nLa ENAFIN ha tenido ediciones anteriores (2018, 2021) realizadas por INEGI en colaboración con la CNBV. La edición 2024 fue levantada y sus resultados se publicaron en 2024-2025. Sin embargo, **no tengo acceso directo a los microdatos ni a los tabulados oficiales de la ENAFIN 2024**, por lo que no puedo citar una cifra textual verificada de esa ola específica.\n\n## Estimación basada en ediciones anteriores\n\nCon base en patrones de la ENAFIN 2018 y 2021, las tasas de rechazo de crédito solicitado por tamaño de empresa han seguido un patrón consistente:\n\n| Tamaño de empresa | Estimación puntual (tasa de rechazo) | Intervalo subjetivo (90%) |\n|---|---|---|\n| **Micro** (hasta 10 empleados) | ~15–20% | [10%, 28%] |\n| **Pequeña** (11–50) | ~10–14% | [7%, 20%] |\n| **Mediana** (51–250) | ~6–10% | [4%, 15%] |\n| **Grande** (251+) | ~3–7% | [2%, 12%] |\n| **Total** | ~12–16% | [8%, 22%] |\n\n## Advertencias importantes\n\n1. **No tengo la cifra exacta de la ENAFIN 2024.** Las estimaciones anteriores son extrapolaciones de ediciones previas y del patrón bien documentado de que las empresas más pequeñas enfrentan mayores tasas de rechazo crediticio.\n\n2. El contexto macroeconómico de 2024 (tasas de interés elevadas del Banco de México, desaceleración parcial) podría haber modificado estas tasas respecto a 2021.\n\n3. La definición exacta de \"rechazo\" puede variar (rechazo total vs. aprobación parcial vs. desistimiento inducido).\n\n## Fuente\n\nNo cuento con la fuente textual de la ENAFIN 2024. Las estimaciones se basan en el patrón observado en **ENAFIN 2018 (INEGI-CNBV)** y **ENAFIN 2021**, donde las tasas de rechazo para microempresas rondaban el 15-20% y descendían con el tamaño de la empresa. **Declaro explícitamente que no tengo el dato preciso de la ola 2024 y estas cifras no deben citarse como oficiales.**\n\nPara el dato exacto, recomiendo consultar los tabulados en: https://www.inegi.org.mx/programas/enafin/ o el portal de la CNBV.",
+  "valor_extraido": 90.0,
+  "fuente_citada": "No cuento con la fuente textual de la ENAFIN 2024. Las estimaciones se basan en el patrón observado en **ENAFIN 2018 (INEGI-CNBV)** y **ENAFIN 2021**, donde las tasas de rechazo para microempresas rondaban el 15-20% y descendían con el tamaño de la empresa. **Declaro explícitamente que no tengo el dato preciso de la ola 2024 y estas cifras no deben citarse como oficiales.**",
+  "timestamp": "2026-08-26T20:07:54.102782+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "18fc5a2209f544f3329be1632acaa3a31e8b8979142cc88966e92d85987c99c8"
+}

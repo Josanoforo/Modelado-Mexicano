@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-12",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "# Estimación de la variable P3N (medio de enterarse del empleo actual) — ENOE 2024-T1\n\n## Aclaración\n\nNo tengo acceso directo a los microdatos de la ENOE 2024-T1 ni a tabulados oficiales que desagreguen la proporción ponderada de P3N (medio por el que se enteró de su empleo actual) cruzada por ámbito urbano/rural para la población ocupada subordinada y remunerada. **No cuento con el dato preciso ni con una fuente textual verificada para esta estimación.**\n\n## Mejor aproximación basada en conocimiento previo\n\nLa variable P3N en el cuestionario COE1 de la ENOE tiene históricamente las siguientes categorías (k=10 aproximadamente):\n\n| Categoría | Descripción aproximada | Estimación puntual (%) — Nacional |\n|-----------|------------------------|-----------------------------------|\n| 1 | Por un familiar, amigo o conocido | ~45–50% |\n| 2 | Por bolsa de trabajo en internet | ~12–15% |\n| 3 | Acudió directamente al establecimiento | ~10–13% |\n| 4 | Por un anuncio en algún medio (periódico, radio, etc.) | ~3–5% |\n| 5 | Por una agencia de colocación / bolsa de trabajo pública | ~2–3% |\n| 6 | Es negocio familiar / lo inició él mismo | ~3–5% |\n| 7 | Por recomendación de otro empleo | ~3–5% |\n| 8 | Le ofrecieron el trabajo directamente | ~8–10% |\n| 9 | Otra forma | ~3–5% |\n| 10 | No especificado | ~1–2% |\n\n### Diferencias esperadas por ámbito (urbano vs. rural)\n\n- **Urbano:** Mayor proporción en \"bolsa de trabajo en internet\" y \"agencia de colocación\"; menor proporción en redes familiares.\n- **Rural:** Predominio aún más marcado de \"familiar, amigo o conocido\" (posiblemente >55%), menor presencia de canales digitales (<5%).\n\n## Declaración explícita\n\n**No conozco los valores exactos ponderados.** Las cifras anteriores son aproximaciones basadas en tendencias históricas de la ENOE (trimestres previos, 2019-2023) y en la estructura conocida del mercado laboral mexicano. No dispongo de una fuente textual específica para el trimestre 2024-T1.\n\n**Fuente de referencia general:** INEGI, Encuesta Nacional de Ocupación y Empleo (ENOE), tabulados históricos y documentación metodológica del cuestionario COE1. Los valores exactos deben consultarse en los microdatos disponibles en [inegi.org.mx](https://www.inegi.org.mx/programas/enoe/).",
+  "valor_extraido": 55.0,
+  "fuente_citada": "Fuente de referencia general:** INEGI, Encuesta Nacional de Ocupación y Empleo (ENOE), tabulados históricos y documentación metodológica del cuestionario COE1. Los valores exactos deben consultarse en los microdatos disponibles en [inegi.org.mx](https://www.inegi.org.mx/programas/enoe/).",
+  "timestamp": "2026-08-26T20:19:35.675628+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "72005f6708bf79e17df00eb2eabd78a15e2916f6a905c62db825b46157735822"
+}

@@ -1,0 +1,18 @@
+{
+  "id_celda": "TIC-08",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "# Estimación para P7_15 de la ENDUTIH 2024\n\n## Identificación del reactivo\n\nLa variable **P7_15** en la ENDUTIH corresponde históricamente al módulo de usos de internet o habilidades digitales. En ediciones recientes de la ENDUTIH (Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información en los Hogares), las variables P7_X del cuestionario de la persona elegida se refieren a actividades o usos específicos de internet (por ejemplo: realizar operaciones bancarias en línea, interactuar con el gobierno, leer periódicos/revistas en línea, u otra actividad específica).\n\n## Mi respuesta honesta\n\n**No conozco con certeza el dato puntual de la proporción ponderada de P7_15 en la ola 2024 de la ENDUTIH**, ni su desagregación por estrato socioeconómico. Las razones son:\n\n1. **La ENDUTIH 2024** (levantada típicamente entre mayo y julio de 2024, con publicación de microdatos por parte del INEGI generalmente a finales de ese año o inicios del siguiente) puede no haber estado disponible en mis datos de entrenamiento con el nivel de detalle de tabulados por variable y estrato.\n\n2. **No tengo acceso al documento adjunto** ni a los microdatos del proyecto que mencionas.\n\n3. **No tengo una fuente textual declarada** que me permita citar un valor preciso para esta variable en esta ola específica.\n\n## Lo que puedo decir contextualmente\n\nSi P7_15 sigue el patrón de ediciones anteriores (2021–2023) y se refiere a un uso relativamente poco frecuente de internet (como operaciones bancarias, compras en línea de cierto tipo, o interacción con gobierno electrónico), las proporciones ponderadas en la población de 6 años y más suelen oscilar entre **10% y 35%** a nivel nacional, con diferencias marcadas por estrato (estratos altos con proporciones significativamente mayores que estratos bajos).\n\nSin embargo, **no voy a inventar una cifra puntual específica** porque no dispongo de la fuente.\n\n## Recomendación\n\nPara obtener el dato exacto:\n- **Microdatos INEGI**: [https://www.inegi.org.mx/programas/dutih/2024/](https://www.inegi.org.mx/programas/dutih/2024/)\n- Procesamiento con el factor de expansión **FAC_PER** (o el factor correspondiente en la tabla `tic_2024_usuarios`) y diseño muestral complejo (UPM, estrato de diseño).\n\n**Fuente de mi conocimiento contextual**: ediciones previas de la ENDUTIH publicadas por INEGI (2019–2023), sin acceso verificado a la ola 2024 ni al reactivo específico P7_15 con su redacción exacta en esa edición.",
+  "valor_extraido": 22.5,
+  "fuente_citada": "1. **La ENDUTIH 2024** (levantada típicamente entre mayo y julio de 2024, con publicación de microdatos por parte del INEGI generalmente a finales de ese año o inicios del siguiente) puede no haber estado disponible en mis datos de entrenamiento con el nivel de detalle de tabulados por variable y estrato.",
+  "timestamp": "2026-08-26T19:56:17.178943+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "d5694faecef5e601872f2773783dd97f0a8aae84c969eedd0048020c694d08d7"
+}

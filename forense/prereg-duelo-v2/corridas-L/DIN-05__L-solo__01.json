@@ -1,0 +1,18 @@
+{
+  "id_celda": "DIN-05",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "# Estimación solicitada: ENFIH 2019 – P8_1_1 (localidades < 2,500 habitantes)\n\n## Mi respuesta honesta\n\n**No conozco el dato específico.** No tengo acceso a los microdatos ni a tabulados publicados de la ENFIH (Encuesta Nacional sobre las Finanzas de los Hogares) ola 2019 del INEGI/CNBV con el nivel de desagregación que solicitas (variable P8_1_1, restringida a localidades de menos de 2,500 habitantes).\n\n## Lo que puedo contextualizar\n\nLa ENFIH 2019 (levantada por INEGI en coordinación con la CNBV) cubre temas de activos, deudas, ingresos y percepciones financieras de los hogares mexicanos. La sección P8 generalmente se refiere a **inclusión financiera, tenencia de productos financieros o acceso a servicios financieros**. La pregunta P8_1_1, en formato binario, probablemente capta si la persona **tiene o ha tenido algún producto financiero específico** (por ejemplo, cuenta de ahorro, tarjeta de débito, crédito formal, seguro, etc.).\n\nEn localidades rurales (< 2,500 habitantes), las proporciones de inclusión financiera históricamente son **sustancialmente menores** que el promedio nacional (que en la ENIF 2018 rondaba ~37-47% para cuentas formales según el producto). Podría esperarse un rango grueso de **15-35%** para tenencia de algún producto financiero básico en estas localidades, pero:\n\n> **No voy a proporcionar una cifra puntual porque no tengo la fuente textual ni los microdatos procesados para esta variable, universo y ponderador específicos.**\n\n## Recomendación\n\nPara obtener el dato preciso:\n1. Consultar los microdatos de la ENFIH 2019 disponibles en el sitio del INEGI, aplicando el factor de expansión y filtrando por tamaño de localidad < 2,500.\n2. Revisar los tabulados predefinidos en la página de la CNBV/INEGI para la ENFIH.\n\n---\n\n**Fuente declarada:** Ninguna fuente textual específica. Mi contextualización proviene de conocimiento general sobre la ENFIH y encuestas de inclusión financiera en México (ENIF 2018, reportes CNBV), pero **no constituye una estimación válida** para el reactivo solicitado.",
+  "valor_extraido": 42.0,
+  "fuente_citada": "No conozco el dato específico.** No tengo acceso a los microdatos ni a tabulados publicados de la ENFIH (Encuesta Nacional sobre las Finanzas de los Hogares) ola 2019 del INEGI/CNBV con el nivel de desagregación que solicitas (variable P8_1_1, restringida a localidades de menos de 2,500 habitantes).",
+  "timestamp": "2026-08-26T20:10:45.703534+00:00",
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-08-26",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo"
+  },
+  "sha256_prompt": "651a6746cfbd71d2d83c398e44827911b11f8186ccd495b38820b66ac05b8609"
+}
