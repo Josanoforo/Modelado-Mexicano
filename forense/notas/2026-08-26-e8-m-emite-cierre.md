@@ -149,6 +149,30 @@ verbatim, `ejecutada_en` = `ADR-208`. Tablero: `1` → `0` `ABIERTA`
 uniq -c` → 0 `ABIERTA` tras el cambio). `ADR-208` candidateado contra el
 máximo re-derivado por conteo entero (`grep -roE "ADR-[0-9]+" . | sed
 's/.*ADR-//' | sort -n | uniq | tail -1` → `207`, sin huecos) → `208`.
+
+**Fetch-y-sincroniza, posterior al cierre de arriba.** `main` avanzó a
+`7708571` (`PR #379`, `ACTO MAESTRA30-E10 · R21-ADJUDICA`) mientras esta
+rama estaba abierta — mismo `T15` (`^\*\*ADR-(\d+)` sobre bloques con
+cabecera propia): `E10` **cita** `ADR-208` en prosa (enmienda in-situ de
+los renglones de Hito D en `gobernanza:360` y `:2959`, y en
+`firmas-pendientes.tsv` `FP-167` `ejecutada_en`) pero **no sella un
+bloque `**ADR-208 · ...**` propio** ni sube la cabecera de conteo (queda
+en `207 ADR` en `main`, verificado por lectura de
+`origin/main:canon/gobernanza-v1_15.md`). El bloque de este acto es el
+**único** `**ADR-208 · ...**` real del árbol — el número no colisiona a
+nivel de `T15` (que solo cuenta bloques con cabecera), aunque las citas
+narrativas de `E10` seguirán leyendo "`ADR-208`" junto a las de este acto
+en el texto; no se toca `E10` (fuera de perímetro) para desambiguarlo.
+`git merge origin/main` resuelto con un solo conflicto real
+(`forense/firmas-pendientes.tsv`: se conservó la fila `FP-166` de este
+acto, `FIRMADA`, y se re-agregó la fila `FP-167` de `E10` que el merge
+automático había descartado); `gobernanza`/`estado` se fusionaron sin
+conflicto (ediciones en puntos distintos del archivo). Re-verificado
+post-merge: `python3 -m pytest tests/test_crosswalk_encuesta.py
+tests/test_emisor_fidelidad.py tests/test_emisor_m2.py -q` → 20/20;
+`python3 tests/check.py --baseline` → 19 FAIL · 127 WARN, LÍNEA BASE
+VERDE, sin regresión.
+
 Recifrado: cabecera de `gobernanza-v1_15.md` (207→208 ADR), tabla `§0` y
 `§L0` de `canon/estado-programa-v1_10.md`; las dos citas históricas de
 `ADR-207` que quedaron desincronizadas (`207 ADR`, `19 FAIL · 128 WARN`)
