@@ -111,3 +111,97 @@ Se aplica la tabla de `spec-bbis-exp-compartamos-v1_0-propuesta` §4 tal como es
 ### 8 · Cierre del commit
 
 **el primer resultado que produzca este procedimiento es el que se reporta**
+
+---
+
+## §COMMIT-2 · Resultados — el primer resultado que produjo el procedimiento, y la adjudicación
+
+**Este commit no edita una sola línea de §COMMIT-1.** Verificable: `git diff <commit-1> <commit-2> -- forense/resultado-exp-compartamos-v1_0.md` es puro `+` por debajo de la línea de cierre de §COMMIT-1.
+
+### 1 · Controles positivos de la implementación — corridos ANTES de reportar un solo ITT
+
+Los dos que §COMMIT-1 §3 exigió, más dos que no exigía y que valen más porque su valor esperado es **externo a este acto**:
+
+| # | qué comprueba | valor esperado | resultado | veredicto |
+|---|---|---|---|---|
+| 1 | con `G = N`, la VCE agrupada debe reducirse a HC1 calculada por separado | `max\|V_cl − V_HC1\| = 0` | `3.036e-18` | **PASA** |
+| 2 | `β̂` resuelve las normal-ecuaciones | `max\|b − (X'X)⁻¹X'y\| = 0` | `8.882e-16` | **PASA** |
+| 3 | `in_admin` sobre la ola de seguimiento | **2,048 / 16,560 = 12.37%** — cifra del censo `ADR-162`, derivada por otro acto, en otra caja, con otro código | `2048/16560 = 12.37%` | **PASA — coincidencia exacta** |
+| 4 | atrición sobre `!mi(attrited)` | **1,090 / 2,912 = 37.43%** — misma procedencia | `1090/2912 = 37.43%` | **PASA — coincidencia exacta** |
+
+Los controles 3 y 4 son de **valor esperado**, no de pertenencia a un intervalo: la pregunta era si el conteo cae en el número publicado por el censo previo, y cae en el número exacto, no cerca de él.
+
+**Lo que NO se pudo controlar, dicho como es.** No hay control contra las cifras **publicadas** del artículo. El paquete no las trae: `Main/results/Tables/{Unformatted,Formatted}/` y `Main/results/Datasets/` contienen solo `empty.txt`, y `Format-Compartamos-tables.xlsm` es un libro de macros de formato — sus 34 cadenas son rótulos de parámetros y rutas, ningún valor de tabla (inspeccionado con `zipfile`+`sharedStrings.xml`). Traer las cifras publicadas exigiría descargar el artículo, que el encargo **prohíbe**. Se declara el hueco; no se rellena por memoria.
+
+### 2 · Universo efectivo — verificado, no supuesto
+
+| cantidad | valor derivado | fuente del contraste |
+|---|---|---|
+| filas del `.dta` | 21,523 | censo `ADR-162`: 21,523 ✓ |
+| filas con `survey == "Endline"` | **16,560** | §COMMIT-1 §1 declaró 16,560 ✓ |
+| conglomerados (`cluster`) en seguimiento | **238** | censo: 238 ✓ |
+| conglomerados por brazo | **120 tratados / 118 control** | censo: 120/118 ✓ |
+| `Treatment` constante dentro del conglomerado | **238 de 238** | censo lo afirmaba; aquí se comprueba ✓ |
+| personas por brazo | 8,262 tratadas / 8,298 control | derivado en este acto |
+| superclusters (efectos fijos) | 45 | derivado en este acto |
+
+**Binariedad — la contingencia de §COMMIT-1 §5 no se activó.** Los cuatro desenlaces toman exactamente dos valores, `{0, 1}`, sobre el universo efectivo. Faltantes: `in_admin` 0 · `Q21_3_comp` 715 · `A_ever_late_not_cond` 0 · `Q9_4_soldloan_none` 99. Los faltantes se pierden por listwise, igual que en Stata, y bajan el `N` de la corrida, no el universo. La escala en **pp** queda como se fijó.
+
+### 3 · ITT por desenlace — `regress Y Treatment i.supercluster_xi, vce(cl cluster)`
+
+Todos en **pp**, IC95% con **t de 237 gl** (`G − 1`), `k = 46` en las cuatro corridas.
+
+| desenlace | papel | N | G | media control (pp) | **ITT (pp)** | EE (pp) | IC95% (pp) | dirección postulada | ¿la cumple? |
+|---|---|---|---|---|---|---|---|---|---|
+| `in_admin` | adopción (admin) | 16,560 | 238 | 5.845 | **+11.4735** | 0.8991 | **[+9.7022, +13.2448]** | `> 0` | **sí**, IC excluye cero |
+| `Q21_3_comp` | adopción (autorreporte) | 15,845 | 238 | 3.888 | **+8.2199** | 0.7819 | **[+6.6794, +9.7603]** | `> 0` | **sí**, IC excluye cero |
+| `A_ever_late_not_cond` | **daño primario — mora** | 16,560 | 238 | 0.337 | **+1.1009** | 0.2328 | **[+0.6423, +1.5595]** | `> 0` | **sí**, IC excluye cero |
+| `Q9_4_soldloan_none` | daño secundario (invertida) | 16,461 | 238 | 95.061 | **+0.9908** | 0.3833 | **[+0.2357, +1.7460]** | `< 0` | **NO — signo contrario, y el IC excluye cero** |
+
+**Niveles de mora, misma variable y misma escala** (no es comparación entre escalas): control **28 de 8,298 = 0.337 pp**; tratados **116 de 8,262 = 1.404 pp**.
+
+**Lectura literal, antes de adjudicar.** La primera condición del mecanismo —que la baja fricción de acceso efectivamente ocurre— se cumple con holgura: la adopción por registro administrativo sube 11.47 pp sobre una base de 5.85 pp. Y sobre esa expansión, la **mora administrativa sube 1.10 pp sobre una base de 0.34 pp**, con IC95% que excluye cero en la dirección que el mecanismo postula. El desenlace secundario va al revés: los hogares tratados venden un activo para pagar un préstamo **menos** a menudo, no más.
+
+### 4 · Adjudicación — escala §4 de la spec, recorrida en su precedencia sellada
+
+Precedencia: **`rompe → inejecutable → acota → corrobora → no-refuta`**. Se recorre entera, en orden, y cada fila se descarta con su razón antes de pasar a la siguiente.
+
+**`rompe` — NO dispara.** Condición: *«El IC95% del ITT del desenlace de daño downstream cruza cero o va en dirección contraria a la que el mecanismo postula, bajo un universo con potencia suficiente»*. El desenlace de daño **primario**, `A_ever_late_not_cond`, ni cruza cero ni va en dirección contraria: va en la dirección postulada, con IC95% `[+0.64, +1.56]` que excluye cero.
+El **secundario**, `Q9_4_soldloan_none`, sí satisface literalmente la condición. **No dispara la fila igualmente**, y la razón está escrita en §COMMIT-1 §4, **antes de ver el dato**: *«La adjudicación de §4 de la spec se ancla en el primario; el secundario entra como corroboración o como reserva escrita, nunca como el desenlace que decide la fila por sí solo.»* Esa regla se redactó a ciegas y aquí se obedece a ciegas. **Aquí entra, entonces, como reserva escrita — y es la reserva más pesada de este ejercicio (§5).**
+
+**`inejecutable` — NO dispara.** Condición: *«El microdato no trae ninguna variable de daño downstream identificable (mora, cobranza)»*. Sí la trae: `A_ever_late_not_cond`, `Client was ever late on payments`, administrativa y no condicionada a haber tomado crédito. La llave **sí se ejerce**; no queda `SELLADA_NO_EJERCIDA`.
+
+**`acota` — NO dispara, y la razón por la que no dispara es un hallazgo de este acto.** La fila tiene dos ramas:
+- *Rama 2* — *«el desenlace disponible en el microdato solo cubre adopción y no daño downstream»*: **falsa aquí**. Se cubren las dos cosas.
+- *Rama 1* — *«El ITT es significativo pero de magnitud menor a la que el `[MEDIA]` vigente asumiría»*: **no es evaluable, porque el `[MEDIA]` vigente no asume ninguna magnitud.** La regla, verbatim de `canon/modelo-decision-v4_0.md:501`: *«**SI** el producto de crédito combina **baja fricción de acceso** **Y** tasa usuraria (CAT >100%) **Y** reporte crediticio incompleto o invisible (BNPL) **ENTONCES** la adopción produce **daño downstream** — concentración de mora en productos no garantizados, quejas de cobranza […] `[MEDIA]` **(a)**»*. No hay cifra, ni umbral, ni banda: **no existe el número contra el cual esta rama compararía**. Dispararla exigiría inventar la magnitud que el `[MEDIA]` "asumiría", que es precisamente forzar una fila por cercanía — prohibido por la spec §4 y por §COMMIT-1 §6.
+  ⚠️ **Y no se rellena el hueco con la única cifra a la mano.** El «techo de mora regulada 15-20%» y el umbral de IMOR «~25-30% sostenido» viven en `dinero.credito.scoring_alternativo` (`:500`), **otro objeto y otra escala**; `A-bis` regla 3, la spec §3 y §5 y el encargo lo prohíben expresamente, y este acto **no declara ningún enlace de escala** entre las dos reglas. La mora medida aquí (0.34 pp → 1.40 pp) **no se compara** con esos números, ni para adjudicar ni para calificar.
+
+**`corrobora` — DISPARA.** Condición: *«El ITT del desenlace de adopción/daño downstream identificado va en la misma dirección que el mecanismo […] con IC95% que excluye cero en esa dirección»*. Se cumple en **tres de los cuatro** desenlaces, incluido el **de daño primario**: adopción administrativa `+11.47` pp, adopción autorreportada `+8.22` pp y mora administrativa `+1.10` pp, los tres con IC95% que excluye cero por el lado postulado.
+
+**`no-refuta` — no se alcanza**, por definición: solo aplica si ninguna de las otras cuatro dispara, y `corrobora` disparó.
+
+> ### VEREDICTO: **`corrobora`** → estado de la llave **`EJERCIDA_CORROBORA`**
+> **En la escala declarada:** ITT de **+1.10 pp** (IC95% `[+0.64, +1.56]`, `N=16,560`, `G=238`, t de 237 gl) sobre `A_ever_late_not_cond` — *client was ever late on payments*, registro administrativo de Compartamos —, producido por una expansión aleatorizada de colocación que subió la adopción administrativa en **+11.47 pp** (IC95% `[+9.70, +13.24]`) sobre una base de 5.85 pp.
+
+### 5 · Reservas que viajan con el veredicto — sin ellas el veredicto está mal citado
+
+1. **El desenlace de daño secundario contradice al primario, con IC95% que excluye cero.** `Q9_4_soldloan_none` = `+0.99` pp, IC95% `[+0.24, +1.75]`: los hogares tratados venden un activo para pagar un préstamo **menos** a menudo. Bajo el mecanismo esto debía ir al revés. Lectura alternativa que este acto **nombra pero no adjudica** (no está en la escala sellada): el crédito puede **sustituir** la venta de activos como forma de cubrir un pago, de modo que el mismo dato admite una lectura de daño y una de alivio. Que la regla se archive `corrobora` y no `rompe` **depende enteramente** de la regla de anclaje en el primario que §COMMIT-1 fijó a ciegas.
+2. **El daño primario descansa sobre 144 eventos.** 28 en control y 116 en tratamiento, sobre 16,560 personas. El ITT es un modelo lineal de probabilidad sobre una tasa base de 0.34%; el IC95% agrupado es el que es, pero la corroboración se sostiene sobre pocos eventos y así debe citarse.
+3. **Dos de las tres condiciones del mecanismo NO se miden.** La regla es explícitamente condicional a la **estructura**: baja fricción **Y** CAT >100% **Y** reporte crediticio incompleto. Este microdato identifica la **primera** y mide la consecuencia de daño; **no mide la tasa ni la calidad del reporte al buró**. La propia regla advierte, verbatim, que *«la lectura peligrosa es la inversa: leerla como "la baja fricción daña" culpa al diseño accesible y borra las dos condiciones estructurales que la activan»*. **Este ejercicio corrobora la dirección sin poder verificar las dos condiciones estructurales** — que es exactamente la forma que tiene la lectura peligrosa. La corroboración es por eso **de dirección, no de la cláusula condicional completa**.
+4. **Atrición 37.43% sin corregir**, por decisión declarada en §COMMIT-1 §7: corregirla sería otra especificación.
+5. **`in_admin` 12.37%** de toma, sin desglose por brazo en el censo; no se usó como instrumento (TOT/LATE prohibido y no estimado).
+6. **Transversal, un estado, un producto.** Nogales, Sonora; crédito grupal de Compartamos Banco; ola de seguimiento, sin identificador de persona. Sin vía de transporte declarada a otra geografía ni a otro producto de `dinero.credito.*`.
+7. **Hallazgo lateral, declarado y no ejercido: la regla `dinero.credito.baja_friccion_usura_dano_downstream` no tiene magnitud.** Mientras el `[MEDIA](a)` siga siendo puramente cualitativo, **ninguna evidencia futura podrá acotarlo por magnitud** — la rama 1 de `acota` de esta escala, y de cualquier escala que se le parezca, es inevaluable contra él. Se declara aquí y se lleva a tablero; **este acto no le pone número a la regla** ni toca el `[MEDIA](a)`.
+
+### 6 · Destino del número — `RANURA DE MESA` llegó **VACÍA**
+
+`FP-160` selló la spec pero **no eligió** entre (a) competir por el `[MEDIA](a)` y (b) entrar a la octava clase de `milpa/procedencia.yaml` (§COMMIT-0). Por tanto, y siguiendo el patrón de `CAL-G3` (`EJERCIDA_ACOTA` con β `PROPUESTO`, `FP-127`):
+
+- La llave **se ejerce igual** — el renglón del registro es el entregable, y se mueve a `EJERCIDA_CORROBORA`.
+- El número queda **`PROPUESTO`**. **`milpa/procedencia.yaml` no se toca**: cero líneas de diferencia en este acto. La octava clase `EVIDENCIA_EXPERIMENTAL_TERCEROS` sigue **VACÍA**, como debe estar mientras mesa no elija.
+- El `[MEDIA](a)` de `canon/modelo-decision-v4_0.md:501` **no se toca**: sustituirlo exige acto propio de mesa (spec §3).
+- Se abre **una** fila nueva en `forense/firmas-pendientes.tsv` para que mesa elija destino (a)/(b), con el hallazgo de §5.7 nombrado dentro de ella.
+
+### 7 · Especificación — no hubo tercer commit
+
+§COMMIT-1 no resultó mal: la contingencia de binariedad no se activó, la lista cerrada de desenlaces resultó ejecutable, la variable de daño existía por nombre y el estimador reprodujo las dos cifras del censo previo al dígito. No hay nada que corregir hacia atrás, y no se corrigió nada.
