@@ -341,7 +341,7 @@ frente a `tests/baseline.json`: la de `T25` y dos de `T16` —que son **consecue
 la primera, no un defecto independiente: `T16` compara el conteo declarado en canon contra el real,
 y el `FAIL` de `T25` movía el real de 19 a 20. Censado el rótulo, las tres caen juntas.
 
-Cifra final y estado de la línea base: ver §6 y el bloque `Cascada` de `ADR-200`.
+Cifra final y estado de la línea base: ver §6 y el bloque `Cascada` de `ADR-201`.
 
 ---
 
