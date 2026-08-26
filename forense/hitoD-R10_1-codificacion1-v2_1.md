@@ -22,7 +22,7 @@
 | **material de origen** (`forense/notas/2026-08-20-r10-1-rechazo-poder-salida.txt`) | `c5d39e81f397675047acbba606b9eba07f5b064f93404e2ba63d177adb9ca59d` |
 
 **Dónde vive el texto en claro, y por qué ahí.** `/home/pc0/mm-corre-r10-1-SELLO/`, **fuera del
-repositorio**, dos archivos: `codificacion1-codigos.tsv` y `codificacion1-PLANTEXTO.md`.
+repositorio**, dos archivos: `/home/pc0/mm-corre-r10-1-SELLO/codificacion1-codigos.tsv` y `/home/pc0/mm-corre-r10-1-SELLO/codificacion1-PLANTEXTO.md`.
 
 El encargo autoriza commitear *"sus 12 códigos **(o su sha256)**"*. Se elige el `sha256` porque
 el propósito de A1 es **comprometer**, no **publicar**: el segundo codificador es una persona
