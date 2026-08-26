@@ -149,6 +149,8 @@ Campos por archivo — los de `RespuestaCorrida` (`pipeline-L-adv1-m2.py:166-172
 
 `texto_crudo` va **íntegro**, sin post-proceso (contrato de `llamar_modelo`, §3). `valor_extraido` se deja `null` en la captura — **lo llena la sesión ejecutora después, con el parseo del pipeline; nunca a mano** (`prereg-corrida-v1_0.md` F2(e), `agregar_continua`/`agregar_categorica` son las únicas funciones que lo derivan).
 
+> **Enmienda fechada 2026-08-26 (ACTO MAESTRA30-E8, este doc es histórico del corredor `L` — texto viejo intacto arriba, no se reescribe).** La afirmación de arriba es **materialmente falsa**, reportada por `ACTO MAESTRA30-E6 · L-RUN` (`forense/notas/2026-08-26-l-run-cierre.md` §9.1, líneas 317-442): `agregar_continua`/`agregar_categorica` (`pipeline-L-adv1-m2.py:215-243`) reciben `list[float]`/`list[str]` **ya extraídas** y solo **agregan** — ninguna de las dos toca `texto_crudo` ni deriva `valor_extraido` de él. **El pipeline pre-registrado no contiene extractor alguno**; la línea que fija `valor_extraido=None` lo delega explícitamente a un paso posterior. E6 congeló ese extractor aparte, fuera de este pre-registro (`extractor.py`, `forense/notas/2026-08-26-l-run-cierre.md` §13.2), con sus reglas commiteadas antes de aplicarlas sobre las 120 capturas -- ver esa nota para el detalle y la consecuencia honesta (§9, líneas 420-442: las reglas del extractor se diseñaron habiendo visto el formato de salida del material, más que cero y menos que un extractor ajustado a los datos).
+
 **Total esperado: 240 archivos** (15 celdas × 2 variantes × 8 corridas), todos **commiteados**.
 
 ---

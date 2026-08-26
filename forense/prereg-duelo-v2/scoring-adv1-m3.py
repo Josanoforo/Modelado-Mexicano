@@ -83,7 +83,7 @@ class Configuracion:
     corredores_activos: tuple[CorredorActivo, ...]
     comparaciones_l_m: tuple[ComparacionLM, ...]
     comparacion_principal_id: str
-    e_id: str
+    e_id: str | None  # F1 · opcional -- ausente cuando no hay corredor E/combinacion activo
     delta: float
     nivel_ic: float
     seed: int
@@ -229,13 +229,23 @@ def validar_configuracion(datos: Mapping[str, Any]) -> Configuracion:
     if any(corredor.familia not in {"L", "M", "E"} for corredor in corredores):
         raise ErrorScoring("CONFIGURACION_INVALIDA", "familia de corredor fuera de L/M/E")
 
-    roles_requeridos = {
+    # F1 · enmienda 2026-08-26 (autorizada RANURA FP-166, registrada
+    # prereg-corrida-v1_0.md:110): el contrato original exigía los CUATRO
+    # corredores simultáneos; el piloto real solo tiene L-solo (`ACTO
+    # MAESTRA30-E6 · L-RUN`, ADR-206) y M en 0 puntos derivables
+    # (`forense/prereg-duelo-v2/enlace-M-v1_0.md`). Mínimo admitido ahora:
+    # {(L,solo), (M,principal)}; (L,corpus) y (E,combinacion) opcionales
+    # (0 o 1) -- FP-165 FIRMADA ya declaró que L+corpus no se ejecutará y
+    # ADR-141 selló E como inejecutable con menos de tres corredores.
+    roles_obligatorios = {
         ("L", "solo"): 1,
-        ("L", "corpus"): 1,
         ("M", "principal"): 1,
-        ("E", "combinacion"): 1,
     }
-    for rol, cantidad in roles_requeridos.items():
+    roles_opcionales = {
+        ("L", "corpus"): (0, 1),
+        ("E", "combinacion"): (0, 1),
+    }
+    for rol, cantidad in roles_obligatorios.items():
         encontrados = sum(
             1 for corredor in corredores if (corredor.familia, corredor.variante) == rol
         )
@@ -244,10 +254,24 @@ def validar_configuracion(datos: Mapping[str, Any]) -> Configuracion:
                 "CONFIGURACION_INVALIDA",
                 f"se requiere exactamente {cantidad} corredor {rol[0]}/{rol[1]}; hay {encontrados}",
             )
-    if len(corredores) != 4:
+    for rol, (minimo, maximo) in roles_opcionales.items():
+        encontrados = sum(
+            1 for corredor in corredores if (corredor.familia, corredor.variante) == rol
+        )
+        if not (minimo <= encontrados <= maximo):
+            raise ErrorScoring(
+                "CONFIGURACION_INVALIDA",
+                f"se admite entre {minimo} y {maximo} corredor {rol[0]}/{rol[1]}; hay {encontrados}",
+            )
+    roles_conocidos = set(roles_obligatorios) | set(roles_opcionales)
+    desconocidos = [
+        corredor for corredor in corredores if (corredor.familia, corredor.variante) not in roles_conocidos
+    ]
+    if desconocidos:
         raise ErrorScoring(
             "CONFIGURACION_INVALIDA",
-            "este contrato requiere exactamente L-solo, L+corpus, M y E activos",
+            "corredor fuera del subconjunto de roles admitido por el contrato (F1): "
+            + ", ".join(f"{c.familia}/{c.variante}" for c in desconocidos),
         )
     corredores.sort(key=lambda corredor: corredor.id)
     por_id = {corredor.id: corredor for corredor in corredores}
@@ -294,9 +318,20 @@ def validar_configuracion(datos: Mapping[str, Any]) -> Configuracion:
         raise ErrorScoring(
             "CONFIGURACION_INVALIDA", "comparacion_principal_id no identifica una comparación L↔M"
         )
-    e_id = _texto_no_vacio(datos.get("e_id"), "e_id")
-    if e_id not in por_id or por_id[e_id].familia != "E":
-        raise ErrorScoring("CONFIGURACION_INVALIDA", "e_id no identifica una familia E activa")
+    # F1 · e_id solo es obligatoria si hay un corredor E/combinacion activo
+    # (ver roles_opcionales arriba); sin E activo, e_id ausente es válido.
+    hay_e_activo = any(corredor.familia == "E" for corredor in corredores)
+    e_id_crudo = datos.get("e_id")
+    if hay_e_activo:
+        e_id = _texto_no_vacio(e_id_crudo, "e_id")
+        if e_id not in por_id or por_id[e_id].familia != "E":
+            raise ErrorScoring("CONFIGURACION_INVALIDA", "e_id no identifica una familia E activa")
+    elif e_id_crudo is not None:
+        raise ErrorScoring(
+            "CONFIGURACION_INVALIDA", "e_id declarada sin corredor E/combinacion activo"
+        )
+    else:
+        e_id = None
 
     if "delta" not in datos or "nivel_ic" not in datos or "seed" not in datos:
         faltantes = [clave for clave in ("delta", "nivel_ic", "seed") if clave not in datos]

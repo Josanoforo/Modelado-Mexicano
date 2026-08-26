@@ -1,0 +1,70 @@
+# forense/crosswalk-pregunta-regla-v1_1.tsv -- SUPERA a v1_0 (crosswalk-pregunta-regla-v1_0.tsv, 21/ago/2026, intacto y no editado).
+# ACTO MAESTRA30-E8, 26/ago/2026, ADR-208 -- re-derivación tras corregir el defecto de subcadena de
+# construir_crosswalk (milpa/src/emisor.py) documentado por DERIVACION-M-v1_0.md (acto E7, PR #378):
+# el emparejamiento ahora exige coincidencia de encuesta en la misma línea además de la variable, y
+# variable por token exacto (no subcadena). Resultado sobre las 60 filas del marco: 3 CANDIDATO-EMITE
+# (CIV-01, CIV-06, CIV-07) / 57 NO-EMITE -- antes 10/50. Sobre las 15 sorteadas: 0 CANDIDATO-EMITE
+# (los tres de v1_0 -- DIN-03/P7_1, DIN-11/P5_3, TIC-06/P2 -- eran falsos positivos de subcadena y
+# ahora caen a NO-EMITE; ninguna de las tres celdas nuevas de CANDIDATO-EMITE pertenece a la muestra
+# de 15). Resultado honesto, no forzado -- ver forense/prereg-duelo-v2/enlace-M-v1_0.md.
+candidata_id	encuesta	variable	emisibilidad_p1	evidencia	universo_buscado
+CIV-01	ENCIG	P8_3_1	CANDIDATO-EMITE	milpa/procedencia.yaml:937	procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+CIV-02	ENCIG	P11_1_02	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+CIV-03	ENCIG	P9_1	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+CIV-04	ENCIG	P5_10A	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+CIV-05	ENCUCI	AP5_4_2	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+CIV-06	ENCUCI	AP5_3_8	CANDIDATO-EMITE	milpa/procedencia.yaml:254	procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+CIV-07	ENVIPE	BP1_20	CANDIDATO-EMITE	milpa/procedencia.yaml:395;milpa/procedencia.yaml:997	procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+CIV-08	ENVIPE	AP4_4_03	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+CIV-09	ENVIPE	AP5_6_02	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+CIV-10	ENVIPE	AP5_6_04	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+CIV-11	ENVIPE	AP4_4_01	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+CIV-12	ENPOL	P3_21_1	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-01	ENIF	P5_4	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-02	ENIF	P6_4	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-03	ENIF	P7_1	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-04	ENIF	P4_4_6	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-05	ENFIH	P8_1_1	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-06	ENFIH	P8_8_2	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-07	Encuesta de Competencias Financieras (Banxico/CNBV)	SF2	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-08	Encuesta de Competencias Financieras (Banxico/CNBV)	SF7	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-09	Encuesta de Competencias Financieras (Banxico/CNBV)	SF5	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-10	Encuesta de Competencias Financieras (Banxico/CNBV)	SF13	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-11	ENIF	P5_3	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DIN-12	Encuesta de Competencias Financieras (Banxico/CNBV)	SF10e	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-01	ENASIC	P4_13	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-02	ENASIC	P4_12	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-03	ENASIC	P7_12_2	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-04	ENASEM	H16D_18	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-05	ENASEM	H14_21	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-06	ENASEM	F55_24	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-07	ENUT	P6_10_7	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-08	ENUT	TRAB_NO_REM_CUID_HOG	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-09	ENADID	P8_10	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-10	ENDIREH	P14_3_11	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-11	ENBIARE	PA3_02	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+SFT-12	ENBIARE	PC1_1	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-01	ENOE	p3i	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-02	ENOE	p3j	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-03	ENOE	p2d6	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-04	ENOEN	p3d	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-05	ENTI	P1	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-06	ENTI	P2	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-07	ENDUTIH	P7_1	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-08	ENDUTIH	P7_15	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-09	ENDUTIH	P7_10_2	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-10	MOCIBA	P4_01	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-11	MOCIBA	P3	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+TIC-12	ENOE	p3n	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+EMP-01	ENAFIN (Encuesta Nacional de Financiamiento de las Empresas)	FAC_EXPA aplicado al indicador Empresas que tuvieron algun credito o financiamiento, dominio Micro	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+EMP-02	ENAFIN (Encuesta Nacional de Financiamiento de las Empresas)	razon derivada de Creditos que fueron rechazados a las empresas sobre Total de creditos que solicitaron las empresas, por tamano de empresa	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+EMP-03	ENAFIN (Encuesta Nacional de Financiamiento de las Empresas)	razon derivada de Total de empresas que tuvieron algun credito sobre Total de empresas, contrastando Micro contra Grande	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+EMP-04	ENAFIN (Encuesta Nacional de Financiamiento de las Empresas)	razon derivada de Creditos que fueron aprobados sobre Total de creditos que solicitaron, contrastando localidades de 500 mil o mas habitantes contra 50 mil a 499 999	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+EMP-05	CPV Censo de Poblacion y Vivienda -- Cuestionario Ampliado	SITUA_CONYUGAL	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+EMP-06	CPV Censo de Poblacion y Vivienda -- Cuestionario Ampliado	SITTRA	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DOC-01	CNBV Portafolio de Informacion / HR Ratings (desenlace documentado no-encuesta)	IMOR ajustado = (cartera vencida + castigos 12m) / (cartera total + castigos 12m)	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DOC-02	CNBV / HR Ratings (desenlace documentado no-encuesta)	IMOR ajustado y su trayectoria IMOR simple 8.4% (3T24) a 5.5% (3T25)	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DOC-03	CNBV (desenlace documentado no-encuesta) -- razon derivada, NO enunciada en ninguna fuente	razon IMOR_ajustado(Azteca) / IMOR_ajustado(tarjeta banca multiple)	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DOC-04	SEC EDGAR 10-K FirstCash Holdings (desenlace documentado no-encuesta)	proporcion de inventario con antiguedad mayor a un ano	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DOC-05	BMV / CNBV, reportes trimestrales de Gentera (desenlace documentado no-encuesta) -- fraccion NO enunciada	castigos del ejercicio como fraccion de la cartera total promedio del ejercicio	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea
+DOC-06	BMV / HR Ratings, Financiera Independencia (desenlace documentado no-encuesta) -- OLA RETENIDA	IMOR ajustado de la cartera total	NO-EMITE		procedencia.yaml+tramite.yaml, término=variable, encuesta=coincidencia-de-línea

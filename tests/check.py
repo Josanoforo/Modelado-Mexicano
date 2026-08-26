@@ -2611,6 +2611,21 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # mecanica (CI del propio acto), declarada en la nota de cierre.
     "forense/encargos/2026-08-26-E6-L-RUN.md",
     "forense/notas/2026-08-26-l-run-cierre.md",
+    # ACTO MAESTRA30-E8 M-EMITE-Y-RESELLO, 26/ago/2026 (ADR-208): encargo
+    # archivado VERBATIM (A.3 + convencion de forense/encargos/), su nota
+    # de cierre y el enlace M que narra el hallazgo de E7 al citarlo. Los
+    # `E7`/`E8`/`E9` pelados son los nombres que direccion (maestra-30) le
+    # dio a los actos de esta misma serie -- septimo, octavo y noveno --,
+    # no fases de ningun motor; quedan censados en canon/registro-rotulos.tsv
+    # como HABITANTES adicionales del espacio E, con su colision declarada
+    # contra E0/E2/E3-TRIAGE/E4a/E4b/E4c/E5/E-3/E1/E4/E6/MAESTRA30-E1..E7
+    # (referentes distintos, ninguno gana, mismo patron que M5). El texto de
+    # direccion no se edita para complacer a un test. Extension minima de
+    # perimetro por desviacion mecanica (CI del propio acto), declarada en
+    # la nota de cierre.
+    "forense/encargos/2026-08-26-E8-M-EMITE-Y-RESELLO.md",
+    "forense/notas/2026-08-26-e8-m-emite-cierre.md",
+    "forense/prereg-duelo-v2/enlace-M-v1_0.md",
 }
 
 

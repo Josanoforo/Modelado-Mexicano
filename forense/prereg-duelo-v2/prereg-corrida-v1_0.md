@@ -55,6 +55,14 @@ Los cuatro corredores son `L` (`pipeline-L-adv1-m2.py`), `B` (`corredor-B-tasa-b
 
 **Regla de enmienda, no de silencio:** si cualquiera de estos seis archivos cambia después de este commit y antes de que `R` corra, la fila correspondiente de esta tabla NO se sobreescribe — se agrega una fila nueva fechada, con el hash viejo, el hash nuevo, y la razón del cambio, bajo un encabezado `## F1 · enmienda AAAA-MM-DD`. Un cambio silencioso de hash invalidaría exactamente la garantía que esta sección existe para dar.
 
+## F1 · enmienda 2026-08-26
+
+Autorizada por la RANURA de FP-166 (tablero, ACTO MAESTRA30-E8, ADR-208): *"AUTORIZO la enmienda F1 fechada de `scoring-adv1-m3.py` (fila `## F1 · enmienda` con hash viejo→nuevo y razón, prereg-corrida:110)"*.
+
+| Archivo | hash viejo | hash nuevo | razón |
+|---|---|---|---|
+| `scoring-adv1-m3.py` | `beec0e1c2e86605bb751601a36c312e34ade4a82a8204e0ab96527beba8e0efb` | `63418cc8cfdb03ba5d851d01f1bba23e2f21dbac5cfbed2d88c2832cba13a8cf` | `validar_configuracion` exigía los CUATRO corredores simultáneos (`{(L,solo):1, (L,corpus):1, (M,principal):1, (E,combinacion):1}`, `len(corredores)==4`); el piloto real solo tiene `L-solo` (`ACTO MAESTRA30-E6 · L-RUN`, ADR-206) y `M` en 0 puntos derivables sobre las 15 sorteadas (`forense/prereg-duelo-v2/enlace-M-v1_0.md`, ACTO MAESTRA30-E8) — `FP-165` FIRMADA ya declaró que `L+corpus` no correrá y `ADR-141` selló `E` como inejecutable con menos de tres corredores. El contrato ahora admite el subconjunto real: mínimo obligatorio `{(L,solo):1, (M,principal):1}`; `(L,corpus)` y `(E,combinacion)` opcionales (0 o 1); `e_id` solo obligatoria si hay corredor `E` activo. `B` (skill/casillas dependientes) ya se reportaba `no evaluable` cuando falta `error_baseline` (`_skill_de_medicion`, sin cambio) — consistente con la RANURA: las 9 celdas arbitrables tienen `publicada=NO` (bibliotecario FP-93, `NO-ENCONTRADO`), B queda opcional. Ningún otro cambio al script (verificado: solo se tocó `validar_configuracion` y la anotación de tipo de `Configuracion.e_id`). Actualiza la tabla del lanzamiento-L: ver enmienda fechada en `lanzamiento-L-v1_0.md` §5 (ese doc es histórico del corredor L, declarado ahí).
+
 ---
 
 ## F2 · Spec de elicitación ADV1-M2, congelada
