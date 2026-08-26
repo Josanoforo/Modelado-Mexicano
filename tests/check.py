@@ -1327,6 +1327,18 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # patron ya vigente en pipeline-L-adv1-m2.py). No es un marcador nuevo
     # sin dueno, es la copia fiel de uno ya resuelto y otro ya adoptado.
     "forense/encargos/2026-08-26-PREREG-CORRIDA.md",
+    # forense/prereg-duelo-v2/lanzamiento-L-v1_0.md, su nota de cierre y su
+    # encargo archivado (ACTO E2-PREP-L-RUN, 26/ago/2026) -- citan "RANURA
+    # DE MESA" (el modelo del corredor L, ya precargado por el encargo y
+    # dejado tal cual, F2(a) del prereg) y "RANURA 1"/"RANURA 2" de
+    # PREREG-CORRIDA, ambas ya resueltas: RANURA 1 es FP-162 (FIRMADA,
+    # ADR-197) y RANURA 2 queda adoptada en el mismo ADR sin fila propia.
+    # Ninguna de las tres cita un marcador nuevo sin dueño -- extensión
+    # mínima de perímetro por desviación mecánica, mismo precedente que
+    # ADR-147(c)/ADR-149(f)/ADR-151/ADR-164/ADR-197.
+    "forense/prereg-duelo-v2/lanzamiento-L-v1_0.md",
+    "forense/notas/2026-08-26-prep-l-run-cierre.md",
+    "forense/encargos/2026-08-26-E2-PREP-L-RUN.md",
     # forense/notas/2026-08-25-sella-f-hoja.md y su encargo -- continuación de
     # SELLA-AGO25-F, ejecuta las diez letras de mesa (L1-L10) ya resueltas y
     # abre seis actos sucesores declarados (FP-135..FP-140), todos ya con fila
@@ -2270,6 +2282,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # complacer a un test. Mismo movimiento y misma razon que ACT-PIL-2/
     # SELLA-AGO24-C-v2.
     "forense/encargos/2026-08-26-PREREG-CORRIDA.md",
+    # E2-PREP-L-RUN, 26/ago/2026 (ADR-200): "E2" pelado es el nombre propio
+    # del acto (ENCARGO E2 · PREP-L-RUN, tal como direccion lo lanzo), no
+    # una cita al espacio ADV1-E2/ADV1-M2 de la escala del duelo -- el
+    # encargo se archiva VERBATIM (convencion de forense/encargos/) y la
+    # nota/lanzamiento lo citan por el mismo nombre de acto al describirlo.
+    # Ningun espacio de la escala se declara de nuevo; el texto de direccion
+    # no se edita para complacer a un test. Mismo movimiento que
+    # SELLA-AGO25-F-HOJA/PREREG-CORRIDA.
+    "forense/prereg-duelo-v2/lanzamiento-L-v1_0.md",
+    "forense/notas/2026-08-26-prep-l-run-cierre.md",
+    "forense/encargos/2026-08-26-E2-PREP-L-RUN.md",
     # SELLA-AGO24-C-v2, 24/ago/2026 (ADR-155): encargo archivado VERBATIM
     # (convencion de forense/encargos/: "el texto completo del encargo tal
     # como se lanzo"). Su `M5` pelado es ADV1-M5, ya censado en
