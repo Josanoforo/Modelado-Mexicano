@@ -483,12 +483,30 @@ def emitir_binaria(regla: Regla, conducta: str) -> PrediccionM:
 
 # ── Crosswalk pregunta↔máquina, pasada 1 ───────────────────────────────────
 
+def _token_encuesta(encuesta: str) -> str:
+    """Acrónimo de encuesta: primer token antes de espacio/paréntesis/slash
+    (p.ej. "ENCIG 2023" -> "ENCIG"; "ENAFIN (Encuesta ...)" -> "ENAFIN")."""
+    m = re.match(r"[^\s(/]+", encuesta.strip())
+    return m.group(0) if m else encuesta.strip()
+
+
+def _tiene_token(linea: str, token: str) -> bool:
+    """Coincidencia por token exacto (no subcadena): ni prefijo ni sufijo
+    alfanumérico pegado al token buscado."""
+    return re.search(r"(?<![\w])" + re.escape(token) + r"(?![\w])", linea) is not None
+
+
 def construir_crosswalk(salida: Path) -> int:
     """Pasada 1 sobre el marco (60 candidatas, lado árbitro): para cada
-    `variable`, ¿aparece en alguna fuente-máquina? Universo declarado por fila.
-    Vocabulario conservador: `CANDIDATO-EMITE` (con archivo:línea) exige aún
-    enlace de escala/universo declarado antes de emitir; lo demás `NO-EMITE`.
-    El conteo NO-EMITE es dato para la saturación del marco (FP-82)."""
+    `variable`, ¿aparece en alguna fuente-máquina en la misma línea que su
+    `encuesta`? Universo declarado por fila. Vocabulario conservador:
+    `CANDIDATO-EMITE` (con archivo:línea) exige aún enlace de escala/universo
+    declarado antes de emitir; lo demás `NO-EMITE`. El emparejamiento exige
+    coincidencia de encuesta además de la variable, y variable por token
+    exacto (no subcadena) -- corrige los falsos positivos de subcadena
+    documentados en DERIVACION-M-v1_0.md (AP7_1/P7_12_7 vs P7_1,
+    AP5_3_XX vs P5_3, "(P2 §2.d)" vs P2). El conteo NO-EMITE es dato para
+    la saturación del marco (FP-82)."""
     fuentes = {"milpa/procedencia.yaml": RUTA_PROCEDENCIA.read_text(encoding="utf-8").splitlines(),
                "milpa/tramite.yaml": RUTA_TRAMITE.read_text(encoding="utf-8").splitlines()}
     n = 0
@@ -499,11 +517,14 @@ def construir_crosswalk(salida: Path) -> int:
                     "evidencia", "universo_buscado"])
         for fila in lector:
             var = (fila.get("variable") or "").strip()
+            enc = _token_encuesta(fila.get("encuesta") or "")
             hits = [f"{arch}:{i+1}" for arch, lin in fuentes.items()
-                    for i, l in enumerate(lin) if var and var in l]
+                    for i, l in enumerate(lin)
+                    if var and enc and _tiene_token(l, var) and _tiene_token(l, enc)]
             emis = "CANDIDATO-EMITE" if hits else "NO-EMITE"
             w.writerow([fila.get("id", ""), fila.get("encuesta", ""), var, emis,
-                        ";".join(hits[:3]), "procedencia.yaml+tramite.yaml, término=variable"])
+                        ";".join(hits[:3]), "procedencia.yaml+tramite.yaml, término=variable, "
+                        "encuesta=coincidencia-de-línea"])
             n += 1
     return n
 
