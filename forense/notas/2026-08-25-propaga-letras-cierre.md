@@ -1,6 +1,6 @@
 # Nota de cierre — `ACTO PROPAGA-LETRAS`, 25/ago/2026
 
-Ejecuta `forense/encargos/2026-08-25-PROPAGA-LETRAS-ENCARGO.md` (`FP-159`, `ADR-194`). Entorno **NUBE** (`cloud_default`). `SHA` de redacción `9c25f28`.
+Ejecuta `forense/encargos/2026-08-25-PROPAGA-LETRAS-ENCARGO.md` (`FP-159`, `ADR-196`). Entorno **NUBE** (`cloud_default`). `SHA` de redacción `9c25f28`.
 
 ## §1 · Las tres firmas de mesa, verbatim
 
@@ -24,11 +24,11 @@ Aterrizado el anexo del §2 verbatim en esta nota; entrada al Registro **no se t
 
 ## §5 · `R2.2` → propaga la orden (sin archivar)
 
-`ADR-194` registra la firma (a): censo previo molde-`R2.1`, lo corre mesa en sesión de proyecto con web (el bloque quotable lo entrega dirección aparte); la ficha `R2.2` recibe enmienda fechada de una línea («letra en espera del censo ordenado por mesa, 25/ago») — aplicada en `hitoD-preregistro-v2_0.md` §3.3. Nada más.
+`ADR-196` registra la firma (a): censo previo molde-`R2.1`, lo corre mesa en sesión de proyecto con web (el bloque quotable lo entrega dirección aparte); la ficha `R2.2` recibe enmienda fechada de una línea («letra en espera del censo ordenado por mesa, 25/ago») — aplicada en `hitoD-preregistro-v2_0.md` §3.3. Nada más.
 
 ## §6 · Cierre
 
-`FP-159` → `FIRMADA` con los tres verbatims + `ejecutada_en` = este acto (parcial: `R2.2`/`R10.2` ejecutados, `R8.2` PROPUESTO). `ADR-194` con todo. Set de sincronía: `README.md:36` re-derivado del Registro real (`21 de 27`); citas vivas de `canon/modelo-decision-v4_0.md` (`:65`, `:700`, `:885`); `canon/estado-programa-v1_10.md` (línea Hito D + «`R2.2` en censo»); esta nota-cierre; suite `--baseline` (🚫 nunca `--freeze`; `T22`/`T25` propios → censo declarado); encargo `CONSUMIDO`. **CONTADOR: +1 re-derivado** (no +2 — la RANURA de `R8.2` llegó ausente), declarado con `python3 tests/check.py --baseline`.
+`FP-159` → `FIRMADA` con los tres verbatims + `ejecutada_en` = este acto (parcial: `R2.2`/`R10.2` ejecutados, `R8.2` PROPUESTO). `ADR-196` con todo. Set de sincronía: `README.md:36` re-derivado del Registro real (`21 de 27`); citas vivas de `canon/modelo-decision-v4_0.md` (`:65`, `:700`, `:885`); `canon/estado-programa-v1_10.md` (línea Hito D + «`R2.2` en censo»); esta nota-cierre; suite `--baseline` (🚫 nunca `--freeze`; `T22`/`T25` propios → censo declarado); encargo `CONSUMIDO`. **CONTADOR: +1 re-derivado** (no +2 — la RANURA de `R8.2` llegó ausente), declarado con `python3 tests/check.py --baseline`.
 
 ## Perímetro y NO-hace
 

@@ -2,7 +2,7 @@
 
 **SHA de redacción:** `9c25f28`. **Dirección, 25/ago/2026. Entorno: NUBE (`cloud_default`). No UBUNTU, no doble.**
 
-**Estado:** CONSUMIDO (`ACTO PROPAGA-LETRAS`, `ADR-194`).
+**Estado:** CONSUMIDO (`ACTO PROPAGA-LETRAS`, `ADR-196`).
 
 **Bloque VERIFICACIÓN DE EXISTENCIA (A.8, Parte 2):** `data/raw` ausente en este entorno — OK, declarado como tal en el arranque del encargo (cloud_default, sin microdato); ningún archivo citado por el encargo estaba ausente del árbol al arrancar.
 
@@ -16,4 +16,4 @@ RANURA (5 seg, por el matiz del anexo): CONFIRMO R8.2: fila B con la reserva esc
 
 ANEXO — verificación puntual de R8.2, corrida por dirección (web, 25/ago; para aterrizar VERBATIM en la nota del acto): ver `forense/notas/2026-08-25-propaga-letras-cierre.md` §2 para el texto completo aterrizado verbatim.
 
-**Resultado de este acto** (ver `canon/gobernanza-v1_15.md` `ADR-194` y `forense/notas/2026-08-25-propaga-letras-cierre.md` para el detalle completo): la RANURA de confirmación de R8.2 llegó ausente. Se ejecutó todo lo demás: `R10.2` archivado fila `D`; `R2.2` gana enmienda fechada de censo ordenado por mesa; `R8.2` queda PROPUESTO, sin archivar. `FP-159` pasa a `FIRMADA` (firma «a/a/a» capturada), sin cerrar del todo — el archivo de `R8.2` sigue pendiente de ranura. `CONTADOR: +1` (no +2, por la RANURA ausente).
+**Resultado de este acto** (ver `canon/gobernanza-v1_15.md` `ADR-196` y `forense/notas/2026-08-25-propaga-letras-cierre.md` para el detalle completo): la RANURA de confirmación de R8.2 llegó ausente. Se ejecutó todo lo demás: `R10.2` archivado fila `D`; `R2.2` gana enmienda fechada de censo ordenado por mesa; `R8.2` queda PROPUESTO, sin archivar. `FP-159` pasa a `FIRMADA` (firma «a/a/a» capturada), sin cerrar del todo — el archivo de `R8.2` sigue pendiente de ranura. `CONTADOR: +1` (no +2, por la RANURA ausente).

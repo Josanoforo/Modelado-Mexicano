@@ -114,7 +114,7 @@
 
 **A** umbral cruzado → **"solo" es falso**, degradar a `[MEDIA]` y reescribir como *"la benevolencia mejora, no legitima en exclusiva"* · **B** casos anecdóticos sin control de salario/prestaciones · **C** exigiría panel de clima organizacional con desempeño auditado · **D** **probable**: el dato de clima suele ser propietario y auto-reportado por parte interesada.
 
-**Enmienda fechada, 25/ago/2026 (`ACTO PROPAGA-LETRAS`, `FP-159`, `ADR-194`).** Letra en espera del censo ordenado por mesa — molde `R2.1-v2` (falsador a nivel empleado/segmento, misma sustancia, letra máxima correlacional; techo v1 intacto). Ningún veredicto se archiva por esta enmienda.
+**Enmienda fechada, 25/ago/2026 (`ACTO PROPAGA-LETRAS`, `FP-159`, `ADR-196`).** Letra en espera del censo ordenado por mesa — molde `R2.1-v2` (falsador a nivel empleado/segmento, misma sustancia, letra máxima correlacional; techo v1 intacto). Ningún veredicto se archiva por esta enmienda.
 
 ---
 
