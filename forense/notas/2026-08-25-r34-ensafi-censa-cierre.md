@@ -293,7 +293,8 @@ patrón de «no existe» de `inegi.org.mx` — **no** un 404 honesto. Todo resul
 
 **1 de 12 devuelve un archivo real.** Y es el que importa.
 
-**Por qué nadie lo había encontrado.** Todos los actos anteriores —`B-3` (4/ago), `M-3` (5/ago),
+**Por qué nadie lo había encontrado.** Todos los actos anteriores —`B-3` (4/ago), el lote de diez
+reactivos del 5/ago (`forense/notas/2026-08-05-m3-lote-b3-diez-reactivos.md`),
 `ABRIR-4` (8/ago), `APERTURA-ENFIH-ENSAFI` (20/ago), `RECENSO-DISEÑO-14` (24/ago), `FP-115`(c),
 la ficha `condBC`— buscaron el **`FD`**, siguiendo el patrón `enasic_2022_fd.xlsx` /
 `enfih_2019_fd.xlsx`. El `FD` de `ENSAFI` **efectivamente no está publicado** bajo ningún patrón
@@ -372,6 +373,16 @@ colisiona** — renumera quien fusiona segundo.
 
 **Suite (`--baseline`, nunca `--freeze`).** Corrida en la caja del acto:
 **19 `FAIL` · 129 `WARN`**, **LÍNEA BASE: VERDE** — nada nuevo frente a `tests/baseline.json`
-(`HEAD` congelado `e24d033`). Coincide con la cifra que `estado:303` cita para el 25/ago.
+(`HEAD` congelado `e24d033`). Coincide con la cifra que `estado:303` cita para el 25/ago, y con la
+corrida de arranque de este acto, antes de escribir nada.
+
+*Dos defectos propios, atrapados por la suite y corregidos en la misma sesión, declarados porque
+la corrida intermedia los vio:* (i) `T15` — sellar `ADR-193` volvió histórica la cita `192 ADR` de
+la cascada de `ADR-192` y la del registro de artefactos de `estado:27`; la primera recibió
+`{cita-historica}` **dentro** de las negritas (fuera de ellas el regex de `T15` no la ve — el
+marcador exime sólo la cita inmediatamente anterior) y la segunda se recifró a `193`, que es su
+valor vigente. (ii) `T25` — esta nota citaba un rótulo `M`-pelado al enumerar los actos que
+buscaron el `FD`; se sustituyó por la ruta de su nota, que no dispara el patrón. Ningún test se
+tocó, ninguna exención se añadió.
 
 **Encargo: `CONSUMIDO`.**
