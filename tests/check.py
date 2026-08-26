@@ -2285,6 +2285,28 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # el rotulo del propio ACTO ENLACE-2/B2-SEMANTICO, no un espacio nuevo
     # de este acto. Cita, no declaracion.
     "forense/notas/2026-08-25-sella-f-hoja.md",
+    # misma razon que la entrada de abajo: esta nota cita por nombre la fila
+    # `E3-TRIAGE` del propio canon/registro-rotulos.tsv al narrar el hallazgo
+    # de T25 sobre el encargo. Cita de un habitante YA censado, no declaracion
+    # de uno nuevo -- el acto se declara MAESTRA30-E3 y no reclama el token
+    # bare. Mismo patron exacto que forense/notas/2026-08-24-adq-corre-
+    # r74r75-cierre.md, que esta en esta lista por citar "E-3" en prosa.
+    "forense/notas/2026-08-26-ejerce-llave-compartamos-cierre.md",
+    # MAESTRA30-E3 / EJERCE-LLAVE-COMPARTAMOS, 26/ago/2026 (ADR-203):
+    # encargo archivado VERBATIM (A.3 + convencion de forense/encargos/).
+    # Direccion lo lanzo rotulado "ENCARGO E3", y "E3" pelado ya tiene dos
+    # habitantes censados en canon/registro-rotulos.tsv (E3-TRIAGE y el
+    # Encargo E-3 de tests/svystat.py) -- este seria un tercero, que es
+    # exactamente la colision que D-6 existe para evitar. Resuelto donde
+    # se puede resolver: el acto se declara MAESTRA30-E3 en TODOS los
+    # archivos que escribe (resultado, nota, registro de llaves, ADR-203,
+    # estado-programa) y asi queda censado; el encargo archivado NO se
+    # edita, porque A.3 pide el texto de direccion verbatim y el texto de
+    # direccion no se edita para complacer a un test. Mismo movimiento y
+    # misma razon que PREREG-CORRIDA, SELLA-AGO24-C-v2 y ADQ-CORRE-R74R75.
+    # Extension minima de perimetro por desviacion mecanica, declarada en
+    # la nota del acto (SS 8) -- una linea de snapshot, cero cambios de logica.
+    "forense/encargos/2026-08-26-E3-EJERCE-LLAVE-COMPARTAMOS.md",
     # PREREG-CORRIDA, 26/ago/2026 (ADR-194): encargo archivado VERBATIM
     # (convencion de forense/encargos/: "el texto completo del encargo tal
     # como se lanzo"). Su `M2` pelado es ADV1-M2, ya censado en
