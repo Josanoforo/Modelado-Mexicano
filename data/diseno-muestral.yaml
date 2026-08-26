@@ -975,26 +975,91 @@
     este acto NO infiere diseno de encuestas parecidas. Sin UPM, sobre ENPOL solo hay estimacion puntual
     ponderada y estrato, no varianza por conglomerado. Ver FP-114.'
 - fuente: ENSAFI — Encuesta Nacional sobre Salud Financiera (ENSAFI)
-  estado: PENDIENTE
-  ponderador: FAC_VIV (TVIVIENDA), FAC_HOG (TSDEM, THOGAR) y FAC_ELE (TMODULO) existen como columnas del
-    microdato -- cabecera (linea 1) de cada CSV dentro de data/raw/ensafi2023/ensafi_2023_bd_csv.zip.
-    Pero NO hay descriptor en el corpus que defina el universo de cada uno, y este acto no lo infiere
-    de otras encuestas de INEGI.
-  estrato: 'EST_DIS existe como columna en las cuatro tablas (misma cita: cabecera de cada CSV). Sin FD
-    no se puede confirmar que sea el estrato de diseno y no otro estrato.'
-  upm: UPM_DIS existe como columna en las cuatro tablas (misma cita). Misma reserva.
+  estado: MAPEADO
+  ponderador: 'Los tres viven en el FD como VARIABLES DE DISENO ESTADISTICO -- seccion con ese nombre
+    literal, una por hoja, en ensafi2023_fd_xlsx_zip (ensafi_2023_fd.xlsx dentro del zip). FAC_VIV, universo
+    VIVIENDA, cita directa: hoja TVIVIENDA, seccion B132 ''VARIABLES DE DISENO ESTADISTICO'', fila 135
+    -- C135=''FAC_VIV'', B135=G135=''FACTOR VIVIENDA DE EXPANSION'', Numerico, tamano 6, codigos 125-72801.
+    FAC_HOG, universo HOGAR, cita directa en la columna Pregunta[1]: hoja THOGAR fila 272 (C272=''FAC_HOG'',
+    B272=''FACTOR HOGAR DE EXPANSION'', Numerico, 6, 126-72801) y hoja TSDEM fila 135 (C135=''FAC_HOG'',
+    B135=''FACTOR HOGAR DE EXPANSION'', mismos tipo/tamano/codigos). DEFECTO DEL FD, no de esta lectura:
+    la columna Concepto[6] de esas dos mismas filas (G272 y G135) dice ''FACTOR VIVIENDA DE EXPANSION''
+    -- se contradice con la columna Pregunta[1] del mismo renglon y con la tabla que la aloja; el PDF
+    gemelo del mismo payload (ensafi_2023_fd.pdf, pags. 14 y 19) reproduce el defecto identico, luego
+    es del INEGI. Se adopta la lectura de Pregunta[1] (HOGAR), coherente con la tabla. FAC_ELE, universo
+    PERSONA ELEGIDA, cita INDIRECTA y asi declarada: su propio renglon lleva etiqueta generica -- hoja
+    TMODULO fila 935, C935=''FAC_ELE'', B935=G935=''FACTOR DE EXPANSION'', Numerico, 6, 126-364007, sin
+    nombrar universo; el universo se cita del MISMO FD y la MISMA hoja, en su LLAVE PRIMARIA: TMODULO
+    B17=G17=''Llave de identificacion de la persona elegida'' (C17=''LLAVEMOD''). El FD dice ''persona
+    elegida'', no ''persona elegible''. Ningun universo se infirio de otra encuesta de INEGI. Reserva
+    heredada de la lectura anterior de esta fila, hoy resuelta: el descriptor SI define el universo de
+    FAC_VIV y FAC_HOG en su etiqueta, y el de FAC_ELE solo por la unidad de registro de su tabla.'
+  estrato: 'EST_DIS es el estrato de DISENO, no otro estrato -- lo dice el FD (ensafi2023_fd_xlsx_zip,
+    ensafi_2023_fd.xlsx) en las cuatro hojas, dentro de la seccion ''VARIABLES DE DISENO ESTADISTICO'':
+    TVIVIENDA fila 137 (C137=''EST_DIS'', B137=G137=''ESTRATO DE DISENO MUESTRAL''), THOGAR fila 274 y
+    TSDEM fila 137 (mismas etiquetas), TMODULO fila 937 (B937=G937=''ESTRATO DE DISENO''). Alfanumerico,
+    tamano 5, codigos validos 00001-00277 en THOGAR/TSDEM/TMODULO. Erratum del FD, declarado: TVIVIENDA
+    F137 escribe el limite inferior con cuatro digitos, ''0001 - 00277'', contra tamano 5 y contra las
+    otras tres hojas; el PDF gemelo (pag. 5) trae la misma errata. No cambia la identificacion de la variable.
+    Queda cerrada la reserva anterior de esta fila (''sin FD no se puede confirmar que sea el estrato
+    de diseno y no otro estrato'').'
+  upm: 'UPM_DIS es la UPM de DISENO -- FD (ensafi2023_fd_xlsx_zip, ensafi_2023_fd.xlsx), seccion ''VARIABLES
+    DE DISENO ESTADISTICO'' de las cuatro hojas: TVIVIENDA fila 136, THOGAR fila 273, TSDEM fila 136 (las
+    tres B=G=''UPM DE DISENO MUESTRAL'') y TMODULO fila 936 (B936=G936=''UNIDAD PRIMARIA DE MUESTREO DE
+    DISENO''). Alfanumerico, tamano 5, codigos 00001-02918 en las cuatro. El FD separa UPM_DIS de una
+    variable distinta llamada UPM a secas, que NO es de diseno: vive en la seccion ''VARIABLES DE CONEXION'',
+    Alfanumerico tamano 7, codigos 0100016-3260800 (TVIVIENDA C113, THOGAR C245, TSDEM C113, TMODULO C861).
+    ENMIENDA a lo que esta misma fila afirmaba en donde_vive antes de este acto: la UPM sin sufijo NO
+    esta solo en TVIVIENDA -- esta en las CUATRO hojas (barrido de 1615 celdas de nemonico en el FD: 4
+    coincidencias exactas con ''UPM'', control positivo del mismo barrido con ''UPM_DIS'' tambien 4).'
   donde_vive: 'Las tres viven como columnas en las cuatro tablas de data/raw/ensafi2023/ensafi_2023_bd_csv.zip:
-    TSDEM.csv, TVIVIENDA.csv, THOGAR.csv y TMODULO.csv. La tabla TVIVIENDA tambien trae una columna UPM
-    (sin sufijo), que es llave, no conglomerado.'
-  procedencia: 'Cabeceras leidas en este acto con zipfile+csv. Inventario de payloads: data/manifiesto.yaml
-    filtrando /programas/ensafi/ -> UN solo payload registrado (ensafi2023_bd_csv_zip), el de datos.'
+    TSDEM.csv, TVIVIENDA.csv, THOGAR.csv y TMODULO.csv. Correccion 26/ago/2026 (ACTO E4 DISENO-ENSAFI):
+    el texto anterior de este campo decia que solo TVIVIENDA trae ademas una columna UPM sin sufijo; el
+    FD la lista en las CUATRO hojas, en ''VARIABLES DE CONEXION''. Lo que se sostiene del texto viejo
+    es su fondo: UPM sin sufijo es identificador de conexion, no el conglomerado de diseno -- el conglomerado
+    es UPM_DIS. Ver campo upm.'
+  procedencia: 'Descriptor de archivos (FD) de ENSAFI 2023, payload ensafi2023_fd_xlsx_zip del manifiesto
+    (url_origen https://www.inegi.org.mx/contenidos/programas/ensafi/2023/microdatos/ensafi_2023_fd_xlsx.zip,
+    fecha_descarga 2026-08-25, sha256 37bd0cb6dd54ddb8d8962114971e60e06d2628e97eeb8b4e32269129d556ff4b,
+    1108577 bytes; hash reverificado COINCIDE en este acto con una sola invocacion de tests/manifiesto.py
+    --verifica). El zip trae DOS portadores del mismo descriptor: ensafi_2023_fd.xlsx (109082 B, cuatro
+    hojas TVIVIENDA/THOGAR/TSDEM/TMODULO) y ensafi_2023_fd.pdf (1043071 B, 49 paginas). Este acto leyo
+    el XLSX con openpyxl (celda a celda, 12920 celdas examinadas, 12 coincidencias con los cinco nemonicos
+    buscados) y corroboro contra el PDF con pypdf (49 paginas examinadas, 12 coincidencias): los dos portadores
+    coinciden hasta en sus dos defectos, luego los defectos son del INEGI y no artefacto de lectura. Cabeceras
+    del microdato: leidas en el acto anterior (RECENSO-DISENO-14) con zipfile+csv; este acto NO abrio
+    ensafi_2023_bd_csv.zip.'
   notas: 'SIGUE PENDIENTE tras ACTO RECENSO-DISENO-14 (2026-08-24, ADR-149, entorno UBUNTU, corpus montado)
     por falta de DESCRIPTOR, no por falta de payload. Verificacion cruda (2000 filas por tabla): FAC_VIV/FAC_HOG/FAC_ELE,
     EST_DIS y UPM_DIS no vacios en el 100% de las cuatro tablas. El obstaculo es de procedencia, no de
     existencia: el archivo de descripcion de archivos (FD) de ENSAFI 2023 no esta en el corpus y el zip
     de datos no lo trae dentro. Receta manual (A.5, NO ejecutada aqui): bajar el FD de https://www.inegi.org.mx/programas/ensafi/2023/#microdatos
     (mismo patron de URL que enasic_2022_fd.xlsx y enfih_2019_fd.xlsx, ambos ya en el corpus), registrarlo
-    y re-censar. Con el FD en mano esta fila deberia cerrar a MAPEADO en minutos. Ver FP-115.'
+    y re-censar. Con el FD en mano esta fila deberia cerrar a MAPEADO en minutos. Ver FP-115. -- 26/ago/2026,
+    ACTO E4 DISENO-ENSAFI (PR #373, ADR-202): CIERRA a MAPEADO. El FD llego
+    el 25/ago/2026 (ACTO ENSAFI-DESCRIPTOR, ADR-198, PR #370: la API de INEGI declaraba formato ''_xlsx.zip''
+    y no ''.xlsx'' -- la extension era el obstaculo, no la publicacion), de modo que la receta manual
+    A.5 que este mismo parrafo describe arriba queda CADUCADA por ADR-198: no se ejecuta, no se re-descarga,
+    y el texto viejo se conserva sin borrar como registro de por que estuvo pendiente. Estampa A.10 --
+    universo bajo el que se toma este cierre, declarado: (i) el descriptor ensafi2023_fd_xlsx_zip integro,
+    sus dos portadores (XLSX de 4 hojas y PDF de 49 paginas), leidos celda a celda y pagina a pagina en
+    este acto; (ii) la verificacion cruda de 2000 filas por tabla ya citada arriba en este mismo campo
+    (RECENSO-DISENO-14, 24/ago), que establecio que las cinco variables no estan vacias en el 100% de
+    las cuatro tablas; (iii) el Anexo 2 de forense/ficha-r34-condBC-v1_0.md, lectura previa del FD. Fuera
+    de ese universo este cierre no rige: no cubre la ENSAFI de ningun otro ano, ni los valores del microdato
+    (ensafi_2023_bd_csv.zip no se abrio aqui), ni ninguna estimacion -- este acto no estima nada. Si el
+    universo crece, el cierre queda VENCIDO EN ALCANCE, no refutado. Reservas que el cierre NO borra y
+    que el acto sucesor hereda: (a) el universo de FAC_ELE es cita INDIRECTA -- el FD etiqueta su renglon
+    como ''FACTOR DE EXPANSION'' a secas y el universo ''persona elegida'' se lee de la LLAVE PRIMARIA
+    de la misma hoja (LLAVEMOD), no del renglon del ponderador; (b) el FD se contradice consigo mismo
+    en FAC_HOG (Pregunta[1] dice HOGAR, Concepto[6] dice VIVIENDA) y erra el limite inferior de EST_DIS
+    en TVIVIENDA; ambos defectos se declaran arriba con su cita y se reproducen identicos en el PDF; (c)
+    TSDEM es tabla de personas del hogar pero el unico factor que el FD le da es FAC_HOG -- el FD no publica
+    un factor de persona para TSDEM, y esto NO es un hallazgo negativo por ausencia de busqueda: se barrieron
+    las cuatro secciones ''VARIABLES DE DISENO ESTADISTICO'' integras y cada una contiene exactamente
+    tres variables (un factor + UPM_DIS + EST_DIS), enumeracion cerrada. FP-115 queda citada y NO tocada:
+    esa ficha cubre tres fuentes y aqui se resuelve unicamente la parte ENSAFI; el tablero no se edita
+    en este acto.'
 - fuente: ENSU — Encuesta Nacional de Seguridad Pública Urbana (ENSU)
   estado: PENDIENTE
   ponderador: FAC_VIV y FAC_SEL existen como columnas del microdato -- cabecera (linea 1) de ENSU_CB_0325.csv,
