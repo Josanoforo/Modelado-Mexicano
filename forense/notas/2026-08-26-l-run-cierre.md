@@ -411,3 +411,86 @@ $ ls forense/prereg-duelo-v2/corridas-L | sed 's/__.*//' | sort | uniq -c
 El conteo se hace sobre **los 120 archivos de `corridas-L/`**, que son el entregable — **no** sobre el *ledger* crudo del driver, que es respaldo anti-pérdida y fuente de horas/`stop_reason`, y que durante la corrida iba **adelantado** respecto de las capturas (el *ledger* escribe por llamada; las capturas, al cerrar cada celda). Confundir uno con otro habría dado un censo falso a mitad de corrida.
 
 **El total esperado por el encargo original era 240.** Este acto entrega **120** y lo declara en el título, en el resumen y aquí: la mitad `L+corpus` **no se corrió** por la firma de mesa de §7, no por fallo.
+---
+
+## 9 · Extractor de `valor_extraido` — CONGELADO ANTES DE APLICARSE
+
+**Este bloque se commitea ANTES de correr el extractor sobre las 120 capturas.** Es la condición que mesa puso al autorizarlo, verbatim: «Congela las reglas del extractor en un commit propio ANTES de aplicarlas sobre las 120 […] y declara ahí el número exacto de capturas que ya habías leído al congelar.»
+
+### 9.1 · Por qué hace falta un extractor, y por qué no estaba pre-registrado
+
+`lanzamiento-L-v1_0.md` §5 dice que `valor_extraido` lo derivan «`agregar_continua`/`agregar_categorica`, las únicas funciones que lo derivan». **Es falso** (§7.2): ambas reciben listas **ya extraídas** y solo agregan; ninguna toca `texto_crudo`. **El pipeline no contiene extractor.** Lo que sí contiene es la delegación explícita, en la línea donde pone el campo en `None`:
+
+```python
+valor_extraido=None,  # el parseo real lo hace la sesión ejecutora
+                      #   -- pipeline-L-adv1-m2.py:201
+```
+
+Este bloque es esa delegación, ejercida de forma mecánica. **La prohibición del encargo que sí rige — «llenar `valor_extraido` a mano» — queda respetada:** ninguna respuesta se lee y se teclea; se aplican reglas fijas de formato, idénticas a las 120, y cada captura registra qué regla disparó.
+
+### 9.2 · LIMITACIÓN, escrita como limitación y no escondida
+
+**Estas reglas se congelan TARDE: después de que las 120 corridas ya existían, no antes.** El pre-registro no las contiene y no hay forma de fingir que sí.
+
+**Capturas ya leídas por el ejecutor al momento de congelar: `2` de `120`.** Ambas de `CIV-08`, variante `L-solo`:
+
+- `CIV-08__L-solo__01.json` — **parcial**, los primeros `1200` caracteres.
+- `CIV-08__L-solo__02.json` — **íntegra**.
+
+Ninguna otra captura se leyó antes de fijar estas reglas. Lo demás que el ejecutor vio durante la corrida fueron conteos (`ok · 8 capturas · vacias=0`), horas, `stop_reason` y longitudes — **nunca texto de respuesta**. La cifra `2/120` es exacta, no una estimación.
+
+**Consecuencia honesta:** las reglas se diseñaron habiendo visto el formato de salida de `1.7 %` del material. Eso es más que cero y mucho menos que un extractor ajustado a los datos. Se declara para que quien lea el marcador sepa exactamente qué garantía tiene y cuál no.
+
+**Ninguna cifra se corrige, se descarta ni se ajusta.** Cero descartes rige también aquí: una captura de la que no se extrae valor **no se elimina** — se queda con `valor_extraido: null` y se cuenta como tal.
+
+### 9.3 · Las reglas, verbatim
+
+Reconocedores:
+
+```python
+NUM   = r"\d{1,3}(?:[.,]\d{1,2})?"
+PCT   = rf"(?<![\d.,])(?:~|≈|aprox\.?\s*)?({NUM})\s*%"
+RANGO = rf"(?<![\d.,])({NUM})\s*(?:%\s*)?(?:-|–|—|\s+a\s+|\s+y\s+)\s*({NUM})\s*%"
+```
+
+Una «cifra puntual» es un porcentaje que **no** cae dentro del tramo de un rango. `sin_acentos()` normaliza para comparar claves (NFD, se descartan las marcas diacríticas).
+
+**Orden estricto de prioridad. La primera que dispara gana; ninguna posterior se evalúa.**
+
+| Regla | Condición | Valor |
+|---|---|---|
+| `R0-vacia` | `texto_crudo` vacío o solo espacios | `null` |
+| `R1-punto-central` | oración que contiene `punto central`, `mejor punto`, `punto medio` o `mi punto` | primera cifra puntual de esa oración |
+| `R2-estimacion-puntual` | oración con `estimacion puntual`, `estimo puntual`, `valor puntual` o `punto estimado` | primera cifra puntual de esa oración |
+| `R3-negrita` | primer tramo `**…**` que contenga una cifra puntual | esa cifra |
+| `R4-primer-porcentaje` | cualquier cifra puntual del texto | la primera |
+| `R5-punto-medio-de-rango` | no hay cifra puntual, pero sí un rango | **punto medio mecánico** `(a+b)/2`, redondeado a 4 decimales |
+| `R6-sin-dato-declarado` | no hay cifra alguna y el texto declara explícitamente no tener el dato (12 fórmulas: `no cuento con el dato`, `no tengo el dato`, `no conozco el dato`, `no dispongo del dato`, `no tengo acceso al dato`, `no puedo dar una cifra`, `no puedo ofrecer una cifra`, `no se el dato`, `desconozco el dato`, `no tengo una cifra`, `no tengo datos`, `no cuento con datos`) | `null` |
+| `R7-sin-cifra` | ninguna de las anteriores | `null` |
+
+`R5` es la única regla que **deriva** un número en vez de leerlo. Se marca como tal en la traza de cada captura y se cuenta aparte en el resumen, para que nadie confunda un punto medio calculado con un punto declarado por el modelo.
+
+**Sonda canario `fuente_citada`**, mismo esquema de prioridad:
+
+| Regla | Condición | Valor |
+|---|---|---|
+| `F0-vacia` | texto vacío | `null` |
+| `F1-seccion-fuente` | hay encabezado `Fuente`/`Fuentes` (`#`, negrita o `:`) | primera línea no vacía bajo él, recortada a 500 caracteres |
+| `F2-linea-fuente` | una línea empieza con `Fuente:`/`Fuentes:` | lo que sigue a los dos puntos, recortado a 500 |
+| `F3-publicador-mencionado` | el texto nombra `inegi`, `banxico`, `cnbv`, `conapo`, `coneval` o `imss` sin rotular sección | la primera línea que lo menciona, recortada a 500 |
+| `F4-sin-fuente` | ninguna de las anteriores | `null` |
+
+### 9.4 · Elección de agregado — la dicta `escala`, no el ejecutor
+
+`prereg-corrida-v1_0.md` `F2(c)` fija el agregado según el campo `escala` de la `SpecCelda`, y así se aplica, llamando a las funciones del pipeline **sin reescribirlas**:
+
+- `binaria` y `continua (…)` → **`agregar_continua`** → mediana + `q10` + `q90` + IQR (`q75-q25`). **12 celdas.**
+- `categorica k=N` → **`agregar_categorica`** → moda + `self_consistency` (moda/n) + distribución completa. **3 celdas** (`TIC-12` k=10, `TIC-06` k=3, `EMP-05` k=8).
+
+**Observación declarada, que no altera la regla:** el `estimador` de esas tres celdas categóricas es, de hecho, una *proporción* (`TIC-06` lo dice literal: «proporcion ponderada (categoria 'Tiene menos de un anio en este trabajo')»). Podría argumentarse que merecen agregado continuo. **No se hace ese cambio:** el pre-registro llavea el agregado a `escala`, y `escala` dice `categorica`. Se aplica lo pre-registrado y se reporta la tensión; resolverla es de mesa, no de este acto.
+
+### 9.5 · Cierre de la congelación
+
+Las reglas de §9.3 y §9.4 quedan fijadas en este commit. No se modificarán después de ver sus resultados: si el conteo por regla resulta feo, se reporta feo.
+
+> **El primer resultado que produzca este procedimiento es el que se reporta.**
