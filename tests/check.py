@@ -1327,6 +1327,16 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # patron ya vigente en pipeline-L-adv1-m2.py). No es un marcador nuevo
     # sin dueno, es la copia fiel de uno ya resuelto y otro ya adoptado.
     "forense/encargos/2026-08-26-PREREG-CORRIDA.md",
+    # forense/encargos/2026-08-26-E1-CIERRA-FP157.md y su nota -- encargo
+    # archivado verbatim (convencion de forense/encargos/, A.3), incluye la
+    # RANURA de firma de mesa (FIRMA M-FP157) tal como se lanzo. La firma que
+    # esa ranura pedia ya esta capturada: FP-157 en firmas-pendientes.tsv pasa
+    # a FIRMADA con el verbatim exacto y ADR-201 la sella (renumerado de
+    # ADR-200 al fusionar segundo -- ADR-200 lo tomo ACTO E2-PREP-L-RUN,
+    # PR #371) -- no es un marcador nuevo sin dueno. Mismo precedente que
+    # SELLA-A1-CODI/PREREG-CORRIDA -- ACTO CIERRA-FP157, 26/ago/2026.
+    "forense/encargos/2026-08-26-E1-CIERRA-FP157.md",
+    "forense/notas/2026-08-26-cierra-fp157-cierre.md",
     # forense/prereg-duelo-v2/lanzamiento-L-v1_0.md, su nota de cierre y su
     # encargo archivado (ACTO E2-PREP-L-RUN, 26/ago/2026) -- citan "RANURA
     # DE MESA" (el modelo del corredor L, ya precargado por el encargo y
@@ -2282,6 +2292,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # complacer a un test. Mismo movimiento y misma razon que ACT-PIL-2/
     # SELLA-AGO24-C-v2.
     "forense/encargos/2026-08-26-PREREG-CORRIDA.md",
+    # CIERRA-FP157, 26/ago/2026 (ADR-201, renumerado de ADR-200 al fusionar
+    # segundo -- ADR-200 lo tomo ACTO E2-PREP-L-RUN, PR #371): encargo
+    # archivado VERBATIM (convencion de forense/encargos/), y la nota de
+    # cierre que lo narra. Su `E1` pelado es el rotulo del propio acto
+    # (Encargo E1, dirección maestra-30), no un espacio de rotulos nuevo --
+    # ya censado en canon/registro-rotulos.tsv. El texto de direccion no se
+    # edita para complacer a un test.
+    "forense/encargos/2026-08-26-E1-CIERRA-FP157.md",
+    "forense/notas/2026-08-26-cierra-fp157-cierre.md",
     # E2-PREP-L-RUN, 26/ago/2026 (ADR-200): "E2" pelado es el nombre propio
     # del acto (ENCARGO E2 · PREP-L-RUN, tal como direccion lo lanzo), no
     # una cita al espacio ADV1-E2/ADV1-M2 de la escala del duelo -- el
