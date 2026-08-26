@@ -66,3 +66,11 @@ TOT/LATE (in_admin como instrumento) · BTreatment/línea base salvo declaració
 CONTADOR
 
 Llaves de identificación ejercidas 4→5 de 5 (salvo inejecutable, que se reporta como tal). Hito D: sin movimiento. Es una medición — la sesión cumple la regla de señal por sí sola.
+
+---
+
+## CONSUMIDO
+
+**CONSUMIDO** por `ACTO MAESTRA30-E3 · EJERCE-LLAVE-COMPARTAMOS`, 26/ago/2026, `ADR-200`, **PR #374**. Veredicto: `EXP-COMPARTAMOS-1` → `EJERCIDA_CORROBORA`, llaves de identificación `4` de `5` → `5` de `5`; el ITT queda `PROPUESTO` (la `RANURA DE MESA` llegó VACÍA), `milpa/procedencia.yaml` y el `[MEDIA](a)` intocados, fila `FP-164` `ABIERTA`. Ver `forense/resultado-exp-compartamos-v1_0.md` y `forense/notas/2026-08-26-ejerce-llave-compartamos-cierre.md`.
+
+*(Nota sobre el rótulo: este archivo conserva verbatim el texto de dirección, que lanzó el acto como «E3». `D-6`/`T25` exige que un rótulo nuevo no sea letra+número pelado —`E3` ya tiene dos habitantes censados—, así que el acto se declara `MAESTRA30-E3` en todos los archivos que escribe y se censa en `canon/registro-rotulos.tsv`; el texto de dirección no se edita para complacer a un test. Ver nota del acto §8.)*
