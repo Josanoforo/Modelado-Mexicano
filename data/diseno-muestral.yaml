@@ -1036,7 +1036,7 @@
     de datos no lo trae dentro. Receta manual (A.5, NO ejecutada aqui): bajar el FD de https://www.inegi.org.mx/programas/ensafi/2023/#microdatos
     (mismo patron de URL que enasic_2022_fd.xlsx y enfih_2019_fd.xlsx, ambos ya en el corpus), registrarlo
     y re-censar. Con el FD en mano esta fila deberia cerrar a MAPEADO en minutos. Ver FP-115. -- 26/ago/2026,
-    ACTO E4 DISENO-ENSAFI (PR #373, ADR-201): CIERRA a MAPEADO. El FD llego
+    ACTO E4 DISENO-ENSAFI (PR #373, ADR-202): CIERRA a MAPEADO. El FD llego
     el 25/ago/2026 (ACTO ENSAFI-DESCRIPTOR, ADR-198, PR #370: la API de INEGI declaraba formato ''_xlsx.zip''
     y no ''.xlsx'' -- la extension era el obstaculo, no la publicacion), de modo que la receta manual
     A.5 que este mismo parrafo describe arriba queda CADUCADA por ADR-198: no se ejecuta, no se re-descarga,

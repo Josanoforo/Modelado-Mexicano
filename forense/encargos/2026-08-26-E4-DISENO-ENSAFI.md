@@ -2,11 +2,11 @@
 
 ## CONSUMIDO
 
-**Estado: CONSUMIDO** — `ACTO DISEÑO-ENSAFI`, 26/ago/2026, `ADR-201`, rama `acto/e4-diseno-ensafi`, **`PR #373`**.
+**Estado: CONSUMIDO** — `ACTO DISEÑO-ENSAFI`, 26/ago/2026, `ADR-202`, rama `acto/e4-diseno-ensafi`, **`PR #373`**.
 
 Resultado: la fila `ENSAFI` de `data/diseno-muestral.yaml` cierra a **`MAPEADO`** (censo `MAPEADO` 22→23, `PENDIENTE` 24→23). El FD define las cinco variables bajo el encabezado literal `VARIABLES DE DISEÑO ESTADÍSTICO` en sus cuatro hojas, y produce él mismo tres reservas que quedan escritas en la fila con su cita. Suite `--baseline` **VERDE** (19 FAIL · 129 WARN, exit 0). Contador cero. Desviación de perímetro declarada (`canon/registro-rotulos.tsv` + `tests/check.py`, censo del rótulo `E4` por `T25`) — ver nota de cierre §4.
 
-Detalle completo: `forense/notas/2026-08-26-diseno-ensafi-cierre.md` y `canon/gobernanza-v1_15.md` `ADR-201`.
+Detalle completo: `forense/notas/2026-08-26-diseno-ensafi-cierre.md` y `canon/gobernanza-v1_15.md` `ADR-202`.
 
 ---
 

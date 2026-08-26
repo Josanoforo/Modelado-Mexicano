@@ -341,7 +341,7 @@ frente a `tests/baseline.json`: la de `T25` y dos de `T16` —que son **consecue
 la primera, no un defecto independiente: `T16` compara el conteo declarado en canon contra el real,
 y el `FAIL` de `T25` movía el real de 19 a 20. Censado el rótulo, las tres caen juntas.
 
-Cifra final y estado de la línea base: ver §6 y el bloque `Cascada` de `ADR-201`.
+**Cifra final, sobre el árbol fusionado con `PR #371` y `PR #372`: 19 FAIL · 128 WARN, LÍNEA BASE VERDE, exit 0.** El árbol de este acto en solitario daba **19 FAIL · 129 WARN**; el `−1` de WARN **no es de este acto** sino de `ADR-201` (`ACTO CIERRA-FP157`), que sacó `FP-157` de `ABIERTA` y ya recifró canon a 128 — `T16` da `[ok]`. **Este acto no mueve ni FAIL ni WARN.** Detalle de la doble colisión de numeración en el bloque `Cascada` de `ADR-202`.
 
 ---
 
