@@ -2575,6 +2575,20 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # acto), declarada en la nota de cierre.
     "forense/encargos/2026-08-26-E5-SELLA-FP164-OCTAVA.md",
     "forense/notas/2026-08-26-sella-fp164-cierre.md",
+    # ACTO E6 L-RUN, 26/ago/2026 (ADR-206): encargo archivado VERBATIM
+    # (A.3 + convencion de forense/encargos/) y su nota de cierre. El `E6`
+    # pelado es el nombre que direccion (maestra-30) le dio a este mismo
+    # encargo -- sexto de la serie --, no una fase E6 de ningun motor; queda
+    # censado en canon/registro-rotulos.tsv como HABITANTE adicional del
+    # espacio E, con su colision declarada contra E0/E2/E3-TRIAGE/E4a/E4b/
+    # E4c/E5/E-3/E1/E4/MAESTRA30-E1..E4 (referentes distintos, ninguno gana,
+    # mismo patron que M5). La nota entra por la misma razon que
+    # 2026-08-26-sella-fp164-cierre.md: narra el hallazgo de T25 y al
+    # narrarlo vuelve a escribir el token. El texto de direccion no se edita
+    # para complacer a un test. Extension minima de perimetro por desviacion
+    # mecanica (CI del propio acto), declarada en la nota de cierre.
+    "forense/encargos/2026-08-26-E6-L-RUN.md",
+    "forense/notas/2026-08-26-l-run-cierre.md",
 }
 
 
