@@ -58,4 +58,4 @@ Cero directo, declarado — habilita el marcador v1.1 (E9). Tablero 1→0 ABIERT
 
 ## CONSUMIDO
 
-PR pendiente de crear en esta misma sesión — ver `forense/notas/2026-08-26-e8-m-emite-cierre.md` para el detalle de ejecución y `canon/gobernanza-v1_15.md` `ADR-208` para el registro de gobernanza.
+[PR #380](https://github.com/Josanoforo/Modelado-Mexicano/pull/380) — ver `forense/notas/2026-08-26-e8-m-emite-cierre.md` para el detalle de ejecución y `canon/gobernanza-v1_15.md` `ADR-208` para el registro de gobernanza.
