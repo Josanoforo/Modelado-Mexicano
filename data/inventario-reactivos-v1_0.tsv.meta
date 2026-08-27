@@ -1,0 +1,44 @@
+ACTO MAESTRA31-E4 · ORDEN-SUPERIOR — metadato de universo de data/inventario-reactivos-v1_0.tsv
+
+Archivo hermano (no se mezcla como comentario en el TSV principal para no complicar el
+parseo de herramientas que asumen que la línea 1 es la cabecera real — decisión de
+COMMIT-2, spec en forense/notas/2026-08-26-orden-superior-spec.md).
+
+fecha_generacion: 2026-08-27
+commit_padre_al_generar: c615bfd98b5f3f96012a5f25f6fe05edafaee4f3 (COMMIT-1, spec congelada)
+rama: maestra31-e4-orden-superior
+
+universo:
+  denominador_payloads: 720
+  definicion: archivos regulares bajo data/raw (find -L data/raw -type f), excluyendo el
+    ciclo de symlink data/raw/raw (data/raw/raw -> /home/pc0/mm-corpus/raw, auto-referencia;
+    ver forense/notas/2026-08-26-orden-superior-cierre.md)
+  sha256_listado_universo: 4c966b8e7636eba39d06c86cadf779ab36b990fa5d3a3353f70ceaa86a0052c8
+    (sha256 de la lista de rutas relativas a data/raw, una por línea, orden de
+    Path.rglob("*") ordenado — reproducible corriendo
+    tools/inventario_reactivos.py::enumerar_universo())
+
+cobertura:
+  payloads_cubiertos: 704
+  payloads_no_cubiertos: 16
+  cobertura_pct: 97.78 (704/720)
+  filas_totales: 178246
+
+conteo_no_extraido_por_formato:
+  dta: 8   (Stata — inspect_one() no tiene rama de dispatch para .dta)
+  2a: 6    (extensión sin parser en inspect_one())
+  gz: 1    (extensión sin parser en inspect_one())
+  tab: 1   (extensión sin parser en inspect_one())
+  total_no_extraido: 16
+
+conteo_sin_campos_extraibles: 388
+  (payload SÍ se abrió con inspect_one() -- xls/html/json/pdf/xml, o zip/xlsx/csv sin
+  columnas detectables -- pero no produjo ninguna fila de variable_id; NO cuenta como
+  NO-EXTRAIDO porque el extractor sí corrió y sí produjo estructura, solo que sin campos)
+
+conteo_ok: 316
+  (payload produjo ≥1 fila de variable_id)
+
+falsador (declarado en COMMIT-1, forense/notas/2026-08-26-orden-superior-spec.md):
+  umbral_abandono: cobertura <50% de payloads O <258 filas totales
+  resultado: NO SE DISPARÓ -- cobertura 97.78% (>> 50%), filas 178,246 (>> 258)
