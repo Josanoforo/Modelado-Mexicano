@@ -55,3 +55,7 @@ NO TOCA: el TSV del cruce ni su nota (los lees, no los editas), milpa/**, forens
 PROHIBIDO: decidir si el falsador se satisface/dispara/re-especifica, promover cualquier fila a acto medidor, editar el TSV del cruce o su nota, lanzar el acto sucesor, usar red/API/descargar payload nuevo, adjudicar casilla/letra/tier, derivar cifra del espejo, escribir "no existe"/"no hay fuente" sin comando y universo al lado.
 
 CONTADOR: 8 veredictos A.4 con universo declarado, derivados de payload ABIERTO (no de lectura de documento sobre el payload). Si el corpus no está montado, el acto PARA en el punto 4 del arranque, contador = 0 con la razón escrita.
+
+## CONSUMIDO
+
+PR #382 — `ACTO MAESTRA31-E1 · RELOJ-CRUCE`, 26/ago/2026.
