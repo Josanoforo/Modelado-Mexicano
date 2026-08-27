@@ -103,6 +103,15 @@ es *skill* **contra `B`**: `skill(error_corredor, error_baseline)`. Sin
 que habla de B. `D-i` ya mandaba no adjudicar; aquí además **no habría
 con qué**.
 
+### Los agregados `L↔R` y `M↔R` — uno existe, el otro no
+
+El encargo pide ambos. `L↔R` es la §3 completa (9 de 15 celdas, dif y
+banda TOST celda por celda, más los agregados de esa sección). `M↔R`
+**no existe como agregado**: con `M` en 0 puntos sobre las 15 (§2), no hay
+una sola celda con valor `M` que comparar contra su árbitro — `n = 0`,
+igual que la comparación `L↔M` de abajo. No se reporta como fila vacía
+ni como "0.00 ± —": esas cifras fabricarían un universo que no existe.
+
 ### La comparación `L↔M` — no ocurre en este documento
 
 El paso 5 del encargo la condiciona a que `M` tenga **≥1 punto, con su

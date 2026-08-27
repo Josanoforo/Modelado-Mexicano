@@ -88,7 +88,32 @@ hueco de la banda TOST antes de que mesa la firmara) — aquí el hueco es
 `nivel_ic`/`seed` del mismo script, nunca antes trackeado porque ningún
 acto anterior llegó a esta capa de validación.
 
-## 7 · Qué NO se hizo (perímetro)
+## 7 · Declaración de perímetro — tres archivos fuera de la lista literal
+
+El perímetro del encargo lista `corridas-M/**`, `marcador-piloto-v1_1.md`
++ cabecera de v1_0, nota, encargo, gobernanza, estado y tablero (si
+`A.12`). Tres archivos de este cierre no están en esa lista literal:
+
+- `forense/hallazgos.md` — convención estándar del patrón de dos commits
+  ya establecido en el proyecto (una línea por hallazgo de cierre),
+  aplicada aquí igual que en todo acto anterior de esta serie.
+- `canon/registro-rotulos.tsv` — censo del rótulo `E9` (D-6/`ADR-128`),
+  exigido por `tests/check.py` T25 para que la suite pase; mismo
+  movimiento que `E3`/`E4`/`E5`/`E6`/`E7`/`E10` en sus propios cierres.
+- `tests/check.py` (`_T25_ARCHIVOS_CONOCIDOS`) — una entrada nueva en una
+  lista de excepciones ya existente, mismo mecanismo, sin tocar lógica de
+  ningún test. `PROHIBIDO` del encargo dice "editar cualquier script";
+  se lee aquí como los scripts del propio duelo (`emisor.py`,
+  `scoring-adv1-m3.py`, `pipeline-L`, `corredor-B/E`) — la familia que
+  el resto de la lista de `PROHIBIDO` nombra (casilla/letra/tier,
+  delta/margen, R/B, red/API) —, no como infraestructura de pruebas del
+  proyecto. Sin este cambio, el propio paso 6 del encargo (`check.py
+  --baseline VERDE`) habría sido imposible de cumplir honestamente ante
+  una colisión real de `T25` (`E9` resultó tener un segundo habitante
+  genuino, `ICH E9(R1)`, no solo una colisión mecánica). Declarado aquí
+  para que mesa lo revise, no escondido en el diff.
+
+## 8 · Qué NO se hizo (perímetro)
 
 No se editó `emisor.py`, `scoring-adv1-m3.py`, el crosswalk ni el enlace.
 No se recalculó `R` ni `B`. No se llamó red ni API. No se adjudicó
@@ -96,7 +121,7 @@ casilla, letra ni tier. No se inventó `delta` (más allá de la regla ya
 firmada), `nivel_ic` ni `seed`. No se convirtió "0 de 15" en veredicto.
 Hito D: sin movimiento (por diseño del acto).
 
-## 8 · Suite
+## 9 · Suite
 
 `python3 tests/check.py --baseline` — resultado en el cuerpo del PR (se
 corre después de esta nota, antes de abrir PR).
