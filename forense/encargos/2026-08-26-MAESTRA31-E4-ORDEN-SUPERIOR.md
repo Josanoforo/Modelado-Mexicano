@@ -97,3 +97,9 @@ NO TOQUES bajo ninguna circunstancia: tools/curador_registro/** (se invoca vía 
 PROHIBIDO: escribir un extractor nuevo · editar tools/curador_registro/** · emparejar contra el motor o contra cualquier demanda/tabla de variables existente · añadir columna necesidad o cualquier filtro de demanda a la tabla nueva · descargar cualquier cosa · red o API · adjudicar casilla/letra/tier (D-i vigente) · derivar cifra del espejo · escribir "no existe" sin comando y universo al lado · iterar tras un resultado bajo del falsador.
 
 ═══ FIN DEL ENCARGO ═══
+
+---
+
+## CONSUMIDO
+
+PR #385 -- `ACTO MAESTRA31-E4 · ORDEN-SUPERIOR`, 27/ago/2026. `data/inventario-reactivos-v1_0.tsv` producido (178,246 filas, 704/720 payloads, 97.78% cobertura); falsador de COMMIT-1 NO se disparó; `ADR-213`; `FP-171` abierta ante mesa; `python3 tests/check.py --baseline` VERDE.
