@@ -2312,6 +2312,21 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # y E6, tres entradas de esta misma lista.
     "forense/encargos/2026-08-26-E7-R-SCORING.md",
     "forense/notas/2026-08-26-r-scoring-cierre.md",
+    # ACTO MAESTRA30-E9 · SCORING-V2, 26/ago/2026 (ADR-209): encargo
+    # archivado VERBATIM (A.3) y su nota de cierre, mas dos documentos
+    # propios (procedimiento congelado y marcador v1.1) que citan "E7" en
+    # prosa al comparar el nuevo blindaje contra el de E7/v1.0. "E9" pelado
+    # resulto tener DOS habitantes reales al censarlo (ver
+    # canon/registro-rotulos.tsv): ICH E9(R1), guia regulatoria ya citada en
+    # forense/red_team_A_auditoria.md y forense/auditoria_adversarial_
+    # benchmarks.md, y este acto. D-6 aplicado donde se puede aplicar: el
+    # acto se declara ACTO MAESTRA30-E9 en todo archivo que escribe; el
+    # encargo NO se edita, porque A.3 pide el texto de direccion verbatim.
+    # Mismo movimiento y misma razon que E3, E4, E5, E6, E7 y E10.
+    "forense/encargos/2026-08-26-E9-SCORING-V2.md",
+    "forense/notas/2026-08-26-e9-scoring-v2-cierre.md",
+    "forense/prereg-duelo-v2/procedimiento-scoring-v1_0.md",
+    "forense/prereg-duelo-v2/marcador-piloto-v1_1.md",
     # SELLA-AGO25-F (continuación), 25/ago/2026 (ADR-166): la nota cita
     # verbatim, entre comillas, la firma ya sellada de FP-46/ADR-109 ("la
     # condicion literal de ADR-93 sobre material E2") -- el "E2" pelado es

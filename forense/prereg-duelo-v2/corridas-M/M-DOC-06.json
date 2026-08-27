@@ -1,0 +1,11 @@
+{
+ "determinismo": "trivial: la clasificacion sale de construir_crosswalk(), pura y determinista sobre procedencia.yaml/tramite.yaml/marco-congelado-piloto-v1_0.tsv; dos corridas frescas de este acto produjeron salida identica",
+ "encuesta": "BMV / HR Ratings, Financiera Independencia (desenlace documentado no-encuesta) -- OLA RETENIDA",
+ "estado_M": "NO-EMITE",
+ "evidencia_pasada_1": "sin hit pasada-1 en crosswalk v1_1 (variable+encuesta no coinciden en procedencia.yaml/tramite.yaml)",
+ "fuente": "forense/prereg-duelo-v2/enlace-M-v1_0.md (ACTO MAESTRA30-E8, ADR-208), fila de la tabla de resultado",
+ "id_celda": "DOC-06",
+ "invocacion_emisor": "NO_APLICA -- emisor.emitir_binaria(regla, conducta) exige un objeto Regla real; ninguna de las 15 sorteadas alcanza CANDIDATO-EMITE en pasada 1, asi que ninguna tiene (regla, conducta) que citar",
+ "reverificado_en_este_acto": "construir_crosswalk() re-ejecutado en vivo (ACTO MAESTRA30-E9), dos corridas frescas, salida identica entre si y con crosswalk-pregunta-regla-v1_1.tsv ya comprometido (unico diff: preambulo de comentario documental, no datos)",
+ "variable": "IMOR ajustado de la cartera total"
+}

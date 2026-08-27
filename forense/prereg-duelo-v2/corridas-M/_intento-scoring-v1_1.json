@@ -1,0 +1,126 @@
+{
+ "acto": "ACTO MAESTRA30-E9 · SCORING-V2",
+ "script_invocador": "forense/prereg-duelo-v2/corridas-M/intento_scoring_e9.py -- re-ejecutado desde el repo tras comprometerse, misma salida verbatim",
+ "codigo_verbatim": "CONFIGURACION_INVALIDA",
+ "diferencia_con_el_intento_de_E7": "E7 fallo un nivel antes (CONFIGURACION_INVALIDA: corredores insuficientes, 1 de 4 exigidos). E8 relajo ese contrato (F1) y esta corrida SI supera esa capa -- falla en la siguiente, mas profunda: los tres parametros del bootstrap que el pre-registro nunca fijo. Progreso real, blindado documentado, no adjudicado.",
+ "documento_de_entrada": {
+  "celdas": [
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "CIV-08",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "DIN-03",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "DIN-05",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "DIN-07",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "DIN-11",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "DOC-06",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "EMP-02",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "EMP-04",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "EMP-05",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "SFT-04",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "SFT-06",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "TIC-01",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "TIC-06",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "TIC-08",
+    "mediciones": {}
+   },
+   {
+    "estado": "EVALUABLE",
+    "id_celda": "TIC-12",
+    "mediciones": {}
+   }
+  ],
+  "configuracion": {
+   "comparacion_principal_id": "L_SOLO_vs_M",
+   "comparaciones_l_m": [
+    {
+     "id": "L_SOLO_vs_M",
+     "l_id": "L_SOLO",
+     "m_id": "M"
+    }
+   ],
+   "corredores_activos": [
+    {
+     "familia": "L",
+     "id": "L_SOLO",
+     "variante": "solo"
+    },
+    {
+     "familia": "M",
+     "id": "M",
+     "variante": "principal"
+    }
+   ],
+   "e_id": null
+  }
+ },
+ "hallazgo_estructural_adicional_no_solo_estos_tres": {
+  "cita_codigo": "scoring-adv1-m3.py:1044-1048 (raise ErrorScoring('SIN_CELDAS_PAREADAS', ...) si paquete_principal['n_celdas'] == 0)",
+  "consecuencia": "no verificado empiricamente con un segundo intento de valores inventados -- se declara por lectura del codigo, no se contamina el intento con un delta/nivel_ic/seed fabricado solo para ver el siguiente error",
+  "descripcion": "aun si delta/nivel_ic/seed existieran, el universo pareado de la comparacion principal (L_SOLO_vs_M) tendria n_celdas=0: M emite 0 de 15 puntos (enlace-M-v1_0.md, re-verificado en vivo por este acto) y L_SOLO no tiene 'skill' poblable de forma honesta porque esa cantidad es normalizada contra un baseline B (skill = 1 - error/error_baseline) y B es SIN_BASELINE en las 15 celdas (corridas-R/_corredor-B.json) -- cargar valores brutos de L-solo en el campo generico 'skill' promediaria porcentajes de variables distintas sin sentido estadistico",
+  "metricas_no_emitidas": "interval_score y crps_normal_aprox estan definidas en el modulo pero ejecutar_scoring() nunca las invoca en su cuerpo (verificado leyendo la funcion completa, lineas 1029-1125) -- no hay salida de estas dos metricas que reportar, ni agregada ni por celda"
+ },
+ "invocacion": "ejecutar_scoring(documento) con corredores_activos=[L_SOLO, M] -- el minimo que el contrato F1 exige -- y delta/nivel_ic/seed OMITIDOS a proposito (ningun valor citable en el pre-registro, ver procedimiento-scoring-v1_0.md S3)",
+ "lo_que_si_se_reporta": "las comparaciones marginales L-solo contra R se computan en el marcador con aritmetica declarada (diferencia y banda TOST = 0.5*EE(R) de cada celda, prereg-corrida-v1_0.md F3), sin invocar la maquinaria de agregacion que este error bloquea. PILOTO SIN VEREDICTO (D-i) ya mandaba no adjudicar.",
+ "mensaje_verbatim": "faltan parámetros obligatorios: delta, nivel_ic, seed",
+ "por_que_faltan_los_tres": {
+  "delta": "el pre-registro fija una REGLA por celda (0.5*EE(R) de esa celda, FP-163 FIRMADA/ADR-199), no un escalar unico de corrida; Configuracion.delta exige exactamente un float y adjudicar_secuencia lo aplica a un universo AGREGADO entre celdas -- no hay una celda o combinacion que el pre-registro haya designado para representar a las demas",
+  "nivel_ic": "busqueda exhaustiva (grep -rln en .md/.json/.py/.tsv de todo el arbol, sin .git/): 0 citas fuera de la definicion del script y de fixtures sinteticos de tests/test_scoring_adv1_m3.py",
+  "seed": "misma busqueda, mismo resultado: 0 citas fuera del script y fixtures de prueba"
+ },
+ "que_es": "Registro del intento REAL de correr ejecutar_scoring(documento) con lo que el piloto tiene tras la enmienda F1 de E8. No es una explicacion de por que no se corrio: es la salida del script.",
+ "resultado": "ErrorScoring",
+ "script": "forense/prereg-duelo-v2/scoring-adv1-m3.py",
+ "sha256_script": "63418cc8cfdb03ba5d851d01f1bba23e2f21dbac5cfbed2d88c2832cba13a8cf"
+}

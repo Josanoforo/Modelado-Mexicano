@@ -1,5 +1,7 @@
 # MARCADOR DEL PILOTO v1.0 — el primer marcador del programa
 
+> **SUPERADO por `marcador-piloto-v1_1.md`** (`ACTO MAESTRA30-E9 · SCORING-V2`, 26/ago/2026, `ADR-209`). Este documento queda intacto, sin editar, como registro histórico del primer intento; v1.1 corrige la reserva `FP-163` (aquí citada como `ABIERTA`; FIRMADA desde `ADR-199`) y re-deriva `M` bajo el crosswalk corregido de `ADR-208` (el mismo cero, ya no por el defecto de subcadena que este documento cita como causa).
+
 > **PILOTO SIN VEREDICTO (D-i) — este documento puntúa; no adjudica ADV1-M5, no mueve tier alguno, no abre fila de tablero.**
 
 **ACTO MAESTRA30-E7 · R-SCORING**, 26/ago/2026. Duelo `ADV1-M2`, 15 celdas sorteadas del marco congelado. `main` en `3bc28b1`.
