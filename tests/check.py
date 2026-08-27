@@ -2320,6 +2320,28 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # desviacion mecanica, mismo precedente que ADR-147(c)/ADR-149(f)/
     # ADR-151/sella-e.md/sella-f.md.
     "forense/notas/2026-08-26-registra-pendientes-cierre.md",
+    # ACTO MAESTRA31-E3 · PERIMETRO-ALCANZABLE, 26/ago/2026 (ADR-212,
+    # renumerado desde ADR-211 al resolver PR #384 contra PR #383/
+    # ACTO MAESTRA31-E2, que fusiono primero y se quedo con ADR-211):
+    # encargo archivado VERBATIM (A.3) y su nota de cierre. Direccion lo
+    # lanzo rotulado "ENCARGO E3", y "E3" pelado colisiona con el
+    # habitante previo E3-TRIAGE y con los demas habitantes ya censados
+    # del espacio E. D-6 aplicado donde se puede aplicar: el acto se
+    # declara ACTO MAESTRA31-E3 en todo archivo que escribe y queda
+    # censado en canon/registro-rotulos.tsv; el encargo NO se edita,
+    # porque A.3 pide el texto de direccion verbatim, y la nota de
+    # cierre menciona el rotulo "E3" al narrar el propio hallazgo de T25
+    # sobre el encargo (misma situacion que ya cubren otras notas de
+    # esta lista: la mencion de un rotulo dentro de un documento que
+    # narra el hallazgo no es su uso, pero el regex no distingue, asi
+    # que se censa aqui en vez de editar la narracion). El entregable
+    # propio del acto, forense/perimetro-alcanzable-v1_0.md, NO necesita
+    # esta lista (no trae ningun rotulo pelado, verificado por comando
+    # antes de cerrar). Mismo movimiento y misma razon que E4, E5, E6,
+    # E7, MAESTRA30-E10 y MAESTRA31-E1/E2, siete entradas de esta misma
+    # lista.
+    "forense/encargos/2026-08-26-MAESTRA31-E3-PERIMETRO-ALCANZABLE.md",
+    "forense/notas/2026-08-26-perimetro-alcanzable-cierre.md",
     # ACTO MAESTRA31-E1 · RELOJ-CRUCE, 26/ago/2026 (ADR-210): encargo
     # archivado VERBATIM (A.3). Direccion lo lanzo rotulado "ENCARGO E1",
     # y "E1" pelado colisiona con los habitantes ya censados del espacio E.

@@ -352,3 +352,15 @@ El shortlist se calculó después de crear `cobertura-completa.ok` y contiene qu
 - Archivos entregados: `data/curacion-registro/cruce-oferta-demanda-v0_1.tsv` y esta nota.
 
 El TSV conserva quince columnas; la cobertura detallada vive aquí y el resumen compacto se repite en todas las filas de cada demanda. El artefacto no modifica el motor ni adjudica veredictos de Hito D: hace explícito qué oferta podría mover qué parámetro y dónde la oferta actual queda corta.
+
+---
+
+## ENMIENDA FECHADA — 26/ago/2026, ACTO MAESTRA31-E3 · PERIMETRO-ALCANZABLE
+
+*(Añadida sin alterar el texto original de arriba — A.3/A.10.)*
+
+Este acto adjudicó C2 (`forense/perimetro-alcanzable-v1_0.md` §2): la comparación entre `data/coef-universo-v1_0.tsv` (27/58 `EXISTE-SATISFACE`) y este mismo TSV (`cruce-oferta-demanda-v0_1.tsv`, 0/49, incluido el subconjunto `tipo=ASIGNADO_coef`, 0/15, que corresponde exactamente a los 15 coeficientes de generador) resultó en **DOMINIOS DISJUNTOS**: las dos tablas usan el mismo vocabulario `A.4` sobre el mismo identificador de coeficiente, pero preguntan cosas distintas — `coef-universo` pregunta por existencia de un reactivo/instrumento co-observado (techo `RUTA-A`, asociación); este TSV, en su fila `que_le_falta` de cada demanda `ASIGNADO_coef` (verbatim: "magnitud empírica y escala compatible del coeficiente..."), pregunta por la magnitud en la escala del coeficiente del generador — una elasticidad que el corpus transversal, por diseño, no produce (diagnóstico ya escrito de forma independiente en `milpa/procedencia.yaml:838`).
+
+Consecuencia declarada para `FP-169`/RANURA M-RELOJ: bajo la lectura más defendible de la condición fijada por dirección ("se reabre \[el Instrumento] si y solo si la adjudicación de C2 confirma que el cero es real (no artefacto de dominio disjunto)"), el hallazgo DOMINIOS DISJUNTOS de este acto significa que la condición de reapertura **no se satisface** — el cero de este TSV es explicable por comparar contra un criterio más estricto que `coef-universo`, no por un error de cómputo, pero es, por la letra literal del paréntesis, un caso de dominio disjunto. Se declara también la lectura alternativa del texto (que "real" pudiera significar "sustantivamente fundado", en cuyo caso SÍ reabriría, dado que la razón estructural del cero está documentada e independiente) para que mesa la resuelva si la lectura de este acto no es la que dirección quiso decir.
+
+Esta enmienda no altera el falsador del 8/sep, ni el conteo A.13 ya derivado por `ACTO MAESTRA31-E1 · RELOJ-CRUCE` (`ADR-210`), ni ninguna fila del TSV. Detalle completo: `forense/perimetro-alcanzable-v1_0.md` §2 C2 y `forense/firmas-pendientes.tsv` fila `FP-169`.
