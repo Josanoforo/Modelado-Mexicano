@@ -2702,6 +2702,26 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-26-E8-M-EMITE-Y-RESELLO.md",
     "forense/notas/2026-08-26-e8-m-emite-cierre.md",
     "forense/prereg-duelo-v2/enlace-M-v1_0.md",
+    # ACTO MAESTRA31-E4 · ORDEN-SUPERIOR, 27/ago/2026 (ADR-213): encargo
+    # archivado VERBATIM (A.3), su spec de COMMIT-1 y su nota de cierre.
+    # Direccion lo lanzo rotulado "ENCARGO E4", y "E4" pelado colisiona con
+    # los habitantes ya censados E4a/E4b/E4c y con el habitante previo E4
+    # (ACTO DISENO-ENSAFI, maestra-30, forense/encargos/2026-08-26-E4-
+    # DISENO-ENSAFI.md) -- cinco referentes reales distintos, ninguno gana,
+    # mismo patron que M5. La spec de COMMIT-1 menciona de paso "el
+    # emparejador de E5" (el acto sucesor que emparejaria este inventario
+    # contra el motor, fuera del perimetro de este acto) -- "E5" pelado
+    # colisiona con los habitantes ya censados del espacio E. La nota de
+    # cierre cita textualmente la lista de siete actos del encargo de
+    # direccion ("E1, R34-ENSAFI-CENSA, ...") -- "E1" pelado es la mencion
+    # de un habitante ya censado (ACTO MAESTRA31-E1), no un marcador nuevo.
+    # D-6 aplicado donde se puede aplicar: el acto se declara ACTO
+    # MAESTRA31-E4 en todo archivo que escribe y queda censado en
+    # canon/registro-rotulos.tsv; el texto de direccion no se edita para
+    # complacer a un test.
+    "forense/encargos/2026-08-26-MAESTRA31-E4-ORDEN-SUPERIOR.md",
+    "forense/notas/2026-08-26-orden-superior-spec.md",
+    "forense/notas/2026-08-26-orden-superior-cierre.md",
 }
 
 
