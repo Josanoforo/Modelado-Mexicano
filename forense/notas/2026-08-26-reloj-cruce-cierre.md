@@ -1,6 +1,6 @@
 # ACTO MAESTRA31-E1 · RELOJ-CRUCE — cierre
 
-Dirección (maestra-31), 26/ago/2026. Ejecutor: worktree propio `/home/pc0/mm-e1-reloj-cruce`, rama `acto/e1-reloj-cruce`, base `origin/main` = `44cd841` (el clon `/home/pc0/Modelado-Mexicano` estaba parado en `acto/cal-g3-puntual`, no en `main` — mismo patrón que E9/ADR-209).
+Dirección (maestra-31), 26/ago/2026. Ejecutor: worktree propio `/home/pc0/mm-e1-reloj-cruce`, rama `acto/e1-reloj-cruce`, base `origin/main` = `44cd841` (el clon `/home/pc0/Modelado-Mexicano` estaba parado en `acto/cal-g3-puntual`, no en `main` — mismo patrón que ACTO MAESTRA30-E9/ADR-209).
 
 ## Arranque
 
@@ -147,11 +147,11 @@ Universo declarado global: worktree `/home/pc0/mm-e1-reloj-cruce`, `origin/main`
 
 ## FP-169
 
-Fila agregada a `forense/firmas-pendientes.tsv` (SOLO esa fila; `E2` en paralelo usa `FP-170+`).
+Fila agregada a `forense/firmas-pendientes.tsv` (SOLO esa fila; el segundo encargo de la serie en paralelo usa `FP-170+`).
 
 ## ADR
 
-Máximo derivado con: `grep -oE "^\*\*ADR-[0-9]+" canon/gobernanza-v1_15.md | grep -oE "[0-9]+" | sort -n | tail -1` → `209`. Candidateado: **ADR-210**. Nota para quien fusione segundo: si otro acto en paralelo (p. ej. `E2`) también candidatea `ADR-210`, renumerar el que fusione después.
+Máximo derivado con: `grep -oE "^\*\*ADR-[0-9]+" canon/gobernanza-v1_15.md | grep -oE "[0-9]+" | sort -n | tail -1` → `209`. Candidateado: **ADR-210**. Nota para quien fusione segundo: si otro acto en paralelo (p. ej. el segundo encargo de la serie) también candidatea `ADR-210`, renumerar el que fusione después.
 
 ## RANURA M-RELOJ
 
