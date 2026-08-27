@@ -2722,6 +2722,24 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-26-MAESTRA31-E4-ORDEN-SUPERIOR.md",
     "forense/notas/2026-08-26-orden-superior-spec.md",
     "forense/notas/2026-08-26-orden-superior-cierre.md",
+    # ACTO MAESTRA31-E5 · CRUCE-INVERSO, 27/ago/2026 (ADR-214): encargo
+    # archivado VERBATIM (A.3), su spec de COMMIT-1 y su nota de cierre.
+    # Direccion lo lanzo rotulado "ENCARGO E5", titulo que el propio
+    # encargo abre con "E5" pelado ("ENCARGO E5 · CRUCE-INVERSO..."),
+    # colisionando con los habitantes ya censados del espacio E -- se
+    # censa, no se reclama, tal como el propio encargo instruye ("Token
+    # pelado E5 colisiona; se censa, no se reclama"). La spec y la nota de
+    # cierre citan `E1` al listar el residual de falsos positivos de forma
+    # de la propia regex (el token literal `E1` que aparece en
+    # `milpa/procedencia.yaml:996`, metadata interna del archivo, no un
+    # marcador de acto) -- mismo patron que las notas de E2/E4 arriba. D-6
+    # aplicado donde se puede aplicar: el acto se declara ACTO MAESTRA31-E5
+    # en todo archivo que escribe y queda censado en
+    # canon/registro-rotulos.tsv; el texto de direccion no se edita para
+    # complacer a un test.
+    "forense/encargos/2026-08-27-MAESTRA31-E5-CRUCE-INVERSO.md",
+    "forense/notas/2026-08-27-cruce-inverso-spec.md",
+    "forense/notas/2026-08-27-cruce-inverso-cierre.md",
 }
 
 
