@@ -126,4 +126,4 @@ Instrucciones: proyecto (v2.11) — Gobernanza: `canon/gobernanza-v1_15.md` (ADR
 **Cierre de maestra-30.** Jornada de diez actos fusionados sin un rojo final: el programa llamó a un mode[TEXTO TRUNCADO EN LA TRANSCRIPCIÓN ORIGINAL — corte de contexto, no un artefacto del repo. NO commiteado como archivo separado por orden de dirección tras hallazgo; ver nota de cierre de este acto.]
 ```
 
-## CONSUMIDO — PR #<pendiente de asignar en el momento de fusión>, ver `forense/notas/2026-08-26-registra-pendientes-cierre.md`
+## CONSUMIDO — PR #383, ver `forense/notas/2026-08-26-registra-pendientes-cierre.md`

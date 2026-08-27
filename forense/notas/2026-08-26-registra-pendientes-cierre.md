@@ -85,4 +85,4 @@ Sin `--freeze`.
 
 No commiteó el transfer maestra-30→maestra-31 (ni completo ni truncado) como archivo separado. No adjudicó ninguno de los siete pendientes. No abrió fila de tablero (`FP-170` no se usó). No convocó ni rozó `R10.3`. No hizo barrido del resto del índice de infraestructura. No tocó `FP-165`, `FP-166` ni `FP-169`. No usó red, API ni microdato. No derivó cifra alguna del espejo. Hito D, tiers y llaves: sin movimiento.
 
-**PR:** pendiente de apertura — se cita en `## CONSUMIDO` del encargo al fusionar.
+**PR:** [#383](https://github.com/Josanoforo/Modelado-Mexicano/pull/383), rama `claude/registra-pendientes-heredados-8hmoba` — citado en `## CONSUMIDO` del encargo.
