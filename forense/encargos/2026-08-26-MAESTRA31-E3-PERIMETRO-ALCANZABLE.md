@@ -87,3 +87,7 @@ PROHIBIDO: editar cualquiera de los seis censos para que cuadren entre sí (la c
 
 CONTADOR: N de 30 con estampa de universo, más tres adjudicaciones de contradicción. Hito D, tiers y llaves: sin movimiento por diseño. Si las tres contradicciones son dominios disjuntos y la cifra no se puede construir sin séptimo censo, ESE hallazgo es el contador — no inventes una cifra.
 ---
+
+## CONSUMIDO
+
+PR #384 -- `ACTO MAESTRA31-E3 · PERIMETRO-ALCANZABLE`, 26/ago/2026.
