@@ -2312,6 +2312,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # movimiento y misma razon que MAESTRA31-E1, E4, E5, E6, E7 y
     # MAESTRA30-E10, seis entradas de esta misma lista.
     "forense/encargos/2026-08-26-MAESTRA31-E2-REGISTRA-PENDIENTES.md",
+    # forense/notas/2026-08-26-registra-pendientes-cierre.md -- nota de
+    # cierre de ACTO MAESTRA31-E2 que discute tres rotulos bare (E1, E9,
+    # E2) al citar habitantes ya censados del espacio E (MAESTRA31-E1,
+    # el habitante E9=ACTO MAESTRA30-E9, y el habitante E2=FP-65) --
+    # ninguno es un marcador nuevo. Extension minima de perimetro por
+    # desviacion mecanica, mismo precedente que ADR-147(c)/ADR-149(f)/
+    # ADR-151/sella-e.md/sella-f.md.
+    "forense/notas/2026-08-26-registra-pendientes-cierre.md",
     # ACTO MAESTRA31-E1 · RELOJ-CRUCE, 26/ago/2026 (ADR-210): encargo
     # archivado VERBATIM (A.3). Direccion lo lanzo rotulado "ENCARGO E1",
     # y "E1" pelado colisiona con los habitantes ya censados del espacio E.
