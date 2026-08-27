@@ -1288,6 +1288,18 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # forense/encargos/2026-08-26-MAESTRA31-E2-REGISTRA-PENDIENTES.md --
+    # encargo verbatim (A.3) que pide abrir fila de tablero para siete
+    # pendientes heredados de mesa (P1-P7). Verificado por el propio acto
+    # que lo ejecuto: los siete ya estaban resueltos o vigentes en el
+    # arbol (P1=PR #381, P2=FP-166 FIRMADA, P3=FP-169 en paralelo, P4 ya
+    # citado en hitoD-preregistro-v2_0.md, P5 verbatim en FP-165 FIRMADA,
+    # P6/P7 politica y regla vigentes) -- dirección, consultada con el
+    # hallazgo, ordenó no abrir ninguna fila (ver ADR-211 y
+    # forense/notas/2026-08-26-registra-pendientes-cierre.md). El
+    # marcador que T22 detecta es del encargo pedido, no de una decisión
+    # de mesa nueva sin registrar.
+    "forense/encargos/2026-08-26-MAESTRA31-E2-REGISTRA-PENDIENTES.md",
     # forense/notas/2026-08-25-sella-e.md -- discute cinco letras de mesa
     # (L1-L5) y FP-24, todas ya rastreadas en firmas-pendientes.tsv
     # (FP-127..FP-130, FP-63, FP-24) o explícitamente reportadas como sin
@@ -2290,6 +2302,24 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA31-E2 · REGISTRA-PENDIENTES, 26/ago/2026: encargo
+    # archivado VERBATIM (A.3). Direccion lo lanzo rotulado "ENCARGO E2",
+    # y "E2" pelado colisiona con el habitante ya censado del espacio E
+    # (pipeline de barrido semantico, FP-65). D-6 aplicado donde se puede
+    # aplicar: el acto se declara ACTO MAESTRA31-E2 en todo archivo que
+    # escribe y queda censado en canon/registro-rotulos.tsv; el encargo
+    # NO se edita, porque A.3 pide el texto de direccion verbatim. Mismo
+    # movimiento y misma razon que MAESTRA31-E1, E4, E5, E6, E7 y
+    # MAESTRA30-E10, seis entradas de esta misma lista.
+    "forense/encargos/2026-08-26-MAESTRA31-E2-REGISTRA-PENDIENTES.md",
+    # forense/notas/2026-08-26-registra-pendientes-cierre.md -- nota de
+    # cierre de ACTO MAESTRA31-E2 que discute tres rotulos bare (E1, E9,
+    # E2) al citar habitantes ya censados del espacio E (MAESTRA31-E1,
+    # el habitante E9=ACTO MAESTRA30-E9, y el habitante E2=FP-65) --
+    # ninguno es un marcador nuevo. Extension minima de perimetro por
+    # desviacion mecanica, mismo precedente que ADR-147(c)/ADR-149(f)/
+    # ADR-151/sella-e.md/sella-f.md.
+    "forense/notas/2026-08-26-registra-pendientes-cierre.md",
     # ACTO MAESTRA31-E1 · RELOJ-CRUCE, 26/ago/2026 (ADR-210): encargo
     # archivado VERBATIM (A.3). Direccion lo lanzo rotulado "ENCARGO E1",
     # y "E1" pelado colisiona con los habitantes ya censados del espacio E.
