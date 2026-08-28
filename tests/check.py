@@ -2776,6 +2776,26 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-27-MAESTRA31-E7-ETIQUETA.md",
     "forense/notas/2026-08-27-etiqueta-regla.md",
     "forense/notas/2026-08-27-etiqueta-cierre.md",
+    # ACTO MAESTRA31-E8 · LOS-388, 27/ago/2026: encargo archivado VERBATIM
+    # (A.3), su spec de COMMIT-1 y su nota de cierre. Direccion lo lanzo
+    # rotulado "ENCARGO E8", titulo que el propio encargo abre con "E8"
+    # pelado ("ENCARGO E8 · LOS 388...") y que menciona de nuevo al declarar
+    # "Rotulo: ACTO MAESTRA31-E8 (D-6). Token pelado E8 colisiona; se censa,
+    # no se reclama" -- colisiona con el habitante ya censado del espacio E
+    # (ACTO E8-M-EMITE-Y-RESELLO, maestra-30,
+    # forense/encargos/2026-08-26-E8-M-EMITE-Y-RESELLO.md, ya en esta misma
+    # lista arriba), tal como el propio encargo instruye: se censa, no se
+    # reclama. La spec de COMMIT-1 y la nota de cierre citan en prosa "E7"
+    # al declarar que `E7 · ETIQUETA` (FP-174, concurrente en NUBE) no
+    # habia fusionado a origin/main a la hora de arrancar -- mencion de un
+    # habitante ya censado del espacio E, no un marcador nuevo, mismo
+    # patron que las notas de E4/E5/E6 arriba. D-6 aplicado donde se puede
+    # aplicar: el acto se declara ACTO MAESTRA31-E8 en todo archivo que
+    # escribe y queda censado en canon/registro-rotulos.tsv; el texto de
+    # direccion no se edita para complacer a un test.
+    "forense/encargos/2026-08-27-MAESTRA31-E8-LOS-388.md",
+    "forense/notas/2026-08-27-los-388-commit1-escala.md",
+    "forense/notas/2026-08-27-los-388-cierre.md",
 }
 
 
