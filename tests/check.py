@@ -2740,6 +2740,29 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-27-MAESTRA31-E5-CRUCE-INVERSO.md",
     "forense/notas/2026-08-27-cruce-inverso-spec.md",
     "forense/notas/2026-08-27-cruce-inverso-cierre.md",
+    # ACTO MAESTRA31-E6 · DICCIONARIOS-FD, 27/ago/2026 (ADR-215, candidateado
+    # ADR-214 y renumerado al fusionar en segundo lugar contra PR #386/
+    # ACTO MAESTRA31-E5 · CRUCE-INVERSO, que fusiono primero y se quedo con
+    # ADR-214 -- ver la entrada de arriba, mismo patron de concurrencia
+    # NUBE/UBUNTU que el propio encargo de este acto ya declaraba antes de
+    # arrancar): encargo archivado VERBATIM (A.3), su nota de cierre.
+    # Direccion lo lanzo rotulado "ENCARGO E6", y "E6" pelado colisiona con
+    # el habitante ya censado del espacio E (ACTO E6 L-RUN, maestra-30,
+    # forense/encargos/2026-08-26-E6-L-RUN.md) -- token pelado E6, se
+    # censa, no se reclama, tal como el propio encargo lo declara. El
+    # encargo y la nota tambien citan en prosa "E4" (ACTO MAESTRA31-E4, el
+    # acto anterior cuyo hueco este acto extiende) y "E5" (ACTO MAESTRA31-E5
+    # · CRUCE-INVERSO, concurrente en NUBE, y el acto sucesor que
+    # emparejaria el texto extraido contra el motor) -- las dos son mencion
+    # de habitantes ya censados del espacio E, no marcadores nuevos.
+    # Colision declarada contra E0/E2/E3-TRIAGE/E4a/E4b/E4c/E5/E-3/E1/E4/
+    # E6/E7/E9/E10/MAESTRA30-E1..E4/MAESTRA31-E1..E5 (referentes distintos,
+    # ninguno gana, mismo patron que M5). D-6 aplicado donde se puede
+    # aplicar: el acto se declara ACTO MAESTRA31-E6 en todo archivo que
+    # escribe y queda censado en canon/registro-rotulos.tsv; el texto de
+    # direccion no se edita para complacer a un test.
+    "forense/encargos/2026-08-27-MAESTRA31-E6-DICCIONARIOS-FD.md",
+    "forense/notas/2026-08-27-diccionarios-fd-cierre.md",
 }
 
 
