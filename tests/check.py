@@ -2796,6 +2796,24 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-27-MAESTRA31-E8-LOS-388.md",
     "forense/notas/2026-08-27-los-388-commit1-escala.md",
     "forense/notas/2026-08-27-los-388-cierre.md",
+    # ACTO MAESTRA31-E9 · ESTIMA-RUTAC, 27/ago/2026: encargo archivado
+    # VERBATIM (A.3). Direccion lo lanzo rotulado "ENCARGO E9 ·
+    # ESTIMA-RUTAC", titulo que el propio encargo abre con "E9" pelado
+    # y que ademas declara en su ARRANQUE: "Rotulo: ACTO MAESTRA31-E9
+    # (D-6). Token pelado E9 colisiona con MAESTRA30-E9 · SCORING-V2;
+    # se censa, no se reclama" -- colisiona con el habitante ya censado
+    # del espacio E (fila E9 = ACTO MAESTRA30-E9 SCORING-V2,
+    # canon/registro-rotulos.tsv), tal como el propio encargo instruye:
+    # se censa, no se reclama. D-6 aplicado donde se puede aplicar: el
+    # acto se declara ACTO MAESTRA31-E9 en todo archivo que escribe y
+    # queda censado en canon/registro-rotulos.tsv; el texto de direccion
+    # no se edita para complacer a un test. La spec de COMMIT-1
+    # (forense/notas/2026-08-27-estima-rutac-spec.md) y la nota de
+    # cierre (forense/notas/2026-08-27-estima-rutac-cierre.md) NO traen
+    # ningun rotulo pelado nuevo (verificado con el mismo regex de este
+    # test, sin match en ninguno de los dos) -- solo el encargo se
+    # censa aqui, no los tres.
+    "forense/encargos/2026-08-27-MAESTRA31-E9-ESTIMA-RUTAC.md",
 }
 
 
