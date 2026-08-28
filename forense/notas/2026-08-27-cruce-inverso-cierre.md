@@ -76,3 +76,26 @@ No emparejó por texto ni semántica. No propuso qué medir. No tocó el motor n
 ## Frase de sello
 
 «El primer resultado que produjo este procedimiento es el que se reporta.» — 27/20/12 sobre 59, y 0/30 en Q3. Ninguno se ajustó después de verlo.
+
+## ENMIENDA (27/ago/2026, `ACTO MAESTRA31-E7 · ETIQUETA`, precedente `## F1` de `ADR-208` y la enmienda de `ADR-213`)
+
+Por adición, sin borrar ni suavizar el texto original de arriba — es el registro de qué se sabía y con qué alcance en el momento de esta nota (A.10, corolario 1).
+
+**La conclusión de la sección Q1 de esta nota — "`ENCUCI` … no tiene **ningún** instrumento homónimo en `data/inventario-reactivos-v1_0.tsv`" y su clasificación como "hallazgo de cobertura del corpus" — es FALSA. Se retracta con estas palabras: es hallazgo de etiqueta, no de cobertura.**
+
+Comando, verificado contra `data/inventario-reactivos-v1_0.tsv` (el mismo archivo que esta nota citó):
+
+```
+$ awk -F'\t' 'NR>1 && tolower($1) ~ /encuci/' data/inventario-reactivos-v1_0.tsv | wc -l
+458
+```
+
+458 filas de `BD_ENCUCI2020_dbf.zip` existen en el inventario que esta nota ya tenía delante. El motivo por el que la búsqueda original (`cut -f3 ... | grep -iE "enif|encuci|ennvih|mxfls"`) no las encontró: `BD_ENCUCI2020_dbf.zip` vive en la raíz de `data/raw` (sin carpeta contenedora), y `tools/inventario_reactivos.py:125` etiqueta todo payload de raíz como `(raiz)`, no con el nombre real del instrumento — la columna `instrumento` de esas 458 filas decía `(raiz)`, no `encuci`, así que el `grep` sobre esa columna nunca podía encontrarlas, sin importar cuántas veces se repitiera. No era una ausencia del corpus; era una etiqueta que escondía lo que el corpus sí tenía.
+
+`ENIF` tiene el mismo defecto — 22 payloads de raíz (`enif2018_csv.zip`, `enif_2015_bd_dbf.zip`, `bases_enif2012_dbf.zip`, `fd_enif2012.xlsx`, …) etiquetados `(raiz)` en vez de `enif<año>`. `ENNViH`/`MxFLS` sí queda confirmado ausente del corpus tras esta corrección — ningún payload de raíz ni de carpeta contiene ese nombre; para esa familia la lectura original de esta nota se sostiene.
+
+Re-corrida la misma especificación congelada de esta nota (`forense/notas/2026-08-27-cruce-inverso-spec.md`, sin cambiar una palabra), con `data/inventario-reactivos-v1_1.tsv` como único insumo que cambia (columna `instrumento` reparada, cero re-extracción — ver `forense/notas/2026-08-27-etiqueta-regla.md`): de las 20 `EXISTE-NO-SATISFACE` de esta nota, **15 pasan a `EXISTE-SATISFACE`** (las que citaban `BD_ENCUCI2020_dbf.zip`, ahora `encuci2020`); 5 quedan `EXISTE-NO-SATISFACE`. Los 12 `NO-ENCONTRADO` y las 27 `EXISTE-SATISFACE` originales no se mueven. Resultado completo: `data/cruce-inverso-v1_1.tsv`, delta y conteos en `forense/notas/2026-08-27-etiqueta-cierre.md`.
+
+**Corrección adicional, verificada por comando antes de reportarla:** el encargo de `ACTO MAESTRA31-E7` (dirección) citó esta nota afirmando "16 de los 20 veredictos `EXISTE-NO-SATISFACE` citan un payload de `(raiz)`". La cifra correcta, verificada contra `data/cruce-inverso-v1_0.tsv`, es **20 de 20** — no cambia la lectura (el veredicto sigue significando "existe bajo otro instrumento", y ese otro instrumento sigue siendo el cubo en la totalidad de los casos, no en menos), pero la cifra se corrige.
+
+Esta enmienda no reabre Q2 ni Q3 de esta nota más allá de los cuatro `n_olas_distintas` ya recalculados arriba (`P4_10` 17→18, `BP1_20` 16→15, `AP7_1`/`AP3_10` sin cambio) — el resto de Q2 y la totalidad de Q3 (0 de 30 parámetros citan token exacto) no dependían de la etiqueta de instrumento de las filas `EXISTE-NO-SATISFACE`/`NO-ENCONTRADO` y se sostienen sin cambio.

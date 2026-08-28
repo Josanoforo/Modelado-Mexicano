@@ -2763,6 +2763,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # direccion no se edita para complacer a un test.
     "forense/encargos/2026-08-27-MAESTRA31-E6-DICCIONARIOS-FD.md",
     "forense/notas/2026-08-27-diccionarios-fd-cierre.md",
+    # ACTO MAESTRA31-E7 · ETIQUETA, 27/ago/2026 (ADR-216): encargo
+    # archivado VERBATIM (A.3) y su nota de cierre. Direccion lo lanzo
+    # rotulado "ENCARGO E7", y "E7" pelado colisiona con la referencia
+    # previa ACTO E7 R-SCORING (maestra-30, ADR-207) y con los demas
+    # habitantes ya censados del espacio E. D-6 aplicado donde se puede
+    # aplicar: el acto se declara ACTO MAESTRA31-E7 en todo archivo que
+    # escribe y queda censado en canon/registro-rotulos.tsv; el encargo
+    # NO se edita, porque A.3 pide el texto de direccion verbatim, y la
+    # nota de cierre y la nota de regla congelada citan el rotulo "E7" al
+    # narrar el propio hallazgo -- ninguno es un marcador nuevo.
+    "forense/encargos/2026-08-27-MAESTRA31-E7-ETIQUETA.md",
+    "forense/notas/2026-08-27-etiqueta-regla.md",
+    "forense/notas/2026-08-27-etiqueta-cierre.md",
 }
 
 
