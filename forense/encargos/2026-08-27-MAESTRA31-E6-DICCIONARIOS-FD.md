@@ -107,3 +107,6 @@ CONTADOR
 Variables con texto recuperado, sobre el perímetro derivado en el paso 1 — la primera capa semántica del corpus, y la única vía posible hacia los 13 parámetros que no citan ninguna variable.
 
 Si el falsador se dispara y la vía se abandona, ese hallazgo es el contador y se dice con esa palabra: las fichas descriptivas del corpus no comparten estructura, y el texto de los diccionarios no es recuperable por regla.
+
+## CONSUMIDO
+Ejecutado por `ACTO MAESTRA31-E6 · DICCIONARIOS-FD`, 27/ago/2026. PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/387
