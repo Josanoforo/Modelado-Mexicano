@@ -1,0 +1,61 @@
+ACTO MAESTRA31-E8 · LOS-388 — metadato de universo de data/cobertura-composicion-v1_0.tsv
+
+Archivo hermano (mismo patrón que data/inventario-reactivos-v1_0.tsv.meta, ADR-213: no se
+mezcla como comentario en el TSV principal para no romper el parseo de herramientas que
+asumen que la línea 1 es la cabecera real).
+
+fecha_generacion: 2026-08-27
+commit_padre_al_generar: 4ba53b5 (COMMIT-1, escala congelada, forense/notas/2026-08-27-los-388-commit1-escala.md)
+rama: acto/maestra31-e8-los-388
+worktree: /home/pc0/mm-maestra31-e8-los-388
+
+insumo: data/inventario-reactivos-v1_0.tsv v1_0 (E7 · ETIQUETA / FP-174 no había fusionado
+  a origin/main al escribir esto -- verificado: git log origin/main --oneline --all | grep -i
+  etiqueta, vacío)
+
+universo:
+  denominador_payloads_no_ok: 404
+  definicion: universo completo de data/raw (mismo comando que data/inventario-reactivos-v1_0.tsv.meta,
+    tools/inventario_reactivos.py::enumerar_universo(), 720 payloads, excluyendo el ciclo
+    data/raw/raw) MENOS los payload_id presentes en data/inventario-reactivos-v1_0.tsv (316,
+    conjunto OK). 720 - 316 = 404.
+  particion_verificada_por_comando:
+    conteo_ok: 316          (payload_id distintos en data/inventario-reactivos-v1_0.tsv)
+    conteo_no_extraido: 16  (extensión fuera de FORMATOS_CON_CAMPOS unión FORMATOS_SIN_CAMPOS
+      declaradas en tools/inventario_reactivos.py:48-50 -- .dta 8, .2a 6, .gz 1, .tab 1)
+    conteo_sin_campos: 388  (extensión dentro de esa unión, pero payload_id no aparece en
+      data/inventario-reactivos-v1_0.tsv)
+    suma: 316 + 16 + 388 = 720 -- coincide exacto con el universo, sin brecha
+  caso_de_control: BD_ENCUCI2020_dbf.zip -- 458 filas en data/inventario-reactivos-v1_0.tsv,
+    cae en OK (fuera de este archivo), verificado antes de correr la partición completa
+
+filas_totales: 404 (una fila por payload no-OK, sin excepciones ni muestreo)
+
+causa (Q1, columna `causa` del TSV):
+  A: 204  (por naturaleza no tiene variables -- informe/pagina/catalogo/codigo/imagen)
+  B: 178  (microdato o diccionario en formato sin rama de despacho -- .dta/.sav/.rdata/.xls/
+     .tab/.pdf-diccionario/.json-metadato/tar.gz; empíricamente: extensión con CERO éxitos
+     en TODO el universo de 720, no solo en este subconjunto)
+  C: 22   (formato con éxito empírico confirmado en otras instancias del mismo universo --
+     .zip/.xlsx/.csv -- pero esta instancia produce 0 filas: contenedor anidado, miembro no
+     reconocido, o sufijo compuesto que enmascara el despacho)
+  suma: 204 + 178 + 22 = 404
+
+metodo_de_clasificacion_causa: extensión + (solo para .zip/.xlsx) listado de miembros vía
+  zipfile.ZipFile.namelist() -- NUNCA se abrió contenido tabular de ningún payload no-OK.
+  Formatos con ≥1 éxito empírico en el universo completo de 720 (zip, xlsx, csv, xml, txt)
+  tratados como "con rama de despacho probada"; formatos con 0 éxitos en el universo completo
+  (html, pdf, json, xls) tratados como "sin rama de despacho", clasificados A o B por
+  naturaleza de contenido (nombre del archivo únicamente: patrón fd_*/*_fd/diccionario*/
+  glosario* reusado de forense/notas/2026-08-26-orden-superior-cierre.md, `find -L data/raw
+  -type f \( -iname '*_fd.*' -o -iname 'fd_*' -o -iname 'diccionario*' -o -iname 'glosario*' \)`,
+  69 resultados, ya validado por ACTO MAESTRA31-E4).
+
+señales de valor (Q2, columnas hitoD_preregistro / n_notas_forense / notas_forense /
+  manifiesto_estado / milpa del TSV): escala congelada en COMMIT-1
+  (forense/notas/2026-08-27-los-388-commit1-escala.md), aplicada mecánicamente sin ajuste
+  posterior. milpa/procedencia.yaml y milpa/tramite.yaml: 0/404 -- ningún payload no-OK
+  aparece citado por nombre en ninguno de los dos archivos, verificado por comando.
+
+falsador: no declarado por dirección para este acto (es diagnóstico, no produce un veredicto
+  falsable de mesa -- solo un inventario ordenado). No aplica.
