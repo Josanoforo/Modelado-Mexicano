@@ -52,6 +52,27 @@ BLOQUES_CON_CLASE_IMPLICITA = {
     "asignados_coeficiente": Clase.ASIGNADO,
 }
 
+#: ADR-220 (`ACTO MAESTRA32-E1 · SELLA-ENLACE`, paso 0): `coeficientes_
+#: generador_sellados` (sección nueva de `milpa/procedencia.yaml`, escrita
+#: por ese acto) NO entra aquí, a propósito -- verificado, no supuesto. A
+#: diferencia de `asignados_probabilidad`/`asignados_coeficiente`, cada
+#: entrada del bloque nuevo trae su PROPIO campo `clase:` (copiado verbatim
+#: de `coeficientes_generador_medidos`, prefijo `MEDIDO·β̂`), así que la vía
+#: sancionada que ya aplica es la OTRA regla de `_recorrer` -- la que lee
+#: `clase:` por entrada y resuelve por prefijo más largo (`clasificar()`,
+#: `clases.py`) -- sin que este diccionario tenga que nombrar el bloque.
+#: Confirmado corriendo `_recorrer` aislado sobre el bloque nuevo: produce 5
+#: `Entrada` con `clase=Clase.MEDIDO_BETA`, cero código nuevo. (No se pudo
+#: confirmar de punta a punta con `cargar()` completo: el árbol de hoy trae
+#: una entrada previa, ajena a este acto -- `EVIDENCIA_EXPERIMENTAL_
+#: TERCEROS`, sellada por `ADR-204` -- cuyo `clase:` no casa con ningún
+#: prefijo de `clases.py` y hace que `clasificar()` lance `ClaseDesconocida`
+#: antes de llegar a la sección nueva, que vive más abajo en el archivo.
+#: Defecto preexistente, fuera del perímetro de este acto -- `clases.py` no
+#: está en su lista de archivos; se declara aquí para que no se lea como
+#: introducido por este cambio. Ver `forense/notas/2026-08-28-sella-enlace-
+#: cierre.md`.)
+
 
 @dataclass(frozen=True)
 class Entrada:
