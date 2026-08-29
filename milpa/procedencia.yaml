@@ -1185,3 +1185,75 @@ propuesta_de_esquema:
     Hoy un 0.93 leído de ENVIPE y un 0.74 de juicio informado se ven idénticos
     en el archivo. Con el campo, dejan de verse idénticos — y es exactamente esa
     indistinción la puerta por la que un pilar falso entra al modelo.
+
+# ══════════════════════════════════════════════════════════════════
+# COEFICIENTES DE GENERADOR SELLADOS · ACTO MAESTRA32-E1 · SELLA-ENLACE
+# · 28/ago/2026 · ADR-220 · firmas de mesa M-ENLACE=A / M-176 /
+# M-AGREGA=(a) (ver forense/encargos/2026-08-28-MAESTRA32-E1-SELLA-
+# ENLACE.md y forense/firmas-pendientes.tsv FP-176/FP-177).
+#
+# Los 5 pares RUTA-A de rutas_estimabilidad_coeficiente.detalle,
+# cruzados contra coeficientes_generador_medidos (seccion A). NO
+# reemplaza ni edita asignados_coeficiente.detalle -- los valores
+# ASIGNADO de esa seccion siguen siendo lo que el modelo declara;
+# esta seccion es el override que milpa/src/matriz.py consulta
+# primero cuando un par trae `valor_ejecutable`.
+#
+# Rotulo ASOCIACION-MEDIDA (M-176, firma verbatim en el ADR citado
+# arriba): estos beta_hat NO son coeficientes identificados --
+# ADR-57(a) ya establecio, para G1/G3, que condicionar revierte el
+# signo del marginal en la mayoria de las celdas; esta firma trae a
+# G4 al mismo tratamiento. Los 2 pares multi-item quedan
+# SELLADO-ESCALA·SIN-AGREGACION (M-AGREGA=(a)): vector integro por
+# item, sin valor_ejecutable, no se consumen en matriz.py.
+# ══════════════════════════════════════════════════════════════════
+coeficientes_generador_sellados:
+- gen: G1
+  coef: confianza_institucional
+  clase: MEDIDO·β̂(diferencia de proporciones), un ítem, marginal, TRUNCADO
+  valor_origen: -0.0645 [IC95% -0.0744,-0.0546]
+  unidad_origen: proporción (diferencia de proporciones, sin sufijo pp)
+  valor_ejecutable: -0.0645
+  ic: IC95% -0.0744,-0.0546
+  escala: proporción ponderada [0,1], enlace identidad (ADR-220)
+  rotulo: ASOCIACION-MEDIDA·MARGINAL
+  reserva: 'ADR-57 (a): la concordancia de signo entre este β̂ marginal y el ASIGNADO (G1 -0.60) NO corrobora el asignado -- condicionar (Encargo X, ver eje_condicionante arriba) revirtió el signo por completo, con significancia, en las cuatro celdas del único eje disponible. Asociar ≠ identificar.'
+  fuente: coeficientes_generador_medidos.G1_confianza_institucional, 4/ago/2026
+- gen: G1
+  coef: radio_confianza
+  clase: MEDIDO·β̂(diferencia de proporciones), por ítem, marginal (sin condicionar sobre atributos)
+  valor_origen: 'AP5_1_1: -0.0102 [IC95% -0.0292,0.0089] · AP5_1_2: -0.0113 [IC95% -0.0341,0.0114] · AP5_1_3: -0.0269 [IC95% -0.0465,-0.0072]'
+  unidad_origen: proporción (diferencia de proporciones, sin sufijo pp, por ítem)
+  rotulo: SELLADO-ESCALA·SIN-AGREGACION
+  reserva: 'ADR-57 (a): la concordancia de signo entre este β̂ marginal y el ASIGNADO (G1 -0.35) NO corrobora el asignado -- condicionar (Encargo X, ver eje_condicionante arriba) mostró que el marginal no es estable (33 de 39 celdas invierten el signo, recontado por ADR-61 -- ver eje_condicionante). Asociar ≠ identificar.'
+  fuente: coeficientes_generador_medidos.G1_radio_confianza, 4/ago/2026
+- gen: G3
+  coef: familismo_apoyo
+  clase: MEDIDO·β̂(diferencia de proporciones), un ítem, marginal
+  valor_origen: +0.0279 [IC95% 0.0029,0.0529]
+  unidad_origen: proporción (diferencia de proporciones, sin sufijo pp)
+  valor_ejecutable: 0.0279
+  ic: IC95% 0.0029,0.0529
+  escala: proporción ponderada [0,1], enlace identidad (ADR-220)
+  rotulo: ASOCIACION-MEDIDA·MARGINAL
+  reserva: 'ADR-57 (a): la concordancia de signo entre este β̂ marginal y el ASIGNADO (G3 0.20) NO corrobora el asignado -- condicionar (Encargo X, ver eje_condicionante arriba) invirtió el signo, con significancia, en las celdas mayoritarias de tres de seis ejes. Asociar ≠ identificar.'
+  fuente: coeficientes_generador_medidos.G3_familismo_apoyo, 4/ago/2026
+- gen: G4
+  coef: exposicion_violencia
+  clase: MEDIDO·β̂(diferencia de proporciones), condicional(ejes), universo=disparadores AP7_3 no denunciantes
+  valor_origen: 'Marginal (θ=1 − θ=0) = +16.614pp [IC95% 13.995,19.234]. Por edad: 18-29 +16.131[11.852,20.410] · 30-44 +18.638[14.305,22.970] · 45-59 +19.114[13.444,24.785] · 60+ +16.136[8.860,23.411]. Por dominio: U +16.195[12.916,19.474] · C +17.258[12.086,22.431] · R +18.080[11.040,25.121]. Por ESTRATO: 1 +19.019[13.317,24.721] · 2 +16.216[12.183,20.250] · 3 +18.146[13.065,23.227] · 4 +13.573[8.008,19.137]. Por formalidad: jornalero +30.263[20.961,39.565] · empleado/obrero +14.900[11.485,18.315] · cuenta propia +17.827[12.256,23.398] · patrón +15.335[7.330,23.340] · sin pago SIN SOPORTE.'
+  unidad_origen: pp
+  valor_ejecutable: 0.16614
+  ic: IC95% 13.995,19.234
+  escala: proporción ponderada [0,1], enlace identidad (ADR-220)
+  rotulo: ASOCIACION-MEDIDA·CONDICIONAL
+  reserva: ''
+  fuente: coeficientes_generador_medidos.G4_exposicion_violencia, 4/ago/2026
+- gen: G4
+  coef: confianza_institucional
+  clase: MEDIDO·β̂(diferencia de proporciones), condicional(ejes), universo=disparadores AP7_3 no denunciantes, por institución
+  valor_origen: 'Marginal por ítem (confía − no_confía): AP5_4_01 -6.421pp[-9.096,-3.746] · AP5_4_02 -5.226pp[-8.317,-2.134] · AP5_4_03 -7.919pp[-10.588,-5.251] · AP5_4_05 -9.706pp[-13.286,-6.126] · AP5_4_06 -4.683pp[-8.139,-1.228] · AP5_4_07 -6.658pp[-10.863,-2.452] · AP5_4_11 -11.269pp[-15.729,-6.809]. Los siete significativos al 95% y de signo consistente (negativo).'
+  unidad_origen: pp (por ítem, ver valor_origen)
+  rotulo: SELLADO-ESCALA·SIN-AGREGACION
+  reserva: ''
+  fuente: coeficientes_generador_medidos.G4_confianza_institucional_justicia, 4/ago/2026

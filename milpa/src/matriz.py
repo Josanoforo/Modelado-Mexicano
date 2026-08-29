@@ -94,6 +94,18 @@ def cargar_B(procedencia):
 
     `G5 × familismo_obligacion` carga como `CoeficienteSinMagnitud`, no como
     `float` y no como ausencia.
+
+    ADR-220 (`ACTO MAESTRA32-E1 · SELLA-ENLACE`, firma de mesa `M-ENLACE=A`):
+    tras construir las 15 celdas de siempre (fallback intacto, arriba), se
+    sobre-escribe SOLO la celda de un par que traiga `valor_ejecutable` en
+    `coeficientes_generador_sellados` -- la sección nueva de
+    `milpa/procedencia.yaml` donde vive el enlace identidad sellado (rótulo
+    `ASOCIACION-MEDIDA`, `M-176`; nunca coeficiente identificado, A-bis 3).
+    Los 10 pares sin medición y los 2 multi-ítem (`SELLADO-ESCALA·SIN-
+    AGREGACION`, `M-AGREGA=(a)`, sin `valor_ejecutable` por diseño) NO se
+    tocan aquí -- siguen exactamente el `ASIGNADO` de siempre. El conteo de
+    celdas no cambia (15 antes, 15 después): solo el *valor* de las que
+    traen override.
     """
     detalle = procedencia.crudo["asignados_coeficiente"]["detalle"]
     celdas = {}
@@ -105,6 +117,21 @@ def cargar_B(procedencia):
                 celdas[clave] = Coeficiente(gen, nombre, float(valor))
             else:
                 celdas[clave] = CoeficienteSinMagnitud(gen, nombre, str(valor))
+
+    sellados = procedencia.crudo.get("coeficientes_generador_sellados") or ()
+    for entrada in sellados:
+        if "valor_ejecutable" not in entrada:
+            continue  # multi-ítem SELLADO-ESCALA·SIN-AGREGACION: no se consume aquí
+        gen, nombre = entrada["gen"], entrada["coef"]
+        clave = (gen, nombre)
+        if clave not in celdas:
+            # Defensivo, no debería ocurrir: un par sellado que no exista en
+            # `asignados_coeficiente.detalle` es una discrepancia de datos,
+            # no algo que este cargador deba silenciar fabricando una celda
+            # nueva -- se deja el fallback intacto y se ignora el override.
+            continue
+        celdas[clave] = Coeficiente(gen, nombre, float(entrada["valor_ejecutable"]))
+
     return Matriz(celdas=celdas)
 
 

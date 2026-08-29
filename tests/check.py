@@ -2831,6 +2831,22 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # test, corrido en vivo sobre el arbol -- sin match en ninguno de los
     # dos) -- solo el encargo se censa aqui.
     "forense/encargos/2026-08-27-MAESTRA31-E10-RECONCILIA-MOTOR.md",
+    # ACTO MAESTRA32-E1 · SELLA-ENLACE, 28/ago/2026 (ADR-220): encargo
+    # archivado VERBATIM (A.3). Direccion lo lanzo rotulado "ACTO
+    # MAESTRA32-E1 · SELLA-ENLACE", titulo que el propio encargo abre con
+    # "E1" pelado y que ademas declara en su cabecera: "Token pelado E1
+    # colisiona con los habitantes ya censados del espacio E (E1 ·
+    # CIERRA-FP157, maestra-30; MAESTRA31-E1 · RELOJ-CRUCE) -- se censa, no
+    # se reclama" -- colisiona con esos dos habitantes ya censados de
+    # canon/registro-rotulos.tsv, tal como el propio encargo instruye. D-6
+    # aplicado donde se puede aplicar: el acto se declara ACTO MAESTRA32-E1
+    # en todo archivo que escribe y queda censado en
+    # canon/registro-rotulos.tsv; el texto de direccion no se edita para
+    # complacer a un test. forense/notas/2026-08-28-sella-enlace-cierre.md
+    # NO trae ningun rotulo pelado nuevo (verificado con el mismo regex de
+    # este test, corrido en vivo sobre el arbol -- sin match) -- solo el
+    # encargo se censa aqui.
+    "forense/encargos/2026-08-28-MAESTRA32-E1-SELLA-ENLACE.md",
 }
 
 
