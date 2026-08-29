@@ -53,3 +53,7 @@ Lo que este acto NO hace
 No mide ningún β̂. No abre microdato ni `data/raw`. No edita `milpa/procedencia.yaml` (ni `ruta:` ni `nota:` — cambiar ruta exige acto sucesor con adjudicación, precedente `ADR-218`). No toca los inventarios existentes ni sus herramientas. No adjudica el GATE de `G3.horizonte_temporal`. No usa red ni API.
 Sucesores declarados, no lanzados
 `MAESTRA32-E3 · EXTRACTOR-DTA` (GATED a este merge + letra M-EXTRACTOR) · acto de medición por cada `EXISTE-SATISFACE` (si N≥1) · `MAESTRA32-E4 · RE-EMPAREJA` (tras E3, misma spec congelada).
+
+## CONSUMIDO
+
+Ejecutado en la rama `claude/maestra32-e2-motor-texto-c5grsj`. Esta sesión NO abre PR — commitea y pushea a la rama designada, y lo dice explícitamente aquí para no repetir el defecto ya visto en el acto E9. Número de PR: N/D desde esta sesión; quien fusione (dirección, u otra sesión con permiso de abrir PR) llena este campo al abrirlo. Resultado: `N=0` de 9 `EXISTE-SATISFACE`, `data/emparejamiento-motor-v1_0.tsv` (COMMIT-2), `forense/notas/2026-08-28-empareja-spec.md` (COMMIT-1), `forense/notas/2026-08-28-empareja-cierre.md` (detalle A.13 completo, discrepancias de cita reportadas en §2, hallazgo de corrección de spec en §5), `ADR-221`.
