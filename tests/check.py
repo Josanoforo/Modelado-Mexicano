@@ -2847,6 +2847,31 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # este test, corrido en vivo sobre el arbol -- sin match) -- solo el
     # encargo se censa aqui.
     "forense/encargos/2026-08-28-MAESTRA32-E1-SELLA-ENLACE.md",
+    # ACTO MAESTRA32-E2 · EMPAREJA-MOTOR-TEXTO, 28/ago/2026: encargo
+    # archivado VERBATIM (A.3). Direccion lo lanzo rotulado "ACTO
+    # MAESTRA32-E2 · EMPAREJA-MOTOR-TEXTO" y el propio texto trae, sin
+    # prefijo de espacio, la mencion "cuando E3 amplie" (sucesor
+    # MAESTRA32-E3, verificado con el mismo regex de este test, corrido
+    # en vivo sobre el archivo -- un solo match, `E3`). "E2" pelado
+    # colisiona con los habitantes ya censados del espacio E (E2 ·
+    # pipeline de barrido semantico, FP-65; MAESTRA31-E2 ·
+    # REGISTRA-PENDIENTES) -- se censa, no se reclama, mismo patron que
+    # los actos anteriores de esta serie. D-6 aplicado donde se puede
+    # aplicar: el acto se declara ACTO MAESTRA32-E2 en todo archivo que
+    # escribe y queda censado en canon/registro-rotulos.tsv; el texto de
+    # direccion no se edita para complacer a un test.
+    # forense/notas/2026-08-28-empareja-spec.md NO trae ningun rotulo
+    # pelado nuevo (verificado con el mismo regex, corrido en vivo sobre
+    # el archivo -- sin match).
+    # forense/notas/2026-08-28-empareja-cierre.md SI trae rotulos pelados
+    # (verificado con el mismo regex, corrido en vivo -- varios match:
+    # E1/E5/E6, todos referencias narrativas a actos previos ya censados
+    # -- "lo que E1 escribio", "abierta por E6, no por E5" -- no rotulos
+    # nuevos que este acto reclame). Se censa aqui en vez de reescribir
+    # cada referencia con prefijo, mismo patron que el propio test ofrece
+    # como alternativa valida en su mensaje de fail.
+    "forense/encargos/2026-08-28-MAESTRA32-E2-EMPAREJA-MOTOR-TEXTO.md",
+    "forense/notas/2026-08-28-empareja-cierre.md",
 }
 
 
