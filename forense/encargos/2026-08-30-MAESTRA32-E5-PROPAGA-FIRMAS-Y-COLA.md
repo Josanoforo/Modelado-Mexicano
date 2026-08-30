@@ -107,3 +107,7 @@ No lanza ninguna entrada de la cola (todas requieren caja). No redacta la rama (
 ## Sucesores declarados, no lanzados
 
 `MAESTRA32-E6 · PILOTO-T1T2` y `MAESTRA32-E7 · ETIQUETA-v1_2` (nube, dirección los redacta tras este merge) · `MAESTRA32-E4 · RE-EMPAREJA` (reservado, tras extractores) · toda la fila-grito.
+
+## CONSUMIDO
+
+Ejecutado en la rama `claude/maestra32-e5-firmas-cola-vroay4`. Esta sesión NO abre PR — commitea y pushea a la rama designada, mismo patrón que `MAESTRA32-E2` para no repetir el defecto ya visto en el acto E9. Número de PR: N/D desde esta sesión; quien fusione (dirección, u otra sesión con permiso de abrir PR) llena este campo al abrirlo. Resultado: `MAESTRA32-E3 · EXTRACTOR-DTA` archivado verbatim (grieta `A.3` reparada); `FP-175`/`FP-170`/`FP-172` → `FIRMADA`; fila-grito `FP-179` nueva, `ABIERTA`; las cuatro ranuras opcionales (`R-168`, `R-AGREGA`, `R-169`, `R-ENTERADOS`) llegaron vacías y se dejaron vacías (`FP-168`/`FP-169`/`FP-171`/`FP-173`/`FP-174`/`FP-178` sin cambio); `ADR-222`; `tests/check.py --baseline` VERDE. Detalle completo: `forense/notas/2026-08-30-propaga-firmas-cierre.md`.
