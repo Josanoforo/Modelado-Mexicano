@@ -17,6 +17,17 @@ uni-valor con override -- los 2 pares multi-ítem (`G1.radio_confianza`,
 "multi-ítem sin agregar": 0 sin-ejecutable. Los 9 en fallback puro no
 cambian (este acto no los toca).
 
+Universo re-derivado de nuevo 31/ago/2026 (`ACTO MAESTRA32-E16 ·
+MEDIDOR-FAMILISMO-APOYO`, ADR pendiente de número): 6 -> 7 pares
+uni-valor con override -- `G5.familismo_apoyo` entra al ejecutable
+(β̂ eder2017 `financia_8` x corresidencia con familiar adulto,
+`+0.0041 [IC95% 0.0029,0.0054]`, rótulo
+`ASOCIACION-MEDIDA·MARGINAL·DISCORDANTE-ENTRE-INSTRUMENTOS` -- el β̂ de
+robustez de endireh2016 tiene signo opuesto y queda en `reserva`, no en
+`valor_ejecutable`; ver `forense/notas/2026-08-31-familismo-cierre.md`).
+Los 9 -> 8 pares en fallback puro (`G5.familismo_apoyo` sale del
+fallback).
+
 Construye `Procedencia` a mano (`yaml.safe_load` directo), no vía
 `P.cargar()`: el árbol de hoy trae una entrada preexistente y ajena a este
 acto (`EVIDENCIA_EXPERIMENTAL_TERCEROS`, `ADR-204`) cuyo `clase:` no casa
@@ -78,7 +89,12 @@ def main():
         # porque α≥0.50 en ambos (0.7441 y 0.8085 -- ver nota de cierre); la
         # regla pre-registrada (spec §d) habría dejado alguno sin escribir
         # si α<0.50 en algún par, lo cual NO ocurrió.
-        igual(len(con_ejecutable), 6, "pares uni-valor con valor_ejecutable:")
+        # Re-derivado de nuevo 31/ago/2026 (ACTO MAESTRA32-E16 ·
+        # MEDIDOR-FAMILISMO-APOYO): 6 -> 7 -- G5.familismo_apoyo entra al
+        # ejecutable (β̂ eder2017 marginal, ver nota de cierre del acto);
+        # sigue siendo uni-valor (no multi-ítem), así que sin_ejecutable no
+        # cambia.
+        igual(len(con_ejecutable), 7, "pares uni-valor con valor_ejecutable:")
         igual(len(sin_ejecutable), 0, "pares multi-ítem sellados sin agregar:")
 
     def test_quince_celdas_sin_cambio_de_conteo():
@@ -105,9 +121,12 @@ def main():
     def test_fallback_intacto_para_los_nueve_sin_medicion():
         # Re-derivado 30/ago/2026 (ACTO MAESTRA32-E9 · PROPAGA-2, ADR-225):
         # 10 -> 9, G3.horizonte_temporal sale del fallback y entra al override.
+        # Re-derivado de nuevo 31/ago/2026 (ACTO MAESTRA32-E16 ·
+        # MEDIDOR-FAMILISMO-APOYO): 9 -> 8, G5.familismo_apoyo sale del
+        # fallback y entra al override.
         pares_sellados = {(e["gen"], e["coef"]) for e in sellados}
         pares_diez = [par for par in asignado_de if par not in pares_sellados]
-        igual(len(pares_diez), 9, "pares ASIGNADO sin entrada sellada:")
+        igual(len(pares_diez), 8, "pares ASIGNADO sin entrada sellada:")
         for gen, nombre in pares_diez:
             valor_asignado = asignado_de[(gen, nombre)]
             celda = B.celdas[(gen, nombre)]

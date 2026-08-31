@@ -3173,6 +3173,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # de nuevo. Extension minima de perimetro por desviacion mecanica,
     # mismo precedente que las notas de cierre ya listadas arriba.
     "forense/notas/2026-08-31-cura-radio-cierre.md",
+    # ACTO MAESTRA32-E16 · MEDIDOR-FAMILISMO-APOYO, 31/ago/2026: encargo
+    # archivado VERBATIM (A.3). Trae rótulo pelado nuevo `E16` (D-6/ADR-128)
+    # -- censado aquí y en canon/registro-rotulos.tsv (fila MAESTRA32-E16,
+    # que declara la colisión con la fila placeholder `E16` que
+    # MAESTRA32-E17 ya había censado), no reclamado: el acto se declara
+    # ACTO MAESTRA32-E16 en todo archivo que escribe.
+    "forense/encargos/2026-08-31-MAESTRA32-E16-MEDIDOR-FAMILISMO.md",
 }
 
 
