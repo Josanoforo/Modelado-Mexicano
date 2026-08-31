@@ -2,12 +2,20 @@
 """ADR-220 (`ACTO MAESTRA32-E1 · SELLA-ENLACE`): `B` usa `valor_ejecutable`
 de `coeficientes_generador_sellados` para los pares uni-valor con
 override; sigue el fallback de `asignados_coeficiente.detalle` para los
-pares sin medición y para los 2 multi-ítem -- que no traen
-`valor_ejecutable` y por tanto NO se consumen aquí (`M-AGREGA=(a)`).
+pares sin medición.
 Universo re-derivado 30/ago/2026 (`ACTO MAESTRA32-E9 · PROPAGA-2`,
 `ADR-225`, firma b1/F5): 3 -> 4 pares uni-valor con override
 (`G3.horizonte_temporal` nuevo, enlace lineal de dirección), 10 -> 9
-pares en fallback puro; los 2 multi-ítem sin cambio.
+pares en fallback puro.
+Universo re-derivado de nuevo 30/ago/2026 (`ACTO MAESTRA32-E8 ·
+MEDICION-COMPUESTA`, ADR pendiente de número, M-AGREGA=a′): 4 -> 6 pares
+uni-valor con override -- los 2 pares multi-ítem (`G1.radio_confianza`,
+`G4.confianza_institucional[justicia]`) que antes quedaban
+`SELLADO-ESCALA·SIN-AGREGACION` sin `valor_ejecutable` AHORA sí lo traen
+(β̂ de una θ compuesta, α≥0.50 en ambos -- ver
+`forense/notas/2026-08-30-compuesta-cierre.md`). Ya no hay pares
+"multi-ítem sin agregar": 0 sin-ejecutable. Los 9 en fallback puro no
+cambian (este acto no los toca).
 
 Construye `Procedencia` a mano (`yaml.safe_load` directo), no vía
 `P.cargar()`: el árbol de hoy trae una entrada preexistente y ajena a este
@@ -60,19 +68,24 @@ def main():
         for nombre, valor in fila["coefs"].items():
             asignado_de[(gen, nombre)] = valor
 
-    def test_universo_cuatro_mas_dos():
+    def test_universo_seis_mas_cero():
         # Blindaje del universo antes de probar nada más: si M-AGREGA
         # cambiara algún día, esto debe fallar aquí primero, no en un sitio
-        # silencioso más abajo. Re-derivado 30/ago/2026 (ACTO MAESTRA32-E9 ·
-        # PROPAGA-2, ADR-225): 3 -> 4 con la entrada nueva G3.horizonte_temporal.
-        igual(len(con_ejecutable), 4, "pares uni-valor con valor_ejecutable:")
-        igual(len(sin_ejecutable), 2, "pares multi-ítem sellados sin agregar:")
+        # silencioso más abajo. Re-derivado 30/ago/2026 (ACTO MAESTRA32-E8 ·
+        # MEDICION-COMPUESTA, M-AGREGA=a′): 4 -> 6 -- los 2 pares multi-ítem
+        # (G1.radio_confianza, G4.confianza_institucional) pasan de
+        # SELLADO-ESCALA·SIN-AGREGACION a ASOCIACION-MEDIDA·COMPUESTO·MARGINAL
+        # porque α≥0.50 en ambos (0.7441 y 0.8085 -- ver nota de cierre); la
+        # regla pre-registrada (spec §d) habría dejado alguno sin escribir
+        # si α<0.50 en algún par, lo cual NO ocurrió.
+        igual(len(con_ejecutable), 6, "pares uni-valor con valor_ejecutable:")
+        igual(len(sin_ejecutable), 0, "pares multi-ítem sellados sin agregar:")
 
     def test_quince_celdas_sin_cambio_de_conteo():
         # El override cambia VALORES, nunca el número de celdas.
         igual(B.no_cero, 15, "celdas no-cero de B tras el override:")
 
-    def test_override_para_los_cuatro_uni_valor():
+    def test_override_para_los_seis_uni_valor():
         for entrada in con_ejecutable:
             gen, coef = entrada["gen"], entrada["coef"]
             celda = B.celdas[(gen, coef)]
@@ -109,17 +122,14 @@ def main():
                 igual(celda.literal, str(valor_asignado),
                       f"{gen}.{nombre}: literal SIN MAGNITUD alterado")
 
-    def test_multi_item_no_se_consume():
-        for entrada in sin_ejecutable:
-            gen, coef = entrada["gen"], entrada["coef"]
-            igual(entrada.get("rotulo"), "SELLADO-ESCALA·SIN-AGREGACION",
-                  f"{gen}.{coef}: rótulo inesperado")
-            # La celda de B para este par sigue siendo el ASIGNADO de
-            # siempre -- el par multi-ítem no produjo override.
-            celda = B.celdas[(gen, coef)]
-            asignado = asignado_de[(gen, coef)]
-            igual(celda.valor, float(asignado),
-                  f"{gen}.{coef}: par multi-ítem SÍ se consumió en B")
+    def test_ya_no_hay_multi_item_sin_agregar():
+        # Antes de ACTO MAESTRA32-E8 existían 2 entradas sin
+        # valor_ejecutable (multi-ítem sellado, sin agregar). Tras E8, las
+        # dos entraron al ejecutable vía compuesto (M-AGREGA=a′) -- este
+        # test blinda que `sin_ejecutable` quedó vacío, no que algo se
+        # "consuma sin ejecutable" (ya no aplica).
+        igual(len(sin_ejecutable), 0,
+              "ya no debe haber pares multi-ítem sellados sin valor_ejecutable")
 
     def test_no_rompe_conteos_globales_de_b():
         # Que exista la sección nueva no debe alterar puntuales/sin_magnitud/

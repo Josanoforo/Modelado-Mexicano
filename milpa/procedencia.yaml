@@ -1224,8 +1224,13 @@ coeficientes_generador_sellados:
   clase: MEDIDO·β̂(diferencia de proporciones), por ítem, marginal (sin condicionar sobre atributos)
   valor_origen: 'AP5_1_1: -0.0102 [IC95% -0.0292,0.0089] · AP5_1_2: -0.0113 [IC95% -0.0341,0.0114] · AP5_1_3: -0.0269 [IC95% -0.0465,-0.0072]'
   unidad_origen: proporción (diferencia de proporciones, sin sufijo pp, por ítem)
-  rotulo: SELLADO-ESCALA·SIN-AGREGACION
-  reserva: 'ADR-57 (a): la concordancia de signo entre este β̂ marginal y el ASIGNADO (G1 -0.35) NO corrobora el asignado -- condicionar (Encargo X, ver eje_condicionante arriba) mostró que el marginal no es estable (33 de 39 celdas invierten el signo, recontado por ADR-61 -- ver eje_condicionante). Asociar ≠ identificar.'
+  rotulo: ASOCIACION-MEDIDA·COMPUESTO·MARGINAL
+  reserva: 'ADR-57 (a): la concordancia de signo entre este β̂ marginal y el ASIGNADO (G1 -0.35) NO corrobora el asignado -- condicionar (Encargo X, ver eje_condicionante arriba) mostró que el marginal por ítem no es estable (33 de 39 celdas invierten el signo, recontado por ADR-61). El compuesto de este acto (β̂=-0.066260) hereda la misma reserva: asociar ≠ identificar. Rótulo previo (histórico): SELLADO-ESCALA·SIN-AGREGACION.'
+  valor_ejecutable: -0.06626
+  ic: IC95% -0.116675,-0.015844
+  escala: proporción ponderada [0,1], enlace identidad (ADR-220)
+  definicion_compuesto: 'media de AP5_1_1/2/3 en 0-10, /10 -> [0,1]'
+  alpha: 0.7441
   fuente: coeficientes_generador_medidos.G1_radio_confianza, 4/ago/2026
 - gen: G3
   coef: familismo_apoyo
@@ -1254,8 +1259,13 @@ coeficientes_generador_sellados:
   clase: MEDIDO·β̂(diferencia de proporciones), condicional(ejes), universo=disparadores AP7_3 no denunciantes, por institución
   valor_origen: 'Marginal por ítem (confía − no_confía): AP5_4_01 -6.421pp[-9.096,-3.746] · AP5_4_02 -5.226pp[-8.317,-2.134] · AP5_4_03 -7.919pp[-10.588,-5.251] · AP5_4_05 -9.706pp[-13.286,-6.126] · AP5_4_06 -4.683pp[-8.139,-1.228] · AP5_4_07 -6.658pp[-10.863,-2.452] · AP5_4_11 -11.269pp[-15.729,-6.809]. Los siete significativos al 95% y de signo consistente (negativo).'
   unidad_origen: pp (por ítem, ver valor_origen)
-  rotulo: SELLADO-ESCALA·SIN-AGREGACION
-  reserva: ''
+  rotulo: ASOCIACION-MEDIDA·COMPUESTO·MARGINAL
+  reserva: 'ADR-57 (a): los 7 β̂ por ítem son todos negativos y significativos (6 de 49 celdas condicionadas invierten). El compuesto de este acto (β̂=-0.166208) hereda la misma reserva de asociación marginal: asociar ≠ identificar. marca_c2 (histórica): comparte desenlace y universo con G4.exposicion_violencia -- no se combinan entre entradas. Rótulo previo (histórico): SELLADO-ESCALA·SIN-AGREGACION.'
+  valor_ejecutable: -0.166208
+  ic: IC95% -0.212384,-0.120031
+  escala: proporción ponderada [0,1], enlace identidad (ADR-220)
+  definicion_compuesto: 'proporción de instituciones (de las 7) en que confía, entre quienes identifican >=4 de 7'
+  alpha: 0.8085
   fuente: coeficientes_generador_medidos.G4_confianza_institucional_justicia, 4/ago/2026
 
 # ══════════════════════════════════════════════════════════════════
