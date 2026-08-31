@@ -100,3 +100,7 @@ No re-mide los ítems individuales del 4/ago. No combina las dos entradas G4 ent
 Sucesores declarados, no lanzados
 
 Encargo medidor de FP-172 (cola diferida, entrada 3 de FP-179) — dirección lo redacta con la lista derivada del tsv, tras este merge.
+
+## CONSUMIDO
+
+PR #399. β̂ compuesto escrito para los 2 pares (G1.radio_confianza, G4.confianza_institucional[justicia]); ADR-226; FP-185; enmienda FP-179(4)→CONSUMIDA; MAESTRA32-E8 censado en canon/registro-rotulos.tsv. Carril CAJA reordenado E8→E3: MAESTRA32-E3 · EXTRACTOR-DTA queda como siguiente sin compuerta pendiente sobre este acto.
