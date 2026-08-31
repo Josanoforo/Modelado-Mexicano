@@ -12,3 +12,7 @@ PERÍMETRO Y CONCURRENCIA: milpa/tramite-ola5-propuesta-v0.yaml, forense/firmas-
 FP/ADR candidatos: siguientes libres — deriva del árbol al cerrar, no heredes. CONTADOR: 1 p medida nueva (en propuesta; el motor la carga cuando mesa selle — el congelamiento sigue vigente).
 LO QUE NO HACE: no carga nada a milpa/tramite.yaml (sellar es de mesa); no abre corridas-R/ (ciego; lista archivos abiertos); no re-mide ni edita la ventana vieja; no adquiere payloads.
 SUCESORES: piezas R-MARCO-M (dirección las redacta al ver las celdas que B″ sortee) · REGLAS-OLA5-FASE2 (redacción de dirección tras barrido de mapeo, FP-190).
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-C1 · RE-SPEC-CORRESIDENCIA`, 31/ago/2026, worktree `/home/pc0/mm-c1-respec-corresidencia`, rama `acto/maestra33-c1-respec-corresidencia`. Commits: `abdaba0` (0-bis A.3, este archivo) · `5086ab1` (COMMIT-1, spec congelada) · `4b460dc` (COMMIT-2, resultado) · cascada (ADR-240 candidato, `canon/gobernanza-v1_15.md`/`canon/estado-programa-v1_10.md` recifrados, `canon/registro-rotulos.tsv` censado, `tests/check.py::_T25_ARCHIVOS_CONOCIDOS` extendido). PR pendiente (se actualiza esta línea al abrirlo). Resultado: `familia.corresidencia.adulto_familiar_actual` — `p=0.057531` IC95%`[0.051297,0.063913]` `n=9397`, `PENDIENTE-DE-MESA` en `milpa/tramite-ola5-propuesta-v0.yaml`. `FP-204` → `CERRADA`; `FP-207` nueva (recibo). `tests/check.py --baseline`: VERDE, sin FAIL nuevo.
