@@ -159,3 +159,38 @@ reglas_propuestas:
     hallazgo: "0.1258 (IC95 [0.1163,0.1355]) es compatible con el techo de 13.38% ya citado en procedencia.yaml:785 (hitoD-R3.2, 'techo medido 13.38%, no 62%') sobre el mismo payload ENCUCI -- el 0.62 ASIGNADO en tramite.yaml sigue sin apoyo empirico de escala; este acto no lo toca, solo aporta un segundo numero medido consistente con el hallazgo anterior."
     sha256_payload: "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
     payload_manifiesto_id: encuci2020_bd_dbf
+
+  # ══════════════════════════════════════════════════════════════════
+  # RE-SPEC-CORRESIDENCIA · ACTO MAESTRA33-C1 · 31/ago/2026
+  #
+  # Ejecuta FP-204 (mesa lanza la re-especificacion que FP-200=b devolvio,
+  # ver cabecera DEVUELTA-POR-MESA arriba). Ventana ACTUAL (hoy), no
+  # "alguna vez en la vida" -- unico cambio que el ENCARGO autoriza; la
+  # entrada DEVUELTA de arriba NO se toca, cuerpo intacto, cero lineas.
+  #
+  # Universo restringido a parentesco propio in {Jefe, Conyuge} (70.0% de
+  # los respondientes EDER elegibles): persona.csv[parentesco] esta
+  # codificado relativo al jefe(a) de hogar, no al entrevistado -- es la
+  # unica traduccion sin componentes tautologicos ni ambiguedad de
+  # catalogo. Detalle completo: forense/notas/2026-08-31-c1-respec-
+  # corresidencia-{spec,cierre}.md.
+  # ══════════════════════════════════════════════════════════════════
+  - id: familia.corresidencia.adulto_familiar_actual
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA
+    entonces:
+      - {conducta: coreside_con_ascendiente_o_suegro_actual, p: 0.057531, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: no_coreside_con_ascendiente_o_suegro_actual, p: 0.942469, clase: "MEDIDO·p(tasa base ponderada)"}
+    porque: {generador: [G5], mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["EDER2017", "ACTO MAESTRA33-C1", "persona.csv[parentesco] (roster ENH actual, no historiavida)"]
+    ola_calibracion: "EDER 2017 (unica ola)"
+    ic95: [0.051297, 0.063913]
+    n: 9397
+    ponderador: factor
+    universo: "vivienda.tipo_adqui no blanco (mismo filtro heredado) + persona.csv con fila en historiavida.csv (20-54 anios, universo respondiente EDER) + parentesco propio in {1=Jefe, 2=Conyuge} (70.0% de los respondientes elegibles -- unica traduccion sin ambiguedad del catalogo, que codifica parentesco relativo al jefe de hogar, no al entrevistado; ver forense/notas/2026-08-31-c1-respec-corresidencia-spec.md S2). Desenlace = existe otro integrante del mismo folioviv+foliohog con parentesco=6 (ascendiente) o =7 (suegro), traducido segun si ego=Jefe (lectura directa) o ego=Conyuge (invertida). NO incluye hermanos (hnos_cor de la corrida heredada no tiene analogo limpio en el roster actual)."
+    hallazgo: "Ventana ACTUAL (hoy) de la re-especificacion que FP-200=(b) pidio sobre familia.corresidencia.adulto_familiar (DEVUELTA arriba, cuerpo intacto, p=0.996086 'alguna vez en la vida'). p=5.75% vs 99.6% no es una discordancia que adjudicar -- es la relacion esperada entre incidencia acumulada de vida y prevalencia puntual, mas la restriccion de universo a Jefe/Conyuge (70% de los mismos respondientes) que el catalogo de persona.csv fuerza (ver spec S2). Reserva declarada, no resuelta: el ponderador correcto segun el script R oficial de INEGI para esta poblacion (eder2017_descripcion_calculoR.pdf) es factor_per (antecedentes.csv), no factor (vivienda.csv); se hereda factor por instruccion explicita del encargo ('lo unico que cambia es la ventana')."
+    sha256_payload: "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3"
+    payload_manifiesto_id: eder_2017_eder2017_bases_csv
