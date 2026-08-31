@@ -1,5 +1,5 @@
 {
-  "head": "e24d033ed3c095f1e81c2fbb8248f108e9d3ef65",
+  "head": "c6a0d72fe298e4a98fecc67912760a012fff5d8a",
   "fails": [
     [
       "T02",
@@ -76,26 +76,6 @@
     [
       "T11",
       "corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md: afirmación de estado con cuantificador absoluto (5 de 5 comprobadas resultaron falsas): > **Origen de la corrección:** `meta-auditoria-comunicacion.md §3` · ADR-06 · `glosario conf.03"
-    ],
-    [
-      "T16",
-      "canon/estado-programa-v1_10.md: declara 19 FAIL · 126 WARN vigente; la corrida real da N WARN"
-    ],
-    [
-      "T22",
-      "forense/encargos/2026-08-17-CONSOLIDA-17AGO.md trae un marcador de ranura/pendiente-de-mesa nuevo y ninguna fila de `forense/firmas-pendientes.tsv` lo cita -- añade la fila (A.12), o explica la exclusión en la nota del acto y súmalo a `_T22_ARCHIVOS_CONOCIDOS`"
-    ],
-    [
-      "T22",
-      "forense/notas/2026-08-17-consolida.md trae un marcador de ranura/pendiente-de-mesa nuevo y ninguna fila de `forense/firmas-pendientes.tsv` lo cita -- añade la fila (A.12), o explica la exclusión en la nota del acto y súmalo a `_T22_ARCHIVOS_CONOCIDOS`"
-    ],
-    [
-      "T15",
-      "canon/PLAN-CALCULO-TOTAL-v1_1.md: cita 178 ADR; gobernanza tiene 132 únicos"
-    ],
-    [
-      "T15",
-      "canon/PLAN-CALCULO-TOTAL-v1_1.md: cita 71 ADR; gobernanza tiene 132 únicos"
     ]
   ],
   "warns": [
@@ -106,6 +86,30 @@
     [
       "T03",
       "canon/gobernanza-v1_15.md: cita `estado-programa-v1_9.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `APERTURA-FASE-CALCULO-v1_1.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `CAREO-ADV-DUELO-y-DISENO-v2.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `LOTE-NUBE-DECISIONES-1.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `LOTE-UBUNTU-ADQ-1.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `PROMPT-DEEPSEARCH-CREDITO-POPULAR.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `PROMPTS-ADV-DUELO.md`, que no existe"
     ],
     [
       "T03",
@@ -178,6 +182,18 @@
     [
       "T03",
       "forense/encargos/2026-08-17-REGISTRA-17AGO-II.md: cita `PLAN-MULTIFASE-F0-F6-2026-08-13.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-08-20-T-SELLO.md: cita `APERTURA-FASE-CALCULO-v1_1.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-08-20-T-SELLO.md: cita `PLAN-CALCULO-TOTAL-v1_0.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-08-30-MAESTRA32-E11-COBERTURA-15.md: cita `cobertura-15-spec.md`, que no existe"
     ],
     [
       "T03",
@@ -505,34 +521,6 @@
     ],
     [
       "T13",
-      "canon/integrador-psicologia-mexicano.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)"
-    ],
-    [
-      "T03",
-      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `APERTURA-FASE-CALCULO-v1_1.md`, que no existe"
-    ],
-    [
-      "T03",
-      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `CAREO-ADV-DUELO-y-DISENO-v2.md`, que no existe"
-    ],
-    [
-      "T03",
-      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `LOTE-NUBE-DECISIONES-1.md`, que no existe"
-    ],
-    [
-      "T03",
-      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `LOTE-UBUNTU-ADQ-1.md`, que no existe"
-    ],
-    [
-      "T03",
-      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `PROMPT-DEEPSEARCH-CREDITO-POPULAR.md`, que no existe"
-    ],
-    [
-      "T03",
-      "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `PROMPTS-ADV-DUELO.md`, que no existe"
-    ],
-    [
-      "T13",
       "canon/APERTURA-FASE-CALCULO-v1_2.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)"
     ],
     [
@@ -540,12 +528,8 @@
       "canon/PLAN-CALCULO-TOTAL-v1_1.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)"
     ],
     [
-      "T03",
-      "forense/encargos/2026-08-20-T-SELLO.md: cita `APERTURA-FASE-CALCULO-v1_1.md`, que no existe"
-    ],
-    [
-      "T03",
-      "forense/encargos/2026-08-20-T-SELLO.md: cita `PLAN-CALCULO-TOTAL-v1_0.md`, que no existe"
+      "T13",
+      "canon/integrador-psicologia-mexicano.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)"
     ]
   ],
   "nota": {
@@ -559,17 +543,15 @@
       "T03_encargo_verbatim_cita_v0_2_inexistente__solo_existe_v0_1__error_del_encargo_PROC-10-bis": 3,
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 4,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,
-      "T03_sin_clasificar": 17,
+      "T03_sin_clasificar": 26,
       "T05_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 5,
       "T06_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T08_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T09_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 8,
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
-      "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 1,
-      "T16_consecuencia_aritmetica_del_T03_de_revision-publicacion__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01": 1,
-      "T22_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
-      "T22_sin_clasificar": 13
+      "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 3,
+      "T22_sin_clasificar": 14
     }
   }
 }

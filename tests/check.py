@@ -3017,6 +3017,35 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-30-MAESTRA32-E8-MEDICION-COMPUESTA.md",
     "forense/notas/2026-08-30-compuesta-spec.md",
     "forense/notas/2026-08-30-compuesta-cierre.md",
+    # ACTO MAESTRA32-E11 · COBERTURA-15, 31/ago/2026 (ADR-227, renumerado
+    # de ADR-226 al fusionar: ACTO MAESTRA32-E8 arriba fusiono primero y
+    # se quedo con ADR-226; re-emision de MAESTRA32-E10/ADR-224 con
+    # compuerta ya cumplida por MAESTRA32-E9/ADR-225): encargo archivado
+    # VERBATIM (A.3). El titulo
+    # abre con "ACTO MAESTRA32-E11" (hifenado, no pelado) pero el cuerpo
+    # trae bare E10 ("re-emision de E10", "E10 queda consumido",
+    # "verificado por el propio E10", "el intento E10", "el cierre de
+    # E10", "re-emision de E10 (ADR-224)"), E9 ("su compuerta era E9
+    # fusionado", "registrada por ADR-225 (E9)", "redactar y fusionar
+    # E9", "E9 ya fusiono"), E11 ("carril NUBE = E11 (este)", "token
+    # pelado E11"), E3/E8 (carril CAJA, mismo patron narrativo que
+    # MAESTRA32-E6/E9/E10 ya listados arriba) y E4 ("E4 sigue
+    # reservado") -- verificado con el mismo regex de este test, corrido
+    # en vivo sobre el archivo. Todas son referencias narrativas de
+    # direccion a actos ya censados o al propio acto declarandose,
+    # ninguna reclama un rotulo nuevo sin censar. El texto de direccion
+    # no se edita para complacer a un test.
+    "forense/encargos/2026-08-30-MAESTRA32-E11-COBERTURA-15.md",
+    # forense/notas/2026-08-30-cobertura-15-cierre-E11.md -- nota de
+    # cierre de ACTO MAESTRA32-E11 · COBERTURA-15. Trae bare E10 tres
+    # veces, todas narrativas: el titulo ("re-emision de E10"), la cita
+    # al cierre de E10 como obra previa ("cierre de E10, obra previa
+    # citada"), y la cita al encargo original de E10 ("encargo original
+    # de E10, para heredar la definicion de FP-183/FP-184") -- ninguno
+    # es un rotulo nuevo, E10 ya esta censado en canon/registro-rotulos.
+    # tsv. Extension minima de perimetro por desviacion mecanica, mismo
+    # precedente que las notas de cierre ya listadas arriba.
+    "forense/notas/2026-08-30-cobertura-15-cierre-E11.md",
 }
 
 
