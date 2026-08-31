@@ -24,7 +24,12 @@ Emite `forense/digesto/DIGESTO-<fecha>.md`. Determinista: misma
 el acto que lo instaura, con dos corridas y `diff`). La única entrada
 que no sale del árbol es la fecha, y es argumento explícito.
 
-Cinco secciones, en este orden y sin otras:
+**Siete** secciones, en este orden y sin otras. Las cinco primeras
+(A-E) son las que instauró este acto; **F** y **G** las añadió
+`ACTO MAESTRA33-E3 · CABLEADO-COLA-DIGESTO`
+(`forense/encargos/2026-08-31-MAESTRA33-E3-CABLEADO-COLA-DIGESTO.md`),
+que cerró el hueco de que la cola del despachador no se veía desde
+ninguna parte del digesto:
 
 - **A** — filas `ABIERTA` de `forense/firmas-pendientes.tsv` con su
   antigüedad contada desde la columna `creado` hasta `--fecha`.
@@ -52,9 +57,51 @@ Cinco secciones, en este orden y sin otras:
   reglas y dominios activos de `milpa/tramite.yaml`, ejecutables de
   `milpa/procedencia.yaml`, y puntos por conteo de
   `forense/prereg-duelo-v2/corridas-*/*.json`.
+- **F** — la **cola** del despachador (`forense/encargos/cola/`), en
+  cinco cubos: `LISTO-NUBE` esperando turno con su edad · `ENTORNO:
+  CAJA` esperando caja con su edad · `EN-CURSO` con la **prueba de
+  huérfano** (edad ≥ 1 día y sin `claude/despacha-<CÓDIGO>` en el
+  remoto → **HUÉRFANO**) · `PARO-REPORTADO` **sin triaje** (nadie
+  escribió un renglón de `BITACORA:` después del suyo) · y la línea
+  **«COLA VACÍA — dirección debe redactar»** cuando no hay ningún
+  `LISTO` de ninguna clase.
+  Dos cosas que la sección **declara en su propia salida**, porque sin
+  ellas se leería mal: (1) el digesto lee la cola del **árbol de
+  trabajo** —su contrato es el determinismo— mientras el despachador la
+  lee de **`origin/main`** —su contrato es que lo que no está en `main`
+  no cuenta—; coinciden en un clon limpio y, si no coinciden, manda la
+  del despachador. (2) el **PR no es derivable** en este entorno
+  (`gh` no existe en la nube), así que la prueba de huérfano usa la
+  rama, que es cota superior segura: un PR abierto implica una rama
+  viva. El digesto **nombra** los huérfanos y no los toca — resetear un
+  `EN-CURSO` es juicio de mesa, y es un commit de una línea suyo.
+- **G** — `PENDIENTE-DE-MESA` en `milpa/*.yaml`, por dos rastreos que se
+  reportan por separado: el patrón **en prosa** (el mismo que persigue
+  `T22(b)`, reusado a propósito: un positivo ahí es a la vez pendiente
+  de mesa y riesgo vivo para la suite) y el **estructurado** de claves
+  YAML. El `id` y la fecha del acto de origen son atribuciones
+  **posicionales** —el `- id:` anterior, la fecha más cercana hacia
+  atrás— y la sección lo dice con esas palabras: un YAML no lleva
+  escrito de qué acto viene cada línea.
 
 **A.13 en todas partes**: cada negativo declara cuántos archivos examinó
 el comando que lo produjo. Un negativo sin conteo no es un negativo.
+
+**El pie trae la tabla de falsadores vivos** (P3 del mismo acto
+`MAESTRA33-E3`). Todas las piezas de esta familia —`/acto`, este
+runbook, `/tramite`, el runbook de despacho y `/despacha`— caducan «en
+un mes», y ninguna decía **de qué día** cuenta ese mes. Mientras la
+fecha viva sólo en la cabeza de quien lo escribió, «en un mes» depende
+de que alguien se acuerde, y nadie se acuerda. El pie la **deriva del
+propio archivo** —el prefijo de fecha del encargo que cita, o la primera
+fecha de la casa de su cabecera; nunca de memoria, y si el archivo no la
+trae la fila dice `NO-DERIVABLE` y eso es el hallazgo— y suma **30
+días**, que es lo único que no obliga a elegir entre 28 y 31. Cuando una
+vence, el digesto lo marca: vencer no significa que la pieza haya
+fallado, significa que **toca mirarla**, con el criterio que la propia
+fila cita. Y si alguien retira un falsador de su archivo, la fila lo
+dice como `retirado` en vez de listarlo: un falsador borrado no es un
+falsador vencido.
 
 **Neutralización de marcadores — la parte no obvia.** El digesto vive en
 `forense/`, y su nombre cambia cada día. Eso lo mete en el universo que

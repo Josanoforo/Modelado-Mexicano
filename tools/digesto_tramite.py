@@ -30,6 +30,30 @@ A.13. Todo veredicto negativo de este archivo declara cuántos archivos
 examinó el comando que lo produjo. Un negativo sin conteo no es un
 negativo.
 
+v1.1 — SECCIONES F Y G, Y LA TABLA DE FALSADORES DEL PIE.
+`ACTO MAESTRA33-E3 · CABLEADO-COLA-DIGESTO`
+(`forense/encargos/2026-08-31-MAESTRA33-E3-CABLEADO-COLA-DIGESTO.md`)
+añade tres cosas a la v1.0, y las tres cierran un hueco por el que se
+veía pasar el agua:
+
+  · **F · Cola.** La cola del despachador (`forense/encargos/cola/`, de
+    `ADR-240`) no estaba en ninguna de las cinco secciones de la v1.0 —
+    `seccion_d` hace `glob` PLANO sobre `forense/encargos/*.md` y deja
+    `cola/` fuera de su universo **a propósito**, para no tentar a la
+    skill a marcar `CONSUMIDO` un encargo que todavía no se ejecutó. El
+    efecto lateral era que la cola sólo se veía abriendo el directorio a
+    mano. F la mira: los cuatro estados con su edad, la prueba de
+    huérfano, y la línea de cola vacía.
+  · **G · `PENDIENTE-DE-MESA`.** Lo que `milpa/*.yaml` deja nombrado como
+    pendiente de mesa tampoco tenía sección.
+  · **Pie · falsadores.** Cinco piezas de esta familia caducan «en un
+    mes» y ninguna decía desde qué día. Ahora la fecha se deriva del
+    propio archivo y el pie dice cuándo vence cada una.
+
+Ninguna de las tres decide nada, igual que las cinco anteriores: F
+nombra huérfanos y no los resetea, G nombra pendientes y no los
+resuelve, el pie dice qué toca mirar y no lo mira.
+
 ────────────────────────────────────────────────────────────────────
 NEUTRALIZACIÓN DE MARCADORES — léelo antes de tocar `_neutraliza()`.
 ────────────────────────────────────────────────────────────────────
@@ -190,6 +214,10 @@ def plural_dias(n):
     return "1 día" if n == 1 else f"{n} días"
 
 
+def plural(n, sing, plur):
+    return f"{n} {sing}" if n == 1 else f"{n} {plur}"
+
+
 def dias(desde, hasta):
     try:
         a, m, d = (int(x) for x in desde.split("-"))
@@ -342,7 +370,7 @@ def seccion_c(raiz):
     if not ramas:
         out += [f"NINGUNA. Ramas remotas examinadas por ese comando: "
                 f"**{examinadas}** (A.13); ninguna distinta de `main`.", ""]
-        return out, 0
+        return out, 0, [], fuente
     out += [f"{len(ramas)} de **{examinadas}** ramas remotas examinadas son distintas "
             f"de `main` (A.13):", ""]
     for r in ramas:
@@ -350,7 +378,7 @@ def seccion_c(raiz):
     out += ["",
             "Una rama que sobrevive a su merge es trabajo perdido o trabajo sin "
             "fusionar; el digesto la nombra, no la borra — borrar es de mesa.", ""]
-    return out, len(ramas)
+    return out, len(ramas), ramas, fuente
 
 
 def seccion_d(raiz, piso_arg, tope_lista):
@@ -564,6 +592,565 @@ def seccion_e(raiz):
 
 
 # ───────────────────────────────────────────────────────────────
+# F · La cola  ·  G · PENDIENTE-DE-MESA  ·  falsadores del pie
+#
+# P2/P3 de `ACTO MAESTRA33-E3 · CABLEADO-COLA-DIGESTO`
+# (`forense/encargos/2026-08-31-MAESTRA33-E3-CABLEADO-COLA-DIGESTO.md`).
+#
+# Por qué existen. Hasta v1.0 el digesto cubría A-E: tablero, suite, ramas,
+# encargos sin marca, contadores. La COLA (`forense/encargos/cola/`, que el
+# despachador de `ADR-240` consume) no estaba en ninguna de las cinco —
+# `seccion_d` hace `glob` PLANO sobre `forense/encargos/*.md`, así que
+# `cola/` queda fuera de su universo a propósito (lo dice su propia
+# derivación declarada). El resultado era una cola que sólo se veía
+# abriendo el directorio a mano: exactamente el hueco por el que se filtra
+# el agua. F la mira. G mira lo que `milpa/` deja nombrado como pendiente
+# de mesa, que tampoco tenía sección.
+#
+# QUIÉN LEE QUÉ, y por qué no es lo mismo. El DESPACHADOR lee la cola de
+# `origin/main` — regla dura: lo que no está en `main` no cuenta, ni para
+# ejecutar ni para bloquear. Este DIGESTO lee el ÁRBOL DE TRABAJO, por su
+# propio contrato de determinismo (mismo árbol + misma `--fecha` → misma
+# salida). Las dos lecturas coinciden en un clon limpio y sincronizado, y
+# pueden no coincidir en uno sucio; por eso la sección DECLARA cuál usó.
+# No se cambia una por la otra: el digesto que dependiera del remoto
+# dejaría de ser determinista, y el despachador que leyera el árbol
+# perdería la única compuerta que lo separa de ejecutar lo que le digan.
+# ───────────────────────────────────────────────────────────────
+
+RE_ESTADO = re.compile(r"^ESTADO:\s*(\S+)", re.M)
+RE_ENTORNO = re.compile(r"^ENTORNO:\s*(\S+)", re.M)
+RE_ENCOLADO = re.compile(r"^ENCOLADO:\s*(\d{4}-\d{2}-\d{2})", re.M)
+# Renglon de bitacora: `- <fecha> · <ESTADO> · <que paso>`. Solo se ANADE,
+# nunca se reescribe, asi que el ULTIMO renglon de un estado dado es la
+# fecha en que ese estado empezo.
+RE_BITACORA = re.compile(r"^-\s*(\d{4}-\d{2}-\d{2})\s*·\s*([A-Z-]+)\s*·\s*(.*)$", re.M)
+
+ESTADOS_COLA = ("LISTO-NUBE", "EN-CURSO", "CONSUMIDO", "PARO-REPORTADO")
+
+
+def _lee_item_cola(ruta):
+    """Cabecera de un archivo de cola. Solo la cabecera: el cuerpo verbatim
+    del encargo (A.3) no se interpreta ni se cita aquí. `^ESTADO:` anclado a
+    principio de línea es unívoco por construcción — el cuerpo puede traer la
+    cadena `ESTADO:` dentro de una línea, y de hecho el primer elemento de la
+    cola la trae (`/acto · ESTADO: LISTO-NUBE`), pero nunca empezando línea."""
+    try:
+        with open(ruta, encoding="utf-8") as fh:
+            s = fh.read()
+    except OSError:
+        return None
+    m_e = RE_ESTADO.search(s)
+    m_n = RE_ENTORNO.search(s)
+    m_q = RE_ENCOLADO.search(s)
+    bit = RE_BITACORA.findall(s)
+    return {
+        "ruta": ruta,
+        "base": os.path.basename(ruta),
+        # `codigo` es lo que el despachador usa para derivar su nombre de
+        # rama (`claude/despacha-<CODIGO>`): basename sin prefijo de fecha
+        # ni extension. Misma derivacion, o el cotejo de F.3 no valdria.
+        "codigo": re.sub(r"\.md$", "", os.path.basename(ruta)[11:]),
+        "estado": m_e.group(1) if m_e else None,
+        "entorno": m_n.group(1) if m_n else None,
+        "encolado": m_q.group(1) if m_q else None,
+        "bitacora": bit,
+    }
+
+
+def _fecha_de_estado(item, estado):
+    """Fecha del ÚLTIMO renglón de bitácora con ese estado; si no hay
+    ninguno, la de `ENCOLADO:`; si tampoco, `None`. Nunca se inventa."""
+    fechas = [f for f, e, _ in item["bitacora"] if e == estado]
+    if fechas:
+        return fechas[-1]
+    return item["encolado"]
+
+
+def seccion_f(raiz, hoy, ramas_remotas, fuente_ramas):
+    """F · Cola de `forense/encargos/cola/`.
+
+    Cuatro cubos por estado, más la línea de cola vacía. La regla de
+    HUÉRFANO es la de `ADR-240` extendida por este acto y escrita en
+    `forense/agente-despacho-v1_0.md` §0/P1: un `EN-CURSO` de **más de
+    24 h** SIN rama remota propia está huérfano. El digesto lo NOMBRA; ni
+    el digesto ni el despachador lo ejecutan ni lo resetean — resetear es
+    juicio de mesa.
+    """
+    d = os.path.join(raiz, "forense", "encargos", "cola")
+    out = ["## F · La cola (`forense/encargos/cola/`)", "",
+           "Comando: lectura directa de `forense/encargos/cola/*.md` en el "
+           "**árbol de trabajo** de este clon (cabecera únicamente: `^ESTADO:`, "
+           "`^ENTORNO:`, `^ENCOLADO:` y los renglones de `BITACORA:`; el cuerpo "
+           "verbatim del encargo no se interpreta ni se cita). Edad = `--fecha` − "
+           "fecha del último renglón de `BITACORA:` con ese estado (o `ENCOLADO:` "
+           "si no hay ninguno).", "",
+           "⚠️ **El despachador NO lee esto.** Él lee la cola de `origin/main` "
+           "(`git ls-tree origin/main -- forense/encargos/cola/`), porque su regla "
+           "dura es que lo que no está en `main` no cuenta ni para ejecutar ni "
+           "para bloquear. Este digesto lee el árbol para poder ser determinista "
+           "(mismo árbol + misma `--fecha` → misma salida). En un clon limpio y "
+           "sincronizado las dos lecturas coinciden; en uno sucio pueden no "
+           "hacerlo, y entonces manda la del despachador.", ""]
+
+    if not os.path.isdir(d):
+        out += ["**COLA VACÍA — dirección debe redactar.** El directorio "
+                "`forense/encargos/cola/` no existe en este árbol; archivos "
+                "examinados: **0** (A.13). Que la cola no exista todavía no es un "
+                "error: nace cuando mesa fusiona el PR que la crea.", ""]
+        return out, {"listo_nube": 0, "esperando_caja": 0, "en_curso": 0,
+                     "huerfanos": 0, "paro": 0, "total": 0}
+
+    archivos = sorted(glob.glob(os.path.join(d, "*.md")))
+    items = [x for x in (_lee_item_cola(p) for p in archivos) if x]
+    out.append(f"Archivos `.md` examinados en `forense/encargos/cola/`: "
+               f"**{len(archivos)}** (A.13){'' if len(items) == len(archivos) else f'; {len(archivos) - len(items)} no se pudieron leer'}.")
+
+    sin_estado = [i for i in items if i["estado"] not in ESTADOS_COLA]
+    if sin_estado:
+        out += ["",
+                f"⚠️ **{len(sin_estado)} archivo(s) sin una línea `^ESTADO:` de las "
+                f"cuatro de la máquina de estados** ({', '.join('`%s`' % e for e in ESTADOS_COLA)}). "
+                f"No se clasifican, se nombran: " +
+                ", ".join(f"`{i['base']}` (`{i['estado'] or 'sin ESTADO'}`)" for i in sin_estado) +
+                ". Un archivo de cola sin estado no lo arregla el digesto: es de mesa."]
+    out.append("")
+
+    def _edad(item, estado):
+        f = _fecha_de_estado(item, estado)
+        n = dias(f, hoy) if f else None
+        return f, n
+
+    def _tabla(titulo, filas, nota):
+        blq = [f"### {titulo}", ""]
+        if not filas:
+            blq += [nota, ""]
+            return blq
+        blq += ["| encargo | desde | edad |", "|---|---|---|"] + filas + [""]
+        return blq
+
+    # ── F.1 · LISTO-NUBE en espera ──────────────────────────────
+    listo_nube = [i for i in items if i["estado"] == "LISTO-NUBE"
+                  and i["entorno"] == "NUBE"]
+    filas = []
+    for i in sorted(listo_nube, key=lambda x: x["base"]):
+        f, n = _edad(i, "LISTO-NUBE")
+        filas.append(f"| `{i['base']}` | {f or '?'} | "
+                     f"{plural_dias(n) if n is not None else 'no derivable'} |")
+    out += _tabla("F.1 · `LISTO-NUBE` · `ENTORNO: NUBE` — esperando turno",
+                  filas,
+                  f"NINGUNO. Archivos de cola examinados: {len(items)} (A.13).")
+    if listo_nube:
+        out += ["El primero de esa lista por nombre de archivo es el que tomará el "
+                "siguiente tick del despachador: la selección es determinista y "
+                "ordena por nombre, que empieza por la fecha.", ""]
+
+    # ── F.2 · esperando CAJA ────────────────────────────────────
+    caja = [i for i in items if i["entorno"] == "CAJA"
+            and i["estado"] in ("LISTO-NUBE", "LISTO", "LISTO-CAJA")]
+    filas = []
+    for i in sorted(caja, key=lambda x: x["base"]):
+        f, n = _edad(i, i["estado"])
+        filas.append(f"| `{i['base']}` | {f or '?'} | "
+                     f"{plural_dias(n) if n is not None else 'no derivable'} |")
+    out += _tabla("F.2 · `ENTORNO: CAJA` — esperando caja, nadie en nube los toca",
+                  filas,
+                  f"NINGUNO. Archivos de cola examinados: {len(items)} (A.13).")
+    if caja:
+        out += ["Estos abren microdato y van a Ubuntu, sin excepción. El "
+                "despachador de nube los lista y **no los toca**; que envejezcan es "
+                "información de mesa, no un defecto del despachador.", ""]
+
+    # ── F.3 · EN-CURSO, con la prueba de huérfano ───────────────
+    #
+    # La prueba tiene DOS mitades y solo una es derivable en este entorno:
+    #  · RAMA: derivable. `claude/despacha-<CODIGO>` es invariante por
+    #    encargo (no lleva la fecha de hoy) justo para que se pueda cotejar.
+    #  · PR: NO derivable. `gh` no existe en la nube (medido 31/ago/2026 por
+    #    el acto que instauro el despachador), y sin `gh` no hay forma de
+    #    preguntar por PRs. Se declara, no se finge: un PR vivo implica una
+    #    rama viva, asi que la rama es cota superior segura -- si no hay
+    #    rama, tampoco hay PR abierto sobre ella.
+    en_curso = [i for i in items if i["estado"] == "EN-CURSO"]
+    ramas_set = set(ramas_remotas or [])
+    huerfanos = []
+    filas = []
+    for i in sorted(en_curso, key=lambda x: x["base"]):
+        f, n = _edad(i, "EN-CURSO")
+        rama = f"claude/despacha-{i['codigo']}"
+        tiene = rama in ramas_set
+        # >24h = al menos un dia cumplido. La bitacora tiene granularidad de
+        # DIA, asi que `n >= 1` es lo mas fino que el dato soporta; afinar mas
+        # seria inventar horas que el archivo no trae.
+        viejo = (n is not None and n >= 1)
+        es_huerfano = viejo and not tiene
+        if es_huerfano:
+            huerfanos.append((i, f, n, rama))
+        filas.append(
+            f"| `{i['base']}` | {f or '?'} | "
+            f"{plural_dias(n) if n is not None else 'no derivable'} | "
+            f"{'sí' if tiene else 'NO'} (`{rama}`) | "
+            f"{'**HUÉRFANO**' if es_huerfano else ('en vuelo' if tiene else 'reciente — aún no cumple 24 h')} |")
+    out += ["### F.3 · `EN-CURSO` — con la prueba de huérfano", ""]
+    if not en_curso:
+        out += [f"NINGUNO. Archivos de cola examinados: {len(items)} (A.13). "
+                f"Ninguna sesión de nube tiene un encargo en vuelo según el árbol.",
+                ""]
+    else:
+        out += [f"Fuente de las ramas: {fuente_ramas}. Ramas remotas distintas de "
+                f"`main` examinadas para este cotejo: **{len(ramas_set)}** (A.13).",
+                "",
+                "| encargo | `EN-CURSO` desde | edad | ¿rama propia en el remoto? | veredicto |",
+                "|---|---|---|---|---|"] + filas + [""]
+        out += ["La rama propia es `claude/despacha-<CÓDIGO>`, derivada del nombre "
+                "del archivo **sin la fecha de hoy** — invariante por encargo, que "
+                "es lo que la hace cotejable. **El PR no es derivable en este "
+                "entorno**: `gh` no existe en la nube (medido el 31/ago/2026 por el "
+                "acto que instauró el despachador), y sin `gh` no hay manera de "
+                "preguntar por PRs. No se finge: la rama es cota superior segura, "
+                "porque un PR abierto implica una rama viva.", ""]
+    if huerfanos:
+        out += [f"⚠️ **{plural(len(huerfanos), 'HUÉRFANO', 'HUÉRFANOS')}.** Un `EN-CURSO` de más de 24 h "
+                f"sin rama remota propia es un encargo cuya sesión murió a media "
+                f"ejecución: bloquea el candado de todos los ticks siguientes y no "
+                f"hay nadie trabajándolo.", ""]
+        for i, f, n, rama in huerfanos:
+            out.append(f"- `{i['base']}` — `EN-CURSO` desde **{f}** "
+                       f"(**{plural_dias(n)}**), sin `{rama}` en el remoto.")
+        out += ["",
+                "**Ni el digesto ni el despachador lo resetean.** Decidir que una "
+                "sesión murió es juicio de mesa. El reset es un commit de una línea "
+                "de mesa/dirección que devuelve la cabecera a `LISTO-NUBE` o a "
+                "`PARO-REPORTADO` **con la razón**, y añade su renglón de "
+                "`BITACORA:`. Hasta que eso ocurra, la cola sigue parada — que es el "
+                "comportamiento correcto: preferimos parados que duplicados.", ""]
+    elif en_curso:
+        out += [f"Ninguno huérfano: los {len(en_curso)} `EN-CURSO` examinados tienen "
+                f"rama propia viva o no cumplen todavía 24 h (A.13).", ""]
+
+    # ── F.4 · PARO-REPORTADO sin triaje ─────────────────────────
+    #
+    # "Sin triaje" = el archivo NO trae ningun renglon de bitacora POSTERIOR
+    # al que puso el PARO. Ese renglon posterior es la unica huella que deja
+    # mesa cuando lo mira: reencolarlo escribe `LISTO-NUBE`, archivarlo
+    # escribe lo que sea, pero SIEMPRE anade renglon (la bitacora solo se
+    # anade). Un PARO cuyo ultimo renglon es el suyo propio es un PARO que
+    # nadie ha mirado.
+    paro = [i for i in items if i["estado"] == "PARO-REPORTADO"]
+    sin_triaje = []
+    for i in paro:
+        est = [e for _, e, _ in i["bitacora"]]
+        # ultimo renglon es el del propio PARO -> nadie escribio despues
+        if not est or est[-1] == "PARO-REPORTADO":
+            sin_triaje.append(i)
+    out += ["### F.4 · `PARO-REPORTADO` sin triaje de mesa", ""]
+    if not paro:
+        out += [f"NINGUNO. Archivos de cola examinados: {len(items)} (A.13). "
+                f"Ningún encargo de la cola está parado.", ""]
+    else:
+        out += [f"`PARO-REPORTADO` en la cola: **{len(paro)}** de {len(items)} "
+                f"archivos examinados (A.13). **Sin triaje: {len(sin_triaje)}** — "
+                f"«sin triaje» = el último renglón de su `BITACORA:` es el del "
+                f"propio paro, así que nadie ha escrito nada después de él.", "",
+                "| encargo | parado desde | edad | ¿triaje? |", "|---|---|---|---|"]
+        for i in sorted(paro, key=lambda x: x["base"]):
+            f, n = _edad(i, "PARO-REPORTADO")
+            out.append(f"| `{i['base']}` | {f or '?'} | "
+                       f"{plural_dias(n) if n is not None else 'no derivable'} | "
+                       f"{'**NO**' if i in sin_triaje else 'sí'} |")
+        out += ["",
+                "Un `PARO-REPORTADO` **no se reintenta solo**: se queda parado hasta "
+                "que mesa lo vuelva a encolar. Que aparezca aquí no pide acción del "
+                "despachador — pide lectura de mesa. La razón verbatim del paro vive "
+                "en el renglón de `BITACORA:` del propio archivo.", ""]
+
+    # ── F.5 · la linea de cola vacia ────────────────────────────
+    #
+    # Se emite cuando no hay NINGUN LISTO, ni de nube ni de caja: es el unico
+    # caso en que la cola no tiene trabajo autorizado de ninguna clase.
+    # Un EN-CURSO o un PARO no son trabajo esperando; son trabajo atascado, y
+    # eso ya lo dicen F.3 y F.4.
+    if not listo_nube and not caja:
+        out += ["### F.5 · Veredicto de cola", "",
+                f"**COLA VACÍA — dirección debe redactar.** Ningún encargo `LISTO` "
+                f"de ninguna clase: 0 en nube, 0 esperando caja, sobre "
+                f"**{len(items)}** archivos de cola examinados (A.13). El "
+                f"despachador terminará su próximo tick con cero commits, y hará "
+                f"bien. Una cola vacía no es una avería del despachador: es "
+                f"información de mesa — significa que dirección no ha encolado "
+                f"nada.", ""]
+    else:
+        out += ["### F.5 · Veredicto de cola", "",
+                f"Cola con trabajo: **{len(listo_nube)}** `LISTO-NUBE` en nube y "
+                f"**{len(caja)}** esperando caja, sobre "
+                f"{plural(len(items), 'archivo examinado', 'archivos examinados')} "
+                f"(A.13).", ""]
+
+    return out, {"listo_nube": len(listo_nube), "esperando_caja": len(caja),
+                 "en_curso": len(en_curso), "huerfanos": len(huerfanos),
+                 "paro": len(paro), "paro_sin_triaje": len(sin_triaje),
+                 "total": len(items)}
+
+
+# ───────────────────────────────────────────────────────────────
+# G · PENDIENTE-DE-MESA en `milpa/*.yaml`
+# ───────────────────────────────────────────────────────────────
+
+# Clave estructurada que declararia un pendiente de mesa de forma
+# inequivoca. Se busca aparte del patron en prosa porque una clave YAML es
+# un compromiso del archivo, y una frase en un comentario es una pista.
+RE_CLAVE_PENDIENTE = re.compile(
+    r"^\s*(requiere_decision|pendiente_de_mesa|decision_de_mesa|"
+    r"requiere_mesa|pendiente_mesa)\s*:\s*(\S+)", re.M)
+RE_ID_YAML = re.compile(r"^\s*-?\s*id:\s*([A-Za-z0-9_.\-]+)")
+RE_FECHA_ISO = re.compile(r"(\d{4}-\d{2}-\d{2})")
+RE_FECHA_CASA = re.compile(r"(\d{1,2}/[a-z]{3}/\d{4})")
+
+
+def seccion_g(raiz):
+    """G · pendientes nombrados de mesa dentro de `milpa/*.yaml`.
+
+    Dos rastreos sobre el mismo universo, y se reportan por separado
+    porque no dicen lo mismo:
+
+      · el patrón EN PROSA es `RE_MARCADOR_PENDIENTE`, **el mismo** que
+        `T22(b)` de la suite persigue y que este archivo ya neutraliza al
+        copiar texto. Reusarlo no es economía: si `milpa/` trae un
+        positivo, ese texto es a la vez un pendiente de mesa y un riesgo
+        vivo para la suite, y conviene que sea el mismo regex el que lo
+        vea en los dos sitios.
+      · el patrón ESTRUCTURADO son claves YAML (`requiere_decision:` y
+        hermanas). Una clave es un compromiso del archivo; una frase en un
+        comentario es una pista. No se mezclan.
+
+    El `id` se atribuye al `- id:` inmediatamente anterior, y la fecha del
+    acto de origen a la fecha más cercana hacia atrás dentro del mismo
+    bloque. Las dos son atribuciones POSICIONALES y se declaran como
+    tales: un YAML no lleva escrito de qué acto viene cada línea.
+    """
+    out = ["## G · `PENDIENTE-DE-MESA` en `milpa/*.yaml`", "",
+           "Comando: dos rastreos línea a línea sobre `milpa/*.yaml` — (g.1) el "
+           "patrón **en prosa** `RE_MARCADOR_PENDIENTE`, que es el mismo que "
+           "persigue `T22(b)` de la suite; (g.2) el patrón **estructurado** de "
+           "claves YAML (`requiere_decision:`, `pendiente_de_mesa:`, "
+           "`decision_de_mesa:`, `requiere_mesa:`, `pendiente_mesa:`). Se reportan "
+           "por separado: una clave es un compromiso del archivo, una frase en un "
+           "comentario es una pista.", ""]
+
+    archivos = sorted(glob.glob(os.path.join(raiz, "milpa", "*.yaml")))
+    if not archivos:
+        out += ["**NO-ENCONTRADO.** Archivos examinados en `milpa/*.yaml`: **0** "
+                "(A.13) — el directorio no existe o no tiene `.yaml`.", ""]
+        return out, 0
+
+    n_lineas = 0
+    hallazgos = []   # (archivo, linea, clase, id, fecha, texto)
+    for p in archivos:
+        try:
+            with open(p, encoding="utf-8") as fh:
+                lineas = fh.read().splitlines()
+        except OSError:
+            continue
+        n_lineas += len(lineas)
+        id_actual, fecha_actual = None, None
+        for n, l in enumerate(lineas, 1):
+            m_id = RE_ID_YAML.match(l)
+            if m_id:
+                id_actual, fecha_actual = m_id.group(1), None
+            m_f = RE_FECHA_ISO.search(l) or RE_FECHA_CASA.search(l)
+            if m_f:
+                fecha_actual = m_f.group(1)
+            clase = None
+            if RE_CLAVE_PENDIENTE.match(l):
+                clase = "clave"
+            elif RE_MARCADOR_PENDIENTE.search(l):
+                clase = "prosa"
+            if clase:
+                hallazgos.append((os.path.relpath(p, raiz), n, clase,
+                                  id_actual, fecha_actual, l.strip()))
+
+    universo = (f"Universo examinado: **{len(archivos)}** archivo(s) "
+                f"`milpa/*.yaml`, **{n_lineas}** líneas en total (A.13): "
+                + ", ".join(f"`{os.path.relpath(p, raiz)}`" for p in archivos) + ".")
+
+    if not hallazgos:
+        out += [universo, "",
+                "**NO-ENCONTRADO — 0 pendientes de mesa.** Ninguna de las "
+                f"{n_lineas} líneas examinadas coincide con el patrón en prosa ni "
+                "con ninguna de las cinco claves estructuradas. Dicho con "
+                "precisión, que es lo que un negativo debe decir: **`milpa/` no "
+                "usa hoy ninguna de esas cinco claves** — no es que las traiga en "
+                "`false`. Si mañana una regla necesita marcar un pendiente de "
+                "mesa, la clave que esta sección leerá es `requiere_decision`, en "
+                "positivo; hasta entonces este cero significa «no hay marcador», no "
+                "«mesa no tiene nada pendiente en `milpa/`».", ""]
+        return out, 0
+
+    n_clave = sum(1 for h in hallazgos if h[2] == "clave")
+    out += [universo, "",
+            f"**{len(hallazgos)} coincidencia(s)**: {n_clave} por clave "
+            f"estructurada, {len(hallazgos) - n_clave} por patrón en prosa.", "",
+            "| archivo:línea | clase | `id` atribuido | fecha del acto de origen |",
+            "|---|---|---|---|"]
+    for arch, n, clase, idv, fecha, _ in hallazgos:
+        out.append(f"| `{arch}:{n}` | {clase} | "
+                   f"{('`%s`' % idv) if idv else '—'} | {fecha or 'no derivable'} |")
+    out += ["",
+            "**Las dos últimas columnas son atribuciones POSICIONALES**, y se "
+            "declaran como tales: el `id` es el `- id:` inmediatamente anterior en "
+            "el archivo, y la fecha es la más cercana hacia atrás dentro del mismo "
+            "bloque. Un YAML no lleva escrito de qué acto viene cada línea; si el "
+            "bloque no trae fecha, aquí dice `no derivable` en vez de inventarla. "
+            "Ningún pendiente se resuelve aquí: resolverlo es de mesa.", ""]
+    return out, len(hallazgos)
+
+
+# ───────────────────────────────────────────────────────────────
+# Falsadores vivos — para el pie
+# ───────────────────────────────────────────────────────────────
+#
+# P3 del acto. Todos los falsadores de esta familia de piezas caducan "en
+# un mes", y ninguno dice DE QUE DIA cuenta ese mes. Mientras la fecha
+# viva solo en la cabeza de quien lo escribio, "en un mes" depende de que
+# alguien se acuerde -- y nadie se acuerda. Aqui se DERIVA:
+#
+#   origen  = la fecha que el propio archivo declara (el prefijo de fecha
+#             del encargo que cita, o la primera fecha de la casa de su
+#             cabecera). NUNCA de memoria: si el archivo no la trae, la
+#             fila dice NO-DERIVABLE y eso es el hallazgo.
+#   revision= origen + 30 dias. Treinta, no "un mes de calendario": es lo
+#             unico que no obliga a elegir entre 28 y 31, y la diferencia
+#             no cambia ninguna decision de mesa.
+FALSADORES = (
+    ("`/acto`", ".claude/commands/acto.md",
+     "no evita ni un acto perdido por compuerta · el tamaño mediano de encargo "
+     "no baja 50% · un lote deja pasar un defecto que el formato largo habría "
+     "atrapado"),
+    ("agente de trámite", "forense/agente-tramite-v1_0.md",
+     "un PR `[TRAMITE]` requiere retrabajo de mesa · un PR `[TRAMITE]` toca algo "
+     "fuera de su perímetro de tres rutas"),
+    ("`/tramite`", ".claude/commands/tramite.md",
+     "hereda el falsador del runbook de trámite (§3)"),
+    ("agente de despacho", "forense/agente-despacho-v1_0.md",
+     "ejecuta algo fuera de la cola o fuera de `main` · dos sesiones de nube "
+     "coinciden por su causa"),
+    ("`/despacha`", ".claude/commands/despacha.md",
+     "hereda el falsador del runbook de despacho (§3)"),
+)
+
+MESES_CASA = {"ene": 1, "feb": 2, "mar": 3, "abr": 4, "may": 5, "jun": 6,
+              "jul": 7, "ago": 8, "sep": 9, "oct": 10, "nov": 11, "dic": 12}
+
+
+def _fecha_origen(texto):
+    """(fecha ISO, cómo se derivó) o (None, motivo). Dos vías, en orden de
+    fiabilidad: el prefijo de fecha del encargo que el archivo cita (es el
+    nombre de un archivo del repo, no prosa), y si no, la primera fecha de
+    la casa (`31/ago/2026`) de su cabecera."""
+    m = re.search(r"forense/encargos/(\d{4}-\d{2}-\d{2})-", texto)
+    if m:
+        return m.group(1), "prefijo de fecha del encargo que el archivo cita"
+    m = re.search(r"\b(\d{1,2})/([a-z]{3})/(\d{4})\b", texto[:4000])
+    if m and m.group(2) in MESES_CASA:
+        return ("%s-%02d-%02d" % (m.group(3), MESES_CASA[m.group(2)], int(m.group(1))),
+                f"primera fecha de la casa de su cabecera (`{m.group(0)}`)")
+    return None, "el archivo no declara ninguna fecha derivable"
+
+
+def _falsador_vivo(texto):
+    """¿El archivo declara todavía un falsador «a un mes»? Si alguien lo
+    quita, esta sección deja de listarlo — y eso es correcto: un falsador
+    borrado no es un falsador vencido."""
+    return bool(re.search(r"en un mes", texto))
+
+
+def bloque_falsadores(raiz, hoy):
+    out = ["### Falsadores vivos y su fecha de revisión", "",
+           "Comando: lectura de cada runbook/skill de la lista; la fecha de origen "
+           "se **deriva del propio archivo** (el prefijo de fecha del encargo que "
+           "cita, o la primera fecha de la casa de su cabecera), nunca de memoria; "
+           "revisión = origen **+ 30 días**. Treinta y no «un mes de calendario» "
+           "porque es lo único que no obliga a elegir entre 28 y 31, y la "
+           "diferencia no cambia ninguna decisión de mesa.", "",
+           "| pieza | archivo | falsador «a un mes» | origen | derivación del origen | revisión | estado |",
+           "|---|---|---|---|---|---|---|"]
+    vencidos, examinados = 0, 0
+    for nombre, rel, criterio in FALSADORES:
+        p = os.path.join(raiz, rel)
+        examinados += 1
+        if not os.path.exists(p):
+            out.append(f"| {nombre} | `{rel}` | — | — | **NO-ENCONTRADO** — la ruta "
+                       f"no existe (1 ruta examinada, A.13) | — | — |")
+            continue
+        with open(p, encoding="utf-8") as fh:
+            s = fh.read()
+        if not _falsador_vivo(s):
+            out.append(f"| {nombre} | `{rel}` | — | — | el archivo ya no declara un "
+                       f"falsador «en un mes» | — | retirado |")
+            continue
+        origen, como = _fecha_origen(s)
+        if not origen:
+            out.append(f"| {nombre} | `{rel}` | {criterio} | **NO-DERIVABLE** | "
+                       f"{como} | — | ⚠️ sin fecha |")
+            continue
+        a, m, d = (int(x) for x in origen.split("-"))
+        rev = datetime.date(a, m, d) + datetime.timedelta(days=30)
+        n = (hoy - rev).days
+        if n > 0:
+            estado, vencidos = f"⚠️ **VENCIDO hace {plural_dias(n)}**", vencidos + 1
+        elif n == 0:
+            estado = "⚠️ **vence HOY**"
+        else:
+            estado = f"faltan {plural_dias(-n)}"
+        out.append(f"| {nombre} | `{rel}` | {criterio} | {origen} | {como} | "
+                   f"**{rev.isoformat()}** | {estado} |")
+
+    # La lista FALSADORES es FIJA, y una lista fija se queda corta en
+    # silencio -- que es justo la clase de hueco que este acto existe para
+    # cerrar. El cotejo de abajo la audita contra el arbol: si aparece una
+    # pieza nueva con falsador "en un mes" que nadie anadio a la lista, la
+    # seccion lo DICE en vez de omitirla. No la anade sola: decidir que una
+    # pieza nueva es de esta familia es juicio de mesa.
+    universo = sorted(glob.glob(os.path.join(raiz, ".claude", "commands", "*.md")) +
+                      glob.glob(os.path.join(raiz, "forense", "agente-*.md")))
+    conocidos = {os.path.join(raiz, rel) for _, rel, _ in FALSADORES}
+    huerfanas = []
+    for q in universo:
+        if q in conocidos:
+            continue
+        try:
+            with open(q, encoding="utf-8") as fh:
+                if _falsador_vivo(fh.read()):
+                    huerfanas.append(os.path.relpath(q, raiz))
+        except OSError:
+            pass
+    out.append("")
+    if huerfanas:
+        out += [f"⚠️ **{plural(len(huerfanas), 'pieza declara', 'piezas declaran')} un "
+                f"falsador «en un mes» y no está en la tabla de arriba**, sobre "
+                f"**{len(universo)}** archivo(s) examinado(s) en `.claude/commands/*.md` "
+                f"y `forense/agente-*.md` (A.13): "
+                + ", ".join(f"`{h}`" for h in huerfanas) +
+                ". La tabla no se amplía sola: decidir que una pieza nueva pertenece a "
+                "esta familia es de mesa. Mientras tanto, su falsador no tiene fecha.", ""]
+    else:
+        out += [f"Cotejo contra el árbol: ninguna otra pieza declara un falsador «en un "
+                f"mes» fuera de la tabla, sobre **{len(universo)}** archivo(s) "
+                f"examinado(s) en `.claude/commands/*.md` y `forense/agente-*.md` "
+                f"(A.13). La tabla está completa hoy.", ""]
+    if vencidos:
+        out += [f"⚠️ **{plural(vencidos, 'falsador vencido', 'falsadores vencidos')}.** Vencer no significa "
+                f"que la pieza haya fallado: significa que **toca mirarla**, con el "
+                f"criterio que la propia fila cita. Mirarla y anotar el veredicto es "
+                f"de mesa; este digesto solo se encarga de que la fecha no dependa "
+                f"de que alguien se acuerde.", ""]
+    else:
+        out += [f"Ninguno vencido hoy. Piezas con falsador examinadas: "
+                f"**{examinados}** (A.13).", ""]
+    return out, vencidos
+
+
+# ───────────────────────────────────────────────────────────────
 # Armado
 # ───────────────────────────────────────────────────────────────
 
@@ -583,11 +1170,15 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
 
     a, n_ab = seccion_a(raiz, fecha, cuenta, tope_texto)
     b, _ = seccion_b(raiz, sin_suite)
-    c, n_ramas = seccion_c(raiz)
+    c, n_ramas, ramas, fuente_ramas = seccion_c(raiz)
     d, n_sin, det_d = seccion_d(raiz, piso, tope_lista)
     e, n_cont = seccion_e(raiz)
+    f, res_f = seccion_f(raiz, fecha, ramas, fuente_ramas)
+    g, n_pend = seccion_g(raiz)
+    fals, n_venc = bloque_falsadores(raiz, fecha)
 
-    pie = ["## Pie · neutralización de marcadores y A.13", "",
+    pie = ["## Pie · falsadores vivos, neutralización de marcadores y A.13", "",
+           ] + fals + [
            f"Sustituciones hechas al copiar texto del árbol a este archivo: "
            f"**{cuenta.total()}** "
            f"(rótulo `M`/`E` pelado → `_`+rótulo: {cuenta.rotulos} · "
@@ -610,13 +1201,16 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
            "Universos examinados por este digesto (A.13): tablero "
            f"`forense/firmas-pendientes.tsv` · `forense/encargos/*.md` · "
            f"`forense/prereg-duelo-v2/corridas-{{M,R,L}}/` · `milpa/tramite.yaml` · "
-           f"`milpa/procedencia.yaml` · ramas del remoto `origin`. Fuera de ese "
+           f"`milpa/procedencia.yaml` · `forense/encargos/cola/*.md` · "
+           f"`milpa/*.yaml` · los runbooks y skills de la tabla de falsadores · "
+           f"ramas del remoto `origin`. Fuera de ese "
            "universo este digesto no dice nada, y no debe leerse como si dijera.", ""]
 
-    cuerpo = cab + a + b + c + d + e + pie
+    cuerpo = cab + a + b + c + d + e + f + g + pie
     resumen = {"abiertas": n_ab, "ramas": n_ramas, "sin_consumido": n_sin,
                "contadores": n_cont, "neutralizaciones": cuenta.total(),
-               "detalle_d": det_d, "sha": sha}
+               "detalle_d": det_d, "sha": sha, "cola": res_f,
+               "pendientes_mesa": n_pend, "falsadores_vencidos": n_venc}
     return "\n".join(cuerpo).rstrip() + "\n", resumen
 
 
@@ -699,8 +1293,13 @@ def main(argv=None):
             fh.write(texto)
         print(f"escrito: {os.path.relpath(salida, raiz)}")
 
+    c = res["cola"]
     print(f"resumen: {res['abiertas']} ABIERTA · {res['ramas']} rama(s) ≠ main · "
           f"{res['sin_consumido']} encargo(s) sin CONSUMIDO · "
+          f"cola {c['listo_nube']} LISTO-NUBE / {c['esperando_caja']} caja / "
+          f"{c['en_curso']} EN-CURSO ({c['huerfanos']} huérfano(s)) / "
+          f"{c['paro']} PARO · {res['pendientes_mesa']} pendiente(s) de mesa · "
+          f"{res['falsadores_vencidos']} falsador(es) vencido(s) · "
           f"{res['neutralizaciones']} neutralización(es) · HEAD {res['sha']}",
           file=sys.stderr)
     return 0
