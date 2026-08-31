@@ -3261,6 +3261,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # misma razon que MAESTRA31-E1, E2, E4, E5, E6, E7 y MAESTRA30-E10,
     # siete entradas de esta misma lista.
     "forense/encargos/2026-08-31-MAESTRA33-E2-AGENTE-DESPACHO-1.md",
+    # forense/encargos/2026-08-31-MAESTRA33-E3-CABLEADO-COLA-DIGESTO.md --
+    # encargo archivado VERBATIM (A.3). Direccion nombra dos veces al
+    # acto anterior como "E2" pelado: una en la linea de A.8 ("direccion
+    # contra 6a12244 + rama E2") y otra al citar su runbook ("Runbook de
+    # E2"). "E2" pelado ya es habitante censado del espacio E en
+    # canon/registro-rotulos.tsv -- no es un rotulo nuevo, solo faltaba
+    # eximir el archivo. D-6 aplicado donde se puede aplicar: el acto se
+    # declara ACTO MAESTRA33-E3 en todo archivo que escribe y queda
+    # censado en canon/registro-rotulos.tsv; el encargo NO se edita,
+    # porque A.3 pide el texto de direccion verbatim. Mismo movimiento y
+    # misma razon que MAESTRA33-E2, MAESTRA31-E1..E7 y MAESTRA30-E10,
+    # ocho entradas de esta misma lista.
+    "forense/encargos/2026-08-31-MAESTRA33-E3-CABLEADO-COLA-DIGESTO.md",
 }
 
 

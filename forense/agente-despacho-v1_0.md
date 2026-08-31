@@ -66,6 +66,56 @@ como se lanzó.
 | `CONSUMIDO` | el despachador, al cerrar (`A.3`) | terminado, **con su PR citado** |
 | `PARO-REPORTADO` | el despachador, al parar | no se ejecutó, **con la razón verbatim** |
 
+**CADUCIDAD DE `EN-CURSO` — la regla de HUÉRFANO** (añadida por
+`ACTO MAESTRA33-E3 · CABLEADO-COLA-DIGESTO`,
+`forense/encargos/2026-08-31-MAESTRA33-E3-CABLEADO-COLA-DIGESTO.md`). La
+máquina de estados de arriba tiene cuatro estados y ninguna regla de
+caducidad, y ese hueco tiene una consecuencia concreta: una sesión que
+muere a media ejecución deja su `EN-CURSO` puesto, y ese `EN-CURSO`
+bloquea **todos** los ticks siguientes, para siempre, sin que nada en la
+pieza diga cuándo eso deja de ser prudencia y empieza a ser una avería.
+La regla no quita el bloqueo — lo **nombra**:
+
+> Un `EN-CURSO` de **más de 24 h** que **no tiene rama remota propia ni
+> PR propios** es **HUÉRFANO**.
+
+Se prueba con lo que hay, y se declara lo que no se puede probar:
+
+- **Edad**: el último renglón `EN-CURSO` de su `BITACORA:` contra hoy. La
+  bitácora tiene granularidad de **día**, así que "más de 24 h" es
+  `edad ≥ 1 día`. Afinar más sería inventar horas que el archivo no trae.
+- **Rama propia**: `claude/despacha-<CÓDIGO>` en `git ls-remote --heads
+  origin` — la **misma** derivación que usa el paso 4 del tick. Que el
+  nombre de rama sea invariante por encargo, que ya era el mecanismo del
+  candado, es también lo que hace este cotejo posible.
+- **PR**: **NO derivable en este entorno.** `gh` no existe en la nube
+  (medido 31/ago/2026 por el acto que instauró esta pieza). No se finge:
+  la **rama es cota superior segura**, porque un PR abierto implica una
+  rama viva, luego "sin rama" implica "sin PR abierto sobre ella".
+
+**Y lo que el despachador hace con un huérfano es: nada, salvo
+nombrarlo.** No lo ejecuta —tomarlo sería el desenlace de dos sesiones
+sobre el mismo encargo, sólo que desplazado en el tiempo— y **no lo
+resetea**. Que una sesión murió es **juicio de mesa**: el despachador no
+tiene forma de distinguir "murió" de "está tardando", y un despachador
+que se auto-desatasca duplica trabajo cada vez que se equivoque al
+juzgarlo. El candado sigue **cerrado** y el tick termina con cero
+commits, igual que ante un `EN-CURSO` sano.
+
+**El reset es de mesa, y es un commit de una línea.** Se edita **sólo la
+cabecera**: `ESTADO:` vuelve a `LISTO-NUBE` (si el encargo sigue en pie)
+o pasa a `PARO-REPORTADO` (si ya no), y se **añade** —nunca se
+reescribe— un renglón a `BITACORA:` con la razón:
+
+```
+- <fecha> · LISTO-NUBE · reset de <EN-CURSO huérfano desde <fecha>> por mesa/dirección: <razón>
+```
+
+El cuerpo verbatim no se toca, ni por mesa ni por nadie (`A.3`). Y mesa
+no depende de que un tick se lo cuente: el digesto de trámite corre la
+misma prueba a diario en su **sección F.3** y lista los huérfanos con su
+fecha, sus días y la rama que buscó y no encontró.
+
 **LA REGLA DURA — a la cola solo se entra por PR fusionado a `main`.**
 El merge de mesa **es** la autorización: no hay otra. El despachador
 jamás ejecuta nada que no esté en `main` — ni un encargo pegado en un
@@ -304,6 +354,18 @@ Cómo leerlo en dos minutos: mira **la línea `ESTADO:`** del archivo de
 la cola que el PR toca y **su `BITACORA:`** — esas dos líneas cuentan
 toda la historia del encargo. Después, el PR del acto se lee con el
 criterio de siempre.
+
+**Y un cuarto desenlace que no es un tick, sino un aviso**: CANDADO
+CERRADO **por un HUÉRFANO**. El tick lo reporta con las cuatro cosas
+—qué encargo, desde qué fecha, cuántos días, qué rama buscó y no
+encontró— y termina con cero commits, como cualquier otro candado
+cerrado. La diferencia es que este **no se va a abrir solo**: mientras
+un `EN-CURSO` sano se cierra cuando su sesión termina, un huérfano se
+queda hasta que mesa escriba el commit de reset. Si mesa ve la misma
+línea de huérfano dos ticks seguidos, la cola está parada esperándola a
+ella, no a una sesión. **No hace falta esperar al tick para verlo**: el
+digesto de trámite lo lista a diario en su sección **F.3**, con la misma
+prueba.
 
 **Lo que nunca debe aparecer en un tick**, y si aparece hay que apagar:
 

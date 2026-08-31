@@ -125,6 +125,67 @@ Lo que sí haces, siempre: **reportar su antigüedad** ("`EN-CURSO` desde
 candado que se bloquea en silencio es un candado roto; uno que dice
 desde cuándo está cerrado es información.
 
+#### 2.a-bis · Cuándo un `EN-CURSO` es **HUÉRFANO** — lo nombras, no lo tocas
+
+Reportar "hace N días" es necesario y no basta: mesa sigue teniendo que
+adivinar si esos N días son una sesión que va lenta o una que murió. La
+diferencia **sí** es derivable, y se deriva así:
+
+> Un `EN-CURSO` de **más de 24 h** que **no tiene rama remota propia ni
+> PR propios** es **HUÉRFANO**.
+
+```
+# edad: fecha del ultimo renglon EN-CURSO de su BITACORA, contra hoy
+git show "origin/main:$f" | grep -E '^- [0-9-]{10} · EN-CURSO ·' | tail -1
+
+# rama propia: MISMA derivacion que el paso 4 -- claude/despacha-<CODIGO>,
+# invariante por encargo. Si no coincidiera con la del paso 4, este cotejo
+# no valdria nada.
+git ls-remote --heads origin | grep -c "refs/heads/claude/despacha-<CÓDIGO>$"
+```
+
+Dos precisiones, y las dos importan:
+
+1. **El PR no es derivable en este entorno.** `gh` no existe (medido
+   31/ago/2026, arriba). No lo finjas y no lo supongas: la **rama es cota
+   superior segura**, porque un PR abierto implica una rama viva, así que
+   "sin rama" implica "sin PR abierto sobre ella". Decláralo con esas
+   palabras al reportar.
+2. **La bitácora tiene granularidad de DÍA.** "Más de 24 h" se prueba,
+   con el dato que hay, como **edad ≥ 1 día**: la fecha del renglón
+   `EN-CURSO` es anterior a hoy. Afinar más sería inventar horas que el
+   archivo no trae.
+
+**Qué haces con un HUÉRFANO: nada, salvo nombrarlo.** Explícitamente,
+y esto manda sobre cualquier otra lectura de esta skill:
+
+- **NO lo ejecutas.** Sigue siendo un `EN-CURSO`; que su sesión haya
+  muerto no te autoriza a tomarlo. Tomarlo sería exactamente el
+  desenlace de dos sesiones sobre el mismo encargo que el candado
+  existe para impedir — sólo que desplazado en el tiempo.
+- **NO lo reseteas.** No devuelves su `ESTADO:` a `LISTO-NUBE` ni lo
+  pasas a `PARO-REPORTADO`. **Decidir que una sesión murió es juicio de
+  mesa**, y un despachador que se auto-desatasca es un despachador que
+  puede duplicar trabajo cada vez que se equivoque al juzgarlo.
+- **SÍ lo reportas**, con las cuatro cosas: qué encargo, desde qué
+  fecha, cuántos días, y qué rama buscaste y no encontraste.
+- **El candado sigue CERRADO.** Un huérfano bloquea igual que un
+  `EN-CURSO` sano. Terminas con cero commits.
+
+**El reset es de mesa, y es un commit de una línea.** Cuando mesa
+decide, edita **sólo la cabecera** del archivo de la cola: pone
+`ESTADO: LISTO-NUBE` (si el encargo sigue en pie) o
+`ESTADO: PARO-REPORTADO` (si ya no), y **añade** un renglón a
+`BITACORA:` con la razón:
+
+```
+- <fecha> · LISTO-NUBE · reset de <EN-CURSO huérfano desde <fecha>> por mesa/dirección: <razón>
+```
+
+El cuerpo verbatim no se toca, ni por mesa ni por nadie (`A.3`). El
+digesto de trámite lista los huérfanos con esa misma prueba en su
+sección **F.3**, así que mesa no depende de que un tick se lo cuente.
+
 ### 2.b · ¿Hay una rama de acto abierta en el remoto?
 
 ```

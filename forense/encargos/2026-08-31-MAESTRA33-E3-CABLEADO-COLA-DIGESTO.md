@@ -8,3 +8,11 @@ P3 · Pie del digesto: fechas de revisión de los falsadores vivos (leídas de l
 PERÍMETRO: tools/digesto_tramite.py, .claude/commands/despacha.md, forense/agente-despacho-v1_0.md, forense/agente-tramite-v1_0.md (§2 si aplica), archivo A.3, tablero (recibo), cascada. Frase exacta de perímetro vigente. FP/ADR: deriva, no heredes. CONTADOR: cero mediciones, declarado.
 LO QUE NO HACE: no ejecuta items de la cola; no resetea ningún EN-CURSO; no toca milpa/ (solo lo lee); no crea schedule.
 SUCESORES: ninguno — cierra el cableado nube.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-E3 · CABLEADO-COLA-DIGESTO` el 31/ago/2026,
+rama `claude/cableado-cola-digesto-affup3`, `ADR-242` (candidato).
+Compuerta `PR #413` verificada mecánicamente antes de tocar nada.
+PR: pendiente de abrir por mesa sobre esa rama; los commits del acto son
+su registro hasta entonces.
