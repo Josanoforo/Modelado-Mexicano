@@ -79,6 +79,7 @@ verdad de un texto: cita el `id` de la fila, y la fila íntegra vive en
 import argparse
 import datetime
 import glob
+import json
 import os
 import re
 import subprocess
@@ -261,13 +262,33 @@ def seccion_b(raiz, sin_suite):
                    "`N FAIL · M WARN`.")
     if m_head:
         out.append(f"- `tests/baseline.json` congelado en `{m_head.group(1)[:7]}`")
+    # Cifras de la linea base, DERIVADAS del propio archivo -- nunca tecleadas:
+    # son justamente las que hacen ver que restar totales crudos no significa nada.
+    base = os.path.join(raiz, "tests", "baseline.json")
+    if os.path.exists(base):
+        try:
+            with open(base, encoding="utf-8") as fh:
+                d = json.load(fh)
+            n_f, n_w = len(d.get("fails", [])), len(d.get("warns", []))
+            comparacion = (f"`tests/baseline.json` congela **{n_f} entradas FAIL** y "
+                           f"**{n_w} entradas WARN** normalizadas")
+            if m_cifras:
+                comparacion += (f"; esta corrida dio {m_cifras.group(1)} FAIL y "
+                                f"{m_cifras.group(2)} WARN crudos. Las cifras no tienen "
+                                f"por qué coincidir y su resta no significa nada")
+        except (ValueError, OSError):
+            comparacion = ("`tests/baseline.json` no se pudo leer para derivar sus "
+                           "conteos (1 archivo examinado)")
+    else:
+        comparacion = "no existe `tests/baseline.json` (1 ruta examinada, A.13)"
+
     out += ["",
             "Delta: el veredicto de arriba ES el delta. La suite compara entrada por "
-            "entrada normalizada contra `tests/baseline.json`, no cifra contra cifra "
-            "— restar los totales crudos daría un número que no significa nada "
-            "(`_baseline_key` deduplica y normaliza; hoy 154 WARN crudos corresponden "
-            "a 113 entradas congeladas). VERDE = no empeoraste; ROJO = las entradas "
-            "nuevas están en la salida de la suite, no aquí.", ""]
+            "entrada normalizada contra `tests/baseline.json`, no cifra contra cifra: "
+            f"{comparacion}, porque `_baseline_key` deduplica y normaliza, y las "
+            "señales de `T22` sobre el tablero se restan a propósito (una fila que "
+            "envejece no es un hallazgo nuevo). VERDE = no empeoraste; ROJO = las "
+            "entradas nuevas están en la salida de la suite, no aquí.", ""]
     return out, (rc, bool(m_verde))
 
 
@@ -443,9 +464,11 @@ def seccion_e(raiz):
                 f"`corridas-{c}/` trae {len(otros)} entrada(s) que no son `.json` y "
                 f"por tanto no son puntos: " + ", ".join(f"`{o}`" for o in sorted(otros)))
 
+    # La barra vertical parte celdas en markdown, y varias derivaciones son
+    # tuberias de shell (`ls ... | wc -l`). Se escapa o la tabla se rompe.
     out += ["| contador | valor | derivación |", "|---|---|---|"]
     for nombre, valor, cmd in filas:
-        out.append(f"| {nombre} | **{valor}** | {cmd} |")
+        out.append(f"| {nombre} | **{valor}** | {cmd.replace('|', chr(92) + '|')} |")
     out.append("")
     if notas_corridas:
         out.append("Declarado, para que el conteo no se lea como inventario del "
