@@ -49,3 +49,15 @@ No carga nada al motor. No toca tramite.yaml. No escribe condiciones si: que el 
 Sucesores declarados, no lanzados
 
 Propagación de las reglas selladas a tramite.yaml (tras firma de mesa, con descongelamiento acotado en el ADR) · MARCO-M-CONGELA-v1_1 (A″) con las celdas nuevas · REGLAS-OLA5-FASE2 (las 5+3).
+
+---
+
+## CONSUMIDO
+
+PR pendiente.
+
+Gate verificado SATISFECHO (MAESTRA32-E16 fusionó como PR #406 antes de arrancar este acto). 5 de 5 reglas candidatas con `p` medida real: `civico.denuncia.miedo_desconfianza` (ENVIPE2025 p=0.294313), `dinero.ahorro.tiene_ahorros` (ENNViH ola2 p=0.174804), `familia.apoyo.recibe_dinero_familiares` (ENIF2024 p=0.457707), `familia.corresidencia.adulto_familiar` (EDER2017 p=0.996086), enmienda ENCUCI a `tramite.mordida.discrecional` (p=0.125822). Ninguna cayó en `PENDIENTE-E16` (gate satisfecho) ni en `NO-ENCONTRADO` (los 5 payloads existen en `data/raw/`).
+
+Detalle: `forense/notas/2026-08-31-reglas-fase1-spec.md` (COMMIT-1), `forense/notas/2026-08-31-reglas-fase1-cierre.md` (COMMIT-2), `milpa/tramite-ola5-propuesta-v0.yaml` (objeto, motor NO lo carga), `tools/tasas_base_fase1.py` (script). Tablero: `forense/firmas-pendientes.tsv` FP-190 enmendada, FP-200/FP-201 nuevas. Cascada: `canon/gobernanza-v1_15.md` ADR-236 (candidato), `canon/estado-programa-v1_10.md`, `canon/registro-rotulos.tsv` (MAESTRA32-E18), `tests/check.py` (T25).
+
+Intocables verificados vacíos: `milpa/tramite.yaml`, `milpa/procedencia.yaml`, `milpa/src/**`. `tests/check.py --baseline`: VERDE.
