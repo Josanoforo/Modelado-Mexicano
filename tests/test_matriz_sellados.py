@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """ADR-220 (`ACTO MAESTRA32-E1 · SELLA-ENLACE`): `B` usa `valor_ejecutable`
-de `coeficientes_generador_sellados` para los 3 pares uni-valor con
-override; sigue el fallback de `asignados_coeficiente.detalle` para los 10
+de `coeficientes_generador_sellados` para los pares uni-valor con
+override; sigue el fallback de `asignados_coeficiente.detalle` para los
 pares sin medición y para los 2 multi-ítem -- que no traen
 `valor_ejecutable` y por tanto NO se consumen aquí (`M-AGREGA=(a)`).
+Universo re-derivado 30/ago/2026 (`ACTO MAESTRA32-E9 · PROPAGA-2`,
+`ADR-225`, firma b1/F5): 3 -> 4 pares uni-valor con override
+(`G3.horizonte_temporal` nuevo, enlace lineal de dirección), 10 -> 9
+pares en fallback puro; los 2 multi-ítem sin cambio.
 
 Construye `Procedencia` a mano (`yaml.safe_load` directo), no vía
 `P.cargar()`: el árbol de hoy trae una entrada preexistente y ajena a este
@@ -56,18 +60,19 @@ def main():
         for nombre, valor in fila["coefs"].items():
             asignado_de[(gen, nombre)] = valor
 
-    def test_universo_tres_mas_dos():
+    def test_universo_cuatro_mas_dos():
         # Blindaje del universo antes de probar nada más: si M-AGREGA
         # cambiara algún día, esto debe fallar aquí primero, no en un sitio
-        # silencioso más abajo.
-        igual(len(con_ejecutable), 3, "pares uni-valor con valor_ejecutable:")
+        # silencioso más abajo. Re-derivado 30/ago/2026 (ACTO MAESTRA32-E9 ·
+        # PROPAGA-2, ADR-225): 3 -> 4 con la entrada nueva G3.horizonte_temporal.
+        igual(len(con_ejecutable), 4, "pares uni-valor con valor_ejecutable:")
         igual(len(sin_ejecutable), 2, "pares multi-ítem sellados sin agregar:")
 
     def test_quince_celdas_sin_cambio_de_conteo():
         # El override cambia VALORES, nunca el número de celdas.
         igual(B.no_cero, 15, "celdas no-cero de B tras el override:")
 
-    def test_override_para_los_tres_uni_valor():
+    def test_override_para_los_cuatro_uni_valor():
         for entrada in con_ejecutable:
             gen, coef = entrada["gen"], entrada["coef"]
             celda = B.celdas[(gen, coef)]
@@ -84,10 +89,12 @@ def main():
                    f"con el ASIGNADO ({asignado}) -- el test no distingue "
                    f"override de fallback en este par")
 
-    def test_fallback_intacto_para_los_diez_sin_medicion():
+    def test_fallback_intacto_para_los_nueve_sin_medicion():
+        # Re-derivado 30/ago/2026 (ACTO MAESTRA32-E9 · PROPAGA-2, ADR-225):
+        # 10 -> 9, G3.horizonte_temporal sale del fallback y entra al override.
         pares_sellados = {(e["gen"], e["coef"]) for e in sellados}
         pares_diez = [par for par in asignado_de if par not in pares_sellados]
-        igual(len(pares_diez), 10, "pares ASIGNADO sin entrada sellada:")
+        igual(len(pares_diez), 9, "pares ASIGNADO sin entrada sellada:")
         for gen, nombre in pares_diez:
             valor_asignado = asignado_de[(gen, nombre)]
             celda = B.celdas[(gen, nombre)]

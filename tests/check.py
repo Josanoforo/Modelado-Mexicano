@@ -2971,6 +2971,30 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # minima de perimetro por desviacion mecanica, mismo precedente que las
     # notas de cierre de MAESTRA32-E5/E6 ya listadas arriba.
     "forense/notas/2026-08-30-cobertura-15-cierre.md",
+    # ACTO MAESTRA32-E9 · PROPAGA-2, 30/ago/2026 (ADR-225, renumerado de
+    # ADR-224 al fusionar: ACTO MAESTRA32-E10 arriba fusionó primero y se
+    # quedó con ADR-224): encargo archivado VERBATIM (A.3). El titulo abre
+    # con "ACTO MAESTRA32-E9" (hifenado, no pelado) pero el cuerpo trae
+    # bare E9 ("E9 (este)", "entre E9 y E8", "E9 añade UNA entrada",
+    # "token pelado E9 colisiona"), E10 ("E10 lo ejecuta", "E10
+    # habiliten"), E8 ("E8 añade campos", "no lanza E3 ni E8"), E3 ("E3
+    # archivado", "E3 <- FP-178"), E7 ("E7 - CANDIDATOS-MARCO-M", "retiro
+    # de E7"), E6 ("el cierre de E6", "le paso a direccion en E6"), E4
+    # ("E4 - RE-EMPAREJA") y E2 ("mediciones que E2/E6/E10 habiliten") --
+    # verificado con el mismo regex de este test, corrido en vivo sobre
+    # el archivo. Todas son referencias narrativas de direccion a actos
+    # ya censados o al propio acto declarandose, ninguna reclama un
+    # rotulo nuevo sin censar. El texto de direccion no se edita para
+    # complacer a un test.
+    "forense/encargos/2026-08-30-MAESTRA32-E9-PROPAGA-2.md",
+    # forense/notas/2026-08-30-propaga-2-cierre.md -- nota de cierre de
+    # ACTO MAESTRA32-E9 · PROPAGA-2. Discute, en prosa, los mismos
+    # rotulos bare que el encargo (E9/E10/E8/E3/E7/E6/E4/E2) al citar
+    # por que este acto necesito la misma lista de arriba -- ninguno es
+    # un rotulo nuevo. Extension minima de perimetro por desviacion
+    # mecanica, mismo precedente que las notas de cierre ya listadas
+    # arriba.
+    "forense/notas/2026-08-30-propaga-2-cierre.md",
 }
 
 
