@@ -421,6 +421,8 @@ Diez de las 49 reglas de §3.B citan número de perfil en su `SI`. Derivadas con
 
 ## 2 · Los generadores latentes
 
+*(Enmienda fechada, 31/ago/2026: Alcance del ejecutable: `canon/motor-nucleo-medible-v1_0.md` (`ADR-237`, 31/ago/2026).)*
+
 Siete generadores (el v1 tenía seis; G1 se desdobla por ADR-20).
 
 ### 2.1 Definición y cláusula falsable
