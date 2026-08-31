@@ -81,3 +81,16 @@ No congela v1_1 (A″ tras D-D), no sortea, no emite M, no calcula R, no decide 
 Sucesores declarados, no lanzados
 
 MARCO-M-CONGELA-v1_1 (A″) + MARCO-M-SORTEA-v1_1 (B″) con D-D dentro · EMITE-M (nube, emitir_binaria sobre las celdas sorteadas, p con su procedencia a la vista) · R-MARCO-M (caja, esquema corridas-R reutilizado) · L-MARCO-M (fuera del proyecto, sesión limpia, pipeline-L-adv1-m2.py D-iii).
+
+## CONSUMIDO
+
+Cerrado por `PR #405`. C1/C2 corregidas y citadas sobre `TRA-M-02`
+(`variable` → `AP5_17|AP5_18`, `ponderador` → `FAC_SEL`). Censo de
+transferencia sobre los cuatro inventarios (269 324 filas examinadas,
+A.13): 6 filas nuevas `TRA-M-03`..`TRA-M-08` (Categoría A, `P8_3_1` en 6
+olas ENCIG distintas de `ola_calibracion=ENCIG 2023`); Categoría B
+(`BP1_23`/`p4_10`/`cr27`) buscada y documentada, 0 filas de tabla (sin
+regla compilada). B-bis: 7 celdas `transferencia=SI` — **1-7, corto**.
+`grado_dependencia` no tocado, D-D de mesa sigue pendiente. `ADR-233`,
+`FP-194` (recibo, `FP-195` reservada), `MAESTRA32-E15` censado en
+`canon/registro-rotulos.tsv`.
