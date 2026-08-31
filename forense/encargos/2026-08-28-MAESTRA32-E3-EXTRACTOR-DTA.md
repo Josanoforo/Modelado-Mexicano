@@ -1,3 +1,5 @@
+> **SUSTITUIDO por v2 (dirección, 30/ago/2026): no ejecutado, no consumido; queda como historia.**
+
 > **RANURA M-EXTRACTOR: FIRMADA "a y b" (mesa, 30/ago/2026) — secuencia a→b; estado: EN-COLA-UBUNTU · GATED-ENTORNO (requiere corpus montado, A.2 tercera parte).** Cabecera añadida por `ACTO MAESTRA32-E5 · PROPAGA-FIRMAS-Y-COLA` al archivar este encargo (repara la grieta `A.3`: el texto vivía solo en la conversación de lanzamiento). El cuerpo de abajo es el encargo de dirección **verbatim, sin editar** — su propia "RANURA DE FIRMA DE MESA" (línea 11-17 del original, "[FIRMA M — VACÍA]") queda tal como se escribió; la resolución de esa ranura (letra "a y b", secuencia a→b, razón de mesa "Si no acabamos algo lo olvidamos.") vive en `FP-175` y en `forense/encargos/2026-08-30-MAESTRA32-E5-PROPAGA-FIRMAS-Y-COLA.md`, no aquí. Este acto no lanza la rama (a) ni la (b) — las deja `EN-COLA-UBUNTU`, gateadas a que la caja tenga el corpus montado (`A.2` tercera parte); es una de las 5 entradas de la fila-grito `FP-179`.
 
 ---
