@@ -157,6 +157,17 @@ def t02_duplicates():
             "forense/marco-candidatas-piloto-v1_0.tsv",
             "forense/prereg-duelo-v2/marco-congelado-piloto-v1_0.tsv",
         }),
+        # ACTO MAESTRA32-E14 · MARCO-M-SORTEA (ACTO B′), 31/ago/2026: regla
+        # de tamaño de forense/notas/2026-08-31-marco-M-spec.md §e -- con
+        # N_elegibles=2 < 15 el "sorteo" es la identidad (todas las filas
+        # elegibles entran, sin PRNG), así que el sorteado debe coincidir
+        # byte a byte con el congelado que lo origina. Mismo patrón que el
+        # grupo de arriba (compromiso criptográfico, no duplicación
+        # accidental).
+        frozenset({
+            "forense/prereg-duelo-v2/marco-M-congelado-v1_0.tsv",
+            "forense/prereg-duelo-v2/marco-M-sorteado-v1_0.tsv",
+        }),
     )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
@@ -3111,6 +3122,18 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # conocidos que _T25_ARCHIVOS_CONOCIDOS censa (cita en prosa narrativa
     # sobre el propio mecanismo de este test), ninguno nuevo.
     "forense/notas/2026-08-31-marco-M-cierre.md",
+    # ACTO MAESTRA32-E14 · MARCO-M-SORTEA (ACTO B′), 31/ago/2026: encargo
+    # archivado VERBATIM (A.3). El texto de dirección cita "MAESTRA32-E13"
+    # con prefijo (no bare) pero también el bare "E13" en varios puntos de
+    # prosa narrativa (p.ej. "SHA de este merge... protocolo ADR-178/FP-150",
+    # "ACTO B′ = MAESTRA32-E14" con "E13" citado como habitante ya censado
+    # en canon/registro-rotulos.tsv) -- E13 ya está censado por
+    # MAESTRA32-E13, ninguno nuevo.
+    "forense/encargos/2026-08-31-MAESTRA32-E14-MARCO-M-SORTEA.md",
+    # forense/prereg-duelo-v2/sorteo-marco-M-resultados-v1_0.md -- COMMIT-1
+    # + COMMIT-2 de este acto. Cita bare E13 al declarar SHA_A ("merge de
+    # E13") -- habitante ya censado (MAESTRA32-E13), ninguno nuevo.
+    "forense/prereg-duelo-v2/sorteo-marco-M-resultados-v1_0.md",
 }
 
 
