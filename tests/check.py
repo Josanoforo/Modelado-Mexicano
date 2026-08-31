@@ -2926,6 +2926,30 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # precedente que las notas de cierre de MAESTRA31-E2/E7/E8 y
     # MAESTRA32-E2 ya listadas arriba.
     "forense/notas/2026-08-30-propaga-firmas-cierre.md",
+    # ACTO MAESTRA32-E6 · ETIQUETA-v1_2, 31/ago/2026 (ADR-223): encargo
+    # archivado VERBATIM (A.3). El titulo abre con "ACTO MAESTRA32-E6"
+    # (hifenado, no pelado) pero el cuerpo trae bare E6 ("E6 (este)"),
+    # E7 ("E7 - CANDIDATOS-MARCO-M", "el mismo dia que E7"), E3/E8
+    # (carril CAJA), E2 (spec congelada de E2) -- verificado con el
+    # mismo regex de este test, corrido en vivo sobre el archivo. Todas
+    # son referencias narrativas de direccion a actos ya censados o al
+    # propio acto declarandose, ninguna reclama un rotulo nuevo sin
+    # censar. El texto de direccion no se edita para complacer a un
+    # test.
+    "forense/encargos/2026-08-30-MAESTRA32-E6-ETIQUETA-v1_2.md",
+    # forense/notas/2026-08-30-etiqueta-v1_2-spec.md -- COMMIT-1 de
+    # ACTO MAESTRA32-E6. Trae bare E2 ("editar la spec de E2") y E5/E7/E2
+    # ("mismo cierre que E5/E7/E2") al citar, en prosa, precedentes ya
+    # censados -- ninguno es un rotulo nuevo.
+    "forense/notas/2026-08-30-etiqueta-v1_2-spec.md",
+    # forense/notas/2026-08-30-etiqueta-v1_2-cierre.md -- nota de cierre
+    # de ACTO MAESTRA32-E6. Trae bare E2/E5 ("ACTO MAESTRA32-E2/E5 ya
+    # dieron", "no-discrepante que E2/E5 ya reportaron") y E6/E7
+    # ("Rotulo E6/E7 intercambiado") al citar, en prosa, precedentes ya
+    # censados o el propio acto -- ninguno reclama un rotulo nuevo.
+    # Extension minima de perimetro por desviacion mecanica, mismo
+    # precedente que las notas de cierre ya listadas arriba.
+    "forense/notas/2026-08-30-etiqueta-v1_2-cierre.md",
 }
 
 
