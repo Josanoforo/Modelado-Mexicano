@@ -27,7 +27,7 @@ Sin discrepancias entre lo que el encargo supone y el terreno real — no hay PA
 - `FP-168` → `FIRMADA` (F1): `nivel_ic=0.95`, `seed=42`, cita verbatim de mesa.
 - `FP-169` → `FIRMADA` (de `FIRMADA-PARCIAL`, F2): append sobre `firmada_en`, cita verbatim "D2 - Ratificadas."
 - `FP-171`/`FP-173`/`FP-174`/`FP-178` → `FIRMADA` (F3): cita verbatim "3 Enterado." en cada una.
-- `FP-127.ejecutada_en`: append "Superada por firma b1 (30/ago), ver ADR-224." (F5).
+- `FP-127.ejecutada_en`: append "Superada por firma b1 (30/ago), ver ADR-225." (F5; texto escrito originalmente citaba `ADR-224`, corregido tras la renumeración de §5, antes del push final).
 - `FP-179.qué_se_firma`: enmienda fechada append-only sobre la entrada (5) — `CONSUMIDA-PREEXISTENTE` por `ADR-134` (+`ADR-194`/`198`), error de dirección 30/ago (F6). Texto original de las cinco entradas intacto.
 - `FP-181` nueva (`ABIERTA`): "mesa recibe la entrada CAL-G3 en el ejecutable (F5) con su escala declarada" — informativa, no gatea nada.
 
@@ -70,7 +70,7 @@ ic: IC95% +0.0282,+0.1470 HC1/MAS; +0.0336,+0.1488 bootstrap-hogar
 rotulo: ASOCIACION-MEDIDA·CAL·INTRA-PERSONA·SIGNO-OPUESTO-AL-ASIGNADO
 ```
 
-`rutas_estimabilidad_coeficiente.detalle`, fila G3/horizonte_temporal: `escala_derivada` recibió append-only ("Paso 3 (30/ago/2026, ADR-224): θ con fuente = `pr02` ..., deja de ser SUBDETERMINADA-PERSISTENTE"). Comparación de los dos dicts (`yaml.safe_load` antes/después, `old_detalle` vs `new_detalle` por clave `(gen, coef)`): **un solo campo cambió, en una sola fila** (`('G3', 'horizonte_temporal')`, campo `escala_derivada`) — ninguna otra fila ni ningún otro campo se movió.
+`rutas_estimabilidad_coeficiente.detalle`, fila G3/horizonte_temporal: `escala_derivada` recibió append-only ("Paso 3 (30/ago/2026, ADR-225): θ con fuente = `pr02` ..., deja de ser SUBDETERMINADA-PERSISTENTE"; texto escrito originalmente citaba `ADR-224`, corregido tras la renumeración de §5, antes del push final). Comparación de los dos dicts (`yaml.safe_load` antes/después, `old_detalle` vs `new_detalle` por clave `(gen, coef)`): **un solo campo cambió, en una sola fila** (`('G3', 'horizonte_temporal')`, campo `escala_derivada`) — ninguna otra fila ni ningún otro campo se movió.
 
 **2e · Test y suite.**
 
@@ -98,7 +98,7 @@ Las 5 entradas que dejan de aparecer son consecuencia directa del Paso 1 (las fi
 
 ## 4 · Paso 3 — ADR y cascada
 
-`canon/gobernanza-v1_15.md`: candidato re-derivado por comando (`grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `223`, sin huecos) → **`ADR-224`**, contiguo; sin colisión detectada al momento de escribir (el carril CAJA, `E3`/`E8`, no había fusionado). `ADR-224` trae F1-F7 verbatim, el enlace de escala 2c con la frase "declarado por dirección, no firmado por mesa", el retiro de `E7 · CANDIDATOS-MARCO-M` (su objeto era la opción (ii) de D1; mesa firmó (i)), y la corrección F6 con cita a `ADR-134`. Cabecera de conteo del documento: `223 → 224 ADR`.
+`canon/gobernanza-v1_15.md`: candidato re-derivado por comando (`grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `223`, sin huecos) → **`ADR-224`**, contiguo; sin colisión detectada al momento de escribir (el carril CAJA, `E3`/`E8`, no había fusionado). `ADR-224` trae F1-F7 verbatim, el enlace de escala 2c con la frase "declarado por dirección, no firmado por mesa", el retiro de `E7 · CANDIDATOS-MARCO-M` (su objeto era la opción (ii) de D1; mesa firmó (i)), y la corrección F6 con cita a `ADR-134`. Cabecera de conteo del documento: `223 → 224 ADR`. `forense/firmas-pendientes.tsv`: `FP-181` nueva, informativa. **Renumerado más abajo (§5) — colisión real detectada al empujar el PR, no al escribir.**
 
 `canon/estado-programa-v1_10.md`: recifrado `L0` (`223 → 224`), nota nueva prepend antes de la de `ADR-223`; tabla de canon (`§L2`) recifrada `223 → 224`; conteo de ejecutables con base medida `3/15 → 4/15`, derivado del test, no tecleado.
 
@@ -106,7 +106,13 @@ Las 5 entradas que dejan de aparecer son consecuencia directa del Paso 1 (las fi
 
 `tests/check.py` `_T25_ARCHIVOS_CONOCIDOS`: encargo y esta nota de cierre añadidos (traen `E9`/`E10`/`E8`/`E3`/`E7`/`E6`/`E4`/`E2` pelados, todos referencias narrativas a actos ya censados o al propio acto declarándose).
 
-`python3 tests/check.py --baseline` final, con el ADR y la cascada ya escritos: **19 FAIL · 136 WARN, LÍNEA BASE VERDE**, sin `--freeze`.
+`python3 tests/check.py --baseline` final, con el ADR y la cascada ya escritos (antes de detectar la colisión de §5): **19 FAIL · 136 WARN, LÍNEA BASE VERDE**, sin `--freeze`.
+
+## 5 · Colisión con `MAESTRA32-E10 · COBERTURA-15`, detectada al fusionar (no al escribir)
+
+Al empujar la rama y abrir el PR, `mergeable_state` salió `dirty`: `origin/main` había avanzado de `1f455ea` a `d34e864` (`PR #396`, `ACTO MAESTRA32-E10 · COBERTURA-15`). Verificado por `git fetch`/`git log`: `MAESTRA32-E10` arrancó contra el mismo `main = 1f455ea` que este acto, sin verse — las dos sesiones corrieron en paralelo — y su propio ARRANQUE encontró que `MAESTRA32-E9 · PROPAGA-2` no existía en ningún estado del repo (correcto en ese momento: este acto tampoco había fusionado todavía). `MAESTRA32-E10` cerró por ese hallazgo, sin ejecutar `COMMIT-1`/`COMMIT-2`, y candidateó **el mismo `ADR-224`** y **la misma `FP-181`** que este acto — fusionando primero.
+
+**Resolución, regla de la casa (renumera quien fusiona segundo).** `git merge origin/main` sobre la rama de este acto, cuatro archivos con conflicto real (`canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md`, `canon/registro-rotulos.tsv`, `forense/firmas-pendientes.tsv`) y uno con conflicto de comentario no semántico (`tests/check.py`, ambos añadían entradas distintas al mismo `set` literal). Resuelto a mano, conservando íntegro el bloque de `MAESTRA32-E10` (`ADR-224`, `FP-181`, su fila de `registro-rotulos.tsv`) sin editarlo hacia atrás, y renumerando este acto: **`ADR-224` → `ADR-225`**, **`FP-181` → `FP-182`**. Un defecto de merge propio, encontrado y corregido en el mismo paso: la primera resolución dejó la frase "**L0 · Gobierno — completo y al día.** 224 ADR..." duplicada dos veces en la misma línea (una por cada lado del conflicto, cada uno con su propio preámbulo) — corregido a una sola aparición, verificado por `grep -c` antes de recommitear. `python3 tests/check.py --baseline` tras la resolución: **19 FAIL · 137 WARN, LÍNEA BASE VERDE** (el WARN adicional es la fila `FP-181` de `MAESTRA32-E10`, ajena a este acto, entrando a `T22`).
 
 ## Contador
 
@@ -116,12 +122,12 @@ Firmas propagadas: **7 filas** (`FP-168`, `FP-169`, `FP-171`, `FP-173`, `FP-174`
 
 - Nota: este archivo.
 - `forense/encargos/2026-08-30-MAESTRA32-E9-PROPAGA-2.md`: `CONSUMIDO`, ver `## CONSUMIDO` al pie con el PR.
-- `forense/firmas-pendientes.tsv`: siete filas propagadas, `FP-181` nueva.
+- `forense/firmas-pendientes.tsv`: siete filas propagadas, `FP-182` nueva (renumerada de `FP-181`, tomada por `MAESTRA32-E10`).
 - `milpa/procedencia.yaml`: una entrada nueva en `coeficientes_generador_sellados`, un campo (`escala_derivada`) append-only en `rutas_estimabilidad_coeficiente.detalle`.
 - `tests/test_matriz_sellados.py`: universo re-derivado, 6/6 pruebas ok.
-- `canon/gobernanza-v1_15.md`: `ADR-224`.
-- `canon/estado-programa-v1_10.md`: `L0` y tabla de canon recifrados.
-- `canon/registro-rotulos.tsv`: `MAESTRA32-E9` censado.
+- `canon/gobernanza-v1_15.md`: `ADR-225` (renumerado de `ADR-224`, tomado por `MAESTRA32-E10`).
+- `canon/estado-programa-v1_10.md`: `L0` y tabla de canon recifrados (`224 → 225`).
+- `canon/registro-rotulos.tsv`: `MAESTRA32-E9` censado, junto a la fila de `MAESTRA32-E10` (fusionada primero).
 - `tests/check.py`: `_T25_ARCHIVOS_CONOCIDOS` ampliado.
 - **No tocó**: la sección A de `milpa/procedencia.yaml`, ningún `ASIGNADO`, `milpa/src/matriz.py`, `forense/prereg-duelo-v2/scoring-adv1-m3.py`, el marco congelado, nada de `MAESTRA32-E10`. No lanzó `E3` ni `E8` (carril CAJA, ya listos y firmados por separado).
 - Sucesores declarados, no lanzados: `MAESTRA32-E10 · COBERTURA-15` (mismo carril, tras este merge); `E3`/`E8` en caja; `E4 · RE-EMPAREJA` tras extractores.

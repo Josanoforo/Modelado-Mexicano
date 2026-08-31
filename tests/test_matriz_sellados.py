@@ -5,7 +5,7 @@ override; sigue el fallback de `asignados_coeficiente.detalle` para los
 pares sin medición y para los 2 multi-ítem -- que no traen
 `valor_ejecutable` y por tanto NO se consumen aquí (`M-AGREGA=(a)`).
 Universo re-derivado 30/ago/2026 (`ACTO MAESTRA32-E9 · PROPAGA-2`,
-`ADR-224`, firma b1/F5): 3 -> 4 pares uni-valor con override
+`ADR-225`, firma b1/F5): 3 -> 4 pares uni-valor con override
 (`G3.horizonte_temporal` nuevo, enlace lineal de dirección), 10 -> 9
 pares en fallback puro; los 2 multi-ítem sin cambio.
 
@@ -64,7 +64,7 @@ def main():
         # Blindaje del universo antes de probar nada más: si M-AGREGA
         # cambiara algún día, esto debe fallar aquí primero, no en un sitio
         # silencioso más abajo. Re-derivado 30/ago/2026 (ACTO MAESTRA32-E9 ·
-        # PROPAGA-2, ADR-224): 3 -> 4 con la entrada nueva G3.horizonte_temporal.
+        # PROPAGA-2, ADR-225): 3 -> 4 con la entrada nueva G3.horizonte_temporal.
         igual(len(con_ejecutable), 4, "pares uni-valor con valor_ejecutable:")
         igual(len(sin_ejecutable), 2, "pares multi-ítem sellados sin agregar:")
 
@@ -90,7 +90,7 @@ def main():
                    f"override de fallback en este par")
 
     def test_fallback_intacto_para_los_nueve_sin_medicion():
-        # Re-derivado 30/ago/2026 (ACTO MAESTRA32-E9 · PROPAGA-2, ADR-224):
+        # Re-derivado 30/ago/2026 (ACTO MAESTRA32-E9 · PROPAGA-2, ADR-225):
         # 10 -> 9, G3.horizonte_temporal sale del fallback y entra al override.
         pares_sellados = {(e["gen"], e["coef"]) for e in sellados}
         pares_diez = [par for par in asignado_de if par not in pares_sellados]
