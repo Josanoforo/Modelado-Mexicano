@@ -46,3 +46,7 @@ Lo que este acto NO hace
 No mide. No emite puntos M. No escribe reglas nuevas en el motor ni en el canon (eso lo hace cada acto de caja al sellar su enlace, bajo la firma D1). No re-sortea. No descongela. No lee R.
 Sucesores declarados, no lanzados
 Un acto de caja por celda `EXISTE-SATISFACE` (`MAESTRA32-E11…`, dos commits cada uno, redactados por dirección con las mini-specs de este cierre) · re-pase del enlace-M (`v1_1`) cuando el primer enlace quede sellado · re-intento de scoring con `FP-168` ya firmada cuando M tenga ≥1 punto.
+
+## CONSUMIDO
+
+Cerrado por hallazgo antes de `COMMIT-1`: el GATE de la primera línea ("Estado: GATED a que `MAESTRA32-E9 · PROPAGA-2` fusione ... Sin ranuras") está incumplido — `MAESTRA32-E9 · PROPAGA-2` no existe en ningún estado verificable del repositorio (verificado contra `main = 1f455ea`, sin drift respecto del SHA declarado; ni encargo, ni rama, ni PR, ni ADR). No se corrió `COMMIT-1` ni `COMMIT-2`. Detalle completo, comando por comando: `forense/notas/2026-08-30-cobertura-15-cierre.md`. `ADR-224`, `FP-181` nueva (`ABIERTA`), `canon/registro-rotulos.tsv` (`MAESTRA32-E10` censado), `tests/check.py` `_T25_ARCHIVOS_CONOCIDOS` actualizado. `FP-183`/`FP-184` quedan reservadas sin consumir. PR: N/D desde esta sesión — commitea y pushea a la rama designada (`claude/maestra32-e10-cobertura-0xqj0k`), mismo patrón que `MAESTRA32-E1`/`E2`/`E5`/`E6`; quien fusione llena este campo al abrir el PR.

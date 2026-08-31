@@ -2950,6 +2950,27 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # Extension minima de perimetro por desviacion mecanica, mismo
     # precedente que las notas de cierre ya listadas arriba.
     "forense/notas/2026-08-30-etiqueta-v1_2-cierre.md",
+    # ACTO MAESTRA32-E10 · COBERTURA-15, 31/ago/2026: encargo archivado
+    # VERBATIM (A.3), cerrado por hallazgo antes de COMMIT-1 (el propio
+    # ARRANQUE del encargo, no un descubrimiento tardio). El titulo abre
+    # con "ACTO MAESTRA32-E10" (hifenado, no pelado) pero el cuerpo trae
+    # bare E9 ("carril NUBE = `E9 -> E10`", "registrada por E9", "3 (+1
+    # con E9, +2 con E8)"), E10 ("carril NUBE = `E9 -> E10 (este)`",
+    # "token pelado `E10` colisiona"), E3/E8 (carril CAJA, mismo patron
+    # narrativo que MAESTRA32-E6/E5 ya listados arriba) -- verificado con
+    # el mismo regex de este test, corrido en vivo sobre el archivo (9
+    # coincidencias, ninguna reclama un rotulo nuevo sin censar: E9/E10
+    # ya censados en canon/registro-rotulos.tsv, E3/E8 cubiertos por el
+    # mismo precedente narrativo que MAESTRA32-E6). El texto de direccion
+    # no se edita para complacer a un test.
+    "forense/encargos/2026-08-30-MAESTRA32-E10-COBERTURA-15.md",
+    # forense/notas/2026-08-30-cobertura-15-cierre.md -- nota de cierre de
+    # ACTO MAESTRA32-E10. Narra, en prosa, por que el propio encargo (arriba)
+    # necesito esta misma lista, y cita el gate incumplido con los mismos
+    # rotulos bare (E9/E10/E3/E8) -- ninguno es un rotulo nuevo. Extension
+    # minima de perimetro por desviacion mecanica, mismo precedente que las
+    # notas de cierre de MAESTRA32-E5/E6 ya listadas arriba.
+    "forense/notas/2026-08-30-cobertura-15-cierre.md",
 }
 
 
