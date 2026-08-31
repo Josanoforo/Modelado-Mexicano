@@ -1,0 +1,37 @@
+{
+ "archivos_abiertos": [
+  "canon/modelo-decision-v4_0.md  [lectura via emisor (import del modulo)]",
+  "forense/prereg-duelo-v2/candidatos-marco-M-v1_1.tsv  [lectura]",
+  "forense/prereg-duelo-v2/marco-M-sorteado-v1_0.tsv  [lectura]",
+  "milpa/procedencia.yaml  [lectura via emisor (import del modulo)]",
+  "milpa/tramite.yaml  [lectura via emisor.cargar_reglas]"
+ ],
+ "aviso_F_DD_abierto_por_FP_200b": {
+  "cita": "milpa/tramite.yaml:59 -- {conducta: paga_mordida_encuci2020, p: 0.125822, clase: MEDIDO·p(tasa base ponderada)}; milpa/tramite.yaml:71 -- ola_calibracion: \"ENCUCI 2020 (unica ola)\"",
+  "emision_alterna": "emitir_binaria('tramite.mordida.discrecional', 'paga_mordida_encuci2020') -> valor_punto=0.125822, clase='MEDIDO·p(tasa base ponderada)'",
+  "grado_DD_si_se_usara": "P0 VERIFICACION -- misma ola/instrumento que calibro ese p; bajo F-DD no puntuaria",
+  "que_hace_este_acto": "Emite la conducta que el marco declara ('paga_mordida', p=0.62 ASIGNADO, ancla ENCIG 2023), que es lo que la fila del marco especifica. NO re-apunta el marco a la conducta enmendada: marcos v1_0 estan fuera del perimetro y re-apuntarlos convertiria el unico punto que puntua de este acto en verificacion. Decision de mesa, sucesor declarado.",
+  "que_pasa": "La enmienda ENCUCI que P0 cargo en esta MISMA regla mide el desenlace de esta celda (AP5_17|AP5_18, FAC_SEL) sobre ENCUCI 2020, que es la ola de la celda."
+ },
+ "ciego_a_R": "SI -- este acto no abrio forense/prereg-duelo-v2/corridas-R/ ni ninguna columna de valor de R. Archivos abiertos listados en `archivos_abiertos`.",
+ "cita_ola_calibracion": "milpa/tramite.yaml:64 -- fuente: [\"ENCIG2023\", ...]; fijada como ola_calibracion=ENCIG 2023 por forense/notas/2026-08-31-marco-M-v1_1-spec.md §(a), confirmada por milpa/procedencia.yaml:782-786 (asignados_probabilidad, 'el 0.62 NO corresponde a ninguna categoria medida -- es ASIGNADO, confirmado')",
+ "cita_p": "milpa/tramite.yaml:45 -- {conducta: paga_mordida, p: 0.62, clase: ASIGNADO}",
+ "clase": "ASIGNADO",
+ "conducta": "paga_mordida",
+ "correcciones_aplicadas_por_referencia": "forense/prereg-duelo-v2/candidatos-marco-M-v1_1.tsv (ADR-233), correcciones C1 (variable AP5_1_1 -> AP5_17|AP5_18) y C2 (ponderador NO_ENCONTRADO -> FAC_SEL)",
+ "determinismo": "trivial: emitir_binaria recorre regla.entonces y devuelve la primera coincidencia de `conducta`; pura y determinista sobre milpa/tramite.yaml. Dos invocaciones frescas en este acto dieron salida identica.",
+ "encuesta": "ENCUCI",
+ "estado_M": "EMITE",
+ "fuente": "ACTO MAESTRA32-E20 · LOTE-NUBE-1 · P3 · EMITE-M-v0, 31/ago/2026; celda de forense/prereg-duelo-v2/marco-M-sorteado-v1_0.tsv",
+ "grado_DD": "P1 PUNTUA",
+ "id_celda": "TRA-M-02",
+ "invocacion_emisor": "milpa/src/emisor.py:emitir_binaria(regla='tramite.mordida.discrecional', conducta='paga_mordida') -> PrediccionM(tipo_escala='binaria', valor_punto=0.62, clase='ASIGNADO', estado='EMITE')",
+ "ola": "2020",
+ "ola_calibracion": "ENCIG 2023",
+ "p": 0.62,
+ "ponderador": "FAC_SEL",
+ "razon_grado_DD": "(encuesta,ola) de la celda = (ENCUCI,2020); ola_calibracion de la conducta 'paga_mordida' de tramite.mordida.discrecional = ENCIG 2023. NO coinciden (transferencia de instrumento ENCUCI<->ENCIG) -> validacion externa: P1, puntua (F-DD, ADR-237).",
+ "regla": "tramite.mordida.discrecional",
+ "valor_punto": 0.62,
+ "variable": "AP5_17|AP5_18"
+}
