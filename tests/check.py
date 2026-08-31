@@ -3173,6 +3173,39 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # de nuevo. Extension minima de perimetro por desviacion mecanica,
     # mismo precedente que las notas de cierre ya listadas arriba.
     "forense/notas/2026-08-31-cura-radio-cierre.md",
+
+    # ── ACTO MAESTRA32-E20 · LOTE-NUBE-1, 31/ago/2026 ──────────────────
+    # Los cuatro archivos de abajo citan actos hermanos por su token pelado
+    # en prosa narrativa; ninguno RECLAMA el token, todos se declaran con
+    # prefijo de espacio (`ACTO MAESTRA32-Enn`) donde nombran su propio
+    # acto. D-6/ADR-128 aplicado tal cual, mismo patron que las entradas
+    # de E17 arriba. De donde sale cada mencion:
+    #
+    # forense/encargos/2026-08-31-MAESTRA32-E20-LOTE-NUBE-1.md -- encargo
+    # verbatim (A.3): trae `E19` (la compuerta: "MAESTRA32-E19 fusionado
+    # en main ... E19 toma 202-203") y `E17` (el encargo cuya spec P1
+    # re-emite). Un encargo archivado verbatim NUNCA se edita para
+    # complacer al test.
+    #
+    # forense/notas/2026-08-31-lote-nube-1-spec.md -- specs congeladas:
+    # `E15` (criterio (c) del censo, heredado como metodo), `E17` (la
+    # receta que P1 re-emite) y `E2` (lista de terminos de desenlace G5,
+    # citada con su archivo:linea).
+    #
+    # forense/notas/2026-08-31-lote-nube-1-cierre.md -- cierre del lote:
+    # los mismos mas `E19` (la compuerta) y `E4` (la reserva del homonimo
+    # de ENDIREH que P1 confirma).
+    #
+    # forense/notas/2026-08-31-cura-radio-spec.md -- receta de P1: `E17`
+    # (el encargo re-emitido) y `E2` (la lista de terminos).
+    #
+    # Los seis tokens (E2, E4, E15, E17, E19, E20) ya son habitantes
+    # censados en canon/registro-rotulos.tsv antes de este acto; este acto
+    # anade la fila MAESTRA32-E20 y no reclama ninguno de los pelados.
+    "forense/encargos/2026-08-31-MAESTRA32-E20-LOTE-NUBE-1.md",
+    "forense/notas/2026-08-31-lote-nube-1-spec.md",
+    "forense/notas/2026-08-31-lote-nube-1-cierre.md",
+    "forense/notas/2026-08-31-cura-radio-spec.md",
     # ACTO MAESTRA32-E16 · MEDIDOR-FAMILISMO-APOYO, 31/ago/2026: encargo
     # archivado VERBATIM (A.3). Trae rótulo pelado nuevo `E16` (D-6/ADR-128)
     # -- censado aquí y en canon/registro-rotulos.tsv (fila MAESTRA32-E16,

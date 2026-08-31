@@ -1,0 +1,7 @@
+8e6459dd49869063986daa16cfbb8067575ee7c747e3cadd6a35f1b51d582477  marco-M-congelado-v1_1.tsv
+N_elegibles=22
+N_verificacion_no_puntua=5
+N_filas=27
+sellado_por=ACTO MAESTRA32-E20 · LOTE-NUBE-1 · P2 (A''), 31/ago/2026
+criterio=F-DD (ADR-237): elegible = (transferencia==SI) AND (en_corpus==SI) AND (la estadistica tiene regla en cargar_reglas() post-P0)
+nota_lectura=N_elegibles (22) < N_filas (27): las 5 celdas de ola/instrumento de calibracion se CONSERVAN en el archivo marcadas grado_DD=P0 VERIFICACION-NO-PUNTUA (control de plomeria, el encargo prohibe borrarlas). Quien lea este marco para sortear debe filtrar elegible_v1_1=='SI' ANTES del assert de conteo de sorteo_marco_m.cargar_marco_m -- ese modulo compara filas leidas contra N_elegibles y no conoce la columna nueva. Modulo NO tocado por este acto (fuera de perimetro); el cambio es de B''.
