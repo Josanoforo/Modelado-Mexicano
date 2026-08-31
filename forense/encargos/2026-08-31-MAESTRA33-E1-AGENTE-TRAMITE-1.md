@@ -1,0 +1,19 @@
+ENCARGO · MAESTRA33-E1 · AGENTE-TRAMITE-1 — invoca /acto
+SHA de redacción: af41796 (merge PR #410 / ADR-238). ENTORNO: NUBE (Claude Code) — NO UBUNTU, NO doble; no toca microdato. COMPUERTA: PR #410 fusionado en origin/main (verificado por dirección; la skill re-verifica). MODELO SUGERIDO: Opus, ultrathink.
+FIRMA DE MESA (verbatim, 31/ago/2026): "necesito que estas conversaciones se enfoquen más en estrategia, guía y dirección que en ejecución" — autoriza instaurar el agente de fondo de D-13/ADR-237.
+
+VERIFICACIÓN DE EXISTENCIA (A.8, contestada por dirección contra af41796):
+· Tablero A.12 (forense/firmas-pendientes.tsv, columna `creado`) + T22/T-FIRMAS (tests/check.py:1249): EXISTE-NO-SATISFACE como agente — memoria y alarma, sin actor ni redacción.
+· .github/workflows/verify.yml: EXISTE-NO-SATISFACE — `on: push: main`, sin schedule; es compuerta CI.
+· Actor/digesto/runbook: NO-ENCONTRADO — find .claude -type f → 1 (commands/acto.md); find -iname "*monitor*" -o -iname "*recurrente*" (sin .git) → 0; grep -rln "agente de fondo" canon/ forense/ instrucciones-proyecto-v2_12.md → 2 (doctrina, no implementación). Universo: árbol completo salvo .git y data/raw, 31/ago/2026.
+
+PIEZAS (COMMIT-1 congela las tres specs; "el primer resultado que produzca este procedimiento es el que se reporta"):
+P1 · tools/digesto_tramite.py — determinista: emite forense/digesto/DIGESTO-<fecha>.md con (a) filas ABIERTA con antigüedad desde `creado`; (b) resumen de tests/check.py --baseline (VERDE/no + delta FAIL/WARN); (c) ramas remotas ≠ main; (d) encargos sin `## CONSUMIDO`; (e) contadores derivados (reglas/dominios de milpa/tramite.yaml, ejecutables de milpa/procedencia.yaml, puntos M/R/L por conteo de corridas-*). Todo negativo con conteo de archivos examinados (A.13).
+P2 · .claude/commands/tramite.md — skill del agente: arranque ligero (clon, SHA, suite --baseline), corre P1, y redacta UN PR etiquetado [TRAMITE] que solo puede: mover a FIRMADA filas cuyo texto ya porte firma/enterado verbatim de mesa, cerrar recibos, añadir marcas `## CONSUMIDO` faltantes con su PR, y commitear el digesto. Guardrails textuales dentro de la skill: NUNCA firma ni decide; CONTADOR cero, declarado; lo que requiera juicio no se ejecuta — va como fila del digesto; perímetro duro = firmas-pendientes.tsv · forense/digesto/ · marcas CONSUMIDO · nada más.
+P3 · forense/agente-tramite-v1_0.md — runbook: prompt exacto (≤5 líneas) para la tarea recurrente de mesa en Claude Code (sugerida: diaria hábil), qué esperar de cada PR, y falsador a 1 mes (un PR [TRAMITE] que requiera retrabajo de mesa o toque fuera de perímetro → se revisa la skill y se anota).
+PRIMERA CORRIDA, mismo acto: ejecutar /tramite una vez; su PR propone cerrar FP-202 y FP-203 citando: "A.9 verificada por maestra-33 el 31/ago/2026: las instrucciones del proyecto terminan en el delta v2.12; frases 'D-10 · La skill', 'D-13 · Escalonamiento' y 'A.9, cumplida en el mismo acto' presentes ×1 en instrucciones-proyecto-v2_12.md." La firma la da mesa al fusionar.
+
+PERÍMETRO Y CONCURRENCIA: este acto toca tools/digesto_tramite.py, .claude/commands/tramite.md, forense/agente-tramite-v1_0.md, forense/digesto/, firmas-pendientes.tsv (solo FP-202/203 + fila de recibo nueva), forense/encargos/ (archivo A.3 + CONSUMIDO) y la cascada de cierre. Nada corre en paralelo. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
+FP/ADR candidatos: FP-206+ · ADR-239 — deriva del árbol al cerrar, no heredes. CONTADOR: cero mediciones, declarado (infraestructura).
+LO QUE NO HACE: no crea schedule en GitHub Actions (la recurrencia vive en la tarea de mesa); no toca canon/ salvo cascada; no abre microdato; no decide qué pendiente "ya no aplica" — eso es de mesa/dirección.
+SUCESORES: B″ · MARCO-M-SORTEA-v1_1 (nube, semilla del SHA af41796…) · LOTE-CAJA (FP-204 corresidencia + piezas R).
