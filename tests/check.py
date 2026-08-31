@@ -3200,6 +3200,10 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # `MAESTRA32-E20 · LOTE-NUBE-1`). El texto de dirección no se edita
     # para complacer a un test.
     "forense/encargos/2026-08-31-MAESTRA32-E19-SELLA-CAMINO-1.md",
+    # forense/notas/2026-08-31-sella-camino-1-cierre.md -- nota de cierre
+    # de este mismo acto. Cita bare `E18`/`E20` al resumir la nota de T25
+    # sobre el propio encargo -- ninguno nuevo (mismo par que arriba).
+    "forense/notas/2026-08-31-sella-camino-1-cierre.md",
 }
 
 
