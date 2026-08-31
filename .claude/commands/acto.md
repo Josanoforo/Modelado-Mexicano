@@ -69,10 +69,15 @@ encargo supone es entregable, no interrupción.
 ## 2 · COMPUERTA
 
 Busca en el encargo (el argumento de esta skill) una línea que declare
-`GATED a …` o `Estado: GATED a …`. Si no hay ninguna, el encargo no está
-compuertado — continúa al paso 3.
+`GATED a …`, `Estado: GATED a …` o `COMPUERTA: …` — las tres formas son la
+MISMA cosa y tienen la MISMA consecuencia (no cumplida → cero commits); el
+formato corto v2.12 escribe `COMPUERTA:` y el largo escribía `GATED a`, y
+reconocer solo una de las dos formas es no compuertar el acto. Si no hay
+ninguna de las tres, el encargo no está compuertado — continúa al paso 3.
+`COMPUERTA: ninguna` (o `ninguna de merge`) es una declaración explícita de
+que no hay compuerta: no dispara verificación.
 
-Si hay una línea `GATED a X`:
+Si hay una línea `GATED a X` / `COMPUERTA: X`:
 
 1. `git fetch origin main` (o la rama que el encargo declare como base).
 2. Verifica **por los comandos que el propio encargo declare** — nunca
@@ -140,6 +145,11 @@ no llega a arrancar), en el mismo commit o en el commit de cascada:
    PR) que lo ejecutó. El encargo no se borra ni se edita en ningún otro
    punto: es el registro de qué se pidió, para poder auditar si el
    ejecutor hizo lo que se le dijo.
+9. **Empuja y abre UN PR.** `git push -u origin <rama>` y abre **UN** PR
+   contra `main` titulado con el rótulo del acto; **NO lo fusiones** — el
+   merge es de mesa, y es la autorización, no un trámite del ejecutor.
+   Excepción única: cuando el acto corre bajo `/despacha`, que ya hace
+   este paso — no lo dupliques.
 
 Falsador y caducidad de esta skill (D-13, `instrucciones-proyecto-v2_12.md`):
 si en un mes la skill no evita ni un solo acto perdido por compuerta, o el

@@ -25,6 +25,41 @@ Las cuatro piezas quedan congeladas aquí antes de que el despachador
 mueva un solo encargo. **El primer resultado que produzca este
 procedimiento es el que se reporta.**
 
+### DECISIÓN DE MESA · 31/ago/2026 — umbral de HUÉRFANO y reset
+
+Las dos preguntas que `ACTO MAESTRA33-E3 · CABLEADO-COLA-DIGESTO` dejó
+abiertas para mesa (`FP-210`, renumerada desde `FP-209`) quedan
+**decididas**. Firma de mesa, **verbatim**, 31/ago/2026:
+
+> «Enterado FP-205, FP-206, FP-207, FP-208 y FP-209. Apruebo umbral de
+> 24 h y reset de huérfanos: dirección propone, mesa fusiona»
+
+Qué queda fijado, y qué no:
+
+1. **El umbral de `HUÉRFANO` es `>24 h`** — el que la spec ya traía
+   escrito abajo, ahora aprobado y no propuesto. Se prueba con la
+   granularidad que el archivo permite (`edad ≥ 1 día` sobre el último
+   renglón `EN-CURSO` de la `BITACORA:`); afinar más sería inventar horas
+   que la bitácora no trae.
+2. **El reset de un `EN-CURSO` huérfano queda aprobado como
+   procedimiento, con su reparto de manos explícito: *dirección propone,
+   mesa fusiona*.** Es decir: dirección redacta el commit de una línea de
+   cabecera (`ESTADO:` de vuelta a `LISTO-NUBE` o a `PARO-REPORTADO`, más
+   el renglón añadido a `BITACORA:` con la razón) y lo manda en un PR;
+   **el reset surte efecto al fusionarlo mesa**, no antes. El merge de
+   mesa sigue siendo la autorización, igual que para entrar a la cola.
+3. **Lo que NO cambia:** el despachador sigue sin resetear nada por su
+   cuenta. Un huérfano se **nombra** y el tick termina con cero commits.
+   La aprobación es de un procedimiento con dos manos (dirección propone,
+   mesa fusiona), no de una automatización.
+
+Registrada por `ACTO MAESTRA33-E4 · DELTA-E3` (`P1`, `ADR-244`,
+`PR #416`). La misma firma queda propagada verbatim a `FP-205`, `FP-206`,
+`FP-207`, `FP-208`, `FP-209` y `FP-210` en
+`forense/firmas-pendientes.tsv`.
+
+---
+
 ### P1 · La convención de cola — `forense/encargos/cola/`
 
 Un directorio nuevo bajo `forense/encargos/`, con **un archivo por
@@ -78,6 +113,9 @@ La regla no quita el bloqueo — lo **nombra**:
 
 > Un `EN-CURSO` de **más de 24 h** que **no tiene rama remota propia ni
 > PR propios** es **HUÉRFANO**.
+
+**Umbral aprobado por mesa el 31/ago/2026** (decisión fechada al
+principio de este §0): las `24 h` ya no son propuesta.
 
 Se prueba con lo que hay, y se declara lo que no se puede probar:
 

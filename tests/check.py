@@ -3290,6 +3290,16 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # misma razon que MAESTRA33-E2, MAESTRA31-E1..E7 y MAESTRA30-E10,
     # ocho entradas de esta misma lista.
     "forense/encargos/2026-08-31-MAESTRA33-E3-CABLEADO-COLA-DIGESTO.md",
+    # ACTO MAESTRA33-E4 · DELTA-E3, 31/ago/2026: encargo archivado VERBATIM
+    # (A.3). Direccion lo rotulo "DELTA-E3" y dentro del cuerpo cita "(E3)" y
+    # "de E3 v1.1" al nombrar el acto antecesor MAESTRA33-E3 · CABLEADO-COLA-
+    # DIGESTO y su rama; "E3" pelado colisiona con el habitante ya censado del
+    # espacio E. D-6 aplicado donde se puede aplicar: el acto se declara ACTO
+    # MAESTRA33-E4 en todo archivo que escribe y queda censado en
+    # canon/registro-rotulos.tsv; el encargo NO se edita, porque A.3 pide el
+    # texto de direccion verbatim. Mismo movimiento y misma razon que las
+    # entradas de MAESTRA31-E1/E2/E4/E5/E6/E7 y MAESTRA30-E10 de esta lista.
+    "forense/encargos/2026-08-31-MAESTRA33-E4-DELTA-E3.md",
 }
 
 
