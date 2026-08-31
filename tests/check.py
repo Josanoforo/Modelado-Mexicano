@@ -3180,6 +3180,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # MAESTRA32-E17 ya había censado), no reclamado: el acto se declara
     # ACTO MAESTRA32-E16 en todo archivo que escribe.
     "forense/encargos/2026-08-31-MAESTRA32-E16-MEDIDOR-FAMILISMO.md",
+    # ACTO MAESTRA32-E18 · REGLAS-OLA5-FASE1, 31/ago/2026: encargo archivado
+    # VERBATIM (A.3) que cita en prosa narrativa los rotulos pelados E15,
+    # E16, E17 y E8 (carriles NUBE/CAJA declarados y "E8 spec" de agosto) --
+    # los tres primeros ya son habitantes censados del espacio E (ver filas
+    # MAESTRA32-E15/E16/E17 arriba); E8 refiere al acto ya cerrado
+    # ACTO E8 · LOS-388, tambien ya censado. Ninguna mencion es un marcador
+    # nuevo -- censado aqui y en canon/registro-rotulos.tsv (fila
+    # MAESTRA32-E18), no reclamado.
+    "forense/encargos/2026-08-31-MAESTRA32-E18-REGLAS-OLA5-FASE1.md",
 }
 
 
