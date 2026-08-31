@@ -3237,6 +3237,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # de este mismo acto. Cita bare `E18`/`E20` al resumir la nota de T25
     # sobre el propio encargo -- ninguno nuevo (mismo par que arriba).
     "forense/notas/2026-08-31-sella-camino-1-cierre.md",
+    # ACTO MAESTRA33-C1 · RE-SPEC-CORRESIDENCIA, 31/ago/2026: encargo
+    # archivado VERBATIM (A.3) que cita en prosa, en el bloque PERIMETRO Y
+    # CONCURRENCIA, "En nube pueden estar corriendo E2 o el despachador"
+    # -- referencia de direccion a otro acto/carril concurrente, no un
+    # rotulo que este acto reclame ni cree; ya existe un habitante E2
+    # censado (MAESTRA31-E2 · REGISTRA-PENDIENTES) y esta mencion no lo
+    # reclama de nuevo. El texto de direccion no se edita para complacer
+    # a un test (A.3). El propio rotulo de este acto, MAESTRA33-C1, cae
+    # fuera del regex M/E de este test (no es un token M/E-digito) y se
+    # censa por separado en canon/registro-rotulos.tsv, no aqui.
+    "forense/encargos/2026-08-31-MAESTRA33-C1-RESPEC-CORRESIDENCIA.md",
 }
 
 
