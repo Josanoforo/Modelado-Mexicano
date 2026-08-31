@@ -73,3 +73,7 @@ No emite puntos M, no calcula R, no corre L, no toca el sorteo original, no elig
 Sucesores declarados, no lanzados
 
 EMITE-M (nube: el motor emite su punto por celda sorteada, motor congelado, clases a la vista) · R-MARCO-M (caja: el árbitro calcula R por celda desde el microdato, dos commits) · L-MARCO-M (pipeline L sobre las mismas celdas) · scoring con FP-168 ya firmada cuando M, R y L existan.
+
+## CONSUMIDO
+
+Cerrado por `PR #404`. `SHA_A=f4d9b7f506aa5205231f6e7b355645d1206dd031` (merge de `MAESTRA32-E13`/`PR #403`, `ADR-231`, verificado ancestro y tip literal de `origin/main` al re-lanzar). `N_elegibles=2 < 15` → identidad, sin PRNG: `TRA-M-01`/`TRA-M-02` entran completas. `ADR-232`, `FP-193` (recibo, `FP-194` reservada), `MAESTRA32-E14` censado en `canon/registro-rotulos.tsv`.
