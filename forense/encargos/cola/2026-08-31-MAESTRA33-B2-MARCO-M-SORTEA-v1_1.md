@@ -1,0 +1,13 @@
+ESTADO: LISTO-NUBE
+ENTORNO: NUBE
+ENCOLADO: 2026-08-31 · `ACTO MAESTRA33-E2 · AGENTE-DESPACHO-1`
+BITACORA:
+- 2026-08-31 · LISTO-NUBE · encolado por `ACTO MAESTRA33-E2 · AGENTE-DESPACHO-1`. Entra a la cola por PR fusionado a `main`: ese merge es la autorización de mesa, y es la única puerta de entrada (P1).
+
+──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
+
+ENCARGO · MAESTRA33-B2 · MARCO-M-SORTEA-v1_1 — invoca /acto · ESTADO: LISTO-NUBE
+SHA de redacción: af41796. ENTORNO: NUBE — NO UBUNTU. MODELO SUGERIDO: Sonnet (receta congelada, cero juicio). COMPUERTA: marco-M-congelado-v1_1.tsv y CONGELADO-M-v1_1.sha256 en main (verificados por dirección; re-verifica hash antes de sortear).
+A.8: sorteo v1_0 EXISTE (sorteo-marco-M-resultados-v1_0.md); resultados v1_1 NO-ENCONTRADO (ls forense/prereg-duelo-v2/, 31/ago/2026).
+COMMIT-1 (congela antes de correr): semilla = semilla_desde_sha_merge("af41796f50baad1737987b7e9a1e737c38ab85f2", "MARCO-M-v1_1") — función existente en sorteo_v2.py:191, que NO se edita (cargadores propios si hace falta, precedente del reglamento ADR-178); universo = filas elegibles de marco-M-congelado-v1_1.tsv (N_elegibles esperado 22 — deriva, no heredes); regla de tamaño = ADR-231 §e leída del árbol; celdas P0-calibración entran VERIFICACION-NO-PUNTUA (F-DD). Frase de sello incluida.
+COMMIT-2: forense/prereg-duelo-v2/sorteo-marco-M-resultados-v1_1.md con semilla, comando, lista sorteada y clasificación P0/P1 por celda. CONTADOR: celdas sorteadas v1_1 de 0 → N. LO QUE NO HACE: no emite puntos M ni abre corridas-R/ (ciego). Si lanzas agentes que sean en sonnet. Necesito que todo quede cableado no quiero espacios donde después me digan que faltó unir tal o cual parte del proceso.
