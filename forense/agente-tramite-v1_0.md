@@ -39,7 +39,10 @@ Cinco secciones, en este orden y sin otras:
   `git ls-remote --heads origin` (estado vivo) o, si no responde,
   `git for-each-ref refs/remotes/origin` marcado como RESPALDO, que
   refleja el último `fetch` y no el remoto de ahora.
-- **D** — encargos sin marca `## CONSUMIDO`, partidos en dos por un
+- **D** — encargos sin marca `## CONSUMIDO`, con bandera `⚠️ NO MARCAR`
+  en los que comparten rótulo con otro encargo o cuyo propio archivo se
+  declara no consumido (`SUSTITUIDO`, "queda como historia"). La skill
+  tiene prohibido tocar una entrada marcada. Partidos en dos por un
   **piso derivado del árbol** (la fecha del encargo más antiguo que sí
   trae la marca, hoy `2026-08-18`): en o después del piso son
   accionables; antes del piso son **pasivo histórico**, nacidos cuando
@@ -66,14 +69,28 @@ las sustituciones en el pie, y re-corre los regex sobre su propia salida
 antes de escribir (`--verifica-marcadores`, encendido por defecto);
 si algo se coló, **no escribe** y sale con código 2.
 
-No es precaución hipotética. Medido el 31/ago/2026 contra `af41796`: de
-las 6 filas `ABIERTA` del tablero, `FP-179` trae cuatro rótulos pelados
-en su texto y `FP-190` uno más. Un digesto que los copiara verbatim
-rompería `T25` en su primera corrida: el agente de fondo habría nacido
-tumbando la suite. La verificación además atrapó dos defectos reales del
-propio P1 durante su construcción — la prosa explicativa del digesto
-nombraba el marcador, y después nombraba la constante que lo contiene
-como subcadena.
+No es precaución hipotética, y conviene decir el tamaño real del
+peligro en vez del titular fácil. Medido el 31/ago/2026 contra
+`af41796`: de las 6 filas `ABIERTA` del tablero, `FP-179` trae cuatro
+rótulos pelados en su texto y `FP-190` uno más. Con `--tope-texto 0`
+entran los cinco al digesto y se neutralizan los cinco. Con el tope
+**por defecto** (220 caracteres) no entra ninguno: el primero de
+`FP-179` empieza en el carácter **229**, el de `FP-190` en el **486**.
+
+O sea: **es falso que la corrida por defecto habría roto `T25` el primer
+día** — se salva por **nueve caracteres**. Pero se salva por dónde caen
+las letras, no por ningún mecanismo, y basta con cualquiera de tres
+cosas ordinarias para que el margen desaparezca: que alguien corra con
+`--tope-texto 0` (bandera soportada), que se edite el texto de una fila
+y el rótulo se corra al principio, o que una fila nueva traiga el suyo
+dentro de los primeros 220 caracteres. Un colchón de nueve caracteres
+que nadie eligió y que nadie vigila no es una defensa.
+
+Lo que sí ocurrió, y no depende del tope: la verificación atrapó **dos
+defectos reales del propio P1** durante su construcción — la prosa
+explicativa del digesto nombraba el marcador, y después nombraba la
+constante que lo contiene como subcadena. Los dos habrían roto
+`T22(b)`.
 
 Un rótulo pelado se escribe con guion bajo delantero (`_` + rótulo): el
 guion bajo está en la clase que el lookbehind del test excluye, el

@@ -141,17 +141,55 @@ Solo sobre encargos que el digesto liste en **D.1** (en o después del
 piso derivado). Los de **D.2** son pasivo histórico: nacieron antes de
 que la convención existiera, y decidir cuál "ya no aplica" es de mesa.
 
-Derivación mecánica del PR, y no vale otra:
+**Puerta 0 — la bandera del digesto manda.** Una entrada de D.1 marcada
+`⚠️ NO MARCAR` **no se toca nunca**, pase lo que pase con los pasos de
+abajo. Va como fila del digesto y ahí se queda.
+
+**Puerta 1 — el rótulo tiene que ser único.**
 
 ```
-git log --all --merges --format='%s' --grep='<ROTULO-DEL-ENCARGO>'
+ls forense/encargos/ | grep -c '<ROTULO-DEL-ENCARGO>'
 ```
 
-- **Exactamente un** `Merge pull request #N` distinto, y ese merge toca
-  archivos además del propio encargo → añade al final del archivo una
-  sección `## CONSUMIDO` citando `PR #N`. Nada más del archivo se toca.
+Si da **algo distinto de 1**, PARA con este encargo: fila del digesto.
+Dos encargos que comparten rótulo comparten también el resultado del
+`git log` de abajo, así que un mismo `PR` satisface la derivación para
+los dos y uno de los dos recibiría una marca falsa.
+
+**Puerta 2 — hay que LEER el archivo antes de escribir en él.** Si trae
+`SUSTITUIDO`, `DEVUELTA-POR-MESA`, "no ejecutado", "no consumido" o
+"queda como historia", entonces **no fue consumido y no se marca** —
+por más que el `git log` diga que sí. Fila del digesto.
+
+**Puerta 3 — la derivación del PR, y no vale otra:**
+
+```
+git log --all --merges --format='%h %s' --grep='<ROTULO-DEL-ENCARGO>'
+git show --stat <merge> -- forense/encargos/<archivo>.md
+```
+
+- **Exactamente un** `Merge pull request #N`, **y** ese merge toca **ese
+  archivo concreto**, **y** toca archivos además de él → añade al final
+  del archivo una sección `## CONSUMIDO` citando `PR #N`. Nada más del
+  archivo se toca.
 - **Cero, o más de uno** → fila del digesto. No elijas entre candidatos:
   elegir es decidir.
+
+Por qué cuatro puertas y no una — el caso que las obligó, medido en este
+árbol el 31/ago/2026. `2026-08-28-MAESTRA32-E3-EXTRACTOR-DTA.md` y
+`2026-08-30-MAESTRA32-E3-EXTRACTOR-DTA-v2.md` comparten el rótulo
+`MAESTRA32-E3`. El `git log` de la puerta 3 da **exactamente un** merge
+(`PR #400`), y ese merge toca **los dos** archivos además de otros once:
+la derivación "exactamente un candidato" se satisface, literalmente,
+para ambos. Pero el v1 dice desde ese mismo `PR`, en su primera línea:
+"**SUSTITUIDO por v2 (dirección, 30/ago/2026): no ejecutado, no
+consumido; queda como historia.**" Un ejecutor que siguiera solo la
+puerta 3 le habría escrito `## CONSUMIDO (PR #400)` encima —
+**una falsedad que contradice por escrito una decisión de mesa ya
+registrada**, y ningún test de la suite la habría atrapado (`grep -n
+CONSUMIDO tests/check.py` → nada). El único freno habría sido que mesa
+lo leyera al fusionar, que es exactamente la dependencia en la memoria
+de alguien que `A.12` y `T22` existen para eliminar.
 
 **Tope: 5 marcas por PR**, y el PR declara cuántas quedaron sin
 proponer. Un PR de trámite que reescribe medio directorio deja de ser

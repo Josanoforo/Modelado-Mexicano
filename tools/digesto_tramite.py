@@ -51,11 +51,31 @@ cambia cada día no puede estar en ninguna por adelantado. Así que la
 garantía tiene que venir POR CONSTRUCCIÓN: este archivo neutraliza los
 dos marcadores en todo texto que copia del árbol, antes de escribirlo.
 
-No es defensa hipotética. Medido el 31/ago/2026 contra `af41796`: de las
-6 filas ABIERTA del tablero, `FP-179` trae los rótulos pelados `E3`,
-`E2`, `E6`, `E10` y `FP-190` trae `E4` en su texto. Un digesto que los
-copiara verbatim rompería `T25` en su PRIMERA corrida — el agente de
-fondo habría nacido tumbando la suite.
+No es defensa hipotética, pero tampoco es lo que una primera versión de
+este comentario afirmaba, y la diferencia importa. Medido el 31/ago/2026
+contra `af41796`: de las 6 filas ABIERTA del tablero, `FP-179` trae los
+rótulos pelados `E3`, `E2`, `E6`, `E10` y `FP-190` trae `E4` en su
+texto. Con `--tope-texto 0` los cinco entran al digesto y los cinco se
+neutralizan. Con el tope POR DEFECTO (220 caracteres) no entra ninguno:
+el primero de `FP-179` empieza en el carácter **229** y el de `FP-190`
+en el **486**. Es decir, la corrida por defecto de hoy se salva por
+**nueve caracteres**, y se salva por accidente de dónde caen las letras
+— no por ninguna garantía.
+
+Decirlo con precisión: es FALSO que la corrida por defecto habría roto
+`T25` el primer día. Lo cierto es que el peligro está vivo y latente, y
+se materializa por tres vías ordinarias: alguien corre con
+`--tope-texto 0` (bandera soportada y documentada en el runbook), el
+texto de una fila se edita y el rótulo se corre hacia el principio, o
+una fila nueva trae su rótulo dentro de los primeros 220 caracteres. Un
+margen de nueve caracteres no es un mecanismo de seguridad; es una
+casualidad que nadie eligió y que nadie vigila.
+
+Lo que sí ocurrió, y es independiente del tope: `--verifica-marcadores`
+atrapó DOS defectos reales de este mismo archivo mientras se escribía
+—la prosa del digesto nombraba el marcador de ranura, y después nombraba
+la constante de `tests/check.py` que lo contiene como subcadena—, los
+dos con capacidad de romper `T22(b)` en producción.
 
 Cómo se neutraliza, y por qué así:
   · Rótulo pelado `M12`/`E-3` → `_M12`/`_E-3`. El guion bajo está en la
@@ -92,6 +112,14 @@ RAIZ_POR_DEFECTO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # mismos patrones sobre la salida final en vez de confiar en la copia.
 RE_ROTULO_PELADO = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_.])")
 RE_MARCADOR_RANURA = re.compile(r"RANURA")
+# Un encargo que el arbol declara NO consumido -- el patron que la casa ya
+# usa cuando mesa sustituye o devuelve un texto. Vive aqui porque el agente
+# NO puede marcarlo CONSUMIDO sin escribir una falsedad, y ninguna
+# derivacion por `git log` lo detecta: hay que LEER el archivo.
+RE_NO_CONSUMIDO = re.compile(
+    r"SUSTITUID[OA]|DEVUELT[OA]-POR-MESA|no ejecutado|no consumido|queda como historia",
+    re.I)
+
 RE_MARCADOR_PENDIENTE = re.compile(
     r"requiere_decision.*true|PENDIENTE de mesa|pendiente nombrado.*mesa|PROPUESTA.*mesa")
 
@@ -369,6 +397,49 @@ def seccion_d(raiz, piso_arg, tope_lista):
                      key=lambda p: os.path.basename(p), reverse=True)
     pasivo = sorted(p for p in sin_marca if os.path.basename(p)[:10] < piso)
 
+    # ── Dos banderas que la skill NECESITA para no escribir una falsedad ──
+    #
+    # La derivación por `git log --grep=<rótulo>` de la skill es ciega a dos
+    # cosas, y las dos ya ocurrieron en este árbol:
+    #
+    #  (1) RÓTULO COMPARTIDO. `2026-08-28-MAESTRA32-E3-EXTRACTOR-DTA.md` y
+    #      `2026-08-30-MAESTRA32-E3-EXTRACTOR-DTA-v2.md` comparten rótulo; el
+    #      grep da EXACTAMENTE un merge (`PR #400`) que toca los dos, así que
+    #      el criterio "exactamente un candidato" se satisface para AMBOS.
+    #      `forense/encargos/convencion.md` ya advierte esta colisión.
+    #  (2) ENCARGO NO CONSUMIDO POR DECLARACIÓN. Ese mismo v1 dice, dentro del
+    #      mismo PR: "SUSTITUIDO por v2 (dirección, 30/ago/2026): no ejecutado,
+    #      no consumido; queda como historia." Marcarlo CONSUMIDO escribiría
+    #      una falsedad que contradice por escrito una decisión de mesa.
+    #
+    # Ninguna de las dos se ve desde `git log`: hay que mirar los NOMBRES de
+    # los otros encargos y LEER el contenido del archivo. El digesto las
+    # deriva y las marca; la skill tiene prohibido tocar una fila marcada.
+    def _rotulo(ruta):
+        return re.sub(r"\.md$", "", os.path.basename(ruta)[11:])
+
+    rot_todos = {p: _rotulo(p) for p in con_fecha}
+    def _comparte_rotulo(p):
+        r = rot_todos[p]
+        return sorted(os.path.basename(q) for q, rq in rot_todos.items()
+                      if q != p and (rq.startswith(r) or r.startswith(rq)))
+
+    banderas = {}
+    for p in frescos:
+        motivos = []
+        hermanos = _comparte_rotulo(p)
+        if hermanos:
+            motivos.append("rótulo compartido con " + ", ".join("`%s`" % h for h in hermanos))
+        try:
+            with open(p, encoding="utf-8") as fh:
+                m = RE_NO_CONSUMIDO.search(fh.read())
+            if m:
+                motivos.append("el archivo se declara no consumido (`%s`)" % m.group(0))
+        except OSError:
+            motivos.append("no se pudo leer para verificar")
+        if motivos:
+            banderas[p] = motivos
+
     out += [f"Archivos `.md` examinados en `forense/encargos/`: **{len(archivos)}** "
             f"({len(con_fecha)} con prefijo de fecha, {len(sin_fecha)} sin él y por "
             f"tanto fuera del universo) (A.13).",
@@ -386,9 +457,22 @@ def seccion_d(raiz, piso_arg, tope_lista):
                 "Estos son los accionables: la convención ya estaba viva cuando "
                 "nacieron. La skill solo añade la marca cuando el PR es derivable "
                 "mecánicamente y da exactamente un candidato; los demás son fila de "
-                "digesto, no edición.", ""]
+                "digesto, no edición.",
+                "",
+                (f"**{len(banderas)} de estos {len(frescos)} van marcados ⚠️ NO MARCAR** "
+                 f"— comparten rótulo con otro encargo (y entonces un mismo `PR` satisface "
+                 f"la derivación para los dos), o el propio archivo se declara no "
+                 f"consumido. La skill tiene prohibido tocarlos: son de mesa."
+                 if banderas else
+                 f"Ninguno de estos {len(frescos)} lleva bandera de rótulo compartido ni "
+                 f"se declara no consumido ({len(frescos)} archivos examinados, A.13)."),
+                ""]
         for p in mostrados:
-            out.append(f"- `forense/encargos/{os.path.basename(p)}`")
+            if p in banderas:
+                out.append(f"- ⚠️ `forense/encargos/{os.path.basename(p)}` — **NO "
+                           f"MARCAR**: " + "; ".join(banderas[p]))
+            else:
+                out.append(f"- `forense/encargos/{os.path.basename(p)}`")
         if len(mostrados) < len(frescos):
             out += ["",
                     f"**Se listan {len(mostrados)} de {len(frescos)}.** Los "
