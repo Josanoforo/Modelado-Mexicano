@@ -37,11 +37,20 @@ re-derivado.
 
 `P0` ejecutado (dos líneas: `COMPUERTA:` ≡ `GATED a` en el paso 2; paso 9 de
 cierre que empuja y abre UN PR sin fusionarlo, salvo bajo `/despacha`).
-**`P1` NO ejecutado**: el corchete de FIRMA DE MESA llegó con el texto de
-instrucción a mesa y no con una firma, y este encargo fija «si queda vacío,
-`P1` no se ejecuta» — `FP-205`/`FP-206`/`FP-207`/`FP-208`/`FP-209` siguen
-`ABIERTA` sin tocar y `forense/agente-despacho-v1_0.md` §0 no se editó. No se
-inventan firmas. Contador: cero, declarado.
+
+**`P1`, en segundo tiempo.** Al cerrar `P0`, el corchete de FIRMA DE MESA de
+este encargo traía el texto de instrucción a mesa y no una firma, así que `P1`
+NO se ejecutó — «si queda vacío, `P1` no se ejecuta», y no se inventan firmas.
+Mesa firmó después, el mismo 31/ago/2026 y con el `PR #416` ya abierto:
+«Enterado FP-205, FP-206, FP-207, FP-208 y FP-209. Apruebo umbral de 24 h y
+reset de huérfanos: dirección propone, mesa fusiona». Con esa firma `P1` corrió
+en el commit siguiente: cita verbatim en `firmada_en` de `FP-205`…`FP-209`
+(`FIRMADA`), más `FP-210` por propagación derivada y auto-documentada (las «dos
+preguntas de FP-209» viven ahí desde la renumeración de `ADR-243`), y la
+decisión registrada como decisión de mesa fechada en
+`forense/agente-despacho-v1_0.md` §0.
+
+Contador: cero, declarado.
 
 `python3 tests/check.py --baseline`: **VERDE**, sin `FAIL` nuevo frente a
 `tests/baseline.json` (HEAD congelado `c6a0d72`).
