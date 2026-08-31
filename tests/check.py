@@ -3261,6 +3261,22 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # misma razon que MAESTRA31-E1, E2, E4, E5, E6, E7 y MAESTRA30-E10,
     # siete entradas de esta misma lista.
     "forense/encargos/2026-08-31-MAESTRA33-E2-AGENTE-DESPACHO-1.md",
+    # forense/encargos/2026-08-31-MAESTRA33-A1-AGENTE-ADQUISICION-1.md --
+    # encargo archivado VERBATIM (A.3). Direccion cita "radio_confianza
+    # (E20-P1)" en la linea de A.8/P1 para nombrar la primera pieza (P1)
+    # del acto MAESTRA32-E20 ya ejecutado y fusionado -- "E20" pelado ya
+    # es habitante censado del espacio E en canon/registro-rotulos.tsv
+    # (filas E20 y MAESTRA32-E20), no es un rotulo nuevo, solo faltaba
+    # eximir el archivo. El encargo NO se edita, porque A.3 pide el texto
+    # de direccion verbatim.
+    "forense/encargos/2026-08-31-MAESTRA33-A1-AGENTE-ADQUISICION-1.md",
+    # forense/notas/2026-08-31-agente-adquisicion-1-cierre.md -- nota de
+    # cierre de ACTO MAESTRA33-A1 que cita "E20-P1"/"MAESTRA32-E20" al
+    # explicar de donde sale la prioridad elevada de la fila WVS (misma
+    # cita que el propio encargo, ver arriba) -- mismo habitante ya
+    # censado, no un marcador nuevo. Extension minima de perimetro por
+    # desviacion mecanica, mismo precedente que el resto de esta lista.
+    "forense/notas/2026-08-31-agente-adquisicion-1-cierre.md",
 }
 
 
