@@ -2355,6 +2355,21 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # E7, MAESTRA30-E10 y MAESTRA31-E1/E2, siete entradas de esta misma
     # lista.
     "forense/encargos/2026-08-26-MAESTRA31-E3-PERIMETRO-ALCANZABLE.md",
+    # ACTO MAESTRA32-E3 · EXTRACTOR-DTA v2, 30/ago/2026: encargo archivado
+    # VERBATIM (A.3) rotulado "ENCARGO E3" por direccion, y su nota de
+    # COMMIT-1 y su nota de cierre citan el rotulo bare "E4" al nombrar
+    # el sucesor declarado MAESTRA32-E4 · RE-EMPAREJA. "E3" colisiona con
+    # E3-TRIAGE/MAESTRA30-E1..E4/MAESTRA31-E3 y demas habitantes del
+    # espacio E; "E4" colisiona con E4 (DISENO-ENSAFI)/MAESTRA30-E1..E4.
+    # D-6 aplicado donde se puede aplicar: el acto se declara ACTO
+    # MAESTRA32-E3 en todo archivo que escribe y queda censado en
+    # canon/registro-rotulos.tsv; el encargo NO se edita porque A.3 pide
+    # el texto de direccion verbatim, y las notas de COMMIT-1/cierre
+    # citan el rotulo del sucesor al narrar su propia especificacion --
+    # mismo patron que las demas entradas de esta lista.
+    "forense/encargos/2026-08-30-MAESTRA32-E3-EXTRACTOR-DTA-v2.md",
+    "forense/notas/2026-08-30-extractor-ext-spec.md",
+    "forense/notas/2026-08-30-extractor-ext-cierre.md",
     "forense/notas/2026-08-26-perimetro-alcanzable-cierre.md",
     # ACTO MAESTRA31-E1 · RELOJ-CRUCE, 26/ago/2026 (ADR-210): encargo
     # archivado VERBATIM (A.3). Direccion lo lanzo rotulado "ENCARGO E1",
