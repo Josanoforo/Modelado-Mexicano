@@ -47,14 +47,20 @@ lleva `valor_ejecutable`; ENDIREH queda en `reserva`. Contador:
 coeficientes ejecutables con base medida 6 → 7; pares con β̂ 6 → 7 de 15.
 Fila B de `rutas_estimabilidad_coeficiente.detalle`: SIN-RUTA → RUTA-A.
 `tests/test_matriz_sellados.py`: overrides re-derivados 6 → 7. `tests/
-check.py --baseline`: VERDE frente a `HEAD`, salvo **1 FAIL nuevo fuera
-de perímetro** (`T25`, rótulo pelado `E16` del propio nombre de archivo
-de este encargo) — no resuelto porque su arreglo requiere editar
-`canon/registro-rotulos.tsv` y/o `tests/check.py`, ninguno en el
-perímetro declarado de este acto; reportado a dirección/orquestador, no
-forzado. Detalle completo, n por universo, tabla condicionada y
+check.py --baseline`: VERDE frente a `HEAD`. El `T25` (rótulo pelado
+`E16` del propio nombre de archivo de este encargo) quedó fuera del
+perímetro del sub-acto de medición; resuelto por el orquestador
+censando el token en `canon/registro-rotulos.tsv` y
+`tests/check.py::_T25_ARCHIVOS_CONOCIDOS`, mismo patrón que
+`MAESTRA32-E13`/`E14` — `tests/check.py --baseline` VERDE, sin `FAIL`
+nuevo. Detalle completo, n por universo, tabla condicionada y
 veredictos (a)/(e): `forense/notas/2026-08-31-familismo-cierre.md`.
 
-ADR siguiente disponible: **PENDIENTE de creación** (fuera del perímetro
-de este acto) — ver reporte final del acto para número sugerido y
-contenido.
+## CONSUMIDO
+
+`ADR-233` (`canon/gobernanza-v1_15.md`, cabecera 232→233 ADR;
+`canon/estado-programa-v1_10.md` L0 recifrado en paralelo). `FP-196`
+(recibo del acto, `forense/firmas-pendientes.tsv`), `FP-197` reservada
+sin consumir. `canon/registro-rotulos.tsv`: `MAESTRA32-E16` censado.
+PR: pendiente de apertura por el orquestador (número a completar al
+fusionar).

@@ -3134,6 +3134,11 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # + COMMIT-2 de este acto. Cita bare E13 al declarar SHA_A ("merge de
     # E13") -- habitante ya censado (MAESTRA32-E13), ninguno nuevo.
     "forense/prereg-duelo-v2/sorteo-marco-M-resultados-v1_0.md",
+    # ACTO MAESTRA32-E16 · MEDIDOR-FAMILISMO-APOYO, 31/ago/2026: encargo
+    # archivado VERBATIM (A.3). Trae rótulo pelado nuevo `E16` (D-6/ADR-128)
+    # -- censado aquí y en canon/registro-rotulos.tsv, no reclamado: el
+    # acto se declara ACTO MAESTRA32-E16 en todo archivo que escribe.
+    "forense/encargos/2026-08-31-MAESTRA32-E16-MEDIDOR-FAMILISMO.md",
 }
 
 
