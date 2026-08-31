@@ -3074,6 +3074,32 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # tsv. Extension minima de perimetro por desviacion mecanica, mismo
     # precedente que las notas de cierre ya listadas arriba.
     "forense/notas/2026-08-30-cobertura-15-cierre-E11.md",
+    # ACTO MAESTRA32-E4 · RE-EMPAREJA, 30/ago/2026 (re-corre la spec
+    # congelada de MAESTRA32-E2 verbatim sobre el universo ampliado
+    # v1_2 UNION ext-v1_0): encargo archivado VERBATIM (A.3). El titulo
+    # abre con "ACTO MAESTRA32-E4" (hifenado, no pelado) pero el cuerpo
+    # trae bare E2/E3/E6/E12/E4 en prosa narrativa de direccion (citas a
+    # actos previos ya censados -- E2/EMPAREJA-MOTOR-TEXTO, E3/E6 ya
+    # censados arriba -- y al carril CAJA declarado, E12, y al propio
+    # rotulo reservado "E4 (este)"/"su rotulo estaba reservado") --
+    # verificado con el mismo regex de este test, corrido en vivo sobre
+    # el archivo. Ninguna es un rotulo nuevo sin censar; E12 no se censa
+    # aqui porque no es un habitante de este acto (carril CAJA ajeno,
+    # declarado solo por concurrencia). El texto de direccion no se
+    # edita para complacer a un test.
+    "forense/encargos/2026-08-30-MAESTRA32-E4-RE-EMPAREJA.md",
+    # forense/notas/2026-08-30-reempareja-spec.md -- COMMIT-1 de este
+    # acto. Trae bare E2 (cita repetida a la spec/criterios congelados
+    # de MAESTRA32-E2) y E6 (cita al bloque de re-corrida elevado desde
+    # MAESTRA32-E6) en prosa narrativa -- ambos ya censados, ninguno
+    # nuevo. Extension minima de perimetro por desviacion mecanica,
+    # mismo precedente que las notas de cierre ya listadas arriba.
+    "forense/notas/2026-08-30-reempareja-spec.md",
+    # forense/notas/2026-08-30-reempareja-cierre.md -- COMMIT-2 (nota de
+    # cierre) de este acto. Trae bare E6 (cita a la nota de origen del
+    # codigo elevado) y E2 (cita a la spec congelada) en prosa
+    # narrativa -- ambos ya censados, ninguno nuevo.
+    "forense/notas/2026-08-30-reempareja-cierre.md",
 }
 
 
