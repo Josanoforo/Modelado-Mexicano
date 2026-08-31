@@ -14,5 +14,6 @@ SUCESORES: ninguno — cierra el cableado nube.
 Ejecutado por `ACTO MAESTRA33-E3 · CABLEADO-COLA-DIGESTO` el 31/ago/2026,
 rama `claude/cableado-cola-digesto-affup3`, `ADR-242` (candidato).
 Compuerta `PR #413` verificada mecánicamente antes de tocar nada.
-PR: pendiente de abrir por mesa sobre esa rama; los commits del acto son
-su registro hasta entonces.
+PR: `#415` (https://github.com/Josanoforo/Modelado-Mexicano/pull/415),
+abierto sobre esa rama. Fusionar es firmar: el acto lo propone, mesa lo
+firma al fusionar.
