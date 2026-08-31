@@ -1513,6 +1513,20 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # -- ACTO E5-SELLA-FP164-OCTAVA, 26/ago/2026.
     "forense/encargos/2026-08-26-E5-SELLA-FP164-OCTAVA.md",
     "forense/notas/2026-08-26-sella-fp164-cierre.md",
+    # forense/notas/2026-08-30-propaga-firmas-cierre.md -- nota de cierre
+    # de ACTO MAESTRA32-E5 · PROPAGA-FIRMAS-Y-COLA. Discute las cuatro
+    # RANURAS opcionales del encargo (R-168, R-AGREGA, R-169,
+    # R-ENTERADOS) y la RANURA M-EXTRACTOR de MAESTRA32-E3 -- todas ya
+    # rastreadas en firmas-pendientes.tsv (FP-168/170/169/171/172/173/
+    # 174/175/178, mas la fila-grito FP-179 nueva) antes de que esta nota
+    # existiera. Ninguna es un marcador nuevo sin dueno. Extension minima
+    # de perimetro por desviacion mecanica -- el encargo de este acto
+    # (Bloque PERIMETRO) solo listaba _T25_ARCHIVOS_CONOCIDOS para
+    # tests/check.py, sin anticipar que discutir ranuras ya tablero-
+    # izadas dispara tambien T22; mismo precedente y misma logica que
+    # ADR-147(c)/ADR-149(f)/ADR-151/ADR-164/ADR-177 aplicados aqui a la
+    # constante hermana. Declarado en la propia nota de cierre.
+    "forense/notas/2026-08-30-propaga-firmas-cierre.md",
 }
 
 def _t22_tabla():
@@ -2872,6 +2886,46 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # como alternativa valida en su mensaje de fail.
     "forense/encargos/2026-08-28-MAESTRA32-E2-EMPAREJA-MOTOR-TEXTO.md",
     "forense/notas/2026-08-28-empareja-cierre.md",
+    # ACTO MAESTRA32-E5 · PROPAGA-FIRMAS-Y-COLA, 30/ago/2026 (ADR-222):
+    # encargo archivado VERBATIM (A.3). El titulo abre con "ACTO
+    # MAESTRA32-E5" (hifenado, no pelado) pero el cuerpo trae, en prosa,
+    # bare E4 ("El numero E4 queda reservado"), E2/E3 ("cierres de
+    # E2/E3"), E1/E2 ("solo E1 y E2, listado completo") y E5 ("E5/ADR-214
+    # corrio"; el rotulo del propio acto en la linea de registro-rotulos)
+    # -- verificado con el mismo regex de este test, corrido en vivo
+    # sobre el archivo. Todos son referencias narrativas a habitantes ya
+    # censados o al propio acto declarandose (D-6), ninguno reclama un
+    # rotulo nuevo sin censar. D-6 aplicado donde se puede aplicar: el
+    # acto se declara ACTO MAESTRA32-E5 en todo archivo que escribe y
+    # queda censado en canon/registro-rotulos.tsv (token pelado E5
+    # colisiona con tres habitantes previos: "entrada 5, registro de
+    # recalculo" 18/ago; ACTO E5 - SELLA-FP164-OCTAVA, maestra-30;
+    # MAESTRA31-E5 - CRUCE-INVERSO); el texto de direccion no se edita
+    # para complacer a un test.
+    "forense/encargos/2026-08-30-MAESTRA32-E5-PROPAGA-FIRMAS-Y-COLA.md",
+    # ACTO MAESTRA32-E3 · EXTRACTOR-DTA, redactado 28/ago/2026 por
+    # direccion, archivado 30/ago/2026 por ACTO MAESTRA32-E5 (repara la
+    # grieta A.3: el texto vivio solo en la conversacion de lanzamiento
+    # de E3 hasta hoy). Cuerpo verbatim (verificado byte a byte contra
+    # el original cargado por direccion), con una cabecera anadida
+    # resolviendo su RANURA M-EXTRACTOR -- la cabecera no trae rotulos
+    # pelados nuevos. El cuerpo trae bare E2 ("resultado de E2", "arbol
+    # ya fusionado con E2", "veredictos de E2"), E4/E6 ("precedente
+    # E4/E6"), E6 ("patron", "estilo E6") y E8 ("misma regla del propio
+    # E8") -- verificado con el mismo regex, corrido en vivo sobre el
+    # archivo -- todas referencias narrativas de direccion a actos ya
+    # censados (MAESTRA31-E6, MAESTRA31-E8, MAESTRA31-E4, MAESTRA32-E2),
+    # ninguna reclama un rotulo nuevo. El texto de direccion no se edita
+    # para complacer a un test.
+    "forense/encargos/2026-08-28-MAESTRA32-E3-EXTRACTOR-DTA.md",
+    # forense/notas/2026-08-30-propaga-firmas-cierre.md -- nota de cierre
+    # de ACTO MAESTRA32-E5 que discute los rotulos bare E1-E8 al citar,
+    # en prosa, por que los dos archivos de arriba necesitaron esta
+    # misma lista -- ninguna es un rotulo nuevo que este acto reclame.
+    # Extension minima de perimetro por desviacion mecanica, mismo
+    # precedente que las notas de cierre de MAESTRA31-E2/E7/E8 y
+    # MAESTRA32-E2 ya listadas arriba.
+    "forense/notas/2026-08-30-propaga-firmas-cierre.md",
 }
 
 
