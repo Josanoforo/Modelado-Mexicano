@@ -24,7 +24,7 @@
 |---|---|---|
 | **`modelo`** | `modelo-decision-v4.0.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
 | **`glosario`** | `glosario-v5.6.md` | CANÓNICO. Único punto legítimo de entrada de un tier |
-| **`gobernanza`** | `gobernanza-v1.15.md` | 228 ADR, protocolo de cambio |
+| **`gobernanza`** | `gobernanza-v1.15.md` | 229 ADR, protocolo de cambio |
 | **`estado`** | `estado-programa-v1.10.md` | Este archivo |
 | **`milpa-whitepaper`** | `milpa-whitepaper-v0.1.md` | El **porqué** del simulador |
 | **`milpa-spec`** | `milpa-spec-v0.2.md` | El **cómo** — incluye el gate de ADR-25/37 |

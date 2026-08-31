@@ -46,6 +46,6 @@ Cobertura (payloads con ≥1 fila) < 50% del perímetro (46) ⇒ se abandona la 
 1. Payloads con ≥1 fila / total del formato.
 2. Filas con `texto_reactivo` no vacío / filas totales del formato.
 
-Alta en ambas ⇒ la capa de texto crece de forma útil para RE-EMPAREJA (E4, nube). Baja ⇒ hallazgo de heterogeneidad real de las fichas (formato no estandarizado), con la lista de payloads que no aportaron filas.
+Alta en ambas ⇒ la capa de texto crece de forma útil para MAESTRA32-E4 · RE-EMPAREJA (nube). Baja ⇒ hallazgo de heterogeneidad real de las fichas (formato no estandarizado), con la lista de payloads que no aportaron filas.
 
 El primer resultado que produzca este procedimiento es el que se reporta.
