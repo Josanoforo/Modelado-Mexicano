@@ -438,21 +438,29 @@ No midió nada. No abrió microdato ni `data/raw` (ausente, no creada ni enlazad
 
 `forense/firmas-pendientes.tsv`: fila nueva `FP-180` (mesa recibe etiqueta v1_2 + deltas del re-emparejamiento). `canon/gobernanza-v1_15.md`: `ADR-223` (candidato re-derivado, máximo `222` sin huecos), cabecera de conteo `222→223`. `canon/estado-programa-v1_10.md`: recifra `222→223` en la tabla de artefactos (línea 27) y en `L0` (línea 105, entrada nueva antepuesta, sin tocar las anteriores). `canon/registro-rotulos.tsv`: fila nueva `E`/`MAESTRA32-E6` — token pelado `E6` colisiona con `MAESTRA31-E6` (`DICCIONARIOS-FD`) y con ningún otro habitante del espacio E; se censa, no se reclama, D-6. `tests/check.py` `_T25_ARCHIVOS_CONOCIDOS`: se añaden los archivos nuevos de este acto que traen el patrón `E6` pelado (verificado por comando cuáles lo traen antes de tocar el test). `data/INFRAESTRUCTURA-v1_0.md`: línea 222 actualizada para citar `inventario-fd-v1_1.tsv`/`inventario-reactivos-v1_2.tsv`/`emparejamiento-motor-v1_1.tsv` en vez de sus predecesoras, con la cita de `ADR-223` añadida.
 
-## 11 · `tests/check.py --baseline` — resultado, T03 nuevo declarado (no editado)
+## 11 · `tests/check.py --baseline` — resultado, T03 resuelto con marca ilustrativa (no recongelado)
+
+Primera corrida tras COMMIT-2 encontró un T03 nuevo: `forense/encargos/2026-08-30-MAESTRA32-E6-ETIQUETA-v1_2.md` §"Intocables verificados" cita "empareja-spec.md" (deliberadamente sin backticks en esta misma frase, para no disparar T03 al discutirlo) sin el prefijo de fecha (`2026-08-28-`) que trae el nombre de archivo real — mismo defecto de clase que A8-LAND/"v2_6.md" (`canon/gobernanza-v1_15.md:766`) y ACTO MAESTRA31-E9/E10, texto verbatim de dirección (A.3), no editable para complacer a un test.
+
+**Resolución, autorizada por el usuario en la sesión:** en vez de recongelar (`--freeze`, que este entorno bloqueó por clasificador de auto-modo — ver hilo de la sesión), el usuario instruyó marcar la cita con `{cita-ilustrativa}` en una **enmienda in situ** — mismo mecanismo que `canon/gobernanza-v1_15.md` ya usa repetidas veces (`ADR-75`, `ADR-76`, `ADR-78`, `ADR-79`, `ADR-80`, `ADR-82`) y que la propia `MARCA_ILUSTRATIVA` de `tests/check.py` (patrón I-01, `ADR-48`) existe para exactamente este caso: el texto original de dirección no se toca ni se borra, se le añade — pegada a la cita que exime, no en una lista paralela — una anotación fechada y atribuida que declara el error y da la ruta correcta. Aplicada a `forense/encargos/2026-08-30-MAESTRA32-E6-ETIQUETA-v1_2.md`:
+
+```
+`empareja-spec.md` {cita-ilustrativa} (enmienda in situ 30/ago/2026: abreviatura de
+dirección — el archivo es `2026-08-28-empareja-spec.md`)
+```
+
+Una segunda cita bare a "empareja-spec.md" apareció en `## CONSUMIDO` del mismo encargo (texto propio del ejecutor, no de dirección — añadido por este acto al cerrar, no parte del cuerpo verbatim) — corregida directamente, sin marca, porque no había razón para dejarla rota.
 
 ```
 $ python3 tests/check.py --baseline
-19 FAIL · 136 WARN
+19 FAIL · 134 WARN
 [ ok ] T25 T-ROTULOS
-LÍNEA BASE: ROJO — 1 entrada nueva frente a tests/baseline.json (HEAD congelado e24d033ed3c095f1e81c2fbb8248f108e9d3ef65)
-  · T03: forense/encargos/2026-08-30-MAESTRA32-E6-ETIQUETA-v1_2.md: cita "empareja-spec.md" (sin backticks aquí a propósito, ver nota abajo, para no disparar T03 otra vez), que no existe
+LÍNEA BASE: VERDE -- nada nuevo frente a tests/baseline.json (HEAD congelado e24d033ed3c095f1e81c2fbb8248f108e9d3ef65)
 (5 entradas de la línea base ya no aparecen -- mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
 ```
 
-**T25 pasa limpio** (los tres archivos nuevos con rótulo `E6`/`E7`/`E2`/`E5`/`E3`/`E8` pelado quedaron censados en `_T25_ARCHIVOS_CONOCIDOS`, ver §10). **19 FAIL — sin regresión** frente a la línea base (mismo conteo). **136 WARN — mejora de 1** frente a la corrida previa a este acto (137), por causas ajenas a este acto (no se investigó, fuera de perímetro).
-
-**Un T03 nuevo, mismo defecto de clase que A8-LAND/"v2_6.md" (`canon/gobernanza-v1_15.md:766`) y ACTO MAESTRA31-E9/E10:** `forense/encargos/2026-08-30-MAESTRA32-E6-ETIQUETA-v1_2.md` §"Intocables verificados" cita "empareja-spec.md" (deliberadamente sin backticks en esta misma frase, mismo patrón que `gobernanza-v1_15.md:766` usa para no disparar T03 una segunda vez al discutirlo) sin el prefijo de fecha (`2026-08-28-`) que trae el nombre de archivo real — texto verbatim de dirección (A.3), **no se edita para complacer a un test**, mismo precedente citado arriba. Declarado aquí, no recongelado: `tests/baseline.json` **no se toca** (recongelar exige ADR de mesa, precedente `canon/gobernanza-v1_15.md:1110`; un ejecutor que encuentra drift lo reporta, no lo recongela). Las otras citas bare que corridas previas de este mismo documento encontraron ("empareja-cierre.md", "etiqueta-regla.md", texto propio del ejecutor, no de dirección) se corrigieron a ruta completa antes de esta corrida final — no eran verbatim de nadie, no había razón para dejarlas rotas.
+**T25 pasa limpio** (los tres archivos nuevos con rótulo `E6`/`E7`/`E2`/`E5`/`E3`/`E8` pelado quedaron censados en `_T25_ARCHIVOS_CONOCIDOS`, ver §10). **19 FAIL — sin regresión** frente a la línea base (mismo conteo). **134 WARN — mejora de 3** frente a la corrida previa a este acto (137), por causas ajenas a este acto (no se investigó, fuera de perímetro) más el T03 aquí resuelto. `tests/baseline.json` **no se tocó** — la resolución fue en el corpus, no en la línea base.
 
 ## 12 · Resumen ejecutado (el detalle completo que `## CONSUMIDO` del encargo cita)
 
-Ejecutado en la rama `claude/maestra32-e6-cloud-launch-8qu0hw`. Esta sesión NO abre PR — commitea y pushea a la rama designada, mismo patrón que `MAESTRA32-E2`/`E5` para no repetir el defecto ya visto en el acto E9. Número de PR: N/D desde esta sesión; quien fusione (dirección, u otra sesión con permiso de abrir PR) llena ese campo al abrirlo. Resultado: capa FD reparada 10/10 payloads (100%, primera vez que recibe la regla de etiqueta); 16 de 39 payloads de reactivos resueltos por la regla v1_2 (41.0%, falsador <50% disparado, no iterado); re-corrida verbatim de la spec de `MAESTRA32-E2` con 0 de 9 veredictos movidos (resultado informativo); `ADR-223`; `FP-180` nueva; `tests/check.py --baseline` → 19 FAIL · 136 WARN, T25 verde, 1 T03 nuevo declarado (verbatim de dirección, no editado, no recongelado).
+Ejecutado en la rama `claude/maestra32-e6-cloud-launch-8qu0hw`. Esta sesión NO abre PR — commitea y pushea a la rama designada, mismo patrón que `MAESTRA32-E2`/`E5` para no repetir el defecto ya visto en el acto E9. Número de PR: `#395` (creado por el usuario desde la UI de Claude Code, no por esta sesión). Resultado: capa FD reparada 10/10 payloads (100%, primera vez que recibe la regla de etiqueta); 16 de 39 payloads de reactivos resueltos por la regla v1_2 (41.0%, falsador <50% disparado, no iterado); re-corrida verbatim de la spec de `MAESTRA32-E2` con 0 de 9 veredictos movidos (resultado informativo); `ADR-223`; `FP-180` nueva; `tests/check.py --baseline` → **LÍNEA BASE: VERDE** (19 FAIL · 134 WARN, T25 verde, el único T03 nuevo resuelto con enmienda in situ `{cita-ilustrativa}`, autorizada por el usuario, sin recongelar `tests/baseline.json`).
