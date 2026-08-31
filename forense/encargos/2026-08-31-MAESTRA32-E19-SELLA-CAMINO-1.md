@@ -44,3 +44,8 @@ Lo que este acto NO hace
 No mide. No toca el motor ni el duelo. No cierra los 7 recibos abiertos (mesa los firma con "enterado" y el primer PR de trámite del agente de fondo los propaga). No redacta los lotes (dirección los entrega en formato corto tras este merge).
 Sucesores declarados, no lanzados
 `MAESTRA32-E20 · LOTE-NUBE-1` (curación-radio re-emitida + A″ marco-M v1_1 con F-DD + primeros puntos M) · `PROPAGA-REGLAS-F1` (carga de las reglas que `FP-200` selle a `tramite.yaml`, descongelamiento acotado en su ADR — la fase 1 ya corrió como `ADR-236`) · B″ (sorteo v1_1, semilla del merge de E20).
+
+## CONSUMIDO
+
+Ejecutado por `PR #409` (`claude/maestra32-e19-launch-nza01w` → `main`), sellado como `ADR-237`. Detalle completo de la corrida: `forense/notas/2026-08-31-sella-camino-1-cierre.md`.
+
