@@ -77,3 +77,7 @@ No lee microdato (solo lo consulta en el inventario para el control positivo). N
 Sucesores declarados, no lanzados
 
 Segunda re-corrida de la spec de E2 con la capa FD ampliada (nube) · ETIQUETA-ext para las filas sin instrumento de las tablas ext.
+
+## CONSUMIDO
+
+PR #401. Cobertura 40/46 payloads (87,0%), 10635 filas nuevas, 100% con texto. Control positivo: `fd_envipe2025.pdf` 75,0% (validado) / `FD_ENCUCI2020.pdf` 0,0% (no validado) → parser `.pdf` declarado NO VALIDADO en general. `ADR-229`. `FP-179` entrada (2) → EJECUTADA; `FP-189` nueva. Detalle: `forense/notas/2026-08-30-fd-ext-cierre.md`.
