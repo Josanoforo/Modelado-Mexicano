@@ -3100,6 +3100,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # codigo elevado) y E2 (cita a la spec congelada) en prosa
     # narrativa -- ambos ya censados, ninguno nuevo.
     "forense/notas/2026-08-30-reempareja-cierre.md",
+    # ACTO MAESTRA32-E13 · MARCO-M-CONGELA (ACTO A') + PROPAGA-3, 31/ago/2026:
+    # encargo archivado VERBATIM (A.3). El texto de dirección cita F1
+    # verbatim ("FP-180 (E6)", "cobertura-15-v1_0.tsv (E11)") y la NOTA DE
+    # ARRANQUE cita "mientras E4 corra" -- E4/E6/E11 son habitantes del
+    # espacio E ya censados (MAESTRA32-E4/E6/E11), ninguno nuevo.
+    "forense/encargos/2026-08-31-MAESTRA32-E13-MARCO-M-CONGELA.md",
+    # forense/notas/2026-08-31-marco-M-cierre.md -- COMMIT-2 (nota de
+    # cierre) de este acto. Trae bare E4/E6/E11 al listar los rótulos ya
+    # conocidos que _T25_ARCHIVOS_CONOCIDOS censa (cita en prosa narrativa
+    # sobre el propio mecanismo de este test), ninguno nuevo.
+    "forense/notas/2026-08-31-marco-M-cierre.md",
 }
 
 
