@@ -58,9 +58,12 @@ veredictos (a)/(e): `forense/notas/2026-08-31-familismo-cierre.md`.
 
 ## CONSUMIDO
 
-`ADR-233` (`canon/gobernanza-v1_15.md`, cabecera 232→233 ADR;
-`canon/estado-programa-v1_10.md` L0 recifrado en paralelo). `FP-196`
-(recibo del acto, `forense/firmas-pendientes.tsv`), `FP-197` reservada
-sin consumir. `canon/registro-rotulos.tsv`: `MAESTRA32-E16` censado.
-PR: pendiente de apertura por el orquestador (número a completar al
-fusionar).
+`ADR-234` (candidateado inicialmente como `ADR-233`; renumerado al
+fusionar en segundo lugar contra `PR #405`/`ACTO MAESTRA32-E15`, que
+fusionó primero y se quedó con `ADR-233` — regla de la casa, renumera
+quien fusiona segundo). `canon/gobernanza-v1_15.md`, cabecera 233→234
+ADR; `canon/estado-programa-v1_10.md` L0 recifrado en paralelo.
+`FP-196` (recibo del acto, `forense/firmas-pendientes.tsv`), `FP-197`
+reservada sin consumir — ambas siguieron libres tras el merge de E15
+(que tomó `FP-194`). `canon/registro-rotulos.tsv`: `MAESTRA32-E16`
+censado, cita `ADR-234`. PR: #406.

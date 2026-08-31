@@ -3134,6 +3134,21 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # + COMMIT-2 de este acto. Cita bare E13 al declarar SHA_A ("merge de
     # E13") -- habitante ya censado (MAESTRA32-E13), ninguno nuevo.
     "forense/prereg-duelo-v2/sorteo-marco-M-resultados-v1_0.md",
+    # ACTO MAESTRA32-E15 · MARCO-M-CORRIGE-Y-CENSA-TRANSFERENCIA, 31/ago/2026:
+    # encargo archivado VERBATIM (A.3). El texto de dirección cita el bare
+    # "E4" ("E4 ya cerró; la nube está libre") en la NOTA DE ARRANQUE -- E4
+    # es habitante ya censado (MAESTRA32-E4/MAESTRA31-E4), ninguno nuevo.
+    "forense/encargos/2026-08-31-MAESTRA32-E15-MARCO-M-CORRIGE-Y-CENSA.md",
+    # forense/notas/2026-08-31-marco-M-v1_1-spec.md -- COMMIT-1 (spec
+    # congelada) de este acto. Trae bare "E13" en prosa narrativa (cita a
+    # la desviación declarada de MAESTRA32-E13 sobre grado_dependencia) --
+    # habitante ya censado, ninguno nuevo.
+    "forense/notas/2026-08-31-marco-M-v1_1-spec.md",
+    # forense/notas/2026-08-31-marco-M-v1_1-cierre.md -- COMMIT-2 (nota de
+    # cierre) de este acto. Cita "MAESTRA32-E13"/"MAESTRA32-E14" siempre
+    # con prefijo en este archivo; añadido junto a sus dos hermanos de este
+    # acto por consistencia de perímetro, sin rótulo pelado nuevo detectado.
+    "forense/notas/2026-08-31-marco-M-v1_1-cierre.md",
     # ACTO MAESTRA32-E16 · MEDIDOR-FAMILISMO-APOYO, 31/ago/2026: encargo
     # archivado VERBATIM (A.3). Trae rótulo pelado nuevo `E16` (D-6/ADR-128)
     # -- censado aquí y en canon/registro-rotulos.tsv, no reclamado: el
