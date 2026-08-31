@@ -28,3 +28,33 @@ CONTADOR: Coeficientes ejecutables con base medida: 6 → 7 (o 6 → 6 si el fal
 Lo que este acto NO hace: No toca G5.radio_confianza (E17). No escribe reglas (E18). No identifica: asocia, y lo rotula.
 
 Sucesores declarados, no lanzados: E18 · REGLAS-OLA5-FASE1 (misma caja, tras este merge) · re-derivación del marco-M cuando el desenlace de G5 tenga regla (fase 1).
+
+## CONSUMIDO
+
+Ejecutado 31/ago/2026 en `acto/maestra32-e16-medidor-familismo` (worktree
+`/home/pc0/mm-e16-medidor-familismo`). PR: **PENDIENTE — placeholder, el
+orquestador abre el PR y corrige este número.**
+
+Resumen: `tools/medicion_familismo.py` mide G5.familismo_apoyo sobre
+eder2017 (`financia_8` x corresidencia con familiar adulto) y endireh2016
+(`p4_8_2`/`p4_8_3` x `p18_4`, robustez). Ajuste de constructo (a): AMBOS
+instrumentos VÁLIDOS (falsador del acto NO disparado). β̂ EDER (primaria)
+`+0.0041 [IC95% 0.0029,0.0054]`, n=14887; β̂ ENDIREH (robustez) `-0.0461
+[IC95% -0.0745,-0.0181]`, n=16667 — **signos DISCORDANTES entre
+instrumentos**. Rótulo escrito:
+`ASOCIACION-MEDIDA·MARGINAL·DISCORDANTE-ENTRE-INSTRUMENTOS`. Solo EDER
+lleva `valor_ejecutable`; ENDIREH queda en `reserva`. Contador:
+coeficientes ejecutables con base medida 6 → 7; pares con β̂ 6 → 7 de 15.
+Fila B de `rutas_estimabilidad_coeficiente.detalle`: SIN-RUTA → RUTA-A.
+`tests/test_matriz_sellados.py`: overrides re-derivados 6 → 7. `tests/
+check.py --baseline`: VERDE frente a `HEAD`, salvo **1 FAIL nuevo fuera
+de perímetro** (`T25`, rótulo pelado `E16` del propio nombre de archivo
+de este encargo) — no resuelto porque su arreglo requiere editar
+`canon/registro-rotulos.tsv` y/o `tests/check.py`, ninguno en el
+perímetro declarado de este acto; reportado a dirección/orquestador, no
+forzado. Detalle completo, n por universo, tabla condicionada y
+veredictos (a)/(e): `forense/notas/2026-08-31-familismo-cierre.md`.
+
+ADR siguiente disponible: **PENDIENTE de creación** (fuera del perímetro
+de este acto) — ver reporte final del acto para número sugerido y
+contenido.
