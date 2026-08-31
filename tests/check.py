@@ -3134,6 +3134,30 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # + COMMIT-2 de este acto. Cita bare E13 al declarar SHA_A ("merge de
     # E13") -- habitante ya censado (MAESTRA32-E13), ninguno nuevo.
     "forense/prereg-duelo-v2/sorteo-marco-M-resultados-v1_0.md",
+    # ACTO MAESTRA32-E17 · CURA-RADIO-CONFIANZA + ESCALERA DE CONTINGENCIA,
+    # 31/ago/2026: encargo archivado VERBATIM (A.3), cerrado por hallazgo
+    # antes de COMMIT-1 (el propio ARRANQUE del encargo, no un
+    # descubrimiento tardio: su GATE -- "GATED a que MAESTRA32-E15 fusione
+    # ... Sin ranuras" -- esta incumplido por sus dos vias). El cuerpo
+    # trae bare E1..E14 en varios puntos de prosa narrativa (p.ej.
+    # "carril NUBE = E15 -> E17 (este)", "carril CAJA = E16 -> E18",
+    # "E2 (28/ago) y E6 (30/ago) buscaron...", "E4 declaro como reserva",
+    # "E12 (31/ago) anadio 40 fichas mas") -- verificado con el mismo
+    # regex de este test, corrido en vivo sobre el archivo: E1..E14 ya
+    # censados (habitantes previos del espacio E), y E15/E16/E17 son
+    # nuevos -- censados en canon/registro-rotulos.tsv por este mismo
+    # cierre (filas E15, E16, MAESTRA32-E17), no reclamados por ningun
+    # acto existente porque ninguno existe todavia -- es precisamente el
+    # hallazgo que cierra este acto. El texto de direccion no se edita
+    # para complacer a un test.
+    "forense/encargos/2026-08-31-MAESTRA32-E17-CURA-RADIO-CONFIANZA.md",
+    # forense/notas/2026-08-31-cura-radio-cierre.md -- nota de cierre de
+    # ACTO MAESTRA32-E17. Narra, en prosa, el mismo hallazgo del gate
+    # incumplido y cita los mismos bares E1..E17 (E1..E14 ya censados,
+    # E15/E16/E17 censados arriba por este cierre), ninguno reclamado
+    # de nuevo. Extension minima de perimetro por desviacion mecanica,
+    # mismo precedente que las notas de cierre ya listadas arriba.
+    "forense/notas/2026-08-31-cura-radio-cierre.md",
 }
 
 
