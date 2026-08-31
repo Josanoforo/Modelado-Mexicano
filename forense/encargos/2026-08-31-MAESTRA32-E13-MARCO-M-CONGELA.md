@@ -60,4 +60,4 @@ El encargo declara SHA de redacción `9bd3932`. Al lanzar la rama, `origin/main`
 
 ## CONSUMIDO
 
-Cerrado por `ACTO MAESTRA32-E13 · MARCO-M-CONGELA` (rama `acto/maestra32-e13-marco-m-congela`). Ver `forense/notas/2026-08-31-marco-M-spec.md` (COMMIT-1) y `forense/notas/2026-08-31-marco-M-cierre.md` (COMMIT-2 + PROPAGA-3). PR: (ver referencia insertada por el acto al abrir el PR).
+Cerrado por `ACTO MAESTRA32-E13 · MARCO-M-CONGELA` (rama `acto/maestra32-e13-marco-m-congela`). Ver `forense/notas/2026-08-31-marco-M-spec.md` (COMMIT-1) y `forense/notas/2026-08-31-marco-M-cierre.md` (COMMIT-2 + PROPAGA-3). PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/403.
