@@ -2370,6 +2370,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-30-MAESTRA32-E3-EXTRACTOR-DTA-v2.md",
     "forense/notas/2026-08-30-extractor-ext-spec.md",
     "forense/notas/2026-08-30-extractor-ext-cierre.md",
+    # ACTO MAESTRA32-E12 · EXTRACTOR-FD, 31/ago/2026: encargo archivado
+    # VERBATIM (A.3) rotulado "ENCARGO E12" por direccion, que cita los
+    # rotulos bare "E3" (cierre de la rama (a) previa, ADR-228) y "E4"
+    # (sucesor declarado MAESTRA32-E4 · RE-EMPAREJA en carril nube) al
+    # narrar la secuencia FP-175/FP-179. "E3" colisiona con
+    # E3-TRIAGE/MAESTRA30-E1..E4/MAESTRA31-E3/MAESTRA32-E3 y demas
+    # habitantes del espacio E; "E4" colisiona con E4 (DISENO-ENSAFI)/
+    # MAESTRA30-E1..E4. D-6 aplicado donde se puede aplicar: el acto se
+    # declara ACTO MAESTRA32-E12 en todo archivo que escribe y queda
+    # censado en canon/registro-rotulos.tsv; el encargo NO se edita
+    # porque A.3 pide el texto de direccion verbatim -- mismo patron que
+    # las demas entradas de esta lista.
+    "forense/encargos/2026-08-30-MAESTRA32-E12-EXTRACTOR-FD.md",
     "forense/notas/2026-08-26-perimetro-alcanzable-cierre.md",
     # ACTO MAESTRA31-E1 · RELOJ-CRUCE, 26/ago/2026 (ADR-210): encargo
     # archivado VERBATIM (A.3). Direccion lo lanzo rotulado "ENCARGO E1",
