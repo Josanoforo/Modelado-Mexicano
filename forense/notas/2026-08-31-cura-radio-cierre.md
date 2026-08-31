@@ -48,3 +48,187 @@ No corre `COMMIT-1` (`forense/notas/2026-08-31-cura-radio-spec.md`) ni `COMMIT-2
 No corrió `COMMIT-1` ni `COMMIT-2`. No creó `forense/notas/2026-08-31-cura-radio-spec.md` ni `data/curacion-radio-confianza-v1_0.tsv`. No clasificó ningún reactivo de ENDIREH/`encup2012`/ENNViH/ENCUCI/WVS/Latinobarómetro por referente. No corrió ningún peldaño de la escalera de contingencia. No tocó `milpa/**`, los inventarios (`v1_2`, `ext-v1_0`, `fd-v1_1`, `fd-ext-v1_0`), `data/emparejamiento-motor-v1_2.tsv` ni la spec de `E2`. No usó `FP-198`/`FP-199` (quedan reservadas, sin consumir). No adjudicó el contenido de la firma D-B ni si el GATE debe levantarse: lo declara pendiente en `FP-195`, mesa decide.
 
 Detalle completo, comando por comando: tablas de arriba (A.13). Encargo original archivado verbatim en `forense/encargos/2026-08-31-MAESTRA32-E17-CURA-RADIO-CONFIANZA.md` (`0-bis · A.3`, sin editar).
+
+---
+
+# Re-emisión por `ACTO MAESTRA32-E20 · LOTE-NUBE-1 · P1` — 31/ago/2026
+
+*Sección fechada añadida por el lote sucesor. Todo lo de arriba (el cierre por
+hallazgo de compuerta de `MAESTRA32-E17`, `ADR-234`) queda **intacto**: es el
+registro de que el acto original no arrancó, y borrarlo destruiría la auditoría
+tan bien como no haberlo escrito (A.10). Lo de abajo es la corrida que aquel
+acto no llegó a hacer, con la receta congelada en
+`forense/notas/2026-08-31-cura-radio-spec.md` y **conteos re-derivados contra el
+árbol de hoy** (`d510a63`), no heredados.*
+
+## Compuerta, ahora sí
+
+El GATE que paró a `MAESTRA32-E17` (`GATED a que MAESTRA32-E15 fusione`) está
+satisfecho desde que `PR #405` fusionó — lo declaró el propio cierre de arriba
+("el GATE queda satisfecho por la vía (a) de `FP-195`") y lo registra `FP-195`.
+Este lote no reabre `MAESTRA32-E17`: lo re-emite, que es lo que aquel cierre
+dejó nombrado como sucesor.
+
+## Escalera de contingencia — corrida COMPLETA, 5 de 5 peldaños
+
+**A.13 · 269 320 filas de inventario examinadas** (unión de
+`data/inventario-reactivos-v1_2.tsv` ∪ `-ext-v1_0` ∪ `data/inventario-fd-v1_1.tsv`
+∪ `-fd-ext-v1_0`), 489 `payload_id` distintos. Salida fila por fila en
+`data/curacion-radio-confianza-v1_0.tsv` (143 filas).
+
+### Pasada 1 — receta literal (`texto_reactivo` únicamente)
+
+| # | peldaño | filas | legibles | θ | INTERP | INSTIT | OTRO | desenlace G5 | co-obs |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | ENDIREH (todas las olas) | 39 638 | 4 036 | 7 | **0** | 7 | 0 | 8 | 0 |
+| 2 | `encup2012` (batería `P30`) | 282 | **0** | 0 | 0 | 0 | 0 | 0 | 0 |
+| 3 | ENNViH/MxFLS (olas 1-3) | 17 181 | 17 176 | 4 | **0** | 0 | 4 | 76 | 0 |
+| 4 | ENCUCI 2020 | 520 | 62 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 5 | WVS + Latinobarómetro México | 333 | 333 | 15 | 1 | 7 | 7 | **0** | 0 |
+
+### Nota de honestidad de proceso — dos negativos de la pasada 1 que no eran negativos
+
+**A.13 dice que un negativo producido por un comando que no examinó lo que debía
+no es un negativo.** Dos de los ceros de arriba son artefactos del campo
+inspeccionado, no ausencias del corpus, y se corrigieron **antes** de escribir el
+veredicto, no después:
+
+1. **`encup2012`: 0 reactivos legibles es falso.** Sus 282 filas son de método
+   `INSPECT_XLSX`, que **parquea la pregunta completa en `variable_id`**, no en
+   `texto_reactivo` — que viene vacío en las 282. La batería `P30` está entera y
+   es legible: 27 ítems `P30_1..P30_27`, con el texto literal *"En una escala de
+   calificación de 0 a 10 … ¿Qué tanto confía en…?"*. La receta dice
+   `texto_reactivo` porque el límite que anticipó fue el de `INSPECT_ZIP` (texto
+   vacío), no este.
+2. El mismo arreglo hace legibles las 39 638 filas de ENDIREH y las 520 de
+   ENCUCI (antes 4 036 y 62).
+
+### Pasada 2 — A.13 (`texto_reactivo` **o** `variable_id`, según el método)
+
+| # | peldaño | filas | legibles | θ | INTERP | INSTIT | OTRO | desenlace G5 | co-obs estricta |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | ENDIREH (todas las olas) | 39 638 | 39 638 | 7 | **0** | 7 | 0 | 8 | 0 |
+| 2 | `encup2012` (batería `P30`) | 282 | 282 | 32 | **3** | 14 | 15 | 1* | 1* |
+| 3 | ENNViH/MxFLS (olas 1-3) | 17 181 | 17 181 | 4 | **0** | 0 | 4 | 76 | 0 |
+| 4 | ENCUCI 2020 | 520 | 520 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 5 | WVS + Latinobarómetro México | 333 | 333 | 15 | 1 | 7 | 7 | **0** | 0 |
+
+`*` **Falso positivo léxico, verificado y descartado.** El único "desenlace G5"
+de `encup2012` es `P28B` — *"Si uno no se cuida a sí mismo la gente se
+aprovechará"* —, que casa el término `cuida a` de la lista de E2 y **no es** un
+desenlace de G5 (no es pooling, ni corresidencia, ni carga de cuidado: es un
+ítem de actitud sobre autoprotección). Barrido de confirmación sobre los 282
+reactivos de ENCUP con 14 términos de hogar/pooling: **13 hits, cero desenlaces
+de G5** — diez son la batería AMAI de nivel socioeconómico (`A1`-`A10`: focos,
+baños, estufa, automóvil), uno es `P28B`, uno es donativos a organizaciones
+(`P59_11`) y uno es gasto en cursos (`P83`).
+
+## Veredicto A.4 por peldaño
+
+**0 de 5 peldaños con co-observación válida.** Ninguno reúne ≥1 reactivo
+INTERPERSONAL y ≥1 desenlace de G5 en la misma base. Por peldaño, con la media
+pareja nombrada:
+
+- **Peldaño 1 · ENDIREH — la reserva de `E4` queda CONFIRMADA como homónimo.**
+  Los 7 reactivos de confianza de todo ENDIREH son **institucionales, los 7**:
+  `p6_24_10`, `p7_27_10`, `p8_19_10`, `p10_15_10` y `p13_21_13` de `endireh2016`
+  ("No acudió a una autoridad o institución **no confía en las autoridades del
+  gobierno**") y `P7_12_10` de `endireh2006` ("no acudió a la autoridad por
+  **desconfianza de las autoridades**"). **Cero interpersonales.** La media
+  pareja que SÍ existe es la del desenlace: `p3_2` ("¿Su actual esposo o pareja
+  **vive con** usted?"), `p18_4` ("¿Usted **cuida a** sus nietos(as)…?"),
+  `P4_2`, `P13_4`, `P11_4`. → **desenlace SÍ, θ NO.**
+- **Peldaño 2 · `encup2012` — la θ más limpia de toda la escalera, y sin
+  desenlace.** Tres reactivos INTERPERSONAL en la misma base
+  (`BaseDatos_ENCUP_2012_Final`): `P30_10` ("…¿Qué tanto confía en…? **Los
+  vecinos**"), `P30_11` ("…**La familia**") y `P34` ("En general, ¿diría usted
+  qué se puede **confiar en la mayoría de las personas**?"). Eso es
+  literalmente la definición de `radio_confianza` del glosario — confianza
+  interpersonal **por círculos** — y es la única batería del corpus que la
+  instrumenta. **Cero desenlaces de G5** (ver el falso positivo arriba). →
+  **θ SÍ (la mejor), desenlace NO.**
+- **Peldaño 3 · ENNViH/MxFLS — desenlace abundante, θ que no clasifica.**
+  76 desenlaces de G5, todos corresidencia literal (`tp27m_1b..1i`: "MADRE VIVE
+  CON CÓNYUGE / HIJA / HIJO / CUÑADO / HERMANA / HERMANO / NIETO / PADRES", en
+  `ehh02dta_all/…/iiib_tp.dta` y en `ehh05`). Del lado θ hay 4 reactivos, los 4
+  clasificados **OTRO** por la lista cerrada: `co05` ("USTED DIGNO DE
+  CONFIANZA") y `vlh01n` ("GENTE LOCALIDAD CONFIANZA?").
+  **Cita para mesa, sin tocar la receta:** `vlh01n` vive en
+  `ennvih/ehh05dta_all.zip → ehh05dta_b2/ii_vlh.dta` (y en `ehh09`), y su
+  referente es transparentemente interpersonal — *la gente de su localidad* —,
+  pero la lista cerrada exige la cadena literal `la gente` y la etiqueta Stata
+  viene abreviada sin artículo. La receta estaba congelada antes de correr y
+  **no se edita para complacer el resultado**: se reporta OTRO, que es lo que el
+  procedimiento produjo, y se nombra la celda exacta. Aun si mesa la
+  reclasificara, la co-observación **estricta** seguiría siendo 0: `vlh01n` está
+  en `ii_vlh.dta` y los 76 desenlaces están en otros miembros (`iiib_tp.dta`,
+  `iv_res.dta`, `c_ls.dta`, `p_tp.dta`) — y la co-observación **laxa** también da
+  0, porque los desenlaces viven en `ehh02`/`ehh05` y no coinciden en miembro.
+  → **desenlace SÍ, θ dudosa y en otra base.**
+- **Peldaño 4 · ENCUCI 2020 — la θ ancla existe pero es invisible al censo de
+  texto, y el desenlace falta.** Los tres ítems `AP5_1_1`/`AP5_1_2`/`AP5_1_3`
+  que `milpa/procedencia.yaml:280-293` sella como θ de `radio_confianza` SÍ
+  están en el inventario, pero con `texto_reactivo` **vacío** (método
+  `INSPECT_ZIP`) y `variable_id` corto: ningún barrido por texto puede
+  clasificarlos, y decir "ENCUCI no tiene θ" sería exactamente el negativo falso
+  que A.13 prohíbe. Lo que sí es negativo real: **0 desenlaces de G5** en las 520
+  filas de ENCUCI. → **θ SÍ (sellada, no por texto), desenlace NO.** Nótese que
+  esto **invierte** la rama que `E17` pre-escribió en (d3) ("ENCUCI 2020 si su
+  desenlace G5 existe pero la θ falla"): lo que falla es el desenlace, no la θ.
+- **Peldaño 5 · WVS ausente; Latinobarómetro presente y a medias.**
+  **WVS no está en el corpus**: 0 coincidencias de `wvs`/`world`/`values` entre
+  los **489 `payload_id`** de los cuatro inventarios y ninguna entrada en
+  `data/manifiesto.yaml` — negativo real, con el universo declarado. La premisa
+  de `E17` ("WVS y Latinobarómetro ya descargados") es **correcta solo a
+  medias**. Latinobarómetro 2024 sí está
+  (`latinobarometro2024_bd_stata.zip`, 333 reactivos, 100% con texto): 15 ítems
+  de confianza, de los cuales **uno solo** es INTERPERSONAL — `P10STGBS` ("Se
+  puede confiar en la mayoría de las personas…") — y los otros catorce son la
+  batería institucional `P14ST.*` (Iglesia, Gobierno, partidos, Congreso, Poder
+  Judicial, medios). **Cero desenlaces de G5.** → **θ parcial (confianza
+  generalizada, sin círculos), desenlace NO.**
+
+## (d) La solución de dirección, ejecutada porque el negativo total se cumplió
+
+- **(d1) `EXISTE-NO-SATISFACE`**, con las cinco medias parejas nombradas arriba,
+  reactivo por reactivo. Es un mapa, no un vacío: el corpus tiene la θ (ENCUP
+  2012, la mejor; ENCUCI 2020, sellada) y tiene el desenlace (ENNViH, 76 ítems de
+  corresidencia; ENDIREH, 8) — **en instrumentos distintos, sin muestra común**.
+  Ese, y no la ausencia de datos, es el defecto.
+- **(d2) Estatus del coeficiente mientras tanto**: `G5.radio_confianza` sigue
+  `ASIGNADO · SOLO-SIGNO·NO-COMPARABLE` (`ADR-220`), sin magnitud medida. **No**
+  se inventa un valor ni se transporta uno de otro constructo. Sin cambios en
+  `milpa/**` — `git diff --stat` de este peldaño sobre `milpa/` vacío.
+- **(d3) Fila de adquisición con nombre, para `FP-179`.** Re-derivada, porque la
+  que `E17` pre-escribió supone un corpus que no es el de hoy:
+  - **Instrumento a adquirir: WVS ola 7 México (2018).** Es el único instrumento
+    que trae, en la misma muestra, la batería de confianza **por círculos**
+    (`V102`-`V107`: familia, vecinos, conocidos, desconocidos) **y** módulo de
+    hogar/familia del lado desenlace. Verificado hoy: **no está en el corpus**
+    (0 de 489 payloads). Es una descarga, no una búsqueda.
+  - **Segundo mejor, ya en el corpus, y por qué no basta**: `encup2012`
+    (`P30_10` vecinos, `P30_11` familia, `P34` confianza generalizada) tiene la
+    θ más limpia del corpus, pero ENCUP no levanta ningún desenlace de G5 —
+    verificado sobre sus 282 reactivos. Adquirir "el módulo faltante" de ENCUP
+    no es posible: ese módulo no existe en el instrumento.
+  - **Lo que NO aplica**: la rama ENCUCI de `E17` supone que en ENCUCI falla la
+    θ; lo que falla es el desenlace (ver peldaño 4).
+- **(d4) Vía alterna declarada, NO ejecutada**: medir `radio_confianza` como
+  coeficiente compuesto de dos instrumentos (p. ej. θ de `encup2012` × desenlace
+  de ENNViH) **solo si mesa lo firma después**. No cabe en (ii)/(i′) y se dice.
+  Este acto no la corre.
+
+## (e) B-bis
+
+Negativo total → **(d) completo**, ejecutado arriba. No se lanza medidor de caja
+sobre ENDIREH (peldaño 1 negativo del lado θ) ni sobre ningún otro peldaño: no
+hay instrumento con las dos mitades.
+
+## CONTADOR de P1
+
+**Peldaños con co-observación válida: 0 de 5.** Reactivos curados por referente:
+**58** (θ, pasada 2) — 4 INTERPERSONAL, 28 INSTITUCIONAL, 26 OTRO —, más 85
+filas de desenlace G5 censadas. Total `data/curacion-radio-confianza-v1_0.tsv`:
+143 filas.
+
+"El primer resultado que produzca este procedimiento es el que se reporta."
