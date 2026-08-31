@@ -58,12 +58,18 @@ veredictos (a)/(e): `forense/notas/2026-08-31-familismo-cierre.md`.
 
 ## CONSUMIDO
 
-`ADR-234` (candidateado inicialmente como `ADR-233`; renumerado al
-fusionar en segundo lugar contra `PR #405`/`ACTO MAESTRA32-E15`, que
-fusionó primero y se quedó con `ADR-233` — regla de la casa, renumera
-quien fusiona segundo). `canon/gobernanza-v1_15.md`, cabecera 233→234
-ADR; `canon/estado-programa-v1_10.md` L0 recifrado en paralelo.
-`FP-196` (recibo del acto, `forense/firmas-pendientes.tsv`), `FP-197`
-reservada sin consumir — ambas siguieron libres tras el merge de E15
-(que tomó `FP-194`). `canon/registro-rotulos.tsv`: `MAESTRA32-E16`
-censado, cita `ADR-234`. PR: #406.
+`ADR-235` (candidateado inicialmente como `ADR-233`; renumerado a
+`ADR-234` al chocar con `PR #405`/`ACTO MAESTRA32-E15`, que fusionó
+primero y se quedó con `ADR-233`; renumerado de nuevo a `ADR-235` al
+chocar con `PR #407`/`ACTO MAESTRA32-E17`, que fusionó mientras este
+PR estaba en vuelo y también candidateó `ADR-234` — regla de la casa,
+renumera quien fusiona segundo, aplicada dos veces; `E17` además ya
+había censado el token bare `E16` como placeholder al no encontrar
+este acto en ningún estado del repo, colisión declarada en
+`canon/registro-rotulos.tsv` como esa fila pidió). `canon/gobernanza-
+v1_15.md`, cabecera 234→235 ADR; `canon/estado-programa-v1_10.md` L0
+recifrado en paralelo. `FP-196` (recibo del acto,
+`forense/firmas-pendientes.tsv`), `FP-197` reservada sin consumir —
+ambas siguieron libres tras los merges de `E15` (tomó `FP-194`) y
+`E17` (tomó `FP-195`). `canon/registro-rotulos.tsv`: `MAESTRA32-E16`
+censado, cita `ADR-235`. PR: #406.
