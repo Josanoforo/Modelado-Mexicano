@@ -50,3 +50,7 @@ Lo que este acto NO hace
 No corre el scoring. No emite puntos M. No toca las 15 celdas (E10). No mide nada. No lanza E3 ni E8 (carril CAJA, ya listos).
 Sucesores declarados, no lanzados
 `MAESTRA32-E10 · COBERTURA-15` (mismo carril, tras este merge) · `E3`/`E8` en caja · `E4 · RE-EMPAREJA` tras extractores.
+
+## CONSUMIDO
+
+Ejecutado en la rama `claude/maestra32-e9-launch-55zzlu`. Esta sesión no abre PR por sí misma salvo instrucción explícita del usuario; commitea y pushea a la rama designada, y lo dice aquí explícitamente. Número de PR: N/D desde esta sesión — quien fusione (dirección, u otra sesión con permiso de abrir PR) llena este campo al abrirlo. Resultado: siete firmas de mesa propagadas (`FP-168/169/171/173/174/178/127`), `FP-181` nueva, `FP-179` con enmienda fechada; `E7 · CANDIDATOS-MARCO-M` retirado sin lanzarse; `G3.horizonte_temporal` sellado al ejecutable con enlace lineal de escala (`milpa/procedencia.yaml`); `ADR-224`; detalle completo en `forense/notas/2026-08-30-propaga-2-cierre.md`.
