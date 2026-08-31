@@ -16,7 +16,7 @@ El encargo declara: "Estado: GATED a que MAESTRA32-E16 · MEDIDOR-FAMILISMO fusi
 - `milpa/procedencia.yaml:1189-1230` (`coeficientes_generador_medidos.G5_familismo_apoyo`) ya trae `fuente: "ACTO MAESTRA32-E16, 31/ago/2026 -- eder2017 ... theta=vivienda.financia_8 ... x desenlace=historiavida.{padre_cor,madre_cor,hnos_cor,suegro_cor,suegra_cor}"`.
 - `milpa/procedencia.yaml:1123` (`rutas_estimabilidad_coeficiente.detalle`, fila G5·familismo_apoyo) trae *"Paso 3, 31/ago, ADR-235 ... θ con fuente eder2017 financia_8 (ACTO MAESTRA32-E16 ...). β̂ EDER +0.0041, β̂ ENDIREH (robustez, reserva) -0.0461."*
 
-**Gate SATISFECHO.** E16 fusionó (PR #406) antes del inicio de este acto. En consecuencia, `familia.corresidencia.adulto_familiar` (EDER 2017) NO se marca `PENDIENTE-E16` — se trata como candidata medible en la lista cerrada de (b), igual que las otras cuatro.
+**Gate SATISFECHO.** MAESTRA32-E16 fusionó (PR #406) antes del inicio de este acto. En consecuencia, `familia.corresidencia.adulto_familiar` (EDER 2017) NO se marca `PENDIENTE-MAESTRA32-E16` — se trata como candidata medible en la lista cerrada de (b), igual que las otras cuatro.
 
 ---
 
@@ -52,10 +52,10 @@ Cinco candidatas, id en formato `dominio.tema.conducta`:
 1. `civico.denuncia.miedo_desconfianza` — ENVIPE 2025, `BP1_23`, universo θ=G4 (exposición a violencia / confianza institucional, ya `MEDIDO` en `coeficientes_generador_medidos.G4_exposicion_violencia`, `procedencia.yaml:994-1024`).
 2. `dinero.ahorro.tiene_ahorros` — ENNViH/MxFLS olas 2-3, `cr27`, universo θ=G3.horizonte_temporal ya `MEDIDO` (`procedencia.yaml:1060-1120` y `forense/notas/2026-08-24-cal-g3-puntual-cierre.md`).
 3. `familia.apoyo.recibe_dinero_familiares` — ENIF 2024, `TMODULO`, `P9_9_4` ("dinero de familiares" del menú "¿con qué piensa cubrir su vejez?"), universo G3.familismo_apoyo (`procedencia.yaml:300-319`). Nombre de id elegido por el reactivo mismo (`p9_9_4`), declarado — no hay un nombre "oficial" de desenlace más allá del texto del ítem en el FD/cuestionario de ENIF.
-4. `familia.corresidencia.adulto_familiar` — EDER 2017, panel `historiavida`, desenlace = corresidencia con algún ascendiente/suegro (`padre_cor∨madre_cor∨hnos_cor∨suegro_cor∨suegra_cor`==1), universo G5.familismo_apoyo, θ=`financia_8` ya `MEDIDO` por ACTO MAESTRA32-E16 (gate satisfecho, ver arriba — **NO** se marca `PENDIENTE-E16`).
+4. `familia.corresidencia.adulto_familiar` — EDER 2017, panel `historiavida`, desenlace = corresidencia con algún ascendiente/suegro (`padre_cor∨madre_cor∨hnos_cor∨suegro_cor∨suegra_cor`==1), universo G5.familismo_apoyo, θ=`financia_8` ya `MEDIDO` por ACTO MAESTRA32-E16 (gate satisfecho, ver arriba — **NO** se marca `PENDIENTE-MAESTRA32-E16`).
 5. `tramite.mordida.discrecional` (**enmienda**, no regla nueva) — ENCUCI 2020, desenlace `AP5_17='1' ∨ AP5_18='1'`, universo "con contacto" (`AP5_16_1..10`, al menos un contacto declarado con autoridad/trámite), ponderador `FAC_SEL`. Esta fila se propone como **enmienda propuesta** a la regla existente de `tramite.yaml` (no se toca `tramite.yaml`; la enmienda vive únicamente en el archivo propuesta nuevo, con el mismo `id` y una nota que la marca como candidata a reemplazar/complementar el `p: 0.62` `ASIGNADO`).
 
-Contador: **5 de 5** candidatas de la lista cerrada tienen payload localizado en `data/raw/` y variable de desenlace identificable con nombre exacto — ninguna cae en `PENDIENTE-E16` porque el gate está satisfecho. Ver más abajo si alguna cae en `PENDIENTE-DE-MESA` por otra razón (universo/ponderador no reducible a una sola fila sin ambigüedad).
+Contador: **5 de 5** candidatas de la lista cerrada tienen payload localizado en `data/raw/` y variable de desenlace identificable con nombre exacto — ninguna cae en `PENDIENTE-MAESTRA32-E16` porque el gate está satisfecho. Ver más abajo si alguna cae en `PENDIENTE-DE-MESA` por otra razón (universo/ponderador no reducible a una sola fila sin ambigüedad).
 
 ---
 
@@ -68,16 +68,16 @@ Contador: **5 de 5** candidatas de la lista cerrada tienen payload localizado en
 - **Ponderador:** `FAC_ELE` (persona), de `tper_vic2_envipe2025` — confirmado columna presente, mismo criterio que `forense/notas/2026-08-04-encargo-e-envipe-g4-paso1.md §3`.
 - **Desenlace:** `BP1_23` dicotomizado `miedo/desconfianza={01,02,06,08}` vs `práctica={03,04,05,07}` (códigos `09`,`99`,blanco excluidos, declarado por `procedencia.yaml:998`).
 - **Estimador de p:** proporción ponderada de `desenlace=1` (miedo/desconfianza) sobre el universo definido, ponderando por `FAC_ELE` colapsado a nivel persona (regla de colapso de `procedencia.yaml:1009-1024`: si alguna fila de la persona califica con `BP1_23` en el conjunto miedo/desconfianza, `desenlace=1`).
-- **IC95:** bootstrap 10k réplicas, `seed=42`, remuestreo simple por fila de persona (sin campo de diseño UPM/estrato declarado utilizable para HC1 de proporción simple sin regresión — declarado bootstrap, no supuesto de diseño complejo, siguiendo el patrón de `cal-g3-puntual-cierre.md §PASO 0`).
+- **IC95:** bootstrap 10k réplicas, `seed=42`, remuestreo simple por fila de persona (sin campo de diseño UPM/estrato declarado utilizable para HC1 de proporción simple sin regresión — declarado bootstrap, no supuesto de diseño complejo, siguiendo el patrón de `2026-08-24-cal-g3-puntual-cierre.md` §PASO 0).
 
 ### 2. `dinero.ahorro.tiene_ahorros`
 - **Encuesta/ola:** ENNViH/MxFLS, olas 2 (2005-06) y 3 (2009-12) — **ola de calibración de p: ola 2**, la misma que trae el ponderador `fac_3b` usado por la llave `CAL-G3` ya sellada.
 - **Payload:** `ennvih_mxfls_licencia` (nota de licencia, `data/manifiesto.yaml:84-95` — **el manifiesto declara literalmente "ningún archivo de ENNViH se ha descargado ni se registra aquí"**, hallazgo del 30/jul/2026). Sin embargo el árbol SÍ tiene los ZIP físicos en `data/raw/ennvih/` (`ehh05dta_all.zip`, con miembro `ehh05dta_b3b/iiib_cr.dta` y `ehh05dta_b3b/iiib_pr.dta` — confirmado por lectura de `zipfile.namelist()`, 2026-08-31) y `data/raw/ennvih/ehh05w_all.zip` (ponderador `fac_3b`). **Hallazgo para el reporte final:** el manifiesto NO tiene una entrada `id:` para estos ZIP de ENNViH pese a que sí están en `data/raw/` y sí se usaron en `CAL-G3-PUNTUAL` (`forense/notas/2026-08-24-cal-g3-puntual-cierre.md`) — inconsistencia de registro preexistente a este acto, no generada por él. Este acto usa el archivo físico y reporta el sha256 real (A.1) en el cierre; no puede citar un `id` de manifiesto que no existe.
-- **Universo:** individuos con `pid_link` presente en ambas olas, `pr02` válido (1-7) y `cr27` válido (1/3) en ambas olas simultáneamente, con `fac_3b` no faltante — mismo universo que `CAL-G3-PUNTUAL` (`n=6305`, `cal-g3-puntual-cierre.md` tabla PASO 2). Se reutiliza este universo (no uno más laxo) para que `p` sea comparable a la θ ya sellada de la misma llave.
+- **Universo:** individuos con `pid_link` presente en ambas olas, `pr02` válido (1-7) y `cr27` válido (1/3) en ambas olas simultáneamente, con `fac_3b` no faltante — mismo universo que `CAL-G3-PUNTUAL` (`n=6305`, `2026-08-24-cal-g3-puntual-cierre.md` tabla PASO 2). Se reutiliza este universo (no uno más laxo) para que `p` sea comparable a la θ ya sellada de la misma llave.
 - **Ponderador:** `fac_3b` (ola 2), `ehh05w_all.zip:ehh05w_all/ehh05w_b3b.dta`.
 - **Desenlace:** `cr27` (ola 2) `=1` ("Sí" tiene ahorros) vs `=3` ("No").
 - **Estimador de p:** proporción ponderada de `cr27_ola2=1` sobre el universo de `n=6305` (definido arriba), ponderando por `fac_3b`.
-- **IC95:** bootstrap 10k réplicas, `seed=42` (mismo criterio de PASO 0 de `CAL-G3-PUNTUAL`: sin campo de diseño UPM/estrato declarado para ENNViH — AGOTADO, ver `cal-g3-puntual-cierre.md §PASO 0`).
+- **IC95:** bootstrap 10k réplicas, `seed=42` (mismo criterio de PASO 0 de `CAL-G3-PUNTUAL`: sin campo de diseño UPM/estrato declarado para ENNViH — AGOTADO, ver `2026-08-24-cal-g3-puntual-cierre.md` §PASO 0).
 
 ### 3. `familia.apoyo.recibe_dinero_familiares`
 - **Encuesta/ola:** ENIF 2024.
@@ -91,10 +91,10 @@ Contador: **5 de 5** candidatas de la lista cerrada tienen payload localizado en
 ### 4. `familia.corresidencia.adulto_familiar`
 - **Encuesta/ola:** EDER 2017.
 - **Payload (manifiesto):** `eder_2017_eder2017_bases_csv` (`data/manifiesto.yaml:4324-4336`), archivo `data/raw/eder2017/eder2017_bases_csv.zip`, `sha256: bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3` — mismo payload ya abierto por `ACTO MAESTRA32-E16` (`tools/medicion_familismo.py`).
-- **Universo:** filas de `vivienda.csv` con `tipo_adqui` no blanco (mismo universo que E16, `tools/medicion_familismo.py:112-116`).
+- **Universo:** filas de `vivienda.csv` con `tipo_adqui` no blanco (mismo universo que MAESTRA32-E16, `tools/medicion_familismo.py:112-116`).
 - **Ponderador:** `factor` (columna `vivienda.csv`).
-- **Desenlace:** persona co-reside con algún ascendiente/suegro — colapso de `historiavida.csv` a nivel persona: `desenlace=1` si en cualquier fila del panel retrospectivo `padre_cor='1' ∨ madre_cor='1' ∨ hnos_cor='1' ∨ suegro_cor='1' ∨ suegra_cor='1'` (mismo colapso que E16, `tools/medicion_familismo.py:86,143-146`).
-- **Estimador de p:** proporción ponderada de `desenlace=1` sobre el universo de personas con hogar en el universo `tipo_adqui` no blanco, ponderando por `factor` del hogar de esa persona — **a diferencia de E16 (que calculó la diferencia de proporciones θ=1 vs θ=0), aquí se calcula la tasa base incondicional** (todo el universo, sin condicionar en `financia_8`).
+- **Desenlace:** persona co-reside con algún ascendiente/suegro — colapso de `historiavida.csv` a nivel persona: `desenlace=1` si en cualquier fila del panel retrospectivo `padre_cor='1' ∨ madre_cor='1' ∨ hnos_cor='1' ∨ suegro_cor='1' ∨ suegra_cor='1'` (mismo colapso que MAESTRA32-E16, `tools/medicion_familismo.py:86,143-146`).
+- **Estimador de p:** proporción ponderada de `desenlace=1` sobre el universo de personas con hogar en el universo `tipo_adqui` no blanco, ponderando por `factor` del hogar de esa persona — **a diferencia de MAESTRA32-E16 (que calculó la diferencia de proporciones θ=1 vs θ=0), aquí se calcula la tasa base incondicional** (todo el universo, sin condicionar en `financia_8`).
 - **IC95:** bootstrap 10k réplicas, `seed=42` (mismo criterio: EDER trae `est_dis`/`upm` de diseño — **si el tiempo del acto lo permite se usa diseño real; si el script no logra construir un estimador de diseño reproducible en la corrida única, se declara bootstrap simple y se dice así explícitamente en el cierre**, siguiendo "el primer resultado que produzca este procedimiento es el que se reporta").
 
 ### 5. `tramite.mordida.discrecional` (enmienda ENCUCI)
