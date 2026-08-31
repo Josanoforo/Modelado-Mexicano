@@ -2995,9 +2995,33 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # mecanica, mismo precedente que las notas de cierre ya listadas
     # arriba.
     "forense/notas/2026-08-30-propaga-2-cierre.md",
-    # ACTO MAESTRA32-E11 · COBERTURA-15, 31/ago/2026 (ADR-226, re-emision
-    # de MAESTRA32-E10/ADR-224 con compuerta ya cumplida por
-    # MAESTRA32-E9/ADR-225): encargo archivado VERBATIM (A.3). El titulo
+    # ACTO MAESTRA32-E8 · MEDICION-COMPUESTA, 30/ago/2026 (ADR pendiente
+    # de numero, M-AGREGA=a'): encargo archivado VERBATIM (A.3), su spec
+    # congelada (COMMIT-1) y su nota de cierre (COMMIT-2). Direccion lo
+    # lanzo rotulado "ENCARGO E8", y "E8" pelado colisiona con el
+    # habitante ya censado MAESTRA31-E8; ademas la cabecera del encargo
+    # y ambas notas citan "MAESTRA32-E3 . EXTRACTOR-DTA" (compuerta
+    # levantada in situ el mismo 30/ago), cuyo "E3" pelado colisiona con
+    # MAESTRA31-E3/E3-TRIAGE. D-6 aplicado donde se puede aplicar: el
+    # acto se declara ACTO MAESTRA32-E8 en todo archivo que escribe y
+    # queda censado en canon/registro-rotulos.tsv; el encargo NO se
+    # edita, porque A.3 pide el texto de direccion verbatim, y la spec/
+    # la nota de cierre repiten ese mismo texto verbatim en su §0 (input
+    # de direccion que levanta la compuerta) por instruccion explicita
+    # de direccion -- misma situacion que ya cubren las notas de la
+    # lista de arriba: citar un rotulo al narrar una decision no es
+    # reclamarlo, pero el regex no distingue, asi que se censa aqui en
+    # vez de editar la narracion. Mismo movimiento y misma razon que
+    # MAESTRA31-E1..E7, MAESTRA30-E10 y MAESTRA32-E9/E10, ya listadas
+    # arriba.
+    "forense/encargos/2026-08-30-MAESTRA32-E8-MEDICION-COMPUESTA.md",
+    "forense/notas/2026-08-30-compuesta-spec.md",
+    "forense/notas/2026-08-30-compuesta-cierre.md",
+    # ACTO MAESTRA32-E11 · COBERTURA-15, 31/ago/2026 (ADR-227, renumerado
+    # de ADR-226 al fusionar: ACTO MAESTRA32-E8 arriba fusiono primero y
+    # se quedo con ADR-226; re-emision de MAESTRA32-E10/ADR-224 con
+    # compuerta ya cumplida por MAESTRA32-E9/ADR-225): encargo archivado
+    # VERBATIM (A.3). El titulo
     # abre con "ACTO MAESTRA32-E11" (hifenado, no pelado) pero el cuerpo
     # trae bare E10 ("re-emision de E10", "E10 queda consumido",
     # "verificado por el propio E10", "el intento E10", "el cierre de
