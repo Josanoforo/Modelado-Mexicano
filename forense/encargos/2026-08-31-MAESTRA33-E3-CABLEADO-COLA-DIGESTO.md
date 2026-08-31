@@ -12,7 +12,7 @@ SUCESORES: ninguno — cierra el cableado nube.
 ## CONSUMIDO
 
 Ejecutado por `ACTO MAESTRA33-E3 · CABLEADO-COLA-DIGESTO` el 31/ago/2026,
-rama `claude/cableado-cola-digesto-affup3`, `ADR-242` (candidato).
+rama `claude/cableado-cola-digesto-affup3`, `ADR-243`.
 Compuerta `PR #413` verificada mecánicamente antes de tocar nada.
 PR: `#415` (https://github.com/Josanoforo/Modelado-Mexicano/pull/415),
 abierto sobre esa rama. Fusionar es firmar: el acto lo propone, mesa lo

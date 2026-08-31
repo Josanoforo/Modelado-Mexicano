@@ -1104,7 +1104,40 @@ def bloque_falsadores(raiz, hoy):
             estado = f"faltan {plural_dias(-n)}"
         out.append(f"| {nombre} | `{rel}` | {criterio} | {origen} | {como} | "
                    f"**{rev.isoformat()}** | {estado} |")
+
+    # La lista FALSADORES es FIJA, y una lista fija se queda corta en
+    # silencio -- que es justo la clase de hueco que este acto existe para
+    # cerrar. El cotejo de abajo la audita contra el arbol: si aparece una
+    # pieza nueva con falsador "en un mes" que nadie anadio a la lista, la
+    # seccion lo DICE en vez de omitirla. No la anade sola: decidir que una
+    # pieza nueva es de esta familia es juicio de mesa.
+    universo = sorted(glob.glob(os.path.join(raiz, ".claude", "commands", "*.md")) +
+                      glob.glob(os.path.join(raiz, "forense", "agente-*.md")))
+    conocidos = {os.path.join(raiz, rel) for _, rel, _ in FALSADORES}
+    huerfanas = []
+    for q in universo:
+        if q in conocidos:
+            continue
+        try:
+            with open(q, encoding="utf-8") as fh:
+                if _falsador_vivo(fh.read()):
+                    huerfanas.append(os.path.relpath(q, raiz))
+        except OSError:
+            pass
     out.append("")
+    if huerfanas:
+        out += [f"⚠️ **{plural(len(huerfanas), 'pieza declara', 'piezas declaran')} un "
+                f"falsador «en un mes» y no está en la tabla de arriba**, sobre "
+                f"**{len(universo)}** archivo(s) examinado(s) en `.claude/commands/*.md` "
+                f"y `forense/agente-*.md` (A.13): "
+                + ", ".join(f"`{h}`" for h in huerfanas) +
+                ". La tabla no se amplía sola: decidir que una pieza nueva pertenece a "
+                "esta familia es de mesa. Mientras tanto, su falsador no tiene fecha.", ""]
+    else:
+        out += [f"Cotejo contra el árbol: ninguna otra pieza declara un falsador «en un "
+                f"mes» fuera de la tabla, sobre **{len(universo)}** archivo(s) "
+                f"examinado(s) en `.claude/commands/*.md` y `forense/agente-*.md` "
+                f"(A.13). La tabla está completa hoy.", ""]
     if vencidos:
         out += [f"⚠️ **{plural(vencidos, 'falsador vencido', 'falsadores vencidos')}.** Vencer no significa "
                 f"que la pieza haya fallado: significa que **toca mirarla**, con el "
