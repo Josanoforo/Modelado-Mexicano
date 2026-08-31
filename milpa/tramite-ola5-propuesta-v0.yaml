@@ -84,6 +84,29 @@ reglas_propuestas:
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: "NO-LOCALIZADO -- se uso data/raw/enif_2024_bd_csv.zip (trae TMODULO.csv con FILTRO_S9_1/P9_9_4/FAC_PER/EDAD_V); el id de manifiesto enif2024_csv apunta a un ZIP distinto (data/raw/enif2024_csv.zip) sin estas columnas confirmadas en este acto"
 
+  # ══════════════════════════════════════════════════════════════════
+  # DEVUELTA-POR-MESA · FP-200=b · 31/ago/2026
+  # ACTO MAESTRA32-E20 · LOTE-NUBE-1 · P0
+  #
+  # Esta regla NO se carga a milpa/tramite.yaml. Mesa la devuelve a
+  # RE-ESPECIFICACION. Firma verbatim de la opcion sellada: "sellar 4 y
+  # devolver familia.corresidencia a re-especificacion -- su p=0.996 es
+  # techo casi saturado (diseno 'alguna vez en la vida'): una conducta que
+  # ocurre 99.6% de las veces no discrimina... la re-especificacion obvia
+  # es ventana actual (corresidencia hoy), medible en el mismo EDER."
+  #
+  # RE-ESPECIFICACION, con nombre para que no se pierda:
+  #   ventana      = actual (corresidencia HOY, no "alguna vez en la vida")
+  #   instrumento  = EDER (el mismo que ya produjo el 0.996)
+  #   ejecutor     = acto de CAJA sucesor -- no este lote, que no abre microdato
+  #   tablero      = fila RE-SPEC-CORRESIDENCIA, ABIERTA hasta lanzar
+  #
+  # CUERPO INTACTO: ni p, ni ic95, ni n, ni ponderador, ni universo, ni
+  # fuente, ni hallazgo se tocan. El 0.996 se conserva tal como salio del
+  # procedimiento que lo produjo -- "el primer resultado que produzca este
+  # procedimiento es el que se reporta"; devolverlo a re-especificacion no
+  # es borrarlo.
+  # ══════════════════════════════════════════════════════════════════
   - id: familia.corresidencia.adulto_familiar
     situacion: PENDIENTE-DE-MESA
     si:

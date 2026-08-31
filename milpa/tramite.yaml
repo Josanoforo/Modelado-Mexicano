@@ -44,10 +44,43 @@ reglas:
     entonces:
       - {conducta: paga_mordida, p: 0.62, clase: ASIGNADO}
       - {conducta: tramite_normal, p: 0.38, clase: ASIGNADO}
+      # ── ENMIENDA ENCUCI · FP-200=b (mesa, 31/ago/2026) · ACTO MAESTRA32-E20 ──
+      # Las DOS salidas de arriba NO se tocan: siguen ASIGNADAS y siguen siendo
+      # lo que emitir_binaria devuelve para `paga_mordida`/`tramite_normal`
+      # ("texto original de la regla intacto", encargo). Las dos de abajo son la
+      # enmienda MEDIDA que FP-200=b sella, con p/IC/fuente/universo/ponderador/
+      # ola_calibracion copiados verbatim de milpa/tramite-ola5-propuesta-v0.yaml
+      # (ADR-236). La `conducta` va desambiguada por ola porque
+      # milpa/src/emisor.py:476-479 devuelve la PRIMERA coincidencia: sin sufijo,
+      # la enmienda seria inverificable por el smoke con el original intacto.
+      # Desviacion declarada ANTES de correr en
+      # forense/notas/2026-08-31-lote-nube-1-spec.md §P0(b). Si mesa prefiere
+      # SUSTITUCION en vez de convivencia, es firma nueva y acto nuevo.
+      - {conducta: paga_mordida_encuci2020, p: 0.125822, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: tramite_normal_encuci2020, p: 0.874178, clase: "MEDIDO·p(tasa base ponderada)"}
     porque: {generador: [G1], mecanismo: "trampa social: cada quien paga porque supone que los demás pagan"}
     tier: FUERTE
     falsable_si: "Si al digitalizar y agregar testigos la mordida no baja, no es trampa social sino otra cosa"
     fuente: ["ENCIG2023", "Rothstein_trampa_social", "report:politica"]
+    enmienda_encuci2020:
+      sellada_por: "FP-200=b (mesa, 31/ago/2026) -- ACTO MAESTRA32-E20 · LOTE-NUBE-1"
+      origen: "milpa/tramite-ola5-propuesta-v0.yaml:107-138 (ADR-236), copiada verbatim"
+      aplica_a: [paga_mordida_encuci2020, tramite_normal_encuci2020]
+      desenlace: "AP5_17|AP5_18 -- compuesto: 1 si AP5_17=1 o AP5_18=1 (procedencia.yaml:888)"
+      ponderador: FAC_SEL
+      ola_calibracion: "ENCUCI 2020 (unica ola)"
+      ic95: [0.116323, 0.135544]
+      n: 13435
+      universo: "SEC_4_5 con contacto declarado AP5_16_1..10>=1 -- procedencia.yaml:888-889 (n≈13435 de 21519), re-verificado contra microdato 2026-08-31, n exacto reproducido"
+      si_propuesto: {contacto_declarado: true}
+      nota_si_propuesto: >
+        La propuesta proponia este disparador para la regla enmendada. NO se
+        aplica al bloque `si:` de arriba: el encargo manda dejar el texto
+        original de la regla intacto, y `si.disparadores` es texto original.
+        Queda declarado aqui, sin efecto sobre el motor, para que mesa lo vea.
+      hallazgo: "0.1258 (IC95 [0.1163,0.1355]) es compatible con el techo de 13.38% ya citado en procedencia.yaml:785 (hitoD-R3.2, 'techo medido 13.38%, no 62%') sobre el mismo payload ENCUCI -- el 0.62 ASIGNADO de arriba sigue sin apoyo empirico de escala; esta enmienda no lo sustituye, convive con el."
+      sha256_payload: "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+      payload_manifiesto_id: encuci2020_bd_dbf
 
   - id: tramite.mordida.con_registro
     situacion: realiza_tramite_gobierno
@@ -125,3 +158,103 @@ reglas:
     nota_calibracion: >
       PROBABILIDADES NO CALIBRADAS. El corpus sostiene la DIRECCIÓN, no la
       magnitud. Coherentes con el tier MEDIA. No reportar con decimales.
+
+  # ══════════════════════════════════════════════════════════════════
+  # CARGA OLA-5 FASE 1 · FP-200=b (mesa, 31/ago/2026)
+  # ACTO MAESTRA32-E20 · LOTE-NUBE-1 · P0 · PROPAGA-REGLAS-F1
+  #
+  # Tres reglas nuevas copiadas VERBATIM de
+  # milpa/tramite-ola5-propuesta-v0.yaml (ADR-236): p, ic95, fuente,
+  # universo, ponderador, ola_calibracion, n, clase, sha256_payload* y
+  # payload_manifiesto_id intactos carácter por carácter.
+  #
+  # DESCONGELAMIENTO ACOTADO: ADR-68(a) recibe excepcion fechada
+  # (31/ago/2026) por EXACTAMENTE estas cuatro cargas -- estas tres reglas
+  # mas la enmienda ENCUCI de tramite.mordida.discrecional -- y nada mas.
+  #
+  # NO se carga familia.corresidencia.adulto_familiar: mesa la DEVOLVIO a
+  # re-especificacion (FP-200=b) por techo casi saturado (p=0.996, diseno
+  # "alguna vez en la vida"). Ver la cabecera fechada en la propuesta.
+  #
+  # UNICA transformacion sobre el verbatim, declarada antes de correr en
+  # forense/notas/2026-08-31-lote-nube-1-spec.md §P0(c): `si.disparadores`
+  # venia como la cadena PENDIENTE-DE-MESA, que rompe
+  # emisor.cargar_reglas con AttributeError (str no tiene .items()). Va
+  # como mapping vacio -- que es lo que la propia propuesta explica: p es
+  # una tasa base INCONDICIONAL -- y el marcador literal viaja en el campo
+  # hermano `disparadores_estado`. Los campos `si` siguen PENDIENTE-DE-MESA
+  # porque canon/modelo-decision-v4_0.md §2.1-2.2 (lineas 428-473, 46
+  # examinadas) no trae NINGUN texto SI-ENTONCES citable: 0 coincidencias
+  # del patron, 0 de 'denuncia', 0 de 'vejez'. Las 49 reglas SI-ENTONCES
+  # viven en §3.B (linea 491), fuera del alcance que el encargo autoriza.
+  # No se inventa.
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: civico.denuncia.miedo_desconfianza
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: {}  # PENDIENTE-DE-MESA (ver disparadores_estado) -- el dato no dicta una condicion logica
+        # de disparo (sancion_creible/quien_observa, etc.) -- p viene de una
+        # tasa base incondicional en un universo ya seleccionado (victimas
+        # no denunciantes), no de una condicional del motor.
+      disparadores_estado: PENDIENTE-DE-MESA  # sin cita SI-ENTONCES en canon/modelo-decision-v4_0.md:428-473 (§2.1-2.2); NO se inventa (spec §P0(c))
+    entonces:
+      - {conducta: denuncia_con_miedo_o_desconfianza, p: 0.294313, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: denuncia_por_otra_razon, p: 0.705687, clase: "MEDIDO·p(tasa base ponderada)"}
+    porque: {generador: [G4], mecanismo: PENDIENTE-DE-MESA}
+      # mecanismo causal no re-derivado por este acto (fuera de perimetro);
+      # el generador G4 (exposicion_violencia/confianza_institucional[justicia])
+      # ya trae mecanismo declarado en canon/modelo-decision-v4_0.md, no se
+      # inventa uno nuevo aqui.
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["ENVIPE2025", "coeficientes_generador_medidos.G4_exposicion_violencia"]
+    ola_calibracion: "ENVIPE 2025 (unica ola disponible para este universo)"
+    ic95: [0.282822, 0.306570]
+    n: 13023
+    ponderador: FAC_ELE
+    universo: "personas 18+ victimas de AP7_3_XX=1 (XX en 05..15) que no denunciaron (BP1_20=2) -- procedencia.yaml:997, re-verificado contra microdato 2026-08-31"
+    sha256_payload: "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+    payload_manifiesto_id: envipe2025_csv
+
+  - id: dinero.ahorro.tiene_ahorros
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: {}  # PENDIENTE-DE-MESA (ver disparadores_estado)
+      disparadores_estado: PENDIENTE-DE-MESA  # sin cita SI-ENTONCES en canon/modelo-decision-v4_0.md:428-473 (§2.1-2.2); NO se inventa (spec §P0(c))
+    entonces:
+      - {conducta: tiene_ahorros, p: 0.174804, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: no_tiene_ahorros, p: 0.825196, clase: "MEDIDO·p(tasa base ponderada)"}
+    porque: {generador: [G3], mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["ENNViH/MxFLS_olas2-3", "forense/notas/2026-08-24-cal-g3-puntual-cierre.md"]
+    ola_calibracion: "ENNViH ola 2 (2005-06) -- ponderador fac_3b vive en esta ola"
+    ic95: [0.159250, 0.190543]
+    n: 6028
+    ponderador: fac_3b
+    universo: "individuos con pr02 y cr27 validos en ambas olas (panel retenido, mismo universo que la llave CAL-G3 sellada), n_pre_peso=6356, n_con_ponderador=6028 -- ver hallazgo de reconciliacion en el cierre (difiere de 6305 de CAL-G3-PUNTUAL, ver nota A.13)"
+    sha256_payload_ola2: "fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a"
+    sha256_payload_ola3: "00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15"
+    sha256_payload_peso: "34ee12b0c0d71e76676197089b5fd6048c0fdaa590a220f440d95526b1f4713b"
+    payload_manifiesto_id: "NO-LOCALIZADO -- data/manifiesto.yaml declara 'ningun archivo de ENNViH se ha descargado ni se registra aqui' (id ennvih_mxfls_licencia, procedencia.yaml:84-95) pese a que el ZIP fisico existe en data/raw/ennvih/ y ya fue usado por CAL-G3-PUNTUAL"
+
+  - id: familia.apoyo.recibe_dinero_familiares
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: {}  # PENDIENTE-DE-MESA (ver disparadores_estado)
+      disparadores_estado: PENDIENTE-DE-MESA  # sin cita SI-ENTONCES en canon/modelo-decision-v4_0.md:428-473 (§2.1-2.2); NO se inventa (spec §P0(c))
+    entonces:
+      - {conducta: recibe_dinero_familiares_para_vejez, p: 0.457707, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: no_recibe_dinero_familiares_para_vejez, p: 0.542293, clase: "MEDIDO·p(tasa base ponderada)"}
+    porque: {generador: [G3], mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["ENIF2024", "condicionales_escalares.familismo_apoyo"]
+    ola_calibracion: "ENIF 2024 (unica ola)"
+    ic95: [0.444232, 0.470782]
+    n: 11895
+    ponderador: FAC_PER
+    universo: "FILTRO_S9_1=2 (aplica modulo vejez) y EDAD_V<71 -- procedencia.yaml:304, re-verificado contra microdato 2026-08-31"
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: "NO-LOCALIZADO -- se uso data/raw/enif_2024_bd_csv.zip (trae TMODULO.csv con FILTRO_S9_1/P9_9_4/FAC_PER/EDAD_V); el id de manifiesto enif2024_csv apunta a un ZIP distinto (data/raw/enif2024_csv.zip) sin estas columnas confirmadas en este acto"
