@@ -3189,6 +3189,21 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # nuevo -- censado aqui y en canon/registro-rotulos.tsv (fila
     # MAESTRA32-E18), no reclamado.
     "forense/encargos/2026-08-31-MAESTRA32-E18-REGLAS-OLA5-FASE1.md",
+    # ACTO MAESTRA32-E19 · SELLA-CAMINO-1, 31/ago/2026: encargo archivado
+    # VERBATIM (A.3) que cita en prosa narrativa los rótulos pelados `E18`
+    # ("el hueco FP-197-FP-199 quedó sin usar por E18") y `E20` ("semilla
+    # del merge de E20") -- verificado con el mismo regex de este test,
+    # corrido en vivo sobre el archivo. `E18` ya es habitante censado
+    # (fila `MAESTRA32-E18`, `canon/registro-rotulos.tsv`); `E20` es
+    # rótulo nuevo -- censado por este mismo cierre (fila `E20`, primer
+    # uso, sin acto detrás: referencia declarada al sucesor no lanzado
+    # `MAESTRA32-E20 · LOTE-NUBE-1`). El texto de dirección no se edita
+    # para complacer a un test.
+    "forense/encargos/2026-08-31-MAESTRA32-E19-SELLA-CAMINO-1.md",
+    # forense/notas/2026-08-31-sella-camino-1-cierre.md -- nota de cierre
+    # de este mismo acto. Cita bare `E18`/`E20` al resumir la nota de T25
+    # sobre el propio encargo -- ninguno nuevo (mismo par que arriba).
+    "forense/notas/2026-08-31-sella-camino-1-cierre.md",
 }
 
 

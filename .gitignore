@@ -11,7 +11,11 @@ data/secretos.local.yaml
 # .gitmodules verificado -- git log --all -- .gitmodules vacío)
 .bash_profile
 .bashrc
-.claude/
+# ACTO MAESTRA32-E19 · SELLA-CAMINO-1 (D-10, 31/ago/2026): la skill /acto
+# vive en .claude/commands/, repo-side y versionada -- el resto de .claude/
+# (settings locales, estado de sesión) sigue ajeno al repo, sin trackear.
+.claude/*
+!.claude/commands/
 .gitconfig
 .gitmodules
 .idea

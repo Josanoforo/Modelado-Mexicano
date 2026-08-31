@@ -188,4 +188,34 @@ Fuentes que sí aportan dinámica y hay que exprimir: evaluaciones aleatorizadas
 
 ---
 
+## 10. § Duelo — formulación sellada (31/ago/2026, `ADR-237`)
+
+*(Sección nueva, fechada — `ACTO MAESTRA32-E19 · SELLA-CAMINO-1`, firma de
+mesa `F-DUELO`, 31/ago/2026. Este whitepaper es v0.1, previo a todo el
+ciclo de medición que arrancó el 4/ago/2026: no traía, hasta hoy, ninguna
+formulación del duelo. El texto de abajo es esa formulación, verbatim tal
+como mesa la selló al confirmar el entendimiento — "el duelo real … es:
+¿el LLM supera al motor = LLM + data real?" — y entra sin tocar el resto
+del documento.)*
+
+El duelo no compara "IA contra datos". Compara dos formas de usar el mismo
+conocimiento: L es el LLM elicitado en directo — implícito, ciego, en
+sesiones limpias fuera del proyecto; M es ese mismo conocimiento hecho
+estructura explícita y auditable (reglas, generadores, parámetros con
+procedencia declarada), con sus priors de juicio (`ASIGNADO`) sustituidos
+pieza a pieza por mediciones en microdato mexicano; R es la realidad,
+calculada por un árbitro desde microdato no publicado — la "prueba del
+bibliotecario", 56 de 60 celdas del marco original — precisamente para que
+L no pueda haberla memorizado. La pregunta del programa es doble: ¿explicitar
+y calibrar añade valor predictivo sobre preguntar directo?, y ¿cuánto del
+conocimiento implícito del LLM sobrevive al pasar por esa disciplina?
+Asimetría declarada, no escondida: L y M comparten la familia de LLM de
+origen; eso mantiene el LLM constante y aísla el valor marginal de
+estructura + datos. Descomposición prevista y no activada: el corredor E
+("combinación": LLM con datos, sin estructura) existe como ranura en la
+configuración sellada del scoring y separaría, el día que mesa lo active,
+cuánto aporta el dato y cuánto la estructura.
+
+---
+
 *Este whitepaper hereda las reglas del programa (Bloque A/B/C, v2): anti-esencialismo, distinción estructura/cultura/adaptación racional, evidencia tierizada, marcado de procedencia, firewall genético, y el módulo de auditoría como requisito de cierre en cada artefacto. El simulador no es una excepción a esas reglas: es su implementación ejecutable.*
