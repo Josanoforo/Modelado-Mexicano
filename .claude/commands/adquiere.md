@@ -79,7 +79,34 @@ vuelto a bajar entera sin este paso).
 opcional ni un `try/except` alrededor de la descarga: es un `grep` que corre
 primero.
 
-## 3 · Intento de descarga programática
+## 3 · Intento de descarga programática — protocolo de rutas múltiples (ACTO MAESTRA33-A3, ADR pendiente)
+
+Por fila, **al menos 4 rutas** se intentan (con comando y código de respuesta
+crudo, cada una) antes de que la fila pueda cerrar en
+`NO-OBTENIDO-POR-ESTE-AGENTE`. Ninguna ruta se salta en silencio — si una no
+aplica al payload (p.ej. no existe formato alterno conocido), la nota lo dice
+explícitamente («(iii) no aplica: solo hay SAV publicado»), no se omite sin
+mención:
+
+1. **(i) URL directa** del payload conocido o localizado, con UA de navegador
+   real (ver reglas de abajo).
+2. **(ii) API / descarga masiva del portal** — para INEGI, la canasta XML
+   (precedente `ACTO O`, `ACTO P·LOTE-1/2`); para otros portales, el
+   endpoint de descarga masiva o `distribution.contentUrl` (JSON-LD
+   `schema.org`) si el portal lo publica.
+3. **(iii) Formato alterno del mismo instrumento** — CSV↔DTA↔SAV↔XLSX; si el
+   portal publica el mismo microdato en más de un formato, un formato
+   bloqueado no cierra la fila mientras otro formato siga sin probar.
+4. **(iv) Espejo académico o repositorio** — Datos Abiertos, IPUMS
+   International, Harvard Dataverse, u otro repositorio de terceros que aloje
+   el mismo instrumento. Si el espejo existe pero esta caminata no lo abre
+   byte a byte (por ejemplo, requiere cuenta o el archivo es grande), márcalo
+   `SIN-FETCH` en la nota — es evidencia de que la ruta existe, no un
+   `OBTENIDO`.
+
+Solo después de agotar las 4 rutas (o de anotar por qué una no aplica) la fila
+puede cerrar en `NO-OBTENIDO-POR-ESTE-AGENTE(N intentos)` con su receta de
+navegador (§6).
 
 - User-Agent de navegador real en toda petición (`curl -A`), nunca el UA por
   defecto de `curl`/`requests` — varios portales de este corpus (CNBV, INEGI)
