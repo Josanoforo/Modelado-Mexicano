@@ -7,3 +7,18 @@ P2 · Caminata: las 6 de FP-190 primero, luego toda fila no OBTENIDA por priorid
 P3 · PAQUETE-RECETAS-<fecha>.md: todas las recetas en un bloque, ordenadas por palanca, para tu barrido o para Claude en Chrome; fila de tablero "mesa ejecuta recetas" con vence: 2026-09-04.
 PERÍMETRO: adquiere.md (P1), cola-adquisicion, manifiesto, data/raw, PAQUETE-RECETAS, notas, tablero, A.3, cascada. Frase exacta vigente. CONTADOR: payloads OBTENIDO +N, declarado.
 LO QUE NO HACE: no abre microdato; no paga; no re-sondea OBTENIDOS (A.8 por fila); no declara "no existe".
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-A3 · ADQUIERE-2-RUTAS-MULTIPLES`, 1/sep/2026 (el encargo fecha el objeto para el 2/sep, pero fue recibido y ejecutado el mismo 1/sep), `PR #433` (rama `acto/maestra33-a3-adquiere-2-rutas-multiples`, worktree `/home/pc0/mm-maestra33-a3-adquiere2`).
+
+Corrección de premisa (`A.8` de este mismo encargo): declaraba `data/cola-adquisicion-v1_0.tsv` con 73 filas; al arrancar tenía **79** (header aparte) — 6 más que las que este texto asumía, ya incluían las de FP-190. No es `PARO` (dato derivable, no bloqueante), declarado por completitud.
+
+- **P1**: `.claude/commands/adquiere.md` §3 trae ahora el protocolo de ≥4 rutas obligatorias por fila, con la regla explícita de que una ruta que no aplica se declara, no se omite.
+- **P2**: las 6 de `FP-190` primero — 2 `OBTENIDO` vía `A.8` (documentación ya en corpus desde el 4/ago, la nota de `FP-190` nació desactualizada), 2 declaradas fuera de perímetro de `/adquiere` (extracción de texto, no adquisición), 2 sin instrumento identificable (universo agotado, sin URL que perseguir). Luego 36 filas más de la cola general por prioridad: `estado_A4A5==OBTENIDO` **30 → 46 (+16)** — 13 payloads nuevos (`A.7`/`sha256`/estructura verificados, anti-PR#77 confirmado contra `/home/pc0/mm-corpus/raw/`) más 6 resueltas vía `A.8` sin tocar red. 11 `NO-ACCESIBLE`, 11 `NO-OBTENIDO-POR-ESTE-AGENTE` (documentado: reto Cloudflare en 5 hosts, 3 dominios sin DNS), 11 `PENDIENTE` sin identidad forzada.
+- **P3**: `forense/notas/2026-09-01-PAQUETE-RECETAS-2026-09-01.md`, 17 recetas de navegador ordenadas por palanca, con la fila de tablero "mesa ejecuta recetas — vence: 2026-09-04" incluida en la propia nota (`data/curacion-universo/tablero-cobertura.json` no tiene una sección donde esa fila calce, no se forzó el esquema).
+- **CONTADOR: 30 → 46 (+16)**, verificado columna-exacta (`awk -F'\t' '$2=="OBTENIDO"'`) — corrige el "37" de este mismo encargo/briefing, artefacto de `grep -c "OBTENIDO"` sobre texto crudo (cuenta también la subcadena dentro de `NO-OBTENIDO-POR-ESTE-AGENTE` y menciones en prosa de otras filas).
+- Hallazgos colaterales: identidad de `EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI` corregida (Salud/DGIS, no INEGI); `IMPACT_EVALUATION_OF_PARENTAL_EMPOWERMENT_PROGRAM` (catálogo Banco Mundial 1039) confirmado **no** duplicado de `ECEPIE` (catálogo 2661).
+- Cascada: `ADR-260`, `canon/estado-programa-v1_10.md` (cabecera 259→260 ADR y línea `L0`), `canon/registro-rotulos.tsv` (`MAESTRA33-A3`, espacio `A`), fix `T15` (`{cita-historica}` en la cita ahora-vieja de `ADR-259`). `python3 tests/check.py --baseline`: **VERDE**, sin `FAIL` nuevo.
+
+Detalle completo, comando por comando, en `data/manifiesto.yaml` (13 entradas nuevas) y en el propio `git log` de la rama (10 commits: `9850184`..`fde263d`).
