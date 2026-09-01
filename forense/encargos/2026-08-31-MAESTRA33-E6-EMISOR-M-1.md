@@ -17,7 +17,7 @@ Ejecutado por PR #422. tools/emite_m.py (primer emisor M versionado, A.8
 verificado: los dos puntos M previos se escribieron a mano sin script,
 commit 16c37b6) camina marco-M-sorteado-v1_1.tsv y emite los 11 puntos M
 nuevos (CIV-M-01/06/08/09/11/12/13, FAM-M-01, TRA-M-03/05/07; puntos M
-2→13), las 11 P1 PUNTUA (F-DD, ADR-249). P2: regresión dentro del propio
+2→13), las 11 P1 PUNTUA (F-DD, ADR-237). P2: regresión dentro del propio
 tool contra M-TRA-M-01/02.json — PASA byte a byte en todo campo
 mecánicamente derivable; dos exenciones declaradas (fuente cita el
 acto+fecha que corre; correcciones_aplicadas_por_referencia diverge en
@@ -35,7 +35,10 @@ archivo del repo al cerrar este PR (forense/firmas-pendientes.tsv fila
 FP-213: firmada_en vacía, estado=ABIERTA). Se propaga en un commit de
 seguimiento a este mismo PR en cuanto llegue; P4 no se cierra en falso.
 
-ADR-249 (candidato), canon/estado-programa-v1_10.md L0 recifrado,
-canon/registro-rotulos.tsv (MAESTRA33-E6 censado), tests/check.py
-(_T25_ARCHIVOS_CONOCIDOS extendido). python3 tests/check.py --baseline:
-VERDE, sin FAIL nuevo.
+ADR-250 (candidato; renumerado de 249 tras fusionar origin/main — PR #421
+ACTO MAESTRA33-A2 · CORRIGE-A1 fusionó primero y tomó el 249, su propia
+segunda colisión con PR #419 — regla de la casa), canon/estado-programa-v1_10.md
+L0 recifrado, canon/registro-rotulos.tsv (MAESTRA33-E6 censado), FP-214
+nueva (recibo propio, ABIERTA), tests/check.py (_T25_ARCHIVOS_CONOCIDOS
+extendido). python3 tests/check.py --baseline: VERDE, sin FAIL nuevo (19
+FAIL / 160 WARN, +1 WARN esperado por FP-214 nueva).
