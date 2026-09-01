@@ -7,3 +7,15 @@ P2 · Declaración obligatoria en cabecera: cuántas celdas M-vs-R estaban visib
 P3 · Fila en el tablero: "mesa sella procedimiento-scoring v1_1" con las 5 decisiones enumeradas para que la firma sea una línea.
 PERÍMETRO: procedimiento-scoring-v1_1-PROPUESTA.md, el cargador (sin ejecutar), notas, tablero, A.3, cascada. Frase exacta vigente. FP/ADR: deriva. CONTADOR: cero, declarado.
 LO QUE NO HACE: no corre ejecutar_scoring; no edita scoring-adv1-m3.py ni procedimiento v1_0; no elige ningún valor que no derive de texto sellado; no toca corridas-*.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-E10 · PROCEDIMIENTO-SCORING-v1_1-PROPUESTA`,
+1/sep/2026, `ADR-255` (candidato). PR contra `main`: `PR #429`, sin
+fusionar por este acto. `COMPUERTA: PR de MAESTRA33-E9 fusionado` —
+CUMPLE, verificada contra `PR #427` fusionado en `b3c6a1d` (en el turno
+anterior de esta misma sesión la misma compuerta había verificado NO
+CUMPLE, cero commits, sin `A.3`). P1/P2/P3 entregados tal como se
+pidieron; CONTADOR cero (ningún corredor corrido, `tools/score_marco_m.py`/
+`scoring-adv1-m3.py` sin diff). Detalle:
+`forense/notas/2026-09-01-scoring-v1_1-propuesta-cierre.md`.
