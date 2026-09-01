@@ -13,7 +13,7 @@ SUCESORES: caminatas /arbitra sobre las celdas de B″ (entran a la cola como EN
 
 Commits `26fdfd5` (0-bis A.3), `411e3fa` (P1/P2, P3 PARO) y el commit de
 cascada de este mismo acto, en la rama `acto/maestra33-c2-arbitro-r-1`
-(sin PR abierto por este agente). `ADR-244`. Veredicto: **PARO en P3**
+`PR #417`. `ADR-245` (renumerado de 244: `PR #416`/`ACTO MAESTRA33-E4 · DELTA-E3` fusionó primero y tomó el 244). Veredicto: **PARO en P3**
 (regresión no coincide) — `tools/arbitra.py` y `.claude/commands/arbitra.md`
 entregados; 0 puntos R nuevos, declarado. Detalle:
 `forense/notas/2026-08-31-arbitro-r-1-paro-regresion.md`.
