@@ -3344,6 +3344,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # hallazgo -- mismo patron que las demas entradas de esta lista.
     "forense/notas/2026-09-01-score-m-1-cierre.md",
     "forense/prereg-duelo-v2/scoreboard-v1_1.md",
+    # ACTO MAESTRA33-S1 · SORTEO-v3-Y-PROPAGA, 1/sep/2026: encargo
+    # archivado VERBATIM (A.3) trae "de E7 y C4" en P3, bare "E7" citando
+    # ACTO MAESTRA33-E7 · MAPEADOR-1 (habitante ya censado del espacio E,
+    # canon/registro-rotulos.tsv). El encargo no se edita para complacer
+    # este test -- A.3 pide el texto verbatim de mesa. Mismo patron que
+    # las demas entradas de esta lista (encargos archivados citando
+    # habitantes ya censados sin el prefijo "MAESTRA33-").
+    "forense/encargos/2026-09-01-MAESTRA33-S1-SORTEO-v3-Y-PROPAGA.md",
 }
 
 
