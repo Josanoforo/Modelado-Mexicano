@@ -7,3 +7,8 @@ P2 · scoreboard-v1_1-AGREGADO.md: lectura por celda + agregado + la frase que r
 P3 · Filas: EVALUACION-OLA6 (FP-220) recibe el insumo; REVISION-CORREDOR-E (FP-221) recibe el conteo de celdas comunes L∩M.
 PERÍMETRO: scoreboard-v1_1-AGREGADO.md, notas, tablero (FP-220/221 insumo + recibo), A.3, cascada. Frase exacta vigente. CONTADOR: primer agregado L-M-R del programa — celdas 0→11, declarado.
 LO QUE NO HACE: no re-emite M, R ni L; no reabre el sorteo; no abre dominios; no activa E.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-E13 · AGREGA-1`, 1/sep/2026, entorno
+**NUBE**, rama `claude/scoreboard-v1-1-agregado-u5m0xo`, **`PR #444`**.
