@@ -1,0 +1,30 @@
+{
+ "archivos_abiertos": [
+  "canon/modelo-decision-v4_0.md  [lectura via emisor (import del modulo)]",
+  "forense/prereg-duelo-v2/candidatos-marco-M-v1_1.tsv  [lectura]",
+  "forense/prereg-duelo-v2/marco-M-sorteado-v1_1.tsv  [lectura]",
+  "milpa/procedencia.yaml  [lectura via emisor (import del modulo)]",
+  "milpa/tramite.yaml  [lectura via emisor.cargar_reglas]"
+ ],
+ "ciego_a_R": "SI -- este acto no abrio forense/prereg-duelo-v2/corridas-R/ ni ninguna columna de valor de R. Archivos abiertos listados en `archivos_abiertos`.",
+ "cita_ola_calibracion": "milpa/tramite.yaml:254 -- ola_calibracion: \"ENIF 2024 (unica ola)\"",
+ "cita_p": "milpa/tramite.yaml:248 -- {conducta: recibe_dinero_familiares_para_vejez, p: 0.457707, clase: \"MEDIDO·p(tasa base ponderada)\"}",
+ "clase": "MEDIDO·p(tasa base ponderada)",
+ "conducta": "recibe_dinero_familiares_para_vejez",
+ "correcciones_aplicadas_por_referencia": "ninguna -- fila tomada de forense/prereg-duelo-v2/marco-M-sorteado-v1_1.tsv sin diferencia contra forense/prereg-duelo-v2/candidatos-marco-M-v1_1.tsv donde esa tabla trae fila con este id (ADR-233 no aplica)",
+ "determinismo": "trivial: emitir_binaria recorre regla.entonces y devuelve la primera coincidencia de `conducta`; pura y determinista sobre milpa/tramite.yaml. Dos invocaciones frescas en este acto dieron salida identica.",
+ "encuesta": "ENIF",
+ "estado_M": "EMITE",
+ "fuente": "ACTO MAESTRA33-E6 · EMISOR-M-1 · P1 · EMITE-M-v1, 1/sep/2026; celda de forense/prereg-duelo-v2/marco-M-sorteado-v1_1.tsv",
+ "grado_DD": "P1 PUNTUA",
+ "id_celda": "FAM-M-01",
+ "invocacion_emisor": "milpa/src/emisor.py:emitir_binaria(regla='familia.apoyo.recibe_dinero_familiares', conducta='recibe_dinero_familiares_para_vejez') -> PrediccionM(tipo_escala='binaria', valor_punto=0.457707, clase='MEDIDO·p(tasa base ponderada)', estado='EMITE')",
+ "ola": "2018",
+ "ola_calibracion": "ENIF 2024 (unica ola)",
+ "p": 0.457707,
+ "ponderador": "NO ESTIMADO EN ESTE ACTO",
+ "razon_grado_DD": "(encuesta,ola) de la celda = (ENIF,2018); ola_calibracion de la conducta 'recibe_dinero_familiares_para_vejez' de familia.apoyo.recibe_dinero_familiares = ENIF 2024 (unica ola). NO coinciden (transferencia de ola) -> validacion externa: P1, puntua (F-DD, ADR-237).",
+ "regla": "familia.apoyo.recibe_dinero_familiares",
+ "valor_punto": 0.457707,
+ "variable": "P9_9_4"
+}
