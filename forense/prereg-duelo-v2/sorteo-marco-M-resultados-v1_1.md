@@ -86,5 +86,5 @@ Celdas del marco-M sorteadas en v1.1: `0 → 11`. El sorteo v1.0 (2 celdas, iden
 
 ### Lo que este acto NO hace
 
-No emite puntos M (eso es `EMISOR-M-1`/`tools/emite_m.py`, sucesor declarado, gated a este sorteo), no abre `corridas-R/` (CIEGO, mismo criterio que `arbitra.md`), no calcula R ni L, no decide grado_dependencia, no edita `sorteo_v2.py`/`sorteo_marco_m.py`, no re-sortea.
+No emite puntos M (eso es `EMISOR-M-1`/`tools/emite_m.py`, sucesor declarado, gated a este sorteo), no abre `corridas-R/` (CIEGO, mismo criterio que `.claude/commands/arbitra.md`), no calcula R ni L, no decide grado_dependencia, no edita `sorteo_v2.py`/`sorteo_marco_m.py`, no re-sortea.
 
