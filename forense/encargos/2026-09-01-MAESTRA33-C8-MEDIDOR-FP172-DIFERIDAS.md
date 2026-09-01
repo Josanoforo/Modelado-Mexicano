@@ -7,3 +7,19 @@ P2 · COMMIT-2: estimación + IC95 seed 42 + n; escribe a milpa/procedencia.yaml
 P3 · Cierra FP-217 con lo medido y deja explícito lo que quedó fuera del lote (nombres), como sucesor C8-b con fecha propuesta.
 PERÍMETRO: milpa/procedencia.yaml, tools/ (script), notas, tablero (FP-217 + recibo), A.3, cascada. Frase exacta vigente. CONTADOR: θ medidas +N, declarado.
 LO QUE NO HACE: no carga reglas; no toca el marco-M ni el duelo.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-C8 · MEDIDOR-FP172-DIFERIDAS` (1/sep/2026,
+`ADR-260`). Comando `tools/deriva_diferidas_fp172.py` derivó la cola de
+`FP-172(i)` y encontró que está VACÍA: 40 de 42 `EXISTE-SATISFACE` de
+`data/cruce-inverso-v1_1.tsv` ya tienen medición real en
+`milpa/procedencia.yaml` (actos previos no coordinados con esta cola);
+las 2 restantes (`AP7_1` colisión de mnemónico, `P4_10`
+`SUBDETERMINADA-PERSISTENTE`) no son promovibles. `P1` se ejecutó (la
+derivación, con 0 candidatas elegibles en vez de 4). `P2` no corrió — 0
+celdas, 0 microdato abierto. `P3` se ejecutó: `FP-217`
+`ABIERTA`→`FIRMADA`, **CONTADOR: θ medidas +0**, declarado; sucesor
+`C8-b` propuesto (vence `2026-09-14`) para que mesa decida sobre las dos
+excepciones. Detalle: `forense/notas/2026-09-01-c8-medidor-fp172-cierre.md`.
+PR: (ver push de este acto).
