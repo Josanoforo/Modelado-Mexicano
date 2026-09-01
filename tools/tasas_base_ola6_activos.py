@@ -22,7 +22,7 @@ el `random.Random(42)` de la casa; con 6 olas x 10k replicas el generador de
 la biblioteca estandar no termina en la corrida unica del acto.
 
 Este script solo IMPRIME. Quien ejecuta el acto pega el resultado en
-`milpa/tramite-ola6-propuesta-v0.yaml`, igual que pidio el precedente.
+`milpa/tramite-ola5-propuesta-v0.yaml`, igual que pidio el precedente.
 
 Uso:
     python3 tools/tasas_base_ola6_activos.py [--regla 1|2]
