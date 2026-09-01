@@ -91,7 +91,7 @@ nuevos no produciría más información que la ya vigente).
 Por transparencia, estado real (no tocado por este acto) de las 6 filas
 `fp190-1`..`fp190-6` de `data/cola-adquisicion-v1_0.tsv` (líneas 75-80),
 trabajadas el mismo día por `ACTO MAESTRA33-A3 · ADQUIERE-2-RUTAS-MULTIPLES`
-a partir de `forense/notas/2026-09-01-mapeo-fp190.md` (E7):
+a partir de `forense/notas/2026-09-01-mapeo-fp190.md` (`MAESTRA33-E7`):
 
 | fila | necesidad | estado | por qué no es "payload nuevo" |
 |---|---|---|---|
