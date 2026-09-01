@@ -93,6 +93,22 @@ ya fusionado), sin comentar en GitHub. Es la prueba de que la lista
 atrapa lo que dirección atrapó hoy a mano — y, donde no lo atrapa, la
 nota lo dice, que es la mitad útil de una calibración.
 
+**Saldo, 1/sep/2026.** Los 6 `BLOQUEA` que esa calibración encontró sobre
+`PR #414` quedan corregidos por `ACTO MAESTRA33-A2 · CORRIGE-A1`
+(`forense/encargos/2026-08-31-MAESTRA33-A2-CORRIGE-A1.md`, `ADR-247`
+candidato), bajo firma de mesa que cita `FP-211` verbatim: *"corrige A1
+según el revisor"*. Los cinco arreglables con una línea (perímetro de
+`hallazgos.md` declarado, desglose `43/2` corregido en el `## CONSUMIDO`
+de A1, `ADR-241`→`ADR-242` en `.claude/commands/adquiere.md:8`, la quinta
+cola absorbida) y el sexto — la fila `WVS`, que exigía re-correr `A.8`
+contra el universo correcto — quedan resueltos en `data/cola-adquisicion-v1_0.tsv`
+(`WVS` pasa a `OBTENIDO` con sus seis `ids_manifiesto`). Lo que **no**
+queda resuelto, porque no era de `A2` decidirlo: las tres preguntas de
+mesa que `FP-211` seguía teniendo abiertas al firmar (§0 arriba, activar
+la rutina por evento; qué hacer con los hallazgos ya corregidos; si
+ajustar los dos pesos bajo sospecha del punto 3/punto 4) — ésas siguen
+sin decidir.
+
 ### Lo que este acto NO cableó, y por qué se dice aquí
 
 La tabla de falsadores del pie del digesto (`ADR-243`) lista **cinco**
