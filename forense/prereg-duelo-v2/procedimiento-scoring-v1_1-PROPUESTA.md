@@ -30,7 +30,7 @@ No hay ruta causal por la que el resultado de `M` contra `R` pudiera haber
 influido un número fijado antes de que ese resultado se calculara. Mismo
 principio para `nivel_ic=0.95`/`seed=42`: sellados por `FP-168` el
 30/ago/2026 (`ACTO MAESTRA32-E9 · PROPAGA-2`), también antes de la corrida
-de `E8`.
+de `MAESTRA33-E8`.
 
 El cargador que produciría, si mesa firma, la entrada `v1_1` de
 `tools/score_marco_m.py` con `delta=0.5` ya poblado está adjunto en
@@ -265,7 +265,7 @@ que cambie.
 `forense/prereg-duelo-v2/corridas-R/_corredor-B.json` (verificación
 empírica, 0 de 0 celdas marco-M) · `milpa/milpa-whitepaper-v0_1.md:212-217`
 (§10, asimetría declarada, `ADR-237`) · `tools/score_marco_m.py:152-154`
-(`mediciones: {}`, ya sellado por `E8`, no tocado aquí).
+(`mediciones: {}`, ya sellado por `MAESTRA33-E8`, no tocado aquí).
 
 ---
 
