@@ -1,0 +1,10 @@
+{
+  "id_celda": "CIV-M-01",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "**Estimación: no la conozco con precisión. Doy una estimación de baja confianza, marcada como tal.**\n\n**Punto:** ~22 % (rango subjetivo amplio: 15–35 %)\n\n**Qué estoy suponiendo (y es la principal fuente de error):** que el reactivo agrega, dentro del módulo de *razones de no denuncia* de ENVIPE 2012 (año de referencia 2011), las categorías «desconfianza en la autoridad» y «miedo al agresor». De memoria, en esa ola la desconfianza en la autoridad ronda ~18–20 % y el miedo al agresor ~4–6 % de los delitos no denunciados, de ahí el ~22 %.\n\n**Advertencias que pesan más que la cifra:**\n\n1. **El nombre del reactivo es ambiguo.** «denuncia_con_miedo_o_desconfianza» se lee literalmente como *denunció a pesar de miedo/desconfianza*, no como *no denunció por miedo/desconfianza*. Si es lo primero, mi número es inaplicable y la respuesta correcta es «no estimado».\n2. **El denominador no está fijado.** ENVIPE reporta estas razones sobre *delitos no denunciados*, no sobre delitos totales ni sobre víctimas. Cambiar el denominador mueve la cifra por un factor grande (la cifra negra de esa ola es ~91–92 %).\n3. **La agregación miedo + desconfianza no es una categoría nativa** de la tabulación oficial; es una construcción, y sumar categorías de una pregunta de *razón principal* vs. *respuesta múltiple* da resultados distintos.\n\n**Fuente:** memoria de tabulados de ENVIPE 2012 / boletín INEGI. **No tengo acceso a ningún documento de este proyecto** ni a un cuestionario o FD que verifique la existencia ni el fraseo del reactivo.\n\n**Sonda canario (M1):** no puedo declarar fuente textual. No estoy citando un texto que tenga a la vista; estoy citando recuerdo no verificado. Cualquier cifra que dé aquí **no** debe registrarse como EXISTE-SATISFACE ni como valor verificado — a lo sumo como conjetura previa a un censo de existencia contra el inventario de reactivos.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T20:32:15.338811+00:00",
+  "modelo_real": null
+}

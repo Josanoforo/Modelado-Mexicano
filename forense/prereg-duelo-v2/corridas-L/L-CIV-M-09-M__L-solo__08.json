@@ -1,0 +1,10 @@
+{
+  "id_celda": "CIV-M-09",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "**No tengo el dato con certeza para este reactivo tal como está nombrado.** Lo digo explícitamente antes de dar cualquier número.\n\n**Problema de identificación del reactivo.** `denuncia_con_miedo_o_desconfianza` no corresponde a un indicador estándar publicado de ENVIPE con ese nombre. La lectura literal (\"denunció *con* miedo o desconfianza\") no existe como reactivo en el cuestionario; lo que ENVIPE sí capta es lo contrario: entre quienes **no** denunciaron, el motivo declarado (módulo de victimización, batería de \"razones por las que no denunció\"), con opciones que incluyen *miedo al agresor* y *desconfianza en la autoridad*. Si la variable es una recodificación binaria de esa batería, el universo no son todos los delitos sino los **no denunciados**, y el binario sería \"el motivo fue miedo y/o desconfianza (sí/no)\".\n\n**Estimación puntual, bajo esa lectura y con baja confianza:**\n\n- ≈ **0.25** (25% de los delitos no denunciados tienen como motivo principal miedo al agresor o desconfianza en la autoridad).\n- Componentes de memoria, ENVIPE 2020 (delitos de 2019): *desconfianza en la autoridad* ≈ 15–17%; *miedo al agresor* ≈ 8–9%. La suma es sensible a si el reactivo es de respuesta única o múltiple.\n\n**Si la lectura fuera sobre el total de delitos** (no solo los no denunciados), el número cae a ≈ **0.23** también, porque la cifra negra es ~93%, así que el denominador casi no cambia — pero esto depende de si \"denuncia_\" en el nombre invierte el sentido, en cuyo caso la estimación no aplica.\n\n**Fuente (sonda canario).** No tengo fuente textual declarada. No consulté ningún documento, ni el cuestionario, ni el FD, ni la tabulación de INEGI. Los porcentajes anteriores provienen de **memoria paramétrica no verificada** de los \"Principales Resultados\" de ENVIPE 2020; los dígitos son inestables y no deben tratarse como cita. Cualquier uso posterior debe re-derivarse contra el microdato o el tabulado publicado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T20:56:09.270643+00:00",
+  "modelo_real": null
+}

@@ -1,0 +1,10 @@
+{
+  "id_celda": "TRA-M-07",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "## Estimación\n\n**Punto:** ≈ **14 %** de la población de 18+ que tuvo contacto con algún servidor público / realizó un trámite reporta haber pagado una mordida (soborno) en el año de referencia.\n\n**Banda subjetiva (proporción, aunque la escala del reactivo sea binaria):** ~11 % – 18 %.\n\n## Base y advertencias\n\n- **Fuente declarada:** memoria de las cifras públicas del INEGI para ENCIG (comunicados/tabulados de las olas 2017, 2019 y 2021), **no** un documento de este proyecto ni el microdato. No tengo acceso a ningún adjunto, ni re-derivé universo ni *n*.\n- El número que recuerdo como oficial para **ENCIG 2021** es una *tasa de prevalencia de corrupción* del orden de **≈14,700 víctimas por cada 100,000 habitantes** que tuvieron contacto con autoridades (≈14.7 %), frente a ≈15,700 por 100,000 en 2019. Tengo **confianza media, no alta**, en el dígito exacto; la magnitud (14–16 %) la sostengo con más firmeza que el valor puntual.\n\n## Lo que explícitamente no sé\n\n1. **A qué denominador corresponde `paga_mordida` en esta especificación.** Las tres lecturas dan cifras muy distintas y no puedo elegir entre ellas sin el diccionario:\n   - sobre **usuarios de trámites / con contacto con servidor público** → ≈14 % (mi estimación arriba);\n   - sobre **toda la población de 18+** (incluyendo a quien no hizo trámite) → bajaría a un orden de **6–9 %**;\n   - sobre **trámites específicos de alto riesgo** (contacto con autoridad de seguridad pública, p. ej.) → sube a **45–55 %**.\n2. Si el reactivo mide **pago propio** o **pago por el hogar / conocido**, y si la ventana es **12 meses** o **el trámite específico**. Ambas cosas mueven el punto varios puntos porcentuales.\n\n**Recomendación:** tratar el 14 % como estimación condicionada al denominador «tuvo contacto con servidor público», y marcarla como *no verificada contra microdato* hasta cruzar con el diccionario de ENCIG 2021.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T21:46:36.672941+00:00",
+  "modelo_real": null
+}

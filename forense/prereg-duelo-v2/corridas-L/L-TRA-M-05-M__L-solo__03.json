@@ -1,0 +1,10 @@
+{
+  "id_celda": "TRA-M-05",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "## Estimación\n\n**Punto:** ≈ **15 %** de la población de 18 años y más (equivalente a la forma en que INEGI reporta la cifra: ~14,600 víctimas de corrupción por cada 100,000 habitantes).\n\n**Intervalo subjetivo (aunque la escala sea binaria, doy incertidumbre sobre la proporción poblacional):** **12 % – 18 %**, con la masa de mi creencia entre 14 % y 16 %.\n\n## Advertencia definicional (es la que domina el error, no el muestreo)\n\nLa cifra depende críticamente de cómo esté operacionalizado `paga_mordida`:\n\n| Lectura del reactivo | Estimación |\n|---|---|\n| Adulto que **tuvo contacto con autoridad y experimentó al menos un acto de corrupción** (prevalencia estándar ENCIG, denominador = toda la población 18+) | **~15 %** |\n| Adulto que **realizó algún trámite** y en él hubo corrupción (denominador = usuarios de trámites) | **~25 – 30 %** |\n| Trámite específico de **contacto con autoridades de seguridad pública** | **~55 – 60 %** |\n\nSi el reactivo del inventario es un ítem dicotómico de \"¿le pidieron / dio dinero, regalo o favor?\" referido a un trámite concreto, la cifra correcta es la segunda o tercera fila, no la primera. Sin acceso al diccionario de la variable no puedo desambiguar.\n\n## Fuente declarada (sonda canario)\n\n**No tengo documento adjunto ni microdato a la vista.** La estimación proviene de **memoria paramétrica** de los comunicados y tabulados de INEGI sobre la **ENCIG 2017** (serie de \"tasa de prevalencia de corrupción por cada 100,000 habitantes\"), donde recuerdo la secuencia aproximada 2013 ≈ 12,600 → 2015 ≈ 12,600 → **2017 ≈ 14,600** → 2019 ≈ 15,700. \n\nGrado de confianza en la cita: **medio-alto para 2017 (~14.6 mil), bajo para los valores de 2013/2015**, que podría estar confundiendo entre sí. No he verificado ninguno contra fuente en este acto y **no debe sellarse como cifra reproducida** — sólo como estimación previa a contrastar contra el tabulado oficial o el microdato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T21:37:40.562810+00:00",
+  "modelo_real": null
+}

@@ -1,0 +1,10 @@
+{
+  "id_celda": "CIV-M-13",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**No tengo el dato y no voy a inventar una cifra puntual para este reactivo.**\n\n**Por qué (y qué sí puedo decir):**\n\n1. **El acto no pide estimación.** El universo declarado es \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos\". Bajo esa regla de columnas, la salida correcta es una constatación de existencia/no-existencia del reactivo en el instrumento, no un punto ni un IC. Emitir un número aquí sería re-derivación fuera de mandato.\n\n2. **El rótulo `denuncia_con_miedo_o_desconfianza` no corresponde a un reactivo único de ENVIPE 2024 que yo pueda identificar.** Es un nombre de variable derivada/compuesta. En el cuestionario de ENVIPE, \"miedo al agresor\" y \"desconfianza en la autoridad\" son **opciones distintas** dentro de la batería de *motivos de no denuncia* (módulo de delitos, sección de denuncia), clasificadas además en dos grupos separados del informe (causas atribuibles a la autoridad vs. a otras circunstancias). Una binaria que los una es una construcción del proyecto, no un reactivo de origen; su valor depende de decisiones de recodificación que no tengo a la vista.\n\n3. **Además, la escala declarada es binaria**, por lo que no procede intervalo de confianza subjetivo bajo la instrucción dada.\n\n**Sonda canario — fuente textual declarada:** ninguna. No tengo acceso a documento adjunto de este proyecto, ni al cuestionario, FD, catálogo de variables o microdato de ENVIPE 2024 en esta sesión. Lo anterior sobre la estructura de la batería de motivos de no denuncia proviene de mi conocimiento general de ediciones previas de ENVIPE (INEGI), **no verificado contra la ola 2024**, y no debe tratarse como cita.\n\n**Lo que haría falta para cerrar el censo de existencia:** el cuestionario/FD de ENVIPE 2024 para confirmar (a) que ambas opciones existen en la ola 2024 con sus claves, y (b) la regla de colapso a binaria que el proyecto asume.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T21:15:39.737745+00:00",
+  "modelo_real": null
+}

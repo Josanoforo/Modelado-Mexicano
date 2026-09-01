@@ -1,0 +1,10 @@
+{
+  "id_celda": "TRA-M-03",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "## Estimación\n\n**Punto: ~12 % (0.12)** de la población de 18+ años que declara haber pagado una mordida / dádiva a un servidor público en el año de referencia.\n\nIntervalo subjetivo (aunque la escala sea binaria, sobre la proporción poblacional): **10 % – 15 %**, con confianza baja-media.\n\n## Advertencia sobre el denominador (crítica aquí)\n\nLa cifra depende por completo de cómo esté construido el reactivo `paga_mordida`:\n\n| Universo | Estimación |\n|---|---|\n| Toda la población 18+ (prevalencia de víctimas de corrupción) | **~12 %** (≈12,000 por cada 100,000 habitantes) |\n| Solo quienes tuvieron **contacto con un servidor público / realizaron un trámite** | **~28 %** (rango 22–33 %) |\n| Por **trámite** (incidencia, no prevalencia) | no es una binaria de persona; se reporta como actos por cada 100 mil |\n\nSi el reactivo es de tipo «¿en este trámite le pidieron o entregó usted dinero, regalo o favor?» aplicado condicionalmente, la binaria correcta es la segunda fila, no la primera.\n\n## Fuente\n\n**No tengo fuente documental verificada en este acto.** Mi número proviene de recuerdo del reporte de resultados de la ENCIG 2013 (INEGI), donde la *tasa de prevalencia de corrupción* se publicó del orden de 12,000–12,600 víctimas por cada 100,000 habitantes de 18+. No he leído el cuestionario ni el descriptor de archivos de ENCIG 2013 en esta sesión, y **no puedo confirmar que exista una variable con ese nombre ni cuál es su universo de aplicación**. El nombre `paga_mordida` parece un alias del proyecto, no un identificador nativo del microdato (los reactivos de ENCIG usan claves tipo `P#_#`).\n\n**Sonda canario — declaración explícita:** la fuente es *memoria del modelo*, no un documento consultado. La cifra puntual de 12 % debe tratarse como no verificada hasta que se abra el cuestionario o el tabulado oficial de ENCIG 2013; el dígito exacto (12.0 vs 12.6 vs 10.8) no lo sostengo.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T21:32:05.007122+00:00",
+  "modelo_real": null
+}
