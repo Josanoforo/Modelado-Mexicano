@@ -2374,6 +2374,19 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA33-E15 · CORREDOR-E-PROPUESTA, 1/sep/2026: encargo
+    # archivado VERBATIM (A.3). El encargo cita su propia COMPUERTA como
+    # "E13 fusionado" y el A.8 cita "criterio de activacion (E11)" y
+    # "spec derivada mecanicamente como la de L (E9)" -- "E13"/"E11"/"E9"
+    # pelados colisionan con los habitantes ya censados MAESTRA32-E13,
+    # MAESTRA33-E11 y MAESTRA33-E9. El encargo NO se edita, porque A.3
+    # pide el texto de direccion verbatim; MAESTRA33-E15 se declara con
+    # prefijo completo en todo archivo que este acto escribe.
+    "forense/encargos/2026-09-01-MAESTRA33-E15-CORREDOR-E-PROPUESTA.md",
+    # forense/notas/2026-09-01-maestra33-e15-corredor-e-propuesta-cierre.md
+    # -- nota de cierre del mismo acto, cita dos veces el habitante ya
+    # censado MAESTRA32-E13 al verificar la COMPUERTA ("E13" pelado).
+    "forense/notas/2026-09-01-maestra33-e15-corredor-e-propuesta-cierre.md",
     # ACTO MAESTRA33-E14 · EVALUACION-OLA6, 1/sep/2026: el encargo (A.3,
     # verbatim) y su nota de cierre citan la COMPUERTA "E13 fusionado" --
     # "E13" pelado colisiona con el habitante ya archivado MAESTRA32-E13
