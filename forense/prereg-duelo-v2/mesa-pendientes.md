@@ -62,6 +62,12 @@ El careo nombra el corredor E como "combinación mecánica L⊕M pre-registrada,
 
 ---
 
+## §4 · Recibo — `L-spec-v1_1.json` sellada, paquete `L` v1_1 listo para mesa
+
+**`ACTO MAESTRA33-E9 · L-SPEC-v1_1`, 1/sep/2026, SHA `a71c9ea`.** No es pregunta abierta — es recibo: `forense/prereg-duelo-v2/L-spec-v1_1.json` (+ `.sha256`) queda sellado con la pregunta `L` de las 11 celdas de `marco-M-sorteado-v1_1.tsv` (`elegible_v1_1 = SI`), derivada mecánicamente de `conducta`/`universo`/`encuesta`/`ola`/`escala`. `forense/prereg-duelo-v2/PAQUETE-L-v1_1.md` trae el comando exacto para que mesa lo corra en sesión limpia fuera del proyecto. Este acto no corrió ninguna celda — cero llamadas al modelo. Cuando mesa corra el paquete y el PR `[L] corridas v1_1` se fusione, esta entrada se marca `EJECUTADA` aquí con el número de PR.
+
+---
+
 ## Cómo cerrar este archivo
 
 Cuando mesa resuelva cualquiera de §1, §2 o §3, la resolución se agrega aquí como una nueva sección fechada con la cita de la firma/ADR que la sella, y el archivo correspondiente (`escala-cinco-casillas-piloto-v1_0.md` para §1/§2, `corredor-E-combinacion-LM.py` para §3) se actualiza para reflejar el sello. Ninguna sección de este archivo se borra al resolverse — se marca RESUELTA con su fecha, seg el patrón de `firmas-pendientes.tsv`.
