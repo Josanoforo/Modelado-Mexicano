@@ -19,7 +19,7 @@ Este acto no re-emite `M`, `R` ni `L`; no reabre el sorteo; no abre
 dominios; no activa `E` por sí solo; no edita las 176 capturas de
 `corridas-L/`; no toca `procedimiento-scoring-v1_1.md` (sellado).
 
-## 0 · Qué cambió respecto a `-AGREGADO.md`
+## 0 · Qué cambió respecto a `scoreboard-v1_1-AGREGADO.md`
 
 `tools/extrae_l_v1_1.py` (P2) aplicó la regla congelada de P1 a las 176
 capturas reales: **171 de 176 EXTRAIBLE, 5 NO-EXTRAIBLE** (L-solo 3/88,
@@ -31,7 +31,7 @@ no-nulo — deja de dar `NO-DISPONIBLE` en las 22 combinaciones
 
 **CONTADOR — celdas pareadas L-vs-M: 0 → 11.** (universo pareado de la
 comparación principal `L_SOLO_vs_M`; las 11 celdas del universo tienen
-ahora `z_M` y `z_L_solo` simultáneos, frente a 0 en `-AGREGADO.md`).
+ahora `z_M` y `z_L_solo` simultáneos, frente a 0 en `scoreboard-v1_1-AGREGADO.md`).
 
 ## 1 · Por celda (11 celdas, universo `marco-M-sorteado-v1_1.tsv`)
 
@@ -67,7 +67,7 @@ fuera de banda pero de signo contrario y de magnitud mucho menor).
 - Proporción dentro de banda: **0.0** (IC 95%: **[0.0, 0.0]**).
 - Mediana de `|z_L_corpus|`: **31.39** (IC 95%: **[18.50, 50.74]**).
 
-**`M`** — `n_celdas = 11` (sin cambio respecto a `-AGREGADO.md`).
+**`M`** — `n_celdas = 11` (sin cambio respecto a `scoreboard-v1_1-AGREGADO.md`).
 - Proporción dentro de banda: **0.0** (IC 95%: **[0.0, 0.0]**).
 - Mediana de `|z_M|`: **16.84** (IC 95%: **[14.60, 202.54]**).
 
@@ -93,7 +93,7 @@ concluyente con `n=11`.
 
 ## 4 · `VERIFICACION-NO-PUNTUA` (F-DD) y `TRA-M-02` — sin cambio
 
-Igual que `-AGREGADO.md` §3-4: `0` de 11 celdas bajo F-DD;
+Igual que `scoreboard-v1_1-AGREGADO.md` §3-4: `0` de 11 celdas bajo F-DD;
 `TRA-M-02` (informativo, FP-213) fuera del universo y del pareado, sin `R`
 disponible.
 
