@@ -10,4 +10,4 @@ LO QUE NO HACE: no corre L; no edita pipeline-L-adv1-m2.py, carga_l_v1_1.py ni L
 
 ## CONSUMIDO
 
-Ejecutado por `ACTO MAESTRA33-E17 · L-ENMIENDA-CLI`, rama `claude/l-enmienda-cli-no-api-qhlj0a`. PR abierto contra `main` — número pendiente de registrar aquí tras `git push` (esta misma sección se actualiza con el número real, sin reabrir el resto del archivo). Detalle: `forense/notas/2026-09-02-maestra33-e17-l-enmienda-cli-cierre.md`.
+Ejecutado por `ACTO MAESTRA33-E17 · L-ENMIENDA-CLI`, rama `claude/l-enmienda-cli-no-api-qhlj0a`, `PR #438` contra `main`. Detalle: `forense/notas/2026-09-02-maestra33-e17-l-enmienda-cli-cierre.md`.
