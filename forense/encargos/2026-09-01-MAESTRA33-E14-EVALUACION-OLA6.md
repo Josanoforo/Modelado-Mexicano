@@ -15,7 +15,11 @@ Ejecutado por `ACTO MAESTRA33-E14 · EVALUACION-OLA6`, 1/sep/2026, entorno
 **`PR #439`** (https://github.com/Josanoforo/Modelado-Mexicano/pull/439).
 Commits: `3a397ef` (0-bis A.3, este archivo) · `d4083f7` (P1/P2/P3: tabla
 dominio×criterio, ranking, `FP-220` resuelta) · `6dab037` (cascada:
-`ADR-264`, recifrado `L0`, `registro-rotulos.tsv`, `T25`).
+`ADR-264` candidato, recifrado `L0`, `registro-rotulos.tsv`, `T25`) ·
+`f19786e` (merge de `origin/main`, `PR #438`/`ACTO MAESTRA33-E17` fusionó
+primero y tomó `ADR-264` — renumerado a **`ADR-265`**, contiguo, sin
+hueco; conflicto solo en las tres tablas de cascada, resuelto conservando
+ambas inserciones en orden de fusión).
 
 `COMPUERTA: E13 fusionado (existe el agregado con L)` — **CUMPLE** por
 existencia del documento (`PR #403`, verificado por
