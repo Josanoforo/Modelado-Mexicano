@@ -23,6 +23,8 @@ rama `claude/maestra33-e18-mapeo-activos-ts2huk`. P0:
 `forense/notas/2026-09-01-MAESTRA33-E18-P1-reglas-activos-sin-p.md`. P2:
 `forense/notas/2026-09-01-MAESTRA33-E18-P2-mapeo-tabla.md`. P3:
 `forense/encargos/2026-09-01-MAESTRA33-E18-P3-REGLAS-OLA6-ACTIVOS-L1.md`.
-Cascada: `canon/gobernanza-v1_15.md` ADR-269, `canon/estado-programa-v1_10.md`
-L0, `canon/registro-rotulos.tsv`, `tests/check.py::_T25_ARCHIVOS_CONOCIDOS`.
+Cascada: `canon/gobernanza-v1_15.md` ADR-270 (renumerado de `ADR-269`
+candidato tras choque con `ACTO MAESTRA33-E13 · AGREGA-1`/`PR #444`, que
+fusionó primero y tomó el `269`), `canon/estado-programa-v1_10.md` L0,
+`canon/registro-rotulos.tsv`, `tests/check.py::_T25_ARCHIVOS_CONOCIDOS`.
 PR: ver el PR abierto contra `main` desde esta rama.
