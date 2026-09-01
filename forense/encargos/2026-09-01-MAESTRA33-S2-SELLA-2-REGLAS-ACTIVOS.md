@@ -35,3 +35,17 @@ La compuerta del Mensaje 2, leída por letra ("al menos un PR REGLAS-ACTIVOS-L<n
 ## LO QUE NO HACE
 
 No abre ningún dominio de Ola 6 (`E14`/`ADR-265` sigue vigente, sin tocar). No mide ninguna `p`. No edita `milpa/tramite.yaml` ni `milpa/tramite-ola5-propuesta-v0.yaml`. No toca `FP-219` (ya cerrada por `E13`).
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-S2 · SELLA-2-REGLAS-ACTIVOS`, 1/sep/2026,
+entorno **NUBE** (`cloud_default`), rama `claude/sella-2-reglas-ola6-njlk89`,
+**`PR #445`** (https://github.com/Josanoforo/Modelado-Mexicano/pull/445).
+Commits: `e3b987a` (0-bis A.3, este archivo) · `6ae82c1` (P1 sin insumo
+declarado, P2: `FP-179` ENMIENDA FECHADA 5/6, `FP-223`/`C8-b` FIRMADA) ·
+`7a6c2ee` (cascada: `ADR-271` candidato, `L0`/cabecera recifrados,
+`registro-rotulos.tsv`, `T25`/`T15`, `tests/check.py --baseline` VERDE).
+`ADR-271` candidato — se renumera si otro acto fusiona primero y toma este
+número. PR abierto contra `main`, no fusionado por este acto — el merge es
+de mesa. Detalle:
+`forense/notas/2026-09-01-maestra33-s2-sella-2-reglas-activos-cierre.md`.
