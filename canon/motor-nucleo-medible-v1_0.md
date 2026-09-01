@@ -122,3 +122,87 @@ la misma distinción que separa "dominio activo" (una propiedad del
 conocimiento medido en el árbol) de "regla cargada sin `ASIGNADO`" (una
 propiedad del archivo que el motor ejecuta hoy) — y es exactamente lo que
 F-ALCANCE, §1, nombra al decir que ningún dominio se activa por prosa.
+
+---
+
+## 3 · Criterios de apertura (Ola 6) y de activación (corredor E) —
+## enmienda fechada, 1/sep/2026
+
+`ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS`, firmas de mesa 9 y 10
+(verbatim, 1/sep/2026). **No sustituye ni relaja F-ALCANCE (§1) ni la
+puerta de activación general que ahí queda sellada** — "ningún dominio
+se activa por prosa: se activa por regla + desenlace sellado + `p`
+medida" sigue vigente sin cambio. Esta sección da los criterios
+*específicos*, ausentes hasta hoy (`A.8` de este acto, contra
+`c7fa424`: `NO-ENCONTRADO` en este documento), para dos preguntas que
+F-ALCANCE no cubre por diseño: cuándo un dominio de Ola 6 cruza la
+puerta, y cuándo el corredor `E` (`L⊕M`, `ADR-141`) se considera
+utilizable. Ninguno de los dos criterios se evalúa como cumplido por
+este acto — ambos quedan abiertos, con su primera revisión fechada (ver
+`forense/firmas-pendientes.tsv` `FP-220`/`FP-221`). `LO QUE NO HACE` del
+encargo aplica sin excepción: este acto no abre ningún dominio de Ola 6,
+no activa el corredor `E`.
+
+### 3.a · Apertura de dominio, Ola 6
+
+Firma de mesa, verbatim: **«9. Si pero dejando claro cuando se abren o
+bajo qué criterios se abren».**
+
+Un dominio candidato de Ola 6 — la ronda siguiente a Ola 5
+(`milpa/tramite-ola5-propuesta-v0.yaml`), sobre dominios de
+`canon/modelo-decision-v4_0.md` que Ola 5 no tocó y que hoy siguen sin
+ninguna regla con desenlace sellado — **se abre**, pasa a `ACTIVO` bajo
+el sentido de F-ALCANCE §1, cuando se cumplen, las tres a la vez:
+
+1. **Scoreboard agregado con `L` sobre los 4 activos.** Existe un
+   agregado publicado (`scoreboard-v1_1.md` o su sucesor) con puntos de
+   `L` — no solo `M`/`R` — sobre los cuatro dominios ya `ACTIVO`
+   (trámite; y los que Ola 6 mismo vaya activando, una vez abiertos)
+   simultáneamente. Antes de que `L` tenga al menos un agregado
+   publicado, ningún candidato de Ola 6 puede evaluarse contra este
+   criterio — es lógicamente imposible que se cumpla.
+2. **≥2 encuestas en corpus, ≥3 reglas candidatas `EXISTE-SATISFACE`.**
+   El candidato (dominio o celda) tiene al menos dos encuestas
+   distintas ya en el corpus (`data/manifiesto.yaml`/inventarios) que lo
+   cubren, y `/mapea` (`.claude/commands/mapea.md`, `ADR-247`) produjo
+   al menos tres reglas candidatas con veredicto `EXISTE-SATISFACE` —
+   no `EXISTE-NO-SATISFACE` ni `NO-ENCONTRADO` — para ese candidato.
+3. **Caja libre.** El entorno `CAJA`/Ubuntu que abre el microdato para
+   verificar (2) está disponible — sin esto, (2) no se puede confirmar
+   por comando, solo declarar.
+
+**Primera evaluación:** al primer agregado que satisfaga (1), o el
+15/sep/2026, lo que ocurra primero (firma 9). Recibo:
+`forense/firmas-pendientes.tsv` `FP-220`
+(`EVALUACION-OLA6`, dirección, `vence: 2026-09-15`).
+
+### 3.b · Activación del corredor E
+
+Firma de mesa, verbatim: **«10. Banca, pero deja claro los criterios de
+avance».** ("Banca" = queda en la banca — definido pero no activo
+todavía — hasta que los criterios se satisfagan; no es un sello de
+activación inmediata.)
+
+El corredor `E` (`E = mediana_por_cuantil({L-solo, L+corpus, M})`,
+definición sellada `ADR-141`, `forense/prereg-duelo-v2/corredor-E-
+combinacion-LM.py`) **se activa** — se considera utilizable para
+reportar, no solo definido — cuando se cumplen, las dos a la vez:
+
+1. **`L` y `M` con puntos en ≥8 celdas comunes.** Existen puntos de
+   ambos corredores, `L` y `M`, sobre el mismo conjunto de al menos 8
+   celdas del marco-M (`marco-M-sorteado-v1_1.tsv`) — la mediana de
+   `E` no está bien definida con menos de tres componentes por celda
+   (`L-solo`, `L+corpus`, `M`; razón ya citada en la cabecera de
+   `corredor-E-combinacion-LM.py`) y con menos de 8 celdas comunes el
+   agregado por corredor de `procedimiento-scoring-v1_1-PROPUESTA.md`
+   no tiene base suficiente para leerse.
+2. **Scoring v1_1 sellado.** `procedimiento-scoring-v1_1-PROPUESTA.md`
+   (`ACTO MAESTRA33-E10`, `mesa-pendientes.md` §5) tiene la firma de
+   mesa que lo sella — sin eso, "puntos" de `L`/`M` en unidades
+   comparables (`z = dif/EE(R)`) no existen todavía como agregado
+   oficial.
+
+**Revisión:** al publicarse el agregado que satisfaga (1) con (2) ya
+sellado, o el 30/sep/2026, lo que ocurra primero (firma 10). Recibo:
+`forense/firmas-pendientes.tsv` `FP-221`
+(`REVISION-CORREDOR-E`, dirección, `vence: 2026-09-30`).

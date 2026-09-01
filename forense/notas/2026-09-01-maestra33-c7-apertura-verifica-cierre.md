@@ -56,3 +56,19 @@ Este acto **no reclasifica `(4)`** — `P3` pide dejarla intacta y así se hace;
 ## Lo que este acto NO hace
 
 No repite ninguna búsqueda que `ADR-134` ya corrió (no reabre `data/raw`, no re-busca en ENSAFI/ENFIH). No carga al motor. No abre dominio nuevo. No reclasifica `FP-179(3)` ni `FP-179(4)` — solo cierra `(5)` y declara la discrepancia de fecha sobre `(4)`.
+
+---
+
+## Sincronización post-cierre (1/sep/2026)
+
+Tras abrir `PR #431` y reportar el cierre, `origin/main` avanzó un merge más: `PR #432`, `ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS`. `git fetch origin main` lo reveló al intentar sincronizar antes de un segundo push.
+
+**Colisión de ADR.** `MAESTRA33-E11` fusionó primero y tomó `ADR-258` (el candidato que este acto también había derivado). Regla de la casa: renumera quien fusiona segundo. Este acto pasa a **`ADR-259`**, contiguo, sin hueco — verificado de nuevo por comando (`grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | ... | tail -1` → `258` sobre `origin/main` ya fusionado).
+
+**`MAESTRA33-E11` es la misma firma 6, disparada dos veces sin coordinarse.** Su propio texto (`canon/gobernanza-v1_15.md` `ADR-258`, `forense/notas/2026-09-01-criterios-y-vencimientos-cierre.md`) trae, entre otras siete firmas propagadas: "`FP-179(5)` verificada contra `ADR-134` (`canon/gobernanza-v1_15.md`): **CONFIRMA**" — **mismo veredicto que este acto**, alcanzado de forma independiente, sin que ninguno de los dos actos supiera del otro mientras corría. Dos verificaciones distintas del mismo hecho, mismo resultado — la clase de redundancia que este proyecto trata como corroboración, no como desperdicio.
+
+**`MAESTRA33-E11` ya formalizó la discrepancia de `(4)` que este acto solo declaraba.** Abrió `FP-217` (`C8`, deriva de `FP-179(3)`, vence `2026-09-07`) y `FP-218` (`C9`, deriva de `FP-179(4)`, "declara la tensión con la `CONSUMIDA` ya anotada arriba en vez de resolverla en silencio", vence `2026-09-08`) — exactamente la nota que este acto dejó en su primer cierre, ahora con fila propia del tablero y fecha de vencimiento en vez de un párrafo suelto. Este acto no añade nada nuevo aquí: cede a `FP-217`/`FP-218` como el lugar donde mesa decide.
+
+**Resolución del `git merge origin/main`.** Conflicto en cuatro sitios — `canon/gobernanza-v1_15.md` (auto-merge limpio, sin marcador, porque las dos entradas nuevas caían en regiones no solapadas del archivo), `canon/estado-programa-v1_10.md` (conflicto real: ambos actos tocaron la tabla de artefactos y la línea `L0`), `canon/registro-rotulos.tsv` (conflicto real: ambos actos añadieron una fila al final del archivo), y `forense/firmas-pendientes.tsv` (conflicto real: ambos actos amendaron el mismo campo de la misma fila `FP-179`, en el mismo punto de anclaje textual). Resuelto a mano, conservando las dos inserciones — la de `MAESTRA33-E11` primero (fusionó primero), la de este acto después — nunca sobrescribiendo ni acortando el texto ajeno. Verificado por conteo, no a ojo: columnas por fila (`awk -F'\t' '{print NF}' | sort -u` → un solo valor uniforme en las dos `.tsv`), anotaciones de la línea `L0` (`grep -o` del patrón `*(\`ADR-N\`` → exactamente una nueva, `ADR-259`, sin duplicar `ADR-258`), y una corrección de un defecto propio de reconstrucción: un primer intento de fusión programática del campo `FP-179` dejó un salto de línea suelto dentro del campo (partió la fila en dos líneas físicas del `.tsv`) — detectado porque el conteo de columnas dejó de ser uniforme en todo el archivo, corregido re-uniendo las dos líneas antes de seguir.
+
+`python3 tests/check.py --baseline` re-corrido después de la fusión y de las correcciones: **VERDE**, sin `FAIL` nuevo.
