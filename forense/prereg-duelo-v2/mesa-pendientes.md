@@ -103,6 +103,13 @@ Firmar esta fila **no ejecuta nada**: `tools/score_marco_m.py` y
 propuesta.py`) existe pero no corrió en este acto (perímetro: "el cargador
 (sin ejecutar)"). La firma habilita que un acto sucesor lo corra.
 
+**Vence:** `2026-09-03` (`ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS`,
+firma de mesa 5, verbatim «esa semana, pero ponle fecha no quiero que se
+quede volando»; P3 nombra esta fila `SELLO-SCORING-v1_1` y pide su
+vencimiento aquí mismo, sin abrir una fila nueva del tablero, porque
+`ACTO MAESTRA33-E10` ya abrió esta sección — el registro único es esta
+línea).
+
 **Firma de mesa:** _(pendiente)_
 
 ---

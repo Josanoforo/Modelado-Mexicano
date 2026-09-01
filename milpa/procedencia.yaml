@@ -1365,6 +1365,7 @@ candidatas_theta_citadas_fp190:
   escala: "binaria por catálogo (A-bis 3): dos códigos observados, dirección de la etiqueta pendiente de diccionario de datos -- no se asigna 1=sí sin esa confirmación"
   alterna: "encup2012:P69_4 'Usted es o ha sido miembro de alguna de las siguientes organizaciones... Sindicato' (v1_2:78511) -- no abierta en este acto, solo la cita de la nota de mapeo"
   fuente: [forense/notas/2026-09-01-mapeo-fp190.md, "ACTO MAESTRA33-C4"]
+  uso_en_motor: "ENMIENDA FECHADA (1/sep/2026, ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS, P0): cita sin uso, sin generador -- verificado contra forense/prereg-duelo-v2/cobertura-15-v1_0.tsv:15 (celda TIC-01, dominio propio SI en modelo-decision-v4_0.md:562 [cooperacion.comite.monitoreo_sancion_visible], pero \"sin cita G# en el PORQUE\" -> veredicto EXISTE-NO-SATISFACE, SIN-CITA-G#-EXPLICITA). Ninguna regla de canon/modelo-decision-v4_0.md consume esta theta ni la asocia a un generador; queda como candidata citada, no medición activa."
 - celda: EMP-05
   definicion_celda: "situación conyugal joven (FP-190, texto original)"
   encuesta: ENDIREH
@@ -1377,3 +1378,42 @@ candidatas_theta_citadas_fp190:
   escala: "categórica nominal, 7 valores (A-bis 3); calificador 'joven' es atributo de universo/marco muestral, NO del texto del reactivo -- fuera del alcance de esta búsqueda por diseño, tal como ya lo declaró la nota de mapeo (no inventado aquí)"
   alterna: "eder2017/engasto2012:edo_conyug (parcial, misma frase plegada); encup2012:F '¿Estado Civil?' (sinónimo más genérico, EXISTE-NO-SATISFACE)"
   fuente: [forense/notas/2026-09-01-mapeo-fp190.md, "ACTO MAESTRA33-C4"]
+  uso_en_motor: "ENMIENDA FECHADA (1/sep/2026, ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS, P0): asignada a R5.3 (canon/modelo-decision-v4_0.md:537, regla id familia.union.baja_garantia_institucional, 3ª regla de la sección 3.5 -- generador G5), sin G# explícito, declarado -- la regla misma no cita G# en su cláusula PORQUE ('evita costos ante baja garantía'), verificado leyendo la línea; es la lectura temáticamente más cercana (situación conyugal -> garantía institucional del matrimonio), no una identidad textual ni una medición: EMP-05 sigue sin desenlace sellado, esta nota no lo crea."
+
+# ══════════════════════════════════════════════════════════════════
+# thetas_informativas · ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS ·
+# 1/sep/2026 · firma de mesa 4, verbatim: «4. Dato informativo.»
+#
+# Clase nueva, distinta de las dos que ya existen en este archivo:
+# - `coeficientes_generador_medidos`/`_sellados` exige `gen: G#` -- un
+#   generador que la sostiene como coeficiente condicional.
+# - `candidatas_theta_citadas_fp190` es CITA sin medir (P2 de
+#   ACTO MAESTRA33-C4): ninguna de las dos trae ya un `p`/`ic`/`n`
+#   medido esperando clasificación.
+# `corresidencia_actual` SÍ está medida (tasa base incondicional, no
+# condicional a ningún eje) -- vive en
+# milpa/tramite-ola5-propuesta-v0.yaml, id
+# familia.corresidencia.adulto_familiar_actual, ACTO MAESTRA33-C1. Mesa
+# la clasifica "dato informativo" (firma 4): no dispara ninguna regla
+# del motor, no se carga a milpa/tramite.yaml, no compite por un G#. Se
+# archiva aquí para que quede localizable como lo que es -- una medición
+# real sin destino de decisión -- en vez de quedar solo dentro de una
+# propuesta PENDIENTE-DE-MESA que un lector podría no abrir. CUERPO
+# INTACTO de la propuesta original: esta sección no edita
+# tramite-ola5-propuesta-v0.yaml (ver ahí la entrada APARCADA, misma
+# firma 4).
+# ══════════════════════════════════════════════════════════════════
+thetas_informativas:
+- id: corresidencia_actual
+  definicion: "coreside HOY con ascendiente o suegro (ventana actual, no 'alguna vez en la vida') -- distingue de familia.corresidencia.adulto_familiar (FP-200=b, DEVUELTA-POR-MESA, ventana de vida, p=0.996086)"
+  fuente_medicion: "milpa/tramite-ola5-propuesta-v0.yaml, id familia.corresidencia.adulto_familiar_actual, ACTO MAESTRA33-C1 · RESPEC-CORRESIDENCIA, 31/ago/2026"
+  encuesta: EDER2017
+  ola_calibracion: "EDER 2017 (única ola)"
+  p: 0.057531
+  ic95: [0.051297, 0.063913]
+  n: 9397
+  ponderador: factor
+  escala: "proporción ponderada [0,1], enlace identidad (mismo enlace que ADR-220 usa para las demás tasas base de esta familia)"
+  universo: "parentesco propio in {1=Jefe, 2=Conyuge} -- 70.0% de los respondientes EDER elegibles; persona.csv codifica parentesco relativo al jefe(a) de hogar, no al entrevistado -- traducción sin ambigüedad de catálogo, no elegida por conveniencia (forense/notas/2026-08-31-c1-respec-corresidencia-spec.md §2)"
+  clasificacion: "INFORMATIVA (firma de mesa 4, verbatim «4. Dato informativo.», ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS, 1/sep/2026) -- no genera regla, no se carga al motor, no se le asigna generador. Distinto de PENDIENTE-DE-MESA: no espera decisión futura, mesa ya decidió qué es."
+  fuente: [milpa/tramite-ola5-propuesta-v0.yaml, "ACTO MAESTRA33-C1", "ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS"]
