@@ -2374,6 +2374,17 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA33-C6 · ARBITRA-R-LOTE-3, 1/sep/2026: encargo archivado
+    # VERBATIM (A.3). El encargo cita su propia COMPUERTA como "E12
+    # fusionado" -- "E12" pelado colisiona con el habitante ya censado
+    # MAESTRA32-E12 (canon/registro-rotulos.tsv) y con MAESTRA33-E12
+    # (ACTO SELLA-1, PR #435, el que este acto realmente esperaba) --
+    # colision declarada igual, ninguno gana, mismo patron que el resto
+    # de esta lista. El encargo NO se edita, porque A.3 pide el texto de
+    # direccion verbatim; MAESTRA33-C6 se declara con prefijo completo en
+    # todo archivo que este acto escribe (canon/registro-rotulos.tsv,
+    # notas-arbitra, gobernanza, estado-programa).
+    "forense/encargos/2026-09-01-MAESTRA33-C6-ARBITRA-R-LOTE-3.md",
     # ACTO MAESTRA31-E2 · REGISTRA-PENDIENTES, 26/ago/2026: encargo
     # archivado VERBATIM (A.3). Direccion lo lanzo rotulado "ENCARGO E2",
     # y "E2" pelado colisiona con el habitante ya censado del espacio E
