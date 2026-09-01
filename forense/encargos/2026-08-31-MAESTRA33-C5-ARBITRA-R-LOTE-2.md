@@ -5,3 +5,7 @@ A.8 (dirección contra a71c9ea): corridas-R/ tiene R para CIV-M-01/06/08/09; las
 Lote: CIV-M-11 (ENVIPE 2022), CIV-M-12 (2023), CIV-M-13 (2024), FAM-M-01 (ENIF 2018) — orden del sorteado, deriva. Régimen de /arbitra: COMMIT-1 congela las 4 filas de codificación PROPUESTA leídas del FD (valores que cuentan, excluidos, universo, diseño) + frase de sello; COMMIT-2 corre arbitra y escribe corridas-R/<id>.json. Payload ausente → NO-OBTENIDO + fila de adquisición, sin inventar. CIEGO: jamás abre corridas-M/, scoreboard ni milpa/tramite.yaml; lista archivos abiertos.
 PERÍMETRO: codificacion-R-v1_0.tsv (4 filas), corridas-R/ (4 nuevos), data/cola-adquisicion-v1_0.tsv (si aplica), notas, tablero (recibo), A.3, cascada. Frase exacta de perímetro vigente. FP/ADR: deriva. CONTADOR: R marco-M 4→8.
 LO QUE NO HACE: no toca el marco; no re-escribe R existentes; no puntúa. SUCESOR: C6 con TRA-M-03/05/07.
+
+## CONSUMIDO
+
+Ejecutado 1/sep/2026, worktree `/home/pc0/mm-arbitra-r-lote-2`, commit de cascada `<PR pendiente>` (rama `acto/maestra33-c5-arbitra-r-lote-2`). CIV-M-11/12/13/FAM-M-01 → `R` COMPUTADO (4→8). Detalle: `forense/prereg-duelo-v2/notas-arbitra/2026-08-31-lote-civ-m-11-12-13-fam-m-01.md`, `canon/gobernanza-v1_15.md` ADR-254.
