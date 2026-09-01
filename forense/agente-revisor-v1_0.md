@@ -95,10 +95,12 @@ nota lo dice, que es la mitad útil de una calibración.
 
 **Saldo, 1/sep/2026.** Los 6 `BLOQUEA` que esa calibración encontró sobre
 `PR #414` quedan corregidos por `ACTO MAESTRA33-A2 · CORRIGE-A1`
-(`forense/encargos/2026-08-31-MAESTRA33-A2-CORRIGE-A1.md`, `ADR-248`
-candidato — `ADR-247` fue tomado por `ACTO MAESTRA33-E7 · MAPEADOR-1`,
-`PR #420`, fusionado primero; regla de la casa, renumera quien fusiona
-segundo), bajo firma de mesa que cita `FP-211` verbatim: *"corrige A1
+(`forense/encargos/2026-08-31-MAESTRA33-A2-CORRIGE-A1.md`, `ADR-249`
+candidato — `ADR-247` lo tomó `ACTO MAESTRA33-E7 · MAPEADOR-1` (`PR
+#420`) y `ADR-248` lo tomó después `ACTO MAESTRA33-B2 ·
+MARCO-M-SORTEA-v1_1` (`PR #419`), los dos fusionados primero; regla de
+la casa, renumera quien fusiona segundo, dos veces seguidas), bajo firma
+de mesa que cita `FP-211` verbatim: *"corrige A1
 según el revisor"*. Los cinco arreglables con una línea (perímetro de
 `hallazgos.md` declarado, desglose `43/2` corregido en el `## CONSUMIDO`
 de A1, `ADR-241`→`ADR-242` en `.claude/commands/adquiere.md:8`, la quinta
