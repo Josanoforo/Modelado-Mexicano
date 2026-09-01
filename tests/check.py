@@ -2374,6 +2374,20 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA33-E18-P3 · REGLAS-ACTIVOS-L1, 1/sep/2026: la nota de
+    # spec cita VERBATIM el Mensaje 2 del encargo MAESTRA33-S2, que es
+    # donde direccion corrige el nombre del lote. Esa cita contiene dos
+    # veces "E14" pelado ("eso lo evaluo E14 y es otra cosa" y "No es
+    # apertura de Ola 6; E14/ADR-265 sigue vigente") -- colisiona con los
+    # habitantes ya censados MAESTRA32-E14 y MAESTRA33-E14, mismo patron
+    # que el resto de esta lista. La cita NO se edita: alterar un verbatim
+    # para complacer a un test es justo lo que /acto paso 4.5 prohibe. Los
+    # rotulos pelados que SI eran prosa propia de este acto (un "E21" y un
+    # "E14") se corrigieron a MAESTRA33-E21 y MAESTRA33-E14 en vez de
+    # listarse aqui -- esta entrada cubre solo lo que es cita ajena.
+    # MAESTRA33-E18-P3 se declara con prefijo completo en todo archivo
+    # propio que este acto escribe (D-6).
+    "forense/notas/2026-09-01-MAESTRA33-E18-P3-L1-spec.md",
     # ACTO MAESTRA33-S2 · SELLA-2-REGLAS-ACTIVOS, 1/sep/2026: encargo
     # archivado VERBATIM (A.3, tres mensajes). El Mensaje 1 cita el
     # precedente "MODELO SUGERIDO: Sonnet (propagacion mecanica,
