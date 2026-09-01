@@ -7,3 +7,7 @@ P2 · Solo si hay delta: ejecútalo en COMMIT-2 con dos commits por estimación,
 P3 · Cierra FP-179(5) en cualquiera de los dos casos y deja (3) y (4) intactas con sus fechas (C8 lun 7/sep, C9 mar 8/sep).
 PERÍMETRO: data/ (solo si hay delta), milpa/tramite-ola5-propuesta-v0.yaml (solo si hay delta), tablero (FP-179), notas, A.3, cascada. Frase exacta vigente. CONTADOR: 0 si delta=∅ (dicho); si no, θ/candidatas +N.
 LO QUE NO HACE: no repite nada que ADR-134 ya hizo; no carga al motor; no abre dominio.
+
+## CONSUMIDO
+
+Ejecutado 1/sep/2026, worktree `/home/pc0/mm-apertura-verifica`, rama `acto/maestra33-c7-apertura-verifica`, PR pendiente. `P1`: tabla íntegra "§3 exige → ADR-134 cubrió → delta" contra `canon/APERTURA-FASE-CALCULO-v1_2.md` §3 y `ADR-134` completos, ambos leídos íntegros — **delta = ∅** en las cinco condiciones, verificado además contra el artefacto primario `data/apertura-enfih-ensafi-v1_0.tsv`. `FP-179(5)` → `EJECUTADA-EN-ADR-134`. `P2` no corre (delta = ∅). `P3`: `(3)`/`(4)` intactas; declarada discrepancia sobre `(4)` (ya `CONSUMIDA` desde el 30/ago, pese a la cita `C9` de este encargo). CONTADOR: 0, dicho. Detalle: `forense/notas/2026-09-01-maestra33-c7-apertura-verifica-cierre.md`, `canon/gobernanza-v1_15.md` ADR-258.
