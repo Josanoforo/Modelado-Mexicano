@@ -16,3 +16,27 @@ P3 · Calibración: corre /revisa sobre el PR de A1 (adquisición, ya fusionado)
 PERÍMETRO: revisa.md, agente-revisor-v1_0.md, forense/notas propia, tablero (recibo), archivo A.3, cascada. Frase exacta de perímetro vigente. FP/ADR: deriva. CONTADOR: cero, declarado.
 LO QUE NO HACE: no aprueba ni fusiona; no empuja a ramas ajenas; no toca acto/tramite/despacha/adquiere.
 si usas agentes que sean en sonnet
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-E5 · REVISOR-PR-1`, abierto 31/ago/2026 y
+cerrado 1/sep/2026, entorno **NUBE**, rama
+`claude/revisor-pr-automatizado-yg8d0v`, **`PR #418`**
+(https://github.com/Josanoforo/Modelado-Mexicano/pull/418). Commits:
+`d61692a` (0-bis A.3, este archivo) · `aa9a1bb` (`P1`,
+`.claude/commands/revisa.md`) · `6832edd` (`P2`,
+`forense/agente-revisor-v1_0.md`) · `ee70a17` (`P3`, calibración post-hoc
+en `forense/notas/2026-08-31-revisa-calibracion-maestra33-a1.md`) ·
+cascada (`ADR-245` candidato, `canon/gobernanza-v1_15.md` y
+`canon/estado-programa-v1_10.md` recifrados 244 → 245,
+`canon/registro-rotulos.tsv` censado, `FP-211` abierta como recibo).
+
+Resultado: los tres `P` ejecutados. `P3` dio **`NO-FUSIONAR`** sobre
+`PR #414` ya fusionado, con **6 `BLOQUEA`** — entre ellos que la fila
+`WVS` declara `(ausente)` del manifiesto contra un inventario que no
+tiene el campo consultado, cuando el manifiesto sí trae seis payloads de
+microdato de esa misma fuente, y que por eso el acto re-sondeó por red
+algo ya `OBTENIDO`. Ninguno se arregló aquí: el revisor reporta y no
+coautora. Los dos pesos que la calibración dejó bajo sospecha **no se
+ablandaron**, porque la lista se congeló en `aa9a1bb` antes de la
+corrida. `tests/check.py --baseline`: **VERDE**, nada nuevo.
