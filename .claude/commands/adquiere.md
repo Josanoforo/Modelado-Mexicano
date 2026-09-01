@@ -5,7 +5,7 @@ argument-hint: [N filas, opcional]
 
 # `/adquiere` — camina la cola, no la reescribas de memoria
 
-Creada por `ACTO MAESTRA33-A1 · AGENTE-ADQUISICION-1` (31/ago/2026, `ADR-241`
+Creada por `ACTO MAESTRA33-A1 · AGENTE-ADQUISICION-1` (31/ago/2026, `ADR-242`
 candidato). Ejecuta el mecanismo de `data/cola-adquisicion-v1_0.tsv`, no un
 resumen de él. `data/cola-adquisicion-2026-08-12.tsv` y las cuatro
 `data/cola-ext-*-2026-08-06.tsv` quedan como histórico — esta skill lee y
