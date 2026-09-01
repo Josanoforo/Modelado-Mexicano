@@ -116,3 +116,43 @@ reglas_propuestas:
     hallazgo: "Tres supuestos del encargo corregidos contra el FD oficial: (1) la tenencia es C_AFORE y no V_AFORE, que es el MONTO en pesos (0-108264000) -- medir sobre V_AFORE>0 habria dado 29.6% sin ponderar, un numero de otra cosa y sin senial de error; (2) el universo es de hogares, no de personas 18+; (3) el ponderador es FAC_HOG, ni FACTOR ni FAC_PER existen. Los otros dos brazos del ENTONCES de §3.1 (seguro, hipoteca) tienen candidata en la MISMA tabla -- C_SEGVID y SERV_HIPO -- pero quedan fuera de este lote por mandato del encargo; se anotan para el acto sucesor, no se miden."
     sha256_payload: "be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5"
     payload_manifiesto_id: enfih2019_bd_csv_zip
+
+# ══════════════════════════════════════════════════════════════════
+# REGLA DEL LOTE QUE NO RECIBE ENTRADA · civico.participacion.contingente
+#
+# El lote REGLAS-OLA6-ACTIVOS-L1 traia TRES reglas. Aqui hay DOS. La
+# tercera se regreso a EXISTE-NO-SATISFACE, que es una de las dos
+# salidas que el propio encargo previo para ella ("el acto sucesor la
+# completa o la regresa a EXISTE-NO-SATISFACE si ninguna candidata del
+# log resulta suficiente al leerla completa"). Se leyeron completas.
+#
+# RAZON, en una linea: el disparador de la regla es una CONJUNCION
+# --canon/modelo-decision-v4_0.md:551, "resultado abierto Y consecuencia
+# palpable"-- y ENCUP 2012 no trae la mitad `resultado abierto`: 0
+# reactivos utiles en 282 columnas leidas una por una, con control
+# positivo de 239 en el mismo barrido. Sellar `p(participa | P80)` seria
+# sellar MEDIA CONJUNCION como si fuera la conjuncion.
+#
+# Y aunque estuvieran las dos mitades: el modelo YA DECLARO su falsador
+# para esta regla, y es un DISENO comparativo (elecciones locales
+# concurrentes vs. no concurrentes, mismo electorado, mismo anio), que
+# un corte transversal de un solo anio no puede producir. El obstaculo
+# es de diseno de la fuente, no de perimetro ni de esfuerzo.
+#
+# Cifra descriptiva, NO sellada, solo para que mesa vea el tamano de lo
+# que la mitad operacionalizable produce: quienes perciben que el acto
+# pesa (P80 de acuerdo/muy de acuerdo) reportan haber votado 91.15%
+# frente a 77.05% de quienes no -- brecha +14.10pp, n=3630, ponderador
+# `factor`. En la direccion de la regla. Reserva sobre la propia cifra:
+# la participacion AUTORREPORTADA de 91%/77% esta muy por encima de la
+# participacion real de la presidencial 2012 (~63%), sesgo de
+# sobre-reporte clasico -- otra razon para no sellarla.
+#
+# RUTA: va al registro del curador por la via de A5, junto con las 20
+# EXISTE-NO-SATISFACE / NO-ENCONTRADO que P2 ya habia mandado alli
+# (forense/notas/2026-09-01-MAESTRA33-E18-P2-mapeo-tabla.md, seccion
+# "Ruta"). Este acto NO escribe en data/curacion-registro/: P2 declaro
+# esa escritura fuera de perimetro y esa frontera se respeta.
+# Detalle completo: forense/notas/2026-09-01-MAESTRA33-E18-P3-L1-spec.md
+# seccion "Regla 3".
+# ══════════════════════════════════════════════════════════════════

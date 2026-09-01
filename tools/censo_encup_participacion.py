@@ -97,5 +97,59 @@ def main():
     print("=" * 70)
 
 
+
+
+# ─────────────────────────────────────────────────────────────────────
+# DESCRIPTIVO — NO es la `p` de la regla y NO se sella en ningun yaml.
+#
+# La regla quedo EXISTE-NO-SATISFACE porque su disparador es una CONJUNCION
+# y ENCUP 2012 no trae la mitad `resultado abierto` (0 reactivos en 282
+# columnas). Esta funcion calcula lo que produciria la MITAD que si existe
+# (D2 = P80), unicamente para que mesa vea el tamano del efecto antes de
+# decidir si vale la pena buscar la otra mitad en otra fuente.
+#
+# Diseno: ENCUP 2012 publica `factor` y `POND` pero NO variables de diseno
+# declaradas. Se usa `Estado` como estrato y `Punto` (375 puntos de muestreo)
+# como conglomerado -- PROXY declarado, no el diseno oficial. Por eso, y por
+# la conjuncion faltante, la cifra es descriptiva y no candidata a `p`.
+# ─────────────────────────────────────────────────────────────────────
+def descriptivo_no_sellado():
+    import numpy as np
+
+    df = pd.read_excel(XLSX, sheet_name=HOJA)
+    cols = [str(c) for c in df.columns]
+    c_p77 = next(c for c in cols if c.startswith("P77_1."))
+    c_p80 = next(c for c in cols if c.startswith("P80."))
+
+    voto = df[c_p77].map({"Sí": 1.0, "No": 0.0})
+    pesa = df[c_p80].map({"Muy de acuerdo": 1, "De acuerdo": 1,
+                          "En desacuerdo": 0, "Muy en desacuerdo": 0})
+    w = pd.to_numeric(df["factor"], errors="coerce")
+    ok = voto.notna() & pesa.notna() & w.notna()
+
+    print()
+    print("=" * 70)
+    print("DESCRIPTIVO — NO es la `p` de la regla, NO se sella")
+    print("  desenlace : P77_1 (acudio a votar, presidencial) = Si")
+    print("  eje D2    : P80 (votar es la unica manera de decir si el")
+    print("              gobierno hace bien o mal) = de acuerdo / muy de acuerdo")
+    print("  FALTA     : D2 es solo la MITAD del disparador; `resultado")
+    print("              abierto` no existe en ENCUP 2012 (0 de 282 columnas)")
+    print("=" * 70)
+    print(f"  filas utilizables: {int(ok.sum())} de {len(df)}")
+    for v, etiqueta in ((1, "percibe que el acto pesa (D2=1)"),
+                        (0, "no lo percibe (D2=0)")):
+        m = (ok & (pesa == v)).to_numpy()
+        p = float((w[m] * voto[m]).sum() / w[m].sum())
+        print(f"  {etiqueta:<34} n={int(m.sum()):>5}  votó={p:.4f}")
+    m1 = (ok & (pesa == 1)).to_numpy()
+    m0 = (ok & (pesa == 0)).to_numpy()
+    p1 = float((w[m1] * voto[m1]).sum() / w[m1].sum())
+    p0 = float((w[m0] * voto[m0]).sum() / w[m0].sum())
+    print(f"  brecha (D2=1 menos D2=0): {(p1 - p0) * 100:+.2f} pp")
+    print("  ⚠️  Cifra descriptiva. Media conjuncion no es la conjuncion.")
+
+
 if __name__ == "__main__":
     main()
+    descriptivo_no_sellado()
