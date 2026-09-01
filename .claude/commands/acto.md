@@ -77,6 +77,15 @@ ninguna de las tres, el encargo no está compuertado — continúa al paso 3.
 `COMPUERTA: ninguna` (o `ninguna de merge`) es una declaración explícita de
 que no hay compuerta: no dispara verificación.
 
+**Rótulo ambiguo.** Si la línea `GATED a X` / `COMPUERTA: X` cita un rótulo
+sin serie — `E<n>`, `C<n>`, `A<n>`, `S<n>` pelado, sin el prefijo
+`MAESTRA<nn>-` — la compuerta es AMBIGUA: no se resuelve por inferencia ni
+por "el más reciente que calce". **PARO con cero commits**, con el texto
+`rótulo ambiguo: cita MAESTRA<nn>-…`. Precedente: PR #437 resolvió `E13` a
+`MAESTRA32-E13` — antes de ese PR, `E13` solo podía significar eso mismo si
+alguien lo derivaba a mano; esta regla evita repetir esa derivación
+implícita en cada acto.
+
 Si hay una línea `GATED a X` / `COMPUERTA: X`:
 
 1. `git fetch origin main` (o la rama que el encargo declare como base).
