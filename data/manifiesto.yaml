@@ -15645,3 +15645,49 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: Ver nota completa en iepc_jalisco_voto_nulo_2024_base_datos. Doble descarga A.7, sha256
     idéntico (a207ab10...).
+
+- id: ine_fiscalizacion_prefo2324_cam_agenda_eventos
+  usado_para: 'EXT_OF_09_AGENDA_GASTO_CANDIDATURA (data/cola-adquisicion-v1_0.tsv fila 68,
+    prioridad oficial-7): Agenda de Eventos (AE) de campaña, Proceso Electoral Federal Ordinario
+    2023-2024 (PREFO_23-24), candidaturas a nivel CAM (campaña). 354812 filas: proceso, ámbito,
+    cargo, sujeto obligado, evento, fecha/hora, tipo evento, entidad, municipio.'
+  url_origen: https://fiscalizacion.ine.mx/documents/82565/1268544/PREFO_23-24_CAM_AE_240624.csv/f28ff537-fc39-4555-bd53-01a0b10dd413
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de fiscalizacion.ine.mx/web/portalsif/descarga-de-reportes
+    (curl -A UA-navegador, GET real)
+  archivo: ine_fiscalizacion_agenda_gasto_candidatura_2024/PREFO_23-24_CAM_AE_240624.csv
+  sha256: a2b0da1ea28636e5193f93d77da0e7e18c9892788a06105514b8fdb9b183ee30
+  tamano_bytes: 112060366
+  formato: CSV, 354812 filas, header confirmado (PROCESO,AMBITO,...,EVENTO,FECHA DEL EVENTO,...)
+  licencia: no verificada en este acto -- portal oficial de datos abiertos de fiscalización
+    del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 (2026-09-01). A.8: sin coincidencia previa en manifiesto.yaml.
+    4 rutas: (i) fiscalizacion.ine.mx/web/portalsif/descarga-de-reportes -- 200, 382 enlaces
+    CSV/XLSX de rendición de cuentas por proceso electoral; (ii) no aplica, catálogo de enlaces
+    directos, sin API separada probada; (iii) también existe en XLSX (41949855 B) -- mismo
+    contenido, no descargado por ser CSV suficiente; (iv) no aplica, ruta directa funcionó.
+    DESVÍO DECLARADO de A.7: archivo de 112060366 B -- la primera descarga completó limpio
+    (Content-Length exacto, 354812 líneas, header real verificado) pero la SEGUNDA descarga
+    para comparación byte-a-byte se cortó a los 2 minutos por el límite de la herramienta
+    de este agente (quedó en 58224640 B, descartada, NO es una discrepancia del servidor).
+    En su lugar se verificó A.7 completo (doble descarga, sha256 idéntico) sobre el archivo
+    hermano del mismo directorio/publicación (ine_fiscalizacion_prefo2324_cam_gasto_rubro,
+    mismo host, mismo lote, mismo día) como evidencia indirecta de que el servidor sirve contenido
+    determinista.'
+
+- id: ine_fiscalizacion_prefo2324_cam_gasto_rubro
+  usado_para: 'EXT_OF_09_AGENDA_GASTO_CANDIDATURA (fila 68): Gasto por Rubro (GxR) de campaña,
+    PREFO 23-24, nivel CAM. 1339 filas: financieros/operativos/producción por sujeto obligado.'
+  url_origen: https://fiscalizacion.ine.mx/documents/82565/1268544/PREFO_23-24_CAM_GxR_240624.csv/cce0750a-e105-4837-a339-dc581fdbe210
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de fiscalizacion.ine.mx (curl -A UA-navegador, GET
+    real)
+  archivo: ine_fiscalizacion_agenda_gasto_candidatura_2024/PREFO_23-24_CAM_GxR_240624.csv
+  sha256: 7ae2cffecb9d6b0faf44432887f7494961a9054f7b17ef369c9cbc613fc7c5ac
+  tamano_bytes: 433909
+  formato: CSV, 1339 filas, header confirmado
+  licencia: no verificada en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Ver nota completa en ine_fiscalizacion_prefo2324_cam_agenda_eventos. Doble descarga
+    A.7 completa: sha256 idéntico (7ae2cffe...), 433909 B.'
