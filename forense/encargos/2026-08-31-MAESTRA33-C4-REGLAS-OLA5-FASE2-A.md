@@ -15,5 +15,5 @@ la propia nota de mapeo citada: la candidata con texto real mide DIFICULTAD, no
 AYUDA — PARO aplicado tal como el propio P1 lo previó; SFT-04 revierte a
 EXISTE-NO-SATISFACE, cero reglas nuevas. TIC-01 θ y EMP-05 θ citadas (no
 medidas, sin G# formal) en `milpa/procedencia.yaml:candidatas_theta_citadas_fp190`.
-`FP-190` enmendada (fase 2-A ejecutada). `ADR-251` (candidato). Detalle:
+`FP-190` enmendada (fase 2-A ejecutada). `ADR-252` (candidato, renumerado de 251 tras colisión con `PR #423`/`MAESTRA33-C3`). Detalle:
 `forense/notas/2026-08-31-reglas-ola5-fase2a-spec.md`.
