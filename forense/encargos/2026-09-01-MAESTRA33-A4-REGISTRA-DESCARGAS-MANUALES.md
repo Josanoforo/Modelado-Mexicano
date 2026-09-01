@@ -6,3 +6,14 @@ P1 · Por cada archivo bajado: mover al corpus compartido (cierre anti-PR#77), s
 P2 · Corre /mapea sobre las 6 necesidades de FP-190 contra SOLO los payloads nuevos; tabla de candidatas con vocabulario A.4. Si alguna pasa a EXISTE-SATISFACE, deja redactado el lote C10 · REGLAS-OLA5-FASE2-B como sucesor con las celdas nombradas.
 PERÍMETRO: data/raw, manifiesto, cola-adquisicion, notas, tablero (recibo), A.3, cascada. Frase exacta vigente. CONTADOR: payloads OBTENIDO +N.
 LO QUE NO HACE: no abre microdato para medir; no carga reglas; no descarga por red.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-A4 · REGISTRA-DESCARGAS-MANUALES`, `PR #440`
+(rama `acto/maestra33-a4-registra-descargas-manuales`). Cierre por hallazgo:
+P1 encontró cero descargas manuales nuevas en `descargas_mx` (122 archivos
+examinados, A.13, mtime máximo 2026-08-13, anterior a la emisión de
+`PAQUETE-RECETAS-2026-09-01`); P2 quedó sin universo que caminar
+(dependiente de P1). Detalle:
+`forense/notas/2026-09-01-maestra33-a4-registra-descargas-manuales-cierre.md`.
+CONTADOR: payloads `OBTENIDO` +0.
