@@ -112,11 +112,24 @@ conteo ya público en `scoreboard-v1_1.md`; no se abrió ninguna celda de
 - ADR re-derivado por comando: `grep -oE '^\*\*ADR-[0-9]+'
   canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` →
   `254`, sin huecos → candidato **`ADR-255`**. Sin otro acto en vuelo
-  conocido.
-- `canon/gobernanza-v1_15.md`: entrada `ADR-255` insertada antes de
-  `ADR-254` (texto viejo intacto). Cabecera `254 → 255 ADR`.
-- `canon/estado-programa-v1_10.md`: `L0` recifra `254→255`, anotación
-  nueva insertada antes de la de `ADR-254`/`L-SPEC-v1_1`.
+  conocido **en ese momento** — declarado antes de abrir el PR, no
+  garantía contra lo que se fusione mientras el PR sigue abierto.
+- **Colisión real, detectada al sincronizar antes de cerrar.** Entre abrir
+  `PR #429` y este `git merge origin/main`, dos actos más fusionaron:
+  `PR #426`/`ACTO MAESTRA33-C5` tomó `ADR-255` (el mismo candidato de este
+  acto) y `PR #428`/`ACTO MAESTRA33-S1` tomó `ADR-256` — ambos antes de
+  que este PR se fusionara, así que por regla de la casa (renumera quien
+  fusiona segundo) este acto renumera de `ADR-255` a **`ADR-257`**,
+  contiguo al nuevo máximo. Conflicto real de `git merge` en las tres
+  tablas de cascada (`gobernanza`, `estado-programa`, `registro-rotulos`)
+  — ninguna de las tres inserciones de `C5`/`S1` se descartó, se conservan
+  íntegras; solo la posición y el número de la entrada de este acto
+  cambiaron.
+- `canon/gobernanza-v1_15.md`: entrada `ADR-257` insertada antes de
+  `ADR-256` (`MAESTRA33-S1`, ya fusionada) — texto de `ADR-256`/`ADR-255`
+  /`ADR-254` intacto. Cabecera `256 → 257 ADR`.
+- `canon/estado-programa-v1_10.md`: `L0` recifra `256→257`, anotación
+  nueva insertada antes de la de `ADR-256`/`SORTEO-v3-Y-PROPAGA`.
 - `canon/registro-rotulos.tsv`: `MAESTRA33-E10` censado, espacio `E`.
 - `tests/check.py --baseline`: ver salida cruda al pie de este cierre —
   sin `FAIL` nuevo.

@@ -11,8 +11,12 @@ LO QUE NO HACE: no corre ejecutar_scoring; no edita scoring-adv1-m3.py ni proced
 ## CONSUMIDO
 
 Ejecutado por `ACTO MAESTRA33-E10 · PROCEDIMIENTO-SCORING-v1_1-PROPUESTA`,
-1/sep/2026, `ADR-255` (candidato). PR contra `main`: `PR #429`, sin
-fusionar por este acto. `COMPUERTA: PR de MAESTRA33-E9 fusionado` —
+1/sep/2026, `ADR-257` (candidato — renumerado de `ADR-255`: colisión con
+`PR #426`/`ACTO MAESTRA33-C5`, que lo tomó al fusionar primero contra
+`main`; `PR #428`/`ACTO MAESTRA33-S1` tomó `ADR-256` de la misma manera —
+regla de la casa, renumera quien fusiona segundo). PR contra `main`:
+`PR #429`, sin fusionar por este acto. `COMPUERTA: PR de MAESTRA33-E9
+fusionado` —
 CUMPLE, verificada contra `PR #427` fusionado en `b3c6a1d` (en el turno
 anterior de esta misma sesión la misma compuerta había verificado NO
 CUMPLE, cero commits, sin `A.3`). P1/P2/P3 entregados tal como se
