@@ -110,7 +110,15 @@ vencimiento aquí mismo, sin abrir una fila nueva del tablero, porque
 `ACTO MAESTRA33-E10` ya abrió esta sección — el registro único es esta
 línea).
 
-**Firma de mesa:** _(pendiente)_
+**Firma de mesa:** «[sello scoring v1_1 — cinco decisiones]» (1/sep/2026,
+`ACTO MAESTRA33-E12 · SELLA-1`, `ADR-262`) — dentro del vencimiento
+`2026-09-03` de arriba. SELLA las cinco decisiones enumeradas en esta
+sección, sin cambiarlas. Consecuencia: `forense/prereg-duelo-v2/
+procedimiento-scoring-v1_1.md` (copia sellada de la PROPUESTA, cabecera con
+la firma y `sha256` de la PROPUESTA verificado sin drift) queda escrito en
+el árbol; la PROPUESTA no se borra. Firmar esto no ejecuta nada:
+`tools/score_marco_m.py`/`scoring-adv1-m3.py` siguen sin tocarse. Detalle:
+`forense/notas/2026-09-01-maestra33-e12-sella-1-cierre.md`.
 
 ---
 
