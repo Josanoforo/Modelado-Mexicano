@@ -15715,3 +15715,28 @@
     individuales por auditoría (cientos, ver informe.asf.gob.mx) y matrices consolidadas (MDB_Consolidado)
     no descargadas en esta caminata por ser el universo completo demasiado grande para una
     sola fila.'
+
+- id: asf_auditoria_2024_0165_ds_vacunacion_issste
+  usado_para: 'AUDITORIA_ASF_165_DS_SERVICIOS_VACUNACION_ISSSTE_2024 (data/cola-adquisicion-v1_0.tsv
+    fila 74, prioridad aperturas-1, R9.2): Auditoría de Desempeño ASF 2024-1-19GYN-07-0165-2025,
+    ''Servicios de Vacunación'' ISSSTE, evaluación de resultados 2024. Confirma identidad
+    exacta de la fila (código 165-DS, ISSSTE, vacunación, 2024).'
+  url_origen: https://www.asf.gob.mx/Trans/Informes/IR2024b/Documentos/Auditorias/2024_0165_a.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de asf.gob.mx (curl -A UA-navegador, GET real)
+  archivo: asf_auditoria_165_ds_vacunacion_isste_2024/2024_0165_a.pdf
+  sha256: f9eaacec224f15894c50980675faf48527d1084b50095f14f56a78f8733d5ede
+  tamano_bytes: 635172
+  formato: PDF, 635172 bytes, %%EOF presente
+  licencia: no verificada en este acto -- sitio oficial ASF, sin muro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 (2026-09-01). A.8 previo (ACTO MAESTRA33-A2, 2026-09-01) ya había
+    verificado 0/794 entradas con ''ISSSTE''/''165-DS'' -- confirmado, no era A.8, era candidata
+    nueva sin intentar. 4 rutas: (i) identidad confirmada por búsqueda dirigida -- clave 2024-1-19GYN-07-0165-2025;
+    (ii) informe.asf.gob.mx/Documentos/Auditorias/2024_0165_a.pdf -- 404 real (1245 B, Content-Type
+    text/html, distinto del soft-404 de INEGI); (iii) no aplica, un solo formato PDF; (iv)
+    no aplica. La URL que SÍ funcionó fue www.asf.gob.mx/Trans/Informes/IR2024b/... (variante
+    IR2024a/IR2024c probadas, ambas 404) -- doble descarga A.7, sha256 idéntico (f9eaacec...).
+    Condición de paro de la fila origen (''parar si no hay desglose por unidad, delegación,
+    biológico o campaña'') NO evaluada por este acto -- no se abrió el PDF, solo se adquirió
+    (fuera del perímetro de /adquiere).'
