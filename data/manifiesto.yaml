@@ -15556,3 +15556,92 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: 'Ver nota completa en ine_conteos_censales_participacion_2024 (mismo acto, mismo hallazgo).
     Doble descarga A.7: sha256 identico (1e496a2f...), 16203 B.'
+
+- id: sesna_informe_situacion_sea_2024
+  usado_para: 'EXT_OF_10_SESNA_INFORME (data/cola-adquisicion-v1_0.tsv fila 69, prioridad
+    oficial-8): Informe sobre la situación de los Sistemas Estatales Anticorrupción (SESNA),
+    reporte trimestral integrado. Acción mínima del origen (cola-ext-oficial-2026-08-06.tsv:9,
+    EXT-OF-06): ''Abrir informe SESNA y registrar variables/llaves, sin ejecutar cruces''
+    -- este acto solo adquiere, no abre ni cruza.'
+  url_origen: https://www.sesna.gob.mx/wp-content/uploads/2024/04/Informe-de-Situacion-SEA-VF-15.04.24.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de sesna.gob.mx (curl -A UA-navegador, GET real)
+  archivo: sesna_informe_situacion_sea/Informe-de-Situacion-SEA-VF-15.04.24.pdf
+  sha256: 5ec749232e1b46ddfeef8858b089151fdc27d1c48ad327f00a52bfabdf79721e
+  tamano_bytes: 1866983
+  formato: PDF, version 1.6, 1866983 bytes, %%EOF presente
+  licencia: no verificada en este acto -- sitio oficial de la Secretaría Ejecutiva del Sistema
+    Nacional Anticorrupción, sin muro de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 (2026-09-01). A.8: grep -in sesna en manifiesto.yaml, sin coincidencia
+    previa. 4 rutas: (i) sesna.gob.mx landing 200; (ii) PDF directo 200 application/pdf, doble
+    descarga sha256 idéntico (5ec74923...); (iii) no aplica, un solo formato PDF; (iv) no
+    aplica, ruta directa funcionó. Reporte más reciente localizado con fecha explícita en
+    la URL (15.04.24); pueden existir informes trimestrales más nuevos no verificados en esta
+    caminata.'
+
+- id: iepc_jalisco_voto_nulo_2024_base_datos
+  usado_para: 'EXT_OF_01_IEPC_JALISCO (fila 67, oficial-6): base de datos por casilla del
+    estudio muestral de voto nulo, elecciones locales Jalisco 2024'
+  url_origen: https://www.iepcjalisco.org.mx/sites/default/files/estudio_del_voto_nulo_base_de_datos_por_casilla.xlsx
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de iepcjalisco.org.mx (curl -A UA-navegador -k; cadena
+    TLS incompleta, mismo patrón ya documentado en este manifiesto para datos.gob.mx)
+  archivo: iepc_jalisco_voto_nulo_2024/estudio_del_voto_nulo_base_de_datos_por_casilla.xlsx
+  sha256: fc81a7502f23cec3c87861c3bbc662b2d374a45632c1d76653a9a79d9d7d08a8
+  tamano_bytes: 1222905
+  formato: XLSX, 37 entradas internas, zipfile.testzip() limpio
+  licencia: no verificada en este acto -- sitio oficial IEPC Jalisco, sin muro de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 (2026-09-01). A.8: grep -in iepc/jalisco en manifiesto.yaml, sin
+    coincidencia previa. Identidad vía landing iepcjalisco.org.mx (-k, 200) -> enlace directo
+    a informe-de-resultados-del-estudio-muestral-sobre-votos-nulos-en-las-elecciones-locales-2024.
+    Doble descarga A.7, sha256 idéntico (fc81a750...), 1222905 B. Grupo de 4 archivos del
+    mismo estudio, ver también iepc_jalisco_voto_nulo_2024_relacion_paquetes / _cuestionario
+    / _informe.'
+
+- id: iepc_jalisco_voto_nulo_2024_relacion_paquetes
+  usado_para: 'EXT_OF_01_IEPC_JALISCO (fila 67): relación de paquetes electorales seleccionados
+    para el estudio -- funciona como proxy del diseño muestral que pedía la acción mínima
+    del origen'
+  url_origen: https://www.iepcjalisco.org.mx/sites/default/files/estudio_del_voto_nulo_relacion_de_paquetes_electorales_seleccionados_para_el_estudio.xlsx
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de iepcjalisco.org.mx (curl -A UA-navegador -k)
+  archivo: iepc_jalisco_voto_nulo_2024/estudio_del_voto_nulo_relacion_de_paquetes_electorales_seleccionados.xlsx
+  sha256: f33afe0a125fdc57c663fd6d693e3b1dc06a0a5b27653f99689ad8f497aaea7c
+  tamano_bytes: 98717
+  formato: XLSX, 15 entradas internas, zipfile.testzip() limpio
+  licencia: no verificada en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Ver nota completa en iepc_jalisco_voto_nulo_2024_base_datos. Doble descarga A.7, sha256
+    idéntico (f33afe0a...), 98717 B.
+
+- id: iepc_jalisco_voto_nulo_2024_cuestionario
+  usado_para: 'EXT_OF_01_IEPC_JALISCO (fila 67): Anexo 3, hoja de vaciado y cuestionario del
+    estudio muestral de voto nulo'
+  url_origen: https://www.iepcjalisco.org.mx/sites/default/files/anexo_3._hoja_de_vaciado_y_cuestionario_0.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de iepcjalisco.org.mx (curl -A UA-navegador -k)
+  archivo: iepc_jalisco_voto_nulo_2024/anexo_3_hoja_de_vaciado_y_cuestionario.pdf
+  sha256: 436f41fdeaaee79ab901924109f7264c819e58d947bdf524d7c915b139baacf4
+  tamano_bytes: 154954
+  formato: PDF, 154954 bytes, %%EOF presente
+  licencia: no verificada en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Ver nota completa en iepc_jalisco_voto_nulo_2024_base_datos. Doble descarga A.7, sha256
+    idéntico (436f41fd...).
+
+- id: iepc_jalisco_voto_nulo_2024_informe
+  usado_para: 'EXT_OF_01_IEPC_JALISCO (fila 67): informe de resultados del estudio muestral
+    sobre votos nulos en las elecciones locales de Jalisco 2024'
+  url_origen: https://www.iepcjalisco.org.mx/sites/default/files/informe_de_resultados_del_estudio_muestral_sobre_votos_nulos_en_las_elecciones_locales_de_2024.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de iepcjalisco.org.mx (curl -A UA-navegador -k)
+  archivo: iepc_jalisco_voto_nulo_2024/informe_de_resultados_estudio_muestral_voto_nulo_2024.pdf
+  sha256: a207ab10008f15a4ca98dded1f2126be5aa3dc85ba8b4d4cdf0196688d72547a
+  tamano_bytes: 2000582
+  formato: PDF, 2000582 bytes, %%EOF presente
+  licencia: no verificada en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Ver nota completa en iepc_jalisco_voto_nulo_2024_base_datos. Doble descarga A.7, sha256
+    idéntico (a207ab10...).
