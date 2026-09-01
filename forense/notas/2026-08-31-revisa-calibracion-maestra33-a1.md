@@ -62,7 +62,7 @@ db5a9bc Fusiona origin/main (PR #413, ACTO MAESTRA33-E2 AGENTE-DESPACHO-1)
 
 ## §2 · Los diez puntos
 
-### Punto 1 · Encargo archivado verbatim (A.3) — **`RESERVA`**
+### Punto 1 · Encargo archivado verbatim (A.3) — **1 `BLOQUEA`**
 
 ```
 $ git log --oneline --reverse 737a851^1..737a851^2 | head -1
@@ -96,20 +96,49 @@ $ for c in aperturas academico civil general oficial; do
 9   ← oficial
 ```
 
-Y el reporte **no lo oculta**: dice *"los cuatro `cola-ext-*`"*, no
-"los cinco". Por eso **no** es el caso `BLOQUEA` del punto 2.1 —el
-reporte no afirma algo que el diff no muestra—. Lo que falta es la línea
-que explique **por qué** la quinta aportó cero, y la razón es buena y
-está a la vista: `cola-aperturas-externas` tiene **otro esquema**
-(`orden · fuente · objetos · accion_minima · impacto · probabilidad ·
-costo …`), sin `url` ni estado de adquisición; no es una cola de
-descarga. Mención de "apertura" en la nota de cierre: **0** sobre 1
-archivo examinado (A.13). El arreglo es una frase.
+**El reporte canónico sí lo afirma, y ahí está el `BLOQUEA`.** La nota
+de cierre dice *"los cuatro `cola-ext-*`"* —honesta—, pero los dos
+documentos que mandan dicen otra cosa, sin matiz:
 
-*(Nota de método: un agente independiente de la corrida de §5 calificó
-esto `BLOQUEA`. Se bajó a `RESERVA` tras leer la nota entera y comprobar
-que dice "los cuatro". Dos de tres lentes adversariales coincidieron en
-bajarlo.)*
+```
+$ git show 737a851:canon/gobernanza-v1_15.md | sed -n '4189,4205p' | grep -oE 'absorbe las [a-z0-9]+ colas[^,)]*'
+absorbe las cinco colas de agosto sin borrarlas
+$ git show 737a851:forense/encargos/…-A1-….md | grep -oE 'absorbe las [a-z0-9]+ colas[^,)]*'
+absorbe las 5 colas de agosto SIN borrarlas (quedan como histórico con puntero
+```
+
+`ADR-242` —el registro de gobierno— y el `## CONSUMIDO` del encargo
+archivado afirman **cinco**. El diff muestra **cuatro**. Ése es
+literalmente el caso `BLOQUEA` del punto 2.1: *"un `P` que el reporte da
+por hecho y el diff no muestra"*, y es el más caro porque el ADR es lo
+que se lee dentro de seis meses, no la nota.
+
+**Y la razón que parecía justificarlo no se sostiene.** Mi primera
+lectura fue que la quinta se excluyó por tener otro esquema. Las
+cabeceras dicen que no:
+
+```
+cola-aperturas-externas: orden  fuente  objetos  accion_minima  impacto  probabilidad …
+cola-ext-academico:      orden  id  origen  decision  accion_documental_minima …
+cola-ext-civil:          prioridad  organizacion  producto  estado_actual …
+cola-ext-general:        prioridad  objeto  fuente  acción_mínima  impacto_posible …
+cola-ext-oficial:        orden  id_mapa  accion_siguiente_sin_microdatos …
+```
+
+Las cinco tienen esquemas **distintos entre sí**: las cuatro absorbidas
+son tan heterogéneas como la excluida, así que el esquema no distingue a
+ninguna. Y `data/INFRAESTRUCTURA-v1_0.md` registra a las cinco con el
+**mismo** estado canónico (`snapshot muerto`). No hay asimetría
+documentada que justifique absorber cuatro y dejar una — 15 filas de
+datos que no entraron y nadie dijo por qué.
+
+Arreglo: absorberla, o una frase en el ADR diciendo por qué no, y
+corregir "cinco" → "cuatro" en los dos sitios.
+
+*(Nota de método, y va en las dos direcciones: yo bajé esto a `RESERVA`
+tras leer que la nota dice "los cuatro". Estaba mal. Un agente de la
+flota lo había marcado `BLOQUEA` mirando el ADR, que es el documento que
+manda. Se restituye a `BLOQUEA`.)*
 
 ### Punto 2 · Orden de commits, spec antes de resultados — **NO-APLICA**
 
@@ -415,9 +444,9 @@ comando que la implementa mira otra tabla.
 
 **`NO-FUSIONAR`** — sobre un PR que mesa **ya fusionó**.
 
-`5 BLOQUEA · 5 RESERVA · 0 NO-VERIFICADO · 1 NO-APLICA · 3 PASA`
+`6 BLOQUEA · 4 RESERVA · 0 NO-VERIFICADO · 1 NO-APLICA · 3 PASA`
 
-Los cinco `BLOQUEA`, en una línea cada uno, ordenados por lo que cuestan:
+Los seis `BLOQUEA`, en una línea cada uno, ordenados por lo que cuestan:
 
 1. **La fila `WVS` declara `(ausente)` del manifiesto y es falso**: hay
    diez entradas de WVS ola 7 México 2018, seis de microdato. El
@@ -433,7 +462,11 @@ Los cinco `BLOQUEA`, en una línea cada uno, ordenados por lo que cuestan:
 4. **El desglose `44 PENDIENTE / 1 NO-OBTENIDO` contradice la tabla**,
    que dice `43 / 2`, en el mismo commit que lo escribió; se propagó al
    `## CONSUMIDO` (punto 5).
-5. **`forense/hallazgos.md` tocado fuera del perímetro y sin declarar**
+5. **`ADR-242` afirma que la tabla "absorbe las cinco colas de agosto"
+   y absorbe cuatro**: `cola-aperturas-externas` (15 filas) no aparece
+   en ninguna de las 72, y no hay asimetría de esquema ni de estado
+   canónico que lo justifique (punto 1).
+6. **`forense/hallazgos.md` tocado fuera del perímetro y sin declarar**
    en el ADR ni en la propia lista "Escrito" del ejecutor (punto 3) —
    con la disidencia de §2 registrada.
 
@@ -482,7 +515,7 @@ todo para ablandar lo incómodo— es exactamente el defecto que su propio
 punto 2 prohíbe. Si mesa quiere moverlas, ése es su commit, con su
 razón, después de éste.
 
-**Para el falsador `§3(a)`.** Mesa fusionó `PR #414` con cinco cosas que
+**Para el falsador `§3(a)`.** Mesa fusionó `PR #414` con seis cosas que
 la lista atrapa, una de ellas un re-sondeo de red contra una fuente ya
 adquirida. No hay punto que añadir: los puntos 5, 8 y 10 ya estaban y
 funcionaron. El caso queda citado.
@@ -511,14 +544,18 @@ Dónde coincidieron y dónde no, que es lo informativo:
 | | a mano | flota | resuelto |
 |---|---|---|---|
 | `WVS` `(ausente)` falso | no lo vi | `BLOQUEA` | **sostenido**, verificado a mano después |
-| `adquiere.md` cita `ADR-241` | no lo vi | `BLOQUEA` | **sostenido**, verificado a mano después |
+| `.claude/commands/adquiere.md` cita `ADR-241` | no lo vi | `BLOQUEA` | **sostenido**, verificado a mano después |
 | `44/1` vs `43/2` | `BLOQUEA` | `BLOQUEA` | **sostenido** |
 | `hallazgos.md` fuera de perímetro | `BLOQUEA` | `RESERVA` | `BLOQUEA` por la regla, disidencia anotada |
-| quinta cola no absorbida | no lo vi | `BLOQUEA` | bajado a **`RESERVA`**: el reporte dice "los cuatro" |
+| quinta cola no absorbida | la bajé a `RESERVA` | `BLOQUEA` | **`BLOQUEA`**: el ADR dice "las cinco"; me equivoqué |
 | negativo sin conteo del encargo | — | `BLOQUEA` | **descartado**: es texto de dirección (A.3) |
 
-**Dos hallazgos reales que la corrida a mano no vio**, y **dos
-calificaciones de la flota corregidas a la baja**. Ninguna de las dos
+**Dos hallazgos reales que la corrida a mano no vio**, **una
+calificación de la flota corregida a la baja**, y **una rebaja mía
+corregida al alza por la flota** — que es el caso más instructivo de los
+cuatro: yo miré la nota de cierre, que es honesta y dice "los cuatro";
+la flota miró el `ADR`, que dice "las cinco". El documento que manda es
+el `ADR`. Ninguna de las dos
 corridas por sí sola habría dado este resultado, y eso es un argumento
 sobre cómo usar la pieza: `/revisa` no sustituye a mesa leyendo el PR —
 le pone debajo un piso mecánico que no depende de que ese día alguien se
