@@ -176,6 +176,13 @@ CODIFICACION = os.path.join(RAIZ, "forense", "prereg-duelo-v2", "codificacion-R-
 _PATRON_BINARIO = re.compile(
     r"y=1\s+si\s+\S+=='([^']+)'.*?y=0\s+si=='([^']+)'", re.IGNORECASE | re.DOTALL
 )
+# Variante de conjunto: 'y=1 si VAR en {01,02,06} ...; y=0 si VAR en {03,...}'
+# (CODIFICA-R-1/P3: la codificacion de BP1_23 es una union de varios codigos
+# por lado, no un solo valor -- el patron de arriba no calza y no se toca).
+_PATRON_BINARIO_SET = re.compile(
+    r"y=1\s+si\s+\S+\s+en\s+\{([^}]+)\}.*?y=0\s+si\s+\S+\s+en\s+\{([^}]+)\}",
+    re.IGNORECASE | re.DOTALL,
+)
 
 
 def lee_codificacion(ruta=CODIFICACION):
@@ -199,13 +206,48 @@ def _correr_r():
 
 
 def parsea_codificacion_binaria(texto):
-    """Extrae (uno, cero) de 'y=1 si VAR==V1 ...; y=0 si==V2 ...'. Devuelve
-    None si la prosa no calza el patron simple -- nunca adivina (p.ej. el
-    patron categorico de TIC-12 NO calza aqui, a proposito)."""
+    """Extrae (uno, cero) de 'y=1 si VAR==V1 ...; y=0 si==V2 ...' o de
+    'y=1 si VAR en {V1,V2,...} ...; y=0 si VAR en {V3,...}'. Devuelve None
+    si la prosa no calza ninguno de los dos patrones -- nunca adivina
+    (p.ej. el patron categorico de TIC-12 no calza aqui, a proposito)."""
     m = _PATRON_BINARIO.search(texto or "")
-    if not m:
-        return None
-    return {m.group(1)}, {m.group(2)}
+    if m:
+        return {m.group(1)}, {m.group(2)}
+    m = _PATRON_BINARIO_SET.search(texto or "")
+    if m:
+        uno = {v.strip() for v in m.group(1).split(",") if v.strip()}
+        cero = {v.strip() for v in m.group(2).split(",") if v.strip()}
+        return uno, cero
+    return None
+
+
+def resuelve_miembro_zip(archivo, nombre_logico):
+    """Dado un nombre de tabla LOGICO (el que trae el FD, p.ej. 'TMod_Vic'),
+    busca dentro del zip el miembro cuyo nombre base lo contiene (sin
+    distinguir mayusculas/guiones bajos). Devuelve (miembro, None) si hay
+    exactamente un candidato, o (None, motivo) si hay 0 o mas de 1 -- nunca
+    adivina entre varios.
+
+    Si hay mas de un candidato por nombre, se descartan los que traen
+    'diccionario' en la ruta (INEGI publica el diccionario de datos como un
+    CSV aparte, con el mismo nombre de tabla en el nombre de archivo, junto
+    al CSV de datos real bajo 'conjunto_de_datos/') -- es una distincion
+    real y verificable en la ruta, no una eleccion arbitraria entre
+    iguales."""
+    import zipfile
+    objetivo = _plano(nombre_logico)
+    ruta_zip = os.path.join(RAIZ, "data", "raw", archivo)
+    with zipfile.ZipFile(ruta_zip) as z:
+        candidatos = [n for n in z.namelist() if not n.endswith("/") and objetivo in _plano(os.path.basename(n))]
+    if len(candidatos) > 1:
+        sin_diccionario = [n for n in candidatos if "diccionario" not in _plano(n)]
+        if sin_diccionario:
+            candidatos = sin_diccionario
+    if len(candidatos) == 1:
+        return candidatos[0], None
+    if not candidatos:
+        return None, f"ningun miembro de {archivo} contiene {nombre_logico!r} en su nombre"
+    return None, f"{len(candidatos)} miembros de {archivo} contienen {nombre_logico!r} tras descartar diccionarios: {candidatos}"
 
 
 def calcula_desde_tabla(id_celda, tabla_codif, manifiesto, mod_r):
@@ -222,7 +264,7 @@ def calcula_desde_tabla(id_celda, tabla_codif, manifiesto, mod_r):
 
     par = parsea_codificacion_binaria(fila["codificacion"])
     if par is None:
-        return None, f"{id_celda}: codificacion no calza el patron binario simple: {fila['codificacion']!r}", []
+        return None, f"{id_celda}: codificacion no calza ningun patron binario reconocido: {fila['codificacion']!r}", []
     uno, cero = par
 
     entrada = next((e for e in manifiesto if e.get("id") == fila["payload_id"]), None)
@@ -236,9 +278,24 @@ def calcula_desde_tabla(id_celda, tabla_codif, manifiesto, mod_r):
         f"este calculo sera incorrecto y debe salir NO-COINCIDE."
     ]
 
-    filas = mod_r.dbf_zip(archivo, tabla) if tabla.lower().endswith(".dbf") else mod_r.csv_zip(archivo, tabla)
+    # `tabla` puede ser una ruta fisica ya conocida (trae '/' o termina en
+    # .csv/.dbf) o un nombre LOGICO (el que cita el FD, p.ej. 'TMod_Vic'),
+    # que hay que resolver dentro del zip -- nunca se adivina si hay 0 o
+    # mas de 1 candidato.
+    es_fisica = "/" in tabla or tabla.lower().endswith((".csv", ".dbf"))
+    if es_fisica:
+        miembro = tabla
+    else:
+        miembro, motivo = resuelve_miembro_zip(archivo, tabla)
+        if miembro is None:
+            return None, f"{id_celda}: {motivo}", advertencias
+        advertencias.append(f"{id_celda}: tabla logica {tabla!r} resuelta a miembro fisico {miembro!r} dentro de {archivo}")
+
+    filas = mod_r.dbf_zip(archivo, miembro) if miembro.lower().endswith(".dbf") else mod_r.csv_zip(archivo, miembro)
     r, c = mod_r.estima(filas, fila["variable"].lower(), uno, cero,
                          fila["ponderador"].lower(), fila["estrato"].lower(), fila["upm"].lower())
+    fila = dict(fila)
+    fila["_tabla_resuelta"] = miembro
     return (r, c, fila), None, advertencias
 
 
@@ -293,6 +350,49 @@ def regresion(ids, tabla_codif=None, manifiesto=None, mod_r=None):
     return coincide_todos, detalle
 
 
+def _encuesta_ola_del_marco(ruta_marco, id_celda):
+    """Lee SOLO encuesta/ola de la fila id_celda en un marco (solo lectura,
+    nunca se escribe). Devuelve (encuesta, ola) o (None, None) si no esta."""
+    for fila in lee_marco(ruta_marco):
+        if fila.get("id") == id_celda:
+            return fila.get("encuesta"), fila.get("ola")
+    return None, None
+
+
+def produce(ids, ruta_marco, tabla_codif=None, manifiesto=None, mod_r=None):
+    """Calcula celdas NUEVAS (sin corridas-R/<id>.json todavia) desde la
+    tabla y ESCRIBE el JSON, con el mismo esquema que los existentes.
+    Rehusa sobreescribir un id que ya tiene JSON (eso es de regresion(),
+    no de produce()). Devuelve detalle por id."""
+    tabla_codif = tabla_codif or lee_codificacion()
+    manifiesto = manifiesto or carga_manifiesto()
+    mod_r = mod_r or _correr_r()
+    detalle = []
+
+    for id_celda in ids:
+        ruta_salida = os.path.join(CORRIDAS_R, f"{id_celda}.json")
+        if os.path.exists(ruta_salida):
+            detalle.append({"id": id_celda, "escrito": False, "motivo": "YA-EXISTE, produce() nunca sobreescribe"})
+            continue
+
+        resultado, motivo, advertencias = calcula_desde_tabla(id_celda, tabla_codif, manifiesto, mod_r)
+        if resultado is None:
+            detalle.append({"id": id_celda, "escrito": False, "motivo": motivo, "advertencias": advertencias})
+            continue
+
+        r, c, fila = resultado
+        encuesta, ola = _encuesta_ola_del_marco(ruta_marco, id_celda)
+        spec = {"encuesta": encuesta, "ola": ola, "payload_id": fila["payload_id"],
+                "tabla": fila.get("_tabla_resuelta", fila["tabla"]), "variable": fila["variable"],
+                "ponderador": fila["ponderador"], "estrato": fila["estrato"], "upm": fila["upm"],
+                "codificacion": fila["codificacion"], "universo": fila["universo_filtro"]}
+        doc = mod_r.escribe(id_celda, spec, r, c)
+        detalle.append({"id": id_celda, "escrito": True, "estado": doc["estado"],
+                         "R": doc.get("R"), "advertencias": advertencias})
+
+    return detalle
+
+
 if __name__ == "__main__":
     if len(sys.argv) >= 2 and sys.argv[1] == "--regresion":
         ids = sys.argv[2:]
@@ -311,9 +411,30 @@ if __name__ == "__main__":
                 print("    advertencia:", a)
         sys.exit(0 if ok else 1)
 
+    if len(sys.argv) >= 3 and sys.argv[1] == "--produce":
+        ruta_marco = sys.argv[2]
+        ids = sys.argv[3:]
+        if not ids:
+            print("uso: arbitra.py --produce <marco.tsv> <id1> [id2] [id3] [id4]")
+            sys.exit(2)
+        detalle = produce(ids, ruta_marco)
+        ok = True
+        for d in detalle:
+            print(f"{d['id']}: {'ESCRITO ' + d.get('estado', '') if d['escrito'] else 'NO-ESCRITO'}")
+            if d['escrito']:
+                print(f"    R={d.get('R')}")
+            else:
+                ok = False
+            if d.get("motivo"):
+                print("    motivo:", d["motivo"])
+            for a in d.get("advertencias", []):
+                print("    advertencia:", a)
+        sys.exit(0 if ok else 1)
+
     if len(sys.argv) < 2:
         print(f"uso: {sys.argv[0]} <ruta-marco.tsv> [columna_elegible] [id1 id2 ...]")
         print(f"  o: {sys.argv[0]} --regresion <id1> [id2] [id3] ...")
+        print(f"  o: {sys.argv[0]} --produce <marco.tsv> <id1> [id2] [id3] [id4]")
         sys.exit(2)
     ruta = sys.argv[1]
     col = sys.argv[2] if len(sys.argv) > 2 else None
