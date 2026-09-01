@@ -38,3 +38,15 @@ corrido, ningún microdato abierto, declarado). `python3 tests/check.py
 completo, con comandos y salida: `forense/notas/2026-09-01-maestra33-
 e15-corredor-e-propuesta-cierre.md`. PR abierto contra `main`, **no
 fusionado por este acto** — el merge es de mesa.
+
+**Renumerado post-push:** `git fetch origin main` reveló que `main`
+avanzó (`PR #438`/`ACTO MAESTRA33-E17 · L-ENMIENDA-CLI`) mientras este
+PR estaba en vuelo — `E17` fusionó primero y tomó el candidato
+`ADR-264` (arriba); este acto renumera a **`ADR-265`**, contiguo, sin
+hueco (regla de la casa, renumera quien fusiona segundo). `git merge
+origin/main` con conflicto en `canon/gobernanza-v1_15.md`,
+`canon/estado-programa-v1_10.md` y `canon/registro-rotulos.tsv`
+(`tests/check.py` fusionó limpio), resuelto conservando las dos
+inserciones (`E17`, este acto), en orden de fusión — verificado
+`python3 tests/check.py --baseline`: **VERDE**, sin `FAIL` nuevo tras
+resolver.

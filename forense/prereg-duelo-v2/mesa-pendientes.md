@@ -122,6 +122,12 @@ el árbol; la PROPUESTA no se borra. Firmar esto no ejecuta nada:
 
 ---
 
+## §6 · Recibo — enmienda CLI, sin API, lista para mesa
+
+**`ACTO MAESTRA33-E17 · L-ENMIENDA-CLI`, 2/sep/2026, SHA `ee6a8a2`.** No es pregunta abierta — es recibo: por firma de mesa verbatim (2/sep/2026 — "dame una opcion donde no tenga que usar API ni gastar en API, la anterior se consumió 20 dolares de API y fue un reto la api key y todo eso"), este acto enmienda `prereg-corrida-v1_0.md` ("F2 · enmienda 2026-09-01", fila fechada) para que la corrida `L` del paquete `v1_1` (§4 de arriba) use Claude Code CLI en modo print con sesión de `claude.ai`, sin `ANTHROPIC_API_KEY`, en vez de la API directa que `PAQUETE-L-v1_1.md` §4 pedía. `forense/prereg-duelo-v2/runner_l_cli.py` (nuevo, sellado por hash en `PAQUETE-L-v1_1.md` §1) implementa el bucle completo (176 corridas: 11 celdas × 2 variantes × k=8), reanudable, y `PAQUETE-L-v1_1.md` §4-bis trae el comando exacto y el checklist (`claude auth status` mostrando sesión de `claude.ai`, no API key). Este acto no corrió ninguna celda — cero llamadas al modelo, solo `--dry-run` de rutas y esquema (176 verificadas). Cuando mesa corra el paquete bajo §4-bis y el PR `[L] corridas v1_1` se fusione, la entrada de §4 se marca `EJECUTADA` ahí, no aquí — esta sección es el recibo de la enmienda de cliente, no de la corrida en sí.
+
+---
+
 ## Cómo cerrar este archivo
 
 Cuando mesa resuelva cualquiera de §1, §2 o §3, la resolución se agrega aquí como una nueva sección fechada con la cita de la firma/ADR que la sella, y el archivo correspondiente (`escala-cinco-casillas-piloto-v1_0.md` para §1/§2, `corredor-E-combinacion-LM.py` para §3) se actualiza para reflejar el sello. Ninguna sección de este archivo se borra al resolverse — se marca RESUELTA con su fecha, seg el patrón de `firmas-pendientes.tsv`.
