@@ -30,7 +30,7 @@ sha256sum L-spec-v1_1.json    # debe coincidir además con L-spec-v1_1.sha256
 
 | Archivo | `sha256` esperado (al sellar este paquete) |
 |---|---|
-| `pipeline-L-adv1-m2.py` | ver `sha256sum` real en el repo — sellado por `E2-PREP-L-RUN`, tabla completa en `lanzamiento-L-v1_0.md` §0; este acto NO lo modificó, verificable con `git log -p -- forense/prereg-duelo-v2/pipeline-L-adv1-m2.py` desde `MAESTRA33-E9` |
+| `pipeline-L-adv1-m2.py` | ver `sha256sum` real en el repo — sellado por `ACTO E2-PREP-L-RUN` (tabla completa en `lanzamiento-L-v1_0.md` §0); este acto NO lo modificó, verificable con `git log -p -- forense/prereg-duelo-v2/pipeline-L-adv1-m2.py` desde `MAESTRA33-E9` |
 | `carga_l_v1_1.py` | ver `L-spec-v1_1.sha256`-sibling `sha256sum forense/prereg-duelo-v2/carga_l_v1_1.py` al momento de correr — cargador nuevo de este acto, no del piloto |
 | `L-spec-v1_1.json` | valor en `forense/prereg-duelo-v2/L-spec-v1_1.sha256` |
 
@@ -42,7 +42,7 @@ Si algo no coincide: no se sobreescribe la tabla — se aplica la regla de enmie
 
 | Parámetro | Valor | Fuente |
 |---|---|---|
-| `modelo_id` | `claude-opus-4-6` (o el que mesa fije en la RANURA de mesa de este mismo paquete antes de arrancar, sin editar este documento archivado — anotarlo en la sesión ejecutora) | `prereg-corrida-v1_0.md` F2(a) |
+| `modelo_id` | `claude-opus-4-6` (o el que mesa sustituya antes de arrancar, sin editar este documento archivado — anotarlo en la sesión ejecutora) | `prereg-corrida-v1_0.md` F2(a) |
 | `temperatura` | `1.0` | `prereg-corrida-v1_0.md` F2(a) |
 | `k_corridas` | `8` | `prereg-corrida-v1_0.md` F2(b), `ParametrosCorredorL.__post_init__` exige `[5,10]` |
 | Variantes | `L-solo`, `L+corpus` | `ADV1-M2`, `pipeline-L-adv1-m2.py:65` |
