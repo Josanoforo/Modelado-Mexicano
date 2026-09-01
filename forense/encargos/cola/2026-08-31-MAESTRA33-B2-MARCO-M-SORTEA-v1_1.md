@@ -1,8 +1,9 @@
-ESTADO: LISTO-NUBE
+ESTADO: CONSUMIDO — PR #419, ejecutado por sesión manual, no por /despacha
 ENTORNO: NUBE
 ENCOLADO: 2026-08-31 · `ACTO MAESTRA33-E2 · AGENTE-DESPACHO-1`
 BITACORA:
 - 2026-08-31 · LISTO-NUBE · encolado por `ACTO MAESTRA33-E2 · AGENTE-DESPACHO-1`. Entra a la cola por PR fusionado a `main`: ese merge es la autorización de mesa, y es la única puerta de entrada (P1).
+- 2026-09-01 · CONSUMIDO · ejecutado por `PR #419`, sesión manual (no `/despacha`) bajo instrucción explícita de mesa: la sesión de `MAESTRA33-E6 · EMISOR-M-1` encontró este encargo `LISTO-NUBE` sin ejecutar, lo que dejaba la compuerta de `EMISOR-M-1` sin cumplir; `EMISOR-M-1` quedó en `PARO` (cero commits, protocolo `/acto` paso 2) y no se retoma en esta sesión.
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 
@@ -11,3 +12,7 @@ SHA de redacción: af41796. ENTORNO: NUBE — NO UBUNTU. MODELO SUGERIDO: Sonnet
 A.8: sorteo v1_0 EXISTE (sorteo-marco-M-resultados-v1_0.md); resultados v1_1 NO-ENCONTRADO (ls forense/prereg-duelo-v2/, 31/ago/2026).
 COMMIT-1 (congela antes de correr): semilla = semilla_desde_sha_merge("af41796f50baad1737987b7e9a1e737c38ab85f2", "MARCO-M-v1_1") — función existente en sorteo_v2.py:191, que NO se edita (cargadores propios si hace falta, precedente del reglamento ADR-178); universo = filas elegibles de marco-M-congelado-v1_1.tsv (N_elegibles esperado 22 — deriva, no heredes); regla de tamaño = ADR-231 §e leída del árbol; celdas P0-calibración entran VERIFICACION-NO-PUNTUA (F-DD). Frase de sello incluida.
 COMMIT-2: forense/prereg-duelo-v2/sorteo-marco-M-resultados-v1_1.md con semilla, comando, lista sorteada y clasificación P0/P1 por celda. CONTADOR: celdas sorteadas v1_1 de 0 → N. LO QUE NO HACE: no emite puntos M ni abre corridas-R/ (ciego). Si lanzas agentes que sean en sonnet. Necesito que todo quede cableado no quiero espacios donde después me digan que faltó unir tal o cual parte del proceso.
+
+## CONSUMIDO
+
+Cerrado por `PR #419`. Ejecutado por sesión manual, no por `/despacha` — instrucción explícita de mesa (1/sep/2026) para desbloquear la compuerta de `MAESTRA33-E6 · EMISOR-M-1`, que la sesión que la atendía encontró `NO cumplida` (`marco-M-sorteado-v1_1.tsv` ausente de `origin/main`) y cerró con `PARO`/cero commits antes de escalar. Compuerta propia de este encargo (`marco-M-congelado-v1_1.tsv` + `CONGELADO-M-v1_1.sha256` en `main`) re-verificada mecánicamente — sha256 recomputado coincide byte a byte, control PASA. `SHA_A=af41796f50baad1737987b7e9a1e737c38ab85f2` (merge `PR #410`, `ACTO MAESTRA32-E20`), `scope_id="MARCO-M-v1_1"`, `semilla=34354141898495593251517379743390345279`. `sorteo_marco_m_v1_1.py` nuevo (cargador propio, precedente `ADR-178`; `sorteo_v2.py`/`sorteo_marco_m.py` no editados). Resultado: 11 celdas nuevas (`CIV-M-01/06/08/09/11/12/13`, `FAM-M-01`, `TRA-M-03/05/07`), `forense/prereg-duelo-v2/marco-M-sorteado-v1_1.tsv`. **Hallazgo para mesa, no forzado:** la regla 3 del reglamento sellado (piso 1 por estrato no vacío) no se cumplió para `tramite|P1|MEDIA` (`TRA-M-02` sin asiento, empate de cuota exacta 0.5 resuelto por el desempate alfabético ya sellado) — detalle completo en `forense/prereg-duelo-v2/sorteo-marco-M-resultados-v1_1.md` y `ADR-247`; recibo en `FP-212` (`ABIERTA`). `ADR-247` (candidato), `MAESTRA33-B2` censado en `canon/registro-rotulos.tsv` (primer habitante del espacio B). `python3 tests/check.py --baseline`: **VERDE**, sin `FAIL` nuevo. `EMISOR-M-1` sigue en `PARO`, no se retoma en esta sesión.
