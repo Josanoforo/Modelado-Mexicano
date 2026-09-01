@@ -1560,6 +1560,35 @@ def _t22_tabla():
         filas.append(dict(zip(cabecera, campos)))
     return p, filas
 
+_RE_T22_VENCE = re.compile(r"vence:\s*(\d{4}-\d{2}-\d{2})")
+
+
+def _t22_retraso_txt(fila, hoy):
+    """'' o ' · VENCIDA hace N días'/' · vence en N días' según `vence:` en
+    `gatea` -- P2 de ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS. Mismo
+    regex que `tools/digesto_tramite.py::RE_VENCE`, columna `gatea` -- si
+    allá cambia, aquí se rompe la garantía en silencio, mismo patrón
+    declarado que RE_ROTULO_PELADO/RE_MARCADOR_* de este mismo archivo."""
+    m = _RE_T22_VENCE.search(fila.get("gatea", ""))
+    if not m:
+        return ""
+    try:
+        anio, mes, dia = (int(x) for x in m.group(1).split("-"))
+        vence = datetime.date(anio, mes, dia)
+    except ValueError:
+        return ""
+    delta = (hoy - vence).days
+    if delta > 0:
+        return f" · VENCIDA hace {plural_dias(delta)}"
+    if delta < 0:
+        return f" · vence en {plural_dias(-delta)}"
+    return " · vence HOY"
+
+
+def plural_dias(n):
+    return "1 día" if n == 1 else f"{n} días"
+
+
 def t22_firmas():
     p, filas = _t22_tabla()
     if p is None:
@@ -1579,7 +1608,7 @@ def t22_firmas():
         except (ValueError, TypeError):
             pass
         senal("T22", f"{f.get('id', '?')} ABIERTA desde {f.get('creado', '?')} "
-                     f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
+                     f"({edad_txt}){_t22_retraso_txt(f, hoy)}: {f.get('qué_se_firma', '')[:100]}")
 
     # (c) WARN por cada fila FIRMADA con `ejecutada_en` vacío -- una firma
     # de mesa no es lo mismo que una firma ejecutada, y `estado` solo
@@ -1598,7 +1627,7 @@ def t22_firmas():
         except (ValueError, TypeError):
             pass
         senal("T22", f"{f.get('id', '?')} FIRMADA sin ejecutar desde {f.get('creado', '?')} "
-                     f"({edad_txt}): {f.get('qué_se_firma', '')[:100]}")
+                     f"({edad_txt}){_t22_retraso_txt(f, hoy)}: {f.get('qué_se_firma', '')[:100]}")
 
     # (b) auto-protección: archivo nuevo de canon/forense con marcador de
     # ranura o de pendiente-de-mesa, sin fila que lo cite en `dónde`.
@@ -3352,6 +3381,16 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # las demas entradas de esta lista (encargos archivados citando
     # habitantes ya censados sin el prefijo "MAESTRA33-").
     "forense/encargos/2026-09-01-MAESTRA33-S1-SORTEO-v3-Y-PROPAGA.md",
+    # ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS, 1/sep/2026: encargo
+    # archivado VERBATIM (A.3) trae "PR #429 (E10)" en su cabecera de
+    # COMPUERTA, bare "E10" citando ACTO MAESTRA33-E10 ·
+    # PROCEDIMIENTO-SCORING-v1_1-PROPUESTA (habitante ya censado del
+    # espacio E, canon/registro-rotulos.tsv). El encargo no se edita
+    # para complacer este test -- A.3 pide el texto verbatim de
+    # direccion/mesa. Mismo patron que las demas entradas de esta lista
+    # (encargos archivados citando habitantes ya censados sin el
+    # prefijo "MAESTRA33-").
+    "forense/encargos/2026-09-01-MAESTRA33-E11-CRITERIOS-Y-VENCIMIENTOS.md",
 }
 
 
