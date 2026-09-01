@@ -11,6 +11,15 @@ resumen de él. `data/cola-adquisicion-2026-08-12.tsv` y las cuatro
 `data/cola-ext-*-2026-08-06.tsv` quedan como histórico — esta skill lee y
 escribe **solo** la tabla `v1_0`.
 
+**Desde `ACTO MAESTRA33-A5 · RECONCILIA-ADQUISICION-CON-CURADOR` (1/sep/2026,
+`ADR-70(c)`)**: `data/cola-adquisicion-v1_0.tsv` es una **VISTA GENERADA**
+(cabecera `# GENERADO — no editar`), no la fuente. La fuente real es
+`data/curacion-registro/cola-adquisicion-registro.tsv`. "Escribe solo la
+tabla `v1_0`" arriba describe el perímetro de archivo de esta skill, no
+implica edición directa a mano de esa vista — el paso 5.3 de abajo escribe
+contra el registro y regenera la vista, nunca edita el TSV `v1_0`
+directamente.
+
 ---
 
 ## 0 · Arranque mínimo
@@ -29,9 +38,11 @@ una sola fila:
 
 ## 1 · Selección de filas
 
-Lee `data/cola-adquisicion-v1_0.tsv` completa (es la fuente viva; no leas las
-cinco tablas de agosto salvo para resolver un puntero `origen` concreto que
-esta caminata cite).
+Lee `data/cola-adquisicion-v1_0.tsv` completa para seleccionar filas — sigue
+siendo la proyección legible por prioridad (7 columnas, mismo orden de
+siempre); solo cambia que ya no es donde se escribe (ver nota de
+`MAESTRA33-A5` arriba). No leas las cinco tablas de agosto salvo para
+resolver un puntero `origen` concreto que esta caminata cite.
 
 Elegibles para esta caminata, en este orden:
 
@@ -156,9 +167,14 @@ Todo payload que SÍ llegue se baja **dos veces** y se compara:
    directamente de <host>" --fecha-descarga <hoy, YYYY-MM-DD>` (más
    `--formato`/`--licencia`/`--nota` si aplican). El script deriva
    `sha256`/tamaño/entorno del archivo real — nunca los teclees.
-3. Actualiza la fila en `data/cola-adquisicion-v1_0.tsv`:
-   `estado_A4A5=OBTENIDO`, `ids_manifiesto=<id(s) nuevos>`, nota con fecha y
-   comando.
+3. Actualiza la fila que corresponda (por `fuente_canonica`) en
+   `data/curacion-registro/cola-adquisicion-registro.tsv` —
+   **no** en `data/cola-adquisicion-v1_0.tsv` directamente (es vista
+   generada desde `MAESTRA33-A5`): `estado_A4A5=OBTENIDO`,
+   `ids_manifiesto=<id(s) nuevos>`, nota con fecha y comando. Cierra el paso
+   corriendo `python3 tools/vista_cola_adquisicion.py` para que la vista
+   quede al día antes del commit — `tests/check.py::T26` falla si no lo
+   haces.
 
 ## 6 · Fallo
 
@@ -169,19 +185,27 @@ modelo lo sostienen. Lo único que se escribe es lo que un comando produjo.
 
 1. Estado: `NO-OBTENIDO-POR-ESTE-AGENTE(N intentos)`, donde `N` = intentos
    previos registrados en la fila (si los hay) **+** los de esta caminata.
-   Nunca reinicies el contador.
+   Nunca reinicies el contador. Escribe esto en la fila de
+   `data/curacion-registro/cola-adquisicion-registro.tsv`, no en la vista.
 2. Nota: salida cruda relevante (código `curl`, mensaje exacto — p.ej.
    `curl 35 TLS connect error` no es lo mismo que `curl 52 Empty reply`, y la
    distinción importa para quien reintente), y si se probó dentro **y** fuera
    de algún control de red, decláralo (A.5).
 3. **RECETA de navegador, ≤1 minuto, verbatim ejecutable por un humano o por
    Claude in Chrome**: URL exacta a abrir, clics necesarios en orden, nombre
-   de archivo esperado al terminar. Sin esto el fallo no está completo.
+   de archivo esperado al terminar. Sin esto el fallo no está completo. Si
+   esta caminata produce un `PAQUETE-RECETAS-<fecha>.md` (§7.2), cita su
+   ruta en la columna `nota` de la fila del registro — es la evidencia que
+   `data/INFRAESTRUCTURA-v1_0.md` Dominio 1 declara para ese artefacto.
 
 ## 7 · Cierre de la caminata
 
-1. `data/cola-adquisicion-v1_0.tsv` queda con **todas** las filas caminadas
-   actualizadas — ninguna se deja a medio actualizar entre estados.
+1. `data/curacion-registro/cola-adquisicion-registro.tsv` queda con
+   **todas** las filas caminadas actualizadas — ninguna se deja a medio
+   actualizar entre estados. Termina el cierre corriendo
+   `python3 tools/vista_cola_adquisicion.py`: `data/cola-adquisicion-v1_0.tsv`
+   se regenera completa a partir del registro y entra al commit junto con
+   él (nunca se edita a mano — `tests/check.py::T26` lo verifica).
 2. **Paquete de recetas**, un solo bloque, todas las filas que esta caminata
    cerró en `NO-OBTENIDO-POR-ESTE-AGENTE` o que reclasificó a `NO-ACCESIBLE`,
    listas para que mesa (o Claude in Chrome) las ejecute en un barrido —no

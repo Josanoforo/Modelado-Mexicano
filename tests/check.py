@@ -3484,6 +3484,288 @@ def t25_rotulos():
                              f"CONOCIDOS` y a `canon/registro-rotulos.tsv`")
 
 
+_T_INFRA_ARCHIVOS_CONOCIDOS = {
+    "data/INFRAESTRUCTURA-v1_0.md",
+    "data/UNIVERSO-MINIMO-FUENTE-v1_0.md",
+    "data/abrir4-variables-2026-08-08.tsv",
+    "data/acceso-puertas-2026-08-13.tsv",
+    "data/adq-enoe-pre2019-docs-evidencia.tsv",
+    "data/adq-enoe-pre2019-evidencia.tsv",
+    "data/adq-enoe-pre2019-sonda-eras-evidencia.tsv",
+    "data/apertura-enfih-ensafi-v1_0.tsv",
+    "data/apertura-issp-variables-2026-08-13.tsv",
+    "data/barrido-enoe-constructos-universoA.tsv",
+    "data/barrido-enoe-puente-distribucion.tsv",
+    "data/barrido-enoe-sonda-eras.tsv",
+    "data/barrido-enoe-variables-pre-vs-post.tsv",
+    "data/cableado-universo-v1_0.tsv",
+    "data/catalogo-fuentes-v2_0.md",
+    "data/censo-explotacion-2026-08-13.tsv",
+    "data/censo-explotacion-2026-08-17.tsv",
+    "data/censo-raices-2026-08-06.tsv",
+    "data/cobertura-composicion-v1_0.tsv",
+    "data/cobertura-composicion-v1_0.tsv.meta",
+    "data/coef-universo-v1_0.tsv",
+    "data/cola-adquisicion-2026-08-12.tsv",
+    "data/cola-adquisicion-v1_0.tsv",
+    "data/cola-aperturas-externas-2026-08-06.tsv",
+    "data/cola-ext-academico-2026-08-06.tsv",
+    "data/cola-ext-civil-2026-08-06.tsv",
+    "data/cola-ext-general-2026-08-06.tsv",
+    "data/cola-ext-oficial-2026-08-06.tsv",
+    "data/crosswalk-fuente-puerta-2026-08-13.tsv",
+    "data/crosswalk-fuente-puerta-2026-08-14.tsv",
+    "data/cruce-inverso-v1_0.tsv",
+    "data/cruce-inverso-v1_1.tsv",
+    "data/curacion-radio-confianza-v1_0.tsv",
+    "data/curacion-registro/.barrido2-integrate.lock",
+    "data/curacion-registro/aliases-fuentes.tsv",
+    "data/curacion-registro/artefactos-rechazados.tsv",
+    "data/curacion-registro/b2-v7-especificacion-tres-cifras.md",
+    "data/curacion-registro/b2-v7-mapertura-17-derivar.py",
+    "data/curacion-registro/b2-v7-mapertura-17-observacion.tsv",
+    "data/curacion-registro/b2-v7-medir-tres-cifras.py",
+    "data/curacion-registro/b2-v7-tres-cifras-salida.json",
+    "data/curacion-registro/b2-v7-tres-cifras.tsv",
+    "data/curacion-registro/baseline.json",
+    "data/curacion-registro/bootstrap-semantico.tsv",
+    "data/curacion-registro/celdas-d/G5.familismo_obligacion.actitud.yaml",
+    "data/curacion-registro/celdas-d/G5.obligacion_medida.conducta.yaml",
+    "data/curacion-registro/celdas-d/G5.radio_confianza.encuci_vs_enbiare.yaml",
+    "data/curacion-registro/cola-residual.tsv",
+    "data/curacion-registro/cruce-oferta-demanda-v0_1.tsv",
+    "data/curacion-registro/decisiones-humanas.tsv",
+    "data/curacion-registro/ejecucion-semantica/acciones-originales-preservadas.tsv",
+    "data/curacion-registro/ejecucion-semantica/barrido2/bootstrap-sync.json",
+    "data/curacion-registro/ejecucion-semantica/barrido2/cobertura-fuentes-barrido2-detalle.tsv",
+    "data/curacion-registro/ejecucion-semantica/barrido2/cobertura-fuentes-barrido2.tsv",
+    "data/curacion-registro/ejecucion-semantica/barrido2/decisiones-integracion-barrido2.tsv",
+    "data/curacion-registro/ejecucion-semantica/barrido2/integracion-validada-barrido2.json",
+    "data/curacion-registro/ejecucion-semantica/barrido2/journal-integracion-barrido2.json",
+    "data/curacion-registro/ejecucion-semantica/barrido2/propuestas-barrido2.tsv",
+    "data/curacion-registro/ejecucion-semantica/barrido2/tareas-semanticas-barrido2.tsv",
+    "data/curacion-registro/ejecucion-semantica/manifest.json",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-1d73f40d5db91bcb0da9f3d2/consumo-reportes-neutrales.tsv",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-1d73f40d5db91bcb0da9f3d2/expediente-integracion.tsv",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-1d73f40d5db91bcb0da9f3d2/particiones.tsv",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-1d73f40d5db91bcb0da9f3d2/propuestas-curador.tsv",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-1d73f40d5db91bcb0da9f3d2/supervision.tsv",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-354ccb9dc1023a0bd420d48f/expediente-integracion.tsv",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-354ccb9dc1023a0bd420d48f/hashes.json",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-354ccb9dc1023a0bd420d48f/input.json",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-354ccb9dc1023a0bd420d48f/mapa-privado-supervisor.tsv",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-354ccb9dc1023a0bd420d48f/particiones.tsv",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-354ccb9dc1023a0bd420d48f/propuestas-curador.tsv",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-354ccb9dc1023a0bd420d48f/propuestas-integrate-compatibles.tsv",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-354ccb9dc1023a0bd420d48f/resultados-acciones.tsv",
+    "data/curacion-registro/ejecucion-semantica/runs/SEMRUN-354ccb9dc1023a0bd420d48f/supervision.tsv",
+    "data/curacion-registro/ejecucion-semantica/schemas/curator-input.schema.json",
+    "data/curacion-registro/ejecucion-semantica/schemas/inspector-contract.schema.json",
+    "data/curacion-registro/ejecucion-semantica/schemas/neutral-report.schema.json",
+    "data/curacion-registro/ejecucion-semantica/schemas/semantic-run-proposal.schema.json",
+    "data/curacion-registro/ejecucion-semantica/schemas/semantic-supervision.schema.json",
+    "data/curacion-registro/ejecucion-semantica/schemas/semantic-task.schema.json",
+    "data/curacion-registro/especificaciones-produccion.json",
+    "data/curacion-registro/evidencias.tsv",
+    "data/curacion-registro/expedientes-produccion/evidencia-neutral-produccion.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-A-7baf278d/analisis-reproducible.py",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-A-7baf278d/especificacion-recibida.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-A-7baf278d/hashes.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-A-7baf278d/resultado.tsv",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-A-7baf278d/resumen.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/analisis-reproducible.py",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/especificacion-recibida.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/hashes.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resultado.tsv",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resumen.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-C-9ecb5c61/analisis-reproducible.py",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-C-9ecb5c61/especificacion-recibida.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-C-9ecb5c61/hashes.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-C-9ecb5c61/resultado.tsv",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-C-9ecb5c61/resumen.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/analisis-reproducible.py",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/especificacion-recibida.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/hashes.json",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/resultado.tsv",
+    "data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/resumen.json",
+    "data/curacion-registro/fusiones-relaciones.tsv",
+    "data/curacion-registro/integracion-barrido/expediente-integracion.json",
+    "data/curacion-registro/integracion-barrido/integracion-propuestas.tsv",
+    "data/curacion-registro/integracion-barrido/integracion-validada.json",
+    "data/curacion-registro/integracion-barrido/procedencias-vinculadas.tsv",
+    "data/curacion-registro/integracion-barrido/propuestas-recibidas.tsv",
+    "data/curacion-registro/integracion-barrido/reportes-recibidos.tsv",
+    "data/curacion-registro/integracion-barrido/tarea-curador-recibida.json",
+    "data/curacion-registro/integracion-barrido/tareas-inspeccion-recibidas.json",
+    "data/curacion-registro/necesidad-objeto-modelo.tsv",
+    "data/curacion-registro/produccion-modelo.tsv",
+    "data/curacion-registro/reglas-clasificacion-trabajo.json",
+    "data/curacion-registro/relaciones.tsv",
+    "data/curacion-registro/trabajo-semantico.tsv",
+    "data/curacion-registro/utilidad-modelo.tsv",
+    "data/curacion-universo/activos-descubiertos-durante-ronda.tsv",
+    "data/curacion-universo/adjudicacion-marco-produccion-total-v1_0.tsv",
+    "data/curacion-universo/autoridad-semantica-marco-v1_0.jsonl",
+    "data/curacion-universo/autoridad-semantica-marco-v1_0.schema.json",
+    "data/curacion-universo/baseline-material-barrido2.json",
+    "data/curacion-universo/campos-maquina-barrido2.tsv",
+    "data/curacion-universo/candidatos-reconciliacion-activos.tsv",
+    "data/curacion-universo/cierre-28-barrido2.py",
+    "data/curacion-universo/contrato-barrido2-v1_0.json",
+    "data/curacion-universo/contratos-barrido2-hashes.json",
+    "data/curacion-universo/contratos-inspeccion-hashes.json",
+    "data/curacion-universo/contratos-inspeccion.jsonl",
+    "data/curacion-universo/decisiones-adquisicion.tsv",
+    "data/curacion-universo/declaraciones-activos-t0.tsv",
+    "data/curacion-universo/diagnostico-autoridad-semantica-marco-v1_0.json",
+    "data/curacion-universo/discrepancias-hash-local.tsv",
+    "data/curacion-universo/estado-activos.tsv",
+    "data/curacion-universo/excepciones-cegamiento-historicas.tsv",
+    "data/curacion-universo/excepciones-cegamiento.tsv",
+    "data/curacion-universo/excepciones-inspeccion.tsv",
+    "data/curacion-universo/familias-activos.tsv",
+    "data/curacion-universo/fuentes-t0.tsv",
+    "data/curacion-universo/hallazgos-semanticos-potenciales.tsv",
+    "data/curacion-universo/inputs-t0.json",
+    "data/curacion-universo/inventario-autoridad-semantica-marco-v1_0.jsonl",
+    "data/curacion-universo/ledger-inspecciones-barrido2.tsv",
+    "data/curacion-universo/ledger-inspecciones-t0-resumen.json",
+    "data/curacion-universo/ledger-inspecciones-t0.tsv",
+    "data/curacion-universo/marco-produccion-total-diagnostico-v1_0.json",
+    "data/curacion-universo/marco-produccion-total-v1_0.tsv",
+    "data/curacion-universo/muestra-adversarial-barrido2.tsv",
+    "data/curacion-universo/muestra-adversarial-comparar.py",
+    "data/curacion-universo/muestra-adversarial-derivar.py",
+    "data/curacion-universo/objetos-observados-no-representados.tsv",
+    "data/curacion-universo/objetos-recuperados-t0.tsv",
+    "data/curacion-universo/perfiles-autoridad-semantica-marco-v1_0.json",
+    "data/curacion-universo/plan-inspeccion.tsv",
+    "data/curacion-universo/prisma-material-barrido2.md",
+    "data/curacion-universo/prisma-semantico-barrido2.md",
+    "data/curacion-universo/prisma-semantico-derivar.py",
+    "data/curacion-universo/reportes-inspeccion-barrido2-v1_0.tsv",
+    "data/curacion-universo/reportes-inspeccion.tsv",
+    "data/curacion-universo/reutilizacion-inspecciones.tsv",
+    "data/curacion-universo/snapshot-t0.json",
+    "data/curacion-universo/tablero-cobertura.json",
+    "data/curacion-universo/universo-declarado-t0.tsv",
+    "data/diseno-muestral.yaml",
+    "data/emparejamiento-motor-v1_0.tsv",
+    "data/emparejamiento-motor-v1_1.tsv",
+    "data/emparejamiento-motor-v1_2.tsv",
+    "data/exploracion-puertas-2026-08-07.tsv",
+    "data/exploracion-puertas-2026-08-08.tsv",
+    "data/fp29-series-externas-2026-08-18.json",
+    "data/fuera-de-disco-v1_0.tsv",
+    "data/indice-canastas-2026-08-08.tsv",
+    "data/indice-descarga-masiva-2026-08-05.tsv",
+    "data/integridad-corpus-2026-08-06.tsv",
+    "data/inventario-fd-ext-v1_0.tsv",
+    "data/inventario-fd-v1_0.tsv",
+    "data/inventario-fd-v1_1.tsv",
+    "data/inventario-reactivos-ext-v1_0.tsv",
+    "data/inventario-reactivos-v1_0.tsv",
+    "data/inventario-reactivos-v1_0.tsv.meta",
+    "data/inventario-reactivos-v1_1.tsv",
+    "data/inventario-reactivos-v1_2.tsv",
+    "data/inventarios/README-inventarios.md",
+    "data/inventarios/alias-fuentes.yaml",
+    "data/inventarios/inventario-fuentes-credito-ahorro-finanzas-hogar-mexico.md",
+    "data/inventarios/inventario-fuentes-migracion-mexico.md",
+    "data/inventarios/inventario-fuentes-tecnologia-digital-mexico.md",
+    "data/inventarios/inventario_fuentes_capital_social_mexico.md",
+    "data/inventarios/inventario_fuentes_clase-fuente-mexico.md",
+    "data/inventarios/inventario_fuentes_cultura_valores_opinion_mexico.md",
+    "data/inventarios/inventario_fuentes_salud_mexico.md",
+    "data/inventarios/inventario_fuentes_seguridad_justicia_mexico.md",
+    "data/inventarios/inventario_fuentes_trabajo_ingreso_formalidad_mexico.md",
+    "data/inventarios/inventario_fuentes_tramites_estado_mexico.md",
+    "data/inventarios/inventario_fuentes_uso_del_tiempo_cuidados_hogar_mexico.md",
+    "data/lista-apertura-enlace2-2026-08-14.tsv",
+    "data/manifiesto-staging.yaml",
+    "data/manifiesto.yaml",
+    "data/mapa-ext-academico-2026-08-06.tsv",
+    "data/mapa-ext-civil-2026-08-06.tsv",
+    "data/mapa-ext-general-2026-08-06.tsv",
+    "data/mapa-ext-oficial-2026-08-06.tsv",
+    "data/mapa-fuentes-2026-08-06.tsv",
+    "data/mapa-fuentes-externas-consolidado-2026-08-06.tsv",
+    "data/pypdf-rebarrido-2026-08-24.tsv",
+    "data/reapertura-52a-54-variables-2026-08-13.tsv",
+    "data/triaje-hitoD-2026-08-24.tsv",
+    "data/universo-cota-2026-08-12.tsv",
+    "data/universo-puertas-2026-08-08.tsv",
+    "data/universo-puertas-2026-08-12.tsv",
+    "data/universo-puertas-2026-08-14.tsv",
+    "data/verif3-variables-2026-08-08.tsv",
+}
+
+
+def t26_vista_cola_adquisicion():
+    """T26 · T-VISTA-COLA-ADQUISICION -- P3, ACTO MAESTRA33-A5 ·
+    RECONCILIA-ADQUISICION-CON-CURADOR, 1/sep/2026. data/cola-adquisicion-v1_0.tsv
+    deja de ser fuente: es una vista regenerada por tools/vista_cola_adquisicion.py
+    desde data/curacion-registro/cola-adquisicion-registro.tsv. Este test falla
+    si el archivo en disco difiere de lo que el script produce -- es la garantía
+    mecánica de "no editar a mano"."""
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    try:
+        import vista_cola_adquisicion as vca
+    except Exception as e:
+        fail("T26", f"no se pudo importar tools/vista_cola_adquisicion.py: {e}")
+        return
+    vista_path = os.path.join(ROOT, "data", "cola-adquisicion-v1_0.tsv")
+    registro_path = os.path.join(ROOT, "data", "curacion-registro", "cola-adquisicion-registro.tsv")
+    if not os.path.exists(registro_path):
+        fail("T26", "no existe `data/curacion-registro/cola-adquisicion-registro.tsv` "
+                     "-- fuente de la vista (P2/P3)")
+        return
+    if not os.path.exists(vista_path):
+        fail("T26", "no existe `data/cola-adquisicion-v1_0.tsv`")
+        return
+    import pathlib
+    esperado = vca.build(pathlib.Path(registro_path))
+    actual = read(vista_path)
+    if esperado != actual:
+        fail("T26", "data/cola-adquisicion-v1_0.tsv difiere de lo que "
+                     "`python3 tools/vista_cola_adquisicion.py` produce a partir de "
+                     "cola-adquisicion-registro.tsv -- alguien editó la vista a mano "
+                     "o el registro cambió sin regenerarla. Corre el script y "
+                     "commitea el resultado.")
+
+
+def t27_infraestructura():
+    """T27 · T-INFRA -- P3-bis, ACTO MAESTRA33-A5 ·
+    RECONCILIA-ADQUISICION-CON-CURADOR, 1/sep/2026. Precedente que lo justifica:
+    data/cola-adquisicion-v1_0.tsv vivió cuatro actos fuera de
+    data/INFRAESTRUCTURA-v1_0.md sin que ningún test lo viera (A.8 de ese
+    encargo). Todo archivo NUEVO o renombrado bajo data/ que no aparezca (por
+    nombre base) en INFRAESTRUCTURA-v1_0.md falla aquí. Los archivos que ya
+    existían al introducir este test están censados en
+    `_T_INFRA_ARCHIVOS_CONOCIDOS` (grandfather, mismo patrón que T25) -- no se
+    exige retroactivamente que todo el árbol de `data/` esté indexado, solo que
+    nada nuevo se le vuelva a escapar."""
+    infra_path = os.path.join(ROOT, "data", "INFRAESTRUCTURA-v1_0.md")
+    if not os.path.exists(infra_path):
+        fail("T27", "no existe `data/INFRAESTRUCTURA-v1_0.md`")
+        return
+    infra_text = read(infra_path)
+    for p in sorted(glob.glob(os.path.join(ROOT, "data", "**", "*"), recursive=True)):
+        if not os.path.isfile(p):
+            continue
+        relp = rel(p)
+        if relp in _T_INFRA_ARCHIVOS_CONOCIDOS:
+            continue
+        base = os.path.basename(p)
+        if base in infra_text or relp in infra_text:
+            continue
+        fail("T27", f"{relp}: archivo nuevo bajo `data/` sin cita en "
+                     f"`data/INFRAESTRUCTURA-v1_0.md` -- regístralo en el Dominio "
+                     f"que corresponda (D1-D9) o, si INFRAESTRUCTURA no cubre ese "
+                     f"tipo de archivo por diseño, añádelo a "
+                     f"`_T_INFRA_ARCHIVOS_CONOCIDOS` con el porqué")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -3512,6 +3794,8 @@ def main():
         ("T23 T-CABLEADO",                        t23_cableado),
         ("T24 T-LLAVES-EJERCIDAS",                t24_llaves_ejercidas),
         ("T25 T-ROTULOS",                         t25_rotulos),
+        ("T26 T-VISTA-COLA-ADQUISICION",          t26_vista_cola_adquisicion),
+        ("T27 T-INFRA",                           t27_infraestructura),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
