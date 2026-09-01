@@ -2559,6 +2559,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # referenciar la tabla de hashes de lanzamiento-L-v1_0.md §0 -- mismo
     # nombre propio ya censado arriba, no un rótulo nuevo sin dueño.
     "forense/prereg-duelo-v2/PAQUETE-L-v1_1.md",
+    # forense/notas/2026-09-02-maestra33-e17-l-enmienda-cli-cierre.md --
+    # ACTO MAESTRA33-E17 · L-ENMIENDA-CLI, 2/sep/2026: cita la cadena "E2"
+    # entre comillas al explicar que el único hit de T25 sobre
+    # PAQUETE-L-v1_1.md es el nombre propio preexistente "ACTO
+    # E2-PREP-L-RUN" (ya censado arriba) -- no un rótulo nuevo sin dueño.
+    "forense/notas/2026-09-02-maestra33-e17-l-enmienda-cli-cierre.md",
     # SELLA-AGO24-C-v2, 24/ago/2026 (ADR-155): encargo archivado VERBATIM
     # (convencion de forense/encargos/: "el texto completo del encargo tal
     # como se lanzo"). Su `M5` pelado es ADV1-M5, ya censado en
