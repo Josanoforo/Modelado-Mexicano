@@ -15691,3 +15691,27 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: 'Ver nota completa en ine_fiscalizacion_prefo2324_cam_agenda_eventos. Doble descarga
     A.7 completa: sha256 idéntico (7ae2cffe...), 433909 B.'
+
+- id: asf_informe_resultado_fiscalizacion_cp2023_general
+  usado_para: 'EXT_OF_08_ASF_INFORME_2023 (data/cola-adquisicion-v1_0.tsv fila 66, prioridad
+    oficial-5): Informe del Resultado de la Fiscalización Superior de la Cuenta Pública 2023,
+    Reporte General (MR_General), primera entrega.'
+  url_origen: https://www.asf.gob.mx/Trans/Informes/ir2023c/Documentos/Auditorias/MR_General_a.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de asf.gob.mx (curl -A UA-navegador, GET real)
+  archivo: asf_informe_cuenta_publica_2023/MR_General_a.pdf
+  sha256: 62bb8144ed77da2266618c9ed8479ef90e148f8d23bd4e7a69690e7ff12f4457
+  tamano_bytes: 4113672
+  formato: PDF, 4113672 bytes, %%EOF presente
+  licencia: no verificada en este acto -- sitio oficial de la Auditoría Superior de la Federación,
+    sin muro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 (2026-09-01). A.8 sin coincidencia previa. 4 rutas: (i) asf.gob.mx
+    -- 200 pero navegación interna (Section/*) devuelve 200 con 0 bytes (probable SPA que
+    requiere JS, no soft-404 clásico); URL exacta del PDF localizada por búsqueda web dirigida,
+    no por navegación; (ii) no aplica, sin API declarada; (iii) no aplica, un solo formato
+    PDF; (iv) no aplica, ruta directa funcionó. Doble descarga A.7, sha256 idéntico (62bb8144...).
+    Es ''Reporte General'' de la ir2023c (primera entrega) -- ASF también publica reportes
+    individuales por auditoría (cientos, ver informe.asf.gob.mx) y matrices consolidadas (MDB_Consolidado)
+    no descargadas en esta caminata por ser el universo completo demasiado grande para una
+    sola fila.'
