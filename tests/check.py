@@ -3300,6 +3300,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # texto de direccion verbatim. Mismo movimiento y misma razon que las
     # entradas de MAESTRA31-E1/E2/E4/E5/E6/E7 y MAESTRA30-E10 de esta lista.
     "forense/encargos/2026-08-31-MAESTRA33-E4-DELTA-E3.md",
+    # ACTO MAESTRA33-E6 · EMISOR-M-1, 1/sep/2026: encargo archivado VERBATIM
+    # (A.3). Direccion cita "E20-P3" al narrar que ese acto (ACTO
+    # MAESTRA32-E20 · LOTE-NUBE-1) escribio M-TRA-M-01/02.json a mano, sin
+    # script -- "E20" pelado colisiona con el habitante ya censado del
+    # espacio E. D-6 aplicado donde se puede aplicar: el acto se declara ACTO
+    # MAESTRA33-E6 en todo archivo que escribe y queda censado en
+    # canon/registro-rotulos.tsv; el encargo NO se edita, porque A.3 pide el
+    # texto de direccion verbatim. Mismo movimiento y misma razon que las
+    # entradas de MAESTRA33-E2/E3/E4, MAESTRA31-E1/E2/E4/E5/E6/E7 y
+    # MAESTRA30-E10 de esta lista.
+    "forense/encargos/2026-08-31-MAESTRA33-E6-EMISOR-M-1.md",
 }
 
 
