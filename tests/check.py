@@ -1538,6 +1538,24 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # ADR-147(c)/ADR-149(f)/ADR-151/ADR-164/ADR-177 aplicados aqui a la
     # constante hermana. Declarado en la propia nota de cierre.
     "forense/notas/2026-08-30-propaga-firmas-cierre.md",
+    # forense/encargos/2026-09-01-MAESTRA33-E12-SELLA-1.md -- encargo
+    # verbatim (A.3) cuyo A.8 describe el estado PRE-sello: "procedimiento-
+    # scoring-v1_1-PROPUESTA.md ... EXISTEN sin sellar (mesa-pendientes.md
+    # §S5)" dispara `PROPUESTA.*mesa` en la misma línea. No es un pendiente
+    # nuevo sin registrar: es la descripción del estado que este mismo acto
+    # (ADR-260) resuelve en el mismo commit -- FP-216 y la fila de §5 pasan
+    # a FIRMADA, FP-218 a CERRADA-PREEXISTENTE. El encargo no se edita
+    # (A.3 verbatim). Ver forense/notas/2026-09-01-maestra33-e12-sella-1-cierre.md.
+    "forense/encargos/2026-09-01-MAESTRA33-E12-SELLA-1.md",
+    # forense/notas/2026-09-01-maestra33-e12-sella-1-cierre.md -- la propia
+    # nota de cierre de MAESTRA33-E12 cita verbatim el string interno del
+    # cargador (`PROPUESTA -- PENDIENTE-DE-MESA -- ...`) y explica el
+    # regex `PROPUESTA.*mesa` de _T22_MARCADOR_PENDIENTE al narrar por qué
+    # el encargo lo disparó -- mismo patrón de autorreferencia que
+    # 2026-08-26-registra-pendientes-cierre.md/2026-08-30-propaga-firmas-
+    # cierre.md ya cubren arriba: discutir el marcador no es un pendiente
+    # nuevo sin registrar.
+    "forense/notas/2026-09-01-maestra33-e12-sella-1-cierre.md",
 }
 
 def _t22_tabla():
