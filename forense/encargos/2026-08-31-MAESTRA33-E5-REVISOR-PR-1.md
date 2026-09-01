@@ -27,8 +27,10 @@ cerrado 1/sep/2026, entorno **NUBE**, rama
 `.claude/commands/revisa.md`) · `6832edd` (`P2`,
 `forense/agente-revisor-v1_0.md`) · `ee70a17` (`P3`, calibración post-hoc
 en `forense/notas/2026-08-31-revisa-calibracion-maestra33-a1.md`) ·
-cascada (`ADR-245` candidato, `canon/gobernanza-v1_15.md` y
-`canon/estado-programa-v1_10.md` recifrados 244 → 245,
+cascada (`ADR-246` candidato — RENUMERADO de 245 a 246 al fusionar `main`
+antes de cerrar, porque `ACTO MAESTRA33-C2 · ARBITRO-R-1` / `PR #417` fusionó
+primero y tomó el 245; `canon/gobernanza-v1_15.md` y
+`canon/estado-programa-v1_10.md` recifrados 245 → 246,
 `canon/registro-rotulos.tsv` censado, `FP-211` abierta como recibo).
 
 Resultado: los tres `P` ejecutados. `P3` dio **`NO-FUSIONAR`** sobre
