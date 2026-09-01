@@ -20,8 +20,10 @@ diverge, causas declaradas). P3 →
 `forense/prereg-duelo-v2/scoreboard-v1_1-AGREGADO-b.md`,
 `forense/prereg-duelo-v2/agregado-v1_1b-resultado.json`; `FP-221`
 actualizada (`forense/firmas-pendientes.tsv`). CONTADOR: celdas pareadas
-L-vs-M 0→11. Cierre: `ADR-271` (`canon/gobernanza-v1_15.md`),
-`canon/estado-programa-v1_10.md` L0 recifrado 270→271,
-`canon/registro-rotulos.tsv` censa `MAESTRA33-E21`. `python3
-tests/check.py --baseline` → VERDE. No fusionado por el ejecutor — el
-merge es de mesa.
+L-vs-M 0→11. Cierre: `ADR-271` candidato, renumerado a `ADR-272` tras
+sincronizar con `origin/main` (`ACTO MAESTRA33-S2`/`PR #445` fusionó
+primero y tomó el `271`; regla de la casa, renumera quien fusiona segundo)
+(`canon/gobernanza-v1_15.md`), `canon/estado-programa-v1_10.md` L0
+recifrado 271→272, `canon/registro-rotulos.tsv` censa `MAESTRA33-E21`.
+`python3 tests/check.py --baseline` → VERDE. No fusionado por el ejecutor
+— el merge es de mesa.
