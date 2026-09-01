@@ -15464,3 +15464,279 @@
   formato: PDF -- Cuestionario de ENSAFI 2023 (10 secciones).
   licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: nber_w33208_fintech_lending_no_credit_history
+  usado_para: 'FINTECH_LENDING_TO_BORROWERS_WITH_NO_CREDIT_HISTORY (data/cola-adquisicion-v1_0.tsv
+    fila 22, prioridad 22): paper NBER Working Paper 33208 (Chioda, Blumenstock, Gertler,
+    Higgins, Medina) -- usa datos propietarios de RappiCard Mexico (Banorte/Rappi) para predecir
+    creditworthiness sin buro de credito via datos de app de delivery. El MICRODATO propietario
+    de RappiCard NO es publico (NO-ACCESIBLE, requeriria acuerdo institucional/comercial con
+    el prestamista) -- este payload es SOLO el paper/preprint publico, per instruccion explicita
+    de la fila origen (cola-ext-general-2026-08-06.tsv:8): solicitar paper/preprint y codebook
+    no confidencial, NO pedir datos individuales.'
+  url_origen: https://www.nber.org/system/files/working_papers/w33208/revisions/w33208.rev1.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de nber.org (curl -A UA-navegador, GET real); doble
+    descarga por A.7 -- sha256 identico en ambas bajadas; verificado tambien contra mirrors
+    identicos en autor (seankhiggins.com) y princeton.edu (mismo articulo, PDFs de tamano
+    distinto por ser versiones/paginacion distintas, no se registran como duplicados)
+  archivo: nber_w33208_fintech_lending_no_credit_history/w33208.rev1.pdf
+  sha256: 8090cfb5ca806e99729bdb76f46405189970d00bd1c9e8b83207f8dd2fb6a625
+  tamano_bytes: 9735904
+  formato: PDF, version 1.6, 9735904 bytes, %%EOF presente
+  licencia: NBER Working Paper -- de acceso libre en nber.org (no todos los NBER WP son libres,
+    este especificamente sirvio 200 con Content-Type application/pdf sin muro)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 ADQUIERE-2-RUTAS-MULTIPLES, 2026-09-01. Protocolo de 4 rutas: (i)
+    URL directa nber.org/papers/w33208 landing 200; (ii) PDF directo del propio NBER, 200,
+    application/pdf -- tratado como la ''descarga masiva'' equivalente para este portal (no
+    es INEGI, no aplica canasta XML); (iii) formato alterno no aplica: el paper solo se publica
+    en PDF; (iv) espejos academicos SI confirmados -- seankhiggins.com (autor, 4222857 B)
+    y economics.princeton.edu (1562095 B) devuelven 200 application/pdf, mismo articulo, tamanos
+    distintos (versiones/maquetacion), SIN-FETCH (no descargados por no ser necesarios una
+    vez que la fuente primaria NBER funciono limpio). SSRN (papers.ssrn.com) devolvio 403
+    -- no intentado con credenciales.'
+
+- id: ine_conteos_censales_participacion_2024
+  usado_para: 'INE (data/cola-adquisicion-v1_0.tsv fila 47, prioridad 46): Conteos Censales
+    de Participación Ciudadana, elección federal 2024 -- ya identificada por curaduría previa
+    como INE_Conteos_Censales_Participacion en data/universo-puertas-2026-08-12.tsv fila 5
+    (N25, EXISTE-NO-SATISFACE: participación/abstencionismo a nivel municipal, no compara
+    con elecciones locales concurrentes). Serie completa declarada 2009-2024; esta ola (2024)
+    es la única cuya URL en portal-pruebas.ine.mx no está caída (las de 2009/2012/2015/2018/2021
+    están en un host portal-pruebas.ine.mx que no resuelve DNS, ver nota).'
+  url_origen: https://ine.mx/wp-content/uploads/2025/08/DatosAbiertos_DECEyEC_ConteosCensales2024.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de ine.mx (curl -A UA-navegador, GET real)
+  archivo: ine_conteos_censales_participacion/DatosAbiertos_DECEyEC_ConteosCensales2024.zip
+  sha256: c0de34d04e782ad99579b83591a6e3e6c8d1e20f4914d4845743bd79d2bd28b2
+  tamano_bytes: 82419841
+  formato: ZIP, 34 entradas, zipfile.testzip() limpio
+  licencia: libre, descarga directa sin registro (declarado en data/universo-puertas-2026-08-12.tsv
+    fila 5)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 ADQUIERE-2-RUTAS-MULTIPLES, 2026-09-01. A.8 primero: grep -in de
+    INE en manifiesto.yaml no encontró nada (no era duplicado); identidad resuelta vía data/universo-puertas-2026-08-12.tsv:5
+    (candidata ya censada, nunca antes descargada/registrada). 4 rutas: (i) landing https://ine.mx/transparencia/datos-abiertos/visualizacion-datos/conteos-censales-participacion/
+    200, 9 enlaces .zip listados; (ii) no aplica -- sin API/canasta de descarga masiva declarada,
+    son enlaces directos; (iii) no aplica -- un solo formato (ZIP) publicado; (iv) no aplica
+    -- fuente primaria funcionó, no se buscó espejo. A.7: doble descarga, sha256 idéntico
+    (c0de34d0...), 82419841 B. Los 5 ZIP históricos (2009/2012/2015/2018/2021) están en host
+    portal-pruebas.ine.mx que devuelve ''Could not resolve host'' incluso sin sandbox (curl
+    -v confirmado, no es artefacto de la caja) -- posible dominio de staging dado de baja;
+    SIN-FETCH esas 5 olas, no OBTENIDO. Ver también ine_conteos_censales_participacion_2024_prision_preventiva
+    y _voto_anticipado (mismo directorio ine.mx, mismas condiciones).'
+
+- id: ine_conteos_censales_prision_preventiva_2024
+  usado_para: 'INE (fila 47): addenda de Prisión Preventiva del mismo tablero Conteos Censales
+    de Participación 2024, mismo directorio que ine_conteos_censales_participacion_2024'
+  url_origen: https://ine.mx/wp-content/uploads/2025/08/DatosAbiertos_DECEyEC_ConteosCensales_PrisionPreventiva2024.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de ine.mx (curl -A UA-navegador, GET real)
+  archivo: ine_conteos_censales_participacion/DatosAbiertos_DECEyEC_ConteosCensales_PrisionPreventiva2024.zip
+  sha256: 5e91c5ae79d6b8e3521ae81e8064ed4a35098dd43e20425723e26f46bb6851ba
+  tamano_bytes: 7454
+  formato: ZIP, 3 entradas, zipfile.testzip() limpio
+  licencia: libre, descarga directa sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Ver nota completa en ine_conteos_censales_participacion_2024 (mismo acto, mismo hallazgo).
+    Doble descarga A.7: sha256 identico (5e91c5ae...), 7454 B.'
+
+- id: ine_conteos_censales_voto_anticipado_2024
+  usado_para: 'INE (fila 47): addenda de Voto Anticipado del mismo tablero Conteos Censales
+    de Participación 2024, mismo directorio que ine_conteos_censales_participacion_2024'
+  url_origen: https://ine.mx/wp-content/uploads/2025/08/DatosAbiertos_DECEyEC_ConteosCensales_VotoAnticipado2024.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de ine.mx (curl -A UA-navegador, GET real)
+  archivo: ine_conteos_censales_participacion/DatosAbiertos_DECEyEC_ConteosCensales_VotoAnticipado2024.zip
+  sha256: 1e496a2fc1e23c9658fda649796edc1923727eccee8f285b47c01ba9f15aa25d
+  tamano_bytes: 16203
+  formato: ZIP, 3 entradas, zipfile.testzip() limpio
+  licencia: libre, descarga directa sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Ver nota completa en ine_conteos_censales_participacion_2024 (mismo acto, mismo hallazgo).
+    Doble descarga A.7: sha256 identico (1e496a2f...), 16203 B.'
+
+- id: sesna_informe_situacion_sea_2024
+  usado_para: 'EXT_OF_10_SESNA_INFORME (data/cola-adquisicion-v1_0.tsv fila 69, prioridad
+    oficial-8): Informe sobre la situación de los Sistemas Estatales Anticorrupción (SESNA),
+    reporte trimestral integrado. Acción mínima del origen (cola-ext-oficial-2026-08-06.tsv:9,
+    EXT-OF-06): ''Abrir informe SESNA y registrar variables/llaves, sin ejecutar cruces''
+    -- este acto solo adquiere, no abre ni cruza.'
+  url_origen: https://www.sesna.gob.mx/wp-content/uploads/2024/04/Informe-de-Situacion-SEA-VF-15.04.24.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de sesna.gob.mx (curl -A UA-navegador, GET real)
+  archivo: sesna_informe_situacion_sea/Informe-de-Situacion-SEA-VF-15.04.24.pdf
+  sha256: 5ec749232e1b46ddfeef8858b089151fdc27d1c48ad327f00a52bfabdf79721e
+  tamano_bytes: 1866983
+  formato: PDF, version 1.6, 1866983 bytes, %%EOF presente
+  licencia: no verificada en este acto -- sitio oficial de la Secretaría Ejecutiva del Sistema
+    Nacional Anticorrupción, sin muro de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 (2026-09-01). A.8: grep -in sesna en manifiesto.yaml, sin coincidencia
+    previa. 4 rutas: (i) sesna.gob.mx landing 200; (ii) PDF directo 200 application/pdf, doble
+    descarga sha256 idéntico (5ec74923...); (iii) no aplica, un solo formato PDF; (iv) no
+    aplica, ruta directa funcionó. Reporte más reciente localizado con fecha explícita en
+    la URL (15.04.24); pueden existir informes trimestrales más nuevos no verificados en esta
+    caminata.'
+
+- id: iepc_jalisco_voto_nulo_2024_base_datos
+  usado_para: 'EXT_OF_01_IEPC_JALISCO (fila 67, oficial-6): base de datos por casilla del
+    estudio muestral de voto nulo, elecciones locales Jalisco 2024'
+  url_origen: https://www.iepcjalisco.org.mx/sites/default/files/estudio_del_voto_nulo_base_de_datos_por_casilla.xlsx
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de iepcjalisco.org.mx (curl -A UA-navegador -k; cadena
+    TLS incompleta, mismo patrón ya documentado en este manifiesto para datos.gob.mx)
+  archivo: iepc_jalisco_voto_nulo_2024/estudio_del_voto_nulo_base_de_datos_por_casilla.xlsx
+  sha256: fc81a7502f23cec3c87861c3bbc662b2d374a45632c1d76653a9a79d9d7d08a8
+  tamano_bytes: 1222905
+  formato: XLSX, 37 entradas internas, zipfile.testzip() limpio
+  licencia: no verificada en este acto -- sitio oficial IEPC Jalisco, sin muro de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 (2026-09-01). A.8: grep -in iepc/jalisco en manifiesto.yaml, sin
+    coincidencia previa. Identidad vía landing iepcjalisco.org.mx (-k, 200) -> enlace directo
+    a informe-de-resultados-del-estudio-muestral-sobre-votos-nulos-en-las-elecciones-locales-2024.
+    Doble descarga A.7, sha256 idéntico (fc81a750...), 1222905 B. Grupo de 4 archivos del
+    mismo estudio, ver también iepc_jalisco_voto_nulo_2024_relacion_paquetes / _cuestionario
+    / _informe.'
+
+- id: iepc_jalisco_voto_nulo_2024_relacion_paquetes
+  usado_para: 'EXT_OF_01_IEPC_JALISCO (fila 67): relación de paquetes electorales seleccionados
+    para el estudio -- funciona como proxy del diseño muestral que pedía la acción mínima
+    del origen'
+  url_origen: https://www.iepcjalisco.org.mx/sites/default/files/estudio_del_voto_nulo_relacion_de_paquetes_electorales_seleccionados_para_el_estudio.xlsx
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de iepcjalisco.org.mx (curl -A UA-navegador -k)
+  archivo: iepc_jalisco_voto_nulo_2024/estudio_del_voto_nulo_relacion_de_paquetes_electorales_seleccionados.xlsx
+  sha256: f33afe0a125fdc57c663fd6d693e3b1dc06a0a5b27653f99689ad8f497aaea7c
+  tamano_bytes: 98717
+  formato: XLSX, 15 entradas internas, zipfile.testzip() limpio
+  licencia: no verificada en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Ver nota completa en iepc_jalisco_voto_nulo_2024_base_datos. Doble descarga A.7, sha256
+    idéntico (f33afe0a...), 98717 B.
+
+- id: iepc_jalisco_voto_nulo_2024_cuestionario
+  usado_para: 'EXT_OF_01_IEPC_JALISCO (fila 67): Anexo 3, hoja de vaciado y cuestionario del
+    estudio muestral de voto nulo'
+  url_origen: https://www.iepcjalisco.org.mx/sites/default/files/anexo_3._hoja_de_vaciado_y_cuestionario_0.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de iepcjalisco.org.mx (curl -A UA-navegador -k)
+  archivo: iepc_jalisco_voto_nulo_2024/anexo_3_hoja_de_vaciado_y_cuestionario.pdf
+  sha256: 436f41fdeaaee79ab901924109f7264c819e58d947bdf524d7c915b139baacf4
+  tamano_bytes: 154954
+  formato: PDF, 154954 bytes, %%EOF presente
+  licencia: no verificada en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Ver nota completa en iepc_jalisco_voto_nulo_2024_base_datos. Doble descarga A.7, sha256
+    idéntico (436f41fd...).
+
+- id: iepc_jalisco_voto_nulo_2024_informe
+  usado_para: 'EXT_OF_01_IEPC_JALISCO (fila 67): informe de resultados del estudio muestral
+    sobre votos nulos en las elecciones locales de Jalisco 2024'
+  url_origen: https://www.iepcjalisco.org.mx/sites/default/files/informe_de_resultados_del_estudio_muestral_sobre_votos_nulos_en_las_elecciones_locales_de_2024.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de iepcjalisco.org.mx (curl -A UA-navegador -k)
+  archivo: iepc_jalisco_voto_nulo_2024/informe_de_resultados_estudio_muestral_voto_nulo_2024.pdf
+  sha256: a207ab10008f15a4ca98dded1f2126be5aa3dc85ba8b4d4cdf0196688d72547a
+  tamano_bytes: 2000582
+  formato: PDF, 2000582 bytes, %%EOF presente
+  licencia: no verificada en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Ver nota completa en iepc_jalisco_voto_nulo_2024_base_datos. Doble descarga A.7, sha256
+    idéntico (a207ab10...).
+
+- id: ine_fiscalizacion_prefo2324_cam_agenda_eventos
+  usado_para: 'EXT_OF_09_AGENDA_GASTO_CANDIDATURA (data/cola-adquisicion-v1_0.tsv fila 68,
+    prioridad oficial-7): Agenda de Eventos (AE) de campaña, Proceso Electoral Federal Ordinario
+    2023-2024 (PREFO_23-24), candidaturas a nivel CAM (campaña). 354812 filas: proceso, ámbito,
+    cargo, sujeto obligado, evento, fecha/hora, tipo evento, entidad, municipio.'
+  url_origen: https://fiscalizacion.ine.mx/documents/82565/1268544/PREFO_23-24_CAM_AE_240624.csv/f28ff537-fc39-4555-bd53-01a0b10dd413
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de fiscalizacion.ine.mx/web/portalsif/descarga-de-reportes
+    (curl -A UA-navegador, GET real)
+  archivo: ine_fiscalizacion_agenda_gasto_candidatura_2024/PREFO_23-24_CAM_AE_240624.csv
+  sha256: a2b0da1ea28636e5193f93d77da0e7e18c9892788a06105514b8fdb9b183ee30
+  tamano_bytes: 112060366
+  formato: CSV, 354812 filas, header confirmado (PROCESO,AMBITO,...,EVENTO,FECHA DEL EVENTO,...)
+  licencia: no verificada en este acto -- portal oficial de datos abiertos de fiscalización
+    del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 (2026-09-01). A.8: sin coincidencia previa en manifiesto.yaml.
+    4 rutas: (i) fiscalizacion.ine.mx/web/portalsif/descarga-de-reportes -- 200, 382 enlaces
+    CSV/XLSX de rendición de cuentas por proceso electoral; (ii) no aplica, catálogo de enlaces
+    directos, sin API separada probada; (iii) también existe en XLSX (41949855 B) -- mismo
+    contenido, no descargado por ser CSV suficiente; (iv) no aplica, ruta directa funcionó.
+    DESVÍO DECLARADO de A.7: archivo de 112060366 B -- la primera descarga completó limpio
+    (Content-Length exacto, 354812 líneas, header real verificado) pero la SEGUNDA descarga
+    para comparación byte-a-byte se cortó a los 2 minutos por el límite de la herramienta
+    de este agente (quedó en 58224640 B, descartada, NO es una discrepancia del servidor).
+    En su lugar se verificó A.7 completo (doble descarga, sha256 idéntico) sobre el archivo
+    hermano del mismo directorio/publicación (ine_fiscalizacion_prefo2324_cam_gasto_rubro,
+    mismo host, mismo lote, mismo día) como evidencia indirecta de que el servidor sirve contenido
+    determinista.'
+
+- id: ine_fiscalizacion_prefo2324_cam_gasto_rubro
+  usado_para: 'EXT_OF_09_AGENDA_GASTO_CANDIDATURA (fila 68): Gasto por Rubro (GxR) de campaña,
+    PREFO 23-24, nivel CAM. 1339 filas: financieros/operativos/producción por sujeto obligado.'
+  url_origen: https://fiscalizacion.ine.mx/documents/82565/1268544/PREFO_23-24_CAM_GxR_240624.csv/cce0750a-e105-4837-a339-dc581fdbe210
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de fiscalizacion.ine.mx (curl -A UA-navegador, GET
+    real)
+  archivo: ine_fiscalizacion_agenda_gasto_candidatura_2024/PREFO_23-24_CAM_GxR_240624.csv
+  sha256: 7ae2cffecb9d6b0faf44432887f7494961a9054f7b17ef369c9cbc613fc7c5ac
+  tamano_bytes: 433909
+  formato: CSV, 1339 filas, header confirmado
+  licencia: no verificada en este acto
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Ver nota completa en ine_fiscalizacion_prefo2324_cam_agenda_eventos. Doble descarga
+    A.7 completa: sha256 idéntico (7ae2cffe...), 433909 B.'
+
+- id: asf_informe_resultado_fiscalizacion_cp2023_general
+  usado_para: 'EXT_OF_08_ASF_INFORME_2023 (data/cola-adquisicion-v1_0.tsv fila 66, prioridad
+    oficial-5): Informe del Resultado de la Fiscalización Superior de la Cuenta Pública 2023,
+    Reporte General (MR_General), primera entrega.'
+  url_origen: https://www.asf.gob.mx/Trans/Informes/ir2023c/Documentos/Auditorias/MR_General_a.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de asf.gob.mx (curl -A UA-navegador, GET real)
+  archivo: asf_informe_cuenta_publica_2023/MR_General_a.pdf
+  sha256: 62bb8144ed77da2266618c9ed8479ef90e148f8d23bd4e7a69690e7ff12f4457
+  tamano_bytes: 4113672
+  formato: PDF, 4113672 bytes, %%EOF presente
+  licencia: no verificada en este acto -- sitio oficial de la Auditoría Superior de la Federación,
+    sin muro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 (2026-09-01). A.8 sin coincidencia previa. 4 rutas: (i) asf.gob.mx
+    -- 200 pero navegación interna (Section/*) devuelve 200 con 0 bytes (probable SPA que
+    requiere JS, no soft-404 clásico); URL exacta del PDF localizada por búsqueda web dirigida,
+    no por navegación; (ii) no aplica, sin API declarada; (iii) no aplica, un solo formato
+    PDF; (iv) no aplica, ruta directa funcionó. Doble descarga A.7, sha256 idéntico (62bb8144...).
+    Es ''Reporte General'' de la ir2023c (primera entrega) -- ASF también publica reportes
+    individuales por auditoría (cientos, ver informe.asf.gob.mx) y matrices consolidadas (MDB_Consolidado)
+    no descargadas en esta caminata por ser el universo completo demasiado grande para una
+    sola fila.'
+
+- id: asf_auditoria_2024_0165_ds_vacunacion_issste
+  usado_para: 'AUDITORIA_ASF_165_DS_SERVICIOS_VACUNACION_ISSSTE_2024 (data/cola-adquisicion-v1_0.tsv
+    fila 74, prioridad aperturas-1, R9.2): Auditoría de Desempeño ASF 2024-1-19GYN-07-0165-2025,
+    ''Servicios de Vacunación'' ISSSTE, evaluación de resultados 2024. Confirma identidad
+    exacta de la fila (código 165-DS, ISSSTE, vacunación, 2024).'
+  url_origen: https://www.asf.gob.mx/Trans/Informes/IR2024b/Documentos/Auditorias/2024_0165_a.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de asf.gob.mx (curl -A UA-navegador, GET real)
+  archivo: asf_auditoria_165_ds_vacunacion_isste_2024/2024_0165_a.pdf
+  sha256: f9eaacec224f15894c50980675faf48527d1084b50095f14f56a78f8733d5ede
+  tamano_bytes: 635172
+  formato: PDF, 635172 bytes, %%EOF presente
+  licencia: no verificada en este acto -- sitio oficial ASF, sin muro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 (2026-09-01). A.8 previo (ACTO MAESTRA33-A2, 2026-09-01) ya había
+    verificado 0/794 entradas con ''ISSSTE''/''165-DS'' -- confirmado, no era A.8, era candidata
+    nueva sin intentar. 4 rutas: (i) identidad confirmada por búsqueda dirigida -- clave 2024-1-19GYN-07-0165-2025;
+    (ii) informe.asf.gob.mx/Documentos/Auditorias/2024_0165_a.pdf -- 404 real (1245 B, Content-Type
+    text/html, distinto del soft-404 de INEGI); (iii) no aplica, un solo formato PDF; (iv)
+    no aplica. La URL que SÍ funcionó fue www.asf.gob.mx/Trans/Informes/IR2024b/... (variante
+    IR2024a/IR2024c probadas, ambas 404) -- doble descarga A.7, sha256 idéntico (f9eaacec...).
+    Condición de paro de la fila origen (''parar si no hay desglose por unidad, delegación,
+    biológico o campaña'') NO evaluada por este acto -- no se abrió el PDF, solo se adquirió
+    (fuera del perímetro de /adquiere).'

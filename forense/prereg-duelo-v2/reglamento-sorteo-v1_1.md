@@ -1,6 +1,6 @@
 # `REGLAMENTO-SORTEO-MARCO-M` · regla 3 con implementación exacta — SELLADO, 1/sep/2026
 
-**Estado: SELLADO, 1/sep/2026 (`ADR-260`, `FP-216`).** Copia sellada de
+**Estado: SELLADO, 1/sep/2026 (`ADR-262`, `FP-216`).** Copia sellada de
 `forense/prereg-duelo-v2/reglamento-sorteo-v1_1-PROPUESTA.md`, byte a byte
 en el cuerpo (§0-§6 abajo son copia literal, sin ningún cambio de contenido
 — solo esta cabecera es nueva). `sha256` de la PROPUESTA verificado al
@@ -26,7 +26,7 @@ sin implementar** — este sello no la resuelve ni la necesita resuelta:
 declaraba; ningún sorteo del marco-M la ha necesitado hasta hoy (`v1_0`: 1
 estrato; `v1_1`: 2 estratos, `n_sorteo=11`) — queda `PENDIENTE-DE-MESA`
 para cuando un acto futuro la necesite, exactamente como la PROPUESTA ya
-lo declaraba. **(4)** Número: `ADR-260` / `FP-216` (este acto, `ACTO
+lo declaraba. **(4)** Número: `ADR-262` / `FP-216` (este acto, `ACTO
 MAESTRA33-E12 · SELLA-1`), mismo patrón que `ADR-178`/`FP-150` selló el
 reglamento original. Firmar esto **no ejecuta nada**: ningún sorteo corre
 ni se re-corre por este sello; `sorteo_v3.py`, `sorteo_marco_m.py`,

@@ -46,7 +46,7 @@ patrón que `L-spec-v1_1.sha256`):
 
 ```
 $ sha256sum forense/prereg-duelo-v2/procedimiento-scoring-v1_1.md
-1bb38b49bc076fcc214b3012ccc953ea7ed4183a4a5b81267ca0a1a4f0d2c7f5  forense/prereg-duelo-v2/procedimiento-scoring-v1_1.md
+9f951b7c0f803eb8ec3cc2e1416a9364dc9176bdf129e6509a0b7f1b8449ef8b  forense/prereg-duelo-v2/procedimiento-scoring-v1_1.md
 ```
 
 ### 1.2 · `reglamento-sorteo-v1_1.md`
@@ -67,19 +67,19 @@ efecto general de Sec.3) — no la alternativa quirúrgica, que no se
 escribió; **(2)** NO reabre `v1_1` (confirma `FP-213`/opción A, no la
 reinterpreta); **(3)** la segunda cláusula de la regla 3 sigue sin
 implementar, `PENDIENTE-DE-MESA` para un acto futuro — este sello no la
-necesita resuelta; **(4)** número: `ADR-260`/`FP-216`. `diff` del cuerpo
+necesita resuelta; **(4)** número: `ADR-262`/`FP-216`. `diff` del cuerpo
 (desde `## 0 · Perímetro`) contra la PROPUESTA: **sin diferencias**.
 `.sha256` sidecar:
 
 ```
 $ sha256sum forense/prereg-duelo-v2/reglamento-sorteo-v1_1.md
-856dfc02d3b80c994b2c2a080935c3108ca40a0a21c83c04389918ee47276caa  forense/prereg-duelo-v2/reglamento-sorteo-v1_1.md
+39e53fd3389a70628fab81ee947f984a139330c33c3c02a18ed39f02ced078a5  forense/prereg-duelo-v2/reglamento-sorteo-v1_1.md
 ```
 
 ### 1.3 · `mesa-pendientes.md` §5
 
 La línea `**Firma de mesa:** _(pendiente)_` se rellenó con la firma
-verbatim, fecha, acto y `ADR-260`, más una línea de consecuencia (qué
+verbatim, fecha, acto y `ADR-262`, más una línea de consecuencia (qué
 archivo quedó escrito). El resto de la sección (las cinco decisiones
 enumeradas, la cabecera del acto `MAESTRA33-E10`, el vencimiento) **no se
 tocó** —
@@ -204,7 +204,7 @@ del cargador declara que haría. `celdas` sin tocar. Ningún llamado a
 
 - **ADR.** Re-derivado por comando (`grep -oE '^\*\*ADR-[0-9]+'
   canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` →
-  `259`, sin huecos) → candidato **`ADR-260`**, contiguo. Ningún otro acto
+  `259`, sin huecos) → candidato **`ADR-262`**, contiguo. Ningún otro acto
   en vuelo conocido al escribir esto. Entrada nueva al final de `§4.
   Registro de decisiones` de `canon/gobernanza-v1_15.md` (la sección es
   cronológica ascendente — se ordena por fecha de merge, no se prepende;
@@ -284,7 +284,7 @@ archivo que escribe.
 `forense/prereg-duelo-v2/reglamento-sorteo-v1_1.sha256` (nuevo) ·
 `forense/prereg-duelo-v2/mesa-pendientes.md` (§5, una línea) ·
 `forense/firmas-pendientes.tsv` (`FP-216`, `FP-218`) ·
-`canon/gobernanza-v1_15.md` (`ADR-260` + marca `{cita-historica}` en
+`canon/gobernanza-v1_15.md` (`ADR-262` + marca `{cita-historica}` en
 `ADR-259` + cabecera de conteo) · `canon/estado-programa-v1_10.md` (L0 +
 tabla de artefactos) · `canon/registro-rotulos.tsv` (fila `MAESTRA33-E12`)
 · `tests/check.py` (`_T22_ARCHIVOS_CONOCIDOS`) · esta nota.
@@ -295,3 +295,30 @@ No tocados: `procedimiento-scoring-v1_1-PROPUESTA.md`,
 `corridas-R/`, `corridas-L/`, `sorteo_v2.py`, `sorteo_v3.py`,
 `sorteo_marco_m.py`, `sorteo_marco_m_v1_1.py`,
 `sorteo-act-pil-3-v2-PROPUESTA.md`.
+
+## §6 · Sync post-PR — segunda colisión de ADR
+
+Con `PR #435` ya abierto (`ADR-260` candidato), `main` avanzó dos merges
+más mientras el PR esperaba: `PR #434`/`ACTO MAESTRA33-C8 ·
+MEDIDOR-FP172-DIFERIDAS` tomó `ADR-260`, y `PR #433`/`ACTO MAESTRA33-A3 ·
+ADQUIERE-2-RUTAS-MULTIPLES` tomó `ADR-261` (renumerado de su propio
+candidato `260`, colisión con `C8`). `git fetch origin main` +
+`git merge origin/main` sobre la rama del PR: conflicto en las cuatro
+tablas de cascada (`canon/gobernanza-v1_15.md`, `canon/estado-programa-
+v1_10.md`, `canon/registro-rotulos.tsv`, `forense/firmas-pendientes.tsv`)
+— resuelto a mano, conservando las tres inserciones (`C8`, `A3`, este
+acto) en orden de fusión, sin sed/csv genérico sobre archivos completos
+(el intento con el módulo `csv` de Python en la primera ronda de esta
+misma tarde ya había demostrado el riesgo de reformateo colateral, §1.4
+arriba — misma disciplina aplicada aquí). Renumerado el candidato de este
+acto de `ADR-260` a `ADR-262`, contiguo tras `261`. Marca
+`{cita-historica}` añadida también a la auto-cita de `ADR-261`/`A3`
+("`260 → 261 ADR`"), que de otro modo quedaría incorrecta con el conteo
+real en `262` — la de `ADR-260`/`C8` ya traía su propia marca desde que
+`A3` la añadió al fusionar segundo. Todas las referencias propias a
+`ADR-260` en los archivos de este acto (`mesa-pendientes.md` §5, las dos
+copias selladas, el encargo `## CONSUMIDO`, esta nota) actualizadas a
+`ADR-262`. `firmas-pendientes.tsv`: la fila `FP-217` que este acto nunca
+tocó (perímetro no la incluía) llegó `FIRMADA` por `C8` en el merge —
+conservada tal cual, sin re-derivar. `python3 tests/check.py --baseline`
+re-corrido tras el merge y la renumeración: **VERDE**, sin `FAIL` nuevo.

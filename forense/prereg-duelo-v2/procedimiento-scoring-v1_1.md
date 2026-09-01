@@ -1,6 +1,6 @@
 # Procedimiento de scoring v1.1 — SELLADO — `ACTO MAESTRA33-E10` (redacción) · `ACTO MAESTRA33-E12 · SELLA-1` (sello)
 
-**Estado: SELLADO, 1/sep/2026 (`ADR-260`).** Copia sellada de
+**Estado: SELLADO, 1/sep/2026 (`ADR-262`).** Copia sellada de
 `forense/prereg-duelo-v2/procedimiento-scoring-v1_1-PROPUESTA.md`, byte a
 byte en el cuerpo (§0-§6 abajo son copia literal, sin ningún cambio de
 contenido — solo esta cabecera es nueva). `sha256` de la PROPUESTA
