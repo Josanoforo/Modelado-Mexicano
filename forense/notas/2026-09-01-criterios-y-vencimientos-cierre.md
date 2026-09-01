@@ -198,20 +198,29 @@ pendientes.md` §5; este acto le añade una línea `**Vence:**
    al escribir esto.
 2. **Cabecera.** Entrada nueva en `canon/gobernanza-v1_15.md` §4.
 3. **Recifrado L0.** `canon/estado-programa-v1_10.md`: `257` → `258
-   ADR`, anotación nueva insertada antes de la de `ADR-257`.
+   ADR` en la línea `L0` (anotación nueva insertada antes de la de
+   `ADR-257`) **y** en la tabla de artefactos (línea 27, `| gobernanza |
+   ... | 257 ADR |` → `258 ADR`) — dos citas, no una; `T15` (censo de
+   consistencia por comando) atrapó la segunda cuando la primera edición
+   de este cierre solo tocó `L0`, declarado.
 4. **`registro-rotulos`.** `canon/registro-rotulos.tsv`: rótulo
-   `MAESTRA33-E11` censado (espacio E, junto a E1/E2/…/E10).
-5. **T25.** `forense/encargos/2026-09-01-MAESTRA33-E11-CRITERIOS-Y-
-   VENCIMIENTOS.md` trae `E10` pelado (cita "PR #429 (E10)" en su
-   cabecera de `COMPUERTA`) — habitante ya censado del espacio E, no un
-   marcador nuevo. Añadido a `_T25_ARCHIVOS_CONOCIDOS`
-   (`tests/check.py`) con el comentario que explica de dónde sale la
-   mención; el encargo **no** se edita (A.3, verbatim).
+   `MAESTRA33-E11` censado (espacio E).
+5. **T25.** Dos archivos nuevos traen `E10` pelado — habitante ya
+   censado del espacio E (`ACTO MAESTRA33-E10`), ninguna mención es un
+   marcador nuevo: el encargo (cita "PR #429 (E10)" en su cabecera de
+   `COMPUERTA`) y esta misma nota de cierre (cita verbatim del encargo
+   más la discusión del propio hallazgo T25). Ambos añadidos a
+   `_T25_ARCHIVOS_CONOCIDOS` (`tests/check.py`) con el comentario que
+   explica de dónde sale cada mención; el encargo **no** se edita (A.3,
+   verbatim) — esta nota si pudo reescribirse para reducir menciones,
+   pero la cita verbatim de `COMPUERTA` se conserva tal cual por la
+   misma razón que el encargo.
 6. **`python3 tests/check.py --baseline`: VERDE**, `19 FAIL · 168 WARN`,
    sin entrada nueva frente a `tests/baseline.json`
-   (`HEAD` congelado `c6a0d72f`). El `FAIL` de `T25` que apareció antes
-   del paso 5 (rótulo pelado `E10` sin censar) fue el único hallazgo
-   nuevo del propio cierre, corregido en el camino, declarado.
+   (`HEAD` congelado `c6a0d72f`). Dos hallazgos nuevos del propio
+   cierre, ambos corregidos en el camino, declarados: el `FAIL` de `T15`
+   (segunda cita de conteo de ADR, tabla de artefactos, sin recifrar) y
+   el de `T25` (dos archivos con `E10` pelado sin censar).
 7. **Anti-PR#77.** No aplica — este acto no descargó nada
    (`CONTADOR: cero`).
 8. **`## CONSUMIDO`** — añadido al encargo archivado, con el PR de este

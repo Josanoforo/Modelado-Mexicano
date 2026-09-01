@@ -3391,6 +3391,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # (encargos archivados citando habitantes ya censados sin el
     # prefijo "MAESTRA33-").
     "forense/encargos/2026-09-01-MAESTRA33-E11-CRITERIOS-Y-VENCIMIENTOS.md",
+    # forense/notas/2026-09-01-criterios-y-vencimientos-cierre.md -- nota de
+    # cierre de ACTO MAESTRA33-E11 que cita bare "E10" varias veces al
+    # narrar la genealogia del acto (COMPUERTA verbatim del encargo,
+    # "junto a E1/E2/.../E10" en el paso de registro-rotulos, y la propia
+    # discusion del hallazgo T25 que este mismo cierre corrigio) --
+    # ACTO MAESTRA33-E10 es habitante ya censado del espacio E, ninguna
+    # mencion es un marcador nuevo. Mismo patron que la nota de cierre de
+    # MAESTRA31-E2, arriba en esta lista.
+    "forense/notas/2026-09-01-criterios-y-vencimientos-cierre.md",
 }
 
 
