@@ -68,6 +68,52 @@ El careo nombra el corredor E como "combinación mecánica L⊕M pre-registrada,
 
 ---
 
+## §5 · `procedimiento-scoring-v1_1-PROPUESTA.md` — mesa sella con una línea
+
+**Acto:** `MAESTRA33-E10 · PROCEDIMIENTO-SCORING-v1_1-PROPUESTA`, 1/sep/2026,
+SHA `b3c6a1d`. No es pregunta abierta en el sentido de §1-§3 (ninguna
+lectura alternativa compite entre sí) — es la firma que activa cinco
+decisiones ya reconciliadas contra texto sellado, ninguna elegida por este
+acto. Detalle completo, con cita de línea por punto:
+`forense/prereg-duelo-v2/procedimiento-scoring-v1_1-PROPUESTA.md`.
+
+Las cinco decisiones, enumeradas para que la firma sea una línea:
+
+1. **Unidades.** Medir cada celda en `z = dif/EE(R)` en vez de unidades
+   brutas — la banda ya sellada `Δ_material = 0.5·EE(R)` se vuelve el
+   escalar `delta = 0.5` que `Configuracion.delta` exige.
+2. **Agregado.** Por corredor (`L_SOLO`, `M`, por separado): proporción de
+   celdas dentro de banda `[-0.5, +0.5]` + mediana de `|z|`, bootstrap
+   `seed=42`/`IC=0.95` (`FP-168`, ya FIRMADA 30/ago/2026).
+3. **Comparación principal.** `L_SOLO_vs_M` (la ya fijada, `F0.1`/
+   `ADR-197`), pareada, en las mismas unidades `z`; adjudicada solo con la
+   regla de PASO 2 del motor sellado (`scoring-adv1-m3.py:961-969`) — sin
+   PASO 1, que exige `skill`/`B`.
+4. **Baseline `B`.** NO-APLICA a marco-M — razón estructural
+   (`procedimiento-scoring-v1_0.md` §4, `_corredor-B.json` sin ninguna
+   celda marco-M) más la asimetría declarada del whitepaper (`L`/`M`
+   comparten familia de LLM, `milpa-whitepaper-v0_1.md` §10).
+5. **F-DD.** Celdas `VERIFICACION-NO-PUNTUA` quedan fuera del agregado y
+   del pareado — misma exclusión que `tools/score_marco_m.py` ya aplica
+   (`0` de `11` celdas hoy).
+
+Firmar esta fila **no ejecuta nada**: `tools/score_marco_m.py` y
+`scoring-adv1-m3.py` siguen sin tocarse; el cargador que aplicaría el punto
+1 a una entrada real (`forense/prereg-duelo-v2/carga_scoring_v1_1_
+propuesta.py`) existe pero no corrió en este acto (perímetro: "el cargador
+(sin ejecutar)"). La firma habilita que un acto sucesor lo corra.
+
+**Vence:** `2026-09-03` (`ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS`,
+firma de mesa 5, verbatim «esa semana, pero ponle fecha no quiero que se
+quede volando»; P3 nombra esta fila `SELLO-SCORING-v1_1` y pide su
+vencimiento aquí mismo, sin abrir una fila nueva del tablero, porque
+`ACTO MAESTRA33-E10` ya abrió esta sección — el registro único es esta
+línea).
+
+**Firma de mesa:** _(pendiente)_
+
+---
+
 ## Cómo cerrar este archivo
 
 Cuando mesa resuelva cualquiera de §1, §2 o §3, la resolución se agrega aquí como una nueva sección fechada con la cita de la firma/ADR que la sella, y el archivo correspondiente (`escala-cinco-casillas-piloto-v1_0.md` para §1/§2, `corredor-E-combinacion-LM.py` para §3) se actualiza para reflejar el sello. Ninguna sección de este archivo se borra al resolverse — se marca RESUELTA con su fecha, seg el patrón de `firmas-pendientes.tsv`.
