@@ -2374,6 +2374,15 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA33-E13 · AGREGA-1, 1/sep/2026: encargo archivado
+    # VERBATIM (A.3). El encargo cita su propia COMPUERTA como "E12
+    # fusionado" -- "E12" pelado colisiona con el habitante ya censado
+    # MAESTRA32-E12 y con MAESTRA33-E12 (ACTO SELLA-1, PR #435, el que
+    # este acto realmente esperaba) -- colision declarada, ninguno gana,
+    # mismo patron que el resto de esta lista. El encargo NO se edita
+    # (A.3 pide texto de direccion verbatim); MAESTRA33-E13 se declara
+    # con prefijo completo en todo archivo que este acto escribe.
+    "forense/encargos/2026-09-01-MAESTRA33-E13-AGREGA-1.md",
     # ACTO MAESTRA33-E15 · CORREDOR-E-PROPUESTA, 1/sep/2026: encargo
     # archivado VERBATIM (A.3). El encargo cita su propia COMPUERTA como
     # "E13 fusionado" y el A.8 cita "criterio de activacion (E11)" y
