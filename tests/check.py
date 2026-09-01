@@ -3327,6 +3327,18 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # narrar por que P2 es cita y no medicion (nota de mapeo que E7 produjo).
     # Mismo habitante, misma razon que la entrada del encargo, arriba.
     "forense/notas/2026-08-31-reglas-ola5-fase2a-spec.md",
+    # ACTO MAESTRA33-E8 · SCORE-M-1, 1/sep/2026: nota de cierre y
+    # scoreboard-v1_1.md citan "E9" (ACTO MAESTRA30-E9 · SCORING-V2,
+    # habitante ya censado del espacio E) al narrar el mismo hallazgo
+    # estructural que ese acto documento (SIN_BASELINE / delta sin
+    # escalar unico) y que este acto hereda sin resolver. D-6 aplicado
+    # donde se puede aplicar: el acto se declara ACTO MAESTRA33-E8 en
+    # todo archivo que escribe y queda censado en
+    # canon/registro-rotulos.tsv; ninguno de los dos archivos edita ni
+    # reclama el habitante E9, solo lo cita al narrar la genealogia del
+    # hallazgo -- mismo patron que las demas entradas de esta lista.
+    "forense/notas/2026-09-01-score-m-1-cierre.md",
+    "forense/prereg-duelo-v2/scoreboard-v1_1.md",
 }
 
 
