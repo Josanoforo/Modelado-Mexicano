@@ -1,0 +1,13 @@
+ENCARGO · MAESTRA33-E17 · L-ENMIENDA-CLI — invoca /acto
+SHA de redacción: ee6a8a2. ENTORNO: NUBE — NO CAJA. COMPUERTA: ninguna. MODELO SUGERIDO: Sonnet.
+FIRMA DE MESA (verbatim, 2/sep/2026): "dame una opcion donde no tenga que usar API ni gastar en API, la anterior se consumió 20 dolares de API y fue un reto la api key y todo eso."
+A.8 (dirección): PAQUETE-L-v1_1 §4 exige llamar_modelo() vía API con temperature=1.0; prereg-corrida-v1_0.md:110 fija el procedimiento de enmienda de invariantes (fila fechada, valor viejo, valor nuevo, razón). Runner por CLI: NO-ENCONTRADO (grep "claude -p" en prereg-duelo-v2/ → 0). Fuente verificada por dirección: docs de Claude Code, CLI reference (print mode, --model, --system-prompt de reemplazo, --tools, --output-format json).
+P1 · Enmienda pre-registrada en prereg-corrida-v1_0.md (fila fechada, ANTES de cualquier corrida): cliente = Claude Code CLI en modo print, versión derivada al correr (`claude --version`); temperatura = default del cliente, NO declarable (era 1.0); prompt de sistema = reemplazo por la cadena mínima fija «Responde únicamente a la pregunta. No uses herramientas ni consultes fuentes.»; herramientas = deshabilitadas; k = 8 y las dos variantes SIN cambio; modelo = opus (alias) con nombre real registrado desde el JSON de salida. Razón verbatim: la firma de mesa.
+P2 · runner_l_cli.py en prereg-duelo-v2/: lee L-spec-v1_1.json, y por (celda, variante, i≤8) ejecuta `claude -p --model opus --output-format json --system-prompt "<cadena de P1>" --tools "" --max-turns 1 "<prompt>"`, parsea la respuesta al esquema RespuestaCorrida de §5 (mismos campos que el piloto: id_celda, variante, indice, texto_crudo, valor_extraido, fuente_citada, timestamp, modelo real), escribe cada archivo al instante (si el plan corta por límite horario, se reanuda sin repetir lo hecho), y al final cuenta 176 y valida. No llama a ningún modelo en este acto: solo --dry-run de rutas y esquema.
+P3 · PAQUETE-L-v1_1.md §4-bis con el comando exacto para mesa y el checklist: `claude auth status` (o /status) debe mostrar sesión de claude.ai, no API key; sha256 del runner en la tabla de §1.
+PERÍMETRO: prereg-corrida-v1_0.md (una fila), runner_l_cli.py, PAQUETE-L-v1_1.md (§4-bis y tabla §1), notas, tablero (recibo), A.3, cascada. Frase exacta vigente. CONTADOR: cero, declarado.
+LO QUE NO HACE: no corre L; no edita pipeline-L-adv1-m2.py, carga_l_v1_1.py ni L-spec; no cambia k ni variantes.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-E17 · L-ENMIENDA-CLI`, rama `claude/l-enmienda-cli-no-api-qhlj0a`, `PR #438` contra `main`. Detalle: `forense/notas/2026-09-02-maestra33-e17-l-enmienda-cli-cierre.md`.

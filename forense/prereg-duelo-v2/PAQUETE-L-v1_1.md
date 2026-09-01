@@ -33,6 +33,7 @@ sha256sum L-spec-v1_1.json    # debe coincidir además con L-spec-v1_1.sha256
 | `pipeline-L-adv1-m2.py` | ver `sha256sum` real en el repo — sellado por `ACTO E2-PREP-L-RUN` (tabla completa en `lanzamiento-L-v1_0.md` §0); este acto NO lo modificó, verificable con `git log -p -- forense/prereg-duelo-v2/pipeline-L-adv1-m2.py` desde `MAESTRA33-E9` |
 | `carga_l_v1_1.py` | ver `L-spec-v1_1.sha256`-sibling `sha256sum forense/prereg-duelo-v2/carga_l_v1_1.py` al momento de correr — cargador nuevo de este acto, no del piloto |
 | `L-spec-v1_1.json` | valor en `forense/prereg-duelo-v2/L-spec-v1_1.sha256` |
+| `runner_l_cli.py` | `1ae70bc2b55e6aa129f742d1d3914e13b6b0f2e0b860109edfd2d650967f4086` (sellado por `ACTO MAESTRA33-E17 · L-ENMIENDA-CLI`, `sha256sum` real corrido en este acto) — runner del CLI de §4-bis, no del piloto |
 
 Si algo no coincide: no se sobreescribe la tabla — se aplica la regla de enmienda de `prereg-corrida-v1_0.md:110` (fila fechada, hash viejo, hash nuevo, razón) y se PARA hasta que mesa lo resuelva.
 
@@ -104,6 +105,64 @@ cd forense/prereg-duelo-v2 && sha256sum pipeline-L-adv1-m2.py carga_l_v1_1.py L-
 
 ---
 
+## 4-bis · Comando exacto por CLI (sesión de `claude.ai`, sin `ANTHROPIC_API_KEY`)
+
+Enmienda de `prereg-corrida-v1_0.md` ("F2 · enmienda 2026-09-01"): el §4 de arriba queda como registro histórico del patrón de API directa — **este paquete ya no lo pide**. La sesión ejecutora real usa el runner de este §4-bis en su lugar, sobre Claude Code CLI en modo print con sesión de `claude.ai`, sin API key.
+
+**Checklist de mesa antes de lanzar (además del de §156 más abajo):**
+
+- [ ] `claude auth status` (o `/status` dentro de una sesión interactiva del CLI) muestra **sesión de `claude.ai`**, no una `ANTHROPIC_API_KEY` activa. Si muestra API key, PARO — esta corrida no gasta en API, es la razón entera de la enmienda.
+- [ ] `claude --version` registrado (va en `version_declarada` de cada archivo, junto con el nombre real de modelo que el JSON de salida reporte para el alias `opus`).
+- [ ] `sha256sum forense/prereg-duelo-v2/runner_l_cli.py` coincide con la tabla de §1.
+
+**Comando exacto, por corrida** (176 invocaciones: 11 celdas × 2 variantes × 8 corridas), tal como `runner_l_cli.py` lo construye (`construir_comando_cli`):
+
+```bash
+claude -p \
+  --model opus \
+  --output-format json \
+  --system-prompt "Responde únicamente a la pregunta. No uses herramientas ni consultes fuentes." \
+  --tools "" \
+  --max-turns 1 \
+  "<prompt de la celda, de construir_prompt(), sin cambio>"
+```
+
+**Diferencias contra §4 (API directa), explícitas:**
+
+| | §4 (API directa, histórico) | §4-bis (CLI, vigente) |
+|---|---|---|
+| Autenticación | `ANTHROPIC_API_KEY` | Sesión de `claude.ai` — CERO API key |
+| Costo | Facturado por token vía API | Incluido en la sesión de `claude.ai` — razón de la enmienda (firma de mesa, 2/sep/2026) |
+| Temperatura | `1.0`, declarada en cada llamada | Default del cliente CLI, NO declarable — el CLI no expone esa bandera en modo print (`prereg-corrida-v1_0.md` F2, enmienda 2026-09-01) |
+| Prompt de sistema | Ninguno propio de la API — la plantilla de celda viajaba como único prompt | Reemplazado por la cadena mínima fija de arriba (`--system-prompt`); la plantilla de celda (`construir_prompt()`, sin cambio) sigue siendo el prompt de usuario |
+| Herramientas | No aplica | Deshabilitadas explícitamente (`--tools ""`) |
+| Driver | Sesión ejecutora implementa `llamar_modelo()` a mano | `runner_l_cli.py`, congelado por este acto, ya implementa el bucle completo (176 corridas, reanudable) |
+
+**Comando para correr el paquete completo:**
+
+```bash
+# 0) verificar hashes (§1) antes de nada, incluida la fila de runner_l_cli.py
+cd forense/prereg-duelo-v2 && sha256sum pipeline-L-adv1-m2.py carga_l_v1_1.py L-spec-v1_1.json runner_l_cli.py
+
+# 1) checklist de sesión (arriba): claude auth status, claude --version
+
+# 2) en ESTA sesión (nube, repo-only) el smoke-test ya se corrió y no se repite:
+#    python3 forense/prereg-duelo-v2/runner_l_cli.py --dry-run
+#    (verifica rutas + esquema + comando CLI; no invoca `claude`; no se
+#    ejecuta fuera de este acto salvo para reverificar)
+
+# 3) en la SESIÓN EJECUTORA REAL (fuera de este proyecto, D-iii), con
+#    `claude` en PATH y sesión de claude.ai activa:
+python3 forense/prereg-duelo-v2/runner_l_cli.py --correr
+#    (176 llamadas vía `claude -p`, una por (celda, variante, índice);
+#    reanudable -- si el plan corta por límite horario, un segundo
+#    `--correr` salta lo ya escrito y no repite corridas)
+```
+
+`runner_l_cli.py` no fue ejecutado en modo `--correr` por este acto (CONTADOR: cero) — solo `--dry-run`, verificado arriba y en la cabecera del propio script.
+
+---
+
 ## 5 · Archivos que produce
 
 Un JSON por `(id_celda, variante, índice)`:
@@ -141,6 +200,8 @@ Esquema — igual que las 120 capturas del marco piloto (`id_celda`, `variante`,
 2. `curl -s -o /dev/null -w "%{http_code}\n" --max-time 10 https://api.anthropic.com/` (nunca `curl -I`).
 3. `ANTHROPIC_API_KEY` presente — solo presencia/ausencia, nunca el valor.
 
+**Nota de §4-bis (enmienda 2026-09-01):** los tres puntos de arriba describen el patrón de API directa (§4, histórico). Bajo §4-bis (CLI vigente), el punto 3 se reemplaza por `claude auth status` mostrando sesión de `claude.ai` — no se requiere ni se usa `ANTHROPIC_API_KEY`; el destino de red relevante es el que el propio CLI use para su sesión autenticada, no `api.anthropic.com` directamente.
+
 ---
 
 ## 8 · Prohibición explícita (repetida, D-13 la exige clara y no solo al inicio)
@@ -155,8 +216,13 @@ Durante esta corrida:
 
 ## Checklist de mesa antes de lanzar
 
-- [ ] Caja elegida (con red saliente a `api.anthropic.com`).
-- [ ] `ANTHROPIC_API_KEY` presente en esa caja.
-- [ ] `modelo_id` confirmado (`claude-opus-4-6` por defecto) o sustituido explícitamente antes de arrancar.
-- [ ] Compuerta de hashes (§1) corrida y verde.
+**Vigente (§4-bis, CLI, enmienda 2026-09-01):**
+- [ ] `claude auth status` (o `/status`) muestra sesión de `claude.ai` — **no** una API key. Si muestra API key, PARO.
+- [ ] `claude --version` registrado.
+- [ ] `modelo_id` confirmado (alias `opus`) — nombre real de modelo se registra por corrida desde el JSON de salida, no se fija de antemano.
+- [ ] Compuerta de hashes (§1, incluida la fila de `runner_l_cli.py`) corrida y verde.
 - [ ] Confirmado que la sesión ejecutora no tiene abierto `corridas-R/` ni `scoreboard-v1_1.md`.
+
+**Histórico (§4, API directa — ya no aplica bajo esta enmienda, dejado para auditoría):**
+- [ ] ~~Caja elegida (con red saliente a `api.anthropic.com`).~~
+- [ ] ~~`ANTHROPIC_API_KEY` presente en esa caja.~~
