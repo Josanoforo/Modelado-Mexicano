@@ -7,3 +7,7 @@ P2 · runner_l_cli.py en prereg-duelo-v2/: lee L-spec-v1_1.json, y por (celda, v
 P3 · PAQUETE-L-v1_1.md §4-bis con el comando exacto para mesa y el checklist: `claude auth status` (o /status) debe mostrar sesión de claude.ai, no API key; sha256 del runner en la tabla de §1.
 PERÍMETRO: prereg-corrida-v1_0.md (una fila), runner_l_cli.py, PAQUETE-L-v1_1.md (§4-bis y tabla §1), notas, tablero (recibo), A.3, cascada. Frase exacta vigente. CONTADOR: cero, declarado.
 LO QUE NO HACE: no corre L; no edita pipeline-L-adv1-m2.py, carga_l_v1_1.py ni L-spec; no cambia k ni variantes.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-E17 · L-ENMIENDA-CLI`, rama `claude/l-enmienda-cli-no-api-qhlj0a`. PR abierto contra `main` — número pendiente de registrar aquí tras `git push` (esta misma sección se actualiza con el número real, sin reabrir el resto del archivo). Detalle: `forense/notas/2026-09-02-maestra33-e17-l-enmienda-cli-cierre.md`.
