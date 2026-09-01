@@ -1,0 +1,10 @@
+{
+  "id_celda": "CIV-M-08",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "## Respuesta\n\n**No conozco el dato para esta variable tal como está especificada.** No puedo dar una estimación puntual defendible, y no voy a construir una cifra plausible.\n\n**Por qué:**\n\n1. **La etiqueta es ambigua en su dirección.** `denuncia_con_miedo_o_desconfianza` puede leerse al menos de tres maneras incompatibles: (a) proporción de delitos **no denunciados** cuya causa declarada es miedo al agresor o desconfianza en la autoridad; (b) proporción de personas que **sí denunciaron** pese a miedo/desconfianza; (c) un indicador binario a nivel de víctima construido por este proyecto. Sin el diccionario de la variable no sé cuál es el numerador ni el denominador.\n\n2. **El universo está declarado como no estimado en este acto.** El encargo mismo dice que esto es censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Emitir una cifra puntual aquí sería producir un número sin universo, que es exactamente el defecto que la regla de columnas de MAESTRA32-E15 spec (e) busca evitar.\n\n**Lo único que puedo declarar, y con etiqueta de memoria no verificada:**\n\nDe los boletines de prensa del INEGI sobre ENVIPE 2019 (referidos a delitos de 2018) recuerdo, sin poder verificarlo en este acto, que entre las causas de no denuncia las dos categorías relevantes rondaban: *desconfianza en la autoridad* ≈ 17 % y *miedo al agresor* ≈ 9 % del total de delitos no denunciados. Si la variable fuera la lectura (a), la suma daría del orden de **25–27 %**. Trato esto como **recuerdo no confirmado**, no como estimación firmada.\n\n**Sonda canario — fuente textual declarada:** memoria de entrenamiento sobre comunicados de prensa del INEGI (ENVIPE 2019). **No he consultado** ningún documento, tabulado, cuestionario ni microdato en este acto, ni tengo adjunto del proyecto. No cito folio, página ni tabla porque no dispongo de ninguno; cualquier referencia específica que ofreciera sería inventada.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T20:45:53.542787+00:00",
+  "modelo_real": null
+}

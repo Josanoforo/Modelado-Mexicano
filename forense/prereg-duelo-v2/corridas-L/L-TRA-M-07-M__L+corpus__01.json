@@ -1,0 +1,10 @@
+{
+  "id_celda": "TRA-M-07",
+  "variante": "L+corpus",
+  "indice": 1,
+  "texto_crudo": "## Estimación\n\n**Punto estimado: ~14–15 % de la población de 18 años y más declaró haber pagado un soborno (\"mordida\") en el año de referencia. Uso 14.7 % como cifra puntual.**\n\nRango subjetivo (aunque la escala sea binaria, la proporción poblacional sí es continua): **12 %–17 %**, con la mayor parte de la masa entre 13.5 % y 16 %.\n\n## Advertencias sobre el denominador (esto domina la incertidumbre)\n\nLa cifra cambia mucho según cómo esté construido el reactivo `paga_mordida`:\n\n| Denominador | Estimación |\n|---|---|\n| Toda la población 18+ | ~14–15 % |\n| Quienes tuvieron **contacto con algún servidor público / realizaron trámite** | ~24–27 % |\n| Quienes tuvieron contacto con **autoridades de seguridad pública** | ~50 % o más |\n\nSi el reactivo es \"de los que hicieron al menos un trámite, ¿pagó soborno?\", mi punto estimado sube a **~25 %**, no 14.7 %.\n\n## Fuente y grado de confianza\n\nFuente: recuerdo del indicador **\"tasa de prevalencia de corrupción\" de la ENCIG (INEGI)**, reportado por cada 100 000 habitantes de 18 años y más. Serie que recuerdo aproximadamente: 2017 ≈ 14 600, 2019 ≈ 15 700, 2021 ≈ 14 700 por cada 100 000.\n\n**Declaración explícita de lo que no sé:** no tengo certeza del dígito exacto de ENCIG 2021 ni del *n* ni del factor de expansión; el 14 701 / 100 000 lo doy como recuerdo aproximado, no como cita verificada. Tampoco sé cómo está operacionalizado `paga_mordida` en el inventario de reactivos de este proyecto (si es un derivado agregado sobre todos los trámites, un reactivo directo, o restringido a un trámite específico). No re-derivé nada contra microdato en esta respuesta.\n\n**Sonda canario (M1):** la fuente que declaro es *memoria de reportes públicos del INEGI*, no un documento adjunto ni el corpus tierizado — el contexto tierizado llegó vacío y no lo consulté.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T21:47:56.107704+00:00",
+  "modelo_real": null
+}

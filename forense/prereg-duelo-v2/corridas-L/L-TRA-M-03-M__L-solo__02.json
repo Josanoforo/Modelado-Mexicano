@@ -1,0 +1,10 @@
+{
+  "id_celda": "TRA-M-03",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "## Estimación\n\n**Punto: ~12.5 %** de la población de 18+ años que reporta haber pagado/entregado un soborno (\"mordida\") en al menos un trámite o contacto con autoridad en los 12 meses de referencia.\n\n**Intervalo subjetivo (aunque la escala sea binaria, sobre la proporción): 10 % – 15 %**, con la mayor densidad entre 12 % y 13 %.\n\n## Base del razonamiento\n\n- La ENCIG publica la **prevalencia de corrupción** como tasa \"por cada 100 mil habitantes de 18 años y más\". Recuerdo la serie aproximadamente así: 2013 ≈ **12,000–12,600 por 100 mil (≈12.0–12.6 %)**; 2015 ≈ 12,590; 2017 ≈ 14,635; 2019 ≈ 15,732. Es decir, 2013 es el piso de la serie.\n- Advertencia de denominador, que es donde más se rompe esta cifra: si `paga_mordida` se define **condicionado a haber tenido contacto con un servidor público / realizado un trámite** (no sobre toda la población 18+), la proporción sube mucho — mi estimación en ese caso sería del orden de **25 % – 33 %**, no 12 %. La diferencia entre ambas lecturas es de un factor ~2.5, así que la definición del universo domina el resultado.\n\n## Declaración de fuente (sonda canario)\n\n**No tengo fuente documental verificada para esta cifra en este acto.** Lo anterior proviene de mi memoria de los comunicados de prensa y tabulados del INEGI sobre ENCIG 2013/2015 (Principales Resultados / \"prevalencia e incidencia de corrupción\"), no de un documento consultado ni de microdato re-derivado aquí. No he verificado:\n\n1. que exista un reactivo nativo llamado `paga_mordida` en ENCIG 2013 (el nombre parece un **derivado** del proyecto, no una clave INEGI tipo `P8_x`);\n2. el universo exacto ni la n de la ola 2013;\n3. el número específico de la tasa 2013, que es el que menos firme tengo de la serie.\n\nSi el acto requiere una cifra sellable, esta estimación **no** califica: debe re-derivarse del tabulado oficial o del microdato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T21:30:01.117225+00:00",
+  "modelo_real": null
+}

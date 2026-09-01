@@ -1,0 +1,10 @@
+{
+  "id_celda": "TRA-M-03",
+  "variante": "L+corpus",
+  "indice": 8,
+  "texto_crudo": "## Estimación\n\n**No tengo memorizada con certeza la cifra exacta de ENCIG 2013 para un reactivo llamado `paga_mordida`.** Lo digo explícitamente antes de dar el número, porque el nombre de la variable en el inventario no me permite saber cuál de las dos poblaciones-base de ENCIG se está usando, y la diferencia entre ellas es de un factor de ~2.5.\n\n### Punto de estimación\n\n**~12.5 %** (proporción de la población de 18+ que reporta haber pagado/dado una mordida), si la base es *toda* la población adulta.\n\nRango subjetivo: **10 %–16 %**.\n\n### La ambigüedad que domina el error\n\nENCIG publica dos indicadores que un reactivo binario \"pagó mordida\" puede estar codificando:\n\n| Base | Indicador ENCIG | Magnitud aprox. 2013 |\n|---|---|---|\n| Población 18+ (total) | Prevalencia de corrupción (~12,600 por 100 mil hab.) | **~12–13 %** |\n| Solo quienes tuvieron contacto con servidor público / hicieron trámite | Tasa de experiencias de corrupción | **~28–31 %** |\n\nSi `paga_mordida` está definida condicional a haber realizado al menos un trámite (que es la construcción más natural del cuestionario, donde la pregunta de pago se hace *después* del filtro de contacto), mi estimación puntual sube a **~30 %** con rango **25 %–35 %**.\n\n### Fuente\n\nRecuerdo estas magnitudes de los **boletines y tabulados de INEGI para ENCIG 2013** (serie de prevalencia/incidencia de corrupción por cada 100,000 habitantes). **No la he verificado contra documento alguno en este acto** y no tengo el microdato ni el cuestionario a la vista, así que trátese como recuerdo de orden de magnitud, no como cita.\n\n### Sonda canario (M1)\n\nFuente textual declarada: memoria de publicaciones INEGI/ENCIG 2013, **no** documento consultado. Ningún archivo del proyecto fue leído para producir esta respuesta; el contexto tierizado llegó vacío (\"no construido en este acto\"), de modo que la estimación es puramente a priori.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T21:36:11.178420+00:00",
+  "modelo_real": null
+}

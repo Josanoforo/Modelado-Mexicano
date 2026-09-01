@@ -1,0 +1,10 @@
+{
+  "id_celda": "TRA-M-03",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Estimación puntual: ≈ 0.12 (12 % de la población de 18+ años).**\nIntervalo subjetivo (escala binaria, sobre la proporción): **0.09 – 0.16**, con la masa de probabilidad concentrada entre 0.11 y 0.14.\n\n**Base del razonamiento (memoria, no documento):**\n\n- La ENCIG reporta la corrupción vivida como *tasa de prevalencia por cada 100,000 habitantes*, no como porcentaje directo. Para las olas que recuerdo con más confianza: **2015 ≈ 12,590**, **2017 ≈ 14,635**, **2019 ≈ 15,732** por cada 100 mil habitantes de 18+. Esto equivale a 12.6 %, 14.6 % y 15.7 %.\n- La ola **2013** es la primera de la serie comparable y, por la tendencia creciente posterior, la ubico ligeramente por debajo de 2015: **~12,000–12,600 por cada 100 mil ⇒ ~0.12**.\n\n**Advertencia de definición (afecta mucho la cifra):**\n\nSi `paga_mordida` está definida **condicional a haber tenido contacto con un servidor público o realizado un trámite** (que es como la ENCIG construye su otro indicador principal), la estimación correcta no es 0.12 sino aproximadamente **0.28–0.31** (del orden de 30,000 por cada 100 mil entre quienes tuvieron contacto). La diferencia entre las dos lecturas es un factor ~2.5, así que el veredicto depende del universo real del reactivo, que aquí está *supuesto*, no re-derivado.\n\n**Sobre la sonda canario (M1):** no tengo acceso a ningún documento del proyecto ni al microdato de ENCIG 2013. **No puedo citar una fuente textual declarada.** Las cifras anteriores provienen de memoria de entrenamiento sobre comunicados y tabulados del INEGI, no de una lectura verificada en este acto; el valor de 2013 en particular es el que reconstruyo con menor certeza de toda la serie (los de 2015–2019 los sostengo mejor que el de 2013). No debe sellarse como cifra verificada sin abrir el tabulado o el microdato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T21:29:34.820058+00:00",
+  "modelo_real": null
+}

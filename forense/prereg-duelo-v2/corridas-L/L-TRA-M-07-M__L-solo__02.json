@@ -1,0 +1,10 @@
+{
+  "id_celda": "TRA-M-07",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**Estimación puntual: ≈ 14 % (sí paga / experimentó acto de corrupción).**\n\n**Base de la estimación (de memoria, sin documento a la vista):** el indicador insignia de la ENCIG es la *tasa de prevalencia de corrupción*, definida como víctimas por cada 100 000 habitantes de 18 años y más **que tuvieron contacto con algún servidor público**. Recuerdo la serie aproximadamente así:\n\n- ENCIG 2017 ≈ 14 600 por 100 000 (≈14.6 %)\n- ENCIG 2019 ≈ 15 700 por 100 000 (≈15.7 %)\n- **ENCIG 2021 ≈ 14 100–14 200 por 100 000 (≈14.1–14.2 %)**\n\n**Intervalo subjetivo (aunque la escala sea binaria, sobre la proporción):** 12 %–17 %. Mi incertidumbre no viene del error muestral (que en ENCIG, con ~30 mil viviendas y diseño estatal, sería de décimas de punto), sino de **cuál denominador codifica el reactivo `paga_mordida`**:\n\n- Si el universo es *población 18+ con contacto con servidor público* → ≈14 %.\n- Si el universo es *toda la población 18+* (incluidos quienes no tuvieron contacto) → la cifra cae bastante, plausiblemente a 8–11 %.\n- Si el universo es *por trámite* (tasa por cada 100 000 trámites) → el orden de magnitud es de ~2 % o menos, no de 14 %.\n\nComo el enunciado dice explícitamente que \"universo y n exactos NO re-derivados en este acto\", **no puedo cerrar cuál de los tres denominadores aplica**, y esa ambigüedad domina el error.\n\n**Sobre la cita de fuente (sonda canario):** no tengo una fuente textual verificable que declarar. Las cifras anteriores son recuperación de memoria de comunicados/tabulados del INEGI sobre ENCIG, **no** una lectura del microdato ni del cuestionario en este acto. No dispongo del número exacto con decimales ni puedo confirmar la redacción literal del reactivo. Si se requiere el valor sellado, hay que ir al tabulado oficial de ENCIG 2021 (prevalencia e incidencia de corrupción) o al microdato con su factor de expansión — no debe tomarse mi 14 % como cifra reproducida.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-01T21:44:51.000381+00:00",
+  "modelo_real": null
+}
