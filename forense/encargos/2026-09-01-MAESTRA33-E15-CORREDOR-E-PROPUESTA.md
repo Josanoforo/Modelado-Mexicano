@@ -50,3 +50,19 @@ origin/main` con conflicto en `canon/gobernanza-v1_15.md`,
 inserciones (`E17`, este acto), en orden de fusión — verificado
 `python3 tests/check.py --baseline`: **VERDE**, sin `FAIL` nuevo tras
 resolver.
+
+**Segundo renumerado post-push:** `main` volvió a avanzar
+(`PR #439`/`ACTO MAESTRA33-E14 · EVALUACION-OLA6`) mientras este PR
+seguía en vuelo — `E14` fusionó primero (tras renumerar su propio
+candidato de `ADR-264`→`ADR-265` al chocar con `E17`) y se quedó con
+`ADR-265`, el mismo número que este acto ya había reclamado en su
+primer push. Renumerado de nuevo, a **`ADR-266`**, contiguo, sin hueco.
+`git merge origin/main` con conflicto en `canon/gobernanza-v1_15.md`,
+`canon/estado-programa-v1_10.md`, `canon/registro-rotulos.tsv`,
+`forense/firmas-pendientes.tsv` (`E14` resolvió `FP-220`→`EJECUTADA`,
+fila distinta de la `FP-221`→`RESUELTA` de este acto, sin choque real
+de contenido) y `tests/check.py` (`_T25_ARCHIVOS_CONOCIDOS`, ambas
+entradas conservadas), resuelto conservando las tres inserciones
+(`E17`, `E14`, este acto) en orden de fusión — verificado
+`python3 tests/check.py --baseline`: **VERDE**, 19 FAIL preexistentes,
+sin `FAIL` nuevo tras la segunda resolución.
