@@ -1337,3 +1337,43 @@ coeficientes_generador_sellados:
   rotulo: ASOCIACION-MEDIDA·MARGINAL·DISCORDANTE-ENTRE-INSTRUMENTOS
   reserva: 'Robustez ENDIREH 2016: β̂=-0.0461 [IC95% -0.0745,-0.0181], n_util theta=1 3177, theta=0 13490. Signo DISCORDANTE con EDER -- ambas van en reserva por regla de escritura (e). ADR-57(a): asociar ≠ identificar; concordancia/discordancia son ambas informativas, ninguna corrobora ni refuta.'
   fuente: coeficientes_generador_medidos.G5_familismo_apoyo, 31/ago/2026 (ACTO MAESTRA32-E16)
+
+# ══════════════════════════════════════════════════════════════════
+# candidatas_theta_citadas_fp190 · ACTO MAESTRA33-C4 · 31/ago-1/sep/2026
+#
+# P2 de FP-190 fase 2-A: CITA (no medición) de la candidata de theta que
+# forense/notas/2026-09-01-mapeo-fp190.md recomendo para TIC-01 y EMP-05.
+# No hay G# formal en el PORQUE de ninguna de las dos celdas
+# (forense/prereg-duelo-v2/cobertura-15-v1_0.tsv: TIC-01 y EMP-05 son
+# SIN-CITA-G#-EXPLICITA) -- sin generador que sostenga el theta, no hay
+# coeficiente que estimar contra un eje condicionante; por eso esto es
+# cita, no coeficientes_generador_medidos, y no dispara el regimen de dos
+# commits (el encargo lo condiciona a "si la theta se mide, no solo se
+# cita"). n y valor de esta seccion SI vienen de microdato abierto en
+# esta sesion (declarado, A.13) -- la cita no es de la nota de mapeo sola.
+# ══════════════════════════════════════════════════════════════════
+candidatas_theta_citadas_fp190:
+- celda: TIC-01
+  definicion_celda: "pertenencia a sindicato (FP-190, texto original)"
+  encuesta: ENNViH
+  ola: "ehh09 (ENNViH-3, 2009-10)"
+  archivo: "data/raw/ennvih/ehh09dta_all.zip:ehh09dta_all/ehh09dta_b3a/iiia_tb.dta"
+  variable: tb33b_p
+  texto_reactivo: "PERTENECE A SINDICATO(PRIN)?"
+  valor: "código crudo sin etiqueta en el .dta: 1.0 (n=1171) y 3.0 (n=9757) -- no hay código 2 en los datos, ninguna value_label embebida (StataReader.value_labels() vacío, verificado). Catálogo INEGI/MxFLS no confirmado por este acto contra el diccionario de datos -- declarado, no inventado cuál código es 'sí pertenece'."
+  n: "10928 no-perdidos de 24944 filas totales (13590 son NaN por skip pattern, no examinado en este acto)"
+  escala: "binaria por catálogo (A-bis 3): dos códigos observados, dirección de la etiqueta pendiente de diccionario de datos -- no se asigna 1=sí sin esa confirmación"
+  alterna: "encup2012:P69_4 'Usted es o ha sido miembro de alguna de las siguientes organizaciones... Sindicato' (v1_2:78511) -- no abierta en este acto, solo la cita de la nota de mapeo"
+  fuente: [forense/notas/2026-09-01-mapeo-fp190.md, "ACTO MAESTRA33-C4"]
+- celda: EMP-05
+  definicion_celda: "situación conyugal joven (FP-190, texto original)"
+  encuesta: ENDIREH
+  ola: "2016"
+  archivo: "data/raw/endireh2016/bd_mujeres_endireh2016_sitioinegi_stata.zip:BD_MUJERES_ENDIREH2016_SitioINEGI.dta"
+  variable: sit_conyugal
+  texto_reactivo: "Situación conyugal"
+  valor: "código crudo sin etiqueta en el .dta, 7 categorías observadas: 1.0 (n=70750) · 2.0 (n=2105) · 3.0 (n=11241) · 4.0 (n=8349) · 5.0 (n=6700) · 6.0 (n=7078) · 7.0 (n=5033). Ninguna value_label embebida (verificado igual que TIC-01); catálogo no confirmado contra el diccionario de datos del payload."
+  n: "111256 filas totales, sin perdidos declarados en esta lectura"
+  escala: "categórica nominal, 7 valores (A-bis 3); calificador 'joven' es atributo de universo/marco muestral, NO del texto del reactivo -- fuera del alcance de esta búsqueda por diseño, tal como ya lo declaró la nota de mapeo (no inventado aquí)"
+  alterna: "eder2017/engasto2012:edo_conyug (parcial, misma frase plegada); encup2012:F '¿Estado Civil?' (sinónimo más genérico, EXISTE-NO-SATISFACE)"
+  fuente: [forense/notas/2026-09-01-mapeo-fp190.md, "ACTO MAESTRA33-C4"]

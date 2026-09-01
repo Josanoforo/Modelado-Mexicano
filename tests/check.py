@@ -3311,6 +3311,22 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # entradas de MAESTRA33-E2/E3/E4, MAESTRA31-E1/E2/E4/E5/E6/E7 y
     # MAESTRA30-E10 de esta lista.
     "forense/encargos/2026-08-31-MAESTRA33-E6-EMISOR-M-1.md",
+    # ACTO MAESTRA33-C4 · REGLAS-OLA5-FASE2-A, 1/sep/2026: encargo archivado
+    # VERBATIM (A.3). A.8 del encargo cita "E7" (ACTO MAESTRA33-E7 ·
+    # MAPEADOR-1, habitante ya censado del espacio E) al referir la nota de
+    # mapeo que este acto usa como insumo -- "E7" pelado colisiona con ese
+    # habitante. D-6 aplicado donde se puede aplicar: el acto se declara
+    # ACTO MAESTRA33-C4 en todo archivo que escribe y queda censado en
+    # canon/registro-rotulos.tsv; el encargo NO se edita, porque A.3 pide el
+    # texto verbatim de mesa. Mismo movimiento y misma razon que las
+    # entradas de MAESTRA33-E2/E3/E4/E6, MAESTRA31-E1/E2/E4/E5/E6/E7 y
+    # MAESTRA30-E10 de esta lista.
+    "forense/encargos/2026-08-31-MAESTRA33-C4-REGLAS-OLA5-FASE2-A.md",
+    # forense/notas/2026-08-31-reglas-ola5-fase2a-spec.md -- nota de spec de
+    # ACTO MAESTRA33-C4 que cita "E7" (ACTO MAESTRA33-E7 · MAPEADOR-1) al
+    # narrar por que P2 es cita y no medicion (nota de mapeo que E7 produjo).
+    # Mismo habitante, misma razon que la entrada del encargo, arriba.
+    "forense/notas/2026-08-31-reglas-ola5-fase2a-spec.md",
 }
 
 
