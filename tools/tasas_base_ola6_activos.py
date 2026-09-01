@@ -180,6 +180,26 @@ def regla2_afore():
     print(f"  ENFIH 2019: p={p:.6f}  IC95=[{lo:.6f}, {hi:.6f}]  "
           f"n={n}  estratos={ne}  UPM={nu}  pond=FAC_HOG")
     print(f"              hogares expandidos={w.sum():,.0f}  sha256={sha[:12]}…")
+
+    # --- robustez: universo restringido a hogar principal --------------
+    m = df["H_PPAL"] == 1
+    pp, plo, phi, pn, pne, pnu = wprop_ic_conglomerado(
+        d[m.to_numpy()], w[m.to_numpy()],
+        df.loc[m, "EDIS"].astype(str).to_numpy(),
+        df.loc[m, "UPM_DIS"].astype(str).to_numpy())
+    print(f"  [robustez] H_PPAL=1: p={pp:.6f}  IC95=[{plo:.6f}, {phi:.6f}]  n={pn}")
+
+    # --- DESCRIPTIVO, NO es la p de la regla ---------------------------
+    # CAT_POS es posicion en el trabajo de la persona de referencia. NO es
+    # formalidad (un empleado puede ser informal) y por eso esto NO se sella
+    # como condicional: solo muestra si la DIRECCION de la regla se sostiene.
+    lab = {0: "no ocupada", 1: "empleado/obrero", 2: "jornalero/peon",
+           3: "patron", 4: "por su cuenta", 5: "familiar sin pago"}
+    print("  [descriptivo, NO sellado] tasa ponderada de AFORE por CAT_POS:")
+    for v in sorted(df["CAT_POS"].unique()):
+        mm = (df["CAT_POS"] == v).to_numpy()
+        pv = float((w[mm] * d[mm]).sum() / w[mm].sum())
+        print(f"      CAT_POS={v} ({lab.get(v, v):<18}) n={mm.sum():>5}  p={pv:.4f}")
     return {2019: dict(p=p, ic95=[lo, hi], n=n, estratos=ne, upm=nu,
                        ponderador="FAC_HOG", sha256=sha, pob=float(w.sum()))}
 

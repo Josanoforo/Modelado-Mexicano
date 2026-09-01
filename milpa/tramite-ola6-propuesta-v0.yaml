@@ -69,3 +69,50 @@ reglas_propuestas:
     hallazgo: "Primera regla del programa con p medida en SEIS olas de la misma encuesta. La serie es plana: min 4.08% (2014), max 4.75% (2016), rango 0.67pp en diez anios, y los IC95 de las cuatro olas grandes (2016-2022) se traslapan entre si. El unico brazo del ENTONCES de §3.5 que este lote congela es `remesas`; corresidencia y pooling quedan fuera del lote sin candidata inventada. Reserva declarada: la tasa base NO es la condicional de la regla (ver si.disparadores), y por la circularidad del propio SI de §3.5 no puede serlo con esta sola tabla."
     sha256_payload: "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06"
     payload_manifiesto_id: enigh2022_nc_csv
+
+  - id: dinero.planeacion.formal_estable
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA  # NO por limite de perimetro, sino por
+        # ausencia medida del instrumento: barrido exhaustivo de las 16 tablas
+        # / 664 columnas de ENFIH 2019 con patron
+        # SEG|IMSS|ISSSTE|PREST|CONTRAT|FORMAL|AFIL -> 2 hits, ambos seguro de
+        # vida (C_SEGVID/V_SEGVID), ninguno de formalidad laboral; control
+        # positivo del mismo barrido con patron AFORE -> 2 hits. ENFIH 2019 no
+        # trae `segsoc` ni `contrato` ni `pres_8`, asi que la condicional de
+        # §3.1 no es construible aqui NI POR UN ACTO SUCESOR sobre esta fuente.
+    entonces:
+      - {conducta: tiene_afore, p: 0.538502, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: no_tiene_afore, p: 0.461498, clase: "MEDIDO·p(tasa base ponderada)"}
+    porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
+      # §3.1 declara el mecanismo en prosa ("el ingreso estable baja el costo
+      # esperado de comprometerse a un instrumento de horizonte largo") pero NO
+      # nombra un generador G#. No se le asigna uno: eso es de mesa.
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["ENFIH2019", "data/raw/enfih2019/enfih_2019_fd.xlsx hoja TConcentradora", "canon/modelo-decision-v4_0.md §3.1"]
+    ola_calibracion: "ENFIH 2019 (unica ola de ENFIH en el corpus)"
+    ic95: [0.526700, 0.550616]
+    n: 17765
+    ponderador: FAC_HOG
+    universo: "hogares -- los 17765 de TCONCENTRADORA.csv (llave FOLIO+VIV_SEL+HOGAR), sin filtro adicional. Desenlace tiene_afore = C_AFORE, que el FD define como `Condicion de tenencia de cuenta de ahorro para el retiro o Afore`, 0=No tiene / 1=Si tiene, ya dicotomica sin recodificar."
+    robustez:
+      - {variante: "universo restringido a hogar principal (H_PPAL=1)", p: 0.540091, ic95: [0.528375, 0.552262], n: 17386, lectura: "diferencia de 0.16pp con el universo completo, muy dentro del IC95 de ambos: la eleccion de universo no mueve la cifra"}
+    descriptivo_no_sellado:
+      # NO es la p de la regla y NO se sella. CAT_POS es posicion en el trabajo
+      # de la persona de referencia; un empleado puede ser informal, asi que
+      # CAT_POS NO es formalidad y usarlo como disparador seria inventar la
+      # operacionalizacion que (f) de la spec declara ausente. Se registra solo
+      # porque muestra si la DIRECCION de §3.1 se sostiene en el dato.
+      variable: "CAT_POS (categoria de posicion en el trabajo de la persona de referencia)"
+      tasas_ponderadas_afore:
+        - {cat_pos: 1, etiqueta: "Empleado(a) u obrero(a)",  n: 8154, p: 0.7230}
+        - {cat_pos: 3, etiqueta: "Patron(a) o empleador(a)", n: 390,  p: 0.5688}
+        - {cat_pos: 4, etiqueta: "Trabajador(a) por su cuenta", n: 3428, p: 0.4161}
+        - {cat_pos: 0, etiqueta: "Persona no ocupada",       n: 4354, p: 0.3831}
+        - {cat_pos: 5, etiqueta: "Trabajador(a) familiar sin pago", n: 452, p: 0.3519}
+        - {cat_pos: 2, etiqueta: "Jornalero(a) o peon(a)",   n: 987,  p: 0.2940}
+      lectura: "brecha de 42.90pp entre empleado/obrero (72.30%) y jornalero/peon (29.40%), en la direccion que §3.1 predice. Evidencia de direccion, NO la condicional de la regla."
+    hallazgo: "Tres supuestos del encargo corregidos contra el FD oficial: (1) la tenencia es C_AFORE y no V_AFORE, que es el MONTO en pesos (0-108264000) -- medir sobre V_AFORE>0 habria dado 29.6% sin ponderar, un numero de otra cosa y sin senial de error; (2) el universo es de hogares, no de personas 18+; (3) el ponderador es FAC_HOG, ni FACTOR ni FAC_PER existen. Los otros dos brazos del ENTONCES de §3.1 (seguro, hipoteca) tienen candidata en la MISMA tabla -- C_SEGVID y SERV_HIPO -- pero quedan fuera de este lote por mandato del encargo; se anotan para el acto sucesor, no se miden."
+    sha256_payload: "be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5"
+    payload_manifiesto_id: enfih2019_bd_csv_zip
