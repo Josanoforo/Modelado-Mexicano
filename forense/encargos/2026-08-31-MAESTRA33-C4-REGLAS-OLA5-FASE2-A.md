@@ -7,3 +7,13 @@ P2 · θ TIC-01 y θ EMP-05: cita en procedencia.yaml desde la candidata de E7 �
 P3 · Tablero: FP-190 pasa a "fase 2-A ejecutada" con los 3 objetos y deja explícitos los 5 restantes con su vocabulario A.4 y lo que les falta.
 PERÍMETRO: milpa/tramite-ola5-propuesta-v0.yaml, milpa/procedencia.yaml (θ), tools/ (script del medidor), forense/notas propia, tablero (FP-190 + recibo), archivo A.3, cascada. Frase exacta de perímetro vigente. FP/ADR: deriva. CONTADOR: reglas con p medida en propuesta +1 · θ citadas +2, declarado.
 LO QUE NO HACE: no carga nada al motor (sellar es de mesa); no toca las 5 celdas/θ no satisfechas; no abre corridas-R ni corridas-M.
+
+## CONSUMIDO
+
+`PR #424`, 1/sep/2026. A.8 del encargo (SFT-04 EXISTE-SATISFACE) contradicho por
+la propia nota de mapeo citada: la candidata con texto real mide DIFICULTAD, no
+AYUDA — PARO aplicado tal como el propio P1 lo previó; SFT-04 revierte a
+EXISTE-NO-SATISFACE, cero reglas nuevas. TIC-01 θ y EMP-05 θ citadas (no
+medidas, sin G# formal) en `milpa/procedencia.yaml:candidatas_theta_citadas_fp190`.
+`FP-190` enmendada (fase 2-A ejecutada). `ADR-251` (candidato). Detalle:
+`forense/notas/2026-08-31-reglas-ola5-fase2a-spec.md`.
