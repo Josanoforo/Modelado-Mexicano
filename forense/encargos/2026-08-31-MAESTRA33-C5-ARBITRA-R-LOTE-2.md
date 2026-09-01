@@ -8,4 +8,4 @@ LO QUE NO HACE: no toca el marco; no re-escribe R existentes; no puntúa. SUCESO
 
 ## CONSUMIDO
 
-Ejecutado 1/sep/2026, worktree `/home/pc0/mm-arbitra-r-lote-2`, commit de cascada `<PR pendiente>` (rama `acto/maestra33-c5-arbitra-r-lote-2`). CIV-M-11/12/13/FAM-M-01 → `R` COMPUTADO (4→8). Detalle: `forense/prereg-duelo-v2/notas-arbitra/2026-08-31-lote-civ-m-11-12-13-fam-m-01.md`, `canon/gobernanza-v1_15.md` ADR-254.
+Ejecutado 1/sep/2026, worktree `/home/pc0/mm-arbitra-r-lote-2`, `PR #426` (rama `acto/maestra33-c5-arbitra-r-lote-2`). CIV-M-11/12/13/FAM-M-01 → `R` COMPUTADO (4→8). **ADR RENUMERADO de 254 a 255** al fusionar `main` para sincronizar: `ACTO MAESTRA33-E9 · L-SPEC-v1_1` (`PR #427`) fusionó primero y tomó el 254 — regla de la casa, renumera quien fusiona segundo. Detalle: `forense/prereg-duelo-v2/notas-arbitra/2026-08-31-lote-civ-m-11-12-13-fam-m-01.md`, `canon/gobernanza-v1_15.md` ADR-255.

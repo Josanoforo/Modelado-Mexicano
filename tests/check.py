@@ -2496,6 +2496,11 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/prereg-duelo-v2/lanzamiento-L-v1_0.md",
     "forense/notas/2026-08-26-prep-l-run-cierre.md",
     "forense/encargos/2026-08-26-E2-PREP-L-RUN.md",
+    # forense/prereg-duelo-v2/PAQUETE-L-v1_1.md -- ACTO MAESTRA33-E9 ·
+    # L-SPEC-v1_1, 1/sep/2026: cita "sellado por ACTO E2-PREP-L-RUN" al
+    # referenciar la tabla de hashes de lanzamiento-L-v1_0.md §0 -- mismo
+    # nombre propio ya censado arriba, no un rótulo nuevo sin dueño.
+    "forense/prereg-duelo-v2/PAQUETE-L-v1_1.md",
     # SELLA-AGO24-C-v2, 24/ago/2026 (ADR-155): encargo archivado VERBATIM
     # (convencion de forense/encargos/: "el texto completo del encargo tal
     # como se lanzo"). Su `M5` pelado es ADV1-M5, ya censado en
