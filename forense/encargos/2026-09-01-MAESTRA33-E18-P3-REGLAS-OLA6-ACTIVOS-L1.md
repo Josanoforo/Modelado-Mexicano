@@ -126,7 +126,8 @@ suficiente al leerla completa.
 
 ## CONSUMIDO
 
-`ACTO MAESTRA33-E18-P3 · REGLAS-ACTIVOS-L1`, 1/sep/2026, CAJA Ubuntu, rama
+`ACTO MAESTRA33-E18-P3 · REGLAS-ACTIVOS-L1`, 1/sep/2026, CAJA Ubuntu, **`PR #447`**
+(https://github.com/Josanoforo/Modelado-Mexicano/pull/447), rama
 `acto/maestra33-e18-p3-reglas-ola6-activos-l1`. Régimen de dos commits por
 regla (precedente `MAESTRA33-C4`/`PR #424`). `ADR-273` (candidato; renumerado
 dos veces — el derivado al arrancar era `ADR-271`, que tomó `PR #445`/`S2`, y
