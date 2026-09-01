@@ -175,8 +175,21 @@ reglas_propuestas:
   # catalogo. Detalle completo: forense/notas/2026-08-31-c1-respec-
   # corresidencia-{spec,cierre}.md.
   # ══════════════════════════════════════════════════════════════════
+#
+# APARCADA · ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS · 1/sep/2026
+# Firma de mesa 4, verbatim: «4. Dato informativo.» -- mesa clasifica
+# esta medición como dato informativo, no como candidata a regla del
+# motor. `situacion` pasa de PENDIENTE-DE-MESA a APARCADA: no es
+# RE-ESPECIFICACION (no hay defecto de diseño que corregir, a
+# diferencia de familia.corresidencia.adulto_familiar arriba) ni
+# carga pendiente -- es cierre por clasificación. CUERPO INTACTO:
+# ni p, ni ic95, ni n, ni ponderador, ni universo, ni fuente se tocan,
+# mismo principio que las demás enmiendas de este archivo. Copia
+# archivada, con clasificación y cifras, en
+# milpa/procedencia.yaml::thetas_informativas (id corresidencia_actual).
+# ══════════════════════════════════════════════════════════════════
   - id: familia.corresidencia.adulto_familiar_actual
-    situacion: PENDIENTE-DE-MESA
+    situacion: APARCADA
     si:
       disparadores: PENDIENTE-DE-MESA
     entonces:

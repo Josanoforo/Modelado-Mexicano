@@ -210,8 +210,11 @@ Un PR `[TRAMITE]` sano trae, siempre:
   un día un PR suyo dice que midió algo, algo se rompió.
 - **La suite en línea base VERDE**, o un PARO con la salida cruda.
 
-Cómo leerlo en dos minutos: abre el digesto, mira la sección **A** (qué
-lleva más días abierto), la sección **B** (¿VERDE?), y el diff del
+Cómo leerlo en dos minutos: abre el digesto, mira primero el bloque
+**Vencimientos** (`VENCIDAS` / `vencen esta semana` — v1.2,
+`ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS`, parsea `vence:
+AAAA-MM-DD` en la columna `gatea` del tablero), luego la sección **A**
+(qué lleva más días abierto), la sección **B** (¿VERDE?), y el diff del
 tablero. Ese diff es la única parte que cambia estado, y es corto por
 construcción.
 

@@ -54,6 +54,20 @@ Ninguna de las tres decide nada, igual que las cinco anteriores: F
 nombra huérfanos y no los resetea, G nombra pendientes y no los
 resuelve, el pie dice qué toca mirar y no lo mira.
 
+v1.2 — VENCIMIENTOS, P2 de `ACTO MAESTRA33-E11 · CRITERIOS-Y-VENCIMIENTOS`
+(`forense/encargos/2026-09-01-MAESTRA33-E11-CRITERIOS-Y-VENCIMIENTOS.md`).
+Antes de la v1.2 ninguna fila del tablero podía traer una fecha límite:
+"esa semana" quedaba flotando hasta que alguien se acordara (firma de
+mesa 5, verbatim: "ponle fecha no quiero que se quede volando"). Ahora
+`gatea` puede traer `vence: AAAA-MM-DD`, y el digesto ABRE (antes de la
+sección A) con dos listas derivadas de esa fecha: `VENCIDAS` (ya pasó,
+con los días de retraso) y `vencen esta semana` (próximos 7 días, hoy
+incluido). Mismo principio que las demás secciones: nombra, no decide
+ni resuelve. `tests/check.py::t22_firmas` (T22(a)/(c)) recibió el mismo
+parseo, así que el WARN de cada corrida de la suite también trae los
+días de retraso cuando aplica — la memoria mecánica no depende de que
+alguien abra el digesto del día.
+
 ────────────────────────────────────────────────────────────────────
 NEUTRALIZACIÓN DE MARCADORES — léelo antes de tocar `_neutraliza()`.
 ────────────────────────────────────────────────────────────────────
@@ -244,6 +258,79 @@ def lee_tablero(raiz):
     cab = lineas[0].split("\t")
     filas = [dict(zip(cab, l.split("\t"))) for l in lineas[1:]]
     return ruta, filas, len(lineas)
+
+
+RE_VENCE = re.compile(r"vence:\s*(\d{4}-\d{2}-\d{2})")
+
+
+def _vence_de(fila):
+    """AAAA-MM-DD si la columna `gatea` trae `vence: AAAA-MM-DD`, si no None.
+    Solo la columna `gatea` -- P2 de MAESTRA33-E11 la fija ahí a propósito,
+    no en `qué_se_firma` (prosa libre, ya ocupada) ni en ninguna otra."""
+    m = RE_VENCE.search(fila.get("gatea", ""))
+    if not m:
+        return None
+    try:
+        anio, mes, dia = (int(x) for x in m.group(1).split("-"))
+        return datetime.date(anio, mes, dia)
+    except ValueError:
+        return None
+
+
+def bloque_vencimientos(raiz, hoy, cuenta):
+    """VENCIDAS / vencen esta semana -- P2 de `ACTO MAESTRA33-E11 ·
+    CRITERIOS-Y-VENCIMIENTOS`. Abre el digesto, antes de la sección A:
+    parsea `vence: AAAA-MM-DD` en la columna `gatea` de cada fila `ABIERTA`
+    del tablero (misma fuente que A, mismo lector `lee_tablero`). No
+    decide ni resuelve nada -- nombra, igual que el resto del digesto."""
+    _, filas, _ = lee_tablero(raiz)
+    out = ["## Vencimientos — filas del tablero con `vence:` en `gatea`", "",
+           "Comando: lectura directa de `forense/firmas-pendientes.tsv` "
+           "(columna `estado` == `ABIERTA`, `gatea` parseada con "
+           "`vence:\\s*(\\d{4}-\\d{2}-\\d{2})`).", ""]
+    if not filas:
+        out += ["Tablero no encontrado o vacío — ver sección A.", ""]
+        return out, 0, 0
+    con_vence = []
+    for f in filas:
+        if f.get("estado") != "ABIERTA":
+            continue
+        v = _vence_de(f)
+        if v is not None:
+            con_vence.append((f, v))
+    if not con_vence:
+        out += [f"NINGUNA fila `ABIERTA` trae `vence:` en `gatea`. "
+                f"Filas `ABIERTA` examinadas: "
+                f"{sum(1 for f in filas if f.get('estado') == 'ABIERTA')} (A.13).", ""]
+        return out, 0, 0
+    vencidas = sorted((t for t in con_vence if t[1] < hoy), key=lambda t: t[1])
+    vencen_semana = sorted((t for t in con_vence
+                            if hoy <= t[1] <= hoy + datetime.timedelta(days=6)),
+                           key=lambda t: t[1])
+    if vencidas:
+        out += [f"### VENCIDAS ({len(vencidas)})", ""]
+        for f, v in vencidas:
+            retraso = (hoy - v).days
+            txt = neutraliza(una_linea(f.get("qué_se_firma", ""), 160), cuenta)
+            out.append(f"- `{f.get('id', '?')}` — venció **{v.isoformat()}** "
+                       f"({plural_dias(retraso)} de retraso): {txt}")
+        out.append("")
+    else:
+        out += ["### VENCIDAS (0)", "", "NINGUNA.", ""]
+    if vencen_semana:
+        out += [f"### Vencen esta semana ({len(vencen_semana)})", "",
+               f"Ventana: `{hoy.isoformat()}` a "
+               f"`{(hoy + datetime.timedelta(days=6)).isoformat()}` (7 días, hoy incluido).",
+               ""]
+        for f, v in vencen_semana:
+            faltan = (v - hoy).days
+            txt = neutraliza(una_linea(f.get("qué_se_firma", ""), 160), cuenta)
+            out.append(f"- `{f.get('id', '?')}` — vence **{v.isoformat()}** "
+                       f"(en {plural_dias(faltan)}): {txt}")
+        out.append("")
+    else:
+        out += ["### Vencen esta semana (0)", "", "NINGUNA.", ""]
+    return out, len(vencidas), len(vencen_semana)
 
 
 def seccion_a(raiz, hoy, cuenta, tope):
@@ -1168,6 +1255,7 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
            "a mesa. Lo que aquí aparece como pendiente sigue siendo pendiente hasta "
            "que mesa lo firme.", ""]
 
+    venc, n_vencidas, n_vencen_semana = bloque_vencimientos(raiz, fecha, cuenta)
     a, n_ab = seccion_a(raiz, fecha, cuenta, tope_texto)
     b, _ = seccion_b(raiz, sin_suite)
     c, n_ramas, ramas, fuente_ramas = seccion_c(raiz)
@@ -1206,11 +1294,12 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
            f"ramas del remoto `origin`. Fuera de ese "
            "universo este digesto no dice nada, y no debe leerse como si dijera.", ""]
 
-    cuerpo = cab + a + b + c + d + e + f + g + pie
+    cuerpo = cab + venc + a + b + c + d + e + f + g + pie
     resumen = {"abiertas": n_ab, "ramas": n_ramas, "sin_consumido": n_sin,
                "contadores": n_cont, "neutralizaciones": cuenta.total(),
                "detalle_d": det_d, "sha": sha, "cola": res_f,
-               "pendientes_mesa": n_pend, "falsadores_vencidos": n_venc}
+               "pendientes_mesa": n_pend, "falsadores_vencidos": n_venc,
+               "vencidas": n_vencidas, "vencen_semana": n_vencen_semana}
     return "\n".join(cuerpo).rstrip() + "\n", resumen
 
 
@@ -1300,6 +1389,7 @@ def main(argv=None):
           f"{c['en_curso']} EN-CURSO ({c['huerfanos']} huérfano(s)) / "
           f"{c['paro']} PARO · {res['pendientes_mesa']} pendiente(s) de mesa · "
           f"{res['falsadores_vencidos']} falsador(es) vencido(s) · "
+          f"{res['vencidas']} vencida(s) · {res['vencen_semana']} vencen esta semana · "
           f"{res['neutralizaciones']} neutralización(es) · HEAD {res['sha']}",
           file=sys.stderr)
     return 0
