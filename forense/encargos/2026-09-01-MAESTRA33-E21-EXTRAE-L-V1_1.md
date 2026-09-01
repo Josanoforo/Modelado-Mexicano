@@ -7,3 +7,21 @@ P2 · COMMIT-2: tools/extrae_l_v1_1.py aplica la regla a las 176; salida L-extra
 P3 · Re-corre agregado_v1_1.py con L cargado → scoreboard-v1_1-AGREGADO-b.md: universo pareado L-vs-M real, proporción en banda y mediana |z| para L-solo y L+corpus, y las dos líneas de la pregunta doble con IC. Actualiza FP-221 (criterio L∩M) con el conteo real.
 PERÍMETRO: tools/extrae_l_v1_1.py, L-extraido-v1_1.tsv, scoreboard-v1_1-AGREGADO-b.md, agregado-v1_1b-resultado.json, notas, tablero (FP-221 + recibo), A.3, cascada. Frase exacta vigente. CONTADOR: celdas pareadas L-vs-M 0→N, declarado.
 LO QUE NO HACE: no llama a ningún modelo; no re-corre L; no edita capturas ni el procedimiento sellado; no cambia M ni R.
+
+## CONSUMIDO
+
+Ejecutado por `/acto` en la rama `claude/extrae-l-v1-1-scoreboard-a159hn`,
+`PR #446` (Josanoforo/Modelado-Mexicano), abierto contra `main` el
+2/sep/2026. P1 → `forense/prereg-duelo-v2/regla-extraccion-L-v1_1.md`. P2 →
+`tools/extrae_l_v1_1.py` + `forense/prereg-duelo-v2/L-extraido-v1_1.tsv`
+(171 EXTRAIBLE / 5 NO-EXTRAIBLE de 176; regresión CIV-08: 3/8 coincide, 5/8
+diverge, causas declaradas). P3 →
+`forense/prereg-duelo-v2/agregado_v1_1b.py`,
+`forense/prereg-duelo-v2/scoreboard-v1_1-AGREGADO-b.md`,
+`forense/prereg-duelo-v2/agregado-v1_1b-resultado.json`; `FP-221`
+actualizada (`forense/firmas-pendientes.tsv`). CONTADOR: celdas pareadas
+L-vs-M 0→11. Cierre: `ADR-271` (`canon/gobernanza-v1_15.md`),
+`canon/estado-programa-v1_10.md` L0 recifrado 270→271,
+`canon/registro-rotulos.tsv` censa `MAESTRA33-E21`. `python3
+tests/check.py --baseline` → VERDE. No fusionado por el ejecutor — el
+merge es de mesa.
