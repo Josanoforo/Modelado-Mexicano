@@ -14,3 +14,15 @@ P2 · /mapea por regla (≥3 formulaciones) contra los inventarios; por candidat
 P3 · Con las EXISTE-SATISFACE: hasta 3 lotes de caja de ≤4 reglas (REGLAS-OLA6-ACTIVOS-L1/L2/L3), ordenados por olas disponibles en corpus (más olas = más celdas P1 para el marco), cada uno con su spec congelable por regla (variable, dicotomización, universo, ponderador, diseño, escala) listos para /acto — SIN medir nada aquí. Las EXISTE-NO-SATISFACE y NO-ENCONTRADO van como necesidades nombradas al registro del curador por la vía de A5 (decide_acquisition o vía manual precedentada), no a ninguna tabla nueva.
 PERÍMETRO: acto.md (P0), forense/notas, forense/encargos/ (3 borradores LISTO-CAJA), data/curacion-registro/* (por script), tablero (recibo), A.3, cascada. Frase exacta vigente. FP/ADR: deriva. CONTADOR: cero (mapeo); reglas candidatas EXISTE-SATISFACE +N, declarado.
 LO QUE NO HACE: no mide p; no carga reglas; no toca el marco-M; no abre dominios nuevos.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-E18 · MAPEA-DENTRO-DE-ACTIVOS`, 1/sep/2026,
+rama `claude/maestra33-e18-mapeo-activos-ts2huk`. P0:
+`.claude/commands/acto.md` paso 2. P1:
+`forense/notas/2026-09-01-MAESTRA33-E18-P1-reglas-activos-sin-p.md`. P2:
+`forense/notas/2026-09-01-MAESTRA33-E18-P2-mapeo-tabla.md`. P3:
+`forense/encargos/2026-09-01-MAESTRA33-E18-P3-REGLAS-OLA6-ACTIVOS-L1.md`.
+Cascada: `canon/gobernanza-v1_15.md` ADR-269, `canon/estado-programa-v1_10.md`
+L0, `canon/registro-rotulos.tsv`, `tests/check.py::_T25_ARCHIVOS_CONOCIDOS`.
+PR: ver el PR abierto contra `main` desde esta rama.

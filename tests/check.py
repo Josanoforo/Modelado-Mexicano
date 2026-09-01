@@ -2374,6 +2374,17 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA33-E18 · MAPEA-DENTRO-DE-ACTIVOS, 1/sep/2026: encargo
+    # archivado VERBATIM (A.3), cita el precedente P0 "#437 resolvio E13
+    # a MAESTRA32-E13" -- "E13" pelado colisiona con el habitante ya
+    # censado MAESTRA32-E13, mismo patron que el resto de esta lista. El
+    # encargo NO se edita (A.3, texto verbatim). El P0 (`.claude/commands/
+    # acto.md`, paso 2) que este mismo acto escribio repite la misma cita
+    # de precedente ("E13") en su propio texto explicativo -- tambien
+    # censado abajo. MAESTRA33-E18 se declara con prefijo completo en
+    # todo archivo propio que este acto escribe.
+    "forense/encargos/2026-09-01-MAESTRA33-E18-MAPEO-ACTIVOS.md",
+    ".claude/commands/acto.md",
     # ACTO MAESTRA33-E15 · CORREDOR-E-PROPUESTA, 1/sep/2026: encargo
     # archivado VERBATIM (A.3). El encargo cita su propia COMPUERTA como
     # "E13 fusionado" y el A.8 cita "criterio de activacion (E11)" y
