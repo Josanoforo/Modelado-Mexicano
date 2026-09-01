@@ -8,3 +8,24 @@ P3 · Primer lote nuevo: las 4 primeras celdas de marco-M-sorteado-v1_1.tsv sin 
 PERÍMETRO: codificacion-R-v1_0.tsv, tools/arbitra.py (lectura de tabla), arbitra.md, corridas-R/ (solo nuevos), data/cola-adquisicion-v1_0.tsv (payload ausente → fila), forense/notas propia, tablero (recibo), archivo A.3, cascada. Frase exacta de perímetro vigente. FP/ADR: deriva. CONTADOR: puntos R sobre celdas sorteadas 0→N (N ≤ 4).
 LO QUE NO HACE: no edita el marco ni su sha256; no re-escribe ningún R; no sortea; no emite M; no compara M contra R.
 SUCESORES: lotes de 4 sobre las 7 sorteadas restantes (cola, ENTORNO: CAJA).
+
+## CONSUMIDO
+
+Commits `4436394` (0-bis A.3), `e56a750` (P1), `3a95057` (P2), `b299bf7`
+(P3 COMMIT-1), `87141a5` (P3 COMMIT-2) y el commit de cascada de este
+mismo acto, en la rama `acto/maestra33-c3-codifica-r-1`, PR pendiente de
+abrir. Veredicto: **P2 ACEPTADA** (regresión `DIN-11`/`SFT-04`/`TIC-08`
+`COINCIDE` exacto) — resuelve el `PARO` de `ACTO MAESTRA33-C2 ·
+ARBITRO-R-1` (`ADR-245`). **P3: 4 puntos R nuevos** (`CIV-M-01`/`06`/
+`08`/`09`, `CONTADOR: 4`, dentro del tope `N ≤ 4`). Marco no tocado
+(`sha256` verificado sin cambio en cada commit). `CIEGO` respetado:
+`corridas-M/` y `milpa/tramite.yaml` no se abrieron en ningún commit.
+`tablero (recibo)`: no se creó fila nueva en `forense/firmas-pendientes.tsv`
+— ningún hallazgo de este acto queda pendiente de firma de mesa (mismo
+patrón que `ACTO MAESTRA33-C2`, cuyo perímetro traía la misma frase y
+tampoco generó una). Detalle: `forense/notas/2026-08-31-codifica-r-1-p1-tabla.md`,
+`forense/notas/2026-08-31-codifica-r-1-p2-regresion.md`,
+`forense/prereg-duelo-v2/notas-arbitra/2026-08-31-lote-civ-m-01-06-08-09.md`,
+`forense/notas/2026-08-31-codifica-r-1-p3-commit2.md`.
+`python3 tests/check.py --baseline`: **VERDE**, `19 FAIL · 159 WARN`,
+idéntico a `tests/baseline.json`, sin `FAIL` nuevo.
