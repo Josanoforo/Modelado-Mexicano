@@ -1,0 +1,30 @@
+{
+ "archivos_abiertos": [
+  "canon/modelo-decision-v4_0.md  [lectura via emisor (import del modulo)]",
+  "forense/prereg-duelo-v2/candidatos-marco-M-v1_1.tsv  [lectura]",
+  "forense/prereg-duelo-v2/marco-M-sorteado-v1_1.tsv  [lectura]",
+  "milpa/procedencia.yaml  [lectura via emisor (import del modulo)]",
+  "milpa/tramite.yaml  [lectura via emisor.cargar_reglas]"
+ ],
+ "ciego_a_R": "SI -- este acto no abrio forense/prereg-duelo-v2/corridas-R/ ni ninguna columna de valor de R. Archivos abiertos listados en `archivos_abiertos`.",
+ "cita_ola_calibracion": "milpa/tramite.yaml:64 -- fuente: [\"ENCIG2023\", ...]; fijada como ola_calibracion=ENCIG 2023 por forense/notas/2026-08-31-marco-M-v1_1-spec.md §(a), confirmada por milpa/procedencia.yaml:782-786 (asignados_probabilidad, 'el 0.62 NO corresponde a ninguna categoria medida -- es ASIGNADO, confirmado')",
+ "cita_p": "milpa/tramite.yaml:45 -- {conducta: paga_mordida, p: 0.62, clase: ASIGNADO}",
+ "clase": "ASIGNADO",
+ "conducta": "paga_mordida",
+ "correcciones_aplicadas_por_referencia": "ninguna -- fila tomada de forense/prereg-duelo-v2/marco-M-sorteado-v1_1.tsv sin diferencia contra forense/prereg-duelo-v2/candidatos-marco-M-v1_1.tsv donde esa tabla trae fila con este id (ADR-233 no aplica)",
+ "determinismo": "trivial: emitir_binaria recorre regla.entonces y devuelve la primera coincidencia de `conducta`; pura y determinista sobre milpa/tramite.yaml. Dos invocaciones frescas en este acto dieron salida identica.",
+ "encuesta": "ENCIG",
+ "estado_M": "EMITE",
+ "fuente": "ACTO MAESTRA33-E6 · EMISOR-M-1 · P1 · EMITE-M-v1, 1/sep/2026; celda de forense/prereg-duelo-v2/marco-M-sorteado-v1_1.tsv",
+ "grado_DD": "P1 PUNTUA",
+ "id_celda": "TRA-M-05",
+ "invocacion_emisor": "milpa/src/emisor.py:emitir_binaria(regla='tramite.mordida.discrecional', conducta='paga_mordida') -> PrediccionM(tipo_escala='binaria', valor_punto=0.62, clase='ASIGNADO', estado='EMITE')",
+ "ola": "2017",
+ "ola_calibracion": "ENCIG 2023",
+ "p": 0.62,
+ "ponderador": "NO ESTIMADO EN ESTE ACTO",
+ "razon_grado_DD": "(encuesta,ola) de la celda = (ENCIG,2017); ola_calibracion de la conducta 'paga_mordida' de tramite.mordida.discrecional = ENCIG 2023. NO coinciden (transferencia de ola) -> validacion externa: P1, puntua (F-DD, ADR-237).",
+ "regla": "tramite.mordida.discrecional",
+ "valor_punto": 0.62,
+ "variable": "P8_3_1"
+}
