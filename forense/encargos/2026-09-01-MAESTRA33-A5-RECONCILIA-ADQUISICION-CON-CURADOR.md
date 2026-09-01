@@ -9,3 +9,9 @@ P4 · Regla de conducto (ADR-70(c)): INFRAESTRUCTURA-v1_0.md registra /adquiere,
 PERÍMETRO: data/curacion-registro/* (por script), data/INFRAESTRUCTURA-v1_0.md, data/cola-adquisicion-v1_0.tsv (regenerada), tools/vista_cola_adquisicion.py, .claude/commands/adquiere.md, tools/digesto_tramite.py (lectura), tests/check.py, notas, tablero (recibo), A.3, cascada. Frase exacta vigente. FP/ADR: deriva. CONTADOR: cero, declarado.
 LO QUE NO HACE: no descarga; no toca manifiesto.yaml salvo por tests/manifiesto.py; no borra las colas de agosto; no decide adquisiciones nuevas. FIRMA DE MESA (verbatim, 2/sep/2026): "migramos todo al oficial, no pasamos 10 días creando la estructura para no usarla." — opción (a), sin reserva.
 P3-bis · Test T-INFRA en tests/check.py: todo archivo nuevo o renombrado bajo data/ que no aparezca en data/INFRAESTRUCTURA-v1_0.md hace FAIL en la suite, con el nombre del archivo y la línea del índice donde debió registrarse. Precedente que lo justifica: cola-adquisicion-v1_0.tsv vivió cuatro actos fuera del índice sin que ningún test lo viera.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-A5 · RECONCILIA-ADQUISICION-CON-CURADOR`, 1/sep/2026, `PR #441` (rama `claude/reconcilia-adquisicion-curador-p09tuu`).
+
+Corrección de premisa (A.8 de este encargo declaraba 73 filas en `data/cola-adquisicion-v1_0.tsv`): al arrancar tenía 79 (header aparte) — 73 base + 6 `fp190-1..6` ya añadidas por `ACTO MAESTRA33-A3`. No es PARO (dato derivable, no bloqueante), declarado por completitud, mismo patrón que la corrección de premisa de `A3`.
