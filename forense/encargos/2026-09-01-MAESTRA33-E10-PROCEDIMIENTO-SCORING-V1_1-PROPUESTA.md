@@ -1,0 +1,25 @@
+ENCARGO · MAESTRA33-E10 · PROCEDIMIENTO-SCORING-v1_1-PROPUESTA — invoca /acto
+SHA de redacción: a71c9ea. ENTORNO: NUBE — NO CAJA. COMPUERTA: PR de MAESTRA33-E9 fusionado (la spec L debe congelarse antes que esta propuesta); si no, cero commits. MODELO SUGERIDO: Opus.
+FIRMA DE MESA: objetivo fijado por dirección (D1 arriba); el texto resultante es PENDIENTE-DE-MESA.
+A.8 (dirección contra a71c9ea): procedimiento-scoring-v1_0.md §3 — delta sellado como regla por celda (0.5·EE(R)); scoring-adv1-m3.py:87 exige un float; scoreboard-v1_1 §3-4: ejecutar_scoring bloqueado en delta y en baseline B sin normalizar. Propuesta v1_1: NO-ENCONTRADO.
+P1 · Redacta procedimiento-scoring-v1_1-PROPUESTA.md que reconcilie pre-registro y motor SIN inventar: (i) mediciones por celda en unidades de EE(R) — z = dif/EE(R) — de modo que la banda ya sellada sea el escalar delta = 0.5; (ii) agregado = proporción de celdas dentro de banda y mediana de |z|, por corredor, con bootstrap seed 42 / IC 0.95 (FP-168); (iii) comparación principal L-vs-M pareada, la ya fijada, en las mismas unidades; (iv) B declarado NO-APLICA para marco-M con la razón de §4 y de la asimetría del whitepaper; (v) F-DD: VERIFICACION-NO-PUNTUA fuera del agregado. Cada punto con cita de línea del texto sellado del que deriva.
+P2 · Declaración obligatoria en cabecera: cuántas celdas M-vs-R estaban visibles en main al redactar (deriva del scoreboard), y que ninguna cifra de esas celdas se usó para fijar un valor. Adjunta el cargador que produciría la entrada v1_1 para tools/score_marco_m.py SIN correrlo.
+P3 · Fila en el tablero: "mesa sella procedimiento-scoring v1_1" con las 5 decisiones enumeradas para que la firma sea una línea.
+PERÍMETRO: procedimiento-scoring-v1_1-PROPUESTA.md, el cargador (sin ejecutar), notas, tablero, A.3, cascada. Frase exacta vigente. FP/ADR: deriva. CONTADOR: cero, declarado.
+LO QUE NO HACE: no corre ejecutar_scoring; no edita scoring-adv1-m3.py ni procedimiento v1_0; no elige ningún valor que no derive de texto sellado; no toca corridas-*.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA33-E10 · PROCEDIMIENTO-SCORING-v1_1-PROPUESTA`,
+1/sep/2026, `ADR-257` (candidato — renumerado de `ADR-255`: colisión con
+`PR #426`/`ACTO MAESTRA33-C5`, que lo tomó al fusionar primero contra
+`main`; `PR #428`/`ACTO MAESTRA33-S1` tomó `ADR-256` de la misma manera —
+regla de la casa, renumera quien fusiona segundo). PR contra `main`:
+`PR #429`, sin fusionar por este acto. `COMPUERTA: PR de MAESTRA33-E9
+fusionado` —
+CUMPLE, verificada contra `PR #427` fusionado en `b3c6a1d` (en el turno
+anterior de esta misma sesión la misma compuerta había verificado NO
+CUMPLE, cero commits, sin `A.3`). P1/P2/P3 entregados tal como se
+pidieron; CONTADOR cero (ningún corredor corrido, `tools/score_marco_m.py`/
+`scoring-adv1-m3.py` sin diff). Detalle:
+`forense/notas/2026-09-01-scoring-v1_1-propuesta-cierre.md`.
