@@ -2374,6 +2374,17 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA33-S2 · SELLA-2-REGLAS-ACTIVOS, 1/sep/2026: encargo
+    # archivado VERBATIM (A.3, tres mensajes). El Mensaje 1 cita el
+    # precedente "MODELO SUGERIDO: Sonnet (propagacion mecanica,
+    # precedente E20-P0)" -- "E20" pelado colisiona con el habitante ya
+    # censado MAESTRA32-E20, mismo patron que el resto de esta lista. El
+    # encargo NO se edita (A.3, texto verbatim). La nota de cierre cita
+    # el lote redactado por "E18" (MAESTRA33-E18) en prosa narrativa --
+    # tambien censada abajo. MAESTRA33-S2 se declara con prefijo completo
+    # en todo archivo propio que este acto escribe.
+    "forense/encargos/2026-09-01-MAESTRA33-S2-SELLA-2-REGLAS-ACTIVOS.md",
+    "forense/notas/2026-09-01-maestra33-s2-sella-2-reglas-activos-cierre.md",
     # ACTO MAESTRA33-E18 · MAPEA-DENTRO-DE-ACTIVOS, 1/sep/2026: encargo
     # archivado VERBATIM (A.3), cita el precedente P0 "#437 resolvio E13
     # a MAESTRA32-E13" -- "E13" pelado colisiona con el habitante ya
