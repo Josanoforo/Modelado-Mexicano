@@ -15464,3 +15464,95 @@
   formato: PDF -- Cuestionario de ENSAFI 2023 (10 secciones).
   licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: nber_w33208_fintech_lending_no_credit_history
+  usado_para: 'FINTECH_LENDING_TO_BORROWERS_WITH_NO_CREDIT_HISTORY (data/cola-adquisicion-v1_0.tsv
+    fila 22, prioridad 22): paper NBER Working Paper 33208 (Chioda, Blumenstock, Gertler,
+    Higgins, Medina) -- usa datos propietarios de RappiCard Mexico (Banorte/Rappi) para predecir
+    creditworthiness sin buro de credito via datos de app de delivery. El MICRODATO propietario
+    de RappiCard NO es publico (NO-ACCESIBLE, requeriria acuerdo institucional/comercial con
+    el prestamista) -- este payload es SOLO el paper/preprint publico, per instruccion explicita
+    de la fila origen (cola-ext-general-2026-08-06.tsv:8): solicitar paper/preprint y codebook
+    no confidencial, NO pedir datos individuales.'
+  url_origen: https://www.nber.org/system/files/working_papers/w33208/revisions/w33208.rev1.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de nber.org (curl -A UA-navegador, GET real); doble
+    descarga por A.7 -- sha256 identico en ambas bajadas; verificado tambien contra mirrors
+    identicos en autor (seankhiggins.com) y princeton.edu (mismo articulo, PDFs de tamano
+    distinto por ser versiones/paginacion distintas, no se registran como duplicados)
+  archivo: nber_w33208_fintech_lending_no_credit_history/w33208.rev1.pdf
+  sha256: 8090cfb5ca806e99729bdb76f46405189970d00bd1c9e8b83207f8dd2fb6a625
+  tamano_bytes: 9735904
+  formato: PDF, version 1.6, 9735904 bytes, %%EOF presente
+  licencia: NBER Working Paper -- de acceso libre en nber.org (no todos los NBER WP son libres,
+    este especificamente sirvio 200 con Content-Type application/pdf sin muro)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 ADQUIERE-2-RUTAS-MULTIPLES, 2026-09-01. Protocolo de 4 rutas: (i)
+    URL directa nber.org/papers/w33208 landing 200; (ii) PDF directo del propio NBER, 200,
+    application/pdf -- tratado como la ''descarga masiva'' equivalente para este portal (no
+    es INEGI, no aplica canasta XML); (iii) formato alterno no aplica: el paper solo se publica
+    en PDF; (iv) espejos academicos SI confirmados -- seankhiggins.com (autor, 4222857 B)
+    y economics.princeton.edu (1562095 B) devuelven 200 application/pdf, mismo articulo, tamanos
+    distintos (versiones/maquetacion), SIN-FETCH (no descargados por no ser necesarios una
+    vez que la fuente primaria NBER funciono limpio). SSRN (papers.ssrn.com) devolvio 403
+    -- no intentado con credenciales.'
+
+- id: ine_conteos_censales_participacion_2024
+  usado_para: 'INE (data/cola-adquisicion-v1_0.tsv fila 47, prioridad 46): Conteos Censales
+    de Participación Ciudadana, elección federal 2024 -- ya identificada por curaduría previa
+    como INE_Conteos_Censales_Participacion en data/universo-puertas-2026-08-12.tsv fila 5
+    (N25, EXISTE-NO-SATISFACE: participación/abstencionismo a nivel municipal, no compara
+    con elecciones locales concurrentes). Serie completa declarada 2009-2024; esta ola (2024)
+    es la única cuya URL en portal-pruebas.ine.mx no está caída (las de 2009/2012/2015/2018/2021
+    están en un host portal-pruebas.ine.mx que no resuelve DNS, ver nota).'
+  url_origen: https://ine.mx/wp-content/uploads/2025/08/DatosAbiertos_DECEyEC_ConteosCensales2024.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de ine.mx (curl -A UA-navegador, GET real)
+  archivo: ine_conteos_censales_participacion/DatosAbiertos_DECEyEC_ConteosCensales2024.zip
+  sha256: c0de34d04e782ad99579b83591a6e3e6c8d1e20f4914d4845743bd79d2bd28b2
+  tamano_bytes: 82419841
+  formato: ZIP, 34 entradas, zipfile.testzip() limpio
+  licencia: libre, descarga directa sin registro (declarado en data/universo-puertas-2026-08-12.tsv
+    fila 5)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA33-A3 ADQUIERE-2-RUTAS-MULTIPLES, 2026-09-01. A.8 primero: grep -in de
+    INE en manifiesto.yaml no encontró nada (no era duplicado); identidad resuelta vía data/universo-puertas-2026-08-12.tsv:5
+    (candidata ya censada, nunca antes descargada/registrada). 4 rutas: (i) landing https://ine.mx/transparencia/datos-abiertos/visualizacion-datos/conteos-censales-participacion/
+    200, 9 enlaces .zip listados; (ii) no aplica -- sin API/canasta de descarga masiva declarada,
+    son enlaces directos; (iii) no aplica -- un solo formato (ZIP) publicado; (iv) no aplica
+    -- fuente primaria funcionó, no se buscó espejo. A.7: doble descarga, sha256 idéntico
+    (c0de34d0...), 82419841 B. Los 5 ZIP históricos (2009/2012/2015/2018/2021) están en host
+    portal-pruebas.ine.mx que devuelve ''Could not resolve host'' incluso sin sandbox (curl
+    -v confirmado, no es artefacto de la caja) -- posible dominio de staging dado de baja;
+    SIN-FETCH esas 5 olas, no OBTENIDO. Ver también ine_conteos_censales_participacion_2024_prision_preventiva
+    y _voto_anticipado (mismo directorio ine.mx, mismas condiciones).'
+
+- id: ine_conteos_censales_prision_preventiva_2024
+  usado_para: 'INE (fila 47): addenda de Prisión Preventiva del mismo tablero Conteos Censales
+    de Participación 2024, mismo directorio que ine_conteos_censales_participacion_2024'
+  url_origen: https://ine.mx/wp-content/uploads/2025/08/DatosAbiertos_DECEyEC_ConteosCensales_PrisionPreventiva2024.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de ine.mx (curl -A UA-navegador, GET real)
+  archivo: ine_conteos_censales_participacion/DatosAbiertos_DECEyEC_ConteosCensales_PrisionPreventiva2024.zip
+  sha256: 5e91c5ae79d6b8e3521ae81e8064ed4a35098dd43e20425723e26f46bb6851ba
+  tamano_bytes: 7454
+  formato: ZIP, 3 entradas, zipfile.testzip() limpio
+  licencia: libre, descarga directa sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Ver nota completa en ine_conteos_censales_participacion_2024 (mismo acto, mismo hallazgo).
+    Doble descarga A.7: sha256 identico (5e91c5ae...), 7454 B.'
+
+- id: ine_conteos_censales_voto_anticipado_2024
+  usado_para: 'INE (fila 47): addenda de Voto Anticipado del mismo tablero Conteos Censales
+    de Participación 2024, mismo directorio que ine_conteos_censales_participacion_2024'
+  url_origen: https://ine.mx/wp-content/uploads/2025/08/DatosAbiertos_DECEyEC_ConteosCensales_VotoAnticipado2024.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de ine.mx (curl -A UA-navegador, GET real)
+  archivo: ine_conteos_censales_participacion/DatosAbiertos_DECEyEC_ConteosCensales_VotoAnticipado2024.zip
+  sha256: 1e496a2fc1e23c9658fda649796edc1923727eccee8f285b47c01ba9f15aa25d
+  tamano_bytes: 16203
+  formato: ZIP, 3 entradas, zipfile.testzip() limpio
+  licencia: libre, descarga directa sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Ver nota completa en ine_conteos_censales_participacion_2024 (mismo acto, mismo hallazgo).
+    Doble descarga A.7: sha256 identico (1e496a2f...), 16203 B.'
