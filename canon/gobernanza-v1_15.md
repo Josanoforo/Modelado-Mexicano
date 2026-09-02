@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **289 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **290 ADR**
 
 > | | |
 > |---|---|
@@ -4742,6 +4742,24 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 **`python3 tests/check.py --baseline`** → **VERDE**, sin `FAIL` nuevo contra `tests/baseline.json`.
 
 **Lo que este acto NO hace**: no mide (todo número se copia verbatim de `ADR-287`/`ACTO MAESTRA34-L5` y de la propuesta); no toca `civico.*` (dominio de `MAESTRA34-L6`); no repara `FP-238` ni abre `forense/prereg-duelo-v2/` (declarado para `ACTO MAESTRA35-L1`); no toca `milpa/procedencia.yaml` ni las reglas `informal_sin_puente`/`con_puente_y_respaldo`; no abre Ola 6; no edita `instrucciones-proyecto-v2_12.md` línea por línea (cambios de instrucciones acumulan en `hallazgos.md` bajo `PARA-v2.13`, sin novedad aquí). Sucesor declarado, no lanzado: `ACTO MAESTRA35-L1 · RECORRE-Y-SEGMENTA` (UBUNTU, `GATED a MAESTRA34-L6 fusionado`; ejecuta `d1` y mide disparadores por ejes de las tres reglas que este acto selló).
+
+---
+
+**ADR-290 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `289` en el árbol de arranque de este acto (`origin/main=0fd6b4c`, `PR #472` fusionado); candidato `290`, contiguo y sin huecos. Ningún otro acto en vuelo conocido tomó este número durante la sesión) · `ACTO MAESTRA35-N3 · SELLA-CIVICA-L6` (dirección/Fable) propaga las firmas de mesa `a1`/`b1`/`c1` de `FP-239` sobre las dos entradas `civico.participacion.*` que `ACTO MAESTRA34-L6` dejó `PENDIENTE-DE-MESA`.** Encargo: `forense/encargos/2026-09-02-MAESTRA35-N3-SELLA-CIVICA-L6.md` (dirección, `SHA de redacción b6b923f`/`PR #469`, archivado por A.3 en `b374b93`). `COMPUERTA: ninguna` — declaración explícita del encargo, no dispara verificación. ARRANQUE: repo correcto, `HEAD` = `origin/main` = `0fd6b4c`, **2 commits por delante del SHA de redacción** (`PR #472`, `ACTO MAESTRA35-N2`); no es PARO — `git diff --stat b6b923f..origin/main` toca solo `forense/encargos/2026-09-02-MAESTRA35-N2-F-DD-RANGOS-Y-M-DIN.md`, cero solape con el perímetro de este acto. `data/raw` ausente (esperado en la nube, este acto no abre microdato), entorno NUBE (`cloud_default`, sonda INEGI no aplica).
+
+**Verificación A.8 contra el árbol de arranque, re-corrida.** `grep -c "civico.participacion" milpa/tramite.yaml` → `0`: el motor no tiene ninguna regla `civico.participacion.*`, nada que tocar ahí. `grep -n "^  - id: civico.participacion" milpa/tramite-ola5-propuesta-v0.yaml` → línea `594` (`contingente`, `situacion: APARCADA-HASTA-IDENTIFICACION` firma `DC1-d`, `tier: MEDIA`, `delta_pp 10.4790`) y línea `873` (`contingente_escalonado_2016_2024`, `situacion: PENDIENTE-DE-MESA`, `tier: PENDIENTE-DE-MESA`, `veredicto_falsador: REFUTADA-COMO-CAUSAL`, `delta_pp 0.0149`) — EXISTE-NO-SATISFACE ×2, existen sin la firma. `grep -P "^FP-239\t" forense/firmas-pendientes.tsv | cut -f6` → `ABIERTA`. Las tres premisas verdaderas contra el árbol real de arranque.
+
+**P1 · firma `a1` sobre la línea `873`.** `situacion: PENDIENTE-DE-MESA` → `situacion: SELLADA-SIN-CARGA` (veredicto `REFUTADA-COMO-CAUSAL` aceptado; NO se carga al motor, un `Δ` en pp no es una probabilidad); `tier: PENDIENTE-DE-MESA` → `tier: MEDIA`. Campo nuevo `reserva_tier` con la reserva verbatim de `a1` («2 de 14 entidades tratadas; wild cluster por entidad con p mínimo alcanzable 0.125; el bootstrap por municipio, que no sufre ese límite, también contiene cero») más las cifras de `ADR-288` (`β=+0.0149 pp`, IC95 wild cluster `[−3.3765, +3.4064]`, IC95 bootstrap por municipio `[−1.3865, +1.3312]`, 4 entidades medibles de 14 tratadas, 2 tratadas, `p` mínimo alcanzable `0.125`). Campo nuevo `lectura_no_refutada` verbatim de `ADR-288` (`ATT`s de Coahuila/Nayarit, signos opuestos, ninguno cruza cero) — la hipótesis que pre-registra `MAESTRA35-L3`. `veredicto_falsador`, `nota`, `delta_pp`, `clase` y el resto del cuerpo: intactos. Estampa A.10 en la misma enmienda: universo = 4 entidades / 2 tratadas, SHA `11af678` (árbol de `ACTO MAESTRA34-L6`).
+
+**P2 · firma `b1` sobre la línea `594`.** `situacion: APARCADA-HASTA-IDENTIFICACION` (firma `DC1-d`) → `situacion: REFUTADA-COMO-CAUSAL`, citando a su sucesora `civico.participacion.contingente_escalonado_2016_2024` (`ACTO MAESTRA34-L6`, `ADR-288`); el `Δ +10.4790 pp` se reinterpreta como efecto de año, la asociación medida sigue siendo cierta y se conserva íntegra. `tier: MEDIA` se conserva, con comentario añadido de que es el tier de la ASOCIACIÓN (`DC1-d`), no de la lectura causal. Ninguna otra línea de la entrada cambia; el comentario histórico de `DC1-d` se conserva encima. Estampa A.10: la lectura de `L4` fue correcta contra su universo (163 municipios, un par de años) y quedó **VENCIDA EN ALCANCE** cuando `L6` lo amplió a variación escalonada.
+
+**P3 · tablero y hallazgo.** `FP-239` → `FIRMADA`, `firmada_en` verbatim (`"a1, b1, c1 (mesa, 2/sep/2026, verbatim: a1, b1 y c1.)"`), `ejecutada_en` = este ADR para (a) y (b) + `"c1 pendiente: ACTO MAESTRA35-L3"`. Una línea nueva en `forense/hallazgos.md`: cívica `participacion.contingente` `REFUTADA-COMO-CAUSAL` (`L4`/`L6` reconciliadas, cuerpo intacto); sucesor `L3` autorizado (`c1`); motor sin cambio.
+
+**`python3 tests/check.py --baseline`** → **VERDE**, sin `FAIL` nuevo contra `tests/baseline.json`.
+
+**Lo que este acto NO hace**: no mide (toda cifra se copia verbatim de la propuesta y de `ADR-288`); no carga la cívica al motor; no toca las entradas que `MAESTRA35-L1`/`MAESTRA35-L3` escriben; no lanza `L3`; no edita `instrucciones-proyecto-v2_12.md`. Sucesor declarado, no lanzado: `ACTO MAESTRA35-L3 · CIVICA-TIPO-DE-BOLETA` (caja, firma `c1`).
+
+→ **Vigente.** *(`ACTO MAESTRA35-N3 · SELLA-CIVICA-L6`, 2/sep/2026. Entorno **NUBE** (`cloud_default`), modelo Sonnet. `origin/main = 0fd6b4c` al arrancar, sin cambio durante la sesión.)*
 
 ---
 
