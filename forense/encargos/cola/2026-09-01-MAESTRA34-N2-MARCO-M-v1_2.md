@@ -32,3 +32,31 @@ FP/ADR CANDIDATOS: deriva al arrancar.
 CONTADOR: celdas v1_2 +N; M +N; declarado.
 LO QUE NO HACE: no toca v1_1 ni sus corridas; no calcula R; no corre L; no puntúa.
 SUCESORES: MAESTRA34-L2 (arbitra v1_2, caja) · mesa corre PAQUETE-L-v1_2 · MAESTRA34-N3 (AGREGA-2).
+
+## CONSUMIDO
+
+Ejecutado 2/sep/2026 por `ACTO MAESTRA34-N2 · MARCO-M-v1_2` con la skill `/acto`
+(`ADR-237`), entorno NUBE `cloud_default`, sin abrir microdato ni descargar nada.
+
+**Compuerta verificada dos veces.** Al primer lanzamiento de la sesión NO se
+cumplía (`MAESTRA34-N1` ausente de `origin/main`, motor en 8 reglas) y el acto
+paró con **cero commits**. `origin/main` avanzó de `92fd3f7` a `ec3cf0f` durante
+la sesión; re-verificada (`#449` fusionado, motor en 10 reglas, `#446`
+fusionado), CUMPLE.
+
+Piezas entregadas: **P1** `marco-M-congelado-v1_2.tsv` (34 filas,
+`N_elegibles=27`) + `CONGELADO-M-v1_2.sha256` · **P2** `marco-M-sorteado-v1_2.tsv`
+(14 celdas, `sorteo_v3`, sin estrato no vacío en cero) · **P3** 6
+`corridas-M/M-<id>__v1_2.json` · **P4** `L-spec-v1_2.json` + `.sha256` +
+`PAQUETE-L-v1_2/` + filas `FP-227`/`FP-228`.
+
+Dos hallazgos entregados y **no parchados**, por estar su arreglo fuera del
+perímetro que este encargo declara: `DIN-M-01` no emitible (F-DD no sabe
+expresar calibración sobre un rango de olas) y `PAQUETE-L-v1_2` no lanzable
+(`runner_l_cli.py` dimensionado a 11 celdas). Ambos con parche propuesto en las
+notas de cierre.
+
+PR: `[MAESTRA34-N2] ACTO MAESTRA34-N2 · MARCO-M-v1_2` (rama
+`claude/acto-maestra34-n2-marco-gv8cq6`). Cascada: `ADR-275`,
+`canon/estado-programa-v1_10.md` L0 (274 → 275), `canon/registro-rotulos.tsv`,
+`forense/firmas-pendientes.tsv`.

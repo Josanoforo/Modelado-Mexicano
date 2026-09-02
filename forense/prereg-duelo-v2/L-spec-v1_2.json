@@ -132,7 +132,7 @@
   ],
   "columna_elegibilidad": "elegible_v1_1",
   "declaracion": "NINGUNA cifra de R entra en esta spec: no se abrio corridas-R/, corridas-M/ ni scoreboard alguno al generarla. Ademas, y especifico de v1.2: el campo `universo` de las celdas nuevas (FAM-M-05/06/07) se redacto DELIBERADAMENTE sin una sola cita de milpa/tramite.yaml, de `serie_olas` ni de la regla del motor, porque `universo` viaja VERBATIM dentro de pregunta_L y esos punteros llevarian al lado L directo al archivo donde vive la p medida de su propia ola (serie_olas de familia.seguro.volatilidad_ausencia_estado). El modelo L es externo, en sesion limpia fuera del proyecto (D-iii), y solo ve el prompt -- nunca este repo.",
-  "derivacion": "Cada pregunta_L se deriva MECANICAMENTE de las columnas conducta/universo/encuesta/ola/escala del marco via la MISMA funcion derivar_pregunta_l() de forense/prereg-duelo-v2/genera_l_spec_v1_1.py, importada sin editar (no se duplico el generador ni se redacto texto a mano por celda). Invocacion exacta reproducible en PAQUETE-L-v1_2/README.md §1-bis.",
+  "derivacion": "Cada pregunta_L se deriva MECANICAMENTE de las columnas conducta/universo/encuesta/ola/escala del marco via la MISMA funcion derivar_pregunta_l() de forense/prereg-duelo-v2/genera_l_spec_v1_1.py, importada sin editar (no se duplico el generador ni se redacto texto a mano por celda). Invocacion exacta reproducible en PAQUETE-L-v1_2/PAQUETE-L-v1_2.md §1-bis.",
   "fecha": "2026-09-02",
   "fuente_marco": "forense/prereg-duelo-v2/marco-M-sorteado-v1_2.tsv",
   "n_celdas": 14,

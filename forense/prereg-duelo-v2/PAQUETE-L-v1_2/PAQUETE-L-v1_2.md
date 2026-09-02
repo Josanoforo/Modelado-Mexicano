@@ -41,7 +41,7 @@ cd forense/prereg-duelo-v2 && sha256sum \
 | `pipeline-L-adv1-m2.py` | `a772a4bc48b724c33ea82fc41877594fa74b89eb267c2ca74401ed5fe3a45b1d` |
 | `carga_l_v1_1.py` | `fb7be78a8ec076e91053fbd2798ea932d4c3ebfed8ed416bcc055fb9b69e4930` |
 | `runner_l_cli.py` | `1ae70bc2b55e6aa129f742d1d3914e13b6b0f2e0b860109edfd2d650967f4086` |
-| `L-spec-v1_2.json` | `93906ffa5dac2347d5afef83b0fbf93a049b3027f6c187fe5a2e60600d1f948e` (= `L-spec-v1_2.sha256`) |
+| `L-spec-v1_2.json` | `bb49023ba71b5d04b4f8330ac6eed673eba0a7b7cb10c6c93df96c0311934885` (= `L-spec-v1_2.sha256`) |
 
 El hash de `runner_l_cli.py` es **idéntico** al que `PAQUETE-L-v1_1.md` §1
 declara — sellado por `ACTO MAESTRA33-E17 · L-ENMIENDA-CLI`, verificado sin
@@ -126,7 +126,7 @@ Verificado en este acto sobre el prompt real de `FAM-M-05`: no contiene
 
 ---
 
-## 4 · Comando exacto (CLI, sin API key — firma E17)
+## 4 · Comando exacto (CLI, sin API key — firma `MAESTRA33-E17`)
 
 Vigente el §4-bis de `PAQUETE-L-v1_1.md`: **sesión de `claude.ai`, cero
 `ANTHROPIC_API_KEY`**. El §4 de API directa queda como registro histórico.
