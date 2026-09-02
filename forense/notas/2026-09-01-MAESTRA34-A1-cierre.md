@@ -290,10 +290,11 @@ sola entrada nueva. Ver §6: el defecto es previo y estructural.
 `T26 T-VISTA-COLA-ADQUISICION` `ok` (la vista está regenerada),
 `T20 T-CASCADA-MARCADA` `ok`, `T21 T-CAPA2-CAPA3` `ok`, `T16 T-SUITE-SELF-CHECK` `ok`.
 
-**Medición de control**: se corrió `--baseline` dos veces, antes de la cascada
-(con los 38 payloads ya en el corpus) y al cerrar. **30 761 en las dos.** La
-cascada completa —`ADR-278`, `L0`, cabeceras, `registro-rotulos`, tablero, notas,
-`CONSUMIDO`— no añadió **ni una** entrada nueva. Los 10 `FAIL` restantes
+**Medición de control**: se corrió `--baseline` **tres** veces — antes de la
+cascada (con los 38 payloads ya en el corpus), al cerrarla, y otra vez después de
+resolver el merge de `origin/main`. **30 761 en las tres.** Ni la cascada completa
+—`ADR-278`, `L0`, cabeceras, `registro-rotulos`, tablero, notas, `CONSUMIDO`— ni la
+resolución del conflicto añadieron **ni una** entrada nueva. Los 10 `FAIL` restantes
 (`T02`, `T05`, `T06`, `T08`, `T09`, `T11`) ya estaban en el baseline congelado.
 
 ---
