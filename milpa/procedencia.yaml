@@ -731,6 +731,8 @@ asignados_probabilidad:
     fuente_citada: [ENIF2024, "report:behavioral_finance", "validacion:OXXO_vs_CoDi"]
     que_sostiene_de_verdad: "que sin puente ni respaldo la adopción es baja; ENIF mide tenencia de productos, no esta condicional"
     calibrable_con: "ENIF (trienal, nacional y 6 regiones) — no municipal"
+    veredicto_dato: "CONTRARIA a la lectura \"informal = sustituto por exclusión\" (ENIF 2024, ACTO MAESTRA35-L1 P2, desenlace informal_cualquiera: con cuenta 0.597889 vs sin cuenta 0.493506; con seguridad social 0.644733 vs sin 0.604060; superior 0.640107 vs hasta primaria 0.414094)"
+    lectura: "la regla habla de adopcion sin puente; el dato refuta la lectura 'informal = sustituto por exclusion' que su fuente_citada ENIF2024 sostenia; re-lectura de la regla pendiente en RH (direccion). Valores 0.74/0.21/0.05 intactos."
 
   - regla: dinero.ahorro.con_puente_y_respaldo
     valores: [0.52, 0.33, 0.15]

@@ -581,6 +581,95 @@ reglas_propuestas:
     hallazgo: "Ambos ASIGNADOS de milpa/tramite.yaml (0.62 discrecional, 0.12 con_registro) quedan refutados en magnitud absoluta por esta medición trámite-nivel igual que por la serie persona-nivel de P1/P2 -- pero el ORDEN relativo que el motor asigna (discrecional > con_registro) SÍ se confirma empíricamente aquí, con brecha grande y significativa (11.60% vs 2.74%, IC95 sin traslape). Es el primer apoyo empírico directo -- de escala y de orden -- para el mecanismo 'trampa social: el registro rompe la trampa social' que la regla con_registro ya declaraba sin medir. Reserva: el mapeo canal→disparador (nota_enmienda) es un supuesto de este acto, no verificado contra el dato; P8_4 solo se pregunta a un subconjunto de trámites (los de personas que ya declararon alguna práctica de corrupción en sección VIII), así que esta p NO es 'p(mordida en este trámite | canal)' sobre el universo completo de trámites, sino sobre el subconjunto ya auto-seleccionado por P8_3 -- declarado, no resuelto por este acto."
     sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
     payload_manifiesto_id: encig25_base_datos_csv
+    # ══════════════════════════════════════════════════════════════════
+    # ENMIENDA IN SITU · 2/sep/2026 · ACTO MAESTRA35-L1 · P1 · firma de mesa
+    # d1 = FP-238 («recorrer TRA-M-13/14 y re-medir con_registro con la llave
+    # correcta»). A.10 corolario 1: TODO EL CUERPO DE ARRIBA QUEDA INTACTO,
+    # incluidas sus cifras viejas. Esta enmienda se lee DESPUÉS de él.
+    enmienda_maestra35_l1:
+      firma: "mesa, 2/sep/2026, d1 = FP-238; ejecutada por ACTO MAESTRA35-L1"
+      que_estaba_mal: >
+        No la llave del join, como el encargo suponía: la DEDUPLICACIÓN.
+        MAESTRA34-L1 dedujo sec_7 por ID_TRA creyendo -- y escribiéndolo en
+        TRA-M-13 -- que las filas repetidas eran «duplicados EXACTOS, mismos
+        valores en P7_3/FAC_TRA/EST_DIS/UPM_DIS». Contado por el censo P0 de
+        este acto sobre sec_7 completo: de los 7 430 ID_TRA repetidos, 501
+        DIFIEREN en P7_3, y solo 5 860 de 18 027 filas repetidas son idénticas
+        en todo lo demás. No eran duplicados: eran eventos de trámite distintos
+        del mismo tipo hechos por la misma persona, que es para lo que existe
+        NT_TIPO. La deduplicación borró 3 835 eventos del universo de medición.
+      llave_declarada: >
+        ID_TRA, y es exacta. encig2025_05_sec_8.csv NO trae NT_TIPO y no puede
+        traerlo: es la rejilla persona × tipo (40 136 × 27 = 1 083 672 filas) y
+        ahí ID_TRA ES llave única. El join sec_7 × sec_8 por ID_TRA es exacto y
+        uno-a-muchos por construcción, con 0 huérfanos de 113 717. La llave
+        (ID_TRA, NT_TIPO) que el encargo pedía no es ejecutable; la sustancia
+        de la firma d1 queda intacta porque lo que corrige es la deduplicación.
+      procedimiento: >
+        Idéntico al de la cifra vieja salvo por no deduplicar. Unidad = TRÁMITE
+        (FAC_TRA expande trámites: quien hizo el mismo trámite tres veces aporta
+        tres eventos). Universo P8_4 ∈ {0,1} y P7_3 en el canal de la celda;
+        FAC_TRA, EST_DIS, UPM_DIS; bootstrap conglomerado estratificado 10 000
+        réplicas seed 42. Script tools/recorre_mordida_con_registro_encig25.py,
+        con dos guardias que PARAN (ID_TRA llave única en sec_8; cero huérfanos).
+        Una sola corrida, sin reintentos.
+      universo_nuevo:
+        eventos_en_p8_4_valido: 24974      # antes: 21139 tras deduplicar
+        id_tra_distintos: 21139
+        eventos_que_la_dedup_borraba: 3835
+      cifras_nuevas:
+        mapeo: "principal, el mismo de MAESTRA34-L1: digital {3,4,5}, presencial {1}"
+        digital:
+          p: 0.029868
+          ic95: [0.021133, 0.040452]
+          n: 7219                          # EVENTOS, en 6384 ID_TRA; antes n=6337
+          n_con_mordida: 242
+          estratos: 362
+          upm: 2518
+        presencial:
+          p: 0.141041
+          ic95: [0.116817, 0.169579]
+          n: 11167                         # EVENTOS, en 9992 ID_TRA; antes n=9937
+          n_con_mordida: 1496
+          estratos: 381
+          upm: 2996
+        razon_presencial_digital: 4.7222   # antes 4.2401; IC95 sin traslape
+      sensibilidad_a:
+        mapeo: "el de MAESTRA34-L5: digital {4,5}, con 3 fuera"
+        digital: {p: 0.025078, ic95: [0.015990, 0.036467], n: 5251, estratos: 357, upm: 2308}
+        razon_presencial_digital: 5.6241
+      veredicto:
+        digital: >
+          CORRECCIÓN SIN CAMBIO MATERIAL. La regla de decisión congelada en la
+          spec §2.1 antes de ver el número decía: si el IC95 nuevo del canal
+          digital contiene 0.027358, se reporta así. Lo contiene
+          ([0.021133, 0.040452]). El punto se movió +0.002510 (+9.2 % relativo).
+        presencial: >
+          VENCIDA EN ALCANCE -- re-sello de mesa (FP-241). La spec §2.1 solo
+          escribió la regla para el canal digital; el CONTADOR del encargo pone
+          los DOS canales en alcance («cifra sellada corregida +1 (con_registro,
+          dos canales)»). Aplicada la MISMA prueba al presencial: 0.116000 NO
+          está en su IC95 nuevo [0.116817, 0.169579] -- queda fuera por
+          0.000817 del límite inferior. Es un fallo estrecho del criterio de
+          pertenencia, y el movimiento del punto no lo es: 0.116000 → 0.141041,
+          +0.025041, +21.6 % relativo. Que la spec congelada no haya reglado
+          este canal es un hueco de la spec, y se dice aquí en vez de editarla.
+        contra_hipotesis: >
+          NO se cumple, y el hallazgo se refuerza en vez de acotarse. La spec
+          declaró: si la razón presencial/digital cae por debajo de 2× con la
+          llave correcta, el hallazgo de MAESTRA34-L1 («el registro rompe la
+          trampa social») queda ACOTADO. Sube de 4.2401× a 4.7222× (5.6241× en
+          la sensibilidad A), con IC95 sin traslape en ambos mapeos.
+      lo_que_esta_enmienda_no_hace: >
+        No edita milpa/tramite.yaml (sello de mesa, RH al cierre): las cuatro
+        conductas cargadas ahí -- paga_mordida_encig2025_presencial 0.116000 y
+        _digital 0.027358, con sus complementos -- siguen como estaban. No toca
+        el cuerpo viejo de esta entrada. No re-sella: propone.
+      situacion: SELLADA # firma r1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada a milpa/tramite.yaml
+      tier: SELLADA # firma r1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada a milpa/tramite.yaml
+      fuente: ["codificacion-R-v1_0.tsv::TRA-M-13b", "codificacion-R-v1_0.tsv::TRA-M-14b"]
+      sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+      payload_manifiesto_id: encig25_base_datos_csv
 
   # ══════════════════════════════════════════════════════════════════
   # ACTO MAESTRA34-L4 · CIVICA-Y-CORPUS · 2/sep/2026 · firma de mesa F232-b
@@ -591,8 +680,18 @@ reglas_propuestas:
   # Spec de dos commits: forense/notas/2026-09-02-MAESTRA34-L4-P3-spec.md
   # ══════════════════════════════════════════════════════════════════
 
+  # ══════════════════════════════════════════════════════════════════
+  # ENMIENDA in situ, ACTO MAESTRA35-N3 · SELLA-CIVICA-L6 · 2/sep/2026
+  # (firma b1, mesa, 2/sep/2026) -- ninguna otra linea de la entrada
+  # cambia; el comentario historico de DC1-d se conserva encima.
+  # Estampa A.10: la lectura de L4 fue correcta contra su universo (163
+  # municipios, un par de años) y quedó VENCIDA EN ALCANCE cuando L6 lo
+  # amplió a variación escalonada.
+  # ══════════════════════════════════════════════════════════════════
+
   - id: civico.participacion.contingente
-    situacion: APARCADA-HASTA-IDENTIFICACION  # DC1-d (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS
+    situacion: REFUTADA-COMO-CAUSAL  # firma b1 (mesa, 2/sep/2026), ACTO MAESTRA35-N3 -- ver sucesora civico.participacion.contingente_escalonado_2016_2024 (ACTO MAESTRA34-L6, ADR-288); el Δ +10.4790 pp se reinterpreta como efecto de anio; la asociacion medida sigue siendo cierta y se conserva integra
+      # DC1-d (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS -- situacion previa: APARCADA-HASTA-IDENTIFICACION
     si:
       disparadores: PENDIENTE-DE-MESA  # el dato no dicta una condicion logica de
         # disparo. Lo medido es una diferencia de tasa entre dos contextos
@@ -603,7 +702,7 @@ reglas_propuestas:
     porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
       # No se asigna generador: R7.1 vive en el modelo con mecanismo propio
       # ("peso percibido del acto") y este acto NO lo re-deriva ni inventa uno.
-    tier: MEDIA  # DC1-d (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS
+    tier: MEDIA  # DC1-d (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS -- tier de la ASOCIACION (DC1-d); la lectura causal es la refutada
     nota: >
       DC1-d (mesa, 2/sep/2026), firma verbatim "d": la cifra de MAESTRA34-L4
       (Δ +10.4790 pp, IC95 [+9.6890, +11.2652], n=163) se acepta como MEDIDA,
@@ -870,10 +969,19 @@ reglas_propuestas:
   # milpa/tramite.yaml y forense/prereg-duelo-v2/ INTOCADOS.
   # ══════════════════════════════════════════════════════════════════
 
+  # ══════════════════════════════════════════════════════════════════
+  # ENMIENDA in situ, ACTO MAESTRA35-N3 · SELLA-CIVICA-L6 · 2/sep/2026
+  # (firma a1, mesa, 2/sep/2026) -- cuerpo de la entrada de arriba
+  # (p, Δ, IC, n, fuente, ponderador, universo) intacto; solo cambian
+  # situacion, tier, y los dos campos nuevos reserva_tier/
+  # lectura_no_refutada. Estampa A.10: universo = 4 entidades / 2
+  # tratadas, SHA 11af678 (arbol de ACTO MAESTRA34-L6, ADR-288).
+  # ══════════════════════════════════════════════════════════════════
+
   - id: civico.participacion.contingente_escalonado_2016_2024
     misma_regla_motor: civico.participacion.contingente
     enmienda_a: civico.participacion.contingente
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # firma a1 (mesa, 2/sep/2026), ACTO MAESTRA35-N3 -- veredicto REFUTADA-COMO-CAUSAL aceptado; NO se carga al motor: un Δ en pp no es una probabilidad
     si:
       disparadores: PENDIENTE-DE-MESA  # el diseno soporta UN disparador binario
         # -- la eleccion municipal es concurrente con la federal, si/no -- y lo
@@ -884,7 +992,21 @@ reglas_propuestas:
     entonces:
       - {conducta: participa_mas_si_la_local_es_concurrente, delta_pp: 0.0149, clase: "MEDIDO·Δ-identificado (diferencias en diferencias escalonadas, puntos porcentuales)"}
     porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
-    tier: PENDIENTE-DE-MESA
+    tier: MEDIA  # firma a1 (mesa, 2/sep/2026), ACTO MAESTRA35-N3
+    reserva_tier: >
+      Firma a1 (mesa, 2/sep/2026), verbatim: "2 de 14 entidades tratadas; wild
+      cluster por entidad con p minimo alcanzable 0.125; el bootstrap por
+      municipio, que no sufre ese limite, tambien contiene cero". Cifras de
+      ADR-288, verbatim: beta = +0.0149 pp; IC95 wild cluster por entidad
+      [-3.3765, +3.4064]; IC95 bootstrap por municipio [-1.3865, +1.3312]; 4
+      entidades medibles de 14 tratadas, 2 tratadas; p minimo alcanzable del
+      wild cluster con 4 conglomerados 0.125.
+    lectura_no_refutada: >
+      Verbatim de ADR-288: "ATT(Coahuila 2017→2018, presidencial) = +2.4113 pp
+      IC95 [+1.53, +3.28]; ATT(Nayarit 2017→2021, intermedia) = −5.6914 pp
+      IC95 [−6.94, −4.38]; ninguno cruza cero" -- es la hipotesis que
+      MAESTRA35-L3 pre-registra, y viaja con la entrada para que nadie la lea
+      como "no pasa nada".
     veredicto_falsador: REFUTADA-COMO-CAUSAL
     nota: >
       Sucesor de MAESTRA34-L4. Diseno escalonado de la homologacion de
@@ -1024,3 +1146,543 @@ reglas_propuestas:
       = 0.204767; solo_informal = 0.561920 - 0.204767 = 0.357153; solo_formal =
       0.284927 - 0.204767 = 0.080160; no_ahorra = 1 - 0.642080 = 0.357920; suma
       de las cuatro = 1.000000.
+
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA35-L3 · CIVICA-TIPO-DE-BOLETA · 2/sep/2026 · firma c1
+  #
+  # ENTRADA NUEVA, AL PIE. Ninguna linea existente de este archivo se
+  # edita: ni civico.participacion.contingente (l. 594, MAESTRA34-L4)
+  # ni civico.participacion.contingente_escalonado_2016_2024 (l. 873,
+  # MAESTRA34-L6). Esas dos las gobierna MAESTRA35-N3.
+  #
+  # Firma c1 de mesa (2/sep/2026), verbatim: "sustituir la tendencia
+  # lineal por un efecto fijo de TIPO de anio federal (presidencial /
+  # intermedia / sin federal)" y "adquirir las 12 entidades tratadas
+  # que P1 no alcanzo, empezando por Hidalgo".
+  #
+  # Spec de dos commits: forense/notas/2026-09-02-MAESTRA35-L3-spec.md
+  # Censo de rutas P0:   forense/notas/2026-09-02-MAESTRA35-L3-P0-censo-rutas.md
+  # Tabla de identificacion: data/l3-tabla-identificacion-v1_0.tsv
+  # Salida cruda:        data/l3-resultados-tipo-boleta-v1_0.json
+  #
+  # milpa/tramite.yaml, forense/prereg-duelo-v2/ y data/p0-*.tsv INTOCADOS.
+  # Sin carga al motor.
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: civico.participacion.tipo_boleta_federal_2016_2024
+    misma_regla_motor: civico.participacion.contingente
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA  # DOS disparadores candidatos, no uno:
+        # (a) la jornada municipal coincide con una federal PRESIDENCIAL,
+        # (b) coincide con una federal INTERMEDIA.
+        # No se proponen al motor. El falsador salio NO-DISCRIMINA sobre el
+        # intervalo que la spec designo para decidir, y proponer disparadores
+        # sobre coeficientes cuyo IC conservador contiene cero seria cargar la
+        # lectura optimista, no la medicion. Lo que este acto SI deja firme es
+        # que el disparador de UNA sola via (concurrente si/no) que la entrada
+        # anterior midio NO es el objeto correcto: separa dos efectos de signo
+        # contrario que promediados se cancelan.
+    entonces:
+      - {conducta: participa_mas_si_concurre_con_presidencial, delta_pp: 3.154166, ic95_wild_cluster_entidad: [-0.195676, 6.504008], ic95_bootstrap_municipio: [2.475532, 3.831472], clase: "MEDIDO·Δ-identificado (DD escalonado por tipo de boleta federal, pp)"}
+      - {conducta: participa_menos_si_concurre_con_intermedia, delta_pp: -0.922905, ic95_wild_cluster_entidad: [-3.776924, 1.931114], ic95_bootstrap_municipio: [-1.765168, -0.057525], clase: "MEDIDO·Δ-identificado (DD escalonado por tipo de boleta federal, pp)"}
+      - {conducta: deriva_anual_pp, delta_pp: -0.444685, ic95_wild_cluster_entidad: [-1.182778, 0.293407], ic95_bootstrap_municipio: [-0.659816, -0.221219], clase: "MEDIDO·Δ-identificado (deriva secular, pp por anio); IDENTIFICADA CON RESERVA -- ver reserva_alpha"}
+    contraste_int_menos_pres:
+      delta_pp: -4.077071
+      ic95_wild_cluster_entidad: [-8.162206, 0.008064]
+      ic95_bootstrap_municipio: [-4.733230, -3.420151]
+      p_wild_cluster: 0.0920
+    veredicto_falsador: NO-DISCRIMINA
+    porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    falsable_si: >
+      Congelado en §1.9 de la spec ANTES de medir, sobre el IC95 wild cluster
+      por entidad, que es el conservador y el que la spec designo para decidir:
+      CORROBORADA si beta_pres > 0 con IC que excluye 0 Y beta_int < 0 con IC
+      que excluye 0; ACOTADA si solo una se sostiene; NO-DISCRIMINA si ambos IC
+      contienen 0; CONTRARIA si alguno sale con signo opuesto e IC fuera de 0,
+      con CONTRARIA por encima de ACOTADA. Los dos IC contienen 0, asi que el
+      veredicto es NO-DISCRIMINA.
+    cobertura:
+      entidades_en_el_panel: 6
+      entidades_tratadas_medibles: 5     # Coahuila, Nayarit, Zacatecas, Baja California, Chihuahua
+      entidades_tratadas_identificadas_por_P0: 14
+      meta_declarada_del_encargo: 8      # NO alcanzada: P3 corre ACOTADO y lo dice
+      municipios: 187
+      observaciones_municipio_x_transicion: 540
+      transiciones: 15
+      conglomerados: 6
+      p_minimo_alcanzable_wild_cluster: 0.03125   # 2 / 2^6
+      transiciones_por_tipo:
+        STAY_identifican_alpha: 2                  # Baja California 2016-2019, Durango 2016-2019
+        SWITCH_a_presidencial_identifican_beta_pres: 3   # Chihuahua, Coahuila, Zacatecas -> 2018
+        SWITCH_a_intermedia_identifican_beta_int: 2      # Baja California 2019-2021, Nayarit 2017-2021
+        CAMBIO_DE_TIPO_identifican_beta_pres_menos_beta_int: 8
+    variante_sin_alpha:
+      beta_pres_pp: 2.259506
+      beta_int_pp: -1.775800
+      por_que: >
+        La spec (§0.3) fijo el umbral ANTES de medir: si el panel queda con menos
+        de 3 transiciones STAY, alpha se declara identificada con reserva y la
+        variante sin alpha se reporta PASE LO QUE PASE. El panel quedo con 2.
+    reserva_alpha: >
+      alpha esta identificada por SEIS observaciones: los 5 municipios de Baja
+      California (2016->2019) y UNO de Durango (2016->2019, la capital, porque
+      el archivo que el IEPC publica para 2016 solo cubre ese municipio).
+      Estimada solo de esas dos transiciones da -1.8436 pp/anio; estimada
+      conjuntamente con todo el panel da -0.4447. La tabla de identificacion de
+      P0 (data/l3-tabla-identificacion-v1_0.tsv) midio que en TODO el universo
+      del calendario solo hay 5 transiciones STAY, y dos de ellas son de
+      entidades cuyo denominador no se pudo adquirir (Aguascalientes, Hidalgo).
+      Es una limitacion del universo, no de este acto.
+    reserva: >
+      (i) NO-DISCRIMINA no es lo mismo que cero. beta_pres vale +3.15 pp, su IC
+      de municipio [+2.48, +3.83] excluye cero, su signo es el mismo en las SEIS
+      columnas de sensibilidad (+2.76 a +4.20) y las tres transiciones de "local
+      sola -> presidencial" del panel dan +2.14 (Coahuila), +2.52 (Zacatecas) y
+      +2.82 (Chihuahua), en tres entidades distintas con tres anios de partida
+      distintos. El extremo inferior de su IC conservador es -0.196: falla por
+      dos decimas. (ii) beta_int es otra cosa: no es falta de potencia, CAMBIA DE
+      SIGNO entre subconjuntos (-2.98 en el panel de L6, +2.67 en las entidades
+      nuevas) y lo identifican DOS transiciones que se contradicen -- Nayarit
+      2017->2021 da -6.77 y Baja California 2019->2021 da +7.60. (iii) El
+      procedimiento designo el wild cluster para decidir y el bootstrap por
+      municipio discrepa (llevaria a CORROBORADA); la discrepancia se declara y
+      manda el wild cluster, como se fijo antes de medir. (iv) 2021 es, en esta
+      ventana, a la vez la eleccion intermedia y la de la pandemia: beta_int
+      carga las dos cosas y este diseno no las separa. Se escribio en §1.10 de la
+      spec antes de medir. (v) El diseno no separa el tipo de boleta de la
+      jerarquia del cargo ni de cualquier choque nacional que coincida con los
+      anios de ese tipo. (vi) ALCANCE: P0 identifico 14 entidades tratadas; la
+      meta declarada eran 8; P1 alcanzo 5. ACOTADO, declarado, sin imputar nada.
+    lo_que_si_queda_medido: >
+      Un resultado sobre el DISENO, que sobrevive al veredicto del falsador. El
+      beta ~ 0 de MAESTRA34-L6 no era un cero: era el promedio de dos efectos de
+      signo contrario. Y L6 midio que quitando Coahuila su beta se desplomaba a
+      -5.69; bajo la correccion c1, quitar Coahuila NO desploma nada -- beta_pres
+      pasa de +3.15 a +4.20 y beta_int de -0.92 a -0.97. La inestabilidad que L6
+      encontro era un artefacto de su especificacion de un solo beta. Ademas, la
+      tabla de identificacion de P0 midio que la correccion c1 RESCATA 54
+      transiciones del universo que L6 usaba como controles puros: las entidades
+      siempre concurrentes hacen presidencial -> intermedia -> presidencial y
+      bajo DeltaD = 0 no informaban, mientras que bajo DeltaD_pres/DeltaD_int SI
+      identifican beta_pres - beta_int. Esa es, medida, la razon mecanica de la
+      contaminacion de gamma que L6 §11 anticipo sin poder cuantificar.
+    descomposicion_del_delta_de_L4:
+      delta_L4_pp: 10.4790
+      transicion_equivalente: "2023 sin federal -> 2024 presidencial, hueco 1, dDpres +1, dDint 0"
+      alpha_por_hueco_pp: -0.444685
+      beta_pres_pp: 3.154166
+      suma_explicada_pp: 2.709480
+      resto_no_identificado_pp: 7.769520
+      porcentaje_explicado: 25.9
+    benchmarks:
+      alemania_leininger_rudolph_zittlau_2018_pp: 10
+      eeuu_hajnal_lewis_2003_pp: 36
+      maestra34_l4_entre_anios_pp: 10.4790
+      maestra34_l6_concurrencia_sin_tipo_pp: 0.0149
+      tepjf_1991_2018: NO-OBTENIDO
+      lectura: >
+        Ninguno de los dos benchmarks externos cae dentro de ninguno de los dos
+        intervalos: el +10 aleman queda fuera del IC de beta_pres [-0.20, +6.50]
+        y fuera del de beta_int [-3.78, +1.93]. El TEPJF sigue NO-OBTENIDO (P0 de
+        este acto no lo adquirio, mesa no lo deposito) y NO se cita de memoria.
+    contaminacion_declarada: >
+      ADR-46, escrita en §0.2 de la spec ANTES de congelarla y no borrada
+      despues. La sesion habia visto: (1) los resultados COMPLETOS de MAESTRA34-L6,
+      que estan publicados en el repo y que el encargo ORDENA reproducir como
+      control de regresion -- no hay ceguera posible sobre ese panel y se dice en
+      vez de rodearlo; (2) que la hipotesis a falsar y sus cuatro ramas vienen
+      firmadas por mesa, no elegidas por el ejecutor; (3) las dos primeras filas
+      municipales de la tabla HTML de Zacatecas 2016 (APOZOL LN 5408, APULCO LN
+      4278) con sus columnas de partido; (4) las primeras ~8 filas por casilla de
+      una hoja de Hidalgo 2020 y de un municipio de Hidalgo 2024, que ademas
+      quedan FUERA del universo; (5) el preambulo del PREP federal 2024 con sus
+      agregados nacionales. De Baja California y de Chihuahua -- las dos
+      entidades nuevas que mas pesan -- solo se habian visto las CABECERAS.
+      No se habia calculado ninguna participacion, diferencia, ATT ni intervalo
+      sobre ninguna entidad nueva antes del COMMIT-1.
+    defecto_de_fuente_declarado: >
+      El control §1.7.6 atrapo un defecto en Chihuahua 2016: la casilla JUAREZ
+      seccion 2186 C1 publica "Votacion Total" = 3 con "% de Particip." = 79.576
+      sobre un listado nominal de 377 -- el total real es 300, un digito perdido
+      en el archivo del IEECH. Es 1 casilla de 5 125. NO SE REPARO, porque el
+      procedimiento no se cambia despues de ver el numero; se cuantifico:
+      +0.0290 pp sobre Juarez y +0.00044 pp sobre la Dy media de la entidad.
+    ola_calibracion: "elecciones de ayuntamiento 2016-2024 de 6 entidades; calendario derivado de 30 acuerdos del Consejo General del INE (data/p0-calendario-ayuntamientos-v1_0.tsv)"
+    universo: "municipio x eleccion de ayuntamiento, con lista_nominal > 0 en TODAS las elecciones de la serie de su entidad. 187 municipios: Chihuahua 66, Zacatecas 58, Coahuila 38, Nayarit 19, Baja California 5, Durango 1. 540 observaciones municipio x transicion sobre 15 transiciones. Excluidos y NOMBRADOS: LA YESCA (Nayarit, extraordinaria 2021), SAN FELIPE y SAN QUINTIN (Baja California, municipios creados despues de 2016), OCAMPO (Chihuahua, sus 23 filas de 2024 traen lista nominal y ninguna cifra de votos), y 38 de los 39 municipios de Durango (el archivo de 2016 del IEPC cubre solo la capital). Ninguno imputado. 0 participaciones fuera de (0,100] en las 540 observaciones. Usos y costumbres de Oaxaca: NO-APLICA con conteo 0, satisfecho POR VACIO -- Oaxaca no entro al universo porque P1 solo localizo su pata 2016."
+    sha256_payload: "110c665048b906b9d8408ec6c52b2db3c7a1c11e5a068b419dd175690a38cdde"
+    payload_manifiesto_id: "ieez_zacatecas_2016_ayuntamientos_x_municipio_htm;ieez_zacatecas_2016_eleccion_x_casilla_xls;ieebc_bc_2016_municipes_x_casilla_xlsx;ieebc_bc_2019_computo_x_casilla_mun_xls;ieebc_bc_2021_computo_x_casilla_mun_xls;ieebc_bc_2024_computo_x_casilla_mun_xls;ieech_chihuahua_2016_ayuntamientos_x_casilla_xlsx;ieech_chihuahua_2018_ayuntamientos_x_casilla_xlsx;ieech_chihuahua_2021_ayuntamientos_x_casilla_xlsx;ieech_chihuahua_2024_ayuntamientos_x_casilla_xlsx;iec_coahuila_2017_ayuntamientos_x_municipio_xlsx;iec_coahuila_2018_ayuntamientos_x_municipio_xlsx;iec_coahuila_2021_ayuntamientos_x_municipio_xlsx;iec_coahuila_2024_ayuntamientos_x_municipio_xlsx;iee_nayarit_2017_ayuntamientos_xlsx;iee_nayarit_2021_ayuntamientos_xlsx;iee_nayarit_2024_ayuntamientos_xlsx;ieez_zacatecas_2018_ayto_x_casilla_xlsx;ieez_zacatecas_2021_computos_xlsx;ieez_zacatecas_2024_computos_xlsx;iepc_durango_2016_resultados_xlsx;iepc_durango_2019_x_casilla_zip"
+    fuente: ["forense/notas/2026-09-02-MAESTRA35-L3-spec.md", "forense/notas/2026-09-02-MAESTRA35-L3-P0-censo-rutas.md", "data/l3-tabla-identificacion-v1_0.tsv", "data/l3-resultados-tipo-boleta-v1_0.json"]
+    nota: >
+      Sin carga al motor: eso es sello de mesa. Sucesores declarados y NO
+      lanzados: (i) acto de propagacion en NUBE que selle lo que mesa firme de
+      esta entrada (patron MAESTRA35-N3); (ii) adquisicion de las 9 entidades
+      tratadas que siguen sin serie -- las recetas verificadas de Oaxaca 2016,
+      Tamaulipas y Veracruz quedaron escritas en data/curacion-registro/cola-adquisicion-registro.tsv;
+      (iii) TEPJF 1991-2018 por navegador, que la firma DS-a asigna a mesa.
+      Si mesa quisiera convertir esto a regla del motor, la conversion de una
+      tasa observada en pp a probabilidad de agente es firma de mesa, no del
+      acto (precedente L6 §5), y este acto NO la propone: con el falsador en
+      NO-DISCRIMINA, lo que corresponde es mas identificacion, no mas motor.
+
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA35-L1 · RECORRE-Y-SEGMENTA · 2/sep/2026
+  # Tres entradas NUEVAS: los disparadores de tres reglas ya medidas por
+  # MAESTRA34-L5, ahora MEDIDOS por ejes de segmentación. Ninguna se
+  # carga al motor: el sello es de mesa, en RH. La cuarta pieza de este
+  # acto (P1) es una enmienda in situ, arriba, no una entrada nueva.
+  # Codificación de cada eje: censo P0 (forense/notas/2026-09-02-MAESTRA35-L1-P0-censo.md),
+  # leída del FD o del catálogo de cada payload. Spec congelada:
+  # forense/notas/2026-09-02-MAESTRA35-L1-spec.md.
+  # Cada celda es una ASOCIACIÓN, no un coeficiente (A-bis 1); un IC
+  # estrecho con signo esperado NO autoriza leer un efecto (A-bis 2).
+  # ══════════════════════════════════════════════════════════════════
+  - id: dinero.ahorro.via_informal_ejes_enif2024
+    entrada_nueva: true
+    acto: "MAESTRA35-L1 · P2"
+    fuente_regla: "dinero.ahorro.via_informal — mecanismo G3 / informal_sin_puente"
+    payload: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
+    ponderador: FAC_PER
+    estrato: EST_DIS
+    upm: UPM_DIS
+    estimador: "bootstrap conglomerado estratificado, 10 000 réplicas, seed 42"
+    desenlaces:
+      principal:
+        definicion: "alguna P5_1_1..P5_1_6 == '1' Y ninguna P5_6_1..P5_6_9 == '1'"
+        nombre: "ahorra_solo_informal"
+        ejes:
+          - eje: sexo
+            cobertura: 1.000000
+            signo_pre_registrado: null
+            veredicto: "DISCRIMINA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              el encargo lo mide y no lo predice
+            celdas:
+              - {celda: "1 Hombre", p: 0.332489, ic95: [0.316570, 0.348274], n: 6082, numerador: 1926, estratos: 190, upm: 2008}
+              - {celda: "2 Mujer", p: 0.378523, ic95: [0.361859, 0.395127], n: 7420, numerador: 2695, estratos: 190, upm: 2091}
+          - eje: edad
+            cobertura: 0.998889
+            signo_pre_registrado: null
+            veredicto: "DISCRIMINA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              sin signo pre-registrado en la spec §3.2
+            celdas:
+              - {celda: "18-29", p: 0.432063, ic95: [0.407039, 0.457410], n: 2924, numerador: 1230, estratos: 190, upm: 1462}
+              - {celda: "30-44", p: 0.375709, ic95: [0.354484, 0.396905], n: 4256, numerador: 1487, estratos: 190, upm: 1751}
+              - {celda: "45-59", p: 0.327505, ic95: [0.307291, 0.347765], n: 3411, numerador: 1088, estratos: 190, upm: 1609}
+              - {celda: "60+", p: 0.277317, ic95: [0.254739, 0.300803], n: 2896, numerador: 813, estratos: 186, upm: 1409}
+          - eje: escolaridad
+            cobertura: 0.999630
+            signo_pre_registrado: desc
+            veredicto: "CONTRARIA"
+            monotonia: "NO MONOTONO (pares consecutivos limpios en los dos sentidos)"
+            nota: >-
+              G3/informal_sin_puente: solo_informal MÁS alto con menor
+              escolaridad
+            celdas:
+              - {celda: "hasta primaria", p: 0.351594, ic95: [0.328573, 0.374051], n: 3249, numerador: 1110, estratos: 182, upm: 1175}
+              - {celda: "secundaria", p: 0.415635, ic95: [0.394176, 0.436785], n: 3635, numerador: 1490, estratos: 188, upm: 1484}
+              - {celda: "media superior", p: 0.389338, ic95: [0.363063, 0.415331], n: 3408, numerador: 1268, estratos: 189, upm: 1656}
+              - {celda: "superior", p: 0.260438, ic95: [0.240043, 0.280613], n: 3205, numerador: 752, estratos: 187, upm: 1535}
+          - eje: localidad
+            cobertura: 1.000000
+            signo_pre_registrado: desc
+            veredicto: "CORROBORADA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              MÁS alto en localidades menores de 15 000 (corte exacto del FD)
+            celdas:
+              - {celda: "menor de 15 000", p: 0.409255, ic95: [0.387307, 0.429960], n: 4646, numerador: 1899, estratos: 115, upm: 350}
+              - {celda: "15 000 y mas", p: 0.329868, ic95: [0.315113, 0.344834], n: 8856, numerador: 2722, estratos: 146, upm: 1814}
+          - eje: formalidad
+            cobertura: 0.689676
+            universo_restringido: true   # A-bis 4: no reconcilia contra el marginal poblacional
+            signo_pre_registrado: desc
+            veredicto: "CORROBORADA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              MÁS alto sin trabajo formal; cobertura 68.97 % -> universo
+              restringido
+            celdas:
+              - {celda: "sin seguridad social", p: 0.413689, ic95: [0.394927, 0.432857], n: 5142, numerador: 2078, estratos: 189, upm: 1732}
+              - {celda: "con seguridad social", p: 0.309328, ic95: [0.288930, 0.329834], n: 4170, numerador: 1181, estratos: 187, upm: 1818}
+          - eje: cuenta_formal
+            cobertura: 1.000000
+            signo_pre_registrado: desc
+            veredicto: "DISCRIMINA (tope declarado en la spec: el eje no puede corroborar)"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              NO-FALSABLE contra el principal: P5_4_* gatea a P5_6_*, así que
+              sin cuenta el desenlace se reduce a informal_cualquiera por
+              construcción del cuestionario (censo §4.4, spec §3.3)
+            celdas:
+              - {celda: "sin cuenta", p: 0.493506, ic95: [0.472537, 0.513849], n: 4346, numerador: 2104, estratos: 189, upm: 1542}
+              - {celda: "con cuenta", p: 0.285463, ic95: [0.270596, 0.300275], n: 9156, numerador: 2517, estratos: 190, upm: 2146}
+      secundario:
+        definicion: "alguna P5_1_1..P5_1_6 == '1'"
+        nombre: "informal_cualquiera"
+        ejes:
+          - eje: sexo
+            cobertura: 1.000000
+            signo_pre_registrado: null
+            veredicto: "NO-DISCRIMINA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              el encargo lo mide y no lo predice
+            celdas:
+              - {celda: "1 Hombre", p: 0.559453, ic95: [0.542027, 0.576770], n: 6082, numerador: 3447, estratos: 190, upm: 2008}
+              - {celda: "2 Mujer", p: 0.564057, ic95: [0.548325, 0.579945], n: 7420, numerador: 4143, estratos: 190, upm: 2091}
+          - eje: edad
+            cobertura: 0.998889
+            signo_pre_registrado: null
+            veredicto: "DISCRIMINA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              sin signo pre-registrado en la spec §3.2
+            celdas:
+              - {celda: "18-29", p: 0.704945, ic95: [0.682575, 0.727176], n: 2924, numerador: 2097, estratos: 190, upm: 1462}
+              - {celda: "30-44", p: 0.625016, ic95: [0.603909, 0.645732], n: 4256, numerador: 2662, estratos: 190, upm: 1751}
+              - {celda: "45-59", p: 0.495258, ic95: [0.472720, 0.517734], n: 3411, numerador: 1696, estratos: 190, upm: 1609}
+              - {celda: "60+", p: 0.380402, ic95: [0.357179, 0.404560], n: 2896, numerador: 1132, estratos: 186, upm: 1409}
+          - eje: escolaridad
+            cobertura: 0.999630
+            signo_pre_registrado: desc
+            veredicto: "CONTRARIA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              G3/informal_sin_puente: solo_informal MÁS alto con menor
+              escolaridad
+            celdas:
+              - {celda: "hasta primaria", p: 0.414094, ic95: [0.390638, 0.437134], n: 3249, numerador: 1330, estratos: 182, upm: 1175}
+              - {celda: "secundaria", p: 0.556479, ic95: [0.535216, 0.577208], n: 3635, numerador: 2057, estratos: 188, upm: 1484}
+              - {celda: "media superior", p: 0.637788, ic95: [0.614177, 0.660636], n: 3408, numerador: 2159, estratos: 189, upm: 1656}
+              - {celda: "superior", p: 0.640107, ic95: [0.618301, 0.662078], n: 3205, numerador: 2042, estratos: 187, upm: 1535}
+          - eje: localidad
+            cobertura: 1.000000
+            signo_pre_registrado: desc
+            veredicto: "NO-DISCRIMINA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              MÁS alto en localidades menores de 15 000 (corte exacto del FD)
+            celdas:
+              - {celda: "menor de 15 000", p: 0.549481, ic95: [0.530863, 0.568480], n: 4646, numerador: 2540, estratos: 115, upm: 350}
+              - {celda: "15 000 y mas", p: 0.568433, ic95: [0.553629, 0.582976], n: 8856, numerador: 5050, estratos: 146, upm: 1814}
+          - eje: formalidad
+            cobertura: 0.689676
+            universo_restringido: true   # A-bis 4: no reconcilia contra el marginal poblacional
+            signo_pre_registrado: desc
+            veredicto: "CONTRARIA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              MÁS alto sin trabajo formal; cobertura 68.97 % -> universo
+              restringido
+            celdas:
+              - {celda: "sin seguridad social", p: 0.604060, ic95: [0.586103, 0.622700], n: 5142, numerador: 3073, estratos: 189, upm: 1732}
+              - {celda: "con seguridad social", p: 0.644733, ic95: [0.625633, 0.663100], n: 4170, numerador: 2713, estratos: 187, upm: 1818}
+          - eje: cuenta_formal
+            cobertura: 1.000000
+            signo_pre_registrado: desc
+            veredicto: "CONTRARIA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              contra el secundario SÍ es falsable: informal_cualquiera no está
+              anidado en la tenencia
+            celdas:
+              - {celda: "sin cuenta", p: 0.493506, ic95: [0.472537, 0.513849], n: 4346, numerador: 2104, estratos: 189, upm: 1542}
+              - {celda: "con cuenta", p: 0.597889, ic95: [0.584102, 0.612224], n: 9156, numerador: 5486, estratos: 190, upm: 2146}
+    hallazgo: >
+      El mecanismo G3 / informal_sin_puente sobrevive en DOS ejes y se
+      rompe en los demás, y la rotura es informativa. Contra el desenlace
+      PRINCIPAL (ahorro exclusivamente informal), localidad y formalidad
+      salen CORROBORADAS con IC95 sin traslape y en el signo
+      pre-registrado. Escolaridad sale CONTRARIA por la regla de
+      precedencia de la spec: sus celdas EXTREMAS sí van en el signo
+      esperado (0.3516 en hasta-primaria vs 0.2604 en superior), pero el
+      par hasta-primaria -> secundaria va limpio en sentido opuesto
+      (0.3516 -> 0.4156, IC95 sin traslape), el eje es NO MONÓTONO y
+      CONTRARIA manda. Leer solo los extremos habría dado CORROBORADA: la
+      regla de precedencia atrapó exactamente el caso para el que se
+      escribió. Contra el desenlace SECUNDARIO (ahorro informal de
+      cualquier tipo, que NO está anidado en la tenencia de cuenta y por
+      eso es el falsable), el mecanismo se cae entero: escolaridad,
+      formalidad y cuenta salen las tres CONTRARIA, y localidad
+      NO-DISCRIMINA. Quien tiene cuenta ahorra informalmente MÁS (0.5979
+      vs 0.4935), no menos; quien tiene seguridad social por su trabajo
+      también (0.6447 vs 0.6041); y el ahorro informal SUBE con la
+      escolaridad (0.4141 -> 0.6401). La lectura que estos números
+      soportan es que el ahorro informal en México no es un sustituto de
+      la exclusión formal sino un COMPLEMENTO del ahorro formal; lo que el
+      desenlace exclusivo capta no es 'ahorrar informalmente' sino la
+      AUSENCIA de la pata formal, que el cuestionario gatea por tenencia
+      de cuenta. Todo esto es asociación dentro de una corrida, no efecto.
+    situacion: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
+    tier: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: enif_2024_enif_2024_bd_csv
+
+  - id: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    entrada_nueva: true
+    acto: "MAESTRA35-L1 · P3"
+    fuente_regla: "tramite.gobierno_digital.util_sin_coercion — desenlace y universo EXACTOS de MAESTRA34-L5 P1, sin tocar la dicotomización"
+    payload: "ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó doce veces contribuye doce veces)"
+    universo: "N_TRA=='01'; adopta = P7_3 ∈ {4,5}; no adopta {1,2,6}; fuera {3,7,8,9,blanco}; n = 20 203"
+    llave_a_los_ejes: "ID_TRA --(sec_7)--> ID_PER --> encig2025_02_residentes_sec_2.csv · 0 huérfanos"
+    ponderador: FAC_TRA
+    estrato: EST_DIS
+    upm: UPM_DIS
+    ejes:
+      - eje: sexo
+        cobertura: 1.000000
+        signo_pre_registrado: null
+        veredicto: "NO-DISCRIMINA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          sin signo predicho (spec §4.2)
+        celdas:
+          - {celda: "1 Hombre", p: 0.681276, ic95: [0.667109, 0.695531], n: 9998, numerador: 7024, estratos: 434, upm: 6383}
+          - {celda: "2 Mujer", p: 0.665192, ic95: [0.650569, 0.679380], n: 10205, numerador: 6881, estratos: 431, upm: 6402}
+      - eje: edad
+        cobertura: 0.994308
+        signo_pre_registrado: desc
+        veredicto: "CORROBORADA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          adopción MÁS alta con MENOR edad
+        celdas:
+          - {celda: "18-29", p: 0.751812, ic95: [0.727749, 0.775779], n: 2806, numerador: 2087, estratos: 367, upm: 2419}
+          - {celda: "30-44", p: 0.774735, ic95: [0.759377, 0.789671], n: 7008, numerador: 5503, estratos: 424, upm: 4979}
+          - {celda: "45-59", p: 0.669153, ic95: [0.650847, 0.687619], n: 5799, numerador: 3934, estratos: 412, upm: 4423}
+          - {celda: "60+", p: 0.475822, ic95: [0.454111, 0.497936], n: 4475, numerador: 2299, estratos: 396, upm: 3532}
+      - eje: escolaridad
+        cobertura: 1.000000
+        signo_pre_registrado: asc
+        veredicto: "CORROBORADA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          adopción MÁS alta con MAYOR escolaridad
+        celdas:
+          - {celda: "hasta primaria", p: 0.391961, ic95: [0.365067, 0.418606], n: 2299, numerador: 923, estratos: 348, upm: 1981}
+          - {celda: "secundaria", p: 0.564634, ic95: [0.540166, 0.588958], n: 4216, numerador: 2450, estratos: 384, upm: 3352}
+          - {celda: "media superior", p: 0.678563, ic95: [0.660018, 0.696345], n: 5582, numerador: 3894, estratos: 397, upm: 4228}
+          - {celda: "superior", p: 0.812944, ic95: [0.798899, 0.826578], n: 8106, numerador: 6638, estratos: 411, upm: 5172}
+    ejes_ausentes: >
+      tamaño de localidad y formalidad laboral, ambos NO-ENCONTRADO y
+      ninguno sustituido. El primero por diseño muestral: el universo de
+      ENCIG es la población de 18 años y más en ciudades de 100 mil
+      habitantes o más (FD, pág. 1). El segundo por ausencia de ítem: la
+      tabla de residentes cierra en POS (posición en la ocupación) y el FD
+      no trae prestaciones ni seguridad social — sondas con control
+      positivo sobre 4 540 líneas.
+    hallazgo: >
+      Los dos ejes con signo pre-registrado salen CORROBORADOS y el eje
+      sin signo no discrimina. Escolaridad es el gradiente más limpio de
+      todo el lote: 0.3920 en hasta-primaria, 0.5646 en secundaria, 0.6786
+      en media superior, 0.8129 en superior, monótono y con los cuatro
+      IC95 sin traslape entre consecutivos. Edad va en el signo esperado
+      entre extremos (0.7518 en 18-29 vs 0.4758 en 60+) aunque no es
+      monótona en el primer par (30-44 mide 0.7747, más alto que 18-29,
+      con IC95 traslapados: no es un par limpio en contra y por eso no
+      dispara la precedencia). Sexo no discrimina. La regla
+      util_sin_coercion tenía disparadores ASIGNADOS y sin medir; ahora
+      tiene dos medidos. Sigue siendo asociación: quien tiene más
+      escolaridad adopta más, y este acto NO dice que la escolaridad cause
+      la adopción.
+    situacion: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
+    tier: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
+    sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+    payload_manifiesto_id: encig25_base_datos_csv
+
+  - id: tramite.evasion_norma_ejes_envipe2025
+    entrada_nueva: true
+    acto: "MAESTRA35-L1 · P4"
+    fuente_regla: "tramite.evasion_norma — desenlace y universo EXACTOS de MAESTRA34-L5 P3"
+    payload: "ENVIPE 2025 · tmod_vic · unidad = DELITO"
+    universo: "BP1_20 ∈ {1,2}; evade_norma = BP1_20=='2' Y BP1_23 ∈ {04,05,06,08} — la CONJUNTA, no la condicional; n = 40 280"
+    llave_a_los_ejes: "ID_PER (tmod_vic -> tsdem) · 0 huérfanos; sexo y edad viven en tmod_vic y no necesitan el join"
+    ponderador: FAC_DEL
+    estrato: EST_DIS
+    upm: UPM_DIS
+    ejes:
+      - eje: sexo
+        cobertura: 1.000000
+        signo_pre_registrado: null
+        veredicto: "DISCRIMINA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          sin signo predicho
+        celdas:
+          - {celda: "1 Hombre", p: 0.597383, ic95: [0.583481, 0.611264], n: 19399, numerador: 11024, estratos: 711, upm: 7011}
+          - {celda: "2 Mujer", p: 0.530654, ic95: [0.515437, 0.546004], n: 20881, numerador: 10737, estratos: 728, upm: 7682}
+      - eje: edad
+        cobertura: 0.997666
+        signo_pre_registrado: null
+        veredicto: "DISCRIMINA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          el encargo lo dice: tramos de edad sin predicción
+        celdas:
+          - {celda: "18-29", p: 0.520035, ic95: [0.500236, 0.540185], n: 11871, numerador: 5859, estratos: 671, upm: 4640}
+          - {celda: "30-44", p: 0.580792, ic95: [0.566117, 0.595965], n: 15214, numerador: 8329, estratos: 698, upm: 5831}
+          - {celda: "45-59", p: 0.601214, ic95: [0.578437, 0.623948], n: 8620, numerador: 5092, estratos: 644, upm: 4103}
+          - {celda: "60+", p: 0.566020, ic95: [0.540709, 0.591352], n: 4481, numerador: 2433, estratos: 557, upm: 2635}
+      - eje: escolaridad_proxy
+        cobertura: 0.997517
+        signo_pre_registrado: null
+        veredicto: "DISCRIMINA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          PROXY de formalidad laboral, que no existe en ENVIPE 2025. La
+          regla NO predice signo: subsistencia y cinismo empujan en sentidos
+          opuestos. Veredicto máximo posible: DISCRIMINA
+        celdas:
+          - {celda: "hasta primaria", p: 0.493221, ic95: [0.462397, 0.524253], n: 3491, numerador: 1611, estratos: 510, upm: 2078}
+          - {celda: "secundaria", p: 0.567369, ic95: [0.548202, 0.586405], n: 7739, numerador: 4085, estratos: 616, upm: 3657}
+          - {celda: "media superior", p: 0.543368, ic95: [0.522009, 0.564012], n: 11476, numerador: 6043, estratos: 664, upm: 4869}
+          - {celda: "superior", p: 0.590093, ic95: [0.574224, 0.605663], n: 17474, numerador: 9970, estratos: 673, upm: 6006}
+      - eje: dominio_urbano_rural
+        cobertura: 1.000000
+        signo_pre_registrado: null
+        veredicto: "DISCRIMINA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          eje PROPIO Y DISTINTO, no el corte de 15 000 que el encargo pedía:
+          ENVIPE no publica umbral alguno, y R ↔ «menor de 15 000» NO está
+          verificado en ninguna fuente del payload
+        celdas:
+          - {celda: "Rural", p: 0.403310, ic95: [0.377390, 0.428694], n: 3770, numerador: 1561, estratos: 63, upm: 862}
+          - {celda: "Complemento urbano", p: 0.522090, ic95: [0.503125, 0.540579], n: 8039, numerador: 4056, estratos: 212, upm: 1141}
+          - {celda: "Urbano", p: 0.592703, ic95: [0.579102, 0.606130], n: 28471, numerador: 16144, estratos: 464, upm: 8691}
+    ejes_ausentes: >
+      formalidad laboral y tamaño de localidad al corte de 15 000, ambos
+      NO-ENCONTRADO. La formalidad porque ni el FD (7 207 líneas) ni el
+      cuestionario principal (987 líneas) traen ítem de prestaciones o
+      seguridad social — se usa escolaridad como PROXY, dicho proxy, que
+      es la salida que el propio encargo declaró. El corte de 15 000
+      porque ENVIPE 2025 no publica TLOC ni umbral alguno: 6 diccionarios
+      (2 225 líneas) y el FD solo dan DOMINIO como U/C/R sin población. No
+      se inventa el corte.
+    hallazgo: >
+      Los cuatro ejes DISCRIMINAN y ninguno puede corroborar: así se
+      pre-registró, por la fuente y no por el resultado. El único
+      gradiente grande es el de dominio, y apunta al revés de la
+      corazonada que el encargo había escrito sobre el corte de 15 000: la
+      evasión de norma es MÁS alta en lo urbano (0.5927) que en lo rural
+      (0.4033), con complemento urbano en medio (0.5221) y los tres IC95
+      sin traslape. Como el eje NO es el corte de 15 000 -- ENVIPE no
+      publica umbral y R <-> 'menor de 15 000' no está verificado en
+      ninguna fuente del payload --, esto NO se reporta como CONTRARIA a
+      la predicción del encargo: si mesa acepta leer R como localidad
+      pequeña, el signo esperado quedaría invertido, y esa lectura es de
+      mesa, no del ejecutor. Escolaridad, que entra como PROXY de la
+      formalidad laboral ausente, discrimina sin patrón monótono (0.4932 /
+      0.5674 / 0.5434 / 0.5901): consistente con que subsistencia y
+      cinismo empujen en sentidos opuestos, que es justo por lo que la
+      regla no predice signo ahí. Hombres evaden más que mujeres (0.5974
+      vs 0.5307).
+    situacion: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
+    tier: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
+    sha256_payload: "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+    payload_manifiesto_id: envipe2025_csv
