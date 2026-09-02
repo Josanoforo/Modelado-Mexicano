@@ -307,3 +307,27 @@ columna no garantiza su contenido): **`http_code = 000` no significa
 TLS incompleta**; anexando el intermedio que su propio AIA declara, los dos
 pasan a `200` con verificación real. **Nunca `--insecure`.** Antes de declarar
 `NO-OBTENIDO` por red hay que leer el error crudo de `curl`, no sólo su código.
+
+## Adopción de gobierno digital y respaldo personal (`ACTO MAESTRA35-L6`, 2/sep/2026)
+
+Dos artefactos nuevos bajo `data/`. Se registran aquí por el mismo motivo que los
+de las dos secciones anteriores: **quien los lea tiene que saber qué *no* puede
+hacer con ellos**, y en estos dos la advertencia es la mitad del producto —
+salieron de un censo que cerró con **cero `EXISTE-SATISFACE`**, así que ninguna
+de sus cifras es la `p` del prior que el acto fue a buscar.
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/l6-gobierno-digital-endutih-v1_0.json` | `python3 tools/medidor_gobierno_digital_endutih.py` (`ACTO MAESTRA35-L6`, `P1`) | JSON: `acto, pieza, spec, estimador, escala, olas[]` con una entrada por ola (`2025` principal, `2024` y `2023` sensibilidad) y, en cada una, `payload, miembro, sha256_payload, n_tabla, n_usa_internet, principal, sensibilidad_A_interaccion, sensibilidad_B_universo_ampliado`; cada celda trae `p, ic95, n, numerador, estratos, upm, poblacion_expandida` | la nota de resultados del acto y `milpa/tramite-ola5-propuesta-v0.yaml` (entrada `tramite.gobierno_digital.adopcion_endutih2025`) | **No es la `p` de `tramite.gobierno_digital.coercitivo`, y citarla como tal invierte el sentido del acto**: el censo `P0` §3 cerró `EXISTE-NO-SATISFACE` en las tres olas porque ENDUTIH **no tiene** marcador de obligatoriedad ni de riesgo fiscal, **no tiene** batería de motivo colgada del bloque de gobierno, y su único ítem fiscal (`P7_36_1`) está autoseleccionado al 100 % —`16 362/16 362` en 2025— además de carecer de denominador de obligación (`no obligado ≠ rechaza`). **Tampoco se compara con el `0.673393` de `util_sin_coercion`**: aquella cifra tiene unidad **trámite** y universo `N_TRA=01` (pago de luz, ENCIG); ésta tiene unidad **persona** y universo **usuarios de internet**. Y la escala es de **usuarios de internet**, no de la población: para esa, la sensibilidad `B` (`0.178152` en 2025). Citar `0.207026` sin su universo lo convierte en otra cifra. |
+| `data/l6-respaldo-enif2024-v1_0.json` | `python3 tools/medidor_puente_enif24.py` (`ACTO MAESTRA35-L6`, `P2`/`COMMIT-3`) | JSON: `acto, pieza, spec, payload, tabla, sha256_payload, estimador, eje, escala, limite, n_universo, eje_reparto, desenlaces[] (D1_ahorro_formal PRINCIPAL, D2_tenencia_cuenta, D3_credito_formal), sensibilidad_C_control_riqueza[], veredicto_del_acto, veredicto_D1, veredicto_secundarios`; cada celda con `p, ic95, n, numerador, estratos, upm` | la nota de resultados y `milpa/tramite-ola5-propuesta-v0.yaml` (entrada `dinero.ahorro.respaldo_enif2024`) | **Mide UNA de las dos condiciones del bullet** `dinero.ahorro.informal_sin_puente` + `con_puente_y_respaldo` (`canon/modelo-decision-v4_0.md:501`): el **respaldo** (`P4_9_4`, universo completo), **no** el canal personal, que es inobservable porque `P5_15_2` está gateado en tener el producto y haberlo comparado. **Acota la regla; no la cierra.** Y **el agregado de `D1'` no se cita solo**: `+5.82` pp es el promedio de dos poblaciones que van en direcciones opuestas — la sensibilidad `C`, pre-declarada, da `−7.44` pp entre quienes podrían resolver con recursos propios (`CONTRARIA`) y `+8.14` pp entre quienes no (`CORROBORADA`), los dos `IC95` sin traslape. Citar el agregado sin `C` afirma un mecanismo uniforme que el dato niega. Es **asociación dentro de una corrida (A-bis 1/2), no efecto**. El campo `veredicto_del_acto` (`ACOTADA`) lo deriva el script, no el analista. |
+
+**Regla de conducto que este acto añade** (complementa las dos anteriores —el
+código HTTP no verifica un payload, el nombre de una columna no garantiza su
+contenido, `http_code = 000` no significa «bloqueado»): **el catálogo de columnas
+no agota lo que el instrumento midió.** En `IFT SFD 2024` la batería «¿a través
+de qué medios se enteró?» tiene cinco columnas codificadas y **ninguna** es
+«familiares» — pero de las 96 respuestas del texto libre «Otro», **70 dicen
+literalmente «Familiares y amigos»**, y el propio emisor publica esa categoría en
+su reporte. Quien abra sólo la cabecera del `xlsx` concluye que la variable no
+existe, y se equivoca. **Antes de declarar `NO-ENCONTRADO` sobre una variable hay
+que abrir los campos de texto libre de la batería que la contendría.**

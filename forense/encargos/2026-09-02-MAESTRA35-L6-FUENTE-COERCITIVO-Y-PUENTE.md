@@ -25,3 +25,23 @@ CONTADOR: priors ASIGNADO con dato +1 si (a) satisface (S1: 1 → 0) · candidat
 Lo que este acto NO hace: no carga al motor; no re-lee la regla de ahorro (dirección); no repite la búsqueda en ENCIG; no convierte la serie CoDi en una p; no edita instrucciones.
 
 Sucesores declarados, no lanzados: propagación NUBE de lo que mesa selle; dirección presenta la re-lectura de ahorro con lo que (d) haya dado.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA35-L6 · FUENTE-COERCITIVO-Y-PUENTE`, 2/sep/2026,
+entorno **UBUNTU** con corpus montado y red, worktree propio
+`/home/pc0/mm-l6-fuente-coercitivo`, rama
+`acto/maestra35-l6-fuente-coercitivo-y-puente`. `ADR-297`, `FP-250`.
+
+Commits: `1ae85ff` (0-bis A.3) · `833604c` (`P0` censo) · `f77df14` (`COMMIT-1`,
+spec sola) · `b0f0bfb` (`COMMIT-2`, resultados) · `21ffb13` (`COMMIT-3`, `D1'`
+corregida hacia adelante) · `cf6d8d4` (adenda del crítico) · más el commit de
+cascada.
+
+**Lo que el encargo pidió y no se hizo, dicho aquí**: `P1` estaba condicionado a
+que la pieza (a) satisficiera, y **no satisfizo** — la medición de ENDUTIH que
+sí se hizo **no es** la `p` de `coercitivo` y se declara como adición razonada,
+a juicio de mesa. `P2` estaba condicionado a que (d) satisficiera, y **tampoco**
+— se midió la mitad *respaldo*, que la propia pieza (d) del encargo nombraba, y
+**no** el canal personal, que es inobservable. El contador de priors `ASIGNADO`
+con dato es **`+0`**: `S1` sigue en 1.
