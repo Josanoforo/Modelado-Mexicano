@@ -91,9 +91,16 @@ Si hay una línea `GATED a X` / `COMPUERTA: X`:
 1. `git fetch origin main` (o la rama que el encargo declare como base).
 2. Verifica **por los comandos que el propio encargo declare** — nunca
    por defecto genérico — que `X` está fusionado/en el estado que el
-   encargo exige contra `origin/main` real (`git log --oneline origin/main
-   | grep -c "X"`, `git merge-base --is-ancestor`, o el mecanismo
-   explícito que el encargo nombre).
+   encargo exige contra `origin/main` real. La verificación es **por
+   PRODUCTO**: el archivo o entrada concreta que el acto gateado debió
+   producir (`git cat-file -e origin/main:<ruta>` o
+   `git show origin/main:<ruta>`), o `git merge-base --is-ancestor`
+   contra el SHA de merge que el encargo declare, o el mecanismo
+   explícito que el encargo nombre. `git log --oneline origin/main |
+   grep -c "X"` queda como **indicio, no como prueba**: `ADR-277` midió
+   un falso positivo con este comando — el commit `bb54f99` ([COLA],
+   asunto que nombra varios rótulos) hace que el `grep` cuente aciertos
+   para rótulos que el commit solo menciona, no que el commit ejecutó.
 3. Si la compuerta **no** se cumple: reporta con A.4/A.13 (qué se
    examinó, con qué comando, en qué fecha) y **termina con cero
    commits**. No adelantes ningún paso del acto "por si acaso" — el
