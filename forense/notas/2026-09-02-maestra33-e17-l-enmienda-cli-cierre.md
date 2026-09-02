@@ -59,6 +59,16 @@ Total esperado: 176
 sellado: `sha256sum forense/prereg-duelo-v2/runner_l_cli.py` →
 `1ae70bc2b55e6aa129f742d1d3914e13b6b0f2e0b860109edfd2d650967f4086`.
 
+**ENMIENDA (2/sep/2026, ACTO MAESTRA34-N4 · PLOMERIA-v1_2, P1).** El hash de
+arriba queda como historia -- no se borra. `runner_l_cli.py` se editó para
+derivar `total_esperado` de `len(cargar_celdas_l_spec())` en vez de traer
+`11`/`176` cableados en 4 puntos (líneas 188/190/198/219; ver
+`PAQUETE-L-v1_2/PAQUETE-L-v1_2.md` §6, parche propuesto ahí, aplicado aquí).
+Regresión: `--dry-run` con `L-spec-v1_1.json` → 176 rutas (verde, sin
+cambio); con `L-spec-v1_2.json` → 224 rutas (verde). Hash nuevo:
+`sha256sum forense/prereg-duelo-v2/runner_l_cli.py` →
+`0c10e9ab95350ce2b3596216eeda0c23e270bce492177bd14c5657c6e28598e2`.
+
 ## §3 · P3 — `PAQUETE-L-v1_1.md` §4-bis + tabla §1
 
 Nueva sección **§4-bis** (comando exacto, checklist de `claude auth status`,
