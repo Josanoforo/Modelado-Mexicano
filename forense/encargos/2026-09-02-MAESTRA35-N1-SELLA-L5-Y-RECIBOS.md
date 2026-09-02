@@ -38,3 +38,12 @@ forense/firmas-pendientes.tsv, forense/hallazgos.md, cascada de /acto) no
 choca con el diff de PR #468: MAESTRA34-L6 tocó una entrada `civico.*` al
 pie de la propuesta y su propia fila del tablero (FP-239), ninguna línea
 `civico.*` ni la fila FP-239 original se edita aquí.
+
+## CONSUMIDO
+
+Ejecutado por ACTO MAESTRA35-N1 · SELLA-L5-Y-RECIBOS en la rama
+`claude/maestra35-n1-launch-0u1gzw`, commits `8fa9607` (0-bis A.3),
+`6274d26` (P1-P4) y la cascada de cierre (ADR-289, gobernanza,
+estado-programa L0, registro-rotulos, T25 sin novedad,
+`tests/check.py --baseline` VERDE). PR abierto contra `main` con este
+mismo título.
