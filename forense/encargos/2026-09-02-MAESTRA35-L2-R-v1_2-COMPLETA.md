@@ -34,7 +34,7 @@ Sucesores declarados, no lanzados: (i) NUBE — extensión de F-DD a rangos de o
 
 Ejecutado por `ACTO MAESTRA35-L2 · R-v1_2-COMPLETA` en **PR #470**
 (`https://github.com/Josanoforo/Modelado-Mexicano/pull/470`), rama
-`acto/maestra35-l2-r-v1_2-completa`, base real `b6b923f`, fusionada con `origin/main` = `fb3aa8e` al cerrar. **`ADR-292`** — renumerado de `290` porque `PR #473` (`ACTO MAESTRA35-N3`) fusionó durante la sesión y tomó `ADR-290`; regla de la casa, renumera quien fusiona segundo.
+`acto/maestra35-l2-r-v1_2-completa`, base real `b6b923f`, fusionada con `origin/main` = `57a365e` al cerrar. **`ADR-292`**, **`FP-243`** y **`FP-244`** — renumerados **dos veces**: `PR #473` (`ACTO MAESTRA35-N3`) tomó `ADR-290` y después `PR #471` (`ACTO MAESTRA35-L1`) se llevó `ADR-291` junto con `FP-241`/`FP-242`. Regla de la casa: renumera quien fusiona segundo. Las firmas de mesa se conservan **verbatim** con el número que mesa escribió — mesa puso «(tu numeración)» justo previendo esto.
 
 **Cumplido parcialmente, y la razón es un hallazgo, no una omisión.** `P1`
 (reparación de `tools/arbitra.py`) se ejecutó completa, con regresión **12 de

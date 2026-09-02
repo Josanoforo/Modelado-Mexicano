@@ -278,15 +278,24 @@ archivo de `milpa/` · `forense/prereg-duelo-v2/corridas-M/` · `corridas-L/` ·
 - **ADR.** Comando de la casa → máximo `289` en `b6b923f`; candidato **`290`**,
   contiguo y sin huecos. **Colisión confirmada por mesa**: `PR #471`
   (`ACTO MAESTRA35-L1`) reclama el mismo `ADR-292` y los mismos `FP-243`/`FP-244`.
-  **Desenlace: tocó renumerar, y no por `PR #471`.** Mientras esta sesión
-  trabajaba fusionó `PR #473` (`ACTO MAESTRA35-N3 · SELLA-CIVICA-L6`) y tomó
-  `ADR-290`. Re-derivado contra `origin/main` = `fb3aa8e`: máximo real de ADR
-  **`290`**, candidato contiguo **`291`** → **`ADR-290` → `ADR-292`** en las
-  **13** ocurrencias, ninguna de las cuales venía de la base (verificado
-  archivo por archivo con `git show b6b923f:<f> | grep -c`). `FP-243`/`FP-244`
-  siguen **libres** en `fb3aa8e` (máximo de FP `240`) y se conservan; `PR #471`
-  sigue `OPEN` reclamándolos — si fusiona primero, se renumeran igual. Regla de
-  la casa: **renumera quien fusiona segundo**, y aquí tocó.
+  **Desenlace: tocó renumerar DOS veces**, ninguna al arrancar y las dos al
+  cerrar, porque dos actos fusionaron mientras esta sesión trabajaba.
+  (i) `PR #473` (`ACTO MAESTRA35-N3 · SELLA-CIVICA-L6`) tomó `ADR-290` →
+  re-derivado contra `origin/main` = `fb3aa8e`, candidato `291`.
+  (ii) `PR #471` (`ACTO MAESTRA35-L1 · RECORRE-Y-SEGMENTA`) —el competidor que
+  mesa había señalado— fusionó después y se llevó **`ADR-291` y también
+  `FP-241`/`FP-242`** → re-derivado contra `origin/main` = `57a365e`, máximo
+  real de ADR `291` y de FP `242`, candidatos contiguos **`ADR-292`**,
+  **`FP-243`** y **`FP-244`**. Ninguna de las 16 + 20 + 18 ocurrencias venía de
+  la base, verificado archivo por archivo (`git show <base>:<f> | grep -c` → 0
+  en los ocho). Regla de la casa: **renumera quien fusiona segundo** — y aquí
+  tocó dos veces.
+
+  **La firma de mesa se conservó verbatim.** La columna `firmada_en` de las dos
+  filas **no se tocó**: sigue diciendo «`FP-241` (tu numeración)» y «`FP-242`
+  (tu numeración)», con el número que mesa escribió. Mesa puso «(tu
+  numeración)» justo previendo esto. La renumeración se declara **fuera** de la
+  cita, al final de la misma celda.
 - **FP.** Máximo registrado en `forense/firmas-pendientes.tsv` = **`240`**
   (230 ids examinados, control positivo). El encargo pre-asignó `FP-244..246`
   pero ordenó «re-deriva el máximo al arrancar … toma el primer libre y dilo»:
@@ -359,13 +368,18 @@ otro archivo se sumó.
 `p` —; no toca el marco ni `codificacion-R-v1_0.tsv`. **La fila de `TRA-M-02`
 la escribe `MAESTRA35-L4` en ciego.**
 
-5. **Renumeración, ejecutada.** Mesa avisó que `PR #471` competía por
-   `ADR-290`/`FP-243`/`FP-244`. Quien fusionó primero fue otro: `PR #473`
-   (`MAESTRA35-N3`) tomó `ADR-290` durante la sesión. Re-derivado y renumerado
-   a **`ADR-292`**; los dos `FP` se conservan porque siguen libres. El merge de
-   `origin/main` = `fb3aa8e` dejó **291 ADR únicos, máximo 291, cero
-   duplicados** — el defecto que la casa ya midió (un merge limpio puede dejar
-   dos `**ADR-N` iguales) se comprobó por comando, no a ojo.
+5. **Renumeración, ejecutada dos veces.** Mesa avisó que `PR #471` competía
+   por los mismos números, y fusionaron los dos actos que podían: `PR #473`
+   (`MAESTRA35-N3`) tomó `ADR-290`, y después `PR #471` (`MAESTRA35-L1`) se
+   llevó `ADR-291` **y** `FP-241`/`FP-242`. Resultado final: **`ADR-292`**,
+   **`FP-243`**, **`FP-244`**. Tras el segundo merge (`origin/main` =
+   `57a365e`) el árbol queda con **292 ADR únicos, máximo 292, cero
+   duplicados** — `ADR-290` (`N3`), `ADR-291` (`L1`) y `ADR-292` (este acto)
+   presentes una vez cada uno — y `forense/firmas-pendientes.tsv` con **235
+   filas, 9 columnas en todas, cero ids duplicados**, donde conviven
+   `FP-241`/`FP-242` (de `L1`) y `FP-243`/`FP-244` (de este acto), las cuatro
+   `FIRMADA`. El defecto que la casa ya midió —un merge limpio puede dejar dos
+   `**ADR-N` iguales— se comprobó por comando las dos veces, no a ojo.
 
    La línea `L0` (**89 288 caracteres en una sola línea**) **no** se resolvió
    por sufijo común: el primer intento lo hizo así y una aserción lo atrapó
@@ -378,8 +392,18 @@ la escribe `MAESTRA35-L4` en ciego.**
    cola=56 resultado=58 = 57+57−56`, y `ADR-292`/`ADR-290`/`ADR-289` abren
    **una** anotación cada uno.
 
-**Suite sobre el árbol fusionado** — `python3 tests/check.py --baseline` →
-**LÍNEA BASE VERDE**, `exit 0`, núcleo **19 FAIL · 166 WARN**. Base `fb3aa8e`
-medida en worktree separado: **19 FAIL · 166 WARN**. **Delta de este acto: 0
-FAIL, 0 WARN** — los `+2 WARN` que había abierto desaparecieron al pasar
-`FP-243`/`FP-244` de `ABIERTA` a `FIRMADA`.
+En el **segundo** merge el ancla fue `` `ADR-290` (derivado ``, única en ambos
+lados; control: anotaciones `mia=58 suya=58 cola=57 resultado=59 = 58+58−57`, y
+`ADR-292`/`291`/`290`/`289` abren **una** anotación cada uno.
+
+**Entró desde `origin/main` sin abrirse** (lista ciega, `ADR-46`): el encargo y
+las tres notas de `MAESTRA35-L1`, y las filas que `L1` appendeó a
+`codificacion-R-v1_0.tsv`. Este acto **no appendeó nada ahí** —sus cuatro
+celdas están fuera de lote—, así que el append de `L1` entra limpio y **no hay
+nada que re-aplicar al pie**, pese a que el encargo lo preveía.
+
+**Suite sobre el árbol dos veces fusionado** — `python3 tests/check.py
+--baseline` → **LÍNEA BASE VERDE**, `exit 0`, núcleo **19 FAIL · 166 WARN**.
+Base `57a365e` medida en worktree separado: **19 FAIL · 166 WARN**. **Delta de
+este acto: 0 FAIL, 0 WARN** — los `+2 WARN` que había abierto desaparecieron al
+pasar sus dos hallazgos de `ABIERTA` a `FIRMADA`.
