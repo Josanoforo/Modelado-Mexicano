@@ -19508,3 +19508,768 @@
     NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
     todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
     (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: iec_coahuila_2017_ayuntamientos_x_municipio_xlsx
+  usado_para: 'Coahuila 2017 (ayuntamientos, jornada NO concurrente): computo por municipio
+    con TOTAL y LISTA_NOMINAL. Es el ANTES de la cohorte g2018'
+  url_origen: https://iec.org.mx/v1/images/computos/AYUNTAMIENTOS%20X%20MUNICIPIO_2017.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2017_ayuntamientos_x_municipio.xlsx
+  sha256: b9ab92861419718ab29809d1906db7e7d02b3bd3685d76c447e76687e069189e
+  tamano_bytes: 97081
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iec_coahuila_2017_ayuntamientos_x_casilla_xlsx
+  usado_para: 'Coahuila 2017 por casilla: control de reagregacion contra la tabla por municipio'
+  url_origen: https://iec.org.mx/v1/images/computos/Ayuntamiento_Xcasilla.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2017_ayuntamientos_x_casilla.xlsx
+  sha256: e672f2db15138cd1c15ea24f55352553236596831ba37424c8e277d298b8de71
+  tamano_bytes: 1923086
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iec_coahuila_2018_ayuntamientos_x_municipio_xlsx
+  usado_para: 'Coahuila 2018 (ayuntamientos, jornada CONCURRENTE con la federal): computo
+    por municipio con TOTAL DE LA VOTACION y LISTA_NOMINAL. Es el DESPUES de la cohorte g2018'
+  url_origen: https://iec.org.mx/v1/images/procesoElectoral/computos2018/Resultados_de_la_votacion_distribuida_.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2018_ayuntamientos_x_municipio.xlsx
+  sha256: 776720d70b6a42d59b2eb103b9b54203754cf5f2e6d064e5a495e74c7cbf3570
+  tamano_bytes: 141210
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iec_coahuila_2018_ayuntamientos_x_casilla_xlsx
+  usado_para: 'Coahuila 2018 por casilla: control de reagregacion'
+  url_origen: https://iec.org.mx/v1/images/procesoElectoral2018/computos2018_XCasilla___.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2018_ayuntamientos_x_casilla.xlsx
+  sha256: c8a991f0b8ec74754aea9c1aeaac7463fa9f5369c87c7bc778a39e8dbb03237d
+  tamano_bytes: 685388
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iec_coahuila_2021_ayuntamientos_x_municipio_xlsx
+  usado_para: 'Coahuila 2021 (ayuntamientos, concurrente): transicion STAY-ON, aporta la tendencia
+    secular'
+  url_origen: https://iec.org.mx/v1/images/proceso2021/computos/Computos_Ayuntamientos2021_XMun.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2021_ayuntamientos_x_municipio.xlsx
+  sha256: 685a3007849bc30ce423644eb302c5d6f104f5d695c060f2bcd29008d04a79dd
+  tamano_bytes: 440940
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iec_coahuila_2021_ayuntamientos_x_casilla_xlsx
+  usado_para: 'Coahuila 2021 por casilla: control de reagregacion'
+  url_origen: https://iec.org.mx/v1/images/proceso2021/computos/Computos_Ayuntamientos2021_XCasilla.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2021_ayuntamientos_x_casilla.xlsx
+  sha256: 8dbb19aeb9ef60ca7389eb67e0a48e56befa2d79db60201c4bb6dd913bcca6e2
+  tamano_bytes: 588904
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2017_ayuntamientos_xlsx
+  usado_para: 'Nayarit 2017 (presidencias y sindicaturas, jornada NO concurrente): ANTES de
+    la cohorte g2021'
+  url_origen: https://ieenayarit.org/PDF/elecciones/2017/PyS17.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2017_ayuntamientos.xlsx
+  sha256: ca7f075ad640420eccb007dfb5e74201580d19be8d70e9746b8fc469971ef06e
+  tamano_bytes: 442554
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2021_ayuntamientos_xlsx
+  usado_para: 'Nayarit 2021 (concurrente con la federal INTERMEDIA): DESPUES de la cohorte
+    g2021. Es el contraste que separa concurrencia de anio presidencial'
+  url_origen: https://ieenayarit.org/PDF/elecciones/2021/PyS21.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2021_ayuntamientos.xlsx
+  sha256: 900704a33a1b9284e5483630a048a6870962b6a3de6f88e4a5bdffd3b37e1892
+  tamano_bytes: 328693
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2024_ayuntamientos_xlsx
+  usado_para: 'Nayarit 2024 (concurrente con la presidencial): transicion STAY-ON'
+  url_origen: https://ieenayarit.org/PDF/elecciones/2024/PyS24.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2024_ayuntamientos.xlsx
+  sha256: 08282d38971a89eef746c01f4bd0dfbdeba2669112bae51985a4df2848105571
+  tamano_bytes: 282020
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2017_lista_nominal_pdf
+  usado_para: 'Nayarit 2017: LISTADO NOMINAL POR MUNICIPIOS. Denominador de la participacion
+    municipal, que la tabla de computos NO trae'
+  url_origen: https://ieenayarit.org/PDF/2017/LN2017.pdf
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2017_lista_nominal.pdf
+  sha256: 2d0c4094f4d939de6654c5cf9338c2ae89f61f94e4c427a3bca06e92a1866659
+  tamano_bytes: 120441
+  formato: pdf
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2021_lista_nominal_pdf
+  usado_para: 'Nayarit 2021: listado nominal por municipios (denominador)'
+  url_origen: https://ieenayarit.org/PDF/2021/LN2021.pdf
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2021_lista_nominal.pdf
+  sha256: 33e55bf3c6d86565c9e1606f7cc204bc9a9e3f2098d5153808fb96a5db9ab506
+  tamano_bytes: 515465
+  formato: pdf
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2024_lista_nominal_pdf
+  usado_para: 'Nayarit 2024: listado nominal por municipios (denominador)'
+  url_origen: https://ieenayarit.org/PDF/2024/LN2024.pdf
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2024_lista_nominal.pdf
+  sha256: 4a85bd057bef94f5fd4d66ba4d53f33f71c37512e9f0d4ef9bf3aeee6e32fb73
+  tamano_bytes: 135060
+  formato: pdf
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieez_zacatecas_2018_computos_municipales_xlsx
+  usado_para: 'Zacatecas 2018 (ayuntamientos, concurrente): computos municipales'
+  url_origen: https://ieez.org.mx/PE2018/Ganadores/Resultados%20de%20los%20C%C3%B3mputos%20Municipales%202017-2018.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieez.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/ieez_zacatecas_2018_computos_municipales.xlsx
+  sha256: e966430eb71c264fd65ae44ebd2786a701e319050f43dfd524cef597eafae6da
+  tamano_bytes: 145711
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieez_zacatecas_2018_ayto_x_casilla_xlsx
+  usado_para: 'Zacatecas 2018 por casilla, con LISTA NOMINAL CASILLA: es la via del denominador'
+  url_origen: https://ieez.org.mx/PE2018/Ganadores/Resultados%20Electorales%20de%20Ayuntamientos%202017-2018%20por%20casilla.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieez.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/ieez_zacatecas_2018_ayto_x_casilla.xlsx
+  sha256: ee8841d5a0f5e23db087aef58f3482b0a7114ac0db2f70b6fa667765d02946d0
+  tamano_bytes: 1171026
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieez_zacatecas_2021_computos_xlsx
+  usado_para: 'Zacatecas 2021: computo por casilla de gubernatura, diputaciones y AYUNTAMIENTOS
+    con LISTA_NOMINAL_CASILLA'
+  url_origen: https://ieez.org.mx/PE2021/Doc/C%C3%93MPUTO%20DE%20ELECCI%C3%93N%20PROCESO%20ELECTORAL%202020-2021.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieez.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/ieez_zacatecas_2021_computos.xlsx
+  sha256: 4c22395b7929e638ff7bc7f32b616885dffbe0afefb166a8c2f0cb9a4f0d0d66
+  tamano_bytes: 2105678
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieez_zacatecas_2024_computos_xlsx
+  usado_para: 'Zacatecas 2024: ayuntamientos por casilla con LISTA NOMINAL'
+  url_origen: https://ieez.org.mx/PE2024/Resultados%20computos%20eleccion%20de%20Ayuntamiento%20y%20Diputaciones%20por%20casilla%20y%20municipio.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieez.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/ieez_zacatecas_2024_computos.xlsx
+  sha256: 304bcfcac0b0e71776caf724828ca02b43e3da48c0a8a62d0501fdfec3e8f0d3
+  tamano_bytes: 1213243
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iepc_durango_2016_resultados_xlsx
+  usado_para: 'Durango 2016 (ayuntamientos, NO concurrente): hoja ''2016 Ayuntamiento Dgo''
+    con TOTAL y L. NOMINAL. Durango es la UNICA entidad NUNCA TRATADA de la ventana'
+  url_origen: https://iepcdurango.mx/x/documentos/2020/organizacion/resultados_2016.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iepcdurango.mx (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iepc_durango_2016_resultados.xlsx
+  sha256: bd8d2b3a8a5194f1ae3165028bd4e36a313dc0ec7fdcc90aa0814c854b1e7fab
+  tamano_bytes: 36675511
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iepc_durango_2019_x_casilla_zip
+  usado_para: 'Durango 2019 (ayuntamientos, NO concurrente): CSV en formato SEE con LISTA_NOMINAL
+    por casilla. Con 2016 forma la transicion STAY-OFF, el contrafactual puro del diseno'
+  url_origen: https://www.iepcdurango.mx/x/img/Resultados_por_casilla_proceso_2018-2019.zip
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iepcdurango.mx (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iepc_durango_2019_x_casilla.zip
+  sha256: 9b6ad8a89cbe5404659f5ffcf63b22c1fcf1012044147c9e5991e74cea3296e1
+  tamano_bytes: 60634
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieeh_hidalgo_2016_ayuntamientos_rar
+  usado_para: 'Hidalgo 2016 (ayuntamientos, NO concurrente): ANTES de la cohorte g2024. RAR,
+    sin extractor en esta caja'
+  url_origen: https://www.ieehidalgo.org.mx/images/Procesos/Proceso%202015-2016/Ayuntamientos/AyuntamientosC.rar
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieehidalgo.org.mx (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/ieeh_hidalgo_2016_ayuntamientos.rar
+  sha256: 8d0bd16e18d0e10566e5d32fd0bc165e7a0eb89bd9dc25d7a18e354630c82aba
+  tamano_bytes: 444642
+  formato: rar
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieeh_hidalgo_2020_computos_x_casilla_xlsx
+  usado_para: 'Hidalgo 2020 (ayuntamientos, NO concurrente; jornada aplazada al 18/oct/2020
+    por COVID): 84 hojas por municipio, SIN columna de lista nominal'
+  url_origen: https://www.ieehidalgo.org.mx/images/Procesos/Proceso_2019-2020/Computos/DETALLEPORCASILLACOMPUTOS2020%20%283%29.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieehidalgo.org.mx (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/ieeh_hidalgo_2020_computos_x_casilla.xlsx
+  sha256: 1491d182ecb46952a2e2c72f9183a78b2b5a1ebaedfc7db32dec552172997f8a
+  tamano_bytes: 524650
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieeh_hidalgo_2024_computos_zip
+  usado_para: 'Hidalgo 2024 (ayuntamientos, CONCURRENTE): ZIP con Ayuntamientos.zip, 84 XLSX
+    por municipio, SIN columna de lista nominal'
+  url_origen: https://www.ieehidalgo.org.mx/wp-content/uploads/2026/01/ResultadosComputos.zip
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieehidalgo.org.mx (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/ieeh_hidalgo_2024_computos.zip
+  sha256: 4f24ed22318aa392628e3dfdb34740888cf92c42757c8bfd517b3d5d9627fff2
+  tamano_bytes: 2384409
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun1_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 1 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_1.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun1.xlsx
+  sha256: 330d7515525bf6c72e4b073d44409051966334a8d179d33a9a3d44491f6d764e
+  tamano_bytes: 93827
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun1_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 1 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_1.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun1.xlsx
+  sha256: 6c4d1b6c50ff27f49c90a07534e7c4da5e04713cbe30629056d97799a8a0c878
+  tamano_bytes: 129641
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun2_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 2 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_2.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun2.xlsx
+  sha256: 6143730e16fe609550601a03bc3ded5b663c12c22ba5efce73449b45ff1ac1eb
+  tamano_bytes: 15520
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun2_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 2 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_2.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun2.xlsx
+  sha256: 5f4946fafa0dbc4b6a72afa4d814af53e1de6d805e2a292eaa7527d9b64107f1
+  tamano_bytes: 15469
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun3_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 3 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_3.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun3.xlsx
+  sha256: dfd79a9a320834b9fdd07a7a2d19ac02820b4131920e4637c9f89214ebf51684
+  tamano_bytes: 16708
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun3_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 3 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_3.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun3.xlsx
+  sha256: 6b2a061429b9c0d53b095de3b9be305def5156e9cc804b1f115fab30028297bc
+  tamano_bytes: 17377
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun4_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 4 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_4.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun4.xlsx
+  sha256: 0a136b6753b6d7f9ce81e01aff07a16c4b34df8d1aca30def932b5930c0cfd2a
+  tamano_bytes: 12669
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun4_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 4 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_4.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun4.xlsx
+  sha256: e23594490f531e97a8740bc426387f340db28c1332cb93eb55d4e37bd7bae340
+  tamano_bytes: 12212
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun5_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 5 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_5.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun5.xlsx
+  sha256: 689583678a7d5a4ce094e0299f8e54a78950d9d0bef8f545c8542087788a3b89
+  tamano_bytes: 22264
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun5_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 5 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_5.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun5.xlsx
+  sha256: cf3212e4656124bd1746f50957465f66605d9ea81f4cf0a3b5628b6308cf16b3
+  tamano_bytes: 23655
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun6_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 6 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_6.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun6.xlsx
+  sha256: e1fb2eba87fe078c5205592767ff44ca2076c29b630adc147926b7a51eb84bbb
+  tamano_bytes: 15187
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun6_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 6 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_6.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun6.xlsx
+  sha256: 136ed75ff05822cd58249254d8e9ab86923f6586698712ea1f7f972a462f4141
+  tamano_bytes: 15854
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun7_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 7 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_7.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun7.xlsx
+  sha256: 3c551e139ee3024df517a8b6e9f2b2bfc70796dd4fc49899722cda081fc2c1e9
+  tamano_bytes: 15850
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun7_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 7 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_7.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun7.xlsx
+  sha256: 8b951f7c220cbda20b2744a1a0796fd42bd552ba7d462645148801b3c32850b2
+  tamano_bytes: 17344
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun8_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 8 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_8.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun8.xlsx
+  sha256: 7a084095cb9c91ab1c1ea55ecc54768fbc834f52e68477ee0975a9328aec0d2e
+  tamano_bytes: 12384
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun8_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 8 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_8.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun8.xlsx
+  sha256: 86f111ff24ec5f5697f739bf1011ebb4d632fca1132a880ab31432619e1e7864
+  tamano_bytes: 11814
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun9_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 9 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_9.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun9.xlsx
+  sha256: 78ebb64a8e76fca95a8d361d777c94783aede796770f37e1b90cba973da7a2e6
+  tamano_bytes: 13192
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun9_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 9 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_9.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun9.xlsx
+  sha256: c5aaabff33291b384457de660c9063c5c67cb9262bf7021f0f0bbbb93d331416
+  tamano_bytes: 12827
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun10_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 10 (ayuntamientos, NO concurrente, ANTES de
+    la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_10.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun10.xlsx
+  sha256: c7b568ccf2e51421eb9238909ba4b0f10cd40c22780934db32c4e34c4e012ee5
+  tamano_bytes: 13473
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun10_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 10 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_10.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun10.xlsx
+  sha256: dfce5ba3715d63c8810ab3046e012773f4c287490f35e6c5c2187b71238c4afc
+  tamano_bytes: 13189
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun11_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 11 (ayuntamientos, NO concurrente, ANTES de
+    la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_11.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun11.xlsx
+  sha256: bf53df9f66afe77d278915b10ceea0b33209c077392f8d9fd6ec7b93f8a2a86e
+  tamano_bytes: 15295
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun11_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 11 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_11.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun11.xlsx
+  sha256: 139c68793895b7cd5a24941857e598ef5a1365668687f961e4fec845cea81f0a
+  tamano_bytes: 17044
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
