@@ -28,6 +28,28 @@ por ACTO MAESTRA35-N2 (F-DD v1.1); la celda sigue EXCLUIDA de este ciclo
 por falta de R (bloqueo ENNViH: lector `.dta` + join `fac_3b` sin
 estrato/UPM en tabla, MAESTRA34-L2 §4); sucesor de caja declarado.
 
+**Append (2/sep/2026, ACTO MAESTRA35-L5 · R-DIN-M-01) — firma de mesa `d2`, verbatim:**
+«Exclusión LEVANTADA por firma de mesa d2 (2/sep/2026): M en
+corridas-M/M-DIN-M-01__v1_2.json, R en corridas-R/DIN-M-01.json con
+DISEÑO-APROXIMADO (FP-249). N3/N5 puntúan 14 de 14, con la reserva de (a).»
+
+La reserva de (a) es la firma `d1` de mesa sobre `FP-249`, también verbatim:
+«una R con DISEÑO-APROXIMADO SÍ puntúa, con la reserva escrita en el JSON y en
+el scoreboard: EE_R es cota inferior (factor de diseño ≈1.20 medido;
+conglomerado de viviendas no público). El scoreboard reporta z con las DOS EE
+(aproximada y sin diseño); si el veredicto de la celda cambia entre las dos, la
+celda se marca AMBIGUA-POR-DISEÑO y no cuenta como puntuada. Si no cambia,
+cuenta.»
+
+Factor de diseño medido, exacto: `0.004821494748362768 / 0.004018626879101259`
+= **1.1997866170250338**. Escrito en `corridas-R/DIN-M-01.json` por este mismo
+acto, como `d1` exige. La mitad del scoreboard la ejecutan `MAESTRA35-N3`/`N5`,
+no este acto.
+
+Nada de lo anterior a este bloque se edita: la instrucción «puntúa 13 de 14» de
+`DF-a` y el append de `MAESTRA35-N2` se conservan como historia. Quien lea esta
+sección lee la secuencia completa — exclusión, M sin R, y levantamiento.
+
 ## Sucesor
 
 Fila de tablero abierta: `FP-234` — «F-DD rangos de ola», gateada a
