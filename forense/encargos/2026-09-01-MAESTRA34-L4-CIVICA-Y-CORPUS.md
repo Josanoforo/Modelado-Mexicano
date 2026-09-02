@@ -30,3 +30,47 @@ FP/ADR CANDIDATOS: deriva al arrancar (N4/N7 fusionan en paralelo; renumera quie
 CONTADOR: payloads OBTENIDO +N · fichas corregidas +1 · reglas con Δ MEDIDO +1 si P3 corre completo · cero cargas al motor.
 LO QUE NO HACE: no carga al motor (sello de mesa); no re-descarga ENDIREH; no toca corridas ni el marco; no instrumenta --verifica; no baja SICEE (si mesa ya lo dejó en Descargas MX, lo registra como P1-(v)).
 SUCESORES: sello de la regla cívica (dirección redacta con firma de mesa) · MAESTRA34-N5 hereda CNGMD y la cívica para Ola 6.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA34-L4 · CIVICA-Y-CORPUS` el 2/sep/2026 en entorno
+**UBUNTU**, con la skill `/acto` (`ADR-237`). `ADR-283`. Rama
+`acto/maestra34-l4-civica-y-corpus`.
+
+Las cuatro piezas corrieron completas:
+
+- **P1** — 16 payloads `OBTENIDO` con A.7 y las tres capas de registro
+  (manifiesto 937→953, cola `OBTENIDO` 54→58, +2 relaciones `CONFIRMADA` contra
+  `N25`, que ES `R7.1`). Las DOS mitades que `ADR-278` y `ADR-280` dieron por
+  inexistentes estaban en el portal de cada OPLE. `F232-a` contestada con fuente
+  primaria: **no hubo municipios sin comicio local el 2/jun/2024** en ninguno de
+  los dos estados → robustez (a) `NO-APLICA`, no se compró nada más.
+- **P2** — `FP-231` → `EJECUTADA`. La letra de `F231-a` era mecánicamente
+  imposible (`--registra` aborta por dedup) y su re-derivación existía desde el
+  6/ago; lo pendiente era retirar la entrada vieja. `--verifica` del corpus pasa
+  de `no_coincide=1` a `no_coincide=0`.
+- **P3** — dos commits. **Δ participación municipal 2024−2023 = `+10.4790 pp`,
+  `IC95 [+9.6890, +11.2652]`, n = 163 de 163**, IC que no cruza cero. Entrada
+  `civico.participacion.contingente` en `milpa/tramite-ola5-propuesta-v0.yaml`
+  como `MEDIDO·Δ`, `tier: PENDIENTE-DE-MESA`. Motor intocado.
+- **P4** — `FP-232` → `EJECUTADA` con la reconciliación firmada; cascada
+  completa; sello para mesa **redactado y no lanzado** en formato RH.
+
+Desviaciones del encargo, declaradas:
+
+1. **`F231-a` no se pudo ejecutar al pie de la letra** — el `--registra` que
+   ordena aborta por dedup de contenido y la re-derivación ya existía. Se ejecutó
+   su intención (retirar la vieja con nota que cite `FP-231` y `ADR-280`) y se
+   dejó la forma de la retirada declarada para que mesa pueda revocarla.
+2. **El crosswalk 2016 dejó de ser necesario para el contraste principal.** El
+   encargo lo prescribía para llevar el PREP federal a municipio porque, cuando
+   se redactó, faltaba la mitad local de 2024. `P1` la trajo, así que el
+   principal es local-contra-local y el crosswalk se ejecutó igualmente como
+   **lectura secundaria declarada**, con su conteo de secciones sin
+   correspondencia (A.13: 7.77 % en Coahuila, 6.02 % en el Edomex).
+3. **El id sugerido para la entrada re-derivada de ENDIREH
+   (`endireh_2016_bd_mujeres_v2`) no se usó**: el script no permite crearlo, y el
+   id que sobrevive es el que `ENCARGO REPAIR-1` ya había derivado.
+
+Detalle: `forense/notas/2026-09-02-MAESTRA34-L4-cierre.md` y
+`forense/notas/2026-09-02-MAESTRA34-L4-P3-spec.md`.
