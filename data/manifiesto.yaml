@@ -20273,3 +20273,59 @@
     sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
     HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
     que abrir el contenedor.'
+
+- id: ine_cg_informe_vinculacion_pel2014_2015_abr_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: Informe integral de la Comision de Vinculacion sobre
+    los mecanismos de coordinacion de los PEL 2014-2015 (CG ordinaria 29/abr/2015). Se examino
+    buscando la tabla de cargos por entidad del ciclo 2014-2015 y NO la trae -- es la evidencia
+    de por que las 16 entidades de 2015 quedan INDETERMINADO en data/p0-calendario-ayuntamientos-v1_0.tsv
+    y no ''sin eleccion''.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/110902
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/informe2015_CGor201504-29.pdf.txt
+  sha256: 6f68f1282358c39695cef46356cf83eacdeeca85171089f99c36244af20ea426
+  tamano_bytes: 151401
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Negativo documentado: A.13 sobre el ciclo 2014-2015. Es el unico ciclo cuyos anexos
+    por entidad no estan publicados como hoja de calculo en el repositorio.'
+
+- id: ine_cg_informe_vinculacion_pel2014_2015_mar_anexo_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: Anexo 1 del informe integral de la Comision de Vinculacion,
+    PEL 2014-2015 (CG extraordinaria 11/mar/2015). Se examino buscando la tabla de cargos
+    por entidad del ciclo 2014-2015 y NO la trae -- es la evidencia de por que las 16 entidades
+    de 2015 quedan INDETERMINADO en data/p0-calendario-ayuntamientos-v1_0.tsv y no ''sin eleccion''.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/110879
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/informe2015_anexo1.pdf.txt
+  sha256: f7c186b60e494a6be1bad908138a4cd10caf9e1f481cfce355319e89a2b417ef
+  tamano_bytes: 576535
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Negativo documentado: A.13 sobre el ciclo 2014-2015. Es el unico ciclo cuyos anexos
+    por entidad no estan publicados como hoja de calculo en el repositorio.'
+
+- id: ine_cg_informe_final_pel2014_2015_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: Informe final de seguimiento al Plan Integral y Calendarios
+    de Coordinacion con los OPLE con eleccion local en 2015 (CG ordinaria 29/jul/2015). Se
+    examino buscando la tabla de cargos por entidad del ciclo 2014-2015 y NO la trae -- es
+    la evidencia de por que las 16 entidades de 2015 quedan INDETERMINADO en data/p0-calendario-ayuntamientos-v1_0.tsv
+    y no ''sin eleccion''.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/110960
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/informefinal2015.pdf.txt
+  sha256: 8e355e28ddfa97e4d0cef860a517cbd6dbb17282d6b8a52ebb0fa1fc71736540
+  tamano_bytes: 19381
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Negativo documentado: A.13 sobre el ciclo 2014-2015. Es el unico ciclo cuyos anexos
+    por entidad no estan publicados como hoja de calculo en el repositorio.'
