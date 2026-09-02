@@ -21,7 +21,7 @@ LO QUE NO HACE: no carga al motor (sello de mesa, formato RH al cierre); no toca
 ## CONSUMIDO
 
 Ejecutado por `ACTO MAESTRA34-L5 · GOBIERNO-DIGITAL-EVASION-AHORRO` el
-2/sep/2026 en entorno **UBUNTU**, con la skill `/acto` (`ADR-237`). `ADR-286`.
+2/sep/2026 en entorno **UBUNTU**, con la skill `/acto` (`ADR-237`). `ADR-287`.
 Rama `acto/maestra34-l5-gobierno-digital-evasion-ahorro`, **PR #467** (abierto, no
 fusionado: el merge es de mesa).
 
@@ -65,7 +65,7 @@ re-verificadas contra el árbol real: **las cinco verdaderas**, incluida «filas
   doble» y **no dispara** `REFUTADA-POR-DATO` — decisión congelada en la spec
   **antes** de medir, por acervo-contra-flujo y por universo.
 
-**Defecto encontrado en un acto ya sellado, reportado y no reparado** (`FP-237`):
+**Defecto encontrado en un acto ya sellado, reportado y no reparado** (`FP-238`):
 `ID_TRA` no es la llave de `encig2025_04_sec_7.csv` — lo es `(ID_TRA, NT_TIPO)` —
 y la fila `TRA-M-13` de `codificacion-R-v1_0.tsv` (`ACTO MAESTRA34-L1`) afirma
 duplicados exactos que no existen; su deduplicación descartó 3 835 eventos reales.

@@ -33,7 +33,7 @@ reglas_propuestas:
       # el generador G4 (exposicion_violencia/confianza_institucional[justicia])
       # ya trae mecanismo declarado en canon/modelo-decision-v4_0.md, no se
       # inventa uno nuevo aqui.
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS, firma DS1 (mesa, 2/sep/2026) -- cargada a milpa/tramite.yaml, tier FUERTE en el motor.
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["ENVIPE2025", "coeficientes_generador_medidos.G4_exposicion_violencia"]
     ola_calibracion: "ENVIPE 2025 (unica ola disponible para este universo)"
@@ -52,7 +52,7 @@ reglas_propuestas:
       - {conducta: tiene_ahorros, p: 0.174804, clase: "MEDIDO·p(tasa base ponderada)"}
       - {conducta: no_tiene_ahorros, p: 0.825196, clase: "MEDIDO·p(tasa base ponderada)"}
     porque: {generador: [G3], mecanismo: PENDIENTE-DE-MESA}
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS, firma DS1 (mesa, 2/sep/2026) -- cargada a milpa/tramite.yaml, tier MEDIA en el motor (nota: re-medición en ENIF 2024 en curso, MAESTRA34-L5 P4, para subir a FUERTE).
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["ENNViH/MxFLS_olas2-3", "forense/notas/2026-08-24-cal-g3-puntual-cierre.md"]
     ola_calibracion: "ENNViH ola 2 (2005-06) -- ponderador fac_3b vive en esta ola"
@@ -73,7 +73,7 @@ reglas_propuestas:
       - {conducta: recibe_dinero_familiares_para_vejez, p: 0.457707, clase: "MEDIDO·p(tasa base ponderada)"}
       - {conducta: no_recibe_dinero_familiares_para_vejez, p: 0.542293, clase: "MEDIDO·p(tasa base ponderada)"}
     porque: {generador: [G3], mecanismo: PENDIENTE-DE-MESA}
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS, firma DS1 (mesa, 2/sep/2026) -- cargada a milpa/tramite.yaml, tier FUERTE en el motor.
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["ENIF2024", "condicionales_escalares.familismo_apoyo"]
     ola_calibracion: "ENIF 2024 (unica ola)"
@@ -281,7 +281,7 @@ reglas_propuestas:
     porque: {generador: [G5], mecanismo: PENDIENTE-DE-MESA}
       # generador G5 declarado por el propio §3.5 ("PORQUE G5"); el mecanismo
       # causal no se re-deriva en este acto (fuera de perimetro).
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # corrige omision de MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS (2/sep/2026): cargada a milpa/tramite.yaml por PR #449/ACTO MAESTRA34-N1, tier FUERTE, y este campo nunca se actualizo pese a que la cabecera de arriba ya decia SELLADA.
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["ENIGH2022", "ENIGH2012", "ENIGH2014", "ENIGH2016", "ENIGH2018", "ENIGH2020", "canon/modelo-decision-v4_0.md §3.5"]
     ola_calibracion: "ENIGH 2022 (mas reciente de 6 olas bienales disponibles; las otras 5 van en serie_olas, NO promediadas)"
@@ -331,7 +331,7 @@ reglas_propuestas:
       # §3.1 declara el mecanismo en prosa ("el ingreso estable baja el costo
       # esperado de comprometerse a un instrumento de horizonte largo") pero NO
       # nombra un generador G#. No se le asigna uno: eso es de mesa.
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # corrige omision de MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS (2/sep/2026): cargada a milpa/tramite.yaml por PR #449/ACTO MAESTRA34-N1, tier FUERTE, y este campo nunca se actualizo pese a que la cabecera de arriba ya decia SELLADA.
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["ENFIH2019", "data/raw/enfih2019/enfih_2019_fd.xlsx hoja TConcentradora", "canon/modelo-decision-v4_0.md §3.1"]
     ola_calibracion: "ENFIH 2019 (unica ola de ENFIH en el corpus)"
@@ -592,7 +592,7 @@ reglas_propuestas:
   # ══════════════════════════════════════════════════════════════════
 
   - id: civico.participacion.contingente
-    situacion: PENDIENTE-DE-MESA
+    situacion: APARCADA-HASTA-IDENTIFICACION  # DC1-d (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS
     si:
       disparadores: PENDIENTE-DE-MESA  # el dato no dicta una condicion logica de
         # disparo. Lo medido es una diferencia de tasa entre dos contextos
@@ -603,7 +603,24 @@ reglas_propuestas:
     porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
       # No se asigna generador: R7.1 vive en el modelo con mecanismo propio
       # ("peso percibido del acto") y este acto NO lo re-deriva ni inventa uno.
-    tier: PENDIENTE-DE-MESA
+    tier: MEDIA  # DC1-d (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS
+    nota: >
+      DC1-d (mesa, 2/sep/2026), firma verbatim "d": la cifra de MAESTRA34-L4
+      (Δ +10.4790 pp, IC95 [+9.6890, +11.2652], n=163) se acepta como MEDIDA,
+      tier MEDIA, situacion APARCADA-HASTA-IDENTIFICACION; NO se carga al
+      motor. Razón verbatim de MAESTRA34-L4 (reserva de la propia medición,
+      no de mesa): "correlación limpia, confundida con el año presidencial"
+      -- el diseño entre años (local 2023 no concurrente vs local 2024
+      concurrente) no separa el efecto de concurrencia del de jerarquía del
+      cargo (gubernatura 2023 vs ayuntamiento 2024) ni del de calendario
+      (elección presidencial de por medio). Benchmark externo declarado por
+      DC1: Alemania ≈10 pp (Leininger, Rudolph & Zittlau 2018) y EE.UU. 36 pp
+      (Hajnal & Lewis 2003) de efecto de concurrencia electoral sobre
+      participación -- la cifra medida (+10.48 pp) es del orden del caso
+      alemán, muy por debajo del caso estadounidense. El sucesor es el
+      diseño escalonado de la homologación 2015-2021 (MAESTRA34-L6), con el
+      libro del TEPJF "Elecciones concurrentes y participación electoral en
+      México, 1991-2018" como benchmark.
     falsable_si: PENDIENTE-DE-MESA
     fuente:
       - "IEC Coahuila, computos finales Gubernatura 2023 y Ayuntamientos 2024 por municipio"

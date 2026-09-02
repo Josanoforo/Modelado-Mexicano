@@ -172,3 +172,12 @@ si en un mes la skill no evita ni un solo acto perdido por compuerta, o el
 tamaño mediano de encargo no baja al menos 50%, o un lote deja pasar un
 defecto de contenido que el formato largo habría atrapado — a juicio de
 mesa, con el caso citado —, se revierte la pieza que falló y se anota.
+
+Enmienda fechada (2/sep/2026, firma DE1, `ACTO MAESTRA34-N9 ·
+PROPAGA-FIRMAS-Y-SELLOS`): D-12 (formato corto) se conserva; su meta
+declarada se re-declara al valor medido por `MAESTRA34-E1` (`PR #463`)
+— reducción −20.6%, no el ≤40% original — sin abrir ningún acto de
+revisión de reglas operativas en adelante (los falsadores de operación
+se leen en el digesto, no en actos con fecha). Registrada también en
+`forense/hallazgos.md` bajo `PARA-v2.13`: `instrucciones-proyecto-v2_12.md`
+no se edita acto por acto (firma de mesa, 2/sep/2026).

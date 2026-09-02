@@ -2374,6 +2374,12 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS, 2/sep/2026: encargo
+    # archivado VERBATIM (A.3). El A.8 cita "FP-226 y FP-222: ABIERTA -> se
+    # cierran (E1 corrio, #463)" -- ese "E1" pelado es MAESTRA34-E1, el mismo
+    # acto de revision de falsadores ya censado en canon/registro-rotulos.tsv
+    # (ver precedente MAESTRA34-L4 abajo). El encargo NO se edita.
+    "forense/encargos/2026-09-02-MAESTRA34-N9-PROPAGA-FIRMAS-Y-SELLOS.md",
     # ACTO MAESTRA34-L5 · GOBIERNO-DIGITAL-EVASION-AHORRO, 2/sep/2026: encargo
     # archivado VERBATIM (A.3). Su bloque A.8 cita "E18-P1 filas 3-4: sin
     # generador declarado" -- ese "E18" pelado lo escribio direccion al
