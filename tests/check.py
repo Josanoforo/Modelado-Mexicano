@@ -3517,6 +3517,18 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # direccion (Fable).
     "forense/encargos/cola/2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md",
     "forense/encargos/cola/2026-09-01-MAESTRA34-N3-AGREGA-2.md",
+    # PR [COLA] encola MAESTRA34-N4/N5, 2/sep/2026: mismo patron y mismo
+    # precedente que la entrada de arriba. El encargo N4 (LISTO PARA
+    # LANZAR, archivado directo en forense/encargos/) cita "el sha256 de
+    # E17" y "la nota de E17" (ACTO MAESTRA33-E17, sello de
+    # runner_l_cli.py) y el encargo N5 (GATED, archivado en
+    # forense/encargos/cola/) cita "E14 cierre" al narrar la evaluacion
+    # de Ola 6 que relanza (ACTO MAESTRA33-E14, ADR-265) -- "E17"/"E14"
+    # pelados colisionan con habitantes ya censados del espacio E,
+    # ninguno es marcador nuevo. Los encargos no se editan para complacer
+    # este test -- A.3 pide el texto verbatim de direccion (Fable).
+    "forense/encargos/2026-09-01-MAESTRA34-N4-PLOMERIA-v1_2.md",
+    "forense/encargos/cola/2026-09-01-MAESTRA34-N5-RE-EVALUA-OLA6.md",
 }
 
 
