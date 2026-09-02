@@ -22,7 +22,7 @@ PERÍMETRO Y CONCURRENCIA: data/raw (corpus, vía raíz) · data/manifiesto.yaml
 
 Ejecutado por `ACTO MAESTRA34-A1 · REGISTRA-Y-EVALUA-DESCARGAS-2`, rama
 `acto/maestra34-a1-registra-evalua-descargas-2`, entorno UBUNTU, con la skill
-`/acto` (`ADR-237`). `ADR-277` (candidato). Base real `6d9692d`, idéntica al SHA
+`/acto` (`ADR-237`). `ADR-278` (candidato). Base real `6d9692d`, idéntica al SHA
 de redacción — `origin/main` no se movió durante el acto.
 
 CONTADOR: payloads `OBTENIDO` **+38** (manifiesto 807→845) · filas de cola a

@@ -292,7 +292,7 @@ sola entrada nueva. Ver §6: el defecto es previo y estructural.
 
 **Medición de control**: se corrió `--baseline` dos veces, antes de la cascada
 (con los 38 payloads ya en el corpus) y al cerrar. **30 761 en las dos.** La
-cascada completa —`ADR-277`, `L0`, cabeceras, `registro-rotulos`, tablero, notas,
+cascada completa —`ADR-278`, `L0`, cabeceras, `registro-rotulos`, tablero, notas,
 `CONSUMIDO`— no añadió **ni una** entrada nueva. Los 10 `FAIL` restantes
 (`T02`, `T05`, `T06`, `T08`, `T09`, `T11`) ya estaban en el baseline congelado.
 
@@ -326,7 +326,40 @@ perdonar `data/raw/**` en la lista del test, o quitar el symlink autorreferente)
 
 ---
 
-## 7 · Lo que este acto no hizo
+## 7 · Deriva a mitad de empuje — `ADR-277` → `ADR-278`
+
+Al hacer `git push`, `origin/main` había pasado de `6d9692d` a `9d2e69d`:
+`PR #452` / `ACTO MAESTRA34-L2 · ARBITRA-v1_2` fusionó primero y **tomó el
+`ADR-277`**. Regla de la casa: renumera quien fusiona segundo. Este acto pasa a
+**`ADR-278`**.
+
+**El `git merge origin/main` NO marcó `CONFLICT` en `canon/gobernanza-v1_15.md`**
+y dejó **dos `**ADR-277` idénticos**. Se detectó **contando aperturas** —278
+aperturas contra un máximo de 277—, no a ojo. Es el mismo defecto que
+`MAESTRA34-L1` documentó y la razón por la que el conteo se verifica siempre.
+Tras renumerar: 278 aperturas, máximo 278, 0 duplicados, orden `276 · 277 · 278`.
+
+El único `CONFLICT` real fue la línea `L0` de `canon/estado-programa-v1_10.md`.
+Se resolvió tomando la línea de `origin/main` (que ya trae la anotación de `L2`)
+y **anteponiendo** la de este acto, sin reescribir ninguna anterior. Verificado
+por conteo: 37 anotaciones en la base `6d9692d` → 38 en `origin/main` → **39**
+ahora; una sola línea `L0`; 0 marcadores de conflicto.
+
+**Defecto previo encontrado de paso, declarado y no reparado:** la línea `L0`
+ya traía **6 anotaciones duplicadas** (`ADR-236`, `238`, `239`, `240`, `241`,
+`242`) **antes de este acto** — verificado corriendo el conteo sobre
+`6d9692d` y sobre `origin/main`, donde aparecen idénticas. No las introdujo
+este acto y repararlas es reescribir prosa sellada ajena.
+
+**Carriles.** El encargo declara: «`MAESTRA34-L2` … **NO** arranca hasta el merge
+de éste». `MAESTRA34-L2` arrancó y fusionó antes. Se reporta; no es de este acto
+resolverlo. Perímetros disjuntos salvo los cuatro archivos de cascada
+compartidos: `codificacion-R-v1_0.tsv`, `corridas-R/**` y
+`forense/prereg-duelo-v2/**` quedan intactos por este acto.
+
+---
+
+## 8 · Lo que este acto no hizo
 
 No descargó por red · no abrió microdato para **medir** (lo abrió para
 caracterizar, que es lo que P2 pide: cabecera, columnas, filas, años) · no cargó
