@@ -82,3 +82,19 @@ Bauchet pero **no** son el paper pedido (`2474620`).
 relanzamiento que mesa ya declaró. La compuerta ya está abierta.
 
 Detalle completo: `forense/notas/2026-09-02-MAESTRA35-A1-P0bis-y-evaluacion.md`.
+
+---
+
+## Enmienda de dirección, verbatim (2/sep/2026, firma e2 — relanzamiento)
+
+Enmienda de dirección a ACTO MAESTRA35-A1 · REGISTRA-Y-EVALUA-DESCARGAS-3 (2/sep/2026). Firmas verbatim; el ejecutor propaga, no decide.
+
+1. COMPUERTA: cumplida. Mesa: «Ya descargué lo más que pude. Corramos algo para registrar todo usando la infraestructura de códex.» Verifica por producto al arrancar: find "<raíz descargas_mx>" -type f -newermt 2026-09-02 | wc -l > 0, y pega el número (A.13). Si es 0, PARA y reporta: el depósito no llegó a la raíz que la caja ve.
+
+2. P1–P4 corren íntegros como están escritos. Lo que mesa bajó viene de las filas A1–A4 y B1–B5 del PDF v2 (SICEE ayuntamientos Hidalgo/Aguascalientes/Veracruz, federales 2018/2021 por casilla, TEPJF, ICPSR, LAOMS, Bauchet); no asumas qué llegó: inventaría por byte 0 y contenido, no por nombre de carpeta. Todo archivo de SICEE es fuente NUEVA: alta en aliases-fuentes.tsv (alias sicee_ine → fuente_canonica_normalizada SICEE_INE_ESTADISTICA_ELECCIONES; la fila SICEE que ya existe en la cola queda como origen), fila en la cola por consulta (SICEE_LOCAL_AYUNTAMIENTOS_<ENTIDAD> y SICEE_FEDERAL_DIP_<AÑO>), descargado_por «mesa-navegador», url_origen https://sicee.ine.mx/home, usado_para citando la entrada civico.participacion.tipo_boleta_federal_2016_2024 (propuesta) y el encargo MAESTRA35-L3. Relación (capa iii): necesidad = denominador municipal de la cívica. Para cada archivo de SICEE, en P3: ¿trae LISTA NOMINAL por municipio (o por sección)? grep del encabezado, conteo de hojas examinadas; si la trae, la fila IEEH_HIDALGO_SERIE_MUNICIPAL (o IEE_AGUASCALIENTES_…) pasa de OBTENIDO-SIN-DENOMINADOR a OBTENIDO por enmienda fechada, citando el id de SICEE que lo cubre.
+
+3. COMPRANET cambió de dominio. Mesa: «Compranet pasó a https://upcp-compranet.buengobierno.gob.mx/». Es identidad nueva, no descarga: (a) alias compranet_upcp → la fuente_canonica de la fila EXT_OF_07_CATALOGO_PROVEEDORES_S1_S3_S6 en aliases-fuentes.tsv, con evidencia_ref «mesa, 2/sep/2026»; (b) url_conocida de esa fila por enmienda fechada (la nota anterior, con los dos dominios muertos, se conserva); (c) sonda desde la caja, salida cruda: curl -s -o /dev/null -w "%{http_code}\n" --max-time 10 https://upcp-compranet.buengobierno.gob.mx/ con UA por defecto y con UA de navegador (L3 midió que ieehidalgo da 403/200 según UA); (d) si responde, /adquiere-adyacente: localiza catálogo de proveedores o documentación de API (≤4 rutas, A.5, receta ≤1 min si falla), doble descarga con sha idéntico, tres capas, anti-PR#77; si no responde, la fila queda NO-OBTENIDO-POR-ESTE-AGENTE(N intentos) con el dominio nuevo anotado — eso ya es avance sobre «dominio por localizar».
+
+4. Cierre: python3 tools/vista_cola_adquisicion.py, T26 verde, via_capa2.py --root . en lectura (recuerda FP-246: las filas con ids_manifiesto en lista caen fuera del contador; decláralo, no lo repares), baseline.py si el validador lo pide, tests/check.py --baseline VERDE. pendientes-v3 con lo que siga vivo. Un PR.
+
+Lo que NO cambia: nada se mide; no se toca milpa/; no se registra nada fuera de las tres capas; los archivos que no correspondan a ninguna fila se registran igual con usado_para «sin necesidad declarada — mesa lo bajó el 2/sep».
