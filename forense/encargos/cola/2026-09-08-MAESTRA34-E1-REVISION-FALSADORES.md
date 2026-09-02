@@ -3,7 +3,7 @@ ENTORNO: NUBE
 ENCOLADO: 2026-09-02 · gesto de encolado, precedente §1c del transfer maestra-34 (firma D4-a, 1/sep/2026)
 BITACORA:
 - 2026-09-02 · LISTO-NUBE · encolado por PR [COLA] encola MAESTRA34-N7 y MAESTRA34-E1. COMPUERTA propia del encargo: NO-LANZAR-ANTES-DE 2026-09-08 (fecha del sistema ≥ 2026-09-08, verifica `date -u`) Y digesto del día existente en forense/digesto/. Si falta cualquiera, cero commits.
-- 2026-09-02 · CONSUMIDO · ejecutado con la skill `/acto` en rama `claude/maestra34-e1-falsadores-ou8qcp`; compuerta sustituida (digesto del día) verificada CUMPLE; detalle en `forense/notas/2026-09-08-MAESTRA34-E1-revision-falsadores-cierre.md`, ADR-284.
+- 2026-09-02 · CONSUMIDO · ejecutado con la skill `/acto` en rama `claude/maestra34-e1-falsadores-ou8qcp`; compuerta sustituida (digesto del día) verificada CUMPLE; detalle en `forense/notas/2026-09-08-MAESTRA34-E1-revision-falsadores-cierre.md`, ADR-285.
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 
@@ -45,7 +45,7 @@ no se cumple.
 
 ## CONSUMIDO
 
-Ejecutado por `ACTO MAESTRA34-E1 · REVISION-FALSADORES` (`ADR-284`), rama
+Ejecutado por `ACTO MAESTRA34-E1 · REVISION-FALSADORES` (`ADR-285`), rama
 `claude/maestra34-e1-falsadores-ou8qcp`, `PR #463`. Detalle:
 `forense/notas/2026-09-08-MAESTRA34-E1-revision-falsadores-cierre.md` —
 sufijo `-cierre` añadido sobre el nombre que P4 nombra arriba (mismo

@@ -581,3 +581,76 @@ reglas_propuestas:
     hallazgo: "Ambos ASIGNADOS de milpa/tramite.yaml (0.62 discrecional, 0.12 con_registro) quedan refutados en magnitud absoluta por esta medición trámite-nivel igual que por la serie persona-nivel de P1/P2 -- pero el ORDEN relativo que el motor asigna (discrecional > con_registro) SÍ se confirma empíricamente aquí, con brecha grande y significativa (11.60% vs 2.74%, IC95 sin traslape). Es el primer apoyo empírico directo -- de escala y de orden -- para el mecanismo 'trampa social: el registro rompe la trampa social' que la regla con_registro ya declaraba sin medir. Reserva: el mapeo canal→disparador (nota_enmienda) es un supuesto de este acto, no verificado contra el dato; P8_4 solo se pregunta a un subconjunto de trámites (los de personas que ya declararon alguna práctica de corrupción en sección VIII), así que esta p NO es 'p(mordida en este trámite | canal)' sobre el universo completo de trámites, sino sobre el subconjunto ya auto-seleccionado por P8_3 -- declarado, no resuelto por este acto."
     sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
     payload_manifiesto_id: encig25_base_datos_csv
+
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA34-L4 · CIVICA-Y-CORPUS · 2/sep/2026 · firma de mesa F232-b
+  # Primera entrada de este acumulador cuya clase NO es una probabilidad:
+  # es un DELTA en puntos porcentuales. Se marca asi a proposito -- el motor
+  # consume probabilidades y esta cifra no lo es, de modo que NO puede
+  # cargarse tal cual aunque mesa la firmara. milpa/tramite.yaml intocado.
+  # Spec de dos commits: forense/notas/2026-09-02-MAESTRA34-L4-P3-spec.md
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: civico.participacion.contingente
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA  # el dato no dicta una condicion logica de
+        # disparo. Lo medido es una diferencia de tasa entre dos contextos
+        # electorales (local no concurrente vs local concurrente), no una
+        # condicional del motor sobre un individuo.
+    entonces:
+      - {conducta: participa_mas_si_la_local_es_concurrente, delta_pp: 10.4790, clase: "MEDIDO·Δ(puntos porcentuales de participación)"}
+    porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
+      # No se asigna generador: R7.1 vive en el modelo con mecanismo propio
+      # ("peso percibido del acto") y este acto NO lo re-deriva ni inventa uno.
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente:
+      - "IEC Coahuila, computos finales Gubernatura 2023 y Ayuntamientos 2024 por municipio"
+      - "IEEM Estado de Mexico, resultados definitivos Gubernatura 2023 y Ayuntamientos 2024 por municipio"
+      - "forense/notas/2026-09-02-MAESTRA34-L4-P3-spec.md"
+    escala: "puntos porcentuales de participacion (votos totales / lista nominal). NO es una probabilidad."
+    ola_calibracion: "un solo par de anos: jornada local del 4/jun/2023 (no concurrente) vs jornada del 2/jun/2024 (concurrente con la federal)"
+    ic95: [9.6890, 11.2652]
+    n: 163
+    mediana_delta_pp: 10.7464
+    de_delta_pp: 5.2056
+    bootstrap: "10000 replicas sobre MUNICIPIOS con reemplazo, seed 42, percentiles 2.5 y 97.5"
+    ponderador: "ninguno -- la unidad es el municipio, no el elector; asi lo fija el encargo. Sin ponderar por tamano."
+    universo: "los 163 municipios de Coahuila (38) y del Estado de Mexico (125) presentes en los DOS anos con lista nominal > 0. Universo efectivo = universo nominal: 38 de 38 y 125 de 125, ninguno perdido. Excluidas y nombradas 7 filas que no son municipios (4 en Coahuila 2023, 3 en Edomex 2023); la exclusion se comprueba aritmeticamente: la suma de los 38 municipios de Coahuila 2023 (1343764 / 2355025) mas la fila VMRE_VA_VPPP reproduce exactamente el total que publica el IEC (1344882 / 2377964)."
+    diagnostico_por_estado:
+      coahuila: {delta_pp: 10.1289, ic95: [8.5478, 11.8838], n: 38}
+      edomex: {delta_pp: 10.5855, ic95: [9.6889, 11.4965], n: 125}
+      edomex_menos_coahuila: {delta_pp: 0.4565, ic95: [-1.4331, 2.2600], lectura: "cruza cero: los dos estados dan lo mismo dentro del ruido, el hallazgo no lo produce una entidad sola"}
+    controles:
+      reconstruccion_desde_actas: "reagregar acta por acta reproduce EXACTAMENTE la tabla por municipio en los dos anos de Coahuila: |Δvotos|=0 y |Δlista nominal|=0 sobre los 38 municipios (4047 y 4156 actas)"
+      part_publicada_vs_recalculada: "diferencia maxima 0.000000 pp en los 38 municipios de cada ano"
+      rango: "0 municipios con participacion fuera de (0,100] pp"
+      reparto: "160 de 163 municipios con Δ positivo; los 3 negativos son del Edomex y pequenos (LUVIANOS -2.775, AMATEPEC -2.152, ALMOLOYA DE ALQUISIRAS -1.636); maximo ABASOLO Coahuila +22.790"
+    lecturas_secundarias:
+      federal_2024_por_crosswalk: "con el crosswalk seccion->municipio 2016 sobre el PREP presidencial 2024: federal2024 - local2023 = +7.6560 pp (Coahuila) y +9.2557 pp (Edomex), asi que el salto no depende de que boleta se mire. Secciones sin correspondencia en el crosswalk: 138 de 1777 (7.77%) en Coahuila, 406 de 6744 (6.02%) en Edomex."
+      diputaciones_coahuila_2023: "Δ ayuntamiento2024 - diputaciones locales 2023 = +10.1023 pp, IC95 [8.3951, 11.9185], practicamente identico al +10.1289 contra gubernatura: el Δ de Coahuila no es artefacto de la cabeza de boleta elegida para 2023"
+    reserva: |-
+      EL IC95 NO CRUZA CERO -- el intervalo entero esta por encima, y su extremo
+      inferior son casi 10 puntos porcentuales. La reserva NO es de precision,
+      es de IDENTIFICACION, y estaba escrita en el commit de spec ANTES de medir
+      (§0.4): el cargo en disputa no es el mismo en los dos anos (gubernatura en
+      2023, ayuntamiento en 2024), y entre una jornada y otra hay ademas una
+      eleccion presidencial de por medio, otras candidaturas y otro padron. Este
+      diseno NO separa el efecto de concurrencia del de jerarquia del cargo ni
+      del de calendario, y este acto no reclama identificacion causal.
+      B-bis, tambien escrito antes de mirar: si el IC hubiera cruzado cero, la
+      regla habria quedado ACOTADA y no refutada. No es el caso.
+      Lo que falta para separar los efectos, nombrado y no rodeado: variacion de
+      concurrencia DENTRO del mismo ano y del mismo cargo -- que es lo que pedia la
+      spec forense/notas/2026-09-01-MAESTRA33-E18-P3-L1-spec.md l.502-508 y lo que la robustez F232-a fue a buscar. En estas
+      dos entidades NO existe: P1 midio que los 38 municipios de Coahuila y los
+      125 del Edomex tuvieron comicio local el 2/jun/2024 (Decreto 229 de la
+      Gaceta del Edomex del 28/dic/2023 y acuerdo IEC/CG/206/2023). Vive en los
+      estados cuyo calendario local si se desfasa del federal.
+    contaminacion_declarada: "ADR-46. Antes de congelar la spec, la sesion ejecutora habia visto los AGREGADOS ESTATALES de Coahuila de los dos anos (via la descripcion de estructura de una sonda de P1), es decir conocia la direccion estatal de Coahuila. NO conocia nada del Edomex mas alla de nombres de columna y conteos de fila, ningun valor municipal y ningun intervalo. Declarado en §0.2 de la spec ANTES de medir y no borrado despues."
+    sha256_payload_2023_coahuila: "7b74f0a8546a7c267dc3a071e505991348d41202b12f4e68733616fc4dae46d3"
+    sha256_payload_2024_coahuila: "f108b92fae65ae150520667cde40127a99c502bb932482f3b866434f5b43c59a"
+    sha256_payload_2023_edomex: "b9eb096f38ef79cbae66365912619ddb0edc3d8fb5acc6257b9c63b9911cb231"
+    sha256_payload_2024_edomex: "18cdcbb04e7369471c31fa28cb2d9400a52655ec4139bd8d6738287381fba5f1"
+    payload_manifiesto_id: "iec_coahuila_2023_gubernatura_x_municipio_xlsx;iec_coahuila_2024_ayuntamientos_x_municipio_xlsx;ieem_edomex_2023_gubernatura_x_municipio_xlsx;ieem_edomex_2024_ayuntamientos_x_municipio_xlsx"
