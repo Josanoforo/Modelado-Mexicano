@@ -128,5 +128,98 @@ def main():
     return r
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# ACTO MAESTRA35-L1 · P4 — parámetro de eje. ADITIVO: ni una línea de arriba
+# cambia y `main()` sigue imprimiendo lo mismo que en MAESTRA34-L5. El
+# estimando NO se toca: evade_norma = BP1_20=='2' ∧ BP1_23 ∈ {04,05,06,08},
+# la CONJUNTA, unidad DELITO, FAC_DEL. Spec §5.
+# ─────────────────────────────────────────────────────────────────────────────
+from ejes_maestra35_l1 import (  # noqa: E402
+    ESC_2DIG, FUERA, ORD_EDAD, ORD_ESC, ORD_SEXO, SEXO, Eje, imprime,
+    mide_eje, tramos_edad)
+
+T_SDEM = ("tsdem_envipe2025/conjunto_de_datos/"
+          "conjunto_de_datos_tsdem_envipe2025.csv")
+ORD_DOMINIO = ["Rural", "Complemento urbano", "Urbano"]
+
+EJES_P4 = [
+    Eje("sexo", lambda d: d["SEXO"].map(SEXO).fillna(FUERA), ORD_SEXO, None,
+        "sin signo predicho"),
+    Eje("edad", lambda d: tramos_edad(d["EDAD"]), ORD_EDAD, None,
+        "el encargo lo dice: tramos de edad sin predicción"),
+    Eje("escolaridad_proxy", lambda d: d["_NIV"].map(ESC_2DIG).fillna(FUERA),
+        ORD_ESC, None,
+        "PROXY de formalidad laboral, que no existe en ENVIPE 2025. La regla "
+        "NO predice signo: subsistencia y cinismo empujan en sentidos "
+        "opuestos. Veredicto máximo posible: DISCRIMINA"),
+    Eje("dominio_urbano_rural",
+        lambda d: d["DOMINIO"].map({"U": "Urbano", "C": "Complemento urbano",
+                                    "R": "Rural"}).fillna(FUERA),
+        ORD_DOMINIO, None,
+        "eje PROPIO Y DISTINTO, no el corte de 15 000 que el encargo pedía: "
+        "ENVIPE no publica umbral alguno, y R ↔ «menor de 15 000» NO está "
+        "verificado en ninguna fuente del payload"),
+]
+
+
+def carga_personas():
+    """Tabla de persona de ENVIPE 2025 y la llave delito -> persona que el
+    censo P0 declaró: ID_PER. PARA si la llave falla."""
+    with zipfile.ZipFile(ZIP) as z, z.open(T_SDEM) as f:
+        sd = pd.read_csv(io.BytesIO(f.read()), encoding="latin-1",
+                         dtype=str, low_memory=False)
+    sd.columns = [c.strip().strip('"') for c in sd.columns]
+    for c in ("ID_PER", "NIV"):
+        if c not in sd.columns:
+            raise SystemExit(f"PARO · falta la columna {c} en tsdem")
+        sd[c] = sd[c].astype(str).str.strip().str.strip('"')
+    if sd["ID_PER"].nunique() != len(sd):
+        raise SystemExit(
+            f"PARO · ID_PER no es llave única en tsdem: "
+            f"{sd['ID_PER'].nunique():,} para {len(sd):,} filas.")
+    return sd.set_index("ID_PER")
+
+
+def main_ejes():
+    print("ACTO MAESTRA35-L1 · P4 · evasion_norma POR EJES · ENVIPE 2025")
+    print(f"payload  : {os.path.basename(ZIP)}")
+    print(f"sha256   : {sha256(ZIP)}")
+    df = carga()
+    for c in ("ID_PER", "SEXO", "EDAD", "DOMINIO"):
+        if c not in df.columns:
+            raise SystemExit(f"PARO · falta la columna de eje {c} en tmod_vic")
+        df[c] = df[c].astype(str).str.strip().str.strip('"')
+    per = carga_personas()
+    huerf = int((~df["ID_PER"].isin(per.index)).sum())
+    if huerf:
+        raise SystemExit(
+            f"PARO · {huerf:,} delitos sin persona en tsdem: la llave del "
+            f"censo P0 dejó de valer.")
+    df["_NIV"] = df["ID_PER"].map(per["NIV"])
+    d = ((df["BP1_20"] == "2") & (df["BP1_23n"].isin(INUTIL))).astype(float)
+    print(f"tabla    : tmod_vic · universo BP1_20 ∈ {{1,2}} · n = {len(df):,} "
+          f"· UNIDAD = DELITO (no persona) · ponderador FAC_DEL")
+    print(f"llave    : ID_PER (tmod_vic -> tsdem) · 0 huérfanos")
+    p, lo, hi, n, n_est, n_cl = wprop_ic_conglomerado(
+        d.to_numpy(), df["_w"].to_numpy(),
+        df["EST_DIS"].tolist(), df["UPM_DIS"].tolist())
+    print(f"\n  GLOBAL  p̂ = {p:.6f}  IC95 = [{lo:.6f}, {hi:.6f}]  "
+          f"n = {n:,} delitos · num = {int(d.sum()):,} · "
+          f"estratos = {n_est} · UPM = {n_cl:,}\n")
+    salida = [mide_eje(df, e, d, df["_w"], df["EST_DIS"], df["UPM_DIS"])
+              for e in EJES_P4]
+    for r in salida:
+        imprime(r, "delitos")
+    print("  ejes AUSENTES en esta fuente, declarados por el censo P0 y no")
+    print("  sustituidos: formalidad laboral (ni el FD ni el cuestionario")
+    print("  principal traen ítem de prestaciones o seguridad social) y")
+    print("  tamaño de localidad al corte de 15 000 (ENVIPE no publica TLOC")
+    print("  ni umbral alguno en 6 diccionarios ni en su FD).")
+    return salida
+
+
 if __name__ == "__main__":
-    main()
+    if "--ejes" in sys.argv:
+        main_ejes()
+    else:
+        main()
