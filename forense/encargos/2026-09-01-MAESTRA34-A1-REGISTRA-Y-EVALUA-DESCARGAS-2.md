@@ -17,3 +17,34 @@ Recetas #1-#15: todas siguen con estado de A3 (0 de 15 ejecutadas al cierre de A
 SPEC CONGELABLE POR PIEZA (este acto no estima nada: no aplica dos commits; un commit por pieza basta) P1 · INVENTARIO Y REGISTRO. Comando de A4 reutilizado: find "<raíz descargas_mx>" -type f -newermt 2026-08-14 + stat; reporta cuántos archivos examinó en total y cuántos son nuevos (A.13). Por cada archivo nuevo: sha256 (doble si trae token de sesión, A.7); mover/enlazar al corpus compartido (cierre anti-PR#77: verifica al final que los bytes están en el corpus y no solo en tu worktree); tests/manifiesto.py --registra con --descargado-por mesa-navegador, --url-origen = URL de la receta correspondiente (o de SICEE), --usado-para = la necesidad que la receta cubre; una invocación por --id (A.1). Alta de SICEE: fila en aliases-fuentes.tsv + fila en cola-adquisicion-registro.tsv (capa cola), origen = receta de L1-P4 (cierre l.165-195); relación en relaciones.tsv con las necesidades fp190-* / cívica concurrente que cubra (capa relación). P2 · EVALUACIÓN A.4 CONTRA LA NECESIDAD — por la capa de relación de Codex, no ad hoc. Primero via_capa2.py --root . en lectura: qué filas de relaciones.tsv resuelven ahora contra los ids nuevos (capa2_manifiesto). Después, por cada payload nuevo, abre el archivo (cabecera, columnas, filas, años cubiertos) y escribe capa4_apertura_mapeo / clasificacion_relacion en su fila de relaciones.tsv con veredicto en una línea: EXISTE-SATISFACE / EXISTE-NO-SATISFACE (qué falta) / no corresponde a ninguna receta. Criterios mínimos, por receta: · #9 Cero Desabasto: EXISTE-SATISFACE solo si trae registros individuales (fecha, institución, entidad, medicamento); la tabla del gráfico (18 KB) es EXISTE-NO-SATISFACE y se dice. · #10 base_macu.xlsx: unidad municipio × indicador; años. · #4 CNGMD 2023: qué módulos llegaron (Ayuntamientos/administración, Seguridad pública, Justicia cívica), más esquema conceptual y DDI. · #13/#15 SICEE / cómputos: EXISTE-SATISFACE para la pieza cívica de L1 solo si, para al menos un estado, hay elección local NO concurrente (2022 ó 2023) y una concurrente (2021 ó 2024) con lista nominal y votos por municipio o distrito. Si solo llegó una de las dos, EXISTE-NO-SATISFACE y nombra cuál falta. · #12 DGIS urgencias: diccionario/descriptor presente = SATISFACE (la acción mínima no pedía microdato). · Banco Mundial / ICPSR (#1, #2, #8) si llegaron: microdato + documentación. P3 · TACHADO. via_capa2.py --escribe aplica las promociones de P2; cola del registro ya en OBTENIDO por P1; recetas cumplidas → estado en el paquete de recetas por enmienda fechada (no se edita el texto original); regenerar la vista con tools/vista_cola_adquisicion.py. Produce forense/notas/2026-09-01-MAESTRA34-A1-descargas-pendientes-v2.md: las recetas que SIGUEN pendientes, derivadas del registro (no de memoria), con la vía alterna ya conocida (#15 otra red / PREP / SICEE; #12 Datos Abiertos DGIS; #11 dominio por localizar; #3/#6/#7/#14 decisión de mesa, no descarga). P4 · MAPEO Y SUCESORES. /mapea (tools/busca_reactivos.py) SOLO sobre los payloads nuevos contra: las 6 necesidades de FP-190 (fp190-1..6) y las 20 reglas sin p de forense/notas/2026-09-01-MAESTRA33-E18-P1-reglas-activos-sin-p.md. Tabla con vocabulario A.4. Si SICEE/cómputos dan EXISTE-SATISFACE para la cívica concurrente: deja REDACTADO (no lanzado) el sucesor MAESTRA34-L3 · CIVICA-CONCURRENTE con la spec de L1-spec.md:502-508 y los estados/años exactos que el dato permite. Si alguna de las 20 reglas pasa a EXISTE-SATISFACE: deja redactado REGLAS-ACTIVOS-L2 con esas ids.
 
 PERÍMETRO Y CONCURRENCIA: data/raw (corpus, vía raíz) · data/manifiesto.yaml (vía tests/manifiesto.py) · data/curacion-registro/{cola-adquisicion-registro.tsv, aliases-fuentes.tsv, relaciones.tsv, necesidad-objeto-modelo.tsv (solo lectura), baseline si el validador lo pide} · data/cola-adquisicion-v1_0.tsv (solo regenerada) · forense/notas/2026-09-01-PAQUETE-RECETAS-2026-09-01.md (enmienda fechada) · forense/notas/ (nota de cierre, pendientes-v2, sucesores redactados) · forense/encargos/ (sucesores, sin encolar) · tablero (recibo) · A.3 · cascada. En paralelo: nube (N3 GATED, sin escritura esperada). Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo. FP/ADR CANDIDATOS: deriva al arrancar (FP máx y ADR por comando de la casa contra origin/main tras git fetch; N1/N2/L1 ya consumieron 274-276). CONTADOR: payloads OBTENIDO +N (declara N real) · fuentes nuevas en registro +1 (SICEE) · reglas EXISTE-SATISFACE +M por mapeo. Si N=0, se declara y el acto cierra como A4. LO QUE NO HACE: no descarga por red (todo lo que entra lo bajó mesa; si falta algo, receta, no curl); no abre microdato para medir; no carga reglas; no lanza sucesores (los deja redactados para PR [COLA]); no toca corridas ni el marco. SUCESORES: MAESTRA34-L2 (en cola, arranca tras este merge) · MAESTRA34-L3 CIVICA-CONCURRENTE (si P4 lo redacta) · REGLAS-ACTIVOS-L2 (si P4 lo redacta) · MAESTRA34-N1-bis (sello de mordida serie + con_registro, dirección redacta con firma de mesa). usa agentes en sonnet, tu supervisar. Go.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA34-A1 · REGISTRA-Y-EVALUA-DESCARGAS-2`, rama
+`acto/maestra34-a1-registra-evalua-descargas-2`, entorno UBUNTU, con la skill
+`/acto` (`ADR-237`). `ADR-277` (candidato). Base real `6d9692d`, idéntica al SHA
+de redacción — `origin/main` no se movió durante el acto.
+
+CONTADOR: payloads `OBTENIDO` **+38** (manifiesto 807→845) · filas de cola a
+`OBTENIDO` **+7** (46→53) · fuentes nuevas **+1** (SICEE) ·
+`capa2_manifiesto=SI` **+14** (51→65) · reglas `EXISTE-SATISFACE` **+0** ·
+necesidades `fp190-*` movidas **0** · sucesores redactados **0** (las dos
+condiciones del encargo no se cumplen; el porqué, con la `n` que las tumbó, está
+en el cierre §4.4).
+
+Cuatro correcciones al propio encargo, todas verificadas contra el árbol:
+(1) la receta SICEE de `MAESTRA34-L1` está en `cierre l.183-198`, no en
+`l.165-195`; (2) «las 20 reglas sin `p`» son **23 de 24** según la propia nota
+citada, y (3) esa lista ya está desactualizada — `tramite.mordida.con_registro`
+obtuvo `p` en `MAESTRA34-L1`, fusionado en este mismo `6d9692d`, así que van 22;
+(4) mesa reportó que a la receta #9 «falta base histórica» y la base histórica
+sí llegó.
+
+Dos piezas del encargo NO se pudieron ejecutar dentro del perímetro y se
+declaran en vez de rodearse: la fila de SICEE en `relaciones.tsv` (exige
+`evidencias.tsv` y `utilidad-modelo.tsv`, ninguno en el perímetro → `FP-230`) y
+`/mapea` sobre los payloads nuevos (`tools/busca_reactivos.py` lee inventarios
+de reactivos ya construidos, no payloads; medido con control positivo). El
+mapeo A.4 se hizo abriendo los payloads y leyendo sus diccionarios.
+
+Detalle: `forense/notas/2026-09-01-MAESTRA34-A1-cierre.md`.

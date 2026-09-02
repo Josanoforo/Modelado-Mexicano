@@ -68,7 +68,7 @@ Reparto por módulo: **m1** 2 · **m2** 31 · **m3** 23 · **m4** 9 · **m5** 6 
 en los 160 archivos de la raíz).
 
 Los dos módulos que el encargo pedía y que **no** llegaron como cuestionario
-(M1 Ayuntamientos, M3 Seguridad pública) están completos en esa lista. Las 2 de
+(módulo 1 Ayuntamientos, módulo 3 Seguridad pública) están completos en esa lista. Las 2 de
 m1 y las 23 de m3, verbatim del XML:
 
 ```
