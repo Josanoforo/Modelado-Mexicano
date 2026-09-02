@@ -219,3 +219,64 @@ pero el **falsador de Hito D de `R7.1` ya corrió y está adjudicado en `A`**
 Calderón-Hernández et al. (`data/raw/zenodo_electoral_precinct_level_mexico_municipal.zip`).
 Este crosswalk **no reabre ni mueve ese veredicto**: sirve a la pieza cívica que P4
 evalúa.
+
+---
+
+## 4 · P4 · VEREDICTO A.4 — **EXISTE-NO-SATISFACE**. `MAESTRA34-L4` NO se redacta
+
+**Pregunta del encargo:** *¿existe ya, para Coahuila o Edomex, elección local 2023
++ concurrente 2024 con lista nominal y votos por municipio?*
+
+**Respuesta: no.** Dos de las tres mitades faltan enteras, y la que sí está tiene
+un hueco medido.
+
+| mitad del diseño | qué hay en corpus, medido | veredicto |
+|---|---|---|
+| **elección LOCAL 2023** (no concurrente) | **nada.** La única base municipal por sección del corpus (`zenodo_electoral_precinct_level_mexico_municipal.zip`, Calderón-Hernández et al.) cubre **Coahuila 1996, 1999, 2002, 2005, 2009, 2013, 2017, 2018** y **México 1996, 2000, 2003, 2006, 2009, 2012, 2015, 2018** — llega a **2018** en las dos entidades. Sus listas nominales van de **2012 a 2019**. | **FALTA ENTERA** |
+| **concurrente 2024 · mitad FEDERAL** | `ine_prep2024_base_datos_20240603_2005_zip` = 3 concursos, los 3 federales (`PRES_2024.csv` 48 col / 171 417 líneas · `DIP_FED_2024.csv` 50 col / 172 413 · `SEN_2024.csv` 48 col / 172 445). Los tres traen `SECCION` **y** `LISTA_NOMINAL` por casilla, y **ninguno** trae `MUNICIPIO`. Con el crosswalk de P3 se agregan a municipio. | **CUBIERTA CON RESERVA** |
+| **concurrente 2024 · mitad LOCAL** | **nada.** Ese PREP no contiene ni un concurso local. | **FALTA ENTERA** |
+
+**La reserva, en números** (cruce por `(ID_ENTIDAD, SECCION)` del catálogo 2016 de
+P3 contra las secciones distintas del PREP 2024 `PRES`; verificación de cobertura
+del payload, **no** medición de ninguna regla):
+
+| entidad | secciones en PREP 2024 | cubiertas por el catálogo 2016 | sin correspondencia | municipios alcanzables |
+|---|---|---|---|---|
+| 5 · COAHUILA | 1 779 | **1 640 = 92.19 %** | 139 | **38 de 38** |
+| 15 · MÉXICO | 6 745 | **6 338 = 93.97 %** | 407 | **125 de 125** |
+
+Es decir: el crosswalk de 2016 alcanza **todos** los municipios de las dos
+entidades, pero deja **6-8 % de las secciones de 2024 sin asignar** — secciones
+creadas o reseccionadas entre 2016 y 2024. Agregar a municipio sin resolver esas
+546 secciones sesgaría los totales municipales por abajo, y el sesgo no es
+uniforme entre municipios. Es una reserva cuantificada, no una estimación.
+
+**Por qué NO se redacta `MAESTRA34-L4 · CIVICA-CONCURRENTE`.** El encargo lo
+condiciona a `EXISTE-SATISFACE`, y el veredicto es `EXISTE-NO-SATISFACE`. Redactar
+la spec sucesora con dos mitades ausentes sería escribir un encargo que cita datos
+que no existen — exactamente lo que la convención de `forense/encargos/` prohíbe
+(*«un encargo que cita un archivo inexistente está mal escrito — ocurrió tres
+veces»*). Mismo criterio con el que `MAESTRA34-A1` cerró sus dos sucesores
+condicionados.
+
+**Qué mitad falta, nombrada para quien la busque.** Los **resultados de las
+elecciones LOCALES** de Coahuila y Estado de México — 2023 (gubernatura, no
+concurrente) y la mitad local de 2024 (concurrente) —, por sección o por
+municipio, con su lista nominal. La vía designada es **SICEE** (`https://sicee.ine.mx/`),
+que por `DS-a` baja mesa por navegador; al 1/sep/2026 **no está**: `find /home/pc0
+/mnt/c/Users/PC0/Downloads -maxdepth 3 -iname '*sicee*'` → **0 aciertos**, y su
+fila en `cola-adquisicion-registro.tsv` sigue en
+`NO-OBTENIDO-POR-ESTE-AGENTE(1 intento)`. Los organismos locales (IEC en Coahuila,
+IEEM en el Estado de México) son la otra vía posible y **este acto no los sondeó**:
+no estaban en el encargo y habrían caído fuera del perímetro.
+
+**Tensión de diseño que hay que resolver antes de L4** — no es un detalle de
+redacción. La spec que el encargo manda usar (`forense/notas/2026-09-01-MAESTRA33-E18-P3-L1-spec.md`,
+l. 502-508) pide *«resultados electorales de comicios locales concurrentes vs. no
+concurrentes **del mismo año y estado**»*. La firma `DS-a` fija en cambio **local
+2023 no concurrente vs 2024 concurrente**, que es una comparación **entre años**.
+No son el mismo diseño y no exigen el mismo dato: el de la spec necesita variación
+de concurrencia dentro de un mismo año, y el de `DS-a` compara dos años distintos y
+carga con todo lo que cambia entre 2023 y 2024 (candidaturas, elección presidencial
+de por medio, padrón). Se deja nombrado para mesa, sin resolverlo: adjudicarlo no
+es de este acto.
