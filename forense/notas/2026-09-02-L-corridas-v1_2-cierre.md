@@ -223,8 +223,11 @@ del entorno, no del acto:**
 
 | dónde | núcleo | línea base |
 | --- | --- | --- |
-| CI (clon limpio, autoritativo) | `20 FAIL · 165 WARN` | verde tras la corrección de abajo |
+| CI (clon limpio, autoritativo) | `19 FAIL · 165 WARN` | **VERDE — nada nuevo** |
 | caja UBUNTU de la corrida | `21 FAIL · 165 WARN` | 2 entradas `T27`, ajenas |
+
+La diferencia **cuadra exactamente**: 19 + las 2 `T27` de la caja = 21. No hay
+un tercer `FAIL` sin explicar.
 
 El `FAIL` de más en UBUNTU y las 2 entradas de línea base son **`T27`** sobre
 `data/raices.local.yaml` y `data/secretos.local.yaml`: gitignorados
