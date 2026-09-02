@@ -25,3 +25,20 @@ FP/ADR CANDIDATOS: deriva al arrancar (FP máx 230+, ADR 279 candidato; N4 puede
 CONTADOR: tests utilizables en caja 0→1 (T27) · necesidades +1 · relaciones +N (declara) · cero estimaciones.
 LO QUE NO HACE: no abre payloads; no descarga; no toca el manifiesto; no mide; no abre Ola 6 (eso es N5 con estos insumos).
 SUCESORES: MAESTRA34-L3 (caja) · MAESTRA34-N5 hereda las relaciones de salud.
+
+## CONSUMIDO
+
+`PR #456` — https://github.com/Josanoforo/Modelado-Mexicano/pull/456 ·
+rama `claude/maestra34-n6-launch-8tbvaj`, base `e4af4ed` (`origin/main`),
+1/sep/2026, `ADR-279`, entorno NUBE, `COMPUERTA: ninguna`.
+
+Seis commits: `[P1]` `6eb8d93` · `[P2]` `0e12bab` · `[P3]` `b0b74a2` ·
+`[P4]` `cad4010` · `[CASCADA]` · este `[CONSUMIDO]`.
+
+`FP-229` → EJECUTADA · `FP-230` → EJECUTADA.
+Cierre: `forense/notas/2026-09-01-MAESTRA34-N6-cierre.md`.
+Suite: `python3 tests/check.py --baseline` → VERDE.
+Validador del curador: `python3 tools/curador_registro/baseline.py data/curacion-registro` → `"ok": true`.
+
+Sucesores vivos: `MAESTRA34-L3` (caja, su compuerta era el merge de este acto) ·
+`MAESTRA34-N5` hereda las relaciones de salud (`N36`).
