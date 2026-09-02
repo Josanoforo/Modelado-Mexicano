@@ -60,3 +60,7 @@ No mide; no toca `via_informal` (c3) ni `civico.*`; no cambia el M de ninguna ce
 ## Sucesores declarados, no lanzados
 
 Dirección presenta en RH la re-lectura de `dinero.ahorro.informal_sin_puente` / `con_puente_y_respaldo` (P9 del tablero); N2 fusiona con regresión de M sin drift.
+
+## CONSUMIDO
+
+Ejecutado por ACTO MAESTRA35-N4 · SELLA-L1, rama `claude/maestra35-n4-launch-3xycdh`, contra `HEAD 792b7ef` (igual al SHA de redacción). `ADR-293`, `FP-241`/`FP-242` → `EJECUTADA`. Archivos tocados: `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/firmas-pendientes.tsv`, `forense/hallazgos.md`, `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md`, `canon/registro-rotulos.tsv`. `tests/check.py --baseline` VERDE.
