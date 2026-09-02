@@ -18882,3 +18882,629 @@
     y ademas cubre las 32 entidades, no solo las dos que la firma F232-b prioriza. A.7: doble
     descarga, sha256 identico. A.8 previo: 0 aciertos del patron DEOE/Ubicacion_casillas en
     data/manifiesto.yaml, control positivo 1184 aciertos de url_origen.'
+
+- id: ine_cg_plan_calendarios_pel2014_2015_acuerdo_pdf
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG ordinaria 18/dic/2014) que aprueba el Plan Integral
+    y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen, por entidad,
+    los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/87134
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2014-2015_CGor201412-18_ap13.pdf
+  sha256: a8acbcc7b08a1fa6230a5594f3778ecef74e1120521b199abc9168146d61f190
+  tamano_bytes: 45223
+  formato: pdf
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/87134?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_plan_calendarios_pel2014_2015_acuerdo_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG ordinaria 18/dic/2014) que aprueba el Plan Integral
+    y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen, por entidad,
+    los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/87134
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2014-2015_CGor201412-18_ap13.pdf.txt
+  sha256: 9a235aa1043fa5e3f3c013e1511f46d4c3e8c02bb42eef2d2bf93dc480868d28
+  tamano_bytes: 24051
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/87134?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_pel2015_extraordinarias_acuerdo_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 14/oct/2015) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/79710
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2015b_CGex201510-14_ap4.pdf.txt
+  sha256: 8602dc2cf0b5845810b1f3e3bb033a8c2989c02b3726f735c828eec9f77080ba
+  tamano_bytes: 43453
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/79710?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_plan_calendario_pel2015_2016_acuerdo_pdf
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 16/dic/2015) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/87457
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2015-2016_CGex1_201512-16_ap25.pdf
+  sha256: f313bc14d904f1178bfbb0cd47fcca2d1f952c65c811158d9c69e1eda51cc2c3
+  tamano_bytes: 196293
+  formato: pdf
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/87457?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_plan_calendario_pel2015_2016_acuerdo_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 16/dic/2015) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/87457
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2015-2016_CGex1_201512-16_ap25.pdf.txt
+  sha256: e9de0ab8dcb7db06d9399ef42f3db49dd504074f76160b8c28fce71105d1c87c
+  tamano_bytes: 24723
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/87457?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2016_2017_anexo1_pdf
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 7/sep/2016) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/85998
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2016-2017_CGex201609-7-ap-9-a1.pdf
+  sha256: 898d5011081dc13c1d38498815974e10737f922987a062ec218838e955172e0e
+  tamano_bytes: 1514368
+  formato: pdf
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/85998?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2016_2017_anexo1_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 7/sep/2016) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/85998
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2016-2017_CGex201609-7-ap-9-a1.pdf.txt
+  sha256: 8decbe1a94773331243c561bfb0222196589e979ef3372968f3261013372f78b
+  tamano_bytes: 64328
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/85998?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2016_2017_extraord_a1_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 14/oct/2016) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/86038
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2016-2017_CGex201610-14-ap-17-a1.xlsx
+  sha256: 4b2439bf6e7473a6505bfc9a8f26fcd52a4626035c6fac636d660dc7661dfbda
+  tamano_bytes: 31064
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/86038?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2016_2017_extraord_a2_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 14/oct/2016) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/86038
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2016-2017_CGex201610-14-ap-17-a2.xlsx
+  sha256: f937650da28ad458c541214121f82b677035801cd6fa6226eed9503b1a31735d
+  tamano_bytes: 31086
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/86038?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2017_2018_anexo2_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 8/sep/2017) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/93570
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2017-2018.xlsx
+  sha256: bd30b3220e30f9fcca7777a290acaa37d43382d8249e835ab89057974e8e37cf
+  tamano_bytes: 477609
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/93570?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2017_2018_sanblas_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 20/oct/2017) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/93804
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2017-2018_CGex201710-20-ap-9-2.xlsx
+  sha256: 3878e30b29c7b9c7d8d67c3c77642277fe54811ff69da52888f45dfd8e6ff207
+  tamano_bytes: 29806
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/93804?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2018_veracruz_ext_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 10/ene/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/94394
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018ext_CGex201801-10-ap-3-a2.xlsx
+  sha256: c4e1ff4a5545335561234c6ddb3ce1de01316e19e1d1f1f7a4bbd311fda93a33
+  tamano_bytes: 14891
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/94394?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_ags_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6-a1.xlsx
+  sha256: 4e12ca8dabbc08fdcb4e5e19bdd3fbf154aebdbc729ae079ad1d93f62c402bc0
+  tamano_bytes: 97355
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_bc_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6-a2.xlsx
+  sha256: 7a61da2b49528e36c8f85b78b928cb9bd4dbbb7686523f7e81c19467ec8e8563
+  tamano_bytes: 102575
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_dgo_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6-a3.xlsx
+  sha256: ae75cc38e91da6b445eefafaa8e33ea029d1377053ba0c7c7a4de7c7dcad4fa3
+  tamano_bytes: 101826
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_qroo_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6-a4.xlsx
+  sha256: 71bec370207dd4fcc4a5e23152f8e9d1dc4dfd501d03937577d46d238ac3bfeb
+  tamano_bytes: 139676
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_tamps_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6-a5.xlsx
+  sha256: 33cee401ea88ff35a113a0bd0cc5c43ab697cf24f509675ad601218458738212
+  tamano_bytes: 98224
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_acuerdo_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6.pdf.txt
+  sha256: dbfa49f7182f218d90d88c3b093bde75e7bd8c57a0d711729e083405f6eb44bd
+  tamano_bytes: 19526
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2019_puebla_ext_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG 2a extraordinaria 6/feb/2019) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/101943
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019.xlsx
+  sha256: 865df4d92223b9327d32095475b1bf71faa5ec9e29a444fa956709334f942eb2
+  tamano_bytes: 60903
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/101943?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2019_2020_a1_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 30/sep/2019) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/112696
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2019-2020_CGex201909-30-ap-1-a1.xlsx
+  sha256: 9d50d5e4f3e15bf8aa304b5272fa7be1d5868b62d6d48894d490ec6ddd18f583
+  tamano_bytes: 107785
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/112696?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2019_2020_a2_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 30/sep/2019) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/112696
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2019-2020_CGex201909-30-ap-1-a2.xlsx
+  sha256: 61596702075b3ef2f34714cb777412e30f2960a0db8e7d6022ba69668055350e
+  tamano_bytes: 108227
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/112696?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2019_2020_a3_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 30/sep/2019) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/112696
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2019-2020_CGex201909-30-ap-1-a3.xlsx
+  sha256: c5fd7b8717545ce8f9539514648b4b612b35959066a01cbcb6a1ba00b45b5b42
+  tamano_bytes: 108222
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/112696?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2020_2021_a1_xlsm
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 7/ago/2020) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/114312
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2020-2021_CGex202008-07-ap-2-a1.xlsm
+  sha256: 38dd38db5b3de111951603fd5e4a45855ffe30a630d4e78aca37c73d4eda8552
+  tamano_bytes: 1303292
+  formato: xlsm
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/114312?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2020_2021_a2_xlsm
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 7/ago/2020) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/114312
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2020-2021_CGex202008-07-ap-2-a2.xlsm
+  sha256: 1947c43e3338d4ce67499ee9ac6305202ecc9d716046938e18ff71a8f8c54522
+  tamano_bytes: 1448232
+  formato: xlsm
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/114312?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2021_2022_a1_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG ordinaria 28/jul/2021) que aprueba el Plan Integral
+    y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen, por entidad,
+    los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/122210
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2021-2022.xlsx
+  sha256: b8af69bf0defb1be385d34b8eb20d6b32b8c52202c74dc30f3a7d460375de02f
+  tamano_bytes: 919583
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/122210?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2021_2022_sep_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 30/sep/2021) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/125224
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2021-2022b.xlsx
+  sha256: 36a55081b9ff1af954cd427160a5d28e4611d1f81ac7e87682524f9e82f4c029
+  tamano_bytes: 247947
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/125224?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2021_2022_oct_pdf
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 20/oct/2021) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/125406
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2021-2022c.xlsx
+  sha256: b63108d208879c6e9d7b279b95368edf27b436ff6ecfe8e454b2450925c250be
+  tamano_bytes: 187717
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/125406?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2022_2023_anexoC_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 26/sep/2022) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/143140
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2022-2023.xlsx
+  sha256: 592d7f124e1d2c2302ed33a198ad4f197ddd90b24b9864419432696f49b3a4bd
+  tamano_bytes: 173434
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/143140?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2023_2024_anexo2_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 20/jul/2023) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/152565
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2023-2024.xlsx
+  sha256: bcd8af38ad6c3f317eaa07e4d6b8e4da076ecc2dee439589221c588b28356745
+  tamano_bytes: 910124
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/152565?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2024_2025_anexo2_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG ordinaria 26/sep/2024) que aprueba el Plan Integral
+    y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen, por entidad,
+    los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/176887
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2024-2025_CGor202409-26-ap-03-a2.xlsx
+  sha256: 8b10413599e064100032bf0f4548d9dda518bb108353549a73a8ad792b489158
+  tamano_bytes: 185217
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/176887?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
