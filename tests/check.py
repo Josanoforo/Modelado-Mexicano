@@ -1299,6 +1299,23 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # Sumado en ACTO MAESTRA35-L2 . R-v1_2-COMPLETA, 2/sep/2026 -- encargo
+    # verbatim (A.3), que nunca se edita para complacer un test. Dispara
+    # `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) por MENCION, no por uso:
+    # el encargo cita `estado=PROPUESTA` como el valor que la columna
+    # `estado` de forense/prereg-duelo-v2/codificacion-R-v1_0.tsv ya trae
+    # para FAM-M-05/06/07 desde el 1/sep (ACTO MAESTRA34-L2) -- es un estado
+    # de tabla de codificacion, no una decision esperando firma -- y la
+    # palabra "mesa" cae mas adelante en la MISMA linea porque el formato
+    # corto v2.12 escribe parrafos de miles de caracteres en una sola linea.
+    # Verificado, no supuesto: las dos coincidencias son L16 y L21, ambas
+    # `estado=PROPUESTA`/`estado: PROPUESTA` de esa tabla; ninguna ranura
+    # nueva queda sin fila -- las decisiones que este acto si abre tienen su
+    # fila (FP-241, FP-242, forense/firmas-pendientes.tsv) y la que consulto
+    # a mesa se resolvio en la propia sesion (opcion C). Explicado en
+    # forense/notas/2026-09-02-MAESTRA35-L2-cierre.md. Mismo criterio de
+    # autocaptura verbatim que SELLO-FICHA-G3 y CI-CATEGORIA arriba.
+    "forense/encargos/2026-09-02-MAESTRA35-L2-R-v1_2-COMPLETA.md",
     # forense/encargos/2026-08-26-MAESTRA31-E2-REGISTRA-PENDIENTES.md --
     # encargo verbatim (A.3) que pide abrir fila de tablero para siete
     # pendientes heredados de mesa (P1-P7). Verificado por el propio acto
