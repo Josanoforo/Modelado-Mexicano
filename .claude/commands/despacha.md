@@ -272,9 +272,17 @@ tipo de cosa** cita — nunca con una lectura ni con la impresión de qué
   merge que lo trajo, y confundir los dos es exactamente el defecto que
   `ADR-277` señala. Un commit con el rótulo en el mensaje puede vivir en
   una rama nunca fusionada, o citar el rótulo de pasada sin ejecutarlo.
-- **Una fecha** (`NO-LANZAR-ANTES-DE <fecha>`): se compara la fecha de
-  hoy (la del tick, no la de redacción del encargo) contra esa fecha —
-  `hoy >= NO-LANZAR-ANTES-DE` para que pase.
+- **Una fecha** (`vence:` o cualquier fecha de ejecución propuesta en el
+  encargo, incluido el tipo `NO-LANZAR-ANTES-DE` si aparece en un encargo
+  redactado antes de esta enmienda): **no es un tipo de compuerta válido**
+  y nunca se usa para saltar el encargo — firma de mesa, 2/sep/2026:
+  «la fecha es un límite y si procesamos algo antes está bien... no quiero
+  que ahora eso se vuelva algo que detenga nuestro progreso porque la
+  fecha no ha llegado.» En vez de evaluarla como pre-check, repórtala como
+  límite superior y sigue: `«<rótulo> vence <fecha>; hoy <fecha-de-hoy>:
+  se ejecuta»`. Defecto medido y corregido aquí: `MAESTRA34-E1` (PR #457)
+  trajo `NO-LANZAR-ANTES-DE` y esta sección la reconocía como compuerta
+  válida — ver `MAESTRA34-N8`.
 
 ### Si NO se cumple
 

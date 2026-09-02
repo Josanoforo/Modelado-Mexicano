@@ -12,3 +12,7 @@ P2 · Enmienda fechada al pie de la cola de E1 (A.3, verbatim intacto): «COMPUE
 P3 · hallazgos.md una línea; tablero: FP-226 `vence` intacto (8/sep) con nota «ejecutable antes»; recibo.
 PERÍMETRO: .claude/commands/despacha.md (§2-bis) · forense/encargos/cola/…E1… (pie) · forense/hallazgos.md · tablero · A.3 · cascada. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
 FP/ADR: deriva al arrancar. CONTADOR: cero directo, declarado. LO QUE NO HACE: no ejecuta E1; no sube versión de instrucciones.
+
+## CONSUMIDO
+
+**Ejecutado por `ACTO MAESTRA34-N8 · FECHAS-SON-LIMITES`, 2/sep/2026, `ADR-283`, rama `claude/dates-limits-not-gates-jtwylm`.** P1: `.claude/commands/despacha.md` §2-bis ya no reconoce fecha como tipo de compuerta; reporta límite y sigue. P2: enmienda fechada al pie de `forense/encargos/cola/2026-09-08-MAESTRA34-E1-REVISION-FALSADORES.md` (compuerta por fecha sustituida; archivo no renombrado, condición no aplicaba). P3: `forense/hallazgos.md` +1 línea; `FP-226` anotada `vence`, no compuerta. `grep -c "NO-LANZAR-ANTES-DE\|compuerta.*fecha"` contra `instrucciones-proyecto-v2_12.md` → `0`. `python3 tests/check.py --baseline` → VERDE. PR: pendiente de apertura (push de esta rama).

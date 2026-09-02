@@ -30,3 +30,14 @@ FP/ADR CANDIDATOS: deriva al arrancar el 8/sep.
 CONTADOR: cero directo, declarado (dirección).
 LO QUE NO HACE: no revierte nada por sí mismo (propone; mesa firma); no toca skills salvo su línea de falsador; no mide.
 SUCESORES: los actos de reversión que mesa firme, si alguno · la revisión de los tres meses de A.10/A.12/A.13 en su fecha.
+
+──── ENMIENDA FECHADA (MAESTRA34-N8, 2026-09-02) — al pie, cuerpo verbatim arriba intacto ────
+
+COMPUERTA (sustituye): digesto del día existente en forense/digesto/. La
+fecha 2026-09-08 pasa a ser `vence`, no compuerta. Ejecutable desde hoy.
+
+Nota de nombre de archivo: no se renombra a `2026-09-02-…` porque
+`/despacha` toma el `LISTO-NUBE` más antiguo por nombre de archivo —
+renombrar a una fecha anterior lo adelantaría en la cola, no lo dejaría
+al final; la condición para renombrar (dejarlo al final indebidamente)
+no se cumple.
