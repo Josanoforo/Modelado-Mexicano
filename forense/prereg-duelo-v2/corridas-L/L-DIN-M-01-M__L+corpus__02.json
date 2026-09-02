@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L+corpus",
+  "indice": 2,
+  "texto_crudo": "**Estimación puntual:** ~20 % (hogares/adultos que reportan tener algún ahorro), escala binaria → proporción \"sí\".\n\n**Rango subjetivo (aunque la escala sea binaria, doy incertidumbre sobre la proporción):** 12 %–30 %, con la masa de mi creencia entre 15 % y 25 %.\n\n**Estatus epistémico — importante:** *no conozco el dato*. No tengo memorizada la distribución del reactivo `tiene_ahorros` en la ola 1 (2002) de la ENNViH/MxFLS, ni el fraseo exacto del ítem, ni si el universo es hogar o individuo adulto (esto mueve la cifra de forma no trivial). Lo anterior es una inferencia por anclaje en el hecho general de que la penetración de ahorro formal en México a principios de los 2000 era baja y que los instrumentos informales (tandas, ahorro en efectivo) se captan de forma desigual según cómo se redacte el reactivo. Trátese como prior débil, no como estimación de encuesta.\n\n**Sonda canario (fuente textual declarada):** no tengo fuente textual que citar. No puedo declarar página, cuadro ni archivo de la documentación de la ENNViH 2002 para respaldar esta cifra, y no voy a construir una cita plausible. Si el acto lo requiere, la fuente correcta sería el cuestionario de hogar/adultos de la ola 1 y su libro de códigos, que aquí no he consultado.\n\n**Nota sobre el universo:** registrado tal cual lo declaras — NO ESTIMADO EN ESTE ACTO; censo de existencia sobre inventario de reactivos, no re-derivación contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e)). Mi número anterior no debe usarse como si fuera producto de re-derivación.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:57:51.750961+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "94a59d32533ae684c69f9cfc129d0e885ec71e7d1b844714d0938604f10b1868"
+}

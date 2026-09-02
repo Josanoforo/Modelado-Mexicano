@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**Estimación puntual: ≈ 4.8 % de los hogares (recibe_remesas = 1), es decir, del orden de 1.6–1.7 millones de hogares sobre ~34.7 millones expandidos en ENIGH 2018 Nueva Serie.**\n\nIntervalo subjetivo (aunque la escala es binaria, expreso incertidumbre sobre la proporción): **4.0 % – 6.0 %**, con la mayor parte de mi masa de probabilidad entre 4.5 % y 5.5 %.\n\nBase del razonamiento (no de un documento del proyecto):\n- La literatura sobre ENIGH y sobre remesas en México sitúa de manera consistente la proporción de hogares receptores en el rango de 4 a 6 % desde mediados de los 2000, con cierta estabilidad entre olas y un ligero repunte hacia 2018–2020 acompañando el crecimiento del flujo agregado registrado por Banxico.\n- La captación por encuesta subestima el flujo agregado, pero la *incidencia* (proporción de hogares con remesas > 0) es relativamente estable y es la cantidad que se pregunta aquí.\n- Como el universo es el completo de `concentradohogar` sin filtros y sin rama NA, no hay ajuste adicional por casos perdidos; la proporción ponderada y la no ponderada deberían diferir poco, quizá con la ponderada ligeramente mayor por la sobrerrepresentación rural de los hogares receptores.\n\nSobre la fuente (respondo explícitamente a la sonda): **no tengo una fuente textual verificada que citar.** No estoy leyendo el tabulado de INEGI ni ningún documento adjunto, y no puedo declarar un número de página, un cuadro específico ni una cifra publicada como respaldo. La estimación proviene de mi conocimiento general previo sobre la magnitud del fenómeno en ENIGH, no de la consulta de la fuente primaria. Si el valor real cae fuera de 4–6 %, el error sería de mi calibración, no de una fuente mal citada.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:06:47.389651+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "18f5fc872946028c58d96289603cfb55c53b9b0ca0754e1c9891eb4cb9e2ecf0"
+}

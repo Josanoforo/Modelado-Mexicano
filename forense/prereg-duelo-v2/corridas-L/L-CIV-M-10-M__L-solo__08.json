@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "## Respuesta\n\n**No doy estimación puntual en este acto.**\n\n**Por qué:**\n\n1. **El acto declarado es censo de existencia**, no estimación de prevalencia. Bajo la regla de columnas invocada (misma que MAESTRA32-E15 spec (e)), lo procedente es dictaminar si el reactivo existe en el inventario del instrumento ENVIPE 2021, no re-derivar una proporción contra microdato. La escala binaria además no admite intervalo continuo.\n\n2. **No puedo confirmar la existencia del reactivo con esa formulación.** El nombre `denuncia_con_miedo_o_desconfianza` es ambiguo respecto de lo que sí recuerdo del cuestionario ENVIPE: el módulo de victimización incluye una batería de **causas de NO denuncia**, con opciones separadas del tipo \"miedo al agresor\" y \"desconfianza en la autoridad\" (esta última agrupada usualmente entre las causas atribuibles a la autoridad). Eso es lógicamente lo contrario de \"denunció con miedo o desconfianza\". Puede tratarse de (a) un reactivo derivado/construido por el proyecto, (b) una recodificación de dos opciones de la batería de no-denuncia, o (c) un reactivo que simplemente no está en el instrumento. No tengo elementos para decidir entre las tres.\n\n3. **No tengo fuente textual que citar.** No tengo acceso a los documentos adjuntos del proyecto, ni he leído el cuestionario ni el descriptor de archivo de ENVIPE 2021 en esta sesión. Cualquier cifra que diera (p. ej. un porcentaje de \"miedo al agresor\" o \"desconfianza en la autoridad\") sería recuperación de memoria sin verificar, no una lectura de fuente — y eso es exactamente lo que la sonda canario busca detectar. **No la doy.**\n\n**Lo que haría falta para resolver el censo de existencia:** el cuestionario ENVIPE 2021 (módulo de delitos, pregunta de causas de no denuncia) y el descriptor de archivo del microdato, para verificar si el reactivo es original, derivado, o inexistente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:51:04.399391+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a"
+}

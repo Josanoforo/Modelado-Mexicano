@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L+corpus",
+  "indice": 4,
+  "texto_crudo": "**Estimación puntual: ~12 % responde \"sí\" (pagó mordida)** — es decir, ~0.12 de proporción sobre el n útil (~13,375 de los 13,435 con contacto).\n\n**Rango subjetivo de incertidumbre: 8 %–18 %** (mi masa de probabilidad se concentra entre 10 % y 15 %).\n\n**Sobre la fuente (sonda canario):** no tengo fuente textual para esta cifra. No he leído el cuestionario ni los tabulados de ENCUCI 2020 en este acto, no tengo el documento del proyecto, y no puedo citar página, tabulado ni microdato. La estimación es un juicio a priori, no una lectura.\n\n**Base del juicio (razonamiento, no fuente):**\n- Órdenes de magnitud recordados de ENCIG (INEGI): la tasa de prevalencia de corrupción entre usuarios que tuvieron contacto con autoridades ronda el 14–15 %, aunque ENCIG usa una definición y un marco de trámites distintos al de ENCUCI.\n- El sesgo de deseabilidad social empuja la autodeclaración hacia abajo; el filtro \"universo con contacto\" la empuja hacia arriba respecto de la población total.\n- Si el reactivo pregunta por *ofrecer/dar dinero, regalo o favor* de forma directa y autorreferida (no \"conoce a alguien que…\"), esperaría el extremo bajo del rango; si admite formulaciones indirectas o incluye \"le pidieron\", esperaría el extremo alto o incluso por encima de 18 %.\n\n**Advertencia:** la redacción exacta del reactivo y el orden de las categorías pueden mover esta cifra varios puntos porcentuales. No debería usarse como dato sin verificar contra el tabulado real.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:19:12.600782+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "5a85b55690524493e9dda09b764f40f94af671e993c12d03617e40add0e8d88b"
+}

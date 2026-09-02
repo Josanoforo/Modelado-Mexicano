@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L+corpus",
+  "indice": 4,
+  "texto_crudo": "**Estimación puntual: ≈ 4.5 % de los hogares** (recibe_remesas = 1), es decir, del orden de 1.4–1.6 millones de hogares sobre ~33.5 millones expandidos en ENIGH 2016 Nueva Serie.\n\n**Intervalo subjetivo (aunque la escala sea binaria, para la proporción):** ~3.5 % – 6.0 %, con la mayor parte de mi masa de probabilidad entre 4 % y 5.5 %.\n\n**Notas sobre la estimación:**\n- La cifra se refiere a la proporción ponderada (con `factor`); en la muestra sin expandir podría diferir algunas décimas porque el diseño de ENIGH sobre-representa hogares de ingresos altos y ciertas entidades, y los hogares receptores se concentran en entidades de alta migración (Michoacán, Guanajuato, Zacatecas, Oaxaca, Guerrero) y en localidades rurales, donde la prevalencia puede superar el 10 %.\n- Si el conteo se hace sin ponderar sobre los ~70 mil hogares de la muestra 2016, esperaría un valor similar o ligeramente menor (~4 %).\n\n**Fuente (respuesta explícita a la sonda):** no tengo una fuente textual verificada a la mano para este acto. La cifra proviene de mi recuerdo general de tabulados de ENIGH y de análisis publicados sobre remesas en México (INEGI/BBVA Research, Anuario de Migración y Remesas), no de una tabla de `concentradohogar` que haya leído o calculado aquí. **No he verificado el dato contra el microdato**; considérala una estimación a priori, no un valor citable. La forma correcta de fijarlo es correr el conteo directo sobre `concentradohogar` 2016 con `remesas > 0` y `factor`.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:03:37.468848+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "bc583bc6ca433005613ab1ec455559a13546ba3f48721fa812909c05a1f0770d"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "**Estimación puntual:** ≈ **4.6 %** de los hogares con `remesas > 0` (proporción ponderada con `factor`).\n\n**Intervalo subjetivo (80 %):** ~3.8 % – 5.8 %. Escala binaria, pero doy rango porque mi incertidumbre sobre la cifra exacta es amplia.\n\n**Notas sobre el estimando:**\n- Si se calcula **sin ponderar** (proporción cruda sobre las ~70 mil viviendas de la muestra 2016), esperaría un valor algo **mayor**, quizá 5–6 %, porque ENIGH sobremuestrea estratos y entidades con alta migración (Michoacán, Guanajuato, Zacatecas, Oaxaca) respecto a su peso poblacional.\n- La ola 2016 \"Nueva Serie\" es la comparable con 2018–2022; la serie muestra tendencia creciente hacia 2018–2020 (≈5 %+), así que 2016 debería ubicarse en la parte baja de esa trayectoria.\n\n**Fuente:** no tengo una fuente textual verificable para esta cifra. No estoy citando una tabulación específica del INEGI, CONAPO ni BBVA Research; es una estimación de memoria a partir del orden de magnitud recurrente en análisis de ENIGH sobre remesas (típicamente \"alrededor de 5 % de los hogares mexicanos\"). **No debe tratarse como dato confirmado** — requiere verificación directa contra el microdato de `concentradohogar` 2016.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:02:23.211582+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a8dde17ac46b97f502532aad4d19f4cd26e37037bf75b73971401678ef712acc"
+}

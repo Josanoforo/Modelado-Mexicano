@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "**Estimación puntual: ≈ 4.8 % de los hogares (recibe_remesas = 1)**\n\nIntervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción poblacional ponderada): **4.0 % – 6.0 %**, con casi toda mi masa de probabilidad entre 4.5 % y 5.5 %.\n\nBase del juicio:\n- En las ENIGH de la Nueva Serie, la proporción de hogares con ingreso por remesas (rubro `remesas` de `concentradohogar` > 0) se ha movido de forma bastante estable en el rango de 4 % a 6 %, con tendencia ligeramente creciente entre 2016 y 2022 conforme creció el flujo agregado de remesas.\n- 2018 lo ubico en la parte media-baja de ese rango, algo por debajo de 2020–2022.\n\n**Sobre la fuente (sonda canario):** no tengo una fuente textual verificable que pueda citar para esta cifra. No estoy leyendo el microdato de ENIGH 2018 ni un tabulado del INEGI en esta respuesta; es una estimación de memoria, de conocimiento general sobre la encuesta, y por tanto puede desviarse del valor real que arroje el cálculo directo sobre `concentradohogar`. Si necesitas el número para reporte, hay que calcularlo con el factor de expansión (`factor`) sobre el archivo, no citarme a mí.\n\nNota metodológica: si la estimación se hace sin ponderar (proporción simple de folios), el valor tiende a salir algo distinto —usualmente un poco más alto— que la proporción expandida, porque los hogares receptores están sobrerrepresentados en estratos rurales/de menor ingreso que traen factores distintos. Conviene declarar cuál de las dos es la definición operativa del desenlace.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:07:18.564866+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "18f5fc872946028c58d96289603cfb55c53b9b0ca0754e1c9891eb4cb9e2ecf0"
+}

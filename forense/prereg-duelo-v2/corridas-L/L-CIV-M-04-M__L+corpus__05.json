@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L+corpus",
+  "indice": 5,
+  "texto_crudo": "**No doy cifra: no conozco este dato con la especificidad requerida y no voy a construir una plausible.**\n\nPrecisiones sobre por qué:\n\n1. **El acto declarado no es de estimación.** El universo se define como censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Bajo esa regla, la salida correcta es presencia/ausencia del reactivo en el inventario, no un valor poblacional. No tengo el inventario de este proyecto a la vista, así que tampoco puedo emitir el censo de existencia.\n\n2. **El nombre del reactivo es ambiguo respecto de la escala binaria.** `denuncia_con_miedo_o_desconfianza` puede designar al menos tres cosas distintas en ENVIPE: (a) un indicador binario a nivel delito de \"denunció y declaró miedo/desconfianza como circunstancia\"; (b) una recodificación binaria derivada de las *razones de no denuncia* (donde \"miedo al agresor\" y \"desconfianza en la autoridad\" son categorías separadas del módulo de delitos, no una unión); (c) una variable construida por el propio proyecto y no nativa del cuestionario. Sin resolver cuál es, cualquier número sería un artefacto de mi interpretación, no una estimación.\n\n3. **Sonda canario — fuente textual declarada:** no tengo ninguna. No he consultado en este acto el cuestionario ENVIPE 2015, su descriptor de archivo, ni la tabulación de INEGI. Lo que retengo de memoria general (orden de magnitud de la cifra negra ~93–94%, y que \"desconfianza en la autoridad\" pesa más que \"miedo al agresor\" entre las razones de no denuncia) no es citable como fuente para este reactivo, y explícitamente **no lo estoy ofreciendo como estimación puntual** ni como sustituto de ella.\n\nLo que sí puedo hacer si lo autorizan: (i) fijar la definición operativa del reactivo contra el cuestionario ENVIPE 2015 antes de cualquier número, o (ii) emitir el censo de existencia si me pasan el inventario de reactivos correspondiente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:47:02.510176+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2fc37b39851b40a8d9f3343e4e96ec208353eee0eb6e1250f86a86ccd77fa32f"
+}

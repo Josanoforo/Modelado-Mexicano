@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L+corpus",
+  "indice": 3,
+  "texto_crudo": "## Respuesta\n\n**Naturaleza del acto:** censo de existencia (¿existe el reactivo en el inventario de la ola?), no estimación poblacional. Escala binaria, sin intervalo (no aplica CI en binaria de existencia).\n\n**Estimación puntual:**\n\n- **Como reactivo literal, con esa redacción conjunta (\"miedo *o* desconfianza\" en una sola opción): 0 (no existe).**\n- **Como constructo derivable a partir de opciones separadas del batería de \"causas de la no denuncia\": 1 (existe).**\n\n**Razonamiento (declarado como recuerdo, no como lectura):** en ENVIPE el bloque relevante no es \"denuncia con miedo\", sino el de *motivos de la no denuncia*, dividido en causas atribuibles a la autoridad (p. ej. \"pérdida de tiempo\", \"desconfianza en la autoridad\", \"actitud hostil de la autoridad\") y otras causas (p. ej. \"miedo al agresor\", \"miedo a que lo extorsionaran\", \"delito de poca importancia\", \"no tenía pruebas\"). \"Miedo\" y \"desconfianza\" aparecen ahí como **opciones distintas y en subgrupos distintos**, no fusionadas. Por eso el nombre `denuncia_con_miedo_o_desconfianza` parece un **rótulo analítico del corpus**, no un identificador de reactivo de cuestionario. Además el signo va invertido respecto al nombre: la evidencia disponible es sobre **no** denuncia.\n\n**Sonda canario — fuente:** no puedo citar fuente textual. No tengo abierto ni he leído en este acto el cuestionario ENVIPE 2013, el descriptor de archivo ni el catálogo de variables; tampoco tengo el contexto tierizado (viene marcado como \"no construido en este acto\"). Lo anterior es recuerdo del diseño general de ENVIPE, no verificación documental. **No doy códigos de variable ni numeración de pregunta**, porque cualquier cifra tipo \"BP1_x\" que produjera aquí sería fabricada.\n\n**Lo que resolvería la duda:** el cuestionario del Módulo de victimización ENVIPE 2013 (sección de delitos, pregunta de causas de no denuncia) o el diccionario de datos de la tabla de delitos (`TPer_Vic*`). Si la mesa quiere el ítem cerrado, hay que decidir explícitamente si el inventario admite **compuestos derivados** o solo **reactivos literales**; con la primera regla es 1, con la segunda es 0.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:40:21.371179+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "447b9cf105956a072f568f1b9b3c1451bc80565d097e1cdfed218a6ade0236d8"
+}

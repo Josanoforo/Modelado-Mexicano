@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Respuesta corta: no conozco el dato. No tengo una cifra fuente para `tiene_ahorros` en ENNViH/MxFLS 2002 (ola 1), y no voy a construir una.**\n\n**Sonda de fuente (M1):** no puedo declarar fuente textual. No tengo en memoria ni el cuadro de frecuencias, ni la página del cuestionario, ni la etiqueta de variable correspondiente. Cualquier cita que ofreciera (\"MxFLS-1, libro de adultos, sección de ahorro y crédito, tabla X\") sería reconstruida, no leída.\n\n**Dos observaciones sobre el reactivo mismo (que es lo que el universo declarado pide):**\n\n1. MxFLS no usa nombres de variable descriptivos en español. Sus variables van codificadas por libro/sección/ítem (tipo `cs##`, `bk##`). Un identificador `tiene_ahorros` es casi con certeza una etiqueta del proyecto (derivada o armonizada), no el nombre nativo del microdato. Eso importa para el censo de existencia: la pregunta \"¿existe este reactivo?\" depende de si se admite mapeo a un ítem nativo de la sección de ahorro/activos financieros, o si se exige coincidencia literal de columna.\n2. Que MxFLS-1 levantó algo sobre tenencia de activos financieros/ahorro a nivel hogar-adulto es plausible por diseño (es una encuesta de panel socioeconómica amplia, con módulos de activos, crédito y transferencias). Pero \"plausible por diseño\" no es \"verificado en el inventario\", y bajo la regla de columnas de MAESTRA32-E15 spec (e) eso no basta.\n\n**Sobre el punto estimado:** si me forzaras a un número, entregaría un prior de contexto (inclusión financiera formal en México a inicios de los 2000 era baja; con ahorro informal incluido —tandas, ahorro en casa— la fracción sube bastante), pero el rango que produciría iría de ~15% a ~45% según cómo esté redactado el reactivo, lo cual es demasiado ancho para ser una estimación y demasiado dependiente de la redacción exacta que no tengo. En escala binaria eso no es un punto útil, es un encogimiento de hombros con decimales.\n\n**Recomendación:** este caso se resuelve leyendo el diccionario de variables de MxFLS-1, no consultándome a mí.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:54:51.155527+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41"
+}

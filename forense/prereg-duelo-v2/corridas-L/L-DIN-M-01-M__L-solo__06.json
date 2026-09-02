@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "## Respuesta\n\n**No conozco el dato.** No tengo memorizada la distribución marginal del reactivo `tiene_ahorros` en la ENNViH/MxFLS ola 1 (2002), ni puedo citar página, cuadro o libro de códigos que la contenga. Cualquier cifra que dé es prior propio, no lectura de fuente.\n\n**Fuente declarada (sonda canario):** ninguna. No estoy citando documentación de la MxFLS ni microdato; no tengo acceso a documentos del proyecto en este acto.\n\n**Estimación puntual (prior, no sourced):** ~25% de respuestas afirmativas.\n\n**Intervalo subjetivo:** 12%–40% (la escala es binaria, así que esto es incertidumbre sobre la proporción, no un IC muestral).\n\n**Supuestos que mueven mucho el número — y que no puedo resolver sin el libro de códigos:**\n\n1. **Unidad de análisis:** si el reactivo es a nivel hogar vs. adulto individual. A nivel individual la prevalencia suele ser bastante menor.\n2. **Definición de \"ahorro\":** solo instrumentos formales (banca, caja popular) vs. cualquier ahorro incluyendo informal (tandas, efectivo guardado, ahorro en especie/animales). Con informal incluido la cifra puede acercarse a 40–50%; solo formal, en México 2002, plausiblemente por debajo de 20%.\n3. **Filtro de salto:** si el ítem está condicionado a un módulo previo (p. ej. activos financieros del hogar), el universo válido cambia y con él el denominador.\n\n**Nota sobre el universo declarado:** el enunciado señala censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Bajo esa regla, lo que corresponde reportar es la existencia/etiqueta del reactivo, no su marginal — y sobre la existencia tampoco tengo verificación textual, solo la plausibilidad de que la MxFLS 2002 contenga un módulo de activos/ahorro del hogar.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:56:38.116496+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41"
+}

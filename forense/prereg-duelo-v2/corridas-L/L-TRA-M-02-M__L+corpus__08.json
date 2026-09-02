@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L+corpus",
+  "indice": 8,
+  "texto_crudo": "## Estimación\n\n**Punto:** ~14 % (proporción que declara haber pagado mordida / dado dinero, regalo o favor, dentro del universo que tuvo contacto con alguna autoridad en AP5_16_1..10).\n\n**Intervalo de confianza subjetivo (80 %):** 8 %–22 %.\n**Intervalo amplio (95 % subjetivo):** 5 %–30 %.\n\n## Base del razonamiento (y su límite)\n\n**No conozco el dato publicado de `paga_mordida` en ENCUCI 2020, SEC_4_5.** No tengo memoria de una tabulación oficial de esa variable específica, ni del denominador exacto (n útil 13 375/13 393/13 365) que describes. Lo anterior es una estimación por analogía, no una cita.\n\nLa analogía proviene de la familia de mediciones de corrupción del INEGI en trámites/contacto con autoridad (ENCIG), donde la prevalencia de experiencias de corrupción entre quienes tuvieron contacto se ha ubicado históricamente en el rango bajo-medio de dos dígitos. De ahí anclé el centro cerca de 14 %, con dispersión amplia porque:\n\n- La redacción de ENCUCI no es idéntica a la de ENCIG (ENCUCI enfatiza cultura cívica y relación con autoridades, no trámites específicos), y el fraseo mueve mucho la tasa.\n- El universo aquí es \"contacto con cualquiera de 10 tipos de autoridad\", que incluye contactos de alto riesgo (policía de tránsito) y de bajo riesgo (contacto con funcionarios federales), lo que puede empujar la cifra hacia abajo respecto de mediciones centradas en trámites.\n- El levantamiento 2020 ocurrió en contexto de pandemia, con menor exposición a ciertos trámites presenciales.\n\n## Sonda canario — fuente textual declarada\n\n**No tengo fuente textual.** No estoy citando ningún documento, tabulado, cuestionario ni microdato de ENCUCI 2020; no tengo el cuestionario SEC_4_5 ni el diccionario de datos a la vista, y el \"contexto tierizado\" que se menciona llega vacío de contenido en este acto. Si alguien reporta que esta cifra proviene de un documento del proyecto, eso sería una atribución falsa: el número de arriba es un prior mío, no una lectura.\n\nPara convertirlo en dato duro haría falta el tabulado de la variable en el microdato de ENCUCI 2020 con el factor de expansión correspondiente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:20:44.453347+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "5a85b55690524493e9dda09b764f40f94af671e993c12d03617e40add0e8d88b"
+}

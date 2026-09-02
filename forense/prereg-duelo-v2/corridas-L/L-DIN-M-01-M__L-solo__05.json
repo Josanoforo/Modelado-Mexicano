@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "## Respuesta\n\n**1. Sobre la fuente (sonda canario): no tengo fuente textual verificada.**\nNo dispongo en memoria de un cuadro publicado, libro de códigos ni tabulado de la ENNViH‑1 (2002) que reporte la distribución de un reactivo `tiene_ahorros`. Cualquier cita concreta que yo diera (número de página, nombre exacto de variable, sección del cuestionario) sería inventada. No la doy.\n\n**2. Sobre la existencia del reactivo (que es lo que pide el universo declarado).**\nGrado de confianza *moderado, no verificado*: la ENNViH‑1 incluye módulos de economía del hogar con secciones sobre activos, deuda y — con alta plausibilidad — tenencia de ahorro/cuentas. Es razonable que exista un reactivo de este tipo a nivel hogar o de adulto. Pero **no puedo confirmar** ni el nombre de variable, ni el nivel de observación (hogar vs. individuo), ni si el reactivo pregunta por \"ahorro\" en sentido amplio (incluyendo tandas, ahorro en efectivo, cajas populares) o sólo por cuenta formal. Esa distinción cambia la prevalencia por un factor de dos o más, así que es la ambigüedad dominante aquí.\n\n**3. Estimación puntual (escala binaria).**\n\n- **Mejor estimación: ~20 % responde \"sí\".**\n- Rango subjetivo amplio: **12 %–35 %**.\n\nRazonamiento (no evidencia): hacia 2002 la inclusión financiera formal en México era baja —del orden de una quinta parte de hogares con cuenta bancaria—, con fuerte gradiente urbano/rural y por ingreso. Si el reactivo captura ahorro informal (tandas, ahorro doméstico, cajas de ahorro), la cifra sube hacia el extremo alto o incluso lo rebasa (30‑40 %); si es estrictamente cuenta formal, cae hacia 12‑18 %.\n\n**4. Advertencia de uso.**\nEsta cifra es una inferencia contextual, no una lectura del microdato ni de un tabulado ENNViH. No debe entrar a la mesa como valor de referencia ni contrastarse como si fuera dato observado. Para cerrarlo hace falta el libro de códigos de la ola 2002 (identificar el reactivo y su universo) y, si se quiere prevalencia, la re‑derivación ponderada contra microdato — que el universo declarado excluye explícitamente en este acto.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:56:19.207837+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41"
+}

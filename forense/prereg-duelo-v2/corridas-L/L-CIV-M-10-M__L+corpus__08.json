@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L+corpus",
+  "indice": 8,
+  "texto_crudo": "## Respuesta\n\n**Estimación puntual (escala binaria): NO existe como reactivo literal en el cuestionario ENVIPE 2021.**\nProbabilidad subjetiva de que exista un ítem con ese contenido *como reactivo binario autónomo*: **~0.10–0.15**.\nProbabilidad subjetiva de que el contenido exista *como opción(es) dentro de una batería de opción múltiple*: **~0.90**.\n\n## Base del juicio (declarada, sin documento)\n\n- No tengo acceso a ningún documento, corpus tierizado ni cuestionario de este proyecto. Lo anterior es memoria paramétrica mía, no lectura de fuente.\n- Lo que sí recuerdo con confianza razonable: ENVIPE incluye, en el módulo de victimización (formato por delito), una pregunta sobre **razones de NO denuncia**, cuyas opciones se agrupan convencionalmente en \"atribuibles a la autoridad\" (desconfianza en la autoridad, pérdida de tiempo, trámites largos y difíciles, actitud hostil) y \"otras causas\" (miedo al agresor, delito de poca importancia, falta de pruebas, entre otras).\n- Por tanto, \"miedo\" y \"desconfianza\" aparecen como **categorías de respuesta de no-denuncia**, no como un ítem binario \"denunció con miedo o desconfianza\". La etiqueta `denuncia_con_miedo_o_desconfianza` parece una **variable derivada/recodificada** del proyecto, no un reactivo de instrumento.\n\n## Sonda canario (M1) — fuente textual declarada\n\n**No puedo citar una fuente textual verificada.** No he leído el cuestionario ENVIPE 2021 ni su descriptor de archivo en este acto. No dispongo de número de pregunta, folio de opción ni nombre de columna del microdato, y no los voy a inventar. Cualquier cita puntual (p. ej. \"pregunta 4.9 del Módulo IV\") sería reconstrucción de memoria, no verificación.\n\n## Advertencia de método\n\nCoherente con la regla invocada (censo de existencia, no re-derivación contra microdato): esta respuesta es un juicio de **existencia de reactivo**, y como tal debería resolverse contra el cuestionario impreso / descriptor de archivo de ENVIPE 2021, no contra frecuencias. Mi estimación no sustituye esa verificación.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:54:26.836689+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "b68f783997232c2c96f4c97d4a225d9a0930d87806975701963b44895854df25"
+}

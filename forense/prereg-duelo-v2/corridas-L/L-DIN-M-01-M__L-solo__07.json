@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "**Estimación puntual: ~20 % de respuestas afirmativas** (proporción de unidades —hogar o adulto, según la unidad de análisis que finalmente se fije— que declaran tener ahorros en la ola 1 de la ENNViH/MxFLS, 2002).\n\n**Intervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción): 10 %–35 %**, con la masa de probabilidad cargada hacia 15–25 %.\n\n**Advertencia explícita sobre lo que sé y lo que no:**\n\n- **No conozco el dato publicado.** No tengo memorizada la distribución marginal de un reactivo llamado `tiene_ahorros` en el microdato de MxFLS 2002, ni la redacción literal de la pregunta, ni si se levantó a nivel hogar (módulo de activos/ahorro del cuestionario de hogar) o a nivel individuo adulto. Esa ambigüedad de unidad es la mayor fuente de error en mi cifra.\n- **No tengo fuente textual que citar.** No puedo declarar un documento, cuadro o codebook concreto como respaldo; hacerlo sería inventar la cita. Mi número es un juicio a priori, no una lectura de fuente.\n\n**Base del juicio (razonamiento, no fuente):** en México a principios de los 2000 la tenencia de instrumentos formales de ahorro era baja —del orden de un cuarto o menos de la población adulta— y el ahorro informal (tandas, ahorro en efectivo, animales/bienes) suele quedar fuera o dentro del reactivo según cómo esté redactado. Si el reactivo captura *cualquier* ahorro, incluido el informal, la cifra podría subir hacia 30–35 %; si captura solo cuenta o instrumento formal, podría bajar a 10–15 %. Por eso el intervalo es ancho.\n\n**Nota sobre el universo declarado:** entiendo que este acto es un censo de existencia del reactivo en el inventario, no una re-derivación contra microdato, por lo que la cifra anterior no debe tratarse como estimación validada ni propagarse como si lo fuera.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:56:56.452376+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41"
+}

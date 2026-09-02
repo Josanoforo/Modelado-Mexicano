@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L+corpus",
+  "indice": 3,
+  "texto_crudo": "**Estimación puntual: ≈ 5 % de los hogares (recibe_remesas = 1).**\n\nRango subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción): **4 % – 6.5 %**, con la masa de probabilidad concentrada entre 4.5 % y 5.5 %.\n\nRazonamiento breve:\n- Las estimaciones de uso común en México sitúan a los hogares perceptores de remesas en torno al 4–6 % del total, con una tendencia ligeramente al alza hacia 2020–2022 por el auge del flujo de remesas.\n- 2020 es un año con crecimiento fuerte del monto agregado de remesas (efecto pandemia/tipo de cambio), lo que sostiene la parte alta del rango; pero el porcentaje de *hogares* receptores se mueve mucho menos que el monto total.\n\n**Sobre la fuente (sonda canario):** no tengo a la vista la tabulación oficial de ENIGH 2020 ni el microdato de `concentradohogar.remesas`, así que **no puedo citar una fuente textual verificada** para esta cifra. La estimación proviene de conocimiento general sobre ENIGH/CONAPO/BANXICO, no de un documento consultado en este acto. Si necesitas el valor exacto, hay que calcularlo sobre el microdato con el factor de expansión (`factor`) del hogar; la proporción ponderada y la no ponderada pueden diferir en algunas décimas.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:13:02.457219+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "451176f28f9633207e0a207e44ec8eaf698e0029c3f52f4cbe123296dbec0394"
+}

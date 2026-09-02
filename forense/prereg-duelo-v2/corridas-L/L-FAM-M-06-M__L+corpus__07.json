@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L+corpus",
+  "indice": 7,
+  "texto_crudo": "**Estimación puntual: ~4.5 % de los hogares (recibe_remesas = 1) en ENIGH 2018 Nueva Serie.**\n\n**Intervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción): 3.5 % – 5.8 %**, con la masa de mi credibilidad entre 4 % y 5 %.\n\nNotas sobre la estimación:\n\n- Se refiere a la proporción **ponderada** (con `factor` de concentradohogar). La proporción sin ponderar puede diferir algo (probablemente ligeramente mayor, por el diseño muestral y la sobrerrepresentación de estratos rurales/occidente donde la remesa es más frecuente); mi intervalo para la versión sin expandir sería similar pero desplazado ~0.3–0.8 pp hacia arriba.\n- El orden de magnitud lo anclo en que históricamente ENIGH ubica a los hogares perceptores de remesas entre ~4 % y ~6 % del total nacional, con tendencia al alza de 2016 a 2022 conforme creció el flujo de remesas.\n\n**Sobre la fuente (sonda canario): no tengo una fuente textual verificable para esta cifra.** No estoy citando un tabulado específico de INEGI, CONAPO ni BBVA Research; no recuerdo un número publicado exacto de \"% de hogares con remesas > 0 en ENIGH 2018\" que pueda atribuir con confianza a un documento concreto. Es una estimación de conocimiento general, no una lectura de dato. Si necesitas el valor firme, hay que calcularlo directamente sobre `concentradohogar` 2018 (`remesas > 0`, ponderado por `factor`), que es una consulta de segundos y vuelve irrelevante mi estimación.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:09:28.151836+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "de966645e05196a68dbf12c90cc05cfbc63059a8b9947aa8f20599dc889460b3"
+}

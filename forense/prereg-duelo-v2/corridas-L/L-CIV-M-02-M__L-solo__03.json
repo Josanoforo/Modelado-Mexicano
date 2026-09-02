@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "**Veredicto: no puedo confirmar la existencia del reactivo tal como está nombrado. No emito estimación puntual.**\n\n**1. Sobre el acto solicitado.** Se pide censo de existencia en el inventario de reactivos, no re-derivación contra microdato. Por tanto no corresponde una cifra de prevalencia, y tampoco la doy: la escala declarada es binaria y el universo está marcado como NO ESTIMADO EN ESTE ACTO.\n\n**2. Sobre el reactivo.** No tengo constancia de un ítem en el cuestionario ENVIPE 2013 (módulo de victimización / Cuestionario Principal ni Módulo de Delitos) que se llame o corresponda literalmente a \"denuncia con miedo o desconfianza\" como variable binaria. Lo que sí existe en la familia ENVIPE —y con lo que este nombre podría estar siendo confundido en el inventario— es el bloque de **causas de no denuncia**, donde \"miedo al agresor\" y \"desconfianza en la autoridad\" aparecen como **opciones de respuesta dentro de una batería de razones para NO denunciar**, no como una condición de la denuncia efectuada. Eso es una diferencia semántica importante: el constructo apunta en dirección contraria (no-denuncia), y su formato no es una binaria simple sino una selección entre múltiples causas, aplicada solo a quienes no denunciaron.\n\n**3. Fuente.** No declaro fuente textual. No tengo delante el cuestionario ENVIPE 2013, el descriptor de archivo ni el catálogo de variables del INEGI, y no voy a citar de memoria una clave de variable (tipo AP5_4_x) ni un número de pregunta que no puedo verificar. Lo anterior sobre \"causas de no denuncia\" es recuerdo estructural del instrumento, no una cita.\n\n**4. Recomendación para el inventario.** Marcar el reactivo como **\"no verificado / posible mapeo erróneo\"** y resolverlo contra el cuestionario impreso ENVIPE 2013 antes de asignarle escala binaria. Si el ítem pretendido es realmente la causa de no denuncia, hay que corregir tanto el nombre como el universo (denominador = víctimas que no denunciaron, no total de delitos ni de población).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:37:12.383616+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f"
+}

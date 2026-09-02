@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**Estimación: no puedo confirmar el reactivo tal como está nombrado.**\n\n**Punto (escala binaria):** lo más honesto es *no asignar 1/0 con confianza*. Si me obligan a un punto: **0 para un reactivo llamado literalmente \"denuncia con miedo o desconfianza\"**, y **1 para el contenido temático equivalente** bajo otra formulación. Explico la asimetría:\n\n1. **Lo que sí recuerdo del instrumento ENVIPE 2013 (cuestionario principal, módulo de victimización):** existe una batería de **causas de la NO denuncia**, dividida en (a) causas atribuibles a la autoridad —entre ellas *desconfianza en la autoridad*, *miedo a que lo extorsionaran*, *actitud hostil de la autoridad*, *pérdida de tiempo*, *trámites largos y difíciles*— y (b) otras causas —entre ellas *miedo al agresor*. Es decir, \"miedo\" y \"desconfianza\" aparecen como **motivos para no denunciar**, no como atributos de una denuncia efectuada.\n\n2. **Lo que la etiqueta propuesta sugiere** es lo contrario: alguien que **sí denunció** pese a (o con) miedo/desconfianza. No tengo memoria de que ENVIPE 2013 incluya un reactivo con esa dirección semántica. Podría existir como **variable derivada** de un proyecto de codificación (cruce de \"denunció = sí\" con alguna batería de percepción de inseguridad/confianza en autoridades), pero eso sería construcción del equipo, no reactivo original.\n\n3. **Riesgo principal:** confundir la existencia del *tema* con la existencia del *reactivo*. Bajo la regla de columnas invocada (censo de existencia sobre inventario, sin re-derivación contra microdato), marcar 1 por parecido temático sería exactamente el error que la regla intenta evitar.\n\n**Fuente declarada (sonda canario):** ninguna fuente textual verificada en este acto. No consulté cuestionario, descriptor de archivos, catálogo de variables ni FD de ENVIPE 2013. Lo anterior es **recuerdo de entrenamiento sobre la estructura del cuestionario ENVIPE**, no lectura de documento; no tengo acceso a documentos adjuntos de este proyecto. No cito página, folio ni nombre de variable en microdato porque no los tengo verificados y no voy a fabricarlos.\n\n**Para resolverlo bien** haría falta el cuestionario principal ENVIPE 2013 (sección de delitos, subsección denuncia) o el diccionario de datos del archivo de módulo de victimización, y localizar si existe ítem con esa dirección; en su defecto, registrar el reactivo como **derivado** y no como original.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:36:49.128648+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f"
+}

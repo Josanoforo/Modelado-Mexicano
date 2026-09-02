@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L+corpus",
+  "indice": 8,
+  "texto_crudo": "## Respuesta\n\n**Fuente textual declarada (sonda canario, M1): NINGUNA consultada en este acto.** No tengo abierto el cuestionario ENVIPE 2013, ni el descriptor de archivo FD, ni el catálogo de reactivos del proyecto. Lo que sigue es recuerdo de entrenamiento sin verificación documental, y así debe registrarse.\n\n**Naturaleza del acto:** censo de existencia sobre inventario de reactivos, escala binaria (¿existe el reactivo en el instrumento? 1/0). No re-derivo prevalencia contra microdato, conforme a la regla de columnas invocada (MAESTRA32-E15, spec (e)).\n\n**Estimación puntual: 0 (no existe un reactivo con esa construcción literal).**\n\n**Razonamiento y calificación:**\n\n- En mi recuerdo del instrumento ENVIPE (módulo de victimización / sección de denuncia del delito), el miedo y la desconfianza aparecen como **razones para NO denunciar**, no como atributo de una denuncia efectuada. El bloque de \"causas de no denuncia\" incluye opciones del tipo *miedo al agresor*, *desconfianza en la autoridad*, *pérdida de tiempo*, *trámites largos y difíciles*, *actitud hostil de la autoridad*.\n- La etiqueta `denuncia_con_miedo_o_desconfianza` describe una denuncia **realizada** bajo miedo o desconfianza. Esa combinación no la reconozco como reactivo del instrumento.\n- Dos escenarios alternativos que no puedo descartar sin el documento: (a) que la etiqueta sea un **nombre derivado del proyecto** para un ítem de no-denuncia recodificado, en cuyo caso el censo de existencia dependería de la convención de nomenclatura del inventario, no del cuestionario; (b) que corresponda a un reactivo de un módulo distinto (percepción de autoridades) que no tengo mapeado.\n\n**Confianza subjetiva en el 0 literal: baja-media (~0.6–0.7).** No es una escala continua, así que no doy IC numérico; el intervalo relevante es esa banda de confianza, y es lo bastante ancha como para que **no considere resuelto el censo con esta respuesta**.\n\n**Lo que no sé y no voy a inventar:** el número de pregunta, la redacción exacta, el nombre de la variable en el microdato (`AP4_*`, `BPCOD*` u otro), y si el proyecto ya fijó una regla de mapeo etiqueta→reactivo. Cualquier cifra de prevalencia que yo diera aquí sería fabricada.\n\n**Recomendación:** resolver contra el cuestionario ENVIPE 2013 y el FD del microdato (INEGI) antes de asentar 0 o 1 en el inventario; si la etiqueta es derivada del proyecto, el caso no es de existencia sino de decisión de mesa sobre nomenclatura.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:42:32.763811+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "447b9cf105956a072f568f1b9b3c1451bc80565d097e1cdfed218a6ade0236d8"
+}

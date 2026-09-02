@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "**Estimación puntual: ~25 % (proporción con valor \"sí\" en `tiene_ahorros`), ola 1 (2002).**\n\n**Intervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción): 15 %–40 %.** El intervalo es ancho a propósito porque el valor depende críticamente de dos cosas que no puedo verificar sin el cuestionario:\n\n1. **Unidad de análisis**: si el reactivo es a nivel hogar (respondente del módulo de activos/ahorro) o a nivel individual adulto. A nivel individual la proporción suele ser bastante menor (10–20 %); a nivel hogar, mayor.\n2. **Definición de \"ahorro\"**: si sólo capta ahorro formal (cuenta bancaria, caja de ahorro) la cifra estaría en el extremo bajo (~12–20 % para México en 2002, dada la baja bancarización previa a la expansión de corresponsales y de las SOFIPOs); si incluye ahorro informal (tandas, dinero guardado en casa, ahorro con familiares), sube al extremo alto (~35–45 %).\n\n**Sobre la fuente (sonda canario): no tengo fuente textual verificable.** No he leído el cuestionario ni el diccionario de variables de la MxFLS 2002 en este acto, no tengo acceso a los documentos del proyecto, y no puedo citar una tabla, página ni nombre de variable original (por ejemplo, no puedo afirmar el código real de la pregunta en el libro/sección de activos y ahorro). Mi número proviene de **razonamiento indirecto** a partir de conocimiento general sobre bancarización y ahorro en México a inicios de los 2000 (orden de magnitud de ENIGH/ENAFIN posteriores y literatura de inclusión financiera), no de la ENNViH misma.\n\n**Advertencia de marco**: el universo declarado dice explícitamente \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos\". Si lo que se requiere es confirmar la *existencia* del reactivo en el inventario, mi respuesta correcta es que **no puedo confirmar ni negar que `tiene_ahorros` exista como reactivo en la ola 2002 con ese nombre o esa operacionalización**, y cualquier cifra que dé arriba no debe usarse como re-derivación contra microdato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:57:17.295040+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41"
+}

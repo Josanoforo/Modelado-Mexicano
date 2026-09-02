@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L+corpus",
+  "indice": 3,
+  "texto_crudo": "## Respuesta\n\n**1) Sobre el acto solicitado (censo de existencia, no re-derivación)**\n\nNo puedo confirmar, con fuente textual, que exista en el cuestionario de la ENNViH-1 (MxFLS 2002) un reactivo con la etiqueta `tiene_ahorros`. Ese nombre tiene forma de **variable derivada/armonizada**, no de código nativo del instrumento (los códigos de MxFLS son del tipo sección+número, p. ej. `ah01`, `cs…`, dentro de los libros de hogar/adulto). Lo que sí recuerdo de manera general —y con confianza media, no alta— es que la ola 1 incluye módulos de **activos, deuda/crédito y economía del hogar** en el libro de hogar y en el libro de adultos, donde razonablemente se ubicaría una pregunta sobre tenencia de ahorros o de cuenta de ahorro. No puedo declarar el número de pregunta, su redacción literal, ni el universo de aplicación (¿hogar? ¿adulto 15+? ¿informante económico?).\n\n**2) Sonda canario — fuente**\n\n**No tengo fuente textual que citar.** No estoy leyendo cuestionario, diccionario de variables ni microdato de MxFLS-1 en este acto; el contexto tierizado viene declarado como \"no construido\". Cualquier cifra que dé a continuación es prior propio, no lectura de documento.\n\n**3) Estimación puntual (bajo protesta de que es prior, no dato)**\n\nSi la variable capta **tenencia de ahorros en sentido amplio** (incluye ahorro informal: tandas, dinero guardado), población adulta, México 2002:\n\n- **Punto: ~25%**\n- Intervalo subjetivo (80%): **15%–40%**\n\nSi capta específicamente **cuenta de ahorro formal en institución financiera**:\n\n- **Punto: ~18%**\n- Intervalo subjetivo (80%): **10%–28%**\n\nLa banda es ancha a propósito: la sensibilidad de esta variable a la redacción exacta (formal vs. cualquier ahorro) y al universo (hogar vs. individuo) es mayor que mi incertidumbre muestral. En 2002 la inclusión financiera en México era baja (pre-expansión de corresponsales y de cuentas de nómina masificadas), lo que sostiene el extremo inferior.\n\n**4) Recomendación de procedimiento**\n\nAntes de tratar esto como dato: verificar en el diccionario de MxFLS-1 (a) existencia y código nativo del reactivo, (b) libro y sección, (c) universo de aplicación y filtros de salto. Si el objetivo es el censo de existencia, mi aporte aquí es **\"no confirmado\"**, no \"presente\".",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:58:18.226858+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "94a59d32533ae684c69f9cfc129d0e885ec71e7d1b844714d0938604f10b1868"
+}

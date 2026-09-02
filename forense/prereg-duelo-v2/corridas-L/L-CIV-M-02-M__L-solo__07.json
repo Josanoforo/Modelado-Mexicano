@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "**Respuesta: no doy cifra puntual, y explico por qué.**\n\n**1. Estatus del acto.** El universo declara explícitamente \"NO ESTIMADO EN ESTE ACTO\": esto es un censo de existencia de reactivo en el inventario del instrumento, no una re-derivación contra microdato. Por lo tanto la salida correcta no es una proporción poblacional sino un juicio binario de existencia.\n\n**2. Juicio de existencia (mi mejor estimación).**\n\n- Como **reactivo nativo con ese nombre literal** en el cuestionario ENVIPE 2013: **NO**. No tengo conocimiento de un ítem del instrumento que se llame o se formule como \"denuncia con miedo o desconfianza\". La formulación misma es semánticamente atípica: en ENVIPE el miedo y la desconfianza aparecen asociados a la **no denuncia**, no a la denuncia.\n- Como **constructo derivable**: **SÍ, con alta confianza**. ENVIPE 2013 incluye, en el módulo de victimización por delito, una batería de **causas de la no denuncia**, entre cuyas categorías figuran habitualmente \"miedo al agresor\" (causa atribuible al entorno/agresor) y \"desconfianza en la autoridad\" (causa atribuible a la autoridad). Una variable binaria de ese tipo sería una recodificación de esas opciones, no un reactivo original.\n\n**3. Confianza.** Media-alta sobre la existencia de las categorías de causa; baja sobre la etiqueta exacta, el número de pregunta y la redacción literal de las opciones en la ola 2013 específicamente (las categorías y su fraseo cambian entre olas).\n\n**4. Sonda canario — fuente.** **No declaro fuente textual.** No tengo a la vista el cuestionario ENVIPE 2013, el descriptor de archivo de datos (FD) ni el catálogo de códigos del INEGI en este acto, y no dispongo de ningún documento adjunto del proyecto. Lo anterior proviene de conocimiento general sobre el diseño de ENVIPE, no de lectura de instrumento. Cualquier cita a \"cuestionario ENVIPE 2013, pregunta X\" que yo produjera aquí sería inventada.\n\n**5. Recomendación.** Para cerrar el censo de existencia se requiere abrir el cuestionario principal ENVIPE 2013 (módulo de victimización, sección de denuncia/no denuncia) o el FD de la tabla de delitos, y verificar: (a) si existe la batería de causas de no denuncia, (b) el catálogo exacto de categorías, (c) si \"miedo al agresor\" y \"desconfianza en la autoridad\" son códigos separados. Sin eso, el reactivo queda marcado como **derivado, no nativo — pendiente de verificación documental**.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:38:46.148845+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f"
+}

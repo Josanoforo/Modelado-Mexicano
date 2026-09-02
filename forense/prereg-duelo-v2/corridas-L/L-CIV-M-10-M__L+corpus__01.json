@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L+corpus",
+  "indice": 1,
+  "texto_crudo": "**No tengo el dato. No emito cifra puntual.**\n\n**Razón principal — el reactivo, tal como está nombrado, no me consta que exista en ENVIPE 2021.**\n\nLo que sí puedo afirmar sobre la estructura del cuestionario ENVIPE (módulo de victimización, sección de delitos y denuncia): la batería relevante es la de **causas de NO denuncia**, aplicada a los delitos no denunciados, con opciones que incluyen \"miedo al agresor\", \"miedo a que lo extorsionaran\", \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\", agrupadas por INEGI en *causas atribuibles a la autoridad* vs. *otras causas*. Es decir, miedo y desconfianza aparecen como **motivos para no denunciar**, no como atributos de una denuncia realizada.\n\nPor tanto, `denuncia_con_miedo_o_desconfianza` como **binaria** admite al menos tres lecturas incompatibles, y no puedo resolver cuál corresponde sin el diccionario del proyecto:\n\n1. Delito **no denunciado** cuyo motivo declarado fue miedo o desconfianza (lectura más cercana al instrumento real, pero entonces el nombre está invertido).\n2. Persona/hogar que **sí denunció** pese a reportar miedo o desconfianza (no hay reactivo directo que lo capture así).\n3. Variable **derivada** ad hoc por el equipo del proyecto a partir de las opciones múltiples de causas de no denuncia (plausible, pero es construcción propia, no reactivo nativo).\n\n**Sobre la sonda canario (fuente textual declarada):** no tengo fuente textual a la mano. No dispongo del cuestionario ENVIPE 2021, ni del descriptor de archivos, ni del corpus tierizado —el propio encabezado indica \"[contexto tierizado — no construido en este acto]\". Cualquier cita bibliográfica específica (número de pregunta, nombre de columna, porcentaje) que yo produjera aquí sería reconstrucción de memoria, no verificación. No la ofrezco.\n\n**Lo que correspondería hacer**, dado que el acto es censo de existencia de inventario y no re-derivación: verificar el nombre contra el diccionario de datos de ENVIPE 2021 (tabla de victimización, variables de causa de no denuncia) antes de darlo por existente. Si el equipo lo definió como variable derivada, debe quedar marcado como tal en el inventario, no como reactivo levantado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:51:30.447707+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "b68f783997232c2c96f4c97d4a225d9a0930d87806975701963b44895854df25"
+}

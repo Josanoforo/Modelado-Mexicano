@@ -253,6 +253,40 @@ ya no aborta). Re-sellado: `sha256sum runner_l_cli.py` →
 `forense/notas/2026-09-02-maestra33-e17-l-enmienda-cli-cierre.md` para la
 enmienda paralela en la nota de cierre de `MAESTRA33-E17`.
 
+**ENMIENDA 2 (2/sep/2026, `ACTO L-CORRIDAS-v1_2`, firma de mesa `DL-(1)`).**
+Firma de mesa, verbatim: *"firmo (1) Enmendar el runner para que escriba
+`sha256_prompt` y `params` (restaurar el esquema de 9 claves que
+`carga_l_v1_1.py:130` ya valida), re-sellar sha, correr solo las 128 nuevas;
+los 96 quedan intactos con la re-derivación anexada como enmienda fechada y
+los 12 sha de hoy en la nota. La nomenclatura sin versión queda como fila FP
+aparte."* **Defecto que la motiva, medido, no supuesto:** las 176 capturas de
+`corridas-L/` que produjo la corrida v1.1 (`ba7bfa7`) **no traen
+`sha256_prompt` ni `params`** — 0 de 176, con control positivo `A.13` (las 8
+del piloto `CIV-08__L-solo__*.json`, leídas por el mismo lector, traen las dos
+claves, 8 de 8). Sobre las 96 que v1.2 comparte con v1.1 el veredicto es
+`96 examinados · coinciden 0 · difieren 0 · sin campo sha256_prompt 96`:
+ninguna captura llevaba prueba propia de con qué prompt nació. La causa está
+en `ejecutar_corrida()`, que escribía 8 claves sin esas dos, y en el propio
+`dry_run()`, cuya referencia de esquema se había reducido a 7 claves — de modo
+que **validaba en verde el esquema que él mismo había degradado**.
+**Qué cambia:** `ejecutar_corrida()` escribe `sha256_prompt` (sha256 utf-8 del
+prompt exacto que se envía, el último argumento de `construir_comando_cli`) y
+`params` (`asdict` de lo que `construir_params` devuelve); `_iter_plan()` cede
+los `params` para no re-derivarlos; y la referencia de esquema de `dry_run()`
+vuelve a **las 9 claves de `carga_l_v1_1.py:130`**. Nada más cambia — la
+construcción del prompt no se toca. Regresión obligatoria, verde en las dos:
+`--dry-run` con `L-spec-v1_1.json` → 176 rutas; con `L-spec-v1_2.json` → 224.
+**Re-sellado:** `sha256sum runner_l_cli.py` →
+`7ac9852e22201bc61218d2ccfb501e97efc76b51d55261abf213388257e04e4b`
+(el de `MAESTRA34-N4`,
+`0c10e9ab95350ce2b3596216eeda0c23e270bce492177bd14c5657c6e28598e2`,
+queda como historia, igual que el de `MAESTRA33-E17` en §1).
+**Lo que esta enmienda NO cierra:** la nomenclatura de `corridas-L/` sigue sin
+versión de spec, así que la reanudación por nombre de `correr()` no puede
+distinguir si un archivo existente corresponde al prompt vigente. Queda como
+fila `ABIERTA` del tablero, no resuelta aquí, y gatea al siguiente cambio de
+spec.
+
 ---
 
 ## 7 · Rutas de salida

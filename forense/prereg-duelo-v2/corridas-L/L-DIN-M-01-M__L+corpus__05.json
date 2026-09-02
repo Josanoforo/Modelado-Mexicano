@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L+corpus",
+  "indice": 5,
+  "texto_crudo": "## Respuesta\n\n**Estimación puntual (censo de existencia, escala binaria):** presencia probable — pero **con confianza baja y sin verificación documental**.\n\nMi mejor juicio: **~0.65–0.70 de probabilidad** de que exista en la ENNViH-1 (2002) un reactivo que capture tenencia de ahorros / cuenta de ahorro, ubicado plausiblemente en el módulo de **activos del hogar** (libro del hogar, sección de activos y bienes) y no como variable autónoma con ese nombre.\n\n**Lo que NO puedo afirmar (declaración explícita de no-conocimiento):**\n- No conozco un identificador de variable ni una clave de reactivo llamada `tiene_ahorros` en MxFLS-1. Ese nombre parece ser una **etiqueta analítica del proyecto**, no un código de cuestionario.\n- No puedo precisar libro, sección, número de pregunta ni redacción literal del ítem.\n- No puedo confirmar si el registro es dicotómico directo (\"¿tiene usted ahorros?\") o derivado de un listado de activos financieros con monto, lo cual cambiaría la clasificación bajo la regla de columnas de MAESTRA32-E15 spec (e).\n\n**Sonda canario — fuente textual declarada:** ninguna. No consulté el cuestionario MxFLS-1, ni el diccionario de variables, ni el corpus tierizado (declarado como no construido en este acto). Lo anterior proviene exclusivamente de memoria paramétrica sobre el diseño general de la ENNViH, que es justamente el tipo de conocimiento que no debe tratarse como evidencia de inventario.\n\n**Recomendación de resolución:** este ítem no debe cerrarse con mi estimación. Requiere lectura directa del cuestionario del hogar MxFLS-1 (2002) y/o del diccionario de variables para decidir presencia/ausencia y, en su caso, si califica como reactivo binario nativo o como derivación.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:59:01.052144+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "94a59d32533ae684c69f9cfc129d0e885ec71e7d1b844714d0938604f10b1868"
+}

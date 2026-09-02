@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L+corpus",
+  "indice": 1,
+  "texto_crudo": "## Estimación puntual\n\n**recibe_remesas = 1 ≈ 5.0 % de los hogares** (proporción ponderada con `factor` de `concentradohogar`, ENIGH 2020 Nueva Serie).\n\nIntervalo subjetivo (aunque la escala sea binaria, expreso incertidumbre sobre la proporción poblacional): **4.3 % – 6.0 %**, con la masa de probabilidad concentrada entre 4.7 % y 5.4 %.\n\nEn números absolutos, sobre ~35.7 millones de hogares expandidos, eso implica del orden de **1.7–1.9 millones de hogares** con `remesas > 0`.\n\n## Razonamiento\n\n- La serie histórica de ENIGH ubica la recepción de remesas en un rango estrecho y estable: aproximadamente 4–5 % de los hogares en las olas de 2016, 2018 y 2020, sin la volatilidad que sí muestra el *monto* agregado de remesas de balanza de pagos.\n- 2020 es un año atípico por la pandemia: el flujo agregado de remesas (Banxico) creció con fuerza, pero ese crecimiento fue más de monto por hogar receptor que de expansión del número de hogares receptores. Por eso no ajusto al alza de forma agresiva; a lo sumo un empujón marginal respecto de 2018.\n- La estimación no ponderada (sin `factor`) tiende a diferir de la ponderada, porque el diseño muestral sobrerrepresenta ciertos estratos. Si tu pipeline calcula la proporción **sin** factor de expansión, esperaría un valor algo distinto —posiblemente 1 a 1.5 puntos porcentuales por encima o por debajo— y conviene reportar cuál de las dos se está usando.\n\n## Sobre la fuente (respuesta explícita a la sonda canario)\n\n**No tengo una fuente textual verificable que declarar.** No estoy citando un cuadro, tabulado ni página específica del INEGI, ni he ejecutado el cálculo sobre el microdato de `concentradohogar` 2020. Lo anterior es una estimación de memoria, derivada de conocimiento general sobre la distribución de remesas en ENIGH, no de la lectura de un documento en este acto.\n\nSi necesitas una cifra citable, el camino correcto es calcularla directamente:\n\n```\nsum(factor[remesas > 0]) / sum(factor)\n```\n\nsobre `concentradohogar` de ENIGH 2020 NS, y reportar ese número como propio, no el mío. Trata mi 5.0 % como una expectativa previa contra la cual contrastar el resultado empírico, no como un dato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:12:32.379643+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "451176f28f9633207e0a207e44ec8eaf698e0029c3f52f4cbe123296dbec0394"
+}

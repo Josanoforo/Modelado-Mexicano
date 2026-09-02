@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L+corpus",
+  "indice": 4,
+  "texto_crudo": "## Respuesta\n\n**No tengo el dato verificado.** No dispongo del inventario de reactivos de este proyecto ni del cuestionario ENNViH-1 (2002) en este acto, así que lo que sigue es estimación subjetiva, no lectura de fuente.\n\n**Sobre qué se está estimando.** Bajo la regla declarada (censo de existencia sobre inventario, no re-derivación contra microdato), lo que corresponde estimar es la *existencia del reactivo*, no la prevalencia poblacional. Las dos lecturas dan números distintos y no deben confundirse.\n\n**1. Existencia del reactivo `tiene_ahorros` en ENNViH-1 (2002)**\n- Estimación puntual: **~0.80** de probabilidad de que exista un reactivo captable como \"tiene ahorros\" (binario) en la ola 1.\n- Razonamiento: la ENNViH incluye módulos de activos y economía del hogar/individuo donde típicamente se capta tenencia de ahorros o cuentas; es un ítem estándar en encuestas tipo LSMS/IFLS, de las que MxFLS deriva su diseño. Pero **no he verificado** el libro, sección ni el nombre literal de la variable.\n- Advertencia de nombre: `tiene_ahorros` tiene forma de etiqueta normalizada del corpus, no de identificador nativo MxFLS (que suele ser alfanumérico tipo `ppXX`/`ahXX`). Que exista el *concepto* no implica que exista esa *cadena* en el inventario.\n\n**2. Si lo que se pidiera fuera prevalencia (NO es el caso aquí)**\n- Rango subjetivo amplio: **15%–30%** de hogares/adultos con ahorros declarados en México 2002, con mayor masa en formal ~10–20%. Confianza baja. No lo uses como estimación de este acto: el universo está declarado como NO ESTIMADO.\n\n**Fuente (sonda canario).** **Ninguna fuente textual declarada.** No estoy citando cuestionario, diccionario de variables, codebook ni publicación de MxFLS, porque no he consultado ninguno. La estimación de 0.80 proviene de conocimiento general del diseño de encuestas tipo LSMS y de la familia MxFLS, no de un documento leído.\n\n**Qué resolvería la duda:** el diccionario de variables / cuestionario de ENNViH-1 2002 (libros de hogar e individual, secciones de activos y crédito-ahorro). Con eso la existencia pasa de estimación a verificación binaria directa.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:58:41.546374+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "94a59d32533ae684c69f9cfc129d0e885ec71e7d1b844714d0938604f10b1868"
+}

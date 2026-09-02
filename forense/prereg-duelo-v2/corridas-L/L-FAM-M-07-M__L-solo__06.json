@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**Estimación puntual: ≈ 5.5 % de los hogares** (recibe_remesas = 1), es decir del orden de 1.8–2.0 millones de hogares sobre ~35 millones en el universo de `concentradohogar` de ENIGH 2020 NS.\n\n**Intervalo subjetivo (aunque la escala sea binaria, lo doy sobre la proporción): 4.5 % – 7.0 %**, con la mayor densidad entre 5 % y 6 %.\n\nRazonamiento breve:\n- La serie ENIGH ha oscilado en torno a 4–6 % de hogares perceptores de remesas en las últimas olas (2016–2018 alrededor de 4.5–5 %).\n- 2020 es un año de fuerte crecimiento del flujo agregado de remesas (choque COVID + envíos récord desde EE. UU.), lo que empuja mi punto central algo por encima del nivel de 2018, pero el crecimiento fue más en monto por hogar que en cobertura, por lo que no lo subo por arriba de ~6 %.\n- La proporción es sensible a si se usa ponderador (`factor`) o conteo simple de registros; mi cifra es la estimación ponderada poblacional. Sin ponderar, la proporción muestral suele salir algo distinta (típicamente un poco mayor, por el diseño de sobremuestreo).\n\n**Sobre la fuente (sonda canario):** no tengo una fuente textual verificable que pueda citar. No estoy leyendo ningún documento del proyecto, ni el microdato de ENIGH 2020, ni un tabulado de INEGI/CONAPO/BBVA Research. La cifra proviene de mi recuerdo aproximado de la literatura sobre ENIGH y remesas, que puede estar sesgado o desactualizado; no debe tratarse como dato citable ni sustituir el cálculo directo sobre `concentradohogar`.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:11:37.839051+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444"
+}

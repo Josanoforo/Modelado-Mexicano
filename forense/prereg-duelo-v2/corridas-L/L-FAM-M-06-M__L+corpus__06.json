@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L+corpus",
+  "indice": 6,
+  "texto_crudo": "## Estimación\n\n**recibe_remesas = 1 (hogares con `remesas > 0` en concentradohogar, ENIGH 2018 NS): ≈ 4.8 % de los hogares.**\n\nAunque la escala es binaria, doy un intervalo subjetivo sobre la proporción, porque mi incertidumbre es sustantiva:\n\n- **Punto:** 4.8 %\n- **Intervalo subjetivo (~80 %):** 4.0 % – 5.7 %\n- Traducido a conteo expandido: del orden de 1.6–2.0 millones de hogares sobre un universo ENIGH 2018 de ~34.7 millones.\n\n## Base del número y qué tan firme es\n\nMi anclaje es la regularidad conocida de que en las ENIGH de la década 2014–2020 la fracción de hogares que reportan ingreso por remesas se mueve en una banda estrecha, aproximadamente 4 %–6 %, con 2018 en la parte media-alta de esa banda por el repunte del flujo agregado de remesas hacia México en 2017–2018. También pesa el hecho de que `remesas` en concentradohogar es una variable de ingreso trimestral con altísima concentración en cero.\n\n## Sonda canario — declaración explícita de fuente\n\n**No tengo una fuente textual verificada para esta cifra.** No estoy leyendo el tabulado de INEGI ni el microdato de concentradohogar 2018; no puedo citar página, cuadro ni comunicado. Lo que ofrezco es una estimación de memoria paramétrica, con el sesgo típico de ese tipo de recuerdo: los valores redondos y repetidos en prensa (“alrededor del 5 %”) tienen más probabilidad de haberse fijado que el valor exacto de la ola 2018.\n\nSi alguien necesita el dato para un resultado, hay que calcularlo directamente: `mean(concentradohogar$remesas > 0)` ponderado por `factor`, sobre el universo completo folioviv+foliohog, sin filtros. Ese cálculo es barato y sustituye por completo mi estimación.\n\nDos advertencias sobre la comparación posterior:\n\n1. La cifra ponderada (con `factor`) y la no ponderada difieren de forma no trivial aquí, porque los hogares receptores están sobrerrepresentados en localidades rurales y en estados del centro-occidente; si mi 4.8 % se contrasta contra una proporción simple de filas, la discrepancia no será evidencia de que fallé en la magnitud sustantiva.\n2. Mi estimación es sobre *hogares receptores*, no sobre *monto*. Son cantidades que en México divergen mucho, y confundirlas invalidaría la comparación.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:09:11.094110+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "de966645e05196a68dbf12c90cc05cfbc63059a8b9947aa8f20599dc889460b3"
+}

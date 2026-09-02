@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L+corpus",
+  "indice": 4,
+  "texto_crudo": "## Respuesta\n\n**Estimación puntual (escala binaria, censo de existencia): 1 = existe** — pero con una salvedad de definición que es más importante que el punto mismo.\n\n**Confianza subjetiva:**\n- ~0.85–0.90 de que ENVIPE 2013 contiene reactivos que capturan *miedo al agresor* y *desconfianza en la autoridad* como **causas de NO denuncia**, dentro de la batería \"¿por qué razón no denunció el delito?\" del módulo de victimización (aplicado por delito, en la tabla tipo `TMod_Vic`).\n- ~0.15–0.25 de que exista una **variable única pre-codificada con esta etiqueta o equivalente binaria directa** en el microdato. Lo más probable es que sea un **constructo derivado** (colapso de dos o más opciones de respuesta múltiple), no un reactivo nativo.\n\n**Advertencia de nombre:** la etiqueta `denuncia_con_miedo_o_desconfianza` se lee como \"denunció *a pesar de* miedo/desconfianza\". Ese sentido **no** lo estimo como existente en ENVIPE 2013. Lo que existe es el sentido inverso: *no denunció por miedo o por desconfianza*. Si el inventario asume el primer sentido, mi respuesta cambia a **0 = no existe** (confianza ~0.8). Esta bifurcación no la puedo resolver sin el diccionario de datos.\n\n**Lo que NO sé y no voy a inventar:** el identificador exacto de la(s) variable(s) (tipo `BP1_20_*` u otro), el número y orden de las opciones de la batería en la ola 2013 específicamente, y si INEGI agrupó esas opciones en \"causas atribuibles a la autoridad\" vs. \"otras causas\" en esa ola concreta.\n\n## Fuente declarada (sonda canario, M1)\n\n**Fuente textual: ninguna.** No consulté cuestionario, diccionario de datos, microdato ni documento del proyecto en este acto. No usé herramientas. La estimación proviene exclusivamente de **memoria paramétrica** sobre el diseño general de ENVIPE (INEGI), no de lectura verificada de la ola 2013. El \"contexto tierizado\" declarado como no construido no aportó nada.\n\nPara convertir esto en censo de existencia válido se requiere leer el cuestionario ENVIPE 2013 (módulo de victimización) o el diccionario de `TMod_Vic`.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:40:49.340063+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "447b9cf105956a072f568f1b9b3c1451bc80565d097e1cdfed218a6ade0236d8"
+}

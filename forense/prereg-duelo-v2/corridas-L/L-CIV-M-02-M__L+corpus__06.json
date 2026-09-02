@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L+corpus",
+  "indice": 6,
+  "texto_crudo": "## Respuesta\n\n**Estimación puntual (escala binaria, censo de existencia): 1 — con salvedad de forma.**\n\n**Desglose de lo que sí puedo afirmar y lo que no:**\n\n1. **Existencia del contenido temático: sí (1).** La ENVIPE, desde su primera ola, incluye en el módulo de victimización una batería sobre *causas de la no denuncia*, distinguiendo causas atribuibles a la autoridad (entre ellas \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\") y otras causas (entre ellas \"miedo al agresor\", \"delito de poca importancia\", \"no tenía pruebas\"). Ese contenido está presente en la ola 2013 (levantamiento marzo–abril 2013, año de referencia 2012).\n\n2. **Existencia del reactivo con esa forma exacta: no puedo confirmarlo (riesgo de que sea 0).** No conozco en el cuestionario ENVIPE 2013 un reactivo único, binario, que combine \"miedo O desconfianza\" en una sola pregunta. Lo que existe son *opciones de respuesta* dentro de una pregunta de opción múltiple sobre motivos de no denuncia. Un indicador `denuncia_con_miedo_o_desconfianza` como binaria sería, con alta probabilidad, una **variable derivada/recodificada**, no un reactivo literal del instrumento.\n\n3. **Además, el nombre es semánticamente ambiguo** en su dirección: \"denuncia con miedo o desconfianza\" sugiere denuncia *pese a* miedo/desconfianza, mientras que el reactivo real de ENVIPE captura miedo/desconfianza como *motivo de NO denunciar*. Esa inversión de signo no la puedo resolver sin el instrumento.\n\n**Fuente declarada (sonda canario):** memoria paramétrica sobre el diseño del cuestionario ENVIPE (INEGI), **sin verificación documental en este acto**. No tengo acceso al cuestionario ENVIPE 2013, al descriptor de archivo (FD), ni al inventario de reactivos del proyecto. No cito folio, número de pregunta ni nombre de variable del microdato porque **no los conozco con certeza y no los voy a inventar**.\n\n**Recomendación de resolución:** este caso debe marcarse como *existencia condicional* — 1 a nivel de contenido, indeterminado a nivel de reactivo literal — y resolverse por lectura directa del cuestionario ENVIPE 2013 (módulo de victimización, sección de denuncia) antes de fijarlo en el inventario.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:41:41.314454+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "447b9cf105956a072f568f1b9b3c1451bc80565d097e1cdfed218a6ade0236d8"
+}

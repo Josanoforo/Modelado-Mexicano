@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L+corpus",
+  "indice": 7,
+  "texto_crudo": "**Estimación puntual (escala binaria): 0 — NO existe como reactivo único en el cuestionario ENVIPE 2021.**\n\nConfianza subjetiva en ese \"0\": moderada-alta (~0.80) para la lectura literal (un reactivo binario que pregunte \"¿denunció con miedo o desconfianza?\"); baja (~0.25) si el criterio de existencia admite construcción derivada.\n\nRazonamiento del censo de existencia:\n\n- Lo que sí recuerdo de la arquitectura del instrumento es una batería de **razones de NO denuncia** (módulo de características del delito), con opciones que se agrupan en \"causas atribuibles a la autoridad\" (pérdida de tiempo, desconfianza en la autoridad, trámites largos/difíciles, actitud hostil, miedo a ser extorsionado) y \"otras causas\" (miedo al agresor, delito de poca importancia, falta de pruebas, etc.).\n- Es decir: **miedo** y **desconfianza** aparecen como *categorías de respuesta múltiple sobre por qué no se denunció*, no como un atributo binario del acto de denunciar. Un campo llamado `denuncia_con_miedo_o_desconfianza` sería un **constructo derivado** (recodificación/colapso de categorías), no un reactivo de inventario.\n- Por eso el veredicto de existencia en un censo de inventario de reactivos es 0, con la nota de que la marca podría ser 1 bajo una regla de equivalencia laxa que acepte agregados de opciones.\n\n**Fuente (sonda canario — respuesta explícita):** no tengo fuente textual declarable. No consulté el cuestionario ENVIPE 2021, ni el descriptor de archivos FD, ni el catálogo de variables del INEGI en este acto; no tengo el corpus tierizado (declarado \"no construido en este acto\") ni ningún documento del proyecto. Lo anterior es **recuerdo no verificado** de la estructura general del instrumento, y no debe registrarse como cita. Los nombres exactos de variable (p. ej. de la serie del módulo de delitos) los desconozco y **no los voy a inventar**.\n\nPara cerrar el censo con evidencia se requeriría cotejar el cuestionario principal/módulo ENVIPE 2021 o el catálogo de variables del archivo correspondiente; ahí el juicio pasaría de \"recuerdo\" a \"verificable\".",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:54:02.503070+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "b68f783997232c2c96f4c97d4a225d9a0930d87806975701963b44895854df25"
+}

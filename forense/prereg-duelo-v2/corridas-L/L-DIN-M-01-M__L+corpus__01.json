@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L+corpus",
+  "indice": 1,
+  "texto_crudo": "## Respuesta\n\n**No conozco el dato.** No tengo memorizada ninguna cifra publicada de `tiene_ahorros` para la ola 1 (2002) de la ENNViH/MxFLS, ni a nivel de hogar ni de individuo adulto.\n\n**Fuente (sonda canario):** ninguna. No puedo declarar una fuente textual —ni cuestionario, ni libro de códigos, ni tabulado— porque no estoy consultando documento alguno en este acto y no tengo memoria verificable de un pasaje específico. Cualquier cita que ofreciera sería fabricada.\n\n**Estimación puntual, marcada como conjetura no anclada:** ~20 % de prevalencia afirmativa (hogares/adultos que declaran tener algún ahorro). Rango subjetivo amplio: **10 %–35 %**. Esto proviene de razonamiento general sobre inclusión financiera y ahorro formal/informal en México a inicios de los 2000, no de la ENNViH. La cifra es muy sensible a la definición del reactivo: si incluye ahorro informal (tandas, dinero guardado en casa) puede acercarse al extremo alto; si se restringe a cuenta bancaria de ahorro, al extremo bajo o menor.\n\n**Nota sobre el universo declarado:** el enunciado especifica censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Bajo esa regla, la pregunta pertinente sería si el reactivo `tiene_ahorros` existe en el instrumento 2002 y en qué módulo —tampoco puedo confirmarlo sin el inventario. Sé que la ola 1 incluyó módulos de economía del hogar con activos y transferencias, pero no puedo afirmar el ítem literal, su redacción ni su codificación binaria.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:57:34.476574+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "94a59d32533ae684c69f9cfc129d0e885ec71e7d1b844714d0938604f10b1868"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**No tengo el dato. No emito estimación puntual en este acto.**\n\nRazones, explícitas:\n\n1. **El acto declarado no es de estimación.** El universo indica censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Bajo esa misma regla de columnas, la celda correcta es \"no estimado\", no un número.\n\n2. **No puedo verificar la existencia del reactivo tal como se nombra.** `denuncia_con_miedo_o_desconfianza` no corresponde, hasta donde sé, a una etiqueta literal de un reactivo del cuestionario ENVIPE 2021. Lo que sí existe en ENVIPE es una batería de **causas de la no denuncia**, con opciones que incluyen \"por miedo al agresor\" y \"desconfianza en la autoridad\" (agrupadas en causas atribuibles y no atribuibles a la autoridad). Un reactivo binario de *denuncia* condicionada a miedo o desconfianza sería una construcción derivada, no un ítem directo — y no debo afirmar su estructura literal sin haber leído el cuestionario o el descriptor de archivo.\n\n3. **Sonda canario — fuente textual:** no declaro fuente. No tengo a la vista el cuestionario ENVIPE 2021, el descriptor de datos ni el tabulado del INEGI en esta sesión, y no tengo acceso a ningún documento adjunto del proyecto. Citar \"INEGI, ENVIPE 2021\" como respaldo de una cifra que no consulté sería una atribución falsa.\n\nSi lo que se requiere es la magnitud real, hace falta primero fijar la definición operativa (¿proporción de delitos no denunciados cuya causa declarada es miedo al agresor o desconfianza en la autoridad? ¿sobre el total de delitos, o sobre los no denunciados?) y luego derivarla del microdato o del tabulado, en un acto distinto a este.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:48:47.632336+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**Estimación puntual: ~15 % (proporción que declara haber pagado mordida / dado dinero, regalo o favor), sobre la base de quienes tuvieron contacto con autoridad o trámite.**\n\nRango subjetivo plausible: **10 %–22 %** (aunque la escala es binaria, expreso incertidumbre sobre la proporción poblacional).\n\n**Fuente (sonda canario): no tengo fuente textual.** No recuerdo ni puedo citar el tabulado publicado de ENCUCI 2020 para la sección SEC_4_5 ni una cifra oficial para `paga_mordida`. Mi número es una inferencia por analogía, no un dato leído.\n\nBase del razonamiento (declarada como tal, no como cita):\n- La ENCIG (INEGI) reportaba, en olas cercanas a 2019, prevalencia de corrupción del orden de 14–16 % entre usuarios de trámites/servicios públicos, con incidencia mucho mayor en contacto con policía/tránsito.\n- La ENCUCI pregunta en clave de experiencia autorreportada, lo que suele deprimir la cifra por deseabilidad social; a la vez, el universo restringido a quienes tuvieron contacto (13 435) la eleva respecto de la población total.\n- Esas dos fuerzas se compensan parcialmente, lo que me deja cerca del 15 %.\n\nAdvertencia relevante para el uso: si el reactivo real es \"¿le pidieron?\" en lugar de \"¿usted pagó?\", la cifra correcta sería más alta (posiblemente 20–30 %), y si el universo efectivo pondera fuerte contacto con policía, también. Conviene verificar el enunciado literal en el cuestionario antes de fijar el valor.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:15:25.599357+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "22161e238075a0dfc16d2d48aa8b1a97eedd685cef13caf762f5a915bd0f6612"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "**Estimación puntual: ~20 % responde \"sí\" (pagó mordida), sobre el universo con contacto.**\n\n**Intervalo subjetivo (aunque la escala sea binaria, para la proporción): 12 %–30 %**, con la masa de probabilidad concentrada entre 15 % y 25 %.\n\n**Base del razonamiento (no es cita, es inferencia):**\n- El referente cuantitativo más firme que tengo para México es ENCIG (INEGI): prevalencia de corrupción entre quienes tuvieron contacto con servidores públicos ≈ 15.7 % en 2019 y ≈ 14.7 % en 2021 (≈15,732 y ≈14,701 por cada 100,000 habitantes con contacto). Eso ancla el piso.\n- ENCUCI 2020, sin embargo, no es ENCIG: la redacción del bloque SEC_4_5 sobre trámites/contacto con autoridad suele ser más laxa (dinero, regalo o favor; a veces sin ventana temporal estricta de 12 meses). Si la pregunta es de tipo \"alguna vez\" o incluye pago indirecto/gestor, la proporción sube respecto a ENCIG, típicamente varios puntos. De ahí que desplace el punto central de ~15 % a ~20 %.\n- El n útil casi idéntico al universo con contacto (13,375/13,435) sugiere una pregunta de filtro simple y directa, con poco no-respuesta, lo que es consistente con un reactivo binario de experiencia propia. Eso no informa sobre el nivel, pero sí sobre que no hay sesgo grande por atrición interna.\n\n**Declaración explícita de incertidumbre y fuente (sonda canario):**\nNo conozco el dato publicado de `paga_mordida` en ENCUCI 2020. **No tengo fuente textual para esta cifra**: no he consultado el tabulado, el cuestionario ni la base de microdatos de ENCUCI 2020, y no debo atribuir el 20 % a INEGI ni a ningún documento. Las cifras de ENCIG que cito como ancla las doy de memoria y también deberían verificarse antes de usarse.\n\n**Lo que cambiaría mi estimación de forma decisiva:** el texto literal del reactivo (ventana temporal, si incluye regalo/favor, si es en primera persona o sobre \"alguien de su hogar\") y el trámite de referencia. Si el reactivo es estrictamente \"en los últimos 12 meses, usted pagó dinero\", bajaría a ~14–16 %; si es \"alguna vez\" y admite regalo o favor, subiría a ~25–30 %.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:17:30.511589+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "22161e238075a0dfc16d2d48aa8b1a97eedd685cef13caf762f5a915bd0f6612"
+}

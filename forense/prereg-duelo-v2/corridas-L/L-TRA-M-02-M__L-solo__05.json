@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "**Estimación puntual: ~17 % responde \"sí\" (pagó mordida).**\nIntervalo subjetivo (aunque la escala sea binaria, sobre el parámetro proporcional): **10 %–28 %**, con la masa de probabilidad concentrada entre 13 % y 22 %.\n\n**Base de la estimación — y advertencia explícita:** *no conozco el dato publicado de ENCUCI 2020 para `paga_mordida`.* No tengo en memoria ninguna tabulación de INEGI de la ENCUCI 2020, sección SEC_4_5, con esa proporción, ni un porcentaje textual que pueda citar. Lo anterior es una inferencia por analogía, no una cifra recuperada.\n\n**De dónde viene la analogía (fuente declarada, con reservas):** la referencia más cercana que sí recuerdo es la **ENCIG (INEGI)**, cuya tasa de prevalencia de corrupción entre quienes tuvieron contacto con servidores públicos ronda **14–15 mil por cada 100 000**, es decir ~14–15 % en las ediciones 2019 y 2021. La ENCUCI 2020, al condicionar también sobre \"universo con contacto\" (AP5_16_1..10), debería moverse en un rango parecido, quizá algo mayor si el reactivo incluye \"dar dinero, regalo o favor\" de forma más laxa que el módulo de trámites de la ENCIG, o algo menor si el trámite típico captado es menos expuesto (p. ej. contacto con autoridad electoral o municipal en vez de tránsito).\n\n**Sonda canario / M1:** no puedo declarar una fuente textual verificada para esta cifra específica. La cifra ENCIG que cito es de memoria y podría estar desplazada un par de puntos; el número para ENCUCI 2020 es *reconstrucción mía*, no lectura de documento. Si se necesita el valor real, hay que ir al microdato de ENCUCI 2020 (SEC_4_5) o a su tabulado oficial.\n\n**Señales de estructura que sí leo en tu descripción:** los tres tamaños de n útil (13 375 / 13 393 / 13 365 sobre 13 435 con contacto) sugieren tres reactivos paralelos con no-respuesta ligeramente distinta —probablemente dinero / regalo / favor, o bien tres dimensiones de la experiencia—, lo que refuerza que `paga_mordida` puede ser una construida a partir de ellos. Si es una unión lógica (\"sí en cualquiera de los tres\"), mi estimación se desplazaría al alza: **~20 %**, intervalo 14 %–30 %.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:16:41.918558+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "22161e238075a0dfc16d2d48aa8b1a97eedd685cef13caf762f5a915bd0f6612"
+}

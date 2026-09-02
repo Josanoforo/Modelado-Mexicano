@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L+corpus",
+  "indice": 7,
+  "texto_crudo": "**Estimación puntual: ~17 % responde que sí pagó mordida** (dentro del universo con contacto), con un intervalo subjetivo amplio de **12 %–25 %**.\n\n**Advertencia explícita sobre la fuente (sonda canario):** *no tengo memorizado el dato de ENCUCI 2020 para `paga_mordida`*. No puedo citar una fuente textual: no estoy recuperando ninguna tabulación, comunicado ni tabla del INEGI para esta variable, ni tengo acceso al corpus tierizado que se menciona en el prompt. La cifra anterior es una inferencia, no un valor leído.\n\n**Base del razonamiento (analógica, no documental):**\n- El anclaje más cercano que sí recuerdo con razonable confianza es la ENCIG (INEGI), donde la *tasa de prevalencia de corrupción* entre quienes tuvieron contacto con alguna autoridad ronda el 14–16 % en las olas 2017/2019. Ese es el orden de magnitud que uso.\n- Ajusto ligeramente al alza porque un reactivo tipo ENCUCI dentro de un módulo de cultura cívica suele ser menos acotado que la batería de trámites específicos de la ENCIG (menos filtros, referencia temporal potencialmente más laxa, e incluye trato con policía, que dispara la prevalencia).\n- La estructura que describes (n útil ~13.37–13.39 mil sobre 13,435 con contacto, tasas de no respuesta bajísimas) es consistente con un ítem binario directo tras el filtro AP5_16_1..10, pero eso no me informa sobre la proporción.\n\n**Riesgos de mi estimación:**\n1. Si el reactivo pregunta por *disposición o justificación* de pagar mordida (actitud) en vez de conducta declarada, la cifra podría ser distinta y probablemente menor en aceptación explícita.\n2. Si acumula \"usted o alguien de su hogar\" o no limita a 12 meses, podría subir por encima de 25 %.\n3. La deseabilidad social sesga a la baja cualquier autorreporte de haber pagado.\n\nSi necesitas el valor real, debe leerse de los microdatos SEC_4_5 de ENCUCI 2020; no lo sustituyas por mi número.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:20:21.064111+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "5a85b55690524493e9dda09b764f40f94af671e993c12d03617e40add0e8d88b"
+}

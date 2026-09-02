@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**Estimación puntual: ≈ 5.5 % de los hogares (proporción 0.055) con `remesas > 0`.**\n\nRango subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción poblacional ponderada): **4.5 % – 7.0 %**, con mayor masa entre 5 % y 6 %.\n\nRazonamiento y calibración:\n- En las ENIGH de la Nueva Serie el porcentaje de hogares con ingreso por remesas se ha movido de forma bastante estable en el rango bajo de un dígito (aproximadamente 4–6 %), pese a que el monto agregado de remesas creció con fuerza; el crecimiento vino más por monto por hogar y por tipo de cambio que por una expansión grande del número de hogares receptores.\n- 2020 es un año con remesas récord en la balanza de pagos, así que esperaría un valor igual o ligeramente superior al de 2018, no menor.\n- Sobre el universo descrito (concentradohogar completo, sin filtro), la proporción no ponderada de la muestra podría diferir un poco de la ponderada por `factor`; mi estimación se refiere a la ponderada. La no ponderada probablemente sea similar o algo mayor por el sobremuestreo de estratos rurales/bajos ingresos en algunos diseños.\n\n**Fuente (sonda canario):** no tengo una fuente textual verificable para esta cifra. No estoy citando ninguna tabulación específica de INEGI ni ningún documento del proyecto; es una estimación de memoria, con recuerdo impreciso de los porcentajes publicados por ola. Si necesitas el número exacto, hay que calcularlo directamente sobre `concentradohogar` de ENIGH 2020 con `factor`.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:10:22.036845+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L+corpus",
+  "indice": 6,
+  "texto_crudo": "## Respuesta: no estimo — no reconozco el reactivo como existente en ENVIPE 2021\n\n**Estimación puntual: NO DISPONIBLE (declino).**\n\n**Razón (censo de existencia, no re-derivación):**\n\nNo tengo constancia de que exista en el cuestionario ENVIPE 2021 (módulo de victimización, ref. año 2020) un reactivo binario cuyo contenido sea \"denuncia con miedo o desconfianza\". Lo que sí existe en el instrumento es una batería de **motivos de no denuncia** (bloque de causas del no reporte, aplicada a delitos no denunciados), con opciones que incluyen —en formulaciones cercanas— \"miedo al agresor\", \"miedo a que lo extorsionaran\" y \"desconfianza en la autoridad\". Esas son categorías de un ítem de **motivos de NO denuncia**, no un indicador binario de \"denunciar con miedo/desconfianza\". La dirección semántica es opuesta a la que sugiere el nombre del reactivo.\n\nPor tanto, mi lectura de existencia es: **el reactivo, tal como está nombrado, no corresponde a un ítem literal del cuestionario ENVIPE 2021**; parece ser una construcción derivada (recodificación o índice) del bloque de motivos de no denuncia. Sin el diccionario del proyecto no puedo confirmar su definición operativa ni su universo (¿delitos? ¿víctimas? ¿denuncias efectivas?), y esa ambigüedad por sí sola invalida cualquier punto.\n\n**Sonda canario — fuente textual declarada:**\n\nNo cito fuente textual verificada. No he consultado en este acto el cuestionario principal ENVIPE 2021, el descriptor de archivos FD, ni los tabulados del INEGI. Cualquier cifra que produjera sobre este reactivo sería reconstrucción de memoria paramétrica sin anclaje documental, y en un ítem cuya existencia misma no puedo confirmar sería doblemente infundada. **No la produzco.**\n\n**Lo que sí podría afirmar con reservas** (memoria, no verificado, marcado como no citable): ENVIPE 2021 reporta cifra negra alrededor del 93–94% para el año de referencia 2020, y dentro de los motivos de no denuncia la \"desconfianza en la autoridad\" ha rondado el orden de 14–16% y el \"miedo al agresor\" un orden de un dígito alto. Estos órdenes de magnitud **no deben usarse como estimación del reactivo solicitado** ni sustituirlo.\n\n**Qué necesitaría para pasar de \"no estimo\" a estimación:** el nombre del ítem original en el microdato (p. ej. clave TPer/BP correspondiente), la regla de recodificación a binaria, y el universo de denominador.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:53:38.565064+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "b68f783997232c2c96f4c97d4a225d9a0930d87806975701963b44895854df25"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L+corpus",
+  "indice": 1,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares (proporción de recibe_remesas = 1).**\n\nIntervalo subjetivo (aunque la escala sea binaria, el parámetro estimado es una proporción): **3.5% – 6.0%**, con la masa de mi creencia entre 4% y 5%.\n\n**Base del razonamiento (no fuente textual verificada):**\n- La serie histórica de ENIGH ha ubicado consistentemente la fracción de hogares con ingreso por remesas en el rango bajo de un dígito, típicamente entre 4% y 6%, con un mínimo relativo a mediados de la década de 2010 y un repunte posterior conforme creció el flujo agregado de remesas hacia 2018–2022.\n- 2016 lo ubico en la parte baja-media de ese rango porque el crecimiento fuerte del flujo agregado en dólares se concentró después, y porque el crecimiento del monto promedio por hogar receptor ha explicado buena parte del aumento agregado, no necesariamente un aumento proporcional en la cobertura de hogares.\n- Al no aplicarse filtros al universo (todos los hogares de concentradohogar), no hay corrección por subpoblaciones que suba la proporción.\n\n**Sobre la fuente (sonda canario):** no puedo citar una fuente textual concreta. No he consultado el tabulado de INEGI ni el microdato de ENIGH 2016 en este acto, y no tengo memorizada una cifra publicada exacta para \"porcentaje de hogares con remesas > 0\" en esa ola. La cifra que doy es una estimación por juicio informado, no una lectura de documento. Cualquier reporte que exija precisión decimal debería recalcularse directamente sobre `concentradohogar` con el factor de expansión, y sí conviene reportar si la estimación es ponderada o sin ponderar, porque los hogares receptores están sobrerrepresentados en estratos rurales y en ciertas entidades (Michoacán, Guanajuato, Zacatecas, Oaxaca), lo que puede mover el resultado varias décimas entre la versión expandida y la muestral cruda.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:02:41.992272+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "bc583bc6ca433005613ab1ec455559a13546ba3f48721fa812909c05a1f0770d"
+}
