@@ -45,5 +45,4 @@ Ejecutado por ACTO MAESTRA35-N1 · SELLA-L5-Y-RECIBOS en la rama
 `claude/maestra35-n1-launch-0u1gzw`, commits `8fa9607` (0-bis A.3),
 `6274d26` (P1-P4) y la cascada de cierre (ADR-289, gobernanza,
 estado-programa L0, registro-rotulos, T25 sin novedad,
-`tests/check.py --baseline` VERDE). PR abierto contra `main` con este
-mismo título.
+`tests/check.py --baseline` VERDE). `PR #469`.
