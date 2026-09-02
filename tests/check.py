@@ -2374,6 +2374,19 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA34-L5 · GOBIERNO-DIGITAL-EVASION-AHORRO, 2/sep/2026: encargo
+    # archivado VERBATIM (A.3). Su bloque A.8 cita "E18-P1 filas 3-4: sin
+    # generador declarado" -- ese "E18" pelado lo escribio direccion al
+    # referirse a la tabla de reglas sin p de ACTO MAESTRA33-E18-P1
+    # (forense/notas/2026-09-01-MAESTRA33-E18-P1-reglas-activos-sin-p.md), y
+    # el token ya estaba censado en canon/registro-rotulos.tsv por
+    # ACTO MAESTRA32-E17 y ACTO MAESTRA32-E18. El encargo NO se edita: /acto
+    # paso 5 prohibe alterar un verbatim de A.3 para complacer a un test, y
+    # este texto es el registro de que se pidio exactamente. En la seccion
+    # CONSUMIDO que este acto le anade, y en los cuatro .md propios que
+    # escribe, el rotulo va siempre con prefijo completo (MAESTRA33-E18,
+    # MAESTRA34-L5) -- D-6, verificado con el regex sobre los 5 archivos.
+    "forense/encargos/2026-09-02-MAESTRA34-L5-GOBIERNO-DIGITAL-EVASION-AHORRO.md",
     # ACTO MAESTRA34-L4 · CIVICA-Y-CORPUS, 2/sep/2026: encargo archivado
     # VERBATIM (A.3). La pieza P2 cierra con "(queda para E1/mesa; este acto
     # no instrumenta)" -- ese "E1" pelado es MAESTRA34-E1, el acto de
