@@ -96,3 +96,30 @@ python3 tools/curador_registro/via_capa2.py --root .                # lectura: 0
 no lo contradice. Sin `data/raw` montada devuelve `AUSENTE`/
 `RAIZ_NO_CONFIGURADA` y la confirmación positiva queda pendiente de un acto en
 caja. Decirlo es parte del alta.
+
+---
+
+## Enmienda de dirección a ACTO MAESTRA35-L3 (2/sep/2026)
+
+Todo payload nuevo se registra por la infraestructura del curador (Codex,
+A5/`PR #441`), en este orden y sin reinventar:
+
+1. **Capa payload.** Archivo en el corpus compartido +
+   `tests/manifiesto.py --registra --id … --usado-para … --url-origen …
+   --descargado-por … --fecha-descarga …`, una invocación por `--id`; sha y
+   tamaño los deriva el script.
+2. **Capa cola del registro.** Fila por `fuente_canonica` en
+   `data/curacion-registro/cola-adquisicion-registro.tsv`
+   (`estado_A4A5`, `ids_manifiesto`, nota con fecha y comando). Fuente nueva
+   = fila en `aliases-fuentes.tsv` + fila en la cola citando la receta.
+   Después, `python3 tools/vista_cola_adquisicion.py`
+   (`data/cola-adquisicion-v1_0.tsv` es VISTA GENERADA, `T26` falla si no se
+   regenera).
+3. **Capa relación.** `relaciones.tsv` (`necesidad_id` /
+   `fuente_canonica_normalizada` / `objeto_evidencia_id_canonico`) +
+   `necesidad-objeto-modelo.tsv`; `python3 tools/curador_registro/via_capa2.py
+   --root .` en lectura, y `--escribe` solo cuando el id resuelve a payload
+   verificado.
+
+Cierre con `tools/curador_registro/baseline.py` si el validador lo exige
+(este archivo, §1). Raíz `descargas_mx` en `data/raices.local.yaml`.
