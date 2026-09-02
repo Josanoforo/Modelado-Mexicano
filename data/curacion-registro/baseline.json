@@ -13,20 +13,20 @@
       "sha256": "2d32cd5e06fc2901aaf1eca7505936049528fd8496761a25653b7c2bcc21dcd8"
     },
     "evidencias.tsv": {
-      "filas": 200,
-      "sha256": "58f2c5d9878b9ada1b8bca4f18b7c36aa9145208ae08723b0ea1e73b5f495cae"
+      "filas": 205,
+      "sha256": "57b6bffa6415b919186853175df583e81badf4efe1f4169408bb88aeae061f97"
     },
     "fusiones-relaciones.tsv": {
       "filas": 1,
       "sha256": "d7ab67a8a20b4f27e825a025a4ffc6326f001508f72b6a0a273b79f30cd5a7b3"
     },
     "relaciones.tsv": {
-      "filas": 199,
-      "sha256": "fb6893c2eec4d4d0a2827c122c50d1bf2c95e56b46ce25ed48a0dd3115906606"
+      "filas": 204,
+      "sha256": "7029d3b204d43fed7eb42949efcf075012a0734dd4149f4f42183597507dcad6"
     },
     "utilidad-modelo.tsv": {
-      "filas": 199,
-      "sha256": "54ce501b45a12fd64a69d51b1a39fd5d19955b8eb01d138e4e2c753bad792c67"
+      "filas": 204,
+      "sha256": "4e091397bc904bf2a7f90c7e2e62880e5df82c75be83eeb7bfd41ba84075c019"
     }
   },
   "baseline_version": "1.0.0",
@@ -37,15 +37,15 @@
   ],
   "conteos": {
     "artefactos_rechazados": 85,
-    "candidatas": 141,
+    "candidatas": 146,
     "confirmadas": 3,
     "decisiones_pendientes": 0,
     "familias_alias": 5,
     "fusiones_declaradas": 1,
     "negativas": 48,
     "no_accesibles": 7,
-    "procedencias_aceptadas": 200,
-    "relaciones_activas": 199
+    "procedencias_aceptadas": 205,
+    "relaciones_activas": 204
   },
   "delimiter": "TAB",
   "encoding": "UTF-8",
@@ -61,7 +61,7 @@
   "procedencia": {
     "criterio": "No queremos versionar 200 filas de historia de ejecución; sí queremos versionar toda la procedencia vigente necesaria para justificar el baseline aceptado.",
     "manifest_origen_sha256": "e72c174075ae1bbf6535723aea0fbaf19c1938a55f470de275f4fbf7d36e1d24",
-    "origen": "baseline semantico aceptado por la integracion final; recifrado por ACTO MAESTRA34-A1 (2026-09-01) tras escribir capa2/capa4 en 14 filas de relaciones.tsv y dar de alta SICEE en aliases-fuentes.tsv. NOTA: el hash de relaciones.tsv YA estaba invalido en origin/main 6d9692d, antes de este acto -- este recifrado tambien cierra ese desfase previo."
+    "origen": "baseline semantico aceptado por la integracion final; recifrado por ACTO MAESTRA34-A1 (2026-09-01) tras escribir capa2/capa4 en 14 filas de relaciones.tsv y dar de alta SICEE en aliases-fuentes.tsv. NOTA: el hash de relaciones.tsv YA estaba invalido en origin/main 6d9692d, antes de este acto -- este recifrado tambien cierra ese desfase previo. Recifrado de nuevo por ACTO MAESTRA34-N6 · CURADOR-Y-SUITE (2026-09-01, firma DN-a, FP-230) tras dar de alta 5 relaciones nuevas en las tres tablas a la vez (SICEE x N25/N26; Cero Desabasto x N36; DGIS Urgencias x N36, descriptor y microdato): relaciones 199->204, evidencias 200->205, utilidad-modelo 199->204, fusiones sin cambio. El recifrado es requisito del propio validador (los sha256 de las tres tablas quedan invalidos al escribirlas) y sigue el precedente de A1; no absorbe ningun error preexistente."
   },
   "schema_version": "1.0.0"
 }
