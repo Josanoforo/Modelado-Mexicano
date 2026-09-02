@@ -37,6 +37,51 @@ def dbf_zip(zpath, member, campos=None):
         os.remove(p)
 
 
+def _str_stata(v):
+    """Un valor de Stata con la MISMA forma que csv_zip entrega: str.
+
+    Un flotante entero se escribe SIN el '.0' -- la codificacion congelada de
+    DIN-M-01 compara contra '1'/'3'/'7', y pyreadstat devuelve 1.0/3.0/7.0
+    porque en Stata esas columnas son numericas. Escribirlas '1.0' mandaria
+    las 19802 filas a n_codigo_no_valido sin que reventara nada: el defecto
+    seria una R vacia, no un error. NaN/None -> '' (celda vacia, igual que un
+    campo vacio de CSV), nunca 0.
+    """
+    if v is None:
+        return ""
+    if isinstance(v, float):
+        if v != v:                      # NaN
+            return ""
+        if v.is_integer():
+            return str(int(v))
+        return str(v)
+    if isinstance(v, str):
+        return v.strip()
+    return str(v).strip()
+
+
+def dta_zip(zpath, member):
+    """Filas de un .dta (Stata) dentro de un zip, como dicts de str con claves
+    en minuscula -- misma forma que csv_zip, para que estima() no distinga.
+
+    (ACTO MAESTRA35-L5.) Antes de este lector, el unico zip de ENNViH era
+    137/137 .dta y el corredor R no sabia abrirlo: la celda DIN-M-01 no era
+    computable por falta de lector, no por falta de dato.
+    """
+    import pyreadstat
+    with zipfile.ZipFile(os.path.join(RAW, zpath)) as z:
+        p = os.path.join(TMP, "_l5_" + os.path.basename(member))
+        with open(p, "wb") as o:
+            o.write(z.read(member))
+    try:
+        df, _meta = pyreadstat.read_dta(p)
+        cols = [str(c).strip().lower() for c in df.columns]
+        for fila in df.itertuples(index=False, name=None):
+            yield dict(zip(cols, (_str_stata(v) for v in fila)))
+    finally:
+        os.remove(p)
+
+
 def num(x):
     try:
         return float(str(x).strip())
@@ -78,7 +123,15 @@ def estima(filas, col_y, uno, cero, col_w, col_est, col_upm, filtro=None, codifi
         if w is None or w <= 0:
             n_sin_peso += 1
             continue
-        rows.append((str(f.get(col_est, "")), str(f.get(col_upm, "")), w, y))
+        # (ACTO MAESTRA35-L5) col_est=None -> UN SOLO estrato; col_upm=None ->
+        # UNA UPM POR FILA. Con los dos a None la formula de svystat.py colapsa
+        # a la varianza ponderada tipo SRS (su §2), que es el "EE sin diseno"
+        # que un DISENO-APROXIMADO debe reportar al lado del suyo. Ningun
+        # llamador previo pasa None (todos pasan un nombre de columna), asi que
+        # el camino existente queda intacto.
+        est = "" if col_est is None else str(f.get(col_est, ""))
+        upm = str(len(rows)) if col_upm is None else str(f.get(col_upm, ""))
+        rows.append((est, upm, w, y))
     r = prop_ultimate_cluster(rows) if rows else None
     return r, {"n_filas_leidas": n_bruto, "n_fuera_de_universo": n_excl_filtro,
                "n_codigo_no_valido": n_excl_cod, "n_sin_ponderador": n_sin_peso,

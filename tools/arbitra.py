@@ -264,12 +264,29 @@ def _predicado_compuesto_or(a1, va1, b1, vb1, a0, va0, b0, vb0):
     return codifica
 
 
+_PATRON_SUSTITUYE = re.compile(r"^SUSTITUYE-A\s+(\S+)")
+
+
 def lee_codificacion(ruta=CODIFICACION):
     """codificacion-R-v1_0.tsv tiene cabecera '#id\\t...' -- se despoja el
-    '#' para poder usar DictReader normal."""
+    '#' para poder usar DictReader normal.
+
+    (ACTO MAESTRA35-L5) `estado: SUSTITUYE-A <id>` se resuelve aqui: la fila
+    sustituta pasa a ser la que responde por <id>. Sin esto, la convencion
+    -- que ya existia en el archivo (TRA-M-13b, TRA-M-14b) -- era prosa que
+    ninguna herramienta leia: pedir la celda por su id del sorteado seguia
+    entregando la fila vieja. La fila original se conserva bajo su propio id;
+    no se borra ni se edita, y sigue siendo el registro de lo que se propuso
+    primero.
+    """
     with open(ruta, encoding="utf-8") as f:
         campos = f.readline().rstrip("\n").lstrip("#").split("\t")
-        return {fila["id"]: fila for fila in csv.DictReader(f, fieldnames=campos, delimiter="\t")}
+        tabla = {fila["id"]: fila for fila in csv.DictReader(f, fieldnames=campos, delimiter="\t")}
+    for fila in list(tabla.values()):
+        m = _PATRON_SUSTITUYE.match((fila.get("estado") or "").strip())
+        if m and m.group(1) in tabla:
+            tabla[m.group(1)] = fila
+    return tabla
 
 
 def _correr_r():
@@ -341,6 +358,193 @@ def resuelve_miembro_zip(archivo, nombre_logico):
     return None, f"{len(candidatos)} miembros de {archivo} contienen {nombre_logico!r} tras descartar diccionarios: {candidatos}"
 
 
+# ── ACTO MAESTRA35-L5 · lector .dta por CONTENIDO, JOIN de ponderador y
+#    diseno aproximado ───────────────────────────────────────────────────────
+#
+# Las tres piezas cierran el "BLOQUEO DOBLE" que la fila DIN-M-01 de
+# codificacion-R-v1_0.tsv declara en prosa: (a) el corredor R solo traia
+# csv_zip y dbf_zip, y el zip de ENNViH-1 es 137/137 .dta; (b) el ponderador
+# fac_3b no vive en la tabla del desenlace sino en otro payload, y esta funcion
+# rechazaba todo join. Ninguna de las dos era falta de dato.
+
+_STATA_RELEASES = range(0x66, 0x74)   # .dta release 102..115 en el primer byte
+
+
+def _es_stata(cab):
+    """Magic de Stata, por CONTENIDO y no por sufijo.
+
+    dta 117+ abre literalmente con '<stata_dta>'. Las versiones 102-115 traen
+    (release, byteorder in {1,2}, filetype=1) en los tres primeros bytes; el
+    cuarto es 'unused' y NO es 0 de forma fiable -- medido sobre las dos tablas
+    de ENNViH-1 2002, que abren con 71 01 01 52 y 71 02 01 00. Un CSV tendria
+    que empezar con una letra 'f'-'s' seguida de \x01\x01 para confundirse, y
+    un DBF empieza en 0x03/0x30: por debajo del rango.
+    """
+    if cab[:11] == b"<stata_dta>":
+        return True
+    return len(cab) >= 3 and cab[0] in _STATA_RELEASES and cab[1] in (1, 2) and cab[2] == 1
+
+
+def _cabecera_zip(archivo, miembro, n=16):
+    import zipfile
+    with zipfile.ZipFile(os.path.join(RAIZ, "data", "raw", archivo)) as z:
+        with z.open(miembro) as fh:
+            return fh.read(n)
+
+
+def _abre_tabla(archivo, miembro, mod_r):
+    """(factory, None) o (None, motivo). La factory devuelve un generador NUEVO
+    cada vez que se la llama -- hace falta para recorrer la tabla dos veces
+    (diseno declarado y EE sin diseno) sin materializarla en memoria."""
+    try:
+        cab = _cabecera_zip(archivo, miembro)
+    except Exception as e:
+        return None, (f"no se pudo leer la cabecera de {miembro!r} en {archivo}: "
+                      f"{type(e).__name__}: {e}")
+    if _es_stata(cab):
+        return (lambda: mod_r.dta_zip(archivo, miembro)), None
+    sufijo = os.path.splitext(miembro)[1].lower()
+    if sufijo == ".dbf":
+        return (lambda: mod_r.dbf_zip(archivo, miembro)), None
+    if sufijo == ".csv":
+        return (lambda: mod_r.csv_zip(archivo, miembro)), None
+    return None, (f"el miembro {miembro!r} de {archivo} no trae magic de Stata en sus "
+                  f"primeros bytes y tiene sufijo {sufijo!r}; los lectores disponibles "
+                  f"son .dta (dta_zip, elegido por contenido), .csv (csv_zip) y .dbf (dbf_zip)")
+
+
+# Gramatica minima de ponderador-con-join, congelada por ACTO MAESTRA35-L5:
+#   fac_3b@ehh02w_all/ehh02w_b3b.dta[folio+ls]
+# columna @ miembro-dentro-del-zip [ llave1+llave2 ]. Sin '@' no hay join y el
+# camino previo (el ponderador es una columna de la propia tabla) queda intacto.
+_PATRON_PONDERADOR_JOIN = re.compile(r"^([A-Za-z0-9_]+)@([^\[\]]+)\[([A-Za-z0-9_+ ]+)\]$")
+
+
+def _llave_join(v):
+    """Normaliza un valor de llave de join a su forma decimal minima.
+
+    Hace falta porque el MISMO hogar se escribe distinto en las dos tablas:
+    `folio` es numerico en iiib_cr.dta (pyreadstat lo entrega 1000.0) y cadena
+    de 8 caracteres con ceros a la izquierda en ehh02w_b3b.dta ('00001000').
+    Sin esta normalizacion el join daria 0 aciertos y las 19802 filas caerian
+    en n_sin_ponderador -- una R vacia, no un error. Lo que no es un entero se
+    compara tal cual.
+    """
+    s = str(v).strip()
+    try:
+        f = float(s)
+    except ValueError:
+        return s
+    return str(int(f)) if f.is_integer() else s
+
+
+def _zip_del_miembro(miembro, manifiesto):
+    """El zip que contiene <miembro>, por una regla DECLARADA y verificada.
+
+    La primera componente de la ruta interna nombra el zip
+    ('ehh02w_all/ehh02w_b3b.dta' -> 'ehh02w_all.zip'), igual que ya ocurre con
+    la tabla de desenlace ('ehh02dta_all/...' -> 'ehh02dta_all.zip'). Se busca
+    esa base en el manifiesto y se COMPRUEBA abriendo el zip: si el miembro no
+    esta dentro, se abstiene en vez de seguir con el zip equivocado.
+    """
+    import zipfile
+    base = miembro.split("/")[0] + ".zip"
+    candidatos = [e for e in manifiesto
+                  if isinstance(e, dict)
+                  and os.path.basename(str(e.get("archivo") or "")) == base]
+    if not candidatos:
+        return None, (f"ningun payload del manifiesto tiene archivo {base!r} "
+                      f"(derivado de la primera componente de {miembro!r})")
+    for e in candidatos:
+        ruta = os.path.join(RAIZ, "data", "raw", e["archivo"])
+        if not os.path.exists(ruta):
+            continue
+        with zipfile.ZipFile(ruta) as z:
+            if miembro in z.namelist():
+                return e["archivo"], None
+    return None, (f"{base!r} esta en el manifiesto ({len(candidatos)} entrada(s)) pero "
+                  f"ninguna contiene el miembro {miembro!r}")
+
+
+def _resuelve_ponderador(id_celda, declarado, manifiesto, mod_r):
+    """(col_w, pega_peso|None, motivo|None, estado|None).
+
+    Sin '@' devuelve el nombre de columna tal cual (camino previo, intacto).
+    Con '@' carga la tabla de pesos en un dict llave->peso y devuelve un
+    envoltorio que le pega el peso a cada fila. El join se exige 1:1: llaves
+    repetidas del lado de los pesos son PARO, no una eleccion silenciosa. Una
+    fila sin peso queda SIN la columna -- estima() la cuenta en
+    n_sin_ponderador y NO se imputa nada.
+    """
+    decl = (declarado or "").strip()
+    m = _PATRON_PONDERADOR_JOIN.match(decl)
+    if not m:
+        return decl.lower(), None, None, None
+    col_w = m.group(1).strip().lower()
+    miembro = m.group(2).strip()
+    llaves = [k.strip().lower() for k in m.group(3).split("+") if k.strip()]
+    if not llaves:
+        return None, None, f"{id_celda}: el join del ponderador no declara ninguna llave: {decl!r}", None
+
+    archivo, motivo = _zip_del_miembro(miembro, manifiesto)
+    if archivo is None:
+        return None, None, f"{id_celda}: {motivo}", None
+    abre, motivo = _abre_tabla(archivo, miembro, mod_r)
+    if abre is None:
+        return None, None, f"{LECTOR_AUSENTE}: {id_celda}: tabla de ponderador: {motivo}", None
+
+    pesos, n_dup, n_filas_peso = {}, 0, 0
+    for f in abre():
+        n_filas_peso += 1
+        k = tuple(_llave_join(f.get(c, "")) for c in llaves)
+        if k in pesos:
+            n_dup += 1
+        pesos[k] = f.get(col_w, "")
+    if n_dup:
+        return None, None, (f"{id_celda}: la tabla de ponderador {miembro!r} NO es 1:1 por "
+                            f"{'+'.join(llaves)}: {n_dup} llave(s) repetida(s) sobre "
+                            f"{n_filas_peso} filas; no se elige una ni se promedia"), None
+
+    estado = {"miembro": miembro, "archivo": archivo, "llaves": "+".join(llaves),
+              "n_filas_peso": n_filas_peso, "n_llaves_peso": len(pesos), "huerfanos": 0}
+
+    def pega(filas):
+        estado["huerfanos"] = 0
+        for f in filas:
+            k = tuple(_llave_join(f.get(c, "")) for c in llaves)
+            w = pesos.get(k)
+            if w is None:
+                estado["huerfanos"] += 1
+                yield f
+            else:
+                g = dict(f)
+                g[col_w] = w
+                yield g
+
+    return col_w, pega, None, estado
+
+
+# Diseno declarado como aproximado: 'DISENO-APROXIMADO:folio' o
+# 'DISENO-APROXIMADO:CONSTANTE'. Solo esta forma dispara el segundo pase que
+# reporta EE_R_sin_diseno -- una celda con diseno real no cambia en nada.
+_PREFIJO_DISENO_APROX = "DISENO-APROXIMADO:"
+
+
+def _col_diseno(valor):
+    """(columna|None, es_aproximado). None significa: un solo estrato (si es
+    el estrato) o una UPM por fila (si es la UPM) -- ver estima() en
+    correr-R.py. Sin el prefijo, devuelve el nombre de columna en minusculas,
+    exactamente lo que esta funcion pasaba antes."""
+    v = (valor or "").strip()
+    if v.upper().startswith(_PREFIJO_DISENO_APROX):
+        resto = v[len(_PREFIJO_DISENO_APROX):].strip()
+        token = (resto.split() or [""])[0].strip().lower()
+        if token in ("constante", "ninguno", "-", ""):
+            return None, True
+        return token, True
+    return v.lower(), False
+
+
 def calcula_desde_tabla(id_celda, tabla_codif, manifiesto, mod_r):
     """Calcula (r, conteos, fila) para id_celda usando SOLO lo que
     codificacion-R-v1_0.tsv declara. Devuelve (resultado_o_None, motivo,
@@ -387,25 +591,71 @@ def calcula_desde_tabla(id_celda, tabla_codif, manifiesto, mod_r):
             return None, f"{id_celda}: {motivo}", advertencias
         advertencias.append(f"{id_celda}: tabla logica {tabla!r} resuelta a miembro fisico {miembro!r} dentro de {archivo}")
 
-    # (MAESTRA35-L2/P1c) El lector se elige por el sufijo REAL del miembro y solo
-    # entre los dos que existen. Antes, todo lo que no fuera .dbf caia en
-    # csv_zip(): un miembro .dta o .sav se leia como CSV y producia una cifra
-    # sin sentido en vez de una abstencion. No se anade lector .dta aqui
-    # (fuera de alcance declarado del acto).
-    sufijo = os.path.splitext(miembro)[1].lower()
-    if sufijo == ".dbf":
-        filas = mod_r.dbf_zip(archivo, miembro)
-    elif sufijo == ".csv":
-        filas = mod_r.csv_zip(archivo, miembro)
-    else:
-        return None, (f"{LECTOR_AUSENTE}: {id_celda}: el miembro {miembro!r} de {archivo} "
-                      f"tiene sufijo {sufijo!r}; los unicos lectores disponibles son "
-                      f".csv (csv_zip) y .dbf (dbf_zip)"), advertencias
-    r, c = mod_r.estima(filas, fila["variable"].lower(), uno, cero,
-                         fila["ponderador"].lower(), fila["estrato"].lower(), fila["upm"].lower(),
-                         codifica=codifica)
+    # (MAESTRA35-L2/P1c, extendido por MAESTRA35-L5) El lector se elige por el
+    # CONTENIDO del miembro (magic de Stata) y solo despues por su sufijo real.
+    # Antes de L2, todo lo que no fuera .dbf caia en csv_zip(): un miembro .dta
+    # se leia como CSV y producia una cifra sin sentido en vez de una
+    # abstencion. L2 lo convirtio en abstencion; L5 le da el lector.
+    abre, motivo_lector = _abre_tabla(archivo, miembro, mod_r)
+    if abre is None:
+        return None, f"{LECTOR_AUSENTE}: {id_celda}: {motivo_lector}", advertencias
+
+    # (MAESTRA35-L5) El ponderador puede vivir en OTRA tabla; la gramatica del
+    # join se declara en la propia fila de codificacion, no se adivina.
+    col_w, pega_peso, motivo_join, join = _resuelve_ponderador(
+        id_celda, fila["ponderador"], manifiesto, mod_r)
+    if motivo_join:
+        return None, motivo_join, advertencias
+
+    col_est, est_aprox = _col_diseno(fila["estrato"])
+    col_upm, upm_aprox = _col_diseno(fila["upm"])
+    aproximado = est_aprox or upm_aprox
+
+    def corre(c_est, c_upm):
+        filas = abre()
+        if pega_peso is not None:
+            filas = pega_peso(filas)
+        return mod_r.estima(filas, fila["variable"].lower(), uno, cero,
+                            col_w, c_est, c_upm, codifica=codifica)
+
+    r, c = corre(col_est, col_upm)
+    extra = {}
+
+    if pega_peso is not None:
+        c = dict(c)
+        c["n_join_huerfano"] = join["huerfanos"]
+        advertencias.append(
+            f"{id_celda}: ponderador {col_w!r} traido por JOIN {join['llaves']} desde "
+            f"{join['miembro']!r} ({join['n_llaves_peso']} llaves sobre {join['n_filas_peso']} "
+            f"filas, 1:1 verificado); {join['huerfanos']} fila(s) sin peso, NO imputadas")
+
+    if aproximado:
+        # Segundo pase: un solo estrato y una UPM por fila. Por la nota §2 de
+        # tests/svystat.py eso colapsa a la varianza ponderada tipo SRS, que es
+        # el "EE sin diseno" que un diseno aproximado debe reportar al lado del
+        # suyo para que quien lea sepa cuanto de la EE es diseno y cuanto no.
+        r_sd, _c_sd = corre(None, None)
+        extra["diseno"] = "DISENO-APROXIMADO"
+        extra["diseno_estrato"] = fila["estrato"]
+        extra["diseno_upm"] = fila["upm"]
+        extra["EE_R_sin_diseno"] = (r_sd or {}).get("se")
+        advertencias.append(
+            f"{id_celda}: DISENO-APROXIMADO -- estrato={fila['estrato']!r}, upm={fila['upm']!r}. "
+            f"EE_R es cota inferior de la EE verdadera; se reporta ademas EE_R_sin_diseno.")
+
+    # (ACTO MAESTRA35-L5) Si quien responde no es la fila del id pedido, se dice
+    # en el JSON y en la advertencia -- una sustitucion silenciosa seria peor
+    # que no tenerla.
+    if fila.get("id") and fila["id"] != id_celda:
+        extra["codificacion_id"] = fila["id"]
+        advertencias.append(
+            f"{id_celda}: calculada con la fila de codificacion {fila['id']!r} "
+            f"(estado {fila.get('estado')!r}); la fila original se conserva intacta")
+
     fila = dict(fila)
     fila["_tabla_resuelta"] = miembro
+    if extra:
+        fila["_extra"] = extra
     return (r, c, fila), None, advertencias
 
 
@@ -536,7 +786,7 @@ def produce(ids, ruta_marco, tabla_codif=None, manifiesto=None, mod_r=None):
                     "tabla": fila.get("_tabla_resuelta", fila["tabla"]), "variable": fila["variable"],
                     "ponderador": fila["ponderador"], "estrato": fila["estrato"], "upm": fila["upm"],
                     "codificacion": fila["codificacion"], "universo": fila["universo_filtro"]}
-            doc = mod_r.escribe(id_celda, spec, r, c)
+            doc = mod_r.escribe(id_celda, spec, r, c, extra=fila.get("_extra"))
             detalle.append({"id": id_celda, "escrito": True, "estado": doc["estado"],
                              "R": doc.get("R"), "advertencias": advertencias})
         except Exception as e:
