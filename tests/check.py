@@ -2374,6 +2374,17 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA34-L4 · CIVICA-Y-CORPUS, 2/sep/2026: encargo archivado
+    # VERBATIM (A.3). La pieza P2 cierra con "(queda para E1/mesa; este acto
+    # no instrumenta)" -- ese "E1" pelado es MAESTRA34-E1, el acto de
+    # revision de falsadores que ya esta censado en canon/registro-rotulos.tsv
+    # y que hereda el remedio (c) de FP-231 (instrumentar --verifica en la
+    # suite). El encargo NO se edita: /acto paso 4.5 prohibe alterar un
+    # verbatim de A.3 para complacer a un test, y este texto es el registro
+    # de que se pidio exactamente. En la seccion CONSUMIDO que este acto le
+    # anade, y en todo archivo propio que escribe, el rotulo va con prefijo
+    # completo (MAESTRA34-E1, MAESTRA34-L4) -- D-6.
+    "forense/encargos/2026-09-01-MAESTRA34-L4-CIVICA-Y-CORPUS.md",
     # ACTO MAESTRA33-E18-P3 · REGLAS-ACTIVOS-L1, 1/sep/2026: la nota de
     # spec cita VERBATIM el Mensaje 2 del encargo MAESTRA33-S2, que es
     # donde direccion corrige el nombre del lote. Esa cita contiene dos
