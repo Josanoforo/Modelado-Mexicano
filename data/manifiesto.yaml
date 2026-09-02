@@ -6552,9 +6552,6 @@
   fecha_descarga: '2026-08-05'
   descargado_por: agente, vía curl directo desde inegi.org.mx (URL tomada del XML de la canasta
     de descarga masiva, ENCARGO DESC-1)
-  archivo: endireh2016/bd_mujeres_endireh2016_sitioinegi_dbf.zip
-  sha256: 784410e6b99c99b5431133d004354f55f40e04c220f21635651e6ae37998f8fb
-  tamano_bytes: 2895872
   formato: ZIP (25 miembros)
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html;
     texto completo no verificado, solo la referencia)
@@ -6579,6 +6576,26 @@
     a los requerimientos de los usuarios especializados... lo que permitirá un análisis detallado
     de los temas que incluye la encuesta. El usuario(a) podrá indagar la frecuencia, características
     y magnitud de la violencia ejercida por las distintas personas agresoras contra las mujeres."'
+  retirada: 'RETIRADA por ACTO MAESTRA34-L4 (2026-09-02), firma de mesa F231-a sobre FP-231,
+    citada por ADR-280 (ACTO MAESTRA34-L3, PR #458). Los dos pares en disputa: DECLARADO POR
+    ESTA ENTRADA sha256 784410e6b99c99b5431133d004354f55f40e04c220f21635651e6ae37998f8fb /
+    2895872 bytes; MEDIDO EN DISCO sha256 a990a007f2b63f8276c4b57bce86def1f2d1770934e54a4f6312ca867189e275
+    / 102349631 bytes (factor 35.34x). La re-derivacion desde el archivo en disco que F231-a
+    manda hacer YA EXISTIA desde el 2026-08-06 bajo el id ''endireh_2016_bd_mujeres_endireh2016_sitioinegi_dbf_redescarga''
+    (ENCARGO REPAIR-1, Tarea 1), derivada por el propio tests/manifiesto.py --registra sobre
+    este mismo archivo; y `--registra` la rechaza hoy por dedup de contenido -- salida cruda
+    verbatim: "ERROR: este archivo ya esta registrado -- mismo sha256 que la entrada ''endireh_2016_bd_mujeres_endireh2016_sitioinegi_dbf_redescarga''".
+    FORMA DE LA RETIRADA, declarada para que mesa la pueda revocar: la entrada NO se borra
+    -- se le quitan los tres campos que afirman un payload (archivo/sha256/tamano_bytes),
+    que es la via que el propio script reconoce (cmd_verifica: "SIN CAMPO ''archivo'' en el
+    manifiesto -- omitido, no cuenta como falla"). Se lee asi porque la propia firma pide
+    "se retira CON NOTA que cite FP-231 y ADR-280", y una nota sobre una entrada borrada no
+    existiria; y porque borrarla destruiria la evidencia de que estas dos cifras se escribieron
+    una vez, que es justo lo que FP-231 levanta. El resto de la entrada (url_origen, fecha_descarga,
+    descargado_por, formato, licencia, entorno_descarga y la nota original de DESC-1) queda
+    intacto como registro historico. usado_para de esta entrada (''sin uso asignado'') queda
+    heredado por la entrada que sobrevive, que ya declaraba el mismo valor -- la herencia
+    no cambia ningun campo.'
 
 - id: endireh_2016_bd_mujeres_endireh2016_sitioinegi_spss
   usado_para: sin uso asignado
@@ -9972,6 +9989,8 @@
     INT-1 (PR #148) ya habia estableciendo que el archivo de 102MB es estructuralmente INTEGRO (25 miembros, testzip() limpio) y clasificado como NO_COINCIDE (hash), no CORRUPTO. MAP-1b habia planteado "hipotesis: carrera, no truncacion". Esta re-baja no puede distinguir entre (a) el valor original 784410e6/2895872 fue una lectura parcial de ESTA MISMA descarga capturada a medio camino, o (b) la URL servia un archivo genuinamente distinto el 2026-08-05 que ya no esta disponible -- ambas hipotesis quedan abiertas para mesa. Lo que SI establece con certeza: el contenido que esta URL sirve HOY, bajado en serie sin solape, es el de 102349631 bytes -- no el de 2895872.
 
     Convencion de id: se registra bajo un id NUEVO distinto del original porque tests/manifiesto.py --registra no sobreescribe (`el id ya existe es error`) y este acto tiene instruccion explicita de no "corregir el viejo en silencio". El campo `archivo` de la entrada nueva apunta a la MISMA ruta fisica que la original (data/raw/endireh2016/bd_mujeres_endireh2016_sitioinegi_dbf.zip) porque es, verificado, el mismo archivo -- no se duplican 102MB en disco para dar a cada id su propia copia.
+
+    [ACTO MAESTRA34-L4, 2026-09-02, firma F231-a sobre FP-231, ADR-280] Esta es la entrada que SOBREVIVE como la re-derivacion desde el archivo en disco que F231-a ordena: sus sha256/tamano_bytes los derivo tests/manifiesto.py --registra del propio payload, no se tecleraron. La entrada 'endireh_2016_bd_mujeres_endireh2016_sitioinegi_dbf' quedo RETIRADA en este mismo acto (ver su campo `retirada`): declaraba sha256 784410e6b99c99b5431133d004354f55f40e04c220f21635651e6ae37998f8fb / 2895872 bytes contra los a990a007f2b63f8276c4b57bce86def1f2d1770934e54a4f6312ca867189e275 / 102349631 que hay en disco. usado_para heredado de la retirada ('sin uso asignado'), identico al que esta entrada ya declaraba. No se re-descargo nada.
 
 - id: mmsi_2016_cuestionario
   usado_para: sin uso asignado
