@@ -21,3 +21,7 @@ ENTORNO: UBUNTU (índices + corpus) · Opus · Firma: FP-93 quedó como ejecuci�
 **4 · El contador se respetó en cero.** No se movió Hito D (`18 de 27`), ni el duelo, ni condicionales, ni coeficientes; no se registró ningún payload en `data/manifiesto.yaml` pese a haber descargado 922 archivos publicados (viven en `scratchpad`, se leyeron y no se incorporaron).
 
 **Lo que el encargo no previó y el acto entrega igual:** el diseño de `FP-93` no alcanza 8 de las 56 filas por construcción (los dos índices son 100 % `inegi.org.mx` y esas filas las publica Banxico/CNBV o BMV/HR Ratings) — `FP-134`; y la respuesta al punto (4) sobre las cuotas es que la de publicadas **se rompe por un factor de 2.3** y su arreglo es firma de mesa — `FP-133`.
+
+## CONSUMIDO
+
+Derivación mecánica (`/tramite`, §3.3): único `Merge pull request #N` cuyo mensaje cita el rótulo `BIBLIOTECARIO-56` — `PR #333` (`bd70166`), y ese merge toca este archivo además de otros 5 (`git diff --stat bd70166^1 bd70166`).
