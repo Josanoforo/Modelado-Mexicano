@@ -214,7 +214,11 @@ nomenclatura sin versión; **`FP-228`** pasa a `EJECUTADA`.
 
 ## §7 · Suite
 
-`python3 tests/check.py --baseline`. **Núcleo citado:** `21 FAIL · 169 WARN`.
+`python3 tests/check.py --baseline`, corrida sobre el árbol **ya fusionado con
+`origin/main` = `4de5b1e`** (que trae `tests/check.py` modificado por los PR
+#463/#464, así que la cifra pre-merge no serviría). **Núcleo citado:
+`21 FAIL · 165 WARN`.**
+
 `LÍNEA BASE: ROJO — 2 entradas nuevas` frente a `tests/baseline.json`, y las
 dos son **`T27`** sobre `data/raices.local.yaml` y `data/secretos.local.yaml`.
 **Ninguna es de este acto:** los dos archivos están en `.gitignore`
@@ -222,7 +226,31 @@ dos son **`T27`** sobre `data/raices.local.yaml` y `data/secretos.local.yaml`.
 ambos) y son del **31/jul** y **6/ago**, anteriores a esta sesión. `T27` barre
 el árbol de trabajo incluyendo ignorados, así que aparecen al correr la suite
 en la caja UBUNTU y no aparecerían en un clon limpio. Ninguno entra al commit.
-Los cambios de este acto **no añaden un solo FAIL nuevo**.
+
+**Un FAIL sí fue de este acto, y se corrigió antes de commitear.** La primera
+pasada con las 128 capturas dentro dio `22 FAIL` con una entrada `T22` nueva
+contra esta misma nota: `§5` narraba el origen de `modelo_id` escribiendo el
+marcador de ranura en mayúsculas, y `_T22_MARCADOR_RANURA = re.compile(r"RANURA")`
+no distingue mención de uso — la frase que *explicaba* el valor precargado
+creaba un marcador de ranura sin fila que lo citara. Se reformuló la frase (no
+se tocó `tests/check.py` ni se pidió exención). Control tras la corrección:
+**0** aciertos de `RANURA` y **0** del patrón de pendiente-de-mesa en los
+cuatro archivos que este acto escribe, con control positivo del detector sobre
+una cadena de prueba (**1** acierto). Los 20/21 aciertos que quedan en
+`forense/firmas-pendientes.tsv` son las filas preexistentes del tablero, que es
+justamente la fuente que `T22` usa para dar por citado un marcador.
+
+**Integridad tras el merge** (un merge sin `CONFLICT` puede romper en
+silencio): tablero con **226** filas, **cero** ids duplicados, **cero** filas
+con distinto de 9 columnas, y las ediciones que `main` traía sobrevivieron
+(`FP-231`/`FP-232` siguen `EJECUTADA`). `canon/gobernanza-v1_15.md` queda
+**byte-idéntica** a `origin/main` (`git diff` = 0 líneas): este acto no escribe
+`ADR`, y la lista de números de `ADR` repetidos es **idéntica** en las dos
+ramas, es decir preexistente y no inducida por este merge.
+
+**Compuerta de `MAESTRA34-N3`, ya contra el commit de este acto:** el bloque de
+la ENMIENDA 2 da `224 / 224` para `L-spec-v1_2.json` y `176 / 176` para
+`L-spec-v1_1.json` (control positivo). La compuerta abre.
 
 ## §8 · Lo que este acto NO hace
 
