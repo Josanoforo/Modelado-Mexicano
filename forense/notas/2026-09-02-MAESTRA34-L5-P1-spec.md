@@ -218,3 +218,77 @@ reporta.** Ningún desenlace de esta pieza se ha calculado al escribir estas
 líneas: lo único que se ha mirado de `sec_7` son estructura de llave, conteos de
 filas y el número de llaves donde `P7_3` difiere — nunca el valor de `P7_3` en el
 universo `N_TRA='01'`, ni ponderado ni sin ponderar.
+
+---
+
+## §4 · RESULTADO (COMMIT-3 de la pieza)
+
+Corrida: `python3 tools/medidor_gobierno_digital_encig25.py`.
+Payload `data/raw/encig25_base_datos_csv.zip`,
+`sha256 = 47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12`
+(idéntico al que `MAESTRA34-L1` selló para el mismo ZIP — misma fuente, misma
+copia). Tabla `encig2025_04_sec_7.csv`: 124 314 filas, llave `(ID_TRA, NT_TIPO)`
+verificada única en la corrida, sin deduplicar (enmienda 1).
+
+### 4.1 Principal
+
+| campo | valor |
+|---|---|
+| estimando | proporción ponderada de trámites de pago ordinario de luz realizados por canal digital de autoservicio |
+| **p̂** | **0.673393** |
+| **IC95** | **[0.663165, 0.683910]** |
+| n | 20 203 trámites (de 20 392 del tipo; 189 caen fuera por `P7_3 ∈ {3,7,8,9}`) |
+| adoptan | 13 905 |
+| estratos · UPM | 441 · 8 486 |
+| población expandida | 120 445 646 trámites |
+| ponderador | `FAC_TRA` |
+
+### 4.2 Sensibilidades pre-declaradas
+
+| sensibilidad | p̂ | IC95 | n |
+|---|---|---|---|
+| **A** · universo `N_TRA ∈ {01,10}` (+ registro civil) | 0.641048 | [0.630858, 0.651033] | 27 356 |
+| **B** · teléfono (`P7_3=3`) como NO adopción | 0.666332 | [0.655955, 0.676752] | 20 367 |
+
+Ninguna de las dos mueve la lectura: el resultado está entre 0.64 y 0.67 en las
+tres variantes, y las tres excluyen tanto el doble como la mitad del prior.
+
+### 4.3 Contraste con el prior — **no refutado**
+
+| | prior ASIGNADO | medido | razón medido/prior |
+|---|---|---|---|
+| `adopta` | 0.71 | **0.673393** | **0.9484** |
+| `rechaza_servicio` | 0.29 | 0.326607 | 1.1262 |
+
+El criterio de refutación que fijó el encargo es «más del doble o mitad». La razón
+es **0.95**: el prior **no queda refutado**, queda **confirmado en magnitud** con
+un error relativo de **5.2 %**.
+
+Vale la pena decir por qué esto es más de lo que parece. La `nota_calibracion` de
+esa misma regla, escrita cuando se compiló, advierte: «PROBABILIDADES NO
+CALIBRADAS. El corpus da la dirección (SPEI se adopta), no la magnitud —deuda
+declarada de elasticidades—». Es decir, el 0.71 **nunca reclamó ser una magnitud**.
+La medición dice que, además de la dirección, la magnitud asignada a ojo estaba a
+un 5 % del dato. Es la primera vez que una de las tres reglas de gobierno digital
+se contrasta contra microdato.
+
+**El 0.71 cae fuera del IC95** [0.663, 0.684]. Eso **no** se reporta como
+refutación y no debe leerse como tal: con n≈20 000 trámites y 8 486 UPM el
+intervalo mide ±1 punto porcentual, así que excluye cualquier valor que no
+coincida en dos decimales — y un prior que se declara no calibrado no afirma dos
+decimales. Lo que el IC dice es que la medición es precisa, no que el prior sea
+falso. Se propone `CONFIRMADA-EN-MAGNITUD`, no `REFUTADA-POR-DATO`; **sella mesa**.
+
+### 4.4 Lo que este número no dice
+
+- No es la adopción de gobierno digital en México: es la de **un** tipo de trámite
+  escogido por cumplir los tres criterios de §1.3.
+- No se compara con P2, que quedó en EXISTE-NO-SATISFACE (P0 · §3), ni con el
+  `0.91` de la regla coercitiva: escalas distintas sin enlace.
+- La condición «sin coerción y sin riesgo fiscal» la impone la construcción del
+  universo, **no** una declaración del informante. Si mesa juzga que pagar la luz
+  por la aplicación de CFE no es «servicio de gobierno digital» en el sentido del
+  §3.3 del modelo, cae el mapeo, no el dato: la cifra sigue siendo válida como
+  adopción de canal digital para ese trámite.
+- El universo son **trámites**, no personas: quien pagó la luz doce veces en 2025
+  contribuye según el diseño de la encuesta, y `FAC_TRA` expande trámites.

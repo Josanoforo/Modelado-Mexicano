@@ -654,3 +654,63 @@ reglas_propuestas:
     sha256_payload_2023_edomex: "b9eb096f38ef79cbae66365912619ddb0edc3d8fb5acc6257b9c63b9911cb231"
     sha256_payload_2024_edomex: "18cdcbb04e7369471c31fa28cb2d9400a52655ec4139bd8d6738287381fba5f1"
     payload_manifiesto_id: "iec_coahuila_2023_gubernatura_x_municipio_xlsx;iec_coahuila_2024_ayuntamientos_x_municipio_xlsx;ieem_edomex_2023_gubernatura_x_municipio_xlsx;ieem_edomex_2024_ayuntamientos_x_municipio_xlsx"
+
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA34-L5 · GOBIERNO-DIGITAL-EVASION-AHORRO · 2/sep/2026
+  # Pieza P1. Primer contraste contra microdato de una de las tres reglas
+  # de gobierno digital del modelo §3.3, todas ASIGNADO desde la
+  # compilación. Spec de tres commits (congelada, enmendada, resuelta):
+  # forense/notas/2026-09-02-MAESTRA34-L5-P1-spec.md
+  # Censo previo que la habilita: forense/notas/2026-09-02-MAESTRA34-L5-P0-censo.md
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: tramite.gobierno_digital.util_sin_coercion_encig2025
+    enmienda_propuesta: true
+    misma_regla_motor: tramite.gobierno_digital.util_sin_coercion
+    nota_enmienda: >
+      Enmienda propuesta a la regla EXISTENTE de milpa/tramite.yaml:177-201
+      (misma id base tramite.gobierno_digital.util_sin_coercion, adopta
+      p=0.71 ASIGNADO, contexto_producto coercitivo=false y
+      riesgo_fiscal_percibido=false; sin bloque disparadores). ENCIG 2025 NO
+      tiene ítem de disponibilidad ni de obligatoriedad del canal digital
+      -- verificado sobre 483 columnas de 2025 y ~100000 de cinco olas
+      (P0 §2). El mapeo es juicio declarado de este acto, no dictado por el
+      dato: la situación "le ofrecen servicio de gobierno digital" y los
+      disparadores "sin coerción / sin riesgo fiscal" se cumplen por
+      CONSTRUCCIÓN DEL UNIVERSO -- se restringe a N_TRA=01 (pago ordinario
+      del servicio de luz), único tipo del catálogo con canal digital de
+      cobertura nacional (CFE), uso opcional y sin autoridad fiscal de por
+      medio. Es un mapeo razonable, no el único posible.
+    situacion: le_ofrecen_servicio_gobierno_digital
+    si:
+      disparadores: PENDIENTE-DE-MESA  # ver nota_enmienda: coercitivo=false y
+        # riesgo_fiscal_percibido=false los impone la seleccion del universo
+        # de tramites, no un reactivo del cuestionario
+    entonces:
+      - {conducta: adopta_canal_digital_encig2025, p: 0.673393, clase: "MEDIDO·p(tasa base ponderada, condicional a tipo de tramite)"}
+      - {conducta: rechaza_canal_digital_encig2025, p: 0.326607, clase: "MEDIDO·p(tasa base ponderada, condicional a tipo de tramite)"}
+    porque: {generador: [G1], mecanismo: "la utilidad predice la adopción; sin coerción ni amenaza fiscal desaparece la razón para rechazar"}
+      # mecanismo copiado literal de la regla ASIGNADA que se enmienda
+    tier: PENDIENTE-DE-MESA
+    falsable_si: "Si un servicio digital útil y NO coercitivo tampoco lograra adopción, entonces el driver no es la utilidad sino la confianza institucional, y la regla espejo cae junto con su par"  # heredado del texto ASIGNADO que enmienda
+    fuente: ["ENCIG2025", "forense/notas/2026-09-02-MAESTRA34-L5-P1-spec.md"]
+    ola_calibracion: "ENCIG 2025 (P7_3 es la variable de canal; la seccion X de gobierno electronico no sirve para esto -- sus seis binarias P10_1_1..P10_1_6 no tienen denominador de oferta)"
+    ic95: [0.663165, 0.683910]
+    n: 20203
+    ponderador: FAC_TRA
+    universo: "tramites (no personas) de tipo N_TRA=01 (pago ordinario del servicio de luz) con P7_3 en {1,2,4,5,6}; adopta = P7_3 en {4,5} (Internet/app, cajero o kiosco inteligente), no adopta = P7_3 en {1,2,6} (instalaciones de gobierno, banco/tienda/farmacia, modulos moviles). Fuera del universo P7_3 en {3,7,8,9,blanco}. SIN deduplicar: la llave de sec_7 es (ID_TRA, NT_TIPO) y se verifico unica (124314 grupos para 124314 filas). n_efectivo=20203 de 20392 del tipo, estratos=441, UPM=8486, poblacion expandida=120445646."
+    sensibilidades_pre_declaradas:
+      # ambas congeladas en la spec ANTES de medir, no elegidas despues
+      A_universo_ampliado:
+        universo: "N_TRA en {01,10} -- anade registro civil, que cumple solo parcialmente el criterio de cobertura nacional"
+        p: 0.641048
+        ic95: [0.630858, 0.651033]
+        n: 27356
+      B_telefono_como_no_adopcion:
+        universo: "N_TRA=01, con P7_3=3 (lineas telefonicas) DENTRO del denominador como no-adopcion en vez de excluido"
+        p: 0.666332
+        ic95: [0.655955, 0.676752]
+        n: 20367
+    hallazgo: "El prior ASIGNADO 0.71 NO queda refutado: razon medido/prior = 0.9484, error relativo 5.2%, muy lejos del criterio de refutacion (mas del doble o la mitad). Se propone CONFIRMADA-EN-MAGNITUD, no REFUTADA-POR-DATO; sella mesa. Vale mas de lo que parece porque la nota_calibracion de la propia regla declara 'PROBABILIDADES NO CALIBRADAS -- el corpus da la direccion, no la magnitud': la magnitud asignada a ojo resulto estar a 5% del dato. El 0.71 cae FUERA del IC95 [0.663,0.684], y eso NO se reporta como refutacion: con n~20000 y 8486 UPM el intervalo mide +-1 pp y excluye todo valor que no coincida en dos decimales, que es una precision que un prior declarado no calibrado nunca reclamo. Las tres variantes (principal y dos sensibilidades) caen entre 0.641 y 0.673. RESERVA: la condicion 'sin coercion, sin riesgo fiscal' la impone la seleccion del universo y no una declaracion del informante; si mesa juzga que pagar la luz por la aplicacion de CFE no es 'servicio de gobierno digital' en el sentido del modelo §3.3, cae el mapeo, no el dato."
+    sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+    payload_manifiesto_id: encig25_base_datos_csv
