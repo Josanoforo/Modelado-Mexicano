@@ -546,3 +546,107 @@ Este censo describe **el corpus del 2 de septiembre de 2026** y las olas
 tres: **una ola futura puede añadir el reactivo que falta y este veredicto
 caducaría**. Lo que caduca es el veredicto sobre la fuente, no el defecto de
 diseño que lo produce.
+
+---
+
+## 10 · Adenda del crítico de completitud — dos piezas que el censo no abrió
+
+**Escrita después del commit de `P0` (`833604c`), no dentro de él.** El censo se
+cerró con siete piezas y siete refutaciones; un último agente preguntó **qué
+falta** y encontró dos fuentes que el propio acto ya nombraba por escrito y que
+nadie había abierto. Las dos se verificaron **contra el archivo real** por la
+supervisión antes de escribirse aquí, y una de las dos afirmaciones del crítico
+se corrige en el proceso.
+
+### 10.1 · Sexta candidata · IFT · Servicios Financieros Digitales 2024
+
+`data/raw/ADQ15_IFT_SFD_uso_confianza/basededatossfd.zip` →
+`Bases_de_datos_Servicios_Financieros_Digitales (SFD).xlsx`, dos hojas de
+microdato con factor de expansión (`Int&TV` 8 400 × 107, `TelMóvil` 5 305 × 76).
+El censo la citaba en §4 sin abrirla.
+
+**Y trae el puente — publicado, real, e invisible en las columnas.** La batería
+*«¿A través de qué medios se enteró de los SFD?»* tiene **cinco** columnas
+codificadas (sucursal, aplicación de celular, página de internet, redes
+sociales, «Otro»), todas sobre un universo de **2 681**. **«Familiares y
+amistades» no es una de ellas.** Pero el reporte del IFT sí la publica como
+categoría del gráfico, y el rastro está en el texto libre: de las **96**
+respuestas «Otro», **70 escriben literalmente «Familiares y amigos»** y **7**
+«Recomendación de personas que trabajan ahí» — **77 de 96**, contadas por la
+supervisión sobre el archivo.
+
+**Esto es un hallazgo de método, no sólo de fuente.** Quien abra únicamente la
+cabecera del `xlsx` concluye que la variable **no existe**, y se equivoca: existe,
+está medida, y el emisor la publica agregada. Es la misma clase de defecto que
+[[feedback_identifica_contenido_por_identidad_no_por_rotulo]] ya registró en otro
+sentido: **el catálogo de columnas no agota lo que el instrumento midió.**
+
+**Aun así, `EXISTE-NO-SATISFACE` para las dos reglas de este acto**, por tres
+razones contadas:
+
+1. **Nada de gobierno ni de riesgo fiscal.** Barrido propio de
+   `gobierno|trámite|SAT|impuest|obligator|coerc|fiscal` sobre el texto del
+   reporte (**2 788 líneas / 305 510 caracteres**) → **6 aciertos**, abiertos uno
+   por uno: cuatro son *«trámites ágiles»* / *«pocos trámites y requisitos»* como
+   **argumento de venta de fintechs**, uno es *«Regulaciones del gobierno»* como
+   factor cualitativo de confianza en el regulador, y ninguno es el constructo.
+   Sobre las **183** cabeceras de las dos hojas → **1** acierto, que es *«¿sabe a
+   qué institución acudir ante algún problema…?»* — a quién reclamar, no riesgo
+   fiscal. *Control positivo*: `confian` = **29** aciertos en el mismo texto.
+   *(Aquí se **corrige** al crítico, que había reportado «0 hits sustantivos»:
+   son 6, y el negativo se sostiene por lectura, no por ausencia de aciertos —
+   misma disciplina que los 22 casi-aciertos de `ADR-186`.)*
+2. **`n = 70` en texto libre sin codificar**, sobre 2 681. No alcanza para
+   ninguna celda, y exigiría un paso de codificación que este acto no hace.
+3. **Sin diseño muestral.** `data/diseno-muestral.yaml` no tiene fila para IFT
+   SFD: hay factor de expansión post-estratificado, **no** estrato ni UPM, así
+   que ningún `IC` conglomerado es construible. Corrobora
+   `forense/ficha-r34-condBC-v1_0.md:196`.
+
+### 10.2 · La fuente narrativa de las dos reglas se desmiente a sí misma
+
+`corpus/reports/Adopción_y_Resistencia_Tecnológica_en_México…md` (177 líneas) es
+**`report:tecnologia`**, y `milpa/procedencia.yaml` lo cita como `fuente_citada`
+de `dinero.ahorro.con_puente_y_respaldo` **y** de la regla `coercitivo` vía
+`validacion:CoDi`. Nadie lo había abierto. Verbatim, de su propia sección
+`## Caveats` (línea 159), bajo el rótulo **«Mitos y sobreinterpretaciones a
+desmontar»**:
+
+> **4.** *«La confianza radial explica la adopción.» Hipótesis atractiva **sin
+> evidencia conductual directa**; usarla como hallazgo repite el error del corpus
+> previo.*
+
+Y en su línea 37 la marca **`[HIPÓTESIS]`**, no hallazgo:
+
+> *13. **[HIPÓTESIS]** La confianza radial puede canalizar adopción vía
+> recomendación interpersonal más que frenarla. Es plausible —pero **no probado
+> con datos conductuales directos mexicanos**—…*
+
+**El mecanismo del bullet de puente está citado como fuente de un prior por un
+reporte que declara, en su propio texto, que no tiene evidencia conductual para
+sostenerlo.**
+
+Lo mismo, con otra forma, del lado `coercitivo`. El reporte llama al miedo al SAT
+*«freno específico y documentado»* (línea 129), pero su **procedencia declarada**
+(línea 64) es *«Banxico **vía El Economista/Fintechexpert**, sept. 2025»* —
+**prensa, no encuesta**— y la cifra que da no es la de la `nota_validacion` del
+motor: dice **21.8 M cuentas registradas, mayormente inactivas, con 17.8 M
+transacciones acumuladas en seis años**, mientras el motor dice **«3.09 M cuentas
+con ≥1 transacción en 6 años»**. Son cantidades distintas y **el `3.09 M` no
+aparece en el reporte**.
+
+**Esto no cambia ningún veredicto del censo** —no es una candidata de dato— pero
+es lo más relevante que el acto encontró para la pregunta que lo motivó: las dos
+reglas `ASIGNADO` que este acto vino a buscar dato **descansan sobre una fuente
+narrativa que se auto-clasifica como sin sustento conductual**. Va a mesa como
+tal, sin proponer reclasificación: `procedencia.yaml` está fuera del perímetro.
+
+### 10.3 · Infraestructura que existía y no se reusó
+
+`tools/censo_r34_bc.py` (113 líneas, en el árbol) es el barrido mecánico
+corpus-completo que `ADR-186` corrió el 25/ago/2026: **321 entradas de primer
+nivel de `data/raw`, 20 838 archivos** desempacados (CSV en ZIP, XLSX hoja por
+hoja, PDF con unión `pypdf`+`pdftotext`), con la búsqueda `FISCAL`×`PERSONAL`
+que es casi exactamente la de este acto. Los siete censores hicieron barrido
+artesanal pieza por pieza. **Se declara para el siguiente acto**: la
+infraestructura ya está escrita y comiteada.
