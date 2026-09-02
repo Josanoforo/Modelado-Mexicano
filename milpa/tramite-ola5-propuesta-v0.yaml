@@ -665,8 +665,8 @@ reglas_propuestas:
         conductas cargadas ahí -- paga_mordida_encig2025_presencial 0.116000 y
         _digital 0.027358, con sus complementos -- siguen como estaban. No toca
         el cuerpo viejo de esta entrada. No re-sella: propone.
-      situacion: PENDIENTE-DE-MESA
-      tier: PENDIENTE-DE-MESA
+      situacion: SELLADA # firma r1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada a milpa/tramite.yaml
+      tier: SELLADA # firma r1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada a milpa/tramite.yaml
       fuente: ["codificacion-R-v1_0.tsv::TRA-M-13b", "codificacion-R-v1_0.tsv::TRA-M-14b"]
       sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
       payload_manifiesto_id: encig25_base_datos_csv
@@ -1518,8 +1518,8 @@ reglas_propuestas:
       desenlace exclusivo capta no es 'ahorrar informalmente' sino la
       AUSENCIA de la pata formal, que el cuestionario gatea por tenencia
       de cuenta. Todo esto es asociación dentro de una corrida, no efecto.
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
+    tier: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: enif_2024_enif_2024_bd_csv
 
@@ -1590,8 +1590,8 @@ reglas_propuestas:
       tiene dos medidos. Sigue siendo asociación: quien tiene más
       escolaridad adopta más, y este acto NO dice que la escolaridad cause
       la adopción.
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
+    tier: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
     sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
     payload_manifiesto_id: encig25_base_datos_csv
 
@@ -1682,7 +1682,7 @@ reglas_propuestas:
       cinismo empujen en sentidos opuestos, que es justo por lo que la
       regla no predice signo ahí. Hombres evaden más que mujeres (0.5974
       vs 0.5307).
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
+    tier: SELLADA # firma s1 (mesa, 2/sep/2026), ACTO MAESTRA35-N4, cargada como segmentacion_ejes_* en milpa/tramite.yaml
     sha256_payload: "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
     payload_manifiesto_id: envipe2025_csv
