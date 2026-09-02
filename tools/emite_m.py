@@ -160,28 +160,164 @@ def cita_p(regla_id: str, conducta: str, lineas: list[str]) -> str:
     return f"milpa/tramite.yaml:{lineno} -- {texto}"
 
 
-# ── F-DD (ADR-237) ───────────────────────────────────────────────────────
+# ── F-DD v1.1 (ADR-237, extendida a rangos de ola por MAESTRA35-N2) ─────
+#
+# Gramática congelada por el encargo (forense/encargos/2026-09-02-MAESTRA35-N2
+# -F-DD-RANGOS-Y-M-DIN.md, pieza P1):
+# (a) `ola_calibracion` se parte en SEGMENTOS por `;` a profundidad 0 de
+#     paréntesis. De cada segmento se toma solo la CABECERA -- el texto antes
+#     del primer `--` o `(` -- que debe calzar `^<INSTRUMENTO> <OLA-SPEC>`
+#     donde OLA-SPEC ∈ { año `\d{4}` · rango `\d{4}-\d{2,4}` · `ola \d+` ·
+#     `olas \d+-\d+` }. Si tras `ola N` sigue un paréntesis `(\d{4}(-\d{2,4})?)`
+#     ese es el rótulo de año de esa ola y se guarda junto con N. Nada fuera
+#     de la cabecera se parsea ("6 olas bienales disponibles" no es una ola).
+#     Un segmento que no calza -> ValueError con el texto, como antes (el
+#     emisor no adivina).
+# (b) Instrumento: se compara el token antes de `/` en ambos lados, sin
+#     distinguir mayúsculas (ENNViH/MxFLS ≡ ENNViH).
+# (c) Ola de la celda (`fila["ola"]`) se normaliza con la MISMA gramática:
+#     "2002 (ola 1)" -> {año 2002, ola 1}; "2005-06 (ola 2)" -> {rango
+#     2005-06, ola 2}; "2013" -> {año 2013}.
+# (d) Regla: P0 VERIFICACION si algún segmento coincide en instrumento Y en
+#     al menos un identificador de ola (año, rango o número de ola); P1
+#     PUNTUA en cualquier otro caso, con el mismo `detalle` que antes
+#     (transferencia de instrumento / de ola).
+# (e) Para cadenas de la forma actual (ENCIG 2023, ENVIPE 2025 (unica ola
+#     ...), ENIGH 2022 (mas reciente ...; las ...)) el resultado es IDENTICO
+#     al de `_RE_OLA_CAL` de antes -- verificado en P0/P1 de MAESTRA35-N2.
 
-_RE_OLA_CAL = re.compile(r"^([^\s(]+)\s+(\d{4})")
+_RE_OLA_CAL = re.compile(r"^([^\s(]+)\s+(\d{4})")  # forma v1.0, conservada solo para referencia/comentarios
+
+_RE_ANIO = re.compile(r"^\d{4}$")
+_RE_RANGO_ANIO = re.compile(r"^\d{4}-\d{2,4}$")
+_RE_OLA_N = re.compile(r"^ola\s+(\d+)$", re.IGNORECASE)
+_RE_OLAS_RANGO = re.compile(r"^olas\s+(\d+)-(\d+)$", re.IGNORECASE)
+_RE_OLA_N_ANIO_SUFIJO = re.compile(r"^ola\s+\d+\s*\((\d{4}(?:-\d{2,4})?)\)\s*$", re.IGNORECASE)
+
+
+def _parte_segmentos(texto: str) -> list[str]:
+    """Divide por `;` a profundidad 0 de paréntesis."""
+    segmentos, actual, profundidad = [], [], 0
+    for ch in texto:
+        if ch == "(":
+            profundidad += 1
+        elif ch == ")":
+            profundidad -= 1
+        if ch == ";" and profundidad == 0:
+            segmentos.append("".join(actual))
+            actual = []
+        else:
+            actual.append(ch)
+    segmentos.append("".join(actual))
+    return [s.strip() for s in segmentos if s.strip()]
+
+
+def _cabecera_segmento(segmento: str) -> str:
+    """Texto antes del primer `--` o `(` en un segmento."""
+    idx_dd = segmento.find("--")
+    idx_par = segmento.find("(")
+    candidatos = [i for i in (idx_dd, idx_par) if i != -1]
+    corte = min(candidatos) if candidatos else len(segmento)
+    return segmento[:corte].strip()
+
+
+def _parsea_ola_spec(spec: str, segmento_original: str) -> tuple[str, set]:
+    """Devuelve (instrumento, {identificadores de ola}) de una cabecera
+    '<INSTRUMENTO> <OLA-SPEC>'. Levanta ValueError si no calza la gramática."""
+    partes = spec.split(None, 1)
+    if len(partes) != 2:
+        raise ValueError(f"ola_calibracion: segmento sin forma '<INSTRUMENTO> <OLA-SPEC>': {segmento_original!r}")
+    instrumento, ola_spec = partes[0], partes[1].strip()
+
+    ids: set = set()
+    if _RE_ANIO.match(ola_spec):
+        ids.add(("anio", ola_spec))
+    elif _RE_RANGO_ANIO.match(ola_spec):
+        ids.add(("rango", ola_spec))
+    elif _RE_OLAS_RANGO.match(ola_spec):
+        m = _RE_OLAS_RANGO.match(ola_spec)
+        ini, fin = int(m.group(1)), int(m.group(2))
+        for n in range(ini, fin + 1):
+            ids.add(("ola", str(n)))
+    elif _RE_OLA_N.match(ola_spec):
+        m = _RE_OLA_N.match(ola_spec)
+        ids.add(("ola", m.group(1)))
+        # el rótulo de año entre paréntesis (si lo hay) vive DESPUÉS de la
+        # cabecera recortada por `--`/`(`; se busca en el segmento original
+        # completo, no en `spec` (que ya perdió el paréntesis en el corte).
+        m_anio = _RE_OLA_N_ANIO_SUFIJO.match(_hasta_primer_dd(segmento_original))
+        if m_anio:
+            ids.add(("anio", m_anio.group(1)))
+    else:
+        raise ValueError(f"ola_calibracion: OLA-SPEC no reconocida en segmento {segmento_original!r} (spec={ola_spec!r})")
+    return instrumento, ids
+
+
+def _hasta_primer_dd(segmento: str) -> str:
+    """El segmento completo, recortado solo en el primer `--` (conserva
+    paréntesis) -- para extraer el rótulo de año que sigue a `ola N (...)`."""
+    idx_dd = segmento.find("--")
+    return (segmento[:idx_dd] if idx_dd != -1 else segmento).strip()
+
+
+def _normaliza_ola_calibracion(ola_calibracion: str) -> list[tuple[str, set]]:
+    """[(instrumento, {identificadores de ola}), ...] por segmento."""
+    resultado = []
+    for segmento in _parte_segmentos(ola_calibracion.strip()):
+        cabecera = _cabecera_segmento(segmento)
+        resultado.append(_parsea_ola_spec(cabecera, segmento))
+    if not resultado:
+        raise ValueError(f"ola_calibracion vacia o sin segmentos validos: {ola_calibracion!r}")
+    return resultado
+
+
+def _normaliza_ola_celda(ola: str) -> set:
+    """Identificadores de ola de `fila['ola']`, con la MISMA gramática que
+    (a)/(c) -- p.ej. '2002 (ola 1)' -> {('anio','2002'), ('ola','1')};
+    '2005-06 (ola 2)' -> {('rango','2005-06'), ('ola','2')}; '2013' ->
+    {('anio','2013')}."""
+    texto = str(ola).strip()
+    ids: set = set()
+    m_rango = re.match(r"^(\d{4}-\d{2,4})", texto)
+    m_anio = re.match(r"^(\d{4})(?!-)", texto)
+    if m_rango:
+        ids.add(("rango", m_rango.group(1)))
+    elif m_anio:
+        ids.add(("anio", m_anio.group(1)))
+    m_ola = re.search(r"\(ola\s+(\d+)\)", texto, re.IGNORECASE)
+    if m_ola:
+        ids.add(("ola", m_ola.group(1)))
+    if not ids:
+        raise ValueError(f"ola de la celda sin forma reconocida por la gramática F-DD: {ola!r}")
+    return ids
 
 
 def calcula_grado_DD(encuesta: str, ola: str, regla_id: str, conducta: str,
                       ola_calibracion: str) -> tuple[str, str]:
-    m = _RE_OLA_CAL.match(ola_calibracion.strip())
-    if not m:
-        raise ValueError(f"ola_calibracion sin forma '<INSTRUMENTO> <ANIO>...': {ola_calibracion!r}")
-    instrumento_cal, anio_cal = m.group(1), m.group(2)
-    coincide_instrumento = encuesta.strip().upper() == instrumento_cal.strip().upper()
-    coincide_ola = str(ola).strip() == anio_cal.strip()
+    segmentos = _normaliza_ola_calibracion(ola_calibracion)
+    ids_celda = _normaliza_ola_celda(ola)
+    instrumento_celda = encuesta.strip().split("/", 1)[0].strip().upper()
+
+    coincide_instrumento_alguno = False
+    coincide_algun_segmento = False
+    for instrumento_cal, ids_cal in segmentos:
+        instrumento_cal_norm = instrumento_cal.strip().split("/", 1)[0].strip().upper()
+        coincide_instrumento = instrumento_celda == instrumento_cal_norm
+        if coincide_instrumento:
+            coincide_instrumento_alguno = True
+        coincide_ola = bool(ids_celda & ids_cal)
+        if coincide_instrumento and coincide_ola:
+            coincide_algun_segmento = True
+
     cabecera = (f"(encuesta,ola) de la celda = ({encuesta},{ola}); ola_calibracion de la "
                 f"conducta '{conducta}' de {regla_id} = {ola_calibracion}.")
-    if coincide_instrumento and coincide_ola:
+    if coincide_algun_segmento:
         return "P0 VERIFICACION", (
             f"{cabecera} COINCIDEN -> calibration target: P0, verificacion, no puntua "
             f"(F-DD, ADR-237)."
         )
-    tipo = "transferencia de instrumento" if not coincide_instrumento else "transferencia de ola"
-    detalle = f"{tipo} {encuesta}<->{instrumento_cal}" if not coincide_instrumento else tipo
+    tipo = "transferencia de instrumento" if not coincide_instrumento_alguno else "transferencia de ola"
+    detalle = f"{tipo} {encuesta}<->{segmentos[0][0]}" if not coincide_instrumento_alguno else tipo
     return "P1 PUNTUA", (
         f"{cabecera} NO coinciden ({detalle}) -> validacion externa: P1, puntua (F-DD, ADR-237)."
     )
