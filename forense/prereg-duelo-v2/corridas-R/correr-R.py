@@ -44,22 +44,36 @@ def num(x):
         return None
 
 
-def estima(filas, col_y, uno, cero, col_w, col_est, col_upm, filtro=None):
-    """filas -> (estrato, upm, peso, y) segun la regla congelada. Devuelve el dict de svystat + conteos."""
+def estima(filas, col_y, uno, cero, col_w, col_est, col_upm, filtro=None, codifica=None):
+    """filas -> (estrato, upm, peso, y) segun la regla congelada. Devuelve el dict de svystat + conteos.
+
+    `codifica` (ACTO MAESTRA35-L2 / P1): callable(fila) -> 1.0 | 0.0 | None, para
+    codificaciones que NO son pertenencia a conjunto sobre una sola columna
+    (umbral numerico; compuesto de dos variables). Devolver None cuenta la fila
+    en n_codigo_no_valido -- nunca la fuerza a 0 ni a 1. Con codifica=None (el
+    valor por defecto) el camino de conjunto queda intacto, byte a byte: ni
+    col_y ni uno/cero cambian de significado.
+    """
     rows, n_bruto, n_excl_cod, n_excl_filtro, n_sin_peso = [], 0, 0, 0, 0
     for f in filas:
         n_bruto += 1
         if filtro and not filtro(f):
             n_excl_filtro += 1
             continue
-        v = str(f.get(col_y, "")).strip()
-        if v in uno:
-            y = 1.0
-        elif v in cero:
-            y = 0.0
+        if codifica is None:
+            v = str(f.get(col_y, "")).strip()
+            if v in uno:
+                y = 1.0
+            elif v in cero:
+                y = 0.0
+            else:
+                n_excl_cod += 1
+                continue
         else:
-            n_excl_cod += 1
-            continue
+            y = codifica(f)
+            if y is None:
+                n_excl_cod += 1
+                continue
         w = num(f.get(col_w))
         if w is None or w <= 0:
             n_sin_peso += 1
