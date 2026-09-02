@@ -33,7 +33,10 @@ SUCESORES: MAESTRA34-N1 (o su relanzamiento) sella lo que mesa firme de aquí; M
 
 ## CONSUMIDO
 
-Ejecutado por `ACTO MAESTRA34-L1 · MORDIDA-SERIE` (`ADR-275`, entorno
+Ejecutado por `ACTO MAESTRA34-L1 · MORDIDA-SERIE` (`ADR-276` — renumerado
+dos veces: `274`→`275` cuando `PR #449`/`MAESTRA34-N1` fusionó primero,
+`275`→`276` cuando `PR #450`/`MAESTRA34-N2` fusionó también antes que
+este PR; regla de la casa, renumera quien fusiona segundo), entorno
 UBUNTU). P1 (calibración ENCIG 2025, p=8.5118%) y P2 (serie histórica
 8 olas, 4.45%–8.51%) medidos completos contra microdato real. P3
 (censo `tramite.mordida.con_registro`): `EXISTE-SATISFACE`, medido
@@ -43,7 +46,9 @@ UBUNTU). P1 (calibración ENCIG 2025, p=8.5118%) y P2 (serie histórica
 candidatos del encargo (`FP-224…227`) quedaron obsoletos a mitad de
 acto: `PR #449`/`MAESTRA34-N1` ya había tomado `FP-224/225/226` al
 fusionar antes; este acto no abrió fila nueva de tablero. ADR candidato
-`274` también tomado por `PR #449` — renumerado a `275` (regla de la
-casa, renumera quien fusiona segundo). Detalle completo:
+`274` renumerado dos veces: `PR #449`/`MAESTRA34-N1` lo tomó primero
+(→`275`), y `PR #450`/`MAESTRA34-N2` fusionó también antes que este PR
+y tomó el `275` (→`276` final) — regla de la casa, renumera quien
+fusiona segundo, aplicada dos veces. Detalle completo:
 `forense/notas/2026-09-01-MAESTRA34-L1-MORDIDA-SERIE-cierre.md`. PR:
-(se completa al abrir).
+https://github.com/Josanoforo/Modelado-Mexicano/pull/451

@@ -197,6 +197,24 @@ humano):
    replantearse a nivel ESTATAL (como el propio TEPJF ya lo reporta)
    en vez de municipio/distrito — decisión de mesa, no de este acto.
 
+## Segunda colisión de ADR (post-push)
+
+Tras empujar la rama y abrir `PR #451`, `origin/main` avanzó una cuarta
+vez: `PR #450`/`ACTO MAESTRA34-N2 · MARCO-M-v1_2` fusionó y tomó
+`ADR-275` (el mismo número que este acto había derivado). Regla de la
+casa aplicada por segunda vez en el mismo acto: este acto **renumera a
+`ADR-276`**. `git merge origin/main` esta vez **sí dio `CONFLICT`**
+(textual, no mecánico: ambos actos añadieron su párrafo `ADR-27x` al
+final de la misma sección de `canon/gobernanza-v1_15.md` y de la misma
+línea `L0` de `canon/estado-programa-v1_10.md`). Resuelto a mano
+conservando **intacto** el párrafo de `MAESTRA34-N2` (`ADR-275`) y
+renumerando el de este acto de `275` a `276` en las cuatro citas
+(cabecera de `gobernanza`, párrafo de `gobernanza` §4, línea `L0`,
+tabla de referencias cruzadas de `estado-programa`) — verificado por
+**conteo** de anotaciones antes/después (`*(\`ADR-` openers: `gobernanza`
+sin duplicados; `estado-programa` 54→55, exactamente +1), no a ojo
+([[feedback_linea_l0_se_duplica_al_resolver_a_mano]]).
+
 ## Suite (`/acto` §4.6)
 
 `python3 tests/check.py --baseline`: `T15 T-ADR-COUNT` requirió corregir

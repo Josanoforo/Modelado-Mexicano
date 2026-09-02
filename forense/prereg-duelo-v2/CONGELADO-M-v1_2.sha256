@@ -1,0 +1,9 @@
+a6d6e94c9402dc2096da31a1c7aa6f57e7273148bce3dae02fdcc90f7a5a0208  marco-M-congelado-v1_2.tsv
+N_elegibles=27
+N_verificacion_no_puntua=7
+N_filas=34
+sellado_por=ACTO MAESTRA34-N2 · MARCO-M-v1_2 · P1, 2/sep/2026
+criterio=F-DD (ADR-237): elegible = (transferencia==SI) AND (en_corpus==SI) AND (la estadistica tiene regla en cargar_reglas() post-P0)
+nota_columnas=Se CONSERVA el nombre de columna `elegible_v1_1` (el encargo exige 'columnas identicas'). No es un descuido: mantenerlo deja que sorteo_marco_m_v1_1.cargar_marco_m_v1_1(ruta=..., ruta_sha=...) lea este marco sin editar ni duplicar ningun modulo sellado. La version del marco la fija el nombre del archivo, no el de la columna.
+nota_lectura=N_elegibles (27) < N_filas (34): las 7 celdas de ola/instrumento de calibracion se CONSERVAN marcadas grado_DD=P0 VERIFICACION-NO-PUNTUA (control de plomeria). Quien lea este marco para sortear debe filtrar elegible_v1_1=='SI' ANTES del assert de conteo.
+nuevas_v1_2=7 filas (FAM-M-03..FAM-M-08 por familia.seguro.volatilidad_ausencia_estado x 6 olas ENIGH en corpus; DIN-M-04 por dinero.planeacion.formal_estable x ENFIH 2019, unica ola). De las 7, 5 puntuan (FAM-M-03..07) y 2 son calibracion (FAM-M-08 ENIGH 2022, DIN-M-04 ENFIH 2019).
