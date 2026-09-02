@@ -271,7 +271,7 @@ reglas:
       # el generador G4 (exposicion_violencia/confianza_institucional[justicia])
       # ya trae mecanismo declarado en canon/modelo-decision-v4_0.md, no se
       # inventa uno nuevo aqui.
-    tier: PENDIENTE-DE-MESA
+    tier: FUERTE  # firma DS1 (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS -- "a fuerte las dos reciente"
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["ENVIPE2025", "coeficientes_generador_medidos.G4_exposicion_violencia"]
     ola_calibracion: "ENVIPE 2025 (unica ola disponible para este universo)"
@@ -291,7 +291,7 @@ reglas:
       - {conducta: tiene_ahorros, p: 0.174804, clase: "MEDIDO·p(tasa base ponderada)"}
       - {conducta: no_tiene_ahorros, p: 0.825196, clase: "MEDIDO·p(tasa base ponderada)"}
     porque: {generador: [G3], mecanismo: PENDIENTE-DE-MESA}
-    tier: PENDIENTE-DE-MESA
+    tier: MEDIA  # firma DS1 (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS -- nota verbatim: "re-medición en ENIF 2024 en curso (MAESTRA34-L5 P4) para subir a FUERTE"
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["ENNViH/MxFLS_olas2-3", "forense/notas/2026-08-24-cal-g3-puntual-cierre.md"]
     ola_calibracion: "ENNViH ola 2 (2005-06) -- ponderador fac_3b vive en esta ola"
@@ -313,7 +313,7 @@ reglas:
       - {conducta: recibe_dinero_familiares_para_vejez, p: 0.457707, clase: "MEDIDO·p(tasa base ponderada)"}
       - {conducta: no_recibe_dinero_familiares_para_vejez, p: 0.542293, clase: "MEDIDO·p(tasa base ponderada)"}
     porque: {generador: [G3], mecanismo: PENDIENTE-DE-MESA}
-    tier: PENDIENTE-DE-MESA
+    tier: FUERTE  # firma DS1 (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS -- "a fuerte las dos reciente"
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["ENIF2024", "condicionales_escalares.familismo_apoyo"]
     ola_calibracion: "ENIF 2024 (unica ola)"
