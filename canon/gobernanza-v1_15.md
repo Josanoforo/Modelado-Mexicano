@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **295 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **296 ADR**
 
 > | | |
 > |---|---|
@@ -4839,6 +4839,24 @@ Para que ninguna corrida vuelva a reconstruir de memoria (el fallo de V1):
 **`python3 tests/check.py --baseline`** → **VERDE**, sin `FAIL` nuevo contra `tests/baseline.json`: los bloques `segmentacion_*` no se rechazan como campo desconocido — no hizo falta PARO.
 
 **Lo que este acto NO hace**: no mide; no toca `via_informal` (c3) ni ninguna línea `civico.*`; no re-lee la regla de ahorro (dirección, RH); no edita `instrucciones-proyecto-v2_12.md`. **Sucesores declarados, no lanzados**: dirección presenta en RH la re-lectura de `dinero.ahorro.informal_sin_puente`/`con_puente_y_respaldo` (P9 del tablero); `MAESTRA35-N2` fusiona con regresión de `M` sin drift (confirmado por comando arriba).
+
+---
+
+**ADR-296 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `289` en el árbol de arranque de este acto (`b6b923f`); candidato `290`. **Renumerado DOS veces al fusionar main**: mientras esta sesión trabajaba fusionaron `PR #472`, `PR #473` (`MAESTRA35-N3`, `ADR-290`), `PR #471` (`MAESTRA35-L1`, `ADR-291`), `PR #470` (`MAESTRA35-L2`, `ADR-292`), `PR #476` (`MAESTRA35-L3`, `ADR-293`) y `PR #477` (`MAESTRA35-N4`, `ADR-294`) — primera renumeración, candidato `295`. Mientras esta rama seguía sin fusionar, `PR #478` (`ACTO REPARA-REGRESION-CITA-LINEA`, misma sesión) fusionó y se llevó `ADR-295` y `FP-247` — segunda renumeración, re-derivada contra `origin/main=a401808`, máximo real `295`, candidato contiguo `296`) · `ACTO MAESTRA35-N2 · F-DD-RANGOS-Y-M-DIN` (dirección/Fable) extiende `F-DD` (`ADR-237`) a rangos de ola y múltiples instrumentos en `ola_calibracion`, y emite `M-DIN-M-01__v1_2.json`.** Encargo: `forense/encargos/2026-09-02-MAESTRA35-N2-F-DD-RANGOS-Y-M-DIN.md` (dirección, `SHA de redacción b6b923f`, archivado por A.3 en `1c53bd9`). `COMPUERTA: ninguna` — declaración explícita, no dispara verificación. ARRANQUE: repo correcto, `HEAD` = `origin/main` (tras el PR #472 que fusionó el commit A.3 de este mismo acto); `data/raw` ausente (esperado en la nube, este acto no abre microdato), entorno NUBE (`cloud_default`).
+
+**P0 · línea base ANTES de tocar el emisor.** Con `tools/emite_m.py` sin editar, re-derivadas las 13 celdas del sorteado v1_2 con `M` (`CIV-M-01/02/04/10/12/13`, `FAM-M-01/05/06/07`, `TRA-M-02/03/07`) más `M-TRA-M-01/02` (`regresion()`): **sin drift sustantivo** en ningún campo de valor (`p`, `clase`, `grado_DD`, etc.). Único hallazgo (de `MAESTRA34-N9`/`MAESTRA35-N1`, no de este acto, no corregido aquí): `cita_p`/`cita_ola_calibracion` citan el número de línea de `milpa/tramite.yaml`, que corrió por ediciones posteriores a la emisión original — el texto citado no cambió. `regresion()` tal como el módulo la define hoy (sin exentar `cita_p`) por eso devuelve `False` desde ANTES de este acto. Detalle: `forense/notas/2026-09-02-MAESTRA35-N2-P0-linea-base.md`.
+
+**P1 · F-DD v1.1.** `tools/emite_m.py::calcula_grado_DD` extendida (gramática del encargo, verbatim en `.claude/commands/emite-m.md § Actualización · F-DD v1.1`): `ola_calibracion` se parte en segmentos por `;` a profundidad 0 de paréntesis, cabecera `<INSTRUMENTO> <OLA-SPEC>` con `OLA-SPEC` en {año, rango de años, `ola N`, `olas N-M`}; instrumento comparado por token antes de `/`, sin mayúsculas; ola de la celda normalizada con la misma gramática; `P0 VERIFICACION` si algún segmento coincide en instrumento Y en algún identificador de ola, si no `P1 PUNTUA`. Regresión obligatoria (condición (e)): identidad con `_RE_OLA_CAL` verificada en las 5 cadenas de la forma actual (`MATCH` en las 5); `regresion()` y las 13 celdas de P0, re-derivadas con el emisor nuevo, muestran el MISMO conjunto de divergencias que P0 — ninguna divergencia nueva en ningún campo sustantivo. Veredicto: **ACEPTADA**, sin revertir. Detalle: `forense/notas/2026-09-02-MAESTRA35-N2-P1-regresion.md`.
+
+**P2 · emite `M-DIN-M-01__v1_2.json`**, vía `emite_celda(marco_nombre="marco-M-sorteado-v1_2.tsv")`. Verificaciones OBLIGATORIAS, todas `OK`: `grado_DD == "P1 PUNTUA"` con detalle "transferencia de ola" (coincide con `razon_DD` del marco sellado); `cita_p` apunta a `milpa/tramite.yaml:340` (línea `tiene_ahorros` ENNViH, no `_enif2024`); `clase == "MEDIDO·p(tasa base ponderada)"`. `git status` sobre `corridas-M/` confirma que solo ese archivo es nuevo. Dos campos extra: `razon_DD_marco` (verbatim del marco) y `aviso_F_DD` (declara, sin resolver, la discrepancia entre `ola_calibracion` del motor — "ENNViH ola 2 (2005-06)" — y `razon_DD` del marco sellado — "ENNViH olas 2-3 (2005-06 -> 2009-12)"; para `DIN-M-01`, ola 1, las tres lecturas dan el mismo veredicto).
+
+**P3 · `exclusiones-v1_2.md`.** Append fechado (2/sep/2026) bajo la sección `DIN-M-01` ya existente, sin editar nada de lo anterior ni la instrucción a N3 (13 de 14): M emitido por este acto; la celda sigue EXCLUIDA por falta de R (bloqueo ENNViH: lector `.dta` + join `fac_3b` sin estrato/UPM en tabla, `MAESTRA34-L2 §4`); sucesor de caja declarado.
+
+**CONTADOR:** celdas del sorteado v1_2 con M: `13 → 14`; celdas puntuables con L∩M∩R: sin cambio (`DIN-M-01` sigue sin R); reglas medidas: sin cambio; cero estimaciones, declarado. Este acto mueve el bloqueo del dominio dinero de «sin M y sin R» a «sin R».
+
+**`python3 tests/check.py --baseline`** → ver resultado citado en la cascada de cierre de este mismo acto (commit siguiente).
+
+**Lo que este acto NO hace**: no computa R (caja, sesión ciega, sucesor); no re-emite ningún M existente aunque P0 mostrara drift (no lo mostró); no toca el sorteado ni el marco; no decide qué olas calibran `tiene_ahorros` (reporta la discrepancia en `aviso_F_DD`); no edita instrucciones; no toca `milpa/tramite.yaml` (solo lectura), `corridas-R/`, `corridas-L/`, scoreboards, `marco-M-*`, `CONGELADO-M-*`, `tools/arbitra.py`, `tools/medidor_*`. Sucesor declarado, no lanzado: (i) caja, sesión ciega — R de `DIN-M-01` (lector `.dta` + join `fac_3b`); (ii) si un futuro P0 encuentra drift real, un acto de dirección decide si M se re-emite o se conserva.
 
 ---
 

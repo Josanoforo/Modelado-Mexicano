@@ -23,6 +23,11 @@ exclusión con razón, no como NO-APLICA.
 `F-DD` a rangos de ola es sucesor de `MAESTRA34-E1` (8/sep/2026), no de
 este acto.
 
+**Append (2/sep/2026, ACTO MAESTRA35-N2 · F-DD-RANGOS-Y-M-DIN):** M emitido
+por ACTO MAESTRA35-N2 (F-DD v1.1); la celda sigue EXCLUIDA de este ciclo
+por falta de R (bloqueo ENNViH: lector `.dta` + join `fac_3b` sin
+estrato/UPM en tabla, MAESTRA34-L2 §4); sucesor de caja declarado.
+
 ## Sucesor
 
 Fila de tablero abierta: `FP-234` — «F-DD rangos de ola», gateada a

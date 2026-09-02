@@ -97,3 +97,50 @@ aquí. No abre ni pondera `corridas-R/` — CIEGO, sin excepción. No decide
 por `tools/emite_m.py`, nunca a ojo. No sortea celdas nuevas — eso es
 `/arbitra`-adyacente pero para R, y para M es el mecanismo de
 `sorteo_marco_m_v1_1.py`, fuera de esta skill.
+
+---
+
+## Actualización · F-DD v1.1 (MAESTRA35-N2)
+
+`tools/emite_m.py::calcula_grado_DD` ya no exige que `ola_calibracion`
+tenga la forma simple `<INSTRUMENTO> <AÑO>...` (`_RE_OLA_CAL` original).
+Ahora soporta rangos de ola y múltiples instrumentos en el mismo campo
+(caso real: `dinero.ahorro.tiene_ahorros`, `milpa/tramite.yaml:349`,
+`"ENNViH ola 2 (2005-06) -- ponderador fac_3b vive en esta ola; ENIF 2024
+-- ponderador FAC_PER (enmienda_enif2024)"`). Gramática congelada por el
+encargo (`forense/encargos/2026-09-02-MAESTRA35-N2-F-DD-RANGOS-Y-M-DIN.md`,
+pieza P1), verbatim:
+
+(a) `ola_calibracion` se parte en SEGMENTOS por `;` a profundidad 0 de
+paréntesis. De cada segmento se toma solo la CABECERA: el texto antes del
+primer `--` o `(`, que debe calzar `^<INSTRUMENTO> <OLA-SPEC>` donde
+OLA-SPEC ∈ { `\d{4}` · `\d{4}-\d{2,4}` (rango de años, p.ej. `2005-06`) ·
+`ola \d+` · `olas \d+-\d+` }. Si tras `ola N` sigue un paréntesis
+`(\d{4}(-\d{2,4})?)`, ese es el rótulo de año de esa ola y se guarda junto
+con N. Nada fuera de la cabecera se parsea: «6 olas bienales disponibles»
+no es una ola. Un segmento que no calza → `ValueError` con el texto, como
+antes (el emisor no adivina).
+
+(b) Instrumento: se compara el token antes de `/` en ambos lados, sin
+distinguir mayúsculas (`ENNViH/MxFLS` ≡ `ENNViH`).
+
+(c) Ola de la celda (`fila["ola"]`) se normaliza con la misma gramática:
+`2002 (ola 1)` → {año 2002, ola 1}; `2005-06 (ola 2)` → {rango 2005-06,
+ola 2}; `2013` → {año 2013}.
+
+(d) Regla: `P0 VERIFICACION` si algún segmento coincide en instrumento Y en
+al menos un identificador de ola (año, rango o número de ola); `P1 PUNTUA`
+en cualquier otro caso, con el mismo `detalle` que antes (transferencia de
+instrumento / de ola).
+
+**Regresión ejecutada** (regla (e), condición obligatoria antes de
+aceptar): `regresion()` (`M-TRA-M-01/02`) y las 13 celdas del sorteado v1_2
+con M, re-derivadas con el emisor nuevo, coinciden byte a byte con lo
+comiteado salvo los campos exentos (`fuente`,
+`correcciones_aplicadas_por_referencia`) y una divergencia de línea de cita
+(`cita_p`/`cita_ola_calibracion`) ya presente en la línea base ANTES de este
+cambio (corrimiento de `milpa/tramite.yaml` por ediciones de
+MAESTRA34-N9/MAESTRA35-N1, no por F-DD). **Veredicto: ACEPTADA** — sin
+divergencia nueva en ningún campo sustantivo. Detalle completo:
+`forense/notas/2026-09-02-MAESTRA35-N2-P0-linea-base.md` y
+`forense/notas/2026-09-02-MAESTRA35-N2-P1-regresion.md`.
