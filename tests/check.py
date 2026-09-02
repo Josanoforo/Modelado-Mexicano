@@ -3818,8 +3818,32 @@ def t27_infraestructura():
         fail("T27", "no existe `data/INFRAESTRUCTURA-v1_0.md`")
         return
     infra_text = read(infra_path)
+    # ACTO MAESTRA34-N6 · CURADOR-Y-SUITE (1/sep/2026), firma DT-a, ADR-278
+    # (FP-229): `data/raw/**` es el corpus de payloads montado por raíz, no
+    # infraestructura del repo. Ningún payload puede pasar T27 -- medido por
+    # `ACTO MAESTRA34-A1`: 30 761 entradas nuevas contra `tests/baseline.json`,
+    # las 30 761 T27. La condición de mesa para exentarlo se verificó: los
+    # payloads YA los vigila `data/manifiesto.yaml` con `sha256` (845 entradas,
+    # 841 con sha256 de 64 hex), así que exentarlos aquí no deja ningún archivo
+    # sin custodia -- sólo mueve la custodia al test que corresponde. Se exenta
+    # también toda raíz declarada en `data/raices.local.yaml` (montaje local,
+    # ausente en nube). La dirección inversa (archivo en el corpus SIN entrada
+    # en el manifiesto) queda SIN TEST y así se declara en
+    # `forense/hallazgos.md`: se instrumenta (T28) el día que aparezca un
+    # huérfano medido.
+    _raices_exentas = [os.path.join(ROOT, "data", "raw")]
+    _raices_local = os.path.join(ROOT, "data", "raices.local.yaml")
+    if os.path.exists(_raices_local):
+        for _linea in read(_raices_local).splitlines():
+            _v = _linea.split(":", 1)[-1].strip().strip("'\"")
+            if _v and not _linea.lstrip().startswith("#"):
+                _raices_exentas.append(os.path.abspath(
+                    _v if os.path.isabs(_v) else os.path.join(ROOT, _v)))
     for p in sorted(glob.glob(os.path.join(ROOT, "data", "**", "*"), recursive=True)):
         if not os.path.isfile(p):
+            continue
+        _ap = os.path.abspath(p)
+        if any(_ap == _r or _ap.startswith(_r + os.sep) for _r in _raices_exentas):
             continue
         relp = rel(p)
         if relp in _T_INFRA_ARCHIVOS_CONOCIDOS:
