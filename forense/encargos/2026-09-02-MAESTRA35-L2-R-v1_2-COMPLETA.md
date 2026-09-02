@@ -34,7 +34,7 @@ Sucesores declarados, no lanzados: (i) NUBE — extensión de F-DD a rangos de o
 
 Ejecutado por `ACTO MAESTRA35-L2 · R-v1_2-COMPLETA` en **PR #470**
 (`https://github.com/Josanoforo/Modelado-Mexicano/pull/470`), rama
-`acto/maestra35-l2-r-v1_2-completa`, base real `b6b923f`. `ADR-290`.
+`acto/maestra35-l2-r-v1_2-completa`, base real `b6b923f`. `ADR-291`.
 
 **Cumplido parcialmente, y la razón es un hallazgo, no una omisión.** `P1`
 (reparación de `tools/arbitra.py`) se ejecutó completa, con regresión **12 de
@@ -46,6 +46,6 @@ encargo ordena exige copiar esas filas verbatim. Mesa, consultada antes de
 escribir nada irreversible, autorizó la opción C: regla literal más la
 proyección ciega `forense/prereg-duelo-v2/espec-R-ciega-v1_2.tsv`, que este
 acto construyó. `FP-241` y `FP-242` lo registran. Sucesor declarado, no
-lanzado: `ACTO MAESTRA35-L3 · R-v1_2-CIEGA`.
+lanzado: `ACTO MAESTRA35-L4 · R-v1_2-CIEGA`.
 
 Detalle: `forense/notas/2026-09-02-MAESTRA35-L2-cierre.md`.

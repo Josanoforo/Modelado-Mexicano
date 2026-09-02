@@ -16,6 +16,18 @@ abras "para confirmar".
 
 ## COMMIT-1 · congela las specs del lote
 
+**Enmienda fechada (2/sep/2026, firma de mesa sobre `FP-241`, `ACTO
+MAESTRA35-L2 · R-v1_2-COMPLETA`, `ADR-291`) — verbatim:** «la proyección ciega
+es el insumo obligatorio del lado R. `/arbitra §COMMIT-1` se redacta contra
+`espec-R-ciega-<v>.tsv` generada por `tools/arbitra.py --proyecta-ciego <marco>
+<salida>`, nunca contra el marco sorteado. El marco sellado NO se toca;
+`razon_DD` se queda como está, es historia.» Motivo medido: el marco incrusta
+la `p` del motor en la columna de prosa `razon_DD` — en `v1_2`, para
+exactamente las 4 celdas que aún no tenían `R` y para ninguna de las otras 10
+—, así que copiar su fila **verbatim** contaminaba a la sesión ciega en el paso
+mismo que esta skill existe para proteger. Donde abajo dice «las filas del
+marco», léase **las filas de la proyección ciega**.
+
 Copia verbatim (sin resumir, sin corregir) las filas del marco
 correspondientes a los ids del lote a
 `forense/prereg-duelo-v2/notas-arbitra/<fecha>-lote-<ids>.md`, con esta

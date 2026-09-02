@@ -235,7 +235,7 @@ queda es un requisito de higiene de sesión, no de dato ni de código.
 | celdas puntuables por N3/N5 con `L∩M∩R` | +4 | **+0** |
 | reparación de herramienta | 1, con regresión 3 de 3 | **1, con regresión 12 de 12** |
 | instrumento nuevo | — | **1** (proyección ciega, autorizada por mesa) |
-| hallazgos | 0 planeados | **2** (`FP-241`, `FP-242`) |
+| hallazgos | 0 planeados | **2** (`FP-241`, `FP-242`) — **ambas FIRMADAS por mesa el mismo día** (§10) |
 
 El «9» de partida se censó por comando, no se heredó: `for id in $(grep -v "^#"
 marco-M-sorteado-v1_2.tsv | cut -f1 | tail -n +2); do ls corridas-R/$id.json;
@@ -269,8 +269,13 @@ archivo de `milpa/` · `forense/prereg-duelo-v2/corridas-M/` · `corridas-L/` ·
 ## 7 · Numeración, re-derivada al arrancar
 
 - **ADR.** Comando de la casa → máximo `289` en `b6b923f`; candidato **`290`**,
-  contiguo y sin huecos. `MAESTRA35-L1` puede estar en vuelo: renumera quien
-  fusiona segundo.
+  contiguo y sin huecos. **Colisión confirmada por mesa**: `PR #471`
+  (`ACTO MAESTRA35-L1`) reclama el mismo `ADR-291` y los mismos `FP-241`/`FP-242`.
+  Re-derivado tras la respuesta de mesa contra `origin/main` = `0fd6b4c`
+  (`PR #472` fusionado, que sólo archivó un encargo): máximo de ADR sigue en
+  **`289`** y máximo de FP en **`240`** — ninguno de los tres números está
+  tomado todavía, y `PR #471` sigue **OPEN**. Se conservan `290`/`241`/`242` y
+  se declara la colisión; regla de la casa, **renumera quien fusiona segundo**.
 - **FP.** Máximo registrado en `forense/firmas-pendientes.tsv` = **`240`**
   (230 ids examinados, control positivo). El encargo pre-asignó `FP-244..246`
   pero ordenó «re-deriva el máximo al arrancar … toma el primer libre y dilo»:
@@ -280,7 +285,7 @@ archivo de `milpa/` · `forense/prereg-duelo-v2/corridas-M/` · `corridas-L/` ·
 
 ## 8 · Sucesores declarados, no lanzados
 
-1. **CAJA · `MAESTRA35-L3 · R-v1_2-CIEGA`** — arbitra las cuatro
+1. **CAJA · `MAESTRA35-L4 · R-v1_2-CIEGA`** — arbitra las cuatro
    (`FAM-M-05/06/07`, `TRA-M-02`) desde `espec-R-ciega-v1_2.tsv`, **sin abrir
    `marco-M-sorteado-v1_2.tsv` ni `canon/gobernanza-v1_15.md` durante el
    lote**. La herramienta ya no la bloquea. Requisito de higiene: sesión nueva
@@ -304,3 +309,41 @@ codificación de `TRA-M-02`. No re-computó ninguna `R` existente. No arbitró
 `corridas-L/`, scoreboards, `marco-M-*`, `data/manifiesto.yaml` ni `data/raw`.
 No corrigió el «R 11 → 14» del tablero. No editó
 `instrucciones-proyecto-v2_12.md`.
+
+## 10 · Respuesta de mesa (2/sep/2026) — propagada, no decidida
+
+Mesa contestó los dos hallazgos el mismo día. Firmas verbatim en
+`forense/firmas-pendientes.tsv`; aquí lo que se ejecutó:
+
+1. **`FP-241` → `FIRMADA`, opción `a`.** «la proyección ciega es el insumo
+   obligatorio del lado R. `/arbitra §COMMIT-1` se redacta contra
+   `espec-R-ciega-<v>.tsv` … nunca contra el marco sorteado. El marco sellado
+   NO se toca; `razon_DD` se queda como está, es historia.» Ejecutado: enmienda
+   fechada al principio de `§COMMIT-1` en `.claude/commands/arbitra.md`, **una
+   sola vez**, verificada por `grep` antes de escribir — 0 ocurrencias previas,
+   con control positivo del propio `grep` (`COMMIT-1` aparece 5 veces en ese
+   archivo, así que el 0 no viene de un comando que no examinó nada).
+2. **`FP-242` → `FIRMADA`**, basta la mitigación de oficio y se escribe:
+   línea nueva en `§CIERRE` de `.claude/commands/acto.md` — «la cascada corre
+   **después** de commitear `corridas-R/*.json`; nunca antes». Mismo control:
+   0 previas, `CIERRE` aparece 2 veces (control positivo).
+3. **Rótulo del sucesor corregido: `MAESTRA35-L3` → `MAESTRA35-L4 ·
+   R-v1_2-CIEGA`.** `MAESTRA35-L3` ya es de `CIVICA-TIPO-DE-BOLETA`
+   (dirección, 2/sep/2026), que este acto **no** censa porque no es suyo.
+   Renombrado en las **9** ocurrencias, en 7 archivos, verificado por conteo
+   (`MAESTRA35-L3` → 0, `MAESTRA35-L4` → 9). El cuerpo verbatim del encargo
+   (líneas 1–31) quedó intacto: la única ocurrencia en ese archivo estaba en la
+   sección `## CONSUMIDO`, que es de este acto, y una aserción lo comprobó
+   antes de escribir. **El encargo de `MAESTRA35-L4` lo redacta dirección, no
+   el ejecutor de este acto.**
+4. **La corrección «R 11 → 14 son 9 computadas» se queda como se declaró**
+   (§5), por instrucción de mesa.
+
+**Perímetro ampliado por esta respuesta, y declarado:** `.claude/commands/arbitra.md`
+y `.claude/commands/acto.md` no estaban en el perímetro del encargo original;
+entran por instrucción explícita de mesa (punto 4-i de su respuesta). Ningún
+otro archivo se sumó.
+
+**Lo que mesa confirmó que este acto NO hace:** no arbitra — esta sesión ya vio
+`p` —; no toca el marco ni `codificacion-R-v1_0.tsv`. **La fila de `TRA-M-02`
+la escribe `MAESTRA35-L4` en ciego.**
