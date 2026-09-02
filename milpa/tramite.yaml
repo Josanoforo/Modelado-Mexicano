@@ -258,3 +258,78 @@ reglas:
     universo: "FILTRO_S9_1=2 (aplica modulo vejez) y EDAD_V<71 -- procedencia.yaml:304, re-verificado contra microdato 2026-08-31"
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: "NO-LOCALIZADO -- se uso data/raw/enif_2024_bd_csv.zip (trae TMODULO.csv con FILTRO_S9_1/P9_9_4/FAC_PER/EDAD_V); el id de manifiesto enif2024_csv apunta a un ZIP distinto (data/raw/enif2024_csv.zip) sin estas columnas confirmadas en este acto"
+
+  # ══════════════════════════════════════════════════════════════════
+  # CARGA OLA-5 FASE 1 · SEGUNDO LOTE · FP-222/D1-a (mesa, 1/sep/2026)
+  # ACTO MAESTRA34-N1 · SELLA-REGLAS-ACTIVOS-2
+  #
+  # Dos reglas nuevas copiadas VERBATIM de
+  # milpa/tramite-ola5-propuesta-v0.yaml (COMPUERTA PR #447): p, ic95,
+  # fuente, universo, ponderador, ola_calibracion, n, clase, sha256_payload,
+  # payload_manifiesto_id, serie_olas/robustez/descriptivo_no_sellado
+  # intactos caracter por caracter -- campo por campo, sin reinterpretar,
+  # tal como el bloque CARGA del encargo lo declara. `hallazgo` NO se copia:
+  # el bloque CARGA del encargo no lo lista entre los campos a copiar.
+  #
+  # DESCONGELAMIENTO ACOTADO a EXACTAMENTE estas dos ids (D1-a) -- misma
+  # disciplina que ADR-68(a) ya aplico al primer lote.
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: familia.seguro.volatilidad_ausencia_estado
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: {}
+      disparadores_estado: "el SI de §3.5 (segsoc=2 ∨ residencia ∈ {EUA, Otro país} ∨ hogar con remesas P041) es circular con el desenlace medido (recibe_remesas) y sus mitades no circulares no existen en concentradohogar; tasa base incondicional sobre universo completo de hogares, declarado en #447"
+    entonces:
+      - {conducta: recibe_remesas, p: 0.045694, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: no_recibe_remesas, p: 0.954306, clase: "MEDIDO·p(tasa base ponderada)"}
+    porque: {generador: [G5], mecanismo: "la familia opera como seguro (corresidencia, pooling, remesas) ante ingreso volátil / ausencia de Estado — §3.5 verbatim"}
+    tier: FUERTE
+    falsable_si: "falsador pre-registrado de R5.1 en forense/hitoD-preregistro-v2_0.md (cita la ficha, no la reescribas)"
+    fuente: ["ENIGH2022", "ENIGH2012", "ENIGH2014", "ENIGH2016", "ENIGH2018", "ENIGH2020", "canon/modelo-decision-v4_0.md §3.5"]
+    ola_calibracion: "ENIGH 2022 (mas reciente de 6 olas bienales disponibles; las otras 5 van en serie_olas, NO promediadas)"
+    ic95: [0.043754, 0.047711]
+    n: 90102
+    ponderador: factor
+    universo: "hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2022 Nueva Serie, sin filtro adicional (la regla no declara ninguno). Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0. La rama NA de la dicotomizacion NO existe: `remesas` trae cero nulos en las 6 olas (verificado, no supuesto)."
+    serie_olas:
+      - {ola: 2012, p: 0.044704, ic95: [0.039340, 0.050420], n: 9002,  estratos: 108, upm: 1111,  ponderador: factor_hog, hogares_expandidos: 31559379, sha256_payload: "2ed45acfb402cbcf21ecc3197555d343a484e6ffcf59be2a0d54878d1dda5e44", payload_manifiesto_id: enigh2012_nc_csv}
+      - {ola: 2014, p: 0.040784, ic95: [0.036551, 0.044978], n: 19479, estratos: 200, upm: 2626,  ponderador: factor_hog, hogares_expandidos: 31671002, sha256_payload: "fffec78d722e010229af7cc241592653163766f4216cb73a27c4fd87a11ada7e", payload_manifiesto_id: enigh2014_nc_csv}
+      - {ola: 2016, p: 0.047459, ic95: [0.045192, 0.049807], n: 70311, estratos: 536, upm: 7891,  ponderador: factor,     hogares_expandidos: 32974661, sha256_payload: "95e30780dfff83305fd1293945a0a5ed04c4e4daed4b0d45b66343db09e8eca1", payload_manifiesto_id: enigh2016_nc_csv}
+      - {ola: 2018, p: 0.047285, ic95: [0.045093, 0.049555], n: 74647, estratos: 543, upm: 8377,  ponderador: factor,     hogares_expandidos: 34400515, sha256_payload: "5026cd951c109ac01c466aa22066beb7c6cbdcf7ecfc213967bd961d1243d636", payload_manifiesto_id: enigh2018_nc_csv}
+      - {ola: 2020, p: 0.043775, ic95: [0.041877, 0.045680], n: 89006, estratos: 558, upm: 10118, ponderador: factor,     hogares_expandidos: 35749659, sha256_payload: "47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4", payload_manifiesto_id: enigh2020_nc_csv}
+      - {ola: 2022, p: 0.045694, ic95: [0.043754, 0.047711], n: 90102, estratos: 560, upm: 10211, ponderador: factor,     hogares_expandidos: 37560123, sha256_payload: "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06", payload_manifiesto_id: enigh2022_nc_csv}
+    sha256_payload: "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06"
+    payload_manifiesto_id: enigh2022_nc_csv
+
+  - id: dinero.planeacion.formal_estable
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: {}
+      disparadores_estado: "la condicional de §3.1 (segsoc=1 ∧ contrato ∧ pres_8) no es construible en ENFIH 2019 — barrido 16 tablas / 664 columnas, 0 hits de formalidad laboral, control positivo AFORE 2 hits (#447); tasa base incondicional sobre hogares"
+    entonces:
+      - {conducta: tiene_afore, p: 0.538502, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: no_tiene_afore, p: 0.461498, clase: "MEDIDO·p(tasa base ponderada)"}
+    porque: {generador: NO-DECLARADO-EN-§3.1, mecanismo: "el ingreso estable baja el costo esperado de comprometerse a un instrumento de horizonte largo: cae la probabilidad de incumplir y perder lo aportado — §3.1 verbatim (D-01)"}
+    tier: FUERTE
+    falsable_si: "R1.2 en hitoD-preregistro-v2_0.md; §3.1 declara que si sale A la regla se PARTE: sobrevive 'la estabilidad permite' como capacidad, cae 'produce' — cita, no reescribas"
+    fuente: ["ENFIH2019", "data/raw/enfih2019/enfih_2019_fd.xlsx hoja TConcentradora", "canon/modelo-decision-v4_0.md §3.1"]
+    ola_calibracion: "ENFIH 2019 (unica ola de ENFIH en el corpus)"
+    ic95: [0.526700, 0.550616]
+    n: 17765
+    ponderador: FAC_HOG
+    universo: "hogares -- los 17765 de TCONCENTRADORA.csv (llave FOLIO+VIV_SEL+HOGAR), sin filtro adicional. Desenlace tiene_afore = C_AFORE, que el FD define como `Condicion de tenencia de cuenta de ahorro para el retiro o Afore`, 0=No tiene / 1=Si tiene, ya dicotomica sin recodificar."
+    robustez:
+      - {variante: "universo restringido a hogar principal (H_PPAL=1)", p: 0.540091, ic95: [0.528375, 0.552262], n: 17386, lectura: "diferencia de 0.16pp con el universo completo, muy dentro del IC95 de ambos: la eleccion de universo no mueve la cifra"}
+    descriptivo_no_sellado:
+      variable: "CAT_POS (categoria de posicion en el trabajo de la persona de referencia)"
+      tasas_ponderadas_afore:
+        - {cat_pos: 1, etiqueta: "Empleado(a) u obrero(a)",  n: 8154, p: 0.7230}
+        - {cat_pos: 3, etiqueta: "Patron(a) o empleador(a)", n: 390,  p: 0.5688}
+        - {cat_pos: 4, etiqueta: "Trabajador(a) por su cuenta", n: 3428, p: 0.4161}
+        - {cat_pos: 0, etiqueta: "Persona no ocupada",       n: 4354, p: 0.3831}
+        - {cat_pos: 5, etiqueta: "Trabajador(a) familiar sin pago", n: 452, p: 0.3519}
+        - {cat_pos: 2, etiqueta: "Jornalero(a) o peon(a)",   n: 987,  p: 0.2940}
+      lectura: "brecha de 42.90pp entre empleado/obrero (72.30%) y jornalero/peon (29.40%), en la direccion que §3.1 predice. Evidencia de direccion, NO la condicional de la regla."
+    sha256_payload: "be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5"
+    payload_manifiesto_id: enfih2019_bd_csv_zip
