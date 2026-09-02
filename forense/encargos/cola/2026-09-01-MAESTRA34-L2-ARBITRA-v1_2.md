@@ -27,3 +27,21 @@ FP/ADR CANDIDATOS: deriva al arrancar.
 CONTADOR: R 11 → 11+N, declarado.
 LO QUE NO HACE: no emite M; no corre L; no puntúa; no toca v1_1.
 SUCESOR: MAESTRA34-N3.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA34-L2 · ARBITRA-v1_2`, 1/sep/2026, entorno UBUNTU,
+rama `acto/maestra34-l2-arbitra-v1_2`, `ADR-277`.
+
+Antes de ejecutarse, este encargo **paró dos veces con cero commits** por
+compuerta no cumplida (`marco-M-sorteado-v1_2.tsv` inexistente y `MAESTRA34-L1`
+sin fusionar), tal como manda su propia línea `COMPUERTA` y `/acto` §2.3. Se
+ejecutó al fusionar `PR #450` (N2) y `PR #451` (L1), con las dos condiciones
+verificadas por producto.
+
+Resultado: **R 11 → 14**. Lote 1 (`CIV-M-02/04/10`) con 3 R medidos y control
+positivo de regresión 3 de 3 COINCIDE; lote 2 (`FAM-M-05/06/07` + `DIN-M-01`)
+con 0 R y las 4 filas de codificación escritas con el bloqueo verificado;
+`TRA-M-02` fuera de lote por contaminación declarada (`ADR-46`). `FP-227` →
+FIRMADA. Detalle en
+`forense/notas/2026-09-01-MAESTRA34-L2-ARBITRA-v1_2-cierre.md`.
