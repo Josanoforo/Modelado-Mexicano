@@ -290,6 +290,31 @@ _CAMPOS_EXENTOS_FECHA = {"fuente"}
 # a byte en la redaccion. Declarado, no forzado.
 _CAMPOS_SOLO_VALOR = {"correcciones_aplicadas_por_referencia"}
 
+# cita_p/cita_ola_calibracion citan "<ruta>:<linea> -- <texto>" (cita_p(),
+# cita_ola_calibracion()). El numero de linea corre cuando milpa/tramite.yaml
+# crece por ediciones posteriores autorizadas (p.ej. MAESTRA34-N9/MAESTRA35-N1)
+# sin que el TEXTO citado cambie -- ADR (ACTO REPARA-REGRESION-CITA-LINEA)
+# distingue esa deriva inerte de una deriva de logica real: se tolera SOLO el
+# numero de linea, ruta y texto deben calzar byte a byte.
+_CAMPOS_CITA_LINEA = {"cita_p", "cita_ola_calibracion"}
+_RE_CITA_LINEA = re.compile(r"^(?P<ruta>.+?):(?P<linea>\d+) -- (?P<texto>.*)$", re.S)
+
+
+def _compara_cita_con_linea(original: str, regenerado: str) -> tuple[bool, str]:
+    """(ok, mensaje) para un campo `_CAMPOS_CITA_LINEA`. Tolera SOLO que el
+    numero de linea difiera; ruta y texto citado deben coincidir exacto."""
+    m_o = _RE_CITA_LINEA.match(original)
+    m_r = _RE_CITA_LINEA.match(regenerado)
+    if not m_o or not m_r:
+        return False, (f"FALLA (no calza '<ruta>:<linea> -- <texto>'):\n"
+                        f"      original    ={original!r}\n      regenerado  ={regenerado!r}")
+    if m_o.group("ruta") != m_r.group("ruta") or m_o.group("texto") != m_r.group("texto"):
+        return False, (f"FALLA:\n      original    ={original!r}\n      regenerado  ={regenerado!r}")
+    if m_o.group("linea") == m_r.group("linea"):
+        return True, "OK"
+    return True, (f"OK (linea corrida de {m_o.group('linea')} a {m_r.group('linea')}, "
+                   f"texto citado identico)")
+
 
 def regresion() -> bool:
     reglas_por_id = {r.id: r for r in cargar_reglas()}
@@ -324,7 +349,12 @@ def regresion() -> bool:
                 print(f"  [{campo}] exento (cita el acto/fecha que corre) -- "
                       f"original={original[campo]!r} regenerado={regenerado[campo]!r}")
                 continue
-            if regenerado[campo] == original[campo]:
+            if campo in _CAMPOS_CITA_LINEA:
+                ok, mensaje = _compara_cita_con_linea(original[campo], regenerado[campo])
+                if not ok:
+                    ok_total = False
+                print(f"  [{campo}] {mensaje}")
+            elif regenerado[campo] == original[campo]:
                 print(f"  [{campo}] OK")
             elif campo in _CAMPOS_SOLO_VALOR:
                 print(f"  [{campo}] DIVERGE EN REDACCION (declarado, no fatal -- prosa a mano en "
