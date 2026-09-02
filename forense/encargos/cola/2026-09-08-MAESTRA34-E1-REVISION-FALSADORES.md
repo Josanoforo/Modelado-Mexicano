@@ -46,6 +46,5 @@ no se cumple.
 ## CONSUMIDO
 
 Ejecutado por `ACTO MAESTRA34-E1 · REVISION-FALSADORES` (`ADR-284`), rama
-`claude/maestra34-e1-falsadores-ou8qcp`. Detalle:
-`forense/notas/2026-09-08-MAESTRA34-E1-revision-falsadores.md`. PR: se
-añade en un commit de seguimiento tras abrirlo.
+`claude/maestra34-e1-falsadores-ou8qcp`, `PR #463`. Detalle:
+`forense/notas/2026-09-08-MAESTRA34-E1-revision-falsadores.md`.
