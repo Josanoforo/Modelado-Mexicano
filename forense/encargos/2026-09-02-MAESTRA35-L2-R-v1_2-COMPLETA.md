@@ -29,3 +29,23 @@ CONTADOR: celdas del sorteado v1_2 con R: 9 → 13 (DIN-M-01 excluida con razón
 Lo que este acto NO hace: no arbitra DIN-M-01 (DF-a) ni añade lector .dta; no toca M ni L ni el scoreboard; no re-computa ninguna R existente; no lee el motor ni la propuesta (sesión ciega); no mide reglas nuevas; no edita instrucciones.
 
 Sucesores declarados, no lanzados: (i) NUBE — extensión de F-DD a rangos de ola en tools/emite_m.py (_OLA_CALIBRACION_FIJA) para emitir M de DIN-M-01 — autorizado por DF-a como sucesor «tras la revisión del 8/sep (MAESTRA34-E1)», y MAESTRA34-E1 ya corrió (PR #463, fechas = límites): dirección lo redacta como MAESTRA35-N2 sin firma nueva; (ii) CAJA — R de DIN-M-01 con lector .dta + join fac_3b por folio+ls y diseño de varianza declarado desde ennvih_diseno/*.pdf — solo tiene sentido con (i) fusionado; (iii) N3 re-corrido o N5 leyendo las 4 R nuevas — lo decide /despacha por producto, no este acto.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA35-L2 · R-v1_2-COMPLETA` en **PR #470**
+(`https://github.com/Josanoforo/Modelado-Mexicano/pull/470`), rama
+`acto/maestra35-l2-r-v1_2-completa`, base real `b6b923f`. `ADR-290`.
+
+**Cumplido parcialmente, y la razón es un hallazgo, no una omisión.** `P1`
+(reparación de `tools/arbitra.py`) se ejecutó completa, con regresión **12 de
+12 COINCIDE** en vez de las 3 de 3 que el encargo pedía. `P2` y `P3` **no se
+ejecutaron**: las cuatro celdas quedaron **fuera de lote** por la regla de
+contaminación del propio encargo — `marco-M-sorteado-v1_2.tsv` incrusta la `p`
+del motor en `razon_DD` para exactamente esas cuatro, y el `COMMIT-1` que este
+encargo ordena exige copiar esas filas verbatim. Mesa, consultada antes de
+escribir nada irreversible, autorizó la opción C: regla literal más la
+proyección ciega `forense/prereg-duelo-v2/espec-R-ciega-v1_2.tsv`, que este
+acto construyó. `FP-241` y `FP-242` lo registran. Sucesor declarado, no
+lanzado: `ACTO MAESTRA35-L3 · R-v1_2-CIEGA`.
+
+Detalle: `forense/notas/2026-09-02-MAESTRA35-L2-cierre.md`.
