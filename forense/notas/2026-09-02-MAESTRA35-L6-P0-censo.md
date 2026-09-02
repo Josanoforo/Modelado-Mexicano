@@ -40,7 +40,7 @@ denominadores de abajo se contaron **sin cruzarlos jamás contra el desenlace**.
 | FP máximo | 244 | **248** | `cut -f1 forense/firmas-pendientes.tsv \| grep -oE '^FP-[0-9]+' \| grep -oE '[0-9]+' \| sort -n \| tail -1` |
 | líneas de `data/manifiesto.yaml` | 20 331 | **20 529** | `wc -l data/manifiesto.yaml` |
 
-Candidatos de este acto: **`ADR-297`**, **`FP-249`**. `0` PR abiertos al
+Candidatos de este acto: **`ADR-298`**, **`FP-249`**. `0` PR abiertos al
 arrancar (`gh pr list --state open` → `[]`), así que el riesgo de colisión es
 bajo — se declara igual: **renumera quien fusiona segundo**.
 `FP-249`/`FP-250` aparecen en el árbol **solo** como pre-asignaciones que

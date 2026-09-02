@@ -31,7 +31,7 @@ Sucesores declarados, no lanzados: propagación NUBE de lo que mesa selle; direc
 Ejecutado por `ACTO MAESTRA35-L6 · FUENTE-COERCITIVO-Y-PUENTE`, 2/sep/2026,
 entorno **UBUNTU** con corpus montado y red, worktree propio
 `/home/pc0/mm-l6-fuente-coercitivo`, rama
-`acto/maestra35-l6-fuente-coercitivo-y-puente`. `ADR-297`, `FP-250`.
+`acto/maestra35-l6-fuente-coercitivo-y-puente`. `ADR-298`, `FP-250`.
 
 Commits: `1ae85ff` (0-bis A.3) · `833604c` (`P0` censo) · `f77df14` (`COMMIT-1`,
 spec sola) · `b0f0bfb` (`COMMIT-2`, resultados) · `21ffb13` (`COMMIT-3`, `D1'`

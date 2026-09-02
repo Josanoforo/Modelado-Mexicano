@@ -207,7 +207,7 @@ reglas:
     nota_validacion: "Backtest: CoDi = 3.09M cuentas con >=1 transacción en 6 años."
     sin_dato_universo_examinado:
       # firma c1 (mesa, 2/sep/2026, CORREGIDA sobre su primera redaccion), sobre
-      # ACTO MAESTRA35-L6 -- ADR-297. La regla SIGUE SIN DATO y el contador S1
+      # ACTO MAESTRA35-L6 -- ADR-298. La regla SIGUE SIN DATO y el contador S1
       # SIGUE EN 1. p y tier NO se tocan (ASIGNADO 0.91/0.09, MEDIA-FUERTE) y el
       # backtest CoDi se queda. NO se declara "hueco de mundo": se declara un
       # universo EXAMINADO con su veredicto, y nada sobre el que no se examino.
@@ -222,17 +222,17 @@ reglas:
         fuentes que si tendrian denominador de obligacion (SAT: obligados vs
         cumplidores de buzon tributario/e.firma; CNGF), sondeadas y sin respuesta
         desde la caja. No se afirma nada sobre el universo no examinado.
-      adr: [ADR-287, ADR-297]
+      adr: [ADR-287, ADR-298]
       veredicto: NO-ENCONTRADO
       universo_examinado_encuestas_de_hogares:
         # SIETE instrumentos. Cada linea dice que se abrio y con que se conto.
         - {instrumento: "ENCIG 2011-2025 (8 olas)", adr: ADR-287, examinado: "483 columnas de 2025 y ~100 000 de cinco olas", veredicto: EXISTE-NO-SATISFACE}
-        - {instrumento: "ENDUTIH 2023", adr: ADR-297, examinado: "FD 1 099 filas + tic_2023_usuarios.DBF, 229 variables, N=58 922", veredicto: EXISTE-NO-SATISFACE}
-        - {instrumento: "ENDUTIH 2024", adr: ADR-297, examinado: "FD 477 variables en 5 tablas + 5 DBF, N=58 080", veredicto: EXISTE-NO-SATISFACE}
-        - {instrumento: "ENDUTIH 2025", adr: ADR-297, examinado: "FD 8 hojas + ti25usu.dbf, 239 variables, N=57 810", veredicto: EXISTE-NO-SATISFACE}
-        - {instrumento: "ENIF 2024", adr: ADR-297, examinado: "cuestionario 32 pag./2 534 lineas + FD 398 variables + TMODULO.csv, 13 502 personas 18+", veredicto: EXISTE-NO-SATISFACE}
-        - {instrumento: "ENCUCI 2020", adr: ADR-297, examinado: "FD_ENCUCI2020.pdf 4 006 lineas/422 073 caracteres + 5 DBF, 458 campos (54+164+156+50+34), 21 519 personas", veredicto: NO-ENCONTRADO}
-        - {instrumento: "serie CoDi/Banxico", adr: ADR-297, examinado: "cuentas_validadas_x_mil_hab_trimestral.xlsx 3 hojas 2022-T1..2026-T1 + HTML de avances", veredicto: "EXISTE-NO-SATISFACE (serie agregada: unidad cuenta, no persona)"}
+        - {instrumento: "ENDUTIH 2023", adr: ADR-298, examinado: "FD 1 099 filas + tic_2023_usuarios.DBF, 229 variables, N=58 922", veredicto: EXISTE-NO-SATISFACE}
+        - {instrumento: "ENDUTIH 2024", adr: ADR-298, examinado: "FD 477 variables en 5 tablas + 5 DBF, N=58 080", veredicto: EXISTE-NO-SATISFACE}
+        - {instrumento: "ENDUTIH 2025", adr: ADR-298, examinado: "FD 8 hojas + ti25usu.dbf, 239 variables, N=57 810", veredicto: EXISTE-NO-SATISFACE}
+        - {instrumento: "ENIF 2024", adr: ADR-298, examinado: "cuestionario 32 pag./2 534 lineas + FD 398 variables + TMODULO.csv, 13 502 personas 18+", veredicto: EXISTE-NO-SATISFACE}
+        - {instrumento: "ENCUCI 2020", adr: ADR-298, examinado: "FD_ENCUCI2020.pdf 4 006 lineas/422 073 caracteres + 5 DBF, 458 campos (54+164+156+50+34), 21 519 personas", veredicto: NO-ENCONTRADO}
+        - {instrumento: "serie CoDi/Banxico", adr: ADR-298, examinado: "cuentas_validadas_x_mil_hab_trimestral.xlsx 3 hojas 2022-T1..2026-T1 + HTML de avances", veredicto: "EXISTE-NO-SATISFACE (serie agregada: unidad cuenta, no persona)"}
       defecto_de_universo_de_esas_fuentes: >
         Uno solo: la SITUACION solo se observa donde la CONDUCTA ya ocurrio. En
         ENCIG, la seccion VII solo la contesta quien hizo el tramite (ADR-287
