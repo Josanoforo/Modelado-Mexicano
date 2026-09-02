@@ -20547,3 +20547,394 @@
     .rar con /mnt/c/Windows/System32/tar.exe (bsdtar/libarchive, RAR3); los tres tamanos coinciden
     con rarfile.infolist() antes de extraer y zipfile.testzip() da limpio en los tres. mtimes
     originales (2017-10-31, 2019-07-10) preservados en el zip.'
+
+- id: sicee_local_ags_pel_2016_zip
+  usado_para: denominador municipal (lista nominal) para IEE_AGUASCALIENTES_SERIE_MUNICIPAL
+    — MAESTRA35-L3, MAESTRA35-A1 P3
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_ags_pel_2016.zip
+  sha256: 5373242a2cb9e00438480907b242d317a93b055d00ba8f8c6ca2c55039fa3e7e
+  tamano_bytes: 1121512
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_ags_pel_2018_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_ags_pel_2018.zip
+  sha256: dfe21384543b887f6277678b5667110b572f24721bfe3e011888adacdb0786d2
+  tamano_bytes: 477223
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_ags_pel_2019_zip
+  usado_para: denominador municipal (lista nominal) para IEE_AGUASCALIENTES_SERIE_MUNICIPAL
+    — MAESTRA35-L3, MAESTRA35-A1 P3
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_ags_pel_2019.zip
+  sha256: 2c4ed100da32cbd714ed610ddaf317e06d9e3fae94c3609caf75d80cbc5cf8f2
+  tamano_bytes: 353659
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_ags_pel_2021_zip
+  usado_para: denominador municipal (lista nominal) para IEE_AGUASCALIENTES_SERIE_MUNICIPAL
+    — MAESTRA35-L3, MAESTRA35-A1 P3
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_ags_pel_2021.zip
+  sha256: 65aee9bc52db03e9a92bc9b08cb9d1f96f7c1bda5019d52016836cf08943ca49
+  tamano_bytes: 1307407
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_ags_pel_2024_zip
+  usado_para: denominador municipal (lista nominal) para IEE_AGUASCALIENTES_SERIE_MUNICIPAL
+    — MAESTRA35-L3, MAESTRA35-A1 P3
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_ags_pel_2024.zip
+  sha256: 64c7e7d3de9a2d6d0bc9b40dbbbef4860683b0e7bbf0296f49779abc40a4b904
+  tamano_bytes: 1495491
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_hgo_pel_2016_zip
+  usado_para: denominador municipal (lista nominal) para IEEH_HIDALGO_SERIE_MUNICIPAL — MAESTRA35-L3
+    (cinco rutas fallidas), MAESTRA35-A1 P3
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_hgo_pel_2016.zip
+  sha256: 463d1e55219e8482fdd3dd61019467449208620d56507eef6baa23561a938fd4
+  tamano_bytes: 2664060
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_hgo_pel_2018_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_hgo_pel_2018.zip
+  sha256: d19754b0772a4bfff194772e9dc30cd053f1e3b7361df8c2974fc5ad819c787b
+  tamano_bytes: 2015973
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_hgo_pel_2020_zip
+  usado_para: denominador municipal (lista nominal) para IEEH_HIDALGO_SERIE_MUNICIPAL — MAESTRA35-L3
+    (cinco rutas fallidas), MAESTRA35-A1 P3
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_hgo_pel_2020.zip
+  sha256: 77eab416a34e9fb4aa233764ff97ac1d0a11b032458a4d5b8b50bafe12e7d227
+  tamano_bytes: 1040054
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_hgo_pel_2021_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_hgo_pel_2021.zip
+  sha256: 50f21669832e22fc35d244718c39fcf739365075547ffaed9cbe32f6092df54f
+  tamano_bytes: 2808112
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_ver_pel_2016_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_ver_pel_2016.zip
+  sha256: 08bc7ec82c1768eb9a1ffef12a38ac8cd46687c4f829d31a7d41225f6124232e
+  tamano_bytes: 8858693
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_ver_pel_2017_zip
+  usado_para: cobertura Veracruz — pata local nueva, sin fila previa en la cola; SICEE_LOCAL_AYUNTAMIENTOS_VERACRUZ
+    (alta)
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_ver_pel_2017.zip
+  sha256: fd8edcb052e4d40c890ac1d588460f51a58d2482a899327787fd5f06e0e5bc39
+  tamano_bytes: 3316221
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_ver_pel_2018_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_ver_pel_2018.zip
+  sha256: 1b7e5fd78065ac1b3c5d5688874ca5d340db24ee814983965171f43ecd0de49a
+  tamano_bytes: 8204769
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_local_ver_pel_2021_zip
+  usado_para: cobertura Veracruz — pata local nueva, sin fila previa en la cola; SICEE_LOCAL_AYUNTAMIENTOS_VERACRUZ
+    (alta)
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_local/sicee_local_ver_pel_2021.zip
+  sha256: 561a696fd1b6d2489f996a4e187e5314b8981228260fef90c2261050153d93fa
+  tamano_bytes: 9517155
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_dip_mr_2018_zip
+  usado_para: denominador federal por casilla (lista nominal) para TEPJF_ELECCIONES_CONCURRENTES_1991_2018
+    y civico.participacion.tipo_boleta_federal_2016_2024 (propuesta, MAESTRA35-L3) — patas
+    concurrentes 2018/2021
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_dip_mr_2018.zip
+  sha256: 0c6c40bb408cbbcc06e2fd61413d85f2dd1d8d49a2c2bb362cea8f27b3c94be4
+  tamano_bytes: 40276204
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_dip_rp_2018_zip
+  usado_para: denominador federal por casilla (lista nominal) para TEPJF_ELECCIONES_CONCURRENTES_1991_2018
+    y civico.participacion.tipo_boleta_federal_2016_2024 (propuesta, MAESTRA35-L3) — patas
+    concurrentes 2018/2021
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_dip_rp_2018.zip
+  sha256: 27516a545057c1114f82a5a73febd11750c9b7c9a33ace37ad4b00f809bbe6e0
+  tamano_bytes: 39747968
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_sen_mr_2018_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_sen_mr_2018.zip
+  sha256: fc83f3e8aaba95357cd49b4bd91ee0171cfe00a66d5bb4cd9b35906cfbe32ee1
+  tamano_bytes: 39787188
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_sen_rp_2018_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_sen_rp_2018.zip
+  sha256: 582de042911ea1edf5f3b342f5a9661ed3ef4077352b68c8fad49ea98716b163
+  tamano_bytes: 39901170
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_pre_2018_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_pre_2018.zip
+  sha256: f04fbad28bb13f960f3136efc7e3e4cbc61a613794429c8433699cb9d86e84c0
+  tamano_bytes: 43652401
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_dip_mr_2021_zip
+  usado_para: denominador federal por casilla (lista nominal) para TEPJF_ELECCIONES_CONCURRENTES_1991_2018
+    y civico.participacion.tipo_boleta_federal_2016_2024 (propuesta, MAESTRA35-L3) — patas
+    concurrentes 2018/2021
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_dip_mr_2021.zip
+  sha256: 90e325eed451985506750e7b03444c64b79382fdd31ab9ef4cdfb274e6a6798e
+  tamano_bytes: 37160717
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_dip_rp_2021_zip
+  usado_para: denominador federal por casilla (lista nominal) para TEPJF_ELECCIONES_CONCURRENTES_1991_2018
+    y civico.participacion.tipo_boleta_federal_2016_2024 (propuesta, MAESTRA35-L3) — patas
+    concurrentes 2018/2021
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_dip_rp_2021.zip
+  sha256: 65f86f16baa871dfba4d7bba841f4c5502bffe99d1dcf03b6150978b63bd588e
+  tamano_bytes: 36817117
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_sen_mr_nay_ext_2021_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_sen_mr_nay_ext_2021.zip
+  sha256: 21c005c9186cb56098e38396389385e40fd414afc954080c64c48dd80f038596
+  tamano_bytes: 509016
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_sen_mr_tamps_ext_2023_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_sen_mr_tamps_ext_2023.zip
+  sha256: a4025a2621dd83ecb4af13f82e16d3032f0770ea551d2fe4f9b91268b0d87ad2
+  tamano_bytes: 1072371
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_dip_mr_2024_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_dip_mr_2024.zip
+  sha256: 9da21ef4e7ed7f490d3351c4834c4cea0bff050699d9d4ebf45f902e333cc61c
+  tamano_bytes: 43607301
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_dip_rp_2024_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_dip_rp_2024.zip
+  sha256: 57702d9440ee5b7543366bd16b680ff503c96a19c2e969675b2c4522e05605a4
+  tamano_bytes: 43575447
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_sen_mr_2024_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_sen_mr_2024.zip
+  sha256: bafa39ae21279f229a3892422d8b9fb339160bc92a17c9a3583c92c1154c19cf
+  tamano_bytes: 43360629
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_sen_rp_2024_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_sen_rp_2024.zip
+  sha256: 2c5d1aee26b9dfd1d188c9c9949d2b8d366c055d5e2a37b1da2a8b0dcc9fafbe
+  tamano_bytes: 43386325
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sicee_federal_pre_2024_zip
+  usado_para: sin necesidad declarada — mesa lo bajó el 2026-09-02
+  url_origen: https://sicee.ine.mx/home
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: electoral_sicee_federal/sicee_federal_pre_2024.zip
+  sha256: 3122304d4dec2a24168708af9836f5df2860ac4347163dc311473bd037737bbf
+  tamano_bytes: 47339633
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el INE (SICEE)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: icpsr35024_mexico_panel_study_2012_paquete_v1_zip
+  usado_para: MEXICO_PANEL_STUDY_2012 — civico.* / R-series; evaluar en P3 si trae microdato
+    o solo documentacion
+  url_origen: https://www.icpsr.umich.edu/web/NADAC/studies/35024
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: academico_icpsr35024/icpsr35024_mexico_panel_study_2012_paquete_v1.zip
+  sha256: c1e7ba95f453edd356e3e1144bb6753557101251a8c939878d8ddeeb2ec45278
+  tamano_bytes: 14665813
+  formato: zip
+  licencia: ICPSR (Mexico Panel Study, 2012, DOI 10.3886/ICPSR35024.v1) — acceso público/restringido según componente
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Corrección A.3 (2026-09-02): url_origen/licencia registrados en la primera
+    invocación por error copiaban los de SICEE (script de registro reusado sobre
+    un lote mixto); corregidos aquí sin tocar sha256/tamano_bytes, que el script
+    ya derivó del archivo real.'
+
+- id: ssrn_bauchet_2589578_pdf
+  usado_para: PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND (Bauchet 2014, abstract_id=2474620)
+    — evaluar en P3 si es el paper pedido
+  url_origen: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2589578
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: academico_bauchet2014/ssrn_bauchet_2589578.pdf
+  sha256: cbb6a2d43acb2657d7d54c8791aae5edb4b515bad11faef50082e50775faf029
+  tamano_bytes: 272496
+  formato: pdf
+  licencia: SSRN (descarga individual del paper; licencia propia del autor/SSRN, no verificada)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Corrección A.3 (2026-09-02): url_origen/licencia registrados en la primera
+    invocación por error copiaban los de SICEE (script de registro reusado sobre
+    un lote mixto); corregidos aquí sin tocar sha256/tamano_bytes, que el script
+    ya derivó del archivo real.'
+
+- id: ssrn_bauchet_2689238_pdf
+  usado_para: PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND (Bauchet 2014, abstract_id=2474620)
+    — evaluar en P3 si es el paper pedido
+  url_origen: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2689238
+  fecha_descarga: '2026-09-02'
+  descargado_por: mesa-navegador
+  archivo: academico_bauchet2014/ssrn_bauchet_2689238.pdf
+  sha256: d0ef4d86e07b18ce52e0d4b16a1a07c644d0e829e2a58aba7104ca988c5a3a60
+  tamano_bytes: 358156
+  formato: pdf
+  licencia: SSRN (descarga individual del paper; licencia propia del autor/SSRN, no verificada)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Corrección A.3 (2026-09-02): url_origen/licencia registrados en la primera
+    invocación por error copiaban los de SICEE (script de registro reusado sobre
+    un lote mixto); corregidos aquí sin tocar sha256/tamano_bytes, que el script
+    ya derivó del archivo real.'
