@@ -63,4 +63,4 @@ Dirección presenta en RH la re-lectura de `dinero.ahorro.informal_sin_puente` /
 
 ## CONSUMIDO
 
-Ejecutado por ACTO MAESTRA35-N4 · SELLA-L1, rama `claude/maestra35-n4-launch-3xycdh`, contra `HEAD 792b7ef` (igual al SHA de redacción). `ADR-293`, `FP-241`/`FP-242` → `EJECUTADA`. Archivos tocados: `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/firmas-pendientes.tsv`, `forense/hallazgos.md`, `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md`, `canon/registro-rotulos.tsv`. `tests/check.py --baseline` VERDE.
+Ejecutado por ACTO MAESTRA35-N4 · SELLA-L1, rama `claude/maestra35-n4-launch-3xycdh`, contra `HEAD 792b7ef` (igual al SHA de redacción). `ADR-294` (renumerado de `293`: `PR #476`/`ACTO MAESTRA35-L3` fusionó primero y tomó `ADR-293`), `FP-241`/`FP-242` → `EJECUTADA`. Archivos tocados: `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/firmas-pendientes.tsv`, `forense/hallazgos.md`, `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_10.md`, `canon/registro-rotulos.tsv`. `tests/check.py --baseline` VERDE.

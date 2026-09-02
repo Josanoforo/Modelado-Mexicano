@@ -1148,6 +1148,185 @@ reglas_propuestas:
       de las cuatro = 1.000000.
 
   # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA35-L3 · CIVICA-TIPO-DE-BOLETA · 2/sep/2026 · firma c1
+  #
+  # ENTRADA NUEVA, AL PIE. Ninguna linea existente de este archivo se
+  # edita: ni civico.participacion.contingente (l. 594, MAESTRA34-L4)
+  # ni civico.participacion.contingente_escalonado_2016_2024 (l. 873,
+  # MAESTRA34-L6). Esas dos las gobierna MAESTRA35-N3.
+  #
+  # Firma c1 de mesa (2/sep/2026), verbatim: "sustituir la tendencia
+  # lineal por un efecto fijo de TIPO de anio federal (presidencial /
+  # intermedia / sin federal)" y "adquirir las 12 entidades tratadas
+  # que P1 no alcanzo, empezando por Hidalgo".
+  #
+  # Spec de dos commits: forense/notas/2026-09-02-MAESTRA35-L3-spec.md
+  # Censo de rutas P0:   forense/notas/2026-09-02-MAESTRA35-L3-P0-censo-rutas.md
+  # Tabla de identificacion: data/l3-tabla-identificacion-v1_0.tsv
+  # Salida cruda:        data/l3-resultados-tipo-boleta-v1_0.json
+  #
+  # milpa/tramite.yaml, forense/prereg-duelo-v2/ y data/p0-*.tsv INTOCADOS.
+  # Sin carga al motor.
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: civico.participacion.tipo_boleta_federal_2016_2024
+    misma_regla_motor: civico.participacion.contingente
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA  # DOS disparadores candidatos, no uno:
+        # (a) la jornada municipal coincide con una federal PRESIDENCIAL,
+        # (b) coincide con una federal INTERMEDIA.
+        # No se proponen al motor. El falsador salio NO-DISCRIMINA sobre el
+        # intervalo que la spec designo para decidir, y proponer disparadores
+        # sobre coeficientes cuyo IC conservador contiene cero seria cargar la
+        # lectura optimista, no la medicion. Lo que este acto SI deja firme es
+        # que el disparador de UNA sola via (concurrente si/no) que la entrada
+        # anterior midio NO es el objeto correcto: separa dos efectos de signo
+        # contrario que promediados se cancelan.
+    entonces:
+      - {conducta: participa_mas_si_concurre_con_presidencial, delta_pp: 3.154166, ic95_wild_cluster_entidad: [-0.195676, 6.504008], ic95_bootstrap_municipio: [2.475532, 3.831472], clase: "MEDIDO·Δ-identificado (DD escalonado por tipo de boleta federal, pp)"}
+      - {conducta: participa_menos_si_concurre_con_intermedia, delta_pp: -0.922905, ic95_wild_cluster_entidad: [-3.776924, 1.931114], ic95_bootstrap_municipio: [-1.765168, -0.057525], clase: "MEDIDO·Δ-identificado (DD escalonado por tipo de boleta federal, pp)"}
+      - {conducta: deriva_anual_pp, delta_pp: -0.444685, ic95_wild_cluster_entidad: [-1.182778, 0.293407], ic95_bootstrap_municipio: [-0.659816, -0.221219], clase: "MEDIDO·Δ-identificado (deriva secular, pp por anio); IDENTIFICADA CON RESERVA -- ver reserva_alpha"}
+    contraste_int_menos_pres:
+      delta_pp: -4.077071
+      ic95_wild_cluster_entidad: [-8.162206, 0.008064]
+      ic95_bootstrap_municipio: [-4.733230, -3.420151]
+      p_wild_cluster: 0.0920
+    veredicto_falsador: NO-DISCRIMINA
+    porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    falsable_si: >
+      Congelado en §1.9 de la spec ANTES de medir, sobre el IC95 wild cluster
+      por entidad, que es el conservador y el que la spec designo para decidir:
+      CORROBORADA si beta_pres > 0 con IC que excluye 0 Y beta_int < 0 con IC
+      que excluye 0; ACOTADA si solo una se sostiene; NO-DISCRIMINA si ambos IC
+      contienen 0; CONTRARIA si alguno sale con signo opuesto e IC fuera de 0,
+      con CONTRARIA por encima de ACOTADA. Los dos IC contienen 0, asi que el
+      veredicto es NO-DISCRIMINA.
+    cobertura:
+      entidades_en_el_panel: 6
+      entidades_tratadas_medibles: 5     # Coahuila, Nayarit, Zacatecas, Baja California, Chihuahua
+      entidades_tratadas_identificadas_por_P0: 14
+      meta_declarada_del_encargo: 8      # NO alcanzada: P3 corre ACOTADO y lo dice
+      municipios: 187
+      observaciones_municipio_x_transicion: 540
+      transiciones: 15
+      conglomerados: 6
+      p_minimo_alcanzable_wild_cluster: 0.03125   # 2 / 2^6
+      transiciones_por_tipo:
+        STAY_identifican_alpha: 2                  # Baja California 2016-2019, Durango 2016-2019
+        SWITCH_a_presidencial_identifican_beta_pres: 3   # Chihuahua, Coahuila, Zacatecas -> 2018
+        SWITCH_a_intermedia_identifican_beta_int: 2      # Baja California 2019-2021, Nayarit 2017-2021
+        CAMBIO_DE_TIPO_identifican_beta_pres_menos_beta_int: 8
+    variante_sin_alpha:
+      beta_pres_pp: 2.259506
+      beta_int_pp: -1.775800
+      por_que: >
+        La spec (§0.3) fijo el umbral ANTES de medir: si el panel queda con menos
+        de 3 transiciones STAY, alpha se declara identificada con reserva y la
+        variante sin alpha se reporta PASE LO QUE PASE. El panel quedo con 2.
+    reserva_alpha: >
+      alpha esta identificada por SEIS observaciones: los 5 municipios de Baja
+      California (2016->2019) y UNO de Durango (2016->2019, la capital, porque
+      el archivo que el IEPC publica para 2016 solo cubre ese municipio).
+      Estimada solo de esas dos transiciones da -1.8436 pp/anio; estimada
+      conjuntamente con todo el panel da -0.4447. La tabla de identificacion de
+      P0 (data/l3-tabla-identificacion-v1_0.tsv) midio que en TODO el universo
+      del calendario solo hay 5 transiciones STAY, y dos de ellas son de
+      entidades cuyo denominador no se pudo adquirir (Aguascalientes, Hidalgo).
+      Es una limitacion del universo, no de este acto.
+    reserva: >
+      (i) NO-DISCRIMINA no es lo mismo que cero. beta_pres vale +3.15 pp, su IC
+      de municipio [+2.48, +3.83] excluye cero, su signo es el mismo en las SEIS
+      columnas de sensibilidad (+2.76 a +4.20) y las tres transiciones de "local
+      sola -> presidencial" del panel dan +2.14 (Coahuila), +2.52 (Zacatecas) y
+      +2.82 (Chihuahua), en tres entidades distintas con tres anios de partida
+      distintos. El extremo inferior de su IC conservador es -0.196: falla por
+      dos decimas. (ii) beta_int es otra cosa: no es falta de potencia, CAMBIA DE
+      SIGNO entre subconjuntos (-2.98 en el panel de L6, +2.67 en las entidades
+      nuevas) y lo identifican DOS transiciones que se contradicen -- Nayarit
+      2017->2021 da -6.77 y Baja California 2019->2021 da +7.60. (iii) El
+      procedimiento designo el wild cluster para decidir y el bootstrap por
+      municipio discrepa (llevaria a CORROBORADA); la discrepancia se declara y
+      manda el wild cluster, como se fijo antes de medir. (iv) 2021 es, en esta
+      ventana, a la vez la eleccion intermedia y la de la pandemia: beta_int
+      carga las dos cosas y este diseno no las separa. Se escribio en §1.10 de la
+      spec antes de medir. (v) El diseno no separa el tipo de boleta de la
+      jerarquia del cargo ni de cualquier choque nacional que coincida con los
+      anios de ese tipo. (vi) ALCANCE: P0 identifico 14 entidades tratadas; la
+      meta declarada eran 8; P1 alcanzo 5. ACOTADO, declarado, sin imputar nada.
+    lo_que_si_queda_medido: >
+      Un resultado sobre el DISENO, que sobrevive al veredicto del falsador. El
+      beta ~ 0 de MAESTRA34-L6 no era un cero: era el promedio de dos efectos de
+      signo contrario. Y L6 midio que quitando Coahuila su beta se desplomaba a
+      -5.69; bajo la correccion c1, quitar Coahuila NO desploma nada -- beta_pres
+      pasa de +3.15 a +4.20 y beta_int de -0.92 a -0.97. La inestabilidad que L6
+      encontro era un artefacto de su especificacion de un solo beta. Ademas, la
+      tabla de identificacion de P0 midio que la correccion c1 RESCATA 54
+      transiciones del universo que L6 usaba como controles puros: las entidades
+      siempre concurrentes hacen presidencial -> intermedia -> presidencial y
+      bajo DeltaD = 0 no informaban, mientras que bajo DeltaD_pres/DeltaD_int SI
+      identifican beta_pres - beta_int. Esa es, medida, la razon mecanica de la
+      contaminacion de gamma que L6 §11 anticipo sin poder cuantificar.
+    descomposicion_del_delta_de_L4:
+      delta_L4_pp: 10.4790
+      transicion_equivalente: "2023 sin federal -> 2024 presidencial, hueco 1, dDpres +1, dDint 0"
+      alpha_por_hueco_pp: -0.444685
+      beta_pres_pp: 3.154166
+      suma_explicada_pp: 2.709480
+      resto_no_identificado_pp: 7.769520
+      porcentaje_explicado: 25.9
+    benchmarks:
+      alemania_leininger_rudolph_zittlau_2018_pp: 10
+      eeuu_hajnal_lewis_2003_pp: 36
+      maestra34_l4_entre_anios_pp: 10.4790
+      maestra34_l6_concurrencia_sin_tipo_pp: 0.0149
+      tepjf_1991_2018: NO-OBTENIDO
+      lectura: >
+        Ninguno de los dos benchmarks externos cae dentro de ninguno de los dos
+        intervalos: el +10 aleman queda fuera del IC de beta_pres [-0.20, +6.50]
+        y fuera del de beta_int [-3.78, +1.93]. El TEPJF sigue NO-OBTENIDO (P0 de
+        este acto no lo adquirio, mesa no lo deposito) y NO se cita de memoria.
+    contaminacion_declarada: >
+      ADR-46, escrita en §0.2 de la spec ANTES de congelarla y no borrada
+      despues. La sesion habia visto: (1) los resultados COMPLETOS de MAESTRA34-L6,
+      que estan publicados en el repo y que el encargo ORDENA reproducir como
+      control de regresion -- no hay ceguera posible sobre ese panel y se dice en
+      vez de rodearlo; (2) que la hipotesis a falsar y sus cuatro ramas vienen
+      firmadas por mesa, no elegidas por el ejecutor; (3) las dos primeras filas
+      municipales de la tabla HTML de Zacatecas 2016 (APOZOL LN 5408, APULCO LN
+      4278) con sus columnas de partido; (4) las primeras ~8 filas por casilla de
+      una hoja de Hidalgo 2020 y de un municipio de Hidalgo 2024, que ademas
+      quedan FUERA del universo; (5) el preambulo del PREP federal 2024 con sus
+      agregados nacionales. De Baja California y de Chihuahua -- las dos
+      entidades nuevas que mas pesan -- solo se habian visto las CABECERAS.
+      No se habia calculado ninguna participacion, diferencia, ATT ni intervalo
+      sobre ninguna entidad nueva antes del COMMIT-1.
+    defecto_de_fuente_declarado: >
+      El control §1.7.6 atrapo un defecto en Chihuahua 2016: la casilla JUAREZ
+      seccion 2186 C1 publica "Votacion Total" = 3 con "% de Particip." = 79.576
+      sobre un listado nominal de 377 -- el total real es 300, un digito perdido
+      en el archivo del IEECH. Es 1 casilla de 5 125. NO SE REPARO, porque el
+      procedimiento no se cambia despues de ver el numero; se cuantifico:
+      +0.0290 pp sobre Juarez y +0.00044 pp sobre la Dy media de la entidad.
+    ola_calibracion: "elecciones de ayuntamiento 2016-2024 de 6 entidades; calendario derivado de 30 acuerdos del Consejo General del INE (data/p0-calendario-ayuntamientos-v1_0.tsv)"
+    universo: "municipio x eleccion de ayuntamiento, con lista_nominal > 0 en TODAS las elecciones de la serie de su entidad. 187 municipios: Chihuahua 66, Zacatecas 58, Coahuila 38, Nayarit 19, Baja California 5, Durango 1. 540 observaciones municipio x transicion sobre 15 transiciones. Excluidos y NOMBRADOS: LA YESCA (Nayarit, extraordinaria 2021), SAN FELIPE y SAN QUINTIN (Baja California, municipios creados despues de 2016), OCAMPO (Chihuahua, sus 23 filas de 2024 traen lista nominal y ninguna cifra de votos), y 38 de los 39 municipios de Durango (el archivo de 2016 del IEPC cubre solo la capital). Ninguno imputado. 0 participaciones fuera de (0,100] en las 540 observaciones. Usos y costumbres de Oaxaca: NO-APLICA con conteo 0, satisfecho POR VACIO -- Oaxaca no entro al universo porque P1 solo localizo su pata 2016."
+    sha256_payload: "110c665048b906b9d8408ec6c52b2db3c7a1c11e5a068b419dd175690a38cdde"
+    payload_manifiesto_id: "ieez_zacatecas_2016_ayuntamientos_x_municipio_htm;ieez_zacatecas_2016_eleccion_x_casilla_xls;ieebc_bc_2016_municipes_x_casilla_xlsx;ieebc_bc_2019_computo_x_casilla_mun_xls;ieebc_bc_2021_computo_x_casilla_mun_xls;ieebc_bc_2024_computo_x_casilla_mun_xls;ieech_chihuahua_2016_ayuntamientos_x_casilla_xlsx;ieech_chihuahua_2018_ayuntamientos_x_casilla_xlsx;ieech_chihuahua_2021_ayuntamientos_x_casilla_xlsx;ieech_chihuahua_2024_ayuntamientos_x_casilla_xlsx;iec_coahuila_2017_ayuntamientos_x_municipio_xlsx;iec_coahuila_2018_ayuntamientos_x_municipio_xlsx;iec_coahuila_2021_ayuntamientos_x_municipio_xlsx;iec_coahuila_2024_ayuntamientos_x_municipio_xlsx;iee_nayarit_2017_ayuntamientos_xlsx;iee_nayarit_2021_ayuntamientos_xlsx;iee_nayarit_2024_ayuntamientos_xlsx;ieez_zacatecas_2018_ayto_x_casilla_xlsx;ieez_zacatecas_2021_computos_xlsx;ieez_zacatecas_2024_computos_xlsx;iepc_durango_2016_resultados_xlsx;iepc_durango_2019_x_casilla_zip"
+    fuente: ["forense/notas/2026-09-02-MAESTRA35-L3-spec.md", "forense/notas/2026-09-02-MAESTRA35-L3-P0-censo-rutas.md", "data/l3-tabla-identificacion-v1_0.tsv", "data/l3-resultados-tipo-boleta-v1_0.json"]
+    nota: >
+      Sin carga al motor: eso es sello de mesa. Sucesores declarados y NO
+      lanzados: (i) acto de propagacion en NUBE que selle lo que mesa firme de
+      esta entrada (patron MAESTRA35-N3); (ii) adquisicion de las 9 entidades
+      tratadas que siguen sin serie -- las recetas verificadas de Oaxaca 2016,
+      Tamaulipas y Veracruz quedaron escritas en data/curacion-registro/cola-adquisicion-registro.tsv;
+      (iii) TEPJF 1991-2018 por navegador, que la firma DS-a asigna a mesa.
+      Si mesa quisiera convertir esto a regla del motor, la conversion de una
+      tasa observada en pp a probabilidad de agente es firma de mesa, no del
+      acto (precedente L6 §5), y este acto NO la propone: con el falsador en
+      NO-DISCRIMINA, lo que corresponde es mas identificacion, no mas motor.
+
+  # ══════════════════════════════════════════════════════════════════
   # ACTO MAESTRA35-L1 · RECORRE-Y-SEGMENTA · 2/sep/2026
   # Tres entradas NUEVAS: los disparadores de tres reglas ya medidas por
   # MAESTRA34-L5, ahora MEDIDOS por ejes de segmentación. Ninguna se
