@@ -382,3 +382,185 @@ reglas_propuestas:
 # Detalle completo: forense/notas/2026-09-01-MAESTRA33-E18-P3-L1-spec.md
 # seccion "Regla 3".
 # ══════════════════════════════════════════════════════════════════
+
+# ══════════════════════════════════════════════════════════════════
+# ACTO MAESTRA34-L1 · MORDIDA-SERIE · 1/sep/2026
+#
+# Firmas de mesa (verbatim, mensaje único, 1/sep/2026): «D1 - a, D2-b,
+# D3-a, D4-a, D5-b si ya dio frutos se mantiene.» D2-b autoriza P1+P2+P3
+# completos; D3-a autoriza P4 (más abajo, en su propio bloque).
+#
+# P1 · CALIBRACIÓN ENCIG 2025 + P2 · SERIE HISTÓRICA 2011/2015/2019/2023.
+# Hallazgo ADR-270 (1/sep) citaba R=0.045–0.077 con solo TRA-M-03/05/07
+# (2013/2017/2021, ya públicas). Este acto añade 5 olas nuevas —
+# codificacion-R-v1_0.tsv filas TRA-M-08 (2011) .. TRA-M-12 (2025),
+# calibración, no celda del marco— y la serie queda COMPLETA en 8 olas:
+#
+#   2011: 6.83%  2013: 4.45%  2015: 4.77%  2017: 7.70%
+#   2019: 8.45%  2021: 7.18%  2023: 7.29%  2025: 8.51%
+#
+# Rango actualizado 4.45%–8.51% (antes 4.45%–7.70% con solo 3 olas). Las
+# 8 confirman lo mismo que ADR-270 ya establecía con 3: el 0.62 ASIGNADO
+# de milpa/tramite.yaml:40-50 (`paga_mordida`) no tiene apoyo empírico de
+# escala en NINGUNA de las 15 años de la serie ENCIG.
+#
+# REFUTADA-POR-R · milpa/tramite.yaml:40-50, p=0.62 ASIGNADO. Cita:
+# ADR-270 + TRA-M-03/05/07 (ya públicas) + TRA-M-08..12 (este acto).
+# CUERPO INTACTO en tramite.yaml (ADR-68(a), motor congelado) — este
+# acto solo documenta la refutación, no edita el motor. La entrada de
+# abajo (`_encig_serie`) es la que SUSTITUYE candidata, a diferencia de
+# la entrada `tramite.mordida.discrecional` de arriba (ENCUCI2020, FP-200=b,
+# ADR-236) que CONVIVE con el 0.62 sin sustituirlo — distinción explícita
+# del encargo (D2-b).
+#
+# MÉTODO, distinto de TRA-M-03/05/07: esas tres tienen fuente "R-json"
+# (estimador con EE_R/cv analíticos, script en R no localizado por este
+# acto). Las 5 olas nuevas usan bootstrap por conglomerado estratificado
+# (remuestreo de UPM dentro de estrato, 10000 réplicas, seed 42),
+# idéntico estimador a tools/tasas_base_ola6_activos.py (ACTO
+# MAESTRA32-E16/MAESTRA33-E18-P3). Los PUNTOS (p) son comparables entre
+# ambos métodos (misma razón ponderada); el ANCHO del IC95 puede diferir
+# levemente por el método de varianza — no se homologa en este acto
+# (fuera de perímetro), se declara.
+#
+# SEMÁNTICA DE VARIABLE, verificada contra el diccionario de datos
+# embebido en cada ZIP (no supuesta por nombre de columna): 2017-2023
+# rotulan P8_3_1 como "intento de apropiación de algún beneficio" —
+# primer ítem de una batería de tres (P8_3_1/_2/_3). 2015 ROMPE el
+# patrón de nombre: su P8_3 (sin sufijo) es el Sí/No de ese mismo ítem y
+# su P8_3_1 es un CONTEO de trámites (no Sí/No) — mismo patrón que
+# TRA-M-03/2013, que también usa P8_3 pelado. 2025 no trae diccionario
+# propio en el ZIP: se asume continuidad estructural con 2017-2023
+# (declarado, no confirmado contra diccionario propio). 2011 es
+# estructuralmente distinta de todas: tabla POR-TRÁMITE (no por-persona,
+# `03_ENCIG2011_tramites.dbf`, hasta 29 filas/persona), con una única
+# pregunta agregada P4_11 ("¿las condiciones lo llevaron a pagar una
+# mordida o soborno?") que no descompone en los tres ítems de 2015+ —
+# colapsada a persona (y=1 si CUALQUIER fila válida de la persona ='1'),
+# ver TRA-M-08. Detalle completo por ola en
+# codificacion-R-v1_0.tsv (TRA-M-08..12) y en el docstring de
+# tools/calibracion_mordida_encig_serie.py.
+# ══════════════════════════════════════════════════════════════════
+  - id: tramite.mordida.discrecional_encig_serie
+    enmienda_propuesta: true
+    nota_enmienda: >
+      Enmienda propuesta a la regla EXISTENTE de milpa/tramite.yaml:40-50
+      (misma id base tramite.mordida.discrecional). A diferencia de la
+      entrada `tramite.mordida.discrecional` de arriba (ENCUCI2020,
+      convive con el 0.62 ASIGNADO), esta entrada se propone como
+      SUSTITUTO del 0.62 -- ver cabecera REFUTADA-POR-R arriba. La
+      decisión de sustituir, complementar o descartar sigue siendo de
+      mesa (tier: PENDIENTE-DE-MESA).
+    situacion: realiza_tramite_gobierno
+    si:
+      disparadores: PENDIENTE-DE-MESA  # tasa base incondicional sobre el
+        # universo de personas 18+ con contacto/trámite reportado en los
+        # últimos 12 meses (por ola) -- no condicionada a sancion_creible/
+        # quien_observa como la regla ASIGNADA que enmienda; esos dos
+        # campos no tienen equivalente directo en las tablas ENCIG de
+        # sección VIII, mismo patrón que la enmienda ENCUCI2020 de arriba.
+    entonces:
+      - {conducta: paga_mordida_encig2025, p: 0.085118, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: tramite_normal_encig2025, p: 0.914882, clase: "MEDIDO·p(tasa base ponderada)"}
+    porque: {generador: [G1], mecanismo: "trampa social: cada quien paga porque supone que los demás pagan"}
+      # mecanismo copiado literal de la regla ASIGNADA que se enmienda --
+      # no se re-deriva ni se inventa uno distinto (mismo patrón que la
+      # enmienda ENCUCI2020 de arriba).
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["ENCIG2025", "ADR-270", "codificacion-R-v1_0.tsv::TRA-M-12"]
+    ola_calibracion: "ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)"
+    ic95: [0.080935, 0.089260]
+    n: 40042
+    ponderador: FAC_P18
+    universo: "sección VIII de ENCIG 2025 (encig2025_01_sec1_A_3_4_5_8_9_10.csv), variable P8_3_1 (y=1 si '1' Sí, y=0 si '2' No, 9 No-sabe y resto fuera); 40136 filas leídas, 94 fuera de universo, n_efectivo=40042. Semántica de P8_3_1 ('intento de apropiación de algún beneficio') asumida por continuidad estructural con 2017-2023, NO verificada contra diccionario propio de esta ola (el ZIP 2025 no trae uno) -- declarado. manifiesto.yaml (id encig25_base_datos_csv) nota que esta descarga cubre 'áreas urbanas de 100 mil habitantes o más (82 áreas)'; no se re-verificó en este acto si es restricción constante de diseño ENCIG desde 2011 o específica de 2025 -- reserva declarada, no resuelta."
+    serie_olas:
+      # p por ola, cada una con su propio IC95. NO se promedian (mismo
+      # principio que familia.seguro.volatilidad_ausencia_estado arriba).
+      # 2013/2017/2021 (TRA-M-03/05/07) YA eran públicas antes de este acto
+      # -- se citan aquí, no se re-miden. 2011/2015/2019/2023/2025 son
+      # nuevas de este acto (TRA-M-08/09/10/11/12).
+      - {ola: 2011, p: 0.068328, ic95: [0.060955, 0.076391], n: 23784, estratos: 116, upm: 6544,  ponderador: FAC_P18, metodo: "bootstrap-conglomerado (este acto)", variable: P4_11, sha256_payload: "5af6cb24a476a310e7906c42b1bb86d7084ba0a821226bac0bbbf4c0af6f7ca6", payload_manifiesto_id: encig_2011_base_datos_encig2011_dbf}
+      # sha256 de 2013/2017/2021 RE-CALCULADO por este acto contra el payload en data/raw/ (TRA-M-03/05/07.json no lo trae) -- no es un valor citado del recibo sellado.
+      - {ola: 2013, p: 0.044538, ic95: [0.038969, 0.050107], n: 22081, estratos: 180, upm: 6510,  ponderador: FAC_P18, metodo: "R-json (TRA-M-03, ya público)", variable: P8_3, sha256_payload: "48d29d560d3836309af61c4a82d46d8338d58ecb9d14d04ffc947c1e087caf1a", payload_manifiesto_id: encig_2013_encig13_base_datos_dbf}
+      - {ola: 2015, p: 0.047684, ic95: [0.043130, 0.052521], n: 26417, estratos: 268, upm: 7415,  ponderador: FAC_P18, metodo: "bootstrap-conglomerado (este acto)", variable: P8_3, sha256_payload: "656b258288ab67a378af3ea358bb2b8325251247e30cf82123d851c726203a0e", payload_manifiesto_id: encig2015_csv}
+      - {ola: 2017, p: 0.077024, ic95: [0.072671, 0.081378], n: 39085, estratos: 357, upm: 9138,  ponderador: FAC_P18, metodo: "R-json (TRA-M-05, ya público)", variable: P8_3_1, sha256_payload: "fdc7f1c761bf871872bd04080d59c2b58f38f78d6e6384b4a7df82e909d33465", payload_manifiesto_id: encig2017_csv}
+      - {ola: 2019, p: 0.084484, ic95: [0.079530, 0.089737], n: 39454, estratos: 358, upm: 9170,  ponderador: FAC_P18, metodo: "bootstrap-conglomerado (este acto)", variable: P8_3_1, sha256_payload: "61f49f6149729a7f22c4a64310dd894ec645ebe8b40110cac3fb32125a6ed979", payload_manifiesto_id: encig2019_csv}
+      - {ola: 2021, p: 0.071815, ic95: [0.067118, 0.076512], n: 39763, estratos: 353, upm: 9190,  ponderador: FAC_P18, metodo: "R-json (TRA-M-07, ya público)", variable: P8_3_1, sha256_payload: "c92ea34c7c57237c49ca3d8d99382e340b5939c371ce820332876f7c4c62c56a", payload_manifiesto_id: encig2021_csv}
+      - {ola: 2023, p: 0.072863, ic95: [0.068865, 0.076988], n: 38838, estratos: 347, upm: 8928,  ponderador: FAC_P18, metodo: "bootstrap-conglomerado (este acto)", variable: P8_3_1, sha256_payload: "4e3839cd90613fa7dd0f9a123d7636f017a2b8d08a98377a7a04459032bc2611", payload_manifiesto_id: encig2023_datosabiertos_csv}
+      - {ola: 2025, p: 0.085118, ic95: [0.080935, 0.089260], n: 40042, estratos: 442, upm: 9172,  ponderador: FAC_P18, metodo: "bootstrap-conglomerado (este acto)", variable: P8_3_1, sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12", payload_manifiesto_id: encig25_base_datos_csv}
+    hallazgo: "Serie completa de 8 olas (2011-2025, 15 años): rango 4.45%-8.51%, sin tendencia monótona clara (sube de 2013 a 2019, cae en 2021, sube de nuevo a 2025) pero SIEMPRE muy por debajo del 0.62 ASIGNADO -- confirma y extiende ADR-270 (que solo citaba 3 olas). 2011 (6.83%) usa un ítem estructuralmente distinto (P4_11 agregado por-trámite, colapsado a persona) que los demás (P8_3(_1), ítem específico 'intento de apropiación' dentro de una batería de tres) -- comparabilidad exacta entre 2011 y el resto NO está garantizada, se declara la diferencia de instrumento en vez de tratarlas como el mismo item. 2015 requirió corregir el nombre de columna contra el diccionario embebido (P8_3, no P8_3_1 -- ver cabecera). Reserva no resuelta: el ítem 'intento de apropiación' que esta serie mide es SOLO uno de tres (P8_3_1/_2/_3 desde 2017); no se midió la unión de los tres (fuera de perímetro de este acto, method idéntico a TRA-M-05/07 que tampoco la mide)."
+    sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+    payload_manifiesto_id: encig25_base_datos_csv
+
+# ══════════════════════════════════════════════════════════════════
+# P3 · CENSO tramite.mordida.con_registro · ACTO MAESTRA34-L1 · 1/sep/2026
+#
+# COMMIT-1 (veredicto A.4): ¿existe en ENCIG 2025 un ítem que distinga
+# trámite con registro/testigo/digital vs presencial-discrecional?
+# EXISTE-SATISFACE. Item: P7_3, sección VII ("¿A qué tipo de lugar
+# acudió o a qué medio recurrió para realizar el trámite o pago?"),
+# encig25_estructura_base_datos.pdf página 54 (extraído con pypdf,
+# 72 páginas leídas completas). Categorías: 1=instalaciones de gobierno,
+# 2=banco/super/tienda, 3=líneas telefónicas, 4=Internet (página web,
+# apps), 5=cajero automático/kiosco, 6=módulos/oficinas móviles,
+# 7=no concluido, 8=otro, 9=no sabe. Archivo examinado completo (A.13):
+# encig2025_04_sec_7.csv (124314 filas, todas leídas).
+#
+# COMMIT-2: mide p condicionada por canal, JOIN a nivel TRÁMITE (no
+# persona) entre sec_7 (P7_3, canal) y sec_8 (P8_4, "¿en cuál de los
+# trámites se suscitaron las circunstancias [de corrupción ya
+# declaradas en sección VIII]?", Sí/No por trámite). Detalle completo
+# de la deduplicación (10597 duplicados exactos en sec_7), el filtro de
+# universo (P8_4 solo válido para 21139 de 1083672 trámites -- gateado
+# por P8_3_1/_2/_3 a nivel persona) y la clasificación de categorías
+# (1=presencial vs 3/4/5=digital-registrado, excluyendo 2/6/7/8/9 por
+# ambigüedad) en codificacion-R-v1_0.tsv (TRA-M-13 digital, TRA-M-14
+# presencial) y en tools/calibracion_mordida_encig_serie.py.
+#
+# Ponderador es FAC_TRA (trámite), NO FAC_P18 (persona) -- unidad de
+# análisis distinta de P1/P2 arriba. Declarado, no se homologa: TRA-M-13/
+# 14 no son comparables punto-a-punto con la serie de 8 olas de arriba.
+# ══════════════════════════════════════════════════════════════════
+  - id: tramite.mordida.con_registro_encig2025
+    enmienda_propuesta: true
+    nota_enmienda: >
+      Enmienda propuesta a la regla EXISTENTE de milpa/tramite.yaml:87-95
+      (misma id base tramite.mordida.con_registro, p=0.12 ASIGNADO,
+      disparadores sancion_creible=true/quien_observa=registro_o_testigos).
+      Mapeo operacional declarado (juicio de este acto, no dictado por el
+      dato): "registro_o_testigos" ≈ canal con registro automático de la
+      transacción (P7_3 en {3 líneas telefónicas, 4 Internet, 5 cajero/
+      kiosco}); "nadie observa" (regla discrecional) ≈ P7_3=1 (ventanilla
+      presencial en instalaciones de gobierno). Es un mapeo razonable, no
+      el único posible -- declarado como tal, tier PENDIENTE-DE-MESA.
+    situacion: realiza_tramite_gobierno
+    si:
+      disparadores: PENDIENTE-DE-MESA  # ver nota_enmienda: el mapeo
+        # canal-digital=registro_o_testigos es un supuesto operacional de
+        # este acto, no un disparador verificado en el dato
+    entonces:
+      - {conducta: paga_mordida_canal_digital_encig2025, p: 0.027358, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
+      - {conducta: tramite_normal_canal_digital_encig2025, p: 0.972642, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
+    porque: {generador: [G1], mecanismo: "el registro rompe la trampa social"}
+      # mecanismo copiado literal de la regla ASIGNADA que se enmienda
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["ENCIG2025", "codificacion-R-v1_0.tsv::TRA-M-13", "codificacion-R-v1_0.tsv::TRA-M-14"]
+    ola_calibracion: "ENCIG 2025 (única ola con esta variable de canal examinada por este acto; no se buscó en 2021 por no hacer falta -- P7_3 ya EXISTE-SATISFACE en 2025)"
+    ic95: [0.018670, 0.037891]
+    n: 6337
+    ponderador: FAC_TRA
+    universo: "trámites (no personas) con P8_4 válido (0/1) Y P7_3 en {3,4,5} -- ver cabecera arriba y TRA-M-13 para detalle completo de join/dedup/filtro. n_efectivo=6337, estratos=361, UPM=2514."
+    companero_presencial:
+      # NO es una regla del motor -- cifra de comparación/contexto, misma
+      # unidad de análisis, ver TRA-M-14.
+      p: 0.116000
+      ic95: [0.102671, 0.131105]
+      n: 9937
+      estratos: 381
+      upm: 2992
+      lectura: "canal presencial (P7_3=1) mide 11.60% vs 2.74% del canal digital/registrado -- razón ~4.2x, IC95 SIN traslape, en la dirección que predice el mecanismo 'el registro rompe la trampa social' de la regla que se enmienda."
+    hallazgo: "Ambos ASIGNADOS de milpa/tramite.yaml (0.62 discrecional, 0.12 con_registro) quedan refutados en magnitud absoluta por esta medición trámite-nivel igual que por la serie persona-nivel de P1/P2 -- pero el ORDEN relativo que el motor asigna (discrecional > con_registro) SÍ se confirma empíricamente aquí, con brecha grande y significativa (11.60% vs 2.74%, IC95 sin traslape). Es el primer apoyo empírico directo -- de escala y de orden -- para el mecanismo 'trampa social: el registro rompe la trampa social' que la regla con_registro ya declaraba sin medir. Reserva: el mapeo canal→disparador (nota_enmienda) es un supuesto de este acto, no verificado contra el dato; P8_4 solo se pregunta a un subconjunto de trámites (los de personas que ya declararon alguna práctica de corrupción en sección VIII), así que esta p NO es 'p(mordida en este trámite | canal)' sobre el universo completo de trámites, sino sobre el subconjunto ya auto-seleccionado por P8_3 -- declarado, no resuelto por este acto."
+    sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+    payload_manifiesto_id: encig25_base_datos_csv
