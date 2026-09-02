@@ -35,7 +35,7 @@ Sucesores declarados, no lanzados: acto NUBE de propagación que cargue al motor
 ## CONSUMIDO
 
 Ejecutado el 2/sep/2026 en entorno **UBUNTU** por `ACTO MAESTRA35-L1 ·
-RECORRE-Y-SEGMENTA`, con la skill `/acto` (`ADR-237`). **PR #470**, `ADR-290`,
+RECORRE-Y-SEGMENTA`, con la skill `/acto` (`ADR-237`). **PR #471**, `ADR-290`,
 rama `acto/maestra35-l1-recorre-y-segmenta`. NO fusionado por el ejecutor: el
 merge es de mesa.
 
