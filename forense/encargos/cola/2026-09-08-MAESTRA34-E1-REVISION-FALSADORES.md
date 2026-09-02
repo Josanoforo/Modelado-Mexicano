@@ -1,8 +1,9 @@
-ESTADO: LISTO-NUBE
+ESTADO: CONSUMIDO
 ENTORNO: NUBE
 ENCOLADO: 2026-09-02 · gesto de encolado, precedente §1c del transfer maestra-34 (firma D4-a, 1/sep/2026)
 BITACORA:
 - 2026-09-02 · LISTO-NUBE · encolado por PR [COLA] encola MAESTRA34-N7 y MAESTRA34-E1. COMPUERTA propia del encargo: NO-LANZAR-ANTES-DE 2026-09-08 (fecha del sistema ≥ 2026-09-08, verifica `date -u`) Y digesto del día existente en forense/digesto/. Si falta cualquiera, cero commits.
+- 2026-09-02 · CONSUMIDO · ejecutado con la skill `/acto` en rama `claude/maestra34-e1-falsadores-ou8qcp`; compuerta sustituida (digesto del día) verificada CUMPLE; detalle en `forense/notas/2026-09-08-MAESTRA34-E1-revision-falsadores-cierre.md`, ADR-285.
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 
@@ -41,3 +42,15 @@ Nota de nombre de archivo: no se renombra a `2026-09-02-…` porque
 renombrar a una fecha anterior lo adelantaría en la cola, no lo dejaría
 al final; la condición para renombrar (dejarlo al final indebidamente)
 no se cumple.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA34-E1 · REVISION-FALSADORES` (`ADR-285`), rama
+`claude/maestra34-e1-falsadores-ou8qcp`, `PR #463`. Detalle:
+`forense/notas/2026-09-08-MAESTRA34-E1-revision-falsadores-cierre.md` —
+sufijo `-cierre` añadido sobre el nombre que P4 nombra arriba (mismo
+patrón que las demás notas de cierre, p. ej.
+`2026-09-01-MAESTRA34-L2-ARBITRA-v1_2-cierre.md`): el nombre sin sufijo
+colisiona en `T02` (nombre normalizado) contra este mismo archivo de
+cola, que CI trata como `FAIL` nuevo y bloquea el merge; con el sufijo,
+`tests/check.py --baseline` queda VERDE.

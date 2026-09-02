@@ -1123,6 +1123,12 @@ FALSADORES = (
      "coinciden por su causa"),
     ("`/despacha`", ".claude/commands/despacha.md",
      "hereda el falsador del runbook de despacho (§3)"),
+    ("`/revisa`", ".claude/commands/revisa.md",
+     "hereda el falsador del runbook de revisión (§3)"),
+    ("agente de revisión", "forense/agente-revisor-v1_0.md",
+     "(a) falso negativo: mesa fusiona un PR con un defecto que la lista "
+     "habría atrapado — se añade el punto, basta uno · (b) falso positivo: "
+     "el agente bloquea en falso tres veces — se revisa la lista entera"),
 )
 
 MESES_CASA = {"ene": 1, "feb": 2, "mar": 3, "abr": 4, "may": 5, "jun": 6,
