@@ -483,8 +483,8 @@ reglas_propuestas:
       # mecanismo copiado literal de la regla ASIGNADA que se enmienda --
       # no se re-deriva ni se inventa uno distinto (mismo patrón que la
       # enmienda ENCUCI2020 de arriba).
-    tier: PENDIENTE-DE-MESA
-    falsable_si: PENDIENTE-DE-MESA
+    tier: SELLADA  # ACTO MAESTRA34-N4 · PLOMERIA-v1_2, firma DM (1/sep/2026) -- sustituye a milpa/tramite.yaml:tramite.mordida.discrecional (enmienda_encig2025); tier FUERTE en el motor.
+    falsable_si: "Si al digitalizar y agregar testigos la mordida no baja, no es trampa social sino otra cosa"  # heredado del texto ASIGNADO que enmienda
     fuente: ["ENCIG2025", "ADR-270", "codificacion-R-v1_0.tsv::TRA-M-12"]
     ola_calibracion: "ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)"
     ic95: [0.080935, 0.089260]
@@ -561,8 +561,8 @@ reglas_propuestas:
       - {conducta: tramite_normal_canal_digital_encig2025, p: 0.972642, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
     porque: {generador: [G1], mecanismo: "el registro rompe la trampa social"}
       # mecanismo copiado literal de la regla ASIGNADA que se enmienda
-    tier: PENDIENTE-DE-MESA
-    falsable_si: PENDIENTE-DE-MESA
+    tier: SELLADA  # ACTO MAESTRA34-N4 · PLOMERIA-v1_2, firma DM (1/sep/2026) -- sustituye a milpa/tramite.yaml:tramite.mordida.con_registro (enmienda_encig2025); tier FUERTE en el motor.
+    falsable_si: "Si la digitalización no reduce la mordida, la hipótesis de trampa social falla"  # heredado del texto ASIGNADO que enmienda
     fuente: ["ENCIG2025", "codificacion-R-v1_0.tsv::TRA-M-13", "codificacion-R-v1_0.tsv::TRA-M-14"]
     ola_calibracion: "ENCIG 2025 (única ola con esta variable de canal examinada por este acto; no se buscó en 2021 por no hacer falta -- P7_3 ya EXISTE-SATISFACE en 2025)"
     ic95: [0.018670, 0.037891]

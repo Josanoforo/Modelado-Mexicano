@@ -239,6 +239,20 @@ Así el runner deja de romperse en cada versión del marco. Mientras tanto,
 `PAQUETE-L-v1_2` queda **completo y sellado pero no lanzable**, y la fila
 `L-v1_2` del tablero lo dice.
 
+**ENMIENDA (2/sep/2026, ACTO MAESTRA34-N4 · PLOMERIA-v1_2, P1, firma DR-a).**
+El parche de arriba **se aplicó**: mesa autorizó editar `runner_l_cli.py`
+(sellado por `MAESTRA33-E17`/`ADR-264`) para que derive la dimensión de la
+spec en vez de traer `11`/`176` fijo. Regresión obligatoria antes de
+commitear: `--dry-run` con `L-spec-v1_1.json` → 176 rutas (verde, sin
+cambio de comportamiento); con `L-spec-v1_2.json` → 224 rutas (verde,
+ya no aborta). Re-sellado: `sha256sum runner_l_cli.py` →
+`0c10e9ab95350ce2b3596216eeda0c23e270bce492177bd14c5657c6e28598e2`
+(el hash de `MAESTRA33-E17` de la tabla de §1 queda como historia).
+`PAQUETE-L-v1_2` pasa de **no lanzable** a **lanzable, mesa corre**
+(FP-228 actualizada) — ver
+`forense/notas/2026-09-02-maestra33-e17-l-enmienda-cli-cierre.md` para la
+enmienda paralela en la nota de cierre de `MAESTRA33-E17`.
+
 ---
 
 ## 7 · Rutas de salida

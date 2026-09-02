@@ -222,6 +222,100 @@ nada no es un negativo.
 
 ---
 
+## 2-bis · PRE-CHECK DE COMPUERTA — antes de marcar `EN-CURSO`
+
+Instaurado por `ACTO MAESTRA34-N7 · SKILLS-COLA-Y-ADQ`
+(`forense/encargos/2026-09-01-MAESTRA34-N7-SKILLS-COLA-Y-ADQ.md`). Defecto
+medido que lo crea: el bloque 3 tomaba el `LISTO-NUBE` más antiguo y lo
+marcaba `EN-CURSO` **sin leer su línea `COMPUERTA:`** — la sesión de `N3`
+paró dos veces el 1/sep con cero commits porque su compuerta no se
+cumplía, después de que ya se le hubiera marcado en curso. Verificar la
+compuerta es de este bloque, **antes** de tocar la cabecera; que `/acto`
+la re-verifique en su propio paso 2 (bloque 5 de abajo) no sustituye esto,
+porque para entonces el encargo ya está `EN-CURSO` y bloqueando la cola.
+
+Este bloque corre **por cada candidato** de la lista determinista del
+bloque 3, en orden, **antes** de marcar el primero que la pase.
+
+### Qué línea manda
+
+Lee el encargo completo. La línea `COMPUERTA:` **verbatim del cuerpo**
+manda, salvo que exista una **ENMIENDA DE DIRECCIÓN al pie del archivo**
+que declare una `COMPUERTA:` distinta — en ese caso, la **enmienda manda**
+sobre la del cuerpo original: es más reciente y es la última palabra de
+dirección sobre esa condición. Si hay varias enmiendas, gana la **última**
+línea `COMPUERTA:` que aparezca leyendo el archivo de arriba a abajo.
+
+`COMPUERTA: ninguna` pasa sin más comprobación — no hay condición que
+verificar, y no se inventa una.
+
+### Verificación MECÁNICA, por PRODUCTO
+
+Lo que la línea cite se comprueba con el comando que corresponde a **qué
+tipo de cosa** cita — nunca con una lectura ni con la impresión de qué
+"probablemente" pasó:
+
+- **Un archivo o su contenido** (p.ej. "scoreboard que traiga puntos L
+  sobre los cuatro dominios"): se lee el archivo real y se verifica el
+  contenido citado — `git show origin/main:<ruta>` más el `grep`/comando
+  que el propio encargo declare para reconocer que el contenido cumple.
+- **Un conteo** (p.ej. "N filas en OBTENIDO"): se deriva con el comando
+  que produce ese conteo hoy contra `origin/main`, no se copia el conteo
+  que el encargo escribió al redactarse — pudo moverse desde entonces.
+- **Un PR fusionado** (p.ej. "gateado a `MAESTRA34-N3` fusionado"): se
+  prueba con `git merge-base --is-ancestor <SHA-o-rama-del-PR>
+  origin/main` (código `0` = fusionado) o, si lo que hace falta es un
+  archivo concreto que ese PR debía traer, `git show
+  origin/main:<ruta>` y verificar su contenido. **Nunca** `grep` del
+  asunto de un commit (`git log --grep`) como prueba de que algo está
+  fusionado — un asunto que menciona un rótulo no es lo mismo que un
+  merge que lo trajo, y confundir los dos es exactamente el defecto que
+  `ADR-277` señala. Un commit con el rótulo en el mensaje puede vivir en
+  una rama nunca fusionada, o citar el rótulo de pasada sin ejecutarlo.
+- **Una fecha** (`NO-LANZAR-ANTES-DE <fecha>`): se compara la fecha de
+  hoy (la del tick, no la de redacción del encargo) contra esa fecha —
+  `hoy >= NO-LANZAR-ANTES-DE` para que pase.
+
+### Si NO se cumple
+
+**No marques nada.** El candidato se queda `LISTO-NUBE` — no se toca su
+cabecera, no se le abre rama, no se comitea nada sobre él. Pasa al
+**siguiente** `LISTO-NUBE` de la lista determinista del bloque 3 y repite
+este pre-check sobre ese; si ninguno pasa, termina en `COLA VACÍA` con
+cero commits, igual que si la lista completa estuviera vacía.
+
+Reporta, por cada candidato gateado que se saltó, en esta forma exacta:
+
+```
+«<rótulo> gateado: falta <qué>» — comando: <el comando que se corrió>
+```
+
+Un candidato gateado **no** es `PARO-REPORTADO` (eso requiere haberlo
+marcado `EN-CURSO` primero, bloque 6.b) ni `CANDADO CERRADO` (eso es de
+otra sesión trabajando) — es un tercer motivo, propio de este pre-check,
+para pasarlo de largo sin tocar su cabecera.
+
+### Si SÍ se cumple
+
+Sigue al bloque 3/4 normalmente: este es el candidato que se marca
+`EN-CURSO`.
+
+### Dry-run contra la cola actual
+
+Correr este bloque en seco sobre la cola de hoy (`git ls-tree -r
+--name-only origin/main -- forense/encargos/cola/`, filtrando
+`LISTO-NUBE`/`ENTORNO: NUBE` como en el bloque 3, y aplicando este
+pre-check a cada uno en el orden determinista) reporta, sin marcar nada,
+una línea `«<rótulo> gateado: falta <qué>»` por cada candidato cuya
+compuerta no se cumple hoy, y sigue al siguiente hasta encontrar uno que
+pase o agotar la lista — el mismo mecanismo descrito arriba, sin el paso
+de commitear. Esto describe el mecanismo, no un resultado congelado: qué
+encargos están hoy en la cola, y cuáles de ellos están gateados, es un
+hecho del árbol en el momento en que el dry-run corre, no algo que esta
+skill deba inventar de antemano.
+
+---
+
 ## 3 · SELECCIÓN — el más antiguo, determinista
 
 También de `origin/main`, por la misma razón:
@@ -233,12 +327,14 @@ for f in $(git ls-tree -r --name-only origin/main -- forense/encargos/cola/ | so
 done
 ```
 
-El **primero** de esa lista es el tuyo: el nombre de archivo empieza por
-la fecha (`AAAA-MM-DD-…`), así que `sort` ordena por antigüedad y los
-empates del mismo día se rompen por el resto del nombre. Es
-determinista, y esa es toda la gracia: dos sesiones que leyeran la misma
-cola elegirían el mismo encargo, así que la exclusión la da el candado,
-no la suerte.
+El **primero de esa lista que pase el pre-check de compuerta del bloque
+2-bis** es el tuyo: el nombre de archivo empieza por la fecha
+(`AAAA-MM-DD-…`), así que `sort` ordena por antigüedad y los empates del
+mismo día se rompen por el resto del nombre. Es determinista, y esa es
+toda la gracia: dos sesiones que leyeran la misma cola elegirían el mismo
+encargo, así que la exclusión la da el candado, no la suerte. Un
+candidato gateado (2-bis) no se salta por elección tuya: se pasa de largo
+porque su compuerta no se cumple hoy, y eso también se reporta.
 
 **Si la lista sale vacía → COLA VACÍA.** Termina con cero commits, y
 reporta las dos cosas: cuántos archivos examinaste (`A.13`) y qué hay

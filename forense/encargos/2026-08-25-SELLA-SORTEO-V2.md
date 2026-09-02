@@ -84,3 +84,7 @@ Lo que este acto deliberadamente NO hace
 No congela el marco y no corre el sorteo — sucesor declarado: acto `CONGELA-SORTEA` (dirección lo redacta en cuanto este sello fusione; ahí nace la semilla por §3 y se implementa el pseudocódigo contra los 3 casos de prueba antes del sorteo real). No toca `FP-133`, `forense/marco-candidatas-piloto-v1_0.tsv`, `milpa/`, `data/`, `corpus/`, `README.md`, ni el perímetro de Codex. No renombra el reglamento. No re-deriva el cuadro (ya lo hizo `ADR-175`; se cita). Si la suite rompe por algo fuera de esta lista, PARA y reporta en vez de ajustar fuera de perímetro.
 
 FIRMO FP-150: sello sorteo-v2 sobre cifras post-#345 (33/60=55.0% · 27/50=54.0%).
+
+## CONSUMIDO
+
+Derivación mecánica (`/tramite`, §3.3): único `Merge pull request #N` cuyo mensaje cita el rótulo `SELLA-SORTEO-V2` — `PR #351` (`b767ea6`), y ese merge toca este archivo además de otros 6 (`git diff --stat b767ea6^1 b767ea6`).
