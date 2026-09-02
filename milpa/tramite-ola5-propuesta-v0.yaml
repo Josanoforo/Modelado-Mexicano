@@ -680,8 +680,18 @@ reglas_propuestas:
   # Spec de dos commits: forense/notas/2026-09-02-MAESTRA34-L4-P3-spec.md
   # ══════════════════════════════════════════════════════════════════
 
+  # ══════════════════════════════════════════════════════════════════
+  # ENMIENDA in situ, ACTO MAESTRA35-N3 · SELLA-CIVICA-L6 · 2/sep/2026
+  # (firma b1, mesa, 2/sep/2026) -- ninguna otra linea de la entrada
+  # cambia; el comentario historico de DC1-d se conserva encima.
+  # Estampa A.10: la lectura de L4 fue correcta contra su universo (163
+  # municipios, un par de años) y quedó VENCIDA EN ALCANCE cuando L6 lo
+  # amplió a variación escalonada.
+  # ══════════════════════════════════════════════════════════════════
+
   - id: civico.participacion.contingente
-    situacion: APARCADA-HASTA-IDENTIFICACION  # DC1-d (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS
+    situacion: REFUTADA-COMO-CAUSAL  # firma b1 (mesa, 2/sep/2026), ACTO MAESTRA35-N3 -- ver sucesora civico.participacion.contingente_escalonado_2016_2024 (ACTO MAESTRA34-L6, ADR-288); el Δ +10.4790 pp se reinterpreta como efecto de anio; la asociacion medida sigue siendo cierta y se conserva integra
+      # DC1-d (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS -- situacion previa: APARCADA-HASTA-IDENTIFICACION
     si:
       disparadores: PENDIENTE-DE-MESA  # el dato no dicta una condicion logica de
         # disparo. Lo medido es una diferencia de tasa entre dos contextos
@@ -692,7 +702,7 @@ reglas_propuestas:
     porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
       # No se asigna generador: R7.1 vive en el modelo con mecanismo propio
       # ("peso percibido del acto") y este acto NO lo re-deriva ni inventa uno.
-    tier: MEDIA  # DC1-d (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS
+    tier: MEDIA  # DC1-d (mesa, 2/sep/2026), ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS -- tier de la ASOCIACION (DC1-d); la lectura causal es la refutada
     nota: >
       DC1-d (mesa, 2/sep/2026), firma verbatim "d": la cifra de MAESTRA34-L4
       (Δ +10.4790 pp, IC95 [+9.6890, +11.2652], n=163) se acepta como MEDIDA,
@@ -959,10 +969,19 @@ reglas_propuestas:
   # milpa/tramite.yaml y forense/prereg-duelo-v2/ INTOCADOS.
   # ══════════════════════════════════════════════════════════════════
 
+  # ══════════════════════════════════════════════════════════════════
+  # ENMIENDA in situ, ACTO MAESTRA35-N3 · SELLA-CIVICA-L6 · 2/sep/2026
+  # (firma a1, mesa, 2/sep/2026) -- cuerpo de la entrada de arriba
+  # (p, Δ, IC, n, fuente, ponderador, universo) intacto; solo cambian
+  # situacion, tier, y los dos campos nuevos reserva_tier/
+  # lectura_no_refutada. Estampa A.10: universo = 4 entidades / 2
+  # tratadas, SHA 11af678 (arbol de ACTO MAESTRA34-L6, ADR-288).
+  # ══════════════════════════════════════════════════════════════════
+
   - id: civico.participacion.contingente_escalonado_2016_2024
     misma_regla_motor: civico.participacion.contingente
     enmienda_a: civico.participacion.contingente
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # firma a1 (mesa, 2/sep/2026), ACTO MAESTRA35-N3 -- veredicto REFUTADA-COMO-CAUSAL aceptado; NO se carga al motor: un Δ en pp no es una probabilidad
     si:
       disparadores: PENDIENTE-DE-MESA  # el diseno soporta UN disparador binario
         # -- la eleccion municipal es concurrente con la federal, si/no -- y lo
@@ -973,7 +992,21 @@ reglas_propuestas:
     entonces:
       - {conducta: participa_mas_si_la_local_es_concurrente, delta_pp: 0.0149, clase: "MEDIDO·Δ-identificado (diferencias en diferencias escalonadas, puntos porcentuales)"}
     porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
-    tier: PENDIENTE-DE-MESA
+    tier: MEDIA  # firma a1 (mesa, 2/sep/2026), ACTO MAESTRA35-N3
+    reserva_tier: >
+      Firma a1 (mesa, 2/sep/2026), verbatim: "2 de 14 entidades tratadas; wild
+      cluster por entidad con p minimo alcanzable 0.125; el bootstrap por
+      municipio, que no sufre ese limite, tambien contiene cero". Cifras de
+      ADR-288, verbatim: beta = +0.0149 pp; IC95 wild cluster por entidad
+      [-3.3765, +3.4064]; IC95 bootstrap por municipio [-1.3865, +1.3312]; 4
+      entidades medibles de 14 tratadas, 2 tratadas; p minimo alcanzable del
+      wild cluster con 4 conglomerados 0.125.
+    lectura_no_refutada: >
+      Verbatim de ADR-288: "ATT(Coahuila 2017→2018, presidencial) = +2.4113 pp
+      IC95 [+1.53, +3.28]; ATT(Nayarit 2017→2021, intermedia) = −5.6914 pp
+      IC95 [−6.94, −4.38]; ninguno cruza cero" -- es la hipotesis que
+      MAESTRA35-L3 pre-registra, y viaja con la entrada para que nadie la lea
+      como "no pasa nada".
     veredicto_falsador: REFUTADA-COMO-CAUSAL
     nota: >
       Sucesor de MAESTRA34-L4. Diseno escalonado de la homologacion de
