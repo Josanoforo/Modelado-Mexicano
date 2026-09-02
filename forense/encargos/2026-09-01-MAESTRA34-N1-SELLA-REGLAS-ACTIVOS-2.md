@@ -43,3 +43,12 @@ FP/ADR CANDIDATOS: deriva al arrancar (FP máx hoy 223; ADR candidato 274, renum
 CONTADOR: reglas del motor 8 → N, declarado.
 LO QUE NO HACE: no mide; no edita valores medidos; no toca el marco ni corridas; no abre Ola 6.
 SUCESOR: MAESTRA34-N2 (compuerta = merge de este acto).
+
+## CONSUMIDO
+
+`ACTO MAESTRA34-N1 · SELLA-REGLAS-ACTIVOS-2`, 2/sep/2026, NUBE `cloud_default`, **`PR #449`**
+(https://github.com/Josanoforo/Modelado-Mexicano/pull/449), rama
+`claude/maestra34-n1-launch-z95iaw`. `ADR-274` (candidato, sin colisión conocida
+al fusionar). Carga verbatim las dos reglas D1-a a `milpa/tramite.yaml` (8 → 10
+reglas); `FP-224`/`FP-225`/`FP-226` abiertas, `FP-222` enmendada por D5-b.
+Detalle: `forense/notas/2026-09-02-maestra34-n1-sella-reglas-activos-2-cierre.md`.
