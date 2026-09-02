@@ -32,4 +32,4 @@ P2, P3, P4: sin cambio. Si ya tocaste instrucciones en un commit, revierte ese a
 
 ## CONSUMIDO
 
-Ejecutado 2/sep/2026 en NUBE con la skill `/acto` (`ADR-237`), `ADR-286`. `instrucciones-proyecto-v2_12.md` nunca se tocó (P1 amendado). Detalle en `canon/gobernanza-v1_15.md` (`ADR-286`) y `canon/registro-rotulos.tsv` (`MAESTRA34-N9`). Pendiente sin resolver: el encargo `MAESTRA34-L6` (P3) no se archivó en `forense/encargos/cola/` — su texto verbatim no llegó a esta sesión.
+Ejecutado 2/sep/2026 en NUBE con la skill `/acto` (`ADR-237`), `ADR-286`, `PR #466`. `instrucciones-proyecto-v2_12.md` nunca se tocó (P1 amendado). Detalle en `canon/gobernanza-v1_15.md` (`ADR-286`) y `canon/registro-rotulos.tsv` (`MAESTRA34-N9`). Pendiente sin resolver: el encargo `MAESTRA34-L6` (P3) no se archivó en `forense/encargos/cola/` — su texto verbatim no llegó a esta sesión.
