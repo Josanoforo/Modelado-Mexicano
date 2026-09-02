@@ -185,9 +185,9 @@ def dry_run() -> int:
         assert SISTEMA_MINIMO in comando
         n_rutas += 1
 
-    total_esperado = 11 * len(VARIANTES) * K_CORRIDAS_SELLADO
+    n_celdas = len(cargar_celdas_l_spec())
+    total_esperado = n_celdas * len(VARIANTES) * K_CORRIDAS_SELLADO
     assert n_rutas == total_esperado, f"{n_rutas} rutas construidas, esperaba {total_esperado}"
-    assert n_rutas == 176, f"esperaba 176, obtuve {n_rutas}"
 
     print(f"OK -- {len(n_prompts_vistos)} pares (celda, variante) x k={K_CORRIDAS_SELLADO} = {n_rutas} rutas de salida verificadas")
     print(f"OK -- esquema de salida (campos del piloto) verificado contra {ejemplos[0].name}")
@@ -195,7 +195,7 @@ def dry_run() -> int:
     print("OK -- ningún subproceso `claude` invocado en este acto (--dry-run)")
     primer_celda, _, primera_variante, _, _, primera_ruta = next(_iter_plan())
     print(f"Ejemplo de ruta: {primera_ruta.relative_to(ROOT)}")
-    print("Total esperado: 176")
+    print(f"Total esperado: {total_esperado}")
     return 0
 
 
@@ -216,7 +216,8 @@ def correr() -> int:
 
     total = n_hechas + n_saltadas
     print(f"OK -- {n_hechas} corridas nuevas, {n_saltadas} ya existentes (reanudación), total {total}")
-    assert total == 176, f"total {total} != 176 esperado"
+    total_esperado = len(cargar_celdas_l_spec()) * len(VARIANTES) * K_CORRIDAS_SELLADO
+    assert total == total_esperado, f"total {total} != {total_esperado} esperado"
     return 0
 
 

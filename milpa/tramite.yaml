@@ -42,8 +42,23 @@ reglas:
     si:
       disparadores: {sancion_creible: false, quien_observa: "nadie"}
     entonces:
+      # REFUTADA-POR-R (ACTO MAESTRA34-N4 · PLOMERIA-v1_2, 1-2/sep/2026,
+      # firma DM «Si eso da eso da») -- ADR-270/ADR-276: la serie de 8 olas
+      # ENCIG 2011-2025 (enmienda_encig2025 abajo) mide 4.45%-8.51%, siempre
+      # muy por debajo. Se conserva como historia -- NO se borra --, se
+      # sustituye por el MEDIDO de abajo en el cálculo del motor.
       - {conducta: paga_mordida, p: 0.62, clase: ASIGNADO}
       - {conducta: tramite_normal, p: 0.38, clase: ASIGNADO}
+      # ── ENMIENDA ENCIG2025 · firma DM (1/sep/2026) · ACTO MAESTRA34-N4 ──
+      # Sustituye el 0.62 ASIGNADO de arriba: serie de 8 olas ENCIG
+      # 2011-2025, ola 2025 (más reciente) como θ informativa, copiada
+      # verbatim de milpa/tramite-ola5-propuesta-v0.yaml:461+
+      # (id tramite.mordida.discrecional_encig_serie). Desambiguada por
+      # sufijo _encig2025 -- mismo patrón que la enmienda ENCUCI2020 de
+      # abajo, por la misma razón: emisor.py:476-479 devuelve la PRIMERA
+      # coincidencia.
+      - {conducta: paga_mordida_encig2025, p: 0.085118, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: tramite_normal_encig2025, p: 0.914882, clase: "MEDIDO·p(tasa base ponderada)"}
       # ── ENMIENDA ENCUCI · FP-200=b (mesa, 31/ago/2026) · ACTO MAESTRA32-E20 ──
       # Las DOS salidas de arriba NO se tocan: siguen ASIGNADAS y siguen siendo
       # lo que emitir_binaria devuelve para `paga_mordida`/`tramite_normal`
@@ -81,18 +96,68 @@ reglas:
       hallazgo: "0.1258 (IC95 [0.1163,0.1355]) es compatible con el techo de 13.38% ya citado en procedencia.yaml:785 (hitoD-R3.2, 'techo medido 13.38%, no 62%') sobre el mismo payload ENCUCI -- el 0.62 ASIGNADO de arriba sigue sin apoyo empirico de escala; esta enmienda no lo sustituye, convive con el."
       sha256_payload: "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
       payload_manifiesto_id: encuci2020_bd_dbf
+    enmienda_encig2025:
+      sellada_por: "firma DM (1/sep/2026, «Si eso da eso da») -- ACTO MAESTRA34-N4 · PLOMERIA-v1_2"
+      origen: "milpa/tramite-ola5-propuesta-v0.yaml:461-509 (id tramite.mordida.discrecional_encig_serie), copiada verbatim"
+      aplica_a: [paga_mordida_encig2025, tramite_normal_encig2025]
+      sustituye: "ASIGNADO 0.62/0.38 de arriba -- queda REFUTADA-POR-R, no se borra"
+      ola_calibracion: "ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)"
+      ic95: [0.080935, 0.089260]
+      n: 40042
+      ponderador: FAC_P18
+      universo: "sección VIII de ENCIG 2025 (encig2025_01_sec1_A_3_4_5_8_9_10.csv), variable P8_3_1 (y=1 si '1' Sí, y=0 si '2' No, 9 No-sabe y resto fuera); 40136 filas leídas, 94 fuera de universo, n_efectivo=40042."
+      serie_olas:
+        - {ola: 2011, p: 0.068328, ic95: [0.060955, 0.076391], n: 23784, estratos: 116, upm: 6544,  ponderador: FAC_P18, metodo: "bootstrap-conglomerado (ACTO MAESTRA34-L1)", variable: P4_11, sha256_payload: "5af6cb24a476a310e7906c42b1bb86d7084ba0a821226bac0bbbf4c0af6f7ca6", payload_manifiesto_id: encig_2011_base_datos_encig2011_dbf}
+        - {ola: 2013, p: 0.044538, ic95: [0.038969, 0.050107], n: 22081, estratos: 180, upm: 6510,  ponderador: FAC_P18, metodo: "R-json (TRA-M-03, ya público)", variable: P8_3, sha256_payload: "48d29d560d3836309af61c4a82d46d8338d58ecb9d14d04ffc947c1e087caf1a", payload_manifiesto_id: encig_2013_encig13_base_datos_dbf}
+        - {ola: 2015, p: 0.047684, ic95: [0.043130, 0.052521], n: 26417, estratos: 268, upm: 7415,  ponderador: FAC_P18, metodo: "bootstrap-conglomerado (ACTO MAESTRA34-L1)", variable: P8_3, sha256_payload: "656b258288ab67a378af3ea358bb2b8325251247e30cf82123d851c726203a0e", payload_manifiesto_id: encig2015_csv}
+        - {ola: 2017, p: 0.077024, ic95: [0.072671, 0.081378], n: 39085, estratos: 357, upm: 9138,  ponderador: FAC_P18, metodo: "R-json (TRA-M-05, ya público)", variable: P8_3_1, sha256_payload: "fdc7f1c761bf871872bd04080d59c2b58f38f78d6e6384b4a7df82e909d33465", payload_manifiesto_id: encig2017_csv}
+        - {ola: 2019, p: 0.084484, ic95: [0.079530, 0.089737], n: 39454, estratos: 358, upm: 9170,  ponderador: FAC_P18, metodo: "bootstrap-conglomerado (ACTO MAESTRA34-L1)", variable: P8_3_1, sha256_payload: "61f49f6149729a7f22c4a64310dd894ec645ebe8b40110cac3fb32125a6ed979", payload_manifiesto_id: encig2019_csv}
+        - {ola: 2021, p: 0.071815, ic95: [0.067118, 0.076512], n: 39763, estratos: 353, upm: 9190,  ponderador: FAC_P18, metodo: "R-json (TRA-M-07, ya público)", variable: P8_3_1, sha256_payload: "c92ea34c7c57237c49ca3d8d99382e340b5939c371ce820332876f7c4c62c56a", payload_manifiesto_id: encig2021_csv}
+        - {ola: 2023, p: 0.072863, ic95: [0.068865, 0.076988], n: 38838, estratos: 347, upm: 8928,  ponderador: FAC_P18, metodo: "bootstrap-conglomerado (ACTO MAESTRA34-L1)", variable: P8_3_1, sha256_payload: "4e3839cd90613fa7dd0f9a123d7636f017a2b8d08a98377a7a04459032bc2611", payload_manifiesto_id: encig2023_datosabiertos_csv}
+        - {ola: 2025, p: 0.085118, ic95: [0.080935, 0.089260], n: 40042, estratos: 442, upm: 9172,  ponderador: FAC_P18, metodo: "bootstrap-conglomerado (ACTO MAESTRA34-L1)", variable: P8_3_1, sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12", payload_manifiesto_id: encig25_base_datos_csv}
+      hallazgo: "Serie completa de 8 olas (2011-2025, 15 años): rango 4.45%-8.51%, sin tendencia monótona clara, SIEMPRE muy por debajo del 0.62 ASIGNADO -- confirma y extiende ADR-270 (que solo citaba 3 olas)."
+      sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+      payload_manifiesto_id: encig25_base_datos_csv
 
   - id: tramite.mordida.con_registro
     situacion: realiza_tramite_gobierno
     si:
       disparadores: {sancion_creible: true, quien_observa: "registro_o_testigos"}
     entonces:
+      # REFUTADA-POR-R (ACTO MAESTRA34-N4 · PLOMERIA-v1_2, firma DM «Si eso
+      # da eso da») -- se conserva como historia, no se borra.
       - {conducta: tramite_normal, p: 0.88, clase: ASIGNADO}
       - {conducta: paga_mordida, p: 0.12, clase: ASIGNADO}
+      # ── ENMIENDA ENCIG2025 · firma DM (1/sep/2026) · ACTO MAESTRA34-N4 ──
+      # Sustituye el 0.12 ASIGNADO de arriba. Mapeo canal↔disparador
+      # (aceptado por firma DM, ii): presencial (P7_3=1) ≈ "nadie observa"
+      # (disparador de la regla discrecional, no de esta); digital/
+      # registrado (P7_3 en {3,4,5}) ≈ "registro_o_testigos" (disparador
+      # de esta regla). Copiado verbatim de
+      # milpa/tramite-ola5-propuesta-v0.yaml:551-576
+      # (id tramite.mordida.con_registro_encig2025 + companero_presencial).
+      - {conducta: paga_mordida_encig2025_presencial, p: 0.116000, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
+      - {conducta: tramite_normal_encig2025_presencial, p: 0.884000, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
+      - {conducta: paga_mordida_encig2025_digital, p: 0.027358, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
+      - {conducta: tramite_normal_encig2025_digital, p: 0.972642, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
     porque: {generador: [G1], mecanismo: "el registro rompe la trampa social"}
     tier: FUERTE
     falsable_si: "Si la digitalización no reduce la mordida, la hipótesis de trampa social falla"
     fuente: ["ENCIG2023", "report:politica"]
+    enmienda_encig2025:
+      sellada_por: "firma DM (1/sep/2026, «Si eso da eso da») -- ACTO MAESTRA34-N4 · PLOMERIA-v1_2"
+      origen: "milpa/tramite-ola5-propuesta-v0.yaml:551-576 (id tramite.mordida.con_registro_encig2025), copiada verbatim"
+      aplica_a: [paga_mordida_encig2025_presencial, tramite_normal_encig2025_presencial, paga_mordida_encig2025_digital, tramite_normal_encig2025_digital]
+      sustituye: "ASIGNADO 0.12/0.88 de arriba -- queda REFUTADA-POR-R, no se borra"
+      mapeo_canal_disparador:
+        digital_registrado: {p7_3: [3, 4, 5], disparador: "registro_o_testigos", ic95: [0.018670, 0.037891], n: 6337, estratos: 361, upm: 2514}
+        presencial: {p7_3: [1], disparador: "nadie observa (comparación -- regla discrecional)", ic95: [0.102671, 0.131105], n: 9937, estratos: 381, upm: 2992}
+      ola_calibracion: "ENCIG 2025 (única ola con esta variable de canal examinada por MAESTRA34-L1; P7_3 EXISTE-SATISFACE en 2025)"
+      ponderador: FAC_TRA
+      universo: "trámites (no personas) con P8_4 válido (0/1) Y P7_3 en {1,3,4,5} -- join sec_7 (P7_3, canal) x sec_8 (P8_4, corrupción por trámite); detalle en codificacion-R-v1_0.tsv (TRA-M-13 digital, TRA-M-14 presencial)."
+      hallazgo: "canal presencial mide 11.60% vs 2.74% del canal digital/registrado -- razón ~4.2x, IC95 sin traslape, en la dirección que predice 'el registro rompe la trampa social'. Reserva: P8_4 solo se pregunta a un subconjunto ya auto-seleccionado por P8_3 -- no es p(mordida|canal) sobre el universo completo de trámites."
+      sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+      payload_manifiesto_id: encig25_base_datos_csv
 
   - id: tramite.gobierno_digital.coercitivo
     situacion: le_ofrecen_servicio_gobierno_digital

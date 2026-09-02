@@ -1,8 +1,9 @@
-ESTADO: LISTO-NUBE
+ESTADO: CONSUMIDO
 ENTORNO: NUBE
 ENCOLADO: 2026-09-02 · gesto de encolado, precedente §1c del transfer maestra-34 (firma D4-a, 1/sep/2026)
 BITACORA:
 - 2026-09-02 · LISTO-NUBE · encolado por PR [COLA] encola MAESTRA34-L1/N1/N2/L2/N3. COMPUERTA propia del encargo: MAESTRA34-N1 fusionado en origin/main con ≥1 regla nueva cargada en milpa/tramite.yaml (reglas del motor > 8) Y MAESTRA33-E21 fusionado (#446, ya lo está). Si falta cualquiera, cero commits.
+- 2026-09-02 · CONSUMIDO · ejecutado por `ACTO MAESTRA34-N2 · MARCO-M-v1_2`, PR `[MAESTRA34-N2] ACTO MAESTRA34-N2 · MARCO-M-v1_2` (`#450`, fusionado), `ADR-275`. Marca aplicada por P4(a) de `ACTO MAESTRA34-N4 · PLOMERIA-v1_2` — la ejecución ya tenía `## CONSUMIDO` abajo, pero el header `ESTADO` seguía `LISTO-NUBE` (`EXISTE-NO-SATISFACE`, verificación A.8 de `MAESTRA34-N4`); esta línea es la marca que faltaba.
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 

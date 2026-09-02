@@ -33,3 +33,23 @@ FP/ADR CANDIDATOS: deriva al arrancar (FP máx 228+, ADR 278 candidato, tras git
 CONTADOR: reglas del motor con p MEDIDA +2 (sustituciones) · prior ASIGNADO refutado y retirado del cálculo −2 · runner re-sellado +1 · cero estimaciones nuevas, declarado.
 LO QUE NO HACE: no corre L (es de mesa, FP-228); no extiende F-DD; no re-emite M; no toca corridas-R; no abre Ola 6.
 SUCESORES: mesa corre PAQUETE-L-v1_2 (224 llamadas) → PR [L] → extracción con tools/extrae_l_v1_1.py sin editar → MAESTRA34-N3 · MAESTRA34-N5 (Ola 6, gateado a N3) · MAESTRA34-E1 (8/sep) recibe la fila F-DD rangos.
+
+## CONSUMIDO
+
+Ejecutado 2/sep/2026 por `ACTO MAESTRA34-N4 · PLOMERIA-v1_2` con la skill `/acto`
+(`ADR-237`), entorno NUBE `cloud_default`, sin abrir microdato ni descargar nada.
+`COMPUERTA: ninguna` (declarada por el propio encargo, archivado por PR [COLA]
+fusionado por mesa).
+
+Cuatro commits, uno por pieza, en la rama `claude/maestra34-n4-plomeria-d6oz84`:
+`P1` re-sella `runner_l_cli.py` (firma DR-a); `P2` exclusión `DIN-M-01` (firma
+DF-a); `P3` sella la mordida ENCIG 2025 al motor (firma DM); `P4` trámite
+(cola N2, FP-190, `.claude/commands/acto.md` §2.2, firma DA-a). Cascada: `ADR-282`
+(renumerado de `ADR-281` al detectar colisión con `MAESTRA34-N7`/`PR #460`, que
+fusionó primero — regla de la casa: renumera quien fusiona segundo; misma
+colisión y misma regla en `FP-233`→`FP-234`), `canon/estado-programa-v1_10.md`
+L0 (281 → 282), `canon/registro-rotulos.tsv`, `forense/firmas-pendientes.tsv`
+(FP-228, FP-190, FP-234 nueva), `forense/hallazgos.md`.
+
+PR: `[MAESTRA34-N4] ACTO MAESTRA34-N4 · PLOMERIA-v1_2` (rama
+`claude/maestra34-n4-plomeria-d6oz84`).
