@@ -64,3 +64,11 @@ No mide; no carga la cívica al motor; no toca las entradas que L1/L3 escriben; 
 ## Sucesores declarados, no lanzados
 
 ACTO MAESTRA35-L3 · CIVICA-TIPO-DE-BOLETA (caja, c1).
+
+## CONSUMIDO
+
+Ejecutado por ACTO MAESTRA35-N3 · SELLA-CIVICA-L6 en la rama
+`claude/maestra35-n3-launch-vhtedz`, commits `b374b93` (0-bis A.3),
+`9da7b58` (P1-P3 + cascada: ADR-290, gobernanza, estado-programa L0,
+registro-rotulos, T25 sin novedad, `tests/check.py --baseline` VERDE).
+`PR #473`.
