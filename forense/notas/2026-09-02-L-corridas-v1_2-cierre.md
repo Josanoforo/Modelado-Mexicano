@@ -214,29 +214,50 @@ nomenclatura sin versión; **`FP-228`** pasa a `EJECUTADA`.
 
 ## §7 · Suite
 
-`python3 tests/check.py --baseline`, corrida sobre el árbol **ya fusionado con
+`python3 tests/check.py --baseline`, sobre el árbol **ya fusionado con
 `origin/main` = `4de5b1e`** (que trae `tests/check.py` modificado por los PR
-#463/#464, así que la cifra pre-merge no serviría). **Núcleo citado:
-`21 FAIL · 165 WARN`.**
+#463/#464, así que una cifra pre-merge no serviría).
 
-`LÍNEA BASE: ROJO — 2 entradas nuevas` frente a `tests/baseline.json`, y las
-dos son **`T27`** sobre `data/raices.local.yaml` y `data/secretos.local.yaml`.
-**Ninguna es de este acto:** los dos archivos están en `.gitignore`
-(líneas 7-8), no están versionados (`git ls-files --error-unmatch` falla en
-ambos) y son del **31/jul** y **6/ago**, anteriores a esta sesión. `T27` barre
-el árbol de trabajo incluyendo ignorados, así que aparecen al correr la suite
-en la caja UBUNTU y no aparecerían en un clon limpio. Ninguno entra al commit.
+**Núcleo citado, en los dos entornos, porque no dan lo mismo y la diferencia es
+del entorno, no del acto:**
 
-**Un FAIL sí fue de este acto, y se corrigió antes de commitear.** La primera
-pasada con las 128 capturas dentro dio `22 FAIL` con una entrada `T22` nueva
-contra esta misma nota: `§5` narraba el origen de `modelo_id` escribiendo el
-marcador de ranura en mayúsculas, y `_T22_MARCADOR_RANURA = re.compile(r"RANURA")`
-no distingue mención de uso — la frase que *explicaba* el valor precargado
-creaba un marcador de ranura sin fila que lo citara. Se reformuló la frase (no
-se tocó `tests/check.py` ni se pidió exención). Control tras la corrección:
-**0** aciertos de `RANURA` y **0** del patrón de pendiente-de-mesa en los
-cuatro archivos que este acto escribe, con control positivo del detector sobre
-una cadena de prueba (**1** acierto). Los 20/21 aciertos que quedan en
+| dónde | núcleo | línea base |
+| --- | --- | --- |
+| CI (clon limpio, autoritativo) | `20 FAIL · 165 WARN` | verde tras la corrección de abajo |
+| caja UBUNTU de la corrida | `21 FAIL · 165 WARN` | 2 entradas `T27`, ajenas |
+
+El `FAIL` de más en UBUNTU y las 2 entradas de línea base son **`T27`** sobre
+`data/raices.local.yaml` y `data/secretos.local.yaml`: gitignorados
+(`.gitignore:7-8`), no versionados (`git ls-files --error-unmatch` falla en
+ambos) y del **31/jul** y **6/ago**, anteriores a esta sesión. `T27` barre el
+árbol de trabajo incluyendo ignorados, así que salen en la caja y no en el CI.
+Ninguno entra al commit. **La cifra que manda es la del CI.**
+
+**Dos FAIL fueron de este acto, y los dos eran el mismo lazo.** `T22` marca un
+archivo cuando trae un marcador de ranura nuevo que ninguna fila del tablero
+cita; su detector es una expresión regular sobre esa palabra **en mayúsculas**,
+de modo que **no distingue mención de uso**. (1) La primera pasada con las 128
+capturas dentro dio `22 FAIL`: `§5` explicaba de dónde sale `modelo_id`
+escribiendo esa palabra en mayúsculas — la frase que *explicaba* el valor
+precargado creaba el marcador. Se reformuló. (2) El párrafo que narraba esa
+corrección **volvió a crear el defecto**, porque citaba la expresión regular y
+el nombre de su constante, y los dos contienen el token; el CI lo atrapó
+después de que este acto lo diera por cerrado. Se reformuló también, sin
+nombrar ninguno de los dos. Se corrige aquí sin tocar `tests/check.py` y sin
+pedir exención — el archivo del acto se adapta al test, no al revés.
+
+**Autocrítica del método, no sólo del texto.** El (2) no lo cazó la suite local
+sino el CI, y la causa es de procedimiento: la cifra que esta sección citaba se
+midió **antes** de escribir esta sección, y el commit salió sin volver a
+correrla. Un número de suite sólo vale para el árbol que lo produjo. Precedente
+ya registrado en la casa (`CAJA-RESIDUOS`, `FP63-CIERRA`, la ranura citada
+dentro de su propia compuerta): **el bloque que narra la corrección de un
+marcador es el sitio más probable donde el marcador reaparece.**
+
+**Control tras la corrección**, con el detector real importado de
+`tests/check.py` y control positivo sobre una cadena de prueba: **0** aciertos
+del marcador de ranura y **0** del patrón de pendiente-de-mesa en los cuatro
+archivos que este acto escribe. Los aciertos que quedan en
 `forense/firmas-pendientes.tsv` son las filas preexistentes del tablero, que es
 justamente la fuente que `T22` usa para dar por citado un marcador.
 
