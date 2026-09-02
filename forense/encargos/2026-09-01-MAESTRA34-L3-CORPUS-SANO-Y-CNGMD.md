@@ -26,3 +26,25 @@ FP/ADR CANDIDATOS: deriva al arrancar.
 CONTADOR: payloads OBTENIDO +N (hasta 87) · crosswalk +1 si llega · symlink −1 · cero estimaciones.
 LO QUE NO HACE: no mide; no carga reglas; no baja SICEE (es de mesa por navegador); no toca corridas ni el marco.
 SUCESORES: MAESTRA34-L4 · CIVICA-CONCURRENTE (si P4 lo redacta) · N5 (Ola 6) recibe CNGMD como fuente de cívico/autoridad local.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD`, 1/sep/2026, entorno
+UBUNTU, con la skill `/acto` (`ADR-237`). `ADR-280`. PR: ver la rama
+`acto/maestra34-l3-corpus-sano-y-cngmd`.
+
+Compuerta: **no se cumplía al arrancar** —`data/raw` dentro de
+`t27_infraestructura` = 0, no `>0`, con control positivo `grep -c 'T27'` = 3 sobre
+el mismo tramo— y se procedió por la cláusula que este mismo encargo escribe
+(*«si igual se lanza, reporta como A1 (ROJO-solo-T27) y no PARA»*).
+`MAESTRA34-N6` fusionó por `PR #456` a mitad de acto, con `P1`-`P4` ya completos
+y antes de la cascada, así que la compuerta quedó cumplida y la cascada cerró en
+**VERDE**, no en ROJO-solo-T27.
+
+P1 símlink eliminado (remedio (c) de `FP-229`, que cierra con los dos remedios
+aplicados) · P2 **87 de 87** payloads del CNGMD 2023 · P3 crosswalk
+sección→municipio **encontrado** por la ruta (iv), vintage 2016 · P4 veredicto
+**`EXISTE-NO-SATISFACE`**, `MAESTRA34-L4 · CIVICA-CONCURRENTE` **no redactado**
+porque el encargo lo condicionaba a `EXISTE-SATISFACE`.
+
+Detalle: `forense/notas/2026-09-01-MAESTRA34-L3-cierre.md`.

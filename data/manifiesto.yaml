@@ -16503,3 +16503,1979 @@
     0.2%, Institucion 0.3%, Componente 10.0%. Atribucion a Cero Desabasto derivada del contenido
     (CLUES + Institucion + Padecimiento + insumo, ventana 2019-2024 que empalma con la del
     CSV agregado), no observada en la URL de descarga.'
+
+- id: cngmd2023_m1_alcaldias_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m1, tabla `alcaldias` — 16 CSV bajo conjunto_de_datos/,
+    15 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m1/alcaldias_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m1/alcaldias_cngmd2023_csv.zip
+  sha256: 176f28a2b37b31efb31c6962ae8ce670514d86b908d798caa1dc3ac7057e84b9
+  tamano_bytes: 2849626
+  formato: 'ZIP (58 miembros: 16 CSV de conjunto_de_datos, 16 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    16 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m1_ayuntamientos_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m1, tabla `ayuntamientos` — 19 CSV bajo conjunto_de_datos/,
+    18 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m1/ayuntamientos_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m1/ayuntamientos_cngmd2023_csv.zip
+  sha256: f37ce9dd3ec964c5853717306d25d2bfe77ca1a19f487da39a47187c71d2cf24
+  tamano_bytes: 2835380
+  formato: 'ZIP (65 miembros: 19 CSV de conjunto_de_datos, 19 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    19 ficheros descomprimen con tamaño exacto. DEFECTO DE EMPAQUETADO EN ORIGEN, no de transporte:
+    zipfile.testzip() señala ''metadatos/'' porque el directorio central guarda ese nombre
+    con `/` y la cabecera local con `\` (BadZipFile: File name in directory ''metadatos/''
+    and header b''metadatos\\'' differ). Reproducible en las dos descargas. Es la entrada
+    de DIRECTORIO: los 19 ficheros reales están íntegros. Todos los miembros de este corpus
+    CNGMD usan `\` como separador.'
+
+- id: cngmd2023_m2_admi_rh_cap_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `admi_rh_cap` — 8 CSV bajo conjunto_de_datos/,
+    7 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/admi_rh_cap_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/admi_rh_cap_cngmd2023_csv.zip
+  sha256: 86ff86d6db1ef516a080438f2931d3520e4e2a4d77b85da83ff4bd25bce13e47
+  tamano_bytes: 1449131
+  formato: 'ZIP (34 miembros: 8 CSV de conjunto_de_datos, 9 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    8 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_admon_archiv_gest_docum_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `admon_archiv_gest_docum` — 19 CSV bajo
+    conjunto_de_datos/, 18 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de
+    DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/admon_archiv_gest_docum_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/admon_archiv_gest_docum_cngmd2023_csv.zip
+  sha256: 7ca7b7b7ac7948d965e59c7ccc219c56f6b18fd255e9fd07006ebe4ee2a72535
+  tamano_bytes: 2443447
+  formato: 'ZIP (61 miembros: 19 CSV de conjunto_de_datos, 19 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    19 ficheros descomprimen con tamaño exacto. DEFECTO DE EMPAQUETADO EN ORIGEN, no de transporte:
+    zipfile.testzip() señala ''metadatos/'' porque el directorio central guarda ese nombre
+    con `/` y la cabecera local con `\` (BadZipFile: File name in directory ''metadatos/''
+    and header b''metadatos\\'' differ). Reproducible en las dos descargas. Es la entrada
+    de DIRECTORIO: los 19 ficheros reales están íntegros. Todos los miembros de este corpus
+    CNGMD usan `\` como separador.'
+
+- id: cngmd2023_m2_ah_zr_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `ah_zr` — 7 CSV bajo conjunto_de_datos/,
+    6 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/ah_zr_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/ah_zr_cngmd2023_csv.zip
+  sha256: 2a752693326403b09ec1d469bf746f08eef328e91cef191392090aa1870a6a2b
+  tamano_bytes: 990070
+  formato: 'ZIP (30 miembros: 7 CSV de conjunto_de_datos, 8 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    7 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_aloja_asiste_social_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `aloja_asiste_social` — 5 CSV bajo conjunto_de_datos/,
+    4 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/aloja_asiste_social_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/aloja_asiste_social_cngmd2023_csv.zip
+  sha256: 8b8a82de224e1a0a6099e0dbea20da24d17dc3a3cc1dc7348011c37355a672f4
+  tamano_bytes: 1169792
+  formato: 'ZIP (22 miembros: 5 CSV de conjunto_de_datos, 5 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    5 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_carto_inspeccion_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `carto_inspeccion` — 22 CSV bajo conjunto_de_datos/,
+    21 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/carto_inspeccion_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/carto_inspeccion_cngmd2023_csv.zip
+  sha256: e34a8e751b5c9651697b48dc70ff64faeac03799877cf88c169108ac1e83913d
+  tamano_bytes: 2691716
+  formato: 'ZIP (67 miembros: 22 CSV de conjunto_de_datos, 23 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    22 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_conjunto_de_datos_rec_presup_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `conjunto_de_datos_rec_presup` — 7 CSV
+    bajo conjunto_de_datos/, 6 tablas en el índice interno 0_indice_cngmd2023.csv. Payload
+    de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/conjunto_de_datos_rec_presup_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/conjunto_de_datos_rec_presup_cngmd2023_csv.zip
+  sha256: f1b5b0b3481aab6babc35487b41a28f0e38b3514b40040353c2ee21b9a070f2e
+  tamano_bytes: 1976587
+  formato: 'ZIP (21 miembros: 7 CSV de conjunto_de_datos, 7 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    7 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_contrata_publica_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `contrata_publica` — 14 CSV bajo conjunto_de_datos/,
+    13 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/contrata_publica_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/contrata_publica_cngmd2023_csv.zip
+  sha256: 75ebca7c91196ef440749e072dd7a4a6b4b00cbbc1265d3d268870c845d333e7
+  tamano_bytes: 3746888
+  formato: 'ZIP (43 miembros: 14 CSV de conjunto_de_datos, 14 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    14 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_coord_inst_inter_info_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `coord_inst_inter_info` — 7 CSV bajo conjunto_de_datos/,
+    6 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/coord_inst_inter_info_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/coord_inst_inter_info_cngmd2023_csv.zip
+  sha256: 55f348542587c138dadccf82075aee515664a25fe9db7f9625b957fb9c7fe1db
+  tamano_bytes: 1303922
+  formato: 'ZIP (32 miembros: 7 CSV de conjunto_de_datos, 8 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    7 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_ctrl_inter_anticorr_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `ctrl_inter_anticorr` — 38 CSV bajo conjunto_de_datos/,
+    37 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/ctrl_inter_anticorr_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/ctrl_inter_anticorr_cngmd2023_csv.zip
+  sha256: 8fc08bca0c7c5172e7516b5393788d2b83aaccd1ccaf965f6992ce87a7c5e94e
+  tamano_bytes: 9445597
+  formato: 'ZIP (99 miembros: 38 CSV de conjunto_de_datos, 38 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    38 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_ejerc_func_espec_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `ejerc_func_espec` — 7 CSV bajo conjunto_de_datos/,
+    6 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/ejerc_func_espec_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/ejerc_func_espec_cngmd2023_csv.zip
+  sha256: 117adb5d6a974b92a94dde41d8db6498cb6ceb35cab48443b18f7caf91564dc1
+  tamano_bytes: 1806946
+  formato: 'ZIP (22 miembros: 7 CSV de conjunto_de_datos, 7 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    7 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_est_org_cap_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `est_org_cap` — 11 CSV bajo conjunto_de_datos/,
+    10 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/est_org_cap_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/est_org_cap_cngmd2023_csv.zip
+  sha256: 56754e206308fa317057d75c7d2729ec3b0e960802e142b15475421ea0a7dc92
+  tamano_bytes: 1125086
+  formato: 'ZIP (36 miembros: 11 CSV de conjunto_de_datos, 12 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    11 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_estr_ccm_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `estr_ccm` — 7 CSV bajo conjunto_de_datos/,
+    6 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/estr_ccm_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/estr_ccm_cngmd2023_csv.zip
+  sha256: 72933a858650224eacd3f896651ea64cada1afb3e37d7891a32927dd36eefe07
+  tamano_bytes: 989301
+  formato: 'ZIP (29 miembros: 7 CSV de conjunto_de_datos, 8 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    7 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_explo_esp_mat_entrecep_recpubmun_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `explo_esp_mat_entrecep_recpubmun` — 5
+    CSV bajo conjunto_de_datos/, 4 tablas en el índice interno 0_indice_cngmd2023.csv. Payload
+    de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/explo_esp_mat_entrecep_recpubmun_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/explo_esp_mat_entrecep_recpubmun_cngmd2023_csv.zip
+  sha256: 416b229cc09df06232efdeabee17bfeb3d9d11ca6346350308c14abd8542e398
+  tamano_bytes: 644615
+  formato: 'ZIP (18 miembros: 5 CSV de conjunto_de_datos, 5 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    5 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_imp_predial_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `imp_predial` — 8 CSV bajo conjunto_de_datos/,
+    7 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/imp_predial_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/imp_predial_cngmd2023_csv.zip
+  sha256: c3323b80f1b977e589eecb67c66ac8923b24c2bd9ccb239988fb79bde33754b1
+  tamano_bytes: 952189
+  formato: 'ZIP (32 miembros: 8 CSV de conjunto_de_datos, 9 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    8 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_ins_jur_plan_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `ins_jur_plan` — 8 CSV bajo conjunto_de_datos/,
+    7 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/ins_jur_plan_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/ins_jur_plan_cngmd2023_csv.zip
+  sha256: ab887740f28023470af33d323a487117a6befa7e036b043f55156c27667a6881
+  tamano_bytes: 1180080
+  formato: 'ZIP (33 miembros: 8 CSV de conjunto_de_datos, 9 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    8 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_inst_admonpub_munic_demarterri_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `inst_admonpub_munic_demarterri` — 3 CSV
+    bajo conjunto_de_datos/, 2 tablas en el índice interno 0_indice_cngmd2023.csv. Payload
+    de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/inst_admonpub_munic_demarterri_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/inst_admonpub_munic_demarterri_cngmd2023_csv.zip
+  sha256: c175fd3eb534d7015627f731084caca926af3a4ca0b9006716c5a774f8491177
+  tamano_bytes: 1154865
+  formato: 'ZIP (17 miembros: 3 CSV de conjunto_de_datos, 3 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_marco_regulatorio_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `marco_regulatorio` — 3 CSV bajo conjunto_de_datos/,
+    2 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/marco_regulatorio_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/marco_regulatorio_cngmd2023_csv.zip
+  sha256: 24cbe88fd3ec07c00a0fcdab6f0a09aa64fb3a01e8a900f1dfe12aa67542dded
+  tamano_bytes: 1526642
+  formato: 'ZIP (18 miembros: 3 CSV de conjunto_de_datos, 3 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_mov_info_admon_terr_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `mov_info_admon_terr` — 12 CSV bajo conjunto_de_datos/,
+    11 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/mov_info_admon_terr_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/mov_info_admon_terr_cngmd2023_csv.zip
+  sha256: e1e88fa43e98142a85f4e9fd2442dabaecc62a17ca10ffecee7c752398ff79b5
+  tamano_bytes: 2075624
+  formato: 'ZIP (46 miembros: 12 CSV de conjunto_de_datos, 13 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    12 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_panteones_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `panteones` — 19 CSV bajo conjunto_de_datos/,
+    18 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/panteones_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/panteones_cngmd2023_csv.zip
+  sha256: 042880a684bc408d4dc12a900f63364155dcc700e61084dac908627530441737
+  tamano_bytes: 7080366
+  formato: 'ZIP (52 miembros: 19 CSV de conjunto_de_datos, 19 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    19 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_participa_ciudadana_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `participa_ciudadana` — 3 CSV bajo conjunto_de_datos/,
+    2 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/participa_ciudadana_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/participa_ciudadana_cngmd2023_csv.zip
+  sha256: 6c602c2e8fc6e302dcb9d0c13d01ea21ae1a8561c6e3763b8236f85fb5376082
+  tamano_bytes: 893279
+  formato: 'ZIP (16 miembros: 3 CSV de conjunto_de_datos, 3 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_proceso_padron_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `proceso_padron` — 22 CSV bajo conjunto_de_datos/,
+    21 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/proceso_padron_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/proceso_padron_cngmd2023_csv.zip
+  sha256: f691b35dd656a256af1cd9fbafe5facac988a470fb5c1bc5390561afedd7ba30
+  tamano_bytes: 3124160
+  formato: 'ZIP (69 miembros: 22 CSV de conjunto_de_datos, 23 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    22 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_programas_sociales_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `programas_sociales` — 7 CSV bajo conjunto_de_datos/,
+    6 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/programas_sociales_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/programas_sociales_cngmd2023_csv.zip
+  sha256: 5befcb17560be24ba2f03a410ad6b0756a7ea46f6e757dd02fe63bd4a542cde4
+  tamano_bytes: 2325670
+  formato: 'ZIP (27 miembros: 7 CSV de conjunto_de_datos, 7 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    7 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_rec_huma_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `rec_huma` — 15 CSV bajo conjunto_de_datos/,
+    14 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/rec_huma_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/rec_huma_cngmd2023_csv.zip
+  sha256: d3551faf4bfe157cf1ed37ca48f2d704235792516a49e311a9eef45e80913e95
+  tamano_bytes: 4586129
+  formato: 'ZIP (53 miembros: 15 CSV de conjunto_de_datos, 15 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    15 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_rec_mate_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `rec_mate` — 5 CSV bajo conjunto_de_datos/,
+    4 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/rec_mate_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/rec_mate_cngmd2023_csv.zip
+  sha256: d995c241523fa056903be9163638be67fce93363976204ba58ed81dc6e43ef0f
+  tamano_bytes: 2040361
+  formato: 'ZIP (16 miembros: 5 CSV de conjunto_de_datos, 5 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    5 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_res_terr_ah_irreg_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `res_terr_ah_irreg` — 11 CSV bajo conjunto_de_datos/,
+    10 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/res_terr_ah_irreg_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/res_terr_ah_irreg_cngmd2023_csv.zip
+  sha256: c97f6beef260fd3964067a3b82aa55ce4a1a89bbb7549b7c3b6489b8ffcfbfb4
+  tamano_bytes: 1857456
+  formato: 'ZIP (42 miembros: 11 CSV de conjunto_de_datos, 12 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    11 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_servicios_publicos_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `servicios_publicos` — 10 CSV bajo conjunto_de_datos/,
+    9 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/servicios_publicos_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/servicios_publicos_cngmd2023_csv.zip
+  sha256: dd6f73651588a4bf815ee0eb816b297ff8b205417fd354ae78651823186a674b
+  tamano_bytes: 3587107
+  formato: 'ZIP (32 miembros: 10 CSV de conjunto_de_datos, 10 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    10 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_tics_resg_info_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `tics_resg_info` — 8 CSV bajo conjunto_de_datos/,
+    7 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/tics_resg_info_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/tics_resg_info_cngmd2023_csv.zip
+  sha256: a5764f0b022114f55a2add4d304a351e70cd2b7e222fc74794c23a61640eb419
+  tamano_bytes: 864234
+  formato: 'ZIP (29 miembros: 8 CSV de conjunto_de_datos, 9 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    8 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_tramites_servicios_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `tramites_servicios` — 7 CSV bajo conjunto_de_datos/,
+    6 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/tramites_servicios_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/tramites_servicios_cngmd2023_csv.zip
+  sha256: abdf0853f18578d0c5469d99c7c88a6bcbad5e587a487387d6abd0ad32e735b1
+  tamano_bytes: 2250619
+  formato: 'ZIP (24 miembros: 7 CSV de conjunto_de_datos, 7 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    7 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_transito_vialidad_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `transito_vialidad` — 4 CSV bajo conjunto_de_datos/,
+    3 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/transito_vialidad_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/transito_vialidad_cngmd2023_csv.zip
+  sha256: 5dd139effb79ec7298c2eaa3d26c9d6b991daebaf5e8713358ec2909b8b80d68
+  tamano_bytes: 708950
+  formato: 'ZIP (18 miembros: 4 CSV de conjunto_de_datos, 4 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    4 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_transp_acceinfo_protdatos_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `transp_acceinfo_protdatos` — 23 CSV bajo
+    conjunto_de_datos/, 22 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de
+    DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/transp_acceinfo_protdatos_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/transp_acceinfo_protdatos_cngmd2023_csv.zip
+  sha256: bc81a770fb811604b2350f2fd49166cd87d3accdff4900bdb96f1c4dff8eb256
+  tamano_bytes: 3417113
+  formato: 'ZIP (65 miembros: 23 CSV de conjunto_de_datos, 23 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    23 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m2_valua_vincula_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m2, tabla `valua_vincula` — 10 CSV bajo conjunto_de_datos/,
+    9 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m2/valua_vincula_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m2/valua_vincula_cngmd2023_csv.zip
+  sha256: ee91208e0a1a71ebc948ae7f3ebf552fa7ff7df8d7851fa297c9b41b3e416f40
+  tamano_bytes: 1229920
+  formato: 'ZIP (37 miembros: 10 CSV de conjunto_de_datos, 11 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    10 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_acade_insti_forma_poli_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `acade_insti_forma_poli` — 14 CSV bajo
+    conjunto_de_datos/, 13 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de
+    DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/acade_insti_forma_poli_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/acade_insti_forma_poli_cngmd2023_csv.zip
+  sha256: 2e8bb776cf828cf3d338688f5f44055fda6b4e9b3c7adf7dbd226912781ea350
+  tamano_bytes: 1933105
+  formato: 'ZIP (39 miembros: 14 CSV de conjunto_de_datos, 14 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    14 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_activ_estadis_geo_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `activ_estadis_geo` — 13 CSV bajo conjunto_de_datos/,
+    12 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/activ_estadis_geo_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/activ_estadis_geo_cngmd2023_csv.zip
+  sha256: fd200f6ed842a24a407b187f7040e7a8f8c4859fb1fc7251c1e088426a222dbd
+  tamano_bytes: 1325316
+  formato: 'ZIP (37 miembros: 13 CSV de conjunto_de_datos, 13 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    13 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_actuacion_dentro_sjp_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `actuacion_dentro_sjp` — 13 CSV bajo conjunto_de_datos/,
+    12 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/actuacion_dentro_sjp_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/actuacion_dentro_sjp_cngmd2023_csv.zip
+  sha256: b5e7913ecc672315ab1c12d24ee64401165b48286d57b81f4cc0479818e1f85d
+  tamano_bytes: 1488568
+  formato: 'ZIP (37 miembros: 13 CSV de conjunto_de_datos, 13 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    13 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_asegura_armas_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `asegura_armas` — 5 CSV bajo conjunto_de_datos/,
+    4 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/asegura_armas_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/asegura_armas_cngmd2023_csv.zip
+  sha256: 6e51d70ce75de9a9a2e44ff242a83405e7e62524258848280cea6a61763f233f
+  tamano_bytes: 1298720
+  formato: 'ZIP (18 miembros: 5 CSV de conjunto_de_datos, 5 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    5 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_asocia_interinst_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `asocia_interinst` — 3 CSV bajo conjunto_de_datos/,
+    2 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/asocia_interinst_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/asocia_interinst_cngmd2023_csv.zip
+  sha256: 4a3d37e05cc69443978aabeda83b2eb238fdb1b54e960253c7cd92f05e5cf219
+  tamano_bytes: 764909
+  formato: 'ZIP (12 miembros: 3 CSV de conjunto_de_datos, 3 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_atenc_victlocali_persdes_noloc_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `atenc_victlocali_persdes_noloc` — 13 CSV
+    bajo conjunto_de_datos/, 12 tablas en el índice interno 0_indice_cngmd2023.csv. Payload
+    de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/atenc_victlocali_persdes_noloc_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/atenc_victlocali_persdes_noloc_cngmd2023_csv.zip
+  sha256: a190a87ccb753f572cf7e02d0578909ee4bb8a3c2e9006021b94a433c03b835a
+  tamano_bytes: 2819754
+  formato: 'ZIP (38 miembros: 13 CSV de conjunto_de_datos, 13 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    13 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_bien_robado_recuperado_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `bien_robado_recuperado` — 5 CSV bajo conjunto_de_datos/,
+    4 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/bien_robado_recuperado_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/bien_robado_recuperado_cngmd2023_csv.zip
+  sha256: 513269eac48fcb5d9e1269d363387a3af8d0d3aefc58aeab2f82b0248d1eb11b
+  tamano_bytes: 928633
+  formato: 'ZIP (19 miembros: 5 CSV de conjunto_de_datos, 5 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    5 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_centro_aten_sist_telef_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `centro_aten_sist_telef` — 11 CSV bajo
+    conjunto_de_datos/, 10 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de
+    DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/centro_aten_sist_telef_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/centro_aten_sist_telef_cngmd2023_csv.zip
+  sha256: 9aa38ed80d450e93c495b62457b446fdf0c2fbd27f1db96b00b9e37ef74d4334
+  tamano_bytes: 1880633
+  formato: 'ZIP (33 miembros: 11 CSV de conjunto_de_datos, 11 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    11 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_certificaciones_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `certificaciones` — 3 CSV bajo conjunto_de_datos/,
+    2 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/certificaciones_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/certificaciones_cngmd2023_csv.zip
+  sha256: 02519b14f45c8fd4ce0a72fd7806a24c8791938b3f80d5c19a11aef08f914843
+  tamano_bytes: 492983
+  formato: 'ZIP (11 miembros: 3 CSV de conjunto_de_datos, 3 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_comis_honor_just_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `comis_honor_just` — 7 CSV bajo conjunto_de_datos/,
+    6 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/comis_honor_just_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/comis_honor_just_cngmd2023_csv.zip
+  sha256: 7a589d648f526d93108428c87ba745765c2eaa8b36eda1faecaf772424041da0
+  tamano_bytes: 1137251
+  formato: 'ZIP (23 miembros: 7 CSV de conjunto_de_datos, 7 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    7 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_dignificacion_servicio_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `dignificacion_servicio` — 7 CSV bajo conjunto_de_datos/,
+    6 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/dignificacion_servicio_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/dignificacion_servicio_cngmd2023_csv.zip
+  sha256: 7f351326dc0c37a5153c803501b5a392adbe9889643f770c3c078997591f7f6d
+  tamano_bytes: 1419915
+  formato: 'ZIP (27 miembros: 7 CSV de conjunto_de_datos, 7 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    7 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_enfrentamientos_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `enfrentamientos` — 6 CSV bajo conjunto_de_datos/,
+    5 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/enfrentamientos_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/enfrentamientos_cngmd2023_csv.zip
+  sha256: eaa5c826f3e9151cb3636fc27e4a691897e65dfc59bd9f5eb6c01879ce28378f
+  tamano_bytes: 931849
+  formato: 'ZIP (19 miembros: 6 CSV de conjunto_de_datos, 6 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    6 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_fortalec_polic_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `fortalec_polic` — 11 CSV bajo conjunto_de_datos/,
+    10 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/fortalec_polic_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/fortalec_polic_cngmd2023_csv.zip
+  sha256: 63cffa8eece90afc256cb47d1fe802fa026a9d309fa6ac834dbc7d0178ebae17
+  tamano_bytes: 3131595
+  formato: 'ZIP (32 miembros: 11 CSV de conjunto_de_datos, 11 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    11 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_infraestruc_segpub_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `infraestruc_segpub` — 19 CSV bajo conjunto_de_datos/,
+    18 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/infraestruc_segpub_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/infraestruc_segpub_cngmd2023_csv.zip
+  sha256: 190d3fec5571fdc2b9010d37e8955ecfa1deb439d034479e78659a478572b7f2
+  tamano_bytes: 1803252
+  formato: 'ZIP (47 miembros: 19 CSV de conjunto_de_datos, 19 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    19 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_operat_polic_patru_remi_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `operat_polic_patru_remi` — 6 CSV bajo
+    conjunto_de_datos/, 5 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS
+    que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara
+    y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/operat_polic_patru_remi_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/operat_polic_patru_remi_cngmd2023_csv.zip
+  sha256: 7ee3174283025d8b13d809a4d9dca087aeb40298de0d9e8af4e791c69a36b672
+  tamano_bytes: 1519751
+  formato: 'ZIP (21 miembros: 6 CSV de conjunto_de_datos, 6 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    6 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_pers_func_segpub_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `pers_func_segpub` — 15 CSV bajo conjunto_de_datos/,
+    14 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/pers_func_segpub_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/pers_func_segpub_cngmd2023_csv.zip
+  sha256: 8b17a37429238a80676dd9f8b7d5daf326bf84a621f8df5ebaaf8c551c08259c
+  tamano_bytes: 2508039
+  formato: 'ZIP (54 miembros: 15 CSV de conjunto_de_datos, 15 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    15 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_pers_lesi_fall_desa_noloc_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `pers_lesi_fall_desa_noloc` — 19 CSV bajo
+    conjunto_de_datos/, 18 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de
+    DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/pers_lesi_fall_desa_noloc_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/pers_lesi_fall_desa_noloc_cngmd2023_csv.zip
+  sha256: c8d56569f988dc684166d734dd7d28eb95a0384aefcd5445d813025bf31ade95
+  tamano_bytes: 1991442
+  formato: 'ZIP (53 miembros: 19 CSV de conjunto_de_datos, 19 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    19 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_puesta_disposi_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `puesta_disposi` — 34 CSV bajo conjunto_de_datos/,
+    33 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/puesta_disposi_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/puesta_disposi_cngmd2023_csv.zip
+  sha256: 9617e080d9e3e5d12e58c908f5965b2997a5ddcbb01aadb0f661625fd8794125
+  tamano_bytes: 15841110
+  formato: 'ZIP (87 miembros: 34 CSV de conjunto_de_datos, 34 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    34 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_rec_presup_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `rec_presup` — 9 CSV bajo conjunto_de_datos/,
+    8 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/rec_presup_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/rec_presup_cngmd2023_csv.zip
+  sha256: 2526da1a861e52380545f21485262a9b54b68d31c5a9ea32446b82f0553200a5
+  tamano_bytes: 1667189
+  formato: 'ZIP (25 miembros: 9 CSV de conjunto_de_datos, 9 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    9 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_regimen_discip_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `regimen_discip` — 17 CSV bajo conjunto_de_datos/,
+    16 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/regimen_discip_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/regimen_discip_cngmd2023_csv.zip
+  sha256: be8baa553e5fd540502664346cf77e4e394c1f9597a03e48091980c46f817f97
+  tamano_bytes: 2989776
+  formato: 'ZIP (49 miembros: 17 CSV de conjunto_de_datos, 17 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    17 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_sit_oper_ejec_func_segpub_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `sit_oper_ejec_func_segpub` — 5 CSV bajo
+    conjunto_de_datos/, 4 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS
+    que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara
+    y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/sit_oper_ejec_func_segpub_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/sit_oper_ejec_func_segpub_cngmd2023_csv.zip
+  sha256: 91c63e11ac4e5e8c3fc9fbd29bdca46cdaacf1906c072665b6eb61b4f7186ca8
+  tamano_bytes: 897754
+  formato: 'ZIP (19 miembros: 5 CSV de conjunto_de_datos, 5 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    5 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_transito_vialidad_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `transito_vialidad` — 4 CSV bajo conjunto_de_datos/,
+    3 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/transito_vialidad_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/transito_vialidad_cngmd2023_csv.zip
+  sha256: 04cd0f70cbf291e7a2e0da831598d1b8c3161215660ed12f40a6247bf10f185a
+  tamano_bytes: 682388
+  formato: 'ZIP (15 miembros: 4 CSV de conjunto_de_datos, 4 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    4 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m3_unidad_especializada_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m3, tabla `unidad_especializada` — 39 CSV bajo conjunto_de_datos/,
+    38 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de DATOS que la orden de
+    descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados) declara y que hasta
+    este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m3/unidad_especializada_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m3/unidad_especializada_cngmd2023_csv.zip
+  sha256: c07ae92aeb7b6093fa29eed0e45ce582eea9b36f688af52d8254704eea491429
+  tamano_bytes: 3177894
+  formato: 'ZIP (109 miembros: 39 CSV de conjunto_de_datos, 39 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    39 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m4_atlas_riesgo_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m4 · Protección civil, tabla `atlas_riesgo` — 6 CSV
+    bajo conjunto_de_datos/, 5 tablas en el índice interno 0_indice_cngmd2023.csv. Payload
+    de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m4/atlas_riesgo_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m4/atlas_riesgo_cngmd2023_csv.zip
+  sha256: ce7b29b4d8c275abe48d8f1b21fdfc4080a35172246524e2b021fcb35c42371c
+  tamano_bytes: 681934
+  formato: 'ZIP (22 miembros: 6 CSV de conjunto_de_datos, 6 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    6 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m4_capac_difus_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m4 · Protección civil, tabla `capac_difus` — 5 CSV
+    bajo conjunto_de_datos/, 4 tablas en el índice interno 0_indice_cngmd2023.csv. Payload
+    de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m4/capac_difus_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m4/capac_difus_cngmd2023_csv.zip
+  sha256: 968d025d7525e1802cc69a8874360836129266f6c8a6858d9415c051bbf0b824
+  tamano_bytes: 1510596
+  formato: 'ZIP (18 miembros: 5 CSV de conjunto_de_datos, 5 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    5 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m4_consejo_comite_protec_civhom_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m4 · Protección civil, tabla `consejo_comite_protec_civhom`
+    — 4 CSV bajo conjunto_de_datos/, 3 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m4/consejo_comite_protec_civhom_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m4/consejo_comite_protec_civhom_cngmd2023_csv.zip
+  sha256: e20d9a2db2c8c27b0e11ae9087c8619831a7bdb027dc7e5cdfe57d7c04e6e204
+  tamano_bytes: 487982
+  formato: 'ZIP (16 miembros: 4 CSV de conjunto_de_datos, 4 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    4 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m4_estruc_orga_capac_ope_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m4 · Protección civil, tabla `estruc_orga_capac_ope`
+    — 10 CSV bajo conjunto_de_datos/, 9 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m4/estruc_orga_capac_ope_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m4/estruc_orga_capac_ope_cngmd2023_csv.zip
+  sha256: ac63fd6db7b354420597acccd5e31448434bc52a126a92c526a229de7e9e5aac
+  tamano_bytes: 3135193
+  formato: 'ZIP (31 miembros: 10 CSV de conjunto_de_datos, 10 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    10 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m4_evento_atendido_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m4 · Protección civil, tabla `evento_atendido` —
+    12 CSV bajo conjunto_de_datos/, 11 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m4/evento_atendido_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m4/evento_atendido_cngmd2023_csv.zip
+  sha256: 6286890a3645d3b46c59573964b8fdeccde248411ffc273a60497eba3ebb223e
+  tamano_bytes: 2395741
+  formato: 'ZIP (33 miembros: 12 CSV de conjunto_de_datos, 12 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    12 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m4_fomento_autoprot_civil_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m4 · Protección civil, tabla `fomento_autoprot_civil`
+    — 3 CSV bajo conjunto_de_datos/, 2 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m4/fomento_autoprot_civil_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m4/fomento_autoprot_civil_cngmd2023_csv.zip
+  sha256: c35b5878028f076645d4e1cfe48557e50ae7c6180013b69f1c26ecb705a734cb
+  tamano_bytes: 315122
+  formato: 'ZIP (12 miembros: 3 CSV de conjunto_de_datos, 3 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m4_marco_norma_prog_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m4 · Protección civil, tabla `marco_norma_prog` —
+    12 CSV bajo conjunto_de_datos/, 11 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m4/marco_norma_prog_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m4/marco_norma_prog_cngmd2023_csv.zip
+  sha256: 65fcce3dc2e33af652d6ca6d6c381bbd611d96ad402501572972173daafcfa75
+  tamano_bytes: 1887135
+  formato: 'ZIP (39 miembros: 12 CSV de conjunto_de_datos, 12 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    12 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m4_rec_huma_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m4 · Protección civil, tabla `rec_huma` — 30 CSV
+    bajo conjunto_de_datos/, 29 tablas en el índice interno 0_indice_cngmd2023.csv. Payload
+    de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m4/rec_huma_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m4/rec_huma_cngmd2023_csv.zip
+  sha256: 2a7e3c190e79a84611122486ac4d66e77866fb0428ece45749f84345285e80b2
+  tamano_bytes: 4246684
+  formato: 'ZIP (92 miembros: 30 CSV de conjunto_de_datos, 30 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    30 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m4_rec_presup_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m4 · Protección civil, tabla `rec_presup` — 7 CSV
+    bajo conjunto_de_datos/, 6 tablas en el índice interno 0_indice_cngmd2023.csv. Payload
+    de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m4/rec_presup_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m4/rec_presup_cngmd2023_csv.zip
+  sha256: fa8ea7031f061b92134488c4d1c6adbe9225bd24fcb1f90e2a422c2156ce7025
+  tamano_bytes: 1509693
+  formato: 'ZIP (24 miembros: 7 CSV de conjunto_de_datos, 7 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    7 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m5_infraestructura_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m5 · Justicia cívica, tabla `infraestructura` — 21
+    CSV bajo conjunto_de_datos/, 20 tablas en el índice interno 0_indice_cngmd2023.csv. Payload
+    de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m5/infraestructura_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m5/infraestructura_cngmd2023_csv.zip
+  sha256: 212d723390501fe051fa77015cc094e1d947358be89b70d52e43ee4af06a397c
+  tamano_bytes: 3216376
+  formato: 'ZIP (52 miembros: 21 CSV de conjunto_de_datos, 21 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    21 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m5_proba_pers_infrac_falle_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m5 · Justicia cívica, tabla `proba_pers_infrac_falle`
+    — 6 CSV bajo conjunto_de_datos/, 5 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m5/proba_pers_infrac_falle_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m5/proba_pers_infrac_falle_cngmd2023_csv.zip
+  sha256: 13fbf49ebe99438cacf5c198e49e9e12e99ee910072b1e2ad78e621827f411e6
+  tamano_bytes: 1124918
+  formato: 'ZIP (20 miembros: 6 CSV de conjunto_de_datos, 6 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    6 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m5_proced_admon_deter_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m5 · Justicia cívica, tabla `proced_admon_deter`
+    — 17 CSV bajo conjunto_de_datos/, 16 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m5/proced_admon_deter_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m5/proced_admon_deter_cngmd2023_csv.zip
+  sha256: ec2c3d1709bb977b60580727ab2037d3941c65186fb06d13644c35b55af164de
+  tamano_bytes: 4373523
+  formato: 'ZIP (42 miembros: 17 CSV de conjunto_de_datos, 17 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    17 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m5_proced_admon_present_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m5 · Justicia cívica, tabla `proced_admon_present`
+    — 26 CSV bajo conjunto_de_datos/, 25 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m5/proced_admon_present_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m5/proced_admon_present_cngmd2023_csv.zip
+  sha256: 25b800541608fe3acc26cff529895b0a190a66dc21f368bcd4ebf9e1584cade0
+  tamano_bytes: 6172000
+  formato: 'ZIP (68 miembros: 26 CSV de conjunto_de_datos, 26 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    26 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m5_rec_huma_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m5 · Justicia cívica, tabla `rec_huma` — 14 CSV bajo
+    conjunto_de_datos/, 13 tablas en el índice interno 0_indice_cngmd2023.csv. Payload de
+    DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m5/rec_huma_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m5/rec_huma_cngmd2023_csv.zip
+  sha256: a9a1cf16bdf15a9ed210b8484d59b2d09237b26783c0e217608cf5d61f047165
+  tamano_bytes: 4327424
+  formato: 'ZIP (52 miembros: 14 CSV de conjunto_de_datos, 14 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    14 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m5_sitoper_ejerfun_imple_modhom_justciv_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m5 · Justicia cívica, tabla `sitoper_ejerfun_imple_modhom_justciv`
+    — 7 CSV bajo conjunto_de_datos/, 6 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m5/sitoper_ejerfun_imple_modhom_justciv_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m5/sitoper_ejerfun_imple_modhom_justciv_cngmd2023_csv.zip
+  sha256: d950226169c1f46adc10543fc691126a2dbabb45b8c36d804dc81858b9927be6
+  tamano_bytes: 779367
+  formato: 'ZIP (25 miembros: 7 CSV de conjunto_de_datos, 7 de diccionario, 1 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    7 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m6_administracion_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m6 · Agua potable y saneamiento, tabla `administracion`
+    — 6 CSV bajo conjunto_de_datos/, 5 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m6/administracion_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m6/administracion_cngmd2023_csv.zip
+  sha256: 1838f7cc91544aada58139b5464aaec5411df27b968674204b83635349f9af8a
+  tamano_bytes: 378747
+  formato: 'ZIP (36 miembros: 6 CSV de conjunto_de_datos, 7 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    6 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m6_aguas_residuales_sin_tratamiento_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m6 · Agua potable y saneamiento, tabla `aguas_residuales_sin_tratamiento`
+    — 3 CSV bajo conjunto_de_datos/, 2 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m6/aguas_residuales_sin_tratamiento_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m6/aguas_residuales_sin_tratamiento_cngmd2023_csv.zip
+  sha256: 999e74c079bc0a08c176906dd2d53dced43ccd77bd6da08c73d674fc0643c834
+  tamano_bytes: 128494
+  formato: 'ZIP (17 miembros: 3 CSV de conjunto_de_datos, 4 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m6_capta_agua_otros_recursos_hidricos_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m6 · Agua potable y saneamiento, tabla `capta_agua_otros_recursos_hidricos`
+    — 2 CSV bajo conjunto_de_datos/, 1 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m6/capta_agua_otros_recursos_hidricos_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m6/capta_agua_otros_recursos_hidricos_cngmd2023_csv.zip
+  sha256: 5fe8fafb2159939503b47ce9a5b39d3e9e96fac352e4ccc5c651e5d273d64b59
+  tamano_bytes: 60471
+  formato: 'ZIP (19 miembros: 2 CSV de conjunto_de_datos, 3 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    2 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m6_captacion_agua_abastecimiento_pub_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m6 · Agua potable y saneamiento, tabla `captacion_agua_abastecimiento_pub`
+    — 2 CSV bajo conjunto_de_datos/, 1 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m6/captacion_agua_abastecimiento_pub_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m6/captacion_agua_abastecimiento_pub_cngmd2023_csv.zip
+  sha256: 354996b8b30db092e1f1502ec74f561329e1e08be187232303bc34c3df4d7fe9
+  tamano_bytes: 445281
+  formato: 'ZIP (19 miembros: 2 CSV de conjunto_de_datos, 3 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    2 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m6_difusion_informacion_servicio_agua_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m6 · Agua potable y saneamiento, tabla `difusion_informacion_servicio_agua`
+    — 2 CSV bajo conjunto_de_datos/, 1 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m6/difusion_informacion_servicio_agua_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m6/difusion_informacion_servicio_agua_cngmd2023_csv.zip
+  sha256: fa95320c4ea2dac7aa0edb433212cd27b89897e2d83986bfcfe3346ecd38d46d
+  tamano_bytes: 84098
+  formato: 'ZIP (17 miembros: 2 CSV de conjunto_de_datos, 3 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    2 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m6_drenaje_y_alcantarillado_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m6 · Agua potable y saneamiento, tabla `drenaje_y_alcantarillado`
+    — 4 CSV bajo conjunto_de_datos/, 3 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m6/drenaje_y_alcantarillado_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m6/drenaje_y_alcantarillado_cngmd2023_csv.zip
+  sha256: dd8d8ac7165d98a9b0be082738c2ab7ca64b5a4ffcf13fe116fe5fbc9a07bd73
+  tamano_bytes: 157843
+  formato: 'ZIP (23 miembros: 4 CSV de conjunto_de_datos, 5 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    4 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m6_plantas_potabilizacion_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m6 · Agua potable y saneamiento, tabla `plantas_potabilizacion`
+    — 3 CSV bajo conjunto_de_datos/, 2 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m6/plantas_potabilizacion_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m6/plantas_potabilizacion_cngmd2023_csv.zip
+  sha256: 4fcd641dd746c1622a54e84dfb39a5bddbe69b3f905136c0a1732ac41e77207b
+  tamano_bytes: 122073
+  formato: 'ZIP (27 miembros: 3 CSV de conjunto_de_datos, 4 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m6_programas_servicio_agua_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m6 · Agua potable y saneamiento, tabla `programas_servicio_agua`
+    — 3 CSV bajo conjunto_de_datos/, 2 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m6/programas_servicio_agua_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m6/programas_servicio_agua_cngmd2023_csv.zip
+  sha256: 5ea2214e723b7c8ece38293ea81bffd23c64cec3d82370e2bb53692e5a6a32b1
+  tamano_bytes: 91984
+  formato: 'ZIP (20 miembros: 3 CSV de conjunto_de_datos, 4 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m6_servicio_agua_red_publica_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m6 · Agua potable y saneamiento, tabla `servicio_agua_red_publica`
+    — 4 CSV bajo conjunto_de_datos/, 3 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m6/servicio_agua_red_publica_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m6/servicio_agua_red_publica_cngmd2023_csv.zip
+  sha256: fcefca60911c36b5dfac78e2816607aeaf244a8f23b55cd80ad5a3f7a8e50635
+  tamano_bytes: 370900
+  formato: 'ZIP (27 miembros: 4 CSV de conjunto_de_datos, 5 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    4 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m6_tratamiento_aguas_residuales_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m6 · Agua potable y saneamiento, tabla `tratamiento_aguas_residuales`
+    — 3 CSV bajo conjunto_de_datos/, 2 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m6/tratamiento_aguas_residuales_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m6/tratamiento_aguas_residuales_cngmd2023_csv.zip
+  sha256: ea3932bd161711b051932d72ed9526c1075a960c99370314d1da04216f13d603
+  tamano_bytes: 250577
+  formato: 'ZIP (33 miembros: 3 CSV de conjunto_de_datos, 4 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m7_disp_final_rsu_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m7 · Residuos sólidos urbanos, tabla `disp_final_rsu`
+    — 4 CSV bajo conjunto_de_datos/, 3 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m7/disp_final_rsu_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m7/disp_final_rsu_cngmd2023_csv.zip
+  sha256: 2d58a4490f10b4d11eef86cb2f90d68a10f69074f1f9d1663a709c4c8c6b3c55
+  tamano_bytes: 380290
+  formato: 'ZIP (38 miembros: 4 CSV de conjunto_de_datos, 5 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    4 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m7_est_gen_comp_rsu_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m7 · Residuos sólidos urbanos, tabla `est_gen_comp_rsu`
+    — 3 CSV bajo conjunto_de_datos/, 2 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m7/est_gen_comp_rsu_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m7/est_gen_comp_rsu_cngmd2023_csv.zip
+  sha256: 99dc698151f283f4c4c07d0e879ffb59f4d10309beb70857cef261c1c3990d88
+  tamano_bytes: 79935
+  formato: 'ZIP (21 miembros: 3 CSV de conjunto_de_datos, 4 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m7_part_ciud_rsu_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m7 · Residuos sólidos urbanos, tabla `part_ciud_rsu`
+    — 3 CSV bajo conjunto_de_datos/, 2 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m7/part_ciud_rsu_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m7/part_ciud_rsu_cngmd2023_csv.zip
+  sha256: 8d3d85a0b764aa3c42f401876e308b0a24eae94ab9080a742642d2cd7052d911
+  tamano_bytes: 59113
+  formato: 'ZIP (20 miembros: 3 CSV de conjunto_de_datos, 4 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m7_prog_gest_int_rsu_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m7 · Residuos sólidos urbanos, tabla `prog_gest_int_rsu`
+    — 4 CSV bajo conjunto_de_datos/, 3 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m7/prog_gest_int_rsu_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m7/prog_gest_int_rsu_cngmd2023_csv.zip
+  sha256: 2cfb0170860e09538e7b9bba9aa33aa034d69518c813d916d46b247ca975682e
+  tamano_bytes: 132656
+  formato: 'ZIP (38 miembros: 4 CSV de conjunto_de_datos, 5 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    4 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m7_rec_rsu_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m7 · Residuos sólidos urbanos, tabla `rec_rsu` —
+    10 CSV bajo conjunto_de_datos/, 9 tablas en el índice interno 0_indice_cngmd2023.csv.
+    Payload de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08
+    MB declarados) declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD
+    de data/cola-adquisicion-v1_0.tsv. ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m7/rec_rsu_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m7/rec_rsu_cngmd2023_csv.zip
+  sha256: 0c51deb29efdb8afc7a5efb1528fcd1f079511bfdbb4fd42e9b7e31b0c8c16a2
+  tamano_bytes: 581400
+  formato: 'ZIP (65 miembros: 10 CSV de conjunto_de_datos, 11 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    10 ficheros descomprimen con tamaño exacto.'
+
+- id: cngmd2023_m7_trat_rsu_csv
+  usado_para: CNGMD 2023 (INEGI), módulo m7 · Residuos sólidos urbanos, tabla `trat_rsu` —
+    3 CSV bajo conjunto_de_datos/, 2 tablas en el índice interno 0_indice_cngmd2023.csv. Payload
+    de DATOS que la orden de descarga masiva DescargaMasivaOD.xml (87 URLs, 159.08 MB declarados)
+    declara y que hasta este acto tenía 0 descargas; satisface la fila CNGMD de data/cola-adquisicion-v1_0.tsv.
+    ACTO MAESTRA34-L3 · CORPUS-SANO-Y-CNGMD, P2.
+  url_origen: https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m7/trat_rsu_cngmd2023_csv.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl con UA de navegador, orden
+    DescargaMasivaOD.xml)
+  archivo: cngmd2023/m7/trat_rsu_cngmd2023_csv.zip
+  sha256: 6ebca10e9429078ba2d12ebb1e38a82df53ccc7791b717e897df1b08b8c91aa1
+  tamano_bytes: 110847
+  formato: 'ZIP (19 miembros: 3 CSV de conjunto_de_datos, 4 de diccionario, 2 de metadatos)'
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL tomada de DescargaMasivaOD.xml, miembro de DescargaMasiva_192026_194559.zip ya
+    en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
+    A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
+    3 ficheros descomprimen con tamaño exacto.'
+
+- id: ine_mge_2016_edomex_acuerdo_pdf
+  usado_para: 'Acuerdo del Consejo General del INE que APRUEBA el catálogo de municipios y
+    secciones del marco geográfico electoral del ESTADO DE MÉXICO (insumo de distritación).
+    Respaldo documental de los dos anexos XLSX del mismo item (handle 128317). CROSSWALK sección
+    electoral → municipio: es el hueco que la ficha R7.1 declara y que dirección clasificó
+    NO-ENCONTRADO al 1/sep/2026 (A.8 de este encargo: 62 aciertos de `seccion` en data/manifiesto.yaml,
+    0 de ellos electoral). Localizado por ACTO MAESTRA34-L3 P3, ruta (iv) de las cuatro (repositorio
+    documental del INE, DSpace + OpenSearch); las rutas (i) portal de cartografía, (ii) datos.gob.mx
+    y (iii) SICEE no lo entregaron. VIGENCIA: catálogo de 2016 (insumo de la distritación
+    2016), NO de 2023/2024 — la correspondencia sección→municipio cambia con cada redistritación
+    y reseccionamiento, así que usarlo contra una elección de 2023 o 2024 exige verificar
+    antes qué secciones cambiaron.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/bitstream/handle/123456789/128317/CRFE_22032016_1aSO_P07_1_1.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (curl con UA de navegador,
+    bitstream de DSpace)
+  archivo: ine_marco_geografico_electoral/CRFE_22032016_1aSO_P07_1_1.pdf
+  sha256: d8675f633ede3a89c5f2de79bcdf6522bc20be02894c5e7443fd5d053b23713b
+  tamano_bytes: 107351
+  formato: PDF (acuerdo del Consejo General, %%PDF- y %%%%EOF verificados)
+  licencia: no declarada por la fuente (documento público del Consejo General del INE en su
+    repositorio documental institucional)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Localizado por OpenSearch del DSpace del INE (https://repositoriodocumental.ine.mx/open-search/?query=...),
+    handle 123456789/128317. A.7: doble descarga con sha256 idéntico. ACTO MAESTRA34-L3 P3.'
+
+- id: ine_mge_2016_edomex_seccion_municipio_xlsx
+  usado_para: 'CATÁLOGO A NIVEL ENTIDAD, DISTRITO LOCAL, MUNICIPIO Y SECCIÓN del ESTADO DE
+    MÉXICO (entidad 15). Columnas: ENTIDAD | NOMBRE_ENTIDAD | DISTRITO_LOCAL | MUNICIPIO |
+    NOMBRE_MUNICIPIO | SECCION. 6461 filas (1 de título + 1 de cabecera + 6459 de datos).
+    Es la mitad Edomex del par de estados que la firma DS-a fija (Coahuila y Edomex). CROSSWALK
+    sección electoral → municipio: es el hueco que la ficha R7.1 declara y que dirección clasificó
+    NO-ENCONTRADO al 1/sep/2026 (A.8 de este encargo: 62 aciertos de `seccion` en data/manifiesto.yaml,
+    0 de ellos electoral). Localizado por ACTO MAESTRA34-L3 P3, ruta (iv) de las cuatro (repositorio
+    documental del INE, DSpace + OpenSearch); las rutas (i) portal de cartografía, (ii) datos.gob.mx
+    y (iii) SICEE no lo entregaron. VIGENCIA: catálogo de 2016 (insumo de la distritación
+    2016), NO de 2023/2024 — la correspondencia sección→municipio cambia con cada redistritación
+    y reseccionamiento, así que usarlo contra una elección de 2023 o 2024 exige verificar
+    antes qué secciones cambiaron.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/bitstream/handle/123456789/128317/CRFE_22032016_1aSO_P07_1_3.xlsx
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (curl con UA de navegador,
+    bitstream de DSpace)
+  archivo: ine_marco_geografico_electoral/CRFE_22032016_1aSO_P07_1_3.xlsx
+  sha256: 2d6f6f473c1a6eeb5650302c80127ba7f3049091ccb99d3e33be1aa1f44fe5a4
+  tamano_bytes: 208004
+  formato: 'XLSX (OOXML, testzip() None, 15 miembros; hoja 1: 6461 filas)'
+  licencia: no declarada por la fuente (documento público del Consejo General del INE en su
+    repositorio documental institucional)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Localizado por OpenSearch del DSpace del INE (https://repositoriodocumental.ine.mx/open-search/?query=...),
+    handle 123456789/128317. A.7: doble descarga con sha256 idéntico. ACTO MAESTRA34-L3 P3.'
+
+- id: ine_mge_2016_edomex_municipios_xlsx
+  usado_para: 'CATÁLOGO A NIVEL ENTIDAD Y MUNICIPIO del ESTADO DE MÉXICO (entidad 15). Columnas:
+    ENTIDAD | NOMBRE_ENTIDAD | MUNICIPIO | NOMBRE_MUNICIPIO. 127 filas (1 título + 1 cabecera
+    + 125 municipios). Da el nombre canónico de municipio que el catálogo de secciones referencia
+    por clave. CROSSWALK sección electoral → municipio: es el hueco que la ficha R7.1 declara
+    y que dirección clasificó NO-ENCONTRADO al 1/sep/2026 (A.8 de este encargo: 62 aciertos
+    de `seccion` en data/manifiesto.yaml, 0 de ellos electoral). Localizado por ACTO MAESTRA34-L3
+    P3, ruta (iv) de las cuatro (repositorio documental del INE, DSpace + OpenSearch); las
+    rutas (i) portal de cartografía, (ii) datos.gob.mx y (iii) SICEE no lo entregaron. VIGENCIA:
+    catálogo de 2016 (insumo de la distritación 2016), NO de 2023/2024 — la correspondencia
+    sección→municipio cambia con cada redistritación y reseccionamiento, así que usarlo contra
+    una elección de 2023 o 2024 exige verificar antes qué secciones cambiaron.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/bitstream/handle/123456789/128317/CRFE_22032016_1aSO_P07_1_4.xlsx
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (curl con UA de navegador,
+    bitstream de DSpace)
+  archivo: ine_marco_geografico_electoral/CRFE_22032016_1aSO_P07_1_4.xlsx
+  sha256: fcd41dfe53e7faefb1671f2927bd17d6b2e70874c2abf8f2622592b9bb123f12
+  tamano_bytes: 33730
+  formato: 'XLSX (OOXML, testzip() None, 15 miembros; hoja 1: 127 filas)'
+  licencia: no declarada por la fuente (documento público del Consejo General del INE en su
+    repositorio documental institucional)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Localizado por OpenSearch del DSpace del INE (https://repositoriodocumental.ine.mx/open-search/?query=...),
+    handle 123456789/128317. A.7: doble descarga con sha256 idéntico. ACTO MAESTRA34-L3 P3.'
+
+- id: ine_mge_2016_coahuila_acuerdo_pdf
+  usado_para: 'Proyecto de acuerdo del Consejo General del INE que aprueba los catálogos de
+    municipios y secciones del marco geográfico electoral FEDERAL de COAHUILA, CHIHUAHUA,
+    DURANGO, GUANAJUATO, GUERRERO, MICHOACÁN, MORELOS y NAYARIT. Respaldo documental del anexo
+    de datos del mismo item (handle 128291). CROSSWALK sección electoral → municipio: es el
+    hueco que la ficha R7.1 declara y que dirección clasificó NO-ENCONTRADO al 1/sep/2026
+    (A.8 de este encargo: 62 aciertos de `seccion` en data/manifiesto.yaml, 0 de ellos electoral).
+    Localizado por ACTO MAESTRA34-L3 P3, ruta (iv) de las cuatro (repositorio documental del
+    INE, DSpace + OpenSearch); las rutas (i) portal de cartografía, (ii) datos.gob.mx y (iii)
+    SICEE no lo entregaron. VIGENCIA: catálogo de 2016 (insumo de la distritación 2016), NO
+    de 2023/2024 — la correspondencia sección→municipio cambia con cada redistritación y reseccionamiento,
+    así que usarlo contra una elección de 2023 o 2024 exige verificar antes qué secciones
+    cambiaron.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/bitstream/handle/123456789/128291/CRFE_17052016_5aSE_P07_1.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (curl con UA de navegador,
+    bitstream de DSpace)
+  archivo: ine_marco_geografico_electoral/CRFE_17052016_5aSE_P07_1.pdf
+  sha256: 093bfba0e1ff713aef0831d01db16e59d78fefdcd98536424bb62ecc2907d0ff
+  tamano_bytes: 81704
+  formato: PDF (proyecto de acuerdo del Consejo General, %%PDF- y %%%%EOF verificados)
+  licencia: no declarada por la fuente (documento público del Consejo General del INE en su
+    repositorio documental institucional)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Localizado por OpenSearch del DSpace del INE (https://repositoriodocumental.ine.mx/open-search/?query=...),
+    handle 123456789/128291. A.7: doble descarga con sha256 idéntico. ACTO MAESTRA34-L3 P3.'
+
+- id: ine_mge_2016_ocho_entidades_catalogos_7z
+  usado_para: 'ANEXO DE DATOS con los catálogos de los OCHO estados del acuerdo: 2 XLSX por
+    entidad (Anexo1 = entidad/distrito federal/municipio/sección, Anexo2 = entidad/municipio)
+    para COAH, CHIH, DGO, GTO, GRO, MICH, MOR, NAY. La mitad COAHUILA del par DS-a vive aquí:
+    5a-SE-2016-CRFE-P07_2_1_Anexo1_COAH.xlsx, 1690 filas (1 título + 1 cabecera + 1688 de
+    datos), columnas ENTIDAD | NOMBRE_ENTIDAD | DISTRITO_FEDERAL | MUNICIPIO | NOMBRE_MUNICIPIO
+    | SECCION, entidad 5 = COAHUILA; y 5a-SE-2016-CRFE-P07_2_1_Anexo2_COAH.xlsx, 40 filas
+    = 38 municipios. OJO: el eje de distrito de Coahuila aquí es DISTRITO_FEDERAL, no DISTRITO_LOCAL
+    como en el de Edomex — no son la misma columna. CROSSWALK sección electoral → municipio:
+    es el hueco que la ficha R7.1 declara y que dirección clasificó NO-ENCONTRADO al 1/sep/2026
+    (A.8 de este encargo: 62 aciertos de `seccion` en data/manifiesto.yaml, 0 de ellos electoral).
+    Localizado por ACTO MAESTRA34-L3 P3, ruta (iv) de las cuatro (repositorio documental del
+    INE, DSpace + OpenSearch); las rutas (i) portal de cartografía, (ii) datos.gob.mx y (iii)
+    SICEE no lo entregaron. VIGENCIA: catálogo de 2016 (insumo de la distritación 2016), NO
+    de 2023/2024 — la correspondencia sección→municipio cambia con cada redistritación y reseccionamiento,
+    así que usarlo contra una elección de 2023 o 2024 exige verificar antes qué secciones
+    cambiaron.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/bitstream/handle/123456789/128291/CRFE_17052016_5aSE_P07_2.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (curl con UA de navegador,
+    bitstream de DSpace)
+  archivo: ine_marco_geografico_electoral/CRFE_17052016_5aSE_P07_2.zip
+  sha256: ae550d656f69342ba2f6c3e193d9e0ec89f6fec7fa7c11c6b5b492efaacf7867
+  tamano_bytes: 434907
+  formato: '7-ZIP servido con extensión .zip (magic 377abcaf271c; NO es un ZIP: zipfile.ZipFile
+    lo rechaza con ''File is not a zip file'', se abre con py7zr). 17 miembros: 16 XLSX +
+    1 directorio'
+  licencia: no declarada por la fuente (documento público del Consejo General del INE en su
+    repositorio documental institucional)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Localizado por OpenSearch del DSpace del INE (https://repositoriodocumental.ine.mx/open-search/?query=...),
+    handle 123456789/128291. A.7: doble descarga con sha256 idéntico. ACTO MAESTRA34-L3 P3.'
