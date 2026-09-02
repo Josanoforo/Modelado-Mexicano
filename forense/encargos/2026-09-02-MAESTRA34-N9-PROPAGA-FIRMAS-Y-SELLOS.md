@@ -29,3 +29,7 @@ Regla que se propaga: ningún acto edita instrucciones-proyecto-v2_12.md. Los ca
 P1 (sustituye): NO toques instrucciones-proyecto-v2_12.md. Escribe la re-declaración de D-12 (meta −20.6 % medida por MAESTRA34-E1, #463; formato conservado por firma DE1) en .claude/commands/acto.md (una línea en su sección de formato corto) y en forense/hallazgos.md con rótulo «PARA-v2.13». FP-226 → EJECUTADA; FP-222 → sustituida. El ADR NO declara pegado en el proyecto de Claude: no hay nada que pegar.
 
 P2, P3, P4: sin cambio. Si ya tocaste instrucciones en un commit, revierte ese archivo en el mismo PR y dilo en la nota.
+
+## CONSUMIDO
+
+Ejecutado 2/sep/2026 en NUBE con la skill `/acto` (`ADR-237`), `ADR-286`. `instrucciones-proyecto-v2_12.md` nunca se tocó (P1 amendado). Detalle en `canon/gobernanza-v1_15.md` (`ADR-286`) y `canon/registro-rotulos.tsv` (`MAESTRA34-N9`). Pendiente sin resolver: el encargo `MAESTRA34-L6` (P3) no se archivó en `forense/encargos/cola/` — su texto verbatim no llegó a esta sesión.
