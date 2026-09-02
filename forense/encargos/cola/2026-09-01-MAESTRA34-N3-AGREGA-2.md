@@ -28,3 +28,18 @@ FP/ADR CANDIDATOS: deriva al arrancar.
 CONTADOR: celdas puntuadas 11 → N; scoreboard +1; declarado.
 LO QUE NO HACE: no edita el procedimiento de scoring; no re-corre R, M ni L; no activa el corredor E; no abre Ola 6.
 SUCESOR: MAESTRA34-E1 · REVISION-FALSADORES (dirección, fecha según D5).
+
+## ENMIENDA DE DIRECCIÓN — 1/sep/2026, contra 9d2e69d (A.3: el verbatim de arriba no se edita; esta enmienda gobierna sobre él)
+
+Se añade al pie de forense/encargos/cola/2026-09-01-MAESTRA34-N3-AGREGA-2.md.
+
+Hallazgo que la motiva: la sesión que sostuvo N3 el 1/sep reportó la compuerta con «faltan 2 de 3» — PR [L] corridas v1_2 y L-extraido-v1_2.tsv. La segunda no tenía dueño en la cadena MAESTRA34 (en v1_1 la produjo un acto propio, MAESTRA33-E21). Defecto de dirección, no del ejecutor.
+
+COMPUERTA (sustituye a la del verbatim): MAESTRA34-L2 fusionado (ya: PR #452, ADR-277) Y PR `[L] corridas v1_2` de mesa fusionado en origin/main, verificado por PRODUCTO: `git show origin/main:forense/prereg-duelo-v2/corridas-L/ | grep -c "__v1_2"` = 224 (14 celdas × 2 variantes × k=8), no por asunto de commit. Si falta, cero commits.
+
+P0 (nueva, antes de P1) · EXTRACCIÓN v1_2. Corre `tools/extrae_l_v1_1.py` SIN EDITAR sobre las 224 capturas → `L-extraido-v1_2.tsv` + sha, con la misma regla congelada de E21 (ADR-272). Reporta extraíbles / no extraíbles con conteo A.13 (precedente v1_1: 171/176). Si el extractor necesita cambio para v1_2: PARO de todo el acto y reporte a mesa — no se parcha dentro de N3.
+
+P1–P3: sin cambio, salvo que P1 puntúa 13 de 14 aplicando `forense/prereg-duelo-v2/exclusiones-v1_2.md` (DIN-M-01, firma DF-a, escrita por MAESTRA34-N4) como exclusión con razón, no como NO-APLICA.
+
+PERÍMETRO: se añade forense/prereg-duelo-v2/L-extraido-v1_2.tsv (+ sha). Todo lo demás igual.
+CONTADOR: se añade «L extraídos v1_2: 0 → N».
