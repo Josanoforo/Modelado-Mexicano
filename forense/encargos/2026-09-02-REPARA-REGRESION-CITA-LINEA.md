@@ -18,3 +18,7 @@ FP/ADR CANDIDATOS: primer FP libre al arrancar (máximo verificado 246 en 91ec58
 CONTADOR: campos de `regresion()` con falso positivo por corrimiento de línea: 1 (`cita_p`, medido) + 1 (`cita_ola_calibracion`, expuesto pero no medido hoy) → 0 tras esta pieza. `regresion()`: `False` → `True`. Ningún M existente se re-emite; ningún valor de ningún M cambia.
 
 Lo que este acto NO hace: no re-emite ningún `M-<id>.json`; no cambia ningún valor de `p`, `grado_DD` ni ninguna otra clave de esquema; no toca el motor (`milpa/tramite.yaml`); no decide si el corrimiento de línea en sí merece otra reparación (p.ej. citar por contenido en vez de línea desde el origen) — esa es una reescritura mayor de `cita_p()`/`cita_ola_calibracion()`, fuera de esta pieza puntual.
+
+## CONSUMIDO
+
+Ejecutado por este mismo acto (sesión que redactó y corrió este encargo). PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/478 (`ACTO REPARA-REGRESION-CITA-LINEA · falso positivo en emite_m.regresion()`), rama `claude/fix-regresion-cita-linea`, no fusionado. `ADR-294`, `FP-247`.
