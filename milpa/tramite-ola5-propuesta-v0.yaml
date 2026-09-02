@@ -772,3 +772,66 @@ reglas_propuestas:
     hallazgo: "El prior ASIGNADO 0.66 NO queda refutado: razon medido/prior = 0.8527, error relativo 14.7%, lejos del criterio (mas del doble o la mitad). Se propone CONFIRMADA-EN-DIRECCION-Y-ORDEN-DE-MAGNITUD, no REFUTADA-POR-DATO; sella mesa. La nota_calibracion de la regla pide 'no reportar con decimales' y se respeta: leido como la regla manda, el prior dice ~2 de cada 3 y el dato dice ~0.56, algo mas de la mitad. Las dos sensibilidades mueven menos de un punto porcentual. RESERVAS, todas escritas antes de medir: (i) es una conjunta y no la condicional de la regla; (ii) sancion_creible=false es premisa juridica externa; (iii) es UNA norma (denunciar ante el MP), no las normas en general; (iv) no separa las dos evasiones que la nota_segmentacion de la regla exige distinguir (subsistencia y cinismo de clase alta); (v) NO es comparable con civico.denuncia.miedo_desconfianza (p=0.294313) pese a salir de la misma variable de la misma encuesta -- distinta unidad (delito vs persona), ponderador (FAC_DEL vs FAC_ELE), denominador (todas las victimas vs solo no denunciantes), particiones cruzadas del numerador y distinto estimador de IC (conglomerado vs simple)."
     sha256_payload: "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
     payload_manifiesto_id: envipe2025_csv
+
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA34-L5 · GOBIERNO-DIGITAL-EVASION-AHORRO · 2/sep/2026
+  # Pieza P4. RE-MEDICION autorizada por la firma DS1 de mesa (2/sep).
+  # NO sustituye a dinero.ahorro.tiene_ahorros (ENNViH ola 2, p=0.174804),
+  # que se conserva integra arriba en este mismo archivo y en
+  # milpa/tramite.yaml. Las dos NO forman serie temporal -- ver
+  # no_comparabilidad mas abajo, congelada ANTES de medir.
+  # Spec de dos commits: forense/notas/2026-09-02-MAESTRA34-L5-P4-spec.md
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: dinero.ahorro.tiene_ahorros_enif2024
+    enmienda_propuesta: true
+    misma_regla_motor: dinero.ahorro.tiene_ahorros
+    enmienda_de: dinero.ahorro.tiene_ahorros
+    nota_enmienda: >
+      Re-medicion de la regla EXISTENTE de milpa/tramite.yaml:285-303 en una
+      ola nueva. Se usa id con sufijo _enif2024 y no la id pelada porque el
+      acumulador ya contiene una entrada con la id base (la de 2005-06) y dos
+      entradas con la misma id en la misma lista serian ambiguas; la
+      convencion de sufijo es la que este acumulador ya usa para
+      tramite.mordida.con_registro_encig2025 y
+      tramite.mordida.discrecional_encig_serie. Los campos
+      misma_regla_motor y enmienda_de dejan la id base localizable por
+      cualquier busqueda. El encargo pedia "misma id, ola 2024": se cumple el
+      fondo (misma regla, ola declarada, entrada de 2005-06 conservada) y se
+      declara la desviacion de forma.
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA  # igual que la entrada de 2005-06: el dato
+        # da una tasa base, no una condicional del motor
+    entonces:
+      - {conducta: tiene_ahorros, p: 0.642080, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: no_tiene_ahorros, p: 0.357920, clase: "MEDIDO·p(tasa base ponderada)"}
+    porque: {generador: [G3], mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["ENIF2024", "forense/notas/2026-09-02-MAESTRA34-L5-P4-spec.md"]
+    ola_calibracion: "ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)"
+    ic95: [0.630602, 0.653440]
+    n: 13502
+    ponderador: FAC_PER
+    universo: "personas ELEGIDAS de 18 anos y mas en TMODULO.csv (EDAD_V 18-98), las 13502 sin perdida. tiene_ahorros=1 sse alguna de P5_1_1..P5_1_6 (informal) o P5_6_1..P5_6_9 (formal) vale '1'. El blanco por secuencia de P5_6_* cuenta como no-ahorro por esa via. n_con_ahorro=8699, estratos=190, UPM=2164, poblacion expandida=94221441 adultos."
+    sensibilidades_pre_declaradas:
+      A_solo_formal: {p: 0.284927, ic95: [0.273502, 0.296342], n_con_ahorro: 4078}
+      B_solo_informal: {p: 0.561920, ic95: [0.549922, 0.573502], n_con_ahorro: 7590}
+    no_comparabilidad_con_2005_06: >
+      CONGELADA ANTES DE MEDIR (spec §1.6). La entrada vigente
+      dinero.ahorro.tiene_ahorros vale p=0.174804 sobre ENNViH ola 2. Las dos
+      cifras NO forman serie temporal, por dos razones independientes:
+      (1) ACERVO contra FLUJO -- cr27 pregunta "¿tiene ahorros?" al momento de
+      la entrevista; ENIF pregunta si ahorro o guardo en los ultimos 12 meses.
+      (2) UNIVERSO -- la propia nota de cierre de 2005-06 dice de su universo,
+      textual: "No es Mexico, no es los adultos de Mexico: es la interseccion
+      de panel-retenido x modulo-aplicable x respuesta-sustantiva en ambas
+      mediciones" (n=6028, fac_3b), frente a una muestra nacional 18+ expandida
+      a 94 millones. La razon aritmetica es 3.67x y EXCEDE el umbral de "mas
+      del doble" del encargo: NO dispara REFUTADA-POR-DATO, y la decision quedo
+      escrita antes de ver el numero. Dos definiciones distintas sobre dos
+      universos distintos no se refutan entre si.
+    hallazgo: "El resultado mas informativo de la pieza no estaba buscado: el ahorro INFORMAL casi duplica al FORMAL (0.561920 contra 0.284927, IC95 sin traslape ni de lejos). De la union 0.642080 se sigue que 0.205 de los adultos ahorran por ambas vias y 0.357 ahorran UNICAMENTE por vias informales -- tandas, guardar en casa, con familiares, cajas de ahorro del trabajo. Es apoyo directo para la familia dinero.ahorro.informal_sin_puente / con_puente_y_respaldo del modelo, que hoy no tiene p medida; esta pieza NO las mide ni las reclama, solo deja anotado donde esta el dato. La comparacion acervo-contra-acervo que si valdria requeriria un reactivo que ENIF 2024 no tiene limpio: P4_10 fusiona 'menos de una semana' con 'no tiene ahorros'."
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: enif_2024_enif_2024_bd_csv

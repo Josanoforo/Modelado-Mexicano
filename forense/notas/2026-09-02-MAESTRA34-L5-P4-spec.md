@@ -121,3 +121,66 @@ el encargo fija «formal ∪ informal» y eso es lo que se mide.
 ## §2 · Sello
 
 **El primer resultado que produzca este procedimiento es el que se reporta.**
+
+---
+
+## §3 · RESULTADO (COMMIT-2 de la pieza)
+
+Corrida: `python3 tools/medidor_ahorro_enif24.py`.
+Payload `data/raw/enif_2024_bd_csv.zip`,
+`sha256 = 00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039`.
+Las tres guardias de §1.2 pasaron: ninguna `EDAD_V` menor de 18 (rango 18-98),
+`FAC_PER` numérico positivo en las 13 502 filas, ninguna persona con las 15
+variables de la sección 5 en blanco.
+
+### 3.1 Principal
+
+| campo | valor |
+|---|---|
+| estimando | proporción de adultos 18+ que ahorró o guardó dinero, formal **o** informalmente, entre junio de 2023 y el levantamiento |
+| **p̂** | **0.642080** |
+| **IC95** | **[0.630602, 0.653440]** |
+| n | 13 502 personas · con ahorro 8 699 |
+| estratos · UPM | 190 · 2 164 |
+| población expandida | 94 221 441 adultos |
+| ponderador | `FAC_PER` |
+
+### 3.2 Sensibilidades pre-declaradas
+
+| variante | p̂ | IC95 | n con ahorro |
+|---|---|---|---|
+| **A** · solo **formal** (`P5_6_1..9`) | 0.284927 | [0.273502, 0.296342] | 4 078 |
+| **B** · solo **informal** (`P5_1_1..6`) | 0.561920 | [0.549922, 0.573502] | 7 590 |
+
+Esta descomposición es el resultado más informativo de la pieza, y no estaba
+buscada: **el ahorro informal casi duplica al formal** (0.562 contra 0.285), con
+intervalos que no se traslapan ni de lejos. De la unión (0.642) se sigue que
+**0.205 de los adultos ahorran por ambas vías** y que **0.357 ahorran únicamente
+por vías informales** — tandas, guardar en casa, con familiares, cajas de ahorro.
+Es apoyo directo para la familia de reglas `dinero.ahorro.informal_sin_puente` /
+`con_puente_y_respaldo` del modelo, que hoy no tienen `p` medida; esta pieza **no**
+las mide ni las reclama, solo deja anotado dónde está el dato.
+
+### 3.3 Frente a la cifra de 2005-06 — **no es una serie, y no hay refutación**
+
+| | ola | definición | universo | p |
+|---|---|---|---|---|
+| vigente | ENNViH ola 2 (2005-06) | `cr27` «¿tiene ahorros?» — **acervo** | panel retenido, n=6 028, `fac_3b` | 0.174804 |
+| **nueva** | **ENIF 2024** | ahorró en **12 meses** — **flujo** | nacional 18+, n=13 502, `FAC_PER` | **0.642080** |
+
+La razón aritmética es **3.67×**, es decir, **excede el umbral de «más del doble»**
+del encargo. **No dispara `REFUTADA-POR-DATO`**, y esto no es una concesión hecha
+al ver el número: quedó congelado en §1.6 de esta misma spec, escrito antes de
+medir, con sus dos razones —acervo contra flujo, y universo panel-retenido contra
+muestra nacional—. Una diferencia entre dos definiciones sobre dos universos mide
+la diferencia de definición y de universo, no un cambio en México.
+
+Que el orden de magnitud sea el que es no debería sorprender: preguntar «¿guardó
+algo de dinero en algún momento del último año, aunque fuera en su casa?» tiene
+que dar mucho más que preguntar «¿tiene usted ahorros?». La comparación que sí
+valdría —acervo contra acervo— requeriría un reactivo que ENIF 2024 no tiene
+limpio (`P4_10` fusiona «menos de una semana» con «no tiene ahorros», §1.7).
+
+**Propuesta a mesa:** entrada nueva con ola declarada, tier `PENDIENTE-DE-MESA`,
+**conservando íntegra** la entrada de 2005-06, y con la no-comparabilidad escrita
+dentro del propio YAML para que no se pierda al citarla.
