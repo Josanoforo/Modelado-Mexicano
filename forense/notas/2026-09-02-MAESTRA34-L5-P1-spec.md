@@ -151,3 +151,70 @@ condición no la declara el informante sino la construcción del universo (§1.3
 
 Si el procedimiento resulta equivocado, se escribe un tercer commit que lo diga;
 no se corrige hacia atrás ni se reescribe esta spec.
+
+---
+
+## §3 · ENMIENDA 1 a la spec — la guardia disparó y tenía razón
+
+**Escrita antes de que exista ningún resultado de esta pieza.** La spec de §1.2
+mandaba deduplicar por `ID_TRA` y **PARAR** si los excedentes no eran exactos.
+La corrida paró: **501 llaves `ID_TRA` con `P7_3` distinto entre sus filas**. La
+spec no se corrige hacia atrás; se enmienda aquí, con el sello nuevo al final.
+
+### 3.1 Qué resultó ser
+
+`ID_TRA` **no es la llave de `sec_7`**. La llave es **`(ID_TRA, NT_TIPO)`**, y es
+exacta:
+
+| comprobación | comando | resultado |
+|---|---|---|
+| filas de `sec_7` | `len(df)` | 124 314 |
+| `ID_TRA` únicos | `df['ID_TRA'].nunique()` | 113 717 |
+| **`(ID_TRA, NT_TIPO)` únicos** | `df.groupby(['ID_TRA','NT_TIPO']).ngroups` | **124 314 — llave exacta** |
+| filas idénticas en todas las columnas sustantivas | `len(df) - df[cols].drop_duplicates().shape[0]` | **0** |
+| llaves `ID_TRA` repetidas | | 7 430 |
+| …de ellas con alguna columna distinta | | **7 430 (todas)** |
+| …de ellas con `P7_3` distinto | | 501 |
+
+`NT_TIPO` es «Número de trámite · Último evento», rango 01-03 (estructura de la
+base de datos de ENCIG 2025). Un informante puede reportar hasta tres **eventos**
+del mismo tipo de trámite; cada evento es una fila legítima y puede haberse hecho
+por un canal distinto. **En `sec_7` no hay un solo duplicado exacto.** Los 10 597
+«excedentes» son 10 597 trámites distintos.
+
+### 3.2 Qué cambia en la spec
+
+**Se suprime la deduplicación.** El universo son las filas tal cual, con llave
+`(ID_TRA, NT_TIPO)`; la corrida verifica que esa llave sea única y **PARA** si no
+lo es. Es lo coherente con la unidad de análisis ya congelada (TRÁMITE) y con el
+ponderador ya congelado (`FAC_TRA` expande trámites, no personas): deduplicar
+habría tirado eventos reales y roto la expansión.
+
+**Nada más cambia.** Universo (`N_TRA='01'`, sensibilidad A `{01,10}`),
+dicotomización (`adopta = P7_3 ∈ {4,5}`; no adopta `{1,2,6}`; fuera `{3,7,8,9,b}`;
+sensibilidad B), ponderador, diseño, bootstrap, semilla y escala quedan **tal
+como se congelaron en §1**, sin tocar.
+
+### 3.3 Hallazgo sobre un acto ya sellado — se reporta, no se repara
+
+`forense/prereg-duelo-v2/codificacion-R-v1_0.tsv`, fila `TRA-M-13`
+(`ACTO MAESTRA34-L1`, PR #451, ADR-276), afirma textualmente: «113717 ID_TRA
+unicos tras deduplicar 10597 duplicados EXACTOS -- verificado, mismos valores en
+P7_3/FAC_TRA/EST_DIS/UPM_DIS». **La afirmación es falsa**, y no solo en general:
+lo es **dentro del propio subconjunto de aquel acto**. Restringiendo `sec_7` a las
+21 139 llaves con `P8_4 ∈ {0,1}` que su join usa, quedan 24 974 filas en 21 139
+`ID_TRA`: **2 576 llaves repetidas (6 411 filas), las 2 576 con `NT_TIPO` distinto
+y 160 con `P7_3` distinto**. Su deduplicación descartó 3 835 eventos de trámite
+reales y, en 160 llaves, eligió un canal entre dos que difieren.
+
+Este acto **no repara** nada de eso: `forense/prereg-duelo-v2/` está fuera de su
+perímetro, y la cifra de aquel acto es de quien la selló. Queda como línea de
+`forense/hallazgos.md` y como firma pendiente para mesa.
+
+### 3.4 Sello de la enmienda
+
+**El primer resultado que produzca el procedimiento enmendado es el que se
+reporta.** Ningún desenlace de esta pieza se ha calculado al escribir estas
+líneas: lo único que se ha mirado de `sec_7` son estructura de llave, conteos de
+filas y el número de llaves donde `P7_3` difiere — nunca el valor de `P7_3` en el
+universo `N_TRA='01'`, ni ponderado ni sin ponderar.
