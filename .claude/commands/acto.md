@@ -129,7 +129,7 @@ Al terminar el objeto del encargo (o al cerrar por hallazgo, si el acto
 no llega a arrancar), en el mismo commit o en el commit de cascada:
 
 **Orden, en actos R de sesión ciega** (2/sep/2026, firma de mesa sobre
-`FP-242`, `ACTO MAESTRA35-L2`, `ADR-291`): la cascada corre **después** de
+`FP-244`, `ACTO MAESTRA35-L2`, `ADR-292`): la cascada corre **después** de
 commitear `corridas-R/*.json`; nunca antes — las entradas de ADR de
 `canon/gobernanza-v1_15.md` citan `p` del motor verbatim, así que cerrar el
 acto antes de escribir los `R` contamina la sesión que los va a producir.

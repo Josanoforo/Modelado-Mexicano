@@ -16,8 +16,8 @@ abras "para confirmar".
 
 ## COMMIT-1 · congela las specs del lote
 
-**Enmienda fechada (2/sep/2026, firma de mesa sobre `FP-241`, `ACTO
-MAESTRA35-L2 · R-v1_2-COMPLETA`, `ADR-291`) — verbatim:** «la proyección ciega
+**Enmienda fechada (2/sep/2026, firma de mesa sobre `FP-243`, `ACTO
+MAESTRA35-L2 · R-v1_2-COMPLETA`, `ADR-292`) — verbatim:** «la proyección ciega
 es el insumo obligatorio del lado R. `/arbitra §COMMIT-1` se redacta contra
 `espec-R-ciega-<v>.tsv` generada por `tools/arbitra.py --proyecta-ciego <marco>
 <salida>`, nunca contra el marco sorteado. El marco sellado NO se toca;

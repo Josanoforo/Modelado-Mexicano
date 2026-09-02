@@ -34,7 +34,7 @@ Sucesores declarados, no lanzados: (i) NUBE — extensión de F-DD a rangos de o
 
 Ejecutado por `ACTO MAESTRA35-L2 · R-v1_2-COMPLETA` en **PR #470**
 (`https://github.com/Josanoforo/Modelado-Mexicano/pull/470`), rama
-`acto/maestra35-l2-r-v1_2-completa`, base real `b6b923f`, fusionada con `origin/main` = `fb3aa8e` al cerrar. **`ADR-291`** — renumerado de `290` porque `PR #473` (`ACTO MAESTRA35-N3`) fusionó durante la sesión y tomó `ADR-290`; regla de la casa, renumera quien fusiona segundo.
+`acto/maestra35-l2-r-v1_2-completa`, base real `b6b923f`, fusionada con `origin/main` = `fb3aa8e` al cerrar. **`ADR-292`** — renumerado de `290` porque `PR #473` (`ACTO MAESTRA35-N3`) fusionó durante la sesión y tomó `ADR-290`; regla de la casa, renumera quien fusiona segundo.
 
 **Cumplido parcialmente, y la razón es un hallazgo, no una omisión.** `P1`
 (reparación de `tools/arbitra.py`) se ejecutó completa, con regresión **12 de
@@ -45,6 +45,6 @@ del motor en `razon_DD` para exactamente esas cuatro, y el `COMMIT-1` que este
 encargo ordena exige copiar esas filas verbatim. Mesa, consultada antes de
 escribir nada irreversible, autorizó la opción C: regla literal más la
 proyección ciega `forense/prereg-duelo-v2/espec-R-ciega-v1_2.tsv`, que este
-acto construyó. `FP-241` y `FP-242` lo registran, y mesa las **FIRMÓ el mismo día**: la proyección ciega queda como **insumo obligatorio** del lado R (`/arbitra §COMMIT-1`) y la cascada de cierre corre **después** de escribir los `R` (`/acto §CIERRE`). Sucesor declarado, no lanzado: `ACTO MAESTRA35-L4 · R-v1_2-CIEGA` — rótulo corregido por mesa desde `MAESTRA35-L3`, que es de `CIVICA-TIPO-DE-BOLETA`; su encargo lo redacta dirección.
+acto construyó. `FP-243` y `FP-244` lo registran, y mesa las **FIRMÓ el mismo día**: la proyección ciega queda como **insumo obligatorio** del lado R (`/arbitra §COMMIT-1`) y la cascada de cierre corre **después** de escribir los `R` (`/acto §CIERRE`). Sucesor declarado, no lanzado: `ACTO MAESTRA35-L4 · R-v1_2-CIEGA` — rótulo corregido por mesa desde `MAESTRA35-L3`, que es de `CIVICA-TIPO-DE-BOLETA`; su encargo lo redacta dirección.
 
 Detalle: `forense/notas/2026-09-02-MAESTRA35-L2-cierre.md`.

@@ -235,7 +235,7 @@ queda es un requisito de higiene de sesión, no de dato ni de código.
 | celdas puntuables por N3/N5 con `L∩M∩R` | +4 | **+0** |
 | reparación de herramienta | 1, con regresión 3 de 3 | **1, con regresión 12 de 12** |
 | instrumento nuevo | — | **1** (proyección ciega, autorizada por mesa) |
-| hallazgos | 0 planeados | **2** (`FP-241`, `FP-242`) — **ambas FIRMADAS por mesa el mismo día** (§10) |
+| hallazgos | 0 planeados | **2** (`FP-243`, `FP-244`) — **ambas FIRMADAS por mesa el mismo día** (§10) |
 
 El «9» de partida se censó por comando, no se heredó: `for id in $(grep -v "^#"
 marco-M-sorteado-v1_2.tsv | cut -f1 | tail -n +2); do ls corridas-R/$id.json;
@@ -277,20 +277,20 @@ archivo de `milpa/` · `forense/prereg-duelo-v2/corridas-M/` · `corridas-L/` ·
 
 - **ADR.** Comando de la casa → máximo `289` en `b6b923f`; candidato **`290`**,
   contiguo y sin huecos. **Colisión confirmada por mesa**: `PR #471`
-  (`ACTO MAESTRA35-L1`) reclama el mismo `ADR-291` y los mismos `FP-241`/`FP-242`.
+  (`ACTO MAESTRA35-L1`) reclama el mismo `ADR-292` y los mismos `FP-243`/`FP-244`.
   **Desenlace: tocó renumerar, y no por `PR #471`.** Mientras esta sesión
   trabajaba fusionó `PR #473` (`ACTO MAESTRA35-N3 · SELLA-CIVICA-L6`) y tomó
   `ADR-290`. Re-derivado contra `origin/main` = `fb3aa8e`: máximo real de ADR
-  **`290`**, candidato contiguo **`291`** → **`ADR-290` → `ADR-291`** en las
+  **`290`**, candidato contiguo **`291`** → **`ADR-290` → `ADR-292`** en las
   **13** ocurrencias, ninguna de las cuales venía de la base (verificado
-  archivo por archivo con `git show b6b923f:<f> | grep -c`). `FP-241`/`FP-242`
+  archivo por archivo con `git show b6b923f:<f> | grep -c`). `FP-243`/`FP-244`
   siguen **libres** en `fb3aa8e` (máximo de FP `240`) y se conservan; `PR #471`
   sigue `OPEN` reclamándolos — si fusiona primero, se renumeran igual. Regla de
   la casa: **renumera quien fusiona segundo**, y aquí tocó.
 - **FP.** Máximo registrado en `forense/firmas-pendientes.tsv` = **`240`**
   (230 ids examinados, control positivo). El encargo pre-asignó `FP-244..246`
   pero ordenó «re-deriva el máximo al arrancar … toma el primer libre y dilo»:
-  el primer libre es **`241`**, y se toman **`FP-241`** y **`FP-242`**.
+  el primer libre es **`241`**, y se toman **`FP-243`** y **`FP-244`**.
   `MAESTRA35-N1` ya consumió el `240` que el encargo reservaba a
   `MAESTRA35-L1`; quien redacte `L1` re-deriva.
 
@@ -307,7 +307,7 @@ archivo de `milpa/` · `forense/prereg-duelo-v2/corridas-M/` · `corridas-L/` ·
    (ii) CAJA, `R` de `DIN-M-01` con lector `.dta` + join `fac_3b`, sólo con (i)
    fusionado; (iii) `N3` re-corrido o `N5` leyendo las `R` nuevas — lo decide
    `/despacha` por producto.
-3. **Higiene de la cascada** (de `FP-242`): que `/acto §CIERRE` no obligue a una
+3. **Higiene de la cascada** (de `FP-244`): que `/acto §CIERRE` no obligue a una
    sesión ciega a leer `p` del motor. Es cambio de regla operativa: se acumula
    en `hallazgos.md` bajo `PARA-v2.13`, no se edita
    `instrucciones-proyecto-v2_12.md` acto por acto.
@@ -326,7 +326,7 @@ No corrigió el «R 11 → 14» del tablero. No editó
 Mesa contestó los dos hallazgos el mismo día. Firmas verbatim en
 `forense/firmas-pendientes.tsv`; aquí lo que se ejecutó:
 
-1. **`FP-241` → `FIRMADA`, opción `a`.** «la proyección ciega es el insumo
+1. **`FP-243` → `FIRMADA`, opción `a`.** «la proyección ciega es el insumo
    obligatorio del lado R. `/arbitra §COMMIT-1` se redacta contra
    `espec-R-ciega-<v>.tsv` … nunca contra el marco sorteado. El marco sellado
    NO se toca; `razon_DD` se queda como está, es historia.» Ejecutado: enmienda
@@ -334,7 +334,7 @@ Mesa contestó los dos hallazgos el mismo día. Firmas verbatim en
    sola vez**, verificada por `grep` antes de escribir — 0 ocurrencias previas,
    con control positivo del propio `grep` (`COMMIT-1` aparece 5 veces en ese
    archivo, así que el 0 no viene de un comando que no examinó nada).
-2. **`FP-242` → `FIRMADA`**, basta la mitigación de oficio y se escribe:
+2. **`FP-244` → `FIRMADA`**, basta la mitigación de oficio y se escribe:
    línea nueva en `§CIERRE` de `.claude/commands/acto.md` — «la cascada corre
    **después** de commitear `corridas-R/*.json`; nunca antes». Mismo control:
    0 previas, `CIERRE` aparece 2 veces (control positivo).
@@ -360,9 +360,9 @@ otro archivo se sumó.
 la escribe `MAESTRA35-L4` en ciego.**
 
 5. **Renumeración, ejecutada.** Mesa avisó que `PR #471` competía por
-   `ADR-290`/`FP-241`/`FP-242`. Quien fusionó primero fue otro: `PR #473`
+   `ADR-290`/`FP-243`/`FP-244`. Quien fusionó primero fue otro: `PR #473`
    (`MAESTRA35-N3`) tomó `ADR-290` durante la sesión. Re-derivado y renumerado
-   a **`ADR-291`**; los dos `FP` se conservan porque siguen libres. El merge de
+   a **`ADR-292`**; los dos `FP` se conservan porque siguen libres. El merge de
    `origin/main` = `fb3aa8e` dejó **291 ADR únicos, máximo 291, cero
    duplicados** — el defecto que la casa ya midió (un merge limpio puede dejar
    dos `**ADR-N` iguales) se comprobó por comando, no a ojo.
@@ -375,11 +375,11 @@ la escribe `MAESTRA35-L4` en ciego.**
    `` `ADR-289` (derivado por el comando ``, el punto exacto donde las dos
    ramas vuelven a ser idénticas (87 251 caracteres de cola, comparados byte a
    byte antes de tocar nada). Control final: anotaciones `mia=57 suya=57
-   cola=56 resultado=58 = 57+57−56`, y `ADR-291`/`ADR-290`/`ADR-289` abren
+   cola=56 resultado=58 = 57+57−56`, y `ADR-292`/`ADR-290`/`ADR-289` abren
    **una** anotación cada uno.
 
 **Suite sobre el árbol fusionado** — `python3 tests/check.py --baseline` →
 **LÍNEA BASE VERDE**, `exit 0`, núcleo **19 FAIL · 166 WARN**. Base `fb3aa8e`
 medida en worktree separado: **19 FAIL · 166 WARN**. **Delta de este acto: 0
 FAIL, 0 WARN** — los `+2 WARN` que había abierto desaparecieron al pasar
-`FP-241`/`FP-242` de `ABIERTA` a `FIRMADA`.
+`FP-243`/`FP-244` de `ABIERTA` a `FIRMADA`.
