@@ -581,6 +581,95 @@ reglas_propuestas:
     hallazgo: "Ambos ASIGNADOS de milpa/tramite.yaml (0.62 discrecional, 0.12 con_registro) quedan refutados en magnitud absoluta por esta medición trámite-nivel igual que por la serie persona-nivel de P1/P2 -- pero el ORDEN relativo que el motor asigna (discrecional > con_registro) SÍ se confirma empíricamente aquí, con brecha grande y significativa (11.60% vs 2.74%, IC95 sin traslape). Es el primer apoyo empírico directo -- de escala y de orden -- para el mecanismo 'trampa social: el registro rompe la trampa social' que la regla con_registro ya declaraba sin medir. Reserva: el mapeo canal→disparador (nota_enmienda) es un supuesto de este acto, no verificado contra el dato; P8_4 solo se pregunta a un subconjunto de trámites (los de personas que ya declararon alguna práctica de corrupción en sección VIII), así que esta p NO es 'p(mordida en este trámite | canal)' sobre el universo completo de trámites, sino sobre el subconjunto ya auto-seleccionado por P8_3 -- declarado, no resuelto por este acto."
     sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
     payload_manifiesto_id: encig25_base_datos_csv
+    # ══════════════════════════════════════════════════════════════════
+    # ENMIENDA IN SITU · 2/sep/2026 · ACTO MAESTRA35-L1 · P1 · firma de mesa
+    # d1 = FP-238 («recorrer TRA-M-13/14 y re-medir con_registro con la llave
+    # correcta»). A.10 corolario 1: TODO EL CUERPO DE ARRIBA QUEDA INTACTO,
+    # incluidas sus cifras viejas. Esta enmienda se lee DESPUÉS de él.
+    enmienda_maestra35_l1:
+      firma: "mesa, 2/sep/2026, d1 = FP-238; ejecutada por ACTO MAESTRA35-L1"
+      que_estaba_mal: >
+        No la llave del join, como el encargo suponía: la DEDUPLICACIÓN.
+        MAESTRA34-L1 dedujo sec_7 por ID_TRA creyendo -- y escribiéndolo en
+        TRA-M-13 -- que las filas repetidas eran «duplicados EXACTOS, mismos
+        valores en P7_3/FAC_TRA/EST_DIS/UPM_DIS». Contado por el censo P0 de
+        este acto sobre sec_7 completo: de los 7 430 ID_TRA repetidos, 501
+        DIFIEREN en P7_3, y solo 5 860 de 18 027 filas repetidas son idénticas
+        en todo lo demás. No eran duplicados: eran eventos de trámite distintos
+        del mismo tipo hechos por la misma persona, que es para lo que existe
+        NT_TIPO. La deduplicación borró 3 835 eventos del universo de medición.
+      llave_declarada: >
+        ID_TRA, y es exacta. encig2025_05_sec_8.csv NO trae NT_TIPO y no puede
+        traerlo: es la rejilla persona × tipo (40 136 × 27 = 1 083 672 filas) y
+        ahí ID_TRA ES llave única. El join sec_7 × sec_8 por ID_TRA es exacto y
+        uno-a-muchos por construcción, con 0 huérfanos de 113 717. La llave
+        (ID_TRA, NT_TIPO) que el encargo pedía no es ejecutable; la sustancia
+        de la firma d1 queda intacta porque lo que corrige es la deduplicación.
+      procedimiento: >
+        Idéntico al de la cifra vieja salvo por no deduplicar. Unidad = TRÁMITE
+        (FAC_TRA expande trámites: quien hizo el mismo trámite tres veces aporta
+        tres eventos). Universo P8_4 ∈ {0,1} y P7_3 en el canal de la celda;
+        FAC_TRA, EST_DIS, UPM_DIS; bootstrap conglomerado estratificado 10 000
+        réplicas seed 42. Script tools/recorre_mordida_con_registro_encig25.py,
+        con dos guardias que PARAN (ID_TRA llave única en sec_8; cero huérfanos).
+        Una sola corrida, sin reintentos.
+      universo_nuevo:
+        eventos_en_p8_4_valido: 24974      # antes: 21139 tras deduplicar
+        id_tra_distintos: 21139
+        eventos_que_la_dedup_borraba: 3835
+      cifras_nuevas:
+        mapeo: "principal, el mismo de MAESTRA34-L1: digital {3,4,5}, presencial {1}"
+        digital:
+          p: 0.029868
+          ic95: [0.021133, 0.040452]
+          n: 7219                          # EVENTOS, en 6384 ID_TRA; antes n=6337
+          n_con_mordida: 242
+          estratos: 362
+          upm: 2518
+        presencial:
+          p: 0.141041
+          ic95: [0.116817, 0.169579]
+          n: 11167                         # EVENTOS, en 9992 ID_TRA; antes n=9937
+          n_con_mordida: 1496
+          estratos: 381
+          upm: 2996
+        razon_presencial_digital: 4.7222   # antes 4.2401; IC95 sin traslape
+      sensibilidad_a:
+        mapeo: "el de MAESTRA34-L5: digital {4,5}, con 3 fuera"
+        digital: {p: 0.025078, ic95: [0.015990, 0.036467], n: 5251, estratos: 357, upm: 2308}
+        razon_presencial_digital: 5.6241
+      veredicto:
+        digital: >
+          CORRECCIÓN SIN CAMBIO MATERIAL. La regla de decisión congelada en la
+          spec §2.1 antes de ver el número decía: si el IC95 nuevo del canal
+          digital contiene 0.027358, se reporta así. Lo contiene
+          ([0.021133, 0.040452]). El punto se movió +0.002510 (+9.2 % relativo).
+        presencial: >
+          VENCIDA EN ALCANCE -- re-sello de mesa (FP-241). La spec §2.1 solo
+          escribió la regla para el canal digital; el CONTADOR del encargo pone
+          los DOS canales en alcance («cifra sellada corregida +1 (con_registro,
+          dos canales)»). Aplicada la MISMA prueba al presencial: 0.116000 NO
+          está en su IC95 nuevo [0.116817, 0.169579] -- queda fuera por
+          0.000817 del límite inferior. Es un fallo estrecho del criterio de
+          pertenencia, y el movimiento del punto no lo es: 0.116000 → 0.141041,
+          +0.025041, +21.6 % relativo. Que la spec congelada no haya reglado
+          este canal es un hueco de la spec, y se dice aquí en vez de editarla.
+        contra_hipotesis: >
+          NO se cumple, y el hallazgo se refuerza en vez de acotarse. La spec
+          declaró: si la razón presencial/digital cae por debajo de 2× con la
+          llave correcta, el hallazgo de MAESTRA34-L1 («el registro rompe la
+          trampa social») queda ACOTADO. Sube de 4.2401× a 4.7222× (5.6241× en
+          la sensibilidad A), con IC95 sin traslape en ambos mapeos.
+      lo_que_esta_enmienda_no_hace: >
+        No edita milpa/tramite.yaml (sello de mesa, RH al cierre): las cuatro
+        conductas cargadas ahí -- paga_mordida_encig2025_presencial 0.116000 y
+        _digital 0.027358, con sus complementos -- siguen como estaban. No toca
+        el cuerpo viejo de esta entrada. No re-sella: propone.
+      situacion: PENDIENTE-DE-MESA
+      tier: PENDIENTE-DE-MESA
+      fuente: ["codificacion-R-v1_0.tsv::TRA-M-13b", "codificacion-R-v1_0.tsv::TRA-M-14b"]
+      sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+      payload_manifiesto_id: encig25_base_datos_csv
 
   # ══════════════════════════════════════════════════════════════════
   # ACTO MAESTRA34-L4 · CIVICA-Y-CORPUS · 2/sep/2026 · firma de mesa F232-b
