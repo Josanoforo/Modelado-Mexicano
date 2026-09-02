@@ -23,16 +23,29 @@ encargo declara. Medidos contra `origin/main = e4af4ed` el 1/sep/2026:
 De `MAESTRA34-N6` solo está fusionado el **encolado de su encargo** (`PR #455`,
 `[COLA] encola MAESTRA34-N6/L3 + enmienda N3`); su P1 no se ha ejecutado. Se
 procedió por la cláusula explícita del encargo — *«si igual se lanza, reporta como
-A1 (ROJO-solo-T27) y no PARA»* — y la cascada cierra en ROJO-solo-T27, igual que
-hizo `MAESTRA34-A1`.
+A1 (ROJO-solo-T27) y no PARA»*.
+
+**Desenlace: la compuerta se cumplió a mitad de acto.** `MAESTRA34-N6` fusionó por
+`PR #456` mientras L3 corría — con `P1`-`P4` de L3 ya completos y antes de su
+cascada. Re-verificada contra `origin/main = c383fe1`: `data/raw` dentro de
+`t27_infraestructura` = **1** (era 0; control positivo `grep -c 'T27'` = 5) y
+`tests/baseline.json` recongelado por `6eb8d93`, que **es** el `P1` de N6. La
+cascada de L3 por tanto **no** cierra en ROJO-solo-T27: cierra con la suite en el
+estado que N6 dejó. Lo que sigue siendo cierto —y por lo que este bloque se
+queda— es que las cuatro piezas de L3 se ejecutaron **sin** la compuerta cumplida.
 
 **Consecuencia colateral del gate ausente, no prevista por el encargo:** el
 perímetro manda escribir las tres capas del curador *«por la vía de N6»*. Esa vía
 —la sección «alta de fuente nueva en tres tablas» de `GUIA-CURADOR-REGISTRO.md`—
-es P3 de N6 y **no existe**: `grep -i 'alta de fuente'` sobre la GUIA da 0 y su
-único índice es `## via_capa2.py`. `FP-230` sigue viva. P3 escribió las tres capas
-a mano contra el esquema vigente y cerró con el validador en verde; la vía sigue
-sin documentar.
+es `P3` de N6 y, **cuando P3 de L3 corrió, no existía**: `grep -i 'alta de fuente'`
+sobre la GUIA daba 0 y su único índice era `## via_capa2.py`; `FP-230` seguía
+ABIERTA. P3 escribió las tres capas **a mano** contra el esquema vigente y cerró
+con el validador en verde. N6 fusionó después, dentro de este mismo acto, y la vía
+ya está escrita (`FP-230` → EJECUTADA, GUIA +68 líneas, `INFRAESTRUCTURA` D1 pasa
+de «SIN VÍA» a citarla). Las filas de L3 **no se reescribieron** para pasar por la
+vía nueva: se comprobó que el validador sigue en verde con las dos aportaciones
+juntas (205 relaciones, 206 procedencias, `"ok": true`, `via_capa2` 0 diffs) y se
+deja constancia de que la de L3 se escribió antes de que la vía existiera.
 
 ---
 
@@ -61,9 +74,12 @@ Quien mide el daño es el patrón exacto de `t27_infraestructura`, que no tiene
 guardia de bucle — Python 3.14.4 sigue recursando en symlinks de directorio con
 `**`, así que la guardia tiene que ser del test, no del intérprete.
 
-`FP-229` queda **ABIERTA**: (c) divide el ruido de T27 por ~31 —no ~18, como
-estimaba la fila— pero no lo hace satisfacible. Falta (a) citar los payloads en
-`INFRAESTRUCTURA` o (b) exentar `data/raw/**`, que es P1 de N6.
+`FP-229` quedaba **ABIERTA** al cerrar P1: (c) divide el ruido de T27 por ~31 —no
+~18, como estimaba la fila— pero no lo hace satisfacible por sí solo. `MAESTRA34-N6`
+ejecutó el remedio **(b)** (exentar `data/raw/**`) más tarde, dentro de este mismo
+acto, y con eso la firma pasa a **EJECUTADA**. Los dos remedios quedan aplicados,
+no uno: (b) hace la suite utilizable en caja, y (c) quita 30 069 rutas fantasma que
+cualquier otra herramienta sin guardia de bucle seguiría recorriendo.
 
 **Anti-regresión.** Ningún archivo versionado dependía de la ruta borrada: los 11
 aciertos de `raw/raw` en el árbol son documentación del defecto, y el único código
@@ -107,8 +123,13 @@ de tabla colisionan entre módulos** — `rec_huma` ×3, `transito_vialidad` ×2
 **Título de módulo.** m4-m7 se citan de los cuestionarios que `MAESTRA34-A1` ya
 registró (Protección civil · Justicia cívica · Agua potable y saneamiento ·
 Residuos sólidos urbanos). m1-m3 **no** tienen título derivado por este acto: la
-página de programa de INEGI es una SPA de 4 018 B y las hojas `M1`-`M7` del
-esquema conceptual solo traen cabeceras genéricas. Se describen por sus tablas.
+página de programa de INEGI es una SPA de 4 018 B, y las siete hojas de módulo
+del esquema conceptual (`ec_cngmd2023.xlsx`, una por módulo más `Carátula` y
+`Complemento`) solo traen cabeceras genéricas. Se describen por sus tablas.
+*(Los nombres de esas hojas son literalmente la letra `M` seguida del número de
+módulo. No se escriben aquí tal cual: en este repo ese token es un rótulo de acto
+por D-6/ADR-128 —`T25` lo marca— y escribirlo para nombrar una hoja de cálculo
+crearía justo la ambigüedad que el rótulo censado existe para evitar.)*
 
 **Registro.** `data/manifiesto.yaml` 845 → 932 (+87, una invocación de
 `tests/manifiesto.py --registra` por `--id`, A.1). Cola del registro: fila `CNGMD`
