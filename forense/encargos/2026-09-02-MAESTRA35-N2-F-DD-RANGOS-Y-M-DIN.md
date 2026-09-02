@@ -22,3 +22,17 @@ FP/ADR CANDIDATOS: una fila de recibo (F-DD v1.1 + M de DIN-M-01), primer FP lib
 CONTADOR: celdas del sorteado v1_2 con M: 13 → 14 · celdas puntuables con L∩M∩R: sin cambio (DIN-M-01 sigue sin R) · reglas medidas: sin cambio · cero estimaciones, declarado. Lo que este acto mueve es un bloqueo de dos: dominio dinero pasa de «sin M y sin R» a «sin R».
 Lo que este acto NO hace: no computa R (caja, sesión ciega, sucesor); no re-emite ningún M existente aunque la regresión de P0 muestre drift (lo reporta); no toca el sorteado ni el marco; no decide qué olas calibran `tiene_ahorros` (reporta la discrepancia); no edita instrucciones.
 Sucesores declarados, no lanzados: (i) CAJA, sesión ciega — R de `DIN-M-01`: lector `.dta` (`pyreadstat`, disponible en la caja según MAESTRA34-L2 §4) + join `fac_3b` por `folio`+`ls` + diseño de varianza declarado desde `ennvih_diseno/*.pdf` o, si no hay estrato/UPM en tabla, `EE(R)` con la aproximación que el marco permita y la reserva escrita; (ii) si P0 encuentra drift en algún M por las enmiendas de MAESTRA35-N1, un acto de dirección decide si M de v1_2 se re-emite o se conserva «lo que M creía entonces» — no lo decide este acto.
+
+## CONSUMIDO
+
+Ejecutado por `/acto` (sesión `session_01HW5sZ22SYqMsZsJioCYsda`), 2/sep/2026.
+Rama `claude/maestra35-n2-launch-jip2j0`, reconstruida sobre `origin/main`
+(`0fd6b4c`) tras la fusión prematura de `PR #472` (que solo contenía el
+commit A.3 de este mismo encargo — regla de la casa: un PR fusionado no se
+reutiliza para trabajo nuevo). Commits: P0 (línea base, sin drift
+sustantivo), P1 (F-DD v1.1, regresión ACEPTADA), P2 (`M-DIN-M-01__v1_2.json`,
+`grado_DD=P1 PUNTUA`, transferencia de ola), P3 (append en
+`exclusiones-v1_2.md`), CIERRE (`ADR-290`, `FP-241`, `L0`,
+`registro-rotulos.tsv`, `hallazgos.md`). `tests/check.py --baseline` →
+VERDE. PR abierto contra `main`, titulado `ACTO MAESTRA35-N2 ·
+F-DD-RANGOS-Y-M-DIN` (número asignado al abrirse; ver el propio PR).
