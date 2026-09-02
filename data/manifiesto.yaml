@@ -18882,3 +18882,1450 @@
     y ademas cubre las 32 entidades, no solo las dos que la firma F232-b prioriza. A.7: doble
     descarga, sha256 identico. A.8 previo: 0 aciertos del patron DEOE/Ubicacion_casillas en
     data/manifiesto.yaml, control positivo 1184 aciertos de url_origen.'
+
+- id: ine_cg_plan_calendarios_pel2014_2015_acuerdo_pdf
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG ordinaria 18/dic/2014) que aprueba el Plan Integral
+    y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen, por entidad,
+    los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/87134
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2014-2015_CGor201412-18_ap13.pdf
+  sha256: a8acbcc7b08a1fa6230a5594f3778ecef74e1120521b199abc9168146d61f190
+  tamano_bytes: 45223
+  formato: pdf
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/87134?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_plan_calendarios_pel2014_2015_acuerdo_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG ordinaria 18/dic/2014) que aprueba el Plan Integral
+    y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen, por entidad,
+    los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/87134
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2014-2015_CGor201412-18_ap13.pdf.txt
+  sha256: 9a235aa1043fa5e3f3c013e1511f46d4c3e8c02bb42eef2d2bf93dc480868d28
+  tamano_bytes: 24051
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/87134?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_pel2015_extraordinarias_acuerdo_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 14/oct/2015) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/79710
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2015b_CGex201510-14_ap4.pdf.txt
+  sha256: 8602dc2cf0b5845810b1f3e3bb033a8c2989c02b3726f735c828eec9f77080ba
+  tamano_bytes: 43453
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/79710?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_plan_calendario_pel2015_2016_acuerdo_pdf
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 16/dic/2015) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/87457
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2015-2016_CGex1_201512-16_ap25.pdf
+  sha256: f313bc14d904f1178bfbb0cd47fcca2d1f952c65c811158d9c69e1eda51cc2c3
+  tamano_bytes: 196293
+  formato: pdf
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/87457?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_plan_calendario_pel2015_2016_acuerdo_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 16/dic/2015) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/87457
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2015-2016_CGex1_201512-16_ap25.pdf.txt
+  sha256: e9de0ab8dcb7db06d9399ef42f3db49dd504074f76160b8c28fce71105d1c87c
+  tamano_bytes: 24723
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/87457?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2016_2017_anexo1_pdf
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 7/sep/2016) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/85998
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2016-2017_CGex201609-7-ap-9-a1.pdf
+  sha256: 898d5011081dc13c1d38498815974e10737f922987a062ec218838e955172e0e
+  tamano_bytes: 1514368
+  formato: pdf
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/85998?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2016_2017_anexo1_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 7/sep/2016) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/85998
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2016-2017_CGex201609-7-ap-9-a1.pdf.txt
+  sha256: 8decbe1a94773331243c561bfb0222196589e979ef3372968f3261013372f78b
+  tamano_bytes: 64328
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/85998?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2016_2017_extraord_a1_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 14/oct/2016) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/86038
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2016-2017_CGex201610-14-ap-17-a1.xlsx
+  sha256: 4b2439bf6e7473a6505bfc9a8f26fcd52a4626035c6fac636d660dc7661dfbda
+  tamano_bytes: 31064
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/86038?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2016_2017_extraord_a2_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 14/oct/2016) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/86038
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2016-2017_CGex201610-14-ap-17-a2.xlsx
+  sha256: f937650da28ad458c541214121f82b677035801cd6fa6226eed9503b1a31735d
+  tamano_bytes: 31086
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/86038?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2017_2018_anexo2_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 8/sep/2017) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/93570
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2017-2018.xlsx
+  sha256: bd30b3220e30f9fcca7777a290acaa37d43382d8249e835ab89057974e8e37cf
+  tamano_bytes: 477609
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/93570?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2017_2018_sanblas_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 20/oct/2017) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/93804
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2017-2018_CGex201710-20-ap-9-2.xlsx
+  sha256: 3878e30b29c7b9c7d8d67c3c77642277fe54811ff69da52888f45dfd8e6ff207
+  tamano_bytes: 29806
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/93804?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2018_veracruz_ext_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 10/ene/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/94394
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018ext_CGex201801-10-ap-3-a2.xlsx
+  sha256: c4e1ff4a5545335561234c6ddb3ce1de01316e19e1d1f1f7a4bbd311fda93a33
+  tamano_bytes: 14891
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/94394?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_ags_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6-a1.xlsx
+  sha256: 4e12ca8dabbc08fdcb4e5e19bdd3fbf154aebdbc729ae079ad1d93f62c402bc0
+  tamano_bytes: 97355
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_bc_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6-a2.xlsx
+  sha256: 7a61da2b49528e36c8f85b78b928cb9bd4dbbb7686523f7e81c19467ec8e8563
+  tamano_bytes: 102575
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_dgo_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6-a3.xlsx
+  sha256: ae75cc38e91da6b445eefafaa8e33ea029d1377053ba0c7c7a4de7c7dcad4fa3
+  tamano_bytes: 101826
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_qroo_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6-a4.xlsx
+  sha256: 71bec370207dd4fcc4a5e23152f8e9d1dc4dfd501d03937577d46d238ac3bfeb
+  tamano_bytes: 139676
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_tamps_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6-a5.xlsx
+  sha256: 33cee401ea88ff35a113a0bd0cc5c43ab697cf24f509675ad601218458738212
+  tamano_bytes: 98224
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2018_2019_acuerdo_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 6/ago/2018) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/97991
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019ord_CGex201808-6-ap-6.pdf.txt
+  sha256: dbfa49f7182f218d90d88c3b093bde75e7bd8c57a0d711729e083405f6eb44bd
+  tamano_bytes: 19526
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/97991?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2019_puebla_ext_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG 2a extraordinaria 6/feb/2019) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/101943
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2018-2019.xlsx
+  sha256: 865df4d92223b9327d32095475b1bf71faa5ec9e29a444fa956709334f942eb2
+  tamano_bytes: 60903
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/101943?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2019_2020_a1_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 30/sep/2019) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/112696
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2019-2020_CGex201909-30-ap-1-a1.xlsx
+  sha256: 9d50d5e4f3e15bf8aa304b5272fa7be1d5868b62d6d48894d490ec6ddd18f583
+  tamano_bytes: 107785
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/112696?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2019_2020_a2_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 30/sep/2019) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/112696
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2019-2020_CGex201909-30-ap-1-a2.xlsx
+  sha256: 61596702075b3ef2f34714cb777412e30f2960a0db8e7d6022ba69668055350e
+  tamano_bytes: 108227
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/112696?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2019_2020_a3_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 30/sep/2019) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/112696
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2019-2020_CGex201909-30-ap-1-a3.xlsx
+  sha256: c5fd7b8717545ce8f9539514648b4b612b35959066a01cbcb6a1ba00b45b5b42
+  tamano_bytes: 108222
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/112696?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2020_2021_a1_xlsm
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 7/ago/2020) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/114312
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2020-2021_CGex202008-07-ap-2-a1.xlsm
+  sha256: 38dd38db5b3de111951603fd5e4a45855ffe30a630d4e78aca37c73d4eda8552
+  tamano_bytes: 1303292
+  formato: xlsm
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/114312?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2020_2021_a2_xlsm
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 7/ago/2020) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/114312
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2020-2021_CGex202008-07-ap-2-a2.xlsm
+  sha256: 1947c43e3338d4ce67499ee9ac6305202ecc9d716046938e18ff71a8f8c54522
+  tamano_bytes: 1448232
+  formato: xlsm
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/114312?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2021_2022_a1_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG ordinaria 28/jul/2021) que aprueba el Plan Integral
+    y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen, por entidad,
+    los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/122210
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2021-2022.xlsx
+  sha256: b8af69bf0defb1be385d34b8eb20d6b32b8c52202c74dc30f3a7d460375de02f
+  tamano_bytes: 919583
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/122210?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2021_2022_sep_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 30/sep/2021) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/125224
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2021-2022b.xlsx
+  sha256: 36a55081b9ff1af954cd427160a5d28e4611d1f81ac7e87682524f9e82f4c029
+  tamano_bytes: 247947
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/125224?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendario_pel2021_2022_oct_pdf
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 20/oct/2021) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/125406
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2021-2022c.xlsx
+  sha256: b63108d208879c6e9d7b279b95368edf27b436ff6ecfe8e454b2450925c250be
+  tamano_bytes: 187717
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/125406?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2022_2023_anexoC_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 26/sep/2022) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/143140
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2022-2023.xlsx
+  sha256: 592d7f124e1d2c2302ed33a198ad4f197ddd90b24b9864419432696f49b3a4bd
+  tamano_bytes: 173434
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/143140?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2023_2024_anexo2_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG extraordinaria 20/jul/2023) que aprueba el Plan
+    Integral y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen,
+    por entidad, los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de
+    jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/152565
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2023-2024.xlsx
+  sha256: bcd8af38ad6c3f317eaa07e4d6b8e4da076ecc2dee439589221c588b28356745
+  tamano_bytes: 910124
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/152565?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: ine_cg_calendarios_pel2024_2025_anexo2_xlsx
+  usado_para: 'P0 de ACTO MAESTRA34-L6: tabla de tratamiento de la homologacion escalonada.
+    Acuerdo del Consejo General del INE (CG ordinaria 26/sep/2024) que aprueba el Plan Integral
+    y los Calendarios de Coordinacion del Proceso Electoral Local; de aqui salen, por entidad,
+    los cargos a elegir (si hubo o no eleccion de AYUNTAMIENTOS) y la fecha de jornada.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/176887
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/pel2024-2025_CGor202409-26-ap-03-a2.xlsx
+  sha256: 8b10413599e064100032bf0f4548d9dda518bb108353549a73a8ad792b489158
+  tamano_bytes: 185217
+  formato: xlsx
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Descargado por la API REST de DSpace 6.4 del Repositorio Documental del INE (/rest/handle/123456789/176887?expand=bitstreams).
+    NO se uso siceef.ine.mx: ese host y siceen21/computos2024/portalanterior/prep2021 devuelven
+    todos la MISMA pagina de bloqueo del CAU del INE con el texto ''Bloqueo IP: 187.13.205.53''
+    (403, 163097 B). www.ine.mx y repositoriodocumental.ine.mx no lo sufren.'
+
+- id: iec_coahuila_2017_ayuntamientos_x_municipio_xlsx
+  usado_para: 'Coahuila 2017 (ayuntamientos, jornada NO concurrente): computo por municipio
+    con TOTAL y LISTA_NOMINAL. Es el ANTES de la cohorte g2018'
+  url_origen: https://iec.org.mx/v1/images/computos/AYUNTAMIENTOS%20X%20MUNICIPIO_2017.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2017_ayuntamientos_x_municipio.xlsx
+  sha256: b9ab92861419718ab29809d1906db7e7d02b3bd3685d76c447e76687e069189e
+  tamano_bytes: 97081
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iec_coahuila_2017_ayuntamientos_x_casilla_xlsx
+  usado_para: 'Coahuila 2017 por casilla: control de reagregacion contra la tabla por municipio'
+  url_origen: https://iec.org.mx/v1/images/computos/Ayuntamiento_Xcasilla.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2017_ayuntamientos_x_casilla.xlsx
+  sha256: e672f2db15138cd1c15ea24f55352553236596831ba37424c8e277d298b8de71
+  tamano_bytes: 1923086
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iec_coahuila_2018_ayuntamientos_x_municipio_xlsx
+  usado_para: 'Coahuila 2018 (ayuntamientos, jornada CONCURRENTE con la federal): computo
+    por municipio con TOTAL DE LA VOTACION y LISTA_NOMINAL. Es el DESPUES de la cohorte g2018'
+  url_origen: https://iec.org.mx/v1/images/procesoElectoral/computos2018/Resultados_de_la_votacion_distribuida_.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2018_ayuntamientos_x_municipio.xlsx
+  sha256: 776720d70b6a42d59b2eb103b9b54203754cf5f2e6d064e5a495e74c7cbf3570
+  tamano_bytes: 141210
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iec_coahuila_2018_ayuntamientos_x_casilla_xlsx
+  usado_para: 'Coahuila 2018 por casilla: control de reagregacion'
+  url_origen: https://iec.org.mx/v1/images/procesoElectoral2018/computos2018_XCasilla___.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2018_ayuntamientos_x_casilla.xlsx
+  sha256: c8a991f0b8ec74754aea9c1aeaac7463fa9f5369c87c7bc778a39e8dbb03237d
+  tamano_bytes: 685388
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iec_coahuila_2021_ayuntamientos_x_municipio_xlsx
+  usado_para: 'Coahuila 2021 (ayuntamientos, concurrente): transicion STAY-ON, aporta la tendencia
+    secular'
+  url_origen: https://iec.org.mx/v1/images/proceso2021/computos/Computos_Ayuntamientos2021_XMun.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2021_ayuntamientos_x_municipio.xlsx
+  sha256: 685a3007849bc30ce423644eb302c5d6f104f5d695c060f2bcd29008d04a79dd
+  tamano_bytes: 440940
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iec_coahuila_2021_ayuntamientos_x_casilla_xlsx
+  usado_para: 'Coahuila 2021 por casilla: control de reagregacion'
+  url_origen: https://iec.org.mx/v1/images/proceso2021/computos/Computos_Ayuntamientos2021_XCasilla.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iec.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iec_coahuila_2021_ayuntamientos_x_casilla.xlsx
+  sha256: 8dbb19aeb9ef60ca7389eb67e0a48e56befa2d79db60201c4bb6dd913bcca6e2
+  tamano_bytes: 588904
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2017_ayuntamientos_xlsx
+  usado_para: 'Nayarit 2017 (presidencias y sindicaturas, jornada NO concurrente): ANTES de
+    la cohorte g2021'
+  url_origen: https://ieenayarit.org/PDF/elecciones/2017/PyS17.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2017_ayuntamientos.xlsx
+  sha256: ca7f075ad640420eccb007dfb5e74201580d19be8d70e9746b8fc469971ef06e
+  tamano_bytes: 442554
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2021_ayuntamientos_xlsx
+  usado_para: 'Nayarit 2021 (concurrente con la federal INTERMEDIA): DESPUES de la cohorte
+    g2021. Es el contraste que separa concurrencia de anio presidencial'
+  url_origen: https://ieenayarit.org/PDF/elecciones/2021/PyS21.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2021_ayuntamientos.xlsx
+  sha256: 900704a33a1b9284e5483630a048a6870962b6a3de6f88e4a5bdffd3b37e1892
+  tamano_bytes: 328693
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2024_ayuntamientos_xlsx
+  usado_para: 'Nayarit 2024 (concurrente con la presidencial): transicion STAY-ON'
+  url_origen: https://ieenayarit.org/PDF/elecciones/2024/PyS24.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2024_ayuntamientos.xlsx
+  sha256: 08282d38971a89eef746c01f4bd0dfbdeba2669112bae51985a4df2848105571
+  tamano_bytes: 282020
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2017_lista_nominal_pdf
+  usado_para: 'Nayarit 2017: LISTADO NOMINAL POR MUNICIPIOS. Denominador de la participacion
+    municipal, que la tabla de computos NO trae'
+  url_origen: https://ieenayarit.org/PDF/2017/LN2017.pdf
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2017_lista_nominal.pdf
+  sha256: 2d0c4094f4d939de6654c5cf9338c2ae89f61f94e4c427a3bca06e92a1866659
+  tamano_bytes: 120441
+  formato: pdf
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2021_lista_nominal_pdf
+  usado_para: 'Nayarit 2021: listado nominal por municipios (denominador)'
+  url_origen: https://ieenayarit.org/PDF/2021/LN2021.pdf
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2021_lista_nominal.pdf
+  sha256: 33e55bf3c6d86565c9e1606f7cc204bc9a9e3f2098d5153808fb96a5db9ab506
+  tamano_bytes: 515465
+  formato: pdf
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_nayarit_2024_lista_nominal_pdf
+  usado_para: 'Nayarit 2024: listado nominal por municipios (denominador)'
+  url_origen: https://ieenayarit.org/PDF/2024/LN2024.pdf
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieenayarit.org (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iee_nayarit_2024_lista_nominal.pdf
+  sha256: 4a85bd057bef94f5fd4d66ba4d53f33f71c37512e9f0d4ef9bf3aeee6e32fb73
+  tamano_bytes: 135060
+  formato: pdf
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieez_zacatecas_2018_computos_municipales_xlsx
+  usado_para: 'Zacatecas 2018 (ayuntamientos, concurrente): computos municipales'
+  url_origen: https://ieez.org.mx/PE2018/Ganadores/Resultados%20de%20los%20C%C3%B3mputos%20Municipales%202017-2018.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieez.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/ieez_zacatecas_2018_computos_municipales.xlsx
+  sha256: e966430eb71c264fd65ae44ebd2786a701e319050f43dfd524cef597eafae6da
+  tamano_bytes: 145711
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieez_zacatecas_2018_ayto_x_casilla_xlsx
+  usado_para: 'Zacatecas 2018 por casilla, con LISTA NOMINAL CASILLA: es la via del denominador'
+  url_origen: https://ieez.org.mx/PE2018/Ganadores/Resultados%20Electorales%20de%20Ayuntamientos%202017-2018%20por%20casilla.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieez.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/ieez_zacatecas_2018_ayto_x_casilla.xlsx
+  sha256: ee8841d5a0f5e23db087aef58f3482b0a7114ac0db2f70b6fa667765d02946d0
+  tamano_bytes: 1171026
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieez_zacatecas_2021_computos_xlsx
+  usado_para: 'Zacatecas 2021: computo por casilla de gubernatura, diputaciones y AYUNTAMIENTOS
+    con LISTA_NOMINAL_CASILLA'
+  url_origen: https://ieez.org.mx/PE2021/Doc/C%C3%93MPUTO%20DE%20ELECCI%C3%93N%20PROCESO%20ELECTORAL%202020-2021.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieez.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/ieez_zacatecas_2021_computos.xlsx
+  sha256: 4c22395b7929e638ff7bc7f32b616885dffbe0afefb166a8c2f0cb9a4f0d0d66
+  tamano_bytes: 2105678
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieez_zacatecas_2024_computos_xlsx
+  usado_para: 'Zacatecas 2024: ayuntamientos por casilla con LISTA NOMINAL'
+  url_origen: https://ieez.org.mx/PE2024/Resultados%20computos%20eleccion%20de%20Ayuntamiento%20y%20Diputaciones%20por%20casilla%20y%20municipio.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieez.org.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/ieez_zacatecas_2024_computos.xlsx
+  sha256: 304bcfcac0b0e71776caf724828ca02b43e3da48c0a8a62d0501fdfec3e8f0d3
+  tamano_bytes: 1213243
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iepc_durango_2016_resultados_xlsx
+  usado_para: 'Durango 2016 (ayuntamientos, NO concurrente): hoja ''2016 Ayuntamiento Dgo''
+    con TOTAL y L. NOMINAL. Durango es la UNICA entidad NUNCA TRATADA de la ventana'
+  url_origen: https://iepcdurango.mx/x/documentos/2020/organizacion/resultados_2016.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iepcdurango.mx (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iepc_durango_2016_resultados.xlsx
+  sha256: bd8d2b3a8a5194f1ae3165028bd4e36a313dc0ec7fdcc90aa0814c854b1e7fab
+  tamano_bytes: 36675511
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iepc_durango_2019_x_casilla_zip
+  usado_para: 'Durango 2019 (ayuntamientos, NO concurrente): CSV en formato SEE con LISTA_NOMINAL
+    por casilla. Con 2016 forma la transicion STAY-OFF, el contrafactual puro del diseno'
+  url_origen: https://www.iepcdurango.mx/x/img/Resultados_por_casilla_proceso_2018-2019.zip
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de iepcdurango.mx (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/iepc_durango_2019_x_casilla.zip
+  sha256: 9b6ad8a89cbe5404659f5ffcf63b22c1fcf1012044147c9e5991e74cea3296e1
+  tamano_bytes: 60634
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieeh_hidalgo_2016_ayuntamientos_rar
+  usado_para: 'Hidalgo 2016 (ayuntamientos, NO concurrente): ANTES de la cohorte g2024. RAR,
+    sin extractor en esta caja'
+  url_origen: https://www.ieehidalgo.org.mx/images/Procesos/Proceso%202015-2016/Ayuntamientos/AyuntamientosC.rar
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieehidalgo.org.mx (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/ieeh_hidalgo_2016_ayuntamientos.rar
+  sha256: 8d0bd16e18d0e10566e5d32fd0bc165e7a0eb89bd9dc25d7a18e354630c82aba
+  tamano_bytes: 444642
+  formato: rar
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieeh_hidalgo_2020_computos_x_casilla_xlsx
+  usado_para: 'Hidalgo 2020 (ayuntamientos, NO concurrente; jornada aplazada al 18/oct/2020
+    por COVID): 84 hojas por municipio, SIN columna de lista nominal'
+  url_origen: https://www.ieehidalgo.org.mx/images/Procesos/Proceso_2019-2020/Computos/DETALLEPORCASILLACOMPUTOS2020%20%283%29.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieehidalgo.org.mx (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/ieeh_hidalgo_2020_computos_x_casilla.xlsx
+  sha256: 1491d182ecb46952a2e2c72f9183a78b2b5a1ebaedfc7db32dec552172997f8a
+  tamano_bytes: 524650
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ieeh_hidalgo_2024_computos_zip
+  usado_para: 'Hidalgo 2024 (ayuntamientos, CONCURRENTE): ZIP con Ayuntamientos.zip, 84 XLSX
+    por municipio, SIN columna de lista nominal'
+  url_origen: https://www.ieehidalgo.org.mx/wp-content/uploads/2026/01/ResultadosComputos.zip
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieehidalgo.org.mx (curl -A UA-navegador, GET real,
+    doble descarga)
+  archivo: electoral_local_municipal_serie/ieeh_hidalgo_2024_computos.zip
+  sha256: 4f24ed22318aa392628e3dfdb34740888cf92c42757c8bfd517b3d5d9627fff2
+  tamano_bytes: 2384409
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun1_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 1 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_1.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun1.xlsx
+  sha256: 330d7515525bf6c72e4b073d44409051966334a8d179d33a9a3d44491f6d764e
+  tamano_bytes: 93827
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun1_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 1 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_1.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun1.xlsx
+  sha256: 6c4d1b6c50ff27f49c90a07534e7c4da5e04713cbe30629056d97799a8a0c878
+  tamano_bytes: 129641
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun2_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 2 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_2.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun2.xlsx
+  sha256: 6143730e16fe609550601a03bc3ded5b663c12c22ba5efce73449b45ff1ac1eb
+  tamano_bytes: 15520
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun2_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 2 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_2.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun2.xlsx
+  sha256: 5f4946fafa0dbc4b6a72afa4d814af53e1de6d805e2a292eaa7527d9b64107f1
+  tamano_bytes: 15469
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun3_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 3 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_3.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun3.xlsx
+  sha256: dfd79a9a320834b9fdd07a7a2d19ac02820b4131920e4637c9f89214ebf51684
+  tamano_bytes: 16708
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun3_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 3 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_3.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun3.xlsx
+  sha256: 6b2a061429b9c0d53b095de3b9be305def5156e9cc804b1f115fab30028297bc
+  tamano_bytes: 17377
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun4_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 4 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_4.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun4.xlsx
+  sha256: 0a136b6753b6d7f9ce81e01aff07a16c4b34df8d1aca30def932b5930c0cfd2a
+  tamano_bytes: 12669
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun4_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 4 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_4.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun4.xlsx
+  sha256: e23594490f531e97a8740bc426387f340db28c1332cb93eb55d4e37bd7bae340
+  tamano_bytes: 12212
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun5_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 5 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_5.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun5.xlsx
+  sha256: 689583678a7d5a4ce094e0299f8e54a78950d9d0bef8f545c8542087788a3b89
+  tamano_bytes: 22264
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun5_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 5 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_5.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun5.xlsx
+  sha256: cf3212e4656124bd1746f50957465f66605d9ea81f4cf0a3b5628b6308cf16b3
+  tamano_bytes: 23655
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun6_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 6 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_6.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun6.xlsx
+  sha256: e1fb2eba87fe078c5205592767ff44ca2076c29b630adc147926b7a51eb84bbb
+  tamano_bytes: 15187
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun6_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 6 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_6.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun6.xlsx
+  sha256: 136ed75ff05822cd58249254d8e9ab86923f6586698712ea1f7f972a462f4141
+  tamano_bytes: 15854
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun7_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 7 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_7.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun7.xlsx
+  sha256: 3c551e139ee3024df517a8b6e9f2b2bfc70796dd4fc49899722cda081fc2c1e9
+  tamano_bytes: 15850
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun7_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 7 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_7.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun7.xlsx
+  sha256: 8b951f7c220cbda20b2744a1a0796fd42bd552ba7d462645148801b3c32850b2
+  tamano_bytes: 17344
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun8_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 8 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_8.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun8.xlsx
+  sha256: 7a084095cb9c91ab1c1ea55ecc54768fbc834f52e68477ee0975a9328aec0d2e
+  tamano_bytes: 12384
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun8_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 8 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_8.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun8.xlsx
+  sha256: 86f111ff24ec5f5697f739bf1011ebb4d632fca1132a880ab31432619e1e7864
+  tamano_bytes: 11814
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun9_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 9 (ayuntamientos, NO concurrente, ANTES de la
+    cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_9.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun9.xlsx
+  sha256: 78ebb64a8e76fca95a8d361d777c94783aede796770f37e1b90cba973da7a2e6
+  tamano_bytes: 13192
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun9_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 9 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_9.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun9.xlsx
+  sha256: c5aaabff33291b384457de660c9063c5c67cb9262bf7021f0f0bbbb93d331416
+  tamano_bytes: 12827
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun10_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 10 (ayuntamientos, NO concurrente, ANTES de
+    la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_10.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun10.xlsx
+  sha256: c7b568ccf2e51421eb9238909ba4b0f10cd40c22780934db32c4e34c4e012ee5
+  tamano_bytes: 13473
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun10_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 10 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_10.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun10.xlsx
+  sha256: dfce5ba3715d63c8810ab3046e012773f4c287490f35e6c5c2187b71238c4afc
+  tamano_bytes: 13189
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2019_ayto_mun11_xlsx
+  usado_para: 'Aguascalientes 2019, municipio 11 (ayuntamientos, NO concurrente, ANTES de
+    la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/1819/Ayuntamiento/COMPUTO_MUNICIPIO_11.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2019_ayto_mun11.xlsx
+  sha256: bf53df9f66afe77d278915b10ceea0b33209c077392f8d9fd6ec7b93f8a2a86e
+  tamano_bytes: 15295
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: iee_ags_2021_ayto_mun11_xlsx
+  usado_para: 'Aguascalientes 2021, municipio 11 (ayuntamientos, CONCURRENTE con la federal
+    intermedia, DESPUES de la cohorte g2021): computo por casilla, SIN columna de lista nominal'
+  url_origen: https://www.ieeags.mx/media/Resultados/2021/Ayuntamiento/COMPUTO_MUNICIPIO_11.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de ieeags.mx (curl -A UA-navegador, GET real, doble
+    descarga)
+  archivo: electoral_local_municipal_serie/iee_ags_2021_ayto_mun11.xlsx
+  sha256: 139c68793895b7cd5a24941857e598ef5a1365668687f961e4fec845cea81f0a
+  tamano_bytes: 17044
+  formato: xlsx
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie municipal para el diseno escalonado de ACTO MAESTRA34-L6 (P1). A.7: doble descarga,
+    sha256 identico en las dos. Estructura de contenedor verificada. OJO www.ieeags.mx sirve
+    HTTP 200 con una pagina HTML para rutas inexistentes (soft-404): un 200 no basta, hay
+    que abrir el contenedor.'
+
+- id: ine_cg_informe_vinculacion_pel2014_2015_abr_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: Informe integral de la Comision de Vinculacion sobre
+    los mecanismos de coordinacion de los PEL 2014-2015 (CG ordinaria 29/abr/2015). Se examino
+    buscando la tabla de cargos por entidad del ciclo 2014-2015 y NO la trae -- es la evidencia
+    de por que las 16 entidades de 2015 quedan INDETERMINADO en data/p0-calendario-ayuntamientos-v1_0.tsv
+    y no ''sin eleccion''.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/110902
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/informe2015_CGor201504-29.pdf.txt
+  sha256: 6f68f1282358c39695cef46356cf83eacdeeca85171089f99c36244af20ea426
+  tamano_bytes: 151401
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Negativo documentado: A.13 sobre el ciclo 2014-2015. Es el unico ciclo cuyos anexos
+    por entidad no estan publicados como hoja de calculo en el repositorio.'
+
+- id: ine_cg_informe_vinculacion_pel2014_2015_mar_anexo_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: Anexo 1 del informe integral de la Comision de Vinculacion,
+    PEL 2014-2015 (CG extraordinaria 11/mar/2015). Se examino buscando la tabla de cargos
+    por entidad del ciclo 2014-2015 y NO la trae -- es la evidencia de por que las 16 entidades
+    de 2015 quedan INDETERMINADO en data/p0-calendario-ayuntamientos-v1_0.tsv y no ''sin eleccion''.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/110879
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/informe2015_anexo1.pdf.txt
+  sha256: f7c186b60e494a6be1bad908138a4cd10caf9e1f481cfce355319e89a2b417ef
+  tamano_bytes: 576535
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Negativo documentado: A.13 sobre el ciclo 2014-2015. Es el unico ciclo cuyos anexos
+    por entidad no estan publicados como hoja de calculo en el repositorio.'
+
+- id: ine_cg_informe_final_pel2014_2015_txt
+  usado_para: 'P0 de ACTO MAESTRA34-L6: Informe final de seguimiento al Plan Integral y Calendarios
+    de Coordinacion con los OPLE con eleccion local en 2015 (CG ordinaria 29/jul/2015). Se
+    examino buscando la tabla de cargos por entidad del ciclo 2014-2015 y NO la trae -- es
+    la evidencia de por que las 16 entidades de 2015 quedan INDETERMINADO en data/p0-calendario-ayuntamientos-v1_0.tsv
+    y no ''sin eleccion''.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/handle/123456789/110960
+  fecha_descarga: '2026-09-02'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (REST de DSpace, curl
+    -A UA-navegador)
+  archivo: electoral_calendario_pel_ine/informefinal2015.pdf.txt
+  sha256: 8e355e28ddfa97e4d0cef860a517cbd6dbb17282d6b8a52ebb0fa1fc71736540
+  tamano_bytes: 19381
+  formato: txt
+  licencia: Documento publico del Consejo General del INE
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Negativo documentado: A.13 sobre el ciclo 2014-2015. Es el unico ciclo cuyos anexos
+    por entidad no estan publicados como hoja de calculo en el repositorio.'

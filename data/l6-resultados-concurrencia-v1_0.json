@@ -1,0 +1,450 @@
+{
+ "beta": 0.014921452391920696,
+ "gamma": -0.4215048630872924,
+ "ic95_wild_cluster": [
+  -3.376543720552914,
+  3.406386625336756
+ ],
+ "p_wild_cluster": 0.8734,
+ "B": 10000,
+ "ic95_bootstrap_municipio": [
+  -1.3865206289790515,
+  1.3312255039964644
+ ],
+ "n_transiciones": 269,
+ "n_municipios_por_entidad": {
+  "Coahuila": 38,
+  "Nayarit": 19,
+  "Zacatecas": 58,
+  "Durango": 1
+ },
+ "municipios_perdidos": {
+  "Coahuila": [],
+  "Nayarit": [
+   "LA YESCA"
+  ],
+  "Zacatecas": [],
+  "Durango": [
+   "CANATLAN",
+   "CANELAS",
+   "CONETO DE COMONFORT",
+   "CUENCAME",
+   "EL ORO",
+   "GOMEZ PALACIO",
+   "GUADALUPE VICTORIA",
+   "GUANACEVI",
+   "HIDALGO",
+   "INDE",
+   "LERDO",
+   "MAPIMI",
+   "MEZQUITAL",
+   "NAZAS",
+   "NOMBRE DE DIOS",
+   "NUEVO IDEAL",
+   "OCAMPO",
+   "OTAEZ",
+   "PANUCO DE CORONADO",
+   "PENON BLANCO",
+   "POANAS",
+   "PUEBLO NUEVO",
+   "RODEO",
+   "SAN BERNARDO",
+   "SAN DIMAS",
+   "SAN JUAN DE GUADALUPE",
+   "SAN JUAN DEL RIO",
+   "SAN LUIS DEL CORDERO",
+   "SAN PEDRO DEL GALLO",
+   "SANTA CLARA",
+   "SANTIAGO PAPASQUIARO",
+   "SIMON BOLIVAR",
+   "SUCHIL",
+   "TAMAZULA",
+   "TEPEHUANES",
+   "TLAHUALILO",
+   "TOPIA",
+   "VICENTE GUERRERO"
+  ]
+ },
+ "fuera_de_rango": [],
+ "controles_lectura": {
+  "coahuila2017_excluidas": [
+   "PORCENTAJE"
+  ],
+  "coahuila2018_excluidas": [
+   "TOTALES",
+   ""
+  ],
+  "nayarit2017_cols_sumadas": [
+   "PRI",
+   "PVEM",
+   "MC",
+   "NA",
+   "MORENA",
+   "ES",
+   "JUNTOS POR TI",
+   "CI-1",
+   "CI-2",
+   "CI-3",
+   "CAND. NO REG.",
+   "VOTOS NULOS"
+  ],
+  "nayarit2017_sin_ln": [],
+  "nayarit2021_cols_sumadas": [
+   "PT",
+   "PVEM",
+   "MC",
+   "MORENA",
+   "NAN",
+   "VIVA",
+   "MLN",
+   "PES",
+   "RSP",
+   "FXM",
+   "PAN-PRI-PRD",
+   "PT-PVEM-MORENA-NAN",
+   "Candidaturas no registradas",
+   "Votos nulos"
+  ],
+  "nayarit2021_sin_ln": [],
+  "nayarit2024_cols_sumadas": [
+   "PVEM",
+   "PT",
+   "MC",
+   "MORENA",
+   "NAN-MLN",
+   "NAN",
+   "MLN",
+   "RSPN",
+   "FXMN",
+   "PAN-PRI-PRD",
+   "PVEM-PT-MORENA-FXMN",
+   "Candidaturas no registradas",
+   "Votos nulos"
+  ],
+  "nayarit2024_sin_ln": [],
+  "durango2016": {
+   "casillas_sumadas": 766,
+   "subtotales_descartados": 256,
+   "gran_total_publicado": [
+    260008.0,
+    455230.0
+   ],
+   "suma_casillas": [
+    259226.0,
+    455230.0
+   ]
+  },
+  "durango2019": {
+   "casillas_ok": 2488,
+   "casillas_descartadas": 12
+  }
+ },
+ "att_por_cohorte": {
+  "gamma_solo_controles_pp_por_anio": -0.2692291675850782,
+  "n_transiciones_control": 212,
+  "ATT_Coahuila_2017_2018": {
+   "delta_bruto_pp": 2.1420308613943084,
+   "hueco": 1,
+   "att_pp": 2.4112600289793864,
+   "n": 38
+  },
+  "ATT_Nayarit_2017_2021": {
+   "delta_bruto_pp": -6.7683265441366105,
+   "hueco": 4,
+   "att_pp": -5.691409873796298,
+   "n": 19
+  }
+ },
+ "por_transicion": [
+  {
+   "entidad": "Coahuila",
+   "de": 2017,
+   "a": 2018,
+   "hueco": 1,
+   "dD": 1,
+   "n": 38,
+   "y_de_media": 62.53093249223833,
+   "y_a_media": 64.67296335363264,
+   "dy_media": 2.1420308613943084,
+   "dy_mediana": 1.7825082468579936
+  },
+  {
+   "entidad": "Coahuila",
+   "de": 2018,
+   "a": 2021,
+   "hueco": 3,
+   "dD": 0,
+   "n": 38,
+   "y_de_media": 64.67296335363264,
+   "y_a_media": 66.57958423868835,
+   "dy_media": 1.9066208850557216,
+   "dy_mediana": 2.4986098827776857
+  },
+  {
+   "entidad": "Coahuila",
+   "de": 2021,
+   "a": 2024,
+   "hueco": 3,
+   "dD": 0,
+   "n": 38,
+   "y_de_media": 66.57958423868835,
+   "y_a_media": 68.63249742578512,
+   "dy_media": 2.0529131870967467,
+   "dy_mediana": 2.7488599390935633
+  },
+  {
+   "entidad": "Nayarit",
+   "de": 2017,
+   "a": 2021,
+   "hueco": 4,
+   "dD": 1,
+   "n": 19,
+   "y_de_media": 65.51428712275057,
+   "y_a_media": 58.74596057861396,
+   "dy_media": -6.7683265441366105,
+   "dy_mediana": -6.860443900358959
+  },
+  {
+   "entidad": "Nayarit",
+   "de": 2021,
+   "a": 2024,
+   "hueco": 3,
+   "dD": 0,
+   "n": 19,
+   "y_de_media": 58.74596057861396,
+   "y_a_media": 60.752640893460274,
+   "dy_media": 2.006680314846307,
+   "dy_mediana": 1.1947817272175314
+  },
+  {
+   "entidad": "Zacatecas",
+   "de": 2018,
+   "a": 2021,
+   "hueco": 3,
+   "dD": 0,
+   "n": 58,
+   "y_de_media": 67.75225335514533,
+   "y_a_media": 55.2647649741612,
+   "dy_media": -12.487488380984122,
+   "dy_mediana": -11.864678531345199
+  },
+  {
+   "entidad": "Zacatecas",
+   "de": 2021,
+   "a": 2024,
+   "hueco": 3,
+   "dD": 0,
+   "n": 58,
+   "y_de_media": 55.2647649741612,
+   "y_a_media": 61.81475515138689,
+   "dy_media": 6.5499901772256885,
+   "dy_mediana": 6.562349613065386
+  },
+  {
+   "entidad": "Durango",
+   "de": 2016,
+   "a": 2019,
+   "hueco": 3,
+   "dD": 0,
+   "n": 1,
+   "y_de_media": 57.11574369000286,
+   "y_a_media": 41.671668200008725,
+   "dy_media": -15.444075489994134,
+   "dy_mediana": -15.444075489994134
+  }
+ ],
+ "heterogeneidad_tamano": {
+  "chico": {
+   "n": 92,
+   "beta_pp": 3.226730549459497,
+   "gamma": -0.620909229529445,
+   "corte_ln": [
+    7878.0,
+    24642.0
+   ]
+  },
+  "mediano": {
+   "n": 88,
+   "beta_pp": -1.702456902659651,
+   "gamma": -0.478254198367719,
+   "corte_ln": [
+    7878.0,
+    24642.0
+   ]
+  },
+  "grande": {
+   "n": 89,
+   "beta_pp": -1.4085731101546268,
+   "gamma": -0.07865807074847382,
+   "corte_ln": [
+    7878.0,
+    24642.0
+   ]
+  }
+ },
+ "sensibilidad_sin_hueco1": {
+  "beta_pp": -5.691409873796297,
+  "gamma": -0.2692291675850784,
+  "n": 231
+ },
+ "sensibilidad_sin_durango": {
+  "beta_pp": -0.02734251452531417,
+  "gamma": -0.400372879628675,
+  "n": 268
+ },
+ "agregado_estatal": [
+  {
+   "entidad": "Coahuila",
+   "anio": 2017,
+   "n": 38,
+   "votos": 1256332.0,
+   "lista_nominal": 2202126.0,
+   "participacion_agregada_pp": 57.05086811563008,
+   "D": 0
+  },
+  {
+   "entidad": "Coahuila",
+   "anio": 2018,
+   "n": 38,
+   "votos": 1359037.0,
+   "lista_nominal": 2251549.0,
+   "participacion_agregada_pp": 60.36008987590321,
+   "D": 1
+  },
+  {
+   "entidad": "Coahuila",
+   "anio": 2021,
+   "n": 38,
+   "votos": 1302465.0,
+   "lista_nominal": 2262052.0,
+   "participacion_agregada_pp": 57.57891507357037,
+   "D": 1
+  },
+  {
+   "entidad": "Coahuila",
+   "anio": 2024,
+   "n": 38,
+   "votos": 1558479.0,
+   "lista_nominal": 2410806.0,
+   "participacion_agregada_pp": 64.64555837342365,
+   "D": 1
+  },
+  {
+   "entidad": "Durango",
+   "anio": 2016,
+   "n": 1,
+   "votos": 260008.0,
+   "lista_nominal": 455230.0,
+   "participacion_agregada_pp": 57.11574369000286,
+   "D": 0
+  },
+  {
+   "entidad": "Durango",
+   "anio": 2019,
+   "n": 39,
+   "votos": 582913.0,
+   "lista_nominal": 1298273.0,
+   "participacion_agregada_pp": 44.899108276918646,
+   "D": 0
+  },
+  {
+   "entidad": "Nayarit",
+   "anio": 2017,
+   "n": 20,
+   "votos": 507860.0,
+   "lista_nominal": 832177.0,
+   "participacion_agregada_pp": 61.02788228946486,
+   "D": 0
+  },
+  {
+   "entidad": "Nayarit",
+   "anio": 2021,
+   "n": 19,
+   "votos": 472694.0,
+   "lista_nominal": 902740.0,
+   "participacion_agregada_pp": 52.36214192347742,
+   "D": 1
+  },
+  {
+   "entidad": "Nayarit",
+   "anio": 2024,
+   "n": 20,
+   "votos": 529999.0,
+   "lista_nominal": 950646.0,
+   "participacion_agregada_pp": 55.75145743000023,
+   "D": 1
+  },
+  {
+   "entidad": "Zacatecas",
+   "anio": 2018,
+   "n": 58,
+   "votos": 752621.0,
+   "lista_nominal": 1162459.0,
+   "participacion_agregada_pp": 64.74387483773621,
+   "D": 1
+  },
+  {
+   "entidad": "Zacatecas",
+   "anio": 2021,
+   "n": 58,
+   "votos": 688563.0,
+   "lista_nominal": 1358765.0,
+   "participacion_agregada_pp": 50.67565031480793,
+   "D": 1
+  },
+  {
+   "entidad": "Zacatecas",
+   "anio": 2024,
+   "n": 58,
+   "votos": 750673.0,
+   "lista_nominal": 1263981.0,
+   "participacion_agregada_pp": 59.38957943196931,
+   "D": 1
+  }
+ ],
+ "ciclo_con_concurrencia_fija": [
+  {
+   "entidad": "Coahuila",
+   "de": 2018,
+   "a": 2021,
+   "dy_media_pp": 1.9066208850557216,
+   "lectura": "las dos elecciones son concurrentes (dD=0): el cambio NO puede ser concurrencia"
+  },
+  {
+   "entidad": "Coahuila",
+   "de": 2021,
+   "a": 2024,
+   "dy_media_pp": 2.0529131870967467,
+   "lectura": "las dos elecciones son concurrentes (dD=0): el cambio NO puede ser concurrencia"
+  },
+  {
+   "entidad": "Nayarit",
+   "de": 2021,
+   "a": 2024,
+   "dy_media_pp": 2.006680314846307,
+   "lectura": "las dos elecciones son concurrentes (dD=0): el cambio NO puede ser concurrencia"
+  },
+  {
+   "entidad": "Zacatecas",
+   "de": 2018,
+   "a": 2021,
+   "dy_media_pp": -12.487488380984122,
+   "lectura": "las dos elecciones son concurrentes (dD=0): el cambio NO puede ser concurrencia"
+  },
+  {
+   "entidad": "Zacatecas",
+   "de": 2021,
+   "a": 2024,
+   "dy_media_pp": 6.5499901772256885,
+   "lectura": "las dos elecciones son concurrentes (dD=0): el cambio NO puede ser concurrencia"
+  }
+ ],
+ "descomposicion_L4": {
+  "delta_L4_pp": 10.479,
+  "delta_2021_2024_concurrencia_fija": {
+   "Coahuila": 2.0529131870967467,
+   "Nayarit": 2.006680314846307,
+   "Zacatecas": 6.5499901772256885
+  }
+ }
+}

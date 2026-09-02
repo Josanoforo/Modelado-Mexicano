@@ -852,3 +852,143 @@ reglas_propuestas:
     hallazgo: "El resultado mas informativo de la pieza no estaba buscado: el ahorro INFORMAL casi duplica al FORMAL (0.561920 contra 0.284927, IC95 sin traslape ni de lejos). De la union 0.642080 se sigue que 0.205 de los adultos ahorran por ambas vias y 0.357 ahorran UNICAMENTE por vias informales -- tandas, guardar en casa, con familiares, cajas de ahorro del trabajo. Es apoyo directo para la familia dinero.ahorro.informal_sin_puente / con_puente_y_respaldo del modelo, que hoy no tiene p medida; esta pieza NO las mide ni las reclama, solo deja anotado donde esta el dato. La comparacion acervo-contra-acervo que si valdria requeriria un reactivo que ENIF 2024 no tiene limpio: P4_10 fusiona 'menos de una semana' con 'no tiene ahorros'."
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: enif_2024_enif_2024_bd_csv
+
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA34-L6 · CIVICA-HOMOLOGACION-ESCALONADA · 2/sep/2026
+  #
+  # ENMIENDA a civico.participacion.contingente. La entrada de arriba
+  # (l. 594, ACTO MAESTRA34-L4, ADR-284) NO se edita: queda como esta,
+  # con su Δ +10.4790 pp intacto y su situacion APARCADA-HASTA-
+  # IDENTIFICACION firmada por DC1-d. Esta entrada es su SUCESORA, que
+  # es lo que la propia nota de DC1-d nombro ("el sucesor es el diseno
+  # escalonado de la homologacion 2015-2021, MAESTRA34-L6").
+  #
+  # Spec de dos commits: forense/notas/2026-09-02-MAESTRA34-L6-P2-spec.md
+  # Tabla de tratamiento: forense/notas/2026-09-02-MAESTRA34-L6-P0-tabla-tratamiento.md
+  # Salida cruda: data/l6-resultados-concurrencia-v1_0.json
+  #
+  # milpa/tramite.yaml y forense/prereg-duelo-v2/ INTOCADOS.
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: civico.participacion.contingente_escalonado_2016_2024
+    misma_regla_motor: civico.participacion.contingente
+    enmienda_a: civico.participacion.contingente
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA  # el diseno soporta UN disparador binario
+        # -- la eleccion municipal es concurrente con la federal, si/no -- y lo
+        # midio. Lo que el dato dice es que ese disparador NO es el que mueve la
+        # participacion: ver falsable_si. Proponer disparadores al motor sobre
+        # una variable que acaba de quedar refutada como causal seria cargar el
+        # defecto, no la medicion.
+    entonces:
+      - {conducta: participa_mas_si_la_local_es_concurrente, delta_pp: 0.0149, clase: "MEDIDO·Δ-identificado (diferencias en diferencias escalonadas, puntos porcentuales)"}
+    porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    veredicto_falsador: REFUTADA-COMO-CAUSAL
+    nota: >
+      Sucesor de MAESTRA34-L4. Diseno escalonado de la homologacion de
+      calendarios: municipio x eleccion de ayuntamiento, primeras diferencias
+      entre elecciones consecutivas de la misma entidad, Dy = gamma*hueco +
+      beta*DeltaD, con gamma identificada SOLO por las transiciones sin cambio
+      de tratamiento. beta = +0.0149 pp, IC95 wild cluster por entidad
+      [-3.3765, +3.4064] y IC95 bootstrap por municipio [-1.3865, +1.3312]:
+      LOS DOS CONTIENEN CERO. Por el falsador B-bis congelado antes de medir,
+      la regla queda REFUTADA-COMO-CAUSAL y el Δ +10.4790 pp de L4 se
+      reinterpreta como efecto de anio.
+      Lo que NO dice, y hay que leerlo junto: la participacion municipal SI se
+      mueve mucho entre esas elecciones (hasta 14 pp); lo que no la mueve es
+      compartir la boleta. El diagnostico que lo demuestra es que los dos ATT
+      por cohorte tienen SIGNO OPUESTO -- Coahuila, que se junta con una
+      PRESIDENCIAL, +2.4113 pp IC95 [+1.53, +3.28]; Nayarit, que se junta con
+      una INTERMEDIA, -5.6914 pp IC95 [-6.94, -4.38] --, y que Zacatecas, que
+      es concurrente en SUS TRES elecciones, hace 64.74 -> 50.68 -> 59.39 de
+      participacion agregada con el tratamiento fijo en 1. El promedio de dos
+      efectos opuestos es lo que da el cero.
+    falsable_si: >
+      El falsador se ejercio: IC del efecto contiene 0 -> REFUTADA-como-causal.
+      Rama 1 de las tres que el encargo pre-registro. Para el sucesor: la
+      hipotesis viva ya no es "la concurrencia sube la participacion" sino "lo
+      que sube la participacion es que la boleta federal traiga PRESIDENCIA", y
+      se falsa con un efecto fijo de TIPO de anio federal (presidencial /
+      intermedia / sin federal) en vez de la tendencia lineal que esta spec uso.
+    fuente:
+      - "IEC Coahuila, computos de ayuntamientos 2017, 2018 y 2021 por municipio y por casilla"
+      - "IEE Nayarit, computos de presidencias y sindicaturas 2017, 2021 y 2024, mas listado nominal por municipios"
+      - "IEEZ Zacatecas, computos de ayuntamientos 2018, 2021 y 2024 por casilla"
+      - "IEPC Durango, resultados 2016 (municipio de Durango) y 2019 (estatal, formato SEE)"
+      - "30 acuerdos del Consejo General del INE (Plan Integral y Calendarios de Coordinacion, ciclos 2014-2015 a 2024-2025), repositoriodocumental.ine.mx"
+      - "forense/notas/2026-09-02-MAESTRA34-L6-P2-spec.md"
+    escala: "puntos porcentuales de participacion (votos totales / lista nominal). NO es una probabilidad."
+    ic95_wild_cluster_entidad: [-3.3765, 3.4064]
+    ic95_bootstrap_municipio: [-1.3865, 1.3312]
+    n: 269   # observaciones municipio x transicion
+    n_transiciones: 8
+    n_entidades: 4
+    n_conglomerados: 4
+    gamma_deriva_pp_por_anio: -0.4215
+    bootstrap: "wild cluster Rademacher sobre 4 entidades, restringido bajo H0, B=10000, seed 42; y bootstrap por municipio con reemplazo, B=10000, seed 42"
+    ponderador: "ninguno -- la unidad es el municipio, no el elector, como en MAESTRA34-L4. Se reporta tambien la participacion agregada por entidad."
+    universo: >
+      269 observaciones municipio x transicion sobre 8 transiciones y 4
+      entidades: Coahuila 38 municipios (2017 no concurrente, 2018/2021/2024
+      concurrentes), Nayarit 19 (2017 no concurrente, 2021/2024 concurrentes),
+      Zacatecas 58 (2018/2021/2024, las tres concurrentes) y Durango 1
+      (municipio de Durango, 2016 y 2019, las dos no concurrentes). Excluidos y
+      nombrados: LA YESCA en Nayarit (su eleccion de 2021 fue extraordinaria y
+      el IEE la publica en archivo aparte) y 38 de los 39 municipios de Durango
+      (el archivo de 2016 que publica el IEPC cubre solo la capital). Usos y
+      costumbres de Oaxaca: NO-APLICA con conteo 0, Oaxaca no esta en el
+      universo.
+    diagnostico_por_cohorte:
+      g2018_coahuila_presidencial: {att_pp: 2.4113, ic95_municipios: [1.5299, 3.2796], n: 38, hueco: 1}
+      g2021_nayarit_intermedia: {att_pp: -5.6914, ic95_municipios: [-6.9360, -4.3810], n: 19, hueco: 4}
+      diferencia_intermedia_menos_presidencial_pp: -8.1027
+      lectura: "signos opuestos, ninguno de los dos IC cruza cero: el signo del efecto depende de si la federal con la que concurre es presidencial o intermedia"
+    controles:
+      reagregacion_desde_casillas: "Coahuila 2021: |Δvotos|=0 y |Δlista nominal|=0 sobre los 38 municipios; Coahuila 2018: |Δvotos|=0 sobre los 37 municipios en comun"
+      part_publicada_vs_recalculada: "Coahuila 2021 y 2024: diferencia maxima 0.000000 pp en los 38 municipios de cada anio"
+      suma_vs_total_publicado: "Coahuila 2018: la suma de los 38 municipios (1359037 / 2251549) reproduce EXACTAMENTE la fila TOTALES de la propia tabla"
+      identidad_interna: "Zacatecas 2018 VALIDOS+NULOS+NOREG=TOTAL en 2498 de 2509 casillas (las 11 que fallan son de NOCHISTLAN DE MEJIA, 2231 votos = 0.2964% del estado); Zacatecas 2024 suma de partidos = VTOTAL en 2646 de 2646"
+      rango: "0 municipios con participacion fuera de (0,100]"
+      durango_2016: "la suma de casillas reproduce la lista nominal publicada EXACTAMENTE (455230) y los votos con 782 de diferencia sobre 260008 (0.30%); se usa la fila de gran total publicada, no la suma"
+    defecto_de_fuente_atrapado: >
+      La tabla de Zacatecas 2024 trae DOS columnas de total. 'T VOTARON' dice
+      'Sin Dato' en 839 de 2649 casillas (31.7%), en 29 de los 58 municipios
+      (Guadalupe pierde 216 de 261, Rio Grande 105 de 106): usarla habria
+      hundido la participacion de medio estado sin ningun aviso. 'VTOTAL' esta
+      en 2646 de 2649 y cumple suma(partidos)=VTOTAL en TODAS. Se uso VTOTAL.
+    limitacion_del_test: >
+      Con 4 conglomerados el bootstrap wild cluster de Rademacher solo tiene
+      2^4=16 patrones de signo (se verifico que dan 16 valores distintos de
+      beta*) y su p-valor MINIMO alcanzable es 0.125: ese test no podia
+      rechazar al 5% pasara lo que pasara. Por eso el veredicto se apoya en que
+      el bootstrap por municipio, que no sufre esa limitacion, tambien contiene
+      cero con un intervalo cuatro veces mas estrecho.
+    reserva: |-
+      La reserva se escribio en §0.3 y §1.10 de la spec, ANTES de medir: este
+      diseno no separa la concurrencia de un choque nacional que coincida con
+      los anios federales y no sea capturado por una TENDENCIA LINEAL. Los
+      resultados muestran que ese choque existe, es grande y NO es lineal -- es
+      el ciclo presidencial/intermedia, visible con el tratamiento fijo en
+      Zacatecas. La gamma lineal lo absorbe mal, y esa mala absorcion es por que
+      beta pooled es inestable (quitando Coahuila, beta = -5.69). El acto
+      reporta el numero que su procedimiento congelado produjo y senala el
+      defecto del procedimiento EN VEZ DE CAMBIARLO despues de ver el resultado.
+      ALCANCE: P0 identifico 14 entidades tratadas con antes y despues; el
+      encargo fijaba un minimo de 8; P1 obtuvo serie con lista nominal para 4
+      entidades, 2 de ellas tratadas. P3 corrio ACOTADO y asi se declara.
+    contaminacion_declarada: >
+      ADR-46, declarada en §0.2 de la spec ANTES de congelarla y no borrada
+      despues: la sesion habia visto los totales y la lista nominal de 9 de los
+      38 municipios de Coahuila 2017 (filas 6-14 de la tabla), la cifra ESTATAL
+      de participacion del PREP de Nayarit 2017 (62.0791, que viene en el
+      preambulo del CSV de datos abiertos del INE) y la lista nominal por
+      municipio de Nayarit 2021. No habia calculado ninguna tasa, suma,
+      diferencia ni intervalo en ninguna entidad ni anio.
+    benchmarks:
+      alemania_leininger_rudolph_zittlau_2018_pp: 10
+      eeuu_hajnal_lewis_2003_pp: 36
+      maestra34_l4_entre_anios_pp: 10.4790
+      tepjf_1991_2018: NO-OBTENIDO
+    payload_manifiesto_id: "iec_coahuila_2017_ayuntamientos_x_municipio_xlsx;iec_coahuila_2018_ayuntamientos_x_municipio_xlsx;iec_coahuila_2021_ayuntamientos_x_municipio_xlsx;iec_coahuila_2024_ayuntamientos_x_municipio_xlsx;iee_nayarit_2017_ayuntamientos_xlsx;iee_nayarit_2021_ayuntamientos_xlsx;iee_nayarit_2024_ayuntamientos_xlsx;ieez_zacatecas_2018_ayto_x_casilla_xlsx;ieez_zacatecas_2021_computos_xlsx;ieez_zacatecas_2024_computos_xlsx;iepc_durango_2016_resultados_xlsx;iepc_durango_2019_x_casilla_zip"

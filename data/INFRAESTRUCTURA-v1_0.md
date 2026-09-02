@@ -264,3 +264,26 @@ LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado e
 **Nota fuera de perímetro, para quien selle A.7.** El texto de A.7 (Parte 1 del encargo que abrió este acto) se numeró a sí mismo `A.7`, pero `instrucciones-proyecto-v2_6.md` **ya tiene un A.7** vigente ("La identidad de un artefacto es su contenido, no su envoltura", línea 265) — el nuevo texto se pega después de A.6 (línea 251, antes del A.7 existente), lo que implica renumerar el A.7 actual a A.8 (y arrastrar su corolario). Esto no bloqueó este acto porque `instrucciones-proyecto-v2_6.md` está fuera de su perímetro — solo se reporta aquí para que el acto que canonice A.7 no colisione con el mismo patrón que ADR-71 ya mostró con la numeración de ADR.
 
 **PR:** `infra/indice-v1` — **NO FUSIONAR sin mesa.**
+
+---
+
+## Serie municipal de participación y calendario de homologación (`ACTO MAESTRA34-L6`, 2/sep/2026)
+
+Tres artefactos nuevos bajo `data/`, con su productor, su esquema, quién los lee
+y la advertencia que hace falta para no malusarlos.
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/p0-calendario-ayuntamientos-v1_0.tsv` | `python3 tools/p0_calendario_pel.py` (`ACTO MAESTRA34-L6`, P0) | 12 campos: `entidad, anio_jornada, concurrente_con_federal, ayuntamientos, n_actividades_municipales, cargos_declarados, ejemplo_actividad, fuente_archivo, fuente_hoja, fuente_acuerdo_ine, handle_dspace, nota_concurrencia`; 146 filas (entidad × jornada) | `tools/p0_calendario_pel.py` (deriva de aquí la tabla de tratamiento), `tools/l6_estimador_concurrencia.py` | **`GENERADO` — no editar a mano.** Se deriva de 30 acuerdos del Consejo General del INE (`repositoriodocumental.ine.mx`), ciclos 2014-2015 a 2024-2025. `ayuntamientos=SI` **no** se lee del rótulo «Cargos a elegir» de la hoja del INE: se exige que una **actividad** nombre a la vez el cargo municipal y un acto electoral, porque el rótulo miente al menos una vez (hoja `Veracruz` del PEL 2023-2024). `concurrente_con_federal` se lee de la **fecha de jornada**, no del año: Chiapas 2015 votó el 19 de julio, y va como excepción documentada con su cita. Las 16 entidades con `ayuntamientos=INDETERMINADO` en 2015 son «no se pudo determinar el cargo», **no** «no hubo elección». |
+| `data/p0-tratamiento-homologacion-v1_0.tsv` | `python3 tools/p0_calendario_pel.py` (`ACTO MAESTRA34-L6`, P0) | 9 campos: `entidad, elecciones_ayuntamiento_en_ventana, anios_no_concurrente, anios_concurrente, anio_tratamiento, cohorte, estatus, tiene_antes_y_despues, n_elecciones`; 32 filas, una por entidad | `tools/l6_estimador_concurrencia.py`, y todo acto sucesor del diseño escalonado | **`GENERADO` — no editar a mano.** `anio_tratamiento` es el primer año en que la elección municipal de la entidad fue concurrente **habiendo sido no concurrente antes**; una entidad `SIEMPRE-CONCURRENTE-EN-VENTANA` no es un control: es una unidad **siempre tratada**, y en un estimador escalonado no puede servir de comparación. El único `NUNCA-TRATADO` es Durango. |
+| `data/l6-resultados-concurrencia-v1_0.json` | `python3 tools/l6_estimador_concurrencia.py` (`ACTO MAESTRA34-L6`, P3) | JSON: `beta, gamma, ic95_wild_cluster, ic95_bootstrap_municipio, att_por_cohorte, por_transicion, agregado_estatal, heterogeneidad_tamano, sensibilidad_*, controles_lectura, municipios_perdidos` | nota de cierre del acto, `milpa/tramite-ola5-propuesta-v0.yaml` (entrada `civico.participacion.contingente_escalonado_2016_2024`) | Salida cruda del estimador de la spec congelada en `forense/notas/2026-09-02-MAESTRA34-L6-P2-spec.md`. **`beta` sola no se cita**: es el promedio de dos `ATT` de signo opuesto (`att_por_cohorte`), y citarla sin ellos invierte el sentido del hallazgo. El `ic95_wild_cluster` viene de **4 conglomerados** y su `p` mínimo alcanzable es `0.125`. |
+
+**Regla de conducto que este acto deja escrita** (vale para cualquier acto que
+abra una tabla de cómputos de un OPLE): **el código HTTP no verifica un
+payload.** `www.ieeags.mx` responde `200` con una página HTML a rutas
+inexistentes, y un archivo entró al corpus con 33 668 B de HTML bajo un `200`;
+lo atrapó `zipfile.testzip()`, no el código. Y **una columna llamada «total» no
+es necesariamente el total**: la tabla de Zacatecas 2024 trae `T VOTARON` con
+«Sin Dato» en 839 de 2 649 casillas y `VTOTAL` completa — la que se usa es la
+que cumple una identidad aritmética comprobable (`Σ(partidos) = VTOTAL`), no la
+que tiene mejor nombre.
