@@ -1,0 +1,32 @@
+{
+ "archivos_abiertos": [
+  "canon/modelo-decision-v4_0.md  [lectura via emisor (import del modulo)]",
+  "forense/prereg-duelo-v2/candidatos-marco-M-v1_1.tsv  [lectura]",
+  "forense/prereg-duelo-v2/marco-M-sorteado-v1_2.tsv  [lectura]",
+  "milpa/procedencia.yaml  [lectura via emisor (import del modulo)]",
+  "milpa/tramite.yaml  [lectura via emisor.cargar_reglas]"
+ ],
+ "aviso_F_DD": "Discrepancia de insumos declarada, no resuelta por este acto: el motor (milpa/tramite.yaml:349) dice ola_calibracion=\"ENNViH ola 2 (2005-06)\"; el universo de la misma regla (milpa/tramite.yaml, bloque dinero.ahorro.tiene_ahorros) dice \"ambas olas\" (panel retenido, olas 2-3); y el marco sellado (marco-M-congelado-v1_2.tsv, razon_DD de esta celda) dice \"ENNViH olas 2-3 (2005-06 -> 2009-12), panel retenido\". Para DIN-M-01 (ola 1) las tres lecturas dan el mismo veredicto (transferencia de ola, P1 PUNTUA), asi que este acto no la resuelve; la reporta. Afectaria a DIN-M-03 (ola 3), que no esta sorteada en v1_2.",
+ "ciego_a_R": "SI -- este acto no abrio forense/prereg-duelo-v2/corridas-R/ ni ninguna columna de valor de R. Archivos abiertos listados en `archivos_abiertos`.",
+ "cita_ola_calibracion": "milpa/tramite.yaml:349 -- ola_calibracion: \"ENNViH ola 2 (2005-06) -- ponderador fac_3b vive en esta ola; ENIF 2024 -- ponderador FAC_PER (enmienda_enif2024)\"",
+ "cita_p": "milpa/tramite.yaml:340 -- {conducta: tiene_ahorros, p: 0.174804, clase: \"MEDIDO·p(tasa base ponderada)\"}",
+ "clase": "MEDIDO·p(tasa base ponderada)",
+ "conducta": "tiene_ahorros",
+ "correcciones_aplicadas_por_referencia": "ninguna -- fila tomada de forense/prereg-duelo-v2/marco-M-sorteado-v1_2.tsv sin diferencia contra forense/prereg-duelo-v2/candidatos-marco-M-v1_1.tsv donde esa tabla trae fila con este id (ADR-233 no aplica)",
+ "determinismo": "trivial: emitir_binaria recorre regla.entonces y devuelve la primera coincidencia de `conducta`; pura y determinista sobre milpa/tramite.yaml. Dos invocaciones frescas en este acto dieron salida identica.",
+ "encuesta": "ENNViH/MxFLS",
+ "estado_M": "EMITE",
+ "fuente": "ACTO MAESTRA35-N2 . F-DD-RANGOS-Y-M-DIN . P2 . EMITE-M-DIN-M-01, 2/sep/2026; celda de forense/prereg-duelo-v2/marco-M-sorteado-v1_2.tsv",
+ "grado_DD": "P1 PUNTUA",
+ "id_celda": "DIN-M-01",
+ "invocacion_emisor": "milpa/src/emisor.py:emitir_binaria(regla='dinero.ahorro.tiene_ahorros', conducta='tiene_ahorros') -> PrediccionM(tipo_escala='binaria', valor_punto=0.174804, clase='MEDIDO·p(tasa base ponderada)', estado='EMITE')",
+ "ola": "2002 (ola 1)",
+ "ola_calibracion": "ENNViH ola 2 (2005-06) -- ponderador fac_3b vive en esta ola; ENIF 2024 -- ponderador FAC_PER (enmienda_enif2024)",
+ "p": 0.174804,
+ "ponderador": "NO ESTIMADO EN ESTE ACTO",
+ "razon_DD_marco": "(encuesta,ola)=(ENNViH/MxFLS,2002 (ola 1)) != ola_calibracion=ENNViH olas 2-3 (2005-06 -> 2009-12), panel retenido -> validacion externa bajo F-DD (ADR-237). Regla dinero.ahorro.tiene_ahorros presente en cargar_reglas() post-P0 (FP-200=b).",
+ "razon_grado_DD": "(encuesta,ola) de la celda = (ENNViH/MxFLS,2002 (ola 1)); ola_calibracion de la conducta 'tiene_ahorros' de dinero.ahorro.tiene_ahorros = ENNViH ola 2 (2005-06) -- ponderador fac_3b vive en esta ola; ENIF 2024 -- ponderador FAC_PER (enmienda_enif2024). NO coinciden (transferencia de ola) -> validacion externa: P1, puntua (F-DD, ADR-237).",
+ "regla": "dinero.ahorro.tiene_ahorros",
+ "valor_punto": 0.174804,
+ "variable": "cr27"
+}
