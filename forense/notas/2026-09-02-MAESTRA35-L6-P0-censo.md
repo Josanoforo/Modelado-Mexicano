@@ -650,3 +650,66 @@ hoja, PDF con unión `pypdf`+`pdftotext`), con la búsqueda `FISCAL`×`PERSONAL`
 que es casi exactamente la de este acto. Los siete censores hicieron barrido
 artesanal pieza por pieza. **Se declara para el siguiente acto**: la
 infraestructura ya está escrita y comiteada.
+
+---
+
+## 11 · Séptimo instrumento, censado al propagar la firma `c1`
+
+**Escrita al propagar la respuesta de mesa del 2/sep/2026, después del commit de
+la cascada.** La firma `c1` enumera **siete instrumentos** de encuesta de hogares
+en el universo examinado, y uno de ellos —**`ENCUCI 2020`**— **este acto no lo
+había censado**. `ADR-287` sí la examinó, pero **para otra regla**: su `AP5_11`
+mide *permisibilidad declarada* y sirvió a la pieza `P3` de `MAESTRA34-L5`
+(evasión de norma), no a `tramite.gobierno_digital.coercitivo`. Heredar el
+séptimo instrumento de la firma habría sido citar sin examinar, así que se censó
+antes de escribirlo.
+
+**Qué se abrió.** `data/raw/FD_ENCUCI2020.pdf` (**4 006 líneas / 422 073
+caracteres**, volcado con `pdftotext -layout`) y `data/raw/BD_ENCUCI2020_dbf.zip`
+— **5 tablas**, cabeceras leídas directamente del `DBF`:
+
+| tabla | registros | campos |
+|---|---|---|
+| `ENCUCI_2020_SD.dbf` | 75 189 | 54 |
+| `ENCUCI_2020_SEC_4_5.dbf` | 21 519 | 164 |
+| `ENCUCI_2020_SEC_6_7_8.dbf` | 21 519 | 156 |
+| `ENCUCI_2020_SEC_9_10.dbf` | 21 519 | 50 |
+| `ENCUCI_2020_VIV.dbf` | 21 564 | 34 |
+
+**Barrido y veredicto.**
+
+| término | aciertos | qué resultaron ser |
+|---|---|---|
+| `fiscal\|impuest\|SAT\|contribuy\|RFC` | **0** | — |
+| `obligator\|obliga\|coerc\|forzos\|exig` | 6 | *«derechos y **obligaciones** como ciudadano(a)»* (×3) y la batería de **exigencia** ciudadana `AP7_2_5` — ninguno es obligatoriedad de canal |
+| `trámite\|gobierno digital\|en línea\|internet` | 7 | `AP4_4_08`/`AP4_6_08` *«Por internet»* como **medio de informarse/participar**; la batería de mordida (`trámite` en contexto de dádiva); `AP8_2_3` *«Agilizar trámites»* como **motivo de una dádiva** |
+| `confian\|desconfian` *(control positivo)* | **79** | confianza interpersonal e institucional (`AP5_2_*`, escala de 4 puntos) |
+
+**Veredicto: `NO-ENCONTRADO`.** ENCUCI 2020 es cultura cívica —participación,
+confianza, corrupción vivida—: **no tiene bloque de gobierno digital**, no tiene
+percepción de riesgo fiscal, y su único `trámite` es el objeto de una mordida.
+El control positivo de 79 aciertos demuestra que el barrido sí examinaba el
+archivo.
+
+## 12 · La firma `c1` llegó corregida, y la corrección invierte el veredicto de fondo
+
+Se deja constancia porque cambia lo que la regla dice de sí misma. La **primera**
+redacción de `c1` mandaba declarar `tramite.gobierno_digital.coercitivo` como
+**«HUECO DE MUNDO, no deuda de trabajo»**, con el tablero contando
+«huecos de mundo: 1» y **`S1` bajando a 0**. Alcanzó a escribirse como campo
+`hueco_de_mundo` en `milpa/tramite.yaml`.
+
+La redacción **corregida**, que es la que quedó ejecutada, dice lo contrario: **la
+regla sigue SIN DATO y `S1` sigue en 1**, y lo que se declara no es una ausencia
+de mundo sino un **universo examinado con su veredicto** —`NO-ENCONTRADO` en
+siete instrumentos por defecto de universo **de esas fuentes**, `NO-ACCESIBLE` en
+las dos administrativas—, **sin afirmar nada sobre el universo no examinado**. El
+campo se llama ahora `sin_dato_universo_examinado`, y `hueco_de_mundo` **no
+existe** en el árbol.
+
+La diferencia no es de redacción. «Hueco de mundo» afirma algo sobre **el mundo**;
+«`NO-ENCONTRADO` en siete instrumentos, `NO-ACCESIBLE` en dos» afirma algo sobre
+**lo que este programa examinó**, y deja escrito qué falta examinar — que es lo
+que la cola de adquisición ya lleva como **siguiente universo declarado**:
+fuentes administrativas (SAT/CNGF) **por navegador o por solicitud de
+transparencia**, no por sonda desde la caja, que ya se agotó.

@@ -1697,8 +1697,13 @@ reglas_propuestas:
   # Resultados:          forense/notas/2026-09-02-MAESTRA35-L6-resultados.md
   # ══════════════════════════════════════════════════════════════════
 
-  - id: tramite.gobierno_digital.adopcion_endutih2025
+  - id: tramite.gobierno_digital.uso_general_endutih2025
     entrada_nueva: true
+    renombrada_por: >
+      firma p1 (mesa, 2/sep/2026). ACTO MAESTRA35-L6 la propuso como
+      tramite.gobierno_digital.adopcion_endutih2025; mesa la renombra a
+      uso_general_ -- lo medido es USO, no ADOPCION de una oferta concreta: el
+      instrumento no observa que a la persona le hayan ofrecido nada.
     no_es_enmienda_a: tramite.gobierno_digital.coercitivo
     nota_alcance: >
       NO es la p de tramite.gobierno_digital.coercitivo y no se propone como
@@ -1721,9 +1726,35 @@ reglas_propuestas:
       vs tramite) y universo distinto (usuarios de internet vs N_TRA=01, pago
       del recibo de luz, ENCIG 2025). La comparacion, si mesa la quiere, es de
       mesa.
-    situacion: PENDIENTE-DE-MESA
+    firma_de_mesa:
+      # SELLA-3: el ejecutor propaga, no decide. Texto verbatim de mesa.
+      id: p1
+      fecha: '2026-09-02'
+      verbatim: >
+        se sella como MEDIDO tasa base, tier FUERTE, entrada en la propuesta
+        tramite.gobierno_digital.uso_general_endutih2025 con las dos olas de
+        contraste (17.17 % / 17.75 %, IC95 sin traslape) y se carga al motor
+        como campo tasa_base_nacional_endutih2025 bajo
+        tramite.gobierno_digital.util_sin_coercion -- no como conducta: llena la
+        reserva escrita ("No es la adopcion de gobierno digital en Mexico") y no
+        sustituye el 0.673 del pago de luz. Lo carga un acto NUBE, no tu; tu
+        dejas la entrada SELLADA-PENDIENTE-CARGA.
+    carga_declarada:
+      # La ejecuta un acto NUBE sucesor, NO ACTO MAESTRA35-L6.
+      destino: "milpa/tramite.yaml -- regla tramite.gobierno_digital.util_sin_coercion"
+      forma: "CAMPO nuevo tasa_base_nacional_endutih2025; NO una conducta del bloque entonces"
+      valor: 0.207026
+      ic95: [0.201085, 0.213148]
+      olas_de_contraste: "2024 = 0.171684 [0.166258, 0.177222] · 2023 = 0.177463 [0.171968, 0.182858]; el IC95 de 2025 no se traslapa con ninguno de los dos, y 2023 y 2024 si entre si"
+      no_sustituye: >
+        el 0.673393 de adopta_encig2025_luz (pago del recibo de luz, N_TRA=01,
+        unidad TRAMITE) se conserva intacto. Esta cifra tiene unidad PERSONA y
+        universo USUARIOS DE INTERNET: llena la reserva que la estampa A.10 de
+        esa regla declara -- "No es la adopcion de gobierno digital en Mexico"
+        --, no la reemplaza.
+    situacion: SELLADA-PENDIENTE-CARGA  # firma p1 (mesa, 2/sep/2026); la carga es de un acto NUBE
     si:
-      disparadores: PENDIENTE-DE-MESA  # tasa base incondicional; el dato no
+      disparadores: NO-APLICA  # tasa base incondicional (firma p1): el dato no
         # dicta condicion logica de disparo. La situacion coercitiva NO esta
         # en el instrumento -- ver nota_alcance.
     entonces:
@@ -1732,8 +1763,8 @@ reglas_propuestas:
     porque: {generador: [G1], mecanismo: PENDIENTE-DE-MESA}
       # mecanismo NO re-derivado por este acto: la cifra es una tasa base, no
       # un contraste de mecanismo. G1 se hereda del dominio, no se afirma aqui.
-    tier: PENDIENTE-DE-MESA
-    falsable_si: PENDIENTE-DE-MESA
+    tier: FUERTE  # firma p1 (mesa, 2/sep/2026)
+    falsable_si: NO-APLICA  # tasa base descriptiva, sin falsador propio -- declarado asi en COMMIT-1 §1
     fuente: ["ENDUTIH2025", "forense/notas/2026-09-02-MAESTRA35-L6-spec.md"]
     ola_calibracion: "ENDUTIH 2025 (principal); 2024 y 2023 como sensibilidad de ola. Estructura del bloque de gobierno identica en las tres, verificada hoja contra hoja."
     ic95: [0.201085, 0.213148]
@@ -1796,17 +1827,47 @@ reglas_propuestas:
       13502 personas del universo, sin gate.
       ACOTA la regla; no la cierra. Asociacion dentro de una corrida
       (A-bis 1/2), no efecto.
-    situacion: PENDIENTE-DE-MESA
+    firma_de_mesa:
+      id: q1
+      fecha: '2026-09-02'
+      verbatim: >
+        se registra como asociacion, tier MEDIA, con la sensibilidad C como
+        hallazgo principal de la entrada (la red personal es sustituto donde hay
+        con que y puente donde no lo hay), sin cargar. Las dos mitades del
+        bullet (informal_sin_puente / con_puente_y_respaldo) quedan
+        SIN-FUENTE-DE-ADOPCION: ENIF mide tener red, no que el producto llegue
+        por canal personal, y eso no se re-especifica por narrativa.
+    estado_del_bullet: SIN-FUENTE-DE-ADOPCION
+      # firma q1 (mesa, 2/sep/2026), sobre dinero.ahorro.informal_sin_puente +
+      # con_puente_y_respaldo (canon/modelo-decision-v4_0.md:501). NO es que
+      # falte medir: ENIF mide TENER RED y la regla exige QUE EL PRODUCTO LLEGUE
+      # POR CANAL PERSONAL. La diferencia no se salva re-especificando la regla
+      # por narrativa. Los valores 0.74/0.21/0.05 y 0.52/0.33/0.15 quedan
+      # intactos. La cita de report:tecnologia que desmiente su propia
+      # fuente_citada la propaga a milpa/procedencia.yaml un acto NUBE con esta
+      # firma, NO ACTO MAESTRA35-L6.
+    hallazgo_principal_de_la_entrada: >
+      firma q1: la sensibilidad C. LA RED PERSONAL ES SUSTITUTO DONDE HAY CON
+      QUE Y PUENTE DONDE NO LO HAY. Entre quienes ya podrian resolver la
+      oportunidad con recursos propios (P4_9_1='1'), tener ademas respaldo de
+      familiares se asocia con MENOS ahorro formal: 35.40 % contra 42.84 %,
+      -7.44 pp, CONTRARIA. Entre quienes NO podrian, con MAS: 30.63 % contra
+      22.49 %, +8.14 pp, CORROBORADA. Los dos IC95 sin traslape, en direcciones
+      opuestas. El +5.82 pp del agregado NO es un efecto uniforme: es el
+      promedio de dos poblaciones que se comportan al reves, y sobrevive solo
+      por aritmetica -- el estrato "no podria" es cinco veces mas grande (9 537
+      contra 3 965).
+    situacion: REGISTRADA-SIN-CARGA  # firma q1 (mesa, 2/sep/2026)
     si:
-      disparadores: PENDIENTE-DE-MESA
+      disparadores: NO-APLICA  # asociacion por eje, no condicional de disparo
     entonces:
       - {conducta: tiene_credito_formal_con_respaldo_enif2024, p: 0.397447, clase: "MEDIDO·p(tasa base ponderada, condicional al eje de respaldo)"}
       - {conducta: tiene_credito_formal_sin_respaldo_enif2024, p: 0.342561, clase: "MEDIDO·p(tasa base ponderada, condicional al eje de respaldo)"}
       - {conducta: tiene_cuenta_con_respaldo_enif2024, p: 0.643963, clase: "MEDIDO·p(tasa base ponderada, condicional al eje de respaldo)"}
       - {conducta: tiene_cuenta_sin_respaldo_enif2024, p: 0.658929, clase: "MEDIDO·p(tasa base ponderada, condicional al eje de respaldo)"}
     porque: {generador: [G1], mecanismo: "canal de confianza personal -- el bullet lo atribuye a G1; este acto NO lo re-deriva"}
-    tier: PENDIENTE-DE-MESA
-    falsable_si: PENDIENTE-DE-MESA
+    tier: MEDIA  # firma q1 (mesa, 2/sep/2026) -- asociacion, no efecto
+    falsable_si: NO-APLICA  # asociacion (A-bis 1/2); el falsador B-bis de la spec juzgo el signo del eje, no la regla
     fuente: ["ENIF2024", "forense/notas/2026-09-02-MAESTRA35-L6-spec.md"]
     ola_calibracion: "ENIF 2024 (unica ola censada para este eje; ENIF es trienal)"
     ponderador: FAC_PER
