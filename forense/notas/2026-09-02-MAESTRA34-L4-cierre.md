@@ -1,6 +1,6 @@
 # `ACTO MAESTRA34-L4 · CIVICA-Y-CORPUS` — cierre
 
-2/sep/2026 · entorno **UBUNTU** · `ADR-283` · `COMPUERTA: ninguna`
+2/sep/2026 · entorno **UBUNTU** · `ADR-284` · `COMPUERTA: ninguna`
 Encargo: `forense/encargos/2026-09-01-MAESTRA34-L4-CIVICA-Y-CORPUS.md`
 (dirección/Fable, `SHA de redacción a39073d`, archivado verbatim por A.3 en el
 primer commit del acto). Ejecutado con `/acto` (`ADR-237`).
@@ -145,7 +145,7 @@ también las **añade**.
 
 ## 2 · `P2` — `FP-231` cerrada, y la letra de su firma era imposible
 
-Contado en `hallazgos.md` y en `ADR-283`; en resumen: `--registra` aborta por
+Contado en `hallazgos.md` y en `ADR-284`; en resumen: `--registra` aborta por
 dedup de contenido, la re-derivación que `F231-a` ordena **ya existía desde el
 2026-08-06** (`ENCARGO REPAIR-1`), y lo único pendiente era retirar la entrada
 vieja. Hecho sin borrarla —la firma pide «se retira **con nota**»—, quitándole
@@ -285,8 +285,15 @@ mientras este acto corría — `MAESTRA34-N7` (`PR #460`, `ADR-281`) y
 `MAESTRA34-N4` (`PR #459`, `ADR-282`), más `PR #461`. `git merge origin/main` no
 produjo conflicto; verificado a mano tras el *sync*, como manda la regla de la
 casa: **0 `ADR` duplicados**, 283 entradas contiguas de 1 a 283. El candidato de
-este acto se re-derivó **después** de fusionar: `281` → `282` → **`283`**, regla
-de la casa aplicada dos veces seguidas. En `hallazgos.md` el merge automático
+este acto se re-derivó **después** de fusionar, y hubo que hacerlo **tres veces**:
+`281` (`MAESTRA34-N7`, `PR #460`) → `282` (`MAESTRA34-N4`, `PR #459`) → `283`
+(`MAESTRA34-N8`, `PR #462`, que derivó el mismo número contra el mismo
+`origin/main=df26d3a` y fusionó primero) → **`284`**. Regla de la casa aplicada
+tres veces seguidas: renumera quien fusiona segundo. El segundo `git merge
+origin/main`, justo antes de empujar, **sí** produjo conflicto —en
+`gobernanza`, `estado-programa` y `registro-rotulos`— y se resolvió a mano
+conservando la entrada de `origin/main` primero y la de esta rama después,
+verbatim, sin reordenar ni editar ninguna de las dos. En `hallazgos.md` el merge automático
 dejó las dos líneas de este acto **antes** de las cuatro de `origin/main`; no se
 reordenaron, porque la convención de orden de la casa gobierna la resolución de
 un **conflicto** y aquí no lo hubo — se declara para que nadie lo lea como

@@ -34,7 +34,7 @@ SUCESORES: sello de la regla cívica (dirección redacta con firma de mesa) · M
 ## CONSUMIDO
 
 Ejecutado por `ACTO MAESTRA34-L4 · CIVICA-Y-CORPUS` el 2/sep/2026 en entorno
-**UBUNTU**, con la skill `/acto` (`ADR-237`). `ADR-283`. Rama
+**UBUNTU**, con la skill `/acto` (`ADR-237`). `ADR-284`. Rama
 `acto/maestra34-l4-civica-y-corpus`.
 
 Las cuatro piezas corrieron completas:

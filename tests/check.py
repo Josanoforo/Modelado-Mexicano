@@ -3540,6 +3540,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # este test -- A.3 pide el texto verbatim de direccion (Fable).
     "forense/encargos/2026-09-01-MAESTRA34-N4-PLOMERIA-v1_2.md",
     "forense/encargos/cola/2026-09-01-MAESTRA34-N5-RE-EVALUA-OLA6.md",
+    # ACTO MAESTRA34-N8 · FECHAS-SON-LIMITES, 2/sep/2026: el encargo
+    # archivado (A.3, verbatim de direccion) cita tres veces "E1" pelado
+    # ("cola de E1", "cola/...E1...", "no ejecuta E1") al referirse en
+    # prosa abreviada al habitante ya censado MAESTRA34-E1 -- mismo
+    # patron que el resto de esta lista, no es marcador nuevo. El
+    # encargo no se edita (A.3 pide el texto verbatim de direccion).
+    "forense/encargos/2026-09-02-MAESTRA34-N8-FECHAS-SON-LIMITES.md",
 }
 
 
