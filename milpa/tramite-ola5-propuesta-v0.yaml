@@ -253,6 +253,16 @@ reglas_propuestas:
 # "tramite.yaml" milpa/src/` -> 3 lineas (emisor.py:18,48,87).
 # ADR-68(a) vigente.
 # ══════════════════════════════════════════════════════════════════
+  # ══════════════════════════════════════════════════════════════════
+  # SELLADA · D1-a (mesa, 1/sep/2026) · ACTO MAESTRA34-N1 · SELLA-REGLAS-ACTIVOS-2
+  #
+  # Cargada VERBATIM a milpa/tramite.yaml, campo por campo, sin
+  # reinterpretar. tier propagado a FUERTE (lectura de direccion de D1-a:
+  # el motor no tiene el token "tier FUERTE-MEDIDO"; §3.1 y §3.5 de
+  # canon/modelo-decision-v4_0.md ya declaran FUERTE para R1.2/R5.1). Esta
+  # entrada NO se borra ni se edita: sigue siendo el registro de la
+  # propuesta que la carga cita.
+  # ══════════════════════════════════════════════════════════════════
   - id: familia.seguro.volatilidad_ausencia_estado
     situacion: PENDIENTE-DE-MESA
     si:
@@ -296,6 +306,13 @@ reglas_propuestas:
     sha256_payload: "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06"
     payload_manifiesto_id: enigh2022_nc_csv
 
+  # ══════════════════════════════════════════════════════════════════
+  # SELLADA · D1-a (mesa, 1/sep/2026) · ACTO MAESTRA34-N1 · SELLA-REGLAS-ACTIVOS-2
+  #
+  # Cargada VERBATIM a milpa/tramite.yaml, campo por campo, sin
+  # reinterpretar. tier propagado a FUERTE (lectura de direccion de D1-a,
+  # ver cabecera gemela arriba). Esta entrada NO se borra ni se edita.
+  # ══════════════════════════════════════════════════════════════════
   - id: dinero.planeacion.formal_estable
     situacion: PENDIENTE-DE-MESA
     si:
