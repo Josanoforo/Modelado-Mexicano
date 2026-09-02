@@ -33,3 +33,61 @@ Sucesores declarados, no lanzados: acto NUBE de propagación que cargue al motor
 ---
 
 ## CONSUMIDO
+
+Ejecutado el 2/sep/2026 en entorno **UBUNTU** por `ACTO MAESTRA35-L1 ·
+RECORRE-Y-SEGMENTA`, con la skill `/acto` (`ADR-237`). **PR #470**, `ADR-290`,
+rama `acto/maestra35-l1-recorre-y-segmenta`. NO fusionado por el ejecutor: el
+merge es de mesa.
+
+**Compuerta** `GATED a ACTO MAESTRA34-L6 fusionado` verificada **por producto**
+con los dos comandos que el propio encargo declara, y con la cautela de
+`ADR-277` (el conteo por `grep` es indicio, no prueba): entre los 7 commits que
+nombran `MAESTRA34-L6` hay commits de **producto** (`7717afe` P0, `1e38063` P1,
+`5bddf8a` P2, `30d5c0f` P3) y el merge de `PR #468`; el encargo archivado trae
+`## CONSUMIDO` en su línea 20; y hay tres notas suyas en el árbol.
+
+**Qué se hizo de lo que se pidió, pieza por pieza:**
+
+- **`P0` · censo A.4** — hecho y **completo**, un commit antes de medir, sin
+  cruzar jamás un eje contra un desenlace. Las cuatro preguntas contestadas con
+  denominadores contados. Los **tres supuestos** que el encargo mandó verificar
+  salieron **los tres distintos** de como los suponía, y **ninguno tumbó una
+  pieza**.
+- **`COMMIT-1` del lote (D-11)** — hecho: las cuatro specs congeladas con la
+  frase de sello, declarando **antes de medir** las tres desviaciones de la
+  letra del encargo y los dos ejes incapaces de corroborar por construcción.
+- **`P1`** — hecho y **completo**, con una desviación declarada: el join va por
+  **`ID_TRA`**, no por `(ID_TRA, NT_TIPO)`, porque `sec_8` no trae `NT_TIPO` ni
+  puede traerlo. La sustancia de la firma `d1` queda intacta — lo que se corrige
+  es la **deduplicación**. Dos veredictos, uno por canal.
+- **`P2`, `P3`, `P4`** — hechos y **completos**: **55 celdas con IC**, tres
+  entradas nuevas al pie de la propuesta, todas `PENDIENTE-DE-MESA`.
+- **`P3` corre con 3 ejes y `P4` con 4**, no con 5: tres ejes salieron
+  `NO-ENCONTRADO` en su fuente y, como el encargo manda, **ninguno se
+  sustituyó**.
+
+**Lo que el encargo pidió y NO se pudo hacer como estaba escrito, con su razón:**
+
+1. **La llave `(ID_TRA, NT_TIPO)` de `P1` no es ejecutable.** `sec_8` es la
+   rejilla persona × tipo y ahí `ID_TRA` **es** llave única.
+2. **`P3` no puede medir tamaño de localidad ni formalidad laboral.** El
+   universo de ENCIG son ciudades de 100 mil habitantes o más (FD, pág. 1) y su
+   tabla de residentes cierra en `POS`.
+3. **`P4` no puede medir el corte de 15 000.** ENVIPE 2025 no publica `TLOC` ni
+   un solo umbral de población. Se declaró ausente y se añadió
+   `dominio_urbano_rural` como eje **propio y distinto**, no como su reemplazo.
+4. **La spec congelada solo regló el canal digital de `P1`.** Hueco de la spec,
+   dicho en el commit de resultados y **no corregido hacia atrás**.
+
+**Renumeraciones (regla de la casa, dos veces):** `ADR-288` → `290` (`PR #468`
+tomó el 288 antes de arrancar; `PR #469` el 289 a mitad de sesión) y el rango de
+firmas corre uno: **`FP-241`** es el recibo del lote y **`FP-242`** el re-sello
+que el encargo llamaba `FP-241`.
+
+**CONTADOR real:** cifra sellada corregida **+1** (dos canales) · reglas con
+disparadores **MEDIDOS por ejes: 0 → 3** · celdas con IC nuevas: **55** + 3
+estimandos de `P1` · priors `ASIGNADO`: sin cambio. **Cuatro piezas, las cuatro
+midieron, ninguna PARÓ.**
+
+`python3 tests/check.py --baseline` → **VERDE**. `milpa/tramite.yaml`
+verificado **byte a byte idéntico a `origin/main`**: este acto no lo tocó.
