@@ -708,7 +708,7 @@ reglas_propuestas:
       - {conducta: rechaza_canal_digital_encig2025, p: 0.326607, clase: "MEDIDO·p(tasa base ponderada, condicional a tipo de tramite)"}
     porque: {generador: [G1], mecanismo: "la utilidad predice la adopción; sin coerción ni amenaza fiscal desaparece la razón para rechazar"}
       # mecanismo copiado literal de la regla ASIGNADA que se enmienda
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA # ACTO MAESTRA35-N1, firma a1 (mesa, 2/sep/2026), cargada a milpa/tramite.yaml
     falsable_si: "Si un servicio digital útil y NO coercitivo tampoco lograra adopción, entonces el driver no es la utilidad sino la confianza institucional, y la regla espejo cae junto con su par"  # heredado del texto ASIGNADO que enmienda
     fuente: ["ENCIG2025", "forense/notas/2026-09-02-MAESTRA34-L5-P1-spec.md"]
     ola_calibracion: "ENCIG 2025 (P7_3 es la variable de canal; la seccion X de gobierno electronico no sirve para esto -- sus seis binarias P10_1_1..P10_1_6 no tienen denominador de oferta)"
@@ -770,7 +770,7 @@ reglas_propuestas:
       - {conducta: cumple_norma_denuncia_envipe2025, p: 0.437226, clase: "MEDIDO·p(conjunta, tasa base ponderada)"}
     porque: {generador: [G1], mecanismo: "cálculo ante institución de baja calidad: el costo esperado de cumplir excede el de evadir cuando la sanción es improbable y la norma no rinde"}
       # mecanismo copiado literal de la regla ASIGNADA que se enmienda
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA # ACTO MAESTRA35-N1, firma b1 (mesa, 2/sep/2026), cargada a milpa/tramite.yaml
     falsable_si: "Si la evasión NO baja al hacer creíble la sanción manteniendo constante la utilidad percibida de la norma, el driver no es el cálculo sino otra cosa"  # heredado del texto ASIGNADO que enmienda
     fuente: ["ENVIPE2025", "forense/notas/2026-09-02-MAESTRA34-L5-P3-spec.md"]
     ola_calibracion: "ENVIPE 2025 (BP1_20 x BP1_23 en tmod_vic; ENCUCI 2020 examinada y no elegida por medir actitud y no conducta)"
@@ -824,7 +824,7 @@ reglas_propuestas:
       - {conducta: tiene_ahorros, p: 0.642080, clase: "MEDIDO·p(tasa base ponderada)"}
       - {conducta: no_tiene_ahorros, p: 0.357920, clase: "MEDIDO·p(tasa base ponderada)"}
     porque: {generador: [G3], mecanismo: PENDIENTE-DE-MESA}
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA # ACTO MAESTRA35-N1, firma c1 (mesa, 2/sep/2026), cargada a milpa/tramite.yaml
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["ENIF2024", "forense/notas/2026-09-02-MAESTRA34-L5-P4-spec.md"]
     ola_calibracion: "ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)"
@@ -992,3 +992,35 @@ reglas_propuestas:
       maestra34_l4_entre_anios_pp: 10.4790
       tepjf_1991_2018: NO-OBTENIDO
     payload_manifiesto_id: "iec_coahuila_2017_ayuntamientos_x_municipio_xlsx;iec_coahuila_2018_ayuntamientos_x_municipio_xlsx;iec_coahuila_2021_ayuntamientos_x_municipio_xlsx;iec_coahuila_2024_ayuntamientos_x_municipio_xlsx;iee_nayarit_2017_ayuntamientos_xlsx;iee_nayarit_2021_ayuntamientos_xlsx;iee_nayarit_2024_ayuntamientos_xlsx;ieez_zacatecas_2018_ayto_x_casilla_xlsx;ieez_zacatecas_2021_computos_xlsx;ieez_zacatecas_2024_computos_xlsx;iepc_durango_2016_resultados_xlsx;iepc_durango_2019_x_casilla_zip"
+
+  # REGLA NUEVA · DOMINIO ACTIVO dinero · firma c3 (mesa, 2/sep/2026) · ACTO MAESTRA35-N1 -- no es apertura de Ola 6 (ADR-265 vigente)
+  - id: dinero.ahorro.via_informal
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA
+    entonces:
+      - {conducta: ahorra_solo_informal, p: 0.357153, clase: "DERIVADO de A, B y A∪B de MAESTRA34-L5 P4 -- sin IC propio; no es MEDIDO"}
+      - {conducta: ahorra_ambas_vias, p: 0.204767, clase: "DERIVADO de A, B y A∪B de MAESTRA34-L5 P4 -- sin IC propio; no es MEDIDO"}
+      - {conducta: ahorra_solo_formal, p: 0.080160, clase: "DERIVADO de A, B y A∪B de MAESTRA34-L5 P4 -- sin IC propio; no es MEDIDO"}
+      - {conducta: no_ahorra, p: 0.357920, clase: "DERIVADO de A, B y A∪B de MAESTRA34-L5 P4 -- sin IC propio; no es MEDIDO"}
+      # MEDIDO con IC de los que se derivan las cuatro conductas de arriba, verbatim de MAESTRA34-L5 P4 (tiene_ahorros_enif2024):
+      - {conducta: formal_cualquiera, p: 0.284927, ic95: [0.273502, 0.296342], clase: "MEDIDO·p(tasa base ponderada, sensibilidad A_solo_formal)"}
+      - {conducta: informal_cualquiera, p: 0.561920, ic95: [0.549922, 0.573502], clase: "MEDIDO·p(tasa base ponderada, sensibilidad B_solo_informal)"}
+    porque: {generador: [G3], mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["ENIF2024", "forense/notas/2026-09-02-MAESTRA34-L5-P4-spec.md"]
+    ola_calibracion: "ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)"
+    ponderador: FAC_PER
+    universo: "personas ELEGIDAS de 18 anos y mas en TMODULO.csv (EDAD_V 18-98), las 13502 sin perdida. tiene_ahorros=1 sse alguna de P5_1_1..P5_1_6 (informal) o P5_6_1..P5_6_9 (formal) vale '1'. El blanco por secuencia de P5_6_* cuenta como no-ahorro por esa via. n_con_ahorro=8699, estratos=190, UPM=2164, poblacion expandida=94221441 adultos."
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: enif_2024_enif_2024_bd_csv
+    nota: >
+      Apoyo directo para dinero.ahorro.informal_sin_puente/con_puente_y_respaldo
+      (procedencia.yaml:729-739, ASIGNADO 0.74/0.21/0.05 y 0.52/0.33/0.15), que
+      esta entrada NO mide ni reclama. Sucesor declarado: ACTO MAESTRA35-L1 P2
+      mide los disparadores por ejes en ENIF 2024.
+      Aritmetica verificada por comando: ambas = 0.284927 + 0.561920 - 0.642080
+      = 0.204767; solo_informal = 0.561920 - 0.204767 = 0.357153; solo_formal =
+      0.284927 - 0.204767 = 0.080160; no_ahorra = 1 - 0.642080 = 0.357920; suma
+      de las cuatro = 1.000000.
