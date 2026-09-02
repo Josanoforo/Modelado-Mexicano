@@ -159,3 +159,76 @@ Se dice ahora, no después de ver los números.
 ## §2 · Sello
 
 **El primer resultado que produzca este procedimiento es el que se reporta.**
+
+---
+
+## §3 · RESULTADO (COMMIT-2 de la pieza)
+
+Corrida: `python3 tools/medidor_evasion_norma_envipe25.py`.
+Payload `data/raw/envipe2025_csv.zip`,
+`sha256 = 8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa`
+— el mismo que ya está sellado en `milpa/tramite.yaml` para
+`civico.denuncia.miedo_desconfianza`: misma copia del payload, verificado.
+Las cuatro guardias de §1.2 pasaron: `BP1_20` sin valores fuera de `{1,2}`,
+`FAC_DEL` numérico positivo en las 40 280 filas, `EST_DIS`/`UPM_DIS` completos.
+
+### 3.1 Principal
+
+| campo | valor |
+|---|---|
+| estimando | P(no denunció **∧** dio una razón que declara la norma inútil o extractiva \| enfrentó la norma) |
+| **p̂** | **0.562774** |
+| **IC95** | **[0.551982, 0.573448]** |
+| n | 40 280 delitos · numerador 21 761 |
+| estratos · UPM | 739 · 10 694 |
+| población expandida | 35 595 875 delitos |
+| ponderador | `FAC_DEL` |
+
+### 3.2 Sensibilidades y lectura secundaria
+
+| variante | p̂ | IC95 | n |
+|---|---|---|---|
+| **A** · + código `02` (miedo a extorsión) | 0.569696 | [0.559419, 0.579881] | 40 280 |
+| **B** · universo `BPCOD` 5-15 (delitos personales) | 0.560515 | [0.547948, 0.572800] | 24 762 |
+| *lectura secundaria* · composición entre quienes **no** denunciaron | 0.618640 | [0.606950, 0.629748] | 36 170 |
+
+Las dos sensibilidades mueven el resultado menos de un punto porcentual: la cifra
+no depende de dónde se ponga el código `02` ni de si se incluyen los delitos del
+hogar. La lectura secundaria (0.6186) **no es el estimando de la regla** — tiene
+otro denominador — y se reporta solo como contexto: de cada 100 delitos no
+denunciados, 62 lo fueron porque la norma o la autoridad se percibieron inútiles,
+lentas, no fiables u hostiles.
+
+### 3.3 Contraste con el prior — **no refutado**
+
+| | prior ASIGNADO | medido | razón |
+|---|---|---|---|
+| `evade_norma` | 0.66 | **0.562774** | **0.8527** |
+| `cumple_norma` | 0.34 | 0.437226 | 1.2860 |
+
+Criterio de refutación del encargo: «más del doble o mitad». La razón es **0.85**:
+el prior **no queda refutado**. Error relativo **14.7 %**.
+
+La `nota_calibracion` de esta regla pide expresamente **«no reportar con
+decimales»**, y se respeta: leído como la regla misma manda, el prior dice **≈2 de
+cada 3** y el dato dice **≈0.56, algo más de la mitad**. La dirección se sostiene
+—cuando la norma se percibe inútil y no hay sanción, la mayoría evade— y la
+magnitud queda por debajo de lo asignado, sin acercarse al umbral de refutación.
+
+### 3.4 Reservas — todas escritas antes de medir
+
+1. **Es una conjunta, no la condicional de la regla** (§1.5). `BP1_23` solo se
+   pregunta a los no denunciantes, así que P(evade | norma percibida inútil) no es
+   estimable con esta fuente. Quien cite este número como si fuera la condicional
+   lo estará citando mal.
+2. **`sancion_creible: false` es premisa jurídica externa** (§1.4), no medición de
+   ENVIPE.
+3. **Una norma, no las normas.** Es la norma de denunciar un delito ante el
+   Ministerio Público. No se generaliza a «evasión de normas en México».
+4. **No separa las dos evasiones** que la `nota_segmentacion` de la regla exige
+   distinguir (subsistencia y cinismo de clase alta); la fuente no lo permite y
+   este acto no lo pretende.
+5. **No es comparable con `civico.denuncia.miedo_desconfianza`** (§1.8): distinta
+   unidad, distinto ponderador, distinto denominador, particiones cruzadas y
+   distinto estimador de intervalo. Que 0.562774 y 0.294313 salgan de la misma
+   variable de la misma encuesta **no** los hace confrontables.

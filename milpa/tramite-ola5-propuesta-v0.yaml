@@ -714,3 +714,61 @@ reglas_propuestas:
     hallazgo: "El prior ASIGNADO 0.71 NO queda refutado: razon medido/prior = 0.9484, error relativo 5.2%, muy lejos del criterio de refutacion (mas del doble o la mitad). Se propone CONFIRMADA-EN-MAGNITUD, no REFUTADA-POR-DATO; sella mesa. Vale mas de lo que parece porque la nota_calibracion de la propia regla declara 'PROBABILIDADES NO CALIBRADAS -- el corpus da la direccion, no la magnitud': la magnitud asignada a ojo resulto estar a 5% del dato. El 0.71 cae FUERA del IC95 [0.663,0.684], y eso NO se reporta como refutacion: con n~20000 y 8486 UPM el intervalo mide +-1 pp y excluye todo valor que no coincida en dos decimales, que es una precision que un prior declarado no calibrado nunca reclamo. Las tres variantes (principal y dos sensibilidades) caen entre 0.641 y 0.673. RESERVA: la condicion 'sin coercion, sin riesgo fiscal' la impone la seleccion del universo y no una declaracion del informante; si mesa juzga que pagar la luz por la aplicacion de CFE no es 'servicio de gobierno digital' en el sentido del modelo §3.3, cae el mapeo, no el dato."
     sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
     payload_manifiesto_id: encig25_base_datos_csv
+
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA34-L5 · GOBIERNO-DIGITAL-EVASION-AHORRO · 2/sep/2026
+  # Pieza P3. Primer contraste contra microdato de tramite.evasion_norma,
+  # ASIGNADO y RESTITUIDA en v0.2.0 sin medicion.
+  # Spec de dos commits: forense/notas/2026-09-02-MAESTRA34-L5-P3-spec.md
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: tramite.evasion_norma_envipe2025
+    enmienda_propuesta: true
+    misma_regla_motor: tramite.evasion_norma
+    nota_enmienda: >
+      Enmienda propuesta a la regla EXISTENTE de milpa/tramite.yaml:203-228
+      (misma id base tramite.evasion_norma, evade_norma p=0.66 ASIGNADO,
+      situacion enfrenta_norma_percibida_inutil_o_extractiva, disparadores
+      sancion_creible=false, contexto_norma percibida_util=false). Mapeo
+      operacional declarado (juicio de este acto): la norma concreta es
+      DENUNCIAR UN DELITO ante el Ministerio Publico; "enfrenta la norma" =
+      haber sufrido un delito; "percibida_util=false" = el propio informante
+      da como razon principal de no denunciar que fue perdida de tiempo (04),
+      tramites largos y dificiles (05), desconfianza en la autoridad (06) o
+      actitud hostil de la autoridad (08); "evade_norma" = no denuncio
+      (BP1_20=2). El disparador sancion_creible=false NO lo mide ENVIPE: se
+      cumple por construccion del caso, porque en Mexico no hay sancion por
+      no denunciar un delito del que se fue victima -- premisa juridica
+      externa declarada, no hallazgo de la encuesta. ENCUCI 2020 fue
+      examinada y NO elegida: su AP5_11 mide permisibilidad declarada
+      ("las personas pueden desobedecer la ley si esta es injusta"), no
+      incumplimiento declarado.
+    situacion: enfrenta_norma_percibida_inutil_o_extractiva
+    si:
+      disparadores: PENDIENTE-DE-MESA  # ver nota_enmienda: sancion_creible=false
+        # se cumple por construccion del caso (no hay sancion por no denunciar),
+        # no por un reactivo de ENVIPE
+    entonces:
+      - {conducta: evade_norma_denuncia_envipe2025, p: 0.562774, clase: "MEDIDO·p(conjunta, tasa base ponderada)"}
+      - {conducta: cumple_norma_denuncia_envipe2025, p: 0.437226, clase: "MEDIDO·p(conjunta, tasa base ponderada)"}
+    porque: {generador: [G1], mecanismo: "cálculo ante institución de baja calidad: el costo esperado de cumplir excede el de evadir cuando la sanción es improbable y la norma no rinde"}
+      # mecanismo copiado literal de la regla ASIGNADA que se enmienda
+    tier: PENDIENTE-DE-MESA
+    falsable_si: "Si la evasión NO baja al hacer creíble la sanción manteniendo constante la utilidad percibida de la norma, el driver no es el cálculo sino otra cosa"  # heredado del texto ASIGNADO que enmienda
+    fuente: ["ENVIPE2025", "forense/notas/2026-09-02-MAESTRA34-L5-P3-spec.md"]
+    ola_calibracion: "ENVIPE 2025 (BP1_20 x BP1_23 en tmod_vic; ENCUCI 2020 examinada y no elegida por medir actitud y no conducta)"
+    ic95: [0.551982, 0.573448]
+    n: 40280
+    ponderador: FAC_DEL
+    universo: "DELITOS (no personas) con BP1_20 en {1,2} en tmod_vic_envipe2025 -- los 40280, sin perdida. evade_norma=1 sse BP1_20==2 Y BP1_23 en {04,05,06,08}; 0 en cualquier otro caso (denuncio, o no denuncio por otra razon). Codigos normalizados a dos digitos. n_efectivo=40280, numerador=21761, estratos=739, UPM=10694, poblacion expandida=35595875 delitos."
+    estimando_exacto: "CONJUNTA P(no denuncio Y dio razon de norma inutil o extractiva | enfrento la norma). NO es la condicional que la regla escribe: BP1_23 solo se pregunta a quien no denuncio, asi que P(evade | norma percibida inutil) NO es estimable con esta fuente ni con ninguna que el censo haya ubicado. Declarado en la spec ANTES de medir."
+    sensibilidades_pre_declaradas:
+      A_mas_codigo_02_extorsion: {p: 0.569696, ic95: [0.559419, 0.579881], n: 40280}
+      B_solo_delitos_personales_BPCOD_5_15: {p: 0.560515, ic95: [0.547948, 0.572800], n: 24762}
+    lectura_secundaria:
+      # NO es el estimando de la regla -- otro denominador. Contexto.
+      composicion_entre_no_denunciantes: {p: 0.618640, ic95: [0.606950, 0.629748], n: 36170}
+      lectura: "de cada 100 delitos no denunciados, 62 lo fueron porque la norma o la autoridad se percibieron inutiles, lentas, no fiables u hostiles"
+    hallazgo: "El prior ASIGNADO 0.66 NO queda refutado: razon medido/prior = 0.8527, error relativo 14.7%, lejos del criterio (mas del doble o la mitad). Se propone CONFIRMADA-EN-DIRECCION-Y-ORDEN-DE-MAGNITUD, no REFUTADA-POR-DATO; sella mesa. La nota_calibracion de la regla pide 'no reportar con decimales' y se respeta: leido como la regla manda, el prior dice ~2 de cada 3 y el dato dice ~0.56, algo mas de la mitad. Las dos sensibilidades mueven menos de un punto porcentual. RESERVAS, todas escritas antes de medir: (i) es una conjunta y no la condicional de la regla; (ii) sancion_creible=false es premisa juridica externa; (iii) es UNA norma (denunciar ante el MP), no las normas en general; (iv) no separa las dos evasiones que la nota_segmentacion de la regla exige distinguir (subsistencia y cinismo de clase alta); (v) NO es comparable con civico.denuncia.miedo_desconfianza (p=0.294313) pese a salir de la misma variable de la misma encuesta -- distinta unidad (delito vs persona), ponderador (FAC_DEL vs FAC_ELE), denominador (todas las victimas vs solo no denunciantes), particiones cruzadas del numerador y distinto estimador de IC (conglomerado vs simple)."
+    sha256_payload: "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+    payload_manifiesto_id: envipe2025_csv
