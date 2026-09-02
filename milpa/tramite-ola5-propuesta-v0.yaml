@@ -1822,18 +1822,34 @@ reglas_propuestas:
     desenlaces:
       - {desenlace: D3_credito_formal, papel: secundario, variables: "P6_2_1..P6_2_9", con_respaldo: 0.397447, ic95_con: [0.374806, 0.420250], sin_respaldo: 0.342561, ic95_sin: [0.330049, 0.355527], n_con: 3145, n_sin: 10357, brecha_pp: 5.4886, ic95_sin_traslape: true, veredicto_Bbis: CORROBORADA}
       - {desenlace: D2_tenencia_cuenta, papel: secundario, variables: "P5_4_1..P5_4_9", con_respaldo: 0.643963, ic95_con: [0.620270, 0.667835], sin_respaldo: 0.658929, ic95_sin: [0.645542, 0.672644], n_con: 3145, n_sin: 10357, brecha_pp: -1.4966, ic95_sin_traslape: false, veredicto_Bbis: NO-DISCRIMINA}
-      - {desenlace: D1_ahorro_formal, papel: PRINCIPAL, variables: "P5_6_1..P5_6_9", veredicto_Bbis: NO-DISCRIMINA, defecto: "SPEC EQUIVOCADA -- p=1.000000 en las dos celdas por construccion. P5_6_* NO es bateria de tenencia: es subpregunta de P5_4_* y codifica su 'no' EN BLANCO, no como '2'. Exigir 'todas 2' para el cero dejo 4078 personas que ya tenian el producto. Diagnosticado y registrado en resultados §2.1; corregido HACIA ADELANTE en un tercer commit, sin tocar COMMIT-1."}
-    veredicto_del_acto: "NO-DISCRIMINA (por precedencia sobre D1, que es el principal y salio defectuoso -- ver defecto arriba). Los dos desenlaces validos dan CORROBORADA (credito) y NO-DISCRIMINA (cuenta)."
+      - {desenlace: D1_ahorro_formal, papel: PRINCIPAL, variables: "P5_6_1..P5_6_9", con_respaldo: 0.329405, ic95_con: [0.307578, 0.351653], sin_respaldo: 0.271254, ic95_sin: [0.258770, 0.283913], n_con: 3145, n_sin: 10357, brecha_pp: 5.8151, ic95_sin_traslape: true, veredicto_Bbis: CORROBORADA, historia: "La definicion de D1 en COMMIT-1 salio DEGENERADA (p=1.000000 en las dos celdas): P5_6_* no es bateria de tenencia, es subpregunta de P5_4_* y codifica su 'no' EN BLANCO, no como '2'; exigir 'todas 2' para el cero dejo 4078 personas que ya tenian el producto. Reportado tal cual en COMMIT-2 y corregido HACIA ADELANTE en COMMIT-3 (D1', el blanco cuenta como cero, sobre el universo completo), sin tocar COMMIT-1. Control de regresion: D2 y D3 reprodujeron identicos."}
+    sensibilidad_C_control_riqueza:
+      # pre-declarada en COMMIT-1 para atacar la lectura de riqueza; VOLTEA
+      - {estrato: "P4_9_1 podria_con_sus_ahorros=SI", con_respaldo: 0.353961, ic95_con: [0.324342, 0.384001], n_con: 1551, sin_respaldo: 0.428355, ic95_sin: [0.401509, 0.455624], n_sin: 2414, brecha_pp: -7.4395, ic95_sin_traslape: true, veredicto_Bbis: CONTRARIA}
+      - {estrato: "P4_9_1 podria_con_sus_ahorros=NO", con_respaldo: 0.306340, ic95_con: [0.277569, 0.336245], n_con: 1594, sin_respaldo: 0.224910, ic95_sin: [0.212358, 0.237841], n_sin: 7943, brecha_pp: 8.1430, ic95_sin_traslape: true, veredicto_Bbis: CORROBORADA}
+    veredicto_del_acto: "ACOTADA -- derivado por codigo, no a ojo: el signo que el bullet predice se sostiene en el desenlace PRINCIPAL (ahorro formal, CORROBORADA) y en el credito (CORROBORADA), y NO se sostiene en la cuenta (NO-DISCRIMINA)."
     hallazgo: >
-      El respaldo personal se asocia con el producto que EXIGE SER EVALUADO POR
-      UN TERCERO -- el credito formal, 39.74% con respaldo contra 34.26% sin,
-      +5.49 pp con IC95 sin traslape, en el signo que el bullet predice -- y NO
-      con el que se abre por ventanilla: la cuenta da 64.40% contra 65.89%, IC95
-      traslapados y el punto estimado al reves. Congruente con que el mecanismo
-      del bullet opere donde hay una puerta que franquear y no donde no la hay;
-      congruente TAMBIEN con explicaciones ajenas al bullet (quien tiene red
-      tiene ingreso, y el ingreso predice credito). La sensibilidad C, que
-      existia justamente para atacar la lectura de riqueza, quedo inservible
-      por el defecto de D1 y se re-corre en el tercer commit.
+      Con respaldo personal, mas ahorro formal: 32.94% contra 27.13%, +5.82 pp
+      con IC95 sin traslape, en el signo que el bullet predice. Se sostiene
+      tambien en credito formal (39.74% contra 34.26%, +5.49 pp) y NO en
+      tenencia de cuenta (64.40% contra 65.89%, IC95 traslapados y el punto
+      estimado al reves): el mecanismo aparece donde hay una puerta que
+      franquear y no donde no la hay.
+      PERO EL AGREGADO ES EL PROMEDIO DE DOS POBLACIONES QUE SE COMPORTAN AL
+      REVES. La sensibilidad C, pre-declarada en COMMIT-1 justamente para
+      atacar la lectura de riqueza, voltea: entre quienes YA podrian resolver
+      la oportunidad con recursos propios (P4_9_1='1'), tener ademas respaldo
+      de familiares se asocia con MENOS ahorro formal (35.40% contra 42.84%,
+      -7.44 pp, CONTRARIA); entre quienes NO podrian, con MAS (30.63% contra
+      22.49%, +8.14 pp, CORROBORADA). Los dos IC95 sin traslape, en direcciones
+      opuestas. La lectura que soportan -- lectura, no identificacion -- es que
+      la red personal es SUSTITUTO donde hay recursos propios y PUENTE donde no
+      los hay; el bullet predice puente y el dato lo confirma solo en la mitad
+      de la poblacion que no tiene con que sustituirlo. Que la brecha agregada
+      sobreviva es aritmetica: el estrato "no podria" es cinco veces mas grande
+      (9537 contra 3965). Tercera ocurrencia del mismo patron en el programa,
+      tras el beta cero de MAESTRA34-L6 y la escolaridad no monotona de
+      MAESTRA35-L1: un agregado que corrobora puede ser la media de un eje que
+      se invierte.
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: enif_2024_enif_2024_bd_csv

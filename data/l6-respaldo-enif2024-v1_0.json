@@ -1,7 +1,7 @@
 {
  "acto": "MAESTRA35-L6",
  "pieza": "P2",
- "spec": "forense/notas/2026-09-02-MAESTRA35-L6-spec.md §2",
+ "spec": "forense/notas/2026-09-02-MAESTRA35-L6-spec.md §2, con D1 reemplazada por D1' en forense/notas/2026-09-02-MAESTRA35-L6-spec-3.md §2",
  "payload": "data/raw/enif_2024_bd_csv.zip",
  "tabla": "TMODULO.csv",
  "sha256_payload": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
@@ -27,31 +27,31 @@
    ],
    "con_respaldo": {
     "celda": "D1_ahorro_formal | respaldo=SI",
-    "p": 1.0,
+    "p": 0.3294049771235322,
     "ic95": [
-     1.0,
-     1.0
+     0.30757845459386574,
+     0.35165339245682464
     ],
-    "n": 1113,
+    "n": 3145,
     "numerador": 1113,
-    "estratos": 176,
-    "upm": 822
+    "estratos": 188,
+    "upm": 1402
    },
    "sin_respaldo": {
     "celda": "D1_ahorro_formal | respaldo=NO",
-    "p": 1.0,
+    "p": 0.2712541394062511,
     "ic95": [
-     1.0,
-     1.0
+     0.2587700874032471,
+     0.28391301545331077
     ],
-    "n": 2965,
+    "n": 10357,
     "numerador": 2965,
-    "estratos": 189,
-    "upm": 1568
+    "estratos": 190,
+    "upm": 2146
    },
-   "brecha_pp": 0.0,
-   "ic95_sin_traslape": false,
-   "veredicto_Bbis": "NO-DISCRIMINA"
+   "brecha_pp": 5.815083771728114,
+   "ic95_sin_traslape": true,
+   "veredicto_Bbis": "CORROBORADA"
   },
   {
    "desenlace": "D2_tenencia_cuenta",
@@ -143,61 +143,61 @@
    "estrato": "podria_con_sus_ahorros=SI",
    "con_respaldo": {
     "celda": "D1 | podria_con_sus_ahorros=SI | respaldo=SI",
-    "p": 1.0,
+    "p": 0.3539608483938358,
     "ic95": [
-     1.0,
-     1.0
+     0.3243416639121224,
+     0.3840007043287521
     ],
-    "n": 590,
+    "n": 1551,
     "numerador": 590,
-    "estratos": 165,
-    "upm": 492
+    "estratos": 181,
+    "upm": 907
    },
    "sin_respaldo": {
     "celda": "D1 | podria_con_sus_ahorros=SI | respaldo=NO",
-    "p": 1.0,
+    "p": 0.4283554440852061,
     "ic95": [
-     1.0,
-     1.0
+     0.40150916628310707,
+     0.4556240860670178
     ],
-    "n": 1108,
+    "n": 2414,
     "numerador": 1108,
-    "estratos": 174,
-    "upm": 824
+    "estratos": 187,
+    "upm": 1338
    },
-   "brecha_pp": 0.0,
-   "ic95_sin_traslape": false,
-   "veredicto_Bbis": "NO-DISCRIMINA"
+   "brecha_pp": -7.43945956913703,
+   "ic95_sin_traslape": true,
+   "veredicto_Bbis": "CONTRARIA"
   },
   {
    "estrato": "podria_con_sus_ahorros=NO",
    "con_respaldo": {
     "celda": "D1 | podria_con_sus_ahorros=NO | respaldo=SI",
-    "p": 1.0,
+    "p": 0.3063403197579735,
     "ic95": [
-     1.0,
-     1.0
+     0.2775690770539809,
+     0.33624534993276195
     ],
-    "n": 523,
+    "n": 1594,
     "numerador": 523,
-    "estratos": 151,
-    "upm": 450
+    "estratos": 184,
+    "upm": 968
    },
    "sin_respaldo": {
     "celda": "D1 | podria_con_sus_ahorros=NO | respaldo=NO",
-    "p": 1.0,
+    "p": 0.22491012353326417,
     "ic95": [
-     1.0,
-     1.0
+     0.2123581185836936,
+     0.2378413113780681
     ],
-    "n": 1857,
+    "n": 7943,
     "numerador": 1857,
-    "estratos": 182,
-    "upm": 1201
+    "estratos": 190,
+    "upm": 2087
    },
-   "brecha_pp": 0.0,
-   "ic95_sin_traslape": false,
-   "veredicto_Bbis": "NO-DISCRIMINA"
+   "brecha_pp": 8.143019622470932,
+   "ic95_sin_traslape": true,
+   "veredicto_Bbis": "CORROBORADA"
   }
  ],
  "eje_reparto": {
@@ -205,8 +205,8 @@
   "respaldo_no": 10357,
   "fuera_de_eje": 0
  },
- "veredicto_del_acto": "NO-DISCRIMINA",
- "veredicto_D1": "NO-DISCRIMINA",
+ "veredicto_del_acto": "ACOTADA",
+ "veredicto_D1": "CORROBORADA",
  "veredicto_secundarios": [
   "NO-DISCRIMINA",
   "CORROBORADA"

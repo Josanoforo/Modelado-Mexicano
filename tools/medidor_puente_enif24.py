@@ -12,7 +12,12 @@ quienes ya adoptaron (`P5_15_2` está gateado en tener el producto Y haber
 comparado), así que la mitad de canal es inobservable y NO se mide aquí.
 
 El RESPALDO sí: `P4_9_4` se le pregunta a las 13 502 personas del universo, sin
-gate. Esto mide la asociación entre respaldo declarado disponible y tenencia de
+gate.
+
+CORRECCIÓN HACIA ADELANTE (COMMIT-3): `D1` usaba el mismo operador que `D2`/`D3`
+y salía degenerada (`p=1` por construcción). `P5_6_*` es subpregunta de `P5_4_*`
+y codifica su "no" en blanco. `D1'` cuenta el blanco como cero. Dos guardias
+nuevas PARAN si un desenlace no cubre el universo o si `p` satura. Esto mide la asociación entre respaldo declarado disponible y tenencia de
 producto formal. Es ASOCIACIÓN dentro de una corrida (A-bis 1/2), no efecto, y
 mide UNA de las dos condiciones del bullet: acota la regla, no la cierra.
 
@@ -38,7 +43,7 @@ TABLA = "TMODULO.csv"
 
 EJE = "P4_9_4"          # respaldo: prestamo de familiares o amistades
 CONTROL_RIQUEZA = "P4_9_1"   # sensibilidad C: podria con sus propios ahorros
-FORMAL = [f"P5_6_{i}" for i in range(1, 10)]    # D1 PRINCIPAL: ahorro formal
+FORMAL = [f"P5_6_{i}" for i in range(1, 10)]    # D1' PRINCIPAL: ahorro formal
 CUENTA = [f"P5_4_{i}" for i in range(1, 10)]    # D2
 CREDITO = [f"P6_2_{i}" for i in range(1, 10)]   # D3
 DISENO = ["FAC_PER", "EST_DIS", "UPM_DIS", "EDAD_V"]
@@ -81,9 +86,17 @@ def carga():
     return df
 
 
-def indicador(df, cols):
-    """1 si alguna vale '1'; 0 si todas valen '2'; None si hay otra cosa."""
+def indicador(df, cols, blanco_es_cero=False):
+    """1 si alguna vale '1'; 0 si todas valen '2'; None si hay otra cosa.
+
+    `blanco_es_cero=True` (spec COMMIT-3 §2, sólo para D1'): el 0 es
+    "cualquier otro caso", blanco incluido. `P5_6_*` es subpregunta de
+    `P5_4_*` y codifica su "no" en blanco, no como '2'; no tener la cuenta
+    implica no tener ahorro formal en esa institución.
+    """
     es_uno = (df[cols] == "1").any(axis=1)
+    if blanco_es_cero:
+        return pd.Series(es_uno.astype(float), index=df.index)
     todas_dos = (df[cols] == "2").all(axis=1)
     val = pd.Series([None] * len(df), dtype="object", index=df.index)
     val[todas_dos] = 0.0
@@ -100,6 +113,9 @@ def celda(sub, y, etiqueta):
     p, lo, hi, n, n_est, n_cl = wprop_ic_conglomerado(
         d, pd.to_numeric(sub["FAC_PER"]).to_numpy(),
         sub["EST_DIS"].tolist(), sub["UPM_DIS"].tolist())
+    if p in (0.0, 1.0):   # guardia 2 de COMMIT-3 §3
+        paro(f"{etiqueta}: p degenerada ({p}) sobre n={n}. Una proporcion que "
+             f"satura no es una medicion: es una definicion mal puesta.")
     return {"celda": etiqueta, "p": p, "ic95": [lo, hi], "n": n,
             "numerador": int(d.sum()), "estratos": n_est, "upm": n_cl}
 
@@ -118,7 +134,7 @@ def veredicto(con, sin_):
 def main():
     df = carga()
     salida = {"acto": "MAESTRA35-L6", "pieza": "P2",
-              "spec": "forense/notas/2026-09-02-MAESTRA35-L6-spec.md §2",
+              "spec": ("forense/notas/2026-09-02-MAESTRA35-L6-spec.md §2, con D1 reemplazada por D1' en forense/notas/2026-09-02-MAESTRA35-L6-spec-3.md §2"),
               "payload": os.path.relpath(ZIP, RAIZ), "tabla": TABLA,
               "sha256_payload": sha256(ZIP),
               "estimador": "wprop_ic_conglomerado (n_boot=10000, seed=42)",
@@ -139,7 +155,13 @@ def main():
                              "fuera_de_eje": int(fuera)}
 
     for nombre, cols, papel in DESENLACES:
-        y = indicador(df, cols)
+        y = indicador(df, cols, blanco_es_cero=(nombre == "D1_ahorro_formal"))
+        # guardia 1 de COMMIT-3 §3 -- los tres desenlaces se declaran sobre el
+        # universo completo; si no lo cubren, la definicion esta mal puesta.
+        cobertura = int(y.notna().sum())
+        if cobertura != len(df):
+            paro(f"{nombre}: desenlace definido en {cobertura} filas de "
+                 f"{len(df)} declaradas. La spec lo declara universal.")
         a = celda(con_r, y.loc[con_r.index], f"{nombre} | respaldo=SI")
         b = celda(sin_r, y.loc[sin_r.index], f"{nombre} | respaldo=NO")
         v = veredicto(a, b)
@@ -154,7 +176,7 @@ def main():
               flush=True)
 
     # Sensibilidad C: el mismo contraste de D1 DENTRO de cada estrato de P4_9_1
-    y1 = indicador(df, FORMAL)
+    y1 = indicador(df, FORMAL, blanco_es_cero=True)
     for val, etiq in (("1", "podria_con_sus_ahorros=SI"),
                       ("2", "podria_con_sus_ahorros=NO")):
         est = df[df[CONTROL_RIQUEZA] == val]
