@@ -15740,3 +15740,766 @@
     Condición de paro de la fila origen (''parar si no hay desglose por unidad, delegación,
     biológico o campaña'') NO evaluada por este acto -- no se abrió el PDF, solo se adquirió
     (fuera del perímetro de /adquiere).'
+
+- id: dgis_urgencias_descriptores_2008_2017_xlsx
+  usado_para: 'descriptor/diccionario de datos de la Base de Datos de Urgencias 2008-2017
+    (DGIS) -- cubre la fila EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI (cola-adquisicion-v1_0.tsv:64,
+    oficial-3), receta #12 del PAQUETE-RECETAS-2026-09-01'
+  url_origen: http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: Descriptores_Base_de_Datos_URGENCIAS_2008_2017.xlsx
+  sha256: 3ca5d405516a486ccf887d9d1c436116a3d3cf6f21000bf65cc28c25af77ffad
+  tamano_bytes: 48855
+  formato: XLSX
+  licencia: Datos Abiertos de la Direccion General de Informacion en Salud (DGIS), Secretaria
+    de Salud -- publicacion abierta sin registro; licencia especifica no declarada en la pagina
+    de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #12 del PAQUETE-RECETAS-2026-09-01
+    (via alterna Datos Abiertos DGIS que mesa reporto usar); la URL exacta del asset no fue
+    observada por este agente (procedencia (3), reportada por mesa).'
+
+- id: dgis_urgencias_descriptores_2018_xlsx
+  usado_para: 'descriptor/diccionario de datos de la Base de Datos de Urgencias 2018 (DGIS)
+    -- fila EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI (cola-adquisicion-v1_0.tsv:64), receta #12'
+  url_origen: http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: Descriptores_Base_de_Datos_URGENCIAS_2018.xlsx
+  sha256: fe77236abe8379bb819ed1a26e7e3c3c6c593caf36da2ca1afc470241270fcc7
+  tamano_bytes: 57095
+  formato: XLSX
+  licencia: Datos Abiertos de la Direccion General de Informacion en Salud (DGIS), Secretaria
+    de Salud -- publicacion abierta sin registro; licencia especifica no declarada en la pagina
+    de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #12 del PAQUETE-RECETAS-2026-09-01
+    (via alterna Datos Abiertos DGIS que mesa reporto usar); la URL exacta del asset no fue
+    observada por este agente (procedencia (3), reportada por mesa).'
+
+- id: dgis_urgencias_descriptores_2019_xlsx
+  usado_para: 'descriptor/diccionario de datos de la Base de Datos de Urgencias 2019 (DGIS)
+    -- fila EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI (cola-adquisicion-v1_0.tsv:64), receta #12'
+  url_origen: http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: Descriptores_Base_de_Datos_URGENCIAS_2019.xlsx
+  sha256: 106b9525778e96584e850232325cbb1a0414e9f15353c7129b7818ac03248798
+  tamano_bytes: 57114
+  formato: XLSX
+  licencia: Datos Abiertos de la Direccion General de Informacion en Salud (DGIS), Secretaria
+    de Salud -- publicacion abierta sin registro; licencia especifica no declarada en la pagina
+    de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #12 del PAQUETE-RECETAS-2026-09-01
+    (via alterna Datos Abiertos DGIS que mesa reporto usar); la URL exacta del asset no fue
+    observada por este agente (procedencia (3), reportada por mesa).'
+
+- id: dgis_urgencias_descriptores_2023_2025_xlsx
+  usado_para: 'descriptor/diccionario de datos de la Base de Datos de Urgencias 2023-2025
+    (DGIS) -- fila EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI (cola-adquisicion-v1_0.tsv:64), receta
+    #12'
+  url_origen: http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: Descriptores_Base_de_Datos_URGENCIAS_2023_2025.xlsx
+  sha256: 35a48c34bfae8dbda2cc0c511ed5a4f2b038e795088589c449efa02b4c8676bb
+  tamano_bytes: 71440
+  formato: XLSX
+  licencia: Datos Abiertos de la Direccion General de Informacion en Salud (DGIS), Secretaria
+    de Salud -- publicacion abierta sin registro; licencia especifica no declarada en la pagina
+    de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #12 del PAQUETE-RECETAS-2026-09-01
+    (via alterna Datos Abiertos DGIS que mesa reporto usar); la URL exacta del asset no fue
+    observada por este agente (procedencia (3), reportada por mesa).'
+
+- id: dgis_urgencias_catalogos_2008_2016_7z
+  usado_para: 'catalogos de clasificacion (CIE10, CIE9MC, CLUES, entidad/municipio de residencia,
+    medicamento, motivo de atencion) de Urgencias 2008-2016 -- fila EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI
+    (cola-adquisicion-v1_0.tsv:64), receta #12'
+  url_origen: http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: Catalogos_de_Urgencias_2008_2016.zip
+  sha256: 270c1a68ea3807c2402813d4ce055e7b2715a18efa533b77a5ec44e29612bf81
+  tamano_bytes: 874496
+  formato: 7z (21 miembros; extension .zip pero magic 7z BC AF 27 1C -- el servidor de DGIS
+    la sirve mal etiquetada; abre con py7zr, no con zipfile)
+  licencia: Datos Abiertos de la Direccion General de Informacion en Salud (DGIS), Secretaria
+    de Salud -- publicacion abierta sin registro; licencia especifica no declarada en la pagina
+    de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #12 del PAQUETE-RECETAS-2026-09-01
+    (via alterna Datos Abiertos DGIS que mesa reporto usar); la URL exacta del asset no fue
+    observada por este agente (procedencia (3), reportada por mesa).'
+
+- id: dgis_urgencias_catalogos_2023_2025_zip
+  usado_para: 'catalogos de clasificacion de Urgencias 2023-2025 (DGIS) -- fila EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI
+    (cola-adquisicion-v1_0.tsv:64), receta #12'
+  url_origen: http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: Catalogos_de_Urgencias_2023_2025.zip
+  sha256: 43b8eb711ad0042d76757becc08a5ffe69a78c42f2d708e31fea14d86a69efda
+  tamano_bytes: 4802371
+  formato: ZIP (19 miembros)
+  licencia: Datos Abiertos de la Direccion General de Informacion en Salud (DGIS), Secretaria
+    de Salud -- publicacion abierta sin registro; licencia especifica no declarada en la pagina
+    de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #12 del PAQUETE-RECETAS-2026-09-01
+    (via alterna Datos Abiertos DGIS que mesa reporto usar); la URL exacta del asset no fue
+    observada por este agente (procedencia (3), reportada por mesa).'
+
+- id: dgis_urgencias_2008_zip
+  usado_para: 'microdato de la Base de Datos de Urgencias 2008 (DGIS) -- excede la accion
+    minima de la receta #12 (que solo pedia diccionario); fila EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI
+    (cola-adquisicion-v1_0.tsv:64)'
+  url_origen: http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: Urgencias_2008.zip
+  sha256: 1b17abcf32a7794d99582acd5bcf77016e3edb91b1e005a6e0759a461a1b7a9d
+  tamano_bytes: 132145439
+  formato: ZIP (5 miembros)
+  licencia: Datos Abiertos de la Direccion General de Informacion en Salud (DGIS), Secretaria
+    de Salud -- publicacion abierta sin registro; licencia especifica no declarada en la pagina
+    de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #12 del PAQUETE-RECETAS-2026-09-01
+    (via alterna Datos Abiertos DGIS que mesa reporto usar); la URL exacta del asset no fue
+    observada por este agente (procedencia (3), reportada por mesa).'
+
+- id: dgis_urgencias_2009_zip
+  usado_para: 'microdato de la Base de Datos de Urgencias 2009 (DGIS) -- excede la accion
+    minima de la receta #12; fila EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI (cola-adquisicion-v1_0.tsv:64)'
+  url_origen: http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: Urgencias_2009.zip
+  sha256: 41d14016fb73a9e9932708b379670cc889d34ae0b47f81c24da7b6a5f6868ebc
+  tamano_bytes: 184374602
+  formato: ZIP (5 miembros)
+  licencia: Datos Abiertos de la Direccion General de Informacion en Salud (DGIS), Secretaria
+    de Salud -- publicacion abierta sin registro; licencia especifica no declarada en la pagina
+    de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #12 del PAQUETE-RECETAS-2026-09-01
+    (via alterna Datos Abiertos DGIS que mesa reporto usar); la URL exacta del asset no fue
+    observada por este agente (procedencia (3), reportada por mesa).'
+
+- id: dgis_urgencias_2025_zip
+  usado_para: 'microdato de la Base de Datos de Urgencias 2025 (DGIS) -- excede la accion
+    minima de la receta #12; fila EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI (cola-adquisicion-v1_0.tsv:64)'
+  url_origen: http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: Urgencias_2025.zip
+  sha256: 3c1bdcb9af60dd49d3bfb248ee97fd7988dba46d81b4d13134ef7cc2da294b26
+  tamano_bytes: 229051646
+  formato: ZIP (4 miembros)
+  licencia: Datos Abiertos de la Direccion General de Informacion en Salud (DGIS), Secretaria
+    de Salud -- publicacion abierta sin registro; licencia especifica no declarada en la pagina
+    de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #12 del PAQUETE-RECETAS-2026-09-01
+    (via alterna Datos Abiertos DGIS que mesa reporto usar); la URL exacta del asset no fue
+    observada por este agente (procedencia (3), reportada por mesa).'
+
+- id: dgis_urgencias_2026_zip
+  usado_para: 'microdato de la Base de Datos de Urgencias 2026 (DGIS) -- excede la accion
+    minima de la receta #12; fila EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI (cola-adquisicion-v1_0.tsv:64)'
+  url_origen: http://www.dgis.salud.gob.mx/contenidos/basesdedatos/bdc_urgencias_gobmx.html
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: Urgencias_2026.zip
+  sha256: e112dd0ccbf96ce8ae50ab48c263eb781c4aac995c1ba99da40409b6b5d5e2b3
+  tamano_bytes: 132421453
+  formato: ZIP (4 miembros)
+  licencia: Datos Abiertos de la Direccion General de Informacion en Salud (DGIS), Secretaria
+    de Salud -- publicacion abierta sin registro; licencia especifica no declarada en la pagina
+    de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #12 del PAQUETE-RECETAS-2026-09-01
+    (via alterna Datos Abiertos DGIS que mesa reporto usar); la URL exacta del asset no fue
+    observada por este agente (procedencia (3), reportada por mesa).'
+
+- id: cero_desabasto_reportes_entidad_cuatrimestre_csv
+  usado_para: 'reportes de desabasto agregados por entidad y cuatrimestre (Cero Desabasto)
+    -- fila CERO_DESABASTO (cola-adquisicion-v1_0.tsv:60, general-1), receta #9 del PAQUETE-RECETAS-2026-09-01'
+  url_origen: https://cerodesabasto.org/
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: cero_desabasto_reportes_por_entidad_cuatrimestre.csv
+  sha256: c28995eb9a1caec849d26e3a4dbf2dec07ef543bd976051d2a65852d11bf99b3
+  tamano_bytes: 17872
+  formato: CSV
+  licencia: Cero Desabasto (Nosotrxs / colectivo civil) -- descarga publica desde el sitio;
+    licencia especifica no declarada en el punto de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta del PAQUETE-RECETAS-2026-09-01; la
+    URL exacta del asset no fue observada por este agente (procedencia (3), reportada por
+    mesa). Nombre original de descarga: ''Cero Desabasto csv'' (sin extension); renombrado
+    al depositarlo en el corpus (0 de 328 nombres del corpus tienen espacios o acentos). Formato
+    verificado por magic/cabecera, no por la extension.'
+
+- id: inmujeres_macu_indicadores_territoriales_xlsx
+  usado_para: 'base de indicadores territoriales del Observatorio de Cuidados / Mapa de Cuidados
+    (Inmujeres) -- fila OBSERVATORIO_DE_CUIDADOS_INDICADORES_TERRITORIALES (cola-adquisicion-v1_0.tsv:62,
+    general-10), receta #10'
+  url_origen: https://mapadecuidados.inmujeres.gob.mx/
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: base_macu.xlsx
+  sha256: 1ca57de22a68ce9fb2348e51380134ab53cadd1ecc385ae3194d6c6a7186fd94
+  tamano_bytes: 800145
+  formato: XLSX
+  licencia: Instituto Nacional de las Mujeres (Inmujeres), portal publico Mapa de Cuidados
+    -- descarga sin registro; licencia especifica no declarada en el punto de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Bajado por mesa con navegador el 1/sep/2026 y depositado en 'Descargas MX'; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta del PAQUETE-RECETAS-2026-09-01; la
+    URL exacta del asset no fue observada por este agente (procedencia (3), reportada por
+    mesa).
+
+- id: ine_prep2024_base_datos_20240603_2005_zip
+  usado_para: 'base de datos del PREP 2024 (corte declarado en el nombre: 2024-06-03, 20:05)
+    -- fila EXT_OF_12_PREP_2024 (cola-adquisicion-v1_0.tsv:71, oficial-10), receta #15'
+  url_origen: https://prep2024.ine.mx/publicacion/nacional/base-datos
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: 20240603_2005_PREP.zip
+  sha256: dcccf23088f81a4ab7c7942a79504b04c4a9347b0a4744f6c328c59fd4d6c31d
+  tamano_bytes: 47062008
+  formato: ZIP (3 miembros)
+  licencia: Instituto Nacional Electoral -- publicacion abierta del PREP, descarga sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Bajado por mesa con navegador el 1/sep/2026 y depositado en 'Descargas MX'; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta del PAQUETE-RECETAS-2026-09-01; la
+    URL exacta del asset no fue observada por este agente (procedencia (3), reportada por
+    mesa). Mesa reporto que computos2024.ine.mx BLOQUEA su IP; esta es la via PREP de la misma
+    receta.
+
+- id: icpsr35024_mexico_panel_study_2012_dats_json
+  usado_para: 'metadatos DATS 2.2 del estudio ICPSR 35024 (Mexico Panel Study 2012) -- fila
+    MEXICO_PANEL_STUDY_2012 (cola-adquisicion-v1_0.tsv:19, prioridad 18), receta #2'
+  url_origen: https://www.icpsr.umich.edu/web/ICPSR/studies/35024
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: 35024_dats_2.2.json
+  sha256: a9e496da6c0975c45a245d49bf5c78f973182ea7dcac6ddf17812e7cff278dc9
+  tamano_bytes: 4527
+  formato: JSON
+  licencia: ICPSR (University of Michigan) -- metadatos de descarga abierta; el microdato
+    exige cuenta ICPSR
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Bajado por mesa con navegador el 1/sep/2026 y depositado en 'Descargas MX'; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta del PAQUETE-RECETAS-2026-09-01; la
+    URL exacta del asset no fue observada por este agente (procedencia (3), reportada por
+    mesa).
+
+- id: icpsr35024_mexico_panel_study_2012_codebook_es_zip
+  usado_para: 'codebook en espanol del estudio ICPSR 35024 (Mexico Panel Study 2012) -- fila
+    MEXICO_PANEL_STUDY_2012 (cola-adquisicion-v1_0.tsv:19), receta #2'
+  url_origen: https://www.icpsr.umich.edu/web/ICPSR/studies/35024
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: 35024-0001-Codebook-spanish.pdf.zip
+  sha256: f27c3f8853b70081bde06e8fec306b980d59a64f66478600cc38f96d1242180c
+  tamano_bytes: 2690814
+  formato: ZIP (1 miembros)
+  licencia: ICPSR (University of Michigan) -- documentacion de descarga abierta; el microdato
+    exige cuenta ICPSR
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Bajado por mesa con navegador el 1/sep/2026 y depositado en 'Descargas MX'; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta del PAQUETE-RECETAS-2026-09-01; la
+    URL exacta del asset no fue observada por este agente (procedencia (3), reportada por
+    mesa).
+
+- id: wb2028_cafr_leon_2005_ddi_xml
+  usado_para: 'DDI (metadatos completos) de Capital Access and Financial Returns, Leon 2005-2006
+    (McKenzie & Woodruff) -- fila CAPITAL_RETURNS_LEON_2005_2006 (cola-adquisicion-v1_0.tsv:57,
+    academico-12), receta #8'
+  url_origen: https://microdata.worldbank.org/index.php/catalog/2028/get-microdata
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: MEX_2005_CAFR_v01_M.xml
+  sha256: c33a8ce9af58879d7df952e97738299386374581e43c91293f7caadc3ca5fcc8
+  tamano_bytes: 4642520
+  formato: XML (DDI)
+  licencia: 'World Bank Microdata Library, catalogo 2028 -- acceso tras cuenta gratuita (la
+    receta #8 declaraba muro de credencial); terminos del repositorio del Banco Mundial'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #8 del PAQUETE-RECETAS-2026-09-01;
+    la URL exacta del asset no fue observada por este agente (procedencia (3)).'
+
+- id: wb2028_cafr_leon_2005_stata8_zip
+  usado_para: 'microdato en formato Stata 8 de Capital Access and Financial Returns, Leon
+    2005-2006 -- fila CAPITAL_RETURNS_LEON_2005_2006 (cola-adquisicion-v1_0.tsv:57), receta
+    #8; rompe el muro de credencial que la receta declaraba'
+  url_origen: https://microdata.worldbank.org/index.php/catalog/2028/get-microdata
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: MEX_2005_CAFR_v01_M_STATA8.zip
+  sha256: 36ecb169aba317eef1db39c77a2e3fc021578a2e898de66dd07261e03b6fdd70
+  tamano_bytes: 305245
+  formato: ZIP (13 miembros)
+  licencia: 'World Bank Microdata Library, catalogo 2028 -- acceso tras cuenta gratuita (la
+    receta #8 declaraba muro de credencial); terminos del repositorio del Banco Mundial'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #8 del PAQUETE-RECETAS-2026-09-01;
+    la URL exacta del asset no fue observada por este agente (procedencia (3)).'
+
+- id: wb2028_cafr_leon_2005_ddi_pdf
+  usado_para: 'documentacion DDI en PDF del catalogo 2028 (Capital Returns Leon 2005-2006)
+    -- fila CAPITAL_RETURNS_LEON_2005_2006 (cola-adquisicion-v1_0.tsv:57), receta #8'
+  url_origen: https://microdata.worldbank.org/index.php/catalog/2028/get-microdata
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: ddi-documentation-english_microdata-2028.pdf
+  sha256: 468f7bc6cd5864bdb082f3e4d0327614ca214592f3bda3dfe4143e5789fedb79
+  tamano_bytes: 112408
+  formato: PDF
+  licencia: 'World Bank Microdata Library, catalogo 2028 -- acceso tras cuenta gratuita (la
+    receta #8 declaraba muro de credencial); terminos del repositorio del Banco Mundial'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #8 del PAQUETE-RECETAS-2026-09-01;
+    la URL exacta del asset no fue observada por este agente (procedencia (3)).'
+
+- id: cngmd2023_esquema_conceptual_xlsx
+  usado_para: 'esquema conceptual (documento de diseno) del CNGMD 2023, hojas M1-M7 + Caratula
+    + Complemento -- fila CNGMD (cola-adquisicion-v1_0.tsv:29, prioridad 28), receta #4; cubre
+    la parte ''esquema conceptual'' del criterio de P2 para los tres modulos objetivo (M1
+    Ayuntamientos y alcaldias, M2 Administracion Publica municipal, M3 Seguridad publica)'
+  url_origen: https://www.inegi.org.mx/programas/cngmd/2023/
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: ec_cngmd2023.xlsx
+  sha256: dea8dff3996f8f2e5c5b3405abe0babeceb0b5fd0117a10887a68668c1c993e6
+  tamano_bytes: 536309
+  formato: XLSX
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #4 del PAQUETE-RECETAS-2026-09-01;
+    la URL exacta del asset no fue observada por este agente (procedencia (3)). Verificado:
+    hoja Caratula fila 17 dice literalmente ''Documento de diseno - Esquema conceptual''.
+    No contiene resultados censales.'
+
+- id: cngmd2023_descarga_masiva_app_y_orden_zip
+  usado_para: 'paquete de la herramienta oficial ''Descarga Masiva'' de INEGI para el CNGMD
+    2023 (NO es el payload de datos) -- fila CNGMD (cola-adquisicion-v1_0.tsv:29), receta
+    #4'
+  url_origen: https://www.inegi.org.mx/programas/cngmd/2023/
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: DescargaMasiva_192026_194559.zip
+  sha256: e4d02401a1aec1f03ff98c2d4056dea0e7055611480926321c7d885886cca735
+  tamano_bytes: 603147
+  formato: ZIP (3 miembros)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #4 del PAQUETE-RECETAS-2026-09-01;
+    la URL exacta del asset no fue observada por este agente (procedencia (3)). CONTENIDO
+    VERIFICADO: DescargaMasivaApp.exe (PE de Windows, 850432 B), leeme.txt, DescargaMasivaOD.xml.
+    El XML es una ORDEN DE DESCARGA (no un DDI): declara totalMb=159.08 MB y lista 84 URLs
+    reales bajo https://www.inegi.org.mx/contenidos/programas/cngmd/2023/datosabiertos/m{N}/<tabla>_cngmd2023_csv.zip
+    (m1:2, m2:30, m3:23, m4:9, m5:6, m6:10, m7:6). NINGUNO de esos 84 archivos fue descargado
+    -- 0 coincidencias de nombre en toda la raiz ''Descargas MX''. Mismo patron que descargamasiva_1382026_134046
+    (13/ago/2026).'
+
+- id: cngmd2023_m4_proteccion_civil_cuestionario_pdf
+  usado_para: 'cuestionario del Modulo 4 (Proteccion civil) del CNGMD 2023, 81 paginas --
+    fila CNGMD (cola-adquisicion-v1_0.tsv:29), receta #4'
+  url_origen: https://www.inegi.org.mx/programas/cngmd/2023/
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: cngmd_2023_m4.pdf
+  sha256: 21b830b45b444a65eac2b30af2f4c5bff81f5bbbc6ea527d10b02ff0abf83be0
+  tamano_bytes: 1939327
+  formato: PDF
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #4 del PAQUETE-RECETAS-2026-09-01;
+    la URL exacta del asset no fue observada por este agente (procedencia (3)). Identidad
+    de modulo derivada de los metadatos /Title del propio PDF y del texto de su primera pagina,
+    no del numero del archivo. Cifrado con owner-password vacia (permisos, no barrera de acceso):
+    pypdf lo abre con decrypt(''''). Marca de agua MUESTRA: es el cuestionario en blanco,
+    no un instrumento contestado. /Title = ''CNGMD 2023 Modulo 4. Proteccion civil''.'
+
+- id: cngmd2023_m5_justicia_civica_cuestionario_pdf
+  usado_para: 'cuestionario del Modulo 5 (Justicia civica) del CNGMD 2023, 118 paginas --
+    fila CNGMD (cola-adquisicion-v1_0.tsv:29), receta #4; unico de los tres modulos objetivo
+    de P2 que llego como cuestionario'
+  url_origen: https://www.inegi.org.mx/programas/cngmd/2023/
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: cngmd_2023_m5.pdf
+  sha256: 82bfaef6dd7986f2bbfea2d6175ebc35e951f016873a0860e28ac3ee5ef63be0
+  tamano_bytes: 2643423
+  formato: PDF
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #4 del PAQUETE-RECETAS-2026-09-01;
+    la URL exacta del asset no fue observada por este agente (procedencia (3)). Identidad
+    de modulo derivada de los metadatos /Title del propio PDF y del texto de su primera pagina,
+    no del numero del archivo. Cifrado con owner-password vacia (permisos, no barrera de acceso):
+    pypdf lo abre con decrypt(''''). Marca de agua MUESTRA: es el cuestionario en blanco,
+    no un instrumento contestado. /Title = ''CNGMD 2023 Modulo 5. Justicia civica''.'
+
+- id: cngmd2023_m6_agua_saneamiento_cuestionario_pdf
+  usado_para: 'cuestionario del Modulo 6 (Agua potable y saneamiento) del CNGMD 2023, 720
+    paginas -- fila CNGMD (cola-adquisicion-v1_0.tsv:29), receta #4'
+  url_origen: https://www.inegi.org.mx/programas/cngmd/2023/
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: cngmd_2023_m6.pdf
+  sha256: c57cb73d8d01bdf042c3dc4677ba64ccf8c44fdaf6e61ce363da9ba1a6d5a284
+  tamano_bytes: 9251680
+  formato: PDF
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #4 del PAQUETE-RECETAS-2026-09-01;
+    la URL exacta del asset no fue observada por este agente (procedencia (3)). Identidad
+    de modulo derivada de los metadatos /Title del propio PDF y del texto de su primera pagina,
+    no del numero del archivo. Cifrado con owner-password vacia (permisos, no barrera de acceso):
+    pypdf lo abre con decrypt(''''). Marca de agua MUESTRA: es el cuestionario en blanco,
+    no un instrumento contestado. /Title = ''CNGMD 2023 Modulo 6. Agua potable y saneamiento''.'
+
+- id: cngmd2023_m7_residuos_solidos_cuestionario_pdf
+  usado_para: 'cuestionario del Modulo 7 (Residuos solidos urbanos) del CNGMD 2023, 167 paginas
+    -- fila CNGMD (cola-adquisicion-v1_0.tsv:29), receta #4'
+  url_origen: https://www.inegi.org.mx/programas/cngmd/2023/
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: cngmd_2023_m7.pdf
+  sha256: ad39d975e43265660ccbcc5ef250d436c0436dc3100981cc0d6a6941a1328635
+  tamano_bytes: 3334783
+  formato: PDF
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. url_origen = URL de la receta #4 del PAQUETE-RECETAS-2026-09-01;
+    la URL exacta del asset no fue observada por este agente (procedencia (3)). Identidad
+    de modulo derivada de los metadatos /Title del propio PDF y del texto de su primera pagina,
+    no del numero del archivo. Cifrado con owner-password vacia (permisos, no barrera de acceso):
+    pypdf lo abre con decrypt(''''). Marca de agua MUESTRA: es el cuestionario en blanco,
+    no un instrumento contestado. /Title = ''CNGMD 2023 Modulo 7. Residuos solidos urbanos
+    ''.'
+
+- id: wbes_mexico_2023_ddi_xml
+  usado_para: 'DDI 2.5 completo (357 variables declaradas, caseQnty=1322) del World Bank Enterprise
+    Survey Mexico 2023 -- fila WORLD_BANK_ENTERPRISE_SURVEY_MEXICO_2023 (cola-adquisicion-v1_0.tsv:10,
+    prioridad 9), receta #1'
+  url_origen: https://microdata.worldbank.org/catalog/6453/get-microdata
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: MEX_2023_WBES_v01_M.xml
+  sha256: 1d5cded32bef39cc2f129ef63c122d59e4e37b1257b36fc98bc0cc8daccad54c
+  tamano_bytes: 766584
+  formato: XML (DDI codebook 2.5)
+  licencia: 'World Bank Microdata Library, catalogo 6453 -- acceso tras cuenta gratuita (la
+    receta #1 declaraba muro de credencial); terminos del repositorio del Banco Mundial'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Bajado por mesa con navegador el 1/sep/2026 y depositado en 'Descargas MX'; registrado
+    por ACTO MAESTRA34-A1. Declara fileName companero 'Mexico-2023-full-data.dta', collDate
+    2023-03 a 2023-10, respRate 33.6%, anlyUnit=establecimiento.
+
+- id: wbes_mexico_2023_ddi_pdf
+  usado_para: 'documentacion DDI en PDF (218 paginas) del catalogo 6453, WBES Mexico 2023
+    -- fila WORLD_BANK_ENTERPRISE_SURVEY_MEXICO_2023 (cola-adquisicion-v1_0.tsv:10), receta
+    #1'
+  url_origen: https://microdata.worldbank.org/catalog/6453/get-microdata
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: ddi-documentation-english_microdata-6453.pdf
+  sha256: 069fe4981e1e5d3b2d765009462fc51d24892d6593724f46a8985561b69ae603
+  tamano_bytes: 958503
+  formato: PDF
+  licencia: 'World Bank Microdata Library, catalogo 6453 -- acceso tras cuenta gratuita (la
+    receta #1 declaraba muro de credencial); terminos del repositorio del Banco Mundial'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Bajado por mesa con navegador el 1/sep/2026 y depositado en 'Descargas MX'; registrado
+    por ACTO MAESTRA34-A1.
+
+- id: wbes_mexico_2023_microdato_dta_zip
+  usado_para: 'microdato a nivel establecimiento del WBES Mexico 2023 (1322 filas x 357 variables,
+    una empresa por fila) -- fila WORLD_BANK_ENTERPRISE_SURVEY_MEXICO_2023 (cola-adquisicion-v1_0.tsv:10),
+    receta #1; ROMPE el muro de credencial que la fila declaraba NO-ACCESIBLE'
+  url_origen: https://www.enterprisesurveys.org/en/data
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: WBES_Mexico2023_Data.zip
+  sha256: bc09225244f1e1274d9c9e58221acf8884512a1ab600551f98fbc0466f479f3f
+  tamano_bytes: 517828
+  formato: 'ZIP (1 miembros: Mexico-2023-full-data.dta)'
+  licencia: World Bank Enterprise Surveys (enterprisesurveys.org) -- acceso tras registro;
+    terminos del Banco Mundial para microdato de empresas
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. PROCEDENCIA DE url_origen (A.5): no observada por este agente.
+    Derivada de la convencion de nombre -- los archivos WBES_*/WBES-Panel_*/WBES-OS_* siguen
+    la nomenclatura del portal enterprisesurveys.org, distinta de la de microdata.worldbank.org
+    (MEX_AAAA_*), que es la que usan el XML DDI y el PDF de este mismo lote. Ambos portales
+    exigian credencial segun las filas 9 y 10 del registro; mesa los abrio con navegador.
+    Conteo verificado con pandas.read_stata: 1322x357, idstd sin duplicados; coincide exactamente
+    con caseQnty/varQnty del DDI.'
+
+- id: wbes_mexico_2023_documentacion_zip
+  usado_para: 'documentacion del WBES Mexico 2023 (cuestionario B-READY 2023 + Implementation
+    Report) -- fila WORLD_BANK_ENTERPRISE_SURVEY_MEXICO_2023 (cola-adquisicion-v1_0.tsv:10),
+    receta #1'
+  url_origen: https://www.enterprisesurveys.org/en/data
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: WBES_Mexico2023_Documentation.zip
+  sha256: 2b3b0db77f12b841814a37265db279cfcb1778c4377876b77e0a4b725a76c0f7
+  tamano_bytes: 1265467
+  formato: 'ZIP (1 miembros; anidado: 2 PDF)'
+  licencia: World Bank Enterprise Surveys (enterprisesurveys.org) -- acceso tras registro;
+    terminos del Banco Mundial para microdato de empresas
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. PROCEDENCIA DE url_origen (A.5): no observada por este agente.
+    Derivada de la convencion de nombre -- los archivos WBES_*/WBES-Panel_*/WBES-OS_* siguen
+    la nomenclatura del portal enterprisesurveys.org, distinta de la de microdata.worldbank.org
+    (MEX_AAAA_*), que es la que usan el XML DDI y el PDF de este mismo lote. Ambos portales
+    exigian credencial segun las filas 9 y 10 del registro; mesa los abrio con navegador.
+    Solo PDF, sin tablas de datos en ningun nivel de anidamiento.'
+
+- id: wbes_mexico_2010_microdato_dta_zip
+  usado_para: microdato a nivel establecimiento del WBES Mexico 2010 (1480 filas x 293 variables)
+    -- fila MEXICO_ENTERPRISE_SURVEYS_COMPONENTE_PANEL_CANDIDATO_2006_2010 (cola-adquisicion-v1_0.tsv:9,
+    prioridad 8, sin receta en el paquete); ROMPE el muro de credencial WB870 confirmado dos
+    veces
+  url_origen: https://www.enterprisesurveys.org/en/data
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: WBES_Mexico2010_Data.zip
+  sha256: e2eedb34227e2892404a1dd8e152d2574753ff7828533777631b1a8e9b7d61ac
+  tamano_bytes: 301152
+  formato: 'ZIP (1 miembros: Mexico-2010-full-data-.dta)'
+  licencia: World Bank Enterprise Surveys (enterprisesurveys.org) -- acceso tras registro;
+    terminos del Banco Mundial para microdato de empresas
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. PROCEDENCIA DE url_origen (A.5): no observada por este agente.
+    Derivada de la convencion de nombre -- los archivos WBES_*/WBES-Panel_*/WBES-OS_* siguen
+    la nomenclatura del portal enterprisesurveys.org, distinta de la de microdata.worldbank.org
+    (MEX_AAAA_*), que es la que usan el XML DDI y el PDF de este mismo lote. Ambos portales
+    exigian credencial segun las filas 9 y 10 del registro; mesa los abrio con navegador.
+    Conteo verificado con pandas.read_stata: 1480x293, idstd sin duplicados.'
+
+- id: wbes_mexico_2010_documentacion_zip
+  usado_para: documentacion del WBES Mexico 2010 (Implementation Report + 3 cuestionarios
+    sectoriales) -- fila MEXICO_ENTERPRISE_SURVEYS_COMPONENTE_PANEL_CANDIDATO_2006_2010 (cola-adquisicion-v1_0.tsv:9)
+  url_origen: https://www.enterprisesurveys.org/en/data
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: WBES_Mexico2010_Documentation.zip
+  sha256: fa6a9511874a6456309c36645c5aa7d90512a1ab89354afd9445196fa3551fe3
+  tamano_bytes: 2696131
+  formato: 'ZIP (1 miembros; anidado: 4 PDF)'
+  licencia: World Bank Enterprise Surveys (enterprisesurveys.org) -- acceso tras registro;
+    terminos del Banco Mundial para microdato de empresas
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. PROCEDENCIA DE url_origen (A.5): no observada por este agente.
+    Derivada de la convencion de nombre -- los archivos WBES_*/WBES-Panel_*/WBES-OS_* siguen
+    la nomenclatura del portal enterprisesurveys.org, distinta de la de microdata.worldbank.org
+    (MEX_AAAA_*), que es la que usan el XML DDI y el PDF de este mismo lote. Ambos portales
+    exigian credencial segun las filas 9 y 10 del registro; mesa los abrio con navegador.'
+
+- id: wbes_mexico_2006_microdato_dta_zip
+  usado_para: microdato a nivel establecimiento del WBES Mexico 2006 (1480 filas x 357 variables)
+    -- fila MEXICO_ENTERPRISE_SURVEYS_COMPONENTE_PANEL_CANDIDATO_2006_2010 (cola-adquisicion-v1_0.tsv:9)
+  url_origen: https://www.enterprisesurveys.org/en/data
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: WBES_Mexico2006_Data.zip
+  sha256: 66dba69f933bbdb619fdbba6b727b7bae15320105641739fd42908f97ab63225
+  tamano_bytes: 282085
+  formato: 'ZIP (1 miembros: Mexico-2006--full-data-.dta)'
+  licencia: World Bank Enterprise Surveys (enterprisesurveys.org) -- acceso tras registro;
+    terminos del Banco Mundial para microdato de empresas
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. PROCEDENCIA DE url_origen (A.5): no observada por este agente.
+    Derivada de la convencion de nombre -- los archivos WBES_*/WBES-Panel_*/WBES-OS_* siguen
+    la nomenclatura del portal enterprisesurveys.org, distinta de la de microdata.worldbank.org
+    (MEX_AAAA_*), que es la que usan el XML DDI y el PDF de este mismo lote. Ambos portales
+    exigian credencial segun las filas 9 y 10 del registro; mesa los abrio con navegador.
+    Conteo verificado: 1480x357, idstd sin duplicados.'
+
+- id: wbes_mexico_2006_documentacion_zip
+  usado_para: documentacion del WBES Mexico 2006 (5 PDF + Sampling Report.xls) -- fila MEXICO_ENTERPRISE_SURVEYS_COMPONENTE_PANEL_CANDIDATO_2006_2010
+    (cola-adquisicion-v1_0.tsv:9)
+  url_origen: https://www.enterprisesurveys.org/en/data
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: WBES_Mexico2006_Documentation.zip
+  sha256: 3da3e39c16d8409a1aaa1784abbeff0ac58791d713a411877a9d3cce08c9893a
+  tamano_bytes: 1018608
+  formato: 'ZIP (1 miembros; anidado: 5 PDF + 1 XLS de muestreo)'
+  licencia: World Bank Enterprise Surveys (enterprisesurveys.org) -- acceso tras registro;
+    terminos del Banco Mundial para microdato de empresas
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. PROCEDENCIA DE url_origen (A.5): no observada por este agente.
+    Derivada de la convencion de nombre -- los archivos WBES_*/WBES-Panel_*/WBES-OS_* siguen
+    la nomenclatura del portal enterprisesurveys.org, distinta de la de microdata.worldbank.org
+    (MEX_AAAA_*), que es la que usan el XML DDI y el PDF de este mismo lote. Ambos portales
+    exigian credencial segun las filas 9 y 10 del registro; mesa los abrio con navegador.'
+
+- id: wbes_mexico_panel_2006_2010_microdato_dta_zip
+  usado_para: microdato del PANEL 2006-2010 del WBES Mexico (2960 filas establecimiento-ano
+    x 477 variables; 1480 de 2006 + 1480 de 2010, panel emparejado=420) -- ES EXACTAMENTE
+    el objeto de la fila MEXICO_ENTERPRISE_SURVEYS_COMPONENTE_PANEL_CANDIDATO_2006_2010 (cola-adquisicion-v1_0.tsv:9,
+    prioridad 8), que estaba NO-ACCESIBLE por muro de credencial confirmado dos veces y NO
+    tenia receta en el paquete
+  url_origen: https://www.enterprisesurveys.org/en/data
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: WBES-Panel_Mexico2010_Data.zip
+  sha256: 83a5927ab7852cce71ac5c512941e9b1fb5e05a62e01e669b75479a8acce34c1
+  tamano_bytes: 832065
+  formato: 'ZIP (1 miembros; anidado: Mexico_2006_2010_Panel.dta + 1 PDF)'
+  licencia: World Bank Enterprise Surveys (enterprisesurveys.org) -- acceso tras registro;
+    terminos del Banco Mundial para microdato de empresas
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. PROCEDENCIA DE url_origen (A.5): no observada por este agente;
+    derivada de la convencion de nombre del portal enterprisesurveys.org (WBES_*/WBES-Panel_*/WBES-OS_*),
+    distinta de la de microdata.worldbank.org (MEX_AAAA_*). Conteo verificado con pandas.read_stata:
+    2960x477; year==2006 -> 1480 filas, year==2010 -> 1480; variable panel: 1.0=1270, 2.0=1270,
+    3.0=420 (empresas de dos olas emparejadas). idstd unico en las 2960.'
+
+- id: wbes_mexico_panel_2010_2023_microdato_dta_zip
+  usado_para: 'microdato del PANEL 2010-2023 del WBES Mexico (2802 filas establecimiento-ano
+    x 503 variables; 1480 de 2010 + 1322 de 2023, panel emparejado=868) -- fila WORLD_BANK_ENTERPRISE_SURVEY_MEXICO_2023
+    (cola-adquisicion-v1_0.tsv:10), receta #1'
+  url_origen: https://www.enterprisesurveys.org/en/data
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: WBES-Panel_Mexico2023_Data.zip
+  sha256: 498a9b2db2bbec65db32c5e7711c5cb1ca3a73fe00eb2af1ad9d67a1e1871a12
+  tamano_bytes: 1187900
+  formato: 'ZIP (1 miembros; anidado: Mexico _2010_2023_.dta + 1 PDF)'
+  licencia: World Bank Enterprise Surveys (enterprisesurveys.org) -- acceso tras registro;
+    terminos del Banco Mundial para microdato de empresas
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. PROCEDENCIA DE url_origen (A.5): no observada por este agente;
+    derivada de la convencion de nombre del portal enterprisesurveys.org (WBES_*/WBES-Panel_*/WBES-OS_*),
+    distinta de la de microdata.worldbank.org (MEX_AAAA_*). Conteo verificado: 2802x503; year==2010
+    -> 1480, year==2023 -> 1322; variable panel: 2010=1046, 2023=888, ''2010,2023''=868.'
+
+- id: wbes_mexico_panel_2010_2023_documentacion_zip
+  usado_para: 'documentacion del panel 2010-2023 del WBES Mexico (6 PDF: cuestionarios LAC
+    2010 core/manufacturing/retail, B-READY 2023, Implementation Reports 2010 y 2023) -- fila
+    WORLD_BANK_ENTERPRISE_SURVEY_MEXICO_2023 (cola-adquisicion-v1_0.tsv:10)'
+  url_origen: https://www.enterprisesurveys.org/en/data
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: WBES-Panel_Mexico2023_Documentation.zip
+  sha256: 879ee09ebe3f3442dcc28b6d7496469df9b610a6b805989d89b8b234a5107156
+  tamano_bytes: 3977994
+  formato: 'ZIP (1 miembros; anidado: 6 PDF)'
+  licencia: World Bank Enterprise Surveys (enterprisesurveys.org) -- acceso tras registro;
+    terminos del Banco Mundial para microdato de empresas
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. PROCEDENCIA DE url_origen (A.5): no observada por este agente;
+    derivada de la convencion de nombre del portal enterprisesurveys.org (WBES_*/WBES-Panel_*/WBES-OS_*),
+    distinta de la de microdata.worldbank.org (MEX_AAAA_*).'
+
+- id: wbes_os_mexico_2026_ai_microdato_dta_zip
+  usado_para: microdato del modulo de seguimiento sobre inteligencia artificial del WBES Mexico
+    2026 (603 filas x 132 variables; recontacto CATI de la muestra ES, NO es una ola nucleo
+    nueva) -- fuente sin fila propia en el registro al 1/sep/2026; se adjunta a la familia
+    WBES
+  url_origen: https://www.enterprisesurveys.org/en/data
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: WBES-OS_Mexico2026_Data.zip
+  sha256: 299eb398f66152a1089376f879223e88345cba193432cb1747a79f78af17bcbd
+  tamano_bytes: 45248
+  formato: 'ZIP (1 miembros: ''Mexico-2026-AI follow-up data.dta'')'
+  licencia: World Bank Enterprise Surveys (enterprisesurveys.org) -- acceso tras registro;
+    terminos del Banco Mundial para microdato de empresas
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. PROCEDENCIA DE url_origen (A.5): no observada por este agente;
+    derivada de la convencion de nombre del portal enterprisesurveys.org (WBES_*/WBES-Panel_*/WBES-OS_*),
+    distinta de la de microdata.worldbank.org (MEX_AAAA_*). Conteo verificado: 603x132, idstd
+    sin duplicados; start_year=2026 en las 603 filas, start_month 2 (n=290) y 3 (n=313) --
+    marcas de tiempo reales de entrevista, no placeholders. DISCREPANCIA declarada, no resuelta:
+    la portada del cuestionario dice ''AI Follow-Up 2025'' mientras el trabajo de campo mexicano
+    y el nombre de archivo dicen 2026.'
+
+- id: wbes_os_mexico_2026_ai_documentacion_zip
+  usado_para: documentacion del modulo de seguimiento IA del WBES Mexico 2026 (Implementation
+    Report + cuestionario de 36 paginas) -- familia WBES, sin fila propia en el registro
+  url_origen: https://www.enterprisesurveys.org/en/data
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: WBES-OS_Mexico2026_Documentation.zip
+  sha256: 082d02af0767ad06d4078380af710b0faa78b5d07374b5c343d4cc02010f6b3a
+  tamano_bytes: 955817
+  formato: 'ZIP (1 miembros; anidado: 2 PDF)'
+  licencia: World Bank Enterprise Surveys (enterprisesurveys.org) -- acceso tras registro;
+    terminos del Banco Mundial para microdato de empresas
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX''; registrado
+    por ACTO MAESTRA34-A1. PROCEDENCIA DE url_origen (A.5): no observada por este agente;
+    derivada de la convencion de nombre del portal enterprisesurveys.org (WBES_*/WBES-Panel_*/WBES-OS_*),
+    distinta de la de microdata.worldbank.org (MEX_AAAA_*). El Implementation Report declara
+    ''Document Generated on 26 April 2026'' y describe recontacto por CATI de establecimientos
+    muestreados en la ES estandar.'
+
+- id: cero_desabasto_exportacion_publica_insumos_y_reportes_xlsx
+  usado_para: 'base historica de reportes individuales de desabasto de Cero Desabasto (hoja
+    ''Registros historicos'', 11036 filas = reporte x insumo, 7914 reportes distintos, 2019-02-18
+    a 2024-09-03) -- fila CERO_DESABASTO (cola-adquisicion-v1_0.tsv:60, general-1), receta
+    #9; es el archivo que SI trae registro individual con fecha, institucion, entidad y medicamento'
+  url_origen: https://cerodesabasto.org/
+  fecha_descarga: '2026-09-01'
+  descargado_por: mesa-navegador
+  archivo: exportacion_publica_insumos_y_reportes.xlsx
+  sha256: 3a10dd9b226bb40f09ea2b3d417f64887710a02a552d48f3f12054a8c1e86a93
+  tamano_bytes: 732571
+  formato: 'XLSX (1 hoja: ''Registros historicos'', 11037x14)'
+  licencia: Cero Desabasto (Nosotrxs / colectivo civil) -- 'Exportacion publica' del sitio,
+    descarga sin registro; licencia especifica no declarada en el punto de descarga
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Bajado por mesa con navegador el 1/sep/2026 y depositado en ''Descargas MX'' con
+    el nombre ''Exportacion publica de Insumos y reportes.xlsx''; renombrado al corpus (0
+    de 328 nombres del corpus traen espacios o acentos). Registrado por ACTO MAESTRA34-A1.
+    CORRIGE EL REPORTE DE MESA: mesa declaro para la receta #9 que ''falta base historica'';
+    la base historica SI llego, en este archivo -- mesa no lo asocio a Cero Desabasto por
+    el nombre generico. Columnas verbatim: id del Insumo, Tipo de Medicina, Grupo, Componente,
+    Presentacion, id del Reporte, Fecha de Registro, Tipo de informante, Padecimiento, Entidad,
+    Institucion, Institucion 2, CLUES, Hospital o clinica. Nulos: Fecha de Registro 0%, Entidad
+    0.2%, Institucion 0.3%, Componente 10.0%. Atribucion a Cero Desabasto derivada del contenido
+    (CLUES + Institucion + Padecimiento + insumo, ventana 2019-2024 que empalma con la del
+    CSV agregado), no observada en la URL de descarga.'

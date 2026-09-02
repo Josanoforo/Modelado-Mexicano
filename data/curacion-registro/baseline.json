@@ -1,8 +1,8 @@
 {
   "archivos": {
     "aliases-fuentes.tsv": {
-      "filas": 4,
-      "sha256": "4ea5cf366440968b94ac0ef8a25b22c7e9a503643808068be55cc17be7aabd3b"
+      "filas": 5,
+      "sha256": "3d2fd7d65bb86e3ba4872494dd850c89fd78d7dee1455c58638ee227c6e145d5"
     },
     "artefactos-rechazados.tsv": {
       "filas": 85,
@@ -22,7 +22,7 @@
     },
     "relaciones.tsv": {
       "filas": 199,
-      "sha256": "5e4e125cd57b89b9af63c5477b09972e9a4236d0ff73a55d4732d4f1c6dbc6f2"
+      "sha256": "fb6893c2eec4d4d0a2827c122c50d1bf2c95e56b46ce25ed48a0dd3115906606"
     },
     "utilidad-modelo.tsv": {
       "filas": 199,
@@ -37,12 +37,12 @@
   ],
   "conteos": {
     "artefactos_rechazados": 85,
-    "candidatas": 147,
+    "candidatas": 141,
     "confirmadas": 3,
     "decisiones_pendientes": 0,
-    "familias_alias": 4,
+    "familias_alias": 5,
     "fusiones_declaradas": 1,
-    "negativas": 42,
+    "negativas": 48,
     "no_accesibles": 7,
     "procedencias_aceptadas": 200,
     "relaciones_activas": 199
@@ -61,7 +61,7 @@
   "procedencia": {
     "criterio": "No queremos versionar 200 filas de historia de ejecución; sí queremos versionar toda la procedencia vigente necesaria para justificar el baseline aceptado.",
     "manifest_origen_sha256": "e72c174075ae1bbf6535723aea0fbaf19c1938a55f470de275f4fbf7d36e1d24",
-    "origen": "baseline semántico aceptado por la integración final"
+    "origen": "baseline semantico aceptado por la integracion final; recifrado por ACTO MAESTRA34-A1 (2026-09-01) tras escribir capa2/capa4 en 14 filas de relaciones.tsv y dar de alta SICEE en aliases-fuentes.tsv. NOTA: el hash de relaciones.tsv YA estaba invalido en origin/main 6d9692d, antes de este acto -- este recifrado tambien cierra ese desfase previo."
   },
   "schema_version": "1.0.0"
 }
