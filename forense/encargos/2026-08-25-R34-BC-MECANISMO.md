@@ -19,3 +19,7 @@ F1 · CENSO de fuentes (sin abrir microdato). Deriva candidatas del canon: data/
 NO hace
 
 No adjudica R3.4 ni toca su test. No re-abre la condición A. No cablea disparadores a milpa/tramite.yaml (eso es acto de motor aparte; ficha:215 lo documenta). No descarga fuentes nuevas (si el censo exige una: NO OBTENIDO + receta A.5, y para).
+
+## CONSUMIDO
+
+Derivación mecánica (`/tramite`, §3.3): único `Merge pull request #N` cuyo mensaje cita el rótulo `R34-BC-MECANISMO` — `PR #359` (`c6a5ab3`), y ese merge toca este archivo además de otros 6 (`git diff --stat c6a5ab3^1 c6a5ab3`).
