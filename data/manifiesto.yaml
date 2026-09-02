@@ -20440,3 +20440,90 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: OLE2; hojas Todos_Ayuntamientos_Locales y Hoja1, 5 397 filas; cabecera en la fila
     6 con LISTA NOMINAL.
+
+- id: ieech_chihuahua_2016_ayuntamientos_x_casilla_xlsx
+  usado_para: 'P1 de ACTO MAESTRA35-L3: computo por casilla de la eleccion de ayuntamientos
+    de Chihuahua 2016 (NO concurrente), con MUNICIPIO y LISTA NOMINAL en la misma fila. Chihuahua
+    es la serie mas grande que este acto adquirio (67 municipios) y su transicion 2016->2018
+    identifica beta_pres.'
+  url_origen: https://ieechihuahua.org.mx/sistema/archivos/Documentos%20de%20consulta/Docs/Resultados%20Computos%20BD/BD/Ayu_2016_Casillas.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: 'agente, directamente de ieechihuahua.org.mx (curl -A UA-navegador). Ruta
+    descubierta leyendo /js/atlas/script_trabajado.js: el Atlas de Resultados Electorales
+    es un formulario POST de Laravel, pero su boton ''Descargar Base de datos'' construye
+    una URL estatica <ruta>/<3 primeras letras de la eleccion>_<anio>_Casillas.xlsx; el catalogo
+    de anios se obtuvo con POST a /atlasOpciones (Eleccion=4 -> Ayuntamiento) con el token
+    CSRF y la cookie de sesion.'
+  archivo: electoral_local_municipal_serie/ieech_chihuahua_2016_ayuntamientos_x_casilla.xlsx
+  sha256: 8abc33e3ce7e7a59f28e49251634abfbb23eb32fe361c5e186c142ef9f2d8333
+  tamano_bytes: 1243013
+  formato: xlsx
+  licencia: Documento publico del Instituto Estatal Electoral de Chihuahua
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Ayunt 2016 Ord., cabecera f7: Dto./Municipio/Seccion/Casilla/Listado Nominal/Votacion
+    Recibida/Votacion Total/% de Particip., 5 236 filas'
+
+- id: ieech_chihuahua_2018_ayuntamientos_x_casilla_xlsx
+  usado_para: 'P1 de ACTO MAESTRA35-L3: computo por casilla de la eleccion de ayuntamientos
+    de Chihuahua 2018 (concurrente con la federal PRESIDENCIAL), con MUNICIPIO y LISTA NOMINAL
+    en la misma fila. Chihuahua es la serie mas grande que este acto adquirio (67 municipios)
+    y su transicion 2016->2018 identifica beta_pres.'
+  url_origen: https://ieechihuahua.org.mx/sistema/archivos/Documentos%20de%20consulta/Docs/Resultados%20Computos%20BD/BD/Ayu_2018_Casillas.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: 'agente, directamente de ieechihuahua.org.mx (curl -A UA-navegador). Ruta
+    descubierta leyendo /js/atlas/script_trabajado.js: el Atlas de Resultados Electorales
+    es un formulario POST de Laravel, pero su boton ''Descargar Base de datos'' construye
+    una URL estatica <ruta>/<3 primeras letras de la eleccion>_<anio>_Casillas.xlsx; el catalogo
+    de anios se obtuvo con POST a /atlasOpciones (Eleccion=4 -> Ayuntamiento) con el token
+    CSRF y la cookie de sesion.'
+  archivo: electoral_local_municipal_serie/ieech_chihuahua_2018_ayuntamientos_x_casilla.xlsx
+  sha256: b6c46baa14e06c96efd57b0f249657d4b33e0d4f07426db6d37fd6dc94a3b2ac
+  tamano_bytes: 1192301
+  formato: xlsx
+  licencia: Documento publico del Instituto Estatal Electoral de Chihuahua
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Ayunt. 2018, cabecera f6-f7 con Listado Nominal y % de Particip., 5 372 filas
+
+- id: ieech_chihuahua_2021_ayuntamientos_x_casilla_xlsx
+  usado_para: 'P1 de ACTO MAESTRA35-L3: computo por casilla de la eleccion de ayuntamientos
+    de Chihuahua 2021 (concurrente con la federal INTERMEDIA), con MUNICIPIO y LISTA NOMINAL
+    en la misma fila. Chihuahua es la serie mas grande que este acto adquirio (67 municipios)
+    y su transicion 2016->2018 identifica beta_pres.'
+  url_origen: https://ieechihuahua.org.mx/sistema/archivos/Documentos%20de%20consulta/Docs/Resultados%20Computos%20BD/BD/Ayu_2021_Casillas.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: 'agente, directamente de ieechihuahua.org.mx (curl -A UA-navegador). Ruta
+    descubierta leyendo /js/atlas/script_trabajado.js: el Atlas de Resultados Electorales
+    es un formulario POST de Laravel, pero su boton ''Descargar Base de datos'' construye
+    una URL estatica <ruta>/<3 primeras letras de la eleccion>_<anio>_Casillas.xlsx; el catalogo
+    de anios se obtuvo con POST a /atlasOpciones (Eleccion=4 -> Ayuntamiento) con el token
+    CSRF y la cookie de sesion.'
+  archivo: electoral_local_municipal_serie/ieech_chihuahua_2021_ayuntamientos_x_casilla.xlsx
+  sha256: 8e0c6676e10e1e29354bb54bf77b52a7ad17a78511c075481243552a042b6c67
+  tamano_bytes: 1538425
+  formato: xlsx
+  licencia: Documento publico del Instituto Estatal Electoral de Chihuahua
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Votacion Distribuida y Votacion por Candidatura, cabecera f5 con MUNICIPIO/SECCION/TOTAL
+    VOTOS/LISTA NOMINAL, 5 505 filas
+
+- id: ieech_chihuahua_2024_ayuntamientos_x_casilla_xlsx
+  usado_para: 'P1 de ACTO MAESTRA35-L3: computo por casilla de la eleccion de ayuntamientos
+    de Chihuahua 2024 (concurrente con la federal PRESIDENCIAL), con MUNICIPIO y LISTA NOMINAL
+    en la misma fila. Chihuahua es la serie mas grande que este acto adquirio (67 municipios)
+    y su transicion 2016->2018 identifica beta_pres.'
+  url_origen: https://ieechihuahua.org.mx/sistema/archivos/Documentos%20de%20consulta/Docs/Resultados%20Computos%20BD/BD/Ayu_2024_Casillas.xlsx
+  fecha_descarga: '2026-09-02'
+  descargado_por: 'agente, directamente de ieechihuahua.org.mx (curl -A UA-navegador). Ruta
+    descubierta leyendo /js/atlas/script_trabajado.js: el Atlas de Resultados Electorales
+    es un formulario POST de Laravel, pero su boton ''Descargar Base de datos'' construye
+    una URL estatica <ruta>/<3 primeras letras de la eleccion>_<anio>_Casillas.xlsx; el catalogo
+    de anios se obtuvo con POST a /atlasOpciones (Eleccion=4 -> Ayuntamiento) con el token
+    CSRF y la cookie de sesion.'
+  archivo: electoral_local_municipal_serie/ieech_chihuahua_2024_ayuntamientos_x_casilla.xlsx
+  sha256: 77d6b9ec556b64538414ceb5eb07906512fabccaf83c16c9a07488e08afbd31a
+  tamano_bytes: 1539078
+  formato: xlsx
+  licencia: Documento publico del Instituto Estatal Electoral de Chihuahua
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Votacion Casilla - DIST y - CAND, cabecera f6 con MUNICIPIO/SECCION/TOTAL VOTOS/LISTA
+    NOMINAL, 5 781 filas

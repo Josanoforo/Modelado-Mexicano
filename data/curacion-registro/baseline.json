@@ -1,8 +1,8 @@
 {
  "archivos": {
   "aliases-fuentes.tsv": {
-   "filas": 10,
-   "sha256": "97730ec5017b90c15cc30e0433b0a6cb6183c1d5124ec4d40a776434b4c8a148"
+   "filas": 11,
+   "sha256": "5215e4bdf36643167fd12bf1030498ddd209bda6017d30a5a6a57d440220658f"
   },
   "artefactos-rechazados.tsv": {
    "filas": 85,
@@ -13,20 +13,20 @@
    "sha256": "2d32cd5e06fc2901aaf1eca7505936049528fd8496761a25653b7c2bcc21dcd8"
   },
   "evidencias.tsv": {
-   "filas": 210,
-   "sha256": "60535a6bf3f6f1a2f9537bd21b6a6a90d99594a96fb0d3c798dda0981530176a"
+   "filas": 211,
+   "sha256": "ed43edbcd97da9a69f56056766f0239a98f9bfeaf861385d45b06b9a3f55d3da"
   },
   "fusiones-relaciones.tsv": {
    "filas": 1,
    "sha256": "d7ab67a8a20b4f27e825a025a4ffc6326f001508f72b6a0a273b79f30cd5a7b3"
   },
   "relaciones.tsv": {
-   "filas": 209,
-   "sha256": "864712d1d1936fc2b7ba01bef571e387307bc427bb04a0569bbf0fb2eadd65f3"
+   "filas": 210,
+   "sha256": "b2b974f27f49791d7aa904eea0020ae805196961c2d4b55ce4ad50bad9be4649"
   },
   "utilidad-modelo.tsv": {
-   "filas": 209,
-   "sha256": "6b3c533f202b0517cb7e08c1b2dbd86cebc7ea09a5dcfb33760709c2816c6386"
+   "filas": 210,
+   "sha256": "3f549df99b0834e50d6656e2079bdcc204f6689cfcdab282eaa7783db472975e"
   }
  },
  "baseline_version": "1.0.0",
@@ -38,14 +38,14 @@
  "conteos": {
   "artefactos_rechazados": 85,
   "candidatas": 147,
-  "confirmadas": 7,
+  "confirmadas": 8,
   "decisiones_pendientes": 0,
-  "familias_alias": 10,
+  "familias_alias": 11,
   "fusiones_declaradas": 1,
   "negativas": 48,
   "no_accesibles": 7,
-  "procedencias_aceptadas": 210,
-  "relaciones_activas": 209
+  "procedencias_aceptadas": 211,
+  "relaciones_activas": 210
  },
  "delimiter": "TAB",
  "encoding": "UTF-8",
@@ -61,7 +61,7 @@
  "procedencia": {
   "criterio": "No queremos versionar 200 filas de historia de ejecución; sí queremos versionar toda la procedencia vigente necesaria para justificar el baseline aceptado.",
   "manifest_origen_sha256": "e72c174075ae1bbf6535723aea0fbaf19c1938a55f470de275f4fbf7d36e1d24",
-  "origen": "baseline semantico aceptado por la integracion final; recifrado por ACTO MAESTRA34-L4 (2026-09-02) tras dar de alta las DOS fuentes de datos nuevas de la pieza civica -- IEC_COAHUILA e IEEM_EDOMEX -- contra la necesidad N25 (regla R7.1), por la via que tools/curador_registro/GUIA-CURADOR-REGISTRO.md seccion «alta de fuente nueva en tres tablas» fijo en ACTO MAESTRA34-N6 (ADR-279): +2 relaciones, +2 procedencias y +2 filas de utilidad en UNA sola operacion, con relacion_id IMPORTADO de baseline.py (no reimplementado) y objeto_evidencia/procedencia derivados con las formulas de esa seccion. Ademas +3 familias de alias (las dos anteriores mas GACETA_GOBIERNO_EDOMEX, fuente normativa sin fila en relaciones), cada una con la decision de NO FUSION escrita. Conteos: relaciones 205->207, evidencias 206->208, utilidad 205->207, confirmadas 3->5, familias_alias 5->8, candidatas 147 sin cambio. Las tres tablas se escribieron POR LINEA, no con el modulo csv: en este mismo acto csv.writer re-cito una fila ajena de evidencias.tsv (la PROV-2fcf25ae, que guarda comillas sin escapar), se detecto por git diff y se revirtio -- el defecto esta documentado y no se repite. El recifrado no es opcional: los sha256 quedan invalidos en cuanto se escriben las tablas. NOTA: el hash de relaciones.tsv YA estaba invalido en origin/main 6d9692d, antes de este acto -- este recifrado tambien cierra ese desfase previo. Recifrado de nuevo por ACTO MAESTRA34-N6 · CURADOR-Y-SUITE (2026-09-01, firma DN-a, FP-230) tras dar de alta 5 relaciones nuevas en las tres tablas a la vez (SICEE x N25/N26; Cero Desabasto x N36; DGIS Urgencias x N36, descriptor y microdato): relaciones 199->204, evidencias 200->205, utilidad-modelo 199->204, fusiones sin cambio. El recifrado es requisito del propio validador (los sha256 de las tres tablas quedan invalidos al escribirlas) y sigue el precedente de A1; no absorbe ningun error preexistente. Recifrado de nuevo por ACTO MAESTRA35-L3 · CIVICA-TIPO-DE-BOLETA (2026-09-02, firma c1, enmienda de direccion del 2/sep/2026 sobre la infraestructura del curador) tras dar de alta DOS fuentes de datos nuevas contra la misma necesidad N25 (regla R7.1): IEEBC_BC (serie municipal completa 2016/2019/2021/2024 de Baja California, con lista nominal en la fuente) e IEEZ_ZACATECAS (la pata 2016 que ACTO MAESTRA34-L6 declaro no localizable). +2 relaciones, +2 procedencias y +2 filas de utilidad en UNA sola operacion, con relacion_id IMPORTADO de baseline.py y objeto_evidencia/procedencia derivados con las formulas de la GUIA. Las tres tablas se escribieron POR LINEA, no con el modulo csv, por el defecto que ACTO MAESTRA34-L4 documento en esta misma nota. N25 ya existia y cubre R7.1, asi que necesidad-objeto-modelo.tsv NO se toco: no habia necesidad nueva que dar de alta. Ademas +2 familias de alias (IEEBC_BC e IEEZ_ZACATECAS), cada una con la decision de NO FUSION escrita; familias_alias 8->10."
+  "origen": "baseline semantico aceptado por la integracion final; recifrado por ACTO MAESTRA34-L4 (2026-09-02) tras dar de alta las DOS fuentes de datos nuevas de la pieza civica -- IEC_COAHUILA e IEEM_EDOMEX -- contra la necesidad N25 (regla R7.1), por la via que tools/curador_registro/GUIA-CURADOR-REGISTRO.md seccion «alta de fuente nueva en tres tablas» fijo en ACTO MAESTRA34-N6 (ADR-279): +2 relaciones, +2 procedencias y +2 filas de utilidad en UNA sola operacion, con relacion_id IMPORTADO de baseline.py (no reimplementado) y objeto_evidencia/procedencia derivados con las formulas de esa seccion. Ademas +3 familias de alias (las dos anteriores mas GACETA_GOBIERNO_EDOMEX, fuente normativa sin fila en relaciones), cada una con la decision de NO FUSION escrita. Conteos: relaciones 205->207, evidencias 206->208, utilidad 205->207, confirmadas 3->5, familias_alias 5->8, candidatas 147 sin cambio. Las tres tablas se escribieron POR LINEA, no con el modulo csv: en este mismo acto csv.writer re-cito una fila ajena de evidencias.tsv (la PROV-2fcf25ae, que guarda comillas sin escapar), se detecto por git diff y se revirtio -- el defecto esta documentado y no se repite. El recifrado no es opcional: los sha256 quedan invalidos en cuanto se escriben las tablas. NOTA: el hash de relaciones.tsv YA estaba invalido en origin/main 6d9692d, antes de este acto -- este recifrado tambien cierra ese desfase previo. Recifrado de nuevo por ACTO MAESTRA34-N6 · CURADOR-Y-SUITE (2026-09-01, firma DN-a, FP-230) tras dar de alta 5 relaciones nuevas en las tres tablas a la vez (SICEE x N25/N26; Cero Desabasto x N36; DGIS Urgencias x N36, descriptor y microdato): relaciones 199->204, evidencias 200->205, utilidad-modelo 199->204, fusiones sin cambio. El recifrado es requisito del propio validador (los sha256 de las tres tablas quedan invalidos al escribirlas) y sigue el precedente de A1; no absorbe ningun error preexistente. Recifrado de nuevo por ACTO MAESTRA35-L3 · CIVICA-TIPO-DE-BOLETA (2026-09-02, firma c1, enmienda de direccion del 2/sep/2026 sobre la infraestructura del curador) tras dar de alta DOS fuentes de datos nuevas contra la misma necesidad N25 (regla R7.1): IEEBC_BC (serie municipal completa 2016/2019/2021/2024 de Baja California, con lista nominal en la fuente) e IEEZ_ZACATECAS (la pata 2016 que ACTO MAESTRA34-L6 declaro no localizable). +2 relaciones, +2 procedencias y +2 filas de utilidad en UNA sola operacion, con relacion_id IMPORTADO de baseline.py y objeto_evidencia/procedencia derivados con las formulas de la GUIA. Las tres tablas se escribieron POR LINEA, no con el modulo csv, por el defecto que ACTO MAESTRA34-L4 documento en esta misma nota. N25 ya existia y cubre R7.1, asi que necesidad-objeto-modelo.tsv NO se toco: no habia necesidad nueva que dar de alta. Ademas +2 familias de alias (IEEBC_BC e IEEZ_ZACATECAS), cada una con la decision de NO FUSION escrita; familias_alias 8->10. Y una tercera alta en la misma sesion: IEECH_CHIHUAHUA (serie municipal completa 2016/2018/2021/2024, 67 municipios, con listado nominal), +1 relacion, +1 procedencia, +1 utilidad, +1 alias; relaciones 209->210, familias_alias 10->11."
  },
  "schema_version": "1.0.0"
 }
