@@ -20527,3 +20527,23 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: Votacion Casilla - DIST y - CAND, cabecera f6 con MUNICIPIO/SECCION/TOTAL VOTOS/LISTA
     NOMINAL, 5 781 filas
+
+- id: ieeh_hidalgo_2016_ayuntamientos_zip
+  usado_para: pata 2016 de Hidalgo, derivada del .rar ieeh_hidalgo_2016_ayuntamientos_rar
+    ya registrado
+  url_origen: https://www.ieehidalgo.org.mx/images/Procesos/Proceso%202015-2016/Ayuntamientos/AyuntamientosC.rar
+  fecha_descarga: '2026-09-02'
+  descargado_por: derivado-en-caja
+  archivo: electoral_local_municipal_serie/ieeh_hidalgo_2016_ayuntamientos.zip
+  sha256: 1de5e344fb87fbe68dfcfa426b2c6a2b8cb3d75535ac30f1088e9010089e80b2
+  tamano_bytes: 447674
+  formato: zip
+  licencia: Resultados electorales oficiales publicados por el organismo publico local electoral
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'A.7 dos hashes: el crudo (sha256 del zip, derivado por este script) NO es comparable
+    con el del .rar porque el re-empaquetado lo cambia; la identidad estable es el hash del
+    SET de los tres XLSX internos = 16bf5826d7717e195fa58923a42640c6074dd6f9c8bad77ea25272bc122e126d,
+    receta sha256(concat de ''<nombre>:<sha256>\n'' con nombres ordenados asc). Extraido del
+    .rar con /mnt/c/Windows/System32/tar.exe (bsdtar/libarchive, RAR3); los tres tamanos coinciden
+    con rarfile.infolist() antes de extraer y zipfile.testzip() da limpio en los tres. mtimes
+    originales (2017-10-31, 2019-07-10) preservados en el zip.'
