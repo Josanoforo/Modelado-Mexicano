@@ -257,7 +257,14 @@ herramienta durante la regresión) ·
 que el encargo cita; **no** está en la lista ciega) ·
 `forense/firmas-pendientes.tsv` y `forense/hallazgos.md` (sólo estructura y
 numeración) · `canon/gobernanza-v1_15.md` (**vía de contaminación 2**) ·
-`canon/estado-programa-v1_10.md` · `canon/registro-rotulos.tsv`.
+`canon/estado-programa-v1_10.md` · `canon/registro-rotulos.tsv` ·
+`.claude/commands/arbitra.md` y `.claude/commands/acto.md` (**perímetro
+ampliado por la respuesta de mesa**, §10).
+
+**Entró por el merge de `origin/main` sin abrirse:**
+`milpa/tramite-ola5-propuesta-v0.yaml` llegó modificado por `PR #473`. El merge
+lo resolvió solo; **ninguna línea suya se leyó ni se editó en esta rama** — es
+de la lista ciega y sigue sin abrirse.
 
 **NO abiertos, ni «para confirmar»:** `milpa/tramite.yaml` ·
 `milpa/tramite-ola5-propuesta-v0.yaml` · `milpa/procedencia.yaml` · ningún otro
@@ -271,11 +278,15 @@ archivo de `milpa/` · `forense/prereg-duelo-v2/corridas-M/` · `corridas-L/` ·
 - **ADR.** Comando de la casa → máximo `289` en `b6b923f`; candidato **`290`**,
   contiguo y sin huecos. **Colisión confirmada por mesa**: `PR #471`
   (`ACTO MAESTRA35-L1`) reclama el mismo `ADR-291` y los mismos `FP-241`/`FP-242`.
-  Re-derivado tras la respuesta de mesa contra `origin/main` = `0fd6b4c`
-  (`PR #472` fusionado, que sólo archivó un encargo): máximo de ADR sigue en
-  **`289`** y máximo de FP en **`240`** — ninguno de los tres números está
-  tomado todavía, y `PR #471` sigue **OPEN**. Se conservan `290`/`241`/`242` y
-  se declara la colisión; regla de la casa, **renumera quien fusiona segundo**.
+  **Desenlace: tocó renumerar, y no por `PR #471`.** Mientras esta sesión
+  trabajaba fusionó `PR #473` (`ACTO MAESTRA35-N3 · SELLA-CIVICA-L6`) y tomó
+  `ADR-290`. Re-derivado contra `origin/main` = `fb3aa8e`: máximo real de ADR
+  **`290`**, candidato contiguo **`291`** → **`ADR-290` → `ADR-291`** en las
+  **13** ocurrencias, ninguna de las cuales venía de la base (verificado
+  archivo por archivo con `git show b6b923f:<f> | grep -c`). `FP-241`/`FP-242`
+  siguen **libres** en `fb3aa8e` (máximo de FP `240`) y se conservan; `PR #471`
+  sigue `OPEN` reclamándolos — si fusiona primero, se renumeran igual. Regla de
+  la casa: **renumera quien fusiona segundo**, y aquí tocó.
 - **FP.** Máximo registrado en `forense/firmas-pendientes.tsv` = **`240`**
   (230 ids examinados, control positivo). El encargo pre-asignó `FP-244..246`
   pero ordenó «re-deriva el máximo al arrancar … toma el primer libre y dilo»:
@@ -347,3 +358,28 @@ otro archivo se sumó.
 **Lo que mesa confirmó que este acto NO hace:** no arbitra — esta sesión ya vio
 `p` —; no toca el marco ni `codificacion-R-v1_0.tsv`. **La fila de `TRA-M-02`
 la escribe `MAESTRA35-L4` en ciego.**
+
+5. **Renumeración, ejecutada.** Mesa avisó que `PR #471` competía por
+   `ADR-290`/`FP-241`/`FP-242`. Quien fusionó primero fue otro: `PR #473`
+   (`MAESTRA35-N3`) tomó `ADR-290` durante la sesión. Re-derivado y renumerado
+   a **`ADR-291`**; los dos `FP` se conservan porque siguen libres. El merge de
+   `origin/main` = `fb3aa8e` dejó **291 ADR únicos, máximo 291, cero
+   duplicados** — el defecto que la casa ya midió (un merge limpio puede dejar
+   dos `**ADR-N` iguales) se comprobó por comando, no a ojo.
+
+   La línea `L0` (**89 288 caracteres en una sola línea**) **no** se resolvió
+   por sufijo común: el primer intento lo hizo así y una aserción lo atrapó
+   **perdiendo una anotación**, porque el sufijo común a nivel de carácter
+   cortaba *dentro* de una anotación — las dos ramas encadenan con separadores
+   distintos (`)* *(` aquí, `), ` en `N3`). Se resolvió anclando en
+   `` `ADR-289` (derivado por el comando ``, el punto exacto donde las dos
+   ramas vuelven a ser idénticas (87 251 caracteres de cola, comparados byte a
+   byte antes de tocar nada). Control final: anotaciones `mia=57 suya=57
+   cola=56 resultado=58 = 57+57−56`, y `ADR-291`/`ADR-290`/`ADR-289` abren
+   **una** anotación cada uno.
+
+**Suite sobre el árbol fusionado** — `python3 tests/check.py --baseline` →
+**LÍNEA BASE VERDE**, `exit 0`, núcleo **19 FAIL · 166 WARN**. Base `fb3aa8e`
+medida en worktree separado: **19 FAIL · 166 WARN**. **Delta de este acto: 0
+FAIL, 0 WARN** — los `+2 WARN` que había abierto desaparecieron al pasar
+`FP-241`/`FP-242` de `ABIERTA` a `FIRMADA`.
