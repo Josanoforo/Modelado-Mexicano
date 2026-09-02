@@ -26,3 +26,7 @@ FP/ADR CANDIDATOS: deriva al arrancar (N4/N6 pueden fusionar antes).
 CONTADOR: skills 9→10 · rutinas documentadas 3→4 · cero estimaciones, declarado.
 LO QUE NO HACE: no instala el cron (es de mesa, en su máquina); no corre /adquiere; no toca la cola ni sus estados; no edita acto.md.
 SUCESORES: mesa instala el cron y fusiona su primer PR [ADQ] · `/encola` se usa desde la tanda siguiente.
+
+## CONSUMIDO
+
+Ejecutado por `PR #460` (`MAESTRA34-N7 · SKILLS-COLA-Y-ADQ`), 1/sep/2026, `ADR-281`. P1 `.claude/commands/encola.md` · P2 `.claude/commands/despacha.md` §2-bis · P3 `forense/agente-adquisicion-v1_0.md` y `tools/adquiere_cron.sh` · P4 `forense/hallazgos.md` y `forense/firmas-pendientes.tsv` (`FP-233`). Cascada: `ADR-281`, `L0` 280→281, fila `MAESTRA34-N7` de `canon/registro-rotulos.tsv` ampliada. `python3 tests/check.py --baseline` VERDE.
