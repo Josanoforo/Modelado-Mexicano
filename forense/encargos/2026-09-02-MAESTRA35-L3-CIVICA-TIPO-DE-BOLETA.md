@@ -54,3 +54,63 @@ CONTADOR: entidades tratadas medibles 2 → N (meta ≥ 8, declarada) · municip
 Lo que este acto NO hace: no carga nada al motor; no edita las entradas civico.* existentes (N3); no toca la tabla de tratamiento; no reintenta los hosts del INE bloqueados; no instala software fuera de pip sin declararlo; no convierte pp a probabilidad; no edita instrucciones.
 
 Sucesores declarados, no lanzados: (i) NUBE — acto de propagación que selle lo que mesa firme de la entrada nueva (patrón MAESTRA35-N3); (ii) si CORROBORADA, dirección presenta en RH la conversión a regla del motor (dos disparadores, tasa base municipal + Δ por tipo) — la conversión de una tasa observada a probabilidad de agente es firma de mesa, no del acto (L6 §5); (iii) TEPJF por navegador (mesa, DS-a).
+
+---
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA35-L3 · CIVICA-TIPO-DE-BOLETA` el 2/sep/2026, en la
+rama `acto/maestra35-l3-civica-tipo-de-boleta`, worktree propio
+`/home/pc0/mm-maestra35-l3`, entorno UBUNTU con corpus montado.
+
+`ADR-293` · `FP-245` · `FP-246` · `PR` abierto contra `main` (no fusionado: el
+merge es de mesa y es la autorización, no un trámite del ejecutor).
+
+**Commits del acto**, en orden:
+
+| commit | pieza |
+|---|---|
+| `b03b3b7` | A.3 — este encargo, verbatim |
+| `4971eb3` | `P0` — censo de rutas y tabla de identificación |
+| `82b7a1d` | `COMMIT-1` — spec congelada (firma `c1`) |
+| `db368f2` | `P1` — +6 payloads (Zacatecas 2016, Baja California) y las tres capas |
+| `b9519dd` | `P1` cierre — +4 payloads (Chihuahua) y las recetas de lo no alcanzado |
+| `94d4c95` | `COMMIT-2` — resultados |
+| `cc4490a` | `P3` — entrada nueva al pie de la propuesta |
+| (merge) | `origin/main` `792b7ef` |
+| (cascada) | `ADR-293`, `L0`, `registro-rotulos`, `FP-245`/`FP-246`, `hallazgos`, `INFRAESTRUCTURA`, suite VERDE |
+
+**Lo que el encargo pidió y NO se entregó, dicho sin rodeos:**
+
+* **La meta de ≥ 8 entidades tratadas medibles.** Se alcanzaron **5** (de 2).
+  `P3` corre **ACOTADO** y lo declara en la propuesta, en la spec y aquí.
+* **Hidalgo**, que el encargo ordenaba primero y llamaba «el caso más limpio del
+  diseño». Queda `OBTENIDO-SIN-DENOMINADOR` en sus **tres** patas, con **cinco**
+  rutas de denominador probadas y descartadas una por una y con las recetas
+  escritas. No es un descuido: es el resultado del censo.
+* **Las 12 entidades** de la firma `c1`. Se adquirieron **3** (Zacatecas 2016 —
+  la pata que faltaba —, Baja California y Chihuahua, las dos completas).
+  Quedan **9**, con lo que este acto midió de cada una en
+  `data/curacion-registro/cola-adquisicion-registro.tsv`.
+* **El benchmark del TEPJF 1991-2018.** Sigue `NO-OBTENIDO` y **no se citó de
+  memoria**, como el encargo ordena.
+
+**Tres premisas del propio encargo resultaron falsas y se declaran** (detalle en
+`forense/hallazgos.md`): `tools/mide_participacion_concurrente.py` es el medidor
+de `MAESTRA34-L4`, no de `L6`; el «163 municipios en panel» del CONTADOR es el
+`n` de `L4`, no el panel de `L6` (que eran 116); y Hidalgo es el caso más limpio
+en **calendario** y el más pobre en **denominador**.
+
+**Lo que el encargo declaró como NO-hacer, y no se hizo:** no se cargó nada al
+motor; no se editaron las entradas `civico.*` existentes (append puro, `0`
+líneas borradas); no se tocó la tabla de tratamiento ni `milpa/tramite.yaml` ni
+`forense/prereg-duelo-v2/` ni `tools/arbitra.py` ni `tools/emite_m.py` ni
+`tools/medidor_*` ni `corridas-*` ni `codificacion-R` ni
+`instrucciones-proyecto-*`; no se reintentaron los hosts del INE que `ADR-288`
+midió bloqueados; no se instaló software fuera de `pip` (de hecho no se instaló
+nada); no se convirtió ningún `pp` a probabilidad.
+
+**Una vez sí se paró por perímetro:** `tools/curador_registro/via_capa2.py`
+tiene un punto ciego medido (`FP-246`) y **no se reparó**, porque
+`tools/curador_registro/` no está en la lista del encargo y el encargo ordena
+PARAR al escribir fuera de ella.

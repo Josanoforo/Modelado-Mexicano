@@ -287,3 +287,23 @@ es necesariamente el total**: la tabla de Zacatecas 2024 trae `T VOTARON` con
 «Sin Dato» en 839 de 2 649 casillas y `VTOTAL` completa — la que se usa es la
 que cumple una identidad aritmética comprobable (`Σ(partidos) = VTOTAL`), no la
 que tiene mejor nombre.
+
+## Tipo de boleta federal: identificación y medición (`ACTO MAESTRA35-L3`, 2/sep/2026)
+
+Dos artefactos nuevos bajo `data/`, sucesores directos de los tres de
+`ACTO MAESTRA34-L6` de la sección anterior. Se registran aquí por el mismo
+motivo: quien los lea tiene que saber qué **no** puede hacer con ellos.
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/l3-tabla-identificacion-v1_0.tsv` | `python3 tools/mide_participacion_tipo_boleta.py --tabla-identificacion` (`ACTO MAESTRA35-L3`, P0) | 12 campos: `entidad, de, a, hueco, tipo_de, tipo_a, dD_pres, dD_int, clase, identifica, estatus_entidad, cohorte`; **73 filas** (una por entidad × transición consecutiva), 32 entidades | la spec de `MAESTRA35-L3` (`§0.3`, `§1.5`), y todo acto sucesor del diseño por tipo de boleta | **`GENERADO` — no editar a mano.** Se deriva de `data/p0-calendario-ayuntamientos-v1_0.tsv` más el ciclo federal (2018 y 2024 presidenciales, 2015 y 2021 intermedias). **Es una tabla del UNIVERSO, no del panel**: sus 73 transiciones incluyen entidades cuyo denominador nadie ha adquirido todavía. La cifra que hay que leer antes de diseñar cualquier sucesor es que **sólo 5** de las 73 son `STAY` —las únicas que identifican `α` sin mezcla— y **dos de esas cinco** (Aguascalientes 2016→2019, Hidalgo 2016→2020) son de entidades cuya lista nominal municipal **no existe en ninguna fuente programable** medida al 2/sep/2026. |
+| `data/l3-resultados-tipo-boleta-v1_0.json` | `python3 tools/mide_participacion_tipo_boleta.py --tipo-boleta --json …` (`ACTO MAESTRA35-L3`, P2) | JSON: `control_regresion_l6, estimador{alpha,beta_pres,beta_int,wild_cluster_*,ic95_bootstrap_municipio}, variante_sin_alpha, identificacion_del_panel, por_transicion, att_por_transicion, agregado_estatal, heterogeneidad_tamano, sensibilidad, descomposicion_L4, controles_lectura, municipios_perdidos` | nota de cierre del acto, `milpa/tramite-ola5-propuesta-v0.yaml` (entrada `civico.participacion.tipo_boleta_federal_2016_2024`) | Salida cruda del estimador de la spec congelada en `forense/notas/2026-09-02-MAESTRA35-L3-spec.md`. **Ninguno de los dos `β` se cita solo con su punto**: el veredicto del falsador fue **`NO-DISCRIMINA`** porque los dos IC95 *wild cluster por entidad* contienen 0, y el bootstrap por municipio —que **no** es el que decide— discrepa en los dos. Citar `β_pres = +3.15` sin su IC conservador invierte el sentido del acto. `β_int` además **cambia de signo** entre subconjuntos y lo identifican **dos** transiciones que se contradicen: no es un número que se pueda reusar. El `control_regresion_l6` es parte del producto, no un adorno: si deja de dar `identico_byte_a_byte: true`, el panel de `L6` cambió y esta corrida ya no es comparable con la suya. |
+
+**Regla de conducto que este acto añade** (complementa la de `MAESTRA34-L6`,
+que decía que el código HTTP no verifica un payload y que el nombre de una
+columna no garantiza su contenido): **`http_code = 000` no significa
+«bloqueado».** `www.ieebc.mx` y `www.ieepco.org.mx` daban `000` con
+`curl: (60) unable to get local issuer certificate` porque mandan la **cadena
+TLS incompleta**; anexando el intermedio que su propio AIA declara, los dos
+pasan a `200` con verificación real. **Nunca `--insecure`.** Antes de declarar
+`NO-OBTENIDO` por red hay que leer el error crudo de `curl`, no sólo su código.
