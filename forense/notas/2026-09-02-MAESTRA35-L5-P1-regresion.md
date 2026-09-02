@@ -216,3 +216,41 @@ $ echo $?
 
 Vacío. El lector `.dta`, el ruteo por magic de Stata y la gramática de join no
 alteran ni una cifra de las 29 celdas ya corridas.
+
+---
+
+## Segunda corrida — tras resolver `SUSTITUYE-A` (P1-bis)
+
+`--produce forense/prereg-duelo-v2/espec-R-ciega-v1_2.tsv DIN-M-01`, que es lo
+que el encargo manda correr, tiene que usar la fila `DIN-M-01b` y escribir
+`corridas-R/DIN-M-01.json` — `DIN-M-01` es el id de la celda en el sorteado y es
+el nombre por el que la puntuación la buscará; `DIN-M-01b` es sólo la fila de
+codificación que la sustituye. Sin resolver `SUSTITUYE-A`, pedir `DIN-M-01`
+seguía entregando la fila vieja (ponderador en prosa, diseño
+`NO-DECLARADO-EN-LA-FUENTE`) y la corrida habría salido `SIN_FILAS`.
+
+`lee_codificacion()` ahora resuelve la convención. Efecto medido sobre la tabla:
+
+```
+DIN-M-01  -> DIN-M-01b | fac_3b@ehh02w_all/ehh02w_b3b.dta[folio+ls]
+DIN-M-01b -> DIN-M-01b
+TRA-M-13  -> TRA-M-13b | TRA-M-14 -> TRA-M-14b
+n ids: 37
+```
+
+`TRA-M-13`/`TRA-M-14` también cambian de fila — la convención ya estaba en el
+archivo desde el 2/sep y **ninguna herramienta la leía**. Ninguna de las dos
+tiene `corridas-R/*.json`, así que no toca ninguna R existente. Se declara aquí
+porque es un efecto de este acto sobre celdas ajenas, aunque hoy sea inerte.
+
+Regresión repetida sobre las mismas 29 celdas:
+
+```
+COINCIDE=19  NO-COINCIDE=10
+$ diff regresion-ANTES.txt regresion-DESPUES2.txt
+$ echo $?
+0
+```
+
+**Sigue vacío.** Ni el lector, ni el ruteo por contenido, ni el join, ni la
+resolución de `SUSTITUYE-A` mueven una sola cifra de las 29 R ya corridas.

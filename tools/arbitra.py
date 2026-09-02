@@ -264,12 +264,29 @@ def _predicado_compuesto_or(a1, va1, b1, vb1, a0, va0, b0, vb0):
     return codifica
 
 
+_PATRON_SUSTITUYE = re.compile(r"^SUSTITUYE-A\s+(\S+)")
+
+
 def lee_codificacion(ruta=CODIFICACION):
     """codificacion-R-v1_0.tsv tiene cabecera '#id\\t...' -- se despoja el
-    '#' para poder usar DictReader normal."""
+    '#' para poder usar DictReader normal.
+
+    (ACTO MAESTRA35-L5) `estado: SUSTITUYE-A <id>` se resuelve aqui: la fila
+    sustituta pasa a ser la que responde por <id>. Sin esto, la convencion
+    -- que ya existia en el archivo (TRA-M-13b, TRA-M-14b) -- era prosa que
+    ninguna herramienta leia: pedir la celda por su id del sorteado seguia
+    entregando la fila vieja. La fila original se conserva bajo su propio id;
+    no se borra ni se edita, y sigue siendo el registro de lo que se propuso
+    primero.
+    """
     with open(ruta, encoding="utf-8") as f:
         campos = f.readline().rstrip("\n").lstrip("#").split("\t")
-        return {fila["id"]: fila for fila in csv.DictReader(f, fieldnames=campos, delimiter="\t")}
+        tabla = {fila["id"]: fila for fila in csv.DictReader(f, fieldnames=campos, delimiter="\t")}
+    for fila in list(tabla.values()):
+        m = _PATRON_SUSTITUYE.match((fila.get("estado") or "").strip())
+        if m and m.group(1) in tabla:
+            tabla[m.group(1)] = fila
+    return tabla
 
 
 def _correr_r():
@@ -625,6 +642,15 @@ def calcula_desde_tabla(id_celda, tabla_codif, manifiesto, mod_r):
         advertencias.append(
             f"{id_celda}: DISENO-APROXIMADO -- estrato={fila['estrato']!r}, upm={fila['upm']!r}. "
             f"EE_R es cota inferior de la EE verdadera; se reporta ademas EE_R_sin_diseno.")
+
+    # (ACTO MAESTRA35-L5) Si quien responde no es la fila del id pedido, se dice
+    # en el JSON y en la advertencia -- una sustitucion silenciosa seria peor
+    # que no tenerla.
+    if fila.get("id") and fila["id"] != id_celda:
+        extra["codificacion_id"] = fila["id"]
+        advertencias.append(
+            f"{id_celda}: calculada con la fila de codificacion {fila['id']!r} "
+            f"(estado {fila.get('estado')!r}); la fila original se conserva intacta")
 
     fila = dict(fila)
     fila["_tabla_resuelta"] = miembro
