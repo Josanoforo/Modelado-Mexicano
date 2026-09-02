@@ -3506,6 +3506,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # mencion es un marcador nuevo. Mismo patron que la nota de cierre de
     # MAESTRA31-E2, arriba en esta lista.
     "forense/notas/2026-09-01-criterios-y-vencimientos-cierre.md",
+    # PR [COLA] encola MAESTRA34-L1/N1/N2/L2/N3, 2/sep/2026: los encargos
+    # GATED se archivan VERBATIM (A.3) en forense/encargos/cola/. El
+    # encargo N2 cita "firma E17" (precedente PAQUETE-L runner_l_cli.py,
+    # ACTO MAESTRA33-E17) y el encargo N3 cita "scoring v1_1 sellado
+    # (E12, ADR-25x -- deriva el numero)" (ACTO MAESTRA33-E12 · SELLA-1) --
+    # ambos "E17"/"E12" pelados colisionan con habitantes ya censados del
+    # espacio E, mismo patron que el resto de esta lista. Los encargos no
+    # se editan para complacer este test -- A.3 pide el texto verbatim de
+    # direccion (Fable).
+    "forense/encargos/cola/2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md",
+    "forense/encargos/cola/2026-09-01-MAESTRA34-N3-AGREGA-2.md",
 }
 
 
