@@ -91,3 +91,78 @@
   `34354141898495593251517379743390345279` (`"MARCO-M-v1_1"`).
 
 **El primer resultado que produzca este procedimiento es el que se reporta.**
+
+---
+
+## Resultado (segundo commit — salida íntegra, una sola corrida)
+
+`sortear_v3(marco, n_sorteo=14, cuota_max=2, semilla=34240453437400889519083420438742062585)`
+sobre las 27 filas `elegible_v1_1=='SI'` de `marco-M-congelado-v1_2.tsv`
+(`N_elegibles` y `sha256` verificados contra `CONGELADO-M-v1_2.sha256` por el
+propio cargador). Con `len(marco)=27 ≥ 15`, corre el PRNG — no la rama identidad.
+
+### Salida cruda
+
+```
+semilla = 34240453437400889519083420438742062585
+len(marco) = 27   n_sorteo = 14   cuota_max = 2
+len(resultado.resultado) = 14
+ids sorteados (orden de salida del algoritmo): ['FAM-M-06', 'FAM-M-05', 'CIV-M-10', 'TRA-M-03', 'CIV-M-13', 'CIV-M-01', 'FAM-M-01', 'FAM-M-07', 'CIV-M-12', 'CIV-M-04', 'CIV-M-02', 'DIN-M-01', 'TRA-M-07', 'TRA-M-02']
+skips: []
+estratos_excluidos: []
+exclusiones: []
+```
+
+### Las 14 filas sorteadas (orden por `id`, columnas clave)
+
+| # | id | encuesta | ola | estrato | `grado_DD` (ya congelado en P1) | nueva en v1.2 |
+|---|---|---|---|---|---|---|
+| 1 | `CIV-M-01` | ENVIPE | 2012 | `PENDIENTE` | `P1 PUNTUA` | no |
+| 2 | `CIV-M-02` | ENVIPE | 2013 | `PENDIENTE` | `P1 PUNTUA` | no |
+| 3 | `CIV-M-04` | ENVIPE | 2015 | `PENDIENTE` | `P1 PUNTUA` | no |
+| 4 | `CIV-M-10` | ENVIPE | 2021 | `PENDIENTE` | `P1 PUNTUA` | no |
+| 5 | `CIV-M-12` | ENVIPE | 2023 | `PENDIENTE` | `P1 PUNTUA` | no |
+| 6 | `CIV-M-13` | ENVIPE | 2024 | `PENDIENTE` | `P1 PUNTUA` | no |
+| 7 | `DIN-M-01` | ENNViH/MxFLS | 2002 (ola 1) | `PENDIENTE` | `P1 PUNTUA` | no |
+| 8 | `FAM-M-01` | ENIF | 2018 | `PENDIENTE` | `P1 PUNTUA` | no |
+| 9 | `FAM-M-05` | ENIGH | 2016 | `PENDIENTE` | `P1 PUNTUA` | **sí** |
+| 10 | `FAM-M-06` | ENIGH | 2018 | `PENDIENTE` | `P1 PUNTUA` | **sí** |
+| 11 | `FAM-M-07` | ENIGH | 2020 | `PENDIENTE` | `P1 PUNTUA` | **sí** |
+| 12 | `TRA-M-02` | ENCUCI | 2020 | `tramite\|P1\|MEDIA` | `P1 PUNTUA` | no |
+| 13 | `TRA-M-03` | ENCIG | 2013 | `PENDIENTE` | `P1 PUNTUA` | no |
+| 14 | `TRA-M-07` | ENCIG | 2021 | `PENDIENTE` | `P1 PUNTUA` | no |
+
+Sellado en `marco-M-sorteado-v1_2.tsv` (mismas 32 columnas del congelado,
+filas ordenadas por `id`, igual que `marco-M-sorteado-v1_1.tsv`);
+`sha256 = 98d34f64be8c1e84b774fe1df52d76360602ca743c6364af36e79f12085ce33c`.
+
+### Invariantes del reglamento, verificadas contra la salida real
+
+1. **Tamaño**: `len(resultado) = 14 ≤ n_sorteo = 14`. ✔
+2. **Cuota de publicadas**: `publicada=SI` en `0` de las 14 ≤ `cuota_max = 2`. ✔
+   (La columna viene vacía en las 34 filas del congelado; `cargar_marco_m_v1_1`
+   la trata como `"NO"`, mismo default declarado desde `MAESTRA32-E13` — lectura
+   de dato ya documentada en `ADR-232`, no hallazgo nuevo.)
+3. **Piso 1 por estrato no vacío (la razón de usar v3)**: asientos observados
+   `PENDIENTE = 13`, `tramite|P1|MEDIA = 1` — **idénticos al reparto
+   pre-registrado arriba**, calculado antes de la corrida. Los dos estratos no
+   vacíos reciben asiento. ✔
+   **No hay PARO**: el encargo manda parar y entregar el hallazgo si algún
+   estrato no vacío quedara sin asiento (*"bug de v3, es entregable"*); no
+   ocurrió.
+4. **`skips`, `estratos_excluidos`, `exclusiones` todos vacíos** — ninguna
+   infactibilidad de cuota que realojar (con `0` publicadas no puede haberla).
+5. **`grado_DD` reportado, no asumido**: las 14 salen `P1 PUNTUA`, leídas del
+   congelado. Ninguna `P0 VERIFICACION-NO-PUNTUA` puede salir sorteada porque el
+   universo (`elegible_v1_1=='SI'`) las excluye por construcción — incluidas las
+   dos nuevas de calibración (`FAM-M-08`, `DIN-M-04`), que se conservan en el
+   congelado fuera del universo sorteable.
+
+### Lectura del resultado (dato, no decisión de este acto)
+
+De las 5 celdas nuevas puntuables, **3 salieron sorteadas**
+(`FAM-M-05`/`06`/`07` = ENIGH 2016/2018/2020) y 2 no (`FAM-M-03`/`04` = ENIGH
+2012/2014). El marco-M pasa de 11 a 14 celdas en cancha, y por primera vez el
+lado M del duelo tiene celdas de un dominio (`familia`, regla
+`familia.seguro.volatilidad_ausencia_estado`) que **no** venía del par
+`tramite`/`civico`.
