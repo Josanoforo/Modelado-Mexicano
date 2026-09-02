@@ -18340,3 +18340,142 @@
     en el corpus (la orden de descarga no tiene URL propia: es un archivo dentro de ese ZIP).
     A.7: doble descarga con sha256 idéntico. Estructura verificada miembro a miembro: los
     3 ficheros descomprimen con tamaño exacto.'
+
+- id: ine_mge_2016_edomex_acuerdo_pdf
+  usado_para: 'Acuerdo del Consejo General del INE que APRUEBA el catálogo de municipios y
+    secciones del marco geográfico electoral del ESTADO DE MÉXICO (insumo de distritación).
+    Respaldo documental de los dos anexos XLSX del mismo item (handle 128317). CROSSWALK sección
+    electoral → municipio: es el hueco que la ficha R7.1 declara y que dirección clasificó
+    NO-ENCONTRADO al 1/sep/2026 (A.8 de este encargo: 62 aciertos de `seccion` en data/manifiesto.yaml,
+    0 de ellos electoral). Localizado por ACTO MAESTRA34-L3 P3, ruta (iv) de las cuatro (repositorio
+    documental del INE, DSpace + OpenSearch); las rutas (i) portal de cartografía, (ii) datos.gob.mx
+    y (iii) SICEE no lo entregaron. VIGENCIA: catálogo de 2016 (insumo de la distritación
+    2016), NO de 2023/2024 — la correspondencia sección→municipio cambia con cada redistritación
+    y reseccionamiento, así que usarlo contra una elección de 2023 o 2024 exige verificar
+    antes qué secciones cambiaron.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/bitstream/handle/123456789/128317/CRFE_22032016_1aSO_P07_1_1.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (curl con UA de navegador,
+    bitstream de DSpace)
+  archivo: ine_marco_geografico_electoral/CRFE_22032016_1aSO_P07_1_1.pdf
+  sha256: d8675f633ede3a89c5f2de79bcdf6522bc20be02894c5e7443fd5d053b23713b
+  tamano_bytes: 107351
+  formato: PDF (acuerdo del Consejo General, %%PDF- y %%%%EOF verificados)
+  licencia: no declarada por la fuente (documento público del Consejo General del INE en su
+    repositorio documental institucional)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Localizado por OpenSearch del DSpace del INE (https://repositoriodocumental.ine.mx/open-search/?query=...),
+    handle 123456789/128317. A.7: doble descarga con sha256 idéntico. ACTO MAESTRA34-L3 P3.'
+
+- id: ine_mge_2016_edomex_seccion_municipio_xlsx
+  usado_para: 'CATÁLOGO A NIVEL ENTIDAD, DISTRITO LOCAL, MUNICIPIO Y SECCIÓN del ESTADO DE
+    MÉXICO (entidad 15). Columnas: ENTIDAD | NOMBRE_ENTIDAD | DISTRITO_LOCAL | MUNICIPIO |
+    NOMBRE_MUNICIPIO | SECCION. 6461 filas (1 de título + 1 de cabecera + 6459 de datos).
+    Es la mitad Edomex del par de estados que la firma DS-a fija (Coahuila y Edomex). CROSSWALK
+    sección electoral → municipio: es el hueco que la ficha R7.1 declara y que dirección clasificó
+    NO-ENCONTRADO al 1/sep/2026 (A.8 de este encargo: 62 aciertos de `seccion` en data/manifiesto.yaml,
+    0 de ellos electoral). Localizado por ACTO MAESTRA34-L3 P3, ruta (iv) de las cuatro (repositorio
+    documental del INE, DSpace + OpenSearch); las rutas (i) portal de cartografía, (ii) datos.gob.mx
+    y (iii) SICEE no lo entregaron. VIGENCIA: catálogo de 2016 (insumo de la distritación
+    2016), NO de 2023/2024 — la correspondencia sección→municipio cambia con cada redistritación
+    y reseccionamiento, así que usarlo contra una elección de 2023 o 2024 exige verificar
+    antes qué secciones cambiaron.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/bitstream/handle/123456789/128317/CRFE_22032016_1aSO_P07_1_3.xlsx
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (curl con UA de navegador,
+    bitstream de DSpace)
+  archivo: ine_marco_geografico_electoral/CRFE_22032016_1aSO_P07_1_3.xlsx
+  sha256: 2d6f6f473c1a6eeb5650302c80127ba7f3049091ccb99d3e33be1aa1f44fe5a4
+  tamano_bytes: 208004
+  formato: 'XLSX (OOXML, testzip() None, 15 miembros; hoja 1: 6461 filas)'
+  licencia: no declarada por la fuente (documento público del Consejo General del INE en su
+    repositorio documental institucional)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Localizado por OpenSearch del DSpace del INE (https://repositoriodocumental.ine.mx/open-search/?query=...),
+    handle 123456789/128317. A.7: doble descarga con sha256 idéntico. ACTO MAESTRA34-L3 P3.'
+
+- id: ine_mge_2016_edomex_municipios_xlsx
+  usado_para: 'CATÁLOGO A NIVEL ENTIDAD Y MUNICIPIO del ESTADO DE MÉXICO (entidad 15). Columnas:
+    ENTIDAD | NOMBRE_ENTIDAD | MUNICIPIO | NOMBRE_MUNICIPIO. 127 filas (1 título + 1 cabecera
+    + 125 municipios). Da el nombre canónico de municipio que el catálogo de secciones referencia
+    por clave. CROSSWALK sección electoral → municipio: es el hueco que la ficha R7.1 declara
+    y que dirección clasificó NO-ENCONTRADO al 1/sep/2026 (A.8 de este encargo: 62 aciertos
+    de `seccion` en data/manifiesto.yaml, 0 de ellos electoral). Localizado por ACTO MAESTRA34-L3
+    P3, ruta (iv) de las cuatro (repositorio documental del INE, DSpace + OpenSearch); las
+    rutas (i) portal de cartografía, (ii) datos.gob.mx y (iii) SICEE no lo entregaron. VIGENCIA:
+    catálogo de 2016 (insumo de la distritación 2016), NO de 2023/2024 — la correspondencia
+    sección→municipio cambia con cada redistritación y reseccionamiento, así que usarlo contra
+    una elección de 2023 o 2024 exige verificar antes qué secciones cambiaron.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/bitstream/handle/123456789/128317/CRFE_22032016_1aSO_P07_1_4.xlsx
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (curl con UA de navegador,
+    bitstream de DSpace)
+  archivo: ine_marco_geografico_electoral/CRFE_22032016_1aSO_P07_1_4.xlsx
+  sha256: fcd41dfe53e7faefb1671f2927bd17d6b2e70874c2abf8f2622592b9bb123f12
+  tamano_bytes: 33730
+  formato: 'XLSX (OOXML, testzip() None, 15 miembros; hoja 1: 127 filas)'
+  licencia: no declarada por la fuente (documento público del Consejo General del INE en su
+    repositorio documental institucional)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Localizado por OpenSearch del DSpace del INE (https://repositoriodocumental.ine.mx/open-search/?query=...),
+    handle 123456789/128317. A.7: doble descarga con sha256 idéntico. ACTO MAESTRA34-L3 P3.'
+
+- id: ine_mge_2016_coahuila_acuerdo_pdf
+  usado_para: 'Proyecto de acuerdo del Consejo General del INE que aprueba los catálogos de
+    municipios y secciones del marco geográfico electoral FEDERAL de COAHUILA, CHIHUAHUA,
+    DURANGO, GUANAJUATO, GUERRERO, MICHOACÁN, MORELOS y NAYARIT. Respaldo documental del anexo
+    de datos del mismo item (handle 128291). CROSSWALK sección electoral → municipio: es el
+    hueco que la ficha R7.1 declara y que dirección clasificó NO-ENCONTRADO al 1/sep/2026
+    (A.8 de este encargo: 62 aciertos de `seccion` en data/manifiesto.yaml, 0 de ellos electoral).
+    Localizado por ACTO MAESTRA34-L3 P3, ruta (iv) de las cuatro (repositorio documental del
+    INE, DSpace + OpenSearch); las rutas (i) portal de cartografía, (ii) datos.gob.mx y (iii)
+    SICEE no lo entregaron. VIGENCIA: catálogo de 2016 (insumo de la distritación 2016), NO
+    de 2023/2024 — la correspondencia sección→municipio cambia con cada redistritación y reseccionamiento,
+    así que usarlo contra una elección de 2023 o 2024 exige verificar antes qué secciones
+    cambiaron.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/bitstream/handle/123456789/128291/CRFE_17052016_5aSE_P07_1.pdf
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (curl con UA de navegador,
+    bitstream de DSpace)
+  archivo: ine_marco_geografico_electoral/CRFE_17052016_5aSE_P07_1.pdf
+  sha256: 093bfba0e1ff713aef0831d01db16e59d78fefdcd98536424bb62ecc2907d0ff
+  tamano_bytes: 81704
+  formato: PDF (proyecto de acuerdo del Consejo General, %%PDF- y %%%%EOF verificados)
+  licencia: no declarada por la fuente (documento público del Consejo General del INE en su
+    repositorio documental institucional)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Localizado por OpenSearch del DSpace del INE (https://repositoriodocumental.ine.mx/open-search/?query=...),
+    handle 123456789/128291. A.7: doble descarga con sha256 idéntico. ACTO MAESTRA34-L3 P3.'
+
+- id: ine_mge_2016_ocho_entidades_catalogos_7z
+  usado_para: 'ANEXO DE DATOS con los catálogos de los OCHO estados del acuerdo: 2 XLSX por
+    entidad (Anexo1 = entidad/distrito federal/municipio/sección, Anexo2 = entidad/municipio)
+    para COAH, CHIH, DGO, GTO, GRO, MICH, MOR, NAY. La mitad COAHUILA del par DS-a vive aquí:
+    5a-SE-2016-CRFE-P07_2_1_Anexo1_COAH.xlsx, 1690 filas (1 título + 1 cabecera + 1688 de
+    datos), columnas ENTIDAD | NOMBRE_ENTIDAD | DISTRITO_FEDERAL | MUNICIPIO | NOMBRE_MUNICIPIO
+    | SECCION, entidad 5 = COAHUILA; y 5a-SE-2016-CRFE-P07_2_1_Anexo2_COAH.xlsx, 40 filas
+    = 38 municipios. OJO: el eje de distrito de Coahuila aquí es DISTRITO_FEDERAL, no DISTRITO_LOCAL
+    como en el de Edomex — no son la misma columna. CROSSWALK sección electoral → municipio:
+    es el hueco que la ficha R7.1 declara y que dirección clasificó NO-ENCONTRADO al 1/sep/2026
+    (A.8 de este encargo: 62 aciertos de `seccion` en data/manifiesto.yaml, 0 de ellos electoral).
+    Localizado por ACTO MAESTRA34-L3 P3, ruta (iv) de las cuatro (repositorio documental del
+    INE, DSpace + OpenSearch); las rutas (i) portal de cartografía, (ii) datos.gob.mx y (iii)
+    SICEE no lo entregaron. VIGENCIA: catálogo de 2016 (insumo de la distritación 2016), NO
+    de 2023/2024 — la correspondencia sección→municipio cambia con cada redistritación y reseccionamiento,
+    así que usarlo contra una elección de 2023 o 2024 exige verificar antes qué secciones
+    cambiaron.'
+  url_origen: https://repositoriodocumental.ine.mx/xmlui/bitstream/handle/123456789/128291/CRFE_17052016_5aSE_P07_2.zip
+  fecha_descarga: '2026-09-01'
+  descargado_por: agente, directamente de repositoriodocumental.ine.mx (curl con UA de navegador,
+    bitstream de DSpace)
+  archivo: ine_marco_geografico_electoral/CRFE_17052016_5aSE_P07_2.zip
+  sha256: ae550d656f69342ba2f6c3e193d9e0ec89f6fec7fa7c11c6b5b492efaacf7867
+  tamano_bytes: 434907
+  formato: '7-ZIP servido con extensión .zip (magic 377abcaf271c; NO es un ZIP: zipfile.ZipFile
+    lo rechaza con ''File is not a zip file'', se abre con py7zr). 17 miembros: 16 XLSX +
+    1 directorio'
+  licencia: no declarada por la fuente (documento público del Consejo General del INE en su
+    repositorio documental institucional)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Localizado por OpenSearch del DSpace del INE (https://repositoriodocumental.ine.mx/open-search/?query=...),
+    handle 123456789/128291. A.7: doble descarga con sha256 idéntico. ACTO MAESTRA34-L3 P3.'
