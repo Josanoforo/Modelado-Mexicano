@@ -30,3 +30,25 @@ FP/ADR CANDIDATOS: FP máx hoy 223 → rango FP-224…FP-227 (deriva de nuevo al
 CONTADOR: prior→MEDIDO +1 (P1) · θ informativas +4 (P2) · reglas medidas +1 si P3 satisface · +1 si P4 corre. Declara el real al cierre.
 LO QUE NO HACE: no carga al motor; no toca milpa/tramite.yaml; no re-emite M de v1_1; no toca corridas-R de TRA-M; no promedia olas.
 SUCESORES: MAESTRA34-N1 (o su relanzamiento) sella lo que mesa firme de aquí; MAESTRA34-N2 hereda la regla nueva como celda v1_2.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA34-L1 · MORDIDA-SERIE` (`ADR-276` — renumerado
+dos veces: `274`→`275` cuando `PR #449`/`MAESTRA34-N1` fusionó primero,
+`275`→`276` cuando `PR #450`/`MAESTRA34-N2` fusionó también antes que
+este PR; regla de la casa, renumera quien fusiona segundo), entorno
+UBUNTU). P1 (calibración ENCIG 2025, p=8.5118%) y P2 (serie histórica
+8 olas, 4.45%–8.51%) medidos completos contra microdato real. P3
+(censo `tramite.mordida.con_registro`): `EXISTE-SATISFACE`, medido
+(presencial 11.60% vs digital/registrado 2.74%, IC95 sin traslape). P4
+(cívica concurrente, D3-a): `NO-OBTENIDO-POR-ESTE-AGENTE (5 intentos)`
+— cierra sin afectar P1-P3, receta de navegador dejada. FP/ADR
+candidatos del encargo (`FP-224…227`) quedaron obsoletos a mitad de
+acto: `PR #449`/`MAESTRA34-N1` ya había tomado `FP-224/225/226` al
+fusionar antes; este acto no abrió fila nueva de tablero. ADR candidato
+`274` renumerado dos veces: `PR #449`/`MAESTRA34-N1` lo tomó primero
+(→`275`), y `PR #450`/`MAESTRA34-N2` fusionó también antes que este PR
+y tomó el `275` (→`276` final) — regla de la casa, renumera quien
+fusiona segundo, aplicada dos veces. Detalle completo:
+`forense/notas/2026-09-01-MAESTRA34-L1-MORDIDA-SERIE-cierre.md`. PR:
+https://github.com/Josanoforo/Modelado-Mexicano/pull/451
