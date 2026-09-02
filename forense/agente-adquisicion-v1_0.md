@@ -108,6 +108,38 @@ entorno **antes** de invocar `claude -p`: clon al día (`git pull`),
 corpus montado (`ls data/raw | head -1`, tercera parte de `A.2`), y
 sonda de red cruda a `inegi.org.mx`.
 
+### Herramientas de entorno de la caja (añadido 2/sep/2026, `ACTO MAESTRA35-A1`, firma de mesa e1)
+
+**Extraer un `.rar`: `/mnt/c/Windows/System32/tar.exe`.** Windows 10 1803+
+trae `bsdtar`/`libarchive` de serie en `System32`, y libarchive lee RAR3.
+En esta caja **no hay ningún extractor nativo de Linux** (`unrar`, `unar`,
+`7z`, `7za`, `7zz`, `p7zip`, `bsdtar`: los siete ausentes), y `sudo` no es
+una salida — dentro del sandbox devuelve `The "no new privileges" flag is
+set` y fuera `A terminal is required to authenticate`, así que **ningún
+agente puede completar un `apt-get install`**; lo tiene que teclear el
+operador. La vía de Windows es, por tanto, la única disponible sin operador:
+
+```
+cd <dir>; /mnt/c/Windows/System32/tar.exe -xvf archivo.rar
+```
+
+**Requisito: correrlo FUERA del sandbox.** Dentro falla con
+`<3>WSL (10 - ) ERROR: UtilConnectUnix:526: socket failed 1` y `exit=1` — es
+el socket del interop de WSL, **no** la herramienta. El síntoma se lee
+igual que «no sirve» y ya costó dos actos (`MAESTRA34-L6`,
+`MAESTRA35-L3`): ver `forense/hallazgos.md`, 2/sep/2026. Mismo cuidado con
+`/mnt/c/Windows/System32/curl.exe`, presente por si la red de Linux falla.
+
+**`rarfile` 4.5 y `py7zr` 1.1.3 están instalados**; `patoolib` y
+`libarchive` no. `rarfile` sin binario de respaldo aborta con
+`RarCannotExec: Cannot find working tool` — el hueco es el binario, no el
+módulo.
+
+**Control cruzado obligatorio al extraer**: comparar los tamaños que
+`rarfile.infolist()` declara *antes* de extraer contra los del archivo
+extraído, y correr `zipfile.testzip()` si el resultado es ZIP/XLSX. Un
+extractor que devuelve `exit=0` no garantiza contenido íntegro.
+
 ## §3 · Falsador, a un mes
 
 Se **retira** la pieza (runbook + cron) si en un mes:
