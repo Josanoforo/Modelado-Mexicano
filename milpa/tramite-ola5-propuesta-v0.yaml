@@ -1081,3 +1081,364 @@ reglas_propuestas:
       maestra34_l4_entre_anios_pp: 10.4790
       tepjf_1991_2018: NO-OBTENIDO
     payload_manifiesto_id: "iec_coahuila_2017_ayuntamientos_x_municipio_xlsx;iec_coahuila_2018_ayuntamientos_x_municipio_xlsx;iec_coahuila_2021_ayuntamientos_x_municipio_xlsx;iec_coahuila_2024_ayuntamientos_x_municipio_xlsx;iee_nayarit_2017_ayuntamientos_xlsx;iee_nayarit_2021_ayuntamientos_xlsx;iee_nayarit_2024_ayuntamientos_xlsx;ieez_zacatecas_2018_ayto_x_casilla_xlsx;ieez_zacatecas_2021_computos_xlsx;ieez_zacatecas_2024_computos_xlsx;iepc_durango_2016_resultados_xlsx;iepc_durango_2019_x_casilla_zip"
+
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA35-L1 · RECORRE-Y-SEGMENTA · 2/sep/2026
+  # Tres entradas NUEVAS: los disparadores de tres reglas ya medidas por
+  # MAESTRA34-L5, ahora MEDIDOS por ejes de segmentación. Ninguna se
+  # carga al motor: el sello es de mesa, en RH. La cuarta pieza de este
+  # acto (P1) es una enmienda in situ, arriba, no una entrada nueva.
+  # Codificación de cada eje: censo P0 (forense/notas/2026-09-02-MAESTRA35-L1-P0-censo.md),
+  # leída del FD o del catálogo de cada payload. Spec congelada:
+  # forense/notas/2026-09-02-MAESTRA35-L1-spec.md.
+  # Cada celda es una ASOCIACIÓN, no un coeficiente (A-bis 1); un IC
+  # estrecho con signo esperado NO autoriza leer un efecto (A-bis 2).
+  # ══════════════════════════════════════════════════════════════════
+  - id: dinero.ahorro.via_informal_ejes_enif2024
+    entrada_nueva: true
+    acto: "MAESTRA35-L1 · P2"
+    fuente_regla: "dinero.ahorro.via_informal — mecanismo G3 / informal_sin_puente"
+    payload: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
+    ponderador: FAC_PER
+    estrato: EST_DIS
+    upm: UPM_DIS
+    estimador: "bootstrap conglomerado estratificado, 10 000 réplicas, seed 42"
+    desenlaces:
+      principal:
+        definicion: "alguna P5_1_1..P5_1_6 == '1' Y ninguna P5_6_1..P5_6_9 == '1'"
+        nombre: "ahorra_solo_informal"
+        ejes:
+          - eje: sexo
+            cobertura: 1.000000
+            signo_pre_registrado: null
+            veredicto: "DISCRIMINA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              el encargo lo mide y no lo predice
+            celdas:
+              - {celda: "1 Hombre", p: 0.332489, ic95: [0.316570, 0.348274], n: 6082, numerador: 1926, estratos: 190, upm: 2008}
+              - {celda: "2 Mujer", p: 0.378523, ic95: [0.361859, 0.395127], n: 7420, numerador: 2695, estratos: 190, upm: 2091}
+          - eje: edad
+            cobertura: 0.998889
+            signo_pre_registrado: null
+            veredicto: "DISCRIMINA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              sin signo pre-registrado en la spec §3.2
+            celdas:
+              - {celda: "18-29", p: 0.432063, ic95: [0.407039, 0.457410], n: 2924, numerador: 1230, estratos: 190, upm: 1462}
+              - {celda: "30-44", p: 0.375709, ic95: [0.354484, 0.396905], n: 4256, numerador: 1487, estratos: 190, upm: 1751}
+              - {celda: "45-59", p: 0.327505, ic95: [0.307291, 0.347765], n: 3411, numerador: 1088, estratos: 190, upm: 1609}
+              - {celda: "60+", p: 0.277317, ic95: [0.254739, 0.300803], n: 2896, numerador: 813, estratos: 186, upm: 1409}
+          - eje: escolaridad
+            cobertura: 0.999630
+            signo_pre_registrado: desc
+            veredicto: "CONTRARIA"
+            monotonia: "NO MONOTONO (pares consecutivos limpios en los dos sentidos)"
+            nota: >-
+              G3/informal_sin_puente: solo_informal MÁS alto con menor
+              escolaridad
+            celdas:
+              - {celda: "hasta primaria", p: 0.351594, ic95: [0.328573, 0.374051], n: 3249, numerador: 1110, estratos: 182, upm: 1175}
+              - {celda: "secundaria", p: 0.415635, ic95: [0.394176, 0.436785], n: 3635, numerador: 1490, estratos: 188, upm: 1484}
+              - {celda: "media superior", p: 0.389338, ic95: [0.363063, 0.415331], n: 3408, numerador: 1268, estratos: 189, upm: 1656}
+              - {celda: "superior", p: 0.260438, ic95: [0.240043, 0.280613], n: 3205, numerador: 752, estratos: 187, upm: 1535}
+          - eje: localidad
+            cobertura: 1.000000
+            signo_pre_registrado: desc
+            veredicto: "CORROBORADA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              MÁS alto en localidades menores de 15 000 (corte exacto del FD)
+            celdas:
+              - {celda: "menor de 15 000", p: 0.409255, ic95: [0.387307, 0.429960], n: 4646, numerador: 1899, estratos: 115, upm: 350}
+              - {celda: "15 000 y mas", p: 0.329868, ic95: [0.315113, 0.344834], n: 8856, numerador: 2722, estratos: 146, upm: 1814}
+          - eje: formalidad
+            cobertura: 0.689676
+            universo_restringido: true   # A-bis 4: no reconcilia contra el marginal poblacional
+            signo_pre_registrado: desc
+            veredicto: "CORROBORADA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              MÁS alto sin trabajo formal; cobertura 68.97 % -> universo
+              restringido
+            celdas:
+              - {celda: "sin seguridad social", p: 0.413689, ic95: [0.394927, 0.432857], n: 5142, numerador: 2078, estratos: 189, upm: 1732}
+              - {celda: "con seguridad social", p: 0.309328, ic95: [0.288930, 0.329834], n: 4170, numerador: 1181, estratos: 187, upm: 1818}
+          - eje: cuenta_formal
+            cobertura: 1.000000
+            signo_pre_registrado: desc
+            veredicto: "DISCRIMINA (tope declarado en la spec: el eje no puede corroborar)"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              NO-FALSABLE contra el principal: P5_4_* gatea a P5_6_*, así que
+              sin cuenta el desenlace se reduce a informal_cualquiera por
+              construcción del cuestionario (censo §4.4, spec §3.3)
+            celdas:
+              - {celda: "sin cuenta", p: 0.493506, ic95: [0.472537, 0.513849], n: 4346, numerador: 2104, estratos: 189, upm: 1542}
+              - {celda: "con cuenta", p: 0.285463, ic95: [0.270596, 0.300275], n: 9156, numerador: 2517, estratos: 190, upm: 2146}
+      secundario:
+        definicion: "alguna P5_1_1..P5_1_6 == '1'"
+        nombre: "informal_cualquiera"
+        ejes:
+          - eje: sexo
+            cobertura: 1.000000
+            signo_pre_registrado: null
+            veredicto: "NO-DISCRIMINA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              el encargo lo mide y no lo predice
+            celdas:
+              - {celda: "1 Hombre", p: 0.559453, ic95: [0.542027, 0.576770], n: 6082, numerador: 3447, estratos: 190, upm: 2008}
+              - {celda: "2 Mujer", p: 0.564057, ic95: [0.548325, 0.579945], n: 7420, numerador: 4143, estratos: 190, upm: 2091}
+          - eje: edad
+            cobertura: 0.998889
+            signo_pre_registrado: null
+            veredicto: "DISCRIMINA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              sin signo pre-registrado en la spec §3.2
+            celdas:
+              - {celda: "18-29", p: 0.704945, ic95: [0.682575, 0.727176], n: 2924, numerador: 2097, estratos: 190, upm: 1462}
+              - {celda: "30-44", p: 0.625016, ic95: [0.603909, 0.645732], n: 4256, numerador: 2662, estratos: 190, upm: 1751}
+              - {celda: "45-59", p: 0.495258, ic95: [0.472720, 0.517734], n: 3411, numerador: 1696, estratos: 190, upm: 1609}
+              - {celda: "60+", p: 0.380402, ic95: [0.357179, 0.404560], n: 2896, numerador: 1132, estratos: 186, upm: 1409}
+          - eje: escolaridad
+            cobertura: 0.999630
+            signo_pre_registrado: desc
+            veredicto: "CONTRARIA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              G3/informal_sin_puente: solo_informal MÁS alto con menor
+              escolaridad
+            celdas:
+              - {celda: "hasta primaria", p: 0.414094, ic95: [0.390638, 0.437134], n: 3249, numerador: 1330, estratos: 182, upm: 1175}
+              - {celda: "secundaria", p: 0.556479, ic95: [0.535216, 0.577208], n: 3635, numerador: 2057, estratos: 188, upm: 1484}
+              - {celda: "media superior", p: 0.637788, ic95: [0.614177, 0.660636], n: 3408, numerador: 2159, estratos: 189, upm: 1656}
+              - {celda: "superior", p: 0.640107, ic95: [0.618301, 0.662078], n: 3205, numerador: 2042, estratos: 187, upm: 1535}
+          - eje: localidad
+            cobertura: 1.000000
+            signo_pre_registrado: desc
+            veredicto: "NO-DISCRIMINA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              MÁS alto en localidades menores de 15 000 (corte exacto del FD)
+            celdas:
+              - {celda: "menor de 15 000", p: 0.549481, ic95: [0.530863, 0.568480], n: 4646, numerador: 2540, estratos: 115, upm: 350}
+              - {celda: "15 000 y mas", p: 0.568433, ic95: [0.553629, 0.582976], n: 8856, numerador: 5050, estratos: 146, upm: 1814}
+          - eje: formalidad
+            cobertura: 0.689676
+            universo_restringido: true   # A-bis 4: no reconcilia contra el marginal poblacional
+            signo_pre_registrado: desc
+            veredicto: "CONTRARIA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              MÁS alto sin trabajo formal; cobertura 68.97 % -> universo
+              restringido
+            celdas:
+              - {celda: "sin seguridad social", p: 0.604060, ic95: [0.586103, 0.622700], n: 5142, numerador: 3073, estratos: 189, upm: 1732}
+              - {celda: "con seguridad social", p: 0.644733, ic95: [0.625633, 0.663100], n: 4170, numerador: 2713, estratos: 187, upm: 1818}
+          - eje: cuenta_formal
+            cobertura: 1.000000
+            signo_pre_registrado: desc
+            veredicto: "CONTRARIA"
+            monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+            nota: >-
+              contra el secundario SÍ es falsable: informal_cualquiera no está
+              anidado en la tenencia
+            celdas:
+              - {celda: "sin cuenta", p: 0.493506, ic95: [0.472537, 0.513849], n: 4346, numerador: 2104, estratos: 189, upm: 1542}
+              - {celda: "con cuenta", p: 0.597889, ic95: [0.584102, 0.612224], n: 9156, numerador: 5486, estratos: 190, upm: 2146}
+    hallazgo: >
+      El mecanismo G3 / informal_sin_puente sobrevive en DOS ejes y se
+      rompe en los demás, y la rotura es informativa. Contra el desenlace
+      PRINCIPAL (ahorro exclusivamente informal), localidad y formalidad
+      salen CORROBORADAS con IC95 sin traslape y en el signo
+      pre-registrado. Escolaridad sale CONTRARIA por la regla de
+      precedencia de la spec: sus celdas EXTREMAS sí van en el signo
+      esperado (0.3516 en hasta-primaria vs 0.2604 en superior), pero el
+      par hasta-primaria -> secundaria va limpio en sentido opuesto
+      (0.3516 -> 0.4156, IC95 sin traslape), el eje es NO MONÓTONO y
+      CONTRARIA manda. Leer solo los extremos habría dado CORROBORADA: la
+      regla de precedencia atrapó exactamente el caso para el que se
+      escribió. Contra el desenlace SECUNDARIO (ahorro informal de
+      cualquier tipo, que NO está anidado en la tenencia de cuenta y por
+      eso es el falsable), el mecanismo se cae entero: escolaridad,
+      formalidad y cuenta salen las tres CONTRARIA, y localidad
+      NO-DISCRIMINA. Quien tiene cuenta ahorra informalmente MÁS (0.5979
+      vs 0.4935), no menos; quien tiene seguridad social por su trabajo
+      también (0.6447 vs 0.6041); y el ahorro informal SUBE con la
+      escolaridad (0.4141 -> 0.6401). La lectura que estos números
+      soportan es que el ahorro informal en México no es un sustituto de
+      la exclusión formal sino un COMPLEMENTO del ahorro formal; lo que el
+      desenlace exclusivo capta no es 'ahorrar informalmente' sino la
+      AUSENCIA de la pata formal, que el cuestionario gatea por tenencia
+      de cuenta. Todo esto es asociación dentro de una corrida, no efecto.
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: enif_2024_enif_2024_bd_csv
+
+  - id: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    entrada_nueva: true
+    acto: "MAESTRA35-L1 · P3"
+    fuente_regla: "tramite.gobierno_digital.util_sin_coercion — desenlace y universo EXACTOS de MAESTRA34-L5 P1, sin tocar la dicotomización"
+    payload: "ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó doce veces contribuye doce veces)"
+    universo: "N_TRA=='01'; adopta = P7_3 ∈ {4,5}; no adopta {1,2,6}; fuera {3,7,8,9,blanco}; n = 20 203"
+    llave_a_los_ejes: "ID_TRA --(sec_7)--> ID_PER --> encig2025_02_residentes_sec_2.csv · 0 huérfanos"
+    ponderador: FAC_TRA
+    estrato: EST_DIS
+    upm: UPM_DIS
+    ejes:
+      - eje: sexo
+        cobertura: 1.000000
+        signo_pre_registrado: null
+        veredicto: "NO-DISCRIMINA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          sin signo predicho (spec §4.2)
+        celdas:
+          - {celda: "1 Hombre", p: 0.681276, ic95: [0.667109, 0.695531], n: 9998, numerador: 7024, estratos: 434, upm: 6383}
+          - {celda: "2 Mujer", p: 0.665192, ic95: [0.650569, 0.679380], n: 10205, numerador: 6881, estratos: 431, upm: 6402}
+      - eje: edad
+        cobertura: 0.994308
+        signo_pre_registrado: desc
+        veredicto: "CORROBORADA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          adopción MÁS alta con MENOR edad
+        celdas:
+          - {celda: "18-29", p: 0.751812, ic95: [0.727749, 0.775779], n: 2806, numerador: 2087, estratos: 367, upm: 2419}
+          - {celda: "30-44", p: 0.774735, ic95: [0.759377, 0.789671], n: 7008, numerador: 5503, estratos: 424, upm: 4979}
+          - {celda: "45-59", p: 0.669153, ic95: [0.650847, 0.687619], n: 5799, numerador: 3934, estratos: 412, upm: 4423}
+          - {celda: "60+", p: 0.475822, ic95: [0.454111, 0.497936], n: 4475, numerador: 2299, estratos: 396, upm: 3532}
+      - eje: escolaridad
+        cobertura: 1.000000
+        signo_pre_registrado: asc
+        veredicto: "CORROBORADA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          adopción MÁS alta con MAYOR escolaridad
+        celdas:
+          - {celda: "hasta primaria", p: 0.391961, ic95: [0.365067, 0.418606], n: 2299, numerador: 923, estratos: 348, upm: 1981}
+          - {celda: "secundaria", p: 0.564634, ic95: [0.540166, 0.588958], n: 4216, numerador: 2450, estratos: 384, upm: 3352}
+          - {celda: "media superior", p: 0.678563, ic95: [0.660018, 0.696345], n: 5582, numerador: 3894, estratos: 397, upm: 4228}
+          - {celda: "superior", p: 0.812944, ic95: [0.798899, 0.826578], n: 8106, numerador: 6638, estratos: 411, upm: 5172}
+    ejes_ausentes: >
+      tamaño de localidad y formalidad laboral, ambos NO-ENCONTRADO y
+      ninguno sustituido. El primero por diseño muestral: el universo de
+      ENCIG es la población de 18 años y más en ciudades de 100 mil
+      habitantes o más (FD, pág. 1). El segundo por ausencia de ítem: la
+      tabla de residentes cierra en POS (posición en la ocupación) y el FD
+      no trae prestaciones ni seguridad social — sondas con control
+      positivo sobre 4 540 líneas.
+    hallazgo: >
+      Los dos ejes con signo pre-registrado salen CORROBORADOS y el eje
+      sin signo no discrimina. Escolaridad es el gradiente más limpio de
+      todo el lote: 0.3920 en hasta-primaria, 0.5646 en secundaria, 0.6786
+      en media superior, 0.8129 en superior, monótono y con los cuatro
+      IC95 sin traslape entre consecutivos. Edad va en el signo esperado
+      entre extremos (0.7518 en 18-29 vs 0.4758 en 60+) aunque no es
+      monótona en el primer par (30-44 mide 0.7747, más alto que 18-29,
+      con IC95 traslapados: no es un par limpio en contra y por eso no
+      dispara la precedencia). Sexo no discrimina. La regla
+      util_sin_coercion tenía disparadores ASIGNADOS y sin medir; ahora
+      tiene dos medidos. Sigue siendo asociación: quien tiene más
+      escolaridad adopta más, y este acto NO dice que la escolaridad cause
+      la adopción.
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    sha256_payload: "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+    payload_manifiesto_id: encig25_base_datos_csv
+
+  - id: tramite.evasion_norma_ejes_envipe2025
+    entrada_nueva: true
+    acto: "MAESTRA35-L1 · P4"
+    fuente_regla: "tramite.evasion_norma — desenlace y universo EXACTOS de MAESTRA34-L5 P3"
+    payload: "ENVIPE 2025 · tmod_vic · unidad = DELITO"
+    universo: "BP1_20 ∈ {1,2}; evade_norma = BP1_20=='2' Y BP1_23 ∈ {04,05,06,08} — la CONJUNTA, no la condicional; n = 40 280"
+    llave_a_los_ejes: "ID_PER (tmod_vic -> tsdem) · 0 huérfanos; sexo y edad viven en tmod_vic y no necesitan el join"
+    ponderador: FAC_DEL
+    estrato: EST_DIS
+    upm: UPM_DIS
+    ejes:
+      - eje: sexo
+        cobertura: 1.000000
+        signo_pre_registrado: null
+        veredicto: "DISCRIMINA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          sin signo predicho
+        celdas:
+          - {celda: "1 Hombre", p: 0.597383, ic95: [0.583481, 0.611264], n: 19399, numerador: 11024, estratos: 711, upm: 7011}
+          - {celda: "2 Mujer", p: 0.530654, ic95: [0.515437, 0.546004], n: 20881, numerador: 10737, estratos: 728, upm: 7682}
+      - eje: edad
+        cobertura: 0.997666
+        signo_pre_registrado: null
+        veredicto: "DISCRIMINA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          el encargo lo dice: tramos de edad sin predicción
+        celdas:
+          - {celda: "18-29", p: 0.520035, ic95: [0.500236, 0.540185], n: 11871, numerador: 5859, estratos: 671, upm: 4640}
+          - {celda: "30-44", p: 0.580792, ic95: [0.566117, 0.595965], n: 15214, numerador: 8329, estratos: 698, upm: 5831}
+          - {celda: "45-59", p: 0.601214, ic95: [0.578437, 0.623948], n: 8620, numerador: 5092, estratos: 644, upm: 4103}
+          - {celda: "60+", p: 0.566020, ic95: [0.540709, 0.591352], n: 4481, numerador: 2433, estratos: 557, upm: 2635}
+      - eje: escolaridad_proxy
+        cobertura: 0.997517
+        signo_pre_registrado: null
+        veredicto: "DISCRIMINA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          PROXY de formalidad laboral, que no existe en ENVIPE 2025. La
+          regla NO predice signo: subsistencia y cinismo empujan en sentidos
+          opuestos. Veredicto máximo posible: DISCRIMINA
+        celdas:
+          - {celda: "hasta primaria", p: 0.493221, ic95: [0.462397, 0.524253], n: 3491, numerador: 1611, estratos: 510, upm: 2078}
+          - {celda: "secundaria", p: 0.567369, ic95: [0.548202, 0.586405], n: 7739, numerador: 4085, estratos: 616, upm: 3657}
+          - {celda: "media superior", p: 0.543368, ic95: [0.522009, 0.564012], n: 11476, numerador: 6043, estratos: 664, upm: 4869}
+          - {celda: "superior", p: 0.590093, ic95: [0.574224, 0.605663], n: 17474, numerador: 9970, estratos: 673, upm: 6006}
+      - eje: dominio_urbano_rural
+        cobertura: 1.000000
+        signo_pre_registrado: null
+        veredicto: "DISCRIMINA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          eje PROPIO Y DISTINTO, no el corte de 15 000 que el encargo pedía:
+          ENVIPE no publica umbral alguno, y R ↔ «menor de 15 000» NO está
+          verificado en ninguna fuente del payload
+        celdas:
+          - {celda: "Rural", p: 0.403310, ic95: [0.377390, 0.428694], n: 3770, numerador: 1561, estratos: 63, upm: 862}
+          - {celda: "Complemento urbano", p: 0.522090, ic95: [0.503125, 0.540579], n: 8039, numerador: 4056, estratos: 212, upm: 1141}
+          - {celda: "Urbano", p: 0.592703, ic95: [0.579102, 0.606130], n: 28471, numerador: 16144, estratos: 464, upm: 8691}
+    ejes_ausentes: >
+      formalidad laboral y tamaño de localidad al corte de 15 000, ambos
+      NO-ENCONTRADO. La formalidad porque ni el FD (7 207 líneas) ni el
+      cuestionario principal (987 líneas) traen ítem de prestaciones o
+      seguridad social — se usa escolaridad como PROXY, dicho proxy, que
+      es la salida que el propio encargo declaró. El corte de 15 000
+      porque ENVIPE 2025 no publica TLOC ni umbral alguno: 6 diccionarios
+      (2 225 líneas) y el FD solo dan DOMINIO como U/C/R sin población. No
+      se inventa el corte.
+    hallazgo: >
+      Los cuatro ejes DISCRIMINAN y ninguno puede corroborar: así se
+      pre-registró, por la fuente y no por el resultado. El único
+      gradiente grande es el de dominio, y apunta al revés de la
+      corazonada que el encargo había escrito sobre el corte de 15 000: la
+      evasión de norma es MÁS alta en lo urbano (0.5927) que en lo rural
+      (0.4033), con complemento urbano en medio (0.5221) y los tres IC95
+      sin traslape. Como el eje NO es el corte de 15 000 -- ENVIPE no
+      publica umbral y R <-> 'menor de 15 000' no está verificado en
+      ninguna fuente del payload --, esto NO se reporta como CONTRARIA a
+      la predicción del encargo: si mesa acepta leer R como localidad
+      pequeña, el signo esperado quedaría invertido, y esa lectura es de
+      mesa, no del ejecutor. Escolaridad, que entra como PROXY de la
+      formalidad laboral ausente, discrimina sin patrón monótono (0.4932 /
+      0.5674 / 0.5434 / 0.5901): consistente con que subsistencia y
+      cinismo empujen en sentidos opuestos, que es justo por lo que la
+      regla no predice signo ahí. Hombres evaden más que mujeres (0.5974
+      vs 0.5307).
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    sha256_payload: "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+    payload_manifiesto_id: envipe2025_csv

@@ -127,5 +127,86 @@ def main():
     return r
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# ACTO MAESTRA35-L1 · P3 — parámetro de eje. ADITIVO: ni una línea de arriba
+# cambia y `main()` sigue imprimiendo lo mismo que en MAESTRA34-L5. La
+# dicotomización NO se toca: adopta = P7_3 ∈ {4,5}; no adopta {1,2,6}; fuera
+# {3,7,8,9,blanco}; universo N_TRA='01'. Spec §4.
+# ─────────────────────────────────────────────────────────────────────────────
+from ejes_maestra35_l1 import (  # noqa: E402
+    ESC_1DIG, FUERA, ORD_EDAD, ORD_ESC, ORD_SEXO, SEXO, Eje, imprime,
+    mide_eje, tramos_edad)
+
+T_RESIDENTES = "encig2025_02_residentes_sec_2.csv"
+
+EJES_P3 = [
+    Eje("sexo", lambda d: d["_SEXO"].map(SEXO).fillna(FUERA), ORD_SEXO, None,
+        "sin signo predicho (spec §4.2)"),
+    Eje("edad", lambda d: tramos_edad(d["_EDAD"]), ORD_EDAD, "desc",
+        "adopción MÁS alta con MENOR edad"),
+    Eje("escolaridad", lambda d: d["_NIV"].map(ESC_1DIG).fillna(FUERA),
+        ORD_ESC, "asc", "adopción MÁS alta con MAYOR escolaridad"),
+]
+
+
+def carga_personas():
+    """Tabla de persona de ENCIG 2025 y la llave que el censo P0 declaró:
+    ID_TRA --(sec_7)--> ID_PER --> residentes_sec_2. PARA si la llave falla."""
+    res = leer_csv_cr(ZIP, T_RESIDENTES, encoding="utf-8")
+    res.columns = [c.strip().strip('"') for c in res.columns]
+    for c in res.columns:
+        res[c] = res[c].astype(str).str.strip().str.strip('"')
+    faltan = [c for c in ("ID_PER", "SEXO", "EDAD", "NIV")
+              if c not in res.columns]
+    if faltan:
+        raise SystemExit(f"PARO · faltan columnas en {T_RESIDENTES}: {faltan}")
+    if res["ID_PER"].nunique() != len(res):
+        raise SystemExit(
+            f"PARO · ID_PER no es llave única en {T_RESIDENTES}: "
+            f"{res['ID_PER'].nunique():,} para {len(res):,} filas.")
+    return res.set_index("ID_PER")
+
+
+def main_ejes():
+    print("ACTO MAESTRA35-L1 · P3 · util_sin_coercion POR EJES · ENCIG 2025")
+    print(f"payload  : {os.path.basename(ZIP)}")
+    print(f"sha256   : {sha256(ZIP)}")
+    df, n_filas, n_llaves, n_id_tra = carga()
+    per = carga_personas()
+    sub = df[df["N_TRA"].isin(UNIVERSO_PRINCIPAL)].copy()
+    sub = sub[sub["P7_3"].isin(set(ADOPTA) | set(NO_ADOPTA))].copy()
+    huerf = int((~sub["ID_PER"].isin(per.index)).sum())
+    if huerf:
+        raise SystemExit(
+            f"PARO · {huerf:,} trámites del universo sin persona en "
+            f"{T_RESIDENTES}: la llave del censo P0 dejó de valer.")
+    sub["_SEXO"] = sub["ID_PER"].map(per["SEXO"])
+    sub["_EDAD"] = sub["ID_PER"].map(per["EDAD"])
+    sub["_NIV"] = sub["ID_PER"].map(per["NIV"])
+    sub["d"] = sub["P7_3"].isin(ADOPTA).astype(float)
+    sub["w"] = sub["FAC_TRA"].astype(float)
+    print(f"tabla    : {TABLA} · universo N_TRA='01' y P7_3 ∈ {{1,2,4,5,6}} · "
+          f"n = {len(sub):,} · UNIDAD = TRÁMITE (no persona)")
+    print(f"llave    : ID_TRA -> ID_PER -> {T_RESIDENTES} · 0 huérfanos")
+    p, lo, hi, n, n_est, n_cl = wprop_ic_conglomerado(
+        sub["d"].to_numpy(), sub["w"].to_numpy(),
+        sub["EST_DIS"].tolist(), sub["UPM_DIS"].tolist())
+    print(f"\n  GLOBAL  p̂ = {p:.6f}  IC95 = [{lo:.6f}, {hi:.6f}]  "
+          f"n = {n:,} trámites · adoptan = {int(sub['d'].sum()):,} · "
+          f"estratos = {n_est} · UPM = {n_cl:,}\n")
+    salida = [mide_eje(sub, e, sub["d"], sub["w"], sub["EST_DIS"],
+                       sub["UPM_DIS"]) for e in EJES_P3]
+    for r in salida:
+        imprime(r, "trámites")
+    print("  ejes AUSENTES en esta fuente, declarados por el censo P0 y no")
+    print("  sustituidos: tamaño de localidad (el universo de ENCIG son")
+    print("  ciudades de 100 mil habitantes y más) y formalidad laboral")
+    print("  (el FD no trae ítem de prestaciones ni de seguridad social).")
+    return salida
+
+
 if __name__ == "__main__":
-    main()
+    if "--ejes" in sys.argv:
+        main_ejes()
+    else:
+        main()
