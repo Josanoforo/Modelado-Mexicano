@@ -276,3 +276,363 @@ Ola 5 como regla ACTIVA. Este acto **no** la carga al motor.
 ### 1.11 · Sello
 
 **El primer resultado que produzca este procedimiento es el que se reporta.**
+
+---
+---
+
+# `P2` — RESULTADOS (COMMIT-2)
+
+Añadido en un segundo commit. **Nada de lo escrito arriba se ha editado.** El
+procedimiento corrió una vez, tal como está congelado, y lo que sigue es lo que
+produjo. Script: `tools/mide_participacion_tipo_boleta.py` (hermano nuevo; **no
+toca** `tools/l6_estimador_concurrencia.py` ni `tools/l6_lectores.py`, que
+importa). Salida cruda: `data/l3-resultados-tipo-boleta-v1_0.json`.
+
+## §2 · El control de regresión, antes de todo (`§1.7.7`)
+
+```
+$ python3 tools/mide_participacion_tipo_boleta.py --control-l6
+{ "identico_byte_a_byte": true,
+  "sha256_recorrida":  "8054034f4d0eca5378f0d2c8994e4587e7334472fa9da8cb38552e2cc11e9b8c",
+  "sha256_archivada":  "8054034f4d0eca5378f0d2c8994e4587e7334472fa9da8cb38552e2cc11e9b8c",
+  "bytes_recorrida": 8793, "bytes_archivada": 8793, "PARO": false }
+```
+
+El estimador de `MAESTRA34-L6` reproduce `data/l6-resultados-concurrencia-v1_0.json`
+**byte a byte**. No hay `PARO`. La corrida de `L6` queda intacta y comparable.
+
+## §3 · El panel que quedó
+
+**187 municipios · 540 observaciones municipio × transición · 15 transiciones ·
+6 entidades.** `L6` tenía 116 municipios, 269 observaciones, 8 transiciones y 4
+entidades.
+
+| entidad | municipios | serie | de las cuales |
+|---|---:|---|---|
+| Chihuahua | **66** | 2016, 2018, 2021, 2024 | **nueva en `L3`** |
+| Zacatecas | 58 | **2016**, 2018, 2021, 2024 | la pata **2016** es nueva en `L3` |
+| Coahuila | 38 | 2017, 2018, 2021, 2024 | de `L6` |
+| Nayarit | 19 | 2017, 2021, 2024 | de `L6` |
+| Baja California | **5** | 2016, 2019, 2021, 2024 | **nueva en `L3`** |
+| Durango | 1 | 2016, 2019 | de `L6` |
+
+**Entidades tratadas medibles: 2 → 5** (Coahuila, Nayarit, Zacatecas, Baja
+California, Chihuahua). La meta declarada del encargo era **≥ 8**. **No se
+alcanzó: `P3` corre y se declara ACOTADO**, con las entidades faltantes
+nombradas una por una en la nota de cierre y en la cola.
+
+**Municipios perdidos por la regla de `§1.3`, nombrados y contados:**
+
+* **`LA YESCA`** (Nayarit) — heredado de `L6`: elección extraordinaria en 2021.
+* **`SAN FELIPE`** y **`SAN QUINTÍN`** (Baja California) — municipios **creados
+  después** de 2016; sólo existen en 2024. No es dato faltante: no existían.
+* **`OCAMPO`** (Chihuahua) — presente en 2016, 2018 y 2021 y **ausente de 2024**.
+  Verificado en la fuente: sus **23** filas de 2024 traen lista nominal pero
+  **ninguna cifra de votos**.
+* **38 de los 39 municipios de Durango** — heredado de `L6`: el archivo de 2016
+  del IEPC cubre sólo el municipio de Durango.
+
+Ninguno se imputó. **Ninguna participación cayó fuera de `(0, 100]`: 0 casos en
+las 540 observaciones.**
+
+## §4 · Los controles de `§1.7.6`, corridos antes de mirar el estimador
+
+| control | resultado |
+|---|---|
+| **Zacatecas 2016**, reagregar casilla → municipio contra la tabla por municipio que publica el mismo IEEZ | **58/58 municipios, `max|Δ lista nominal| = 0.0`**, ninguno sobra ni falta en ninguno de los dos lados |
+| **Zacatecas 2016**, identidad `TOTAL / LN` contra el `% PARTICIPACIÓN` publicado | **`max|Δ| = 0.0 pp` en 2 520 casillas** |
+| **Baja California 2016**, identidad contra `% DE PARTICIP.` | `max|Δ| = 0.0 pp` en 4 439 casillas (5 hojas) |
+| **Baja California 2019 / 2024** | `0.0100 pp` (4 772) · `1.4e-14 pp` (5 350) |
+| **Baja California 2021** | `0.2779 pp` en 4 931 — y son **exactamente 2 casillas**: `TIJUANA` s.2016 C2 y `ROSARITO` s.1295 C4, donde el `%` publicado viene **redondeado a dos decimales**. No es un dato malo |
+| **Chihuahua 2018**, identidad contra `% de Particip.` | `1.4e-14 pp` en 5 265 casillas |
+| **Chihuahua 2016**, identidad contra `% de Particip.` | **`78.78 pp` — FALLA, y se reporta antes que el resultado** (`§5`) |
+| **Chihuahua 2021 / 2024** | la fuente **no publica** `%` en esas hojas: el control no se puede correr y se dice, en vez de darlo por bueno |
+| participación fuera de `(0, 100]` | **0 municipios** en las 540 observaciones |
+
+### El defecto de fuente que el control atrapó
+
+**Chihuahua 2016, `JUÁREZ`, sección 2186, casilla C1: la fuente publica
+`Votación Total = 3` con `Listado Nominal = 377` y `% de Particip. = 79.576`.**
+79.576 % de 377 son **300**, no 3: es un dígito perdido en el archivo del IEECH.
+Es **1 casilla de 5 125**.
+
+**No se repara.** La spec define la participación sobre `votos_totales` de la
+fuente y este acto no cambia el procedimiento después de ver el número. Lo que
+sí se hace es **cuantificar el daño**, que es lo que el control existe para
+permitir:
+
+| | |
+|---|---|
+| Juárez 2016 tal como lo publica la fuente | 427 720 / 1 023 228 = **41.8010 %** |
+| Juárez 2016 reparando esa sola casilla | 428 017 / 1 023 228 = **41.8301 %** |
+| efecto sobre Juárez | **+0.0290 pp** |
+| efecto sobre la `Δy` **media municipal** de Chihuahua 2016→2018 (66 municipios, sin ponderar) | **+0.00044 pp** |
+
+El defecto es real y es irrelevante para el estimando. Las dos cosas se dicen.
+
+### Casillas sin denominador, clasificadas una por una
+
+| año | sin votos **ni** lista nominal (casilla no instalada) | con votos y **sin** lista nominal (casilla especial) | con lista nominal y **sin** votos |
+|---|---:|---:|---:|
+| Chihuahua 2016 | 70 | **31** (2 411 votos) | 0 |
+| Chihuahua 2018 | 66 | **32** (1 530 votos) | 0 |
+| Chihuahua 2021 | 0 | 0 | 1 |
+| Chihuahua 2024 | 0 | 0 | **23** (todas de `OCAMPO`) |
+
+Las casillas **especiales** no tienen lista nominal por construcción, así que sus
+votos quedan fuera del numerador igual que del denominador. Afecta a 2016 y 2018
+de forma simétrica (31 y 32 casillas), que son justamente los dos extremos de la
+transición que identifica `β_pres` en Chihuahua.
+
+## §5 · Participación observada, agregada por entidad
+
+| entidad | año | tipo de boleta federal | participación agregada | n |
+|---|---:|---|---:|---:|
+| Baja California | 2016 | sin federal | **32.42** | 5 |
+| Baja California | 2019 | sin federal | **29.75** | 5 |
+| Baja California | 2021 | intermedia | **38.11** | 5 |
+| Baja California | 2024 | **presidencial** | **46.78** | 5 |
+| Chihuahua | 2016 | sin federal | 48.77 | 66 |
+| Chihuahua | 2018 | **presidencial** | 53.79 | 66 |
+| Chihuahua | 2021 | intermedia | 46.52 | 66 |
+| Chihuahua | 2024 | **presidencial** | 52.25 | 66 |
+| Coahuila | 2017 | sin federal | 57.05 | 38 |
+| Coahuila | 2018 | **presidencial** | 60.36 | 38 |
+| Coahuila | 2021 | intermedia | 57.58 | 38 |
+| Coahuila | 2024 | **presidencial** | 64.65 | 38 |
+| Nayarit | 2017 | sin federal | 60.94 | 19 |
+| Nayarit | 2021 | intermedia | 52.36 | 19 |
+| Nayarit | 2024 | **presidencial** | 55.67 | 19 |
+| Zacatecas | 2016 | sin federal | 61.14 | 58 |
+| Zacatecas | 2018 | **presidencial** | 64.74 | 58 |
+| Zacatecas | 2021 | intermedia | 50.68 | 58 |
+| Zacatecas | 2024 | **presidencial** | 59.39 | 58 |
+| Durango | 2016 | sin federal | 57.12 | 1 |
+| Durango | 2019 | sin federal | 41.67 | 1 |
+
+## §6 · El estimador de `§1.5`
+
+```
+Δy(m,k) = α·hueco(k) + β_pres·ΔD_pres(k) + β_int·ΔD_int(k)
+```
+
+| | punto | **IC95 wild cluster por entidad** (el que decide) | IC95 bootstrap por municipio | p (wild) |
+|---|---:|---|---|---:|
+| **`α`** (deriva) | **−0.4447 pp/año** | **[−1.1828, +0.2934]** | [−0.6598, −0.2212] | 0.3151 |
+| **`β_pres`** | **+3.1542 pp** | **[−0.1957, +6.5040]** | [+2.4755, +3.8315] | 0.1577 |
+| **`β_int`** | **−0.9229 pp** | **[−3.7769, +1.9311]** | [−1.7652, −0.0575] | 0.6704 |
+| **`β_int − β_pres`** | **−4.0771 pp** | **[−8.1622, +0.0081]** | [−4.7332, −3.4202] | 0.0920 |
+
+`n = 540` observaciones, 15 transiciones, **6 conglomerados**.
+
+**El límite mecánico del test, con el `k` real.** Con `k = 6` entidades el
+bootstrap wild cluster de Rademacher tiene `2⁶ = 64` patrones de signo, y se
+verificó que producen **64 valores distintos** del estadístico: el **p mínimo
+alcanzable es `2/64 = 0.03125`**. **Esta vez el test sí podía rechazar al 5 %** —
+en `L6`, con 4 conglomerados, el mínimo era `0.125` y no podía pasara lo que
+pasara. Podía, y no rechazó.
+
+**Variante sin `α`** (`§0.3`, se reporta pase lo que pase porque el panel tiene
+**2** transiciones `STAY`, menos que las 3 del umbral):
+
+| | |
+|---|---:|
+| `β_pres` sin `α` | **+2.2595 pp** |
+| `β_int` sin `α` | **−1.7766 pp** |
+
+## §7 · Qué identifica qué, en el panel real
+
+| identifica | transiciones | obs. |
+|---|---|---:|
+| **`α`** (`STAY`) | Baja California 2016→2019 · Durango 2016→2019 | **6** |
+| **`β_pres`** solo | Chihuahua 2016→2018 · Coahuila 2017→2018 · Zacatecas 2016→2018 | 162 |
+| **`β_int`** solo | Baja California 2019→2021 · Nayarit 2017→2021 | **24** |
+| **`β_pres − β_int`** | 8 transiciones (Coahuila ×2, Zacatecas ×2, Chihuahua ×2, Nayarit, Baja California) | 348 |
+
+**`α` sigue siendo el parámetro frágil, y ahora se ve cuánto.** Estimada **sólo**
+de las 2 transiciones `STAY` da **−1.8436 pp/año**; estimada conjuntamente con
+todo el panel da **−0.4447**. Las 6 observaciones que la identifican en solitario
+son 5 municipios de Baja California y **1** de Durango.
+
+## §8 · `Δy` media municipal, transición por transición
+
+| entidad | transición | h | tipo → tipo | ΔD_p | ΔD_i | n | Δy media |
+|---|---|---:|---|---:|---:|---:|---:|
+| Coahuila | 2017→2018 | 1 | sin fed → **presidencial** | +1 | 0 | 38 | **+2.142** |
+| Zacatecas | 2016→2018 | 2 | sin fed → **presidencial** | +1 | 0 | 58 | **+2.522** |
+| Chihuahua | 2016→2018 | 2 | sin fed → **presidencial** | +1 | 0 | 66 | **+2.823** |
+| Nayarit | 2017→2021 | 4 | sin fed → intermedia | 0 | +1 | 19 | **−6.768** |
+| Baja California | 2019→2021 | 2 | sin fed → intermedia | 0 | +1 | 5 | **+7.597** |
+| Coahuila | 2018→2021 | 3 | presidencial → intermedia | −1 | +1 | 38 | +1.907 |
+| Zacatecas | 2018→2021 | 3 | presidencial → intermedia | −1 | +1 | 58 | −12.487 |
+| Chihuahua | 2018→2021 | 3 | presidencial → intermedia | −1 | +1 | 66 | −2.650 |
+| Coahuila | 2021→2024 | 3 | intermedia → presidencial | +1 | −1 | 38 | +2.053 |
+| Nayarit | 2021→2024 | 3 | intermedia → presidencial | +1 | −1 | 19 | +2.007 |
+| Zacatecas | 2021→2024 | 3 | intermedia → presidencial | +1 | −1 | 58 | +6.550 |
+| Baja California | 2021→2024 | 3 | intermedia → presidencial | +1 | −1 | 5 | +8.296 |
+| Chihuahua | 2021→2024 | 3 | intermedia → presidencial | +1 | −1 | 66 | −0.116 |
+| Baja California | 2016→2019 | 3 | sin fed → sin fed (`STAY`) | 0 | 0 | 5 | −3.548 |
+| Durango | 2016→2019 | 3 | sin fed → sin fed (`STAY`) | 0 | 0 | 1 | −15.444 |
+
+**Lo que esta tabla enseña sin ningún modelo:** las **tres** transiciones de
+«local sola → presidencial» dan **+2.14, +2.52 y +2.82** — tres entidades
+distintas, tres años de partida distintos, el mismo signo y casi la misma
+magnitud. Las **dos** de «local sola → intermedia» dan **−6.77 y +7.60**: signos
+opuestos. Ahí está, en crudo, por qué `β_pres` sale estable y `β_int` no.
+
+## §9 · `ATT` por transición (`§1.7.1`), contra la `α` de las `STAY`
+
+`α` de las `STAY` = **−1.8436 pp/año** (6 obs.). Con esa referencia, **los 13
+`ATT` de transiciones `SWITCH` son positivos salvo uno**:
+
+| transición | Δ bruto | h | ΔD_p | ΔD_i | **ATT** | n |
+|---|---:|---:|---:|---:|---:|---:|
+| Baja California 2021→2024 | +8.296 | 3 | +1 | −1 | **+13.827** | 5 |
+| Zacatecas 2021→2024 | +6.550 | 3 | +1 | −1 | **+12.081** | 58 |
+| Baja California 2019→2021 | +7.597 | 2 | 0 | +1 | **+11.284** | 5 |
+| Coahuila 2021→2024 | +2.053 | 3 | +1 | −1 | +7.584 | 38 |
+| Nayarit 2021→2024 | +2.007 | 3 | +1 | −1 | +7.537 | 19 |
+| Coahuila 2018→2021 | +1.907 | 3 | −1 | +1 | +7.437 | 38 |
+| Chihuahua 2016→2018 | +2.823 | 2 | +1 | 0 | +6.510 | 66 |
+| Zacatecas 2016→2018 | +2.522 | 2 | +1 | 0 | +6.209 | 58 |
+| Chihuahua 2021→2024 | −0.116 | 3 | +1 | −1 | +5.414 | 66 |
+| Coahuila 2017→2018 | +2.142 | 1 | +1 | 0 | +3.986 | 38 |
+| Chihuahua 2018→2021 | −2.650 | 3 | −1 | +1 | +2.880 | 66 |
+| Nayarit 2017→2021 | −6.768 | 4 | 0 | +1 | +0.606 | 19 |
+| **Zacatecas 2018→2021** | −12.487 | 3 | −1 | +1 | **−6.957** | 58 |
+
+Que casi todos salgan positivos **no** es evidencia de concurrencia: es la señal
+de que la `α` de las `STAY` (**−1.84 pp/año**) es demasiado negativa, porque está
+estimada de 6 observaciones, una de ellas un municipio suelto de Durango que cae
+**−15.4 pp** en tres años. Se dice aquí, no en la conclusión.
+
+## §10 · Heterogeneidad y sensibilidad (`§1.7.4`, `§1.7.5`)
+
+| corte (terciles de lista nominal: 6 141 / 20 513) | `α` | `β_pres` | `β_int` | n |
+|---|---:|---:|---:|---:|
+| municipios chicos | −0.565 | **+3.524** | +1.926 | 189 |
+| medianos | −0.597 | **+3.085** | −1.915 | 178 |
+| grandes | −0.210 | **+3.448** | −2.287 | 173 |
+
+| sensibilidad | `α` | `β_pres` | `β_int` | n | entidades |
+|---|---:|---:|---:|---:|---:|
+| **completo** | −0.445 | **+3.154** | −0.923 | 540 | 6 |
+| sin la transición de hueco 1 (Coahuila 2017→2018) | −0.453 | **+3.321** | −0.767 | 502 | 6 |
+| **sin Coahuila** (la que el encargo pide por nombre) | −0.767 | **+4.204** | −0.971 | 426 | 5 |
+| sin Durango | −0.432 | **+3.128** | −0.948 | 539 | 5 |
+| sólo el panel de `L6` | −0.475 | **+2.761** | −2.978 | 327 | 4 |
+| sólo las entidades nuevas de `L3` | −0.389 | **+4.033** | **+2.675** | 213 | 2 |
+
+**La respuesta directa a lo que el encargo pregunta.** `L6` midió que quitando
+Coahuila su `β` pooled se desplomaba a **−5.69**. Bajo el modelo de `c1`, quitar
+Coahuila **no desploma nada**: `β_pres` pasa de `+3.15` a `+4.20` y `β_int` de
+`−0.92` a `−0.97`. **La inestabilidad que `L6` encontró era un artefacto de su
+especificación de un solo `β`**, que promediaba dos efectos de signo contrario;
+al separarlos, la sensibilidad desaparece. Ése es, medido, el rendimiento de la
+corrección `c1`.
+
+**`β_pres` es estable en las seis columnas: `+2.76` a `+4.20`, siempre positivo.
+`β_int` cambia de signo entre subconjuntos: `−2.98` en el panel de `L6`, `+2.67`
+en las entidades nuevas.**
+
+## §11 · Cuánto del `Δ` de `MAESTRA34-L4` explica cada componente (`§1.8`)
+
+`L4` midió **+10.4790 pp** entre la local **no concurrente** de 2023 y la local
+**concurrente con presidencial** de 2024 — `hueco = 1`, `ΔD_pres = +1`,
+`ΔD_int = 0`. Este modelo predice para exactamente esa transición:
+
+| componente | pp |
+|---|---:|
+| `α × hueco` = −0.4447 × 1 | **−0.445** |
+| `β_pres` | **+3.154** |
+| **suma explicada** | **+2.709** |
+| **`Δ` de `L4`** | **+10.479** |
+| **resto no explicado por este diseño** | **+7.770 (74.1 %)** |
+
+**El modelo del tipo de boleta explica alrededor de una cuarta parte del `+10.48`
+de `L4`.** El resto no queda identificado por este diseño y **no** se le puede
+llamar «efecto de año» sin más: es lo que este procedimiento no separa.
+
+## §12 · Veredicto del falsador `B-bis` (`§1.9`)
+
+La spec designó **el IC95 wild cluster por entidad** para decidir, por ser el
+conservador.
+
+* `β_pres = +3.1542`, IC95 **[−0.1957, +6.5040]** → **contiene 0**
+* `β_int = −0.9229`, IC95 **[−3.7769, +1.9311]** → **contiene 0**
+
+> ### **`NO-DISCRIMINA`.**
+
+Es la tercera rama del falsador, aplicada literalmente: **ambos intervalos
+contienen 0**. Con el vocabulario que la propia spec fijó antes de medir: en este
+panel **la participación municipal no responde, con evidencia que este test pueda
+distinguir de cero, al tipo de boleta federal**, y **el vaivén de Zacatecas
+`64.7 → 50.7 → 59.4` queda sin explicar por este diseño**.
+
+**La discrepancia entre los dos intervalos, que la spec obliga a reportar.** El
+bootstrap por municipio da `β_pres` **[+2.4755, +3.8315]** y `β_int`
+**[−1.7652, −0.0575]**: los dos **excluyen 0** y **los dos apuntan en la
+dirección de la hipótesis** (presidencial sube, intermedia baja). Ese intervalo
+llevaría a `CORROBORADA`. **Manda el wild cluster, y el veredicto es
+`NO-DISCRIMINA`.** La discrepancia no se promedia ni se elige: se declara.
+
+**Qué NO significa este veredicto, dicho con la misma claridad:**
+
+1. **No significa que `β_pres` sea cero.** Su punto es `+3.15 pp`, su IC de
+   municipio excluye cero, su signo es el mismo en las **seis** columnas de
+   sensibilidad de `§10`, y las **tres** transiciones «local sola →
+   presidencial» del panel dan `+2.14`, `+2.52` y `+2.82` en tres entidades
+   distintas. Significa que **con 6 conglomerados el intervalo conservador no
+   descarta el cero**, y su extremo inferior es `−0.196`: falla por dos décimas.
+2. **`β_int` es otra cosa.** No es que su intervalo sea ancho: es que **cambia de
+   signo** entre subconjuntos (`−2.98` en el panel de `L6`, `+2.67` en las
+   entidades nuevas). Está identificado por **2** transiciones, y esas dos
+   —Nayarit `−6.77` y Baja California `+7.60`— se contradicen. Aquí el
+   `NO-DISCRIMINA` no es un problema de potencia: es que **no hay señal común**.
+3. **No refuta la hipótesis; no la puede refutar.** Ninguno de los dos
+   coeficientes sale con signo contrario e IC fuera de 0, así que la rama
+   `CONTRARIA` no aplica y no hay nada que declarar refutado.
+4. **El test sí podía rechazar.** Con `k = 6` el `p` mínimo alcanzable es
+   `0.03125 < 0.05`. La `p` de `β_pres` fue `0.1577`. No es el test degenerado de
+   `L6`.
+
+**Lo que este acto deja medido y no estaba antes:** que el `β ≈ 0` de `L6` **no
+era un cero**, y que su inestabilidad ante quitar Coahuila era un artefacto de
+promediar dos efectos opuestos. Al separarlos con la corrección `c1`, `β_pres`
+resulta **estable, positivo y del mismo tamaño en cinco entidades**, y toda la
+fragilidad se concentra en `β_int` y en `α`. Eso es un resultado sobre el
+*diseño*, y sobrevive al veredicto del falsador.
+
+## §13 · Contra los benchmarks (`§1.8`)
+
+| referencia | efecto |
+|---|---|
+| Alemania, Leininger, Rudolph y Zittlau (PSRM 2018) | ≈ **+10 pp** |
+| EE.UU., Hajnal y Lewis (2003) | **+36 pp** |
+| `MAESTRA34-L4` (México, entre años, sin identificar) | +10.48 pp |
+| `MAESTRA34-L6` (concurrencia sin distinguir tipo, 4 entidades) | +0.01 pp, IC95 [−3.38, +3.41] |
+| **este acto, `β_pres`** (6 entidades) | **+3.15 pp**, IC95 wild cluster [−0.20, +6.50] |
+| **este acto, `β_int`** | **−0.92 pp**, IC95 wild cluster [−3.78, +1.93] |
+
+**Ninguno de los dos benchmarks cae dentro de ninguno de los dos intervalos.**
+El `+10` alemán queda fuera del IC de `β_pres` (`[−0.20, +6.50]`) y fuera del de
+`β_int` (`[−3.78, +1.93]`); el `+36` estadounidense, mucho más lejos de los dos.
+Dicho de otro modo: aun tomando el extremo superior del intervalo conservador de
+`β_pres`, este panel no reproduce la magnitud alemana. El benchmark del TEPJF
+1991-2018 sigue **`NO-OBTENIDO`**:
+`P0` de este acto no lo adquirió y mesa no lo depositó. **No se cita de memoria.**
+
+## §14 · Contador
+
+| | `L6` | **`L3`** |
+|---|---:|---:|
+| entidades tratadas medibles | 2 | **5** (meta declarada 8 — **ACOTADO**) |
+| entidades en el panel (con el control nunca tratado) | 4 | **6** |
+| municipios en el panel | 116 | **187** |
+| observaciones municipio × transición | 269 | **540** |
+| transiciones | 8 | **15** |
+| conglomerados / `p` mínimo alcanzable | 4 / 0.125 | **6 / 0.03125** |
+| transiciones `STAY` (identifican `α` sin mezcla) | 1 | **2** |
+| payloads nuevos con sha | — | **10** |
+| cargas al motor | 0 | **0** |
+| corridas de Hito D | 0 | **0** |
