@@ -547,6 +547,110 @@ def produce(ids, ruta_marco, tabla_codif=None, manifiesto=None, mod_r=None):
     return detalle
 
 
+# ── ACTO MAESTRA35-L2 · PROYECCION CIEGA DEL MARCO ─────────────────────────
+#
+# Hallazgo que la obliga: marco-M-sorteado-v1_2.tsv incrusta el p/M del motor
+# dentro de la columna de prosa `razon_DD` -- y lo hace para EXACTAMENTE las 4
+# celdas que todavia no tienen R (FAM-M-05/06/07, TRA-M-02); las otras 10 estan
+# limpias. Como /arbitra COMMIT-1 exige copiar la fila del marco VERBATIM para
+# congelar la spec, cualquier sesion ciega que ejecute el procedimiento al pie
+# de la letra se contamina en el paso mismo que la regla protege. No es un
+# descuido de un ejecutor: es el procedimiento contra el artefacto.
+#
+# Esta proyeccion es la salida: un TSV derivado, generado por codigo (nunca a
+# mano), con una LISTA BLANCA de columnas -- lo que el arbitro R necesita para
+# congelar una spec y correr -- y sin ninguna columna de prosa del lado M. Se
+# elige lista blanca y no lista negra a proposito: una columna nueva en una
+# version futura del marco queda FUERA por omision, no dentro por descuido.
+#
+# `publicada` tambien queda fuera aunque hoy no traiga p: es la cifra contra la
+# que se compara R, y el arbitro no la necesita para medir.
+
+COLUMNAS_CIEGAS = [
+    "id", "encuesta", "ola", "universo", "variable", "estimador",
+    "ponderador", "escala", "cv_arbitro", "n_no_ponderado", "dominio",
+    "en_corpus", "elegible", "elegible_v1_1",
+]
+
+# Cifra con forma de p/M/L: 'p: 0.62', 'p=0.62', 'emite 0.045694', o cualquier
+# decimal de 4+ digitos suelto en la prosa.
+_PATRON_CIFRA_MOTOR = re.compile(
+    r"(?:\bp\s*[:=]\s*|\bemite\s+|\bp_?hat\s*=\s*)(\d+\.\d+)|\b(\d\.\d{4,})\b"
+)
+
+
+def _cifras_motor(texto):
+    return [a or b for a, b in _PATRON_CIFRA_MOTOR.findall(texto or "")]
+
+
+def proyecta_ciega(ruta_marco, ruta_salida):
+    """Escribe la proyeccion ciega de `ruta_marco`. Devuelve (ok, informe).
+
+    NO escribe si la proyeccion resultante contiene una sola cifra con forma de
+    p/M -- y comprueba antes, sobre el marco ENTERO, que el detector encuentra
+    al menos una (control positivo): un veredicto 'limpio' producido por un
+    detector roto no es un veredicto.
+    """
+    filas = lee_marco(ruta_marco)
+    if not filas:
+        return False, {"error": f"{ruta_marco}: 0 filas"}
+    todas = list(filas[0].keys())
+    faltan = [c for c in COLUMNAS_CIEGAS if c not in todas]
+    if faltan:
+        return False, {"error": f"el marco no trae estas columnas de la lista blanca: {faltan}"}
+
+    # Control positivo: el detector DEBE encontrar cifras en el marco completo.
+    control = [(f["id"], c, len(_cifras_motor(v)))
+               for f in filas for c, v in f.items() if _cifras_motor(v)]
+    informe = {
+        "marco": os.path.relpath(ruta_marco, RAIZ),
+        "sha256_marco": sha256_de(ruta_marco),
+        "filas": len(filas),
+        "columnas_origen": len(todas),
+        "columnas_conservadas": list(COLUMNAS_CIEGAS),
+        "columnas_descartadas": [c for c in todas if c not in COLUMNAS_CIEGAS],
+        "control_positivo_cifras_en_marco": sum(n for _, _, n in control),
+        "control_positivo_celdas": sorted({i for i, _, _ in control}),
+        "control_positivo_columnas": sorted({c for _, c, _ in control}),
+    }
+    if not control:
+        informe["error"] = ("CONTROL POSITIVO FALLIDO: el detector no encontro ninguna cifra "
+                            "de motor en el marco completo. O el marco ya esta limpio -- y "
+                            "entonces esta proyeccion sobra -- o el detector se rompio. "
+                            "No se escribe nada.")
+        return False, informe
+
+    # La proyeccion, y su propia verificacion.
+    sucias = [(f["id"], c, _cifras_motor(f[c])) for f in filas for c in COLUMNAS_CIEGAS if _cifras_motor(f[c])]
+    if sucias:
+        informe["error"] = f"la lista blanca deja pasar cifras de motor: {sucias}"
+        return False, informe
+
+    with open(ruta_salida, "w", encoding="utf-8", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=COLUMNAS_CIEGAS, delimiter="\t",
+                           extrasaction="ignore", lineterminator="\n")
+        w.writeheader()
+        for f in filas:
+            w.writerow({c: f[c] for c in COLUMNAS_CIEGAS})
+
+    # Se relee del DISCO lo que quedo escrito -- no se declara limpio lo que se
+    # tenia en memoria antes de escribir.
+    escritas = lee_marco(ruta_salida)
+    residuo = [(f["id"], c, _cifras_motor(v)) for f in escritas for c, v in f.items() if _cifras_motor(v)]
+    informe.update({
+        "salida": os.path.relpath(ruta_salida, RAIZ),
+        "filas_escritas": len(escritas),
+        "campos_examinados_tras_escribir": sum(len(f) for f in escritas),
+        "cifras_de_motor_en_la_salida": len(residuo),
+    })
+    if residuo:
+        os.remove(ruta_salida)
+        informe["error"] = f"la salida contenia cifras de motor tras escribirse; se borro: {residuo}"
+        return False, informe
+    informe["sha256_salida"] = sha256_de(ruta_salida)
+    return True, informe
+
+
 if __name__ == "__main__":
     if len(sys.argv) >= 2 and sys.argv[1] == "--regresion":
         ids = sys.argv[2:]
@@ -563,6 +667,16 @@ if __name__ == "__main__":
                 print("    motivo:", d["motivo"])
             for a in d.get("advertencias", []):
                 print("    advertencia:", a)
+        sys.exit(0 if ok else 1)
+
+    if len(sys.argv) >= 2 and sys.argv[1] == "--proyecta-ciego":
+        if len(sys.argv) < 4:
+            print("uso: arbitra.py --proyecta-ciego <marco.tsv> <salida.tsv>")
+            sys.exit(2)
+        ok, informe = proyecta_ciega(sys.argv[2], sys.argv[3])
+        for k, v in informe.items():
+            print(f"{k}: {v}")
+        print("VEREDICTO:", "PROYECCION CIEGA ESCRITA" if ok else "NO SE ESCRIBIO")
         sys.exit(0 if ok else 1)
 
     if len(sys.argv) >= 3 and sys.argv[1] == "--produce":
@@ -589,6 +703,7 @@ if __name__ == "__main__":
         print(f"uso: {sys.argv[0]} <ruta-marco.tsv> [columna_elegible] [id1 id2 ...]")
         print(f"  o: {sys.argv[0]} --regresion <id1> [id2] [id3] ...")
         print(f"  o: {sys.argv[0]} --produce <marco.tsv> <id1> [id2] [id3] [id4]")
+        print(f"  o: {sys.argv[0]} --proyecta-ciego <marco.tsv> <salida.tsv>")
         sys.exit(2)
     ruta = sys.argv[1]
     col = sys.argv[2] if len(sys.argv) > 2 else None
