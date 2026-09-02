@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "**No conozco el dato / no puedo confirmar el reactivo.**\n\n**Estimación puntual:** no la emito.\n\n**Razón:** el acto declarado es un *censo de existencia sobre inventario de reactivos*, no una re-derivación contra microdato. Para responder tendría que verificar la presencia literal de `denuncia_con_miedo_o_desconfianza` en el instrumento ENVIPE 2021 (cuestionario principal + módulo de victimización, sección de denuncia del delito), y no tengo el documento del proyecto ni acceso declarado al cuestionario en este acto.\n\n**Lo que sí puedo declarar, marcado como recuerdo paramétrico (no fuente textual):**\n- ENVIPE (INEGI) sí capta, para delitos **no denunciados**, un catálogo de *causas de no denuncia*, dividido en \"atribuibles a la autoridad\" (p. ej. desconfianza en la autoridad, miedo a la extorsión, trámites largos y difíciles, actitud hostil de la autoridad) y \"atribuibles a otras causas\" (p. ej. miedo al agresor, delito de poca importancia, no tenía pruebas).\n- No recuerdo un reactivo binario en ENVIPE 2021 cuyo contenido sea \"la denuncia se realizó con miedo o desconfianza\". La combinación miedo/desconfianza que sí recuerdo pertenece al bloque de **no denuncia**, y ahí es una batería de opciones múltiples, no una binaria única.\n- Por tanto, el nombre dado parece un **alias de proyecto** (construido), no un identificador del cuestionario. Sin el inventario adjunto no puedo mapearlo ni afirmar que exista.\n\n**Sonda canario — fuente textual declarada:** ninguna. No consulté cuestionario, descriptor de archivo, diccionario de datos ni tabulados de ENVIPE 2021 en este acto. Lo anterior es recuerdo del modelo, con riesgo de confabulación en nombres y cortes exactos; no debe citarse como verificado.\n\n**Para cerrar el censo se requiere:** cuestionario ENVIPE 2021 (módulo de victimización) o el diccionario de variables, para resolver si el alias corresponde a una pregunta existente, a una derivada, o a un reactivo inexistente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:49:51.669374+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a"
+}

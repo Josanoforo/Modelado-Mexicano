@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Estimación puntual: ≈ 5 % de los hogares (recibe_remesas = 1)**\n\nIntervalo subjetivo (aunque la escala sea binaria, doy incertidumbre sobre la proporción poblacional ponderada): **4.0 % – 6.5 %**, con la masa de probabilidad concentrada entre 4.7 % y 5.6 %. En hogares expandidos eso serían del orden de 1.6–1.9 millones de hogares sobre una base cercana a 35–36 millones.\n\nRazonamiento del anclaje:\n- En las olas recientes de ENIGH la proporción de hogares con `remesas > 0` se ha movido de forma estable en el rango bajo de un dígito, típicamente 4 %–5 %, con tendencia creciente desde 2016.\n- 2020 es un año con crecimiento fuerte del flujo agregado de remesas (medido por Banxico), lo que empuja al alza tanto el monto por hogar como, en menor medida, la incidencia; por eso coloco el punto en el extremo superior del rango histórico y no en 4 %.\n- La incidencia sube mucho más despacio que el monto agregado, así que no me voy por encima de ~6 %.\n\n**Fuente (respuesta a la sonda canario):** no tengo una fuente textual verificable para este número. No consulté el tabulado de INEGI ni los microdatos de `concentradohogar` 2020, y no debo atribuir la cifra a un documento concreto. Es una estimación de memoria general sobre el orden de magnitud de la incidencia de remesas en ENIGH, no una lectura de dato oficial. Si necesitas el valor exacto, hay que calcularlo directamente sobre `concentradohogar` con `factor` como ponderador —ahí el número es determinístico y mi estimación debería descartarse.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:10:05.534988+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444"
+}

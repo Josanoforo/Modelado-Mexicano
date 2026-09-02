@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L+corpus",
+  "indice": 4,
+  "texto_crudo": "**No conozco el dato para ese reactivo tal como está nombrado. No doy cifra puntual.**\n\nRazones explícitas:\n\n1. **No puedo confirmar la existencia del reactivo con ese contenido.** En el cuestionario ENVIPE (módulo de victimización, sección de denuncia), lo que sí recuerdo como batería estándar son las **causas de NO denuncia**, con opciones tipo \"miedo al agresor\", \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\". Un ítem binario que afirme *denuncia* condicionada a miedo/desconfianza no corresponde a una redacción que pueda reconocer; puede ser una etiqueta derivada del proyecto, no un reactivo literal del instrumento. Dado que el acto es **censo de existencia sobre inventario de reactivos**, lo correcto es marcar el ítem como **no verificado** en vez de asignarle prevalencia.\n\n2. **No tengo acceso al cuestionario ni al corpus tierizado en este acto.** El contexto viene declarado como \"no construido en este acto\", así que no hay base documental que pueda citar.\n\n**Sonda canario — fuente:** no declaro ninguna fuente textual. No he consultado el cuestionario ENVIPE 2015, el informe operativo, ni la descripción de archivos del microdato en esta conversación. Cualquier cifra que ofreciera vendría de memoria paramétrica no verificada, y eso no cumple el estándar de cita.\n\n**Anclas contextuales (memoria, NO fuente citada, no usar como estimación del reactivo):** para ENVIPE 2015 (referencia 2014) tengo en memoria un orden de magnitud de cifra negra cercano al 92–94% de delitos no denunciados o sin averiguación previa, con causas atribuibles a la autoridad alrededor de 6 de cada 10 casos. Marco esto como **no verificado y no equivalente** a la variable solicitada; no debe promoverse a estimación puntual.\n\n**Lo que haría falta para responder:** (a) redacción literal del reactivo y su número de pregunta en el cuestionario ENVIPE 2015; (b) confirmación de si es ítem directo o construcción derivada; (c) la columna del microdato correspondiente. Sin (a) y (c), el registro correcto en el inventario es *pendiente de verificación*, no un valor.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:46:41.886066+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2fc37b39851b40a8d9f3343e4e96ec208353eee0eb6e1250f86a86ccd77fa32f"
+}

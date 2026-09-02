@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L+corpus",
+  "indice": 3,
+  "texto_crudo": "**No estimo cifra en este acto.**\n\n**Estatus del reactivo:** `denuncia_con_miedo_o_desconfianza` no corresponde a un reactivo canónico que yo pueda confirmar en el cuestionario ENVIPE 2015 (módulo de victimización / no denuncia). Lo que sí existe en ENVIPE es una batería de **causas de la no denuncia**, donde \"miedo al agresor\" y \"desconfianza en la autoridad\" aparecen como **opciones separadas** dentro de una lista (con la partición habitual entre causas atribuibles a la autoridad y otras causas). El nombre aquí:\n\n1. junta dos categorías que en el instrumento van por separado (`miedo` OR `desconfianza`), y\n2. dice \"denuncia\" cuando la batería aplica a la **no denuncia**.\n\nEs decir, luce como **variable derivada/compuesta**, no como reactivo de captura. Sin ver el inventario de este proyecto no puedo declarar si su existencia está registrada como ítem propio o como recodificación.\n\n**Fuente textual declarada:** ninguna. No tengo a la vista el cuestionario ENVIPE 2015 ni el tabulado correspondiente, y no dispongo del contexto tierizado (se declara \"no construido en este acto\"). Cualquier porcentaje que diera —incluido el reparto de causas de no denuncia de 2014— sería reconstrucción de memoria sin verificación, no cita.\n\n**Escala:** aceptando la etiqueta binaria, la lectura natural sería \"el caso registra miedo al agresor o desconfianza en la autoridad entre las causas declaradas\". Punto estimado: **no emitido**. Sin intervalo (escala binaria y, además, universo no estimado por la regla de columnas invocada).\n\nSi quieres que pase de censo de existencia a estimación, necesito que se habilite explícitamente la re-derivación contra microdato o que me des el tabulado/diccionario de origen.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:46:17.982960+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2fc37b39851b40a8d9f3343e4e96ec208353eee0eb6e1250f86a86ccd77fa32f"
+}

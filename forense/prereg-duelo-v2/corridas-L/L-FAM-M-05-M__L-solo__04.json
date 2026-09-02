@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**Estimación puntual: ≈ 4.5 % de los hogares (recibe_remesas = 1)**\n\nIntervalo subjetivo (aunque la escala sea binaria, doy rango para la proporción): **3.8 % – 5.5 %**, ponderado con `factor`. Sin ponderar, esperaría una cifra similar o ligeramente mayor (5–6 %), porque el diseño de ENIGH sobremuestrea entidades rurales y de alta migración (Michoacán, Guerrero, Oaxaca, Zacatecas).\n\nBase del cálculo: en 2016 se reportaban del orden de 1.5–1.6 millones de hogares perceptores de remesas sobre ~33.5 millones de hogares en México, lo que da ~4.5–4.8 %.\n\n**Sobre la fuente (respondo la sonda explícitamente):** no tengo una fuente textual verificada que pueda citar con exactitud. No he leído la tabulación de INEGI/ENIGH 2016 ni el cuadro de CONAPO correspondiente en esta sesión, y no tengo acceso a documentos del proyecto. Mi cifra proviene de recuerdo agregado de reportes públicos (CONAPO y BBVA Research usan ENIGH para el conteo de hogares perceptores), no de una lectura directa del microdato. Trátala como *prior* de orden de magnitud, no como dato citable; el valor exacto debe salir de correr la tabulación sobre `concentradohogar` con `factor`.\n\nAdvertencia adicional: `remesas` en concentradohogar es ingreso trimestral por remesas del extranjero; si la especificación operativa del proyecto incluyera también transferencias del interior del país, la proporción subiría bastante (por encima de 10 %). Mi estimación asume solo remesas del exterior, como está codificada la variable.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:01:13.000112+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a8dde17ac46b97f502532aad4d19f4cd26e37037bf75b73971401678ef712acc"
+}

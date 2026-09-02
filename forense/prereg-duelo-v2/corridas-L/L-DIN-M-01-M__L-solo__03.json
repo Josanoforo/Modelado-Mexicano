@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "**Estimación: no la sé con precisión suficiente para dar una cifra defendible.**\n\nLo que puedo declarar honestamente:\n\n**Sobre la existencia del reactivo.** La ENNViH-1 (2002) sí incluye un módulo de activos y ahorro en el Libro de Hogar (secciones de activos, deudas y transferencias) y en los libros de adultos. Es razonable que exista una pregunta sobre tenencia de ahorros o cuentas de ahorro, pero **no puedo confirmar de memoria el nombre exacto del reactivo, su ubicación (libro/sección/número de pregunta) ni su redacción literal**. \"tiene_ahorros\" parece un nombre de variable derivada/armonizada por el proyecto, no un identificador nativo del cuestionario MxFLS.\n\n**Sobre la magnitud.** Si me obligan a un punto para \"proporción de hogares/adultos con algún ahorro\" en México en 2002, mi intuición sería un valor bajo, en el orden de 15–30%, dependiendo críticamente de si el reactivo pregunta por *cuenta bancaria de ahorro* (más bajo, quizá 10–20%) o por *cualquier forma de ahorro incluyendo informal: tandas, ahorro en efectivo, cajas populares* (más alto, quizá 25–40%). Esa dispersión de definición es tan grande que la cifra puntual no aporta información real.\n\n**Fuente:** ninguna verificable. No estoy citando ENNViH-2002 ni un reporte descriptivo específico; lo anterior es inferencia general sobre inclusión financiera en México a inicios de los 2000, no lectura del microdato ni del cuestionario. Declararlo como dato de la encuesta sería inventarlo.\n\n**Nota de procedimiento:** dado que el universo está marcado como \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos\", entiendo que lo que corresponde aquí es el registro de existencia del reactivo, no una re-derivación contra microdato. Para eso lo correcto es verificar el inventario de reactivos del proyecto, que no tengo a la vista.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:55:30.745068+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41"
+}

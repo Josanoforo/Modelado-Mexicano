@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L+corpus",
+  "indice": 1,
+  "texto_crudo": "**Estimación puntual: ~15% responde \"sí\" (pagó mordida), sobre la base de quienes tuvieron contacto.**\n\n**Intervalo subjetivo (aunque la escala sea binaria, doy incertidumbre sobre la proporción): 9%–22%**, con la masa de probabilidad concentrada entre 12% y 18%.\n\n**Declaración de fuente (sonda canario): NO tengo fuente textual para esta cifra.**\nNo recuerdo el marginal publicado de `paga_mordida` en la sección SEC_4_5 de la ENCUCI 2020 (INEGI/SEGOB), ni he consultado el tabulado. La cifra anterior es una *extrapolación por analogía*, no una lectura de dato. Su base de razonamiento es:\n\n1. La ENCIG (INEGI) reporta tasa de prevalencia de corrupción entre población que tuvo contacto con servidores públicos del orden de ~15 mil por cada 100 mil (≈15%) en 2019 y ≈14.7% en 2021. Ese es el ancla principal.\n2. La ENCUCI mide con otro instrumento, otra redacción y otro filtro (contacto vía AP5_16_1..10, batería de 10 trámites/instituciones), y su modo de aplicación difiere. Eso puede desplazar el valor en cualquier dirección varios puntos: preguntas más directas sobre \"dar dinero/regalo\" suelen deprimir el reporte por deseabilidad social; universos de contacto más amplios suelen diluirlo aún más.\n3. El levantamiento 2020 ocurrió en condiciones atípicas (menor volumen de trámites presenciales), lo que plausiblemente reduce la prevalencia observada respecto de años normales.\n\n**Advertencias para la mesa:**\n- Si el n útil declarado (13,365–13,393 de 13,435) corresponde a quienes contestan el reactivo, el error de muestreo es pequeño (±~0.6 pp al 95% sin efecto de diseño); **la incertidumbre dominante aquí es mía, no muestral**. Mi intervalo refleja ignorancia sobre el dato, no varianza de la encuesta.\n- No debe citarse mi 15% como si fuera ENCUCI. Antes de usarlo, verificar contra el tabulado oficial o el microdato.\n- El contexto tierizado que se menciona en el encabezado no me fue provisto con contenido; no pude apoyarme en él.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:18:12.665174+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "5a85b55690524493e9dda09b764f40f94af671e993c12d03617e40add0e8d88b"
+}

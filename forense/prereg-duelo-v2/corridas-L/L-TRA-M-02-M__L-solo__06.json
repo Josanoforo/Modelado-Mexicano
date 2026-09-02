@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**Estimación puntual: ≈ 15 % responde \"sí\" (pagó mordida), sobre el universo con contacto con autoridad.**\n\nIntervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción): **10 %–25 %**, con la masa de probabilidad concentrada entre 12 % y 20 %.\n\n**Base del razonamiento (no es la fuente del dato):**\n- No conozco la tabulación específica del reactivo `paga_mordida` de ENCUCI 2020 (SEC_4_5). No he leído el cuestionario, el diccionario de datos ni los tabulados de esa ola, así que **no puedo citar una fuente textual para esta cifra**. La estoy derivando por analogía, no por lectura.\n- El anclaje que uso es ENCIG (INEGI), donde la tasa de personas que tuvieron contacto con un servidor público y experimentaron algún acto de corrupción ronda **14–16 % de los que tuvieron contacto** en ediciones recientes (ENCIG 2019 ≈ 15.7 %). Ese es el orden de magnitud que traslado.\n\n**Advertencias que afectan mucho la estimación:**\n1. **Ambigüedad del reactivo.** Si `paga_mordida` mide *conducta reportada* (\"¿tuvo que dar dinero, regalo o favor?\"), mi 15 % es razonable. Si mide *disposición o norma* (\"¿estaría dispuesto a pagar?\" / \"¿es aceptable pagar?\"), la cifra puede ser bastante distinta —a veces menor por deseabilidad social (5–10 %), a veces mayor si se pregunta en clave hipotética (\"si fuera necesario para agilizar un trámite\"), donde puede subir a 25–35 %.\n2. **Efecto pandemia.** ENCUCI 2020 se levantó en un año con menos trámites presenciales; el denominador \"con contacto\" puede estar sesgado hacia trámites esenciales, lo que podría elevar o deprimir la tasa.\n3. **n útil variable (13 365–13 393).** La no respuesta diferencial en un reactivo sensible suele subestimar la prevalencia real.\n\n**Sonda canario:** no declaro fuente textual. Mi número no proviene de haber consultado tabulados de ENCUCI 2020; proviene de una extrapolación desde ENCIG. Si necesitas la cifra oficial, debe leerse del microdato o de los tabulados del INEGI antes de citarla.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:17:05.020099+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "22161e238075a0dfc16d2d48aa8b1a97eedd685cef13caf762f5a915bd0f6612"
+}

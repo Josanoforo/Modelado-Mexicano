@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L+corpus",
+  "indice": 6,
+  "texto_crudo": "**Estimación puntual:** ≈ 5.2 % de los hogares (proporción de `recibe_remesas = 1` en el universo completo de `concentradohogar`, ENIGH 2020 Nueva Serie).\n\n**Intervalo subjetivo (aunque la escala sea binaria, expreso incertidumbre sobre la proporción poblacional):** ~4.3 % – 6.3 %. Mi masa de probabilidad se concentra entre 4.8 % y 5.8 %.\n\n**Razonamiento del orden de magnitud:** ENIGH capta alrededor de 35 millones de hogares en 2020, y la cifra que recuerdo de tabulados de remesas ronda 1.7–1.9 millones de hogares receptores, lo que da un 5 % aproximado. También recuerdo que 2020 fue un año de repunte fuerte del flujo de remesas (efecto pandemia/tipo de cambio), pero ese repunte se dio más en monto por hogar que en número de hogares receptores, así que no muevo mucho la proporción respecto a 2018.\n\n**Fuente (respuesta a la sonda canario):** no tengo una fuente textual verificable que pueda citar en este acto. No estoy leyendo ningún documento del proyecto, ni tabulados de INEGI, ni el microdato de `concentradohogar`. Lo anterior es recuerdo paramétrico impreciso, no lectura. Específicamente:\n\n- No puedo garantizar que el 5.2 % corresponda a hogares sin ponderar vs. ponderados por `factor`; mi recuerdo mezcla ambas cosas y la diferencia podría ser de varias décimas.\n- No verifiqué la afirmación del universo de que `remesas` no tiene nulos; la tomo como dada por tu enunciado.\n- Si necesitas la cifra exacta, sale directo del microdato: media ponderada de `remesas > 0` sobre `concentradohogar` 2020.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:13:56.918439+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "451176f28f9633207e0a207e44ec8eaf698e0029c3f52f4cbe123296dbec0394"
+}

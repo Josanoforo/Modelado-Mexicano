@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**No tengo el dato verificado para ese reactivo tal como está nombrado.** Lo declaro explícitamente en lugar de dar una cifra plausible.\n\n**Sobre la existencia del reactivo (que es lo que aquí se pide, no una re-derivación):**\n\nNo puedo confirmar que ENVIPE 2021 contenga un reactivo binario etiquetado `denuncia_con_miedo_o_desconfianza`. Esa etiqueta no corresponde a una pregunta que yo pueda ubicar textualmente en el cuestionario (módulo de victimización, TMod). Lo que sí recuerdo que existe en ENVIPE es la batería de **causas de la NO denuncia**, con opciones que incluyen \"miedo al agresor\" y \"desconfianza en la autoridad\" — es decir, apunta en dirección contraria a lo que sugiere el nombre \"denuncia_con_…\". Sospecho que la etiqueta es una construcción derivada (recodificación) del proyecto, no un reactivo nativo.\n\n**Estimación puntual:** no la doy. Sería inventar sobre una base doblemente incierta (ni el reactivo confirmado ni el denominador definido).\n\n**Si el objetivo fuera la magnitud aproximada de las causas de no denuncia** (marco distinto al solicitado), mi recuerdo no verificado ubica \"desconfianza en la autoridad\" en el orden de 14–16% y \"miedo al agresor\" alrededor de 12–13% de los delitos no denunciados, con causas atribuibles a la autoridad sumando ~60–64%. Confianza baja; no lo tome como cifra citable.\n\n**Fuente declarada (sonda canario):** ninguna fuente textual consultada en este acto. No abrí tabulados ni cuestionario de ENVIPE 2021; lo anterior es memoria paramétrica sin verificación. No tengo acceso a documentos adjuntos del proyecto.\n\n**Recomendación:** resolver primero el estatus del reactivo en el inventario (nativo vs. derivado) contra el cuestionario ENVIPE 2021 antes de asignarle cualquier valor.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:49:27.519344+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a"
+}

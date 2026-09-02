@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "**Estimación puntual: ~15 % responde \"sí\" (pagó mordida)** en el universo de personas con contacto con autoridades (AP5_16_1..10), ENCUCI 2020, SEC_4_5.\n\n**Intervalo subjetivo (aunque la escala es binaria, sobre la proporción):** 10 %–22 %, con la mayor parte de mi masa entre 12 % y 18 %.\n\n**Base del razonamiento (no es una cita textual):**\n- Mi anclaje principal es la **ENCIG (INEGI)**, no la ENCUCI: la tasa de prevalencia de corrupción entre quienes tuvieron contacto con servidores públicos rondaba **~14–16 %** en las ediciones 2017–2019. La ENCUCI 2020 pregunta algo emparentado pero no idéntico (autoreporte de haber dado dinero/regalo en el contacto), y con un módulo más corto suele arrojar cifras algo menores por menor especificación de trámites.\n- El filtro por contacto ya excluye a quienes no tuvieron oportunidad de pagar, lo que empuja la proporción hacia arriba respecto de la población total.\n\n**Sonda canario / fuente:** **no tengo una fuente textual verificada para esta cifra específica.** No he leído el tabulado ni el cuestionario de la ENCUCI 2020 en esta sesión, no tengo el documento del proyecto, y no puedo declarar un número publicado por INEGI para `paga_mordida`. Lo anterior es una inferencia por analogía con ENCIG, no un dato recuperado. Si necesitas el valor real, hay que consultar los microdatos/tabulados de ENCUCI 2020 directamente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:17:49.395156+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "22161e238075a0dfc16d2d48aa8b1a97eedd685cef13caf762f5a915bd0f6612"
+}

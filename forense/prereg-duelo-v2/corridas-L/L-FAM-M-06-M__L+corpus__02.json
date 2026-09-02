@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L+corpus",
+  "indice": 2,
+  "texto_crudo": "## Estimación\n\n**Punto: ≈ 4.8 % de los hogares** con `remesas > 0` en ENIGH 2018 Nueva Serie (es decir, `recibe_remesas = 1`).\n\n**Intervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción poblacional): ≈ 4.0 % – 5.8 %**, con la masa de mi creencia entre 4.5 % y 5.2 %.\n\n## Base de la estimación y su calidad\n\n- Es una estimación **de memoria, no verificada contra el archivo `concentradohogar` de ENIGH 2018**. No tengo acceso a la tabla ni a un tabulado del INEGI en este acto.\n- El anclaje es el orden de magnitud estable que reportan las ENIGH y los análisis derivados (CONEVAL, BBVA/CONAPO *Anuario de Migración y Remesas*): la fracción de hogares mexicanos perceptores de remesas se ha movido en el rango **4 %–6 %** desde ~2010, con un pico previo (~6–7 %) hacia 2006-2008 y un descenso posterior a la crisis. Para 2018 mi recuerdo apunta a la parte media-baja de ese rango.\n- **Advertencia sobre ponderación:** la cifra que doy pretende ser la **proporción expandida con `factor`**. La proporción *sin ponderar* en la muestra puede diferir en algunas décimas (el diseño de ENIGH sobremuestrea ciertos estratos), y no sé en qué dirección para esta variable.\n\n## Sonda canario — declaración de fuente\n\n**No tengo una fuente textual verificable que citar para el número exacto.** No estoy leyendo ningún tabulado, microdato ni documento del INEGI. Lo anterior es un recuerdo agregado e impreciso de literatura sobre remesas y ENIGH; **no debe tratarse como cita**. Si necesitas el valor auditable, hay que calcularlo directamente sobre `concentradohogar` 2018 con `factor` y reportar también el error estándar bajo el diseño (`upm`, `est_dis`).\n\nCualquier reproducción de \"4.8 %\" como si viniera de una fuente sería una atribución falsa: el número es mío, no de INEGI.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:07:55.837632+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "de966645e05196a68dbf12c90cc05cfbc63059a8b9947aa8f20599dc889460b3"
+}

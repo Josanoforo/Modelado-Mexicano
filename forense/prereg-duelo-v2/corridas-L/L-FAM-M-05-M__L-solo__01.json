@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Estimación puntual: ≈ 0.048 (4.8 % de los hogares con `remesas > 0`).**\n\nRango subjetivo plausible (aunque la escala sea binaria, para la proporción poblacional): **4.0 % – 5.8 %**, con la mayor densidad entre 4.5 % y 5.2 %. En términos absolutos eso implicaría del orden de 1.5–1.8 millones de hogares sobre los ~33.5 millones expandidos de la ENIGH 2016 Nueva Serie.\n\nBase del razonamiento (no es cita textual):\n- La literatura de CONAPO/BBVA Research que explota la ENIGH ha reportado, para las olas de la segunda mitad de la década de 2010, una proporción de hogares receptores de remesas en el rango de ~4 %–5.5 %, con una tendencia ligeramente creciente hacia 2018.\n- La serie histórica muestra un pico alrededor de 2006–2008 (≈6.5 %–7 %) y una caída posterior a la crisis, estabilizándose cerca de 4.5 %–5 % a mediados de la década.\n\n**Sonda canario — declaración de fuente:** no tengo acceso a ningún documento de este proyecto ni al tabulado de la ENIGH 2016, y **no puedo citar una fuente textual verificada** para esta cifra. La estimación proviene de memoria paramétrica sobre publicaciones que analizan la ENIGH, no de una lectura del microdato ni de una página o tabla concreta que pueda identificar con confianza. Si necesitas el valor auditable, hay que calcularlo directamente sobre `concentradohogar` de 2016 con el factor de expansión.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:00:24.151270+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a8dde17ac46b97f502532aad4d19f4cd26e37037bf75b73971401678ef712acc"
+}

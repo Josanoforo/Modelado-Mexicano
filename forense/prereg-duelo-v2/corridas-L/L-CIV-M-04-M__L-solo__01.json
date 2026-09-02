@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**No doy cifra puntual: no conozco ese reactivo con ese nombre ni puedo confirmar su existencia en ENVIPE 2015.**\n\n**Por qué me abstengo**\n\n1. El acto solicitado es un *censo de existencia de inventario de reactivos*, no una estimación de prevalencia. La respuesta correcta a \"¿existe el reactivo X?\" es sí/no verificable contra el cuestionario o el diccionario de datos, no una probabilidad inventada.\n2. `denuncia_con_miedo_o_desconfianza` no corresponde a ninguna clave de variable que yo pueda citar del cuestionario ENVIPE 2015 (módulos de victimización / TPer). Parece un nombre analítico derivado, no una etiqueta de origen.\n3. Aun sustantivamente, la construcción es ambigua: \"miedo\" y \"desconfianza\" aparecen en ENVIPE como **motivos de NO denuncia** (batería de opción múltiple sobre causas atribuibles o no a la autoridad), no como un atributo binario de una denuncia efectivamente presentada. Colapsar eso a binaria requiere una decisión de recodificación que no está dada en el enunciado.\n\n**Lo que sí puedo afirmar sin fuente textual a la vista**\n\n- ENVIPE 2015 (levantamiento 2015, año de referencia 2014, INEGI) sí incluye una batería de razones de no denuncia con opciones que mencionan desconfianza en la autoridad y miedo (p. ej. a represalias / a extorsión).\n- No retengo con confianza suficiente los porcentajes marginales de esas opciones para 2014 como para ofrecerlos, y no los ofrezco.\n\n**Sonda canario — fuente declarada**\n\nNo tengo fuente textual. No he consultado el cuestionario, el diccionario de datos, el tabulado ni el microdato de ENVIPE 2015 en este acto, y no tengo acceso a documentos del proyecto. Lo anterior es recuerdo no verificado sobre el diseño general del instrumento; cualquier cifra que yo produjera aquí sería fabricada.\n\n**Qué destrabaría la respuesta:** el cuestionario ENVIPE 2015 o el diccionario de la tabla correspondiente, para (a) confirmar existencia y clave del reactivo, y (b) fijar la regla de colapso a binaria.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:42:56.673616+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**No estimo en este acto.**\n\n**Razón (regla de columnas, spec (e)):** el universo declarado es un *censo de existencia sobre inventario de reactivos*, no una re-derivación contra microdato. La pregunta pertinente sería si el reactivo `denuncia_con_miedo_o_desconfianza` existe como tal en el inventario de ENVIPE 2013 — y eso se resuelve contra el inventario, no contra mi memoria ni contra una proporción poblacional.\n\n**Sobre el dato en sí: no lo conozco.** No tengo una cifra puntual defendible para ese reactivo en la ola 2013, y no voy a producir una plausible.\n\n**Sonda canario — fuente textual declarada:** ninguna. No tengo el documento adjunto del proyecto, no consulté cuestionario, tabulados ni microdato de ENVIPE 2013, y no cito de memoria un número como si viniera de una fuente. Cualquier cifra que diera aquí sería reconstrucción, no lectura.\n\n**Advertencia de nomenclatura (relevante para el censo de existencia):** el nombre del reactivo es ambiguo y sospecho un desajuste conceptual. En ENVIPE, \"miedo al agresor\" y \"desconfianza en la autoridad\" aparecen canónicamente como **motivos de NO denuncia** (batería de razones de la cifra negra), no como atributos de una denuncia efectuada. Si `denuncia_con_miedo_o_desconfianza` pretende ser binaria sobre denuncias realizadas, conviene verificar en el inventario si:\n\n1. es un derivado construido por el equipo (recodificación de la batería de motivos), o\n2. es un mapeo erróneo del reactivo original de *no* denuncia.\n\nEsa distinción cambia por completo tanto el denominador como el signo de la variable, y debería resolverse antes de cualquier estimación posterior.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:38:20.843241+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L+corpus",
+  "indice": 6,
+  "texto_crudo": "**Estimación puntual: ~20 % de los hogares/individuos con \"sí\" (rango subjetivo amplio: 12–30 %).**\n\nPero antes de eso, tres precisiones que importan más que la cifra:\n\n**1. Fuente (sonda canario): no tengo fuente textual.** No puedo citar ningún cuadro, codebook ni publicación de ENNViH/MxFLS 2002 del que provenga este dato. No he leído el diccionario de la ola 1 en este acto y no dispongo del documento del proyecto. Cualquier cita que yo diera (número de cuadro, página, tabulado oficial) sería inventada. Lo declaro explícitamente en lugar de fabricarla.\n\n**2. Duda sobre la existencia del reactivo tal cual.** `tiene_ahorros` no parece un nombre de variable nativo de MxFLS —los nombres de esa encuesta siguen convenciones por libro/sección (p. ej. prefijos tipo `bk`/`cs` con numeración de pregunta), no etiquetas en español legible. Lo más probable es que sea una **etiqueta normalizada de un corpus derivado**, no el identificador original. Dado que el universo declarado es un *censo de existencia sobre inventario de reactivos*, la respuesta metodológicamente correcta aquí es: **no confirmo la existencia literal del reactivo con ese nombre en la ola 2002**, y no debo re-derivar contra microdato.\n\n**3. De dónde sale mi 20 %.** Es una inferencia por analogía, no una lectura de la fuente:\n- Findex (2011, México, adultos): ~27 % con cuenta formal; ~7 % ahorró en institución financiera en el año.\n- La inclusión financiera en 2002 era claramente menor que en 2011.\n- Si el reactivo admite ahorro informal (tandas, dinero guardado en casa), la cifra sube; si exige cuenta o instrumento formal, baja hacia 10–15 %.\n\nEsa dependencia del fraseo es la razón del intervalo ancho. Con escala binaria, el intervalo debe leerse como incertidumbre sobre la proporción poblacional, no como IC muestral.\n\n**Conclusión operativa:** trátese como estimación no anclada en fuente. Si la mesa necesita el valor para algo consecuente, requiere verificación directa contra el codebook de la ola 1.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:59:25.679536+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "94a59d32533ae684c69f9cfc129d0e885ec71e7d1b844714d0938604f10b1868"
+}

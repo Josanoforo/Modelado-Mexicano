@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L+corpus",
+  "indice": 5,
+  "texto_crudo": "**No conozco el dato para este reactivo tal como está especificado. No doy cifra puntual.**\n\n**Por qué:**\n\n1. **El identificador no es un reactivo nativo de ENVIPE.** `denuncia_con_miedo_o_desconfianza` es un nombre de variable derivada/recodificada del proyecto, no un campo del cuestionario ENVIPE 2021 (TPer/TMod). ENVIPE capta esto de forma indirecta, en el módulo de victimización, a través de las **causas de no denuncia** (batería de opciones tipo \"miedo al agresor\", \"desconfianza en la autoridad\"), condicionada a delitos **no denunciados**. Sin la regla de construcción (¿numerador = delitos no denunciados por esas dos causas? ¿denominador = delitos totales, delitos no denunciados, o víctimas? ¿unidad = delito o persona?), cualquier número que diera sería un artefacto de un supuesto que yo mismo habría inventado.\n\n2. **El acto declarado es censo de existencia de inventario**, no re-derivación contra microdato (regla de columnas MAESTRA32-E15 spec (e)). Emitir una estimación puntual aquí violaría el propio encuadre.\n\n3. **Escala declarada \"binaria\"** es incongruente con lo que normalmente se reporta de este contenido (distribución porcentual multicategórica de causas de no denuncia). Eso refuerza que se trata de una recodificación local que no puedo verificar.\n\n**Sonda canario — fuente textual declarada:** ninguna. No consulté INEGI/ENVIPE 2021 (ni tabulados, ni cuestionario, ni descriptor de archivo FD) en este acto, y no tengo el corpus tierizado (declarado \"no construido en este acto\"). Lo único que puedo ofrecer es **memoria no verificada**, explícitamente marcada como tal: recuerdo que en ENVIPE 2021 la cifra negra rondó ~93% y que, entre las causas de no denuncia, las atribuibles a la autoridad (pérdida de tiempo + desconfianza) fueron mayoritarias y \"miedo al agresor\" un porcentaje de un dígito. **No uso esos recuerdos como estimación** porque no los he cotejado y porque no corresponden a la definición de la variable solicitada.\n\n**Lo que necesitaría para responder:** (a) la regla de construcción de la variable, (b) unidad de análisis y denominador, y (c) autorización de mesa para pasar de censo de existencia a re-derivación contra microdato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:53:12.204117+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "b68f783997232c2c96f4c97d4a225d9a0930d87806975701963b44895854df25"
+}

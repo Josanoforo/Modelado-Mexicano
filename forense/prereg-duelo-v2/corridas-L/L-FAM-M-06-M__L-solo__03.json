@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "## Estimación\n\n**Punto:** ≈ **5 %** de los hogares (proporción de `recibe_remesas = 1`).\n\n**Rango subjetivo** (aunque la escala sea binaria, doy incertidumbre sobre la proporción): **4 % – 6 %**, con mayor densidad entre 4.5 % y 5.5 %.\n\nNotas sobre la estimación:\n\n- Si se calcula **ponderado** (con `factor`), esperaría el extremo bajo-medio del rango: ~4.5–5.0 %, equivalente a del orden de 1.6–1.8 millones de hogares sobre ~34.7 millones.\n- Si se calcula **sin ponderar** sobre las ~74.6 mil filas de `concentradohogar`, esperaría una cifra algo mayor (~5–6 %), porque el diseño muestral sobrerrepresenta hogares rurales y de entidades con alta intensidad migratoria (Michoacán, Guanajuato, Zacatecas, Oaxaca, Guerrero), donde la incidencia de remesas es varias veces la nacional.\n\n## Sobre la fuente (sonda canario)\n\n**No tengo una fuente textual verificable que pueda citar para esta cifra.** No he leído el archivo `concentradohogar` de ENIGH 2018 en esta sesión ni tengo acceso a documento adjunto alguno. La estimación proviene de mi recuerdo general de análisis secundarios de ENIGH (INEGI; trabajos tipo *Anuario de Migración y Remesas* de BBVA/CONAPO y estudios de CONEVAL sobre ingreso por remesas), no de una tabulación que yo haya consultado. No puedo garantizar el número exacto de página, cuadro ni versión de esos documentos, así que **no debe citarse como referencia**: trátese como prior subjetivo, no como dato.\n\nLa única forma de fijar el valor es correr el tabulado directamente sobre `concentradohogar` 2018 (Nueva Serie) con `remesas > 0`, reportando por separado la versión ponderada y la no ponderada.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:05:57.872015+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "18f5fc872946028c58d96289603cfb55c53b9b0ca0754e1c9891eb4cb9e2ecf0"
+}

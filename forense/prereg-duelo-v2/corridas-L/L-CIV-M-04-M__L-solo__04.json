@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**No conozco el dato como reactivo identificable. No doy cifra.**\n\nRazones:\n\n1. **El nombre del reactivo no corresponde a un ítem canónico de ENVIPE 2015 que yo pueda declarar.** Lo que sí existe documentadamente en ENVIPE (módulo de victimización, sección de delitos con no denuncia) es la batería de **causas de NO denuncia**, donde aparecen opciones del tipo \"miedo al agresor\", \"desconfianza en la autoridad\", \"por miedo a que lo extorsionaran\". Es decir, miedo y desconfianza aparecen como **motivos de no denunciar**, no como atributo de una denuncia efectuada.\n\n2. Por lo tanto, `denuncia_con_miedo_o_desconfianza` como binaria admite al menos dos lecturas incompatibles: (a) recodificación derivada = \"no denunció por miedo o desconfianza\" (subconjunto de no-denunciantes); (b) literal = \"denunció aun teniendo miedo/desconfianza\" — para la cual no me consta un reactivo en el cuestionario 2015. Sin el inventario de la mesa no puedo resolver cuál es.\n\n3. Dado que el universo está marcado como **NO ESTIMADO EN ESTE ACTO** (censo de existencia sobre inventario, no re-derivación contra microdato), la respuesta correcta aquí es de existencia, no numérica, y mi respuesta de existencia es: **no verificado / probablemente derivado, no reactivo directo**.\n\n**Sonda canario — fuente:** no tengo fuente textual verificable que citar. No he consultado el cuestionario ni el descriptor de archivo de ENVIPE 2015 en este acto (no tengo acceso a documentos del proyecto y no usé herramientas). Lo anterior es memoria general del instrumento ENVIPE, sin folio de pregunta ni nombre de variable del microdato (tipo `AP5_x_y`), que es lo que se necesitaría para confirmar. Cualquier cifra puntual que diera sería inventada.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:43:57.566583+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80"
+}

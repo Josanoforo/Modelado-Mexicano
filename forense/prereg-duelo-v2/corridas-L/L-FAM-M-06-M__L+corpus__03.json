@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L+corpus",
+  "indice": 3,
+  "texto_crudo": "**Estimación puntual: ≈ 5 % de los hogares (recibe_remesas = 1) en ENIGH 2018 Nueva Serie.**\n\nIntervalo subjetivo (aunque la escala del reactivo sea binaria, la cantidad estimada es una proporción, así que sí aplica incertidumbre): **4.0 % – 6.5 %**, con la masa de mi credibilidad entre 4.5 % y 5.5 %.\n\nBases del razonamiento (no de un documento de este proyecto, que no tengo):\n- El orden de magnitud conocido para México es de ~1.5–1.8 millones de hogares receptores sobre ~34.7 millones de hogares en 2018, lo que da ~4.5–5.2 %.\n- La serie ENIGH ha mostrado históricamente cifras en el rango 4–6 % desde 2010, con tendencia ligeramente al alza hacia 2018–2022 por el crecimiento del flujo de remesas.\n- El universo aquí es el completo de `concentradohogar` sin filtro, y `remesas > 0` capta cualquier monto trimestral positivo, lo que tiende a dar una prevalencia algo mayor que definiciones más restrictivas (p. ej., \"receptor habitual\").\n\n**Sobre la fuente (sonda canario):** no puedo declarar una fuente textual verificada. No estoy citando ni un tabulado del INEGI ni un documento del corpus tierizado; esta cifra proviene de conocimiento general aproximado sobre la ENIGH y las estadísticas de remesas de México, no de una lectura del microdato de 2018. Si el proyecto requiere cifra citable, hay que calcularla directamente sobre `concentradohogar` con el factor de expansión (`factor`), y ahí puede diferir de mi punto en varias décimas.\n\nNota metodológica: la proporción ponderada por `factor` y la no ponderada no coinciden; mi estimación se refiere a la **ponderada** (hogares expandidos). La no ponderada de la muestra suele quedar cerca pero no idéntica.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:08:12.762583+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "de966645e05196a68dbf12c90cc05cfbc63059a8b9947aa8f20599dc889460b3"
+}

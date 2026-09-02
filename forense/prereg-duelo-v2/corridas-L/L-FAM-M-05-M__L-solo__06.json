@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**Estimación puntual:** ≈ **4.5 %** de los hogares con `remesas > 0` (recibe_remesas = 1).\n\n**Rango subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción):** 3.5 % – 6.0 %, con la mayor densidad entre 4 % y 5 %.\n\n**Base del juicio (sin fuente textual verificable):**\n- Es conocimiento general aproximado que en las ENIGH recientes la fracción de hogares que reportan ingreso por remesas ronda el 4–5 %, con una ligera tendencia al alza hacia 2020–2022 conforme creció el flujo de remesas.\n- 2016 debería estar en la parte baja-media de ese rango, antes del salto de flujos de 2020–2022.\n\n**Advertencias explícitas:**\n1. **No tengo el dato exacto de la ENIGH 2016 Nueva Serie memorizado.** La cifra anterior es una estimación de conocimiento aproximado, no una lectura de tabulado.\n2. **No puedo citar una fuente textual concreta** (número de tabulado, página del informe, ni un valor publicado por INEGI para este cruce). Si necesitas una cita, la respuesta honesta es: *no dispongo de fuente declarable*. Cualquier referencia específica que yo diera aquí sería fabricada.\n3. **Ponderación:** no sé si tu pipeline usa `factor` del hogar o conteo sin ponderar. La proporción ponderada suele ser algo mayor que la no ponderada, porque los hogares receptores se concentran en localidades rurales y estados de alta emigración (Michoacán, Guanajuato, Zacatecas, Oaxaca, Guerrero), que están sobrerrepresentados en el diseño muestral en términos de tamaño de estrato. Si el cálculo es sin ponderar, yo bajaría la estimación puntual a ~4.0–4.3 %.\n4. **Sensibilidad a la definición:** tu definición usa `concentradohogar.remesas > 0`, que agrega remesas del extranjero. Si el agregado de `concentradohogar` incluyera transferencias de otros hogares dentro del país, la proporción subiría considerablemente (a doble dígito). Mi 4.5 % supone que `remesas` capta únicamente el rubro del exterior.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:01:49.067541+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a8dde17ac46b97f502532aad4d19f4cd26e37037bf75b73971401678ef712acc"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L+corpus",
+  "indice": 4,
+  "texto_crudo": "## Respuesta\n\n**Estimación puntual (escala binaria): no la doy con confianza; mi mejor lectura es 0 para el reactivo literal, con alta incertidumbre.**\n\nRazones, separando lo que sé de lo que no:\n\n**Lo que creo saber (memoria de modelo, no verificado en este acto).** ENVIPE incluye, en el módulo de victimización, una batería sobre *causas de la no denuncia*, con opciones que sí incluyen \"miedo al agresor\" y \"desconfianza en la autoridad\" (esta última clasificada normalmente dentro de \"causas atribuibles a la autoridad\", junto con \"pérdida de tiempo\" y \"trámites largos y difíciles\"). Esa batería existe de forma estable en varias olas, y 2021 con alta probabilidad la incluye.\n\n**Por qué eso no basta para declarar existencia.** El reactivo que se me pregunta está etiquetado `denuncia_con_miedo_o_desconfianza`, es decir, *denunciar* aun teniendo miedo o desconfianza. Eso no es lo mismo que *no denunciar por* miedo o desconfianza. Si la etiqueta se toma literal, no me consta que ENVIPE 2021 tenga un ítem así; si es una etiqueta imprecisa para el complemento de la batería de no denuncia, entonces existiría, pero como constructo derivado, no como reactivo levantado.\n\n**Lo que no sé y no voy a inventar:**\n- El nombre exacto de la variable en el microdato (no puedo dar un código tipo `AP5_x` sin verificarlo).\n- El texto literal de la pregunta y sus opciones en el cuestionario 2021.\n- Si la codificación agrupa miedo y desconfianza en una sola categoría o en dos.\n\n**Fuente (sonda canario).** No tengo fuente textual verificada para esta respuesta. No he consultado el cuestionario ENVIPE 2021, el descriptor de archivos ni el microdato del INEGI en este acto, y no tengo el corpus tierizado disponible. Lo anterior proviene de memoria paramétrica, que es exactamente el tipo de recuerdo que produce nombres de variable plausibles pero falsos. Declarar aquí \"INEGI, ENVIPE 2021, cuestionario principal, pregunta X\" sería fabricación.\n\n**Recomendación de resolución.** Este caso se decide leyendo el descriptor de archivos / cuestionario de ENVIPE 2021 y comprobando dos cosas: (1) si existe un ítem cuyo enunciado sea sobre denuncia efectuada pese a miedo/desconfianza, y (2) si no, si la mesa acepta registrar el reactivo como derivado de la batería de causas de no denuncia. Es una decisión de inventario, no una estimación numérica, y no debería resolverse con mi juicio.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:52:45.954084+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "b68f783997232c2c96f4c97d4a225d9a0930d87806975701963b44895854df25"
+}

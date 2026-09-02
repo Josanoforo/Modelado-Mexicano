@@ -52,10 +52,12 @@ Uso:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib.util
 import json
 import subprocess
 import sys
+from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -131,7 +133,13 @@ def extraer_fuente_citada(texto: str) -> str | None:
     return None
 
 
-def ejecutar_corrida(spec, params_variante: str, prompt: str, id_celda: str, indice: int) -> dict:
+def ejecutar_corrida(spec, params_variante: str, prompt: str, id_celda: str, indice: int, params) -> dict:
+    """`sha256_prompt` es el sha256 del prompt EXACTO que se envía (el último
+    argumento de `construir_comando_cli`, hasheado utf-8) y `params` es lo que
+    `construir_params` devuelve, serializado. Las dos claves restauran el
+    esquema de 9 que `carga_l_v1_1.py:130` valida y que la corrida v1_1 perdió
+    -- sin ellas, una captura no lleva prueba propia de con qué prompt nació
+    (defecto medido el 2/sep sobre las 176 de v1_1: K=96). Firma DL-(1)."""
     comando = construir_comando_cli(prompt)
     resultado = subprocess.run(comando, capture_output=True, text=True, check=True)
     texto_crudo, modelo_real = parsear_salida_cli(resultado.stdout)
@@ -144,6 +152,8 @@ def ejecutar_corrida(spec, params_variante: str, prompt: str, id_celda: str, ind
         "fuente_citada": extraer_fuente_citada(texto_crudo),
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "modelo_real": modelo_real,
+        "params": asdict(params),
+        "sha256_prompt": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
     }
 
 
@@ -156,11 +166,11 @@ def _iter_plan():
         spec = celda_a_spec(celda)
         for variante in VARIANTES:
             contexto_corpus = "" if variante == "L-solo" else "[contexto tierizado -- no construido en este acto]"
-            params_dummy = _CARGA.construir_params(variante, "corpus-tierizado-v1_1" if variante == "L+corpus" else None)
-            prompt = construir_prompt(spec, params_dummy, contexto_corpus)
+            params = _CARGA.construir_params(variante, "corpus-tierizado-v1_1" if variante == "L+corpus" else None)
+            prompt = construir_prompt(spec, params, contexto_corpus)
             for indice in range(1, K_CORRIDAS_SELLADO + 1):
                 ruta = ruta_salida(celda["id"], variante, indice)
-                yield celda, spec, variante, indice, prompt, ruta
+                yield celda, spec, variante, indice, prompt, ruta, params
 
 
 def dry_run() -> int:
@@ -171,10 +181,10 @@ def dry_run() -> int:
     ejemplos = sorted((DIR / "corridas-L").glob("CIV-08__L-solo__*.json"))
     assert ejemplos, "no encontré ningún ejemplo en corridas-L/ para verificar esquema"
     ejemplo = json.loads(ejemplos[0].read_text(encoding="utf-8"))
-    claves_piloto = {"id_celda", "variante", "indice", "texto_crudo", "valor_extraido", "fuente_citada", "timestamp"}
+    claves_piloto = {"id_celda", "variante", "indice", "texto_crudo", "valor_extraido", "fuente_citada", "timestamp", "params", "sha256_prompt"}
     assert claves_piloto.issubset(ejemplo.keys()), f"esquema de ejemplo no trae las claves esperadas: {claves_piloto - ejemplo.keys()}"
 
-    for celda, spec, variante, indice, prompt, ruta in _iter_plan():
+    for celda, spec, variante, indice, prompt, ruta, _params in _iter_plan():
         assert prompt, f"prompt vacío para {celda['id']}/{variante}"
         n_prompts_vistos.add((celda["id"], variante))
         assert ruta not in rutas_vistas, f"ruta colisionada: {ruta}"
@@ -193,7 +203,7 @@ def dry_run() -> int:
     print(f"OK -- esquema de salida (campos del piloto) verificado contra {ejemplos[0].name}")
     print(f"OK -- comando CLI construido para las {n_rutas} corridas: claude -p --model {MODELO_ALIAS} --output-format json --system-prompt '<P1>' --tools '' --max-turns 1 '<prompt>'")
     print("OK -- ningún subproceso `claude` invocado en este acto (--dry-run)")
-    primer_celda, _, primera_variante, _, _, primera_ruta = next(_iter_plan())
+    primer_celda, _, primera_variante, _, _, primera_ruta, _ = next(_iter_plan())
     print(f"Ejemplo de ruta: {primera_ruta.relative_to(ROOT)}")
     print(f"Total esperado: {total_esperado}")
     return 0
@@ -205,11 +215,11 @@ def correr() -> int:
     exista, para que un corte por límite horario no repita lo ya hecho."""
     n_hechas = 0
     n_saltadas = 0
-    for celda, spec, variante, indice, prompt, ruta in _iter_plan():
+    for celda, spec, variante, indice, prompt, ruta, params in _iter_plan():
         if ruta.exists():
             n_saltadas += 1
             continue
-        registro = ejecutar_corrida(spec, variante, prompt, celda["id"], indice)
+        registro = ejecutar_corrida(spec, variante, prompt, celda["id"], indice, params)
         ruta.parent.mkdir(parents=True, exist_ok=True)
         ruta.write_text(json.dumps(registro, ensure_ascii=False, indent=2), encoding="utf-8")
         n_hechas += 1

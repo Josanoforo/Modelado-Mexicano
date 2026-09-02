@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L+corpus",
+  "indice": 2,
+  "texto_crudo": "## Estimación\n\n**Punto:** ~13 % (proporción del universo con contacto que declara haber pagado mordida)\n**Intervalo subjetivo (aunque la escala es binaria, sobre la proporción):** 8 % – 22 %\n\n## Base del razonamiento (no es cita de fuente)\n\n**No conozco el dato publicado de `paga_mordida` en ENCUCI 2020.** No he leído el cuestionario, la base ni el tabulado de SEC_4_5, y no tengo memoria confiable de esa variable en particular. Lo que doy es una extrapolación, no una lectura.\n\nEl anclaje viene de un orden de magnitud vecino: la ENCIG (INEGI) reporta históricamente una prevalencia de corrupción en trámites del orden de 14–16 % entre usuarios que tuvieron contacto con servidores públicos. Si `paga_mordida` en ENCUCI mide algo análogo (pago efectivo, no percepción, condicionado a haber tenido contacto en alguno de los 10 ítems AP5_16), esperaría un valor del mismo rango, quizá algo más bajo por diferencias de redacción y por deseabilidad social en un instrumento de cultura cívica y no de calidad regulatoria.\n\n## Advertencias sobre esta estimación\n\n- El condicionamiento importa mucho: si el denominador es \"contacto con cualquiera de los 10 ítems\" y algunos de esos ítems son contactos de baja exposición a extorsión (p. ej. contacto con un partido o un legislador), la proporción baja; si domina trámite/policía, sube. Sin ver AP5_16_1..10 no puedo fijarlo.\n- La n útil que reportas (13 375 / 13 393 / 13 365 de 13 435) sugiere tres variables casi paralelas; si `paga_mordida` es la de 13 365, la no respuesta es mínima y no debería sesgar mucho.\n- Un valor observado fuera de 8–22 % no me sorprendería si la redacción del reactivo es distinta a la de ENCIG (p. ej. \"le pidieron\" vs. \"usted pagó\").\n\n## Sonda canario\n\n**No declaro fuente textual.** No estoy citando ningún documento, tabulado ni corpus para esta cifra. El contexto tierizado que aparece en el prompt viene vacío de contenido sustantivo y no lo estoy usando como respaldo.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:18:33.435398+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "5a85b55690524493e9dda09b764f40f94af671e993c12d03617e40add0e8d88b"
+}

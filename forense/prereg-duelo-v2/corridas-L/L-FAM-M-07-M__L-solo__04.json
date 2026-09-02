@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**Estimación puntual: ~5 % de los hogares** (recibe_remesas = 1), es decir, cerca de 1.8 millones de hogares de un total aproximado de 35–36 millones en la ENIGH 2020.\n\n**Intervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción): 4.0 % – 6.5 %**, con la masa de probabilidad concentrada entre 4.5 % y 5.8 %.\n\n**Base del cálculo y honestidad sobre la fuente:**\n- No tengo a la vista el archivo `concentradohogar` de ENIGH 2020 ni ningún documento del proyecto, así que **esto no es una cifra leída ni verificada**, sino una estimación de memoria.\n- Mi anclaje es el orden de magnitud conocido de la serie ENIGH: la proporción de hogares con ingreso por remesas ha oscilado históricamente en torno a 4–6 % desde 2016, con una ligera tendencia al alza hacia 2020–2022 por el fuerte crecimiento del flujo agregado de remesas (que superó los 40 mil millones de USD en 2020). El monto total creció más que el número de hogares receptores, por lo que no esperaría un salto grande en la proporción respecto a 2018.\n- **Cita textual declarada:** no puedo dar una cita textual verificable. No recuerdo con confianza un número publicado específico del tabulado oficial de INEGI para ENIGH 2020 sobre porcentaje de hogares con `remesas > 0`. Cualquier referencia precisa que yo escribiera (página, cuadro, porcentaje al decimal) sería inventada.\n\n**Advertencia metodológica relevante:** la cifra depende de si se pondera con `factor` del hogar o se cuenta sin ponderar. Mi estimación es para la versión **ponderada** (expandida a hogares). Sin ponderador, el porcentaje muestral suele salir algo distinto por el diseño estratificado, típicamente algo mayor por sobremuestreo de entidades con alta emigración.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:10:59.064559+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444"
+}

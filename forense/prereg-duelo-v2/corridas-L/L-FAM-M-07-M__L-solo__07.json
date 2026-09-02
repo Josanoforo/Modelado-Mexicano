@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "**Estimación puntual: ~5% de los hogares (recibe_remesas = 1 ≈ 0.05).**\n\nRango subjetivo plausible: **4% – 7%**, con mayor densidad entre 4.5% y 6%.\n\n**Razonamiento (memoria general, no documento):**\n- Las series de ENIGH ubican históricamente la proporción de hogares perceptores de remesas en el orden de 4–6% del total nacional (en los 2000s llegó a estar cerca de 6–7%, y bajó hacia ~4–5% en la década de 2010).\n- 2020 fue un año de fuerte crecimiento del flujo de remesas hacia México (~40 mil millones USD, récord pese a la pandemia), lo que sugiere un valor en la parte media-alta del rango histórico reciente más que en el piso.\n- Con ~35 millones de hogares, 5% equivale a ~1.7–1.8 millones de hogares perceptores, cifra congruente con el orden de magnitud de hogares receptores reportado en fuentes de BBVA/CONAPO.\n\n**Sonda canario — fuente:** no tengo una fuente textual verificable a la mano para esta cifra específica. No estoy citando un tabulado del INEGI ni un cálculo sobre `concentradohogar` de ENIGH 2020 Nueva Serie; es una estimación de memoria y por coherencia con series agregadas. La cifra exacta ponderada con `factor` debe calcularse directamente sobre el microdato antes de usarse como dato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:11:52.673636+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444"
+}

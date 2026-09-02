@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L+corpus",
+  "indice": 7,
+  "texto_crudo": "**No tengo el dato. No doy estimación puntual para este reactivo.**\n\nRazones:\n\n1. **El identificador no mapea a un reactivo que yo pueda ubicar con certeza en el cuestionario ENVIPE 2015.** `denuncia_con_miedo_o_desconfianza` es un nombre de variable de inventario, no un literal de cuestionario que yo reconozca. Podría corresponder a al menos tres cosas distintas —(a) motivo de *no* denuncia por miedo al agresor, (b) motivo de no denuncia por desconfianza en la autoridad, (c) alguna recodificación binaria que colapse ambas— y la base de la proporción cambia por completo según cuál sea (delitos no denunciados vs. total de delitos vs. personas). Sin el diccionario de datos delante, elegir una de las tres sería inventar.\n\n2. **La escala declarada es binaria**, así que no procede intervalo continuo; y como no fijo el numerador ni el denominador, tampoco procede una proporción.\n\n3. **Lo único que puedo declarar como recuerdo aproximado, y explícitamente marcado como no verificado en este acto:** en ENVIPE 2015 (referencia 2014) la cifra negra rondó ~93–94%, y dentro de los motivos de no denuncia, los atribuibles a la autoridad (pérdida de tiempo, desconfianza) pesaban más que los atribuibles a terceros (miedo al agresor). Eso es orden de magnitud recordado, **no** una cifra citable para este reactivo.\n\n4. **Fuente (sonda canario):** no declaro fuente textual. No tengo acceso a ningún documento adjunto del proyecto, no leí el cuestionario ni el tabulado ENVIPE 2015 en esta conversación, y el \"contexto tierizado\" viene marcado como no construido. Cualquier cita de página, tabla o pregunta que yo produjera aquí sería fabricada.\n\nSi el acto es censo de existencia sobre el inventario, mi respuesta operativa es: **reactivo presente en el inventario, valor no estimado en este acto** — consistente con la regla de columnas de MAESTRA32-E15 spec (e). Para poblarlo haría falta el diccionario de datos de ENVIPE 2015 y la decisión de mesa sobre qué motivo(s) colapsa el binario.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:47:46.933304+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2fc37b39851b40a8d9f3343e4e96ec208353eee0eb6e1250f86a86ccd77fa32f"
+}

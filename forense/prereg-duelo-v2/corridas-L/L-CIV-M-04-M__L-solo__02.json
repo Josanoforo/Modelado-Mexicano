@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**No estimo esta cantidad en este acto.**\n\nRazón principal (declarada, no derivada): el propio encabezado del pedido fija el universo como *censo de existencia sobre inventario de reactivos*, no como re-derivación contra microdato. Bajo esa regla de columnas no corresponde emitir una proporción puntual.\n\nRazón sustantiva adicional, que sostengo con independencia de lo anterior:\n\n- **No reconozco un reactivo de ENVIPE 2015 con el contenido \"denuncia con miedo o desconfianza\".** Lo que sí existe en el instrumento (módulo de victimización, sección de delitos ocurridos y su denuncia) es la batería de **motivos de NO denuncia**, donde aparecen opciones como \"miedo al agresor\", \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\". Es decir, miedo y desconfianza operan como causas de *ausencia* de denuncia, no como atributos de una denuncia realizada. La etiqueta que se me da podría ser (a) un recodificado del proyecto, (b) un ítem invertido, o (c) inexistente. No puedo distinguir entre esas tres posibilidades sin el diccionario de datos.\n\n- Por eso una cifra puntual mía sería doblemente inventada: sobre un denominador que no sé si es \"total de delitos\", \"delitos no denunciados\", o \"personas víctimas\", y sobre un ítem cuya existencia no puedo confirmar.\n\n**Fuente textual declarada (sonda canario):** ninguna. No estoy citando cuestionario, tabulado ni microdato de ENVIPE 2015 abierto en esta sesión; no tengo el documento del proyecto. Cualquier familiaridad que exponga arriba es memoria de entrenamiento, no lectura, y no debe tratarse como verificación.\n\n**Qué desbloquearía una estimación:** el ítem exacto del cuestionario ENVIPE 2015 (número de pregunta y redacción literal) y el denominador previsto. Con eso puedo decir si el reactivo existe y, si la mesa lo autoriza, pasar de censo de existencia a estimación.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:43:19.068331+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80"
+}

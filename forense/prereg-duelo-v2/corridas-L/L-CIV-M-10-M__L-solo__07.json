@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "**No emito estimación puntual en este acto.**\n\n**Razón:** el universo declarado es un censo de existencia sobre inventario de reactivos, no una re-derivación contra microdato. Bajo esa regla, lo que correspondería responder es si el reactivo existe en el instrumento, no una proporción poblacional. No tengo el inventario de reactivos de este proyecto (no hay documento adjunto disponible para mí), de modo que tampoco puedo verificar la existencia del ítem tal como está etiquetado.\n\n**Sobre el reactivo:** `denuncia_con_miedo_o_desconfianza` no es una etiqueta literal del cuestionario ENVIPE; es un nombre de variable derivado/analítico. En el módulo de victimización de ENVIPE existen baterías sobre *causas de no denuncia* que distinguen motivos atribuibles a la autoridad (desconfianza en la autoridad, miedo a ser extorsionado, actitud hostil) de los no atribuibles. Pero no puedo afirmar sin leer el instrumento y el diccionario de la ola 2021 cómo está construida esta variable binaria, ni si mide \"denunció pese al miedo/desconfianza\", \"no denunció por miedo/desconfianza\" u otra cosa. La ambigüedad del nombre por sí sola impide una cifra defendible.\n\n**Fuente textual declarada (sonda canario):** ninguna. No tengo a la vista el cuestionario, el descriptor de archivos ni la tabulación de INEGI para ENVIPE 2021, y no voy a citar de memoria un porcentaje o una página como si los hubiera consultado.\n\n**Lo que necesitaría para responder:** el diccionario de datos o el inventario de reactivos de la ola 2021 con la definición operativa exacta de la variable, y —si en algún momento se pidiera estimación— la decisión de mesa que autorice re-derivar contra microdato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:50:37.904055+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a"
+}

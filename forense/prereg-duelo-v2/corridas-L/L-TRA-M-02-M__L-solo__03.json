@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "## Estimación\n\n**No conozco el dato exacto.** No tengo acceso al archivo de ENCUCI 2020 ni recuerdo un tabulado publicado específico para una variable derivada llamada `paga_mordida` construida sobre el universo AP5_16_1..10 (SEC_4_5). Lo que sigue es una **estimación razonada, no una cifra recuperada de fuente**.\n\n**Estimación puntual: ~15 % (proporción \"sí\" sobre el universo con contacto).**\n\n**Intervalo subjetivo (creencia, no muestral): 10 % – 25 %**, con la masa concentrada en 12 %–20 %.\n\n## Base del razonamiento (analogía, no fuente directa)\n\n- La ENCIG (INEGI) reporta prevalencia de corrupción **entre quienes tuvieron contacto con servidores públicos**: ~15.7 % (2019) y ~14.7 % (2021). Ese es el anclaje más cercano en marco conceptual (condicionar por contacto) y en institución productora.\n- Ajustes que muevo hacia arriba: si AP5_16 incluye contacto con **policía o autoridades de seguridad/justicia**, la tasa condicional sube (en ENCIG, policía de tránsito supera con mucho el promedio, del orden de 50 %).\n- Ajustes que muevo hacia abajo: si el reactivo mide **haber pagado** (acto consumado, autorreporte de conducta propia potencialmente estigmatizada) y no \"le pidieron/hubo corrupción\", el subreporte deprime la cifra; además ENCUCI 2020 es telefónica/en contexto pandemia, lo que reduce contactos presenciales recientes.\n\nEsos dos sesgos se compensan parcialmente, por eso me quedo cerca del anclaje ENCIG.\n\n## Sonda canario — declaración de fuente\n\n- **Fuente textual declarada: ninguna.** No estoy citando el cuestionario, el diccionario de datos ni un tabulado de ENCUCI 2020.\n- Lo único con estatus de fuente es la ENCIG 2019/2021 (INEGI), citada **de memoria** y usada como **analogía externa**, no como medición de esta variable.\n- Los n útiles que aparecen en tu enunciado (13 375/13 393/13 365 de 13 435) vienen de ti, no los verifiqué; su variación sugiere tres reactivos con no-respuesta ligeramente distinta, lo que es consistente con una batería, pero eso es lectura del metadato que me diste, no del archivo.\n\nSi me pasas el tabulado o el diccionario, corrijo la estimación contra el dato real en lugar de sostener esta cifra.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:15:51.565605+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "22161e238075a0dfc16d2d48aa8b1a97eedd685cef13caf762f5a915bd0f6612"
+}

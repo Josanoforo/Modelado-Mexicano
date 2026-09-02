@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "**Estimación puntual: ≈ 5 % de los hogares (recibe_remesas = 1).**\n\nIntervalo subjetivo (aunque la escala sea binaria, doy incertidumbre sobre la proporción): **4 % – 6.5 %**, con la masa de probabilidad concentrada entre 4.5 % y 5.5 %. En términos absolutos, eso implicaría del orden de 1.6–1.9 millones de hogares sobre los ~34.7 millones que expande la ENIGH 2018 Nueva Serie.\n\nRazonamiento del anclaje:\n- La literatura sobre remesas en México (análisis basados en ENIGH de distintas olas, y comparativos con la ENADID) ha situado de forma bastante estable la proporción de hogares receptores entre ~4 % y ~7 % desde mediados de los 2000, con tendencia a la baja tras 2008 y una recuperación parcial hacia 2018 por el aumento del flujo agregado (que subió más por monto por hogar que por número de hogares receptores).\n- La definición aquí es amplia (remesas > 0 en `concentradohogar`, sin filtro de jefatura ni de trimestre distinto al de referencia), lo que empuja ligeramente hacia arriba respecto de definiciones más restrictivas.\n\n**Sobre la fuente (sonda canario):** no tengo una fuente textual verificada que pueda citar para esta cifra. No estoy leyendo el tabulado de INEGI ni la base `concentradohogar` de 2018; la estimación proviene de memoria general sobre el orden de magnitud reportado en análisis de ENIGH, no de una consulta al microdato ni de un documento de este proyecto. Trátese como un prior, no como un dato. La verificación correcta es directa: `weighted.mean(remesas > 0, w = factor)` sobre la ola 2018.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:07:02.711201+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "18f5fc872946028c58d96289603cfb55c53b9b0ca0754e1c9891eb4cb9e2ecf0"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Estimación: no conozco el dato exacto.** No tengo memorizado el valor publicado de `paga_mordida` en ENCUCI 2020 (SEC_4_5) para el universo con contacto AP5_16_1..10, y no dispongo del microdato ni del tabulado. Lo que sigue es una inferencia razonada, no una cifra recuperada de fuente.\n\n**Estimación puntual (proporción \"sí\"): ~12%**\n**Intervalo subjetivo (80%): 7% – 20%**\n\nRazonamiento del anclaje:\n- La referencia más cercana que sí recuerdo con confianza es la **ENCIG (INEGI)**, cuya prevalencia de corrupción en 2019 fue del orden de **15,700 por cada 100,000 personas que tuvieron contacto con un servidor público** (≈15–16%). Ese es el punto de partida natural para un reactivo de \"dar dinero/regalo/favor\" condicionado a contacto.\n- Ajusto ligeramente **a la baja** porque: (a) ENCUCI no está diseñada como encuesta de victimización y el reactivo suele ser más general/menos acotado a un trámite específico, lo que reduce el recuerdo; (b) el módulo de cultura cívica es autoadministrado en parte y el sesgo de deseabilidad social sobre autoincriminarse (\"yo pagué\") es fuerte; (c) el universo AP5_16 incluye contactos de bajo riesgo de soborno (p. ej. escuelas públicas, salud), que diluyen la tasa frente al mix de ENCIG (dominado por trámites vehiculares y contacto con policía).\n- Ajusto **al alza** solo marginalmente por 2020, año con menor volumen de trámites presenciales por pandemia, lo que si acaso empuja más a la baja.\n\nSi el reactivo fuera **actitudinal** (p. ej. \"¿estaría dispuesto a pagar / justifica pagar una mordida?\") en lugar de conductual, mi estimación cambiaría a **~25–35%**, porque los ítems de justificación/disposición rinden proporciones bastante mayores que los de conducta declarada.\n\n**Sonda canario / fuente:** no declaro fuente textual para esta cifra. No la leí en un tabulado de ENCUCI 2020 ni en el cuestionario; el único insumo verificable que estoy citando es la prevalencia de ENCIG 2019 (~15.7 mil por 100 mil con contacto), y aun esa la reporto de memoria. Cualquier número que yo diera como \"el dato de ENCUCI 2020\" sería fabricado. Para cerrarlo bien haría falta el tabulado de SEC_4_5 o el microdato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:15:05.946170+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "22161e238075a0dfc16d2d48aa8b1a97eedd685cef13caf762f5a915bd0f6612"
+}

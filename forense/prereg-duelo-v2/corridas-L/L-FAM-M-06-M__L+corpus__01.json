@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L+corpus",
+  "indice": 1,
+  "texto_crudo": "**Estimación puntual: ≈ 4.8 % de los hogares (recibe_remesas = 1) en ENIGH 2018 Nueva Serie.**\n\nIntervalo subjetivo (aunque la escala es binaria, la proporción poblacional sí es continua): **4.0 % – 6.0 %**, con la mayor densidad entre 4.5 % y 5.3 %. En números absolutos, sobre ~34.7 millones de hogares expandidos, eso implica del orden de 1.5–1.9 millones de hogares con `remesas > 0`.\n\nRazonamiento del anclaje (sin documento a la vista):\n- Las tabulaciones de ingreso por fuente de ENIGH han ubicado consistentemente la recepción de remesas en el rango de 4 %–6 % de hogares en las olas 2016–2022, con tendencia ligeramente creciente hacia 2020–2022.\n- Sin ponderador (`factor`), el porcentaje muestral crudo suele salir algo más alto que el expandido, porque los hogares receptores se concentran en estratos rurales y en entidades con sobre-muestreo relativo. Si tu cálculo es sin expandir, esperaría más bien 5.5 %–7 %.\n\n**Sobre la fuente (sonda canario):** no puedo declarar una fuente textual verificada. No tengo a la vista el tabulado de INEGI ni el microdato de `concentradohogar` 2018, y no recuerdo con confianza un número publicado exacto para esta ola. La cifra anterior es una estimación de memoria calibrada sobre el orden de magnitud conocido, **no** una lectura de documento ni una cita. Si necesitas el valor autoritativo, hay que calcularlo directamente sobre `concentradohogar` 2018 con `factor`, o contrastarlo con el tabulado oficial de ingreso corriente por fuente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:07:34.602354+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "de966645e05196a68dbf12c90cc05cfbc63059a8b9947aa8f20599dc889460b3"
+}

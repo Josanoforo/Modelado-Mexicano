@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L+corpus",
+  "indice": 2,
+  "texto_crudo": "## Respuesta\n\n**Estimación puntual (escala binaria): 1 = EXISTE**\n\nConfianza subjetiva: alta-media (~0.90) sobre la *existencia sustantiva* del reactivo; baja (~0.3) sobre que la etiqueta operativa coincida literalmente con `denuncia_con_miedo_o_desconfianza`.\n\n## Razonamiento\n\nENVIPE incluye desde sus primeras olas (2011 en adelante, por tanto también 2013) un bloque de **causas de la no denuncia**, aplicado sobre delitos no denunciados, con opciones que separan:\n\n- causas **atribuibles a la autoridad** (desconfianza en la autoridad, trámites largos/difíciles, actitud hostil, \"por miedo a que lo extorsionaran\"), y\n- causas **atribuibles a otras circunstancias** (miedo al agresor, delito de poca importancia, falta de pruebas, etc.).\n\nEs decir: los constructos \"miedo\" y \"desconfianza\" están presentes como **motivos de NO denuncia**, no como atributo de una denuncia efectuada. Esa es mi principal reserva sobre la etiqueta: tal como está escrita (`denuncia_con_...`) sugiere denuncia realizada bajo miedo/desconfianza, lo cual **no** corresponde a un reactivo que yo pueda afirmar que exista con esa dirección semántica en ENVIPE 2013.\n\n## Advertencia explícita (sonda canario)\n\n**No tengo fuente textual declarable.** No dispongo del cuestionario ENVIPE 2013, ni del descriptor de archivo de datos, ni del corpus tierizado de este proyecto (que además se declara \"no construido en este acto\"). Mi respuesta procede de memoria paramétrica sobre la estructura general del instrumento ENVIPE, no de lectura verificada.\n\nPor tanto:\n- **No cito** número de pregunta, nombre de variable en el microdato, ni tabulado.\n- **No afirmo** la redacción literal de las opciones de respuesta.\n- Si esta celda requiere el nombre exacto de la variable o la posición del reactivo en el cuestionario, mi respuesta debe marcarse como **insuficiente / requiere verificación documental**, no como estimación válida.\n\n## Lo que resolvería la incertidumbre\n\nCuestionario principal ENVIPE 2013 (INEGI), sección de victimización delito por delito, pregunta de causas de no denuncia; y el descriptor de archivo del módulo correspondiente para el identificador de variable.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:39:52.447101+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "447b9cf105956a072f568f1b9b3c1451bc80565d097e1cdfed218a6ade0236d8"
+}

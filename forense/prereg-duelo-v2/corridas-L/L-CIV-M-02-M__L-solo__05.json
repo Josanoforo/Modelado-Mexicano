@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "## Estimación\n\n**Valor puntual (escala binaria, censo de existencia): 1 = SÍ EXISTE** — pero con reserva de forma, no de fondo.\n\n**Confianza subjetiva:** ~0.85 de que exista un reactivo mapeable; ~0.25 de que exista con esa forma exacta (variable binaria autónoma con ese nombre o equivalente directo).\n\n## Razonamiento\n\nEl módulo de victimización de ENVIPE 2013 (levantamiento 2013, año de referencia 2012) incluye, para cada delito declarado, la secuencia: ocurrencia → denuncia ante Ministerio Público (sí/no) → **razones de no denuncia**, con categorías precodificadas que separan causas atribuibles a la autoridad (desconfianza en la autoridad, trámites largos, actitud hostil) de causas atribuibles a otras circunstancias (miedo al agresor, miedo a ser extorsionado, delito de poca importancia, falta de pruebas).\n\nEs decir: \"miedo\" y \"desconfianza\" existen como categorías de respuesta, pero en el contexto de **no denuncia**, no de \"denuncia con\". El nombre del reactivo tal como está enunciado (`denuncia_con_miedo_o_desconfianza`) es semánticamente ambiguo respecto a ese diseño. Si el inventario lo define como \"existe un reactivo que capta miedo o desconfianza en relación con la denuncia\", la respuesta es sí. Si lo define como \"existe una variable binaria única que combine miedo y desconfianza\", la respuesta más probable es no: son categorías separadas dentro de una batería de opción múltiple.\n\n## Fuente (sonda canario)\n\n**No declaro fuente textual.** No tengo acceso a documento adjunto de este proyecto, no he consultado el cuestionario ni el descriptor de archivos (FD) de ENVIPE 2013, y no puedo citar código de variable, número de pregunta ni página. Lo anterior es reconstrucción desde conocimiento general del diseño de ENVIPE, no verificación contra instrumento. Cualquier código tipo `AP5_x` que yo emitiera sería invención.\n\nPara cerrar el censo de existencia con validez, hace falta el cuestionario o el FD de ENVIPE 2013 en mano.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:37:59.905427+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f"
+}

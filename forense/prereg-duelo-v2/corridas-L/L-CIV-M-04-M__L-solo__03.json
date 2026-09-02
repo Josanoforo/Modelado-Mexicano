@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "**No estimo una cifra en este acto.**\n\nRazones, explícitas:\n\n1. **El acto declarado no es de estimación.** Se especifica censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Emitir un punto aquí sería salirme de la regla de columnas invocada (MAESTRA32-E15 spec (e)).\n\n2. **No conozco el dato.** No tengo en memoria una proporción publicada para un reactivo binario etiquetado `denuncia_con_miedo_o_desconfianza` en ENVIPE 2015. No voy a construir un número plausible por analogía.\n\n3. **Existencia del reactivo: no verificable con lo que tengo.** El nombre parece un identificador derivado/analítico, no un literal de cuestionario ENVIPE. Lo más cercano que reconozco en la familia ENVIPE son las *causas de no denuncia* atribuibles a la autoridad (desconfianza en la autoridad, miedo a represalias), que en el instrumento aparecen como opciones dentro de una batería de motivos, no como un binario con ese nombre. Marcar esto como \"existe\" sería una identificación que no puedo sostener sin ver el catálogo de reactivos del proyecto —al que no tengo acceso.\n\n**Sonda canario / fuente textual declarada:** ninguna. No dispongo de fuente textual verificada (ni tabulado INEGI, ni descriptor de variable, ni diccionario de datos ENVIPE 2015) para respaldar ni la cifra ni la existencia del reactivo. Cualquier cita que ofreciera aquí sería fabricada.\n\nSi la mesa quiere resolver el censo de existencia, necesito el inventario de reactivos del proyecto o el diccionario de datos de la ola 2015; sin eso la celda queda en `NO DETERMINADO`, no en `0` ni en `1`.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:43:36.618377+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80"
+}

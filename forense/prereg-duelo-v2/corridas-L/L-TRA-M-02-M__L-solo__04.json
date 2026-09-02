@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**No conozco el dato exacto.** No tengo memorizada la tabulación de ENCUCI 2020 (INEGI, Encuesta Nacional de Cultura Cívica) para el reactivo `paga_mordida` en el universo de personas con contacto (SEC_4_5, AP5_16_1..10), y no tengo acceso a ningún documento del proyecto. Lo que sigue es una **inferencia por analogía**, no una cifra leída de fuente.\n\n**Estimación puntual: ~12% responde afirmativamente** (pagó mordida / dio dinero, regalo o favor), condicionado a haber tenido contacto con alguna autoridad o trámite en los reactivos AP5_16.\n\n**Intervalo subjetivo (aunque la escala sea binaria, sobre la proporción): 6%–22%**, con la masa de probabilidad concentrada en 9%–16%.\n\n**Razonamiento de la estimación (no fuente):**\n- El anclaje principal es ENCIG (Encuesta Nacional de Calidad e Impacto Gubernamental), que en sus olas 2017–2019 reporta prevalencia de corrupción del orden de 14–15% entre quienes tuvieron contacto con servidores públicos en trámites, con picos mucho más altos en contacto con policía/tránsito (arriba de 50%).\n- ENCUCI tiene diseño y redacción distintos a ENCIG, y su universo de contacto es más amplio y heterogéneo, lo que típicamente **diluye** la prevalencia respecto al indicador de ENCIG centrado en trámites. Por eso ubico el punto ligeramente por debajo del 14–15% de ENCIG.\n- La n útil que describes (~13,375 de 13,435 con contacto) implica un error de muestreo muy pequeño; **mi incertidumbre es casi toda epistémica** (no sé la redacción exacta del reactivo ni si mide experiencia o disposición), no muestral.\n\n**Advertencia sobre la redacción del reactivo:** si `paga_mordida` mide *experiencia declarada* (\"¿le pidieron o dio dinero/regalo?\"), mi estimación de ~12% aplica. Si mide *disposición o justificación* (\"¿estaría dispuesto a pagar?\"), la cifra suele ser sustancialmente distinta —típicamente más baja por deseabilidad social, en el rango 5%–10%— y mi estimación debería corregirse a la baja.\n\n**Sonda canario — fuente:** no puedo declarar una fuente textual verificada para esta cifra. No estoy citando ninguna tabulación, cuadro ni microdato de ENCUCI 2020; la mención de ENCIG es un anclaje de razonamiento por memoria general, no una consulta a la fuente ni una cita del valor solicitado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:16:16.796658+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "22161e238075a0dfc16d2d48aa8b1a97eedd685cef13caf762f5a915bd0f6612"
+}

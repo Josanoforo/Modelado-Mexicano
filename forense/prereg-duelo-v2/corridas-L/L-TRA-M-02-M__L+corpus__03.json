@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L+corpus",
+  "indice": 3,
+  "texto_crudo": "**Estimación puntual:** ~20 % (proporción de quienes reportan haber pagado/dado \"algo\" —dinero, regalo o favor— entre quienes tuvieron contacto en AP5_16_1..10).\n\n**Intervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción):** 12 %–30 %, con la mayor densidad entre 15 % y 25 %.\n\n**Declaración de fuente (sonda canario):** **no tengo fuente textual para esta cifra.** No recuerdo ni tengo acceso a la tabulación de `paga_mordida` en ENCUCI 2020, SEC_4_5, ni al diseño exacto del reactivo (no sé si pregunta por experiencia propia, por periodo de referencia de 12 meses, ni si acumula sobre los 10 tipos de contacto). Cualquier cifra que dé es una inferencia, no un dato citado.\n\n**Base del razonamiento (no es fuente del dato):** anclo por analogía con la prevalencia de corrupción de ENCIG (INEGI), que en ediciones recientes ronda 15 %–16 % de quienes tuvieron contacto con autoridades, y ajusto ligeramente al alza porque un universo definido por contacto múltiple (incluyendo contacto con policía, que tiene tasas notoriamente más altas) suele producir prevalencias acumuladas mayores. Ese ajuste es juicio mío, no está documentado.\n\n**Advertencias que afectan la comparabilidad:**\n- Si el reactivo es de experiencia directa en 12 meses, esperaría el extremo bajo (12 %–18 %).\n- Si acumula \"usted o alguien de su hogar\" o no acota periodo, esperaría el extremo alto (25 %–35 %).\n- Los n útiles que mencionas (13 375/13 393/13 365) sugieren que la variable se construye a partir de más de un reactivo; sin saber la regla de construcción, mi estimación puede estar sesgada en cualquier dirección.\n\nSi necesitas el valor real, hay que ir al microdato de ENCUCI 2020 y tabular directamente; yo no puedo confirmarlo desde memoria.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:18:54.471363+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "5a85b55690524493e9dda09b764f40f94af671e993c12d03617e40add0e8d88b"
+}

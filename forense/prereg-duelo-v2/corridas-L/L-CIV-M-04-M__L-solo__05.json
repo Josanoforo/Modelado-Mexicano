@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "**No estimo cifra en este acto.**\n\nRazón: el universo declarado marca esto como censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Emitir un punto porcentual aquí sería salirme de la regla de columnas.\n\n**Sobre la existencia del reactivo (lo único que sí puedo declarar):**\n\nNo tengo confirmación de que ENVIPE 2015 contenga un reactivo con esa forma exacta —una binaria \"denunció con miedo o desconfianza\"—. Lo que sí recuerdo del instrumento ENVIPE es una estructura distinta: la batería de **motivos de no denuncia**, con opciones separadas y de opción múltiple, entre ellas \"miedo al agresor\", \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\", clasificadas después en causas atribuibles y no atribuibles a la autoridad. Es decir: miedo y desconfianza aparecen como **razones para NO denunciar**, no como atributo de la denuncia efectuada.\n\nPor eso hay dos posibilidades que no puedo desambiguar sin el cuestionario:\n1. El reactivo es una **construcción derivada** (recodificación de la batería de motivos), no un ítem literal del cuestionario.\n2. Es un ítem que no ubico en la ola 2015.\n\n**Fuente:** ninguna textual verificada. Lo anterior es recuerdo del diseño general de ENVIPE, no lectura del cuestionario ni del descriptor de archivo de la ola 2015. No tengo el documento del proyecto ni he consultado el microdato. Si la mesa necesita la existencia confirmada, hay que abrirla contra el cuestionario oficial ENVIPE 2015 (módulo de victimización, sección de denuncia) o el diccionario de datos del INEGI.\n\nNo inventaré ni el porcentaje ni la clave de variable.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:44:15.829340+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80"
+}

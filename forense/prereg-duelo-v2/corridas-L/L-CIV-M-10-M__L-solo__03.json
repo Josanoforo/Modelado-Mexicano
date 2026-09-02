@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "**No emito estimación puntual en este acto**, conforme a la instrucción del universo (censo de existencia de reactivo, no re-derivación contra microdato).\n\n**Estatus de existencia declarado: DUDOSO / NO CONFIRMADO.**\n\nRazones:\n\n1. **No tengo el documento del proyecto** ni el catálogo de reactivos de esta ola, así que no puedo verificar que la etiqueta `denuncia_con_miedo_o_desconfianza` corresponda a un reactivo inventariado de ENVIPE 2021.\n\n2. **La etiqueta es semánticamente anómala respecto a lo que recuerdo del instrumento.** En ENVIPE, \"miedo al agresor\" y \"desconfianza en la autoridad\" aparecen como *causas de NO denuncia* (módulo de delitos, batería de razones por las que no se denunció ante el MP). Una variable que combine \"denuncia\" **con** miedo/desconfianza invierte esa lógica. Puede ser (a) una recodificación construida por el proyecto, (b) un nombre abreviado de \"no denuncia por miedo o desconfianza\", o (c) un reactivo inexistente. No puedo discriminar entre las tres sin el inventario.\n\n3. **Escala binaria**: plausible si es un derivado dicotomizado, pero en el cuestionario original las causas de no denuncia son de opción múltiple (varias respuestas), no un binario único.\n\n**Fuente**: ninguna verificable en este acto. Mi conocimiento de la estructura de ENVIPE es de memoria general del instrumento INEGI, **no** de haber leído el cuestionario 2021 ni el descriptor de archivo en esta sesión. No cito documento porque no lo consulté.\n\n**Recomendación**: resolver el estatus contra el inventario de reactivos de la mesa antes de asignar cualquier valor; si el reactivo real es \"no denunció por miedo al agresor / por desconfianza en la autoridad\", el nombre de la variable debería corregirse porque induce lectura invertida.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:49:05.945524+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a"
+}

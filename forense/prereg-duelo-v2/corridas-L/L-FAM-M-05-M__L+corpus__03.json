@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L+corpus",
+  "indice": 3,
+  "texto_crudo": "## Estimación\n\n**Punto: ≈ 4.5 % de los hogares con `remesas > 0`** (es decir, `recibe_remesas = 1`).\n\n**Intervalo subjetivo (aunque la escala es binaria, lo doy sobre la proporción): 3.5 % – 6.0 %**, con la masa de probabilidad concentrada entre 4 % y 5.5 %.\n\n### Razonamiento\n- ENIGH ha mostrado históricamente que la recepción de remesas es un fenómeno minoritario a nivel hogar: del orden de 5–7 % de los hogares a inicios de los 2000, con descenso tras 2008–2010 hacia el rango de 4–5 %.\n- Para 2016, con ~33–34 millones de hogares, un 4.5 % implica ~1.5 millones de hogares receptores, cifra del orden de magnitud que suelen reportar los análisis de ENIGH sobre remesas.\n- La estimación es sobre el universo completo de `concentradohogar` sin filtro. Si se calcula **sin ponderador** (proporción cruda de renglones), es plausible un valor ligeramente distinto —posiblemente algo mayor, por la sobremuestra de estratos rurales/pobres en varias olas—, quizá 4.5 %–6 %. Si se usa `factor`, esperaría el extremo bajo-medio del intervalo (~4.3 %–4.8 %).\n\n### Sobre la fuente (sonda canario)\n**No tengo una fuente textual verificable que citar para esta cifra.** No estoy recuperando un cuadro, tabulado o publicación específica del INEGI/CONAPO/BBVA con el porcentaje exacto de hogares receptores en ENIGH 2016; lo que aporto es una estimación basada en mi conocimiento general y aproximado del orden de magnitud del indicador en ENIGH. No debe tratarse como dato confirmado ni atribuirse a ninguna publicación concreta. La verificación requiere calcular directamente sobre `concentradohogar` de ENIGH 2016 Nueva Serie.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:03:21.226544+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "bc583bc6ca433005613ab1ec455559a13546ba3f48721fa812909c05a1f0770d"
+}

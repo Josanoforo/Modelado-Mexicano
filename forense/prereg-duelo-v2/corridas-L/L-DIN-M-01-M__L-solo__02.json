@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "## Estimación\n\n**Punto estimado: ~20 % (\"sí tiene ahorros\")** — con un rango subjetivo amplio de **12 %–32 %**, sobre la unidad \"adulto/hogar entrevistado\" en la ola 1 (2002) de la ENNViH/MxFLS.\n\n## Declaración explícita de incertidumbre (respuesta a la sonda)\n\n**No conozco el dato.** No tengo en memoria la distribución marginal publicada de un reactivo `tiene_ahorros` en la ENNViH 2002, y **no puedo citar una fuente textual** para esta cifra: no he leído el cuestionario, el codebook ni un tabulado de esa ola en este acto. Lo anterior es un **prior**, no un valor recuperado.\n\nAdvertencia adicional: no tengo confirmado que exista un reactivo con ese nombre/forma exacta en la ola 1. El instrumento MxFLS capta ahorro dentro de módulos de activos/finanzas del hogar, y la formulación puede ser (a) tenencia de cuenta de ahorro formal, (b) tenencia de ahorros en cualquier forma incluyendo tandas y efectivo, o (c) flujo de ahorro en el periodo de referencia. Esas tres definiciones dan marginales muy distintos:\n\n- Cuenta formal en institución financiera (2002, pre-bancarización masiva): **~15 %–20 %**\n- Ahorro en cualquier forma, incluyendo informal (tandas, cajas, guardado en casa): **~30 %–40 %**\n- Ahorro como flujo positivo declarado en el periodo: muy sensible al fraseo, **~20 %–35 %**\n\nMi punto de 20 % supone la lectura (a)/intermedia. Si la mesa fija la definición (b), mi estimación se movería a ~33 %.\n\n## Fundamento del prior (no es fuente del dato)\n\nRazono por contexto histórico general, no por lectura del microdato: México en 2002 estaba antes de la expansión de corresponsales bancarios y de las cuentas de nómina/programas sociales bancarizados; las mediciones posteriores de inclusión financiera (segunda mitad de los 2000s y 2010s) muestran niveles de tenencia de cuenta que en su momento se consideraban un aumento respecto de la década previa. Eso ancla 2002 por debajo de esos valores. Es inferencia por época, no recuperación de un tabulado.\n\n## Nota sobre el universo declarado\n\nRegistro que el universo del acto se declara como censo de existencia de inventario de reactivos, no re-derivación contra microdato. Bajo esa regla, lo entregable con confianza es la **incertidumbre sobre la existencia y forma del reactivo**, no la marginal. La cifra de 20 % debe tratarse como prior descartable en cuanto haya codebook a la vista.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:55:16.020739+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41"
+}

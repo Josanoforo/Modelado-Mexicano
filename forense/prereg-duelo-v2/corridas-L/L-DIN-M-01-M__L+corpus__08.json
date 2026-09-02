@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L+corpus",
+  "indice": 8,
+  "texto_crudo": "## Respuesta\n\n**No conozco el dato.** No puedo dar una cifra recordada y verificable para `tiene_ahorros` en ENNViH/MxFLS ola 1 (2002).\n\n**Sonda de fuente (M1): no tengo fuente textual declarable.** No puedo citar página, número de libro/sección, ni nombre de variable original del cuestionario MxFLS 2002 que respalde este reactivo. Cualquier referencia que construyera ahora (p. ej. \"Libro II, sección de activos/ahorro\") sería reconstrucción plausible, no cita.\n\n**Sobre la existencia del reactivo (que es lo que aquí importa, dado el universo declarado):** tengo confianza moderada-baja en que MxFLS 2002 capta ahorro/activos financieros a nivel hogar dentro del módulo de activos y economía del hogar, pero **no puedo confirmar** que exista un ítem binario limpio equivalente a \"¿tiene ahorros? sí/no\", ni si la captación es por tenencia de instrumento (cuenta, tanda, ahorro informal) o por monto. Esa distinción es material y no la puedo resolver de memoria.\n\n**Estimación puntual, si se exige una:** ~20% de hogares con ahorro declarado, con incertidumbre muy amplia (plausible 10–35%). Marco explícitamente esta cifra como **prior no anclado en documentación**, derivada de expectativas generales sobre bancarización y ahorro formal en México a inicios de los 2000, no de una lectura del microdato ni del codebook. No debe usarse como valor de referencia.\n\n**Recomendación operativa:** resolver este renglón contra el diccionario de variables de MxFLS 2002 (inventario de reactivos), no contra mi recuerdo. Si el objetivo es censo de existencia, mi salida correcta aquí es *no acreditado*.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:00:07.308803+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "94a59d32533ae684c69f9cfc129d0e885ec71e7d1b844714d0938604f10b1868"
+}

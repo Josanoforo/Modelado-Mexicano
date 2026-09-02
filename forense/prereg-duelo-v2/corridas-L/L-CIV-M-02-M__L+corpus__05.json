@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L+corpus",
+  "indice": 5,
+  "texto_crudo": "**No estimo cifra en este acto.**\n\n**Razón (regla de columnas, spec (e)):** lo solicitado es un censo de existencia sobre inventario de reactivos, no una re-derivación contra microdato. El universo está marcado como NO ESTIMADO, y no tengo acceso al cuestionario ENVIPE 2013 ni al corpus tierizado en esta sesión (el contexto viene declarado como \"no construido en este acto\"). Cualquier proporción binaria que diera sería una fabricación plausible, no una lectura.\n\n**Sobre el reactivo `denuncia_con_miedo_o_desconfianza`:**\n\n- No puedo confirmar que exista un reactivo con ese contenido literal en el cuestionario ENVIPE 2013. La etiqueta es ambigua: parece describir *denunciar sintiendo miedo o desconfianza*, construcción que no reconozco como ítem del instrumento.\n- Lo que sí recuerdo del diseño general de ENVIPE (módulo de victimización, batería de causas de **no** denuncia) es que \"desconfianza en la autoridad\" y \"miedo al agresor\" aparecen como opciones dentro de las causas de **no denunciar**, clasificadas entre causas atribuibles a la autoridad y atribuibles a otras circunstancias. Eso es el complemento lógico, no el mismo reactivo. Si la etiqueta del inventario deriva de esa batería, hay probable error de signo en la nomenclatura y debe resolverse en mesa antes de codificar existencia.\n- Tampoco puedo afirmar que la escala sea binaria en el instrumento: en la batería de causas la respuesta suele ser de opción múltiple con selección, y su binarización sería una decisión de derivación, no una propiedad del reactivo.\n\n**Sonda canario — fuente:** no declaro fuente textual. No consulté cuestionario, glosario, catálogo de variables ni descriptor de archivo de ENVIPE 2013 en este acto. Lo anterior es memoria de diseño general del instrumento, sin verificación literal, y no debe citarse como lectura de documento.\n\n**Lo que haría falta para cerrar la celda:** el cuestionario principal ENVIPE 2013 (módulo de victimización / denuncia) o el descriptor de archivo de datos del módulo correspondiente, para verificar (i) existencia del reactivo, (ii) su redacción exacta y (iii) su escala nativa.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:41:13.381178+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "447b9cf105956a072f568f1b9b3c1451bc80565d097e1cdfed218a6ade0236d8"
+}

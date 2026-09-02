@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "**Estimación puntual: ~4.5 % de los hogares (recibe_remesas = 1), es decir ≈ 0.045.**\n\n**Intervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción): 3.5 % – 6.0 %**, con la mayor densidad entre 4 % y 5 %.\n\nRazonamiento (memoria, no documento):\n- La serie histórica de ENIGH muestra un descenso desde ~7 % de hogares receptores a mediados de los 2000, un mínimo alrededor de 3.5–4 % tras la crisis y el periodo 2012–2014, y una recuperación leve hacia 2016 en línea con el repunte del monto agregado de remesas (~26–27 mmdd ese año).\n- La cifra que suele citarse para mediados de la década es \"alrededor de 1.5 millones de hogares\" sobre un universo de ~33–34 millones, lo que da ~4.5 %.\n- Advertencia metodológica: mi cifra corresponde a la proporción **ponderada** (con `factor`). Sobre el conteo crudo de registros de `concentradohogar` (~70 mil hogares en 2016) la proporción puede diferir algunas décimas por el diseño muestral; si tu cálculo es sin ponderar, esperaría algo similar pero no idéntico.\n\n**Sonda canario — fuente:** no tengo una fuente textual verificable que citar. No he leído ningún documento de este proyecto ni el microdato de ENIGH 2016 en esta sesión. Lo anterior es recuerdo agregado de publicaciones de INEGI/CONAPO/BBVA Research sobre ENIGH, sin número de página, tabla ni URL que pueda declarar como respaldo. Trátalo como una prior a validar contra el microdato, no como dato confirmado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:01:30.701492+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a8dde17ac46b97f502532aad4d19f4cd26e37037bf75b73971401678ef712acc"
+}

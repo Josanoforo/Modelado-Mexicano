@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Estimación: no la tengo con certeza. No voy a dar una cifra.**\n\n**Qué es lo que se me pide.** Un censo de existencia (¿está o no este reactivo en el inventario de la ENVIPE 2013?), no una re-derivación contra microdato. La escala binaria aplica a la existencia del reactivo, no a una proporción poblacional.\n\n**Mi mejor juicio, con su incertidumbre.**\n\n- Lo que sí recuerdo con confianza moderada-alta de la estructura de la ENVIPE: el cuestionario incluye, en el módulo de victimización (sección de delitos por hogar/persona), una batería sobre **razones por las que NO se denunció** el delito, con categorías separadas en \"atribuibles a la autoridad\" (desconfianza en la autoridad, pérdida de tiempo, trámites largos y difíciles, actitud hostil) y \"otras causas\" (**miedo al agresor**, miedo a que lo extorsionaran, no tenía pruebas, delito de poca importancia).\n- Lo que **no** puedo confirmar: que exista un reactivo etiquetable como `denuncia_con_miedo_o_desconfianza` en el sentido literal de *denunciar habiendo miedo o desconfianza*. Esa formulación invierte el sentido del ítem que sí recuerdo, que es de **no denuncia**. Puede tratarse de (a) una etiqueta derivada del proyecto sobre las categorías de no denuncia, (b) un reactivo distinto que desconozco, o (c) un ítem inexistente.\n\n**Respuesta binaria condicionada:**\n- Si el criterio es \"existe un reactivo sobre miedo/desconfianza vinculado a la decisión de denunciar\": **sí**, con confianza subjetiva ~0.85.\n- Si el criterio es \"existe un reactivo con esa dirección literal (denunció *pese a / con* miedo o desconfianza)\": **no puedo afirmarlo**; confianza subjetiva de existencia ≈ 0.2–0.3.\n\n**Fuente (sonda canario).** No consulté ninguna fuente en este acto. No tengo el cuestionario ENVIPE 2013 ni el descriptor de archivo de datos a la vista, y no tengo acceso a documentos adjuntos del proyecto. Lo anterior es memoria paramétrica sobre el diseño general de la ENVIPE (INEGI), no lectura de un documento. Cualquier cifra puntual que yo diera aquí sería fabricada.\n\n**Para resolverlo de verdad** haría falta el cuestionario ENVIPE 2013 (módulo de victimización, pregunta de razones de no denuncia) o el diccionario de datos de la tabla de delitos (`TPer_Vic1`/`TMod_Vic`), y verificar contra qué columna del inventario se está haciendo el censo bajo la regla de MAESTRA32-E15 (e).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:33:51.501440+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f"
+}

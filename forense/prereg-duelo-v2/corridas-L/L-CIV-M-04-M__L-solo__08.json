@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "**No estimo una cifra en este acto.**\n\nRazón: el universo declarado marca explícitamente \"NO ESTIMADO EN ESTE ACTO\" — se trata de un censo de existencia sobre el inventario de reactivos, no de una re-derivación contra microdato. Emitir un punto porcentual aquí sería fabricar un valor fuera del acto solicitado.\n\n**Sobre el reactivo, declaración honesta:**\n\nNo conozco un reactivo de ENVIPE 2015 que se llame o corresponda unívocamente a `denuncia_con_miedo_o_desconfianza`. Lo que sí existe en el instrumento (módulo de victimización, batería de razones de no denuncia, TMOD) son categorías de **motivos para NO denunciar**, entre las que figuran \"miedo al agresor\" y \"desconfianza en la autoridad\" —es decir, la dirección semántica es la inversa de lo que sugiere la etiqueta. Una etiqueta que combine \"denuncia\" *con* \"miedo o desconfianza\" es, en mi lectura, una construcción derivada o un recodificado, no un reactivo textual del cuestionario.\n\n**Sonda canario — fuente:** no tengo fuente textual verificada que citar. No he leído el cuestionario ni el descriptor de archivo de ENVIPE 2015 en esta sesión, y no dispongo de documento adjunto del proyecto. Lo anterior es recuerdo general del diseño del instrumento, no cita. Si el acto requiere confirmar existencia del reactivo, eso debe resolverse contra el cuestionario/FD oficial del INEGI, no contra mi memoria.\n\nSi me confirmas que quieres pasar a estimación (fuera del censo de existencia) y con qué definición operativa exacta, lo hago entonces con intervalo subjetivo y con la incertidumbre marcada.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:45:07.270202+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80"
+}

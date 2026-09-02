@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**No doy cifra puntual para este reactivo.**\n\n**Motivo (regla de columnas, spec (e)):** el universo declarado es un censo de existencia sobre inventario de reactivos, no una re-derivación contra microdato. Por tanto lo que corresponde es un juicio de *existencia/identificación del ítem*, no una proporción estimada.\n\n**Sobre la existencia del reactivo `denuncia_con_miedo_o_desconfianza`:**\n\nNo puedo confirmar que ese nombre de variable exista como tal en el instrumento ni en la base de ENVIPE 2013. No tengo acceso al cuestionario ni al descriptor de archivos de esa ola en este acto, y no dispongo de una fuente textual verificada que pueda citar. **No lo sé con certeza.**\n\nLo que sí puedo señalar, con la advertencia de que es recuerdo de estructura general y no lectura de fuente:\n\n- ENVIPE incluye, en el módulo de victimización (batería por delito), una pregunta sobre **causas por las que no se denunció**, con opciones que separan típicamente *\"miedo al agresor\"*, *\"miedo a que lo extorsionaran\"*, *\"desconfianza en la autoridad\"*, *\"por actitud hostil de la autoridad\"*, agrupadas en \"causas atribuibles a la autoridad\" vs. \"otras causas\".\n- Es decir, \"miedo\" y \"desconfianza\" aparecen como **opciones distintas dentro de un ítem de motivos de NO denuncia**, no como una variable binaria única llamada así.\n- Un reactivo binario `denuncia_con_miedo_o_desconfianza` tendría, por su nombre, aspecto de **variable derivada/recodificada por el equipo de investigación**, no de campo nativo del microdato INEGI. Y además su etiqueta es semánticamente ambigua: no queda claro si marca \"denunció pese al miedo/desconfianza\" o \"no denunció por miedo/desconfianza\".\n\n**Fuente declarada (sonda canario):** ninguna. No tengo fuente textual consultada para esta respuesta; lo anterior es memoria no verificada sobre el diseño general de ENVIPE, no una cita.\n\n**Recomendación:** resolver la existencia contra el descriptor de archivos / cuestionario ENVIPE 2013 (módulo de victimización, sección de denuncia) antes de asignar cualquier valor, y aclarar la dirección semántica de la etiqueta con la mesa.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:37:35.554507+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f"
+}

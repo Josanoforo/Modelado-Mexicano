@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L+corpus",
+  "indice": 2,
+  "texto_crudo": "## Respuesta\n\n**Estimación puntual (binaria): 0 — NO existe como reactivo con esa formulación.**\nConfianza subjetiva: moderada (~0.75 de que el veredicto correcto sea \"0\" tal como está redactada la etiqueta).\n\n### Razonamiento del censo de existencia\n\nLa etiqueta `denuncia_con_miedo_o_desconfianza` describe una *denuncia efectuada bajo condición de miedo o desconfianza*. Hasta donde alcanza mi conocimiento del instrumento ENVIPE, el contenido de \"miedo al agresor\" y \"desconfianza en la autoridad\" aparece del lado de las **causas de NO denuncia** (módulo de victimización, batería de motivos por los que no se denunció el delito), no como un atributo de la denuncia sí realizada. Es decir:\n\n- Contenido temático presente en ENVIPE: **sí** (miedo al agresor / desconfianza en la autoridad como motivos de no denuncia).\n- Reactivo nativo con la dirección semántica de la etiqueta dada (\"denuncia CON miedo o desconfianza\"): **no me consta**; lo más probable es que sea una **variable derivada/recodificada** por el equipo de investigación, no un ítem del cuestionario.\n\n### Declaración de fuente (sonda canario)\n\n**No tengo fuente textual verificada que citar.** No he consultado en este acto el cuestionario ENVIPE 2021, el descriptor de archivo de datos (FD) ni el catálogo de variables del INEGI. Mi respuesta proviene de conocimiento previo no verificado sobre la estructura general de ENVIPE, con riesgo de error en la nomenclatura y numeración exacta de reactivos (p. ej., no puedo afirmar el código `AP5_x` correspondiente sin inventarlo).\n\n### Recomendación de resolución\n\nEste caso debe resolverse por inspección directa del **cuestionario principal ENVIPE 2021 (Módulo de victimización, sección de denuncia y motivos de no denuncia)** y del **descriptor de archivo del microdato**, no por estimación. Si el inventario admite una tercera categoría, mi veredicto preferido sería **\"presente sólo como derivada / contenido adyacente\"** en lugar de un 0 limpio.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:51:52.331013+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "b68f783997232c2c96f4c97d4a225d9a0930d87806975701963b44895854df25"
+}

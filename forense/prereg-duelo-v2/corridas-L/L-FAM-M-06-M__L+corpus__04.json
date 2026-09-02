@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L+corpus",
+  "indice": 4,
+  "texto_crudo": "## Estimación\n\n**recibe_remesas = 1 (hogares con `remesas` > 0), ENIGH 2018 Nueva Serie**\n\n- **Estimación puntual: ≈ 4.6 % de los hogares** (ponderado por `factor`).\n- **Intervalo subjetivo (mi incertidumbre, no error muestral): 3.8 % – 5.8 %.**\n\n## Base de la estimación y advertencia de fuente\n\nNo estoy citando una tabulación que haya leído en este acto. Esta cifra proviene de **memoria paramétrica**, no de una fuente textual verificada ni de ningún documento del proyecto (no tengo acceso a los adjuntos). Concretamente:\n\n- Recuerdo que en las ENIGH de la década de 2010 la proporción de hogares con ingreso por remesas se ubica de manera estable en el rango **4 %–6 %**, con una tendencia ligeramente creciente hacia 2018–2022 conforme crecieron los flujos.\n- Las cifras que suelen circular (Anuario de Migración y Remesas BBVA/CONAPO, análisis de CONEVAL sobre ENIGH) apuntan a ~1.6–1.8 millones de hogares receptores sobre ~34.7 millones de hogares en 2018, lo que da ≈ 4.6–5.2 %.\n\n**No tengo certeza de la cifra exacta que arroja `concentradohogar` 2018 al dicotomizar `remesas > 0`.** Dos advertencias que afectan directamente la comparación con lo que obtengas al calcularlo:\n\n1. **Ponderado vs. no ponderado.** Mi estimación es a nivel poblacional (con `factor`). El conteo crudo de renglones de `concentradohogar` puede diferir apreciablemente por el diseño muestral (sobremuestreo rural/estados de alta migración, donde la incidencia es mayor). Un valor no ponderado podría salir algo más alto, plausiblemente 5 %–7 %.\n2. **Definición de `remesas` en concentradohogar.** La variable agrega remesas del exterior en el ingreso corriente monetario del hogar. Si el rubro que estás usando incluyera transferencias de otros hogares dentro del país, la proporción sería mucho mayor; mi estimación asume estrictamente remesas del extranjero.\n\nSi tu cálculo cae fuera de 3.8 %–5.8 %, mi apuesta es que la discrepancia viene de la ponderación o de la definición del rubro, no de que 4.6 % esté groseramente mal como magnitud poblacional.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:08:32.749234+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "de966645e05196a68dbf12c90cc05cfbc63059a8b9947aa8f20599dc889460b3"
+}

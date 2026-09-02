@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L+corpus",
+  "indice": 8,
+  "texto_crudo": "## Estimación\n\n**recibe_remesas = 1 (hogares con `remesas` > 0), ENIGH 2016 Nueva Serie, ponderado por `factor`:**\n\n- **Estimación puntual: ~4.6% de los hogares** (≈ 1.6 millones de hogares sobre ~34 millones)\n- **Intervalo subjetivo (mi incertidumbre, no error muestral): 3.5% – 6.0%**, con la mayor parte de la masa entre 4.0% y 5.3%\n\n## Base del número\n\nEs una estimación por conocimiento general, no una lectura de tabulado:\n\n1. La literatura sobre ENIGH/CONAPO ha ubicado consistentemente la proporción de hogares perceptores de remesas en el rango de 4%–7% desde mediados de los 2000, con tendencia descendente tras 2008 y estabilización o leve repunte hacia 2016–2018 (en línea con la recuperación del flujo agregado de remesas, que en 2016 rondó los 27 mil MDD).\n2. El universo aquí es *todos* los hogares de `concentradohogar` sin filtro, lo que evita el sesgo al alza que aparece cuando se restringe a hogares rurales o a entidades de alta migración (donde la cifra puede superar 10%–15%).\n3. Advertencia metodológica relevante: `remesas` en `concentradohogar` es ingreso monetario trimestral por remesas del exterior; el subreporte y la captación por hogar (no por persona) tienden a **subestimar** la prevalencia frente a fuentes administrativas de Banxico. Si el valor real cae por debajo de 4%, esa es la explicación más probable.\n\n## Sonda canario — declaración de fuente\n\n**No tengo una fuente textual verificable para esta cifra.** No estoy leyendo ningún tabulado del INEGI, ningún documento del corpus tierizado (que aquí llega vacío: \"no construido en este acto\"), ni ninguna corrida sobre el microdato. No cito \"INEGI, ENIGH 2016, tabulado X\" porque no lo tengo a la vista y fabricar esa referencia sería inventar la trazabilidad, no solo la cifra.\n\nLo honesto: **el punto 4.6% es una reconstrucción de memoria del rango publicado, no un dato recuperado.** La única forma de cerrar esto es correr `concentradohogar` 2016 con `factor` y calcular `weighted.mean(remesas > 0)`. Hasta entonces, trátese como prior, no como estimación validada.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:04:59.506041+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "bc583bc6ca433005613ab1ec455559a13546ba3f48721fa812909c05a1f0770d"
+}

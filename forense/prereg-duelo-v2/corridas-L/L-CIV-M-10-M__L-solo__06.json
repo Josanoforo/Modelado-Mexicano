@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "## Respuesta\n\n**No doy cifra de prevalencia.** El universo declarado dice explícitamente \"NO ESTIMADO EN ESTE ACTO\": lo que corresponde es un juicio binario de **existencia del reactivo** en el inventario de ENVIPE 2021, no una estimación poblacional. Producir un porcentaje aquí sería salirme de la regla de columnas.\n\n**Estimación puntual (existencia): 1 (existe), con reserva de forma.**\n\nFundamento y matices:\n\n- ENVIPE 2021 (módulo de victimización, cuestionario principal / sección de denuncia del delito) sí contiene una batería de **motivos de no denuncia**, clasificados por INEGI en \"causas atribuibles a la autoridad\" y \"otras causas\". Dentro de esa batería figuran de forma reconocible **\"desconfianza en la autoridad\"** (lado autoridad) y **\"miedo al agresor\"** (otras causas).\n- Por tanto, un campo derivado tipo `denuncia_con_miedo_o_desconfianza` es **construible** a partir del microdato, pero **no como reactivo literal binario**: no recuerdo un ítem único con esa redacción ni con esa escala. Sería una recodificación (unión de dos opciones de una pregunta de motivos, y además condicionada al submuestreo de delitos *no* denunciados).\n- Ambigüedad semántica no resuelta: el nombre \"denuncia_con_miedo_o_desconfianza\" puede leerse como (a) *denunció pese al miedo/desconfianza* o (b) *no denunció por miedo/desconfianza*. La batería de ENVIPE respalda (b); para (a) **no me consta** que exista reactivo.\n\n**Fuente (sonda canario):** no tengo fuente textual verificable en este acto. Lo anterior es **recuerdo no verificado** de la estructura del cuestionario y de los comunicados de INEGI sobre ENVIPE 2021; no he leído el cuestionario ni el diccionario de datos en esta sesión, y no hay documento adjunto del proyecto al que pueda apelar. No declaro cita textual porque no la tengo.\n\n**Recomendación:** verificar contra el descriptor de archivos / diccionario de la ENVIPE 2021 (tabla de módulo víctima, pregunta de motivos de no denuncia) antes de fijar el valor de existencia como definitivo.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:50:18.526397+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a"
+}

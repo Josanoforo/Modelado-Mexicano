@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L+corpus",
+  "indice": 7,
+  "texto_crudo": "## Estimación\n\n**Punto: ~4.5 % de los hogares** con `recibe_remesas = 1` (remesas > 0) en ENIGH 2016 Nueva Serie.\n\n**Intervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción): 3.5 % – 6.0 %**, con la masa de mi creencia entre 4 % y 5 %.\n\n## Base del número (y sus límites)\n\n- Es una **estimación de memoria, no una lectura de fuente**. No tengo acceso al microdato ni a un documento del proyecto en este acto.\n- **Sonda canario — declaración de fuente:** *no puedo citar una fuente textual verificada*. Lo que recuerdo es el orden de magnitud recurrente en la literatura sobre ENIGH/CONAPO/BBVA-Bancomer: la proporción de hogares receptores de remesas en México ronda el 4–5 % en la década de 2010, habiendo caído desde ~6–7 % a mediados de los 2000. No afirmo que exista un renglón publicado que diga \"4.5 % en 2016\"; sería inventar una cita.\n\n## Advertencias que afectan la comparación con tu cifra observada\n\n1. **Ponderado vs. no ponderado.** Mi ~4.5 % apunta a la estimación *expandida* con `factor`. La proporción muestral cruda puede diferir (típicamente algo más alta, por el sobremuestreo de estratos rurales y de entidades del occidente-bajío, donde la recepción es mayor).\n2. **`remesas` en concentradohogar es un agregado trimestral monetario**, así que `>0` capta cualquier hogar con flujo positivo en el periodo de referencia, no \"hogares que dependen de remesas\". Esto empuja la cifra ligeramente hacia arriba respecto de definiciones más estrictas.\n3. Si tu cálculo cae fuera de 3–7 %, sospecharía primero de un problema de construcción (unidad `folioviv+foliohog` duplicada, o `remesas` confundida con otra partida de transferencias) antes que de mi estimación.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:04:38.150161+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "bc583bc6ca433005613ab1ec455559a13546ba3f48721fa812909c05a1f0770d"
+}

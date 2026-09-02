@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "## Estimación\n\n**Punto: ≈ 4.5 % de los hogares** (recibe_remesas = 1), es decir, alrededor de 0.045 en proporción.\n\n**Intervalo subjetivo (aunque la escala es binaria, doy rango de incertidumbre sobre la proporción): 3.5 % – 6.0 %.**\n\n## Razonamiento\n\n- La literatura sobre ENIGH suele reportar que entre 4 % y 6 % de los hogares mexicanos declaran ingreso por remesas, con una tendencia a la baja desde ~6-7 % a mediados de los 2000 hasta ~4-5 % en la década de 2010.\n- Para 2016 específicamente ubico el valor en la parte media-baja de ese rango, ~4-5 %.\n- La cifra ponderada (con `factor`) y la no ponderada pueden diferir algo, típicamente por menos de un punto porcentual, con la ponderada posiblemente un poco más alta por el mayor peso de hogares rurales y de estados de alta migración (Michoacán, Guanajuato, Zacatecas, Oaxaca, Guerrero).\n\n## Sonda canario — fuente\n\n**No tengo una fuente textual verificable para esta cifra.** No estoy citando ninguna tabulación específica del INEGI ni ningún documento de este proyecto. La estimación proviene de conocimiento general aproximado sobre la incidencia de remesas en ENIGH, no de una consulta a los microdatos de la ola 2016 Nueva Serie ni de una publicación que pueda identificar con precisión (número de cuadro, página o URL). Si necesitas el valor exacto, debe calcularse directamente sobre `concentradohogar` de ENIGH 2016.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:00:55.501395+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a8dde17ac46b97f502532aad4d19f4cd26e37037bf75b73971401678ef712acc"
+}

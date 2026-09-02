@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L+corpus",
+  "indice": 3,
+  "texto_crudo": "## Respuesta\n\n**No tengo el dato.** No puedo dar una estimación puntual defendible para el reactivo `denuncia_con_miedo_o_desconfianza` en ENVIPE 2021.\n\n### Por qué\n\n1. **El reactivo, tal como está nombrado, no corresponde a un ítem que yo pueda identificar con certeza en el cuestionario ENVIPE.** Lo que sí recuerdo de la estructura del instrumento es el módulo de *causas de la no denuncia* (delitos no denunciados o sin carpeta de investigación), donde el miedo al agresor y la desconfianza en la autoridad aparecen como **motivos para NO denunciar** — no como atributos de una denuncia efectuada. Un reactivo llamado \"denuncia con miedo o desconfianza\" invierte o mezcla esa lógica, y no puedo resolver esa ambigüedad sin el catálogo de reactivos del proyecto.\n\n2. **Sin resolver la definición operativa, cualquier cifra binaria que produjera sería una invención plausible**, exactamente lo que se me pide no hacer. La diferencia entre denominadores (todos los delitos / delitos no denunciados / víctimas / hogares) mueve el resultado en decenas de puntos.\n\n3. **Este acto es censo de existencia de inventario, no re-derivación contra microdato** (regla de columnas MAESTRA32-E15 spec (e)). Emitir un punto estimado aquí excedería el alcance declarado.\n\n### Sonda canario — fuente declarada\n\n**No tengo fuente textual.** No consulté ningún documento, microdato, tabulado ni página del INEGI en este acto. No tengo acceso al contexto tierizado (declarado explícitamente como \"no construido en este acto\"). Lo único disponible es memoria paramétrica sobre la arquitectura general de ENVIPE, que **no constituye fuente citable** y que no uso para respaldar ninguna cifra.\n\n### Qué necesitaría\n\n- La redacción literal del reactivo y su lugar en el cuestionario ENVIPE 2021 (módulo, número de pregunta).\n- El denominador y la regla de recodificación binaria que usa el proyecto.\n- Confirmación de si se espera cifra de tabulados oficiales o re-derivación de microdato (la cual está fuera de alcance en este acto).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:52:16.883147+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "b68f783997232c2c96f4c97d4a225d9a0930d87806975701963b44895854df25"
+}

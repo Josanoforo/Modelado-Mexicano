@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L+corpus",
+  "indice": 8,
+  "texto_crudo": "**No tengo el dato. No emito cifra puntual.**\n\n**Sobre el acto solicitado.** Se pide un censo de existencia de inventario de reactivos, no una re-derivación contra microdato. Bajo esa regla no corresponde que yo produzca una proporción estimada, y tampoco podría hacerlo: no tengo cargado el cuestionario ENVIPE 2015 ni el corpus tierizado (el propio encabezado declara \"contexto tierizado — no construido en este acto\").\n\n**Sobre el reactivo.** No puedo confirmar que exista en ENVIPE 2015 un reactivo binario con el contenido `denuncia_con_miedo_o_desconfianza` tal como está etiquetado. Lo que sí recuerdo de la estructura general del instrumento —y lo marco explícitamente como recuerdo no verificado, no como lectura de fuente— es que ENVIPE capta las *causas de no denuncia* en una batería de opción múltiple (módulo de victimización, sección de denuncia del delito), donde figuran categorías como \"miedo al agresor\", \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\" y \"actitud hostil de la autoridad\". Eso es una batería de razones para **no** denunciar, con selección entre varias opciones; no es evidente que se colapse a un binario \"denunció con miedo o desconfianza\". La etiqueta del reactivo y la estructura que recuerdo no coinciden de forma limpia, y esa discrepancia es en sí misma parte de mi respuesta: puede tratarse de una variable derivada del proyecto y no de un reactivo original del cuestionario.\n\n**Sonda canario — fuente.** No declaro fuente textual. No he leído en este acto el cuestionario ENVIPE 2015, el descriptor de archivos del INEGI, ni ningún microdato. Cualquier porcentaje que yo diera sería reconstrucción de memoria paramétrica presentada como dato, que es exactamente lo que la instrucción prohíbe.\n\n**Lo que haría falta para resolverlo.** El cuestionario principal ENVIPE 2015 (módulo de victimización) o el diccionario de datos del archivo correspondiente, para verificar (a) si el reactivo existe, (b) si es original o derivado, y (c) su base de cálculo (¿denunciantes? ¿víctimas? ¿delitos?), que cambia por completo el denominador.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:48:08.448396+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2fc37b39851b40a8d9f3343e4e96ec208353eee0eb6e1250f86a86ccd77fa32f"
+}

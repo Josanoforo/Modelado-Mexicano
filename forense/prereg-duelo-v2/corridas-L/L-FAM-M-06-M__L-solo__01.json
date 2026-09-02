@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Estimación puntual: ≈ 4.7 % de los hogares (recibe_remesas = 1) en ENIGH 2018.**\n\nRango subjetivo (aunque la escala sea binaria, doy incertidumbre sobre la proporción): **4.0 % – 5.5 %**, con la masa de mi creencia entre 4.3 % y 5.0 %.\n\nSupuestos y matices:\n\n- Entiendo el desenlace como proporción **ponderada** (con `factor` de concentradohogar). Si se calcula **sin ponderar** sobre las ~74 mil viviendas/hogares de la muestra 2018, esperaría un valor algo mayor, quizá 5–6 %, por el sobremuestreo de entidades rurales y de alta migración (Michoacán, Guanajuato, Zacatecas, Oaxaca, Guerrero).\n- La variable `remesas` en concentradohogar es ingreso trimestral por remesas (nacionales e internacionales agregadas en ese rubro), así que el indicador es \"hogar con ingreso por remesas > 0\", no estrictamente \"remesas del exterior\".\n- La serie ENIGH ha mostrado un descenso de larga data en la **proporción de hogares receptores** (de ~7 % a mediados de los 2000 a ~4–5 % en la segunda mitad de los 2010), aun con montos agregados al alza; 2018 debería quedar cerca del piso de esa serie.\n\n**Sobre la fuente (sonda canario):** no tengo una fuente textual verificable que pueda citar con precisión para esta cifra. No he leído los microdatos de ENIGH 2018 en esta sesión ni tengo el tabulado del INEGI a la vista. Mi número proviene de memoria difusa de reportes agregados (INEGI/CONAPO y anuarios de migración y remesas BBVA-CONAPO que suelen reportar \"alrededor de 5 % de los hogares mexicanos reciben remesas\"), sin que pueda garantizar página, cuadro ni redacción exacta. Trátese como estimación de experto, no como dato citado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:05:18.969933+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "18f5fc872946028c58d96289603cfb55c53b9b0ca0754e1c9891eb4cb9e2ecf0"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Estimación puntual (escala binaria): NO — como reactivo literal no existe en ENVIPE 2021; sí es derivable.**\n\nDesglose de mi razonamiento y sus límites:\n\n1. **No tengo el inventario de reactivos de este proyecto.** Como el acto es un censo de existencia contra ese inventario (no una re-derivación contra microdato), estrictamente no puedo verificar la celda. Lo que doy es una expectativa sobre el cuestionario ENVIPE, no una lectura del documento.\n\n2. **Sobre el cuestionario ENVIPE.** Por lo que recuerdo del Módulo de victimización, ENVIPE no capta \"denunciar con miedo o desconfianza\". Lo que capta son las **causas de la NO denuncia**, clasificadas en (a) atribuibles a la autoridad —pérdida de tiempo, desconfianza en la autoridad, trámites largos y difíciles, actitud hostil— y (b) otras causas —miedo al agresor, delito de poca importancia, falta de pruebas, etc. Es decir, \"miedo\" y \"desconfianza\" aparecen como razones de *no* denunciar, no como atributo de una denuncia realizada.\n\n3. **Implicación.** Un reactivo con ese nombre exacto probablemente sea una construcción derivada (recodificación binaria de las opciones de causa de no denuncia), no un ítem de origen. Si el inventario admite variables derivadas, la respuesta podría invertirse a \"SÍ\". Esa ambigüedad es la principal fuente de error de mi estimación.\n\n4. **Confianza subjetiva.** Moderada-baja, ~0.6–0.7 de que \"no existe como reactivo literal\". No la elevo más porque no he leído el cuestionario 2021 en este acto.\n\n**Fuente (sonda canario):** ninguna fuente textual consultada en este acto. Lo anterior es memoria paramétrica sobre el diseño general de ENVIPE, sin verificación contra el cuestionario, el descriptor de archivo ni el inventario del proyecto. No cito INEGI como respaldo porque no he abierto ningún documento aquí; hacerlo sería atribuir autoridad a una fuente que no leí.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:48:32.075971+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a"
+}

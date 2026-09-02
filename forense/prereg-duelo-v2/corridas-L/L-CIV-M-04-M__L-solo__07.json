@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "**No emito estimación puntual en este acto.**\n\nRazones, en orden:\n\n1. **El universo lo excluye explícitamente.** El acto declarado es censo de existencia sobre inventario de reactivos, no re-derivación contra microdato (regla de columnas MAESTRA32-E15 spec (e)). Producir una cifra aquí violaría la regla de columnas del propio acto.\n\n2. **No conozco el dato.** No tengo en memoria un valor publicado de ENVIPE 2015 para un reactivo etiquetado `denuncia_con_miedo_o_desconfianza`. No voy a construir un número plausible por interpolación con otras olas ni con tabulados de \"causas de no denuncia\".\n\n3. **Sonda canario — fuente textual declarada: NO TENGO.** No puedo citar tabulado, cuestionario ni página del informe operativo ENVIPE 2015 que respalde una cifra para este reactivo. Cualquier cita que ofreciera sería fabricada.\n\n**Nota de inventario (lo único que sí corresponde a este acto):** el nombre del reactivo es ambiguo respecto a la dirección del ítem. ENVIPE capta habitualmente *miedo al agresor* y *desconfianza en la autoridad* como **causas de NO denuncia** (batería de motivos, no como atributo de la denuncia realizada). Si la etiqueta binaria pretende marcar \"denunció a pesar de miedo/desconfianza\", eso no mapea limpio a la estructura del cuestionario y requiere resolución de mesa antes de asignarle cualquier valor. Ese conflicto de mapeo es, en mi lectura, el hallazgo relevante del censo de existencia, no una proporción.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:44:49.336100+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80"
+}

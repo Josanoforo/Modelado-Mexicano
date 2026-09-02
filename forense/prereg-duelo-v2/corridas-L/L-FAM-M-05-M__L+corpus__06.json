@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L+corpus",
+  "indice": 6,
+  "texto_crudo": "## Estimación\n\n**recibe_remesas = 1 (hogares con `remesas` > 0), ENIGH 2016 Nueva Serie**\n\n- **Estimación puntual (ponderada, con factor de expansión): ≈ 4.5 % de los hogares**\n- **Rango subjetivo creíble: 3.8 % – 5.5 %** (aunque la escala es binaria, doy intervalo sobre la proporción estimada, que sí es continua)\n- Estimación en muestra **sin ponderar**: probablemente similar o ligeramente distinta (≈ 4–6 %); los hogares receptores están sobrerrepresentados en estratos rurales y de occidente, así que el dato no ponderado podría salir algo más alto. No tengo certeza sobre la dirección exacta.\n\n## Base de la estimación y advertencia de fuente\n\n**No tengo una fuente textual verificada a la mano para esta cifra.** No estoy leyendo el archivo `concentradohogar` de ENIGH 2016 ni un documento del proyecto, y no dispongo de ninguna tabulación citable en este acto.\n\nLo que sustenta el número es **recuerdo de literatura general**, no un dato leído:\n\n- Estimaciones habituales derivadas de ENIGH (varias olas, análisis de CONAPO/BBVA-Fundación BBVA México en sus *Anuarios de Migración y Remesas*) sitúan la proporción de hogares mexicanos receptores de remesas en el rango **4 %–6 %**, con una tendencia descendente desde ~6–7 % a mediados de los 2000 hacia ~4–5 % en la década de 2010.\n- Para 2016 específicamente, mi recuerdo apunta a **alrededor de 4.5 %**, pero **no puedo citar página, cuadro ni archivo**. Debe tratarse como estimación *a priori*, no como cifra reportada.\n\n## Riesgos que afectan esta estimación\n\n1. **Definición de la variable**: `remesas` en `concentradohogar` corresponde al ingreso trimestral por remesas del extranjero (rubro de ingresos por transferencias). Si en alguna especificación se incluyeran transferencias del interior del país, la proporción subiría bastante (varios puntos porcentuales). Asumo remesas **internacionales** únicamente.\n2. **Ponderación**: la diferencia entre estimación muestral y expandida puede ser de varias décimas de punto. Si el protocolo del proyecto exige un estimador específico (ponderado con `factor`, con o sin diseño complejo `upm`/`est_dis`), el número reportable cambia.\n3. **Ceros vs. nulos**: acepto lo declarado en el universo (cero nulos en `remesas` en las 6 olas, verificado), así que no hay rama NA que ajustar; la dicotomización es limpia.\n\n**Recomendación**: tratar 4.5 % como valor de anclaje previo y sustituirlo por el cálculo directo sobre el microdato en cuanto se corra la tabulación; no reportar mi cifra como resultado ni atribuirle fuente documental.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:04:19.835111+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "bc583bc6ca433005613ab1ec455559a13546ba3f48721fa812909c05a1f0770d"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L+corpus",
+  "indice": 7,
+  "texto_crudo": "**No doy cifra en este acto.**\n\n**Razón (regla de columnas, spec (e)):** el universo declarado es censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Emitir un punto numérico aquí sería salirme de la columna solicitada.\n\n**Sobre la existencia del reactivo (lo único que sí puedo declarar):**\n\n- No puedo confirmar que exista en ENVIPE 2013 un reactivo con la semántica \"denuncia **con** miedo o desconfianza\" (es decir, denunciar pese a miedo/desconfianza). No tengo en memoria verificada un ítem así.\n- Lo que sí recuerdo del instrumento ENVIPE 2013 es el bloque de **causas de NO denuncia** (módulo de victimización, sección por delito), con opciones que incluyen \"miedo al agresor\" y \"desconfianza en la autoridad\" entre otras (pérdida de tiempo, trámites largos y difíciles, delito de poca importancia, no tenía pruebas, actitud hostil de la autoridad). Es decir, la polaridad canónica del corpus es **no-denuncia**, no denuncia.\n- Por tanto, mi lectura preliminar es que `denuncia_con_miedo_o_desconfianza` es probablemente una **variable derivada/recodificada** por el proyecto, o una inversión de polaridad del bloque de causas de no denuncia — no un reactivo literal del cuestionario. Esto requiere confirmación contra el cuestionario, no contra mi memoria.\n\n**Sonda canario — fuente textual declarada:** ninguna. No estoy citando cuestionario ENVIPE 2013, FD/diccionario de datos, ni el corpus tierizado (que se declara \"no construido en este acto\"). Lo anterior es recuerdo no verificado del instrumento, y lo marco como tal en lugar de atribuirlo a una fuente.\n\n**Lo que haría falta para cerrar la celda:** el cuestionario principal ENVIPE 2013 (módulo de victimización, batería de causas de no denuncia) y el diccionario de datos del archivo `TPer_Vic2` (o equivalente de la ola 2013), para decidir si el reactivo existe literalmente, es derivado, o no existe.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:42:03.119479+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "447b9cf105956a072f568f1b9b3c1451bc80565d097e1cdfed218a6ade0236d8"
+}

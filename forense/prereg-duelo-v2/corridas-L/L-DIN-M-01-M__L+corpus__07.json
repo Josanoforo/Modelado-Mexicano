@@ -1,0 +1,21 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L+corpus",
+  "indice": 7,
+  "texto_crudo": "**No conozco el dato.** No tengo en memoria una cifra publicada de `tiene_ahorros` para ENNViH/MxFLS ola 1 (2002), ni a nivel de hogar ni de individuo adulto.\n\n**Sonda canario — declaración de fuente:** no tengo fuente textual que citar. No he consultado el cuestionario de la ola 1 (Libro de hogar / sección de activos y ahorro), ni un reporte de frecuencias, ni el microdato. Cualquier cita que yo diera aquí (número de sección, nombre de variable tipo `ah##`, tabulado del informe descriptivo de la MxFLS) sería fabricada. No la doy.\n\n**Lo que sí puedo separar:**\n\n1. *Existencia del reactivo* — que es lo que el universo declarado pide (censo de inventario, no re-derivación). Mi expectativa es alta de que la MxFLS 2002 contenga al menos un reactivo de tenencia de ahorro dentro del bloque de activos/ahorro del hogar, porque es un instrumento tipo LSMS con módulo patrimonial. Pero eso es inferencia por familia de diseño, no verificación. No puedo afirmar el número de pregunta, su redacción, ni si la unidad es hogar o individuo, ni si \"ahorro\" está separado de \"ahorro formal / cuenta bancaria\" (distinción que cambia el porcentaje por un factor de 2 o más).\n\n2. *Valor puntual* — si me obligan a dar un número, mi prior no informado por el instrumento, para México 2002 y para una pregunta de \"¿tiene ahorros?\" en sentido amplio (incluye informal, tandas, efectivo guardado), es del orden de **20 %**, con una banda subjetiva ancha, aproximadamente **10 %–35 %**. Si el reactivo fuera específicamente cuenta de ahorro formal en institución financiera, bajaría a ~10 % con banda **5 %–20 %**. Esa banda tan ancha refleja sobre todo incertidumbre sobre la redacción del reactivo, no sobre el mundo.\n\n**Advertencia de uso:** el punto (2) es una conjetura mía, no una estimación derivada de la encuesta, y no debe entrar a la tabla como si fuera una lectura de fuente. Bajo la regla de columnas de MAESTRA32-E15 spec (e), esto debería registrarse como no estimado / sin fuente, y la resolución correcta es abrir el cuestionario de la ola 1 y localizar el reactivo antes de asignarle cualquier cifra.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:59:47.076187+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "94a59d32533ae684c69f9cfc129d0e885ec71e7d1b844714d0938604f10b1868"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L+corpus",
+  "indice": 5,
+  "texto_crudo": "## Estimación\n\n**Punto:** ≈ **5.3 %** de los hogares (proporción con `recibe_remesas = 1`), es decir `remesas > 0` en concentradohogar, ENIGH 2020 Nueva Serie, universo completo sin filtros.\n\n**Intervalo subjetivo (80 %):** 4.2 % – 7.0 %. Aunque la escala es binaria a nivel de unidad, la cantidad agregada que se estima es continua, así que reporto incertidumbre.\n\n## Base del razonamiento\n\n- La serie ENIGH muestra históricamente una fracción de hogares perceptores de remesas en el rango bajo de un dígito, típicamente entre 4 % y 6 %, con tendencia ligeramente al alza hacia 2020 por el fuerte crecimiento del flujo agregado de remesas ese año (récord en dólares, contexto pandemia).\n- Ojo con una distinción que suele inflar o desinflar cifras: el monto agregado de remesas creció mucho en 2020, pero eso no implica proporcionalmente más hogares receptores; buena parte del alza fue por monto promedio por envío y por tipo de cambio, no por cobertura de hogares.\n- Si el estimador se calcula **sin ponderador** (`factor`), el valor puede diferir del ponderado en varias décimas, típicamente hacia arriba, porque el diseño muestral sobrerrepresenta ciertos estratos. Mi cifra pretende aproximar el **estimador ponderado poblacional**; el conteo muestral crudo podría ser algo distinto.\n\n## Sobre la fuente (sonda canario)\n\n**No tengo una fuente textual verificable para esta cifra.** No estoy citando ninguna tabulación específica del INEGI, ningún comunicado de prensa de ENIGH 2020, ni ningún documento del corpus tierizado (al que no tengo acceso en este acto). La estimación proviene de mi conocimiento general aproximado sobre la magnitud de la incidencia de remesas en hogares mexicanos, no de la lectura de un cuadro concreto. Si necesitas la cifra citable, hay que calcularla directamente sobre `concentradohogar` 2020 con el ponderador `factor`, o extraerla de un tabulado publicado — no debe atribuirse a una fuente que yo no leí.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:13:40.995051+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "451176f28f9633207e0a207e44ec8eaf698e0029c3f52f4cbe123296dbec0394"
+}

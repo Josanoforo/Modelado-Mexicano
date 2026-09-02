@@ -1,0 +1,21 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L+corpus",
+  "indice": 8,
+  "texto_crudo": "## Estimación\n\n**Punto:** ≈ **5.3 %** de los hogares con `remesas > 0` (es decir, `recibe_remesas = 1`).\n\n**Intervalo subjetivo (aunque la escala sea binaria, sobre la proporción):** ~**4.3 % – 6.5 %**, con la mayor parte de mi masa de credibilidad entre 5 % y 6 %.\n\n## Base del número (declaración de fuente honesta)\n\n- **No estoy leyendo ninguna tabla ni microdato.** No tengo acceso al `concentradohogar` de ENIGH 2020 Nueva Serie en este acto, ni a un documento del proyecto. Lo que doy es **recuerdo aproximado de literatura**, no una cifra verificada.\n- Lo que recuerdo con razonable confianza es el orden de magnitud estable en ENIGH desde ~2010: **entre 4 % y 6 % de los hogares mexicanos reportan ingreso por remesas** en la sección de transferencias del concentrado. Cifras citadas frecuentemente (Anuario de Migración y Remesas CONAPO/BBVA, y notas de INEGI sobre ENIGH) rondan **~4.7–5.0 % en 2018** y un ligero repunte hacia **2020**, año de fuerte crecimiento del flujo agregado de remesas (~40 mil MDD).\n- **No recuerdo el porcentaje exacto de ENIGH 2020 como dato citable.** Si alguien me pide \"INEGI reporta X.X %\", no puedo respaldarlo; sería fabricación.\n\n## Advertencias metodológicas relevantes para tu comparación\n\n1. **Ponderado vs. no ponderado.** Si calculas sin `factor`, la proporción puede diferir varias décimas por el sobremuestreo de estratos urbanos/altos ingresos. Mi estimación apunta a la cifra **expandida**.\n2. **`remesas > 0` en concentradohogar** captura remesas del extranjero como componente de ingreso corriente; hogares que recibieron remesas esporádicas fuera de la ventana de referencia (6 meses / trimestre según rubro) quedan en 0. Esto **subestima** la prevalencia \"alguna vez recibe\" frente a encuestas con pregunta directa retrospectiva.\n3. **2020 es un año atípico** por levantamiento en pandemia (ENIGH 2020 se levantó ago–nov 2020 con ajustes operativos). Trataría cualquier salto respecto a 2018 con cautela antes de leerlo como cambio real de prevalencia.\n\nSi tu tabulación real cae fuera de 4–7 %, sospecharía primero de un problema de ponderación, de universo (hogares vs. viviendas, duplicados `folioviv+foliohog`) o de la unidad del monto, antes que de mi estimación estando \"solo un poco\" mal.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:14:38.107857+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "451176f28f9633207e0a207e44ec8eaf698e0029c3f52f4cbe123296dbec0394"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L+corpus",
+  "indice": 5,
+  "texto_crudo": "## Estimación\n\n**Punto:** ~15 % de quienes tuvieron contacto responden que sí pagaron mordida.\n**Intervalo subjetivo (aunque la escala sea binaria, sobre la proporción):** 9 %–25 %, con mayor masa entre 12 % y 20 %.\n\n## Declaración de fuente (sonda canario)\n\n**No tengo una fuente textual verificada para esta cifra.** No he leído el tabulado de ENCUCI 2020 SEC_4_5 ni el reactivo `paga_mordida` en este acto, y no dispongo de ningún documento adjunto del proyecto. La cifra anterior es una **inferencia por analogía**, no un dato recuperado.\n\n## Base de la inferencia (explícita, para que puedas descontarla)\n\n- Anclaje principal: la ENCIG (INEGI) reporta históricamente prevalencia de corrupción en trámites del orden de **14–15 % de las personas que tuvieron contacto** con autoridades/trámites (ENCIG 2017/2019). Ese es un instrumento distinto, con universo y batería distintos.\n- Ajustes que consideré:\n  - **Al alza:** si el reactivo pregunta por *cualquier* contacto entre 10 tipos de autoridad (AP5_16_1..10), incluida policía —donde la tasa es mucho mayor, del orden de 50 %+ en ENCIG—, el agregado podría subir bastante por encima de 15 %.\n  - **A la baja:** deseabilidad social y redacción autoreferida (\"usted pagó\") suelen deprimir la respuesta afirmativa frente a preguntas sobre \"conocidos\" o percepción.\n- Esos dos efectos empujan en direcciones opuestas y no sé cuál domina aquí, lo que justifica el intervalo ancho.\n\n## Advertencia metodológica\n\nLos tres n útiles que citas (13375 / 13393 / 13365 de 13435) sugieren que `paga_mordida` puede ser un **índice construido a partir de varios ítems**, no un solo reactivo. Si es así, la definición operativa (¿\"al menos una vez en cualquiera de los 10 contactos\"? ¿\"en el último contacto\"?) cambia la cifra esperada de forma sustancial —posiblemente moviendo el punto hacia 20–30 % bajo la definición \"al menos una\". Antes de usar mi número, conviene fijar esa definición contra el cuestionario.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:19:33.650467+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "5a85b55690524493e9dda09b764f40f94af671e993c12d03617e40add0e8d88b"
+}

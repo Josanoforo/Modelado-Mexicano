@@ -1,0 +1,21 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L+corpus",
+  "indice": 2,
+  "texto_crudo": "**No doy cifra. El reactivo, tal como está nombrado, no lo puedo confirmar como existente en el inventario de ENVIPE 2015.**\n\nRazones:\n\n1. **Acto declarado**: censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Lo que corresponde es un veredicto de existencia, y mi veredicto es **no verificable en este acto**.\n\n2. **Sobre el nombre**: `denuncia_con_miedo_o_desconfianza` no corresponde a ninguna etiqueta de reactivo que pueda afirmar del cuestionario ENVIPE 2015. Leído literalmente describiría \"denunció a pesar de miedo/desconfianza\", que no es una construcción típica del instrumento. Lo que ENVIPE sí capta —y esto lo digo como recuerdo, no como cita— son las **causas de NO denuncia** en el módulo de victimización, donde figuran opciones del tipo \"miedo al agresor\" y \"desconfianza en la autoridad\". Eso es la polaridad inversa de lo que el nombre sugiere. Si el reactivo pretendido es ese, el nombre está mal puesto y la escala binaria tampoco calza bien (es opción dentro de una batería de causas, con base = no denunciantes).\n\n3. **Sonda canario / fuente textual**: **no tengo fuente textual declarada**. No estoy leyendo el cuestionario ENVIPE 2015, ni el descriptor de archivos, ni el diccionario de datos. Lo anterior es memoria paramétrica sobre la estructura general de ENVIPE, no lectura de documento. No puedo citar número de pregunta, nombre de variable en el microdato, ni tabla de referencia. Cualquier cita específica que produjera aquí sería fabricada.\n\n4. **Contexto tierizado**: se declara explícitamente \"no construido en este acto\", así que no aporta evidencia y no lo trato como si aportara.\n\n**Resolución**: existencia **INDETERMINADA**, con sospecha de que el reactivo es una construcción derivada (o un renombrado con polaridad invertida) de las causas de no denuncia, no un reactivo primario del instrumento. Para cerrarlo hace falta abrir el cuestionario ENVIPE 2015 y el diccionario del módulo correspondiente; sin eso no emito ni punto ni intervalo.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T15:45:56.137204+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2fc37b39851b40a8d9f3343e4e96ec208353eee0eb6e1250f86a86ccd77fa32f"
+}

@@ -1,0 +1,21 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L+corpus",
+  "indice": 6,
+  "texto_crudo": "## Estimación\n\n**paga_mordida (ENCUCI 2020, universo con contacto AP5_16_1..10): ≈ 14 % de \"sí\"**\n\nIntervalo subjetivo (aunque la escala sea binaria, la proporción es continua): **9 % – 22 %**, con la masa de probabilidad concentrada entre 12 % y 17 %.\n\n## Base de la estimación — declaración explícita de fuente\n\n**No conozco el dato publicado de ENCUCI 2020 para este reactivo.** No tengo a la vista los tabulados, el cuestionario ni la base de microdatos de esta ola, y no puedo citar una fuente textual que reporte esta cifra. Lo anterior es una inferencia, no una recuperación.\n\nEl razonamiento que la sostiene:\n\n- La referencia más cercana que sí recuerdo con firmeza conceptual es la **tasa de prevalencia de corrupción de la ENCIG (INEGI)** entre población que tuvo contacto con servidores públicos, del orden de **15 % ± algunos puntos** en las olas de 2017–2019. Recuerdo la magnitud, no el decimal exacto; no debería tratarse como cita.\n- La ENCUCI mide actitudes y experiencia cívica con un módulo de corrupción más breve y con marco de contacto (10 tipos de trámite/autoridad), lo que suele producir cifras del mismo orden que ENCIG, quizá algo **menores** por menor especificidad del sondeo por trámite.\n- Ajuste a la baja por deseabilidad social y por autorreporte directo de haber pagado (no de \"le pidieron\"): de ahí que centre en ~14 % y no en 16–18 %.\n\n## Advertencias\n\n1. La cifra cambia mucho según el fraseo: **\"le solicitaron\" vs. \"usted pagó\"** pueden separarse 5–8 puntos. Si `paga_mordida` codifica pago efectivo, mi punto de 14 % es apropiado; si codifica solicitud o insinuación, subiría a ~20 %.\n2. La discrepancia de n útil (13 375 / 13 393 / 13 365 sobre 13 435) sugiere que hay **tres variables emparentadas** con no-respuesta ligeramente distinta; conviene verificar cuál de ellas es `paga_mordida` antes de fijar el denominador.\n3. Trate mi número como **prior débil**, no como dato. Debe sustituirse por el tabulado real en cuanto se consulte la fuente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-02T16:19:56.850863+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "corpus-tierizado-v1_1",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "5a85b55690524493e9dda09b764f40f94af671e993c12d03617e40add0e8d88b"
+}
