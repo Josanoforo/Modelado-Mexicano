@@ -14,3 +14,62 @@ P4 · CIERRE. Propuesta a mesa en RH: qué número, contra qué benchmark, qué 
 PERÍMETRO: corpus (payloads) · data/manifiesto.yaml (script) · data/curacion-registro/* (vía N6) · data/cola-adquisicion-v1_0.tsv (regenerada) · milpa/tramite-ola5-propuesta-v0.yaml (una enmienda) · tools/ (tabla P0, estimador) · forense/notas/ · forense/hallazgos.md · tablero · A.3 · cascada. NO toca milpa/tramite.yaml ni prereg-duelo-v2. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
 FP/ADR: deriva al arrancar. CONTADOR: payloads OBTENIDO +N · estados con antes/después +N · reglas con Δ identificado +1 si P3 corre completo.
 LO QUE NO HACE: no carga al motor; no toca L4 (queda como medición entre años, intacta); no repite la adquisición de Coahuila/Edomex 2023-2024 (reutiliza).
+
+---
+
+## CONSUMIDO
+
+Ejecutado el 2/sep/2026 en entorno **UBUNTU** por `ACTO MAESTRA34-L6 ·
+CIVICA-HOMOLOGACION-ESCALONADA`, con la skill `/acto` (`ADR-237`) y `/adquiere`.
+**PR #468**, `ADR-288`, rama `acto/maestra34-l6-civica-homologacion-escalonada`.
+NO fusionado por el ejecutor: el merge es de mesa.
+
+Commits: `51c7009` (A.3, este archivo) · `7717afe` (`P0`) · `1e38063` (`P1`) ·
+`5bddf8a` (`P2`, spec congelada) · `30d5c0f` (`P3`, resultados) · `9d5ca17`
+(cascada) · este.
+
+**Compuerta** `GATED a MAESTRA34-L5` verificada **por producto** como el propio
+encargo manda: las tres entradas de `L5` presentes en
+`origin/main:milpa/tramite-ola5-propuesta-v0.yaml` (`PR #467`, merge `11af678`).
+
+**Qué se hizo de lo que se pidió, pieza por pieza:**
+
+- **`P0`** — hecho y **completo**: las 32 entidades, 2015-2024, con fuente y
+  salida cruda por fila, desde 30 acuerdos del Consejo General del INE. `A.13`
+  con entidades cubiertas. **14 entidades tratadas** con antes y después.
+- **`P1`** — hecho y **acotado**: 43 payloads de resultados, registro por las
+  tres capas, cobertura reportada (4 entidades medibles de las 14 tratadas; 2 de
+  ellas tratadas). El libro del **TEPJF** queda `NO-OBTENIDO` con receta de
+  navegador, tras cuatro rutas con salida cruda.
+- **`P2`** — hecho: `COMMIT-1` con la spec congelada, **antes** de abrir ningún
+  resultado, con la frase de sello y la escala en pp. **Desviación declarada y
+  razonada**: el estimador **no** lleva efectos fijos de año electoral, porque
+  `P0` midió que el tratamiento es colineal con el año y esos efectos fijos no
+  identifican; la spec lo dice en `§0.3` y explica en `§1.5` qué se conserva de
+  Callaway-Sant'Anna y qué no.
+- **`P3`** — hecho y **declarado acotado**, como el propio encargo prevé para
+  cuando la cobertura no alcanza el mínimo de ≥8.
+- **`P4`** — hecho: propuesta a mesa en formato RH (`FP-239`), tablero con
+  recibos, nota de cierre con `A.13` por pieza.
+
+**Perímetro respetado.** Se tocó: corpus (76 payloads) · `data/manifiesto.yaml`
+(por script) · `data/curacion-registro/*` · `data/cola-adquisicion-v1_0.tsv`
+(regenerada) · `milpa/tramite-ola5-propuesta-v0.yaml` (**una** enmienda) ·
+`tools/` (tabla de `P0`, lectores, estimador) · `data/p0-*.tsv` y
+`data/l6-resultados-*.json` (productos de `P0`/`P3`) · `forense/notas/` ·
+`forense/hallazgos.md` · `forense/encargos/` (A.3) · `forense/firmas-pendientes.tsv`
+(tablero) · cascada (`canon/gobernanza`, `canon/estado-programa`,
+`canon/registro-rotulos`). **`milpa/tramite.yaml` y `forense/prereg-duelo-v2/`
+intocados**, como el encargo manda.
+
+**Un archivo del perímetro que el encargo no listaba y hubo que tocar:**
+`data/INFRAESTRUCTURA-v1_0.md`. No es una ampliación de alcance: `tests/check.py`
+`T27` **falla** si un archivo nuevo bajo `data/` no está citado ahí, y los tres
+archivos nuevos son productos que el propio encargo ordena (`P0` «tabla de
+tratamiento», `P3` resultados). Sin esa cita la suite queda en ROJO. Se declara
+aquí en vez de dejarlo implícito.
+
+**Lo que el encargo dijo que no se hiciera, y no se hizo:** no se cargó nada al
+motor; **no se editó la entrada de `MAESTRA34-L4`**, que queda íntegra con su `Δ`
+y su firma `DC1-d`; no se repitió la adquisición de Coahuila/Edomex 2023-2024 (se
+reutilizó el payload de `L4` para Coahuila 2024).
