@@ -25,5 +25,5 @@ este acto.
 
 ## Sucesor
 
-Fila de tablero abierta: `FP-233` — «F-DD rangos de ola», gateada a
+Fila de tablero abierta: `FP-234` — «F-DD rangos de ola», gateada a
 `MAESTRA34-E1` (8/sep/2026), vence 2026-09-15.

@@ -44,10 +44,12 @@ fusionado por mesa).
 Cuatro commits, uno por pieza, en la rama `claude/maestra34-n4-plomeria-d6oz84`:
 `P1` re-sella `runner_l_cli.py` (firma DR-a); `P2` exclusión `DIN-M-01` (firma
 DF-a); `P3` sella la mordida ENCIG 2025 al motor (firma DM); `P4` trámite
-(cola N2, FP-190, `.claude/commands/acto.md` §2.2, firma DA-a). Cascada: `ADR-281`,
-`canon/estado-programa-v1_10.md` L0 (280 → 281), `canon/registro-rotulos.tsv`,
-`forense/firmas-pendientes.tsv` (FP-228, FP-190, FP-233 nueva),
-`forense/hallazgos.md`.
+(cola N2, FP-190, `.claude/commands/acto.md` §2.2, firma DA-a). Cascada: `ADR-282`
+(renumerado de `ADR-281` al detectar colisión con `MAESTRA34-N7`/`PR #460`, que
+fusionó primero — regla de la casa: renumera quien fusiona segundo; misma
+colisión y misma regla en `FP-233`→`FP-234`), `canon/estado-programa-v1_10.md`
+L0 (281 → 282), `canon/registro-rotulos.tsv`, `forense/firmas-pendientes.tsv`
+(FP-228, FP-190, FP-234 nueva), `forense/hallazgos.md`.
 
 PR: `[MAESTRA34-N4] ACTO MAESTRA34-N4 · PLOMERIA-v1_2` (rama
 `claude/maestra34-n4-plomeria-d6oz84`).
