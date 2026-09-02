@@ -22,7 +22,8 @@ LO QUE NO HACE: no carga al motor (sello de mesa, formato RH al cierre); no toca
 
 Ejecutado por `ACTO MAESTRA34-L5 · GOBIERNO-DIGITAL-EVASION-AHORRO` el
 2/sep/2026 en entorno **UBUNTU**, con la skill `/acto` (`ADR-237`). `ADR-286`.
-Rama `acto/maestra34-l5-gobierno-digital-evasion-ahorro`.
+Rama `acto/maestra34-l5-gobierno-digital-evasion-ahorro`, **PR #467** (abierto, no
+fusionado: el merge es de mesa).
 
 `COMPUERTA: ninguna` — declaración explícita, no dispara verificación. La
 condición de lanzamiento «caja libre» se verificó **por producto**:
