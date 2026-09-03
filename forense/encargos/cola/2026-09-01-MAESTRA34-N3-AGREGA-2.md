@@ -90,4 +90,4 @@ PERÍMETRO: se añade `tools/extrae_l_v1_1.py`, edición acotada a la línea 136
 
 ## ENMIENDA 4 — 3/sep/2026 (A.3: el verbatim de arriba no se edita; esta enmienda gobierna sobre las ENMIENDAS 1–3 en lo que las supera)
 
-P0 ejecutado fuera de esta cola por PR #497 (`6019bd7`): script parcheado sha `efb71de1…`, `L-extraido-v1_2.tsv` y `-notas-cierre.md` en `origin/main`, sellos v1_1 intactos. N3 verifica su existencia (A.8) y no repite P0; arranca en P1 (13 de 14, exclusión DIN-M-01 con razón). La ENMIENDA 3 queda superada por producto. Firma de mesa: la fusión de este PR. — mesa, 3/sep/2026
+P0 ejecutado fuera de esta cola por PR #497 (`6019bd7`): script parcheado sha `efb71de1…`, `L-extraido-v1_2.tsv` y `L-extraido-v1_2-notas-cierre.md` en `origin/main`, sellos v1_1 intactos. N3 verifica su existencia (A.8) y no repite P0; arranca en P1 (13 de 14, exclusión DIN-M-01 con razón). La ENMIENDA 3 queda superada por producto. Firma de mesa: la fusión de este PR. — mesa, 3/sep/2026
