@@ -2775,8 +2775,16 @@ reglas_propuestas:
   - id: civico.clientelismo.vote_change_mps2012
     entrada_nueva: true
     referida_a: "regla R7.7 (canon/modelo-decision-v4_0.md:763, [MEDIA], 'dadiva + broker -> compra turnout, no vote-choice') -- PRIMER dato mexicano que observa a la MISMA persona en dos olas. NO reabre ninguna fila archivada"
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # firma D4 (mesa, 3/sep/2026, ACTO MAESTRA37-N3): letra c -- explota los payloads en disco, cierra como SELLADA-SIN-CARGA
+    tier: MEDIA
+    reserva_tier: "instrumento de segunda mano, sin ponderador, n=35 en R7.7; signo de Delta depende del conteo: +5.05 / -2.13, ambas publicadas"
+    estampa_A10: >
+      Describe el corpus del 3/sep/2026 (tabulador ICPSR 35024, Mexico Panel
+      Study 2012, 'Explore Data'). NO es el microdato (35024-0001-Data.dta,
+      NO-ACCESIBLE sin membresia institucional). R7.7 en este instrumento
+      queda INTENTO-GASTADO-EN-CROSSTABS: un reintento exige microdato o las
+      tablas T9b/ronda-1 que mesa exporte (ver civico.clientelismo.prevalencia_lista_mps2012, FP-263).
+    r7_7_estado: INTENTO-GASTADO-EN-CROSSTABS
     si:
       disparadores: NO-APLICA
     entonces:
@@ -2830,8 +2838,16 @@ reglas_propuestas:
   - id: civico.clientelismo.prevalencia_lista_mps2012
     entrada_nueva: true
     referida_a: "regla R7.7 (canon/modelo-decision-v4_0.md:763) -- prevalencia por EXPERIMENTO DE LISTA, contrastada contra la pregunta directa. NO es p de regla"
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # firma D4 (mesa, 3/sep/2026, ACTO MAESTRA37-N3): letra c -- explota los payloads en disco, cierra como SELLADA-SIN-CARGA; sucesor MAESTRA37-L2 (caja) para el codebook P35A/P35B
+    tier: MEDIA
+    reserva_tier: "instrumento de segunda mano, sin ponderador; supuesto_no_verificado_que_la_gobierna sigue sin verificar (texto de P35A/P35B pendiente del codebook, ver sucesor)"
+    estampa_A10: >
+      Describe el corpus del 3/sep/2026 (tabulador ICPSR 35024, ronda 1 y 2).
+      El codebook (icpsr35024_mexico_panel_study_2012_codebook_es_zip,
+      35024-0001-Codebook-spanish.pdf.zip) esta registrado pero no se abrio
+      en este acto; hasta abrirlo, supuesto_no_verificado_que_la_gobierna
+      sigue como supuesto, no como hecho verificado. Sucesor declarado:
+      MAESTRA37-L2 · MPS-CODEBOOK-Y-P3 (caja).
     si:
       disparadores: NO-APLICA
     entonces:
@@ -2889,7 +2905,7 @@ reglas_propuestas:
   - id: civico.participacion.concurrencia_presidencial_conversion
     misma_regla_motor: civico.participacion.contingente
     hermana_de: civico.participacion.tipo_boleta_federal_2016_2024
-    situacion: PROPUESTA-DE-CARGA  # PENDIENTE-DE-MESA; gateada por FP-255
+    situacion: SELLADA  # firma D1 (mesa, 3/sep/2026, ACTO MAESTRA37-N3): "D1 FP255 - A, Tier media." -- cargada al motor como civico.participacion.concurrencia_presidencial_conversion (milpa/tramite.yaml, motor 16 -> 17)
     si:
       disparador: >
         El municipio celebra su eleccion de ayuntamiento el mismo dia que una
