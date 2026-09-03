@@ -1859,6 +1859,17 @@ def _classify(test, msg):
             # T03 compara por nombre exacto y no lo reconoce. Mismo patrón que
             # 2026-08-12-M6-sello.md, ya congelado.
             return "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello"
+        if name == "reevaluacion-ola6-cierre.md" and "MAESTRA36-N6" in msg:
+            # ACTO MAESTRA36-N6, 3/sep/2026 (ADR-318): el encargo archivado
+            # (forense/encargos/2026-09-03-MAESTRA36-N6-CORRIGE-N5-Y-REMAPEA-OLA6-ADMINISTRATIVAS.md)
+            # cita en su spec de P1 "al pie de `reevaluacion-ola6-cierre.md`",
+            # sin el prefijo de fecha ni la carpeta. El archivo real existe:
+            # forense/notas/2026-09-03-reevaluacion-ola6-cierre.md. A.3 y
+            # forense/encargos/convencion.md prohiben editar el encargo para
+            # complacer al test, asi que la cita corta queda -- mismo patron,
+            # y misma razon, que el "v2_6.md" de A8-LAND (ADR-78) de arriba.
+            # La nota propia del acto si cita la ruta completa.
+            return "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello"
         if name in {"compass-1-7edaceda.md", "compass-2-8b198c56.md", "compass-3-d72e6a97.md",
                      "red-team-A_auditoria-adversarial.md", "red_team_A_auditoria.md"}:
             # ACTO PROC-10-bis, 13/ago/2026: el encargo de MOTOR-1 (§3, archivado

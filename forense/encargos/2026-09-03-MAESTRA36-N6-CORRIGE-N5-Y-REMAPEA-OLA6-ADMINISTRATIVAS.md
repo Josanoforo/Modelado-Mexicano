@@ -1,0 +1,75 @@
+ENCARGO · ACTO MAESTRA36-N6 · CORRIGE-N5-Y-REMAPEA-OLA6-ADMINISTRATIVAS
+SHA de redacción: `bbc57f0` (`origin/main`, merge PR #509) · 3/sep/2026, dirección (Fable) · v2.12 · Estado: LISTO PARA LANZAR — COMPUERTA: ninguna (#509 fusionado; nada en vuelo toca el canon de Ola 6).
+ENTORNO ASIGNADO: NUBE. NO en UBUNTU: P1 y P2 trabajan sobre metadato versionado (manifiesto, registro del curador, notas de A1, canon); lo que exija abrir bytes se declara como sucesor de caja, no se abre aquí. MODELO SUGERIDO: Opus (juicio A.4 por par regla–fuente).
+Invoca `/acto`. Punto 4: no toca red ni microdato — dilo y sáltalo.
+CARRILES: en caja corre `MAESTRA36-L12` (medidor, propuesta, notas propias) — disjunto. Ningún otro acto toca `canon/motor-nucleo-medible-v1_0.md` ni las notas de N5. `/despacha` no tiene candidatos (cola vacía tras N5); no chocan.
+FIRMAS DE MESA — verbatim, 3/sep/2026: «Si arrancamos (la estructura que creamos y probamos con los otros topicos nos debería dar velocidad.» Lectura de dirección: mesa quiere Ola 6 abierta si los criterios se cumplen; no autoriza relajarlos. Este acto no abre nada: corrige un negativo falso y corre el cruce que faltaba para que la evaluación sea completa. Firma que este acto propaga sin decidir: criterio 2 de §3.a tal como está escrito (ADR-265, firma 9 de mesa).
+═══ VERIFICACIÓN DE EXISTENCIA (A.8), contra `bbc57f0` ═══ (1) ESTRUCTURA. Canon: `canon/motor-nucleo-medible-v1_0.md` §3.a criterios 1–3 (líneas 160–170) + enmienda fechada de N5 (líneas 190–230, ADR-317). Notas de N5: `forense/notas/2026-09-03-reevaluacion-ola6-cierre.md`, `forense/notas/2026-09-03-mapeo-ola6-N5.md`. Fuentes administrativas: `data/manifiesto.yaml` (campo `usado_para`), `data/curacion-registro/cola-adquisicion-registro.tsv`, `relaciones.tsv`, `utilidad-modelo.tsv`. Evaluación previa de esas fuentes: `forense/notas/2026-09-01-MAESTRA34-A1-descargas-pendientes-v2.md` §1 (filas 4, 9, 10; CNGMD PARCIAL, CERO_DESABASTO CUMPLIDA Y EXCEDIDA, OBSERVATORIO_DE_CUIDADOS CUMPLIDA). (2) CONTENIDO — el defecto, con comandos:
+
+* Afirmación de N5 (`reevaluacion-ola6-cierre.md:110-116` y canon `:2xx`): «`MAESTRA34-A1` no fusionó; ninguna de las cinco aparece en `data/manifiesto.yaml`». Verificación: `git log --format=%s origin/main | grep -c 'maestra34-a1-registra-evalua'` → 1 (merge PR #453; `forense/encargos/2026-09-01-MAESTRA34-A1-REGISTRA-Y-EVALUA-DESCARGAS-2.md` con `## CONSUMIDO`, ADR-278). `grep -aci sicee data/manifiesto.yaml` → 148 · `desabasto` → 14 · `cuidados` → 9 · `cngmd` → 646 · `dgis` → 50 (universo: 1 104 ids, 1 archivo). Las dos mitades son falsas → negativo sin comando (A.13), escrito en nota y canon.
+* Universo de `/mapea`: `.claude/commands/mapea.md:73-90` → busca en `inventario-reactivos-v1_2` + `-ext` (241 591 filas de reactivos de encuesta). Las fuentes administrativas registradas no tienen filas ahí por construcción. `grep -aciE 'salud\.' data/curacion-registro/utilidad-modelo.tsv` → 0: el curador tampoco liga ninguna fuente a reglas de salud. → El cruce «fuentes administrativas registradas × 25 reglas de Ola 6» nunca se corrió (tercera variante de v2.4: nadie corrió el mecanismo). (3) COBERTURA RETROACTIVA. `utilidad-modelo.tsv` nace 29/ago (ADR-267); las fuentes de A1 entraron el 1–2/sep; el mapeo de N5 del 3/sep. Ningún acto entre esas fechas tenía asignado este cruce.
+
+SPEC POR PIEZA (un PR, un ADR, un recibo)
+P1 · Enmienda fechada, append-only, en tres sitios. (a) Al pie de `reevaluacion-ola6-cierre.md`: «ENMIENDA 3/sep/2026 (N6): la afirmación de §P2 sobre `MAESTRA34-A1` es falsa en sus dos mitades — fusionó (PR #453, ADR-278) y las cinco fuentes están en el manifiesto (conteos y comandos)»; la frase original no se edita. (b) Al pie de la enmienda de N5 en `canon/motor-nucleo-medible-v1_0.md`: misma corrección en tres líneas, con la aclaración de universo: «el criterio 2 se evaluó sobre reactivos de encuesta; las fuentes administrativas registradas no estaban en ese universo». (c) `forense/hallazgos.md`: una línea A.13 — «negativo sobre el manifiesto sin comando, en nota y canon, N5/ADR-317».
+P2 · El cruce que faltaba: fuentes administrativas registradas × 25 reglas de Ola 6, por metadato. Universo declarado: todas las entradas del manifiesto cuyo `usado_para` o `fuente_programa` cite Cero Desabasto, Observatorio de Cuidados, CNGMD, DGIS (Urgencias, Egresos), SICEE, y cualquier otra sin reactivos que A1/A2 registraron (listar por `grep` con el comando). Para cada par (regla candidata de §3.2/3.4/3.6/3.8/3.9/3.10, fuente): vocabulario A.4 — ¿mide el desenlace? ¿mide el disparador? ¿misma unidad de análisis? — resuelto con `usado_para`, la nota de A1 y los descriptores registrados (`dgis_urgencias_descriptores_*` están en el manifiesto y son legibles por su `usado_para`). Veredicto por par: EXISTE-SATISFACE / EXISTE-NO-SATISFACE (qué falta) / NO-APLICA. Regla de honestidad: lo que no pueda resolverse sin abrir bytes se marca `CANDIDATO-ABRIR-EN-CAJA`, nunca se promueve. Prioridad: las 5 reglas de `salud` (en especial `adherencia.desabasto_vs_cuidadora` × Cero Desabasto + Observatorio de Cuidados; `atencion.grave` y `leve_sin_imss` × DGIS Urgencias/CLUES), después las 20 restantes.
+P3 · Recuento corregido del criterio 2, dos columnas. Por dominio: (ii) «reglas EXISTE-SATISFACE» sobre encuestas (lo de N5, sin cambio) y sobre encuestas + administrativas (P2). Si alguna columna llega a 3 en algún dominio, se declara `ABRE-CANDIDATO-CON-RESERVA` (no `ABRE-PROPUESTO`: la apertura y la lectura del criterio son de mesa). Sin lote `REGLAS-OLA6-*`: eso es un sucesor si mesa firma.
+P4 · Dos preguntas a mesa, en RH, en `firmas-pendientes.tsv`. (1) El criterio 2 dice «≥2 encuestas en corpus» en (i) y «≥3 reglas `EXISTE-SATISFACE`» en (ii): ¿una fuente administrativa que mide desenlace y disparador cuenta para (ii)? Dirección recomienda sí (A.4 habla de fuentes, no de encuestas; el motor ya carga campos administrativos por `p1`), y no tocar (i). (2) Lo que N5 sí midió bien y sigue en pie: 10 de 25 reglas fallan porque el corpus mide el desenlace y no el disparador (percepción, vínculo), que INEGI no levanta. Si eso se confirma tras P2, el criterio 2 puede ser inalcanzable por adquisición para varios dominios: ¿se mantiene, se acota a «desenlace medido + disparador declarado como no observado», o se cambia? Dirección no recomienda aquí: es la decisión de diseño de Ola 6 y es tuya.
+PERÍMETRO Y CONCURRENCIA. Toca: `forense/notas/2026-09-03-reevaluacion-ola6-cierre.md` (append) · `canon/motor-nucleo-medible-v1_0.md` (append bajo la enmienda de N5) · `forense/notas/2026-09-03-MAESTRA36-N6-cruce-administrativas.md` (nuevo) · `forense/hallazgos.md` · `forense/firmas-pendientes.tsv` · cascada. NO toca: `milpa/**`, `data/**`, `.claude/commands/mapea.md` (si el hueco de universo de `/mapea` merece regla, es DE1: se anota, no se edita), `forense/prereg-duelo-v2/**`, ni ninguna línea existente de las notas de N5. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
+FP/ADR CANDIDATOS. `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → 317 → candidato ADR-318. FP máx: re-deriva (`FP-266+` tras N12/L14/A2); dos filas nuevas (P4.1, P4.2) + recibo.
+CONTADOR. «Reglas de Ola 6 cruzadas contra fuentes administrativas registradas: 0 → 25» · correcciones A.13 en canon: +1 · dominios abiertos: 0 → 0 (declarado: este acto no abre). Medición de modelo: cero directo.
+Lo que NO hace. No abre ningún dominio; no relaja ni reescribe los criterios; no abre bytes; no edita `/mapea`; no borra ni corrige in situ ninguna frase de N5 (append-only); no lanza lotes L1.
+Sucesores. Si P2 deja `CANDIDATO-ABRIR-EN-CAJA`: `L15 · ABRE-ADMINISTRATIVAS-SALUD` (caja: abrir descriptores DGIS / Cero Desabasto y resolver los pares). Con la letra de mesa sobre P4.1: recuento final y, si algún dominio llega a 3, `L10 · OLA6-SALUD-L1` pasa su compuerta.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA36-N6 · CORRIGE-N5-Y-REMAPEA-OLA6-ADMINISTRATIVAS`,
+rama `claude/ola6-correccion-remapeo-afy4wr`, entorno **NUBE**, con la skill
+`/acto` (`ADR-237`). `ADR-318` (candidato). Base real `bbc57f0`, **idéntica al
+SHA de redacción** — `origin/main` no se movió durante el acto.
+`COMPUERTA: ninguna`, declaración explícita: no dispara verificación.
+
+**CONTADOR:** reglas de Ola 6 cruzadas contra fuentes administrativas
+registradas **0 → 25** · correcciones `A.13` en canon **+1** · dominios
+abiertos **0 → 0** · reglas `EXISTE-SATISFACE` **+0** · cargas al motor **0** ·
+medición de modelo: **cero directo**. Filas nuevas en
+`forense/firmas-pendientes.tsv`: `FP-267` (P4.1), `FP-268` (P4.2), `FP-269`
+(recibo), re-derivadas contra `origin/main` (máximo `FP-266`).
+
+**Tres correcciones al propio encargo, todas verificadas contra el árbol y
+declaradas en vez de rodeadas:**
+
+1. El encargo pide, en `P1(b)`, corregir «al pie de la enmienda de N5 en
+   `canon/motor-nucleo-medible-v1_0.md`» la afirmación falsa sobre
+   `MAESTRA34-A1`. **El canon nunca repitió esa afirmación:**
+   `grep -n 'MAESTRA34-A1' canon/motor-nucleo-medible-v1_0.md` → **0
+   aciertos** antes de esta enmienda. En canon se escribió por tanto sólo lo
+   que sí faltaba y el encargo también pedía: **la aclaración de universo**.
+2. El encargo cita «merge PR #453» para `MAESTRA34-A1`. **No hay ningún commit
+   de merge en `origin/main` que nombre ese acto**; su nota de cierre entra al
+   árbol por `03c2387` (`Merge pull request #460`). La verificación buena es
+   **por producto** —`ADR-278`, el `## CONSUMIDO`, las entradas de
+   manifiesto—, que es lo que `/acto` §2 exige y lo que se hizo.
+3. El comando que el encargo declara para probar que A1 fusionó
+   —`git log --format=%s origin/main | grep -c 'maestra34-a1-registra-evalua'`—
+   da **0**, no 1. Es un negativo `A.13` dentro del encargo mismo. **La
+   conclusión del encargo sigue siendo correcta** (A1 sí fusionó); lo que
+   falla es el comando con que la prueba.
+
+**Una pieza de cascada que el encargo no preveía, hecha y medida:**
+`tests/baseline.json` se refrescó con `--freeze` por **una sola entrada** —la
+cita corta del propio encargo verbatim, patrón `A.3` con dos precedentes
+(`ADR-78`, `PROC-10-bis`)—, tras corregir la que sí era real (`T15`, dos
+sitios de `estado-programa-v1_11.md` citando «317 ADR»). Medido antes de
+aceptarlo: `fails` 19 → 19, `warns` 113 → 114, **0 entradas desaparecidas**.
+Detalle en `ADR-318`.
+
+**Lo que NO hizo:** no abrió ningún dominio · no relajó ni reescribió ningún
+criterio · no abrió bytes · no tocó red · no editó `.claude/commands/mapea.md`
+(el hueco de universo de `/mapea` queda como `DE1` en `forense/hallazgos.md`)
+· no borró ni corrigió in situ ninguna frase de N5 (todo append) · no tocó
+`milpa/**`, `data/**` ni `forense/prereg-duelo-v2/**` · no lanzó ningún lote.
+
+**Sucesores:** `L15 · ABRE-ADMINISTRATIVAS-SALUD` (caja) si mesa quiere
+resolver `CAND-1..3`; y con la letra de `FP-267`, el recuento final.
+
+Detalle: `forense/notas/2026-09-03-MAESTRA36-N6-cruce-administrativas.md`.

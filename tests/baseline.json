@@ -1,5 +1,5 @@
 {
-  "head": "e4af4ede7c3020b80981abaf36ccdc00258bbe05",
+  "head": "3c5182ddbe982450067a9d476744b07229d464a2",
   "fails": [
     [
       "T02",
@@ -194,6 +194,10 @@
     [
       "T03",
       "forense/encargos/2026-08-30-MAESTRA32-E11-COBERTURA-15.md: cita `cobertura-15-spec.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-09-03-MAESTRA36-N6-CORRIGE-N5-Y-REMAPEA-OLA6-ADMINISTRATIVAS.md: cita `reevaluacion-ola6-cierre.md`, que no existe"
     ],
     [
       "T03",
@@ -539,7 +543,7 @@
       "T02_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
-      "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello": 1,
+      "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello": 2,
       "T03_encargo_verbatim_cita_v0_2_inexistente__solo_existe_v0_1__error_del_encargo_PROC-10-bis": 3,
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 4,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,
@@ -551,7 +555,7 @@
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 3,
-      "T22_sin_clasificar": 45
+      "T22_sin_clasificar": 59
     }
   }
 }

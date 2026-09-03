@@ -263,3 +263,52 @@ scoring v1_1 sellado (`ADR-262`, sin cambio). Las dos condiciones de
 arriba se cumplen — el criterio de activación queda declarado cumplido
 **por conteo**; esta línea **no activa** el corredor `E`: la activación
 es firma de mesa aparte, todavía no dada.
+
+**Enmienda fechada 3/sep/2026 — `ACTO MAESTRA36-N6 ·
+CORRIGE-N5-Y-REMAPEA-OLA6-ADMINISTRATIVAS`, sobre el criterio 2 de §3.a.**
+Append-only; ninguna línea de la enmienda de `MAESTRA34-N5` se edita.
+
+**Aclaración de universo, que la enmienda de N5 no traía y sin la cual su
+`0 de 6` se lee como más de lo que mide.** Las 75 corridas de `/mapea` que
+sostienen «2 `EXISTE-SATISFACE` de 25» se corrieron sobre **reactivos de
+encuesta** — `data/inventario-reactivos-v1_2.tsv` + `-ext-v1_0.tsv`,
+241 591 filas. **Las fuentes administrativas registradas no estaban en ese
+universo**, y no por omisión sino por construcción: no son encuestas y
+ningún inventario de reactivos las indexa (`ADR-278` ya lo había medido con
+control positivo). El criterio 2 quedaba por tanto evaluado sobre una parte
+del corpus, no sobre el corpus.
+
+**Corrida la parte que faltaba, el criterio 2 no se mueve.** Cruce
+«fuentes administrativas registradas × 25 reglas de Ola 6», por metadato
+(`data/manifiesto.yaml`, 1 104 entradas; 7 programas: CNGMD 94 entradas,
+SICEE/cómputos locales 65, DGIS Urgencias 11, Observatorio de Cuidados/MACU
+4, Cero Desabasto 2, CompraNet 2): **0 `EXISTE-SATISFACE` · 7
+`EXISTE-NO-SATISFACE` · 18 `NO-APLICA`**. Recuento del criterio 2 con las
+dos columnas —encuestas, y encuestas + administrativas— idéntico: **2 de 25,
+máximo 1 por dominio, 0 de 6 dominios cumplen**. **Ningún dominio abre y
+ninguno queda `ABRE-CANDIDATO-CON-RESERVA`.** Un cambio de estatus sin
+cambio de conteo: `salud.adherencia.desabasto_vs_cuidadora` pasa de
+`NO-ENCONTRADO` a `EXISTE-NO-SATISFACE` — su disparador está medido con
+registro individual (7 914 reportes de Cero Desabasto, 2019-2024, con fecha,
+padecimiento, institución y CLUES); falta el desenlace.
+
+**Corrección A.13 a la enmienda de N5, en su nota y no en este canon.** La
+nota `forense/notas/2026-09-03-reevaluacion-ola6-cierre.md` afirmaba que
+`MAESTRA34-A1` «no fusionó» y que ninguna de sus cinco fuentes estaba en el
+manifiesto; **las dos mitades son falsas** (`ADR-278` en este mismo repo, el
+`## CONSUMIDO` de su encargo, y las 176 entradas de manifiesto contadas
+arriba), y el negativo se escribió sin correr comando sobre el manifiesto.
+**Se registra aquí que este canon nunca repitió esa afirmación** —verificado,
+`grep -n 'MAESTRA34-A1' canon/motor-nucleo-medible-v1_0.md` → 0 aciertos
+antes de esta enmienda— así que lo que se corrige en el canon es sólo el
+universo, no la cita. Enmienda de la nota y detalle:
+`forense/notas/2026-09-03-MAESTRA36-N6-cruce-administrativas.md`.
+
+**Lo que va a mesa y este acto no decide** (`forense/firmas-pendientes.tsv`):
+si una fuente administrativa que midiera desenlace **y** disparador contaría
+para (ii); y si el criterio 2, con dos negativos ahora de naturaleza
+distinta —por encuesta faltan **instrumentos** (percepción y vínculo); por
+administrativo falta **la unidad de análisis** (persona) y **el brazo no
+seleccionado**—, se mantiene, se acota o se cambia. **El criterio 2 se
+propaga aquí tal como está escrito (`ADR-265`, firma 9); este acto no lo
+relaja ni lo reinterpreta.**
