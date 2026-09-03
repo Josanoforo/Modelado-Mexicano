@@ -1325,6 +1325,68 @@ reglas_propuestas:
       tasa observada en pp a probabilidad de agente es firma de mesa, no del
       acto (precedente L6 §5), y este acto NO la propone: con el falsador en
       NO-DISCRIMINA, lo que corresponde es mas identificacion, no mas motor.
+    relanzamiento_l8: >
+      ENMIENDA IN SITU FECHADA (2026-09-02, ACTO MAESTRA35-L8 · CIVICA-8-ENTIDADES).
+      El cuerpo de arriba (L3, 2/sep/2026) queda INTACTO como historia de su
+      propio universo -- esta entrada AÑADE, no reemplaza. Denominador de
+      Hidalgo, Aguascalientes y Veracruz destrabado por SICEE (deposito de
+      mesa via MAESTRA35-A1 relanzamiento, PR #483). Panel ampliado: 9
+      entidades (+Aguascalientes, +Hidalgo, +Veracruz), 489 municipios, 864
+      observaciones municipio x transicion (L3: 540), 19 transiciones (L3:
+      15), 9 conglomerados (L3: 6), p minimo alcanzable wild cluster
+      2/2^9=0.00390625 (L3: 2/2^6=0.03125). Entidades tratadas medibles: 7
+      (Coahuila, Nayarit, Zacatecas, Baja California, Chihuahua,
+      Aguascalientes, Veracruz) -- meta declarada 8, SIGUE ACOTADO por este
+      eje. Hidalgo entra al panel (STAY 2016->2020, 82 municipios) pero NO
+      se vuelve medible: su pata 2024 (la que cruza a tratamiento) no tiene
+      denominador en ninguna fuente conocida. Transiciones STAY: 4 (L3: 2),
+      cruza el umbral de 3 de la spec -- alpha identificada SIN reserva en
+      este acto.
+
+      coeficientes:
+        beta_pres_pp: {punto: 4.016715, ic95_wild_cluster_entidad: [0.049170, 7.887406], ic95_bootstrap_municipio: [3.346694, 4.683896], p_wild: 0.0413}
+        beta_int_pp: {punto: 0.286446, ic95_wild_cluster_entidad: [-1.221579, 1.794470], ic95_bootstrap_municipio: [-0.367888, 0.960914], p_wild: 0.7222}
+        alpha_pp_por_anio: {punto: -0.489217, ic95_wild_cluster_entidad: [-1.040532, 0.068082], ic95_bootstrap_municipio: [-0.644471, -0.333569], p_wild: 0.0823}
+        contraste_int_menos_pres: {punto: -3.730270, ic95_wild_cluster_entidad: [-7.296184, -0.161650], ic95_bootstrap_municipio: [-4.267483, -3.194064], p_wild: 0.0143}
+        variante_sin_alpha: {beta_pres_pp: 2.598894, beta_int_pp: -1.238349}
+
+      veredicto_falsador: ACOTADA
+      porque: >
+        beta_pres > 0 con IC wild cluster que EXCLUYE 0 (margen estrecho: el
+        extremo inferior es +0.0492) -- esa rama se sostiene. beta_int no
+        cumple: su IC wild cluster CONTIENE 0 y ademas cambia de signo
+        respecto a L3 (-0.92 -> +0.29). No es CONTRARIA (ningun coeficiente
+        sale con signo opuesto E IC fuera de 0). A diferencia de L3, los dos
+        metodos (wild cluster y bootstrap de municipio) COINCIDEN en las dos
+        conclusiones -- sin discrepancia que reportar en ningun coeficiente.
+      sensibilidad_entidades_nuevas: >
+        beta_pres se mueve menos de 0.3pp al quitar cualquiera de las tres
+        entidades nuevas (sin_Hidalgo=3.91, sin_Aguascalientes=3.72,
+        sin_Veracruz=3.71, vs 4.02 completo): la significancia del panel
+        completo depende de la CANTIDAD de conglomerados (6->9), no de una
+        entidad nueva en particular.
+      descomposicion_del_delta_de_L4: {suma_explicada_pp: 3.527499, porcentaje_explicado: 33.7, resto_no_identificado_pp: 6.951501}
+      declaracion_de_secuencia: >
+        A.13/honestidad: la spec de COMMIT-1 de este relanzamiento se congelo
+        DESPUES de que la sesion ya hubiera corrido el modelo completo (error
+        de proceso propio, detectado y declarado, no escondido). La spec
+        tiene cero grados de libertad (herencia verbatim de L3), asi que no
+        hubo discrecion que el resultado pudiera sesgar, pero la garantia
+        mecanica y auditable de "spec fijada a ciegas" no se sostiene para
+        este acto puntual. Detalle completo:
+        forense/notas/2026-09-02-MAESTRA35-L8-spec.md Sec.0.0.
+      estampa_A10:
+        sha256_payload_resultados: "30f3e16dd6ea770ad72ab957547159c5427788a97a24a0ef30f2765752ef8f99"
+        corpus: "data/raw/electoral_sicee_local/sicee_local_{hgo,ags,ver}_pel_*.zip (14 zips, alta REL-6c677146f183f594c0649a61)"
+        denominador: "SICEE (INE) via deposito de mesa, MAESTRA35-A1 relanzamiento PR #483 -- Hidalgo y Aguascalientes tenian denominador ausente en L3; Veracruz no tenia fila."
+      fuente_l8: ["forense/notas/2026-09-02-MAESTRA35-L8-spec.md", "forense/notas/2026-09-02-MAESTRA35-L8-P0-censo.md", "data/l8-resultados-tipo-boleta-v1_0.json"]
+      cola: >
+        Hidalgo 2024 (denominador, sin fuente conocida) y Veracruz 2025
+        (serie completa) quedan con receta en
+        data/curacion-registro/cola-adquisicion-registro.tsv, filas
+        IEEH_HIDALGO_SERIE_MUNICIPAL y SICEE_LOCAL_AYUNTAMIENTOS_VERACRUZ
+        (enmiendas fechadas 2026-09-02). No lanzadas por este acto (no
+        descarga).
 
   # ══════════════════════════════════════════════════════════════════
   # ACTO MAESTRA35-L1 · RECORRE-Y-SEGMENTA · 2/sep/2026

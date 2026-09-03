@@ -39,7 +39,9 @@ Sucesores declarados, no lanzados: acto NUBE de propagación tras firma de mesa 
 ## CONSUMIDO
 
 Ejecutado por `PR #486` (`ACTO MAESTRA35-L7 · REGLAS-ACTIVOS-L2`), 2/sep/2026,
-worktree `/home/pc0/mm-maestra35-l7`, `ADR-302`, `FP-252` (`ABIERTA`). Las
+worktree `/home/pc0/mm-maestra35-l7`, `ADR-303` (renumerado de `302` al
+fusionar por segunda vez — `PR #487`, `ACTO MAESTRA35-L8`, se llevó `302`
+primero), `FP-252` (`ABIERTA`). Las
 cuatro piezas `EXISTE-SATISFACE` en el censo P0 y `CORROBORADA` contra el
 signo pre-registrado en `COMMIT-1`. Cuatro entradas nuevas al pie de
 `milpa/tramite-ola5-propuesta-v0.yaml`, todas `PENDIENTE-DE-MESA`, ninguna
