@@ -312,3 +312,11 @@ administrativo falta **la unidad de análisis** (persona) y **el brazo no
 seleccionado**—, se mantiene, se acota o se cambia. **El criterio 2 se
 propaga aquí tal como está escrito (`ADR-265`, firma 9); este acto no lo
 relaja ni lo reinterpreta.**
+
+**Enmienda fechada 3/sep/2026 — `ACTO MAESTRA37-N4 · TRÁMITE-L1-LETRAS-Y-ALIAS`,
+sobre el criterio 2 de §3.a.** Append-only; ninguna línea previa se edita.
+
+Firma de mesa (D9, `forense/firmas-pendientes.tsv` `FP-267`, 3/sep/2026):
+(ii) se evalúa con `/mapea` sobre encuestas y, desde esta firma, también con
+el cruce por metadato sobre fuentes administrativas registradas
+(procedimiento de `ADR-318`); ambas con vocabulario A.4.
