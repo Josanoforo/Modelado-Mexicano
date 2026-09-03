@@ -15,3 +15,13 @@ FP/ADR CANDIDATOS (deriva, no heredes): ADR máx 319 al redactar → candidato A
 CONTADOR: reglas del motor 16 → 17 (`grep -cE '^ - id: ' milpa/tramite.yaml`, declara el real) · priors `ASIGNADO` sin dato 1 → 0 · entradas `SELLADA`/`SELLADA-SIN-CARGA` +3 · fuentes en cola +1 (PDN, `PENDIENTE`) · firmas propagadas 8 · dominios abiertos 0 → 0 · medición de modelo: cero directo (propaga mediciones ya hechas por L12/L13/L14/N12).
 Lo que NO hace. No decide FP-267 ni FP-268; no abre Ola 6; no mide; no sustituye la `p` de `coercitivo`; no descarga; no toca L10 ni su cola; no edita instrucciones.
 Sucesores. `MAESTRA37-L2 · MPS-CODEBOOK-Y-P3` (caja; con las tablas exportadas por mesa, si las hay). `MAESTRA37-A1 · REGISTRA-PDN` cuando mesa deposite la descarga manual (caja). Heterogeneidad por tamaño de la regla cívica (caja, sin fecha). Con el recuento de L1: FP-268 y, si aplica, FP-267.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA37-N3 · SELLA-CIVICA-COERCITIVO-Y-PROPAGA`, 3/sep/2026, NUBE.
+COMMIT-1 congela el estado previo (`forense/notas/2026-09-03-MAESTRA37-N3-previo.md`); COMMIT-2
+aplica P1-P4 (motor 16 → 17, `tramite.gobierno_digital.coercitivo` gana `campo_administrativo`,
+las dos entradas MPS-2012 selladas sin carga, fila nueva PDN en la cola de adquisición) y P5
+(tablero); cascada de cierre en `ADR-320` (`canon/gobernanza-v1_15.md`), `canon/estado-programa-v1_11.md`
+L0 y `canon/registro-rotulos.tsv`. `tests/check.py --baseline` VERDE (sin `FAIL` nuevo). PR sobre
+la rama `claude/maestra37-n3-redaccion-su1hgb`.
