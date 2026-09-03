@@ -169,3 +169,34 @@ python3 tools/vista_cola_adquisicion.py regenera data/cola-adquisicion-v1_0.tsv 
 data/INFRAESTRUCTURA-v1_0.md: línea 23 gana «recursivo, archivo = ruta relativa a la raíz (desde ADR-309)» y el alta de tools/barrido_descargas_vs_manifiesto.py.
 
 Perímetro: se añaden data/curacion-registro/{evidencias.tsv, utilidad-modelo.tsv, fusiones-relaciones.tsv, necesidad-objeto-modelo.tsv} (lectura obligatoria, escritura solo por el paso 5) y data/manifiesto-staging.yaml (temporal). Frase del perímetro sin cambio. Contador sin cambio.
+
+---
+
+## CONSUMIDO
+
+**PR #500** · rama `acto/maestra36-a1-escanea-recursivo` · `ADR-310` · 2/sep/2026 (cierre en la madrugada del 3/sep).
+
+Ejecutado en UBUNTU, caja propia `/home/pc0/mm-maestra36-a1`, contra el SHA de redacción
+`9af8407`, que era `origin/main` EXACTO al arrancar. `main` avanzó durante el acto (`PR #495`,
+`#496`, `#497`) y se re-fusionó contra `6019bd7` antes de derivar el ADR; el candidato `309` que
+este encargo preasignó quedó tomado por `PR #495` (`MAESTRA36-N1`) y se **renumeró a `310`` —
+regla de la casa, renumera quien fusiona segundo. `PR #498` entró después y no toca este perímetro.
+
+Las cuatro piezas se ejecutaron. Desviaciones y decisiones que el ejecutor tomó y declaró, para
+que esta auditoría no dependa de leer los commits:
+
+- **`FP-258` no se abrió por la clase (c)**: el encargo condicionaba su apertura a que la clase no
+  estuviera vacía, y salió **vacía** (0 de 33 objetos). El número se reusó para otro hallazgo
+  medido, declarado en la propia fila.
+- **`FP-259` se abrió fuera del rango preasignado** (`257`/`258`), por ser una decisión de mesa
+  medida y no un residuo. Declarado en la fila.
+- **`OECD` quedó `NO-ACCESIBLE` y no `OBTENIDO`**, apartándose del defecto que la enmienda fijaba
+  para las filas que P2 mueve: lo hallado es el formulario *Terms of Use*, no el microdato.
+- **Cero altas en las tres tablas del curador**: es el resultado de aplicar la regla de la propia
+  enmienda («fuente sin `N` → no se inventa»; alta solo para fuente nueva), no un faltante.
+- **Se repararon dos defectos de `tests/manifiesto.py` que el encargo no pedía**, ambos dentro del
+  perímetro que sí declaraba: el plegado YAML que corrompía el staging (preexistente, y que
+  bloqueaba materialmente el `--url`/`--usado-para` que la enmienda ordenaba usar) y la derivación
+  de id, que el propio parche de P1 había roto.
+- **Las 2 menciones de `ADR-309` que este archivo conserva son de dirección y no se editaron**:
+  un encargo archivado por A.3 no se toca ni para corregirle un número.
