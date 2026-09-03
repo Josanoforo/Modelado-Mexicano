@@ -43,6 +43,13 @@ encargo supone es entregable, no interrupción.
     ⚠️ Si este acto DESCARGA algo: verifica al cerrar que los payloads
     quedaron en el CORPUS COMPARTIDO y no solo en tu worktree. Es el
     defecto de PR #77 y no lo atrapa ningún test.
+    ⚠️ A.8 contra la raíz, no sólo contra el manifiesto (`ADR-326`,
+    `MAESTRA37-N6`). Todo acto que PIDA una descarga a mesa, o que declare
+    un payload `NO-ENCONTRADO`/`AUSENTE-EN-RAIZ`, cita el último
+    `forense/censo-raiz/*.txt` (fecha + línea "nuevos") además del
+    manifiesto. **Un `AUSENTE-EN-RAIZ` sin censo del día es
+    `NO-VERIFICADO`, no `AUSENTE`.** Si el censo lista el archivo, no se
+    pide — se registra.
 
 4 · ENTORNO — tres partes, no dos (A.2). `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE`
     describe el entorno; la sonda de red describe la red; ninguna de las

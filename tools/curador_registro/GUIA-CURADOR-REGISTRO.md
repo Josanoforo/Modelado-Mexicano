@@ -139,3 +139,16 @@ plataforma (los datos, no los diccionarios que el encargo pedía). Distinto de
 `ACTO MAESTRA37-N3`: ningún script de `tools/` ni `tests/` cuenta
 `estado_A4A5 == OBTENIDO-PARCIAL` como `OBTENIDO`, así que el token no voltea
 ningún contador en silencio.
+
+---
+
+## `estado_A4A5` — el token `DEPOSITADO-SIN-REGISTRO` (3/sep/2026, ACTO MAESTRA37-N6)
+
+`DEPOSITADO-SIN-REGISTRO` entra al vocabulario de `estado_A4A5` de
+`data/curacion-registro/cola-adquisicion-registro.tsv` como estado válido:
+cubre el hueco entre que mesa deposita un archivo en la raíz manual y que un
+acto A lo registra — hasta hoy, ese intervalo no tenía nombre en la cola.
+Mesa lo puede escribir a mano en una fila en cuanto deposita (una línea de
+PR); sólo un acto A lo mueve a `OBTENIDO`, nunca mesa misma ni este token por
+sí solo. `via_capa2.py` no lee este token y no se le pide que lo lea — es
+vocabulario de cola, no de curación automática.

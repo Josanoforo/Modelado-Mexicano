@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **325 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **326 ADR**
 
 > | | |
 > |---|---|
@@ -5581,3 +5581,21 @@ ejecutado con `/acto` de `ADR-237`.
 **Gate verificado.** `COMPUERTA: ninguna` — declaración explícita del encargo, no dispara verificación. Condición de entorno `A.2` (tres partes) medida al arrancar: `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` = `sin_variable` · sonda `https://www.inegi.org.mx/` → **200** · `data/raw/` montada (376 entradas) y `descargas_mx/ENSANUT2024-v2026-09-01/` presente con **131** archivos.
 
 **Deuda que abre.** **`FP-280`** (decisión de mesa): `version_publicada` y `sustituye_a` viven hoy como `clave: valor` dentro de `nota`, porque `tests/manifiesto.py --registra` sólo alcanza `data_raw` (`cmd_registra`, línea 320) y la vía de `descargas_mx` (`--escanea` + `--promueve`) **deriva** el id y no acepta `--id` ni `--nota` — y el registrador está en el NO-TOCA del acto. Campo formal con vía en el registrador, o `nota` para siempre. Recibo: **`FP-279`**.
+
+---
+
+**ADR-326 (derivado por el comando de la casa contra `origin/main = 27647ac4` (`PR #518`): `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `325`, contiguo; candidato `326`, que es el que el propio encargo había derivado.) · `ACTO MAESTRA37-N6 · CENSO-DIARIO-DE-RAIZ`, 3/sep/2026, NUBE, `COMPUERTA: ninguna`.**
+
+**Firma de mesa que este acto ejecuta** (verbatim, 3/sep/2026): «Es que si están descargados dobles es porque me los han pedido dobles, algo está roto ahí, entre el encargo, la descarga, el registro y el mapeo.» y «detuve A2, dame este encargo».
+
+**Qué decide.** Que exista un censo diario de la raíz manual (`descargas_mx`) y que `A.8` se conteste contra él, no sólo contra el manifiesto. Hasta hoy, el cron `[ADQ]` no escaneaba la raíz manual (`grep -c "descargas_mx\|escanea" tools/adquiere_cron.sh` → `0`) y `A.8` sólo veía lo que los actos `A` ya habían registrado — el intervalo entre que mesa deposita y un acto `A` registra era invisible por construcción. Medido en el `--escanea` de mesa del 3/sep (373 archivos): **9 objetos con 21 copias de navegador**.
+
+**Qué se ejecutó.** `tools/adquiere_cron.sh`: paso `2.5` (censo diario, antes de `claude -p`, independiente de que `data/raw` esté montado) que corre `python3 tests/manifiesto.py --escanea descargas_mx` cuando `data/raices.local.yaml` resuelve `descargas_mx`, guarda la salida cruda en `forense/censo-raiz/AAAA-MM-DD.txt` con el resumen `Total en disco · nuevos · ya registrados · conflicto` como primera línea, y commitea/empuja ese archivo a `main` con rótulo `[CENSO] AAAA-MM-DD`, separado del commit `[ADQ]`. Si la raíz no resuelve: una línea `PARO-RAIZ` en el log, sin detener el resto del cron. `.claude/commands/acto.md` (ARRANQUE, punto 3) y `.claude/commands/encola.md` (§4-bis, nueva): regla en una frase, sin compuerta nueva — «un `AUSENTE-EN-RAIZ` sin censo del día es `NO-VERIFICADO`, no `AUSENTE`»; si el censo lista el archivo, no se pide, se registra. `tools/curador_registro/GUIA-CURADOR-REGISTRO.md`: token `DEPOSITADO-SIN-REGISTRO` de `estado_A4A5` — mesa lo escribe a mano al depositar, sólo un acto `A` lo mueve a `OBTENIDO`; `via_capa2.py` no lo lee.
+
+**Qué NO decide.** No registra nada; no toca `tests/manifiesto.py`, `data/manifiesto.yaml` ni `data/curacion-registro/*.tsv`; no promueve `data/manifiesto-staging.yaml` (sigue sin commitearse); no añade test; no corre el cron. No abre ningún dominio, no mide nada del modelo.
+
+**Gate verificado.** `COMPUERTA: ninguna` — declaración explícita del encargo, no dispara verificación.
+
+**Falsador declarado.** Si en un mes el censo diario no evita ni una petición doble (medido por copias `(n)` nuevas en la raíz), se retira la pieza `P1` y se anota.
+
+**Deuda que abre.** `FP-282` (instalación manual de mesa: el cron editado no se instala solo, misma vía que `FP-233`). Recibo: **`FP-281`**.

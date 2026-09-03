@@ -14,3 +14,7 @@ PERÍMETRO Y CONCURRENCIA. Toca: tools/adquiere_cron.sh · .claude/commands/acto
 FP/ADR CANDIDATOS: ADR-326 · FP-281 (recibo) · FP-282 (mesa instala el cron editado — es instalación manual, como FP-233). CONTADOR: cero directo, declarado (infraestructura). Falsador: si en un mes el censo diario no evita ni una petición doble (medido por copias (n) nuevas en la raíz), se retira P1 y se anota.
 
 Lo que NO hace. No registra nada; no toca el registrador; no reescribe FP-259; no promueve staging; no añade test. Sucesores. Mesa instala el cron editado (FP-282). Primer [CENSO] del 4/sep es el control positivo: debe listar 0 nuevos si A1 registró todo, o los que mesa deposite esa mañana.
+
+## CONSUMIDO
+
+Ejecutado por este commit de la rama `claude/censo-diario-raiz-maestra37-i0dlw3` (PR abierto contra `main`, sin fusionar por el ejecutor). P1-P4 aplicadas: `tools/adquiere_cron.sh` (paso 2.5, censo diario + commit `[CENSO]` propio), `.claude/commands/acto.md` y `.claude/commands/encola.md` (regla A.8 contra la raíz), `tools/curador_registro/GUIA-CURADOR-REGISTRO.md` (token `DEPOSITADO-SIN-REGISTRO`), `forense/censo-raiz/` (nuevo), `data/INFRAESTRUCTURA-v1_0.md`, `forense/hallazgos.md`, `forense/firmas-pendientes.tsv` (FP-281 recibo, FP-282 abierta para mesa), cascada en `canon/gobernanza-v1_15.md` (ADR-326) y `canon/estado-programa-v1_11.md` (L0 + dos citas de conteo). `python3 tests/check.py --baseline` → LÍNEA BASE VERDE.
