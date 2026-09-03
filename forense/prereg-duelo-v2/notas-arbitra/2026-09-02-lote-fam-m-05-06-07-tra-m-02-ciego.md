@@ -117,3 +117,125 @@ COMMIT-2 = los cuatro `corridas-R/*.json` + una fila de estado por celda en `cod
 > Specs congeladas para este lote, copiadas verbatim del marco citado arriba — léase, por la enmienda de FP-243, de la proyección ciega `espec-R-ciega-v1_2.tsv` cuyo sha256 encabeza esta nota —, antes de ejecutar `tools/arbitra.py`. Ninguna se edita después de este commit.
 
 **El primer resultado que produzca este procedimiento es el que se reporta.**
+
+
+---
+
+## §5 · COMMIT-2 · resultados (P1) — escrito antes de tocar canon
+
+Orden verificable en git: COMMIT-1 = `e96c25e`; la corrida de abajo se lanzó después de ese commit y este §5 viaja en COMMIT-2 junto con los cuatro `corridas-R/*.json` y las cuatro filas de estado. Ningún archivo de `canon/`, `marco-M-*`, `milpa/`, `corridas-M/`, `corridas-L/`, `scoreboard*` ni `L-extraido*` se ha abierto hasta aquí.
+
+### Salida cruda de `python3 tools/arbitra.py --produce forense/prereg-duelo-v2/espec-R-ciega-v1_2.tsv FAM-M-05 FAM-M-06 FAM-M-07 TRA-M-02` (exit 0)
+
+```
+FAM-M-05: ESCRITO COMPUTADO
+    R=0.04745859252351374
+    advertencia: FAM-M-05: universo_filtro es informativo, NO se ejecuta como filtro ('hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2016 Nueva Serie, sin filtro adicional (asi lo declara el marco v1_2); 70311 filas leidas, 0 vacios en remesas') -- si esta celda necesita un filtro real, este calculo sera incorrecto y debe salir NO-COINCIDE.
+FAM-M-06: ESCRITO COMPUTADO
+    R=0.04728548395278385
+    advertencia: FAM-M-06: universo_filtro es informativo, NO se ejecuta como filtro ('hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2018 Nueva Serie, sin filtro adicional (asi lo declara el marco v1_2); 74647 filas leidas, 0 vacios en remesas') -- si esta celda necesita un filtro real, este calculo sera incorrecto y debe salir NO-COINCIDE.
+FAM-M-07: ESCRITO COMPUTADO
+    R=0.04377543852935772
+    advertencia: FAM-M-07: universo_filtro es informativo, NO se ejecuta como filtro ('hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2020 Nueva Serie, sin filtro adicional (asi lo declara el marco v1_2); 89006 filas leidas, 0 vacios en remesas') -- si esta celda necesita un filtro real, este calculo sera incorrecto y debe salir NO-COINCIDE.
+TRA-M-02: ESCRITO COMPUTADO
+    R=0.12602486953090247
+    advertencia: TRA-M-02: universo_filtro es informativo, NO se ejecuta como filtro ("persona seleccionada (informante de 15 anios y mas, tabla SEC_4_5) con contacto en los ultimos 12 meses = alguna de AP5_16_1..AP5_16_10 == '1' (codigos del FD: 1 Si, 2 No, 9 No sabe/no responde); 21519 filas leidas y 13435 con contacto segun la proyeccion ciega (guardias: se reportan, no se ajustan). El filtro NO se ejecuta como codigo (limite declarado de arbitra.py): lo aplica el salto del cuestionario -- sin contacto AP5_17/AP5_18 van en blanco y caen FUERA por la codificacion") -- si esta celda necesita un filtro real, este calculo sera incorrecto y debe salir NO-COINCIDE.
+    advertencia: TRA-M-02: tabla logica 'SEC_4_5' resuelta a miembro fisico 'ENCUCI_2020_SEC_4_5.dbf' dentro de BD_ENCUCI2020_dbf.zip
+
+real	0m5.083s
+user	0m4.877s
+sys	0m0.196s
+```
+
+`--produce` leyó de la proyección sólo `id`/`encuesta`/`ola`; no exigió el sorteado. Las cuatro celdas salieron `COMPUTADO` a la primera; es el primer y único resultado que produjo el procedimiento, y es el que se reporta.
+
+### Los cuatro R (de `corridas-R/<id>.json`, redondeados aquí; el JSON trae los flotantes completos)
+
+| celda | estado | R | EE_R | IC95 | cv % | n_filas_leidas | n_efectivo | n_codigo_no_valido | n_sin_ponderador | n_estratos | n_upm_total | singleton |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| FAM-M-05 | COMPUTADO | 0.047459 | 0.001262 | [0.0450, 0.0499] | 2.66 | 70311 | 70311 | 0 | 0 | 536 | 7891 | 0 |
+| FAM-M-06 | COMPUTADO | 0.047285 | 0.001195 | [0.0449, 0.0496] | 2.53 | 74647 | 74647 | 0 | 0 | 543 | 8377 | 0 |
+| FAM-M-07 | COMPUTADO | 0.043775 | 0.001012 | [0.0418, 0.0458] | 2.31 | 89006 | 89006 | 0 | 0 | 558 | 10118 | 0 |
+| TRA-M-02 | COMPUTADO | 0.126025 | 0.005060 | [0.1161, 0.1359] | 4.02 | 21519 | 13412 | 8107 | 0 | 281 | 3003 | 1 |
+
+### Guardias (§3) contra lo medido — todas dentro de lo esperado; nada se ajustó
+
+Script auxiliar de sólo lectura (reusa `csv_zip`/`dbf_zip`/`num` de `corridas-R/correr-R.py`; no escribe, no toca la spec). Corrido **después** de `--produce`.
+
+```
+## FAM-M-05 · enigh2016_nc_csv.zip
+n_filas_leidas=70311 (esperado 70311) | remesas>0=4128 (esperado 4128) | remesas==0=66183 (esperado 66183) | no numerico o negativo=0 (esperado 0) 
+factor nulo/<=0: 0 | est_dis vacio: 0 | upm vacio: 0
+## FAM-M-06 · enigh2018_nc_csv.zip
+n_filas_leidas=74647 (esperado 74647) | remesas>0=4584 (esperado 4584) | remesas==0=70063 (esperado 70063) | no numerico o negativo=0 (esperado 0) 
+factor nulo/<=0: 0 | est_dis vacio: 0 | upm vacio: 0
+## FAM-M-07 · enigh2020_nc_csv.zip
+n_filas_leidas=89006 (esperado 89006) | remesas>0=5240 (esperado 5240) | remesas==0=83766 (esperado 83766) | no numerico o negativo=0 (esperado 0) 
+factor nulo/<=0: 0 | est_dis vacio: 0 | upm vacio: 0
+```
+
+```
+n_filas_leidas=21519 (esperado 21519) | n_con_contacto=13435 (esperado 13435) | n_sin_contacto=8084
+valores numericos AP5_16_x (10 col x filas): {1.0: 32880, 2.0: 181601, 9.0: 709}
+valores crudos AP5_17: {'': 8084, '1': 1193, '2': 12225, '9': 17} | AP5_18: {'': 8084, '1': 839, '2': 12579, '9': 17}
+n_efectivo CON contacto=13412 | n_efectivo SIN contacto (entrarian en R fuera del universo)=0 | FUERA con contacto=23 | FUERA sin contacto=8084
+tabla (AP5_17, AP5_18) -> n, CON contacto (-> y):
+   ('1', '1'): 606  -> 1
+   ('1', '2'): 586  -> 1
+   ('1', '9'): 1  -> 1
+   ('2', '1'): 233  -> 1
+   ('2', '2'): 11986  -> 0
+   ('2', '9'): 6  -> None
+   ('9', '2'): 7  -> None
+   ('9', '9'): 10  -> None
+tabla (AP5_17, AP5_18) -> n, SIN contacto (-> y):
+   ('', ''): 8084  -> None
+```
+
+Lectura: `TRA-M-02` reproduce exactamente las dos cifras de la proyección (21519 filas, 13435 con contacto). Las 8084 filas sin contacto traen `AP5_17`/`AP5_18` en blanco (salto del cuestionario, código b del FD) y caen FUERA; **ninguna** fila sin contacto entra en R, así que el universo queda aplicado por el salto aunque `arbitra.py` no ejecute `universo_filtro`. `n_codigo_no_valido` = 8107 = 8084 (sin contacto, blanco-blanco) + 23 (con contacto, código 9 «No sabe/no responde» en alguna de las dos: 6 + 7 + 10); no se reclasifica ninguna. `n_efectivo` = 13412 = 1426 (y=1: 606 + 586 + 1 + 233) + 11986 (y=0). En FAM, `n_codigo_no_valido` = 0 en las tres olas y las frecuencias de `remesas` (>0 / ==0) coinciden una a una con las que la fila de codificación del 1/sep ya publicaba.
+
+**Declarado, no ocultado — una corrección a la guardia, no a la spec ni a la R.** La primera corrida del script auxiliar comparó `AP5_16_x` como cadena (`== '1'`) y dio `n_con_contacto = 0`: en el DBF esos diez campos son `N` de ancho 19 con **15 decimales**, y `dbfmini` entrega su texto crudo (`1.000000000000000`). Se corrigió la guardia a comparación por valor numérico (`num(v) == 1.0`) y dio 13435 exacto. La R **no** depende de `AP5_16_x` (la codificación compuesta usa sólo `AP5_17`/`AP5_18`), así que la corrección no toca ningún resultado; es exactamente el modo de falla «un lector nuevo devuelve vacío, no error» y por eso se deja escrito.
+
+Descriptores de campo del DBF `ENCUCI_2020_SEC_4_5.dbf` (cabecera, no datos; 21519 registros, 164 campos): `AP5_17` y `AP5_18` son **`C` ancho 6** (el FD los llama «Numérico»; por eso `=='1'` compara bien y el blanco llega como `''`); `AP5_16_1`…`AP5_16_10` son `N` 19,15; `FAC_SEL` es `N` 19,10; `EST_DIS`, `UPM_DIS` y `ESTRATO` son `C` 7. Si alguna codificación futura de ENCUCI usa `AP5_16_x` con comparación de cadena, dará R vacía sin error — va como hallazgo.
+
+### Filas de estado (append, sin editar las `PROPUESTA`) y regresión
+
+Cuatro filas anexadas a `codificacion-R-v1_0.tsv` (`git diff --numstat` → `4 0`): copia íntegra de la fila de codificación de cada celda con `estado` = `COMPUTADA (ACTO MAESTRA35-L4)`, `fuente` nueva y `fecha` 2026-09-02. Como `lee_codificacion()` toma la última fila por id, la copia es la que responderá por la celda en adelante; `--regresion` sobre las cuatro (no escribe) confirma que reproduce el JSON:
+
+```
+FAM-M-05: COINCIDE
+    R: nuevo=0.04745859252351374 == existente=0.04745859252351374
+    EE_R: nuevo=0.0012623608446458148 == existente=0.0012623608446458148
+    n_efectivo: nuevo=70311 == existente=70311
+    n_estratos: nuevo=536 == existente=536
+    n_upm_total: nuevo=7891 == existente=7891
+FAM-M-06: COINCIDE
+    R: nuevo=0.04728548395278385 == existente=0.04728548395278385
+    EE_R: nuevo=0.0011954757147624008 == existente=0.0011954757147624008
+    n_efectivo: nuevo=74647 == existente=74647
+    n_estratos: nuevo=543 == existente=543
+    n_upm_total: nuevo=8377 == existente=8377
+FAM-M-07: COINCIDE
+    R: nuevo=0.04377543852935772 == existente=0.04377543852935772
+    EE_R: nuevo=0.0010115874166924878 == existente=0.0010115874166924878
+    n_efectivo: nuevo=89006 == existente=89006
+    n_estratos: nuevo=558 == existente=558
+    n_upm_total: nuevo=10118 == existente=10118
+TRA-M-02: COINCIDE
+    R: nuevo=0.12602486953090247 == existente=0.12602486953090247
+    EE_R: nuevo=0.005060007385450377 == existente=0.005060007385450377
+    n_efectivo: nuevo=13412 == existente=13412
+    n_estratos: nuevo=281 == existente=281
+    n_upm_total: nuevo=3003 == existente=3003
+
+real	0m4.927s
+user	0m4.735s
+sys	0m0.192s
+```
+
+### Archivos abiertos por esta sesión entre COMMIT-1 y COMMIT-2
+
+- Datos (nivel contenido, ADR-46, declarado): `data/raw/enigh2016_nc_csv.zip`, `enigh2018_nc_csv.zip`, `enigh2020_nc_csv.zip` (los tres CSV de `concentradohogar`) y `data/raw/BD_ENCUCI2020_dbf.zip` (`ENCUCI_2020_SEC_4_5.dbf`) — por `tools/arbitra.py --produce` y `--regresion`, y por el script auxiliar de guardias (conteos; no se imprimió ninguna fila).
+- Código: `tests/dbfmini.py` (lectura), `tests/check.py` líneas 1300-1345 (bloque `_T22_ARCHIVOS_CONOCIDOS`, sólo para saber si algún test parsea `codificacion-R`; ninguno lo hace), `tools/calibracion_mordida_encig_serie.py` (sólo el contexto de su mención a `codificacion-R`, un docstring).
+- Los cuatro JSON nuevos de `corridas-R/` (propios).
+- Metadatos: `gh pr view 486` y `gh pr diff 486 | grep -oE` de los ids `ADR-`/`FP-` que reclama (PR abierto del carril MAESTRA35-L7, reclama `ADR-302` y `FP-252`); nada más de ese diff se leyó.
