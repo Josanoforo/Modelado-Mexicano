@@ -20,7 +20,7 @@ PERÍMETRO: forense/notas/…N12-* (benchmark + propuesta) · milpa/tramite-ola5
 Ejecutado por `ACTO MAESTRA36-N12 · CONVERSION-CIVICA-BENCHMARK`, 3/sep/2026,
 entorno NUBE (`cloud_default`), rama `claude/conversion-civica-benchmark-8xvun4`,
 contra `origin/main = 18fd2bd` (= SHA de redacción declarado, exacto).
-`ADR-314` (renumerado de `313` al fusionar segundo: `PR #506`, `ACTO MAESTRA36-L12 · MPS-2012-CROSSTABS`, se llevó el `313`; re-derivado contra `origin/main = f745ad3`) · PR #507. `python3 tests/check.py --baseline` → **VERDE**
+`ADR-315` (renumerado DOS veces al fusionar tercero: `PR #506` `MAESTRA36-L12` se llevó el `313` y `PR #505` `MAESTRA36-A2` se llevó el `314`; re-derivado contra `origin/main = 035a07e`, máximo `314`, candidato `315`) · PR #507. `python3 tests/check.py --baseline` → **VERDE**
 (19 FAIL, 175 WARN, nada nuevo contra `tests/baseline.json`).
 
 **Punto 4 del ARRANQUE, como el encargo mandó decir:** el acto **toca red
