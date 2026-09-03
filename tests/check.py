@@ -3907,6 +3907,68 @@ def t26_vista_cola_adquisicion():
                      "commitea el resultado.")
 
 
+def t26_bis_tsv_crudo_round_trip():
+    """T26-bis · T-VISTA-COLA-ADQUISICION -- FP-258, ACTO MAESTRA37-N2 ·
+    GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
+    `csv.reader`→`csv.writer` (tab, `QUOTE_MINIMAL`) sobre
+    `data/curacion-registro/cola-adquisicion-registro.tsv` corrompe 4 de
+    sus 112 líneas hoy (29, 47, 63, 94 -- comillas sueltas dentro de una
+    nota, ninguna intencional). Este test es DOBLE:
+
+    (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
+        día alguien "arregla" el round-trip corriendo `csv.writer` sobre
+        el archivo completo, este control lo hace visible en vez de
+        quedar en silencio -- se espera EXACTAMENTE 4 líneas distintas
+        hoy; si el número cambia (para arriba o para abajo) sin que
+        nadie lo haya declarado, falla.
+    (2) REGRESIÓN del lector/escritor propio (`tools/curador_registro/
+        tsv_crudo.py`, `leer_lineas`/`escribir_lineas`): un round-trip
+        con ese módulo sobre el mismo archivo debe dar 0 líneas
+        distintas -- preserva el crudo tratando cada línea como texto
+        opaco, nunca la reinterpreta."""
+    import csv as _csv
+    import io as _io
+    registro_path = os.path.join(ROOT, "data", "curacion-registro", "cola-adquisicion-registro.tsv")
+    if not os.path.exists(registro_path):
+        fail("T26-bis", "no existe `data/curacion-registro/cola-adquisicion-registro.tsv`")
+        return
+    orig_text = read(registro_path)
+    orig_lines = orig_text.split("\n")
+
+    # (1) control -- round-trip csv, defecto conocido y vigilado
+    with open(registro_path, newline="", encoding="utf-8-sig") as handle:
+        filas = list(_csv.reader(handle, delimiter="\t"))
+    buf = _io.StringIO()
+    escritor = _csv.writer(buf, delimiter="\t", quoting=_csv.QUOTE_MINIMAL)
+    for fila in filas:
+        escritor.writerow(fila)
+    csv_out_lines = buf.getvalue().split("\r\n")
+    diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
+    if len(diffs_csv) != 4:
+        fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
+                         f"4 líneas distintas (29, 47, 63, 94) el 3/sep/2026 (FP-258); hoy da "
+                         f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
+                         f"de forma que el control ya no describe la realidad, actualiza el número "
+                         f"esperado con el hallazgo re-medido, no lo silencies.")
+
+    # (2) regresión -- lector/escritor propio, preserva el crudo
+    sys.path.insert(0, os.path.join(ROOT, "tools", "curador_registro"))
+    try:
+        import tsv_crudo
+    except Exception as e:
+        fail("T26-bis", f"no se pudo importar tools/curador_registro/tsv_crudo.py: {e}")
+        return
+    import pathlib
+    lineas = tsv_crudo.leer_lineas(pathlib.Path(registro_path))
+    reconstruido = "\n".join(lineas) + "\n"
+    if reconstruido != orig_text:
+        r_lines = reconstruido.split("\n")
+        diffs_propio = [i + 1 for i, (a, b) in enumerate(zip(orig_lines, r_lines)) if a != b]
+        fail("T26-bis", f"tsv_crudo.leer_lineas/escribir_lineas NO preserva el crudo -- "
+                         f"{len(diffs_propio)} líneas distintas ({diffs_propio}); debía ser 0 "
+                         f"(FP-258, vía (ii)).")
+
+
 def t27_infraestructura():
     """T27 · T-INFRA -- P3-bis, ACTO MAESTRA33-A5 ·
     RECONCILIA-ADQUISICION-CON-CURADOR, 1/sep/2026. Precedente que lo justifica:
@@ -3992,6 +4054,7 @@ def main():
         ("T24 T-LLAVES-EJERCIDAS",                t24_llaves_ejercidas),
         ("T25 T-ROTULOS",                         t25_rotulos),
         ("T26 T-VISTA-COLA-ADQUISICION",          t26_vista_cola_adquisicion),
+        ("T26-bis T-TSV-CRUDO-ROUND-TRIP",        t26_bis_tsv_crudo_round_trip),
         ("T27 T-INFRA",                           t27_infraestructura),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):

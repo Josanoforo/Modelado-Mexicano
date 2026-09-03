@@ -11,12 +11,27 @@ romper ningun consumidor existente.
 tests/check.py::test_vista_cola_adquisicion falla si el archivo en disco
 difiere de lo que esta funcion produce -- esa es la garantia de "no
 editar a mano" (P3).
+
+Lee el registro con `tools/curador_registro/tsv_crudo.py` (split por tab,
+sin interpretar comillas) en vez de `csv.DictReader` -- FP-258, MAESTRA37-N2.
+csv.DictReader ya leía estas 112 líneas sin corromperlas (el defecto de
+FP-258 es del *escritor* csv en round-trip, no del lector); este cambio no
+altera ni una celda de la vista -- regresión byte a byte contra la vista
+producida antes del cambio, ver forense/notas/2026-09-03-MAESTRA37-N2-cierre.md.
+Adoptarlo aquí es preventivo: la próxima vez que alguien edite este archivo
+o el registro con csv, deja de ser la vía "obvia" para tocar la tabla.
 """
 
 from __future__ import annotations
 
-import csv
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent / "curador_registro"))
+try:
+    from curador_registro.tsv_crudo import leer_dicts
+except ImportError:  # ejecución directa, tools/ en sys.path pero no el paquete
+    from tsv_crudo import leer_dicts
 
 REGISTRO = Path("data/curacion-registro/cola-adquisicion-registro.tsv")
 VISTA = Path("data/cola-adquisicion-v1_0.tsv")
@@ -40,8 +55,7 @@ COLUMNAS_VISTA = [
 
 
 def read_tsv(path: Path) -> list[dict[str, str]]:
-    with path.open(encoding="utf-8-sig", newline="") as handle:
-        return list(csv.DictReader(handle, delimiter="\t"))
+    return leer_dicts(path)
 
 
 def render(registro_rows: list[dict[str, str]]) -> str:
