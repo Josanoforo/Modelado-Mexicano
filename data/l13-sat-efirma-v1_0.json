@@ -1,0 +1,220 @@
+{
+  "acto": "MAESTRA36-L13 · COERCITIVO-SAT-EFIRMA",
+  "regla": "tramite.gobierno_digital.coercitivo",
+  "prior": {
+    "rechaza_servicio": 0.91,
+    "adopta": 0.09,
+    "clase": "ASIGNADO",
+    "tier": "MEDIA-FUERTE"
+  },
+  "escala": "proporcion administrativa agregada — CAMPO del entorno, no probabilidad individual de conducta (precedente: firma p1, mesa 2/sep/2026, ADR-299). Comparable con 0.09 solo en signo y orden de magnitud, nunca como «difiere en Z %».",
+  "sin_ic_de_diseno": "censo administrativo: la incertidumbre es de definicion de universo, no muestral; se cuantifica con las dos cotas del denominador.",
+  "fuentes": [
+    {
+      "id": "firelenumcontri",
+      "archivo": "Descargas Manuales/FirEleNumcontri.xls",
+      "sha256": "dce5a06c278cf8f5e85c8b68ba03e500342f3768199a9ce232b4f30a22a23386",
+      "papel": "numerador (altas primeras de e.firma, acumuladas)"
+    },
+    {
+      "id": "portipocontribuyente",
+      "archivo": "Descargas Manuales/PorTipoContribuyente.xls",
+      "sha256": "d14769a74c4adef63462cbcd278086d3a66b7bac93a031185694e57ebd915b1e",
+      "papel": "denominador (padron activo por tipo)"
+    }
+  ],
+  "anos_completos_comunes": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "serie": [
+    {
+      "ano": 2010,
+      "n_acumulado_primeras_efirma": 2752991.0,
+      "padron_total": 33468711.0,
+      "padron_asalariados_pf": 20580970.0,
+      "padron_obligado_aprox": 12887741.0,
+      "identidad_total_menos_partes": 14247.0,
+      "p_inf": 0.08225566260977304,
+      "p_sup": 0.21361315377147944
+    },
+    {
+      "ano": 2011,
+      "n_acumulado_primeras_efirma": 4046840.0,
+      "padron_total": 36980257.0,
+      "padron_asalariados_pf": 23500337.0,
+      "padron_obligado_aprox": 13479920.0,
+      "identidad_total_menos_partes": 16006.0,
+      "p_inf": 0.10943244661604164,
+      "p_sup": 0.30021246416892683
+    },
+    {
+      "ano": 2012,
+      "n_acumulado_primeras_efirma": 5459655.0,
+      "padron_total": 38473767.0,
+      "padron_asalariados_pf": 24527458.0,
+      "padron_obligado_aprox": 13946309.0,
+      "identidad_total_menos_partes": 16444.0,
+      "p_inf": 0.14190591215047904,
+      "p_sup": 0.3914766982432413
+    },
+    {
+      "ano": 2013,
+      "n_acumulado_primeras_efirma": 6587812.0,
+      "padron_total": 41659149.0,
+      "padron_asalariados_pf": 25781974.0,
+      "padron_obligado_aprox": 15877175.0,
+      "identidad_total_menos_partes": 16685.0,
+      "p_inf": 0.15813601953318826,
+      "p_sup": 0.41492343568676415
+    },
+    {
+      "ano": 2014,
+      "n_acumulado_primeras_efirma": 7912029.0,
+      "padron_total": 46295553.0,
+      "padron_asalariados_pf": 27795381.0,
+      "padron_obligado_aprox": 18500172.0,
+      "identidad_total_menos_partes": 17179.0,
+      "p_inf": 0.1709025702749463,
+      "p_sup": 0.4276732670377335
+    },
+    {
+      "ano": 2015,
+      "n_acumulado_primeras_efirma": 8970992.0,
+      "padron_total": 51582845.0,
+      "padron_asalariados_pf": 29855002.0,
+      "padron_obligado_aprox": 21727843.0,
+      "identidad_total_menos_partes": 21239.0,
+      "p_inf": 0.17391425385707204,
+      "p_sup": 0.412880008383713
+    },
+    {
+      "ano": 2016,
+      "n_acumulado_primeras_efirma": 10250907.0,
+      "padron_total": 56794640.0,
+      "padron_asalariados_pf": 32702983.0,
+      "padron_obligado_aprox": 24091657.0,
+      "identidad_total_menos_partes": 26626.0,
+      "p_inf": 0.18049074701415485,
+      "p_sup": 0.42549613752179855
+    },
+    {
+      "ano": 2017,
+      "n_acumulado_primeras_efirma": 11784940.0,
+      "padron_total": 64672335.0,
+      "padron_asalariados_pf": 37926366.0,
+      "padron_obligado_aprox": 26745969.0,
+      "identidad_total_menos_partes": 32920.0,
+      "p_inf": 0.18222536730736566,
+      "p_sup": 0.44062490313960956
+    },
+    {
+      "ano": 2018,
+      "n_acumulado_primeras_efirma": 13259605.0,
+      "padron_total": 71795905.0,
+      "padron_asalariados_pf": 41510280.0,
+      "padron_obligado_aprox": 30285625.0,
+      "identidad_total_menos_partes": 43083.0,
+      "p_inf": 0.1846846975464687,
+      "p_sup": 0.4378184369647316
+    },
+    {
+      "ano": 2019,
+      "n_acumulado_primeras_efirma": 15149303.0,
+      "padron_total": 77442561.0,
+      "padron_asalariados_pf": 45574264.0,
+      "padron_obligado_aprox": 31868297.0,
+      "identidad_total_menos_partes": 46539.0,
+      "p_inf": 0.1956198607636439,
+      "p_sup": 0.47537221709713573
+    },
+    {
+      "ano": 2020,
+      "n_acumulado_primeras_efirma": 16405029.0,
+      "padron_total": 79756507.0,
+      "padron_asalariados_pf": 46270347.0,
+      "padron_obligado_aprox": 33486160.0,
+      "identidad_total_menos_partes": 57326.0,
+      "p_inf": 0.20568891012240545,
+      "p_sup": 0.48990475468073974
+    },
+    {
+      "ano": 2021,
+      "n_acumulado_primeras_efirma": 17981576.0,
+      "padron_total": 80734696.0,
+      "padron_asalariados_pf": 47029185.0,
+      "padron_obligado_aprox": 33705511.0,
+      "identidad_total_menos_partes": 73093.0,
+      "p_inf": 0.2227242671477948,
+      "p_sup": 0.5334906805002897
+    },
+    {
+      "ano": 2022,
+      "n_acumulado_primeras_efirma": 20829316.0,
+      "padron_total": 82235434.0,
+      "padron_asalariados_pf": 48146067.0,
+      "padron_obligado_aprox": 34089367.0,
+      "identidad_total_menos_partes": 90632.0,
+      "p_inf": 0.25328881951300947,
+      "p_sup": 0.611020908660463
+    },
+    {
+      "ano": 2023,
+      "n_acumulado_primeras_efirma": 24137595.0,
+      "padron_total": 84640752.0,
+      "padron_asalariados_pf": 50024797.0,
+      "padron_obligado_aprox": 34615955.0,
+      "identidad_total_menos_partes": 107896.0,
+      "p_inf": 0.2851769913386403,
+      "p_sup": 0.6972968100981181
+    },
+    {
+      "ano": 2024,
+      "n_acumulado_primeras_efirma": 28169093.0,
+      "padron_total": 86923933.0,
+      "padron_asalariados_pf": 51858257.0,
+      "padron_obligado_aprox": 35065676.0,
+      "identidad_total_menos_partes": 125688.0,
+      "p_inf": 0.32406601988430506,
+      "p_sup": 0.8033238258404031
+    },
+    {
+      "ano": 2025,
+      "n_acumulado_primeras_efirma": 32331680.0,
+      "padron_total": 87773627.0,
+      "padron_asalariados_pf": 52673672.0,
+      "padron_obligado_aprox": 35099955.0,
+      "identidad_total_menos_partes": 142527.0,
+      "p_inf": 0.36835301337154497,
+      "p_sup": 0.9211316652685168
+    }
+  ],
+  "ultimo_ano_completo": 2025,
+  "p_inf": 0.36835301337154497,
+  "p_sup": 0.9211316652685168,
+  "tramo_p_inf": "ACOTADA",
+  "tramo_p_sup": "CONTRARIA",
+  "veredicto": "AMBIGUA-POR-UNIVERSO",
+  "falsador_congelado": {
+    "commit_1": "spec y falsador escritos antes de calcular cifra alguna",
+    "i": "p >= 0.50 -> CONTRARIA",
+    "ii": "0.20 <= p < 0.50 -> ACOTADA",
+    "iii": "p < 0.20 -> CORROBORADA-PARCIAL",
+    "precedencia": "tramos distintos para p_inf y p_sup -> AMBIGUA-POR-UNIVERSO"
+  },
+  "cota_superior_declarada": "N cuenta contribuyentes que ALGUNA VEZ obtuvieron su primer certificado de e.firma (2004-…), no vigencias: el certificado caduca y el acumulado no da de baja a quien salio del padron. N es cota SUPERIOR del stock vigente, y por tanto p_inf y p_sup son ambas cotas superiores de la adopcion VIGENTE."
+}
