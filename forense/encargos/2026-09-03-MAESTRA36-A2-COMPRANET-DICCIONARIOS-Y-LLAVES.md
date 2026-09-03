@@ -59,3 +59,9 @@ Los cinco puntos de diferencia entre v1 y v3 se verificaron **contra el árbol**
 5. **`FP-258`.** Se cumplió el fondo de la cita: la fila 63 se editó **línea por línea**, nunca con round-trip de `csv`. La cita explícita a `FP-258` se agrega al cerrar, en la nota y en el ADR.
 
 **Numeración al cierre**, re-derivada contra `origin/main` **después** de fusionar `PR #503` y `PR #504` (`1d4c67d9`): `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `311`, sin duplicados; candidato **`ADR-312`**. Máximo de `forense/firmas-pendientes.tsv` → `260`; candidatas **`FP-261`** y **`FP-262`**. `L12`/`L13` siguen abiertos: si alguno fusiona primero, **renumera quien fusiona segundo**.
+
+---
+
+## CONSUMIDO
+
+`ACTO MAESTRA36-A2 · COMPRANET-DICCIONARIOS-Y-LLAVES`, 3/sep/2026, `ADR-312`. `P1`/`P2`/`P3` ejecutados y cerrados; la ENMIENDA de dirección del 3/sep archivada verbatim arriba y verificada punto por punto contra el árbol. Veredicto `A.4` de `EXT-OF-05`: **`EXISTE-NO-SATISFACE`**. Recibo `FP-261`; decisión de esquema `FP-262`. Nota de cierre: `forense/notas/2026-09-03-MAESTRA36-A2-P1-P3-compranet-llaves.md`. **La fusión de este PR es la firma.**
