@@ -1,9 +1,10 @@
-ESTADO: EN-CURSO
+ESTADO: PARO-REPORTADO
 ENTORNO: NUBE
 ENCOLADO: 2026-09-02 · gesto de encolado, precedente §1c del transfer maestra-34 (firma D4-a, 1/sep/2026)
 BITACORA:
 - 2026-09-02 · LISTO-NUBE · encolado por PR [COLA] encola MAESTRA34-L1/N1/N2/L2/N3. COMPUERTA propia: MAESTRA34-L2 fusionado con R v1_2 completo (o parcial declarado) Y PR `[L] corridas v1_2` de mesa fusionado Y L-extraido-v1_2.tsv producido con la MISMA regla de extracción congelada de MAESTRA33-E21 (tools/extrae_l_v1_1.py sin editar; si hay que editarlo, PARO y a mesa). Si falta cualquiera, cero commits.
 - 2026-09-03 · EN-CURSO · sesión de nube claude/despacha-MAESTRA34-N3-AGREGA-2
+- 2026-09-03 · PARO-REPORTADO · ENMIENDA 4 (commit `59b88b1`/`3be4bad`, 3/sep 05:52–05:55 UTC) reafirma "P1 puntúa 13 de 14 aplicando exclusiones-v1_2.md (DIN-M-01) como exclusión con razón", pero `forense/prereg-duelo-v2/exclusiones-v1_2.md` ya trae un apéndice posterior (`ACTO MAESTRA35-L5`, commit `3b9191d`, 2/sep 17:20:59 -06:00 = 23:20:59 UTC — anterior a ENMIENDA 4 y ya en `origin/main`): "Exclusión LEVANTADA por firma de mesa d2 (2/sep/2026)... N3/N5 puntúan 14 de 14, con la reserva de (a)." Verificado: `corridas-R/DIN-M-01.json` existe (`estado: COMPUTADO`, `diseno: DISENO-APROXIMADO`, con `EE_R` y `EE_R_sin_diseno`) y su campo `puntua` dice literalmente "SI, por firma de mesa d1 (FP-249)... Esa mitad la ejecutan MAESTRA35-N3/N5, no ACTO MAESTRA35-L5" — exige que N3 calcule z con las dos EE y decida si el veredicto de la celda cambia entre ellas (si cambia: AMBIGUA-POR-DISEÑO, no cuenta como puntuada; si no cambia: cuenta). Comandos: `git log -1 --format='%ci %s' 3b9191d` → `2026-09-02 17:20:59 -0600 MAESTRA35-L5: propaga las firmas de mesa d1/d2 sobre FP-249`; `git merge-base --is-ancestor 3b9191d HEAD` → `yes`. No se puede determinar si dirección desconocía el levantamiento al redactar ENMIENDA 4, o lo ignoró deliberadamente: ejecutar "13 de 14" contradice el verbatim vigente de exclusiones-v1_2.md; ejecutar "14 de 14 con reserva" añade al procedimiento un cálculo que ninguna enmienda de N3 describe. Cero commits sustantivos; cero push de trabajo de P1-P3. Pide firma de mesa que resuelva cuál de las dos lecturas rige.
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 
