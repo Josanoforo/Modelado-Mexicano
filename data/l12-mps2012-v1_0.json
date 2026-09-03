@@ -1,0 +1,936 @@
+{
+  "acto": "MAESTRA36-L12 · MPS-2012-CROSSTABS",
+  "fecha": "2026-09-03",
+  "spec_congelada": [
+    "forense/notas/2026-09-03-MAESTRA36-L12-spec-congelada.md (COMMIT-1)",
+    "forense/notas/2026-09-03-MAESTRA36-L12-spec-congelada-bis-v3.md (COMMIT-1-bis, manda)"
+  ],
+  "fuente": "ICPSR 35024 Mexico Panel Study 2012, DS1, ola 2 (W2), tabulador en linea 'Explore Data'",
+  "doi": "https://doi.org/10.3886/ICPSR35024.v1",
+  "P0_censo_y_estampa": {
+    "estado": "OK",
+    "payloads": {
+      "icpsr35024_ds1_w2_crosstabs_derivado_v0": {
+        "archivo": "icpsr35024_DS1_W2_crosstabs_derivado_v0.csv",
+        "sha256": "96330f0353dd173cd7dec5ff9c351d8504085bf38a6dbee3df9242b8271ebb6d",
+        "sha256_manifiesto": "96330f0353dd173cd7dec5ff9c351d8504085bf38a6dbee3df9242b8271ebb6d",
+        "coincide": true
+      },
+      "icpsr35024_ds1_w2_crosstabs_derivadas": {
+        "archivo": "icpsr35024-ds1-w2-crosstabs-derivadas.csv",
+        "sha256": "a85c59aea0e9a586e1555a51f63e27d2252fb13c611297a803e71d6b499e8379",
+        "sha256_manifiesto": "a85c59aea0e9a586e1555a51f63e27d2252fb13c611297a803e71d6b499e8379",
+        "coincide": true
+      },
+      "export_crudo": {
+        "archivo": "export_crudo.txt",
+        "sha256": "daa29e0b8830ac854572631501d72e31cb52c6eaca074355d700e9ae88ff053d",
+        "sha256_manifiesto": "daa29e0b8830ac854572631501d72e31cb52c6eaca074355d700e9ae88ff053d",
+        "coincide": true
+      },
+      "leeme_procedencia": {
+        "archivo": "LEEME-procedencia.txt",
+        "sha256": "c98ce68bda7cf5866848231bd33097e71e5f6641f8d153b42f4bdbd42231297a",
+        "sha256_manifiesto": "c98ce68bda7cf5866848231bd33097e71e5f6641f8d153b42f4bdbd42231297a",
+        "coincide": true
+      },
+      "leeme_2_procedencia": {
+        "archivo": "LEEME 2-procedencia.txt",
+        "sha256": "9f0a7da9d591a84c92ad799c875c9d4e7461cb33f695436c0d7d798764e75d20",
+        "sha256_manifiesto": "9f0a7da9d591a84c92ad799c875c9d4e7461cb33f695436c0d7d798764e75d20",
+        "coincide": true
+      }
+    },
+    "censo_celdas": {
+      "derivado_v0": {
+        "T1": 16,
+        "T2": 32,
+        "T3": 32,
+        "T4": 32
+      },
+      "derivadas": {
+        "T6": 257,
+        "T7a": 12,
+        "T7b": 58,
+        "T8": 12,
+        "T9a": 10,
+        "T5": 22
+      },
+      "total_derivadas": 371
+    },
+    "cuadre_marginales": {
+      "W2_P41=1": {
+        "marginal_codebook": 63,
+        "reconstruido": 62,
+        "estratificado_por_W2_P36C": true,
+        "casos_sin_control": 1,
+        "ok": true,
+        "veredicto": "CUADRA"
+      },
+      "W2_P40=1": {
+        "marginal_codebook": 60,
+        "reconstruido": 53,
+        "estratificado_por_W2_P36C": true,
+        "casos_sin_control": 7,
+        "ok": true,
+        "veredicto": "CUADRA"
+      },
+      "W2_P7=1": {
+        "marginal_codebook": 971,
+        "reconstruido": 971,
+        "estratificado_por_W2_P36C": false,
+        "casos_sin_control": 0,
+        "ok": true,
+        "veredicto": "CUADRA-EXACTO"
+      }
+    },
+    "estampa": {
+      "instrumento": "SEGUNDA MANO (tabulador en linea 'Explore Data' de ICPSR)",
+      "ponderador": "NINGUNO -- conteos sin ponderar; sin estrato ni UPM",
+      "universo": "ola panel ronda 2 (julio 2012), n~1555",
+      "microdato": "35024-0001-Data.dta NO-ACCESIBLE (membresia institucional, A.4)",
+      "clase_procedencia": "(3) reportada",
+      "marca": "SIN-FETCH (A.6)",
+      "tier_maximo_alcanzable": "MEDIA con reserva",
+      "entra_al_motor": false
+    },
+    "discordancias_A1_resueltas": {
+      "1_LEEME2_declara_solo_T6": {
+        "declarado": "Tabla T6 ... 257 celdas",
+        "medido": "371 celdas en 6 tablas",
+        "resolucion": "NO es contradiccion: las Adendas 1-3 del propio archivo declaran T7a/T7b/T8/T9a/T5 y marcan el texto original VENCIDO EN ALCANCE. Re-sello por crecimiento de universo."
+      },
+      "2_nombres_de_archivo_inexistentes": {
+        "declarado": "export_crudo_mesa_2026-09-02.txt y T5_lista_W2.txt",
+        "medido": "export_crudo.txt; T5 derivado dentro del CSV de derivadas",
+        "resolucion": "El contenido se identifica por sha256 e identidad, no por rotulo. Los cinco payloads coinciden con el manifiesto."
+      }
+    }
+  },
+  "P1_R7_7_vote_choice": {
+    "regla": "R7.7",
+    "tier_canon": "MEDIA",
+    "enunciado": "dadiva + broker -> compra turnout, no vote-choice",
+    "turnout_T1": {
+      "ofrecidos": {
+        "voto": 52,
+        "n": 62,
+        "p": [
+          0.8387096774193549,
+          0.7279366398602256,
+          0.9099593112969091
+        ]
+      },
+      "no_ofrecidos": {
+        "voto": 906,
+        "n": 1056,
+        "p": [
+          0.8579545454545454,
+          0.8355999776443497,
+          0.8777142579029327
+        ]
+      },
+      "delta": -0.019244868035190543,
+      "ic95_wald": [
+        -0.11318569491518395,
+        0.07469595884480286
+      ],
+      "semiancho": 0.0939408268799934,
+      "excluye_cero": false
+    },
+    "vote_change_T6_PRIMARIO_v3": {
+      "desenlace": "P8 != W2_P8 (comparacion de CODIGO), universo de codigos partidarios",
+      "ofrecidos": {
+        "cambio": 16,
+        "n": 35,
+        "p": [
+          0.45714285714285713,
+          0.3046601928840721,
+          0.6181027493151624
+        ]
+      },
+      "no_ofrecidos": {
+        "cambio": 246,
+        "n": 605,
+        "p": [
+          0.4066115702479339,
+          0.36817921572124457,
+          0.44622238528195046
+        ]
+      },
+      "delta": 0.050531286894923255,
+      "ic95_wald": [
+        -0.11908416634633687,
+        0.22014674013618338
+      ],
+      "semiancho": 0.16961545324126012,
+      "excluye_cero": false,
+      "excluido_por_codigo_no_partidario": {
+        "n_excluido": 216,
+        "filas_no_partidarias": 165,
+        "cols_no_partidarias": 84
+      }
+    },
+    "vote_change_T6_SECUNDARIO_ya_visto": {
+      "rotulo": "YA-VISTO-BAJO-SPEC-ANTERIOR",
+      "desenlace": "partido(P8) != partido(W2_P8), PAN={01} PRI={02,04,09} AMLO={03,05,06,10} QUADRI={07} -- spec de COMMIT-1 (b6efa1f)",
+      "ofrecidos": {
+        "cambio": 11,
+        "n": 35,
+        "p": [
+          0.3142857142857143,
+          0.18550844674265818,
+          0.4797976361206918
+        ]
+      },
+      "no_ofrecidos": {
+        "cambio": 203,
+        "n": 605,
+        "p": [
+          0.33553719008264465,
+          0.2990544312796451,
+          0.37409529084102583
+        ]
+      },
+      "delta": -0.021251475796930375,
+      "ic95_wald": [
+        -0.17958393770201395,
+        0.1370809861081532
+      ],
+      "semiancho": 0.15833246190508357,
+      "excluye_cero": false,
+      "declaracion": "este contraste se corrio bajo la spec v1/v2 ANTES de que apareciera el encargo v3, asi que P1 bajo v3 NO es ciega: su desenlace es un vecino cercano de este. Se publica junto al primario en vez de esconderse."
+    },
+    "umbral_no_discrimina_semiancho": 0.15,
+    "veredicto_Bbis": "NO-DISCRIMINA",
+    "razon_veredicto": "semiancho del IC95 (Wald) de Delta_vote-change = 0.1696 > 0.15 (+-15 pp). Rama de precedencia.",
+    "reservas": [
+      "panel NO ponderado: proporciones muestrales crudas, no comparables contra coeficientes de indice ni contra estimaciones ponderadas",
+      "n de ofrecidos en el universo de la pieza = 35; el panel 'Si' completo de T6 es 48 y el marginal del estudio 63. El encargo (v1 y v3) supuso 63 para esta pieza y es la cifra equivocada",
+      "W2_P41 es autorreporte de OFERTA RECIBIDA, no de venta del voto: la prevalencia bruta es un piso, no una estimacion",
+      "la seleccion de quien recibe oferta NO es aleatoria (targeting por partido, localidad y vulnerabilidad): esto es ASOCIACION, no coeficiente identificado. PROHIBIDO escribir 'el efecto de la compra de voto es X'"
+    ],
+    "entra_al_motor": false
+  },
+  "P1_robustez_T7": {
+    "rotulo": "ROBUSTEZ",
+    "adjudica": false,
+    "T7a_turnout_por_ambito": {
+      "Urbano": {
+        "ofrecidos": {
+          "voto": 37,
+          "n": 45,
+          "p": [
+            0.8222222222222222,
+            0.6867017537354023,
+            0.9070561048589585
+          ]
+        },
+        "no_ofrecidos": {
+          "voto": 667,
+          "n": 790,
+          "p": [
+            0.8443037974683544,
+            0.8173612911931553,
+            0.867914079544157
+          ]
+        },
+        "prevalencia_oferta": 0.05389221556886228,
+        "delta_turnout_pp": -2.208157524613219,
+        "ic95_pp": [
+          -13.661265259429198,
+          9.24495021020276
+        ]
+      },
+      "Rural": {
+        "ofrecidos": {
+          "voto": 13,
+          "n": 16,
+          "p": [
+            0.8125,
+            0.5699111903802586,
+            0.9340840092857187
+          ]
+        },
+        "no_ofrecidos": {
+          "voto": 244,
+          "n": 281,
+          "p": [
+            0.8683274021352313,
+            0.8237793429619855,
+            0.9029407098597673
+          ]
+        },
+        "prevalencia_oferta": 0.05387205387205387,
+        "delta_turnout_pp": -5.582740213523129,
+        "ic95_pp": [
+          -25.112058017641814,
+          13.946577590595554
+        ]
+      },
+      "Mixto": {
+        "ofrecidos": {
+          "voto": 2,
+          "n": 2,
+          "p": [
+            1.0,
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "no_ofrecidos": {
+          "voto": 8,
+          "n": 10,
+          "p": [
+            0.8,
+            0.4901624715366418,
+            0.9433178485456248
+          ]
+        },
+        "prevalencia_oferta": 0.16666666666666666,
+        "delta_turnout_pp": 19.999999999999996,
+        "ic95_pp": [
+          -4.791801292182465,
+          44.791801292182456
+        ]
+      }
+    },
+    "T7b_nivel_de_voto_por_ambito": {
+      "Urbano": {
+        "no_ofrecidos": {
+          "n": 761,
+          "PRI": 294,
+          "p_PRI": [
+            0.38633377135348224,
+            0.35239273553879874,
+            0.4214165970949892
+          ],
+          "AMLO": 198,
+          "p_AMLO": [
+            0.26018396846254926,
+            0.23027200149162289,
+            0.29250491418081986
+          ],
+          "PAN": 163,
+          "p_PAN": [
+            0.21419185282522996,
+            0.18651676526823824,
+            0.24473791505371412
+          ]
+        },
+        "ofrecidos": {
+          "n": 44,
+          "PRI": 15,
+          "p_PRI": [
+            0.3409090909090909,
+            0.21875819519344444,
+            0.48860858782061756
+          ],
+          "AMLO": 16,
+          "p_AMLO": [
+            0.36363636363636365,
+            0.23783529708820186,
+            0.5113362312095656
+          ],
+          "PAN": 7,
+          "p_PAN": [
+            0.1590909090909091,
+            0.0792667701220125,
+            0.29366205062240613
+          ]
+        }
+      },
+      "Rural": {
+        "no_ofrecidos": {
+          "n": 278,
+          "PRI": 141,
+          "p_PRI": [
+            0.5071942446043165,
+            0.44872865893568303,
+            0.5654637172205331
+          ],
+          "AMLO": 60,
+          "p_AMLO": [
+            0.2158273381294964,
+            0.1715155177620301,
+            0.2678856240674312
+          ],
+          "PAN": 52,
+          "p_PAN": [
+            0.18705035971223022,
+            0.14559072046158505,
+            0.23704091674301164
+          ]
+        },
+        "ofrecidos": {
+          "n": 12,
+          "PRI": 2,
+          "p_PRI": [
+            0.16666666666666666,
+            0.04696514218385378,
+            0.4480308622529734
+          ],
+          "AMLO": 2,
+          "p_AMLO": [
+            0.16666666666666666,
+            0.04696514218385378,
+            0.4480308622529734
+          ],
+          "PAN": 6,
+          "p_PAN": [
+            0.5,
+            0.2537815976337061,
+            0.7462184023662939
+          ]
+        }
+      },
+      "Mixto": {
+        "no_ofrecidos": {
+          "n": 11,
+          "PRI": 5,
+          "p_PRI": [
+            0.45454545454545453,
+            0.21271271622459764,
+            0.719908462590678
+          ],
+          "AMLO": 2,
+          "p_AMLO": [
+            0.18181818181818182,
+            0.05136768974608513,
+            0.4769805619608442
+          ],
+          "PAN": 3,
+          "p_PAN": [
+            0.2727272727272727,
+            0.09746059290024889,
+            0.5656453011761291
+          ]
+        },
+        "ofrecidos": {
+          "n": 2,
+          "PRI": 0,
+          "p_PRI": [
+            0.0,
+            0.0,
+            0.6576197724933469
+          ],
+          "AMLO": 1,
+          "p_AMLO": [
+            0.5,
+            0.09453120573423074,
+            0.9054687942657693
+          ],
+          "PAN": 1,
+          "p_PAN": [
+            0.5,
+            0.09453120573423074,
+            0.9054687942657693
+          ]
+        }
+      }
+    },
+    "nota": "no mueve el veredicto de P1 por spec. Las celdas de ofrecidos por ambito son de una o dos decenas de casos: descriptivo."
+  },
+  "P2_R7_3_R7_6_replica": {
+    "T3": {
+      "variable_expuesto": "W2_P39B",
+      "desenlace": "voto PRI (W2_P8)",
+      "control": "W2_P36C (secreto percibido, 1-4)",
+      "por_estrato": {
+        "1": {
+          "expuesto": {
+            "PRI": 46,
+            "n": 104,
+            "p": [
+              0.4423076923076923,
+              0.3506024390721901,
+              0.5381231018169389
+            ]
+          },
+          "no_expuesto": {
+            "PRI": 208,
+            "n": 448,
+            "p": [
+              0.4642857142857143,
+              0.41860354439762004,
+              0.5105751545125685
+            ]
+          },
+          "delta_pp": -2.197802197802201,
+          "ic95_pp": [
+            -12.801607451396213,
+            8.40600305579181
+          ],
+          "semi_ancho_pp": 10.603805253594011
+        },
+        "2": {
+          "expuesto": {
+            "PRI": 35,
+            "n": 79,
+            "p": [
+              0.4430379746835443,
+              0.3386778751145434,
+              0.5526808705169161
+            ]
+          },
+          "no_expuesto": {
+            "PRI": 128,
+            "n": 306,
+            "p": [
+              0.41830065359477125,
+              0.3643790043162787,
+              0.47424814328911946
+            ]
+          },
+          "delta_pp": 2.4737321088773023,
+          "ic95_pp": [
+            -9.79549466508741,
+            14.742958882842016
+          ],
+          "semi_ancho_pp": 12.269226773964713
+        },
+        "3": {
+          "expuesto": {
+            "PRI": 4,
+            "n": 13,
+            "p": [
+              0.3076923076923077,
+              0.12680703655710515,
+              0.5763065681945096
+            ]
+          },
+          "no_expuesto": {
+            "PRI": 24,
+            "n": 81,
+            "p": [
+              0.2962962962962963,
+              0.20791957048345946,
+              0.40311964950752444
+            ]
+          },
+          "delta_pp": 1.139601139601143,
+          "ic95_pp": [
+            -25.8482661436489,
+            28.127468422851187
+          ],
+          "semi_ancho_pp": 26.987867283250043
+        },
+        "4": {
+          "expuesto": {
+            "PRI": 1,
+            "n": 8,
+            "p": [
+              0.125,
+              0.02241749145005667,
+              0.4708881822128535
+            ]
+          },
+          "no_expuesto": {
+            "PRI": 5,
+            "n": 39,
+            "p": [
+              0.1282051282051282,
+              0.05602817536971394,
+              0.26705743379745456
+            ]
+          },
+          "delta_pp": -0.3205128205128194,
+          "ic95_pp": [
+            -25.525478853173865,
+            24.884453212148227
+          ],
+          "semi_ancho_pp": 25.204966032661048
+        }
+      },
+      "agregado": {
+        "expuesto": {
+          "PRI": 86,
+          "n": 204,
+          "p": [
+            0.4215686274509804,
+            0.3558686687922161,
+            0.490167823726793
+          ]
+        },
+        "no_expuesto": {
+          "PRI": 365,
+          "n": 874,
+          "p": [
+            0.41762013729977115,
+            0.3853548878674033,
+            0.4506063799070171
+          ]
+        },
+        "delta_pp": 0.39484901512092385,
+        "ic95_pp": [
+          -7.128993639381262,
+          7.91869166962311
+        ],
+        "semi_ancho_pp": 7.523842654502186,
+        "excluye_cero": false
+      },
+      "rotulo": "REPLICA-DE-SEGUNDA-MANO-NO-SELLADA"
+    },
+    "T4": {
+      "variable_expuesto": "W2_P40",
+      "desenlace": "voto PRI (W2_P8)",
+      "control": "W2_P36C (secreto percibido, 1-4)",
+      "por_estrato": {
+        "1": {
+          "expuesto": {
+            "PRI": 14,
+            "n": 28,
+            "p": [
+              0.5,
+              0.32633127457293465,
+              0.6736687254270654
+            ]
+          },
+          "no_expuesto": {
+            "PRI": 132,
+            "n": 300,
+            "p": [
+              0.44,
+              0.38493919498482354,
+              0.49657796156212186
+            ]
+          },
+          "delta_pp": 6.0,
+          "ic95_pp": [
+            -13.35299915996141,
+            25.35299915996141
+          ],
+          "semi_ancho_pp": 19.35299915996141
+        },
+        "2": {
+          "expuesto": {
+            "PRI": 5,
+            "n": 17,
+            "p": [
+              0.29411764705882354,
+              0.1327998961029523,
+              0.5313311006653985
+            ]
+          },
+          "no_expuesto": {
+            "PRI": 93,
+            "n": 206,
+            "p": [
+              0.45145631067961167,
+              0.38500797827613664,
+              0.5196819714011115
+            ]
+          },
+          "delta_pp": -15.733866362078814,
+          "ic95_pp": [
+            -38.434489079252145,
+            6.966756355094517
+          ],
+          "semi_ancho_pp": 22.70062271717333
+        },
+        "3": {
+          "expuesto": {
+            "PRI": 0,
+            "n": 8,
+            "p": [
+              0.0,
+              0.0,
+              0.32440756488388023
+            ]
+          },
+          "no_expuesto": {
+            "PRI": 13,
+            "n": 37,
+            "p": [
+              0.35135135135135137,
+              0.2182560713392713,
+              0.5124097687744917
+            ]
+          },
+          "delta_pp": -35.13513513513514,
+          "ic95_pp": [
+            -50.51748914256508,
+            -19.752781127705187
+          ],
+          "semi_ancho_pp": 15.38235400742995
+        },
+        "4": {
+          "expuesto": {
+            "PRI": 0,
+            "n": 0,
+            "p": [
+              null,
+              null,
+              null
+            ]
+          },
+          "no_expuesto": {
+            "PRI": 5,
+            "n": 26,
+            "p": [
+              0.19230769230769232,
+              0.08507061148942408,
+              0.37876257119317
+            ]
+          },
+          "delta_pp": null,
+          "ic95_pp": [
+            null,
+            null
+          ],
+          "semi_ancho_pp": null
+        }
+      },
+      "agregado": {
+        "expuesto": {
+          "PRI": 19,
+          "n": 53,
+          "p": [
+            0.3584905660377358,
+            0.2430195255280876,
+            0.49308858444640524
+          ]
+        },
+        "no_expuesto": {
+          "PRI": 243,
+          "n": 569,
+          "p": [
+            0.4270650263620387,
+            0.3870441306144753,
+            0.4680641219012004
+          ]
+        },
+        "delta_pp": -6.857446032430286,
+        "ic95_pp": [
+          -20.39279736972091,
+          6.677905304860338
+        ],
+        "semi_ancho_pp": 13.535351337290624,
+        "excluye_cero": false
+      },
+      "rotulo": "REPLICA-DE-SEGUNDA-MANO-NO-SELLADA"
+    },
+    "_nota": "NO ADJUDICA. Las lecturas preliminares (+2.0 / -3.8 pp, n 21) ya fueron vistas por mesa y direccion antes de esta spec: secuencia rota. Esta pieza sirve de contexto a N10, no de sello. No mueve el veredicto de R7.3 ni de R7.6.",
+    "_reglas": [
+      "R7.3 (FUERTE)",
+      "R7.6 (MEDIA)"
+    ],
+    "entra_al_motor": false
+  },
+  "P3_experimento_de_lista": {
+    "ola1_marzo": {
+      "lista_A": {
+        "var": "P35A",
+        "media": 1.3035439137134053,
+        "n_valid": 649,
+        "nc_excluidos": 18
+      },
+      "lista_B": {
+        "var": "P35B",
+        "media": 1.3723076923076922,
+        "n_valid": 650,
+        "nc_excluidos": 11
+      },
+      "delta": 0.06876377859428695,
+      "ee": 0.04903757243543993,
+      "t": 1.402267183695062,
+      "ic95": [
+        -0.027348097268449417,
+        0.16487565445702332
+      ],
+      "excluye_cero": false,
+      "delta_pct": 6.876377859428695
+    },
+    "ola2_julio": {
+      "lista_A": {
+        "var": "W2_P35A",
+        "media": 1.5532286212914486,
+        "n_valid": 573,
+        "nc_excluidos": 2
+      },
+      "lista_B": {
+        "var": "W2_P35B",
+        "media": 1.7408695652173913,
+        "n_valid": 575,
+        "nc_excluidos": 0
+      },
+      "delta": 0.18764094392594277,
+      "ee": 0.052292778075792495,
+      "t": 3.5882764471602244,
+      "ic95": [
+        0.08514898224584373,
+        0.2901329056060418
+      ],
+      "excluye_cero": true,
+      "delta_pct": 18.764094392594277
+    },
+    "contraste_con_pregunta_directa": {
+      "directa_W2_P41_pct": 5.5,
+      "razon_lista_sobre_directa_ola2": 3.411653525926232,
+      "limite": "las dos cifras NO miden el mismo estimando: W2_P41 pregunta si le OFRECIERON; el item de la lista, SI el supuesto 2 se sostiene, pregunta por conducta propia. El factor mezcla subreporte con diferencia de constructo y no se puede repartir con estas tablas."
+    },
+    "clase": "MEDIDO.Delta de segunda mano",
+    "NO_es": "p de regla",
+    "secuencia": "ROTA: la lectura 18.8% ya estaba escrita en la Adenda 3 de LEEME 2-procedencia.txt antes de congelar esta spec.",
+    "supuesto_no_verificado_que_lo_gobierna": "que lista B = lista A + UN item y que ese item sea la venta del voto. El texto de los items NO esta en estas salidas. Hasta leerlo en el cuestionario de ICPSR 35024, la cifra es PROPUESTA CON RESERVA, no prevalencia medida.",
+    "prohibido": "escribir 'subio de 6.9% a 18.8%': los IC de las dos olas se traslapan",
+    "entra_al_motor": false
+  },
+  "P4_exploratorio_T8_T9a": {
+    "rotulo": "EXPLORATORIO",
+    "veredicto": null,
+    "adjudica": false,
+    "entra_a_la_propuesta": false,
+    "entra_al_motor": false,
+    "T8_marca_en_credencial": {
+      "universo": "quien declaro haber votado (W2_P7=1)",
+      "n": 971,
+      "celdas": {
+        "Afirma si haber votado, pero no le marcaron la credencial": {
+          "n": 38,
+          "p": [
+            0.03913491246138002,
+            0.028643358834797912,
+            0.0532586346619514
+          ]
+        },
+        "No pudo ver": {
+          "n": 60,
+          "p": [
+            0.061791967044284246,
+            0.04830584682977477,
+            0.07873169112076567
+          ]
+        },
+        "No tiene marca en federales 2012": {
+          "n": 27,
+          "p": [
+            0.027806385169927908,
+            0.019179534722953646,
+            0.04015468654690014
+          ]
+        },
+        "No trae credencial": {
+          "n": 129,
+          "p": [
+            0.13285272914521112,
+            0.11294391320053414,
+            0.15565510508235103
+          ]
+        },
+        "Se niega a mostrar credencial": {
+          "n": 61,
+          "p": [
+            0.06282183316168898,
+            0.04921579436488582,
+            0.07987335924264508
+          ]
+        },
+        "Si tiene marca en federales 2012": {
+          "n": 656,
+          "p": [
+            0.6755921730175077,
+            0.645504155618046,
+            0.7042963138988351
+          ]
+        }
+      },
+      "columna_no_voto": 0,
+      "limite_medido": "la columna 'no voto' es CERO en todas las filas: W2_P53 solo se pregunto a quien declaro haber votado. NO hay no-votantes en el denominador, asi que T8 NO puede calibrar sobrerreporte de participacion, que era la funcion que el plan le asignaba.",
+      "advertencia": "los estados 'no pudo ver', 'no trae credencial' y 'se niega a mostrar' son NO-VERIFICABLE, no falso: colapsarlos con 'no tiene marca' y 'afirma haber votado sin marca' produce una tasa de mentira inflada por rechazo a mostrar identificacion, que es otro fenomeno.",
+      "corroborado_por_marca": {
+        "etiqueta": "Si tiene marca en federales 2012",
+        "n": 656,
+        "p": [
+          0.6755921730175077,
+          0.645504155618046,
+          0.7042963138988351
+        ]
+      }
+    },
+    "T9a_percepcion_x_oferta": {
+      "celdas": {
+        "Totalmente de acuerdo": {
+          "ofrecido": 37,
+          "n": 379,
+          "p": [
+            0.09762532981530343,
+            0.07165863863857705,
+            0.13166693393780265
+          ]
+        },
+        "Algo de acuerdo": {
+          "ofrecido": 21,
+          "n": 333,
+          "p": [
+            0.06306306306306306,
+            0.04161369848175281,
+            0.09447839357006388
+          ]
+        },
+        "Algo en desacuerdo": {
+          "ofrecido": 4,
+          "n": 179,
+          "p": [
+            0.0223463687150838,
+            0.008723574404384326,
+            0.056039958423838215
+          ]
+        },
+        "Totalmente en desacuerdo": {
+          "ofrecido": 0,
+          "n": 150,
+          "p": [
+            0.0,
+            1.734723475976807e-18,
+            0.0249702443680766
+          ]
+        },
+        "NS": {
+          "ofrecido": 0,
+          "n": 93,
+          "p": [
+            0.0,
+            0.0,
+            0.03966750261173514
+          ]
+        }
+      },
+      "n_total": 1134,
+      "ofrecidos_total": 62,
+      "prevalencia_global": [
+        0.054673721340388004,
+        0.042882369242096194,
+        0.06947199948796774
+      ],
+      "prohibido": "escribir 'la percepcion de compra de voto es sobre todo vivencia'. Las dos variables son de la MISMA ola (sin orden temporal), el sentido mas probable es el inverso (recibir el regalo produce el reporte), y aun entre quienes estan TOTALMENTE de acuerdo la gran mayoria NO recibio oferta: la percepcion excede a la experiencia por un orden de magnitud.",
+      "NS_no_se_colapsa": "no saber y negar son estados distintos; una celda con numerador 0 sostiene 'ninguna observada en esta muestra', no 'cero ofertas'."
+    }
+  },
+  "pendiente_de_mesa": {
+    "P1_se_lanza": true,
+    "tablas_en_disco": [
+      "T5",
+      "T6",
+      "T7a",
+      "T7b",
+      "T8",
+      "T9a"
+    ],
+    "premisa_del_encargo_refutada": "el encargo (v1 y v3) supone que T6-T9 no han sido LEIDAS EN VALOR por nadie. LEEME 2-procedencia.txt trae tres adendas de direccion del 2/sep con ICs, t, p y gradientes en valor de T5, T6, T7a, T7b, T8 y T9a. Lo unico que ninguna adenda calcula es el contraste de vote-change de P1.",
+    "pendiente_de_mesa_real": {
+      "T9b": "W2_P38A x W2_P38B, control P46 -- no aparece en disco",
+      "serie_ronda_1": [
+        "P40 x P7",
+        "P40 x P8",
+        "P38B x P8 | P36C",
+        "P39 x P8"
+      ],
+      "control_negativo": "ninguna tabla del disco usa P40, P39 ni P38B como variable de fila o columna",
+      "texto_de_los_items_P35A_P35B": "leer el cuestionario: es lo unico que convierte P3 de propuesta en medicion"
+    },
+    "receta_para_mesa": "Explore Data -> Crosstabs; T9b: fila W2_P38A, columna W2_P38B, control P46, exportar. Serie ronda 1: las cuatro de arriba, sin control salvo la tercera (control P36C).",
+    "FP": "FP-263"
+  },
+  "cargas_al_motor": 0
+}
