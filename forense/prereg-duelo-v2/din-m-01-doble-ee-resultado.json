@@ -1,0 +1,28 @@
+{
+  "cuenta_como_puntuada": true,
+  "estado_celda": "PUNTUADA",
+  "firma_mesa": "d1/FP-249 (mesa, 2/sep/2026), implementado por ENMIENDA 5",
+  "id_celda": "DIN-M-01",
+  "insumos": {
+    "L_solo": 0.209375,
+    "M": 0.174804,
+    "R": 0.15558094338412926
+  },
+  "resultados": {
+    "aproximada": {
+      "EE_usada": 0.004821494748362768,
+      "dif_pareada_z": 7.170183066514646,
+      "veredicto_banda": "FUERA-DE-BANDA",
+      "z_L": 11.157132678437026,
+      "z_M": 3.98694961192238
+    },
+    "sin_diseno": {
+      "EE_usada": 0.004018626879101259,
+      "dif_pareada_z": 8.60268968482379,
+      "veredicto_banda": "FUERA-DE-BANDA",
+      "z_L": 13.386178471961413,
+      "z_M": 4.783488787137623
+    }
+  },
+  "veredicto_cambia_entre_EE": false
+}
