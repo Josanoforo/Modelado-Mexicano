@@ -20,3 +20,4 @@ PERÍMETRO Y CONCURRENCIA: `tools/medidor_salud_ensanut24.py` (nuevo) · `forens
 FP/ADR CANDIDATOS: un recibo; primer libre al arrancar.
 CONTADOR: dominio salud: reglas con dato 0 → hasta 4 (pendiente sello) · reglas del motor: sin cambio hasta firma. Declara el real.
 Lo que este acto NO hace: no abre Ola 6 (lo verifica); no carga al motor; no toca los cuatro dominios activos; no descarga; no edita instrucciones.
+- 2026-09-03 · PARO-REPORTADO · lanzado en caja /home/pc0/Modelado-Mexicano contra origin/main=e042151 (#510); compuerta grep -c "OLA 6 ABIERTA" canon/gobernanza-v1_15.md → 0 (1 archivo, 2 133 326 bytes; control ola 6 -i → 17); ADR-302…318 leídos uno por uno, ninguno abre dominio. Cero commits, sin worktree, ADR-319 no reclamado. Registrado por MAESTRA37-L1 porque la corrida no dejó commit (A.3).

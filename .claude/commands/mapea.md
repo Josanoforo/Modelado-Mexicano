@@ -67,6 +67,13 @@ python3 tools/busca_reactivos.py --palabra "<término>" [--palabra "<término-2>
     [--encuesta <substr>] [--tipo <substr>] --limite 30
 ```
 
+La salida declara qué tabla(s)/raíz(ces) examinó (`--tablas`, o `hoy` por
+defecto = v1_2+ext); esa línea de universo (A.13) va literal a la tabla
+del paso 5 — declara también, en la misma nota, qué tabla NO se corrió
+(p.ej. `descargas_mx` si `--tablas` no la incluyó), para que un
+`NO-ENCONTRADO` no se lea como cobertura total del corpus cuando no lo fue
+(cierra `DE1`, `forense/hallazgos.md`).
+
 o con `--regex "<patrón>"` en vez de `--palabra`. Corre las ≥3 tal como
 se declararon en el paso 2 — no edites una formulación a media corrida.
 Copia el comando exacto y su línea `# candidatas: N total, mostrando M`

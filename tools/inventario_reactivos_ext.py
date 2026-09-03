@@ -22,6 +22,7 @@ nunca se parchan ni se reintenta con otra heurística.
 
 from __future__ import annotations
 
+import argparse
 import csv
 import sys
 import tempfile
@@ -33,7 +34,9 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
-from tools.inventario_reactivos import sha256_file_12, sanitiza_celda  # noqa: E402
+from tools.inventario_reactivos import (  # noqa: E402
+    sha256_file_12, sanitiza_celda, resuelve_raiz as _resuelve_raiz_inventario,
+)
 from tools.etiqueta_v1_2 import (  # noqa: E402
     aplica_v1_1,
     aplica_v1_2,
@@ -65,13 +68,31 @@ EXT_DESPACHADAS = set(EXT_STATA_SPSS_SAS) | EXT_DBF | EXT_RDATA
 
 
 def derivar_perimetro() -> list[str]:
-    """Rama (a): 125 .zip + 8 .dta sueltos de causa B en cobertura-composicion."""
+    """Rama (a): 125 .zip + 8 .dta sueltos de causa B en cobertura-composicion.
+    Específico de RAW_ROOT -- --raiz distinto de 'raw' usa derivar_perimetro_disco."""
     with COBERTURA_PATH.open(encoding="utf-8") as f:
         rows = list(csv.DictReader(f, delimiter="\t"))
     causa_b = [r for r in rows if r["causa"] == "B"]
     zips = sorted(r["payload_id"] for r in causa_b if r["formato"] == ".zip")
     dtas = sorted(r["payload_id"] for r in causa_b if r["formato"] == ".dta")
     return zips + dtas
+
+
+def derivar_perimetro_disco(root_dir: Path) -> list[str]:
+    """ACTO MAESTRA37-L1: para --raiz != 'raw'. cobertura-composicion-v1_0.tsv
+    es específico de data/raw (causa B se derivó ahí) y no se re-deriva para
+    otra raíz -- en su lugar, el perímetro es todo archivo bajo root_dir cuya
+    extensión EXT_DESPACHADAS despacha directo, más todo .zip (se abre para
+    ver si trae miembros EXT_DESPACHADAS; zips sin ninguno producen 0 filas,
+    no error)."""
+    perimetro = []
+    for p in sorted(root_dir.rglob("*")):
+        if not p.is_file():
+            continue
+        ext = p.suffix.lower()
+        if ext in EXT_DESPACHADAS or ext == ".zip":
+            perimetro.append(str(p.relative_to(root_dir).as_posix()))
+    return perimetro
 
 
 def instrumento_para(payload_id: str, manifiesto: dict, familias: list[str]) -> str:
@@ -165,21 +186,45 @@ def filas_para_archivo(payload_id: str, sha12: str, archivo_miembro: str,
     return filas
 
 
-def procesar_payload(payload_id: str, manifiesto: dict, familias: list[str]) -> tuple[list[dict], dict]:
+def procesar_payload(payload_id: str, manifiesto: dict, familias: list[str],
+                      root_dir: Path = RAW_ROOT) -> tuple[list[dict], dict]:
     """Devuelve (filas, stats) donde stats trae conteos de miembros ignorados."""
-    path = RAW_ROOT / payload_id
+    path = root_dir / payload_id
     sha12 = sha256_file_12(path)
     instrumento = instrumento_para(payload_id, manifiesto, familias)
     stats = {"miembros_despachados": 0, "miembros_ignorados": 0}
 
-    if path.suffix.lower() == ".dta":
+    # .dta suelto es el único caso que 'raw' (derivar_perimetro, causa B)
+    # produce hoy -- las otras extensiones EXT_DESPACHADAS sueltas (.sav,
+    # .dbf, .rdata, ...) solo aparecen bajo --raiz != 'raw' (MAESTRA37-L1,
+    # derivar_perimetro_disco), y sin esta rama caían al bloque de zip de
+    # abajo y reventaban con BadZipFile.
+    if path.suffix.lower() in EXT_DESPACHADAS:
         filas = filas_para_archivo(payload_id, sha12, payload_id, path, instrumento)
         if filas:
             stats["miembros_despachados"] = 1
         return filas, stats
 
     filas: list[dict] = []
-    with zipfile.ZipFile(path) as zf:
+    try:
+        zf_ctx = zipfile.ZipFile(path)
+    except (zipfile.BadZipFile, OSError) as exc:
+        # ACTO MAESTRA37-L1: derivar_perimetro_disco() no verifica que cada
+        # .zip sea válido antes de listarlo (derivar_perimetro() de 'raw' sí
+        # lo garantiza, vía cobertura-composicion causa B) -- se documenta
+        # como fila ERROR, no se excluye en silencio.
+        return [{
+            "payload_id": sanitiza_celda(payload_id),
+            "sha256_12": sha12,
+            "instrumento": sanitiza_celda(instrumento),
+            "ola": "NO_DETERMINADO",
+            "archivo_miembro": sanitiza_celda(payload_id),
+            "variable_id": "ERROR",
+            "texto_reactivo": sanitiza_celda(f"{type(exc).__name__}: {exc}"[:200]),
+            "metodo": "INSPECT_ZIP_ABRIR",
+            "universo_declarado": "PRESENTE_EN_DATA_RAW",
+        }], stats
+    with zf_ctx as zf:
         nombres = zf.namelist()
         for nombre_miembro in nombres:
             ext = Path(nombre_miembro).suffix.lower()
@@ -212,9 +257,27 @@ def procesar_payload(payload_id: str, manifiesto: dict, familias: list[str]) -> 
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--raiz", default="raw",
+        help="'raw' (default) = comportamiento previo a MAESTRA37-L1, byte a byte "
+             "(cobertura-composicion-v1_0.tsv causa B, assert 133, escribe "
+             "inventario-reactivos-ext-v1_0.tsv). Cualquier otra clave se resuelve "
+             "contra data/raices.local.yaml, deriva su propio perímetro por disco "
+             "(ver derivar_perimetro_disco) y escribe a un archivo NUEVO.",
+    )
+    args = parser.parse_args()
+
     t0 = time.time()
-    perimetro = derivar_perimetro()
-    assert len(perimetro) == 133, f"perimetro re-derivado = {len(perimetro)}, esperado 133"
+    if args.raiz == "raw":
+        root_dir = RAW_ROOT
+        out_path = OUT_PATH
+        perimetro = derivar_perimetro()
+        assert len(perimetro) == 133, f"perimetro re-derivado = {len(perimetro)}, esperado 133"
+    else:
+        root_dir, _ = _resuelve_raiz_inventario(args.raiz)
+        out_path = REPO_ROOT / "data" / f"inventario-reactivos-ext-{args.raiz.replace('_', '-')}-v1_0.tsv"
+        perimetro = derivar_perimetro_disco(root_dir)
 
     manifiesto = carga_manifiesto(MANIFIESTO)
     familias = familias_canonicas(REACTIVOS_V1_1)
@@ -227,7 +290,7 @@ def main() -> int:
     por_familia_miembros_ignorados = 0
 
     for payload_id in perimetro:
-        filas, stats = procesar_payload(payload_id, manifiesto, familias)
+        filas, stats = procesar_payload(payload_id, manifiesto, familias, root_dir)
         por_familia_miembros_despachados += stats["miembros_despachados"]
         por_familia_miembros_ignorados += stats["miembros_ignorados"]
         todas_filas.extend(filas)
@@ -270,7 +333,7 @@ def main() -> int:
         f"Fallos por payload documentados como fila ERROR, no parchados.",
     ]
 
-    with OUT_PATH.open("w", encoding="utf-8", newline="") as handle:
+    with out_path.open("w", encoding="utf-8", newline="") as handle:
         for linea in cabecera:
             handle.write(linea + "\n")
         handle.write("\t".join(FIELDS) + "\n")
