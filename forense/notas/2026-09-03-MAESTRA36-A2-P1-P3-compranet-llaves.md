@@ -6,7 +6,7 @@
 **Compuerta:** cumplida. `git log --format=%s origin/main | grep -c 'MAESTRA36-A1'` → `1`; verificación **por producto**: `git show origin/main:forense/encargos/2026-09-02-MAESTRA36-A1-ESCANEA-RECURSIVO-Y-REGISTRA-DESCARGAS.md | grep -n '^## '` → `175:## CONSUMIDO`.
 **Versión del encargo bajo la que se ejecutó:** la **v1** (SHA de redacción `9af8407`). La **ENMIENDA DE DIRECCIÓN del 3/sep** (archivada verbatim al pie del encargo por A.3) declara que la **v3**, que sustituía a la v1, difería solo en: cabecera/compuerta (`ea45e01`, COMPUERTA ninguna, cumplida **por producto**: `## CONSUMIDO` de A1 con `PR #500`, `ADR-310`), CARRILES (`N2` nube, `L12`/`L13` caja, disjuntos de `data/curacion-registro/**`), la firma de mesa verbatim del 2/sep, A.8 §(3) sobre el rótulo de la fila 63, y la cita de `FP-258` al editar esa fila por línea. **Nada de eso mueve `P1`–`P3` ni su resultado**, y los cinco puntos se verificaron uno por uno contra el árbol al cerrar (ver el encargo archivado). La fila 63 se editó **línea por línea, nunca con round-trip de `csv`** — que es el fondo de `FP-258`.
 
-**Firmas que abre este acto:** `FP-261` (recibo del lote) y `FP-262` (el desvío de perímetro de `relaciones.tsv`, elevado a mesa; ver §P1). **ADR:** `ADR-312`, re-derivado al cierre contra `origin/main = 1d4c67d9` (tras `PR #503` y `PR #504`); `L12`/`L13` siguen abiertos y **renumera quien fusione segundo**.
+**Firmas que abre este acto:** `FP-262` (recibo del lote) y `FP-263` (el desvío de perímetro de `relaciones.tsv`, elevado a mesa; ver §P1). **ADR:** `ADR-313`. Numeración **renumerada al cerrar**: las candidatas eran `ADR-312`/`FP-261`/`FP-262`, y `PR #502` (`ACTO MAESTRA36-L13`) fusionó segundo llevándose `ADR-312` y `FP-261` — la regla «renumera quien fusione segundo», aplicada a este acto. Re-derivado contra `origin/main = 18fd2bd3`: máximo `ADR-312` sin duplicados, máximo `FP-261`. `L12` sigue abierto.
 
 ---
 
@@ -159,7 +159,7 @@ S1-S2-S3-S6) y cuyo destino son las reglas `R3.1`/`R3.2`. El catálogo de necesi
 `N1…N37` y la columna `necesidad_id` de `relaciones.tsv` no tiene **ni una** excepción a ese dominio.
 Escribir `EXT-OF-05` ahí estrenaría un valor ajeno al esquema del curador — un cambio estructural que
 este acto no está autorizado a hacer. Se eleva a firma de mesa
-(`forense/firmas-pendientes.tsv`) en vez de resolverse por inferencia.
+(`forense/firmas-pendientes.tsv`, `FP-263`) en vez de resolverse por inferencia.
 
 Corolario que el encargo no anticipaba: **CompraNet no es la fuente de `EXT-OF-05`.** La necesidad
 pide S1 (declaraciones), S2 (intereses), S3 (sancionados) y S6 (contrataciones) de la PDN. CompraNet

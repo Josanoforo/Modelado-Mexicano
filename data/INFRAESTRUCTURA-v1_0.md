@@ -402,3 +402,25 @@ condicionada al voto — búsqueda por etiqueta, control positivo con los térmi
 que sí aparecen (`voto`, `corrup`, `pais`). Es la primera vez que esta ola se
 abre en el repo con ese propósito; el hallazgo queda también en
 `forense/hallazgos.md`.
+
+## Adopción de e.firma contra el padrón activo del SAT (`ACTO MAESTRA36-L13 · COERCITIVO-SAT-EFIRMA`, 3/sep/2026)
+
+Un artefacto nuevo bajo `data/`, primera medición del programa contra una
+fuente **administrativa** con denominador de obligación (las anteriores sobre
+esta regla fueron encuestas de hogares, que sólo observan a quien ya hizo el
+trámite — `ADR-287`, `ADR-299`).
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/l13-sat-efirma-v1_0.json` | `python3 tools/medidor_l13_sat_efirma.py --mide` | JSON: `acto, regla, prior, escala, sin_ic_de_diseno, fuentes[], anos_completos_comunes[], serie[]` (una fila por año con `n_acumulado_primeras_efirma`, `padron_total`, `padron_asalariados_pf`, `padron_obligado_aprox`, `identidad_total_menos_partes`, `p_inf`, `p_sup`), `p_inf`, `p_sup`, `tramo_*`, `veredicto`, `falsador_congelado`, `cota_superior_declarada` | mesa, y el sucesor declarado `N11 · SELLA-L13` | **Las dos `p` son PROPORCIONES ADMINISTRATIVAS AGREGADAS — campo del entorno, no probabilidad individual de conducta** (precedente: firma `p1`, mesa 2/sep/2026, `ADR-299`). Comparables con el `0.09` asignado sólo en signo y orden de magnitud, **nunca** como «difiere en Z %». **No hay IC de diseño y no es omisión**: es un censo, no una muestra; la incertidumbre es de definición de universo y va en las dos cotas. **Ambas cotas son cotas SUPERIORES de la adopción vigente**, porque el numerador acumula altas primeras desde 2004 y el certificado caduca. El veredicto es `AMBIGUA-POR-UNIVERSO`: **no adjudica**, y nada de este JSON se carga al motor. |
+
+El medidor tiene además `--censo`, que es la pieza `P0`: imprime estructura y
+verifica los seis `.xls` del SAT por `sha256` contra `data/manifiesto.yaml`
+(6/6 `COINCIDE`), sin calcular ninguna tasa. Cuatro de los seis quedaron
+`EXISTE-NO-SATISFACE` o fuera de escala con la razón dicha
+(`forense/notas/2026-09-03-MAESTRA36-L13-P0-censo.md`).
+
+Los payloads viven en la raíz **`descargas_mx`**, no en `data/raw`: un worktree
+nuevo la resuelve con `data/raices.local.yaml`, que es **gitignorada** — sin
+ella, cualquier búsqueda declara `NO-ENCONTRADO` en falso (mismo hallazgo que
+`ACTO MAESTRA35-L9`).
