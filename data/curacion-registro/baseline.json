@@ -22,7 +22,7 @@
     },
     "relaciones.tsv": {
       "filas": 219,
-      "sha256": "829a98ea2372c1e9bff1201b5fc84dd514d7f8feb453b8bfe1e50d06d7f0d06d"
+      "sha256": "6fce3494672d4216b361089295d7537a4e5ef9b15f8b6d0a614120c42df77472"
     },
     "utilidad-modelo.tsv": {
       "filas": 219,
@@ -61,7 +61,7 @@
   "procedencia": {
     "criterio": "No queremos versionar 200 filas de historia de ejecución; sí queremos versionar toda la procedencia vigente necesaria para justificar el baseline aceptado.",
     "manifest_origen_sha256": "e72c174075ae1bbf6535723aea0fbaf19c1938a55f470de275f4fbf7d36e1d24",
-    "origen": "baseline semantico aceptado por la integracion final; recifrado por ACTO MAESTRA37-A1 (2026-09-03) tras dar de alta ENSANUT_CONTINUA_2024 (8 componentes nuevos: etiquetado, actividad fisica, antropometria, frecuencias, rec24h, lactancia, plomo, sangre) por la via de tools/curador_registro/GUIA-CURADOR-REGISTRO.md seccion alta -- +8 relaciones, +8 procedencias, +8 filas de utilidad, +1 alias (NO_FUSIONAR), todas CANDIDATA por A.4 conservador. El recifrado no es opcional: los sha256 de las tres tablas quedan invalidos en cuanto se escribe una fila."
+    "origen": "baseline semantico aceptado por la integracion final; recifrado por ACTO MAESTRA37-A1 (2026-09-03) tras dar de alta ENSANUT_CONTINUA_2024 (8 componentes nuevos: etiquetado, actividad fisica, antropometria, frecuencias, rec24h, lactancia, plomo, sangre) por la via de tools/curador_registro/GUIA-CURADOR-REGISTRO.md seccion alta -- +8 relaciones, +8 procedencias, +8 filas de utilidad, +1 alias (NO_FUSIONAR), todas CANDIDATA por A.4 conservador. El recifrado no es opcional: los sha256 de las tres tablas quedan invalidos en cuanto se escribe una fila. Recifrado otra vez en el mismo acto tras corregir capa3_disco_real de 'SI' a 'EXISTE;COINCIDE;INTEGRO' en las 8 filas nuevas: es el vocabulario que T21 exige cuando capa2=SI, y la suite lo marco como FAIL nuevo antes de que este PR se abriera."
   },
   "schema_version": "1.0.0"
 }
