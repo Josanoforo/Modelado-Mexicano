@@ -39,3 +39,23 @@ CONTADOR. Payloads OBTENIDO +4 (o los que se obtengan, con los fallos declarados
 Lo que NO hace. No baja la serie de contratos. No toca reglas ni el motor. No responde nada sobre R3.1/R3.2 más allá de si las llaves cruzan.
 
 Sucesores. Si EXISTE-SATISFACE: A3 · COMPRANET-SERIE con la lista de P3, firmado por mesa; y una fila nueva de necesidad para «trazabilidad administrativa» si R3.1/R3.2 la exigen.
+
+---
+
+## ENMIENDA DE DIRECCIÓN, 3/sep/2026 — archivada verbatim por A.3
+
+> Recibida **después** de ejecutado el acto. El texto de abajo es el que llegó a la sesión.
+
+ENMIENDA de dirección, 3/sep/2026, contra ea45e01. Este acto se ejecutó bajo la v1 del encargo (SHA de redacción 9af8407). La v3 —que lo sustituía— difería solo en: cabecera (ea45e01, COMPUERTA: ninguna, cumplida por producto: ## CONSUMIDO de A1 con PR #500, ADR-310 — verificado por este acto); CARRILES (N2 nube, L12/L13 caja, disjuntos de data/curacion-registro/**); firma de mesa verbatim del 2/sep (la liga comprasmx.buengobierno.gob.mx/datos-abiertos#…; «la serie 2010–2025 no está firmada», y este acto no la bajó); A.8 §(3): la fila 63 rotula EXT_OF_07 lo que el mapa llama EXT-OF-05 (la 07 es IFT), anotado, no renombrado; y la cita de FP-258 al editar la fila 63 por línea. Nada de eso cambia P1–P3 ni su resultado. Candidatos derivados al cierre: ADR y FP siguientes libres tras #503 y L13 (renumera quien fusiona segundo).
+
+### Lectura de la enmienda por este acto (no la interpreta, la verifica)
+
+Los cinco puntos de diferencia entre v1 y v3 se verificaron **contra el árbol**, uno por uno, y ninguno mueve `P1`–`P3`:
+
+1. **Cabecera / compuerta.** El acto ya la verificó **por producto** antes de escribir: `git log --format=%s origin/main | grep -c 'MAESTRA36-A1'` → `1`, y `git show origin/main:forense/encargos/2026-09-02-MAESTRA36-A1-ESCANEA-RECURSIVO-Y-REGISTRA-DESCARGAS.md | grep -n '^## '` → `175:## CONSUMIDO`. `PR #500` = `ea45e01`, `ADR-310`. Es exactamente lo que la v3 pedía.
+2. **CARRILES.** Ningún archivo de este acto está fuera de `data/curacion-registro/**`, `data/manifiesto.yaml`, `data/cola-adquisicion-v1_0.tsv`, `forense/**` y la cascada de canon — disjunto de `N2` (que tocó `forense/prereg-duelo-v2/**`) y de `L12`/`L13`. El merge de `origin/main` en esta rama entró **sin conflicto**.
+3. **Firma de mesa del 2/sep.** La liga que la mesa entregó es el ancla que este acto reprodujo en caja (`comprasmx.buengobierno.gob.mx/cnetassets/…`). **La serie 2010–2025 no se bajó**, y `P3` explica por qué ni siquiera se propuso: `P2` no dio `EXISTE-SATISFACE`.
+4. **A.8 §(3), rótulo de la fila 63.** Ya está así: la corrección `EXT_OF_07` → contenido `EXT-OF-05` se escribió **en la nota de la fila**, no en `fuente_canonica`. La fila no se renombró.
+5. **`FP-258`.** Se cumplió el fondo de la cita: la fila 63 se editó **línea por línea**, nunca con round-trip de `csv`. La cita explícita a `FP-258` se agrega al cerrar, en la nota y en el ADR.
+
+**Numeración al cierre**, re-derivada contra `origin/main` **después** de fusionar `PR #503` y `PR #504` (`1d4c67d9`): `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `311`, sin duplicados; candidato **`ADR-312`**. Máximo de `forense/firmas-pendientes.tsv` → `260`; candidatas **`FP-261`** y **`FP-262`**. `L12`/`L13` siguen abiertos: si alguno fusiona primero, **renumera quien fusiona segundo**.
