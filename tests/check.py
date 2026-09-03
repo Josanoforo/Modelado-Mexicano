@@ -1309,6 +1309,20 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # Sumados en ACTO MAESTRA35-L4 . R-v1_2-CIEGA, 2/sep/2026 -- el encargo
+    # verbatim (A.3) y la nota COMMIT-1 de /arbitra (specs congeladas, que no
+    # se editan despues de su commit). Disparan `_T22_MARCADOR_PENDIENTE`
+    # (`PROPUESTA.*mesa`) por MENCION, no por uso: la linea cita
+    # `estado=PROPUESTA` de forense/prereg-duelo-v2/codificacion-R-v1_0.tsv y,
+    # mas adelante en la MISMA linea, la palabra `remesas` (la variable de
+    # FAM-M-05/06/07), que contiene `mesa`. Verificado con el propio regex:
+    # una coincidencia por archivo (encargo L19, nota L85); ninguna es una
+    # decision esperando firma. La unica decision que el acto abre tiene su
+    # fila (FP-253), que ademas cita ambos archivos en `donde`. Explicado en
+    # forense/notas/2026-09-02-MAESTRA35-L4-cierre.md. Mismo criterio de
+    # autocaptura verbatim que el encargo de MAESTRA35-L2, justo abajo.
+    "forense/encargos/2026-09-02-MAESTRA35-L4-R-v1_2-CIEGA.md",
+    "forense/prereg-duelo-v2/notas-arbitra/2026-09-02-lote-fam-m-05-06-07-tra-m-02-ciego.md",
     # Sumado en ACTO MAESTRA35-L2 . R-v1_2-COMPLETA, 2/sep/2026 -- encargo
     # verbatim (A.3), que nunca se edita para complacer un test. Dispara
     # `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) por MENCION, no por uso:
