@@ -17,3 +17,21 @@ CONTADOR: reglas de salud con veredicto A.4 con texto a la vista 0 → 5 · EXIS
 Lo que NO hace. No abre Ola 6; no mide p; no toca el motor ni la propuesta; no re-corre /mapea con formulaciones nuevas (leer todo no es buscar); no descarga; no edita el extractor.
 
 Sucesores. Si ABRE-CANDIDATO-CON-RESERVA: acto N de nube con el ADR de apertura de salud (firma de mesa) → L10 pasa su compuerta. Si adultos no llegó: este acto se relanza como L3-bis sólo sobre adultos cuando mesa lo deposite.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA37-L3 · SALUD-A4-DIRIGIDO-ENSANUT` (`ADR-323`),
+3/sep/2026, UBUNTU con corpus, worktree propio sobre `origin/main = e4a045bf`
+(rebasado a `92f17e1` al cerrar, tras el merge de `MAESTRA37-N4`/`PR #515`).
+Tres commits: `0-bis A.3` (este archivo), `COMMIT-1` (`P0`, universo y criterio
+congelados antes de mirar) y `COMMIT-2` (`P1`/`P2`/`P3`, veredictos y cascada).
+
+**Resultado:** `salud` sigue en **1 de 5** `EXISTE-SATISFACE` — **no llega a 3,
+no hay `ABRE-CANDIDATO-CON-RESERVA`**, ningún dominio abre y el criterio 2 no
+se toca. `adultos_ensanut2024_w.stata.stata.zip` estaba `AUSENTE-EN-RAIZ`
+al arrancar: no hubo alta `A.7`. Las cuatro brechas quedan tipificadas — una
+de adquisición (`R4.3`) y tres de instrumento —, de donde: **una sola descarga
+llevaría `salud` de 1 a 2, no a 3.** Sucesor `L3-bis` escrito y no ejecutado.
+
+PR: se abre contra `main` con el rótulo del acto y **no se fusiona** — el
+merge es de mesa, y es la autorización.
