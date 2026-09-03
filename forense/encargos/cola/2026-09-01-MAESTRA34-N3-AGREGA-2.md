@@ -5,6 +5,7 @@ BITACORA:
 - 2026-09-02 · LISTO-NUBE · encolado por PR [COLA] encola MAESTRA34-L1/N1/N2/L2/N3. COMPUERTA propia: MAESTRA34-L2 fusionado con R v1_2 completo (o parcial declarado) Y PR `[L] corridas v1_2` de mesa fusionado Y L-extraido-v1_2.tsv producido con la MISMA regla de extracción congelada de MAESTRA33-E21 (tools/extrae_l_v1_1.py sin editar; si hay que editarlo, PARO y a mesa). Si falta cualquiera, cero commits.
 - 2026-09-03 · EN-CURSO · sesión de nube claude/despacha-MAESTRA34-N3-AGREGA-2
 - 2026-09-03 · PARO-REPORTADO · ENMIENDA 4 (commit `59b88b1`/`3be4bad`, 3/sep 05:52–05:55 UTC) reafirma "P1 puntúa 13 de 14 aplicando exclusiones-v1_2.md (DIN-M-01) como exclusión con razón", pero `forense/prereg-duelo-v2/exclusiones-v1_2.md` ya trae un apéndice posterior (`ACTO MAESTRA35-L5`, commit `3b9191d`, 2/sep 17:20:59 -06:00 = 23:20:59 UTC — anterior a ENMIENDA 4 y ya en `origin/main`): "Exclusión LEVANTADA por firma de mesa d2 (2/sep/2026)... N3/N5 puntúan 14 de 14, con la reserva de (a)." Verificado: `corridas-R/DIN-M-01.json` existe (`estado: COMPUTADO`, `diseno: DISENO-APROXIMADO`, con `EE_R` y `EE_R_sin_diseno`) y su campo `puntua` dice literalmente "SI, por firma de mesa d1 (FP-249)... Esa mitad la ejecutan MAESTRA35-N3/N5, no ACTO MAESTRA35-L5" — exige que N3 calcule z con las dos EE y decida si el veredicto de la celda cambia entre ellas (si cambia: AMBIGUA-POR-DISEÑO, no cuenta como puntuada; si no cambia: cuenta). Comandos: `git log -1 --format='%ci %s' 3b9191d` → `2026-09-02 17:20:59 -0600 MAESTRA35-L5: propaga las firmas de mesa d1/d2 sobre FP-249`; `git merge-base --is-ancestor 3b9191d HEAD` → `yes`. No se puede determinar si dirección desconocía el levantamiento al redactar ENMIENDA 4, o lo ignoró deliberadamente: ejecutar "13 de 14" contradice el verbatim vigente de exclusiones-v1_2.md; ejecutar "14 de 14 con reserva" añade al procedimiento un cálculo que ninguna enmienda de N3 describe. Cero commits sustantivos; cero push de trabajo de P1-P3. Pide firma de mesa que resuelva cuál de las dos lecturas rige.
+- 2026-09-03 · ENMIENDA 5 (mesa) resuelve el PARO: corrige ENMIENDA 1/línea 42 y ENMIENDA 4/línea 93 (VENCIDAS EN ALCANCE por `d2`), P1 puntúa 14 de 14. Implementa `d1` con `forense/prereg-duelo-v2/din_m_01_doble_ee.py` (nuevo, no toca `tools/score_marco_m.py`): `DIN-M-01` calculada con `EE_R` y `EE_R_sin_diseno`, mismo veredicto (FUERA-DE-BANDA) en ambas → cuenta como puntuada, no AMBIGUA-POR-DISEÑO. Contador: celdas puntuadas v1_2: 0 → 1 de 14 (`DIN-M-01`); las 13 restantes de P1/P2/P3 quedan fuera de este perímetro, pendientes. Ver `forense/notas/2026-09-03-enmienda-5-din-m-01-doble-ee-cierre.md`.
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 
@@ -93,3 +94,59 @@ PERÍMETRO: se añade `tools/extrae_l_v1_1.py`, edición acotada a la línea 136
 ## ENMIENDA 4 — 3/sep/2026 (A.3: el verbatim de arriba no se edita; esta enmienda gobierna sobre las ENMIENDAS 1–3 en lo que las supera)
 
 P0 ejecutado fuera de esta cola por PR #497 (`6019bd7`): script parcheado sha `efb71de1…`, `L-extraido-v1_2.tsv` y `L-extraido-v1_2-notas-cierre.md` en `origin/main`, sellos v1_1 intactos. N3 verifica su existencia (A.8) y no repite P0; arranca en P1 (13 de 14, exclusión DIN-M-01 con razón). La ENMIENDA 3 queda superada por producto. Firma de mesa: la fusión de este PR. — mesa, 3/sep/2026
+
+---
+
+## ENMIENDA 5 — 3/sep/2026, contra `e8bf0de` (A.3: el verbatim de arriba no se edita; esta enmienda corrige las ENMIENDAS 1 y 4 en lo que quedaron VENCIDAS EN ALCANCE)
+
+Corrige la ENMIENDA 1 (línea 42, "13 de 14") y la ENMIENDA 4 (línea 93,
+"arranca en P1 (13 de 14, exclusión DIN-M-01 con razón)"): ambas quedaron
+**VENCIDAS EN ALCANCE** (A.10) por la firma de mesa `d2` del 2/sep/2026
+(`ACTO MAESTRA35-L5 · R-DIN-M-01`, `exclusiones-v1_2.md:31-34`, verbatim):
+«Exclusión LEVANTADA por firma de mesa `d2`... N3/N5 puntúan **14 de 14**,
+con la reserva de (a).» `d2` es posterior a `DF-a` (la firma que ambas
+enmiendas citaban) y ya vive en `origin/main` desde antes de la ENMIENDA 4
+(`3b9191d`, 2/sep 23:20:59 UTC, ancestro de `HEAD`) — la lectura "13 de 14"
+contradice el verbatim vigente.
+
+**P1 puntúa 14 de 14**: `DIN-M-01` entra con `R` de
+`corridas-R/DIN-M-01.json` (`DISEÑO-APROXIMADO`, `FP-249` FIRMADA),
+conforme a `exclusiones-v1_2.md:31-34` (`d2`, verbatim, arriba) y
+`exclusiones-v1_2.md:36-42` (`d1`, verbatim): «una `R` con
+`DISEÑO-APROXIMADO` SÍ puntúa, con la reserva escrita en el JSON y en el
+scoreboard: `EE_R` es cota inferior (factor de diseño ≈1.20 medido;
+conglomerado de viviendas no público). El scoreboard reporta `z` con las
+DOS `EE` (aproximada y sin diseño); si el veredicto de la celda cambia
+entre las dos, la celda se marca AMBIGUA-POR-DISEÑO y no cuenta como
+puntuada. Si no cambia, cuenta.»
+
+**Implementación de `d1`**, obligatoria y no cubierta hoy por
+`tools/score_marco_m.py` (lee solo `EE_R`, líneas 80-87): para `DIN-M-01`,
+`z` se calcula dos veces —con `EE_R` y con `EE_R_sin_diseno`, ambos ya en
+`corridas-R/DIN-M-01.json`— sin editar el procedimiento sellado
+(`procedimiento-scoring-v1_1.md`) ni `agregado_v1_1.py`: un paso adicional
+en el mismo acto,
+`forense/prereg-duelo-v2/din_m_01_doble_ee.py` (nuevo), que reporta ambas
+`z` (`z_L`, `z_M`, `dif_pareada_z = z_L − z_M`, misma unidad y comparación
+principal de `procedimiento-scoring-v1_1.md` §1/§3) y su veredicto de
+banda. Resultado en
+`forense/prereg-duelo-v2/din-m-01-doble-ee-resultado.json` y en
+`forense/notas/2026-09-03-enmienda-5-din-m-01-doble-ee-cierre.md`: con
+`EE_R` y con `EE_R_sin_diseno` el veredicto es el mismo
+(FUERA-DE-BANDA en ambas) — **no cambia** → la celda **cuenta** como
+puntuada, no queda AMBIGUA-POR-DISEÑO. La reserva de `d1` (`EE_R` cota
+inferior, factor de diseño `1.1997866170250338`) queda escrita en ese
+resultado y en la nota de cierre, para el scoreboard.
+
+PERÍMETRO: se añade el paso/script de las dos `EE` bajo
+`forense/prereg-duelo-v2/` (`din_m_01_doble_ee.py` +
+`din-m-01-doble-ee-resultado.json`), nombrado arriba, más la nota de
+cierre. `tools/score_marco_m.py` **no se edita** (si hiciera falta, PARO y
+a mesa).
+
+CONTADOR: «celdas puntuadas v1_2: 0 → 1 de 14» (`DIN-M-01`, con reserva de
+diseño, sin AMBIGUA-POR-DISEÑO); las AMBIGUA-POR-DISEÑO se reportan aparte
+(ninguna en este acto). Las 13 celdas restantes quedan fuera del perímetro
+de esta enmienda — P1/P2/P3 completos siguen pendientes.
+
+Firma de mesa: la fusión de este PR. — mesa, 3/sep/2026
