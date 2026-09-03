@@ -41,3 +41,26 @@ CONTADOR: tests utilizables en nube +1 (T26-bis) · filas del curador verificabl
 Lo que NO hace. No edita ninguna fila de ningún TSV del registro; no verifica contra corpus; no toca la cola ni L10; no mide; no decide.
 
 Sucesores. Caja: `via_capa2.py` sobre las 6 filas con corpus montado → FP-246 EJECUTADA.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA37-N2 · GUARDIA-TSV-Y-CAPA2-LISTAS`, rama
+`claude/fp-258-fp-246-repair-vmy8j5`, `PR #513` contra `main` (sin fusionar por el
+ejecutor — el merge es firma de mesa, declarado en el propio encargo).
+
+- **P1 (FP-258, vía ii)**: `tools/curador_registro/tsv_crudo.py` (nuevo) +
+  `tools/vista_cola_adquisicion.py` adoptado, regresión byte a byte en verde. `T26-bis`
+  nuevo en `tests/check.py`. Control re-medido: 4 líneas distintas hoy (no 3 — la fila
+  63 de CompraNet, `ADR-314`, se sumó después de que `FP-258` se abriera).
+- **P2 (FP-246, vía a)**: `tools/curador_registro/via_capa2.py` parte `id_manifiesto`
+  por `;`; regresión en modo lectura idéntica salvo el contador `AUSENTE` (54 → 83).
+  Discrepancia medida: las 6 filas resuelven `AUSENTE`, no `RAIZ_NO_CONFIGURADA` — ningún
+  id declara `raiz` propia en el manifiesto.
+- **P3**: `FP-258 → FIRMADA-EJECUTADA`, `FP-246 → FIRMADA` (NO EJECUTADA), `FP-272`
+  recibo. Línea 3→4 en `forense/hallazgos.md`.
+- **Cascada**: `ADR-320`, `L0` recifrado, `canon/registro-rotulos.tsv` censado.
+- **Nota de cierre**: `forense/notas/2026-09-03-MAESTRA37-N2-cierre.md`.
+
+`python3 tests/check.py --baseline` → **LÍNEA BASE VERDE**, 19 FAIL sin cambio frente a
+`tests/baseline.json`. Perímetro verificado con `git diff --stat origin/main..HEAD`:
+ningún archivo fuera de la lista declarada cambió.
