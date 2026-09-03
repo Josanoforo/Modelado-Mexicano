@@ -1,4 +1,7 @@
-# Única dependencia externa del repo: tests/manifiesto.py usa PyYAML para
-# leer/escribir data/manifiesto.yaml. tests/check.py y el resto de tests/
-# corren con la librería estándar, sin nada de aquí.
+# tests/manifiesto.py usa PyYAML para leer/escribir data/manifiesto.yaml.
+# tests/check.py y el resto de tests/ corren con la librería estándar.
 PyYAML
+
+# tools/tablero_vista.py usa markdown para convertir
+# forense/tablero/TABLERO-PROGRAMA-vX_Y.md a la vista HTML.
+markdown
