@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **327 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **328 ADR**
 
 > | | |
 > |---|---|
@@ -5620,3 +5620,19 @@ ejecutado con `/acto` de `ADR-237`.
 
 **Recibos.** `FP-283` (recibo del acto) · `FP-284` (cuatro necesidades de salud redactadas, alta de mesa) — `FP-281`/`FP-282` los tomó `MAESTRA37-N6` al fusionar primero · enmienda fechada a `FP-268` **sin cambio de estado**, con el recuento de cinco columnas.
 
+
+**ADR-328 · `ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166`** *(3/sep/2026, NUBE)* — **audita los 166 encargos de `forense/encargos/` sin marca de cierre, deriva su estado por comando y establece que la ausencia de marca deja de ser tolerada.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-03-MAESTRA37-N9-AUDITA-ENCARGOS-166.md`, SHA de redacción `2e79d153` (merge `PR #520`/`MAESTRA37-L3-BIS`). Firma de mesa D9 verbatim: *«hagamos la auditoría de una vez, si no reitero, nos quedamos con pendientes abiertos.»*
+
+**Gate verificado.** `COMPUERTA: ninguna` — declaración explícita del encargo, no dispara verificación.
+
+**Qué se ejecutó.** `COMMIT-1` congeló el universo: `git ls-files forense/encargos/*.md` con prefijo de fecha → 304 archivos tracked (306 totales, menos `PLANTILLA-LOTE-v1_0.md` y `convencion.md`); de esos, 166 sin ninguna de las cuatro marcas de cierre, excluido el propio encargo de este acto. `COMMIT-2` derivó, por cada uno de los 166, la cita literal de su nombre de archivo contra `canon/gobernanza-v1_15.md` (327 ADR {cita-historica}) y, cuando ausente ahí, contra `git log --all --grep` y las notas de cierre de `forense/notas/`. Resultado: **`## CONSUMIDO` 107** (evidencia de ejecución citada) · **`## INDETERMINADO` 46** (rastro parcial — rótulo/ADR compartido sin desenlace individual, o cita ambigua) · **`## NO-EJECUTADO` 13** (cero rastro, o el propio ADR que los cita los declara "escrito, VIVO, sin lanzar") · **`## SUSTITUIDO` 0** (sin evidencia positiva de reemplazo por otro archivo — no se fuerza la marca). Tabla completa y lista íntegra de `INDETERMINADO` en `forense/notas/2026-09-03-MAESTRA37-N9-auditoria-encargos.md`. `forense/encargos/convencion.md`: nueva línea — la ausencia de marca en un encargo anterior a 2026-08-18 se resolvió por esta auditoría; desde entonces toda marca ausente es defecto. `.claude/commands/tramite.md` §3.3: el digesto D.2 (pasivo histórico) pasa a reportar 0 o lo que quede `INDETERMINADO`.
+
+**Qué NO decide.** No re-abre ningún encargo, no ejecuta trabajo sustantivo pendiente de los 166 (adquisición, medición, cargas al motor) — solo registra qué ya se sabe que pasó con cada uno. No fuerza `SUSTITUIDO` sin evidencia positiva. No resuelve los 46 `INDETERMINADO` — eso es de mesa (`FP-287`).
+
+**Falsador declarado.** Si en un mes ningún `INDETERMINADO` de los 46 se resuelve (ni por mesa ni por un acto que lo cite), la auditoría se declara insuficiente y se reabre con más presupuesto de verificación por archivo.
+
+**Deuda que abre.** `FP-287` (los 46 `INDETERMINADO`, lista para mesa, vence a 7 días). Recibo: **`FP-286`**.
+
+**Numeración.** Candidato re-derivado por el comando de la casa contra este árbol: máximo `327` (`ADR-327`/`MAESTRA37-L3-BIS`, ya fusionado), contiguo, candidato `328`. Si `MAESTRA37-N8` corre en paralelo en nube y fusiona primero, renumera quien fusiona segundo (regla de la casa).

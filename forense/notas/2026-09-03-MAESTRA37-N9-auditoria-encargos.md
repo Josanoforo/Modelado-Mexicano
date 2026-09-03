@@ -194,3 +194,86 @@ este acto NO vuelve a recalcular una vez congelado).
 - forense/encargos/2026-08-28-MAESTRA32-E3-EXTRACTOR-DTA.md
 - forense/encargos/2026-08-30-MAESTRA32-E3-EXTRACTOR-DTA-v2.md
 - forense/encargos/2026-09-02-MAESTRA35-N6-ESTADO-PROGRAMA-v1_11.md
+
+## COMMIT-2 — derivación y marca, por archivo
+
+Método (declarado, no a ojo): para cada uno de los 166, se buscó la cita
+literal del *nombre de archivo* completo (`grep -Fc -- "<archivo>.md"
+canon/gobernanza-v1_15.md`, y para los sin cita ahí, `git grep -Fl`
+excluyendo `forense/digesto/` y `git log --all --oneline --grep=`). Una
+cita en `canon/gobernanza-v1_15.md` se ató al ADR inmediatamente anterior
+(`grep -n '^\*\*ADR-' canon/gobernanza-v1_15.md`, último match ≤ línea de
+la cita) y se leyó el bloque para distinguir lenguaje de ejecución
+("archivado verbatim", "CONSUMIDO", "ejecutado por este acto") de lenguaje
+de encargo pendiente ("escrito, VIVO, sin lanzar", "no lanzado por este
+acto"). Encargos anteriores al 18/ago/2026 casi nunca se citan por nombre
+de archivo en gobernanza (esa convención empezó después): para esos, la
+evidencia de ejecución es una nota de cierre en `forense/notas/` con
+título y fecha que corresponden al encargo.
+
+**Límite declarado de este método**: no hay detector positivo de
+`## SUSTITUIDO` — esa marca exige evidencia explícita de que *otro*
+archivo reemplazó al encargo, y ningún caso de los 166 la mostró con la
+misma fuerza que un ADR de ejecución o una nota de cierre. Por eso el
+conteo de `SUSTITUIDO` es 0: no se fuerza la marca sin evidencia: `los
+casos con indicio débil de reemplazo caen en INDETERMINADO`, no en
+`SUSTITUIDO`.
+
+### Conteo final
+
+| Marca | Cuenta |
+|---|---:|
+| `## CONSUMIDO` | 107 |
+| `## INDETERMINADO` | 46 |
+| `## NO-EJECUTADO` | 13 |
+| `## SUSTITUIDO` | 0 |
+| **Total** | **166** |
+
+### Lista íntegra de `## INDETERMINADO` (46) — para mesa (FP-287, vence a 7 días)
+
+- forense/encargos/2026-08-05-m4bis-encup-lapop-latinobarometro.md
+- forense/encargos/2026-08-05-m5bis-cierre-inventarios-catalogo-cruce.md
+- forense/encargos/2026-08-11-E4b.md
+- forense/encargos/2026-08-12-C-universo-minimo.md
+- forense/encargos/2026-08-12-E4a.md
+- forense/encargos/2026-08-12-M6-sello.md
+- forense/encargos/2026-08-12-S-svystat-4celdas.md
+- forense/encargos/2026-08-12-V-vocabulario-celda-d.md
+- forense/encargos/2026-08-12-veredicto-pr185-mapeo-universo-map-b.md
+- forense/encargos/2026-08-13-ENASIC-SPLIT.md
+- forense/encargos/2026-08-13-FIRMAS2-carril-caja.md
+- forense/encargos/2026-08-13-MOTOR-COND-v2-encargos-finales.md
+- forense/encargos/2026-08-13-RE-registro-efimeros.md
+- forense/encargos/2026-08-13-SELLA-FREEZE-encargo.md
+- forense/encargos/2026-08-13-r5-1-d3.md
+- forense/encargos/2026-08-14-MOTOR-1-consolidado.md
+- forense/encargos/2026-08-14-MOTOR-3-E0-autocontenido.md
+- forense/encargos/2026-08-17-BARRIDO-2-cobertura-material-cableado-universo.md
+- forense/encargos/2026-08-17-EA10-a10-estampa.md
+- forense/encargos/2026-08-17-REGISTRA-17AGO-II.md
+- forense/encargos/2026-08-17-REGISTRA-17AGO.md
+- forense/encargos/2026-08-17-RUTA-SELLO-taxonomia.md
+- forense/encargos/2026-08-18-B2-V7-generacion-v7-y-tres-cifras.md
+- forense/encargos/2026-08-18-CENSO-CMD.md
+- forense/encargos/2026-08-18-E3-TRIAGE.md
+- forense/encargos/2026-08-18-INTEGRATE-T23-integrador-cableado.md
+- forense/encargos/2026-08-18-LANE-A-E0-E5.md
+- forense/encargos/2026-08-18-REFIRMA-OPACA.md
+- forense/encargos/2026-08-18-T16-HISTORICAS-cerrar-bucle-congelados.md
+- forense/encargos/2026-08-19-CAJA-RESIDUOS.md
+- forense/encargos/2026-08-19-DOC-BACKFILL.md
+- forense/encargos/2026-08-19-FICHA-R51-D3.md
+- forense/encargos/2026-08-19-FP63-CIERRA.md
+- forense/encargos/2026-08-19-LIMPIA-CAJA.md
+- forense/encargos/2026-08-19-REFUTACIONES-SIN-OBJETO.md
+- forense/encargos/2026-08-19-U2-EV1.md
+- forense/encargos/2026-08-20-LOTE-RETRIAGE.md
+- forense/encargos/2026-08-21-SELLA-OPLUS.md
+- forense/encargos/2026-08-24-ADQ-CORRE-R74R75.md
+- forense/encargos/2026-08-24-EMISOR-M-2.md
+- forense/encargos/2026-08-24-R34-CONDA-V2.md
+- forense/encargos/2026-08-24-SELLA-AGO24-D.md
+- forense/encargos/2026-08-24-SELLA-AGO24.md
+- forense/encargos/2026-08-25-R21-FALSADOR-V2-RESPEC.md
+- forense/encargos/2026-08-25-SELLA-A1-CODI.md
+- forense/encargos/2026-08-27-MAESTRA31-E7-ETIQUETA.md

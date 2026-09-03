@@ -11,3 +11,25 @@ SPEC — dos commits. COMMIT-1 congela la lista de los 166 con el comando del di
 PERÍMETRO. Toca: forense/encargos/*.md (append de una sección, 166 archivos) · forense/encargos/convencion.md · forense/notas/…N9… · .claude/commands/tramite.md (una línea) · tablero (recibo) · A.3 · cascada. NO toca: nada fuera de forense/encargos/, forense/notas/, la skill de trámite y el tablero. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
 
 FP/ADR: ADR-329 (deriva) · FP-286 recibo · FP-287 sólo si INDETERMINADO > 0 (lista para mesa, con fecha vence a 7 días). CONTADOR: encargos sin marca 166 → declara el real · medición: cero.
+
+## CONSUMIDO
+
+Ejecutado el 3/sep/2026 en entorno NUBE con la skill `/acto` (`ADR-237`),
+rama `claude/auditoria-encargos-maestra37-p8k51b`, cascada en `ADR-328`.
+Commits: `89d9eb2` (COMMIT-1, congela universo de 166), `867fbe3`
+(COMMIT-2, deriva y marca los 166), más este commit de cierre y cascada.
+
+Resultado: **107 `## CONSUMIDO`** · **46 `## INDETERMINADO`** (lista
+íntegra para mesa en `forense/notas/2026-09-03-MAESTRA37-N9-auditoria-encargos.md`,
+`FP-287`, vence 2026-09-10) · **13 `## NO-EJECUTADO`** · **0
+`## SUSTITUIDO`** (ningún caso mostró evidencia positiva de reemplazo con
+la misma fuerza que un ADR de ejecución o una nota de cierre; no se forzó
+la marca sin evidencia — declarado, no rodeado). `forense/encargos/convencion.md`
+y `.claude/commands/tramite.md` §3.3 actualizados: la ausencia de marca en
+un encargo anterior a 2026-08-18 queda resuelta por esta auditoría; en
+adelante toda marca ausente es defecto. `canon/registro-rotulos.tsv`
+censa `MAESTRA37-N9`. `python3 tests/check.py --baseline` → **VERDE**
+(19 FAIL · 171 WARN, nada nuevo frente a `tests/baseline.json`).
+
+Recibo `FP-286`. Deuda abierta `FP-287` (los 46 `INDETERMINADO`, mesa
+decide archivo por archivo).

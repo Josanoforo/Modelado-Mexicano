@@ -140,6 +140,10 @@ y va al digesto. La antigüedad no lo cierra; nada lo cierra salvo mesa.
 Solo sobre encargos que el digesto liste en **D.1** (en o después del
 piso derivado). Los de **D.2** son pasivo histórico: nacieron antes de
 que la convención existiera, y decidir cuál "ya no aplica" es de mesa.
+**Enmienda (2026-09-03, ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166): el
+pasivo histórico de D.2 quedó auditado — de aquí en adelante D.2 reporta
+0, o únicamente lo que quede `## INDETERMINADO` tras esa auditoría
+(ver `forense/notas/2026-09-03-MAESTRA37-N9-auditoria-encargos.md`).**
 
 **Puerta 0 — la bandera del digesto manda.** Una entrada de D.1 marcada
 `⚠️ NO MARCAR` **no se toca nunca**, pase lo que pase con los pasos de
