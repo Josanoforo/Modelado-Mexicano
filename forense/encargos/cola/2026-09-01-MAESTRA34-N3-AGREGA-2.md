@@ -1,8 +1,9 @@
-ESTADO: LISTO-NUBE
+ESTADO: EN-CURSO
 ENTORNO: NUBE
 ENCOLADO: 2026-09-02 · gesto de encolado, precedente §1c del transfer maestra-34 (firma D4-a, 1/sep/2026)
 BITACORA:
 - 2026-09-02 · LISTO-NUBE · encolado por PR [COLA] encola MAESTRA34-L1/N1/N2/L2/N3. COMPUERTA propia: MAESTRA34-L2 fusionado con R v1_2 completo (o parcial declarado) Y PR `[L] corridas v1_2` de mesa fusionado Y L-extraido-v1_2.tsv producido con la MISMA regla de extracción congelada de MAESTRA33-E21 (tools/extrae_l_v1_1.py sin editar; si hay que editarlo, PARO y a mesa). Si falta cualquiera, cero commits.
+- 2026-09-03 · EN-CURSO · sesión de nube claude/despacha-MAESTRA34-N3-AGREGA-2
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 
