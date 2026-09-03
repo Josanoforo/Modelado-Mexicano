@@ -206,3 +206,13 @@ reportar, no solo definido — cuando se cumplen, las dos a la vez:
 sellado, o el 30/sep/2026, lo que ocurra primero (firma 10). Recibo:
 `forense/firmas-pendientes.tsv` `FP-221`
 (`REVISION-CORREDOR-E`, dirección, `vence: 2026-09-30`).
+
+**Criterio CUMPLIDO por conteo (declarado, no activado) — 3/sep/2026,
+`ACTO MAESTRA36-N2 · CIERRA-N3-AGREGA-2`.** `L`/`M` con puntos en **14
+celdas comunes** de `marco-M-sorteado-v1_2.tsv` (≥8; conteo mecánico en
+`forense/prereg-duelo-v2/scoreboard-v1_2-AGREGADO.md` §7,
+`forense/firmas-pendientes.tsv` `FP-260`, sucesora de `FP-221`) y (2)
+scoring v1_1 sellado (`ADR-262`, sin cambio). Las dos condiciones de
+arriba se cumplen — el criterio de activación queda declarado cumplido
+**por conteo**; esta línea **no activa** el corredor `E`: la activación
+es firma de mesa aparte, todavía no dada.
