@@ -19,3 +19,57 @@ FP/ADR CANDIDATOS. `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep 
 CONTADOR. «Reglas de Ola 6 cruzadas contra fuentes administrativas registradas: 0 → 25» · correcciones A.13 en canon: +1 · dominios abiertos: 0 → 0 (declarado: este acto no abre). Medición de modelo: cero directo.
 Lo que NO hace. No abre ningún dominio; no relaja ni reescribe los criterios; no abre bytes; no edita `/mapea`; no borra ni corrige in situ ninguna frase de N5 (append-only); no lanza lotes L1.
 Sucesores. Si P2 deja `CANDIDATO-ABRIR-EN-CAJA`: `L15 · ABRE-ADMINISTRATIVAS-SALUD` (caja: abrir descriptores DGIS / Cero Desabasto y resolver los pares). Con la letra de mesa sobre P4.1: recuento final y, si algún dominio llega a 3, `L10 · OLA6-SALUD-L1` pasa su compuerta.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA36-N6 · CORRIGE-N5-Y-REMAPEA-OLA6-ADMINISTRATIVAS`,
+rama `claude/ola6-correccion-remapeo-afy4wr`, entorno **NUBE**, con la skill
+`/acto` (`ADR-237`). `ADR-318` (candidato). Base real `bbc57f0`, **idéntica al
+SHA de redacción** — `origin/main` no se movió durante el acto.
+`COMPUERTA: ninguna`, declaración explícita: no dispara verificación.
+
+**CONTADOR:** reglas de Ola 6 cruzadas contra fuentes administrativas
+registradas **0 → 25** · correcciones `A.13` en canon **+1** · dominios
+abiertos **0 → 0** · reglas `EXISTE-SATISFACE` **+0** · cargas al motor **0** ·
+medición de modelo: **cero directo**. Filas nuevas en
+`forense/firmas-pendientes.tsv`: `FP-267` (P4.1), `FP-268` (P4.2), `FP-269`
+(recibo), re-derivadas contra `origin/main` (máximo `FP-266`).
+
+**Tres correcciones al propio encargo, todas verificadas contra el árbol y
+declaradas en vez de rodeadas:**
+
+1. El encargo pide, en `P1(b)`, corregir «al pie de la enmienda de N5 en
+   `canon/motor-nucleo-medible-v1_0.md`» la afirmación falsa sobre
+   `MAESTRA34-A1`. **El canon nunca repitió esa afirmación:**
+   `grep -n 'MAESTRA34-A1' canon/motor-nucleo-medible-v1_0.md` → **0
+   aciertos** antes de esta enmienda. En canon se escribió por tanto sólo lo
+   que sí faltaba y el encargo también pedía: **la aclaración de universo**.
+2. El encargo cita «merge PR #453» para `MAESTRA34-A1`. **No hay ningún commit
+   de merge en `origin/main` que nombre ese acto**; su nota de cierre entra al
+   árbol por `03c2387` (`Merge pull request #460`). La verificación buena es
+   **por producto** —`ADR-278`, el `## CONSUMIDO`, las entradas de
+   manifiesto—, que es lo que `/acto` §2 exige y lo que se hizo.
+3. El comando que el encargo declara para probar que A1 fusionó
+   —`git log --format=%s origin/main | grep -c 'maestra34-a1-registra-evalua'`—
+   da **0**, no 1. Es un negativo `A.13` dentro del encargo mismo. **La
+   conclusión del encargo sigue siendo correcta** (A1 sí fusionó); lo que
+   falla es el comando con que la prueba.
+
+**Una pieza de cascada que el encargo no preveía, hecha y medida:**
+`tests/baseline.json` se refrescó con `--freeze` por **una sola entrada** —la
+cita corta del propio encargo verbatim, patrón `A.3` con dos precedentes
+(`ADR-78`, `PROC-10-bis`)—, tras corregir la que sí era real (`T15`, dos
+sitios de `estado-programa-v1_11.md` citando «317 ADR»). Medido antes de
+aceptarlo: `fails` 19 → 19, `warns` 113 → 114, **0 entradas desaparecidas**.
+Detalle en `ADR-318`.
+
+**Lo que NO hizo:** no abrió ningún dominio · no relajó ni reescribió ningún
+criterio · no abrió bytes · no tocó red · no editó `.claude/commands/mapea.md`
+(el hueco de universo de `/mapea` queda como `DE1` en `forense/hallazgos.md`)
+· no borró ni corrigió in situ ninguna frase de N5 (todo append) · no tocó
+`milpa/**`, `data/**` ni `forense/prereg-duelo-v2/**` · no lanzó ningún lote.
+
+**Sucesores:** `L15 · ABRE-ADMINISTRATIVAS-SALUD` (caja) si mesa quiere
+resolver `CAND-1..3`; y con la letra de `FP-267`, el recuento final.
+
+Detalle: `forense/notas/2026-09-03-MAESTRA36-N6-cruce-administrativas.md`.

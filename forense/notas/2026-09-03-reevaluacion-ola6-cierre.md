@@ -194,3 +194,65 @@ reescribe); no abrió microdato ni descargó nada; no ejerció la caja; no
 redactó ni encoló ningún encargo; no editó `tools/extrae_l_v1_1.py`,
 `agregado_v1_1.py` ni el scoreboard; no re-corrió el cruce rule-level del
 31/jul (lo declaró pendiente).
+
+---
+
+## ENMIENDA 3/sep/2026 — `ACTO MAESTRA36-N6 · CORRIGE-N5-Y-REMAPEA-OLA6-ADMINISTRATIVAS`
+
+**Append-only: ninguna línea de arriba se edita ni se borra.** Lo que sigue
+corrige una afirmación de esta nota, con el comando que la corrige.
+
+**La afirmación del bloque «Ver `MAESTRA34-A1`» es falsa en sus dos
+mitades.** Dice, verbatim: «No fusionó: ninguna de las cinco aparece en
+`data/manifiesto.yaml`». Contra `origin/main = bbc57f0`:
+
+1. **`MAESTRA34-A1` sí fusionó.** Su encargo está en el árbol con sección
+   `## CONSUMIDO` (`forense/encargos/2026-09-01-MAESTRA34-A1-REGISTRA-Y-EVALUA-DESCARGAS-2.md`),
+   su ADR está en el canon (`ADR-278`, `canon/gobernanza-v1_15.md:4686`) y su
+   nota de cierre existe (`forense/notas/2026-09-01-MAESTRA34-A1-cierre.md`,
+   introducida al árbol por el merge `03c2387`). El propio `ADR-278` deja
+   escrito el contador: manifiesto **807 → 845**.
+2. **Las cinco sí aparecen en el manifiesto.** Universo declarado (A.13):
+   **1 archivo, 1 104 entradas `- id:`, 21 480 líneas**. Entradas por
+   programa, derivadas por bloque de entrada y no por `grep` de línea suelta:
+   **CNGMD 94 · SICEE/INE cómputos locales 65 · DGIS Urgencias 11 ·
+   Observatorio de Cuidados/MACU 4 · Cero Desabasto 2**. Conteos crudos por
+   término sobre el archivo: `cngmd` 646 · `sicee` 148 · `dgis` 50 ·
+   `desabasto` 14 · `cuidados` 9.
+
+**El defecto es A.13, no aritmética:** el negativo se escribió sin correr
+ningún comando sobre `data/manifiesto.yaml`. Registrado en
+`forense/hallazgos.md`.
+
+**Lo que la afirmación falsa NO invalida.** Las 25 filas del mapeo de P2
+siguen en pie sin un solo cambio, y el veredicto por dominio tampoco se
+mueve: el mapeo se corrió sobre **reactivos de encuesta** (241 591 filas de
+`inventario-reactivos-v1_2` + `-ext`), y las cinco fuentes administrativas
+**no tienen filas en ese universo por construcción** — no son encuestas.
+Incluirlas no habría cambiado ninguna de las 75 corridas. El mismo
+`MAESTRA34-A1` ya lo había medido con control positivo (`ADR-278`).
+
+**Dos correcciones al encargo de este acto**, verificadas contra el árbol y
+declaradas en vez de rodeadas:
+
+- El encargo cita «merge PR #453» para `MAESTRA34-A1`. **No hay ningún
+  commit de merge en `origin/main` que nombre ese acto**; la nota de cierre
+  y el encargo entran al árbol por `03c2387` (`Merge pull request #460`). La
+  cita correcta es `ADR-278` y el `## CONSUMIDO` del encargo, no un número
+  de PR.
+- El comando que el encargo declara —`git log --format=%s origin/main |
+  grep -c 'maestra34-a1-registra-evalua'`— da **0**, no 1. Es un negativo
+  A.13 en el propio encargo: la rama del acto no dejó su nombre en ningún
+  asunto de merge. La verificación buena es **por producto** (`ADR-278`,
+  `## CONSUMIDO`, nota de cierre, entradas de manifiesto), que es lo que
+  `/acto` §2 exige y lo que se hizo aquí.
+
+**Lo que este acto añadió, y que esta nota no podía tener:** el cruce
+«fuentes administrativas registradas × 25 reglas de Ola 6», que ningún acto
+tenía asignado. Resultado: **0 `EXISTE-SATISFACE` · 7 `EXISTE-NO-SATISFACE`
+· 18 `NO-APLICA`**; el recuento del criterio 2 **no se mueve** (sigue 2 de
+25, 0 de 6 dominios). Un cambio de estatus, no de conteo:
+`salud.adherencia.desabasto_vs_cuidadora` pasa de `NO-ENCONTRADO` a
+`EXISTE-NO-SATISFACE` — su disparador (desabasto, con registro individual,
+fecha y CLUES) **sí está en el corpus**, aunque el desenlace no. Detalle en
+`forense/notas/2026-09-03-MAESTRA36-N6-cruce-administrativas.md`.
