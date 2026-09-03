@@ -171,13 +171,37 @@ def derivar(root: Path) -> dict:
         idm = f.get("id_manifiesto", NO_DETERMINADO)
         if idm != NO_DETERMINADO:
             filas_con_id_manifiesto += 1
-            entrada = por_id.get(idm)
-            if entrada is None:
-                estado, derivado = "ID_NO_EN_MANIFIESTO", actual
+            # FP-246 (ACTO MAESTRA37-N2, 3/sep/2026): `id_manifiesto` puede
+            # traer una LISTA de ids separada por `;` (6 filas hoy, 29
+            # payloads -- INE, IEC_COAHUILA, IEEM_EDOMEX, IEEBC_BC,
+            # IEEZ_ZACATECAS, IEECH_CHIHUAHUA). Antes, `por_id.get(idm)` con
+            # `idm` la cadena completa `;`-unida nunca resolvía -- esas 6
+            # filas caían siempre en ID_NO_EN_MANIFIESTO sin que ninguno de
+            # sus ids individuales se examinara. Ahora cada id se resuelve
+            # por separado y la fila se enumera id por id (A.1, no se
+            # colapsa a un solo estado) -- `estados_por_id` en el diff.
+            ids = [pedazo for pedazo in idm.split(";") if pedazo]
+            estados_por_id: dict[str, str] = {}
+            for id_unico in ids:
+                entrada = por_id.get(id_unico)
+                if entrada is None:
+                    estados_por_id[id_unico] = "ID_NO_EN_MANIFIESTO"
+                else:
+                    estado_id = verificar_entrada(entrada, root, raices)
+                    estados_por_id[id_unico] = estado_id
+                    # El contador agregado (`estados_verificacion`) solo
+                    # cuenta estados de ids que SÍ están en el manifiesto --
+                    # mismo criterio que la rama de un solo id de antes.
+                    estados_verificacion[estado_id] += 1
+            if len(ids) == 1:
+                estado = estados_por_id[ids[0]]
             else:
-                estado = verificar_entrada(entrada, root, raices)
-                estados_verificacion[estado] += 1
-                derivado = "SI" if estado == "COINCIDE" else actual
+                estado = ("COINCIDE" if all(v == "COINCIDE" for v in estados_por_id.values())
+                           else "LISTA_" + "|".join(f"{k}={v}" for k, v in estados_por_id.items()))
+            # La fila solo se promueve a SI cuando TODOS los ids de la
+            # lista coinciden -- una lista con un solo id ausente no basta
+            # para afirmar capa2_manifiesto=SI de toda la fila.
+            derivado = "SI" if all(v == "COINCIDE" for v in estados_por_id.values()) else actual
             if derivado != actual:
                 diffs.append({
                     "relacion_id": f["relacion_id"],
@@ -187,7 +211,10 @@ def derivar(root: Path) -> dict:
                     "derivado": derivado,
                     "estado": estado,
                     "capa3_actual": f.get("capa3_disco_real", ""),
-                    "razon": f"id_manifiesto={idm} estado={estado}",
+                    "razon": (f"id_manifiesto={idm} estado={estado}" if len(ids) == 1
+                              else "id_manifiesto (lista de %d ids)=%s; por id: %s" % (
+                                  len(ids), idm,
+                                  ", ".join(f"{k}={v}" for k, v in estados_por_id.items()))),
                 })
         else:
             fc = f["fuente_canonica_normalizada"]
