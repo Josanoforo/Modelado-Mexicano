@@ -35,3 +35,14 @@ CONTADOR: reglas del modelo con dato (fuera del motor, pendiente sello): +hasta 
 Lo que este acto NO hace: no carga al motor; no abre Ola 6 (ADR-265); no toca cívica electoral (L8); no descarga; no edita instrucciones.
 
 Sucesores declarados, no lanzados: acto NUBE de propagación tras firma de mesa (patrón MAESTRA35-N4).
+
+## CONSUMIDO
+
+Ejecutado por `PR #486` (`ACTO MAESTRA35-L7 · REGLAS-ACTIVOS-L2`), 2/sep/2026,
+worktree `/home/pc0/mm-maestra35-l7`, `ADR-302`, `FP-252` (`ABIERTA`). Las
+cuatro piezas `EXISTE-SATISFACE` en el censo P0 y `CORROBORADA` contra el
+signo pre-registrado en `COMMIT-1`. Cuatro entradas nuevas al pie de
+`milpa/tramite-ola5-propuesta-v0.yaml`, todas `PENDIENTE-DE-MESA`, ninguna
+cargada al motor. No abrió Ola 6, no tocó cívica electoral, no descargó
+nada. Detalle completo: `forense/notas/2026-09-02-MAESTRA35-L7-{P0-censo,
+spec,resultados}.md`.
