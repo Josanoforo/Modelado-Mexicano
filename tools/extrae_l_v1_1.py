@@ -36,6 +36,18 @@ CORRIDAS_L = DIR_PAQUETE / "corridas-L"
 SALIDA_TSV = DIR_PAQUETE / "L-extraido-v1_1.tsv"
 LOG_CIERRE = DIR_PAQUETE / "L-extraido-v1_1-notas-cierre.md"
 
+# ENMIENDA 4 (3/sep/2026, contra 68742de; ADR-282, precedente N4 firma DL-(1)):
+# única edición autorizada a este script. `CELDAS_ESPERADAS` es la constante
+# de módulo que sustituye al literal `176` de la línea de aserción de abajo
+# (176 == 11 celdas * 2 variantes * 8 corridas, para la corrida sellada
+# v1_1). Las cuatro constantes de este bloque (`CORRIDAS_L`, `SALIDA_TSV`,
+# `LOG_CIERRE`, `CELDAS_ESPERADAS`) son las que un llamador externo
+# sobreescribe en runtime, patrón `PAQUETE-L-v1_2.md` §4 (mismo mecanismo
+# usado ahí para `runner_l_cli.py` / `carga_l_v1_1.L_SPEC_JSON`): importar
+# este módulo por ruta, asignar los atributos de módulo, y solo entonces
+# llamar a `procesar_176()`. Nada más de este archivo se edita.
+CELDAS_ESPERADAS = 11
+
 # --- patrones de la regla congelada (regla-extraccion-L-v1_1.md, paso 3) ---
 _NUM = r"\d{1,3}(?:\.\d+)?"
 RE_ENCABEZADO = re.compile(r"^(#+)\s*(.+?)\s*$", re.MULTILINE)
@@ -133,7 +145,8 @@ def procesar_176() -> int:
             )
         )
 
-    assert len(rutas) == 176, f"esperaba 176 capturas *-M-*.json, encontré {len(rutas)}"
+    _esperadas = CELDAS_ESPERADAS * 2 * 8
+    assert len(rutas) == _esperadas, f"esperaba {_esperadas} capturas *-M-*.json, encontré {len(rutas)}"
 
     with SALIDA_TSV.open("w", encoding="utf-8") as fh:
         fh.write("id_celda\tvariante\tindice\tvalor\testado\tfragmento_citado\n")
