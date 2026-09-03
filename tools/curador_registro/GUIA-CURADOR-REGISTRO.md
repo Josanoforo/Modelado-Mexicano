@@ -123,3 +123,19 @@ A5/`PR #441`), en este orden y sin reinventar:
 
 Cierre con `tools/curador_registro/baseline.py` si el validador lo exige
 (este archivo, §1). Raíz `descargas_mx` en `data/raices.local.yaml`.
+
+---
+
+## `estado_A4A5` — el token `OBTENIDO-PARCIAL` (3/sep/2026, ACTO MAESTRA37-N3)
+
+`OBTENIDO-PARCIAL` entra al vocabulario de `estado_A4A5` de
+`data/curacion-registro/cola-adquisicion-registro.tsv` como estado válido.
+Estrenado por `ACTO MAESTRA36-A2` (fila 63, `EXT_OF_07_CATALOGO_PROVEEDORES_S1_S3_S6`):
+se llegó a un payload verificado por `A.7` (sha256, estructura legible) que
+NO es el objeto que la fila describe — es contenido adyacente de la misma
+plataforma (los datos, no los diccionarios que el encargo pedía). Distinto de
+`OBTENIDO` (el objeto pedido, completo) y de `NO-OBTENIDO-POR-ESTE-AGENTE`
+(nada llegó). Verificado en `ACTO MAESTRA36-A2` y reconfirmado por
+`ACTO MAESTRA37-N3`: ningún script de `tools/` ni `tests/` cuenta
+`estado_A4A5 == OBTENIDO-PARCIAL` como `OBTENIDO`, así que el token no voltea
+ningún contador en silencio.

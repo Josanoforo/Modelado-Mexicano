@@ -111,6 +111,16 @@ Tocado: `forense/encargos/2026-09-03-MAESTRA37-N2-GUARDIA-TSV-Y-CAPA2-LISTAS.md`
 (`ADR-320` + cabecera) · `canon/estado-programa-v1_11.md` (`L0` + 2 citas numéricas) ·
 `canon/registro-rotulos.tsv`.
 
+**ENMIENDA POST-MERGE (append, sin editar el texto de arriba):** al fusionar `origin/main`
+(que ya traía `PR #512`/`MAESTRA37-N3` y `PR #514`/`MAESTRA37-L1` fusionados, cada uno
+habiendo candidateado `ADR-320` — `L1` se lo quedó por fusionar primero, `N3` renumeró a
+`ADR-321` — y ambos reservaron `FP-271`/`FP-273..275` dejando `FP-272` libre para este
+acto, tal como el propio encargo había previsto), el `ADR-320` de este párrafo se
+renumeró a `ADR-322` (regla de la casa, renumera quien fusiona segundo) en
+`canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_11.md` y las dos citas en
+`forense/firmas-pendientes.tsv` (`FP-246`, `FP-258`); `FP-272` no colisionó y quedó tal
+cual. Detalle en el commit de merge.
+
 `git diff --stat origin/main..HEAD` confirma que **ningún** archivo fuera de esa lista
 cambió, y en particular: **cero** líneas de `data/curacion-registro/*.tsv` (el registro
 no se normalizó — verificado, las 4 líneas de `FP-258` y las 6 de `FP-246` quedan tal

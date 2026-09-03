@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **320 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **322 ADR**
 
 > | | |
 > |---|---|
@@ -5346,7 +5346,163 @@ candidata desde el 1/sep.
 
 **Perímetro.** `forense/notas/2026-09-03-reevaluacion-ola6-cierre.md` (**append**) · `forense/notas/2026-09-03-MAESTRA36-N6-cruce-administrativas.md` (**append**) · `canon/gobernanza-v1_15.md` (enmienda in situ bajo `ADR-318` + cabecera + esta entrada) · `forense/firmas-pendientes.tsv` · `forense/hallazgos.md` (**append**) · `forense/encargos/cola/2026-09-02-MAESTRA35-L10-OLA6-SALUD-L1.md` (nuevo) · `A.3` propio · cascada. **No toca** `milpa/**`, `data/**`, `.claude/commands/**`, el encargo archivado de `MAESTRA36-N6`, ni ninguna línea existente de ninguna nota. Encargo: `forense/encargos/2026-09-03-MAESTRA37-N1-ALINEA-N6-Y-ENCOLA-L10.md` (dirección/Fable, formato corto v2.12, `SHA de redacción e0421512`, archivado verbatim por `A.3` en el primer commit del acto; ejecutado con `/acto` de `ADR-237`, entorno NUBE). No abre Ola 6 · no decide `FP-267` ni `FP-268` · no relanza `MAESTRA36-N6` · no edita el cuerpo de `L10` · no mide · no descarga.
 
-**ADR-320 (derivado por el comando de la casa contra `origin/main = 8f49eab8` (`PR #511`, merge de `MAESTRA37-N1`, que se llevó el `ADR-319`): `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `319`, serie **contigua y sin duplicados** —319 valores únicos sobre máximo 319, `sort -n | uniq -d` vacío—; candidato `320`, que es el que el propio encargo había derivado. **Otro acto en vuelo que pueda llevárselo:** el encargo declara `MAESTRA37-L1` corriendo en caja el mismo día, con perímetro disjunto (`tools/inventario_reactivos*.py`, `tools/busca_reactivos.py`, `.claude/commands/mapea.md`, `data/inventario-*`); no toca `canon/gobernanza-v1_15.md`, así que no hay colisión conocida sobre este número — si de todos modos fusiona primero y lo toma, **renumera quien fusione segundo**, regla de la casa.) · `ACTO MAESTRA37-N2 · GUARDIA-TSV-Y-CAPA2-LISTAS`, 3/sep/2026, NUBE — **repara FP-258 (round-trip csv corrompe el registro de la cola de adquisición) y FP-246 (listas `;` en `id_manifiesto` invisibles para `via_capa2.py`), por firma de mesa verbatim (3/sep/2026); no toca ningún TSV del registro ni verifica contra corpus.**
+**ADR-320 (derivado por el comando de la casa contra `origin/main =
+8f49eab8` (`PR #511`, merge de `MAESTRA37-N1`, que se llevó el
+`ADR-319`): `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md |
+grep -oE '[0-9]+' | sort -n | tail -1` → `319`, serie contigua y sin
+duplicados; candidato `320`, que es el que el propio encargo había
+derivado. **Otro acto en vuelo que pueda llevárselo: ninguno
+conocido** — `git ls-remote --heads origin` da `main` únicamente al
+arrancar este acto.) · `ACTO MAESTRA37-L1 ·
+INDEXA-DESCARGAS-MX-Y-REMAPEA-SALUD`**, dirección (Fable), 3/sep/2026,
+entorno UBUNTU con corpus, worktree `mm-maestra37-l1-indexa`.
+
+**Lo que hace.** Indexa por primera vez la raíz `descargas_mx`
+(`data/raices.local.yaml`, gitignorada — este worktree nació sin ella y
+tuvo que crearse antes del ARRANQUE, mismo defecto de infraestructura
+que `data/INFRAESTRUCTURA-v1_0.md` ya documenta para LAPOP México/SAT
+e.firma) para `/mapea`, y remapea las 25 reglas de Ola 6 contra ella,
+sin abrir ningún dominio.
+
+**COMMIT-1 (P0, censo).** Enmienda de dirección recibida a mitad de
+acto (mensaje entre sesiones, 3/sep/2026): el censo correcto es por
+**disco**, no por el rótulo `raiz:` del manifiesto — recorre los 224
+archivos bajo `/mnt/c/Users/PC0/Descargas MX`, calcula `sha256` de cada
+uno y cruza por **hash** (no por nombre) contra `data/manifiesto.yaml`,
+en tres clases: `DECLARADO-descargas_mx` (150 archivos, **138**
+`payload_id` únicos — 8 tienen copia duplicada en disco, mismo sha),
+`DECLARADO-OTRA-RAIZ` (**73**, re-derivado por este acto, no el 77
+heredado de `FP-259`) y `SIN-REGISTRO` (**1**, `descargas.php`, 141 181
+bytes, sin extractor y sin sha conocido — no se abre para confirmar qué
+es). Los 138 `sha256` del manifiesto coinciden al 100% con el disco (0
+`AUSENTE`). Clasificación por extractor: 211 `DESPACHADO-INSPECT_ASSETS`
+· 9 `DESPACHADO-EXT` (.dta/.sav/.dbf) · 3 `SIN-EXTRACTOR-DECLARADO`
+(2 `.docx`, 1 `.php`) — cero extractores nuevos, tope de
+`tools/inventario_reactivos.py:9` respetado. Formulaciones de las 25
+reglas de Ola 6 congeladas verbatim desde
+`forense/notas/2026-09-03-mapeo-ola6-N5.md`. Detalle:
+`forense/notas/2026-09-03-MAESTRA37-L1-censo.md`,
+`forense/notas/2026-09-03-MAESTRA37-L1-censo-descargas-mx.tsv`.
+
+**P1 (indexado).** `tools/inventario_reactivos.py` y
+`tools/inventario_reactivos_ext.py` ganan `--raiz` (default `raw` =
+comportamiento exacto de antes de este acto). **Regresión verificada
+dos veces**: (a) por diff de código — la única diferencia contra
+`HEAD` es parametrizar `RAW_ROOT`/`OUT_PATH` en argumentos con el mismo
+valor por defecto, ninguna rama de lógica cambia; (b) por ejecución —
+el script sin modificar y el script modificado, corridos **sobre el
+mismo estado del corpus**, producen `data/inventario-reactivos-v1_0.tsv`
+**byte a byte idéntico** (`diff` exit 0, 208 056 líneas), y
+`inventario-reactivos-ext-v1_0.tsv` también byte a byte idéntico bajo
+`--raiz raw`. (El archivo `v1_0.tsv` **superseded** por `v1_1` mostraba
+29 809 líneas de diferencia contra la copia congelada en el repo — pura
+adición por crecimiento del corpus desde el 27/ago, cero filas
+existentes alteradas; no se commitea el refresh, fuera del perímetro
+tocado.) Corrección de un defecto propio hallado en el camino: la rama
+de despacho de archivo suelto en `inventario_reactivos_ext.py` solo
+trataba `.dta` como caso de un archivo (el perímetro de `raw`, causa B,
+nunca tenía `.sav`/`.dbf` sueltos) — bajo `--raiz descargas_mx` sí los
+hay y caían al bloque de zip, reventando `BadZipFile`; corregido para
+tratar cualquier extensión de `EXT_DESPACHADAS` igual. `data/inventario-
+reactivos-descargas-mx-v1_0.tsv` (nuevo): unión de las dos corridas
+sobre `descargas_mx`, 31 674 filas de dato (14 082 de
+`inspect_assets` + 17 592 de formatos estadísticos). `tools/
+busca_reactivos.py` gana `--tablas` (default `hoy` = exactamente
+`v1_2`+`ext`, byte a byte contra `--fuente ambas`), admite la tercera
+tabla. `.claude/commands/mapea.md` gana una línea que obliga a declarar
+qué tabla/raíz examinó cada corrida y cuál quedó fuera — cierra `DE1`.
+
+**P2 (remapeo).** Las 25 formulaciones congeladas, corridas contra
+`--tablas descargas_mx` en solitario para aislar lo que la raíz nueva
+aporta. **Salud (prioridad, 5 reglas): 1 de 5 `EXISTE-SATISFACE`
+(`salud.atencion.grave`), sin cambio — sostenido por `v1_2`/`ext`
+(N5), no por `descargas_mx`.** `salud.atencion.leve_sin_imss` sigue
+`EXISTE-NO-SATISFACE` (el término «leve-moderado» sigue en 0/31 677;
+los 10 aciertos de «grave» son homonimia — LAPOP «problema más grave
+del país», no severidad clínica, mismo patrón que N5 documentó).
+`salud.prevencion.hombre_sin_permiso`, `salud.adherencia.desabasto_vs_
+cuidadora` y `salud.consumo.sellos_precio_similar` quedan
+`NO-ENCONTRADO`/`EXISTE-NO-SATISFACE` en `descargas_mx`, igual que en
+N5. **Los otros 20 (trabajo/tiempo/cooperación/información/
+comunicación): ningún dominio suma 3 `EXISTE-SATISFACE` nuevos** — el
+patrón dominante sigue siendo homonimia confirmada por muestra («jefe»
+= jefe de hogar/delegacional, no jefe laboral; «grave» = problema más
+grave del país; «favor» = opinión política LAPOP/WVS, no acto de habla)
+o cruces sin desenlace+disparador confirmado por texto. **Recuento del
+criterio 2 por dominio, con la tercera columna: `trabajo` 0/4 · `salud`
+1/5 · `tiempo` 0/4 · `cooperación` 0/4 · `información` 1/4 ·
+`comunicación` 0/4 — 0 de 6 dominios cumplen, con y sin
+`descargas_mx`. Ningún dominio queda `ABRE-CANDIDATO-CON-RESERVA`.**
+Detalle: `forense/notas/2026-09-03-MAESTRA37-L1-remapeo.md`.
+
+**P3 (tablero y cierre).** `FP-271` recibo de este acto. Enmienda
+fechada a `FP-268` (no repetida, sin cambio de estado): el 0/138 citado
+por `MAESTRA37-N1` era el censo por manifiesto; el censo por disco
+(enmienda de dirección) confirma **138 `DECLARADO-descargas_mx`** más
+**73 `DECLARADO-OTRA-RAIZ`** (no 77) y **1 `SIN-REGISTRO`**, y el
+recuento de tres columnas de este acto es **0 de 6 dominios, con o sin
+la raíz nueva** — el diagnóstico de `FP-268` (a)/(b)/(c) sigue siendo
+de mesa, ahora con el dato completo. Línea en `forense/hallazgos.md`.
+Línea de bitácora, append al pie de
+`forense/encargos/cola/2026-09-02-MAESTRA35-L10-OLA6-SALUD-L1.md`, sin
+tocar el resto del cuerpo, con el PARO de caja del 3/sep que hasta hoy
+solo existía en conversación (`A.3`).
+
+**CONTADOR.** Payloads del corpus indexados para `/mapea`: **444 →
+558** (re-derivado directo de la unión de `payload_id` distintos en
+`v1_2`+`ext`+`descargas_mx`, 316+128+116 con solape entre `v1_2`/`ext`;
+`descargas_mx` aporta **116** `payload_id` distintos con fila de dato,
+de sus 138 `DECLARADO-descargas_mx` — 22 quedan sin fila útil,
+`SIN-CAMPOS-EXTRAIBLES`/`NO-EXTRAIDO`, ver censo. Los 73
+`DECLARADO-OTRA-RAIZ` **no** se suman aquí — ya estaban indexados bajo
+su raíz original, `data/raw`, y contarlos dos veces infla el universo)
+· reglas de Ola 6 mapeadas sobre las tres raíces: **25** · reglas salud
+`EXISTE-SATISFACE`: **1** (sin cambio) · dominios abiertos: **0** ·
+cargas al motor: **0** · medición de modelo: **cero, directo y
+declarado**.
+
+**Lo que NO hace.** No abre Ola 6 · no lanza ni edita `L10` (solo el
+append de bitácora que el propio `L10` pide) · no mide `p` de ninguna
+regla · no carga al motor · no relaja el criterio 2 · no escribe
+extractor nuevo · no reprocesa `data/raw` fuera de la regresión
+obligatoria · no re-declara ninguna `raiz:` en `data/manifiesto.yaml`
+(los 73 `DECLARADO-OTRA-RAIZ` siguen siendo de mesa, `FP-259`).
+
+**Perímetro.** `tools/inventario_reactivos.py`,
+`tools/inventario_reactivos_ext.py`, `tools/busca_reactivos.py`
+(parámetros) · `.claude/commands/mapea.md` (una línea) ·
+`data/inventario-reactivos-descargas-mx-v1_0.tsv` (nuevo) ·
+`data/INFRAESTRUCTURA-v1_0.md` · `forense/notas/2026-09-03-MAESTRA37-
+L1-{censo,censo-descargas-mx,remapeo}.md` (nuevos) ·
+`forense/hallazgos.md` · `forense/firmas-pendientes.tsv` ·
+`forense/encargos/cola/2026-09-02-MAESTRA35-L10-OLA6-SALUD-L1.md`
+(**solo append** de una línea) · `A.3` propio · esta cascada. **No
+toca** `milpa/**`, `data/manifiesto.yaml`, `data/raw/**`, los
+inventarios existentes (`v1_2`, `ext-v1_0`, `v1_0` — regenerado solo
+para la prueba de regresión, no commiteado), `forense/prereg-duelo-
+v2/**`, las notas de N5/N6, el cuerpo de `L10` ni su cabecera `ESTADO:`,
+`canon/motor-nucleo-medible-v1_0.md`. No descarga nada. Encargo:
+dirección (Fable), formato v2.12, `SHA de redacción 8f49eab8`,
+ejecutado con `/acto` de `ADR-237`.
+
+**ADR-321 (RENUMERADO de `320` a `321` al fusionar segundo: `PR #514` (`ACTO MAESTRA37-L1 · INDEXA-DESCARGAS-MX-Y-REMAPEA-SALUD`) fusionó primero y se llevó `ADR-320`, exactamente como el propio párrafo original de este acto había previsto por escrito — regla de la casa, renumera quien fusiona segundo. Re-derivado contra `origin/main = f72c6299` tras fusionar `main`: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `320`, contiguo; candidato `321`.) · `ACTO MAESTRA37-N3 · SELLA-CIVICA-COERCITIVO-Y-PROPAGA`, 3/sep/2026, NUBE — **propaga ocho firmas de mesa verbatim (D1, D2, D4, D5, D7) sobre el motor, el acumulador de propuesta, la cola de adquisición y el tablero; no decide ninguna firma nueva, no abre Ola 6, no mide.**
+
+**P1 — carga cívica al motor, letra D1 (`FP-255`): «D1 FP255 - A, Tier media.»** `civico.participacion.concurrencia_presidencial_conversion` entra a `milpa/tramite.yaml` (motor **16 → 17** reglas, `grep -cE '^  - id: ' milpa/tramite.yaml` → `17`), conversión A aditiva `p = clip(p0(municipio) + 0.040167, 0, 1)`, tier `MEDIA`, reservas verbatim de `forense/notas/2026-09-03-MAESTRA36-N12-propuesta.md` §4 (inferencia ecológica, régimen casi universalmente concurrente, IC roza cero `p = 0.0413`, heterogeneidad +2.60/+6.16 pp). Sucesor declarado, no lanzado: heterogeneidad por tamaño de municipio (caja, sin fecha). La entrada gemela en el acumulador pasa a `SELLADA`. Smoke del emisor antes (`COMMIT-1`): **16** reglas, **49** salidas `entonces`, **0** errores. Smoke después: **17** reglas, **52** salidas, **0** errores; los tres puntos ilustrativos sobre `p0 ∈ {0.3051, 0.5797, 0.7104}` emiten sin recorte (`0.345267`, `0.619867`, `0.750567`).
+
+**P2 — coercitivo como campo administrativo, letra D2 (`FP-266`+`FP-261`): «Habíamos acordado en la sesión anterior que la población economicamente activa y en informalidad no están considerados en el universo, así que sí iC.»** Letra de mesa: universo **C** (padrón obligado del SAT, `Total − Asalariados PF` = **35 099 955**, corte 2025-12). `tramite.gobierno_digital.coercitivo` (`milpa/tramite.yaml:193`) gana un bloque `campo_administrativo` con el patrón de la firma p1 (`ADR-299`): `valor: 0.9211`, `escala: proporción administrativa agregada, censo, sin IC, COTA-SUPERIOR`, `veredicto: CONTRARIA` (tramo del falsador congelado por `MAESTRA36-L13`, `ADR-312`; deja de ser `AMBIGUA-POR-UNIVERSO` porque mesa fijó el universo). La `p` `ASIGNADO` **0.91/0.09 no se toca ni se sustituye** — 0.9211 es stock de credencial acumulada, no adopción vigente. `tier: MEDIA-FUERTE → MEDIA` con `reserva_tier` declarada. `sin_dato_universo_examinado` gana la línea del universo SAT ya examinado (lo que `FP-261` había dejado a un sucesor `N11` que nunca se lanzó); `no_accesible` gana enmienda fechada (`NO-ACCESIBLE` desde caja el 2/sep, `OBTENIDO` por descarga de mesa el 3/sep, `ADR-310`, medido por `L13`/`L14`) sin editar el texto previo. Contador `S1` (priors `ASIGNADO` sin dato) declarado **1 → 0**. **A.8, nota sobre la propia firma**: el «acuerdo de la sesión anterior» que D2 cita no está en el repo con esas palabras — `grep -rniE 'informal.{0,80}universo' forense/encargos/*L13*.md forense/encargos/*L14*.md canon/gobernanza-v1_15.md forense/firmas-pendientes.tsv` → **0** en los 4 archivos —; esta firma lo escribe por primera vez, y así se declara, sin corregir el texto verbatim de mesa. Lo que este acto NO decide: si la regla queda `REFUTADA-CON-RESERVA` en B-bis — fila nueva a mesa (`FP-273`).
+
+**P3 — MPS-2012, letra D4: «explotemos los payloads … sería c desde mi perspectiva.»** Las dos entradas de `MAESTRA36-L12` en el acumulador (`civico.clientelismo.prevalencia_lista_mps2012`, `civico.clientelismo.vote_change_mps2012`) pasan a `situacion: SELLADA-SIN-CARGA`, `tier: MEDIA` con `reserva_tier` (instrumento de segunda mano, sin ponderador, `n=35` en R7.7; el signo de Δ depende del conteo: `+5.05` / `−2.13`, ambas publicadas). `R7.7` queda anotada `INTENTO-GASTADO-EN-CROSSTABS` en este instrumento. La regla de ceguera-imposible que `FP-262 (c)` proponía entra a `forense/hallazgos.md` como candidata a `v2.13`, sin instrumentarse. Sucesor declarado en `FP-263` (que sigue `ABIERTA`): `MAESTRA37-L2 · MPS-CODEBOOK-Y-P3` (caja).
+
+**P4 — adquisición, letra D5: «es compras mx buen gobierno … si no es así hago descarga manual.»** Verificado contra el árbol: `ComprasMX`/`CompraNet` (bajado por `MAESTRA36-A2`, `ADR-314`) es la plataforma de **contratos**, no la fuente de `EXT-OF-05` (`data/mapa-ext-oficial-2026-08-06.tsv:6`: sistemas `S1`-`S2`-`S3`-`S6`, destino `R3.1`/`R3.2`), que vive en la Plataforma Digital Nacional de SESNA — corolario que `MAESTRA36-A2` P2 ya había medido (`EXISTE-NO-SATISFACE` sobre CompraNet). Fila nueva `PDN_SESNA_S1_S2_S3_S6` (`PENDIENTE`) en `data/curacion-registro/cola-adquisicion-registro.tsv`, vista `T26` regenerada (`data/cola-adquisicion-v1_0.tsv`, **112** filas). `OBTENIDO-PARCIAL` (estrenado por `MAESTRA36-A2`) documentado como estado válido de `estado_A4A5` en `tools/curador_registro/GUIA-CURADOR-REGISTRO.md`. Alias sin fusionar. RUPC y los tres `DD_*` cerrados `NO-OBTENIDO-POR-ESTE-AGENTE` con la receta de `MAESTRA36-A2`. Colisión de ids `EXT-OF-05` (SESNA) / `EXT_OF_05_URGENCIAS_CUBO_IMSS_INEGI` (DGIS, `relaciones.tsv:204-205`) a `forense/hallazgos.md`, misma familia que la colisión `EXT_OF_07` ya registrada (`hallazgos.md:614`); fila nueva a mesa `FP-274`.
+
+**A.13 — un negativo del propio encargo que no se reprodujo.** El encargo cita `grep -n 'EXT.OF.05' canon/registro-rotulos.tsv` → `0`; reproducido contra `8f49eab8` da **3** (menciones en prosa dentro del perímetro de otros actos — `MAESTRA33-A3`, `MAESTRA34-N6`, `MAESTRA36-A2` —, ninguna es un rótulo `EXT-OF-05` propio; `registro-rotulos.tsv` censa rótulos de ACTO, no ids de fuente). Declarado en `forense/notas/2026-09-03-MAESTRA37-N3-previo.md` sin editar la firma verbatim de dirección ni el resto de la propagación de D5, que no depende de esa cifra.
+
+**Gate:** `COMPUERTA: ninguna`, declarada por el propio encargo. Declaración explícita → no dispara verificación (`/acto` §2).
+
+**CONTADOR (el real, declarado).** Reglas del motor **16 → 17** · priors `ASIGNADO` sin dato **1 → 0** · entradas `SELLADA`/`SELLADA-SIN-CARGA` **+3** (concurrencia presidencial, dos MPS-2012) · fuentes en cola **+1** (PDN, `PENDIENTE`) · firmas propagadas **8** (D1, D2 ×2, D4, D5, D7 ×3) · dominios abiertos **0 → 0** · medición de modelo: **cero directo** (propaga mediciones ya hechas por `L12`/`L13`/`L14`/`N12`) · filas de tablero: **9 firmadas/ejecutadas, 1 anotada (sigue abierta), 3 nuevas** (`FP-273`, `FP-274`, `FP-275`).
+
+**Perímetro.** `milpa/tramite.yaml` (P1 entrada nueva, P2 sólo la entrada de `:193`) · `milpa/tramite-ola5-propuesta-v0.yaml` (campos `situacion`/`tier`/estampa de tres entradas, `0` líneas de cuerpo medido borradas) · `data/curacion-registro/cola-adquisicion-registro.tsv` + vista `T26` regenerada · `tools/curador_registro/GUIA-CURADOR-REGISTRO.md` · `forense/firmas-pendientes.tsv` · `forense/hallazgos.md` (**append**) · `forense/notas/2026-09-03-MAESTRA37-N3-{previo,cierre}.md` · `canon/gobernanza-v1_15.md` (cabecera + esta entrada) · `canon/estado-programa-v1_11.md` (`L0`) · `canon/registro-rotulos.tsv` · `A.3` propio · cascada. **No toca** `milpa/procedencia.yaml`, `data/manifiesto.yaml`, `relaciones.tsv`/`evidencias.tsv`/`utilidad-modelo.tsv`, `canon/motor-nucleo-medible-v1_0.md` (`FP-267` sigue sin firma), `forense/prereg-duelo-v2/**`, la cola de encargos, ni ninguna entrada del motor distinta de la cívica nueva y `coercitivo`. Encargo: `forense/encargos/2026-09-03-MAESTRA37-N3-SELLA-CIVICA-COERCITIVO-Y-PROPAGA.md` (dirección/Fable, formato corto v2.12, `SHA de redacción 8f49eab8`, archivado verbatim por `A.3` en el primer commit del acto; ejecutado con `/acto` de `ADR-237`, entorno NUBE). No decide `FP-267` ni `FP-268` · no abre Ola 6 · no mide · no sustituye la `p` de `coercitivo` · no descarga · no toca `L10` ni su cola · no edita instrucciones.
+**ADR-322 (RENUMERADO de `320` a `322` al fusionar segundo: el encargo había derivado `320` contra `8f49eab8` declarando perímetro disjunto de `MAESTRA37-L1` y sin colisión conocida en `canon/gobernanza-v1_15.md` — pero al fusionar, `PR #514` (`MAESTRA37-L1`) ya se había llevado `ADR-320` y `PR #512` (`MAESTRA37-N3`) ya se había llevado `ADR-321`, ambos fusionados primero en `origin/main`. Re-derivado contra `origin/main` tras fusionar: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `321`, contiguo; candidato `322` — regla de la casa, renumera quien fusiona segundo.) · `ACTO MAESTRA37-N2 · GUARDIA-TSV-Y-CAPA2-LISTAS`, 3/sep/2026, NUBE — **repara FP-258 (round-trip csv corrompe el registro de la cola de adquisición) y FP-246 (listas `;` en `id_manifiesto` invisibles para `via_capa2.py`), por firma de mesa verbatim (3/sep/2026); no toca ningún TSV del registro ni verifica contra corpus.**
 
 **Gate:** `COMPUERTA: ninguna`, declarada por el propio encargo. Declaración explícita → no dispara verificación (`/acto` §2).
 
