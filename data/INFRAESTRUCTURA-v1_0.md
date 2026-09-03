@@ -307,3 +307,21 @@ columna no garantiza su contenido): **`http_code = 000` no significa
 TLS incompleta**; anexando el intermedio que su propio AIA declara, los dos
 pasan a `200` con verificación real. **Nunca `--insecure`.** Antes de declarar
 `NO-OBTENIDO` por red hay que leer el error crudo de `curl`, no sólo su código.
+
+---
+
+## Lote REGLAS-ACTIVOS-L2, cuatro reglas del modelo (`ACTO MAESTRA35-L7`, 2/sep/2026)
+
+Cinco artefactos nuevos bajo `data/`, salida cruda de las cuatro piezas del
+lote (una corrida consolidada, `tools/emite_resultados_l7.py`, que solo
+importa y llama a los cuatro medidores ya congelados — no recalcula nada).
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/l7-resultados-v1_0.json` | `python3 tools/emite_resultados_l7.py` (`ACTO MAESTRA35-L7`) | JSON con cuatro claves `pieza_{a,b,c,d}_*`, cada una con la salida de `mide_eje`/`wratio_ic_conglomerado` (celdas, IC95, veredicto) de `forense/notas/2026-09-02-MAESTRA35-L7-spec.md` | nota de cierre del acto, `milpa/tramite-ola5-propuesta-v0.yaml` (las cuatro entradas nuevas de este acto) | **`GENERADO` — no editar a mano.** La pieza (c) trae una razón (`Σw·num/Σw·den`), no una proporción de binario — sus celdas usan el campo `p` para el valor de la razón, no para una proporción 0-1 de un indicador; el mismo campo en la pieza (a)/(d) sí es proporción. La pieza (c) D1 (`sexo_edad`) trae medias de horas continuas en el mismo campo `p` — leer el `nota`/`eje` de cada bloque antes de citar un número suelto. |
+| `data/l7-log-pieza-{a,b,c,d}.txt` | ídem, `redirect_stdout` de cada medidor | texto plano, salida literal de cada script (incluye guardias y censos que el JSON no serializa) | auditoría/reproducción; no tiene lector programático | Es el registro más completo — el JSON resume, el log es la corrida literal. |
+
+**Regla de conducto que este acto no añade nueva**, aplica las ya escritas: el
+denominador de la pieza (c) se verificó por reconstrucción de la llave de
+hogar (`FAC_PER` no es constante dentro de hogar, `FAC_HOG`/`EST_DIS`/
+`UPM_DIS` sí — verificado con `groupby(...).nunique()==1`, no asumido).
