@@ -37,8 +37,8 @@ aquí, por regla:
   textual: *"R1.1 no gana ni pierde información en este dominio. Sale igual
   que entró."* No dice nada de población urbana/nacional — no bloquea la tasa
   base de esta pieza (§4 abajo).
-- **R5.2** (pieza c): `A` PROPUESTO, no archivado (`forense/notas/
-  2026-08-04-y5-veredicto-r5-2.md` + `...y1-operacionalizacion-r5-2-enut.md`),
+- **R5.2** (pieza c): `A` PROPUESTO, no archivado (`forense/notas/2026-08-04-y5-veredicto-r5-2.md`
+  + `forense/notas/2026-08-04-y1-operacionalizacion-r5-2-enut.md`),
   vía ENUT 2024, diseño de **contraste por ocupación** (reducción% de horas de
   cuidado, ocupada-formal-TC vs. no-ocupada, con control de "varón
   disponible"): 23.98%, IC95%=[14.39%,33.57%]. Mide algo distinto de lo que
