@@ -450,3 +450,28 @@ el mismo riesgo.
 Nota de nomenclatura para quien lea specs viejas: no existe un campo `EST_D` en el
 diccionario ENOE del corpus. Existen `est_d_tri` (trimestral) y `est_d_men`
 (mensual), y con ponderador `fac_tri` el que corresponde es `est_d_tri`.
+
+## `/mapea` gana una tercera tabla: `descargas_mx` (`ACTO MAESTRA37-L1 · INDEXA-DESCARGAS-MX-Y-REMAPEA-SALUD`, 3/sep/2026)
+
+Hasta este acto, `tools/busca_reactivos.py` (y por tanto `/mapea`) solo
+veía `data/inventario-reactivos-v1_2.tsv` + `-ext-v1_0.tsv`, ambas
+derivadas de `data/raw`. La raíz `descargas_mx` (ver arriba, "hay una
+segunda raíz de payloads") nunca había sido indexada para búsqueda de
+reactivos — un `NO-ENCONTRADO` de `/mapea` antes de este acto era
+**mudo** sobre esa raíz, no un negativo (`DE1`, `forense/hallazgos.md`,
+2026-09-03).
+
+Un worktree nuevo necesita crear `data/raices.local.yaml` a mano (es
+gitignorada, no viaja con el worktree) antes de que `--raiz descargas_mx`
+funcione — mismo defecto de infraestructura documentado arriba para
+LAPOP México/SAT e.firma, encontrado otra vez en este acto.
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/inventario-reactivos-descargas-mx-v1_0.tsv` | `tools/inventario_reactivos.py --raiz descargas_mx` + `tools/inventario_reactivos_ext.py --raiz descargas_mx` (unión manual, mismas columnas) | TSV: `payload_id, sha256_12, instrumento, ola, archivo_miembro, variable_id, texto_reactivo, metodo, universo_declarado` — 31 674 filas de dato, 116 `payload_id` distintos con ≥1 fila de sus 138 `DECLARADO-descargas_mx` | `tools/busca_reactivos.py --tablas descargas_mx` (o `todas`), `/mapea` | `instrumento` es casi siempre `(sin-instrumento-derivable)`: los derivadores de `tools/etiqueta_v1_2.py` (`aplica_v1_1`/`aplica_v1_2`) están escritos sobre convenciones de nombre de `data/raw`, no de `descargas_mx` — declarado, no inventado. `universo_declarado` hereda literalmente `PRESENTE_EN_DATA_RAW` de los scripts fuente (no se edita esa columna); en este archivo significa "presente en la raíz indexada por el comando", no en `data/raw` específicamente |
+
+`--raiz` en ambos scripts de inventario (default `raw` = comportamiento
+exacto de antes de este acto, verificado por diff de código y por
+ejecución byte a byte contra el script sin modificar sobre el mismo
+estado del corpus). `--tablas` en `busca_reactivos.py` (default `hoy` =
+exactamente `v1_2`+`ext`, byte a byte igual a `--fuente ambas` de antes).

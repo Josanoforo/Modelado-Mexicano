@@ -146,7 +146,7 @@ FP-267 y FP-268: `ABIERTA`, no se tocan (sin letra de mesa / esperan recuento de
 ## ADR máximo (previo)
 
 `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → **319**.
-Candidato: **ADR-320**.
+Candidato: **ADR-320**. RENUMERADO a **ADR-321** al fusionar segundo: `PR #514` (`MAESTRA37-L1`) fusiono primero y se llevo `ADR-320`.
 
 ## `canon/registro-rotulos.tsv` — A.13, negativo del encargo no reproducido
 

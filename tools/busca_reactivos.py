@@ -82,6 +82,13 @@ FUENTES = {
     "v1_2": REPO_ROOT / "data" / "inventario-reactivos-v1_2.tsv",
     "ext": REPO_ROOT / "data" / "inventario-reactivos-ext-v1_0.tsv",
 }
+# ACTO MAESTRA37-L1: --tablas admite una tercera fuente sin tocar --fuente
+# ni el default de FUENTES. "hoy" == exactamente v1_2+ext, byte a byte,
+# el comportamiento previo a este acto.
+TABLAS = {
+    **FUENTES,
+    "descargas_mx": REPO_ROOT / "data" / "inventario-reactivos-descargas-mx-v1_0.tsv",
+}
 MANIFIESTO = REPO_ROOT / "data" / "manifiesto.yaml"
 
 COLUMNAS_SALIDA = ["id", "encuesta", "ola", "tabla", "variable", "texto", "tipo", "en_corpus"]
@@ -149,7 +156,12 @@ def main(argv=None) -> int:
     ap.add_argument("--tipo", help="Substring plegado sobre metodo (INSPECT_ZIP/XLSX/CSV/XML/"
                                    "STATA/SPSS/RDATA).")
     ap.add_argument("--fuente", choices=["v1_2", "ext", "ambas"], default="ambas",
-                    help="Qué tabla(s) examinar (por defecto ambas).")
+                    help="Qué tabla(s) examinar (por defecto ambas). Superado por --tablas "
+                        "si se da; se mantiene por compatibilidad con invocaciones existentes.")
+    ap.add_argument("--tablas", choices=sorted(TABLAS) + ["hoy", "todas"], action="append",
+                    help="Qué tabla(s) de TABLAS examinar (repetible). 'hoy' (default si no se "
+                        "da --tablas) = v1_2+ext, exactamente --fuente ambas de antes de "
+                        "MAESTRA37-L1. 'todas' = hoy + descargas_mx.")
     ap.add_argument("--limite", type=int, default=500,
                     help="Máximo de candidatas a listar (por defecto 500; el total real de "
                         "aciertos se declara aparte, nunca se trunca en silencio).")
@@ -161,10 +173,22 @@ def main(argv=None) -> int:
         ap.error("da al menos un modo de consulta (--palabra/--regex) o un filtro "
                  "(--encuesta/--ola/--tipo) -- sin ninguno, el comando volcaría el corpus entero.")
 
-    fuentes = list(FUENTES) if args.fuente == "ambas" else [args.fuente]
+    if args.tablas:
+        claves = set()
+        for t in args.tablas:
+            if t == "hoy":
+                claves |= set(FUENTES)
+            elif t == "todas":
+                claves |= set(TABLAS)
+            else:
+                claves.add(t)
+        fuentes = sorted(claves)
+    else:
+        fuentes = list(FUENTES) if args.fuente == "ambas" else [args.fuente]
+
     for f in fuentes:
-        if not FUENTES[f].exists():
-            print(f"ERROR: falta {FUENTES[f]} -- 0 filas examinadas no es un NO-ENCONTRADO (A.13), "
+        if not TABLAS[f].exists():
+            print(f"ERROR: falta {TABLAS[f]} -- 0 filas examinadas no es un NO-ENCONTRADO (A.13), "
                  f"es un comando que no corrió.", file=sys.stderr)
             return 2
 
@@ -174,7 +198,7 @@ def main(argv=None) -> int:
     universo_partes = []
     candidatas = []
     for f in fuentes:
-        filas = lee_filas(FUENTES[f])
+        filas = lee_filas(TABLAS[f])
         universo_partes.append(f"{f}={len(filas)}")
         for n, row in enumerate(filas, start=1):
             if coincide(row):

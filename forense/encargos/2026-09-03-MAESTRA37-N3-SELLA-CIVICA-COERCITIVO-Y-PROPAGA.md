@@ -22,6 +22,8 @@ Ejecutado por `ACTO MAESTRA37-N3 · SELLA-CIVICA-COERCITIVO-Y-PROPAGA`, 3/sep/20
 COMMIT-1 congela el estado previo (`forense/notas/2026-09-03-MAESTRA37-N3-previo.md`); COMMIT-2
 aplica P1-P4 (motor 16 → 17, `tramite.gobierno_digital.coercitivo` gana `campo_administrativo`,
 las dos entradas MPS-2012 selladas sin carga, fila nueva PDN en la cola de adquisición) y P5
-(tablero); cascada de cierre en `ADR-320` (`canon/gobernanza-v1_15.md`), `canon/estado-programa-v1_11.md`
-L0 y `canon/registro-rotulos.tsv`. `tests/check.py --baseline` VERDE (sin `FAIL` nuevo). PR sobre
-la rama `claude/maestra37-n3-redaccion-su1hgb`.
+(tablero); cascada de cierre en `ADR-321` (`canon/gobernanza-v1_15.md`; RENUMERADO de `320` a `321`
+al fusionar `main` -- `PR #514`/`MAESTRA37-L1` fusionó primero y se llevó `ADR-320`, regla de la
+casa), `canon/estado-programa-v1_11.md` L0 y `canon/registro-rotulos.tsv`. `tests/check.py
+--baseline` VERDE (sin `FAIL` nuevo). PR sobre la rama `claude/maestra37-n3-redaccion-su1hgb`
+(`PR #512`), fusionado `origin/main` (`f72c6299`, `PR #514`) antes de completar el merge.
