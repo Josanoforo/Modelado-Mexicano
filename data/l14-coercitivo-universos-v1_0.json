@@ -1,0 +1,211 @@
+{
+ "acto": "MAESTRA36-L14 · COERCITIVO-TRES-UNIVERSOS",
+ "regla": "tramite.gobierno_digital.coercitivo",
+ "prior": {
+  "rechaza_servicio": 0.91,
+  "adopta": 0.09,
+  "clase": "ASIGNADO",
+  "tier": "MEDIA-FUERTE"
+ },
+ "no_adjudica": "Este acto MIDE Y NO ADJUDICA: no evalua tramo del falsador B-bis, no emite veredicto y no sella. La eleccion de lectura es de mesa.",
+ "escala": "numerador administrativo sobre denominador de encuesta — CAMPO del entorno, no probabilidad individual de conducta; comparable con el 0.09 asignado SOLO en signo y orden de magnitud.",
+ "trimestre_de_corte": "2025_4t",
+ "razon_del_trimestre": "oct-dic 2025 contiene el corte 2025-12 del numerador; 2026-1T existe con COE y SDEM pero desfasa un trimestre.",
+ "numerador": {
+  "N": 32331680.0,
+  "corte": "2025-12",
+  "fuente": "data/l13-sat-efirma-v1_0.json (ADR-312), id firelenumcontri",
+  "p_B": 0.36835301337154497,
+  "p_C": 0.9211316652685168,
+  "D_B_padron_total": 87773627.0,
+  "D_C_padron_obligado": 35099955.0,
+  "cota_superior_declarada": "N cuenta contribuyentes que ALGUNA VEZ obtuvieron su primer certificado de e.firma (2004-…), no vigencias: el certificado caduca y el acumulado no da de baja a quien salio del padron. N es cota SUPERIOR del stock vigente, y por tanto p_inf y p_sup son ambas cotas superiores de la adopcion VIGENTE."
+ },
+ "denominadores_enoe": {
+  "ocupados": {
+   "total": 59785854.0,
+   "filas_muestra": 190187,
+   "upm_distintas": 21112,
+   "estratos": 724,
+   "estratos_una_upm": 11,
+   "ee": 296072.7317221288,
+   "ic95_inf": 59205562.10902024,
+   "ic95_sup": 60366145.89097976,
+   "cv": 0.004952220498884716
+  },
+  "informales": {
+   "total": 32884825.0,
+   "filas_muestra": 98777,
+   "upm_distintas": 19036,
+   "estratos": 723,
+   "estratos_una_upm": 13,
+   "ee": 225970.61325252042,
+   "ic95_inf": 32441930.73646063,
+   "ic95_sup": 33327719.26353937,
+   "cv": 0.006871577186514461
+  },
+  "formales": {
+   "total": 26901029.0,
+   "filas_muestra": 91410,
+   "upm_distintas": 20286,
+   "estratos": 724,
+   "estratos_una_upm": 15,
+   "ee": 184861.88725759,
+   "ic95_inf": 26538706.358861018,
+   "ic95_sup": 27263351.641138982,
+   "cv": 0.006871926247043933
+  },
+  "formal_noasal": {
+   "total": 3434364.0,
+   "filas_muestra": 10916,
+   "upm_distintas": 7072,
+   "estratos": 646,
+   "estratos_una_upm": 104,
+   "ee": 44233.94819343261,
+   "ic95_inf": 3347667.0546468613,
+   "ic95_sup": 3521060.9453531387,
+   "cv": 0.012879807787826977
+  },
+  "_particion": {
+   "residuo_emp_ppal_fuera_de_1_2": 0.0,
+   "filas_leidas": 419038,
+   "filas_descartadas": 228851,
+   "pos_ocu_dentro_de_formales": {
+    "1": 23466665.0,
+    "2": 1831506.0,
+    "3": 1602858.0
+   }
+  }
+ },
+ "lecturas": {
+  "A_ocupados_totales": {
+   "denominador": "ENOE ocupados totales (clase2==1, 15+)",
+   "estimacion": {
+    "total": 59785854.0,
+    "filas_muestra": 190187,
+    "upm_distintas": 21112,
+    "estratos": 724,
+    "estratos_una_upm": 11,
+    "ee": 296072.7317221288,
+    "ic95_inf": 59205562.10902024,
+    "ic95_sup": 60366145.89097976,
+    "cv": 0.004952220498884716
+   },
+   "p": 0.5407914721766791,
+   "p_ic95_inf": 0.5355929142534703,
+   "p_ic95_sup": 0.546091935424326
+  },
+  "A_prima_ocupados_formales": {
+   "denominador": "ENOE ocupados con empleo formal (emp_ppal==2)",
+   "estimacion": {
+    "total": 26901029.0,
+    "filas_muestra": 91410,
+    "upm_distintas": 20286,
+    "estratos": 724,
+    "estratos_una_upm": 15,
+    "ee": 184861.88725759,
+    "ic95_inf": 26538706.358861018,
+    "ic95_sup": 27263351.641138982,
+    "cv": 0.006871926247043933
+   },
+   "p": 1.2018752145131697,
+   "p_ic95_inf": 1.185902614820592,
+   "p_ic95_sup": 1.2182839495944293
+  },
+  "A_bis_formales_no_asalariados": {
+   "denominador": "ENOE ocupados formales no asalariados (pos_ocu in {2,3})",
+   "estimacion": {
+    "total": 3434364.0,
+    "filas_muestra": 10916,
+    "upm_distintas": 7072,
+    "estratos": 646,
+    "estratos_una_upm": 104,
+    "ee": 44233.94819343261,
+    "ic95_inf": 3347667.0546468613,
+    "ic95_sup": 3521060.9453531387,
+    "cv": 0.012879807787826977
+   },
+   "p": 9.414168096334576,
+   "p_ic95_inf": 9.182368752426507,
+   "p_ic95_sup": 9.65797358943469
+  },
+  "B_padron_amplio_L13": {
+   "denominador": "SAT padron activo Total (re-citado de L13, no recalculado)",
+   "estimacion": {
+    "total": 87773627.0,
+    "ic95_inf": null,
+    "ic95_sup": null,
+    "nota": "censo administrativo: sin IC muestral"
+   },
+   "p": 0.36835301337154497,
+   "p_ic95_inf": null,
+   "p_ic95_sup": null
+  },
+  "C_padron_obligado_L13": {
+   "denominador": "SAT Total - Asalariados PF (re-citado de L13, no recalculado)",
+   "estimacion": {
+    "total": 35099955.0,
+    "ic95_inf": null,
+    "ic95_sup": null,
+    "nota": "censo administrativo: sin IC muestral"
+   },
+   "p": 0.9211316652685168,
+   "p_ic95_inf": null,
+   "p_ic95_sup": null
+  }
+ },
+ "incompatibilidades_de_universo": [
+  {
+   "clave": "personas_morales_en_el_numerador",
+   "que": "N cuenta contribuyentes PF y PM; el denominador ENOE cuenta PERSONAS ocupadas. Cada PM con e.firma suma arriba sin poder sumar abajo.",
+   "signo": "+ (infla p_A)",
+   "cota": "acotable con PorTipoContribuyente: las PM son ~7% del padron activo; no se resta aqui porque L13 no separo N por tipo de persona."
+  },
+  {
+   "clave": "acumulado_no_es_stock_vigente",
+   "que": "N acumula primeras e.firma desde 2004-01 y no da de baja al que caduco o salio del padron; el denominador es un stock de un trimestre.",
+   "signo": "+ (infla p_A)",
+   "cota": "no acotada por este acto; es la cota superior que L13 ya declaro."
+  },
+  {
+   "clave": "menores_de_15_fuera_del_denominador",
+   "que": "La ENOE 15ymas no observa a la poblacion menor de 15; un menor con e.firma (rara pero posible via representante) suma arriba y no abajo.",
+   "signo": "+ (infla p_A), magnitud despreciable"
+  },
+  {
+   "clave": "no_ocupados_con_efirma",
+   "que": "Desocupados, PNEA, jubilados y arrendadores pueden tener e.firma y estan FUERA de los cuatro denominadores ENOE (todos exigen clase2==1).",
+   "signo": "+ (infla las cuatro p de ENOE)",
+   "cota": "el denominador crece si se abre a toda la poblacion de 15 y mas; esa quinta lectura NO se mide aqui porque el encargo pide tres."
+  },
+  {
+   "clave": "residentes_en_el_extranjero",
+   "que": "Contribuyentes residentes fuera de Mexico estan en el padron del SAT y no en el marco muestral de la ENOE (viviendas en territorio nacional).",
+   "signo": "+ (infla p_A)"
+  },
+  {
+   "clave": "subdeclaracion_de_informalidad_en_registro",
+   "que": "El ocupado informal (emp_ppal==1) puede aun asi tener RFC y e.firma: informalidad laboral no es ausencia de registro fiscal.",
+   "signo": "- sobre la LECTURA, no sobre p: rompe la equivalencia «formal == obligado», que es por que (c) es aproximacion y no medida."
+  },
+  {
+   "clave": "unidad_de_observacion",
+   "que": "El SAT cuenta CONTRIBUYENTES (uno puede tener varias actividades); la ENOE cuenta PERSONAS por su ocupacion PRINCIPAL (emp_ppal es de la primera actividad). Un ocupado con dos empleos aporta 1 abajo.",
+   "signo": "ambiguo; afecta la asignacion entre (b) y (c), no el total (a)."
+  }
+ ],
+ "cota": "Las cuatro p de ENOE son COTAS SUPERIORES de la adopcion vigente, porque N es acumulado de primeras e.firma y no stock vigente (L13).",
+ "fuentes": [
+  {
+   "id": "enoe_2025_4t_csv",
+   "archivo": "conjunto_de_datos_enoe_2025_4t_csv.zip",
+   "sha256": "e4d4284cc9924a40c39544a5530715f320a5627cd81997214c0430827616d9d6",
+   "papel": "denominadores poblacionales (SDEM, fac_tri)"
+  },
+  {
+   "id": "firelenumcontri",
+   "papel": "numerador, re-citado de L13",
+   "via": "data/l13-sat-efirma-v1_0.json"
+  }
+ ]
+}

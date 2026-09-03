@@ -3023,3 +3023,111 @@ reglas_propuestas:
       milpa/procedencia.yaml, data/** ni corpus/**. No mete ninguna cifra
       externa como dato del motor. No recomienda entre A y B.
     estampa_A10_n12: {sha_redaccion: "18fd2bd", acto: "MAESTRA36-N12", fecha: "2026-09-03"}
+
+  - id: tramite.gobierno_digital.coercitivo_tabla_de_universos
+    entrada_nueva: true
+    referida_a: >
+      regla tramite.gobierno_digital.coercitivo (milpa/tramite.yaml:193) --
+      ACTO MAESTRA36-L14 · COERCITIVO-TRES-UNIVERSOS. Sucesor de L13
+      (ADR-312), que salio AMBIGUA-POR-UNIVERSO. Mesa no autorizo sellar
+      sobre el padron del SAT -- una SUBPOBLACION -- contra una regla
+      poblacional, y pidio el universo poblacional. Este acto lo mide y
+      ENTREGA LA TABLA: NO adjudica, NO sella, NO propone letra. El prior
+      0.91/0.09 ASIGNADO y el tier MEDIA-FUERTE NO se tocan aqui.
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      # SIN p unica, por diseno: la tabla es el entregable y la eleccion de
+      # lectura es de mesa. Las cinco filas comparten el MISMO numerador.
+      - {conducta: adopta_efirma_lectura_A_ocupados_totales_enoe_2025_4t, p: 0.540795, ic95: [0.535598, 0.546097], clase: "MEDIDO·tabla-de-universos"}
+      - {conducta: adopta_efirma_lectura_B_padron_amplio_sat_2025_12, p: 0.368353, clase: "MEDIDO·tabla-de-universos (re-citada de L13, no recalculada)"}
+      - {conducta: adopta_efirma_lectura_C_padron_obligado_sat_2025_12, p: 0.921132, clase: "MEDIDO·tabla-de-universos (re-citada de L13, no recalculada)"}
+      - {conducta: puente_A_prima_ocupados_formales_enoe_2025_4t, p: 1.201875, ic95: [1.185900, 1.218273], clase: "MEDIDO·tabla-de-universos (PUENTE, p>1: mide el desacople de universos, no una adopcion)"}
+      - {conducta: puente_A_bis_formales_no_asalariados_enoe_2025_4t, p: 9.414229, ic95: [9.182410, 9.657961], clase: "MEDIDO·tabla-de-universos (PUENTE, p>>1: la aproximacion ENOE del obligado es dos ordenes demasiado estrecha)"}
+    porque: {generador: [G1], mecanismo: "NO se re-deriva: se hereda el de la regla. Este acto mide universos, no explica conducta."}
+    falsable_si: NO-APLICA
+    fuente: ["enoe_2025_4t_csv", "firelenumcontri", "data/l14-coercitivo-universos-v1_0.json", "forense/notas/2026-09-03-MAESTRA36-L14-P0-denominadores.md", "forense/notas/2026-09-03-MAESTRA36-L14-P1-P2-tres-universos.md"]
+    periodo: "numerador: acumulado 2004-01..2025-12 (corte 2025-12). Denominador ENOE: trimestre 2025-4T (oct-dic 2025), elegido por CONTENER el corte del numerador -- 2026-1T tambien existe con COE y SDEM pero desfasa un trimestre."
+    escala: >
+      Numerador ADMINISTRATIVO sobre denominador de ENCUESTA -- dos fuentes con
+      universos que NO coinciden exactamente. Lo que sale es un CAMPO del
+      entorno, no probabilidad individual de conducta (precedente: firma p1,
+      mesa 2/sep/2026, MAESTRA34-L6, propagada por ADR-299). Comparable con el
+      0.09 asignado SOLO en signo y orden de magnitud; NUNCA como «difiere en Z %».
+    ic_de_diseno: >
+      Las tres p de ENOE SI traen IC95 por diseno (a diferencia de L13, que es
+      censo): estimador de conglomerado ultimo, estrato est_d_tri, UPM upm.
+      CV 0.5% en A, 1.3% en el puente A''. Estratos con una sola UPM aportan 0
+      y estan CONTADOS en el JSON (11 en A, 104 en A''), no colapsados en
+      silencio. El IC de p invierte el del denominador: el limite inferior de p
+      usa el limite SUPERIOR de D. Las dos p del SAT NO traen IC y no es
+      omision: censo administrativo.
+    universo: >
+      NUMERADOR UNICO para las cinco filas: 32 331 680 contribuyentes con PRIMER
+      certificado de e.firma acumulados 2004-01..2025-12, re-citado de L13. EL
+      ENCARGO LO LLAMA «e.firma VIGENTE al corte» Y LA FUENTE NO DICE ESO: el
+      certificado caduca a los 4 anios y el acumulado no da de baja a quien
+      salio del padron. Se midio con la premisa CORREGIDA -- N es cota superior
+      del stock vigente -- y por tanto LAS CINCO p SON COTAS SUPERIORES.
+      DENOMINADORES. A = ENOE ocupados totales 59 785 854 (r_def==0, c_res in
+      {1,3}, 15<=eda<=98, clase2==1, suma de fac_tri). Su particion cierra
+      exacta: informales (emp_ppal==1) 32 884 825 + formales (emp_ppal==2)
+      26 901 029, residuo 0. A'' = formales con pos_ocu in {2,3} = 3 434 364
+      (empleadores 1 831 506 + cuenta propia 1 602 858; los 23 466 665
+      subordinados quedan fuera). B y C son las de L13, re-citadas.
+      LOS CODIGOS SE LEYERON DEL DICCIONARIO Y DEL CATALOGO DEL PROPIO ZIP y se
+      verificaron uno a uno (8/8 concuerdan); la guardia disparo en su primera
+      corrida por codificacion -- catalogos en UTF-8, microdato en latin-1 -- y
+      se corrigio el LECTOR, no la guardia.
+    incompatibilidades_de_universo: >
+      Con signo sobre p_A, congeladas en COMMIT-1 antes de medir. (+) personas
+      morales en el numerador y no en el denominador (~7% del padron son PM; no
+      se restan porque L13 no separo N por tipo de persona). (+) acumulado no es
+      stock vigente. (+) menores de 15 fuera del denominador, magnitud
+      despreciable. (+) no ocupados con e.firma -- desocupados, PNEA, jubilados,
+      arrendadores -- fuera de los cuatro denominadores ENOE, que todos exigen
+      clase2==1; la quinta lectura sobre toda la poblacion de 15 y mas NO se
+      mide porque el encargo pide tres. (+) residentes en el extranjero, en el
+      padron y fuera del marco muestral. Rompe la equivalencia «formal =
+      obligado»: informalidad laboral no es ausencia de registro fiscal.
+      Ambiguo: el SAT cuenta CONTRIBUYENTES y la ENOE PERSONAS por ocupacion
+      PRINCIPAL. TODAS las acotables apuntan al MISMO sentido: p_A es cota
+      superior por partida doble, y ninguna empuja en contra.
+    hallazgo: >
+      Los dos puentes dan p>1 y eso NO es un error de cuenta: es la medicion del
+      desacople. Hay MAS contribuyentes que alguna vez sacaron e.firma (32.3 M)
+      que ocupados con empleo formal (26.9 M), lo que basta para descartar la
+      lectura «e.firma = formalidad laboral». Y la aproximacion ENOE del obligado
+      (3.4 M) es DIEZ VECES mas chica que la aproximacion SAT del obligado
+      (35.1 M): las dos pretenden nombrar el mismo conjunto y difieren en un
+      orden de magnitud, o sea que «obligado» es la VARIABLE, no una constante
+      dada -- que es exactamente lo que mesa detecto al negar el sello de L13.
+      El puente que el encargo pedia NO PUENTEA: A (0.54) y B (0.37) estan a
+      menos de un factor 1.5 y A' los sobrepasa cruzando el 1. Se reporta asi;
+      no se busco un denominador intermedio que hiciera funcionar el puente.
+      Contra el 0.09 asignado, en la unica comparacion que la escala autoriza:
+      p_A esta un ORDEN DE MAGNITUD por encima, y la lectura poblacional -- la
+      que mesa pidio -- NO rescata la regla: es la MAS ALTA de las tres.
+      Ninguna de A, B, C cae cerca de 0.09.
+    control_de_consistencia: >
+      Particion exacta (residuo 0 en emp_ppal). Discriminacion: A'' < formales.
+      Externo, DE PERTENENCIA Y NO DE REPRODUCCION: la tasa de informalidad que
+      cae del filtro (55.00%) y el nivel de ocupacion (59.8 millones) son del
+      orden de lo que INEGI publica para 2025; este acto NO reproduce la cifra
+      publicada ni lo intenta, porque la TIL1 publicada no usa exactamente este
+      filtro.
+    lo_que_esta_pieza_no_hace: >
+      No sella. No adjudica ni evalua tramo del falsador B-bis: no hay fila de
+      veredicto, por diseno. No propone letra: la pregunta «a quien describe
+      coercitivo, A, B o C» va a mesa SIN recomendacion de direccion. No toca
+      milpa/tramite.yaml ni milpa/procedencia.yaml. No amplia
+      sin_dato_universo_examinado. No descarga nada. No mide 2026-1T.
+      CONTADOR: S1 SIGUE EN 1 -- este acto no produce LA p de la regla, produce
+      tres candidatas y la pregunta de cual es. Lo que se mueve es «lecturas de
+      universo medidas para coercitivo: 2 -> 3». Cargas al motor: 0.
+    sucesor: "la letra que mesa elija (A/B/C) -> N13 · SELLA-COERCITIVO, con la p de esa lectura"
+    sha256_payload_denominador: "e4d4284cc9924a40c39544a5530715f320a5627cd81997214c0430827616d9d6"
+    payload_manifiesto_id_denominador: enoe_2025_4t_csv
+    payload_manifiesto_id_numerador: firelenumcontri
