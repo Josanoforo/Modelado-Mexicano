@@ -33,3 +33,7 @@ Texto completo del encargo, tal como se lanzó:
 - Estructura: `forense/prereg-duelo-v2/` existe con los cuatro corredores, el marco congelado, `sorteo-resultados-v1_0.md` y `banda-tost-margen-v1_0.md` — verificado por `ls` contra `9c25f28`.
 - Contenido: ningún archivo del árbol contiene una salida de árbitro `R` — verificado por `find forense/prereg-duelo-v2 -iname "*arbitr*" -o -iname "*-R-*" -o -iname "*resultado-R*"` → vacío. Ningún archivo `forense/prereg-duelo-v2/prereg-corrida*.md` preexistía — verificado por `find` antes de escribir este acto.
 - Cobertura retroactiva: no aplica — este acto no recomputa nada que ya exista; F1 hashea los cuatro corredores y los tres artefactos ya sellados (marco congelado, sorteo, `CONGELADO-v1_0.sha256`) tal como están, sin tocarlos.
+
+## CONSUMIDO
+
+Derivado mecánicamente por `/tramite` (puertas 1–3 de la acción 3.3): único merge que introduce este archivo y toca otros además de él — `PR #367` (`dad74ee7`, 2026-08-25, `Merge pull request #367 from Josanoforo/claude/prereg-corrida-setup-yeytx1`, 7 files changed).

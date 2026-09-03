@@ -37,3 +37,7 @@ Si el ítem fiscal aparece EXISTE-SATISFACE: 🚫 NO midas — entrega la spec-c
 PERÍMETRO Y CONCURRENCIA
 
 Lista cerrada: ficha condBC (append) · forense/notas/ (cierre) · gobernanza · estado · tablero (FP-157 enmienda) · encargo archivado · data/raw en LECTURA. "Fuera de esta lista, PARA." Concurrencia: Codex-CLI (disjunto), CORRE-R10.1 y SPEC-EXPCOMP-BBIS en paralelo — renumera quien fusiona segundo. No hace: no mide, no adjudica FP-157, no toca tests/aceptacion_r3_4.py, no descarga nada nuevo (si un archivo del zip faltara: NO OBTENIDO EN N INTENTOS + receta A.5, y para).
+
+## CONSUMIDO
+
+Derivado mecánicamente por `/tramite` (puertas 1–3 de la acción 3.3): único merge que introduce este archivo y toca otros además de él — `PR #365` (`e3bbaab1`, 2026-08-25, `Merge pull request #365 from Josanoforo/r34-ensafi-censa`, 6 files changed).
