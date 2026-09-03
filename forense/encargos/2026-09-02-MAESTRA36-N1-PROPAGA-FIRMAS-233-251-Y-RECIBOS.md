@@ -28,3 +28,7 @@ FP/ADR CANDIDATOS (derivados contra `9af8407`, no heredados) ADR máx 308 → ca
 CONTADOR Filas del tablero ABIERTA `10 → 8` (P1+P2) o `10 → 5` (con P3), reportado por `awk` al cierre. Medición de modelo: cero directo, declarado.
 Lo que este acto NO hace No cierra FP-255 (conversión cívica: dirección presenta, mesa traduce pp→p), ni FP-179/235/240/246 (piden juicio). No sella ni carga ninguna entrada de `milpa/tramite-ola5-propuesta-v0.yaml` — eso es `N10 · SELLA-L9-L11`. No corre `/tramite` ni `/despacha`. No edita el transfer ni lo sube al repo.
 Sucesores declarados, no lanzados `MAESTRA36-N10 · SELLA-L9-L11` (cuando mesa dé letras g1–k1 con la tabla de replicación a la vista) · `/tramite` diario sigue igual; con estas filas cerradas su digesto deja de listar FP-233 como vencimiento.
+
+## CONSUMIDO
+
+Ejecutado por este commit de la rama `claude/maestra36-n1-firmas-lmmc4p` (PR abierto contra `main`, sin fusionar por el ejecutor). FP-233 → EJECUTADA, FP-251/FP-253/FP-254/FP-256 → FIRMADA en `forense/firmas-pendientes.tsv`; cascada en `canon/gobernanza-v1_15.md` (ADR-309), `canon/estado-programa-v1_11.md` (L0 y las dos citas de conteo), `canon/registro-rotulos.tsv` y `forense/hallazgos.md`. `python3 tests/check.py --baseline` → LÍNEA BASE VERDE.
