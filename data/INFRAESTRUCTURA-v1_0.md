@@ -331,3 +331,28 @@ literalmente «Familiares y amigos»**, y el propio emisor publica esa categorí
 su reporte. Quien abra sólo la cabecera del `xlsx` concluye que la variable no
 existe, y se equivoca. **Antes de declarar `NO-ENCONTRADO` sobre una variable hay
 que abrir los campos de texto libre de la batería que la contendría.**
+
+---
+
+## Censo de reglas activas sobre LAPOP / ENCUCI / ENIF (`ACTO MAESTRA35-L9`, 2/sep/2026)
+
+Un artefacto nuevo bajo `data/` y **una raíz que este índice no documentaba**.
+Se registra por la misma razón que las secciones anteriores: la advertencia es
+parte del producto.
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/l9-censo-a4-v1_0.tsv` | rutas `--censo` de `tools/medidor_clientelismo_lapop.py`, `tools/medidor_protesta_lapop.py`, `tools/medidor_entitlement.py`, `tools/medidor_seguro_deposito_enif24.py` (`ACTO MAESTRA35-L9`, `P0`) | TSV de 16 columnas × 10 filas de datos: `pieza, regla, id_modelo, tier, fuente, payload_id, sha256_coincide, item_desenlace, item_moderador, codigos_desenlace, denominador, ponderador, diseno, unidad, veredicto, que_falta` | la spec congelada del acto y quien vuelva a plantear una pieza sobre LAPOP México | **Tres de sus diez filas son `EXISTE-NO-SATISFACE` y son el contenido, no el residuo.** (1) **Ninguna ola de LAPOP México cruza dádiva con secreto del voto**: 2019 tiene `clien1n/clien1na/clien4a/clien4b` y cero ítems de secreto; 2023 tiene `countfair3` y cero `clien*`; 2021 no tiene ninguno de los dos. Quien vuelva a proponer `R7.3`/`R7.6` **contra la dádiva** está proponiendo un cruce que no existe en el corpus. (2) **2006 no hace serie con 2019**: `PROT1`/`PROT2` son escala de frecuencia de tres niveles y `PROT2` está gateada (n = 209), frente a `prot3` binaria y ungateada; el archivo de 2006 tampoco trae ponderador. (3) **`P5_24_*` de ENIF no mide «seguro visible»**: está anidada en el «Sí» de `P5_23`, y de los 4 136 que dicen saber que sus ahorros están protegidos, **3 148 no saben nombrar la institución**; sólo 362 en toda la muestra nombran al IPAB. Además: **`wt` de LAPOP México es constante = 1** en 2019 y 2023 (muestra autoponderada), así que «proporción ponderada» ahí es idéntica a la simple y todo el efecto de diseño vive en el conglomerado, no en el peso. |
+
+**Regla de conducto que este acto añade — hay una segunda raíz de payloads, y no
+está en `data/raw`.** `data/manifiesto.yaml` declara payloads bajo
+`raiz: descargas_mx`, que `forense/notas/2026-08-06-map1b-censo-raices.md:68`
+resuelve a `/mnt/c/Users/PC0/Descargas MX`. Esa ruta vive en
+`data/raices.local.yaml`, que **es gitignorada**: un worktree recién creado nace
+sin ella, y entonces `find`/`ls` sobre `data/raw` declaran `NO-ENCONTRADO` para
+payloads que están perfectamente en disco. Las cuatro olas de LAPOP México son
+exactamente ese caso. **Antes de declarar que un payload del manifiesto no está,
+hay que resolver su campo `raiz`** — y un medidor que dependa de una raíz no
+configurada debe **PARAR diciéndolo**, nunca reportar el payload como ausente;
+los cuatro medidores de este acto lo hacen. Misma familia que `A.13` y que la
+trampa de `find` sin `-L` sobre el symlink de `data/raw`.
