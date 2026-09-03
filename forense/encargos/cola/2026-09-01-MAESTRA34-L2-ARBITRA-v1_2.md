@@ -1,4 +1,4 @@
-ESTADO: LISTO-CAJA
+ESTADO: CONSUMIDO
 ENTORNO: UBUNTU (abre microdato)
 ENCOLADO: 2026-09-02 · gesto de encolado, precedente §1c del transfer maestra-34 (firma D4-a, 1/sep/2026)
 BITACORA:

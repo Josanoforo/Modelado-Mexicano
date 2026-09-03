@@ -85,3 +85,9 @@ RATIFICACIÓN, verbatim: «Ratificada por dirección (Fable) el 2/sep/2026 contr
 P0 corre `tools/extrae_l_v1_1.py` sin editar el archivo, con override en runtime de dos constantes de módulo, mismo patrón que `PAQUETE-L-v1_2.md` §4 autorizó para `runner_l_cli.py` (firma `MAESTRA33-E17`): (i) `CORRIDAS_L` → directorio temporal con enlaces simbólicos a las 224 capturas de las 14 celdas de `L-spec-v1_2.json`, seleccionadas por id de celda derivado de la spec, no por sufijo; (ii) `SALIDA_TSV` → `forense/prereg-duelo-v2/L-extraido-v1_2.tsv`. Control positivo antes de escribir: el mismo override apuntado a las 176 capturas de v1_1 reproduce `L-extraido-v1_1.tsv` byte a byte; si no, PARO y a mesa. `sha256` del script pegado en la nota; `--regresion` corrido y en verde. Firma de mesa verbatim: «Autorizo el parche a la línea 136 y el override de las cuatro constantes; mi firma es la fusión de este PR. — mesa, 3/sep/2026».
 
 PERÍMETRO: se añade `tools/extrae_l_v1_1.py`, edición acotada a la línea 136 y la constante `CELDAS_ESPERADAS`; se añade `forense/prereg-duelo-v2/L-extraido-v1_2-notas-cierre.md`.
+
+---
+
+## ENMIENDA 4 — 3/sep/2026 (A.3: el verbatim de arriba no se edita; esta enmienda gobierna sobre las ENMIENDAS 1–3 en lo que las supera)
+
+P0 ejecutado fuera de esta cola por PR #497 (`6019bd7`): script parcheado sha `efb71de1…`, `L-extraido-v1_2.tsv` y `-notas-cierre.md` en `origin/main`, sellos v1_1 intactos. N3 verifica su existencia (A.8) y no repite P0; arranca en P1 (13 de 14, exclusión DIN-M-01 con razón). La ENMIENDA 3 queda superada por producto. Firma de mesa: la fusión de este PR. — mesa, 3/sep/2026
