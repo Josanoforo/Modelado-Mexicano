@@ -73,7 +73,10 @@ de la raíz, nunca la ruta). Las 53 entradas de payload anteriores a este
 campo no tienen `raiz` -- su ausencia SIGNIFICA data_raw; no se les
 migra un valor retroactivo que nadie declaró entonces.
 
---escanea   recorre una RAÍZ POR NOMBRE (nunca una ruta -- ver arriba) y,
+--escanea   recorre RECURSIVAMENTE una RAÍZ POR NOMBRE (nunca una ruta --
+             ver arriba); `archivo` es la ruta relativa a la raíz, con
+             subcarpeta si la hay ('Descargas Manuales/x.dta'), misma
+             convención que tests/corpus.py -- desde ADR-310. Y,
              para cada archivo que no esté ya en data/manifiesto.yaml
              (dedup por sha256, no por nombre),
              deriva archivo/raiz/sha256/tamano_bytes/fecha_descarga (del
@@ -587,8 +590,21 @@ def _etiqueta_dominante(nombres):
 def _yaml_valor(valor):
     """yaml.safe_dump de un escalar suelto añade un marcador de fin de
     documento ('...') en su propia línea -- se descarta, no es parte del
-    valor."""
-    texto = yaml.safe_dump(valor, allow_unicode=True, default_flow_style=True).strip()
+    valor.
+
+    `width` grande a propósito (MAESTRA36-A1, 2026-09-02): sus siete
+    llamadores arman a mano una línea `  clave: <valor>` de
+    data/manifiesto-staging.yaml, y el ancho por defecto de safe_dump (80)
+    parte un escalar largo en varias líneas con sangría de DOS espacios --
+    la misma que la clave. El resultado es YAML inválido: la continuación
+    se lee como una clave nueva sin ':'. Medido contra 9af8407 con un
+    --url de 105 caracteres: `--escanea` escribía el staging y `--promueve`
+    reventaba después con ScannerError. El manifiesto real nunca tuvo este
+    defecto porque escribir_manifiesto usa yaml.dump sobre la estructura
+    entera, que sangra las continuaciones más que la clave.
+    """
+    texto = yaml.safe_dump(valor, allow_unicode=True, default_flow_style=True,
+                            width=10 ** 9).strip()
     if texto.endswith("..."):
         texto = texto[:-3].rstrip()
     return texto
@@ -626,6 +642,34 @@ def _formatear_entrada_staging(f, sugerencia_url):
 RAICES_QUE_EXIGEN_GRUPO = {"downloads"}
 
 
+def _archivos_recursivos(ruta):
+    """Rutas relativas a `ruta` de TODOS los archivos del árbol, no solo del
+    nivel superior. Misma convención que tests/corpus.py (os.walk +
+    normpath(relpath)) -- que es la que ya tienen las 49 entradas
+    'Descargas Manuales/...' del manifiesto desde la corrección T2 del
+    18/ago/2026, así que el campo `archivo` que sale de aquí y el que
+    corpus.py compara son el mismo objeto.
+
+    Antes de ADR-310 esto era os.listdir + isfile: una subcarpeta entera
+    quedaba invisible para --escanea. Medido por MAESTRA36-A1 (P0,
+    2026-09-02) sobre la raíz descargas_mx: 224 archivos en el árbol, de
+    los que os.listdir veía 148 -- los 76 de 'Descargas Manuales/' no eran
+    ni "nuevos" ni "ya registrados", simplemente no existían para este
+    comando, mientras corpus.py sí los recorría y los contaba huérfanos.
+    Esa asimetría entre los dos recorridos es lo que hizo que a mesa se le
+    volvieran a pedir descargas que ya había hecho.
+
+    os.walk no sigue enlaces simbólicos a directorios (followlinks=False):
+    un symlink autorreferente no abre un bucle aquí.
+    """
+    for dirpath, _dirnames, filenames in os.walk(ruta):
+        for fn in filenames:
+            ruta_abs = os.path.join(dirpath, fn)
+            if not os.path.isfile(ruta_abs):
+                continue
+            yield os.path.normpath(os.path.relpath(ruta_abs, ruta))
+
+
 def cmd_escanea(a, manifiesto_path, raw_dir):
     root = os.path.dirname(os.path.dirname(manifiesto_path))
     nombre_raiz = a.escanea
@@ -657,10 +701,8 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
     nuevos, paginas = [], []
     fuera_de_alcance = []
 
-    for nombre in sorted(os.listdir(ruta)):
+    for nombre in sorted(_archivos_recursivos(ruta)):
         ruta_abs = os.path.join(ruta, nombre)
-        if not os.path.isfile(ruta_abs):
-            continue
 
         extension = os.path.splitext(nombre)[1].lower()
         if (nombre_raiz in RAICES_QUE_EXIGEN_GRUPO
@@ -881,8 +923,19 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
 def _derivar_id(nombre_archivo, ids_existentes):
     """Slug mecánico del nombre de archivo -- nunca tecleado. Si colisiona
     con un id ya existente (u otro derivado en el mismo lote), se
-    desambigua con un sufijo numérico, nunca sobreescribiendo."""
-    base = os.path.splitext(nombre_archivo)[0]
+    desambigua con un sufijo numérico, nunca sobreescribiendo.
+
+    Del BASENAME, no de la ruta (MAESTRA36-A1, 2026-09-02): desde ADR-310
+    `archivo` puede traer subcarpeta, y slugificar la ruta entera daría
+    ids como 'descargas_manuales_ingresostributarios'. Las 49 entradas
+    con prefijo 'Descargas Manuales/' que ya existen derivan todas su id
+    del basename ('mex_2010_iepep_v01_m_v01_a_puf', no
+    'descargas_manuales_mex_2010_...'), así que tomar la ruta entera
+    habría abierto dos convenciones de id en la misma raíz. La colisión
+    entre dos basenames iguales en carpetas distintas la resuelve el
+    sufijo numérico de abajo, que ya existía.
+    """
+    base = os.path.splitext(os.path.basename(nombre_archivo))[0]
     slug = re.sub(r"[^a-z0-9]+", "_", base.lower()).strip("_")
     slug = re.sub(r"_+", "_", slug) or "archivo"
     candidato = slug
@@ -1100,8 +1153,13 @@ def main():
                      help="repetible. --verifica corre sobre TODOS los --id dados; "
                           "--registra/--compara exigen exactamente uno")
     ap.add_argument("--grupo", default=None,
-                     help="patrón fnmatch. Con --escanea: aplica --url/--usado-para a "
-                          "los archivos nuevos cuyo nombre case con el patrón (o, "
+                     help="patrón fnmatch sobre la RUTA RELATIVA A LA RAÍZ, no sobre "
+                          "el basename (desde ADR-310, cuando --escanea pasó a ser "
+                          "recursivo): 'Descargas Manuales/*.dta' acota esa subcarpeta, "
+                          "'academico/icpsr35024/crosstabs/*' esa otra, y '*.dta' sigue "
+                          "casando en cualquier nivel porque fnmatch no trata '/' como "
+                          "separador. Con --escanea: aplica --url/--usado-para a "
+                          "los archivos nuevos cuya ruta case con el patrón (o, "
                           "combinado con --grupo-n, a un subconjunto DENTRO de esa "
                           "tanda). Con --promueve: limita la promoción a los que "
                           "casen (por defecto, --promueve procesa todo lo que hay en "

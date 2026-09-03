@@ -20898,12 +20898,12 @@
   sha256: c1e7ba95f453edd356e3e1144bb6753557101251a8c939878d8ddeeb2ec45278
   tamano_bytes: 14665813
   formato: zip
-  licencia: ICPSR (Mexico Panel Study, 2012, DOI 10.3886/ICPSR35024.v1) — acceso público/restringido según componente
+  licencia: ICPSR (Mexico Panel Study, 2012, DOI 10.3886/ICPSR35024.v1) — acceso público/restringido
+    según componente
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
-  nota: 'Corrección A.3 (2026-09-02): url_origen/licencia registrados en la primera
-    invocación por error copiaban los de SICEE (script de registro reusado sobre
-    un lote mixto); corregidos aquí sin tocar sha256/tamano_bytes, que el script
-    ya derivó del archivo real.'
+  nota: 'Corrección A.3 (2026-09-02): url_origen/licencia registrados en la primera invocación
+    por error copiaban los de SICEE (script de registro reusado sobre un lote mixto); corregidos
+    aquí sin tocar sha256/tamano_bytes, que el script ya derivó del archivo real.'
 
 - id: ssrn_bauchet_2589578_pdf
   usado_para: PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND (Bauchet 2014, abstract_id=2474620)
@@ -20917,10 +20917,9 @@
   formato: pdf
   licencia: SSRN (descarga individual del paper; licencia propia del autor/SSRN, no verificada)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
-  nota: 'Corrección A.3 (2026-09-02): url_origen/licencia registrados en la primera
-    invocación por error copiaban los de SICEE (script de registro reusado sobre
-    un lote mixto); corregidos aquí sin tocar sha256/tamano_bytes, que el script
-    ya derivó del archivo real.'
+  nota: 'Corrección A.3 (2026-09-02): url_origen/licencia registrados en la primera invocación
+    por error copiaban los de SICEE (script de registro reusado sobre un lote mixto); corregidos
+    aquí sin tocar sha256/tamano_bytes, que el script ya derivó del archivo real.'
 
 - id: ssrn_bauchet_2689238_pdf
   usado_para: PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND (Bauchet 2014, abstract_id=2474620)
@@ -20934,7 +20933,513 @@
   formato: pdf
   licencia: SSRN (descarga individual del paper; licencia propia del autor/SSRN, no verificada)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
-  nota: 'Corrección A.3 (2026-09-02): url_origen/licencia registrados en la primera
-    invocación por error copiaban los de SICEE (script de registro reusado sobre
-    un lote mixto); corregidos aquí sin tocar sha256/tamano_bytes, que el script
-    ya derivó del archivo real.'
+  nota: 'Corrección A.3 (2026-09-02): url_origen/licencia registrados en la primera invocación
+    por error copiaban los de SICEE (script de registro reusado sobre un lote mixto); corregidos
+    aquí sin tocar sha256/tamano_bytes, que el script ya derivó del archivo real.'
+
+- id: decanuatipcon
+  usado_para: inventario -- estadistica tributaria del SAT (recaudacion, padron de contribuyentes,
+    e.firma, formas de pago); satisface la fila cola-adquisicion-v1_0.tsv:NUEVA-L6 SAT_MEXICO
+  url_origen: no determinada (portal del SAT, seccion de estadistica tributaria; bajados a
+    mano por mesa el 2026-09-02 porque la caja no alcanza sat.gob.mx -- SPA sin texto, fila
+    de cola SAT_MEXICO)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/DecAnuaTipCon.xls
+  raiz: descargas_mx
+  sha256: 5965d4afc9a92c266782883a528aac4c35f57f29d781e7bd0fce3bb3aaeb4f3e
+  tamano_bytes: 120320
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: formato_9_impuesto
+  usado_para: inventario -- estadistica tributaria del SAT (recaudacion, padron de contribuyentes,
+    e.firma, formas de pago); satisface la fila cola-adquisicion-v1_0.tsv:NUEVA-L6 SAT_MEXICO
+  url_origen: no determinada (portal del SAT, seccion de estadistica tributaria; bajados a
+    mano por mesa el 2026-09-02 porque la caja no alcanza sat.gob.mx -- SPA sin texto, fila
+    de cola SAT_MEXICO)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/FORMATO_9_Impuesto.xls
+  raiz: descargas_mx
+  sha256: 2735dc81c236fc27533a26da51bc2bbfb5b8bc436da9a2fa8e9dd2ca5f0efa46
+  tamano_bytes: 265728
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: firelenumcert
+  usado_para: inventario -- estadistica tributaria del SAT (recaudacion, padron de contribuyentes,
+    e.firma, formas de pago); satisface la fila cola-adquisicion-v1_0.tsv:NUEVA-L6 SAT_MEXICO
+  url_origen: no determinada (portal del SAT, seccion de estadistica tributaria; bajados a
+    mano por mesa el 2026-09-02 porque la caja no alcanza sat.gob.mx -- SPA sin texto, fila
+    de cola SAT_MEXICO)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/FirEleNumcert.xls
+  raiz: descargas_mx
+  sha256: e813b6c12d613a33f1ecbd41533969461c066e92c5a051f100b4b8b7da2b7566
+  tamano_bytes: 92160
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: firelenumcontri
+  usado_para: inventario -- estadistica tributaria del SAT (recaudacion, padron de contribuyentes,
+    e.firma, formas de pago); satisface la fila cola-adquisicion-v1_0.tsv:NUEVA-L6 SAT_MEXICO
+  url_origen: no determinada (portal del SAT, seccion de estadistica tributaria; bajados a
+    mano por mesa el 2026-09-02 porque la caja no alcanza sat.gob.mx -- SPA sin texto, fila
+    de cola SAT_MEXICO)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/FirEleNumcontri.xls
+  raiz: descargas_mx
+  sha256: dce5a06c278cf8f5e85c8b68ba03e500342f3768199a9ce232b4f30a22a23386
+  tamano_bytes: 98304
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ingresostributarios
+  usado_para: inventario -- estadistica tributaria del SAT (recaudacion, padron de contribuyentes,
+    e.firma, formas de pago); satisface la fila cola-adquisicion-v1_0.tsv:NUEVA-L6 SAT_MEXICO
+  url_origen: no determinada (portal del SAT, seccion de estadistica tributaria; bajados a
+    mano por mesa el 2026-09-02 porque la caja no alcanza sat.gob.mx -- SPA sin texto, fila
+    de cola SAT_MEXICO)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/IngresosTributarios.xls
+  raiz: descargas_mx
+  sha256: e4eca9de12732a5a911fba495879b202254c4f594cf85a41f5e71563141621b3
+  tamano_bytes: 153600
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: numpagtipcon
+  usado_para: inventario -- estadistica tributaria del SAT (recaudacion, padron de contribuyentes,
+    e.firma, formas de pago); satisface la fila cola-adquisicion-v1_0.tsv:NUEVA-L6 SAT_MEXICO
+  url_origen: no determinada (portal del SAT, seccion de estadistica tributaria; bajados a
+    mano por mesa el 2026-09-02 porque la caja no alcanza sat.gob.mx -- SPA sin texto, fila
+    de cola SAT_MEXICO)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/NumPagTipCon.xls
+  raiz: descargas_mx
+  sha256: 0a146752161565c5aa771270b933e5be4b66a08e3ba94a5f8039a025d20d6ede
+  tamano_bytes: 87040
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: numpagosmedrec
+  usado_para: inventario -- estadistica tributaria del SAT (recaudacion, padron de contribuyentes,
+    e.firma, formas de pago); satisface la fila cola-adquisicion-v1_0.tsv:NUEVA-L6 SAT_MEXICO
+  url_origen: no determinada (portal del SAT, seccion de estadistica tributaria; bajados a
+    mano por mesa el 2026-09-02 porque la caja no alcanza sat.gob.mx -- SPA sin texto, fila
+    de cola SAT_MEXICO)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/NumPagosMedRec.xls
+  raiz: descargas_mx
+  sha256: 975b8f73b19f5481f4adaf1527f98fa6f12aa0c97db028a680acaf1d0b9da9e8
+  tamano_bytes: 99328
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: porentfed
+  usado_para: inventario -- estadistica tributaria del SAT (recaudacion, padron de contribuyentes,
+    e.firma, formas de pago); satisface la fila cola-adquisicion-v1_0.tsv:NUEVA-L6 SAT_MEXICO
+  url_origen: no determinada (portal del SAT, seccion de estadistica tributaria; bajados a
+    mano por mesa el 2026-09-02 porque la caja no alcanza sat.gob.mx -- SPA sin texto, fila
+    de cola SAT_MEXICO)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/PorEntFed.xls
+  raiz: descargas_mx
+  sha256: 51f79b5a2d9191b9760261be32bb66dcb9664ad7a95fdaf2ef181314c72458a2
+  tamano_bytes: 126464
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: portipocontribuyente
+  usado_para: inventario -- estadistica tributaria del SAT (recaudacion, padron de contribuyentes,
+    e.firma, formas de pago); satisface la fila cola-adquisicion-v1_0.tsv:NUEVA-L6 SAT_MEXICO
+  url_origen: no determinada (portal del SAT, seccion de estadistica tributaria; bajados a
+    mano por mesa el 2026-09-02 porque la caja no alcanza sat.gob.mx -- SPA sin texto, fila
+    de cola SAT_MEXICO)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/PorTipoContribuyente.xls
+  raiz: descargas_mx
+  sha256: d14769a74c4adef63462cbcd278086d3a66b7bac93a031185694e57ebd915b1e
+  tamano_bytes: 117760
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: icpsr35024_ds1_w2_crosstabs_derivado_v0
+  usado_para: crosstabs del Mexico Panel Study 2012 (ola 2) derivados del tablero en linea
+    de ICPSR -- conteos SIN PONDERAR, instrumento de SEGUNDA MANO, NO el microdato; fila cola-adquisicion-v1_0.tsv:19
+    MEXICO_PANEL_STUDY_2012
+  url_origen: https://doi.org/10.3886/ICPSR35024.v1
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: icpsr35024_DS1_W2_crosstabs_derivado_v0.csv
+  raiz: descargas_mx
+  sha256: 96330f0353dd173cd7dec5ff9c351d8504085bf38a6dbee3df9242b8271ebb6d
+  tamano_bytes: 3364
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: icpsr35024_ds1_w2_crosstabs_derivadas
+  usado_para: crosstabs del Mexico Panel Study 2012 (ola 2) derivados del tablero en linea
+    de ICPSR -- conteos SIN PONDERAR, instrumento de SEGUNDA MANO, NO el microdato; fila cola-adquisicion-v1_0.tsv:19
+    MEXICO_PANEL_STUDY_2012
+  url_origen: https://doi.org/10.3886/ICPSR35024.v1
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: icpsr35024-ds1-w2-crosstabs-derivadas.csv
+  raiz: descargas_mx
+  sha256: a85c59aea0e9a586e1555a51f63e27d2252fb13c611297a803e71d6b499e8379
+  tamano_bytes: 34831
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: export_crudo
+  usado_para: exportacion verbatim del tablero de crosstabs de ICPSR pegada por mesa el 2026-09-02
+    -- crudo del que se derivo icpsr35024_ds1_w2_crosstabs_derivado_v0.csv; fila cola-adquisicion-v1_0.tsv:19
+  url_origen: https://doi.org/10.3886/ICPSR35024.v1
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: export_crudo.txt
+  raiz: descargas_mx
+  sha256: daa29e0b8830ac854572631501d72e31cb52c6eaca074355d700e9ae88ff053d
+  tamano_bytes: 24399
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: leeme_procedencia
+  usado_para: procedencia declarada por mesa/direccion para los crosstabs de ICPSR 35024 (escala
+    sin ponderar, cuadre de marginales, clase de procedencia); fila cola-adquisicion-v1_0.tsv:19
+  url_origen: https://doi.org/10.3886/ICPSR35024.v1
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: LEEME-procedencia.txt
+  raiz: descargas_mx
+  sha256: c98ce68bda7cf5866848231bd33097e71e5f6641f8d153b42f4bdbd42231297a
+  tamano_bytes: 1383
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: leeme_2_procedencia
+  usado_para: procedencia declarada por mesa/direccion para los crosstabs de ICPSR 35024 (escala
+    sin ponderar, cuadre de marginales, clase de procedencia); fila cola-adquisicion-v1_0.tsv:19
+  url_origen: https://doi.org/10.3886/ICPSR35024.v1
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: LEEME 2-procedencia.txt
+  raiz: descargas_mx
+  sha256: 9f0a7da9d591a84c92ad799c875c9d4e7461cb33f695436c0d7d798764e75d20
+  tamano_bytes: 15532
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: tc_oecd_trust_survey_pum_2021_2023_2025
+  usado_para: instrumento de acceso, NO microdato -- condiciones de uso que hay que firmar
+    para pedir el PUMF del OECD Trust Survey 2021/2023/2025; fila cola-adquisicion-v1_0.tsv:37
+    OECD
+  url_origen: no determinada (formulario Terms of Use del OECD Trust Survey Public Use Microdata
+    File; el acceso al microdato se solicita firmando y enviando este formulario a govtrustinfo@oecd.org
+    -- oe.cd/trust)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/TC-OECD-Trust-Survey-PUM-2021-2023-2025.docx
+  raiz: descargas_mx
+  sha256: 4a3ac6d704caa67e1a4dfc702b5a38747a56eb48e086d3aae4c14814601af915
+  tamano_bytes: 69424
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: itindc_202601
+  usado_para: 'inventario -- SHCP, Informes sobre la Situacion Economica, las Finanzas Publicas
+    y la Deuda Publica, trimestres 1 y 2 de 2026 (in=introduccion, se=situacion economica,
+    fp=finanzas publicas, dp=deuda publica, gf=avance de gestion financiera, dc=documento
+    completo). Clase (b): activo sin fila de cola y sin N de necesidad-objeto-modelo asignada
+    -- no se le inventa una'
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/itindc_202601.pdf
+  raiz: descargas_mx
+  sha256: 446304b3b9c238ac13128fa0d12af40adad7d9ba7bf04e3a9102ac0d95db1ce0
+  tamano_bytes: 2345101
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: itindc_202602
+  usado_para: 'inventario -- SHCP, Informes sobre la Situacion Economica, las Finanzas Publicas
+    y la Deuda Publica, trimestres 1 y 2 de 2026 (in=introduccion, se=situacion economica,
+    fp=finanzas publicas, dp=deuda publica, gf=avance de gestion financiera, dc=documento
+    completo). Clase (b): activo sin fila de cola y sin N de necesidad-objeto-modelo asignada
+    -- no se le inventa una'
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/itindc_202602.pdf
+  raiz: descargas_mx
+  sha256: 296795821a5b09951558ea1aeb722b5ee97e0d9f1d8c65aff9a04cd8662962a1
+  tamano_bytes: 2225169
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: itindp_202601
+  usado_para: 'inventario -- SHCP, Informes sobre la Situacion Economica, las Finanzas Publicas
+    y la Deuda Publica, trimestres 1 y 2 de 2026 (in=introduccion, se=situacion economica,
+    fp=finanzas publicas, dp=deuda publica, gf=avance de gestion financiera, dc=documento
+    completo). Clase (b): activo sin fila de cola y sin N de necesidad-objeto-modelo asignada
+    -- no se le inventa una'
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/itindp_202601.pdf
+  raiz: descargas_mx
+  sha256: c1c149263ec91f4d6957fe6349cbe9b7b3ee3ebfd5b5f8c96e6aac2c54b9f0ea
+  tamano_bytes: 927252
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: itindp_202602
+  usado_para: 'inventario -- SHCP, Informes sobre la Situacion Economica, las Finanzas Publicas
+    y la Deuda Publica, trimestres 1 y 2 de 2026 (in=introduccion, se=situacion economica,
+    fp=finanzas publicas, dp=deuda publica, gf=avance de gestion financiera, dc=documento
+    completo). Clase (b): activo sin fila de cola y sin N de necesidad-objeto-modelo asignada
+    -- no se le inventa una'
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/itindp_202602.pdf
+  raiz: descargas_mx
+  sha256: 83977c7e267ad29598eddf98964279d21b079077524353b2b6b09c53d33aec9a
+  tamano_bytes: 873759
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: itinfp_202601
+  usado_para: 'inventario -- SHCP, Informes sobre la Situacion Economica, las Finanzas Publicas
+    y la Deuda Publica, trimestres 1 y 2 de 2026 (in=introduccion, se=situacion economica,
+    fp=finanzas publicas, dp=deuda publica, gf=avance de gestion financiera, dc=documento
+    completo). Clase (b): activo sin fila de cola y sin N de necesidad-objeto-modelo asignada
+    -- no se le inventa una'
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/itinfp_202601.pdf
+  raiz: descargas_mx
+  sha256: 5b939476d0442db7cc8c3f035dd2a84166c1ff2f43e7e128003707124107c05b
+  tamano_bytes: 789913
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: itinfp_202602
+  usado_para: 'inventario -- SHCP, Informes sobre la Situacion Economica, las Finanzas Publicas
+    y la Deuda Publica, trimestres 1 y 2 de 2026 (in=introduccion, se=situacion economica,
+    fp=finanzas publicas, dp=deuda publica, gf=avance de gestion financiera, dc=documento
+    completo). Clase (b): activo sin fila de cola y sin N de necesidad-objeto-modelo asignada
+    -- no se le inventa una'
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/itinfp_202602.pdf
+  raiz: descargas_mx
+  sha256: b2454dbe9c9824ecfdb6a9e78c369ef4976379e99f6b160e06ed3004054b5e65
+  tamano_bytes: 692058
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: itingf_202602
+  usado_para: 'inventario -- SHCP, Informes sobre la Situacion Economica, las Finanzas Publicas
+    y la Deuda Publica, trimestres 1 y 2 de 2026 (in=introduccion, se=situacion economica,
+    fp=finanzas publicas, dp=deuda publica, gf=avance de gestion financiera, dc=documento
+    completo). Clase (b): activo sin fila de cola y sin N de necesidad-objeto-modelo asignada
+    -- no se le inventa una'
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/itingf_202602.pdf
+  raiz: descargas_mx
+  sha256: 294c159aa81341befb06c34b1e74f8474b5261c874e4583a19efb5bd0f99bcc2
+  tamano_bytes: 1027668
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: itinin_202601
+  usado_para: 'inventario -- SHCP, Informes sobre la Situacion Economica, las Finanzas Publicas
+    y la Deuda Publica, trimestres 1 y 2 de 2026 (in=introduccion, se=situacion economica,
+    fp=finanzas publicas, dp=deuda publica, gf=avance de gestion financiera, dc=documento
+    completo). Clase (b): activo sin fila de cola y sin N de necesidad-objeto-modelo asignada
+    -- no se le inventa una'
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/itinin_202601.pdf
+  raiz: descargas_mx
+  sha256: b55636e53e7b954c115dafff547a4571b0377e2984f16738878aaa18da837c60
+  tamano_bytes: 851973
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: itinin_202602
+  usado_para: 'inventario -- SHCP, Informes sobre la Situacion Economica, las Finanzas Publicas
+    y la Deuda Publica, trimestres 1 y 2 de 2026 (in=introduccion, se=situacion economica,
+    fp=finanzas publicas, dp=deuda publica, gf=avance de gestion financiera, dc=documento
+    completo). Clase (b): activo sin fila de cola y sin N de necesidad-objeto-modelo asignada
+    -- no se le inventa una'
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/itinin_202602.pdf
+  raiz: descargas_mx
+  sha256: 3f868041b8df896f5020377844d80b45d52bb0d2c246a7ccc3ec444aa7001d4a
+  tamano_bytes: 789951
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: itinse_202601
+  usado_para: 'inventario -- SHCP, Informes sobre la Situacion Economica, las Finanzas Publicas
+    y la Deuda Publica, trimestres 1 y 2 de 2026 (in=introduccion, se=situacion economica,
+    fp=finanzas publicas, dp=deuda publica, gf=avance de gestion financiera, dc=documento
+    completo). Clase (b): activo sin fila de cola y sin N de necesidad-objeto-modelo asignada
+    -- no se le inventa una'
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/itinse_202601.pdf
+  raiz: descargas_mx
+  sha256: 548fa327ee98069da005fa589dd08dec7a7deaa200cbad86448039bc2826379d
+  tamano_bytes: 847197
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: itinse_202602
+  usado_para: 'inventario -- SHCP, Informes sobre la Situacion Economica, las Finanzas Publicas
+    y la Deuda Publica, trimestres 1 y 2 de 2026 (in=introduccion, se=situacion economica,
+    fp=finanzas publicas, dp=deuda publica, gf=avance de gestion financiera, dc=documento
+    completo). Clase (b): activo sin fila de cola y sin N de necesidad-objeto-modelo asignada
+    -- no se le inventa una'
+  url_origen: no determinada
+  url_origen_procedencia: no derivada -- --escanea no encontró sugerencia, NO confirmada por
+    el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: Descargas Manuales/itinse_202602.pdf
+  raiz: descargas_mx
+  sha256: 9ac88caffa317fb644509bd366cd54ca4b19dfca3e0276cc6df7e41a23a6bdaa
+  tamano_bytes: 724899
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: descargamasiva_582026_175614
+  usado_para: 'mecanismo -- paquete lanzador "Descarga Masiva" de INEGI (DescargaMasivaApp.exe
+    + leeme.txt + DescargaMasivaOD.xml con token aut), NO microdato. Los seis XML de este
+    lote suman 25 213 URLs de descarga directa de www.inegi.org.mx: es inventario de adquisicion,
+    no payload. Clase (b): sin fila de cola'
+  url_origen: no determinada (generado bajo demanda por www.inegi.org.mx al solicitar "Descarga
+    Masiva"; el portal no expone URL persistente para el zip -- mismo patron que descargamasiva_3072026_*
+    y descargamasiva_382026_131650_xml. Las URLs reales estan DENTRO del XML)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-05'
+  descargado_por: usuario, vía navegador
+  archivo: DescargaMasiva_582026_175614.zip
+  raiz: descargas_mx
+  sha256: cc0f61049a9eb8d170f6c1b109a1d86e6ff472909d4f7387474f84c98652139b
+  tamano_bytes: 658933
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: descargamasiva_682026_95355
+  usado_para: 'mecanismo -- paquete lanzador "Descarga Masiva" de INEGI (DescargaMasivaApp.exe
+    + leeme.txt + DescargaMasivaOD.xml con token aut), NO microdato. Los seis XML de este
+    lote suman 25 213 URLs de descarga directa de www.inegi.org.mx: es inventario de adquisicion,
+    no payload. Clase (b): sin fila de cola'
+  url_origen: no determinada (generado bajo demanda por www.inegi.org.mx al solicitar "Descarga
+    Masiva"; el portal no expone URL persistente para el zip -- mismo patron que descargamasiva_3072026_*
+    y descargamasiva_382026_131650_xml. Las URLs reales estan DENTRO del XML)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-06'
+  descargado_por: usuario, vía navegador
+  archivo: DescargaMasiva_682026_95355.zip
+  raiz: descargas_mx
+  sha256: 0052d3788283500992595b4474e247d928353ab717c27adb45d34c2abfebccac
+  tamano_bytes: 605512
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: descargamasiva_682026_9540
+  usado_para: 'mecanismo -- paquete lanzador "Descarga Masiva" de INEGI (DescargaMasivaApp.exe
+    + leeme.txt + DescargaMasivaOD.xml con token aut), NO microdato. Los seis XML de este
+    lote suman 25 213 URLs de descarga directa de www.inegi.org.mx: es inventario de adquisicion,
+    no payload. Clase (b): sin fila de cola'
+  url_origen: no determinada (generado bajo demanda por www.inegi.org.mx al solicitar "Descarga
+    Masiva"; el portal no expone URL persistente para el zip -- mismo patron que descargamasiva_3072026_*
+    y descargamasiva_382026_131650_xml. Las URLs reales estan DENTRO del XML)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-06'
+  descargado_por: usuario, vía navegador
+  archivo: DescargaMasiva_682026_9540.zip
+  raiz: descargas_mx
+  sha256: d40383d2e939f5243cf65e001a2bb99454e60d681d47bf3a831807fd433e2d2d
+  tamano_bytes: 604834
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: descargamasiva_682026_95418
+  usado_para: 'mecanismo -- paquete lanzador "Descarga Masiva" de INEGI (DescargaMasivaApp.exe
+    + leeme.txt + DescargaMasivaOD.xml con token aut), NO microdato. Los seis XML de este
+    lote suman 25 213 URLs de descarga directa de www.inegi.org.mx: es inventario de adquisicion,
+    no payload. Clase (b): sin fila de cola'
+  url_origen: no determinada (generado bajo demanda por www.inegi.org.mx al solicitar "Descarga
+    Masiva"; el portal no expone URL persistente para el zip -- mismo patron que descargamasiva_3072026_*
+    y descargamasiva_382026_131650_xml. Las URLs reales estan DENTRO del XML)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-06'
+  descargado_por: usuario, vía navegador
+  archivo: DescargaMasiva_682026_95418.zip
+  raiz: descargas_mx
+  sha256: 62d6fd429bce53dd3f7c1c3c7a5e329f6b5764ea8d46cf98e93178816b3bffd1
+  tamano_bytes: 688618
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: descargamasiva_682026_95423
+  usado_para: 'mecanismo -- paquete lanzador "Descarga Masiva" de INEGI (DescargaMasivaApp.exe
+    + leeme.txt + DescargaMasivaOD.xml con token aut), NO microdato. Los seis XML de este
+    lote suman 25 213 URLs de descarga directa de www.inegi.org.mx: es inventario de adquisicion,
+    no payload. Clase (b): sin fila de cola'
+  url_origen: no determinada (generado bajo demanda por www.inegi.org.mx al solicitar "Descarga
+    Masiva"; el portal no expone URL persistente para el zip -- mismo patron que descargamasiva_3072026_*
+    y descargamasiva_382026_131650_xml. Las URLs reales estan DENTRO del XML)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-06'
+  descargado_por: usuario, vía navegador
+  archivo: DescargaMasiva_682026_95423.zip
+  raiz: descargas_mx
+  sha256: 026acbadd26104750f8a34b4adb4e2db1441056fdfaa80378a8f8a85dc3420cb
+  tamano_bytes: 602522
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: descargamasiva_682026_9548
+  usado_para: 'mecanismo -- paquete lanzador "Descarga Masiva" de INEGI (DescargaMasivaApp.exe
+    + leeme.txt + DescargaMasivaOD.xml con token aut), NO microdato. Los seis XML de este
+    lote suman 25 213 URLs de descarga directa de www.inegi.org.mx: es inventario de adquisicion,
+    no payload. Clase (b): sin fila de cola'
+  url_origen: no determinada (generado bajo demanda por www.inegi.org.mx al solicitar "Descarga
+    Masiva"; el portal no expone URL persistente para el zip -- mismo patron que descargamasiva_3072026_*
+    y descargamasiva_382026_131650_xml. Las URLs reales estan DENTRO del XML)
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-08-06'
+  descargado_por: usuario, vía navegador
+  archivo: DescargaMasiva_682026_9548.zip
+  raiz: descargas_mx
+  sha256: 56ca8b51849f6d9357b0a4658cbfb87bb182c3c7bee0ac61610ea59a97971bf0
+  tamano_bytes: 602173
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
