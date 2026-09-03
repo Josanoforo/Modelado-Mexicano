@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **300 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **301 ADR**
 
 > | | |
 > |---|---|
@@ -5071,3 +5071,21 @@ Encargo: `forense/encargos/2026-09-02-MAESTRA35-A1-REGISTRA-Y-EVALUA-DESCARGAS-3
 **Contador, declarado real**: payloads registrados **+30** (con sha, 30/30 `--verifica` `COINCIDE`) · filas de la cola que cambian de estado **+3** (`IEEH_HIDALGO`, `IEE_AGUASCALIENTES`, `EXT_OF_07`) · filas nuevas en la cola **+12** · descargas pendientes v2→v3: de las recetas de v2 que tocan este acto, **0 pasan a cumplidas** en el sentido del paquete original — el avance real es el denominador municipal/federal de la pieza cívica, no las 15 recetas de agosto.
 
 `python3 tests/check.py --baseline` → **VERDE**, sin `FAIL` nuevo contra `tests/baseline.json`. `FP` candidato: primero libre al cerrar (sin cambio: este acto no abrió ninguna fila de `firmas-pendientes.tsv`).
+
+**ADR-301 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `300`, contiguo y sin duplicados verificado con `sort -n | uniq -d`; candidato `301`): `ACTO MAESTRA35-L8 · CIVICA-8-ENTIDADES`** (dirección/Fable) amplía el panel de `civico.participacion.tipo_boleta_federal_2016_2024` con el denominador SICEE de Hidalgo, Aguascalientes y Veracruz que `ACTO MAESTRA35-A1` (relanzamiento, `PR #483`, `ADR-300`) destrabó. **Compuerta verificada por PRODUCTO contra `origin/main` en `2df71cf`**: `SICEE_LOCAL_AYUNTAMIENTOS_{HIDALGO,AGUASCALIENTES,VERACRUZ}` = `OBTENIDO` e `IEEH_HIDALGO_SERIE_MUNICIPAL` ya no dice `OBTENIDO-SIN-DENOMINADOR` — CUMPLIDA (había fallado dos fetches antes, contra `6c20141` y `6024c32`, mientras `PR #480` y `PR #483` seguían fusionando en vivo).
+
+**Gate verificado (A.8):** dos condiciones del encargo, las dos por lectura directa del TSV con control positivo, nunca por `grep -c` de log. `PR #483` merge commit `2df71cf`.
+
+**Censo `P0`** (`forense/notas/2026-09-02-MAESTRA35-L8-P0-censo.md`): reagregación desde casilla (no desde el `MUN.csv` que SICEE también publica) rescata Hidalgo 2020 de 82/84 a 84/84 municipios — dos municipios (`ACAXOCHITLAN`, `IXMIQUILPAN`) quedan en blanco en la tabla pre-agregada por estatus `GRUPO DE TRABAJO`, completos a nivel casilla. Confirma, también por reagregación, que 3 municipios de Veracruz 2017 (`CAMARON DE TEJEDA`, `EMILIANO ZAPATA`, `SAYULA DE ALEMAN`) tienen `TOTAL_VOTOS=0` real en las dos tablas — hueco de fuente, no de lectura. **Hallazgo que corrige el supuesto del encargo**: la pata que falta de Hidalgo es **2024** (la que cruza al tratamiento), no 2016 como el encargo anticipó — no existe ningún zip SICEE de Hidalgo 2024. Hidalgo entra al panel por su `STAY` (2016→2020) sin volverse entidad tratada medible.
+
+**`COMMIT-1` con declaración de secuencia rota** (`forense/notas/2026-09-02-MAESTRA35-L8-spec.md §0.0`, un párrafo obligado a leerse primero): la spec se congeló **después** de que la sesión, probando el script nuevo, ya hubiera corrido el modelo completo y visto el resultado. Declarado sin atenuarlo, con el razonamiento de por qué no hay grado de libertad que ese conocimiento pudiera sesgar (herencia verbatim de `L3`) y con lo que sí se pierde (la garantía mecánica y auditable del patrón de dos commits, para este acto puntual). Una línea en `forense/hallazgos.md`.
+
+**`COMMIT-2` — resultados.** Panel: **9 entidades, 489 municipios, 864 observaciones municipio×transición, 19 transiciones, 9 conglomerados** (`L3`: 6/187/540/15/6). `p` mínimo alcanzable wild cluster: `2/512 = 0.00390625` (`L3`: `0.03125`). Control de regresión reproduce `L3` y, por transitividad, `L6`, byte a byte. `β_pres = +4.0167pp`, IC95 wild cluster **[+0.0492, +7.8874]** (excluye 0, margen estrecho) e IC95 bootstrap de municipio **[+3.3467, +4.6839]** (coinciden, sin discrepancia). `β_int = +0.2864pp`, IC95 wild cluster **[−1.2216, +1.7945]** (contiene 0, cambia de signo frente a `L3`). Transiciones `STAY`: **2→4**, cruza el umbral de `3` de `§0.3` — `α` identificada sin reserva. Entidades tratadas medibles: **5→7** (Aguascalientes, Veracruz) — meta declarada `≥8`, **sigue sin alcanzarse, ACOTADO**.
+
+**Veredicto del falsador `B-bis`: `ACOTADA`** (`L3` tenía `NO-DISCRIMINA`). Sensibilidad: `β_pres` positivo en las 8 columnas (`+2.76` a `+7.16`); quitar cualquiera de las tres entidades nuevas lo mueve menos de `0.3pp` — la significancia depende de la cantidad de conglomerados (`6→9`), no de una entidad en particular.
+
+**`P2` — registro.** `milpa/tramite-ola5-propuesta-v0.yaml`: bloque `relanzamiento_l8` añadido a la entrada existente (cuerpo de `L3` intacto, 62 inserciones, 0 borrados) con panel, coeficientes (dos IC cada uno), veredicto y estampa `A.10`. `data/l8-resultados-tipo-boleta-v1_0.json` con fila en `data/INFRAESTRUCTURA-v1_0.md`. `data/curacion-registro/cola-adquisicion-registro.tsv`: dos enmiendas fechadas por línea (`IEEH_HIDALGO_SERIE_MUNICIPAL` — falta denominador 2024; `SICEE_LOCAL_AYUNTAMIENTOS_VERACRUZ` — falta serie 2025 y 3 municipios sin voto en 2017), con receta, sin descargar nada.
+
+**Perímetro respetado**: no tocó `data/p0-*`, `data/l3-*`, `milpa/tramite.yaml`, `corridas-R/*`, ni el motor. Un solo script nuevo (`tools/l8_amplia_tipo_boleta.py`), hermano de `L3`, que lo importa y no lo toca.
+
+**Contador**: entidades tratadas medibles `5→7` (meta `8`, ACOTADO) · municipios `187→489` · transiciones `STAY` `2→4` · conglomerados `6→9` · `p` mínimo `0.03125→0.00390625` · cargas al motor `0` · corridas de Hito D `0`.
