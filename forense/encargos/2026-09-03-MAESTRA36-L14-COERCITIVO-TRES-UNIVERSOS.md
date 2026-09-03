@@ -21,13 +21,15 @@ Línea a hallazgos.md: dirección recomendó sellar coercitivo sobre el padrón 
 Ejecutado por `ACTO MAESTRA36-L14 · COERCITIVO-TRES-UNIVERSOS` el 3/sep/2026,
 entorno UBUNTU, worktree `/home/pc0/mm-l14-coercitivo`, con la skill `/acto`
 (`ADR-237`). `COMMIT-1` `da68109` (spec congelada), `COMMIT-2` `7f6c676`
-(las tres lecturas y la tabla), cascada **`ADR-315`** (`314` en la primera
-derivación; `PR #505` fusionó primero y se llevó ese número junto con
-`FP-264`/`FP-265`, así que este acto renumeró a `ADR-315` y `FP-266` — la
-colisión estaba declarada por escrito antes de ocurrir). **PR #508.**
+(las tres lecturas y la tabla), cascada **`ADR-316`**: tercer número para el
+mismo acto (`314`, luego `315`, por fin `316`), porque `PR #505` y `PR #507`
+fusionaron antes y se llevaron los dos primeros. `FP-264` pasó a **`FP-266`**
+por la misma razón (`#505` se llevó `FP-264`/`FP-265`) y ahí se quedó. La
+colisión estaba declarada por escrito desde la primera derivación, y renumeró
+quien fusionó segundo, las tres veces. **PR #508.**
 
 Desviaciones de la premisa del encargo, declaradas donde no se pueden perder
-(`ADR-315`, notas `P0` y `P1`):
+(`ADR-316`, notas `P0` y `P1`):
 
 1. **`A.8`** declara `grep -aci '^- id: enoe' data/manifiesto.yaml = 416`; el
    árbol de `18fd2bd` da **91** (1 102 entradas `- id:` en total). No es `PARO`:
