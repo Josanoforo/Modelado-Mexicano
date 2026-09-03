@@ -1,0 +1,412 @@
+{
+ "acto": "MAESTRA35-L9 · REGLAS-ACTIVOS-L3",
+ "pieza": "c",
+ "reglas": [
+  "R7.8"
+ ],
+ "id_modelo": [
+  "civico.transferencia.entitlement_derecho"
+ ],
+ "fuente": "ENCUCI 2020",
+ "spec": "§5",
+ "payload": {
+  "id": "encuci2020_bd_dbf",
+  "sha256_zip": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+ },
+ "estimador": "proporcion ponderada (FAC_SEL); IC95 bootstrap de conglomerado, 10000 replicas, seed 42, UPM_DIS dentro de EST_DIS",
+ "universo": "AP6_9 in {1,2}; se excluyen 3=Ninguna y 9=NS/NR",
+ "n_universo": 20868,
+ "cobertura": 0.9697476648543147,
+ "universo_restringido": false,
+ "desenlace": "AP6_9 == 2 (los programas sociales son un derecho de los ciudadanos)",
+ "eje_principal": {
+  "beneficiario": {
+   "p": 0.5402775189669828,
+   "ic95": [
+    0.5232843072029322,
+    0.5578676589563881
+   ],
+   "n": 5665,
+   "numerador": 3048,
+   "n_estratos": 275,
+   "n_upm": 2159,
+   "estratos_singleton": 19,
+   "replicas": 10000,
+   "poblacion_expandida": 23639105.0,
+   "etiqueta": "derecho | beneficiario",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.5402775189669828,
+    "ic95_linealizado": [
+     0.5215937719873723,
+     0.5589612659465933
+    ],
+    "n_upm": 2159,
+    "estratos_singleton": 19
+   }
+  },
+  "no_beneficiario": {
+   "p": 0.6060138457279891,
+   "ic95": [
+    0.593683048239043,
+    0.6178028288325429
+   ],
+   "n": 15186,
+   "numerador": 9124,
+   "n_estratos": 280,
+   "n_upm": 3052,
+   "estratos_singleton": 1,
+   "replicas": 10000,
+   "poblacion_expandida": 69944029.0,
+   "etiqueta": "derecho | no beneficiario",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6060138457279891,
+    "ic95_linealizado": [
+     0.5932413225111289,
+     0.6187863689448493
+    ],
+    "n_upm": 3052,
+    "estratos_singleton": 1
+   }
+  },
+  "delta": {
+   "d": -0.06573632676100627,
+   "ic95": [
+    -0.08715699817979516,
+    -0.04427730626738258
+   ],
+   "replicas_validas": 10000,
+   "replicas_pedidas": 10000,
+   "etiqueta": "Δ_entitlement",
+   "estado": "ESTIMADA",
+   "excluye_cero": true,
+   "signo": "-"
+  }
+ },
+ "eje_anidado_AP6_11": {
+  "le_pidieron": {
+   "p": 0.5528747853111965,
+   "ic95": [
+    0.49726264035133827,
+    0.611166809199774
+   ],
+   "n": 294,
+   "numerador": 161,
+   "n_estratos": 134,
+   "n_upm": 253,
+   "estratos_singleton": 76,
+   "replicas": 10000,
+   "poblacion_expandida": 1369424.0,
+   "etiqueta": "derecho | le pidieron algo",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.5528747853111965,
+    "ic95_linealizado": [
+     0.4798660328383084,
+     0.6258835377840846
+    ],
+    "n_upm": 253,
+    "estratos_singleton": 76
+   }
+  },
+  "no_le_pidieron": {
+   "p": 0.5405691967526043,
+   "ic95": [
+    0.5232458836179352,
+    0.5579711089777231
+   ],
+   "n": 5360,
+   "numerador": 2885,
+   "n_estratos": 275,
+   "n_upm": 2098,
+   "estratos_singleton": 23,
+   "replicas": 10000,
+   "poblacion_expandida": 22215833.0,
+   "etiqueta": "derecho | no le pidieron",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.5405691967526043,
+    "ic95_linealizado": [
+     0.5214465262259858,
+     0.5596918672792228
+    ],
+    "n_upm": 2098,
+    "estratos_singleton": 23
+   }
+  },
+  "delta": {
+   "d": 0.012305588558592206,
+   "ic95": [
+    -0.06131162427310455,
+    0.0898233608926835
+   ],
+   "replicas_validas": 10000,
+   "replicas_pedidas": 10000,
+   "etiqueta": "Δ_condicionalidad (ANIDADO)",
+   "estado": "ESTIMADA",
+   "excluye_cero": false,
+   "signo": "+"
+  },
+  "nota": "anidado dentro de AP6_10==1; no puede voltear el veredicto del eje principal (spec §5.1)"
+ },
+ "ejes_secundarios": {
+  "sexo": {
+   "hombre": {
+    "p": 0.5863233132357324,
+    "ic95": [
+     0.5725042285584566,
+     0.6000251558344133
+    ],
+    "n": 9861,
+    "numerador": 5748,
+    "n_estratos": 281,
+    "n_upm": 2877,
+    "estratos_singleton": 4,
+    "replicas": 10000,
+    "poblacion_expandida": 44710975.0,
+    "etiqueta": "sexo=hombre",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.5863233132357324,
+     "ic95_linealizado": [
+      0.5717161803081139,
+      0.6009304461633509
+     ],
+     "n_upm": 2877,
+     "estratos_singleton": 4
+    }
+   },
+   "mujer": {
+    "p": 0.5921409923804466,
+    "ic95": [
+     0.5779842444486673,
+     0.6060830456452245
+    ],
+    "n": 11007,
+    "numerador": 6435,
+    "n_estratos": 281,
+    "n_upm": 2947,
+    "estratos_singleton": 0,
+    "replicas": 10000,
+    "poblacion_expandida": 48953000.0,
+    "etiqueta": "sexo=mujer",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.5921409923804466,
+     "ic95_linealizado": [
+      0.5771864692608533,
+      0.6070955155000399
+     ],
+     "n_upm": 2947,
+     "estratos_singleton": 0
+    }
+   }
+  },
+  "edad": {
+   "15-29": {
+    "p": 0.5914571910782365,
+    "ic95": [
+     0.5748831874894713,
+     0.607671085026613
+    ],
+    "n": 5921,
+    "numerador": 3442,
+    "n_estratos": 281,
+    "n_upm": 2383,
+    "estratos_singleton": 13,
+    "replicas": 10000,
+    "poblacion_expandida": 30323422.0,
+    "etiqueta": "edad=15-29",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.5914571910782365,
+     "ic95_linealizado": [
+      0.57399473838679,
+      0.6089196437696829
+     ],
+     "n_upm": 2383,
+     "estratos_singleton": 13
+    }
+   },
+   "30-44": {
+    "p": 0.5899365678993527,
+    "ic95": [
+     0.572771633798759,
+     0.6069426692185091
+    ],
+    "n": 6049,
+    "numerador": 3542,
+    "n_estratos": 279,
+    "n_upm": 2406,
+    "estratos_singleton": 9,
+    "replicas": 10000,
+    "poblacion_expandida": 25676747.0,
+    "etiqueta": "edad=30-44",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.5899365678993527,
+     "ic95_linealizado": [
+      0.5716009468517217,
+      0.6082721889469836
+     ],
+     "n_upm": 2406,
+     "estratos_singleton": 9
+    }
+   },
+   "45-59": {
+    "p": 0.5938703579885425,
+    "ic95": [
+     0.573315810292086,
+     0.6137812499912366
+    ],
+    "n": 4697,
+    "numerador": 2779,
+    "n_estratos": 279,
+    "n_upm": 2196,
+    "estratos_singleton": 16,
+    "replicas": 10000,
+    "poblacion_expandida": 21708935.0,
+    "etiqueta": "edad=45-59",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.5938703579885425,
+     "ic95_linealizado": [
+      0.5722611663055731,
+      0.6154795496715119
+     ],
+     "n_upm": 2196,
+     "estratos_singleton": 16
+    }
+   },
+   "60+": {
+    "p": 0.5783320968248505,
+    "ic95": [
+     0.5551033043510107,
+     0.6003762992395179
+    ],
+    "n": 4201,
+    "numerador": 2420,
+    "n_estratos": 272,
+    "n_upm": 1993,
+    "estratos_singleton": 24,
+    "replicas": 10000,
+    "poblacion_expandida": 15954871.0,
+    "etiqueta": "edad=60+",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.5783320968248505,
+     "ic95_linealizado": [
+      0.5543502828324434,
+      0.6023139108172577
+     ],
+     "n_upm": 1993,
+     "estratos_singleton": 24
+    }
+   }
+  },
+  "escolaridad": {
+   "hasta primaria": {
+    "p": 0.5548821768821489,
+    "ic95": [
+     0.5361246259890428,
+     0.5740922020158796
+    ],
+    "n": 5919,
+    "numerador": 3239,
+    "n_estratos": 275,
+    "n_upm": 1893,
+    "estratos_singleton": 24,
+    "replicas": 10000,
+    "poblacion_expandida": 24058776.0,
+    "etiqueta": "escolaridad=hasta primaria",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.5548821768821489,
+     "ic95_linealizado": [
+      0.5341431325485186,
+      0.5756212212157792
+     ],
+     "n_upm": 1893,
+     "estratos_singleton": 24
+    }
+   },
+   "secundaria": {
+    "p": 0.6070766692202401,
+    "ic95": [
+     0.590761538210521,
+     0.623741114344679
+    ],
+    "n": 5798,
+    "numerador": 3464,
+    "n_estratos": 275,
+    "n_upm": 2201,
+    "estratos_singleton": 15,
+    "replicas": 10000,
+    "poblacion_expandida": 25202591.0,
+    "etiqueta": "escolaridad=secundaria",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.6070766692202401,
+     "ic95_linealizado": [
+      0.5891493188150568,
+      0.6250040196254233
+     ],
+     "n_upm": 2201,
+     "estratos_singleton": 15
+    }
+   },
+   "media superior": {
+    "p": 0.6147234083845429,
+    "ic95": [
+     0.5964940004751613,
+     0.63237438410196
+    ],
+    "n": 5072,
+    "numerador": 3068,
+    "n_estratos": 280,
+    "n_upm": 2379,
+    "estratos_singleton": 13,
+    "replicas": 10000,
+    "poblacion_expandida": 24691674.0,
+    "etiqueta": "escolaridad=media superior",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.6147234083845429,
+     "ic95_linealizado": [
+      0.5956219763235746,
+      0.6338248404455111
+     ],
+     "n_upm": 2379,
+     "estratos_singleton": 13
+    }
+   },
+   "superior": {
+    "p": 0.5770362784432235,
+    "ic95": [
+     0.5537684986024513,
+     0.6000091340118985
+    ],
+    "n": 4079,
+    "numerador": 2412,
+    "n_estratos": 269,
+    "n_upm": 2072,
+    "estratos_singleton": 29,
+    "replicas": 10000,
+    "poblacion_expandida": 19710934.0,
+    "etiqueta": "escolaridad=superior",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.5770362784432235,
+     "ic95_linealizado": [
+      0.5528054583320526,
+      0.6012670985543943
+     ],
+     "n_upm": 2072,
+     "estratos_singleton": 29
+    }
+   }
+  }
+ },
+ "reserva": "asociacion transversal: no separa que el programa cambie la percepcion de que quien ya pensaba asi se inscribiera mas"
+}
