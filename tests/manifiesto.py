@@ -923,8 +923,19 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
 def _derivar_id(nombre_archivo, ids_existentes):
     """Slug mecánico del nombre de archivo -- nunca tecleado. Si colisiona
     con un id ya existente (u otro derivado en el mismo lote), se
-    desambigua con un sufijo numérico, nunca sobreescribiendo."""
-    base = os.path.splitext(nombre_archivo)[0]
+    desambigua con un sufijo numérico, nunca sobreescribiendo.
+
+    Del BASENAME, no de la ruta (MAESTRA36-A1, 2026-09-02): desde ADR-309
+    `archivo` puede traer subcarpeta, y slugificar la ruta entera daría
+    ids como 'descargas_manuales_ingresostributarios'. Las 49 entradas
+    con prefijo 'Descargas Manuales/' que ya existen derivan todas su id
+    del basename ('mex_2010_iepep_v01_m_v01_a_puf', no
+    'descargas_manuales_mex_2010_...'), así que tomar la ruta entera
+    habría abierto dos convenciones de id en la misma raíz. La colisión
+    entre dos basenames iguales en carpetas distintas la resuelve el
+    sufijo numérico de abajo, que ya existía.
+    """
+    base = os.path.splitext(os.path.basename(nombre_archivo))[0]
     slug = re.sub(r"[^a-z0-9]+", "_", base.lower()).strip("_")
     slug = re.sub(r"_+", "_", slug) or "archivo"
     candidato = slug
