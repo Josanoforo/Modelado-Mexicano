@@ -196,6 +196,31 @@ def main() -> dict[str, Any]:
         "(duplicado, ahora con R/M reales) por venir del script sellado sin editar."
     )
 
+    # El desglose A.13 del módulo base trae la etiqueta y el valor de v1_1
+    # HARDCODEADOS (`corridas_R_y_M_11_celdas: 22`, agregado_v1_1.py:352-353),
+    # no derivados del universo. En v1.2 el universo es de 14 celdas (28
+    # archivos R+M), así que ese sub-campo quedaba mal etiquetado y mal
+    # valorado -- reserva del pase adversarial de /revisa sobre PR #503,
+    # punto 2.7. Se re-etiqueta y se re-deriva del universo real, no se
+    # hardcodea; `total` ya venía dinámico del módulo base y no se toca.
+    _a13 = resultado["a13_conteo_archivos_examinados"]
+    _n_celdas = len(resultado["celdas"])
+    resultado["a13_conteo_archivos_examinados"] = {
+        f"corridas_R_y_M_{_n_celdas}_celdas": _n_celdas * 2,
+        "corridas_R_y_M_TRA_M_02": _a13["corridas_R_y_M_TRA_M_02"],
+        "corridas_L_examinadas": _a13["corridas_L_examinadas"],
+        "total": _a13["total"],
+        "nota_v1_2": (
+            "El módulo base sellado emite este desglose con la etiqueta y la cifra de v1_1 "
+            "(`corridas_R_y_M_11_celdas: 22`) hardcodeadas en main(); aquí se re-etiquetan y se "
+            "re-derivan del universo real de v1.2 (len(celdas) x 2 = R+M por celda). `total` "
+            "venía ya dinámico del módulo base y no se altera: cuenta los R+M del universo, las "
+            "224 capturas L y los 2 archivos del bloque informativo TRA-M-02 (que re-lee dos "
+            "archivos ya contados en el universo -- doble conteo heredado del script sellado, "
+            "declarado aquí, no corregido: corregirlo cambiaría `total`, que es del sellado)."
+        ),
+    }
+
     # --- Segunda mitad de la "pregunta doble" del whitepaper (P2 del
     # encargo, cuerpo línea 26): IC pareado L+corpus-M, ADEMAS del
     # L_solo-M que agregado_v1_1.py ya computa como su única "comparación

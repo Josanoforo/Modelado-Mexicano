@@ -1,8 +1,9 @@
 {
  "a13_conteo_archivos_examinados": {
   "corridas_L_examinadas": 224,
-  "corridas_R_y_M_11_celdas": 22,
+  "corridas_R_y_M_14_celdas": 28,
   "corridas_R_y_M_TRA_M_02": 2,
+  "nota_v1_2": "El módulo base sellado emite este desglose con la etiqueta y la cifra de v1_1 (`corridas_R_y_M_11_celdas: 22`) hardcodeadas en main(); aquí se re-etiquetan y se re-derivan del universo real de v1.2 (len(celdas) x 2 = R+M por celda). `total` venía ya dinámico del módulo base y no se altera: cuenta los R+M del universo, las 224 capturas L y los 2 archivos del bloque informativo TRA-M-02 (que re-lee dos archivos ya contados en el universo -- doble conteo heredado del script sellado, declarado aquí, no corregido: corregirlo cambiaría `total`, que es del sellado).",
   "total": 254
  },
  "agregado_marginal_por_corredor": {

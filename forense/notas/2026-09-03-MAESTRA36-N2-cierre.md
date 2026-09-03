@@ -197,3 +197,36 @@ omitido.
 
 Celdas puntuadas v1_2: `0 → 14 de 14` (0 `AMBIGUA-POR-DISEÑO`). Scoreboard
 v1_2: `0 → 1`. L∩M v1_2: `14` (reportado a `FP-220`/`FP-260`).
+
+## Addendum — reserva del pase adversarial (`/revisa` sobre PR #503)
+
+El pase adversarial de `/revisa` dio veredicto `FUSIONABLE-CON-RESERVA`
+(0 BLOQUEA · 1 RESERVA) el 3/sep 14:21 UTC. La reserva, punto 2.7 (escala
+y universo declarados), es correcta y quedó atendida en este mismo PR:
+
+`agregado-v1_2-resultado.json`, sub-campo
+`a13_conteo_archivos_examinados.corridas_R_y_M_11_celdas = 22` — etiqueta y
+cifra heredadas sin editar de `agregado_v1_1.py:352-353`, donde están
+hardcodeadas dentro de `main()`. El universo real de v1.2 es de **14
+celdas** (28 archivos R+M), así que el sub-campo quedaba mal etiquetado y
+mal valorado. Ninguna cifra narrada quedó contaminada: el sub-campo no
+aparecía citado en `scoreboard-v1_2-AGREGADO.md` ni en esta nota (0
+coincidencias, verificado por `grep`), y `total = 254` sí venía dinámico y
+correcto.
+
+**Arreglo**, dentro del perímetro y sin tocar nada sellado: el wrapper
+`agregado_v1_2.py` re-etiqueta y re-deriva el sub-campo de
+`len(resultado["celdas"]) * 2`, en vez de heredar el literal. Regenerado
+`agregado-v1_2-resultado.json`; `diff` contra la versión anterior →
+**solo** ese sub-campo y su `nota_v1_2`, todo lo demás byte a byte idéntico
+(confirma de paso el determinismo con `seed=42` que el propio pase midió).
+
+Queda **declarado, no corregido**, el doble conteo que `total` hereda del
+sellado: el bloque informativo `TRA-M-02` re-lee dos archivos ya contados
+en el universo de 14 (`14x2 + 224 + 2 = 254`). Corregirlo movería una cifra
+que produce el script sellado — fuera del perímetro de este acto.
+
+El hallazgo de `forense/hallazgos.md` (constantes de v1.1 hardcodeadas en
+`main()`, heredadas al reutilizar el script sin editar) se amplió para
+nombrar esta segunda instancia del mismo síntoma, que la entrada original
+no cubría — era la propuesta explícita del pase.
