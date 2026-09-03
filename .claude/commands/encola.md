@@ -92,6 +92,15 @@ python3 tests/check.py --baseline
 - **Cualquier otro `FAIL` nuevo** → PARA y repórtalo con la salida cruda;
   no es responsabilidad de esta skill decidir si es tolerable.
 
+## 4-bis · Raíz, no sólo manifiesto (A.8, `ADR-326`, `MAESTRA37-N6`)
+
+Si el texto que se está encolando PIDE una descarga a mesa, o declara un
+payload `NO-ENCONTRADO`/`AUSENTE-EN-RAIZ`, exige que cite el último
+`forense/censo-raiz/*.txt` (fecha + línea "nuevos") además del manifiesto.
+**Un `AUSENTE-EN-RAIZ` sin censo del día es `NO-VERIFICADO`, no
+`AUSENTE`.** Si el censo lista el archivo, la pieza está mal escrita —
+repórtalo a dirección en vez de encolarla tal cual.
+
 ## 5 · Verificación de completitud (A.13) — antes de abrir nada
 
 ```

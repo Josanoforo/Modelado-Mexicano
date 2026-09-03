@@ -17,12 +17,12 @@ FP/ADR CANDIDATOS: ADR-327 (326 es N6 si fusiona antes; si no, 326) · FP-283 re
 ## CONSUMIDO
 
 Ejecutado por `ACTO MAESTRA37-L3-BIS · SALUD-A4-SOBRE-v2` (3/sep/2026, UBUNTU,
-worktree propio sobre `27647ac` = el SHA que este encargo declara), `ADR-326`,
-recibos `FP-281` y `FP-282`, enmienda fechada a `FP-268` sin cambio de estado.
+worktree propio sobre `27647ac` = el SHA que este encargo declara), `ADR-327` (renumerado: `MAESTRA37-N6`/`PR #519` tomó `326` al
+fusionar primero), recibos `FP-283` y `FP-284`, enmienda fechada a `FP-268` sin cambio de estado.
 Dos commits sustantivos: `P0` congela universo y criterio; `P1/P2/P3` traen los
 cinco veredictos. **Salud pasa de 1 a 2 de 5 y NO llega a 3: no hay
 `ABRE-CANDIDATO-CON-RESERVA`, ningún dominio abre, el criterio 2 no se toca.**
-PR: ver la rama `acto/maestra37-l3bis-salud-a4-v2`.
+PR **#520**. Rama `acto/maestra37-l3bis-salud-a4-v2`.
 
 *(Procedencia: un lanzamiento anterior de este acto, contra `92f17e14` y con el
 texto v2.12 del encargo, **paró con cero commits** porque la compuerta a

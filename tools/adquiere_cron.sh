@@ -42,6 +42,52 @@ else
   exit 1
 fi
 
+# 2.5 · censo diario de la raíz manual (ADR-326, MAESTRA37-N6)
+#   Corre ANTES de claude -p y no depende de que el corpus (paso 2) esté
+#   montado -- descargas_mx es una raíz externa, gitignorada por máquina
+#   (data/raices.local.yaml), no data/raw. Si esa raíz no está configurada
+#   en esta máquina, es PARO-RAIZ (una línea) y el resto del cron sigue.
+CENSO_DIR="forense/censo-raiz"
+RAIZ_RESUELTA="$(python3 -c "
+import sys
+sys.path.insert(0, 'tests')
+import manifiesto
+print(manifiesto.resolver_raiz('descargas_mx', '.', 'data/raw') or '')
+" 2>/dev/null || true)"
+
+if [ -n "$RAIZ_RESUELTA" ] && [ -d "$RAIZ_RESUELTA" ]; then
+  mkdir -p "$CENSO_DIR"
+  CENSO_FILE="${CENSO_DIR}/${FECHA}.txt"
+  SALIDA_CENSO="$(python3 tests/manifiesto.py --escanea descargas_mx 2>&1 || true)"
+  RESUMEN="$(echo "$SALIDA_CENSO" | grep -m1 '^Total en disco:' || echo 'Total en disco: (sin resumen -- ver salida cruda abajo)')"
+  {
+    echo "$RESUMEN"
+    echo
+    echo "$SALIDA_CENSO"
+  } >"$CENSO_FILE"
+  log "[CENSO] ${FECHA}: ${RESUMEN}"
+
+  # Commit propio, separado del [ADQ] que produce claude -p más abajo --
+  # misma vía que ADR-281: el merge de mesa es la autorización, así que
+  # empuja directo a main igual que [ADQ]. data/manifiesto-staging.yaml
+  # (escrito por --escanea arriba) NO se commitea -- ya está en .gitignore.
+  git add "$CENSO_FILE" >>"$LOGFILE" 2>&1
+  if ! git diff --cached --quiet -- "$CENSO_FILE"; then
+    git commit -m "[CENSO] ${FECHA}
+
+${RESUMEN}" >>"$LOGFILE" 2>&1
+    if git push origin main >>"$LOGFILE" 2>&1; then
+      log "[CENSO] ${FECHA} commiteado y empujado a main"
+    else
+      log "PARO-CENSO-PUSH: el commit [CENSO] ${FECHA} quedó local, no se pudo empujar."
+    fi
+  else
+    log "[CENSO] ${FECHA}: sin cambios respecto al censo previo, no se commitea de nuevo."
+  fi
+else
+  log "PARO-RAIZ: descargas_mx no resuelve en esta máquina (data/raices.local.yaml). Censo omitido, sigue con /adquiere."
+fi
+
 # 3 · sonda de red real, valor crudo (nunca curl -I)
 CODIGO_HTTP="$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 https://www.inegi.org.mx/ || echo 'sin-respuesta')"
 log "sonda inegi.org.mx: curl -s -o /dev/null -w '%{http_code}' --max-time 10 https://www.inegi.org.mx/ -> ${CODIGO_HTTP}"
