@@ -1,0 +1,62 @@
+ACTO MAESTRA35-L7 · familia.union.libre · EDER 2017 + ENADID 2023
+
+==============================================================================
+D1 · EDER 2017 (payload eder_2017_eder2017_bases_csv)
+sha256   : bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3
+personas con primer estado civil no-cero: 18,689
+edo_civil1
+1       8646
+4       4934
+2       4316
+3        338
+17       173
+12       142
+14        54
+26        19
+27        19
+13        17
+46         7
+18         7
+47         6
+126        5
+48         3
+OTRO       2
+28         1
+Name: count, dtype: int64
+sin clasificar (código ambiguo, declarado no forzado): 2
+  GLOBAL  p̂(unión libre como 1a unión) = 0.481011  IC95 = [0.469532, 0.492676]  n = 18,687
+
+  EJE cohorte_nacimiento · cobertura 100.0000% (fuera 0)
+    nota: baja garantía institucional del matrimonio es más reciente/creciente -> cohortes más jóvenes, más unión libre como primera unión
+    1961-1970              p̂ = 0.304657  IC95 = [0.285385, 0.324098]  n = 4,001 personas · num = 1,305 · estratos = 286 · UPM = 2,239
+    1971-1980              p̂ = 0.390166  IC95 = [0.372687, 0.407411]  n = 6,274 personas · num = 2,543 · estratos = 290 · UPM = 2,872
+    1981-1990              p̂ = 0.572448  IC95 = [0.555475, 0.589410]  n = 5,903 personas · num = 3,271 · estratos = 288 · UPM = 2,709
+    1991+                  p̂ = 0.772924  IC95 = [0.752002, 0.793279]  n = 2,509 personas · num = 1,925 · estratos = 265 · UPM = 1,571
+    signo esperado: asc · monotono o sin pares consecutivos limpios en sentidos opuestos
+    VEREDICTO: CORROBORADA
+
+==============================================================================
+D2 · ENADID 2023 (payload enadid2023_base_datos_csv)
+sha256   : 995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18
+universo 15+: 277,003
+p3_27_ag value_counts (15+):
+p3_27_ag
+2    100192
+1     80382
+3     52697
+4     43732
+Name: count, dtype: int64
+  prevalencia BRUTA (sobre 15+ completo, no condicionada, CENSO no desenlace formal): 0.190536
+
+universo condicional (casada(o) o unión libre): 152,889
+  GLOBAL  p̂(unión libre | pareja) = 0.346520  IC95 = [0.341720, 0.351402]  n = 152,889
+
+  EJE tramo_edad · cobertura 99.4833% (fuera 790)
+    nota: proxy de cohorte (ENADID no trae año de nacimiento): más jóvenes, más unión libre -> p baja con la edad
+    18-29                  p̂ = 0.699208  IC95 = [0.689530, 0.708907]  n = 22,676 personas · num = 15,712 · estratos = 612 · UPM = 7,612
+    30-44                  p̂ = 0.416648  IC95 = [0.409149, 0.424240]  n = 50,944 personas · num = 21,254 · estratos = 644 · UPM = 11,830
+    45-59                  p̂ = 0.238610  IC95 = [0.232012, 0.245079]  n = 47,308 personas · num = 11,189 · estratos = 653 · UPM = 12,060
+    60+                    p̂ = 0.126669  IC95 = [0.120416, 0.133096]  n = 31,171 personas · num = 3,839 · estratos = 621 · UPM = 9,423
+    signo esperado: desc · monotono o sin pares consecutivos limpios en sentidos opuestos
+    VEREDICTO: CORROBORADA
+
