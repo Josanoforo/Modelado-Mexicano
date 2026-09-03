@@ -21443,3 +21443,38 @@
   sha256: 56ca8b51849f6d9357b0a4658cbfb87bb182c3c7bee0ac61610ea59a97971bf0
   tamano_bytes: 602173
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: compranet5_contratos_2022_2023_xlsx
+  usado_para: 'EXT-OF-05 (cola-ext-oficial-2026-08-06.tsv:4): llaves estables persona-proveedor-procedimiento-contrato-sancion;
+    fila cola-adquisicion-registro.tsv:63 EXT_OF_07_CATALOGO_PROVEEDORES_S1_S3_S6'
+  url_origen: https://comprasmx.buengobierno.gob.mx/cnetassets/datos_abiertos_contratos_expedientes/Contratos_CompraNet5.xlsx
+  fecha_descarga: '2026-09-03'
+  descargado_por: agente, directamente de comprasmx.buengobierno.gob.mx
+  archivo: Contratos_CompraNet5.xlsx
+  sha256: 9fcbce83c61be9fa07e6c6900f6967296abf709a4be34fa960df63db86be6634
+  tamano_bytes: 4417249
+  formato: xlsx
+  licencia: no declarada por la fuente (la pagina de datos abiertos que la declararia, canvas-compranet.buengobierno.gob.mx/informacion_ayuda/datos_abiertos.html,
+    respondio 502 en 3 intentos el 2026-09-03)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA36-A2 P1. Datos abiertos CompraNet5 (contratos). 13406 filas x 45 columnas,
+    hoja unica. A.7 doble descarga: sha256 identico en ambas bajadas; zipfile.testzip()=None
+    en ambas. NO es diccionario de datos pese a vivir en la carpeta de datos abiertos: identidad
+    verificada por contenido (cabecera + 5 filas), no por rotulo.'
+
+- id: compranet5_expedientes_2019_2023_xlsx
+  usado_para: 'EXT-OF-05 (cola-ext-oficial-2026-08-06.tsv:4): llaves estables persona-proveedor-procedimiento-contrato-sancion;
+    fila cola-adquisicion-registro.tsv:63 EXT_OF_07_CATALOGO_PROVEEDORES_S1_S3_S6'
+  url_origen: https://comprasmx.buengobierno.gob.mx/cnetassets/datos_abiertos_contratos_expedientes/Expedientes_CompraNet5.xlsx
+  fecha_descarga: '2026-09-03'
+  descargado_por: agente, directamente de comprasmx.buengobierno.gob.mx
+  archivo: Expedientes_CompraNet5.xlsx
+  sha256: a8ac896db48fd44d11ded0804ed805d52f02e6f8aa086d2a45fcc15997575b3c
+  tamano_bytes: 1573365
+  formato: xlsx
+  licencia: no declarada por la fuente (la pagina de datos abiertos que la declararia, canvas-compranet.buengobierno.gob.mx/informacion_ayuda/datos_abiertos.html,
+    respondio 502 en 3 intentos el 2026-09-03)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA36-A2 P1. Datos abiertos CompraNet5 (expedientes/procedimientos). 7200
+    filas x 21 columnas, hoja unica. A.7 doble descarga: sha256 identico; zipfile.testzip()=None
+    en ambas. Identidad verificada por contenido, no por rotulo.'
