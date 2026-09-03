@@ -24,3 +24,7 @@ Ver `forense/notas/2026-08-26-cierra-4-firmas-cierre.md` (nota de cierre complet
 ## Perímetro
 
 Idéntico al declarado en la nota de cierre §Perímetro y NO-hace: no ejerce la llave de `FP-160`, no corre ninguna `L`, no convierte el `D` de `R2.2` en juicio sobre la regla del constructo, no toca `R2.1`/`R3.4`/`R10.1`/duelo-corredores/pool/milpa.
+
+## CONSUMIDO
+
+Derivado mecánicamente por `/tramite` (puertas 1–3 de la acción 3.3): único merge que introduce este archivo y toca otros además de él — `PR #369` (`186f0905`, 2026-08-26, `Merge pull request #369 from Josanoforo/claude/cierra-4-firmas-8b6f2r`, 9 files changed).
