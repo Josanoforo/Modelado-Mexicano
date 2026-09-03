@@ -2683,6 +2683,95 @@ reglas_propuestas:
     sha256_payload: "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
     payload_manifiesto_id: encuci2020_bd_dbf
 
+  - id: tramite.gobierno_digital.coercitivo_efirma_sat
+    entrada_nueva: true
+    referida_a: >
+      regla tramite.gobierno_digital.coercitivo (milpa/tramite.yaml:193) --
+      ACTO MAESTRA36-L13 · COERCITIVO-SAT-EFIRMA. PRIMERA medicion de esta
+      regla contra una fuente con denominador de obligacion. La firma c1
+      (mesa, 2/sep/2026, ADR-299) la habia dejado NO-ENCONTRADO en encuestas
+      de hogares y NO-ACCESIBLE en SAT/CNGF; los .xls del SAT entraron al
+      corpus el 2/sep por ADR-310 y este acto los abre. NO sella: el prior
+      0.91/0.09 ASIGNADO y el tier MEDIA-FUERTE NO se tocan aqui.
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: adopta_efirma_cota_inferior_padron_total_2025, p: 0.368353, clase: "MEDIDO·p(proporcion administrativa agregada, censo del SAT)"}
+      - {conducta: adopta_efirma_cota_superior_padron_obligado_2025, p: 0.921132, clase: "MEDIDO·p(proporcion administrativa agregada, censo del SAT)"}
+    porque: {generador: [G1], mecanismo: "NO se re-deriva: se hereda el de la regla (la utilidad predice adopcion; la coercion con riesgo fiscal la mata). Este acto mide, no explica."}
+    falsable_si: NO-APLICA
+    fuente: ["firelenumcontri", "portipocontribuyente", "forense/notas/2026-09-03-MAESTRA36-L13-P0-censo.md", "forense/notas/2026-09-03-MAESTRA36-L13-P1-resultados.md"]
+    periodo: "corte 2025-12 (ultimo anio completo comun); serie anual completa 2010-2025, 16 anios"
+    escala: >
+      PROPORCION ADMINISTRATIVA AGREGADA -- CAMPO del entorno, NO probabilidad
+      individual de conducta. Precedente: firma p1 (mesa, 2/sep/2026,
+      MAESTRA34-L6 transfer §4, propagada por N5/ADR-299), «tasa nacional
+      ENDUTIH FUERTE como campo, no conducta». Comparable con el 0.09 asignado
+      SOLO en signo y orden de magnitud; NUNCA como «difiere en Z %».
+    sin_ic_de_diseno: >
+      Censo administrativo, no muestra: no hay IC de diseno. La incertidumbre
+      es de DEFINICION DE UNIVERSO y se cuantifica con las dos cotas del
+      denominador, no con un intervalo muestral.
+    universo: >
+      NUMERADOR: contribuyentes que obtuvieron su PRIMER certificado de e.firma
+      (PF+PM), acumulado 2004-01..2025-12 = 32 331 680. La clausula «se
+      considera el primer certificado emitido» del propio .xls es lo que
+      autoriza el acumulado (sin doble conteo por renovacion). NO es «e.firma
+      vigente»: el certificado caduca y el acumulado no da de baja a quien
+      salio del padron, asi que N es COTA SUPERIOR del stock vigente -- y por
+      tanto AMBAS p de arriba son cotas superiores de la adopcion vigente.
+      DENOMINADOR, dos cotas, porque el .xls NO trae columna de «obligados»:
+      amplio  = padron activo Total 2025-12 = 87 773 627 (incluye 52 673 672
+                Asalariados PF, en general NO obligados a e.firma) -> p_inf.
+      obligado = Total - Asalariados PF = 35 099 955 (PF con actividad
+                empresarial/profesional + PM + grandes contribuyentes) -> p_sup.
+      Identidad verificada: Total = PF + Asalariados + PM + GC(PF) + GC(PM)
+      -- los grandes contribuyentes van APARTE del resto, no dentro (residuo
+      142 527 en 2025 = GC PF+PM exacto; igual en 2010 y 2020). La spec de
+      COMMIT-1 suponia lo contrario; la guardia aritmetica que la propia spec
+      mando correr lo detecto. SIN EFECTO sobre p: las dos cotas se construyen
+      desde Total y Asalariados, y los GC son obligados, luego quedan dentro
+      de D_obligado por construccion.
+    cotas: {p_inf: 0.368353, p_sup: 0.921132, tramo_p_inf: ACOTADA, tramo_p_sup: CONTRARIA}
+    veredicto_Bbis: AMBIGUA-POR-UNIVERSO
+    hallazgo: >
+      El falsador B-bis venia congelado por la direccion en el encargo (SHA
+      ea45e01, archivado por A.3 antes de abrir un solo .xls): p>=0.50
+      CONTRARIA / 0.20<=p<0.50 ACOTADA / p<0.20 CORROBORADA-PARCIAL, con
+      precedencia AMBIGUA-POR-UNIVERSO si las dos cotas caen en tramos
+      distintos. Caen en tramos distintos: 0.3684 es ACOTADA y 0.9211 es
+      CONTRARIA. Por la precedencia, ESTE ACTO NO ADJUDICA.
+      Lo que si queda medido, y es geometria del falsador, no adjudicacion
+      nueva: NINGUN punto del intervalo [0.3684, 0.9211] cae en el tramo
+      CORROBORADA-PARCIAL, cuyo techo es 0.20. La regla no queda corroborada
+      bajo ninguna de las dos definiciones de universo, y la cota INFERIOR
+      -- la construida sobre el denominador MAS grande posible, que mete a
+      52.7 millones de asalariados no obligados -- ya esta cuatro veces por
+      encima del 0.09 asignado. Que la cota superior llegue a 0.92 es
+      justamente la senal de que el acumulado desde 2004 es una cota floja
+      contra un padron obligado de 2025.
+      La serie 2010-2025 es monotona creciente en las dos cotas (p_inf
+      0.0823 -> 0.3684), lo que ordena la lectura temporal: la e.firma se
+      volvio general DESPUES de que el prior fuera asignado.
+    lo_que_esta_pieza_no_hace: >
+      No sella (el sello es de mesa). No amplia sin_dato_universo_examinado
+      (sucesor N11). No toca milpa/tramite.yaml ni milpa/procedencia.yaml.
+      No interpreta «adopcion» como voluntariedad: la regla habla de coercion
+      y el dato mide cumplimiento BAJO coercion, que es lo que falsable_si
+      pregunta. Cargas al motor: 0.
+    control_de_consistencia: >
+      firelenumcert (certificados emitidos, CON renovaciones) acumulado a
+      2025-12 = 58 388 495 contra 32 331 680 contribuyentes de primer
+      certificado, razon 1.81 -- coherente con renovacion cuatrienal. El
+      control pasa (certificados >= contribuyentes); firelenumcert NO se usa
+      como numerador porque cuenta certificados, no personas.
+    sha256_payload_numerador: "dce5a06c278cf8f5e85c8b68ba03e500342f3768199a9ce232b4f30a22a23386"
+    payload_manifiesto_id_numerador: firelenumcontri
+    payload_manifiesto_id_denominador: portipocontribuyente
+
+
   - id: civico.clientelismo.vote_change_mps2012
     entrada_nueva: true
     referida_a: "regla R7.7 (canon/modelo-decision-v4_0.md:763, [MEDIA], 'dadiva + broker -> compra turnout, no vote-choice') -- PRIMER dato mexicano que observa a la MISMA persona en dos olas. NO reabre ninguna fila archivada"
