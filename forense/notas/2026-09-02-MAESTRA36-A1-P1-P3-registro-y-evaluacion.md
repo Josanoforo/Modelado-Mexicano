@@ -99,8 +99,8 @@ copia en disco. `descargas.php` no se promueve por diseño (es página, no dato)
 sin colapsar: `no_coincide=0 · ausente=0 · sin_configurar=0`, exit 0 en las 32.
 
 **Anti-PR#77.** La raíz es absoluta y externa a todo clon (`/mnt/c/Users/PC0/Descargas MX`);
-los `raices.local.yaml` del clon principal y de esta caja son idénticos (`diff` exit 0); y
-re-hasheando los 32 payloads **resolviendo la raíz por el `raices.local.yaml` del clon
+los `data/raices.local.yaml` del clon principal y de esta caja son idénticos (`diff` exit 0); y
+re-hasheando los 32 payloads **resolviendo la raíz por el `data/raices.local.yaml` del clon
 principal**: 32 COINCIDE, 0 ausentes, 0 discordantes, 32 archivos abiertos.
 
 **Cola.** Editada línea por línea. Antes de tocarla se corrió el control que exige la
