@@ -27,3 +27,24 @@ CONTADOR. Priors ASIGNADO sin dato: S1 1 → 0 si P1 produce p (es el contador d
 Lo que NO hace. No sella; no amplía sin_dato_universo_examinado (sucesor); no descarga nada del SAT; no interpreta «adopción» como voluntariedad — la regla habla de coerción, y el dato mide cumplimiento bajo coerción, que es exactamente lo que el falsable_si pregunta.
 
 Sucesores. N11 · SELLA-L13 (nube, con letra de mesa: cargar como campo o como conducta, ampliar sin_dato_universo_examinado, ajustar tier).
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA36-L13 · COERCITIVO-SAT-EFIRMA` el 3/sep/2026, entorno
+UBUNTU con corpus montado, worktree `/home/pc0/mm-maestra36-l13`, rama
+`acto/maestra36-l13-coercitivo-sat-efirma`, base `origin/main = ea45e01` (el SHA
+de redacción exacto; `main` no se movió durante el acto). `ADR-311`.
+
+Commits: `ea3bf92` (`0-bis A.3`, este archivo) · `ef144d1` (`COMMIT-1`: spec y
+falsador congelados + `P0` censo `A.4`) · `e9c2e31` (`COMMIT-2`: `P1` resultado +
+`P2` acumulador) · el commit de cascada que trae este `## CONSUMIDO`.
+
+Resultado: **`AMBIGUA-POR-UNIVERSO`** — `p_inf` `0.3684` (tramo `ACOTADA`),
+`p_sup` `0.9211` (tramo `CONTRARIA`), tramos distintos, el acto **no adjudica**.
+`P0` no paró. Cargas al motor: 0. Recibo `FP-260` para `N11 · SELLA-L13`.
+
+Desviación declarada frente a la premisa del encargo: el control
+`grep -ac 'FirEleNum' -r milpa/ forense/notas/` dio **5**, no el 0 esperado —
+las cinco en `forense/notas/2026-09-02-MAESTRA36-A1-P0-barrido.md`, que es el
+acto de adquisición que las registró, no una medición de la regla; en `milpa/`,
+0. El veredicto `NO-ENCONTRADO` (medición) que el encargo pedía se sostiene.
