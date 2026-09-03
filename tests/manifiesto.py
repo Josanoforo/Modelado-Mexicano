@@ -76,7 +76,7 @@ migra un valor retroactivo que nadie declaró entonces.
 --escanea   recorre RECURSIVAMENTE una RAÍZ POR NOMBRE (nunca una ruta --
              ver arriba); `archivo` es la ruta relativa a la raíz, con
              subcarpeta si la hay ('Descargas Manuales/x.dta'), misma
-             convención que tests/corpus.py -- desde ADR-309. Y,
+             convención que tests/corpus.py -- desde ADR-310. Y,
              para cada archivo que no esté ya en data/manifiesto.yaml
              (dedup por sha256, no por nombre),
              deriva archivo/raiz/sha256/tamano_bytes/fecha_descarga (del
@@ -650,7 +650,7 @@ def _archivos_recursivos(ruta):
     18/ago/2026, así que el campo `archivo` que sale de aquí y el que
     corpus.py compara son el mismo objeto.
 
-    Antes de ADR-309 esto era os.listdir + isfile: una subcarpeta entera
+    Antes de ADR-310 esto era os.listdir + isfile: una subcarpeta entera
     quedaba invisible para --escanea. Medido por MAESTRA36-A1 (P0,
     2026-09-02) sobre la raíz descargas_mx: 224 archivos en el árbol, de
     los que os.listdir veía 148 -- los 76 de 'Descargas Manuales/' no eran
@@ -925,7 +925,7 @@ def _derivar_id(nombre_archivo, ids_existentes):
     con un id ya existente (u otro derivado en el mismo lote), se
     desambigua con un sufijo numérico, nunca sobreescribiendo.
 
-    Del BASENAME, no de la ruta (MAESTRA36-A1, 2026-09-02): desde ADR-309
+    Del BASENAME, no de la ruta (MAESTRA36-A1, 2026-09-02): desde ADR-310
     `archivo` puede traer subcarpeta, y slugificar la ruta entera daría
     ids como 'descargas_manuales_ingresostributarios'. Las 49 entradas
     con prefijo 'Descargas Manuales/' que ya existen derivan todas su id
@@ -1154,7 +1154,7 @@ def main():
                           "--registra/--compara exigen exactamente uno")
     ap.add_argument("--grupo", default=None,
                      help="patrón fnmatch sobre la RUTA RELATIVA A LA RAÍZ, no sobre "
-                          "el basename (desde ADR-309, cuando --escanea pasó a ser "
+                          "el basename (desde ADR-310, cuando --escanea pasó a ser "
                           "recursivo): 'Descargas Manuales/*.dta' acota esa subcarpeta, "
                           "'academico/icpsr35024/crosstabs/*' esa otra, y '*.dta' sigue "
                           "casando en cualquier nivel porque fnmatch no trata '/' como "

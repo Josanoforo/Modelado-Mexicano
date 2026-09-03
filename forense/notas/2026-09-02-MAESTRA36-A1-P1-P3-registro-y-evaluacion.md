@@ -1,6 +1,6 @@
 # MAESTRA36-A1 · P1, P2 y P3 · escáner recursivo, registro y evaluación A.4
 
-**Acto:** MAESTRA36-A1 · ESCANEA-RECURSIVO-Y-REGISTRA-DESCARGAS · **ADR-309**
+**Acto:** MAESTRA36-A1 · ESCANEA-RECURSIVO-Y-REGISTRA-DESCARGAS · **ADR-310**
 **Encargo:** `forense/encargos/2026-09-02-MAESTRA36-A1-ESCANEA-RECURSIVO-Y-REGISTRA-DESCARGAS.md`
 (SHA de redacción 9af8407, + enmienda de dirección a mitad de acto, archivada con él)
 **Fecha:** 2026-09-02 · **Caja:** Ubuntu (WSL2), `/home/pc0/mm-maestra36-a1`
