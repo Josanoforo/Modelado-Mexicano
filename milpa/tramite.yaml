@@ -835,3 +835,184 @@ reglas:
       lectura: "brecha de 42.90pp entre empleado/obrero (72.30%) y jornalero/peon (29.40%), en la direccion que §3.1 predice. Evidencia de direccion, NO la condicional de la regla."
     sha256_payload: "be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5"
     payload_manifiesto_id: enfih2019_bd_csv_zip
+
+  # ══════════════════════════════════════════════════════════════════
+  # CARGA OLA-5 FASE 1 · TERCER LOTE · FP-252 (mesa, 2/sep/2026 -- firmas
+  # a1/b1/c1/d1, verbatim: "a1 · b1 · c1 · d1." y, sobre el id de la
+  # regla de cuidado: "recae_mujeres_40mas")
+  # ACTO MAESTRA35-N8 · SELLA-L7
+  #
+  # Seis entradas nuevas (dos reglas se abren en par condicional, como
+  # civico.denuncia.sin_seguro/con_seguro ya vive en el modelo), copiadas
+  # VERBATIM de milpa/tramite-ola5-propuesta-v0.yaml (COMPUERTA PR #486
+  # fusionado) -- p, ic95, n, estratos, upm, ponderador, universo, fuente,
+  # ola_calibracion, sha256_payload, payload_manifiesto_id intactos
+  # caracter por caracter. `hallazgo` de la propuesta se resume en
+  # `nota_hito_d`/`hallazgo` propios de cada entrada, sin reinterpretar
+  # las cifras. Este acto NO mide: toda cifra sale de la entrada de la
+  # propuesta y de data/l7-resultados-v1_0.json.
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: civico.denuncia.con_seguro
+    situacion: sufre_delito_asegurable
+    si:
+      disparadores: {cobertura_seguro: true}
+    entonces:
+      - {conducta: denuncia, p: 0.790900, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
+      - {conducta: no_denuncia, p: 0.209100, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
+    porque: {generador: NO-DECLARADO-EN-§3.3, mecanismo: "miedo + inutilidad percibida (denunciar rinde 0.8%); SI es robo de vehículo asegurado ENTONCES sí denuncia, por el trámite del seguro -- canon/modelo-decision-v4_0.md:552 verbatim"}
+    tier: FUERTE # firma a1
+    falsable_si: "R7.2 en forense/hitoD-preregistro-v2_0.md:205-231 (Nota 11, corrida completa 4/ago/2026) y forense/hitoD-R7_2-veredicto-v1_0.md -- cita, no reescribas"
+    fuente: ["ENVIPE2025", "canon/modelo-decision-v4_0.md:552", "milpa/tramite-ola5-propuesta-v0.yaml"]
+    ola_calibracion: "ENVIPE 2025"
+    ic95: [0.752301, 0.827811]
+    n: 402
+    estratos: 200
+    upm: 377
+    ponderador: FAC_DEL
+    universo: "BPCOD='01' (robo total de vehículo, único donde BP2_1 tiene masa) ∧ BP2_1∈{1,2} ∧ cobertura_seguro=1; n = 402 de 1 016 -- copiado de la entrada civico.denuncia.con_seguro_ejes_envipe2025 de la propuesta, estrato EST_DIS, upm UPM_DIS"
+    nota_hito_d: "reproduce hitoD-R7_2-veredicto (4/ago/2026): 79.1/67.2/11.9 pp, tercera vía independiente -- ninguna decisión de mesa sobre si esta cifra cierra el ASIGNADO de milpa/procedencia.yaml:806-809 se toma en este acto"
+    sha256_payload: "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+    payload_manifiesto_id: envipe2025_csv
+
+  - id: civico.denuncia.sin_seguro
+    situacion: sufre_delito_asegurable
+    si:
+      disparadores: {cobertura_seguro: false}
+    entonces:
+      - {conducta: denuncia, p: 0.672000, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
+      - {conducta: no_denuncia, p: 0.328000, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
+    porque: {generador: NO-DECLARADO-EN-§3.3, mecanismo: "miedo + inutilidad percibida (denunciar rinde 0.8%); sin cobertura de seguro, la cifra negra se sostiene -- canon/modelo-decision-v4_0.md:552 verbatim"}
+    tier: FUERTE # firma a1
+    falsable_si: "R7.2 en forense/hitoD-preregistro-v2_0.md:205-231 (Nota 11, corrida completa 4/ago/2026) y forense/hitoD-R7_2-veredicto-v1_0.md -- cita, no reescribas"
+    fuente: ["ENVIPE2025", "canon/modelo-decision-v4_0.md:552", "milpa/tramite-ola5-propuesta-v0.yaml"]
+    ola_calibracion: "ENVIPE 2025"
+    ic95: [0.642490, 0.701624]
+    n: 614
+    estratos: 289
+    upm: 567
+    ponderador: FAC_DEL
+    universo: "BPCOD='01' (robo total de vehículo, único donde BP2_1 tiene masa) ∧ BP2_1∈{1,2} ∧ cobertura_seguro=0; n = 614 de 1 016 -- copiado de la entrada civico.denuncia.con_seguro_ejes_envipe2025 de la propuesta, estrato EST_DIS, upm UPM_DIS"
+    nota_hito_d: "reproduce hitoD-R7_2-veredicto (4/ago/2026): 79.1/67.2/11.9 pp, tercera vía independiente -- ninguna decisión de mesa sobre si esta cifra cierra el ASIGNADO de milpa/procedencia.yaml:806-809 se toma en este acto"
+    sha256_payload: "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+    payload_manifiesto_id: envipe2025_csv
+
+  - id: familia.union.libre
+    situacion: primera_union
+    si:
+      disparadores: {baja_garantia_institucional: NO-MEDIDO}  # el modelo (R5.3) nombra este disparador; ningún instrumento lo mide — se carga la tasa base con gradiente de cohorte, no la condicional
+    entonces:
+      - {conducta: union_libre, p: 0.190500, clase: "MEDIDO·p(prevalencia bruta ponderada 15+, tasa base; ENADID 2023, p3_27_ag)"}
+      - {conducta: matrimonio_directo, p: 0.809500, clase: "MEDIDO·p(prevalencia bruta ponderada 15+, tasa base; ENADID 2023, p3_27_ag)"}
+    porque: {generador: NO-DECLARADO-EN-§3.5, mecanismo: "baja garantía institucional del matrimonio hace de la unión libre una opción racional, no una 'unión fallida' -- evita costos ante baja garantía -- canon/modelo-decision-v4_0.md:537 verbatim"}
+    tier: FUERTE # firma b1
+    falsable_si: "NO-APLICA -- R5.3 fuera del perímetro Hito D (27 fichas), sin falsador pre-registrado (canon/modelo-decision-v4_0.md:753)"
+    fuente: ["EDER2017", "ENADID2023", "canon/modelo-decision-v4_0.md:537", "milpa/tramite-ola5-propuesta-v0.yaml"]
+    ola_calibracion: "EDER 2017 (primera unión por cohorte) + ENADID 2023 (prevalencia actual por edad, cross-validación) -- no se promedian, miden preguntas distintas"
+    ic95: NO-APLICA  # prevalencia bruta sin celda binaria única declarada en la propuesta con IC95 propio; ver segmentacion_ejes para IC95 por celda
+    n: 152950
+    ponderador: "factor_per (EDER) / peso ENADID (peso poblacional, ver segmentacion_ejes)"
+    universo: "EDER 2017: primer edo_civil1 no-cero por persona, n = 18 687 de 23 831. ENADID 2023: 15+ condicional a casada(o)/unión libre, p3_27_ag, n = 152 950 -- copiado de la entrada familia.union.libre_ejes_eder2017 de la propuesta"
+    segmentacion_ejes_eder2017_enadid2023:
+      eje_cohorte_eder2017:
+        veredicto: CORROBORADA
+        celdas:
+          - {celda: "1961-1970", p: 0.304657, ic95: [0.285385, 0.324098], n: 4001, estratos: 286, upm: 2239}
+          - {celda: "1971-1980", p: 0.390166, ic95: [0.372687, 0.407411], n: 6274, estratos: 290, upm: 2872}
+          - {celda: "1981-1990", p: 0.572448, ic95: [0.555475, 0.589410], n: 5903, estratos: 288, upm: 2709}
+          - {celda: "1991+", p: 0.772924, ic95: [0.752002, 0.793279], n: 2509, estratos: 265, upm: 1571}
+      eje_edad_enadid2023:
+        veredicto: CORROBORADA
+        celdas:
+          - {celda: "18-29", p: 0.699200, ic95: [0.689500, 0.708900], n: 22676}
+          - {celda: "30-44", p: 0.416600, ic95: [0.409100, 0.424200], n: 50944}
+          - {celda: "45-59", p: 0.238600, ic95: [0.232000, 0.245100], n: 47308}
+          - {celda: "60+", p: 0.126700, ic95: [0.120400, 0.133100], n: 31171}
+    sha256_payload: "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3"
+    payload_manifiesto_id: eder_2017_eder2017_bases_csv
+
+  - id: familia.cuidado.recae_mujeres_40mas
+    situacion: hogar_con_carga_de_cuidado
+    si:
+      disparadores: {sexo: mujer}
+    entonces:
+      - {conducta: share_horas_mujeres_40mas, p: 0.221500, clase: "MEDIDO·razón(horas de mujeres 40+ / horas totales de cuidado del hogar; ENUT 2024, n 29 181 hogares)"}
+    contexto_share_poblacional_mujeres_40mas: 0.265700  # menor que su peso poblacional, IC95 sin traslape -- ENUT 2024, universo 12+
+    porque: {generador: NO-DECLARADO-EN-§3.5, mecanismo: "estructura + guion marianista, no 'cultura del cuidado' -- canon/modelo-decision-v4_0.md:536 verbatim, texto canónico del modelo sin editar en este acto (P9-bis queda para dirección/RH)"}
+    tier: FUERTE # firma c1
+    falsable_si: "R5.2 en forense/hitoD-preregistro-v2_0.md:178-204 (Nota 18: propuesta A, IC95%=[14.39%,33.57%] no despeja 20%, no adjudicada) -- cita, no reescribas"
+    fuente: ["ENUT2024", "canon/modelo-decision-v4_0.md:536", "milpa/tramite-ola5-propuesta-v0.yaml"]
+    ola_calibracion: "ENUT 2024"
+    ic95: [0.213145, 0.229966]
+    n: 29181
+    estratos: NO-DECLARADO-EN-CELDA-DE-RAZON
+    upm: 4200
+    ponderador: "FAC_HOG (D2, razón) / FAC_PER (D1, descriptivo por sexo × edad)"
+    universo: "D2: los 29 181 hogares de tvar_crea.csv (hogares sin carga aportan 0/0, no se excluyen); D1: las 74 053 personas 12+ -- copiado de la entrada familia.cuidado.reparto_mujeres40_ejes_enut2024 de la propuesta"
+    veredicto_acotado: "ACOTADA-EN-EDAD (firma c1, mesa 2/sep/2026): 'recae en mujeres' CORROBORADA en los cinco tramos; '40+ (hijas/nueras)' CONTRARIA — locus 18-39"
+    alcance: "ACOTADA-EN-EDAD (firma c1, mesa 2/sep/2026): 'recae en mujeres' CORROBORADA en los cinco tramos; '40+ (hijas/nueras)' CONTRARIA — locus 18-39"
+    segmentacion_ejes_enut2024:
+      eje_sexo_edad:
+        veredicto: DISCRIMINA
+        unidad: "horas de cuidado/semana, media ponderada, variable continua (no proporción de binario)"
+        celdas:
+          - {celda: "hombre · 12-17", p: 4.528743, n: 4837, upm: 2249}
+          - {celda: "mujer · 12-17", p: 6.695296, n: 4859, upm: 2185}
+          - {celda: "hombre · 18-29", p: 6.097654, n: 7489, upm: 3019}
+          - {celda: "mujer · 18-29", p: 21.891211, n: 8559, upm: 3155}
+          - {celda: "hombre · 30-39", p: 11.465789, n: 5844, upm: 2846}
+          - {celda: "mujer · 30-39", p: 28.311292, n: 7200, upm: 3049}
+          - {celda: "hombre · 40-59", p: 5.889757, n: 9930, upm: 3538}
+          - {celda: "mujer · 40-59", p: 10.915277, n: 12145, upm: 3771}
+          - {celda: "hombre · 60+", p: 5.500178, n: 6043, upm: 2718}
+          - {celda: "mujer · 60+", p: 6.426130, n: 7147, upm: 2971}
+    sha256_payload: "25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba"
+    payload_manifiesto_id: enut2024_bd_csv
+
+  - id: dinero.ahorro.horizonte_corto
+    situacion: ingreso_sin_seguridad_social
+    si:
+      disparadores: {seguridad_social_laboral: false}
+    entonces:
+      - {conducta: horizonte_corto, p: 0.330600, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
+      - {conducta: horizonte_no_corto, p: 0.669400, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
+    porque: {generador: [G3], mecanismo: "ingreso volátil/informal -- horizonte corto, ahorro informal (tanda, 'guardado en casa'), foco en emergencia -- canon/modelo-decision-v4_0.md:499 verbatim. Dominio agrícola INEJECUTABLE por hueco de mercado (hitoD-R1.1, D archivado, 28/jul/2026) -- no bloquea esta tasa base nacional"}
+    tier: FUERTE # firma d1
+    falsable_si: "R1.1 en forense/hitoD-preregistro-v2_0.md:25-... (Nota 5, veredicto D archivado 28/jul/2026, hueco de mercado no de dato) y forense/hitoD-R1_1-veredicto-v1_0.md -- cita, no reescribas"
+    fuente: ["ENIF2024", "canon/modelo-decision-v4_0.md:499", "milpa/tramite-ola5-propuesta-v0.yaml"]
+    ola_calibracion: "ENIF 2024"
+    ic95: [0.312154, 0.349156]
+    n: 4973
+    estratos: 189
+    upm: 1717
+    ponderador: FAC_PER
+    universo: "18+ elegidas ∧ P3_13∈{1..7} ∧ P4_10∈{1..5}; n = 9 031 de 13 502, celda sin seguridad social n = 4 973 -- copiado de la entrada dinero.ahorro.horizonte_corto_ejes_enif2024 de la propuesta"
+    sensibilidad_pre_declarada:
+      P4_10_en_1_2: {sin: 0.541300, con: 0.369700}
+    referencia_cruzada: "dinero.ahorro.tiene_ahorros.segmentacion_ejes_enif2024 (L1) -- mismo universo formalidad, sin duplicar celdas"
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: enif_2024_enif_2024_bd_csv
+
+  - id: dinero.ahorro.horizonte_no_corto_con_seguridad_social
+    situacion: ingreso_con_seguridad_social
+    si:
+      disparadores: {seguridad_social_laboral: true}
+    entonces:
+      - {conducta: horizonte_corto, p: 0.173400, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
+      - {conducta: horizonte_no_corto, p: 0.826600, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
+    porque: {generador: [G3], mecanismo: "ingreso estable/formal -- horizonte no corto, contraste directo con la celda sin seguridad social de dinero.ahorro.horizonte_corto -- canon/modelo-decision-v4_0.md:499 verbatim"}
+    tier: FUERTE # firma d1
+    falsable_si: "R1.1 en forense/hitoD-preregistro-v2_0.md:25-... (Nota 5, veredicto D archivado 28/jul/2026, hueco de mercado no de dato) y forense/hitoD-R1_1-veredicto-v1_0.md -- cita, no reescribas"
+    fuente: ["ENIF2024", "canon/modelo-decision-v4_0.md:499", "milpa/tramite-ola5-propuesta-v0.yaml"]
+    ola_calibracion: "ENIF 2024"
+    ic95: [0.157108, 0.190722]
+    n: 4058
+    estratos: 187
+    upm: 1806
+    ponderador: FAC_PER
+    universo: "18+ elegidas ∧ P3_13∈{1..7} ∧ P4_10∈{1..5}; n = 9 031 de 13 502, celda con seguridad social n = 4 058 -- copiado de la entrada dinero.ahorro.horizonte_corto_ejes_enif2024 de la propuesta"
+    sensibilidad_pre_declarada:
+      P4_10_en_1_2: {sin: 0.541300, con: 0.369700}
+    referencia_cruzada: "dinero.ahorro.tiene_ahorros.segmentacion_ejes_enif2024 (L1) -- mismo universo formalidad, sin duplicar celdas"
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: enif_2024_enif_2024_bd_csv
