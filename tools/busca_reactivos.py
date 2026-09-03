@@ -85,9 +85,17 @@ FUENTES = {
 # ACTO MAESTRA37-L1: --tablas admite una tercera fuente sin tocar --fuente
 # ni el default de FUENTES. "hoy" == exactamente v1_2+ext, byte a byte,
 # el comportamiento previo a este acto.
+#
+# ACTO MAESTRA37-A1 (3/sep/2026): 'descargas_mx_v1_1' es una CUARTA clave, no
+# un cambio de la tercera. v1_1 re-indexa la raiz despues de que el portal del
+# INSP re-publico ENSANUT Continua 2024 (131 archivos nuevos, version publicada
+# 2026-09-01) y es la vigente; 'descargas_mx' sigue apuntando a v1_0 a proposito
+# -- reapuntarla habria cambiado en silencio lo que ya lee quien pide esa clave,
+# y v1_0 es la unica cifra contra la que la regresion de v1_1 se midio.
 TABLAS = {
     **FUENTES,
     "descargas_mx": REPO_ROOT / "data" / "inventario-reactivos-descargas-mx-v1_0.tsv",
+    "descargas_mx_v1_1": REPO_ROOT / "data" / "inventario-reactivos-descargas-mx-v1_1.tsv",
 }
 MANIFIESTO = REPO_ROOT / "data" / "manifiesto.yaml"
 

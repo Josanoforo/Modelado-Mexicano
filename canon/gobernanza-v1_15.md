@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **324 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **325 ADR**
 
 > | | |
 > |---|---|
@@ -5561,3 +5561,23 @@ ejecutado con `/acto` de `ADR-237`.
 **Lo que NO hace.** No repite ni revisa el trabajo sustantivo de `N4` — ninguna letra, ninguna firma, ningún archivo del curador se vuelve a tocar. No mide. No abre Ola 6. No decide nada nuevo: el merge de `PR #515` fue la firma de mesa de `D8`-`D11`; este acto sólo completa el registro.
 
 **Perímetro.** `forense/encargos/2026-09-03-MAESTRA37-N4-TRAMITE-L1-LETRAS-Y-ALIAS.md` (nuevo, `A.3` + `## CONSUMIDO`) · `canon/gobernanza-v1_15.md` (esta entrada) · `canon/estado-programa-v1_11.md` (cabecera `L0`) · `canon/registro-rotulos.tsv` (fila `N · MAESTRA37-N4`) · `forense/firmas-pendientes.tsv` (`FP-276` gana referencia a `ADR-324`; `FP-278` recibo nuevo) · `forense/hallazgos.md` (append, una línea) · esta cascada. **No toca** `data/**`, `milpa/**`, `canon/motor-nucleo-medible-v1_0.md` §3.a (ya enmendado por `N4`), la cola de encargos. Encargo de este acto: recibido inline en la sesión que invocó `/acto` (dirección, Fable, maestra-37, formato corto v2.12, SHA de redacción `92f17e14` = merge `PR #515`); `A.3` propio no aplica — este acto es cascada retroactiva sobre el `A.3` de `N4`, no un encargo nuevo con sustancia propia.
+
+**ADR-325 (derivado por el comando de la casa contra `origin/main = 2a2af31` (`PR #517`), tras fusionar `origin/main` en la rama del acto: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `324`, contiguo; candidato `325`. El encargo proponía `324`; `ACTO MAESTRA37-N5 · CASCADA-N4` lo tomó primero al fusionar, y la regla de la casa —renumera quien fusiona segundo— se aplicó re-derivando, no heredando de la prosa del encargo.) · `ACTO MAESTRA37-A1 · REGISTRA-ENSANUT-v2-Y-MANUALES`, 3/sep/2026, UBUNTU con corpus, `COMPUERTA: ninguna`.**
+
+**Qué decide.** Que el programa reconozca, por primera vez, que **un payload de portal vivo tiene versión publicada**, y cómo se registra cuando el registrador no tiene campo para ella.
+
+**El hecho que lo obliga.** El portal del INSP re-publicó ENSANUT Continua 2024 el **1/sep/2026, sin aviso y bajo los mismos nombres de archivo**. De los **17** archivos con homónimo previo, los **17** son `CONTENIDO-DISTINTO`: fecha interna `2026-01-08` → `2026-09-01` y **ningún `sha256` interno coincide** (`adolescentes_ensanut2024_w.dta`: 16 288 917 B / `56d5d07e61300ed0…` → 16 575 279 B / `e36db7a5c267d30e…`). Cero `RE-EMPAQUETADO`. Nada en el programa lo habría notado: el manifiesto identifica un payload por `id` + `archivo` + `sha256`, y ninguno de los tres dice qué versión publicada es.
+
+**Firmas de mesa que este merge sella** (verbatim del encargo archivado por `A.3`, `forense/encargos/2026-09-03-MAESTRA37-A1-REGISTRA-ENSANUT-V2-Y-MANUALES.md`, línea 3):
+
+* **D13** — convención de versión: id nuevo con sufijo `__v2026_09_01`, `version_publicada`, `sustituye_a`; entrada vieja intacta salvo nota fechada append.
+* **D14** — la versión vigente rige; la previa es historia.
+* **D15** — se registran e indexan los 129 (**resultan 131**), salud y nutrición.
+
+**Qué se ejecutó.** Manifiesto **1 104 → 1 233**: 125 entradas de ENSANUT v2 (`version_publicada` **0 → 125**), 3 de ICPSR 35024 y 1 de la PDN de SESNA. Las **24** entradas previas del universo ENSANUT 2024 conservan `id`, `sha256`, `tamano_bytes` y `archivo`, y sólo reciben nota append fechada — **ninguna se borró ni se reemplazó**. Curador: **+8** relaciones / **+8** procedencias / **+8** utilidad / **+1** alias `NO_FUSIONAR`, todas `CANDIDATA` por `A.4` conservador (`baseline.py` → `ok: true`, `errores: []`). Cola: `PDN_SESNA_S1_S2_S3_S6` `PENDIENTE` → **`OBTENIDO-PARCIAL`**. `data/inventario-reactivos-descargas-mx-v1_1.tsv` (archivo **nuevo**, `v1_0` intacto): 42 536 filas, con regresión medida — los **116** `payload_id` de `v1_0` traen sus filas **idénticas byte a byte**.
+
+**Qué NO decide.** No mide; no da veredictos `A.4` sobre reglas (eso es `MAESTRA37-L3-BIS`); no abre ningún dominio ni destraba `L10`. `adultos_ensanut2024_w.stata.stata.zip` —lo que `ADR-323` declaró `AUSENTE-EN-RAIZ`— ya está registrado, **en su versión de septiembre**, que es contenido distinto del que `L3` leyó por catálogo: la lectura se reabre, no se hereda. Y `L3` ya midió que una descarga lleva `salud` de **1 a 2, no a 3**.
+
+**Gate verificado.** `COMPUERTA: ninguna` — declaración explícita del encargo, no dispara verificación. Condición de entorno `A.2` (tres partes) medida al arrancar: `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` = `sin_variable` · sonda `https://www.inegi.org.mx/` → **200** · `data/raw/` montada (376 entradas) y `descargas_mx/ENSANUT2024-v2026-09-01/` presente con **131** archivos.
+
+**Deuda que abre.** **`FP-280`** (decisión de mesa): `version_publicada` y `sustituye_a` viven hoy como `clave: valor` dentro de `nota`, porque `tests/manifiesto.py --registra` sólo alcanza `data_raw` (`cmd_registra`, línea 320) y la vía de `descargas_mx` (`--escanea` + `--promueve`) **deriva** el id y no acepta `--id` ni `--nota` — y el registrador está en el NO-TOCA del acto. Campo formal con vía en el registrador, o `nota` para siempre. Recibo: **`FP-279`**.
