@@ -73,7 +73,10 @@ de la raíz, nunca la ruta). Las 53 entradas de payload anteriores a este
 campo no tienen `raiz` -- su ausencia SIGNIFICA data_raw; no se les
 migra un valor retroactivo que nadie declaró entonces.
 
---escanea   recorre una RAÍZ POR NOMBRE (nunca una ruta -- ver arriba) y,
+--escanea   recorre RECURSIVAMENTE una RAÍZ POR NOMBRE (nunca una ruta --
+             ver arriba); `archivo` es la ruta relativa a la raíz, con
+             subcarpeta si la hay ('Descargas Manuales/x.dta'), misma
+             convención que tests/corpus.py -- desde ADR-309. Y,
              para cada archivo que no esté ya en data/manifiesto.yaml
              (dedup por sha256, no por nombre),
              deriva archivo/raiz/sha256/tamano_bytes/fecha_descarga (del
@@ -626,6 +629,34 @@ def _formatear_entrada_staging(f, sugerencia_url):
 RAICES_QUE_EXIGEN_GRUPO = {"downloads"}
 
 
+def _archivos_recursivos(ruta):
+    """Rutas relativas a `ruta` de TODOS los archivos del árbol, no solo del
+    nivel superior. Misma convención que tests/corpus.py (os.walk +
+    normpath(relpath)) -- que es la que ya tienen las 49 entradas
+    'Descargas Manuales/...' del manifiesto desde la corrección T2 del
+    18/ago/2026, así que el campo `archivo` que sale de aquí y el que
+    corpus.py compara son el mismo objeto.
+
+    Antes de ADR-309 esto era os.listdir + isfile: una subcarpeta entera
+    quedaba invisible para --escanea. Medido por MAESTRA36-A1 (P0,
+    2026-09-02) sobre la raíz descargas_mx: 224 archivos en el árbol, de
+    los que os.listdir veía 148 -- los 76 de 'Descargas Manuales/' no eran
+    ni "nuevos" ni "ya registrados", simplemente no existían para este
+    comando, mientras corpus.py sí los recorría y los contaba huérfanos.
+    Esa asimetría entre los dos recorridos es lo que hizo que a mesa se le
+    volvieran a pedir descargas que ya había hecho.
+
+    os.walk no sigue enlaces simbólicos a directorios (followlinks=False):
+    un symlink autorreferente no abre un bucle aquí.
+    """
+    for dirpath, _dirnames, filenames in os.walk(ruta):
+        for fn in filenames:
+            ruta_abs = os.path.join(dirpath, fn)
+            if not os.path.isfile(ruta_abs):
+                continue
+            yield os.path.normpath(os.path.relpath(ruta_abs, ruta))
+
+
 def cmd_escanea(a, manifiesto_path, raw_dir):
     root = os.path.dirname(os.path.dirname(manifiesto_path))
     nombre_raiz = a.escanea
@@ -657,10 +688,8 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
     nuevos, paginas = [], []
     fuera_de_alcance = []
 
-    for nombre in sorted(os.listdir(ruta)):
+    for nombre in sorted(_archivos_recursivos(ruta)):
         ruta_abs = os.path.join(ruta, nombre)
-        if not os.path.isfile(ruta_abs):
-            continue
 
         extension = os.path.splitext(nombre)[1].lower()
         if (nombre_raiz in RAICES_QUE_EXIGEN_GRUPO
@@ -1100,8 +1129,13 @@ def main():
                      help="repetible. --verifica corre sobre TODOS los --id dados; "
                           "--registra/--compara exigen exactamente uno")
     ap.add_argument("--grupo", default=None,
-                     help="patrón fnmatch. Con --escanea: aplica --url/--usado-para a "
-                          "los archivos nuevos cuyo nombre case con el patrón (o, "
+                     help="patrón fnmatch sobre la RUTA RELATIVA A LA RAÍZ, no sobre "
+                          "el basename (desde ADR-309, cuando --escanea pasó a ser "
+                          "recursivo): 'Descargas Manuales/*.dta' acota esa subcarpeta, "
+                          "'academico/icpsr35024/crosstabs/*' esa otra, y '*.dta' sigue "
+                          "casando en cualquier nivel porque fnmatch no trata '/' como "
+                          "separador. Con --escanea: aplica --url/--usado-para a "
+                          "los archivos nuevos cuya ruta case con el patrón (o, "
                           "combinado con --grupo-n, a un subconjunto DENTRO de esa "
                           "tanda). Con --promueve: limita la promoción a los que "
                           "casen (por defecto, --promueve procesa todo lo que hay en "
