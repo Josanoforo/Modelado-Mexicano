@@ -1,0 +1,319 @@
+{
+ "acto": "MAESTRA35-L11 · ROBUSTECE-L9",
+ "spec": "forense/notas/2026-09-02-MAESTRA35-L9-spec.md (heredada verbatim)",
+ "instrumento": "ENCUCI 2020",
+ "payload": {
+  "id": "encuci2020_bd_dbf",
+  "sha256_zip": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+ },
+ "estimador": "proporcion ponderada (FAC_SEL); IC95 bootstrap de conglomerado, 10000 replicas, seed 42, UPM_DIS dentro de EST_DIS (identico a medidor_clientelismo_lapop.prop_bootstrap)",
+ "piezas": [
+  {
+   "pieza": "b",
+   "reglas": [
+    "R7.3",
+    "R7.6"
+   ],
+   "id_modelo": [
+    "civico.voto.agencia_con_secreto",
+    "civico.voto.clientelar_si_observable"
+   ],
+   "fuente": "ENCUCI 2020",
+   "spec_heredada": "§3.1 (L9)",
+   "n_total": 21519,
+   "n_universo": 15083,
+   "cobertura": 0.7009154700497235,
+   "universo_restringido": true,
+   "ramas": {
+    "SECRETO": {
+     "transferencia_si": {
+      "p": 0.32163348981043877,
+      "ic95": [
+       0.3002739493578474,
+       0.3429421194573791
+      ],
+      "n": 3144,
+      "numerador": 1059,
+      "n_estratos": 266,
+      "n_upm": 1527,
+      "estratos_singleton": 38,
+      "replicas": 10000,
+      "poblacion_expandida": 12075888.0,
+      "etiqueta": "simpatiza MORENA | transferencia=Si, SECRETO",
+      "estado": "ESTIMADA",
+      "control_regresion": {
+       "p_hat_linealizado": 0.32163348981043877,
+       "ic95_linealizado": [
+        0.29807080876367475,
+        0.3451961708572028
+       ],
+       "n_upm": 1527,
+       "estratos_singleton": 38
+      }
+     },
+     "transferencia_no": {
+      "p": 0.2578248545161502,
+      "ic95": [
+       0.24435192883113988,
+       0.27129362319204914
+      ],
+      "n": 7836,
+      "numerador": 2088,
+      "n_estratos": 280,
+      "n_upm": 2620,
+      "estratos_singleton": 9,
+      "replicas": 10000,
+      "poblacion_expandida": 34783586.0,
+      "etiqueta": "simpatiza MORENA | transferencia=No, SECRETO",
+      "estado": "ESTIMADA",
+      "control_regresion": {
+       "p_hat_linealizado": 0.2578248545161502,
+       "ic95_linealizado": [
+        0.24335899521650017,
+        0.2722907138158003
+       ],
+       "n_upm": 2620,
+       "estratos_singleton": 9
+      }
+     },
+     "delta": {
+      "d": 0.06380863529428854,
+      "ic95": [
+       0.038237952722926294,
+       0.088941935170056
+      ],
+      "replicas_validas": 10000,
+      "replicas_pedidas": 10000,
+      "etiqueta": "Δ_SECRETO",
+      "estado": "ESTIMADA",
+      "excluye_cero": true,
+      "signo": "+"
+     }
+    },
+    "OBSERVABLE": {
+     "transferencia_si": {
+      "p": 0.31974459615160605,
+      "ic95": [
+       0.27660488841044295,
+       0.3620793751200861
+      ],
+      "n": 951,
+      "numerador": 285,
+      "n_estratos": 224,
+      "n_upm": 745,
+      "estratos_singleton": 56,
+      "replicas": 10000,
+      "poblacion_expandida": 4026251.0,
+      "etiqueta": "simpatiza MORENA | transferencia=Si, OBSERVABLE",
+      "estado": "ESTIMADA",
+      "control_regresion": {
+       "p_hat_linealizado": 0.31974459615160605,
+       "ic95_linealizado": [
+        0.2705876280811141,
+        0.368901564222098
+       ],
+       "n_upm": 745,
+       "estratos_singleton": 56
+      }
+     },
+     "transferencia_no": {
+      "p": 0.20409212628705045,
+      "ic95": [
+       0.18711977322084725,
+       0.2212555256099824
+      ],
+      "n": 3152,
+      "numerador": 754,
+      "n_estratos": 275,
+      "n_upm": 1860,
+      "estratos_singleton": 23,
+      "replicas": 10000,
+      "poblacion_expandida": 14949783.0,
+      "etiqueta": "simpatiza MORENA | transferencia=No, OBSERVABLE",
+      "estado": "ESTIMADA",
+      "control_regresion": {
+       "p_hat_linealizado": 0.20409212628705045,
+       "ic95_linealizado": [
+        0.18567075041407075,
+        0.22251350216003016
+       ],
+       "n_upm": 1860,
+       "estratos_singleton": 23
+      }
+     },
+     "delta": {
+      "d": 0.1156524698645556,
+      "ic95": [
+       0.06574824250281369,
+       0.1658792678538234
+      ],
+      "replicas_validas": 10000,
+      "replicas_pedidas": 10000,
+      "etiqueta": "Δ_OBSERVABLE",
+      "estado": "ESTIMADA",
+      "excluye_cero": true,
+      "signo": "+"
+     }
+    }
+   },
+   "delta_diferencia": {
+    "valor": 0.05184383457026706,
+    "nota": "diferencia de dos diferencias; spec §3.1 no pre-registro IC para ella"
+   },
+   "veredicto_Bbis": "CONTRARIA",
+   "motivo_veredicto": "las dos ramas dan Δ>0 limpio: la separacion que el par afirma (agencia se conserva bajo secreto) no aparece"
+  },
+  {
+   "pieza": "c",
+   "reglas": [
+    "R7.4"
+   ],
+   "id_modelo": [
+    "civico.protesta.agravio_urbano"
+   ],
+   "fuente": "ENCUCI 2020",
+   "spec_heredada": "§4.1 (L9)",
+   "n_total": 21519,
+   "n_universo": 20184,
+   "cobertura": 0.9379618011989405,
+   "universo_restringido": false,
+   "eje_principal": {
+    "urbano-agravio": {
+     "p": 0.11219151313930475,
+     "ic95": [
+      0.10188480802569078,
+      0.12364119675369828
+     ],
+     "n": 8322,
+     "numerador": 883,
+     "n_estratos": 226,
+     "n_upm": 2541,
+     "estratos_singleton": 3,
+     "replicas": 10000,
+     "poblacion_expandida": 43699268.0,
+     "etiqueta": "urbano-agravio",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.11219151313930475,
+      "ic95_linealizado": [
+       0.10071699214228766,
+       0.12366603413632185
+      ],
+      "n_upm": 2541,
+      "estratos_singleton": 3
+     }
+    },
+    "urbano-sin-agravio": {
+     "p": 0.07495857152830204,
+     "ic95": [
+      0.0649722297830211,
+      0.0856715977976603
+     ],
+     "n": 6356,
+     "numerador": 450,
+     "n_estratos": 224,
+     "n_upm": 2239,
+     "estratos_singleton": 10,
+     "replicas": 10000,
+     "poblacion_expandida": 26342391.0,
+     "etiqueta": "urbano-sin-agravio",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.07495857152830204,
+      "ic95_linealizado": [
+       0.06390895660993087,
+       0.08600818644667321
+      ],
+      "n_upm": 2239,
+      "estratos_singleton": 10
+     }
+    },
+    "rural-agravio": {
+     "p": 0.09191244410077362,
+     "ic95": [
+      0.0744347858201843,
+      0.11035869029431866
+     ],
+     "n": 2050,
+     "numerador": 188,
+     "n_estratos": 55,
+     "n_upm": 314,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 7218794.0,
+     "etiqueta": "rural-agravio",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.09191244410077362,
+      "ic95_linealizado": [
+       0.07160857038792909,
+       0.11221631781361815
+      ],
+      "n_upm": 314,
+      "estratos_singleton": 0
+     }
+    },
+    "rural-sin-agravio": {
+     "p": 0.06699631345403226,
+     "ic95": [
+      0.056831492469630956,
+      0.0773889066565247
+     ],
+     "n": 3456,
+     "numerador": 219,
+     "n_estratos": 55,
+     "n_upm": 335,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 11851473.0,
+     "etiqueta": "rural-sin-agravio",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.06699631345403226,
+      "ic95_linealizado": [
+       0.0554214032915621,
+       0.07857122361650241
+      ],
+      "n_upm": 335,
+      "estratos_singleton": 0
+     }
+    }
+   },
+   "contrastes": {
+    "C1_entorno_con_agravio": {
+     "d": 0.020279069038531133,
+     "ic95": [
+      -0.0017961896519993886,
+      0.04121070529983557
+     ],
+     "replicas_validas": 10000,
+     "replicas_pedidas": 10000,
+     "etiqueta": "C1 = urbano-agravio - rural-agravio",
+     "estado": "ESTIMADA",
+     "excluye_cero": false,
+     "signo": "+"
+    },
+    "C2_agravio_en_urbano": {
+     "d": 0.03723294161100271,
+     "ic95": [
+      0.022183034618537142,
+      0.052205989840479
+     ],
+     "replicas_validas": 10000,
+     "replicas_pedidas": 10000,
+     "etiqueta": "C2 = urbano-agravio - urbano-sin-agravio",
+     "estado": "ESTIMADA",
+     "excluye_cero": true,
+     "signo": "+"
+    }
+   },
+   "veredicto_Bbis": "CORROBORADA-PARCIAL",
+   "motivo_veredicto": "un contraste limpio en el signo esperado, el otro no discrimina -- a diferencia de L9 (donde C1 cayo por guardia de numerador), aqui los dos son ESTIMABLES: uno discrimina, el otro no",
+   "no_dice_nada_sobre": "R7.5 ni el veredicto D de ADR-158 (evento, no persona)",
+   "sustitucion_declarada": {
+    "agravio": "AP4_3_2 (percepcion de inseguridad en la colonia), no victimizacion personal (vic1ext de LAPOP no existe en ENCUCI)",
+    "desenlace": "AP7_3_5 (alguna vez, de por vida), no AP7_4_5 (ultimos 12 meses: gateada dentro de AP7_3_5==1, n=1748/21519=8.1%, no sirve como desenlace de poblacion)"
+   }
+  }
+ ]
+}
