@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **326 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **327 ADR**
 
 > | | |
 > |---|---|
@@ -5599,3 +5599,24 @@ ejecutado con `/acto` de `ADR-237`.
 **Falsador declarado.** Si en un mes el censo diario no evita ni una petición doble (medido por copias `(n)` nuevas en la raíz), se retira la pieza `P1` y se anota.
 
 **Deuda que abre.** `FP-282` (instalación manual de mesa: el cron editado no se instala solo, misma vía que `FP-233`). Recibo: **`FP-281`**.
+
+**ADR-327 · `ACTO MAESTRA37-L3-BIS · SALUD-A4-SOBRE-v2`** *(3/sep/2026, UBUNTU)* — **el dominio `salud` pasa de 1 a 2 de 5, no llega a 3, y la vía de adquisición queda agotada.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-03-MAESTRA37-L3-BIS-SALUD-A4-SOBRE-V2.md`, SHA de redacción `27647ac4` — que es exactamente la base de este acto (`27647ac`, merge de `PR #518`/`MAESTRA37-A1`).
+
+**Gate verificado.** `COMPUERTA: ninguna` — el encargo la declara cumplida por producto y se verificó: `data/inventario-reactivos-descargas-mx-v1_1.tsv` presente en `origin/main` (42 536 filas de dato), `grep -ac '__v2026_09_01' data/manifiesto.yaml` → 142 líneas / **125 entradas** con el sufijo en su `- id:`. *(Nota de procedencia: el lanzamiento anterior de este acto, contra `92f17e14`, **paró con cero commits** porque esos dos productos aún no estaban en `origin/main`; la compuerta hizo su trabajo.)*
+
+**Qué decidió.** Re-selló las cinco reglas de `canon/modelo-decision-v4_0.md` §3.4 contra el universo `__v2026_09_01`, por censo y no por búsqueda, con el universo congelado en `COMMIT-1` antes de emitir veredicto. **Dos veredictos se mueven y tres se confirman sin re-escribirse:** `R4.3` (rama desabasto) `NO-ACCESIBLE` → **`EXISTE-SATISFACE`**, medido sobre el `.dta` abierto (12 924 personas; `a0313`=Sí 337 con `a0314` respondida **337 de 337**; `a0405b` no nula 679 con `a0405c` respondida **679 de 679**); `R4.5` `NO-ENCONTRADO` → **`EXISTE-NO-SATISFACE`** por el componente `etiquetado`; `R4.1`, `R4.4` y `R4.2` **confirmados**.
+
+**Por qué las tres confirmaciones no se re-escriben.** El portal republicó el microdato pero **no tocó el instrumento**: el diff de etiquetas entre julio y septiembre en los cinco módulos comunes da **0 variables nuevas y 0 etiquetas distintas** (las 2 diferencias de `menores` son bytes basura de la extracción de julio, verificado carácter a carácter). Un veredicto A.4 apoyado en texto de reactivo no caduca por una republicación de microdato.
+
+**El techo de `ADR-323` queda VENCIDO EN ALCANCE (A.10) y se corrobora al re-medirlo.** L3 escribió *«una sola adquisición llevaría salud de 1 a 2, no a 3»* sobre cinco módulos de julio; re-medido sobre **38** módulos da lo mismo. El falsador que L3 dejó escrito se corrobora en sus dos mitades. **Lo que este acto refuta es la predicción de dirección**, escrita antes de mirar: el módulo `etiquetado` **sí** levanta sellos frontales × decisión de compra (`sello` pasa de 0/0 a 19/24; `eti27` opone «Lo compró igual» a «Compró un producto similar, pero con menos sellos») y **aun así R4.5 no satisface**, porque la regla pide sellos × compra **a precio similar** y el precio del sustituto no se levanta (`precio` aparece 4 veces en 19 598 filas, siempre como `ETI32A`=4, criterio autodeclarado).
+
+**Techo nuevo.** Ninguna descarga de ENSANUT 2024 lleva `salud` a 3. Las tres brechas restantes son de **instrumento**; la más corta es `R4.5`, a la que le falta **un ítem de precio, no un módulo**.
+
+**Qué NO hizo.** No abrió Ola 6 (no hay `ABRE-CANDIDATO-CON-RESERVA`: 2 < 3) · no midió `p` · no cargó al motor · no tocó `milpa/**`, `canon/modelo-decision-v4_0.md` ni `canon/motor-nucleo-medible-v1_0.md` · **D8 se mantiene, ningún texto del canon se toca** · no dio de alta ninguna necesidad (las cuatro redacciones van a `FP-282`, decisión de mesa) · no re-extrajo inventarios · no tocó `data/manifiesto.yaml`, `L10` ni su cola · no descargó nada.
+
+**Numeración.** Candidato re-derivado por el comando de la casa contra este árbol: máximo `325`, contiguo, candidato `326`. **`MAESTRA37-N6` corre en paralelo en nube y puede tomar `326` primero**; regla de la casa: renumera quien fusiona segundo.
+
+**Recibos.** `FP-283` (recibo del acto) · `FP-284` (cuatro necesidades de salud redactadas, alta de mesa) — `FP-281`/`FP-282` los tomó `MAESTRA37-N6` al fusionar primero · enmienda fechada a `FP-268` **sin cambio de estado**, con el recuento de cinco columnas.
+

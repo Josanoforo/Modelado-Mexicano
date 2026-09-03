@@ -579,3 +579,33 @@ registra, lo depositado no existía para nadie — ni el censo de `L1` del
 3/sep (225 filas) vio los tabulados ICPSR/PDN, ni `A.8` tenía otra fuente
 que el manifiesto. Medido en el `--escanea` de mesa del 3/sep (373
 archivos): **9 objetos con 21 copias de navegador**.
+
+## `data/l3bis-ensanut2024v2-*` — censo de lectura de ENSANUT 2024 v2 (`ACTO MAESTRA37-L3-BIS`, 3/sep/2026)
+
+Dos anexos **nuevos**, producidos por `P0` (COMMIT-1) sobre la subcarpeta
+`ENSANUT2024-v2026-09-01/` de la raíz `descargas_mx`. Los `data/l3-*` de
+`MAESTRA37-L3` (julio, cinco módulos) quedan **intactos**: son historia, no se
+reescriben.
+
+- **`data/l3bis-ensanut2024v2-catalogos-v1_0.tsv`** — 19 598 filas de dato sobre
+  los **38** `*.Catálogo.xlsx` de la subcarpeta, extraídas con `openpyxl 3.1.5`.
+  Formato: `modulo` + seis columnas crudas de la hoja. Las filas de diccionario
+  llevan el centinela `__VARIABLES__` en la segunda columna; las demás son
+  `código → etiqueta de valor`. Es **censo**: se lee todo el catálogo, no se
+  eligen términos.
+- **`data/l3bis-ensanut2024v2-cuestionarios-v1_0.txt`** — `pdftotext -layout` de
+  **11 de los 16** PDF de cuestionario de la subcarpeta. Los otros **5** son
+  byte-idénticos (mismo `sha256`) a payloads ya registrados antes de v2 y su
+  texto ya está en `data/l3-ensanut2024-cuestionarios-v1_0.txt`; la cabecera del
+  archivo los nombra uno por uno con su `sha256_12` y el `id` del manifiesto al
+  que corresponden, para que la ausencia sea auditable y no parezca un hueco.
+
+**Cómo se leen juntos.** El inventario `v1_1` da la etiqueta de Stata (truncada a
+80 caracteres), el catálogo da los códigos de respuesta, y el PDF completa la
+etiqueta truncada. Un nombre de variable sin etiqueta **y** sin catálogo es
+`CANDIDATO-ABRIR-EN-CAJA`, no veredicto.
+
+⚠️ **El `payload_id` del inventario es la ruta relativa a la raíz y NO lleva el
+sufijo `__v2026_09_01`** (ese sufijo vive en el `id` del manifiesto). Filtrar el
+inventario por el sufijo devuelve **0** y es un falso negativo; el filtro
+correcto es el prefijo `ENSANUT2024-v2026-09-01/`.
