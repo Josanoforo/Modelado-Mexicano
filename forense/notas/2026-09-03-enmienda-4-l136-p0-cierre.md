@@ -22,7 +22,7 @@ firma `DL-(1)`.
 **`sha256` del script parcheado**:
 `efb71de15da18f8239647b0467f85e085f69450db12c5a54728af66aac1ab48f`
 
-El previo (script sin editar, el que corrió `E21`):
+El previo (script sin editar, el que corrió `MAESTRA33-E21`):
 `cac791efe18b257ecf31f916cd8fe82ff3675228e9876f79baad9107178c086b` — queda
 como historia, no se recongela en ningún sitio más.
 
@@ -40,7 +40,7 @@ Patrón `PAQUETE-L-v1_2.md` §4 (mismo mecanismo sellado ahí para
   sufijo habría sido incorrecto).
 - `SALIDA_TSV` → `forense/prereg-duelo-v2/L-extraido-v1_2.tsv`.
 - `LOG_CIERRE` → `forense/prereg-duelo-v2/L-extraido-v1_2-notas-cierre.md`
-  (ruta distinta a la de `E21`, `L-extraido-v1_1-notas-cierre.md` — el
+  (ruta distinta a la de `MAESTRA33-E21`, `L-extraido-v1_1-notas-cierre.md` — el
   override nunca pudo sobreescribir el cierre sellado, y se verificó después
   de correr que su `sha256` no cambió).
 - `CELDAS_ESPERADAS = 14` (14 celdas de `L-spec-v1_2.json`).
@@ -61,8 +61,8 @@ Override apuntado a las 176 capturas de v1_1 (las 11 celdas de
 
 `--regresion`-equivalente (`regresion_civ08()`) contra las 8 capturas de
 piloto CIV-08: `Coinciden: 3/8`, `Divergen en valor: 5/8`,
-`Piloto NO-DISPONIBLE, regla SI extrae: 0/8` — idéntico al sellado por `E21`
-en `L-extraido-v1_1-notas-cierre.md`.
+`Piloto NO-DISPONIBLE, regla SI extrae: 0/8` — idéntico al sellado por
+`MAESTRA33-E21` en `L-extraido-v1_1-notas-cierre.md`.
 
 **PASA.**
 
@@ -87,7 +87,7 @@ enmienda, que solo autorizó tocar el literal de la aserción), reproduce el
 la ENMIENDA 4, no un defecto de esta ejecución.
 
 Verificado tras la corrida: `forense/prereg-duelo-v2/L-extraido-v1_1.tsv` y
-`L-extraido-v1_1-notas-cierre.md` (cierre sellado de `E21`) sin cambios
+`L-extraido-v1_1-notas-cierre.md` (cierre sellado de `MAESTRA33-E21`) sin cambios
 (`git diff` vacío, mismo `sha256` de antes de la corrida).
 
 ## CONSUMIDO
