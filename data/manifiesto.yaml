@@ -1274,7 +1274,7 @@
   tamano_bytes: 13255
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
-  nota: >
+  nota: >-
     Nota metodológica de 1 página (NO es un cuestionario de preguntas, pese al nombre) que
     documenta la construcción del Índice de Bienestar ENSANUT 2024 vía Análisis de Componentes
     Principales (matriz de correlaciones policóricas) sobre 8 variables de vivienda/bienes
@@ -1282,6 +1282,11 @@
     el origen de indice1/nseF/nse5F que aparecen en los archivos NSE_* y *_w_ICB — "ICB" e
     "Índice de Bienestar" son el mismo constructo, no dos distintos, verificado leyendo este
     documento.
+     || 2026-09-03 (ACTO MAESTRA37-A1, firmas de mesa D13/D14/D15): entra al universo de ENSANUT
+    Continua 2024 por url_origen (ensanutcontinua2024), no por id -- el universo real son
+    24 entradas, no 23. La version vigente del portal es la de 2026-09-01; este payload reaparece
+    ahi byte-identico (indice_bienestar.Cuestionarios.docx, mismo sha256), asi que el registrador
+    no abrio entrada nueva. Historia, no vigente (D14).
 
 - id: nse_hogar_ensanut_2024_catlogo
   usado_para: sin uso asignado — registro de inventario

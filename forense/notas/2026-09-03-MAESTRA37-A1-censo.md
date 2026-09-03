@@ -12,7 +12,7 @@ Raíz `descargas_mx` = `/mnt/c/Users/PC0/Descargas MX` (por `data/raices.local.y
 - **El encargo esperaba 129 en la subcarpeta; hay 131.** No es un error de mesa: la página viva
   declara 169 `ArchId` únicos, de los que 38 son `.spss` (excluidos por mesa) → 169 − 38 = **131**.
   Los 131 depositados tienen `ArchId` en la página; ninguno quedó sin procedencia.
-- Colisiones de nombre contra el manifiesto (campo `archivo`): **0** — las entradas de enero
+- Colisiones de nombre contra el manifiesto (campo `archivo`): **0** — las entradas previa (fecha_descarga 2026-07-30; contenido con fecha interna 2026-01-08)
   llevan el basename pelado y las nuevas llevan `ENSANUT2024-v2026-09-01/<archivo>`, así que
   el guard de `--escanea` (mismo nombre, sha distinto → CONFLICTO) **no se dispara**; no hay
   nada que rodear.
@@ -30,9 +30,9 @@ Raíz `descargas_mx` = `/mnt/c/Users/PC0/Descargas MX` (por `data/raices.local.y
 id (los cuestionarios PDF/DOCX de julio, mismo byte). El registrador dedupica por hash y **no**
 los va a registrar: es correcto, y se declara aquí para que el conteo cierre.
 
-### 1.1 · Los 10 con homónimo de enero (zip Y contenido interno)
+### 1.1 · Los 10 con homónimo previa (fecha_descarga 2026-07-30; contenido con fecha interna 2026-01-08) (zip Y contenido interno)
 
-| archivo (v2) | id enero | sha zip viejo→nuevo | interno: tamaño / fecha / sha viejo→nuevo | veredicto |
+| archivo (v2) | id de la entrada previa | sha zip viejo→nuevo | interno: tamaño / fecha / sha viejo→nuevo | veredicto |
 |---|---|---|---|---|
 | `adolescentes_ensanut2024_w.csv.csv.zip` | `adolescentes_ensanut2024_w_csv_csv` | `3c5f21ef6158…` → `2b164ca9bd96…` | 4,240,707 / 2026-01-08 / `4e7308418308…` → 4,210,882 / 2026-09-01 / `4c61b21e00fa…` | CONTENIDO-DISTINTO |
 | `adolescentes_ensanut2024_w.stata.stata.zip` | `adolescentes_ensanut2024_w_stata_stata` | `b528e00511ad…` → `47251c90bd41…` | 16,288,917 / 2026-01-08 / `56d5d07e6130…` → 16,575,279 / 2026-09-01 / `e36db7a5c267…` | CONTENIDO-DISTINTO |
@@ -98,7 +98,7 @@ Es **sólo el S3**. La fila de cola pide `S1_S2_S3_S6` → el veredicto de cola 
 ## 4 · Mapeo congelado de ids (D13)
 
 Convención D13: `<slug del basename>__v2026_09_01`. El slug es el que `_derivar_id` produce
-(basename sin la última extensión, no la ruta). `sustituye_a` = el id de enero cuando hay homónimo.
+(basename sin la última extensión, no la ruta). `sustituye_a` = el id previa (fecha_descarga 2026-07-30; contenido con fecha interna 2026-01-08) cuando hay homónimo.
 
 | id nuevo | archivo | sustituye_a |
 |---|---|---|
@@ -239,7 +239,7 @@ curl -s --max-time 300 -o <destino> -e <URL> --data "ArchId<b64>=" <URL>
 URL = https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
 <b64> = base64 de "01-Componente de SALUD/<carpeta>/<archivo>" (y análogo para nutrición),
         leído de los 169 ArchId de la página VIVA (no del descargas.php de julio que mesa
-        guardó: ese es de la versión de enero y no describe lo que hoy sirve el portal).
+        guardó: ese es de la versión previa (fecha_descarga 2026-07-30; contenido con fecha interna 2026-01-08) y no describe lo que hoy sirve el portal).
 ```
 
 - Archivos re-bajados: **131 / 131**.

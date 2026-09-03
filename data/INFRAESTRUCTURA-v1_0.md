@@ -487,18 +487,32 @@ de julio cambiaron su contenido interno (fecha interna `2026-01-08` →
 Nada en el programa lo habría notado — el manifiesto identifica un payload
 por `id` + `archivo` + `sha256`, y ninguno de los tres dice **qué versión
 publicada** es. Lo atrapó `A.7` (doble descarga) porque mesa comparó a
-mano; sin esa comparación, la versión de enero y la de septiembre se
+mano; sin esa comparación, la versión previa (fecha_descarga 2026-07-30; contenido con fecha interna 2026-01-08) y la de septiembre se
 habrían leído como el mismo objeto.
 
 **Convención de versión (firmas de mesa `D13`/`D14`/`D15`, 3/sep/2026):**
+
+**De dónde sale, y por qué estaba muda hasta esta línea.** Sale del encargo
+de este acto, archivado verbatim por `A.3` en
+`forense/encargos/2026-09-03-MAESTRA37-A1-REGISTRA-ENSANUT-V2-Y-MANUALES.md`,
+**línea 3**: «*D13 (convención de versión: id nuevo con sufijo `__v2026_09_01`,
+`version_publicada`, `sustituye_a`; entrada vieja intacta salvo nota fechada
+append)*». No confundir con el `D13` de `instrucciones-proyecto-v2_12.md`, que
+es el escalonamiento de modelos: son dos letras `D` de dos tableros distintos.
+Antes de este PR, `version_publicada`, `sustituye_a` y `__v2026` daban **0**
+sobre los 2 978 archivos del árbol (`git grep -c … origin/main`), y **ningún
+test valida el esquema de campos del manifiesto** — es decir, la convención
+habría entrado muda. Por eso se escribe aquí y en las entradas en el mismo PR:
+si no está en los dos lados, no está sellada.
+
 
 | pieza | valor |
 |---|---|
 | `id` del payload nuevo | `<slug del basename>__v2026_09_01` |
 | dónde vive la versión | dentro de `nota`, como `version_publicada: 2026-09-01` |
-| dónde vive el enlace al anterior | dentro de `nota`, como `sustituye_a: <id de enero \| ninguno>` |
+| dónde vive el enlace al anterior | dentro de `nota`, como `sustituye_a: <id previa (fecha_descarga 2026-07-30; contenido con fecha interna 2026-01-08) \| ninguno>` |
 | la entrada vieja | **intacta** (`id`, `sha256`, `tamano_bytes`, `archivo`), con una nota append fechada; no se borra ni se reemplaza |
-| cuál rige | la vigente (`D14`); enero es historia |
+| cuál rige | la vigente (`D14`); la previa es historia |
 
 **Por qué la versión vive en `nota` y no en un campo propio.**
 `tests/manifiesto.py --registra` sólo alcanza `data_raw`

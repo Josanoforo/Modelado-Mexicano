@@ -1,7 +1,7 @@
 # MAESTRA37-A1 · P2–P4 — registro, curador, cola y re-indexado (COMMIT-2)
 
 3/sep/2026 · rótulo `MAESTRA37-A1` · firmas de mesa D13 (convención de versión), D14 (la versión
-vigente rige; enero es historia), D15 (se registran e indexan los 129 —resultan **131**—, salud y nutrición).
+vigente rige; la previa es historia), D15 (se registran e indexan los 129 —resultan **131**—, salud y nutrición).
 
 El censo y el mapeo de ids que este registro ejecuta están congelados en
 `forense/notas/2026-09-03-MAESTRA37-A1-censo.md` (COMMIT-1), escrito antes de tocar el manifiesto.
@@ -26,7 +26,7 @@ Sobre esas entradas ya escritas, un script de este acto aplicó la convención D
 el registrador no expone**: `id` (el derivado → `<slug>__v2026_09_01`) y `nota`. Nada más se tocó.
 
 **El guard de `--escanea` no se rodeó: no llegó a dispararse.** El guard marca CONFLICTO cuando un
-archivo trae el mismo `archivo` que una entrada existente con otro sha. Las entradas de enero llevan
+archivo trae el mismo `archivo` que una entrada existente con otro sha. Las entradas previa (fecha_descarga 2026-07-30; contenido con fecha interna 2026-01-08) llevan
 el basename pelado (`adolescentes_ensanut2024_w.stata.stata.zip`) y las nuevas llevan la subcarpeta
 (`ENSANUT2024-v2026-09-01/adolescentes_ensanut2024_w.stata.stata.zip`): son claves distintas en
 `por_nombre`. Colisiones medidas: **0**. Y el dedup por sha sí actuó, en la dirección correcta —
@@ -48,7 +48,7 @@ Cada entrada lleva en `nota`, como `clave: valor`:
 
 ```
 POST ArchId=<b64 de la ruta del portal>; version_publicada: 2026-09-01;
-sustituye_a: <id de enero | ninguno>; contenido interno <miembro> sha256 <…>
+sustituye_a: <id previa (fecha_descarga 2026-07-30; contenido con fecha interna 2026-01-08) | ninguno>; contenido interno <miembro> sha256 <…>
 (<bytes>, fecha interna <YYYY-MM-DD>); veredicto_A7: <…>;
 A.7 doble descarga 2026-09-03 COINCIDE …
 ```
@@ -65,9 +65,9 @@ un `.xlsx` eso da un **falso RE-EMPAQUETADO**: en `nse_hogar_ensanut_2024.Catál
 el binario más grande. Con el criterio corregido los dos son **CONTENIDO-DISTINTO**, y el veredicto
 `RE-EMPAQUETADO` queda en **cero** para los 131 archivos.
 
-### 2.2 · Los 17 con homónimo de enero — todos CONTENIDO-DISTINTO
+### 2.2 · Los 17 con homónimo previa (fecha_descarga 2026-07-30; contenido con fecha interna 2026-01-08) — todos CONTENIDO-DISTINTO
 
-| archivo (v2) | id de enero (`sustituye_a`) | interno viejo → nuevo (bytes, fecha) |
+| archivo (v2) | id previa (fecha_descarga 2026-07-30; contenido con fecha interna 2026-01-08) (`sustituye_a`) | interno viejo → nuevo (bytes, fecha) |
 |---|---|---|
 | `adolescentes_ensanut2024_w.csv.csv.zip` | `adolescentes_ensanut2024_w_csv_csv` | 4,240,707 / 2026-01-08 → 4,210,882 / 2026-09-01 |
 | `adolescentes_ensanut2024_w.stata.stata.zip` | `adolescentes_ensanut2024_w_stata_stata` | 16,288,917 / 2026-01-08 → 16,575,279 / 2026-09-01 |
@@ -90,7 +90,7 @@ el binario más grande. Con el criterio corregido los dos son **CONTENIDO-DISTIN
 La fecha interna salta de `2026-01-08` a `2026-09-01` en los diecisiete. **Ningún sha interno
 coincide.** Es re-publicación de contenido, no re-empaquetado.
 
-### 2.3 · Las 23 entradas de enero: nota append fechada, nada más
+### 2.3 · Las 23 entradas previa (fecha_descarga 2026-07-30; contenido con fecha interna 2026-01-08): nota append fechada, nada más
 
 Las 23 conservan `id`, `sha256`, `tamano_bytes` y `archivo` intactos. Se les añadió, tras ` || `,
 una nota fechada: «superada por `<id nuevo>`…» a las 17 con sucesor, y a las 6 restantes la
@@ -142,7 +142,9 @@ las tres tablas: **+8 relaciones · +8 procedencias · +8 filas de utilidad · +
   (por defecto misma institución no es mismo objeto).
 - `clasificacion_relacion` = **`CANDIDATA`** en las ocho, por A.4 conservador: el payload existe y está
   verificado, pero **no se ha leído una sola variable** en este acto.
-- `capa2_manifiesto = SI` y `capa3_disco_real = SI`: **medidos en esta caja y en este acto**, no citados
+- `capa2_manifiesto = SI` y `capa3_disco_real = EXISTE;COINCIDE;INTEGRO` (el vocabulario que `T21` exige
+  cuando `capa2=SI`; el primer intento escribió `SI` y `T21` lo marcó — corregido, no silenciado):
+  **medidos en esta caja y en este acto**, no citados
   de otro. `python3 tests/manifiesto.py --verifica` → `descargas_mx: coincide=267 · no_coincide=0 ·
   ausente=0 · sin_configurar=0`.
 - Control positivo Y negativo sobre `via_capa2.verificar_entrada` (A.13): las **125** entradas v2 dan
@@ -223,3 +225,100 @@ propósito**: reapuntarla habría cambiado en silencio lo que ya lee quien pide 
 | cargas al motor | 0 | **0** |
 | dominios abiertos | 0 → 0 | **0** |
 | medición de modelo | cero directo | **cero**: no se abrió una sola variable |
+
+---
+
+## 8 · Enmienda de dirección a mitad de acto (3/sep/2026), derivada contra `origin/main = 2a2af31`
+
+Mesa mandó cinco correcciones y dos verificaciones mientras el acto corría. Se ejecutaron
+todas; esto es lo que dieron.
+
+### 8.1 · El contador del encargo (1 104) es correcto y no se tocó
+
+`origin/main` da **1 104** entradas. Este acto reporta **1 104 → 1 233**: 1 104 es la base,
+1 233 es el resultado. Cualquier `1 23x` visible desde fuera durante la ejecución era este
+archivo en escritura, no una cifra corregida.
+
+### 8.2 · El universo de ENSANUT 2024 en el manifiesto son **24**, no 23
+
+Dos recetas, sobre `git show origin/main:data/manifiesto.yaml`:
+
+```
+grep -in '^- id: .*ensanut'                → 24 líneas, de las que 1 es de 2018 → 23
+entradas con 'ensanutcontinua2024' en url_origen → 24
+unión                                       → 24
+```
+
+La 24ª es **`indice_de_bienestar_cuestionarios`**: entra por `url_origen`, no por `id` (su
+id no lleva la cadena `ensanut`). Se le añadió su nota append fechada como a las otras: su
+contenido reaparece **byte-idéntico** en la versión vigente
+(`indice_bienestar.Cuestionarios.docx`), así que el registrador no abrió entrada nueva.
+**23 era el universo por una sola receta; 24 es el universo.**
+
+### 8.3 · «de enero» era impreciso — corregido en las tres piezas
+
+Las entradas previas traen `fecha_descarga: 2026-07-30` (**julio**); lo que está fechado en
+**enero** es el *contenido interno* (`2026-01-08`). Las dos cosas son ciertas y no son la
+misma: se descargó en julio lo que el portal había publicado en enero. Corregido en el
+censo, en este registro y en `INFRAESTRUCTURA`.
+
+### 8.4 · Los seis sha idénticos: verificado, no inferido
+
+```
+$ git diff origin/main -- data/manifiesto.yaml | grep -cE 'adc873843b79|af65f922094c|344f32ef0f87|0bc30c3b7f08|004aacee3729|6913725196ae'
+0
+$ grep -acE '…mismos seis…' data/manifiesto.yaml      # control positivo
+6
+```
+
+**0 en el diff**, con control positivo de **6** en el archivo entero (las entradas de julio,
+que ya estaban y no se tocaron). El dedup por hash del registrador actuó en las tres vías y
+no se rodeó por ninguna.
+
+### 8.5 · La convención `D13`, sellada en los dos lados
+
+Sale del encargo, **línea 3** del `A.3`
+(`forense/encargos/2026-09-03-MAESTRA37-A1-REGISTRA-ENSANUT-V2-Y-MANUALES.md`). Antes de este
+PR, `version_publicada`, `sustituye_a` y `__v2026` daban **0** sobre los 2 978 archivos, y
+ningún test valida el esquema de campos del manifiesto: habría entrado muda. Queda escrita en
+`data/INFRAESTRUCTURA-v1_0.md` **en este mismo PR**, con la cita. No confundir con el `D13` de
+`instrucciones-proyecto-v2_12.md` (escalonamiento de modelos): dos tableros distintos.
+
+### 8.6 · Universo del acto: 131 archivos / **131** `sha256` distintos
+
+Medido (`os.walk` + `sha256`, 3/sep). La diferencia con los 129 del encargo se escribe como
+**inferencia por estructura**, no como dato de mesa: la página viva declara **169** `ArchId`
+únicos y **38** son `.spss` (excluidos por mesa) → 169 − 38 = 131. Los **6** sueltos de la
+raíz (`0fa8f4436fa4`, `80c255f88242`, `440ff69a24d8`, `20a9fae339da`, `fe6a01d2b5c3`,
+`15426e13b941`) **no** están en `main`: se registró la copia de la subcarpeta y la suelta
+quedó como constancia, bloqueada por el mismo dedup. **SIN-SUCESOR confirmado:**
+`464a62daf5e9` = `adultos_ensanut2024_w.Catlogo.csv.csv.zip`
+(`adultos_ensanut2024_w_catlogo_csv_csv`) no tiene homónimo en la versión vigente.
+
+### 8.7 · `--verifica`, una invocación por `--id` (A.1)
+
+**129 invocaciones, 129 `COINCIDE`**, 0 `NO COINCIDE`, 0 `AUSENTE`, 0 con código de salida
+distinto de 0. Ninguna cifra sale de la corrida agregada.
+
+### 8.8 · Anti-PR #77
+
+Los payloads viven en la raíz compartida `/mnt/c/Users/PC0/Descargas MX` (131 archivos), donde
+mesa los depositó. Este acto **no descargó nada a disco compartido**: la doble descarga de A.7
+fue a `$TMPDIR` y es desechable. El diff del PR no contiene un solo payload (sólo `.md`,
+`.tsv`, `.yaml`, `.py`, `.json`).
+
+### 8.9 · Qué desbloquea — y qué no
+
+`adultos_ensanut2024_w.stata.stata.zip` es lo que `MAESTRA37-L3` / `ADR-323` declaró
+`AUSENTE-EN-RAIZ`, y lo que bloquea `R4.2` y `L3-bis`. Ya está registrado
+(`adultos_ensanut2024_w_stata_stata__v2026_09_01`), **en su versión de septiembre**, que es
+contenido distinto del que `L3` leyó por catálogo: la lectura hay que reabrirla, no heredarla.
+**Pero `L3` ya midió que una descarga lleva `salud` de 1 a 2, no a 3.** Este acto **no abre el
+dominio y no destraba `L10`**: no mide, no da veredictos `A.4` sobre reglas, y la adjudicación
+es de `MAESTRA37-L3-BIS`.
+
+### 8.10 · Dos ejecutores en un worktree
+
+Otra sesión arrancó sobre este worktree mientras se escribía, lo detectó por `mtime` y paró con
+cero commits y cero `git add`. `git status` no muestra nada ajeno. Queda anotado en
+`forense/hallazgos.md`: ningún test lo atrapa, y hoy sólo se detecta por `mtime`.
