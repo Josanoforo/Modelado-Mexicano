@@ -1687,6 +1687,231 @@ reglas_propuestas:
     sha256_payload: "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
     payload_manifiesto_id: envipe2025_csv
 
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA35-L6 · FUENTE-COERCITIVO-Y-PUENTE · 2/sep/2026
+  # Dos entradas. NINGUNA es la p de un prior ASIGNADO del encargo: el
+  # censo P0 cerró con 0 EXISTE-SATISFACE de 7 piezas sobre 5 candidatas,
+  # y tramite.gobierno_digital.coercitivo sigue sin dato (S1 = 1).
+  # Spec de dos commits: forense/notas/2026-09-02-MAESTRA35-L6-spec.md
+  # Censo:               forense/notas/2026-09-02-MAESTRA35-L6-P0-censo.md
+  # Resultados:          forense/notas/2026-09-02-MAESTRA35-L6-resultados.md
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: tramite.gobierno_digital.uso_general_endutih2025
+    entrada_nueva: true
+    renombrada_por: >
+      firma p1 (mesa, 2/sep/2026). ACTO MAESTRA35-L6 la propuso como
+      tramite.gobierno_digital.adopcion_endutih2025; mesa la renombra a
+      uso_general_ -- lo medido es USO, no ADOPCION de una oferta concreta: el
+      instrumento no observa que a la persona le hayan ofrecido nada.
+    no_es_enmienda_a: tramite.gobierno_digital.coercitivo
+    nota_alcance: >
+      NO es la p de tramite.gobierno_digital.coercitivo y no se propone como
+      tal. El censo P0 §3 establecio, sobre las tres olas y con refutacion
+      adversarial, que ENDUTIH no trae marcador de obligatoriedad ni de riesgo
+      fiscal percibido (0 aciertos de obliga|obligator|exig|forzos|coerc sobre
+      el FD completo de las tres olas, con control positivo), que el bloque de
+      gobierno es el unico sin bateria de motivo -- asi que un "No" no se puede
+      leer como rechaza_servicio --, y que P7_36_1 (declaracion de impuestos,
+      unico item fiscal explicito del corpus) esta autoseleccionado al 100% a
+      quien ya interactuo con el gobierno en linea (verificado por cruce sobre
+      el DBF entero: 16362/16362 en 2025, 15557 en 2024, 15083 en 2023). Ademas
+      no hay denominador de obligacion fiscal: "no obligado" y "rechaza" son
+      indistinguibles. ADR-287 sigue en pie fuera de ENCIG.
+      LO QUE ESTA ENTRADA SI HACE: llena la reserva que el propio motor tiene
+      escrita en la estampa A.10 de la regla espejo
+      tramite.gobierno_digital.util_sin_coercion -- verbatim, "No es la
+      adopcion de gobierno digital en Mexico". Ahora esa adopcion esta medida.
+      NO se compara con el 0.673393 de aquella regla: unidad distinta (persona
+      vs tramite) y universo distinto (usuarios de internet vs N_TRA=01, pago
+      del recibo de luz, ENCIG 2025). La comparacion, si mesa la quiere, es de
+      mesa.
+    firma_de_mesa:
+      # SELLA-3: el ejecutor propaga, no decide. Texto verbatim de mesa.
+      id: p1
+      fecha: '2026-09-02'
+      verbatim: >
+        se sella como MEDIDO tasa base, tier FUERTE, entrada en la propuesta
+        tramite.gobierno_digital.uso_general_endutih2025 con las dos olas de
+        contraste (17.17 % / 17.75 %, IC95 sin traslape) y se carga al motor
+        como campo tasa_base_nacional_endutih2025 bajo
+        tramite.gobierno_digital.util_sin_coercion -- no como conducta: llena la
+        reserva escrita ("No es la adopcion de gobierno digital en Mexico") y no
+        sustituye el 0.673 del pago de luz. Lo carga un acto NUBE, no tu; tu
+        dejas la entrada SELLADA-PENDIENTE-CARGA.
+    carga_declarada:
+      # La ejecuta un acto NUBE sucesor, NO ACTO MAESTRA35-L6.
+      destino: "milpa/tramite.yaml -- regla tramite.gobierno_digital.util_sin_coercion"
+      forma: "CAMPO nuevo tasa_base_nacional_endutih2025; NO una conducta del bloque entonces"
+      valor: 0.207026
+      ic95: [0.201085, 0.213148]
+      olas_de_contraste: "2024 = 0.171684 [0.166258, 0.177222] · 2023 = 0.177463 [0.171968, 0.182858]; el IC95 de 2025 no se traslapa con ninguno de los dos, y 2023 y 2024 si entre si"
+      no_sustituye: >
+        el 0.673393 de adopta_encig2025_luz (pago del recibo de luz, N_TRA=01,
+        unidad TRAMITE) se conserva intacto. Esta cifra tiene unidad PERSONA y
+        universo USUARIOS DE INTERNET: llena la reserva que la estampa A.10 de
+        esa regla declara -- "No es la adopcion de gobierno digital en Mexico"
+        --, no la reemplaza.
+    situacion: SELLADA-PENDIENTE-CARGA  # firma p1 (mesa, 2/sep/2026); la carga es de un acto NUBE
+    si:
+      disparadores: NO-APLICA  # tasa base incondicional (firma p1): el dato no
+        # dicta condicion logica de disparo. La situacion coercitiva NO esta
+        # en el instrumento -- ver nota_alcance.
+    entonces:
+      - {conducta: realiza_tramite_gobierno_por_internet_endutih2025, p: 0.207026, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: no_realiza_tramite_gobierno_por_internet_endutih2025, p: 0.792974, clase: "MEDIDO·p(tasa base ponderada)"}
+    porque: {generador: [G1], mecanismo: PENDIENTE-DE-MESA}
+      # mecanismo NO re-derivado por este acto: la cifra es una tasa base, no
+      # un contraste de mecanismo. G1 se hereda del dominio, no se afirma aqui.
+    tier: FUERTE  # firma p1 (mesa, 2/sep/2026)
+    falsable_si: NO-APLICA  # tasa base descriptiva, sin falsador propio -- declarado asi en COMMIT-1 §1
+    fuente: ["ENDUTIH2025", "forense/notas/2026-09-02-MAESTRA35-L6-spec.md"]
+    ola_calibracion: "ENDUTIH 2025 (principal); 2024 y 2023 como sensibilidad de ola. Estructura del bloque de gobierno identica en las tres, verificada hoja contra hoja."
+    ic95: [0.201085, 0.213148]
+    n: 48718
+    ponderador: FAC_PER
+    escala: "proporcion ponderada de PERSONAS USUARIAS DE INTERNET de 6 anios y mas (no de la poblacion total, no de tramites)"
+    universo: >
+      ESTAMPA A.10 -- personas de la tabla de usuarios de ENDUTIH 2025 con
+      P7_1='1' (uso internet en los ultimos tres meses). adopta = P7_35_4='1'
+      ("¿ha utilizado internet para realizar tramites del gobierno?"), no adopta
+      = P7_35_4='2'. Universo verificado por guardia que PARA: el universo de
+      P7_35_4 coincide EXACTO con P7_1='1' en las tres olas (0 filas con dato
+      fuera, 0 filas en universo sin dato). n=48718, estratos=425, UPM=8594,
+      poblacion expandida=104,903,990.
+    serie_por_ola:
+      - {ola: 2025, p: 0.207026, ic95: [0.201085, 0.213148], n: 48718, numerador: 9221, estratos: 425, upm: 8594}
+      - {ola: 2024, p: 0.171684, ic95: [0.166258, 0.177222], n: 47240, numerador: 8163, estratos: 437, upm: 8741}
+      - {ola: 2023, p: 0.177463, ic95: [0.171968, 0.182858], n: 46631, numerador: 8062, estratos: 341, upm: 8216}
+    sensibilidades_pre_declaradas:
+      # congeladas en COMMIT-1 antes de medir, no elegidas despues
+      A_interaccion_en_vez_de_tramite:
+        desenlace: "union de P7_35_1..P7_35_4 (comunicarse, consultar, descargar formatos, tramitar)"
+        p: 0.357185
+        ic95: [0.350124, 0.364140]
+        n: 48718
+      B_universo_ampliado:
+        universo: "todas las filas de la tabla usuarios; los no usuarios de internet (P7_1='2') cuentan como no adopcion"
+        p: 0.178152
+        ic95: [0.172724, 0.183700]
+        n: 57810
+    hallazgo: >
+      Uno de cada cinco usuarios de internet hizo un tramite de gobierno en
+      linea en 2025 (20.70%), y la cifra SUBIO: el IC95 de 2025 no se traslapa
+      con el de 2024 (17.17%) ni con el de 2023 (17.75%), mientras 2023 y 2024
+      si se traslapan entre si -- el salto es de la ola mas reciente, no una
+      tendencia de tres puntos. La brecha entre INTERACTUAR y TRAMITAR es de
+      mas de 15 puntos en las tres olas (2025: 35.72% contra 20.70%): quien
+      mida "gobierno digital" con la bateria completa esta midiendo otra cosa,
+      y por casi el doble. RESERVA: es una tasa base, no un contraste de
+      mecanismo; no distingue quien no tramito por rechazo de quien no tuvo
+      tramite que hacer, porque ENDUTIH no pregunta el motivo (censo P0 §3.2).
+    sha256_payload: "a927528779c56b4565aae8b83bfaf119f50178bb4c7e7df4eaceee992f86ee1c"
+    payload_manifiesto_id: endutih_2025_endutih2025_bd_dbf
+
+  - id: dinero.ahorro.respaldo_enif2024
+    entrada_nueva: true
+    referida_a: "bullet dinero.ahorro.informal_sin_puente + con_puente_y_respaldo (canon/modelo-decision-v4_0.md:501)"
+    nota_alcance: >
+      El bullet exige DOS condiciones -- un CANAL personal por el que llega el
+      producto, y un RESPALDO -- y esta entrada mide UNA. El censo P0 §6.2
+      establecio que el CANAL (P5_15_2 / P6_11_2 / P8_12_2, "recomendaciones de
+      amistades o personas conocidas") solo se observa entre quienes YA
+      adoptaron Y ademas compararon: dentro de ese universo la adopcion es
+      constante e igual a 1, asi que la varianza que la regla quiere explicar
+      no existe ahi. P5_16 da el canal de contratacion sobre todos los
+      tenedores pero NO incluye "recomendacion de un familiar o amigo" entre
+      sus 8 opciones, y ENIF nunca pregunta a la poblacion general si le
+      ofrecieron un producto ("se lo han ofrecido" aparece 1 vez en 2534 lineas
+      del cuestionario). El RESPALDO si es observable: P4_9_4 se pregunta a las
+      13502 personas del universo, sin gate.
+      ACOTA la regla; no la cierra. Asociacion dentro de una corrida
+      (A-bis 1/2), no efecto.
+    firma_de_mesa:
+      id: q1
+      fecha: '2026-09-02'
+      verbatim: >
+        se registra como asociacion, tier MEDIA, con la sensibilidad C como
+        hallazgo principal de la entrada (la red personal es sustituto donde hay
+        con que y puente donde no lo hay), sin cargar. Las dos mitades del
+        bullet (informal_sin_puente / con_puente_y_respaldo) quedan
+        SIN-FUENTE-DE-ADOPCION: ENIF mide tener red, no que el producto llegue
+        por canal personal, y eso no se re-especifica por narrativa.
+    estado_del_bullet: SIN-FUENTE-DE-ADOPCION
+      # firma q1 (mesa, 2/sep/2026), sobre dinero.ahorro.informal_sin_puente +
+      # con_puente_y_respaldo (canon/modelo-decision-v4_0.md:501). NO es que
+      # falte medir: ENIF mide TENER RED y la regla exige QUE EL PRODUCTO LLEGUE
+      # POR CANAL PERSONAL. La diferencia no se salva re-especificando la regla
+      # por narrativa. Los valores 0.74/0.21/0.05 y 0.52/0.33/0.15 quedan
+      # intactos. La cita de report:tecnologia que desmiente su propia
+      # fuente_citada la propaga a milpa/procedencia.yaml un acto NUBE con esta
+      # firma, NO ACTO MAESTRA35-L6.
+    hallazgo_principal_de_la_entrada: >
+      firma q1: la sensibilidad C. LA RED PERSONAL ES SUSTITUTO DONDE HAY CON
+      QUE Y PUENTE DONDE NO LO HAY. Entre quienes ya podrian resolver la
+      oportunidad con recursos propios (P4_9_1='1'), tener ademas respaldo de
+      familiares se asocia con MENOS ahorro formal: 35.40 % contra 42.84 %,
+      -7.44 pp, CONTRARIA. Entre quienes NO podrian, con MAS: 30.63 % contra
+      22.49 %, +8.14 pp, CORROBORADA. Los dos IC95 sin traslape, en direcciones
+      opuestas. El +5.82 pp del agregado NO es un efecto uniforme: es el
+      promedio de dos poblaciones que se comportan al reves, y sobrevive solo
+      por aritmetica -- el estrato "no podria" es cinco veces mas grande (9 537
+      contra 3 965).
+    situacion: REGISTRADA-SIN-CARGA  # firma q1 (mesa, 2/sep/2026)
+    si:
+      disparadores: NO-APLICA  # asociacion por eje, no condicional de disparo
+    entonces:
+      - {conducta: tiene_credito_formal_con_respaldo_enif2024, p: 0.397447, clase: "MEDIDO·p(tasa base ponderada, condicional al eje de respaldo)"}
+      - {conducta: tiene_credito_formal_sin_respaldo_enif2024, p: 0.342561, clase: "MEDIDO·p(tasa base ponderada, condicional al eje de respaldo)"}
+      - {conducta: tiene_cuenta_con_respaldo_enif2024, p: 0.643963, clase: "MEDIDO·p(tasa base ponderada, condicional al eje de respaldo)"}
+      - {conducta: tiene_cuenta_sin_respaldo_enif2024, p: 0.658929, clase: "MEDIDO·p(tasa base ponderada, condicional al eje de respaldo)"}
+    porque: {generador: [G1], mecanismo: "canal de confianza personal -- el bullet lo atribuye a G1; este acto NO lo re-deriva"}
+    tier: MEDIA  # firma q1 (mesa, 2/sep/2026) -- asociacion, no efecto
+    falsable_si: NO-APLICA  # asociacion (A-bis 1/2); el falsador B-bis de la spec juzgo el signo del eje, no la regla
+    fuente: ["ENIF2024", "forense/notas/2026-09-02-MAESTRA35-L6-spec.md"]
+    ola_calibracion: "ENIF 2024 (unica ola censada para este eje; ENIF es trienal)"
+    ponderador: FAC_PER
+    escala: "proporcion ponderada de PERSONAS de 18 anios y mas dentro de cada celda del eje"
+    universo: >
+      ESTAMPA A.10 -- las 13502 personas de 18+ de TMODULO (EDAD_V 18-98, sin
+      faltantes). Eje: respaldo=SI sse P4_9_4='1', respaldo=NO sse P4_9_4='2'
+      ("4.9 Si el dia de hoy se le presentara la oportunidad de comprar una
+      casa, un terreno o abrir un negocio, ¿usted podria aprovecharla... con el
+      prestamo de familiares o amistades?"). Reparto: 3145 SI / 10357 NO /
+      0 fuera de eje -- el eje cubre el universo completo, que es exactamente
+      por lo que se eligio sobre P5_15_2.
+    desenlaces:
+      - {desenlace: D3_credito_formal, papel: secundario, variables: "P6_2_1..P6_2_9", con_respaldo: 0.397447, ic95_con: [0.374806, 0.420250], sin_respaldo: 0.342561, ic95_sin: [0.330049, 0.355527], n_con: 3145, n_sin: 10357, brecha_pp: 5.4886, ic95_sin_traslape: true, veredicto_Bbis: CORROBORADA}
+      - {desenlace: D2_tenencia_cuenta, papel: secundario, variables: "P5_4_1..P5_4_9", con_respaldo: 0.643963, ic95_con: [0.620270, 0.667835], sin_respaldo: 0.658929, ic95_sin: [0.645542, 0.672644], n_con: 3145, n_sin: 10357, brecha_pp: -1.4966, ic95_sin_traslape: false, veredicto_Bbis: NO-DISCRIMINA}
+      - {desenlace: D1_ahorro_formal, papel: PRINCIPAL, variables: "P5_6_1..P5_6_9", con_respaldo: 0.329405, ic95_con: [0.307578, 0.351653], sin_respaldo: 0.271254, ic95_sin: [0.258770, 0.283913], n_con: 3145, n_sin: 10357, brecha_pp: 5.8151, ic95_sin_traslape: true, veredicto_Bbis: CORROBORADA, historia: "La definicion de D1 en COMMIT-1 salio DEGENERADA (p=1.000000 en las dos celdas): P5_6_* no es bateria de tenencia, es subpregunta de P5_4_* y codifica su 'no' EN BLANCO, no como '2'; exigir 'todas 2' para el cero dejo 4078 personas que ya tenian el producto. Reportado tal cual en COMMIT-2 y corregido HACIA ADELANTE en COMMIT-3 (D1', el blanco cuenta como cero, sobre el universo completo), sin tocar COMMIT-1. Control de regresion: D2 y D3 reprodujeron identicos."}
+    sensibilidad_C_control_riqueza:
+      # pre-declarada en COMMIT-1 para atacar la lectura de riqueza; VOLTEA
+      - {estrato: "P4_9_1 podria_con_sus_ahorros=SI", con_respaldo: 0.353961, ic95_con: [0.324342, 0.384001], n_con: 1551, sin_respaldo: 0.428355, ic95_sin: [0.401509, 0.455624], n_sin: 2414, brecha_pp: -7.4395, ic95_sin_traslape: true, veredicto_Bbis: CONTRARIA}
+      - {estrato: "P4_9_1 podria_con_sus_ahorros=NO", con_respaldo: 0.306340, ic95_con: [0.277569, 0.336245], n_con: 1594, sin_respaldo: 0.224910, ic95_sin: [0.212358, 0.237841], n_sin: 7943, brecha_pp: 8.1430, ic95_sin_traslape: true, veredicto_Bbis: CORROBORADA}
+    veredicto_del_acto: "ACOTADA -- derivado por codigo, no a ojo: el signo que el bullet predice se sostiene en el desenlace PRINCIPAL (ahorro formal, CORROBORADA) y en el credito (CORROBORADA), y NO se sostiene en la cuenta (NO-DISCRIMINA)."
+    hallazgo: >
+      Con respaldo personal, mas ahorro formal: 32.94% contra 27.13%, +5.82 pp
+      con IC95 sin traslape, en el signo que el bullet predice. Se sostiene
+      tambien en credito formal (39.74% contra 34.26%, +5.49 pp) y NO en
+      tenencia de cuenta (64.40% contra 65.89%, IC95 traslapados y el punto
+      estimado al reves): el mecanismo aparece donde hay una puerta que
+      franquear y no donde no la hay.
+      PERO EL AGREGADO ES EL PROMEDIO DE DOS POBLACIONES QUE SE COMPORTAN AL
+      REVES. La sensibilidad C, pre-declarada en COMMIT-1 justamente para
+      atacar la lectura de riqueza, voltea: entre quienes YA podrian resolver
+      la oportunidad con recursos propios (P4_9_1='1'), tener ademas respaldo
+      de familiares se asocia con MENOS ahorro formal (35.40% contra 42.84%,
+      -7.44 pp, CONTRARIA); entre quienes NO podrian, con MAS (30.63% contra
+      22.49%, +8.14 pp, CORROBORADA). Los dos IC95 sin traslape, en direcciones
+      opuestas. La lectura que soportan -- lectura, no identificacion -- es que
+      la red personal es SUSTITUTO donde hay recursos propios y PUENTE donde no
+      los hay; el bullet predice puente y el dato lo confirma solo en la mitad
+      de la poblacion que no tiene con que sustituirlo. Que la brecha agregada
+      sobreviva es aritmetica: el estrato "no podria" es cinco veces mas grande
+      (9537 contra 3965). Tercera ocurrencia del mismo patron en el programa,
+      tras el beta cero de MAESTRA34-L6 y la escolaridad no monotona de
+      MAESTRA35-L1: un agregado que corrobora puede ser la media de un eje que
+      se invierte.
   # ═══════════════════════════════════════════════════════════════════
   # ACTO MAESTRA35-L7 · REGLAS-ACTIVOS-L2 · 2/sep/2026 · cuatro entradas
   # ═══════════════════════════════════════════════════════════════════
