@@ -256,3 +256,40 @@ No abre ningún dominio · no relaja ni reescribe ningún criterio · no abre
 bytes · no edita `.claude/commands/mapea.md` · no borra ni corrige in situ
 ninguna frase de N5 (todo es append) · no lanza lotes `L1` · no toca
 `milpa/**`, `data/**` ni `forense/prereg-duelo-v2/**`.
+
+---
+
+## Enmienda fechada (3/sep/2026, `ACTO MAESTRA37-N1 · ALINEA-N6-Y-ENCOLA-L10`, `ADR-319`)
+
+Append-only: **ninguna línea de arriba se edita ni se borra**. El sitio
+afectado en esta nota es `:38` («el curador **no liga ninguna fuente a
+ninguna regla de salud**»), que la mitad `A.13-b` de abajo acota.
+
+**A.13-a:** `PR #453` = `ed3a4129` (`Merge pull request #453 from
+Josanoforo/acto/maestra34-a1-registra-evalua-descargas-2`, 1/sep/2026
+20:54), **ancestro de `bbc57f05`** (`git merge-base --is-ancestor` → sí,
+igual que `004a1d53`, el merge interno de la rama). El comando del encargo
+—`git log --format=%s origin/main | grep -c 'maestra34-a1-registra-evalua'`—
+da **2, no 0**, sobre un universo de **2 434 commits**. La nota de cierre de
+`A1` la añadió `8d0d40e3` (ancestro de `#453`), así que entró al árbol por
+`#453`, **no por `03c2387`** (`#460`), que es meramente posterior
+(`ed3a4129` es ancestro de `03c23878`). El negativo de `N6` se produjo
+**sin declarar cuántos commits examinó** el comando que lo produjo.
+
+**A.13-b:** `data/curacion-registro/utilidad-modelo.tsv` **sí liga**
+`N36` = `R4.3` (`salud.adherencia.desabasto_vs_cuidadora`) a Cero
+Desabasto y a DGIS ×2 — filas **203-205** (`REL-ff6da3b0…`,
+`REL-814040652…`, `REL-b4c43443…`), estado `CANDIDATA /
+PENDIENTE_EVIDENCIA` desde `ADR-279` (1/sep/2026), con `N36` definida en
+`data/curacion-registro/necesidad-objeto-modelo.tsv:41`. El
+`grep -aciE 'salud\.'` que produjo el negativo tenía **control positivo 0**
+(`grep -aciE 'tramite\.'` sobre el mismo archivo → 0): la tabla referencia
+reglas por `necesidad_id`, no por id de regla, así que ese comando no podía
+encontrar nada y su cero no es un negativo.
+
+**Lo que esta enmienda NO cambia.** El veredicto `A.4` del par sigue siendo
+`EXISTE-NO-SATISFACE` (falta el desenlace) y las conclusiones de `N6` quedan
+**en pie sin un solo cambio**: **0** `EXISTE-SATISFACE` administrativas,
+**2 de 25**, **0 de 6** dominios. Lo único que se acota es «nunca se corrió
+el mecanismo»: **tres de los siete pares** estaban registrados como
+candidata desde el 1/sep.

@@ -5291,3 +5291,39 @@ Encargo: `forense/encargos/2026-09-02-MAESTRA35-A1-REGISTRA-Y-EVALUA-DESCARGAS-3
 **CONTADOR.** Reglas de Ola 6 cruzadas contra fuentes administrativas registradas **0 → 25** · correcciones `A.13` en canon **+1** · dominios abiertos **0 → 0** (declarado desde el encargo: este acto no abre) · reglas `EXISTE-SATISFACE` **+0** · cargas al motor **0** · **medición de modelo: cero directo**.
 
 **Perímetro.** `forense/notas/2026-09-03-MAESTRA36-N6-cruce-administrativas.md` (nuevo) · `forense/notas/2026-09-03-reevaluacion-ola6-cierre.md` (**append**) · `canon/motor-nucleo-medible-v1_0.md` (**append** bajo la enmienda de N5) · `forense/hallazgos.md` · `forense/firmas-pendientes.tsv` · cascada. **No tocó** `milpa/**`, `data/**`, `.claude/commands/mapea.md`, `forense/prereg-duelo-v2/**`, ni ninguna línea existente de las notas de N5. **No abrió bytes · no tocó red · no lanzó ningún lote.** El hueco de universo de `/mapea` —que un `NO-ENCONTRADO` suyo es **mudo**, no negativo, sobre una fuente administrativa— se anota como `DE1` en `forense/hallazgos.md` y **la skill no se edita**, como el encargo manda. Encargo: `forense/encargos/2026-09-03-MAESTRA36-N6-CORRIGE-N5-Y-REMAPEA-OLA6-ADMINISTRATIVAS.md` (dirección/Fable, formato corto v2.12, `SHA de redacción bbc57f0`, archivado verbatim por `A.3` en el primer commit del acto; ejecutado con la skill `/acto` de `ADR-237`). **Sucesores:** `L15 · ABRE-ADMINISTRATIVAS-SALUD` (caja) si mesa quiere resolver `CAND-1..3`; y con la letra de `FP-267`, el recuento final. Detalle: `forense/notas/2026-09-03-MAESTRA36-N6-cruce-administrativas.md`.
+
+**Enmienda fechada (3/sep/2026, misma jornada) — `ACTO MAESTRA37-N1 ·
+ALINEA-N6-Y-ENCOLA-L10` (`ADR-319`) corrige dos negativos `A.13` de este
+mismo `ADR-318`.** El párrafo `P1` de arriba (`:5271`) y su cascada
+escribieron dos afirmaciones que **no resisten el comando que las debía
+sostener**. No se reescriben hacia atrás — se anotan aquí, que es la
+convención de la casa (`ADR-297`).
+
+**A.13-a:** `PR #453` = `ed3a4129` (`Merge pull request #453 from
+Josanoforo/acto/maestra34-a1-registra-evalua-descargas-2`, 1/sep/2026
+20:54), **ancestro de `bbc57f05`** (`git merge-base --is-ancestor` → sí,
+igual que `004a1d53`, el merge interno de la rama). El comando del encargo
+—`git log --format=%s origin/main | grep -c 'maestra34-a1-registra-evalua'`—
+da **2, no 0**, sobre un universo de **2 434 commits**. La nota de cierre de
+`A1` la añadió `8d0d40e3` (ancestro de `#453`), así que entró al árbol por
+`#453`, **no por `03c2387`** (`#460`), que es meramente posterior
+(`ed3a4129` es ancestro de `03c23878`). El negativo de `N6` se produjo
+**sin declarar cuántos commits examinó** el comando que lo produjo.
+
+**A.13-b:** `data/curacion-registro/utilidad-modelo.tsv` **sí liga**
+`N36` = `R4.3` (`salud.adherencia.desabasto_vs_cuidadora`) a Cero
+Desabasto y a DGIS ×2 — filas **203-205** (`REL-ff6da3b0…`,
+`REL-814040652…`, `REL-b4c43443…`), estado `CANDIDATA /
+PENDIENTE_EVIDENCIA` desde `ADR-279` (1/sep/2026), con `N36` definida en
+`data/curacion-registro/necesidad-objeto-modelo.tsv:41`. El
+`grep -aciE 'salud\.'` que produjo el negativo tenía **control positivo 0**
+(`grep -aciE 'tramite\.'` sobre el mismo archivo → 0): la tabla referencia
+reglas por `necesidad_id`, no por id de regla, así que ese comando no podía
+encontrar nada y su cero no es un negativo.
+
+**Lo que esta enmienda NO cambia.** El veredicto `A.4` del par sigue siendo
+`EXISTE-NO-SATISFACE` (falta el desenlace) y las conclusiones de `N6` quedan
+**en pie sin un solo cambio**: **0** `EXISTE-SATISFACE` administrativas,
+**2 de 25**, **0 de 6** dominios. Lo único que se acota es «nunca se corrió
+el mecanismo»: **tres de los siete pares** estaban registrados como
+candidata desde el 1/sep.
