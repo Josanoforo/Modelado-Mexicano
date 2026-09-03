@@ -2713,6 +2713,10 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "canon/APERTURA-FASE-CALCULO-v1_2.md",
     "canon/PLAN-CALCULO-TOTAL-v1_1.md",
     "canon/estado-programa-v1_10.md",
+    # canon/estado-programa-v1_11.md, ACTO MAESTRA35-N6, 2/sep/2026: hereda
+    # verbatim de v1_10 (§3 L5) el token "ENCARGO M-4"/"MESA-M4" -- ya
+    # censado arriba para v1_10, misma cadena, ningun rotulo nuevo.
+    "canon/estado-programa-v1_11.md",
     "canon/gobernanza-v1_15.md",
     "canon/modelo-decision-v4_0.md",
     "canon/protocolo-sesion-v1_0.md",
