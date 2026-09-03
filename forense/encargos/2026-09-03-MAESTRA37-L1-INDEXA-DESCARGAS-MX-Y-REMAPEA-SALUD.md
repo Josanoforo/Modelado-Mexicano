@@ -21,3 +21,16 @@ CONTADOR: payloads del corpus indexados para /mapea 444 → declara el real (+ha
 Lo que NO hace. No abre Ola 6; no lanza ni edita L10; no mide p de ninguna regla; no carga al motor; no relaja el criterio 2; no escribe un extractor nuevo; no reprocesa data/raw.
 
 Sucesores. Con el recuento de tres columnas: mesa firma FP-267/FP-268. Si salud queda ABRE-CANDIDATO-CON-RESERVA y mesa abre por ADR, MAESTRA35-L10 pasa su compuerta tal como está escrita. Los payloads SIN-EXTRACTOR-DECLARADO de P0, si alguno importa a una regla, son un encargo aparte.
+
+## CONSUMIDO
+
+Cierre de trámite (3/sep/2026, ACTO MAESTRA37-N4 · TRÁMITE-L1-LETRAS-Y-ALIAS): PR #514, ADR-321, recibo `forense/firmas-pendientes.tsv` `FP-271` (`forense/firmas-pendientes.tsv:263`).
+
+Contador real de cierre, citado literal de las notas de L1 — no re-derivado por este acto:
+- Censo por disco de la raíz `descargas_mx`: **150 / 73 / 1** — `DECLARADO-descargas_mx` 150 archivos (138 `payload_id` únicos), `DECLARADO-OTRA-RAIZ` 73, `SIN-REGISTRO` 1 (`forense/notas/2026-09-03-MAESTRA37-L1-censo.md:18-23`, tabla "Resultado — tres clases, no colapsadas").
+- Inventario nuevo `data/inventario-reactivos-descargas-mx-v1_0.tsv`: universo examinado por corrida **31 677 filas** (`forense/notas/2026-09-03-MAESTRA37-L1-remapeo.md:7`, "`descargas_mx=31677` filas"). Nota: el recibo `FP-271` cita **31 674 filas de dato** para ese mismo archivo (`forense/firmas-pendientes.tsv:263`) — las dos cifras conviven en las notas del acto y ninguna de las dos coincide con "+31 678"; este append cita ambas tal como están escritas, sin reconciliarlas ni inventar una tercera.
+- **25 reglas** de Ola 6 re-mapeadas contra `descargas_mx` (`forense/notas/2026-09-03-MAESTRA37-L1-remapeo.md:1-4`, "P2 — remapeo de las 25 reglas").
+- Recuento del criterio 2: **2 de 25** `EXISTE-SATISFACE`, máximo 1 por dominio (`forense/notas/2026-09-03-MAESTRA37-L1-remapeo.md:83`, "Ninguno de los 20... el máximo por dominio en esta tabla es 0"; recuento agregado sin cambio de `N6`, dominio `salud` 1/5 en `remapeo.md:77`, `información` 1/4 en `remapeo.md:80`).
+- **0 de 6 dominios** cumplen el criterio 2, con y sin `descargas_mx` (`forense/notas/2026-09-03-MAESTRA37-L1-remapeo.md:83`, "0 de 6 dominios cumplen el criterio 2, con y sin `descargas_mx`").
+
+Ningún dominio queda `ABRE-CANDIDATO-CON-RESERVA`. Este encargo no abrió Ola 6, no cargó al motor, no relajó el criterio 2. Cierre propagado en `ACTO MAESTRA37-N4` sin volver a correr ningún comando de medición — trámite mecánico, no re-derivación.
