@@ -477,3 +477,78 @@ exacto de antes de este acto, verificado por diff de código y por
 ejecución byte a byte contra el script sin modificar sobre el mismo
 estado del corpus). `--tablas` en `busca_reactivos.py` (default `hoy` =
 exactamente `v1_2`+`ext`, byte a byte igual a `--fuente ambas` de antes).
+
+## Un payload de portal vivo tiene versión, y el manifiesto todavía no tiene campo para ella (`ACTO MAESTRA37-A1 · REGISTRA-ENSANUT-v2-Y-MANUALES`, 3/sep/2026)
+
+El portal del INSP **re-publicó ENSANUT Continua 2024 el 1/sep/2026 sin
+aviso, bajo los mismos nombres de archivo**. Los 17 archivos con homónimo
+de julio cambiaron su contenido interno (fecha interna `2026-01-08` →
+`2026-09-01`, ningún `sha256` interno coincide): no es re-empaquetado.
+Nada en el programa lo habría notado — el manifiesto identifica un payload
+por `id` + `archivo` + `sha256`, y ninguno de los tres dice **qué versión
+publicada** es. Lo atrapó `A.7` (doble descarga) porque mesa comparó a
+mano; sin esa comparación, la versión de enero y la de septiembre se
+habrían leído como el mismo objeto.
+
+**Convención de versión (firmas de mesa `D13`/`D14`/`D15`, 3/sep/2026):**
+
+| pieza | valor |
+|---|---|
+| `id` del payload nuevo | `<slug del basename>__v2026_09_01` |
+| dónde vive la versión | dentro de `nota`, como `version_publicada: 2026-09-01` |
+| dónde vive el enlace al anterior | dentro de `nota`, como `sustituye_a: <id de enero \| ninguno>` |
+| la entrada vieja | **intacta** (`id`, `sha256`, `tamano_bytes`, `archivo`), con una nota append fechada; no se borra ni se reemplaza |
+| cuál rige | la vigente (`D14`); enero es historia |
+
+**Por qué la versión vive en `nota` y no en un campo propio.**
+`tests/manifiesto.py --registra` sólo alcanza `data_raw`
+(`cmd_registra` resuelve `os.path.join(raw_dir, a.archivo)`, línea 320) y
+no acepta campos nuevos; la raíz `descargas_mx` se registra por
+`--escanea` + `--promueve`, que **deriva** el `id` y no acepta `--id` ni
+`--nota`. Con el registrador en el NO-TOCA del acto, la única vía era
+`clave: valor` dentro de `nota`. **`FP-280`** deja la decisión a mesa:
+campo formal del manifiesto (`version_publicada`, `sustituye_a`) con vía
+en el registrador, o `nota` para siempre.
+
+**Regla candidata que esto abre** (`forense/hallazgos.md`): todo payload
+que venga de un **portal vivo** —uno que puede re-publicar bajo el mismo
+nombre— lleva `version_publicada`, y su adquisición corre `A.7` contra la
+copia en corpus, no sólo contra sí misma.
+
+### La subcarpeta como unidad de versión
+
+Los 131 archivos de la versión de septiembre viven en
+`descargas_mx/ENSANUT2024-v2026-09-01/`, y su campo `archivo` lleva la
+subcarpeta. Eso hace tres cosas a la vez, y conviene repetirlo en la
+próxima re-publicación de cualquier fuente:
+
+1. el guard de `--escanea` («mismo nombre, sha distinto» → `CONFLICTO`,
+   no registra) **no se dispara**, porque las claves de `por_nombre` son
+   distintas — no hay nada que rodear;
+2. las dos versiones conviven en disco y en el manifiesto sin que ninguna
+   pise a la otra;
+3. el nombre de la carpeta *es* la fecha de publicación, legible sin
+   abrir el manifiesto.
+
+El dedup por `sha256` sigue actuando dentro de la subcarpeta y es lo que
+debe pasar: **6** de los 131 son byte-idénticos a entradas de julio (los
+cuestionarios PDF y el `.docx`) y el registrador se negó a duplicarlos —
+por eso se registran **125** entradas, no 131.
+
+### `data/inventario-reactivos-descargas-mx-v1_1.tsv`
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/inventario-reactivos-descargas-mx-v1_1.tsv` | `tools/inventario_reactivos.py --raiz descargas_mx` (19 501 filas) + `tools/inventario_reactivos_ext.py --raiz descargas_mx` (23 035 filas), unión — `ACTO MAESTRA37-A1`, `P4` | mismas columnas que `v1_0` | `tools/busca_reactivos.py --tablas descargas_mx_v1_1` | **42 536 filas de dato**, 208 `payload_id` con ≥1 fila. Regresión medida contra `v1_0`: los **116** `payload_id` de `v1_0` traen sus filas **idénticas byte a byte**, 0 desaparecidos, 92 nuevos. `v1_0` queda **intacto**: los dos scripts escriben a un `-v1_0` fijo por diseño y están en el NO-TOCA, así que sus salidas se movieron a `v1_1` y `v1_0` se restauró desde git |
+
+`--tablas descargas_mx` **sigue apuntando a `v1_0` a propósito**:
+reapuntarla habría cambiado en silencio lo que ya lee quien pide esa
+clave, y `v1_0` es la única cifra contra la que la regresión se midió.
+`descargas_mx_v1_1` es una clave nueva, no un cambio de la anterior.
+
+`DE2` sigue vivo y ahora está medido sobre los 131: los `.stata.stata.zip`
+(38) sí traen `texto_reactivo`; los `.csv.csv.zip` (38) producen filas
+pero **0** con texto — el extractor **sí alcanza** `_variables.csv`
+(266 filas) y `_valores.csv` (114 filas) y devuelve texto vacío en las
+380; los `.Catálogo.xlsx` (38) y los PDF/`.docx` (17) producen **0 filas**.
+No se repara aquí (el extractor está en el NO-TOCA).
