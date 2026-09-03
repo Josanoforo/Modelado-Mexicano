@@ -2544,3 +2544,141 @@ reglas_propuestas:
       soporta desagregacion.
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: enif_2024_enif_2024_bd_csv
+
+  # ═══ ACTO MAESTRA35-L11 · ROBUSTECE-L9 (2/sep/2026) — segundo instrumento ═══
+  # Specs heredadas VERBATIM de forense/notas/2026-09-02-MAESTRA35-L9-spec.md
+  # §3.1 y §4.1; unica sustitucion: instrumento (ENCUCI 2020 en vez de LAPOP) y
+  # sus campos de diseño. NO edita las cinco entradas de L9, de arriba.
+
+  - id: civico.voto.agencia_con_secreto_encuci2020
+    entrada_nueva: true
+    referida_a: "regla R7.3 civico.voto.agencia_con_secreto (canon/modelo-decision-v4_0.md:553) y R7.6 civico.voto.clientelar_si_observable (:554) -- SEGUNDO INSTRUMENTO de la pieza a-bis de MAESTRA35-L9"
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: simpatiza_morena_beneficiario_secreto_encuci2020, p: 0.321633, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de secreto percibido y beneficiario)"}
+      - {conducta: simpatiza_morena_beneficiario_observable_encuci2020, p: 0.319745, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de secreto percibido y beneficiario)"}
+    porque: {generador: [G4], mecanismo: "agencia electoral condicionada a la observabilidad del voto -- este acto NO re-deriva el generador, hereda el de L9"}
+    falsable_si: NO-APLICA
+    fuente: ["ENCUCI2020", "forense/notas/2026-09-02-MAESTRA35-L9-spec.md", "forense/notas/2026-09-02-MAESTRA35-L11-resultados.md"]
+    ola_calibracion: "ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2023 (L9)"
+    ponderador: FAC_SEL
+    diseno: "EST_DIS x UPM_DIS; join de ENCUCI_2020_SEC_6_7_8.dbf con ENCUCI_2020_SD.dbf por ID_PER, 21 519 de 21 519 emparejadas; IC95 bootstrap de conglomerado, 10 000 replicas, seed 42 (identico al estimador de L9, importado sin editar los medidores existentes)"
+    escala: "proporcion ponderada de PERSONAS de 15 anios y mas dentro de cada celda del eje, sobre universo restringido"
+    universo: >
+      ESTAMPA A.10 -- universo restringido (A-bis 4): AP6_10 in {1,2} (transferencia/
+      beneficiario de programa social, ultimos 12 meses) x AP7_15 in {1,2} (cree que
+      su voto es secreto=1 o se puede descubrir=2) x AP7_13 no-blanco/no-99
+      (simpatia de partido, analogo declarado de vb20 de LAPOP: prospectivo/
+      actitudinal, no el voto emitido). 15 083 de 21 519 = 70.09%, bajo el 90%.
+      Desenlace: AP7_13 == '07' (simpatiza con MORENA, partido en el gobierno
+      desde dic-2018). Sustitucion declarada respecto a L9: antecedente es
+      transferencia de programa social (no la dadiva de R7.7, ausente en ENCUCI);
+      desenlace es simpatia de partido (no intencion de voto explicita, ausente
+      en ENCUCI).
+    desenlaces:
+      - {desenlace: simpatiza_morena, papel: PRINCIPAL, variable: "AP7_13 == '07'", rama: SECRETO, beneficiario_si: 0.321633, ic95_si: [0.300274, 0.342942], n_si: 3144, beneficiario_no: 0.257825, ic95_no: [0.244352, 0.271294], n_no: 7836, brecha_pp: 6.3809, ic95_brecha: [3.8238, 8.8942], excluye_cero: true}
+      - {desenlace: simpatiza_morena, papel: PRINCIPAL, variable: "AP7_13 == '07'", rama: OBSERVABLE, beneficiario_si: 0.319745, ic95_si: [0.276605, 0.362079], n_si: 951, beneficiario_no: 0.204092, ic95_no: [0.187120, 0.221256], n_no: 3152, brecha_pp: 11.5652, ic95_brecha: [6.5748, 16.5879], excluye_cero: true}
+    veredicto_Bbis: CONTRARIA
+    veredicto_del_acto: >
+      CONTRARIA, por la misma clausula de precedencia de spec §3.1 que dio
+      CONTRARIA en L9: las dos ramas (SECRETO +6.38 pp, OBSERVABLE +11.57 pp)
+      dan Δ positivo y limpio -- la separacion que el par afirma (que bajo
+      secreto percibido la asociacion se anula) NO aparece.
+    veredicto_conjunto_L9_L11: >
+      CONTRARIA-REPLICADA. L9 (LAPOP 2023): CONTRARIA, Δ_SECRETO +14.37 pp
+      [+1.43,+27.44], Δ_OBSERVABLE +17.98 pp [+10.75,+25.02]. L11 (ENCUCI 2020):
+      CONTRARIA, Δ_SECRETO +6.38 pp [+3.82,+8.89], Δ_OBSERVABLE +11.57 pp
+      [+6.57,+16.59]. Mismo signo en las dos ramas, IC95 fuera de 0 en las
+      cuatro celdas de diferencia, en DOS instrumentos con antecedentes,
+      moderadores (formulacion equivalente) y desenlaces distintos. Por la
+      regla de sello del encargo de L11 (mesa, 2/sep/2026): "se sella
+      CONTRARIA si replica en un segundo instrumento independiente (mismo
+      signo, IC fuera de 0)" -- se cumple. R7.3 es [FUERTE]: esto es lo que la
+      regla exige para tocarla con dato.
+    hallazgo: >
+      SEGUNDO INSTRUMENTO, MISMA FORMA. Con antecedente de transferencia
+      distinto (programa social, no dadiva generica), moderador con
+      formulacion distinta pero equivalente ("cree que su voto es secreto o se
+      puede descubrir"), y desenlace mas laxo (simpatia de partido, no
+      intencion de voto explicita), la asociacion positiva entre recibir la
+      transferencia y alinearse con el oficialismo aparece IGUAL bajo secreto
+      percibido (+6.38 pp) que bajo voto observable (+11.57 pp). La diferencia
+      entre las dos ramas (+5.18 pp) vuelve a ser pequenia frente a la brecha
+      que ya existe donde R7.3 esperaba cero.
+      RESERVAS QUE SIGUEN EN PIE, SIN CAMBIO RESPECTO A L9: las dos son
+      asociaciones transversales sin identificacion causal; la direccion mas
+      obvia de confusion -- quien ya simpatiza con el oficialismo puede tener
+      mas probabilidad de estar en un programa -- sigue abierta en los dos
+      instrumentos. El desenlace de este acto (simpatia) es todavia mas laxo
+      que el de L9 (intencion de voto): simpatizar no es votar. La replicacion
+      es de FORMA, no de identificacion causal.
+    sha256_payload: "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+    payload_manifiesto_id: encuci2020_bd_dbf
+
+  - id: civico.protesta.agravio_urbano_encuci2020
+    entrada_nueva: true
+    referida_a: "regla R7.4 civico.protesta.agravio_urbano (canon/modelo-decision-v4_0.md:735) -- SEGUNDO INSTRUMENTO de la pieza b de MAESTRA35-L9. NO reabre ADR-158 (D)"
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: protesta_alguna_vez_urbano_con_agravio_encuci2020, p: 0.112192, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de entorno x agravio)"}
+      - {conducta: protesta_alguna_vez_rural_con_agravio_encuci2020, p: 0.091912, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de entorno x agravio)"}
+    porque: {generador: [G4], mecanismo: "el entorno urbano con espacio publico canaliza el agravio hacia la protesta -- este acto NO re-deriva el generador, hereda el de L9"}
+    falsable_si: NO-APLICA
+    fuente: ["ENCUCI2020", "forense/notas/2026-09-02-MAESTRA35-L9-spec.md", "forense/notas/2026-09-02-MAESTRA35-L11-resultados.md"]
+    ola_calibracion: "ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)"
+    ponderador: FAC_SEL
+    diseno: "EST_DIS x UPM_DIS; join de tres tablas (ENCUCI_2020_SEC_6_7_8.dbf, ENCUCI_2020_SEC_4_5.dbf, ENCUCI_2020_SD.dbf) por ID_PER, 21 519 de 21 519 emparejadas; IC95 bootstrap de conglomerado, 10 000 replicas, seed 42"
+    escala: "proporcion ponderada de PERSONAS de 15 anios y mas dentro de cada celda del eje"
+    universo: >
+      ESTAMPA A.10 -- 20 187 de 21 519 = 93.80%, sobre el 90%: NO corre bajo
+      universo restringido. Desenlace: AP7_3_5 == 1 ("alguna vez en su vida ha
+      participado en una protesta"), NO AP7_4_5 (ultimos 12 meses: gateada
+      dentro de AP7_3_5==1, n=1748/21519=8.1%, no sirve como desenlace de
+      poblacion) -- sustitucion declarada, ventana temporal de por vida en vez
+      de 12 meses. Eje principal: DOMINIO agrupado (urbano=U+C 15 540, rural=R
+      5 916) x AP4_3_2 ("en su colonia han tenido problemas de pandillerismo,
+      robos o delincuencia" -- percepcion de inseguridad en el entorno, NO
+      victimizacion personal como vic1ext de LAPOP: sustitucion declarada,
+      es lo unico en el corpus que se acerca a "agravio"). Reparto:
+      urbano-agravio 8 322, urbano-sin-agravio 6 356, rural-agravio 2 050,
+      rural-sin-agravio 3 456 -- las cuatro muy por encima de la guardia de
+      numerador de 10 (a diferencia de L9, donde rural-victima cayo con n=65,
+      numerador 7).
+    contrastes:
+      - {contraste: C1_entorno_con_agravio, definicion: "urbano-agravio - rural-agravio", brecha_pp: 2.0279, ic95_brecha: [-0.1796, 4.1211], excluye_cero: false, veredicto_Bbis: NO-DISCRIMINA}
+      - {contraste: C2_agravio_en_urbano, definicion: "urbano-agravio - urbano-sin-agravio", brecha_pp: 3.7233, ic95_brecha: [2.2183, 5.2206], excluye_cero: true, veredicto_Bbis: CORROBORADA}
+    veredicto_Bbis: CORROBORADA-PARCIAL
+    veredicto_conjunto_L9_L11: >
+      C2 (agravio dentro de lo urbano): CORROBORADA-REPLICADA -- mismo signo,
+      IC95 fuera de 0 en L9 (+5.60 pp [+2.32,+8.96]) y en L11 (+3.72 pp
+      [+2.22,+5.22]). C1 (el corazon de la regla, entorno urbano vs rural bajo
+      agravio): AMBIGUA-ENTRE-INSTRUMENTOS -- en L9 no fue estimable (n=65,
+      numerador esperado 5, cayo por la guardia); en L11 SI fue estimable
+      (numerador 188) y el punto va en el signo esperado (+2.03 pp) pero el
+      IC95 roza cero por el lado bajo (-0.18) y no discrimina. Los dos
+      instrumentos apuntan al mismo signo; ninguno lo prueba. Por la regla de
+      sello de mesa, R7.4 [MEDIA-FUERTE] sigue sin un veredicto limpio en su
+      sub-claim de entorno tras DOS intentos: se declara AMBIGUA, no se sella
+      ninguna direccion.
+    hallazgo: >
+      Es la primera vez que el contraste urbano-contra-rural bajo agravio (el
+      que R7.4 realmente necesita) se puede INTENTAR con n suficiente: 2050
+      casos en la celda rural-agravio, contra 65 en LAPOP 2019. El resultado es
+      AMBIGUO, no NULO: el punto va en el signo que la regla predice
+      (11.22% urbano-agravio contra 9.19% rural-agravio), pero el IC95 no
+      despeja el cero por 0.18 puntos porcentuales. Dentro de lo urbano, el
+      agravio SI vuelve a moverse la protesta (11.22% contra 7.50%, +3.72 pp
+      sin traslape), replicando limpio el hallazgo de L9 con una escala
+      temporal distinta ("alguna vez" en vez de "ultimos 12 meses") y un
+      indicador de agravio distinto (percepcion de inseguridad en la colonia,
+      no victimizacion personal).
+      Esta pieza no reabre la fila D de ADR-158 (evento, no persona) ni dice
+      nada sobre R7.5 (autodefensa) -- mismas reservas que L9.
+    sha256_payload: "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+    payload_manifiesto_id: encuci2020_bd_dbf
