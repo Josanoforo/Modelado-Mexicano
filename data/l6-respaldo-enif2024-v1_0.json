@@ -1,0 +1,214 @@
+{
+ "acto": "MAESTRA35-L6",
+ "pieza": "P2",
+ "spec": "forense/notas/2026-09-02-MAESTRA35-L6-spec.md §2, con D1 reemplazada por D1' en forense/notas/2026-09-02-MAESTRA35-L6-spec-3.md §2",
+ "payload": "data/raw/enif_2024_bd_csv.zip",
+ "tabla": "TMODULO.csv",
+ "sha256_payload": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
+ "estimador": "wprop_ic_conglomerado (n_boot=10000, seed=42)",
+ "eje": "P4_9_4 -- 4.9 ... ¿podria aprovecharla con el prestamo de familiares o amistades? (universo COMPLETO, sin gate)",
+ "escala": "proporcion ponderada de personas de 18+ por celda del eje",
+ "limite": "ASOCIACION dentro de una corrida (A-bis 1/2), no efecto. Mide UNA de las dos condiciones del bullet (respaldo); el canal personal es inobservable (censo P0 §6.2).",
+ "n_universo": 13502,
+ "desenlaces": [
+  {
+   "desenlace": "D1_ahorro_formal",
+   "papel": "PRINCIPAL",
+   "variables": [
+    "P5_6_1",
+    "P5_6_2",
+    "P5_6_3",
+    "P5_6_4",
+    "P5_6_5",
+    "P5_6_6",
+    "P5_6_7",
+    "P5_6_8",
+    "P5_6_9"
+   ],
+   "con_respaldo": {
+    "celda": "D1_ahorro_formal | respaldo=SI",
+    "p": 0.3294049771235322,
+    "ic95": [
+     0.30757845459386574,
+     0.35165339245682464
+    ],
+    "n": 3145,
+    "numerador": 1113,
+    "estratos": 188,
+    "upm": 1402
+   },
+   "sin_respaldo": {
+    "celda": "D1_ahorro_formal | respaldo=NO",
+    "p": 0.2712541394062511,
+    "ic95": [
+     0.2587700874032471,
+     0.28391301545331077
+    ],
+    "n": 10357,
+    "numerador": 2965,
+    "estratos": 190,
+    "upm": 2146
+   },
+   "brecha_pp": 5.815083771728114,
+   "ic95_sin_traslape": true,
+   "veredicto_Bbis": "CORROBORADA"
+  },
+  {
+   "desenlace": "D2_tenencia_cuenta",
+   "papel": "secundario",
+   "variables": [
+    "P5_4_1",
+    "P5_4_2",
+    "P5_4_3",
+    "P5_4_4",
+    "P5_4_5",
+    "P5_4_6",
+    "P5_4_7",
+    "P5_4_8",
+    "P5_4_9"
+   ],
+   "con_respaldo": {
+    "celda": "D2_tenencia_cuenta | respaldo=SI",
+    "p": 0.6439631347721047,
+    "ic95": [
+     0.6202699910900938,
+     0.6678345864493422
+    ],
+    "n": 3145,
+    "numerador": 2103,
+    "estratos": 188,
+    "upm": 1402
+   },
+   "sin_respaldo": {
+    "celda": "D2_tenencia_cuenta | respaldo=NO",
+    "p": 0.6589291043419065,
+    "ic95": [
+     0.645542438903553,
+     0.6726443551529364
+    ],
+    "n": 10357,
+    "numerador": 7053,
+    "estratos": 190,
+    "upm": 2146
+   },
+   "brecha_pp": -1.4965969569801896,
+   "ic95_sin_traslape": false,
+   "veredicto_Bbis": "NO-DISCRIMINA"
+  },
+  {
+   "desenlace": "D3_credito_formal",
+   "papel": "secundario",
+   "variables": [
+    "P6_2_1",
+    "P6_2_2",
+    "P6_2_3",
+    "P6_2_4",
+    "P6_2_5",
+    "P6_2_6",
+    "P6_2_7",
+    "P6_2_8",
+    "P6_2_9"
+   ],
+   "con_respaldo": {
+    "celda": "D3_credito_formal | respaldo=SI",
+    "p": 0.3974473252650776,
+    "ic95": [
+     0.37480552634084613,
+     0.4202495568672247
+    ],
+    "n": 3145,
+    "numerador": 1329,
+    "estratos": 188,
+    "upm": 1402
+   },
+   "sin_respaldo": {
+    "celda": "D3_credito_formal | respaldo=NO",
+    "p": 0.34256092996612575,
+    "ic95": [
+     0.3300489153401737,
+     0.35552692259751906
+    ],
+    "n": 10357,
+    "numerador": 3919,
+    "estratos": 190,
+    "upm": 2146
+   },
+   "brecha_pp": 5.488639529895184,
+   "ic95_sin_traslape": true,
+   "veredicto_Bbis": "CORROBORADA"
+  }
+ ],
+ "sensibilidad_C_control_riqueza": [
+  {
+   "estrato": "podria_con_sus_ahorros=SI",
+   "con_respaldo": {
+    "celda": "D1 | podria_con_sus_ahorros=SI | respaldo=SI",
+    "p": 0.3539608483938358,
+    "ic95": [
+     0.3243416639121224,
+     0.3840007043287521
+    ],
+    "n": 1551,
+    "numerador": 590,
+    "estratos": 181,
+    "upm": 907
+   },
+   "sin_respaldo": {
+    "celda": "D1 | podria_con_sus_ahorros=SI | respaldo=NO",
+    "p": 0.4283554440852061,
+    "ic95": [
+     0.40150916628310707,
+     0.4556240860670178
+    ],
+    "n": 2414,
+    "numerador": 1108,
+    "estratos": 187,
+    "upm": 1338
+   },
+   "brecha_pp": -7.43945956913703,
+   "ic95_sin_traslape": true,
+   "veredicto_Bbis": "CONTRARIA"
+  },
+  {
+   "estrato": "podria_con_sus_ahorros=NO",
+   "con_respaldo": {
+    "celda": "D1 | podria_con_sus_ahorros=NO | respaldo=SI",
+    "p": 0.3063403197579735,
+    "ic95": [
+     0.2775690770539809,
+     0.33624534993276195
+    ],
+    "n": 1594,
+    "numerador": 523,
+    "estratos": 184,
+    "upm": 968
+   },
+   "sin_respaldo": {
+    "celda": "D1 | podria_con_sus_ahorros=NO | respaldo=NO",
+    "p": 0.22491012353326417,
+    "ic95": [
+     0.2123581185836936,
+     0.2378413113780681
+    ],
+    "n": 7943,
+    "numerador": 1857,
+    "estratos": 190,
+    "upm": 2087
+   },
+   "brecha_pp": 8.143019622470932,
+   "ic95_sin_traslape": true,
+   "veredicto_Bbis": "CORROBORADA"
+  }
+ ],
+ "eje_reparto": {
+  "respaldo_si": 3145,
+  "respaldo_no": 10357,
+  "fuera_de_eje": 0
+ },
+ "veredicto_del_acto": "ACOTADA",
+ "veredicto_D1": "CORROBORADA",
+ "veredicto_secundarios": [
+  "NO-DISCRIMINA",
+  "CORROBORADA"
+ ]
+}

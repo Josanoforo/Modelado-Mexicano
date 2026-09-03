@@ -1,0 +1,153 @@
+{
+ "acto": "MAESTRA35-L6",
+ "pieza": "P1",
+ "spec": "forense/notas/2026-09-02-MAESTRA35-L6-spec.md §1",
+ "estimador": "wprop_ic_conglomerado (n_boot=10000, seed=42)",
+ "escala": "proporcion ponderada de PERSONAS USUARIAS DE INTERNET de 6 anios y mas; NO es la p de tramite.gobierno_digital.coercitivo ni de util_sin_coercion (universo construido distinto)",
+ "olas": [
+  {
+   "ola": "2025",
+   "papel": "PRINCIPAL",
+   "payload": "data/raw/endutih2025/endutih2025_bd_dbf.zip",
+   "miembro": "ti25usu.dbf",
+   "sha256_payload": "a927528779c56b4565aae8b83bfaf119f50178bb4c7e7df4eaceee992f86ee1c",
+   "n_tabla": 57810,
+   "n_usa_internet": 48718,
+   "principal": {
+    "etiqueta": "2025 principal · P7_35_4 | P7_1=1",
+    "p": 0.20702637716639757,
+    "ic95": [
+     0.20108452980272962,
+     0.21314753810568768
+    ],
+    "n": 48718,
+    "numerador": 9221,
+    "estratos": 425,
+    "upm": 8594,
+    "poblacion_expandida": 104903990.0
+   },
+   "sensibilidad_A_interaccion": {
+    "etiqueta": "2025 sensibilidad A · union P7_35_1..4 | P7_1=1",
+    "p": 0.3571854416595594,
+    "ic95": [
+     0.3501238026778925,
+     0.3641404827883578
+    ],
+    "n": 48718,
+    "numerador": 16360,
+    "estratos": 425,
+    "upm": 8594,
+    "poblacion_expandida": 104903990.0
+   },
+   "sensibilidad_B_universo_ampliado": {
+    "etiqueta": "2025 sensibilidad B · universo ampliado",
+    "p": 0.17815167538252208,
+    "ic95": [
+     0.1727240983459146,
+     0.18370041355698946
+    ],
+    "n": 57810,
+    "numerador": 9221,
+    "estratos": 425,
+    "upm": 8607,
+    "poblacion_expandida": 121906757.0
+   }
+  },
+  {
+   "ola": "2024",
+   "papel": "sensibilidad de ola",
+   "payload": "data/raw/endutih2024/endutih2024_bd_dbf.zip",
+   "miembro": "tic_2024_usuarios.DBF",
+   "sha256_payload": "ef723ed125c81c4a9036b74fab67f520de007a2d52c5e0b03d4ebec509e1ae87",
+   "n_tabla": 58080,
+   "n_usa_internet": 47240,
+   "principal": {
+    "etiqueta": "2024 principal · P7_35_4 | P7_1=1",
+    "p": 0.17168448086543092,
+    "ic95": [
+     0.16625837715989145,
+     0.17722174806695054
+    ],
+    "n": 47240,
+    "numerador": 8163,
+    "estratos": 437,
+    "upm": 8741,
+    "poblacion_expandida": 100249527.0
+   },
+   "sensibilidad_A_interaccion": {
+    "etiqueta": "2024 sensibilidad A · union P7_35_1..4 | P7_1=1",
+    "p": 0.32948672166802345,
+    "ic95": [
+     0.3225451229410328,
+     0.33640774210617863
+    ],
+    "n": 47240,
+    "numerador": 15554,
+    "estratos": 437,
+    "upm": 8741,
+    "poblacion_expandida": 100249527.0
+   },
+   "sensibilidad_B_universo_ampliado": {
+    "etiqueta": "2024 sensibilidad B · universo ampliado",
+    "p": 0.1427081544691792,
+    "ic95": [
+     0.13812015617397916,
+     0.1473424731200464
+    ],
+    "n": 58080,
+    "numerador": 8163,
+    "estratos": 437,
+    "upm": 8755,
+    "poblacion_expandida": 120604797.0
+   }
+  },
+  {
+   "ola": "2023",
+   "papel": "sensibilidad de ola",
+   "payload": "data/raw/endutih2023/endutih2023_bd_dbf.zip",
+   "miembro": "tic_2023_usuarios.DBF",
+   "sha256_payload": "29d195082796c2692bfeb688348de3ed792848781ff7575f91b7da68119f9696",
+   "n_tabla": 58922,
+   "n_usa_internet": 46631,
+   "principal": {
+    "etiqueta": "2023 principal · P7_35_4 | P7_1=1",
+    "p": 0.1774626253022961,
+    "ic95": [
+     0.1719683102030617,
+     0.18285801732051551
+    ],
+    "n": 46631,
+    "numerador": 8062,
+    "estratos": 341,
+    "upm": 8216,
+    "poblacion_expandida": 97012089.0
+   },
+   "sensibilidad_A_interaccion": {
+    "etiqueta": "2023 sensibilidad A · union P7_35_1..4 | P7_1=1",
+    "p": 0.33237664844017534,
+    "ic95": [
+     0.32570368366341523,
+     0.33897040740317286
+    ],
+    "n": 46631,
+    "numerador": 15079,
+    "estratos": 341,
+    "upm": 8216,
+    "poblacion_expandida": 97012089.0
+   },
+   "sensibilidad_B_universo_ampliado": {
+    "etiqueta": "2023 sensibilidad B · universo ampliado",
+    "p": 0.1440698159374672,
+    "ic95": [
+     0.1396538807732557,
+     0.14857575931869113
+    ],
+    "n": 58922,
+    "numerador": 8062,
+    "estratos": 341,
+    "upm": 8232,
+    "poblacion_expandida": 119497758.0
+   }
+  }
+ ]
+}
