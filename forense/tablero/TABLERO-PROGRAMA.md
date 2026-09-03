@@ -153,7 +153,7 @@ Fechas derivadas de `git log --format="%ad|%s" --date=short origin/main | grep -
 |---|---|---|---|---|
 | C1 | Árbitro R reparado (umbral, compuesto, lector, captura por celda) + proyección ciega | MAESTRA35-L2 | PR #470 MERGEABLE, renumera al fusionar | mesa fusiona |
 | C2 | F-DD v1.1 (rangos de ola) + M de DIN-M-01 | MAESTRA35-N2 | rama con CONSUMIDO, PR sin fusionar | mesa fusiona; regresión 13 M sin drift verificada |
-| C3 | Scoreboard v1_2 (13 de 14) | MAESTRA34-N3 · AGREGA-2 | LISTO en cola, `/despacha` | `scoreboard-v1_2-AGREGADO.md` en main |
+| C3 | Scoreboard v1_2 (13 de 14) | MAESTRA34-N3 · AGREGA-2 | LISTO en cola, `/despacha` | el scoreboard agregado v1_2 (producto de MAESTRA34-N3 · AGREGA-2) presente en forense/prereg-duelo-v2/ — hoy NO-ENCONTRADO, es un hito pendiente |
 
 ### 3.3 Próximos, con criterio de cierre (no se declaran «casi»)
 
