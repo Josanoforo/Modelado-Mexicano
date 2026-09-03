@@ -350,3 +350,36 @@ importa y llama a los cuatro medidores ya congelados — no recalcula nada).
 denominador de la pieza (c) se verificó por reconstrucción de la llave de
 hogar (`FAC_PER` no es constante dentro de hogar, `FAC_HOG`/`EST_DIS`/
 `UPM_DIS` sí — verificado con `groupby(...).nunique()==1`, no asumido).
+
+## Censo de reglas activas sobre LAPOP / ENCUCI / ENIF (`ACTO MAESTRA35-L9`, 2/sep/2026)
+
+Un artefacto nuevo bajo `data/` y **una raíz que este índice no documentaba**.
+Se registra por la misma razón que las secciones anteriores: la advertencia es
+parte del producto.
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/l9-censo-a4-v1_0.tsv` | rutas `--censo` de `tools/medidor_clientelismo_lapop.py`, `tools/medidor_protesta_lapop.py`, `tools/medidor_entitlement.py`, `tools/medidor_seguro_deposito_enif24.py` (`ACTO MAESTRA35-L9`, `P0`) | TSV de 16 columnas × 10 filas de datos: `pieza, regla, id_modelo, tier, fuente, payload_id, sha256_coincide, item_desenlace, item_moderador, codigos_desenlace, denominador, ponderador, diseno, unidad, veredicto, que_falta` | la spec congelada del acto y quien vuelva a plantear una pieza sobre LAPOP México | **Tres de sus diez filas son `EXISTE-NO-SATISFACE` y son el contenido, no el residuo.** (1) **Ninguna ola de LAPOP México cruza dádiva con secreto del voto**: 2019 tiene `clien1n/clien1na/clien4a/clien4b` y cero ítems de secreto; 2023 tiene `countfair3` y cero `clien*`; 2021 no tiene ninguno de los dos. Quien vuelva a proponer `R7.3`/`R7.6` **contra la dádiva** está proponiendo un cruce que no existe en el corpus. (2) **2006 no hace serie con 2019**: `PROT1`/`PROT2` son escala de frecuencia de tres niveles y `PROT2` está gateada (n = 209), frente a `prot3` binaria y ungateada; el archivo de 2006 tampoco trae ponderador. (3) **`P5_24_*` de ENIF no mide «seguro visible»**: está anidada en el «Sí» de `P5_23`, y de los 4 136 que dicen saber que sus ahorros están protegidos, **3 148 no saben nombrar la institución**; sólo 362 en toda la muestra nombran al IPAB. Además: **`wt` de LAPOP México es constante = 1** en 2019 y 2023 (muestra autoponderada), así que «proporción ponderada» ahí es idéntica a la simple y todo el efecto de diseño vive en el conglomerado, no en el peso. |
+
+**Regla de conducto que este acto añade — hay una segunda raíz de payloads, y no
+está en `data/raw`.** `data/manifiesto.yaml` declara payloads bajo
+`raiz: descargas_mx`, que `forense/notas/2026-08-06-map1b-censo-raices.md:68`
+resuelve a `/mnt/c/Users/PC0/Descargas MX`. Esa ruta vive en
+`data/raices.local.yaml`, que **es gitignorada**: un worktree recién creado nace
+sin ella, y entonces `find`/`ls` sobre `data/raw` declaran `NO-ENCONTRADO` para
+payloads que están perfectamente en disco. Las cuatro olas de LAPOP México son
+exactamente ese caso. **Antes de declarar que un payload del manifiesto no está,
+hay que resolver su campo `raiz`** — y un medidor que dependa de una raíz no
+configurada debe **PARAR diciéndolo**, nunca reportar el payload como ausente;
+los cuatro medidores de este acto lo hacen. Misma familia que `A.13` y que la
+trampa de `find` sin `-L` sobre el symlink de `data/raw`.
+
+**Cuatro artefactos de resultados del mismo acto** (`COMMIT-2`), con la
+advertencia que hace falta para no citarlos al revés:
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/l9-clientelismo-lapop-v1_0.json` | `python3 tools/medidor_clientelismo_lapop.py --mide` | JSON: `acto, spec, estimador, aviso_ponderador, payloads[], piezas[]` — pieza `a` con `asistencia{ofrecieron,no_ofrecieron,delta}`, `eleccion{PRI_principal,MORENA_secundario}`, `ejes_secundarios`; pieza `a-bis` con `cobertura_vb20, universo_restringido, SECRETO, OBSERVABLE, delta_diferencia`. Cada celda: `p, ic95, n, numerador, n_estratos, n_upm, control_regresion` | la nota de resultados y `milpa/tramite-ola5-propuesta-v0.yaml` (entradas `civico.clientelismo.turnout_no_vote_choice_lapop2019` y `civico.voto.agencia_lapop2023`) | **La pieza `a` salió `NO-DISCRIMINA`: sus `+3.96 pp` de asistencia NO despejan el cero** (`[−0.77, +8.62]`), así que citarlos como si la regla se hubiera corroborado invierte el resultado. **Y la brecha de elección es descriptiva DENTRO de los votantes** — condiciona en `vb2`, que es el otro desenlace: colisionador declarado en la spec. **La pieza `a-bis` salió `CONTRARIA` por la cláusula de precedencia, no porque el signo fuera negativo**: las dos ramas van hacia arriba y limpias, y eso es justo lo que refuta la separación que `R7.3`/`R7.6` afirman. La rama SECRETO se apoya en **79** tratados. **Nada de esto reabre la fila `C` de `ADR-155`.** |
+| `data/l9-protesta-lapop-v1_0.json` | `python3 tools/medidor_protesta_lapop.py --mide` | JSON: `pieza, reglas, payload, eje_principal{4 celdas}, contrastes{C1,C2}, ejes_secundarios, antecedentes_no_medidos` | ídem, entrada `civico.protesta.agravio_urbano_lapop2019` | **`C2` corrobora y `C1` no existe — y `C1` es el corazón de la regla.** La celda rural-víctima tiene 65 personas y 7 que protestaron: cayó por la guardia de numerador < 10 pre-registrada. Citar el `+5.60 pp` de `C2` como si `R7.4` quedara corroborada afirma algo sobre el **entorno** que este dato no midió. Mide **dos de los cuatro** antecedentes de la regla. **No dice nada sobre `R7.5` ni reabre el `D` de `ADR-158`**, que corrió sobre datos de evento. |
+| `data/l9-entitlement-encuci-v1_0.json` | `python3 tools/medidor_entitlement.py --mide` | JSON: `pieza, universo, n_universo, cobertura, eje_principal{beneficiario,no_beneficiario,delta}, eje_anidado_AP6_11, ejes_secundarios, reserva` | ídem, entrada `civico.transferencia.entitlement_encuci2020` | **`CONTRARIA`: el signo va al revés de lo que `R7.8` predice.** Los beneficiarios dicen «derecho» **menos** (54.03 % contra 60.60 %, `−6.57 pp` sin traslape). Quien cite este JSON buscando apoyo para el entitlement estará citando su refutación. El eje `AP6_11` está **anidado** en `AP6_10 = 1` y por spec **no puede voltear** el principal. Es **asociación transversal**: no separa que el programa cambie la percepción de que quien ya pensaba distinto se inscribiera más. |
+| `data/l9-seguro-deposito-enif24-v1_0.json` | `python3 tools/medidor_seguro_deposito_enif24.py --mide` | JSON: `pieza, universo, n_universo, cobertura_moderador, desenlaces{D1,D2}, ejes_secundarios, eje_no_construible, hallazgo_marginal_ipab, reserva` | ídem, entrada `dinero.ahorro.seguro_deposito_enif2024` | **`NO-DISCRIMINA` en los dos desenlaces, con los puntos en el signo contrario al predicho.** El número que sí es limpio es el del bloque `hallazgo_marginal_ipab`, y no es una `p` de la regla: de 4 136 que dicen saber que sus ahorros están protegidos, **3 148 no saben nombrar la institución**, y sólo **362 de 13 502 (2.7 %)** nombran al IPAB. `P5_23` mide **creencia de que hay protección**, no la **visibilidad** que el `SI` de `R1.5` nombra. Y `P5_20` es **razón principal**: quien desconfíe pero elija otra razón dominante no cuenta como desconfiado. |

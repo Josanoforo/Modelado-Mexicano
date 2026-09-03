@@ -1,0 +1,504 @@
+{
+ "acto": "MAESTRA35-L9 · REGLAS-ACTIVOS-L3",
+ "pieza": "d",
+ "reglas": [
+  "R1.5"
+ ],
+ "id_modelo": [
+  "dinero.ahorro.seguro_deposito_atenua_aversion"
+ ],
+ "fuente": "ENIF 2024",
+ "spec": "§6",
+ "payload": {
+  "id": "enif_2024_enif_2024_bd_csv",
+  "sha256_zip": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+ },
+ "estimador": "proporcion ponderada (FAC_PER); IC95 bootstrap de conglomerado, 10000 replicas, seed 42, UPM_DIS dentro de EST_DIS",
+ "universo": "las 2 970 personas sin cuenta a las que se pregunta P5_20",
+ "n_universo": 2970,
+ "cobertura_moderador": 1.0,
+ "desenlaces": {
+  "D1_desconfianza": {
+   "conoce_proteccion": {
+    "p": 0.06077998307684667,
+    "ic95": [
+     0.0370712625969237,
+     0.08625394553886066
+    ],
+    "n": 426,
+    "numerador": 25,
+    "n_estratos": 138,
+    "n_upm": 351,
+    "estratos_singleton": 46,
+    "replicas": 10000,
+    "poblacion_expandida": 3201531.0,
+    "etiqueta": "D1_desconfianza | conoce proteccion",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.06077998307684667,
+     "ic95_linealizado": [
+      0.030805940346039618,
+      0.09075402580765372
+     ],
+     "n_upm": 351,
+     "estratos_singleton": 46
+    }
+   },
+   "no_conoce": {
+    "p": 0.05476737995596916,
+    "ic95": [
+     0.04514546648283765,
+     0.0654270386463949
+    ],
+    "n": 2544,
+    "numerador": 158,
+    "n_estratos": 186,
+    "n_upm": 1105,
+    "estratos_singleton": 12,
+    "replicas": 10000,
+    "poblacion_expandida": 19298294.0,
+    "etiqueta": "D1_desconfianza | no conoce",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.05476737995596916,
+     "ic95_linealizado": [
+      0.04387442739632606,
+      0.06566033251561226
+     ],
+     "n_upm": 1105,
+     "estratos_singleton": 12
+    }
+   },
+   "delta": {
+    "d": 0.006012603120877508,
+    "ic95": [
+     -0.022646329321924473,
+     0.03705169595279758
+    ],
+    "replicas_validas": 10000,
+    "replicas_pedidas": 10000,
+    "etiqueta": "Δ_seguro (D1_desconfianza)",
+    "estado": "ESTIMADA",
+    "excluye_cero": false,
+    "signo": "+"
+   }
+  },
+  "D2_desconfianza_o_efectivo": {
+   "conoce_proteccion": {
+    "p": 0.12010722370016096,
+    "ic95": [
+     0.0874470336263417,
+     0.15462230042269742
+    ],
+    "n": 426,
+    "numerador": 45,
+    "n_estratos": 138,
+    "n_upm": 351,
+    "estratos_singleton": 46,
+    "replicas": 10000,
+    "poblacion_expandida": 3201531.0,
+    "etiqueta": "D2_desconfianza_o_efectivo | conoce proteccion",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.12010722370016096,
+     "ic95_linealizado": [
+      0.0800011378432047,
+      0.1602133095571172
+     ],
+     "n_upm": 351,
+     "estratos_singleton": 46
+    }
+   },
+   "no_conoce": {
+    "p": 0.10269944068631144,
+    "ic95": [
+     0.08895537935270316,
+     0.1173907186131949
+    ],
+    "n": 2544,
+    "numerador": 281,
+    "n_estratos": 186,
+    "n_upm": 1105,
+    "estratos_singleton": 12,
+    "replicas": 10000,
+    "poblacion_expandida": 19298294.0,
+    "etiqueta": "D2_desconfianza_o_efectivo | no conoce",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.10269944068631144,
+     "ic95_linealizado": [
+      0.0872419499297627,
+      0.11815693144286019
+     ],
+     "n_upm": 1105,
+     "estratos_singleton": 12
+    }
+   },
+   "delta": {
+    "d": 0.017407783013849515,
+    "ic95": [
+     -0.022218034304762047,
+     0.058104549388504664
+    ],
+    "replicas_validas": 10000,
+    "replicas_pedidas": 10000,
+    "etiqueta": "Δ_seguro (D2_desconfianza_o_efectivo)",
+    "estado": "ESTIMADA",
+    "excluye_cero": false,
+    "signo": "+"
+   }
+  }
+ },
+ "ejes_secundarios": {
+  "escolaridad": {
+   "hasta primaria": {
+    "conoce": {
+     "etiqueta": "hasta primaria|conoce",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 4 < 10 (guardia §1.3)",
+     "n": 111,
+     "numerador": 4
+    },
+    "no_conoce": {
+     "p": 0.06036684145694293,
+     "ic95": [
+      0.04429817717894118,
+      0.07933396566648092
+     ],
+     "n": 998,
+     "numerador": 57,
+     "n_estratos": 150,
+     "n_upm": 530,
+     "estratos_singleton": 25,
+     "replicas": 10000,
+     "poblacion_expandida": 7656223.0,
+     "etiqueta": "hasta primaria|no",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.06036684145694293,
+      "ic95_linealizado": [
+       0.04120001173980979,
+       0.07953367117407607
+      ],
+      "n_upm": 530,
+      "estratos_singleton": 25
+     }
+    },
+    "delta": {
+     "etiqueta": "Δ_hasta primaria",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 4 < 10 (guardia §1.3)"
+    }
+   },
+   "secundaria": {
+    "conoce": {
+     "p": 0.06318173537303427,
+     "ic95": [
+      0.037633506727859624,
+      0.09512875951833401
+     ],
+     "n": 154,
+     "numerador": 11,
+     "n_estratos": 83,
+     "n_upm": 139,
+     "estratos_singleton": 52,
+     "replicas": 10000,
+     "poblacion_expandida": 1130754.0,
+     "etiqueta": "secundaria|conoce",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.06318173537303427,
+      "ic95_linealizado": [
+       0.026822035813344643,
+       0.09954143493272391
+      ],
+      "n_upm": 139,
+      "estratos_singleton": 52
+     }
+    },
+    "no_conoce": {
+     "p": 0.04991254782760567,
+     "ic95": [
+      0.03660239167566272,
+      0.06499192722750181
+     ],
+     "n": 928,
+     "numerador": 60,
+     "n_estratos": 161,
+     "n_upm": 596,
+     "estratos_singleton": 42,
+     "replicas": 10000,
+     "poblacion_expandida": 6750547.0,
+     "etiqueta": "secundaria|no",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.04991254782760567,
+      "ic95_linealizado": [
+       0.03352841352432009,
+       0.06629668213089127
+      ],
+      "n_upm": 596,
+      "estratos_singleton": 42
+     }
+    },
+    "delta": {
+     "d": 0.0132691875454286,
+     "ic95": [
+      -0.028554150760555903,
+      0.06088477403417337
+     ],
+     "replicas_validas": 10000,
+     "replicas_pedidas": 10000,
+     "etiqueta": "Δ_secundaria",
+     "estado": "ESTIMADA",
+     "excluye_cero": false,
+     "signo": "+"
+    }
+   },
+   "media superior": {
+    "conoce": {
+     "etiqueta": "media superior|conoce",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 6 < 10 (guardia §1.3)",
+     "n": 118,
+     "numerador": 6
+    },
+    "no_conoce": {
+     "p": 0.054494792379642686,
+     "ic95": [
+      0.034349909392689205,
+      0.07645972191879694
+     ],
+     "n": 486,
+     "numerador": 29,
+     "n_estratos": 156,
+     "n_upm": 405,
+     "estratos_singleton": 59,
+     "replicas": 10000,
+     "poblacion_expandida": 3827852.0,
+     "etiqueta": "media superior|no",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.054494792379642686,
+      "ic95_linealizado": [
+       0.030061083556609473,
+       0.0789285012026759
+      ],
+      "n_upm": 405,
+      "estratos_singleton": 59
+     }
+    },
+    "delta": {
+     "etiqueta": "Δ_media superior",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 6 < 10 (guardia §1.3)"
+    }
+   },
+   "superior": {
+    "conoce": {
+     "etiqueta": "superior|conoce",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 4 < 10 (guardia §1.3)",
+     "n": 43,
+     "numerador": 4
+    },
+    "no_conoce": {
+     "p": 0.04988208766675521,
+     "ic95": [
+      0.030276195225645907,
+      0.07064150141870121
+     ],
+     "n": 129,
+     "numerador": 12,
+     "n_estratos": 81,
+     "n_upm": 125,
+     "estratos_singleton": 58,
+     "replicas": 10000,
+     "poblacion_expandida": 986326.0,
+     "etiqueta": "superior|no",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.04988208766675521,
+      "ic95_linealizado": [
+       0.02227827656252198,
+       0.07748589877098844
+      ],
+      "n_upm": 125,
+      "estratos_singleton": 58
+     }
+    },
+    "delta": {
+     "etiqueta": "Δ_superior",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 4 < 10 (guardia §1.3)"
+    }
+   }
+  },
+  "edad": {
+   "18-29": {
+    "conoce": {
+     "etiqueta": "18-29|conoce",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 9 < 10 (guardia §1.3)",
+     "n": 128,
+     "numerador": 9
+    },
+    "no_conoce": {
+     "p": 0.038360559815895486,
+     "ic95": [
+      0.023658092261666267,
+      0.05431899946935656
+     ],
+     "n": 595,
+     "numerador": 26,
+     "n_estratos": 151,
+     "n_upm": 425,
+     "estratos_singleton": 44,
+     "replicas": 10000,
+     "poblacion_expandida": 5257014.0,
+     "etiqueta": "18-29|no",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.038360559815895486,
+      "ic95_linealizado": [
+       0.021039503730406067,
+       0.0556816159013849
+      ],
+      "n_upm": 425,
+      "estratos_singleton": 44
+     }
+    },
+    "delta": {
+     "etiqueta": "Δ_18-29",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 9 < 10 (guardia §1.3)"
+    }
+   },
+   "30-44": {
+    "conoce": {
+     "etiqueta": "30-44|conoce",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 3 < 10 (guardia §1.3)",
+     "n": 116,
+     "numerador": 3
+    },
+    "no_conoce": {
+     "p": 0.07290329402612057,
+     "ic95": [
+      0.056427232863853025,
+      0.09114585970478747
+     ],
+     "n": 734,
+     "numerador": 58,
+     "n_estratos": 153,
+     "n_upm": 468,
+     "estratos_singleton": 38,
+     "replicas": 10000,
+     "poblacion_expandida": 5239242.0,
+     "etiqueta": "30-44|no",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.07290329402612057,
+      "ic95_linealizado": [
+       0.05196595615093323,
+       0.09384063190130791
+      ],
+      "n_upm": 468,
+      "estratos_singleton": 38
+     }
+    },
+    "delta": {
+     "etiqueta": "Δ_30-44",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 3 < 10 (guardia §1.3)"
+    }
+   },
+   "45-59": {
+    "conoce": {
+     "etiqueta": "45-59|conoce",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 9 < 10 (guardia §1.3)",
+     "n": 141,
+     "numerador": 9
+    },
+    "no_conoce": {
+     "p": 0.04448306037476137,
+     "ic95": [
+      0.029321753983436463,
+      0.06098074380343861
+     ],
+     "n": 839,
+     "numerador": 47,
+     "n_estratos": 160,
+     "n_upm": 559,
+     "estratos_singleton": 37,
+     "replicas": 10000,
+     "poblacion_expandida": 6101109.0,
+     "etiqueta": "45-59|no",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.04448306037476137,
+      "ic95_linealizado": [
+       0.026540471633212357,
+       0.06242564911631039
+      ],
+      "n_upm": 559,
+      "estratos_singleton": 37
+     }
+    },
+    "delta": {
+     "etiqueta": "Δ_45-59",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 9 < 10 (guardia §1.3)"
+    }
+   },
+   "60+": {
+    "conoce": {
+     "etiqueta": "60+|conoce",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 4 < 10 (guardia §1.3)",
+     "n": 41,
+     "numerador": 4
+    },
+    "no_conoce": {
+     "p": 0.07475242777577641,
+     "ic95": [
+      0.044347812121066116,
+      0.10902059558852484
+     ],
+     "n": 376,
+     "numerador": 27,
+     "n_estratos": 141,
+     "n_upm": 313,
+     "estratos_singleton": 67,
+     "replicas": 10000,
+     "poblacion_expandida": 2700929.0,
+     "etiqueta": "60+|no",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.07475242777577641,
+      "ic95_linealizado": [
+       0.03581142053250522,
+       0.1136934350190476
+      ],
+      "n_upm": 313,
+      "estratos_singleton": 67
+     }
+    },
+    "delta": {
+     "etiqueta": "Δ_60+",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 4 < 10 (guardia §1.3)"
+    }
+   }
+  }
+ },
+ "eje_no_construible": "tenencia de cuenta: P5_20 solo existe para quien no tiene cuenta, asi que no varia dentro del universo",
+ "hallazgo_marginal_ipab": {
+  "dicen_conocer_la_proteccion": 4136,
+  "nombran_IPAB": 362,
+  "no_saben_nombrarla": 3148,
+  "nota": "creer que hay proteccion no es que el seguro sea visible; 'visible' es la palabra del SI de R1.5"
+ },
+ "reserva": "P5_20 es razon PRINCIPAL: quien desconfie pero elija otra razon dominante no cuenta como desconfiado"
+}
