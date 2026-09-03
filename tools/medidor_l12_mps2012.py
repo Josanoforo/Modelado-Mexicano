@@ -2,7 +2,8 @@
 """ACTO MAESTRA36-L12 · MPS-2012-CROSSTABS — medidor de las piezas P0..P4.
 
 Ejecuta la spec CONGELADA en
-`forense/notas/2026-09-03-MAESTRA36-L12-spec-congelada.md` (COMMIT-1).
+`forense/notas/2026-09-03-MAESTRA36-L12-spec-congelada-bis-v3.md` (COMMIT-1-bis),
+que manda sobre la spec de COMMIT-1: el encargo v3 sustituye integras v1 y v2.
 
 INSTRUMENTO DE SEGUNDA MANO: salida del tabulador en linea "Explore Data" de
 ICPSR 35024, NO el microdato (35024-0001-Data.dta exige membresia -> A.4
@@ -46,7 +47,12 @@ PAYLOADS = {
 # spec Sec.1: marginales del codebook citados por LEEME-procedencia.txt
 MARGINALES_CODEBOOK = {"W2_P41=1": 63, "W2_P7=1": 971, "W2_P40=1": 60}
 
-# spec Sec.2: mapeo candidato CONGELADO. 08/11/12/13 NO son candidato.
+# spec bis Sec.C: codigos de P8/W2_P8 que cuentan como voto por partido.
+# 08 (mas de una casilla de DIFERENTE partido) no es atribuible; 11 anulo;
+# 12 blanco; 13 no voto. Los nueve restantes son partidarios.
+CODIGOS_PARTIDARIOS = {"01", "02", "03", "04", "05", "06", "07", "09", "10"}
+
+# Desenlace SECUNDARIO (spec de COMMIT-1, YA VISTO): mapeo a partido/coalicion.
 PARTIDO = {"01": "PAN",
            "02": "PRI", "04": "PRI", "09": "PRI",
            "03": "AMLO", "05": "AMLO", "06": "AMLO", "10": "AMLO",
@@ -66,20 +72,14 @@ def wilson(k, n):
     return (p, centro - semi, centro + semi)
 
 
-def newcombe(k1, n1, k0, n0):
-    """IC95 de la diferencia p1-p0 por el hibrido de scores de Newcombe.
-
-    Punto = p1-p0 (no el centro de Wilson). Limites por raiz cuadrada de la
-    suma de las distancias al limite correspondiente de cada Wilson.
-    """
+def wald(k1, n1, k0, n0):
+    """IC95 normal de la diferencia p1-p0 sobre conteos crudos (spec bis Sec.D)."""
     if n1 == 0 or n0 == 0:
         return (None, None, None, None)
-    p1, l1, u1 = wilson(k1, n1)
-    p0, l0, u0 = wilson(k0, n0)
+    p1, p0 = k1 / n1, k0 / n0
+    ee = math.sqrt(p1 * (1 - p1) / n1 + p0 * (1 - p0) / n0)
     d = p1 - p0
-    lo = d - math.sqrt((p1 - l1) ** 2 + (u0 - p0) ** 2)
-    hi = d + math.sqrt((u1 - p1) ** 2 + (p0 - l0) ** 2)
-    return (d, lo, hi, (hi - lo) / 2.0)
+    return (d, d - Z * ee, d + Z * ee, Z * ee)
 
 
 def media_y_var(dist):
@@ -196,48 +196,61 @@ def p0_censo(rutas, v0, der):
 
 
 # ---------------------------------------------------------------- P1
+def _t6_contraste(der, clave):
+    """Agrega T6 por control W2_P41 bajo una funcion de 'cambio'.
+
+    clave(row_code, col_code) -> True si cuenta como cambio. El universo son
+    siempre las celdas con AMBOS codigos partidarios (spec bis Sec.C/D).
+    """
+    vc, fuera = {}, {"n_excluido": 0, "filas_no_partidarias": 0,
+                     "cols_no_partidarias": 0}
+    for r in der:
+        if r["tabla"] != "T6":
+            continue
+        n, rc, cc = int(r["n"]), r["row_code"], r["col_code"]
+        if rc not in CODIGOS_PARTIDARIOS or cc not in CODIGOS_PARTIDARIOS:
+            fuera["n_excluido"] += n
+            fuera["filas_no_partidarias"] += n if rc not in CODIGOS_PARTIDARIOS else 0
+            fuera["cols_no_partidarias"] += n if cc not in CODIGOS_PARTIDARIOS else 0
+            continue
+        d = vc.setdefault(int(r["control_code"]), {"cambio": 0, "n": 0})
+        d["n"] += n
+        if clave(rc, cc):
+            d["cambio"] += n
+    return vc, fuera
+
+
 def p1_r77(v0, der):
-    """R7.7: mitad turnout (T1) y mitad vote-choice (T6). Falsador B-bis."""
-    # --- turnout, T1 agregando los cuatro estratos
+    """R7.7: turnout (T1) + vote-choice (T6), falsador B-bis, robustez T7."""
+    # --- turnout, T1 agregando los cuatro estratos de W2_P36C
     tur = {}
     for r in v0:
         if r["tabla"] != "T1":
             continue
         ofr = 1 if r["fila"] == "ofrecieron=1" else 0
-        voto = r["columna"] == "voto=1"
         d = tur.setdefault(ofr, {"voto": 0, "n": 0})
         d["n"] += int(r["n_sin_ponderar"])
-        if voto:
+        if r["columna"] == "voto=1":
             d["voto"] += int(r["n_sin_ponderar"])
-    dt, lot, hit, semi_t = newcombe(tur[1]["voto"], tur[1]["n"],
-                                    tur[0]["voto"], tur[0]["n"])
+    dt, lot, hit, semi_t = wald(tur[1]["voto"], tur[1]["n"],
+                                tur[0]["voto"], tur[0]["n"])
 
-    # --- vote-choice, T6 restringido a celdas candidato -> candidato
-    vc, fuera = {}, {"filas_no_candidato": 0, "cols_no_candidato": 0, "n_excluido": 0}
-    for r in der:
-        if r["tabla"] != "T6":
-            continue
-        n = int(r["n"])
-        pr, pc = PARTIDO.get(r["row_code"]), PARTIDO.get(r["col_code"])
-        if pr is None or pc is None:
-            fuera["n_excluido"] += n
-            fuera["filas_no_candidato"] += n if pr is None else 0
-            fuera["cols_no_candidato"] += n if pc is None else 0
-            continue
-        ofr = int(r["control_code"])
-        d = vc.setdefault(ofr, {"cambio": 0, "n": 0})
-        d["n"] += n
-        if pr != pc:
-            d["cambio"] += n
-    dv, lov, hiv, semi_v = newcombe(vc[1]["cambio"], vc[1]["n"],
-                                    vc[0]["cambio"], vc[0]["n"])
+    # --- vote-change PRIMARIO (v3): P8 != W2_P8 sobre el CODIGO
+    vc, fuera = _t6_contraste(der, lambda rc, cc: rc != cc)
+    dv, lov, hiv, semi_v = wald(vc[1]["cambio"], vc[1]["n"],
+                                vc[0]["cambio"], vc[0]["n"])
 
-    # --- falsador B-bis: el semi-ancho se evalua ANTES de mirar el signo
+    # --- vote-change SECUNDARIO (spec de COMMIT-1): mapeo a partido. YA VISTO.
+    vp, _ = _t6_contraste(der, lambda rc, cc: PARTIDO[rc] != PARTIDO[cc])
+    dp, lop, hip, semi_p = wald(vp[1]["cambio"], vp[1]["n"],
+                                vp[0]["cambio"], vp[0]["n"])
+
+    # --- falsador B-bis: el semiancho se evalua ANTES de mirar el signo
     umbral = 0.15
     if semi_v is None or semi_v > umbral:
         veredicto = "NO-DISCRIMINA"
-        razon = (f"semi-ancho del IC95 de Delta_vote-change = "
-                 f"{semi_v:.4f} > {umbral} (+-15 pp). Rama de precedencia.")
+        razon = (f"semiancho del IC95 (Wald) de Delta_vote-change = {semi_v:.4f} "
+                 f"> {umbral} (+-15 pp). Rama de precedencia.")
     elif (lot <= 0 <= hit) and (lov <= 0 <= hiv):
         veredicto = "CORROBORADA"
         razon = "IC95 de Delta_turnout y de Delta_vote-change contienen 0."
@@ -248,43 +261,111 @@ def p1_r77(v0, der):
         veredicto = "NO-DISCRIMINA"
         razon = "ninguna rama del falsador se satisface limpiamente."
 
+    def celda(k, n, campo):
+        return {campo: k, "n": n, "p": wilson(k, n)}
+
     return {
         "regla": "R7.7", "tier_canon": "MEDIA",
         "enunciado": "dadiva + broker -> compra turnout, no vote-choice",
         "turnout_T1": {
-            "ofrecidos": {"voto": tur[1]["voto"], "n": tur[1]["n"],
-                          "p": wilson(tur[1]["voto"], tur[1]["n"])},
-            "no_ofrecidos": {"voto": tur[0]["voto"], "n": tur[0]["n"],
-                             "p": wilson(tur[0]["voto"], tur[0]["n"])},
-            "delta": dt, "ic95": [lot, hit], "semi_ancho": semi_t,
+            "ofrecidos": celda(tur[1]["voto"], tur[1]["n"], "voto"),
+            "no_ofrecidos": celda(tur[0]["voto"], tur[0]["n"], "voto"),
+            "delta": dt, "ic95_wald": [lot, hit], "semiancho": semi_t,
             "excluye_cero": not (lot <= 0 <= hit),
         },
-        "vote_change_T6": {
-            "ofrecidos": {"cambio": vc[1]["cambio"], "n": vc[1]["n"],
-                          "p": wilson(vc[1]["cambio"], vc[1]["n"])},
-            "no_ofrecidos": {"cambio": vc[0]["cambio"], "n": vc[0]["n"],
-                             "p": wilson(vc[0]["cambio"], vc[0]["n"])},
-            "delta": dv, "ic95": [lov, hiv], "semi_ancho": semi_v,
+        "vote_change_T6_PRIMARIO_v3": {
+            "desenlace": "P8 != W2_P8 (comparacion de CODIGO), universo de codigos partidarios",
+            "ofrecidos": celda(vc[1]["cambio"], vc[1]["n"], "cambio"),
+            "no_ofrecidos": celda(vc[0]["cambio"], vc[0]["n"], "cambio"),
+            "delta": dv, "ic95_wald": [lov, hiv], "semiancho": semi_v,
             "excluye_cero": not (lov <= 0 <= hiv),
-            "excluido_por_no_candidato": fuera,
+            "excluido_por_codigo_no_partidario": fuera,
         },
-        "umbral_no_discrimina_semi_ancho": umbral,
+        "vote_change_T6_SECUNDARIO_ya_visto": {
+            "rotulo": "YA-VISTO-BAJO-SPEC-ANTERIOR",
+            "desenlace": ("partido(P8) != partido(W2_P8), PAN={01} PRI={02,04,09} "
+                          "AMLO={03,05,06,10} QUADRI={07} -- spec de COMMIT-1 (b6efa1f)"),
+            "ofrecidos": celda(vp[1]["cambio"], vp[1]["n"], "cambio"),
+            "no_ofrecidos": celda(vp[0]["cambio"], vp[0]["n"], "cambio"),
+            "delta": dp, "ic95_wald": [lop, hip], "semiancho": semi_p,
+            "excluye_cero": not (lop <= 0 <= hip),
+            "declaracion": ("este contraste se corrio bajo la spec v1/v2 ANTES de que "
+                            "apareciera el encargo v3, asi que P1 bajo v3 NO es ciega: "
+                            "su desenlace es un vecino cercano de este. Se publica junto "
+                            "al primario en vez de esconderse."),
+        },
+        "umbral_no_discrimina_semiancho": umbral,
         "veredicto_Bbis": veredicto,
         "razon_veredicto": razon,
         "reservas": [
             "panel NO ponderado: proporciones muestrales crudas, no comparables "
             "contra coeficientes de indice ni contra estimaciones ponderadas",
-            f"n de ofrecidos en T6 (candidato->candidato) = {vc[1]['n']}; el panel "
-            "'Si' completo de T6 es 48 y el marginal del estudio 63 -- el encargo "
+            f"n de ofrecidos en el universo de la pieza = {vc[1]['n']}; el panel 'Si' "
+            "completo de T6 es 48 y el marginal del estudio 63. El encargo (v1 y v3) "
             "supuso 63 para esta pieza y es la cifra equivocada",
             "W2_P41 es autorreporte de OFERTA RECIBIDA, no de venta del voto: "
             "la prevalencia bruta es un piso, no una estimacion",
-            "W2_P41 no esta asignado al azar (targeting por partido, localidad y "
-            "vulnerabilidad): esto es ASOCIACION, no coeficiente identificado. "
-            "PROHIBIDO escribir 'el efecto de la compra de voto es X'",
+            "la seleccion de quien recibe oferta NO es aleatoria (targeting por "
+            "partido, localidad y vulnerabilidad): esto es ASOCIACION, no coeficiente "
+            "identificado. PROHIBIDO escribir 'el efecto de la compra de voto es X'",
         ],
         "entra_al_motor": False,
     }
+
+
+def p1_robustez(der):
+    """T7a/T7b por W2_PX8 (urbano/rural/mixto). Rotulo ROBUSTEZ: no adjudica."""
+    # T7a: W2_P41 x W2_P7 | W2_PX8 -> turnout por ambito
+    t7a = {}
+    for r in der:
+        if r["tabla"] != "T7a":
+            continue
+        d = t7a.setdefault(r["control_label"], {})
+        d.setdefault(r["row_code"], {"voto": 0, "n": 0})
+        n = int(r["n"])
+        d[r["row_code"]]["n"] += n
+        if r["col_code"] == "1":
+            d[r["row_code"]]["voto"] += n
+    ambitos = {}
+    for amb, d in t7a.items():
+        ofr, no = d.get("1"), d.get("0")
+        if not ofr or not no:
+            continue
+        dd, lo, hi, semi = wald(ofr["voto"], ofr["n"], no["voto"], no["n"])
+        ambitos[amb] = {
+            "ofrecidos": {"voto": ofr["voto"], "n": ofr["n"],
+                          "p": wilson(ofr["voto"], ofr["n"])},
+            "no_ofrecidos": {"voto": no["voto"], "n": no["n"],
+                             "p": wilson(no["voto"], no["n"])},
+            "prevalencia_oferta": ofr["n"] / (ofr["n"] + no["n"]),
+            "delta_turnout_pp": None if dd is None else dd * 100,
+            "ic95_pp": [None, None] if lo is None else [lo * 100, hi * 100],
+        }
+    # T7b: W2_P41 x W2_P8 | W2_PX8 -> nivel de voto por ambito
+    t7b = {}
+    for r in der:
+        if r["tabla"] != "T7b":
+            continue
+        n, cc = int(r["n"]), r["col_code"]
+        d = t7b.setdefault(r["control_label"], {}).setdefault(
+            r["row_code"], {"n": 0, "PRI": 0, "PAN": 0, "AMLO": 0})
+        d["n"] += n
+        if cc in CODIGOS_PARTIDARIOS:
+            d[PARTIDO[cc]] = d.get(PARTIDO[cc], 0) + n
+    nivel = {}
+    for amb, d in t7b.items():
+        nivel[amb] = {}
+        for cod, dd in d.items():
+            et = "ofrecidos" if cod == "1" else "no_ofrecidos"
+            nivel[amb][et] = {"n": dd["n"],
+                              "PRI": dd["PRI"], "p_PRI": wilson(dd["PRI"], dd["n"]),
+                              "AMLO": dd["AMLO"], "p_AMLO": wilson(dd["AMLO"], dd["n"]),
+                              "PAN": dd["PAN"], "p_PAN": wilson(dd["PAN"], dd["n"])}
+    return {"rotulo": "ROBUSTEZ", "adjudica": False,
+            "T7a_turnout_por_ambito": ambitos,
+            "T7b_nivel_de_voto_por_ambito": nivel,
+            "nota": ("no mueve el veredicto de P1 por spec. Las celdas de ofrecidos "
+                     "por ambito son de una o dos decenas de casos: descriptivo.")}
 
 
 # ---------------------------------------------------------------- P2
@@ -310,7 +391,7 @@ def p2_r73_r76(v0):
                 agg[r["fila"]]["PRI"] += n
         estratos = {}
         for e, d in sorted(por_estrato.items()):
-            dd, lo, hi, semi = newcombe(d[expuesto]["PRI"], d[expuesto]["tot"],
+            dd, lo, hi, semi = wald(d[expuesto]["PRI"], d[expuesto]["tot"],
                                         d[no_expuesto]["PRI"], d[no_expuesto]["tot"])
             estratos[e] = {
                 "expuesto": {"PRI": d[expuesto]["PRI"], "n": d[expuesto]["tot"],
@@ -321,7 +402,7 @@ def p2_r73_r76(v0):
                 "ic95_pp": [None, None] if lo is None else [lo * 100, hi * 100],
                 "semi_ancho_pp": None if semi is None else semi * 100,
             }
-        dd, lo, hi, semi = newcombe(agg[expuesto]["PRI"], agg[expuesto]["tot"],
+        dd, lo, hi, semi = wald(agg[expuesto]["PRI"], agg[expuesto]["tot"],
                                     agg[no_expuesto]["PRI"], agg[no_expuesto]["tot"])
         salida[tabla] = {
             "variable_expuesto": var, "desenlace": "voto PRI (W2_P8)",
@@ -398,6 +479,76 @@ def p3_lista(der):
 
 
 # ---------------------------------------------------------------- P4
+def p4_exploratorio(der):
+    """T8 y T9a: inventario con IC, rotulo EXPLORATORIO. SIN veredicto.
+
+    Entra solo a la nota; NO entra a milpa/tramite-ola5-propuesta-v0.yaml.
+    """
+    # --- T8: W2_P53 (marca en credencial) x W2_P7 (voto declarado)
+    t8, t8_no_voto = {}, 0
+    for r in der:
+        if r["tabla"] != "T8":
+            continue
+        n = int(r["n"])
+        if r["col_code"] == "1":
+            t8[r["row_label"]] = t8.get(r["row_label"], 0) + n
+        else:
+            t8_no_voto += n
+    n8 = sum(t8.values())
+    corroborado = max(t8.items(), key=lambda kv: kv[1]) if t8 else (None, 0)
+    t8_out = {
+        "universo": "quien declaro haber votado (W2_P7=1)", "n": n8,
+        "celdas": {k: {"n": v, "p": wilson(v, n8)} for k, v in sorted(t8.items())},
+        "columna_no_voto": t8_no_voto,
+        "limite_medido": (
+            "la columna 'no voto' es CERO en todas las filas: W2_P53 solo se "
+            "pregunto a quien declaro haber votado. NO hay no-votantes en el "
+            "denominador, asi que T8 NO puede calibrar sobrerreporte de "
+            "participacion, que era la funcion que el plan le asignaba."),
+        "advertencia": (
+            "los estados 'no pudo ver', 'no trae credencial' y 'se niega a mostrar' "
+            "son NO-VERIFICABLE, no falso: colapsarlos con 'no tiene marca' y "
+            "'afirma haber votado sin marca' produce una tasa de mentira inflada "
+            "por rechazo a mostrar identificacion, que es otro fenomeno."),
+        "corroborado_por_marca": {"etiqueta": corroborado[0], "n": corroborado[1],
+                                  "p": wilson(corroborado[1], n8)},
+    }
+
+    # --- T9a: W2_P36D (percepcion de compra de voto) x W2_P41 (oferta recibida)
+    t9 = {}
+    for r in der:
+        if r["tabla"] != "T9a":
+            continue
+        d = t9.setdefault(r["row_label"], {"ofrecido": 0, "n": 0})
+        d["n"] += int(r["n"])
+        if r["col_code"] == "1":
+            d["ofrecido"] += int(r["n"])
+    t9_out = {k: {"ofrecido": v["ofrecido"], "n": v["n"],
+                  "p": wilson(v["ofrecido"], v["n"])} for k, v in t9.items()}
+    tot_n = sum(v["n"] for v in t9.values())
+    tot_o = sum(v["ofrecido"] for v in t9.values())
+
+    return {
+        "rotulo": "EXPLORATORIO", "veredicto": None, "adjudica": False,
+        "entra_a_la_propuesta": False, "entra_al_motor": False,
+        "T8_marca_en_credencial": t8_out,
+        "T9a_percepcion_x_oferta": {
+            "celdas": t9_out, "n_total": tot_n, "ofrecidos_total": tot_o,
+            "prevalencia_global": wilson(tot_o, tot_n),
+            "prohibido": (
+                "escribir 'la percepcion de compra de voto es sobre todo vivencia'. "
+                "Las dos variables son de la MISMA ola (sin orden temporal), el "
+                "sentido mas probable es el inverso (recibir el regalo produce el "
+                "reporte), y aun entre quienes estan TOTALMENTE de acuerdo la gran "
+                "mayoria NO recibio oferta: la percepcion excede a la experiencia "
+                "por un orden de magnitud."),
+            "NS_no_se_colapsa": (
+                "no saber y negar son estados distintos; una celda con numerador 0 "
+                "sostiene 'ninguna observada en esta muestra', no 'cero ofertas'."),
+        },
+    }
+
+
 def p4_pendiente(der):
     """Que falta de verdad, tras comprobar T6-T9 contra disco."""
     presentes = sorted({r["tabla"] for r in der})
@@ -405,8 +556,10 @@ def p4_pendiente(der):
         "P1_se_lanza": "T6" in presentes,
         "tablas_en_disco": presentes,
         "premisa_del_encargo_refutada": (
-            "el encargo supuso 'T6-T9 no han sido exportadas'. T6, T7a, T7b, T8 y "
-            "T9a SI estan. Corroborado por ADR-310 y por la nota de MAESTRA36-A1."),
+            "el encargo (v1 y v3) supone que T6-T9 no han sido LEIDAS EN VALOR por "
+            "nadie. LEEME 2-procedencia.txt trae tres adendas de direccion del 2/sep "
+            "con ICs, t, p y gradientes en valor de T5, T6, T7a, T7b, T8 y T9a. Lo "
+            "unico que ninguna adenda calcula es el contraste de vote-change de P1."),
         "pendiente_de_mesa_real": {
             "T9b": "W2_P38A x W2_P38B, control P46 -- no aparece en disco",
             "serie_ronda_1": ["P40 x P7", "P40 x P8", "P38B x P8 | P36C", "P39 x P8"],
@@ -418,7 +571,7 @@ def p4_pendiente(der):
         "receta_para_mesa": ("Explore Data -> Crosstabs; T9b: fila W2_P38A, columna "
                              "W2_P38B, control P46, exportar. Serie ronda 1: las cuatro "
                              "de arriba, sin control salvo la tercera (control P36C)."),
-        "FP": "FP-261",
+        "FP": "FP-263",
     }
 
 
@@ -442,15 +595,18 @@ def main():
         salida = {
             "acto": "MAESTRA36-L12 · MPS-2012-CROSSTABS",
             "fecha": "2026-09-03",
-            "spec_congelada": "forense/notas/2026-09-03-MAESTRA36-L12-spec-congelada.md",
+            "spec_congelada": ["forense/notas/2026-09-03-MAESTRA36-L12-spec-congelada.md (COMMIT-1)",
+                               "forense/notas/2026-09-03-MAESTRA36-L12-spec-congelada-bis-v3.md (COMMIT-1-bis, manda)"],
             "fuente": "ICPSR 35024 Mexico Panel Study 2012, DS1, ola 2 (W2), "
                       "tabulador en linea 'Explore Data'",
             "doi": "https://doi.org/10.3886/ICPSR35024.v1",
             "P0_censo_y_estampa": p0,
             "P1_R7_7_vote_choice": p1_r77(v0, der),
+            "P1_robustez_T7": p1_robustez(der),
             "P2_R7_3_R7_6_replica": p2_r73_r76(v0),
             "P3_experimento_de_lista": p3_lista(der),
-            "P4_pendiente_de_mesa": p4_pendiente(der),
+            "P4_exploratorio_T8_T9a": p4_exploratorio(der),
+            "pendiente_de_mesa": p4_pendiente(der),
         }
     salida["cargas_al_motor"] = 0
 
