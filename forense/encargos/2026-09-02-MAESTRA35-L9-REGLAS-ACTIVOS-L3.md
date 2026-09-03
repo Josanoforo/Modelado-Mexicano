@@ -2,7 +2,7 @@
 
 - **SHA de redacción** — `9cbd8d8` (merge PR #485).
 - **Entorno asignado** — UBUNTU con corpus, sesión nueva, worktree propio. **NO** en NUBE.
-- **Estado** — VIVO
+- **Estado** — CONSUMIDO (ver sección al pie)
 - **Redacción** — dirección (Fable), 2/sep/2026, contra `instrucciones-proyecto-v2_12.md`.
 
 ---
@@ -30,3 +30,34 @@ FP/ADR CANDIDATOS: un recibo (sello en RH); primer libre al arrancar (251/301 en
 CONTADOR: reglas del modelo con dato (pendiente sello) +hasta 6 en cuatro piezas · celdas con IC +N · cifra de laboratorio sustituida por dato de encuesta: 1 si (a) satisface. Declara el real.
 
 Lo que este acto NO hace: no carga al motor; no abre Ola 6; no toca cívica electoral (L8) ni denuncia (L7); no descarga; no edita instrucciones.
+
+---
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA35-L9 · REGLAS-ACTIVOS-L3` el 2/sep/2026, entorno
+UBUNTU con corpus, worktree `/home/pc0/mm-l9-activos-l3`, rama
+`claude/encargo-acto-maestra35-l9`. **PR pendiente de abrir al escribir esta
+sección; el número se cita en `canon/gobernanza-v1_15.md` `ADR-304`.**
+
+Commits: `6412d17` (A.3) · `418a22f` (`P0` censo) · `a67e46b` (`COMMIT-1` spec) ·
+`7033743` (`COMMIT-2` resultados) · `df96044` (merge de `origin/main = 78304f3`) ·
+la cascada de cierre.
+
+Entregado: seis reglas del modelo con dato (`R7.7`, `R7.3`, `R7.6`, `R7.4`,
+`R7.8`, `R1.5`), 84 celdas y contrastes con IC95, cinco entradas
+`PENDIENTE-DE-MESA` al pie de `milpa/tramite-ola5-propuesta-v0.yaml`, `ADR-304`,
+`FP-253`.
+
+Lo que el encargo pedía y **no** se entregó, con su razón: la **serie de
+LAPOP** (2021 no trae ninguna de las variables y 2006 no es el mismo
+instrumento); la **entrada de LAPOP al inventario de reactivos** (el
+procedimiento de ETIQUETA no la permite sin re-extracción — dejado como
+hallazgo, que es la rama que el propio encargo prescribe); el eje **«celdas por
+tenencia de cuenta»** de la pieza (d), que no es construible porque el desenlace
+sólo existe para quien no tiene cuenta; y el contraste de **entorno** de la
+pieza (b), que cayó por la guardia de numerador pre-registrada.
+
+Contadores: reglas del modelo con dato **+6** (pendiente sello) · celdas con IC
+**+84** · **cifra de laboratorio sustituida por dato de encuesta: 0** — el
+encargo lo condicionaba a que (a) satisficiera, y (a) salió `NO-DISCRIMINA`.
