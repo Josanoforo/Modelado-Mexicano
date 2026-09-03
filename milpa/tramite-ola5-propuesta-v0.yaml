@@ -2771,6 +2771,102 @@ reglas_propuestas:
     payload_manifiesto_id_numerador: firelenumcontri
     payload_manifiesto_id_denominador: portipocontribuyente
 
+
+  - id: civico.clientelismo.vote_change_mps2012
+    entrada_nueva: true
+    referida_a: "regla R7.7 (canon/modelo-decision-v4_0.md:763, [MEDIA], 'dadiva + broker -> compra turnout, no vote-choice') -- PRIMER dato mexicano que observa a la MISMA persona en dos olas. NO reabre ninguna fila archivada"
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: cambio_de_voto_entre_olas_si_le_ofrecieron_mps2012, p: 0.457143, clase: "MEDIDO·p(proporcion SIN PONDERAR, conteos crudos de tabulador de segunda mano)"}
+      - {conducta: cambio_de_voto_entre_olas_si_no_le_ofrecieron_mps2012, p: 0.406612, clase: "MEDIDO·p(proporcion SIN PONDERAR, conteos crudos de tabulador de segunda mano)"}
+      - {conducta: voto_si_le_ofrecieron_mps2012, p: 0.838710, clase: "MEDIDO·p(proporcion SIN PONDERAR)"}
+      - {conducta: voto_si_no_le_ofrecieron_mps2012, p: 0.857955, clase: "MEDIDO·p(proporcion SIN PONDERAR)"}
+    porque: {generador: [G4], mecanismo: "la dadiva compra presencia en la urna, no direccion del voto, porque el voto es secreto y el broker no puede verificarlo -- este acto NO re-deriva el generador, lo hereda del enunciado de R7.7"}
+    falsable_si: >
+      B-bis congelado en forense/notas/2026-09-03-MAESTRA36-L12-spec-congelada-bis-v3.md ANTES
+      de abrir T6: CORROBORADA si Delta_turnout y Delta_vote-change tienen IC95 que contienen 0;
+      CONTRARIA si el IC de Delta_vote-change excluye 0; NO-DISCRIMINA si el semiancho de ese IC
+      supera +-15 pp, y NO-DISCRIMINA manda sobre las otras dos.
+    veredicto_Bbis: NO-DISCRIMINA
+    razon_veredicto: >
+      El semiancho del IC95 (Wald, sobre conteos crudos) de Delta_vote-change es 16.96 pp y el
+      umbral pre-registrado era 15 pp: la rama de precedencia se dispara ANTES de mirar el signo,
+      tal como la spec mandaba calcularlo. El propio encargo v3 anticipo por escrito que con
+      n_ofrecidos ~63 este era el desenlace mas probable; lo es, y por mas margen del que suponia.
+      Delta_turnout = -1.92 pp (semiancho 9.39 pp, contiene 0) tampoco discrimina.
+    hallazgo: >
+      El signo de Delta_vote-change DEPENDE DE COMO SE CUENTE EL CAMBIO, y las dos cifras se
+      publican juntas. Comparando CODIGO de partido entre olas (desenlace PRIMARIO que fija el
+      encargo v3): +5.05 pp (16 de 35 contra 246 de 605). Colapsando los codigos a bloque de
+      partido (PAN / PRI / AMLO / QUADRI -- desenlace de la spec de COMMIT-1, YA VISTO bajo la
+      version superada del encargo): -2.13 pp (11 de 35 contra 203 de 605). Ninguno de los dos
+      IC excluye cero y los dos superan el umbral de no-discriminacion, asi que la conclusion no
+      cambia; pero el hecho de que el signo se voltee con la codificacion es el hallazgo que se
+      hereda a quien mida esto con microdato.
+    reservas: >
+      Instrumento de SEGUNDA MANO (tabulador en linea 'Explore Data' de ICPSR, no el microdato:
+      35024-0001-Data.dta exige membresia institucional, A.4 NO-ACCESIBLE). Conteos SIN
+      PONDERAR, sin estrato ni UPM. n de ofrecidos = 35 en el universo de codigo partidario
+      valido en las dos olas (62 en turnout). Quien recibe la oferta NO es aleatorio: no hay
+      identificacion causal, es asociacion descriptiva. Tier maximo alcanzable MEDIA con
+      reserva. SECUENCIA declarada: P1 bajo la v3 NO es ciega, porque su desenlace es vecino
+      cercano de uno ya corrido bajo la v1/v2.
+    escala: "proporcion SIN PONDERAR de personas dentro de cada celda; conteos crudos del tabulador"
+    universo: >
+      Ola panel ronda 2 (julio 2012), n~1555. Para vote-change: personas con codigo de partido
+      valido en las DOS olas (P8 y W2_P8) y W2_P41 en {1,2}; 216 casos excluidos por codigo no
+      partidario (no voto, anulo, NS/NR), fijados por codebook ANTES de abrir T6. Para turnout:
+      T1, W2_P41 x W2_P7.
+    ponderador: NINGUNO -- la fuente no lo trae
+    diseno: "tabulacion cruzada de segunda mano; IC95 Wald sobre conteos crudos, sin diseno muestral"
+    fuente: ["ICPSR 35024 Mexico Panel Study 2012 (DS1, W2)", "https://doi.org/10.3886/ICPSR35024.v1", "data/l12-mps2012-v1_0.json", "forense/notas/2026-09-03-MAESTRA36-L12-resultados.md"]
+    ola_calibracion: "Mexico Panel Study 2012, rondas 1 (marzo) y 2 (julio); unica fuente panel del corpus para clientelismo"
+    payload_manifiesto_id: [icpsr35024_ds1_w2_crosstabs_derivado_v0, icpsr35024_ds1_w2_crosstabs_derivadas]
+    entra_al_motor: false
+
+  - id: civico.clientelismo.prevalencia_lista_mps2012
+    entrada_nueva: true
+    referida_a: "regla R7.7 (canon/modelo-decision-v4_0.md:763) -- prevalencia por EXPERIMENTO DE LISTA, contrastada contra la pregunta directa. NO es p de regla"
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: prevalencia_por_lista_ronda2_julio_mps2012, p: 0.187641, clase: "MEDIDO·Delta de segunda mano (diferencia de medias entre lista B y lista A, NO una p de regla)"}
+      - {conducta: prevalencia_por_lista_ronda1_marzo_mps2012, p: 0.068764, clase: "MEDIDO·Delta de segunda mano (diferencia de medias entre lista B y lista A, NO una p de regla)"}
+    porque: {generador: [G4], mecanismo: "la pregunta directa sobre venta del voto esta socialmente sancionada, asi que subdeclara; el experimento de lista levanta la conducta sin exigir que la persona se auto-incrimine"}
+    falsable_si: NO-APLICA
+    veredicto_Bbis: NO-APLICA -- pieza de prevalencia, no de contraste
+    hallazgo: >
+      Ronda 2 (julio): Delta = 18.76% (EE 5.23 pp, t = 3.59, IC95 excluye cero). Ronda 1 (marzo):
+      Delta = 6.88% (EE 4.90 pp, t = 1.40, IC95 CONTIENE cero). La pregunta directa de la misma
+      ola (W2_P41) da 5.5%, o sea la lista levanta 3.41 veces lo que la directa en ronda 2. Las
+      dos cifras NO miden el mismo estimando: W2_P41 pregunta si le OFRECIERON; el item de la
+      lista, si el supuesto de abajo se sostiene, pregunta por la conducta.
+    prohibido: >
+      Escribir 'subio de 6.9% a 18.8%' entre rondas: los IC95 de las dos olas se traslapan y esta
+      pieza NO sostiene una afirmacion de cambio temporal.
+    supuesto_no_verificado_que_la_gobierna: >
+      Que la lista B sea la lista A mas UN item y que ese item sea la venta del voto. El texto de
+      los items P35A/P35B/W2_P35A/W2_P35B NO esta en estas salidas del tabulador. Hasta leerlo en
+      el cuestionario de ICPSR 35024, esta pieza es una PROPUESTA de medicion, no una medicion
+      cerrada -- y eso es lo que la deja PENDIENTE-DE-MESA y no candidata a sello. Queda en FP-263.
+    reservas: >
+      Instrumento de segunda mano, conteos SIN PONDERAR, diferencia de medias con IC95 normal.
+      SECUENCIA declarada: la lectura de ronda 2 (18.8%) ya estaba escrita en la Adenda 3 de
+      'LEEME 2-procedencia.txt' ANTES de congelar esta spec; la de ronda 1 no lo estaba.
+    escala: "diferencia de medias de conteo de items entre las dos listas, leida como proporcion de personas que afirman el item sensible"
+    universo: "ronda 1 (marzo): 649 y 650 validos, 29 NC excluidos; ronda 2 (julio): 573 y 575 validos, 2 NC excluidos"
+    ponderador: NINGUNO -- la fuente no lo trae
+    diseno: "experimento de lista de dos brazos; IC95 normal sobre diferencia de medias, sin diseno muestral"
+    fuente: ["ICPSR 35024 Mexico Panel Study 2012 (DS1, T5)", "data/l12-mps2012-v1_0.json", "forense/notas/2026-09-03-MAESTRA36-L12-resultados.md"]
+    ola_calibracion: "Mexico Panel Study 2012, rondas 1 y 2"
+    payload_manifiesto_id: [icpsr35024_ds1_w2_crosstabs_derivadas]
+    entra_al_motor: false
+
   - id: tramite.gobierno_digital.coercitivo_tabla_de_universos
     entrada_nueva: true
     referida_a: >

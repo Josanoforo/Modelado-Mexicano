@@ -1,0 +1,45 @@
+ENCARGO · ACTO MAESTRA36-L12 · MPS-2012-CROSSTABS (v3, autocontenido — sustituye íntegras las v1 y v2, que referían un archivo inexistente en el repo)
+
+SHA de redacción: ea45e01 (origin/main, merge PR #500) · 3/sep/2026, dirección (Fable) · v2.12 · Estado: LISTO PARA LANZAR — COMPUERTA: ninguna (cumplida por producto, abajo).
+
+ENTORNO ASIGNADO: UBUNTU (los payloads viven en descargas_mx). NO en NUBE. MODELO SUGERIDO: Opus (medidor de dos commits sobre instrumento de segunda mano).
+
+Invoca /acto. A.2 de tres partes: la tercera es ls "$(python3 -c 'import yaml;print(yaml.safe_load(open("data/raices.local.yaml"))["descargas_mx"])')" | head -1.
+
+CARRILES: en NUBE corre MAESTRA36-N2 · CIERRA-N3 (cola de N3, scoreboard-v1_2-AGREGADO.md, tablero) — disjunto. En CAJA puede correr MAESTRA36-L13 (SAT/e.firma): ambos hacen append al pie de milpa/tramite-ola5-propuesta-v0.yaml y escriben forense/firmas-pendientes.tsv; renumera quien fusiona segundo. A2 en mm-adq, disjunto.
+
+FIRMAS DE MESA — verbatim. 2/sep/2026, registro de conversación maestra-35 (transfer §7): mesa exportó de «Explore Data» de ICPSR 35024, sin membresía, las tablas T1–T5 (export_crudo) y después T6–T9 (…-derivadas.csv), y las depositó en descargas_mx; MAESTRA36-A1 las registró el 2/sep (PR #500). Este acto no trae firma nueva: mide y deja todo PENDIENTE-DE-MESA.
+
+═══ VERIFICACIÓN DE EXISTENCIA (A.8), contra ea45e01 ═══ (1) ESTRUCTURA. Reglas: canon/modelo-decision-v4_0.md:763 (R7.7, [MEDIA], «Dádiva + broker → compra turnout, no vote-choice»), :735 (R1.5), y R7.3/R7.6 (agencia con secreto, [FUERTE]/[MEDIA], ya con CONTRARIA-REPLICADA por L9+L11). Acumulador: milpa/tramite-ola5-propuesta-v0.yaml. Artefactos en data/ → data/INFRAESTRUCTURA-v1_0.md en perímetro (§0.11). (2) CONTENIDO. grep -aE '^- id: (icpsr35024_ds1_w2_crosstabs_derivado_v0|icpsr35024_ds1_w2_crosstabs_derivadas|export_crudo)$' data/manifiesto.yaml → 3. Verificado por el ejecutor en el primer intento (3/sep): los tres en disco bajo descargas_mx, sha256 COINCIDE con el manifiesto. Contenido inventariado por estructura (no por valor): export_crudo.txt = 30 tablas, (W2_P39B,W2_P40,W2_P41) × (W2_P7,W2_P8), 5 estratos, control W2_P36C — es T1–T4; icpsr35024-ds1-w2-crosstabs-derivadas.csv = 371 filas: T5 (P35A/P35B/W2_P35A/W2_P35B, 22 celdas), T6 (P8×W2_P8, control W2_P41, 257 celdas), T7a/T7b (W2_P41×W2_P7/W2_P8, control W2_PX8), T8 (W2_P53×W2_P7), T9a (W2_P36D×W2_P41); …derivado_v0.csv = transcripción de dirección de T1–T5, formato largo. T5_lista_W2.txt: grep -ac T5_lista data/manifiesto.yaml → 0 y no existe en disco — su contenido vive en …-derivadas.csv (T5). Medición previa sobre crosstabs: grep -rln 'MPS-2012\|crosstabs' forense/notas/ → reporta; dirección espera 0. Microdato: NO-ACCESIBLE (membresía; A1-3, 3 intentos). (3) COBERTURA RETROACTIVA. Los tres payloads entraron al manifiesto el 2/sep (ADR-310); nada anterior.
+
+Advertencia de secuencia, declarada antes de medir. T1–T5 ya fueron vistas por mesa y por dirección (lecturas preliminares en el transfer §7: turnout 83.9 vs 85.8 %; PAN +2.0/−3.8 pp; lista 18.8 % vs 5.5 %). Su spec se congela igual y el COMMIT-1 lo dice con la frase de L8 §0.0 («secuencia rota: spec congelada después de ver el resultado»). T6–T9 no han sido leídas en valor por nadie (el ejecutor las inventarió por estructura: nombres de variables y conteo de celdas). Para ellas el sello es ciego, y por eso T6 es la que adjudica.
+
+SPEC CONGELABLE POR PIEZA (un PR, un ADR, un recibo)
+
+P0 · Censo y estampa. Abrir los tres archivos. Verificar contra el codebook en corpus (icpsr35024_mexico_panel_study_2012_codebook_es_zip) los marginales que el transfer cita como control: W2_P41=1 → 63, W2_P7=1 → 971, W2_P40=1 → 60; discordancia → PARO de pieza. Declarar en la línea: instrumento de segunda mano, sin ponderador, conteos sin ponderar de una ola panel (ronda 2, n≈1 555; ronda 1 donde exista); tier máximo alcanzable MEDIA con reserva; ninguna celda entra al motor. Fijar por codebook, antes de abrir T6, los códigos de P8/W2_P8 que cuentan como voto por partido (excluir «no votó», «anuló», NS/NR y cualquier código no partidario) y los de W2_P41 (1 = ofrecido, 2 = no).
+
+P1 · R7.7, la mitad falsable (vote-choice), sobre T6 — COMMIT-1 antes de abrir T6. Fuente: …-derivadas.csv, tabla=T6, control_var=W2_P41, row_var=P8, col_var=W2_P8. Universo: personas con partido válido en las dos olas (según P0) y W2_P41 ∈ {1,2}. Desenlace: cambió = 1 si P8 ≠ W2_P8. Estadístico: Δ = p(cambió | ofrecido) − p(cambió | no ofrecido), IC95 por Wilson sobre cada proporción y diferencia normal sobre conteos crudos (no hay diseño). Complemento, misma pieza: turnout desde T1 (W2_P41 × W2_P7), Δ_turnout con el mismo IC. Falsador B-bis congelado: CORROBORADA si Δ_turnout y Δ tienen IC que contienen 0 (la dádiva no compra ni turnout ni vote-choice observables aquí); CONTRARIA si Δ (vote-change) tiene IC fuera de 0; NO-DISCRIMINA si el semiancho del IC de Δ supera ±15 pp (se calcula el ancho antes de mirar el signo, y se declara; con n de ofrecidos ≈ 63 es el desenlace más probable y se dice antes). Precedencia: NO-DISCRIMINA manda. Reserva escrita: panel sin ponderar, n de ofrecidos 63, selección de quién recibe oferta no aleatoria. Robustez, sin adjudicar: T7a/T7b (control W2_PX8, urbano/rural) — reportar Δ_turnout y nivel de voto por estrato con IC, rotulado ROBUSTEZ.
+
+P2 · R7.3/R7.6, tercer instrumento (secreto vs observable). De export_crudo.txt: T3 (W2_P39B×W2_P8) y T4 (W2_P40×W2_P8), control W2_P36C. Lecturas ya vistas (+2.0 / −3.8 pp, n 21) → no adjudica: reporta con IC y rotula REPLICA-DE-SEGUNDA-MANO-NO-SELLADA, contexto para N10.
+
+P3 · Prevalencia por experimento de lista (T5). De …-derivadas.csv, tabla=T5: W2_P35B − W2_P35A (ronda 2) y P35B − P35A (ronda 1), diferencia de medias sobre conteos, IC95 normal. Contrastar contra la pregunta directa (5.5 %). Entra a la propuesta como MEDIDO·Δ de segunda mano, no como p de regla. La lectura de ronda 2 (18.8 %) ya fue vista: secuencia rota, declarada; la de ronda 1 no.
+
+P4 · T8 y T9a, inventario sin adjudicar. W2_P53 (marca en credencial) × W2_P7 y W2_P36D × W2_P41: una tabla de proporciones con IC, rotulada EXPLORATORIO, sin veredicto; entra solo a la nota, no a la propuesta.
+
+Dos commits por pieza que mida (P1, P3): COMMIT-1 congela variables/universo/umbral y cierra con «el primer resultado que produzca este procedimiento es el que se reporta»; COMMIT-2 trae resultados y no edita el primero. Medidor: tools/medidor_l12_mps2012.py; artefacto data/l12-mps2012-v1_0.json; entradas nuevas al pie de la propuesta, PENDIENTE-DE-MESA, 0 líneas borradas.
+
+PERÍMETRO Y CONCURRENCIA. Toca: tools/medidor_l12_mps2012.py · data/l12-mps2012-v1_0.json · data/INFRAESTRUCTURA-v1_0.md (alta del artefacto) · milpa/tramite-ola5-propuesta-v0.yaml (append) · forense/notas/2026-09-0X-MAESTRA36-L12-*.md · forense/hallazgos.md · forense/firmas-pendientes.tsv · cascada. NO toca: milpa/tramite.yaml, milpa/procedencia.yaml, data/manifiesto.yaml, data/curacion-registro/**, forense/prereg-duelo-v2/**, los tres payloads (lectura). Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
+
+FP/ADR CANDIDATOS. ADR máx 310; N2 (nube) toma 311 y L13 puede tomar 312 → candidato 313, re-deriva al arrancar y al fusionar. FP máx 259; N2 260, L13 261 → FP-262 (recibo), FP-263 solo si P0 para por marginales discordantes.
+
+CONTADOR. R7.7 vote-choice: primer dato mexicano sobre la misma persona (+1 veredicto, sea cual sea) · R7.3/R7.6 tercer instrumento +1 (no sellable) · lista: +2 Δ (dos rondas) · entradas PENDIENTE-DE-MESA +2 a +3. Cargas al motor: 0.
+
+Lo que NO hace. No sella; no carga al motor; no descarga; no pondera lo que no trae ponderador; no toca las entradas de L9/L11; no lee T6 antes de que COMMIT-1 esté en el árbol.
+
+Sucesores. N10 · SELLA-L9-L11 gana la fila de R7.7 con dato; si mesa exporta ronda 1 completa, L12-bis por producto.
+
+---
+
+## CONSUMIDO
+
+`ACTO MAESTRA36-L12 · MPS-2012-CROSSTABS`, 3/sep/2026, `ADR-313`. `P0`–`P4` ejecutados y cerrados. `P0` **CUADRA** en los tres marginales, sin `PARO`. `P1` (`R7.7`): **`NO-DISCRIMINA`**, con el hallazgo de que el signo de Δ se voltea según la codificación del cambio. `P2`: `REPLICA-DE-SEGUNDA-MANO-NO-SELLADA`, no adjudica. `P3`: dos Δ de lista, gobernadas por un supuesto no verificado. `P4`: `EXPLORATORIO`. Dos entradas `PENDIENTE-DE-MESA` en la propuesta, **cargas al motor: 0**. Recibo `FP-262`; lo que falta, `FP-263`. **Dos premisas del propio encargo se refutaron y quedan declaradas**: la ceguera de `T6`–`T9` (la procedencia del payload ya traía el análisis en valor) y la vigencia de la `v1`/`v2` al congelar `COMMIT-1`. Notas: `forense/notas/2026-09-03-MAESTRA36-L12-{spec-congelada, spec-congelada-bis-v3, resultados}.md`. **La fusión de este PR es la firma.**
