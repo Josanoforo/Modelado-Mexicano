@@ -91,3 +91,7 @@ Qué NO hace: no sondea URLs (cero red — las puertas nuevas nacen NO-ENCONTRAD
 ---
 
 *Fin del texto reproducido. Las secciones §2, §4 y §5 se marcaron `[No ejecutado por este acto]` en vez de reproducirse íntegras porque exceden lo que esta sesión necesita citar para justificar su propio perímetro (§3 únicamente) — el texto completo de §2/§4/§5 vive en la sesión/acto que sí las ejecuta, o en esta misma nota si el archivo de MAP-A alguna vez se pierde. Reserva declarada, no oculta.*
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-12-veredicto-pr185-mapeo-universo-map-b.md" canon/gobernanza-v1_15.md` cita ADR-76, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-76 en canon/gobernanza-v1_15.md.

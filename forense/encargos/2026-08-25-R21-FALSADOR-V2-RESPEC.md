@@ -24,3 +24,7 @@ Firma de mesa que ejecuta este encargo, verbatim (ranura propia, candado `FP-63`
 **Contador: cero, declarado.**
 
 Detalle completo: `forense/notas/2026-08-25-r21-falsador-v2-cierre.md`.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-25-R21-FALSADOR-V2-RESPEC.md" canon/gobernanza-v1_15.md` cita ADR-190, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-190 en canon/gobernanza-v1_15.md.

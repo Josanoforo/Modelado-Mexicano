@@ -74,3 +74,7 @@ Abrir cualquier payload · editar `tools/` o el extractor · cambiar la especifi
 CONTADOR
 El delta de veredictos entre `v1_0` y `v1_1`, y el conteo real de instrumentos distintos que sustituye al 74. Es la primera vez que el programa mide cuánto de una conclusión suya venía de una etiqueta y no del dato.
 Si el delta resulta pequeño, ése es el contador y corrobora a E5: se reporta con esa palabra y no como decepción.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-27-MAESTRA31-E7-ETIQUETA.md" canon/gobernanza-v1_15.md` cita ADR-216, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-216 en canon/gobernanza-v1_15.md.

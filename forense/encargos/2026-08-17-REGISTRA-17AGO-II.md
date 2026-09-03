@@ -108,3 +108,7 @@ Reescribe `qué_se_firma` y `gatea` para que la fila diga lo que realmente falta
 Nota en `forense/notas/2026-08-17-registra-2.md` con cada comando y su salida cruda · una entrada en `hallazgos.md` · este encargo `CONSUMIDO` con su PR · **merge local**, editor web de conflictos prohibido · `git diff --check` · **jamás te auto-fusionas**.
 
 **Contadores del programa: 0.** Mueve el tablero a 19 `FIRMADA` y vuelve ejecutables dos filas. Ningún contador de medición sobre México. **Dilo así, sin justificarlo.**
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-17-REGISTRA-17AGO-II.md" canon/gobernanza-v1_15.md` cita ADR-93, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-93 en canon/gobernanza-v1_15.md.

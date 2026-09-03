@@ -90,3 +90,7 @@ No adjudica `R3.4` completo ni mueve Hito D. No toca `L14`/`FP-150` (firma apart
 ---
 
 **ARCHIVADO CONSUMIDO** — ejecutado en `ACTO SELLA-A1-CODI`, 25/ago/2026, `ADR-177`. Ver `forense/notas/2026-08-25-sella-a1-codi-cierre.md`.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-25-SELLA-A1-CODI.md" canon/gobernanza-v1_15.md` cita ADR-177, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-177 en canon/gobernanza-v1_15.md.

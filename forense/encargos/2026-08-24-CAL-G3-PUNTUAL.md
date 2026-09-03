@@ -28,3 +28,7 @@ Redactado por dirección, 24/ago/2026. Firmas que ejecuta: respuesta 2 de mesa (
 - Suite: 19 FAIL preexistentes sin cambio; sin FAIL nuevo en T02/T15/T16 atribuible a este acto.
 - Perímetro respetado; no se tocó `milpa/procedencia.yaml`, `hitoD-preregistro`, ni `diseno-muestral.yaml` (solo lectura).
 - Push/PR: **no realizado** — trabajo dejado en rama local para revisión del supervisor, por instrucción explícita.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-24-CAL-G3-PUNTUAL.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-157 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

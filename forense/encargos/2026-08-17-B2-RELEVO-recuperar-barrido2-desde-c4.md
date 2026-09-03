@@ -175,3 +175,7 @@ Anexo · El hallazgo que este corte deja, y vale registrarlo
 El estado material de un acto de barrido vive fuera de git por diseño, y eso lo hace irrecuperable si se pierde la máquina. .barrido2/ está gitignorado con razón —es staging y contiene material sin curar— pero significa que 672 inspecciones E2 dependen de un directorio que ningún remoto tiene. El corte de cuota de Codex no lo tocó; un disco sí lo habría hecho.
 
 No propongo instrumentar nada: por la regla de señal, una salvaguarda que nadie pidió se paga en sesiones que no midieron. Pero es un hecho medido y merece su línea en forense/hallazgos.md, para que la próxima mesa que diseñe un acto material decida con él a la vista.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-17-B2-RELEVO-recuperar-barrido2-desde-c4.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-18-sello-conf07-y-rotulos.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

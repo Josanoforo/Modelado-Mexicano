@@ -77,3 +77,7 @@ en el mismo acto): la cita `CONSUMIDO — ejecutado en ... commits <hash>` que o
 circular. El registro de qué lo consumió vive en `ADR-89` (`canon/gobernanza-v1_15.md`) y en la columna
 `firmada_en` de `FP-13` (`forense/firmas-pendientes.tsv`), ambos con número de PR real una vez abierto —
 mismo mecanismo de `PR #<n>` que `FP-09`/`ADR-87` ya usó (`forense/notas/2026-08-17-a10-estampa.md`).
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-17-RUTA-SELLO-taxonomia.md" canon/gobernanza-v1_15.md` cita ADR-89, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-89 en canon/gobernanza-v1_15.md.

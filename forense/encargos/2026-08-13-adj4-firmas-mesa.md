@@ -36,3 +36,7 @@ COMMIT 1 — las cuatro firmas, verbatim, y las recetas derivadas ANTES de propa
 COMMIT 2 — la propagación
 `tests/check.py --baseline` al cierre. T15 (ADR contiguos) y T18/T20 (contadores) vigilan. Reporta los contadores que NO se mueven, declarados: `13 de 27` · `9 de 14` · `0 de 15` · `capa2 SI 43`. Si un test truena, ese es el hallazgo — no se maquilla.
 Contador: `llaves 0 → 1` · dos entradas del registro cerradas · un rótulo sellado · una línea base restituida con su defecto a la vista.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-13-adj4-firmas-mesa.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-13-adj4-cierre-firmas.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

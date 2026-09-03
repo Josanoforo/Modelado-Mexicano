@@ -112,3 +112,7 @@ Y hay un dato del censo que te va a servir de prueba: la demanda entera cita 8 p
 (c) El nombre de tu archivo de encargo, antes de que te muerda como a cinco actos. T02 normaliza sin distinguir directorio: si tu encargo y tu nota se llaman igual, la suite se pone ROJA por construcción. Convención de main: el encargo lleva código de acto como prefijo (2026-08-13-A-censo-explotacion.md, 2026-08-13-A7-indice-infraestructura.md), la nota no. Ponle prefijo al tuyo.
 
 (d) Lo que no cambia. La prueba obligatoria del parche sigue en pie: SE debe dejar de casar con "falsador", PI con "estimación propia", INE con "diccionario", y LATINOBARÓMETRO debe empezar a casar con latinobarometro2024_bd_stata. Si no invierte los cuatro, el parche está mal. Y no corras --escribe: relaciones.tsv es de otro carril, entrega el diff.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-13-B-alias-p-motor-diag.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-13-alias-p-motor-diag.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

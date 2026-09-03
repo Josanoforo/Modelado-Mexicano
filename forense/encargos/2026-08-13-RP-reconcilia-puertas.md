@@ -37,3 +37,7 @@ Al fusionar ADJ-4: R5.1-D3 (caja). Cuando la caja tenga hueco: GDELT-UCDP-RECON 
 ⚠️ Tres actos van a caja y P·LOTE-2 puede seguir corriendo ahí. REAPERTURA y ENASIC-SPLIT son de lectura de diccionarios: ligeros. GDELT-UCDP-RECON es el pesado — ese sí espera.
 
 Sin encargo, y a propósito: D5. Mesa decidió esperar a que cierren más entradas del registro antes de sellar A.7. Queda anotado, no se lanza.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-13-RP-reconcilia-puertas.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-13-reconcilia-puertas.md, forense/notas/2026-08-14-t-firmas.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

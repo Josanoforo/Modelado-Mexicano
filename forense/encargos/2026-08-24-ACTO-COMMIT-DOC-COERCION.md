@@ -37,3 +37,7 @@ PERÍMETRO: forense/COERCION-Y-ADOPCION-rediseno-2026-08-20.md (nuevo) · forens
 ## Ejecución
 
 `ADR-151`. Detalle comando a comando: `forense/notas/2026-08-24-commit-doc-coercion.md`.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-24-ACTO-COMMIT-DOC-COERCION.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-151 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

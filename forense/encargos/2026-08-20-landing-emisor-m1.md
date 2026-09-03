@@ -36,3 +36,7 @@ Esperado, derivado en origen (si difiere: PARA y reporta, no ajustes): **12 pass
 ## 5 · Perímetro y concurrencia
 Toca SOLO: los 4 archivos de §1, los 5 documentos archivados, `forense/encargos/…landing-emisor-m1.md`, ADR en gobernanza, tablero, hallazgos. En paralelo pueden correr actos de la lane ADV1-M5/⊕/FP-91 (mesa-pendientes) — cero intersección de archivos. "Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo."
 **Contador de este acto:** R3.4 corrible (harness verde: 12+1xfail) con huecos nombrados · medición sobre México: 0, dicho.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-20-landing-emisor-m1.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-138 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

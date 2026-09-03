@@ -31,3 +31,7 @@ Archivos: forense/marco-candidatas-piloto-v1_0.tsv o su sucesor v1_1 (según 3) 
 Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
 
 Concurrencia: RECENSO-DISEÑO-14 puede seguir corriendo en UBUNTU (disjunto salvo gobernanza/tablero — renumera quien fusiona segundo). Ningún otro acto NUBE hasta que este cierre.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-24-AMPLIA-MARCO-SATURA.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-148 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

@@ -33,3 +33,7 @@ Las dos medidas propuestas, cada una con: variable, texto literal, escala, tabla
 ---
 
 **Nota de arranque sobre este texto (no forma parte del encargo, es glosa de quien lo ejecuta):** el encargo no trae el bloque ARRANQUE de `instrucciones-proyecto` Bloque D ni declara PERÍMETRO Y CONCURRENCIA explícitos — ambos se derivan y reportan en `forense/notas/2026-08-13-enasic-split-verificacion.md` §0, no se inventan aquí. "D3" (línea 2 del encargo) no correspondió a ningún identificador rastreable en `canon/` ni en `forense/hallazgos.md` tras búsqueda dirigida (ver la misma nota, §0) — se interpreta como numeración externa de mesa (este acto es el "4·" de una lista propia de mesa), no como un ID que este acto deba resolver dentro del canon; no bloquea, el resto del encargo es autocontenido.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-13-ENASIC-SPLIT.md" canon/gobernanza-v1_15.md` → 0 (sin cita en ningún ADR). Rastro fuera de gobernanza, sin nota de cierre propia: forense/registro-efimeros-v1_0.md. Insuficiente para CONSUMIDO, insuficiente para NO-EJECUTADO — rótulo/evidencia parcial, se lista para mesa.

@@ -45,3 +45,7 @@ recordatorio en la nota propia del acto de que `L14`/`L16` siguen sin carta de m
 este encargo. Fuera de este perímetro: `tools/curador_registro/**`, `data/curacion-universo/**` (workstream
 concurrente ajeno), `milpa/` (fuera de alcance de este acto), y el directorio `~/BACKUP-mm-mirror-2026-08-10.git`
 (fuera del repositorio, destino declarado de una destrucción futura, no ejecutada aquí).
+
+## NO-EJECUTADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-25-SELLA-G-encargo.md" canon/gobernanza-v1_15.md` cita ADR-173, pero el propio texto del ADR declara el encargo "escrito, VIVO, sin lanzar" / "no lanzado por este acto". Cero rastro de ejecución posterior: `git log --all --oneline --grep="2026-08-25-SELLA-G-encargo.md"` → 0. 327 ADR revisados vía cita directa del archivo: ninguno distinto de ADR-173 lo nombra.

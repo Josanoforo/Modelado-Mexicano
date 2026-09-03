@@ -30,3 +30,7 @@
 ---
 
 **Resolución (registrada por el ejecutor al cerrar):** COMPUERTA B-bis se activó en T1 — `ADV1-M5` queda copiada verbatim pero NO sellada; las dos ambigüedades (más una tercera, la definición de `⊕` en T5) están documentadas sin resolver en `forense/prereg-duelo-v2/mesa-pendientes.md`. T2-T5 y el contador se completaron según la spec. Ver `forense/notas/2026-08-20-duelo-prereg-v2-cierre.md` para el detalle de cierre completo.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-20-DUELO-PREREG-V2.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-20-duelo-prereg-v2-cierre.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

@@ -11,3 +11,7 @@
 **Perímetro.** La spec nueva · tablero (una fila) · gobernanza · estado · nota · encargo archivado. No abre microdato, no ejerce la llave, no toca `milpa/`, no fija números, no adjudica.
 
 **CONSUMIDO** por este acto — ver `forense/notas/2026-08-25-spec-expcomp-bbis-cierre.md`.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-25-SPEC-EXPCOMP-BBIS.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-193 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

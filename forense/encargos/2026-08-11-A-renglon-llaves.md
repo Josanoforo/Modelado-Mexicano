@@ -106,3 +106,7 @@ Rama `renglon/llaves-identificacion`. Commits: (1) el registro nuevo, (2) contad
 ## PASO 7 · Cierre — siete líneas
 
 Qué cambió · por qué importa · qué habilita (E4c) · qué falta (marcador T20 si mesa lo quiere; la escala de §6 si resultó incompleta) · pruebas (suite cruda + la receta de conteo con su salida) · reservas (denominador derivado o pendiente; firma del entorno nube) · **contadores sustantivos movidos: 0 esperado, dilo explícito.**
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-11-A-renglon-llaves.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-14-t-firmas.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

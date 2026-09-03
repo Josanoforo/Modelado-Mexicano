@@ -100,3 +100,7 @@ No re-corre el inventario general ni toca sus filas. No empareja contra el motor
 Sucesores declarados, no lanzados
 
 MAESTRA32-E4 · RE-EMPAREJA (misma spec de E2, universo ampliado; re-sella los veredictos de E2/E6, A.10 corolario 1) · rama (b) PDF-FD, encargo de dirección al cierre de este acto (FP-179(2)).
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-30-MAESTRA32-E3-EXTRACTOR-DTA-v2.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-228, ADR-239 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

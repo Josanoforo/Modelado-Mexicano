@@ -125,3 +125,7 @@ python3 tests/check.py --baseline antes y después, por test. Pruebas propias de
 Privacidad re-verificada tras cada arreglo · nada de .barrido2/ ni staging se empuja · nota propia con cada comando, su control positivo y su salida cruda · una entrada en hallazgos.md · este encargo archivado y CONSUMIDO con su PR · git diff --check · jamás te auto-fusionas.
 
 Contadores del programa: 0. Este acto no mide ni cierra: reconcilia la base y recupera evidencia que un patrón demasiado ancho había borrado. Dilo así, sin justificarlo.
+
+## NO-EJECUTADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). Cero rastro: `grep -Fc -- "2026-08-17-B2-RECUPERA-merge-renumeracion-y-evidencia.md" canon/gobernanza-v1_15.md` → 0 · `git log --all --oneline --grep="2026-08-17-B2-RECUPERA-merge-renumeracion-y-evidencia.md"` → 0 · `git grep -Fl -- "2026-08-17-B2-RECUPERA-merge-renumeracion-y-evidencia.md"` (excluyendo forense/digesto/ y el propio archivo) → 0 resultados en los 327 ADR ni en el historial de commits. Sin nota de cierre, sin FP, sin cita posterior.

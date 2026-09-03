@@ -38,3 +38,7 @@ Ejecuta **la letra exacta de `(a)`**: dar objeto, no retirar. Cero retiros con a
 ## 4 · Lo que NO hace
 
 No retira ninguna refutación (la vía (b) está descartada por firma) · no corre la batería ampliada (eso es acto propio, con su pre-registro) · **no ejecuta la enmienda a ADR-35**: la redacta y la sube · no calibra ningún parámetro nuevo: darle objeto a una refutación es que exista la variable, no que esté medida.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-19-REFUTACIONES-SIN-OBJETO.md" canon/gobernanza-v1_15.md` cita ADR-110, ADR-117, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-110, ADR-117 en canon/gobernanza-v1_15.md.

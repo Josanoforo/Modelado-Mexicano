@@ -43,3 +43,7 @@ ESCRIBE: `data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-
 ## Cierre
 
 Los cuatro expedientes re-firmados, cero divergencia contra la maestra (comando y salida cruda en la nota) · `firmas-pendientes.tsv`: `FP-47` → `FIRMADA`, cita D-6 y el `baseline_sha256` real usado · `tests/check.py --baseline` VERDE · línea en `hallazgos.md` · encargo `CONSUMIDO`.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-18-REFIRMA-OPACA.md" canon/gobernanza-v1_15.md` cita ADR-101, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-101 en canon/gobernanza-v1_15.md.

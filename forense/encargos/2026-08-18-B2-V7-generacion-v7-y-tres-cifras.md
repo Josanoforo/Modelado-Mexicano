@@ -160,3 +160,7 @@ Merge local siempre. GitHub no honra merge=union del lado servidor; el editor we
 ⚠️ canon/estado-programa-v1_10.md:101 se automergea en silencio quedándose con un lado entero. Si tu merge lo toca, revísalo cláusula por cláusula. Es FP-48, y ya bloqueó el perímetro de cuatro actos seguidos.
 
 Módulo de auditoría — la única pregunta aplicable: ¿cuántos contadores movió este acto? Si las tres cifras salen, la respuesta no es cero por primera vez en varios días: dilo con el contador exacto y su escala. Si no salen, di cero en una línea al inicio, sin justificarlo.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-18-B2-V7-generacion-v7-y-tres-cifras.md" canon/gobernanza-v1_15.md` cita ADR-98, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-98 en canon/gobernanza-v1_15.md.

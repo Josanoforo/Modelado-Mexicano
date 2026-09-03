@@ -54,3 +54,7 @@ ADR nuevo — re-deriva el número al escribirlo y otra vez al fusionar: `GATE-D
 
 Módulo de auditoría — lo aplicable: contadores sobre México: cero, en una línea. Lo que sí mueve: el bloqueo de C5 (integrador que aborta) pasa de abierto a cerrado, y `--require-cableado` de ignorado-en-silencio a implementado — los dos con su prueba.
 Lo que NO hace: no crea `build_cableado.py` ni `cableado-universo-v1_0.tsv` (C6, exige decisiones de la fase semántica) · no toca `barrido2_material.py` ni productos de `data/` · no cierra ninguna FP · no congela.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-18-INTEGRATE-T23-integrador-cableado.md" canon/gobernanza-v1_15.md` cita ADR-99, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-99 en canon/gobernanza-v1_15.md.

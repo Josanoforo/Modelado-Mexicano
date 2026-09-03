@@ -148,3 +148,7 @@ C6 · Cableado y §28 completo
 build_cableado.py → cableado-universo-v1_0.tsv cabecera exacta §21, sin celdas vacías → check.py --require-cableado verde (T23 despierta) → PRISMA material+semántico+M-APERTURA (§23, todo con denominador y comando) → INFRAESTRUCTURA (FP-35 ejecutada) → §28: 22 criterios, veredicto uno por uno con comando (cierre válido: …FP24-PENDIENTES=n derivado si n>0). ADR ×2 (base 104) · cascada derivada · nota · hallazgos · CONSUMIDO · PR borrador, push por fase (§25).
 
 PAROs: los del §27 + PII real en propuestas · cegamiento roto retroactivo · baseline cambia en transacción · marca de dueño ajena · capa4 solo-a-mano. No pares por: deriva ajena de main (clasifica §15) · cero ALTAs · cero FP-24 · WARN conocidos. Auditoría: México: cero, uno por uno. Aparato: propuestas terminadas · 17+2 absorbidas · FP-46 ejecutada · §28 de 13-14 → derívalo. Y la pregunta §29 contestada con evidencia, o no cierres.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-18-B2-SEMANTICO-C4-C5-C6.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-18-b2-semantico.md, forense/notas/nota-2026-08-25-propaga-330-337.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

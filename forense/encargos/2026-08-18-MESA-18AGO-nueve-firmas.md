@@ -121,3 +121,7 @@ ADR multi-inciso (número re-derivado dos veces: al escribir y al fusionar — c
 **Auditoría (lo aplicable):** contadores de medición sobre México: **cero — salvo que C6 ejecute E5**, que mueve el contador de entradas de `registro-recalculo` adjudicadas (aparato) y **cita** llaves `1 de 2` sin moverlo. Dilo con esa precisión. Ninguna cifra tecleada. ¿Qué afirmación describe el estado del corpus escrita a mano? — ninguna: prompts, punteros y restauraciones llevan comando o respuesta verbatim.
 
 **Lo que NO hace:** no ejecuta FP-46 (acto propio en `data/`, conviene post-GATE con la evidencia E2 fresca) · no sella `ficha-id-g3` (FP-11 es la siguiente decisión de mesa del carril A, con su propuesta a la vista) · no lanza los encargos que escribe · no toca lo de CONSOLIDA-2 · no congela.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-18-MESA-18AGO-nueve-firmas.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-100, ADR-101 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

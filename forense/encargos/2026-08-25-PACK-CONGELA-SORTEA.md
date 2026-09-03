@@ -21,3 +21,7 @@ Ver `forense/notas/2026-08-25-congela-cierre.md` para el detalle completo del ci
 ## Lo que este pack deliberadamente NO hace
 
 No toca las 253 ni `data/curacion-universo/**` ni `tools/**`. No calcula CV/`n` para 60 ni para 253. No corre ni encarga sesiones `L`. No declara saturación. No reabre la curación del marco. No adjudica veredicto del piloto. No mueve Hito D ni `README.md`.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-25-PACK-CONGELA-SORTEA.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-179, ADR-188 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

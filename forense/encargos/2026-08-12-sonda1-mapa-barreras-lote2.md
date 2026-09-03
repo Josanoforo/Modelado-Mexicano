@@ -101,3 +101,7 @@ Cierre: PRISMA de 7 cifras (intentadas / respondieron / con-México-declarado / 
 
 Contador que este acto mueve: filas del puntero de puertas con clasificación A.4 derivada de un portal, no de una tabla interna — hoy son 12 de 75 en el crosswalk. Y este acto NO mueve capa2. No lo prometas y no lo intentes.
 ════════════════════════════════════════════════════════════════════════
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-12-sonda1-mapa-barreras-lote2.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-12-acto-sonda1-mapa-barreras.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

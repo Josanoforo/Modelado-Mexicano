@@ -16,3 +16,7 @@
 ## Texto del encargo (verbatim, resumen operativo)
 
 Ejecutar `FP-145` (`L9-c`) — **solo redactar, no ejecutar ningún sorteo real**. Redactar `forense/prereg-duelo-v2/sorteo-act-pil-3-v2-PROPUESTA.md` con: algoritmo determinista con la cuota del 20% como restricción dura; regla de infactibilidad por estrato y su fallback; protocolo de semilla = SHA de merge del acto que congele marco+sorteo (no un número fijo); interacción con P0/P1/P2 y con las 8 `PENDIENTE-FUERA-DE-INDICE` (elegibles solo si `FP-146` las resuelve antes); pseudocódigo verificable; 3 casos de prueba (normal, infactibilidad por estrato, límite del 20%). Fila nueva en `A.12` («mesa sella sorteo-v2», `ABIERTA`). Marcar `FP-145` ejecutada (= propuesta redactada, no sorteo realizado).
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-25-SORTEO-V2-PROPUESTA.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/nota-2026-08-25-sorteo-v2.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

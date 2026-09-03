@@ -46,3 +46,7 @@ Concurrencia: TRIAGE-UNIVERSO-12 corre en NUBE en paralelo (disjunto salvo gober
 - **Resultado:** 11 `EXISTE-SATISFACE`, 7 `EXISTE-NO-SATISFACE`, 0 `NO-ENCONTRADO`.
 - **`FP-95`** → `FIRMADA`. Abiertas `FP-114` a `FP-118`.
 - **Perímetro:** respetado. `PARA` en `canon/estado-programa-v1_10.md` (contador de ADR y de FAIL/WARN, 4 líneas), fuera de la lista. Dirección concedió adenda; recifrado aplicado, suite en LÍNEA BASE VERDE. Ver `ADR-149(f)`.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-24-RECENSO-DISENO-14.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-149 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

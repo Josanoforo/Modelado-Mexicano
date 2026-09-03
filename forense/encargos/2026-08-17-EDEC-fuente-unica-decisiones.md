@@ -126,3 +126,7 @@ el ejecutor hizo lo que se le dijo:
    la vez es imposible. Se eligió VERDE, con el cambio mínimo (solo dígitos, sin reescribir prosa), mismo
    precedente ya escrito para esta colisión exacta: `ADR-62`, `ADR-87` y `ACTO RUTA-SELLO` §7
    (`forense/notas/2026-08-17-ruta-sello.md:125`, *"desborde de perímetro declarado"*).
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-17-EDEC-fuente-unica-decisiones.md" canon/gobernanza-v1_15.md` → 3: citado bajo ADR-91, ADR-137 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

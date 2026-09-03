@@ -105,3 +105,7 @@ ADELANTE con la vía que propones — ADR nuevo que cita y corrige, sin tocar AD
 ---
 
 Detalle completo, comando por comando: `forense/notas/2026-08-18-rescate-curador-cierre.md`.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-18-RESCATE-CURADOR.md" canon/gobernanza-v1_15.md` → 4: citado bajo ADR-112 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

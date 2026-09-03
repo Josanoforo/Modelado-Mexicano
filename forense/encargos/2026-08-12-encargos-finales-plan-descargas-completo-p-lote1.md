@@ -185,3 +185,7 @@ ACTO L (liberación de las 8 de radio): repo-only, conforme a ADR-71(a); no es d
 Reapertura de ADR-52A/54 y de las NEGATIVAS de BRASDEFER/MOBILE_TUTORS: decisiones de mesa, con los reportes de M-APERTURA y E-CE v1.1 enfrente. Ningún acto de este documento las toma.
 
 El costo de este documento, contado: cero reglas nuevas. Todo es aplicación de reglas selladas (A.3-A.6, ADR-59(b), ADR-69, ADR-70, ADR-71, Bloque D, R1/R2/R3) más las decisiones que solo mesa puede tomar, señaladas donde van: la firma del corte (§1, quizá ya consumida), la firma del Lote 2 (§4, al lanzar), la adjudicación de #184 y las reaperturas (§8).
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-12-encargos-finales-plan-descargas-completo-p-lote1.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-14-t-firmas.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

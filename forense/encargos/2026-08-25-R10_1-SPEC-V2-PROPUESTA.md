@@ -30,3 +30,7 @@ PERÍMETRO: `forense/hitoD-R10_1-spec-v2_0-PROPUESTA.md` (nuevo) · tablero · g
 5. **Nota:** `forense/notas/2026-08-25-r10-1-spec-v2-propuesta-cierre.md`.
 
 No se tocó `hitoD-R10_1-especificacion-v1_0.md`, `hitoD-R10_1-veredicto-v1_0.md`, `hitoD-R10_1-defecto-spec-v1_0.md` ni el bloque append-only de `hitoD-preregistro-v2_0.md`.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-25-R10_1-SPEC-V2-PROPUESTA.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-159 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

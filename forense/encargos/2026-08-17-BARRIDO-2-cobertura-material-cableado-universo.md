@@ -1639,3 +1639,7 @@ La pregunta final es:
 decisión o modelo mejor?
 
 Si la respuesta es no, no cierres.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-17-BARRIDO-2-cobertura-material-cableado-universo.md" canon/gobernanza-v1_15.md` cita ADR-95, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-95 en canon/gobernanza-v1_15.md.

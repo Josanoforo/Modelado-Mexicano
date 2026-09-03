@@ -112,3 +112,7 @@ No re-corre el inventario general ni toca sus 178,246 filas. No empareja contra 
 ## Sucesores declarados, no lanzados
 
 `MAESTRA32-E4 · RE-EMPAREJA` (misma spec congelada de E2 sobre el universo ampliado; sus veredictos re-sellan los de E2, A.10 corolario 1) · la rama no elegida de M-EXTRACTOR queda viva en `FP-175`/su fila nueva para decisión posterior.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-28-MAESTRA32-E3-EXTRACTOR-DTA.md" canon/gobernanza-v1_15.md` → 3: citado bajo ADR-222, ADR-228, ADR-239 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

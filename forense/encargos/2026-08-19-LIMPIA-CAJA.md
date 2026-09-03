@@ -63,3 +63,7 @@ El encargo prohíbe `--freeze` y a la vez anticipa que `T02` disparará (*"T02 p
 ## Adenda 5 — lo que el encargo mandaba borrar y no se borró
 
 `PROHIBIDO ... borrar el worktree de cualquier rama viva sin fusionar` aplicó a un caso que el encargo no nombraba: **`mm-reconcilia-puertas`**, rama que nunca existió en `origin`, con **122 líneas** de nota ausentes de `main` (la de `main` viene de otra ejecución del mismo encargo, `PR #208`) y una línea de `hallazgos.md` sin registrar. Conservada y respaldada, **no adjudicada** — no es mandato de un acto de higiene. Detalle en la nota §5.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-19-LIMPIA-CAJA.md" canon/gobernanza-v1_15.md` cita ADR-113, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-113 en canon/gobernanza-v1_15.md.

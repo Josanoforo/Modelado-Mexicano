@@ -42,3 +42,7 @@ ejemplo de §5 (sintéticos, declarados como tal) dependía de las cifras viejas
 `forense/notas/2026-08-25-enmienda-cuadro-sorteo.md` (nueva) · este encargo. Fuera de este perímetro:
 `tools/curador_registro/**`, `data/curacion-universo/**` (workstream concurrente ajeno), `milpa/`, y
 `forense/marco-candidatas-piloto-v1_0.tsv` (solo lectura).
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-25-ENMIENDA-CUADRO-SORTEO-encargo.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-175 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

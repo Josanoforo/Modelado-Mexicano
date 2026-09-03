@@ -47,3 +47,7 @@ Corpus compartido y `data/raw` (escritura solo de payloads nuevos T1/T3) · `dat
 ## Estado de consumo
 
 **CONSUMIDO** por `ACTO LOTE UBUNTU-ADQ-1`, 19/ago/2026 — ver `forense/notas/2026-08-19-lote-ubuntu-adq-1-cierre.md`.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-19-LOTE-UBUNTU-ADQ-1.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-19-lote-ubuntu-adq-1-cierre.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

@@ -15,3 +15,7 @@ A.13 · Un negativo producido por un comando que no examinó archivos no es un n
 T2 · A.9, y es la mitad del acto. «Una versión de instrucciones no está sellada hasta que está en los dos lados.» El ADR declara explícitamente la fecha del pegado en el proyecto de Claude, y mesa lo pega el mismo día. Si no está en los dos lados, no está sellada — y el propio A.9 nació porque dirección trabajó tres versiones atrasada.
 
 T3 · ADR + tablero: la fila de v2.11 que REPARA-T22 abrió pasa a FIRMADA. Contador: medición = 0. PERÍMETRO. instrucciones-proyecto-v2_11.md · gobernanza · tablero · hallazgos · nota · encargo. No toca instrucciones-proyecto-v2_10.md, que se conserva.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-21-INSTRUCCIONES-v2_11.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-21-instrucciones-v2_11-cierre.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

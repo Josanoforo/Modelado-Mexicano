@@ -82,3 +82,7 @@ grep -cE "^- id: za(6980|5900|7600)" data/manifiesto.yaml                       
 | 7 | Cola de mesa que sigue abierta: **llave K (desde fila B)** · **reserva ADR-67(b)** (décima condicional) · **rótulo de cota** (MAP-A §7) · **acto de alias** (CSES/GPS duplicados — ahora alimenta directamente el diagnóstico de la vía) · **A.7 → v2.7** · backfill A.3 de K-L-M-N | mesa | sin evidencia en los commits nuevos de que alguna se haya tomado — siguen pendientes |
 
 **El costo de este documento, contado:** un encargo nuevo (ENLACE-1), cero reglas nuevas — la regla de transición es la de V2, la jerarquía es la de MAP-B, la convención es la de las 24 filas que ya existen. Y una adjudicación de corrección donde las dos partes quedan con lo suyo: la vía faltaba cuando lo dije, sobra desde el 13, y el acto que ambos diagnósticos apuntaban no era ninguno de los dos que estaban sobre la mesa.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-13-enlace1-mapeo-id-manifiesto.md" canon/gobernanza-v1_15.md` → 3: citado bajo ADR-62, ADR-74, ADR-76 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

@@ -120,3 +120,7 @@ E3-TRIAGE (entrada 3; ADR-79(d), gate cumplido) · E5 (entrada 5; espera el núm
 | tú | H11 (v2.8 al proyecto) + firmas de las ranuras A cuando lleguen | — |
 
 **Contadores que esta ola mueve, en orden esperado:** condicionales `10→11 de 15` (PROD-P638) · producciones `11→12` · capa2 `43→N` (ENLACE-2) · recálculo `4→5/6 cerradas` (CIERRE-E6) · la primera celda-D ADJUDICADA (radio) · y, al sellar M1, nace el contador de la mitad que hoy no existe. **Contadores movidos por esta auditoría: 0 — es dirección, y lo dice.**
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-14-ENLACE-2-adjudicacion-68-y-19.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-14-enlace2-clase-limbo.md, forense/notas/2026-08-14-tablero-firmas-commit3.md, forense/notas/2026-08-26-e10-r21-adjudica-cierre.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

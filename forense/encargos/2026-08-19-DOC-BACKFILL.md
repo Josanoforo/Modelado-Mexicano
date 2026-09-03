@@ -34,3 +34,7 @@ La fila `FP-33` ofrecía dos desenlaces: lanzarlo, o **declararlo absorbido por 
 ## 6 · Lo que NO hace
 
 No se lanza antes del gate · no re-pide el texto de las cuatro preguntas (ya está inline, se cita) · no copia la población de ninguna foto.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-19-DOC-BACKFILL.md" canon/gobernanza-v1_15.md` cita ADR-110, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-110 en canon/gobernanza-v1_15.md.

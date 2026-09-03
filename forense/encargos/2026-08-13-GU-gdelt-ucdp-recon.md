@@ -82,3 +82,7 @@ Dos veredictos de separabilidad donde hoy hay dos EXISTE-NO-SATISFACE sin resolv
 §6 · NO HACE
 
 No baja las bases completas. No escribe parser nuevo. No cambia la clasificación A.4 sin demostrar el recorte. No toca relaciones.tsv ni la cola. No retira las filas viejas del puntero. No promete que alguna sea viable — NO-SEPARABLE cierra la pregunta y eso es el entregable.
+
+## NO-EJECUTADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). Cero rastro: `grep -Fc -- "2026-08-13-GU-gdelt-ucdp-recon.md" canon/gobernanza-v1_15.md` → 0 · `git log --all --oneline --grep="2026-08-13-GU-gdelt-ucdp-recon.md"` → 0 · `git grep -Fl -- "2026-08-13-GU-gdelt-ucdp-recon.md"` (excluyendo forense/digesto/ y el propio archivo) → 0 resultados en los 327 ADR ni en el historial de commits. Sin nota de cierre, sin FP, sin cita posterior.

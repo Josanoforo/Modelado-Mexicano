@@ -19,3 +19,7 @@ Texto del encargo, verbatim:
 > 3. SIN-DATO-GENUINO — ni el diseño registrado ni ninguna re-especificación honesta tienen dato: escribe qué exactamente tendría que existir en el mundo, y si hay vía llave clase (iii) (partnership tipo Compartamos/Resguarda), su costo aproximado. Para las tres propietarias, la pregunta se afina: ¿la inejecutabilidad es del mundo (el dato es privado y punto) o del falsador (pide el corte privado cuando la sustancia se contrasta con algo público)? — esa distinción es el entregable.
 >
 > Cierre `forense/notas/2026-08-2X-pase-falsadores.md`: tabla ficha × veredicto × bosquejo/fuente/letra-alcanzable × qué-falta, más un párrafo a mesa por ficha en lenguaje llano (qué es, qué compra cada opción, qué no compra). Tablero: UNA fila nueva `ABIERTA` («mesa decide por ficha el destino de {lista}») — A.12. ADR corto, estado, suite `--baseline`, nota, encargo `CONSUMIDO`. No re-especifica, no mide, no archiva, no toca fichas ni Registro, no abre más filas que esa.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-25-PASE-FALSADORES-ENCARGO.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-191 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

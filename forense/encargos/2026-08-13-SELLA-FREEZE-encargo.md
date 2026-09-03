@@ -118,3 +118,7 @@ No re-examina ningún veredicto del Hito D.
 §6 · Cierre
 python3 tests/check.py --baseline antes y después, cifra reportada en ambas, LÍNEA BASE VERDE en las dos · nota propia en forense/notas/2026-08-13-sella-freeze.md con cada comando y su salida cruda · una línea en forense/hallazgos.md · este encargo commiteado a forense/encargos/ y marcado CONSUMIDO con su PR al cerrar (A.3: no se borra — un encargo consumido es el registro de qué se pidió exactamente) · merge local, origin/main HACIA la rama, editor web de conflictos prohibido (GitHub no honra merge=union sobre hallazgos.md).
 Si al arrancar main se movió: no es PARO. Refresca, re-deriva el número de ADR y la cifra de suite, y reporta la diferencia antes de editar.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-13-SELLA-FREEZE-encargo.md" canon/gobernanza-v1_15.md` cita ADR-81, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-81 en canon/gobernanza-v1_15.md.

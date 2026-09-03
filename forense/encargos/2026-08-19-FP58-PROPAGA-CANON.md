@@ -42,3 +42,7 @@ Sin desviaciones de fondo. Un ajuste de estilo respecto a la instrucción: la ta
 `FP-58` cerró (`CERRADA`, no solo `FIRMADA`): firmada y ejecutada en el mismo acto, mismo patrón que `FP-55`/`FP-59` — la firma de mesa citada en la fila es la propia opción (b) de este encargo, no una firma aparte de dirección.
 
 `tests/check.py --baseline`: **LÍNEA BASE VERDE, 21 FAIL · 117 WARN** (un WARN de `T22` menos al cerrar `FP-58`). Contadores de medición sobre México: **0**.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-19-FP58-PROPAGA-CANON.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-119 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

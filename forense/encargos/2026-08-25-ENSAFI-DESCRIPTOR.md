@@ -29,3 +29,7 @@ Anexo-2 por append a forense/ficha-r34-condBC-v1_0.md («Anexo ENSAFI-descriptor
 Perímetro y NO-hace
 
 Lista cerrada: corpus compartido + data/manifiesto.yaml (alta del descriptor) · ficha condBC (append) · tablero (FP-157 enmienda) · gobernanza · estado · notas · encargo. "Fuera de esta lista, PARA." No mide B (eso es el medidor, dos commits, acto aparte). No adjudica FP-157. No toca tests/aceptacion_r3_4.py. No baja nada más que el descriptor/cuestionario de ENSAFI 2023.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-25-ENSAFI-DESCRIPTOR.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-198 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.
