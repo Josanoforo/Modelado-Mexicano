@@ -501,12 +501,16 @@ def main():
         e = v["estimacion"]
         ic = ("[%s, %s]" % (f"{e['ic95_inf']:,.0f}", f"{e['ic95_sup']:,.0f}")
               if e.get("ic95_inf") else "sin IC (censo)")
-        icp = ("[%.4f, %.4f]" % (v["p_ic95_sup"], v["p_ic95_inf"])
+        icp = ("[%.4f, %.4f]" % (v["p_ic95_inf"], v["p_ic95_sup"])
                if v.get("p_ic95_inf") else "sin IC (censo)")
         print("%-42s %16s %26s %8.4f  %s"
               % (k, f"{e['total']:,.0f}", ic, v["p"], icp))
     print("\nN (unico) = %s  · corte %s · COTA SUPERIOR del stock vigente"
           % (f"{N:,.0f}", l13["corte"]))
+    inf = est["informales"]
+    print("\n(b) informales  %s  IC95 [%s, %s]   —  formales %s (los dos son P0, no lecturas)"
+          % (f"{inf['total']:,.0f}", f"{inf['ic95_inf']:,.0f}", f"{inf['ic95_sup']:,.0f}",
+             f"{est['formales']['total']:,.0f}"))
     p = est["_particion"]
     print("particion: leidas %s · descartadas %s · residuo emp_ppal fuera de {1,2} %s"
           % (f"{p['filas_leidas']:,}", f"{p['filas_descartadas']:,}",

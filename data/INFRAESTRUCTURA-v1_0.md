@@ -424,3 +424,28 @@ Los payloads viven en la raíz **`descargas_mx`**, no en `data/raw`: un worktree
 nuevo la resuelve con `data/raices.local.yaml`, que es **gitignorada** — sin
 ella, cualquier búsqueda declara `NO-ENCONTRADO` en falso (mismo hallazgo que
 `ACTO MAESTRA35-L9`).
+
+## Tres lecturas de universo para una misma regla (`ACTO MAESTRA36-L14 · COERCITIVO-TRES-UNIVERSOS`, 3/sep/2026)
+
+Sucesor de L13. Mesa negó el sello sobre el padrón del SAT —una **subpoblación**—
+para una regla **poblacional**, y pidió el universo poblacional. El artefacto
+nuevo no es una `p`: es la **tabla de las lecturas posibles con el mismo
+numerador**, para que mesa elija cuál nombra la regla.
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/l14-coercitivo-universos-v1_0.json` | `python3 tools/medidor_l14_coercitivo_universos.py --mide` | JSON: `acto, regla, prior, no_adjudica, escala, trimestre_de_corte, razon_del_trimestre, numerador` (re-citado de L13), `denominadores_enoe` (por denominador: `total, filas_muestra, upm_distintas, estratos, estratos_una_upm, ee, ic95_inf, ic95_sup, cv`, más `_particion`), `lecturas` (A, A′, A″, B, C con `p` e `IC`), `incompatibilidades_de_universo[]` (cada una con `signo`), `cota`, `fuentes[]` | mesa, y el sucesor `N13 · SELLA-COERCITIVO` | **No hay clave `veredicto` y es por diseño**: el acto mide y **no adjudica**. **Las cinco `p` son cotas SUPERIORES** (el numerador acumula primeras e.firma desde 2004 y el certificado caduca). **Dos lecturas dan `p > 1`** —`A′ = 1.20`, `A″ = 9.41`— y eso **no es un error de cuenta: es la medición del desacople de universos**; leerlas como «adopción del 120 %» es el error que la fila `clase` del YAML previene. Las tres `p` de ENOE **sí** traen `IC95` por diseño (conglomerado último, estrato `est_d_tri`, UPM `upm`); las dos del SAT **no**, porque son censo. |
+
+El medidor tiene `--censo` como pieza `P0`: imprime la estructura de SDEM, pega
+los nueve campos leídos del **diccionario del propio zip** y verifica las ocho
+claves contra el **catálogo del propio zip** — `discordancia → PARO`, literal del
+encargo. **La guardia disparó** en su primera corrida, y el defecto era del
+lector, no del catálogo: **los catálogos del zip vienen en UTF-8 y el microdato
+en latin-1**, así que decodificar el zip entero con una sola codificación
+convierte un acento en un `PARO` falso. Se corrigió el lector (`dec()`, UTF-8 con
+caída a latin-1) antes de congelar `COMMIT-1`; quien abra otro zip de INEGI hereda
+el mismo riesgo.
+
+Nota de nomenclatura para quien lea specs viejas: no existe un campo `EST_D` en el
+diccionario ENOE del corpus. Existen `est_d_tri` (trimestral) y `est_d_men`
+(mensual), y con ponderador `fac_tri` el que corresponde es `est_d_tri`.
