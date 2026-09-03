@@ -590,8 +590,21 @@ def _etiqueta_dominante(nombres):
 def _yaml_valor(valor):
     """yaml.safe_dump de un escalar suelto añade un marcador de fin de
     documento ('...') en su propia línea -- se descarta, no es parte del
-    valor."""
-    texto = yaml.safe_dump(valor, allow_unicode=True, default_flow_style=True).strip()
+    valor.
+
+    `width` grande a propósito (MAESTRA36-A1, 2026-09-02): sus siete
+    llamadores arman a mano una línea `  clave: <valor>` de
+    data/manifiesto-staging.yaml, y el ancho por defecto de safe_dump (80)
+    parte un escalar largo en varias líneas con sangría de DOS espacios --
+    la misma que la clave. El resultado es YAML inválido: la continuación
+    se lee como una clave nueva sin ':'. Medido contra 9af8407 con un
+    --url de 105 caracteres: `--escanea` escribía el staging y `--promueve`
+    reventaba después con ScannerError. El manifiesto real nunca tuvo este
+    defecto porque escribir_manifiesto usa yaml.dump sobre la estructura
+    entera, que sangra las continuaciones más que la clave.
+    """
+    texto = yaml.safe_dump(valor, allow_unicode=True, default_flow_style=True,
+                            width=10 ** 9).strip()
     if texto.endswith("..."):
         texto = texto[:-3].rstrip()
     return texto
