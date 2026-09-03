@@ -37,3 +37,9 @@ CONTADOR. R7.7 vote-choice: primer dato mexicano sobre la misma persona (+1 vere
 Lo que NO hace. No sella; no carga al motor; no descarga; no pondera lo que no trae ponderador; no toca las entradas de L9/L11; no lee T6 antes de que COMMIT-1 esté en el árbol.
 
 Sucesores. N10 · SELLA-L9-L11 gana la fila de R7.7 con dato; si mesa exporta ronda 1 completa, L12-bis por producto.
+
+---
+
+## CONSUMIDO
+
+`ACTO MAESTRA36-L12 · MPS-2012-CROSSTABS`, 3/sep/2026, `ADR-313`. `P0`–`P4` ejecutados y cerrados. `P0` **CUADRA** en los tres marginales, sin `PARO`. `P1` (`R7.7`): **`NO-DISCRIMINA`**, con el hallazgo de que el signo de Δ se voltea según la codificación del cambio. `P2`: `REPLICA-DE-SEGUNDA-MANO-NO-SELLADA`, no adjudica. `P3`: dos Δ de lista, gobernadas por un supuesto no verificado. `P4`: `EXPLORATORIO`. Dos entradas `PENDIENTE-DE-MESA` en la propuesta, **cargas al motor: 0**. Recibo `FP-262`; lo que falta, `FP-263`. **Dos premisas del propio encargo se refutaron y quedan declaradas**: la ceguera de `T6`–`T9` (la procedencia del payload ya traía el análisis en valor) y la vigencia de la `v1`/`v2` al congelar `COMMIT-1`. Notas: `forense/notas/2026-09-03-MAESTRA36-L12-{spec-congelada, spec-congelada-bis-v3, resultados}.md`. **La fusión de este PR es la firma.**

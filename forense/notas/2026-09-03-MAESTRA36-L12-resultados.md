@@ -1,19 +1,17 @@
 # ACTO MAESTRA36-L12 · MPS-2012-CROSSTABS — RESULTADOS (COMMIT-2)
 
-3/sep/2026 · caja UBUNTU · **`ADR-314`** · **`FP-264`** (recibo) · **`FP-265`** (pendiente de mesa).
+3/sep/2026 · caja UBUNTU · **`ADR-313`** · **`FP-262`** (recibo) · **`FP-263`** (pendiente de mesa).
 
-> **NUMERACIÓN RE-DERIVADA DESPUÉS DEL REINICIO, y no es la que la spec congelada dice.** La spec
-> de COMMIT-1-bis (`§H`) y el propio medidor (`tools/medidor_l12_mps2012.py:574`, campo `"FP"` del
-> JSON) citan `ADR-313`/`FP-262`/`FP-263`: eran los candidatos correctos cuando se congelaron.
-> Entre ese congelamiento y este COMMIT-2, **`PR #502` (`ACTO MAESTRA36-L13`) fusionó** llevándose
-> `ADR-312` y `FP-261`, y **`PR #505` (`ACTO MAESTRA36-A2`) quedó abierto** reclamando `ADR-313`,
-> `FP-262` y `FP-263`. Re-derivado contra `origin/main = 18fd2bd3`:
-> `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` →
-> `312`, sin duplicados; máximo de `forense/firmas-pendientes.tsv` → `261`. Con `#505` en vuelo, este
-> acto toma **`ADR-314`**, **`FP-264`** (recibo) y **`FP-265`** (lo que falta). **La spec y el medidor
-> NO se editan** — están congelados y COMMIT-2 no toca COMMIT-1 —, así que el campo `"FP": "FP-263"`
-> del JSON queda como está y **se lee `FP-265`**; esta línea es la que manda. Si `#505` fusionara
-> después de este PR, renumera `#505`, que es quien fusionaría segundo.
+> **NUMERACIÓN RE-DERIVADA DESPUÉS DEL REINICIO, y coincide con lo que la spec congelada dice.** Entre el congelamiento de
+> `COMMIT-1-bis` y este `COMMIT-2`, **`PR #502` (`ACTO MAESTRA36-L13`) fusionó** llevándose `ADR-312` y `FP-261`, y **`PR #505`
+> (`ACTO MAESTRA36-A2`) quedó abierto** reclamando `ADR-313`, `FP-262` y `FP-263`. Re-derivado contra `origin/main = 18fd2bd3`:
+> `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `312`, sin duplicados;
+> máximo de `forense/firmas-pendientes.tsv` → `261`. **Se intentó primero dejarle el `313` a `#505` y tomar `314`, y la suite lo
+> rechazó**: `tests/check.py --baseline` pasó a **ROJO** con tres entradas nuevas de `T15`, una de ellas literal — «huecos en la
+> secuencia de ADR: [313]». **La serie no admite huecos, ni siquiera temporales mientras otro PR está en vuelo.** Así que este
+> acto toma el contiguo **`ADR-313`**, **`FP-262`** y **`FP-263`** —los mismos que la spec de `COMMIT-1-bis` (`§H`) y el campo
+> `"FP"` del JSON ya citaban, que quedan **correctos sin editar nada**— y **`#505` renumera a `ADR-314`/`FP-264`/`FP-265`** por
+> la regla de la casa: renumera quien fusiona segundo. **Orden de fusión que esto impone: este PR antes que `#505`.**
 Encargo **v3**, `forense/encargos/2026-09-03-MAESTRA36-L12-MPS-2012-CROSSTABS.md` (`7ff61e8`).
 Specs congeladas: `…-spec-congelada.md` (COMMIT-1, `b6efa1f`) y **`…-spec-congelada-bis-v3.md`
 (COMMIT-1-bis, `bdd25d1`, la que manda)**. Este commit **no edita** ninguna de las dos.
@@ -214,7 +212,7 @@ recibió oferta**. La percepción **excede a la experiencia por un orden de magn
 colapsa con «en desacuerdo»: una celda con numerador 0 sostiene «ninguna observada en esta
 muestra», no «cero ofertas».
 
-## 6 · Lo que de verdad falta (**FP-265**; el JSON, congelado, la llama `FP-263`)
+## 6 · Lo que de verdad falta (**FP-263**)
 
 **T9b** (`W2_P38A × W2_P38B`, control `P46`) y la **serie de ronda 1** (`P40×P7`, `P40×P8`,
 `P38B×P8|P36C`, `P39×P8`). **Control negativo**: ninguna tabla del disco usa `P40`, `P39` ni
