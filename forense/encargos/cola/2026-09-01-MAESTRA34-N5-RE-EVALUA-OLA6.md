@@ -1,9 +1,10 @@
-ESTADO: EN-CURSO
+ESTADO: CONSUMIDO
 ENTORNO: NUBE
 ENCOLADO: 2026-09-02 · gesto de encolado, precedente §1c del transfer maestra-34 (firma D4-a, 1/sep/2026)
 BITACORA:
 - 2026-09-02 · LISTO-NUBE · encolado por PR [COLA] encola MAESTRA34-N4/N5. COMPUERTA propia del encargo: MAESTRA34-N3 fusionado en origin/main con forense/prereg-duelo-v2/scoreboard-v1_2-AGREGADO.md que traiga puntos L sobre celdas de los CUATRO dominios activos — verificar por PRODUCTO: `git show origin/main:forense/prereg-duelo-v2/scoreboard-v1_2-AGREGADO.md | grep -c "DIN-M"` > 0 y lo mismo para CIV/FAM/TRA. Si falta cualquiera, cero commits.
 - 2026-09-03 · EN-CURSO · sesión de nube, rama claude/despacha-MAESTRA34-N5
+- 2026-09-03 · CONSUMIDO · ejecutado por PR #509
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 
@@ -30,3 +31,28 @@ FP/ADR CANDIDATOS: deriva al arrancar.
 CONTADOR: cero directo, declarado (propone aperturas; no mide).
 LO QUE NO HACE: no activa dominios; no abre microdato; no carga reglas; no toca el marco ni corridas.
 SUCESORES: los lotes REGLAS-OLA6-<dominio>-L1 que mesa firme (caja) · MAESTRA34-E1 recibe la evaluación como insumo del falsador de alcance.
+
+## CONSUMIDO
+
+Ejecutado por **`PR #509`** (`[DESPACHA] ACTO MAESTRA34-N5 · RE-EVALUA-OLA6`),
+rama `claude/despacha-MAESTRA34-N5`, 3/sep/2026, base `origin/main = 8fc70f4`.
+Tick de `/despacha` (`ADR-239`); el acto lo corrió `/acto` (`ADR-237`) invocado
+desde ahí, y ese es el único PR del tick.
+
+COMPUERTA **CUMPLE**, verificada por PRODUCTO (no por `git log --grep`,
+`ADR-277`): `scoreboard-v1_2-AGREGADO.md` con `DIN-M` 8, `CIV-M` 14, `FAM-M` 9,
+`TRA-M` 4 — los cuatro `> 0`.
+
+Veredicto: **criterio 1 CUMPLE por primera vez** (cae la cláusula de
+imposibilidad lógica que gobernaba a `ACTO MAESTRA33-E14`), **criterio 2
+`0 de 6`** con `/mapea` dirigido sobre las 25 reglas (2 `EXISTE-SATISFACE`
+en total, universo declarado 241 591 filas en 75 corridas), **criterio 3**
+caja LIBRE declarada sin ejercer. **Ningún dominio abre; ninguno
+`ABRE-PROPUESTO`; ningún lote `REGLAS-OLA6-<dominio>-L1` redactado** — el
+condicional de P4 evalúa en falso. `ADR-317`; enmienda **fechada y aparte**
+en `canon/motor-nucleo-medible-v1_0.md` §3.a, sin tocar los tres criterios;
+`FP-220` sigue `EJECUTADA`, con recibo añadido. **CONTADOR: cero**,
+declarado desde el encargo. Suite en **LÍNEA BASE VERDE**.
+
+Detalle: `forense/notas/2026-09-03-reevaluacion-ola6-cierre.md` y
+`forense/notas/2026-09-03-mapeo-ola6-N5.md`.
