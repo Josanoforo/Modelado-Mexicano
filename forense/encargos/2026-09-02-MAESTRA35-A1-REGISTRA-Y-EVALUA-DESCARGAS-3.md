@@ -82,3 +82,66 @@ Bauchet pero **no** son el paper pedido (`2474620`).
 relanzamiento que mesa ya declaró. La compuerta ya está abierta.
 
 Detalle completo: `forense/notas/2026-09-02-MAESTRA35-A1-P0bis-y-evaluacion.md`.
+
+---
+
+## Enmienda de dirección, verbatim (2/sep/2026, firma e2 — relanzamiento)
+
+Enmienda de dirección a ACTO MAESTRA35-A1 · REGISTRA-Y-EVALUA-DESCARGAS-3 (2/sep/2026). Firmas verbatim; el ejecutor propaga, no decide.
+
+1. COMPUERTA: cumplida. Mesa: «Ya descargué lo más que pude. Corramos algo para registrar todo usando la infraestructura de códex.» Verifica por producto al arrancar: find "<raíz descargas_mx>" -type f -newermt 2026-09-02 | wc -l > 0, y pega el número (A.13). Si es 0, PARA y reporta: el depósito no llegó a la raíz que la caja ve.
+
+2. P1–P4 corren íntegros como están escritos. Lo que mesa bajó viene de las filas A1–A4 y B1–B5 del PDF v2 (SICEE ayuntamientos Hidalgo/Aguascalientes/Veracruz, federales 2018/2021 por casilla, TEPJF, ICPSR, LAOMS, Bauchet); no asumas qué llegó: inventaría por byte 0 y contenido, no por nombre de carpeta. Todo archivo de SICEE es fuente NUEVA: alta en aliases-fuentes.tsv (alias sicee_ine → fuente_canonica_normalizada SICEE_INE_ESTADISTICA_ELECCIONES; la fila SICEE que ya existe en la cola queda como origen), fila en la cola por consulta (SICEE_LOCAL_AYUNTAMIENTOS_<ENTIDAD> y SICEE_FEDERAL_DIP_<AÑO>), descargado_por «mesa-navegador», url_origen https://sicee.ine.mx/home, usado_para citando la entrada civico.participacion.tipo_boleta_federal_2016_2024 (propuesta) y el encargo MAESTRA35-L3. Relación (capa iii): necesidad = denominador municipal de la cívica. Para cada archivo de SICEE, en P3: ¿trae LISTA NOMINAL por municipio (o por sección)? grep del encabezado, conteo de hojas examinadas; si la trae, la fila IEEH_HIDALGO_SERIE_MUNICIPAL (o IEE_AGUASCALIENTES_…) pasa de OBTENIDO-SIN-DENOMINADOR a OBTENIDO por enmienda fechada, citando el id de SICEE que lo cubre.
+
+3. COMPRANET cambió de dominio. Mesa: «Compranet pasó a https://upcp-compranet.buengobierno.gob.mx/». Es identidad nueva, no descarga: (a) alias compranet_upcp → la fuente_canonica de la fila EXT_OF_07_CATALOGO_PROVEEDORES_S1_S3_S6 en aliases-fuentes.tsv, con evidencia_ref «mesa, 2/sep/2026»; (b) url_conocida de esa fila por enmienda fechada (la nota anterior, con los dos dominios muertos, se conserva); (c) sonda desde la caja, salida cruda: curl -s -o /dev/null -w "%{http_code}\n" --max-time 10 https://upcp-compranet.buengobierno.gob.mx/ con UA por defecto y con UA de navegador (L3 midió que ieehidalgo da 403/200 según UA); (d) si responde, /adquiere-adyacente: localiza catálogo de proveedores o documentación de API (≤4 rutas, A.5, receta ≤1 min si falla), doble descarga con sha idéntico, tres capas, anti-PR#77; si no responde, la fila queda NO-OBTENIDO-POR-ESTE-AGENTE(N intentos) con el dominio nuevo anotado — eso ya es avance sobre «dominio por localizar».
+
+4. Cierre: python3 tools/vista_cola_adquisicion.py, T26 verde, via_capa2.py --root . en lectura (recuerda FP-246: las filas con ids_manifiesto en lista caen fuera del contador; decláralo, no lo repares), baseline.py si el validador lo pide, tests/check.py --baseline VERDE. pendientes-v3 con lo que siga vivo. Un PR.
+
+Lo que NO cambia: nada se mide; no se toca milpa/; no se registra nada fuera de las tres capas; los archivos que no correspondan a ninguna fila se registran igual con usado_para «sin necesidad declarada — mesa lo bajó el 2/sep».
+
+---
+
+## CONSUMIDO — relanzamiento (enmienda e2)
+
+Ejecutado por el **relanzamiento** de **ACTO MAESTRA35-A1 · REGISTRA-Y-EVALUA-DESCARGAS-3**,
+2/sep/2026, entorno **CAJA/UBUNTU** (`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` = `sin_variable`,
+sonda INEGI `200`), contra `origin/main = 19770f2` al arrancar (fusionado durante el
+acto con `origin/main = 6024c32`, `PR #480 · ACTO MAESTRA35-L6`, sin PARO — perímetro
+re-derivado, conflicto de puro-apéndice en `data/curacion-registro/cola-adquisicion-registro.tsv`
+y su vista, resuelto por la convención de la casa: `origin/main` primero, lo propio después,
+verbatim). `ADR-300` (renumerado de `297` a `300` en cadena por el resto de la jornada, sin
+colisión propia — este acto fusiona después de `297`/`298`/`299`, ya resueltos por otros actos).
+
+**COMPUERTA re-verificada al arrancar**, por el mismo comando que fijó la firma `e1`:
+`command find "/mnt/c/Users/PC0/Descargas MX" -type f -newermt 2026-09-02 | wc -l` → **30**
+(sobre **190** examinados). Sigue `CUMPLIDA`.
+
+**P1-P4 ejecutados íntegros.** P1: 30 archivos nuevos inventariados por byte 0 y contenido
+(28 ZIP `testzip()` limpio + 2 PDF). P2, tres capas: (i) 30 payloads al corpus compartido,
+`tests/manifiesto.py --registra` ×30 + `--verifica` ×30 → **30/30 `COINCIDE`** (anti-PR#77);
+(ii) 12 filas nuevas en la cola (`NUEVA-A1`, 3 locales + 9 federales SICEE), vista regenerada;
+(iii) alta de fuente SICEE (`sicee_ine`, necesidad nueva `N37`, relación `REL-6c677146f183f594c0649a61`
+`CONFIRMADA`), `baseline.py` VERDE, `via_capa2.py` lectura 0 diffs (`FP-246` declarado, no aplica).
+P3: `IEEH_HIDALGO_SERIE_MUNICIPAL` e `IEE_AGUASCALIENTES_SERIE_MUNICIPAL` pasan de
+`OBTENIDO-SIN-DENOMINADOR` a `OBTENIDO` (denominador municipal vía `LISTA_NOMINAL` de SICEE,
+verificado 84 = municipios de Hidalgo, 11 = municipios de Aguascalientes); `MEXICO_PANEL_STUDY_2012`
+y `PRICE_AND_INFORMATION_TYPE...` sin cambio de estado (contenido evaluado, no satisface).
+Punto 3 (COMPRANET): dominio nuevo confirmado y sondeado (200/200), alias `compranet_upcp` dado
+de alta, `/adquiere-adyacente` (4 rutas) sin catálogo accesible por `curl` (SPA), estado sube a
+2 intentos con receta de navegador. P4: `forense/notas/2026-09-02-MAESTRA35-A1-descargas-pendientes-v3.md`.
+
+**Desviación declarada, propia y autocorregida**: el bucle de registro de los 30 payloads
+reusó un único `--url-origen`/`--licencia` de SICEE para las 30 invocaciones; las 3 no-SICEE
+(ICPSR + 2 SSRN) quedaron con procedencia falsa (nunca `sha256`/`tamano_bytes`, que el script
+deriva). Detectado antes del commit, corregido por línea con nota fechada, declarado en
+`forense/hallazgos.md`.
+
+`python3 tests/check.py --baseline` → **VERDE** (19 FAIL / 168 WARN, nada nuevo).
+
+**CONTADOR real**: payloads registrados **+30** (con sha) · filas de la cola que cambian de
+estado **+3** · filas nuevas en la cola **+12** · descargas pendientes v2→v3: 0 recetas del
+paquete original de agosto pasan a cumplidas por esta vía; el avance real es el denominador
+municipal/federal de la pieza cívica (`N37`).
+
+Commits: `63358eb` (P1-P3) · `c0704f5` (hallazgos) · `c71bfa4` (merge `origin/main`) ·
+`650bc52` (cascada ADR-300/L0/P4). PR abierto contra `main`, sin fusionar — el merge es de mesa.

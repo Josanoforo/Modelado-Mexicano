@@ -232,6 +232,16 @@ HISTORICOS = {
     # artefactos que no se reescriben (pre-registros, bitácora append-only,
     # documentos recogidos verbatim) y esta línea es lo que cuesta declararlo.
     "cola.yaml",
+    # canon/estado-programa-v1_10.md — corrección de mesa sobre T01 (ACTO
+    # MAESTRA35-N6, fusión 2-3/sep/2026): la redacción original del acto
+    # había declarado "v1_10 no se borra (historia)" contra la regla de la
+    # casa (una sola versión viva por artefacto de canon); mesa corrigió y
+    # ordenó `git rm canon/estado-programa-v1_10.md` en la misma rama, con
+    # historia recuperable por `git show 2df71cf:canon/estado-programa-v1_10.md`.
+    # Las citas históricas que quedan (forense/notas, forense/encargos, y la
+    # propia gobernanza narrativa) no se reescriben — son registro append-only
+    # de lo que cada acto pasado hizo, correcto para su fecha.
+    "estado-programa-v1_10.md",
 }
 
 def _normalize_version_dots(name):
@@ -2712,10 +2722,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-08-21-emisor-m1b.md",
     "canon/APERTURA-FASE-CALCULO-v1_2.md",
     "canon/PLAN-CALCULO-TOTAL-v1_1.md",
-    "canon/estado-programa-v1_10.md",
+    # canon/estado-programa-v1_10.md: retirada del arbol por T01 (correccion
+    # de mesa, ACTO MAESTRA35-N6, fusion 2-3/sep/2026) -- entrada obsoleta,
+    # ya no hay archivo que escanear bajo ese nombre; historia recuperable
+    # con `git show 2df71cf:canon/estado-programa-v1_10.md`.
     # canon/estado-programa-v1_11.md, ACTO MAESTRA35-N6, 2/sep/2026: hereda
-    # verbatim de v1_10 (§3 L5) el token "ENCARGO M-4"/"MESA-M4" -- ya
-    # censado arriba para v1_10, misma cadena, ningun rotulo nuevo.
+    # verbatim de la v1_10 retirada (§3 L5) el token "ENCARGO M-4"/"MESA-M4",
+    # ya censado antes en esa version, ningun rotulo nuevo.
     "canon/estado-programa-v1_11.md",
     "canon/gobernanza-v1_15.md",
     "canon/modelo-decision-v4_0.md",
