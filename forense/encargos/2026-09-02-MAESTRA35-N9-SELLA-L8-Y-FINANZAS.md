@@ -11,3 +11,7 @@ PERÍMETRO Y CONCURRENCIA: `milpa/tramite-ola5-propuesta-v0.yaml` (una entrada, 
 FP/ADR CANDIDATOS: una fila nueva (conversión pendiente); primer FP/ADR libres al arrancar (252/304 en e1afa2a; #490 y #491 reclaman antes si fusionan).
 CONTADOR: S5 −1 (entrada cívica sellada) · filas de la cola PENDIENTE −1 · cero estimaciones.
 Lo que este acto NO hace: no carga la cívica al motor (eso es la conversión, firma aparte); no mide; no toca L4/L9; no edita instrucciones.
+
+## CONSUMIDO
+
+Ejecutado por ACTO MAESTRA35-N9 (ADR-305). PR pendiente de apertura por este mismo acto.

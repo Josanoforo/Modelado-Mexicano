@@ -1171,7 +1171,7 @@ reglas_propuestas:
 
   - id: civico.participacion.tipo_boleta_federal_2016_2024
     misma_regla_motor: civico.participacion.contingente
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA # firma e1 (mesa, 2/sep/2026), ACTO MAESTRA35-N9 -- ACOTADA; conversion a regla del motor pendiente de presentacion de direccion y firma de mesa (L6 §5)
     si:
       disparadores: PENDIENTE-DE-MESA  # DOS disparadores candidatos, no uno:
         # (a) la jornada municipal coincide con una federal PRESIDENCIAL,
@@ -1194,7 +1194,16 @@ reglas_propuestas:
       p_wild_cluster: 0.0920
     veredicto_falsador: NO-DISCRIMINA
     porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
-    tier: PENDIENTE-DE-MESA
+    tier: MEDIA # firma e1
+    veredicto_vigente: >
+      ACOTADA (MAESTRA35-L8, 9 entidades / 7 tratadas medibles de 8; beta_pres
+      +4.0167 pp con IC wild cluster [+0.0492, +7.8874] y municipio [+3.3467,
+      +4.6839], positivo en 8/8 sensibilidades; beta_int +0.2864 [-1.2216,
+      +1.7945]); reservas: secuencia rota declarada en spec §0.0 de L8,
+      Hidalgo sin pata 2024, 3 municipios de Veracruz 2017 con cero votos
+      reales; el NO-DISCRIMINA de L3 queda como historia de su universo (A.10)
+    linea_cerrada: "firma e1: no se adquiere mas para esta linea; Hidalgo 2024 y Veracruz 2025 no mueven el veredicto"
+    estampa_A10_n9: {sha_redaccion: "e1afa2a", acto: "MAESTRA35-N9", fecha: "2026-09-02"}
     falsable_si: >
       Congelado en §1.9 de la spec ANTES de medir, sobre el IC95 wild cluster
       por entidad, que es el conservador y el que la spec designo para decidir:
