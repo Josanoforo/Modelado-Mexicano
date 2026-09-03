@@ -146,7 +146,7 @@ Ninguno. **La única rama remota viva, `origin/claude/maestra35-n2-launch-jip2j0
 | # | hito | criterio verificable | quién lo mueve |
 |---|---|---|---|
 | P1 | **S2 = 14** | `corridas-R/{FAM-M-05,FAM-M-06,FAM-M-07,TRA-M-02}.json` en main | `MAESTRA35-L4`, sin compuerta; encargo aún NO-ENCONTRADO en `forense/encargos/` |
-| P2 | **Scoreboard v1_2** | `scoreboard-v1_2-AGREGADO.md` en main | `MAESTRA34-N3`, LISTO en cola — mesa `/despacha` |
+| P2 | **Scoreboard v1_2** | `scoreboard-v1_2-AGREGADO.md`{cita-ilustrativa} en main | `MAESTRA34-N3`, LISTO en cola — mesa `/despacha` |
 | P3 | **Ola 6 decidida** | ADR con criterios escritos | `MAESTRA34-N5`, LISTO en cola, gateado a P2 |
 | P4 | **S1 = 0** | `coercitivo` con dato o re-especificada | dirección: ADR-301 dejó dos candidatas nuevas sin evaluar (Banxico ECF, IFT) |
 | P5 | **estado-programa v1.11 firmado** | FP-251 FIRMADA | mesa |
