@@ -1352,6 +1352,15 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # marcador que T22 detecta es del encargo pedido, no de una decisión
     # de mesa nueva sin registrar.
     "forense/encargos/2026-08-26-MAESTRA31-E2-REGISTRA-PENDIENTES.md",
+    # forense/tablero/TABLERO-PROGRAMA-v1_1.md -- dispara
+    # `_T22_MARCADOR_PENDIENTE` (`PENDIENTE-DE-MESA`) al citar
+    # `civico.participacion.tipo_boleta_federal_2016_2024`, PENDIENTE-DE-MESA
+    # en milpa/tramite-ola5-propuesta-v0.yaml. Ya tiene fila: FP-245 en
+    # forense/firmas-pendientes.tsv, ABIERTA desde 2026-09-02. El tablero es
+    # de lectura (deriva, no crea, decisiones de mesa) y no abre ninguna
+    # ranura nueva -- solo repite, en su columna "mesa", una que ya vive en
+    # el tablero de firmas.
+    "forense/tablero/TABLERO-PROGRAMA-v1_1.md",
     # forense/notas/2026-08-25-sella-e.md -- discute cinco letras de mesa
     # (L1-L5) y FP-24, todas ya rastreadas en firmas-pendientes.tsv
     # (FP-127..FP-130, FP-63, FP-24) o explícitamente reportadas como sin

@@ -173,8 +173,8 @@ def main() -> None:
     put("forenses", len(glob.glob("corpus/forense/*.md")), "ls corpus/forense/*.md | wc -l")
     dig = sorted(glob.glob("forense/digesto/DIGESTO-*.md"))
     put("digesto_ultimo", os.path.basename(dig[-1]) if dig else None, "ls forense/digesto/DIGESTO-*.md | tail -1")
-    put("hito_d_historico", sh("grep -oE '[0-9]+ de 27 corridas archivadas' canon/estado-programa-v1_10.md | head -1"),
-        "grep -oE '[0-9]+ de 27 corridas archivadas' canon/estado-programa-v1_10.md", "historico (transfer §6): NO es la señal")
+    put("hito_d_historico", sh("grep -oE '[0-9]+ de 27 corridas archivadas' canon/estado-programa-v1_11.md | head -1"),
+        "grep -oE '[0-9]+ de 27 corridas archivadas' canon/estado-programa-v1_11.md", "historico (transfer §6): NO es la señal")
     put("commits", int(sh("git rev-list --count HEAD") or 0), "git rev-list --count HEAD")
     put("prs_fusionados", int(sh("git log --merges --format=%s HEAD | grep -c 'pull request'") or 0), "git log --merges --format=%s HEAD | grep -c 'pull request'")
     put("suite", "correr: python3 tests/check.py --baseline | tail -6 (no se corre aqui: tarda; pega la salida cruda)", "python3 tests/check.py --baseline")
