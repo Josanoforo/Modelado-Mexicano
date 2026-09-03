@@ -1,0 +1,386 @@
+{
+ "a13_conteo_archivos_examinados": {
+  "corridas_L_examinadas": 224,
+  "corridas_R_y_M_11_celdas": 22,
+  "corridas_R_y_M_TRA_M_02": 2,
+  "total": 254
+ },
+ "agregado_marginal_por_corredor": {
+  "L_CORPUS": {
+   "mediana_abs_z": {
+    "ic_hi": 53.571248397093356,
+    "ic_lo": 6.248904183142276,
+    "n_celdas": 10000,
+    "punto": 29.18728804894603
+   },
+   "n_celdas": 14,
+   "proporcion_en_banda": {
+    "ic_hi": 0.21428571428571427,
+    "ic_lo": 0.0,
+    "n_celdas": 10000,
+    "punto": 0.07142857142857142
+   }
+  },
+  "L_SOLO": {
+   "mediana_abs_z": {
+    "ic_hi": 34.12084301071083,
+    "ic_lo": 3.547785761046082,
+    "n_celdas": 10000,
+    "punto": 11.157132678437026
+   },
+   "n_celdas": 13,
+   "proporcion_en_banda": {
+    "ic_hi": 0.0,
+    "ic_lo": 0.0,
+    "n_celdas": 10000,
+    "punto": 0.0
+   }
+  },
+  "M": {
+   "mediana_abs_z": {
+    "ic_hi": 18.724261682725913,
+    "ic_lo": 3.98694961192238,
+    "n_celdas": 10000,
+    "punto": 11.43210672645069
+   },
+   "n_celdas": 14,
+   "proporcion_en_banda": {
+    "ic_hi": 0.0,
+    "ic_lo": 0.0,
+    "n_celdas": 10000,
+    "punto": 0.0
+   }
+  }
+ },
+ "celdas": {
+  "CIV-M-01": {
+   "EE_R": 0.006970703455227148,
+   "L_corpus": 0.3,
+   "L_solo": 0.24625,
+   "M": 0.294313,
+   "R": 0.25899878251638075,
+   "id_celda": "CIV-M-01",
+   "n_replicas_l_con_valor_L_corpus": 8,
+   "n_replicas_l_con_valor_L_solo": 8,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": 5.881933975095942,
+   "z_L_solo": -1.8289090331078106,
+   "z_M": 5.0660909204419005
+  },
+  "CIV-M-02": {
+   "EE_R": 0.0062378246817035195,
+   "L_corpus": 0.7833333333333333,
+   "L_solo": 0.85,
+   "M": 0.294313,
+   "R": 0.24339981393062482,
+   "id_celda": "CIV-M-02",
+   "n_replicas_l_con_valor_L_corpus": 3,
+   "n_replicas_l_con_valor_L_solo": 2,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": 86.55798246244639,
+   "z_L_solo": 97.2454688969738,
+   "z_M": 8.162009781825262
+  },
+  "CIV-M-04": {
+   "EE_R": 0.007483508419929803,
+   "L_corpus": 0.8575,
+   "L_solo": null,
+   "M": 0.294313,
+   "R": 0.24366832225578466,
+   "id_celda": "CIV-M-04",
+   "n_replicas_l_con_valor_L_corpus": 4,
+   "n_replicas_l_con_valor_L_solo": 0,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": 82.02458570227323,
+   "z_L_solo": null,
+   "z_M": 6.767504611786136
+  },
+  "CIV-M-10": {
+   "EE_R": 0.004773432921089039,
+   "L_corpus": 0.7030000000000001,
+   "L_solo": 0.375,
+   "M": 0.294313,
+   "R": 0.20493399286059008,
+   "id_celda": "CIV-M-10",
+   "n_replicas_l_con_valor_L_corpus": 5,
+   "n_replicas_l_con_valor_L_solo": 2,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": 104.3412603409494,
+   "z_L_solo": 35.62761013945705,
+   "z_M": 18.724261682725913
+  },
+  "CIV-M-12": {
+   "EE_R": 0.004760266232118154,
+   "L_corpus": 0.463125,
+   "L_solo": 0.225,
+   "M": 0.294313,
+   "R": 0.20811159524290274,
+   "id_celda": "CIV-M-12",
+   "n_replicas_l_con_valor_L_corpus": 8,
+   "n_replicas_l_con_valor_L_solo": 8,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": 53.571248397093356,
+   "z_L_solo": 3.547785761046082,
+   "z_M": 18.108525984426006
+  },
+  "CIV-M-13": {
+   "EE_R": 0.005391415046889411,
+   "L_corpus": 0.294375,
+   "L_solo": 0.37857142857142856,
+   "M": 0.294313,
+   "R": 0.1946118021509308,
+   "id_celda": "CIV-M-13",
+   "n_replicas_l_con_valor_L_corpus": 8,
+   "n_replicas_l_con_valor_L_solo": 7,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": 18.504084174826755,
+   "z_L_solo": 34.12084301071083,
+   "z_M": 18.49258441095015
+  },
+  "DIN-M-01": {
+   "EE_R": 0.004821494748362768,
+   "L_corpus": 0.3375,
+   "L_solo": 0.209375,
+   "M": 0.174804,
+   "R": 0.15558094338412926,
+   "id_celda": "DIN-M-01",
+   "n_replicas_l_con_valor_L_corpus": 8,
+   "n_replicas_l_con_valor_L_solo": 8,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": 37.730842012768946,
+   "z_L_solo": 11.157132678437026,
+   "z_M": 3.98694961192238
+  },
+  "FAM-M-01": {
+   "EE_R": 0.006766711249146834,
+   "L_corpus": 0.2275,
+   "L_solo": 0.26875,
+   "M": 0.457707,
+   "R": 0.5571925669683186,
+   "id_celda": "FAM-M-01",
+   "n_replicas_l_con_valor_L_corpus": 8,
+   "n_replicas_l_con_valor_L_solo": 8,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": -48.722718441678325,
+   "z_L_solo": -42.6266994922661,
+   "z_M": -14.702203671076122
+  },
+  "FAM-M-05": {
+   "EE_R": 0.0012623608446458148,
+   "L_corpus": 0.045875,
+   "L_solo": 0.046125,
+   "M": 0.045694,
+   "R": 0.04745859252351374,
+   "id_celda": "FAM-M-05",
+   "n_replicas_l_con_valor_L_corpus": 8,
+   "n_replicas_l_con_valor_L_solo": 8,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": -1.2544689818528516,
+   "z_L_solo": -1.056427351315631,
+   "z_M": -1.3978511223617998
+  },
+  "FAM-M-06": {
+   "EE_R": 0.0011954757147624008,
+   "L_corpus": 0.04725,
+   "L_solo": 0.04875,
+   "M": 0.045694,
+   "R": 0.04728548395278385,
+   "id_celda": "FAM-M-06",
+   "n_replicas_l_con_valor_L_corpus": 8,
+   "n_replicas_l_con_valor_L_solo": 8,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": -0.029681868352214986,
+   "z_L_solo": 1.2250487643801482,
+   "z_M": -1.3312557780399201
+  },
+  "FAM-M-07": {
+   "EE_R": 0.0010115874166924878,
+   "L_corpus": 0.051625000000000004,
+   "L_solo": 0.052875,
+   "M": 0.045694,
+   "R": 0.04377543852935772,
+   "id_celda": "FAM-M-07",
+   "n_replicas_l_con_valor_L_corpus": 8,
+   "n_replicas_l_con_valor_L_solo": 8,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": 7.759647205090208,
+   "z_L_solo": 8.995328847006066,
+   "z_M": 1.896584950527814
+  },
+  "TRA-M-02": {
+   "EE_R": 0.005060007385450377,
+   "L_corpus": 0.15,
+   "L_solo": 0.15125,
+   "M": 0.62,
+   "R": 0.12602486953090247,
+   "id_celda": "TRA-M-02",
+   "n_replicas_l_con_valor_L_corpus": 8,
+   "n_replicas_l_con_valor_L_solo": 8,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": 4.738161161194345,
+   "z_L_solo": 4.985196373750412,
+   "z_M": 97.62340108227532
+  },
+  "TRA-M-03": {
+   "EE_R": 0.002841169356265617,
+   "L_corpus": 0.12125,
+   "L_solo": 0.1225,
+   "M": 0.62,
+   "R": 0.04453797671500066,
+   "id_celda": "TRA-M-03",
+   "n_replicas_l_con_valor_L_corpus": 8,
+   "n_replicas_l_con_valor_L_solo": 8,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": 27.000158619839638,
+   "z_L_solo": 27.440118313633807,
+   "z_M": 202.54407644371346
+  },
+  "TRA-M-07": {
+   "EE_R": 0.002396371861039179,
+   "L_corpus": 0.147,
+   "L_solo": 0.14425,
+   "M": 0.62,
+   "R": 0.07181522879909936,
+   "id_celda": "TRA-M-07",
+   "n_replicas_l_con_valor_L_corpus": 8,
+   "n_replicas_l_con_valor_L_solo": 8,
+   "n_replicas_l_examinadas_L_corpus": 8,
+   "n_replicas_l_examinadas_L_solo": 8,
+   "z_L_corpus": 31.37441747805242,
+   "z_L_solo": 30.226849337769103,
+   "z_M": 228.75613760678277
+  }
+ },
+ "comparacion_principal_pareada": {
+  "ic_hi": 9.397258683579084,
+  "ic_lo": -74.02310088340927,
+  "id": "L_SOLO_vs_M",
+  "n_celdas": 10000,
+  "punto": -28.989997358279876,
+  "universo_pareado_ids": [
+   "CIV-M-01",
+   "CIV-M-02",
+   "CIV-M-10",
+   "CIV-M-12",
+   "CIV-M-13",
+   "DIN-M-01",
+   "FAM-M-01",
+   "FAM-M-05",
+   "FAM-M-06",
+   "FAM-M-07",
+   "TRA-M-02",
+   "TRA-M-03",
+   "TRA-M-07"
+  ],
+  "veredicto": "INDETERMINADO"
+ },
+ "comparacion_secundaria_l_corpus_vs_m": {
+  "ic_hi": 27.051022409429066,
+  "ic_lo": -59.70092829395324,
+  "id": "L_CORPUS_vs_M",
+  "n_celdas": 10000,
+  "nota": "Diagnóstico secundario para la 'pregunta doble' del whitepaper (P2 del encargo, cuerpo línea 26: 'pareado L_solo-M, L+corpus-M'). NO es la 'comparación principal' del contrato F1 -- esa sigue siendo L_SOLO_vs_M (procedimiento-scoring-v1_1.md §3, comparacion_principal_pareada arriba). Reutiliza, sin copiar ni editar, _bootstrap_pareado_z y _adjudicar de agregado_v1_1.py, con los pares (z_L_corpus, z_M) en vez de (z_L_solo, z_M).",
+  "punto": -13.087097448439431,
+  "universo_pareado_ids": [
+   "CIV-M-01",
+   "CIV-M-02",
+   "CIV-M-04",
+   "CIV-M-10",
+   "CIV-M-12",
+   "CIV-M-13",
+   "DIN-M-01",
+   "FAM-M-01",
+   "FAM-M-05",
+   "FAM-M-06",
+   "FAM-M-07",
+   "TRA-M-02",
+   "TRA-M-03",
+   "TRA-M-07"
+  ],
+  "veredicto": "INDETERMINADO"
+ },
+ "conteo_l_interseccion_m_fp221": {
+  "cumple_umbral": true,
+  "ids": [
+   "CIV-M-01",
+   "CIV-M-02",
+   "CIV-M-04",
+   "CIV-M-10",
+   "CIV-M-12",
+   "CIV-M-13",
+   "DIN-M-01",
+   "FAM-M-01",
+   "FAM-M-05",
+   "FAM-M-06",
+   "FAM-M-07",
+   "TRA-M-02",
+   "TRA-M-03",
+   "TRA-M-07"
+  ],
+  "n": 14,
+  "umbral_activacion_corredor_e": 8
+ },
+ "din_m_01_reserva_d1": {
+  "cuenta_como_puntuada": true,
+  "descripcion": "DIN-M-01 puntúa en este agregado con EE_R (aproximada, cota inferior, factor de diseño 1.1997866170250338). La reserva d1/FP-249 exige declarar si el veredicto de banda cambia con EE_R_sin_diseno: NO cambia (FUERA-DE-BANDA en ambas), calculado por forense/prereg-duelo-v2/din_m_01_doble_ee.py (ENMIENDA 5), NO recalculado aquí.",
+  "fuente": "forense/prereg-duelo-v2/din-m-01-doble-ee-resultado.json",
+  "veredicto_cambia_entre_EE": false
+ },
+ "excluidas_verificacion_no_puntua": [],
+ "fuente_l": {
+  "extractor": "tools/extrae_l_v1_1.py (parcheado por PR #497, ENMIENDA 3, sha efb71de1...)",
+  "nota": "agregado_v1_1.py (base, sin editar) queda como estaba, describiendo v1_1 con valor_extraido null. Este script (v1_2) es el mismo cálculo con marco, universo, fuente de M y fuente de L sobreescritos por monkeypatch quirúrgico, sin tocar el módulo base.",
+  "tsv": "forense/prereg-duelo-v2/L-extraido-v1_2.tsv"
+ },
+ "hallazgo_declarado": {
+  "n_archivos_l_con_valor_extraido_no_nulo": 191,
+  "n_archivos_l_examinados": 224,
+  "nota_v1_2": "Sigue siendo cierto que valor_extraido es null en las 224 capturas crudas de corridas-L/ para v1.2 -- eso no cambia (las capturas no se editan). El punto de L de este agregado se lee de L-extraido-v1_2.tsv (extractor tools/extrae_l_v1_1.py, parcheado por PR #497/ENMIENDA 3), no de valor_extraido. n_archivos_l_con_valor_extraido_no_nulo de abajo cuenta EXTRAIBLE en el TSV, no valor_extraido != null.",
+  "valor_extraido_null_en_las_224_capturas_l": true
+ },
+ "parametros_sellados": {
+  "delta": 0.5,
+  "nivel_ic": 0.95,
+  "replicas": 10000,
+  "seed": 42
+ },
+ "tra_m_02_informativo": {
+  "EE_R": 0.005060007385450377,
+  "M": 0.62,
+  "R": 0.12602486953090247,
+  "R_estado": "COMPUTADO",
+  "id_celda": "TRA-M-02",
+  "nota": "Informativa (FP-213): no sorteada en marco-M-sorteado-v1_1 de 11 celdas, viene de esquema v1_0. No entra a ningún agregado ni al universo pareado de las 11.",
+  "nota_v1_2": "En v1.1 TRA-M-02 vivía fuera del universo de 11 (esquema v1_0, pre-F-DD, FP-213); este bloque del módulo base la reportaba aparte. En v1.2 TRA-M-02 SÍ está en el universo de 14 -- la entrada autoritativa es celdas.TRA-M-02, no este bloque, que queda vestigial (duplicado, ahora con R/M reales) por venir del script sellado sin editar."
+ },
+ "universo_11": [
+  "CIV-M-01",
+  "CIV-M-02",
+  "CIV-M-04",
+  "CIV-M-10",
+  "CIV-M-12",
+  "CIV-M-13",
+  "DIN-M-01",
+  "FAM-M-01",
+  "FAM-M-05",
+  "FAM-M-06",
+  "FAM-M-07",
+  "TRA-M-02",
+  "TRA-M-03",
+  "TRA-M-07"
+ ],
+ "version_marco": "v1_2"
+}
