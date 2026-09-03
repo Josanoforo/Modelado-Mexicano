@@ -2770,3 +2770,161 @@ reglas_propuestas:
     sha256_payload_numerador: "dce5a06c278cf8f5e85c8b68ba03e500342f3768199a9ce232b4f30a22a23386"
     payload_manifiesto_id_numerador: firelenumcontri
     payload_manifiesto_id_denominador: portipocontribuyente
+
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA36-N12 · CONVERSION-CIVICA-BENCHMARK (3/sep/2026)
+  #
+  # PROPUESTA DE CARGA, no carga. La entrada de arriba
+  # (civico.participacion.tipo_boleta_federal_2016_2024) sigue
+  # SELLADA-SIN-CARGA y NO se edita: esta es su hermana propuesta, que
+  # dirección presenta a mesa bajo FP-255 (ABIERTA). La firma de mesa
+  # elige entre A (aditiva), B (logit) y C (dejar sellada); mientras no
+  # haya letra, esta entrada NO se copia a milpa/tramite.yaml.
+  #
+  # Benchmark web: forense/notas/2026-09-03-MAESTRA36-N12-benchmark.md
+  #   (RESERVA: los tres PDF de partida NO se abrieron -- politica de
+  #    egreso de la nube, EGRESS_BLOCKED; ver §0 de esa nota, A.13)
+  # Propuesta y sensibilidad: forense/notas/2026-09-03-MAESTRA36-N12-propuesta.md
+  # Origen del efecto: data/l8-resultados-tipo-boleta-v1_0.json
+  #
+  # milpa/tramite.yaml, milpa/procedencia.yaml, data/** y corpus/**
+  # INTOCADOS. Cargas al motor: 0.
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: civico.participacion.concurrencia_presidencial_conversion
+    misma_regla_motor: civico.participacion.contingente
+    hermana_de: civico.participacion.tipo_boleta_federal_2016_2024
+    situacion: PROPUESTA-DE-CARGA  # PENDIENTE-DE-MESA; gateada por FP-255
+    si:
+      disparador: >
+        El municipio celebra su eleccion de ayuntamiento el mismo dia que una
+        jornada federal PRESIDENCIAL. Una sola via: la via INTERMEDIA no se
+        propone porque beta_int = +0.2864 pp con IC95 wild cluster
+        [-1.2216, +1.7945], que contiene cero.
+    entonces:
+      conversion_propuesta_A_aditiva:
+        formula: "p = clip(p0(municipio) + 0.040167, 0, 1)"
+        delta: 0.040167  # = beta_pres_pp / 100 = 4.016715486813227 / 100
+        escala_de_efecto: diferencia_de_riesgo
+        recorte_activo_en_rango_observado: false  # se activaria solo con p0 > 0.9598
+      conversion_propuesta_B_logit:
+        formula: "logit p1 = logit p0 + 0.161016"
+        delta_logit: 0.161016  # calibrado para reproducir +4.0167 pp en p0 = 0.50
+        odds_ratio: 1.17470
+        escala_de_efecto: razon_de_momios
+      p0_de_donde_sale: >
+        Participacion municipal base del propio panel de L8, definida en
+        forense/notas/2026-09-02-MAESTRA35-L8-spec.md §1.2 como
+        100 * votos_totales(m,e) / lista_nominal(m,e) sobre la unidad
+        municipio x eleccion de ayuntamiento. El JSON de L8 no publica la
+        serie municipio a municipio: publica las 40 medias municipales por
+        transicion (por_transicion[].y_de_media / y_a_media, 20 transiciones
+        x 2 patas). El rango declarado sale de esas 40.
+      p0_rango_observado: [0.3051, 0.7104]
+      p0_media: 0.5797
+      p0_mediana: 0.6094
+      p0_n_medias: 40
+      p0_extremos:
+        minimo: {valor: 0.3051, quien: "Baja California 2019->2021", n_municipios: 5}
+        maximo: {valor: 0.7104, quien: "Veracruz 2017->2021", n_municipios: 209}
+      p0_reserva: >
+        El rango es de MEDIAS por entidad-transicion, no de municipios
+        individuales; la dispersion municipal real es mayor en ambas colas.
+        Basta para la sensibilidad porque la brecha entre convenciones es
+        monotona y su cota se lee en los extremos. El rango municipal
+        verdadero exige volver al panel crudo (Ubuntu).
+    sensibilidad_aditiva_vs_logit:
+      brecha_pp_en_p0_minimo: -0.500   # p0 = 0.3051
+      brecha_pp_en_p0_medio:  -0.152   # p0 = 0.5797
+      brecha_pp_en_p0_maximo: -0.820   # p0 = 0.7104
+      brecha_pp_maxima_en_rango_observado: 0.820
+      contraste_que_decide: >
+        La brecha maxima entre convenciones (0.82 pp) es menor a un decimo del
+        ancho del IC95 wild cluster por entidad de beta_pres (7.84 pp, el
+        conservador y el que la spec de L8 designo para decidir), y menor a un
+        cuarto de la heterogeneidad por tamano de municipio que L8 ya midio
+        (3.57 pp: chico +2.598 -> grande +6.163). La eleccion de convencion es
+        de segundo orden frente a la incertidumbre del efecto. Direccion NO
+        recomienda entre A y B por esta razon medida.
+    escala: ecologica
+    escala_declarada: >
+      Probabilidad individual derivada de un efecto AGREGADO municipal.
+      beta_pres se estimo sobre agregados (numerador votos totales,
+      denominador lista nominal) y la regla lo aplica como probabilidad de
+      que UN INDIVIDUO participe. Eso es inferencia ecologica: el efecto
+      agregado no identifica el efecto individual salvo bajo homogeneidad
+      dentro del municipio, supuesto que este acto NO verifica y NO asume.
+      Operativamente: la regla reparte los 4 pp uniformemente entre los
+      individuos del municipio; si el efecto real se concentra en un
+      subgrupo, acierta el agregado y yerra el individuo.
+    tier: MEDIA  # heredado de L8 (firma e1), sin re-evaluar
+    veredicto_heredado: ACOTADA  # MAESTRA35-L8; solo la via presidencial se sostiene
+    corroboracion_externa:
+      es_dato_del_motor: false
+      a_favor_del_orden_de_magnitud:
+        - fuente: "INE, Estudio muestral sobre la Participacion Ciudadana 2015"
+          url: "https://portalanterior.ine.mx/archivos2/DS/recopilacion/CG.ex201606-29in_01P11-00.pdf"
+          efecto: "53.3 % con concurrencia local vs 50.2 % sin -> +3.1 pp"
+          unidad: "distrito electoral federal, eleccion FEDERAL (diputados 2015)"
+          diseno: "comparacion descriptiva de medias entre grupos de distritos; sin control ni panel"
+          procedencia: NO-ABIERTO-EGRESS-BLOCKED  # cifra declarada por direccion el 3/sep; este acto no la reprodujo
+      no_aislan_el_efecto:
+        - fuente: "TEPJF (2020), Elecciones concurrentes y participacion electoral en Mexico, 1991-2018"
+          url: "https://www.te.gob.mx/editorial_service/media/pdf/250320241355301010.pdf"
+          por_que: "serie temporal de participacion (66/58/41/45/48 %), no contraste concurrente vs no-concurrente"
+          procedencia: SNIPPET-DE-BUSQUEDA
+        - fuente: "INE, Estudio Muestral de Participacion Ciudadana 2024 (concurrentes, 2/jun/2024)"
+          url: "https://repositoriodocumental.ine.mx/xmlui/handle/123456789/178351"
+          por_que: "las 32 entidades fueron concurrentes en 2024: no hay contrafactual dentro del ano. Reporta niveles (59.8 % nacional), no efecto"
+          n: "20 160 casillas (300 muestras aleatorias, una por distrito)"
+          procedencia: SNIPPET-DE-BUSQUEDA
+      no_comparable_pese_al_nombre:
+        - fuente: "Literatura on-cycle/off-cycle EEUU (Hajnal-Lewis 2003 +36 pp; Wood -29 pp; Caren -27 pp; Anzia 2014)"
+          por_que: >
+            Otro estimando. Su contrafactual fuera de ciclo parte de ~10-25 %
+            de participacion; el contrafactual mexicano NO concurrente parte
+            de 30.5-71.0 % (la jornada local no concurrente sigue siendo una
+            jornada estatal organizada). NO se debe usar para juzgar que
+            +4 pp es "bajo".
+          procedencia: SNIPPET-DE-BUSQUEDA
+      hueco_declarado: >
+        No aparecio ningun estudio externo con el estimando de L8 (municipio
+        mexicano, eleccion de ayuntamiento, concurrencia con presidencial,
+        diseno de panel). Su ausencia es parte del entregable.
+      reserva_de_conducto: >
+        A.13. El encargo ordenaba abrir los tres documentos. NINGUNO se abrio:
+        la politica de egreso de este entorno de nube deniega WebFetch
+        (EGRESS_BLOCKED en portalanterior.ine.mx, te.gob.mx,
+        centralelectoral.ine.mx y tambien en en.wikipedia.org como control
+        negativo, lo que establece que el bloqueo es de WebFetch en general y
+        no senal sobre las fuentes; curl a inegi.org.mx da 000 con
+        connect_rejected 403 en el proxy). Solo WebSearch funciono. Ninguna
+        cita es VERIFICADA-EN-DOCUMENTO. Un acto en Ubuntu cierra la reserva.
+    convencion_de_la_literatura: >
+      La literatura de turnout reporta efectos de CONTEXTO (calendario,
+      concurrencia, reglas) en puntos porcentuales, con modelo lineal de
+      probabilidad, no en razones de momios: las seis fuentes externas de
+      arriba reportan pp, ninguna reporta OR. El logit aparece en turnout
+      sobre todo en regresiones INDIVIDUALES de encuesta con covariables
+      demograficas, que no es el caso de L8. La equivalencia entre ambas
+      convenciones depende de la tasa base (Grant 2014, BMJ 348:f7450;
+      viñeta effectsize sobre conversion OR<->RR con p0) y solo divergen de
+      forma material en tasas base extremas, que este rango no alcanza.
+    riesgos_declarados:
+      - "Inferencia ecologica: el efecto agregado se reparte uniforme entre individuos."
+      - "Regimen casi universalmente concurrente: el efecto se estima sobre 2016-2024 y 2024 fue concurrente en las 32 entidades; la regla extrapola a un contrafactual que el calendario real casi ya no produce."
+      - "Precision fragil: el IC conservador [+0.049, +7.887] roza cero (p = 0.0413). Cargar +4.0 como punto es cargar el centro de un intervalo que casi contiene el nulo."
+      - "Heterogeneidad no incorporada: L8 midio +2.598 pp (municipios chicos) contra +6.163 pp (grandes); la regla usa un solo numero para los tres estratos. Sucesor declarado, no cosa resuelta."
+      - "Corroboracion externa indiciaria, no verificada (reserva_de_conducto)."
+    opciones_para_mesa:  # las tres que FP-255 ya nombra
+      A_cargar_aditiva: "p = clip(p0 + 0.040167, 0, 1). Escala nativa de la medicion y convencion de la literatura."
+      B_cargar_logit: "logit p1 = logit p0 + 0.161016 (OR 1.1747). Respeta [0,1] sin recorte; difiere de A en <= 0.82 pp en el rango observado."
+      C_dejar_sellada: "SELLADA-SIN-CARGA se queda como esta. El motor sigue en 16 reglas."
+    gatea: FP-255
+    sucesor: "si la letra sale A o B: N13 · CARGA-CIVICA (motor 16 -> 17). Si sale C: ninguno; FP-255 se cierra sin carga."
+    lo_que_esta_pieza_no_hace: >
+      No carga nada al motor (cargas: 0). No sella. No edita la entrada
+      hermana SELLADA-SIN-CARGA. No toca milpa/tramite.yaml,
+      milpa/procedencia.yaml, data/** ni corpus/**. No mete ninguna cifra
+      externa como dato del motor. No recomienda entre A y B.
+    estampa_A10_n12: {sha_redaccion: "18fd2bd", acto: "MAESTRA36-N12", fecha: "2026-09-03"}

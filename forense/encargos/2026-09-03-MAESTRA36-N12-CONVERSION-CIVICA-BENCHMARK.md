@@ -14,3 +14,30 @@ P1 · Propuesta de conversión, con sensibilidad. Regla propuesta: SI municipio 
 P2 · Presentación a mesa (RH), una página. Qué se carga, en qué escala, qué gana el modelo (primera regla cívica con dato causal), qué riesgo (inferencia ecológica; efecto de 2018/2024 con concurrencia casi universal), y las tres opciones que FP-255 ya nombra: cargar aditiva / cargar logit / dejar sellada. Entra a la propuesta como PROPUESTA-DE-CARGA, PENDIENTE-DE-MESA. No se toca tramite.yaml.
 
 PERÍMETRO: forense/notas/…N12-* (benchmark + propuesta) · milpa/tramite-ola5-propuesta-v0.yaml (append) · forense/firmas-pendientes.tsv (FP-255: nota, sigue ABIERTA hasta la letra) · forense/hallazgos.md · cascada. NO toca milpa/tramite.yaml, milpa/procedencia.yaml, data/**, corpus/**. Frase del perímetro. CONTADOR: motor 16 → 16 (la carga es el sucesor); «propuestas de carga con benchmark externo: 0 → 1». Sucesor: letra de mesa sobre FP-255 → N13 · CARGA-CIVICA (motor 16 → 17).
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA36-N12 · CONVERSION-CIVICA-BENCHMARK`, 3/sep/2026,
+entorno NUBE (`cloud_default`), rama `claude/conversion-civica-benchmark-8xvun4`,
+contra `origin/main = 18fd2bd` (= SHA de redacción declarado, exacto).
+`ADR-313` · PR: ver rama. `python3 tests/check.py --baseline` → **VERDE**
+(19 FAIL, 175 WARN, nada nuevo contra `tests/baseline.json`).
+
+**Punto 4 del ARRANQUE, como el encargo mandó decir:** el acto **toca red
+(web)**, **no microdato**. `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` → `cloud_default`
+(el ARRANQUE esperaba `sin_variable`; diferencia reportada, sin consecuencia
+porque no se abre microdato) · `curl … https://www.inegi.org.mx/` → `000` ·
+`ls data/raw/ 2>/dev/null | head -1` → vacío, `data/raw` **no existe**
+(0 archivos examinados, `A.13`). Anti-PR#77 **no aplica**: este acto no
+descarga nada.
+
+**Desviación declarada respecto de lo que el encargo pidió:** `P0` ordenaba
+«el acto abre los tres». **No abrió ninguno** — la política de egreso de este
+entorno deniega `WebFetch` en general (control negativo con `en.wikipedia.org`
+incluido). El benchmark se construyó con `WebSearch`, con la procedencia
+marcada fila por fila y ninguna cita como `VERIFICADA-EN-DOCUMENTO`. La
+reserva queda escrita en la entrada de la propuesta y en `forense/hallazgos.md`;
+se cierra desde Ubuntu o desde una nube con egreso abierto.
+
+**CONTADOR:** motor **16 → 16** · «propuestas de carga con benchmark externo:
+**0 → 1**» · cargas al motor **0** · `FP-255` **ABIERTA** (anotada, no cerrada).
