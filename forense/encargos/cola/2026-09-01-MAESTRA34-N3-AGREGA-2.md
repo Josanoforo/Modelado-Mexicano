@@ -77,3 +77,11 @@ ASIMETRÍA DE ESQUEMA que P0 debe declarar, no descubrir: las **128** capturas n
 P0–P3: sin cambio respecto de la ENMIENDA 1, salvo la compuerta y la declaración de arriba.
 
 RATIFICACIÓN, verbatim: «Ratificada por dirección (Fable) el 2/sep/2026 contra el reporte de esta sesión: sustituye íntegramente el texto de compuerta que dirección había dictado en conversación (grep -c "__v1_2" = 224), que era inejecutable por el mismo defecto de FP-235. La asimetría de esquema (128 capturas con sha256_prompt/params, 96 sin ellos, re-derivación anexa) queda declarada para P0; el extractor no la trata como fallo.»
+
+---
+
+## ENMIENDA 3 — 3/sep/2026, contra 9badd3c (A.3: el verbatim de arriba no se edita; esta enmienda gobierna sobre las ENMIENDAS 1 y 2 en lo que las precisa)
+
+P0 corre `tools/extrae_l_v1_1.py` sin editar el archivo, con override en runtime de dos constantes de módulo, mismo patrón que `PAQUETE-L-v1_2.md` §4 autorizó para `runner_l_cli.py` (firma `MAESTRA33-E17`): (i) `CORRIDAS_L` → directorio temporal con enlaces simbólicos a las 224 capturas de las 14 celdas de `L-spec-v1_2.json`, seleccionadas por id de celda derivado de la spec, no por sufijo; (ii) `SALIDA_TSV` → `forense/prereg-duelo-v2/L-extraido-v1_2.tsv`. Control positivo antes de escribir: el mismo override apuntado a las 176 capturas de v1_1 reproduce `L-extraido-v1_1.tsv` byte a byte; si no, PARO y a mesa. `sha256` del script pegado en la nota; `--regresion` corrido y en verde. Firma de mesa verbatim: «Autorizo el parche a la línea 136 y el override de las cuatro constantes; mi firma es la fusión de este PR. — mesa, 3/sep/2026».
+
+PERÍMETRO: se añade `tools/extrae_l_v1_1.py`, edición acotada a la línea 136 y la constante `CELDAS_ESPERADAS`; se añade `forense/prereg-duelo-v2/L-extraido-v1_2-notas-cierre.md`.
