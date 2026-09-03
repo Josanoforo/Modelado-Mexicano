@@ -116,19 +116,29 @@ def prop_bootstrap(filas, replicas=REPLICAS, seed=SEED):
     filas = list(filas)
     if not filas:
         return None
-    por_upm = {}
+    # Totales por UPM, precomputados: cada replica suma 2 numeros por UPM en vez
+    # de recorrer sus filas. Mismo resultado exacto, y sin esto una fuente con
+    # 3 096 conglomerados (ENCUCI) no termina en 10 000 replicas.
+    tot = {}
     for est, upm, w, y in filas:
-        por_upm.setdefault((est, upm), []).append((w, y))
+        k = (est, upm)
+        a = tot.get(k)
+        if a is None:
+            tot[k] = [w, w * y]
+        else:
+            a[0] += w
+            a[1] += w * y
     estratos = {}
-    for (est, upm) in por_upm:
+    for (est, upm) in tot:
         estratos.setdefault(est, []).append((est, upm))
+    por_upm = tot
 
     def punto(claves):
         num = den = 0.0
         for k in claves:
-            for w, y in por_upm[k]:
-                den += w
-                num += w * y
+            a = tot[k]
+            den += a[0]
+            num += a[1]
         return num / den if den else None
 
     p_hat = punto(list(por_upm))
@@ -172,21 +182,28 @@ def diff_bootstrap(filas_a, filas_b, replicas=REPLICAS, seed=SEED):
            [(e, u, w, y, "B") for e, u, w, y in filas_b]
     if not marc:
         return None
-    por_upm = {}
+    # Mismo precomputo que prop_bootstrap, con cuatro acumuladores por UPM
+    # (peso y peso*y, para la rama A y para la B).
+    tot = {}
     for est, upm, w, y, g in marc:
-        por_upm.setdefault((est, upm), []).append((w, y, g))
+        k = (est, upm)
+        a = tot.get(k)
+        if a is None:
+            a = tot[k] = [0.0, 0.0, 0.0, 0.0]
+        if g == "A":
+            a[0] += w; a[1] += w * y
+        else:
+            a[2] += w; a[3] += w * y
     estratos = {}
-    for (est, upm) in por_upm:
+    for (est, upm) in tot:
         estratos.setdefault(est, []).append((est, upm))
+    por_upm = tot
 
     def punto(claves):
         n_a = d_a = n_b = d_b = 0.0
         for k in claves:
-            for w, y, g in por_upm[k]:
-                if g == "A":
-                    d_a += w; n_a += w * y
-                else:
-                    d_b += w; n_b += w * y
+            a = tot[k]
+            d_a += a[0]; n_a += a[1]; d_b += a[2]; n_b += a[3]
         if not d_a or not d_b:
             return None
         return n_a / d_a - n_b / d_b
@@ -268,6 +285,263 @@ def censo(olas=("2019", "2021", "2023", "2006")):
     return salida
 
 
+# ─────────────────────── P1 · medicion (COMMIT-2) ───────────────────────
+# Todo lo de aqui abajo ejecuta la spec congelada en
+# forense/notas/2026-09-02-MAESTRA35-L9-spec.md §2 y §3. Nada se decide aqui.
+
+MIN_NUMERADOR = 10          # spec §1.3, guardia de celda
+COBERTURA_MIN = 0.90        # spec §1.3, universo restringido A-bis 4
+
+# spec §0.5 — guardias de lectura con valor esperado, congeladas antes de correr
+GUARDIAS = {
+    "2019": {"filas": 1580, "clien1na_val": 1578, "clien1na_si": 271,
+             "prot3_val": 1576, "prot3_si": 112},
+    "2023": {"filas": 1622, "mexwf1_19_val": 1615, "mexwf1_19_si": 363,
+             "countfair3_val": 1542},
+}
+
+
+def _guardia(nombre, obtenido, esperado):
+    if obtenido != esperado:
+        raise SystemExit(f"PARO (guardia de lectura §0.5): {nombre} = {obtenido}, "
+                         f"esperado {esperado}. El lector no leyo lo que la spec congelo.")
+    return True
+
+
+def _control_regresion(filas, p_boot, etiqueta):
+    """spec §1.1: el punto del bootstrap y el de la linealizacion tienen que
+    coincidir byte a byte; solo el IC puede diferir."""
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tests"))
+    import svystat
+    r = svystat.prop_ultimate_cluster(filas)
+    if r is None:
+        return None
+    if abs(r["p_hat"] - p_boot) > 1e-12:
+        raise SystemExit(f"PARO (control de regresion §1.1): {etiqueta} "
+                         f"bootstrap p={p_boot!r} vs linealizacion p={r['p_hat']!r}")
+    return {"p_hat_linealizado": r["p_hat"], "ic95_linealizado": list(r["ic95"]),
+            "n_upm": r["n_upm_total"], "estratos_singleton": r["n_estratos_singleton"]}
+
+
+def _celda(filas, etiqueta):
+    """Proporcion de una celda, con la guardia de numerador de §1.3."""
+    r = prop_bootstrap(filas)
+    if r is None:
+        return {"etiqueta": etiqueta, "estado": "NO-ESTIMABLE", "motivo": "celda vacia", "n": 0}
+    if r["numerador"] < MIN_NUMERADOR:
+        return {"etiqueta": etiqueta, "estado": "NO-ESTIMABLE",
+                "motivo": f"numerador {r['numerador']} < {MIN_NUMERADOR} (guardia §1.3)",
+                "n": r["n"], "numerador": r["numerador"]}
+    r["etiqueta"] = etiqueta
+    r["estado"] = "ESTIMADA"
+    r["control_regresion"] = _control_regresion(filas, r["p"], etiqueta)
+    return r
+
+
+def _dif(fa, fb, etiqueta, ca, cb):
+    """Diferencia p(A)-p(B). NO-ESTIMABLE si cualquiera de las dos celdas lo es."""
+    if ca.get("estado") != "ESTIMADA" or cb.get("estado") != "ESTIMADA":
+        return {"etiqueta": etiqueta, "estado": "NO-ESTIMABLE",
+                "motivo": f"celda no estimable: {ca.get('motivo') or cb.get('motivo')}"}
+    d = diff_bootstrap(fa, fb)
+    d["etiqueta"] = etiqueta
+    d["estado"] = "ESTIMADA"
+    d["excluye_cero"] = (d["ic95"][0] > 0) or (d["ic95"][1] < 0)
+    d["signo"] = "+" if d["d"] > 0 else "-"
+    return d
+
+
+def _filas(df, cols, y_fn, filtro=None, est="estratopri", upm="upm", peso="wt"):
+    """Arma (estrato, upm, peso, y) aplicando la codificacion de LAPOP."""
+    out = []
+    for i in range(len(df)):
+        v = {c: _cod(df[c].iloc[i]) for c in cols}
+        if any(v[c] is None for c in cols):
+            continue
+        if filtro and not filtro(v):
+            continue
+        y = y_fn(v)
+        if y is None:
+            continue
+        out.append((int(df[est].iloc[i]), int(df[upm].iloc[i]),
+                    float(df[peso].iloc[i]), y))
+    return out
+
+
+def _pieza_a(df):
+    """spec §2 — R7.7: la dadiva compra asistencia, no eleccion."""
+    res = {"pieza": "a", "reglas": ["R7.7"],
+           "id_modelo": ["civico.clientelismo.turnout_no_vote_choice"],
+           "fuente": "LAPOP Mexico 2019", "spec": "§2"}
+
+    # --- pierna ASISTENCIA ---
+    of = _filas(df, ["clien1na", "vb2"], lambda v: 1 if v["vb2"] == 1 else 0,
+                lambda v: v["clien1na"] == 1)
+    no = _filas(df, ["clien1na", "vb2"], lambda v: 1 if v["vb2"] == 1 else 0,
+                lambda v: v["clien1na"] == 2)
+    c_of = _celda(of, "asistencia | ofrecieron")
+    c_no = _celda(no, "asistencia | no ofrecieron")
+    res["asistencia"] = {"ofrecieron": c_of, "no_ofrecieron": c_no,
+                         "delta": _dif(of, no, "Δ_asistencia", c_of, c_no)}
+
+    # --- pierna ELECCION (condicionada a haber votado; colisionador declarado) ---
+    res["eleccion"] = {}
+    for nom, cod in (("PRI_principal", 103), ("MORENA_secundario", 101)):
+        vo = _filas(df, ["clien1na", "vb2", "vb3n"],
+                    lambda v, c=cod: 1 if v["vb3n"] == c else 0,
+                    lambda v: v["clien1na"] == 1 and v["vb2"] == 1)
+        vn = _filas(df, ["clien1na", "vb2", "vb3n"],
+                    lambda v, c=cod: 1 if v["vb3n"] == c else 0,
+                    lambda v: v["clien1na"] == 2 and v["vb2"] == 1)
+        a = _celda(vo, f"{nom} | ofrecieron")
+        b = _celda(vn, f"{nom} | no ofrecieron")
+        res["eleccion"][nom] = {"ofrecieron": a, "no_ofrecieron": b,
+                                "delta": _dif(vo, vn, f"Δ_eleccion_{nom}", a, b)}
+
+    # --- ejes secundarios sobre la pierna de asistencia (spec §2) ---
+    def tramo_ed(e):
+        return "0-6" if e <= 6 else "7-9" if e <= 9 else "10-12" if e <= 12 else "13+"
+    ejes = {}
+    for nom, col, etq in (("ur", "ur", {1: "urbano", 2: "rural"}),
+                          ("sexo", "q1", {1: "hombre", 2: "mujer"})):
+        ejes[nom] = {}
+        for k, lab in etq.items():
+            fo = _filas(df, ["clien1na", "vb2", col],
+                        lambda v: 1 if v["vb2"] == 1 else 0,
+                        lambda v, k=k: v["clien1na"] == 1 and v[col] == k)
+            fn = _filas(df, ["clien1na", "vb2", col],
+                        lambda v: 1 if v["vb2"] == 1 else 0,
+                        lambda v, k=k: v["clien1na"] == 2 and v[col] == k)
+            ca, cb = _celda(fo, f"{lab}|of"), _celda(fn, f"{lab}|no")
+            ejes[nom][lab] = {"ofrecieron": ca, "no_ofrecieron": cb,
+                              "delta": _dif(fo, fn, f"Δ_{lab}", ca, cb)}
+    ejes["escolaridad"] = {}
+    for lab in ("0-6", "7-9", "10-12", "13+"):
+        fo = _filas(df, ["clien1na", "vb2", "ed"],
+                    lambda v: 1 if v["vb2"] == 1 else 0,
+                    lambda v, l=lab: v["clien1na"] == 1 and tramo_ed(v["ed"]) == l)
+        fn = _filas(df, ["clien1na", "vb2", "ed"],
+                    lambda v: 1 if v["vb2"] == 1 else 0,
+                    lambda v, l=lab: v["clien1na"] == 2 and tramo_ed(v["ed"]) == l)
+        ca, cb = _celda(fo, f"{lab}|of"), _celda(fn, f"{lab}|no")
+        ejes["escolaridad"][lab] = {"ofrecieron": ca, "no_ofrecieron": cb,
+                                    "delta": _dif(fo, fn, f"Δ_{lab}", ca, cb)}
+    res["ejes_secundarios"] = ejes
+    return res
+
+
+def _pieza_a_bis(df):
+    """spec §3 — R7.3 / R7.6: la agencia se conserva con secreto y cede sin el."""
+    res = {"pieza": "a-bis", "reglas": ["R7.3", "R7.6"],
+           "id_modelo": ["civico.voto.agencia_con_secreto",
+                         "civico.voto.clientelar_si_observable"],
+           "fuente": "LAPOP Mexico 2023", "spec": "§3"}
+    n_vb20 = sum(1 for v in df["vb20"] if _cod(v) is not None)
+    res["cobertura_vb20"] = n_vb20 / len(df)
+    res["universo_restringido"] = res["cobertura_vb20"] < COBERTURA_MIN
+
+    ramas = {"SECRETO": (1,), "OBSERVABLE": (2, 3)}
+    for rama, cods in ramas.items():
+        fa = _filas(df, ["mexwf1_19", "countfair3", "vb20"],
+                    lambda v: 1 if v["vb20"] == 2 else 0,
+                    lambda v, c=cods: v["mexwf1_19"] == 1 and v["countfair3"] in c,
+                    est="strata")
+        fb = _filas(df, ["mexwf1_19", "countfair3", "vb20"],
+                    lambda v: 1 if v["vb20"] == 2 else 0,
+                    lambda v, c=cods: v["mexwf1_19"] == 2 and v["countfair3"] in c,
+                    est="strata")
+        ca = _celda(fa, f"oficialismo | ayuda=Si, {rama}")
+        cb = _celda(fb, f"oficialismo | ayuda=No, {rama}")
+        res[rama] = {"ayuda_si": ca, "ayuda_no": cb,
+                     "delta": _dif(fa, fb, f"Δ_{rama}", ca, cb)}
+    ds, do = res["SECRETO"]["delta"], res["OBSERVABLE"]["delta"]
+    if ds.get("estado") == "ESTIMADA" and do.get("estado") == "ESTIMADA":
+        res["delta_diferencia"] = {"valor": do["d"] - ds["d"],
+                                   "nota": "diferencia de dos diferencias; su IC no se "
+                                           "reporta porque la spec no lo pre-registro"}
+    else:
+        res["delta_diferencia"] = {"estado": "NO-ESTIMABLE"}
+    return res
+
+
+def mide(ruta_json=None):
+    df19, _m19, p19, s19 = carga("2019")
+    df23, _m23, p23, s23 = carga("2023")
+
+    # spec §0.5 — guardias de lectura, antes de estimar nada
+    g = GUARDIAS["2019"]
+    _guardia("2019 filas", len(df19), g["filas"])
+    _guardia("2019 clien1na validos",
+             sum(1 for v in df19["clien1na"] if _cod(v) is not None), g["clien1na_val"])
+    _guardia("2019 clien1na si",
+             sum(1 for v in df19["clien1na"] if _cod(v) == 1), g["clien1na_si"])
+    g = GUARDIAS["2023"]
+    _guardia("2023 filas", len(df23), g["filas"])
+    _guardia("2023 mexwf1_19 validos",
+             sum(1 for v in df23["mexwf1_19"] if _cod(v) is not None), g["mexwf1_19_val"])
+    _guardia("2023 mexwf1_19 si",
+             sum(1 for v in df23["mexwf1_19"] if _cod(v) == 1), g["mexwf1_19_si"])
+    _guardia("2023 countfair3 validos",
+             sum(1 for v in df23["countfair3"] if _cod(v) is not None), g["countfair3_val"])
+    print("guardias de lectura §0.5: OK")
+
+    out = {"acto": "MAESTRA35-L9 · REGLAS-ACTIVOS-L3",
+           "spec": "forense/notas/2026-09-02-MAESTRA35-L9-spec.md",
+           "estimador": f"proporcion ponderada; IC95 bootstrap de conglomerado, "
+                        f"{REPLICAS} replicas, seed {SEED}, remuestreo de UPM dentro de estrato",
+           "aviso_ponderador": "wt de LAPOP Mexico es constante = 1 en 2019 y 2023: la "
+                               "proporcion ponderada es identica a la simple y todo el "
+                               "efecto de diseno vive en el conglomerado (spec §1.2)",
+           "payloads": [{"id": PAYLOADS["2019"][0], "sha256": s19,
+                         "coincide_manifiesto": s19 == sha_manifiesto(PAYLOADS["2019"][0])},
+                        {"id": PAYLOADS["2023"][0], "sha256": s23,
+                         "coincide_manifiesto": s23 == sha_manifiesto(PAYLOADS["2023"][0])}],
+           "piezas": [_pieza_a(df19), _pieza_a_bis(df23)]}
+    if ruta_json:
+        json.dump(out, open(ruta_json, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print("escrito", ruta_json)
+    _imprime(out)
+    return out
+
+
+def _fmt(c):
+    if c.get("estado") != "ESTIMADA":
+        return f"NO-ESTIMABLE ({c.get('motivo')})"
+    if "p" in c:
+        return (f"p={c['p']:.6f}  IC95=[{c['ic95'][0]:.6f},{c['ic95'][1]:.6f}]  "
+                f"n={c['n']} num={c['numerador']}")
+    return (f"d={c['d']:+.6f}  IC95=[{c['ic95'][0]:+.6f},{c['ic95'][1]:+.6f}]  "
+            f"{'EXCLUYE 0' if c['excluye_cero'] else 'contiene 0'}")
+
+
+def _imprime(out):
+    for pz in out["piezas"]:
+        print(f"\n{'=' * 74}\nPIEZA {pz['pieza']} · {'/'.join(pz['reglas'])} · {pz['fuente']}")
+        if pz["pieza"] == "a":
+            print("  ASISTENCIA")
+            for k in ("ofrecieron", "no_ofrecieron"):
+                print(f"    {k:16s} {_fmt(pz['asistencia'][k])}")
+            print(f"    {'Δ_asistencia':16s} {_fmt(pz['asistencia']['delta'])}")
+            for nom, blk in pz["eleccion"].items():
+                print(f"  ELECCION · {nom}")
+                for k in ("ofrecieron", "no_ofrecieron"):
+                    print(f"    {k:16s} {_fmt(blk[k])}")
+                print(f"    {'Δ_eleccion':16s} {_fmt(blk['delta'])}")
+            for eje, celdas in pz["ejes_secundarios"].items():
+                print(f"  eje {eje}")
+                for lab, blk in celdas.items():
+                    print(f"    {lab:10s} {_fmt(blk['delta'])}")
+        else:
+            print(f"  cobertura vb20 = {pz['cobertura_vb20']:.4%} · "
+                  f"universo_restringido = {pz['universo_restringido']}")
+            for rama in ("SECRETO", "OBSERVABLE"):
+                print(f"  {rama}")
+                for k in ("ayuda_si", "ayuda_no"):
+                    print(f"    {k:12s} {_fmt(pz[rama][k])}")
+                print(f"    {'Δ':12s} {_fmt(pz[rama]['delta'])}")
+            print(f"  Δ_diferencia = {pz['delta_diferencia']}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--censo", action="store_true")
@@ -282,7 +556,6 @@ def main():
             print(f"\nescrito {a.json}")
         return
     if a.mide:
-        from medidor_clientelismo_lapop_med import mide   # COMMIT-2
         mide(a.json)
         return
     ap.print_help()

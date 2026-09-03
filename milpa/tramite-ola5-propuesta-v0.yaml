@@ -1914,3 +1914,349 @@ reglas_propuestas:
       se invierte.
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: enif_2024_enif_2024_bd_csv
+
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA35-L9 · REGLAS-ACTIVOS-L3 · 2/sep/2026
+  # Cinco entradas nuevas. Spec congelada en
+  # forense/notas/2026-09-02-MAESTRA35-L9-spec.md (COMMIT-1); censo A.4 en
+  # forense/notas/2026-09-02-MAESTRA35-L9-P0-censo.md + data/l9-censo-a4-v1_0.tsv.
+  #
+  # AVISO QUE APLICA A LAS TRES ENTRADAS DE LAPOP: `wt` del archivo de pais de
+  # LAPOP Mexico es CONSTANTE = 1 en 2019 y en 2023 (muestra autoponderada), asi
+  # que la "proporcion ponderada" es identica a la simple y todo el efecto de
+  # diseno vive en el conglomerado (estratopri x upm). No es un ponderador que
+  # se olvido de aplicar.
+  #
+  # DESVIACION DECLARADA respecto de los ids que el encargo nombraba: el encargo
+  # escribia `..._lapop2023` para clientelismo y protesta; el censo A.4 mostro
+  # que la bateria clientelar y `prot3` solo existen en la ola 2019, asi que los
+  # ids llevan la ola que de verdad los midio.
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: civico.clientelismo.turnout_no_vote_choice_lapop2019
+    entrada_nueva: true
+    referida_a: "regla R7.7 civico.clientelismo.turnout_no_vote_choice (canon/modelo-decision-v4_0.md:555)"
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA  # asociacion por eje, no condicional de disparo
+    entonces:
+      - {conducta: voto_si_le_ofrecieron_dadiva_lapop2019, p: 0.832714, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de oferta)"}
+      - {conducta: voto_si_no_le_ofrecieron_lapop2019, p: 0.793103, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de oferta)"}
+      - {conducta: voto_PRI_2018_si_le_ofrecieron_lapop2019, p: 0.063492, clase: "MEDIDO·p(proporcion ponderada, condicional a haber votado)"}
+      - {conducta: voto_PRI_2018_si_no_le_ofrecieron_lapop2019, p: 0.079196, clase: "MEDIDO·p(proporcion ponderada, condicional a haber votado)"}
+    porque: {generador: [G4], mecanismo: "turnout buying != vote-choice buying; este acto NO re-deriva el generador"}
+    falsable_si: NO-APLICA  # asociacion (A-bis 1/2); el falsador B-bis juzgo el signo del par, no la regla
+    fuente: ["LAPOP_MEX_2019", "forense/notas/2026-09-02-MAESTRA35-L9-spec.md"]
+    ola_calibracion: "LAPOP Mexico 2019 (unica ola del corpus con la bateria clien*; 2021 es la ola reducida de COVID y 2023 no la trae)"
+    ponderador: "wt (CONSTANTE = 1)"
+    diseno: "estratopri (4 estratos) x upm (129 conglomerados); IC95 bootstrap de conglomerado, 10 000 replicas, seed 42"
+    escala: "proporcion ponderada de PERSONAS de 18 anios y mas dentro de cada celda del eje"
+    universo: >
+      ESTAMPA A.10 -- pierna de ASISTENCIA: las personas con clien1na y vb2
+      validos (n=1574; 269 con oferta, 1305 sin). Pierna de ELECCION: las
+      anteriores que ademas votaron y tienen vb3n valido (n=1035; 189 con
+      oferta, 846 sin). Eje: oferta=SI sse clien1na='1' ("Le ofrecieron un
+      beneficio por su voto en la ultima eleccion generales"), NO sse '2'.
+      Eleccion de referencia: la general de 2018 en los tres items.
+    desenlaces:
+      - {desenlace: asistencia, papel: PRINCIPAL, variable: vb2, con_oferta: 0.832714, ic95_con: [0.787546, 0.876494], sin_oferta: 0.793103, ic95_sin: [0.771206, 0.814473], n_con: 269, n_sin: 1305, brecha_pp: 3.9610, ic95_brecha: [-0.7733, 8.6220], excluye_cero: false}
+      - {desenlace: eleccion_PRI, papel: PRINCIPAL, variable: "vb3n == 103", con_oferta: 0.063492, ic95_con: [0.030120, 0.102151], sin_oferta: 0.079196, ic95_sin: [0.059312, 0.101517], n_con: 189, n_sin: 846, brecha_pp: -1.5704, ic95_brecha: [-5.7575, 2.8525], excluye_cero: false}
+      - {desenlace: eleccion_MORENA, papel: secundario, variable: "vb3n == 101", con_oferta: 0.804233, ic95_con: [0.750000, 0.855072], sin_oferta: 0.749409, ic95_sin: [0.717472, 0.780458], n_con: 189, n_sin: 846, brecha_pp: 5.4824, ic95_brecha: [-0.7015, 11.4695], excluye_cero: false}
+    veredicto_Bbis: NO-DISCRIMINA
+    veredicto_del_acto: >
+      NO-DISCRIMINA, derivado de la regla congelada en spec §2.1: CORROBORADA
+      exigia que el IC95 de la brecha de asistencia excluyera 0 -- y no lo hace
+      ([-0.77, +8.62] pp). CONTRARIA exigia que la brecha de eleccion excluyera
+      0 -- tampoco. Los dos IC contienen cero: el diseno no separa nada.
+    hallazgo: >
+      Los puntos estimados van en el sentido que la regla predice y ninguno de
+      los dos alcanza: quien recibio una oferta de dadiva por su voto reporta
+      haber votado 3.96 pp mas (83.27% contra 79.31%), y su eleccion de voto por
+      el PRI -- el partido que tenia el gobierno federal en 2018 -- es 1.57 pp
+      MENOR, no mayor. La forma del resultado es la que R7.7 describe (la dadiva
+      mueve la asistencia y no la eleccion), pero con n=269 en la rama tratada
+      ninguno de los dos IC95 despeja el cero, asi que el dato NO sostiene la
+      separacion: la ilustra sin probarla.
+      DOS LIMITACIONES QUE NO SE PUEDEN OMITIR AL CITAR ESTAS CIFRAS, las dos
+      declaradas en COMMIT-1 antes de medir. (1) La pierna de eleccion
+      CONDICIONA EN HABER VOTADO, que es justamente el otro desenlace: si la
+      oferta mueve la asistencia, condicionar en ella abre un camino de
+      colisionador, asi que la brecha de eleccion es descriptiva DENTRO de los
+      votantes, no un efecto sobre la eleccion de voto de la poblacion. (2) El
+      instrumento NO OBSERVA QUIEN DIO LA DADIVA, asi que el desenlace es el
+      voto por un partido pre-registrado y no "el que dio", que es el enunciado
+      literal de la regla y no es medible con este instrumento.
+      NO SUSTITUYE LA CIFRA DE LABORATORIO. El 0.63 de Ascencio-Chang 2025 que
+      canon/estado-programa-v1_11.md §4 registra para civico.voto.clientelar mide
+      la condicion de OBSERVABILIDAD del voto, y el censo A.4 §3 establecio que
+      ninguna ola de LAPOP Mexico trae a la vez la bateria clientelar y un item
+      de secreto del voto. Aunque el veredicto hubiera sido CORROBORADA, lo que
+      esta entrada podia sustituir era el sitio de R7.7, no el 0.63.
+    sha256_payload: "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57"
+    payload_manifiesto_id: mexico_lapop_americasbarometer_2019_v1_0_w
+
+  - id: civico.voto.agencia_lapop2023
+    entrada_nueva: true
+    referida_a: "par de reglas R7.3 civico.voto.agencia_con_secreto (canon/modelo-decision-v4_0.md:553) y R7.6 civico.voto.clientelar_si_observable (:554)"
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    nota_alcance: >
+      NO reabre la fila C que ADR-155 archivo para R7.3 en el Hito D, y no
+      propone cambiarla: aquel C dice que el RDD que su falsador exige no es
+      construible con ninguna fuente publica en disco, y aqui no se construye
+      ningun RDD -- es una asociacion descriptiva sobre la persona.
+      Tampoco mide la DADIVA: el censo A.4 §3 establecio que ninguna ola de
+      LAPOP Mexico cruza dadiva con secreto del voto sobre la misma persona.
+      El antecedente que si es observable es la TRANSFERENCIA (mexwf1_19), que
+      es literalmente el SI de R7.3.
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: intencion_voto_oficialismo_con_ayuda_secreto_lapop2023, p: 0.658228, clase: "MEDIDO·p(proporcion ponderada, condicional al cruce transferencia x secreto)"}
+      - {conducta: intencion_voto_oficialismo_sin_ayuda_secreto_lapop2023, p: 0.514493, clase: "MEDIDO·p(proporcion ponderada, condicional al cruce transferencia x secreto)"}
+      - {conducta: intencion_voto_oficialismo_con_ayuda_observable_lapop2023, p: 0.650442, clase: "MEDIDO·p(proporcion ponderada, condicional al cruce transferencia x secreto)"}
+      - {conducta: intencion_voto_oficialismo_sin_ayuda_observable_lapop2023, p: 0.470665, clase: "MEDIDO·p(proporcion ponderada, condicional al cruce transferencia x secreto)"}
+    porque: {generador: [G4], mecanismo: "calculo racional bajo incertidumbre sobre el secreto del voto; este acto NO re-deriva el generador"}
+    falsable_si: NO-APLICA
+    fuente: ["LAPOP_MEX_2023", "forense/notas/2026-09-02-MAESTRA35-L9-spec.md"]
+    ola_calibracion: "LAPOP Mexico 2023 (unica ola del corpus con countfair3)"
+    ponderador: "wt (CONSTANTE = 1)"
+    diseno: "strata=estratopri (4) x upm (130); IC95 bootstrap de conglomerado, 10 000 replicas, seed 42"
+    escala: "proporcion ponderada de PERSONAS de 18 anios y mas dentro de cada celda del cruce"
+    universo_restringido: true  # cobertura de vb20 = 87.18% < 90% (A-bis 4): NO se reconcilia contra ningun marginal poblacional
+    universo: >
+      ESTAMPA A.10 -- personas con mexwf1_19, countfair3 y vb20 validos
+      (n=1348 en las cuatro celdas). Antecedente: ayuda=SI sse mexwf1_19='1'
+      ("Recibir ayuda -dinero en efectivo, alimentos, productos basicos- del
+      gobierno"). Moderador: rama SECRETO sse countfair3='1' (Siempre),
+      rama OBSERVABLE sse countfair3 in {'2','3'} (Algunas veces / Nunca).
+      Desenlace: vb20='2' ("Votaria por el candidato o partido del actual
+      presidente"). Se usa vb20 y NO vb3n porque en la ola 2023 vb3n pregunta
+      por la presidencial de 2018, cinco anios antes de que se midiera el
+      moderador.
+    desenlaces:
+      - {rama: SECRETO, con_ayuda: 0.658228, ic95_con: [0.546667, 0.766234], n_con: 79, sin_ayuda: 0.514493, ic95_sin: [0.451493, 0.579151], n_sin: 276, brecha_pp: 14.3735, ic95_brecha: [1.4272, 27.4364], excluye_cero: true}
+      - {rama: OBSERVABLE, con_ayuda: 0.650442, ic95_con: [0.583673, 0.714286], n_con: 226, sin_ayuda: 0.470665, ic95_sin: [0.433424, 0.507712], n_sin: 767, brecha_pp: 17.9778, ic95_brecha: [10.7487, 25.0213], excluye_cero: true}
+    delta_diferencia_pp: 3.6042  # OBSERVABLE - SECRETO; sin IC porque la spec no lo pre-registro
+    veredicto_Bbis: CONTRARIA
+    veredicto_del_acto: >
+      CONTRARIA, por la clausula de precedencia que spec §3.1 congelo antes de
+      medir: "si Δ_SECRETO y Δ_OBSERVABLE dan las dos limpias y en el mismo
+      signo, la separacion que el par afirma no existe: manda CONTRARIA".
+      Las dos brechas excluyen cero y las dos son positivas.
+    hallazgo: >
+      LA SEPARACION QUE EL PAR R7.3/R7.6 AFIRMA NO APARECE. R7.3 -- que es
+      [FUERTE] -- dice que sin monitoreo percibido del voto la agencia SE
+      CONSERVA: recibir la transferencia no deberia mover a quien se vota. El
+      dato dice que si la mueve, y casi tanto como donde el voto se percibe
+      observable. Entre quienes creen que el voto es SIEMPRE secreto, recibir
+      ayuda del gobierno se asocia con +14.37 pp de intencion de voto por el
+      oficialismo (65.82% contra 51.45%, IC95 [1.43, 27.44] pp); entre quienes
+      NO lo creen siempre secreto, +17.98 pp (65.04% contra 47.07%, IC95
+      [10.75, 25.02] pp). La diferencia entre las dos brechas es de 3.60 pp
+      -- del signo que R7.6 predice, pero pequenia frente a la brecha que ya
+      existe en la rama donde R7.3 esperaba cero.
+      LO QUE ESTO NO ES. No es un efecto: es una asociacion transversal sin
+      identificacion, y la direccion mas obvia de confusion esta abierta --
+      quien apoya al oficialismo puede tener mas probabilidad de estar en un
+      programa, no solo al reves. Lo que el dato refuta no es "la transferencia
+      compra el voto" sino la afirmacion mas debil y mas concreta que R7.3 si
+      hace: que BAJO SECRETO PERCIBIDO la asociacion se anula. No se anula.
+      La rama SECRETO se apoya en 79 personas tratadas y su IC es ancho
+      ([1.43, 27.44] pp): despeja el cero por poco. Se reporta como esta.
+    sha256_payload: "4a9410a53cde9d11edeb23465bdbadce8a6abcc18330b6eebe2a4493be6e765c"
+    payload_manifiesto_id: mex_2023_lapop_americasbarometer_v1_0_w
+
+  - id: civico.protesta.agravio_urbano_lapop2019
+    entrada_nueva: true
+    referida_a: "regla R7.4 civico.protesta.agravio_urbano (canon/modelo-decision-v4_0.md:558)"
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    nota_alcance: >
+      NO reabre la fila D que ADR-158 archivo para R7.4, y no propone cambiarla:
+      aquel D corrio el falsador COMPARTIDO con R7.5 sobre datos de EVENTO (Mass
+      Mobilization, UCDP, GDELT) y dice que ninguna de las tres codifica entorno
+      y forma de respuesta sobre el mismo caso. Aqui la unidad es la PERSONA
+      auto-reportada en una encuesta con diseno muestral. Esta entrada NO DICE
+      NADA sobre R7.5 ni sobre la rama de autodefensa.
+      Mide DOS de los cuatro antecedentes de la regla -- agravio y entorno --;
+      "red previa" y "falla estatal palpable" no estan en el instrumento.
+      ACOTA la regla; no la cierra.
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: participo_en_protesta_urbano_victima_lapop2019, p: 0.105727, clase: "MEDIDO·p(proporcion ponderada, condicional al cruce ambito x agravio)"}
+      - {conducta: participo_en_protesta_urbano_no_victima_lapop2019, p: 0.049689, clase: "MEDIDO·p(proporcion ponderada, condicional al cruce ambito x agravio)"}
+      - {conducta: participo_en_protesta_rural_no_victima_lapop2019, p: 0.067729, clase: "MEDIDO·p(proporcion ponderada, condicional al cruce ambito x agravio)"}
+      - {conducta: participo_en_protesta_rural_victima_lapop2019, p: NO-ESTIMABLE, clase: "NO-ESTIMABLE(numerador 7 < 10, guardia de celda pre-registrada en spec §1.3)"}
+    porque: {generador: [G4], mecanismo: "destructor selectivo; este acto NO re-deriva el generador"}
+    falsable_si: NO-APLICA
+    fuente: ["LAPOP_MEX_2019", "forense/notas/2026-09-02-MAESTRA35-L9-spec.md"]
+    ola_calibracion: "LAPOP Mexico 2019 (2006 NO hace serie: PROT1/PROT2 son escala de frecuencia y PROT2 esta gateada, n=209, frente a prot3 binaria y ungateada; el archivo de 2006 tampoco trae ponderador)"
+    ponderador: "wt (CONSTANTE = 1)"
+    diseno: "estratopri (4) x upm (129); IC95 bootstrap de conglomerado, 10 000 replicas, seed 42"
+    escala: "proporcion ponderada de PERSONAS de 18 anios y mas dentro de cada celda del cruce"
+    universo: >
+      ESTAMPA A.10 -- las personas con prot3, ur y vic1ext validos (n=1575).
+      Desenlace: prot3='1' ("Participo en una protesta"). Eje: ur='1' urbano /
+      '2' rural, cruzado con vic1ext='1' victima de delincuencia en los ultimos
+      12 meses / '2' no. Reparto: urbano-victima 454, urbano-no-victima 805,
+      rural-victima 65, rural-no-victima 251.
+    contrastes:
+      - {contraste: C1_entorno_con_agravio, definicion: "urbano-victima - rural-victima", estado: NO-ESTIMABLE, motivo: "la celda rural-victima tiene numerador 7, bajo el umbral de 10 pre-registrado en spec §1.3"}
+      - {contraste: C2_agravio_en_urbano, definicion: "urbano-victima - urbano-no-victima", brecha_pp: 5.6037, ic95_brecha: [2.3239, 8.9555], excluye_cero: true, veredicto_Bbis: CORROBORADA}
+    veredicto_Bbis: CORROBORADA-PARCIAL
+    veredicto_del_acto: >
+      CORROBORADA en el unico contraste estimable, con el contraste de entorno
+      NO MEDIDO -- y el de entorno es el corazon de la regla. spec §4.1 fijo
+      antes de correr que si C1 caia por la guardia, el veredicto saldria de C2
+      solo y habria que declararlo. Cayo, y se declara.
+    hallazgo: >
+      Dentro de lo urbano, el agravio si mueve la protesta: 10.57% entre las
+      victimas de delito contra 4.97% entre las no victimas, +5.60 pp con IC95
+      [2.32, 8.96] sin traslape. Es la mitad de la regla que se pudo medir.
+      LA OTRA MITAD NO SE MIDIO, Y ESO ESTABA PREVISTO. La celda
+      rural-victima tiene n=65 y solo 7 personas que protestaron -- bajo el
+      umbral de 10 que la spec congelo antes de correr precisamente porque el
+      censo A.4 anticipo que caeria. Asi que el contraste urbano-contra-rural
+      bajo agravio, que es lo que R7.4 realmente afirma (el entorno urbano con
+      espacio publico CANALIZA el agravio hacia la protesta), NO tiene dato
+      aqui. Que C2 corrobore no dice nada sobre si el entorno importa.
+      Dato colateral que apunta en contra de la lectura urbana, y que se reporta
+      sin convertirlo en veredicto porque el eje no traia signo pre-registrado:
+      la protesta no baja con el tamano de localidad -- 6.68% en municipios
+      grandes (>100k), 7.59% en medianos, 8.63% en pequenios (<25k), con los
+      IC95 traslapados en los tres.
+    sha256_payload: "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57"
+    payload_manifiesto_id: mexico_lapop_americasbarometer_2019_v1_0_w
+
+  - id: civico.transferencia.entitlement_encuci2020
+    entrada_nueva: true
+    referida_a: "regla R7.8 civico.transferencia.entitlement_derecho (canon/modelo-decision-v4_0.md:556)"
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: percibe_programas_sociales_como_derecho_beneficiario_encuci2020, p: 0.540278, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de beneficiario)"}
+      - {conducta: percibe_programas_sociales_como_derecho_no_beneficiario_encuci2020, p: 0.606014, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de beneficiario)"}
+    porque: {generador: [G4], mecanismo: "entitlement despersonalizado: el beneficio llega sin intermediario ni corresponsabilidad; este acto NO re-deriva el generador"}
+    falsable_si: NO-APLICA
+    fuente: ["ENCUCI2020", "forense/notas/2026-09-02-MAESTRA35-L9-spec.md"]
+    ola_calibracion: "ENCUCI 2020 (unica ola de ENCUCI en el corpus)"
+    ponderador: FAC_SEL
+    diseno: "EST_DIS (281 estratos) x UPM_DIS (3 096 conglomerados); join con ENCUCI_2020_SD.dbf por ID_PER TOTAL, 21 519 de 21 519, 0 sin par; IC95 bootstrap de conglomerado, 10 000 replicas, seed 42"
+    escala: "proporcion ponderada de PERSONAS de 15 anios y mas dentro de cada celda del eje"
+    universo: >
+      ESTAMPA A.10 -- las 20 868 personas con AP6_9 in {1,2}; se excluyen
+      3=Ninguna (299) y 9=NS/NR (352). Cobertura 96.97%, sobre el 90%: NO corre
+      bajo universo restringido. Desenlace: AP6_9='2' ("Los programas sociales
+      son un derecho de los ciudadanos") contra '1' ("son una ayuda que da el
+      gobierno"). Eje: AP6_10 beneficiario de un programa social en los ultimos
+      12 meses, SI (5 665 en el universo) / NO (15 186).
+    desenlaces:
+      - {desenlace: percepcion_derecho, papel: PRINCIPAL, variable: "AP6_9 == 2", beneficiario: 0.540278, ic95_ben: [0.523284, 0.557868], n_ben: 5665, no_beneficiario: 0.606014, ic95_no: [0.593683, 0.617803], n_no: 15186, brecha_pp: -6.5736, ic95_brecha: [-8.7157, -4.4277], excluye_cero: true}
+    eje_anidado_AP6_11:
+      # gateado dentro de AP6_10 == 1; spec §5.1 fijo que NO puede voltear el eje principal
+      - {celda: le_pidieron_algo_a_cambio, p: 0.552875, ic95: [0.497263, 0.611167], n: 294}
+      - {celda: no_le_pidieron, p: 0.540569, ic95: [0.523246, 0.557971], n: 5360}
+      - {brecha_pp: 1.2306, ic95_brecha: [-6.1312, 8.9823], excluye_cero: false, veredicto_Bbis: NO-DISCRIMINA}
+    veredicto_Bbis: CONTRARIA
+    veredicto_del_acto: >
+      CONTRARIA, derivado de la regla congelada en spec §5.1: CONTRARIA sse la
+      brecha es negativa con IC95 que excluye 0. Es -6.57 pp con IC95
+      [-8.72, -4.43].
+    hallazgo: >
+      EL PRIMER DATO DE PERCEPCION DE R7.8, Y VA EN CONTRA DE LA REGLA. R7.8 es
+      [HIPOTESIS] y afirma que la transferencia no condicionada SE VIVE COMO
+      DERECHO; el glosario conf.07 la separo de civico.voto.agencia_con_secreto
+      justamente porque esa mitad no tenia identificacion, y MAESTRA33-E18
+      descarto ENASEM por medir afiliacion y no percepcion. ENCUCI 2020 la
+      pregunta literal, y la contesta al reves: los BENEFICIARIOS dicen
+      "derecho" MENOS que los no beneficiarios -- 54.03% contra 60.60%, -6.57 pp
+      con IC95 [-8.72, -4.43] sin traslape, sobre 20 868 personas. Recibir el
+      programa se asocia con verlo mas como AYUDA QUE DA EL GOBIERNO, que es
+      exactamente la otra mitad de la diagonal partida (civico.transferencia.
+      atribucion_lider, [MEDIA]).
+      LA CONDICIONALIDAD NO EXPLICA LA BRECHA. El eje anidado AP6_11 -- a quien
+      le pidieron dinero, documentos, favores o que votara por algun partido a
+      cambio de entrar o permanecer en el programa (297 de 5 789 beneficiarios,
+      5.1%) -- NO discrimina: 55.29% contra 54.06%, IC95 de la brecha
+      [-6.13, +8.98]. Quien fue condicionado no vive el programa menos como
+      derecho que quien no lo fue.
+      RESERVA, ESCRITA EN COMMIT-1 ANTES DE MEDIR: es una asociacion
+      transversal. Que el beneficiario diga "derecho" menos es compatible con
+      que el programa cambie la percepcion Y con que quien ya pensaba distinto
+      se inscribiera mas. Este diseno no los separa.
+    sha256_payload: "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+    payload_manifiesto_id: encuci2020_bd_dbf
+
+  - id: dinero.ahorro.seguro_deposito_enif2024
+    entrada_nueva: true
+    referida_a: "regla R1.5 dinero.ahorro.seguro_deposito_atenua_aversion (canon/modelo-decision-v4_0.md:503)"
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: desconfianza_como_razon_principal_conoce_proteccion_enif2024, p: 0.060780, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de conocimiento de la proteccion)"}
+      - {conducta: desconfianza_como_razon_principal_no_conoce_enif2024, p: 0.054767, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de conocimiento de la proteccion)"}
+    porque: {generador: [G1], mecanismo: "G1 + diseno, con confianza_institucional[financiera] (ADR-52 B); este acto NO re-deriva el generador"}
+    falsable_si: NO-APLICA
+    fuente: ["ENIF2024", "forense/notas/2026-09-02-MAESTRA35-L9-spec.md"]
+    ola_calibracion: "ENIF 2024 (ENIF es trienal; unica ola censada para este eje)"
+    ponderador: FAC_PER
+    diseno: "EST_DIS (190 estratos) x UPM_DIS (2 164 conglomerados); IC95 bootstrap de conglomerado, 10 000 replicas, seed 42"
+    escala: "proporcion ponderada de PERSONAS de 18 a 70 anios SIN CUENTA dentro de cada celda del eje"
+    universo: >
+      ESTAMPA A.10 -- las 2 970 personas sin cuenta a las que se pregunta P5_20
+      ("¿Cual es la razon principal por la que no tiene una cuenta o tarjeta?").
+      Moderador: P5_23 ("Los bancos ... pueden cerrar o quebrar, ¿sabe si en ese
+      caso sus ahorros estan protegidos?"), que se pregunta al universo COMPLETO
+      (13 502, 100%) y cubre 2 970 de 2 970 del universo del desenlace: la spec
+      NO sale degenerada, verificado en el censo antes de congelarla.
+      Reparto: 426 conocen la proteccion / 2 544 no.
+      EJE QUE EL ENCARGO PIDE Y NO ES CONSTRUIBLE: "celdas por tenencia de
+      cuenta". P5_20 solo existe para quien no tiene cuenta, asi que la tenencia
+      no varia dentro del universo. No se sustituye por nada.
+    desenlaces:
+      - {desenlace: D1_desconfianza, papel: PRINCIPAL, variable: "P5_20 == 03", conoce: 0.060780, ic95_conoce: [0.037071, 0.086254], n_conoce: 426, no_conoce: 0.054767, ic95_no: [0.045145, 0.065427], n_no: 2544, brecha_pp: 0.6013, ic95_brecha: [-2.2646, 3.7052], excluye_cero: false}
+      - {desenlace: D2_desconfianza_o_efectivo, papel: secundario, variable: "P5_20 in {03,05}", conoce: 0.120107, ic95_conoce: [0.087447, 0.154622], n_conoce: 426, no_conoce: 0.102699, ic95_no: [0.088955, 0.117391], n_no: 2544, brecha_pp: 1.7408, ic95_brecha: [-2.2218, 5.8105], excluye_cero: false}
+    veredicto_Bbis: NO-DISCRIMINA
+    veredicto_del_acto: >
+      NO-DISCRIMINA en los dos desenlaces: los dos IC95 de la brecha contienen
+      cero. La clausula de precedencia de spec §6.1 (si D1 y D2 discrepan en
+      signo, ambos limpios, manda CONTRARIA) no se dispara porque ninguno es
+      limpio y ademas coinciden en signo.
+    hallazgo: >
+      NO-DISCRIMINA, y con los dos puntos estimados en el signo CONTRARIO al que
+      la regla predice. Entre quienes no tienen cuenta, saber que los ahorros
+      estan protegidos si el banco quiebra NO se asocia con menos desconfianza
+      como razon principal para quedarse fuera: 6.08% contra 5.48%, +0.60 pp,
+      IC95 [-2.26, +3.71]. En la lectura amplia -- desconfianza o preferir otras
+      formas de ahorro -- 12.01% contra 10.27%, +1.74 pp, IC95 [-2.22, +5.81].
+      Ninguno despeja el cero, asi que el dato no refuta la regla; tampoco la
+      apoya en ninguna direccion.
+      EL HALLAZGO QUE SI ES LIMPIO ES OTRO, Y ESTA EN EL MARGINAL. R1.5 pone en
+      su SI un "seguro de deposito VISIBLE". P5_23 no mide visibilidad: mide la
+      CREENCIA de que existe proteccion. Y las dos se separan de verdad -- de
+      las 4 136 personas que dicen saber que sus ahorros estan protegidos,
+      3 148 (76.1%) contestan "no sabe" cuando se les pide nombrar la
+      institucion, y solo 362 en toda la muestra de 13 502 (2.7%) nombran al
+      IPAB. La condicion que la regla pone en su antecedente la cumple el 2.7%
+      de la poblacion: en Mexico el seguro de deposito practicamente no es
+      visible, y esa es la razon mas plausible de que el moderador no mueva
+      nada. La entrada ACOTA R1.5; no la cierra.
+      SEGUNDA RESERVA, de COMMIT-1: P5_20 es razon PRINCIPAL. Quien desconfie
+      pero elija otra razon dominante -- "no le alcanza" (894) o "no la
+      necesita" (1 029) son mucho mas frecuentes -- no cuenta como desconfiado.
+      El desenlace mide la razon dominante, no la presencia del motivo.
+      La sensibilidad IPAB pre-registrada NO se estimo: P5_24_1 esta anidada en
+      el "Si" de P5_23 y cubre 426 de 2 970 (14.3%); cerrada en P0 como
+      EXISTE-NO-SATISFACE. Los ejes de escolaridad y edad cayeron casi enteros
+      por la guardia de numerador <10 (solo "secundaria" sobrevivio, y contiene
+      cero): con 183 casos de desconfianza en todo el universo, el desenlace no
+      soporta desagregacion.
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: enif_2024_enif_2024_bd_csv
