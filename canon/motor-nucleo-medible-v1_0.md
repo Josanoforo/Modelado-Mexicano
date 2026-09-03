@@ -176,6 +176,53 @@ el sentido de F-ALCANCE §1, cuando se cumplen, las tres a la vez:
 `forense/firmas-pendientes.tsv` `FP-220`
 (`EVALUACION-OLA6`, dirección, `vence: 2026-09-15`).
 
+#### Enmienda fechada, 3/sep/2026 — segunda evaluación; los criterios NO cambian
+
+`ACTO MAESTRA34-N5 · RE-EVALUA-OLA6`, ejecutado desde `/despacha`
+(`ADR-317`). **Esta enmienda registra un resultado; no reescribe, relaja
+ni reordena los tres criterios de arriba, que siguen vigentes verbatim.**
+
+**El criterio 1 CUMPLE por primera vez.**
+`forense/prereg-duelo-v2/scoreboard-v1_2-AGREGADO.md` (`ACTO MAESTRA36-N2`,
+`PR #503`) trae puntos de `L` sobre los cuatro dominios `ACTIVO`
+simultáneamente: `CIV-M` 6 celdas, `DIN-M` 1, `FAM-M` 4, `TRA-M` 3 —
+14 de 14 con `L+corpus`, 13 de 14 con `L-solo`. Con eso **queda superada
+la cláusula de imposibilidad lógica** que gobernó a `ACTO MAESTRA33-E14`
+(`ADR-265`): los candidatos de Ola 6 ya son evaluables contra el criterio 1.
+Se registra también, porque leerlo solo sería engañoso, que el criterio 1
+es de **existencia de medición y no de calidad de ajuste**: ese mismo
+agregado da `L_SOLO_vs_M` **`INDETERMINADO`** (IC 95% `[-74.02, +9.40]`)
+y 1 de 14 celdas en banda.
+
+**El criterio 2 sigue sin cumplirse, y ahora por búsqueda dirigida.**
+`/mapea` corrido regla por regla sobre las **25 reglas** de los seis
+candidatos de `canon/modelo-decision-v4_0.md` (§3.2, §3.4, §3.6, §3.8,
+§3.9, §3.10), ≥3 formulaciones cada una, universo declarado **241 591
+filas** en las 75 corridas: **2 `EXISTE-SATISFACE` en total**
+(`salud.atencion.grave`, `salud.vacunacion.disponible`), 10
+`EXISTE-NO-SATISFACE`, 13 `NO-ENCONTRADO`. Máximo por dominio: **1 de 3
+requeridas**. **Cero de seis dominios cumplen.**
+
+**Criterio 3: caja LIBRE**, declarado y no ejercido (1 encargo
+`UBUNTU`/`CAJA` en la cola, `CONSUMIDO`; ninguna rama de acto abierta).
+
+**Veredicto: ningún dominio de Ola 6 abre hoy.** Ninguno queda
+`ABRE-PROPUESTO`, y en consecuencia no se redactó ningún lote
+`REGLAS-OLA6-<dominio>-L1`. Detalle: `forense/notas/2026-09-03-
+reevaluacion-ola6-cierre.md` y `forense/notas/2026-09-03-mapeo-ola6-N5.md`.
+
+**Hallazgo que se registra para mesa y que este acto NO resuelve.** De las
+23 reglas que no llegan, **10 fallan por el mismo lado**: el corpus mide
+el **desenlace** de la regla y no el **disparador** que la condiciona
+(tanda sin «conoce a la organizadora», escuela privada sin «miedo a
+caer», farmacia sin «leve-moderado», membresía sin «monitoreo y
+sanción»). Esas 10 son huecos de **instrumento**, no de adquisición: los
+payloads ya están en el corpus, y las encuestas de INEGI levantan
+estructura y conducta mientras estas reglas condicionan sobre percepción
+y vínculo. **Si el diagnóstico se sostiene, el criterio 2 tal como está
+redactado no es alcanzable por adquisición para varios de los seis.**
+Cambiar el criterio es decisión de mesa; este acto sólo mide el patrón.
+
 ### 3.b · Activación del corredor E
 
 Firma de mesa, verbatim: **«10. Banca, pero deja claro los criterios de
