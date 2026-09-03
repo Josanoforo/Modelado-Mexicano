@@ -23,3 +23,18 @@ FP/ADR CANDIDATOS. ADR máx 310 → candidato 311 (si `L12`/`A2` fusionan antes,
 CONTADOR. Celdas puntuadas v1_2 `0 → N de 14` (con las `AMBIGUA-POR-DISEÑO` aparte, hoy 0 previstas) · scoreboard v1_2 `0 → 1` · L∩M v1_2 reportado. Es el contador que N5 lee.
 Lo que NO hace. No decide Ola 6 (N5). No reabre ningún veredicto. No edita nada sellado. No vuelve a correr P0 ni la doble EE: los cita.
 Sucesores. `MAESTRA34-N5 · RE-EVALUA-OLA6` queda con compuerta cumplida al fusionar este PR: lo toma `/despacha` en el siguiente tick, sin enmienda. Luego `L10 · OLA6-SALUD-L1` si N5 abre el dominio.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA36-N2 · CIERRA-N3-AGREGA-2`, sesión manual de nube fuera de `/despacha` (rama `claude/maestra36-n3-launch-vqcnp6`, `PR #503` contra `main`, sin fusionar por el ejecutor — el merge es firma de mesa).
+
+- **P-cola**: `forense/encargos/cola/2026-09-01-MAESTRA34-N3-AGREGA-2.md` línea 1 `PARO-REPORTADO → EN-CURSO → CONSUMIDO — PR #503`; cuerpo verbatim y las 5 ENMIENDAS intactos.
+- **P1**: `forense/prereg-duelo-v2/agregado_v1_2.py` (nuevo, importa `agregado_v1_1.py` por ruta sin editarlo) + `agregado-v1_2-resultado.json`. **14 de 14 celdas puntúan** (universo de `marco-M-sorteado-v1_2.tsv`), `0` `AMBIGUA-POR-DISEÑO`. Control de regresión v1_1: byte a byte salvo el bloque informativo `tra_m_02_informativo` (explicado, no `PARO`).
+- **P2**: `forense/prereg-duelo-v2/scoreboard-v1_2-AGREGADO.md` (nuevo). Pregunta doble con dos IC pareados (`L_SOLO_vs_M` n=13 IC `[-74.02,+9.40]`; `L_CORPUS_vs_M` n=14 IC `[-59.70,+27.05]`), ambos cruzan cero, ninguno adjudicado. Reservas d1/F-DD/96 capturas sin `sha256_prompt`.
+- **P3**: `FP-220` anexada, `FP-260` nueva (sucesora de `FP-221`) en `forense/firmas-pendientes.tsv`: `L∩M = 14` de 14. Línea en `canon/motor-nucleo-medible-v1_0.md` §3.b: criterio de activación del corredor E **CUMPLIDO por conteo**, sin activarlo.
+- **Cascada**: `ADR-311` (`canon/gobernanza-v1_15.md`), `L0` recifrado (`canon/estado-programa-v1_11.md`), `canon/registro-rotulos.tsv` censado (`MAESTRA36-N2`), hallazgo en `forense/hallazgos.md` (scope tags `v1_1` hardcodeados en `agregado_v1_1.py`).
+- **Nota de cierre**: `forense/notas/2026-09-03-MAESTRA36-N2-cierre.md` (comandos, resultados, perímetro tocado/no tocado).
+
+`python3 tests/check.py --baseline` → **LÍNEA BASE VERDE**, sin `FAIL` nuevo, `T25` ok. Este acto no tocó red ni microdato (ARRANQUE punto 4 saltado por instrucción explícita del encargo); anti-PR#77 no aplica, declarado.
+
+CONTADOR final: celdas puntuadas v1_2 `0 → 14 de 14` (`0` `AMBIGUA-POR-DISEÑO`) · scoreboard v1_2 `0 → 1` · `L∩M` v1_2 `14`.
