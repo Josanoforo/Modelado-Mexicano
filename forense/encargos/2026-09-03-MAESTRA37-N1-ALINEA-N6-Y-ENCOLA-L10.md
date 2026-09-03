@@ -26,3 +26,33 @@ FP/ADR CANDIDATOS (deriva, no heredes): `grep -oE '^\*\*ADR-[0-9]+' canon/gobern
 CONTADOR: negativos A.13 corregidos en canon +2 · encargos en cola +1 (L10, GATED) · dominios abiertos 0 → 0 · cargas al motor 0 · medición de modelo: cero directo, declarado.
 Lo que NO hace. No decide FP-267 ni FP-268; no abre Ola 6; no relanza N6; no edita el cuerpo de L10 ni el encargo de N6; no toca `/mapea`; no mide.
 Sucesores. `MAESTRA37-L1 · INDEXA-DESCARGAS-MX-Y-REMAPEA-SALUD` (caja, encargo aparte, mismo día). Con su recuento a la vista, mesa firma FP-267/FP-268 y, si abre, L10 pasa su compuerta.
+
+## CONSUMIDO
+
+Ejecutado el 3/sep/2026 en entorno NUBE con la skill `/acto` (`ADR-237`),
+rama `claude/maestra37-verificacion-yejn7y`, cascada en `ADR-319` y recibo
+en `FP-270`. Commits: `4fa1190` (0-bis A.3), `2e42ff2` (P1+P3), `b4b626a`
+(P2), más el commit de cascada. PR: ver la rama; el merge es de mesa.
+
+Las tres piezas se ejecutaron completas y **cada cifra del encargo se
+re-derivó antes de escribirla**; todas coincidieron. Dos cosas que el
+encargo no preveía, declaradas en vez de rodeadas:
+
+1. **`DE1` — el clon de nube arrancó superficial.** `.git/shallow`
+   presente, **298** commits visibles de **2 434**. Con ese clon el comando
+   de `A.13-a` daba **`0`** —el mismo resultado que este acto venía a
+   corregir— y `git merge-base --is-ancestor ed3a4129 bbc57f05` respondía
+   **NO**, pese a existir los cinco objetos localmente. Tras
+   `git fetch --unshallow origin`, **2 434** commits y el comando da **`2`**.
+   Anotado en `forense/hallazgos.md` y en `ADR-319`.
+2. **`P3`, precisión sobre la cifra dictada.** «0 de 138; ENSANUT 2024
+   incluida» se escribió verbatim y además se re-derivó: `data/manifiesto.yaml`
+   tiene **1 104** entradas, **138** con `raiz: descargas_mx` (43 `data_raw`,
+   923 sin raíz declarada), y **23 de las 24** entradas ENSANUT viven en
+   `descargas_mx`. El matiz se anotó en la fila, sin tocar la frase dictada.
+
+`T25` sobre el archivo nuevo de la cola: **ningún rótulo pelado** con el
+regex real (`tests/check.py:2428` censa `M`/`E`, no `L`), luego no hubo que
+parar ni añadir nada a `_T25_ARCHIVOS_CONOCIDOS`.
+`python3 tests/check.py --baseline` → **VERDE** (19 `FAIL` · 185 `WARN`,
+nada nuevo frente a `tests/baseline.json`); `baseline.json` **no se recongeló**.
