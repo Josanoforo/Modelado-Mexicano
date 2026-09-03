@@ -14,3 +14,7 @@ FP/ADR CANDIDATOS: ninguna fila nueva; ADR primer libre al arrancar (301 en 9cbd
 CONTADOR: reglas del motor 10 → 16 (S4 +12 conductas MEDIDO) · S5 8 → 4 · cero estimaciones.
 Lo que este acto NO hace: no mide; no toca L8 ni la cívica electoral; no edita el modelo canónico (la acotación de R5.2 la lleva dirección); no edita instrucciones.
 Sucesores declarados, no lanzados: N9 · SELLA-L8 (letra e de mesa); P9-bis · acotación de R5.2 en `modelo-decision` (dirección, RH).
+
+## CONSUMIDO
+
+Ejecutado por ACTO MAESTRA35-N8 · SELLA-L7: [PR #492](https://github.com/Josanoforo/Modelado-Mexicano/pull/492).
