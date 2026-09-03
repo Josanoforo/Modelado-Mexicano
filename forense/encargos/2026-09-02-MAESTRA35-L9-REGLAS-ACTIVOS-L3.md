@@ -37,8 +37,10 @@ Lo que este acto NO hace: no carga al motor; no abre Ola 6; no toca cívica elec
 
 Ejecutado por `ACTO MAESTRA35-L9 · REGLAS-ACTIVOS-L3` el 2/sep/2026, entorno
 UBUNTU con corpus, worktree `/home/pc0/mm-l9-activos-l3`, rama
-`claude/encargo-acto-maestra35-l9`. **PR pendiente de abrir al escribir esta
-sección; el número se cita en `canon/gobernanza-v1_15.md` `ADR-304`.**
+`claude/encargo-acto-maestra35-l9`. **`PR #491`**
+(https://github.com/Josanoforo/Modelado-Mexicano/pull/491), abierto y **no
+fusionado** — el merge es de mesa. Sellado en `canon/gobernanza-v1_15.md`
+`ADR-304`.
 
 Commits: `6412d17` (A.3) · `418a22f` (`P0` censo) · `a67e46b` (`COMMIT-1` spec) ·
 `7033743` (`COMMIT-2` resultados) · `df96044` (merge de `origin/main = 78304f3`) ·
