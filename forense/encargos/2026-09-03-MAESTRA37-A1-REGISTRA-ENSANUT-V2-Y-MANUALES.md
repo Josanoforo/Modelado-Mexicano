@@ -15,3 +15,25 @@ CONTADOR: manifiesto 1 104 → declara el real (+129 ENSANUT v2 + ICPSR + PDN) �
 Lo que NO hace. No mide; no da veredictos A.4 sobre reglas; no borra ni reemplaza la versión de enero; no edita el registrador ni el extractor; no abre Ola 6.
 
 Sucesores. MAESTRA37-L3-BIS · RE-SELLO-SALUD-ENSANUT-v2 (caja, GATED a #516 y a este PR; encargo aparte). MAESTRA37-L2 · MPS-CODEBOOK-Y-P3 con las tablas ICPSR que P3 registre.
+
+## CONSUMIDO
+
+Ejecutado por `PR #518` · rama `acto/maestra37-a1-registra-ensanut-v2` · `ADR-325` ·
+`FP-279` (recibo) / `FP-280` (decisión de mesa) · 3/sep/2026, UBUNTU con corpus.
+
+Commits: `e086af7` (0-bis A.3) · `ad8e270` (P0/P1, COMMIT-1: censo y mapeo congelados
+antes de registrar) · `e669348` (P2/P3/P4, COMMIT-2) · `4a09e39`-`29c2c6f` (P5, enmienda
+de mesa y cascada) · `27efeb1` (recifrado de baseline tras la corrección de `capa3`).
+
+Desviaciones de la SPEC, todas declaradas en
+`forense/notas/2026-09-03-MAESTRA37-A1-registro.md`: (1) `--registra` no alcanza
+`descargas_mx` y está en el NO-TOCA — se usó `--escanea`/`--promueve` y `D13` se aplicó
+por script a `id` y `nota`, los dos campos que el registrador no expone (`FP-280`);
+(2) los archivos de la subcarpeta son **131**, no 129, y se registran **125** porque 6
+son byte-idénticos a entradas previas y el dedup por hash los rechaza; (3) el universo
+previo de ENSANUT 2024 en el manifiesto son **24** entradas, no 23; (4) `ADR-324` lo tomó
+`MAESTRA37-N5` al fusionar primero — este acto renumeró a **325**, re-derivando por el
+comando de la casa.
+
+Enmienda de dirección a mitad de acto (3/sep/2026, contra `origin/main = 2a2af31`):
+ejecutada entera, punto por punto, en la §8 de la nota de registro.
