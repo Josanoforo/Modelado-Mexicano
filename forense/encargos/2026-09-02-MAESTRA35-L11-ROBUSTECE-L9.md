@@ -21,3 +21,11 @@ CONTADOR: veredictos de L9 con segundo instrumento: 0 → hasta 5 · celdas +N �
 Lo que este acto NO hace: no sella nada; no toca el modelo canónico; no descarga (el Mexico Panel lo baja mesa y lo registra A1); no reabre L9.
 
 Sucesores declarados, no lanzados: N10 · SELLA-L9 con la tabla de replicación a la vista; re-lectura de R7.3/R7.6 y R7.8 en el modelo si replican (dirección, RH).
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA35-L11 · ROBUSTECE-L9`, `PR #494`
+(`Josanoforo/Modelado-Mexicano`), rama `acto/maestra35-l11-robustece-l9`,
+2/sep/2026. Ver `forense/notas/2026-09-02-MAESTRA35-L11-P0-censo.md`,
+`forense/notas/2026-09-02-MAESTRA35-L11-resultados.md`,
+`data/l11-replicacion-v1_0.json` y `canon/gobernanza-v1_15.md` `ADR-308`.
