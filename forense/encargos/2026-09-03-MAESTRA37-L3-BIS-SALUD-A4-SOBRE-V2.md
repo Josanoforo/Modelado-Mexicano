@@ -13,3 +13,19 @@ SPEC POR PIEZA — un PR, un ADR, un recibo. COMMIT-1 (P0) congela universo y cr
 PERÍMETRO Y CONCURRENCIA. Toca: data/l3bis-* (nuevos) · data/INFRAESTRUCTURA-v1_0.md · forense/notas/2026-09-03-MAESTRA37-L3-BIS-*.md · forense/hallazgos.md · forense/firmas-pendientes.tsv (FP-268 enmienda + recibo) · A.3 · cascada. NO toca: milpa/** · canon/motor-nucleo-medible-v1_0.md · canon/modelo-decision-v4_0.md · data/inventario-reactivos-* (lee, no re-extrae) · data/curacion-registro/*.tsv (propone en nota, no escribe) · data/manifiesto.yaml · L10 y su cola · data/raw/**. No descarga nada. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
 
 FP/ADR CANDIDATOS: ADR-327 (326 es N6 si fusiona antes; si no, 326) · FP-283 recibo · FP-284 (necesidades nuevas de salud, para mesa) · FP-285 sólo si ABRE-CANDIDATO-CON-RESERVA. CONTADOR: reglas de salud con veredicto A.4 sobre v2 0 → 5 · EXISTE-SATISFACE salud 1 → declara el real · dominios abiertos 0 → 0 · cargas al motor 0 · medición de modelo: cero directo (censo). Lo que NO hace. No abre Ola 6; no mide p; no toca motor ni propuesta; no da de alta necesidades; no re-corre /mapea; no descarga; no toca julio (historia). Sucesores. Si abre-candidato: N7 lleva el ADR de apertura a firma y L10 pasa su compuerta. Si no: se dice qué instrumento falta y se cierra la línea ENSANUT para salud.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA37-L3-BIS · SALUD-A4-SOBRE-v2` (3/sep/2026, UBUNTU,
+worktree propio sobre `27647ac` = el SHA que este encargo declara), `ADR-326`,
+recibos `FP-281` y `FP-282`, enmienda fechada a `FP-268` sin cambio de estado.
+Dos commits sustantivos: `P0` congela universo y criterio; `P1/P2/P3` traen los
+cinco veredictos. **Salud pasa de 1 a 2 de 5 y NO llega a 3: no hay
+`ABRE-CANDIDATO-CON-RESERVA`, ningún dominio abre, el criterio 2 no se toca.**
+PR: ver la rama `acto/maestra37-l3bis-salud-a4-v2`.
+
+*(Procedencia: un lanzamiento anterior de este acto, contra `92f17e14` y con el
+texto v2.12 del encargo, **paró con cero commits** porque la compuerta a
+`MAESTRA37-A1` no se cumplía todavía — el inventario `v1_1` y las 125 entradas
+`__v2026_09_01` no estaban en `origin/main`. Aquel encargo no llegó a
+archivarse; éste es el que corrió.)*
