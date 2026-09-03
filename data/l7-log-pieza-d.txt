@@ -1,0 +1,49 @@
+ACTO MAESTRA35-L7 · dinero.ahorro.horizonte_corto · ENIF 2024
+payload  : enif_2024_bd_csv.zip
+sha256   : 00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039
+tabla    : TMODULO.csv · 13,502 personas elegidas 18+
+GUARDIA · P4_10 value_counts (universo 18+, sin gate):
+P4_10
+1    4275
+2    2443
+3    3405
+4    1328
+5    1479
+8      74
+9     498
+
+P3_13 -- cobertura reverificada
+  válidos 1-7: 9,312 de 13,502 = 68.9676%
+
+universo triple (ahorro-elegible ∧ P3_13 válido ∧ P4_10 válido): n = 9,031 de 13,502
+
+==============================================================================
+DESENLACE D1 · horizonte_corto (P4_10=1)
+==============================================================================
+  EJE formalidad · cobertura 100.0000% (fuera 0)
+    nota: MÁS alto sin trabajo formal; cobertura 68.97 % -> universo restringido
+    sin seguridad social   p̂ = 0.330639  IC95 = [0.312154, 0.349156]  n = 4,973 personas · num = 1,725 · estratos = 189 · UPM = 1,717
+    con seguridad social   p̂ = 0.173418  IC95 = [0.157108, 0.190722]  n = 4,058 personas · num = 771 · estratos = 187 · UPM = 1,806
+    signo esperado: desc · monotono o sin pares consecutivos limpios en sentidos opuestos
+    VEREDICTO: CORROBORADA
+
+==============================================================================
+DESENLACE D1-sens · horizonte_corto (P4_10 en {1,2})
+==============================================================================
+  EJE formalidad · cobertura 100.0000% (fuera 0)
+    nota: MÁS alto sin trabajo formal; cobertura 68.97 % -> universo restringido
+    sin seguridad social   p̂ = 0.541343  IC95 = [0.521608, 0.560782]  n = 4,973 personas · num = 2,711 · estratos = 189 · UPM = 1,717
+    con seguridad social   p̂ = 0.369725  IC95 = [0.347972, 0.392257]  n = 4,058 personas · num = 1,513 · estratos = 187 · UPM = 1,806
+    signo esperado: desc · monotono o sin pares consecutivos limpios en sentidos opuestos
+    VEREDICTO: CORROBORADA
+
+==============================================================================
+DESENLACE D2 · ahorra_solo_informal (=L1 P2)
+==============================================================================
+  EJE formalidad · cobertura 100.0000% (fuera 0)
+    nota: MÁS alto sin trabajo formal; cobertura 68.97 % -> universo restringido
+    sin seguridad social   p̂ = 0.413524  IC95 = [0.393956, 0.432908]  n = 4,973 personas · num = 2,015 · estratos = 189 · UPM = 1,717
+    con seguridad social   p̂ = 0.311169  IC95 = [0.290405, 0.331696]  n = 4,058 personas · num = 1,142 · estratos = 187 · UPM = 1,806
+    signo esperado: desc · monotono o sin pares consecutivos limpios en sentidos opuestos
+    VEREDICTO: CORROBORADA
+

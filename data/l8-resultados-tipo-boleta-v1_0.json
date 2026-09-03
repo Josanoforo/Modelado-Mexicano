@@ -1,0 +1,2096 @@
+{
+ "control_regresion_l6": {
+  "identico_byte_a_byte": true,
+  "sha256_recorrida": "8054034f4d0eca5378f0d2c8994e4587e7334472fa9da8cb38552e2cc11e9b8c",
+  "sha256_archivada": "8054034f4d0eca5378f0d2c8994e4587e7334472fa9da8cb38552e2cc11e9b8c",
+  "bytes_recorrida": 8793,
+  "bytes_archivada": 8793,
+  "PARO": false
+ },
+ "control_regresion_l3": {
+  "identico_byte_a_byte": true,
+  "sha256_recorrida": "110c665048b906b9d8408ec6c52b2db3c7a1c11e5a068b419dd175690a38cdde",
+  "sha256_archivada": "110c665048b906b9d8408ec6c52b2db3c7a1c11e5a068b419dd175690a38cdde",
+  "bytes_recorrida": 33433,
+  "bytes_archivada": 33433,
+  "PARO": false
+ },
+ "n_transiciones_municipio": 864,
+ "n_municipios_por_entidad": {
+  "Coahuila": 38,
+  "Nayarit": 19,
+  "Zacatecas": 58,
+  "Durango": 1,
+  "Baja California": 5,
+  "Chihuahua": 66,
+  "Hidalgo": 82,
+  "Aguascalientes": 11,
+  "Veracruz": 209
+ },
+ "municipios_perdidos": {
+  "Coahuila": [],
+  "Nayarit": [
+   "LA YESCA"
+  ],
+  "Zacatecas": [],
+  "Durango": [
+   "CANATLAN",
+   "CANELAS",
+   "CONETO DE COMONFORT",
+   "CUENCAME",
+   "EL ORO",
+   "GOMEZ PALACIO",
+   "GUADALUPE VICTORIA",
+   "GUANACEVI",
+   "HIDALGO",
+   "INDE",
+   "LERDO",
+   "MAPIMI",
+   "MEZQUITAL",
+   "NAZAS",
+   "NOMBRE DE DIOS",
+   "NUEVO IDEAL",
+   "OCAMPO",
+   "OTAEZ",
+   "PANUCO DE CORONADO",
+   "PENON BLANCO",
+   "POANAS",
+   "PUEBLO NUEVO",
+   "RODEO",
+   "SAN BERNARDO",
+   "SAN DIMAS",
+   "SAN JUAN DE GUADALUPE",
+   "SAN JUAN DEL RIO",
+   "SAN LUIS DEL CORDERO",
+   "SAN PEDRO DEL GALLO",
+   "SANTA CLARA",
+   "SANTIAGO PAPASQUIARO",
+   "SIMON BOLIVAR",
+   "SUCHIL",
+   "TAMAZULA",
+   "TEPEHUANES",
+   "TLAHUALILO",
+   "TOPIA",
+   "VICENTE GUERRERO"
+  ],
+  "Baja California": [
+   "SAN FELIPE",
+   "SAN QUINTIN"
+  ],
+  "Chihuahua": [
+   "OCAMPO"
+  ],
+  "Hidalgo": [
+   "CUAUTEPEC",
+   "CUAUTEPEC DE HINOJOSA",
+   "TEPEJI DEL RIO",
+   "TEPEJI DEL RIO DE OCAMPO"
+  ],
+  "Aguascalientes": [],
+  "Veracruz": [
+   "CAMARON DE TEJEDA",
+   "EMILIANO ZAPATA",
+   "SAYULA DE ALEMAN"
+  ]
+ },
+ "fuera_de_rango": [],
+ "controles_lectura": {
+  "l3": {
+   "l6": {
+    "coahuila2017_excluidas": [
+     "PORCENTAJE"
+    ],
+    "coahuila2018_excluidas": [
+     "TOTALES",
+     ""
+    ],
+    "nayarit2017_cols_sumadas": [
+     "PRI",
+     "PVEM",
+     "MC",
+     "NA",
+     "MORENA",
+     "ES",
+     "JUNTOS POR TI",
+     "CI-1",
+     "CI-2",
+     "CI-3",
+     "CAND. NO REG.",
+     "VOTOS NULOS"
+    ],
+    "nayarit2017_sin_ln": [],
+    "nayarit2021_cols_sumadas": [
+     "PT",
+     "PVEM",
+     "MC",
+     "MORENA",
+     "NAN",
+     "VIVA",
+     "MLN",
+     "PES",
+     "RSP",
+     "FXM",
+     "PAN-PRI-PRD",
+     "PT-PVEM-MORENA-NAN",
+     "Candidaturas no registradas",
+     "Votos nulos"
+    ],
+    "nayarit2021_sin_ln": [],
+    "nayarit2024_cols_sumadas": [
+     "PVEM",
+     "PT",
+     "MC",
+     "MORENA",
+     "NAN-MLN",
+     "NAN",
+     "MLN",
+     "RSPN",
+     "FXMN",
+     "PAN-PRI-PRD",
+     "PVEM-PT-MORENA-FXMN",
+     "Candidaturas no registradas",
+     "Votos nulos"
+    ],
+    "nayarit2024_sin_ln": [],
+    "durango2016": {
+     "casillas_sumadas": 766,
+     "subtotales_descartados": 256,
+     "gran_total_publicado": [
+      260008.0,
+      455230.0
+     ],
+     "suma_casillas": [
+      259226.0,
+      455230.0
+     ]
+    },
+    "durango2019": {
+     "casillas_ok": 2488,
+     "casillas_descartadas": 12
+    }
+   },
+   "zacatecas2016": {
+    "etiqueta": "zacatecas2016",
+    "excluidas": [
+     [
+      "TOTAL APOZOL",
+      3232.0,
+      5408.0
+     ],
+     [
+      "TOTAL APULCO",
+      2790.0,
+      4278.0
+     ],
+     [
+      "TOTAL ATOLINGA",
+      1615.0,
+      2455.0
+     ],
+     [
+      "TOTAL BENITO JUAREZ",
+      2419.0,
+      3452.0
+     ],
+     [
+      "TOTAL CALERA",
+      14970.0,
+      27063.0
+     ],
+     [
+      "TOTAL CANITAS DE FELIPE PESCADOR",
+      4455.0,
+      6021.0
+     ],
+     [
+      "TOTAL CHALCHIHUITES",
+      5257.0,
+      8408.0
+     ],
+     [
+      "TOTAL CONCEPCION DEL ORO",
+      6381.0,
+      9330.0
+     ],
+     [
+      "TOTAL CUAUHTEMOC",
+      6334.0,
+      8644.0
+     ],
+     [
+      "TOTAL EL PLATEADO DE JOAQUIN AMARO",
+      1194.0,
+      1656.0
+     ],
+     [
+      "TOTAL EL SALVADOR",
+      1740.0,
+      2159.0
+     ],
+     [
+      "TOTAL FRESNILLO",
+      90206.0,
+      157447.0
+     ],
+     [
+      "TOTAL GENARO CODINA",
+      null,
+      5921.0
+     ],
+     [
+      "TOTAL GENERAL ENRIQUE ESTRADA",
+      3208.0,
+      4638.0
+     ],
+     [
+      "TOTAL GENERAL FRANCISCO R MURGUIA",
+      11102.0,
+      17249.0
+     ],
+     [
+      "TOTAL GENERAL PANFILO NATERA",
+      11369.0,
+      17310.0
+     ],
+     [
+      "TOTAL GUADALUPE",
+      67222.0,
+      117677.0
+     ],
+     [
+      "TOTAL HUANUSCO",
+      2309.0,
+      3903.0
+     ],
+     [
+      "TOTAL JALPA",
+      10649.0,
+      19495.0
+     ],
+     [
+      "TOTAL JEREZ",
+      28492.0,
+      49342.0
+     ],
+     [
+      "TOTAL JIMENEZ DEL TEUL",
+      2313.0,
+      3311.0
+     ],
+     [
+      "TOTAL JUAN ALDAMA",
+      9547.0,
+      15609.0
+     ],
+     [
+      "TOTAL JUCHIPILA",
+      6259.0,
+      10931.0
+     ],
+     [
+      "TOTAL LORETO",
+      19115.0,
+      32455.0
+     ],
+     [
+      "TOTAL LUIS MOYA",
+      6002.0,
+      9024.0
+     ],
+     [
+      "TOTAL MAZAPIL",
+      10582.0,
+      13853.0
+     ],
+     [
+      "TOTAL MELCHOR OCAMPO",
+      2053.0,
+      2395.0
+     ],
+     [
+      "TOTAL MEZQUITAL DEL ORO",
+      1746.0,
+      2357.0
+     ],
+     [
+      "TOTAL MIGUEL AUZA",
+      9663.0,
+      16269.0
+     ],
+     [
+      "TOTAL MOMAX",
+      1499.0,
+      2300.0
+     ],
+     [
+      "TOTAL MONTE ESCOBEDO",
+      4942.0,
+      7674.0
+     ],
+     [
+      "TOTAL MORELOS",
+      6302.0,
+      8799.0
+     ],
+     [
+      "TOTAL MOYAHUA DE ESTRADA",
+      2681.0,
+      4463.0
+     ],
+     [
+      "TOTAL NOCHISTLAN DE MEJIA",
+      14453.0,
+      24222.0
+     ],
+     [
+      "TOTAL NORIA DE ANGELES",
+      7903.0,
+      11096.0
+     ],
+     [
+      "TOTAL OJOCALIENTE",
+      null,
+      29141.0
+     ],
+     [
+      "TOTAL PANUCO",
+      8334.0,
+      11926.0
+     ],
+     [
+      "TOTAL PINOS",
+      33688.0,
+      48705.0
+     ],
+     [
+      "TOTAL RIO GRANDE",
+      26245.0,
+      48829.0
+     ],
+     [
+      "TOTAL SAIN ALTO",
+      10920.0,
+      16084.0
+     ],
+     [
+      "TOTAL SANTA MARIA DE LA PAZ",
+      1525.0,
+      2411.0
+     ],
+     [
+      "TOTAL SOMBRERETE",
+      25949.0,
+      46398.0
+     ],
+     [
+      "TOTAL SUSTICACAN",
+      882.0,
+      1249.0
+     ],
+     [
+      "TOTAL TABASCO",
+      7650.0,
+      12276.0
+     ],
+     [
+      "TOTAL TEPECHITLAN",
+      4498.0,
+      7104.0
+     ],
+     [
+      "TOTAL TEPETONGO",
+      3732.0,
+      6270.0
+     ],
+     [
+      "TOTAL TEUL DE GONZALEZ ORTEGA",
+      2807.0,
+      4377.0
+     ],
+     [
+      "TOTAL TLALTENANGO DE SANCHEZ ROMAN",
+      11883.0,
+      19731.0
+     ],
+     [
+      "TOTAL TRANCOSO",
+      8393.0,
+      12466.0
+     ],
+     [
+      "TOTAL TRINIDAD GARCIA DE LA CADENA",
+      1681.0,
+      2781.0
+     ],
+     [
+      "TOTAL VALPARAISO",
+      16959.0,
+      26737.0
+     ],
+     [
+      "TOTAL VETAGRANDE",
+      5414.0,
+      7307.0
+     ],
+     [
+      "TOTAL VILLA DE COS",
+      16701.0,
+      24517.0
+     ],
+     [
+      "TOTAL VILLA GARCIA",
+      8873.0,
+      12340.0
+     ],
+     [
+      "TOTAL VILLA GONZALEZ ORTEGA",
+      null,
+      9900.0
+     ],
+     [
+      "TOTAL VILLA HIDALGO",
+      9355.0,
+      13162.0
+     ],
+     [
+      "TOTAL VILLANUEVA",
+      15771.0,
+      24935.0
+     ],
+     [
+      "TOTAL ZACATECAS",
+      63087.0,
+      105842.0
+     ],
+     [
+      "TOTAL",
+      691574.0,
+      1131102.0
+     ]
+    ],
+    "casillas_sin_dato": 0,
+    "casillas_por_municipio": {
+     "APOZOL": 12,
+     "APULCO": 9,
+     "ATOLINGA": 8,
+     "BENITO JUAREZ": 9,
+     "CALERA": 48,
+     "CANITAS DE FELIPE PESCADOR": 13,
+     "CHALCHIHUITES": 25,
+     "CONCEPCION DEL ORO": 25,
+     "CUAUHTEMOC": 18,
+     "EL PLATEADO DE JOAQUIN AMARO": 5,
+     "EL SALVADOR": 6,
+     "FRESNILLO": 313,
+     "GENARO CODINA": 18,
+     "GENERAL ENRIQUE ESTRADA": 11,
+     "GENERAL FRANCISCO R MURGUIA": 48,
+     "GENERAL PANFILO NATERA": 36,
+     "GUADALUPE": 214,
+     "HUANUSCO": 14,
+     "JALPA": 44,
+     "JEREZ": 115,
+     "JIMENEZ DEL TEUL": 11,
+     "JUAN ALDAMA": 32,
+     "JUCHIPILA": 25,
+     "LORETO": 61,
+     "LUIS MOYA": 17,
+     "MAZAPIL": 50,
+     "MELCHOR OCAMPO": 8,
+     "MEZQUITAL DEL ORO": 9,
+     "MIGUEL AUZA": 33,
+     "MOMAX": 7,
+     "MONTE ESCOBEDO": 23,
+     "MORELOS": 18,
+     "MOYAHUA DE ESTRADA": 11,
+     "NOCHISTLAN DE MEJIA": 59,
+     "NORIA DE ANGELES": 23,
+     "OJOCALIENTE": 63,
+     "PANUCO": 25,
+     "PINOS": 114,
+     "RIO GRANDE": 97,
+     "SAIN ALTO": 34,
+     "SANTA MARIA DE LA PAZ": 8,
+     "SOMBRERETE": 113,
+     "SUSTICACAN": 3,
+     "TABASCO": 26,
+     "TEPECHITLAN": 21,
+     "TEPETONGO": 20,
+     "TEUL DE GONZALEZ ORTEGA": 14,
+     "TLALTENANGO DE SANCHEZ ROMAN": 49,
+     "TRANCOSO": 23,
+     "TRINIDAD GARCIA DE LA CADENA": 8,
+     "VALPARAISO": 75,
+     "VETAGRANDE": 15,
+     "VILLA DE COS": 62,
+     "VILLA GARCIA": 25,
+     "VILLA GONZALEZ ORTEGA": 19,
+     "VILLA HIDALGO": 29,
+     "VILLANUEVA": 61,
+     "ZACATECAS": 197
+    },
+    "identidad_total_sobre_ln_vs_pct_publicado": {
+     "casillas": 2520,
+     "max_abs_pp": 0.0
+    },
+    "control_reagregacion_vs_tabla_publicada": {
+     "municipios_en_comun": 58,
+     "solo_en_casilla": [],
+     "solo_en_tabla": [],
+     "max_abs_delta_lista_nominal": 0.0
+    }
+   },
+   "bc2016": {
+    "etiqueta": "bc2016",
+    "hojas": [
+     "Municipe_Mexicali ",
+     "Municipe_Tecate ",
+     "Municipe_Tijuana ",
+     "Municipe_Ensenada",
+     "Municipe_P_de_Rosarito"
+    ],
+    "excluidas": [
+     [
+      "TOTALES",
+      239190.0,
+      745695.0
+     ],
+     [
+      "TOTALES",
+      29700.0,
+      81325.0
+     ],
+     [
+      "TOTALES",
+      403665.0,
+      1291041.0
+     ],
+     [
+      "TOTALES",
+      131156.0,
+      367157.0
+     ],
+     [
+      "TOTALES",
+      29449.0,
+      84860.0
+     ]
+    ],
+    "casillas_sin_dato": 0,
+    "identidad_total_sobre_ln_vs_pct_publicado": {
+     "casillas": 4439,
+     "max_abs_pp": 0.0
+    }
+   },
+   "bc2019": {
+    "etiqueta": "bc2019",
+    "hojas": [
+     "Todos_Ayuntamientos"
+    ],
+    "excluidas": [
+     [
+      "TOTALES",
+      836327.0,
+      2811075.0
+     ]
+    ],
+    "casillas_sin_dato": 0,
+    "identidad_total_sobre_ln_vs_pct_publicado": {
+     "casillas": 4772,
+     "max_abs_pp": 0.009986091794157659
+    }
+   },
+   "bc2021": {
+    "etiqueta": "bc2021",
+    "hojas": [
+     "Todos_Ayuntamientos_Locales"
+    ],
+    "excluidas": [
+     [
+      "TOTALES",
+      1112581.0,
+      2919177.0
+     ]
+    ],
+    "casillas_sin_dato": 0,
+    "identidad_total_sobre_ln_vs_pct_publicado": {
+     "casillas": 4931,
+     "max_abs_pp": 0.27788751714677673
+    }
+   },
+   "bc2024": {
+    "etiqueta": "bc2024",
+    "hojas": [
+     "Todos_Ayuntamientos_Locales"
+    ],
+    "excluidas": [
+     [
+      "TOTALES",
+      1493575.0,
+      3193044.0
+     ]
+    ],
+    "casillas_sin_dato": 0,
+    "identidad_total_sobre_ln_vs_pct_publicado": {
+     "casillas": 5350,
+     "max_abs_pp": 1.4210854715202004e-14
+    }
+   },
+   "chihuahua2016": {
+    "etiqueta": "chihuahua2016",
+    "excluidas": [],
+    "casillas_sin_dato": 101,
+    "casillas_por_municipio": {
+     "AHUMADA": 21,
+     "ALDAMA": 35,
+     "ALLENDE": 16,
+     "AQUILES SERDAN": 17,
+     "ASCENSION": 32,
+     "BACHINIVA": 18,
+     "BALLEZA": 24,
+     "BATOPILAS DE MANUEL GOMEZ MORIN": 17,
+     "BOCOYNA": 41,
+     "BUENAVENTURA": 38,
+     "CAMARGO": 70,
+     "CARICHI": 18,
+     "CASAS GRANDES": 22,
+     "CORONADO": 5,
+     "COYAME DEL SOTOL": 4,
+     "LA CRUZ": 7,
+     "CUAUHTEMOC": 224,
+     "CUSIHUIRIACHI": 14,
+     "CHIHUAHUA": 1200,
+     "CHINIPAS": 15,
+     "DELICIAS": 194,
+     "DR BELISARIO DOMINGUEZ": 8,
+     "GALEANA": 8,
+     "SANTA ISABEL": 9,
+     "GOMEZ FARIAS": 16,
+     "GRAN MORELOS": 13,
+     "GUACHOCHI": 66,
+     "GUADALUPE": 12,
+     "GUADALUPE Y CALVO": 57,
+     "GUAZAPARES": 18,
+     "GUERRERO": 81,
+     "HIDALGO DEL PARRAL": 155,
+     "HUEJOTITAN": 2,
+     "IGNACIO ZARAGOZA": 16,
+     "JANOS": 17,
+     "JIMENEZ": 57,
+     "JUAREZ": 1924,
+     "JULIMES": 9,
+     "LOPEZ": 8,
+     "MADERA": 59,
+     "MAGUARICHI": 5,
+     "MANUEL BENAVIDES": 5,
+     "MATACHI": 8,
+     "MATAMOROS": 10,
+     "MEOQUI": 63,
+     "MORELOS": 11,
+     "MORIS": 11,
+     "NAMIQUIPA": 51,
+     "NONOAVA": 7,
+     "NUEVO CASAS GRANDES": 89,
+     "OCAMPO": 16,
+     "OJINAGA": 41,
+     "PRAXEDIS G GUERRERO": 12,
+     "RIVA PALACIO": 15,
+     "ROSALES": 26,
+     "ROSARIO": 4,
+     "SAN FRANCISCO DE BORJA": 7,
+     "SAN FRANCISCO DE CONCHOS": 5,
+     "SAN FRANCISCO DEL ORO": 12,
+     "SANTA BARBARA": 22,
+     "SATEVO": 13,
+     "SAUCILLO": 45,
+     "TEMOSACHIC": 16,
+     "EL TULE": 6,
+     "URIQUE": 28,
+     "URUACHI": 15,
+     "VALLE DE ZARAGOZA": 15
+    },
+    "hoja": "Ayunt 2016 Ord.",
+    "cabecera_fila": 7,
+    "subcabecera_Nombre_col": 3,
+    "subcabecera_fila": 9,
+    "identidad_total_sobre_ln_vs_pct_publicado": {
+     "casillas": 5125,
+     "max_abs_pp": 78.77984084880637
+    }
+   },
+   "chihuahua2018": {
+    "etiqueta": "chihuahua2018",
+    "excluidas": [],
+    "casillas_sin_dato": 98,
+    "casillas_por_municipio": {
+     "AHUMADA": 22,
+     "ALDAMA": 37,
+     "ALLENDE": 18,
+     "AQUILES SERDAN": 19,
+     "ASCENSION": 33,
+     "BACHINIVA": 18,
+     "BALLEZA": 24,
+     "BATOPILAS DE MANUEL GOMEZ MORIN": 17,
+     "BOCOYNA": 41,
+     "BUENAVENTURA": 38,
+     "CAMARGO": 71,
+     "CARICHI": 18,
+     "CASAS GRANDES": 22,
+     "CORONADO": 8,
+     "COYAME DEL SOTOL": 4,
+     "LA CRUZ": 8,
+     "CUAUHTEMOC": 227,
+     "CUSIHUIRIACHI": 14,
+     "CHIHUAHUA": 1237,
+     "CHINIPAS": 16,
+     "DELICIAS": 204,
+     "DR BELISARIO DOMINGUEZ": 8,
+     "GALEANA": 8,
+     "SANTA ISABEL": 9,
+     "GOMEZ FARIAS": 16,
+     "GRAN MORELOS": 13,
+     "GUACHOCHI": 71,
+     "GUADALUPE": 12,
+     "GUADALUPE Y CALVO": 61,
+     "GUAZAPARES": 18,
+     "GUERRERO": 81,
+     "HIDALGO DEL PARRAL": 158,
+     "HUEJOTITAN": 3,
+     "IGNACIO ZARAGOZA": 15,
+     "JANOS": 17,
+     "JIMENEZ": 58,
+     "JUAREZ": 1983,
+     "JULIMES": 9,
+     "LOPEZ": 9,
+     "MADERA": 58,
+     "MAGUARICHI": 5,
+     "MANUEL BENAVIDES": 5,
+     "MATACHI": 8,
+     "MATAMOROS": 10,
+     "MEOQUI": 63,
+     "MORELOS": 12,
+     "MORIS": 11,
+     "NAMIQUIPA": 52,
+     "NONOAVA": 6,
+     "NUEVO CASAS GRANDES": 91,
+     "OCAMPO": 17,
+     "OJINAGA": 43,
+     "PRAXEDIS G GUERRERO": 11,
+     "RIVA PALACIO": 16,
+     "ROSALES": 26,
+     "ROSARIO": 4,
+     "SAN FRANCISCO DE BORJA": 7,
+     "SAN FRANCISCO DE CONCHOS": 5,
+     "SAN FRANCISCO DEL ORO": 11,
+     "SANTA BARBARA": 22,
+     "SATEVO": 13,
+     "SAUCILLO": 45,
+     "TEMOSACHIC": 16,
+     "EL TULE": 6,
+     "URIQUE": 28,
+     "URUACHI": 15,
+     "VALLE DE ZARAGOZA": 14
+    },
+    "hoja": "Ayunt. 2018",
+    "cabecera_fila": 7,
+    "subcabecera_Nombre_col": 3,
+    "subcabecera_fila": 9,
+    "identidad_total_sobre_ln_vs_pct_publicado": {
+     "casillas": 5265,
+     "max_abs_pp": 1.4210854715202004e-14
+    }
+   },
+   "chihuahua2021": {
+    "etiqueta": "chihuahua2021",
+    "excluidas": [],
+    "casillas_sin_dato": 1,
+    "casillas_por_municipio": {
+     "AHUMADA": 24,
+     "ALDAMA": 39,
+     "ALLENDE": 18,
+     "AQUILES SERDAN": 21,
+     "ASCENSION": 32,
+     "BACHINIVA": 17,
+     "BALLEZA": 25,
+     "BATOPILAS DE MANUEL GOMEZ MORIN": 17,
+     "BOCOYNA": 42,
+     "BUENAVENTURA": 39,
+     "CAMARGO": 76,
+     "CARICHI": 19,
+     "CASAS GRANDES": 23,
+     "CORONADO": 7,
+     "COYAME DEL SOTOL": 4,
+     "LA CRUZ": 8,
+     "CUAUHTEMOC": 242,
+     "CUSIHUIRIACHI": 14,
+     "CHIHUAHUA": 1303,
+     "CHINIPAS": 16,
+     "DELICIAS": 215,
+     "DR BELISARIO DOMINGUEZ": 8,
+     "GALEANA": 9,
+     "SANTA ISABEL": 9,
+     "GOMEZ FARIAS": 17,
+     "GRAN MORELOS": 13,
+     "GUACHOCHI": 73,
+     "GUADALUPE": 11,
+     "GUADALUPE Y CALVO": 62,
+     "GUAZAPARES": 17,
+     "GUERRERO": 82,
+     "HIDALGO DEL PARRAL": 166,
+     "HUEJOTITAN": 3,
+     "IGNACIO ZARAGOZA": 15,
+     "JANOS": 17,
+     "JIMENEZ": 56,
+     "JUAREZ": 2085,
+     "JULIMES": 9,
+     "LOPEZ": 8,
+     "MADERA": 59,
+     "MAGUARICHI": 4,
+     "MANUEL BENAVIDES": 5,
+     "MATACHI": 8,
+     "MATAMOROS": 11,
+     "MEOQUI": 66,
+     "MORELOS": 12,
+     "MORIS": 11,
+     "NAMIQUIPA": 53,
+     "NONOAVA": 7,
+     "NUEVO CASAS GRANDES": 96,
+     "OCAMPO": 16,
+     "OJINAGA": 48,
+     "PRAXEDIS G GUERRERO": 11,
+     "RIVA PALACIO": 16,
+     "ROSALES": 26,
+     "ROSARIO": 5,
+     "SAN FRANCISCO DE BORJA": 8,
+     "SAN FRANCISCO DE CONCHOS": 6,
+     "SAN FRANCISCO DEL ORO": 12,
+     "SANTA BARBARA": 22,
+     "SATEVO": 13,
+     "SAUCILLO": 46,
+     "TEMOSACHIC": 15,
+     "EL TULE": 6,
+     "URIQUE": 28,
+     "URUACHI": 15,
+     "VALLE DE ZARAGOZA": 13
+    },
+    "hoja": "Votación Distribuida",
+    "cabecera_fila": 5,
+    "subcabecera_Nombre_col": null,
+    "subcabecera_fila": null,
+    "identidad_total_sobre_ln_vs_pct_publicado": {
+     "casillas": 0,
+     "nota": "la fuente no publica % de participacion en esta hoja"
+    }
+   },
+   "chihuahua2024": {
+    "etiqueta": "chihuahua2024",
+    "excluidas": [],
+    "casillas_sin_dato": 23,
+    "casillas_por_municipio": {
+     "AHUMADA": 24,
+     "ALDAMA": 42,
+     "ALLENDE": 18,
+     "AQUILES SERDAN": 26,
+     "ASCENSION": 37,
+     "BACHINIVA": 18,
+     "BALLEZA": 26,
+     "BATOPILAS DE MANUEL GOMEZ MORIN": 17,
+     "BOCOYNA": 43,
+     "BUENAVENTURA": 40,
+     "CAMARGO": 76,
+     "CARICHI": 21,
+     "CASAS GRANDES": 23,
+     "CORONADO": 7,
+     "COYAME DEL SOTOL": 4,
+     "LA CRUZ": 8,
+     "CUAUHTEMOC": 258,
+     "CUSIHUIRIACHI": 14,
+     "CHIHUAHUA": 1348,
+     "CHINIPAS": 16,
+     "DELICIAS": 218,
+     "DR BELISARIO DOMINGUEZ": 8,
+     "GALEANA": 10,
+     "SANTA ISABEL": 9,
+     "GOMEZ FARIAS": 17,
+     "GRAN MORELOS": 13,
+     "GUACHOCHI": 74,
+     "GUADALUPE": 11,
+     "GUADALUPE Y CALVO": 56,
+     "GUAZAPARES": 17,
+     "GUERRERO": 83,
+     "HIDALGO DEL PARRAL": 169,
+     "HUEJOTITAN": 3,
+     "IGNACIO ZARAGOZA": 14,
+     "JANOS": 17,
+     "JIMENEZ": 59,
+     "JUAREZ": 2248,
+     "JULIMES": 9,
+     "LOPEZ": 8,
+     "MADERA": 59,
+     "MAGUARICHI": 4,
+     "MANUEL BENAVIDES": 7,
+     "MATACHI": 8,
+     "MATAMOROS": 11,
+     "MEOQUI": 70,
+     "MORELOS": 12,
+     "MORIS": 11,
+     "NAMIQUIPA": 55,
+     "NONOAVA": 7,
+     "NUEVO CASAS GRANDES": 100,
+     "OJINAGA": 53,
+     "PRAXEDIS G GUERRERO": 11,
+     "RIVA PALACIO": 16,
+     "ROSALES": 27,
+     "ROSARIO": 5,
+     "SAN FRANCISCO DE BORJA": 7,
+     "SAN FRANCISCO DE CONCHOS": 7,
+     "SAN FRANCISCO DEL ORO": 12,
+     "SANTA BARBARA": 22,
+     "SATEVO": 13,
+     "SAUCILLO": 46,
+     "TEMOSACHIC": 15,
+     "EL TULE": 7,
+     "URIQUE": 29,
+     "URUACHI": 15,
+     "VALLE DE ZARAGOZA": 14
+    },
+    "hoja": "Votación Casilla - DIST",
+    "cabecera_fila": 6,
+    "subcabecera_Nombre_col": null,
+    "subcabecera_fila": null,
+    "identidad_total_sobre_ln_vs_pct_publicado": {
+     "casillas": 0,
+     "nota": "la fuente no publica % de participacion en esta hoja"
+    }
+   }
+  },
+  "sicee_Hidalgo_2016": {
+   "comunes_con_mun_publicado": 82,
+   "max_abs_delta_votos_vs_mun_publicado": 1642.0,
+   "max_abs_delta_lista_nominal_vs_mun_publicado": 0.0,
+   "identidad_total_sobre_ln_vs_pct_publicado": {
+    "casillas_municipio": 82,
+    "max_abs_pp": 12.594592517949351,
+    "n_mayor_1pp": 4
+   },
+   "municipios_agregados": 84,
+   "municipios_con_dato_completo": 84,
+   "sin_dato": []
+  },
+  "sicee_Hidalgo_2020": {
+   "comunes_con_mun_publicado": 84,
+   "max_abs_delta_votos_vs_mun_publicado": 313.0,
+   "max_abs_delta_lista_nominal_vs_mun_publicado": 0.0,
+   "identidad_total_sobre_ln_vs_pct_publicado": "fuente no publica PARTICIPACION este anio",
+   "municipios_agregados": 84,
+   "municipios_con_dato_completo": 84,
+   "sin_dato": []
+  },
+  "sicee_Aguascalientes_2016": {
+   "comunes_con_mun_publicado": 11,
+   "max_abs_delta_votos_vs_mun_publicado": 0.0,
+   "max_abs_delta_lista_nominal_vs_mun_publicado": 0.0,
+   "identidad_total_sobre_ln_vs_pct_publicado": {
+    "casillas_municipio": 11,
+    "max_abs_pp": 0.004159237053826814,
+    "n_mayor_1pp": 0
+   },
+   "municipios_agregados": 11,
+   "municipios_con_dato_completo": 11,
+   "sin_dato": []
+  },
+  "sicee_Aguascalientes_2019": {
+   "comunes_con_mun_publicado": 11,
+   "max_abs_delta_votos_vs_mun_publicado": 0.0,
+   "max_abs_delta_lista_nominal_vs_mun_publicado": 0.0,
+   "identidad_total_sobre_ln_vs_pct_publicado": "fuente no publica PARTICIPACION este anio",
+   "municipios_agregados": 11,
+   "municipios_con_dato_completo": 11,
+   "sin_dato": []
+  },
+  "sicee_Aguascalientes_2021": {
+   "comunes_con_mun_publicado": 11,
+   "max_abs_delta_votos_vs_mun_publicado": 472.0,
+   "max_abs_delta_lista_nominal_vs_mun_publicado": 0.0,
+   "identidad_total_sobre_ln_vs_pct_publicado": "fuente no publica PARTICIPACION este anio",
+   "municipios_agregados": 11,
+   "municipios_con_dato_completo": 11,
+   "sin_dato": []
+  },
+  "sicee_Aguascalientes_2024": {
+   "comunes_con_mun_publicado": 11,
+   "max_abs_delta_votos_vs_mun_publicado": 0.0,
+   "max_abs_delta_lista_nominal_vs_mun_publicado": 0.0,
+   "identidad_total_sobre_ln_vs_pct_publicado": "fuente no publica PARTICIPACION este anio",
+   "municipios_agregados": 11,
+   "municipios_con_dato_completo": 11,
+   "sin_dato": []
+  },
+  "sicee_Veracruz_2017": {
+   "comunes_con_mun_publicado": 212,
+   "max_abs_delta_votos_vs_mun_publicado": 1006.0,
+   "max_abs_delta_lista_nominal_vs_mun_publicado": 0.0,
+   "identidad_total_sobre_ln_vs_pct_publicado": {
+    "casillas_municipio": 209,
+    "max_abs_pp": 1.7641934310992653,
+    "n_mayor_1pp": 2
+   },
+   "municipios_agregados": 212,
+   "municipios_con_dato_completo": 209,
+   "sin_dato": [
+    "CAMARON DE TEJEDA",
+    "EMILIANO ZAPATA",
+    "SAYULA DE ALEMAN"
+   ]
+  },
+  "sicee_Veracruz_2021": {
+   "comunes_con_mun_publicado": 212,
+   "max_abs_delta_votos_vs_mun_publicado": 6782.0,
+   "max_abs_delta_lista_nominal_vs_mun_publicado": 0.0,
+   "identidad_total_sobre_ln_vs_pct_publicado": "fuente no publica PARTICIPACION este anio",
+   "municipios_agregados": 212,
+   "municipios_con_dato_completo": 212,
+   "sin_dato": []
+  }
+ },
+ "estimador": {
+  "alpha_pp_por_anio": -0.4892169684855063,
+  "beta_pres_pp": 4.016715486813227,
+  "beta_int_pp": 0.2864456182033299,
+  "wild_cluster_alpha": {
+   "punto": -0.4892169684855063,
+   "ic95": [
+    -1.0405320675478313,
+    0.06808187311694963
+   ],
+   "p": 0.0823,
+   "B": 10000,
+   "n_conglomerados": 9,
+   "p_minimo_alcanzable": 0.00390625,
+   "valores_distintos_del_estadistico": 512
+  },
+  "wild_cluster_beta_pres": {
+   "punto": 4.016715486813227,
+   "ic95": [
+    0.04917010866182059,
+    7.887405629522231
+   ],
+   "p": 0.0413,
+   "B": 10000,
+   "n_conglomerados": 9,
+   "p_minimo_alcanzable": 0.00390625,
+   "valores_distintos_del_estadistico": 512
+  },
+  "wild_cluster_beta_int": {
+   "punto": 0.2864456182033299,
+   "ic95": [
+    -1.2215792442146882,
+    1.7944704806213447
+   ],
+   "p": 0.7222,
+   "B": 10000,
+   "n_conglomerados": 9,
+   "p_minimo_alcanzable": 0.00390625,
+   "valores_distintos_del_estadistico": 512
+  },
+  "wild_cluster_contraste_int_menos_pres": {
+   "punto": -3.7302698686098967,
+   "ic95": [
+    -7.2961835190331445,
+    -0.1616495985695101
+   ],
+   "p": 0.0143,
+   "B": 10000,
+   "n_conglomerados": 9
+  },
+  "ic95_bootstrap_municipio": {
+   "hueco": [
+    -0.6444713068499617,
+    -0.3335690712461175
+   ],
+   "ddp": [
+    3.3466938538022744,
+    4.683895737304484
+   ],
+   "ddi": [
+    -0.3678881508138318,
+    0.9609136872684246
+   ],
+   "contraste": [
+    -4.267482539347337,
+    -3.1940637045630025
+   ]
+  }
+ },
+ "variante_sin_alpha": {
+  "beta_pres_pp": 2.598894044711262,
+  "beta_int_pp": -1.2383486343239418
+ },
+ "identificacion_del_panel": {
+  "beta_pres (+alpha)": {
+   "n_municipio_transicion": 162,
+   "transiciones": [
+    "Chihuahua 2016->2018",
+    "Coahuila 2017->2018",
+    "Zacatecas 2016->2018"
+   ]
+  },
+  "beta_pres - beta_int (+alpha)": {
+   "n_municipio_transicion": 359,
+   "transiciones": [
+    "Aguascalientes 2021->2024",
+    "Baja California 2021->2024",
+    "Chihuahua 2018->2021",
+    "Chihuahua 2021->2024",
+    "Coahuila 2018->2021",
+    "Coahuila 2021->2024",
+    "Nayarit 2021->2024",
+    "Zacatecas 2018->2021",
+    "Zacatecas 2021->2024"
+   ]
+  },
+  "beta_int (+alpha)": {
+   "n_municipio_transicion": 244,
+   "transiciones": [
+    "Aguascalientes 2019->2021",
+    "Baja California 2019->2021",
+    "Nayarit 2017->2021",
+    "Veracruz 2017->2021"
+   ]
+  },
+  "alpha": {
+   "n_municipio_transicion": 99,
+   "transiciones": [
+    "Aguascalientes 2016->2019",
+    "Baja California 2016->2019",
+    "Durango 2016->2019",
+    "Hidalgo 2016->2020"
+   ]
+  }
+ },
+ "n_transiciones_STAY": 4,
+ "entidades_tratadas_medibles": [
+  "Aguascalientes",
+  "Baja California",
+  "Chihuahua",
+  "Coahuila",
+  "Nayarit",
+  "Veracruz",
+  "Zacatecas"
+ ],
+ "n_entidades_tratadas_medibles": 7,
+ "entidades_solo_STAY_sin_switch_medible": [
+  "Durango",
+  "Hidalgo"
+ ],
+ "por_transicion": [
+  {
+   "entidad": "Coahuila",
+   "de": 2017,
+   "a": 2018,
+   "hueco": 1,
+   "tipo_de": "sin-federal",
+   "tipo_a": "presidencial",
+   "ddp": 1,
+   "ddi": 0,
+   "clase": "SWITCH",
+   "n": 38,
+   "y_de_media": 62.53093249223833,
+   "y_a_media": 64.67296335363264,
+   "dy_media": 2.1420308613943084,
+   "dy_mediana": 1.7825082468579936
+  },
+  {
+   "entidad": "Coahuila",
+   "de": 2018,
+   "a": 2021,
+   "hueco": 3,
+   "tipo_de": "presidencial",
+   "tipo_a": "intermedia",
+   "ddp": -1,
+   "ddi": 1,
+   "clase": "SWITCH",
+   "n": 38,
+   "y_de_media": 64.67296335363264,
+   "y_a_media": 66.57958423868835,
+   "dy_media": 1.9066208850557216,
+   "dy_mediana": 2.4986098827776857
+  },
+  {
+   "entidad": "Coahuila",
+   "de": 2021,
+   "a": 2024,
+   "hueco": 3,
+   "tipo_de": "intermedia",
+   "tipo_a": "presidencial",
+   "ddp": 1,
+   "ddi": -1,
+   "clase": "SWITCH",
+   "n": 38,
+   "y_de_media": 66.57958423868835,
+   "y_a_media": 68.63249742578512,
+   "dy_media": 2.0529131870967467,
+   "dy_mediana": 2.7488599390935633
+  },
+  {
+   "entidad": "Nayarit",
+   "de": 2017,
+   "a": 2021,
+   "hueco": 4,
+   "tipo_de": "sin-federal",
+   "tipo_a": "intermedia",
+   "ddp": 0,
+   "ddi": 1,
+   "clase": "SWITCH",
+   "n": 19,
+   "y_de_media": 65.51428712275057,
+   "y_a_media": 58.74596057861396,
+   "dy_media": -6.7683265441366105,
+   "dy_mediana": -6.860443900358959
+  },
+  {
+   "entidad": "Nayarit",
+   "de": 2021,
+   "a": 2024,
+   "hueco": 3,
+   "tipo_de": "intermedia",
+   "tipo_a": "presidencial",
+   "ddp": 1,
+   "ddi": -1,
+   "clase": "SWITCH",
+   "n": 19,
+   "y_de_media": 58.74596057861396,
+   "y_a_media": 60.752640893460274,
+   "dy_media": 2.006680314846307,
+   "dy_mediana": 1.1947817272175314
+  },
+  {
+   "entidad": "Zacatecas",
+   "de": 2016,
+   "a": 2018,
+   "hueco": 2,
+   "tipo_de": "sin-federal",
+   "tipo_a": "presidencial",
+   "ddp": 1,
+   "ddi": 0,
+   "clase": "SWITCH",
+   "n": 58,
+   "y_de_media": 65.2299134490947,
+   "y_a_media": 67.75225335514533,
+   "dy_media": 2.5223399060506306,
+   "dy_mediana": 2.8255378682729173
+  },
+  {
+   "entidad": "Zacatecas",
+   "de": 2018,
+   "a": 2021,
+   "hueco": 3,
+   "tipo_de": "presidencial",
+   "tipo_a": "intermedia",
+   "ddp": -1,
+   "ddi": 1,
+   "clase": "SWITCH",
+   "n": 58,
+   "y_de_media": 67.75225335514533,
+   "y_a_media": 55.2647649741612,
+   "dy_media": -12.487488380984122,
+   "dy_mediana": -11.864678531345199
+  },
+  {
+   "entidad": "Zacatecas",
+   "de": 2021,
+   "a": 2024,
+   "hueco": 3,
+   "tipo_de": "intermedia",
+   "tipo_a": "presidencial",
+   "ddp": 1,
+   "ddi": -1,
+   "clase": "SWITCH",
+   "n": 58,
+   "y_de_media": 55.2647649741612,
+   "y_a_media": 61.81475515138689,
+   "dy_media": 6.5499901772256885,
+   "dy_mediana": 6.562349613065386
+  },
+  {
+   "entidad": "Durango",
+   "de": 2016,
+   "a": 2019,
+   "hueco": 3,
+   "tipo_de": "sin-federal",
+   "tipo_a": "sin-federal",
+   "ddp": 0,
+   "ddi": 0,
+   "clase": "STAY",
+   "n": 1,
+   "y_de_media": 57.11574369000286,
+   "y_a_media": 41.671668200008725,
+   "dy_media": -15.444075489994134,
+   "dy_mediana": -15.444075489994134
+  },
+  {
+   "entidad": "Baja California",
+   "de": 2016,
+   "a": 2019,
+   "hueco": 3,
+   "tipo_de": "sin-federal",
+   "tipo_a": "sin-federal",
+   "ddp": 0,
+   "ddi": 0,
+   "clase": "STAY",
+   "n": 5,
+   "y_de_media": 34.057593911262536,
+   "y_a_media": 30.509568846824635,
+   "dy_media": -3.5480250644379003,
+   "dy_mediana": -3.2791508740739275
+  },
+  {
+   "entidad": "Baja California",
+   "de": 2019,
+   "a": 2021,
+   "hueco": 2,
+   "tipo_de": "sin-federal",
+   "tipo_a": "intermedia",
+   "ddp": 0,
+   "ddi": 1,
+   "clase": "SWITCH",
+   "n": 5,
+   "y_de_media": 30.509568846824635,
+   "y_a_media": 38.10651875657176,
+   "dy_media": 7.596949909747119,
+   "dy_mediana": 7.426204586847227
+  },
+  {
+   "entidad": "Baja California",
+   "de": 2021,
+   "a": 2024,
+   "hueco": 3,
+   "tipo_de": "intermedia",
+   "tipo_a": "presidencial",
+   "ddp": 1,
+   "ddi": -1,
+   "clase": "SWITCH",
+   "n": 5,
+   "y_de_media": 38.10651875657176,
+   "y_a_media": 46.40300463433637,
+   "dy_media": 8.296485877764619,
+   "dy_mediana": 8.715276962226135
+  },
+  {
+   "entidad": "Chihuahua",
+   "de": 2016,
+   "a": 2018,
+   "hueco": 2,
+   "tipo_de": "sin-federal",
+   "tipo_a": "presidencial",
+   "ddp": 1,
+   "ddi": 0,
+   "clase": "SWITCH",
+   "n": 66,
+   "y_de_media": 59.23472959718603,
+   "y_a_media": 62.05780069036772,
+   "dy_media": 2.823071093181692,
+   "dy_mediana": 3.4257923261714325
+  },
+  {
+   "entidad": "Chihuahua",
+   "de": 2018,
+   "a": 2021,
+   "hueco": 3,
+   "tipo_de": "presidencial",
+   "tipo_a": "intermedia",
+   "ddp": -1,
+   "ddi": 1,
+   "clase": "SWITCH",
+   "n": 66,
+   "y_de_media": 62.05780069036772,
+   "y_a_media": 59.40753120707019,
+   "dy_media": -2.6502694832975275,
+   "dy_mediana": -2.786724336048046
+  },
+  {
+   "entidad": "Chihuahua",
+   "de": 2021,
+   "a": 2024,
+   "hueco": 3,
+   "tipo_de": "intermedia",
+   "tipo_a": "presidencial",
+   "ddp": 1,
+   "ddi": -1,
+   "clase": "SWITCH",
+   "n": 66,
+   "y_de_media": 59.40753120707019,
+   "y_a_media": 59.29120661068522,
+   "dy_media": -0.11632459638497308,
+   "dy_mediana": -0.1363097810005769
+  },
+  {
+   "entidad": "Hidalgo",
+   "de": 2016,
+   "a": 2020,
+   "hueco": 4,
+   "tipo_de": "sin-federal",
+   "tipo_a": "sin-federal",
+   "ddp": 0,
+   "ddi": 0,
+   "clase": "STAY",
+   "n": 82,
+   "y_de_media": 67.09018112347017,
+   "y_a_media": 64.70867326553554,
+   "dy_media": -2.38150785793465,
+   "dy_mediana": -1.6937322141541244
+  },
+  {
+   "entidad": "Aguascalientes",
+   "de": 2016,
+   "a": 2019,
+   "hueco": 3,
+   "tipo_de": "sin-federal",
+   "tipo_a": "sin-federal",
+   "ddp": 0,
+   "ddi": 0,
+   "clase": "STAY",
+   "n": 11,
+   "y_de_media": 62.19444127085496,
+   "y_a_media": 55.03019446701972,
+   "dy_media": -7.164246803835235,
+   "dy_mediana": -7.610376222385042
+  },
+  {
+   "entidad": "Aguascalientes",
+   "de": 2019,
+   "a": 2021,
+   "hueco": 2,
+   "tipo_de": "sin-federal",
+   "tipo_a": "intermedia",
+   "ddp": 0,
+   "ddi": 1,
+   "clase": "SWITCH",
+   "n": 11,
+   "y_de_media": 55.03019446701972,
+   "y_a_media": 60.936896492604596,
+   "dy_media": 5.9067020255848774,
+   "dy_mediana": 5.965833728929894
+  },
+  {
+   "entidad": "Aguascalientes",
+   "de": 2021,
+   "a": 2024,
+   "hueco": 3,
+   "tipo_de": "intermedia",
+   "tipo_a": "presidencial",
+   "ddp": 1,
+   "ddi": -1,
+   "clase": "SWITCH",
+   "n": 11,
+   "y_de_media": 60.936896492604596,
+   "y_a_media": 63.48169611279475,
+   "dy_media": 2.5447996201901546,
+   "dy_mediana": 1.3592894609998325
+  },
+  {
+   "entidad": "Veracruz",
+   "de": 2017,
+   "a": 2021,
+   "hueco": 4,
+   "tipo_de": "sin-federal",
+   "tipo_a": "intermedia",
+   "ddp": 0,
+   "ddi": 1,
+   "clase": "SWITCH",
+   "n": 209,
+   "y_de_media": 71.043832719488,
+   "y_a_media": 69.75430124361573,
+   "dy_media": -1.289531475872265,
+   "dy_mediana": -1.1521701284627568
+  }
+ ],
+ "att_por_transicion": {
+  "alpha_solo_STAY_pp_por_anio": -0.8107508179551781,
+  "n_transiciones_STAY_municipio": 99,
+  "Aguascalientes_2019_2021": {
+   "delta_bruto_pp": 5.9067020255848774,
+   "hueco": 2,
+   "ddp": 0,
+   "ddi": 1,
+   "att_pp": 7.528203661495233,
+   "n": 11
+  },
+  "Aguascalientes_2021_2024": {
+   "delta_bruto_pp": 2.5447996201901546,
+   "hueco": 3,
+   "ddp": 1,
+   "ddi": -1,
+   "att_pp": 4.977052074055689,
+   "n": 11
+  },
+  "Baja California_2019_2021": {
+   "delta_bruto_pp": 7.596949909747119,
+   "hueco": 2,
+   "ddp": 0,
+   "ddi": 1,
+   "att_pp": 9.218451545657475,
+   "n": 5
+  },
+  "Baja California_2021_2024": {
+   "delta_bruto_pp": 8.296485877764619,
+   "hueco": 3,
+   "ddp": 1,
+   "ddi": -1,
+   "att_pp": 10.728738331630154,
+   "n": 5
+  },
+  "Chihuahua_2016_2018": {
+   "delta_bruto_pp": 2.823071093181692,
+   "hueco": 2,
+   "ddp": 1,
+   "ddi": 0,
+   "att_pp": 4.444572729092048,
+   "n": 66
+  },
+  "Chihuahua_2018_2021": {
+   "delta_bruto_pp": -2.6502694832975275,
+   "hueco": 3,
+   "ddp": -1,
+   "ddi": 1,
+   "att_pp": -0.21801702943199297,
+   "n": 66
+  },
+  "Chihuahua_2021_2024": {
+   "delta_bruto_pp": -0.11632459638497308,
+   "hueco": 3,
+   "ddp": 1,
+   "ddi": -1,
+   "att_pp": 2.3159278574805615,
+   "n": 66
+  },
+  "Coahuila_2017_2018": {
+   "delta_bruto_pp": 2.1420308613943084,
+   "hueco": 1,
+   "ddp": 1,
+   "ddi": 0,
+   "att_pp": 2.9527816793494868,
+   "n": 38
+  },
+  "Coahuila_2018_2021": {
+   "delta_bruto_pp": 1.9066208850557216,
+   "hueco": 3,
+   "ddp": -1,
+   "ddi": 1,
+   "att_pp": 4.338873338921256,
+   "n": 38
+  },
+  "Coahuila_2021_2024": {
+   "delta_bruto_pp": 2.0529131870967467,
+   "hueco": 3,
+   "ddp": 1,
+   "ddi": -1,
+   "att_pp": 4.485165640962281,
+   "n": 38
+  },
+  "Nayarit_2017_2021": {
+   "delta_bruto_pp": -6.7683265441366105,
+   "hueco": 4,
+   "ddp": 0,
+   "ddi": 1,
+   "att_pp": -3.525323272315898,
+   "n": 19
+  },
+  "Nayarit_2021_2024": {
+   "delta_bruto_pp": 2.006680314846307,
+   "hueco": 3,
+   "ddp": 1,
+   "ddi": -1,
+   "att_pp": 4.438932768711842,
+   "n": 19
+  },
+  "Veracruz_2017_2021": {
+   "delta_bruto_pp": -1.289531475872265,
+   "hueco": 4,
+   "ddp": 0,
+   "ddi": 1,
+   "att_pp": 1.9534717959484476,
+   "n": 209
+  },
+  "Zacatecas_2016_2018": {
+   "delta_bruto_pp": 2.5223399060506306,
+   "hueco": 2,
+   "ddp": 1,
+   "ddi": 0,
+   "att_pp": 4.143841541960986,
+   "n": 58
+  },
+  "Zacatecas_2018_2021": {
+   "delta_bruto_pp": -12.487488380984122,
+   "hueco": 3,
+   "ddp": -1,
+   "ddi": 1,
+   "att_pp": -10.055235927118588,
+   "n": 58
+  },
+  "Zacatecas_2021_2024": {
+   "delta_bruto_pp": 6.5499901772256885,
+   "hueco": 3,
+   "ddp": 1,
+   "ddi": -1,
+   "att_pp": 8.982242631091223,
+   "n": 58
+  }
+ },
+ "agregado_estatal": [
+  {
+   "entidad": "Aguascalientes",
+   "anio": 2016,
+   "n": 11,
+   "votos": 462380.0,
+   "lista_nominal": 893636.0,
+   "participacion_agregada_pp": 51.741424920213596,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Aguascalientes",
+   "anio": 2019,
+   "n": 11,
+   "votos": 372880.0,
+   "lista_nominal": 966755.0,
+   "participacion_agregada_pp": 38.57026857890572,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Aguascalientes",
+   "anio": 2021,
+   "n": 11,
+   "votos": 513874.0,
+   "lista_nominal": 1017407.0,
+   "participacion_agregada_pp": 50.508203698224996,
+   "D_pres": 0,
+   "D_int": 1
+  },
+  {
+   "entidad": "Aguascalientes",
+   "anio": 2024,
+   "n": 11,
+   "votos": 652288.0,
+   "lista_nominal": 1097367.0,
+   "participacion_agregada_pp": 59.441189684034605,
+   "D_pres": 1,
+   "D_int": 0
+  },
+  {
+   "entidad": "Baja California",
+   "anio": 2016,
+   "n": 5,
+   "votos": 833160.0,
+   "lista_nominal": 2570078.0,
+   "participacion_agregada_pp": 32.41769315950722,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Baja California",
+   "anio": 2019,
+   "n": 5,
+   "votos": 836327.0,
+   "lista_nominal": 2811075.0,
+   "participacion_agregada_pp": 29.751145024590237,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Baja California",
+   "anio": 2021,
+   "n": 5,
+   "votos": 1112581.0,
+   "lista_nominal": 2919177.0,
+   "participacion_agregada_pp": 38.11283111644138,
+   "D_pres": 0,
+   "D_int": 1
+  },
+  {
+   "entidad": "Baja California",
+   "anio": 2024,
+   "n": 5,
+   "votos": 1445994.0,
+   "lista_nominal": 3090783.0,
+   "participacion_agregada_pp": 46.784067338276415,
+   "D_pres": 1,
+   "D_int": 0
+  },
+  {
+   "entidad": "Chihuahua",
+   "anio": 2016,
+   "n": 66,
+   "votos": 1286367.0,
+   "lista_nominal": 2637752.0,
+   "participacion_agregada_pp": 48.767549034177584,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Chihuahua",
+   "anio": 2018,
+   "n": 66,
+   "votos": 1472182.0,
+   "lista_nominal": 2737158.0,
+   "participacion_agregada_pp": 53.785057347803814,
+   "D_pres": 1,
+   "D_int": 0
+  },
+  {
+   "entidad": "Chihuahua",
+   "anio": 2021,
+   "n": 66,
+   "votos": 1343538.0,
+   "lista_nominal": 2887939.0,
+   "participacion_agregada_pp": 46.522381532296905,
+   "D_pres": 0,
+   "D_int": 1
+  },
+  {
+   "entidad": "Chihuahua",
+   "anio": 2024,
+   "n": 66,
+   "votos": 1604940.0,
+   "lista_nominal": 3071856.0,
+   "participacion_agregada_pp": 52.24658968389143,
+   "D_pres": 1,
+   "D_int": 0
+  },
+  {
+   "entidad": "Coahuila",
+   "anio": 2017,
+   "n": 38,
+   "votos": 1256332.0,
+   "lista_nominal": 2202126.0,
+   "participacion_agregada_pp": 57.05086811563008,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Coahuila",
+   "anio": 2018,
+   "n": 38,
+   "votos": 1359037.0,
+   "lista_nominal": 2251549.0,
+   "participacion_agregada_pp": 60.36008987590321,
+   "D_pres": 1,
+   "D_int": 0
+  },
+  {
+   "entidad": "Coahuila",
+   "anio": 2021,
+   "n": 38,
+   "votos": 1302465.0,
+   "lista_nominal": 2262052.0,
+   "participacion_agregada_pp": 57.57891507357037,
+   "D_pres": 0,
+   "D_int": 1
+  },
+  {
+   "entidad": "Coahuila",
+   "anio": 2024,
+   "n": 38,
+   "votos": 1558479.0,
+   "lista_nominal": 2410806.0,
+   "participacion_agregada_pp": 64.64555837342365,
+   "D_pres": 1,
+   "D_int": 0
+  },
+  {
+   "entidad": "Durango",
+   "anio": 2016,
+   "n": 1,
+   "votos": 260008.0,
+   "lista_nominal": 455230.0,
+   "participacion_agregada_pp": 57.11574369000286,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Durango",
+   "anio": 2019,
+   "n": 1,
+   "votos": 200657.0,
+   "lista_nominal": 481519.0,
+   "participacion_agregada_pp": 41.671668200008725,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Hidalgo",
+   "anio": 2016,
+   "n": 82,
+   "votos": 1159194.0,
+   "lista_nominal": 1924583.0,
+   "participacion_agregada_pp": 60.230917554607935,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Hidalgo",
+   "anio": 2020,
+   "n": 82,
+   "votos": 1127173.0,
+   "lista_nominal": 2080901.0,
+   "participacion_agregada_pp": 54.16754569294743,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Nayarit",
+   "anio": 2017,
+   "n": 19,
+   "votos": 502367.0,
+   "lista_nominal": 824331.0,
+   "participacion_agregada_pp": 60.94238843377236,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Nayarit",
+   "anio": 2021,
+   "n": 19,
+   "votos": 472694.0,
+   "lista_nominal": 902740.0,
+   "participacion_agregada_pp": 52.36214192347742,
+   "D_pres": 0,
+   "D_int": 1
+  },
+  {
+   "entidad": "Nayarit",
+   "anio": 2024,
+   "n": 19,
+   "votos": 524427.0,
+   "lista_nominal": 942051.0,
+   "participacion_agregada_pp": 55.66864214357821,
+   "D_pres": 1,
+   "D_int": 0
+  },
+  {
+   "entidad": "Veracruz",
+   "anio": 2017,
+   "n": 209,
+   "votos": 3252637.0,
+   "lista_nominal": 5502752.0,
+   "participacion_agregada_pp": 59.109278411965505,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Veracruz",
+   "anio": 2021,
+   "n": 209,
+   "votos": 3546107.0,
+   "lista_nominal": 5897080.0,
+   "participacion_agregada_pp": 60.133269346863194,
+   "D_pres": 0,
+   "D_int": 1
+  },
+  {
+   "entidad": "Zacatecas",
+   "anio": 2016,
+   "n": 58,
+   "votos": 691573.0,
+   "lista_nominal": 1131102.0,
+   "participacion_agregada_pp": 61.14152392976053,
+   "D_pres": 0,
+   "D_int": 0
+  },
+  {
+   "entidad": "Zacatecas",
+   "anio": 2018,
+   "n": 58,
+   "votos": 752621.0,
+   "lista_nominal": 1162459.0,
+   "participacion_agregada_pp": 64.74387483773621,
+   "D_pres": 1,
+   "D_int": 0
+  },
+  {
+   "entidad": "Zacatecas",
+   "anio": 2021,
+   "n": 58,
+   "votos": 688563.0,
+   "lista_nominal": 1358765.0,
+   "participacion_agregada_pp": 50.67565031480793,
+   "D_pres": 0,
+   "D_int": 1
+  },
+  {
+   "entidad": "Zacatecas",
+   "anio": 2024,
+   "n": 58,
+   "votos": 750673.0,
+   "lista_nominal": 1263981.0,
+   "participacion_agregada_pp": 59.38957943196931,
+   "D_pres": 1,
+   "D_int": 0
+  }
+ ],
+ "heterogeneidad_tamano": {
+  "cortes_lista_nominal": [
+   8551.0,
+   20937.0
+  ],
+  "chico": {
+   "n": 324,
+   "alpha": -0.45977480927440273,
+   "beta_pres": 2.597571811852785,
+   "beta_int": 0.6712760914852385
+  },
+  "mediano": {
+   "n": 255,
+   "alpha": -0.5691942313029564,
+   "beta_pres": 4.617528290400808,
+   "beta_int": -0.5556919263355353
+  },
+  "grande": {
+   "n": 285,
+   "alpha": -0.5035039182061508,
+   "beta_pres": 6.162715955865174,
+   "beta_int": 1.0254537048228514
+  }
+ },
+ "sensibilidad": {
+  "sin_hueco_1": {
+   "n": 826,
+   "entidades": [
+    "Aguascalientes",
+    "Baja California",
+    "Chihuahua",
+    "Coahuila",
+    "Durango",
+    "Hidalgo",
+    "Nayarit",
+    "Veracruz",
+    "Zacatecas"
+   ],
+   "alpha": -0.5118539787787979,
+   "beta_pres": 4.283907220420477,
+   "beta_int": 0.4770165701122432
+  },
+  "sin_Coahuila": {
+   "n": 750,
+   "entidades": [
+    "Aguascalientes",
+    "Baja California",
+    "Chihuahua",
+    "Durango",
+    "Hidalgo",
+    "Nayarit",
+    "Veracruz",
+    "Zacatecas"
+   ],
+   "alpha": -0.6873158589619552,
+   "beta_pres": 5.351920981374293,
+   "beta_int": 0.7914299095386794
+  },
+  "sin_Durango": {
+   "n": 863,
+   "entidades": [
+    "Aguascalientes",
+    "Baja California",
+    "Chihuahua",
+    "Coahuila",
+    "Hidalgo",
+    "Nayarit",
+    "Veracruz",
+    "Zacatecas"
+   ],
+   "alpha": -0.4811300475893218,
+   "beta_pres": 3.993278421899702,
+   "beta_int": 0.26124025678400287
+  },
+  "solo_entidades_nuevas_de_L3": {
+   "n": 213,
+   "entidades": [
+    "Baja California",
+    "Chihuahua"
+   ],
+   "alpha": -0.3888338580187048,
+   "beta_pres": 4.0325657445202845,
+   "beta_int": 2.6745020798089394
+  },
+  "solo_panel_de_L6": {
+   "n": 327,
+   "entidades": [
+    "Coahuila",
+    "Durango",
+    "Nayarit",
+    "Zacatecas"
+   ],
+   "alpha": -0.4754283839388508,
+   "beta_pres": 2.760665829679236,
+   "beta_int": -2.977932020944551
+  },
+  "sin_Hidalgo": {
+   "n": 782,
+   "entidades": [
+    "Aguascalientes",
+    "Baja California",
+    "Chihuahua",
+    "Coahuila",
+    "Durango",
+    "Nayarit",
+    "Veracruz",
+    "Zacatecas"
+   ],
+   "alpha": -0.45333644927653555,
+   "beta_pres": 3.912728559201706,
+   "beta_int": 0.17461301019526673
+  },
+  "sin_Aguascalientes": {
+   "n": 831,
+   "entidades": [
+    "Baja California",
+    "Chihuahua",
+    "Coahuila",
+    "Durango",
+    "Hidalgo",
+    "Nayarit",
+    "Veracruz",
+    "Zacatecas"
+   ],
+   "alpha": -0.43607458809869815,
+   "beta_pres": 3.71560684546373,
+   "beta_int": -0.09124532341265096
+  },
+  "sin_Veracruz": {
+   "n": 655,
+   "entidades": [
+    "Aguascalientes",
+    "Baja California",
+    "Chihuahua",
+    "Coahuila",
+    "Durango",
+    "Hidalgo",
+    "Nayarit",
+    "Zacatecas"
+   ],
+   "alpha": -0.5247542366856026,
+   "beta_pres": 3.7147809620398937,
+   "beta_int": -0.19044284773857514
+  },
+  "solo_entidades_nuevas_de_L8": {
+   "n": 324,
+   "entidades": [
+    "Aguascalientes",
+    "Hidalgo",
+    "Veracruz"
+   ],
+   "alpha": -0.8039344728177201,
+   "beta_pres": 7.1622276818330155,
+   "beta_int": 2.2056246431897013
+  }
+ },
+ "descomposicion_L4": {
+  "delta_L4_pp": 10.479,
+  "componentes_para_2023_no_conc_-> 2024_presidencial_hueco_1": {
+   "alpha_x_hueco": -0.4892169684855063,
+   "beta_pres": 4.016715486813227,
+   "suma_explicada_pp": 3.5274985183277203
+  }
+ }
+}

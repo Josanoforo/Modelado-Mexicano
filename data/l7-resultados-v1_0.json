@@ -1,0 +1,380 @@
+{
+  "pieza_a_civico_denuncia": {
+    "eje": {
+      "eje": "cobertura_seguro",
+      "cobertura": 1.0,
+      "veredicto": "CORROBORADA",
+      "monotonia": "monotono o sin pares consecutivos limpios en sentidos opuestos",
+      "signo": "asc",
+      "nota": "regla R7.2, línea 179 del modelo: 'SI es robo de vehículo asegurado ENTONCES sí denuncia' -- signo esperado: asegurado > no asegurado",
+      "celdas": [
+        {
+          "celda": "no asegurado",
+          "p": 0.6720144369290082,
+          "lo": 0.6424901720870134,
+          "hi": 0.7016235751823455,
+          "n": 614,
+          "n_num": 382,
+          "n_est": 289,
+          "n_upm": 567,
+          "pobl": 292583.0
+        },
+        {
+          "celda": "asegurado",
+          "p": 0.7909064453831163,
+          "lo": 0.7523011741493363,
+          "hi": 0.8278109208612037,
+          "n": 402,
+          "n_num": 306,
+          "n_est": 200,
+          "n_upm": 377,
+          "pobl": 226798.0
+        }
+      ]
+    },
+    "universo_n": 1016
+  },
+  "pieza_b_familia_union": {
+    "eder": {
+      "eje": "cohorte_nacimiento",
+      "cobertura": 1.0,
+      "veredicto": "CORROBORADA",
+      "monotonia": "monotono o sin pares consecutivos limpios en sentidos opuestos",
+      "signo": "asc",
+      "nota": "baja garantía institucional del matrimonio es más reciente/creciente -> cohortes más jóvenes, más unión libre como primera unión",
+      "celdas": [
+        {
+          "celda": "1961-1970",
+          "p": 0.30465720922032147,
+          "lo": 0.2853852852750012,
+          "hi": 0.3240982148597174,
+          "n": 4001,
+          "n_num": 1305,
+          "n_est": 286,
+          "n_upm": 2239,
+          "pobl": 10163984.0
+        },
+        {
+          "celda": "1971-1980",
+          "p": 0.3901660491711458,
+          "lo": 0.37268652335755686,
+          "hi": 0.4074107663990169,
+          "n": 6274,
+          "n_num": 2543,
+          "n_est": 290,
+          "n_upm": 2872,
+          "pobl": 15089988.0
+        },
+        {
+          "celda": "1981-1990",
+          "p": 0.5724482664015422,
+          "lo": 0.5554754294683345,
+          "hi": 0.5894095272158582,
+          "n": 5903,
+          "n_num": 3271,
+          "n_est": 288,
+          "n_upm": 2709,
+          "pobl": 13613735.0
+        },
+        {
+          "celda": "1991+",
+          "p": 0.7729235948135669,
+          "lo": 0.7520020932801281,
+          "hi": 0.7932790413951286,
+          "n": 2509,
+          "n_num": 1925,
+          "n_est": 265,
+          "n_upm": 1571,
+          "pobl": 6572224.0
+        }
+      ]
+    },
+    "enadid": {
+      "eje": "tramo_edad",
+      "cobertura": 0.9948328525924036,
+      "veredicto": "CORROBORADA",
+      "monotonia": "monotono o sin pares consecutivos limpios en sentidos opuestos",
+      "signo": "desc",
+      "nota": "proxy de cohorte (ENADID no trae año de nacimiento): más jóvenes, más unión libre -> p baja con la edad",
+      "celdas": [
+        {
+          "celda": "18-29",
+          "p": 0.6992080129404852,
+          "lo": 0.6895295692902484,
+          "hi": 0.7089070385529663,
+          "n": 22676,
+          "n_num": 15712,
+          "n_est": 612,
+          "n_upm": 7612,
+          "pobl": 8062758.0
+        },
+        {
+          "celda": "30-44",
+          "p": 0.41664789751915265,
+          "lo": 0.40914936482169756,
+          "hi": 0.42423969938114137,
+          "n": 50944,
+          "n_num": 21254,
+          "n_est": 644,
+          "n_upm": 11830,
+          "pobl": 18434508.0
+        },
+        {
+          "celda": "45-59",
+          "p": 0.23861029872672387,
+          "lo": 0.23201206781292819,
+          "hi": 0.24507901617663966,
+          "n": 47308,
+          "n_num": 11189,
+          "n_est": 653,
+          "n_upm": 12060,
+          "pobl": 17090637.0
+        },
+        {
+          "celda": "60+",
+          "p": 0.12666905674550333,
+          "lo": 0.12041634608890985,
+          "hi": 0.13309635124283434,
+          "n": 31171,
+          "n_num": 3839,
+          "n_est": 621,
+          "n_upm": 9423,
+          "pobl": 11129340.0
+        }
+      ]
+    },
+    "enadid_prevalencia_bruta": 0.19053627354743022
+  },
+  "pieza_c_familia_cuidado": {
+    "d1_sexo_edad": {
+      "eje": "sexo_edad",
+      "cobertura": 1.0,
+      "veredicto": "DISCRIMINA",
+      "monotonia": "monotono o sin pares consecutivos limpios en sentidos opuestos",
+      "signo": null,
+      "nota": "descriptivo, sin signo pre-registrado",
+      "celdas": [
+        {
+          "celda": "hombre · 12-17",
+          "p": 4.528742772764375,
+          "lo": 4.18702073842492,
+          "hi": 4.884942727094983,
+          "n": 4837,
+          "n_num": 22561,
+          "n_est": 325,
+          "n_upm": 2249,
+          "pobl": 6636989.0
+        },
+        {
+          "celda": "mujer · 12-17",
+          "p": 6.695296007473654,
+          "lo": 6.180128263843443,
+          "hi": 7.255641837349873,
+          "n": 4859,
+          "n_num": 34557,
+          "n_est": 333,
+          "n_upm": 2185,
+          "pobl": 6664477.0
+        },
+        {
+          "celda": "hombre · 18-29",
+          "p": 6.097654223091392,
+          "lo": 5.72277043821127,
+          "hi": 6.507772664779055,
+          "n": 7489,
+          "n_num": 49480,
+          "n_est": 341,
+          "n_upm": 3019,
+          "pobl": 11246473.0
+        },
+        {
+          "celda": "mujer · 18-29",
+          "p": 21.891210797688146,
+          "lo": 20.95723855312948,
+          "hi": 22.848809594178288,
+          "n": 8559,
+          "n_num": 198759,
+          "n_est": 334,
+          "n_upm": 3155,
+          "pobl": 11995753.0
+        },
+        {
+          "celda": "hombre · 30-39",
+          "p": 11.465789495343442,
+          "lo": 10.85038288660235,
+          "hi": 12.085501644015492,
+          "n": 5844,
+          "n_num": 69280,
+          "n_est": 333,
+          "n_upm": 2846,
+          "pobl": 8545442.0
+        },
+        {
+          "celda": "mujer · 30-39",
+          "p": 28.311291983688143,
+          "lo": 27.18136255473773,
+          "hi": 29.428587723256182,
+          "n": 7200,
+          "n_num": 203706,
+          "n_est": 339,
+          "n_upm": 3049,
+          "pobl": 10364571.0
+        },
+        {
+          "celda": "hombre · 40-59",
+          "p": 5.8897570601900915,
+          "lo": 5.585947874694851,
+          "hi": 6.203865916678742,
+          "n": 9930,
+          "n_num": 59495,
+          "n_est": 342,
+          "n_upm": 3538,
+          "pobl": 14646879.0
+        },
+        {
+          "celda": "mujer · 40-59",
+          "p": 10.915276703828471,
+          "lo": 10.353652448956131,
+          "hi": 11.495417614846387,
+          "n": 12145,
+          "n_num": 134992,
+          "n_est": 342,
+          "n_upm": 3771,
+          "pobl": 17577904.0
+        },
+        {
+          "celda": "hombre · 60+",
+          "p": 5.5001783267557265,
+          "lo": 5.081453724175226,
+          "hi": 5.924664813608148,
+          "n": 6043,
+          "n_num": 32316,
+          "n_est": 331,
+          "n_upm": 2718,
+          "pobl": 9076503.0
+        },
+        {
+          "celda": "mujer · 60+",
+          "p": 6.4261295306219015,
+          "lo": 5.965135815190568,
+          "hi": 6.897834497864649,
+          "n": 7147,
+          "n_num": 45305,
+          "n_est": 338,
+          "n_upm": 2971,
+          "pobl": 11074519.0
+        }
+      ]
+    },
+    "d2_razon_todos_los_hogares": {
+      "r": 0.22148146779116093,
+      "lo": 0.2131454605735033,
+      "hi": 0.22996644003042596,
+      "n": 29181
+    },
+    "d2_razon_hogares_con_carga": {
+      "r": 0.22148146779116096,
+      "lo": 0.21295944447413864,
+      "hi": 0.2299790588200155,
+      "n": 17394
+    }
+  },
+  "pieza_d_dinero_ahorro": {
+    "D1 · horizonte_corto (P4_10=1)": {
+      "eje": "formalidad",
+      "cobertura": 1.0,
+      "veredicto": "CORROBORADA",
+      "monotonia": "monotono o sin pares consecutivos limpios en sentidos opuestos",
+      "signo": "desc",
+      "nota": "MÁS alto sin trabajo formal; cobertura 68.97 % -> universo restringido",
+      "celdas": [
+        {
+          "celda": "sin seguridad social",
+          "p": 0.33063884379927583,
+          "lo": 0.31215436810976643,
+          "hi": 0.3491555116395563,
+          "n": 4973,
+          "n_num": 1725,
+          "n_est": 189,
+          "n_upm": 1717,
+          "pobl": 35086918.0
+        },
+        {
+          "celda": "con seguridad social",
+          "p": 0.17341804246901799,
+          "lo": 0.15710785991052234,
+          "hi": 0.19072165674997688,
+          "n": 4058,
+          "n_num": 771,
+          "n_est": 187,
+          "n_upm": 1806,
+          "pobl": 26625857.0
+        }
+      ]
+    },
+    "D1-sens · horizonte_corto (P4_10 en {1,2})": {
+      "eje": "formalidad",
+      "cobertura": 1.0,
+      "veredicto": "CORROBORADA",
+      "monotonia": "monotono o sin pares consecutivos limpios en sentidos opuestos",
+      "signo": "desc",
+      "nota": "MÁS alto sin trabajo formal; cobertura 68.97 % -> universo restringido",
+      "celdas": [
+        {
+          "celda": "sin seguridad social",
+          "p": 0.5413426451419872,
+          "lo": 0.5216084908450036,
+          "hi": 0.5607815938572956,
+          "n": 4973,
+          "n_num": 2711,
+          "n_est": 189,
+          "n_upm": 1717,
+          "pobl": 35086918.0
+        },
+        {
+          "celda": "con seguridad social",
+          "p": 0.3697253387937898,
+          "lo": 0.347971536029595,
+          "hi": 0.3922565054625119,
+          "n": 4058,
+          "n_num": 1513,
+          "n_est": 187,
+          "n_upm": 1806,
+          "pobl": 26625857.0
+        }
+      ]
+    },
+    "D2 · ahorra_solo_informal (=L1 P2)": {
+      "eje": "formalidad",
+      "cobertura": 1.0,
+      "veredicto": "CORROBORADA",
+      "monotonia": "monotono o sin pares consecutivos limpios en sentidos opuestos",
+      "signo": "desc",
+      "nota": "MÁS alto sin trabajo formal; cobertura 68.97 % -> universo restringido",
+      "celdas": [
+        {
+          "celda": "sin seguridad social",
+          "p": 0.41352443665755995,
+          "lo": 0.3939555266107967,
+          "hi": 0.43290816673309623,
+          "n": 4973,
+          "n_num": 2015,
+          "n_est": 189,
+          "n_upm": 1717,
+          "pobl": 35086918.0
+        },
+        {
+          "celda": "con seguridad social",
+          "p": 0.3111692517540374,
+          "lo": 0.29040513157267095,
+          "hi": 0.3316962443943996,
+          "n": 4058,
+          "n_num": 1142,
+          "n_est": 187,
+          "n_upm": 1806,
+          "pobl": 26625857.0
+        }
+      ]
+    }
+  }
+}
