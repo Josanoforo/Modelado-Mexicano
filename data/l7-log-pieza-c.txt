@@ -1,0 +1,32 @@
+ACTO MAESTRA35-L7 · familia.cuidado · ENUT 2024
+payload  : enut2024_bd_csv.zip
+sha256   : 25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba
+tabla    : tvar_crea.csv · 74,053 personas · 29,181 hogares
+
+==============================================================================
+D1 · horas de cuidado por sexo × tramo de edad (media ponderada, unidad = PERSONA)
+==============================================================================
+  EJE sexo_edad · cobertura 100.0000% (fuera 0)
+    nota: descriptivo, sin signo pre-registrado
+    hombre · 12-17         p̂ = 4.528743  IC95 = [4.187021, 4.884943]  n = 4,837 personas (horas/semana promedio, no proporción) · num = 22,561 · estratos = 325 · UPM = 2,249
+    mujer · 12-17          p̂ = 6.695296  IC95 = [6.180128, 7.255642]  n = 4,859 personas (horas/semana promedio, no proporción) · num = 34,557 · estratos = 333 · UPM = 2,185
+    hombre · 18-29         p̂ = 6.097654  IC95 = [5.722770, 6.507773]  n = 7,489 personas (horas/semana promedio, no proporción) · num = 49,480 · estratos = 341 · UPM = 3,019
+    mujer · 18-29          p̂ = 21.891211  IC95 = [20.957239, 22.848810]  n = 8,559 personas (horas/semana promedio, no proporción) · num = 198,759 · estratos = 334 · UPM = 3,155
+    hombre · 30-39         p̂ = 11.465789  IC95 = [10.850383, 12.085502]  n = 5,844 personas (horas/semana promedio, no proporción) · num = 69,280 · estratos = 333 · UPM = 2,846
+    mujer · 30-39          p̂ = 28.311292  IC95 = [27.181363, 29.428588]  n = 7,200 personas (horas/semana promedio, no proporción) · num = 203,706 · estratos = 339 · UPM = 3,049
+    hombre · 40-59         p̂ = 5.889757  IC95 = [5.585948, 6.203866]  n = 9,930 personas (horas/semana promedio, no proporción) · num = 59,495 · estratos = 342 · UPM = 3,538
+    mujer · 40-59          p̂ = 10.915277  IC95 = [10.353652, 11.495418]  n = 12,145 personas (horas/semana promedio, no proporción) · num = 134,992 · estratos = 342 · UPM = 3,771
+    hombre · 60+           p̂ = 5.500178  IC95 = [5.081454, 5.924665]  n = 6,043 personas (horas/semana promedio, no proporción) · num = 32,316 · estratos = 331 · UPM = 2,718
+    mujer · 60+            p̂ = 6.426130  IC95 = [5.965136, 6.897834]  n = 7,147 personas (horas/semana promedio, no proporción) · num = 45,305 · estratos = 338 · UPM = 2,971
+    signo esperado: sin signo pre-registrado · monotono o sin pares consecutivos limpios en sentidos opuestos
+    VEREDICTO: DISCRIMINA
+
+==============================================================================
+D2 · proporción del total de horas de cuidado del HOGAR que hacen mujeres 40+ (unidad = HOGAR, razón)
+==============================================================================
+hogares totales: 29,181 · con alguna hora de cuidado registrada (total_hogar>0): 17,394 (59.6073%)
+hogares sin ninguna mujer 40+ (aportan 0 al numerador, correctamente, sin excluirse del denominador): 11,557
+  proporción del total de horas de cuidado del hogar hecha por mujeres 40+:
+  r̂ = 0.221481  IC95 = [0.213145, 0.229966]  n_hogares = 29,181 · UPM = 4,200
+  MISMO, solo hogares con total_hogar>0 (descriptivo, universo restringido):
+  r̂ = 0.221481  IC95 = [0.212959, 0.229979]  n_hogares = 17,394 · UPM = 4,019

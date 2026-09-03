@@ -1974,5 +1974,218 @@ reglas_propuestas:
       tras el beta cero de MAESTRA34-L6 y la escolaridad no monotona de
       MAESTRA35-L1: un agregado que corrobora puede ser la media de un eje que
       se invierte.
+  # ═══════════════════════════════════════════════════════════════════
+  # ACTO MAESTRA35-L7 · REGLAS-ACTIVOS-L2 · 2/sep/2026 · cuatro entradas
+  # ═══════════════════════════════════════════════════════════════════
+
+  - id: civico.denuncia.con_seguro_ejes_envipe2025
+    entrada_nueva: true
+    acto: "MAESTRA35-L7 · pieza (a)"
+    fuente_regla: "R7.2 del modelo (civico.denuncia.sin_seguro/con_seguro) — canon/modelo-decision-v4_0.md:499"
+    payload: "ENVIPE 2025 · tmod_vic (conjunto_de_datos) · unidad = DELITO"
+    universo: "BPCOD='01' (robo total de vehículo, único donde BP2_1 tiene masa) ∧ BP2_1∈{1,2}; n = 1 016 de 40 280"
+    ponderador: FAC_DEL
+    estrato: EST_DIS
+    upm: UPM_DIS
+    ejes:
+      - eje: cobertura_seguro
+        cobertura: 1.000000
+        signo_pre_registrado: "asc"
+        veredicto: "CORROBORADA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          regla R7.2 línea 179: "SI es robo de vehículo asegurado ENTONCES
+          sí denuncia" — signo esperado asegurado > no asegurado
+        celdas:
+          - {celda: "no asegurado", p: 0.672014, ic95: [0.642490, 0.701624], n: 614, numerador: 382, estratos: 289, upm: 567}
+          - {celda: "asegurado", p: 0.790906, ic95: [0.752301, 0.827811], n: 402, numerador: 306, estratos: 200, upm: 377}
+    ejes_ausentes: >
+      ninguno adicional propuesto — la celda ya estaba pre-registrada por
+      la ficha de Hito D (falsador de brecha entre asegurado/no asegurado)
+    hallazgo: >
+      TERCERA reproducción independiente de esta celda: coincide exacto con
+      hitoD-R7_2-veredicto-v1_0.md §2.4 y hitoD-R7_2-revision-v1_0.md §2.4
+      (4/ago/2026, ambas ya publicadas, ninguna heredada aquí):
+      79.1%/67.2%/brecha 11.9pp. Esas dos fichas archivaron R7.2 como D
+      (Hito D, falsador de brecha ENTRE clases de delito, inejecutable por
+      diseño de instrumento) y por separado documentaron, sin adjudicar,
+      que esta misma celda satisface literalmente la fila A de la escala
+      PROPIA de la ficha (hitoD-R7_2-revision §3) — ninguna de las dos
+      decisiones es de este acto. Lo que este acto aporta y Hito D
+      declinó explícitamente hacer ("No se toca milpa/procedencia.yaml",
+      hitoD-R7_2-revision §4) es aterrizar el número aquí, con el
+      apparatus formal de ejes. Denominador por tipo de delito completo
+      (15 clases) en forense/notas/2026-09-02-MAESTRA35-L7-P0-censo.md §1
+      — BP2_1 no varía entre clases fuera de BPCOD=01, verificado, no se
+      cruza (sería fabricar un cruce que la fuente no da). Si esta cifra
+      cierra el ASIGNADO [0.78,0.22] de civico.denuncia.con_seguro
+      (milpa/procedencia.yaml:806-809, sin tocar por este acto) es
+      decisión de mesa.
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    sha256_payload: "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+    payload_manifiesto_id: envipe2025_csv
+
+  - id: familia.union.libre_ejes_eder2017
+    entrada_nueva: true
+    acto: "MAESTRA35-L7 · pieza (b)"
+    fuente_regla: "R5.3 del modelo (familia.union.baja_garantia_institucional) — canon/modelo-decision-v4_0.md:537"
+    payload: "EDER 2017 · historiavida.csv (panel retrospectivo persona-año) · unidad = PERSONA"
+    universo: "primer edo_civil1 no-cero por persona (folioviv+foliohog+id_pobla), en orden de anio_retro, restringido a {1,12,13,14,17,18,126}=libre ∪ {2,3,4,26,27,28,46,47,48}=directo; n = 18 687 de 23 831 (2 códigos ambiguos '37' excluidos, declarados)"
+    ponderador: factor_per
+    estrato: est_dis
+    upm: upm
+    ejes:
+      - eje: cohorte_nacimiento
+        cobertura: 1.000000
+        signo_pre_registrado: "asc"
+        veredicto: "CORROBORADA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          cohortes más jóvenes, más unión libre como primera unión — baja
+          garantía institucional del matrimonio es tendencia reciente
+        celdas:
+          - {celda: "1961-1970", p: 0.304657, ic95: [0.285385, 0.324098], n: 4001, numerador: 1305, estratos: 286, upm: 2239}
+          - {celda: "1971-1980", p: 0.390166, ic95: [0.372687, 0.407411], n: 6274, numerador: 2543, estratos: 290, upm: 2872}
+          - {celda: "1981-1990", p: 0.572448, ic95: [0.555475, 0.589410], n: 5903, numerador: 3271, estratos: 288, upm: 2709}
+          - {celda: "1991+", p: 0.772924, ic95: [0.752002, 0.793279], n: 2509, numerador: 1925, estratos: 265, upm: 1571}
+    ejes_ausentes: >
+      escolaridad (nivel_inst, persona.csv) y ámbito (tam_loc, vivienda.csv)
+      censados con dato real (P0 §2) pero no medidos en este commit — el
+      encargo pedía cohorte/escolaridad/ámbito y el gradiente de cohorte
+      ya es el hallazgo principal; escolaridad/ámbito quedan para acto
+      sucesor si mesa los pide
+    hallazgo: >
+      Cross-validado con un SEGUNDO instrumento independiente, ENADID 2023
+      (sha256 995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18),
+      operacionalización DISTINTA (prevalencia ACTUAL condicional a estar
+      casada(o) o en unión libre, p3_27_ag, universo 15+ n=152 950, eje
+      tramo de edad en vez de cohorte de nacimiento exacta): mismo
+      gradiente monótono, también CORROBORADA — 18-29: 69.92%
+      [68.95,70.89] n=22676; 30-44: 41.66% [40.91,42.42] n=50944; 45-59:
+      23.86% [23.20,24.51] n=47308; 60+: 12.67% [12.04,13.31] n=31171.
+      Prevalencia bruta ENADID sin condicionar (15+ completo): 19.05%. Dos
+      instrumentos, dos operacionalizaciones, misma dirección — no se
+      promedian (miden preguntas distintas: tipo de primera unión vs.
+      estado actual), se reportan como corroboración cruzada. Detalle
+      completo de ambos en forense/notas/2026-09-02-MAESTRA35-L7-resultados.md.
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    sha256_payload: "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3"
+    payload_manifiesto_id: eder_2017_eder2017_bases_csv
+
+  - id: familia.cuidado.reparto_mujeres40_ejes_enut2024
+    entrada_nueva: true
+    acto: "MAESTRA35-L7 · pieza (c)"
+    fuente_regla: "R5.2 del modelo (familia.cuidado.recae_mujeres_40mas) — canon/modelo-decision-v4_0.md:536. Distinto del contraste-por-ocupación de forense/notas/2026-08-04-y5-veredicto-r5-2.md (A propuesto, no archivado): esta pieza mide reparto de la carga total, no contraste por condición de ocupación"
+    payload: "ENUT 2024 · tvar_crea.csv (variables ya agregadas, definición horas_cuidado reusada sin redefinir del precedente Y1) · unidad = HOGAR (D2) y PERSONA (D1)"
+    universo: "D2: los 29 181 hogares de tvar_crea (hogares sin carga aportan 0/0, no se excluyen); D1: las 74 053 personas 12+"
+    llave_a_los_ejes: "LLAVEHOG; FAC_HOG traído de tsdem.csv por join (constante dentro de hogar, 0 huérfanos) porque FAC_PER NO es constante dentro de hogar, verificado"
+    ponderador: "FAC_HOG (D2) / FAC_PER (D1)"
+    estrato: EST_DIS
+    upm: UPM_DIS
+    ejes:
+      - eje: reparto_hogar
+        cobertura: 1.000000
+        signo_pre_registrado: null
+        veredicto: "RAZÓN — sin múltiples celdas que clasificar CORROBORADA/CONTRARIA; se reporta el estimador con su IC95"
+        monotonia: "n/a — una sola celda poblacional"
+        nota: >-
+          ESTIMADOR DE RAZÓN Σ(w·num)/Σ(w·den), no proporción de un
+          binario — numerador Σhoras_cuidado de mujeres 40+, denominador
+          Σhoras_cuidado de todos los integrantes del hogar. Contexto
+          declarado, no adjudicado: share poblacional de mujeres 40+ en
+          el universo 12+ es 26.57% (ponderado) — el aporte a horas
+          totales (22.15%, IC95 sin traslape con 26.57%) es MENOR que su
+          peso poblacional.
+        celdas:
+          - {celda: "todos los hogares (razón)", p: 0.221481, ic95: [0.213145, 0.229966], n: 29181, numerador: null, estratos: null, upm: 4200}
+      - eje: sexo_edad
+        cobertura: 1.000000
+        signo_pre_registrado: null
+        veredicto: "DISCRIMINA"
+        monotonia: "n/a — eje descriptivo de 10 celdas, sin orden único con signo"
+        nota: >-
+          DESCRIPTIVO: media ponderada de horas_cuidado/semana (variable
+          CONTINUA, no proporción de binario) por sexo × tramo de edad.
+          Sin signo pre-registrado (el encargo lo pide como descripción),
+          tope declarado: veredicto máximo posible DISCRIMINA.
+        celdas:
+          - {celda: "hombre · 12-17", p: 4.528743, ic95: null, n: 4837, numerador: null, estratos: null, upm: 2249}
+          - {celda: "mujer · 12-17", p: 6.695296, ic95: null, n: 4859, numerador: null, estratos: null, upm: 2185}
+          - {celda: "hombre · 18-29", p: 6.097654, ic95: null, n: 7489, numerador: null, estratos: null, upm: 3019}
+          - {celda: "mujer · 18-29", p: 21.891211, ic95: null, n: 8559, numerador: null, estratos: null, upm: 3155}
+          - {celda: "hombre · 30-39", p: 11.465789, ic95: null, n: 5844, numerador: null, estratos: null, upm: 2846}
+          - {celda: "mujer · 30-39", p: 28.311292, ic95: null, n: 7200, numerador: null, estratos: null, upm: 3049}
+          - {celda: "hombre · 40-59", p: 5.889757, ic95: null, n: 9930, numerador: null, estratos: null, upm: 3538}
+          - {celda: "mujer · 40-59", p: 10.915277, ic95: null, n: 12145, numerador: null, estratos: null, upm: 3771}
+          - {celda: "hombre · 60+", p: 5.500178, ic95: null, n: 6043, numerador: null, estratos: null, upm: 2718}
+          - {celda: "mujer · 60+", p: 6.426130, ic95: null, n: 7147, numerador: null, estratos: null, upm: 2971}
+    ejes_ausentes: >
+      ENUT 2019 investigado y NO usado — sin tabla de variables ya
+      agregadas, reconstruir "cuidado pasivo" desde ~40 ítems crudos sin
+      precedente validado en este repo se declaró fuera de presupuesto
+      (P0 §3); no es un hueco de instrumento, es un límite de este acto
+    hallazgo: >
+      El locus del cuidado no es el tramo 40+ que la regla nombra
+      ("hijas/nueras"): dentro de cada tramo de edad las mujeres cuidan
+      más que los hombres (consistente con "recae sobre mujeres" en
+      sentido comparativo), pero las mujeres de 18-39 dedican MÁS horas
+      por persona (21.89-28.31h/semana) que las de 40+ (6.43-10.92h) — y
+      son grupo numeroso. Por eso el share agregado de mujeres 40+
+      (22.15%) es MENOR que su peso poblacional (26.57%): el cuidado
+      recae desproporcionadamente sobre mujeres, concentrado en edad
+      reproductiva/crianza, no específicamente en 40+. Esta pieza declara
+      el patrón, no adjudica si refuta, matiza o solo añade textura a
+      R5.2 — decisión de mesa. Detalle en
+      forense/notas/2026-09-02-MAESTRA35-L7-resultados.md.
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    sha256_payload: "25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba"
+    payload_manifiesto_id: enut2024_bd_csv
+
+  - id: dinero.ahorro.horizonte_corto_ejes_enif2024
+    entrada_nueva: true
+    acto: "MAESTRA35-L7 · pieza (d)"
+    fuente_regla: "R1.1 del modelo (dinero.ahorro.volatilidad_horizonte_corto) — canon/modelo-decision-v4_0.md:499. Hito D archivó D específico al dominio agrícola (hitoD-R1_1-veredicto-v1_0.md, 28/jul/2026) — no bloquea esta tasa base nacional"
+    payload: "ENIF 2024 · TMODULO.csv (misma tabla que MAESTRA35-L1) · unidad = PERSONA"
+    universo: "18+ elegidas ∧ P3_13∈{1..7} ∧ P4_10∈{1..5}; n = 9 031 de 13 502"
+    llave_a_los_ejes: "eje formalidad IDÉNTICO por import directo a EJES_P2 de MAESTRA35-L1 (tools/medidor_ahorro_enif24.py) — no transcrito"
+    ponderador: FAC_PER
+    estrato: EST_DIS
+    upm: UPM_DIS
+    ejes:
+      - eje: formalidad
+        cobertura: 0.668937
+        signo_pre_registrado: "desc"
+        veredicto: "CORROBORADA"
+        monotonia: "monotono o sin pares consecutivos limpios en sentidos opuestos"
+        nota: >-
+          desenlace horizonte_corto = P4_10=='1' ("menos de una semana /
+          no tiene ahorros"), lectura literal más conservadora; sensible
+          a P4_10∈{1,2} (<1 mes, convención CNBV), también CORROBORADA
+          (ver hallazgo). Universo restringido A-bis 4, cobertura 68.97%
+          coincide exacto con la ya declarada por L1.
+        celdas:
+          - {celda: "sin seguridad social", p: 0.330639, ic95: [0.312154, 0.349156], n: 4973, numerador: 1725, estratos: 189, upm: 1717}
+          - {celda: "con seguridad social", p: 0.173418, ic95: [0.157108, 0.190722], n: 4058, numerador: 771, estratos: 187, upm: 1806}
+    ejes_ausentes: "ninguno adicional — un solo eje, ya usado y validado por L1"
+    hallazgo: >
+      Sensibilidad predeclarada P4_10∈{1,2} (<1 mes): sin seg. social
+      54.13% [52.16,56.08] n=4973, con seg. social 36.97% [34.80,39.23]
+      n=4058, también CORROBORADA. El compuesto SI-ENTONCES de R1.1
+      también predice ahorro informal: ahorra_solo_informal × formalidad
+      sobre este MISMO universo (P4_10 válido, n=9031) da sin seg. social
+      41.35% [39.40,43.29] con seg. social 31.12% [29.04,33.17], también
+      CORROBORADA — pero esto NO es entrada nueva: MAESTRA35-L1·P2 ya
+      calculó exactamente este cruce sobre un universo ligeramente más
+      amplio (sin exigir P4_10 válido, n=9312, 68.97%): sin seg. social
+      41.37% n=5142, con seg. social 30.93% n=4170, también CORROBORADA
+      — diferencia de tercer decimal, confirma que restringir a P4_10
+      válido no mueve el hallazgo de L1. Se declara como regresión, no
+      se propone como fila separada. Detalle completo en
+      forense/notas/2026-09-02-MAESTRA35-L7-resultados.md.
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: enif_2024_enif_2024_bd_csv
