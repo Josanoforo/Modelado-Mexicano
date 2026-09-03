@@ -40,7 +40,7 @@ UBUNTU con corpus, worktree `/home/pc0/mm-l9-activos-l3`, rama
 `claude/encargo-acto-maestra35-l9`. **`PR #491`**
 (https://github.com/Josanoforo/Modelado-Mexicano/pull/491), abierto y **no
 fusionado** — el merge es de mesa. Sellado en `canon/gobernanza-v1_15.md`
-`ADR-304`.
+`ADR-305`.
 
 Commits: `6412d17` (A.3) · `418a22f` (`P0` censo) · `a67e46b` (`COMMIT-1` spec) ·
 `7033743` (`COMMIT-2` resultados) · `df96044` (merge de `origin/main = 78304f3`) ·
@@ -48,8 +48,8 @@ la cascada de cierre.
 
 Entregado: seis reglas del modelo con dato (`R7.7`, `R7.3`, `R7.6`, `R7.4`,
 `R7.8`, `R1.5`), 84 celdas y contrastes con IC95, cinco entradas
-`PENDIENTE-DE-MESA` al pie de `milpa/tramite-ola5-propuesta-v0.yaml`, `ADR-304`,
-`FP-253`.
+`PENDIENTE-DE-MESA` al pie de `milpa/tramite-ola5-propuesta-v0.yaml`, `ADR-305`,
+`FP-253`. **`ADR` renumerado de `304` a `305`** al fusionar por segunda vez: `PR #492` (`ACTO MAESTRA35-N8 · SELLA-L7`) fusionó primero y se llevó el `304`. `PR #490` (`MAESTRA35-L4`) sigue abierto reclamando `304`/`FP-253`: si fusiona antes, renumera quien fusione segundo.
 
 Lo que el encargo pedía y **no** se entregó, con su razón: la **serie de
 LAPOP** (2021 no trae ninguna de las variables y 2006 no es el mismo

@@ -2021,8 +2021,8 @@ reglas_propuestas:
       cierra el ASIGNADO [0.78,0.22] de civico.denuncia.con_seguro
       (milpa/procedencia.yaml:806-809, sin tocar por este acto) es
       decisión de mesa.
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA # firma a1 (mesa, 2/sep/2026), ACTO MAESTRA35-N8, cargada a milpa/tramite.yaml
+    tier: SELLADA # firma a1 (mesa, 2/sep/2026), ACTO MAESTRA35-N8, cargada a milpa/tramite.yaml
     sha256_payload: "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
     payload_manifiesto_id: envipe2025_csv
 
@@ -2069,8 +2069,8 @@ reglas_propuestas:
       promedian (miden preguntas distintas: tipo de primera unión vs.
       estado actual), se reportan como corroboración cruzada. Detalle
       completo de ambos en forense/notas/2026-09-02-MAESTRA35-L7-resultados.md.
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA # firma b1 (mesa, 2/sep/2026), ACTO MAESTRA35-N8, cargada a milpa/tramite.yaml
+    tier: SELLADA # firma b1 (mesa, 2/sep/2026), ACTO MAESTRA35-N8, cargada a milpa/tramite.yaml
     sha256_payload: "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3"
     payload_manifiesto_id: eder_2017_eder2017_bases_csv
 
@@ -2139,8 +2139,8 @@ reglas_propuestas:
       el patrón, no adjudica si refuta, matiza o solo añade textura a
       R5.2 — decisión de mesa. Detalle en
       forense/notas/2026-09-02-MAESTRA35-L7-resultados.md.
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA # firma c1 (mesa, 2/sep/2026), ACTO MAESTRA35-N8, cargada a milpa/tramite.yaml
+    tier: SELLADA # firma c1 (mesa, 2/sep/2026), ACTO MAESTRA35-N8, cargada a milpa/tramite.yaml
     sha256_payload: "25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba"
     payload_manifiesto_id: enut2024_bd_csv
 
@@ -2185,8 +2185,8 @@ reglas_propuestas:
       válido no mueve el hallazgo de L1. Se declara como regresión, no
       se propone como fila separada. Detalle completo en
       forense/notas/2026-09-02-MAESTRA35-L7-resultados.md.
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA # firma d1 (mesa, 2/sep/2026), ACTO MAESTRA35-N8, cargada a milpa/tramite.yaml
+    tier: SELLADA # firma d1 (mesa, 2/sep/2026), ACTO MAESTRA35-N8, cargada a milpa/tramite.yaml
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: enif_2024_enif_2024_bd_csv
 
