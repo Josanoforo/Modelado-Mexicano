@@ -33,7 +33,7 @@ Sucesores. N11 · SELLA-L13 (nube, con letra de mesa: cargar como campo o como c
 Ejecutado por `ACTO MAESTRA36-L13 · COERCITIVO-SAT-EFIRMA` el 3/sep/2026, entorno
 UBUNTU con corpus montado, worktree `/home/pc0/mm-maestra36-l13`, rama
 `acto/maestra36-l13-coercitivo-sat-efirma`, base `origin/main = ea45e01` (el SHA
-de redacción exacto; `main` no se movió durante el acto). `ADR-311`.
+de redacción exacto; `main` no se movió durante el acto, pero sí antes de fusionar: `PR #503` (`ACTO MAESTRA36-N2`) se llevó el `ADR-311` y el `FP-260`, así que este acto re-fusionó contra `d5832b1` y renumeró). `ADR-312`.
 
 Commits: `ea3bf92` (`0-bis A.3`, este archivo) · `ef144d1` (`COMMIT-1`: spec y
 falsador congelados + `P0` censo `A.4`) · `e9c2e31` (`COMMIT-2`: `P1` resultado +
@@ -41,7 +41,7 @@ falsador congelados + `P0` censo `A.4`) · `e9c2e31` (`COMMIT-2`: `P1` resultado
 
 Resultado: **`AMBIGUA-POR-UNIVERSO`** — `p_inf` `0.3684` (tramo `ACOTADA`),
 `p_sup` `0.9211` (tramo `CONTRARIA`), tramos distintos, el acto **no adjudica**.
-`P0` no paró. Cargas al motor: 0. Recibo `FP-260` para `N11 · SELLA-L13`.
+`P0` no paró. Cargas al motor: 0. Recibo `FP-261` para `N11 · SELLA-L13`.
 
 Desviación declarada frente a la premisa del encargo: el control
 `grep -ac 'FirEleNum' -r milpa/ forense/notas/` dio **5**, no el 0 esperado —
