@@ -566,3 +566,16 @@ pero **0** con texto — el extractor **sí alcanza** `_variables.csv`
 (266 filas) y `_valores.csv` (114 filas) y devuelve texto vacío en las
 380; los `.Catálogo.xlsx` (38) y los PDF/`.docx` (17) producen **0 filas**.
 No se repara aquí (el extractor está en el NO-TOCA).
+
+## Censo diario de la raíz manual (`ACTO MAESTRA37-N6 · CENSO-DIARIO-DE-RAIZ`, 3/sep/2026)
+
+| artefacto | productor | contrato | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `forense/censo-raiz/AAAA-MM-DD.txt` | `tools/adquiere_cron.sh`, paso `2.5`, corrido diariamente por el cron de mesa (`ADR-281`) ANTES de `claude -p`, independiente de que `data/raw` esté montado | salida cruda de `python3 tests/manifiesto.py --escanea descargas_mx`, con el bloque `Total en disco · nuevos · ya registrados · conflicto` como primera línea | `.claude/commands/acto.md` (ARRANQUE, punto 3) y `.claude/commands/encola.md` (§4-bis) — cita obligatoria para todo `AUSENTE-EN-RAIZ`/`NO-ENCONTRADO` o toda petición de descarga a mesa | un `AUSENTE-EN-RAIZ` sin censo del día citado es `NO-VERIFICADO`, no `AUSENTE`; el commit `[CENSO] AAAA-MM-DD` es propio, separado del `[ADQ]`, empujado directo a `main` — si la raíz no resuelve en la máquina (`data/raices.local.yaml`), el log trae una línea `PARO-RAIZ` y el resto del cron sigue |
+| token `DEPOSITADO-SIN-REGISTRO` (`estado_A4A5`) | mesa, a mano, una fila en `data/curacion-registro/cola-adquisicion-registro.tsv` en cuanto deposita | ver `tools/curador_registro/GUIA-CURADOR-REGISTRO.md` | sólo un acto `A` lo mueve a `OBTENIDO`; `via_capa2.py` no lo lee | vocabulario de cola, no de curación automática — sin test propio |
+
+Por qué existe: entre que mesa deposita en `descargas_mx` y un acto `A`
+registra, lo depositado no existía para nadie — ni el censo de `L1` del
+3/sep (225 filas) vio los tabulados ICPSR/PDN, ni `A.8` tenía otra fuente
+que el manifiesto. Medido en el `--escanea` de mesa del 3/sep (373
+archivos): **9 objetos con 21 copias de navegador**.
