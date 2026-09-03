@@ -1,8 +1,9 @@
-ESTADO: LISTO-NUBE
+ESTADO: EN-CURSO
 ENTORNO: NUBE
 ENCOLADO: 2026-09-02 · gesto de encolado, precedente §1c del transfer maestra-34 (firma D4-a, 1/sep/2026)
 BITACORA:
 - 2026-09-02 · LISTO-NUBE · encolado por PR [COLA] encola MAESTRA34-N4/N5. COMPUERTA propia del encargo: MAESTRA34-N3 fusionado en origin/main con forense/prereg-duelo-v2/scoreboard-v1_2-AGREGADO.md que traiga puntos L sobre celdas de los CUATRO dominios activos — verificar por PRODUCTO: `git show origin/main:forense/prereg-duelo-v2/scoreboard-v1_2-AGREGADO.md | grep -c "DIN-M"` > 0 y lo mismo para CIV/FAM/TRA. Si falta cualquiera, cero commits.
+- 2026-09-03 · EN-CURSO · sesión de nube, rama claude/despacha-MAESTRA34-N5
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 
