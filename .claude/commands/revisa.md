@@ -345,8 +345,9 @@ Cuatro comprobaciones:
    conteo de archivos examinados.
 3. **Contigüidad.** Sin huecos.
 4. **Cabeceras de conteo.** El `**N ADR**` de `canon/gobernanza-v1_15.md`
-   línea 2 y el conteo de la línea `L0` de
-   `canon/estado-programa-v1_10.md` tienen que **coincidir entre sí** y
+   línea 2 y el conteo de la línea `L0` de la ÚNICA FUENTE DE ESTADO vigente
+   (`canon/estado-programa-v1_11.md`; `v1_10` retirada del árbol por `T01`,
+   ver `ADR-301`) tienen que **coincidir entre sí** y
    con el máximo re-derivado.
 
 **Peso: `BLOQUEA`** para colisión no renumerada, referencia cruzada

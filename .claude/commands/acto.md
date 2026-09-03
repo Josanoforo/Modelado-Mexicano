@@ -143,7 +143,9 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
 2. **Cabecera.** Entrada nueva en `canon/gobernanza-v1_15.md` §4
    (Registro de decisiones), con el encargo citado (archivado por A.3,
    SHA de redacción) y, si aplica, el bloque **Gate verificado**.
-3. **Recifrado L0.** `canon/estado-programa-v1_10.md`: el conteo de ADR
+3. **Recifrado L0.** La ÚNICA FUENTE DE ESTADO vigente
+   (`canon/estado-programa-v1_11.md`; `v1_10` retirada del árbol por `T01`,
+   ver `ADR-301`): el conteo de ADR
    de la línea `L0` sube (N → N+1), con la anotación nueva insertada
    antes de la anterior — nunca reescribiendo la que ya estaba. Cabecera
    de conteo de `gobernanza` (`**N ADR**`, línea 2) recifrada igual.
