@@ -200,11 +200,49 @@ reglas:
       - {conducta: rechaza_servicio, p: 0.91, clase: ASIGNADO}
       - {conducta: adopta, p: 0.09, clase: ASIGNADO}
     porque: {generador: [G1], mecanismo: "la utilidad predice adopción; la coerción con riesgo fiscal la mata"}
-    tier: MEDIA-FUERTE          # corregido en v0.2.0 · el motor §3.3 dice MEDIA-FUERTE, no FUERTE
+    tier: MEDIA          # firma D2 (mesa, 3/sep/2026, ACTO MAESTRA37-N3): era MEDIA-FUERTE, baja por reserva_tier del campo_administrativo abajo
     alcance: "gobierno digital ÚNICAMENTE (cambio 11 del modelo v2)"
     falsable_si: "Si un servicio coercitivo con riesgo fiscal lograra adopción masiva, la regla se rompe"
     fuente: ["validacion:CoDi", "report:tecnologia"]
     nota_validacion: "Backtest: CoDi = 3.09M cuentas con >=1 transacción en 6 años."
+    campo_administrativo:
+      # Firma D2 (mesa, 3/sep/2026, FP-266+FP-261, ACTO MAESTRA37-N3), sobre
+      # ACTO MAESTRA36-L14 (tres universos) y ACTO MAESTRA36-L13 (primera
+      # medicion). NO sustituye la p de la regla (0.91/0.09 ASIGNADO, arriba):
+      # entra como campo administrativo agregado, precedente firma p1 ADR-299
+      # (tasa nacional como campo, no conducta). El numerador (32 331 680
+      # contribuyentes con primer certificado de e.firma, acumulado 2004-01 a
+      # 2025-12, firelenumcontri) es COTA SUPERIOR del stock vigente: cuenta
+      # primeras altas, no da de baja a quien salio del padron.
+      firma_verbatim: >
+        D2FP266+FP261 - Habíamos acordado en la sesión anterior que la
+        población economicamente activa y en informalidad no están
+        considerados en el universo, así que sí iC.
+      nota_A8: >
+        El "acuerdo de la sesion anterior" que la firma cita no esta en el
+        repo con esas palabras -- grep -rniE 'informal.{0,80}universo'
+        forense/encargos/*L13*.md forense/encargos/*L14*.md
+        canon/gobernanza-v1_15.md forense/firmas-pendientes.tsv -> 0 en los
+        4 archivos (verificado por ACTO MAESTRA37-N3 contra 8f49eab8). Esta
+        firma lo escribe por primera vez; se declara aqui, no se corrige la
+        firma de mesa.
+      letra_de_mesa: "universo C -- padron obligado del SAT"
+      universo: "C -- padron obligado del SAT (Total − Asalariados PF), 35 099 955, corte 2025-12"
+      valor: 0.9211
+      escala: "proporcion administrativa agregada, censo, sin IC, COTA-SUPERIOR"
+      veredicto: CONTRARIA  # tramo del falsador congelado por L13 (ADR-312); deja de ser AMBIGUA-POR-UNIVERSO porque mesa fijo el universo
+      lecturas_no_elegidas:
+        - {letra: A, universo: "poblacional -- ENOE ocupados totales 2025-4T", denominador: 59785854, valor: 0.5408}
+        - {letra: B, universo: "padron amplio del SAT -- Total", denominador: 87773627, valor: 0.3684}
+      adr: [ADR-312, ADR-316]
+      reserva_tier: "credencial acumulada != uso vigente; cota superior del stock, no adopcion medida"
+      fuente: ["firelenumcontri", "portipocontribuyente", "enoe_2025_4t_csv", "data/l13-coercitivo-sat-efirma-v1_0.json", "data/l14-coercitivo-universos-v1_0.json", "forense/notas/2026-09-03-MAESTRA36-L14-P1-P2-tres-universos.md"]
+      lo_que_esta_pieza_no_hace: >
+        No decide si la regla queda REFUTADA-CON-RESERVA en B-bis -- fila
+        nueva a mesa (FP-273), direccion recomienda conservarla con p
+        ASIGNADO, tier MEDIA y el campo a la vista hasta tener adopcion
+        vigente, porque falsable_si habla de adopcion del servicio y el
+        dato es tenencia de credencial.
     sin_dato_universo_examinado:
       # firma c1 (mesa, 2/sep/2026, CORREGIDA sobre su primera redaccion), sobre
       # ACTO MAESTRA35-L6 -- ADR-299. La regla SIGUE SIN DATO y el contador S1
@@ -233,6 +271,14 @@ reglas:
         - {instrumento: "ENIF 2024", adr: ADR-299, examinado: "cuestionario 32 pag./2 534 lineas + FD 398 variables + TMODULO.csv, 13 502 personas 18+", veredicto: EXISTE-NO-SATISFACE}
         - {instrumento: "ENCUCI 2020", adr: ADR-299, examinado: "FD_ENCUCI2020.pdf 4 006 lineas/422 073 caracteres + 5 DBF, 458 campos (54+164+156+50+34), 21 519 personas", veredicto: NO-ENCONTRADO}
         - {instrumento: "serie CoDi/Banxico", adr: ADR-299, examinado: "cuentas_validadas_x_mil_hab_trimestral.xlsx 3 hojas 2022-T1..2026-T1 + HTML de avances", veredicto: "EXISTE-NO-SATISFACE (serie agregada: unidad cuenta, no persona)"}
+      universo_administrativo_ya_examinado:
+        # Gana la linea que FP-261 dejo abierta a su sucesor N11 (que no llego
+        # a lanzarse; este acto la cierra directo). NO es "hueco de mundo" ni
+        # cambia el veredicto NO-ENCONTRADO de arriba: es el universo SAT que
+        # SI se abrio (ADR-310/312/313/314), con su veredicto propio, campo
+        # administrativo (ver campo_administrativo arriba), no conducta.
+        - {instrumento: "SAT, PorTipoContribuyente.xls + FirEleNumcontri.xls", adr: [ADR-312, ADR-313], examinado: "padron activo por tipo de contribuyente, corte 2025-12; e.firma primer certificado, acumulado 2004-01..2025-12", veredicto: "EXISTE-SATISFACE (campo administrativo, no conducta; ver campo_administrativo)"}
+        - {instrumento: "ENOE 2025-4T (puente poblacional)", adr: ADR-316, examinado: "ocupados totales/formales, COE+SDEM, IC95 por diseno con estrato est_d_tri y UPM upm", veredicto: "EXISTE-NO-SATISFACE (lectura A, no elegida por mesa)"}
       defecto_de_universo_de_esas_fuentes: >
         Uno solo: la SITUACION solo se observa donde la CONDUCTA ya ocurrio. En
         ENCIG, la seccion VII solo la contesta quien hizo el tramite (ADR-287
@@ -261,6 +307,13 @@ reglas:
           - {url: "https://www.sat.gob.mx", http_code: 200, curl_exit: 0, cuerpo: "1 477 bytes: shell de una SPA SvelteKit, SIN <title> y SIN texto; todo se renderiza por JavaScript"}
           - {url: "https://www.inegi.org.mx/programas/cngf/", http_code: 200, curl_exit: 0, cuerpo: "321 bytes: stub de redireccion por JavaScript; el programa vive en /programas/cngf/2025/ y su unidad de analisis son INSTITUCIONES, no personas (ficha RNM 1145)"}
           - {url: "https://datos.gob.mx (CKAN)", http_code: 404, curl_exit: 35, cuerpo: "1/sep/2026; NO se reintento -- el encargo ordena no reintentar sin ruta nueva"}
+        enmienda_fechada: >
+          3/sep/2026, ACTO MAESTRA37-N3. SAT: NO-ACCESIBLE desde caja el
+          2/sep/2026 (sondas de arriba); OBTENIDO por descarga de mesa el
+          3/sep/2026 (ADR-310), medido por MAESTRA36-L13/L14 (ver
+          campo_administrativo y universo_administrativo_ya_examinado
+          arriba). CNGF sigue NO-ACCESIBLE, sin cambio. Texto previo no se
+          edita ni se borra.
       universo_no_examinado: >
         No se afirma NADA sobre el. Este veredicto cubre exactamente los siete
         instrumentos de arriba y las tres sondas; fuera de ahi, el acto no
@@ -1016,3 +1069,73 @@ reglas:
     referencia_cruzada: "dinero.ahorro.tiene_ahorros.segmentacion_ejes_enif2024 (L1) -- mismo universo formalidad, sin duplicar celdas"
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: enif_2024_enif_2024_bd_csv
+
+  - id: civico.participacion.concurrencia_presidencial_conversion
+    situacion: PROPUESTA-DE-CARGA  # (verbatim del acumulador) primera carga de civico.participacion.* al motor
+    misma_regla_motor: civico.participacion.contingente
+    hermana_de: civico.participacion.tipo_boleta_federal_2016_2024  # SELLADA-SIN-CARGA (firma e1); NO se toca aqui
+    si:
+      disparador: >
+        El municipio celebra su eleccion de ayuntamiento el mismo dia que una
+        jornada federal PRESIDENCIAL. Una sola via: la via INTERMEDIA no se
+        propone porque beta_int = +0.2864 pp con IC95 wild cluster
+        [-1.2216, +1.7945], que contiene cero.
+    entonces:
+      # Smoke del emisor sobre p0 en los extremos del rango observado
+      # [0.3051, 0.7104] (forense/notas/2026-09-03-MAESTRA36-N12-propuesta.md
+      # §1.1), sin recorte, y sobre la media -- puntos ilustrativos, no
+      # sustituyen la formula de conversion_propuesta abajo: la p real es
+      # funcion de p0(municipio).
+      - {conducta: participa_p0_minimo, p: 0.345267, clase: "MEDIDO·Δ"}      # p0=0.3051 (Baja California 2019->2021, n=5)
+      - {conducta: participa_p0_maximo, p: 0.750567, clase: "MEDIDO·Δ"}      # p0=0.7104 (Veracruz 2017->2021, n=209)
+      - {conducta: participa_p0_media,  p: 0.619867, clase: "MEDIDO·Δ"}      # p0=0.5797 (media de las 40 transiciones)
+    conversion_propuesta:  # letra de mesa D1, FP-255: "A, Tier media"
+      conversion_A_aditiva:
+        formula: "p = clip(p0(municipio) + 0.040167, 0, 1)"
+        delta: 0.040167  # = beta_pres_pp / 100 = 4.016715486813227 / 100
+        escala_de_efecto: diferencia_de_riesgo
+        recorte_activo_en_rango_observado: false  # se activaria solo con p0 > 0.9598
+      p0_de_donde_sale: >
+        Participacion municipal base del propio panel de L8, definida en
+        forense/notas/2026-09-02-MAESTRA35-L8-spec.md §1.2 como
+        100 * votos_totales(m,e) / lista_nominal(m,e) sobre la unidad
+        municipio x eleccion de ayuntamiento. El JSON de L8 no publica la
+        serie municipio a municipio: publica las 40 medias municipales por
+        transicion (por_transicion[].y_de_media / y_a_media, 20 transiciones
+        x 2 patas). El rango declarado sale de esas 40.
+      p0_rango_observado: [0.3051, 0.7104]
+      p0_media: 0.5797
+      p0_mediana: 0.6094
+      p0_n_medias: 40
+    porque: {generador: [G1], mecanismo: "la concurrencia con una jornada federal presidencial eleva el costo de informacion y el incentivo de arrastre de boleta; el efecto se estimo agregado (municipio) y se aplica como diferencia de riesgo individual"}
+    escala: ecologica
+    escala_declarada: >
+      Probabilidad individual derivada de un efecto AGREGADO municipal.
+      beta_pres se estimo sobre agregados (numerador votos totales,
+      denominador lista nominal) y la regla lo aplica como probabilidad de
+      que UN INDIVIDUO participe. Eso es inferencia ecologica: el efecto
+      agregado no identifica el efecto individual salvo bajo homogeneidad
+      dentro del municipio, supuesto que este acto NO verifica y NO asume.
+      Operativamente: la regla reparte los 4 pp uniformemente entre los
+      individuos del municipio; si el efecto real se concentra en un
+      subgrupo, acierta el agregado y yerra el individuo.
+    tier: MEDIA  # letra de mesa D1 (FP-255): "A, Tier media"
+    veredicto_heredado: ACOTADA  # MAESTRA35-L8; solo la via presidencial se sostiene
+    falsable_si: "Si municipios con concurrencia presidencial NO mostraran participacion sistematicamente mayor que sus pares no concurrentes (controlando el mismo panel de transiciones), la regla se rompe"
+    riesgos_declarados:  # verbatim de forense/notas/2026-09-03-MAESTRA36-N12-propuesta.md §4 "Que riesgo"
+      - "Inferencia ecologica: el efecto agregado se reparte uniforme entre individuos; si se concentra en un subgrupo, la regla yerra el individuo aunque acierte el municipio."
+      - "Regimen casi universalmente concurrente: el efecto se estima sobre transiciones de 2016-2024, y 2024 fue concurrente en las 32 entidades. La regla extrapola a escenarios contrafactuales de no-concurrencia que el calendario real casi ya no produce."
+      - "Precision fragil: el IC conservador [+0.049, +7.887] roza cero -- p = 0.0413. Cargar +4.0 como punto es cargar el centro de un intervalo que casi contiene el nulo."
+      - "Heterogeneidad no incorporada: L8 ya midio que el efecto va de +2.60 pp (municipios chicos) a +6.16 pp (grandes). La regla usa un solo numero para los tres estratos."
+      - "Corroboracion externa indiciaria, no verificada: los tres PDF de partida no se pudieron abrir desde este entorno (EGRESS_BLOCKED)."
+    sucesor_declarado: "heterogeneidad por tamano de municipio (caja, sin fecha) -- L8 ya midio +2.598 pp / +6.163 pp por estrato; esta entrada usa un solo numero"
+    estampa_A10: >
+      Describe el corpus del 3/sep/2026 (panel de L8, transiciones 2016-2024).
+      Universo medido: municipio x eleccion de ayuntamiento con jornada
+      presidencial concurrente, 40 medias de transicion. No es la
+      participacion electoral de Mexico: es el efecto de concurrencia sobre
+      la participacion municipal, aplicado por individuo bajo el supuesto de
+      homogeneidad intramunicipal que la regla declara y no verifica.
+    fuente: ["data/l8-resultados-tipo-boleta-v1_0.json", "forense/notas/2026-09-03-MAESTRA36-N12-propuesta.md", "forense/notas/2026-09-03-MAESTRA36-N12-benchmark.md", "forense/notas/2026-09-02-MAESTRA35-L8-spec.md"]
+    firma: "D1 (mesa, 3/sep/2026, ACTO MAESTRA37-N3): «D1 FP255 - A, Tier media.» -- letra A (conversion aditiva), tier MEDIA"
+    adr: [ADR-321]
