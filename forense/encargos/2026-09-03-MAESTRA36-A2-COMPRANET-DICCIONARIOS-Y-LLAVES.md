@@ -32,7 +32,7 @@ P3 · Propuesta a mesa, sin ejecutar. Si P2 = EXISTE-SATISFACE: lista de la seri
 
 PERÍMETRO Y CONCURRENCIA. Toca: data/raw/ (payloads, gitignorado) · data/manifiesto.yaml · data/curacion-registro/{cola-adquisicion-registro.tsv, relaciones.tsv, evidencias.tsv, utilidad-modelo.tsv, aliases-fuentes.tsv, baseline.json} · data/cola-adquisicion-v1_0.tsv (vista) · data/INFRAESTRUCTURA-v1_0.md · forense/notas/2026-09-0X-MAESTRA36-A2-*.md · forense/hallazgos.md · forense/firmas-pendientes.tsv · cascada. NO toca: milpa/**, tests/manifiesto.py, tools/adquiere_cron.sh. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
 
-FP/ADR CANDIDATOS. Candidato ADR 312 y FP-262 (recibo), re-derivados al arrancar (A1, N1 y L12 pueden ir delante).
+FP/ADR CANDIDATOS. Candidato ADR 312 y FP-264 (recibo), re-derivados al arrancar (A1, N1 y L12 pueden ir delante).
 
 CONTADOR. Payloads OBTENIDO +4 (o los que se obtengan, con los fallos declarados) · necesidad EXT-OF-05 con veredicto A.4 por primera vez. Medición de modelo: cero directo, declarado.
 
@@ -58,10 +58,10 @@ Los cinco puntos de diferencia entre v1 y v3 se verificaron **contra el árbol**
 4. **A.8 §(3), rótulo de la fila 63.** Ya está así: la corrección `EXT_OF_07` → contenido `EXT-OF-05` se escribió **en la nota de la fila**, no en `fuente_canonica`. La fila no se renombró.
 5. **`FP-258`.** Se cumplió el fondo de la cita: la fila 63 se editó **línea por línea**, nunca con round-trip de `csv`. La cita explícita a `FP-258` se agrega al cerrar, en la nota y en el ADR.
 
-**Numeración al cierre**, re-derivada contra `origin/main` **después** de fusionar `PR #503` y `PR #504` (`1d4c67d9`): `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `311`, sin duplicados; candidato `ADR-312`. Máximo de `forense/firmas-pendientes.tsv` → `260`; candidatas `FP-261` y `FP-262`. `L12`/`L13` seguían abiertos: si alguno fusionaba primero, **renumera quien fusiona segundo**. **Y ocurrió**: `PR #502` (`ACTO MAESTRA36-L13 · COERCITIVO-SAT-EFIRMA`) fusionó mientras este acto cerraba y se llevó `ADR-312` y `FP-261`, así que la numeración final, re-derivada contra `origin/main = 18fd2bd3`, es **`ADR-313`**, **`FP-262`** (recibo) y **`FP-263`** (esquema).
+**Numeración al cierre**, re-derivada contra `origin/main` **después** de fusionar `PR #503` y `PR #504` (`1d4c67d9`): `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `311`, sin duplicados; candidato `ADR-312`. Máximo de `forense/firmas-pendientes.tsv` → `260`; candidatas `FP-261` y `FP-264`. `L12`/`L13` seguían abiertos: si alguno fusionaba primero, **renumera quien fusiona segundo**. **Y ocurrió**: `PR #502` (`ACTO MAESTRA36-L13 · COERCITIVO-SAT-EFIRMA`) fusionó mientras este acto cerraba y se llevó `ADR-312` y `FP-261`, así que la numeración final, re-derivada contra `origin/main = 18fd2bd3`, es **`ADR-314`**, **`FP-264`** (recibo) y **`FP-265`** (esquema).
 
 ---
 
 ## CONSUMIDO
 
-`ACTO MAESTRA36-A2 · COMPRANET-DICCIONARIOS-Y-LLAVES`, 3/sep/2026, `ADR-313`. `P1`/`P2`/`P3` ejecutados y cerrados; la ENMIENDA de dirección del 3/sep archivada verbatim arriba y verificada punto por punto contra el árbol. Veredicto `A.4` de `EXT-OF-05`: **`EXISTE-NO-SATISFACE`**. Recibo `FP-262`; decisión de esquema `FP-263`. Nota de cierre: `forense/notas/2026-09-03-MAESTRA36-A2-P1-P3-compranet-llaves.md`. **La fusión de este PR es la firma.**
+`ACTO MAESTRA36-A2 · COMPRANET-DICCIONARIOS-Y-LLAVES`, 3/sep/2026, `ADR-314`. `P1`/`P2`/`P3` ejecutados y cerrados; la ENMIENDA de dirección del 3/sep archivada verbatim arriba y verificada punto por punto contra el árbol. Veredicto `A.4` de `EXT-OF-05`: **`EXISTE-NO-SATISFACE`**. Recibo `FP-264`; decisión de esquema `FP-265`. Nota de cierre: `forense/notas/2026-09-03-MAESTRA36-A2-P1-P3-compranet-llaves.md`. **La fusión de este PR es la firma.**
