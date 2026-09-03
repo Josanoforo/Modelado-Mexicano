@@ -179,7 +179,7 @@ Perímetro: se añaden data/curacion-registro/{evidencias.tsv, utilidad-modelo.t
 Ejecutado en UBUNTU, caja propia `/home/pc0/mm-maestra36-a1`, contra el SHA de redacción
 `9af8407`, que era `origin/main` EXACTO al arrancar. `main` avanzó durante el acto (`PR #495`,
 `#496`, `#497`) y se re-fusionó contra `6019bd7` antes de derivar el ADR; el candidato `309` que
-este encargo preasignó quedó tomado por `PR #495` (`MAESTRA36-N1`) y se **renumeró a `310`` —
+este encargo preasignó quedó tomado por `PR #495` (`MAESTRA36-N1`) y se **renumeró a `310`** —
 regla de la casa, renumera quien fusiona segundo. `PR #498` entró después y no toca este perímetro.
 
 Las cuatro piezas se ejecutaron. Desviaciones y decisiones que el ejecutor tomó y declaró, para
