@@ -15,3 +15,28 @@ P2 · Tabla para mesa, una página. Las tres lecturas × (denominador, p, IC/cot
 PERÍMETRO: tools/medidor_l14_coercitivo_universos.py · data/l14-coercitivo-universos-v1_0.json · data/INFRAESTRUCTURA-v1_0.md · milpa/tramite-ola5-propuesta-v0.yaml (append) · forense/notas/…L14-* · forense/hallazgos.md · forense/firmas-pendientes.tsv · cascada. NO toca milpa/tramite.yaml, milpa/procedencia.yaml, data/manifiesto.yaml, data/curacion-registro/**. Frase del perímetro. CONTADOR: S1 sigue en 1, declarado; lo que se mueve es «lecturas de universo medidas para coercitivo: 2 → 3». Sucesor: la letra de mesa (A/B/C) → N13 · SELLA-COERCITIVO con la p de esa lectura.
 
 Línea a hallazgos.md: dirección recomendó sellar coercitivo sobre el padrón del SAT (subpoblación) contra una regla poblacional — A-bis 4 / A.10; mesa lo atrapó.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA36-L14 · COERCITIVO-TRES-UNIVERSOS` el 3/sep/2026,
+entorno UBUNTU, worktree `/home/pc0/mm-l14-coercitivo`, con la skill `/acto`
+(`ADR-237`). `COMMIT-1` `da68109` (spec congelada), `COMMIT-2` `7f6c676`
+(las tres lecturas y la tabla), merge de `origin/main` `57f9575`, cascada
+`ADR-314`. **PR: ver el PR abierto contra `main` con el rótulo del acto.**
+
+Desviaciones de la premisa del encargo, declaradas donde no se pueden perder
+(`ADR-314`, notas `P0` y `P1`):
+
+1. **`A.8`** declara `grep -aci '^- id: enoe' data/manifiesto.yaml = 416`; el
+   árbol de `18fd2bd` da **91** (1 102 entradas `- id:` en total). No es `PARO`:
+   el payload se identifica por `sha256`, no por el conteo.
+2. **El numerador no es «e.firma vigente al corte».** `firelenumcontri` cuenta
+   *primeras* altas acumuladas desde `2004-01` y no da de baja al que caducó.
+   Se midió con la premisa corregida y las cinco `p` se declaran cotas
+   **superiores**.
+3. **«`EST_D`»** no existe en el diccionario ENOE del corpus; con ponderador
+   trimestral el estrato es `est_d_tri`. Nomenclatura, no discordancia de código:
+   las ocho claves de la spec concuerdan `8/8` con el catálogo del `.zip`.
+4. **El criterio del trimestre no desempata**: los dos candidatos existen con
+   `COE` y `SDEM`, así que `P0` declaró un criterio propio antes de medir
+   (`2025-4T` contiene el corte `2025-12` del numerador).
