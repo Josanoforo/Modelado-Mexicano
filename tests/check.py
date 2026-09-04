@@ -1551,6 +1551,29 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # autocaptura, no un pendiente real sin fila.
     "forense/encargos/2026-08-21-REPARA-T22.md",
     "forense/notas/2026-08-21-repara-t22-cierre.md",  # ídem, cita verbatim las mismas fuentes al documentarlas -- mismo autocaptura
+    # Sumados en ACTO MAESTRA37-N8 . CONSOLIDA-DECISIONES, 4/sep/2026, tras
+    # verificar que ambas RANURA/PENDIENTE ya estaban resueltas antes de este
+    # acto (no una decisión nueva sin registrar, y no territorio de este acto
+    # -- es la auditoria D9 la que habria debido cerrarlas con fila, y D9 esta
+    # explicitamente fuera del perimetro de N8):
+    # `2026-08-28-MAESTRA32-E3-EXTRACTOR-DTA.md` -- su propia cabecera (linea
+    # 3, añadida por MAESTRA32-E5 al archivar, A.3) dice "RANURA M-EXTRACTOR:
+    # FIRMADA 'a y b' (mesa, 30/ago/2026)"; la resolucion vive en `FP-175`
+    # (estado FIRMADA, `forense/firmas-pendientes.tsv`) y en el propio E5. El
+    # cuerpo verbatim del encargo original conserva el texto "[FIRMA M --
+    # VACIA]" porque A.3 prohibe editarlo -- ese texto, no una ranura sin
+    # llenar, es lo que dispara el marcador.
+    "forense/encargos/2026-08-28-MAESTRA32-E3-EXTRACTOR-DTA.md",
+    # `2026-08-30-MAESTRA32-E5-PROPAGA-FIRMAS-Y-COLA.md` -- dispara por
+    # mencion de sus propias RANURAS (R-168/R-AGREGA/R-169/R-ENTERADOS),
+    # opcionales y fail-closed por diseño (linea 3: "la que llegue VACIA se
+    # deja ABIERTA en el tablero, declarada, sin inventar", precedente
+    # ADR-220). Las cuatro llegaron vacias y se dejaron vacias a proposito
+    # (linea 113, seccion CONSUMIDO): `FP-168`/`FP-169`/`FP-171`/`FP-173`/
+    # `FP-174`/`FP-178` ya existen como filas de `firmas-pendientes.tsv`, sin
+    # cambio. `FP-175`/`FP-170`/`FP-172` (las tres firmas no opcionales) ya
+    # FIRMADA. Ninguna decision de mesa queda sin fila.
+    "forense/encargos/2026-08-30-MAESTRA32-E5-PROPAGA-FIRMAS-Y-COLA.md",
     # Sumados en ACTO COMMIT-DOC-COERCION, 24/ago/2026 -- disparan
     # `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) por la cabecera nueva
     # que el propio acto rotula, verbatim, en el documento que commitea:

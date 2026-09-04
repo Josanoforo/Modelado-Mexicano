@@ -105,14 +105,14 @@ nuevos (todos limpios), lectura de contenido real (listados de archivo,
 grep de "Mexico" en binario, lectura de codebooks) — no sólo firma de
 bytes del primer KB. Doble descarga con hash SHA-256 coincidente,
 verificada en una muestra representativa (1 por fuente: CSES/Wayback,
-CSES/CIDE, Pew, Reuters DNR) — no las 34, dado que son archivos estáticos
+CSES/CIDE, Pew, Reuters DNR) — no las 25, dado que son archivos estáticos
 de origen institucional (Wayback es inmutable por diseño; CIDE/Pew son
 bitstreams estáticos) y la verificación de contenido ya hecha es más
 rigurosa que un hash a ciegas.
 
 ## Registro
 
-- **Manifiesto**: +34 entradas (6 CSES + 7 Pew + 11 Reuters DNR + 1
+- **Manifiesto**: 1256 → 1281 (+25 entradas: 6 CSES + 7 Pew + 11 Reuters DNR + 1
   ENJUVE, resto ya contado). `url_origen` corregido a mano por archivo
   donde `--escanea --url` sólo pudo asignar uno por invocación (mismo
   patrón que Lote 1).
@@ -130,6 +130,6 @@ rigurosa que un hash a ciegas.
 
 Fuentes en cola resueltas de `PENDIENTE` a `OBTENIDO`/`OBTENIDO-PARCIAL`:
 2 de 3 (CSES, Pew) + 1 mejorado (Reuters DNR, agregados sin microdato).
-Payloads: +34. La cuenta de "12 candidatas sondeadas" del acto no cambia
+Payloads: +25 (total del acto completo, dos rondas: 1233 -> 1281, +48). La cuenta de "12 candidatas sondeadas" del acto no cambia
 — esto es profundización sobre candidatas ya sondeadas, no candidatas
 nuevas.
