@@ -144,7 +144,7 @@ resto de columnas de esas 4 filas) que habría zanjado la duda. Es, como
 máximo, un posible falso negativo de 4 filas sobre 137 — no invalida la
 conclusión general de "0 enlaces" para el resto, pero el razonamiento
 específico para estas 4 filas queda documentado aquí como abierto, no como
-cerrado. Ver FP-286.
+cerrado. Ver FP-288.
 
 ## Confirmación independiente: el PARO de Frente D en PR #522 sí era falso positivo
 
@@ -162,6 +162,6 @@ El plan se cumplió con alta fidelidad en sus cinco frentes. Cero
 regresiones materiales (`tests/check.py --baseline` VERDE en todo el
 historial). Las únicas dos desviaciones reales — ausencia de tests
 automatizados para Frente A/B, y la reserva de juicio sobre las 4 filas
-ENFIH de Frente D — quedan registradas como FP-285 y FP-286 en
+ENFIH de Frente D — quedan registradas como FP-287 y FP-288 en
 `forense/firmas-pendientes.tsv` para decisión de mesa; ninguna de las dos
 bloquea lo ya fusionado.
