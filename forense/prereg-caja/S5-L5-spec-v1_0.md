@@ -41,17 +41,17 @@ Clasificada `(a) REFORMULABLE` en `forense/notas/2026-09-04-MAESTRA38-N5-diseno-
 
 Las dos corridas están `PENDIENTE-DE-MESA` (`FP-298`, `ABIERTA`) — ningún sello de canon movió la línea 558. `L9 §4` es explícito: *"mide **dos de los cuatro** antecedentes de la regla — «red previa» y «falla estatal palpable» **no están en el instrumento**"* (verbatim, `resultados.md:174-175`).
 
-**Lo que esta pieza corrige, con comando a la vista (A.6):** la afirmación de `L9` de que red previa y falla estatal "no están en el instrumento" fue verdadera **contra el universo de búsqueda que `L9` examinó el 2/sep** (LAPOP 2019/2023 + ENCUCI 2020, sin `busca_reactivos.py`). El censo de `N5` (3-4/sep, contra `data/inventario-reactivos-descargas-mx-v1_1.tsv`, superset indexado el 3/sep) **sí encuentra** los tres reactivos: `AOJ12` (falla estatal, olas 2004/2006/2023) y `CP6`/`CP9`/`E8` (red previa, olas 2004/2006). No es que `L9` se haya equivocado — es que el inventario que los trae **no existía todavía** cuando `L9` corrió (`data/inventario-reactivos-descargas-mx-v1_1.tsv` nace el 3/sep, `ACTO MAESTRA37-A1 P4`, un día después de `L9`). Cobertura retroactiva declarada por A.8(3): el hueco de `L9` no prueba ausencia, prueba que su búsqueda fue anterior a la tabla que sí los tiene.
+**Lo que esta pieza corrige, con comando a la vista (A.6):** la afirmación de `L9` de que red previa y falla estatal "no están en el instrumento" fue verdadera **contra el universo de búsqueda que `L9` examinó el 2/sep** (LAPOP 2019/2023 + ENCUCI 2020, sin `busca_reactivos.py`). El censo de `N5` (3-4/sep, contra `data/inventario-reactivos-descargas-mx-v1_1.tsv`, superset indexado el 3/sep) **sí encuentra** los tres reactivos: `AOJ12` (falla estatal, olas 2004/2006/2023) y `CP6`/`CP9`/`LAPOP-E8` (red previa, olas 2004/2006). No es que `L9` se haya equivocado — es que el inventario que los trae **no existía todavía** cuando `L9` corrió (`data/inventario-reactivos-descargas-mx-v1_1.tsv` nace el 3/sep, `ACTO MAESTRA37-A1 P4`, un día después de `L9`). Cobertura retroactiva declarada por A.8(3): el hueco de `L9` no prueba ausencia, prueba que su búsqueda fue anterior a la tabla que sí los tiene.
 
 **Consecuencia:** esta pieza no repite `C2` (agravio-en-urbano, ya `CORROBORADA` dos veces) ni vuelve a intentar `C1` con el mismo diseño de dos factores que ya cayó por guardia de numerador. Pre-registra el contraste **de cuatro factores** que `L9`/`L11` declararon no poder construir — es la pieza que **completa**, no que repite, el par de corridas ya hechas.
 
 ### 0.4 · Corrección de la caracterización de `LAPOP-E8`, verbatim contra el inventario
 
-`N5 §2.8` agrupa `CP6`/`CP9`/`LAPOP-E8` bajo "asistencia a reuniones de organización religiosa/profesional/comunitaria" (asistencia propia, tres reactivos de la misma familia `CP`). El texto verbatim de `E8` en el inventario (2004 y 2006, únicas olas donde existe) es distinto en clase:
+`N5 §2.8` agrupa `CP6`/`CP9`/`LAPOP-E8` bajo "asistencia a reuniones de organización religiosa/profesional/comunitaria" (asistencia propia, tres reactivos de la misma familia `CP`). El texto verbatim de `LAPOP-E8` en el inventario (2004 y 2006, únicas olas donde existe) es distinto en clase:
 
 > *«¿Con qué firmeza aprobaría o desaprobaría que las personas participen en una organización o grupo para tratar de resolver los problemas de las comunidades»* (2004) / *«Que las personas participen en una organización o grupo para tratar de resolver los problemas de las comunidades»* (2006)
 
-Es un ítem de **aprobación normativa de que otros participen** (batería `E` de tolerancia/apoyo a la acción colectiva de LAPOP), no de **asistencia propia** — que es lo que `CP6`("¿Asiste...?") y `CP9`("¿Asiste...?") sí preguntan, en primera persona, verbatim. Meter `E8` al mismo indicador que `CP6`/`CP9` mezclaría actitud con conducta. **Esta pieza corrige la agrupación**: `CP6`/`CP9` son el operacionalizador de "red previa" (§3); `E8` se mide aparte, como eje secundario de disposición normativa, y no entra al indicador principal ni a ninguna celda del falsador de §4.
+Es un ítem de **aprobación normativa de que otros participen** (batería `E` de tolerancia/apoyo a la acción colectiva de LAPOP), no de **asistencia propia** — que es lo que `CP6`("¿Asiste...?") y `CP9`("¿Asiste...?") sí preguntan, en primera persona, verbatim. Meter `LAPOP-E8` al mismo indicador que `CP6`/`CP9` mezclaría actitud con conducta. **Esta pieza corrige la agrupación**: `CP6`/`CP9` son el operacionalizador de "red previa" (§3); `LAPOP-E8` se mide aparte, como eje secundario de disposición normativa, y no entra al indicador principal ni a ninguna celda del falsador de §4.
 
 ---
 
@@ -61,9 +61,9 @@ Es un ítem de **aprobación normativa de que otros participen** (batería `E` d
 
 | ola | payload | agravio | falla estatal | red previa | entorno | protesta |
 |---|---|---|---|---|---|---|
-| **2004** | `1658622845Mexico 2004 Export Version.sav` / `642348348mexico 2004 export version.dta` | `vic1` | `aoj12` | `cp6`, `cp9` (`e8` aparte, §0.4) | `tamano` | `prot1` **solo** (sin `prot2`) |
-| **2006** | `1008973606Mexico_LAPOP_final 2006 data set 092906.sav` / `518939279…dta` | `VIC1` | `AOJ12` | `CP6`, `CP9` (`E8` aparte) | `TAMANO`, `UR` | `PROT1` **y** `PROT2` |
-| **2019** | `Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta` | `vic1ext`, `vicbar4a` | `aoj12` | `cp6` **solo** — `cp9`/`e8` **ausentes**, verificado (0 filas en el inventario) | `tamano`, `ur` | `prot3` |
+| **2004** | `1658622845Mexico 2004 Export Version.sav` / `642348348mexico 2004 export version.dta` | `vic1` | `aoj12` | `cp6`, `cp9` (`lapop-e8` aparte, §0.4) | `tamano` | `prot1` **solo** (sin `prot2`) |
+| **2006** | `1008973606Mexico_LAPOP_final 2006 data set 092906.sav` / `518939279…dta` | `VIC1` | `AOJ12` | `CP6`, `CP9` (`LAPOP-E8` aparte) | `TAMANO`, `UR` | `PROT1` **y** `PROT2` |
+| **2019** | `Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta` | `vic1ext`, `vicbar4a` | `aoj12` | `cp6` **solo** — `cp9`/`lapop-e8` **ausentes**, verificado (0 filas en el inventario) | `tamano`, `ur` | `prot3` |
 | 2021 | `MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta` | `vic1ext` | ausente | ausente | ausente | ausente — **excluida del falsador** |
 | 2023 | `MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta`/`.sav` | `vic1ext` | `aoj12` | ausente | ausente | ausente — **excluida del falsador** |
 
@@ -116,7 +116,7 @@ Es un ítem de **aprobación normativa de que otros participen** (batería `E` d
 
 **`FALLA_ESTATAL`** = `AOJ12` dicotomizada BAJA/ALTA confianza en que el sistema de justicia castigaría al culpable. **Corte exacto pendiente de codebook** (§6) — el inventario no trae el mapa de valores. Se pre-registra la regla conceptual: la mitad inferior de la escala de confianza = `BAJA` (falla estatal palpable); la mitad superior = `ALTA`. Caja declara el corte real usado en cuanto abra el codebook, antes de calcular ninguna celda.
 
-**`RED_PREVIA`** = 1 si `cp6`/`CP6` **o** `cp9`/`CP9` indican asistencia con cualquier frecuencia distinta de "nunca" (regla conceptual, corte exacto también pendiente de codebook — mismo criterio que `FALLA_ESTATAL`). `2019` sólo tiene `cp6`; `RED_PREVIA` en esa ola se construye **solo** con `cp6`, declarado como cobertura parcial. `E8` (§0.4) se reporta aparte, nunca sumado a este indicador.
+**`RED_PREVIA`** = 1 si `cp6`/`CP6` **o** `cp9`/`CP9` indican asistencia con cualquier frecuencia distinta de "nunca" (regla conceptual, corte exacto también pendiente de codebook — mismo criterio que `FALLA_ESTATAL`). `2019` sólo tiene `cp6`; `RED_PREVIA` en esa ola se construye **solo** con `cp6`, declarado como cobertura parcial. `LAPOP-E8` (§0.4) se reporta aparte, nunca sumado a este indicador.
 
 **`URBANO`** = `TAMANO` dicotomizada (categoría(s) de ciudad/capital = urbano; resto = rural) — corte exacto pendiente de codebook, misma regla que los dos anteriores. Donde exista `ur`/`UR` binaria ya provista por LAPOP (2006, 2019), se reporta **en paralelo** como verificación cruzada de la dicotomización de `TAMANO`, sin sustituirla — el encargo pide `TAMANO` como estrato, no `ur`.
 
