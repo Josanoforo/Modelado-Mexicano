@@ -24,7 +24,7 @@ Ninguno de los 19 es nuevo frente a `tests/baseline.json` — todos
 estaban absorbidos ya antes de esta restauración (verificado corriendo
 la misma suite antes y después de cada commit de esta pieza; el único
 FAIL nuevo que apareció en el camino, `T15` por la cita "333 ADR" que
-quedó desactualizada tras `ADR-334`, se corrigió en el mismo commit de
+quedó desactualizada tras `ADR-335` (renumerado desde el candidato original `ADR-334` al fusionar `origin/main`/`PR #529`, que ya traía `ADR-334` para `MAESTRA38-N2`), se corrigió en el mismo commit de
 cascada y no llegó a quedar absorbido).
 
 Ver `FP-293` en `forense/firmas-pendientes.tsv`.

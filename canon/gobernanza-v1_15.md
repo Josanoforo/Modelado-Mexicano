@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **334 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **335 ADR**
 
 > | | |
 > |---|---|
@@ -5723,7 +5723,25 @@ Universo derivado al arrancar contra el árbol (no heredado del A.8 pre-N8 del e
 
 **Nota de fusión (4/sep/2026).** La rama `claude/auditoria-encargos-maestra37-p8k51b` ejecutó este mismo encargo de forma independiente (candidato propio `ADR-330`→renumerado a `ADR-331`, commit `c8e5463`, `FP-288`/`FP-289`), sin saber que `PR #526` ya lo había fusionado a `main`. Al fusionar, se descarta esa ejecución duplicada (ver nota de fusión en el propio encargo archivado) y se conserva ésta, la de `PR #526`, como único cierre de `MAESTRA37-A2`.
 
-**ADR-334 · restauración post-`PR #527` (`FP-291`/`FP-292`), dedup CSES (P2) y resolución de los 46 `## INDETERMINADO` de `FP-290`** *(4/sep/2026, restauración a perímetro estricto)* — **repara tres defectos de registro heredados de actos previos, sin reabrir trabajo sustantivo.**
+---
+
+**ADR-334 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `333`, contiguo, sin huecos; candidato `334` -- el encargo mismo citaba `ADR-335`/`FP-295`, prosa heredada de contexto ajeno a este árbol (ninguno de los dos existe en `canon/` ni `forense/hallazgos.md` al arrancar este acto); D-13 exige re-derivar por el comando de la casa, nunca heredar de prosa, así que este acto toma `334` y declara la discrepancia en vez de forzar `335`) · `ACTO MAESTRA38-N2 · TESTS-FRENTE-A-B`** *(4/sep/2026)* — **cierra `FP-287` (Frente A/B de MAESTRA37-INFRA-1 sin test automatizado, solo verificación manual) con dos archivos de test nuevos sobre el escritor canónico de cola y la escritura segura del manifiesto.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-04-MAESTRA38-N2-TESTS-FRENTE-A-B.md`, SHA de redacción `68ce2a8d` (merge `PR #527`).
+
+**Gate verificado.** El encargo no trae línea `GATED a …` / `COMPUERTA: …` — no compuertado, se continuó sin verificación de gate.
+
+**Qué se ejecutó.** Confirmado el hueco (`tests/` en `68ce2a8d` solo tiene `test_manifiesto_alcance.py` para el manifiesto, nada para el writer de cola; Frente C sí tiene `tools/curador_registro/tests/test_alta_relacion.py`). Dos commits: (1) `forense/notas/2026-09-04-MAESTRA38-N2-lista-tests.md`, la lista de tests con el defecto real que fija cada uno; (2) `tests/test_cola_writer.py` (5 tests: `upsert_fila` no corrompe comillas sueltas -- `FP-258`; reemplaza in-place sin tocar otras filas; la vista es función pura del registro -- defecto histórico "arbitra.py escribía la vista"; `registra_cola_adquisicion.py` exige `--confirmo-migracion-legacy` -- defecto "migrador invertido"; AST de `tools/arbitra.py` sin ningún `open(COLA, 'w')` directo) y `tests/test_manifiesto_seguro.py` (4 tests: `--registra` no sobreescribe id existente; no duplica por sha256 -- caso ENCIG del 30/jul; `_escribir_atomico` no corrompe el archivo si `_validar_manifiesto_completo` falla; `_con_lock_manifiesto` serializa dos `cmd_registra` reales corriendo en paralelo por hilos -- defecto "dos escritores el 3/sep" y su precedente `ACTO R`/`R″` del 12/ago). Los 9 tests corren sobre fixtures `tempfile`; ninguno toca `data/` real. `PR #77` (payload que se queda en el worktree y no llega al corpus compartido) queda declarado fuera de alcance: no es una función pura ejercitable con fixtures, y el ARRANQUE de `/acto` (punto 3) sigue siendo la mitigación operativa vigente.
+
+**Qué NO decide.** No corre `--escanea`/`--registra`/`--promueve` contra dato real, no toca `data/manifiesto.yaml` ni `data/cola-adquisicion-v1_0.tsv`, no adjudica `FP-288` (las 4 filas ENFIH de `relaciones.tsv`, ajeno a este acto).
+
+**Verificación.** `python3 tests/test_cola_writer.py` y `python3 tests/test_manifiesto_seguro.py`: 9/9 OK. `python3 tests/check.py --baseline`: LÍNEA BASE VERDE (19 FAIL · 171 WARN, sin entradas nuevas frente a `tests/baseline.json`), idéntico antes y después de los dos archivos de test (ninguno participa en `tests/check.py`).
+
+**Deuda que cierra.** `FP-287` → **EJECUTADA**. Sin FP nuevo -- el `FP-295` que citaba el encargo tampoco existe en `forense/hallazgos.md`/`canon/` al arrancar este acto (máximo real hallado: `FP-288`); mismo criterio que con `ADR-335`, D-13 exige re-derivar del árbol, nunca heredar de prosa. Este acto no abre ningún hallazgo nuevo que necesite recibo.
+
+---
+
+**ADR-335 (candidato original `ADR-334`; renumerado tras fusionar `origin/main` -- `PR #529` ya traía fusionado `ADR-334`/`MAESTRA38-N2 · TESTS-FRENTE-A-B` con candidato propio idéntico, ambas ramas derivaron `334` de forma independiente sin conocerse; por la regla de la casa "renumera quien fusiona segundo", esta rama, la que fusiona después, cede `334` y toma `335`, contiguo tras el máximo real del árbol ya fusionado) · restauración post-`PR #527` (`FP-291`/`FP-292`), dedup CSES (P2) y resolución de los 46 `## INDETERMINADO` de `FP-290`** *(4/sep/2026, restauración a perímetro estricto)* — **repara tres defectos de registro heredados de actos previos, sin reabrir trabajo sustantivo.**
 
 **Qué se ejecutó.** (1) `FP-291`/`FP-292`, declaradas por `forense/encargos/2026-09-03-MAESTRA38-A1-SONDA-Y-DESCARGA-UNIVERSO-1.md` desde el 3/sep pero ausentes de `forense/firmas-pendientes.tsv` — confirmado contra ambos padres del merge de `PR #527` (`68ce2a8`) que nunca existieron, no que el merge las descartara — restauradas con el contenido que el propio encargo fija, enmienda in situ en el encargo (0 líneas borradas). (2) Dedup de la fila `CSES` duplicada en `data/curacion-registro/cola-adquisicion-registro.tsv` (una `OBTENIDO`, una `PENDIENTE` que la sonda lateral del mismo acto había superado sin retirar): la `PENDIENTE` pasa a `estado_A4A5=SUPERADA-POR` con nota, vista regenerada con el writer oficial (`tools/vista_cola_adquisicion.py`, invocado sin editar). (3) Los 46 `## INDETERMINADO` de `FP-290` (`ACTO MAESTRA37-N9`) resueltos por mesa con dos reglas mecánicas — (a) heredar de hermano de rótulo compartido con desenlace ya sellado, 0 casos; (b) `## CERRADO-POR-HISTORIA` por append, 46 casos — tabla en `forense/notas/2026-09-03-MAESTRA37-N9-auditoria-encargos.md`. `FP-290` → `EJECUTADA`; `FP-289` → `ENTERADA`. (4) `.claude/commands/tramite.md`: receta de conteo de `ABIERTA` corregida de igualdad exacta a prefijo (`$6 ~ /^ABIERTA/`, subcontaba 2 de 6). (5) `.claude/commands/acto.md` punto 3: enlazar `data/raw`/`data/raices.local.yaml` desde el clon padre ANTES de evaluar la compuerta (defecto de `PR #522`). (6) `tests/check.py --baseline` corrido en línea base: **19 FAIL** absorbidos contra `tests/baseline.json` (sin cambio frente al estado previo a esta restauración), listados en `forense/notas/2026-09-04-baseline-fail-absorbidos.md`; `FP-293` abierta para que mesa decida cuáles se pagan.
 
@@ -5731,4 +5749,4 @@ Universo derivado al arrancar contra el árbol (no heredado del A.8 pre-N8 del e
 
 **Deuda que abre.** `FP-293` (FAIL absorbidos, mesa decide cuáles se pagan). Recibo: `FP-294`.
 
-**Numeración.** Candidato re-derivado por el comando de la casa contra este árbol: máximo `333` (`ADR-333`/`MAESTRA37-N9`), contiguo → `334`. Sin colisión conocida al momento de escribir esta entrada.
+**Numeración.** Candidato original derivado por el comando de la casa contra el árbol de esta rama antes de fusionar: máximo `333` (`ADR-333`/`MAESTRA37-N9`), contiguo → `334`. Al fusionar `origin/main` (`PR #529`, commit `2f70c0f`), ese `334` ya estaba tomado por `ACTO MAESTRA38-N2 · TESTS-FRENTE-A-B` (fusionado primero). Por la regla de la casa "renumera quien fusiona segundo", este acto cede `334` y se renumera a `335`, contiguo tras el máximo real del árbol ya fusionado (`ADR-334`).
