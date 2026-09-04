@@ -24353,3 +24353,434 @@
   sha256: efcb4cb1d782d718a49b4ea5c2d995aecac92d950884305e88a9819c2fa422f8
   tamano_bytes: 74659556
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: cide_cses2015_estatal_preelectoral
+  usado_para: 'PENDIENTE-DE-MESA resuelto por sonda lateral (workflow de agentes, 3/sep/2026):
+    cses.org exige cuenta, pero Wayback Machine sirve las 3 Full Release originales (raw endpoint
+    id_) y CIDE (datos.cide.edu) sirve el modulo 2015 Mexico en .sav, ambos sin cuenta. Mexico
+    confirmado presente (2003 n=1991, 2006, 2009, 2012 n=2400) por lectura de codebook/contenido
+    real.'
+  url_origen: http://datos.cide.edu/bitstream/handle/10089/17405/BD.sav
+  url_origen_procedencia: 'CIDE (datos.cide.edu), Encuesta Preelectoral Estatal CSES 2015, .sav via DSpace bitstream sin cuenta -- URL corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/CSES/cide_cses2015_estatal_preelectoral.sav
+  raiz: descargas_mx
+  sha256: 7cf0e9e9262f9797e6e39d8485e98cd73d49a276859cc57fa21e3c82a81fbd9b
+  tamano_bytes: 2824566
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: cide_cses2015_nacional_poselectoral
+  usado_para: 'PENDIENTE-DE-MESA resuelto por sonda lateral (workflow de agentes, 3/sep/2026):
+    cses.org exige cuenta, pero Wayback Machine sirve las 3 Full Release originales (raw endpoint
+    id_) y CIDE (datos.cide.edu) sirve el modulo 2015 Mexico en .sav, ambos sin cuenta. Mexico
+    confirmado presente (2003 n=1991, 2006, 2009, 2012 n=2400) por lectura de codebook/contenido
+    real.'
+  url_origen: http://datos.cide.edu/bitstream/handle/10089/17406/BD.sav
+  url_origen_procedencia: 'CIDE (datos.cide.edu), Encuesta Poselectoral Nacional CSES 2015, .sav via DSpace bitstream sin cuenta -- URL corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/CSES/cide_cses2015_nacional_poselectoral.sav
+  raiz: descargas_mx
+  sha256: 1ef01a17fe6ca10b73db9e988ac4dacac766a6b0759af43f1fd690d3f60d4d80
+  tamano_bytes: 1864581
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: cide_cses2015_nacional_preelectoral
+  usado_para: 'PENDIENTE-DE-MESA resuelto por sonda lateral (workflow de agentes, 3/sep/2026):
+    cses.org exige cuenta, pero Wayback Machine sirve las 3 Full Release originales (raw endpoint
+    id_) y CIDE (datos.cide.edu) sirve el modulo 2015 Mexico en .sav, ambos sin cuenta. Mexico
+    confirmado presente (2003 n=1991, 2006, 2009, 2012 n=2400) por lectura de codebook/contenido
+    real.'
+  url_origen: http://datos.cide.edu/bitstream/handle/10089/17403/BD.sav
+  url_origen_procedencia: 'CIDE (datos.cide.edu), Encuesta Preelectoral Nacional CSES 2015, .sav via DSpace bitstream sin cuenta -- URL corregida a mano tras --escanea. NOTA: byte-idéntico a cide_cses2015_estatal_poselectoral (handle 10089/17404) -- error de etiquetado del propio repositorio CIDE, declarado, no registrado dos veces. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/CSES/cide_cses2015_nacional_preelectoral.sav
+  raiz: descargas_mx
+  sha256: 85432d32266ac68f887bdf87fdd18f4673c3583b420ff518e42805079fdaef55
+  tamano_bytes: 2912016
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: cses2_module2_full
+  usado_para: 'PENDIENTE-DE-MESA resuelto por sonda lateral (workflow de agentes, 3/sep/2026):
+    cses.org exige cuenta, pero Wayback Machine sirve las 3 Full Release originales (raw endpoint
+    id_) y CIDE (datos.cide.edu) sirve el modulo 2015 Mexico en .sav, ambos sin cuenta. Mexico
+    confirmado presente (2003 n=1991, 2006, 2009, 2012 n=2400) por lectura de codebook/contenido
+    real.'
+  url_origen: https://web.archive.org/web/20150908015039id_/http://www.cses.org/datacenter/module2/data/cses2.zip
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/CSES/cses2_module2_full.zip
+  raiz: descargas_mx
+  sha256: 209867a978612807b3b3ed9146c139cd6fdb3998bfde443aaa19ca62caaadaab
+  tamano_bytes: 15811776
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: cses3_module3_full
+  usado_para: 'PENDIENTE-DE-MESA resuelto por sonda lateral (workflow de agentes, 3/sep/2026):
+    cses.org exige cuenta, pero Wayback Machine sirve las 3 Full Release originales (raw endpoint
+    id_) y CIDE (datos.cide.edu) sirve el modulo 2015 Mexico en .sav, ambos sin cuenta. Mexico
+    confirmado presente (2003 n=1991, 2006, 2009, 2012 n=2400) por lectura de codebook/contenido
+    real.'
+  url_origen: https://web.archive.org/web/20150907195322id_/http://www.cses.org/datacenter/module3/data/cses3.zip
+  url_origen_procedencia: 'Wayback raw snapshot ("id_" suffix) del zip original de cses.org/datacenter/module3/, muerto en el dominio vivo -- CIDE/URL corregida a mano tras --escanea (asignó la URL del módulo 2 a los 6 archivos del grupo). MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/CSES/cses3_module3_full.zip
+  raiz: descargas_mx
+  sha256: 986ef87325ca56e2505ba92b0f68ed2dec91591b6cd9b5e4f66039bbba9ea9b0
+  tamano_bytes: 7799298
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: cses4_module4_full
+  usado_para: 'PENDIENTE-DE-MESA resuelto por sonda lateral (workflow de agentes, 3/sep/2026):
+    cses.org exige cuenta, pero Wayback Machine sirve las 3 Full Release originales (raw endpoint
+    id_) y CIDE (datos.cide.edu) sirve el modulo 2015 Mexico en .sav, ambos sin cuenta. Mexico
+    confirmado presente (2003 n=1991, 2006, 2009, 2012 n=2400) por lectura de codebook/contenido
+    real.'
+  url_origen: https://web.archive.org/web/20150908014638id_/http://www.cses.org/datacenter/module4/data/cses4.zip
+  url_origen_procedencia: 'Wayback raw snapshot del zip original de cses.org/datacenter/module4/, muerto en el dominio vivo -- URL corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/CSES/cses4_module4_full.zip
+  raiz: descargas_mx
+  sha256: add91903bcff316a5963b1d4bc8a69ccaf04fb35f05384d11cc9a74bcd29ff25
+  tamano_bytes: 4597459
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: pew_gas_spring2013
+  usado_para: 'Pew Global Attitudes Mexico, microdato completo -- PENDIENTE-DE-MESA resuelto
+    por sonda lateral (workflow de agentes, 3/sep/2026): la pagina web pide cuenta, pero el
+    archivo real es un adjunto normal de WordPress sin verificacion de auth server-side, descubierto
+    via la REST API publica (wp-json/wp/v2/dataset -> meta._download_attachment_id -> wp/v2/media/<id>
+    -> source_url). Mexico confirmado presente en el .sav real (grep binario ''Mexico'');
+    ola 2022 (18 paises) NO trae Mexico, verificado y excluida.'
+  url_origen: https://www.pewresearch.org/wp-content/uploads/sites/20/2017/07/Pew-Research-Global-Attitudes-Project-Spring-2013-Dataset-for-Web.zip
+  url_origen_procedencia: 'URL real del zip WordPress descubierto vía la REST API pública (wp-json/wp/v2/dataset -> media/<id> -> source_url) -- corregida a mano tras --escanea (todas las olas compartían el URL de la API de listado, no el archivo real). MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/PEW/pew_gas_spring2013.zip
+  raiz: descargas_mx
+  sha256: e794d64acd9369b592217b25702f306dbd67ab132e4af068cbc7e70cde1dc3f0
+  tamano_bytes: 5037202
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: pew_gas_spring2015
+  usado_para: 'Pew Global Attitudes Mexico, microdato completo -- PENDIENTE-DE-MESA resuelto
+    por sonda lateral (workflow de agentes, 3/sep/2026): la pagina web pide cuenta, pero el
+    archivo real es un adjunto normal de WordPress sin verificacion de auth server-side, descubierto
+    via la REST API publica (wp-json/wp/v2/dataset -> meta._download_attachment_id -> wp/v2/media/<id>
+    -> source_url). Mexico confirmado presente en el .sav real (grep binario ''Mexico'');
+    ola 2022 (18 paises) NO trae Mexico, verificado y excluida.'
+  url_origen: https://www.pewresearch.org/wp-content/uploads/sites/20/2017/07/Pew-Research-Global-Attitudes-Spring-2015-Dataset-for-Web-FINAL.zip
+  url_origen_procedencia: 'URL real del zip WordPress descubierto vía la REST API pública (wp-json/wp/v2/dataset -> media/<id> -> source_url) -- corregida a mano tras --escanea (todas las olas compartían el URL de la API de listado, no el archivo real). MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/PEW/pew_gas_spring2015.zip
+  raiz: descargas_mx
+  sha256: 00db792d0d6e4aee239ce276492bc0aa3478da3ab40130c239d405160c0d75b2
+  tamano_bytes: 4775856
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: pew_gas_spring2017
+  usado_para: 'Pew Global Attitudes Mexico, microdato completo -- PENDIENTE-DE-MESA resuelto
+    por sonda lateral (workflow de agentes, 3/sep/2026): la pagina web pide cuenta, pero el
+    archivo real es un adjunto normal de WordPress sin verificacion de auth server-side, descubierto
+    via la REST API publica (wp-json/wp/v2/dataset -> meta._download_attachment_id -> wp/v2/media/<id>
+    -> source_url). Mexico confirmado presente en el .sav real (grep binario ''Mexico'');
+    ola 2022 (18 paises) NO trae Mexico, verificado y excluida.'
+  url_origen: https://www.pewresearch.org/wp-content/uploads/sites/20/2018/09/Pew-Research-Center-Spring-2017-Global-Attitudes-Survey_September-2018.zip
+  url_origen_procedencia: 'URL real del zip WordPress descubierto vía la REST API pública (wp-json/wp/v2/dataset -> media/<id> -> source_url) -- corregida a mano tras --escanea (todas las olas compartían el URL de la API de listado, no el archivo real). MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/PEW/pew_gas_spring2017.zip
+  raiz: descargas_mx
+  sha256: d5445443e2a07f5b69dc7b84913994d7650e905f9c4dd1b3d12422eae1ff859c
+  tamano_bytes: 9918716
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: pew_gas_spring2018
+  usado_para: 'Pew Global Attitudes Mexico, microdato completo -- PENDIENTE-DE-MESA resuelto
+    por sonda lateral (workflow de agentes, 3/sep/2026): la pagina web pide cuenta, pero el
+    archivo real es un adjunto normal de WordPress sin verificacion de auth server-side, descubierto
+    via la REST API publica (wp-json/wp/v2/dataset -> meta._download_attachment_id -> wp/v2/media/<id>
+    -> source_url). Mexico confirmado presente en el .sav real (grep binario ''Mexico'');
+    ola 2022 (18 paises) NO trae Mexico, verificado y excluida.'
+  url_origen: https://www.pewresearch.org/wp-content/uploads/sites/20/2019/12/Pew-Research-Center-Spring-2018-Global-Attitudes-Survey.zip
+  url_origen_procedencia: 'URL real del zip WordPress descubierto vía la REST API pública (wp-json/wp/v2/dataset -> media/<id> -> source_url) -- corregida a mano tras --escanea (todas las olas compartían el URL de la API de listado, no el archivo real). MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/PEW/pew_gas_spring2018.zip
+  raiz: descargas_mx
+  sha256: 77c057672f81cb4d873f7efaba97aa5890b58036ebe6e71c8f5fb6eb8b0efd5d
+  tamano_bytes: 6269241
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: pew_gas_spring2023
+  usado_para: 'Pew Global Attitudes Mexico, microdato completo -- PENDIENTE-DE-MESA resuelto
+    por sonda lateral (workflow de agentes, 3/sep/2026): la pagina web pide cuenta, pero el
+    archivo real es un adjunto normal de WordPress sin verificacion de auth server-side, descubierto
+    via la REST API publica (wp-json/wp/v2/dataset -> meta._download_attachment_id -> wp/v2/media/<id>
+    -> source_url). Mexico confirmado presente en el .sav real (grep binario ''Mexico'');
+    ola 2022 (18 paises) NO trae Mexico, verificado y excluida.'
+  url_origen: https://www.pewresearch.org/wp-content/uploads/sites/20/2023/02/pg_spring-2023-survey_a.zip
+  url_origen_procedencia: 'URL real del zip WordPress descubierto vía la REST API pública (wp-json/wp/v2/dataset -> media/<id> -> source_url) -- corregida a mano tras --escanea (todas las olas compartían el URL de la API de listado, no el archivo real). MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/PEW/pew_gas_spring2023.zip
+  raiz: descargas_mx
+  sha256: 93c4f17e348ab34781c72d8e3d30982749486855e37c4e7e64022efe0f94fc8f
+  tamano_bytes: 3140716
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: pew_gas_spring2024
+  usado_para: 'Pew Global Attitudes Mexico, microdato completo -- PENDIENTE-DE-MESA resuelto
+    por sonda lateral (workflow de agentes, 3/sep/2026): la pagina web pide cuenta, pero el
+    archivo real es un adjunto normal de WordPress sin verificacion de auth server-side, descubierto
+    via la REST API publica (wp-json/wp/v2/dataset -> meta._download_attachment_id -> wp/v2/media/<id>
+    -> source_url). Mexico confirmado presente en el .sav real (grep binario ''Mexico'');
+    ola 2022 (18 paises) NO trae Mexico, verificado y excluida.'
+  url_origen: https://www.pewresearch.org/wp-content/uploads/sites/20/2025/08/Pew-Research-Center-Global-Attitudes-Spring-2024-Survey-Public-1.zip
+  url_origen_procedencia: 'URL real del zip WordPress descubierto vía la REST API pública (wp-json/wp/v2/dataset -> media/<id> -> source_url) -- corregida a mano tras --escanea (todas las olas compartían el URL de la API de listado, no el archivo real). MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/PEW/pew_gas_spring2024.zip
+  raiz: descargas_mx
+  sha256: 1fb75a866ae8fddde03a1928d42a81f194b1258749408ec907fea3a79210ab2c
+  tamano_bytes: 10446810
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: pew_gas_spring2025
+  usado_para: 'Pew Global Attitudes Mexico, microdato completo -- PENDIENTE-DE-MESA resuelto
+    por sonda lateral (workflow de agentes, 3/sep/2026): la pagina web pide cuenta, pero el
+    archivo real es un adjunto normal de WordPress sin verificacion de auth server-side, descubierto
+    via la REST API publica (wp-json/wp/v2/dataset -> meta._download_attachment_id -> wp/v2/media/<id>
+    -> source_url). Mexico confirmado presente en el .sav real (grep binario ''Mexico'');
+    ola 2022 (18 paises) NO trae Mexico, verificado y excluida.'
+  url_origen: https://www.pewresearch.org/wp-json/wp/v2/dataset
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/PEW/pew_gas_spring2025.zip
+  raiz: descargas_mx
+  sha256: ad04923a88c733a04a359d86464c3424c51c4f3ba555718676ce683fbe4c2e62
+  tamano_bytes: 6261575
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: dnr2024_social_messaging_video
+  usado_para: 'Reuters Institute Digital News Report, tablas topline Mexico -- PENDIENTE-DE-MESA
+    parcialmente resuelto por sonda lateral (workflow de agentes, 3/sep/2026): el microdato
+    individual sigue solo ''on request'' (sin cambio), pero cada grafica del sitio es un iframe
+    Datawrapper que expone su tabla real en datawrapper.dwcdn.net/<id>/<version>/dataset.csv
+    sin login -- 9 tablas topline Mexico (alcance semanal online/offline por marca, confianza,
+    dispositivos, redes, fuentes, muestra) + reporte completo + cuestionario. Son datos agregados/topline,
+    NO microdato individual.'
+  url_origen: https://datawrapper.dwcdn.net/zq8Fx/2/dataset.csv
+  url_origen_procedencia: 'URL real del CSV de Datawrapper, edicion 2024 (id de chart hallado en una presentacion academica en GitHub que lo cita) -- corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/REUTERS-DNR/dnr2024_social_messaging_video.csv
+  raiz: descargas_mx
+  sha256: eb1d3ff71f3584ffee8151fb3c4cb4042f11d7c908c51b02fc44b1b98b6746c6
+  tamano_bytes: 181
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: dnr2025_brand_trust
+  usado_para: 'Reuters Institute Digital News Report, tablas topline Mexico -- PENDIENTE-DE-MESA
+    parcialmente resuelto por sonda lateral (workflow de agentes, 3/sep/2026): el microdato
+    individual sigue solo ''on request'' (sin cambio), pero cada grafica del sitio es un iframe
+    Datawrapper que expone su tabla real en datawrapper.dwcdn.net/<id>/<version>/dataset.csv
+    sin login -- 9 tablas topline Mexico (alcance semanal online/offline por marca, confianza,
+    dispositivos, redes, fuentes, muestra) + reporte completo + cuestionario. Son datos agregados/topline,
+    NO microdato individual.'
+  url_origen: https://datawrapper.dwcdn.net/hE9xD/3/dataset.csv
+  url_origen_procedencia: 'URL real del CSV de Datawrapper -- corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/REUTERS-DNR/dnr2025_brand_trust.csv
+  raiz: descargas_mx
+  sha256: bcd1c4789ff83a5ea6bd5abea70dd91ba2a6b3f74cf15ac2f2a702f1c70ef2d5
+  tamano_bytes: 359
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: dnr2025_devices_for_news
+  usado_para: 'Reuters Institute Digital News Report, tablas topline Mexico -- PENDIENTE-DE-MESA
+    parcialmente resuelto por sonda lateral (workflow de agentes, 3/sep/2026): el microdato
+    individual sigue solo ''on request'' (sin cambio), pero cada grafica del sitio es un iframe
+    Datawrapper que expone su tabla real en datawrapper.dwcdn.net/<id>/<version>/dataset.csv
+    sin login -- 9 tablas topline Mexico (alcance semanal online/offline por marca, confianza,
+    dispositivos, redes, fuentes, muestra) + reporte completo + cuestionario. Son datos agregados/topline,
+    NO microdato individual.'
+  url_origen: https://datawrapper.dwcdn.net/9IxM8/3/dataset.csv
+  url_origen_procedencia: 'URL real del CSV de Datawrapper -- corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/REUTERS-DNR/dnr2025_devices_for_news.csv
+  raiz: descargas_mx
+  sha256: 936a6b5b01aa09afd885d401d46d7199b27eb7c9d25446ae6d34d914e0323abd
+  tamano_bytes: 452
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: dnr2025_markets_and_samples
+  usado_para: 'Reuters Institute Digital News Report, tablas topline Mexico -- PENDIENTE-DE-MESA
+    parcialmente resuelto por sonda lateral (workflow de agentes, 3/sep/2026): el microdato
+    individual sigue solo ''on request'' (sin cambio), pero cada grafica del sitio es un iframe
+    Datawrapper que expone su tabla real en datawrapper.dwcdn.net/<id>/<version>/dataset.csv
+    sin login -- 9 tablas topline Mexico (alcance semanal online/offline por marca, confianza,
+    dispositivos, redes, fuentes, muestra) + reporte completo + cuestionario. Son datos agregados/topline,
+    NO microdato individual.'
+  url_origen: https://datawrapper.dwcdn.net/uLZ8T/12/dataset.csv
+  url_origen_procedencia: 'URL real del CSV de Datawrapper (tabla de 48 mercados, ligada desde la pagina de Metodologia) -- corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/REUTERS-DNR/dnr2025_markets_and_samples.csv
+  raiz: descargas_mx
+  sha256: d1cae8d4cbfe0e3cd991889cc192bc121eb236c909cda25640f812316a940f63
+  tamano_bytes: 1850
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: dnr2025_questionnaire
+  usado_para: 'Reuters Institute Digital News Report, tablas topline Mexico -- PENDIENTE-DE-MESA
+    parcialmente resuelto por sonda lateral (workflow de agentes, 3/sep/2026): el microdato
+    individual sigue solo ''on request'' (sin cambio), pero cada grafica del sitio es un iframe
+    Datawrapper que expone su tabla real en datawrapper.dwcdn.net/<id>/<version>/dataset.csv
+    sin login -- 9 tablas topline Mexico (alcance semanal online/offline por marca, confianza,
+    dispositivos, redes, fuentes, muestra) + reporte completo + cuestionario. Son datos agregados/topline,
+    NO microdato individual.'
+  url_origen: https://reutersinstitute.politics.ox.ac.uk/sites/default/files/2025-06/DNR%202025%20UK%20questionnaire%20export%20%28ENG%29.pdf
+  url_origen_procedencia: 'Instrumento de encuesta DNR 2025 (cuestionario tal como lo aplico YouGov), publico en el sitio RISJ -- corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/REUTERS-DNR/dnr2025_questionnaire.pdf
+  raiz: descargas_mx
+  sha256: 77fe382ebaf2915b0cd95956918180a2f107eeffd85183afd7073157ab7546f6
+  tamano_bytes: 830924
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: dnr2025_report
+  usado_para: 'Reuters Institute Digital News Report, tablas topline Mexico -- PENDIENTE-DE-MESA
+    parcialmente resuelto por sonda lateral (workflow de agentes, 3/sep/2026): el microdato
+    individual sigue solo ''on request'' (sin cambio), pero cada grafica del sitio es un iframe
+    Datawrapper que expone su tabla real en datawrapper.dwcdn.net/<id>/<version>/dataset.csv
+    sin login -- 9 tablas topline Mexico (alcance semanal online/offline por marca, confianza,
+    dispositivos, redes, fuentes, muestra) + reporte completo + cuestionario. Son datos agregados/topline,
+    NO microdato individual.'
+  url_origen: https://reutersinstitute.politics.ox.ac.uk/sites/default/files/2025-06/Digital_News-Report_2025.pdf
+  url_origen_procedencia: 'Reporte narrativo completo DNR 2025 (48 mercados, incl. capitulo Mexico), publico en el propio sitio RISJ -- corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/REUTERS-DNR/dnr2025_report.pdf
+  raiz: descargas_mx
+  sha256: 705ff13834e3567ed934b7079e11f0578f0a77b49912cebf4179c843c0470262
+  tamano_bytes: 18715551
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: dnr2025_social_messaging_video
+  usado_para: 'Reuters Institute Digital News Report, tablas topline Mexico -- PENDIENTE-DE-MESA
+    parcialmente resuelto por sonda lateral (workflow de agentes, 3/sep/2026): el microdato
+    individual sigue solo ''on request'' (sin cambio), pero cada grafica del sitio es un iframe
+    Datawrapper que expone su tabla real en datawrapper.dwcdn.net/<id>/<version>/dataset.csv
+    sin login -- 9 tablas topline Mexico (alcance semanal online/offline por marca, confianza,
+    dispositivos, redes, fuentes, muestra) + reporte completo + cuestionario. Son datos agregados/topline,
+    NO microdato individual.'
+  url_origen: https://datawrapper.dwcdn.net/PZLxf/2/dataset.csv
+  url_origen_procedencia: 'URL real del CSV de Datawrapper -- corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/REUTERS-DNR/dnr2025_social_messaging_video.csv
+  raiz: descargas_mx
+  sha256: 1b15f203362ab4271609f1dd2beea4b89d7aeb283034dd14c577c2f8ee593cf4
+  tamano_bytes: 145
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: dnr2025_sources_of_news
+  usado_para: 'Reuters Institute Digital News Report, tablas topline Mexico -- PENDIENTE-DE-MESA
+    parcialmente resuelto por sonda lateral (workflow de agentes, 3/sep/2026): el microdato
+    individual sigue solo ''on request'' (sin cambio), pero cada grafica del sitio es un iframe
+    Datawrapper que expone su tabla real en datawrapper.dwcdn.net/<id>/<version>/dataset.csv
+    sin login -- 9 tablas topline Mexico (alcance semanal online/offline por marca, confianza,
+    dispositivos, redes, fuentes, muestra) + reporte completo + cuestionario. Son datos agregados/topline,
+    NO microdato individual.'
+  url_origen: https://datawrapper.dwcdn.net/xsi6j/5/dataset.csv
+  url_origen_procedencia: 'URL real del CSV de Datawrapper -- corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/REUTERS-DNR/dnr2025_sources_of_news.csv
+  raiz: descargas_mx
+  sha256: 9ce4316786cd85bdf917b1f42e4393ad3613f1481e68d52049fa6ad67f073eb6
+  tamano_bytes: 718
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: dnr2025_trust_score
+  usado_para: 'Reuters Institute Digital News Report, tablas topline Mexico -- PENDIENTE-DE-MESA
+    parcialmente resuelto por sonda lateral (workflow de agentes, 3/sep/2026): el microdato
+    individual sigue solo ''on request'' (sin cambio), pero cada grafica del sitio es un iframe
+    Datawrapper que expone su tabla real en datawrapper.dwcdn.net/<id>/<version>/dataset.csv
+    sin login -- 9 tablas topline Mexico (alcance semanal online/offline por marca, confianza,
+    dispositivos, redes, fuentes, muestra) + reporte completo + cuestionario. Son datos agregados/topline,
+    NO microdato individual.'
+  url_origen: https://datawrapper.dwcdn.net/49KiE/3/dataset.csv
+  url_origen_procedencia: 'URL real del CSV de Datawrapper -- corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/REUTERS-DNR/dnr2025_trust_score.csv
+  raiz: descargas_mx
+  sha256: a76642be1bdf38673c7b42808e1dde4af1d3689f408825c9867140695c36fa88
+  tamano_bytes: 122
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: dnr2025_weekly_reach_offline
+  usado_para: 'Reuters Institute Digital News Report, tablas topline Mexico -- PENDIENTE-DE-MESA
+    parcialmente resuelto por sonda lateral (workflow de agentes, 3/sep/2026): el microdato
+    individual sigue solo ''on request'' (sin cambio), pero cada grafica del sitio es un iframe
+    Datawrapper que expone su tabla real en datawrapper.dwcdn.net/<id>/<version>/dataset.csv
+    sin login -- 9 tablas topline Mexico (alcance semanal online/offline por marca, confianza,
+    dispositivos, redes, fuentes, muestra) + reporte completo + cuestionario. Son datos agregados/topline,
+    NO microdato individual.'
+  url_origen: https://datawrapper.dwcdn.net/hz0xR/2/dataset.csv
+  url_origen_procedencia: 'URL real del CSV de Datawrapper -- corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/REUTERS-DNR/dnr2025_weekly_reach_offline.csv
+  raiz: descargas_mx
+  sha256: dcdd3276eb512e16175517ebfb064bc69a5622ca02caeef369ef00dbe76c2548
+  tamano_bytes: 505
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: dnr2025_weekly_reach_online
+  usado_para: 'Reuters Institute Digital News Report, tablas topline Mexico -- PENDIENTE-DE-MESA
+    parcialmente resuelto por sonda lateral (workflow de agentes, 3/sep/2026): el microdato
+    individual sigue solo ''on request'' (sin cambio), pero cada grafica del sitio es un iframe
+    Datawrapper que expone su tabla real en datawrapper.dwcdn.net/<id>/<version>/dataset.csv
+    sin login -- 9 tablas topline Mexico (alcance semanal online/offline por marca, confianza,
+    dispositivos, redes, fuentes, muestra) + reporte completo + cuestionario. Son datos agregados/topline,
+    NO microdato individual.'
+  url_origen: https://datawrapper.dwcdn.net/08SL8/4/dataset.csv
+  url_origen_procedencia: 'URL real del CSV de Datawrapper (iframe embebido en la pagina Mexico 2025) -- corregida a mano tras --escanea. MAESTRA38-A1, sonda lateral.'
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/REUTERS-DNR/dnr2025_weekly_reach_online.csv
+  raiz: descargas_mx
+  sha256: 1a36e2fdfed0009c356f9a972784bb59ade628bb1e110086f760a234d6c611ed
+  tamano_bytes: 501
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enjuve2010_resultados_generales_presentacion
+  usado_para: 'ENJUVE 2010, presentacion de resultados generales (agregado, no microdato)
+    -- unico documento adicional real encontrado por sonda lateral exhaustiva (workflow de
+    agentes, 3/sep/2026): confirmado que NO existe microdato de ENJUVE recuperable por ningun
+    canal verificado (bdsocial.inmujeres.gob.mx y cendoc.imjuventud.gob.mx dan 502, ambos
+    hosts de microdatos historicos; Wayback CDX de todo /inmujeres/ -- 748 archivos -- nunca
+    crawleo los .zip/.sav de microdato, solo cuestionarios; sin sucesor gubernamental desde
+    2010). Genuino punto muerto, no hueco sin explorar.'
+  url_origen: http://web.archive.org/web/20130123224054/http://cendoc.imjuventud.gob.mx:80/sin_registro/Presentacion/Encuesta_Nacional_de_Juventud2010_Resultados_Generales_18nov11.pdf
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENJUVE/enjuve2010_resultados_generales_presentacion.pdf
+  raiz: descargas_mx
+  sha256: 7dfa6bed6788d9729cc79d78a4b12f9970a2412c3b6706cd9389de2ad0fe957e
+  tamano_bytes: 3514666
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4

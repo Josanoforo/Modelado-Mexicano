@@ -66,3 +66,26 @@ está `OBTENIDO` bajo otro id, sólo el microdato queda pendiente), citando
 este archivo como `origen`. `[CENSO]` de N6
 (`forense/notas/2026-09-03-MAESTRA37-N6-...`) las verá al correr sobre
 `descargas_mx` después de que mesa deposite.
+
+## Actualización (3/sep/2026, mismo día) — dos de tres resueltas sin mesa
+
+Encargo directo del usuario ("persigue todas las posibles, usa tu
+imaginación") disparó una sonda lateral (workflow de 4 agentes) sobre las
+tres filas de arriba. Resultado, detallado en
+`forense/notas/2026-09-03-MAESTRA38-A1-sonda-lateral-pendientes.md`:
+
+- **CSES → `OBTENIDO`.** No hizo falta la receta de arriba: Wayback
+  Machine + CIDE (`datos.cide.edu`) sirven el dato real sin cuenta.
+- **Pew (microdato) → `OBTENIDO`.** No hizo falta la receta de arriba: la
+  API pública de WordPress del propio sitio expone el archivo real sin
+  pasar por el muro de "crear cuenta".
+- **Reuters DNR → `OBTENIDO-PARCIAL`.** El microdato individual sigue
+  exactamente como esta receta lo describe (on request, sin atajo
+  encontrado) — la receta de arriba **sigue vigente** para quien la
+  quiera ejecutar. Lo que sí se obtuvo sin receta son 9 tablas topline
+  México vía los gráficos Datawrapper del sitio (agregados, no
+  microdato).
+
+Las recetas de arriba se conservan verbatim — son el registro de lo que
+se intentó primero, no se editan. Sólo Reuters DNR sigue necesitando que
+alguien la ejecute.
