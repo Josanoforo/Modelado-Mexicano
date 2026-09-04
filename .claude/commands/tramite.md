@@ -219,6 +219,13 @@ El cuerpo trae, en este orden y sin adornos:
 1. **Resumen del digesto**: filas `ABIERTA` y la más antigua con sus
    días · veredicto de la suite · ramas ≠ `main` · encargos sin marca
    (accionables y pasivo, por separado).
+   **Corrección de conteo (2026-09-04, restauración post-#527):** cuenta
+   `ABIERTA` por **prefijo**, no por igualdad exacta de `estado` — varias
+   filas cierran su estado con una glosa (`ABIERTA -- pendiente de firma
+   de mesa`, `ABIERTA -- vence 2026-09-10`, …) y una igualdad exacta las
+   pierde. La receta correcta:
+   `awk -F'\t' '$6 ~ /^ABIERTA/' forense/firmas-pendientes.tsv` (no
+   `$6=="ABIERTA"`, que hoy subcuenta: 2 de 6 filas realmente abiertas).
 2. **Qué se movió, con su cita.** Una línea por fila, con el
    `archivo:línea` de la firma. Si no se movió nada: "cero movimientos"
    — y está bien que sea cero.
