@@ -263,13 +263,15 @@ $ grep -c '## CONSUMIDO' forense/encargos/cola/2026-09-01-MAESTRA34-N5-RE-EVALUA
 $ diff <(git show HEAD:tools/tablero_programa.py) <entregado por dirección> → sin diferencias
 ```
 
-### 8.2 Recibo — `ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE` (4/sep/2026, `ADR-331`, `FP-288`)
+### 8.2 Recibo — `ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE` (3/sep/2026, `ADR-330`, `FP-285`)
 
 No es un snapshot completo de indicadores (fuera de perímetro de A2). Registro puntual: la
 COMPUERTA (PR de `MAESTRA37-N8`, `#523`) se satisfizo; el acto revisó a detalle las 28 filas
-no `OBTENIDO`/`CERRADA` de `data/curacion-registro/cola-adquisicion-registro.tsv` (universo
-real derivado al arrancar, no el `29` aritmético del `§A.8` del encargo) y clasificó cada una
-en `BAJAR` (7) · `NO-BAJAR-PORQUE` (18) · `MESA-DECIDE` (3). Detalle:
-`forense/notas/2026-09-04-MAESTRA37-A2-revision-cola.md` ·
-`forense/notas/2026-09-04-MAESTRA37-A2-PAQUETE-RECETAS-3.md`. `FP-289` (mesa firma la
-clasificación final, vence 2026-09-11).
+no `OBTENIDO`/`CERRADA` de `data/curacion-registro/cola-adquisicion-registro.tsv` y clasificó
+cada una en `BAJAR` (6) · `MESA-DECIDE` (12) · `NO-BAJAR-PORQUE` (10). Detalle:
+`forense/notas/2026-09-03-MAESTRA37-A2-revision-cola.md` ·
+`forense/notas/2026-09-03-MAESTRA37-A2-PAQUETE-RECETAS-3.md`. `FP-286` (mesa firma la
+clasificación final, vence a 7 días). Ejecutado vía `PR #526`, fusionado a `main`; **una
+ejecución independiente de este mismo acto en la rama de auditoría (candidato `ADR-331`,
+`FP-288`/`FP-289`, commit `c8e5463`) resultó duplicada y fue descartada al fusionar** — ver
+nota de fusión en `forense/encargos/2026-09-03-MAESTRA37-A2-REVISA-COLA-A-DETALLE.md`.

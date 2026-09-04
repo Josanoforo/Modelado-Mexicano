@@ -1309,6 +1309,17 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE, 3/sep/2026. Dispara
+    # `_T22_MARCADOR_RANURA` (`RANURA`) tres veces, todas por CITA de
+    # firmas de mesa ya archivadas y cerradas el 25/ago/2026 ("firma de
+    # mesa RANURA 1", ADR-186, y "firma de mesa RANURA 2", ADR-187,
+    # forense/hitoD-preregistro-v2_0.md:1184/1214-ish) al explicar por
+    # qué R8.3/R1.4 ya están selladas y no se reabren por lo que esta
+    # revisión encontró -- no son marcadores de una decisión nueva
+    # esperando firma; el propio texto lo dice ("archivado con veredicto
+    # ... firma de mesa RANURA N"). El acto no toca
+    # `forense/firmas-pendientes.tsv` (fuera de perímetro).
+    "forense/notas/2026-09-03-MAESTRA37-A2-revision-cola.md",
     # Sumados en ACTO MAESTRA35-L4 . R-v1_2-CIEGA, 2/sep/2026 -- el encargo
     # verbatim (A.3) y la nota COMMIT-1 de /arbitra (specs congeladas, que no
     # se editan despues de su commit). Disparan `_T22_MARCADOR_PENDIENTE`
@@ -2458,6 +2469,15 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE, 3/sep/2026: trae `M-3`
+    # pelado tres veces ("Encargo M-3 2026-08-05", "acuerdos B-3/M-3",
+    # "encargo B-3/M-3") citando un acto real y anterior al patrón
+    # `MAESTRA<nn>-` -- `forense/notas/2026-08-05-m3-lote-b3-diez-
+    # reactivos.md` es del 5/ago/2026, semanas antes de que la serie
+    # `MAESTRA<nn>` existiera (empezó a fines de agosto). No hay
+    # `MAESTRA<nn>-M-3` que prefijar porque ese acto nunca perteneció a
+    # esa serie; `B-3` no dispara el regex (`(M|E)-?\d`, no incluye `B`).
+    "forense/notas/2026-09-03-MAESTRA37-A2-revision-cola.md",
     # ACTO MAESTRA34-N9 · PROPAGA-FIRMAS-Y-SELLOS, 2/sep/2026: encargo
     # archivado VERBATIM (A.3). El A.8 cita "FP-226 y FP-222: ABIERTA -> se
     # cierran (E1 corrio, #463)" -- ese "E1" pelado es MAESTRA34-E1, el mismo
@@ -3935,25 +3955,20 @@ def t26_bis_tsv_crudo_round_trip():
     GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
     `csv.reader`→`csv.writer` (tab, `QUOTE_MINIMAL`) sobre
     `data/curacion-registro/cola-adquisicion-registro.tsv` corrompía 4 de
-    sus 112 líneas al 3/sep/2026 (29, 47, 63, 94 -- comillas sueltas
-    dentro de una nota, ninguna intencional, con efecto de re-sincronía
-    en cascada sobre otras líneas del archivo). Re-medido el 4/sep/2026
-    (`ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE`, ADR-331): el append en
-    la columna `nota` de la fila `EXT_OF_07_CATALOGO_PROVEEDORES_S1_S3_S6`
-    (línea 63 de entonces) desplazó el punto de re-sincronía del lector
-    de comillas sueltas y el round-trip da hoy **0** líneas distintas --
-    el defecto de FP-258 sigue potencialmente vivo (el archivo no se
-    reescribió a propósito para corregirlo, ninguna comilla se quitó:
-    39 comillas antes y después), pero la cascada que lo hacía visible
-    en 4 puntos concretos del archivo ya no se manifiesta con el
-    contenido actual. Este test es DOBLE:
+    sus 112 líneas el 3/sep/2026 (29, 47, 63, 94 -- comillas sueltas
+    dentro de una nota, ninguna intencional). Re-medido por
+    `ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE` (3/sep/2026, mismo día,
+    tras su propio COMMIT-2: 28 `nota` con texto de agentes -- muchas
+    citan comillas dobles en frases como "sin restricción" -- appendeadas
+    vía `tsv_crudo.upsert_fila`): ahora son 17 líneas (20, 21, 22, 29, 39,
+    47, 51, 58, 59, 63, 70, 76, 78, 79, 80, 81, 94). Este test es DOBLE:
 
-    (1) CONTROL, documenta el estado vigente del round-trip con `csv`:
-        si algún día alguien reintroduce el defecto (una comilla suelta
-        nueva desalinea el lector otra vez), este control lo hace
-        visible en vez de quedar en silencio -- se espera EXACTAMENTE 0
-        líneas distintas hoy; si el número cambia (para arriba o para
-        abajo) sin que nadie lo haya declarado, falla.
+    (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
+        día alguien "arregla" el round-trip corriendo `csv.writer` sobre
+        el archivo completo, este control lo hace visible en vez de
+        quedar en silencio -- se espera EXACTAMENTE 17 líneas distintas
+        hoy; si el número cambia (para arriba o para abajo) sin que
+        nadie lo haya declarado, falla.
     (2) REGRESIÓN del lector/escritor propio (`tools/curador_registro/
         tsv_crudo.py`, `leer_lineas`/`escribir_lineas`): un round-trip
         con ese módulo sobre el mismo archivo debe dar 0 líneas
@@ -3977,10 +3992,10 @@ def t26_bis_tsv_crudo_round_trip():
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 0:
+    if len(diffs_csv) != 17:
         fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
-                         f"0 líneas distintas el 4/sep/2026 (MAESTRA37-A2, ADR-331, re-medido "
-                         f"sobre el defecto original de FP-258); hoy da "
+                         f"17 líneas distintas (20, 21, 22, 29, 39, 47, 51, 58, 59, 63, 70, 76, "
+                         f"78, 79, 80, 81, 94) el 3/sep/2026 (MAESTRA37-A2, tras FP-258); hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")
