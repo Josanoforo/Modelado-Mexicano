@@ -801,6 +801,8 @@ Orden de aplicación: **vector de atributos** → parámetros (condicionales sob
 
 > **Lectura correcta de este marcador.** El modelo es hoy **una síntesis rigurosa de literatura con tiers leídos, no un artefacto validado.** Eso no lo invalida —un tier derivado de lectura disciplinada es evidencia legítima— pero la diferencia importa mucho cuando alguien lo use para decidir algo caro.
 
+**`FP-298` (firma de mesa, 4/sep/2026, propagada por `ACTO MAESTRA38-N6 · PROPAGA-FP298-TESTS-Y-A3`).** Mesa acepta la clasificación con evidencia de `MAESTRA38-N5` sobre las 9 reglas `NO-ENCONTRADO` de `MAESTRA38-A1` (`forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md` §3): `R3.3`, `R7.9` y `R5.4` quedan `HIPÓTESIS-SIN-INSTRUMENTO` (`milpa/tramite-ola5-propuesta-v0.yaml`, sin cambio de tier); `R7.6`/`civico.voto.clientelar_si_observable` y `R7.4`/`civico.protesta.agravio_urbano` reciben una tercera formulación complementaria (`civico.voto.clientelar_si_observable_lapop2019`, `civico.protesta.agravio_urbano_multiola`), sin reabrir los sellos ya vigentes de `L9`/`L11` (`D2-d`/`D2-f`, arriba). **Dos de las cinco `SIN-INSTRUMENTO` de `N5` NO se cargan, por hallazgo de este mismo acto (D-13: `N5` clasificó las 9 sin cruzar este archivo ni la propuesta):** `R1.5`/`dinero.ahorro.seguro_deposito_atenua_aversion` ya tiene entrada medida (`dinero.ahorro.seguro_deposito_enif2024`, `NO-DISCRIMINA`, acota sin cerrar) y `R7.3`/`civico.voto.agencia_con_secreto` ya está `CONTRARIA-REPLICADA` y degradada a `[MEDIA]` justo arriba (`D2-f`) — ninguna de las dos es "sin instrumento".
+
 ---
 
 ## 8 · Cómo se propaga un cambio a este documento *(ADR-29)*

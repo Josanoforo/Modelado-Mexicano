@@ -3164,3 +3164,173 @@ reglas_propuestas:
     sha256_payload_denominador: "e4d4284cc9924a40c39544a5530715f320a5627cd81997214c0430827616d9d6"
     payload_manifiesto_id_denominador: enoe_2025_4t_csv
     payload_manifiesto_id_numerador: firelenumcontri
+
+  # ═══ ACTO MAESTRA38-N6 · PROPAGA-FP298-TESTS-Y-A3 (4/sep/2026) — mesa firma FP-298 ═══
+  # Propaga la tabla PENDIENTE-DE-MESA de MAESTRA38-N5 (forense/notas/2026-09-04-
+  # MAESTRA38-N5-diseno-9-reglas.md §3): mesa acepta clasificacion + recomendacion
+  # de las 9 sin excepcion. Ninguna entrada de abajo corre falsador (medicion: cero,
+  # sigue siendo diseno) -- lo que este acto agrega es el objeto/reactivo/instrumento
+  # ya aceptado, para que un acto sucesor pueda medir sin re-derivarlo.
+  #
+  # DESVIACION DECLARADA (D-13, hallazgo de este acto -- ver forense/hallazgos.md
+  # 2026-09-04 MAESTRA38-N6): N5 clasifico las 9 buscando SOLO con
+  # tools/busca_reactivos.py --tablas descargas_mx_v1_1 -- nunca contra este mismo
+  # archivo (la propuesta ya acumulada) ni contra canon/modelo-decision-v4_0.md §7.
+  # Dos de las cinco SIN-INSTRUMENTO NO lo son:
+  #   - civico.voto.agencia_con_secreto (R7.3, regla #5): YA MEDIDA DOS VECES --
+  #     civico.voto.agencia_lapop2023 (:2284) y civico.voto.agencia_con_secreto_encuci2020
+  #     (:2555), CONTRARIA-REPLICADA, R7.3 ya degradada FUERTE->MEDIA (Enmienda D2-f,
+  #     canon/modelo-decision-v4_0.md §7). NO se agrega entrada HIPOTESIS-SIN-INSTRUMENTO
+  #     para esta regla -- seria falso: el instrumento existe y ya corrio dos veces.
+  #   - dinero.ahorro.seguro_deposito_atenua_aversion (R1.5, regla #2): YA TIENE
+  #     entrada medida (dinero.ahorro.seguro_deposito_enif2024, :2481, NO-DISCRIMINA)
+  #     -- esa misma entrada declara que P5_23 mide CREENCIA, no VISIBILIDAD ("la
+  #     entrada ACOTA R1.5; no la cierra"), asi que "sin instrumento" tampoco es
+  #     exacto: hay instrumento parcial, medido, con reserva ya escrita. NO se agrega
+  #     entrada nueva -- duplicaria/contradiria una entrada ya sellada por MAESTRA35-L9.
+  # Las otras tres SIN-INSTRUMENTO (#1, #7, #9) SI se verificaron sin entrada previa
+  # en este archivo (grep de "R3.3"/"R7.9"/"R5.4" contra "referida_a:" -- 0 aciertos
+  # cada una) y se agregan tal como N5 las diseño. Las dos REFORMULABLE (#6, #8) SI
+  # se agregan tal como N5 las diseño (mesa las acepto via FP-298) -- con nota de que
+  # el par R7.3/R7.6 y R7.4 YA tienen medicion sellada por MAESTRA35-L9/L11 bajo otro
+  # instrumento/formulacion; esta entrada es una TERCERA via, complementaria, que no
+  # reabre ni sustituye lo ya sellado.
+
+  - id: tramite.evasion.norma_inutil_sancion_improbable
+    entrada_nueva: true
+    referida_a: "regla R3.3 tramite.evasion.norma_inutil_sancion_improbable (canon/modelo-decision-v4_0.md:520; registro congelado de IDs, §7:234) -- fuera del perimetro del Hito D (No -- fuera del perimetro)"
+    situacion: HIPÓTESIS-SIN-INSTRUMENTO  # MAESTRA38-N5 (b), mesa acepta via FP-298/N6, 4/sep/2026
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces: []
+    porque: {generador: [], mecanismo: NO-APLICA}
+    falsable_si: NO-APLICA
+    fuente: ["forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md#2.1"]
+    condicion_no_medida: >
+      Percepcion de utilidad/extractividad de una norma especifica + percepcion de
+      probabilidad de sancion + evasion autorreportada, juntas, en poblacion general.
+      Busqueda: 4 formulaciones en 0/42536 (evasion/evade, sancion/multa, "pagar
+      impuestos"/"evadir impuestos"); "impuesto"/"declarar" -> 20/42536, una senal
+      adyacente sin driver (round5_mexiconew_anon.dta, subdeclaracion empresarial,
+      no evasion de norma con sancion percibida) -- no cuenta como (a), cae a (b).
+    instrumento_hipotetico_minimo: >
+      Pregunta ligada de tres partes sobre un tramite/norma nombrado ("¿que tan util
+      es [norma]? ¿que tan probable es que lo sancionen si no cumple? ¿usted cumple
+      siempre/casi siempre/rara vez/nunca?"), poblacion con exposicion directa al
+      tramite, estratificada por clase social.
+    recomendacion: MANTENER-COMO-HIPOTESIS
+
+  - id: civico.transferencia.atribucion_lider
+    entrada_nueva: true
+    referida_a: "regla R7.9 civico.transferencia.atribucion_lider (canon/modelo-decision-v4_0.md:557; registro congelado de IDs, §7:271)"
+    situacion: HIPÓTESIS-SIN-INSTRUMENTO  # MAESTRA38-N5 (b), mesa acepta via FP-298/N6, 4/sep/2026
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces: []
+    porque: {generador: [], mecanismo: NO-APLICA}
+    falsable_si: NO-APLICA
+    fuente: ["forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md#2.7"]
+    condicion_no_medida: >
+      Atribucion directa del apoyo (lider/presidente vs. gobierno vs. partido vs. "es
+      un derecho, de nadie en particular"), en poblacion beneficiaria, aislada de
+      aprobacion presidencial e identidad partidista. Busqueda: 5 formulaciones en
+      0/42536. El falsador RDD (Pension del Bienestar, efecto electoral independiente
+      de aprobacion presidencial) ya esta diseñado en canon; falta el enlace
+      padron-beneficiarios/resultado-electoral por seccion, dato administrativo, no
+      un reactivo de opinion -- por eso no clasifica (c) todavia.
+    instrumento_hipotetico_minimo: >
+      "¿A quien le atribuye principalmente el apoyo de [Pension del Bienestar]: al
+      presidente, al gobierno federal, a un partido, a nadie en particular/es un
+      derecho?", poblacion beneficiaria, encuesta poselectoral o panel.
+    recomendacion: MANTENER-COMO-HIPOTESIS
+
+  - id: familia.cortejo.urbano_joven_apps
+    entrada_nueva: true
+    referida_a: "regla R5.4 familia.cortejo.urbano_joven_apps (canon/modelo-decision-v4_0.md:538; registro congelado de IDs, §7:252)"
+    situacion: HIPÓTESIS-SIN-INSTRUMENTO  # MAESTRA38-N5 (b), mesa acepta via FP-298/N6, 4/sep/2026
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces: []
+    porque: {generador: [], mecanismo: NO-APLICA}
+    falsable_si: NO-APLICA
+    fuente: ["forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md#2.9"]
+    condicion_no_medida: >
+      Como se conocio a la pareja actual/mas reciente, con opcion explicita "por
+      internet/aplicacion", en poblacion joven urbana conectada. Busqueda: 7
+      formulaciones, incluyendo "internet"+"conociste" -> 58/42536 verificadas una a
+      una, 0 sobre como se conocio a la pareja (acierto integro de modulos de
+      conectividad ajenos).
+    instrumento_hipotetico_minimo: >
+      "¿Como conocio a su pareja actual/mas reciente?" con catalogo de respuesta que
+      incluya "por una aplicacion o sitio de internet", poblacion 15-29 anios en
+      tam_loc=1 con conex_inte=1, en union/noviazgo -- hueco natural de un modulo de
+      nupcialidad tipo ENADID o de una ronda de ENDIREH.
+    recomendacion: MANTENER-COMO-HIPOTESIS
+    nota: >
+      La regla ya esta tiereada [MEDIA / HIPOTESIS] en el propio canon; la ausencia
+      de instrumento no la degrada mas de donde el canon ya la dejo.
+
+  - id: civico.voto.clientelar_si_observable_lapop2019
+    entrada_nueva: true
+    referida_a: >
+      regla R7.6 civico.voto.clientelar_si_observable (canon/modelo-decision-v4_0.md:554)
+      -- TERCERA formulacion, complementaria a las ya selladas: civico.voto.agencia_lapop2023
+      (:2284, LAPOP 2023) y civico.voto.agencia_con_secreto_encuci2020 (:2555, ENCUCI 2020),
+      ambas CONTRARIA-REPLICADA sobre el PAR R7.3/R7.6 (Enmienda D2-f, canon/modelo-decision-
+      v4_0.md §7). Esta entrada NO reabre ni sustituye ese sello -- es el diseño de
+      MAESTRA38-N5 §2.6 (REFORMULABLE (a)), aceptado por mesa via FP-298/N6, sobre un
+      reactivo distinto (exposicion a oferta clientelar, no secreto/observabilidad).
+    situacion: PENDIENTE-DE-MESA  # diseño aceptado (FP-298, 4/sep/2026); falsador sin correr
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces: []
+    porque: {generador: [], mecanismo: "clien1n/clien1na (exposicion a oferta clientelar) cruzado con vb3n (eleccion de voto 2018) -- MAESTRA38-N5 NO re-deriva el generador"}
+    falsable_si: NO-APLICA
+    fuente: ["MAESTRA38A1_MEXICO_LAPOP_AMERICASBAROMETER_2019_V1_0_W", "forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md#2.6"]
+    ola_calibracion: "LAPOP AmericasBarometer Mexico 2019 (ya en corpus)"
+    objeto_reformulado: >
+      Entre quienes reportan haber sido blanco (o conocer a alguien blanco) de una
+      oferta de beneficio por su voto (clien1n/clien1na = si), medir si la eleccion
+      de voto declarada (vb3n, misma ola) difiere de quienes no reportan blanco.
+    reactivo: "clien1n + clien1na (exposicion) cruzado con vb3n (eleccion de voto 2018), controlando partidismo previo (vb10)"
+    se_mueve_si: >
+      Si entre clien1n/clien1na=si la proporcion que reporta un cambio de
+      intencion/eleccion de voto no es mayor que entre clien1n/clien1na=no
+      (controlando vb10), la cesion de autonomia local de esta regla no se sostiene
+      con este proxy -- falsador planteado, no corrido (medicion: cero).
+
+  - id: civico.protesta.agravio_urbano_multiola
+    entrada_nueva: true
+    referida_a: >
+      regla R7.4 civico.protesta.agravio_urbano (canon/modelo-decision-v4_0.md:558)
+      -- TERCERA formulacion, complementaria a las ya selladas: civico.protesta.
+      agravio_urbano_lapop2019 (:2356) y civico.protesta.agravio_urbano_encuci2020
+      (:2623, CARGADA-A-MOTOR, tier FUERTE, D2-d). Esta entrada NO reabre ADR-158 ni
+      sustituye ese sello -- es el diseño de MAESTRA38-N5 §2.8 (REFORMULABLE (a),
+      encuadre sin cambio de contenido), aceptado por mesa via FP-298/N6, que ancla
+      las CINCO piezas del SI...ENTONCES a reactivos LAPOP multi-ola en vez de a la
+      ficha de una sola ola.
+    situacion: PENDIENTE-DE-MESA  # diseño aceptado (FP-298, 4/sep/2026); falsador sin correr
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces: []
+    porque: {generador: [], mecanismo: "G4 (destructor selectivo) -- MAESTRA38-N5 NO re-deriva el generador"}
+    falsable_si: NO-APLICA
+    fuente: ["forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md#2.8"]
+    ola_calibracion: "LAPOP AmericasBarometer Mexico, multi-ola 2004/2006/2019/2021/2023 (mayoria ya en corpus)"
+    objeto_reformulado: "igual al original -- reformulacion de encuadre, no de contenido"
+    reactivo: "VIC1/vicbar4a (agravio) + AOJ12 (falla estatal) + CP6/CP9/LAPOP-E8 (red previa) + TAMANO (urbano) -> PROT1/PROT2/prot3 (protesta)"
+    instrumento: >
+      LAPOP AmericasBarometer Mexico -- pendiente verificar cual ola trae las cinco
+      variables simultaneamente en el mismo archivo (esta pieza confirmo cada pieza
+      por separado, no la co-ocurrencia fila a fila).
+    se_mueve_si: >
+      Si entre victimas (VIC1=si) con confianza baja en la justicia (AOJ12 bajo) y
+      membresia en organizacion (CP6/CP9/LAPOP-E8=si), la tasa de protesta
+      (PROT1/PROT2=si) en TAMANO=urbano no es mayor que en TAMANO=rural, la regla se
+      rompe -- falsador planteado, no corrido (medicion: cero).
