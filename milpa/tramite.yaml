@@ -572,7 +572,7 @@ reglas:
   # ══════════════════════════════════════════════════════════════════
 
   - id: civico.denuncia.miedo_desconfianza
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-289 (ACTO MAESTRA35-N1 · SELLA-L5-Y-RECIBOS, firma DS1) -- tier FUERTE, campo situacion desactualizado hasta este acto
     si:
       disparadores: {}  # PENDIENTE-DE-MESA (ver disparadores_estado) -- el dato no dicta una condicion logica
         # de disparo (sancion_creible/quien_observa, etc.) -- p viene de una
@@ -599,7 +599,7 @@ reglas:
     payload_manifiesto_id: envipe2025_csv
 
   - id: dinero.ahorro.tiene_ahorros
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-289 (ACTO MAESTRA35-N1 · SELLA-L5-Y-RECIBOS, firma c1) -- tier FUERTE, campo situacion desactualizado hasta este acto
     si:
       disparadores: {}  # PENDIENTE-DE-MESA (ver disparadores_estado)
       disparadores_estado: PENDIENTE-DE-MESA  # sin cita SI-ENTONCES en canon/modelo-decision-v4_0.md:428-473 (§2.1-2.2); NO se inventa (spec §P0(c))
@@ -795,7 +795,7 @@ reglas:
       payload_manifiesto_id: enif_2024_enif_2024_bd_csv
 
   - id: familia.apoyo.recibe_dinero_familiares
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-289 (ACTO MAESTRA35-N1 · SELLA-L5-Y-RECIBOS, firma DS1) -- tier FUERTE, campo situacion desactualizado hasta este acto
     si:
       disparadores: {}  # PENDIENTE-DE-MESA (ver disparadores_estado)
       disparadores_estado: PENDIENTE-DE-MESA  # sin cita SI-ENTONCES en canon/modelo-decision-v4_0.md:428-473 (§2.1-2.2); NO se inventa (spec §P0(c))
@@ -831,7 +831,7 @@ reglas:
   # ══════════════════════════════════════════════════════════════════
 
   - id: familia.seguro.volatilidad_ausencia_estado
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-274 (ACTO MAESTRA34-N1 · SELLA-REGLAS-ACTIVOS-2) -- tier FUERTE, campo situacion desactualizado hasta este acto
     si:
       disparadores: {}
       disparadores_estado: "el SI de §3.5 (segsoc=2 ∨ residencia ∈ {EUA, Otro país} ∨ hogar con remesas P041) es circular con el desenlace medido (recibe_remesas) y sus mitades no circulares no existen en concentradohogar; tasa base incondicional sobre universo completo de hogares, declarado en #447"
@@ -858,7 +858,7 @@ reglas:
     payload_manifiesto_id: enigh2022_nc_csv
 
   - id: dinero.planeacion.formal_estable
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-274 (ACTO MAESTRA34-N1 · SELLA-REGLAS-ACTIVOS-2) -- tier FUERTE, campo situacion desactualizado hasta este acto
     si:
       disparadores: {}
       disparadores_estado: "la condicional de §3.1 (segsoc=1 ∧ contrato ∧ pres_8) no es construible en ENFIH 2019 — barrido 16 tablas / 664 columnas, 0 hits de formalidad laboral, control positivo AFORE 2 hits (#447); tasa base incondicional sobre hogares"
@@ -1071,7 +1071,7 @@ reglas:
     payload_manifiesto_id: enif_2024_enif_2024_bd_csv
 
   - id: civico.participacion.concurrencia_presidencial_conversion
-    situacion: PROPUESTA-DE-CARGA  # (verbatim del acumulador) primera carga de civico.participacion.* al motor
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-321 (ACTO MAESTRA37-N3 · SELLA-CIVICA-COERCITIVO-Y-PROPAGA, firma D1 FP-255) -- tier MEDIA, primera carga de civico.participacion.* al motor; campo situacion desactualizado hasta este acto
     misma_regla_motor: civico.participacion.contingente
     hermana_de: civico.participacion.tipo_boleta_federal_2016_2024  # SELLADA-SIN-CARGA (firma e1); NO se toca aqui
     si:
@@ -1139,3 +1139,95 @@ reglas:
     fuente: ["data/l8-resultados-tipo-boleta-v1_0.json", "forense/notas/2026-09-03-MAESTRA36-N12-propuesta.md", "forense/notas/2026-09-03-MAESTRA36-N12-benchmark.md", "forense/notas/2026-09-02-MAESTRA35-L8-spec.md"]
     firma: "D1 (mesa, 3/sep/2026, ACTO MAESTRA37-N3): «D1 FP255 - A, Tier media.» -- letra A (conversion aditiva), tier MEDIA"
     adr: [ADR-321]
+
+  # ══════════════════════════════════════════════════════════════════
+  # D2-c/D2-d · CARGA AL MOTOR · firmas de mesa 3/sep/2026, propagadas por
+  # ACTO MAESTRA37-N8 · CONSOLIDA-DECISIONES. Tres entradas copiadas
+  # VERBATIM de milpa/tramite-ola5-propuesta-v0.yaml -- cuerpo (p, ic95,
+  # n, estratos, upm, ponderador, universo, fuente, hallazgo,
+  # sha256_payload, payload_manifiesto_id) intacto carácter por carácter.
+  # Único cambio: situacion (PENDIENTE-DE-MESA -> SELLADA/CARGADA-A-MOTOR
+  # en la propuesta, ver esas líneas) y tier. Smoke emitir_binaria()==p
+  # verificado antes de dar la carga por buena (ver commit).
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: dinero.ahorro.via_informal
+    situacion: SELLADA  # D2-c
+    tier: FUERTE  # D2-c
+    si:
+      disparadores: {}
+    entonces:
+      - {conducta: ahorra_solo_informal, p: 0.357153, clase: "DERIVADO de A, B y A∪B de MAESTRA34-L5 P4 -- sin IC propio; no es MEDIDO"}
+      - {conducta: ahorra_ambas_vias, p: 0.204767, clase: "DERIVADO de A, B y A∪B de MAESTRA34-L5 P4 -- sin IC propio; no es MEDIDO"}
+      - {conducta: ahorra_solo_formal, p: 0.080160, clase: "DERIVADO de A, B y A∪B de MAESTRA34-L5 P4 -- sin IC propio; no es MEDIDO"}
+      - {conducta: no_ahorra, p: 0.357920, clase: "DERIVADO de A, B y A∪B de MAESTRA34-L5 P4 -- sin IC propio; no es MEDIDO"}
+      # MEDIDO con IC de los que se derivan las cuatro conductas de arriba, verbatim de MAESTRA34-L5 P4 (tiene_ahorros_enif2024):
+      - {conducta: formal_cualquiera, p: 0.284927, ic95: [0.273502, 0.296342], clase: "MEDIDO·p(tasa base ponderada, sensibilidad A_solo_formal)"}
+      - {conducta: informal_cualquiera, p: 0.561920, ic95: [0.549922, 0.573502], clase: "MEDIDO·p(tasa base ponderada, sensibilidad B_solo_informal)"}
+    porque: {generador: [G3], mecanismo: "informal_sin_puente"}
+    falsable_si: "Si el ahorro informal sustituyera al formal, las celdas anidadas de escolaridad/formalidad/cuenta corroborarían el desenlace secundario; se cayeron las tres CONTRARIA (ver nota_l1)"
+    fuente: ["ENIF2024", "forense/notas/2026-09-02-MAESTRA34-L5-P4-spec.md"]
+    ola_calibracion: "ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)"
+    ponderador: FAC_PER
+    universo: "personas ELEGIDAS de 18 anos y mas en TMODULO.csv (EDAD_V 18-98), las 13502 sin perdida. tiene_ahorros=1 sse alguna de P5_1_1..P5_1_6 (informal) o P5_6_1..P5_6_9 (formal) vale '1'. El blanco por secuencia de P5_6_* cuenta como no-ahorro por esa via. n_con_ahorro=8699, estratos=190, UPM=2164, poblacion expandida=94221441 adultos."
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: enif_2024_enif_2024_bd_csv
+    nota_l1: >
+      Apoyo directo para dinero.ahorro.informal_sin_puente/con_puente_y_respaldo
+      (procedencia.yaml:729-739, ASIGNADO 0.74/0.21/0.05 y 0.52/0.33/0.15), que
+      esta entrada NO mide ni reclama.
+      NOTA VERBATIM DE L1 (D2-c, mecanismo G3 CONTRARIA -- ver
+      dinero.ahorro.tiene_ahorros.segmentacion_ejes_enif2024 arriba, hallazgo):
+      "El ahorro informal en México no es un sustituto de la exclusión formal
+      sino un COMPLEMENTO del ahorro formal; lo que el desenlace exclusivo capta
+      no es 'ahorrar informalmente' sino la AUSENCIA de la pata formal, que el
+      cuestionario gatea por tenencia de cuenta."
+      Aritmetica verificada por comando: ambas = 0.284927 + 0.561920 - 0.642080
+      = 0.204767; solo_informal = 0.561920 - 0.204767 = 0.357153; solo_formal =
+      0.284927 - 0.204767 = 0.080160; no_ahorra = 1 - 0.642080 = 0.357920; suma
+      de las cuatro = 1.000000.
+
+  - id: dinero.ahorro.seguro_deposito_enif2024
+    referida_a: "regla R1.5 dinero.ahorro.seguro_deposito_atenua_aversion (canon/modelo-decision-v4_0.md:503)"
+    situacion: SELLADA  # D2-c
+    tier: FUERTE  # D2-c
+    si:
+      disparadores: {}  # NO-APLICA (verbatim del acumulador) -- mapping vacio, mismo patron que civico.denuncia.miedo_desconfianza:577
+    entonces:
+      - {conducta: desconfianza_como_razon_principal_conoce_proteccion_enif2024, p: 0.060780, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de conocimiento de la proteccion)"}
+      - {conducta: desconfianza_como_razon_principal_no_conoce_enif2024, p: 0.054767, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de conocimiento de la proteccion)"}
+    porque: {generador: [G1], mecanismo: "G1 + diseno, con confianza_institucional[financiera] (ADR-52 B); este acto NO re-deriva el generador"}
+    falsable_si: NO-APLICA
+    fuente: ["ENIF2024", "forense/notas/2026-09-02-MAESTRA35-L9-spec.md"]
+    ola_calibracion: "ENIF 2024 (ENIF es trienal; unica ola censada para este eje)"
+    ponderador: FAC_PER
+    diseno: "EST_DIS (190 estratos) x UPM_DIS (2 164 conglomerados); IC95 bootstrap de conglomerado, 10 000 replicas, seed 42"
+    escala: "proporcion ponderada de PERSONAS de 18 a 70 anios SIN CUENTA dentro de cada celda del eje"
+    universo: "las 2 970 personas sin cuenta a las que se pregunta P5_20; moderador P5_23 al universo completo (13 502)"
+    veredicto_Bbis: NO-DISCRIMINA
+    hallazgo: "NO-DISCRIMINA en los dos desenlaces (D1/D2); los dos IC95 de la brecha contienen cero. Ver propuesta:2517-2545 para el hallazgo completo del marginal (2.7% de la muestra nombra al IPAB) -- ACOTA R1.5, no la cierra."
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: enif_2024_enif_2024_bd_csv
+
+  - id: civico.protesta.agravio_urbano_encuci2020
+    referida_a: "regla R7.4 civico.protesta.agravio_urbano (canon/modelo-decision-v4_0.md:735) -- SEGUNDO INSTRUMENTO de la pieza b de MAESTRA35-L9. NO reabre ADR-158 (D)"
+    situacion: SELLADA  # D2-d, R7.4-C2, CORROBORADA-REPLICADA
+    tier: FUERTE  # D2-d
+    si:
+      disparadores: {}  # NO-APLICA (verbatim del acumulador) -- mapping vacio, mismo patron que civico.denuncia.miedo_desconfianza:577
+    entonces:
+      - {conducta: protesta_alguna_vez_urbano_con_agravio_encuci2020, p: 0.112192, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de entorno x agravio)"}
+      - {conducta: protesta_alguna_vez_rural_con_agravio_encuci2020, p: 0.091912, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de entorno x agravio)"}
+    porque: {generador: [G4], mecanismo: "el entorno urbano con espacio publico canaliza el agravio hacia la protesta -- este acto NO re-deriva el generador, hereda el de L9"}
+    falsable_si: NO-APLICA
+    fuente: ["ENCUCI2020", "forense/notas/2026-09-02-MAESTRA35-L9-spec.md", "forense/notas/2026-09-02-MAESTRA35-L11-resultados.md"]
+    ola_calibracion: "ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)"
+    ponderador: FAC_SEL
+    universo: "20 187 de 21 519 = 93.80%. Desenlace AP7_3_5==1 (alguna vez protesta) x DOMINIO agrupado (urbano/rural) x AP4_3_2 (agravio percibido en la colonia)"
+    contrastes:
+      - {contraste: C1_entorno_con_agravio, definicion: "urbano-agravio - rural-agravio", brecha_pp: 2.0279, ic95_brecha: [-0.1796, 4.1211], excluye_cero: false, veredicto_Bbis: NO-DISCRIMINA, carga: "NO cargado -- D2-e, AMBIGUA-ENTRE-INSTRUMENTOS, ver civico.protesta.agravio_urbano_lapop2019 (tramite-ola5-propuesta-v0.yaml)"}
+      - {contraste: C2_agravio_en_urbano, definicion: "urbano-agravio - urbano-sin-agravio", brecha_pp: 3.7233, ic95_brecha: [2.2183, 5.2206], excluye_cero: true, veredicto_Bbis: CORROBORADA, carga: "cargado -- D2-d"}
+    veredicto_conjunto_L9_L11: "C2 (agravio dentro de lo urbano): CORROBORADA-REPLICADA -- mismo signo, IC95 fuera de 0 en L9 (+5.60 pp [+2.32,+8.96]) y en L11 (+3.72 pp [+2.22,+5.22]). C1: AMBIGUA-ENTRE-INSTRUMENTOS, no cargada."
+    se_mueve_si: "tercer instrumento CONTRARIA → baja a MEDIA"
+    sha256_payload: "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+    payload_manifiesto_id: encuci2020_bd_dbf

@@ -87,14 +87,25 @@ construir_prompt = _CARGA._PIPELINE.construir_prompt
 MODELO_ALIAS = "opus"
 SISTEMA_MINIMO = "Responde únicamente a la pregunta. No uses herramientas ni consultes fuentes."
 
+# D3 (firma de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8 ·
+# CONSOLIDA-DECISIONES): corrección hacia adelante -- las corridas nuevas
+# (v1_3 en adelante) llevan `__<SPEC_VERSION>` en el nombre de archivo, para
+# poder distinguir, por nombre, qué spec de prereg las gobernó sin abrir el
+# JSON. Las 424 capturas existentes (v1_1/v1_2) NO se re-nombran ni
+# re-corren -- ver la línea nueva en el registro sellado de corridas L
+# (README de esta carpeta).
+SPEC_VERSION = "v1_3"
+
 
 def ruta_salida(id_celda: str, variante: str, indice: int) -> Path:
-    """corridas-L/L-<id>-M__<variante>__<k>.json -- misma convención de
-    nombres que `carga_l_v1_1.py::ruta_salida` (prefijo L-, sufijo -M para
-    no colisionar con las 120 capturas del marco piloto). No se importa esa
+    """corridas-L/L-<id>-M__<variante>__<k>__<spec>.json -- misma
+    convención de nombres que `carga_l_v1_1.py::ruta_salida` (prefijo L-,
+    sufijo -M para no colisionar con las 120 capturas del marco piloto),
+    con el sufijo `__<SPEC_VERSION>` añadido por D3 para las corridas
+    nuevas que este script ejecute de aquí en adelante. No se importa esa
     función directamente porque este runner escribe archivos reales (el
     dry-run del cargador nunca escribe) -- se replica la misma expresión."""
-    return DIR / "corridas-L" / f"L-{id_celda}-M__{variante}__{indice:02d}.json"
+    return DIR / "corridas-L" / f"L-{id_celda}-M__{variante}__{indice:02d}__{SPEC_VERSION}.json"
 
 
 def construir_comando_cli(prompt: str) -> list[str]:
