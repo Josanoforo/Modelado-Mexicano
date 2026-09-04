@@ -1,0 +1,12 @@
+# ENCARGO · ACTO MAESTRA38-N4 · PROPAGA-Y-PAGA — invoca /acto
+
+SHA: 0ff3d710 · COMPUERTA: ninguna · ENTORNO: NUBE · NO en CAJA · MODELO: Sonnet. CARRILES: N3 (disjunto); N5 (canon/propuesta — este acto no toca milpa/ ni canon/modelo-decision).
+FIRMA — verbatim: la misma de N3 + §3 de este documento (archivado con el 0-bis).
+A.8: FP-287 ABIERTA con tests existentes (ls tests/test_cola_writer.py tests/test_manifiesto_seguro.py → 2); FP-286 ABIERTA, 28 filas con informe en forense/notas/2026-09-03-MAESTRA37-A2-revision-cola.md; FP-293 con lista en forense/notas/2026-09-04-baseline-fail-absorbidos.md; grep -c "T-A3\|T-FIRMAS-2" tests/check.py → 0 (reporta); writer de cola de INFRA-1 (nombre por ls tools/curador_registro/, se declara).
+SPEC (un PR, un ADR, commit por pieza):
+P1 · FP-287 → EJECUTADA (#529). FP-286: 28 letras por writer, estado + nota citando fila del informe; 11 recetas → PENDIENTE-DE-MESA; PAQUETE-RECETAS-5 consolidado (11 + ICPSR + WB + PDN). FP-286 → EJECUTADA.
+P2 · FP-293 pagos: T09 ×8 (añadir bloque (c) de matiz en cada cita — texto mínimo, en el report que la contiene), T05 ×5 (entradas de glosario, una por constructo, con la definición que el motor usa), T11 ×1. Aceptados: T02 (excluir forense/rescate/ del barrido de T02), T06 (nota en baseline: valores por fuente/año; el test gana etiqueta de año sólo si cabe en ≤10 líneas, si no se acepta), T08 (nota). baseline.json recifrado: 19 → 5 absorbidos declarados. FP-293 → EJECUTADA.
+P3 · T-A3 y T-FIRMAS-2 en tests/check.py, cada uno con docstring citando su defecto real (#530, #518; FP-290/291). Control positivo: los dos deben FALLAR contra 0ff3d710 (N1-lite sin encargo) y pasar tras P4.
+P4 · Archivar retroactivamente el encargo de N1-lite (texto verbatim del chat del 4/sep, con nota «archivado post-hoc por N4») → ## CONSUMIDO con #530. Hallazgo: tercera omisión de A.3 en 48 h.
+PERÍMETRO. Toca: tablero · cola + vista · corpus/reports/*.md (sólo los 8 sitios de T09 y el de T11) · canon/glosario*.md (5 entradas) · tests/check.py (dos tests + exclusión T02) · tests/baseline.json · forense/encargos/2026-09-04-MAESTRA38-N1-lite-*.md (nuevo) · forense/notas/…PAQUETE-RECETAS-5.md · hallazgos · A.3 · cascada. NO toca: data/manifiesto.yaml · milpa/** · canon/modelo-decision* · tools/**. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
+FP/ADR: ADR-337 · FP-297 recibo. CONTADOR: abiertas 6 → 3 (263, 282, 288) · FAIL absorbidos 19 → 5 · tests con defecto real +2 · medición: cero.
