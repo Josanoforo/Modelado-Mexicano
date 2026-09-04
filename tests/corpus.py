@@ -11,8 +11,7 @@ El encargo de DESC-1 (2026-08-05, PR #142) declaró explícitamente que
 ese defecto "no lo atrapa ningún test". Este script existe para que deje
 de ser cierto.
 
-Tres comprobaciones, todas dirigidas por data/manifiesto.yaml, ninguna
-rehashea el corpus:
+Tres comprobaciones, todas dirigidas por data/manifiesto.yaml:
 
   C1 · HUÉRFANO             archivo bajo data/raw que ninguna entrada
                              declara.
@@ -59,6 +58,49 @@ ver ENCARGO INV-DESCMX §0(a)/(b)). Un huérfano de `downloads` sigue
 siendo un hecho sobre la tabla, no una lista de nombres personales en
 un commit permanente.
 
+ENMIENDA 2 (FP-259(iii), MAESTRA37-INFRA-2, 2026-09-03): la ENMIENDA de
+arriba (2026-08-13) dejaba "duplicado físico entre raíces" y "contenido
+nunca registrado" en una sola lista plana de huérfanos, sin distinguirlos.
+Ya no: C1 ahora SÍ hashea (M.sha256_de), pero solo el subconjunto de
+archivos que ya falló la comprobación por ruta declarada (rel not in
+declarados) -- un archivo cuya ruta relativa SÍ está en `declarados` para
+esa raíz nunca se abre; no se rehashea el árbol completo. Ese sha256 se
+compara contra `_indice_por_sha_y_raiz(entradas)`, el índice de TODAS las
+entradas ya cargadas en memoria (sin I/O nuevo: `entradas` ya viene de
+`cargar()`). Cada huérfano se reclasifica en dos categorías:
+
+  · presente_bajo_otra_raiz  el sha256 SÍ está registrado, bajo una
+                              declaración de `raiz` DISTINTA a la que se
+                              está barriendo ahora -- duplicado físico
+                              entre raíces, tal como ya decía la ENMIENDA
+                              de 2026-08-13, ahora con nombre y raíz
+                              declarante citables en vez de quedar
+                              disuelto dentro de "huérfano" sin más.
+  · sin_registro              todo lo demás: ningún sha256 igual en el
+                              manifiesto, O el único sha256 igual está
+                              declarado bajo la MISMA raíz que se está
+                              barriendo. Este segundo caso (duplicado
+                              DENTRO de la misma raíz) es a propósito
+                              `sin_registro`, NUNCA `presente_bajo_otra_raiz`:
+                              que dos copias físicas convivan en la misma
+                              raíz no dice que ESTE archivo/ruta esté
+                              declarado -- `presente_bajo_otra_raiz`
+                              responde "¿este contenido ya vive en OTRA
+                              raíz registrada?", no "¿existe en algún lado
+                              un gemelo de este contenido?". Confirmado
+                              contra el corpus real de este repo: 3 casos
+                              (ADQ15_OMCA_conflictos_agua/omca_consulta.html.2a,
+                              ennvih_diseno/calculo-de-factores-de-expansion.pdf,
+                              eder2025/889463930242.pdf) tienen sha256 ya
+                              registrado bajo `data_raw` -- la MISMA raíz en
+                              la que el propio archivo huérfano vive -- y
+                              quedan `sin_registro`, no
+                              `presente_bajo_otra_raiz`. El total C1 (suma
+                              de ambas categorías) es numéricamente idéntico
+                              al que la versión anterior (lista plana)
+                              reportaba: esta ENMIENDA reclasifica, no
+                              recuenta.
+
 Las tres comprobaciones emiten WARN; ninguna emite FAIL. Decisión de
 diseño central de este script (ENCARGO TC-1, 2026-08-05/06): un hallazgo
 del corpus no debe poder gatear el push de un acto ajeno -- CONF-17 quedó
@@ -87,24 +129,67 @@ def cargar(root):
     return entradas, raw_dir
 
 
+def _indice_por_sha_y_raiz(entradas):
+    """{sha256: [(entrada, raiz_declarada), ...]} sobre TODAS las entradas
+    con payload ya cargadas en memoria -- sin I/O nuevo, `entradas` ya viene
+    de `cargar()`. `raiz_declarada` sigue la misma convención que el resto
+    de este módulo y de manifiesto.py: `entrada.get("raiz", M.RAIZ_INTEGRADA)`
+    (raíz ausente = data_raw). Usado por c1_huerfanos() para distinguir
+    'presente_bajo_otra_raiz' de 'sin_registro' -- ver ENMIENDA 2 en la
+    cabecera de este archivo."""
+    indice = {}
+    for e in entradas:
+        sha = e.get("sha256")
+        if not sha:
+            continue
+        raiz_declarada = e.get("raiz", M.RAIZ_INTEGRADA)
+        indice.setdefault(sha, []).append((e, raiz_declarada))
+    return indice
+
+
 def c1_huerfanos(root, entradas, raw_dir):
     """Archivo bajo una raíz configurada que ninguna entrada del manifiesto
-    declara PARA ESA RAÍZ.
+    declara PARA ESA RAÍZ, reclasificado por contenido (sha256) en dos
+    categorías -- ver ENMIENDA 2 en la cabecera de este archivo.
 
     Barre RAIZ_INTEGRADA (data_raw) más todo lo que M.raices_configuradas()
     devuelva (descargas_mx, downloads -- lo que este entorno tenga en
-    data/raices.local.yaml). Cada raíz se compara solo contra las entradas
-    que declaran esa raíz (`raiz` ausente = data_raw por convención) -- un
-    archivo con contenido ya registrado bajo OTRA raíz sigue siendo
-    huérfano aquí: es un duplicado físico entre raíces, no una cobertura.
+    data/raices.local.yaml). Cada raíz se compara primero por RUTA contra
+    las entradas que declaran esa raíz (`raiz` ausente = data_raw por
+    convención); un archivo cuya ruta relativa ya está declarada para esa
+    raíz nunca se hashea (no es candidato, no hay I/O nuevo para el caso ya
+    cubierto). Solo el resto -- ruta no declarada para esta raíz -- se
+    hashea (M.sha256_de) y se busca en `_indice_por_sha_y_raiz(entradas)`:
+
+      · presente_bajo_otra_raiz  si algún entry con ese sha256 declara una
+                                  `raiz` DISTINTA a `nombre_raiz` (la raíz
+                                  que se está barriendo). Duplicado físico
+                                  entre raíces: el contenido SÍ está en el
+                                  manifiesto, bajo otra raíz.
+      · sin_registro              en cualquier otro caso -- incluido el caso
+                                  en que el único entry con ese sha256
+                                  declara la MISMA raíz que se está
+                                  barriendo (duplicado DENTRO de la misma
+                                  raíz: no cuenta como 'presente_bajo_otra_
+                                  raiz', la ENMIENDA 2 existe exactamente
+                                  para no confundir ambos casos). Cuando
+                                  aplica este sub-caso se anota (no cambia
+                                  el conteo/bucket) con
+                                  'sin_registro_pero_duplica_contenido_de(<id>)'.
+
     Sobre raíces en M.RAICES_QUE_EXIGEN_GRUPO se acota por extensión con
     M.EXTENSIONES_DATO_RAICES_NO_CURADAS (mismo filtro que --escanea, no
-    reinventado) -- ver ENMIENDA 2026-08-13 en la cabecera de este archivo.
+    reinventado) -- ver ENMIENDA 2026-08-13 en la cabecera de este archivo;
+    ese filtro se aplica IDÉNTICO a ambas sublistas (acota qué se camina,
+    antes de clasificar -- eso no cambió).
 
-    Devuelve {nombre_raiz: [rutas relativas ordenadas]}.
+    Devuelve {nombre_raiz: {"presente_bajo_otra_raiz": [(rel, [otras_raices]), ...],
+                             "sin_registro": [(rel, anotacion_o_None), ...]}}
+    con ambas sublistas ordenadas por `rel`.
     """
     raices = {M.RAIZ_INTEGRADA: raw_dir}
     raices.update(M.raices_configuradas(root))
+    indice_sha = _indice_por_sha_y_raiz(entradas)
 
     resultado = {}
     for nombre_raiz, ruta_raiz in raices.items():
@@ -120,7 +205,8 @@ def c1_huerfanos(root, entradas, raw_dir):
             declarados.add(os.path.normpath(archivo))
 
         acotar_extension = nombre_raiz in M.RAICES_QUE_EXIGEN_GRUPO
-        huerfanos = []
+        presente_bajo_otra_raiz = []
+        sin_registro = []
         if ruta_raiz and os.path.isdir(ruta_raiz):
             for dirpath, _dirnames, filenames in os.walk(ruta_raiz):
                 for fn in filenames:
@@ -130,9 +216,25 @@ def c1_huerfanos(root, entradas, raw_dir):
                             continue
                     ruta_abs = os.path.join(dirpath, fn)
                     rel = os.path.normpath(os.path.relpath(ruta_abs, ruta_raiz))
-                    if rel not in declarados:
-                        huerfanos.append(rel)
-        resultado[nombre_raiz] = sorted(huerfanos)
+                    if rel in declarados:
+                        continue
+
+                    sha_real = M.sha256_de(ruta_abs)
+                    coincidencias = indice_sha.get(sha_real, [])
+                    otras_raices = sorted({r for (_e, r) in coincidencias if r != nombre_raiz})
+                    if otras_raices:
+                        presente_bajo_otra_raiz.append((rel, otras_raices))
+                    else:
+                        mismas_raiz = [e.get("id", "?") for (e, r) in coincidencias if r == nombre_raiz]
+                        anotacion = (
+                            f"sin_registro_pero_duplica_contenido_de({mismas_raiz[0]})"
+                            if mismas_raiz else None
+                        )
+                        sin_registro.append((rel, anotacion))
+        resultado[nombre_raiz] = {
+            "presente_bajo_otra_raiz": sorted(presente_bajo_otra_raiz, key=lambda t: t[0]),
+            "sin_registro": sorted(sin_registro, key=lambda t: t[0]),
+        }
     return resultado
 
 
@@ -206,20 +308,34 @@ def main():
     warn_total = 0
 
     huerfanos_por_raiz = c1_huerfanos(root, entradas, raw_dir)
-    total_huerfanos = sum(len(v) for v in huerfanos_por_raiz.values())
+    total_huerfanos = sum(
+        len(v["presente_bajo_otra_raiz"]) + len(v["sin_registro"])
+        for v in huerfanos_por_raiz.values()
+    )
     etiqueta = f"[warn]  C1 huérfanos  ({total_huerfanos} warn)" if total_huerfanos \
         else "[ ok ]  C1 huérfanos"
     print("  " + etiqueta + "  -- alcance: todas las raíces configuradas, ver ENMIENDA en cabecera")
     for nombre_raiz in sorted(huerfanos_por_raiz):
-        lista = huerfanos_por_raiz[nombre_raiz]
-        if not lista:
+        clasif = huerfanos_por_raiz[nombre_raiz]
+        otra_raiz = clasif["presente_bajo_otra_raiz"]
+        sin_registro = clasif["sin_registro"]
+        if not otra_raiz and not sin_registro:
             continue
         if nombre_raiz in M.RAICES_QUE_EXIGEN_GRUPO:
-            print(f"    · [{nombre_raiz}]: {len(lista)} huérfano(s) -- solo cuenta, "
-                  f"sin nombres (raíz no curada, ver ENMIENDA 2026-08-13)")
+            # ENMIENDA 2026-08-13: raíz no curada -- solo CUENTA, nunca nombres.
+            print(f"    · [{nombre_raiz}]: {len(otra_raiz)} presente(s) bajo otra raíz · "
+                  f"{len(sin_registro)} sin registro -- solo cuenta, sin nombres "
+                  f"(raíz no curada, ver ENMIENDA 2026-08-13)")
         else:
-            for h in lista:
-                print(f"    · [{nombre_raiz}] {h} -- ningún id del manifiesto lo declara para esta raíz")
+            for rel, otras in otra_raiz:
+                print(f"    · [{nombre_raiz}] {rel} -- presente bajo otra raíz "
+                      f"({' · '.join(otras)})")
+            for rel, anotacion in sin_registro:
+                sufijo = f" -- {anotacion}" if anotacion else ""
+                print(f"    · [{nombre_raiz}] {rel} -- ningún id del manifiesto lo "
+                      f"declara para esta raíz (sin_registro){sufijo}")
+            print(f"    · [{nombre_raiz}]: {len(otra_raiz)} presente(s) bajo otra raíz · "
+                  f"{len(sin_registro)} sin registro")
     warn_total += total_huerfanos
 
     dups = c2_duplicados_por_contenido(entradas)
