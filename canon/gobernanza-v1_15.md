@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **337 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **338 ADR**
 
 > | | |
 > |---|---|
@@ -5788,3 +5788,22 @@ Además: enmienda append (sin editar cuerpo) en `milpa/tramite-ola5-propuesta-v0
 **Deuda que abre.** Ninguna nueva. Recibo: `FP-296` (re-derivado dos veces: candidato original `FP-295` contra el árbol antes de fusionar; al fusionar `origin/main`, `FP-295` ya estaba tomado por `ACTO MAESTRA38-N4` -- máximo real tras fusionar es `FP-295`, contiguo → `FP-296`. El encargo citaba `FP-296` desde el principio -- coincide con el número final por la fusión, no porque se heredara de prosa: D-13 exige re-derivar del árbol en cada momento, y este acto lo hizo dos veces).
 
 **Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada, primera vez: máximo `335` (`ADR-335`), contiguo → `336`. Al fusionar `origin/main` (`PR #531`, commit `632bf36`), ese `336` ya estaba tomado por `ACTO MAESTRA38-N4 · PROPAGA-Y-PAGA` (fusionado primero, candidato propio idéntico derivado de forma independiente). Por la regla de la casa "renumera quien fusiona segundo", este acto cede `336` y se renumera a `337`, contiguo tras el máximo real del árbol ya fusionado (`ADR-336`).
+
+---
+
+**ADR-338 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `337`, contiguo, sin huecos; candidato `338`, que es el que el propio encargo ya había derivado) · `ACTO MAESTRA38-N6 · PROPAGA-FP298-TESTS-Y-A3`**, 4/sep/2026, entorno **NUBE** — **ejecuta `FP-298` (mesa acepta la clasificación de las 9 reglas de `MAESTRA38-N5`), instrumenta `T-A3`/`T-FIRMAS-2` en `tests/check.py`, y repara retroactivamente el A.3 perdido del encargo `MAESTRA38-N1-lite`.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-04-MAESTRA38-N6-PROPAGA-FP298-TESTS-Y-A3.md`, SHA de redacción `a0e06da4` (== `origin/main` al arrancar). **Gate verificado.** `COMPUERTA: ninguna` — declaración explícita, no dispara verificación.
+
+**Qué se ejecutó.**
+
+1. **`FP-298` → `EJECUTADA`.** Mesa acepta la clasificación con evidencia de `MAESTRA38-N5` (`forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md` §3) sobre las 9 reglas `NO-ENCONTRADO` de `MAESTRA38-A1`, sin excepción declarada de origen: 3 `HIPÓTESIS-SIN-INSTRUMENTO` (`tramite.evasion.norma_inutil_sancion_improbable`, `civico.transferencia.atribucion_lider`, `familia.cortejo.urbano_joven_apps`) y 2 `REFORMULABLE` como tercera formulación complementaria (`civico.voto.clientelar_si_observable_lapop2019`, `civico.protesta.agravio_urbano_multiola`) cargadas en `milpa/tramite-ola5-propuesta-v0.yaml`; una línea nueva en `canon/modelo-decision-v4_0.md` §7; vocabulario `HIPÓTESIS-SIN-INSTRUMENTO` documentado en `.claude/commands/mapea.md` §4; dos filas nuevas en la cola de adquisición (`CNBV_PORTAFOLIO_INFORMACION_IMOR_CONSUMO`, `ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF`) vía el writer canónico (`tsv_crudo.upsert_fila` + `vista_cola_adquisicion.py`); `forense/notas/2026-09-04-MAESTRA38-N6-PAQUETE-RECETAS-6.md` (0 de 2 recetas verificables — red bloqueada en `NUBE`, declarado). **Hallazgo de este mismo acto (D-13):** `MAESTRA38-N5` clasificó las 9 sin cruzar la propuesta acumulada ni `modelo-decision` §7 — 2 de las 5 `SIN-INSTRUMENTO` (`dinero.ahorro.seguro_deposito_atenua_aversion`/`R1.5`, `civico.voto.agencia_con_secreto`/`R7.3`) ya tenían instrumento medido en otro acto (`MAESTRA35-L9`/`L11`: `dinero.ahorro.seguro_deposito_enif2024` `NO-DISCRIMINA`; `R7.3` ya `CONTRARIA-REPLICADA`, degradada `[FUERTE]`→`[MEDIA]` por la Enmienda D2-f). Ninguna de las dos se carga como `HIPÓTESIS-SIN-INSTRUMENTO` — declarado en `canon/modelo-decision-v4_0.md` §7, la fila `FP-298` y `forense/hallazgos.md`.
+2. **`T-A3`/`T-FIRMAS-2` (`T28`/`T29`) en `tests/check.py`.** `T-A3` detecta que ningún `forense/encargos/*N1-lite*.md` archiva, con `## CONSUMIDO`, la ejecución de `PR #530`/`ADR-335` — control positivo: **FALLA** contra el árbol antes de `P3` de este mismo acto (salida pegada en el `## CONSUMIDO` del encargo archivado). `T-FIRMAS-2` guarda que `FP-291`/`FP-292` no vuelvan a faltar de `forense/firmas-pendientes.tsv` (perdidas una vez en el merge de `PR #527`) — control positivo: ya **PASA** (la restauración de `PR #530` es anterior a este acto).
+3. **A.3 retroactivo de `MAESTRA38-N1-lite`.** `forense/encargos/2026-09-04-MAESTRA38-N1-lite-REPARA-TABLERO-Y-COLA.md`, texto pegado inline por el propio encargo de `N6` (convención de `forense/encargos/convencion.md`), cabecera «archivado post-hoc por N6; ejecutado por PR #530 (ADR-335)», `## CONSUMIDO` citando `PR #530`. Tras esto, `T-A3` pasa a **VERDE**. Dos hallazgos de una línea en `forense/hallazgos.md`.
+4. **`tests/baseline.json` sin recifrar.** `python3 tests/check.py --baseline`: LÍNEA BASE **VERDE**, sin entradas nuevas (3 FAIL / 170 WARN) — `P2` no cambia el conteo final una vez `P3` archiva `N1-lite`.
+
+**Qué NO decide.** No corre ningún falsador de las 9 reglas (medición: cero, diseño heredado de `N5`). No reabre los sellos ya vigentes de `MAESTRA35-L9`/`L11` (`D2-d`/`D2-f`) ni `ADR-158`. No toca `milpa/tramite.yaml`, `data/manifiesto.yaml`, `tools/**` ni `forense/prereg-caja/` (perímetro explícito). No descarga nada — las dos fichas `CON-CANDIDATA` quedan en la cola, `PENDIENTE-DE-MESA`, sin URL verificada (red bloqueada en `NUBE`, declarado en `PAQUETE-RECETAS-6`).
+
+**Deuda que abre.** Ninguna nueva de mesa. Recibo: `FP-299`.
+
+**Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `337` (`ADR-337`), contiguo → `338` — coincide con el que el propio encargo ya citaba. Sin colisión conocida al escribir esta entrada; si otro acto en vuelo fusiona `338` primero, quien fusione después renumera (regla de la casa).

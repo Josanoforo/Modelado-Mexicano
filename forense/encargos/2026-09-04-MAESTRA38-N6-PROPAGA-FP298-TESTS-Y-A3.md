@@ -38,3 +38,103 @@ encargo `N1-lite` está archivado; ninguna fila de cola trae `CNBV_PORTAFOLIO`/
 `ENCRIGE_2020_FD` (el `P1` de abajo las crea, no las enmienda); el vocabulario
 `HIPÓTESIS-SIN-INSTRUMENTO` no existe todavía en la propuesta (nuevo, se documenta en
 `.claude/commands/mapea.md` §4 junto a A.4). Estado: `VIVO`.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA38-N6 · PROPAGA-FP298-TESTS-Y-A3` (4/sep/2026, entorno
+NUBE, rama `claude/maestra38-n6-tablero-cola-ws89pf`), `ADR-338` (candidato derivado
+contra el máximo real `337`, contiguo — coincide con el que el propio encargo ya
+citaba). PR de este acto, contra `main`.
+
+**P1.** `FP-298` → `EJECUTADA`. Mesa acepta, sin excepción de origen, la
+clasificación con evidencia de `MAESTRA38-N5` (§3 de su nota). Cargadas en
+`milpa/tramite-ola5-propuesta-v0.yaml`: 3 `HIPÓTESIS-SIN-INSTRUMENTO`
+(`tramite.evasion.norma_inutil_sancion_improbable`,
+`civico.transferencia.atribucion_lider`, `familia.cortejo.urbano_joven_apps`) y 2
+`REFORMULABLE` como tercera formulación complementaria
+(`civico.voto.clientelar_si_observable_lapop2019`,
+`civico.protesta.agravio_urbano_multiola`), sin reabrir los sellos ya vigentes de
+`MAESTRA35-L9`/`L11` (`D2-d`/`D2-f`, `canon/modelo-decision-v4_0.md` §7). Una línea
+nueva en `canon/modelo-decision-v4_0.md` §7. Vocabulario `HIPÓTESIS-SIN-INSTRUMENTO`
+documentado en `.claude/commands/mapea.md` §4. Dos filas nuevas de cola
+(`CNBV_PORTAFOLIO_INFORMACION_IMOR_CONSUMO`, `ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF`)
+vía el writer canónico (`tools/curador_registro/tsv_crudo.py::upsert_fila`, clave
+`fuente_canonica`, sobre `data/curacion-registro/cola-adquisicion-registro.tsv`;
+vista regenerada con `python3 tools/vista_cola_adquisicion.py`, nunca escrita a
+mano). `forense/notas/2026-09-04-MAESTRA38-N6-PAQUETE-RECETAS-6.md`: **0 de 2**
+recetas verificables — la red de este entorno NUBE bloquea `www.inegi.org.mx`
+(`curl` → `000`; `$HTTPS_PROXY/__agentproxy/status` → `403` de política), así que
+ninguna URL de `cnbv.gob.mx`/`condusef.gob.mx` pudo verificarse en esta sesión;
+declarado en vez de fabricar una URL sin verificar (A.4/A.13).
+
+**Hallazgo (D-13, de este mismo acto, no heredado).** `MAESTRA38-N5` clasificó las
+9 reglas buscando solo con `busca_reactivos.py` contra `descargas_mx*`, sin cruzar
+la propuesta ya acumulada ni `canon/modelo-decision-v4_0.md` §7: 2 de las 5
+`SIN-INSTRUMENTO` (`dinero.ahorro.seguro_deposito_atenua_aversion`/`R1.5`,
+`civico.voto.agencia_con_secreto`/`R7.3`) ya tenían instrumento medido por
+`MAESTRA35-L9`/`L11` — `dinero.ahorro.seguro_deposito_enif2024` (`NO-DISCRIMINA`,
+ENIF 2024 `P5_20`/`P5_23`, "acota, no cierra" `R1.5`) y `R7.3` ya
+`CONTRARIA-REPLICADA` en dos instrumentos (LAPOP 2023 + ENCUCI 2020), degradada
+`[FUERTE]`→`[MEDIA]` por la Enmienda D2-f. Ninguna de las dos se carga como
+`HIPÓTESIS-SIN-INSTRUMENTO` — declarado en `canon/modelo-decision-v4_0.md` §7, la
+fila `FP-298` de `forense/firmas-pendientes.tsv` y `forense/hallazgos.md` (entrada
+del 4/sep/2026, dos líneas).
+
+**P2.** `T-A3` (`T28`) y `T-FIRMAS-2` (`T29`) en `tests/check.py`, con docstring
+citando el defecto real: el encargo `MAESTRA38-N1-lite` nunca llegó a un commit
+empujado (firma verbatim de dirección: "se me fue el internet... la sesión se
+cortó y no pudo pushear nada"), y `PR #530`/`ADR-335` ejecutó su restauración sin
+encargo archivado — confirmado por la búsqueda exhaustiva de `MAESTRA38-N4`
+(`git log --all -S "N1-lite"` vacío; 11 commits de `PR #530` revisados uno por
+uno). La cita suelta de "`#518`" que circuló en prosa de mesa NO es este defecto —
+el `PR #518` real es `MAESTRA37-A1`, sin relación (ya verificado por
+`MAESTRA38-N4`). **Control positivo, salida pegada (contra el árbol de este acto
+tras `P1`, antes de `P3`):**
+
+```
+$ python3 tests/check.py
+  ...
+  [FAIL]  T28 T-A3  (1 fail)
+  [ ok ]  T29 T-FIRMAS-2
+  ...
+  · T-A3: 1
+      ningún archivo `forense/encargos/*N1-lite*.md` trae una sección `## CONSUMIDO`
+      que cite `PR #530`/`ADR-335` -- A.3 exige un encargo archivado para todo acto
+      que ejecuta, y `PR #530` no tiene uno
+```
+
+**P3.** `forense/encargos/2026-09-04-MAESTRA38-N1-lite-REPARA-TABLERO-Y-COLA.md`
+archivado, verbatim (texto pegado inline arriba, en este mismo encargo), cabecera
+«archivado post-hoc por N6; ejecutado por PR #530 (ADR-335)», `## CONSUMIDO`
+citando `PR #530`. Dos hallazgos de una línea en `forense/hallazgos.md` (el
+defecto de `MAESTRA38-N4` era exactamente el que declaró; el hallazgo de `P1` de
+arriba). **Después de `P3`, salida pegada:**
+
+```
+$ python3 tests/check.py
+  ...
+  [ ok ]  T28 T-A3
+  [ ok ]  T29 T-FIRMAS-2
+  ...
+```
+
+**P4.** `python3 tests/check.py --baseline`: LÍNEA BASE **VERDE**, sin entradas
+nuevas frente a `tests/baseline.json` (3 FAIL / 170 WARN) — `P2` no cambia el
+conteo final una vez `P3` archiva `N1-lite`, así que `tests/baseline.json` **no**
+se recifra. Hallazgo `N4` P3/P4: la razón que dio (`N1-lite` no existe en ningún
+lugar accesible del repositorio) era correcta — la omisión fue de dirección (no
+pegar el texto inline la primera vez), no del ejecutor de `N4`; confirmado
+verbatim en `forense/hallazgos.md`, entrada del 4/sep/2026, `MAESTRA38-N4`.
+
+**Cascada.** `ADR-338` (`canon/gobernanza-v1_15.md` §4). `canon/estado-programa-
+v1_11.md` L0 recifrado (337→338 ADR, anotación nueva insertada antes de la
+anterior, sin reescribirla; dos cabeceras adicionales de conteo corregidas,
+líneas 27 y 342). `canon/registro-rotulos.tsv`: fila `MAESTRA38-N6` censada.
+`forense/tablero/TABLERO-PROGRAMA.md` (nota de recibo) y
+`TABLERO-PROGRAMA-v1_1.md` (`B24` cerrado en §5, §8.5 nueva). `FP-299` recibo.
+`python3 tests/check.py --baseline`: VERDE (verificación final, post-cascada).
+
+**Anti-PR#77.** Este acto no descargó ningún payload — las dos fichas
+`CON-CANDIDATA` quedan en la cola sin URL verificada (red bloqueada en NUBE);
+no aplica.
+
