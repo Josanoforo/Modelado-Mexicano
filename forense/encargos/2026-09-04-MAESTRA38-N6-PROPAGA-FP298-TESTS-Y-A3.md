@@ -118,21 +118,31 @@ $ python3 tests/check.py
   ...
 ```
 
-**P4.** `python3 tests/check.py --baseline`: LÍNEA BASE **VERDE**, sin entradas
-nuevas frente a `tests/baseline.json` (3 FAIL / 170 WARN) — `P2` no cambia el
-conteo final una vez `P3` archiva `N1-lite`, así que `tests/baseline.json` **no**
-se recifra. Hallazgo `N4` P3/P4: la razón que dio (`N1-lite` no existe en ningún
-lugar accesible del repositorio) era correcta — la omisión fue de dirección (no
-pegar el texto inline la primera vez), no del ejecutor de `N4`; confirmado
-verbatim en `forense/hallazgos.md`, entrada del 4/sep/2026, `MAESTRA38-N4`.
+**P4.** `python3 tests/check.py --baseline`, corrido tras `P1`-`P3`: LÍNEA BASE
+**VERDE**, sin entradas nuevas frente a `tests/baseline.json` (3 FAIL / 170 WARN)
+— `P2` no cambia el conteo final una vez `P3` archiva `N1-lite`, así que
+`tests/baseline.json` **no** se recifra por esa razón. (Ver Cascada, abajo, para
+el `ROJO` que sí aparece — no de `P2`, de `ADR-338`.) Hallazgo `N4` P3/P4: la
+razón que dio (`N1-lite` no existe en ningún lugar accesible del repositorio) era
+correcta — la omisión fue de dirección (no pegar el texto inline la primera vez),
+no del ejecutor de `N4`; confirmado verbatim en `forense/hallazgos.md`, entrada
+del 4/sep/2026, `MAESTRA38-N4`.
 
-**Cascada.** `ADR-338` (`canon/gobernanza-v1_15.md` §4). `canon/estado-programa-
-v1_11.md` L0 recifrado (337→338 ADR, anotación nueva insertada antes de la
-anterior, sin reescribirla; dos cabeceras adicionales de conteo corregidas,
-líneas 27 y 342). `canon/registro-rotulos.tsv`: fila `MAESTRA38-N6` censada.
-`forense/tablero/TABLERO-PROGRAMA.md` (nota de recibo) y
-`TABLERO-PROGRAMA-v1_1.md` (`B24` cerrado en §5, §8.5 nueva). `FP-299` recibo.
-`python3 tests/check.py --baseline`: VERDE (verificación final, post-cascada).
+**Cascada.** `ADR-338` (`canon/gobernanza-v1_15.md` §4, `337`→`338 ADR`).
+**`canon/estado-programa-v1_11.md` NO se toca — perímetro explícito de este
+encargo (`NO toca: ... canon/estado-programa*`), reservado al carril `N8`
+(`CARRILES: ... N8 (canon/estado-programa — disjunto)`).** Consecuencia
+declarada, no oculta: subir `gobernanza` a `338 ADR` desincroniza las tres citas
+de `337 ADR` que `canon/estado-programa-v1_11.md` trae (L0 y dos cabeceras de
+conteo, líneas 27 y 342) — `python3 tests/check.py --baseline`, corrido de nuevo
+después de escribir `ADR-338`: LÍNEA BASE **ROJO**, 3 entradas nuevas de `T15`
+(`canon/estado-programa-v1_11.md` cita `337 ADR`; `gobernanza` tiene `338`).
+`tests/baseline.json` **no** se recifra para absorber esto (`P4` no lo autoriza
+por esta razón) — queda `ROJO`, declarado aquí y en `forense/hallazgos.md`,
+pendiente de que `N8` recifre `L0` cuando corra. `canon/registro-rotulos.tsv`:
+fila `MAESTRA38-N6` censada. `forense/tablero/TABLERO-PROGRAMA.md` (nota de
+recibo) y `TABLERO-PROGRAMA-v1_1.md` (`B24` cerrado en §5, §8.5 nueva). `FP-299`
+recibo.
 
 **Anti-PR#77.** Este acto no descargó ningún payload — las dos fichas
 `CON-CANDIDATA` quedan en la cola sin URL verificada (red bloqueada en NUBE);

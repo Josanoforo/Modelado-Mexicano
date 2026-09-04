@@ -351,6 +351,10 @@ ejecutó su restauración sin encargo archivado. Control positivo: `T-A3` **FALL
 contra el árbol antes de archivar `N1-lite`, `T-FIRMAS-2` ya **PASA** (salidas
 pegadas en el `## CONSUMIDO` del encargo). `forense/encargos/2026-09-04-MAESTRA38-
 N1-lite-REPARA-TABLERO-Y-COLA.md` archivado post-hoc, `## CONSUMIDO` con `PR #530`
-— `T-A3` pasa a VERDE. `tests/baseline.json` sin recifrar (VERDE, 3 FAIL/170 WARN).
+— `T-A3` pasa a VERDE. `tests/baseline.json` sin recifrar: LÍNEA BASE **ROJO**, 3
+entradas nuevas de `T15` (`canon/estado-programa-v1_11.md` sigue citando `337 ADR`;
+`gobernanza` ya tiene `338` tras `ADR-338`) — declarado, no oculto:
+`canon/estado-programa*` queda fuera del perímetro de este encargo (carril `N8`,
+disjunto); el recifrado de `L0` es trabajo de `N8`, no se fuerza aquí.
 `B24` (§5) cerrado. Detalle completo en el `## CONSUMIDO` del encargo archivado:
 `forense/encargos/2026-09-04-MAESTRA38-N6-PROPAGA-FP298-TESTS-Y-A3.md`.
