@@ -1,6 +1,6 @@
 # MAESTRA38-A1 · SONDA-Y-DESCARGA-UNIVERSO-1 — resultados Lote 3 (COMMIT-2)
 
-Spec congelada: `spec-lote-3.md`. Intercensal 2015 · CSES · Reuters DNR ·
+Spec congelada: `forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-3.md`. Intercensal 2015 · CSES · Reuters DNR ·
 Pew. Último lote del acto.
 
 ## (a)+(b)+(c) Resultado por candidata
@@ -20,7 +20,7 @@ autenticado) — se declara la cuenta/solicitud como lo que es, no se evita.
 ## Corrección de premisa — Pew, cerrada
 
 El encargo afirmaba SIN-FETCH para las 12; para Pew era parcialmente falso
-(declarado en `spec-lote-1.md` y reafirmado en `spec-lote-3.md`). Cerrado
+(declarado en `forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-1.md` y reafirmado en `forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-3.md`). Cerrado
 aquí: fila `PEW_GLOBAL_ATTITUDES_MEXICO` en la cola cita ambos ids
 existentes (`pew_gas2025_social_trust_topline`/`_shortread`, ya
 `OBTENIDO`) y declara que sólo el microdato individual queda pendiente,

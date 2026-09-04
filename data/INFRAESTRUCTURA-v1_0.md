@@ -558,6 +558,12 @@ por eso se registran **125** entradas, no 131.
 `--tablas descargas_mx` **sigue apuntando a `v1_0` a propósito**:
 reapuntarla habría cambiado en silencio lo que ya lee quien pide esa
 clave, y `v1_0` es la única cifra contra la que la regresión se midió.
+
+### `data/inventario-reactivos-descargas-mx-v1_2.tsv`
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/inventario-reactivos-descargas-mx-v1_2.tsv` | `tools/inventario_reactivos.py --raiz descargas_mx` (sin `_ext.py` esta vez — el encargo de este acto sólo pidió la base) — `ACTO MAESTRA38-A1`, cierre | mismas columnas que `v1_0`/`v1_1` | `busca_reactivos.py` no tiene clave propia para `v1_2` todavía (ningún acto la pidió); copia byte a byte de `data/inventario-reactivos-descargas-mx-v1_0.tsv` tomada al cierre de este acto | **28 948 filas de dato**, 396 payloads examinados (144 `OK`, 236 `SIN-CAMPOS-EXTRAIBLES`, el resto `NO-EXTRAIDO` por formato: `.dta`/`.sav`/`.rar`/`.docx`/sin extensión). Byte a byte idéntico a `v1_0` en el momento de crearse (`--tablas descargas_mx` sigue resolviendo contra `v1_0`, que es el mismo contenido hoy) — `v1_0` divergirá en la siguiente corrida del script, `v1_2` no. 9 447 de las filas vienen de `UNIVERSO-2026-09/`, la subcarpeta de los 20 payloads que este acto depositó (`ENADIS`, `ENCO`, `ENCRIGE`, `MOTRAL`, `CONEVAL`, `ENJUVE`, `ENVE`, `ENH`, `Intercensal 2015`) |
 `descargas_mx_v1_1` es una clave nueva, no un cambio de la anterior.
 
 `DE2` sigue vivo y ahora está medido sobre los 131: los `.stata.stata.zip`

@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **327 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **328 ADR**
 
 > | | |
 > |---|---|
@@ -5620,3 +5620,22 @@ ejecutado con `/acto` de `ADR-237`.
 
 **Recibos.** `FP-283` (recibo del acto) · `FP-284` (cuatro necesidades de salud redactadas, alta de mesa) — `FP-281`/`FP-282` los tomó `MAESTRA37-N6` al fusionar primero · enmienda fechada a `FP-268` **sin cambio de estado**, con el recuento de cinco columnas.
 
+**ADR-328 · `ACTO MAESTRA38-A1 · SONDA-Y-DESCARGA-UNIVERSO-1`** *(3/sep/2026, UBUNTU con corpus y red)* — **sondea y descarga las 12 candidatas públicas del "Universo desconocido" (§0): 8 con veredicto A.4, 1 pública sin regla, 3 `PENDIENTE-DE-MESA` por cuenta/solicitud.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-03-MAESTRA38-A1-SONDA-Y-DESCARGA-UNIVERSO-1.md`, SHA de redacción `2e79d153`. `COMPUERTA: ninguna`.
+
+**Numeración.** Re-derivado por el comando de la casa contra `origin/main = ff68b9f` (`PR #521`, tras fusionar `origin/main` en la rama del acto): `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `327`, contiguo; candidato `328` — el encargo proponía `331` sobre una base de redacción con otros actos aún no fusionados; ninguno había tomado un ADR nuevo al momento de este cierre.
+
+**Qué decidió.** Tres lotes de cuatro (D-11), dos commits por lote, sobre ENADIS · ENCO · ENCRIGE · MOTRAL · CONEVAL · ENJUVE · ENVE · ENH · Intercensal 2015 · CSES · Reuters DNR · Pew. Veredicto A.4 con FD/microdato real (byte a byte, no de memoria) para cuatro: `MOTRAL` → `N35` **`EXISTE-NO-SATISFACE`** (confirmado contra el DBF real, tabla `empleos`: `SALARIO` + formalidad por empleo presentes, ningún ítem de preferencia/trade-off); `ENCRIGE` → `N18`/`tramite.evasion_norma` **`EXISTE-NO-SATISFACE`** (cobertura parcial fuerte — la candidata más limpia de las 9 `NO-ENCONTRADO` de `E18-P2`); `ENVE` → `N16`/`tramite.mordida.*` **`EXISTE-NO-SATISFACE`** (refuerza, no cierra, el hallazgo de `ENCUCI2020`); `ENADIS` → `N15`/deferencia y `ENCO` → `dinero.consumo.estatus_mediado_por_credito`, ambas **`NO-ENCONTRADO`** — verificado byte a byte que el instrumento no toca la regla, no sólo que nadie corrió el mecanismo. `ENH`, `CONEVAL`, `Intercensal 2015` se descargaron completos, exploratorias, sin regla previa que cerrar. `CSES`, `Reuters DNR` y el microdato completo de `Pew` quedan `PENDIENTE-DE-MESA` (cuenta o solicitud, verificado por sonda directa, no supuesto) con receta ≤1 minuto cada una en `forense/notas/2026-09-03-MAESTRA38-A1-PAQUETE-RECETAS-4.md` (`FP-291`).
+
+**Corrección de premisa, declarada y cerrada.** El encargo afirmaba que las 12 candidatas estaban `SIN-FETCH` hasta este acto; para `Pew` eso era parcialmente falso — el topline/shortread (`FP-29`) ya estaba `OBTENIDO`. Declarado en `forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-1.md`, cerrado en Lote 3: la fila de la cola cita ambos ids existentes y sólo el microdato queda pendiente.
+
+**Hallazgo reutilizable, `forense/hallazgos.md`.** El portal de INEGI es una SPA (React) que devuelve `HTTP 200` con el shell de la app para casi cualquier ruta adivinada — un `curl` que sólo mira el código de estado no distingue "no alcanzable" de "sin el dato" de "URL equivocada". El mecanismo real de descarga es un JSON REST (`app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion`) parametrizado por `idBiinegi` (id numérico interno, leíble sin ejecutar JS desde el sidecar `pestanaData.js` de cada programa) — usado con éxito para `MOTRAL`, `ENCO`, `ENH` e `Intercensal 2015` sin necesitar el patrón `datosabiertos/` que sí funcionó para `ENADIS`/`ENCRIGE`/`ENVE`.
+
+**Registro por las tres capas, sobre las 20 descargas de payload.** Manifiesto `1233 → 1253` (doble descarga + hash SHA-256 coincidente + `testzip`/`tar.exe -tf` para los 14 microdatos; FD con hash único). Cola `112 → 124` (12 filas nuevas: 8 `OBTENIDO`, 1 `OBTENIDO-PARCIAL` — `ENJUVE`, sin edición desde 2010, host histórico `NO ALCANZABLE` (502) y 2 de 3 enlaces de la fuente vigente en `404` real —, 3 `PENDIENTE`). Alta `GUÍA §32` (manual — `tools/curador_registro/alta_relacion.py` no existía al ejecutar Lotes 1-2; llegó a `origin/main` vía `INFRA-1` a mitad de acto, verificado compatible por re-validación de `baseline.py` tras el merge) para las tres `CANDIDATA` que sí tocan regla: `relaciones.tsv` `219 → 222`, `evidencias.tsv` `220 → 223`, `utilidad-modelo.tsv` `219 → 222`, `aliases-fuentes.tsv` `15 → 18`. `baseline.py` **VERDE** en cada paso.
+
+**Censo de cierre, sin veredicto de regla (sucesor).** `/mapea` mecánico de las 9 reglas `NO-ENCONTRADO` de `E18-P2` contra `data/inventario-reactivos-descargas-mx-v1_2.tsv` (nuevo, `v1_1` intacto — 9 447 filas nuevas de `UNIVERSO-2026-09/`): 8 de 9 en cero; `N34` con una señal adyacente (16 candidatas, tabla `I_Cumplimiento_de_contratos` de `ENCRIGE` — problema de cobranza del lado **acreedor-empresa**, no deudor-consumidor) declarada para que un acto sucesor decida si vale la pena leer el FD completo.
+
+**Lo que no hizo.** No midió `p`, no selló ninguna regla, no dio veredicto sobre Ola 6, no cerró filas de la cola de A2, no tocó julio ni v2 de ENSANUT.
+
+**Recibos.** `FP-290` (recibo del acto) · `FP-291` (recetas de cuenta/solicitud, vence 7 días).

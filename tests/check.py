@@ -168,6 +168,17 @@ def t02_duplicates():
             "forense/prereg-duelo-v2/marco-M-congelado-v1_0.tsv",
             "forense/prereg-duelo-v2/marco-M-sorteado-v1_0.tsv",
         }),
+        # ACTO MAESTRA38-A1 · SONDA-Y-DESCARGA-UNIVERSO-1, 3/sep/2026: mismo
+        # patrón que MAESTRA37-A1 (v1_0/v1_1) -- tools/inventario_reactivos.py
+        # --raiz descargas_mx siempre escribe a la ruta fija -v1_0.tsv; la
+        # versión nombrada (v1_2 aquí) es una copia byte a byte tomada al
+        # cierre del acto, no una duplicación accidental. v1_0 divergirá de
+        # v1_2 en la siguiente corrida del tool; esta excepción es del par
+        # de hoy, no permanente.
+        frozenset({
+            "data/inventario-reactivos-descargas-mx-v1_0.tsv",
+            "data/inventario-reactivos-descargas-mx-v1_2.tsv",
+        }),
     )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
@@ -3634,6 +3645,21 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # patron que el resto de esta lista, no es marcador nuevo. El
     # encargo no se edita (A.3 pide el texto verbatim de direccion).
     "forense/encargos/2026-09-02-MAESTRA34-N8-FECHAS-SON-LIMITES.md",
+    # ACTO MAESTRA38-A1 · SONDA-Y-DESCARGA-UNIVERSO-1, 3/sep/2026: el
+    # encargo archivado (A.3, verbatim de mesa) cita "9 reglas activas
+    # NO-ENCONTRADO (E18)" al referirse en prosa abreviada al habitante ya
+    # censado MAESTRA33-E18 (mapeo de reglas activas sin p, ver
+    # canon/registro-rotulos.tsv) -- mismo patron que el resto de esta
+    # lista, no es marcador nuevo. La nota spec-lote-2.md cita el mismo
+    # "E18" al citar el hallazgo E18-P2 al derivar la pregunta de ENVE; la
+    # nota resultados-lote-1.md lo cita al nombrar la tabla de E18-P2 que
+    # confirma la candidata mas limpia de ENCRIGE. El encargo no se edita
+    # (A.3 pide el texto verbatim de mesa); las notas propias del acto
+    # citan el rotulo con prefijo completo (MAESTRA33-E18) en su primera
+    # mencion sustantiva -- D-6 aplicado donde se puede aplicar.
+    "forense/encargos/2026-09-03-MAESTRA38-A1-SONDA-Y-DESCARGA-UNIVERSO-1.md",
+    "forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-2.md",
+    "forense/notas/2026-09-03-MAESTRA38-A1-resultados-lote-1.md",
 }
 
 
@@ -3909,16 +3935,19 @@ def t26_vista_cola_adquisicion():
 
 def t26_bis_tsv_crudo_round_trip():
     """T26-bis · T-VISTA-COLA-ADQUISICION -- FP-258, ACTO MAESTRA37-N2 ·
-    GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
-    `csv.reader`→`csv.writer` (tab, `QUOTE_MINIMAL`) sobre
-    `data/curacion-registro/cola-adquisicion-registro.tsv` corrompe 4 de
-    sus 112 líneas hoy (29, 47, 63, 94 -- comillas sueltas dentro de una
-    nota, ninguna intencional). Este test es DOBLE:
+    GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026 (re-medido 3/sep/2026, ACTO
+    MAESTRA38-A1, tras +12 filas nuevas por sonda de adquisición). Un
+    round-trip `csv.reader`→`csv.writer` (tab, `QUOTE_MINIMAL`) sobre
+    `data/curacion-registro/cola-adquisicion-registro.tsv` corrompe 11 de
+    sus 124 líneas hoy (29, 47, 63, 94, 114, 117, 119, 121, 123, 124, 125
+    -- comillas sueltas dentro de una nota, ninguna intencional; las 7
+    nuevas vienen de las notas de MAESTRA38-A1, que citan texto con
+    comillas al describir hallazgos de sonda). Este test es DOBLE:
 
     (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
         día alguien "arregla" el round-trip corriendo `csv.writer` sobre
         el archivo completo, este control lo hace visible en vez de
-        quedar en silencio -- se espera EXACTAMENTE 4 líneas distintas
+        quedar en silencio -- se espera EXACTAMENTE 11 líneas distintas
         hoy; si el número cambia (para arriba o para abajo) sin que
         nadie lo haya declarado, falla.
     (2) REGRESIÓN del lector/escritor propio (`tools/curador_registro/
@@ -3944,9 +3973,10 @@ def t26_bis_tsv_crudo_round_trip():
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 4:
+    if len(diffs_csv) != 11:
         fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
-                         f"4 líneas distintas (29, 47, 63, 94) el 3/sep/2026 (FP-258); hoy da "
+                         f"11 líneas distintas (29, 47, 63, 94, 114, 117, 119, 121, 123, 124, 125) "
+                         f"el 3/sep/2026 (MAESTRA38-A1, re-medido tras FP-258); hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")

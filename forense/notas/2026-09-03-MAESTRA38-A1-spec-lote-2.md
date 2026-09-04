@@ -1,7 +1,7 @@
 # MAESTRA38-A1 · SONDA-Y-DESCARGA-UNIVERSO-1 — spec Lote 2 (COMMIT-1)
 
 Lote 2 de 3: CONEVAL · ENJUVE · ENVE · ENH. Igual disciplina que Lote 1
-(`spec-lote-1.md`): identidad pública antes de abrir contenido, criterio
+(`forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-1.md`): identidad pública antes de abrir contenido, criterio
 de "trae lo que se pide" congelado antes del FD. Verificado en A.8 del
 encargo: las cuatro NO-ENCONTRADO en manifiesto (1233) y cola (112 antes
 de Lote 1) por frontera de palabra — sin corrección que hacer (a diferencia

@@ -1,6 +1,6 @@
 # MAESTRA38-A1 · SONDA-Y-DESCARGA-UNIVERSO-1 — resultados Lote 2 (COMMIT-2)
 
-Spec congelada: `spec-lote-2.md`. CONEVAL, ENJUVE, ENVE, ENH.
+Spec congelada: `forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-2.md`. CONEVAL, ENJUVE, ENVE, ENH.
 
 ## (a) Sonda de alcanzabilidad (v2.2) — tres hallazgos distintos, sin colapsar
 
