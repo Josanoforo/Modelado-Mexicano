@@ -67,3 +67,13 @@ Los dos actos anteriores leyeron esa cláusula como PARA total y no commitearon 
 ## INDETERMINADO
 
 Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-14-MOTOR-1-consolidado.md" canon/gobernanza-v1_15.md` cita ADR-101, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-101 en canon/gobernanza-v1_15.md.
+
+## CERRADO-POR-HISTORIA
+
+Regla mecánica (b) de la resolución de mesa sobre FP-290 (2026-09-04):
+sin hermano de rótulo compartido con desenlace ya sellado (regla a no
+aplicó -- ver tabla en forense/notas/2026-09-03-MAESTRA37-N9-auditoria-encargos.md,
+enmienda 2026-09-04), este encargo queda cerrado por antigüedad e
+inacción declarada, no por evidencia positiva de ejecución o
+sustitución. Si aparece evidencia nueva, esta marca se reabre -- no es
+`## CONSUMIDO`.

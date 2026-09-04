@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **334 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **335 ADR**
 
 > | | |
 > |---|---|
@@ -5738,3 +5738,15 @@ Universo derivado al arrancar contra el árbol (no heredado del A.8 pre-N8 del e
 **Verificación.** `python3 tests/test_cola_writer.py` y `python3 tests/test_manifiesto_seguro.py`: 9/9 OK. `python3 tests/check.py --baseline`: LÍNEA BASE VERDE (19 FAIL · 171 WARN, sin entradas nuevas frente a `tests/baseline.json`), idéntico antes y después de los dos archivos de test (ninguno participa en `tests/check.py`).
 
 **Deuda que cierra.** `FP-287` → **EJECUTADA**. Sin FP nuevo -- el `FP-295` que citaba el encargo tampoco existe en `forense/hallazgos.md`/`canon/` al arrancar este acto (máximo real hallado: `FP-288`); mismo criterio que con `ADR-335`, D-13 exige re-derivar del árbol, nunca heredar de prosa. Este acto no abre ningún hallazgo nuevo que necesite recibo.
+
+---
+
+**ADR-335 (candidato original `ADR-334`; renumerado tras fusionar `origin/main` -- `PR #529` ya traía fusionado `ADR-334`/`MAESTRA38-N2 · TESTS-FRENTE-A-B` con candidato propio idéntico, ambas ramas derivaron `334` de forma independiente sin conocerse; por la regla de la casa "renumera quien fusiona segundo", esta rama, la que fusiona después, cede `334` y toma `335`, contiguo tras el máximo real del árbol ya fusionado) · restauración post-`PR #527` (`FP-291`/`FP-292`), dedup CSES (P2) y resolución de los 46 `## INDETERMINADO` de `FP-290`** *(4/sep/2026, restauración a perímetro estricto)* — **repara tres defectos de registro heredados de actos previos, sin reabrir trabajo sustantivo.**
+
+**Qué se ejecutó.** (1) `FP-291`/`FP-292`, declaradas por `forense/encargos/2026-09-03-MAESTRA38-A1-SONDA-Y-DESCARGA-UNIVERSO-1.md` desde el 3/sep pero ausentes de `forense/firmas-pendientes.tsv` — confirmado contra ambos padres del merge de `PR #527` (`68ce2a8`) que nunca existieron, no que el merge las descartara — restauradas con el contenido que el propio encargo fija, enmienda in situ en el encargo (0 líneas borradas). (2) Dedup de la fila `CSES` duplicada en `data/curacion-registro/cola-adquisicion-registro.tsv` (una `OBTENIDO`, una `PENDIENTE` que la sonda lateral del mismo acto había superado sin retirar): la `PENDIENTE` pasa a `estado_A4A5=SUPERADA-POR` con nota, vista regenerada con el writer oficial (`tools/vista_cola_adquisicion.py`, invocado sin editar). (3) Los 46 `## INDETERMINADO` de `FP-290` (`ACTO MAESTRA37-N9`) resueltos por mesa con dos reglas mecánicas — (a) heredar de hermano de rótulo compartido con desenlace ya sellado, 0 casos; (b) `## CERRADO-POR-HISTORIA` por append, 46 casos — tabla en `forense/notas/2026-09-03-MAESTRA37-N9-auditoria-encargos.md`. `FP-290` → `EJECUTADA`; `FP-289` → `ENTERADA`. (4) `.claude/commands/tramite.md`: receta de conteo de `ABIERTA` corregida de igualdad exacta a prefijo (`$6 ~ /^ABIERTA/`, subcontaba 2 de 6). (5) `.claude/commands/acto.md` punto 3: enlazar `data/raw`/`data/raices.local.yaml` desde el clon padre ANTES de evaluar la compuerta (defecto de `PR #522`). (6) `tests/check.py --baseline` corrido en línea base: **19 FAIL** absorbidos contra `tests/baseline.json` (sin cambio frente al estado previo a esta restauración), listados en `forense/notas/2026-09-04-baseline-fail-absorbidos.md`; `FP-293` abierta para que mesa decida cuáles se pagan.
+
+**Qué NO decide.** No re-abre ninguno de los 46 `CERRADO-POR-HISTORIA` con juicio nuevo — es la regla mecánica declarada, reversible con evidencia. No corrige ninguno de los 19 FAIL absorbidos (fuera de perímetro: `tests/**` prohibido para esta pieza). No toca `data/manifiesto.yaml`, `milpa/**`, ni los estados de `FP-286`/`FP-282`/`FP-288` (quedan `ABIERTA`, esperando lo que ya esperaban).
+
+**Deuda que abre.** `FP-293` (FAIL absorbidos, mesa decide cuáles se pagan). Recibo: `FP-294`.
+
+**Numeración.** Candidato original derivado por el comando de la casa contra el árbol de esta rama antes de fusionar: máximo `333` (`ADR-333`/`MAESTRA37-N9`), contiguo → `334`. Al fusionar `origin/main` (`PR #529`, commit `2f70c0f`), ese `334` ya estaba tomado por `ACTO MAESTRA38-N2 · TESTS-FRENTE-A-B` (fusionado primero). Por la regla de la casa "renumera quien fusiona segundo", este acto cede `334` y se renumera a `335`, contiguo tras el máximo real del árbol ya fusionado (`ADR-334`).

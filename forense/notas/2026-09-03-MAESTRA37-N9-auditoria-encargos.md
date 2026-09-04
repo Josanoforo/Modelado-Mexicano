@@ -277,3 +277,32 @@ casos con indicio débil de reemplazo caen en INDETERMINADO`, no en
 - forense/encargos/2026-08-25-R21-FALSADOR-V2-RESPEC.md
 - forense/encargos/2026-08-25-SELLA-A1-CODI.md
 - forense/encargos/2026-08-27-MAESTRA31-E7-ETIQUETA.md
+## Enmienda 2026-09-04 — mesa resuelve los 46 INDETERMINADO (FP-290)
+
+Mesa aplicó dos reglas mecánicas, cerradas, a los 46 encargos de la
+lista íntegra de arriba (`FP-290`, vencía 2026-09-10):
+
+- **(a)** rótulo compartido con un hermano *fuera* de esta lista de 46
+  que ya tuviera un desenlace sellado (`## CONSUMIDO` / `## SUSTITUIDO`
+  / `## NO-EJECUTADO`) → hereda esa marca.
+- **(b)** el resto → append de `## CERRADO-POR-HISTORIA` (0 líneas
+  borradas en ningún archivo).
+
+Derivación de (a), mecánica y declarada: rótulo = nombre de archivo sin
+fecha ni sufijo de variante (`-v\d+`, `-II+`, `-D`, `-\d+`). De los 46,
+dos pares comparten rótulo entre sí (`REGISTRA-17AGO` /
+`REGISTRA-17AGO-II`; `SELLA-AGO24` / `SELLA-AGO24-D`) pero **ambos
+miembros de cada par están dentro de los 46** — ninguno tiene un
+desenlace ya sellado que el otro pueda heredar. Búsqueda contra el
+resto de `forense/encargos/` (no solo los 166 auditados) con el mismo
+criterio: cero coincidencias adicionales.
+
+| Regla | Cuenta |
+|---|---:|
+| (a) hereda de hermano con desenlace | 0 |
+| (b) `## CERRADO-POR-HISTORIA` | 46 |
+| **Total** | **46** |
+
+`FP-290` → `EJECUTADA`. `FP-289` → enterada (leída/notificada, sin más
+acción — era recibo, no requería firma). Ver
+`forense/firmas-pendientes.tsv`.
