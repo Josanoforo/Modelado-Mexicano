@@ -121,3 +121,54 @@ tier alguno; los dos veredictos `CONTRARIA`/`CORROBORADA-PARCIAL` citados
 en §0 de cada spec son de `L9`/`L11`, no de este acto.
 
 PR de este acto, contra `main`.
+
+## Enmienda post-cierre (mismo día, 4/sep/2026) — colisión con `MAESTRA38-N6`, `PR #535`
+
+Al ir a fusionar contra `origin/main` (`7c04069`), `PR #535`/`ACTO MAESTRA38-N6 ·
+PROPAGA-FP298-TESTS-Y-A3` ya había fusionado primero y tomado, de forma
+independiente, los mismos candidatos `FP-299`/`ADR-338` que esta pieza usaba, y
+había cerrado `B24` y `FP-298` por completo (mesa aceptó las 9 reglas de `N5`, no
+sólo `#6`/`#8`) — mismo patrón que la colisión `ADR-336`/`FP-295` de `MAESTRA38-N3`
+y `ADR-334`/`ADR-335` de `MAESTRA38-N2`. Por la regla de la casa "renumera quien
+fusiona segundo", el commit de merge (`40ad474`) cede `FP-299`/`ADR-338` a `N6` y
+renumera esta pieza a **`FP-300`** en los tres archivos de cascada
+(`forense/firmas-pendientes.tsv`, `forense/tablero/TABLERO-PROGRAMA.md`,
+`forense/tablero/TABLERO-PROGRAMA-v1_1.md §8.6`, antes `§8.5` — `N6` ya ocupaba ese
+número). Coincidencia declarada, no forzada: `FP-300` coincide con el número que
+este mismo encargo citaba en su cabecera — no porque se haya heredado de esa prosa
+(D-13 lo prohíbe), sino porque la fusión lo produjo así, igual que `MAESTRA38-N3`
+documentó para su propio par.
+
+**Corrección sustantiva, no sólo de numeración — descubierta al revisar lo que `N6`
+trajo.** `canon/modelo-decision-v4_0.md §7` ya traía, desde el **3/sep/2026**
+(Enmiendas `D2-f`/`D2-d`, firma de mesa, propagadas por `ACTO MAESTRA37-N8`) —
+**un día antes del `SHA` de redacción `a0e06da4` de este encargo** — el sello
+formal de exactamente las dos corridas de `L9`/`L11` que las specs `S4`/`S5`
+citaban como "`PENDIENTE-DE-MESA`, ningún sello de canon se ha movido": `D2-f`
+degrada `civico.voto.agencia_con_secreto` (`R7.3`, gemela de
+`civico.voto.clientelar_si_observable`) de `[FUERTE]` a `[MEDIA]` en el cálculo
+motor-consumido; `D2-d` carga `civico.protesta.agravio_urbano_encuci2020` (el
+contraste `C2`, agravio × urbano) **al motor**, tier `[FUERTE]`,
+`CORROBORADA-REPLICADA`. Ninguna de las dos afirmaciones era falsa sobre el `id`
+que cada spec mide directamente (`civico.voto.clientelar_si_observable` sigue en
+`[MEDIA]`, línea 554, sin editar) — pero la premisa de que "ningún sello se ha
+movido" y que las corridas de `L9`/`L11` seguían `PENDIENTE-DE-MESA` sin sellar era
+incompleta, y el primer sello de esta pieza no lo había verificado contra
+`canon/gobernanza-v1_15.md §"P1 (D2-a/b/c/d/e/g)"`, que sí lo registra. Corregido
+en `S4-L4-spec-v1_0.md §0.3` y `S5-L5-spec-v1_0.md §0.3` (y en las líneas de cierre
+de cada spec que citaban `FP-298 ABIERTA`), re-sellado el `.sha256` de ambas.
+`FP-298` pasó además a `EJECUTADA` el 4/sep (`N6`), cargando
+`civico.voto.clientelar_si_observable_lapop2019` y
+`civico.protesta.agravio_urbano_multiola` — los mismos dos diseños que `S4`/`S5`
+pre-registran — como terceras formulaciones complementarias en
+`milpa/tramite-ola5-propuesta-v0.yaml`, `PENDIENTE-DE-MESA` (diseño aceptado,
+falsador sin correr); ambas specs ahora citan esos ids estables como el destino
+real de su medición. **Ninguna conclusión de diseño cambia**: las dos piezas
+siguen siendo intentos de falsación independientes/complementarios sobre brazos y
+antecedentes que `L9`/`L11`/`D2-d`/`D2-f` no cubrieron — sólo se corrige contra qué
+estaban comparándose.
+
+`python3 tests/check.py --baseline` tras la corrección: **LÍNEA BASE VERDE**, 3
+FAIL / 170 WARN, sin entradas nuevas. Detalle completo del merge en
+`forense/tablero/TABLERO-PROGRAMA.md` (nota reescrita) y `TABLERO-PROGRAMA-v1_1.md
+§8.6`.
