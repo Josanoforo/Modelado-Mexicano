@@ -188,6 +188,7 @@ Ninguno. **La única rama remota viva, `origin/claude/maestra35-n2-launch-jip2j0
 | B13 | **Modelo vs dato en ahorro** (`informal_sin_puente` CONTRARIA) | dirección | `MAESTRA35-L1` | propuesta de re-lectura |
 | B14 | **Cívica acotada**: `MAESTRA35-L3` entregó la serie; el tier de la entrada nueva sigue sin sellar | mesa | ADR-293 | FP-245 |
 | **B23** | **NUEVO · `via_capa2.py` resuelve `id_manifiesto` como un solo id** (FP-246): toda fila de `relaciones.tsv` con más de uno queda mal resuelta | dirección | 2/sep | acto de reparación; hoy sin encargo |
+| **B24** | **NUEVO · Mesa decide las 9 reglas `NO-ENCONTRADO` clasificadas por `MAESTRA38-N5`** (`FP-298`): por regla, aceptar/rechazar 2 `REFORMULABLE`, 5 `SIN-INSTRUMENTO` (`MANTENER-COMO-HIPÓTESIS` propuesto) y 2 `CON-CANDIDATA` — tabla en `forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md` §3 | mesa | `FP-298`, 4/sep | firma por regla, en RH; vence 11/sep |
 
 **Cerrados en esta ventana.** **B1** (dominio dinero sin celda puntuable) por PR #479. **B8** ya venía cerrado. **B10** (canon de estado desactualizado) por PR #485, *con reserva*: el archivo nuevo está en PROPUESTA hasta FP-251. **B15** se reformula como B21: los encargos de `MAESTRA35-L3` sí aterrizaron; el de `MAESTRA35-L4` no.
 
@@ -289,3 +290,31 @@ que el encargo citaba — discrepancia declarada en el recibo de `FP-286`, D-13)
 `tests/test_manifiesto_seguro.py` (`ACTO MAESTRA38-N2`, `PR #529`). Detalle completo de P2-P4
 en el `## CONSUMIDO` del encargo archivado:
 `forense/encargos/2026-09-04-MAESTRA38-N4-PROPAGA-Y-PAGA.md`.
+
+### 8.4 Recibo — `ACTO MAESTRA38-N5 · DISEÑO-9-REGLAS-SIN-INSTRUMENTO` (4/sep/2026, sin ADR, `FP-297`/`FP-298`)
+
+No es un snapshot completo de indicadores; no toca `canon/**` (perímetro explícito,
+sin la excepción "salvo ADR" que sí traía `N3` — no se abre `ADR-338`, propagación a
+canon diferida al sucesor que mesa dispare). Clasifica con evidencia las 9 reglas
+`NO-ENCONTRADO` del censo de cierre de `MAESTRA38-A1`
+(`forense/notas/2026-09-03-MAESTRA38-A1-censo-9-no-encontrado.md`), contra
+`data/inventario-reactivos-descargas-mx-v1_1.tsv` (42536 filas — superset de la tabla
+que A1 examinó, con varias olas de LAPOP AmericasBarometer México que A1 no tenía
+indexadas): **2 REFORMULABLE** — `civico.voto.clientelar_si_observable` (LAPOP 2019
+`clien1n`/`clien1na`/`clien4a`/`clien4b`, ya en corpus) y `civico.protesta.
+agravio_urbano` (LAPOP multi-ola, `PROT1`/`PROT2`/`prot3` + `VIC1`/`vicbar4a` +
+`AOJ12` + `CP6`/`CP9`/`LAPOP-E8` + `TAMANO`) — con objeto reformulado, reactivo, instrumento
+y `se_mueve_si` cada una. **5 SIN-INSTRUMENTO** — `tramite.evasion.
+norma_inutil_sancion_improbable`, `dinero.ahorro.seguro_deposito_atenua_aversion`,
+`civico.voto.agencia_con_secreto`, `civico.transferencia.atribucion_lider`,
+`familia.cortejo.urbano_joven_apps` — cada una con instrumento hipotético mínimo y
+recomendación `MANTENER-COMO-HIPÓTESIS`. **2 CON-CANDIDATA** — `dinero.credito.
+scoring_alternativo` (fuente CNBV, objeto administrativo/IMOR, estructuralmente
+invisible a `busca_reactivos.py` por diseño de universo — no un `NO-ENCONTRADO`
+informativo) y `dinero.credito.baja_friccion_usura_dano_downstream`/`N34` (ENCRIGE FD
+completo + CONDUSEF) — con ficha de adquisición cada una. Cero medición, cero regla
+cerrada, cero falsador corrido. Tabla completa: `forense/notas/2026-09-04-MAESTRA38-N5-
+diseno-9-reglas.md` §3. Bloqueador nuevo: `B24` (§5) — `FP-298`, decisión de mesa sobre
+la tabla, vence 11/sep/2026. Detalle de las desviaciones D-13 (ADR no abierto, FP
+re-derivado 297/298 no 298/299) en el `## CONSUMIDO` del encargo archivado:
+`forense/encargos/2026-09-04-MAESTRA38-N5-DISENO-9-REGLAS-SIN-INSTRUMENTO.md`.
