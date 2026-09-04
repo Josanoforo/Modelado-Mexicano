@@ -101,6 +101,20 @@ formulación la trajo primero). Para cada candidata distinta:
   alguna fuente declarada (falta el archivo, error de lectura). Distinto
   de `NO-ENCONTRADO`: A.13 — cero filas examinadas no es un negativo, es
   un comando que no corrió.
+- **`NO-ADQUIRIDA-POR-COSTO`** *(D5, firma de mesa 3/sep/2026, propagado
+  por `ACTO MAESTRA37-N8 · CONSOLIDA-DECISIONES`)* — la fuente es
+  comercial, con costo declarado (ALTO u otro), y mesa **decide no
+  contratarla**, sin haber contactado al proveedor. **Distinto de
+  `NO-ACCESIBLE`**: `NO-ACCESIBLE` es un muro técnico o de credencial que
+  un agente no pudo cruzar; `NO-ADQUIRIDA-POR-COSTO` es una decisión de
+  mesa sobre presupuesto, con la fuente en principio alcanzable si
+  alguien pagara. No se reclasifica a `NO-ACCESIBLE` sin que mesa lo
+  reabra.
+
+Un `NO-ENCONTRADO` de agente **no cierra** una fila de la cola de
+adquisición: la cierra mesa, con el informe de hermanas a la vista
+(firma de mesa, 3/sep/2026). Un agente puede clasificar, nunca adjudicar
+el cierre de una fila.
 
 Un `texto_reactivo` vacío en la candidata (frecuente — ver docstring de
 `busca_reactivos.py`) no es por sí solo `NO-ENCONTRADO` de esa fila: se
