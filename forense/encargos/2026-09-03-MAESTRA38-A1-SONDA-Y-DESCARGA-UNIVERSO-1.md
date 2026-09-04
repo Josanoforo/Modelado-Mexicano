@@ -20,10 +20,9 @@ Contadores movidos por este documento: cero. Declarado.
 
 ## CONSUMIDO
 
-Ejecutado en rama `acto/maestra38-a1-sonda-y-descarga-universo-1` · `ADR-328` ·
-`FP-290` (recibo) / `FP-291` (recetas de cuenta/solicitud, vence 7 días) ·
-3/sep/2026, UBUNTU con corpus y red. PR: se abre a continuación de este commit
-contra `main` — número pendiente de que GitHub lo asigne.
+Ejecutado por `PR #524` · rama `acto/maestra38-a1-sonda-y-descarga-universo-1` ·
+`ADR-328` · `FP-290` (recibo) / `FP-291` (recetas de cuenta/solicitud, vence 7
+días) · 3/sep/2026, UBUNTU con corpus y red.
 
 Commits: `3fa0975` (0-bis A.3) · `5e8cc73`/`5f1c53f` (Lote 1, COMMIT-1/COMMIT-2:
 ENADIS · ENCO · ENCRIGE · MOTRAL) · `d2a2659`/`254e81b` (Lote 2, COMMIT-1/COMMIT-2:
