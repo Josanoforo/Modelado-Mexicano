@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **330 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **331 ADR**
 
 > | | |
 > |---|---|
@@ -5670,3 +5670,19 @@ Ver el texto completo de la enmienda en `canon/modelo-decision-v4_0.md §7` (not
 **Deuda que abre.** `FP-287` (los 46 `INDETERMINADO`, lista para mesa, vence a 7 días). Recibo: **`FP-286`**.
 
 **Numeración.** Candidato re-derivado por el comando de la casa contra este árbol: máximo `327` (`ADR-327`/`MAESTRA37-L3-BIS`, ya fusionado), contiguo, candidato `330` -- recalculado tras el merge de `origin/main` (PR #523, commit `d96bf44`), que fusionó primero `MAESTRA37-N8` como `ADR-328` y su enmienda D2-f como `ADR-329`; por la regla de la casa ("renumera quien fusiona segundo"), este acto (`MAESTRA37-N9`) cede `328` y toma `330`, contiguo tras `329`.
+
+---
+
+**ADR-331 · `ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE`** *(4/sep/2026, NUBE con red)* — **revisa a detalle, por fila, el universo real de `data/curacion-registro/cola-adquisicion-registro.tsv` que queda no `OBTENIDO`/`CERRADA` tras `MAESTRA37-N8`, y clasifica cada fila en `BAJAR`/`NO-BAJAR-PORQUE`/`MESA-DECIDE` sin cerrar ninguna.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-03-MAESTRA37-A2-REVISA-COLA-A-DETALLE.md`, SHA de redacción `2e79d153`. La COMPUERTA («PR de N8 fusionado») no estaba satisfecha el 3/sep (bloqueado, registrado en `forense/notas/2026-09-03-MAESTRA37-A2-bloqueo.md`); se satisfizo el 4/sep cuando `MAESTRA37-N8` fusionó a `main` vía `PR #523` (commit de merge `4b508ad`, cierre `d96bf44`).
+
+**Universo real, derivado al arrancar.** 112 filas totales en la cola; 83 `OBTENIDO` + 1 `CERRADA-PREEXISTENTE` = 84 cerradas; **28** no `OBTENIDO`/`CERRADA` (no las 29 que el `§A.8` del encargo anticipaba — `MAESTRA37-N8` movió una sola fila a `PENDIENTE-DE-MESA`, no dos).
+
+**Qué se ejecutó.** `COMMIT-1`: lista congelada de las 28 filas con la pregunta (regla/necesidad) que cada una responde, derivada de `relaciones.tsv`/`necesidad-objeto-modelo.tsv` — 13 filas con cita directa, 15 sin ninguna cita (declarado, no inventado). `COMMIT-2`: por fila, síntesis de las rutas de A.5 ya sondeadas en los últimos 1-3 días (`MAESTRA33-A3`, `MAESTRA34-L1/L6`, `MAESTRA35-L3/L6/A1`, `MAESTRA36-A2`, todas con salida cruda de fecha reciente — repetir esos sondeos sin información nueva no produce señal distinta), hermanas conocidas (`aliases-fuentes.tsv`, criterio A.7), qué trae/qué falta cada candidata contra la pregunta, y recomendación en exactamente uno de tres valores. Resultado: **`BAJAR` 7** (con receta ≤1 min cada una) · **`NO-BAJAR-PORQUE` 18** · **`MESA-DECIDE` 3** (dos opciones con costo cada una). Detalle completo: `forense/notas/2026-09-04-MAESTRA37-A2-revision-cola.md`; recetas: `forense/notas/2026-09-04-MAESTRA37-A2-PAQUETE-RECETAS-3.md`.
+
+**Qué NO decide.** Ninguna fila cambió `estado_A4A5` — el acto sólo apendió un puntero en la columna `nota` de cada una de las 28 filas. No descargó contenido real (perímetro explícito del encargo): sólo sintetizó sondeos de alcanzabilidad ya en disco. La firma de mesa sobre la clasificación final es `FP-289`.
+
+**Deuda que abre.** `FP-289` (mesa firma la clasificación final de las 28 filas con el informe a la vista, vence 2026-09-11). Recibo: **`FP-288`**.
+
+**Numeración.** Candidato original `ADR-330` (declarado por el propio encargo); colisión detectada al fusionar `origin/main`: `ADR-330` ya lo tomó `MAESTRA37-N9` (misma rama, renumerado desde `ADR-328` por la misma colisión con `MAESTRA37-N8`). Por la regla de la casa ("renumera quien fusiona segundo"), este acto toma `ADR-331`, contiguo tras `ADR-330`.
