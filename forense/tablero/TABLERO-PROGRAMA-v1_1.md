@@ -351,10 +351,12 @@ ejecutó su restauración sin encargo archivado. Control positivo: `T-A3` **FALL
 contra el árbol antes de archivar `N1-lite`, `T-FIRMAS-2` ya **PASA** (salidas
 pegadas en el `## CONSUMIDO` del encargo). `forense/encargos/2026-09-04-MAESTRA38-
 N1-lite-REPARA-TABLERO-Y-COLA.md` archivado post-hoc, `## CONSUMIDO` con `PR #530`
-— `T-A3` pasa a VERDE. `tests/baseline.json` sin recifrar: LÍNEA BASE **ROJO**, 3
-entradas nuevas de `T15` (`canon/estado-programa-v1_11.md` sigue citando `337 ADR`;
-`gobernanza` ya tiene `338` tras `ADR-338`) — declarado, no oculto:
-`canon/estado-programa*` queda fuera del perímetro de este encargo (carril `N8`,
-disjunto); el recifrado de `L0` es trabajo de `N8`, no se fuerza aquí.
+— `T-A3` pasa a VERDE. `tests/baseline.json` sin recifrar por `P2`/`P3`: LÍNEA
+BASE **VERDE**, 3 FAIL / 170 WARN. **Enmienda post-cierre, mismo día (CI de `PR
+#535`).** Subir `gobernanza` a `338 ADR` desincronizó `canon/estado-programa-
+v1_11.md` (`T15` a `ROJO`, 3 entradas) — el acto original no lo tocó por
+perímetro (carril `N8`, disjunto); con la CI del PR realmente roja, dirección
+pidió resolverlo ahí mismo, autorización puntual para esta cifra mecánica, y
+`canon/estado-programa-v1_11.md` se recifró (`337`→`338 ADR`).
 `B24` (§5) cerrado. Detalle completo en el `## CONSUMIDO` del encargo archivado:
 `forense/encargos/2026-09-04-MAESTRA38-N6-PROPAGA-FP298-TESTS-Y-A3.md`.

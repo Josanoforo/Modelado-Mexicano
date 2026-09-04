@@ -129,20 +129,27 @@ no del ejecutor de `N4`; confirmado verbatim en `forense/hallazgos.md`, entrada
 del 4/sep/2026, `MAESTRA38-N4`.
 
 **Cascada.** `ADR-338` (`canon/gobernanza-v1_15.md` §4, `337`→`338 ADR`).
-**`canon/estado-programa-v1_11.md` NO se toca — perímetro explícito de este
-encargo (`NO toca: ... canon/estado-programa*`), reservado al carril `N8`
-(`CARRILES: ... N8 (canon/estado-programa — disjunto)`).** Consecuencia
-declarada, no oculta: subir `gobernanza` a `338 ADR` desincroniza las tres citas
-de `337 ADR` que `canon/estado-programa-v1_11.md` trae (L0 y dos cabeceras de
-conteo, líneas 27 y 342) — `python3 tests/check.py --baseline`, corrido de nuevo
-después de escribir `ADR-338`: LÍNEA BASE **ROJO**, 3 entradas nuevas de `T15`
-(`canon/estado-programa-v1_11.md` cita `337 ADR`; `gobernanza` tiene `338`).
-`tests/baseline.json` **no** se recifra para absorber esto (`P4` no lo autoriza
-por esta razón) — queda `ROJO`, declarado aquí y en `forense/hallazgos.md`,
-pendiente de que `N8` recifre `L0` cuando corra. `canon/registro-rotulos.tsv`:
-fila `MAESTRA38-N6` censada. `forense/tablero/TABLERO-PROGRAMA.md` (nota de
-recibo) y `TABLERO-PROGRAMA-v1_1.md` (`B24` cerrado en §5, §8.5 nueva). `FP-299`
-recibo.
+
+**Enmienda post-cierre (mismo día, 4/sep/2026) — CI de `PR #535`.** Subir
+`gobernanza` a `338 ADR` desincroniza las tres citas de `337 ADR` que
+`canon/estado-programa-v1_11.md` trae (L0 y dos cabeceras de conteo, líneas 27,
+105 y 342) — `T15` en `ROJO`, `tests/check.py --baseline` falla en CI (`PR #535`,
+job `check`, exit 1). Este acto había dejado esa desincronización declarada y sin
+tocar, por el perímetro explícito (`NO toca: ... canon/estado-programa*`,
+reservado al carril `N8` que `CARRILES` declara disjunto) — pero con la CI roja
+en un PR abierto, dirección pidió explícitamente resolverla ahí mismo («fetch and
+solve ci»), autorización puntual que se antepone a la reserva de carril para esta
+única cifra mecánica (un recuento, no una decisión sustantiva de `N8`).
+`canon/estado-programa-v1_11.md` recifrado (`337`→`338 ADR` en las tres citas,
+L0 con anotación nueva insertada antes de la anterior, sin reescribirla).
+`python3 tests/check.py --baseline` tras la enmienda: LÍNEA BASE **VERDE**, 3
+FAIL / 170 WARN, sin entradas nuevas. `canon/registro-rotulos.tsv`: fila
+`MAESTRA38-N6` censada (con `canon/estado-programa-v1_11.md L0` entre las rutas
+tocadas). `forense/tablero/TABLERO-PROGRAMA.md` (nota de recibo) y
+`TABLERO-PROGRAMA-v1_1.md` (`B24` cerrado en §5, §8.5 nueva). `FP-299` recibo.
+Hallazgo de la enmienda en `forense/hallazgos.md` (no se borra el hallazgo
+original que declaraba el `ROJO` como pendiente de `N8` — se añade la
+corrección, con fecha, sobre esa misma entrada).
 
 **Anti-PR#77.** Este acto no descargó ningún payload — las dos fichas
 `CON-CANDIDATA` quedan en la cola sin URL verificada (red bloqueada en NUBE);

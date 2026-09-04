@@ -5802,7 +5802,18 @@ Además: enmienda append (sin editar cuerpo) en `milpa/tramite-ola5-propuesta-v0
 3. **A.3 retroactivo de `MAESTRA38-N1-lite`.** `forense/encargos/2026-09-04-MAESTRA38-N1-lite-REPARA-TABLERO-Y-COLA.md`, texto pegado inline por el propio encargo de `N6` (convención de `forense/encargos/convencion.md`), cabecera «archivado post-hoc por N6; ejecutado por PR #530 (ADR-335)», `## CONSUMIDO` citando `PR #530`. Tras esto, `T-A3` pasa a **VERDE**. Dos hallazgos de una línea en `forense/hallazgos.md`.
 4. **`tests/baseline.json` sin recifrar por `P2`/`P3`** — `python3 tests/check.py --baseline` tras `P4`: LÍNEA BASE **VERDE**, sin entradas nuevas (3 FAIL / 170 WARN); `P2` no cambia el conteo final una vez `P3` archiva `N1-lite`. **Consecuencia declarada de la cascada de este mismo `ADR-338`, NO de `P2`:** este `ADR` sube `gobernanza` de `337` a `338`, y `canon/estado-programa-v1_11.md` (L0 y dos cabeceras de conteo) queda desincronizado citando `337` — el recifrado de ese archivo es el trabajo explícito del carril `N8` (`canon/estado-programa — disjunto`, PERÍMETRO del encargo excluye `canon/estado-programa*` sin excepción), así que este acto NO lo toca. `python3 tests/check.py --baseline` corrido de nuevo tras la cascada: LÍNEA BASE **ROJO**, 3 entradas nuevas de `T15` (la desincronización de arriba) — declarado aquí, no recifrado (`P4` no autoriza recifrado por esta razón), pendiente de que `N8` lo cierre.
 
-**Qué NO decide.** No corre ningún falsador de las 9 reglas (medición: cero, diseño heredado de `N5`). No reabre los sellos ya vigentes de `MAESTRA35-L9`/`L11` (`D2-d`/`D2-f`) ni `ADR-158`. No toca `milpa/tramite.yaml`, `data/manifiesto.yaml`, `tools/**` ni `forense/prereg-caja/` (perímetro explícito). No toca `canon/estado-programa*` (perímetro explícito, carril `N8`) — deja `T15` en `ROJO`, declarado en el punto 4 de arriba, para que `N8` lo recifre. No descarga nada — las dos fichas `CON-CANDIDATA` quedan en la cola, `PENDIENTE-DE-MESA`, sin URL verificada (red bloqueada en `NUBE`, declarado en `PAQUETE-RECETAS-6`).
+**Enmienda post-cierre (mismo día, 4/sep/2026) — CI de `PR #535`.** El punto 4 de
+arriba dejó `T15` en `ROJO` a propósito, por el perímetro explícito (`NO toca:
+canon/estado-programa*`, reservado al carril `N8`). Con la CI del PR realmente
+roja (job `check`, `python3 tests/check.py --baseline`, exit 1), dirección pidió
+resolverla ahí mismo («fetch and solve ci») — autorización puntual, para esta
+única cifra mecánica (un recuento de `ADR`, no una decisión sustantiva de `N8`),
+que se antepone a la reserva de carril. `canon/estado-programa-v1_11.md`
+recifrado (`337`→`338 ADR`, L0 y las dos cabeceras de conteo). `python3
+tests/check.py --baseline` tras la enmienda: LÍNEA BASE **VERDE**, 3 FAIL / 170
+WARN, sin entradas nuevas.
+
+**Qué NO decide.** No corre ningún falsador de las 9 reglas (medición: cero, diseño heredado de `N5`). No reabre los sellos ya vigentes de `MAESTRA35-L9`/`L11` (`D2-d`/`D2-f`) ni `ADR-158`. No toca `milpa/tramite.yaml`, `data/manifiesto.yaml`, `tools/**` ni `forense/prereg-caja/` (perímetro explícito). No descarga nada — las dos fichas `CON-CANDIDATA` quedan en la cola, `PENDIENTE-DE-MESA`, sin URL verificada (red bloqueada en `NUBE`, declarado en `PAQUETE-RECETAS-6`).
 
 **Deuda que abre.** Ninguna nueva de mesa. Recibo: `FP-299`.
 
