@@ -11,3 +11,18 @@ SPEC — un PR, un ADR (el ADR incluye la enmienda de canon de D2-f como inciso 
 PERÍMETRO Y CONCURRENCIA. Toca: milpa/tramite.yaml · milpa/tramite-ola5-propuesta-v0.yaml · milpa/procedencia.yaml (sólo el prior 0.09) · canon/modelo-decision-v4_0.md (append §7) · canon/gobernanza-v1_15.md · data/curacion-registro/{necesidad-objeto-modelo,relaciones,procedencias,utilidad-modelo,cola-adquisicion-registro}.tsv + baseline.json (por alta_relacion.py/writer) · .claude/commands/mapea.md §4 · forense/prereg-duelo-v2/runner_l_cli.py · forense/firmas-pendientes.tsv · forense/hallazgos.md · A.3 · cascada. NO toca: data/manifiesto.yaml · tests/manifiesto.py · tools/curador_registro/*.py · forense/encargos/* (N9) · canon/motor-nucleo-medible-v1_0.md · corridas-L existentes. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
 
 FP/ADR: ADR-328 (INFRA-1 toma 328 si fusiona antes → 329) · FP-285 recibo. CONTADOR: firmas propagadas 12 · motor 17 → 20 · sellos sin carga +5 · necesidades 41 → 45 · filas ABIERTA 4 → 0 (FP-259 queda FIRMADA hasta INFRA-2) · medición: cero, declarado. Lo que NO hace. No mide; no re-corre L; no toca la cola con filas nuevas; no decide letras.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA37-N8 · CONSOLIDA-DECISIONES` (4/sep/2026, NUBE), rama
+`claude/acto-maestra37-consolidacion-1ekmtd`. PR abierto desde esta rama contra `main`
+(ver título "MAESTRA37-N8"). `ADR-328` (acto principal) y `ADR-329` (enmienda de canon
+D2-f, inciso propio). Piezas deferidas y documentadas, no forzadas: (1) una séptima
+entrada D2-a con `situacion` desactualizada, declarada por la firma de mesa, no se
+localizó en `milpa/tramite.yaml` -- 6 encontradas, no 7; (2) el re-asiento de las ocho
+altas de A1 §5.1 en `relaciones.tsv`/`evidencias.tsv`/`utilidad-modelo.tsv` bajo su `N`
+real se intentó y `baseline.py` lo rechazó (`relacion_id no determinista`) -- revertido,
+sucesor declarado. `python3 tests/check.py --baseline`: ROJO por 2 `FAIL` de `T22`
+pre-existentes contra dos encargos de agosto sin fila en `firmas-pendientes.tsv`,
+verificados anteriores a este acto (no introducidos por él, fuera de su perímetro --
+territorio de D9, explícitamente excluido de este acto).
