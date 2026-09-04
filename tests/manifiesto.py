@@ -159,15 +159,95 @@ migra un valor retroactivo que nadie declaró entonces.
 Única dependencia externa: PyYAML.
 """
 import argparse
+import collections
+import contextlib
 import datetime
+import fcntl
 import fnmatch
 import hashlib
 import os
 import platform
 import re
 import sys
+import tempfile
 
 import yaml
+
+
+# Census re-derivado sobre data/manifiesto.yaml (1233 entradas, todas las
+# claves de primer nivel, vía yaml.safe_load + Counter) -- no se añade ni
+# quita ninguna clave sin volver a correr ese census contra el archivo real.
+CAMPOS_CONOCIDOS = {
+    "id", "usado_para", "url_origen", "url_origen_procedencia", "fecha_descarga",
+    "descargado_por", "archivo", "raiz", "sha256", "tamano_bytes",
+    "entorno_descarga", "formato", "licencia", "nota", "fecha", "hecho",
+    "verificacion_tamano", "retirada",
+}
+
+
+def _es_documental(entrada):
+    """True si `entrada` no tiene payload (sha256) por una razón reconocida:
+    (a) nota pura -- solo id/fecha/hecho, sin ningún campo de dato; o
+    (b) retirada -- el payload se dio de baja y solo quedan campos de
+    procedencia/documentación (`retirada` presente, ni `archivo` ni
+    `sha256`). Cualquier otra ausencia de sha256 es una entrada que no
+    encaja en ninguna estructura conocida -- _validar_manifiesto_completo
+    la rechaza."""
+    claves = set(entrada.keys())
+    if claves <= {"id", "fecha", "hecho"}:
+        return True
+    if "archivo" not in entrada and "sha256" not in entrada and "retirada" in entrada:
+        return True
+    return False
+
+
+_RE_SHA256 = re.compile(r"^[0-9a-f]{64}$")
+
+
+def _validar_manifiesto_completo(entradas):
+    """Valida la lista COMPLETA de entradas antes de escribir -- no solo la
+    entrada nueva de esta corrida. Silencioso si todo está bien; levanta
+    ValueError con el primer defecto encontrado, citando el campo/regla que
+    lo violó (nunca un "manifiesto inválido" genérico)."""
+    ids = []
+    for entrada in entradas:
+        if not isinstance(entrada, dict):
+            raise ValueError(f"entrada no es un dict: {entrada!r}")
+        id_ = entrada.get("id")
+        if not isinstance(id_, str) or not id_:
+            raise ValueError(f"entrada sin id válido: {entrada!r}")
+        ids.append(id_)
+
+    repetidos = [id_ for id_, n in collections.Counter(ids).items() if n > 1]
+    if repetidos:
+        raise ValueError(f"id duplicado: {repetidos[0]!r}")
+
+    for entrada in entradas:
+        sobrantes = set(entrada.keys()) - CAMPOS_CONOCIDOS
+        if sobrantes:
+            raise ValueError(f"entrada '{entrada.get('id')}' tiene clave(s) "
+                              f"desconocida(s): {sobrantes}")
+
+        if "sha256" in entrada:
+            archivo = entrada.get("archivo")
+            if not isinstance(archivo, str) or not archivo:
+                raise ValueError(f"entrada '{entrada.get('id')}' tiene sha256 pero "
+                                  f"'archivo' no es una cadena no vacía: {archivo!r}")
+            sha = entrada.get("sha256")
+            if not isinstance(sha, str) or not _RE_SHA256.match(sha):
+                raise ValueError(f"entrada '{entrada.get('id')}' tiene sha256 "
+                                  f"inválido (no son 64 hex): {sha!r}")
+            tam = entrada.get("tamano_bytes")
+            if not isinstance(tam, int) or isinstance(tam, bool) or tam < 0:
+                raise ValueError(f"entrada '{entrada.get('id')}' tiene tamano_bytes "
+                                  f"inválido (debe ser int >= 0): {tam!r} "
+                                  f"(tipo {type(tam).__name__})")
+        else:
+            if not _es_documental(entrada):
+                raise ValueError(
+                    f"entrada '{entrada.get('id')}' no tiene sha256 y no encaja en "
+                    f"ninguna estructura documental/retirada reconocida: "
+                    f"claves={sorted(entrada.keys())}")
 
 
 def repo_root():
@@ -244,12 +324,40 @@ def _str_presenter(dumper, data):
 yaml.add_representer(str, _str_presenter)
 
 
+def _escribir_atomico(path, texto):
+    """Escribe `texto` en `path` sin dejar nunca el archivo original a medio
+    escribir -- adaptado (un solo archivo, no varios) del patrón de
+    tools/curador_registro/integrate_barrido2.py::_replace_with_rollback:
+    temporal en el MISMO directorio (mismo filesystem, para que os.replace
+    sea atómico), escribe+flush+fsync, reparsea el temporal como YAML para
+    confirmar que lo escrito es válido, y solo entonces reemplaza. Cualquier
+    fallo antes de que os.replace termine deja `path` intacto; el temporal
+    se limpia siempre, incluso tras un reemplazo exitoso (ya no existe ahí,
+    así que el unlink final es un no-op seguro)."""
+    descriptor, nombre_temp = tempfile.mkstemp(
+        prefix=f".{os.path.basename(path)}.", dir=os.path.dirname(path) or ".")
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8") as f:
+            f.write(texto)
+            f.flush()
+            os.fsync(f.fileno())
+        with open(nombre_temp, encoding="utf-8") as f:
+            yaml.safe_load(f.read())
+        os.replace(nombre_temp, path)
+    finally:
+        try:
+            os.unlink(nombre_temp)
+        except FileNotFoundError:
+            pass
+
+
 def escribir_manifiesto(manifiesto_path, cabecera, entradas):
+    _validar_manifiesto_completo(entradas)
     cuerpo = yaml.dump(entradas, allow_unicode=True, sort_keys=False, width=88,
                         default_flow_style=False)
     cuerpo = cuerpo.replace("\n- id:", "\n\n- id:")
-    with open(manifiesto_path, "w", encoding="utf-8") as f:
-        f.write((cabecera.rstrip("\n") + "\n\n" if cabecera.strip() else "") + cuerpo)
+    texto_completo = (cabecera.rstrip("\n") + "\n\n" if cabecera.strip() else "") + cuerpo
+    _escribir_atomico(manifiesto_path, texto_completo)
 
 
 def sha256_de(path, buf_size=1024 * 1024):
@@ -296,6 +404,21 @@ def _id_unico(valor, comando):
     return valor[0]
 
 
+@contextlib.contextmanager
+def _con_lock_manifiesto(root):
+    """Protege escritores que comparten este archivo de lock (mismo
+    filesystem/máquina). No coordina clones independientes con archivos de
+    lock distintos. No es una solución de concurrencia distribuida."""
+    ruta_lock = os.path.join(root, "data", ".manifiesto.lock")
+    os.makedirs(os.path.dirname(ruta_lock), exist_ok=True)
+    with open(ruta_lock, "w") as handle:
+        fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+
+
 # ───────────────────────────────────────────────────────────── --registra ──
 
 def cmd_registra(a, manifiesto_path, raw_dir):
@@ -310,54 +433,61 @@ def cmd_registra(a, manifiesto_path, raw_dir):
               f"placeholder).", file=sys.stderr)
         sys.exit(1)
 
-    cabecera, entradas = leer_manifiesto(manifiesto_path)
-    if buscar(entradas, a.id):
-        print(f"ERROR: el id '{a.id}' ya existe. Este script no sobreescribe "
-              f"entradas registradas -- si el dato cambió, es una entrada nueva "
-              f"con id nuevo, no un edit silencioso.", file=sys.stderr)
-        sys.exit(1)
+    root = os.path.dirname(os.path.dirname(manifiesto_path))
+    with _con_lock_manifiesto(root):
+        cabecera, entradas = leer_manifiesto(manifiesto_path)
+        if buscar(entradas, a.id):
+            print(f"ERROR: el id '{a.id}' ya existe. Este script no sobreescribe "
+                  f"entradas registradas -- si el dato cambió, es una entrada nueva "
+                  f"con id nuevo, no un edit silencioso.", file=sys.stderr)
+            sys.exit(1)
 
-    ruta_absoluta = os.path.join(raw_dir, a.archivo)
-    if not os.path.exists(ruta_absoluta):
-        print(f"ERROR: data/raw/{a.archivo} no existe. --registra deriva "
-              f"sha256/tamaño del archivo real; no registra lo que no está en "
-              f"disco.", file=sys.stderr)
-        sys.exit(1)
+        ruta_absoluta = os.path.join(raw_dir, a.archivo)
+        if not os.path.exists(ruta_absoluta):
+            print(f"ERROR: data/raw/{a.archivo} no existe. --registra deriva "
+                  f"sha256/tamaño del archivo real; no registra lo que no está en "
+                  f"disco.", file=sys.stderr)
+            sys.exit(1)
 
-    sha = sha256_de(ruta_absoluta)
-    por_hash, _ = _index_manifiesto(entradas)
-    if sha in por_hash:
-        print(f"ERROR: este archivo ya está registrado -- mismo sha256 que la "
-              f"entrada '{por_hash[sha].get('id', '?')}' (archivo "
-              f"'{por_hash[sha].get('archivo', '?')}'). --escanea dedupica por "
-              f"hash; --registra hace lo mismo desde aquí -- no escribe una "
-              f"segunda entrada para el mismo contenido bajo un id distinto. Si "
-              f"el archivo cambió de verdad, es un id nuevo para un sha256 "
-              f"nuevo, no este caso.", file=sys.stderr)
-        sys.exit(1)
+        sha = sha256_de(ruta_absoluta)
+        por_hash, _ = _index_manifiesto(entradas)
+        if sha in por_hash:
+            print(f"ERROR: este archivo ya está registrado -- mismo sha256 que la "
+                  f"entrada '{por_hash[sha].get('id', '?')}' (archivo "
+                  f"'{por_hash[sha].get('archivo', '?')}'). --escanea dedupica por "
+                  f"hash; --registra hace lo mismo desde aquí -- no escribe una "
+                  f"segunda entrada para el mismo contenido bajo un id distinto. Si "
+                  f"el archivo cambió de verdad, es un id nuevo para un sha256 "
+                  f"nuevo, no este caso.", file=sys.stderr)
+            sys.exit(1)
 
-    entrada = {
-        "id": a.id,
-        "usado_para": a.usado_para,
-        "url_origen": a.url_origen,
-        "fecha_descarga": a.fecha_descarga or datetime.date.today().isoformat(),
-        "descargado_por": a.descargado_por,
-        "archivo": a.archivo,
-        "sha256": sha,
-        "tamano_bytes": os.path.getsize(ruta_absoluta),
-        "formato": a.formato,
-        "licencia": a.licencia,
-        "entorno_descarga": entorno_actual(),
-    }
-    if a.nota:
-        entrada["nota"] = a.nota
+        entrada = {
+            "id": a.id,
+            "usado_para": a.usado_para,
+            "url_origen": a.url_origen,
+            "fecha_descarga": a.fecha_descarga or datetime.date.today().isoformat(),
+            "descargado_por": a.descargado_por,
+            "archivo": a.archivo,
+            "sha256": sha,
+            "tamano_bytes": os.path.getsize(ruta_absoluta),
+            "formato": a.formato,
+            "licencia": a.licencia,
+            "entorno_descarga": entorno_actual(),
+        }
+        if a.nota:
+            entrada["nota"] = a.nota
 
-    entradas.append(entrada)
-    escribir_manifiesto(manifiesto_path, cabecera, entradas)
+        entradas.append(entrada)
+        try:
+            escribir_manifiesto(manifiesto_path, cabecera, entradas)
+        except ValueError as exc:
+            print(f"ERROR: manifiesto inválido tras registrar '{a.id}': {exc}",
+                  file=sys.stderr)
+            sys.exit(1)
 
-    print(f"Registrado '{a.id}' en {os.path.relpath(manifiesto_path)}:")
-    for k, v in entrada.items():
-        print(f"  {k}: {v}")
+        print(f"Registrado '{a.id}' en {os.path.relpath(manifiesto_path)}:")
+        for k, v in entrada.items():
+            print(f"  {k}: {v}")
 
 
 # ───────────────────────────────────────────────────────────── --verifica ──
@@ -672,250 +802,250 @@ def _archivos_recursivos(ruta):
 
 def cmd_escanea(a, manifiesto_path, raw_dir):
     root = os.path.dirname(os.path.dirname(manifiesto_path))
-    nombre_raiz = a.escanea
-    ruta = resolver_raiz(nombre_raiz, root, raw_dir)
-    if ruta is None:
-        disponibles = [RAIZ_INTEGRADA] + sorted(raices_configuradas(root))
-        print(f"ERROR: raíz '{nombre_raiz}' no configurada. --escanea recibe un "
-              f"NOMBRE de raíz, nunca una ruta. '{RAIZ_INTEGRADA}' es integrada; "
-              f"el resto se declara en data/raices.local.yaml (gitignorado -- cada "
-              f"máquina define sus propias rutas). Disponibles aquí: "
-              f"{', '.join(disponibles)}.", file=sys.stderr)
-        sys.exit(1)
-    if not os.path.isdir(ruta):
-        print(f"ERROR: la raíz '{nombre_raiz}' apunta a una ruta que no es una "
-              f"carpeta accesible en esta máquina.", file=sys.stderr)
-        sys.exit(1)
-    if nombre_raiz in RAICES_QUE_EXIGEN_GRUPO and not (a.grupo or a.grupo_n is not None):
-        print(f"ERROR: --escanea sobre la raíz '{nombre_raiz}' exige --grupo o "
-              f"--grupo-n. No es una carpeta de datos del proyecto -- tiene "
-              f"archivos ajenos, y un escaneo completo metería ruido al staging "
-              f"que alguien tendría que limpiar a mano, que es justo el trabajo "
-              f"que este comando existe para quitar.", file=sys.stderr)
-        sys.exit(1)
+    with _con_lock_manifiesto(root):
+        nombre_raiz = a.escanea
+        ruta = resolver_raiz(nombre_raiz, root, raw_dir)
+        if ruta is None:
+            disponibles = [RAIZ_INTEGRADA] + sorted(raices_configuradas(root))
+            print(f"ERROR: raíz '{nombre_raiz}' no configurada. --escanea recibe un "
+                  f"NOMBRE de raíz, nunca una ruta. '{RAIZ_INTEGRADA}' es integrada; "
+                  f"el resto se declara en data/raices.local.yaml (gitignorado -- cada "
+                  f"máquina define sus propias rutas). Disponibles aquí: "
+                  f"{', '.join(disponibles)}.", file=sys.stderr)
+            sys.exit(1)
+        if not os.path.isdir(ruta):
+            print(f"ERROR: la raíz '{nombre_raiz}' apunta a una ruta que no es una "
+                  f"carpeta accesible en esta máquina.", file=sys.stderr)
+            sys.exit(1)
+        if nombre_raiz in RAICES_QUE_EXIGEN_GRUPO and not (a.grupo or a.grupo_n is not None):
+            print(f"ERROR: --escanea sobre la raíz '{nombre_raiz}' exige --grupo o "
+                  f"--grupo-n. No es una carpeta de datos del proyecto -- tiene "
+                  f"archivos ajenos, y un escaneo completo metería ruido al staging "
+                  f"que alguien tendría que limpiar a mano, que es justo el trabajo "
+                  f"que este comando existe para quitar.", file=sys.stderr)
+            sys.exit(1)
 
-    _, entradas = leer_manifiesto(manifiesto_path)
-    por_hash, por_nombre = _index_manifiesto(entradas)
+        _, entradas = leer_manifiesto(manifiesto_path)
+        por_hash, por_nombre = _index_manifiesto(entradas)
 
-    ya_registrados, conflictos_nombre = [], []
-    nuevos, paginas = [], []
-    fuera_de_alcance = []
+        ya_registrados, conflictos_nombre = [], []
+        nuevos, paginas = [], []
+        fuera_de_alcance = []
 
-    for nombre in sorted(_archivos_recursivos(ruta)):
-        ruta_abs = os.path.join(ruta, nombre)
+        for nombre in sorted(_archivos_recursivos(ruta)):
+            ruta_abs = os.path.join(ruta, nombre)
 
-        extension = os.path.splitext(nombre)[1].lower()
-        if (nombre_raiz in RAICES_QUE_EXIGEN_GRUPO
-                and extension not in EXTENSIONES_DATO_RAICES_NO_CURADAS
-                and extension not in EXTENSIONES_PAGINA):
-            # Riesgo de privacidad (MAP-1b, 2026-08-06): 'downloads' no es
-            # una carpeta de datos, tiene archivos ajenos al proyecto -- se
-            # excluye ANTES de leer/hashear, no solo antes de etiquetar.
-            fuera_de_alcance.append(nombre)
-            continue
+            extension = os.path.splitext(nombre)[1].lower()
+            if (nombre_raiz in RAICES_QUE_EXIGEN_GRUPO
+                    and extension not in EXTENSIONES_DATO_RAICES_NO_CURADAS
+                    and extension not in EXTENSIONES_PAGINA):
+                # Riesgo de privacidad (MAP-1b, 2026-08-06): 'downloads' no es
+                # una carpeta de datos, tiene archivos ajenos al proyecto -- se
+                # excluye ANTES de leer/hashear, no solo antes de etiquetar.
+                fuera_de_alcance.append(nombre)
+                continue
 
-        sha = sha256_de(ruta_abs)
-        st = os.stat(ruta_abs)
+            sha = sha256_de(ruta_abs)
+            st = os.stat(ruta_abs)
 
-        if sha in por_hash:
-            ya_registrados.append((nombre, por_hash[sha].get("id", "?")))
-            continue
+            if sha in por_hash:
+                ya_registrados.append((nombre, por_hash[sha].get("id", "?")))
+                continue
 
-        existente = por_nombre.get(nombre)
-        if existente is not None:
-            conflictos_nombre.append(
-                (nombre, existente.get("id", "?"), sha, existente.get("sha256")))
-            continue
+            existente = por_nombre.get(nombre)
+            if existente is not None:
+                conflictos_nombre.append(
+                    (nombre, existente.get("id", "?"), sha, existente.get("sha256")))
+                continue
 
-        registro = {
-            "archivo": nombre,
-            "raiz": nombre_raiz,
-            "sha256": sha,
-            "tamano_bytes": st.st_size,
-            "mtime": st.st_mtime,
-            "fecha_descarga": datetime.date.fromtimestamp(st.st_mtime).isoformat(),
-            "entorno_descarga": entorno_actual(),
-            "descargado_por": "usuario, vía navegador",
-        }
-        if os.path.splitext(nombre)[1].lower() in EXTENSIONES_PAGINA:
-            paginas.append(registro)
-        else:
-            nuevos.append(registro)
+            registro = {
+                "archivo": nombre,
+                "raiz": nombre_raiz,
+                "sha256": sha,
+                "tamano_bytes": st.st_size,
+                "mtime": st.st_mtime,
+                "fecha_descarga": datetime.date.fromtimestamp(st.st_mtime).isoformat(),
+                "entorno_descarga": entorno_actual(),
+                "descargado_por": "usuario, vía navegador",
+            }
+            if os.path.splitext(nombre)[1].lower() in EXTENSIONES_PAGINA:
+                paginas.append(registro)
+            else:
+                nuevos.append(registro)
 
-    grupos = _agrupar_por_tanda(nuevos)
+        grupos = _agrupar_por_tanda(nuevos)
 
-    for pagina in paginas:
-        pagina["_url_sugerida"] = _extraer_url_pagina(os.path.join(ruta, pagina["archivo"]))
+        for pagina in paginas:
+            pagina["_url_sugerida"] = _extraer_url_pagina(os.path.join(ruta, pagina["archivo"]))
 
-    sugerencia_por_grupo = {}
-    for i, grupo in enumerate(grupos):
-        tmin = min(f["mtime"] for f in grupo)
-        tmax = max(f["mtime"] for f in grupo)
-        candidatas = {
-            p["_url_sugerida"] for p in paginas
-            if p["_url_sugerida"]
-            and tmin - UMBRAL_TANDA_SEGUNDOS <= p["mtime"] <= tmax + UMBRAL_TANDA_SEGUNDOS
-        }
-        if len(candidatas) == 1:
-            sugerencia_por_grupo[i] = next(iter(candidatas))
+        sugerencia_por_grupo = {}
+        for i, grupo in enumerate(grupos):
+            tmin = min(f["mtime"] for f in grupo)
+            tmax = max(f["mtime"] for f in grupo)
+            candidatas = {
+                p["_url_sugerida"] for p in paginas
+                if p["_url_sugerida"]
+                and tmin - UMBRAL_TANDA_SEGUNDOS <= p["mtime"] <= tmax + UMBRAL_TANDA_SEGUNDOS
+            }
+            if len(candidatas) == 1:
+                sugerencia_por_grupo[i] = next(iter(candidatas))
 
-    aplicados = 0
-    if a.grupo or a.grupo_n is not None:
-        if a.grupo_n is not None:
-            if not (1 <= a.grupo_n <= len(grupos)):
-                print(f"ERROR: --grupo-n {a.grupo_n} fuera de rango -- hay "
-                      f"{len(grupos)} tanda(s) detectada(s).", file=sys.stderr)
-                sys.exit(1)
-            candidatos_tandas = [grupos[a.grupo_n - 1]]
-        else:
-            candidatos_tandas = grupos
-        for grupo in candidatos_tandas:
-            for f in grupo:
-                if a.grupo and not fnmatch.fnmatch(f["archivo"].lower(), a.grupo.lower()):
-                    continue
-                if a.grupo_url:
-                    f["url_origen"] = a.grupo_url
-                if a.usado_para:
-                    f["usado_para"] = a.usado_para
-                aplicados += 1
+        aplicados = 0
+        if a.grupo or a.grupo_n is not None:
+            if a.grupo_n is not None:
+                if not (1 <= a.grupo_n <= len(grupos)):
+                    print(f"ERROR: --grupo-n {a.grupo_n} fuera de rango -- hay "
+                          f"{len(grupos)} tanda(s) detectada(s).", file=sys.stderr)
+                    sys.exit(1)
+                candidatos_tandas = [grupos[a.grupo_n - 1]]
+            else:
+                candidatos_tandas = grupos
+            for grupo in candidatos_tandas:
+                for f in grupo:
+                    if a.grupo and not fnmatch.fnmatch(f["archivo"].lower(), a.grupo.lower()):
+                        continue
+                    if a.grupo_url:
+                        f["url_origen"] = a.grupo_url
+                    if a.usado_para:
+                        f["usado_para"] = a.usado_para
+                    aplicados += 1
 
-    # ── escribir data/manifiesto-staging.yaml ──
-    # Fusiona, no reemplaza: con tres raíces, escanear 'downloads' hoy no
-    # puede borrar lo que 'descargas_mx' dejó staged ayer. Lo de esta
-    # corrida reemplaza SOLO las entradas de la raíz que se está escaneando
-    # (una tanda vieja de la MISMA raíz sí debe refrescarse); lo de otras
-    # raíces se preserva tal cual, en un bloque aparte (sin mtime -- no se
-    # re-escanea su disco -- así que no se reconstruye su agrupación).
-    staging_path = os.path.join(os.path.dirname(manifiesto_path), STAGING_NOMBRE)
-    _, staging_previo = leer_manifiesto(staging_path)
-    de_otras_raices = [e for e in staging_previo
-                       if e.get("raiz", RAIZ_INTEGRADA) != nombre_raiz]
+        # ── escribir data/manifiesto-staging.yaml ──
+        # Fusiona, no reemplaza: con tres raíces, escanear 'downloads' hoy no
+        # puede borrar lo que 'descargas_mx' dejó staged ayer. Lo de esta
+        # corrida reemplaza SOLO las entradas de la raíz que se está escaneando
+        # (una tanda vieja de la MISMA raíz sí debe refrescarse); lo de otras
+        # raíces se preserva tal cual, en un bloque aparte (sin mtime -- no se
+        # re-escanea su disco -- así que no se reconstruye su agrupación).
+        staging_path = os.path.join(os.path.dirname(manifiesto_path), STAGING_NOMBRE)
+        _, staging_previo = leer_manifiesto(staging_path)
+        de_otras_raices = [e for e in staging_previo
+                           if e.get("raiz", RAIZ_INTEGRADA) != nombre_raiz]
 
-    bloques = [
-        f"# {STAGING_NOMBRE} -- candidatos derivados por `tests/manifiesto.py "
-        f"--escanea`, fusionados por raíz (última corrida por raíz reemplaza "
-        f"solo esa raíz).\n#\n"
-        f"# sha256, tamano_bytes, fecha_descarga (del mtime) y entorno_descarga\n"
-        f"# se derivaron del archivo real en disco -- nunca se tecleó ni se pidió\n"
-        f"# por parámetro. url_origen y usado_para son los dos campos que una\n"
-        f"# máquina no puede derivar: quedan en \"\" y # PENDIENTE hasta que el\n"
-        f"# autor los complete. `raiz` es el NOMBRE de la raíz -- la ruta real\n"
-        f"# vive en data/raices.local.yaml, gitignorado, nunca aquí.\n#\n"
-        f"# Este archivo NO es data/manifiesto.yaml. Ninguna entrada de aquí se\n"
-        f"# promueve automáticamente."
-    ]
-    bloques.append(f"\n# ══ Raíz '{nombre_raiz}' -- corrida actual ══")
-    for i, grupo in enumerate(grupos):
-        tmin = _fmt_ts(min(f["mtime"] for f in grupo))
-        tmax = _fmt_ts(max(f["mtime"] for f in grupo))
-        etiqueta = _etiqueta_dominante(f["archivo"] for f in grupo)
-        cabecera = (f"\n# ── Grupo {i + 1}: {len(grupo)} archivo(s) -- "
-                    f"{tmin} a {tmax} -- "
-                    f"token dominante: {etiqueta or '(ninguno)'} ──")
-        entradas_txt = [_formatear_entrada_staging(f, sugerencia_por_grupo.get(i))
-                        for f in sorted(grupo, key=lambda f: f["archivo"])]
-        bloques.append(cabecera + "\n\n" + "\n\n".join(entradas_txt))
-    for pagina in paginas:
-        cabecera = (f"\n# ── Página guardada (no es dato -- evidencia de "
-                    f"procedencia): {pagina['archivo']} ──")
-        bloques.append(cabecera + "\n\n" + _formatear_entrada_staging(pagina, None))
+        bloques = [
+            f"# {STAGING_NOMBRE} -- candidatos derivados por `tests/manifiesto.py "
+            f"--escanea`, fusionados por raíz (última corrida por raíz reemplaza "
+            f"solo esa raíz).\n#\n"
+            f"# sha256, tamano_bytes, fecha_descarga (del mtime) y entorno_descarga\n"
+            f"# se derivaron del archivo real en disco -- nunca se tecleó ni se pidió\n"
+            f"# por parámetro. url_origen y usado_para son los dos campos que una\n"
+            f"# máquina no puede derivar: quedan en \"\" y # PENDIENTE hasta que el\n"
+            f"# autor los complete. `raiz` es el NOMBRE de la raíz -- la ruta real\n"
+            f"# vive en data/raices.local.yaml, gitignorado, nunca aquí.\n#\n"
+            f"# Este archivo NO es data/manifiesto.yaml. Ninguna entrada de aquí se\n"
+            f"# promueve automáticamente."
+        ]
+        bloques.append(f"\n# ══ Raíz '{nombre_raiz}' -- corrida actual ══")
+        for i, grupo in enumerate(grupos):
+            tmin = _fmt_ts(min(f["mtime"] for f in grupo))
+            tmax = _fmt_ts(max(f["mtime"] for f in grupo))
+            etiqueta = _etiqueta_dominante(f["archivo"] for f in grupo)
+            cabecera = (f"\n# ── Grupo {i + 1}: {len(grupo)} archivo(s) -- "
+                        f"{tmin} a {tmax} -- "
+                        f"token dominante: {etiqueta or '(ninguno)'} ──")
+            entradas_txt = [_formatear_entrada_staging(f, sugerencia_por_grupo.get(i))
+                            for f in sorted(grupo, key=lambda f: f["archivo"])]
+            bloques.append(cabecera + "\n\n" + "\n\n".join(entradas_txt))
+        for pagina in paginas:
+            cabecera = (f"\n# ── Página guardada (no es dato -- evidencia de "
+                        f"procedencia): {pagina['archivo']} ──")
+            bloques.append(cabecera + "\n\n" + _formatear_entrada_staging(pagina, None))
 
-    if de_otras_raices:
-        bloques.append(f"\n# ══ Preservado de otra(s) raíz(ces) -- de una corrida "
-                        f"anterior, no de esta ══")
-        entradas_txt = [_formatear_entrada_staging(e, e.get("url_origen_sugerida"))
-                        for e in sorted(de_otras_raices,
-                                        key=lambda e: (e.get("raiz", RAIZ_INTEGRADA), e["archivo"]))]
-        bloques.append("\n\n".join(entradas_txt))
+        if de_otras_raices:
+            bloques.append(f"\n# ══ Preservado de otra(s) raíz(ces) -- de una corrida "
+                            f"anterior, no de esta ══")
+            entradas_txt = [_formatear_entrada_staging(e, e.get("url_origen_sugerida"))
+                            for e in sorted(de_otras_raices,
+                                            key=lambda e: (e.get("raiz", RAIZ_INTEGRADA), e["archivo"]))]
+            bloques.append("\n\n".join(entradas_txt))
 
-    with open(staging_path, "w", encoding="utf-8") as f:
-        f.write("\n".join(bloques).strip() + "\n")
+        _escribir_atomico(staging_path, "\n".join(bloques).strip() + "\n")
 
-    # ── reporte a stdout ──
-    total = len(ya_registrados) + len(conflictos_nombre) + len(nuevos) + len(paginas) + len(fuera_de_alcance)
-    print(f"Escaneado: raíz '{nombre_raiz}' ({ruta})")
-    print(f"Entorno: {entorno_actual()}")
-    print()
-    print(f"Total en disco: {total} · nuevos: {len(nuevos) + len(paginas)} · "
-          f"ya registrados: {len(ya_registrados)} · conflicto de nombre: "
-          f"{len(conflictos_nombre)} · fuera de alcance de dato: {len(fuera_de_alcance)}")
-    print()
-
-    if fuera_de_alcance:
-        extensiones_vistas = sorted({os.path.splitext(n)[1].lower() or "(sin extensión)" for n in fuera_de_alcance})
-        print(f"FUERA DE ALCANCE DE DATO ({len(fuera_de_alcance)}) -- ni leídos ni hasheados, "
-              f"riesgo de privacidad (MAP-1b): extensión ajena al filtro de '{nombre_raiz}' "
-              f"({sorted(EXTENSIONES_DATO_RAICES_NO_CURADAS)}). No se transcriben los nombres "
-              f"aquí (pueden ser archivos personales ajenos al proyecto, mismo criterio que "
-              f"forense/notas/2026-08-06-map1b-censo-raices.md aplicó a los 28 grupos de ruido "
-              f"personal). Extensiones distintas vistas: {extensiones_vistas}")
+        # ── reporte a stdout ──
+        total = len(ya_registrados) + len(conflictos_nombre) + len(nuevos) + len(paginas) + len(fuera_de_alcance)
+        print(f"Escaneado: raíz '{nombre_raiz}' ({ruta})")
+        print(f"Entorno: {entorno_actual()}")
+        print()
+        print(f"Total en disco: {total} · nuevos: {len(nuevos) + len(paginas)} · "
+              f"ya registrados: {len(ya_registrados)} · conflicto de nombre: "
+              f"{len(conflictos_nombre)} · fuera de alcance de dato: {len(fuera_de_alcance)}")
         print()
 
-    if ya_registrados:
-        print(f"YA REGISTRADOS ({len(ya_registrados)}):")
-        for nombre, id_ in ya_registrados:
-            print(f"  {nombre} -- ya registrado como '{id_}'")
+        if fuera_de_alcance:
+            extensiones_vistas = sorted({os.path.splitext(n)[1].lower() or "(sin extensión)" for n in fuera_de_alcance})
+            print(f"FUERA DE ALCANCE DE DATO ({len(fuera_de_alcance)}) -- ni leídos ni hasheados, "
+                  f"riesgo de privacidad (MAP-1b): extensión ajena al filtro de '{nombre_raiz}' "
+                  f"({sorted(EXTENSIONES_DATO_RAICES_NO_CURADAS)}). No se transcriben los nombres "
+                  f"aquí (pueden ser archivos personales ajenos al proyecto, mismo criterio que "
+                  f"forense/notas/2026-08-06-map1b-censo-raices.md aplicó a los 28 grupos de ruido "
+                  f"personal). Extensiones distintas vistas: {extensiones_vistas}")
+            print()
+
+        if ya_registrados:
+            print(f"YA REGISTRADOS ({len(ya_registrados)}):")
+            for nombre, id_ in ya_registrados:
+                print(f"  {nombre} -- ya registrado como '{id_}'")
+            print()
+
+        if conflictos_nombre:
+            print(f"CONFLICTO DE NOMBRE -- HALLAZGO, no se registra ({len(conflictos_nombre)}):")
+            for nombre, id_, sha_disco, sha_manifiesto in conflictos_nombre:
+                print(f"  {nombre}: mismo nombre que '{id_}' pero sha256 distinto")
+                print(f"    sha256 en disco:      {sha_disco}")
+                print(f"    sha256 en manifiesto: {sha_manifiesto}")
+            print()
+
+        print(f"GRUPOS de datos detectados ({len(grupos)}), por tanda de descarga "
+              f"(mtime en disco):")
+        for i, grupo in enumerate(grupos):
+            tmin = _fmt_ts(min(f["mtime"] for f in grupo))
+            tmax = _fmt_ts(max(f["mtime"] for f in grupo))
+            etiqueta = _etiqueta_dominante(f["archivo"] for f in grupo)
+            sugerencia = sugerencia_por_grupo.get(i)
+            print(f"  Grupo {i + 1}: {len(grupo)} archivo(s) -- "
+                  f"{tmin} a {tmax} -- "
+                  f"token dominante: {etiqueta or '(ninguno)'}"
+                  + (f" -- sugerencia url_origen: {sugerencia}" if sugerencia else ""))
+            print(f"    {', '.join(f['archivo'] for f in sorted(grupo, key=lambda f: f['archivo']))}")
+
+        if paginas:
+            print()
+            print(f"Páginas guardadas ({len(paginas)}, no son dato -- evidencia de procedencia):")
+            for p in paginas:
+                print(f"  {p['archivo']} -- sugerencia detectada: "
+                      f"{p['_url_sugerida'] or '(ninguna)'}")
+
+        if a.grupo or a.grupo_n is not None:
+            print()
+            descriptor = " + ".join(filter(None, [
+                f"tanda {a.grupo_n}" if a.grupo_n is not None else None,
+                f"patrón '{a.grupo}'" if a.grupo else None,
+            ]))
+            if aplicados:
+                print(f"--grupo-n/--grupo ({descriptor}): {aplicados} archivo(s) nuevo(s) "
+                      f"recibieron " + ", ".join(filter(None, [
+                          f"url_origen='{a.grupo_url}'" if a.grupo_url else None,
+                          f"usado_para='{a.usado_para}'" if a.usado_para else None,
+                      ])))
+            else:
+                print(f"--grupo-n/--grupo ({descriptor}): ningún archivo nuevo coincide")
+
+        if de_otras_raices:
+            print()
+            print(f"Preservadas {len(de_otras_raices)} entrada(s) de otra(s) raíz(ces) "
+                  f"(de una corrida anterior de --escanea, no de esta):")
+            por_raiz_previa = {}
+            for e in de_otras_raices:
+                por_raiz_previa.setdefault(e.get("raiz", RAIZ_INTEGRADA), 0)
+                por_raiz_previa[e.get("raiz", RAIZ_INTEGRADA)] += 1
+            for r in sorted(por_raiz_previa):
+                print(f"  {r}: {por_raiz_previa[r]}")
+
         print()
-
-    if conflictos_nombre:
-        print(f"CONFLICTO DE NOMBRE -- HALLAZGO, no se registra ({len(conflictos_nombre)}):")
-        for nombre, id_, sha_disco, sha_manifiesto in conflictos_nombre:
-            print(f"  {nombre}: mismo nombre que '{id_}' pero sha256 distinto")
-            print(f"    sha256 en disco:      {sha_disco}")
-            print(f"    sha256 en manifiesto: {sha_manifiesto}")
-        print()
-
-    print(f"GRUPOS de datos detectados ({len(grupos)}), por tanda de descarga "
-          f"(mtime en disco):")
-    for i, grupo in enumerate(grupos):
-        tmin = _fmt_ts(min(f["mtime"] for f in grupo))
-        tmax = _fmt_ts(max(f["mtime"] for f in grupo))
-        etiqueta = _etiqueta_dominante(f["archivo"] for f in grupo)
-        sugerencia = sugerencia_por_grupo.get(i)
-        print(f"  Grupo {i + 1}: {len(grupo)} archivo(s) -- "
-              f"{tmin} a {tmax} -- "
-              f"token dominante: {etiqueta or '(ninguno)'}"
-              + (f" -- sugerencia url_origen: {sugerencia}" if sugerencia else ""))
-        print(f"    {', '.join(f['archivo'] for f in sorted(grupo, key=lambda f: f['archivo']))}")
-
-    if paginas:
-        print()
-        print(f"Páginas guardadas ({len(paginas)}, no son dato -- evidencia de procedencia):")
-        for p in paginas:
-            print(f"  {p['archivo']} -- sugerencia detectada: "
-                  f"{p['_url_sugerida'] or '(ninguna)'}")
-
-    if a.grupo or a.grupo_n is not None:
-        print()
-        descriptor = " + ".join(filter(None, [
-            f"tanda {a.grupo_n}" if a.grupo_n is not None else None,
-            f"patrón '{a.grupo}'" if a.grupo else None,
-        ]))
-        if aplicados:
-            print(f"--grupo-n/--grupo ({descriptor}): {aplicados} archivo(s) nuevo(s) "
-                  f"recibieron " + ", ".join(filter(None, [
-                      f"url_origen='{a.grupo_url}'" if a.grupo_url else None,
-                      f"usado_para='{a.usado_para}'" if a.usado_para else None,
-                  ])))
-        else:
-            print(f"--grupo-n/--grupo ({descriptor}): ningún archivo nuevo coincide")
-
-    if de_otras_raices:
-        print()
-        print(f"Preservadas {len(de_otras_raices)} entrada(s) de otra(s) raíz(ces) "
-              f"(de una corrida anterior de --escanea, no de esta):")
-        por_raiz_previa = {}
-        for e in de_otras_raices:
-            por_raiz_previa.setdefault(e.get("raiz", RAIZ_INTEGRADA), 0)
-            por_raiz_previa[e.get("raiz", RAIZ_INTEGRADA)] += 1
-        for r in sorted(por_raiz_previa):
-            print(f"  {r}: {por_raiz_previa[r]}")
-
-    print()
-    print(f"Escrito: {os.path.relpath(staging_path, repo_root())} "
-          f"({len(nuevos) + len(paginas)} entrada(s) staging de la raíz "
-          f"'{nombre_raiz}' + {len(de_otras_raices)} preservada(s) de otras). "
-          f"Nada se promovió a {os.path.relpath(manifiesto_path, repo_root())}.")
+        print(f"Escrito: {os.path.relpath(staging_path, repo_root())} "
+              f"({len(nuevos) + len(paginas)} entrada(s) staging de la raíz "
+              f"'{nombre_raiz}' + {len(de_otras_raices)} preservada(s) de otras). "
+              f"Nada se promovió a {os.path.relpath(manifiesto_path, repo_root())}.")
 
 
 # ───────────────────────────────────────────────────────────── --promueve ──
@@ -953,9 +1083,9 @@ def _reescribir_staging_restante(staging_path, restantes):
     re-escanea el disco), así que no se reconstruye la agrupación por
     tanda -- una lista plana es honesta con lo que este paso sí sabe."""
     if not restantes:
-        with open(staging_path, "w", encoding="utf-8") as f:
-            f.write(f"# {STAGING_NOMBRE} -- vacío: no quedan candidatos sin "
-                     f"promover a data/manifiesto.yaml.\n")
+        _escribir_atomico(staging_path,
+                           f"# {STAGING_NOMBRE} -- vacío: no quedan candidatos sin "
+                           f"promover a data/manifiesto.yaml.\n")
         return
     cabecera = (
         f"# {STAGING_NOMBRE} -- candidatos que --promueve dejó sin promover\n"
@@ -965,111 +1095,116 @@ def _reescribir_staging_restante(staging_path, restantes):
     )
     entradas_txt = [_formatear_entrada_staging(e, e.get("url_origen_sugerida"))
                      for e in sorted(restantes, key=lambda e: e["archivo"])]
-    with open(staging_path, "w", encoding="utf-8") as f:
-        f.write(cabecera + "\n\n" + "\n\n".join(entradas_txt) + "\n")
+    _escribir_atomico(staging_path, cabecera + "\n\n" + "\n\n".join(entradas_txt) + "\n")
 
 
 def cmd_promueve(a, manifiesto_path, raw_dir):
-    staging_path = os.path.join(os.path.dirname(manifiesto_path), STAGING_NOMBRE)
-    if not os.path.exists(staging_path):
-        print(f"ERROR: no existe {os.path.relpath(staging_path, repo_root())} -- "
-              f"nada que promover. Corre --escanea primero.", file=sys.stderr)
-        sys.exit(1)
+    root = os.path.dirname(os.path.dirname(manifiesto_path))
+    with _con_lock_manifiesto(root):
+        staging_path = os.path.join(os.path.dirname(manifiesto_path), STAGING_NOMBRE)
+        if not os.path.exists(staging_path):
+            print(f"ERROR: no existe {os.path.relpath(staging_path, repo_root())} -- "
+                  f"nada que promover. Corre --escanea primero.", file=sys.stderr)
+            sys.exit(1)
 
-    _, staging_entradas = leer_manifiesto(staging_path)
-    if not staging_entradas:
-        print(f"{os.path.relpath(staging_path, repo_root())} no tiene candidatos "
-              f"pendientes. Nada que promover.")
-        return
+        _, staging_entradas = leer_manifiesto(staging_path)
+        if not staging_entradas:
+            print(f"{os.path.relpath(staging_path, repo_root())} no tiene candidatos "
+                  f"pendientes. Nada que promover.")
+            return
 
-    cabecera, entradas = leer_manifiesto(manifiesto_path)
-    por_hash, _ = _index_manifiesto(entradas)
-    ids_existentes = {e.get("id") for e in entradas if e.get("id")}
+        cabecera, entradas = leer_manifiesto(manifiesto_path)
+        por_hash, _ = _index_manifiesto(entradas)
+        ids_existentes = {e.get("id") for e in entradas if e.get("id")}
 
-    if a.grupo:
-        objetivo = [e for e in staging_entradas
-                    if fnmatch.fnmatch(e["archivo"].lower(), a.grupo.lower())]
-        fuera_de_grupo = [e for e in staging_entradas if e not in objetivo]
-    else:
-        objetivo = list(staging_entradas)
-        fuera_de_grupo = []
-
-    promovidas, no_promovidas, restantes = [], [], list(fuera_de_grupo)
-
-    for e in objetivo:
-        ext = os.path.splitext(e["archivo"])[1].lower()
-        if ext in EXTENSIONES_PAGINA:
-            no_promovidas.append((e, "página guardada, no es dato -- no se promueve"))
-            restantes.append(e)
-            continue
-
-        if e.get("sha256") in por_hash:
-            no_promovidas.append(
-                (e, f"ya registrado externamente como "
-                    f"'{por_hash[e['sha256']].get('id', '?')}' -- no se duplica"))
-            continue
-
-        if not e.get("sha256") or not e.get("tamano_bytes"):
-            no_promovidas.append(
-                (e, "falta sha256 o tamano_bytes -- irrecuperable, no se promueve"))
-            restantes.append(e)
-            continue
-
-        url_valor = e.get("url_origen") or ""
-        sugerida = e.get("url_origen_sugerida") or ""
-        if url_valor and sugerida and url_valor == sugerida:
-            procedencia = "derivada de descargas.php por --escanea, NO confirmada por el autor"
-        elif url_valor:
-            procedencia = "asignada vía --grupo/--url en --escanea, NO confirmada por el autor"
-        elif sugerida:
-            url_valor = sugerida
-            procedencia = "derivada de descargas.php por --escanea, NO confirmada por el autor"
+        if a.grupo:
+            objetivo = [e for e in staging_entradas
+                        if fnmatch.fnmatch(e["archivo"].lower(), a.grupo.lower())]
+            fuera_de_grupo = [e for e in staging_entradas if e not in objetivo]
         else:
-            url_valor = "no determinada"
-            procedencia = "no derivada -- --escanea no encontró sugerencia, NO confirmada por el autor"
+            objetivo = list(staging_entradas)
+            fuera_de_grupo = []
 
-        usado_valor = e.get("usado_para") or "sin uso asignado — registro de inventario"
+        promovidas, no_promovidas, restantes = [], [], list(fuera_de_grupo)
 
-        id_ = _derivar_id(e["archivo"], ids_existentes)
-        ids_existentes.add(id_)
+        for e in objetivo:
+            ext = os.path.splitext(e["archivo"])[1].lower()
+            if ext in EXTENSIONES_PAGINA:
+                no_promovidas.append((e, "página guardada, no es dato -- no se promueve"))
+                restantes.append(e)
+                continue
 
-        nueva = {
-            "id": id_,
-            "usado_para": usado_valor,
-            "url_origen": url_valor,
-            "url_origen_procedencia": procedencia,
-            "fecha_descarga": e["fecha_descarga"],
-            "descargado_por": e["descargado_por"],
-            "archivo": e["archivo"],
-            "raiz": e.get("raiz", RAIZ_INTEGRADA),
-            "sha256": e["sha256"],
-            "tamano_bytes": e["tamano_bytes"],
-            "entorno_descarga": e["entorno_descarga"],
-        }
-        entradas.append(nueva)
-        por_hash[nueva["sha256"]] = nueva
-        promovidas.append(nueva)
+            if e.get("sha256") in por_hash:
+                no_promovidas.append(
+                    (e, f"ya registrado externamente como "
+                        f"'{por_hash[e['sha256']].get('id', '?')}' -- no se duplica"))
+                continue
 
-    escribir_manifiesto(manifiesto_path, cabecera, entradas)
-    _reescribir_staging_restante(staging_path, restantes)
+            if not e.get("sha256") or not e.get("tamano_bytes"):
+                no_promovidas.append(
+                    (e, "falta sha256 o tamano_bytes -- irrecuperable, no se promueve"))
+                restantes.append(e)
+                continue
 
-    print(f"Promovidas {len(promovidas)} entrada(s) a "
-          f"{os.path.relpath(manifiesto_path, repo_root())}:")
-    for n in promovidas:
-        print(f"  {n['id']} <- {n['archivo']} [{n['raiz']}]")
-        print(f"    url_origen: {n['url_origen']}")
-        print(f"    url_origen_procedencia: {n['url_origen_procedencia']}")
-        print(f"    usado_para: {n['usado_para']}")
+            url_valor = e.get("url_origen") or ""
+            sugerida = e.get("url_origen_sugerida") or ""
+            if url_valor and sugerida and url_valor == sugerida:
+                procedencia = "derivada de descargas.php por --escanea, NO confirmada por el autor"
+            elif url_valor:
+                procedencia = "asignada vía --grupo/--url en --escanea, NO confirmada por el autor"
+            elif sugerida:
+                url_valor = sugerida
+                procedencia = "derivada de descargas.php por --escanea, NO confirmada por el autor"
+            else:
+                url_valor = "no determinada"
+                procedencia = "no derivada -- --escanea no encontró sugerencia, NO confirmada por el autor"
 
-    if no_promovidas:
+            usado_valor = e.get("usado_para") or "sin uso asignado — registro de inventario"
+
+            id_ = _derivar_id(e["archivo"], ids_existentes)
+            ids_existentes.add(id_)
+
+            nueva = {
+                "id": id_,
+                "usado_para": usado_valor,
+                "url_origen": url_valor,
+                "url_origen_procedencia": procedencia,
+                "fecha_descarga": e["fecha_descarga"],
+                "descargado_por": e["descargado_por"],
+                "archivo": e["archivo"],
+                "raiz": e.get("raiz", RAIZ_INTEGRADA),
+                "sha256": e["sha256"],
+                "tamano_bytes": e["tamano_bytes"],
+                "entorno_descarga": e["entorno_descarga"],
+            }
+            entradas.append(nueva)
+            por_hash[nueva["sha256"]] = nueva
+            promovidas.append(nueva)
+
+        try:
+            escribir_manifiesto(manifiesto_path, cabecera, entradas)
+        except ValueError as exc:
+            print(f"ERROR: manifiesto inválido tras promover -- nada se escribió: {exc}", file=sys.stderr)
+            sys.exit(1)
+        _reescribir_staging_restante(staging_path, restantes)
+
+        print(f"Promovidas {len(promovidas)} entrada(s) a "
+              f"{os.path.relpath(manifiesto_path, repo_root())}:")
+        for n in promovidas:
+            print(f"  {n['id']} <- {n['archivo']} [{n['raiz']}]")
+            print(f"    url_origen: {n['url_origen']}")
+            print(f"    url_origen_procedencia: {n['url_origen_procedencia']}")
+            print(f"    usado_para: {n['usado_para']}")
+
+        if no_promovidas:
+            print()
+            print(f"No promovidas ({len(no_promovidas)}):")
+            for e, razon in no_promovidas:
+                print(f"  {e['archivo']}: {razon}")
+
         print()
-        print(f"No promovidas ({len(no_promovidas)}):")
-        for e, razon in no_promovidas:
-            print(f"  {e['archivo']}: {razon}")
-
-    print()
-    print(f"Quedan {len(restantes)} entrada(s) en "
-          f"{os.path.relpath(staging_path, repo_root())}.")
+        print(f"Quedan {len(restantes)} entrada(s) en "
+              f"{os.path.relpath(staging_path, repo_root())}.")
 
 
 # ───────────────────────────────────────────────────────────── --compara ──

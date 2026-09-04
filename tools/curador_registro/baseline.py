@@ -50,6 +50,16 @@ def relacion_id(necesidad: str, fuente: str, objeto: str) -> str:
     return "REL-" + hashlib.sha256(clave).hexdigest()[:24]
 
 
+def objeto_evidencia_id(fuente: str, descripcion: str) -> str:
+    clave = "\x1f".join((fuente, descripcion)).encode("utf-8")
+    return "OE-" + hashlib.sha256(clave).hexdigest()[:24]
+
+
+def procedencia_id(relacion_id_: str, fuente: str, objeto: str, evidencia_ref: str) -> str:
+    clave = "\x1f".join((relacion_id_, fuente, objeto, evidencia_ref)).encode("utf-8")
+    return "PROV-" + hashlib.sha256(clave).hexdigest()[:24]
+
+
 def _duplicados(valores: Iterable[str]) -> list[str]:
     conteo = Counter(valores)
     return sorted(valor for valor, cantidad in conteo.items() if cantidad != 1)
