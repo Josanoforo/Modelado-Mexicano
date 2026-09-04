@@ -15,8 +15,7 @@ FP/ADR: ADR-328 (INFRA-1 toma 328 si fusiona antes → 329) · FP-285 recibo. CO
 ## CONSUMIDO
 
 Ejecutado por `ACTO MAESTRA37-N8 · CONSOLIDA-DECISIONES` (4/sep/2026, NUBE), rama
-`claude/acto-maestra37-consolidacion-1ekmtd`. PR abierto desde esta rama contra `main`
-(ver título "MAESTRA37-N8"). `ADR-328` (acto principal) y `ADR-329` (enmienda de canon
+`claude/acto-maestra37-consolidacion-1ekmtd`. `PR #523`. `ADR-328` (acto principal) y `ADR-329` (enmienda de canon
 D2-f, inciso propio). Piezas deferidas y documentadas, no forzadas: (1) una séptima
 entrada D2-a con `situacion` desactualizada, declarada por la firma de mesa, no se
 localizó en `milpa/tramite.yaml` -- 6 encontradas, no 7; (2) el re-asiento de las ocho
