@@ -55,3 +55,25 @@ Contador: specs selladas 0 → 3, cumplido. Medición: cero, cumplido —
 ningún commit de esta pieza abre microdato, corre censo real, ejecuta
 `alta_relacion.py` ni mueve tier alguno. PR de este acto, contra
 `main`.
+
+## Enmienda post-cierre (mismo día, 4/sep/2026) — colisión con `MAESTRA38-N4`
+
+Al ir a fusionar contra `origin/main` (`632bf36`), `PR #531` (`ACTO
+MAESTRA38-N4 · PROPAGA-Y-PAGA`) ya había fusionado primero y tomado,
+de forma independiente, los mismos candidatos `ADR-336`/`FP-295` que
+esta pieza derivó arriba — mismo patrón que la colisión
+`ADR-334`/`ADR-335` de `MAESTRA38-N2` documentada en `canon/
+gobernanza-v1_15.md`. Por la regla de la casa "renumera quien fusiona
+segundo", commit `1f93518` (merge de `origin/main`) cede `ADR-336`/
+`FP-295` a `MAESTRA38-N4` y renumera esta pieza a **`ADR-337`** ·
+**`FP-296`** en los cuatro archivos de cascada (`canon/gobernanza-
+v1_15.md`, `canon/estado-programa-v1_11.md` L0 + tabla + línea
+histórica, `canon/registro-rotulos.tsv`, `forense/firmas-
+pendientes.tsv`), conservando intacta la entrada real de `N4`.
+Coincidencia declarada, no forzada: el número final `FP-296` coincide
+con el que el encargo original citaba (línea 12) — no porque se haya
+heredado de esa prosa (D-13 lo prohíbe), sino porque la fusión lo
+produjo así. Las tres specs selladas (`S1`/`S2`/`S3`) no citan
+`ADR-336`/`FP-295` en su cuerpo — no requirieron re-sello. `python3
+tests/check.py --baseline` tras el merge: 3 FAIL / 170 WARN, LÍNEA
+BASE VERDE contra el baseline recifrado que `N4` trajo.
