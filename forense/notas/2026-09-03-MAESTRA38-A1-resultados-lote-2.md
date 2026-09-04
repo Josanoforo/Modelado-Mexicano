@@ -2,6 +2,13 @@
 
 Spec congelada: `forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-2.md`. CONEVAL, ENJUVE, ENVE, ENH.
 
+*(Corrección aritmética 3/sep/2026: los totales de manifiesto de esta nota
+usaban la base `1242` de la redacción original de
+`forense/notas/2026-09-03-MAESTRA38-A1-resultados-lote-1.md`, que no
+incluía las 3 entradas que el sub-agente resolvió después. Base real de
+este lote: `1245`. Ver la corrección en esa nota y el recuento final en
+`ADR-328`.)*
+
 ## (a) Sonda de alcanzabilidad (v2.2) — tres hallazgos distintos, sin colapsar
 
 - **ENVE, ENH** (INEGI): mismo patrón que Lote 1 — portal SPA 200 con
@@ -38,7 +45,7 @@ Spec congelada: `forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-2.md`. CONEVAL,
 
 ## Registro por las tres capas
 
-- **Manifiesto**: 1242 → 1251 (+9: 3 ENVE, 4 ENH, 1 CONEVAL, 1 ENJUVE).
+- **Manifiesto**: 1245 → 1254 (+9: 3 ENVE, 4 ENH, 1 CONEVAL, 1 ENJUVE).
   Doble descarga + hash coincidente + integridad verificada (`testzip` para
   zips, `tar.exe -tf` para el RAR) en los 8 payloads de dato; el PDF de
   ENJUVE con hash único (no token).
@@ -62,7 +69,7 @@ del worktree — verificado.
 
 Candidatas sondeadas: 4 → 8 (de 12). Veredictos A.4 con FD: 4 → 5 (ENH,
 CONEVAL, ENJUVE no producen veredicto de regla — exploratorias). Payloads:
-+9 (total +18 en el acto). Fuentes en cola: +4 (total +8). Relaciones
++9 (total +21 en el acto). Fuentes en cola: +4 (total +8). Relaciones
 nuevas: +1 (total +3 en el acto). Reglas NO-ENCONTRADO con candidata:
 8 → 8 (N16 ya tenía candidata vía ENCUCI2020 — ENVE la refuerza, no abre
 una regla nueva).

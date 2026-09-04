@@ -51,11 +51,19 @@ pieza paró.
   por fuente, dos veces cada una — API de línea de comandos aplica un solo
   `--url` por invocación y regenera `staging` completo, así que un segundo
   `--escanea` sin promover antes pierde la asignación del primero; patrón
-  correcto: escanea→promueve→escanea siguiente): **1233 → 1242** entradas
-  (+9: 2 microdatos + 3 FD de ENADIS, 1 microdato + 1 FD de ENCRIGE, 2
-  microdatos + 2 FD de MOTRAL, 1 microdato + 1 FD de ENCO). Doble descarga
-  + hash SHA-256 coincidente + `testzip` limpio para los 5 microdatos; FD
-  con hash único (no token, no requiere doble descarga por A.7).
+  correcto: escanea→promueve→escanea siguiente, dos rondas — la primera
+  antes de que el sub-agente resolviera los microdatos de MOTRAL/ENCO, la
+  segunda después): **1233 → 1245** entradas (+12: 1 microdato + 3 FD de
+  ENADIS, 1 microdato + 1 FD de ENCRIGE, 2 microdatos + 2 FD de MOTRAL, 1
+  microdato + 1 FD de ENCO). Doble descarga + hash SHA-256 coincidente +
+  `testzip` limpio para los 5 microdatos; FD con hash único (no token, no
+  requiere doble descarga por A.7). *(Corrección aritmética 3/sep/2026: la
+  redacción original de esta nota citaba `1233 → 1242` — el tally de la
+  primera ronda de registro, escrito antes de que el sub-agente resolviera
+  MOTRAL/ENCO y antes de la segunda ronda que sumó esas 3 entradas. El
+  total final del acto (1233 → 1256, +23) sí era correcto en la cabecera
+  del ADR-328; el error estaba en cómo se repartía entre lotes. Recontado
+  contra `git log` sobre `data/manifiesto.yaml` — ver ADR-328.)*
 - **Cola** (`tools/curador_registro/tsv_crudo.py`, sin módulo `csv` —
   preserva bytes de las 112 filas existentes): +4 filas, las cuatro
   `OBTENIDO` (MOTRAL y ENCO pasaron de `OBTENIDO-PARCIAL` a `OBTENIDO` tras
@@ -82,13 +90,13 @@ sí eran SIN-FETCH limpio, confirmado sin excepción.
 
 ## Anti-PR#77
 
-Los 9 payloads nuevos quedan en `descargas_mx/UNIVERSO-2026-09/<fuente>/`
+Los 12 payloads nuevos quedan en `descargas_mx/UNIVERSO-2026-09/<fuente>/`
 (corpus compartido, NO en el worktree de esta sesión) — verificado
 (`ls -la` sobre la ruta absoluta de `descargas_mx`, fuera de este worktree).
 
 ## Contador movido por este lote
 
 Candidatas sondeadas: 0 → 4 (de 12). Veredictos A.4 con FD: 0 → 4. Payloads:
-+9. Fuentes en cola: +4. Relaciones nuevas (CANDIDATA): +2. Reglas
++12 (dos rondas de registro, ver corrección arriba). Fuentes en cola: +4. Relaciones nuevas (CANDIDATA): +2. Reglas
 NO-ENCONTRADO con candidata: 9 → 8 (N18/ENCRIGE deja de estar sin candidata;
 sigue sin cerrar — EXISTE-NO-SATISFACE, no EXISTE-SATISFACE).

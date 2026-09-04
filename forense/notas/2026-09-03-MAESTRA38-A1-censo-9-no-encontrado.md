@@ -8,7 +8,7 @@ las clasifica ni las cierra.
 Universo examinado (A.13): `--tablas descargas_mx` →
 `data/inventario-reactivos-descargas-mx-v1_0.tsv` (recién regenerado por
 este acto sobre TODO `descargas_mx`, incluida la subcarpeta
-`UNIVERSO-2026-09/` de los 20 payloads nuevos) — 28948 filas examinadas
+`UNIVERSO-2026-09/` de los 23 payloads nuevos) — 28948 filas examinadas
 por corrida. 27 corridas (9 reglas × 3 formulaciones), comando exacto de
 cada una es `python3 tools/busca_reactivos.py [...] --tablas descargas_mx`.
 

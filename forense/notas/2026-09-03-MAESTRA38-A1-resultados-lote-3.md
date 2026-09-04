@@ -28,7 +28,7 @@ sin duplicar ni re-registrar el topline.
 
 ## Registro por las tres capas
 
-- **Manifiesto**: 1251 → 1253 (+2: microdato nacional + FD de Intercensal
+- **Manifiesto**: 1254 → 1256 (+2: microdato nacional + FD de Intercensal
   2015; las tres `PENDIENTE` no generan entrada de manifiesto — no hay
   payload que hashear).
 - **Cola**: 120 → 124 filas (+4: 1 `OBTENIDO`, 3 `PENDIENTE`). Vista
@@ -47,6 +47,6 @@ verificado.
 
 Candidatas sondeadas: 8 → 12 (las 12 completas). Veredictos A.4 con FD:
 5 → 5 (Intercensal/CSES/Reuters/Pew no producen veredicto de regla — tres
-por PENDIENTE, una por exploratoria). Payloads: +2 (total +20 en el acto).
+por PENDIENTE, una por exploratoria). Payloads: +2 (total +23 en el acto).
 Fuentes en cola: +4 (total +12). Relaciones nuevas: +0 (total +3 en el
 acto, sin cambio este lote).
