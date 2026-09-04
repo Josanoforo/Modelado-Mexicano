@@ -46,3 +46,7 @@ En paralelo hoy (NUBE): FP10-PRECEDENCIA · FUSION-PUERTAS · REFUTACIONES-SIN-O
 ### Módulo de auditoría de rigor extremo
 
 Aplica: este acto afirma sobre México vía mediciones. Las nueve preguntas del módulo + las dos de v2.3/v2.4: ¿cuántos contadores movió este acto? (di el número, aunque sea cero) y ¿en qué escala está cada cantidad estimada y contra qué se compara?
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-19-COEF-UNIVERSO-quince-coeficientes.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-121 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

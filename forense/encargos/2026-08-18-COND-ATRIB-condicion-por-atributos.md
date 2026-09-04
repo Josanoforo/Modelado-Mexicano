@@ -47,3 +47,7 @@ Corre exactamente lo congelado. Reporta por celda: n, θ̂/β̂, IC, y el margin
 C3 · Cierre
 
 Actualiza la clase de cada entrada en procedencia.yaml al resultado real — p. ej. "MEDIDO·β̂ condicionado por [ejes]; signo [estable|discordante]; universo [verbatim]" — citando la ficha. ADR (número re-derivado dos veces) · cascada · nota · hallazgos.md · encargo CONSUMIDO. Auditoría: este acto SÍ mide México — declara qué contador mueve: las entradas de C0 salen de "PENDIENTE/marginal", y si algún condicionado queda con signo estable e IC que despeja, di explícitamente si eso toca o no el contador de coeficientes en escala del modelo (hoy 0 de 15) — la respuesta esperada es NO (esto sigue siendo asociación condicionada, no identificación; el primero sigue reservado a FP-11). Escala declarada en cada cantidad (pregunta v2.4 del módulo). Ninguna cifra tecleada. NO hace: no identifica causalmente nada · no toca refutations ni tiers · no abre instrumentos fuera de los que C0 derive.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-18-COND-ATRIB-condicion-por-atributos.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-18-cond-atrib-confianza-generico.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

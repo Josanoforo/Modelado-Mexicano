@@ -73,3 +73,7 @@ ADR (re-deriva el número al escribirlo, espera colisión con el carril de cloud
 Módulo de auditoría — lo aplicable: contadores de medición sobre México: cero, dilo en una línea. Contadores de aparato que sí mueve: gate 296→672 terminal esperado, PII falsos 13,953→0, adversarial 0/41 inválida → n/n contra build sellado, exigencia §15.4 de insatisfecha a satisfecha. Ninguna cifra tecleada: todo con comando.
 
 Lo que NO hace: no toca integrate_barrido2.py ni tests/check.py (cloud) · no arranca C4-semántico/C5/C6 · no corrige capa 4 de las 17 (vía §19) · no cierra FP-47/48 · no congela.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-18-GATE-DURABLE-V7-predicado-reejecucion-muestra.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-98, ADR-103 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

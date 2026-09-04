@@ -119,3 +119,7 @@ Siete líneas. `--baseline` cruda. **PR `infra/indice-v1`, NO FUSIONAR sin mesa.
 **En el cierre, dos listas explícitas:** las tablas que encontraste **`SIN VÍA`**, y las que **nadie lee**. Las dos son colas de trabajo, no defectos de este acto.
 
 **Lo que este acto NO hace.** No crea ninguna vía faltante — las nombra. No modifica ninguna tabla. No corrige el registro incompleto de WVS: eso es ACTO R″. No añade tests. No sella ADR — si mesa quiere canonizar A.7, es acto propio y de una línea.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-13-A7-indice-infraestructura.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-76, ADR-77 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

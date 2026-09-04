@@ -62,3 +62,7 @@ Cuatro cifras al cierre, con su comando:
 Suite: `--baseline` VERDE contra `948ad70`. T03: no cites gitignorados entre backticks.
 §5 · NO HACE
 No abre ningún payload. No toca `relaciones.tsv` ni el manifiesto. No propone qué descargar — mide lo que ya está. No clasifica ningún `SIN-DEMANDA` como sobrante: puede ser demanda futura.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-13-A-censo-explotacion.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-13-alias-p-motor-diag.md, forense/notas/2026-08-13-censo-explotacion.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

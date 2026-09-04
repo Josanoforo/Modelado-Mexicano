@@ -97,3 +97,7 @@ Suite: --baseline VERDE contra 948ad70. T03: no cites gitignorados entre backtic
 No descarga ningún payload. No toca el puntero de puertas ni la cola. No re-juzga si una fuente sirve al modelo (eso es de M-APERTURA/mesa). No sondea las 62 de universo interno — las etiqueta NO_PROBADO y lo dice. No fuerza ninguna fuente al carril del agente si su dominio no alcanza.
 
 LA COLA COMPLETA · qué queda, por entorno (contexto del encargo, no ejecutado por este acto — ver forense/hallazgos.md de este mismo acto para el estado en que se recibió)
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-13-VP-verifica-puertas.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-13-e2-cierre.md, forense/notas/2026-08-13-verifica-puertas.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

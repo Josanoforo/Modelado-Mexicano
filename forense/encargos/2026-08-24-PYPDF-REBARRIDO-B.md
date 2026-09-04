@@ -24,3 +24,7 @@ Cierre: data/pypdf-rebarrido-2026-08-24.tsv (negativo · fuente original · tér
 PERÍMETRO
 
 data/pypdf-rebarrido-2026-08-24.tsv (nuevo) · enmiendas in situ fechadas en los documentos que porten negativos volteados (lista final en la nota, cada uno declarado antes de editar) · forense/firmas-pendientes.tsv · canon/gobernanza-v1_15.md · canon/estado-programa-v1_10.md · forense/notas/2026-08-24-pypdf-rebarrido.md · forense/encargos/2026-08-24-PYPDF-REBARRIDO-B.md · scratchpad. Fuera de la lista: PARA. Concurrencia: NUBE permitido; renumera quien fusiona segundo.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-24-PYPDF-REBARRIDO-B.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-156 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

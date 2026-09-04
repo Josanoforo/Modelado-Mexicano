@@ -125,3 +125,7 @@ Ninguna adjudica nada: hacen visible lo que hoy no tiene fila. Ids derivados des
 Nota en `forense/notas/2026-08-17-registra-17ago.md` con cada comando y su salida cruda · una entrada en `forense/hallazgos.md` · este encargo marcado `CONSUMIDO` con su PR al cerrar · **merge local**, `origin/main` hacia la rama, editor web de conflictos **prohibido** · `git diff --check` · **jamás te auto-fusionas**.
 
 **Contadores del programa que mueve: 0.** Mueve el tablero de 11 a 16 `FIRMADA` y abre cinco filas. Ningún contador de medición sobre México. **Dilo así, sin justificarlo.**
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-17-REGISTRA-17AGO.md" canon/gobernanza-v1_15.md` cita ADR-92, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-92 en canon/gobernanza-v1_15.md.

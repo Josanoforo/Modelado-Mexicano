@@ -44,3 +44,7 @@ Mesa envió, en turno posterior, la firma que faltaba:
 Ejecutado como continuación de este mismo acto (mismo SHA de redacción `2b7d787`, mismo entorno NUBE): `R1.4` → veredicto `D` archivado en `hitoD-preregistro`, `ADR-187` sella el verbatim y la resolución de la colisión, la fila `C` de la escala de `R1.4` recibe la enmienda fechada que el SÍ de mesa autorizó, `FP-156` nace `FIRMADA` en el tablero con `ejecutada_en` = este acto. Hito D: **19 de 27 → 20 de 27**. `python3 tests/check.py --baseline`: 19 FAIL · 128 WARN antes y después, línea base VERDE. Detalle completo: Adenda de `forense/notas/2026-08-25-sella-abridores-r83-r14-cierre.md`.
 
 **CONTADOR total del encargo, sumando las dos ranuras: +2** (`R8.3` → `A`, `R1.4` → `D`). Título del encargo cumplido: 18→20.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-25-SELLA-ABRIDORES-R83-R14.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-25-sella-abridores-r83-r14-cierre.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

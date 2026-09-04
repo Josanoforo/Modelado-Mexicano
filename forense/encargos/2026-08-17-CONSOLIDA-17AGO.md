@@ -148,3 +148,7 @@ No adjudica ninguno de los pendientes que el barrido encuentre — **los hace vi
 `git diff --check` · nota con cada comando, **su control positivo** y su salida cruda · una entrada en `hallazgos.md` · este encargo `CONSUMIDO` con su PR · **merge local**, editor web prohibido · **jamás te auto-fusionas**.
 
 **Contadores de medición sobre México: 0.** Este acto no mide: termina de propagar dos adjudicaciones, firma una, y deja el programa con **un solo lugar donde mirar lo que falta**. Dilo así, sin justificarlo.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-17-CONSOLIDA-17AGO.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-104, ADR-137 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

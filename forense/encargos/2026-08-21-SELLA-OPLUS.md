@@ -20,3 +20,7 @@ Las tres razones, todas del benchmark del 20/ago y ninguna de preferencia:
 T1 · `forense/prereg-duelo-v2/corredor-E-combinacion-LM.py` deja de ser propuesta: implementa la mediana por cuantil sobre los tres, con la definición y sus fuentes en el encabezado. No se ejecuta en este acto. T2 · `forense/prereg-duelo-v2/mesa-pendientes.md` §3 → RESUELTA con fecha y cita del ADR. No se borra — el propio archivo lo fija. T3 · ADR + tablero: la fila de `⊕` que `REPARA-T22` abrió pasa a `FIRMADA`. ⚠️ Verifica que esa fila existe antes de crear otra — duplicarla es el defecto de `FP-58`.
 
 Contador: medición = 0. El corredor `E` deja de estar bloqueado. PERÍMETRO. `corredor-E-combinacion-LM.py` · `mesa-pendientes.md` (solo marcar RESUELTA) · gobernanza · tablero · hallazgos · nota · encargo.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-21-SELLA-OPLUS.md" canon/gobernanza-v1_15.md` cita ADR-142, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-142 en canon/gobernanza-v1_15.md.

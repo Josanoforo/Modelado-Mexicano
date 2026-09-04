@@ -29,3 +29,7 @@ Contador: «β con ruta: antes→después», los dos números derivados. PERÍME
 ---
 
 Nota de este acto sobre el texto de arriba, sin editarlo (verbatim preservado, según A.3): la premisa "Ley de fondo: APERTURA v1.2 §3, verbatim — ya en canon tras T-SELLO" se verificó contra el árbol antes de ejecutar (regla v2.1, "verificación de premisas antes de ejecución") y no se sostiene tal como está escrita. Detalle completo en la nota de este acto, §0.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-20-APERTURA-ENFIH-ENSAFI.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-134 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

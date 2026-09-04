@@ -52,3 +52,7 @@ Cero directo, declarado — canon de estado al día; ningún número del program
 ## Lo que este acto NO hace
 
 No mide; no decide qué sigue (lo transcribe del tablero y de las firmas); no edita instrucciones ni gobernanza; no toca el tablero (es vista derivada, vive en N7).
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-09-02-MAESTRA35-N6-ESTADO-PROGRAMA-v1_11.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-301 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

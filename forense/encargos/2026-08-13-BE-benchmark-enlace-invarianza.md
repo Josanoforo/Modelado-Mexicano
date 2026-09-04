@@ -29,3 +29,7 @@ Reglas del bloque: copyright — paráfrasis, nunca cita larga. Fuentes primaria
 
 COMMIT 2 — el benchmark
 Por pregunta: hallazgo, fuente, y qué implica para este programa en concreto — no un resumen de literatura, un dictamen aplicado. Cierra con las dos propuestas de sello listas para firma de mesa: `D-ABC` y el diseño del acto de vinculación ENCUCI↔ENBIARE.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-13-BE-benchmark-enlace-invarianza.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-13-benchmark-enlace-invarianza.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

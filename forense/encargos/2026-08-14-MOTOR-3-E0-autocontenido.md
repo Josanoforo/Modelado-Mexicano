@@ -58,3 +58,7 @@ grep -cE "^\*\*ADR-(8[4-9]|9[0-9]|10[0-9]) .*(motor|matriz|M1)" canon/gobernanza
 **La condición, no retirada.** `ADR-100(9)`: la re-verificación de `M2`/`M4`/`M5` contra los productos semánticos del barrido **queda en el carril B y NO la sustituye este sello**. `M1`/`M3`/`M6` viajan en DISPARADOR-A, que es el carril de este acto; `M2`/`M4`/`M5` llevan la condición y viajan en DISPARADOR-B.
 
 **Estado:** `CONSUMIDO` — fase FASE-PLAN por `ACTO MOTOR-3/E0` (`PR #237`, 14/ago/2026); fase **CON SELLO** por `ACTO LANE-A-E0-E5`, este PR, 18/ago/2026.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-14-MOTOR-3-E0-autocontenido.md" canon/gobernanza-v1_15.md` cita ADR-101, ADR-128, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-101, ADR-128 en canon/gobernanza-v1_15.md.

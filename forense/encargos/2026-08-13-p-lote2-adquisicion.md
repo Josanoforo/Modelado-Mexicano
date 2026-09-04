@@ -171,3 +171,7 @@ Y la corrección de §5.1 va aunque la palanca 31 salga del lote: el DOI de ELEC
 ---
 
 **Nota de la sesión ejecutora:** antes de aceptar esta firma se verificaron en frío los cinco pre-requisitos que el encargo exige (PR #197 MERGED en origin/main como `5f90757`; 114 filas en el puntero con el commit de SONDA-1 presente; entorno CAJA correcto, sin variable de nube, INEGI 200; sin colisión con los únicos dos PR abiertos, #198 y #199; ningún worktree P·LOTE-2 preexistente) antes de pasarle la decisión a mesa. Esa verificación se hizo en la conversación, no en este repo, y queda referenciada aquí por transparencia del proceso — el resultado operativo (los cinco checks) se re-deriva de todos modos en las PREMISAS de este mismo acto, en frío, contra el estado real del worktree.
+
+## NO-EJECUTADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). Cero rastro: `grep -Fc -- "2026-08-13-p-lote2-adquisicion.md" canon/gobernanza-v1_15.md` → 0 · `git log --all --oneline --grep="2026-08-13-p-lote2-adquisicion.md"` → 0 · `git grep -Fl -- "2026-08-13-p-lote2-adquisicion.md"` (excluyendo forense/digesto/ y el propio archivo) → 0 resultados en los 327 ADR ni en el historial de commits. Sin nota de cierre, sin FP, sin cita posterior.

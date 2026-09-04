@@ -41,3 +41,7 @@ NO ESCRIBE: `canon/**` (se cita `ADR-100` y `ADR-57(c)` por número; no se edita
 Entrada 5 cerrada con veredicto de los tres y universo declarado en la misma línea · `FP-15` cerrada · `tests/check.py --baseline` VERDE · línea en `hallazgos.md` · este encargo `CONSUMIDO`.
 
 **Contadores de medición sobre México que este encargo mueve: cero.** `13 de 27`, `0 de 15`, `12 de 15`, `4 de 144` y `1 de 2` quedan exactamente donde están.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-18-E5-entrada-5-registro-recalculo.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-18-motor3-con-sello-y-entrada-5.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

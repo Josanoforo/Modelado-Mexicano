@@ -50,3 +50,7 @@ Perímetro: data/inventarios/*.md · data/catalogo-fuentes-v2_0.md (sección de 
 ⚠️ Y la regla nueva que este cruce debe llevar escrita en su cabecera:
 
 Ninguna fila se marca NO EXISTE sin un cruce previo contra data/manifiesto.yaml. El cruce v2.0 razonó sobre data/inventarios/ —lo que sabemos que existe— y nunca sobre el manifiesto —lo que efectivamente tenemos. Ésa es la causa de las siete filas insostenibles.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-05-m5bis-cierre-inventarios-catalogo-cruce.md" canon/gobernanza-v1_15.md` → 0 (sin cita en ningún ADR). Rastro fuera de gobernanza, sin nota de cierre propia: canon/citas-sha-obsoletas-purga-2026-08-10.tsv, tests/check.py. Insuficiente para CONSUMIDO, insuficiente para NO-EJECUTADO — rótulo/evidencia parcial, se lista para mesa.

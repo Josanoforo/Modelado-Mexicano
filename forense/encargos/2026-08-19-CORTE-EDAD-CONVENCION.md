@@ -30,3 +30,7 @@ Contra `f3d3f95`: `:189` (descriptor del perfil 5) · `:215` (H-02) · `:219` (H
 ## 4 · Lo que NO hace
 
 No deriva el corte de dato propio (eso es `CORTE-EDAD-EMPIRICO`) · no toca `milpa/*.yaml` · no re-adjudica ninguna hipótesis: cambia su estatus de determinabilidad, no su veredicto.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-19-CORTE-EDAD-CONVENCION.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-110, ADR-116 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

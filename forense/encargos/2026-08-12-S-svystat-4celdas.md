@@ -105,3 +105,7 @@ Paso 3 de E4c · bloqueado por M-6 y S, los dos · —
 J · folioviv · no corre por ahora — la maestra de Fable estructura remediación y dependencias, con más contexto · —
 
 M-6 y S son independientes entre sí (perímetros disjuntos: canon/+ficha vs tests/) y pueden correr en paralelo. El Paso 3 de E4c necesita los dos fusionados.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-12-S-svystat-4celdas.md" canon/gobernanza-v1_15.md` → 0 (sin cita en ningún ADR). Rastro fuera de gobernanza, sin nota de cierre propia: tests/check.py. Insuficiente para CONSUMIDO, insuficiente para NO-EJECUTADO — rótulo/evidencia parcial, se lista para mesa.

@@ -168,3 +168,7 @@ No promete destrabar los tres SIN-RUTA. La fila 13 del censo está bloqueada por
 Celdas de la rejilla 7 × 2 con clasificación A.4 derivada de apertura byte a byte, y — el titular si ocurre — si 14 puente radio_confianza vuelve co-observada en un solo instrumento.
 
 Y la línea honesta al cierre: este acto no mueve capa2, ni Hito D, ni llaves. Mueve la única cosa que hoy impide que ISSP sirva para algo: saber qué reactivo hay dentro.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-13-AI-apertura-issp.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-13-apertura-issp.md, forense/notas/2026-08-13-e2-cierre.md, forense/notas/2026-08-20-apertura-enfih-ensafi-cierre.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

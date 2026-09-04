@@ -14,3 +14,7 @@ Emitida por dirección, 24/ago/2026, tras verificar el reporte del PARA contra `
 - Esta adenda commiteada junto al encargo ya consumido.
 
 **Cascada al fusionar.** Re-derivar el máximo de ADR sobre el árbol fusionado; si otro acto tomó `147` mientras tanto, renumerar — regla de la casa.
+
+## NO-EJECUTADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). Cero rastro: `grep -Fc -- "2026-08-24-REPARA-PROPAGA-15-ADENDA.md" canon/gobernanza-v1_15.md` → 0 · `git log --all --oneline --grep="2026-08-24-REPARA-PROPAGA-15-ADENDA.md"` → 0 · `git grep -Fl -- "2026-08-24-REPARA-PROPAGA-15-ADENDA.md"` (excluyendo forense/digesto/ y el propio archivo) → 0 resultados en los 327 ADR ni en el historial de commits. Sin nota de cierre, sin FP, sin cita posterior.

@@ -298,3 +298,7 @@ de comando, con el comando a la vista. Ninguna cifra de este acto se teclea.
 - **No cierra `FP-47`, `FP-48` ni `FP-51`.** `FP-51` recibe evidencia, no firma.
 - **No toca `tools/`, `data/`, `milpa/` ni `.barrido2/`.**
 - **No arranca ninguna etapa de `FP-26`.** Ese disparador sigue gateado.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-18-T16-HISTORICAS-cerrar-bucle-congelados.md" canon/gobernanza-v1_15.md` cita ADR-97, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-97 en canon/gobernanza-v1_15.md.

@@ -40,3 +40,7 @@ ENTORNO ASIGNADO: nube o pc0, cualquiera. No abre microdato, no toca red más al
 2 · LAPOP AmericasBarometer 2023 México y Latinobarómetro 2024. En disco están solo los cuestionarios y las fichas técnicas, no el microdato. Los dos se bajaron para "búsqueda de reactivo de deferencia jerárquica".
 
 Verifica contra el cuestionario, sin bajar nada: ¿qué reactivos de deferencia, confianza institucional y confianza interpersonal traen? ¿Con qué escala? Si el reactivo sirve, el microdato exige registro gratuito — que mesa ya autorizó — y eso es un acto de descarga aparte, no éste.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-05-m4bis-encup-lapop-latinobarometro.md" canon/gobernanza-v1_15.md` → 0 (sin cita en ningún ADR). Rastro fuera de gobernanza, sin nota de cierre propia: canon/citas-sha-obsoletas-purga-2026-08-10.tsv, forense/encargos/2026-08-05-m5bis-cierre-inventarios-catalogo-cruce.md, tests/check.py. Insuficiente para CONSUMIDO, insuficiente para NO-EJECUTADO — rótulo/evidencia parcial, se lista para mesa.

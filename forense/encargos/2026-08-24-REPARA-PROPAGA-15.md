@@ -7,3 +7,7 @@ Redactado por dirección, 24/ago/2026, contra clon propio `origin/main = fb02421
 **Resultado.** Defecto no reproducido. `grep -n "14 de 27" README.md canon/modelo-decision-v4_0.md`: `README.md` no contiene la cadena (ya cita `15 de 27`, `README.md:36`); `canon/modelo-decision-v4_0.md:65` y `:700` sí la contienen, pero en ambas líneas la cita viva del contador ya dice `15 de 27 corridas archivadas` — el `14 de 27` que el grep encuentra es narración fechada de la bitácora de correcciones de cada línea, historia que se queda sin editar por regla del propio encargo. `python3 tests/check.py --baseline`: `T20 T-CASCADA-MARCADA` en `[ ok ]`, línea base **VERDE**. Ningún archivo del perímetro (`README.md`, `canon/modelo-decision-v4_0.md`) editado.
 
 **Cierre.** `ADR-147` (`canon/gobernanza-v1_15.md`) y una línea en `forense/hallazgos.md`. Este archivo queda consumido al cerrar el acto.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-24-REPARA-PROPAGA-15.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-147 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

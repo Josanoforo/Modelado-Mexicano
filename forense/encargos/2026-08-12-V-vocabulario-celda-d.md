@@ -41,3 +41,7 @@ PASO 4 · Cierre
 ---
 
 **Nota de ejecución (no parte del encargo original, añadida al archivar):** el PASO 1 de arriba usa el placeholder `ADR-NN`, escrito antes de que `ACTO M-6` derivara el número real (`ADR-71`, ver `2026-08-12-M6-sello.md`). Al ejecutar, `grep -c "ADR-NN"` se corrió como `grep -c "ADR-71"`, y las dos referencias a `ADR-NN(d)` de este texto se resolvieron como `ADR-71(d)` en los artefactos producidos. Además, `grep -rln "celdas-d" tools/ tests/ --include=*.py` del PASO 1 ya NO dio vacío al ejecutar este acto (`tests/test_celdas_d.py` llegó vía PR #177 después de que este encargo se escribiera) — el PARO de PASO 1 se consultó con mesa antes de proceder; ver `forense/hallazgos.md` y `forense/notas/2026-08-12-acto-v-vocabulario-celda-d.md` para la resolución completa.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-12-V-vocabulario-celda-d.md" canon/gobernanza-v1_15.md` → 0 (sin cita en ningún ADR). Rastro fuera de gobernanza, sin nota de cierre propia: tests/check.py. Insuficiente para CONSUMIDO, insuficiente para NO-EJECUTADO — rótulo/evidencia parcial, se lista para mesa.

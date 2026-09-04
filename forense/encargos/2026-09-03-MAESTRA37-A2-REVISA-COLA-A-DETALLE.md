@@ -24,3 +24,23 @@ Ninguna fila cerró ni cambió `estado_A4A5`. `FP-285` (recibo) /
 `forense/notas/2026-09-03-MAESTRA37-A2-revision-cola.md` +
 `forense/notas/2026-09-03-MAESTRA37-A2-PAQUETE-RECETAS-3.md`.
 CONTADOR: filas con informe 0 → 28.
+
+## NOTA DE FUSIÓN — ejecución duplicada detectada (4/sep/2026)
+
+La rama `claude/auditoria-encargos-maestra37-p8k51b` ejecutó este mismo
+encargo (`MAESTRA37-A2`) de forma independiente y en paralelo (commit
+`c8e5463`, candidato `ADR-330`→renumerado a `ADR-331`, `FP-288`/`FP-289`
+propios, informe en `forense/notas/2026-09-04-MAESTRA37-A2-revision-cola.md`
+y `…PAQUETE-RECETAS-3.md`), sin saber que `PR #526` ya había fusionado a
+`main` la misma ejecución (commit de merge `212fb63`, archivo `5910e2e`,
+cierre `8eb341e`). Al fusionar `origin/main` en esta rama (regla de la
+casa: "quien fusiona segundo cede ante el trabajo ya consolidado cuando
+es el mismo objeto de trabajo"), se descarta como duplicado el cierre de
+`c8e5463` y se conserva éste (`PR #526`), ya fusionado a `main`, como la
+única versión válida del cierre de `MAESTRA37-A2`. Los entregables
+duplicados de la rama de auditoría
+(`forense/notas/2026-09-04-MAESTRA37-A2-revision-cola.md`,
+`…PAQUETE-RECETAS-3.md`) quedan fuera de la cascada — no se referencian
+en `FP-285`/`FP-286` ni en la vista T26, que reflejan la ejecución de
+`PR #526`. El ADR-331/FP-288/FP-289 propios de `c8e5463` se retiran; no
+había mesa firmando aún sobre ellos.

@@ -15,3 +15,7 @@
 ## Texto del encargo (verbatim, resumen operativo)
 
 Ejecutar `FP-141` (`L1-b`): para las 15 entradas ASIGNADO de `milpa/procedencia.yaml`, rastrear su fuente de asignación y determinar la escala en que fue pensado el coeficiente. Si la fuente no declara ni permite derivar la escala, marcar `ESCALA_NO_DERIVABLE` con la cita de la fuente consultada — sin inventar escala. Añadir campos `escala_asignado:`/`escala_fuente:` a cada entrada. Escribir un párrafo (mesa/tablero, sin re-adjudicar) sobre la discrepancia de `−0.60` de `CAL-G3` bajo la escala declarada. Marcar `FP-141` ejecutada. Si alguna entrada ESCALA_NO_DERIVABLE bloquea una comparación futura, fila nueva en `A.12`.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-25-ESCALA-ASIGNADOS.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/nota-2026-08-25-escala-asignados.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

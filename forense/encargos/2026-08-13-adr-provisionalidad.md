@@ -166,3 +166,7 @@ Las dos addenda siguientes llegaron juntas, en un solo mensaje, a mitad de ARRAN
 > #	entrada	clase	por qué	gate	estado
 > 0	Cotejo censo ↔ relaciones.tsv — las 15 filas del censo contra capa4 de las necesidades correspondientes	A	mide el desacuerdo entre consolidadas; hoy son ≥3 filas y nadie lo vigila; lo cierra el mismo acto del censo v1.1	ninguno	ABIERTA — la absorbe CENSO-v1.1
 > Lo que esta addenda NO añade: ninguna compuerta al módulo de auditoría, ningún test obligatorio, ninguna regla nueva a instrucciones-proyecto. Dos números derivables y una entrada de cola.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-13-adr-provisionalidad.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-13-adr-provisionalidad-cierre.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

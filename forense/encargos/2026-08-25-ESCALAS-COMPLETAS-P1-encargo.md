@@ -48,3 +48,7 @@ extremo: `forense/notas/2026-08-25-escalas-p1.md`.
 `forense/notas/2026-08-25-escalas-p1.md` (nueva) · este encargo. Fuera de este perímetro:
 `tools/curador_registro/**`, `data/curacion-universo/**` (workstream concurrente ajeno), y cualquier otro campo
 de `milpa/procedencia.yaml` fuera de las 15 filas ya declaradas.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-25-ESCALAS-COMPLETAS-P1-encargo.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-174 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

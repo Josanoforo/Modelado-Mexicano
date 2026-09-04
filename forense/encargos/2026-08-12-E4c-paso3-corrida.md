@@ -97,3 +97,7 @@ Nota para mesa — una decisión que este acto NO toma y que ya tiene sus númer
 ACTO J midió que el join corregido deja R5.1 → A (ADR-58) expuesto en 2016 y 2018, y D5 → INESTABLE (ADR-53) NO expuesto — efecto cero, confirmado dos veces. Su propia estimación de costo: "cómputo trivial, minutos; el costo real es de adjudicación."
 
 R5.1 y R5.1-D2 son fichas distintas —el Commit 1 §0 ya declaró la diferencia de diseño— así que la corrida de este encargo no depende de esa decisión y no debe esperarla. Pero cuando ambas existan, conviene que mesa las lea juntas: una regla cuyo veredicto original está expuesto por un defecto de join, y su diseño de falsación corriendo con el join ya arreglado.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-12-E4c-paso3-corrida.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-14-t-firmas.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

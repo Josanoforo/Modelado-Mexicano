@@ -70,3 +70,7 @@ P·LOTE-2    PR #197 sin fusionar. SONDA-1 entregó la firma reordenada por evid
 ENLACE-2    Espera a APERTURA-ISSP para absorber sus veredictos de capa4 en una sola pasada sobre relaciones.tsv, en vez de dos. Y su alcance (78 hoy) mejora con el ENCARGO B.
 APERTURA-ISSP fase 2 / los 7 veredictos D    Entrada 3 del registro; gate: entradas 1 y 2.
 ADJ-3    Tres firmas de mesa, no de ejecutor.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-13-encargo-c-capa3-reconcilia.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-13-capa3-reconcilia.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

@@ -81,3 +81,7 @@ Por qué existe: la demanda vive en relaciones.tsv con 75 fuente_canonica única
 §5 · BORRADOR A.7 PARA MESA — la estampa de universo sube a instrucciones (v2.7; SOLO MESA SELLA)
 
 ADR-67 dejó esto como "pendiente nombrado de mesa, no se sella aquí". Ningún ejecutor lo incorpora — MAP-A no toca instrucciones-proyecto-*.md ni canon/gobernanza bajo ninguna circunstancia.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-12-veredicto-pr185-mapeo-universo-map-a.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-12-map-a-cota-universo.md, forense/notas/2026-08-14-t-firmas.md, forense/notas/2026-08-19-u2-ev1-paro-red.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

@@ -46,3 +46,7 @@ Escribe: el YAML de la celda · `forense/notas/2026-08-17-celda-d-complemento.md
 ---
 
 **Nota de ejecución (no parte del encargo original, añadida al archivar):** Paso 1 se contestó "sí lo cubre" — ver `forense/notas/2026-08-17-celda-d-complemento.md` §2 para la cita completa y el razonamiento. La rama de PARO (segunda viñeta de §2) no se ejecutó porque no aplicó: `ADR-75(b)` (`canon/gobernanza-v1_15.md:896`) contesta directamente la pregunta de si hay celda hermana ligada ("no dos facetas de lo mismo"), así que no quedó tablero que redactar para esa rama. La fila para `firmas-pendientes.tsv` que sí se redactó y no se escribió es la de Paso 2 (CI), no la de Paso 1 — ver la nota, §3.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-17-CELDA-D-COMPLEMENTO-test-vs-adr.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-17-celda-d-complemento.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

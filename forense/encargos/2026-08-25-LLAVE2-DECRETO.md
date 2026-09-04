@@ -53,3 +53,7 @@ forense/registro-llaves-identificacion-v1_0.md · forense/notas/2026-08-25-llave
 - **`milpa/` no se toca.** No hay generador que consuma el resultado hoy.
 - **Suite:** `python3 tests/check.py --baseline` → `LÍNEA BASE: VERDE`, núcleo `19 FAIL · 141 WARN`.
 - **Perímetro respetado:** `hitoD-preregistro` no se tocó; `data/diseno-muestral.yaml` se leyó, no se editó; `data/manifiesto.yaml` no se tocó (los dos documentos de referencia externos quedan en `scratchpad/`, fuera del corpus registrado, declarado).
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-25-LLAVE2-DECRETO.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-166 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

@@ -49,3 +49,7 @@ El plan de remediación, PROPUESTO a mesa: (i) qué actos re-correr y en qué or
 CIERRE
 
 Rebase local sobre origin/main fresco (driver union en el árbol; el editor web de conflictos está prohibido), PR mesa/j-join-folioviv sin conflicto, NO FUSIONAR. Siete líneas. Contador esperado: filas nuevas de registro con la magnitud por ola. La adjudicación de R5.1/D5 no la hace este acto — y si mesa la hace después, es entrada fechada nueva que vence en alcance a la anterior, con la anterior conservada verbatim (ADR-67, preámbulo, gobernanza:862). Regla de señal: este acto MIDE; si a mitad aparece algo que desbloquea un cálculo mayor, eso vale más que terminar el acto — repórtalo y para.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-12-J-join-folioviv.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-12-j-alcance-folioviv.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

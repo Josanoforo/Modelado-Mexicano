@@ -16,3 +16,7 @@ Nombre de archivo. El archivo de encargo lleva el código del acto como prefijo 
 Ciclo de vida. Un encargo nace `VIVO`. Cuando el acto que lo ejecuta cierra, se marca `CONSUMIDO`, con el PR que lo ejecutó. Un encargo consumido **no se borra**: es el registro de qué se pidió exactamente, y es lo que permite auditar después si el ejecutor hizo lo que se le dijo — borrar un encargo consumido destruiría esa auditoría tan bien como nunca haberlo escrito.
 
 Este acto (ENCARGO P2) establece la convención y el sitio. **No** puebla el directorio con encargos concretos — eso depende de textos que hoy viven fuera del repo (en conversaciones), y mesa los añade después, uno por uno, con su cabecera completa.
+
+**Enmienda (2026-09-03, ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166).** La
+ausencia de marca en un encargo anterior a 2026-08-18 se resolvió por
+auditoría el 2026-09-03; desde entonces toda marca ausente es defecto.

@@ -204,3 +204,7 @@ grep -rn "[0-9]\+ ADR" canon/ README.md
 **Merge local**, `main` HACIA la rama; el editor web de conflictos de GitHub está prohibido — no honra `merge=union` y `hallazgos.md` aparece como conflicto falso.
 
 ⚠️ **Y lo último, que es la regla estrenándose:** al cerrar el PR, entrega en el reporte **el texto íntegro de `instrucciones-proyecto-v2_7.md`**, listo para pegar en el proyecto de Claude. Sin eso, A.9 dice que la versión no está sellada — y el primer acto que la incumpla sería el que la escribió.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-13-A8LAND-instrucciones-v2_7.md" canon/gobernanza-v1_15.md` → 4: citado bajo ADR-62, ADR-66, ADR-78 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

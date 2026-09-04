@@ -18,3 +18,7 @@ Este es el segundo brazo de la vía (c). La convención (15-29, INEGI/ENOE) ya e
 ## 3 · Lo que NO hace
 
 No re-abre D-2 (la vía ya está firmada: ambas) · no toca `milpa/*.yaml` · no adjudica `H-02`/`H-06`/`H-07`: les fija la partición, no el veredicto.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-19-CORTE-EDAD-EMPIRICO.md" canon/gobernanza-v1_15.md` → 1: citado bajo ADR-110 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

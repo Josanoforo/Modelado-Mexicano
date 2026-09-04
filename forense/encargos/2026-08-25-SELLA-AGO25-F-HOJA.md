@@ -34,3 +34,7 @@ Redactado por dirección, 25/ago/2026, como continuación directa de `ACTO SELLA
 - **`L6`/`FP-24` resultó ya ejecutada** desde el 18/ago/2026 (`ADR-109`, `ACTO B2-SEMANTICO`, sucesora `FP-46`) — mesa reafirma sin que haga falta ninguna acción nueva.
 - **`milpa/` no se tocó.** `ADR-166`, `canon/gobernanza-v1_15.md`.
 - **Tests:** `19 FAIL · 139 WARN`, `LÍNEA BASE: VERDE`.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-25-SELLA-AGO25-F-HOJA.md" canon/gobernanza-v1_15.md` → 3: citado bajo ADR-168, ADR-169 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

@@ -47,3 +47,7 @@ ADR re-derivado dos veces · cascada · nota con el resumen presentado y la resp
 ---
 
 **Resultado de la ejecución.** Mesa respondió (a) — verbatim: *"Sello tal como están escritas."* — vía `AskUserQuestion`, sobre el resumen de §2-§6 presentado en el chat de este acto (reproducido íntegro en `forense/notas/2026-08-18-sella-rutas.md` §2). `ADR-102` sella §2/§4/§5 de `forense/metodologia-identificacion-vs-ajuste-v0_1.md` como procedimiento de la clase `AJUSTADO` (`ADR-49`, D2, sigue siendo el sello de la clase). Cascada, nota y `hallazgos.md` completos — ver `forense/notas/2026-08-18-sella-rutas.md` para el detalle comando por comando, incluido el defecto de cascada a medias que `T15`/`T16` atraparon y este mismo acto corrigió antes de cerrar.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-18-SELLA-RUTAS-ajustado-metodologia.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-18-consolida-2-fp38-propagaciones.md, forense/notas/2026-08-18-sella-rutas.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

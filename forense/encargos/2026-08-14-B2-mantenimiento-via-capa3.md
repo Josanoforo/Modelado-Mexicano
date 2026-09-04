@@ -23,3 +23,7 @@
 > El reloj: B2 fusiona → rama de E0 con compass/RT fusiona (la precondición del esqueleto muere) → pegas las seis firmas M → MOTOR-2/ADR (número por T15, hoy candidato 84 — se re-deriva al sellar) → la ventana ADR-70(d) CIERRA → E0 ejecuta completo. Ningún mantenimiento de la vía después de ese punto — por eso B2 va hoy.
 
 **Nota de archivo.** El texto de mesa vive fuera del repo (conversación de dirección); se pega aquí íntegro por la convención de este directorio. El número de ADR **no se hereda de este documento**: el propio plan lo advierte (*"hoy candidato 84 — se re-deriva al sellar"*), y el acto lo derivó con la receta de T15 contra el `main` real antes de escribir el primer commit — 83 únicos, contiguos, sin huecos ⇒ **ADR-84**, que coincidió con el candidato sin heredarlo.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `git grep -Fl -- "2026-08-14-B2-mantenimiento-via-capa3.md"` (excluyendo forense/digesto/) cita nota(s) de cierre: forense/notas/2026-08-14-acto-b2-via-capa3.md, forense/notas/2026-08-17-cierra.md. Encargo pre-ADR-por-archivo (anterior al 18/ago/2026): la evidencia de ejecución vive en la nota de cierre, no en canon/gobernanza-v1_15.md. Marca ausente era defecto de trámite retroactivo, resuelto por esta auditoría.

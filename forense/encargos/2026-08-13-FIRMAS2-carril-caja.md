@@ -83,3 +83,7 @@ Contra `d55ae72`: `únicos 79 · max 79 · huecos []` → 80. Deriva al sellar, 
 Sitios de cascada: `canon/gobernanza-v1_15.md:2` (cabecera) · `canon/estado-programa-v1_10.md` (tabla + §L0). Derívalos con `grep -rn "[0-9]\+ ADR" canon/ README.md` y pega la salida. La cifra `N FAIL · M WARN` se recalcula por corrida real, nunca se copia.
 Cierre
 `python3 tests/check.py --baseline` VERDE contra `3d0d1e5`, cifra reportada, antes y después. Nota en `forense/notas/2026-08-13-firmas-2.md`. Una línea en `forense/hallazgos.md`. El encargo se commitea a `forense/encargos/` antes o junto con su lanzamiento (A.3), con SHA de redacción, entorno y estado. Merge local, `main` HACIA la rama; el editor web de conflictos de GitHub está prohibido.
+
+## INDETERMINADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-13-FIRMAS2-carril-caja.md" canon/gobernanza-v1_15.md` cita ADR-80, pero el bloque mezcla lenguaje de ejecución y de encargo pendiente (o el rótulo del ADR es compartido entre varios encargos sin desenlace individual claro) — rastro parcial, no se decide aquí. Para mesa: verificar manualmente contra ADR-80 en canon/gobernanza-v1_15.md.

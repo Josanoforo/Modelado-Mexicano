@@ -17,3 +17,7 @@ RANURA (5 seg, por el matiz del anexo): CONFIRMO R8.2: fila B con la reserva esc
 ANEXO — verificación puntual de R8.2, corrida por dirección (web, 25/ago; para aterrizar VERBATIM en la nota del acto): ver `forense/notas/2026-08-25-propaga-letras-cierre.md` §2 para el texto completo aterrizado verbatim.
 
 **Resultado de este acto** (ver `canon/gobernanza-v1_15.md` `ADR-196` y `forense/notas/2026-08-25-propaga-letras-cierre.md` para el detalle completo): la RANURA de confirmación de R8.2 llegó ausente. Se ejecutó todo lo demás: `R10.2` archivado fila `D`; `R2.2` gana enmienda fechada de censo ordenado por mesa; `R8.2` queda PROPUESTO, sin archivar. `FP-159` pasa a `FIRMADA` (firma «a/a/a» capturada), sin cerrar del todo — el archivo de `R8.2` sigue pendiente de ranura. `CONTADOR: +1` (no +2, por la RANURA ausente).
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-25-PROPAGA-LETRAS-ENCARGO.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-196 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.

@@ -128,3 +128,7 @@ Rama `estimador/diff-ultimate-cluster`. Commits: (1) la nota con la derivación,
 ## PASO 8 · Cierre — siete líneas
 
 Qué cambió · por qué importa · qué habilita (el commit 2 de E4c, y con él la posibilidad de adjudicar `R5.1-D2`) · qué falta (unificar la política de singleton entre `svystat` y `produce.py`, si mesa lo quiere; extender a medias y razones, si algún día hace falta) · pruebas (salida cruda de los dos runners) · reservas (el DiD suma varianzas solo bajo olas independientes — límite declarado en el docstring) · y **di explícitamente que este acto no mueve ningún contador sustantivo: entrega el mecanismo, no la medición.**
+
+## NO-EJECUTADO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). Cero rastro: `grep -Fc -- "2026-08-12-B-estimador-contraste.md" canon/gobernanza-v1_15.md` → 0 · `git log --all --oneline --grep="2026-08-12-B-estimador-contraste.md"` → 0 · `git grep -Fl -- "2026-08-12-B-estimador-contraste.md"` (excluyendo forense/digesto/ y el propio archivo) → 0 resultados en los 327 ADR ni en el historial de commits. Sin nota de cierre, sin FP, sin cita posterior.

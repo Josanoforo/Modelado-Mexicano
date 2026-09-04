@@ -33,3 +33,7 @@ Cierre: nota 2026-08-24-marco-satura-codex-cierre.md (60→N, de qué fuentes vi
 
 PERÍMETRO
 forense/marco-candidatas-piloto-v1_1.tsv (nuevo) · forense/firmas-pendientes.tsv (FP-93 + fila marco + hallazgos A.12) · canon/estado-programa-v1_10.md (línea candidatas + recifrado) · canon/gobernanza-v1_15.md · nota · encargo · scratchpad (las corridas del curador escriben sus colas en /tmp, no en el repo — la GUIA lo manda: «la cola no debe versionarse»). Fuera de la lista: PARA. Concurrencia: NUBE permitido en paralelo; renumera quien fusiona segundo.
+
+## CONSUMIDO
+
+Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fc -- "2026-08-24-MARCO-SATURA-CODEX.md" canon/gobernanza-v1_15.md` → 2: citado bajo ADR-154 en canon/gobernanza-v1_15.md, con lenguaje de ejecución (archivado/ejecutado) en el bloque correspondiente. Marca ausente en el archivo era defecto de trámite, no evidencia de no-ejecución.
