@@ -125,23 +125,13 @@ def t02_duplicates():
         "data/curacion-registro/ejecucion-semantica/runs/",
         "data/curacion-registro/expedientes-produccion/",
         "data/curacion-registro/integracion-barrido/",
-        # forense/rescate/curador-untracked-20260807/: rescate verbatim
-        # (DIRECTIVA de cierre de RESCATE-CURADOR, FP-55) del untracked de
-        # Modelado-Mexicano-curador -- worker-N-*.tsv/json repetidos entre
-        # multi{1,2}-staging/ y su propio integrado/ es el mismo patrón
-        # por-worker/por-integración que las tres excepciones de arriba, un
-        # prototipo anterior (6-7/ago) del mismo pipeline. Archivo, no vivo.
-        "forense/rescate/curador-untracked-20260807/",
-        # forense/rescate/barrido-completo-untracked-20260807/: rescate verbatim
-        # (FP-59, ACTO LIMPIA-CAJA) del untracked de
-        # Modelado-Mexicano-barrido-completo -- son literalmente archivos bajo
-        # `data/curacion-registro/ejecucion-semantica/runs/`, el PRIMER prefijo
-        # exceptuado de arriba, movidos bajo forense/rescate/ al archivarlos:
-        # SEMTSK-*.json repetidos entre contratos/ y reportes-worker/, TCUR-*.json
-        # entre inputs/ e inputs-curador/. Misma nomenclatura por-run, mismo
-        # pipeline, misma corrida (SEMRUN-1d73f40d/354ccb9d, 07/ago). Archivo, no
-        # vivo. Mismo mecanismo de grupo que el rescate del curador (PR #274).
-        "forense/rescate/barrido-completo-untracked-20260807/",
+        # forense/rescate/ ya no necesita entrar aquí -- FP-293/ACTO
+        # MAESTRA38-N4 (4/sep/2026) excluyó el directorio completo del
+        # barrido más abajo (mismo criterio que .git//tests//data/raw:
+        # archivo, no vivo, colisiona con sus originales por diseño de
+        # rescate verbatim). Las dos excepciones puntuales que vivían aquí
+        # (curador-untracked-20260807/, barrido-completo-untracked-20260807/)
+        # quedaron subsumidas -- ver FP-293 en forense/firmas-pendientes.tsv.
     )
     def all_excepted(paths):
         return all(p.startswith(EXCEPTED_PREFIXES) for p in paths)
@@ -182,12 +172,15 @@ def t02_duplicates():
     )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
-        if ".git" in p or "/tests/" in p or "/data/raw" in p:
+        if ".git" in p or "/tests/" in p or "/data/raw" in p or "/forense/rescate/" in p:
             # data/raw: INEGI empaqueta conjunto_de_datos.csv/diccionario_datos.csv
             # en casi todos sus zips de microdato — by_name colisiona por diseño
             # de nomenclatura del portal, no por defecto del corpus. by_hash ya
             # lo cubre mejor tests/manifiesto.py --verifica (dedup por sha256
             # declarado, sin rehashear el corpus completo en cada corrida).
+            # forense/rescate/: archivo verbatim de untracked rescatado (FP-55,
+            # FP-59) -- colisiona por diseño con sus originales vivos, mismo
+            # criterio que data/raw. FP-293/ACTO MAESTRA38-N4 (4/sep/2026).
             continue
         if not os.path.isfile(p):
             continue
@@ -336,7 +329,14 @@ def t05_adr32c_constructs():
 # T06 · Consistencia numérica entre reports  (el que faltaba)
 # ───────────────────────────────────────────────────────────────
 def t06_numeric_consistency():
-    """Cuatro valores de Gini y cuatro de confianza interpersonal (T-02, T-03)."""
+    """Cuatro valores de Gini y cuatro de confianza interpersonal (T-02, T-03).
+
+    FP-293/T06 (4/sep/2026): cada valor lleva un año de muestra (regex de
+    4 dígitos en la misma línea; "s/f" si ninguno aparece) -- anotación
+    mecánica, no investigación fuente por fuente de las 19 citas; cabe en
+    <=10 líneas de cambio, que es la condición que aceptó pagar el encargo.
+    Sigue FAIL declarado (deuda aceptada, no re-analizada en P1): valores
+    realmente distintos entre reports, no un artefacto del regex."""
     checks = [
         ("Gini", r"[Gg]ini[^.\n]{0,80}?(0\.\d{2,3}|\b4\d\.\d\b)"),
         ("confianza interpersonal", r"confian\w+ interpersonal[^.\n]{0,90}?(\d{1,2}(?:\.\d)?)\s?%"),
@@ -346,9 +346,10 @@ def t06_numeric_consistency():
         for p in reports() + glob.glob(os.path.join(ROOT, "corpus", "forense", "*.md")):
             for i, l in enumerate(read(p).split("\n"), 1):
                 for m in re.finditer(pat, l):
-                    found[m.group(1)].append(f"{os.path.basename(p)[:28]}:{i}")
+                    anio = re.search(r"(19|20)\d{2}", l)
+                    found[m.group(1)].append(f"{os.path.basename(p)[:28]}:{i}({anio.group(0) if anio else 's/f'})")
         if len(found) > 1:
-            det = " · ".join(f"{k} ({len(v)}x)" for k, v in sorted(found.items()))
+            det = " · ".join(f"{k} ({len(v)}x, {v[0]})" for k, v in sorted(found.items()))
             fail("T06", f"{len(found)} valores distintos de **{label}** en el corpus: {det}")
 
 
@@ -396,6 +397,13 @@ def t07_tier_vocabulary():
 # T08 · Todo report tiene mapa de evidencia  (A-01, R-01)
 # ───────────────────────────────────────────────────────────────
 def t08_evidence_map():
+    """FP-293/T08 (4/sep/2026): nota de aceptación, no fix -- los 7 reports
+    listados abajo no traen encabezado "mapa de evidencia" porque son
+    reports de síntesis (todo constructo citado es DERIVADO de fuentes
+    externas, no LEÍDO de un instrumento propio con reactivo verificable) --
+    escribirles un mapa de evidencia inventaría trazabilidad que no existe.
+    Deuda aceptada, no re-analizada en P1 -- ver forense/firmas-pendientes.tsv
+    FP-293."""
     sin = []
     for p in reports():
         s = read(p)
@@ -3989,14 +3997,22 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
     "sin restricción", appendeadas vía `tsv_crudo.upsert_fila` -- medió
     17 líneas) y `ACTO MAESTRA38-A1` (12 filas nuevas por sonda de
     adquisición -- medió 11 líneas). Re-medido tras fusionar ambos
-    (`b55b8a1`/merge de `PR #526`): **24 líneas** (20, 21, 22, 29, 39, 47,
+    (`b55b8a1`/merge de `PR #526`): 24 líneas (20, 21, 22, 29, 39, 47,
     51, 58, 59, 63, 70, 76, 78, 79, 80, 81, 94, 114, 117, 119, 121, 123,
-    124, 125) -- unión de las dos listas, sin solapamiento. Este test es DOBLE:
+    124, 125) -- unión de las dos listas, sin solapamiento.
+
+    Re-medido de nuevo (`ACTO MAESTRA38-N4 · PROPAGA-Y-PAGA`, 4/sep/2026,
+    FP-286): las 28 filas de `ACTO MAESTRA37-A2` recibieron `nota` nueva
+    vía el mismo `upsert_fila` (una cita de una línea al informe de
+    revisión, más receta para 6 de ellas) -- el texto nuevo no repite
+    todas las comillas sueltas del texto viejo que reemplazó. **13
+    líneas** (20, 29, 35, 40, 47, 94, 114, 117, 119, 121, 123, 124, 125).
+    Este test es DOBLE:
 
     (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
         día alguien "arregla" el round-trip corriendo `csv.writer` sobre
         el archivo completo, este control lo hace visible en vez de
-        quedar en silencio -- se espera EXACTAMENTE 24 líneas distintas
+        quedar en silencio -- se espera EXACTAMENTE 13 líneas distintas
         hoy; si el número cambia (para arriba o para abajo) sin que
         nadie lo haya declarado, falla.
     (2) REGRESIÓN del lector/escritor propio (`tools/curador_registro/
@@ -4022,11 +4038,11 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 24:
+    if len(diffs_csv) != 13:
         fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
-                         f"24 líneas distintas (20, 21, 22, 29, 39, 47, 51, 58, 59, 63, 70, 76, "
-                         f"78, 79, 80, 81, 94, 114, 117, 119, 121, 123, 124, 125) el 3/sep/2026 "
-                         f"(union MAESTRA37-A2 + MAESTRA38-A1, re-medido tras fusionar ambos); hoy da "
+                         f"13 líneas distintas (20, 29, 35, 40, 47, 94, 114, 117, 119, 121, 123, "
+                         f"124, 125) el 4/sep/2026 (ACTO MAESTRA38-N4, FP-286, tras re-escribir "
+                         f"la nota de las 28 filas de MAESTRA37-A2); hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")

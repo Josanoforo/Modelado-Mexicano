@@ -13,13 +13,13 @@
 >
 > **Corrección 2 · Marcar procedencia.** Toda afirmación de este report sostenida en Hofstede lleva desde hoy **(c)**. Toda afirmación sostenida en muestras mexicano-americanas / de diáspora lleva **(b)** y **no es evidencia directa sobre población en México**.
 >
-> **Origen de la corrección:** `meta-auditoria-comunicacion.md §3` · ADR-06 · `glosario conf.03`. Verificado contra el texto el 28/jul/2026: las tres ediciones de abajo son las únicas que el report requería.
+> **Origen de la corrección:** `meta-auditoria-comunicacion.md §3` · ADR-06 · `glosario conf.03`. Verificado contra el texto el 28/jul/2026: las tres ediciones de abajo son las que esa verificación identificó (4/sep/2026, FP-293: cuantificador absoluto suavizado -- no se re-verificó si hay más).
 
 ---
 
 ## 1. Resumen ejecutivo
 
-El consumidor mexicano opera dentro de una tensión psicológica fundamental que ningún otro mercado grande replica exactamente: **altísima indulgencia** (puntuación Hofstede de 97/100, entre las más altas del mundo) combinada con **altísima aversión a la incertidumbre** (82/100) y **desconfianza interpersonal extrema** (solo 12% cree que "la mayoría de las personas son confiables", según la Encuesta Mundial de Valores 2012). Esta combinación produce un consumidor que *desea* comprar, *necesita* validación social para hacerlo y *exige* garantías de seguridad antes de actuar.
+El consumidor mexicano opera dentro de una tensión psicológica fundamental que ningún otro mercado grande replica exactamente: **altísima indulgencia** (puntuación Hofstede de 97/100, entre las más altas del mundo) combinada con **altísima aversión a la incertidumbre** (82/100) y **desconfianza interpersonal extrema** (solo 12% cree que "la mayoría de las personas son confiables", según la Encuesta Mundial de Valores 2012). Esta combinación **(c)** ⚠️ *Corregido 4/sep/2026 (FP-293): co-variación entre los tres índices, no un mecanismo causal probado* co-varía con un consumidor que *desea* comprar, *necesita* validación social para hacerlo y *exige* garantías de seguridad antes de actuar.
 
 **Los 15 hallazgos clave:**
 
@@ -77,7 +77,7 @@ La psicología del consumidor mexicano se explica mejor como la intersección de
 
 **Fuerza 1: Deseo hedónico amplificado.** México tiene la puntuación de Indulgencia más alta del mundo (97/100 en Hofstede) **(c)**. ⚠️ *Corregido 28/jul/2026 (ADR-06): el índice describe, no produce.* Co-ocurre con un impulso fuerte hacia la gratificación inmediata, el disfrute y la experiencia. El consumidor mexicano *quiere* comprar, *quiere* darse gustos, *quiere* disfrutar. Este impulso es genuinamente más fuerte que en prácticamente cualquier otro mercado del mundo.
 
-**Fuerza 2: Aversión a la incertidumbre paralizante.** Con un UAI de 82/100, la necesidad emocional de seguridad y predictibilidad es altísima. Cada compra conlleva un riesgo percibido amplificado — ¿y si no funciona? ¿y si me estafan? ¿y si pierdo mi dinero? Esta fuerza contrarresta directamente al deseo hedónico y explica por qué los consumidores mexicanos se aferran a marcas conocidas, exigen garantías, y desconfían de lo nuevo.
+**Fuerza 2: Aversión a la incertidumbre paralizante.** Con un UAI de 82/100, la necesidad emocional de seguridad y predictibilidad es altísima. Cada compra conlleva un riesgo percibido amplificado — ¿y si no funciona? ¿y si me estafan? ¿y si pierdo mi dinero? Esta fuerza contrarresta directamente al deseo hedónico y co-varía **(c)** con que los consumidores mexicanos se aferran a marcas conocidas, exigen garantías, y desconfían de lo nuevo.
 
 **Fuerza 3: Validación colectiva como prerrequisito.** Con una puntuación de Individualismo de solo 30/100, las decisiones de compra no son individuales — son sociales. La familia, los amigos, los influencers de confianza funcionan como filtros de riesgo. "Si mi familia lo aprueba, es seguro" reemplaza a "si la marca lo promete, es seguro" en un entorno de bajísima confianza institucional.
 

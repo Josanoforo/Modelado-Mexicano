@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **335 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **336 ADR**
 
 > | | |
 > |---|---|
@@ -5750,3 +5750,21 @@ Universo derivado al arrancar contra el árbol (no heredado del A.8 pre-N8 del e
 **Deuda que abre.** `FP-293` (FAIL absorbidos, mesa decide cuáles se pagan). Recibo: `FP-294`.
 
 **Numeración.** Candidato original derivado por el comando de la casa contra el árbol de esta rama antes de fusionar: máximo `333` (`ADR-333`/`MAESTRA37-N9`), contiguo → `334`. Al fusionar `origin/main` (`PR #529`, commit `2f70c0f`), ese `334` ya estaba tomado por `ACTO MAESTRA38-N2 · TESTS-FRENTE-A-B` (fusionado primero). Por la regla de la casa "renumera quien fusiona segundo", este acto cede `334` y se renumera a `335`, contiguo tras el máximo real del árbol ya fusionado (`ADR-334`).
+
+---
+
+**ADR-336 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `335`, contiguo, sin huecos; candidato `336` -- el encargo mismo citaba `ADR-337`/`FP-297`, ninguno de los dos existía en el árbol al arrancar este acto (máximo real: `ADR-335`/`FP-294`); D-13 exige re-derivar por el comando de la casa, nunca heredar de prosa, así que este acto toma `336`/`FP-295` y declara la discrepancia en vez de forzar los números del encargo) · `ACTO MAESTRA38-N4 · PROPAGA-Y-PAGA`** *(4/sep/2026, NUBE)* — **paga `FP-286`/`FP-287`/`FP-293` con contenido real verificado contra el árbol; deja `P3`/`P4` sin ejecutar porque su premisa (un encargo "N1-lite" archivable) no existe en ningún lugar accesible del repositorio.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-04-MAESTRA38-N4-PROPAGA-Y-PAGA.md`, SHA de redacción `0ff3d710`.
+
+**Gate verificado.** El encargo declara `COMPUERTA: ninguna` — declaración explícita de que no hay compuerta, no dispara verificación.
+
+**Qué se ejecutó.** **P1** — `FP-287` → EJECUTADA (ya cubierta por `tests/test_cola_writer.py`/`tests/test_manifiesto_seguro.py`, `PR #529`). `FP-286` → EJECUTADA: las 28 filas no-`OBTENIDO`/`CERRADA` de `forense/notas/2026-09-03-MAESTRA37-A2-revision-cola.md` reciben `nota` vía `tsv_crudo.upsert_fila(clave=fuente_canonica)` citando la sección del informe; 4 (9, 12, 25, 27) pasan a `PENDIENTE-DE-MESA` con receta verificada, consolidadas en `forense/notas/2026-09-04-MAESTRA38-N4-PAQUETE-RECETAS-5.md` — **6 recetas reales, no las 11 que el encargo citaba** (de las 12 filas `MESA-DECIDE`, solo 6 traen receta de navegador verificable en su propio texto; `WB`=fila 12/`ENAFIN` y `PDN`=fila 28 calzan con los rótulos del encargo, `ICPSR` no rindió ningún candidato). **P2** — `FP-293` → EJECUTADA: `T09`×8 y `T05`×5 pagados con contenido real (bloque `(c)` de matiz en `corpus/reports/*.md`; 5 entradas nuevas en `canon/glosario-v5_6.md` §16); `T02` corregido (`forense/rescate/` excluido del barrido completo); `T06`/`T08` con nota de aceptación (deuda declarada, no reparada). `tests/baseline.json` recifrado: **19 → 3 FAIL absorbidos declarados, no 5** — el encargo asumía que `P3` (dos tests nuevos) sumaría 2 absorbidos más; `P3` no se ejecutó (ver abajo).
+
+**Qué NO decide / NO se ejecutó.** **P3** y **P4** quedan sin ejecutar. `P4` pedía archivar retroactivamente un encargo ("N1-lite", texto verbatim de un chat del 4/sep) y marcarlo `## CONSUMIDO` con `#530`. Búsqueda exhaustiva (`git log --all -S "N1-lite"` sobre todo blob de todo ref; `grep -rn` sobre el árbol de trabajo completo; los 11 commits de `PR #530` revisados uno por uno con `git show --stat`) no encuentra ese texto en ningún lugar accesible del repositorio, y `PR #530` resulta ser la restauración de `FP-291`/`FP-292` (`ADR-335`, arriba), sin relación con N1-lite. Bajo `MAESTRA38` solo existen `A1` y `N2`, archivados y `CIERRE`'d — ni `N1` ni `N1-lite` arrancaron nunca en este árbol. Fabricar el archivo habría sido un forjado (corolario de `convencion.md`: "un encargo que cita un archivo inexistente está mal escrito... si el texto no está en el repo, va pegado inline o el encargo no se lanza"). `P3` (`T-A3`/`T-FIRMAS-2`, docstring citando `#530`/`#518`/`FP-290`/`FP-291`) dependía de `P4` para su control positivo y tampoco se ejecutó — además, `#530`/`#518` no corresponden a ningún defecto real de `T02`/`T05`/`T06`/`T08`/`T09`/`T11` (verificado: ninguno de los dos aparece en `tests/check.py` ni en el `forense/hallazgos.md` de esos tests). Detalle completo: entrada de hoy en `forense/hallazgos.md`. No toca `data/manifiesto.yaml`, `milpa/**`, `canon/modelo-decision*` ni `tools/**` (perímetro explícito del encargo).
+
+**Verificación.** `python3 tests/check.py --baseline`: LÍNEA BASE VERDE (3 FAIL · 170 WARN, sin entradas nuevas frente a `tests/baseline.json` recifrado — 16 entradas de la línea base anterior ya no aparecen, mejora declarada, no forzada sin `--freeze`).
+
+**Deuda que cierra.** `FP-286` → EJECUTADA. `FP-287` → EJECUTADA. `FP-293` → EJECUTADA. Ningún FP nuevo — este acto no abre hallazgo que necesite recibo propio (el hallazgo de P3/P4 queda registrado en `forense/hallazgos.md`, sin FP porque no gatea nada vivo).
+
+**Numeración.** Candidato original derivado por el comando de la casa contra el árbol de esta rama: máximo `335` (`ADR-335`/restauración post-`#527`), contiguo → `336`. Sin colisión conocida al fusionar.
