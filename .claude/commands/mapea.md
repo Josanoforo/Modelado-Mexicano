@@ -111,6 +111,26 @@ formulación la trajo primero). Para cada candidata distinta:
   alguien pagara. No se reclasifica a `NO-ACCESIBLE` sin que mesa lo
   reabra.
 
+- **`HIPÓTESIS-SIN-INSTRUMENTO`** *(D-13, firma de mesa `FP-298`, propagado
+  por `ACTO MAESTRA38-N6 · PROPAGA-FP298-TESTS-Y-A3`, 4/sep/2026)* —
+  variante de `NO-ENCONTRADO` para una **regla del motor** (no una celda
+  de marco): ninguna candidata mide la condición que el `SI` exige, el
+  instrumento hipotético mínimo que la mediría queda escrito, y mesa
+  decide **`MANTENER-COMO-HIPÓTESIS`** (el tier del canon no baja más de
+  donde ya estaba) en vez de `RETIRAR-DE-OLA6`. Distinto de
+  `NO-ENCONTRADO`: `NO-ENCONTRADO` es el veredicto de una búsqueda
+  puntual, sin decisión de mesa todavía; `HIPÓTESIS-SIN-INSTRUMENTO` es el
+  estado que queda **después** de que mesa ya vio la búsqueda y decidió no
+  retirar la regla. Antes de marcar una regla así, verifica que la
+  condición realmente no tenga instrumento — `MAESTRA38-N5` clasificó 5
+  reglas así buscando solo con `busca_reactivos.py` contra
+  `descargas_mx*`, sin cruzar contra `milpa/tramite-ola5-propuesta-v0.yaml`
+  ni `canon/modelo-decision-v4_0.md` §7: 2 de las 5 ya tenían instrumento
+  medido en otro acto (`MAESTRA35-L9`/`L11`) y no se cargaron como
+  `HIPÓTESIS-SIN-INSTRUMENTO` cuando `MAESTRA38-N6` propagó la tabla —
+  cruza los tres sitios antes de usar este vocabulario, no solo el
+  buscador.
+
 Un `NO-ENCONTRADO` de agente **no cierra** una fila de la cola de
 adquisición: la cierra mesa, con el informe de hermanas a la vista
 (firma de mesa, 3/sep/2026). Un agente puede clasificar, nunca adjudicar
