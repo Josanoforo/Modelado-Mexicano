@@ -37,4 +37,4 @@ Las cinco líneas del encargo confirman contra el árbol real: `FP-298` sigue `A
 encargo `N1-lite` está archivado; ninguna fila de cola trae `CNBV_PORTAFOLIO`/
 `ENCRIGE_2020_FD` (el `P1` de abajo las crea, no las enmienda); el vocabulario
 `HIPÓTESIS-SIN-INSTRUMENTO` no existe todavía en la propuesta (nuevo, se documenta en
-`mapea.md` §4 junto a A.4). Estado: `VIVO`.
+`.claude/commands/mapea.md` §4 junto a A.4). Estado: `VIVO`.
