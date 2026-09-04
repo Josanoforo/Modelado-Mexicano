@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **335 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **336 ADR**
 
 > | | |
 > |---|---|
@@ -5750,3 +5750,23 @@ Universo derivado al arrancar contra el árbol (no heredado del A.8 pre-N8 del e
 **Deuda que abre.** `FP-293` (FAIL absorbidos, mesa decide cuáles se pagan). Recibo: `FP-294`.
 
 **Numeración.** Candidato original derivado por el comando de la casa contra el árbol de esta rama antes de fusionar: máximo `333` (`ADR-333`/`MAESTRA37-N9`), contiguo → `334`. Al fusionar `origin/main` (`PR #529`, commit `2f70c0f`), ese `334` ya estaba tomado por `ACTO MAESTRA38-N2 · TESTS-FRENTE-A-B` (fusionado primero). Por la regla de la casa "renumera quien fusiona segundo", este acto cede `334` y se renumera a `335`, contiguo tras el máximo real del árbol ya fusionado (`ADR-334`).
+
+---
+
+**ADR-336 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `335`, contiguo, sin huecos; coincide con el candidato que el propio encargo ya anticipaba) · `ACTO MAESTRA38-N3 · PRE-REGISTRO-DE-CAJA`**, 4/sep/2026, entorno **NUBE** — **tres specs de pre-registro selladas (S1/S2/S3) para los futuros actos de caja `MAESTRA38-A2` (recenso), `MAESTRA38-L2` (medición ICPSR 35024) y `MAESTRA38-C1` (re-asiento `relaciones.tsv`), cero medición.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-04-MAESTRA38-N3-PRE-REGISTRO-DE-CAJA.md`, SHA de redacción `0ff3d710` (== `origin/main` al arrancar). **Gate verificado.** `COMPUERTA: ninguna` — declaración explícita, no dispara verificación.
+
+**Qué se ejecutó.** `forense/prereg-caja/` (nuevo dir), tres specs congeladas + `.sha256` cada una, cerradas con la frase de sello:
+
+1. **`S1-A2-spec-v1_0.md`** — universo del recenso (`data_raw` + `descargas_mx`, `downloads` excluida — corrige la premisa de "dos raíces" del encargo contra `tests/manifiesto.py:62-67`, que declara tres), comandos exactos en orden (extiende el censo diario existente de `MAESTRA37-N6`, hoy sólo sobre `descargas_mx`, a las dos raíces del universo), regla de exclusión de patrones B (auxiliar/copia — fijada por primera vez, dedup por `sha256` primero y sufijo de nombre después, nunca al revés), umbral C ≤ 10 (fijado por primera vez, análogo a la categoría C de `forense/notas/2026-08-06-map1b-censo-raices.md`), y tabla nominal de depósitos de mesa (ICPSR `.dta`, WB 6667, PDN S1/S2/S6, `ENFIH-4`) — verificado que **ningún depósito ha ocurrido todavía** y que "11 recetas" no tiene respaldo textual en el árbol (declarado, no inventado).
+2. **`S2-L2-spec-v1_0.md`** — rama MEDICIÓN (variables por ítem para `R7.3`/`R7.6`: T3 `W2_P39B`, T4 `W2_P40`, ambas × `W2_P8`, control `W2_P36C`; experimento de lista `P35A/B`/`W2_P35A/B`; ponderador declarado no determinable desde texto ya registrado, P0 exige abrir el codebook antes del `.dta`) y rama TEXTO (tabla T1–T9b → lectura de `MAESTRA36-L12` → disponibilidad de wording; ninguna tabla tiene el texto literal salvo etiquetas de `P8`/`W2_P8`) en un solo archivo — fija que la rama de lista de MEDICIÓN no corre hasta que TEXTO confirme el supuesto de composición de la lista (`lista B = lista A + un ítem sensible`). Autorizado por la cláusula `se_mueve_si` de la enmienda D2-f (`canon/modelo-decision-v4_0.md:781`). Declara la continuidad de rótulo con el sucesor ya nombrado en el árbol como `MAESTRA37-L2 · MPS-CODEBOOK-Y-P3` (`canon/gobernanza-v1_15.md:5494` y otros tres sitios), ahora bajo el rótulo vigente `MAESTRA38-L2`.
+3. **`S3-C1-spec-v1_0.md`** — **corrige la premisa del encargo contra el registro real**: `MAESTRA37-L3-BIS` adjudica `N`-destino a **1 de 8** relaciones bajo `N36` (etiquetado → `R4.5`/`N41`), no a 7 — las 7 restantes quedan `CANDIDATA` bajo `N36` por adjudicación explícita de L3-BIS ("es correcta y se queda"), y esta spec no les inventa destino. Fija la entrada YAML ya llenada para `tools/curador_registro/alta_relacion.py` y el `relacion_id` esperado (`REL-e7c3700e98be2d9aa7bbd55e`), derivado con la fórmula real de `baseline.py` y verificado por control contra la fila real `REL-54b26887b70cada846e1207c` (la fórmula reproduce el id real exactamente). Declara que `alta_relacion.py` nunca reescribe filas existentes — ni la vieja fila `N36` (que queda huérfana salvo anotación manual `SUPERADA-POR`) ni las 4 filas `ENFIH` pendientes de `FP-288` (`id_manifiesto`/`sha256` esperados, verificados contra `data/manifiesto.yaml:4102-4116`: `enfih2019_bd_csv_zip` / `be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5`) pueden resolverse con este script.
+
+Además: enmienda append (sin editar cuerpo) en `milpa/tramite-ola5-propuesta-v0.yaml` bajo las dos entradas de `L12`; registro de `forense/prereg-caja/` en `data/INFRAESTRUCTURA-v1_0.md`; recibo en `forense/tablero/TABLERO-PROGRAMA.md`.
+
+**Qué NO decide.** No mide nada — pre-registro puro (contador de medición: cero, declarado por el propio encargo). No corre ningún comando de censo, no abre ningún `.dta`/codebook, no ejecuta `alta_relacion.py`. No resuelve `FP-288`. No mueve el tier de `R7.3`/`R7.6`.
+
+**Deuda que abre.** Ninguna nueva. Recibo: `FP-295` (re-derivado; el encargo citaba `FP-296` — máximo real en `forense/firmas-pendientes.tsv` es `FP-294`, `FP-295` nunca existió como fila real, mismo patrón que la discrepancia `ADR-334`/`ADR-335` ya documentada arriba; D-13 exige re-derivar del árbol, nunca heredar de prosa).
+
+**Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `335` (`ADR-335`), contiguo → `336` — coincide con lo que el propio encargo anticipaba, sin desviación.
