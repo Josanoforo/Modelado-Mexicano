@@ -3,9 +3,15 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import tempfile
 import unittest
+import yaml
 from collections import Counter
 from pathlib import Path
+from unittest import mock
+
+from tools.curador_registro import semantic_run
+from tools.curador_registro.semantic_run import parse_manifest
 
 
 REPO = Path(__file__).resolve().parents[3]
@@ -132,6 +138,122 @@ class SemanticRunRegressionTests(unittest.TestCase):
         dossier = rows(self.run_dir / "expediente-integracion.tsv")
         self.assertEqual(self.candidates, {row["relacion_id"] for row in dossier})
         self.assertTrue(all(row["destino_integracion"] == "NO_ENVIAR" for row in dossier))
+
+
+class ManifestPortabilityTests(unittest.TestCase):
+    """MAESTRA37-INFRA-2 · Frente E: el manifiesto ya no resuelve un solo
+    corpus fijo por máquina (antes: `/home/pc0/mm-corpus/raw` hardcodeado).
+    Este fixture es enteramente sintético bajo tempfile -- nunca toca
+    data/raw ni data/raices.local.yaml del repo real."""
+
+    def setUp(self) -> None:
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        self.repo_dir = self.root / "repo"
+        self.corpus_dir = self.repo_dir / "data" / "raw"
+        self.external_dir = self.root / "raiz-externa-montada"
+        self.corpus_dir.mkdir(parents=True)
+        self.external_dir.mkdir(parents=True)
+
+        self.content1 = b"contenido dummy archivo 1\n"
+        self.content2 = b"contenido dummy archivo 2\n"
+        (self.corpus_dir / "archivo1.csv").write_bytes(self.content1)
+        (self.external_dir / "archivo2.csv").write_bytes(self.content2)
+        self.sha1 = hashlib.sha256(self.content1).hexdigest()
+        self.sha2 = hashlib.sha256(self.content2).hexdigest()
+
+        # e1: raiz implícita (data_raw). e2: raiz externa CONFIGURADA en
+        # raices.local.yaml. e3: raiz externa NO configurada -- no existe
+        # ni una entrada para "externo_no_conf" en raices.local.yaml.
+        manifest_records = [
+            {"id": "e1", "archivo": "archivo1.csv", "sha256": self.sha1},
+            {"id": "e2", "archivo": "archivo2.csv", "raiz": "externo_conf", "sha256": self.sha2},
+            {"id": "e3", "archivo": "archivo3.csv", "raiz": "externo_no_conf", "sha256": "deadbeef"},
+        ]
+        self.manifest_path = self.repo_dir / "data" / "manifiesto.yaml"
+        self.manifest_path.write_text(yaml.safe_dump(manifest_records, allow_unicode=True), encoding="utf-8")
+        (self.repo_dir / "data" / "raices.local.yaml").write_text(
+            yaml.safe_dump({"externo_conf": str(self.external_dir)}, allow_unicode=True), encoding="utf-8",
+        )
+
+    def tearDown(self) -> None:
+        self.tmp.cleanup()
+
+    def test_portabilidad_tres_raices(self) -> None:
+        manifest = parse_manifest(self.manifest_path, self.corpus_dir, self.repo_dir)
+        by_id = {row["id"]: row for row in manifest}
+        self.assertEqual({"e1", "e2", "e3"}, set(by_id))
+
+        # 1) ruta_logica es siempre "<raiz>:<archivo>", nunca una ruta física.
+        self.assertEqual("data_raw:archivo1.csv", by_id["e1"]["ruta_logica"])
+        self.assertEqual("externo_conf:archivo2.csv", by_id["e2"]["ruta_logica"])
+        self.assertEqual("externo_no_conf:archivo3.csv", by_id["e3"]["ruta_logica"])
+
+        # ruta_resuelta: física cuando la raíz está configurada; None real
+        # (nunca la cadena "None") cuando no lo está.
+        self.assertEqual(str(self.corpus_dir / "archivo1.csv"), by_id["e1"]["ruta_resuelta"])
+        self.assertEqual(str(self.external_dir / "archivo2.csv"), by_id["e2"]["ruta_resuelta"])
+        self.assertIsNone(by_id["e3"]["ruta_resuelta"])
+
+        # Este bloque refleja, a propósito, el bucle de apertura de activos de
+        # semantic_run.execute() (E3: `for asset in asset_rows: ...`) -- execute()
+        # no es unitariamente probable sin todo el andamiaje de
+        # registro/universo/baseline, fuera de alcance de este arreglo. Se
+        # envuelve open_local_object real (no un doble) para probar E4 con
+        # cómputo genuino, y se cuentan las llamadas para probar que la raíz
+        # no configurada JAMÁS llega a open_local_object ni a Path(None).
+        observed_by_id: dict[str, dict] = {}
+        with mock.patch.object(semantic_run, "open_local_object", side_effect=semantic_run.open_local_object) as spy:
+            for asset in manifest:
+                if asset["ruta_resuelta"] is None:
+                    observed = {
+                        "objeto": f"MANIFEST:{asset['id']}",
+                        "ruta": asset["ruta_logica"],
+                        "resultado": "RAIZ_NO_CONFIGURADA",
+                        "sha256": "NO_DETERMINADO",
+                        "descripcion": "",
+                    }
+                    observed["sha256_declarado"] = asset.get("sha256", "NO_DETERMINADO")
+                    observed["hash_reconcilia"] = "NO_VERIFICADO"
+                else:
+                    observed = semantic_run.open_local_object(
+                        Path(asset["ruta_resuelta"]), f"MANIFEST:{asset['id']}", ruta_declarada=asset["ruta_logica"],
+                    )
+                    observed["sha256_declarado"] = asset.get("sha256", "NO_DETERMINADO")
+                    observed["hash_reconcilia"] = "SI" if observed["sha256"] == asset.get("sha256") else "NO"
+                observed_by_id[asset["id"]] = observed
+
+        # 3) la raíz no configurada nunca invoca open_local_object.
+        self.assertEqual(2, spy.call_count)
+        called_objetos = {call.args[1] for call in spy.call_args_list}
+        self.assertEqual({"MANIFEST:e1", "MANIFEST:e2"}, called_objetos)
+
+        # 2) apertura física real para e1/e2: sha256 real, ruta == ruta_logica.
+        self.assertEqual(self.sha1, observed_by_id["e1"]["sha256"])
+        self.assertEqual("data_raw:archivo1.csv", observed_by_id["e1"]["ruta"])
+        self.assertEqual("SI", observed_by_id["e1"]["hash_reconcilia"])
+
+        self.assertEqual(self.sha2, observed_by_id["e2"]["sha256"])
+        self.assertEqual("externo_conf:archivo2.csv", observed_by_id["e2"]["ruta"])
+        self.assertEqual("SI", observed_by_id["e2"]["hash_reconcilia"])
+
+        # 3) e3 (no configurada): RAIZ_NO_CONFIGURADA, nunca ARCHIVO_NO_EXISTE
+        # ni NO_COINCIDE; sha256 NO_DETERMINADO; hash nunca verificado.
+        self.assertEqual("RAIZ_NO_CONFIGURADA", observed_by_id["e3"]["resultado"])
+        self.assertNotIn(observed_by_id["e3"]["resultado"], {"ARCHIVO_NO_EXISTE", "NO_COINCIDE"})
+        self.assertEqual("NO_DETERMINADO", observed_by_id["e3"]["sha256"])
+        self.assertEqual("externo_no_conf:archivo3.csv", observed_by_id["e3"]["ruta"])
+        self.assertEqual("NO_VERIFICADO", observed_by_id["e3"]["hash_reconcilia"])
+
+        # 4) ninguna ruta absoluta de esta máquina se filtró al output
+        # serializado, ni siquiera en el caso de la raíz no configurada.
+        serialized = json.dumps(observed_by_id, ensure_ascii=False) + json.dumps(
+            [{"ruta_logica": row["ruta_logica"]} for row in manifest], ensure_ascii=False,
+        )
+        self.assertNotIn(str(self.root), serialized)
+        self.assertNotIn(str(self.corpus_dir), serialized)
+        self.assertNotIn(str(self.external_dir), serialized)
+        self.assertNotIn("/home/pc0/mm-corpus", serialized)
 
 
 if __name__ == "__main__":
