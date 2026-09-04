@@ -21,6 +21,7 @@ import html
 import json
 import re
 import subprocess
+import sys
 import unicodedata
 import urllib.error
 import urllib.parse
@@ -36,6 +37,13 @@ try:
     from .pdf_extract import extract_pdf
 except ImportError:
     from pdf_extract import extract_pdf
+
+# resolver_raiz/RAIZ_INTEGRADA se reutilizan de tests/manifiesto.py -- no se
+# reimplementa la resolución de raíces aquí. El módulo se localiza por la
+# ubicación real de este archivo (no por un `repo` de ejecución, que en una
+# prueba puede ser un fixture sintético sin tests/manifiesto.py propio).
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tests"))
+import manifiesto  # noqa: E402
 
 
 ENGINE_VERSION = "2.0.0"
@@ -273,9 +281,9 @@ def zip_structure(path: Path) -> str:
         return trim_text(f"miembros={len(names)}; nombres={';'.join(names[:80])}; encabezados={' | '.join(headers)}", 3000)
 
 
-def open_local_object(path: Path, label: str, pdf_mode: str = "union") -> dict[str, str]:
+def open_local_object(path: Path, label: str, pdf_mode: str = "union", ruta_declarada: str | None = None) -> dict[str, str]:
     if not path.is_file():
-        return {"objeto": label, "ruta": str(path), "resultado": "ARCHIVO_NO_EXISTE", "sha256": "NO_DETERMINADO", "descripcion": ""}
+        return {"objeto": label, "ruta": ruta_declarada or str(path), "resultado": "ARCHIVO_NO_EXISTE", "sha256": "NO_DETERMINADO", "descripcion": ""}
     suffix = path.suffix.lower()
     try:
         if suffix == ".pdf":
@@ -294,21 +302,24 @@ def open_local_object(path: Path, label: str, pdf_mode: str = "union") -> dict[s
             result = "ABIERTO_BINARIO_CARACTERIZADO"
     except Exception as exc:
         description, result = trim_text(str(exc)), f"ERROR_APERTURA_{type(exc).__name__}"
-    opened = {"objeto": label, "ruta": str(path), "resultado": result, "sha256": sha256(path), "descripcion": description}
+    opened = {"objeto": label, "ruta": ruta_declarada or str(path), "resultado": result, "sha256": sha256(path), "descripcion": description}
     if suffix == ".pdf" and result == "ABIERTO_PDF_TEXTO":
         opened["extractores_pdf"] = ";".join(extraction.extractors)
         opened["advertencias_pdf"] = ";".join(extraction.warnings) or "NINGUNA"
     return opened
 
 
-def parse_manifest(path: Path, corpus: Path) -> list[dict[str, Any]]:
+def parse_manifest(path: Path, corpus: Path, repo: Path) -> list[dict[str, Any]]:
     records = yaml.safe_load(path.read_text(encoding="utf-8"))
     result = []
     for row in records if isinstance(records, list) else []:
         if not isinstance(row, dict) or not row.get("id") or not row.get("archivo"):
             continue
-        resolved = corpus / str(row["archivo"])
-        result.append({**row, "ruta_resuelta": str(resolved)})
+        nombre_raiz = row.get("raiz") or "data_raw"
+        ruta_logica = f"{nombre_raiz}:{row['archivo']}"
+        base = manifiesto.resolver_raiz(nombre_raiz, repo, corpus)
+        ruta_resuelta = str(Path(base) / str(row["archivo"])) if base is not None else None
+        result.append({**row, "ruta_logica": ruta_logica, "ruta_resuelta": ruta_resuelta})
     return result
 
 
@@ -454,8 +465,8 @@ def execute(repo: Path, output: Path, network: bool) -> dict[str, Any]:
     for name, document in schemas.items():
         write_json(output / "schemas" / name, document)
 
-    corpus = Path("/home/pc0/mm-corpus/raw")
-    manifest = parse_manifest(repo / "data/manifiesto.yaml", corpus)
+    corpus = repo / "data" / "raw"
+    manifest = parse_manifest(repo / "data/manifiesto.yaml", corpus, repo)
     by_name, by_map_id = source_url_index(repo)
     families = index_unique(read_tsv(universe / "familias-activos.tsv"), "activo_id", "familias")
     bootstrap = index_unique(read_tsv(registry / "bootstrap-semantico.tsv"), "relacion_id", "bootstrap")
@@ -487,7 +498,7 @@ def execute(repo: Path, output: Path, network: bool) -> dict[str, Any]:
         if not declared_urls:
             declared_urls = sorted(dict.fromkeys(by_name.get(normalized(source), [])))
         asset_rows = manifest_candidates(source, manifest, ev["siguiente_accion"])
-        asset_specs = [{"id_manifiesto": row["id"], "ruta": row["ruta_resuelta"], "sha256_declarado": row.get("sha256", "NO_DETERMINADO")} for row in asset_rows]
+        asset_specs = [{"id_manifiesto": row["id"], "ruta": row["ruta_logica"], "sha256_declarado": row.get("sha256", "NO_DETERMINADO")} for row in asset_rows]
         contract = {
             "schema_version": ENGINE_VERSION, "tarea_observacion_id": task_id, "run_id": run_id,
             "snapshot_t0_sha256": snapshot, "rutas_localizadores": declared_urls,
@@ -508,9 +519,20 @@ def execute(repo: Path, output: Path, network: bool) -> dict[str, Any]:
 
         openings: list[dict[str, Any]] = list(ref_openings)
         for asset in asset_rows:
-            observed = open_local_object(Path(asset["ruta_resuelta"]), f"MANIFEST:{asset['id']}")
-            observed["sha256_declarado"] = asset.get("sha256", "NO_DETERMINADO")
-            observed["hash_reconcilia"] = "SI" if observed["sha256"] == asset.get("sha256") else "NO"
+            if asset["ruta_resuelta"] is None:
+                observed = {
+                    "objeto": f"MANIFEST:{asset['id']}",
+                    "ruta": asset["ruta_logica"],
+                    "resultado": "RAIZ_NO_CONFIGURADA",
+                    "sha256": "NO_DETERMINADO",
+                    "descripcion": "",
+                }
+                observed["sha256_declarado"] = asset.get("sha256", "NO_DETERMINADO")
+                observed["hash_reconcilia"] = "NO_VERIFICADO"
+            else:
+                observed = open_local_object(Path(asset["ruta_resuelta"]), f"MANIFEST:{asset['id']}", ruta_declarada=asset["ruta_logica"])
+                observed["sha256_declarado"] = asset.get("sha256", "NO_DETERMINADO")
+                observed["hash_reconcilia"] = "SI" if observed["sha256"] == asset.get("sha256") else "NO"
             openings.append(observed)
         attempts: list[dict[str, Any]] = []
         if classified["tipo_trabajo"] == "BUSQUEDA_DIRIGIDA" and network:

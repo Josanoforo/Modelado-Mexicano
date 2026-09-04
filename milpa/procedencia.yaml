@@ -797,6 +797,7 @@ asignados_probabilidad:
     fuente_citada: ["validacion:CoDi", "report:tecnologia"]
     que_sostiene_de_verdad: "3.09M cuentas en 6 años es un volumen absoluto; 0.91 no se deriva de ahí"
     nota: "Es la regla del gate de Fase 1. Su probabilidad es asignada."
+    clase: REFUTADO-POR-COTA  # D2-g (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8), ADR-68(a): el prior 0.09 ASIGNADO queda REFUTADO-POR-COTA por tramite.gobierno_digital.coercitivo_efirma_sat/coercitivo_tabla_de_universos (milpa/tramite-ola5-propuesta-v0.yaml, SELLADA-SIN-CARGA) -- cotas [0.3684, 0.9211] no contienen 0.09; universo elegido: ninguno, la fuente no puede dar p; cuerpo (valores/fuente_citada/nota) intacto
 
   - regla: tramite.gobierno_digital.util_sin_coercion
     valores: [0.71, 0.29]

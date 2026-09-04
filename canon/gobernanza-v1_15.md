@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **328 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **330 ADR**
 
 > | | |
 > |---|---|
@@ -5621,7 +5621,41 @@ ejecutado con `/acto` de `ADR-237`.
 **Recibos.** `FP-283` (recibo del acto) · `FP-284` (cuatro necesidades de salud redactadas, alta de mesa) — `FP-281`/`FP-282` los tomó `MAESTRA37-N6` al fusionar primero · enmienda fechada a `FP-268` **sin cambio de estado**, con el recuento de cinco columnas.
 
 
-**ADR-328 · `ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166`** *(3/sep/2026, NUBE)* — **audita los 166 encargos de `forense/encargos/` sin marca de cierre, deriva su estado por comando y establece que la ausencia de marca deja de ser tolerada.**
+**ADR-328 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `327`, contiguo, sin huecos ni duplicados; candidato `328`. Declarado: ningún otro acto en vuelo conocido reclama `328` al momento de fusionar -- regla de la casa, renumera quien fusiona segundo si hay colisión) · `ACTO MAESTRA37-N8 · CONSOLIDA-DECISIONES`**, 4/sep/2026, NUBE — **propaga las nueve decisiones (D1-D9, salvo D9 misma) de la firma de mesa del 3/sep/2026, dentro del perímetro acotado que el encargo declara (P1-P6); no decide nada nuevo.**
+
+**Encargo** (archivado por A.3 en `c088df8`): `forense/encargos/2026-09-04-MAESTRA37-N8-CONSOLIDA-DECISIONES.md`, SHA de redacción `2e79d153`.
+
+**Gate verificado.** `COMPUERTA: PR de INFRA-1 fusionado, verificada POR PRODUCTO` — `test -f tools/curador_registro/alta_relacion.py` → existe. Cumplida.
+
+**P1 (D2-a/b/c/d/e/g).** `milpa/tramite.yaml`: 6 de las 7 entradas que la firma de mesa declaró con `situacion` desactualizada, localizadas y propagadas a `situacion: SELLADA` citando ADR-274 (`familia.seguro.volatilidad_ausencia_estado`, `dinero.planeacion.formal_estable`), ADR-289 (`civico.denuncia.miedo_desconfianza`, `dinero.ahorro.tiene_ahorros`, `familia.apoyo.recibe_dinero_familiares`) y ADR-321 (`civico.participacion.concurrencia_presidencial_conversion`); una séptima entrada declarada por la firma de mesa no se localizó -- ambigüedad documentada, no forzada. `familia.corresidencia.adulto_familiar` (D2-b) → `SELLADA-SIN-CARGA`, tier `MEDIA`, `se_mueve_si` verbatim. **Carga real al motor (D2-c/D2-d), 17 → 20 reglas**: `dinero.ahorro.via_informal`, `dinero.ahorro.seguro_deposito_enif2024` (tier `FUERTE`, `situacion: SELLADA`) y `civico.protesta.agravio_urbano_encuci2020` (tier `FUERTE`, solo el contraste C2 `CORROBORADA-REPLICADA`), las tres copiadas verbatim de `milpa/tramite-ola5-propuesta-v0.yaml`. `civico.protesta.agravio_urbano_lapop2019` y el contraste C1 (D2-e) quedan `SELLADA-SIN-CARGA`, tier `MEDIA`, `AMBIGUA-ENTRE-INSTRUMENTOS`. `tramite.gobierno_digital.coercitivo_efirma_sat`/`coercitivo_tabla_de_universos` (D2-g) quedan `SELLADA-SIN-CARGA`; el prior `0.09` `ASIGNADO` de `milpa/procedencia.yaml` gana `clase: REFUTADO-POR-COTA` (ADR-68a), cuerpo intacto. **Smoke `emitir_binaria() == p` verificado por comando** sobre las diez conductas numéricas de las tres entradas cargadas: las diez `OK`. Motor: `cargar_reglas()` cuenta **20** reglas.
+
+**P2 (D2-f).** Enmienda **append** (0 líneas borradas) en `canon/modelo-decision-v4_0.md` §7: `R7.3` pasa de `[FUERTE]` a `[MEDIA]` en el cálculo (la fila histórica de la tabla no se edita), citando `civico.voto.agencia_con_secreto`/`_encuci2020` (LAPOP 2023 + ENCUCI 2020, `CONTRARIA-REPLICADA`) con los IC de réplica citados verbatim del repo; el IC agregado de la degradación misma se declara **"IC pendiente de corrida"**, sin inventar número. `se_mueve_si` verbatim. Retropropagación protocolo ADR-29 documentada punto por punto. **Ver `ADR-329` abajo, inciso propio de esta enmienda.**
+
+**P3 (D1).** `data/curacion-registro/necesidad-objeto-modelo.tsv`: altas `N38` (`R4.1`), `N39` (`R4.2`), `N40` (`R4.4`), `N41` (`R4.5`), redacción verbatim de `FP-284` y reserva verbatim de `L3-BIS` en (1)(2)(4). Necesidades 41 → 45 filas. `baseline.py` → `{"ok": true}`. **Pieza deferida, documentada**: el re-asiento de las ocho altas de `A1 §5.1` bajo su `N` real se intentó y `baseline.py` lo rechazó (`relacion_id no determinista` -- el id se deriva de `necesidad+fuente+objeto`, y `alta_relacion.py` tampoco crea/reasigna `N` por diseño propio); revertido, registro limpio, sucesor declarado.
+
+**P4 (D3).** `forense/prereg-duelo-v2/runner_l_cli.py::ruta_salida` gana sufijo `__<SPEC_VERSION>` (`"v1_3"`) para corridas nuevas; `modelo_real` ya se capturaba desde la cabecera JSON (sin cambio de mecanismo). **Las 424 capturas existentes NO se re-nombran ni se re-corren.** Línea nueva en `forense/hallazgos.md`: "capturas anteriores a v1_3 no traen `modelo_real` ni `spec` en nombre". `FP-235`/`FP-240` → `EJECUTADA`.
+
+**P5 (D5/D6/D7).** `data/curacion-registro/cola-adquisicion-registro.tsv`: cinco filas comerciales (Homescan/NielsenIQ, Kantar Worldpanel, Tanda+ ×2, Mercer/GPTW) `NO-ACCESIBLE` → `NO-ADQUIRIDA-POR-COSTO`, sin contacto. `WB6667` → `PENDIENTE-DE-MESA` con receta "mesa crea cuentas y baja"; `ICPSR 35024`: ambigüedad declarada, estado de fila NO degradado (ya `OBTENIDO` por documentación/tabulados), nota sobre el `.dta` pendiente añadida sin forzar la baja. `PDN_SESNA_S1_S2_S3_S6`: nota citando la vía de `S3`, sin ejecutar la bajada. `.claude/commands/mapea.md` §4: define `NO-ADQUIRIDA-POR-COSTO` y la línea "un `NO-ENCONTRADO` de agente no cierra una fila de la cola".
+
+**P6.** `forense/firmas-pendientes.tsv`: `FP-179` → `EJECUTADA` "(2) CERRADA-SIN-SUCESOR" (D4); `FP-284` → `EJECUTADA` (D1); `FP-280` → `FIRMADA` "(b)" (D8, sin cambio, INFRA-1); `FP-259` → `FIRMADA` "(iii), ejecuta INFRA-2" (D8, sin cambio); `FP-235`/`FP-240` ya `EJECUTADA` desde P4. `forense/hallazgos.md`: dos líneas de hallazgo (digesto ciego a `situacion:`; las 7 entradas D2-a declaradas por firma de mesa, 6 localizadas).
+
+**`python3 tests/check.py --baseline`** → ver bloque de cierre del PR.
+
+**Perímetro respetado.** `milpa/tramite.yaml` · `milpa/tramite-ola5-propuesta-v0.yaml` · `milpa/procedencia.yaml` (solo el prior `0.09`) · `canon/modelo-decision-v4_0.md` (append §7) · `canon/gobernanza-v1_15.md` · `data/curacion-registro/{necesidad-objeto-modelo,cola-adquisicion-registro}.tsv` · `.claude/commands/mapea.md` §4 · `forense/prereg-duelo-v2/runner_l_cli.py` · `forense/firmas-pendientes.tsv` · `forense/hallazgos.md` · A.3 propio · cascada. **No tocó** `data/manifiesto.yaml`, `tests/manifiesto.py`, `tools/curador_registro/*.py` (solo invocados como CLI), `canon/motor-nucleo-medible-v1_0.md`, corridas-L existentes, `data/curacion-registro/{relaciones,evidencias,utilidad-modelo}.tsv` (el re-asiento de D1 quedó deferido, no forzado), D9 (auditoría de encargos, fuera de perímetro) ni la bajada real de D6/D7.
+
+**Lo que NO hace.** No mide. No re-corre `L`. No toca la cola con filas nuevas. No decide letras. No crea cuentas ni baja microdato de D6/D7. No hace la auditoría D9.
+
+**CONTADOR.** Firmas propagadas: 12 (D2-a×6, D2-b, D2-c×2, D2-d, D2-e×2, D2-g×2 -- conteo por entrada tocada, no por letra). Motor 17 → **20** reglas (declarado el real, no el 20 nominal del encargo -- coincide). Sellos sin carga: +5 (`adulto_familiar`, `agravio_urbano_lapop2019`+C1, `coercitivo_efirma_sat`, `coercitivo_tabla_de_universos`). Necesidades 41 → 45. Filas `ABIERTA` de FP-179/235/240/284: 4 → 0 (`FP-259` queda `FIRMADA` hasta INFRA-2). Medición: cero, declarado.
+
+---
+
+**ADR-329 (derivado por el comando de la casa tras `ADR-328`: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `328`, contiguo; candidato `329`) · Enmienda de canon D2-f, inciso propio de `ACTO MAESTRA37-N8`**, protocolo ADR-29 (retropropagación S1, `gobernanza-v1_15.md §3.1`) — **`R7.3` pasa de `[FUERTE]` a `[MEDIA]` en `canon/modelo-decision-v4_0.md` §7, por append (0 líneas borradas).**
+
+Ver el texto completo de la enmienda en `canon/modelo-decision-v4_0.md §7` (nota "Enmienda D2-f", inmediatamente antes de la advertencia "La identidad de cada ID es el texto de la regla, NO la línea"). Motivo: `CONTRARIA-REPLICADA` en dos instrumentos independientes (LAPOP 2023 + ENCUCI 2020, `civico.voto.agencia_con_secreto`/`_encuci2020`) sobre el sub-claim de agencia-con-secreto de `R7.3`. **IC de la degradación misma: "IC pendiente de corrida"** -- no se inventa un número que no existe en el repo; los IC citados son los de las dos réplicas de la asociación, no un IC propio de la degradación. `se_mueve_si` verbatim de la firma de mesa. Retropropagación (29.a/b/c) documentada en la propia nota del modelo. El motor (`milpa/tramite.yaml`) no carga `R7.3` -- no hay tier §3 que sincronizar contra este cambio.
+
+---
+
+**ADR-330 · `ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166`** *(3/sep/2026, NUBE)* — **audita los 166 encargos de `forense/encargos/` sin marca de cierre, deriva su estado por comando y establece que la ausencia de marca deja de ser tolerada.**
 
 **Encargo** (archivado por A.3): `forense/encargos/2026-09-03-MAESTRA37-N9-AUDITA-ENCARGOS-166.md`, SHA de redacción `2e79d153` (merge `PR #520`/`MAESTRA37-L3-BIS`). Firma de mesa D9 verbatim: *«hagamos la auditoría de una vez, si no reitero, nos quedamos con pendientes abiertos.»*
 
@@ -5635,4 +5669,4 @@ ejecutado con `/acto` de `ADR-237`.
 
 **Deuda que abre.** `FP-287` (los 46 `INDETERMINADO`, lista para mesa, vence a 7 días). Recibo: **`FP-286`**.
 
-**Numeración.** Candidato re-derivado por el comando de la casa contra este árbol: máximo `327` (`ADR-327`/`MAESTRA37-L3-BIS`, ya fusionado), contiguo, candidato `328`. Si `MAESTRA37-N8` corre en paralelo en nube y fusiona primero, renumera quien fusiona segundo (regla de la casa).
+**Numeración.** Candidato re-derivado por el comando de la casa contra este árbol: máximo `327` (`ADR-327`/`MAESTRA37-L3-BIS`, ya fusionado), contiguo, candidato `330` -- recalculado tras el merge de `origin/main` (PR #523, commit `d96bf44`), que fusionó primero `MAESTRA37-N8` como `ADR-328` y su enmienda D2-f como `ADR-329`; por la regla de la casa ("renumera quien fusiona segundo"), este acto (`MAESTRA37-N9`) cede `328` y toma `330`, contiguo tras `329`.

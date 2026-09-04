@@ -47,10 +47,14 @@ Corre:
 python3 tools/arbitra.py <marco.tsv> <columna_elegible> <id1> <id2> ...
 ```
 
-Commit lo que el script haya escrito en `corridas-R/` y, si aplicó,
-las filas nuevas en `data/cola-adquisicion-v1_0.tsv`. Reporta la salida
-cruda del comando (estado por celda) en el mensaje de commit o en la
-nota de cierre.
+Commit lo que el script haya escrito en `corridas-R/` y, si tocó la cola
+de adquisición, la fila (alta o actualización) que dejó en
+`data/curacion-registro/cola-adquisicion-registro.tsv` — el SSOT — junto
+con la vista regenerada `data/cola-adquisicion-v1_0.tsv` (producida por
+`tools/vista_cola_adquisicion.py`). La vista es generada: jamás se edita
+ni se comitea a mano como si fueran "filas nuevas" escritas directo
+sobre ella. Reporta la salida cruda del comando (estado por celda) en
+el mensaje de commit o en la nota de cierre.
 
 Commit: `arbitra COMMIT-2: resultados del lote <ids>`.
 

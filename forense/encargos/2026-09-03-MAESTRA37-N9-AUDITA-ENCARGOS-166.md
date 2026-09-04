@@ -15,7 +15,10 @@ FP/ADR: ADR-329 (deriva) · FP-286 recibo · FP-287 sólo si INDETERMINADO > 0 (
 ## CONSUMIDO
 
 Ejecutado el 3/sep/2026 en entorno NUBE con la skill `/acto` (`ADR-237`),
-rama `claude/auditoria-encargos-maestra37-p8k51b`, cascada en `ADR-328`.
+rama `claude/auditoria-encargos-maestra37-p8k51b`, cascada en `ADR-330`
+(candidato original `ADR-328`; renumerado al fusionar `origin/main`/`PR #523`,
+commit `d96bf44`, que ya llevaba fusionados `ADR-328`/`ADR-329` de
+`MAESTRA37-N8` — regla de la casa, "renumera quien fusiona segundo").
 Commits: `89d9eb2` (COMMIT-1, congela universo de 166), `867fbe3`
 (COMMIT-2, deriva y marca los 166), más este commit de cierre y cascada.
 
