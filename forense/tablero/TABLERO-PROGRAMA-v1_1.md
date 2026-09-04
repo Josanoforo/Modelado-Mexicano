@@ -188,9 +188,9 @@ Ninguno. **La única rama remota viva, `origin/claude/maestra35-n2-launch-jip2j0
 | B13 | **Modelo vs dato en ahorro** (`informal_sin_puente` CONTRARIA) | dirección | `MAESTRA35-L1` | propuesta de re-lectura |
 | B14 | **Cívica acotada**: `MAESTRA35-L3` entregó la serie; el tier de la entrada nueva sigue sin sellar | mesa | ADR-293 | FP-245 |
 | **B23** | **NUEVO · `via_capa2.py` resuelve `id_manifiesto` como un solo id** (FP-246): toda fila de `relaciones.tsv` con más de uno queda mal resuelta | dirección | 2/sep | acto de reparación; hoy sin encargo |
-| **B24** | **NUEVO · Mesa decide las 9 reglas `NO-ENCONTRADO` clasificadas por `MAESTRA38-N5`** (`FP-298`): por regla, aceptar/rechazar 2 `REFORMULABLE`, 5 `SIN-INSTRUMENTO` (`MANTENER-COMO-HIPÓTESIS` propuesto) y 2 `CON-CANDIDATA` — tabla en `forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md` §3 | mesa | `FP-298`, 4/sep | firma por regla, en RH; vence 11/sep |
+| ~~B24~~ | ~~NUEVO · Mesa decide las 9 reglas `NO-ENCONTRADO` clasificadas por `MAESTRA38-N5`~~ | mesa | `FP-298`, 4/sep | **CERRADO 4/sep** — `FP-298` → `EJECUTADA` por `ACTO MAESTRA38-N6`, §8.5 |
 
-**Cerrados en esta ventana.** **B1** (dominio dinero sin celda puntuable) por PR #479. **B8** ya venía cerrado. **B10** (canon de estado desactualizado) por PR #485, *con reserva*: el archivo nuevo está en PROPUESTA hasta FP-251. **B15** se reformula como B21: los encargos de `MAESTRA35-L3` sí aterrizaron; el de `MAESTRA35-L4` no.
+**Cerrados en esta ventana.** **B1** (dominio dinero sin celda puntuable) por PR #479. **B8** ya venía cerrado. **B10** (canon de estado desactualizado) por PR #485, *con reserva*: el archivo nuevo está en PROPUESTA hasta FP-251. **B15** se reformula como B21: los encargos de `MAESTRA35-L3` sí aterrizaron; el de `MAESTRA35-L4` no. **B24** cerrado por `ACTO MAESTRA38-N6 · PROPAGA-FP298-TESTS-Y-A3` (4/sep) — mesa aceptó la clasificación de las 9 reglas vía `FP-298`.
 
 ---
 
@@ -318,3 +318,45 @@ diseno-9-reglas.md` §3. Bloqueador nuevo: `B24` (§5) — `FP-298`, decisión d
 la tabla, vence 11/sep/2026. Detalle de las desviaciones D-13 (ADR no abierto, FP
 re-derivado 297/298 no 298/299) en el `## CONSUMIDO` del encargo archivado:
 `forense/encargos/2026-09-04-MAESTRA38-N5-DISENO-9-REGLAS-SIN-INSTRUMENTO.md`.
+
+### 8.5 Recibo — `ACTO MAESTRA38-N6 · PROPAGA-FP298-TESTS-Y-A3` (4/sep/2026, `ADR-338`, `FP-299`)
+
+`FP-298` → `EJECUTADA`: mesa acepta, sin excepción de origen, la clasificación con
+evidencia de §8.4. Carga en `milpa/tramite-ola5-propuesta-v0.yaml`: **3
+`HIPÓTESIS-SIN-INSTRUMENTO`** (`tramite.evasion.norma_inutil_sancion_improbable`,
+`civico.transferencia.atribucion_lider`, `familia.cortejo.urbano_joven_apps` —
+vocabulario nuevo documentado en `.claude/commands/mapea.md` §4) y **2 `REFORMULABLE`**
+como tercera formulación complementaria (`civico.voto.clientelar_si_observable_
+lapop2019`, `civico.protesta.agravio_urbano_multiola`), sin reabrir los sellos ya
+vigentes de `MAESTRA35-L9`/`L11` (`D2-d`/`D2-f`). Una línea nueva en
+`canon/modelo-decision-v4_0.md` §7. Dos filas nuevas en la cola de adquisición
+(`CNBV_PORTAFOLIO_INFORMACION_IMOR_CONSUMO`, `ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF`,
+vía `tsv_crudo.upsert_fila` + `vista_cola_adquisicion.py`, nunca escritas a mano);
+`forense/notas/2026-09-04-MAESTRA38-N6-PAQUETE-RECETAS-6.md` (0 de 2 recetas
+verificables — red bloqueada en `NUBE`, `curl` → `403`/`000`, declarado en vez de
+fabricar una URL).
+
+**Hallazgo (D-13).** `MAESTRA38-N5` clasificó las 9 reglas buscando solo con
+`busca_reactivos.py` contra `descargas_mx*`, sin cruzar la propuesta acumulada ni
+`canon/modelo-decision-v4_0.md` §7: 2 de las 5 `SIN-INSTRUMENTO`
+(`dinero.ahorro.seguro_deposito_atenua_aversion`/`R1.5`,
+`civico.voto.agencia_con_secreto`/`R7.3`) ya tenían instrumento medido por
+`MAESTRA35-L9`/`L11` — `R1.5` `NO-DISCRIMINA` (`dinero.ahorro.seguro_deposito_
+enif2024`), `R7.3` ya `CONTRARIA-REPLICADA` y degradada `[FUERTE]`→`[MEDIA]` (Enmienda
+D2-f). Ninguna de las dos se carga como `HIPÓTESIS-SIN-INSTRUMENTO`.
+
+`T-A3`/`T-FIRMAS-2` (`T28`/`T29`) nuevos en `tests/check.py` — defecto real: el
+encargo `MAESTRA38-N1-lite` nunca llegó a un commit empujado, `PR #530`/`ADR-335`
+ejecutó su restauración sin encargo archivado. Control positivo: `T-A3` **FALLA**
+contra el árbol antes de archivar `N1-lite`, `T-FIRMAS-2` ya **PASA** (salidas
+pegadas en el `## CONSUMIDO` del encargo). `forense/encargos/2026-09-04-MAESTRA38-
+N1-lite-REPARA-TABLERO-Y-COLA.md` archivado post-hoc, `## CONSUMIDO` con `PR #530`
+— `T-A3` pasa a VERDE. `tests/baseline.json` sin recifrar por `P2`/`P3`: LÍNEA
+BASE **VERDE**, 3 FAIL / 170 WARN. **Enmienda post-cierre, mismo día (CI de `PR
+#535`).** Subir `gobernanza` a `338 ADR` desincronizó `canon/estado-programa-
+v1_11.md` (`T15` a `ROJO`, 3 entradas) — el acto original no lo tocó por
+perímetro (carril `N8`, disjunto); con la CI del PR realmente roja, dirección
+pidió resolverlo ahí mismo, autorización puntual para esta cifra mecánica, y
+`canon/estado-programa-v1_11.md` se recifró (`337`→`338 ADR`).
+`B24` (§5) cerrado. Detalle completo en el `## CONSUMIDO` del encargo archivado:
+`forense/encargos/2026-09-04-MAESTRA38-N6-PROPAGA-FP298-TESTS-Y-A3.md`.
