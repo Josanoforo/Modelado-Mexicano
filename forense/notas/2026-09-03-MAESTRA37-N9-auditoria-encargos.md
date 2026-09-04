@@ -229,7 +229,7 @@ casos con indicio débil de reemplazo caen en INDETERMINADO`, no en
 | `## SUSTITUIDO` | 0 |
 | **Total** | **166** |
 
-### Lista íntegra de `## INDETERMINADO` (46) — para mesa (FP-287, vence a 7 días)
+### Lista íntegra de `## INDETERMINADO` (46) — para mesa (FP-290, vence a 7 días)
 
 - forense/encargos/2026-08-05-m4bis-encup-lapop-latinobarometro.md
 - forense/encargos/2026-08-05-m5bis-cierre-inventarios-catalogo-cruce.md
