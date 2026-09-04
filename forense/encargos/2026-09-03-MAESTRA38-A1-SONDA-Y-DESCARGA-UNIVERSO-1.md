@@ -17,3 +17,34 @@ Orden de lanzamiento
 Caja: MAESTRA38-A1 (hoy, en cuanto la caja quede libre) → INFRA-2 → L2 (con el .dta de ICPSR si mesa lo bajó, como medición de primera mano). Nube: INFRA-1 (corriendo) → N8 → A2; N9 en paralelo desde ya. Mesa, a mano (D6/D7, ≤10 min): cuentas ICPSR y WB, .dta de 35024, microdato WB 6667, PDN S1/S2/S6 → a descargas_mx/, y una línea aquí con los nombres; el [CENSO] de N6 los ve al día siguiente y el siguiente acto A los registra.
 
 Contadores movidos por este documento: cero. Declarado.
+
+## CONSUMIDO
+
+Ejecutado en rama `acto/maestra38-a1-sonda-y-descarga-universo-1` · `ADR-328` ·
+`FP-290` (recibo) / `FP-291` (recetas de cuenta/solicitud, vence 7 días) ·
+3/sep/2026, UBUNTU con corpus y red. PR: se abre a continuación de este commit
+contra `main` — número pendiente de que GitHub lo asigne.
+
+Commits: `3fa0975` (0-bis A.3) · `5e8cc73`/`5f1c53f` (Lote 1, COMMIT-1/COMMIT-2:
+ENADIS · ENCO · ENCRIGE · MOTRAL) · `d2a2659`/`254e81b` (Lote 2, COMMIT-1/COMMIT-2:
+CONEVAL · ENJUVE · ENVE · ENH) · `a6c775b`/`b108049` (Lote 3, COMMIT-1/COMMIT-2:
+Intercensal 2015 · CSES · Reuters DNR · Pew) · `0cf0d59` (censo de cierre, 9 reglas
+NO-ENCONTRADO) · `d776da9` (cascada: ADR-328, L0, registro-rotulos, suite VERDE) ·
+`7120457` (corrección aritmética: manifiesto 1233→1256, no 1253 — declarada, no
+silenciada).
+
+Resultado: 8 de 12 candidatas con veredicto A.4 (4 verificados byte a byte contra
+FD/microdato real: MOTRAL→N35, ENCRIGE→N18, ENVE→N16 — las tres EXISTE-NO-SATISFACE;
+ENADIS→N15, ENCO→dinero.consumo.estatus_mediado_por_credito — ambas NO-ENCONTRADO;
+4 exploratorias sin regla previa: ENH, CONEVAL, Intercensal 2015 obtenidas completas,
+ENJUVE OBTENIDO-PARCIAL por hallazgo genuino de A.6). 3 PENDIENTE-DE-MESA (CSES,
+Reuters DNR, microdato de Pew) con receta ≤1 min cada una. Manifiesto 1233→1256
+(+23); cola 112→124 (+12 filas); tres relaciones CANDIDATA nuevas por GUÍA §32.
+
+Desviación declarada: el encargo proponía ADR-331 sobre una base de redacción con
+otros actos aún no fusionados; ninguno había tomado un ADR nuevo al cierre de este
+acto, así que el candidato re-derivado fue 328, no 331 — mismo criterio que el
+propio encargo anticipaba ("renumera quien fusiona segundo").
+
+Ningún dominio se abrió, ninguna regla se selló, Ola 6 no se tocó, la cola de A2
+no se cerró — exactamente lo que el encargo declaró que este acto no hace.
