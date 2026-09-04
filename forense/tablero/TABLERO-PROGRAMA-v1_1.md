@@ -360,3 +360,54 @@ pidió resolverlo ahí mismo, autorización puntual para esta cifra mecánica, y
 `canon/estado-programa-v1_11.md` se recifró (`337`→`338 ADR`).
 `B24` (§5) cerrado. Detalle completo en el `## CONSUMIDO` del encargo archivado:
 `forense/encargos/2026-09-04-MAESTRA38-N6-PROPAGA-FP298-TESTS-Y-A3.md`.
+
+### 8.6 Recibo — `ACTO MAESTRA38-N7 · PRE-REGISTRO-CIVICO-LAPOP` (4/sep/2026, sin ADR, `FP-300`)
+
+No es un snapshot completo de indicadores; no toca `canon` (perímetro explícito —
+`ADR-338` ya no está libre, lo tomó `N6` en §8.5). Sella dos specs de pre-registro
+en `forense/prereg-caja/`, ampliando el conteo de `S1-S3` (3) a `S1-S5` (5):
+**`S4-L4-spec-v1_0.md`** (`civico.voto.clientelar_si_observable`, objeto de `N5
+§2.6`, LAPOP México 2019, `clien1n`/`clien1na` × `vb3n`, control `vb10`) y
+**`S5-L5-spec-v1_0.md`** (`civico.protesta.agravio_urbano`, objeto de `N5 §2.8`,
+multi-ola cerrada 2004/2006/2019 — 2021/2023 excluidas por no traer variable de
+protesta —, `TAMANO` como estrato). Cada spec cierra con la lista de archivos que caja
+necesita abrir (`id_manifiesto` + `sha256`) y la línea "medición: caja, acto
+`MAESTRA38-L4`/`L5`", y ahora cita los ids estables que §8.5 ya cargó en la propuesta
+(`civico.voto.clientelar_si_observable_lapop2019`,
+`civico.protesta.agravio_urbano_multiola`) como el destino de su medición.
+
+**Hallazgo central, por A.8/D-13 — ninguna de las dos es la primera medición de su
+`id`, y parte del sello ya vivía en canon antes del `SHA` de redacción de este
+encargo.** `MAESTRA35-L9`/`L11` (2/sep/2026) ya corrieron falsaciones reales de los
+mismos dos `id` de canon, formalmente propagadas a `canon/modelo-decision-v4_0.md §7`
+por las Enmiendas `D2-f`/`D2-d` (firma de mesa **3/sep/2026** — un día **antes** del
+`a0e06da4` contra el que este encargo se escribió, y que el primer sello de esta
+pieza no había citado):
+
+- `civico.voto.agencia_con_secreto` (`R7.3`, la gemela de `clientelar_si_observable`
+  en la misma disyunción del `SI`) — brazo de **observabilidad percibida** (LAPOP 2023
+  `mexwf1_19`×`countfair3`→`vb20`, réplica ENCUCI 2020): `CONTRARIA-REPLICADA`,
+  degradada `[FUERTE]`→`[MEDIA]` por `D2-f`. `S4` ataca el **otro** brazo de la
+  disyunción de `civico.voto.clientelar_si_observable` (proximidad/focalización del
+  reparto, único medible en la ola 2019 que trae la batería `clien*`, sin `D2-x` que
+  lo toque) y declara por qué la celda de tres factores del encargo —oferta ×
+  observabilidad × voto— no es construible en una sola ola.
+- `civico.protesta.agravio_urbano` — el contraste `C2` (agravio × urbano, LAPOP 2019 +
+  réplica ENCUCI 2020) está **`CARGADA-A-MOTOR`, tier `FUERTE`, `CORROBORADA-
+  REPLICADA`** por `D2-d`; `C1` (entorno solo) queda `SELLADA-SIN-CARGA`, `[MEDIA]`,
+  `AMBIGUA-ENTRE-INSTRUMENTOS` — no `PENDIENTE-DE-MESA` como el primer sello de esta
+  pieza decía. `S5` completa el diseño de cuatro factores que `D2-d`/`L9` dejaron en
+  dos, con los dos reactivos (`AOJ12` falla estatal, `CP6`/`CP9` red previa) que
+  `data/inventario-reactivos-descargas-mx-v1_1.tsv` —nacido un día después de `L9`—
+  sí trae, sin reabrir `D2-d`. Corrige además la caracterización de `N5` sobre
+  `LAPOP-E8` (aprobación normativa, no asistencia propia).
+
+`data/INFRAESTRUCTURA-v1_0.md` gana dos líneas (una por spec) bajo la sección
+`forense/prereg-caja/`. `B24` — cerrado por `N6` (§8.5), no por esta pieza: la
+referencia a "`B24` parcial" del primer sello se retira, D-13. Cero medición, cero
+canon tocado, cero corpus abierto. Renumerado de `FP-299` a **`FP-300`** al fusionar
+`origin/main` — `PR #535`/`N6` fusionó primero y tomó, de forma independiente, los
+mismos candidatos `FP-299`/`ADR-338`; regla de la casa, renumera quien fusiona
+segundo (coincide con el número que el encargo original citaba). Detalle completo,
+incluidas las correcciones de premisa post-merge, en el `## CONSUMIDO` del encargo
+archivado: `forense/encargos/2026-09-04-MAESTRA38-N7-PRE-REGISTRO-CIVICO-LAPOP.md`.
