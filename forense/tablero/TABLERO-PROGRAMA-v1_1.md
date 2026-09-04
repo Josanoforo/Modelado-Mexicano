@@ -188,7 +188,7 @@ Ninguno. **La única rama remota viva, `origin/claude/maestra35-n2-launch-jip2j0
 | B13 | **Modelo vs dato en ahorro** (`informal_sin_puente` CONTRARIA) | dirección | `MAESTRA35-L1` | propuesta de re-lectura |
 | B14 | **Cívica acotada**: `MAESTRA35-L3` entregó la serie; el tier de la entrada nueva sigue sin sellar | mesa | ADR-293 | FP-245 |
 | **B23** | **NUEVO · `via_capa2.py` resuelve `id_manifiesto` como un solo id** (FP-246): toda fila de `relaciones.tsv` con más de uno queda mal resuelta | dirección | 2/sep | acto de reparación; hoy sin encargo |
-| **B24** | **NUEVO · Mesa decide las 9 reglas `NO-ENCONTRADO` clasificadas por `MAESTRA38-N5`** (`FP-298`): por regla, aceptar/rechazar 2 `REFORMULABLE`, 5 `SIN-INSTRUMENTO` (`MANTENER-COMO-HIPÓTESIS` propuesto) y 2 `CON-CANDIDATA` — tabla en `forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md` §3 | mesa | `FP-298`, 4/sep | firma por regla, en RH; vence 11/sep |
+| **B24** | **Mesa decide las 9 reglas `NO-ENCONTRADO` clasificadas por `MAESTRA38-N5`** (`FP-298`): por regla, aceptar/rechazar 2 `REFORMULABLE`, 5 `SIN-INSTRUMENTO` (`MANTENER-COMO-HIPÓTESIS` propuesto) y 2 `CON-CANDIDATA` — tabla en `forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md` §3. **Parcial: `#6`/`#8` (`REFORMULABLE`) ya aceptadas** (`FIRMA` de `ACTO MAESTRA38-N7`, "la de N6 + §2 (#6 y #8 aceptadas como REFORMULABLE)") y pre-registradas en `S4-L4`/`S5-L5`; los otros 7 ítems siguen sin decidir | mesa | `FP-298`, 4/sep | firma por regla, en RH; vence 11/sep — `#1,#2,#3,#4,#5,#7,#9` pendientes |
 
 **Cerrados en esta ventana.** **B1** (dominio dinero sin celda puntuable) por PR #479. **B8** ya venía cerrado. **B10** (canon de estado desactualizado) por PR #485, *con reserva*: el archivo nuevo está en PROPUESTA hasta FP-251. **B15** se reformula como B21: los encargos de `MAESTRA35-L3` sí aterrizaron; el de `MAESTRA35-L4` no.
 
@@ -318,3 +318,46 @@ diseno-9-reglas.md` §3. Bloqueador nuevo: `B24` (§5) — `FP-298`, decisión d
 la tabla, vence 11/sep/2026. Detalle de las desviaciones D-13 (ADR no abierto, FP
 re-derivado 297/298 no 298/299) en el `## CONSUMIDO` del encargo archivado:
 `forense/encargos/2026-09-04-MAESTRA38-N5-DISENO-9-REGLAS-SIN-INSTRUMENTO.md`.
+
+### 8.5 Recibo — `ACTO MAESTRA38-N7 · PRE-REGISTRO-CIVICO-LAPOP` (4/sep/2026, sin ADR, `FP-299`)
+
+No es un snapshot completo de indicadores; no toca `canon` (perímetro explícito, mismo
+criterio que `N5` — `ADR-338` sigue libre, no se abre aquí). Sella dos specs de
+pre-registro en `forense/prereg-caja/`, ampliando el conteo de `S1-S3` (3) a `S1-S5`
+(5): **`S4-L4-spec-v1_0.md`** (`civico.voto.clientelar_si_observable`, objeto de `N5
+§2.6`, LAPOP México 2019, `clien1n`/`clien1na` × `vb3n`, control `vb10`) y
+**`S5-L5-spec-v1_0.md`** (`civico.protesta.agravio_urbano`, objeto de `N5 §2.8`,
+multi-ola cerrada 2004/2006/2019 — 2021/2023 excluidas por no traer variable de
+protesta —, `TAMANO` como estrato). Cada spec cierra con la lista de archivos que caja
+necesita abrir (`id_manifiesto` + `sha256`) y la línea "medición: caja, acto
+`MAESTRA38-L4`/`L5`".
+
+**Hallazgo central, por A.8/D-13 — ninguna de las dos es la primera medición de su
+`id`.** `MAESTRA35-L9`/`L11` (`forense/notas/2026-09-02-MAESTRA35-L9-*`, `-L11-*`,
+2/sep/2026 — dos días antes de `N5`, seis antes de este acto) ya pre-registraron y
+**corrieron** falsaciones reales de los mismos dos `id` de canon, hoy `PENDIENTE-DE-MESA`
+en `FP-298` (`ABIERTA`), sin sellar:
+
+- `civico.voto.clientelar_si_observable` — brazo de **observabilidad percibida**
+  (LAPOP 2023 `mexwf1_19`×`countfair3`→`vb20`, más réplica en ENCUCI 2020): veredicto
+  **`CONTRARIA`**, dos veces. `S4` ataca el **otro** brazo de la disyunción
+  (proximidad/focalización del reparto, único medible en la ola 2019 que trae la
+  batería `clien*`) y declara por qué la celda de tres factores del encargo —oferta ×
+  observabilidad × voto— no es construible en una sola ola: ningún payload trae los dos
+  ítems sobre la misma persona.
+- `civico.protesta.agravio_urbano` — dos de cuatro antecedentes (agravio × entorno,
+  LAPOP 2019 + réplica ENCUCI 2020): veredicto **`CORROBORADA-PARCIAL`**, dos veces;
+  `L9` declaró explícitamente que "red previa" y "falla estatal" no estaban en el
+  instrumento que examinó. `S5` completa el diseño de cuatro factores con los dos
+  reactivos (`AOJ12`, `CP6`/`CP9`) que `data/inventario-reactivos-descargas-mx-v1_1.tsv`
+  —nacido un día **después** de `L9`— sí trae, y corrige además la caracterización de
+  `N5` sobre `LAPOP-E8` (aprobación normativa, no asistencia propia).
+
+`data/INFRAESTRUCTURA-v1_0.md` gana dos líneas (una por spec) bajo la sección
+`forense/prereg-caja/`. `B24` (§5) se anota **parcial**: `#6`/`#8` de la tabla de `N5`
+quedan aceptadas como `REFORMULABLE` por la `FIRMA` de este encargo; los otros 7 ítems
+siguen `PENDIENTE-DE-MESA`. Cero medición, cero canon tocado, cero corpus abierto.
+Detalle completo, incluidas las dos correcciones de premisa y la desviación D-13 de
+numeración (`ADR-339`/`FP-300` citados por el encargo, `FP-299` re-derivado, sin ADR),
+en el `## CONSUMIDO` del encargo archivado:
+`forense/encargos/2026-09-04-MAESTRA38-N7-PRE-REGISTRO-CIVICO-LAPOP.md`.
