@@ -2356,8 +2356,9 @@ reglas_propuestas:
   - id: civico.protesta.agravio_urbano_lapop2019
     entrada_nueva: true
     referida_a: "regla R7.4 civico.protesta.agravio_urbano (canon/modelo-decision-v4_0.md:558)"
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # D2-e (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): R7.4-C1, AMBIGUA-ENTRE-INSTRUMENTOS -- C1 no estimable aqui (n=65, numerador 7, guardia<10); ver veredicto_conjunto_L9_L11 en civico.protesta.agravio_urbano_encuci2020
+    se_mueve_si: "tercer instrumento con IC fuera de 0 en el mismo signo que uno de los dos → carga con ese signo"
+    tier: MEDIA  # D2-e
     nota_alcance: >
       NO reabre la fila D que ADR-158 archivo para R7.4, y no propone cambiarla:
       aquel D corrio el falsador COMPARTIDO con R7.5 sobre datos de EVENTO (Mass
@@ -2622,8 +2623,9 @@ reglas_propuestas:
   - id: civico.protesta.agravio_urbano_encuci2020
     entrada_nueva: true
     referida_a: "regla R7.4 civico.protesta.agravio_urbano (canon/modelo-decision-v4_0.md:735) -- SEGUNDO INSTRUMENTO de la pieza b de MAESTRA35-L9. NO reabre ADR-158 (D)"
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: CARGADA-A-MOTOR  # D2-d (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): R7.4-C2, CORROBORADA-REPLICADA (LAPOP 2019 + ENCUCI 2020) -- copiada verbatim a milpa/tramite.yaml (id civico.protesta.agravio_urbano_encuci2020), tier FUERTE. C1 (dentro de esta misma entrada, contrastes[0]) NO se carga -- sigue AMBIGUA-ENTRE-INSTRUMENTOS, D2-e
+    se_mueve_si: "tercer instrumento CONTRARIA → baja a MEDIA"
+    tier: FUERTE  # D2-d, sube de PENDIENTE-DE-MESA por CORROBORADA-REPLICADA (C2)
     si:
       disparadores: NO-APLICA
     entonces:
@@ -2694,7 +2696,8 @@ reglas_propuestas:
       de hogares y NO-ACCESIBLE en SAT/CNGF; los .xls del SAT entraron al
       corpus el 2/sep por ADR-310 y este acto los abre. NO sella: el prior
       0.91/0.09 ASIGNADO y el tier MEDIA-FUERTE NO se tocan aqui.
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # D2-g (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): universo elegido -- ninguno; la fuente no puede dar p (AMBIGUA-POR-UNIVERSO); prior 0.09 ASIGNADO de milpa/procedencia.yaml pasa a REFUTADO-POR-COTA (ADR-68(a)), cuerpo intacto
+    se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"
     tier: PENDIENTE-DE-MESA
     si:
       disparadores: NO-APLICA
@@ -3051,7 +3054,8 @@ reglas_propuestas:
       poblacional, y pidio el universo poblacional. Este acto lo mide y
       ENTREGA LA TABLA: NO adjudica, NO sella, NO propone letra. El prior
       0.91/0.09 ASIGNADO y el tier MEDIA-FUERTE NO se tocan aqui.
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # D2-g (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): universo elegido -- ninguno; la fuente no puede dar p; prior 0.09 ASIGNADO de milpa/procedencia.yaml pasa a REFUTADO-POR-COTA (ADR-68(a)), cuerpo intacto
+    se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"
     tier: PENDIENTE-DE-MESA
     si:
       disparadores: NO-APLICA
