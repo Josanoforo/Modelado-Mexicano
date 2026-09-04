@@ -40,6 +40,10 @@ encargo supone es entregable, no interrupción.
 3 · data/raw. AUSENTE NO ES PARO. Es raíz integrada, gitignorada, resuelta
     por código; un clon fresco siempre nace sin ella. Se crea o se enlaza.
     Reporta:  existe / la enlacé a `<ruta>` / la creé.
+    ⚠️ Si el worktree nace sin `data/raw` y sin `data/raices.local.yaml`,
+    enlázalos desde el clon padre ANTES de evaluar cualquier compuerta —
+    corrige el defecto observado en PR #522 (una compuerta evaluada contra
+    un worktree sin raíz enlazada lee la raíz como vacía y falla en falso).
     ⚠️ Si este acto DESCARGA algo: verifica al cerrar que los payloads
     quedaron en el CORPUS COMPARTIDO y no solo en tu worktree. Es el
     defecto de PR #77 y no lo atrapa ningún test.
