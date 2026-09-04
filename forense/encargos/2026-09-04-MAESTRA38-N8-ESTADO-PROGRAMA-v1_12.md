@@ -34,7 +34,7 @@ cada cifra y su comando: `canon/estado-programa-v1_12.md` §2/§11.
 
 **Desviaciones D-13, declaradas (A.8, antes de fijar nada):**
 
-1. **`v1_11.md` no queda intacta; se retira del árbol (`git rm`), no una
+1. **`estado-programa-v1_11.md` no queda intacta; se retira del árbol (`git rm`), no una
    enmienda de una línea.** El encargo repetía la misma premisa que su propio
    predecesor (`v1_10`→`v1_11`) ya tuvo que corregir: `tests/check.py::
    t01_single_source` exige una sola versión viva de
@@ -52,7 +52,7 @@ cada cifra y su comando: `canon/estado-programa-v1_12.md` §2/§11.
    no `RECIBO`.** `grep -oE '^FP-[0-9]+' forense/firmas-pendientes.tsv | ...`
    → máximo real `300`; candidato `301`, coincide. Se marcó `ABIERTA` (no
    `RECIBO -- no requiere firma`) siguiendo el precedente exacto de `FP-251`
-   (la firma de mesa sobre `v1_11.md` en su propio nacimiento): un archivo
+   (la firma de mesa sobre `estado-programa-v1_11.md` en su propio nacimiento): un archivo
    `canon/` nuevo con cabecera `PROPUESTA — se sella con el merge de mesa`
    dispara `T22`(b) (marcador `PROPUESTA.*mesa` sin fila `ABIERTA`/`FIRMADA`
    que lo cite) — una fila `RECIBO` no lo satisface, sólo `ABIERTA`/`FIRMADA`
@@ -72,7 +72,7 @@ cada cifra y su comando: `canon/estado-programa-v1_12.md` §2/§11.
 
 **Cascada.** `canon/gobernanza-v1_15.md`: `ADR-339` (§4), cabecera de conteo
 `338`→`339 ADR` (línea 2), fila del "Registro de artefactos" (§2) actualizada
-de `estado-programa-v1.11.md` a `estado-programa-v1_12.md`. `canon/
+de `estado-programa-v1_11.md` a `estado-programa-v1_12.md`. `canon/
 estado-programa-v1_12.md` §3 L0 recifrado (`338`→`339 ADR`, nueva anotación
 insertada antes de la anterior, sin reescribirla; la anotación vieja marcada
 `{cita-historica}` donde quedó desincronizada). `canon/registro-rotulos.tsv`:
