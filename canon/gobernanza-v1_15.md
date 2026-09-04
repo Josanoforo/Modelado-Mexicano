@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **333 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **334 ADR**
 
 > | | |
 > |---|---|
@@ -5722,3 +5722,19 @@ Ver el texto completo de la enmienda en `canon/modelo-decision-v4_0.md §7` (not
 Universo derivado al arrancar contra el árbol (no heredado del A.8 pre-N8 del encargo): 112 filas totales, 28 no-`OBTENIDO`/`CERRADA` (9 `PENDIENTE`, 7 `NO-OBTENIDO-POR-ESTE-AGENTE`, 5 `NO-ADQUIRIDA-POR-COSTO`, 3 `NO-ACCESIBLE`, 2 `OBTENIDO-PARCIAL`, 1 `PENDIENTE-DE-MESA`, 1 `NO-ACCESIBLE-DESDE-LA-CAJA`) — difiere del forecast del encargo (29 filas, 2 `PENDIENTE-DE-MESA` no 1, sin `CERRADA-PREEXISTENTE`) porque ese A.8 era una foto tomada antes de que N8 corriera de verdad. `Workflow` de 28 agentes en paralelo (uno por fila), reusando el historial de rutas ya documentado por actos anteriores y aportando búsqueda de hermanas nueva por fila: **6 `BAJAR`** (receta ≤1 min en `PAQUETE-RECETAS-3`), **12 `MESA-DECIDE`** (opciones con costo), **10 `NO-BAJAR-PORQUE`**. Ninguna recomendación cambia `estado_A4A5` — el entregable es información para que mesa firme la clasificación final (`FP-286`, vence a 7 días). Detalle completo en `forense/notas/2026-09-03-MAESTRA37-A2-revision-cola.md`.
 
 **Nota de fusión (4/sep/2026).** La rama `claude/auditoria-encargos-maestra37-p8k51b` ejecutó este mismo encargo de forma independiente (candidato propio `ADR-330`→renumerado a `ADR-331`, commit `c8e5463`, `FP-288`/`FP-289`), sin saber que `PR #526` ya lo había fusionado a `main`. Al fusionar, se descarta esa ejecución duplicada (ver nota de fusión en el propio encargo archivado) y se conserva ésta, la de `PR #526`, como único cierre de `MAESTRA37-A2`.
+
+---
+
+**ADR-334 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `333`, contiguo, sin huecos; candidato `334` -- el encargo mismo citaba `ADR-335`/`FP-295`, prosa heredada de contexto ajeno a este árbol (ninguno de los dos existe en `canon/` ni `forense/hallazgos.md` al arrancar este acto); D-13 exige re-derivar por el comando de la casa, nunca heredar de prosa, así que este acto toma `334` y declara la discrepancia en vez de forzar `335`) · `ACTO MAESTRA38-N2 · TESTS-FRENTE-A-B`** *(4/sep/2026)* — **cierra `FP-287` (Frente A/B de MAESTRA37-INFRA-1 sin test automatizado, solo verificación manual) con dos archivos de test nuevos sobre el escritor canónico de cola y la escritura segura del manifiesto.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-04-MAESTRA38-N2-TESTS-FRENTE-A-B.md`, SHA de redacción `68ce2a8d` (merge `PR #527`).
+
+**Gate verificado.** El encargo no trae línea `GATED a …` / `COMPUERTA: …` — no compuertado, se continuó sin verificación de gate.
+
+**Qué se ejecutó.** Confirmado el hueco (`tests/` en `68ce2a8d` solo tiene `test_manifiesto_alcance.py` para el manifiesto, nada para el writer de cola; Frente C sí tiene `tools/curador_registro/tests/test_alta_relacion.py`). Dos commits: (1) `forense/notas/2026-09-04-MAESTRA38-N2-lista-tests.md`, la lista de tests con el defecto real que fija cada uno; (2) `tests/test_cola_writer.py` (5 tests: `upsert_fila` no corrompe comillas sueltas -- `FP-258`; reemplaza in-place sin tocar otras filas; la vista es función pura del registro -- defecto histórico "arbitra.py escribía la vista"; `registra_cola_adquisicion.py` exige `--confirmo-migracion-legacy` -- defecto "migrador invertido"; AST de `tools/arbitra.py` sin ningún `open(COLA, 'w')` directo) y `tests/test_manifiesto_seguro.py` (4 tests: `--registra` no sobreescribe id existente; no duplica por sha256 -- caso ENCIG del 30/jul; `_escribir_atomico` no corrompe el archivo si `_validar_manifiesto_completo` falla; `_con_lock_manifiesto` serializa dos `cmd_registra` reales corriendo en paralelo por hilos -- defecto "dos escritores el 3/sep" y su precedente `ACTO R`/`R″` del 12/ago). Los 9 tests corren sobre fixtures `tempfile`; ninguno toca `data/` real. `PR #77` (payload que se queda en el worktree y no llega al corpus compartido) queda declarado fuera de alcance: no es una función pura ejercitable con fixtures, y el ARRANQUE de `/acto` (punto 3) sigue siendo la mitigación operativa vigente.
+
+**Qué NO decide.** No corre `--escanea`/`--registra`/`--promueve` contra dato real, no toca `data/manifiesto.yaml` ni `data/cola-adquisicion-v1_0.tsv`, no adjudica `FP-288` (las 4 filas ENFIH de `relaciones.tsv`, ajeno a este acto).
+
+**Verificación.** `python3 tests/test_cola_writer.py` y `python3 tests/test_manifiesto_seguro.py`: 9/9 OK. `python3 tests/check.py --baseline`: LÍNEA BASE VERDE (19 FAIL · 171 WARN, sin entradas nuevas frente a `tests/baseline.json`), idéntico antes y después de los dos archivos de test (ninguno participa en `tests/check.py`).
+
+**Deuda que cierra.** `FP-287` → **EJECUTADA**. Sin FP nuevo -- el `FP-295` que citaba el encargo tampoco existe en `forense/hallazgos.md`/`canon/` al arrancar este acto (máximo real hallado: `FP-288`); mismo criterio que con `ADR-335`, D-13 exige re-derivar del árbol, nunca heredar de prosa. Este acto no abre ningún hallazgo nuevo que necesite recibo.
