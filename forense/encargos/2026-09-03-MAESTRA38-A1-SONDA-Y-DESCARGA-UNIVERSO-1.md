@@ -79,3 +79,25 @@ Ningún dominio se abrió, ninguna regla se selló, Ola 6 no se tocó, la cola d
 no se cerró, no se abrieron candidatas nuevas (siguen siendo las 12 del encargo
 original) — exactamente lo que el encargo, y su enmienda, declaran que este acto
 no hace.
+
+## Enmienda 2026-09-04 — restauración de FP-291/FP-292, perdidas en el merge de PR #527
+
+`FP-291` (recibo, «mesa ejecuta recetas de cuenta/solicitud», declarada arriba
+y en `## CONSUMIDO`) y `FP-292` (recibo del resultado de esas recetas tras la
+sonda lateral de la enmienda de arriba) no existían como filas en
+`forense/firmas-pendientes.tsv` pese a estar declaradas por este encargo:
+`grep -c '^FP-291' forense/firmas-pendientes.tsv` daba 0. Investigado contra
+`git log --all -- forense/firmas-pendientes.tsv` y ambos padres del merge de
+`PR #527` (`68ce2a8`, padres `7a3e2ab4`/`74e0c49a`): **ninguno de los dos
+lados del merge tenía jamás esas filas** — no es un conflicto de merge que
+las descartó, es que nunca se escribieron pese a que el encargo las declaró.
+Restauradas el 2026-09-04 con el contenido que este mismo documento fija:
+`FP-291` = recibo de las 3 recetas de cuenta/solicitud (CSES, Reuters DNR,
+Pew); `FP-292` = recibo del resultado de esas recetas — `CSES` SUPERADA por
+la sonda lateral (OBTENIDO sin cuenta, ver enmienda de arriba); `Pew`
+microdato OBTENIDO (misma sonda); `Reuters DNR` microdato individual sigue
+on-request → MESA-DECIDE solicitar o no. Contenido exacto de ambas filas no
+recuperable del historial (nunca existieron); reconstruidas fielmente a lo
+que este encargo y su enmienda ya declaraban, fecha `creado=2026-09-03`,
+nota "perdidas en merge #527". Detalle del hallazgo (por qué `A.12` no las
+atrapó) en `forense/hallazgos.md`, entrada `A.12`.
