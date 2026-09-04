@@ -4121,6 +4121,78 @@ def t27_infraestructura():
                      f"`_T_INFRA_ARCHIVOS_CONOCIDOS` con el porqué")
 
 
+def t28_a3_encargo_archivado():
+    """T28 · T-A3 -- ACTO MAESTRA38-N6 · PROPAGA-FP298-TESTS-Y-A3, 4/sep/2026.
+    Defecto real: el encargo "N1-lite" (dirección, 4/sep/2026, firma verbatim
+    "se me fue el internet y caja quedó fuera de servicio... la sesión se
+    cortó y no pudo pushear nada") nunca llegó a un commit empujado a este
+    repositorio -- confirmado por búsqueda exhaustiva de `ACTO MAESTRA38-N4`
+    (`git log --all -S "N1-lite"` vacío sobre todo blob de todo ref; los 11
+    commits de `PR #530` revisados uno por uno con `git show --stat`, ninguno
+    lo menciona -- ver `forense/hallazgos.md`, entrada del 4/sep/2026,
+    `MAESTRA38-N4`). `PR #530` SÍ se fusionó y SÍ ejecutó la restauración que
+    ese encargo pedía (`ADR-335`: `FP-291`/`FP-292` restauradas, dedup CSES,
+    `FP-290` resuelta) -- pero sin encargo archivado, exactamente el forjado
+    que A.3/`convencion.md` existe para impedir. (Nota D-13: la cita suelta
+    de "`#518`" que circuló en prosa de mesa NO es este defecto -- el `PR
+    #518` real es `MAESTRA37-A1`, sin relación, ya verificado por
+    `MAESTRA38-N4`.) Control positivo: contra `a0e06da4` este test FALLA
+    (ningún archivo de `forense/encargos/` archiva la ejecución de `PR
+    #530`/`ADR-335` con `## CONSUMIDO`); tras archivar
+    `forense/encargos/2026-09-04-MAESTRA38-N1-lite-REPARA-TABLERO-Y-COLA.md`
+    (P3 de este mismo acto, post-hoc), PASA."""
+    # Filtro por NOMBRE de archivo, no por substring suelto sobre todo el
+    # árbol: tanto MAESTRA38-N4 (declara por qué NO archivó N1-lite) como
+    # MAESTRA38-N6 (este mismo encargo, que PIDE archivarlo) mencionan
+    # "#530"/"ADR-335"/"## CONSUMIDO" en prosa sin ser el archivo que A.3
+    # exige -- un match por substring sobre esos tres tokens en cualquier
+    # parte del árbol da falso verde contra ambos. El archivo que cierra
+    # este defecto es, por construcción, uno cuyo NOMBRE lleva "N1-lite".
+    encontrado = None
+    for p in sorted(glob.glob(os.path.join(ROOT, "forense", "encargos", "**", "*N1-lite*.md"), recursive=True)):
+        texto = read(p)
+        tiene_cierre = any(l.strip().startswith("## CONSUMIDO") for l in texto.splitlines())
+        if tiene_cierre and "#530" in texto and "ADR-335" in texto:
+            encontrado = rel(p)
+            break
+    if not encontrado:
+        fail("T-A3", "ningún archivo `forense/encargos/*N1-lite*.md` trae "
+                      "una sección `## CONSUMIDO` que cite `PR #530`/"
+                      "`ADR-335` -- A.3 exige un encargo archivado para todo "
+                      "acto que ejecuta, y `PR #530` no tiene uno")
+
+
+def t29_firmas_2_no_perdidas():
+    """T29 · T-FIRMAS-2 -- ACTO MAESTRA38-N6 · PROPAGA-FP298-TESTS-Y-A3,
+    4/sep/2026. Defecto real: `FP-291`/`FP-292` (declaradas por el encargo
+    `forense/encargos/2026-09-03-MAESTRA38-A1-SONDA-Y-DESCARGA-UNIVERSO-1.md`
+    desde el 3/sep/2026) quedaron AUSENTES de
+    `forense/firmas-pendientes.tsv` tras fusionar `PR #527` -- confirmado
+    contra ambos padres de ese merge (`68ce2a8`), que nunca las tuvieron, no
+    que el merge las descartara (`canon/gobernanza-v1_15.md` `ADR-335`).
+    Restauradas por `PR #530`/`ADR-335` el 4/sep/2026. Sin este test, una
+    fila de firma que un encargo ya declaró puede desaparecer en un merge
+    futuro sin que ningún mecánico lo note -- A.12 (`T22`) exige que el
+    archivo *exista*, nunca compara su contenido contra lo que un encargo
+    concreto ya prometió. Control positivo: contra `a0e06da4` este test YA
+    PASA (la restauración de `PR #530` es anterior a `a0e06da4`) -- se
+    incluye igual, para que una pérdida futura de esta clase quede
+    atrapada."""
+    p, filas = _t22_tabla()
+    if p is None:
+        fail("T-FIRMAS-2", "no existe `forense/firmas-pendientes.tsv`")
+        return
+    ids = {f.get("id") for f in filas}
+    for esperada in ("FP-291", "FP-292"):
+        if esperada not in ids:
+            fail("T-FIRMAS-2", f"{esperada}: declarada por "
+                 "`forense/encargos/2026-09-03-MAESTRA38-A1-SONDA-Y-"
+                 "DESCARGA-UNIVERSO-1.md` desde el 3/sep/2026 -- ausente de "
+                 "`forense/firmas-pendientes.tsv` (defecto ya visto una vez, "
+                 "perdida en el merge de `PR #527`, restaurada por `PR "
+                 "#530`/`ADR-335`)")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -4152,6 +4224,8 @@ def main():
         ("T26 T-VISTA-COLA-ADQUISICION",          t26_vista_cola_adquisicion),
         ("T26-bis T-TSV-CRUDO-ROUND-TRIP",        t26_bis_tsv_crudo_round_trip),
         ("T27 T-INFRA",                           t27_infraestructura),
+        ("T28 T-A3",                               t28_a3_encargo_archivado),
+        ("T29 T-FIRMAS-2",                         t29_firmas_2_no_perdidas),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
