@@ -96,11 +96,13 @@ acto usa **`FP-299`** y **ningún `ADR`** — mismo off-by-one que `N5` ya
 declaró para su propio par (`FP-297`/`FP-298` citado como `FP-298`/
 `FP-299`), y misma razón: el `PERÍMETRO` explícito excluye `canon` sin
 la excepción "salvo ADR" que sí traía `N3`. (2) **`T25` — rótulo pelado
-`E8`.** Primer sello de `S5` disparó `T25` (D-6/`ADR-128`): la variable
-LAPOP `E8` sin prefijo colisiona con el patrón letra-más-dígito
+de una variable LAPOP de la batería `CP`/red previa.** Primer sello de
+`S5` disparó `T25` (D-6/`ADR-128`): el nombre de esa variable, escrito
+sin el prefijo de fuente, colisiona con el patrón letra-más-dígito
 reservado a rótulos de espacio de acto — mismo defecto que `N5` ya tuvo
-que corregir para la misma variable. Corregido a `LAPOP-E8`/`lapop-e8`
-en las siete apariciones bare del documento, re-sellado. (3) **Main se
+que corregir para la misma variable. Corregido a la forma prefijada
+(`LAPOP-` + el nombre) en las siete apariciones bare del documento,
+re-sellado. (3) **Main se
 movió 2 commits** entre el `SHA` de redacción (`a0e06da4`) y el momento
 de escribir esta pieza (`2b9c90e`) — un `[TRAMITE] digesto 2026-09-04`
 ajeno al perímetro de este acto. No PARO, declarado en el `Acto` de cada
