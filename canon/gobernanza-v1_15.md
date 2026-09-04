@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **331 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **333 ADR**
 
 > | | |
 > |---|---|
@@ -5655,7 +5655,47 @@ Ver el texto completo de la enmienda en `canon/modelo-decision-v4_0.md §7` (not
 
 ---
 
-**ADR-331 (candidato original `ADR-330`; renumerado tras fusionar `origin/main`, `PR #526`, que tomó `ADR-330` para `ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE` -- misma numeración candidata, distinto encargo; por la regla de la casa "renumera quien fusiona segundo", este acto, en la rama que fusiona después, cede `330` y toma `331`, contiguo) · `ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166`** *(3/sep/2026, NUBE)* — **audita los 166 encargos de `forense/encargos/` sin marca de cierre, deriva su estado por comando y establece que la ausencia de marca deja de ser tolerada.**
+**ADR-331 · `ACTO MAESTRA38-A1 · SONDA-Y-DESCARGA-UNIVERSO-1`** *(3/sep/2026, UBUNTU con corpus y red)* — **sondea y descarga las 12 candidatas públicas del "Universo desconocido" (§0): 8 con veredicto A.4, 1 pública sin regla, 3 `PENDIENTE-DE-MESA` por cuenta/solicitud.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-03-MAESTRA38-A1-SONDA-Y-DESCARGA-UNIVERSO-1.md`, SHA de redacción `2e79d153`. `COMPUERTA: ninguna`.
+
+**Numeración.** Re-derivado TRES veces por colisiones reales sucesivas -- este repo tiene varios actos en vuelo a la vez. (1) Contra `origin/main = ff68b9f` (`PR #521`): candidato `328`. (2) Al fusionar `origin/main = 53da938` (`PR #525`): `MAESTRA37-N8`/`INFRA-2` ya tenían `328`/`329` -- candidato `330`. (3) Al fusionar `origin/main` de nuevo (`PR #526`, `MAESTRA37-A2`): esa entrada tomó `330` primero -- candidato final `331`. Regla de la casa, renumera quien fusiona segundo, aplicada tres veces.
+
+**Qué decidió.** Tres lotes de cuatro (D-11), dos commits por lote, sobre ENADIS · ENCO · ENCRIGE · MOTRAL · CONEVAL · ENJUVE · ENVE · ENH · Intercensal 2015 · CSES · Reuters DNR · Pew. Veredicto A.4 con FD/microdato real (byte a byte, no de memoria) para cuatro: `MOTRAL` → `N35` **`EXISTE-NO-SATISFACE`** (confirmado contra el DBF real, tabla `empleos`: `SALARIO` + formalidad por empleo presentes, ningún ítem de preferencia/trade-off); `ENCRIGE` → `N18`/`tramite.evasion_norma` **`EXISTE-NO-SATISFACE`** (cobertura parcial fuerte — la candidata más limpia de las 9 `NO-ENCONTRADO` de `E18-P2`); `ENVE` → `N16`/`tramite.mordida.*` **`EXISTE-NO-SATISFACE`** (refuerza, no cierra, el hallazgo de `ENCUCI2020`); `ENADIS` → `N15`/deferencia y `ENCO` → `dinero.consumo.estatus_mediado_por_credito`, ambas **`NO-ENCONTRADO`** — verificado byte a byte que el instrumento no toca la regla, no sólo que nadie corrió el mecanismo. `ENH`, `CONEVAL`, `Intercensal 2015` se descargaron completos, exploratorias, sin regla previa que cerrar. `CSES`, `Reuters DNR` y el microdato completo de `Pew` quedan `PENDIENTE-DE-MESA` (cuenta o solicitud, verificado por sonda directa, no supuesto) con receta ≤1 minuto cada una en `forense/notas/2026-09-03-MAESTRA38-A1-PAQUETE-RECETAS-4.md` (`FP-291`).
+
+**Corrección de premisa, declarada y cerrada.** El encargo afirmaba que las 12 candidatas estaban `SIN-FETCH` hasta este acto; para `Pew` eso era parcialmente falso — el topline/shortread (`FP-29`) ya estaba `OBTENIDO`. Declarado en `forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-1.md`, cerrado en Lote 3: la fila de la cola cita ambos ids existentes y sólo el microdato queda pendiente.
+
+**Hallazgo reutilizable, `forense/hallazgos.md`.** El portal de INEGI es una SPA (React) que devuelve `HTTP 200` con el shell de la app para casi cualquier ruta adivinada — un `curl` que sólo mira el código de estado no distingue "no alcanzable" de "sin el dato" de "URL equivocada". El mecanismo real de descarga es un JSON REST (`app/api/descarga/componente/descargamasiva/lista/archivoscompaginacion`) parametrizado por `idBiinegi` (id numérico interno, leíble sin ejecutar JS desde el sidecar `pestanaData.js` de cada programa) — usado con éxito para `MOTRAL`, `ENCO`, `ENH` e `Intercensal 2015` sin necesitar el patrón `datosabiertos/` que sí funcionó para `ENADIS`/`ENCRIGE`/`ENVE`.
+
+**Registro por las tres capas, sobre las 23 descargas de payload.** Manifiesto `1233 → 1256` (doble descarga + hash SHA-256 coincidente + `testzip`/`tar.exe -tf` para los 11 microdatos; FD/cuestionario con hash único, 12 documentos). Cola `112 → 124` (12 filas nuevas: 8 `OBTENIDO`, 1 `OBTENIDO-PARCIAL` — `ENJUVE`, sin edición desde 2010, host histórico `NO ALCANZABLE` (502) y 2 de 3 enlaces de la fuente vigente en `404` real —, 3 `PENDIENTE`). Alta `GUÍA §32` (manual — `tools/curador_registro/alta_relacion.py` no existía al ejecutar Lotes 1-2; llegó a `origin/main` vía `INFRA-1` a mitad de acto, verificado compatible por re-validación de `baseline.py` tras el merge) para las tres `CANDIDATA` que sí tocan regla: `relaciones.tsv` `219 → 222`, `evidencias.tsv` `220 → 223`, `utilidad-modelo.tsv` `219 → 222`, `aliases-fuentes.tsv` `15 → 18`. `baseline.py` **VERDE** en cada paso.
+
+**Censo de cierre, sin veredicto de regla (sucesor).** `/mapea` mecánico de las 9 reglas `NO-ENCONTRADO` de `E18-P2` contra `data/inventario-reactivos-descargas-mx-v1_2.tsv` (nuevo, `v1_1` intacto — 9 447 filas nuevas de `UNIVERSO-2026-09/`): 8 de 9 en cero; `N34` con una señal adyacente (16 candidatas, tabla `I_Cumplimiento_de_contratos` de `ENCRIGE` — problema de cobranza del lado **acreedor-empresa**, no deudor-consumidor) declarada para que un acto sucesor decida si vale la pena leer el FD completo.
+
+**Lo que no hizo.** No midió `p`, no selló ninguna regla, no dio veredicto sobre Ola 6, no cerró filas de la cola de A2, no tocó julio ni v2 de ENSANUT.
+
+**Recibos.** `FP-290` (recibo del acto) · `FP-291` (recetas de cuenta/solicitud, vence 7 días).
+
+---
+
+**ADR-332 · `ACTO MAESTRA38-A1 · SONDA-LATERAL-PENDIENTES` (enmienda)** *(3/sep/2026, UBUNTU con corpus y red)* — **resuelve dos de las tres `PENDIENTE-DE-MESA` sin que mesa tuviera que ejecutar receta: CSES y el microdato de Pew pasan a `OBTENIDO`, Reuters DNR a `OBTENIDO-PARCIAL`.**
+
+**Encargo** (directo del usuario, no archivado por A.3 — esta enmienda corre sobre el mismo acto/PR, no abre encargo nuevo): "persigue todas las posibles [vías], usa tu imaginación, formas y varias maneras de intentar la descarga", tras el cierre de `ADR-331`.
+
+**Numeración.** Re-derivado por el comando de la casa tras fusionar `origin/main` dos veces más (`PR #525` y `PR #526`, `MAESTRA37-A2` tomó `330`): candidato `332`.
+
+**Qué decidió.** Un workflow de 4 agentes en paralelo (uno por fuente `PENDIENTE`), cada uno con instrucciones de probar múltiples vías laterales y verificar cada candidato por firma de bytes (no por código HTTP — la misma disciplina que atrapó el shell SPA de INEGI en Lote 1), seguido de verificación independiente de cada candidato reportado. Resultado: **CSES** → `OBTENIDO` — Wayback Machine (endpoint crudo `id_`) sirve las 3 "Full Release" originales del sitio muerto de `cses.org/datacenter/` (México 2003/2006/2009/2012, confirmado leyendo el codebook de cada zip) y CIDE (`datos.cide.edu`, DSpace institucional, sin cuenta) sirve el módulo México 2015 completo en `.sav` — hallazgo dentro del hallazgo: 2 de los 4 handles de CIDE son byte-idénticos (error de etiquetado del propio repositorio, declarado, no registrado dos veces). **Pew (microdato)** → `OBTENIDO` — el muro "crear cuenta" de `pewresearch.org` es sólo de interfaz: la REST API pública de WordPress del propio sitio (`wp-json/wp/v2/dataset` → `media/<id>` → `source_url`) expone el archivo real sin verificación de autenticación en el servidor; 7 olas con México confirmado (2013/2015/2017/2018/2023/2024/2025 — esta última cierra la corrección de premisa de `ADR-331`), la ola 2022 se probó y se excluyó (no trae México). **Reuters DNR** → `OBTENIDO-PARCIAL` — el microdato individual sigue "on request" sin cambio real, pero cada gráfica del sitio es un iframe Datawrapper que expone su tabla exacta sin login (`datawrapper.dwcdn.net/<chart_id>/<version>/dataset.csv`); 9 tablas topline México obtenidas, agregadas, no microdato. **ENJUVE** — sonda exhaustiva (Wayback CDX completo de `/inmujeres/`, 748 archivos enumerados; segundo host histórico descubierto y también caído; sin sucesor gubernamental desde 2010) confirma que es un punto muerto genuino, no un hueco sin explorar — mismo estado (`OBTENIDO-PARCIAL`), evidencia mucho más fuerte.
+
+**Verificación.** Cada candidato re-verificado por un agente distinto del que lo encontró (no se confió en el autorreporte). Verificación propia adicional tras el workflow: `testzip` en los 10 zip nuevos (limpio), lectura de contenido real (listados, grep binario de "Mexico", lectura de codebooks/toplines), doble descarga con hash coincidente en muestra representativa (1 por fuente).
+
+**Registro por las tres capas.** Manifiesto `1256 → 1281` (+25: 6 CSES + 7 Pew + 11 Reuters DNR + 1 ENJUVE). Total del acto completo (dos rondas): `1233 → 1281` (+48). Cola: 3 filas actualizadas de `PENDIENTE` a `OBTENIDO`/`OBTENIDO-PARCIAL`, la de ENJUVE reforzada sin cambio de estado. Sin alta `GUÍA §32` — ninguna de las cuatro fuentes tiene regla/necesidad hipotetizada en este repo, mismo criterio que Lote 2/3.
+
+**Lo que no hizo.** No abrió candidatas nuevas (las 12 del acto original quedan igual), no midió `p`, no dio veredicto de regla, no tocó la cola de A2.
+
+**Recibos.** Sin FP nuevo — cubierto por `FP-290`/`FP-291` del acto original; `FP-291` (recetas de cuenta/solicitud) se declara parcialmente ejecutada por este acto mismo para CSES y Pew, vigente aún para Reuters DNR.
+
+---
+
+**ADR-333 (candidato original `ADR-330`; renumerado tras fusionar `origin/main` en dos rondas -- primero `PR #526` tomó `ADR-330` para `ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE`, candidato `331`; después `PR #524`/`MAESTRA38-A1` ya traía fusionados `ADR-331` y `ADR-332` propios -- misma numeración candidata colisionando dos veces, encargos distintos; por la regla de la casa "renumera quien fusiona segundo", este acto, en la rama que fusiona después, cede `330` y `331`, y toma `333`, contiguo tras el máximo real del árbol) · `ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166`** *(3/sep/2026, NUBE)* — **audita los 166 encargos de `forense/encargos/` sin marca de cierre, deriva su estado por comando y establece que la ausencia de marca deja de ser tolerada.**
 
 **Encargo** (archivado por A.3): `forense/encargos/2026-09-03-MAESTRA37-N9-AUDITA-ENCARGOS-166.md`, SHA de redacción `2e79d153` (merge `PR #520`/`MAESTRA37-L3-BIS`). Firma de mesa D9 verbatim: *«hagamos la auditoría de una vez, si no reitero, nos quedamos con pendientes abiertos.»*
 
@@ -5669,7 +5709,7 @@ Ver el texto completo de la enmienda en `canon/modelo-decision-v4_0.md §7` (not
 
 **Deuda que abre.** `FP-287` (los 46 `INDETERMINADO`, lista para mesa, vence a 7 días). Recibo: **`FP-286`**.
 
-**Numeración.** Candidato re-derivado por el comando de la casa contra este árbol: máximo `327` (`ADR-327`/`MAESTRA37-L3-BIS`, ya fusionado), contiguo, candidato `330` -- recalculado tras el merge de `origin/main` (PR #523, commit `d96bf44`), que fusionó primero `MAESTRA37-N8` como `ADR-328` y su enmienda D2-f como `ADR-329`; por la regla de la casa ("renumera quien fusiona segundo"), este acto (`MAESTRA37-N9`) cede `328` y toma `330` en su rama, y luego **`331`** tras una segunda colisión: al fusionar `origin/main` de nuevo, `PR #526` ya había tomado `ADR-330` para `ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE` (encargo distinto, mismo número candidato derivado independientemente) — de nuevo por la regla de la casa, este acto (segunda vez que colisiona, y segunda vez que fusiona después) cede `330` y toma `331`, contiguo.
+**Numeración.** Candidato re-derivado por el comando de la casa contra este árbol: máximo `327` (`ADR-327`/`MAESTRA37-L3-BIS`, ya fusionado), contiguo, candidato `330` -- recalculado tras el merge de `origin/main` (PR #523, commit `d96bf44`), que fusionó primero `MAESTRA37-N8` como `ADR-328` y su enmienda D2-f como `ADR-329`; por la regla de la casa ("renumera quien fusiona segundo"), este acto (`MAESTRA37-N9`) cede `328` y toma `330` en su rama, y luego `331` tras una segunda colisión con `PR #526` (`MAESTRA37-A2`, encargo distinto, mismo número candidato derivado independientemente), y finalmente **`333`** tras una tercera colisión: al fusionar `origin/main` de nuevo (`PR #524`/`MAESTRA38-A1`), ese acto ya traía fusionados `ADR-331` y `ADR-332` propios (`SONDA-Y-DESCARGA-UNIVERSO-1` y su enmienda `SONDA-LATERAL-PENDIENTES`) — de nuevo por la regla de la casa, este acto (tercera vez que colisiona, y tercera vez que fusiona después) cede `330` y `331` y toma `333`, contiguo tras el máximo real del árbol.
 
 ---
 
