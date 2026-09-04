@@ -7,7 +7,7 @@ usaban la base `1242` de la redacción original de
 `forense/notas/2026-09-03-MAESTRA38-A1-resultados-lote-1.md`, que no
 incluía las 3 entradas que el sub-agente resolvió después. Base real de
 este lote: `1245`. Ver la corrección en esa nota y el recuento final en
-`ADR-328`.)*
+`ADR-330` (renumerado desde 328 por colisión real con MAESTRA37-N8 al fusionar origin/main).)*
 
 ## (a) Sonda de alcanzabilidad (v2.2) — tres hallazgos distintos, sin colapsar
 

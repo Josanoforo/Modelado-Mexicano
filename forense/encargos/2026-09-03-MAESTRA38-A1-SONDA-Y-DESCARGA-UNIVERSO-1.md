@@ -21,14 +21,17 @@ Contadores movidos por este documento: cero. Declarado.
 ## CONSUMIDO
 
 Ejecutado por `PR #524` · rama `acto/maestra38-a1-sonda-y-descarga-universo-1` ·
-`ADR-328` · `FP-290` (recibo) / `FP-291` (recetas de cuenta/solicitud, vence 7
+`ADR-330` (renumerado desde 328: `MAESTRA37-N8` e `INFRA-2` tomaron 328/329
+ al fusionar origin/main antes que este acto) · `FP-290` (recibo) / `FP-291`
+ (recetas de cuenta/solicitud, vence 7
 días) · 3/sep/2026, UBUNTU con corpus y red.
 
 Commits: `3fa0975` (0-bis A.3) · `5e8cc73`/`5f1c53f` (Lote 1, COMMIT-1/COMMIT-2:
 ENADIS · ENCO · ENCRIGE · MOTRAL) · `d2a2659`/`254e81b` (Lote 2, COMMIT-1/COMMIT-2:
 CONEVAL · ENJUVE · ENVE · ENH) · `a6c775b`/`b108049` (Lote 3, COMMIT-1/COMMIT-2:
 Intercensal 2015 · CSES · Reuters DNR · Pew) · `0cf0d59` (censo de cierre, 9 reglas
-NO-ENCONTRADO) · `d776da9` (cascada: ADR-328, L0, registro-rotulos, suite VERDE) ·
+NO-ENCONTRADO) · `d776da9` (cascada: ADR-328 [luego renumerado a 330, ver
+ `b55b8a1`], L0, registro-rotulos, suite VERDE) ·
 `7120457` (corrección aritmética: manifiesto 1233→1256, no 1253 — declarada, no
 silenciada).
 
@@ -40,10 +43,39 @@ ENJUVE OBTENIDO-PARCIAL por hallazgo genuino de A.6). 3 PENDIENTE-DE-MESA (CSES,
 Reuters DNR, microdato de Pew) con receta ≤1 min cada una. Manifiesto 1233→1256
 (+23); cola 112→124 (+12 filas); tres relaciones CANDIDATA nuevas por GUÍA §32.
 
-Desviación declarada: el encargo proponía ADR-331 sobre una base de redacción con
-otros actos aún no fusionados; ninguno había tomado un ADR nuevo al cierre de este
-acto, así que el candidato re-derivado fue 328, no 331 — mismo criterio que el
-propio encargo anticipaba ("renumera quien fusiona segundo").
+Desviación declarada, numeración: el encargo proponía `ADR-331`. Primera derivación
+al cierre (contra `origin/main = ff68b9f`): candidato `328` — ninguno de los "cuatro
+actos en vuelo" que el encargo citaba había tomado un ADR nuevo todavía. Segunda
+derivación, real, al fusionar `origin/main` de nuevo para la enmienda de abajo:
+`MAESTRA37-N8` e `INFRA-2` (`PR #525`) habían fusionado primero y tomado `328`/`329`
+— candidato re-derivado `330`, mismo criterio que el propio encargo anticipaba
+("renumera quien fusiona segundo").
+
+## Enmienda post-cierre (mismo día, 3/sep/2026) — sonda lateral de las 3 PENDIENTE-DE-MESA
+
+Encargo directo del usuario, no archivado por A.3 aparte (corre sobre el mismo
+PR/rama, no abre encargo nuevo): "persigue todas las posibles [vías], usa tu
+imaginación, formas y varias maneras de intentar la descarga" — sobre CSES,
+Reuters DNR y el microdato de Pew. Detalle completo en
+`forense/notas/2026-09-03-MAESTRA38-A1-sonda-lateral-pendientes.md`, `ADR-331`.
+
+Commits: `a411227` (workflow de 4 agentes, registro por las tres capas) ·
+`b55b8a1` (merge de `origin/main`/PR #525, resuelve la colisión de numeración
+de arriba, reconstruye gobernanza/L0/registro-rótulos completos, no solo el
+conflicto).
+
+Resultado: `CSES` → `OBTENIDO` (Wayback Machine + CIDE, sin cuenta) · `Pew`
+microdato → `OBTENIDO` (bypass del muro de cuenta vía la REST API pública de
+WordPress del propio sitio, 7 olas con México confirmado) · `Reuters DNR` →
+`OBTENIDO-PARCIAL` (9 tablas topline México vía gráficos Datawrapper públicos;
+el microdato individual sigue on-request, sin cambio) · `ENJUVE` confirmado
+punto muerto genuino (Wayback CDX completo de `/inmujeres/`, sin sucesor
+gubernamental desde 2010), mismo estado, evidencia mucho más fuerte. Manifiesto
+`1256 → 1281` (+25; total del acto completo, dos rondas: `1233 → 1281`, +48).
+Sin alta `GUÍA §32` — mismo criterio que Lote 2/3, ninguna de las cuatro tiene
+regla/necesidad hipotetizada en el repo.
 
 Ningún dominio se abrió, ninguna regla se selló, Ola 6 no se tocó, la cola de A2
-no se cerró — exactamente lo que el encargo declaró que este acto no hace.
+no se cerró, no se abrieron candidatas nuevas (siguen siendo las 12 del encargo
+original) — exactamente lo que el encargo, y su enmienda, declaran que este acto
+no hace.

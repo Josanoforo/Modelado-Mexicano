@@ -62,8 +62,10 @@ pieza paró.
   primera ronda de registro, escrito antes de que el sub-agente resolviera
   MOTRAL/ENCO y antes de la segunda ronda que sumó esas 3 entradas. El
   total final del acto (1233 → 1256, +23) sí era correcto en la cabecera
-  del ADR-328; el error estaba en cómo se repartía entre lotes. Recontado
-  contra `git log` sobre `data/manifiesto.yaml` — ver ADR-328.)*
+  del ADR-330 (renumerado desde 328 por colisión real, ver corrección de
+  numeración más abajo en el propio acto); el error estaba en cómo se
+  repartía entre lotes. Recontado contra `git log` sobre
+  `data/manifiesto.yaml` — ver ADR-330.)*
 - **Cola** (`tools/curador_registro/tsv_crudo.py`, sin módulo `csv` —
   preserva bytes de las 112 filas existentes): +4 filas, las cuatro
   `OBTENIDO` (MOTRAL y ENCO pasaron de `OBTENIDO-PARCIAL` a `OBTENIDO` tras

@@ -3,7 +3,8 @@
 Encargo directo del usuario tras el cierre del acto (PR #524 ya abierto):
 "persigue todas las posibles [vías], usa tu imaginación, formas y varias
 maneras de intentar la descarga" — sobre CSES, Reuters DNR y el microdato
-de Pew (las tres `PENDIENTE-DE-MESA` de `spec-lote-3.md`) y, por
+de Pew (las tres `PENDIENTE-DE-MESA` de
+`forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-3.md`) y, por
 consistencia, un repaso lateral de ENJUVE también.
 
 Ejecutado con un workflow de 4 agentes en paralelo (uno por fuente), cada
@@ -119,7 +120,7 @@ rigurosa que un hash a ciegas.
 - **Cola**: 3 filas actualizadas de `PENDIENTE` a `OBTENIDO`
   (CSES, Pew) u `OBTENIDO-PARCIAL` (Reuters DNR); la fila de ENJUVE
   reforzada con la evidencia negativa exhaustiva, mismo estado.
-- **`PAQUETE-RECETAS-4.md`**: queda como registro histórico de lo que se
+- **`forense/notas/2026-09-03-MAESTRA38-A1-PAQUETE-RECETAS-4.md`**: queda como registro histórico de lo que se
   intentó primero (A.3 no se re-escribe el espíritu de ese archivo, se
   añade una nota de resolución al final, ver commit).
 - Sin alta `GUÍA §32`: ninguna de las cuatro fuentes tiene regla/necesidad
