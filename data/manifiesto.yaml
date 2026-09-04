@@ -24183,3 +24183,141 @@
   sha256: 5eb3fd6850c6cb7713640196e4977b077ebb95f8234c1c8ddbbfffdc8984b19d
   tamano_bytes: 164174
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: conjunto_de_datos_enve_2024_csv
+  usado_para: 'N16/tramite.mordida.discrecional+con_registro -- A.4 verificado EXISTE-NO-SATISFACE
+    (MAESTRA38-A1 Lote 2): Seccion VII Corrupcion identifica incidencia y tipo de funcionario
+    (inspector/policia/otorga permisos/otorga contratos), a nivel empresa; no distingue discrecional
+    vs con-registro (sin item de recibo/comprobante). Refuerza el hallazgo de ENCUCI2020 desde
+    otro angulo, no lo cierra.'
+  url_origen: https://www.inegi.org.mx/programas/enve/2024/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENVE/conjunto_de_datos_enve_2024_csv.zip
+  raiz: descargas_mx
+  sha256: 5b2c5efccd0dfc2e196c37c5004976a67b62248a0d159ca2384dbfb0f1b0cf33
+  tamano_bytes: 1672676
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: cuestionario_principal_enve2024
+  usado_para: 'N16/tramite.mordida.discrecional+con_registro -- A.4 verificado EXISTE-NO-SATISFACE
+    (MAESTRA38-A1 Lote 2): Seccion VII Corrupcion identifica incidencia y tipo de funcionario
+    (inspector/policia/otorga permisos/otorga contratos), a nivel empresa; no distingue discrecional
+    vs con-registro (sin item de recibo/comprobante). Refuerza el hallazgo de ENCUCI2020 desde
+    otro angulo, no lo cierra.'
+  url_origen: https://www.inegi.org.mx/programas/enve/2024/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENVE/cuestionario_principal_enve2024.pdf
+  raiz: descargas_mx
+  sha256: aac4e9d4cc23773727dbb43c7af1306830a794ff657ca8c789b9e6deaef7eb6f
+  tamano_bytes: 1046535
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: modulo_delitos_enve2024
+  usado_para: 'N16/tramite.mordida.discrecional+con_registro -- A.4 verificado EXISTE-NO-SATISFACE
+    (MAESTRA38-A1 Lote 2): Seccion VII Corrupcion identifica incidencia y tipo de funcionario
+    (inspector/policia/otorga permisos/otorga contratos), a nivel empresa; no distingue discrecional
+    vs con-registro (sin item de recibo/comprobante). Refuerza el hallazgo de ENCUCI2020 desde
+    otro angulo, no lo cierra.'
+  url_origen: https://www.inegi.org.mx/programas/enve/2024/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENVE/modulo_delitos_enve2024.pdf
+  raiz: descargas_mx
+  sha256: 2d0aaef96b71a0226d2c436e464323a72cd86c287f72f71f7aca1fc8056a6f57
+  tamano_bytes: 982106
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enh2017_cuestionario
+  usado_para: 'Exploratoria, sin cita previa de regla en el repo (MAESTRA38-A1 Lote 2). Encuesta
+    Nacional de los Hogares: demografia, TIC, salud/bienestar. Registrada por cobertura de
+    universo publico, no por cierre de regla.'
+  url_origen: https://www.inegi.org.mx/programas/enh/2017/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENH/enh2017_cuestionario.pdf
+  raiz: descargas_mx
+  sha256: f9ebe1d5ed7b4707f14cee81e2c909250cdbadaaa7963ee12ccca416dc98e26a
+  tamano_bytes: 1426415
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: hogar_enh_2017_csv
+  usado_para: 'Exploratoria, sin cita previa de regla en el repo (MAESTRA38-A1 Lote 2). Encuesta
+    Nacional de los Hogares: demografia, TIC, salud/bienestar. Registrada por cobertura de
+    universo publico, no por cierre de regla.'
+  url_origen: https://www.inegi.org.mx/programas/enh/2017/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENH/hogar_enh_2017_csv.zip
+  raiz: descargas_mx
+  sha256: dffc6717fd70eea713a64392a34248da7cad051ed5128ca96a0687ae6c0f1760
+  tamano_bytes: 268056
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: persona_enh_2017_csv
+  usado_para: 'Exploratoria, sin cita previa de regla en el repo (MAESTRA38-A1 Lote 2). Encuesta
+    Nacional de los Hogares: demografia, TIC, salud/bienestar. Registrada por cobertura de
+    universo publico, no por cierre de regla.'
+  url_origen: https://www.inegi.org.mx/programas/enh/2017/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENH/persona_enh_2017_csv.zip
+  raiz: descargas_mx
+  sha256: 59bbe5fc58f1fa34223c5f3060266f836a860d9f1e36e7118248034af7ba7ac0
+  tamano_bytes: 3286494
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: vivienda_enh_2017_csv
+  usado_para: 'Exploratoria, sin cita previa de regla en el repo (MAESTRA38-A1 Lote 2). Encuesta
+    Nacional de los Hogares: demografia, TIC, salud/bienestar. Registrada por cobertura de
+    universo publico, no por cierre de regla.'
+  url_origen: https://www.inegi.org.mx/programas/enh/2017/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENH/vivienda_enh_2017_csv.zip
+  raiz: descargas_mx
+  sha256: d2506bf9694bd60ed2198bbbe3d92f81102525fb260b6ca808a8646491a69c8d
+  tamano_bytes: 1400850
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: pobreza_municipal_2020_vcompl
+  usado_para: 'Exploratoria, sin cita previa de regla en el repo (MAESTRA38-A1 Lote 2). CONEVAL
+    no levanta encuesta propia -- procesa ENIGH/MCS-ENIGH (ya en corpus). Producto propio:
+    indicador de pobreza multidimensional por municipio 2020 (pobreza_20.dta) + insumos de
+    contexto municipal (accesibilidad, elecciones, incidencia delictiva, bancos). RAR verificado
+    listable (tar.exe de Windows), doble descarga hash-verificada.'
+  url_origen: https://www.coneval.org.mx/Medicion/Documents/Pobreza_municipal/2020_compl/Pobreza_municipal_2020_VCOMPL.rar
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/CONEVAL/Pobreza_municipal_2020_VCOMPL.rar
+  raiz: descargas_mx
+  sha256: c37a4ee0467544b764ee787e03363d3e202d25a474dfff82aadc7531843e75b2
+  tamano_bytes: 130045136
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: cuestionario_vivienda_enj_2010
+  usado_para: 'Exploratoria, sin cita previa de regla en el repo (MAESTRA38-A1 Lote 2). ADVERTENCIA
+    DE PREMISA declarada en COMMIT-1 (spec-lote-2.md): sin edicion posterior a 2010 (~16 anios).
+    Hallazgo A.6: la pagina oficial promete ''base de datos'' en el titulo pero solo lista
+    3 PDF de cuestionario; 2 de 3 dan 404 real (verificado, no shell SPA); solo Cuestionario_Vivienda_ENJ_2010.pdf
+    resuelve. Host de microdatos historico (bdsocial.inmujeres.gob.mx) NO ALCANZABLE (502
+    Bad Gateway, verificado con curl -v). SIN-EL-DATO: ningun enlace de microdato encontrado
+    en la fuente oficial vigente.'
+  url_origen: https://www.gob.mx/imjuve/documentos/base-de-datos-de-la-encuesta-nacional-de-juventud-2010
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENJUVE/Cuestionario_Vivienda_ENJ_2010.pdf
+  raiz: descargas_mx
+  sha256: 3e8b98eef946625c9a1a72289a569b29632c5999e7b0134b0e1c69298dc094d0
+  tamano_bytes: 284843
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
