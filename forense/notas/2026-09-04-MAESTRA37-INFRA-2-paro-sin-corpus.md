@@ -13,8 +13,9 @@ $ cat data/raices.local.yaml
 cat: data/raices.local.yaml: No such file or directory
 ```
 
-Ambos ausentes — coincide exactamente con lo que el propio
-`PLAN-MAESTRA37-INFRA-1-2.md` §1.3 ya había observado en su sesión de
+Ambos ausentes — coincide exactamente con lo que el propio documento de
+planificación PLAN-MAESTRA37-INFRA-1-2 (entregado fuera del repo, no
+versionado aquí) §1.3 ya había observado en su sesión de
 planificación ("data/raw y data/raices.local.yaml están ausentes en
 cualquier sesión de nube/planificación... confirma que INFRA-2 no puede
 ejecutarse ni verificarse fuera de la máquina Ubuntu con corpus"), y con la
