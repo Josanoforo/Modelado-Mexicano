@@ -303,7 +303,7 @@ que A1 examinó, con varias olas de LAPOP AmericasBarometer México que A1 no te
 indexadas): **2 REFORMULABLE** — `civico.voto.clientelar_si_observable` (LAPOP 2019
 `clien1n`/`clien1na`/`clien4a`/`clien4b`, ya en corpus) y `civico.protesta.
 agravio_urbano` (LAPOP multi-ola, `PROT1`/`PROT2`/`prot3` + `VIC1`/`vicbar4a` +
-`AOJ12` + `CP6`/`CP9`/`E8` + `TAMANO`) — con objeto reformulado, reactivo, instrumento
+`AOJ12` + `CP6`/`CP9`/`LAPOP-E8` + `TAMANO`) — con objeto reformulado, reactivo, instrumento
 y `se_mueve_si` cada una. **5 SIN-INSTRUMENTO** — `tramite.evasion.
 norma_inutil_sancion_improbable`, `dinero.ahorro.seguro_deposito_atenua_aversion`,
 `civico.voto.agencia_con_secreto`, `civico.transferencia.atribucion_lider`,

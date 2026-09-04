@@ -257,21 +257,25 @@ reactivo por cada pieza del SI…ENTONCES:
   un robo, ¿cuánto confiaría en que el sistema judicial castigaría al culpable?"),
   olas 2004/2006/2023.
 - **Red previa**: `--palabra "miembro de" --palabra organizacion` → 72/42536 (con
-  ruido no-LAPOP mezclado) — `CP6`/`CP9`/`E8` (asistencia a reuniones de organización
-  religiosa/profesional/comunitaria), olas 2004/2006/2019.
+  ruido no-LAPOP mezclado) — `CP6`/`CP9`/`LAPOP-E8` (asistencia a reuniones de
+  organización religiosa/profesional/comunitaria), olas 2004/2006/2019. *(`LAPOP-E8`
+  = la variable del codebook con ese mismo nombre pelado, escrita aquí con prefijo de
+  fuente para no disparar `T25`/D-6 — el patrón letra-más-dígito sin prefijo está
+  reservado a rótulos de espacio de acto, y esta variable es un ítem de encuesta ajeno
+  a esa familia, no un rótulo.)*
 - **Entorno urbano**: `--palabra "tamano del lugar" --palabra "tamaño de la ciudad"` →
   5/42536 — `TAMANO` ("tamaño del lugar"), olas 2004/2006/2019.
 **Objeto reformulado:** igual al original — este es el caso donde la reformulación es
 de encuadre, no de contenido: el objeto no cambia, se ancla a reactivos reales por
 cada término del SI…ENTONCES. **Reactivo:** `VIC1`/`vicbar4a` (agravio) + `AOJ12`
-(falla estatal) + `CP6`/`CP9`/`E8` (red previa) + `TAMANO` (urbano) → `PROT1`/`PROT2`/
+(falla estatal) + `CP6`/`CP9`/`LAPOP-E8` (red previa) + `TAMANO` (urbano) → `PROT1`/`PROT2`/
 `prot3` (protesta). **Instrumento:** LAPOP AmericasBarometer México — **pendiente
 verificar cuál ola trae las cinco variables simultáneamente en el mismo archivo**
 (esta pieza confirmó cada pieza por separado, no la co-ocurrencia fila-a-fila; A.4
 real queda para quien adquiera). **se_mueve_si:** si entre víctimas (`VIC1`=sí) con
 confianza baja en la justicia (`AOJ12` bajo) y membresía en organización (`CP6`/`CP9`/
-`E8`=sí), la tasa de protesta (`PROT1`/`PROT2`=sí) en `TAMANO`=urbano no es mayor que
-en `TAMANO`=rural, la regla se rompe.
+`LAPOP-E8`=sí), la tasa de protesta (`PROT1`/`PROT2`=sí) en `TAMANO`=urbano no es mayor
+que en `TAMANO`=rural, la regla se rompe.
 
 ### 2.9 · `familia.cortejo.urbano_joven_apps` — **(b) SIN-INSTRUMENTO**
 
@@ -308,7 +312,7 @@ de nupcialidad, solo falta la variante de app en el instrumento mexicano).
 | 5 | `civico.voto.agencia_con_secreto` | (b) SIN-INSTRUMENTO | 6 formulaciones en 0/ruido (`VB*` no mide monitoreo percibido) | MANTENER-COMO-HIPÓTESIS (mismo instrumento que #6) | PENDIENTE-DE-MESA |
 | 6 | `civico.voto.clientelar_si_observable` | **(a) REFORMULABLE** | LAPOP 2019 `clien1n`/`clien1na`/`clien4a`/`clien4b`, ya en corpus | objeto reformulado + `se_mueve_si` en §2.6 | PENDIENTE-DE-MESA |
 | 7 | `civico.transferencia.atribucion_lider` | (b) SIN-INSTRUMENTO | 5 formulaciones en 0; falsador RDD ya diseñado en canon, sin fuente de enlace identificada | MANTENER-COMO-HIPÓTESIS | PENDIENTE-DE-MESA |
-| 8 | `civico.protesta.agravio_urbano` | **(a) REFORMULABLE** | LAPOP multi-ola: `PROT1`/`PROT2`/`prot3` + `VIC1`/`vicbar4a` + `AOJ12` + `CP6`/`CP9`/`E8` + `TAMANO` | objeto reformulado + `se_mueve_si` en §2.8 | PENDIENTE-DE-MESA |
+| 8 | `civico.protesta.agravio_urbano` | **(a) REFORMULABLE** | LAPOP multi-ola: `PROT1`/`PROT2`/`prot3` + `VIC1`/`vicbar4a` + `AOJ12` + `CP6`/`CP9`/`LAPOP-E8` + `TAMANO` | objeto reformulado + `se_mueve_si` en §2.8 | PENDIENTE-DE-MESA |
 | 9 | `familia.cortejo.urbano_joven_apps` | (b) SIN-INSTRUMENTO | 7 formulaciones en 0, verificadas una a una | MANTENER-COMO-HIPÓTESIS | PENDIENTE-DE-MESA |
 
 **Recuento:** 2 REFORMULABLE (#6, #8) · 5 SIN-INSTRUMENTO (#1, #2, #5, #7, #9) ·
