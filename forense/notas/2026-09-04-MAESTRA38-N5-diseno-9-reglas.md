@@ -87,7 +87,7 @@ AmericasBarometer México** (2004/2006/2019/2021/2023, bajo `Descargas Manuales/
 que A1 no tenía indexadas con las formulaciones que corrió. Se declara: esto no
 contradice el censo de A1 (corrió lo que tenía, con formulaciones distintas) — corrige
 la premisa de "8 de 9 en cero" contra el universo de HOY, no contra el de A1 (D-13).
-Comandos completos y salidas crudas de las 33 corridas de esta pieza:
+Comandos completos y salidas crudas de las 42 corridas de esta pieza:
 `/tmp/claude-0/…/scratchpad/n5-busq/{log.txt,log2.txt,log3.txt,*.tsv}` (efímero de
 sesión, no versionado — cada comando se reproduce con la línea citada en cada regla
 de abajo).
@@ -223,8 +223,9 @@ proxy — el falsador queda planteado, no corrido (medición: cero, es diseño).
 Búsqueda: `--palabra "aprobacion presidencial" --palabra "aprueba al presidente"` →
 0/42536. `--palabra "pension del bienestar" --palabra "pension para el bienestar"` →
 0/42536. `--palabra "merece el credito" --palabra "a quien se debe"` → 0/42536.
-`--palabra gratitud --palabra beneficiario` → 0/42536. `--palabra "buen gobierno"
---palabra "programa social"` → 0/42536. Cero señal en las cinco formulaciones. El
+`--palabra "atribuye el apoyo" --palabra "a quien le agradece"` → 0/42536.
+`--palabra "buen gobierno" --palabra "programa social"` → 0/42536. Cero señal en las
+cinco formulaciones. El
 canon ya trae el falsador diseñado (RDD sobre la Pensión del Bienestar con efecto
 electoral independiente de la aprobación presidencial) — pero un RDD exige vincular
 padrón de beneficiarios (elegibilidad por edad/ingreso) con resultado electoral por
@@ -284,7 +285,7 @@ Búsqueda: `--palabra "app de citas" --palabra "aplicacion de citas"` → 0/4253
 pareja" --palabra "conocio a su pareja"` → 0/42536. `--palabra "pareja actual"
 --palabra conocieron` → 0/42536. `--palabra "conociste a tu pareja" --palabra
 "conocieron por internet"` → 0/42536. `--palabra Tinder --palabra "sitio de citas"` →
-0/42536. `--palabra internet --palabra conociste` → 39/42536, verificado uno a uno
+0/42536. `--palabra internet --palabra conociste` → 58/42536, verificado uno a uno
 (`grep -i "conoc\|pareja\|cita\|novio"` sobre el resultado) → **0 líneas** — el acierto
 completo es de "internet" en módulos de conectividad ajenos, ninguna sobre cómo se
 conoció a la pareja. Siete formulaciones, cero señal real. **Condición no medida:**

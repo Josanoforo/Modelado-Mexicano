@@ -21,7 +21,7 @@ operativa declarada para no contar ruido de substring como (a). Nota metodológi
 añadida: `tools/busca_reactivos.py` indexa reactivo de hogar, nunca serie
 administrativa — importa para la regla 3.
 
-**COMMIT-2.** Clasificación con evidencia, 33 corridas de `busca_reactivos.py --tablas
+**COMMIT-2.** Clasificación con evidencia, 42 corridas de `busca_reactivos.py --tablas
 descargas_mx_v1_1` (42536 filas, superset de la tabla `descargas_mx` v1_0 que
 `MAESTRA38-A1` examinó). Resultado, **distinto del "8 de 9 en cero" que A.8 citaba
 contra el universo de A1** — la premisa se corrige contra el universo de HOY, no se
@@ -71,3 +71,35 @@ no algo que este acto pueda cambiar retroactivamente sobre sí mismo; declarado,
 escondido).
 
 PR de este acto, contra `main`.
+
+## Enmienda post-cierre (mismo día, 4/sep/2026) — corrección de tres cifras, `/revisa` PR #533
+
+`/revisa` (VEREDICTO `NO-FUSIONAR`, comentario del PR) re-derivó las 42 cifras
+`N/42536` que la nota cita y encontró 3 `BLOQUEA`, las tres bajo el punto 2.5 (toda
+cifra debe re-derivar): (1) el §0 de la nota decía "33 corridas", la cuenta mecánica
+de citas `N/42536` en el propio documento da **42** — corregido a 42, en la nota y en
+el `## CONSUMIDO` de arriba. (2) §2.7 (`civico.transferencia.atribucion_lider`)
+citaba `--palabra gratitud --palabra beneficiario → 0/42536` como una de las cinco
+formulaciones probadas — **ese comando nunca se corrió** en esta pieza (verificado
+contra el efímero de sesión, `/tmp/…/scratchpad/n5-busq/*.tsv`: no existe); la
+formulación real que sí se corrió y que la prosa reemplazó por error de transcripción
+es `--palabra "atribuye el apoyo" --palabra "a quien le agradece"` (también 0/42536,
+mismo veredicto) — corregido a la cita real. (3) §2.9 (`familia.cortejo.
+urbano_joven_apps`) citaba `--palabra internet --palabra conociste → 39/42536`; el
+archivo crudo guardado de esa corrida dice **58** ("58 total, mostrando 30
+(--limite 30)") — 39 fue un error de transcripción al escribir la prosa, el archivo
+fuente siempre tuvo el número correcto. Verificación independiente de las tres antes
+de corregir: `grep -oE '[0-9]+/42536' forense/notas/…-diseno-9-reglas.md | wc -l` →
+42; `python3 tools/busca_reactivos.py --palabra gratitud --palabra beneficiario
+--tablas descargas_mx_v1_1 --limite 500` → 7 candidatas (ruido de estatus de
+beneficiario, ninguna mide atribución — no cambia el veredicto, pero confirma que la
+cifra citada no correspondía a la búsqueda real); `--palabra internet --palabra
+conociste --limite 500` → 58. Verificación programática de las 42 citas restantes
+contra el efímero de sesión: **0 discrepancias** — estas tres eran las únicas. Ningún
+veredicto de clasificación (a/b/c) cambia en ninguna de las 9 reglas: las dos cifras
+mal citadas eran ambas `0`/ruido sin relación con el driver, y la corrección del
+conteo global es puramente de exposición. `python3 tests/check.py --baseline` tras la
+corrección: sigue LÍNEA BASE VERDE, 3 FAIL / 171 WARN, sin cambio. Commit de esta
+enmienda: ver historial de `forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md`
+posterior al `## CONSUMIDO` de arriba. `/revisa` no aprueba ni fusiona — esta
+corrección responde al hallazgo, la decisión de fusionar sigue siendo de mesa.
