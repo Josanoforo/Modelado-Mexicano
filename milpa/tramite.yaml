@@ -572,7 +572,7 @@ reglas:
   # ══════════════════════════════════════════════════════════════════
 
   - id: civico.denuncia.miedo_desconfianza
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-289 (ACTO MAESTRA35-N1 · SELLA-L5-Y-RECIBOS, firma DS1) -- tier FUERTE, campo situacion desactualizado hasta este acto
     si:
       disparadores: {}  # PENDIENTE-DE-MESA (ver disparadores_estado) -- el dato no dicta una condicion logica
         # de disparo (sancion_creible/quien_observa, etc.) -- p viene de una
@@ -599,7 +599,7 @@ reglas:
     payload_manifiesto_id: envipe2025_csv
 
   - id: dinero.ahorro.tiene_ahorros
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-289 (ACTO MAESTRA35-N1 · SELLA-L5-Y-RECIBOS, firma c1) -- tier FUERTE, campo situacion desactualizado hasta este acto
     si:
       disparadores: {}  # PENDIENTE-DE-MESA (ver disparadores_estado)
       disparadores_estado: PENDIENTE-DE-MESA  # sin cita SI-ENTONCES en canon/modelo-decision-v4_0.md:428-473 (§2.1-2.2); NO se inventa (spec §P0(c))
@@ -795,7 +795,7 @@ reglas:
       payload_manifiesto_id: enif_2024_enif_2024_bd_csv
 
   - id: familia.apoyo.recibe_dinero_familiares
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-289 (ACTO MAESTRA35-N1 · SELLA-L5-Y-RECIBOS, firma DS1) -- tier FUERTE, campo situacion desactualizado hasta este acto
     si:
       disparadores: {}  # PENDIENTE-DE-MESA (ver disparadores_estado)
       disparadores_estado: PENDIENTE-DE-MESA  # sin cita SI-ENTONCES en canon/modelo-decision-v4_0.md:428-473 (§2.1-2.2); NO se inventa (spec §P0(c))
@@ -831,7 +831,7 @@ reglas:
   # ══════════════════════════════════════════════════════════════════
 
   - id: familia.seguro.volatilidad_ausencia_estado
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-274 (ACTO MAESTRA34-N1 · SELLA-REGLAS-ACTIVOS-2) -- tier FUERTE, campo situacion desactualizado hasta este acto
     si:
       disparadores: {}
       disparadores_estado: "el SI de §3.5 (segsoc=2 ∨ residencia ∈ {EUA, Otro país} ∨ hogar con remesas P041) es circular con el desenlace medido (recibe_remesas) y sus mitades no circulares no existen en concentradohogar; tasa base incondicional sobre universo completo de hogares, declarado en #447"
@@ -858,7 +858,7 @@ reglas:
     payload_manifiesto_id: enigh2022_nc_csv
 
   - id: dinero.planeacion.formal_estable
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-274 (ACTO MAESTRA34-N1 · SELLA-REGLAS-ACTIVOS-2) -- tier FUERTE, campo situacion desactualizado hasta este acto
     si:
       disparadores: {}
       disparadores_estado: "la condicional de §3.1 (segsoc=1 ∧ contrato ∧ pres_8) no es construible en ENFIH 2019 — barrido 16 tablas / 664 columnas, 0 hits de formalidad laboral, control positivo AFORE 2 hits (#447); tasa base incondicional sobre hogares"
@@ -1071,7 +1071,7 @@ reglas:
     payload_manifiesto_id: enif_2024_enif_2024_bd_csv
 
   - id: civico.participacion.concurrencia_presidencial_conversion
-    situacion: PROPUESTA-DE-CARGA  # (verbatim del acumulador) primera carga de civico.participacion.* al motor
+    situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-321 (ACTO MAESTRA37-N3 · SELLA-CIVICA-COERCITIVO-Y-PROPAGA, firma D1 FP-255) -- tier MEDIA, primera carga de civico.participacion.* al motor; campo situacion desactualizado hasta este acto
     misma_regla_motor: civico.participacion.contingente
     hermana_de: civico.participacion.tipo_boleta_federal_2016_2024  # SELLADA-SIN-CARGA (firma e1); NO se toca aqui
     si:

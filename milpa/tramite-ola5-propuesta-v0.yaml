@@ -108,14 +108,15 @@ reglas_propuestas:
   # es borrarlo.
   # ══════════════════════════════════════════════════════════════════
   - id: familia.corresidencia.adulto_familiar
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # D2-b (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): no carga al motor -- techo casi saturado (p=0.996, diseño "alguna vez en la vida")
+    se_mueve_si: "re-corrida con factor_per (ponderador oficial) reproduce p dentro del IC → carga tier FUERTE; fuera del IC → re-especificación"
     si:
       disparadores: PENDIENTE-DE-MESA
     entonces:
       - {conducta: coreside_con_ascendiente_o_suegro_en_algun_momento_de_vida, p: 0.996086, clase: "MEDIDO·p(tasa base ponderada)"}
       - {conducta: nunca_coreside_con_ascendiente_o_suegro, p: 0.003914, clase: "MEDIDO·p(tasa base ponderada)"}
     porque: {generador: [G5], mecanismo: PENDIENTE-DE-MESA}
-    tier: PENDIENTE-DE-MESA
+    tier: MEDIA  # D2-b (firmas de mesa 3/sep/2026): SELLADA-SIN-CARGA, tier MEDIA -- cuerpo intacto, ni p/ic95/n/ponderador/universo/fuente/hallazgo se tocan
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["EDER2017", "ACTO MAESTRA32-E16", "coeficientes_generador_medidos.G5_familismo_apoyo"]
     ola_calibracion: "EDER 2017 (unica ola)"
