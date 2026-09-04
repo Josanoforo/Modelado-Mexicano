@@ -130,7 +130,7 @@ Este sistema produce individuos entrenados desde la infancia en **leer señales 
 
 ### La incertidumbre como amplificador de la jerarquía
 
-La combinación de alta distancia de poder (81) con alta aversión a la incertidumbre (82) en el perfil de Hofstede crea un **efecto multiplicador**. En entornos de alta incertidumbre, las personas buscan estructuras claras y figuras de autoridad que proporcionen certidumbre. En México, donde las instituciones formales son poco confiables, esta certidumbre se busca en relaciones personales con figuras de poder —el patrón, el compadre influyente, el político accesible. Se produce un círculo: la debilidad institucional aumenta la dependencia de autoridades personales, lo que debilita aún más las instituciones.
+La combinación de alta distancia de poder (81) con alta aversión a la incertidumbre (82) en el perfil de Hofstede crea un **efecto multiplicador**. En entornos de alta incertidumbre, las personas buscan estructuras claras y figuras de autoridad que proporcionen certidumbre. En México, donde las instituciones formales son poco confiables, esta certidumbre se busca en relaciones personales con figuras de poder —el patrón, el compadre influyente, el político accesible. Se produce un círculo **(c)** ⚠️ *Corregido 4/sep/2026 (FP-293): co-variación descrita entre distancia de poder y aversión a la incertidumbre, no un mecanismo causal medido longitudinalmente*: la debilidad institucional aumenta la dependencia de autoridades personales, lo que debilita aún más las instituciones.
 
 ---
 
@@ -248,7 +248,7 @@ La paradoja política mexicana es que los ciudadanos **desean simultáneamente u
 
 **Realidad**: México tiene una de las tradiciones de protesta social más ricas de América Latina. Desde el movimiento estudiantil de 1968, pasando por el levantamiento zapatista de 1994, el #YoSoy132 de 2012, el movimiento por Ayotzinapa de 2014, las movilizaciones feministas masivas, hasta las protestas de la Generación Z de 2025 (17,000 en CDMX), los mexicanos desafían la autoridad cuando ésta rompe el pacto de protección. Lo que Bartra llama *relajo* —el "desorden de los mecanismos de dominación"— es una forma cotidiana de resistencia cultural. Y el 49.5% de los mexicanos cree que los ciudadanos pueden pedir que se cambien las leyes.
 
-### Mito 2: "El PDI de Hofstede explica todo"
+### Mito 2: "El PDI de Hofstede explica todo" (c)
 
 **Realidad**: El dato original de Hofstede proviene exclusivamente de empleados de IBM en México —una muestra corporativa no representativa. La investigación posterior muestra que "esas características no aplican completamente a toda la población mexicana" y que "México abarca cinco regiones en las cuales existen marcadas diferencias económicas y sociales" (PMC, 2023). Los ejecutivos del "Nuevo México" gerencial puntúan idénticamente a muestras estadounidenses en orientación participativa.
 

@@ -8,7 +8,7 @@ La familia mexicana opera como un **sistema psicológico total** que moldea deci
 
 1. **El familismo obligatorio no es protector.** Solo el familismo de apoyo reduce síntomas depresivos (β = −0.15). Las obligaciones familiares y la familia como referente no predicen mejoras en salud mental.
 
-2. **México combina colectivismo alto (IDV 30) con la indulgencia más alta del mundo (IVR 97).** Esta combinación es globalmente única y produce un colectivismo emocionalmente cálido, festivo y expresivo, distinto del deber formal asiático o la restricción mediterránea.
+2. **México combina colectivismo alto (IDV 30) con la indulgencia más alta del mundo (IVR 97).** Esta combinación es globalmente única y co-varía con un colectivismo emocionalmente cálido, festivo y expresivo **(c)**, distinto del deber formal asiático o la restricción mediterránea.
 
 3. **La corresidencia prolongada es cada vez más económica y menos cultural.** Los precios de vivienda subieron 42% en 16 años mientras los salarios reales cayeron 21%. La edad de independización llegó a 28.9 años y sigue aumentando.
 
@@ -188,7 +188,7 @@ Tres rasgos hacen que el colectivismo mexicano sea cualitativamente distinto de 
 
 Primero, la **textura emocional**. El familismo mexicano es afectivamente intenso de una manera que no se observa en la piedad filial asiática (más formal y basada en deber) ni en el familismo mediterráneo (más moderado en expresividad). La solidaridad afectual es "piedra angular" del familismo mexicano: el afecto explica niveles altos de apoyo percibido incluso con contacto infrecuente. El contacto físico platónico es frecuente e importante.
 
-Segundo, la **combinación única en Hofstede**: México puntúa 30 en individualismo (alto colectivismo) y 97 en indulgencia (la más alta del mundo). Ningún otro país combina lealtad grupal intensa con celebración del placer y la vida. China puntúa 20 en individualismo pero solo 24 en indulgencia; India, 48 y 26 respectivamente. Esta combinación produce un colectivismo festivo sin equivalente: la fiesta familiar mexicana no es lujo sino cemento social.
+Segundo, la **combinación única en Hofstede**: México puntúa 30 en individualismo (alto colectivismo) y 97 en indulgencia (la más alta del mundo). Ningún otro país combina lealtad grupal intensa con celebración del placer y la vida. China puntúa 20 en individualismo pero solo 24 en indulgencia; India, 48 y 26 respectivamente. Esta combinación **(c)** ⚠️ *Corregido 4/sep/2026 (FP-293): co-variación entre los dos índices, no causa demostrada del patrón festivo* co-varía con un colectivismo festivo sin equivalente: la fiesta familiar mexicana no es lujo sino cemento social.
 
 Tercero, el **compadrazgo como sistema de parentesco ritual** que expande la familia más allá de la consanguinidad. Ni la piedad filial asiática (centrada en linaje patrilineal) ni el familismo mediterráneo tienen un sistema equivalente en extensión y funcionalidad.
 

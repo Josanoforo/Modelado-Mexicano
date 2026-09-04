@@ -1,81 +1,17 @@
 {
-  "head": "3c5182ddbe982450067a9d476744b07229d464a2",
+  "head": "accf688c6ad98f9b3264b4bf0343431d5649e666",
   "fails": [
     [
-      "T02",
-      "nombre normalizado colisiona: AGENTS.md · forense/rescate/curador-untracked-20260807/tools/curador_registro/AGENTS.md"
-    ],
-    [
-      "T02",
-      "nombre normalizado colisiona: data/curacion-registro/decisiones-humanas.tsv · forense/rescate/curador-untracked-20260807/multi1-staging/integrado/decisiones-humanas.tsv · forense/rescate/curador-untracked-20260807/multi2-staging/integrado/decisiones-humanas.tsv"
-    ],
-    [
-      "T05",
-      "constructo `confianza personalizada` usado por el motor y ausente del glosario"
-    ],
-    [
-      "T05",
-      "constructo `default es aceptación` usado por el motor y ausente del glosario"
-    ],
-    [
-      "T05",
-      "constructo `interruptor formal` usado por el motor y ausente del glosario"
-    ],
-    [
-      "T05",
-      "constructo `turnout buying` usado por el motor y ausente del glosario"
-    ],
-    [
-      "T05",
-      "constructo `vote-choice` usado por el motor y ausente del glosario"
+      "T06",
+      "12 valores distintos de **confianza interpersonal** en el corpus: 12 (4x, Confianza_y_Desconfianza_en_:221(2009)) · 15 (4x, Psicología__Conducta_y_Socie:3(2025)) · 16 (1x, Report_26__The_Contemporary_:161(s/f)) · 20 (1x, El_Mexicano_y_el_Tiempo__Est:137(2024)) · 22 (5x, Confianza_y_Desconfianza_en_:9(2018)) · 28 (1x, Behavioral_Finance_Mexicano_:17(s/f)) · 33 (2x, Confianza_y_Desconfianza_en_:295(2018)) · 34 (1x, La_arquitectura_invisible_de:43(1990)) · 5 (1x, Confianza_y_Desconfianza_en_:219(2017)) · 50 (1x, La_familia_mexicana_como_sis:109(s/f)) · 66 (1x, Confianza_y_Desconfianza_en_:205(2022)) · 70 (1x, Sanción_Social_Horizontal_en:231(s/f))"
     ],
     [
       "T06",
-      "12 valores distintos de **confianza interpersonal** en el corpus: 12 (4x) · 15 (4x) · 16 (1x) · 20 (1x) · 22 (5x) · 28 (1x) · 33 (2x) · 34 (1x) · 5 (1x) · 50 (1x) · 66 (1x) · 70 (1x)"
-    ],
-    [
-      "T06",
-      "7 valores distintos de **Gini** en el corpus: 0.39 (1x) · 0.391 (4x) · 0.449 (1x) · 0.45 (2x) · 0.56 (1x) · 0.59 (1x) · 43.5 (1x)"
+      "7 valores distintos de **Gini** en el corpus: 0.39 (1x, Confianza_y_Desconfianza_en_:165(s/f)) · 0.391 (4x, El_Clasemediero_Mexicano__Id:182(2024)) · 0.449 (1x, El_Clasemediero_Mexicano__Id:37(2016)) · 0.45 (2x, Psicología_del_Consumidor_Me:28(s/f)) · 0.56 (1x, Psicología__Conducta_y_Socie:113(s/f)) · 0.59 (1x, Confianza_y_Desconfianza_en_:165(s/f)) · 43.5 (1x, Psicología__Conducta_y_Socie:231(2023))"
     ],
     [
       "T08",
       "7 reports sin mapa de evidencia — todo constructo suyo es DERIVADO, no LEÍDO: Humor_in_Mexican_Psychological_Life__2023-2026 · La_arquitectura_invisible_de_la_interacción_so · Mexican_Population_Genomics__2025-2026_Scienti · Mérito__Movilidad_Social_y_Desigualdad_en_Méxi · Non-Family_Social_Capital_in_Mexico__Cooperati · Psicología__Conducta_y_Sociedad_en_el_México_C · Psicología_del_Trabajo_en_México__Un_Mapa_Basa"
-    ],
-    [
-      "T09",
-      "Autoridad_y_jerarquía_en_el_Mé: marco importado como CAUSA sin (c): ### Mito 2: \"El PDI de Hofstede explica todo\""
-    ],
-    [
-      "T09",
-      "Autoridad_y_jerarquía_en_el_Mé: marco importado como CAUSA sin (c): La combinación de alta distancia de poder (81) con alta aversión a la incertidumbre (82) en el "
-    ],
-    [
-      "T09",
-      "El_México_Rural_e_Indígena_en_: marco importado como CAUSA sin (c): Sobre los marcos importados: Hofstede, GLOBE y WVS se construyeron con muestras urbanas, gerenc"
-    ],
-    [
-      "T09",
-      "La_familia_mexicana_como_siste: marco importado como CAUSA sin (c): 2. **México combina colectivismo alto (IDV 30) con la indulgencia más alta del mundo (IVR 97).*"
-    ],
-    [
-      "T09",
-      "La_familia_mexicana_como_siste: marco importado como CAUSA sin (c): Segundo, la **combinación única en Hofstede**: México puntúa 30 en individualismo (alto colecti"
-    ],
-    [
-      "T09",
-      "Psicología__Conducta_y_Socieda: marco importado como CAUSA sin (c): **México no es un bloque homogéneo sino un archipiélago de realidades que comparten patrones es"
-    ],
-    [
-      "T09",
-      "Psicología_del_Consumidor_Mexi: marco importado como CAUSA sin (c): **Fuerza 2: Aversión a la incertidumbre paralizante.** Con un UAI de 82/100, la necesidad emoci"
-    ],
-    [
-      "T09",
-      "Psicología_del_Consumidor_Mexi: marco importado como CAUSA sin (c): El consumidor mexicano opera dentro de una tensión psicológica fundamental que ningún otro merc"
-    ],
-    [
-      "T11",
-      "corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md: afirmación de estado con cuantificador absoluto (5 de 5 comprobadas resultaron falsas): > **Origen de la corrección:** `meta-auditoria-comunicacion.md §3` · ADR-06 · `glosario conf.03"
     ]
   ],
   "warns": [
@@ -540,7 +476,6 @@
     "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL. Re-congelada el 30/jul/2026 tras el merge del PR #1 (main 22a7d9d): 3 entradas nuevas, cada una con bucket propio — 1 T03 (cita ilustrativa de LICENSE-CORPUS, artefacto propuesto y descartado por D-05, patrón I-01) y 2 T16 que son su consecuencia aritmética. Re-congelada el 13/ago/2026, ACTO A8-LAND (ADR-78), autorizado explícitamente por mesa en el hilo de la sesión tras que el ejecutor reportara los hallazgos y preguntara si congelar — mismo mecanismo de autorización que ya usó ENCARGO ADR-PROVISIONALIDAD §9 (PR #199): 3 entradas nuevas — 1 T03 (forense/encargos/2026-08-13-A8LAND-instrucciones-v2_7.md cita \"v2_6.md\" sin prefijo, verbatim, tres veces, patrón M6-sello) y 2 T16 (gobernanza:1104/ADR-76(f) y gobernanza:1132/ADR-77, cada uno correcto contra lo que su propio ADR midió al sellarse, consecuencia aritmética del T03 de este mismo refreeze — ninguno de los dos ADR está mal, el WARN real se movió después de que ambos sellaran). Re-congelada el 13/ago/2026, ACTO PROC-10-bis (ADR-79(a)), autorizado explícitamente por el usuario en la sesión ('pull and solve CI', tras reportarle el fallo de CI de PR #227 y el hallazgo verificado) — mismo mecanismo de autorización que ya usó ACTO A8-LAND. Corrige la causa raíz declarada por PROC-10-bis (T19b/T19c contaban solo `MEDIDO·PARCIAL`, no reconocían la séptima clase `MEDIDO·NACIONAL` que ese acto selló — corregido en ambas regex, `tests/check.py` líneas ~918/~1001) y congela el residuo esperado: 7 T03 (los cinco archivos de MOTOR-1 nunca entregados a la sesión, más dos citas del propio encargo verbatim a `propuesta-motor-matriz-v0_2.md`, que no existe — solo `v0_1` — error del encargo original, no de este acto) y 6 T16 (cuatro citas históricas de \"107 WARN\"/\"18 FAIL · 107 WARN\" en gobernanza:764,856 y estado-programa:129,221, correctas cuando se escribieron, más las dos ya clasificadas de A8-LAND cuyo número de línea real se corrió de :1132 a :1134 por edits ajenos entre sesiones — consecuencia aritmética de subir el WARN real, ninguna cita está mal). Detalle completo: forense/notas/2026-08-13-proc-10-bis.md §4. Re-congelada el 17/ago/2026, ACTO T22-DERIVA (ADR-88), autorizada por mesa en la sesión mediante pregunta estructurada que citó ADR-76(f) verbatim y describió qué cambia y qué no con cada opción — mismo mecanismo de autorización que ya usó ADR-86, y misma honestidad de procedencia: no es cita verbatim de texto libre. Este recongelado NO absorbe deuda nueva del corpus: reescribe las 19 claves de T22 bajo la normalización nueva de `_baseline_key`, que deja de meter la antigüedad variable ('(N días)') en la clave. Sin esa corrección el recongelado duraba un solo día — probado contra el propio CI, no supuesto: el run 31772585548 sobre f3873c2 fue SUCCESS el 14/ago y ese mismo commit da exit 1 el 17/ago. La suite cruda no se mueve y T22 sigue emitiendo sus 19 WARN en cada corrida: cambia qué cuenta como regresión nueva, no qué reporta la suite. Detalle completo: forense/notas/2026-08-17-t22-deriva.md.",
     "fecha_de_clasificacion": "2026-08-17",
     "conteo_por_bucket": {
-      "T02_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
       "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello": 2,
@@ -548,14 +483,11 @@
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 4,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,
       "T03_sin_clasificar": 26,
-      "T05_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 5,
       "T06_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T08_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
-      "T09_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 8,
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
-      "T11_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 3,
-      "T22_sin_clasificar": 59
+      "T22_sin_clasificar": 46
     }
   }
 }
