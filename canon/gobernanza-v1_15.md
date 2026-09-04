@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **338 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **339 ADR**
 
 > | | |
 > |---|---|
@@ -74,7 +74,7 @@ instrucciones-proyecto-v2.md   ← CANÓNICO. Gobierna todo lo demás.
 | ~~`ficha-canonica-modelo.md`~~ | **ELIMINADA 28/jul** *(ADR-36.b)* | — | absorbida en `modelo` §0.1, §0.2 y §9 |
 | **5 validaciones forenses** | **CANÓNICO** *(ADR-29.b)* | Ronda 4 | — |
 | ~~`CHECKPOINT-v2.md`~~ · ~~`mapa-y-roadmap.md`~~ · ~~`inventario-corpus.md`~~ | **BORRADOS 28/jul** | — | **fusionados en `ESTADO-PROGRAMA.md`** |
-| `estado-programa-v1.11.md` | **CANÓNICO (estado)** | v1.11, 2/sep | única fuente de estado — `v1.10` retirada del árbol por `T01`, `ADR-301`; historia recuperable con `git show 2df71cf:canon/estado-programa-v1_10.md` |
+| `estado-programa-v1_12.md` | **CANÓNICO (estado)** | v1.12, 4/sep | única fuente de estado — `v1.11` retirada del árbol por `T01`, `ADR-339`; historia recuperable con `git show 7574008:canon/estado-programa-v1_11.md` (que a su vez sucede a `v1.10`, retirada por `ADR-301`, historia en `git show 2df71cf:canon/estado-programa-v1_10.md`) |
 | `ADR-30.md` | **BORRADO 28/jul** | — | incorporado a §4; además contenía la versión **superada** (retiraba `familismo` de G3, corregido en mesa) |
 | `milpa/` (Fase 0) | DERIVADO | 0.1.0 | ⚠️ **ausente salvo 3 archivos** |
 | `masterclass-mexico.html` | DERIVADO | foto Ronda 4 | ⚠️ **ausente** |
@@ -5809,7 +5809,7 @@ roja (job `check`, `python3 tests/check.py --baseline`, exit 1), dirección pidi
 resolverla ahí mismo («fetch and solve ci») — autorización puntual, para esta
 única cifra mecánica (un recuento de `ADR`, no una decisión sustantiva de `N8`),
 que se antepone a la reserva de carril. `canon/estado-programa-v1_11.md`
-recifrado (`337`→`338 ADR`, L0 y las dos cabeceras de conteo). `python3
+recifrado (`337`→`338 ADR`{cita-historica}, L0 y las dos cabeceras de conteo). `python3
 tests/check.py --baseline` tras la enmienda: LÍNEA BASE **VERDE**, 3 FAIL / 170
 WARN, sin entradas nuevas.
 
@@ -5818,3 +5818,17 @@ WARN, sin entradas nuevas.
 **Deuda que abre.** Ninguna nueva de mesa. Recibo: `FP-299`.
 
 **Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `337` (`ADR-337`), contiguo → `338` — coincide con el que el propio encargo ya citaba. Sin colisión conocida al escribir esta entrada; si otro acto en vuelo fusiona `338` primero, quien fusione después renumera (regla de la casa).
+
+**ADR-339 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `338`, contiguo, sin huecos; candidato `339` — el encargo mismo citaba `ADR-340`, que no existía en el árbol al arrancar este acto: D-13 exige re-derivar por el comando de la casa, nunca heredar de prosa, así que este acto toma `339` y declara la discrepancia en vez de forzar el número del encargo) · `ACTO MAESTRA38-N8 · ESTADO-PROGRAMA-v1_12`**, 4/sep/2026, entorno **NUBE** — **re-deriva por comando cada cifra de `canon/estado-programa-v1_11.md` que había quedado sin comando al lado o desactualizada, y retira `estado-programa-v1_11.md` del árbol por `T01`.**
+
+`COMPUERTA: fusión de N6` verificada por producto antes de arrancar (`git merge-base --is-ancestor a0e06da4 HEAD`, cumplido; `FP-298` → `EJECUTADA` en `ADR-338`).
+
+**Qué hace.** Crea `canon/estado-programa-v1_12.md`: §2 («El estado real, en una frase») reescrita con cada afirmación seguida de su comando — motor `20` reglas (`grep -cE '^  - id: ' milpa/tramite.yaml`), 19 con dato / 1 sin dato (`tools/tablero_programa.py`), dominios activos `4` (`ADR-265`), corredor `14` de `14` celdas sorteadas con `R∩M∩L` completa, Ola 6 `0` de `6` con `salud` en `2` de `5` (`ADR-265`/`ADR-327`), manifiesto `1 281` payloads (`grep -c "^- id: " data/manifiesto.yaml`), relaciones activas `222` / procedencias aceptadas `223` / `utilidad-modelo.tsv` proyección 1:1 sin error (`tools/curador_registro/baseline.py`), ADR máximo `338`→`339` y FP máximo `300`→`301` (con las propias entradas de este acto), las 9 reglas `NO-ENCONTRADO` clasificadas `2/5/2` (`forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md`), specs de caja selladas `5` (`ls forense/prereg-caja/*-spec-v1_0.md`), FAIL absorbidos `3` (`tests/baseline.json`), y `6` filas `PENDIENTE-DE-MESA` consolidadas de `PAQUETE-RECETAS-5`/`-6`. Añade §9 «Qué espera a la caja» (`MAESTRA38-A2`/`L2`/`C1`/`L4`/`L5`, las cinco specs de `forense/prereg-caja/`) y §10 «Qué no se sabe sin caja» (`C1` físico real — el `relacion_id` pre-registrado sólo se confirma con un `--dry-run` real de `alta_relacion.py`; `[CENSO]` — depende del `crontab` de mesa, `FP-282` sigue `ABIERTA`; `ENFIH-4` — las cuatro filas de `relaciones.tsv` bajo `FP-288`, sin resolver hasta que mesa elija entre sus dos opciones y, si elige (i), caja corra `via_capa2.py --vincula`). §11 es la nota de cierre propia de este acto, con la tabla completa afirmación→comando y las desviaciones D-13.
+
+**Desviación D-13, declarada contra el propio encargo (A.8, antes de fijar nada).** El encargo pedía «v1_11 queda intacta (historia)» con una enmienda de una línea. Verificado contra `tests/check.py::t01_single_source` (una sola versión viva de `canon/estado-programa-v*.md`) y contra el precedente **idéntico** de este mismo artefacto (mesa ya corrigió esta exacta premisa para `v1_10`→`v1_11`, `git rm canon/estado-programa-v1_10.md`, nota en `tests/check.py:239-248`): dejar `estado-programa-v1_11.md` junto a `estado-programa-v1_12.md` es un `FAIL` de `T01` nuevo, no baselineado. Este acto sigue el mecanismo del precedente, no la prosa que lo repite, y **retira `canon/estado-programa-v1_11.md`** (`git rm`, historia recuperable con `git show 7574008:canon/estado-programa-v1_11.md` — el commit de A.3 de este mismo acto).
+
+**Qué NO decide.** No mide nada de México (medición: cero, declarado por el propio encargo). No reabre ni corrige ningún estrato (§0/§1/§3/§4/§5/§6/§7/§8 de `v1_11` se heredan verbatim en `v1_12`). No toca `milpa/tramite.yaml`, `data/manifiesto.yaml` ni ningún dato — sólo lee y cita. No resuelve `FP-288` (`ENFIH-4`) ni instala el `crontab` de `[CENSO]` — ambos quedan declarados en §10 como lo que `NUBE` no puede verificar.
+
+**Deuda que abre.** Ninguna nueva de mesa. Recibo: `FP-301`.
+
+**Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `338` (`ADR-338`, `MAESTRA38-N6`; `MAESTRA38-N7` no tomó ningún ADR), contiguo → `339` — el encargo citaba `340`, discrepancia declarada arriba. Sin colisión conocida al escribir esta entrada; si otro acto en vuelo fusiona `339` primero, quien fusione después renumera (regla de la casa).

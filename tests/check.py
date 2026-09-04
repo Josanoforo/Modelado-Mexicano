@@ -246,6 +246,14 @@ HISTORICOS = {
     # propia gobernanza narrativa) no se reescriben — son registro append-only
     # de lo que cada acto pasado hizo, correcto para su fecha.
     "estado-programa-v1_10.md",
+    # canon/estado-programa-v1_11.md — mismo mecanismo, mismo precedente
+    # (ACTO MAESTRA38-N8, 4/sep/2026, fusión con T01 sobre el mismo artefacto):
+    # `git rm canon/estado-programa-v1_11.md` en la misma rama que crea v1_12,
+    # historia recuperable con `git show 7574008:canon/estado-programa-v1_11.md`
+    # (el commit de A.3 de ese acto). Las citas históricas que quedan
+    # (canon/gobernanza-v1_15.md, canon/registro-rotulos.tsv, forense/notas,
+    # forense/encargos) no se reescriben.
+    "estado-programa-v1_11.md",
 }
 
 def _normalize_version_dots(name):
@@ -2822,10 +2830,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # de mesa, ACTO MAESTRA35-N6, fusion 2-3/sep/2026) -- entrada obsoleta,
     # ya no hay archivo que escanear bajo ese nombre; historia recuperable
     # con `git show 2df71cf:canon/estado-programa-v1_10.md`.
-    # canon/estado-programa-v1_11.md, ACTO MAESTRA35-N6, 2/sep/2026: hereda
-    # verbatim de la v1_10 retirada (§3 L5) el token "ENCARGO M-4"/"MESA-M4",
+    # canon/estado-programa-v1_11.md: retirada del arbol por T01 (ACTO
+    # MAESTRA38-N8, 4/sep/2026, mismo mecanismo que v1_10) -- entrada
+    # obsoleta, ya no hay archivo que escanear bajo ese nombre; historia
+    # recuperable con `git show 7574008:canon/estado-programa-v1_11.md`.
+    # canon/estado-programa-v1_12.md, ACTO MAESTRA38-N8, 4/sep/2026: hereda
+    # verbatim de la v1_11 retirada (§3 L5) el token "ENCARGO M-4"/"MESA-M4",
     # ya censado antes en esa version, ningun rotulo nuevo.
-    "canon/estado-programa-v1_11.md",
+    "canon/estado-programa-v1_12.md",
     "canon/gobernanza-v1_15.md",
     "canon/modelo-decision-v4_0.md",
     "canon/protocolo-sesion-v1_0.md",

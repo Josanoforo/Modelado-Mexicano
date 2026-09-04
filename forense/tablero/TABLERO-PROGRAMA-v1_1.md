@@ -411,3 +411,62 @@ mismos candidatos `FP-299`/`ADR-338`; regla de la casa, renumera quien fusiona
 segundo (coincide con el número que el encargo original citaba). Detalle completo,
 incluidas las correcciones de premisa post-merge, en el `## CONSUMIDO` del encargo
 archivado: `forense/encargos/2026-09-04-MAESTRA38-N7-PRE-REGISTRO-CIVICO-LAPOP.md`.
+
+### 8.7 Recibo — `ACTO MAESTRA38-N8 · ESTADO-PROGRAMA-v1_12` (4/sep/2026, `ADR-339`, `FP-301`)
+
+**Snapshot completo de canon, no de este tablero** — crea `canon/estado-programa-v1_12.md`,
+retira `canon/estado-programa-v1_11.md` (§0 de abajo). No regenera este archivo
+(`tools/tablero_programa.py` sigue fuera de perímetro de esta pieza); las cifras
+vigentes viven ahora en `v1_12` §2/§11, no aquí.
+
+**Qué hace.** Re-deriva por comando cada cifra que `v1_11` (2/sep) citaba sin
+comando al lado o dejó envejecer mientras el árbol se movía debajo: motor
+`10`→`20` reglas (`grep -cE '^  - id: ' milpa/tramite.yaml`), `19` con al menos
+una conducta `MEDIDO`/`1` sin dato (`tramite.gobierno_digital.coercitivo`),
+dominios activos `4` (`ADR-265`), corredor con `14` de `14` celdas sorteadas
+puntuables (`R∩M∩L` completa sobre el marco `v1_2`), Ola 6 `0` de `6` dominios
+abiertos con `salud` en `2` de `5` `EXISTE-SATISFACE` (`ADR-327`), manifiesto
+`1 040`→`1 281` payloads, relaciones activas `222`/procedencias aceptadas
+`223`/`utilidad-modelo.tsv` proyección 1:1 sin error (`python3 tools/curador_
+registro/baseline.py data/curacion-registro`), ADR máximo `338`→`339` y FP
+máximo `300`→`301` (con las propias entradas de cierre de este acto), las 9
+reglas `NO-ENCONTRADO` clasificadas `2/5/2` (`MAESTRA38-N5`, con la corrección
+de `D-13` de `N6` ya heredada: 2 de las 5 `SIN-INSTRUMENTO` ya medidas en
+`L9`/`L11`), specs de caja selladas `3`→`5` (`S1`–`S5` de `forense/prereg-
+caja/`), FAIL absorbidos `3` (`tests/baseline.json`: dos `T06`, un `T08`), y
+`6` filas `PENDIENTE-DE-MESA` consolidadas de `PAQUETE-RECETAS-5` (4 filas) y
+`-6` (2 filas, `0` de `2` recetas verificables en `NUBE`).
+
+**Secciones nuevas.** §9 «Qué espera a la caja» — tabla de las cinco specs
+congeladas (`MAESTRA38-A2` recenso, `L2` ICPSR 35024, `C1` re-asiento
+`N36`→`N41`, `L4`/`L5` civico/LAPOP) con su primer resultado esperado. §10
+«Qué no se sabe sin caja» — tres preguntas que ningún comando de `NUBE` cierra:
+`C1` físico real (si `alta_relacion.py --dry-run` reproduce de verdad el
+`relacion_id` pre-registrado `REL-e7c3700e98be2d9aa7bbd55e`), `[CENSO]`
+(depende del `crontab` de mesa, `FP-282` sigue `ABIERTA`) y `ENFIH-4` (las
+cuatro filas de `relaciones.tsv` bajo `FP-288`, sin resolver hasta que mesa
+elija entre sus dos opciones).
+
+**Desviación D-13, declarada contra el propio encargo (A.8, antes de fijar
+nada).** El encargo pedía «`v1_11` queda intacta (historia)» y una enmienda de
+una línea. Verificado contra `tests/check.py::t01_single_source` (una sola
+versión viva de `canon/estado-programa-v*.md`) y contra el precedente
+**idéntico** de este mismo artefacto — mesa ya corrigió esta exacta premisa
+para `v1_10`→`v1_11` (`git rm canon/estado-programa-v1_10.md`, nota en
+`tests/check.py:239-248`) —: dejar `estado-programa-v1_11.md` junto a `estado-programa-v1_12.md` es un `FAIL`
+de `T01` nuevo, no baselineado. Este acto sigue el mecanismo del precedente, no
+la prosa que lo repite: **retira `canon/estado-programa-v1_11.md`** del árbol
+(`git rm`, historia recuperable con `git show 7574008:canon/estado-programa-
+v1_11.md`, el commit de A.3 de este mismo acto). **ADR de este acto: `339`, no
+el `340` que citaba el encargo** — re-derivado contra el árbol real (`338` era
+el máximo, `MAESTRA38-N7` no tomó ningún ADR); **`FP-301` sí coincide** con el
+encargo. Citas mecánicas vivas actualizadas: `tests/check.py`
+(`_T25_ARCHIVOS_CONOCIDOS`, `HISTORICOS`), `.claude/commands/acto.md` (cita de
+ejemplo del paso «Recifrado L0»); las citas de `canon/gobernanza-v1_15.md` y
+`canon/registro-rotulos.tsv` a `v1_11` quedan intactas (registro append-only
+de decisiones ya selladas).
+
+Cero medición, cero regla del motor tocada, cero corpus abierto. `python3
+tests/check.py --baseline`: **LÍNEA BASE VERDE**, sin entradas nuevas frente a
+`tests/baseline.json`. Detalle completo en el `## CONSUMIDO` del encargo
+archivado: `forense/encargos/2026-09-04-MAESTRA38-N8-ESTADO-PROGRAMA-v1_12.md`.
