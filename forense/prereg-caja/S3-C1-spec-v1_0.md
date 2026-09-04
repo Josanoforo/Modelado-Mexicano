@@ -27,7 +27,7 @@ El encargo (`forense/encargos/2026-09-04-MAESTRA38-N3-PRE-REGISTRO-DE-CAJA.md:9`
 >
 > **"1 de 8 altas tiene regla (etiquetado→R4.5); 7 de 8 no la tienen y su `clasificacion_relacion = CANDIDATA` es correcta y se queda."**
 
-Es decir: **las 7 relaciones no-etiquetado no se mueven — L3-BIS dice explícitamente que se quedan bajo `N36`.** Ningún documento del registro (`necesidad-objeto-modelo.tsv`, `relaciones.tsv`, `L3-BIS-veredictos.md`) da un `N`-destino distinto a esas 7. `necesidad-objeto-modelo.tsv:43-45` (`N38`/`N39`/`N40`, para `R4.1`/`R4.2`/`R4.4`) no cita ningún `relacion_id` de las 7 restantes.
+Es decir: **las 7 relaciones no-etiquetado no se mueven — L3-BIS dice explícitamente que se quedan bajo `N36`.** Ningún documento del registro (`necesidad-objeto-modelo.tsv`, `relaciones.tsv`, la tabla de adjudicación citada arriba) da un `N`-destino distinto a esas 7. `necesidad-objeto-modelo.tsv:43-45` (`N38`/`N39`/`N40`, para `R4.1`/`R4.2`/`R4.4`) no cita ningún `relacion_id` de las 7 restantes.
 
 **Este pre-registro fija la premisa corregida, no la del encargo:** el re-asiento de `C1` es **una** alta (etiquetado → `N41`), no siete. Las 7 restantes quedan documentadas en §4 como "no se tocan, y por qué" — declarar la corrección es, en sí, parte del entregable de un pre-registro (A.8: verificar qué ya existe antes de fijar el encargo).
 
