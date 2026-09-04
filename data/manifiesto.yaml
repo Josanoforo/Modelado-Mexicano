@@ -24321,3 +24321,35 @@
   sha256: 3e8b98eef946625c9a1a72289a569b29632c5999e7b0134b0e1c69298dc094d0
   tamano_bytes: 284843
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: eic2015_fd
+  usado_para: Exploratoria, sin cita previa de regla en el repo (MAESTRA38-A1 Lote 3). Encuesta
+    Intercensal 2015, muestra nacional (TR_PERSONA15 514MB, TR_VIVIENDA15 120MB descomprimidos),
+    variables sociodemograficas estandar (vivienda, hogar, educacion, ocupacion, lengua indigena,
+    discapacidad, migracion). Registrada por cobertura de universo publico y n grande / desagregacion
+    municipal potencial -- candidata natural para cualquier regla que un acto sucesor identifique.
+  url_origen: https://www.inegi.org.mx/programas/intercensal/2015/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/INTERCENSAL2015/eic2015_fd.xls
+  raiz: descargas_mx
+  sha256: b5b68d352ccc95485c5d1d5b3a3641786fcde9ddc8f7a2024bb1000ebf960206
+  tamano_bytes: 157184
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: eic2015_nacional_csv
+  usado_para: Exploratoria, sin cita previa de regla en el repo (MAESTRA38-A1 Lote 3). Encuesta
+    Intercensal 2015, muestra nacional (TR_PERSONA15 514MB, TR_VIVIENDA15 120MB descomprimidos),
+    variables sociodemograficas estandar (vivienda, hogar, educacion, ocupacion, lengua indigena,
+    discapacidad, migracion). Registrada por cobertura de universo publico y n grande / desagregacion
+    municipal potencial -- candidata natural para cualquier regla que un acto sucesor identifique.
+  url_origen: https://www.inegi.org.mx/programas/intercensal/2015/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/INTERCENSAL2015/eic2015_nacional_csv.zip
+  raiz: descargas_mx
+  sha256: efcb4cb1d782d718a49b4ea5c2d995aecac92d950884305e88a9819c2fa422f8
+  tamano_bytes: 74659556
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
