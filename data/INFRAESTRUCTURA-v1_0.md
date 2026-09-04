@@ -615,3 +615,9 @@ etiqueta truncada. Un nombre de variable sin etiqueta **y** sin catálogo es
 sufijo `__v2026_09_01`** (ese sufijo vive en el `id` del manifiesto). Filtrar el
 inventario por el sufijo devuelve **0** y es un falso negativo; el filtro
 correcto es el prefijo `ENSANUT2024-v2026-09-01/`.
+
+## `forense/prereg-caja/` — pre-registros congelados antes de que caja corra (`ACTO MAESTRA38-N3 · PRE-REGISTRO-DE-CAJA`, 4/sep/2026)
+
+| artefacto | productor | contrato | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `forense/prereg-caja/{S1-A2,S2-L2,S3-C1}-spec-v1_0.md` + `.sha256` | dirección, a mano, en NUBE, sin corpus montado — un COMMIT-1 por spec, D-11/D-13, cerrado con la frase de sello «el primer resultado que produzca este procedimiento es el que se reporta» | `.sha256` es la salida cruda de `sha256sum <nombre-relativo>` sobre el `.md` correspondiente; verificado con `sha256sum -c` al sellar | los actos futuros `MAESTRA38-A2` (recenso), `MAESTRA38-L2` (medición/texto ICPSR 35024) y `MAESTRA38-C1` (re-asiento `relaciones.tsv`) — cada uno compara su primer resultado real contra la spec congelada aquí, nunca corrige la spec hacia atrás | ninguna de las tres specs mide nada — son pre-registro puro; `S1` y `S3` declaran explícitamente que corrigen la premisa del encargo que las pidió (universo de "dos raíces" cuando el código dice tres, y "7 relaciones con N destino" cuando `L3-BIS` sólo adjudica 1) en vez de heredarla sin verificar (A.8) |

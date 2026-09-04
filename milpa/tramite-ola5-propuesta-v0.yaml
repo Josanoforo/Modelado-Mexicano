@@ -2887,6 +2887,18 @@ reglas_propuestas:
     payload_manifiesto_id: [icpsr35024_ds1_w2_crosstabs_derivadas]
     entra_al_motor: false
   # ══════════════════════════════════════════════════════════════════
+  # Enmienda ACTO MAESTRA38-N3 · PRE-REGISTRO-DE-CAJA (4/sep/2026)
+  #
+  # Nota sobre las dos entradas de arriba (civico.clientelismo.
+  # vote_change_mps2012, civico.clientelismo.prevalencia_lista_mps2012):
+  # spec de medicion de primera mano sellada en S2, pendiente de .dta.
+  # Ver forense/prereg-caja/S2-L2-spec-v1_0.md (rama MEDICION y rama
+  # TEXTO, ICPSR 35024, R7.3/R7.6 y experimento de lista) -- continua
+  # el sucesor "MAESTRA37-L2 · MPS-CODEBOOK-Y-P3" ya nombrado arriba y
+  # en canon/gobernanza-v1_15.md:5494, ahora bajo el rotulo vigente
+  # MAESTRA38-L2. Estas dos entradas NO se editan (append, sin tocar
+  # cuerpo).
+  # ══════════════════════════════════════════════════════════════════
   # ACTO MAESTRA36-N12 · CONVERSION-CIVICA-BENCHMARK (3/sep/2026)
   #
   # PROPUESTA DE CARGA, no carga. La entrada de arriba
