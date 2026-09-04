@@ -23993,3 +23993,193 @@
   sha256: 923d0dd06d6855babec620b373394381de1c0d7eb16c523066f6d333efb11adb
   tamano_bytes: 1459284
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: conjunto_de_datos_encrige_2020_csv
+  usado_para: 'tramite.evasion.norma_inutil_sancion_improbable (E18-P2 NO-ENCONTRADO) -- A.4
+    verificado EXISTE-NO-SATISFACE con cobertura parcial fuerte (MAESTRA38-A1 Lote 1): Seccion
+    VIII trae requisitos/costos excesivos, sanciones/clausuras injustificadas y bateria de
+    motivos de cumplimiento (evitar multas/inspecciones); no trae item directo de probabilidad
+    de sancion'
+  url_origen: https://www.inegi.org.mx/programas/encrige/2020/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENCRIGE/conjunto_de_datos_encrige_2020_csv.zip
+  raiz: descargas_mx
+  sha256: 06864904426a6b2c18cdad63a8b7bcb995fd35333c44448ba3fb5a973b822c5a
+  tamano_bytes: 1630532
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encrige2020_cuestionario
+  usado_para: 'tramite.evasion.norma_inutil_sancion_improbable (E18-P2 NO-ENCONTRADO) -- A.4
+    verificado EXISTE-NO-SATISFACE con cobertura parcial fuerte (MAESTRA38-A1 Lote 1): Seccion
+    VIII trae requisitos/costos excesivos, sanciones/clausuras injustificadas y bateria de
+    motivos de cumplimiento (evitar multas/inspecciones); no trae item directo de probabilidad
+    de sancion'
+  url_origen: https://www.inegi.org.mx/programas/encrige/2020/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENCRIGE/encrige2020_cuestionario.pdf
+  raiz: descargas_mx
+  sha256: f410156bf5131921f6699b47f07fba302b168de187ea638a5f601732097cd8c1
+  tamano_bytes: 1532744
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: conjunto_de_datos_enadis_2022_csv
+  usado_para: 'N15/G6.deferencia -- exploratorio; A.4 verificado NO-ENCONTRADO (MAESTRA38-A1
+    Lote 1): sin item de deferencia dada, solo discriminacion recibida'
+  url_origen: https://www.inegi.org.mx/programas/enadis/2022/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENADIS/conjunto_de_datos_enadis_2022_csv.zip
+  raiz: descargas_mx
+  sha256: 5e912ab9edf54ae3d2f9cc3629a547748f67cbb23aacf66a240074755331cdf9
+  tamano_bytes: 15544147
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enadis2022_cuestionario_general
+  usado_para: 'N15/G6.deferencia -- exploratorio; A.4 verificado NO-ENCONTRADO (MAESTRA38-A1
+    Lote 1): sin item de deferencia dada, solo discriminacion recibida'
+  url_origen: https://www.inegi.org.mx/programas/enadis/2022/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENADIS/enadis2022_cuestionario_general.pdf
+  raiz: descargas_mx
+  sha256: b7c2743e777008196792230b4751616d83e57bcfc30758197331f56c5ea19fbc
+  tamano_bytes: 2050454
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enadis2022_cuestionario_opinion
+  usado_para: 'N15/G6.deferencia -- exploratorio; A.4 verificado NO-ENCONTRADO (MAESTRA38-A1
+    Lote 1): sin item de deferencia dada, solo discriminacion recibida'
+  url_origen: https://www.inegi.org.mx/programas/enadis/2022/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENADIS/enadis2022_cuestionario_opinion.pdf
+  raiz: descargas_mx
+  sha256: 1d004ebec3198802e4af951c64260c77d99add87d6a18fe14f2b077649fe29bf
+  tamano_bytes: 1733780
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enadis2022_fd
+  usado_para: 'N15/G6.deferencia -- exploratorio; A.4 verificado NO-ENCONTRADO (MAESTRA38-A1
+    Lote 1): sin item de deferencia dada, solo discriminacion recibida'
+  url_origen: https://www.inegi.org.mx/programas/enadis/2022/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENADIS/enadis2022_fd.pdf
+  raiz: descargas_mx
+  sha256: 4cf4d67b3d917d0e1f185296b619ebf3dfa16b8463c0f09b839eb60e2cd0691d
+  tamano_bytes: 3276610
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: motral2012_cuestionario
+  usado_para: 'N35/trabajo.prestaciones.formalidad_pesa_mas_que_salario -- A.4 verificado
+    EXISTE-NO-SATISFACE (MAESTRA38-A1 Lote 1): modulo de 2 paginas (AFORE/ahorro/formalidad
+    IMSS-ISSSTE) sin item de preferencia/trade-off salario-vs-prestaciones, mismo en 2012
+    y 2015; microdato (tabla motral2012_empleos, RNM F5) NO localizado por sonda de este acto
+    -- solo cuestionario'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/motral/2012/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/MOTRAL/motral2012_cuestionario.pdf
+  raiz: descargas_mx
+  sha256: a520a297a26f543b145052c75171a31dcf18475909b0dbcb45bca352a5ac6129
+  tamano_bytes: 68814
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: motral2015_cuestionario
+  usado_para: 'N35/trabajo.prestaciones.formalidad_pesa_mas_que_salario -- A.4 verificado
+    EXISTE-NO-SATISFACE (MAESTRA38-A1 Lote 1): modulo de 2 paginas (AFORE/ahorro/formalidad
+    IMSS-ISSSTE) sin item de preferencia/trade-off salario-vs-prestaciones, mismo en 2012
+    y 2015; microdato (tabla motral2012_empleos, RNM F5) NO localizado por sonda de este acto
+    -- solo cuestionario'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/motral/2015/
+  url_origen_procedencia: corregida a mano tras --escanea (asignó por --grupo/--url la URL
+    de la edición 2012 a las dos ediciones; ésta es la 2015, verificada real por descarga
+    directa -- MAESTRA38-A1), NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/MOTRAL/motral2015_cuestionario.pdf
+  raiz: descargas_mx
+  sha256: e21a28f0f38c1727d40d4efbae01c8bb1190fe088bfe1cb75e4101b415f9e731
+  tamano_bytes: 1377117
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: c_enco_b_v4
+  usado_para: 'dinero.consumo.estatus_mediado_por_credito (EXISTE-NO-SATISFACE, falta cruce
+    con credito) -- A.4 verificado NO-ENCONTRADO (MAESTRA38-A1 Lote 1): cuestionario basico
+    solo trae indice agregado de oportunidad de compra de bienes duraderos, sin especificar
+    modalidad de pago ni marca; microdato mensual NO localizado por sonda de este acto --
+    solo cuestionario'
+  url_origen: https://www.inegi.org.mx/programas/enco/
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENCO/c_enco_b_v4.pdf
+  raiz: descargas_mx
+  sha256: f7e9d6b99e927a29535a85b1d1aac955764c2b38f0726627f7dfd2100323cda6
+  tamano_bytes: 170567
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: motral2012_bd_dbf
+  usado_para: 'N35/trabajo.prestaciones.formalidad_pesa_mas_que_salario -- A.4 verificado
+    EXISTE-NO-SATISFACE (MAESTRA38-A1 Lote 1), confirmado contra el DBF real: tabla motral2012_empleos
+    (13651 filas persona-empleo, 2007-2012) trae SALARIO (N,4) y formalidad por empleo (P8:
+    IMSS/ISSSTE/privada/no-asegurado) -- disparador y desenlace factual ambos presentes --
+    pero NINGUN item de preferencia/trade-off salario-vs-prestaciones (verificado contra el
+    cuestionario completo, items 1-10 trayectoria + 11-23 AFORE/ahorro). Candidata a comparacion
+    derivada (regresion formalidad~salario) para acto sucesor, no decidida aqui.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/motral/2012/microdatos/motral2012_bd_dbf.zip
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/MOTRAL/motral2012_bd_dbf.zip
+  raiz: descargas_mx
+  sha256: bd3fed06bae618fca29618ab61f0ba333cfd51f03a9736ba2a9214a3ee96bebb
+  tamano_bytes: 1216496
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: motral2015_bases_datos_dbf
+  usado_para: 'N35/trabajo.prestaciones.formalidad_pesa_mas_que_salario -- A.4 verificado
+    EXISTE-NO-SATISFACE (MAESTRA38-A1 Lote 1), confirmado contra el DBF real: tabla motral2012_empleos
+    (13651 filas persona-empleo, 2007-2012) trae SALARIO (N,4) y formalidad por empleo (P8:
+    IMSS/ISSSTE/privada/no-asegurado) -- disparador y desenlace factual ambos presentes --
+    pero NINGUN item de preferencia/trade-off salario-vs-prestaciones (verificado contra el
+    cuestionario completo, items 1-10 trayectoria + 11-23 AFORE/ahorro). Candidata a comparacion
+    derivada (regresion formalidad~salario) para acto sucesor, no decidida aqui. Ademas de
+    la tabla motral2012_empleos citada, motral2015_empleos.dbf trae la misma estructura (SALARIO
+    + formalidad por empleo) para la edicion 2015.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/motral/2015/microdatos/motral2015_bases_datos_dbf.zip
+  url_origen_procedencia: corregida a mano tras --escanea (asignó por --grupo/--url la URL
+    de la edición 2012 a las dos ediciones; ésta es la 2015, verificada real por descarga
+    directa -- MAESTRA38-A1), NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/MOTRAL/motral2015_bases_datos_dbf.zip
+  raiz: descargas_mx
+  sha256: e86e4e6b350914276bd57a8354f145364c999f35c08c041ee4c5559f9c82741d
+  tamano_bytes: 494654
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enco_2026_agosto_dbf
+  usado_para: 'dinero.consumo.estatus_mediado_por_credito -- A.4 verificado NO-ENCONTRADO
+    (MAESTRA38-A1 Lote 1), confirmado contra el DBF real: encocb_0826.DBF trae 15 items (P1-P15)
+    del cuestionario basico, ninguno sobre modalidad de pago (credito/contado) ni marca --
+    el instrumento mensual (agosto 2026) no toca esta regla en absoluto, mismo veredicto que
+    el cuestionario impreso ya mostraba.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enco/microdatos/enco_2026_agosto_dbf.zip
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-03'
+  descargado_por: usuario, vía navegador
+  archivo: UNIVERSO-2026-09/ENCO/enco_2026_agosto_dbf.zip
+  raiz: descargas_mx
+  sha256: 5eb3fd6850c6cb7713640196e4977b077ebb95f8234c1c8ddbbfffdc8984b19d
+  tamano_bytes: 164174
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4

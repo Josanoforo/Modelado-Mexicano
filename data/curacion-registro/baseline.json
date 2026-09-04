@@ -1,8 +1,8 @@
 {
   "archivos": {
     "aliases-fuentes.tsv": {
-      "filas": 15,
-      "sha256": "bffecf1f080f9570601b5cbab4506a3ccf0610ec393864568fff2abb8852c83a"
+      "filas": 17,
+      "sha256": "8a2f6b3fec08e7f5b579a7aa596d69701a61189e90dce9cb6290630ace35a714"
     },
     "artefactos-rechazados.tsv": {
       "filas": 85,
@@ -13,20 +13,20 @@
       "sha256": "2d32cd5e06fc2901aaf1eca7505936049528fd8496761a25653b7c2bcc21dcd8"
     },
     "evidencias.tsv": {
-      "filas": 220,
-      "sha256": "3e46e06468895098b9b44b7a6b844974dd3953d51ba3e1e19eb659fa0db06721"
+      "filas": 222,
+      "sha256": "cc1e863721714497b0a2f7b69bc6d666d10fc422947d00315c9bf410db20e818"
     },
     "fusiones-relaciones.tsv": {
       "filas": 1,
       "sha256": "d7ab67a8a20b4f27e825a025a4ffc6326f001508f72b6a0a273b79f30cd5a7b3"
     },
     "relaciones.tsv": {
-      "filas": 219,
-      "sha256": "6fce3494672d4216b361089295d7537a4e5ef9b15f8b6d0a614120c42df77472"
+      "filas": 221,
+      "sha256": "b54c291142437a755ed7e1f6afc9199d6c5a0ea65b95b3e8ad30a7028ad1cf92"
     },
     "utilidad-modelo.tsv": {
-      "filas": 219,
-      "sha256": "10a4788a59668c08a1d6403aa7bcf0ce7ca60639e12cb62c3ceae41fb1cbf8ab"
+      "filas": 221,
+      "sha256": "2479b8ff978b2ecc1140204c5160518e4c64b759409382c412db66172d287c84"
     }
   },
   "baseline_version": "1.0.0",
@@ -37,15 +37,15 @@
   ],
   "conteos": {
     "artefactos_rechazados": 85,
-    "candidatas": 155,
+    "candidatas": 157,
     "confirmadas": 9,
     "decisiones_pendientes": 0,
-    "familias_alias": 15,
+    "familias_alias": 17,
     "fusiones_declaradas": 1,
     "negativas": 48,
     "no_accesibles": 7,
-    "procedencias_aceptadas": 220,
-    "relaciones_activas": 219
+    "procedencias_aceptadas": 222,
+    "relaciones_activas": 221
   },
   "delimiter": "TAB",
   "encoding": "UTF-8",
