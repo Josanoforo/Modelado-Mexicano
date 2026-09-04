@@ -275,3 +275,17 @@ clasificación final, vence a 7 días). Ejecutado vía `PR #526`, fusionado a `m
 ejecución independiente de este mismo acto en la rama de auditoría (candidato `ADR-331`,
 `FP-288`/`FP-289`, commit `c8e5463`) resultó duplicada y fue descartada al fusionar** — ver
 nota de fusión en `forense/encargos/2026-09-03-MAESTRA37-A2-REVISA-COLA-A-DETALLE.md`.
+
+### 8.3 Recibo — `ACTO MAESTRA38-N4 · PROPAGA-Y-PAGA` (4/sep/2026, `ADR-336`, `FP-286`/`FP-287`/`FP-293`)
+
+No es un snapshot completo de indicadores. Registro puntual, P1: `FP-286` (firma de mesa
+sobre la clasificación de §8.2) → EJECUTADA — las 28 filas recibieron `nota` vía
+`tsv_crudo.upsert_fila(clave=fuente_canonica)`, citando
+`forense/notas/2026-09-03-MAESTRA37-A2-revision-cola.md` §2; 4 de ellas (9, 12, 25, 27)
+pasaron a `PENDIENTE-DE-MESA` con receta verificada en
+`forense/notas/2026-09-04-MAESTRA38-N4-PAQUETE-RECETAS-5.md` (6 recetas reales, no las 11
+que el encargo citaba — discrepancia declarada en el recibo de `FP-286`, D-13). `FP-287`
+(ausencia de tests de INFRA-1) → EJECUTADA, ya cubierta por `tests/test_cola_writer.py`/
+`tests/test_manifiesto_seguro.py` (`ACTO MAESTRA38-N2`, `PR #529`). Detalle completo de P2-P4
+en el `## CONSUMIDO` del encargo archivado:
+`forense/encargos/2026-09-04-MAESTRA38-N4-PROPAGA-Y-PAGA.md`.

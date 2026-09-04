@@ -3989,14 +3989,22 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
     "sin restricción", appendeadas vía `tsv_crudo.upsert_fila` -- medió
     17 líneas) y `ACTO MAESTRA38-A1` (12 filas nuevas por sonda de
     adquisición -- medió 11 líneas). Re-medido tras fusionar ambos
-    (`b55b8a1`/merge de `PR #526`): **24 líneas** (20, 21, 22, 29, 39, 47,
+    (`b55b8a1`/merge de `PR #526`): 24 líneas (20, 21, 22, 29, 39, 47,
     51, 58, 59, 63, 70, 76, 78, 79, 80, 81, 94, 114, 117, 119, 121, 123,
-    124, 125) -- unión de las dos listas, sin solapamiento. Este test es DOBLE:
+    124, 125) -- unión de las dos listas, sin solapamiento.
+
+    Re-medido de nuevo (`ACTO MAESTRA38-N4 · PROPAGA-Y-PAGA`, 4/sep/2026,
+    FP-286): las 28 filas de `ACTO MAESTRA37-A2` recibieron `nota` nueva
+    vía el mismo `upsert_fila` (una cita de una línea al informe de
+    revisión, más receta para 6 de ellas) -- el texto nuevo no repite
+    todas las comillas sueltas del texto viejo que reemplazó. **13
+    líneas** (20, 29, 35, 40, 47, 94, 114, 117, 119, 121, 123, 124, 125).
+    Este test es DOBLE:
 
     (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
         día alguien "arregla" el round-trip corriendo `csv.writer` sobre
         el archivo completo, este control lo hace visible en vez de
-        quedar en silencio -- se espera EXACTAMENTE 24 líneas distintas
+        quedar en silencio -- se espera EXACTAMENTE 13 líneas distintas
         hoy; si el número cambia (para arriba o para abajo) sin que
         nadie lo haya declarado, falla.
     (2) REGRESIÓN del lector/escritor propio (`tools/curador_registro/
@@ -4022,11 +4030,11 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 24:
+    if len(diffs_csv) != 13:
         fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
-                         f"24 líneas distintas (20, 21, 22, 29, 39, 47, 51, 58, 59, 63, 70, 76, "
-                         f"78, 79, 80, 81, 94, 114, 117, 119, 121, 123, 124, 125) el 3/sep/2026 "
-                         f"(union MAESTRA37-A2 + MAESTRA38-A1, re-medido tras fusionar ambos); hoy da "
+                         f"13 líneas distintas (20, 29, 35, 40, 47, 94, 114, 117, 119, 121, 123, "
+                         f"124, 125) el 4/sep/2026 (ACTO MAESTRA38-N4, FP-286, tras re-escribir "
+                         f"la nota de las 28 filas de MAESTRA37-A2); hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")
