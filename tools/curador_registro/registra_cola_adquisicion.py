@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import sys
 from pathlib import Path
 
 FIELDS = [
@@ -76,8 +77,20 @@ def main() -> int:
     parser.add_argument("--cola", type=Path, default=Path("data/cola-adquisicion-v1_0.tsv"))
     parser.add_argument("--aliases", type=Path, default=Path("data/curacion-registro/aliases-fuentes.tsv"))
     parser.add_argument("--output", type=Path, default=Path("data/curacion-registro/cola-adquisicion-registro.tsv"))
+    parser.add_argument("--confirmo-migracion-legacy", action="store_true")
     args = parser.parse_args()
     rows = build(args.cola.resolve(), args.aliases.resolve())
+    if not args.confirmo_migracion_legacy:
+        print(
+            "error: este script trunca/crea el SSOT en la direccion cola->registro "
+            "(write_tsv abre en modo 'w'). Es solo para la migracion legacy de una sola vez "
+            "y nunca debe correr por defecto de forma accidental. Las adquisiciones nuevas "
+            "deben pasar por el escritor canonico (upsert_fila en tsv_crudo.py, usado por "
+            "tools/arbitra.py), no por este migrador. Si de verdad quieres re-correr la "
+            "migracion legacy, pasa --confirmo-migracion-legacy.",
+            file=sys.stderr,
+        )
+        return 1
     write_tsv(args.output.resolve(), rows)
     con_alias = sum(1 for row in rows if not row["discordancia_alias"])
     print(f"filas={len(rows)} con_alias={con_alias} sin_alias={len(rows) - con_alias}")

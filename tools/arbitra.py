@@ -25,13 +25,20 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 import unicodedata
+from pathlib import Path
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CORRIDAS_R = os.path.join(RAIZ, "forense", "prereg-duelo-v2", "corridas-R")
 MANIFIESTO = os.path.join(RAIZ, "data", "manifiesto.yaml")
+# COLA sigue existiendo por compatibilidad (nombre historico), pero desde
+# FP-258/MAESTRA37 ya no se escribe directo aqui: es la VISTA generada por
+# tools/vista_cola_adquisicion.py y el SSOT real es REGISTRO (abajo).
 COLA = os.path.join(RAIZ, "data", "cola-adquisicion-v1_0.tsv")
+REGISTRO = os.path.join(RAIZ, "data", "curacion-registro", "cola-adquisicion-registro.tsv")
+ALIASES = os.path.join(RAIZ, "data", "curacion-registro", "aliases-fuentes.tsv")
 
 
 def _plano(s):
@@ -80,28 +87,103 @@ def sha256_de(ruta):
     return h.hexdigest()
 
 
+def _modulos_curador_registro():
+    """Importa tsv_crudo y registra_cola_adquisicion desde tools/curador_registro/,
+    con el mismo patron de fallback (paquete vs. ejecucion directa) que ya usa
+    tools/vista_cola_adquisicion.py -- se copia el patron, no se reimplementa
+    el import."""
+    sys.path.insert(0, os.path.join(RAIZ, "tools", "curador_registro"))
+    try:
+        from curador_registro import tsv_crudo, registra_cola_adquisicion
+    except ImportError:  # ejecucion directa, tools/ en sys.path pero no el paquete
+        import tsv_crudo
+        import registra_cola_adquisicion
+    return tsv_crudo, registra_cola_adquisicion
+
+
+def _regenera_vista_cola_adquisicion():
+    """Regenera data/cola-adquisicion-v1_0.tsv corriendo
+    tools/vista_cola_adquisicion.py como subproceso con cwd=RAIZ.
+
+    Medido: vista_cola_adquisicion.py usa rutas RELATIVAS (Path('data/...'))
+    que asumen cwd=raiz del repo; importarlo directo y llamar a su main() desde
+    un cwd distinto deja REGISTRO.exists()==False y VISTA.write_text() revienta
+    (probado corriendo el import fuera de RAIZ). El subproceso con cwd
+    explicito no depende de donde se invoco arbitra.py."""
+    subprocess.run(
+        [sys.executable, os.path.join(RAIZ, "tools", "vista_cola_adquisicion.py")],
+        check=True, cwd=RAIZ,
+    )
+
+
 def encola_no_obtenido(id_celda, encuesta, ola):
-    fila = f"{id_celda}\t{encuesta}\t{ola}\tarbitra.py: NO-OBTENIDO, sin payload en manifiesto.yaml para (encuesta,ola)\n"
-    existe_ya = False
-    if os.path.exists(COLA):
-        with open(COLA, encoding="utf-8") as f:
-            existe_ya = any(l.startswith(id_celda + "\t") for l in f)
-    if not existe_ya:
-        with open(COLA, "a", encoding="utf-8") as f:
-            f.write(fila)
+    """Registra id_celda en el SSOT de curacion
+    (data/curacion-registro/cola-adquisicion-registro.tsv) via upsert_fila --
+    NUNCA escribe data/cola-adquisicion-v1_0.tsv directamente: esa es la VISTA,
+    solo la regenera tools/vista_cola_adquisicion.py (ver
+    _regenera_vista_cola_adquisicion(), llamada por main() al final del lote).
+
+    fuente_canonica_normalizada se resuelve contra aliases-fuentes.tsv con el
+    MISMO indice que usa registra_cola_adquisicion.build() (build_alias_index,
+    reusada, no reimplementada). estado_A4A5 es PENDIENTE -- NO-OBTENIDO no es
+    un valor real de ese vocabulario; lo que arbitra.py observo es la ausencia
+    de payload, no un intento de adquisicion fallido.
+
+    upsert_fila usa fila_origen=f"arbitra.py:{id_celda}" como clave: reprocesar
+    la misma celda actualiza su propia fila en vez de duplicarla, lo que
+    reemplaza por completo la vieja logica de existe_ya (scan + skip).
+
+    Devuelve True (siempre hace un upsert)."""
+    tsv_crudo, registra_cola_adquisicion = _modulos_curador_registro()
+
+    aliases = tsv_crudo.leer_dicts(Path(ALIASES))
+    alias_index = registra_cola_adquisicion.build_alias_index(aliases)
+
+    clave_alias = (encuesta or "").strip().upper()
+    if clave_alias in alias_index:
+        fuente_canonica_normalizada = alias_index[clave_alias]
+        discordancia_alias = ""
+    else:
+        fuente_canonica_normalizada = encuesta
+        discordancia_alias = "SIN_ALIAS"
+
+    nota = "arbitra.py: NO-OBTENIDO, sin payload en manifiesto.yaml para (encuesta,ola)"
+    fila = {
+        "fila_origen": f"arbitra.py:{id_celda}",
+        "fuente_canonica": encuesta,
+        "fuente_canonica_normalizada": fuente_canonica_normalizada,
+        "discordancia_alias": discordancia_alias,
+        "estado_A4A5": "PENDIENTE",
+        "prioridad": "",
+        "url_conocida": "",
+        "ids_manifiesto": "",
+        "origen": "arbitra.py",
+        "nota": nota,
+    }
+    campos = [
+        "fila_origen", "fuente_canonica", "fuente_canonica_normalizada",
+        "discordancia_alias", "estado_A4A5", "prioridad", "url_conocida",
+        "ids_manifiesto", "origen", "nota",
+    ]
+    tsv_crudo.upsert_fila(Path(REGISTRO), fila, campos, clave="fila_origen")
+    return True
 
 
 def procesa_fila(fila, manifiesto, esquema):
+    """Devuelve (estado, id_celda, huno_upsert) -- huno_upsert es True solo
+    cuando esta fila disparo un upsert en el registro de curacion (via
+    encola_no_obtenido), para que main() sepa si debe regenerar la vista al
+    final del lote."""
     id_celda = fila["id"]
     salida = os.path.join(CORRIDAS_R, f"{id_celda}.json")
     if os.path.exists(salida):
-        return "YA-EXISTE", id_celda
+        return "YA-EXISTE", id_celda, False
 
     encuesta, ola = fila.get("encuesta", ""), fila.get("ola", "")
     candidatos = localiza_payload(manifiesto, encuesta, ola)
     if not candidatos:
-        encola_no_obtenido(id_celda, encuesta, ola)
-        return "NO-OBTENIDO", id_celda
+        huno_upsert = encola_no_obtenido(id_celda, encuesta, ola)
+        return "NO-OBTENIDO", id_celda, huno_upsert
 
     # Punto de bloqueo confirmado por P3: el marco no declara codificacion
     # binaria ni estrato/upm de diseno (ver docstring). Sin esos dos datos
@@ -130,7 +212,7 @@ def procesa_fila(fila, manifiesto, esquema):
     with open(salida, "w", encoding="utf-8") as f:
         json.dump(doc, f, ensure_ascii=False, indent=1, sort_keys=True)
         f.write("\n")
-    return "NO-EJECUTABLE-SIN-CODIFICACION", id_celda
+    return "NO-EJECUTABLE-SIN-CODIFICACION", id_celda, False
 
 
 def main(ruta_marco, columna_elegible=None, solo_ids=None):
@@ -143,12 +225,20 @@ def main(ruta_marco, columna_elegible=None, solo_ids=None):
         filas = [f for f in filas if f["id"] in solo_ids]
 
     resultados = {}
+    huno_upsert_en_lote = False
     for fila in filas:
-        estado, id_celda = procesa_fila(fila, manifiesto, esquema)
+        estado, id_celda, huno_upsert = procesa_fila(fila, manifiesto, esquema)
         resultados.setdefault(estado, []).append(id_celda)
+        huno_upsert_en_lote = huno_upsert_en_lote or huno_upsert
 
     for estado, ids in sorted(resultados.items()):
         print(f"{estado}: {len(ids)} -> {' '.join(ids)}")
+
+    # (FP-258/MAESTRA37) La vista se regenera UNA VEZ por lote, no por cada
+    # encola_no_obtenido -- batching intencional, ver encargo.
+    if huno_upsert_en_lote:
+        _regenera_vista_cola_adquisicion()
+
     return resultados
 
 

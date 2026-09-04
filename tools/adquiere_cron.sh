@@ -70,7 +70,12 @@ if [ -n "$RAIZ_RESUELTA" ] && [ -d "$RAIZ_RESUELTA" ]; then
   # Commit propio, separado del [ADQ] que produce claude -p más abajo --
   # misma vía que ADR-281: el merge de mesa es la autorización, así que
   # empuja directo a main igual que [ADQ]. data/manifiesto-staging.yaml
-  # (escrito por --escanea arriba) NO se commitea -- ya está en .gitignore.
+  # (escrito por --escanea arriba) NO se commitea aquí -- este paso solo
+  # hace `git add` de $CENSO_FILE. El archivo SÍ está trackeado en git
+  # (no está en .gitignore -- corregido MAESTRA37-INFRA-1, ver B3: la
+  # afirmación anterior de que sí lo estaba era falsa, `git ls-files
+  # data/manifiesto-staging.yaml` lo confirma); sus cambios quedan sin
+  # comitear por este cron hasta que un acto los recoja explícitamente.
   git add "$CENSO_FILE" >>"$LOGFILE" 2>&1
   if ! git diff --cached --quiet -- "$CENSO_FILE"; then
     git commit -m "[CENSO] ${FECHA}

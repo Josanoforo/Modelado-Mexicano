@@ -31,3 +31,13 @@ data/catalogo_unico.json
 # ACTO MAESTRA34-N7 · SKILLS-COLA-Y-ADQ: log fechado del cron de
 # adquisición (tools/adquiere_cron.sh) -- de la caja, no del repo.
 forense/adq-log/
+# MAESTRA37-INFRA-1 Frente B (COMMIT-2): lock runtime de tests/manifiesto.py
+# -- puramente de ejecución local, nunca versionado.
+data/.manifiesto.lock
+# MAESTRA37-INFRA-1 Frente C (COMMIT-3): lock runtime de alta_relacion.py
+# sobre data/curacion-registro/ -- puramente de ejecución local.
+data/curacion-registro/.alta-relacion.lock
+# MAESTRA37-INFRA-1 Frente C (COMMIT-3): journal de cada alta transaccional
+# (tools/curador_registro/alta_relacion.py) -- artefacto de ejecución, uno
+# por relacion_id, no versionado por defecto.
+data/alta-relacion-journal-*.json
