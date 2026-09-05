@@ -1,7 +1,284 @@
-# manifiesto-staging.yaml -- candidatos que --promueve dejó sin promover
-# (página guardada -- no es dato --, hash/tamaño faltante, o fuera
-# del --grupo de la última corrida). url_origen y usado_para siguen
-# siendo los dos campos que una máquina no deriva.
+# manifiesto-staging.yaml -- candidatos derivados por `tests/manifiesto.py --escanea`, fusionados por raíz (última corrida por raíz reemplaza solo esa raíz).
+#
+# sha256, tamano_bytes, fecha_descarga (del mtime) y entorno_descarga
+# se derivaron del archivo real en disco -- nunca se tecleó ni se pidió
+# por parámetro. url_origen y usado_para son los dos campos que una
+# máquina no puede derivar: quedan en "" y # PENDIENTE hasta que el
+# autor los complete. `raiz` es el NOMBRE de la raíz -- la ruta real
+# vive en data/raices.local.yaml, gitignorado, nunca aquí.
+#
+# Este archivo NO es data/manifiesto.yaml. Ninguna entrada de aquí se
+# promueve automáticamente.
+
+# ══ Raíz 'data_raw' -- corrida actual ══
+
+# ── Grupo 1: 24 archivo(s) -- 2026-07-30 10:59:43 a 2026-07-30 10:59:58 -- token dominante: ennvih ──
+
+- archivo: ennvih/doc/ehh02cb_b2.pdf
+  raiz: data_raw
+  sha256: 2b1d1fcbf9e57c996f9c0706b4686683fff13685eecca36fabc838b8c0dcdfb0
+  tamano_bytes: 225237
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh02cb_b3a.pdf
+  raiz: data_raw
+  sha256: c01c4548ad0b6b444700ad1165bbaedf837def5da5b8689a7fece6ceeb2f6d3b
+  tamano_bytes: 393086
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh02cb_b3b.pdf
+  raiz: data_raw
+  sha256: fa022876e336e975efebae7afb91e6beca3f92c915a57238de79f71db2f1ed6b
+  tamano_bytes: 265382
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh02cb_bc.pdf
+  raiz: data_raw
+  sha256: 5f45f149c3c45b68e2b2d3e0dc7193d57109bd2db510ab6c68c036bd7ffe6d09
+  tamano_bytes: 272810
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh02q_b2.pdf
+  raiz: data_raw
+  sha256: 12ae9781aa02226254e37da3dc40255f8a7ff1542f44da6e05d86b16afb7b7ff
+  tamano_bytes: 155104
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh02q_b3a.pdf
+  raiz: data_raw
+  sha256: 2aa718168e73e11e20ee4dea82a3123aae028afeeafe1cd6699f1fcde70c5a28
+  tamano_bytes: 224308
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh05cb_b2.pdf
+  raiz: data_raw
+  sha256: 729494859ce9e166f73f3d1d800ccc05f7d89bea1077d625d1670a64d1bdc272
+  tamano_bytes: 171212
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh05cb_b3a.pdf
+  raiz: data_raw
+  sha256: 673bcd8a5000cf20846b0eea1919f35ccbad43ecde0022d1735f0f4a8feb1216
+  tamano_bytes: 258757
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh05cb_b3b.pdf
+  raiz: data_raw
+  sha256: a3b693ae68c611ef576dec0e5fc43250ccbe1f82bf80c79ccb327c3aa2745c62
+  tamano_bytes: 185573
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh05cb_bc.pdf
+  raiz: data_raw
+  sha256: 498464ca42028dabec82770d95b7187459f4f1991ed61901a21b67d0b84da6c6
+  tamano_bytes: 67152
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh05q_b2.pdf
+  raiz: data_raw
+  sha256: bd277259638483d43120ef828f27ca7481b884b15f1752d8fdc19ae4a4d926ed
+  tamano_bytes: 276032
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh05q_b3a.pdf
+  raiz: data_raw
+  sha256: 1a1a19e21a931f5f579c919874693c28f0783ed9b22d3cfbf642d93cc74ad088
+  tamano_bytes: 366980
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh09cb_b2.pdf
+  raiz: data_raw
+  sha256: 12c84fc5b88f49984b4df392137f8b2cf58085eacd07f74f4bb93ecb0ba8e4bb
+  tamano_bytes: 1833995
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh09cb_b3a.pdf
+  raiz: data_raw
+  sha256: c015839b84cba0a9f42cf0ddebee1df379efad0639e43799cdb948f5153fa8f9
+  tamano_bytes: 2509283
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh09cb_b3b.pdf
+  raiz: data_raw
+  sha256: a21c5348e4eb217f41e8ad999e02060012067a5c0084a7a88ab24070fd631023
+  tamano_bytes: 2974154
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh09cb_bc.pdf
+  raiz: data_raw
+  sha256: 1062ca2c617b7bd7fec37fd25876e35ea4417c8c5d157570ef6440f08be5548d
+  tamano_bytes: 642218
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/ehh09q_b2.pdf
+  raiz: data_raw
+  sha256: 12191a6cc080bd0946eb69d7217f1ef3eb020067609efe45a57d4532f579b719
+  tamano_bytes: 620273
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/eloc02cb_bcc.pdf
+  raiz: data_raw
+  sha256: a3d9de6a74e315455c06fc6c2d21133cc6e72653a66781bd6ef3177c8218adb3
+  tamano_bytes: 237901
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/eloc02q_bcc.pdf
+  raiz: data_raw
+  sha256: 5d865102d7d1a1098d466e0d27df2333f5f0f59cf4a325aba65111f15352accf
+  tamano_bytes: 614903
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/eloc05cb_bcc.pdf
+  raiz: data_raw
+  sha256: 303449abda3e3829096951b76de0835de9b44a11e12937d681612c9c05772393
+  tamano_bytes: 162211
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/eloc05q_bcc.pdf
+  raiz: data_raw
+  sha256: 9051fc3964d80077ba947b69d86800412ac27c74e3418de23552229e2383d9b0
+  tamano_bytes: 309972
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/eloc09cb_bcc1.pdf
+  raiz: data_raw
+  sha256: a696925e99472497f788420866849e3eedbc60137e68ff5ea457ab7ef150c37b
+  tamano_bytes: 1050128
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/eloc09cb_bcc2.pdf
+  raiz: data_raw
+  sha256: 65d51b1e33cb407c12797103800289189e566d406ad5cfc041de500aa10b3203
+  tamano_bytes: 927189
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ennvih/doc/eloc09q_bcc1.pdf
+  raiz: data_raw
+  sha256: 1a5dc8449f77400cc2c2a47f48fcacfe3ccc3d1bdc4c43ed1b77ec32640adf8c
+  tamano_bytes: 1105763
+  fecha_descarga: '2026-07-30'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+# ── Grupo 2: 5 archivo(s) -- 2026-08-05 18:13:26 a 2026-08-05 18:21:42 -- token dominante: base ──
 
 - archivo: DescargaMasivaOD_582026_171540_NACIONAL_7930url.xml
   raiz: data_raw
@@ -14,6 +291,108 @@
   url_origen_sugerida: ''
   usado_para: ""      # PENDIENTE
 
+- archivo: enaproce2018/ejem_base_micro_ciega_csv.zip
+  raiz: data_raw
+  sha256: 2df2046ac8d5791574fd1e68c124215f3810eadd538714b9f36cda948d4f2ef2
+  tamano_bytes: 5704
+  fecha_descarga: '2026-08-05'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: enaproce2018/ejem_base_micro_ciega_dta.zip
+  raiz: data_raw
+  sha256: 721cfd82ec8c62b2ba24390eee0534950305a94eca6042968499ce33b33fc28d
+  tamano_bytes: 8279
+  fecha_descarga: '2026-08-05'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: enaproce2018/ejem_base_pyme_ciega_csv.zip
+  raiz: data_raw
+  sha256: 91673915121791dac724a6fdbf8c70ac80bee482957ecd614fd0a963069bda77
+  tamano_bytes: 7727
+  fecha_descarga: '2026-08-05'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: enaproce2018/ejem_base_pyme_ciega_dta.zip
+  raiz: data_raw
+  sha256: 5530460e27b194817fa49c12bcb4129bbf78539f3d959ab740b575421ed56a9d
+  tamano_bytes: 10942
+  fecha_descarga: '2026-08-05'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+# ── Grupo 3: 5 archivo(s) -- 2026-08-18 19:45:32 a 2026-08-18 20:03:32 -- token dominante: enafin ──
+
+- archivo: ADQ15_ENAFIN_2024_RNM_INEGI/enafin2024_rnm_catalog.html.2a
+  raiz: data_raw
+  sha256: 80a6c1e416a187c4e781b859f361dabb27956efb343146badc94213a09b9b444
+  tamano_bytes: 152268
+  fecha_descarga: '2026-08-18'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ADQ15_ENAFIN_2024_RNM_INEGI/enafin2024_rnm_get_microdata.html.2a
+  raiz: data_raw
+  sha256: 403fb30aa4fc75998a4e09d334c2815cacda6d4f52d480292de51e03e8de30cb
+  tamano_bytes: 23082
+  fecha_descarga: '2026-08-18'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ADQ15_ENAFIN_2024_RNM_INEGI/enafin2024_rnm_related_materials.html.2a
+  raiz: data_raw
+  sha256: f45c39a075f5f3cc2fd98d4c856e4603f8d5ed6e1b6735186cb6e4d60c7a55d5
+  tamano_bytes: 86418
+  fecha_descarga: '2026-08-18'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ADQ15_JPAL_Experimento_Informacion_Electoral_2009/jpal_evaluacion_landing.html.2a
+  raiz: data_raw
+  sha256: 4281f0c3e5526c631f0a1efed13264033fc4e6e095fa04c078060972a8afa7fc
+  tamano_bytes: 104790
+  fecha_descarga: '2026-08-18'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+- archivo: ADQ15_VotarEntreBalas_DataCivica/votar_entre_balas_base.zip.2a
+  raiz: data_raw
+  sha256: b256c733513410839d2239f882b384b2d693b0507f6825520ebc521a9e9bfc81
+  tamano_bytes: 965735
+  fecha_descarga: '2026-08-18'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  descargado_por: usuario, vía navegador
+  url_origen: ""      # PENDIENTE
+  url_origen_sugerida: ''
+  usado_para: ""      # PENDIENTE
+
+# ══ Preservado de otra(s) raíz(ces) -- de una corrida anterior, no de esta ══
 - archivo: descargas.php
   raiz: descargas_mx
   sha256: 361ac35fa637933ba245bf1fa328cf62bd6cd80d61bf613cf0b431755a1cef10
