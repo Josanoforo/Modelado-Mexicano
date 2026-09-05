@@ -1,0 +1,31 @@
+[CENSO] 2026-09-04 · MAESTRA38-A2 · dos raíces (data_raw, descargas_mx) — downloads excluida del universo (§1 de prereg-caja-S1-A2)
+
+=== descargas_mx ===
+Total en disco: 421 · nuevos: 1 · ya registrados: 420 · conflicto de nombre: 0 · fuera de alcance de dato: 0
+Nuevo: descargas.php (página guardada, no es dato)
+
+=== data_raw ===
+Total en disco: 998 · nuevos: 34 · ya registrados: 964 · conflicto de nombre: 0 · fuera de alcance de dato: 0
+Grupos detectados: 3 (ennvih doc x24, base x5 [enaproce2018 + xml suelto], enafin/jpal/votarentrebalas x5 .2a)
+
+=== corpus.py C1 (huérfano/sin_registro), por raíz ===
+data_raw: 0 presente(s) bajo otra raíz · 37 sin registro
+descargas_mx: 73 presente(s) bajo otra raíz · 33 sin registro
+downloads (fuera de universo, categoría E, solo cuenta): 1 presente(s) bajo otra raíz · 41 sin registro
+C2 duplicado por contenido: ok (0)
+C3 entrada sin archivo: ok (0)
+
+C1 sin_registro del universo del recenso (data_raw + descargas_mx, downloads excluida): 37 + 33 = 70
+
+=== Cruce contra tabla nominal §5 de prereg-caja-S1-A2 ===
+- ICPSR .dta (descargas_mx/ICPSR_35024/35024-0001-Data.dta): AUSENTE-EN-RAIZ (buscado con `find`, 0 archivos .dta bajo ICPSR_35024; carpeta ICPSR_35024 existe con solo la documentación ya registrada)
+- WB 6667 (descargas_mx/ADQ15_WB6667_Tutores_Pedagogicos_Moviles_2016/<microdato>.dta): AUSENTE-EN-RAIZ (carpeta no existe en descargas_mx)
+- PDN S1 (descargas_mx/PDN_S1v2.zip): AUSENTE-EN-RAIZ (solo PDN_S3v2.zip presente)
+- PDN S2 (descargas_mx/PDN_S2v2.zip): AUSENTE-EN-RAIZ
+- PDN S6 (descargas_mx/PDN_S6v2.zip): AUSENTE-EN-RAIZ
+- "11 recetas": discrepancia no reconciliada (spec §5) — no se fija nombre nominal; forense/notas/*PAQUETE-RECETAS*.md hoy trae 3/6/15/1/6/2 según el archivo, ninguno suma 11. No se encontró ningún PAQUETE-RECETAS-*.md nuevo con exactamente 11 entradas del tema ICPSR/WB/PDN.
+- ENFIH-4 (enfih2019/enfih_2019_base_de_datos_csv.zip, sha esperado be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5): AUSENTE-EN-RAIZ en ambas raíces (`find` sobre data/raw y descargas_mx, 0 coincidencias de nombre) — no se puede verificar COINCIDE porque el archivo no está físicamente presente para hashear. COMMIT-4 no se ejecuta: no hay 4/4, hay 0/4 verificable por ausencia física del payload, la resolución de `id_manifiesto` en `relaciones.tsv` (N3/N10/N13/N14) queda para el acto que la aborde.
+
+Ningún ítem de la tabla nominal §5 apareció como candidato nuevo en este censo. Los 35 "nuevos" (1 + 34) son ajenos a la tabla nominal (una página guardada de ENSANUT y tres grupos de descarga previa: ennvih/doc, enaproce2018 + un xml suelto, y tres páginas .2a de ENAFIN/JPAL/VotarEntreBalas).
+
+FP-282: ABIERTA. `crontab -l` → "no crontab for pc0" (permiso denegado bajo sandbox, confirmado también sin sandbox). `forense/adq-log/` no existe en este worktree. El cron descrito en `tools/adquiere_cron.sh` no está instalado en esta máquina.
