@@ -659,3 +659,74 @@ tocado (`canon/modelo-decision-v4_0.md` intacto) — el propio contador
 del encargo lo declara: specs selladas `5`→`8`, filas de cola `+3`.
 
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
+
+### 8.11 Recibo — `ACTO MAESTRA38-N12 · SONDA-INSTRUMENTOS-DE-PERCEPCION` (5/sep/2026, `ADR-343`, `FP-306`)
+
+**Qué sella.** Nada del motor — es sonda, no sello. `COMMIT-1`
+(`…N12-spec.md`) congela, antes de sondear: los 19 instrumentos mínimos
+`HIPÓTESIS-SIN-INSTRUMENTO` de `MAESTRA38-N10 §2` (pregunta + población,
+verbatim — una excepción declarada, `trabajo.prestaciones.
+formalidad_pesa_mas_que_salario` no trae frase-pregunta en `N10`); la
+lista cerrada de 4 fuentes (*Los mexicanos vistos por sí mismos*/UNAM-IIJ
+2015, `ECOPRED`/INEGI 2014, *Cultura Constitucional*/UNAM-IIJ,
+`MxFLS`/`ENNViH`); el criterio de acierto (antecedente o desenlace, misma
+persona, misma población — parecido nominal no cuenta, `N10 §5c`).
+Búsqueda de fuentes derivadas por homonimia resuelta contra 15 catálogos
+locales: **cero derivadas** (A.13).
+
+**Sonda de red, tres mecanismos independientes — más estricta que el
+precedente de `N11`.** `curl` (`000` en ambos hosts), estado del proxy de
+egreso (`403` a `CONNECT`, `policy denial`, ambos hosts) y `WebFetch`
+(`EGRESS_BLOCKED`, ambos hosts): **INEGI y UNAM bloqueados por igual**,
+no solo uno. Las 3 fuentes alojadas ahí quedan `SIN-FETCH`, fichadas
+`PENDIENTE` en la cola (`tsv_crudo.upsert_fila`, clave `fuente_canonica`
+— no `fila_origen`, mismo patrón que `PAQUETE-RECETAS-6`). `PAQUETE-
+RECETAS-8`: `0` recetas verificadas de ≤1 minuto (declarado, no
+encubierto), 3 propuestas sin ejecutar.
+
+**Corrección de premisa (e) del encargo, declarada.** `MxFLS`/`ENNViH`
+**no** está «fuera del inventario»: su texto **sí** está indexado
+(`data/inventario-reactivos-ext-v1_0.tsv`, 17 181 filas), y ya fue
+exhaustivamente buscado por `MAESTRA34-N5`/`MAESTRA38-N10` (3
+formulaciones × 25 reglas) contra estas mismas 19 filas, con resultado
+negativo — no se pide indexación en caja, ya existe y ya se usó.
+
+**Cobertura, `…N12-sonda.md §3`.** Las 19 quedan
+`SIN-COBERTURA-EN-ESTAS-FUENTES` — universo declarado (`0` de `4`
+fuentes con lectura nueva posible hoy), no forzadas a `PARCIAL`/
+`CUBIERTO-POR` sin haber leído contenido real. Cuántas de las 19
+cambiarían de clase si las 3 fuentes `SIN-FETCH` se adquieren: declarado
+**no estimable** sin abrirlas — no se inventa una cifra.
+
+**Enmienda a `FP-303` (append, fechada 5/sep/2026), puesta aquí —
+`firmas-pendientes.tsv` no se edita, fuera del perímetro explícito del
+encargo:**
+
+> N12 corrió: **0 de 19** con cobertura confirmada fuera del SNIEG hoy
+> desde NUBE. 3 de las 4 fuentes candidatas (`ECOPRED`/INEGI, *Los
+> mexicanos vistos por sí mismos*/UNAM-IIJ, *Cultura Constitucional*/
+> UNAM-IIJ) quedaron `SIN-FETCH` por bloqueo de red de esta sesión — el
+> conteo `k` puede subir una vez CAJA las abra; no se puede acotar
+> cuánto sin abrirlas. La cuarta (`MxFLS`/`ENNViH`) no aporta cobertura
+> nueva: ya agotada por `MAESTRA34-N5`/`MAESTRA38-N10`. No cambia el
+> vencimiento ni el gate de `FP-303` — información adicional para la
+> firma de mesa, no una firma en su nombre. Detalle completo en
+> `forense/notas/2026-09-05-MAESTRA38-N12-sonda.md §7`.
+
+**Subproducto.** `…N12-modulo-propio-v0.md`: los 19 instrumentos mínimos
+redactados como ítem/escala/población — **declarado, no lanzado**;
+levantarlo es adquisición con costo y decisión de mesa, no conclusión de
+este acto.
+
+**Cascada.** `ADR-343` (candidato contra `342`, contiguo, coincide con
+el que el propio encargo citaba). `FP-306` (recibo — este acto no
+depende de `FP-303`, que sigue abierta por cuenta de `N10`; la enmienda
+de arriba es información para esa firma, no una compuerta nueva).
+`canon/registro-rotulos.tsv`: fila `MAESTRA38-N12` censada. Cero
+medición de México, cero canon sustantivo tocado (`canon/modelo-
+decision-v4_0.md` intacto) — el propio contador del encargo lo declara:
+instrumentos mínimos con cobertura conocida `0` de `19`, fuentes de
+percepción sondeadas `4` de `4` (2 bloqueadas por red, 1 no necesitaba
+red y ya estaba agotada, 1 sin host confirmado), medición cero.
+
+`python3 tests/check.py --baseline`: ver cierre del PR de este acto.
