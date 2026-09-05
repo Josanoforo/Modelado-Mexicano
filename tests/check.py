@@ -1336,6 +1336,19 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-N9 · YA-MEDIDO, 5/sep/2026. `FP-301` era la única fila
+    # que citaba estos dos archivos en `dónde` y estaba `ABIERTA`; este acto
+    # la recifra a `FIRMADA-POR-MERGE` (P3 del encargo -- `PR #537` ya
+    # fusionado es la firma, regla 1 de maestra-34), un estado terminal que
+    # el filtro `("ABIERTA", "FIRMADA")` de esta misma función no reconoce
+    # -- ni antes ni ahora reconocía las otras variantes `FIRMADA-*` ya en
+    # uso (`FIRMADA-EJECUTADA`, `FIRMADA-PARCIAL`, etc.), así que no se
+    # amplía ese filtro aquí sin auditar las demás filas que dependen de él.
+    # El marcador (`RANURA`/`PENDIENTE`) que ambos archivos traen ya está
+    # resuelto -- lo cita `FP-301`, sólo que con un estado que el filtro no
+    # cubre.
+    "canon/estado-programa-v1_12.md",
+    "forense/encargos/2026-09-04-MAESTRA38-N8-ESTADO-PROGRAMA-v1_12.md",
     # ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE, 3/sep/2026. Dispara
     # `_T22_MARCADOR_RANURA` (`RANURA`) tres veces, todas por CITA de
     # firmas de mesa ya archivadas y cerradas el 25/ago/2026 ("firma de
@@ -4205,6 +4218,86 @@ def t29_firmas_2_no_perdidas():
                  "#530`/`ADR-335`)")
 
 
+# ───────────────────────────────────────────────────────────────
+# T30 · T-YAMEDIDO -- ACTO MAESTRA38-N9 · YA-MEDIDO (5/sep/2026):
+#   defecto real, el mismo patrón dos veces en la misma semana --
+#   `MAESTRA38-N5` clasificó dos reglas ya medidas (`R1.5`, `R7.3`) como
+#   `SIN-INSTRUMENTO`; el encargo de `MAESTRA38-N7` llamó "territorio
+#   virgen" a dos ids (`R7.4`, `R7.6`) que `MAESTRA35-L9`/`L11` ya habían
+#   falsado dos días antes. Ninguno de los dos actos cruzó las fuentes que
+#   ya medían esas reglas antes de clasificar/pre-registrar.
+#
+#   FAIL si un encargo archivado bajo `forense/encargos/` (no `cola/`, que
+#   todavía no se ejecutó) con fecha de archivo (prefijo `YYYY-MM-DD` del
+#   nombre) >= HOY cita en su cuerpo un id de regla (`dominio.sub.nombre`,
+#   con `dominio` uno de los diez ya registrados como tag `**id:**` en
+#   `canon/modelo-decision-v4_0.md`) o un `R-n` del canon, y ese mismo
+#   archivo no trae ninguna marca de salida de `tools/ya_medido.py`
+#   (`NUNCA-MEDIDA` o `MEDIDA-EN:`).
+#
+#   LÍMITE DECLARADO (mismo patrón que T22(b)/T25): (1) no distingue si la
+#   cita clasifica/pre-registra/carga/sella la regla o es solo prosa
+#   ilustrativa -- por eso trae un allowlist declarado, igual que
+#   `_T25_ARCHIVOS_CONOCIDOS`, para los casos donde la cita es un ejemplo,
+#   no una decisión. (2) compara la fecha de ARCHIVO contra HOY -- un
+#   encargo anterior a la existencia de esta herramienta nunca puede
+#   cumplir el requisito en retrospectiva, así que la comparación de fecha
+#   ya lo excluye sin necesidad de un allowlist histórico. (3) "trae la
+#   salida" se detecta por la presencia literal de las dos marcas de
+#   veredicto del script -- no reconstruye el comando ni verifica que
+#   realmente se haya corrido; confía en A.8 para eso, igual que el resto
+#   de la suite confía en que un comando citado se ejecutó de verdad.
+#
+#   Falsador y caducidad: mismo criterio que A.3/A.8/A.9 -- si en un mes
+#   ningún acto lo dispara ni evita un defecto de contenido, se retira y
+#   se anota.
+# ───────────────────────────────────────────────────────────────
+_T_YAMEDIDO_ID_RE = re.compile(
+    r"\b(?:civico|comunicacion|cooperacion|dinero|familia|informacion|"
+    r"salud|tiempo|trabajo|tramite)\.[a-z][a-z0-9_]*\.[a-z][a-z0-9_]*\b"
+)
+_T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
+_T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
+_T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-N9 · YA-MEDIDO, 5/sep/2026: el propio encargo que
+    # define `tools/ya_medido.py` cita `familia.cortejo.urbano_joven_apps`
+    # como CONTROL NEGATIVO de su SPEC -- describe qué debe devolver la
+    # herramienta, no clasifica/pre-registra/carga/sella esa regla. La
+    # herramienta no existía todavía cuando este texto se escribió (es el
+    # propio objeto del encargo), así que no pudo traer su propia salida.
+    "forense/encargos/2026-09-05-MAESTRA38-N9-YA-MEDIDO.md",
+}
+
+
+def t30_yamedido():
+    hoy = datetime.date.today()
+    for p in sorted(glob.glob(os.path.join(ROOT, "forense", "encargos", "*.md"))):
+        relp = rel(p)
+        if relp in _T_YAMEDIDO_ARCHIVOS_CONOCIDOS:
+            continue
+        m_fecha = re.match(r"^(\d{4})-(\d{2})-(\d{2})-", os.path.basename(p))
+        if not m_fecha:
+            continue
+        try:
+            fecha = datetime.date(*(int(x) for x in m_fecha.groups()))
+        except ValueError:
+            continue
+        if fecha < hoy:
+            continue
+        texto = read(p)
+        cita = _T_YAMEDIDO_ID_RE.search(texto) or _T_YAMEDIDO_RN_RE.search(texto)
+        if not cita:
+            continue
+        if _T_YAMEDIDO_SALIDA_RE.search(texto):
+            continue
+        fail("T-YAMEDIDO",
+             f"{relp}: cita `{cita.group(0)}` (id/R-n de regla) y no trae "
+             f"salida de `tools/ya_medido.py` (falta `NUNCA-MEDIDA`/"
+             f"`MEDIDA-EN:` en el archivo) -- corre la herramienta y pega su "
+             f"salida en A.8, o si la cita es solo ilustrativa añade este "
+             f"archivo a `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` con la razón")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -4238,6 +4331,7 @@ def main():
         ("T27 T-INFRA",                           t27_infraestructura),
         ("T28 T-A3",                               t28_a3_encargo_archivado),
         ("T29 T-FIRMAS-2",                         t29_firmas_2_no_perdidas),
+        ("T30 T-YAMEDIDO",                         t30_yamedido),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))

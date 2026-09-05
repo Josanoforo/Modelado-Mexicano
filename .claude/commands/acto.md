@@ -54,6 +54,16 @@ encargo supone es entregable, no interrupción.
     manifiesto. **Un `AUSENTE-EN-RAIZ` sin censo del día es
     `NO-VERIFICADO`, no `AUSENTE`.** Si el censo lista el archivo, no se
     pide — se registra.
+    ⚠️ A.8 contra medición ya corrida (`ADR-340`, `MAESTRA38-N9`, defecto
+    real repetido dos veces la misma semana: `MAESTRA38-N5` clasificó dos
+    reglas ya medidas como `SIN-INSTRUMENTO`; `MAESTRA38-N7` llamó
+    «territorio virgen» a dos ids que `MAESTRA35-L9`/`L11` ya habían
+    falsado dos días antes). Todo acto que CLASIFIQUE, PRE-REGISTRE,
+    CARGUE o SELLE una regla del motor (por `id` o por `R-n` del canon)
+    pega en su A.8 la salida de `python3 tools/ya_medido.py <id-de-
+    regla|R-n>` — una línea de regla, no una compuerta nueva; `T-YAMEDIDO`
+    (`tests/check.py`) lo exige mecánicamente para todo encargo archivado
+    desde hoy que cite un id/R-n en su SPEC.
 
 4 · ENTORNO — tres partes, no dos (A.2). `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE`
     describe el entorno; la sonda de red describe la red; ninguna de las

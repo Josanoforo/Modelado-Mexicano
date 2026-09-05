@@ -633,3 +633,9 @@ fue retirada del árbol por `T01` (`git rm`, mismo mecanismo que retiró
 archivo. Ningún escritor de este índice (Dominios 1–9) cambió: este acto sólo
 lee y re-deriva cifras de canon, cero tablas de `data/curacion-registro/`
 escritas.
+
+## `tools/ya_medido.py` — cruce mecánico de medición previa por id/`R-n` (`ACTO MAESTRA38-N9 · YA-MEDIDO`, 5/sep/2026)
+
+| artefacto | productor | contrato | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `tools/ya_medido.py <id-de-regla\|R-n>` | lectura pura sobre el árbol de trabajo, sin argumentos de escritura — cruza `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `canon/modelo-decision-v4_0.md` §7, `forense/notas/*-L*-*.md` y `forense/prereg-caja/S*-spec-*.md`; la equivalencia `R-n`↔`id` sale del registro congelado de `tests/validador_registro_ids.py` cruzado con el tag `**id:**` del propio canon, nunca por parecido de texto | imprime, por fuente, cada aparición con `archivo:línea` y los campos `situacion`/`tier`/`veredicto`/`p` que traiga, y termina con una sola línea `NUNCA-MEDIDA` o `MEDIDA-EN: <habitantes>` | `.claude/commands/{mapea,acto}.md` (A.8, antes de clasificar/pre-registrar/cargar/sellar una regla) y `T-YAMEDIDO` (`tests/check.py`) | no distingue si una cita es una decisión real o solo prosa ilustrativa — por eso `T-YAMEDIDO` trae su propio allowlist declarado (`_T_YAMEDIDO_ARCHIVOS_CONOCIDOS`), mismo patrón que `_T25_ARCHIVOS_CONOCIDOS`; el alias vía `canon/registro-rotulos.tsv` es solo el que esa tabla ya declaraba, ninguno se inventa aquí |

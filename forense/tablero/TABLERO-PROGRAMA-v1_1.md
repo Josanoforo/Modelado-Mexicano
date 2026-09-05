@@ -470,3 +470,57 @@ Cero medición, cero regla del motor tocada, cero corpus abierto. `python3
 tests/check.py --baseline`: **LÍNEA BASE VERDE**, sin entradas nuevas frente a
 `tests/baseline.json`. Detalle completo en el `## CONSUMIDO` del encargo
 archivado: `forense/encargos/2026-09-04-MAESTRA38-N8-ESTADO-PROGRAMA-v1_12.md`.
+
+### 8.8 Recibo — `ACTO MAESTRA38-N9 · YA-MEDIDO` (5/sep/2026, `ADR-340`, `FP-302`)
+
+**Defecto real, mismo patrón dos veces en la misma semana.** `MAESTRA38-N5`
+clasificó `R1.5`/`R7.3` como `SIN-INSTRUMENTO` teniendo medición ya sellada
+(`MAESTRA38-N6` lo corrigió, `FP-298`); el encargo de `MAESTRA38-N7` llamó
+«territorio virgen» a `R7.4`/`R7.6`, pese a que `MAESTRA35-L9`/`L11` ya habían
+pre-registrado y corrido falsaciones reales sobre esos mismos dos `id` dos días
+antes. Ninguno de los dos actos cruzó, antes de clasificar/pre-registrar, las
+fuentes del repo donde una medición real ya dejaba rastro.
+
+**Qué hace.** `tools/ya_medido.py <id-de-regla|R-n>` (nuevo, P1) cruza en un
+solo comando `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`,
+`canon/modelo-decision-v4_0.md` §7, `forense/notas/*-L*-*.md` y `forense/
+prereg-caja/S*-spec-*.md`, e imprime por fuente cada aparición con
+`archivo:línea` y los campos `situacion`/`tier`/`veredicto`/`p` que traiga,
+cerrando con `NUNCA-MEDIDA` o `MEDIDA-EN: <habitantes>`. Sin heurística de
+parecido: el match es por `id` exacto y por `R-n` exacto; la única
+equivalencia `id`↔`R-n` que conoce sale del registro congelado de `tests/
+validador_registro_ids.py` (ancla cada `R-n` a su regla de §3 por subcadena
+estable) cruzado con el tag `**id:**` que esa misma regla ya trae — nunca
+inventada. El alias adicional de `canon/registro-rotulos.tsv` es solo el que
+esa tabla ya declaraba. Control positivo verificado: `civico.voto.
+clientelar_si_observable` y `civico.protesta.agravio_urbano` (los dos `id` de
+`N7`) devuelven `MEDIDA-EN:` con `L9`/`L11` en la lista. Control negativo:
+`familia.cortejo.urbano_joven_apps` devuelve `NUNCA-MEDIDA` — lo único que
+hay es la hipótesis que `MAESTRA38-N6` cargó por `FP-298`.
+
+**P2.** `.claude/commands/mapea.md` (§4, junto a la definición de
+`HIPÓTESIS-SIN-INSTRUMENTO`) y `.claude/commands/acto.md` (ARRANQUE, junto a
+A.8 contra la raíz) ahora piden pegar la salida de `ya_medido.py` en A.8 antes
+de clasificar/pre-registrar/cargar/sellar una regla — una línea de regla, sin
+compuerta nueva. `T30`/`T-YAMEDIDO` (`tests/check.py`) lo exige mecánicamente:
+`FAIL` si un encargo archivado bajo `forense/encargos/` (no `cola/`) con fecha
+de archivo ≥ hoy cita un `id`/`R-n` en su cuerpo sin que el archivo traiga
+`NUNCA-MEDIDA`/`MEDIDA-EN:` — con un allowlist declarado
+(`_T_YAMEDIDO_ARCHIVOS_CONOCIDOS`, mismo patrón que `_T25_ARCHIVOS_
+CONOCIDOS`) para citas ilustrativas, como la de este mismo encargo sobre
+`familia.cortejo.urbano_joven_apps` en su propio control negativo.
+
+**P3.** `FP-301` (recibo de `MAESTRA38-N8`) recifrada `ABIERTA`→
+`FIRMADA-POR-MERGE`: `PR #537` ya fusionado es la firma (regla 1 de
+maestra-34), tal como la propia fila ya declaraba. `forense/hallazgos.md` gana
+una línea nombrando el patrón repetido (`N5`/`N7`).
+
+**Cascada.** `data/INFRAESTRUCTURA-v1_0.md` gana una sección nueva
+(`tools/ya_medido.py`). `ADR-340` re-derivado contra el árbol (máximo real
+`339`, contiguo — coincide con lo que el propio encargo citaba, sin
+colisión); `FP-302` (recibo) coincide igual. Cero medición de México, cero
+regla del motor tocada — el propio contador del encargo lo declara.
+
+`python3 tests/check.py --baseline`: ver cierre del PR de este acto. Detalle
+completo en el `## CONSUMIDO` del encargo archivado: `forense/encargos/
+2026-09-05-MAESTRA38-N9-YA-MEDIDO.md`.
