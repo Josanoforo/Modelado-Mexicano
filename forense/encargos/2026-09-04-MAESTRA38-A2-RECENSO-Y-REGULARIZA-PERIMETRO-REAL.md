@@ -8,8 +8,8 @@ Ejecutado por `ACTO MAESTRA38-A2` (worktree `mm-maestra38-a2`, rama
 `acto/maestra38-a2-recenso-y-regulariza-perimetro-real`), 4/sep/2026.
 Commits: `09a57da` (A.3), `18bf2a6`+`fff33bc` (0-ter, cherry-pick + SUSTITUIDO
 de V1), `1e8cad6` ([CENSO]), `63d5605` (COMMIT-2 staging), `890bc8c` (CIERRE
-ADR-344/L0/registro-rotulos/FP-307/FP-308). PR: (pendiente de push, ver
-más abajo tras `git push`).
+ADR-344/L0/registro-rotulos/FP-307/FP-308). PR: #543
+(https://github.com/Josanoforo/Modelado-Mexicano/pull/543).
 
 COMMIT-3 (regularización) y COMMIT-4 (ENFIH-4) NO se ejecutaron: los seis
 depósitos nominales de `prereg-caja-S1-A2` §5 están AUSENTE-EN-RAIZ en
