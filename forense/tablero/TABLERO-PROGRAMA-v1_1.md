@@ -524,3 +524,75 @@ regla del motor tocada — el propio contador del encargo lo declara.
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto. Detalle
 completo en el `## CONSUMIDO` del encargo archivado: `forense/encargos/
 2026-09-05-MAESTRA38-N9-YA-MEDIDO.md`.
+
+### 8.9 Recibo — `ACTO MAESTRA38-N10 · COBERTURA-COMPLETA-OLA6` (5/sep/2026, `ADR-341`, `FP-303`/`FP-304`)
+
+**Mandato de mesa (4/sep/2026), verbatim:** «Entiendo que hay un mínimo y ese
+mínimo para lanzar una ola es una cosa. Pero hoy no tenemos lo mínimo y no
+quiero hacerlo al mínimo no después de haber invertido tanto en la
+infraestructura que creamos.» El producto no es el mínimo que abre un
+dominio: es el mapa completo de las 25 reglas de los 6 dominios candidatos y
+el plan para cubrirlas todas.
+
+**Universo, congelado por comando.** `canon/modelo-decision-v4_0.md`
+`§3.2`/`§3.4`/`§3.6`/`§3.8`/`§3.9`/`§3.10` traen **25** reglas — verificado
+dos veces (conteo de bullets `- **SI**` por rango de línea; cruce contra el
+`REGISTRO` congelado de `tests/validador_registro_ids.py`) — no `~30` como
+estimaba el encargo. `tools/ya_medido.py` corrido en las 25 antes de
+clasificar: `NUNCA-MEDIDA` en las 25, sin excepción — sin discrepancia contra
+`MAESTRA34-N5`/`MAESTRA36-N6`, que clasificaron por existencia de reactivo,
+no por falsación real corrida.
+
+**Tres pasadas independientes, no dos.** `MAESTRA34-N5` buscó en
+`inventario-reactivos-v1_2`/`-ext` (241 591 filas, encuesta); `MAESTRA36-N6`
+cruzó `data/manifiesto.yaml` (1 104 entradas, administrativo); **este acto
+corre la tercera** — `busca_reactivos.py --tablas descargas_mx_v1_1`
+(42 536 filas examinadas, 75 corridas, reusando las formulaciones de `N5`
+sin inventar vocabulario nuevo) — universo que `MAESTRA38-N5` sí había usado
+tres días antes, para otro dominio, y que trae LAPOP AmericasBarometer,
+World Values Survey, `ENSANUT 2024` crudo y paneles AEJ/Compartamos no
+indexados en `v1_2`/`ext`.
+
+**Resultado: 3 `MEDIBLE-COMO-ESTÁ` · 3 `CON-CANDIDATA` · 19
+`HIPÓTESIS-SIN-INSTRUMENTO`.** `salud.atencion.grave` y
+`salud.vacunacion.disponible` (ya conocidas por `N5`) más
+**`comunicacion.inseguridad.ver_oir_callar`, hallazgo nuevo de este acto**:
+el módulo `AOJ` de LAPOP (`aoj1`/`aoj1a`/`aoj1b` como desenlace,
+`AOJ11`/`B18`/`B10A`/`AOJ12` como antecedente, misma persona, mismo
+instrumento, cinco olas 2004-2023) satisface el criterio con población
+general — a diferencia de `ENDIREH` (N5, acotado a violencia de género) y
+`CNGMD` (N6, sesgo de selección). `CON-CANDIDATA`:
+`salud.adherencia.desabasto_vs_cuidadora` (`N36`/Cero Desabasto, ya
+registrada `CANDIDATA/PENDIENTE_EVIDENCIA` desde `ADR-279`),
+`cooperacion.comite.monitoreo_sancion_visible` y `cooperacion.faena.
+sancion_social_pueblo_mestizo` (CNGMD, pendientes de abrir bytes —
+`CAND-2`/`CAND-3` de `N6`). Las otras 19 quedan `HIPÓTESIS-SIN-INSTRUMENTO`,
+cada una con instrumento mínimo escrito (una pregunta, una población);
+`REFORMULABLE` queda en cero — todo intento de reformulación honesta
+(10 `EXISTE-NO-SATISFACE` de encuesta + 7 administrativas) se verificó y
+ninguno sobrevivió la regla de honestidad salvo el que resultó
+`MEDIBLE-COMO-ESTÁ`.
+
+**Criterio 2, como consecuencia — no se optimizó.** `motor-nucleo-medible-
+v1_0.md` §3.a exige `≥3 EXISTE-SATISFACE` por dominio: `0` de `6` con lo
+medible hoy, **`0` de `6` aun sumando las 3 adquisiciones con ficha** —
+ningún dominio llega a 3 agotando todo lo nombrable hoy (el techo teórico es
+`salud`/`cooperación`, 2 de sus reglas cada uno). **Pese a eso, los 6
+dominios se declaran `COMPLETABLE`**: las 25 reglas, sin excepción, tienen
+ruta escrita.
+
+**Cascada.** `ADR-341` (candidato contra `340`, contiguo, coincide con el
+que el propio encargo citaba). `FP-303` (decisión de mesa sobre el plan de
+cobertura por dominio, vence 7 días) y `FP-304` (recibo). `canon/registro-
+rotulos.tsv`: fila `MAESTRA38-N10` censada. Tres hallazgos en
+`forense/hallazgos.md`: cero discrepancia contra `ya_medido.py` (declarada,
+no omitida), la subida de `ver_oir_callar` a `MEDIBLE-COMO-ESTÁ`, y un
+catálogo de homonimias de `busca_reactivos.py` repetidas entre reglas
+("jefe"=jefe de hogar, "cortes"=tribunales/apagones, "favor"=guion de
+enumerador, "grave"=problema nacional en LAPOP). Cero medición de México,
+cero canon sustantivo tocado (solo la cascada mecánica de ADR/L0) — el
+propio contador del encargo lo declara.
+
+`python3 tests/check.py --baseline`: ver cierre del PR de este acto. Detalle
+completo, seis tablas por dominio y tabla resumen, en `forense/notas/
+2026-09-05-MAESTRA38-N10-cobertura-ola6.md`.
