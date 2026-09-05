@@ -596,3 +596,77 @@ propio contador del encargo lo declara.
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto. Detalle
 completo, seis tablas por dominio y tabla resumen, en `forense/notas/
 2026-09-05-MAESTRA38-N10-cobertura-ola6.md`.
+
+### 8.10 Recibo — `ACTO MAESTRA38-N11 · PRE-REGISTRO-OLA6-MEDIBLES-Y-FICHAS` (5/sep/2026, `ADR-342`, `FP-305`)
+
+**Mandato de mesa, verbatim (5/sep/2026):** «Revisa Para y dame siguiente
+encargos de nube.» + «no quiero hacerlo al mínimo» (4/sep/2026). Este acto
+no persigue el criterio 2 de `motor-nucleo-medible-v1_0.md` §3.a — sella lo
+medible porque `MAESTRA38-N10` ya lo clasificó `MEDIBLE-COMO-ESTÁ`, y ficha
+lo que clasificó `CON-CANDIDATA`; ninguna hipótesis se toca.
+
+**P1 — tres specs selladas (5 → 8).** `forense/prereg-caja/S6-L6-spec-v1_0.md`
+(`salud.atencion.grave`, `R4.4`: ENNViH-3 `es09`/`es09a` × `cen10*`, mismo
+instrumento; corroboración no requerida vía ENDIREH 2016), `S7-L7-spec-v1_0.md`
+(`salud.vacunacion.disponible`, `R9.2`: ENNViH `ce19d_2`/`hs16d_2` ×
+`cen12_1a`/`he25c`; ola pendiente de CAJA, declarado no adivinado) y
+`S8-L8-spec-v1_0.md` (`comunicacion.inseguridad.ver_oir_callar`, `R10.3`:
+módulo `AOJ` de LAPOP, `AOJ11`/`B18`/`B10A`/`AOJ12` × `aoj1`, multi-ola —
+hallazgo nuevo de `N10 §2.6`). Cada una con universo, ponderador declarado,
+dicotomizaciones, celdas, cota de numerador `< 10`, tabla de signo y la fila
+`NO-ESTIMABLE` que `B-bis` exige, lista de archivos con id de manifiesto +
+`sha256`, un commit por pieza.
+
+**Hallazgo de A.8/D-13, no pedido explícitamente por el encargo pero exigido
+por su propia disciplina.** `canon/modelo-decision-v4_0.md §7` ya archiva
+veredicto `D` de Hito D para `R9.2` (`ADR-56`, 4/ago/2026: «abasto/campaña
+solo lo reporta el prestador, ninguna fuente independiente en el
+catálogo») — `tools/ya_medido.py` devuelve `NUNCA-MEDIDA` porque su
+vocabulario (`CORROBORADA`/`CONTRARIA`, el de espacio `L`) no cubre las
+letras `A`–`E` de Hito D, aunque su propio cruce por fuente sí encuentra la
+línea de `§7`. Declarado en `S7 §0.2`: el diseño de esta pieza (autorreporte
+de hogar, mismo instrumento y misma persona) es categóricamente distinto
+del que Hito D declaró inejecutable (auditor institucional tercero de
+abasto/campaña) — no reabre ni discute ese veredicto, congelado por D-13.
+Mismo patrón verificado para `R4.3` (`D` en ambas mitades, `ADR-56`) y
+`cooperacion.comite.monitoreo_sancion_visible` (`D`, `ADR-138`/`ADR-143`),
+declarado en las notas de las filas de cola de P2; `R4.4`, `R10.3` y
+`cooperacion.faena.sancion_social_pueblo_mestizo` confirmados **sin**
+veredicto archivado en Hito D.
+
+**P2 — tres filas `PENDIENTE`.** `data/curacion-registro/cola-adquisicion-registro.tsv`
+gana, vía `upsert_fila` (`fila_origen` prefijado `MAESTRA38-N11:<id>`), una
+fila por candidata: `salud.adherencia.desabasto_vs_cuidadora` (necesidad
+`N36`, ya asignada desde `ADR-279`), `cooperacion.comite.monitoreo_sancion_visible`
+y `cooperacion.faena.sancion_social_pueblo_mestizo` (dominio cooperación sin
+necesidad `N` asignada — se propone `N42`/`N43` en la nota de cada fila,
+sin insertarla: `necesidad-objeto-modelo.tsv` fuera de perímetro). Cada
+`PENDIENTE` se refiere a la evaluación de la candidatura (abrir bytes /
+desenlace faltante), no a la adquisición: `CERO_DESABASTO` y `CNGMD` ya
+están `OBTENIDO` en el mismo registro. Vista `data/cola-adquisicion-v1_0.tsv`
+regenerada con `tools/vista_cola_adquisicion.py` (nunca a mano);
+`tests/test_cola_writer.py` en verde. Red bloqueada en esta sesión NUBE
+(verificado: `403` del proxy de agente contra hosts externos) — `SIN-FETCH`
+declarado en las tres filas, sin `PAQUETE-RECETAS-7`.
+
+**P3 — corrección de mapa.** `canon/registro-rotulos.tsv` gana la línea
+«`salud.vacunacion.disponible` es regla de `§3.9` (información); id
+conserva prefijo por historia, dominio real = información» — corrección de
+mapa, no de canon (`canon/modelo-decision-v4_0.md` intocado).
+
+**Cascada.** `ADR-342` (candidato contra `341`, contiguo — coincide con el
+que el propio encargo ya citaba). `FP-305` (recibo, no requiere firma).
+`canon/registro-rotulos.tsv`: fila `MAESTRA38-N11` censada. `data/INFRAESTRUCTURA-v1_0.md`:
+tres filas nuevas en la tabla de `forense/prereg-caja/`. Cero medición de
+México, cero canon sustantivo tocado (solo la cascada mecánica de ADR/L0) —
+el propio contador del encargo lo declara.
+
+**Qué NO decide.** No sella ninguna de las tres reglas `MEDIBLE-COMO-ESTÁ`
+en canon — siguen `(propuesta)`, dirección revisa. No reabre ni discute
+ningún veredicto de Hito D. No toca `milpa/**`, `canon/modelo-decision-v4_0.md`
+(salvo esta cascada), `data/**` (salvo `cola`/vista e `INFRAESTRUCTURA`,
+explícitamente dentro de perímetro) ni ninguna hipótesis de `N10`.
+
+`python3 tests/check.py --baseline`: ver cierre del PR de este acto. Detalle
+completo en el `## CONSUMIDO` del encargo archivado: `forense/encargos/
+2026-09-05-MAESTRA38-N11-PRE-REGISTRO-OLA6-MEDIBLES-Y-FICHAS.md`.

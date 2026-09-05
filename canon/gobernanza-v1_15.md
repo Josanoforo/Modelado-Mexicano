@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **341 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **342 ADR**
 
 > | | |
 > |---|---|
@@ -5856,3 +5856,15 @@ WARN, sin entradas nuevas.
 **Deuda que abre.** `FP-303` — decisión de mesa sobre el plan de cobertura por dominio (vence 7 días, informativo). Recibo: `FP-304`.
 
 **Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `340` (`ADR-340`, `MAESTRA38-N9`), contiguo → `341` — coincide con el que el propio encargo ya citaba («340 es N9»). Sin colisión conocida al escribir esta entrada; si otro acto en vuelo fusiona `341` primero, quien fusione después renumera (regla de la casa).
+
+**ADR-342 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `341`, contiguo, sin huecos; candidato `342` — coincide con el que el propio encargo ya citaba) · `ACTO MAESTRA38-N11 · PRE-REGISTRO-OLA6-MEDIBLES-Y-FICHAS`**, 5/sep/2026, entorno **NUBE** — **sella tres specs de pre-registro (`S6`, `S7`, `S8`) para las tres reglas que `MAESTRA38-N10` clasificó `MEDIBLE-COMO-ESTÁ`, y encola tres filas `PENDIENTE` para las tres que clasificó `CON-CANDIDATA`; ninguna hipótesis se toca.**
+
+`COMPUERTA: ninguna` (declaración explícita del encargo — no depende de `FP-303`: sella lo que `N10` ya clasificó, no reabre su criterio 2).
+
+**Qué hace.** `forense/prereg-caja/S6-L6-spec-v1_0.md` (`salud.atencion.grave`, `R4.4`), `S7-L7-spec-v1_0.md` (`salud.vacunacion.disponible`, `R9.2`) y `S8-L8-spec-v1_0.md` (`comunicacion.inseguridad.ver_oir_callar`, `R10.3`), cada una con objeto verbatim del canon, variables con texto de reactivo copiado del inventario, universo, ponderador (declarado, no siempre verificado — `S7` deja la ola de ENNViH pendiente de CAJA), dicotomizaciones, celdas, cota de numerador `< 10`, tabla de signo y la fila `NO-ESTIMABLE` que `B-bis` exige, lista de archivos con id de manifiesto + `sha256`, y frase de sello, un commit por pieza. **Hallazgo de A.8/D-13, no pedido explícitamente por el encargo pero exigido por su propia disciplina:** `canon/modelo-decision-v4_0.md §7` ya archiva veredicto `D` de Hito D para `R9.2` (`ADR-56`) — declarado en `S7 §0.2`, con la razón por la que el diseño de esta pieza (autorreporte de hogar) es distinto del que Hito D bloqueó (auditor institucional tercero); no se reabre. Tres filas `PENDIENTE` nuevas en `data/curacion-registro/cola-adquisicion-registro.tsv` (vía `upsert_fila`, vista regenerada con `tools/vista_cola_adquisicion.py`) para `salud.adherencia.desabasto_vs_cuidadora` (`N36`, ya asignada), `cooperacion.comite.monitoreo_sancion_visible` y `cooperacion.faena.sancion_social_pueblo_mestizo` (cooperación sin necesidad `N` asignada — se propone `N42`/`N43` en la nota de cada fila, sin insertarla). También declarado: `R4.3` y `cooperacion.comite.monitoreo_sancion_visible` ya tienen veredicto `D` archivado en Hito D (`ADR-56`, `ADR-138`), por diseños distintos de los que estas fichas persiguen. Red bloqueada en esta sesión NUBE (verificado, `403` del proxy) — `SIN-FETCH` declarado en las tres filas, sin `PAQUETE-RECETAS-7`. `canon/registro-rotulos.tsv` gana una línea de corrección de mapa: `salud.vacunacion.disponible` es regla de `§3.9` (información), no de `§3.4` — el `id` conserva el prefijo `salud.*` por historia; corrección de mapa, no de canon.
+
+**Qué NO decide.** No mide nada de México (medición: cero, pre-registro, declarado por el propio encargo). No sella ninguna de las tres reglas `MEDIBLE-COMO-ESTÁ` en canon — siguen `(propuesta)`. No reabre ni discute ningún veredicto de Hito D — los cita como registro congelado. No toca `milpa/**`, `canon/modelo-decision-v4_0.md` (salvo esta misma entrada de `gobernanza`), `data/**` (salvo `cola`/vista, `INFRAESTRUCTURA`, explícitamente dentro de perímetro) ni ninguna hipótesis de `N10`.
+
+**Deuda que abre.** Ninguna nueva de mesa. Recibo: `FP-305`.
+
+**Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `341` (`ADR-341`, `MAESTRA38-N10`), contiguo → `342` — coincide con el que el propio encargo ya citaba. Sin colisión conocida al escribir esta entrada; si otro acto en vuelo fusiona `342` primero, quien fusione después renumera (regla de la casa).
