@@ -596,3 +596,66 @@ propio contador del encargo lo declara.
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto. Detalle
 completo, seis tablas por dominio y tabla resumen, en `forense/notas/
 2026-09-05-MAESTRA38-N10-cobertura-ola6.md`.
+
+### 8.10 Recibo — `ACTO MAESTRA38-N11 · PRE-REGISTRO-OLA6-MEDIBLES-Y-FICHAS` (5/sep/2026, `ADR-342`, `FP-305`)
+
+**Qué sella.** Tres pre-registros en `forense/prereg-caja/`, patrón `N7`
+(`S4`/`S5`), para las tres reglas que `MAESTRA38-N10` clasificó
+`MEDIBLE-COMO-ESTÁ`: `S6-L16` (`salud.atencion.grave`), `S7-L17`
+(`salud.vacunacion.disponible`), `S8-L18`
+(`comunicacion.inseguridad.ver_oir_callar`). `tools/ya_medido.py`
+corrido en las tres antes de escribir: `NUNCA-MEDIDA`, sin excepción.
+
+**Tres correcciones de premisa (A.8/D-13), ninguna anticipada por el
+encargo.** `S6`: el árbol trae **dos** `EXISTE-SATISFACE` ya sellados
+para `salud.atencion.grave` sobre reactivos que no se solapan —
+`ENNVIH`+`ENDIREH` (`MAESTRA34-N5`/`MAESTRA37-L1`) y `ENSANUT2024`
+(`MAESTRA37-L3`/`L3-BIS`) — sin que ninguna nota los reconcilie; la
+afirmación de `L3` de heredar de `N5` no se sostiene contra el texto
+real de `N5` (0 menciones de `ENSANUT`/`u0201`/`H0409`). `S6` pre-registra
+las dos ramas en paralelo, sin adjudicar cuál prevalece — corregir esa
+discrepancia queda fuera del perímetro de un pre-registro. `S7`: la
+ficha original de `N5`/`N10` para `salud.vacunacion.disponible` cita
+variables (`cen12_1a`/`he25c`/`ce19d_2`/`hs16d_2`) que **no** están en
+`data/inventario-reactivos-descargas-mx-v1_1.tsv` — viven en
+`data/inventario-reactivos-ext-v1_0.tsv`, el universo de `N5`; `S7`
+corrige la cita y, además, aporta un **hallazgo nuevo**: el bloque
+`a0927a1`-`a0927e4` de `adultos_ensanut2024_w.dta` (razón de no
+vacunación por vacuna nombrada — "no había vacunas"/"no era
+derechohabiente"/"no estaba quien aplica"/"estaba enfermo"/"otra razón")
+prueba el `PORQUE` de la regla ("el hueco es logístico, no actitudinal")
+más directamente que la ficha original, y ni `N5` ni `N10` lo habían
+citado. `S8`: el desenlace del módulo `AOJ` de LAPOP (`aoj1`/`aoj1a`/
+`aoj1b`) existe **solo en la ola 2004** — verificado variable por
+variable, ola por ola — no en "las mismas cinco olas" que `N10 §2.6`
+describe de corrido; `S8` acota el falsador a esa sola ola, con
+2006/2019/2021/2023 citadas solo como evidencia de estabilidad del
+antecedente, no como parte del diseño.
+
+**Fichas de las tres candidatas, en la cola.** Vía el escritor canónico
+(`tsv_crudo.upsert_fila` sobre `data/curacion-registro/cola-adquisicion-
+registro.tsv`, vista regenerada): `salud.adherencia.desabasto_vs_cuidadora`
+(cita `N36`, ya registrada), `cooperacion.comite.monitoreo_sancion_visible`
+(cita `N28`, ya registrada), `cooperacion.faena.sancion_social_pueblo_
+mestizo` (sin `N` asignada — verificado, `0` filas en `necesidad-objeto-
+modelo.tsv` para `R8.4`; se propone `N42` en la nota de la fila, sin
+editar esa tabla, fuera de perímetro). `PAQUETE-RECETAS-7`: `SIN-FETCH`
+declarado — `HEAD` sobre las tres URLs de las fichas (`cerodesabasto.org`,
+`mapadecuidados.inmujeres.gob.mx`, `inegi.org.mx/rnm`) desde NUBE → `000`
+en las tres (proxy de egreso rechaza la conexión, política de
+organización); 3 URLs examinadas, 0 alcanzables (A.13); no se crea el
+archivo condicional.
+
+**Corrección de mapa.** `canon/registro-rotulos.tsv`: `salud.vacunacion.
+disponible` es regla de §3.9 (información), no de §3.4 (salud) — el `id`
+conserva el prefijo por historia; corrección de mapa, no de canon.
+
+**Cascada.** `ADR-342` (candidato contra `341`, contiguo, coincide con
+el que el propio encargo citaba). `FP-305` (recibo — este acto no
+depende de `FP-303`, que sigue abierta por cuenta de `N10`). `canon/
+registro-rotulos.tsv`: fila `MAESTRA38-N11` censada, junto a la fila de
+corrección de mapa (P3). Cero medición de México, cero canon sustantivo
+tocado (`canon/modelo-decision-v4_0.md` intacto) — el propio contador
+del encargo lo declara: specs selladas `5`→`8`, filas de cola `+3`.
+
+`python3 tests/check.py --baseline`: ver cierre del PR de este acto.
