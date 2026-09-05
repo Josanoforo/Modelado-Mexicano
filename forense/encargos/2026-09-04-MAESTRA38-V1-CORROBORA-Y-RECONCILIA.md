@@ -47,3 +47,9 @@ PERÍMETRO. Toca: forense/notas/2026-09-04-MAESTRA38-V1-veredicto.md · forense/
 tablero (recibo) · A.3 · cascada. NO toca: data/** · tests/** · tools/** · milpa/** · canon
 (salvo ADR propio) · encargos existentes. Si te encuentras escribiendo fuera de esta lista, PARA —
 el perímetro estaba mal calculado y saberlo vale más que el atajo.
+
+## SUSTITUIDO
+
+— por ACTO MAESTRA38-A2 (spec S1 absorbe P0/P1 de V1); V1 arrancó, archivó
+su encargo y murió sin medir (caja fuera de servicio, 4/sep/2026). Cero
+líneas borradas.
