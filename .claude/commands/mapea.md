@@ -127,9 +127,16 @@ formulación la trajo primero). Para cada candidata distinta:
   `descargas_mx*`, sin cruzar contra `milpa/tramite-ola5-propuesta-v0.yaml`
   ni `canon/modelo-decision-v4_0.md` §7: 2 de las 5 ya tenían instrumento
   medido en otro acto (`MAESTRA35-L9`/`L11`) y no se cargaron como
-  `HIPÓTESIS-SIN-INSTRUMENTO` cuando `MAESTRA38-N6` propagó la tabla —
-  cruza los tres sitios antes de usar este vocabulario, no solo el
-  buscador.
+  `HIPÓTESIS-SIN-INSTRUMENTO` cuando `MAESTRA38-N6` propagó la tabla.
+  **`MAESTRA38-N9 · YA-MEDIDO` (`ADR-340`) instrumenta ese cruce**: antes
+  de clasificar una REGLA (no una celda) como `NO-ENCONTRADO`/
+  `HIPÓTESIS-SIN-INSTRUMENTO`/`REFORMULABLE`, corre
+  `python3 tools/ya_medido.py <id-de-regla|R-n>` — cruza en un solo
+  comando `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`,
+  `canon/modelo-decision-v4_0.md` §7, `forense/notas/*-L*-*.md` y
+  `forense/prereg-caja/S*-spec-*.md` — y pega su salida en A.8. Si
+  devuelve `MEDIDA-EN: ...`, la regla no es territorio virgen: la
+  clasificación tiene que decirlo, no solo el buscador de reactivos.
 
 Un `NO-ENCONTRADO` de agente **no cierra** una fila de la cola de
 adquisición: la cierra mesa, con el informe de hermanas a la vista
