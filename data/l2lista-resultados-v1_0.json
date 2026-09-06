@@ -1,0 +1,283 @@
+{
+  "fuente": {
+    "archivo": "data/mexico.tab",
+    "paquete": "list",
+    "repo": "github.com/SensitiveQuestions/list",
+    "commit": "e088e5f88af5f3d3f7d61dcffe6d7eb6d28c5120",
+    "sha256": "fe101499b591d90d9e2122f439e26306fcdeab443e42d14f9455e9efa1c04488"
+  },
+  "spec": "prereg-caja-S10-L2-LISTA",
+  "escala": "proporciones 0-1",
+  "ponderador": "NINGUNO (S10 §1)",
+  "ic95": {
+    "§2.1": "analitico (dif. de medias, varianzas desiguales)",
+    "§2.2": "Wilson binomial",
+    "§2.3/§2.4/§2.5": "bootstrap no parametrico percentil, B=10000, semilla=20260906"
+  },
+  "P0_universo": {
+    "n_real": 1004,
+    "n_preregistrado": 1004,
+    "n_coincide": true,
+    "n_columnas_cabecera": 25,
+    "n_campos_por_fila": 26,
+    "campo_0": "rownames de R (unicos, no consecutivos) - no es una variable",
+    "columnas_reales": [
+      "mex.t",
+      "mex.male",
+      "mex.age",
+      "mex.education",
+      "mex.y.all",
+      "mex.vote",
+      "mex.age2",
+      "mex.interest",
+      "mex.married",
+      "mex.pidpanw2",
+      "mex.pidprdw2",
+      "mex.pidpriw2",
+      "mex.votecard",
+      "mex.urban",
+      "mex.cleanelections",
+      "mex.metro",
+      "mex.centralregion",
+      "mex.northregion",
+      "mex.wealth",
+      "mex.epnapprove",
+      "mex.havepropoganda",
+      "mex.concurrent",
+      "mex.cleanelectionsmiss",
+      "mex.loyal",
+      "mex.direct"
+    ],
+    "columnas_esperadas_presentes": {
+      "mex.direct": true,
+      "mex.wealth": true,
+      "mex.urban": true,
+      "mex.loyal": true,
+      "mex.t": true,
+      "mex.votecard": true
+    },
+    "y_del_Rd_presente": false,
+    "conteo_de_lista_usado": "mex.y.all",
+    "nota_y": "man/mexico.Rd documenta una variable `y` ('number of items that make respondents angry') que NO existe en data/mexico.tab: esa glosa es arrastre de otro dataset del paquete. El conteo de lista de Mexico es `mex.y.all` ('the number of activities that respondent did', 0-4), que es el que corresponde al wording de cuatro actividades del propio .Rd.",
+    "mex_cleanelections_rango_real": [
+      0.0,
+      4.0
+    ],
+    "nota_cleanelections": "el .Rd la declara indicador 0-1; el dato real va 0-4. No se usa en ningun estimando de S10 §2; se declara."
+  },
+  "S10_4_condicion_de_entrada": {
+    "max_conteo_tratamiento": 4.0,
+    "max_conteo_control": 3.0,
+    "items_tratamiento_implicados": 4.0,
+    "items_control_implicados": 3.0,
+    "regla": "lista tratamiento = lista control + UN item",
+    "cumple": true,
+    "wording_item_anadido": "Exchange your vote for a gift, favor, or access to a service",
+    "item_es_venta_del_voto": true,
+    "fuente_wording": "man/mexico.Rd (\\description + \\details)"
+  },
+  "e1_prevalencia_por_lista": {
+    "estimador": "diferencia de medias tratamiento-control (Blair & Imai 2012)",
+    "estimacion": 0.18735712471424937,
+    "se": 0.05493992585794358,
+    "ic95": [
+      0.07967684869410974,
+      0.295037400734389
+    ],
+    "n_tratamiento": 508,
+    "n_control": 496,
+    "media_tratamiento": 1.7559055118110236,
+    "media_control": 1.5685483870967742
+  },
+  "e2_prevalencia_directa": {
+    "variable": "mex.direct",
+    "si": 57,
+    "n": 1004,
+    "estimacion": 0.05677290836653386,
+    "ic95": [
+      0.04407610231979669,
+      0.07284849707123862
+    ]
+  },
+  "e3_contraste_lista_menos_directa": {
+    "estimacion": 0.1305842163477155,
+    "ic95": [
+      0.0215863610615777,
+      0.23748752175436494
+    ],
+    "ic95_incluye_0": false,
+    "semiancho_ic95": 0.10795058034639363
+  },
+  "e4_heterogeneidad": {
+    "mex.wealth": {
+      "corte": "mediana de mex.wealth = -0.4170 (variable continua; corte por mediana, declarado)",
+      "estratos": {
+        "bajo (<=mediana)": {
+          "n": 513,
+          "n_tratamiento": 270,
+          "n_control": 243,
+          "e1_lista": 0.17366255144032916,
+          "e1_ic95_analitico": [
+            0.026136787617770135,
+            0.32118831526288816
+          ],
+          "e1_ic95_bootstrap": [
+            0.028170252541831163,
+            0.3240611421942139
+          ],
+          "e2_directa": 0.056530214424951264,
+          "e3_contraste": 0.1171323370153779,
+          "e3_ic95": [
+            -0.031164911434751107,
+            0.26740013318930694
+          ],
+          "e3_ic95_incluye_0": true
+        },
+        "alto (>mediana)": {
+          "n": 491,
+          "n_tratamiento": 238,
+          "n_control": 253,
+          "e1_lista": 0.21732487461387717,
+          "e1_ic95_analitico": [
+            0.06105093401681827,
+            0.3735988152109361
+          ],
+          "e1_ic95_bootstrap": [
+            0.06581393363791499,
+            0.3728499755613099
+          ],
+          "e2_directa": 0.05702647657841141,
+          "e3_contraste": 0.16029839803546575,
+          "e3_ic95": [
+            0.007040207740062743,
+            0.31430715394270126
+          ],
+          "e3_ic95_incluye_0": false
+        }
+      }
+    },
+    "mex.urban": {
+      "corte": "indicador 0/1",
+      "estratos": {
+        "rural (0)": {
+          "n": 278,
+          "n_tratamiento": 145,
+          "n_control": 133,
+          "e1_lista": 0.06051335234638322,
+          "e1_ic95_analitico": [
+            -0.13582864352169102,
+            0.25685534821445744
+          ],
+          "e1_ic95_bootstrap": [
+            -0.13334872100498443,
+            0.25118523679211346
+          ],
+          "e2_directa": 0.05755395683453238,
+          "e3_contraste": 0.002959395511850843,
+          "e3_ic95": [
+            -0.1920397574395909,
+            0.19450349658161653
+          ],
+          "e3_ic95_incluye_0": true
+        },
+        "urbano (1)": {
+          "n": 726,
+          "n_tratamiento": 363,
+          "n_control": 363,
+          "e1_lista": 0.23966942148760317,
+          "e1_ic95_analitico": [
+            0.11148342576317233,
+            0.367855417212034
+          ],
+          "e1_ic95_bootstrap": [
+            0.11122496886454043,
+            0.36720231340763243
+          ],
+          "e2_directa": 0.05647382920110193,
+          "e3_contraste": 0.18319559228650123,
+          "e3_ic95": [
+            0.055208987251434326,
+            0.308905333552828
+          ],
+          "e3_ic95_incluye_0": false
+        }
+      }
+    },
+    "mex.loyal": {
+      "corte": "indicador 0/1",
+      "estratos": {
+        "no leal (0)": {
+          "n": 632,
+          "n_tratamiento": 320,
+          "n_control": 312,
+          "e1_lista": 0.20592948717948723,
+          "e1_ic95_analitico": [
+            0.06994678476271046,
+            0.341912189596264
+          ],
+          "e1_ic95_bootstrap": [
+            0.07170905935913735,
+            0.3439494212958581
+          ],
+          "e2_directa": 0.06329113924050633,
+          "e3_contraste": 0.1426383479389809,
+          "e3_ic95": [
+            0.008178538031320088,
+            0.2805841591872484
+          ],
+          "e3_ic95_incluye_0": false
+        },
+        "leal (1)": {
+          "n": 372,
+          "n_tratamiento": 188,
+          "n_control": 184,
+          "e1_lista": 0.15610545790934305,
+          "e1_ic95_analitico": [
+            -0.01944348386250286,
+            0.3316543996811889
+          ],
+          "e1_ic95_bootstrap": [
+            -0.018018202559296294,
+            0.3328109182758704
+          ],
+          "e2_directa": 0.0456989247311828,
+          "e3_contraste": 0.11040653317816025,
+          "e3_ic95": [
+            -0.06353611673171917,
+            0.28683958012620286
+          ],
+          "e3_ic95_incluye_0": true
+        }
+      }
+    }
+  },
+  "e5_participacion_verificada_x_directa": {
+    "instrumento": "mex.votecard - turnout VERIFICADO POR ENCUESTADOR (enumerator-verified), distinto de mex.vote (autodeclarado). NO es SIN-INSTRUMENTO.",
+    "tabla_2x2": {
+      "verificado_voto_1": {
+        "n": 614,
+        "directa_si": 31,
+        "tasa": 0.050488599348534204,
+        "ic95": [
+          0.035794107700263686,
+          0.0707728082654922
+        ]
+      },
+      "verificado_voto_0": {
+        "n": 390,
+        "directa_si": 26,
+        "tasa": 0.06666666666666667,
+        "ic95": [
+          0.04589794272994928,
+          0.09588870154424996
+        ]
+      }
+    },
+    "diferencia_de_proporciones": -0.016178067318132462,
+    "ic95": [
+      -0.047123954800080844,
+      0.013245164216288376
+    ],
+    "ic95_incluye_0": true
+  }
+}
