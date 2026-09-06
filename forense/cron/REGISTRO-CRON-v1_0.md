@@ -23,7 +23,7 @@ propio repo (`tools/adquiere_cron.sh`, `forense/agente-adquisicion-v1_0.md`,
 | usuario del crontab | el de mesa en `mm-adq` (no root) |
 | repo que opera | el clon de trabajo de mesa en `mm-adq`, rama `main` |
 | log | `forense/adq-log/<AAAA-MM-DD>.log` (por corrida) + `forense/adq-log/cron-stdout.log` (stdout/stderr crudo del propio crontab, apéndice) |
-| huella mínima esperada por corrida | `forense/censo-raiz/<AAAA-MM-DD>.txt` (paso 2.5) **y**, desde este acto, una línea `[ADQ] <fecha>: <n> objetivos intentados / <m> obtenidos` en ese mismo archivo (D-b, ver §6) |
+| huella mínima esperada por corrida | **tres commits** en `censo/<AAAA-MM-DD>` (ACTO MAESTRA38-CRON-3, `ADR-354`): `[CENSO] <fecha>` (paso 2.5), `[ADQ-PDN] <fecha>` (paso 2.6 — el re-escaneo si cae en ventana día 1-3, o la línea `fuera de ventana` si no) y `[ADQ] <fecha> <HH:MM>: invocado=<si\|no> motivo=<-\|PARO-RAIZ\|PARO-RED\|PARO-PROMPT\|PARO-CORPUS> exit=<código\|-> duracion=<s> commits_nuevos=<k> ramas_nuevas=<j> archivos_modificados=<m>` (D-b) — medida contra el estado real del clon, nunca una constante; se escribe siempre, incluso `invocado=no` |
 | commit del censo | `[CENSO] <AAAA-MM-DD>`, rama `censo/<AAAA-MM-DD>`, PR (main protegida, check `check` requerido) |
 | runbook | `forense/agente-adquisicion-v1_0.md` §1 (bloque ```text``` que el script extrae para `claude -p`) |
 | modelo que lo declara | `D-13` (`canon/gobernanza-v1_15.md`, `ADR-281`, `ACTO MAESTRA34-N7 · SKILLS-COLA-Y-ADQ`) |
@@ -51,9 +51,9 @@ domingo=0/7 y sábado=6 quedan fuera a propósito (mismo criterio que T-CRON
 
 | día | ventana del cron | huella esperada | si falta |
 |---|---|---|---|
-| lunes-viernes | corre (07:30 CST) | `forense/censo-raiz/<fecha>.txt` con línea `[ADQ]` (D-b) | revisar §5 antes de asumir defecto — puede ser `PARO-RAIZ`/`PARO-RED` ya logueado |
+| lunes-viernes | corre (07:30 CST) | **tres commits** en `censo/<fecha>` (ACTO MAESTRA38-CRON-3, ver §1): `[CENSO]`, `[ADQ-PDN]` (aunque sea "fuera de ventana") y `[ADQ]` (D-b), este último aunque `invocado=no` | revisar §5 antes de asumir defecto — puede ser `PARO-RAIZ`/`PARO-RED` ya logueado |
 | sábado, domingo | no corre | ninguna — su ausencia **no** es defecto | T-CRON no exige nada esos días (cuenta el viernes previo) |
-| días 1-3 de cada mes (además de lo de arriba, si caen en día hábil) | corre además el paso 2.6 (`[ADQ-PDN]`) | los 4 zips de `pdn_bulk_<AAAA_MM>/` re-bajados y, desde este acto, escaneados por `tests/manifiesto.py --escanea descargas_mx` (D-c) para que aparezcan en el censo del día | si el día 1-3 cae en fin de semana, el paso 2.6 se corre el siguiente día hábil dentro de la ventana `1-3`; si `1-3` completo cae en fin de semana (no puede pasar con 3 días consecutivos salvo mes que empieza en sábado), queda sin re-bajar ese mes y se declara en el log, no se fuerza fuera de ventana |
+| días 1-3 de cada mes (además de lo de arriba, si caen en día hábil) | el commit `[ADQ-PDN]` trae el re-escaneo real (no solo la línea "fuera de ventana") | los 4 zips de `pdn_bulk_<AAAA_MM>/` re-bajados y escaneados por `tests/manifiesto.py --escanea descargas_mx` (D-c), commiteados en `censo/<fecha>` (corregido por `ACTO MAESTRA38-CRON-3`: antes quedaba huérfano, sin commitear) | si el día 1-3 cae en fin de semana, el paso 2.6 se corre el siguiente día hábil dentro de la ventana `1-3`; si `1-3` completo cae en fin de semana (no puede pasar con 3 días consecutivos salvo mes que empieza en sábado), queda sin re-bajar ese mes y se declara en el log, no se fuerza fuera de ventana |
 | 4/sep/2026 | fecha de instalación del cron | primera huella exigible | T-CRON no exige nada antes de esta fecha |
 
 ## §4 · T-CRON (`tests/check.py`, T31)
@@ -138,36 +138,46 @@ Cuando `T-CRON` da WARN o alguien sospecha que el cron dejó de correr:
 
 ## §7 · Estado de la compuerta y de los dos commits
 
-**Compuerta (`PR #556`/`PR #557`): sigue ABIERTA.** Verificado contra
-GitHub al escribir este documento: ambos PRs están `open`,
-`mergeable_state: clean`, sin conflictos con `main`. No se fusionaron
-desde esta sesión porque `PR #557` declara explícitamente en su cuerpo
-"No se fusiona — merge de mesa" (decisión de dirección anterior, no de
-esta sesión) — fusionarlo de todos modos sería pasar por encima de esa
-instrucción. `PR #556` (`[CENSO] 2026-09-06`) es una rama de censo
-mecánica sin esa marca, pero fusionarla sola sin `PR #557` no resuelve la
-compuerta tal como el encargo la plantea (ambas, juntas). Queda para
-mesa: revisar y fusionar (o rechazar con firma) los dos PRs.
+**Compuerta (`PR #556`/`PR #557`): CUMPLIDA (`ACTO MAESTRA38-CRON-3`,
+6/sep/2026).** Ambos fusionados antes de tocar código (D-a). `PR #557`
+traía un conflicto real con el ya-fusionado `PR #558` (dirección lo
+fusionó por error antes de lanzar el acto — ver `ADR-354`,
+`gobernanza-v1_15.md`) contra `forense/tablero/TABLERO-PROGRAMA-v1_1.md`,
+resuelto conservando ambas entradas en orden cronológico.
 
 **Commit 1** (este documento + `data/INFRAESTRUCTURA-v1_0.md` + `T-CRON`
 en `tests/check.py` + `tests/test_t_cron.py` + `tools/adquiere_cron.sh`
 D-b/D-c + `.claude/commands/acto.md` D-d + `forense/hallazgos.md` +
-tablero): hecho desde este entorno de nube, sin acceso a `mm-adq`.
+tablero): hecho desde un entorno de nube, sin acceso a `mm-adq` — con dos
+defectos de código (huella `[ADQ]` constante, `[ADQ-PDN]` huérfano)
+corregidos por `ACTO MAESTRA38-CRON-3` (`ADR-354`; renumerado de `353` a `354` al sincronizar -- `PR #561`/`MAESTRA38-A6` fusionó primero y tomó `353`).
 
-**Commit 2 — PENDIENTE, requiere acceso físico a `mm-adq`:**
-1. `crontab -e` en `mm-adq`: instalar/confirmar la línea de §2
-   (con el `PATH=` explícito — verificar con `crontab -l` después).
-2. Corrida manual de prueba: `cd /ruta/al/clon && ./tools/adquiere_cron.sh`
-   a mano, una vez, y confirmar en el log resultante:
-   - el paso 2.5 escribe el censo **y** la línea `[ADQ] <fecha>: … /…`
-     (D-b) aunque sea `0 objetivos intentados / 0 obtenidos`;
-   - si cae en ventana de mes (día 1-3), el paso 2.6 corre
-     `tests/manifiesto.py --escanea descargas_mx` al final (D-c) y los 4
-     bulk aparecen en el censo del día.
-3. Dejar constancia en este mismo archivo (`§7`, append) de la fecha en
-   que ese commit 2 se ejecutó, quién lo corrió, y el resultado de la
-   corrida manual.
+**Commit 2 — EJECUTADO (`ACTO MAESTRA38-CRON-3`, 6/sep/2026, caja `mm-adq`
+real, no sesión de nube):**
+1. `crontab -e`: instalada la línea `PATH=/usr/local/bin:/usr/bin:/bin:/home/pc0/.local/bin`
+   de §2 (verificado antes de instalar que `claude`/`python3`/`git`/`curl`/
+   `gh` resuelven bajo ese `PATH` exacto, `env -i PATH=... which ...`, los
+   cinco encontrados). `crontab -l` antes: sin `PATH=`. Después: con
+   `PATH=` y el horario `30 7 * * 1-5` intacto.
+2. Corrida manual de prueba, dos veces:
+   - PARO forzado (`data/raw` ausente — desviación declarada del ejemplo
+     del encargo, `data/raices.local.yaml`/`PARO-RAIZ`, que no detiene el
+     script antes de `claude -p`): `[ADQ] 2026-09-06 16:36: invocado=no
+     motivo=PARO-CORPUS exit=- duracion=0s commits_nuevos=0
+     ramas_nuevas=0 archivos_modificados=2`, commiteado y empujado a
+     `censo/2026-09-06` (`0096c2be`, luego reconciliado en la corrida
+     completa de abajo).
+   - Corrida completa: paso 2.5 escribió el censo (`139 nuevos`) y, al
+     terminar, `[ADQ] 2026-09-06 16:41: invocado=si motivo=- exit=0
+     duracion=179s commits_nuevos=1 ramas_nuevas=0 archivos_modificados=1`
+     — invocación real de `claude -p`, `179 s`, código `0`. Paso 2.6
+     escribió `[ADQ-PDN] 2026-09-06: fuera de ventana (día 6, ventana
+     1-3)`. Tres commits en `censo/2026-09-06`, `PR #560` abierto.
+3. Constancia: `ACTO MAESTRA38-CRON-3 · HUELLA-REAL-Y-PRUEBA-EN-CAJA`,
+   6/sep/2026, ejecutado por la sesión Sonnet que corre `/acto` en esta
+   caja. Detalle completo, log crudo y el archivo del censo íntegro en
+   `forense/notas/2026-09-06-MAESTRA38-CRON-3-resultados.md`.
 
-Este commit 2 **no** se ejecuta desde esta sesión de nube — no hay
-acceso a la caja física `mm-adq` desde aquí. Queda documentado como
-pendiente explícito, no como hecho.
+**Lo que ninguna de las dos corridas prueba: el disparo automático.**
+Primera evidencia posible: `censo/2026-09-07`, lunes 07:30. `T31 T-CRON`
+lo vigila desde el martes; `FP-323` sigue `ABIERTA` hasta entonces.
