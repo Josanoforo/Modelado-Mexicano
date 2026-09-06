@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **351 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **352 ADR**
 
 > | | |
 > |---|---|
@@ -6033,3 +6033,25 @@ WARN, sin entradas nuevas.
 **Deuda que cierra.** Ninguna.
 
 **Numeración — re-derivada dos veces, la segunda por colisión real con un acto hermano que fusionó primero.** Primera derivación, contra `origin/main`/`PR #551` (`MAESTRA38-LOTE-LAPOP`, `ADR-349`, `FP-315`/`FP-316`): máximo `ADR-349`, contiguo → `350`; máximo `FP-316`, contiguo → `317`. El encargo citaba `ADR-353`/`FP-321`/`FP-322`, derivados contra una cola del 6/sep que ya estaba desactualizada al recibirse (máximo real era `346` en ese momento, y avanzó a `349` mientras este acto corría) — no se heredó, se re-derivó. Publicado `350`/`317` en la rama propia y empujado. **Colisión real al re-sincronizar para cerrar** (no hipotética, medida): `origin/main` había avanzado a `06c1d522` — `PR #554` (`MAESTRA38-L2-LISTA`, arriba en esta misma sección) fusionó con **los mismos números**, `ADR-350`/`FP-317`, derivados de forma independiente contra el mismo árbol intermedio, apoyándose en el encargo de `A5` para descartar colisión (`FP-321`/`FP-322`, cifra que este acto ya sabía obsoleta). **Regla de la casa, renumera quien fusiona segundo**: `L2-LISTA` fusionó primero; este acto cede `350`/`317` y toma `ADR-351`/`FP-318`, contiguos tras el árbol con las dos ramas ya dentro. Ningún hueco: `349` `LOTE-LAPOP`, `350` `L2-LISTA`, `351` este acto (mismo patrón para `FP`: `315`/`316` `LOTE-LAPOP`, `317` `L2-LISTA`, `318` este acto).
+
+**ADR-352 (derivado por el comando de la casa contra el árbol ya fusionado: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `351`, contiguo, sin huecos; candidato `352`. Ningún otro acto en vuelo conocido al momento de cerrar) · `ACTO MAESTRA38-CENSO-CLON · UN-CLON-UN-OBJETO`**, 6/sep/2026, entorno **NUBE, sin red ni corpus** — **un clon git es un objeto en `tests/manifiesto.py --escanea`, no un montón de archivos sueltos.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-06-MAESTRA38-CENSO-CLON.md`, SHA de redacción `ef9ba36`. **Gate verificado.** `COMPUERTA: #556 fusionado` — verificado por PRODUCTO contra `origin/main` real: `git merge-base --is-ancestor 23442b4 origin/main` → sí, y `git log origin/main` trae `23442b4 Merge pull request #556 from Josanoforo/censo/2026-09-06` como commit fusionado. Cumplida.
+
+**COMMIT-1.** Una carpeta que contiene `.git/` en cualquier nivel del árbol que `--escanea` recorre se detecta antes de descender a sus archivos individuales (`_detectar_clones_y_archivos`, nuevo en `tests/manifiesto.py`) y se reporta como UN objeto: una sola línea `CLON <ruta> · commit <sha de HEAD leído de .git> · <n> archivos` en una sección `CLONES (k):` nueva del reporte de `--escanea`. Ninguno de sus archivos entra a "nuevos" ni a "páginas guardadas", ni recibe entrada en `data/manifiesto-staging.yaml`. Los archivos del clon que ya están en `data/manifiesto.yaml` (dedup por sha256, igual que el resto de `--escanea`) siguen contando en el total de "ya registrados", pero se listan anidados bajo la línea `CLON`, no sueltos en la lista plana. `HEAD` se lee resolviendo una ref simbólica (`ref: refs/heads/…`) contra el archivo de la ref o, si está empaquetada, contra `.git/packed-refs`; un `HEAD` ilegible se reporta como tal, no tumba el escaneo. De paso, congelado en el mismo COMMIT: la heurística que deriva `url_origen_sugerida` de una página guardada (`_extraer_url_pagina`) deja de aplicarse a `.html`/`.htm` — solo `.php` sigue sugiriendo; un `.html` no sugiere nada, medido mordiendo el propio texto de una librería empaquetada (jquery) como si fuera la URL de origen de la página.
+
+**Defecto real que corrige** (`forense/hallazgos.md`, 6/sep/2026): una carpeta con un clon completo de un repositorio (`L2-LISTA`) dejada dentro de una raíz escaneada se trataba archivo por archivo — 136 de sus archivos, contados como "nuevos" en el censo del día, sin ser dato del proyecto.
+
+**COMMIT-2.** `tests/test_manifiesto_clon.py` reproduce la condición con una fixture mínima (tempfile, sin red ni corpus): una carpeta con `.git/HEAD` (un sha de 40 hex) y tres archivos — uno ya registrado en el manifiesto de la fixture, dos no. Exige exactamente lo declarado: 1 línea `CLON`, 0 archivos nuevos, 1 ya registrado (bajo el `CLON`), 0 entradas de staging para los archivos del clon. `python3 tests/test_manifiesto_clon.py` → `OK`. Re-corrida real (no simulada) de `--escanea` sobre el mismo árbol de prueba, comando y salida cruda pegados en `forense/notas/2026-09-06-MAESTRA38-CENSO-CLON-verificacion.md`. `tests/test_manifiesto_seguro.py` y `tests/test_manifiesto_alcance.py` (los dos suites de `manifiesto.py` ya existentes) siguen en `OK`, sin regresión.
+
+**`data/INFRAESTRUCTURA-v1_0.md`**: la fila de `forense/censo-raiz/*.txt` gana la frase «un clon git = un objeto», citando este ADR.
+
+**`tests/check.py --baseline`: VERDE**, sin `FAIL` nuevo contra `tests/baseline.json` (HEAD congelado en el momento de correrlo).
+
+**Lo que este acto NO hace.** No toca `data/manifiesto.yaml`, `data/manifiesto-staging.yaml`, `data/cola-adquisicion-v1_0.tsv` ni ningún archivo de corpus. No descarga nada — no hay Anti-PR#77 que verificar. No abre `FP` nueva: es una pieza de instrumento (corrige un script de censo), no una medición del motor.
+
+**Deuda que abre.** Ninguna.
+
+**Deuda que cierra.** Ninguna; deja instrumentado el hallazgo del 6/sep para que el siguiente censo real de una raíz con clones no repita el falso conteo.
+
+**Numeración.** Sin colisión conocida al derivar: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `351` contra el árbol ya fusionado (incluye `ADR-350`/`ADR-351` de `MAESTRA38-L2-LISTA`/`MAESTRA38-A5`) → candidato `352`, contiguo, sin hueco.
