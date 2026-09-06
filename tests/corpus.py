@@ -117,6 +117,7 @@ RAIZ_INTEGRADA) -- lectura pura, sin efectos secundarios.
 Uso: python3 tests/corpus.py
 """
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -145,6 +146,21 @@ def _indice_por_sha_y_raiz(entradas):
         raiz_declarada = e.get("raiz", M.RAIZ_INTEGRADA)
         indice.setdefault(sha, []).append((e, raiz_declarada))
     return indice
+
+
+_RE_COPIA_NAVEGADOR = re.compile(r" \(\d+\)(\.[^./\\]+)$")
+
+
+def _es_patron_b(nombre_archivo):
+    """Sub-condición (2) de la regla B, S1-A2-spec-v1_0.md §3: sufijo de
+    copia de navegador ' (N)' inmediatamente antes de la extensión, o
+    página guardada (M.EXTENSIONES_PAGINA). No mira sha256 -- eso ya lo
+    resolvió el llamador (condición (1), sha ya duplicado en la misma raíz)
+    antes de invocar esto."""
+    if _RE_COPIA_NAVEGADOR.search(nombre_archivo):
+        return True
+    ext = os.path.splitext(nombre_archivo)[1].lower()
+    return ext in getattr(M, "EXTENSIONES_PAGINA", {".php", ".html", ".htm"})
 
 
 def c1_huerfanos(root, entradas, raw_dir):
@@ -184,8 +200,23 @@ def c1_huerfanos(root, entradas, raw_dir):
     antes de clasificar -- eso no cambió).
 
     Devuelve {nombre_raiz: {"presente_bajo_otra_raiz": [(rel, [otras_raices]), ...],
-                             "sin_registro": [(rel, anotacion_o_None), ...]}}
-    con ambas sublistas ordenadas por `rel`.
+                             "sin_registro": [(rel, anotacion_o_None), ...],
+                             "patron_b": [(rel, anotacion), ...]}}
+    con las tres sublistas ordenadas por `rel`.
+
+    PATRÓN B (ENMIENDA 3, MAESTRA38-A2-bis, forense/prereg-caja/S1-A2-spec-v1_0.md
+    §3, fijada por primera vez ahí): un archivo que cae en `sin_registro` se
+    reclasifica a `patron_b` -- y se excluye del CONTEO de `sin_registro`, sin
+    dejar de reportarse -- si y sólo si, en ese orden: (1) su sha256 ya
+    coincide con otro archivo indexado en la MISMA raíz (`anotacion` de arriba
+    no es None) Y (2) o bien su nombre matchea el sufijo de copia de
+    navegador ` (N)` inmediatamente antes de la extensión (`archivo (1).pdf`),
+    o bien es una página guardada (`M.EXTENSIONES_PAGINA`, p.ej. `descargas.php`,
+    que nunca se promueve por diseño). Un duplicado por sha256 sin (1) fallar
+    y sin (2) — mismo contenido, nombre sin sufijo de copia y no es página —
+    sigue siendo categoría D (§6 de la spec), no B: se queda en `sin_registro`
+    tal como ya declaraba la ENMIENDA 2 (los 3 casos históricos
+    ADQ15_OMCA/ennvih_diseno/eder2025 permanecen `sin_registro`, sin cambio).
     """
     raices = {M.RAIZ_INTEGRADA: raw_dir}
     raices.update(M.raices_configuradas(root))
@@ -207,6 +238,7 @@ def c1_huerfanos(root, entradas, raw_dir):
         acotar_extension = nombre_raiz in M.RAICES_QUE_EXIGEN_GRUPO
         presente_bajo_otra_raiz = []
         sin_registro = []
+        patron_b = []
         if ruta_raiz and os.path.isdir(ruta_raiz):
             for dirpath, _dirnames, filenames in os.walk(ruta_raiz):
                 for fn in filenames:
@@ -230,10 +262,14 @@ def c1_huerfanos(root, entradas, raw_dir):
                             f"sin_registro_pero_duplica_contenido_de({mismas_raiz[0]})"
                             if mismas_raiz else None
                         )
-                        sin_registro.append((rel, anotacion))
+                        if anotacion and _es_patron_b(fn):
+                            patron_b.append((rel, f"patron_b -- {anotacion}"))
+                        else:
+                            sin_registro.append((rel, anotacion))
         resultado[nombre_raiz] = {
             "presente_bajo_otra_raiz": sorted(presente_bajo_otra_raiz, key=lambda t: t[0]),
             "sin_registro": sorted(sin_registro, key=lambda t: t[0]),
+            "patron_b": sorted(patron_b, key=lambda t: t[0]),
         }
     return resultado
 
@@ -312,6 +348,7 @@ def main():
         len(v["presente_bajo_otra_raiz"]) + len(v["sin_registro"])
         for v in huerfanos_por_raiz.values()
     )
+    total_patron_b = sum(len(v["patron_b"]) for v in huerfanos_por_raiz.values())
     etiqueta = f"[warn]  C1 huérfanos  ({total_huerfanos} warn)" if total_huerfanos \
         else "[ ok ]  C1 huérfanos"
     print("  " + etiqueta + "  -- alcance: todas las raíces configuradas, ver ENMIENDA en cabecera")
@@ -319,13 +356,14 @@ def main():
         clasif = huerfanos_por_raiz[nombre_raiz]
         otra_raiz = clasif["presente_bajo_otra_raiz"]
         sin_registro = clasif["sin_registro"]
-        if not otra_raiz and not sin_registro:
+        patron_b = clasif["patron_b"]
+        if not otra_raiz and not sin_registro and not patron_b:
             continue
         if nombre_raiz in M.RAICES_QUE_EXIGEN_GRUPO:
             # ENMIENDA 2026-08-13: raíz no curada -- solo CUENTA, nunca nombres.
             print(f"    · [{nombre_raiz}]: {len(otra_raiz)} presente(s) bajo otra raíz · "
-                  f"{len(sin_registro)} sin registro -- solo cuenta, sin nombres "
-                  f"(raíz no curada, ver ENMIENDA 2026-08-13)")
+                  f"{len(sin_registro)} sin registro · {len(patron_b)} patrón B "
+                  f"-- solo cuenta, sin nombres (raíz no curada, ver ENMIENDA 2026-08-13)")
         else:
             for rel, otras in otra_raiz:
                 print(f"    · [{nombre_raiz}] {rel} -- presente bajo otra raíz "
@@ -334,9 +372,16 @@ def main():
                 sufijo = f" -- {anotacion}" if anotacion else ""
                 print(f"    · [{nombre_raiz}] {rel} -- ningún id del manifiesto lo "
                       f"declara para esta raíz (sin_registro){sufijo}")
+            for rel, anotacion in patron_b:
+                print(f"    · [{nombre_raiz}] {rel} -- {anotacion} (excluido del conteo "
+                      f"de candidatas nuevas, S1-A2-spec-v1_0.md §3; nunca se borra)")
             print(f"    · [{nombre_raiz}]: {len(otra_raiz)} presente(s) bajo otra raíz · "
-                  f"{len(sin_registro)} sin registro")
+                  f"{len(sin_registro)} sin registro"
+                  + (f" · {len(patron_b)} patrón B (aparte, no cuenta)" if patron_b else ""))
     warn_total += total_huerfanos
+    if total_patron_b:
+        print(f"  ({total_patron_b} más bajo patrón B -- auxiliar/copia, S1-A2-spec-v1_0.md §3: "
+              f"anotado arriba, EXCLUIDO de este conteo por diseño, nunca oculto)")
 
     dups = c2_duplicados_por_contenido(entradas)
     print(f"  [warn]  C2 duplicado por contenido  ({len(dups)} warn)" if dups
