@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **344 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **345 ADR**
 
 > | | |
 > |---|---|
@@ -5892,3 +5892,15 @@ WARN, sin entradas nuevas.
 **Deuda que abre.** `FP-308`: acto de mesa que reconcilie el campo `raiz` de las `73` entradas citadas en `forense/censo-raiz/2026-09-04.txt`, o documente coexistencia deliberada. `FP-282` sigue `ABIERTA`: instalar el cron es tarea de mesa (`tools/adquiere_cron.sh`, fuera del perímetro de este acto). Recibo: `FP-307`.
 
 **Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `343` (`ADR-343`, `MAESTRA38-N12`), contiguo → `344` — coincide con el que el propio encargo ya citaba. Sin colisión conocida al escribir esta entrada; si otro acto en vuelo fusiona `344` primero, quien fusione después renumera (regla de la casa).
+
+**ADR-345 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `344`, contiguo, sin huecos; candidato `345`) · `ACTO MAESTRA38-N14 · GUARD-DE-RAMA-EN-ACTO`**, 6/sep/2026, entorno **NUBE** — **añade un guard mecánico de dos líneas al paso 0 del ARRANQUE de `.claude/commands/acto.md`: `git ls-remote --heads origin | grep -i "<rótulo>"` antes de crear rama, PARO con cero commits si hay coincidencia; `git push -u` inmediato al abrir rama, para que el rótulo sea visible desde el primer minuto.**
+
+`COMPUERTA: ninguna` (declaración explícita del encargo).
+
+**Qué hace.** Corrige el defecto medido dos veces en la misma semana — dos sesiones abrieron rama sobre el mismo rótulo sin verlo (`#526` vs. rama de `N9`, 4/sep; `#541` vs. `lauyln`, 5/sep) — con un guard de dos líneas en `.claude/commands/acto.md` §1, paso `0 · GUARD DE RAMA`: `git ls-remote --heads origin | grep -i "<rótulo>"` antes de crear la rama del acto; si hay coincidencia, PARA y reporta la rama existente con cero commits; si no, crea la rama y de inmediato `git push -u origin <rama>` (aunque no haya más commits todavía) para que cualquier segunda sesión la vea desde el primer minuto. `grep -c "ls-remote" .claude/commands/acto.md` → `0` antes de este acto (A.8).
+
+**Qué NO decide.** No toca ningún otro paso de `.claude/commands/acto.md` (COMPUERTA, 0-bis A.3, CIERRE quedan intactos). No es una compuerta de CI — es un paso manual que el ejecutor de `/acto` corre antes de crear rama.
+
+**Deuda que abre.** Ninguna. Recibo: `FP-310`.
+
+**Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `344` (`ADR-344`, `MAESTRA38-A2`), contiguo → `345`. Sin colisión conocida al escribir esta entrada; si otro acto en vuelo fusiona `345` primero, quien fusione después renumera (regla de la casa).
