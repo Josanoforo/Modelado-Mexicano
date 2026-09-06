@@ -47,3 +47,24 @@ SI, fusionado
 | 3 | `data/raw` | **La enlacé** a `/home/pc0/mm-corpus/raw`; `data/raices.local.yaml` copiado del clon padre. Control positivo A.13: `find -L data/raw -maxdepth 1 -type f \| wc -l` → **271** |
 | 4 | Entorno (A.2, tres partes) | `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` = `sin_variable` · `curl` INEGI → `200` · `ls data/raw/ \| head -1` → `2005trim1_csv.zip` (corpus montado). Caja Ubuntu — correcta para microdato |
 | 5 | Espejo | Toda cifra de este acto sale de `/home/pc0/mm-l2-lista`, con el comando a la vista |
+
+---
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA38-L2-LISTA`, 6/sep/2026, rama `acto/maestra38-l2-lista`, sobre `origin/main = b0c2a80`.
+
+| Punto del encargo | Cumplido |
+|---|---|
+| COMMIT-1 · citar S10 y su sha | sí — `prereg-caja-S10-L2-LISTA`, blob `260847ff`, commit `ca45483` |
+| (a) clone + verificar `HEAD` y `sha256` | sí — **los dos coinciden**; A.7 no se dispara |
+| (b) registrar por las tres capas + hermana de `ICPSR_35024` | sí — manifiesto +2, staging restaurado a 0, `aliases-fuentes` 19→20; firma A.7 pedida en `FP-317` |
+| (c) medir según S10 | sí — §2.1 a §2.5 completos; fila B-bis **no se dispara** |
+| (d) opción B, `/adquiere` sobre los dos DOI | sí — **OBTENIDO** (16/16 HTTP 200), manifiesto +16, **sin medir nada** |
+| (e) enmienda append a `FP-263` | sí — `FP-263` enmendada, **no cerrada** |
+
+**Contador del encargo, medido:** piezas de `L12` con dato de primera mano **0 → 1** (`P3`) · payloads **+18** (2 de `list` + 16 de Dataverse) · medición: **sí**.
+
+**Desvíos de perímetro, declarados y no callados.** (1) El encargo pedía `/adquiere` para (d); se aplicó su **protocolo de rutas** (§3) pero no el resto de la skill, porque `cola-adquisicion-registro.tsv` y su vista **no están en el PERÍMETRO** que el propio encargo fija — la adquisición quedó en la capa payload, no en la capa cola. (2) El alta de fuente en la capa de relación es **sólo la fila de alias** (1 fila, como el perímetro dice); las tres tablas acopladas `relaciones`/`evidencias`/`utilidad` y el recifrado de `baseline.json` quedaron fuera, así que el alta está **incompleta a propósito** y así se declara en `FP-317`.
+
+PR: ver el PR abierto por este acto contra `main`.

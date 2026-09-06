@@ -897,3 +897,79 @@ Reglas del modelo con `p` medida: **+3** (`R7.4`, `R7.6`, `R10.3` — las tres c
 ninguna cargada). `firmas ABIERTAS`: +1 (`FP-316`).
 
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
+
+---
+
+### 8.16 Recibo — `ACTO MAESTRA38-L2-LISTA · MPS-2012 LISTA DE PRIMERA MANO` (6/sep/2026, `ADR-350`, `FP-317`)
+
+**Compuerta, verificada por producto.** `COMPUERTA: N15 fusionado`, rótulo resuelto sin ambigüedad
+(`MAESTRA38-N15` es la única forma en el árbol). No se verificó por `grep` de asunto de commit
+(`ADR-277`): `git cat-file -e origin/main:forense/prereg-caja/S10-L2-LISTA-spec-v1_0.md` → existe,
+blob `260847ff`; `git merge-base --is-ancestor 3908484 origin/main` → sí (`PR #550`).
+
+**Qué mide, y qué mueve.** Ejecuta `prereg-caja-S10-L2-LISTA` sobre `data/mexico.tab` de
+`list::mexico` **sin editar la spec**. Piezas de `MAESTRA36-L12` con dato de **primera mano**:
+**0 → 1** (`P3`, el experimento de lista). Escala en proporciones 0–1, `n = 1 004`, **sin ponderar**.
+
+| | estimación | IC95 | |
+|---|---|---|---|
+| Prevalencia por lista (T−C) | **0.1874** | `[0.0797, 0.2950]` | analítico |
+| Prevalencia directa (`mex.direct`) | **0.0568** | `[0.0441, 0.0728]` | Wilson |
+| **Contraste lista − directa** | **+0.1306** | `[0.0216, 0.2375]` | bootstrap · **excluye 0** |
+
+**La fila B-bis no se dispara.** Estaba escrita para el caso en que la lista **no** superara a la
+directa; la triplica. En este subconjunto el diseño de lista **sí** detecta subreporte adicional. El
+contraste excluye 0 en **urbano** (+0.1832), **riqueza alta** (+0.1603) y **no leales** (+0.1426), e
+incluye 0 en **rural** (+0.0030, prácticamente nulo), riqueza baja y leales — con `n = 278` el
+estrato rural **no** distingue entre «no hay subreporte rural» y «no hay potencia», y no se elige.
+
+**El supuesto que dejaba `P3` en PROPUESTA queda verificado, por dos vías** — por texto
+(`man/mexico.Rd`: ítem c sólo al tratamiento, ítem c = venta del voto) **y por mecánica del dato**
+(máx. del conteo en control 3, en tratamiento 4). **Y no se redondea:** el wording verificado es el
+**inglés** de `list::mexico`, no el español de `P35A`/`P35B` del cuestionario de ICPSR 35024. Por eso
+`FP-263` se **enmienda por append** y **no se cierra**, y la entrada hermana de `L12` no se edita.
+
+**Convergencia no planeada entre dos fuentes.** La cifra de **segunda** mano de `L12` (`0.187641`) y
+ésta de **primera** mano (`0.187357`) coinciden a la tercera decimal, con universos distintos (1 148
+válidos contra 1 004 filas). **No es replicación independiente del fenómeno** — es la misma ola del
+mismo estudio: corrobora la **lectura**, no el mecanismo.
+
+**Dos defectos de lectura atrapados antes de calcular.** La cabecera trae **25** nombres y las filas
+**26** campos (el campo 0 son los *rownames* de R; control positivo de la alineación:
+`mex.age2 = mex.age²`). Y la variable **`y` del `.Rd` no existe** en el `.tab` — glosa arrastrada de
+otro dataset del paquete; el conteo de lista es `mex.y.all`, elegido por wording y rango, no por
+nombre. Tercera divergencia declarada aunque no se use: `mex.cleanelections` documentada 0–1, dato 0–4.
+
+**`§2.5` no es `SIN-INSTRUMENTO`**, y la spec pedía decirlo si lo fuera: `mex.votecard` es turnout
+**verificado por encuestador**, distinto de `mex.vote`. Diferencia **−0.0162** `[−0.0471, 0.0132]`,
+incluye 0.
+
+**Opción B — Dataverse `OBTENIDO`, sin medir.** Los dos DOI de `N15 §3` por el protocolo de rutas de
+`/adquiere` §3: **16/16 HTTP 200** por la ruta (i), `200` en ambos por la (ii) (`RELEASED`, **CC0
+1.0**, `restricted: false` en los 17), (iii) no aplica **y se dice por qué**, (iv) no se necesitó.
+`NO-OBTENIDO` no procede. `empirical_models.zip` (527 MB, salida de modelos) no se bajó por decisión
+explícita, y que la ruta sirve para él está **medido** (`curl -r 0-1023` → `206`), no supuesto.
+**Ningún archivo de esos DOI se abrió, leyó ni midió.**
+
+**Cascada.** `ADR-350` (máximo `349`, contiguo; `MAESTRA38-A5`, único acto en vuelo, preasigna
+`ADR-353`/`FP-321`/`FP-322` — sin colisión). `FP-317` (**`ABIERTA`** — firma A.7 de mesa sobre la
+no-fusión `list::mexico` ≠ `ICPSR_35024`). `FP-263` enmendada por append, sigue `ABIERTA`.
+`canon/registro-rotulos.tsv`: una fila censada (`MAESTRA38-L2-LISTA`).
+`milpa/tramite-ola5-propuesta-v0.yaml`: 44 → **45** entradas (una nueva; la hermana de `L12` intacta,
+**77 adiciones y 0 supresiones**). `data/manifiesto.yaml` 1 515 → **1 533**, `--verifica` **COINCIDE
+en los 18**. `data/curacion-registro/aliases-fuentes.tsv` 19 → **20**. **Ningún tier del canon se
+movió**; `milpa/tramite.yaml` y `canon/modelo-decision-v4_0.md` intactos.
+
+**Perímetro que este acto NO cruzó, declarado en vez de callado.** No escribió la **capa cola**
+(`cola-adquisicion-registro.tsv` ni su vista `v1_0`): se aplicó el protocolo de rutas de `/adquiere`,
+no el resto de la skill. No escribió las **tres tablas acopladas** de la capa de relación
+(`relaciones`/`evidencias`/`utilidad`) ni recifró `baseline.json` — sólo la fila de alias, que es el
+paso 2 de `GUIA-CURADOR-REGISTRO`. El alta de fuente está por tanto **incompleta a propósito**, y así
+se declara en `FP-317`. `data/manifiesto-staging.yaml` se restauró a **0 entradas**: los 137 archivos
+restantes del clon son el **código fuente del paquete R**, no payloads de datos, y dejarlos en staging
+invitaba a que un acto posterior los promoviera como si lo fueran.
+
+**Indicadores que este acto mueve.** Piezas de `L12` con dato de primera mano: **0 → 1**.
+`propuesta_tier_PENDIENTE-DE-MESA`: +1 (44 → 45). Payloads del manifiesto: **+18**. `firmas ABIERTAS`: +1 (`FP-317`).
+
+`python3 tests/check.py --baseline`: ver cierre del PR de este acto.
