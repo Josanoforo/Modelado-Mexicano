@@ -1,0 +1,849 @@
+{
+ "acto": "MAESTRA38-L5 · civico.protesta.agravio_urbano (R7.4)",
+ "spec": "forense/prereg-caja/S5-L5-spec-v1_0.md",
+ "spec_sha256": "74816097008b84a14a04d83dbcce850f0bb3644ae34bfe0867ab5d928ded1eb6",
+ "estimador": "proporcion ponderada; IC95 bootstrap de conglomerado, 10000 replicas, seed 42, remuestreo de UPM dentro de estrato (reusa prop_bootstrap/diff_bootstrap de tools/medidor_clientelismo_lapop.py)",
+ "diseno_por_ola": {
+  "2004": {
+   "estrato": "mestrat",
+   "upm": "msec",
+   "ponderador": "NINGUNO (wt vacia, 0/1556)"
+  },
+  "2006": {
+   "estrato": "ESTRATOPRI",
+   "upm": "UPM",
+   "ponderador": "NINGUNO (wt/WT NO-ENCONTRADO)"
+  },
+  "2019": {
+   "estrato": "estratopri",
+   "upm": "upm",
+   "ponderador": "wt (=1 constante, verificado)"
+  }
+ },
+ "guardia_2019": {
+  "filas": 1580,
+  "prot3_val": 1576,
+  "prot3_si": 112
+ },
+ "min_numerador": 10,
+ "piezas": {
+  "2004": {
+   "ola": "2004",
+   "n_filas": 1556,
+   "sha256": "ef46b8f5a3c565c931d8ab1d173b2ee34f9f9459987159861ee4e24bf01b9880",
+   "sha256_manifiesto": "ef46b8f5a3c565c931d8ab1d173b2ee34f9f9459987159861ee4e24bf01b9880",
+   "coincide_manifiesto": true,
+   "ponderado": false,
+   "C_completo": {
+    "urbano": {
+     "p": 0.1574074074074074,
+     "ic95": [
+      0.07317073170731707,
+      0.2619047619047619
+     ],
+     "n": 108,
+     "numerador": 17,
+     "n_estratos": 4,
+     "n_upm": 58,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 108.0,
+     "etiqueta": "C_completo (agravio∧falla_baja∧red_previa) | urbano (2004)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.1574074074074074,
+      "ic95_linealizado": [
+       0.05891507953789793,
+       0.2558997352769169
+      ],
+      "n_upm": 58,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "etiqueta": "C_completo (agravio∧falla_baja∧red_previa) | rural (2004)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 3 < 10 (guardia §1.3)",
+     "n": 14,
+     "numerador": 3
+    },
+    "delta": {
+     "etiqueta": "C_completo (agravio∧falla_baja∧red_previa) (2004)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 3 < 10 (guardia §1.3)"
+    }
+   },
+   "C_agravio": {
+    "urbano": {
+     "p": 0.12,
+     "ic95": [
+      0.06722689075630252,
+      0.1853448275862069
+     ],
+     "n": 225,
+     "numerador": 27,
+     "n_estratos": 4,
+     "n_upm": 87,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 225.0,
+     "etiqueta": "C_agravio (agravio=1) | urbano (2004)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.12,
+      "ic95_linealizado": [
+       0.05877465443706829,
+       0.1812253455629317
+      ],
+      "n_upm": 87,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "etiqueta": "C_agravio (agravio=1) | rural (2004)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 5 < 10 (guardia §1.3)",
+     "n": 32,
+     "numerador": 5
+    },
+    "delta": {
+     "etiqueta": "C_agravio (agravio=1) (2004)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 5 < 10 (guardia §1.3)"
+    }
+   },
+   "C_falla": {
+    "urbano": {
+     "p": 0.0858257477243173,
+     "ic95": [
+      0.059782608695652176,
+      0.11488250652741515
+     ],
+     "n": 769,
+     "numerador": 66,
+     "n_estratos": 4,
+     "n_upm": 99,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 769.0,
+     "etiqueta": "C_falla (falla_baja) | urbano (2004)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.0858257477243173,
+      "ic95_linealizado": [
+       0.05775189441397851,
+       0.11389960103465607
+      ],
+      "n_upm": 99,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "p": 0.06306306306306306,
+     "ic95": [
+      0.02564102564102564,
+      0.11330049261083744
+     ],
+     "n": 222,
+     "numerador": 14,
+     "n_estratos": 4,
+     "n_upm": 32,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 222.0,
+     "etiqueta": "C_falla (falla_baja) | rural (2004)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.06306306306306306,
+      "ic95_linealizado": [
+       0.016405035016220537,
+       0.10972109110990558
+      ],
+      "n_upm": 32,
+      "estratos_singleton": 0
+     }
+    },
+    "delta": {
+     "d": 0.022762684661254237,
+     "ic95": [
+      -0.03572987342776654,
+      0.0721615859479412
+     ],
+     "replicas_validas": 10000,
+     "replicas_pedidas": 10000,
+     "etiqueta": "C_falla (falla_baja) (2004)",
+     "estado": "ESTIMADA",
+     "excluye_cero": false,
+     "signo": "+"
+    }
+   },
+   "C_red": {
+    "urbano": {
+     "p": 0.10142630744849446,
+     "ic95": [
+      0.06687898089171974,
+      0.14106583072100312
+     ],
+     "n": 631,
+     "numerador": 64,
+     "n_estratos": 4,
+     "n_upm": 96,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 631.0,
+     "etiqueta": "C_red (red_previa=1) | urbano (2004)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.10142630744849446,
+      "ic95_linealizado": [
+       0.06397793983349005,
+       0.13887467506349888
+      ],
+      "n_upm": 96,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "p": 0.09183673469387756,
+     "ic95": [
+      0.041666666666666664,
+      0.16243654822335024
+     ],
+     "n": 196,
+     "numerador": 18,
+     "n_estratos": 4,
+     "n_upm": 31,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 196.0,
+     "etiqueta": "C_red (red_previa=1) | rural (2004)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.09183673469387756,
+      "ic95_linealizado": [
+       0.028586419956596623,
+       0.15508704943115847
+      ],
+      "n_upm": 31,
+      "estratos_singleton": 0
+     }
+    },
+    "delta": {
+     "d": 0.009589572754616901,
+     "ic95": [
+      -0.07384804275603063,
+      0.07598684210526316
+     ],
+     "replicas_validas": 10000,
+     "replicas_pedidas": 10000,
+     "etiqueta": "C_red (red_previa=1) (2004)",
+     "estado": "ESTIMADA",
+     "excluye_cero": false,
+     "signo": "+"
+    }
+   },
+   "marginales": {
+    "agravio": {
+     "n_validos": 1545,
+     "marginal": {
+      "0": 1277,
+      "1": 268
+     }
+    },
+    "falla_baja": {
+     "n_validos": 1511,
+     "marginal": {
+      "0": 488,
+      "1": 1023
+     }
+    },
+    "red_previa": {
+     "n_validos": 1550,
+     "marginal": {
+      "0": 694,
+      "1": 856
+     }
+    },
+    "urbano": {
+     "n_validos": 1556,
+     "marginal": {
+      "0": 382,
+      "1": 1174
+     }
+    },
+    "protesta": {
+     "n_validos": 1508,
+     "marginal": {
+      "0": 1388,
+      "1": 120
+     }
+    }
+   },
+   "urbano_verificacion_cruzada": {
+    "variable": "mzona (Tipo de localidad, 1=Urbana/2=Rural y mixto)",
+    "n_comparable": 1556,
+    "coinciden_con_tamano": 1406,
+    "pct_coincide": 0.903598971722365
+   },
+   "lapop_e8": {
+    "etiqueta": "e8 (2004)",
+    "n": 1529,
+    "media": 7.758011772400262,
+    "min": 1,
+    "max": 10,
+    "nota": "escala 1(desaprueba firmemente)-10(aprueba firmemente); disposicion normativa a que OTROS participen, no asistencia propia (§0.4) — NO entra a RED_PREVIA ni a ninguna celda del falsador"
+   }
+  },
+  "2006": {
+   "ola": "2006",
+   "n_filas": 1560,
+   "sha256": "e426210067f9dba8aca87a0df2161bc7389cc5aaf9e5516aa7ebf9cb52f149fa",
+   "sha256_manifiesto": "e426210067f9dba8aca87a0df2161bc7389cc5aaf9e5516aa7ebf9cb52f149fa",
+   "coincide_manifiesto": true,
+   "ponderado": false,
+   "C_completo": {
+    "urbano": {
+     "p": 0.16153846153846155,
+     "ic95": [
+      0.1015625,
+      0.2231404958677686
+     ],
+     "n": 130,
+     "numerador": 21,
+     "n_estratos": 4,
+     "n_upm": 66,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 130.0,
+     "etiqueta": "C_completo (agravio∧falla_baja∧red_previa) | urbano (2006)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.16153846153846155,
+      "ic95_linealizado": [
+       0.09825125997611907,
+       0.22482566310080404
+      ],
+      "n_upm": 66,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "etiqueta": "C_completo (agravio∧falla_baja∧red_previa) | rural (2006)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 3 < 10 (guardia §1.3)",
+     "n": 21,
+     "numerador": 3
+    },
+    "delta": {
+     "etiqueta": "C_completo (agravio∧falla_baja∧red_previa) (2006)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 3 < 10 (guardia §1.3)"
+    }
+   },
+   "C_agravio": {
+    "urbano": {
+     "p": 0.12260536398467432,
+     "ic95": [
+      0.08333333333333333,
+      0.164
+     ],
+     "n": 261,
+     "numerador": 32,
+     "n_estratos": 4,
+     "n_upm": 84,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 261.0,
+     "etiqueta": "C_agravio (agravio=1) | urbano (2006)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.12260536398467432,
+      "ic95_linealizado": [
+       0.08151721911788519,
+       0.16369350885146344
+      ],
+      "n_upm": 84,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "etiqueta": "C_agravio (agravio=1) | rural (2006)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 4 < 10 (guardia §1.3)",
+     "n": 46,
+     "numerador": 4
+    },
+    "delta": {
+     "etiqueta": "C_agravio (agravio=1) (2006)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 4 < 10 (guardia §1.3)"
+    }
+   },
+   "C_falla": {
+    "urbano": {
+     "p": 0.10582010582010581,
+     "ic95": [
+      0.08118556701030928,
+      0.1335978835978836
+     ],
+     "n": 756,
+     "numerador": 80,
+     "n_estratos": 4,
+     "n_upm": 96,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 756.0,
+     "etiqueta": "C_falla (falla_baja) | urbano (2006)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.10582010582010581,
+      "ic95_linealizado": [
+       0.07884257581131886,
+       0.13279763582889278
+      ],
+      "n_upm": 96,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "p": 0.06666666666666667,
+     "ic95": [
+      0.027472527472527472,
+      0.10880829015544041
+     ],
+     "n": 180,
+     "numerador": 12,
+     "n_estratos": 4,
+     "n_upm": 31,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 180.0,
+     "etiqueta": "C_falla (falla_baja) | rural (2006)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.06666666666666667,
+      "ic95_linealizado": [
+       0.022652173457193836,
+       0.1106811598761395
+      ],
+      "n_upm": 31,
+      "estratos_singleton": 0
+     }
+    },
+    "delta": {
+     "d": 0.03915343915343915,
+     "ic95": [
+      -0.011720210776814552,
+      0.08819444444444444
+     ],
+     "replicas_validas": 10000,
+     "replicas_pedidas": 10000,
+     "etiqueta": "C_falla (falla_baja) (2006)",
+     "estado": "ESTIMADA",
+     "excluye_cero": false,
+     "signo": "+"
+    }
+   },
+   "C_red": {
+    "urbano": {
+     "p": 0.09727626459143969,
+     "ic95": [
+      0.07608695652173914,
+      0.12019826517967781
+     ],
+     "n": 771,
+     "numerador": 75,
+     "n_estratos": 4,
+     "n_upm": 97,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 771.0,
+     "etiqueta": "C_red (red_previa=1) | urbano (2006)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.09727626459143969,
+      "ic95_linealizado": [
+       0.07500446712665947,
+       0.11954806205621991
+      ],
+      "n_upm": 97,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "p": 0.08614232209737828,
+     "ic95": [
+      0.04961832061068702,
+      0.12903225806451613
+     ],
+     "n": 267,
+     "numerador": 23,
+     "n_estratos": 4,
+     "n_upm": 30,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 267.0,
+     "etiqueta": "C_red (red_previa=1) | rural (2006)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.08614232209737828,
+      "ic95_linealizado": [
+       0.04384076792797777,
+       0.12844387626677878
+      ],
+      "n_upm": 30,
+      "estratos_singleton": 0
+     }
+    },
+    "delta": {
+     "d": 0.01113394249406141,
+     "ic95": [
+      -0.03757349777714039,
+      0.054287103571235625
+     ],
+     "replicas_validas": 10000,
+     "replicas_pedidas": 10000,
+     "etiqueta": "C_red (red_previa=1) (2006)",
+     "estado": "ESTIMADA",
+     "excluye_cero": false,
+     "signo": "+"
+    }
+   },
+   "marginales": {
+    "agravio": {
+     "n_validos": 1545,
+     "marginal": {
+      "0": 1233,
+      "1": 312
+     }
+    },
+    "falla_baja": {
+     "n_validos": 1518,
+     "marginal": {
+      "0": 541,
+      "1": 977
+     }
+    },
+    "red_previa": {
+     "n_validos": 1556,
+     "marginal": {
+      "0": 478,
+      "1": 1078
+     }
+    },
+    "urbano": {
+     "n_validos": 1560,
+     "marginal": {
+      "0": 384,
+      "1": 1176
+     }
+    },
+    "protesta": {
+     "n_validos": 1485,
+     "marginal": {
+      "0": 1353,
+      "1": 132
+     }
+    }
+   },
+   "urbano_verificacion_cruzada": {
+    "variable": "UR",
+    "n_comparable": 1560,
+    "coinciden_con_tamano": 1452,
+    "pct_coincide": 0.9307692307692308
+   },
+   "lapop_e8": {
+    "etiqueta": "e8 (2006)",
+    "n": 1535,
+    "media": 7.830618892508143,
+    "min": 1,
+    "max": 10,
+    "nota": "escala 1(desaprueba firmemente)-10(aprueba firmemente); disposicion normativa a que OTROS participen, no asistencia propia (§0.4) — NO entra a RED_PREVIA ni a ninguna celda del falsador"
+   },
+   "PROT2_pieza_separada": {
+    "n_elegibles_prot1": 217,
+    "n_validos_prot2": 209,
+    "celda": {
+     "p": 0.3397129186602871,
+     "ic95": [
+      0.2636363636363636,
+      0.4212962962962963
+     ],
+     "n": 209,
+     "numerador": 71,
+     "n_estratos": 4,
+     "n_upm": 95,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 209.0,
+     "etiqueta": "PROT2 (subuniverso PROT1∈{1,2})",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.3397129186602871,
+      "ic95_linealizado": [
+       0.2602301458908259,
+       0.4191956914297483
+      ],
+      "n_upm": 95,
+      "estratos_singleton": 0
+     }
+    },
+    "reserva": "universo ANIDADO en el desenlace: PROT1∈{1,2} ya es 'alguna vez protesto' (algunas veces o casi nunca); sobre ese subuniverso PROT2 no pregunta 'quien protesta' sino 'quien de los que alguna vez protestaron lo hizo el ultimo ano'. No se cruza contra AGRAVIO/FALLA/RED/URBANO — la spec la declara pieza separada, no otra celda del falsador (S5 §1.2 / §3.1)."
+   }
+  },
+  "2019": {
+   "ola": "2019",
+   "n_filas": 1580,
+   "sha256": "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57",
+   "sha256_manifiesto": "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57",
+   "coincide_manifiesto": true,
+   "ponderado": true,
+   "C_completo": {
+    "urbano": {
+     "p": 0.09433962264150944,
+     "ic95": [
+      0.057692307692307696,
+      0.13488372093023257
+     ],
+     "n": 212,
+     "numerador": 20,
+     "n_estratos": 4,
+     "n_upm": 106,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 212.0,
+     "etiqueta": "C_completo (agravio∧falla_baja∧red_previa) | urbano (2019)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.09433962264150944,
+      "ic95_linealizado": [
+       0.054759702719208395,
+       0.1339195425638105
+      ],
+      "n_upm": 106,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "etiqueta": "C_completo (agravio∧falla_baja∧red_previa) | rural (2019)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 1 < 10 (guardia §1.3)",
+     "n": 1,
+     "numerador": 1
+    },
+    "delta": {
+     "etiqueta": "C_completo (agravio∧falla_baja∧red_previa) (2019)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 1 < 10 (guardia §1.3)"
+    }
+   },
+   "C_agravio": {
+    "urbano": {
+     "p": 0.10344827586206896,
+     "ic95": [
+      0.08095238095238096,
+      0.12605042016806722
+     ],
+     "n": 609,
+     "numerador": 63,
+     "n_estratos": 4,
+     "n_upm": 125,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 609.0,
+     "etiqueta": "C_agravio (agravio=1) | urbano (2019)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.10344827586206896,
+      "ic95_linealizado": [
+       0.08072194728292846,
+       0.12617460444120948
+      ],
+      "n_upm": 125,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "etiqueta": "C_agravio (agravio=1) | rural (2019)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 2 < 10 (guardia §1.3)",
+     "n": 12,
+     "numerador": 2
+    },
+    "delta": {
+     "etiqueta": "C_agravio (agravio=1) (2019)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 2 < 10 (guardia §1.3)"
+    }
+   },
+   "C_falla": {
+    "urbano": {
+     "p": 0.06098654708520179,
+     "ic95": [
+      0.04712041884816754,
+      0.07529843893480258
+     ],
+     "n": 1115,
+     "numerador": 68,
+     "n_estratos": 4,
+     "n_upm": 127,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 1115.0,
+     "etiqueta": "C_falla (falla_baja) | urbano (2019)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.06098654708520179,
+      "ic95_linealizado": [
+       0.04672920536553221,
+       0.07524388880487137
+      ],
+      "n_upm": 127,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "etiqueta": "C_falla (falla_baja) | rural (2019)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 2 < 10 (guardia §1.3)",
+     "n": 23,
+     "numerador": 2
+    },
+    "delta": {
+     "etiqueta": "C_falla (falla_baja) (2019)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 2 < 10 (guardia §1.3)"
+    }
+   },
+   "C_red": {
+    "urbano": {
+     "p": 0.08701472556894244,
+     "ic95": [
+      0.06717363751584284,
+      0.10796221322537113
+     ],
+     "n": 747,
+     "numerador": 65,
+     "n_estratos": 4,
+     "n_upm": 127,
+     "estratos_singleton": 0,
+     "replicas": 10000,
+     "poblacion_expandida": 747.0,
+     "etiqueta": "C_red (red_previa=1) | urbano (2019)",
+     "estado": "ESTIMADA",
+     "control_regresion": {
+      "p_hat_linealizado": 0.08701472556894244,
+      "ic95_linealizado": [
+       0.06654284113296102,
+       0.10748661000492385
+      ],
+      "n_upm": 127,
+      "estratos_singleton": 0
+     }
+    },
+    "rural": {
+     "etiqueta": "C_red (red_previa=1) | rural (2019)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "numerador 2 < 10 (guardia §1.3)",
+     "n": 11,
+     "numerador": 2
+    },
+    "delta": {
+     "etiqueta": "C_red (red_previa=1) (2019)",
+     "estado": "NO-ESTIMABLE",
+     "motivo": "celda no estimable: numerador 2 < 10 (guardia §1.3)"
+    }
+   },
+   "marginales": {
+    "agravio": {
+     "n_validos": 1577,
+     "marginal": {
+      "0": 955,
+      "1": 622
+     }
+    },
+    "falla_baja": {
+     "n_validos": 1546,
+     "marginal": {
+      "0": 405,
+      "1": 1141
+     }
+    },
+    "red_previa": {
+     "n_validos": 1568,
+     "marginal": {
+      "0": 807,
+      "1": 761
+     }
+    },
+    "urbano": {
+     "n_validos": 1580,
+     "marginal": {
+      "0": 35,
+      "1": 1545
+     }
+    },
+    "protesta": {
+     "n_validos": 1576,
+     "marginal": {
+      "0": 1464,
+      "1": 112
+     }
+    }
+   },
+   "urbano_verificacion_cruzada": {
+    "variable": "ur",
+    "n_comparable": 1580,
+    "coinciden_con_tamano": 1252,
+    "pct_coincide": 0.7924050632911392
+   },
+   "agravio_vicbar4a_marginal": {
+    "n_validos": 1576,
+    "marginal": {
+     "0": 1277,
+     "1": 299
+    }
+   }
+  }
+ },
+ "veredicto_falsador_Bbis": {
+  "veredicto": "NO-DISCRIMINA (las diagnosticas no van todas limpias en el mismo signo)",
+  "base": "C_completo NO-ESTIMABLE en las tres olas (anticipado por §3.1) — el corazon de la regla de cuatro factores, que los tres antecedentes juntos y no por separado son los que el entorno urbano canaliza, NO SE MIDIO (§4)",
+  "por_ola_C_completo": {
+   "2004": {
+    "estado": "NO-ESTIMABLE",
+    "motivo": "celda no estimable: numerador 3 < 10 (guardia §1.3)"
+   },
+   "2006": {
+    "estado": "NO-ESTIMABLE",
+    "motivo": "celda no estimable: numerador 3 < 10 (guardia §1.3)"
+   },
+   "2019": {
+    "estado": "NO-ESTIMABLE",
+    "motivo": "celda no estimable: numerador 1 < 10 (guardia §1.3)"
+   }
+  },
+  "diagnosticas_por_ola": {
+   "2004": {
+    "C_agravio": "no-discrimina/no-estimable",
+    "C_falla": "no-discrimina/no-estimable",
+    "C_red": "no-discrimina/no-estimable"
+   },
+   "2006": {
+    "C_agravio": "no-discrimina/no-estimable",
+    "C_falla": "no-discrimina/no-estimable",
+    "C_red": "no-discrimina/no-estimable"
+   },
+   "2019": {
+    "C_agravio": "no-discrimina/no-estimable",
+    "C_falla": "no-discrimina/no-estimable",
+    "C_red": "no-discrimina/no-estimable"
+   }
+  }
+ },
+ "notas_spec": {
+  "C_agravio_NO_es_la_replicacion_que_la_spec_anuncia": "CORRECCION (post-verificacion adversarial del propio acto). spec §3.1 anuncia C_agravio como 'replicacion de tercera ola' del diseno ya corroborado por L9 §4 (+5.60pp [+2.32,+8.96]) y L11 §2 (+3.72pp [+2.22,+5.22], Enmienda D2-d, CARGADA-A-MOTOR, tier FUERTE). NO LO ES. Aquellas dos cifras son el diseno C2 de L9 (agravio varia, entorno fijo en urbano). Lo que §3.1 define literalmente -- 'una por antecedente, 2x2 cada una, CONTRA URBANO' -- y lo que este medidor calcula es fijar AGRAVIO=1 y contrastar urbano vs rural: eso es estructuralmente el C1 de L9, el que ALLI cayo por guardia (rural-victima n=65, num=7). Y aqui vuelve a caer, en las tres olas (num rural 5, 4, 2). La replicacion anunciada NO OCURRIO -- no por omision, sino porque la unica forma de C_agravio que la spec pre-registra es la que no se puede estimar. La forma C2 NO se computo: §0.3 la excluye explicitamente, y anadir una celda que la spec no pre-registro es tan defecto como omitir una que si. Tension interna de la spec sellada (§3.1 contra §0.3), declarada y no resuelta a mano por el ejecutor: FP-314. Las cifras +5.60/+3.72 siguen siendo citas correctas de D2-d; lo que estaba mal era atribuirlas a lo que esta pieza calculo. NO se reabre D2-d ni la fila D de R7.4 (ADR-158).",
+  "lo_nuevo": "C_falla y C_red (antecedentes que L9 no tenia) y el intento de C_completo.",
+  "e8_excluido": "LAPOP-E8 (2004/2006) es aprobacion normativa de que OTROS participen, no asistencia propia (§0.4) — reportado aparte, fuera de RED_PREVIA y de toda celda del falsador."
+ }
+}
