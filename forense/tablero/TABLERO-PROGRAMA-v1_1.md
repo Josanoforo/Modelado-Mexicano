@@ -974,3 +974,24 @@ invitaba a que un acto posterior los promoviera como si lo fueran.
 
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
 >>>>>>> origin/main
+
+## MAESTRA38-CRON · DIAGNOSTICO-Y-ARREGLO (2026-09-06)
+
+Ninguna de las cuatro lecturas pre-declaradas del encargo se cumplió: la línea de `crontab -l` ya
+es la correcta (`30 7 * * 1-5`, rutas absolutas, zona horaria `CST` verificada), el estado sucio que
+el log del 5/sep mostraba ya quedó resuelto por el merge de PR #546 esa misma noche, y **2026-09-05
+fue sábado** — fuera de la ventana `1-5` del cron, no un disparo perdido. Las líneas `PARO-RAIZ` del
+log del 5/sep vienen de corridas manuales dentro de un sandbox de Claude Code que entonces bloqueaba
+`/mnt/c` (corregido el propio 6/sep); el cron real, sin ese sandbox, nunca estuvo expuesto al
+defecto. **No se tocó `tools/adquiere_cron.sh` ni la línea de crontab.** Prueba de extremo a
+extremo hoy (domingo, fuera de ventana): `PR #556 [CENSO] 2026-09-06`, control positivo cumplido
+(`nuevos: 139`). Detalle en `forense/notas/2026-09-06-MAESTRA38-CRON-diagnostico.md`.
+
+**Verificación del programador: declarada, no cerrada.** La prueba real es `censo/2026-09-07` (lunes)
+07:30 hora local — sigue en 0 disparos automáticos observados con la línea ya correcta.
+
+**Hallazgo incidental, no corregido (fuera de perímetro).** Este archivo trae un marcador de
+conflicto de merge sin resolver, huérfano, en la línea 976 (`>>>>>>> origin/main`, sin `<<<<<<<` ni
+`=======` que lo acompañen) — anterior a este acto, dentro del bloque `MAESTRA38-L2-LISTA`. Se deja
+declarado en `hallazgos.md`; el perímetro de este encargo no incluye editar el tablero salvo para
+añadir este recibo.
