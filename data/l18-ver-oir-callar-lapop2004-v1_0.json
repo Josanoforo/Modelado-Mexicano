@@ -1,0 +1,492 @@
+{
+ "acto": "MAESTRA38-L18",
+ "spec": "forense/prereg-caja/S8-L18-spec-v1_0.md",
+ "regla": "R10.3",
+ "id_modelo": "comunicacion.inseguridad.ver_oir_callar",
+ "ola": "2004",
+ "payload_medido": "2004_dta",
+ "payload": {
+  "id": "642348348mexico_2004_export_version",
+  "archivo": "/tmp/claude-1000/-home-pc0/ae448b92-4470-4b75-a749-af8bf26412cc/scratchpad/descargas_mx/Descargas Manuales/642348348mexico 2004 export version.dta",
+  "sha256": "ef46b8f5a3c565c931d8ab1d173b2ee34f9f9459987159861ee4e24bf01b9880",
+  "sha256_manifiesto": "ef46b8f5a3c565c931d8ab1d173b2ee34f9f9459987159861ee4e24bf01b9880",
+  "coincide_manifiesto": true
+ },
+ "payload_gemelo_sav": {
+  "id": "1658622845mexico_2004_export_version",
+  "archivo": "/tmp/claude-1000/-home-pc0/ae448b92-4470-4b75-a749-af8bf26412cc/scratchpad/descargas_mx/Descargas Manuales/1658622845Mexico 2004 Export Version.sav",
+  "sha256": "e725383552753223d263a1d65e2aaf9549a59859eb1b5777b666f32728700c99",
+  "sha256_manifiesto": "e725383552753223d263a1d65e2aaf9549a59859eb1b5777b666f32728700c99",
+  "coincide_manifiesto": true,
+  "marginales_identicas_al_dta": true
+ },
+ "estimador": "proporcion ponderada; IC95 bootstrap de conglomerado, 10000 replicas, seed 42, remuestreo de UPM (msec) dentro de estrato (mestrat). SIN PONDERAR: wt de 2004 esta vacia (0 validos de 1556), declarado, mismo criterio que S5§2/S2-L2§1.0.",
+ "escala_b18_b10a": {
+  "hallazgo": "Cuestionario 2004 (Tarjeta 'A', PDF pag. 89-90): escala 1='NADA' .. 7='MUCHO' para toda la bateria B (incluye B10A y B18). Misma direccion que el .dta 2019 (1='Nada', 7='Mucho'). NO se invierte.",
+  "corte_principal": "mitad inferior de confianza = {1,2,3} (4 es punto medio, no entra); declarado antes de calcular",
+  "corte_robustez": "{1,2,3,4}"
+ },
+ "hallazgo_universo_victimas_2004": {
+  "n_victimas_vic1_1": 268,
+  "n_victimas_con_aoj1_valido": 266,
+  "n_denuncio": 94,
+  "n_no_denuncio": 172,
+  "n_no_victimas_con_aoj1_valido": 0,
+  "tasa_victimizacion": 0.17223650385604114,
+  "nota": "aoj1 esta gateada por vic1=1 en el cuestionario mismo ('AOJ1. [Si responde “Si” a VIC1] ...', linea 215 del PDF 2004): 0 no-victimas con aoj1 valido, confirmado."
+ },
+ "diseno": {
+  "estrato": "mestrat",
+  "psu": "msec",
+  "ponderador": "ninguno (wt vacia)",
+  "n_pares_estrato_psu": 131,
+  "n_psu_distintos": 127,
+  "nota_ic": "El IC no incorpora efecto de diseno mas alla del conglomerado documentado (mestrat x msec); sin ponderador no hay ajuste por probabilidad de seleccion desigual mas alla de lo que el conglomerado ya captura."
+ },
+ "celdas": {
+  "silencio_ALTO": {
+   "p": 0.6491228070175439,
+   "ic95": [
+    0.588957055214724,
+    0.7080745341614907
+   ],
+   "n": 171,
+   "numerador": 111,
+   "n_estratos": 4,
+   "n_upm": 82,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 171.0,
+   "etiqueta": "silencio | INDICE_CONTEXTO=ALTO",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6491228070175439,
+    "ic95_linealizado": [
+     0.589597131507013,
+     0.7086484825280748
+    ],
+    "n_upm": 82,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_BAJO": {
+   "p": 0.6741573033707865,
+   "ic95": [
+    0.569620253164557,
+    0.7659574468085106
+   ],
+   "n": 89,
+   "numerador": 60,
+   "n_estratos": 4,
+   "n_upm": 54,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 89.0,
+   "etiqueta": "silencio | INDICE_CONTEXTO=BAJO",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6741573033707865,
+    "ic95_linealizado": [
+     0.5735626840479514,
+     0.7747519226936216
+    ],
+    "n_upm": 54,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_ALTO_corte_b18<=4": {
+   "p": 0.643979057591623,
+   "ic95": [
+    0.5846153846153846,
+    0.7024390243902439
+   ],
+   "n": 191,
+   "numerador": 123,
+   "n_estratos": 4,
+   "n_upm": 87,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 191.0,
+   "etiqueta": "silencio | INDICE_CONTEXTO=ALTO (corte b18<=4)",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.643979057591623,
+    "ic95_linealizado": [
+     0.584369371821542,
+     0.703588743361704
+    ],
+    "n_upm": 87,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_BAJO_corte_b18<=4": {
+   "p": 0.6956521739130435,
+   "ic95": [
+    0.5857142857142857,
+    0.7941176470588235
+   ],
+   "n": 69,
+   "numerador": 48,
+   "n_estratos": 4,
+   "n_upm": 49,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 69.0,
+   "etiqueta": "silencio | INDICE_CONTEXTO=BAJO (corte b18<=4)",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6956521739130435,
+    "ic95_linealizado": [
+     0.5888865149147103,
+     0.8024178329113766
+    ],
+    "n_upm": 49,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_INSEGURO_BARRIO=1": {
+   "p": 0.6434108527131783,
+   "ic95": [
+    0.5714285714285714,
+    0.7111111111111111
+   ],
+   "n": 129,
+   "numerador": 83,
+   "n_estratos": 4,
+   "n_upm": 70,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 129.0,
+   "etiqueta": "silencio | INSEGURO_BARRIO=1",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6434108527131783,
+    "ic95_linealizado": [
+     0.573169723403598,
+     0.7136519820227587
+    ],
+    "n_upm": 70,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_INSEGURO_BARRIO=0": {
+   "p": 0.6496350364963503,
+   "ic95": [
+    0.5597014925373134,
+    0.7315436241610739
+   ],
+   "n": 137,
+   "numerador": 89,
+   "n_estratos": 4,
+   "n_upm": 74,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 137.0,
+   "etiqueta": "silencio | INSEGURO_BARRIO=0",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6496350364963503,
+    "ic95_linealizado": [
+     0.5622134293025131,
+     0.7370566436901876
+    ],
+    "n_upm": 74,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_DESCONFIA_POLICIA=1": {
+   "p": 0.6687898089171974,
+   "ic95": [
+    0.6052631578947368,
+    0.7328767123287672
+   ],
+   "n": 157,
+   "numerador": 105,
+   "n_estratos": 4,
+   "n_upm": 76,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 157.0,
+   "etiqueta": "silencio | DESCONFIA_POLICIA=1",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6687898089171974,
+    "ic95_linealizado": [
+     0.6034665043317328,
+     0.7341131135026621
+    ],
+    "n_upm": 76,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_DESCONFIA_POLICIA=0": {
+   "p": 0.6261682242990654,
+   "ic95": [
+    0.5405405405405406,
+    0.7083333333333334
+   ],
+   "n": 107,
+   "numerador": 67,
+   "n_estratos": 4,
+   "n_upm": 65,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 107.0,
+   "etiqueta": "silencio | DESCONFIA_POLICIA=0",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6261682242990654,
+    "ic95_linealizado": [
+     0.5390486339289017,
+     0.7132878146692291
+    ],
+    "n_upm": 65,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_DESCONFIA_POLICIA=1_corte<=4": {
+   "p": 0.6666666666666666,
+   "ic95": [
+    0.6043956043956044,
+    0.7258064516129032
+   ],
+   "n": 195,
+   "numerador": 130,
+   "n_estratos": 4,
+   "n_upm": 87,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 195.0,
+   "etiqueta": "silencio | DESCONFIA_POLICIA=1 (corte<=4)",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6666666666666666,
+    "ic95_linealizado": [
+     0.604135271937905,
+     0.7291980613954283
+    ],
+    "n_upm": 87,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_DESCONFIA_POLICIA=0_corte<=4": {
+   "p": 0.6086956521739131,
+   "ic95": [
+    0.5,
+    0.7164179104477612
+   ],
+   "n": 69,
+   "numerador": 42,
+   "n_estratos": 4,
+   "n_upm": 49,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 69.0,
+   "etiqueta": "silencio | DESCONFIA_POLICIA=0 (corte<=4)",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6086956521739131,
+    "ic95_linealizado": [
+     0.4940932935539405,
+     0.7232980107938857
+    ],
+    "n_upm": 49,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_DESCONFIA_JUSTICIA=1": {
+   "p": 0.6568627450980392,
+   "ic95": [
+    0.5970873786407767,
+    0.7135922330097088
+   ],
+   "n": 204,
+   "numerador": 134,
+   "n_estratos": 4,
+   "n_upm": 92,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 204.0,
+   "etiqueta": "silencio | DESCONFIA_JUSTICIA=1",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6568627450980392,
+    "ic95_linealizado": [
+     0.597296748337228,
+     0.7164287418588504
+    ],
+    "n_upm": 92,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_DESCONFIA_JUSTICIA=0": {
+   "p": 0.6379310344827587,
+   "ic95": [
+    0.509090909090909,
+    0.7538461538461538
+   ],
+   "n": 58,
+   "numerador": 37,
+   "n_estratos": 4,
+   "n_upm": 43,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 58.0,
+   "etiqueta": "silencio | DESCONFIA_JUSTICIA=0",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6379310344827587,
+    "ic95_linealizado": [
+     0.5106724532468097,
+     0.7651896157187077
+    ],
+    "n_upm": 43,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_DESCONFIA_JUSTICIA_b10a=1": {
+   "p": 0.6776859504132231,
+   "ic95": [
+    0.6048387096774194,
+    0.7520661157024794
+   ],
+   "n": 121,
+   "numerador": 82,
+   "n_estratos": 4,
+   "n_upm": 65,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 121.0,
+   "etiqueta": "silencio | DESCONFIA_JUSTICIA_b10a=1",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6776859504132231,
+    "ic95_linealizado": [
+     0.6028996571231892,
+     0.752472243703257
+    ],
+    "n_upm": 65,
+    "estratos_singleton": 0
+   }
+  },
+  "silencio_DESCONFIA_JUSTICIA_b10a=0": {
+   "p": 0.6223776223776224,
+   "ic95": [
+    0.541095890410959,
+    0.6987179487179487
+   ],
+   "n": 143,
+   "numerador": 89,
+   "n_estratos": 4,
+   "n_upm": 81,
+   "estratos_singleton": 0,
+   "replicas": 10000,
+   "poblacion_expandida": 143.0,
+   "etiqueta": "silencio | DESCONFIA_JUSTICIA_b10a=0",
+   "estado": "ESTIMADA",
+   "control_regresion": {
+    "p_hat_linealizado": 0.6223776223776224,
+    "ic95_linealizado": [
+     0.5407732603562971,
+     0.7039819843989477
+    ],
+    "n_upm": 81,
+    "estratos_singleton": 0
+   }
+  }
+ },
+ "contrastes": {
+  "C_completo": {
+   "d": -0.02503449635324262,
+   "ic95": [
+    -0.13898711795908059,
+    0.10030030030030024
+   ],
+   "replicas_validas": 10000,
+   "replicas_pedidas": 10000,
+   "etiqueta": "C_completo",
+   "estado": "ESTIMADA",
+   "excluye_cero": false,
+   "signo": "-"
+  },
+  "C_completo_corte_b18<=4": {
+   "d": -0.051673116321420465,
+   "ic95": [
+    -0.1767757382282522,
+    0.08020304568527925
+   ],
+   "replicas_validas": 10000,
+   "replicas_pedidas": 10000,
+   "etiqueta": "C_completo (corte b18<=4)",
+   "estado": "ESTIMADA",
+   "excluye_cero": false,
+   "signo": "-"
+  },
+  "C_barrio": {
+   "d": -0.0062241837831720215,
+   "ic95": [
+    -0.12399119589141594,
+    0.11136612021857928
+   ],
+   "replicas_validas": 10000,
+   "replicas_pedidas": 10000,
+   "etiqueta": "C_barrio",
+   "estado": "ESTIMADA",
+   "excluye_cero": false,
+   "signo": "-"
+  },
+  "C_policia": {
+   "d": 0.042621584618132036,
+   "ic95": [
+    -0.06653883029721952,
+    0.1565508021390375
+   ],
+   "replicas_validas": 10000,
+   "replicas_pedidas": 10000,
+   "etiqueta": "C_policia",
+   "estado": "ESTIMADA",
+   "excluye_cero": false,
+   "signo": "+"
+  },
+  "C_policia_corte_b18<=4": {
+   "d": 0.05797101449275355,
+   "ic95": [
+    -0.07993897787948134,
+    0.19315068493150678
+   ],
+   "replicas_validas": 10000,
+   "replicas_pedidas": 10000,
+   "etiqueta": "C_policia (corte b18<=4)",
+   "estado": "ESTIMADA",
+   "excluye_cero": false,
+   "signo": "+"
+  },
+  "C_justicia": {
+   "d": 0.01893171061528054,
+   "ic95": [
+    -0.12056613664162152,
+    0.16896204232448775
+   ],
+   "replicas_validas": 10000,
+   "replicas_pedidas": 10000,
+   "etiqueta": "C_justicia",
+   "estado": "ESTIMADA",
+   "excluye_cero": false,
+   "signo": "+"
+  },
+  "C_justicia_b10a_verificacion_cruzada": {
+   "d": 0.05530832803560071,
+   "ic95": [
+    -0.0561728395061728,
+    0.17116692830978542
+   ],
+   "replicas_validas": 10000,
+   "replicas_pedidas": 10000,
+   "etiqueta": "C_justicia_b10a (verificacion cruzada, no sustituye a aoj12)",
+   "estado": "ESTIMADA",
+   "excluye_cero": false,
+   "signo": "+"
+  }
+ },
+ "veredicto_B_bis": "NO-DISCRIMINA"
+}
