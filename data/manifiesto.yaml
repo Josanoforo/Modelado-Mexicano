@@ -28525,3 +28525,35 @@
   sha256: bbb97ee91db7477e721f41391ed5765324b34043b19899e01d36722cc87bb14d
   tamano_bytes: 989696
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: list_cran_mexico_tab
+  usado_para: 'Paquete R list (Blair & Imai), dataset mexico: subconjunto publico de la ola
+    2 del Mexico Elections Panel Study 2012 (n=1004, 25 variables) con el experimento de lista
+    de compra/venta del voto. Microdato de PRIMERA MANO para prereg-caja-S10-L2-LISTA (ACTO
+    MAESTRA38-L2-LISTA); hermano del .dta restringido de ICPSR 35024 (FP-316), no su sustituto.'
+  url_origen: https://github.com/SensitiveQuestions/list/tree/e088e5f88af5f3d3f7d61dcffe6d7eb6d28c5120
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: 'caja (ACTO MAESTRA38-L2-LISTA), vía `git clone --depth 1` del repo del
+    paquete — NO por navegador: el valor por defecto que --escanea deriva no aplica a este payload'
+  archivo: ACADEMICO-list-cran/data/mexico.tab
+  raiz: descargas_mx
+  sha256: fe101499b591d90d9e2122f439e26306fcdeab443e42d14f9455e9efa1c04488
+  tamano_bytes: 78065
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: list_cran_mexico_rd
+  usado_para: 'Descriptor roxygen2 del dataset list::mexico: wording verbatim del experimento
+    de lista (cuatro actividades; item c = "Exchange your vote for a gift, favor, or access
+    to a service", solo al grupo tratamiento) y glosa de las 25 variables. Es la fuente del
+    wording que verifica la condicion de entrada de prereg-caja-S10-L2-LISTA §4.'
+  url_origen: https://github.com/SensitiveQuestions/list/blob/e088e5f88af5f3d3f7d61dcffe6d7eb6d28c5120/man/mexico.Rd
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: 'caja (ACTO MAESTRA38-L2-LISTA), vía `git clone --depth 1` del repo del
+    paquete — NO por navegador: el valor por defecto que --escanea deriva no aplica a este payload'
+  archivo: ACADEMICO-list-cran/man/mexico.Rd
+  raiz: descargas_mx
+  sha256: cd8cdaefb2d0174ae515754966e3f8ea26c5cc2884fe39e6f6fb8d84f875af85
+  tamano_bytes: 3592
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
