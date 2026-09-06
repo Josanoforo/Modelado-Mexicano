@@ -23,7 +23,7 @@ propio repo (`tools/adquiere_cron.sh`, `forense/agente-adquisicion-v1_0.md`,
 | usuario del crontab | el de mesa en `mm-adq` (no root) |
 | repo que opera | el clon de trabajo de mesa en `mm-adq`, rama `main` |
 | log | `forense/adq-log/<AAAA-MM-DD>.log` (por corrida) + `forense/adq-log/cron-stdout.log` (stdout/stderr crudo del propio crontab, apéndice) |
-| huella mínima esperada por corrida | **tres commits** en `censo/<AAAA-MM-DD>` (ACTO MAESTRA38-CRON-3, `ADR-353`): `[CENSO] <fecha>` (paso 2.5), `[ADQ-PDN] <fecha>` (paso 2.6 — el re-escaneo si cae en ventana día 1-3, o la línea `fuera de ventana` si no) y `[ADQ] <fecha> <HH:MM>: invocado=<si\|no> motivo=<-\|PARO-RAIZ\|PARO-RED\|PARO-PROMPT\|PARO-CORPUS> exit=<código\|-> duracion=<s> commits_nuevos=<k> ramas_nuevas=<j> archivos_modificados=<m>` (D-b) — medida contra el estado real del clon, nunca una constante; se escribe siempre, incluso `invocado=no` |
+| huella mínima esperada por corrida | **tres commits** en `censo/<AAAA-MM-DD>` (ACTO MAESTRA38-CRON-3, `ADR-354`): `[CENSO] <fecha>` (paso 2.5), `[ADQ-PDN] <fecha>` (paso 2.6 — el re-escaneo si cae en ventana día 1-3, o la línea `fuera de ventana` si no) y `[ADQ] <fecha> <HH:MM>: invocado=<si\|no> motivo=<-\|PARO-RAIZ\|PARO-RED\|PARO-PROMPT\|PARO-CORPUS> exit=<código\|-> duracion=<s> commits_nuevos=<k> ramas_nuevas=<j> archivos_modificados=<m>` (D-b) — medida contra el estado real del clon, nunca una constante; se escribe siempre, incluso `invocado=no` |
 | commit del censo | `[CENSO] <AAAA-MM-DD>`, rama `censo/<AAAA-MM-DD>`, PR (main protegida, check `check` requerido) |
 | runbook | `forense/agente-adquisicion-v1_0.md` §1 (bloque ```text``` que el script extrae para `claude -p`) |
 | modelo que lo declara | `D-13` (`canon/gobernanza-v1_15.md`, `ADR-281`, `ACTO MAESTRA34-N7 · SKILLS-COLA-Y-ADQ`) |
@@ -141,7 +141,7 @@ Cuando `T-CRON` da WARN o alguien sospecha que el cron dejó de correr:
 **Compuerta (`PR #556`/`PR #557`): CUMPLIDA (`ACTO MAESTRA38-CRON-3`,
 6/sep/2026).** Ambos fusionados antes de tocar código (D-a). `PR #557`
 traía un conflicto real con el ya-fusionado `PR #558` (dirección lo
-fusionó por error antes de lanzar el acto — ver `ADR-353`,
+fusionó por error antes de lanzar el acto — ver `ADR-354`,
 `gobernanza-v1_15.md`) contra `forense/tablero/TABLERO-PROGRAMA-v1_1.md`,
 resuelto conservando ambas entradas en orden cronológico.
 
@@ -150,7 +150,7 @@ en `tests/check.py` + `tests/test_t_cron.py` + `tools/adquiere_cron.sh`
 D-b/D-c + `.claude/commands/acto.md` D-d + `forense/hallazgos.md` +
 tablero): hecho desde un entorno de nube, sin acceso a `mm-adq` — con dos
 defectos de código (huella `[ADQ]` constante, `[ADQ-PDN]` huérfano)
-corregidos por `ACTO MAESTRA38-CRON-3` (`ADR-353`).
+corregidos por `ACTO MAESTRA38-CRON-3` (`ADR-354`; renumerado de `353` a `354` al sincronizar -- `PR #561`/`MAESTRA38-A6` fusionó primero y tomó `353`).
 
 **Commit 2 — EJECUTADO (`ACTO MAESTRA38-CRON-3`, 6/sep/2026, caja `mm-adq`
 real, no sesión de nube):**
