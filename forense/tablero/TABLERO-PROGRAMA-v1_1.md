@@ -759,7 +759,35 @@ paso de `.claude/commands/acto.md`, `canon/modelo-decision-v4_0.md`, `milpa/**` 
 
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
 
-### 8.13 Recibo — `ACTO MAESTRA38-A4 · ADQUIERE-TODO-LO-PUBLICO` (6/sep/2026, `ADR-347`, `FP-312`/`FP-313`)
+### 8.13 Recibo — `ACTO MAESTRA38-N15 · SPEC-L2-LISTA` (6/sep/2026, `ADR-347`, `FP-312`)
+
+**Qué pidió el encargo.** Escribir `forense/prereg-caja/S10-L2-LISTA-spec-v1_0.md` (+ `.sha256`): universo
+(`list::mexico`, `1 004`, sin ponderar), estimandos (prevalencia por diferencia de medias
+tratamiento−control con IC; prevalencia directa `mex.direct`; contraste lista−directa; heterogeneidad
+por `mex.wealth`/`mex.urban`/`mex.loyal`; participación verificada × directa), fila B-bis (qué
+significa que la lista no supere a la directa), escala declarada (proporciones), universo declarado,
+`se_mueve_si`. Reutiliza `S2-L2 §1.2` verbatim donde aplique. Perímetro: sólo la spec y su sha;
+tablero (recibo). `COMPUERTA: ninguna` (declaración explícita — no toca red ni corpus).
+
+**Qué hizo.** Sella `forense/prereg-caja/S10-L2-LISTA-spec-v1_0.md`, pre-registro hermano de `S2-L2`
+(no su sucesor): mismo tipo de instrumento (experimento de lista) sobre una fuente distinta y ya
+abierta — `data/mexico.tab`, paquete `list` (`github.com/SensitiveQuestions/list @ e088e5f`,
+`sha256 fe101499b591d90d9e2122f439e26306fcdeab443e42d14f9455e9efa1c04488`, `1 004` filas × 25
+variables). Fija universo (`n=1 004`, sin ponderar, subconjunto restringido de la ola 2 completa de
+MPS-2012, `n≈1 555`), cinco estimandos con IC95 en proporciones (§2), la fila B-bis sobre qué
+significa un contraste lista−directa ≤0 (§3), la reutilización verbatim de `S2-L2 §1.2` aplicada al
+wording de `man/mexico.Rd` (§4), y `se_mueve_si` sobre el estado de `P3` (§6) — nunca sobre `R7.3`/
+`R7.6`, declarado explícitamente en 0 de sus variables estar presentes en este dataset. Declara,
+antes de que se lea como cierre, lo que este dataset no hace (no ponderador, no mueve tier, universo
+restringido) — mismo texto que la Procedencia del encargo ya fijaba.
+
+**Cascada.** `ADR-347` (candidato contra `346`, contiguo). `FP-312` (recibo). `canon/registro-
+rotulos.tsv`: fila `MAESTRA38-N15` censada. Cero medición de México, cero canon sustantivo tocado
+(`canon/modelo-decision-v4_0.md` intacto, `milpa/tramite.yaml` intacto) — el propio encargo lo
+declara: specs de caja `8 → 9`, medición cero.
+
+`python3 tests/check.py --baseline`: ver cierre del PR de este acto.
+### 8.14 Recibo — `ACTO MAESTRA38-A4 · ADQUIERE-TODO-LO-PUBLICO` (6/sep/2026, `ADR-348`, `FP-313`/`FP-314`)
 
 **Qué pidió el encargo.** Bajar todo lo público que la cola tenía
 pendiente, y entregar a mesa —con liga y detalle— sólo lo que caja no
@@ -799,8 +827,9 @@ leyendo el mismo código sin probar el host: los backends responden
 `1515`. Cola `OBTENIDO` `92` → `104`. Medición de modelo: **cero**,
 declarada y cumplida.
 
-**Cascada.** `ADR-347` (candidato derivado contra `346`, contiguo).
-`FP-312` (recibo), `FP-313` (firma de mesa sobre las recetas del
+**Cascada.** `ADR-348` (candidato original `347`, cedido a
+`MAESTRA38-N15` al fusionar segundo).
+`FP-313` (recibo), `FP-314` (firma de mesa sobre las recetas del
 paquete, vence 13/sep/2026). `canon/registro-rotulos.tsv`: fila
 `MAESTRA38-A4` censada. `forense/hallazgos.md`: **6 entradas** del
 6/sep, cada una corrige un cierre anterior por medición. No toca

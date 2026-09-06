@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **347 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **348 ADR**
 
 > | | |
 > |---|---|
@@ -5927,7 +5927,18 @@ WARN, sin entradas nuevas.
 
 ---
 
-**ADR-347 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` -> `346`, contiguo, sin huecos; candidato `347`) · `ACTO MAESTRA38-A4 · ADQUIERE-TODO-LO-PUBLICO`**, 6/sep/2026, entorno **UBUNTU con corpus y red** — **caja baja 25 de 33 objetivos (201 payloads, 5.39 GB) y entrega a mesa un paquete de 5, no de 33: el bulk oficial de la Plataforma Digital Nacional (4 GB, S1/S2/S3/S6) cierra el hueco persona-con-id que la fila 28 arrastraba desde agosto, y tres cierres anteriores caen por medición — un `000` que era cadena TLS incompleta, un host «caído» que sólo estaba mal direccionado, y una ficha «sin existencia confirmada» cuyo microdato es público.**
+**ADR-347 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `346`, contiguo, sin huecos; candidato `347`) · `ACTO MAESTRA38-N15 · SPEC-L2-LISTA`**, 6/sep/2026, entorno **NUBE** — **sella `forense/prereg-caja/S10-L2-LISTA-spec-v1_0.md` (+ `.sha256`), pre-registro hermano de `S2-L2` sobre `list::mexico` (subconjunto público de MPS-2012 ola 2, `n=1 004`, sin ponderar): universo, estimandos (prevalencia por lista, `mex.direct`, contraste lista−directa, heterogeneidad por `mex.wealth`/`mex.urban`/`mex.loyal`, participación verificada×directa), fila B-bis, escala en proporciones, `se_mueve_si` sobre el estado de `P3`.**
+
+`COMPUERTA: ninguna` (declaración explícita del encargo — no toca red ni corpus).
+
+**Qué hace.** Convierte `P3` (experimento de lista) de PROPUESTA de medición a instrumento pre-registrado sobre una fuente ya abierta byte a byte (`github.com/SensitiveQuestions/list @ e088e5f`, `sha256 fe101499b591d90d9e2122f439e26306fcdeab443e42d14f9455e9efa1c04488`) — reutiliza `S2-L2 §1.2` verbatim para la condición de entrada del diseño de lista (lista tratamiento = control + un ítem sensible) y la aplica al wording de `man/mexico.Rd` citado por la Procedencia del encargo. Declara `se_mueve_si`: `P3 → MEDIDO (primera mano, subconjunto)` si la caja ejecuta §2 con veredicto reportado; permanece `PROPUESTA` (declarada `PROPUESTA-REFUTADA-POR-DISEÑO` para esta fuente) si §4 refuta la condición de entrada.
+
+**Qué NO decide.** No abre `data/mexico.tab`. No calcula ningún IC95, ninguna celda. No mueve `R7.3`/`R7.6` (0 de sus variables en este dataset, declarado explícitamente). No sustituye la rama MEDICIÓN/TEXTO de `S2-L2` sobre el `.dta` completo de ICPSR 35024 (pendiente de `FP-316`, fuera de este perímetro). No toca `milpa/tramite.yaml`.
+
+**Deuda que abre.** Ninguna sustantiva. Recibo: `FP-312`.
+
+**Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `346` (`ADR-346`, `MAESTRA38-A2-bis`), contiguo → `347`. Sin colisión conocida al escribir esta entrada; si otro acto en vuelo (`A4`, `LOTE-LAPOP`, citados por la propia dirección como corriendo en paralelo) fusiona `347` primero, quien fusione después renumera (regla de la casa).
+**ADR-348 (candidato original `347`, derivado por el comando de la casa contra el árbol antes de fusionar: máximo `346`, contiguo → `347`; al fusionar `origin/main`/`PR #550` ese `347` ya estaba tomado por `ACTO MAESTRA38-N15 · SPEC-L2-LISTA` -- regla de la casa, renumera quien fusiona segundo, toma `348`, contiguo tras `347`) · `ACTO MAESTRA38-A4 · ADQUIERE-TODO-LO-PUBLICO`**, 6/sep/2026, entorno **UBUNTU con corpus y red** — **caja baja 25 de 33 objetivos (201 payloads, 5.39 GB) y entrega a mesa un paquete de 5, no de 33: el bulk oficial de la Plataforma Digital Nacional (4 GB, S1/S2/S3/S6) cierra el hueco persona-con-id que la fila 28 arrastraba desde agosto, y tres cierres anteriores caen por medición — un `000` que era cadena TLS incompleta, un host «caído» que sólo estaba mal direccionado, y una ficha «sin existencia confirmada» cuyo microdato es público.**
 
 `COMPUERTA: sin compuerta` — declaración explícita del encargo, equivalente a `COMPUERTA: ninguna` (§2 de `/acto`): no dispara verificación.
 
@@ -5943,6 +5954,6 @@ WARN, sin entradas nuevas.
 
 **Qué NO decide.** No abre ningún payload para medir: la medición de modelo de este acto es **cero**, como el encargo declaró. No toca `relaciones.tsv`/`procedencias`/`utilidad` ni `tests/baseline.json` — el perímetro los admite sólo vía `alta_relacion.py` para fuente nueva, y ninguna necesidad viva cita hoy a las fuentes nuevas: dar de alta una relación sin necesidad que la cite sería inventar el vínculo. No toca `milpa/**`, specs, ni `Downloads`. No cierra `R1.4` (ni el PDF de SSRN ni su hermana traen comparador de marca) y lo dice en la propia receta, para que el paquete no prometa de más. No fabrica receta para las tres fichas de diseño sin objeto adquirible (`MAESTRA38-N10`): ahí el desenlace individual no existe como registro administrativo.
 
-**Deuda que cierra.** `FP-312` recibo de este acto. `FP-313` firma de mesa sobre «mesa ejecuta las recetas de `PAQUETE-RECETAS-10`» (vence en 7 días, 13/sep/2026). Cola: `OBTENIDO` `92` -> `104`; manifiesto `1315` -> `1515`.
+**Deuda que cierra.** `FP-313` recibo de este acto. `FP-314` firma de mesa sobre «mesa ejecuta las recetas de `PAQUETE-RECETAS-10`» (vence en 7 días, 13/sep/2026). Cola: `OBTENIDO` `92` -> `104`; manifiesto `1315` -> `1515`.
 
-**Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `346`, contiguo -> `347`. El encargo cita `ADR-347` y el número derivado coincide. Acto en vuelo conocido que podría tomarlo primero: la rama `acto/maestra38-lote-lapop`, visible en `git ls-remote --heads origin` el 6/sep — regla de la casa, renumera quien fusiona segundo.
+**Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `346`, contiguo -> `347`, que es además el número que el encargo citaba. **Colisión real al fusionar** (6/sep/2026): `origin/main` incorporó `PR #550` (`ACTO MAESTRA38-N15 · SPEC-L2-LISTA`) con ese mismo candidato `347`, derivado independientemente y sin conocer esta rama — la propia entrada de `N15` anticipa la colisión y nombra a `A4` entre los actos en vuelo. Regla de la casa, renumera quien fusiona segundo: esta rama cede `347` y toma `348`, contiguo tras el `347` de `N15`. Por la misma razón, `FP-312` (recibo) pasa a `FP-313` y la firma de mesa de `FP-313` pasa a `FP-314`.
