@@ -81,3 +81,32 @@ Lectura, acotada a lo que este instrumento soporta: en este subconjunto el dise�
 ## 7 · Enmienda a `FP-263`
 
 `FP-263` (iii) pedía *el texto de los ítems* como lo único que convierte P3 de PROPUESTA en medición. Este acto lo obtiene **para esta fuente**: el wording de `man/mexico.Rd` satisface la condición de entrada, y además la mecánica del dato la confirma. **Precisión que no se debe redondear:** el wording verificado es el **inglés de `list::mexico`**, no el español de `P35A`/`P35B`/`W2_P35A`/`W2_P35B` del cuestionario de ICPSR 35024 — mismo estudio, pero que sean los mismos ítems es una inferencia razonable, no algo medido aquí. `FP-263` (i) y (ii) siguen dependiendo del `.dta` completo y no se tocan.
+
+---
+
+## 8 · Opción B (encargo (d)) — Dataverse: **OBTENIDO**, sin medir nada
+
+Los dos DOI que `MAESTRA38-N15 §3` fila B nombraba. **Ningún archivo de estos dos DOI se abrió, se leyó ni se midió en este acto** — se hashearon y se registraron, nada más.
+
+**Alcance declarado, no silenciado:** se aplicó el **protocolo de rutas múltiples** de `/adquiere` §3, pero **no** el resto de la skill: `data/curacion-registro/cola-adquisicion-registro.tsv` y su vista `data/cola-adquisicion-v1_0.tsv` quedaron **fuera del perímetro** de este encargo y no se tocaron. La adquisición está registrada en la capa payload, no en la capa cola.
+
+| Ruta (`/adquiere` §3) | Resultado crudo |
+|---|---|
+| **(i) URL directa** por archivo, `api/access/datafile/<id>`, UA de navegador real | **HTTP 200 en 16 de 16 intentos**, tamaño descargado = tamaño declarado en todos |
+| **(ii) API del portal**, `api/datasets/:persistentId/versions/:latest` | **HTTP 200** en los dos DOI (9 357 B y 11 016 B). Los dos `RELEASED`, licencia **CC0 1.0**, **`restricted: false` en los 17 archivos** |
+| **(iii) Formato alterno** | **No aplica**, y se dice por qué: Dataverse sirve el archivo depositado tal cual; no hay conversión alterna publicada para `.rda`/`.tab`/`.R` en estos dos depósitos |
+| **(iv) Espejo académico** | **No se necesitó** — Dataverse *es* el repositorio académico de origen (ruta (iv) del protocolo), y abrió por la ruta (i). No se cierra en `NO-OBTENIDO`: se cierra en **OBTENIDO** |
+
+`NO-OBTENIDO` **no se declara** porque no procede: las rutas abrieron.
+
+**Manifiesto: 1 517 → 1 533 (+16).** `--verifica` sobre los 16: **16 COINCIDE, 0 DISCREPANCIA, 0 AUSENTE**. Raíz `descargas_mx/ACADEMICO-dataverse-mps2012/`.
+
+**Un archivo de 17 no se bajó, y no se disfraza de fallo:** `empirical_models.zip` (`doi:10.7910/DVN/27083`, id 2497899, **527 533 432 B**) es salida de modelos, no microdato. Que la ruta funciona para él está **medido, no supuesto**: `curl -r 0-1023` → **HTTP 206**, 1 024 B servidos. Es una decisión de no bajar 527 MB inútiles para este acto, no un `NO-OBTENIDO`; queda disponible por la misma ruta para quien lo necesite.
+
+Las dos respuestas de la API (`meta-10.7910_DVN_27083.json`, `meta-10.7910_DVN_VOB5JL.json`) quedaron en la misma carpeta como evidencia de la ruta (ii); **no se registraron como payloads** porque no son dato de la fuente sino respuesta generada por esta caminata.
+
+**Qué contienen, según el metadato (no según haberlos abierto):** `DVN/27083` trae `mexico.rda` y `mexicoall.rda` — candidatos a traer más covariables de la ola 2 que las 25 de `list::mexico`, que es exactamente lo que la fila B anticipaba. `DVN/VOB5JL` trae `Mexico TB Paper Data.tab`, `meta analysis data.tab`, `Pentagono PRI Edomex 2017_v1.tab` (9.7 MB) y un cuestionario parcial de la encuesta VB México 2021. **Nada de esto se abrió**: decir qué miden exigiría abrirlos, y este acto no lo hace.
+
+## 9 · Anti-PR#77 — dónde quedaron los payloads
+
+Los 18 payloads de este acto (2 de `list`, 16 de Dataverse) están en **`descargas_mx`**, que es raíz **compartida** declarada en `data/raices.local.yaml`, no en el worktree de esta sesión. `--verifica` los resuelve por el campo `raiz`, no por ruta local.
