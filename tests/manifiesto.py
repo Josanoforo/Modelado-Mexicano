@@ -130,6 +130,23 @@ migra un valor retroactivo que nadie declaró entonces.
              cada entrada staging trae `url_origen_sugerida` -- la misma
              sugerencia pero en un campo YAML real, no solo en un comentario,
              para que --promueve pueda leerla sin re-escanear la carpeta.
+             La sugerencia de url_origen NUNCA se deriva de un .html/.htm
+             guardado (solo de .php) -- un HTML no sugiere nada; medido
+             mordiendo el propio texto de una librería empaquetada (jquery)
+             como si fuera la URL de origen de la página.
+
+             UN CLON GIT = UN OBJETO (COMMIT-1, MAESTRA38-CENSO-CLON): una
+             carpeta que contiene `.git/` en cualquier nivel del árbol se
+             reporta como UNA sola línea en una sección `CLONES (k):` --
+             `CLON <ruta> · commit <sha de HEAD leído de .git> · <n>
+             archivos` -- y ninguno de sus archivos entra a "nuevos" ni a
+             "páginas guardadas", ni se stagea. Los archivos del clon que ya
+             estén en data/manifiesto.yaml (por sha256) siguen contando en
+             "ya registrados", pero se listan bajo el CLON, no sueltos. Sin
+             esto, un clon completo de un repositorio dejado dentro de una
+             carpeta escaneada (p. ej. L2-LISTA) se trataba archivo por
+             archivo: 136 residuos de un solo clon contados como "nuevos"
+             el 6/sep (ver forense/hallazgos.md).
 
 --promueve   mueve entradas de data/manifiesto-staging.yaml a
              data/manifiesto.yaml aunque url_origen no esté confirmada por
@@ -772,6 +789,82 @@ def _formatear_entrada_staging(f, sugerencia_url):
 RAICES_QUE_EXIGEN_GRUPO = {"downloads"}
 
 
+def _leer_head_clon(ruta_clon):
+    """Lee el sha de HEAD de un clon git (ruta_clon/.git/HEAD), resolviendo
+    una ref simbólica ('ref: refs/heads/main') contra el archivo de la ref
+    o, si está empaquetada, contra .git/packed-refs. Devuelve None si no se
+    puede leer -- un HEAD ilegible es un hallazgo para el reporte, no una
+    excepción que tumbe --escanea."""
+    git_dir = os.path.join(ruta_clon, ".git")
+    try:
+        with open(os.path.join(git_dir, "HEAD"), encoding="utf-8") as f:
+            contenido = f.read().strip()
+    except OSError:
+        return None
+    if not contenido.startswith("ref:"):
+        return contenido or None
+    ref = contenido.split(":", 1)[1].strip()
+    try:
+        with open(os.path.join(git_dir, ref), encoding="utf-8") as f:
+            return f.read().strip()
+    except OSError:
+        pass
+    try:
+        with open(os.path.join(git_dir, "packed-refs"), encoding="utf-8") as f:
+            for linea in f:
+                partes = linea.split()
+                if len(partes) == 2 and partes[1] == ref:
+                    return partes[0]
+    except OSError:
+        pass
+    return None
+
+
+def _detectar_clones_y_archivos(ruta):
+    """Recorre `ruta` recursivamente (os.walk) igual que _archivos_recursivos,
+    salvo que una carpeta que contiene `.git/` se reporta como UN CLON --
+    un solo objeto (COMMIT-1, MAESTRA38-CENSO-CLON) -- en vez de descender a
+    sus archivos individuales. Sin esto, --escanea sobre una raíz que
+    contiene un clon completo de un repositorio (p. ej. un checkout de
+    L2-LISTA dejado dentro de una carpeta de descargas) trata cada archivo
+    del clon como un candidato nuevo: 136 residuos de un solo clon contados
+    como "nuevos" el 6/sep (ver forense/hallazgos.md).
+
+    Devuelve (archivos, clones):
+      archivos -- rutas relativas a `ruta` de los archivos que NO caen
+                  dentro de ningún clon (mismo formato que
+                  _archivos_recursivos).
+      clones   -- lista de dicts {ruta, head, archivos}, uno por clon
+                  encontrado; `archivos` ahí son las rutas relativas a
+                  `ruta` de TODO lo que el clon contiene, excepto `.git/`
+                  mismo.
+    """
+    archivos, clones = [], []
+    for dirpath, dirnames, filenames in os.walk(ruta):
+        if ".git" in dirnames and os.path.isdir(os.path.join(dirpath, ".git")):
+            clon_archivos = []
+            for sub_dirpath, sub_dirnames, sub_filenames in os.walk(dirpath):
+                if os.path.normpath(sub_dirpath) == os.path.normpath(dirpath):
+                    sub_dirnames[:] = [d for d in sub_dirnames if d != ".git"]
+                for fn in sub_filenames:
+                    ruta_abs = os.path.join(sub_dirpath, fn)
+                    if os.path.isfile(ruta_abs):
+                        clon_archivos.append(
+                            os.path.normpath(os.path.relpath(ruta_abs, ruta)))
+            clones.append({
+                "ruta": os.path.normpath(os.path.relpath(dirpath, ruta)),
+                "head": _leer_head_clon(dirpath),
+                "archivos": sorted(clon_archivos),
+            })
+            dirnames[:] = []  # el clon es un solo objeto -- no se desciende más
+            continue
+        for fn in filenames:
+            ruta_abs = os.path.join(dirpath, fn)
+            if os.path.isfile(ruta_abs):
+                archivos.append(os.path.normpath(os.path.relpath(ruta_abs, ruta)))
+    return archivos, clones
+
+
 def _archivos_recursivos(ruta):
     """Rutas relativas a `ruta` de TODOS los archivos del árbol, no solo del
     nivel superior. Misma convención que tests/corpus.py (os.walk +
@@ -832,7 +925,20 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
         nuevos, paginas = [], []
         fuera_de_alcance = []
 
-        for nombre in sorted(_archivos_recursivos(ruta)):
+        archivos_sueltos, clones = _detectar_clones_y_archivos(ruta)
+
+        # Un clon es un objeto (COMMIT-1): sus archivos nunca entran a
+        # "nuevos" ni a "páginas guardadas", ni se stagean. Los que YA
+        # están en el manifiesto (por sha256) siguen contando en "ya
+        # registrados", pero se listan bajo el clon, no sueltos.
+        for clon in clones:
+            clon["ya_registrados"] = []
+            for nombre in clon["archivos"]:
+                sha = sha256_de(os.path.join(ruta, nombre))
+                if sha in por_hash:
+                    clon["ya_registrados"].append((nombre, por_hash[sha].get("id", "?")))
+
+        for nombre in sorted(archivos_sueltos):
             ruta_abs = os.path.join(ruta, nombre)
 
             extension = os.path.splitext(nombre)[1].lower()
@@ -876,7 +982,16 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
         grupos = _agrupar_por_tanda(nuevos)
 
         for pagina in paginas:
-            pagina["_url_sugerida"] = _extraer_url_pagina(os.path.join(ruta, pagina["archivo"]))
+            # La heurística de url_origen no se aplica a HTML (COMMIT-1,
+            # MAESTRA38-CENSO-CLON): un .html/.htm no sugiere nada -- medido
+            # mordiendo el propio texto de una librería empaquetada (jquery)
+            # como si fuera la URL de origen de la página (ver
+            # forense/hallazgos.md). Solo .php sigue sugiriendo.
+            if os.path.splitext(pagina["archivo"])[1].lower() in (".html", ".htm"):
+                pagina["_url_sugerida"] = None
+            else:
+                pagina["_url_sugerida"] = _extraer_url_pagina(
+                    os.path.join(ruta, pagina["archivo"]))
 
         sugerencia_por_grupo = {}
         for i, grupo in enumerate(grupos):
@@ -962,14 +1077,28 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
         _escribir_atomico(staging_path, "\n".join(bloques).strip() + "\n")
 
         # ── reporte a stdout ──
-        total = len(ya_registrados) + len(conflictos_nombre) + len(nuevos) + len(paginas) + len(fuera_de_alcance)
+        ya_registrados_clon = sum(len(c["ya_registrados"]) for c in clones)
+        total = (len(ya_registrados) + ya_registrados_clon + len(conflictos_nombre)
+                 + len(nuevos) + len(paginas) + len(fuera_de_alcance)
+                 + sum(len(c["archivos"]) for c in clones))
         print(f"Escaneado: raíz '{nombre_raiz}' ({ruta})")
         print(f"Entorno: {entorno_actual()}")
         print()
         print(f"Total en disco: {total} · nuevos: {len(nuevos) + len(paginas)} · "
-              f"ya registrados: {len(ya_registrados)} · conflicto de nombre: "
-              f"{len(conflictos_nombre)} · fuera de alcance de dato: {len(fuera_de_alcance)}")
+              f"ya registrados: {len(ya_registrados) + ya_registrados_clon} · conflicto de nombre: "
+              f"{len(conflictos_nombre)} · fuera de alcance de dato: {len(fuera_de_alcance)} · "
+              f"clones: {len(clones)}")
         print()
+
+        if clones:
+            print(f"CLONES ({len(clones)}):")
+            for clon in clones:
+                sha = clon["head"] or "(HEAD ilegible)"
+                print(f"  CLON {clon['ruta']} · commit {sha} · "
+                      f"{len(clon['archivos'])} archivos")
+                for nombre, id_ in clon["ya_registrados"]:
+                    print(f"    {nombre} -- ya registrado como '{id_}'")
+            print()
 
         if fuera_de_alcance:
             extensiones_vistas = sorted({os.path.splitext(n)[1].lower() or "(sin extensión)" for n in fuera_de_alcance})

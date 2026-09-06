@@ -1080,3 +1080,29 @@ ABIERTA — la compuerta nunca se cumplió por el mecanismo que este párrafo de
 porque mesa decidió tomar `#558` como base para `ACTO MAESTRA38-CRON-3`, que corrige los tres
 defectos de este registro (huella constante, `[ADQ-PDN]` no commiteado, cascada incompleta) y
 cierra el Commit 2 que aquí queda `PENDIENTE`. Ver ese acto para el estado real de instalación.
+
+## `ACTO MAESTRA38-CENSO-CLON · UN-CLON-UN-OBJETO` (dirección, 6/sep/2026)
+
+`tests/manifiesto.py --escanea`: una carpeta que contiene `.git/` se
+detecta antes de descender y se reporta como un solo objeto —
+`CLON <ruta> · commit <sha> · <n> archivos` en una sección `CLONES (k):`
+nueva — en vez de archivo por archivo. Corrige el defecto medido el 6/sep:
+136 residuos del clon de L2-LISTA contados como "nuevos". Los archivos del
+clon ya registrados por sha256 siguen contando en "ya registrados",
+listados bajo el `CLON`; el staging no recibe entradas por ellos. De paso,
+la heurística de `url_origen` deja de aplicarse a `.html`/`.htm` (solo
+`.php` sigue sugiriendo) — medida mordiendo el texto de una librería
+empaquetada (jquery).
+
+`tests/test_manifiesto_clon.py` nuevo (COMMIT-2: 1 línea CLON, 0 nuevos,
+1 ya registrado, 0 entradas de staging para el clon); re-corrida real
+pegada en
+`forense/notas/2026-09-06-MAESTRA38-CENSO-CLON-verificacion.md`.
+`data/INFRAESTRUCTURA-v1_0.md` gana la frase «un clon git = un objeto» en
+la fila de censo-raíz. `ADR-355`.
+
+**Indicadores que este acto mueve.** Ninguno de medición (pieza de
+instrumento). Falsos "nuevos" por clon: 136 (censo del 6/sep) → 0 en el
+siguiente censo real que recorra esa raíz.
+
+`python3 tests/check.py --baseline`: VERDE, sin `FAIL` nuevo.

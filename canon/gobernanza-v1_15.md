@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **354 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **355 ADR**
 
 > | | |
 > |---|---|
@@ -6109,3 +6109,25 @@ WARN, sin entradas nuevas.
 **Deuda que cierra.** Los dos defectos de código de `PR #558` (huella constante, `[ADQ-PDN]` huérfano) y su cascada faltante.
 
 **Numeración.** RENUMERADO de `353` a `354` al sincronizar con `origin/main` (`957a3080`): `PR #561`/`MAESTRA38-A6` fusionó primero y tomó `ADR-353`/`FP-324` — la colisión que este mismo párrafo ya había declarado como conocida antes de fusionar. Re-derivado contra el árbol real tras el merge: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `353`, contiguo → `354`, sin duplicados ni huecos (verificado por script). `PR #559` (`MAESTRA38-CENSO-CLON`, sigue abierto) todavía reclama `ADR-352` en su diff, ya doblemente desactualizado — le corresponderá renumerar a `355` (o el contiguo que exista) cuando fusione, regla de la casa.
+
+**ADR-355 (derivado por el comando de la casa contra el árbol ya fusionado: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `354` (tras fusionar `origin/main`, que trajo además `ADR-354` de `MAESTRA38-CRON-3`), contiguo, sin huecos; candidato `355`. Renumerado dos veces al re-sincronizar (`352`→`354`→`355`) -- regla de la casa, renumera quien fusiona segundo, confirmado por la propia nota de `MAESTRA38-CRON-3` que ya declaraba este PR pendiente de renumerar a `355`) · `ACTO MAESTRA38-CENSO-CLON · UN-CLON-UN-OBJETO`**, 6/sep/2026, entorno **NUBE, sin red ni corpus** — **un clon git es un objeto en `tests/manifiesto.py --escanea`, no un montón de archivos sueltos.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-06-MAESTRA38-CENSO-CLON.md`, SHA de redacción `ef9ba36`. **Gate verificado.** `COMPUERTA: #556 fusionado` — verificado por PRODUCTO contra `origin/main` real: `git merge-base --is-ancestor 23442b4 origin/main` → sí, y `git log origin/main` trae `23442b4 Merge pull request #556 from Josanoforo/censo/2026-09-06` como commit fusionado. Cumplida.
+
+**COMMIT-1.** Una carpeta que contiene `.git/` en cualquier nivel del árbol que `--escanea` recorre se detecta antes de descender a sus archivos individuales (`_detectar_clones_y_archivos`, nuevo en `tests/manifiesto.py`) y se reporta como UN objeto: una sola línea `CLON <ruta> · commit <sha de HEAD leído de .git> · <n> archivos` en una sección `CLONES (k):` nueva del reporte de `--escanea`. Ninguno de sus archivos entra a "nuevos" ni a "páginas guardadas", ni recibe entrada en `data/manifiesto-staging.yaml`. Los archivos del clon que ya están en `data/manifiesto.yaml` (dedup por sha256, igual que el resto de `--escanea`) siguen contando en el total de "ya registrados", pero se listan anidados bajo la línea `CLON`, no sueltos en la lista plana. `HEAD` se lee resolviendo una ref simbólica (`ref: refs/heads/…`) contra el archivo de la ref o, si está empaquetada, contra `.git/packed-refs`; un `HEAD` ilegible se reporta como tal, no tumba el escaneo. De paso, congelado en el mismo COMMIT: la heurística que deriva `url_origen_sugerida` de una página guardada (`_extraer_url_pagina`) deja de aplicarse a `.html`/`.htm` — solo `.php` sigue sugiriendo; un `.html` no sugiere nada, medido mordiendo el propio texto de una librería empaquetada (jquery) como si fuera la URL de origen de la página.
+
+**Defecto real que corrige** (`forense/hallazgos.md`, 6/sep/2026): una carpeta con un clon completo de un repositorio (`L2-LISTA`) dejada dentro de una raíz escaneada se trataba archivo por archivo — 136 de sus archivos, contados como "nuevos" en el censo del día, sin ser dato del proyecto.
+
+**COMMIT-2.** `tests/test_manifiesto_clon.py` reproduce la condición con una fixture mínima (tempfile, sin red ni corpus): una carpeta con `.git/HEAD` (un sha de 40 hex) y tres archivos — uno ya registrado en el manifiesto de la fixture, dos no. Exige exactamente lo declarado: 1 línea `CLON`, 0 archivos nuevos, 1 ya registrado (bajo el `CLON`), 0 entradas de staging para los archivos del clon. `python3 tests/test_manifiesto_clon.py` → `OK`. Re-corrida real (no simulada) de `--escanea` sobre el mismo árbol de prueba, comando y salida cruda pegados en `forense/notas/2026-09-06-MAESTRA38-CENSO-CLON-verificacion.md`. `tests/test_manifiesto_seguro.py` y `tests/test_manifiesto_alcance.py` (los dos suites de `manifiesto.py` ya existentes) siguen en `OK`, sin regresión.
+
+**`data/INFRAESTRUCTURA-v1_0.md`**: la fila de `forense/censo-raiz/*.txt` gana la frase «un clon git = un objeto», citando este ADR.
+
+**`tests/check.py --baseline`: VERDE**, sin `FAIL` nuevo contra `tests/baseline.json` (HEAD congelado en el momento de correrlo).
+
+**Lo que este acto NO hace.** No toca `data/manifiesto.yaml`, `data/manifiesto-staging.yaml`, `data/cola-adquisicion-v1_0.tsv` ni ningún archivo de corpus. No descarga nada — no hay Anti-PR#77 que verificar. No abre `FP` nueva: es una pieza de instrumento (corrige un script de censo), no una medición del motor.
+
+**Deuda que abre.** Ninguna.
+
+**Deuda que cierra.** Ninguna; deja instrumentado el hallazgo del 6/sep para que el siguiente censo real de una raíz con clones no repita el falso conteo.
+
+**Numeración — renumerada dos veces al re-sincronizar.** Candidateó `352` contra el árbol con `ADR-350`/`ADR-351` (`MAESTRA38-L2-LISTA`/`MAESTRA38-A5`); cedió a `354` cuando `origin/main` fusionó primero `MAESTRA38-CRON · DIAGNOSTICO-Y-ARREGLO` (`ADR-352`) y `MAESTRA38-A6 · RE-SONDEO-DE-NEGATIVOS` (`ADR-353`). Segunda colisión, medida de nuevo al re-sincronizar: `MAESTRA38-CRON-3 · HUELLA-REAL-Y-PRUEBA-EN-CAJA` fusionó antes y tomó `ADR-354` -- su propia entrada, arriba en esta misma sección, ya declaraba este PR pendiente de renumerar a `355`. Regla de la casa, renumera quien fusiona segundo: cede `354` y toma `ADR-355`, contiguo tras el árbol con las cuatro ramas ya dentro.
