@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **351 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **352 ADR**
 
 > | | |
 > |---|---|
@@ -6033,3 +6033,21 @@ WARN, sin entradas nuevas.
 **Deuda que cierra.** Ninguna.
 
 **Numeración — re-derivada dos veces, la segunda por colisión real con un acto hermano que fusionó primero.** Primera derivación, contra `origin/main`/`PR #551` (`MAESTRA38-LOTE-LAPOP`, `ADR-349`, `FP-315`/`FP-316`): máximo `ADR-349`, contiguo → `350`; máximo `FP-316`, contiguo → `317`. El encargo citaba `ADR-353`/`FP-321`/`FP-322`, derivados contra una cola del 6/sep que ya estaba desactualizada al recibirse (máximo real era `346` en ese momento, y avanzó a `349` mientras este acto corría) — no se heredó, se re-derivó. Publicado `350`/`317` en la rama propia y empujado. **Colisión real al re-sincronizar para cerrar** (no hipotética, medida): `origin/main` había avanzado a `06c1d522` — `PR #554` (`MAESTRA38-L2-LISTA`, arriba en esta misma sección) fusionó con **los mismos números**, `ADR-350`/`FP-317`, derivados de forma independiente contra el mismo árbol intermedio, apoyándose en el encargo de `A5` para descartar colisión (`FP-321`/`FP-322`, cifra que este acto ya sabía obsoleta). **Regla de la casa, renumera quien fusiona segundo**: `L2-LISTA` fusionó primero; este acto cede `350`/`317` y toma `ADR-351`/`FP-318`, contiguos tras el árbol con las dos ramas ya dentro. Ningún hueco: `349` `LOTE-LAPOP`, `350` `L2-LISTA`, `351` este acto (mismo patrón para `FP`: `315`/`316` `LOTE-LAPOP`, `317` `L2-LISTA`, `318` este acto).
+
+**ADR-352 (diagnóstico sin defecto: ninguna de las cuatro lecturas pre-declaradas se cumplió, y el síntoma citado por el encargo — «no existe `censo/2026-09-05`» — resultó ser el calendario del cron funcionando, no una falla) · ACTO MAESTRA38-CRON · DIAGNOSTICO-Y-ARREGLO**, 6/sep/2026, entorno **caja `mm-adq`** — **compuerta ninguna, cero código tocado: `crontab -l` ya trae la línea correcta y el script ya se auto-recupera del estado sucio; prueba de extremo a extremo hoy con éxito completo.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-06-MAESTRA38-CRON-DIAGNOSTICO-Y-ARREGLO.md`, SHA de redacción `a5350e59`. `COMPUERTA: ninguna` — no dispara verificación.
+
+**Qué se verificó (P0).** `crontab -l` → `30 7 * * 1-5 cd /home/pc0/mm-adq && ./tools/adquiere_cron.sh >> forense/adq-log/cron-stdout.log 2>&1` (línea del runbook, ya instalada, rutas absolutas, hora local `CST` confirmada con `date`). `systemctl is-active cron` → `active`. `forense/adq-log/2026-09-05.log` existe (de corridas manuales a las 15:25 y 16:47, no del cron programado) con `PARO-RAIZ: descargas_mx no resuelve` — atribuido a que esas corridas ocurrieron dentro de un sandbox de Claude Code que entonces bloqueaba `/mnt/c` (defecto de sandbox, corregido el propio 6/sep), no al script ni a la línea de cron. `git status` en el clon: limpio (el estado sucio que ese mismo log mostraba — `data/manifiesto-staging.yaml` y `tools/adquiere_cron.sh` modificados, rama 1 commit adelante — ya había sido resuelto por el merge de `PR #546` ([N6-bis], `2026-09-06T00:32:56Z`) esa misma noche). **Ninguna de las cuatro lecturas pre-declaradas se cumple**: la ausencia de `censo/2026-09-05` es porque **2026-09-05 fue sábado**, fuera de la ventana `1-5` de la expresión cron — no un disparo perdido.
+
+**P1 · prueba de extremo a extremo.** `./tools/adquiere_cron.sh` corrido a mano hoy (domingo, fuera de ventana), fuera del sandbox de la sesión para replicar las condiciones del proceso de cron real: `git pull` a `ef9ba360`, corpus montado, censo `nuevos: 139` (**control positivo cumplido**, incluye el/los payload(s) que mesa depositó desde el 4/sep), commit + rama `censo/2026-09-06` + `PR #556` abiertos sin fusionar, paso PDN correctamente fuera de ventana mensual, sonda de red `200`, `claude -p` cerró con código `0` y declaró correctamente una caminata `/adquiere` vacía (cero filas elegibles, veredictos de mesa vigentes respetados).
+
+**Conclusión.** Ningún arreglo de código ni de crontab es necesario. `tools/adquiere_cron.sh` y `forense/agente-adquisicion-v1_0.md` no se tocaron — el perímetro condicionaba esos archivos a las lecturas (b)/(c), y ninguna se cumplió. Detalle completo en `forense/notas/2026-09-06-MAESTRA38-CRON-diagnostico.md`.
+
+**Lo que este acto NO hace.** No modifica `tools/adquiere_cron.sh` ni la línea de crontab instalada. No investiga el commit `a60c6611` («cron 23:39») más allá de identificarlo como un rename posterior del censo del 4/sep, no un segundo disparo — no altera la conclusión. No repara el marcador de conflicto de merge huérfano hallado incidentalmente en `forense/tablero/TABLERO-PROGRAMA-v1_1.md:976` (fuera de perímetro; declarado en `hallazgos.md`).
+
+**Deuda que abre.** `FP-323` (verificación pendiente: el disparo automático real de `censo/2026-09-07`, lunes 07:30 — el contador del programador sigue en 0 medido hasta entonces).
+
+**Deuda que cierra.** Ninguna.
+
+**Numeración.** `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `351`, contiguo → `352`. Sin otro acto en vuelo conocido que compita por el número (único PR abierto al momento de cerrar: `#556`, el propio censo de este acto, sin ADR).
