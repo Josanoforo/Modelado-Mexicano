@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **352 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **353 ADR**
 
 > | | |
 > |---|---|
@@ -6051,3 +6051,35 @@ WARN, sin entradas nuevas.
 **Deuda que cierra.** Ninguna.
 
 **Numeración.** `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `351`, contiguo → `352`. Sin otro acto en vuelo conocido que compita por el número (único PR abierto al momento de cerrar: `#556`, el propio censo de este acto, sin ADR).
+
+---
+
+**ADR-353 (re-sondeo de negativos con capacidad completa: cuatro de los cierres «imposibles» de la cola cayeron el mismo día, y ninguno cayó por insistir — cada uno cayó porque la sonda anterior medía otra cosa que la que creía medir) · ACTO MAESTRA38-A6 · RE-SONDEO-DE-NEGATIVOS-CON-CAPACIDAD-COMPLETA**, 6/sep/2026, entorno **UBUNTU con corpus y red**, fuera del sandbox de bash — **34 payloads nuevos (76 564 696 B), 2 filas de negativo a `OBTENIDO`, 3 a `OBTENIDO-PARCIAL`, 3 etiquetas corregidas, 2 altas por reconciliación, 3 `SIN-FETCH` retirados; cero medición de modelo.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-06-MAESTRA38-A6-RE-SONDEO-DE-NEGATIVOS-CON-CAPACIDAD-COMPLETA.md`, SHA de redacción `ef9ba36`.
+
+**Gate verificado.** `COMPUERTA: CRON fusionado`, con la condición que el propio encargo escribe: *«sólo porque comparten `mm-adq` si mesa usa esa caja; si A6 corre en otro clon de la misma máquina, compuerta ninguna»*. **Las dos lecturas coinciden y las dos se verifican.** (i) A6 corrió en un clon propio, `/home/pc0/mm-maestra38-a6` (worktree nuevo, rama `acto/maestra38-a6-resondeo-negativos`), **no** en `mm-adq` → por la letra del encargo, compuerta ninguna. (ii) Verificada igual **por PRODUCTO** contra `origin/main` real: `ACTO MAESTRA38-CRON · DIAGNOSTICO-Y-ARREGLO` está fusionado (`dccefdc`, `PR #557`) y su `ADR-352` está en `canon/gobernanza-v1_15.md` de `origin/main`. Se verificó a pesar de no ser exigible, no en vez de.
+
+**Por qué existe (medido).** `A4` y `A5` convirtieron en `OBTENIDO` cuatro cierres que sesiones anteriores rotularon imposibles. Este acto reabrió **los 23 negativos de la cola más 2 altas de P0 = 25 objetos** y les aplicó el mismo protocolo: **≥ 4 rutas distintas** con comando y salida cruda, tres hallazgos por ruta sin colapsar (RED / SERVIDOR / VACÍO), bytes y `Content-Type` en cada uno (A.13).
+
+**P0 · reconciliación (pieza D, antes del COMMIT-1).** 43 archivos con la mención `NO-OBTENIDO-POR-ESTE-AGENTE`, 138 líneas, 117 fuera de los dos TSV de cola revisadas una por una. **7 YA-EN-COLA con estado abierto · 14 YA-OBTENIDO con nota vieja** (una línea cada una en `hallazgos.md`, no se catalogan) **· 2 SIN-FILA** (`RUPC` y `DD_COMPRANET_DICCIONARIOS_DE_DATOS`, dadas de alta). Detalle en `forense/notas/2026-09-06-MAESTRA38-A6-reconciliacion.md`.
+
+**Los cuatro mecanismos, y son mecanismos, no suertes.** (i) **`SICEE`**: el bundle `main-6CQJB35E.js` declara `apiUrl:"https://sicee-api.ine.mx/api/v1/"` — **host distinto** del sondeado antes; 124 rutas POST públicas, sin cuenta; catálogo **1991-2024**. (ii) **`PI`/CNBV**: la barrera era **TLS**, no acceso — el servidor no manda el intermedio GlobalSign y `curl` aborta con `60` antes de hablar HTTP; con el intermedio de su propio AIA el portal sirve `200`/139 844 B. (iii) **`datos.gob.mx`**: la base CKAN correcta es `/api/3/`, no `/busca/api/3/`, que devuelve `404` y se había leído como ausencia — hay 15 paquetes CONDUSEF con 29 CSV públicos. (iv) **`BASE_DE_EVENTOS_DE_PROTESTA`**: los 31 intentos fueron contra **un solo depósito**; MMAD en Harvard Dataverse sirve 153 eventos de México 1990-2020 por API pública.
+
+**Regla nueva que este acto propone a mesa**, por analogía con las tres que `A4` midió: **un fallo de TLS no es evidencia sobre el acceso.** `curl 60` es una cadena rota del servidor, no una barrera de credencial — se abrió así en tres de tres hosts el mismo día (CNBV/GlobalSign, CONDUSEF/GeoTrust, Kantar/DigiCert).
+
+**Premisas del encargo que NO se reprodujeron, declaradas y no heredadas.** (a) «1 294 archivos examinados» → son **2 788** con `command find`; los 43 archivos sí se reproducen exactos y la conclusión de P0 no depende del denominador. (b) La **clase A6** del encargo («6 etiquetas caducas: `INE`, `FINTECH_LENDING…`, UNAM, ECOPRED, Cultura Constitucional, CNGMD») **no tiene objeto**: los seis ya están `OBTENIDO` en `estado_A4A5`, y `SIN-FETCH` sobrevive sólo en la columna `nota`, que es historia fechada — **etiquetas caducas corregidas: 0**. La clase se reasignó a las 3 filas `PENDIENTE` que sí llevaban `SIN-FETCH` real, y las tres se resolvieron (el `000` era el proxy de egreso de la NUBE; desde CAJA los tres hosts dan `200`). (c) La **clase C** son **29** relaciones `NO-ENCONTRADO`, no 28.
+
+**Contaminación de orden, declarada.** El encargo ordena P0 → COMMIT-1 → P2. Este acto sondeó `SICEE`, `BASE_DE_EVENTOS_DE_PROTESTA` y `PI` **antes** de congelar la lista, y lo dice en el §0 del propio COMMIT-1 en vez de esconderlo: sus tres criterios de éxito se escribieron sabiendo el resultado. Los otros 22 objetos se congelaron a ciegas. El acto no mide ninguna regla, así que la contaminación no alcanza ningún falsador del Hito D — alcanza la credibilidad de tres criterios, y eso queda dicho.
+
+**`VENCIDO EN ALCANCE` (A.10, corolario 1 — se marca, no se edita).** Cinco cierres previos: `SICEE`/«SPA sin API pública» · `MAESTRA34-L1` P4/«sin cobertura pre-2015» · `PI`/«dashboard JS, no renderiza vía fetch» · `BASE_DE_EVENTOS_DE_PROTESTA`/31 intentos · `OECD`/`NO-ACCESIBLE`. Los originales quedan verbatim; el detalle en `forense/notas/2026-09-06-MAESTRA38-A6-resultados.md` §5.
+
+**Contador.** filas negativas de la cola **23 → 23** (composición distinta: −2 cerradas, +2 altas) · objetos `OBTENIDO` desde negativo **2** · a `OBTENIDO-PARCIAL` desde `NO-ACCESIBLE`/`PENDIENTE-DE-MESA` **3** · etiquetas corregidas **3** · `SIN-FETCH` retirados **3** · payloads **+34** (`manifiesto` 1 533 → 1 567) · deduplicados por A.8 **4** · notas históricas sin fila **2**, ambas de alta · recetas nuevas **5** (`PAQUETE-RECETAS-11`) · **medición: cero** (adquisición).
+
+**Anti-PR#77.** Los 34 payloads viven en el **corpus compartido** `/home/pc0/mm-corpus/raw/A6_*`, verificado con `ls -la` del corpus (no del worktree) al cerrar, y `tests/manifiesto.py --verifica` da `COINCIDE` en las 34 entradas.
+
+**Deuda que abre.** `FP-324` (recibo del acto). `PAQUETE-RECETAS-11` con 5 recetas para mesa: `RUPC`, `DD_*`, CNBV/IMOR, ENCRIGE FD, y el PUM del Trust Survey de OECD — todas con barrera de cuenta, sesión o solicitud; la caja bajó todo lo público.
+
+**Deuda que cierra.** La lista de las 29 relaciones `NO-ENCONTRADO` queda derivada para el `LOTE-CRUCE` (pieza `N16-bis`), que ya no tiene que derivarla.
+
+**Numeración.** `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `352`, contiguo → **`353`**. Re-derivado después de fusionar `origin/main` (`dccefdc`), que se movió durante el acto y trajo `ADR-352`. Si otro acto en vuelo fusiona primero con `353`, renumera quien fusiona segundo — regla de la casa.

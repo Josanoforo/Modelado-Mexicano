@@ -28812,3 +28812,518 @@
   sha256: 7c74925ab1bde0fd770633f4c96eaf724eedb0f6813f11f84c9efcfbecd07f7a
   tamano_bytes: 11709
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: a6_mmad_protesta_v16_dta
+  usado_para: 'fila BASE_DE_EVENTOS_DE_PROTESTA_EN_MEXICO de la cola (N27 -> R7.4): eventos
+    de protesta a nivel evento, Mexico 1990-2020, 153 filas'
+  url_origen: https://dataverse.harvard.edu/api/access/datafile/4291457?format=original
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de dataverse.harvard.edu (Mass Mobilization Data Project,
+    doi:10.7910/DVN/HTTWYL)
+  archivo: A6_MMAD_PROTESTA_MEXICO/mmALL_073120_v16.tab
+  sha256: 55980ce0dfd9350d9f4d104f752d2e2284fdf065493421c01d4a3844821a9473
+  tamano_bytes: 30087054
+  formato: dta
+  licencia: CC0 1.0 (Harvard Dataverse, dominio publico)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. Ruta (iv) espejo
+    academico: la fila llevaba 31 intentos contra laoms.org.'
+
+- id: a6_mmad_protesta_csv
+  usado_para: 'fila BASE_DE_EVENTOS_DE_PROTESTA_EN_MEXICO (N27 -> R7.4): mismo dato en CSV,
+    153 filas Mexico 1990-2020'
+  url_origen: https://dataverse.harvard.edu/api/access/datafile/4291456?format=original
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de dataverse.harvard.edu (MMAD, doi:10.7910/DVN/HTTWYL)
+  archivo: A6_MMAD_PROTESTA_MEXICO/mmALL_073120_csv.csv
+  sha256: 5906226e24c9892482b0b9133b0b36519e5f7b833b036c7c2fab8bba6e431a9d
+  tamano_bytes: 15058276
+  formato: csv
+  licencia: CC0 1.0 (Harvard Dataverse)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga. Control positivo Mexico=153, control negativo
+    Narnia=0.
+
+- id: a6_oecd_tdg_2025_csv
+  usado_para: 'fila OECD de la cola (etiquetada NO-ACCESIBLE): indicadores Trust/security/dignity,
+    Government at a Glance 2025; 59 filas Mexico'
+  url_origen: https://sdmx.oecd.org/public/rest/data/OECD.GOV.GIP,DSD_GOV_INT@DF_GOV_TDG_2025,1.1/all?format=csvfilewithlabels
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de sdmx.oecd.org (API SDMX publica, sin cuenta)
+  archivo: A6_OECD_GOV_TRUST_INTEGRIDAD/oecd_tdg2025.csv
+  sha256: 69b34f7bfb8b4f63b387f52df3e9928230fcdbac76944b1aa193f8075577c975
+  tamano_bytes: 713208
+  formato: csv
+  licencia: OECD Terms and Conditions (uso publico con atribucion)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. Baja SIN cuenta
+    ni formulario: la etiqueta NO-ACCESIBLE era correcta para el PUM (microdato) y demasiado
+    ancha para los indicadores.'
+
+- id: a6_oecd_public_integrity_csv
+  usado_para: 'hermana de la fila OECD: indicadores de integridad publica (DSD_PII), 670 filas
+    Mexico'
+  url_origen: https://sdmx.oecd.org/public/rest/data/OECD.GOV.PSI,DSD_PII@DF_PUBLIC_INTEGRITY,1.5/all?format=csvfilewithlabels
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de sdmx.oecd.org (API SDMX publica, sin cuenta)
+  archivo: A6_OECD_GOV_TRUST_INTEGRIDAD/oecd_pii.csv
+  sha256: f2811c30748ddd3c9b58aa5af2b5dbe0021c01a0fdf4944d1219ba7492b3fb48
+  tamano_bytes: 14004135
+  formato: csv
+  licencia: OECD Terms and Conditions
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga, sha256 identico.
+
+- id: a6_sicee_catalogo_elecciones_federales
+  usado_para: 'fila SICEE de la cola (N25 -> R7.1, N26 -> R7.3): estadistica de elecciones
+    federales INE, 8 cargos, 1991-2024'
+  url_origen: https://sicee-api.ine.mx/api/v1/ (API real, host distinto de sicee.ine.mx)
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, cosechado de la API publica sicee-api.ine.mx declarada en el bundle
+    Angular de sicee.ine.mx
+  archivo: A6_SICEE_INE_ELECCIONES/catalogo_elecciones_federales.json
+  sha256: c9ddfd2a7419051328639b2c5db65875ecc3f84e54098704fd71c64f61eabe7f
+  tamano_bytes: 19653
+  formato: json
+  licencia: Datos abiertos INE (uso publico)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA38-A6. Ruta (ii): el bundle main-6CQJB35E.js declara apiUrl sicee-api.ine.mx;
+    sondas previas probaron sicee.ine.mx/api/ y leyeron el shell como ausencia de API.'
+
+- id: a6_sicee_catalogo_entidades_por_eleccion
+  usado_para: 'fila SICEE de la cola (N25 -> R7.1, N26 -> R7.3): estadistica de elecciones
+    federales INE, 8 cargos, 1991-2024'
+  url_origen: https://sicee-api.ine.mx/api/v1/ (API real, host distinto de sicee.ine.mx)
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, cosechado de la API publica sicee-api.ine.mx declarada en el bundle
+    Angular de sicee.ine.mx
+  archivo: A6_SICEE_INE_ELECCIONES/catalogo_entidades_por_eleccion.json
+  sha256: 6adab95aa87661bf6f80b46c325e2850ac3c0cf7df4ce9a846f981618a7275c2
+  tamano_bytes: 91316
+  formato: json
+  licencia: Datos abiertos INE (uso publico)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA38-A6. Ruta (ii): el bundle main-6CQJB35E.js declara apiUrl sicee-api.ine.mx;
+    sondas previas probaron sicee.ine.mx/api/ y leyeron el shell como ausencia de API.'
+
+- id: a6_sicee_participacion_nacional_1991_2024
+  usado_para: 'fila SICEE de la cola (N25 -> R7.1, N26 -> R7.3): estadistica de elecciones
+    federales INE, 8 cargos, 1991-2024'
+  url_origen: https://sicee-api.ine.mx/api/v1/ (API real, host distinto de sicee.ine.mx)
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, cosechado de la API publica sicee-api.ine.mx declarada en el bundle
+    Angular de sicee.ine.mx
+  archivo: A6_SICEE_INE_ELECCIONES/participacion_nacional_1991_2024.json
+  sha256: 8088f9f36345e99203e8bb6f32c657c3f85335977bcf49da5084064ec893d87b
+  tamano_bytes: 21139
+  formato: json
+  licencia: Datos abiertos INE (uso publico)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA38-A6. Ruta (ii): el bundle main-6CQJB35E.js declara apiUrl sicee-api.ine.mx;
+    sondas previas probaron sicee.ine.mx/api/ y leyeron el shell como ausencia de API.'
+
+- id: a6_sicee_participacion_entidad_1991_2024
+  usado_para: 'fila SICEE de la cola (N25 -> R7.1, N26 -> R7.3): estadistica de elecciones
+    federales INE, 8 cargos, 1991-2024'
+  url_origen: https://sicee-api.ine.mx/api/v1/ (API real, host distinto de sicee.ine.mx)
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, cosechado de la API publica sicee-api.ine.mx declarada en el bundle
+    Angular de sicee.ine.mx
+  archivo: A6_SICEE_INE_ELECCIONES/participacion_entidad_1991_2024.json
+  sha256: 4c7906510a1914f14da78febb91aeebb0507450ea96dc500ac3a847917299e30
+  tamano_bytes: 810720
+  formato: json
+  licencia: Datos abiertos INE (uso publico)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO MAESTRA38-A6. Ruta (ii): el bundle main-6CQJB35E.js declara apiUrl sicee-api.ine.mx;
+    sondas previas probaron sicee.ine.mx/api/ y leyeron el shell como ausencia de API.'
+
+- id: a6_condusef_anuario_actividades_condusef_acciones_defensa__02_acciones
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/anuario_actividades_condusef_acciones_defensa__02_acciones_defensa_2024.csv
+  sha256: ed697e5201fe3419741ae1752d56896d596a5345c49cd5a973206b098997b943
+  tamano_bytes: 73821
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_anuario_actividades_condusef_acciones_defensa__acciones_de
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/anuario_actividades_condusef_acciones_defensa__acciones_defensa_2025.csv
+  sha256: f2724e54a0e4dfc76d493b55bc2234f26e4ea2619e27d40302b3b53012740314
+  tamano_bytes: 62645
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_anuario_actividades_condusef_indice_reclamaciones__03_indi
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/anuario_actividades_condusef_indice_reclamaciones__03_indice_reclamacion_buro_entidades_financieras.csv
+  sha256: 6a343fe05463fba4ed188258a6066deca051c4e2af795e741140353bfb93bf86
+  tamano_bytes: 33567
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_anuario_actividades_condusef_indice_reclamaciones__indice_
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/anuario_actividades_condusef_indice_reclamaciones__indice_reclamacion_buro_entidades_financieras.csv
+  sha256: 7f9230abf74c241b1a1d3b699ad67dd39a9d0a938b947673fe23a819867316e1
+  tamano_bytes: 8064
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_anuario_actividades_condusef_instituciones_mas_reclamadas_
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/anuario_actividades_condusef_instituciones_mas_reclamadas__04_instituciones_mas_reclamadas.csv
+  sha256: 02372aa6e5868426c2cd91ff67c1a3ee971281afd829d3cc450f2fa6e47ffb9f
+  tamano_bytes: 82881
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_anuario_actividades_condusef_sanciones__05_sanciones_firme
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/anuario_actividades_condusef_sanciones__05_sanciones_firmes.csv
+  sha256: 49f6d221fa317e91b7a07246c30b617b03fa15f3acdc2350d6cdf372079b5458
+  tamano_bytes: 457
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_anuario_actividades_condusef_sanciones__sanciones_firmes_
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/anuario_actividades_condusef_sanciones__sanciones_firmes.csv
+  sha256: 9466b80df8715e45940f6c4915470f6af583b7c4fbbd601e387bfa68d68e8784
+  tamano_bytes: 499
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_anuario_estadistico_actividades_condusef_herramientas_web_
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/anuario_estadistico_actividades_condusef_herramientas_web__01_accesos_publico_herramientas_web.csv
+  sha256: fa9694b467a39da79e9e20336b69cd2af9280814824bb79b0dc6610ede002f60
+  tamano_bytes: 964
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_educacion_financiera_comportamiento_general__b1_comportami
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/educacion_financiera_comportamiento_general__b1_comportamiento_general_bef.csv
+  sha256: 6c8f4736942a711121409173ee17cb3db5a2d599c82e1ec15ce2388d5937f338
+  tamano_bytes: 1683743
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_educacion_financiera_comportamiento_general__comportamient
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/educacion_financiera_comportamiento_general__comportamiento_general_BEF.csv
+  sha256: b97d31db74774b1f99786bf81fe13a6f5943db15a5259629d705d1248f9cd927
+  tamano_bytes: 1624975
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_educacion_financiera_evaluacion_producto__b2_evaluacion_pr
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/educacion_financiera_evaluacion_producto__b2_evaluacion_producto_bef.csv
+  sha256: 9789320ae1674b36487307b475ba0817d74e1838f12562db3d31a221c10c3328
+  tamano_bytes: 215716
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_educacion_financiera_evaluacion_producto__evaluacion_produ
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/educacion_financiera_evaluacion_producto__evaluacion_producto_BEF.csv
+  sha256: d437b2e124abe8f2cf3cb4b7c914137250875c551d9a4e455b5b622fe587b14f
+  tamano_bytes: 185624
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_plan_apertura_datos_condusef__condusef_2026_
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/plan_apertura_datos_condusef__CONDUSEF_2026.csv
+  sha256: 1773a6f045f3ac488cefec4ef6b7071a019df2f72ae29615f5aaefdb4a4894ce
+  tamano_bytes: 34309
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_registros_instituciones_financieras_usuarios_productos_ser
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/registros_instituciones_financieras_usuarios_productos_servicios_seguro_automovil__RESBA_auto_julio_2025.csv
+  sha256: 3b68d1e711d96338dd840fe2b456ffac0e03718f000e2205da029f1eca4aaf4d
+  tamano_bytes: 404709
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_registros_instituciones_financieras_usuarios_seguro_vida__
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/registros_instituciones_financieras_usuarios_seguro_vida__RESBA_vida_julio_2025.csv
+  sha256: bfb4664992d38d7d5766fee8ef25f0d2192b1c3594e6d4edcb8bb00500c4c06b
+  tamano_bytes: 1214732
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_supervision_financiera_calificaciones_producto_financiero_
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/supervision_financiera_calificaciones_producto_financiero_institucion__calificaciones_3trimestres_25.csv
+  sha256: 833aae7061ed1d6667668ece9a0de60b721568e70ee87d0a8dd0e75ef0c481b9
+  tamano_bytes: 21856
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_supervision_financiera_clausulas_abusivas_producto_financi
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/supervision_financiera_clausulas_abusivas_producto_financiero__clausulas_3trimestre_2025.csv
+  sha256: fbe8246e12a25f1b976d3d7f666948c0e5160c286774a22a42934d0f75c4eacb
+  tamano_bytes: 883
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_supervision_financiera_observaciones_producto_financiero_i
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/supervision_financiera_observaciones_producto_financiero_institucion__observaciones_3trimestre_25.csv
+  sha256: c60935aafdfb41b28228f65652436bb164f874727714f3eff16c9beb79874735
+  tamano_bytes: 206986
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_unidades_especializadas__unidades_especializadas_30sept202
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/unidades_especializadas__unidades_especializadas_30sept2025.csv
+  sha256: df0a18cdd4d51d43a4e3bb445b5807d9ffa72da2a19418afde7a7e88a0b919b6
+  tamano_bytes: 4332889
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/ (esta ultima da 404 y actos previos la leyeron como ausencia).
+
+- id: a6_condusef_01_anuario_actividades_condusef_institucion
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/anuario_actividades_condusef_instituciones_mas_reclamadas__instituciones_mas_reclamadas_buro_entidades_financieras.csv
+  sha256: f6a75e655286757da6a218f77d127c392c98fc968fae540f0d6eb3a1091f7a0b
+  tamano_bytes: 8044
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/.
+
+- id: a6_condusef_02_anuario_estadistico_actividades_condusef
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/anuario_estadistico_actividades_condusef_herramientas_web__accesos_al_publico_herramientas_web.csv
+  sha256: f7aac4a95d1f4a39c88979ced685fc3e750a5b88217979e3c2a96eb2e0839925
+  tamano_bytes: 973
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/.
+
+- id: a6_condusef_05_registros_instituciones_financieras_usua
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/registros_instituciones_financieras_usuarios_productos_servicios_seguro_automovil__auto_datos_abiertos_resba_4_trim_26.csv
+  sha256: fa9567a7472f882d4f46b13d3ce81844169b2d0e2cf7296de88fde422c9323f1
+  tamano_bytes: 1344462
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/.
+
+- id: a6_condusef_06_registros_instituciones_financieras_usua
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/registros_instituciones_financieras_usuarios_seguro_vida__vida_datos_abiertos_resba_4_trim_26.csv
+  sha256: 3ed4e10ed0c7cb8ff8d2cbee1471e6ed92bf28d55f569eb7605dcd78bcd90ac2
+  tamano_bytes: 3988010
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/.
+
+- id: a6_condusef_07_supervision_financiera_calificaciones_pr
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/supervision_financiera_calificaciones_producto_financiero_institucion__calificaciones_4trimestres_25.csv
+  sha256: e9efbfa1da356bfd9608447af6dc9a263fbb64a7be6360379c0ed91b66ba9be1
+  tamano_bytes: 8100
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/.
+
+- id: a6_condusef_08_supervision_financiera_clausulas_abusiva
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/supervision_financiera_clausulas_abusivas_producto_financiero__clausulas_4trimestre_2025_datos_abiertos.csv
+  sha256: 65a2221702c941617bb30e288bb3c17b8fdba6f02e3269d0f5161e2c54e7b4eb
+  tamano_bytes: 13016
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/.
+
+- id: a6_condusef_09_supervision_financiera_observaciones_pro
+  usado_para: 'filas DENUNCIA_VINCULADA_CON_TENENCIA_DE_SEGURO y ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF
+    (N34): quejas, cobranza, seguros y clausulas abusivas por institucion'
+  url_origen: https://www.datos.gob.mx/api/3/action/package_search?q=condusef (CKAN) -> repodatos.atdt.gob.mx
+  fecha_descarga: '2026-09-06'
+  descargado_por: agente, directamente de repodatos.atdt.gob.mx via CKAN de datos.gob.mx
+  archivo: A6_CONDUSEF_DATOS_ABIERTOS/supervision_financiera_observaciones_producto_financiero_institucion__supervision_financiera_clausulas_4t2025.csv
+  sha256: 3aec0003d651787eff75f76e31e27cc11a6ef1415180b4eb8db3feef5fa6670f
+  tamano_bytes: 207270
+  formato: csv
+  licencia: Libre Uso MX (datos.gob.mx)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
+    es /api/3/, no /busca/api/3/.
