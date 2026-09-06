@@ -975,6 +975,62 @@ invitaba a que un acto posterior los promoviera como si lo fueran.
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
 >>>>>>> origin/main
 
+### 8.17 Recibo — `ACTO MAESTRA38-A6 · RE-SONDEO-DE-NEGATIVOS-CON-CAPACIDAD-COMPLETA` (6/sep/2026, `ADR-353`, `FP-324`)
+
+**Qué se hizo.** Se reabrieron los **23 negativos** de
+`data/curacion-registro/cola-adquisicion-registro.tsv` más **2 altas de P0** =
+**25 objetos**, y se sometió cada uno al protocolo de `≥ 4 rutas distintas` con
+comando y salida cruda pegados, tres hallazgos por ruta sin colapsar
+(RED / SERVIDOR / VACÍO) y bytes + `Content-Type` en cada uno (A.13).
+
+**Resultado, en una línea:** **+34 payloads** (76 564 696 B, `manifiesto`
+1 533 → 1 567), **2** filas de negativo a `OBTENIDO`, **3** a
+`OBTENIDO-PARCIAL`, **3** etiquetas corregidas, **2** altas por reconciliación,
+**3** `SIN-FETCH` retirados. **Medición de modelo: cero**, declarada y cumplida.
+
+**Lo que mesa tiene que mirar, y es lo único que no es rutina.** Los cuatro
+cierres que cayeron no cayeron por insistir: cayeron porque **la sonda anterior
+medía otra cosa que la que creía medir**. Los cuatro mecanismos:
+
+| objeto | lo que la sonda anterior midió | lo que era |
+| --- | --- | --- |
+| `SICEE` | `sicee.ine.mx/api/` devuelve el shell → «no hay API REST» | la API vive en **`sicee-api.ine.mx`**, otro host: 124 rutas POST públicas, catálogo **1991-2024** |
+| `PI` / CNBV | «portal es dashboard JS, no renderiza vía fetch» | **`curl 60`**: el servidor no manda el intermedio GlobalSign. Con la cadena completa, `200`/139 844 B |
+| CONDUSEF | `/busca/api/3/…` → `404` → «no hay datasets» | la base CKAN es **`/api/3/`**: 15 paquetes, **29 CSV públicos** |
+| `BASE_DE_EVENTOS_DE_PROTESTA` | 31 intentos → `NO-OBTENIDO(31)` | los 31 fueron **un solo depósito**; MMAD sirve 153 eventos de México 1990-2020 |
+
+**Firma que se pide (`FP-324`), tres cosas distintas.**
+
+1. **Regla nueva**, por analogía con las tres que `A4` midió: *un fallo de TLS
+   no es evidencia sobre el acceso.* `curl 60` es una cadena rota del servidor,
+   no una barrera de credencial. Medida en **3 de 3** hosts el mismo día
+   (CNBV/GlobalSign, CONDUSEF/GeoTrust, Kantar/DigiCert).
+2. **Reclasificación de `PI`** de `NO-ACCESIBLE` a
+   `NO-OBTENIDO-POR-ESTE-AGENTE(4 rutas)`: `D5` (pago, afiliación o ley) no
+   aplicaba. Es cambio de etiqueta, no adquisición.
+3. Las **5 recetas** de `PAQUETE-RECETAS-11`.
+
+**Tres premisas del encargo que no se reprodujeron** — declaradas, no
+heredadas: el denominador de P0 (**2 788**, no 1 294) · la **clase A6** no
+tiene objeto (los 6 nombrados ya estaban `OBTENIDO`; `SIN-FETCH` sólo vive en
+la columna `nota`, que es historia) · la **clase C** son **29** relaciones, no 28.
+
+**Contaminación de orden, declarada en el propio COMMIT-1 (§0).** `SICEE`,
+`BASE_DE_EVENTOS_DE_PROTESTA` y `PI` se sondearon **antes** de congelar la
+lista; sus tres criterios de éxito se escribieron sabiendo el resultado. Los
+otros 22 se congelaron a ciegas. El acto no mide ninguna regla, así que esto no
+alcanza ningún falsador del Hito D.
+
+**`FP-314` NO se enmienda.** El encargo lo condicionaba a que algún objeto de
+`PAQUETE-RECETAS-10` cayera aquí; **ninguno cayó** (los 5 siguen como estaban).
+
+**Suite:** `python3 tests/check.py --baseline` → **LÍNEA BASE VERDE**, núcleo
+**3 FAIL · 171 WARN**, sin entradas nuevas frente a `tests/baseline.json`.
+
+**Anti-PR#77:** los 34 payloads en `/home/pc0/mm-corpus/raw/A6_*`, verificado
+con `ls -la` del **corpus** (no del worktree); `tests/manifiesto.py --verifica`
+→ `COINCIDE` en las 34.
+
 ## MAESTRA38-CRON · DIAGNOSTICO-Y-ARREGLO (2026-09-06, 21:21)
 
 Ninguna de las cuatro lecturas pre-declaradas del encargo se cumplió: la línea de `crontab -l` ya
