@@ -260,6 +260,20 @@ def lee_tablero(raiz):
     return ruta, filas, len(lineas)
 
 
+RE_ESTADO_ABIERTA = re.compile(r"^ABIERTA(\s|$)")
+
+
+def _es_abierta(fila):
+    """`estado` es `ABIERTA` con o sin glosa (`ABIERTA -- pendiente de...`).
+    Comparar con `==` es ciego a la glosa y subcuenta las filas `ABIERTA`
+    del tablero -- defecto real, medido: DIGESTO-2026-09-05 reportó 1 de
+    299 cuando por prefijo eran 5. `estado.split()[0]` no basta (colisiona
+    con la exactitud de otros estados de una sola palabra que empiezan
+    igual, si los hubiera); el ancla `^ABIERTA(\\s|$)` es la comparación
+    correcta y la misma que ya usa el resto del tablero."""
+    return bool(RE_ESTADO_ABIERTA.match(fila.get("estado", "")))
+
+
 RE_VENCE = re.compile(r"vence:\s*(\d{4}-\d{2}-\d{2})")
 
 
@@ -293,7 +307,7 @@ def bloque_vencimientos(raiz, hoy, cuenta):
         return out, 0, 0
     con_vence = []
     for f in filas:
-        if f.get("estado") != "ABIERTA":
+        if not _es_abierta(f):
             continue
         v = _vence_de(f)
         if v is not None:
@@ -301,7 +315,7 @@ def bloque_vencimientos(raiz, hoy, cuenta):
     if not con_vence:
         out += [f"NINGUNA fila `ABIERTA` trae `vence:` en `gatea`. "
                 f"Filas `ABIERTA` examinadas: "
-                f"{sum(1 for f in filas if f.get('estado') == 'ABIERTA')} (A.13).", ""]
+                f"{sum(1 for f in filas if _es_abierta(f))} (A.13).", ""]
         return out, 0, 0
     vencidas = sorted((t for t in con_vence if t[1] < hoy), key=lambda t: t[1])
     vencen_semana = sorted((t for t in con_vence
@@ -345,7 +359,7 @@ def seccion_a(raiz, hoy, cuenta, tope):
                 f"A.12 lo exige (`instrucciones-proyecto-v2_9.md`). "
                 f"Archivos examinados por la ruta `{os.path.relpath(ruta, raiz)}`: 0.", ""]
         return out, 0
-    abiertas = [f for f in filas if f.get("estado") == "ABIERTA"]
+    abiertas = [f for f in filas if _es_abierta(f)]
     if not abiertas:
         out += [f"NINGUNA. Filas del tablero examinadas: {len(filas)} (A.13). "
                 f"El tablero no tiene pendientes de firma hoy.", ""]
