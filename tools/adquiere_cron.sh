@@ -110,6 +110,37 @@ else
   log "PARO-RAIZ: descargas_mx no resuelve en esta máquina (data/raices.local.yaml). Censo omitido, sigue con /adquiere."
 fi
 
+# 2.6 · re-baja mensual de los cuatro bulk oficiales de la PDN (ACTO MAESTRA38-A5,
+#   FP-321/nota fila 28 de cola-adquisicion-registro.tsv). Los bulk se regeneran
+#   con el tiempo (S3 lleva fecha 9/may/2025 congelada desde hace meses, sin
+#   garantía de que siga así); gate día 1-3 del mes para no bajar ~3.9 GB a diario.
+#   URLs estáticas del bundle React (ADENDA-A4-rutas-PDN, .env REACT_APP_S1_BULK/
+#   _BULK_S2/_S3_SERVIDORES/_S6) -- si Google Drive cambia el id, este paso falla
+#   con log, no rompe el resto del cron (no lleva set -e local, se aísla con `|| true`).
+DIA_MES_A5="$(date +%-d)"
+if [ "$DIA_MES_A5" -ge 1 ] && [ "$DIA_MES_A5" -le 3 ]; then
+  ADQ_PDN_DIR="data/raw/pdn_bulk_$(date +%Y_%m)"
+  mkdir -p "$ADQ_PDN_DIR"
+  for PAR in \
+    "s1:https://drive.google.com/uc?export=download&id=1RSYOwWabsWqtxt7VNHIjf-yt1P5bPSbE" \
+    "s2:https://drive.google.com/uc?export=download&id=1KWcst_YLI5YVlKnzmd3Xm5prAP4NVhAD" \
+    "s3P:https://drive.google.com/uc?export=download&id=1i-HjNju04xdKThHgGDAzHb97GdF_cqS8" \
+    "s6:https://drive.google.com/uc?export=download&id=1OM-P1JAp7PKeGL_InRYOQ1UO5Vpcs9Oi"; do
+    SIS="${PAR%%:*}"; URL="${PAR#*:}"
+    DEST="${ADQ_PDN_DIR}/pdn_${SIS}_$(date +%Y-%m-%d).zip"
+    if curl -sS -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128 Safari/537.36" --max-time 300 -L -o "$DEST" "$URL" 2>>"$LOGFILE"; then
+      SHA_NUEVO="$(sha256sum "$DEST" | cut -d' ' -f1)"
+      log "[ADQ-PDN] ${SIS}: re-bajado a ${DEST}, sha256=${SHA_NUEVO} (comparar a mano contra data/manifiesto.yaml; este paso no re-registra automáticamente)"
+    else
+      log "[ADQ-PDN] ${SIS}: PARO-RED, no se pudo re-bajar desde ${URL}"
+      rm -f "$DEST"
+    fi
+    sleep 1
+  done
+else
+  log "[ADQ-PDN] ${FECHA}: fuera de ventana mensual (día ${DIA_MES_A5}, ventana 1-3), no se re-baja el bulk PDN hoy."
+fi
+
 # 3 · sonda de red real, valor crudo (nunca curl -I)
 CODIGO_HTTP="$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 https://www.inegi.org.mx/ || echo 'sin-respuesta')"
 log "sonda inegi.org.mx: curl -s -o /dev/null -w '%{http_code}' --max-time 10 https://www.inegi.org.mx/ -> ${CODIGO_HTTP}"

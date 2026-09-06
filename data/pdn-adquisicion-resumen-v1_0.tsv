@@ -1,0 +1,12 @@
+# data/pdn-adquisicion-resumen-v1_0.tsv — resumen por objeto de la adquisición PDN_SESNA_S1_S2_S3_S6.
+# Escrito por ACTO MAESTRA38-A5 · PDN-BULK-Y-PROXY (6/sep/2026), control de calidad sobre lo que
+# ACTO MAESTRA38-A4 + ADENDA-A4-rutas-PDN depositaron (0 payloads nuevos de este acto).
+# sha256_crudo == sha256_contenido en las cuatro filas: A.7 doble descarga de A4 (curl+wget) ya
+# los dio idénticos; A5 re-confirmó sha256_crudo de forma independiente sobre el archivo en disco
+# (data/manifiesto.yaml trae el mismo valor). S3 es control, no objetivo -- no se re-registra en
+# el manifiesto (CONTROL-COINCIDE contra pdn_s3v2, entrada previa del 3/sep).
+sistema	ruta_que_funciono	objeto	bytes	sha256_crudo	sha256_contenido	fecha
+S1	R2 (bundle React -> Google Drive, boton "Descarga todos los datos")	bulk declaraciones (16070 entradas)	2912499396	cff2a5fbdbed754ef1f438f26635bed054ad404947fecb3bf32c3ebf0329f2d4	cff2a5fbdbed754ef1f438f26635bed054ad404947fecb3bf32c3ebf0329f2d4	2026-09-06
+S2	R2 (bundle React -> Google Drive, boton "Descarga todos los datos")	bulk servidores en contrataciones (156 entradas)	1782572	db8fda58236ac96de0216dfdffedaa31b8a45c06bf6c9c1034192f914c4922e8	db8fda58236ac96de0216dfdffedaa31b8a45c06bf6c9c1034192f914c4922e8	2026-09-06
+S3	R2 (control positivo, no objetivo)	bulk servidores sancionados (34 entradas) -- CONTROL-COINCIDE contra pdn_s3v2, no se re-registra	1459284	923d0dd06d6855babec620b373394381de1c0d7eb16c523066f6d333efb11adb	923d0dd06d6855babec620b373394381de1c0d7eb16c523066f6d333efb11adb	2026-09-06
+S6	R2 (bundle React -> Google Drive, boton "Descarga todos los datos")	bulk contratos OCDS (12 entradas)	1059406620	1a787b34b3b3ef8bb58e615c69f55e1bff820ef789a9b43dab0bb5996e5832db	1a787b34b3b3ef8bb58e615c69f55e1bff820ef789a9b43dab0bb5996e5832db	2026-09-06
