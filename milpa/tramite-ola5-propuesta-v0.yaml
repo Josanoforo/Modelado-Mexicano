@@ -2886,6 +2886,83 @@ reglas_propuestas:
     ola_calibracion: "Mexico Panel Study 2012, rondas 1 y 2"
     payload_manifiesto_id: [icpsr35024_ds1_w2_crosstabs_derivadas]
     entra_al_motor: false
+  - id: civico.clientelismo.prevalencia_lista_listcran_mps2012
+    entrada_nueva: true
+    referida_a: "regla R7.7 (canon/modelo-decision-v4_0.md:763) -- prevalencia por EXPERIMENTO DE LISTA de PRIMERA MANO, contrastada contra la pregunta directa del mismo cuestionario. NO es p de regla"
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    reserva_tier: "microdato de PRIMERA MANO, pero sobre un SUBCONJUNTO publico (n=1004 de ~1555 de la ola 2) y SIN PONDERADOR; no es el panel completo de ICPSR 35024"
+    estampa_A10: >
+      Describe el corpus del 6/sep/2026: data/mexico.tab del paquete R list
+      (github.com/SensitiveQuestions/list @ e088e5f88af5f3d3f7d61dcffe6d7eb6d28c5120,
+      sha256 fe101499b591d90d9e2122f439e26306fcdeab443e42d14f9455e9efa1c04488),
+      abierto byte a byte por caja en este acto. El .dta completo y restringido de
+      ICPSR 35024 sigue sin bajar (FP-314/FP-316); cuando llegue, su veredicto
+      REEMPLAZA a esta entrada, no promedia con ella (prereg-caja-S10-L2-LISTA §6).
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: prevalencia_por_lista_ronda2_julio_listcran_mps2012, p: 0.187357, clase: "MEDIDO·Delta de PRIMERA MANO (diferencia de medias tratamiento-control, Blair & Imai 2012; NO una p de regla)"}
+      - {conducta: prevalencia_directa_ronda2_julio_listcran_mps2012, p: 0.056773, clase: "MEDIDO·p de PRIMERA MANO (proporcion SIN PONDERAR de mex.direct)"}
+      - {conducta: contraste_lista_menos_directa_ronda2_listcran_mps2012, p: 0.130584, clase: "MEDIDO·Delta de PRIMERA MANO (contraste; IC95 por bootstrap, EXCLUYE 0)"}
+    porque: {generador: [G4], mecanismo: "la pregunta directa sobre venta del voto esta socialmente sancionada, asi que subdeclara; el experimento de lista levanta la conducta sin exigir que la persona se auto-incrimine -- heredado del enunciado de R7.7, este acto NO re-deriva el generador"}
+    falsable_si: >
+      Fila B-bis de prereg-caja-S10-L2-LISTA §3, congelada ANTES de abrir el archivo: si el IC95
+      del contraste lista-directa incluye 0 o cae por debajo de 0, la lista NO detecta subreporte
+      adicional en este dataset.
+    veredicto_Bbis: NO SE DISPARA -- el IC95 del contraste [0.0216, 0.2375] excluye 0 por arriba
+    razon_veredicto: >
+      La prevalencia por lista (0.1874) mas que triplica la directa (0.0568); el contraste es
+      +0.1306 con IC95 que excluye 0. La rama de la fila B-bis estaba escrita para el caso
+      contrario y no aplica. Lectura acotada: en ESTE subconjunto el diseno de lista SI detecta
+      subreporte adicional respecto de la pregunta directa. No se afirma magnitud poblacional.
+    hallazgo: >
+      CONVERGENCIA ENTRE DOS FUENTES INDEPENDIENTES, no planeada y no forzada: la cifra de
+      SEGUNDA mano de MAESTRA36-L12 para la ronda 2 (tabulador en linea de ICPSR, p = 0.187641)
+      y esta de PRIMERA mano (microdato de list::mexico, p = 0.187357) coinciden hasta la tercera
+      cifra decimal, pese a universos declaradamente distintos (1148 validos del tabulador contra
+      1004 filas del subconjunto). Es la corroboracion mas fuerte que P3 ha tenido y NO se
+      considera replicacion independiente del fenomeno: las dos leen la MISMA ola del MISMO
+      estudio; lo que corrobora es la LECTURA (que el tabulador de segunda mano no estaba
+      distorsionando el estimando), no el mecanismo.
+      HETEROGENEIDAD: el contraste excluye 0 en urbano (+0.1832), riqueza alta (+0.1603) y no
+      leales (+0.1426); incluye 0 en rural (+0.0030, practicamente nulo), riqueza baja y leales.
+      El estrato rural (n=278) da lista y directa IGUALES; no se decide entre "no hay subreporte
+      rural" y "no hay potencia con n=278" -- los dos caben en ese IC.
+      DESCRIPTOR CONTRA DATO: man/mexico.Rd documenta una variable `y` que NO existe en el .tab
+      (glosa arrastrada de otro dataset del paquete); el conteo de lista es mex.y.all. Y declara
+      mex.cleanelections como indicador 0-1 cuando el dato va 0-4. Ninguna de las dos se resolvio
+      por el nombre: se resolvio por el wording y por el rango real.
+    prohibido: >
+      Escribir que esta entrada CIERRA P3 sobre el panel completo: el universo es un subconjunto
+      restringido (1004 de ~1555) y sin ponderar. Tampoco se compara contra la ronda 1 (marzo):
+      list::mexico solo trae la ola 2.
+    supuesto_que_gobernaba_y_QUEDO_VERIFICADO: >
+      "Que la lista B sea la lista A mas UN item y que ese item sea la venta del voto" -- el
+      supuesto que dejaba a P3 como PROPUESTA en la entrada hermana. Aqui queda verificado POR
+      DOS VIAS sobre ESTA fuente: por texto (man/mexico.Rd: "item c. is presented only to the
+      treatment group, and the control list only contains the other three items"; item c =
+      "Exchange your vote for a gift, favor, or access to a service") y por mecanica del dato
+      (max del conteo en control = 3, en tratamiento = 4). PRECISION QUE NO SE REDONDEA: el
+      wording verificado es el INGLES de list::mexico, NO el espanol de P35A/P35B/W2_P35A/W2_P35B
+      del cuestionario de ICPSR 35024. Que sean los mismos items es inferencia razonable, no
+      medicion de este acto -- por eso la entrada hermana NO se edita y FP-263 NO se cierra.
+    reservas: >
+      Microdato de PRIMERA MANO, pero subconjunto publico (1004 de ~1555 de la ola 2), SIN
+      PONDERADOR (la fuente no lo trae) y sin estrato ni UPM. Quien recibe el brazo de tratamiento
+      SI es aleatorio (es un experimento de lista), asi que §2.1 y §2.3 tienen identificacion
+      interna; la heterogeneidad por wealth/urban/loyal NO la tiene -- esos estratos no son
+      aleatorios y se leen como descriptivos. El corte de mex.wealth es por MEDIANA, decidido por
+      caja (la variable es continua y la spec no fijaba corte); se declara para que sea auditable.
+      0 de las variables de R7.3/R7.6 estan en este dataset: NINGUN tier del canon se mueve.
+    escala: "proporciones 0-1 (prereg-caja-S10-L2-LISTA §5); la conversion a pp vive solo en prosa"
+    universo: "ola 2 (julio 2012) de MPS-2012, subconjunto publico de list::mexico: n = 1004 filas x 25 variables; 508 tratamiento / 496 control; sin faltantes en ninguna variable usada"
+    ponderador: NINGUNO -- la fuente no lo trae, y no se hereda ni se inventa uno
+    diseno: "experimento de lista de dos brazos. IC95: analitico (varianzas desiguales) para la prevalencia por lista, Wilson para la directa, bootstrap no parametrico percentil B=10000 semilla 20260906 para el contraste, la heterogeneidad y el cruce con participacion verificada -- el contraste usa las MISMAS filas en sus dos terminos y una formula de independencia sobreestimaria su IC"
+    fuente: ["list::mexico (paquete R list, Blair & Imai) @ e088e5f", "data/l2lista-resultados-v1_0.json", "forense/notas/2026-09-06-MAESTRA38-L2-LISTA-resultados.md", "forense/prereg-caja/S10-L2-LISTA-spec-v1_0.md"]
+    ola_calibracion: "Mexico Elections Panel Study 2012, ronda 2 (julio)"
+    payload_manifiesto_id: [list_cran_mexico_tab, list_cran_mexico_rd]
+    entra_al_motor: false
   # ══════════════════════════════════════════════════════════════════
   # Enmienda ACTO MAESTRA38-N3 · PRE-REGISTRO-DE-CAJA (4/sep/2026)
   #

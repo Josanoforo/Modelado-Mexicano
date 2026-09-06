@@ -28525,3 +28525,290 @@
   sha256: bbb97ee91db7477e721f41391ed5765324b34043b19899e01d36722cc87bb14d
   tamano_bytes: 989696
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: list_cran_mexico_tab
+  usado_para: 'Paquete R list (Blair & Imai), dataset mexico: subconjunto publico de la ola
+    2 del Mexico Elections Panel Study 2012 (n=1004, 25 variables) con el experimento de lista
+    de compra/venta del voto. Microdato de PRIMERA MANO para prereg-caja-S10-L2-LISTA (ACTO
+    MAESTRA38-L2-LISTA); hermano del .dta restringido de ICPSR 35024 (FP-316), no su sustituto.'
+  url_origen: https://github.com/SensitiveQuestions/list/tree/e088e5f88af5f3d3f7d61dcffe6d7eb6d28c5120
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: 'caja (ACTO MAESTRA38-L2-LISTA), vía `git clone --depth 1` del repo del
+    paquete — NO por navegador: el valor por defecto que --escanea deriva no aplica a este
+    payload'
+  archivo: ACADEMICO-list-cran/data/mexico.tab
+  raiz: descargas_mx
+  sha256: fe101499b591d90d9e2122f439e26306fcdeab443e42d14f9455e9efa1c04488
+  tamano_bytes: 78065
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: list_cran_mexico_rd
+  usado_para: 'Descriptor roxygen2 del dataset list::mexico: wording verbatim del experimento
+    de lista (cuatro actividades; item c = "Exchange your vote for a gift, favor, or access
+    to a service", solo al grupo tratamiento) y glosa de las 25 variables. Es la fuente del
+    wording que verifica la condicion de entrada de prereg-caja-S10-L2-LISTA §4.'
+  url_origen: https://github.com/SensitiveQuestions/list/blob/e088e5f88af5f3d3f7d61dcffe6d7eb6d28c5120/man/mexico.Rd
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: 'caja (ACTO MAESTRA38-L2-LISTA), vía `git clone --depth 1` del repo del
+    paquete — NO por navegador: el valor por defecto que --escanea deriva no aplica a este
+    payload'
+  archivo: ACADEMICO-list-cran/man/mexico.Rd
+  raiz: descargas_mx
+  sha256: cd8cdaefb2d0174ae515754966e3f8ea26c5cc2884fe39e6f6fb8d84f875af85
+  tamano_bytes: 3592
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_27083_simulation_draws
+  usado_para: Harvard Dataverse doi:10.7910/DVN/27083 (Imai, Park & Greene 2014) — replicacion
+    del experimento de lista de la ola 2 de MPS-2012. Adquirido por ACTO MAESTRA38-L2-LISTA
+    opcion B; NINGUN archivo de este DOI se midio ni se abrio en ese acto (solo se hasheo
+    y se registro). Candidato a mas covariables de la ola 2 que las 25 de list::mexico.
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/27083
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_27083 -- Simulation draws.zip
+  raiz: descargas_mx
+  sha256: e0a6d576ed787655d2896390c0ac3ea6845233ae574a5ce9c454db2bbdab0ae3
+  tamano_bytes: 53370465
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_27083_mexico
+  usado_para: Harvard Dataverse doi:10.7910/DVN/27083 (Imai, Park & Greene 2014) — replicacion
+    del experimento de lista de la ola 2 de MPS-2012. Adquirido por ACTO MAESTRA38-L2-LISTA
+    opcion B; NINGUN archivo de este DOI se midio ni se abrio en ese acto (solo se hasheo
+    y se registro). Candidato a mas covariables de la ola 2 que las 25 de list::mexico.
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/27083
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_27083 -- mexico.rda
+  raiz: descargas_mx
+  sha256: e9e2c2590b19d964975b03ad2d7aa253997b6e164d35112e85b6aac25265a83a
+  tamano_bytes: 14954
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_27083_mexicoall
+  usado_para: Harvard Dataverse doi:10.7910/DVN/27083 (Imai, Park & Greene 2014) — replicacion
+    del experimento de lista de la ola 2 de MPS-2012. Adquirido por ACTO MAESTRA38-L2-LISTA
+    opcion B; NINGUN archivo de este DOI se midio ni se abrio en ese acto (solo se hasheo
+    y se registro). Candidato a mas covariables de la ola 2 que las 25 de list::mexico.
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/27083
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_27083 -- mexicoall.rda
+  raiz: descargas_mx
+  sha256: 338ca3d3de4a4f675cb8d12bf72376910eb9117fb26b28e4a4baac7ff2c46864
+  tamano_bytes: 13929
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_27083_replication
+  usado_para: Harvard Dataverse doi:10.7910/DVN/27083 (Imai, Park & Greene 2014) — replicacion
+    del experimento de lista de la ola 2 de MPS-2012. Adquirido por ACTO MAESTRA38-L2-LISTA
+    opcion B; NINGUN archivo de este DOI se midio ni se abrio en ese acto (solo se hasheo
+    y se registro). Candidato a mas covariables de la ola 2 que las 25 de list::mexico.
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/27083
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_27083 -- replication.R
+  raiz: descargas_mx
+  sha256: 5b0180822142b2d5a9ffe62f5c38710683996445bfea58d6eaa2d90cfe25e33a
+  tamano_bytes: 21409
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_27083_simulations_replication
+  usado_para: Harvard Dataverse doi:10.7910/DVN/27083 (Imai, Park & Greene 2014) — replicacion
+    del experimento de lista de la ola 2 de MPS-2012. Adquirido por ACTO MAESTRA38-L2-LISTA
+    opcion B; NINGUN archivo de este DOI se midio ni se abrio en ese acto (solo se hasheo
+    y se registro). Candidato a mas covariables de la ola 2 que las 25 de list::mexico.
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/27083
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_27083 -- simulations_replication.R
+  raiz: descargas_mx
+  sha256: 87f5afe23391a6102966fd611c58b1adb2e3307a3c5cade3a12a9f9bb5037972
+  tamano_bytes: 67986
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_vob5jl_figure_4_formal_model_predictions
+  usado_para: Harvard Dataverse doi:10.7910/DVN/VOB5JL (Greene 2024, compra de participacion)
+    — datos y codigo de replicacion; incluye Mexico TB Paper Data.tab, meta analysis data.tab,
+    Pentagono PRI Edomex 2017_v1.tab y un cuestionario parcial de la encuesta VB Mexico 2021.
+    Adquirido por ACTO MAESTRA38-L2-LISTA opcion B; NINGUN archivo de este DOI se midio ni
+    se abrio en ese acto (solo se hasheo y se registro).
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOB5JL
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_VOB5JL -- Figure 4 formal model predictions.xlsx
+  raiz: descargas_mx
+  sha256: 8568475057a673ba894acc546d6c9d907c408b475a4055f4b0b60026c3b26cc0
+  tamano_bytes: 17925
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_vob5jl_figure_5_simulation_code
+  usado_para: Harvard Dataverse doi:10.7910/DVN/VOB5JL (Greene 2024, compra de participacion)
+    — datos y codigo de replicacion; incluye Mexico TB Paper Data.tab, meta analysis data.tab,
+    Pentagono PRI Edomex 2017_v1.tab y un cuestionario parcial de la encuesta VB Mexico 2021.
+    Adquirido por ACTO MAESTRA38-L2-LISTA opcion B; NINGUN archivo de este DOI se midio ni
+    se abrio en ese acto (solo se hasheo y se registro).
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOB5JL
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_VOB5JL -- Figure 5 simulation code.rtf
+  raiz: descargas_mx
+  sha256: d78940ae43c6fdf7efe5cc1cbabee628ec665d0eb7981e01fc41bc0a428ef93b
+  tamano_bytes: 1990
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_vob5jl_figure_6_and_appendix_e_code
+  usado_para: Harvard Dataverse doi:10.7910/DVN/VOB5JL (Greene 2024, compra de participacion)
+    — datos y codigo de replicacion; incluye Mexico TB Paper Data.tab, meta analysis data.tab,
+    Pentagono PRI Edomex 2017_v1.tab y un cuestionario parcial de la encuesta VB Mexico 2021.
+    Adquirido por ACTO MAESTRA38-L2-LISTA opcion B; NINGUN archivo de este DOI se midio ni
+    se abrio en ese acto (solo se hasheo y se registro).
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOB5JL
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_VOB5JL -- Figure 6 and Appendix E code.rtf
+  raiz: descargas_mx
+  sha256: 52e574f6e3b4a94a1b654ba11aae754dbb5143286ce14cdd81c10ab3abd6143c
+  tamano_bytes: 4141
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_vob5jl_figure_7_and_appendix_e_code
+  usado_para: Harvard Dataverse doi:10.7910/DVN/VOB5JL (Greene 2024, compra de participacion)
+    — datos y codigo de replicacion; incluye Mexico TB Paper Data.tab, meta analysis data.tab,
+    Pentagono PRI Edomex 2017_v1.tab y un cuestionario parcial de la encuesta VB Mexico 2021.
+    Adquirido por ACTO MAESTRA38-L2-LISTA opcion B; NINGUN archivo de este DOI se midio ni
+    se abrio en ese acto (solo se hasheo y se registro).
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOB5JL
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_VOB5JL -- Figure 7 and Appendix E code.rtf
+  raiz: descargas_mx
+  sha256: 18156bb1a9d81a7c978f81a543af204711a920bb9128f3ff02923e7e6c5bc8a0
+  tamano_bytes: 2136
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_vob5jl_figure_g1_code
+  usado_para: Harvard Dataverse doi:10.7910/DVN/VOB5JL (Greene 2024, compra de participacion)
+    — datos y codigo de replicacion; incluye Mexico TB Paper Data.tab, meta analysis data.tab,
+    Pentagono PRI Edomex 2017_v1.tab y un cuestionario parcial de la encuesta VB Mexico 2021.
+    Adquirido por ACTO MAESTRA38-L2-LISTA opcion B; NINGUN archivo de este DOI se midio ni
+    se abrio en ese acto (solo se hasheo y se registro).
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOB5JL
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_VOB5JL -- Figure G1 code.rtf
+  raiz: descargas_mx
+  sha256: d7fb48acf0fbc1a829c03dc2fe001c580b1c4f215f1bcfacc7b9663c9721cce5
+  tamano_bytes: 8384
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_vob5jl_figures_1_and_2_meta_analysis_code
+  usado_para: Harvard Dataverse doi:10.7910/DVN/VOB5JL (Greene 2024, compra de participacion)
+    — datos y codigo de replicacion; incluye Mexico TB Paper Data.tab, meta analysis data.tab,
+    Pentagono PRI Edomex 2017_v1.tab y un cuestionario parcial de la encuesta VB Mexico 2021.
+    Adquirido por ACTO MAESTRA38-L2-LISTA opcion B; NINGUN archivo de este DOI se midio ni
+    se abrio en ese acto (solo se hasheo y se registro).
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOB5JL
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_VOB5JL -- Figures 1 and 2 meta analysis
+    code.do
+  raiz: descargas_mx
+  sha256: 222bac704299f5e99b5ff3a00092dfb8c2f3af5c1d88dd9171a04e75a555243a
+  tamano_bytes: 2853
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_vob5jl_mexico_2021_vb_survey_questionairre_partial
+  usado_para: Harvard Dataverse doi:10.7910/DVN/VOB5JL (Greene 2024, compra de participacion)
+    — datos y codigo de replicacion; incluye Mexico TB Paper Data.tab, meta analysis data.tab,
+    Pentagono PRI Edomex 2017_v1.tab y un cuestionario parcial de la encuesta VB Mexico 2021.
+    Adquirido por ACTO MAESTRA38-L2-LISTA opcion B; NINGUN archivo de este DOI se midio ni
+    se abrio en ese acto (solo se hasheo y se registro).
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOB5JL
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_VOB5JL -- Mexico 2021 VB Survey questionairre
+    (partial).docx
+  raiz: descargas_mx
+  sha256: 3a52be82143d4d621820cd19b07d04b2a79e88f4050ff8b470a854672d129038
+  tamano_bytes: 30648
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_vob5jl_mexico_tb_paper_data
+  usado_para: Harvard Dataverse doi:10.7910/DVN/VOB5JL (Greene 2024, compra de participacion)
+    — datos y codigo de replicacion; incluye Mexico TB Paper Data.tab, meta analysis data.tab,
+    Pentagono PRI Edomex 2017_v1.tab y un cuestionario parcial de la encuesta VB Mexico 2021.
+    Adquirido por ACTO MAESTRA38-L2-LISTA opcion B; NINGUN archivo de este DOI se midio ni
+    se abrio en ese acto (solo se hasheo y se registro).
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOB5JL
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_VOB5JL -- Mexico TB Paper Data.tab
+  raiz: descargas_mx
+  sha256: d9cd50751471f8ecef79ea63609a75aedfd810dbfa9643d6f5b891ed05128374
+  tamano_bytes: 52621
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_vob5jl_pentagono_pri_edomex_2017_v1
+  usado_para: Harvard Dataverse doi:10.7910/DVN/VOB5JL (Greene 2024, compra de participacion)
+    — datos y codigo de replicacion; incluye Mexico TB Paper Data.tab, meta analysis data.tab,
+    Pentagono PRI Edomex 2017_v1.tab y un cuestionario parcial de la encuesta VB Mexico 2021.
+    Adquirido por ACTO MAESTRA38-L2-LISTA opcion B; NINGUN archivo de este DOI se midio ni
+    se abrio en ese acto (solo se hasheo y se registro).
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOB5JL
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_VOB5JL -- Pentagono PRI Edomex 2017_v1.tab
+  raiz: descargas_mx
+  sha256: ab969f0c00902733d11a77c60ea99a8f988b1db391a7bd0f81173b87fc7bfc8b
+  tamano_bytes: 9711602
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_vob5jl_table_a2_code
+  usado_para: Harvard Dataverse doi:10.7910/DVN/VOB5JL (Greene 2024, compra de participacion)
+    — datos y codigo de replicacion; incluye Mexico TB Paper Data.tab, meta analysis data.tab,
+    Pentagono PRI Edomex 2017_v1.tab y un cuestionario parcial de la encuesta VB Mexico 2021.
+    Adquirido por ACTO MAESTRA38-L2-LISTA opcion B; NINGUN archivo de este DOI se midio ni
+    se abrio en ese acto (solo se hasheo y se registro).
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOB5JL
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_VOB5JL -- Table A2 code.rtf
+  raiz: descargas_mx
+  sha256: bec04d4987039ded4cd0f7702619c35b60a2a40bfa2e2e22f287a5d4bde61bad
+  tamano_bytes: 2431
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: 10_7910_dvn_vob5jl_meta_analysis_data
+  usado_para: Harvard Dataverse doi:10.7910/DVN/VOB5JL (Greene 2024, compra de participacion)
+    — datos y codigo de replicacion; incluye Mexico TB Paper Data.tab, meta analysis data.tab,
+    Pentagono PRI Edomex 2017_v1.tab y un cuestionario parcial de la encuesta VB Mexico 2021.
+    Adquirido por ACTO MAESTRA38-L2-LISTA opcion B; NINGUN archivo de este DOI se midio ni
+    se abrio en ese acto (solo se hasheo y se registro).
+  url_origen: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/VOB5JL
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: ACADEMICO-dataverse-mps2012/10.7910_DVN_VOB5JL -- meta analysis data.tab
+  raiz: descargas_mx
+  sha256: 7c74925ab1bde0fd770633f4c96eaf724eedb0f6813f11f84c9efcfbecd07f7a
+  tamano_bytes: 11709
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
