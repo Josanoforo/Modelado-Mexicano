@@ -1099,7 +1099,7 @@ empaquetada (jquery).
 pegada en
 `forense/notas/2026-09-06-MAESTRA38-CENSO-CLON-verificacion.md`.
 `data/INFRAESTRUCTURA-v1_0.md` gana la frase «un clon git = un objeto» en
-la fila de censo-raíz. `ADR-354`.
+la fila de censo-raíz. `ADR-355`.
 
 **Indicadores que este acto mueve.** Ninguno de medición (pieza de
 instrumento). Falsos "nuevos" por clon: 136 (censo del 6/sep) → 0 en el
