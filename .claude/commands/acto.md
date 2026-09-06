@@ -27,6 +27,16 @@ Reporta las cinco líneas de abajo y NO empieces hasta tenerlas. Si algo
 no cuadra, PARA y repórtalo: encontrar que el terreno no es el que el
 encargo supone es entregable, no interrupción.
 
+0 · GUARD DE RAMA. Antes de crear la rama de este acto, corre
+    `git ls-remote --heads origin | grep -i "<rótulo>"` (rótulo = el
+    identificador del encargo/acto, p. ej. `MAESTRA38-N14` o el nombre de
+    rama que ibas a usar). Si hay coincidencia → PARA, reporta la rama
+    existente y termina con cero commits — ya hay una sesión corriendo
+    esto. Si no hay coincidencia, crea la rama y de inmediato
+    `git push -u origin <rama>` con el 0-bis (aunque no haya más commits
+    todavía), para que el rótulo sea visible a cualquier segunda sesión
+    desde el primer minuto.
+
 1 · REPO. Localiza el CLON EXISTENTE. No clones uno nuevo salvo que no
     haya ninguno, y si clonas, dilo.
     Reporta:  ruta absoluta  ·  `git log -1 --format="%h %s"`  ·  `git status`

@@ -10,3 +10,9 @@ rama, `git push -u` inmediato con el 0-bis (así el rótulo es visible para cual
 desde el primer minuto). Control positivo en la nota: simular con un rótulo existente y pegar el PARO.
 Hallazgo: una línea. PERÍMETRO: .claude/commands/acto.md · hallazgos · tablero (recibo) · A.3 ·
 cascada. NO toca nada más. ADR-346 · FP-310 (o los siguientes libres; deriva).
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA38-N14 · GUARD-DE-RAMA-EN-ACTO`, rama
+`claude/guard-mecanico-acto-j8koae`. Ver PR que fusiona esta rama contra
+`main` para el commit final.
