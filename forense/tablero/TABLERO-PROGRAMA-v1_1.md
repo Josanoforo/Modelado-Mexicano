@@ -730,3 +730,31 @@ percepción sondeadas `4` de `4` (2 bloqueadas por red, 1 no necesitaba
 red y ya estaba agotada, 1 sin host confirmado), medición cero.
 
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
+
+### 8.12 Recibo — `ACTO MAESTRA38-N14 · GUARD-DE-RAMA-EN-ACTO` (6/sep/2026, `ADR-345`, `FP-310`)
+
+**Qué pidió el encargo.** Un guard mecánico de dos líneas en el paso 0
+del ARRANQUE de `.claude/commands/acto.md`, antes de crear rama —
+defecto medido dos veces la misma semana: `#526` colisionó con una rama
+ya abierta por `N9` (4/sep), `#541` colisionó con `lauyln` (5/sep).
+`grep -c "ls-remote" .claude/commands/acto.md` → `0` antes de este acto
+(A.8).
+
+**Qué hizo.** `.claude/commands/acto.md` §1, paso nuevo `0 · GUARD DE
+RAMA`: `git ls-remote --heads origin | grep -i "<rótulo>"` antes de
+crear la rama del acto; si hay coincidencia → PARA, reporta la rama
+existente y termina con cero commits; si no, crea la rama y de
+inmediato `git push -u origin <rama>` (aunque no haya más commits
+todavía) para que el rótulo sea visible a cualquier segunda sesión
+desde el primer minuto. Control positivo: simulado contra el rótulo de
+este mismo acto tras el primer `git push -u` — un segundo `git
+ls-remote --heads origin | grep -i "guard-mecanico-acto"` sí encuentra
+la rama, confirmando que el guard habría parado una segunda sesión.
+
+**Cascada.** `ADR-345` (candidato contra `344`, contiguo). `FP-310`
+(recibo). `canon/registro-rotulos.tsv`: fila `MAESTRA38-N14` censada.
+`forense/hallazgos.md`: entrada del 6/sep/2026. No toca ningún otro
+paso de `.claude/commands/acto.md`, `canon/modelo-decision-v4_0.md`, `milpa/**` ni
+`data/raw`.
+
+`python3 tests/check.py --baseline`: ver cierre del PR de este acto.

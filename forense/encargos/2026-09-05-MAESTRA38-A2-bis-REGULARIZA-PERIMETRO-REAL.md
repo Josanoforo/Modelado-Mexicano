@@ -38,6 +38,8 @@ Enmienda de dirección al encargo A2-bis, 5/sep: se retira la COMPUERTA «N13-bi
 
 **CIERRE**: `ADR-345` (`canon/gobernanza-v1_15.md` §4), `L0` recifrado (`canon/estado-programa-v1_12.md`), `canon/registro-rotulos.tsv` censa `MAESTRA38-A2-bis`, `FP-310` recibo. `python3 tests/check.py --baseline`: **LÍNEA BASE VERDE** (3 FAIL/170 WARN, sin cambio frente a la línea base heredada). Anti-PR#77 verificado: las 34 promovidas ya vivían en el corpus compartido (`/home/pc0/mm-corpus/raw`, `data/raw` es symlink) antes de este acto — `--escanea`/`--promueve` sólo registraron, no descargaron nada nuevo.
 
+**FIX (6/sep/2026, al fusionar `PR #549`)**: `ADR-345`/`FP-310` de arriba colisionaron con `PR #548`/`ACTO MAESTRA38-N14 · GUARD-DE-RAMA-EN-ACTO`, que fusionó primero con esos mismos números (ambos derivados independientemente, sin conocerse). Regla de la casa, renumera quien fusiona segundo: esta rama cede `345`/`FP-310` y toma `ADR-346`/`FP-311` — recifrado en `canon/gobernanza-v1_15.md` §4, `canon/estado-programa-v1_12.md` `L0`, `canon/registro-rotulos.tsv` y `forense/firmas-pendientes.tsv`. Conflicto de merge resuelto conservando ambas entradas (`ADR-345`/`N14` intacta, `ADR-346`/`A2-bis` la de este acto). `tests/check.py --baseline` re-verificado tras el merge, sin `FAIL`/`WARN` nuevo.
+
 **Contador.** `C1 sin_registro` (universo del recenso): `70` → `3` (data_raw) `+` `14` (descargas_mx, de los cuales 1 es la página `descargas.php`) `= 17` de residuo real sin patrón B ni promoción; `19` reclasificados patrón B; `manifiesto`: `1281` → `1315`; medición de modelo: **cero** (plomería), declarado y cumplido.
 
 PR de este acto, contra `main`.
