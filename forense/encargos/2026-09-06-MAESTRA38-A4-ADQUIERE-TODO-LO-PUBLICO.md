@@ -29,6 +29,26 @@ CONTADOR: objetivos obtenidos por caja 0 → k de ~33 · recetas para mesa ~33 �
 
 El encargo declara **`sin compuerta`**. Equivale a `COMPUERTA: ninguna` (§2 de `/acto`): declaración explícita de que no hay compuerta, no dispara verificación. Se pasa directo al paso 3 (0-bis A.3), que es este archivo.
 
+## Adenda recibida durante la ejecución
+
+`forense/encargos/2026-09-06-ADENDA-A4-rutas-PDN.md` (dirección, 6/sep), archivada verbatim en append (A.3) **después** del `COMMIT-1` y **sin editarlo**: añade rutas `R0`–`R7` al objetivo #27, no añade objetivos ni cambia criterios de éxito. Verificada su aplicabilidad con el comando que ella misma pide y **aplicada**.
+
 ## CONSUMIDO
 
-(se completa al cierre del acto)
+**0-bis A.3** (commit `a79d1c9`): este archivo. ARRANQUE reportado (guard de rama sin coincidencia; fast-forward `2f0ee33`→`a5350e5`, exactamente el SHA que el encargo declara; `data/raw` enlazada a `/home/pc0/mm-corpus/raw`; `data/raices.local.yaml` copiado del clon padre; sonda de red `000` dentro del sandbox / `200` fuera). COMPUERTA: `sin compuerta`, equivale a `COMPUERTA: ninguna` — no dispara verificación. `git push -u` inmediato, per el paso 0 del ARRANQUE.
+
+**COMMIT-1** (commit `ae8735e`): `forense/notas/2026-09-06-MAESTRA38-A4-spec.md` — lista congelada de **33 objetivos** con URL, pregunta de modelo y criterio de éxito por objeto; frase de sello; `unzip -l` del paquete ICPSR como primer objeto (10 entradas, **cero archivos de datos**, `testzip None`); sonda de alcanzabilidad de los 33 corrida **antes** de pedir contenido (19 con bytes reales confirmados, 14 con obstáculo visible); protocolo de agotamiento v2.2 (≥ 4 rutas **distintas**) congelado ahí mismo. **Dos desviaciones de premisa declaradas antes de ejecutar**: el universo es de **25** filas, no ~31 (comando a la vista); y `ENFIH 2019` **no** está físicamente ausente — su `sha256` COINCIDE con `manifiesto.yaml:4115`, así que la rama «INEGI republicó» del encargo no se ejecuta.
+
+**A.3 append** (commit `22eba8d`): `forense/encargos/2026-09-06-ADENDA-A4-rutas-PDN.md`, verbatim.
+
+**COMMIT-2** (commit `60bc3f4` + cierre): **25 de 33 objetivos obtenidos**, **201 payloads, 5.39 GB** en el corpus compartido, todos con A.7 (doble descarga por `curl` **y** `wget`, `sha256` de contenido idéntico como condición de depósito) y `testzip None` donde aplica. Manifiesto `1315` → `1515` (ciclo `--escanea`/`--promueve` por fuente, 18 fuentes, staging a vacío, `--verifica` sobre `data_raw` `coincide=1195 · no_coincide=0 · ausente=0`). Cola: 18 filas tocadas por línea opaca, 114 intactas byte a byte, `OBTENIDO` `92` → `104`, vista regenerada. `ADENDA aplicada` (`R0`–`R7`): los cuatro bulk oficiales de la PDN bajados vía el bundle React, con `CONTROL-COINCIDE` contra `pdn_s3v2`. Detalle en `forense/notas/2026-09-06-MAESTRA38-A4-resultados.md`.
+
+**Cierre**: `forense/notas/2026-09-06-MAESTRA38-A4-PAQUETE-RECETAS-10.md` — **5 objetos**, no 33: lo único que caja no pudo bajar, cada uno con razón exacta medida (`EXIGE-CUENTA` ×2 · `EXIGE-SESION-NAVEGADOR` · `EXIGE-SOLICITUD-ESCRITA` · `HOST-NO-RESPONDE`) y receta de un minuto donde la hay. Anti-PR#77 verificado: los 201 payloads están en `/home/pc0/mm-corpus/raw`, no sólo en este worktree.
+
+**Cascada**: `ADR-347` (`canon/gobernanza-v1_15.md` §4, candidato derivado contra `346`, contiguo; cabecera `346` → `347 ADR`), `L0` recifrado con la anotación nueva **insertada antes de la anterior** (`canon/estado-programa-v1_12.md`, más su cabecera de conteo), `canon/registro-rotulos.tsv` censa `MAESTRA38-A4`, `forense/firmas-pendientes.tsv` `FP-312` (recibo) y `FP-313` (firma de mesa sobre las recetas, vence 13/sep/2026), `forense/hallazgos.md` +6 entradas, `forense/tablero/TABLERO-PROGRAMA-v1_1.md` §8.13, `data/INFRAESTRUCTURA-v1_0.md` +4 líneas.
+
+**Contador contra lo que el encargo declaró.** «objetivos obtenidos por caja `0` → `k` de ~33»: **k = 25**. «recetas para mesa ~33 → declara»: **5** — se declara la diferencia, y su causa es que caja bajó casi todo. «medición: cero (adquisición)»: cumplido, ningún payload se abrió para medir.
+
+`python3 tests/check.py --baseline`: **LÍNEA BASE VERDE** (3 FAIL / 170 WARN, sin cambio frente a `tests/baseline.json`).
+
+PR de este acto, contra `main`. **No se fusiona**: el merge es de mesa.

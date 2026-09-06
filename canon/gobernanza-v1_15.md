@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **346 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **347 ADR**
 
 > | | |
 > |---|---|
@@ -5924,3 +5924,25 @@ WARN, sin entradas nuevas.
 **Deuda que cierra.** `FP-282` → `EJECUTADA`. `FP-308` → `FIRMADA (iii)`. `FP-309` recibo de `P0`. `FP-311` recibo de este acto (renumerado de `FP-310` original: `MAESTRA38-N14` lo tomó al fusionar primero). `FP-288` permanece `ABIERTA` (sin cambio, declarado).
 
 **Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `344` (`ADR-344`, `MAESTRA38-A2`), contiguo → `345` — la enmienda de dirección del 5/sep/2026 fijó explícitamente `345` (no `346`, el número que citaba la COMPUERTA original ya retirada). Colisión real al fusionar (6/sep/2026, `PR #549`): `origin/main` (`PR #548`) ya traía `ADR-345`/`ACTO MAESTRA38-N14 · GUARD-DE-RAMA-EN-ACTO` fusionado con ese mismo candidato, derivado independientemente sin conocer esta rama. Regla de la casa, renumera quien fusiona segundo: esta rama cede `345` y toma `346`, contiguo tras el `345` de `N14`.
+
+---
+
+**ADR-347 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` -> `346`, contiguo, sin huecos; candidato `347`) · `ACTO MAESTRA38-A4 · ADQUIERE-TODO-LO-PUBLICO`**, 6/sep/2026, entorno **UBUNTU con corpus y red** — **caja baja 25 de 33 objetivos (201 payloads, 5.39 GB) y entrega a mesa un paquete de 5, no de 33: el bulk oficial de la Plataforma Digital Nacional (4 GB, S1/S2/S3/S6) cierra el hueco persona-con-id que la fila 28 arrastraba desde agosto, y tres cierres anteriores caen por medición — un `000` que era cadena TLS incompleta, un host «caído» que sólo estaba mal direccionado, y una ficha «sin existencia confirmada» cuyo microdato es público.**
+
+`COMPUERTA: sin compuerta` — declaración explícita del encargo, equivalente a `COMPUERTA: ninguna` (§2 de `/acto`): no dispara verificación.
+
+**Firma que ejecuta**, verbatim (6/sep): «*Lo que pueda bajar caja que lo baje caja, lo que no, dame las ligas y el detalle de qué tengo que bajar*».
+
+**Qué hace.** `COMMIT-1` congela, **antes de bajar un solo byte**, la lista de 33 objetivos con su URL, la pregunta que responde cada uno y su criterio de éxito por objeto, más el `unzip -l` del paquete ICPSR y la sonda de alcanzabilidad de los 33 (`curl -r 0-0`, que trae el tamaño total sin bajar el cuerpo). `COMMIT-2` ejecuta: por objetivo, `/adquiere` v2.2 con >= 4 rutas **distintas** (no cuatro intentos con la misma herramienta), A.7 con **doble descarga por dos transportes separados** (`curl` y `wget`) y `sha256` de contenido idéntico entre ambas como condición de depósito, `testzip` en todo `.zip`/`.xlsx` (`None` en el 100%), y registro por las tres capas.
+
+**Dos desviaciones de premisa, declaradas antes de ejecutar.** (i) El encargo decía «~31» filas de universo; el comando da **25** en el estado-universo (13 con URL en la propia fila), y **33 objetos** contando lo que cada receta enumera por separado. (ii) El encargo decía que `enfih2019_bd_csv_zip` estaba «físicamente ausente»: **es falso** — el archivo existe en el corpus y su `sha256` **COINCIDE** con `manifiesto.yaml:4115`, así que la rama «INEGI republicó» del encargo no se ejecuta.
+
+**ADENDA aplicada.** La adenda de dirección del 6/sep (`forense/encargos/2026-09-06-ADENDA-A4-rutas-PDN.md`, archivada verbatim por A.3 en append) añadió el protocolo `R0`-`R7` para el objetivo #27. El `grep` que la propia adenda pide confirma que la fila 28 estaba en el `COMMIT-1` congelado; se ejecutó completo, con una petición por segundo y sin paralelismo. `R1` zanjó por medición una discrepancia entre dos lecturas de código que nadie había probado contra el host: los backends `api.plataformadigitalnacional.org/s1/v1/*`, `/s2/api/v1/*` y `/s3-wrapper/api/v1/*` **responden `200` sin token** (S1 `search` sobre `EDOMEX`: `totalRows` `153011`, con nombre, institución y escolaridad por persona); `S6` da `500` de su propia base de datos y timeouts. `R2` rindió el objeto: los cinco `href` del botón «Descarga todos los datos» son literales estáticos del bundle React y **apuntan a Google Drive**, no a un dominio de la PDN — por eso ninguna lectura de las OAS podía hallarlos. **Control positivo cumplido**: el bulk de S3 reprodujo `sha256 923d0dd0…`, idéntico a la entrada `pdn_s3v2` que mesa bajó a mano en mayo — `CONTROL-COINCIDE`, y por eso ese archivo no se re-registra.
+
+**Alcance frente a `MAESTRA38-A5`.** Este acto cierra **un objeto** de su propio `COMMIT-1` (los cuatro bulk), no el barrido paginado de los cuatro sistemas — eso es `ACTO MAESTRA38-A5 · PDN-BULK-Y-PROXY`, en rama propia. Es intencional que ambos toquen PDN; mesa reconcilia al fusionar.
+
+**Qué NO decide.** No abre ningún payload para medir: la medición de modelo de este acto es **cero**, como el encargo declaró. No toca `relaciones.tsv`/`procedencias`/`utilidad` ni `tests/baseline.json` — el perímetro los admite sólo vía `alta_relacion.py` para fuente nueva, y ninguna necesidad viva cita hoy a las fuentes nuevas: dar de alta una relación sin necesidad que la cite sería inventar el vínculo. No toca `milpa/**`, specs, ni `Downloads`. No cierra `R1.4` (ni el PDF de SSRN ni su hermana traen comparador de marca) y lo dice en la propia receta, para que el paquete no prometa de más. No fabrica receta para las tres fichas de diseño sin objeto adquirible (`MAESTRA38-N10`): ahí el desenlace individual no existe como registro administrativo.
+
+**Deuda que cierra.** `FP-312` recibo de este acto. `FP-313` firma de mesa sobre «mesa ejecuta las recetas de `PAQUETE-RECETAS-10`» (vence en 7 días, 13/sep/2026). Cola: `OBTENIDO` `92` -> `104`; manifiesto `1315` -> `1515`.
+
+**Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `346`, contiguo -> `347`. El encargo cita `ADR-347` y el número derivado coincide. Acto en vuelo conocido que podría tomarlo primero: la rama `acto/maestra38-lote-lapop`, visible en `git ls-remote --heads origin` el 6/sep — regla de la casa, renumera quien fusiona segundo.

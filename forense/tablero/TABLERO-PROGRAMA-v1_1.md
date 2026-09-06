@@ -758,3 +758,55 @@ paso de `.claude/commands/acto.md`, `canon/modelo-decision-v4_0.md`, `milpa/**` 
 `data/raw`.
 
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
+
+### 8.13 Recibo — `ACTO MAESTRA38-A4 · ADQUIERE-TODO-LO-PUBLICO` (6/sep/2026, `ADR-347`, `FP-312`/`FP-313`)
+
+**Qué pidió el encargo.** Bajar todo lo público que la cola tenía
+pendiente, y entregar a mesa —con liga y detalle— sólo lo que caja no
+pudiera. Firma, verbatim (6/sep): «*Lo que pueda bajar caja que lo baje
+caja, lo que no, dame las ligas y el detalle de qué tengo que bajar*».
+Contador declarado por el propio encargo: «objetivos obtenidos por caja
+`0` → `k` de ~33 · recetas para mesa ~33 → declara».
+
+**Qué hizo.** `COMMIT-1` congeló **33 objetivos** —cada uno con su URL,
+la pregunta de modelo que responde y su criterio de éxito (nombre
+esperado, tipo, tamaño)— **antes de bajar un solo byte**, más el
+`unzip -l` del paquete ICPSR y la sonda de alcanzabilidad de los 33.
+`COMMIT-2` bajó **25 de 33**: **201 payloads, 5.39 GB** en el corpus
+compartido. A.7 aplicado como **doble descarga por dos transportes
+distintos** (`curl` y `wget`), con `sha256` de contenido idéntico entre
+ambas como condición de depósito — cuatro intentos con la misma
+herramienta no son cuatro rutas. `testzip` `None` en el 100% de los
+`.zip`/`.xlsx`.
+
+**Objeto mayor: el bulk oficial de la PDN.** La `ADENDA A4 (rutas PDN)`
+llegó con el acto ya corriendo; se archivó verbatim en append (A.3) sin
+tocar el `COMMIT-1` congelado, el `grep` que ella misma pide confirmó
+que la fila 28 estaba en la lista, y se ejecutó `R0`–`R7` completo con
+una petición por segundo. `R2` rindió los cuatro bulk (S1 declaraciones
+`2 912 499 396` B / 16 070 entradas · S6 contratos OCDS
+`1 059 406 620` B · S2 · S3), hallados como literales estáticos del
+bundle React apuntando a Google Drive. **Control positivo cumplido**:
+el bulk de S3 reprodujo el `sha256` exacto de `pdn_s3v2`
+(`CONTROL-COINCIDE`), así que ese archivo no se re-registra. `R1`
+zanjó por medición una discrepancia que dos documentos habían derivado
+leyendo el mismo código sin probar el host: los backends responden
+`200` **sin token**.
+
+**Contador contra lo declarado.** Objetivos obtenidos por caja: `0` →
+**25 de 33**. Recetas para mesa: el encargo estimaba ~33; son **5**
+(`PAQUETE-RECETAS-10`), porque caja bajó casi todo. Manifiesto `1315` →
+`1515`. Cola `OBTENIDO` `92` → `104`. Medición de modelo: **cero**,
+declarada y cumplida.
+
+**Cascada.** `ADR-347` (candidato derivado contra `346`, contiguo).
+`FP-312` (recibo), `FP-313` (firma de mesa sobre las recetas del
+paquete, vence 13/sep/2026). `canon/registro-rotulos.tsv`: fila
+`MAESTRA38-A4` censada. `forense/hallazgos.md`: **6 entradas** del
+6/sep, cada una corrige un cierre anterior por medición. No toca
+`relaciones.tsv`/`procedencias`/`utilidad` ni `tests/baseline.json`
+(ninguna necesidad viva cita las fuentes nuevas), ni `milpa/**`, specs
+o `Downloads`.
+
+`python3 tests/check.py --baseline`: **LÍNEA BASE VERDE** (3 FAIL / 170
+WARN, sin cambio frente a `tests/baseline.json`).
