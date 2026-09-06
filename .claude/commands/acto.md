@@ -57,6 +57,7 @@ encargo supone es entregable, no interrupción.
     ⚠️ Si este acto DESCARGA algo: verifica al cerrar que los payloads
     quedaron en el CORPUS COMPARTIDO y no solo en tu worktree. Es el
     defecto de PR #77 y no lo atrapa ningún test.
+    ⚠️ D-d (`ACTO MAESTRA38-CRON-2 · REGISTRO-Y-HUELLA`, 6/sep/2026): nunca `git reset --hard` con `data/manifiesto-staging.yaml` modificado; `git stash` primero.
     ⚠️ A.8 contra la raíz, no sólo contra el manifiesto (`ADR-326`,
     `MAESTRA37-N6`). Todo acto que PIDA una descarga a mesa, o que declare
     un payload `NO-ENCONTRADO`/`AUSENTE-EN-RAIZ`, cita el último
