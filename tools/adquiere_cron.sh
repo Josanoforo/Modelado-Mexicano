@@ -58,6 +58,9 @@ print(manifiesto.resolver_raiz('descargas_mx', '.', 'data/raw') or '')
 if [ -n "$RAIZ_RESUELTA" ] && [ -d "$RAIZ_RESUELTA" ]; then
   mkdir -p "$CENSO_DIR"
   CENSO_FILE="${CENSO_DIR}/${FECHA}.txt"
+  if [ -e "$CENSO_FILE" ]; then
+    CENSO_FILE="${CENSO_DIR}/${FECHA}-cron-$(date +%H%M).txt"
+  fi
   SALIDA_CENSO="$(python3 tests/manifiesto.py --escanea descargas_mx 2>&1 || true)"
   RESUMEN="$(echo "$SALIDA_CENSO" | grep -m1 '^Total en disco:' || echo 'Total en disco: (sin resumen -- ver salida cruda abajo)')"
   {
@@ -67,9 +70,11 @@ if [ -n "$RAIZ_RESUELTA" ] && [ -d "$RAIZ_RESUELTA" ]; then
   } >"$CENSO_FILE"
   log "[CENSO] ${FECHA}: ${RESUMEN}"
 
-  # Commit propio, separado del [ADQ] que produce claude -p más abajo --
-  # misma vía que ADR-281: el merge de mesa es la autorización, así que
-  # empuja directo a main igual que [ADQ]. data/manifiesto-staging.yaml
+  # Commit propio, separado del [ADQ] que produce claude -p más abajo.
+  # main está protegida (status check "check" requerido) -- no se puede
+  # empujar directo. En vez de eso: rama censo/${FECHA} + PR (--fill si
+  # gh está disponible, si no se deja logueada la URL de compare) para
+  # que el check corra y mesa firme. data/manifiesto-staging.yaml
   # (escrito por --escanea arriba) NO se commitea aquí -- este paso solo
   # hace `git add` de $CENSO_FILE. El archivo SÍ está trackeado en git
   # (no está en .gitignore -- corregido MAESTRA37-INFRA-1, ver B3: la
@@ -81,10 +86,22 @@ if [ -n "$RAIZ_RESUELTA" ] && [ -d "$RAIZ_RESUELTA" ]; then
     git commit -m "[CENSO] ${FECHA}
 
 ${RESUMEN}" >>"$LOGFILE" 2>&1
-    if git push origin main >>"$LOGFILE" 2>&1; then
-      log "[CENSO] ${FECHA} commiteado y empujado a main"
+    RAMA_CENSO="censo/${FECHA}"
+    if git checkout -B "$RAMA_CENSO" >>"$LOGFILE" 2>&1 && git push -u origin "$RAMA_CENSO" >>"$LOGFILE" 2>&1; then
+      log "[CENSO] ${FECHA} commiteado y empujado a ${RAMA_CENSO}"
+      if command -v gh >/dev/null 2>&1; then
+        if gh pr create --fill >>"$LOGFILE" 2>&1; then
+          log "[CENSO] ${FECHA}: PR abierto para ${RAMA_CENSO}"
+        else
+          log "[CENSO] ${FECHA}: gh pr create falló, ver arriba. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${RAMA_CENSO}"
+        fi
+      else
+        log "[CENSO] ${FECHA}: gh no disponible. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${RAMA_CENSO}"
+      fi
+      git checkout main >>"$LOGFILE" 2>&1
     else
-      log "PARO-CENSO-PUSH: el commit [CENSO] ${FECHA} quedó local, no se pudo empujar."
+      log "PARO-CENSO-PUSH: el commit [CENSO] ${FECHA} quedó local, no se pudo empujar ${RAMA_CENSO}."
+      git checkout main >>"$LOGFILE" 2>&1 || true
     fi
   else
     log "[CENSO] ${FECHA}: sin cambios respecto al censo previo, no se commitea de nuevo."
@@ -121,8 +138,8 @@ fi
 log "prompt extraído (§1 de ${RUNBOOK}), $(echo "$PROMPT" | wc -l) líneas:"
 echo "$PROMPT" >>"$LOGFILE"
 
-log "invocando: claude -p \"\$PROMPT\""
-claude -p "$PROMPT" >>"$LOGFILE" 2>&1
+log "invocando: claude --add-dir /home/pc0/mm-corpus -p \"\$PROMPT\""
+claude --add-dir /home/pc0/mm-corpus -p "$PROMPT" >>"$LOGFILE" 2>&1
 CODIGO_SALIDA=$?
 log "claude -p terminó con código ${CODIGO_SALIDA}"
 
