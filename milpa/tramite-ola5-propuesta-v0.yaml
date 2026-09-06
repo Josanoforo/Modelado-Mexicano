@@ -3283,11 +3283,11 @@ reglas_propuestas:
       v4_0.md §7). Esta entrada NO reabre ni sustituye ese sello -- es el diseño de
       MAESTRA38-N5 §2.6 (REFORMULABLE (a)), aceptado por mesa via FP-298/N6, sobre un
       reactivo distinto (exposicion a oferta clientelar, no secreto/observabilidad).
-    situacion: PENDIENTE-DE-MESA  # diseño aceptado (FP-298, 4/sep/2026); falsador sin correr
+    situacion: PENDIENTE-DE-MESA  # diseño aceptado (FP-298, 4/sep/2026); falsador CORRIDO por ACTO MAESTRA38-L4 (6/sep/2026), CONTRARIA. La CARGA al motor es decision de mesa: FP-316.
     tier: PENDIENTE-DE-MESA
     si:
       disparadores: NO-APLICA
-    entonces: []
+    entonces:
     porque: {generador: [], mecanismo: "clien1n/clien1na (exposicion a oferta clientelar) cruzado con vb3n (eleccion de voto 2018) -- MAESTRA38-N5 NO re-deriva el generador"}
     falsable_si: NO-APLICA
     fuente: ["MAESTRA38A1_MEXICO_LAPOP_AMERICASBAROMETER_2019_V1_0_W", "forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md#2.6"]
@@ -3298,10 +3298,46 @@ reglas_propuestas:
       de voto declarada (vb3n, misma ola) difiere de quienes no reportan blanco.
     reactivo: "clien1n + clien1na (exposicion) cruzado con vb3n (eleccion de voto 2018), controlando partidismo previo (vb10)"
     se_mueve_si: >
-      Si entre clien1n/clien1na=si la proporcion que reporta un cambio de
-      intencion/eleccion de voto no es mayor que entre clien1n/clien1na=no
-      (controlando vb10), la cesion de autonomia local de esta regla no se sostiene
-      con este proxy -- falsador planteado, no corrido (medicion: cero).
+      [verbatim de prereg-caja-S4-L4 §5, que sustituye a la parafrasis de N5 que esta
+      entrada traia antes de correrse el falsador -- el texto anterior sigue en el
+      historial de git y en forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md]
+      Si entre clien1n/clien1na=si la proporcion que vota PRI no es mayor que entre
+      clien1n/clien1na=no (controlando vb10), este brazo de la cesion de autonomia
+      local no se sostiene con este proxy -- el falsador queda planteado, no corrido
+      (medicion: cero, es diseño), y se lee junto con el veredicto ya CONTRARIA (x2)
+      de L9/L11 sobre el otro brazo, per §4.3.
+    se_mueve_si_cumplido: >
+      SI. La proporcion que vota PRI entre los expuestos no es mayor: es MENOR
+      (4.9419% contra 9.0116%), y el IC95 de la diferencia excluye 0.
+    medido_en: "ACTO MAESTRA38-L4 (LOTE-LAPOP), 6/sep/2026 -- forense/notas/2026-09-06-MAESTRA38-LOTE-LAPOP-L4-resultados.md; data/l4-clientelar-lapop2019-v1_0.json"
+    ponderador: "wt (CONSTANTE = 1 en las 1580 filas; codebook 2019 abierto: no existe segundo campo de post-estratificacion, cierra la reserva de spec §2)"
+    diseno: "estratopri (4) x upm (129); IC95 bootstrap de conglomerado, 10 000 replicas, seed 42; contraste principal re-estimado ademas por linealizacion de Taylor (tests/svystat.py::diff_ultimate_cluster), mismo punto y mismo veredicto"
+    escala: "proporcion ponderada de PERSONAS 18+ dentro de cada rama de exposicion, entre quienes tienen vb3n valido"
+    universo: >
+      ESTAMPA A.10 -- 18+ con codigo valido {1,2} en clien1n O clien1na y vb3n valido:
+      n=1035 (de 1580; vb3n solo se pregunta a quien voto -- universo restringido,
+      declarado). Reparto: EXPUESTO=1 344, EXPUESTO=0 688, SIN-CLASIFICAR 3 (una de las
+      dos en 'no' y la otra faltante: por spec §3 no cumplen 'las dos son 2' y no se
+      imputan). Sobre la muestra completa: 501 / 1073 / 6.
+    contrastes:
+      - {contraste: delta_eleccion_PRI_principal, definicion: "P(vb3n=103|EXPUESTO=1) - P(vb3n=103|EXPUESTO=0)", brecha_pp: -4.0698, ic95_brecha: [-7.3492, -0.7200], excluye_cero: true, n_expuesto: 344, num_expuesto: 17, n_no_expuesto: 688, num_no_expuesto: 62, veredicto_Bbis: CONTRARIA}
+      - {contraste: delta_eleccion_MORENA_secundario, definicion: "P(vb3n=101|EXPUESTO=1) - P(vb3n=101|EXPUESTO=0)", brecha_pp: 4.7965, ic95_brecha: [-0.8721, 10.5456], excluye_cero: false, veredicto_Bbis: NO-DISCRIMINA}
+    veredicto_Bbis: CONTRARIA
+    veredicto_del_acto: >
+      CONTRARIA en el desenlace PRINCIPAL (PRI), con IC95 que excluye 0. La clausula de
+      precedencia de spec §4.1 no se activa: exige los dos estimandos limpios y en signo
+      discrepante, y el de MORENA contiene 0. Es la TERCERA pieza CONTRARIA sobre este id,
+      y la primera en el brazo de proximidad/focalizacion del reparto -- L9 (LAPOP 2023) y
+      L11 (ENCUCI 2020) midieron el brazo de observabilidad. Tres instrumentos, los dos
+      brazos de la disyuncion, mismo sentido. NO se computa ninguna celda conjunta de tres
+      factores (spec §0.4/§4.3): ninguna ola trae oferta clientelar y observabilidad sobre
+      la misma persona. NO mueve tier ni reabre D2-f: eso es de mesa (FP-316).
+    nota_alcance: >
+      Asociacion transversal, sin identificacion causal: no separa que la oferta cambie el
+      voto de que se ofrezca mas a votantes de cierto perfil. vb3n esta condicionado a
+      haber votado -- la celda es descriptiva DENTRO de los votantes. La rama expuesta del
+      desenlace principal se apoya en 17 casos: por encima de la guardia pre-registrada de
+      10, pero es el numero que sostiene el veredicto y se cita con el.
 
   - id: civico.protesta.agravio_urbano_multiola
     entrada_nueva: true
@@ -3314,11 +3350,17 @@ reglas_propuestas:
       encuadre sin cambio de contenido), aceptado por mesa via FP-298/N6, que ancla
       las CINCO piezas del SI...ENTONCES a reactivos LAPOP multi-ola en vez de a la
       ficha de una sola ola.
-    situacion: PENDIENTE-DE-MESA  # diseño aceptado (FP-298, 4/sep/2026); falsador sin correr
+    situacion: PENDIENTE-DE-MESA  # diseño aceptado (FP-298, 4/sep/2026); falsador CORRIDO por ACTO MAESTRA38-L5 (6/sep/2026), NO-DISCRIMINA con el corazon de la regla NO MEDIDO. Sin carga: FP-316.
     tier: PENDIENTE-DE-MESA
     si:
       disparadores: NO-APLICA
-    entonces: []
+    entonces:
+      - {conducta: protesta_urbano_agravio_falla_red_2004, p: 0.157407, clase: "MEDIDO·p(sin ponderar; celda urbana del subgrupo de tres antecedentes)"}
+      - {conducta: protesta_rural_agravio_falla_red_2004, p: NO-ESTIMABLE, clase: "NO-ESTIMABLE(numerador 3 < 10, guardia de celda pre-registrada spec §3.1)"}
+      - {conducta: protesta_urbano_agravio_falla_red_2006, p: 0.161538, clase: "MEDIDO·p(sin ponderar)"}
+      - {conducta: protesta_rural_agravio_falla_red_2006, p: NO-ESTIMABLE, clase: "NO-ESTIMABLE(numerador 3 < 10)"}
+      - {conducta: protesta_urbano_agravio_falla_red_2019, p: 0.094340, clase: "MEDIDO·p(wt=1 constante)"}
+      - {conducta: protesta_rural_agravio_falla_red_2019, p: NO-ESTIMABLE, clase: "NO-ESTIMABLE(numerador 1 < 10; la ola solo tiene 35 personas en tamano=5)"}
     porque: {generador: [], mecanismo: "G4 (destructor selectivo) -- MAESTRA38-N5 NO re-deriva el generador"}
     falsable_si: NO-APLICA
     fuente: ["forense/notas/2026-09-04-MAESTRA38-N5-diseno-9-reglas.md#2.8"]
@@ -3330,7 +3372,147 @@ reglas_propuestas:
       variables simultaneamente en el mismo archivo (esta pieza confirmo cada pieza
       por separado, no la co-ocurrencia fila a fila).
     se_mueve_si: >
-      Si entre victimas (VIC1=si) con confianza baja en la justicia (AOJ12 bajo) y
-      membresia en organizacion (CP6/CP9/LAPOP-E8=si), la tasa de protesta
-      (PROT1/PROT2=si) en TAMANO=urbano no es mayor que en TAMANO=rural, la regla se
-      rompe -- falsador planteado, no corrido (medicion: cero).
+      [verbatim de prereg-caja-S5-L5 §5, que sustituye a la parafrasis de N5 que esta
+      entrada traia antes de correrse el falsador -- el texto anterior sigue en git]
+      Si entre quienes cumplen los tres antecedentes no-espaciales (victimas, con
+      confianza baja en la justicia, con membresia en organizacion) la tasa de protesta
+      en entorno urbano no es mayor que en entorno rural, la regla se rompe. Si
+      C_completo cae por guardia (NO-ESTIMABLE), se_mueve_si se lee sobre las tres
+      diagnosticas juntas, per §4.
+    se_mueve_si_cumplido: >
+      NO SE PUEDE LEER SOBRE C_completo: cayo por guardia de numerador en las TRES olas
+      (rural del subgrupo de alto riesgo = 3, 3 y 1 casos). Leido sobre las diagnosticas:
+      ni ruptura ni sosten -- los cuatro contrastes estimables van al signo que la regla
+    medido_en: "ACTO MAESTRA38-L5 (LOTE-LAPOP), 6/sep/2026 -- forense/notas/2026-09-06-MAESTRA38-LOTE-LAPOP-L5-resultados.md; data/l5-protesta-multiola-v1_0.json"
+    olas_medidas: "2004, 2006, 2019 (lista cerrada de spec §1; 2021 y 2023 no traen variable de protesta -- excluidas del falsador, no omitidas)"
+    ponderador: "NINGUNO en 2004 y 2006 (2004: wt existe como columna pero esta VACIA, 0 validos de 1556 -- corrige spec §2, que la daba por existente; 2006: sin wt/WT). wt CONSTANTE = 1 en 2019."
+    diseno: "2004 mestrat(4) x msec(131 pares) -- msec (Seccion electoral) es el conglomerado que spec §2 daba por ausente; 2006 ESTRATOPRI(4) x UPM(130x12); 2019 estratopri(4) x upm(129). IC95 bootstrap de conglomerado, 10 000 replicas, seed 42"
+    escala: "proporcion de PERSONAS 18+ que reportan protesta, dentro de cada celda del cruce antecedente x entorno"
+    universo: >
+      ESTAMPA A.10 -- por ola, personas con la variable de protesta y las de antecedente
+      validas. URBANO = tamano en {1,2,3,4}; rural = tamano 5 (382 / 384 / 35 personas en
+      2004 / 2006 / 2019). ur/UR NO es tamano=5 (en 2019 ur=rural incluye tamano 1..4) y se
+      reporta en paralelo como verificacion cruzada, sin sustituir a tamano; en 2004 ur esta
+      vacia y su analogo es mzona.
+    contrastes:
+      - {contraste: C_completo_2004, definicion: "protesta | agravio ∧ falla_baja ∧ red_previa, urbano - rural", estado: NO-ESTIMABLE, motivo: "numerador rural 3 < 10 (guardia spec §3.1)", n_urbano: 108, num_urbano: 17, n_rural: 14, num_rural: 3}
+      - {contraste: C_completo_2006, definicion: idem, estado: NO-ESTIMABLE, motivo: "numerador rural 3 < 10", n_urbano: 130, num_urbano: 21, n_rural: 21, num_rural: 3}
+      - {contraste: C_completo_2019, definicion: idem, estado: NO-ESTIMABLE, motivo: "numerador rural 1 < 10", n_urbano: 212, num_urbano: 20, n_rural: 1, num_rural: 1}
+      - {contraste: C_agravio_2004, estado: NO-ESTIMABLE, motivo: "numerador rural 5 < 10"}
+      - {contraste: C_agravio_2006, estado: NO-ESTIMABLE, motivo: "numerador rural 4 < 10"}
+      - {contraste: C_agravio_2019, estado: NO-ESTIMABLE, motivo: "numerador rural 2 < 10"}
+      - {contraste: C_falla_2004, definicion: "protesta | falla_baja, urbano - rural", brecha_pp: 2.2763, ic95_brecha: [-3.5730, 7.2162], excluye_cero: false}
+      - {contraste: C_falla_2006, definicion: idem, brecha_pp: 3.9153, ic95_brecha: [-1.1720, 8.8194], excluye_cero: false}
+      - {contraste: C_falla_2019, estado: NO-ESTIMABLE, motivo: "numerador rural 2 < 10"}
+      - {contraste: C_red_2004, definicion: "protesta | red_previa, urbano - rural", brecha_pp: 0.9590, ic95_brecha: [-7.3848, 7.5987], excluye_cero: false}
+      - {contraste: C_red_2006, definicion: idem, brecha_pp: 1.1134, ic95_brecha: [-3.7573, 5.4287], excluye_cero: false}
+      - {contraste: C_red_2019, estado: NO-ESTIMABLE, motivo: "numerador rural 2 < 10"}
+    veredicto_Bbis: NO-DISCRIMINA
+    veredicto_del_acto: >
+      NO-DISCRIMINA, y con la declaracion que spec §4 exige por escrito: EL CORAZON DE LA
+      REGLA NO SE MIDIO. C_completo -- que los tres antecedentes JUNTOS, y no por separado,
+      son los que el entorno urbano canaliza -- es NO-ESTIMABLE en las tres olas. De las 12
+      celdas diagnosticas, 4 son estimables (C_falla y C_red en 2004 y 2006): las cuatro van
+      en signo positivo (+2.28, +0.96, +3.92, +1.11 pp) y las cuatro CONTIENEN 0. Por la
+      precedencia de spec §4, cuatro puntos positivos que cruzan el cero NO son corroboracion
+      del patron por partes, y en ningun caso sustituyen a C_completo. El hueco no es de
+      instrumento -- los reactivos de falla estatal y red previa SI existen, que era el
+      hallazgo de spec §0.3, y se confirma -- sino de TAMANO DE CELDA: el subgrupo rural que
+      cumple los tres antecedentes tiene 14, 21 y 1 personas. R7.4 sigue ACOTADA, como L9 la
+      dejo; esta pieza no la cierra ni la mueve, y aporta por que.
+    nota_alcance: >
+      NO reabre ADR-158 (fila D de R7.4, corrida sobre datos de EVENTO) ni la Enmienda D2-d
+      (C2 agravio-en-urbano, CARGADA-A-MOTOR). NO dice nada sobre civico.autodefensa.
+      agravio_rural. C_agravio se ejecuto en la forma que spec §3.1 pre-registra (contra
+      URBANO, forma del C1 de L9) y cayo por guardia en las tres olas, igual que aquel C1:
+      la replicacion de tercera ola que §3.1 anuncia NO ocurrio. Spec §3.1 y §0.3 se
+      contradicen sobre que forma debe tener C_agravio -- tension declarada en FP-315, no
+      resuelta a mano por el ejecutor. PROT2 de 2006 esta GATEADA por PROT1 (217 elegibles,
+      209 validos): su universo esta anidado en el desenlace, se reporta descriptivo con esa
+      reserva y no entra a ningun veredicto. Asociacion transversal, sin identificacion
+      causal; 2004 y 2006 sin ponderar.
+      predice y los cuatro contienen 0.
+  - id: comunicacion.inseguridad.ver_oir_callar_lapop2004
+    entrada_nueva: true
+    referida_a: >
+      regla R10.3 comunicacion.inseguridad.ver_oir_callar (canon/modelo-decision-v4_0.md:585,
+      §3.10 Comunicacion y conflicto, tier [FUERTE]). PRIMERA formulacion de esta regla en la
+      propuesta: ya_medido.py la devuelve NUNCA-MEDIDA al 6/sep/2026. Es el diseño de
+      prereg-caja-S8-L18 (ACTO MAESTRA38-N11), sobre el hallazgo de MAESTRA38-N10 §2.6 (modulo
+      AOJ de LAPOP, universo que ni MAESTRA34-N5 -ENDIREH- ni MAESTRA36-N6 -CNGMD- tenian
+      asignado).
+    situacion: PENDIENTE-DE-MESA  # falsador CORRIDO por ACTO MAESTRA38-L18 (6/sep/2026), NO-DISCRIMINA. Sin carga: FP-316.
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: silencio_no_denuncia_contexto_inseguro_ALTO_lapop2004, p: 0.649123, clase: "MEDIDO·p(sin ponderar; victimas con INDICE_CONTEXTO 2-3 de 3)"}
+      - {conducta: silencio_no_denuncia_contexto_inseguro_BAJO_lapop2004, p: 0.674157, clase: "MEDIDO·p(sin ponderar; victimas con INDICE_CONTEXTO 0-1 de 3)"}
+    porque: {generador: [G4], mecanismo: "adaptacion racional, no timidez -- este acto NO re-deriva el generador ni lo mide: el PORQUE es mecanismo, no antecedente exigible"}
+    falsable_si: NO-APLICA
+    fuente: ["LAPOP_MEX_2004", "forense/prereg-caja/S8-L18-spec-v1_0.md", "forense/notas/2026-09-05-MAESTRA38-N10-cobertura-ola6.md#2.6"]
+    ola_calibracion: "LAPOP AmericasBarometer Mexico 2004 -- UNA SOLA OLA: el desenlace aoj1/aoj1a/aoj1b existe solo ahi (2006/2019/2021/2023: NO-ENCONTRADO, ambas capitalizaciones, re-verificado por el censo A.4 de este acto). Corrige a N10 §2.6, que lo describia en 'las mismas cinco olas'."
+    medido_en: "ACTO MAESTRA38-L18 (LOTE-LAPOP), 6/sep/2026 -- forense/notas/2026-09-06-MAESTRA38-LOTE-LAPOP-L18-resultados.md; data/l18-ver-oir-callar-lapop2004-v1_0.json"
+    reactivo: "aoj11 (inseguridad en el barrio) + b18 (confianza en la Policia) + aoj12 (confianza en que la justicia castigue) -> aoj1 (denuncio el hecho); b10a como verificacion cruzada de aoj12"
+    ponderador: "NINGUNO -- wt de 2004 existe como columna pero esta VACIA (0 validos de 1556). Sin ponderar, declarado (mismo criterio que S5 §2 / S2-L2 §1.0)."
+    diseno: "mestrat (4 estratos) x msec (Seccion electoral, 131 pares estrato x PSU); IC95 bootstrap de conglomerado, 10 000 replicas, seed 42. 2004 no trae upm/estratopri/cluster."
+    escala: "proporcion de VICTIMAS de delito (18+) que NO denunciaron, dentro de cada rama de contexto"
+    universo: >
+      ESTAMPA A.10 -- victimas (vic1=1) con aoj1 valido: 268 victimas de 1556 (tasa de
+      victimizacion 17.22%), 266 con aoj1 valido (94 denuncio / 172 NO denuncio), 0 no-victimas
+      con aoj1 valido. El gateo es del cuestionario mismo (AOJ1. [Si responde "Si" a VIC1]...),
+      verificado en 1671516622CAM Mexico Questionnaire 2004.pdf linea 215, no supuesto. Es el
+      conteo que spec §0.3 declaro pendiente; la tasa real DUPLICA la expectativa pre-registrada
+      (5-10%). A C_completo entran 260 de los 266: 6 tienen alguno de los tres indicadores
+      faltante y quedan fuera, contados.
+    dicotomizaciones: >
+      INSEGURO_BARRIO = aoj11 en {3 Algo inseguro, 4 Muy inseguro}. DESCONFIA_POLICIA = b18 en
+      {1,2,3} (mitad inferior de confianza; 4 es el punto medio y NO entra). DESCONFIA_JUSTICIA =
+      aoj12 en {3 Poco, 4 Nada}. La direccion de la escala B (1..7 SIN etiquetas de valor en el
+      .dta de 2004) se resolvio contra el cuestionario, Tarjeta "A", verbatim: "una escala de 7
+      puntos... de 1- que significa NADA hasta 7- que significa MUCHO" -- misma direccion que el
+      .dta de 2019, NO se invierte. INDICE_CONTEXTO = numero de los tres indicadores en direccion
+      de inseguridad (0-3); ALTO = 2 o 3, BAJO = 0 o 1.
+    contrastes:
+      - {contraste: C_completo, definicion: "P(DENUNCIA=0|ALTO) - P(DENUNCIA=0|BAJO)", brecha_pp: -2.5034, ic95_brecha: [-13.8987, 10.0300], excluye_cero: false, n_alto: 171, num_alto: 111, n_bajo: 89, num_bajo: 60, veredicto_Bbis: NO-DISCRIMINA}
+      - {contraste: C_barrio, brecha_pp: -0.6224, ic95_brecha: [-12.3991, 11.1366], excluye_cero: false}
+      - {contraste: C_policia, brecha_pp: 4.2622, ic95_brecha: [-6.6539, 15.6551], excluye_cero: false}
+      - {contraste: C_justicia, brecha_pp: 1.8932, ic95_brecha: [-12.0566, 16.8962], excluye_cero: false}
+      - {contraste: C_justicia_por_b10a_verificacion_cruzada, brecha_pp: 5.5308, ic95_brecha: [-5.6173, 17.1167], excluye_cero: false}
+      - {contraste: C_completo_robustez_corte_b18_menor_igual_4, brecha_pp: -5.1673, ic95_brecha: [-17.6776, 8.0203], excluye_cero: false}
+      - {contraste: C_policia_robustez_corte_b18_menor_igual_4, brecha_pp: 5.7971, ic95_brecha: [-7.9939, 19.3151], excluye_cero: false}
+    se_mueve_si: >
+      [verbatim de prereg-caja-S8-L18 §5] Si entre las victimas de 2004 la tasa de silencio (no
+      denuncia) en contexto de alta inseguridad/desconfianza (INDICE_CONTEXTO=ALTO) no es mayor
+      que en contexto bajo, la regla se rompe. Si C_completo cae por guardia (NO-ESTIMABLE),
+      se_mueve_si se lee sobre las tres diagnosticas juntas, per §4.
+    se_mueve_si_cumplido: >
+      C_completo NO cayo por guardia (numeradores 111 y 60), asi que se_mueve_si se lee directo
+      sobre el: la tasa de silencio en ALTO (64.91%) NO es mayor que en BAJO (67.42%) -- la
+      condicion literal SE CUMPLE en el punto. Pero el IC95 contiene 0, asi que el veredicto
+      pre-registrado que corresponde es NO-DISCRIMINA, no CONTRARIA. Se reportan las dos cosas.
+    veredicto_Bbis: NO-DISCRIMINA
+    veredicto_del_acto: >
+      NO-DISCRIMINA, y AQUI EL CORAZON DE LA REGLA SI SE MIDIO -- a diferencia de L5, donde
+      C_completo cayo por guardia. Es la PRIMERA falsacion real de R10.3 (NUNCA-MEDIDA antes de
+      este acto). Sobre las victimas de delito de 2004 el silencio es casi identico se perciba o
+      no el contexto como inseguro (64.91% contra 67.42%), con el punto AL REVES del signo
+      esperado, y los seis IC contienen 0. El veredicto no depende del corte: con b18<={1,2,3} y
+      con {1,2,3,4}, C_completo sigue negativo y sigue conteniendo 0. Las tres diagnosticas
+      tampoco van todas en el mismo signo (C_barrio negativo; C_policia y C_justicia positivos),
+      asi que no hay corroboracion convergente por proxy que reportar. NO refuta la regla
+      (NO-DISCRIMINA no es CONTRARIA) y NO mueve su tier [FUERTE]: eso es de mesa. Lo que si
+      queda establecido es que el silencio es MASIVO y casi INVARIANTE -- 172 de 266 victimas
+      (64.7%) no denunciaron, con o sin contexto de desconfianza. La regla describe bien el
+      NIVEL; lo que este dato no sostiene es su SI...ENTONCES, que es lo que la hace una regla y
+      no una descripcion.
+    nota_alcance: >
+      Asociacion transversal, sin identificacion causal. UNA sola ola, SIN ponderar -- el IC no
+      incorpora efecto de diseño mas alla del conglomerado documentado. El .sav gemelo
+      (1658622845..., sha256 COINCIDE) se abrio y da marginales identicas al .dta; se midio sobre
+      el .dta. NO sella la clasificacion MEDIBLE-COMO-ESTA que N10 §2.6 propone: esa sigue siendo
+      propuesta de direccion/mesa -- este acto solo demuestra que la regla, en efecto, era
+      medible. Descriptivo, no pre-registrado y citado como tal: aoj1b ("por que no denuncio")
+      reparte 168 motivos entre No sirve de nada (90), No tenia pruebas (28), No fue grave (25),
+      Es peligroso y por miedo de represalias (22) y No sabe adonde denunciar (3) -- el motivo de
+      MIEDO que el PORQUE de la regla nombra es el cuarto, no el primero.

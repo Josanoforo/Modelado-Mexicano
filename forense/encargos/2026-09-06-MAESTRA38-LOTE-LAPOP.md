@@ -1,0 +1,119 @@
+# ENCARGOS DE CAJA EN PARALELO CON A4 · 6/sep/2026
+
+dirección (Fable) · contra `origin/main = a5350e59` (PR #549) · ADR máx 346 · FP máx 311 · A4 en curso en su propio worktree (rama `acto/maestra38-a4-adquiere-todo-lo-publico`, reclama ADR-347 · FP-312/313)
+
+## Por qué esto no viola nada (verificado hoy, con comando)
+
+«Un acto por sesión de caja» no está en el repo: `grep -rn -i "un acto por" .` → 4 líneas, todas «un acto por entrada» (recálculo del canon), 3 066 archivos examinados. Era una orden de trabajo de la cola del 6/sep, escrita cuando la caja era serial por ausencia de mesa.
+
+Payloads en corpus: LAPOP 2019/2021/2023 `.dta` (`grep -iE "^  archivo:.*lapop" data/manifiesto.yaml` → 9); ENSANUT 2024 adultos/adolescentes/utilizadores/integrantes (5/5/6/5 archivos); ENCUCI (2).
+
+Compuertas originales de los dos lotes: «orden de caja; ninguna dependencia de datos». Se sustituyen por la línea de concurrencia.
+
+Archivos de fondo: A4 escribe manifiesto · cola + vista · relaciones/procedencias/utilidad + baseline · staging. Los lotes no tocan ninguno. Compartida sólo la cascada (tablero, hallazgos, gobernanza, INFRAESTRUCTURA, registro-rótulos, recifrado L0): append/recuento — «renumera y recifra quien fusiona segundo», T-FIRMAS-2 vigila el tablero.
+
+**Regla común** (idéntica a la cola del 6/sep, con una diferencia marcada ⚠️). Worktree propio sobre `origin/main`; antes de evaluar cualquier compuerta: enlazar `data/raw` y copiar `data/raices.local.yaml` desde el clon padre, y verificar que no declara `downloads`; A.2 tres partes; guard de rama (`git ls-remote --heads origin | grep -i <rótulo>` → coincidencia = PARA); push del 0-bis al primer minuto. La spec sellada es el COMMIT-1: se verifica su `.sha256`, se cita, no se edita — si estaba mal, el COMMIT-2 lo dice y abre fila. `ya_medido.py` sobre cada id que se mida, pegado en A.8. FP/ADR: candidatos derivados contra el `main` del arranque y contra las ramas remotas vivas (`git ls-remote --heads origin`): un rótulo que otra rama viva ya reclama en su 0-bis no se toma; renumera quien fusiona segundo. ⚠️ **Concurrencia declarada, no serial:** A4 corre en paralelo en la misma caja; no se espera a A4, no se lee su rama, no se toca ninguno de sus archivos. Al fusionar: si `main` se movió, refresca, re-corre la cascada completa y reporta la diferencia antes de pedir merge (Bloque D, punto 2).
+
+---
+
+## ENCARGO · ACTO MAESTRA38-LOTE-LAPOP · L4 + L5 + L18 — invoca `/acto` (D-11)
+
+**SHA de redacción:** `a5350e59` · **COMPUERTA: ninguna** (era «C1 fusionado — orden de caja, ninguna dependencia de datos»; se retira porque la caja ya no es serial; los tres `.dta` de LAPOP están en manifiesto, verificado 6/sep). **ENTORNO:** UBUNTU con corpus — no nube. **MODELO:** Opus. **SPECS:** `S4-L4-spec-v1_0.md` (`civico.voto.clientelar_si_observable` reformulada, LAPOP 2019 `clien1n`/`clien1na`/`clien4a`/`clien4b`), `S5-L5-spec-v1_0.md` (`civico.protesta.agravio_urbano` reformulada, LAPOP multi-ola `PROT*`/`VIC1`/`vicbar4a`/`AOJ12`/`CP6`/`CP9`/`TAMANO`), `S8-L18-spec-v1_0.md` (`comunicacion.inseguridad.ver_oir_callar`, LAPOP `AOJ1`/`AOJ11`/`AOJ12`/`vic1`). Un PR, un ADR, un recibo; commit por pieza. **FIRMAS — verbatim:** FP-298 aceptada («#6 y #8 REFORMULABLE», 5/sep); N10 (`ver_oir_callar` MEDIBLE-COMO-ESTÁ); «no quiero hacerlo al mínimo» — cada pieza se mide porque es medible, no para llegar a 3; 6/sep: «revisa qué encargos podemos correr en paralelo en caja … ahora ya podemos». **A.8 al arrancar:** las tres specs y sus sha; `ya_medido.py` de los tres id (L9/L11 midieron el otro brazo de las dos cívicas — brazo distinto, se cita, no se reabre; R10.3 NUNCA-MEDIDA). Ponderador LAPOP `wt` sin confirmar por codebook en S5/S8: confirmar antes de correr (`Mexico LAPOP AmericasBarometer 2019_Codebook_v1.0_W.pdf` está en manifiesto); si no se confirma, sin ponderar y declarado. **Payloads:** `MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta`, `MEX_2023_…v1.0_w.dta`, `Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta` y olas previas (ids en manifiesto; lista cerrada en cada spec). **EJECUCIÓN:** por pieza, COMMIT-2 propio — resultados con IC, celdas, n por celda, fila B-bis (qué significa que el falsador no refute); una pieza que PARA no tumba el lote. Cada resultado entra a la propuesta como entrada nueva («tercera formulación complementaria», N6) con `se_mueve_si` verbatim de su spec; no toca los sellos de L9/L11 ni el canon. Escala declarada por cantidad (A-bis 3); universo declarado (A-bis 4). **PERÍMETRO Y CONCURRENCIA.** Toca: `data/l4-*`, `data/l5-*`, `data/l18-*` · `milpa/tramite-ola5-propuesta-v0.yaml` (append) · `INFRAESTRUCTURA` · `forense/notas/2026-09-0X-MAESTRA38-LOTE-LAPOP-*.md` · hallazgos · tablero · A.3 · cascada. NO toca: `milpa/tramite.yaml` · canon (salvo ADR) · manifiesto · cola · relaciones · staging · specs. En paralelo corre A4 (`acto/maestra38-a4-adquiere-todo-lo-publico`): sus archivos son manifiesto, cola + vista, relaciones/procedencias/utilidad + baseline, staging, `forense/notas/…A4-*`, PAQUETE-RECETAS-10, y la cascada. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo. **FP/ADR candidatos:** A4 reclama 347 / 312-313 en su 0-bis; este lote toma **ADR-348 · FP-314** recibo · **FP-315** «carga al motor de las que corroboren» (mesa, con dato a la vista). L2/C1/ENSANUT/A3 re-derivan al arrancar («corrige al arrancar», ya en la cola). **CONTADOR:** reglas con p medida +3 (declara) · medición: sí.
+
+---
+
+## ENCARGO · ACTO MAESTRA38-LOTE-ENSANUT · L16 + L17 — invoca `/acto` (D-11)
+
+**SHA de redacción:** `a5350e59` · **COMPUERTA: LOTE-LAPOP fusionado** (Opción 1 de mesa: los dos lotes comparten la propuesta y la cascada; se serializan entre sí, no con A4. Si mesa firma Opción 2, esta línea pasa a «ninguna» y la concurrencia declara LAPOP además de A4). **ENTORNO:** UBUNTU con corpus — no nube. **MODELO:** Opus. **SPECS:** `S6-L16-spec-v1_0.md` (`salud.atencion.grave`, R4.4; «dos linajes sin reconciliar» — la spec fija cuál se usa: caja abre primero el que tenga codebook accesible, y si ambos, reporta los dos por separado, nunca promedia), `S7-L17-spec-v1_0.md` (`salud.vacunacion.disponible`, id de §3.9 información — corregido en registro-rotulos por N11; `adultos_ensanut2024_w.dta`, 20+, `a0904`/`a0906`/`a0917`/`a0919a`, ponderador `ponde_f`). **FIRMAS — verbatim:** N10 (dos MEDIBLE-COMO-ESTÁ); D8 «mantener el criterio 2 como está (ADR-265, firma 9)… Ningún texto del canon se toca»; «no quiero hacerlo al mínimo»; 6/sep: «ahora ya podemos». **A.8 al arrancar:** specs y sha; `ya_medido.py` → NUNCA-MEDIDA ×2; inventario v1_1 (adultos 1 682 filas con texto); salud hoy 2 de 5 (L3-BIS: R4.4 grave y R4.3 desabasto); payloads ENSANUT 2024 por archivo (`grep -icE "^  archivo:.*adultos_ensanut2024_w" data/manifiesto.yaml` → 5, verificado 6/sep). **EJECUCIÓN:** como el lote anterior. Si con estas dos salud queda en ≥3 de 5 EXISTE-SATISFACE: se escribe **ABRE-CANDIDATO-CON-RESERVA** en la nota y se PARA — la apertura es de mesa (D8), y con el criterio «no al mínimo» la reserva lleva la lista de lo que falta para 5/5 (R4.1 `leve_sin_imss` y R4.2 `hombre_sin_permiso`: instrumento mínimo de L3-BIS/N10). **PERÍMETRO Y CONCURRENCIA.** Toca: `data/l16-*`, `data/l17-*` · propuesta (append) · `INFRAESTRUCTURA` · `forense/notas/2026-09-0X-MAESTRA38-LOTE-ENSANUT-*.md` · hallazgos · tablero · A.3 · cascada. NO toca: canon · `milpa/tramite.yaml` · manifiesto · cola · relaciones · registro-rotulos (salvo cascada). En paralelo puede seguir A4 (mismos archivos que arriba). Si te encuentras escribiendo fuera de esta lista, PARA. **FP/ADR candidatos:** re-deriva al arrancar contra `main` y ramas vivas (tras LAPOP: ADR-349 · FP-316 recibo · FP-317 sólo si ABRE-CANDIDATO-CON-RESERVA; corrige si A4 fusionó antes). **CONTADOR:** salud EXISTE-SATISFACE 2 → declara · medición: sí.
+
+---
+
+## Lo que sigue gateado, y por qué (no se relanza)
+
+L2 ← A4 (`unzip -l` del paquete ICPSR decide la rama; arrancar hoy lo manda a TEXTO y MEDICIÓN lo superaría: trabajo doble). Dato: `unzip -l "<descargas_mx>/academico_icpsr35024/icpsr35024_mexico_panel_study_2012_paquete_v1.zip" | grep -i dta` es sólo lectura y responde en segundos; registrar el `.dta` sigue siendo de A4.
+
+C1 ← L2 y A4 (ENFIH-4). A3 ← A4 (raíz limpia, censo vivo). A5-PDN ← A4 (documento del 6/sep).
+
+Nube mientras tanto: nada que toque cola, tablero o manifiesto. Sí: specs N7 para lo que L2/A3 vuelvan medible cuando lleguen; estado-programa v1.13 después de que fusione el primer lote (Sonnet, todo por comando).
+
+**Contadores movidos por este documento: cero. Declarado.**
+
+---
+
+## CONSUMIDO
+
+**`ACTO MAESTRA38-LOTE-LAPOP · L4 + L5 + L18`** — ejecutado el 6/sep/2026 en **UBUNTU con corpus**,
+rama `acto/maestra38-lote-lapop`, `ADR-349`, recibos `FP-315`/`FP-316`. Un PR contra `main`, sin
+fusionar por el ejecutor (el merge es de mesa).
+
+Las tres piezas corrieron; ninguna PARÓ. `MAESTRA38-L4` (`R7.6`) → **`CONTRARIA`**;
+`MAESTRA38-L5` (`R7.4`) → **`NO-DISCRIMINA`**, con el corazón de la regla **no medido** y declarado;
+`MAESTRA38-L18` (`R10.3`) → **`NO-DISCRIMINA`** en su **primera** medición, con el corazón sí medido.
+Ningún tier del canon se movió: la carga al motor y el movimiento de tier quedan en `FP-316`,
+decisión de mesa con el dato a la vista, como el propio encargo pide.
+
+`origin/main` se movió durante la ejecución (`a5350e59` → `9a78d95`, `PR #550`, `ACTO MAESTRA38-N15`).
+Per el Bloque D punto 2 de la regla común: se refrescó, se fusionó `origin/main` en la rama **antes**
+de escribir la cascada, se re-derivaron los candidatos contra el árbol ya fusionado y se reporta la
+diferencia — `N15` se llevó el `ADR-347` y el `FP-312` que el encargo asignaba a `A4`; el candidato
+de este acto no cambió entonces (`348` seguía siendo el contiguo). Al re-sincronizar para cerrar,
+`MAESTRA38-A4` (`PR #552`) ya estaba fusionado con `ADR-348` y `FP-313`/`FP-314` — renumerado él
+mismo desde `347`/`312` por la misma regla. Este acto fusiona **tercero**, así que cede los tres
+números y toma **`ADR-349` · `FP-315` · `FP-316`**. Sin huecos: `347` `N15`, `348` `A4`, `349`
+este acto; `312` `N15`, `313`/`314` `A4`, `315`/`316` este acto.
+
+**Desviación del perímetro, declarada.** El encargo lista `data/l4-*`, `data/l5-*`, `data/l18-*` y no
+nombra `tools/`. Este acto escribió además cuatro archivos en `tools/` (un censo compartido y un
+medidor por pieza). Es la misma continuidad que `tools/medidor_l11_encuci2020.py`,
+`…_l12_mps2012.py`, `…_l13_sat_efirma.py` y `…_l14_coercitivo_universos.py` — un medidor por acto
+`L` —, y sin ella «medición: sí» no es ejecutable. Se declara en vez de darse por supuesto. No se
+modificó `tools/medidor_clientelismo_lapop.py` (de `MAESTRA35-L9`, ya fusionado): se reusan sus
+funciones y se escribieron variantes locales donde no aplicaban.
+
+---
+
+## NO EJECUTADO — `ACTO MAESTRA38-LOTE-ENSANUT · L16 + L17`
+
+**Cero commits.** Su `COMPUERTA` es **`LOTE-LAPOP fusionado`** y no se cumple: `LOTE-LAPOP` es este
+mismo acto, que abre PR y **no se fusiona a sí mismo** — el merge es de mesa y es la autorización,
+no un trámite del ejecutor (`/acto`, Bloque D punto 9).
+
+Verificado **por producto** contra `origin/main` real, no por inferencia, el 6/sep/2026 con
+`origin/main = 9a78d95`:
+
+```
+git cat-file -e origin/main:data/l4-clientelar-lapop2019-v1_0.json   -> AUSENTE
+git cat-file -e origin/main:data/l5-protesta-multiola-v1_0.json      -> AUSENTE
+git cat-file -e origin/main:data/l18-ver-oir-callar-lapop2004-v1_0.json -> AUSENTE
+git cat-file -e origin/main:forense/notas/2026-09-06-…-L4-resultados.md -> AUSENTE
+git merge-base --is-ancestor HEAD origin/main                        -> NO
+```
+
+A.13: la verificación examinó **4 productos concretos** del acto gateante más la comprobación de
+ancestría de la rama. Ninguno está en `origin/main`.
+
+Per `/acto` Bloque D punto 2.3, se termina con **cero commits** y no se adelanta ningún paso «por si
+acaso» — el defecto que la skill existe para dejar de pagar dos veces (`ADR-224`, `ADR-234`) es
+exactamente arrancar sin haber verificado la compuerta mecánicamente.
+
+**Cómo se destraba, y es de mesa, no del ejecutor.** El propio encargo lo dice: *«Opción 1 de mesa:
+los dos lotes comparten la propuesta y la cascada; se serializan entre sí, no con A4. Si mesa firma
+Opción 2, esta línea pasa a “ninguna” y la concurrencia declara LAPOP además de A4.»* Es decir, hay
+**dos** vías abiertas y las dos son de mesa: (a) fusionar el PR de `LOTE-LAPOP`, y `LOTE-ENSANUT`
+arranca con su compuerta cumplida; o (b) firmar la **Opción 2**, con lo que la compuerta pasa a
+`ninguna` y `LOTE-ENSANUT` puede correr en paralelo con `LOTE-LAPOP` y con `A4`. Lo que **sí** se
+verificó, para que la decisión no dependa de una premisa sin comprobar: la compuerta es **de orden de
+trabajo, no de dato**. `grep -icE "^  archivo:.*adultos_ensanut2024_w" data/manifiesto.yaml` → **5**
+entradas registradas.
+
+**Con una precisión que el encargo no trae y que el acto de ENSANUT necesitará antes de arrancar:**
+ninguna de esas 5 es un `.dta` suelto. Son
+`adultos_ensanut2024_w.Catlogo.csv.csv.zip`, `adultos_ensanut2024_w.Catlogo.xlsx`,
+`ENSANUT2024-v2026-09-01/adultos_ensanut2024_w.Catálogo.xlsx`,
+`…/adultos_ensanut2024_w.csv.csv.zip` y `…/adultos_ensanut2024_w.stata.stata.zip`. El
+`adultos_ensanut2024_w.dta` que `S7-L17 §…` nombra vive **dentro** del último `.zip`, no en el árbol
+de rutas del manifiesto. No es un `PARO` —el dato está— pero un `find` o un `git cat-file` por el
+nombre `.dta` devolvería `NO-ENCONTRADO` sin que el payload falte, y el acto sucesor tendrá que
+descomprimir antes de leer. Se declara aquí para que no se lea como ausencia. Nota adicional del
+censo de este acto: los `.zip` de INEGI mezclan `UTF-8` y `latin-1` (catálogos en uno, microdato en
+el otro) — ya está en `forense/hallazgos.md`, y aplica a estos cinco.

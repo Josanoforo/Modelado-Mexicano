@@ -1,0 +1,473 @@
+{
+ "acto": "MAESTRA38-L4 · civico.voto.clientelar_si_observable (R7.6)",
+ "spec": "forense/prereg-caja/S4-L4-spec-v1_0.md (prereg-caja-S4-L4 v1.0)",
+ "id_modelo": "civico.voto.clientelar_si_observable",
+ "regla": "R7.6",
+ "fuente": "LAPOP Mexico AmericasBarometer 2019",
+ "payload": {
+  "id": "mexico_lapop_americasbarometer_2019_v1_0_w",
+  "archivo": "/tmp/claude-1000/-home-pc0/ae448b92-4470-4b75-a749-af8bf26412cc/scratchpad/descargas_mx/Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta",
+  "sha256": "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57",
+  "sha256_manifiesto": "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57",
+  "coincide_manifiesto": true
+ },
+ "estimador": "proporcion ponderada; IC95 bootstrap de conglomerado, 10000 replicas, seed 42, remuestreo de UPM (upm) dentro de estrato (estratopri); ponderador wt (constante = 1 en las 1580 filas, verificado)",
+ "diseno": {
+  "estrato": "estratopri",
+  "conglomerado": "upm",
+  "ponderador": "wt",
+  "wt_constante_1": true,
+  "n_upm": 129,
+  "n_estratopri": [
+   101,
+   102,
+   103,
+   104
+  ]
+ },
+ "clasificacion_tratamiento": {
+  "regla": "EXPUESTO=1 si clien1n==1 O clien1na==1; EXPUESTO=0 solo si clien1n==2 Y clien1na==2 (literal spec §3); faltantes ('a'/'b'/'c', NaN) no se imputan.",
+  "muestra_completa_n1580": {
+   "EXPUESTO_1": 501,
+   "EXPUESTO_0": 1073,
+   "SIN_CLASIFICAR": 6
+  },
+  "dentro_del_universo_sec2": {
+   "n_universo": 1035,
+   "EXPUESTO_1": 344,
+   "EXPUESTO_0": 688,
+   "SIN_CLASIFICAR": 3
+  }
+ },
+ "universo": {
+  "definicion": "18+ con codigo valido {1,2} en clien1n O clien1na, y vb3n no vacio/no NS-NR (spec §2)",
+  "n": 1035,
+  "n_muestra_estimacion_clasificada": 1032
+ },
+ "celdas": {
+  "PRI_principal": {
+   "expuesto_1": {
+    "p": 0.04941860465116279,
+    "ic95": [
+     0.027700831024930747,
+     0.07250755287009064
+    ],
+    "n": 344,
+    "numerador": 17,
+    "n_estratos": 4,
+    "n_upm": 120,
+    "estratos_singleton": 0,
+    "replicas": 10000,
+    "poblacion_expandida": 344.0,
+    "etiqueta": "vb3n=103 | EXPUESTO=1",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.04941860465116279,
+     "ic95_linealizado": [
+      0.026596138285341648,
+      0.07224107101698393
+     ],
+     "n_upm": 120,
+     "estratos_singleton": 0
+    }
+   },
+   "expuesto_0": {
+    "p": 0.09011627906976744,
+    "ic95": [
+     0.06751054852320675,
+     0.11521418020679468
+    ],
+    "n": 688,
+    "numerador": 62,
+    "n_estratos": 4,
+    "n_upm": 129,
+    "estratos_singleton": 0,
+    "replicas": 10000,
+    "poblacion_expandida": 688.0,
+    "etiqueta": "vb3n=103 | EXPUESTO=0",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.09011627906976744,
+     "ic95_linealizado": [
+      0.06560643577222161,
+      0.11462612236731326
+     ],
+     "n_upm": 129,
+     "estratos_singleton": 0
+    }
+   }
+  },
+  "MORENA_secundario": {
+   "expuesto_1": {
+    "p": 0.7906976744186046,
+    "ic95": [
+     0.7471264367816092,
+     0.8338461538461538
+    ],
+    "n": 344,
+    "numerador": 272,
+    "n_estratos": 4,
+    "n_upm": 120,
+    "estratos_singleton": 0,
+    "replicas": 10000,
+    "poblacion_expandida": 344.0,
+    "etiqueta": "vb3n=101 | EXPUESTO=1",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.7906976744186046,
+     "ic95_linealizado": [
+      0.7467351857721989,
+      0.8346601630650103
+     ],
+     "n_upm": 120,
+     "estratos_singleton": 0
+    }
+   },
+   "expuesto_0": {
+    "p": 0.7427325581395349,
+    "ic95": [
+     0.7060561299852289,
+     0.7787481804949054
+    ],
+    "n": 688,
+    "numerador": 511,
+    "n_estratos": 4,
+    "n_upm": 129,
+    "estratos_singleton": 0,
+    "replicas": 10000,
+    "poblacion_expandida": 688.0,
+    "etiqueta": "vb3n=101 | EXPUESTO=0",
+    "estado": "ESTIMADA",
+    "control_regresion": {
+     "p_hat_linealizado": 0.7427325581395349,
+     "ic95_linealizado": [
+      0.7053966974124548,
+      0.7800684188666149
+     ],
+     "n_upm": 129,
+     "estratos_singleton": 0
+    }
+   }
+  }
+ },
+ "contrastes": {
+  "PRI_principal": {
+   "d": -0.04069767441860465,
+   "ic95": [
+    -0.0734920150544197,
+    -0.0071998497700603015
+   ],
+   "replicas_validas": 10000,
+   "replicas_pedidas": 10000,
+   "etiqueta": "Δ_eleccion_PRI_principal",
+   "estado": "ESTIMADA",
+   "excluye_cero": true,
+   "signo": "-"
+  },
+  "MORENA_secundario": {
+   "d": 0.04796511627906974,
+   "ic95": [
+    -0.008720930232558155,
+    0.10545558518990716
+   ],
+   "replicas_validas": 10000,
+   "replicas_pedidas": 10000,
+   "etiqueta": "Δ_eleccion_MORENA_secundario",
+   "estado": "ESTIMADA",
+   "excluye_cero": false,
+   "signo": "+"
+  }
+ },
+ "veredicto": {
+  "regla": "R7.6",
+  "id_modelo": "civico.voto.clientelar_si_observable",
+  "resultado": "CONTRARIA",
+  "justificacion": "Δ_eleccion(PRI) = -0.040698 < 0, IC95 excluye 0",
+  "discrepancia_signo_pri_morena": null
+ },
+ "robustez_vb10": {
+  "nota": "subdivision declarada solo como robustez (spec §3), no como veredicto adicional -- mismo criterio que L9 §1.4 para ejes sin signo pre-registrado.",
+  "faltan_vb10_en_muestra": 2,
+  "celdas": {
+   "PRI_principal": {
+    "con_partido": {
+     "expuesto_1": {
+      "etiqueta": "vb3n=103 | EXPUESTO=1, vb10=con_partido",
+      "estado": "NO-ESTIMABLE",
+      "motivo": "numerador 1 < 10 (guardia §1.3)",
+      "n": 84,
+      "numerador": 1
+     },
+     "expuesto_0": {
+      "p": 0.0718954248366013,
+      "ic95": [
+       0.034722222222222224,
+       0.11392405063291139
+      ],
+      "n": 153,
+      "numerador": 11,
+      "n_estratos": 4,
+      "n_upm": 94,
+      "estratos_singleton": 0,
+      "replicas": 10000,
+      "poblacion_expandida": 153.0,
+      "etiqueta": "vb3n=103 | EXPUESTO=0, vb10=con_partido",
+      "estado": "ESTIMADA",
+      "control_regresion": {
+       "p_hat_linealizado": 0.0718954248366013,
+       "ic95_linealizado": [
+        0.03159113931714718,
+        0.11219971035605542
+       ],
+       "n_upm": 94,
+       "estratos_singleton": 0
+      }
+     },
+     "delta": {
+      "etiqueta": "Δ_PRI_principal_con_partido",
+      "estado": "NO-ESTIMABLE",
+      "motivo": "celda no estimable: numerador 1 < 10 (guardia §1.3)"
+     }
+    },
+    "sin_partido": {
+     "expuesto_1": {
+      "p": 0.06177606177606178,
+      "ic95": [
+       0.034482758620689655,
+       0.09219858156028368
+      ],
+      "n": 259,
+      "numerador": 16,
+      "n_estratos": 4,
+      "n_upm": 111,
+      "estratos_singleton": 0,
+      "replicas": 10000,
+      "poblacion_expandida": 259.0,
+      "etiqueta": "vb3n=103 | EXPUESTO=1, vb10=sin_partido",
+      "estado": "ESTIMADA",
+      "control_regresion": {
+       "p_hat_linealizado": 0.06177606177606178,
+       "ic95_linealizado": [
+        0.03213398981212095,
+        0.0914181337400026
+       ],
+       "n_upm": 111,
+       "estratos_singleton": 0
+      }
+     },
+     "expuesto_0": {
+      "p": 0.09550561797752809,
+      "ic95": [
+       0.07088122605363985,
+       0.12293577981651377
+      ],
+      "n": 534,
+      "numerador": 51,
+      "n_estratos": 4,
+      "n_upm": 128,
+      "estratos_singleton": 0,
+      "replicas": 10000,
+      "poblacion_expandida": 534.0,
+      "etiqueta": "vb3n=103 | EXPUESTO=0, vb10=sin_partido",
+      "estado": "ESTIMADA",
+      "control_regresion": {
+       "p_hat_linealizado": 0.09550561797752809,
+       "ic95_linealizado": [
+        0.06873843684678442,
+        0.12227279910827175
+       ],
+       "n_upm": 128,
+       "estratos_singleton": 0
+      }
+     },
+     "delta": {
+      "d": -0.03372955620146631,
+      "ic95": [
+       -0.07367737747484582,
+       0.005431791534062355
+      ],
+      "replicas_validas": 10000,
+      "replicas_pedidas": 10000,
+      "etiqueta": "Δ_PRI_principal_sin_partido",
+      "estado": "ESTIMADA",
+      "excluye_cero": false,
+      "signo": "-"
+     }
+    }
+   },
+   "MORENA_secundario": {
+    "con_partido": {
+     "expuesto_1": {
+      "p": 0.8928571428571429,
+      "ic95": [
+       0.8170731707317073,
+       0.9620253164556962
+      ],
+      "n": 84,
+      "numerador": 75,
+      "n_estratos": 4,
+      "n_upm": 53,
+      "estratos_singleton": 0,
+      "replicas": 10000,
+      "poblacion_expandida": 84.0,
+      "etiqueta": "vb3n=101 | EXPUESTO=1, vb10=con_partido",
+      "estado": "ESTIMADA",
+      "control_regresion": {
+       "p_hat_linealizado": 0.8928571428571429,
+       "ic95_linealizado": [
+        0.81687157457154,
+        0.9688427111427458
+       ],
+       "n_upm": 53,
+       "estratos_singleton": 0
+      }
+     },
+     "expuesto_0": {
+      "p": 0.7777777777777778,
+      "ic95": [
+       0.7066666666666667,
+       0.8410596026490066
+      ],
+      "n": 153,
+      "numerador": 119,
+      "n_estratos": 4,
+      "n_upm": 94,
+      "estratos_singleton": 0,
+      "replicas": 10000,
+      "poblacion_expandida": 153.0,
+      "etiqueta": "vb3n=101 | EXPUESTO=0, vb10=con_partido",
+      "estado": "ESTIMADA",
+      "control_regresion": {
+       "p_hat_linealizado": 0.7777777777777778,
+       "ic95_linealizado": [
+        0.7091816425373232,
+        0.8463739130182324
+       ],
+       "n_upm": 94,
+       "estratos_singleton": 0
+      }
+     },
+     "delta": {
+      "d": 0.11507936507936511,
+      "ic95": [
+       0.014507422402159187,
+       0.2142857142857143
+      ],
+      "replicas_validas": 10000,
+      "replicas_pedidas": 10000,
+      "etiqueta": "Δ_MORENA_secundario_con_partido",
+      "estado": "ESTIMADA",
+      "excluye_cero": true,
+      "signo": "+"
+     }
+    },
+    "sin_partido": {
+     "expuesto_1": {
+      "p": 0.7567567567567568,
+      "ic95": [
+       0.7027027027027027,
+       0.8089430894308943
+      ],
+      "n": 259,
+      "numerador": 196,
+      "n_estratos": 4,
+      "n_upm": 111,
+      "estratos_singleton": 0,
+      "replicas": 10000,
+      "poblacion_expandida": 259.0,
+      "etiqueta": "vb3n=101 | EXPUESTO=1, vb10=sin_partido",
+      "estado": "ESTIMADA",
+      "control_regresion": {
+       "p_hat_linealizado": 0.7567567567567568,
+       "ic95_linealizado": [
+        0.7028560194438014,
+        0.8106574940697122
+       ],
+       "n_upm": 111,
+       "estratos_singleton": 0
+      }
+     },
+     "expuesto_0": {
+      "p": 0.7322097378277154,
+      "ic95": [
+       0.6915520628683693,
+       0.7703984819734345
+      ],
+      "n": 534,
+      "numerador": 391,
+      "n_estratos": 4,
+      "n_upm": 128,
+      "estratos_singleton": 0,
+      "replicas": 10000,
+      "poblacion_expandida": 534.0,
+      "etiqueta": "vb3n=101 | EXPUESTO=0, vb10=sin_partido",
+      "estado": "ESTIMADA",
+      "control_regresion": {
+       "p_hat_linealizado": 0.7322097378277154,
+       "ic95_linealizado": [
+        0.6920678411672161,
+        0.7723516344882146
+       ],
+       "n_upm": 128,
+       "estratos_singleton": 0
+      }
+     },
+     "delta": {
+      "d": 0.02454701892904143,
+      "ic95": [
+       -0.04330897497390174,
+       0.09306112952945966
+      ],
+      "replicas_validas": 10000,
+      "replicas_pedidas": 10000,
+      "etiqueta": "Δ_MORENA_secundario_sin_partido",
+      "estado": "ESTIMADA",
+      "excluye_cero": false,
+      "signo": "+"
+     }
+    }
+   }
+  }
+ },
+ "comparacion_otro_brazo_no_celda_conjunta": {
+  "nota": "spec §0.4/§4.3: no existe una ola LAPOP con oferta clientelar Y observabilidad percibida sobre la misma persona -- no se fabrica celda de tres factores. Se cita el OTRO brazo (observabilidad), ya corrido y sellado, y solo se compara el SIGNO.",
+  "esta_pieza_brazo_proximidad_lapop2019": {
+   "delta_pri": -0.04069767441860465,
+   "ic95_pri": [
+    -0.0734920150544197,
+    -0.0071998497700603015
+   ],
+   "excluye_cero_pri": true,
+   "veredicto": "CONTRARIA"
+  },
+  "L9_brazo_observabilidad_lapop2023": {
+   "delta_secreto_pp": 14.37,
+   "ic95_secreto_pp": [
+    1.43,
+    27.44
+   ],
+   "delta_observable_pp": 17.98,
+   "ic95_observable_pp": [
+    10.75,
+    25.02
+   ],
+   "veredicto": "CONTRARIA"
+  },
+  "L11_brazo_observabilidad_encuci2020": {
+   "delta_secreto_pp": 6.38,
+   "ic95_secreto_pp": [
+    3.82,
+    8.89
+   ],
+   "delta_observable_pp": 11.57,
+   "ic95_observable_pp": [
+    6.57,
+    16.59
+   ],
+   "veredicto": "CONTRARIA"
+  },
+  "mismo_signo_del_efecto_que_L9_L11": false,
+  "mismo_rotulo_de_veredicto_que_L9_L11": true,
+  "por_que_los_dos_campos_difieren": "El signo de esta pieza es NEGATIVO y los cuatro de L9/L11 son POSITIVOS: no comparten direccion empirica. Comparten el ROTULO CONTRARIA porque cada pieza refuta la prediccion de su propio diseno, no porque el efecto apunte al mismo lado. spec §4.3 pide comparar el SIGNO entre piezas: el signo NO coincide, y lo que sostiene la lectura conjunta es que ninguno de los dos brazos de la disyuncion muestra la cesion de autonomia que [MEDIA] predice."
+ }
+}
