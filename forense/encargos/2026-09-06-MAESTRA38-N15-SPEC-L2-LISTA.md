@@ -79,3 +79,30 @@ medición» a medición de primera mano, y su texto de ítem («Exchange your vo
 access to a service», ítem c sólo en tratamiento) satisface por texto la condición de entrada de
 §1.2 — en inglés; el cuestionario en español está en corpus (ICPSR_35024/35024-Questionnaire-spanish.pdf)
 y L2 rama TEXTO lo lee.
+
+## A.8 · `tools/ya_medido.py` — citas ilustrativas de `R7.3`/`R7.6` en este encargo
+
+Este encargo cita `R7.3`/`R7.6` sólo en la Procedencia (§0, heredado de `S2-L2 §1.1–1.2`) como
+contexto de por qué `list::mexico` NO las mueve — no las clasifica, no las pre-registra, no las
+carga ni las sella. `T-YAMEDIDO` exige la salida igual:
+
+```
+$ python3 tools/ya_medido.py R7.3
+=== ya_medido: R7.3 ===
+  resuelto por canon: R7.3 -> id `civico.voto.agencia_con_secreto`
+MEDIDA-EN: L11, L12, L9, N6, S2, S4, canon§7, tramite-ola5-propuesta-v0.yaml
+
+$ python3 tools/ya_medido.py R7.6
+=== ya_medido: R7.6 ===
+  resuelto por canon: R7.6 -> id `civico.voto.clientelar_si_observable`
+MEDIDA-EN: L11, L12, L9, S4
+```
+
+Ambas `MEDIDA-EN` — confirma lo que este encargo y `S10-L2-LISTA` ya declaran: `list::mexico` no las
+mueve (0 de sus variables), y `S2-L2`/futuras L2 corren sobre el `.dta` de ICPSR 35024, no aquí.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA38-N15 · SPEC-L2-LISTA`, rama
+`claude/s10-l2-lista-spec-rpaf1j`. Ver PR que fusiona esta rama contra
+`main` para el commit final.
