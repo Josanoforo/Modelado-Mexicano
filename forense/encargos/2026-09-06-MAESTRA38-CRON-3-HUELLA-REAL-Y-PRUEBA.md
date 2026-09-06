@@ -37,3 +37,11 @@ Toca: tools/adquiere_cron.sh · forense/cron/REGISTRO-CRON-v1_0.md (§1 trabajo 
 Lo que NO hace
 
 No cambia el horario ni la ventana del cron. No decide si [ADQ]/claude -p se retira (D-b (3): se decide en dos semanas con la huella a la vista). No mide nada.
+
+## CONSUMIDO
+
+Ejecutado por la sesión Sonnet que corrió `/acto` en `mm-adq`, 6/sep/2026. `PR #560` (censo/2026-09-06, tres commits) sobre la corrida real; el resto del código/cascada de este acto en la rama `acto/maestra38-cron-3` (PR abierto tras este commit).
+
+Premisas del encargo que NO se sostuvieron contra el árbol, declaradas en `forense/notas/2026-09-06-MAESTRA38-CRON-3-spec.md` y en `ADR-353`: (1) dirección fusionó `PR #558` por error antes de lanzar el acto -- se tomó como base en vez de sustituirlo con un PR nuevo. (2) `PARO-RAIZ` no detiene el script antes de `claude -p` -- P1(b) se corrió forzando `PARO-CORPUS` en su lugar. (3) La concurrencia declarada ("A6 ... en sus worktrees; no comparten archivos") no se sostuvo: una adenda de dirección a mitad de sesión confirmó que `MAESTRA38-A6` corre en este mismo clon `mm-adq`, con `data/manifiesto-staging.yaml` modificado sin commitear durante toda la sesión -- nunca tocado por este acto. (4) Colisión de numeración con `PR #561`/`MAESTRA38-A6`: ambos derivaron `ADR-353`/`FP-324` de forma independiente contra el mismo `main`; declarado en `ADR-353`, pendiente de que quien fusione segundo renumere.
+
+Resultado: los dos defectos de código de `PR #558` corregidos y probados dos veces en la caja real (no en sesión de nube); crontab instalado con `PATH=` explícito y verificado; disparo automático sigue sin poder probarse (primera evidencia posible: `censo/2026-09-07`, lunes).
