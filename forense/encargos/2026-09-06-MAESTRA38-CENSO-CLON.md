@@ -5,5 +5,6 @@ SHA ef9ba36 · COMPUERTA: #556 fusionado (para que el test de abajo tenga el cen
 ## CONSUMIDO
 
 Ejecutado por `ACTO MAESTRA38-CENSO-CLON · UN-CLON-UN-OBJETO`, rama
-`claude/censo-clon-git-objeto-e0pjr7`, `ADR-352`. PR abierto contra `main`
-al cierre de este acto (número asignado al empujar).
+`claude/censo-clon-git-objeto-e0pjr7`, `ADR-352`.
+[PR #559](https://github.com/Josanoforo/Modelado-Mexicano/pull/559)
+(sin fusionar — el merge es de mesa).
