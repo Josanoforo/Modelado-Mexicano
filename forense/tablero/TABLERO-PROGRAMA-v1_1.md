@@ -897,3 +897,51 @@ Reglas del modelo con `p` medida: **+3** (`R7.4`, `R7.6`, `R10.3` — las tres c
 ninguna cargada). `firmas ABIERTAS`: +1 (`FP-316`).
 
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
+
+### 8.16 Recibo — `ACTO MAESTRA38-A5 · PDN-BULK-Y-PROXY` (6/sep/2026, `ADR-350`, `FP-317`)
+
+**Qué pidió el encargo.** Compuerta `A4 fusionado`: si la fila 28 quedó
+`OBTENIDO` completo en S1+S2+S6, A5 se reduce a control de calidad y
+cron; si no, corre la Parte I entera (protocolo `R0`–`R7`).
+
+**Qué se verificó.** Compuerta cumplida por PRODUCTO (`gh pr view 552`
+`MERGED`, los tres artefactos de `A4` presentes en `origin/main`, fila
+28 en `OBTENIDO` — no `OBTENIDO-PARCIAL` como citaba el encargo
+original). Rama tomada: la reducida. `COMMIT-1` congeló la Parte I como
+`prereg-caja-S9-A5` (+ `.sha256`) antes de correr nada. `COMMIT-2`
+corrió las ocho rutas: `testzip` OK en los cuatro bulk PDN (16070/156/
+34/12 entradas, igual a `A4`), `sha256` idéntico al manifiesto en los
+cuatro, `CONTROL-COINCIDE` de S3 contra `pdn_s3v2` re-confirmado de
+forma independiente, backends R1 reproducidos (S1 `totalRows` 153011
+igual a `A4`; S6 timeout/RED igual a `A4`). R2 no se repitió (el bulk
+ya está íntegro y registrado); R3/R4/R6 no aplican (R2 no dio VACÍO);
+R5/R7 corridos como control ligero.
+
+**Desviación de ruta declarada, no defecto.** La tabla de éxito del
+encargo cita `descargas_mx/PDN-2026-09/S1/` como destino de S1 bulk.
+`A4` depositó los tres bulk nuevos en `data_raw/pdn_bulk_2026_09`
+(corpus compartido) en su lugar — verificado que la ruta nominal no
+existe físicamente. El perímetro de A5 prohíbe tocar salidas de `A4`:
+se declara, no se mueve nada.
+
+**Contador contra lo declarado.** Fila 28: `OBTENIDO` (confirmado).
+Payloads PDN nuevos: **0**. Rutas con salida cruda pegada: **8**
+(R0–R7, todas con evidencia o «no aplica» justificado). Cron `[ADQ]`
+con bulk PDN: **1** línea nueva (paso 2.6, `tools/adquiere_cron.sh`,
+inserción pura, gate día 1-3 del mes). Medición de modelo: **cero**.
+Ninguna receta residual para mesa (`FP-322` no se abre).
+
+**Cascada.** `ADR-350` (candidato derivado contra `349`, contiguo —
+`origin/main`/`PR #551` ya fusionado al re-derivar). `FP-317` (recibo
+puro). `canon/registro-rotulos.tsv`: fila `MAESTRA38-A5` censada.
+`data/INFRAESTRUCTURA-v1_0.md`: `data/pdn-adquisicion-resumen-v1_0.tsv`
+(nuevo) registrado en Dominio 1. `forense/hallazgos.md`: +1 entrada
+(desviación de ruta + hallazgo de sandbox de red inestable entre
+sesiones). `T15` re-marcó `` `349 ADR` `` de `MAESTRA38-LOTE-LAPOP`
+como `{cita-historica}` (mecanismo ya establecido, `ADR-72`) — no se
+edita ningún contenido, sólo se etiqueta como cita de punto-en-el-
+tiempo. No toca `relaciones.tsv`/`procedencias`/`utilidad`, `milpa/**`,
+specs S1–S8, ni ninguna salida de `A4`.
+
+`python3 tests/check.py --baseline`: **LÍNEA BASE VERDE** (3 FAIL / 170
+WARN, sin cambio frente a `tests/baseline.json`).
