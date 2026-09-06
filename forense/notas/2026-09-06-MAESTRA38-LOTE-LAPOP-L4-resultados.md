@@ -143,7 +143,7 @@ contradigan.
 
 **Lo que sí comparten las tres, y es lo que importa para la regla:** en ninguna aparece la cesión
 de autonomía que `[MEDIA]` predice. Adjudicar si eso parte el `id`, lo degrada, o ninguna de las
-dos, **no es de este acto** — es de mesa (`FP-315`).
+dos, **no es de este acto** — es de mesa (`FP-316`).
 
 ## 6 · `se_mueve_si` — verbatim de spec §5
 
@@ -171,4 +171,4 @@ No mueve el tier de `civico.voto.clientelar_si_observable` (`[MEDIA]`, `modelo-d
 ni el de su gemela `civico.voto.agencia_con_secreto` — mover tier es de mesa. No reabre `FP-298`
 (`EJECUTADA`). No reabre ni recalcula `L9`/`L11` ni la Enmienda `D2-f`. No toca
 `milpa/tramite.yaml`, `data/manifiesto.yaml`, la cola, `relaciones`, staging ni ninguna spec.
-No carga nada al motor: eso es `FP-315`, con el dato a la vista.
+No carga nada al motor: eso es `FP-316`, con el dato a la vista.

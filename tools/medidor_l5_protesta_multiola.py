@@ -480,7 +480,7 @@ def mide(ruta_json=None):
                 "pre-registra es la que no se puede estimar. La forma C2 NO se computo: §0.3 la "
                 "excluye explicitamente, y anadir una celda que la spec no pre-registro es tan "
                 "defecto como omitir una que si. Tension interna de la spec sellada (§3.1 contra "
-                "§0.3), declarada y no resuelta a mano por el ejecutor: FP-314. Las cifras "
+                "§0.3), declarada y no resuelta a mano por el ejecutor: FP-315. Las cifras "
                 "+5.60/+3.72 siguen siendo citas correctas de D2-d; lo que estaba mal era "
                 "atribuirlas a lo que esta pieza calculo. NO se reabre D2-d ni la fila D de "
                 "R7.4 (ADR-158)."),

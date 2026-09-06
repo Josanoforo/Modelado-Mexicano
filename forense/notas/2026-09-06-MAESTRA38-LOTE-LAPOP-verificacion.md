@@ -58,7 +58,7 @@ reporte narrativo, pero **el matiz nunca llegó al artefacto persistido**, que e
 consume.
 
 **Corregido.** El campo se reescribió como `C_agravio_NO_es_la_replicacion_que_la_spec_anuncia`,
-con la tensión `§3.1` vs. `§0.3` explícita y el envío a `FP-314`. El medidor se re-corrió.
+con la tensión `§3.1` vs. `§0.3` explícita y el envío a `FP-315`. El medidor se re-corrió.
 
 ## Un tercer hallazgo, del que el defecto era mío, no de las piezas
 

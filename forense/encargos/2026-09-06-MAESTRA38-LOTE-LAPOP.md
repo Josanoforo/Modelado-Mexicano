@@ -43,21 +43,24 @@ Nube mientras tanto: nada que toque cola, tablero o manifiesto. Sí: specs N7 pa
 ## CONSUMIDO
 
 **`ACTO MAESTRA38-LOTE-LAPOP · L4 + L5 + L18`** — ejecutado el 6/sep/2026 en **UBUNTU con corpus**,
-rama `acto/maestra38-lote-lapop`, `ADR-348`, recibos `FP-314`/`FP-315`. Un PR contra `main`, sin
+rama `acto/maestra38-lote-lapop`, `ADR-349`, recibos `FP-315`/`FP-316`. Un PR contra `main`, sin
 fusionar por el ejecutor (el merge es de mesa).
 
 Las tres piezas corrieron; ninguna PARÓ. `MAESTRA38-L4` (`R7.6`) → **`CONTRARIA`**;
 `MAESTRA38-L5` (`R7.4`) → **`NO-DISCRIMINA`**, con el corazón de la regla **no medido** y declarado;
 `MAESTRA38-L18` (`R10.3`) → **`NO-DISCRIMINA`** en su **primera** medición, con el corazón sí medido.
-Ningún tier del canon se movió: la carga al motor y el movimiento de tier quedan en `FP-315`,
+Ningún tier del canon se movió: la carga al motor y el movimiento de tier quedan en `FP-316`,
 decisión de mesa con el dato a la vista, como el propio encargo pide.
 
 `origin/main` se movió durante la ejecución (`a5350e59` → `9a78d95`, `PR #550`, `ACTO MAESTRA38-N15`).
 Per el Bloque D punto 2 de la regla común: se refrescó, se fusionó `origin/main` en la rama **antes**
 de escribir la cascada, se re-derivaron los candidatos contra el árbol ya fusionado y se reporta la
 diferencia — `N15` se llevó el `ADR-347` y el `FP-312` que el encargo asignaba a `A4`; el candidato
-de este acto (`ADR-348`) no cambia porque sigue siendo contiguo, y `FP-313` se deja libre para `A4`,
-que sigue viva.
+de este acto no cambió entonces (`348` seguía siendo el contiguo). Al re-sincronizar para cerrar,
+`MAESTRA38-A4` (`PR #552`) ya estaba fusionado con `ADR-348` y `FP-313`/`FP-314` — renumerado él
+mismo desde `347`/`312` por la misma regla. Este acto fusiona **tercero**, así que cede los tres
+números y toma **`ADR-349` · `FP-315` · `FP-316`**. Sin huecos: `347` `N15`, `348` `A4`, `349`
+este acto; `312` `N15`, `313`/`314` `A4`, `315`/`316` este acto.
 
 **Desviación del perímetro, declarada.** El encargo lista `data/l4-*`, `data/l5-*`, `data/l18-*` y no
 nombra `tools/`. Este acto escribió además cuatro archivos en `tools/` (un censo compartido y un

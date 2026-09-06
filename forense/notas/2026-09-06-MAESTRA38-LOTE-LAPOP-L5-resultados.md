@@ -138,7 +138,7 @@ explícitamente y añadir una celda que la spec no pre-registró es tan defecto 
 
 **Consecuencia declarada:** la «replicación de tercera ola» que §3.1 anuncia para `C_agravio`
 **no ocurrió** — no porque se omitiera, sino porque la única forma de `C_agravio` que la spec
-pre-registra cae por guardia en las tres olas. Queda como fila de firmas (`FP-314`) para que mesa
+pre-registra cae por guardia en las tres olas. Queda como fila de firmas (`FP-315`) para que mesa
 decida si una versión futura de la spec debe fijar la forma `C2`.
 
 > **Esto lo atrapó la verificación adversarial de este mismo acto, y corrigió el artefacto, no sólo
