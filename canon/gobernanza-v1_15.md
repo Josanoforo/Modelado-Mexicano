@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **355 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **356 ADR**
 
 > | | |
 > |---|---|
@@ -6131,3 +6131,25 @@ WARN, sin entradas nuevas.
 **Deuda que cierra.** Ninguna; deja instrumentado el hallazgo del 6/sep para que el siguiente censo real de una raíz con clones no repita el falso conteo.
 
 **Numeración — renumerada dos veces al re-sincronizar.** Candidateó `352` contra el árbol con `ADR-350`/`ADR-351` (`MAESTRA38-L2-LISTA`/`MAESTRA38-A5`); cedió a `354` cuando `origin/main` fusionó primero `MAESTRA38-CRON · DIAGNOSTICO-Y-ARREGLO` (`ADR-352`) y `MAESTRA38-A6 · RE-SONDEO-DE-NEGATIVOS` (`ADR-353`). Segunda colisión, medida de nuevo al re-sincronizar: `MAESTRA38-CRON-3 · HUELLA-REAL-Y-PRUEBA-EN-CAJA` fusionó antes y tomó `ADR-354` -- su propia entrada, arriba en esta misma sección, ya declaraba este PR pendiente de renumerar a `355`. Regla de la casa, renumera quien fusiona segundo: cede `354` y toma `ADR-355`, contiguo tras el árbol con las cuatro ramas ya dentro.
+
+**ADR-356 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `355`, contiguo, sin huecos; candidato `356`, re-verificado tras fusionar `origin/main` que trajo `MAESTRA38-TRAMITE-2` sin tocar la numeración de ADR) · `ACTO MAESTRA38-LOTE-ENSANUT · L16+L17`**, 6/sep/2026, entorno **UBUNTU con corpus** — primeras dos falsaciones reales de `salud.atencion.grave` (`R4.4`) y `salud.vacunacion.disponible` (`R9.2`), ambas `NUNCA-MEDIDA` antes de este acto pese a tener `EXISTE-SATISFACE` sellado desde `MAESTRA37-L1`/`L3`/`L3-BIS` (`R4.4`) y `N5`/`N10` (`R9.2`).
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-06-MAESTRA38-LOTE-ENSANUT.md`. **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo, no dispara verificación.
+
+**Specs selladas citadas** (`.sha256` verificado, no editadas): `forense/prereg-caja/S6-L16-spec-v1_0.md` (`317e42c3…f9b`) y `forense/prereg-caja/S7-L17-spec-v1_0.md` (`f3aea086…830`). Frase de sello aplicada verbatim: «el primer resultado que produzca este procedimiento es el que se reporta».
+
+**L16 · `salud.atencion.grave` (R4.4), Rama B (ENSANUT2024).** `H0409A` (`integrantes_ensanut2024_w_icb.dta`) confirma contra el codebook que **no** trae la palabra "grave" literalmente (spec §2.1 ya lo advertía) — corte construido: `{2 hospitalización, 3 urgencias}` = grave vs `{1 consulta externa, 4 otros}` = no-grave. `u0201` (`utilizadores_ensanut2024_w.dta`) da `INSTITUCION_PUBLICA` con 26 categorías (codebook completo, no visible en el inventario). Join por `FOLIO_I`: 5 289 filas. `p̂(público|grave)=52.23%` IC95 `[36.82%,69.84%]` n=423 vs `p̂(público|no-grave)=52.52%` IC95 `[48.60%,56.70%]` n=4 866 — **`NO-DISCRIMINA`**. Rama A (`ENNVIH`+`ENDIREH`) **no corrida**: ponderador del libro `bx`/2002 ambiguo entre tres candidatos (`fac_3a_px`/`fac_3b_px`/`fac_4_px`), sin codebook de `ENNVIH` en el corpus para resolverlo — PARO parcial, declarado.
+
+**L17 · `salud.vacunacion.disponible` (R9.2), Rama B primaria + Rama C.** Hallazgo de codebook: la spec §2 asumía letra=vacuna/dígito=razón; el `.dta` confirma lo contrario — letra=razón (a=no había vacunas, b=no derechohabiente, c=no estaba quien aplica, d=enfermo, e=otra), dígito=vacuna (1-4) — reasignado contra las etiquetas de valor, declarado. `RAZON_LOGISTICA` = 180 de 254 menciones (persona×vacuna×razón, `adultos_ensanut2024_w.dta`); `p̂=77.78%` IC95 `[67.28%,85.76%]` n=254 — **`CORROBORADA`**, primera prueba directa del `PORQUE` de la regla en el corpus. Rama C (`adolescentes_ensanut2024_w.dta`, descriptiva): mixta, 2 de 4 reactivos estimables por encima de 50%, 2 por debajo, 1 `NO-ESTIMABLE` por guardia de celda; no pondera contra la Rama B primaria. Rama A (`ENNVIH`) **no corrida**, mismo pendiente de ponderador que L16 más la reserva de diseño §0.3 (posible post-tratamiento).
+
+**Estimador.** `wprop_ic_conglomerado` (bootstrap de conglomerado por estrato/UPM, 10 000 réplicas, semilla 42), verbatim de `tools/calibracion_mordida_encig_serie.py`. Cota de celda `<10` → `NO-ESTIMABLE`, misma guardia de la serie `S4`/`S5`/`S8`.
+
+**Contador de salud.** `EXISTE-SATISFACE` en `salud` permanece en **2 de 5** (`forense/notas/2026-09-03-MAESTRA37-L3-BIS-veredictos.md:255`) — este lote mide falsadores sobre dos ids que ya tenían `EXISTE-SATISFACE` sellado, no clasifica ningún id nuevo. **No se dispara `ABRE-CANDIDATO-CON-RESERVA`.**
+
+**Perímetro.** Toca `milpa/tramite-ola5-propuesta-v0.yaml` (append, dos entradas nuevas), `tools/medidor_l16_atencion_grave.py`, `tools/medidor_l17_vacunacion_disponible.py`, `forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md`. No toca `canon/modelo-decision-v4_0.md`, `milpa/tramite.yaml`, `data/manifiesto.yaml` ni `data/l2-*` (perímetro de `MAESTRA38-L2`, en paralelo, no tocado).
+
+**Deuda que abre.** Rama A de ambas specs (`ENNVIH` 2002/2005/2009 + `ENDIREH` 2016) sigue pendiente de resolver el ponderador ambiguo del libro `bx`/2002 contra un codebook de `ENNVIH` que este corpus no tiene registrado — declarado en la nota, no en `FP` nueva (no hay medición nueva del motor que abra fila; ambos ids ya tenían `EXISTE-SATISFACE` sellado antes de este acto).
+
+**Deuda que cierra.** `NUNCA-MEDIDA` de `salud.atencion.grave` y `salud.vacunacion.disponible` — ambos quedan con al menos una corrida real archivada.
+
+**`tests/check.py --baseline`**: ver resultado en la nota de cierre.

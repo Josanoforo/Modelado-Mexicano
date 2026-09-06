@@ -27,3 +27,16 @@ EJECUCIÓN: por pieza, COMMIT-2 propio — resultados con IC, celdas, n por celd
 PERÍMETRO Y CONCURRENCIA. Toca: `data/l16-*`, `data/l17-*` · propuesta (append) · INFRAESTRUCTURA · `forense/notas/2026-09-0X-MAESTRA38-LOTE-ENSANUT-*.md` · hallazgos · tablero · A.3 · cascada. NO toca: canon · `milpa/tramite.yaml` · manifiesto · `registro-rotulos` (salvo cascada). En paralelo corre L2 (archivos arriba). Si te encuentras escribiendo fuera de esta lista, PARA.
 
 FP/ADR: derivados en el 0-bis (FP extra sólo si ABRE-CANDIDATO-CON-RESERVA). CONTADOR: salud EXISTE-SATISFACE 2 → declara · medición: sí.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA38-LOTE-ENSANUT` (rama `acto/maestra38-lote-ensanut`,
+PR pendiente de abrir al momento de este commit). L16 (`salud.atencion.grave`,
+Rama B, `NO-DISCRIMINA`) y L17 (`salud.vacunacion.disponible`, Rama B primaria,
+`CORROBORADA`; Rama C descriptiva mixta) — ambas Rama A (`ENNVIH`) sin correr,
+PARO parcial declarado por ponderador ambiguo sin codebook. Contador de salud
+permanece 2 de 5; `ABRE-CANDIDATO-CON-RESERVA` no se disparó. Detalle completo
+en `forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md`,
+`ADR-356` (`canon/gobernanza-v1_15.md`), `canon/registro-rotulos.tsv`
+(`MAESTRA38-L16`/`MAESTRA38-L17`). `tests/check.py --baseline`: LÍNEA BASE
+VERDE (3 FAIL / 171 WARN, sin novedad frente a `tests/baseline.json`).
