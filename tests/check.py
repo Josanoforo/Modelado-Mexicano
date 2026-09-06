@@ -4298,6 +4298,71 @@ def t30_yamedido():
              f"archivo a `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` con la razón")
 
 
+# ───────────────────────────────────────────────────────────────
+# T31 · T-CRON -- ACTO MAESTRA38-CRON-2 · REGISTRO-Y-HUELLA (dirección,
+#   6/sep/2026, `forense/cron/REGISTRO-CRON-v1_0.md` §4). El cron de
+#   `tools/adquiere_cron.sh` corre de lunes a viernes a las 07:30 CST; su
+#   única huella verificable desde el repo es el censo del día
+#   (`forense/censo-raiz/AAAA-MM-DD*.txt`, paso 2.5) o, si `main` está
+#   protegida y el censo vive en rama sin fusionar todavía, la rama remota
+#   `censo/AAAA-MM-DD` (§2.5 de `adquiere_cron.sh`). Ninguna de las dos
+#   demuestra que el resto del cron corrió -- demuestran que el cron
+#   arrancó y llegó al paso 2.5 -- pero su ausencia total, en el último día
+#   hábil anterior a hoy, es la señal más barata de que el cron dejó de
+#   dispararse (crontab caído, máquina apagada, `PATH` roto) sin que nadie
+#   lo note hasta que alguien pida un dato que se supone que ya se
+#   escaneó. WARN, nunca FAIL -- el playbook de diagnóstico (§5) puede
+#   confirmar en 5 minutos si es un defecto real o un día sin ventana
+#   (fin de semana, feriado, la caja apagada por mesa a propósito), y ese
+#   diagnóstico no lo puede hacer este test desde un checkout de nube.
+#
+#   Excepción declarada: el cron se instaló el 4/sep/2026 -- no se exige
+#   huella de ningún día hábil anterior a esa fecha.
+# ───────────────────────────────────────────────────────────────
+def t_cron_ultimo_habil(hoy):
+    """Último día hábil (lunes-viernes) estrictamente anterior a `hoy`.
+    Lunes cuenta el viernes anterior (3 días); martes-viernes cuentan el
+    día anterior (1 día); sábado cuenta el viernes (1 día); domingo cuenta
+    el viernes (2 días) -- mismo criterio para los dos días de fin de
+    semana que para cuando `hoy` mismo cae en fin de semana (el cron no
+    corre sábado/domingo, así que el último hábil sigue siendo el viernes
+    previo en ambos casos)."""
+    desplazo = {0: 3, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 2}
+    return hoy - datetime.timedelta(days=desplazo[hoy.weekday()])
+
+
+_T_CRON_INSTALACION = datetime.date(2026, 9, 4)
+
+
+def _t_cron_existe_huella(fecha):
+    """True si hay censo local (`forense/censo-raiz/<fecha>*.txt`) o rama
+    remota `censo/<fecha>` para esa fecha."""
+    if glob.glob(os.path.join(ROOT, "forense", "censo-raiz", f"{fecha.isoformat()}*.txt")):
+        return True
+    try:
+        import subprocess
+        r = subprocess.run(
+            ["git", "ls-remote", "--heads", "origin", f"censo/{fecha.isoformat()}"],
+            cwd=ROOT, capture_output=True, text=True, timeout=15)
+        if r.returncode == 0 and r.stdout.strip():
+            return True
+    except Exception:
+        pass
+    return False
+
+
+def t31_cron():
+    hoy = datetime.date.today()
+    fecha = t_cron_ultimo_habil(hoy)
+    if fecha < _T_CRON_INSTALACION:
+        return
+    if _t_cron_existe_huella(fecha):
+        return
+    warn("T-CRON", f"sin censo del {fecha.isoformat()} (último hábil); cron "
+                    f"no dejó huella -- ver "
+                    f"forense/cron/REGISTRO-CRON-v1_0.md §5")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -4332,6 +4397,7 @@ def main():
         ("T28 T-A3",                               t28_a3_encargo_archivado),
         ("T29 T-FIRMAS-2",                         t29_firmas_2_no_perdidas),
         ("T30 T-YAMEDIDO",                         t30_yamedido),
+        ("T31 T-CRON",                              t31_cron),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))

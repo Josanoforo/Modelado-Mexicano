@@ -48,6 +48,9 @@ fi
 #   (data/raices.local.yaml), no data/raw. Si esa raíz no está configurada
 #   en esta máquina, es PARO-RAIZ (una línea) y el resto del cron sigue.
 CENSO_DIR="forense/censo-raiz"
+CENSO_FILE=""  # fijado en el paso 2.5 si la raíz resuelve; el paso 2.6
+                # (D-c) lo consulta con `set -u` activo, así que necesita
+                # existir vacío cuando 2.5 corrió en PARO-RAIZ.
 RAIZ_RESUELTA="$(python3 -c "
 import sys
 sys.path.insert(0, 'tests')
@@ -63,12 +66,29 @@ if [ -n "$RAIZ_RESUELTA" ] && [ -d "$RAIZ_RESUELTA" ]; then
   fi
   SALIDA_CENSO="$(python3 tests/manifiesto.py --escanea descargas_mx 2>&1 || true)"
   RESUMEN="$(echo "$SALIDA_CENSO" | grep -m1 '^Total en disco:' || echo 'Total en disco: (sin resumen -- ver salida cruda abajo)')"
+
+  # D-b (ACTO MAESTRA38-CRON-2 · REGISTRO-Y-HUELLA, forense/cron/
+  # REGISTRO-CRON-v1_0.md §6): el trabajo [ADQ] SIEMPRE deja huella en el
+  # censo del día, incluso con 0 objetivos -- nunca calla. n/m se leen de
+  # la cola de adquisición si existe (fila por fila que el paso siguiente
+  # de /adquiere procesaría); ante cualquier duda o ausencia de la cola,
+  # se deja 0/0 explícito en vez de omitir la línea.
+  ADQ_N_INTENTADOS=0
+  ADQ_M_OBTENIDOS=0
+  COLA_ADQ="data/cola-adquisicion-v1_0.tsv"
+  if [ -f "$COLA_ADQ" ]; then
+    ADQ_N_INTENTADOS="$(tail -n +2 "$COLA_ADQ" 2>/dev/null | grep -c . || echo 0)"
+  fi
+  LINEA_ADQ="[ADQ] ${FECHA}: ${ADQ_N_INTENTADOS} objetivos intentados / ${ADQ_M_OBTENIDOS} obtenidos"
   {
     echo "$RESUMEN"
+    echo
+    echo "$LINEA_ADQ"
     echo
     echo "$SALIDA_CENSO"
   } >"$CENSO_FILE"
   log "[CENSO] ${FECHA}: ${RESUMEN}"
+  log "${LINEA_ADQ}"
 
   # Commit propio, separado del [ADQ] que produce claude -p más abajo.
   # main está protegida (status check "check" requerido) -- no se puede
@@ -137,6 +157,23 @@ if [ "$DIA_MES_A5" -ge 1 ] && [ "$DIA_MES_A5" -le 3 ]; then
     fi
     sleep 1
   done
+  # D-c (ACTO MAESTRA38-CRON-2 · REGISTRO-Y-HUELLA, forense/cron/
+  # REGISTRO-CRON-v1_0.md §6): tras la re-baja de los 4 bulk, re-escanea
+  # descargas_mx para que aparezcan en el censo del día en vez de quedar
+  # visibles solo en este log -- mismo comando que el paso 2.5, aislado
+  # con `|| true` igual que el resto de este bloque (no rompe el cron si
+  # el escaneo falla).
+  SALIDA_ESCANEO_PDN="$(python3 tests/manifiesto.py --escanea descargas_mx 2>&1 || true)"
+  RESUMEN_PDN="$(echo "$SALIDA_ESCANEO_PDN" | grep -m1 '^Total en disco:' || echo 'Total en disco: (sin resumen -- ver salida cruda abajo)')"
+  if [ -f "$CENSO_FILE" ]; then
+    {
+      echo
+      echo "[ADQ-PDN] re-escaneo tras re-baja mensual: ${RESUMEN_PDN}"
+      echo
+      echo "$SALIDA_ESCANEO_PDN"
+    } >>"$CENSO_FILE"
+  fi
+  log "[ADQ-PDN] re-escaneo post-re-baja: ${RESUMEN_PDN}"
 else
   log "[ADQ-PDN] ${FECHA}: fuera de ventana mensual (día ${DIA_MES_A5}, ventana 1-3), no se re-baja el bulk PDN hoy."
 fi

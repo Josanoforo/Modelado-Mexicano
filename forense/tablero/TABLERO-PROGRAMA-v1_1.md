@@ -974,3 +974,53 @@ invitaba a que un acto posterior los promoviera como si lo fueran.
 
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
 >>>>>>> origin/main
+
+## MAESTRA38-CRON · DIAGNOSTICO-Y-ARREGLO (2026-09-06, 21:21)
+
+Ninguna de las cuatro lecturas pre-declaradas del encargo se cumplió: la línea de `crontab -l` ya
+es la correcta (`30 7 * * 1-5`, rutas absolutas, zona horaria `CST` verificada), el estado sucio que
+el log del 5/sep mostraba ya quedó resuelto por el merge de PR #546 esa misma noche, y **2026-09-05
+fue sábado** — fuera de la ventana `1-5` del cron, no un disparo perdido. Las líneas `PARO-RAIZ` del
+log del 5/sep vienen de corridas manuales dentro de un sandbox de Claude Code que entonces bloqueaba
+`/mnt/c` (corregido el propio 6/sep); el cron real, sin ese sandbox, nunca estuvo expuesto al
+defecto. **No se tocó `tools/adquiere_cron.sh` ni la línea de crontab.** Prueba de extremo a
+extremo hoy (domingo, fuera de ventana): `PR #556 [CENSO] 2026-09-06`, control positivo cumplido
+(`nuevos: 139`). Detalle en `forense/notas/2026-09-06-MAESTRA38-CRON-diagnostico.md`.
+
+**Verificación del programador: declarada, no cerrada.** La prueba real es `censo/2026-09-07` (lunes)
+07:30 hora local — sigue en 0 disparos automáticos observados con la línea ya correcta.
+
+**Hallazgo incidental, no corregido (fuera de perímetro).** Este archivo trae un marcador de
+conflicto de merge sin resolver, huérfano, en la línea 976 (`>>>>>>> origin/main`, sin `<<<<<<<` ni
+`=======` que lo acompañen) — anterior a este acto, dentro del bloque `MAESTRA38-L2-LISTA`. Se deja
+declarado en `hallazgos.md`; el perímetro de este encargo no incluye editar el tablero salvo para
+añadir este recibo.
+
+## `ACTO MAESTRA38-CRON-2 · REGISTRO-Y-HUELLA` (dirección, 6/sep/2026, 21:44)
+
+Registro canónico del cron de adquisición: `forense/cron/REGISTRO-CRON-v1_0.md`
+(identidad, línea de crontab con `PATH` explícito, calendario, `T-CRON` y
+playbook de diagnóstico de 5 min). `T31 T-CRON` nuevo en `tests/check.py`
+(WARN, nunca FAIL, con `tests/test_t_cron.py` como prueba dedicada).
+`tools/adquiere_cron.sh` gana D-b (`[ADQ]` siempre deja huella, incluso
+`0`/`0`) y D-c (`tests/manifiesto.py --escanea descargas_mx` tras la
+re-baja mensual de la PDN). `.claude/commands/acto.md` gana la nota D-d
+(nunca `reset --hard` con `data/manifiesto-staging.yaml` modificado).
+`data/INFRAESTRUCTURA-v1_0.md` gana una fila para el cron completo.
+**Compuerta `PR #556`/`PR #557` sigue ABIERTA** — `PR #557` trae explícito
+"No se fusiona — merge de mesa"; este acto no la cruza, procede con el
+resto del encargo tal como el propio encargo autoriza. **Commit 2
+(instalación real en `crontab -e` de `mm-adq` + corrida manual de
+prueba) queda PENDIENTE** — no hay acceso a esa caja física desde esta
+sesión de nube; descrito en `forense/cron/REGISTRO-CRON-v1_0.md` §7.
+`python3 tests/check.py`: 3 FAIL preexistentes (T06/T08, sin relación),
+170 WARN antes y después de este acto (T-CRON no añadió WARN nuevo — la
+huella del 4/sep/2026, último hábil al momento de correr la suite, ya
+existe en el árbol).
+
+**Nota de fusión (mesa, 6/sep/2026, tras el cierre de #557).** Dirección fusionó `PR #558` por
+error antes de que `PR #557` cerrara la compuerta que el propio `#558` declara arriba como
+ABIERTA — la compuerta nunca se cumplió por el mecanismo que este párrafo describe, se cumplió
+porque mesa decidió tomar `#558` como base para `ACTO MAESTRA38-CRON-3`, que corrige los tres
+defectos de este registro (huella constante, `[ADQ-PDN]` no commiteado, cascada incompleta) y
+cierra el Commit 2 que aquí queda `PENDIENTE`. Ver ese acto para el estado real de instalación.
