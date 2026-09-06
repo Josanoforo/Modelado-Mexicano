@@ -4266,6 +4266,14 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # herramienta no existía todavía cuando este texto se escribió (es el
     # propio objeto del encargo), así que no pudo traer su propia salida.
     "forense/encargos/2026-09-05-MAESTRA38-N9-YA-MEDIDO.md",
+    # ACTO MAESTRA38-L2, 6/sep/2026: el encargo se archiva VERBATIM (A.3) y
+    # cita `R7.3`/`R7.6`/`P3` en su cuerpo original (redactado por dirección
+    # antes de esta sesión) -- un encargo verbatim nunca se edita para
+    # complacer un test (misma regla que rige T25). `tools/ya_medido.py` SÍ
+    # se corrió en A.8 sobre R7.3, R7.6 y P3; la salida vive en
+    # `forense/notas/2026-09-06-MAESTRA38-L2-spec-rama.md` y en el commit,
+    # no en el archivo verbatim del encargo.
+    "forense/encargos/2026-09-06-MAESTRA38-L2.md",
 }
 
 

@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **355 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **356 ADR**
 
 > | | |
 > |---|---|
@@ -6131,3 +6131,25 @@ WARN, sin entradas nuevas.
 **Deuda que cierra.** Ninguna; deja instrumentado el hallazgo del 6/sep para que el siguiente censo real de una raíz con clones no repita el falso conteo.
 
 **Numeración — renumerada dos veces al re-sincronizar.** Candidateó `352` contra el árbol con `ADR-350`/`ADR-351` (`MAESTRA38-L2-LISTA`/`MAESTRA38-A5`); cedió a `354` cuando `origin/main` fusionó primero `MAESTRA38-CRON · DIAGNOSTICO-Y-ARREGLO` (`ADR-352`) y `MAESTRA38-A6 · RE-SONDEO-DE-NEGATIVOS` (`ADR-353`). Segunda colisión, medida de nuevo al re-sincronizar: `MAESTRA38-CRON-3 · HUELLA-REAL-Y-PRUEBA-EN-CAJA` fusionó antes y tomó `ADR-354` -- su propia entrada, arriba en esta misma sección, ya declaraba este PR pendiente de renumerar a `355`. Regla de la casa, renumera quien fusiona segundo: cede `354` y toma `ADR-355`, contiguo tras el árbol con las cuatro ramas ya dentro.
+
+**ADR-356 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `355`, contiguo, sin huecos; candidato `356`) · `ACTO MAESTRA38-L2 · MPS-2012`**, 6/sep/2026, entorno **UBUNTU con corpus**, worktree `/home/pc0/mm-maestra38-l2`, sobre `origin/main = 693ea23` — **`FP-263` se cierra leyendo un documento que ya estaba en el corpus desde el 3/sep y que ningún acto había abierto.**
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-06-MAESTRA38-L2.md`. `COMPUERTA: ninguna` (declaración explícita).
+
+**Elección de rama.** `find`+`md5sum` sobre las tres raíces declaradas en `data/raices.local.yaml` (`data_raw`, `descargas_mx`, `downloads`), 2051 archivos examinados: `35024-0001-Data.dta` NO-ENCONTRADO. Rama **TEXTO**. Ver `forense/notas/2026-09-06-MAESTRA38-L2-spec-rama.md`.
+
+**COMMIT-1/COMMIT-2.** `data/l2-mps2012-cuestionario-v1_0.txt` (`pdftotext` sobre `35024-Questionnaire-spanish.pdf`, raíz `descargas_mx`, 3908 líneas) y `data/l2-mps2012-items-v1_0.tsv` (11 filas). Confirman, verbatim y en español en las dos olas: Lista B (folios nones) = Lista A (folios pares) + un ítem, y ese ítem es "c. Recibir un regalo, favor o acceso a un servicio a cambio de su voto" — venta del voto. Con esto, las tres condiciones de `FP-263` (T9b presente, serie de ronda 1 completa presente — ambas ya en el depósito de mesa del 2/sep, Adendas 4-8 del LEEME de `ICPSR35024-ds1-w2-tabulados-T5-T9-derivados-2026-09-02.csv` — y texto de los ítems) se cumplen. `FP-263` → **EJECUTADA**. P2 (`R7.3`/`R7.6` con el texto): **NO-SELLADA** bajo este instrumento — se mantiene `REPLICA-DE-SEGUNDA-MANO-NO-SELLADA` de `ADR-329`/L12; `R7.6` (`ADR-349`) no se reabre. P3 (lista, ¿el ítem sensible es venta de voto?): **CORROBORADA-EN-TEXTO**, corroborando en español lo que `ADR-350` ya había leído en inglés vía `list::mexico`.
+
+**Enmiendas append** en las dos entradas de L12 en `milpa/tramite-ola5-propuesta-v0.yaml` (`civico.clientelismo.vote_change_mps2012`, `civico.clientelismo.prevalencia_lista_mps2012`); `situacion` de ambas la cambia un acto siguiente con firma, no este.
+
+**`data/INFRAESTRUCTURA-v1_0.md`**: nueva sección "Cuestionario e ítems de MPS-2012 en español" para los dos archivos nuevos bajo `data/`.
+
+**`tests/check.py --baseline`: VERDE**, sin `FAIL` nuevo (`forense/encargos/2026-09-06-MAESTRA38-L2.md` añadido a `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` — encargo archivado VERBATIM por A.3, no se edita para complacer el test; `ya_medido.py` sí se corrió en A.8).
+
+**Lo que este acto NO hace.** No abre el `.dta` de ICPSR 35024 (sigue `NO-ACCESIBLE`, `FP-314`/`FP-316`). No mide ninguna cifra nueva sobre T9b/ronda-1: ya estaban medidas en el depósito de mesa del 2/sep. No toca `milpa/tramite.yaml`, canon salvo este ADR, `forense/prereg-duelo-v2/**`, `data/manifiesto.yaml`, ni las salidas de `L12`/`data/l2lista-*` (perímetro de `MAESTRA38-LOTE-ENSANUT`, en vuelo paralelo, tampoco tocado: `data/l16-*`, `data/l17-*`).
+
+**Deuda que abre.** Ninguna.
+
+**Deuda que cierra.** `FP-263`.
+
+**Numeración.** Derivado contra `origin/main = 693ea23` (máximo `355`), candidato `356`, sin huecos. `MAESTRA38-LOTE-ENSANUT` corre en paralelo (rama `acto/maestra38-lote-ensanut` viva al derivar) y puede reclamar el mismo número: regla de la casa, renumera quien fusiona segundo.
