@@ -32,3 +32,24 @@ P2 · COMMIT-2, por objeto y en orden de clase (A1→A6, luego B). Cada objeto: 
 P3 · Cierre. forense/notas/2026-09-0X-MAESTRA38-A6-resultados.md con tabla: objeto · estado antes · rutas corridas (n) · estado después · bytes · dónde. Enmienda append en FP-314 si algún objeto de PAQUETE-RECETAS-10 cayó aquí. Estampa A.10 en cada veredicto negativo (universo = rutas corridas + fecha). Los cierres previos que este acto vuelva OBTENIDO se marcan VENCIDO EN ALCANCE en su nota origen (append, no edición).
 
 PERÍMETRO. Toca: manifiesto (+N) · staging (transitorio) · cola + vista (estados, nota:) · relaciones sólo vía alta_relacion.py · PAQUETE-RECETAS-11 · forense/notas/2026-09-0X-MAESTRA38-A6-{reconciliacion,spec,resultados}.md · hallazgos · tablero (recibo + enmienda FP-314) · INFRAESTRUCTURA · A.3 · cascada. NO toca: milpa/** · canon (salvo ADR) · specs · data/l*-* · Downloads. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo. CONCURRENCIA: en paralelo pueden correr L2 y LOTE-ENSANUT (sus archivos: data/l2-*, data/l16-*, data/l17-*, propuesta, notas propias, cascada). LOTE-CRUCE y C1 esperan a A6 (C1 comparte cola/relaciones; CRUCE recibe la lista C). Lo que NO hace: no mide ninguna regla · no reabre las 28 relaciones (las entrega al cruce) · no toca los tiers · no pide credenciales a nadie: donde la barrera es cuenta o solicitud, entrega receta. CONTADOR: filas negativas de la cola 23 → declara · etiquetas corregidas 0 → declara · objetos OBTENIDO desde negativo 0 → declara · payloads +N · notas históricas sin fila en cola 0 → declara (P0) · medición: cero (adquisición). Necesito que uses todos tus trucos habidos y por haber.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA38-A6 · RE-SONDEO-DE-NEGATIVOS-CON-CAPACIDAD-COMPLETA`,
+6/sep/2026, worktree `/home/pc0/mm-maestra38-a6`, rama
+`acto/maestra38-a6-resondeo-negativos`, **`PR #561`** (no fusionado por el
+ejecutor: el merge es de mesa). `ADR-353` · `FP-324`.
+
+Commits: `17f7b91` (0-bis A.3) · `f774e88` (P0, reconciliación) ·
+`43d71a2` (COMMIT-1, lista congelada) · `30997fd` (COMMIT-2, resultados) ·
+`296ee5a` (cascada).
+
+**Tres premisas del encargo no se reprodujeron** y quedan declaradas en la
+nota de resultados §4, no corregidas en silencio: el denominador de P0
+(2 788, no 1 294) · la clase A6 (0 etiquetas caducas: los 6 objetos que
+nombra ya estaban `OBTENIDO`, y `SIN-FETCH` sólo vive en la columna `nota`) ·
+la clase C (29 relaciones `NO-ENCONTRADO`, no 28).
+
+**Una desviación de orden del propio ejecutor**, declarada en el §0 del
+COMMIT-1: `SICEE`, `BASE_DE_EVENTOS_DE_PROTESTA_EN_MEXICO` y `PI` se
+sondearon antes de congelar la lista que el encargo manda congelar primero.
