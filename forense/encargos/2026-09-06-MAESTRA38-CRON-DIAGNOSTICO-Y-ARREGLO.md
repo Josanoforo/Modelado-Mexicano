@@ -24,4 +24,4 @@ de 2026 fue sábado, fuera de la ventana `1-5` de la propia línea de crontab �
 extremo hoy con éxito completo: `censo/2026-09-06` + PR. Detalle en
 `forense/notas/2026-09-06-MAESTRA38-CRON-diagnostico.md`, `canon/gobernanza-v1_15.md` `ADR-352`,
 `forense/firmas-pendientes.tsv` `FP-323` (verificación real pendiente: `censo/2026-09-07`, lunes).
-PR: (se registra al abrir, ver git log de la rama `acto/maestra38-cron-diagnostico`).
+PR: #557.
