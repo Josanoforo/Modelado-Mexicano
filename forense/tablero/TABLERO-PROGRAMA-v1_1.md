@@ -787,3 +787,61 @@ rotulos.tsv`: fila `MAESTRA38-N15` censada. Cero medición de México, cero cano
 declara: specs de caja `8 → 9`, medición cero.
 
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
+
+### 8.14 Recibo — `ACTO MAESTRA38-LOTE-LAPOP · L4 + L5 + L18` (6/sep/2026, `ADR-348`, `FP-314`/`FP-315`)
+
+**Qué pidió el encargo.** Correr tres falsadores de caja sobre LAPOP AmericasBarometer México contra
+tres specs ya selladas (`prereg-caja-S4-L4`, `S5-L5`, `S8-L18`), sin editarlas: un PR, un ADR, un
+recibo, commit por pieza; resultados con IC, celdas, `n` por celda y la fila `B-bis` (qué significa
+que el falsador no refute); cada resultado a la propuesta con `se_mueve_si` verbatim de su spec;
+escala y universo declarados (A-bis 3/4); una pieza que PARA no tumba el lote. `COMPUERTA: ninguna`
+(declaración explícita; la original —«`C1` fusionado»— se retira porque la caja dejó de ser serial).
+**Concurrencia declarada:** en paralelo con `MAESTRA38-A4`, sin tocar ninguno de sus archivos.
+Contador: reglas con `p` medida **+3**.
+
+**Qué hizo.** Las tres piezas corrieron; ninguna PARÓ.
+
+| pieza | regla (tier) | instrumento | veredicto `B-bis` | ¿se midió el corazón? |
+|---|---|---|---|---|
+| `L4` | `R7.6` `[MEDIA]` | LAPOP 2019 | **`CONTRARIA`** · `Δ(PRI)` −4.07 pp `[−7.35,−0.72]` | sí |
+| `L5` | `R7.4` `[MEDIA-FUERTE]` | LAPOP 2004/2006/2019 | **`NO-DISCRIMINA`** | **no** — `C_completo` `NO-ESTIMABLE` en las tres olas |
+| `L18` | `R10.3` `[FUERTE]` | LAPOP 2004 | **`NO-DISCRIMINA`** | sí (num 111 y 60) |
+
+`L4` es la **tercera** pieza `CONTRARIA` sobre `R7.6` y la primera en el brazo de
+proximidad/focalización; los **signos** entre piezas **no** coinciden (ésta −4.07 pp; `L9`/`L11`
++14.37/+17.98/+6.38/+11.57), así que por `S4 §4.3` aplica la rama de «sentidos distintos», que
+remite a mesa si el `id` debe partirse. `L5` deja el corazón de la regla **sin medir** y declara por
+qué: el hueco es de **tamaño de celda** (rural de alto riesgo: 14, 21 y 1 personas), no de
+instrumento — los reactivos de falla estatal y red previa **sí** existen, confirmando `S5 §0.3`.
+`L18` es la **primera medición** de `R10.3` en todo el programa (`ya_medido.py`: `NUNCA-MEDIDA`) y
+la primera vez que hay un número contra una `[FUERTE]` de ese dominio: el silencio de las víctimas
+es **masivo y casi invariante** (64.7 %), así que la regla describe bien el *nivel* y lo que el dato
+no sostiene es su `SI…ENTONCES`.
+
+**Cinco correcciones declaradas a las specs selladas** (el `COMMIT-2` las dice; la spec no se edita):
+`wt` de LAPOP 2004 **está vacía**; 2004 **sí** trae conglomerado (`msec`, no `upm`); `ur`/`UR` **no
+es** «`tamano`=5»; la tasa de victimización de 2004 **duplica** la expectativa pre-registrada; y
+`PROT2` de 2006 está **gateada por `PROT1`** (universo anidado en el desenlace, fuera de todo
+veredicto). Más una **tensión interna de `S5`** (§3.1 contra §0.3, sobre qué forma debe tener
+`C_agravio`) declarada y **no** resuelta a mano por el ejecutor → `FP-314`.
+
+**Verificación adversarial dentro del acto.** Nueve verificadores independientes (tres lentes ×
+tres piezas), instruidos para refutar: **7 `CONFIRMA` / 2 `REFUTA`**. Los dos `REFUTA` eran defectos
+reales, están corregidos y los medidores se re-corrieron; **ninguno cambió un veredicto ni una cifra
+de celda**. Tres lentes reprodujeron los JSON **byte a byte**; cada lente 2 reconstruyó todas las
+celdas con su propio lector sin importar nada de `tools/`.
+
+**Cascada.** `ADR-348` (candidato contra `347` ya fusionado, contiguo — `MAESTRA38-N15`/`PR #550`
+fusionó mientras este acto medía y se llevó el `347` que el encargo asignaba a `A4`; el candidato de
+este acto no cambia). `FP-314` (recibo + la tensión de `C_agravio`), `FP-315` (**`ABIERTA`** —
+decisión de mesa sobre carga al motor y movimiento de tier de las tres). `canon/registro-rotulos.tsv`:
+tres filas censadas (`MAESTRA38-L4`/`L5`/`L18`). `milpa/tramite-ola5-propuesta-v0.yaml`: 43 → **44**
+entradas (dos completadas, una nueva). **Ningún tier del canon se movió**, `milpa/tramite.yaml`
+intacto, `canon/modelo-decision-v4_0.md` intacto. Este acto **no descargó nada** (anti-`PR #77` no
+aplica). `FP-313` se deja libre para `MAESTRA38-A4`, que sigue viva.
+
+**Indicadores que este acto mueve.** `propuesta_tier_PENDIENTE-DE-MESA`: +1 entrada (43 → 44).
+Reglas del modelo con `p` medida: **+3** (`R7.4`, `R7.6`, `R10.3` — las tres con dato corrido y
+ninguna cargada). `firmas ABIERTAS`: +1 (`FP-315`).
+
+`python3 tests/check.py --baseline`: ver cierre del PR de este acto.

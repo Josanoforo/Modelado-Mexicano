@@ -56,7 +56,8 @@ Resueltos por el censo A.4 de este acto contra el mapa de códigos del propio `.
 | `URBANO` | `tamano` ∈ {1,2,3,4} | 1 capital … 5 área rural |
 | protesta | 2004/2006 `prot1`/`PROT1`=1; 2019 `prot3`=1 | 1 algunas veces / 2 casi nunca / 3 nunca |
 
-`LAPOP-E8` (`e8`/`E8`) queda **fuera** del indicador de red previa, per spec §0.4: es aprobación
+`LAPOP-E8` (variable `e8` en 2004, la misma en mayúsculas en 2006) queda **fuera** del indicador de
+red previa, per spec §0.4: es aprobación
 normativa de que **otros** participen (escala 1–10), no asistencia propia. Se reporta como eje
 secundario y no entra a ninguna celda del falsador.
 
