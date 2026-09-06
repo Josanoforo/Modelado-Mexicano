@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **346 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **347 ADR**
 
 > | | |
 > |---|---|
@@ -5924,3 +5924,17 @@ WARN, sin entradas nuevas.
 **Deuda que cierra.** `FP-282` → `EJECUTADA`. `FP-308` → `FIRMADA (iii)`. `FP-309` recibo de `P0`. `FP-311` recibo de este acto (renumerado de `FP-310` original: `MAESTRA38-N14` lo tomó al fusionar primero). `FP-288` permanece `ABIERTA` (sin cambio, declarado).
 
 **Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `344` (`ADR-344`, `MAESTRA38-A2`), contiguo → `345` — la enmienda de dirección del 5/sep/2026 fijó explícitamente `345` (no `346`, el número que citaba la COMPUERTA original ya retirada). Colisión real al fusionar (6/sep/2026, `PR #549`): `origin/main` (`PR #548`) ya traía `ADR-345`/`ACTO MAESTRA38-N14 · GUARD-DE-RAMA-EN-ACTO` fusionado con ese mismo candidato, derivado independientemente sin conocer esta rama. Regla de la casa, renumera quien fusiona segundo: esta rama cede `345` y toma `346`, contiguo tras el `345` de `N14`.
+
+---
+
+**ADR-347 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `346`, contiguo, sin huecos; candidato `347`) · `ACTO MAESTRA38-N15 · SPEC-L2-LISTA`**, 6/sep/2026, entorno **NUBE** — **sella `forense/prereg-caja/S10-L2-LISTA-spec-v1_0.md` (+ `.sha256`), pre-registro hermano de `S2-L2` sobre `list::mexico` (subconjunto público de MPS-2012 ola 2, `n=1 004`, sin ponderar): universo, estimandos (prevalencia por lista, `mex.direct`, contraste lista−directa, heterogeneidad por `mex.wealth`/`mex.urban`/`mex.loyal`, participación verificada×directa), fila B-bis, escala en proporciones, `se_mueve_si` sobre el estado de `P3`.**
+
+`COMPUERTA: ninguna` (declaración explícita del encargo — no toca red ni corpus).
+
+**Qué hace.** Convierte `P3` (experimento de lista) de PROPUESTA de medición a instrumento pre-registrado sobre una fuente ya abierta byte a byte (`github.com/SensitiveQuestions/list @ e088e5f`, `sha256 fe101499b591d90d9e2122f439e26306fcdeab443e42d14f9455e9efa1c04488`) — reutiliza `S2-L2 §1.2` verbatim para la condición de entrada del diseño de lista (lista tratamiento = control + un ítem sensible) y la aplica al wording de `man/mexico.Rd` citado por la Procedencia del encargo. Declara `se_mueve_si`: `P3 → MEDIDO (primera mano, subconjunto)` si la caja ejecuta §2 con veredicto reportado; permanece `PROPUESTA` (declarada `PROPUESTA-REFUTADA-POR-DISEÑO` para esta fuente) si §4 refuta la condición de entrada.
+
+**Qué NO decide.** No abre `data/mexico.tab`. No calcula ningún IC95, ninguna celda. No mueve `R7.3`/`R7.6` (0 de sus variables en este dataset, declarado explícitamente). No sustituye la rama MEDICIÓN/TEXTO de `S2-L2` sobre el `.dta` completo de ICPSR 35024 (pendiente de `FP-316`, fuera de este perímetro). No toca `milpa/tramite.yaml`.
+
+**Deuda que abre.** Ninguna sustantiva. Recibo: `FP-312`.
+
+**Numeración.** Candidato derivado por el comando de la casa contra el árbol antes de escribir esta entrada: máximo `346` (`ADR-346`, `MAESTRA38-A2-bis`), contiguo → `347`. Sin colisión conocida al escribir esta entrada; si otro acto en vuelo (`A4`, `LOTE-LAPOP`, citados por la propia dirección como corriendo en paralelo) fusiona `347` primero, quien fusione después renumera (regla de la casa).
