@@ -138,6 +138,22 @@ navegador (§6).
   exactamente lo que convierte una fila en `NO-ACCESIBLE`, no en un fallo a
   reintentar con más fuerza.
 
+**Cuatro cosas que no son evidencia de inaccesibilidad (medidas, no
+supuestas)** — cada una con su nota de origen citada por ruta:
+
+1. Una raíz de host que responde `nginx` vacío no dice nada de sus rutas
+   (PDN, `forense/notas/2026-09-06-MAESTRA38-A4-resultados.md` §PDN).
+2. Un `403` de directorio no dice nada de sus archivos (UNAM,
+   `forense/notas/2026-09-06-MAESTRA38-A4-resultados.md`, hallazgo (c)).
+3. Una API «en mantenimiento» no dice nada de la URL por convención
+   (ECOPRED, `forense/notas/2026-09-06-MAESTRA38-A4-resultados.md`, hallazgo (h)).
+4. `curl 60` (cadena TLS del servidor rota) no es barrera de credencial ni
+   de pago: se reintenta con `--cacert`/cadena del sistema actualizada o con
+   `-k` sólo para sondear existencia, y se rotula
+   `NO-OBTENIDO-POR-ESTE-AGENTE`, nunca `NO-ACCESIBLE` (CNBV/GlobalSign,
+   CONDUSEF/GeoTrust, Kantar/DigiCert, A6, `forense/notas/2026-09-06-MAESTRA38-A6-resultados.md`,
+   3 de 3).
+
 ## 4 · A.7 — doble descarga si el formato puede variar sin avisar
 
 Todo payload que SÍ llegue se baja **dos veces** y se compara:
