@@ -974,3 +974,25 @@ invitaba a que un acto posterior los promoviera como si lo fueran.
 
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
 >>>>>>> origin/main
+
+## `ACTO MAESTRA38-CRON-2 · REGISTRO-Y-HUELLA` (dirección, 6/sep/2026)
+
+Registro canónico del cron de adquisición: `forense/cron/REGISTRO-CRON-v1_0.md`
+(identidad, línea de crontab con `PATH` explícito, calendario, `T-CRON` y
+playbook de diagnóstico de 5 min). `T31 T-CRON` nuevo en `tests/check.py`
+(WARN, nunca FAIL, con `tests/test_t_cron.py` como prueba dedicada).
+`tools/adquiere_cron.sh` gana D-b (`[ADQ]` siempre deja huella, incluso
+`0`/`0`) y D-c (`tests/manifiesto.py --escanea descargas_mx` tras la
+re-baja mensual de la PDN). `.claude/commands/acto.md` gana la nota D-d
+(nunca `reset --hard` con `data/manifiesto-staging.yaml` modificado).
+`data/INFRAESTRUCTURA-v1_0.md` gana una fila para el cron completo.
+**Compuerta `PR #556`/`PR #557` sigue ABIERTA** — `PR #557` trae explícito
+"No se fusiona — merge de mesa"; este acto no la cruza, procede con el
+resto del encargo tal como el propio encargo autoriza. **Commit 2
+(instalación real en `crontab -e` de `mm-adq` + corrida manual de
+prueba) queda PENDIENTE** — no hay acceso a esa caja física desde esta
+sesión de nube; descrito en `forense/cron/REGISTRO-CRON-v1_0.md` §7.
+`python3 tests/check.py`: 3 FAIL preexistentes (T06/T08, sin relación),
+170 WARN antes y después de este acto (T-CRON no añadió WARN nuevo — la
+huella del 4/sep/2026, último hábil al momento de correr la suite, ya
+existe en el árbol).
