@@ -40,7 +40,7 @@ $ ls -la /home/pc0/mm-corpus/raw/pdn_bulk_2026_09/
 -rw-r--r-- 1 pc0 pc0 1059406620 pdn_s6_2026-09-06.zip
 ```
 
-**Veredicto de este acto: no es un defecto a corregir.** `data_raw` es una raíz igualmente compartida (`raices.local.yaml`, montada en los tres worktrees vía symlink), los tres objetos están registrados en el manifiesto con `raiz` consistente con dónde viven físicamente (A.7), y el perímetro de A5 dice explícitamente **NO toca "salidas de A4"** — mover ~4 GB para hacer calzar la ruta nominal violaría ese perímetro sin ganar nada (identidad = contenido, D-13/A.7, no la ruta). Se declara la desviación; no se ejecuta ninguna acción sobre los archivos de `A4`.
+**Veredicto de este acto: no es un defecto a corregir.** `data_raw` es una raíz igualmente compartida (`data/raices.local.yaml`, montada en los tres worktrees vía symlink), los tres objetos están registrados en el manifiesto con `raiz` consistente con dónde viven físicamente (A.7), y el perímetro de A5 dice explícitamente **NO toca "salidas de A4"** — mover ~4 GB para hacer calzar la ruta nominal violaría ese perímetro sin ganar nada (identidad = contenido, D-13/A.7, no la ruta). Se declara la desviación; no se ejecuta ninguna acción sobre los archivos de `A4`.
 
 ## 2 · Control de calidad sobre los cuatro bulk (lo que sí corresponde tras la compuerta)
 
