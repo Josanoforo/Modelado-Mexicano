@@ -2921,9 +2921,19 @@ reglas_propuestas:
   - id: civico.clientelismo.prevalencia_lista_listcran_mps2012
     entrada_nueva: true
     referida_a: "regla R7.7 (canon/modelo-decision-v4_0.md:763) -- prevalencia por EXPERIMENTO DE LISTA de PRIMERA MANO, contrastada contra la pregunta directa del mismo cuestionario. NO es p de regla"
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # ADR-D2j, ACTO MAESTRA38-SELLO-2 Fila 6, 7/sep/2026
+    tier: MEDIA  # hereda R7.7 (canon/modelo-decision-v4_0.md:763), sin movimiento -- ver enmienda_maestra38_sello2 abajo
     reserva_tier: "microdato de PRIMERA MANO, pero sobre un SUBCONJUNTO publico (n=1004 de ~1555 de la ola 2) y SIN PONDERADOR; no es el panel completo de ICPSR 35024"
+    enmienda_maestra38_sello2: >
+      ENMIENDA APPEND (7/sep/2026, ACTO MAESTRA38-SELLO-2 Fila 6, ADR-D2j
+      en canon/modelo-decision-v4_0.md §7) -- decision de direccion: esta
+      entrada queda SELLADA-SIN-CARGA, heredando `[MEDIA]` de R7.7 sin
+      movimiento (no se carga a milpa/tramite.yaml: reserva_tier arriba
+      -- subconjunto publico sin ponderador, no el panel completo -- sigue
+      sin resolverse; cuando el .dta completo de ICPSR 35024 baje
+      (FP-314/FP-316) su veredicto REEMPLAZA a esta entrada per
+      prereg-caja-S10-L2-LISTA §6, ya declarado arriba en estampa_A10).
+      No re-deriva el veredicto_Bbis (NO SE DISPARA, arriba, sin cambio).
     estampa_A10: >
       Describe el corpus del 6/sep/2026: data/mexico.tab del paquete R list
       (github.com/SensitiveQuestions/list @ e088e5f88af5f3d3f7d61dcffe6d7eb6d28c5120,
