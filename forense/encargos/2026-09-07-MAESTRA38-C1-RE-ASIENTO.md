@@ -242,7 +242,7 @@ NUNCA-MEDIDA
 ## CONSUMIDO
 
 Ejecutado por `ACTO MAESTRA38-C1 · RE-ASIENTO` (7/sep/2026, CAJA con corpus), `ADR-370`.
-Rama `acto/maestra38-c1-re-asiento`, COMMIT-2 `7765c21`. PR: ver el enlace de cierre del acto.
+Rama `acto/maestra38-c1-re-asiento`, COMMIT-2 `7765c21`. **PR #577** (abierto, NO fusionado — el merge es de mesa).
 Desenlace: **ejecutado completo**, con tres correcciones de premisa declaradas (`N45` no existe,
 `SE ENLAZA 20→24` inalcanzable, «16 nuevos» no reproducible) y dos desvíos declarados en la pieza (e)
 (prefijo de id no alcanzable sin tocar `tests/`, A.7 doble descarga no reproducible).
