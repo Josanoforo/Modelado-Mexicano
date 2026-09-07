@@ -761,7 +761,7 @@ Orden de aplicación: **vector de atributos** → parámetros (condicionales sob
 | `R7.3` | L267 | Transferencia sin proximidad/monitoreo → conserva autonomía del voto | `[FUERTE]` | Sí |
 | `R7.6` | L268 | Proximidad/focalización o monitoreo percibido → autonomía cede localmente | `[MEDIA]` | No |
 | `R7.7` | L269 | Dádiva + broker → compra turnout, no vote-choice | `[MEDIA]` | No |
-| `R7.8` | L270 | Transferencia no condicionada → se vive como derecho (entitlement) | `[HIPÓTESIS]` | No |
+| `R7.8` | L270 | Transferencia no condicionada → se vive como derecho (entitlement) | `[HIPÓTESIS]` `CONTRARIA-1 (ENCUCI 2020)` | No |
 | `R7.9` | L271 | Transferencia no condicionada → atribución al líder, no voto comprado | `[MEDIA]` | No |
 | `R7.4` | L272 | Agravio + falla estatal + red previa + entorno urbano → protesta | `[MEDIA-FUERTE]` | Sí |
 | `R7.5` | L273 | Agravio + falla estatal + red previa + vacío rural → autodefensa | `[MEDIA-FUERTE]` | Sí |
