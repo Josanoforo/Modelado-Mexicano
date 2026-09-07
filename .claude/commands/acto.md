@@ -219,6 +219,24 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
    merge es de mesa, y es la autorización, no un trámite del ejecutor.
    Excepción única: cuando el acto corre bajo `/despacha`, que ya hace
    este paso — no lo dupliques.
+10. **Guard final de HEAD** (`ACTO AUTOMATIZA-2-A · BLINDA-HEAD-PR`,
+    `forense/encargos/2026-09-07-AUTOMATIZA-2-A-BLINDA-HEAD-PR.md`).
+    Defecto real que corrige: `PR #572` se fusionó contra un `HEAD`
+    anterior al último commit de cierre — el `## CONSUMIDO` quedó fuera y
+    se incorporó después vía `PR #576`. Tras el último commit/push
+    susceptible de alterar `HEAD` (el del paso 9, o el commit posterior
+    de `## CONSUMIDO` si lo hay), corre:
+    ```
+    python3 tools/verifica_head_remoto.py
+    ```
+    Sólo si reporta `PR_HEAD_SINCRONIZADO` se declara el PR listo para
+    mesa. Si reporta `PR_HEAD_DESACTUALIZADO`: un `git push origin
+    <rama>` más y **una** repetición del guard; si persiste
+    desactualizado, o si el guard reporta `RAMA_AUSENTE_EN_ORIGIN` o
+    `HEAD_REMOTO_NO_VERIFICABLE`, termina con `NO FUSIONAR` y repórtalo
+    en el PR — sin loop, sin segundo PR. Excepción única: cuando el acto
+    corre bajo `/despacha`, que ya conserva la propiedad de este guard en
+    su propia secuencia de push/PR — no lo dupliques.
 
 Falsador y caducidad de esta skill (D-13, `instrucciones-proyecto-v2_12.md`):
 si en un mes la skill no evita ni un solo acto perdido por compuerta, o el
