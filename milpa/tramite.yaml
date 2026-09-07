@@ -1245,21 +1245,27 @@ reglas:
   # disponible + campana llega) no se re-deriva aqui -- este acto carga
   # el PORQUE (razon de no vacunacion, logistica vs no-logistica), no
   # re-mide el disparador; se deja NO-APLICA, igual que la entrada fuente.
-  - id: salud.vacunacion.disponible
-    situacion: CARGADA  # ADR-D2i, primera carga de R9.2
-    tier: FUERTE  # canon/modelo-decision-v4_0.md:575, sin cambio
+  - id: salud.vacunacion.disponible_ensanut2024
+    situacion: SELLADA  # SELLO-2, R9.2, CORROBORADA
+    tier: FUERTE  # SELLO-2, hereda R9.2 (canon/modelo-decision-v4_0.md:575)
     si:
-      disparadores: NO-APLICA  # verbatim de la entrada fuente -- este acto mide el PORQUE, no el disparador
+      disparadores: {}  # NO-APLICA (verbatim del acumulador) -- mapping vacio, mismo patron que civico.denuncia.miedo_desconfianza:577
     entonces:
       - {conducta: razon_no_vacunacion_logistica, p: 0.777762, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)"}
       - {conducta: razon_no_vacunacion_no_logistica, p: 0.222238, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)"}
-    porque: {generador: [], mecanismo: "PENDIENTE-DE-MESA -- este acto mide el PORQUE literal (logistico vs actitudinal/otro), no lo re-deriva (verbatim de la entrada fuente)"}
+    porque: {generador: [], mecanismo: "el default es aceptación y el hueco es logístico (no actitudinal)"}  # PORQUE de R9.2 verbatim (canon/modelo-decision-v4_0.md:575); la propuesta trae generador: [] -- no se inventa G#
     falsable_si: NO-APLICA
     fuente: ["forense/prereg-caja/S7-L17-spec-v1_0.md", "ENSANUT2024-v2026-09-01/adultos_ensanut2024_w.stata.stata.zip", "ENSANUT2024-v2026-09-01/adolescentes_ensanut2024_w.stata.stata.zip"]
     ola_calibracion: "ENSANUT Continua 2024 (unica ola de esta rama)"
+    ponderador: "ponde_f"
     universo: "12 924 personas en adultos_ensanut2024_w.dta; 254 menciones 'Si' (179 personas distintas) en el bloque a0927, desglosadas no_habia_vacunas=152, enfermo=47, no_estaba_quien_aplica=28, no_derechohabiente=16, otra_razon=11"
     ic95: [0.672777, 0.857561]
     n: 254
+    se_mueve_si: >
+      segundo instrumento con la misma batería (ENSANUT 2018/2022 o ENCUCI)
+      sobre la razón de no vacunación: si el IC no excluye 0.5, R9.2 baja a
+      MEDIA por D2; si corrobora, CORROBORADA-REPLICADA.
+    sha256_payload: "0fa8f4436fa427cc23d1d43164d449462c09eb787cb45ad20961576cb095a6c4"  # data/manifiesto.yaml, ENSANUT2024-v2026-09-01/adultos_ensanut2024_w.stata.stata.zip
     enmienda_ensanut2024:
       sellada_por: "decision de direccion 7/sep/2026 («1, la cargamos») -- ACTO MAESTRA38-SELLO-2, ADR-D2i"
       origen: "milpa/tramite-ola5-propuesta-v0.yaml:3709-3744 (id salud.vacunacion.disponible_ensanut2024), copiada verbatim"

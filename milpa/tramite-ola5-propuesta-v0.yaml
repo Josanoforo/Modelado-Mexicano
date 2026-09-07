@@ -2285,7 +2285,7 @@ reglas_propuestas:
     entrada_nueva: true
     referida_a: "par de reglas R7.3 civico.voto.agencia_con_secreto (canon/modelo-decision-v4_0.md:553) y R7.6 civico.voto.clientelar_si_observable (:554) -- brazo observabilidad/monitoreo percibido tras D2-g (canon/modelo-decision-v4_0.md §7)"
     situacion: SELLADA-SIN-CARGA  # D2-g (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): brazo observabilidad de R7.6, junto con civico.voto.agencia_con_secreto_encuci2020
-    tier: "hereda R7.3/R7.6 tras D2-f/D2-g: [MEDIA], sin movimiento en este acto"  # D2-g
+    tier: SELLADA  # hereda R7.3/R7.6 tras D2-f/D2-g: [MEDIA], sin movimiento en este acto -- D2-g, D16 (ACTO MAESTRA38-TRAMITE-3, tier es token de la receta, la prosa va en comentario)
     se_mueve_si: "medición de primera mano en ICPSR 35024 .dta (D6) o un tercer instrumento CORROBORADA con IC fuera de 0 → vuelve a FUERTE; un tercero CONTRARIA → REFUTADA"  # verbatim de D2-f, brazo observabilidad, D2-g
     nota_alcance: >
       NO reabre la fila C que ADR-155 archivo para R7.3 en el Hito D, y no
@@ -2557,7 +2557,7 @@ reglas_propuestas:
     entrada_nueva: true
     referida_a: "regla R7.3 civico.voto.agencia_con_secreto (canon/modelo-decision-v4_0.md:553) y R7.6 civico.voto.clientelar_si_observable (:554) -- SEGUNDO INSTRUMENTO de la pieza a-bis de MAESTRA35-L9 -- brazo observabilidad/monitoreo percibido tras D2-g (canon/modelo-decision-v4_0.md §7)"
     situacion: SELLADA-SIN-CARGA  # D2-g (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): brazo observabilidad de R7.6, junto con civico.voto.agencia_lapop2023
-    tier: "hereda R7.3/R7.6 tras D2-f/D2-g: [MEDIA], sin movimiento en este acto"  # D2-g
+    tier: SELLADA  # hereda R7.3/R7.6 tras D2-f/D2-g: [MEDIA], sin movimiento en este acto -- D2-g, D16 (ACTO MAESTRA38-TRAMITE-3, tier es token de la receta, la prosa va en comentario)
     se_mueve_si: "medición de primera mano en ICPSR 35024 .dta (D6) o un tercer instrumento CORROBORADA con IC fuera de 0 → vuelve a FUERTE; un tercero CONTRARIA → REFUTADA"  # verbatim de D2-f, brazo observabilidad, D2-g
     si:
       disparadores: NO-APLICA
@@ -2700,7 +2700,7 @@ reglas_propuestas:
       0.91/0.09 ASIGNADO y el tier MEDIA-FUERTE NO se tocan aqui.
     situacion: SELLADA-SIN-CARGA  # D2-g (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): universo elegido -- ninguno; la fuente no puede dar p (AMBIGUA-POR-UNIVERSO); prior 0.09 ASIGNADO de milpa/procedencia.yaml pasa a REFUTADO-POR-COTA (ADR-68(a)), cuerpo intacto
     se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # AMBIGUA-POR-UNIVERSO, D2-g; regla sin dato (S1) -- D16 (ACTO MAESTRA38-TRAMITE-3)
     si:
       disparadores: NO-APLICA
     entonces:
@@ -2922,7 +2922,8 @@ reglas_propuestas:
     entrada_nueva: true
     referida_a: "regla R7.7 (canon/modelo-decision-v4_0.md:763) -- prevalencia por EXPERIMENTO DE LISTA de PRIMERA MANO, contrastada contra la pregunta directa del mismo cuestionario. NO es p de regla"
     situacion: SELLADA-SIN-CARGA  # ADR-D2j, ACTO MAESTRA38-SELLO-2 Fila 6, 7/sep/2026
-    tier: MEDIA  # hereda R7.7 (canon/modelo-decision-v4_0.md:763), sin movimiento -- ver enmienda_maestra38_sello2 abajo
+    tier: SELLADA  # hereda R7.7 [MEDIA], sin movimiento, SELLO-2 -- prevalencia de primera mano, no mueve tier
+    se_mueve_si: "35024-0001-Data.dta completo (FP-314 #1, n=1 555, ponderado): su veredicto reemplaza a éste, no promedia (S10 §6)"
     reserva_tier: "microdato de PRIMERA MANO, pero sobre un SUBCONJUNTO publico (n=1004 de ~1555 de la ola 2) y SIN PONDERADOR; no es el panel completo de ICPSR 35024"
     enmienda_maestra38_sello2: >
       ENMIENDA APPEND (7/sep/2026, ACTO MAESTRA38-SELLO-2 Fila 6, ADR-D2j
@@ -3187,7 +3188,7 @@ reglas_propuestas:
       0.91/0.09 ASIGNADO y el tier MEDIA-FUERTE NO se tocan aqui.
     situacion: SELLADA-SIN-CARGA  # D2-g (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): universo elegido -- ninguno; la fuente no puede dar p; prior 0.09 ASIGNADO de milpa/procedencia.yaml pasa a REFUTADO-POR-COTA (ADR-68(a)), cuerpo intacto
     se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # AMBIGUA-POR-UNIVERSO, D2-g; regla sin dato (S1) -- D16 (ACTO MAESTRA38-TRAMITE-3)
     si:
       disparadores: NO-APLICA
     entonces:
@@ -3319,7 +3320,7 @@ reglas_propuestas:
     entrada_nueva: true
     referida_a: "regla R3.3 tramite.evasion.norma_inutil_sancion_improbable (canon/modelo-decision-v4_0.md:520; registro congelado de IDs, §7:234) -- fuera del perimetro del Hito D (No -- fuera del perimetro)"
     situacion: HIPÓTESIS-SIN-INSTRUMENTO  # MAESTRA38-N5 (b), mesa acepta via FP-298/N6, 4/sep/2026
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # HIPÓTESIS-SIN-INSTRUMENTO por FP-298/N6; tier del canon intacto -- D16 (ACTO MAESTRA38-TRAMITE-3)
     si:
       disparadores: NO-APLICA
     entonces: []
@@ -3344,7 +3345,7 @@ reglas_propuestas:
     entrada_nueva: true
     referida_a: "regla R7.9 civico.transferencia.atribucion_lider (canon/modelo-decision-v4_0.md:557; registro congelado de IDs, §7:271)"
     situacion: HIPÓTESIS-SIN-INSTRUMENTO  # MAESTRA38-N5 (b), mesa acepta via FP-298/N6, 4/sep/2026
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # HIPÓTESIS-SIN-INSTRUMENTO por FP-298/N6; tier del canon intacto -- D16 (ACTO MAESTRA38-TRAMITE-3)
     si:
       disparadores: NO-APLICA
     entonces: []
@@ -3369,7 +3370,7 @@ reglas_propuestas:
     entrada_nueva: true
     referida_a: "regla R5.4 familia.cortejo.urbano_joven_apps (canon/modelo-decision-v4_0.md:538; registro congelado de IDs, §7:252)"
     situacion: HIPÓTESIS-SIN-INSTRUMENTO  # MAESTRA38-N5 (b), mesa acepta via FP-298/N6, 4/sep/2026
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # HIPÓTESIS-SIN-INSTRUMENTO por FP-298/N6; tier del canon intacto -- D16 (ACTO MAESTRA38-TRAMITE-3)
     si:
       disparadores: NO-APLICA
     entonces: []
@@ -3404,7 +3405,7 @@ reglas_propuestas:
       reactivo distinto (exposicion a oferta clientelar, no secreto/observabilidad).
       -- brazo proximidad/focalizacion del reparto tras D2-g (canon/modelo-decision-v4_0.md §7).
     situacion: SELLADA-SIN-CARGA  # D2-g (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): brazo proximidad de R7.6
-    tier: "hereda R7.6 tras D2-g: [MEDIA], sin movimiento en este acto"  # D2-g
+    tier: SELLADA  # hereda R7.6 tras D2-g: [MEDIA], sin movimiento en este acto -- D2-g, D16 (ACTO MAESTRA38-TRAMITE-3, tier es token de la receta, la prosa va en comentario)
     se_mueve_si: "segunda medición del brazo proximidad (LAPOP 2021/2023 clien1n/clien1na × vb3n) con signo concordante → tier por brazo según D2"  # D2-g
     si:
       disparadores: NO-APLICA
@@ -3472,7 +3473,7 @@ reglas_propuestas:
       las CINCO piezas del SI...ENTONCES a reactivos LAPOP multi-ola en vez de a la
       ficha de una sola ola.
     situacion: ACOTADA-CON-RESERVA  # decisión de mesa 6/sep/2026, corregida 7/sep/2026, ACTO MAESTRA38-CARGA-LAPOP-2: FP-315 firmada
-    tier: "hereda R7.4 [MEDIA-FUERTE], sin movimiento"
+    tier: PENDIENTE-DE-MESA  # ACOTADA: hereda R7.4 [MEDIA-FUERTE]; se_mueve_si en la entrada -- D16 (ACTO MAESTRA38-TRAMITE-3)
     reserva: "el corazón de la regla no se midió; lo estimable en LAPOP no discrimina"
     se_mueve_si: "una fuente con sobremuestra rural que estime C_completo (ENVIPE: pieza del LOTE-CRUCE) -- si CUBRE, se escribe S5 v1.1 con la forma C2 fijada en §3.1 y §0.3 coherentes, y se corre como L5-bis"
     si:
@@ -3565,7 +3566,7 @@ reglas_propuestas:
       AOJ de LAPOP, universo que ni MAESTRA34-N5 -ENDIREH- ni MAESTRA36-N6 -CNGMD- tenian
       asignado).
     situacion: SELLADA-SIN-CARGA  # D2-h (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): R10.3 conserva [FUERTE], gana cláusula de movimiento
-    tier: "hereda R10.3 [FUERTE], sin movimiento"  # D2-h
+    tier: SELLADA  # hereda R10.3 [FUERTE], sin movimiento -- D2-h, D16 (ACTO MAESTRA38-TRAMITE-3, tier es token de la receta, la prosa va en comentario)
     se_mueve_si: "segunda medición con la misma batería (AOJ1/AOJ11/AOJ12/vic1) en una ola ≥ 2019 ya en corpus; si tampoco discrimina → FUERTE→MEDIA por D2; si discrimina → la de 2004 queda como acotada temporalmente"  # D2-h
     si:
       disparadores: NO-APLICA
@@ -3726,8 +3727,17 @@ reglas_propuestas:
       C (corroboracion de tasa, descriptiva) de prereg-caja-S7-L17-spec-v1_0.md
       (sha256 f3aea086cee60e59fa3858334eaa6e00218e30a0b19c67fb37ae806fd586830f,
       verificado). Rama A (ENNVIH) NO se corrió -- ver nota_alcance.
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: CARGADA-A-MOTOR  # cargada a milpa/tramite.yaml, ACTO MAESTRA38-SELLO-2 Fila 1, 7/sep/2026
+    tier: SELLADA  # cargada a motor, R9.2 FUERTE, SELLO-2; reserva FP-326
+    nota_sello2: >
+      S7-L17 v1.0 (spec sellada, sha256 arriba) asumió letra=vacuna/dígito=razón
+      en la reasignación del bloque a0927; el .dta muestra letra=razón (a..e)/
+      dígito=vacuna (1..4); la medición usó la reasignación correcta, declarada
+      en ADR-357. S7 v1.1 la fija; v1.0 NO se edita.
+    se_mueve_si: >
+      segundo instrumento con la misma batería (ENSANUT 2018/2022 o ENCUCI)
+      sobre la razón de no vacunación: si el IC no excluye 0.5, R9.2 baja a
+      MEDIA por D2; si corrobora, CORROBORADA-REPLICADA.
     si:
       disparadores: NO-APLICA
     entonces:
