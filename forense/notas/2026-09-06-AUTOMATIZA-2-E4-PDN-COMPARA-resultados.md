@@ -207,3 +207,33 @@ base sigue VERDE, que es lo que exige la aceptación.)
 
 `tools/cierre_acto.py` (Fase A, preflight, sin flags) corrido antes de
 `--aplica`. Detalle en el propio commit de cascada.
+
+## Segunda sincronización — colisión de ADR y merge de `origin/main`
+
+Antes de abrir el PR, `git fetch origin main` (con el sandbox de la
+sesión deshabilitado -- red bloqueada dentro de él en ese momento)
+mostró que `origin/main` había avanzado otra vez, `33702a09` → `40ff4f8b`
+→ `0a19d397`, con tres actos más fusionados mientras esta rama seguía
+abierta: `ACTO MAESTRA38-C1 · RE-ASIENTO` (`PR #577`, tomó `ADR-370`),
+`ACTO MAESTRA38-LOTE-CRUCE` (`PR #578`, renumerado a `ADR-371`) y
+`ACTO AUTOMATIZA-2-E5 · SCORE-RENDER` (`PR #579`, `ADR-372` -- acto
+hermano de la misma serie `AUTOMATIZA-2`, cuyo propio encargo cita
+explícitamente que corre independiente de este acto y que se lanza
+cuando este acto abra PR --
+primera confirmación real de que la serie es intencional y coordinada
+por mesa, no una invención de este acto). `ADR-370` (el candidato
+original de este acto) colisionaba con los tres. Regla de la casa:
+renumera quien fusiona segundo -- este acto renumera a `ADR-373`.
+
+`git merge origin/main` sobre la rama: tres conflictos, todos por la
+misma causa (dos ramas apendizando al mismo punto de
+`canon/gobernanza-v1_15.md`/`canon/estado-programa-v1_12.md`/
+`tests/check.py::_T25_ARCHIVOS_CONOCIDOS`), resueltos conservando AMBOS
+lados (unión, no reemplazo) y renumerando sólo la anotación de este acto
+(`370`→`373`) en los tres lugares (cabecera de gobernanza, línea `L0`,
+tercer conteo de la tabla de nombres estables). Verificado tras
+resolver: `tools/cierre_acto.py` reporta `ADR reales: 373`, cabecera y
+`L0` coinciden, `HEAD deriva de origin/main: True`. `tests/check.py
+--baseline` VERDE. Las cuatro comparaciones `--compara-sha` (incluida la
+de `pdn_s3v2` con el sandbox deshabilitado) se repitieron después del
+merge: `COINCIDE`/`miembros_zip=IGUAL` ×4, sin cambio.
