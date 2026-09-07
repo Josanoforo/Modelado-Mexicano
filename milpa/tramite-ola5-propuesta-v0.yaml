@@ -2286,7 +2286,8 @@ reglas_propuestas:
     referida_a: "par de reglas R7.3 civico.voto.agencia_con_secreto (canon/modelo-decision-v4_0.md:553) y R7.6 civico.voto.clientelar_si_observable (:554) -- brazo observabilidad/monitoreo percibido tras D2-g (canon/modelo-decision-v4_0.md §7)"
     situacion: SELLADA-SIN-CARGA  # D2-g (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): brazo observabilidad de R7.6, junto con civico.voto.agencia_con_secreto_encuci2020
     tier: SELLADA  # hereda R7.3/R7.6 tras D2-f/D2-g: [MEDIA], sin movimiento en este acto -- D2-g, D16 (ACTO MAESTRA38-TRAMITE-3, tier es token de la receta, la prosa va en comentario)
-    se_mueve_si: "medición de primera mano en ICPSR 35024 .dta (D6) o un tercer instrumento CORROBORADA con IC fuera de 0 → vuelve a FUERTE; un tercero CONTRARIA → REFUTADA"  # verbatim de D2-f, brazo observabilidad, D2-g
+    # hasta TRAMITE-6: se_mueve_si: "medición de primera mano en ICPSR 35024 .dta (D6) o un tercer instrumento CORROBORADA con IC fuera de 0 → vuelve a FUERTE; un tercero CONTRARIA → REFUTADA"  # verbatim de D2-f, brazo observabilidad, D2-g
+    se_mueve_si: "`35024-0001-Data.dta` bajo Restricted Data Use Agreement (NO-ACCESIBLE, FP-314 #1): se mueve si mesa obtiene el DUA; mientras, el veredicto vigente es el de segunda mano/subconjunto público, o un tercer instrumento CORROBORADA con IC fuera de 0 → vuelve a FUERTE; un tercero CONTRARIA → REFUTADA"  # verbatim de D2-f, brazo observabilidad, D2-g
     nota_alcance: >
       NO reabre la fila C que ADR-155 archivo para R7.3 en el Hito D, y no
       propone cambiarla: aquel C dice que el RDD que su falsador exige no es
@@ -2699,7 +2700,7 @@ reglas_propuestas:
       corpus el 2/sep por ADR-310 y este acto los abre. NO sella: el prior
       0.91/0.09 ASIGNADO y el tier MEDIA-FUERTE NO se tocan aqui.
     situacion: SELLADA-SIN-CARGA  # D2-g (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): universo elegido -- ninguno; la fuente no puede dar p (AMBIGUA-POR-UNIVERSO); prior 0.09 ASIGNADO de milpa/procedencia.yaml pasa a REFUTADO-POR-COTA (ADR-68(a)), cuerpo intacto
-    se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"
+    se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"  # SIN-COBERTURA verificado 6/sep en 350 832 filas (FP-329 (e)); gobierna FP-273 (D10, 3/sep): conservar
     tier: SELLADA  # AMBIGUA-POR-UNIVERSO, D2-g; regla sin dato (S1) -- D16 (ACTO MAESTRA38-TRAMITE-3)
     si:
       disparadores: NO-APLICA
@@ -2923,7 +2924,8 @@ reglas_propuestas:
     referida_a: "regla R7.7 (canon/modelo-decision-v4_0.md:763) -- prevalencia por EXPERIMENTO DE LISTA de PRIMERA MANO, contrastada contra la pregunta directa del mismo cuestionario. NO es p de regla"
     situacion: SELLADA-SIN-CARGA  # ADR-D2j, ACTO MAESTRA38-SELLO-2 Fila 6, 7/sep/2026
     tier: SELLADA  # hereda R7.7 [MEDIA], sin movimiento, SELLO-2 -- prevalencia de primera mano, no mueve tier
-    se_mueve_si: "35024-0001-Data.dta completo (FP-314 #1, n=1 555, ponderado): su veredicto reemplaza a éste, no promedia (S10 §6)"
+    # hasta TRAMITE-6: se_mueve_si: "35024-0001-Data.dta completo (FP-314 #1, n=1 555, ponderado): su veredicto reemplaza a éste, no promedia (S10 §6)"
+    se_mueve_si: "`35024-0001-Data.dta` bajo Restricted Data Use Agreement (NO-ACCESIBLE, FP-314 #1): se mueve si mesa obtiene el DUA; mientras, el veredicto vigente es el de segunda mano/subconjunto público"
     reserva_tier: "microdato de PRIMERA MANO, pero sobre un SUBCONJUNTO publico (n=1004 de ~1555 de la ola 2) y SIN PONDERADOR; no es el panel completo de ICPSR 35024"
     enmienda_maestra38_sello2: >
       ENMIENDA APPEND (7/sep/2026, ACTO MAESTRA38-SELLO-2 Fila 6, ADR-D2j
@@ -3187,7 +3189,7 @@ reglas_propuestas:
       ENTREGA LA TABLA: NO adjudica, NO sella, NO propone letra. El prior
       0.91/0.09 ASIGNADO y el tier MEDIA-FUERTE NO se tocan aqui.
     situacion: SELLADA-SIN-CARGA  # D2-g (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): universo elegido -- ninguno; la fuente no puede dar p; prior 0.09 ASIGNADO de milpa/procedencia.yaml pasa a REFUTADO-POR-COTA (ADR-68(a)), cuerpo intacto
-    se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"
+    se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"  # SIN-COBERTURA verificado 6/sep en 350 832 filas (FP-329 (e)); gobierna FP-273 (D10, 3/sep): conservar
     tier: SELLADA  # AMBIGUA-POR-UNIVERSO, D2-g; regla sin dato (S1) -- D16 (ACTO MAESTRA38-TRAMITE-3)
     si:
       disparadores: NO-APLICA
@@ -3406,7 +3408,8 @@ reglas_propuestas:
       -- brazo proximidad/focalizacion del reparto tras D2-g (canon/modelo-decision-v4_0.md §7).
     situacion: SELLADA-SIN-CARGA  # D2-g (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): brazo proximidad de R7.6
     tier: SELLADA  # hereda R7.6 tras D2-g: [MEDIA], sin movimiento en este acto -- D2-g, D16 (ACTO MAESTRA38-TRAMITE-3, tier es token de la receta, la prosa va en comentario)
-    se_mueve_si: "segunda medición del brazo proximidad (LAPOP 2021/2023 clien1n/clien1na × vb3n) con signo concordante → tier por brazo según D2"  # D2-g
+    # hasta TRAMITE-6: se_mueve_si: "segunda medición del brazo proximidad (LAPOP 2021/2023 clien1n/clien1na × vb3n) con signo concordante → tier por brazo según D2"  # D2-g
+    se_mueve_si: "segunda medición del brazo proximidad en CIDE-CSES 2015 (pcyc13 zanahoria / pcyc14 garrote, FP-329 (b), verificado en el .sav por LOTE-CRUCE) con signo concordante → tier por brazo según D2; LAPOP 2021/2023 NO traen clien1n/clien1na (FP-329 (f))"  # D2-g
     si:
       disparadores: NO-APLICA
     entonces:
@@ -3475,7 +3478,8 @@ reglas_propuestas:
     situacion: ACOTADA-CON-RESERVA  # decisión de mesa 6/sep/2026, corregida 7/sep/2026, ACTO MAESTRA38-CARGA-LAPOP-2: FP-315 firmada
     tier: PENDIENTE-DE-MESA  # ACOTADA: hereda R7.4 [MEDIA-FUERTE]; se_mueve_si en la entrada -- D16 (ACTO MAESTRA38-TRAMITE-3)
     reserva: "el corazón de la regla no se midió; lo estimable en LAPOP no discrimina"
-    se_mueve_si: "una fuente con sobremuestra rural que estime C_completo (ENVIPE: pieza del LOTE-CRUCE) -- si CUBRE, se escribe S5 v1.1 con la forma C2 fijada en §3.1 y §0.3 coherentes, y se corre como L5-bis"
+    # hasta TRAMITE-6: se_mueve_si: "una fuente con sobremuestra rural que estime C_completo (ENVIPE: pieza del LOTE-CRUCE) -- si CUBRE, se escribe S5 v1.1 con la forma C2 fijada en §3.1 y §0.3 coherentes, y se corre como L5-bis"
+    se_mueve_si: "sin instrumento hoy: ENVIPE 2025 no trae desenlace de protesta (FP-329 (c)); se mueve si entra al corpus una fuente con sobremuestra rural Y desenlace de protesta; hasta entonces, ACOTADA-CON-RESERVA (D2-h) sin fecha"
     si:
       disparadores: NO-APLICA
     entonces:
