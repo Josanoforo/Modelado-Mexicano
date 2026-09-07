@@ -51,7 +51,7 @@ Sucesores declarados, no lanzados. `L22` (R7.4, caja, solo si S14 §2 pre-regist
 
 ## CONSUMIDO
 
-Ejecutado por `ACTO MAESTRA38-N23-N25 · TRES-SPECS-NEGATIVOS`, 7/sep/2026, entorno **NUBE** (`cloud_default`), sobre `origin/main = 604793fa` (base declarada por el encargo, confirmada con `git fetch origin main` al arrancar). **PR #596** (`https://github.com/Josanoforo/Modelado-Mexicano/pull/596`), rama `claude/inventory-negative-specs-dvith5`. `ADR-385`, recibo `FP-335`.
+Ejecutado por `ACTO MAESTRA38-N23-N25 · TRES-SPECS-NEGATIVOS`, 7/sep/2026, entorno **NUBE** (`cloud_default`), sobre `origin/main = 604793fa` (base declarada por el encargo, confirmada con `git fetch origin main` al arrancar). **PR #596** (`https://github.com/Josanoforo/Modelado-Mexicano/pull/596`), rama `claude/inventory-negative-specs-dvith5`. `ADR-387`, recibo `FP-337` — renumerados de `385`/`335` tras sincronizar con `origin/main = 3b35ca0`: `ACTO MAESTRA38-SELLO-3` (`PR #594`) tomó `385`/`FP-335` y `ACTO MAESTRA38-N22` (`PR #595`) tomó `386`/`FP-336`, ambos fusionados antes que este acto. Regla de la casa, renumera quien fusiona segundo. Ninguno de los dos toca `R7.4`/`R4.5`/`R9.3` ni `forense/prereg-caja/S14*`/`S15*`/`S16*`: colisión de numeración, no de contenido — verificado con `git diff --name-only 604793fa origin/main`.
 
 **Entregado:** las tres specs congeladas (`S14-R7-4`, `S15-R4-5`, `S16-R9-3`, con sidecar `sha256` cada una), la nota de barrido con script y salida cruda, la tercera entrada `PARA-v2.13` (`para_v2_13_entradas` 2 → 3), el recibo y la cascada de cierre. `tests/check.py --baseline`: **VERDE**.
 

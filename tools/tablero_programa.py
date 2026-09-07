@@ -100,7 +100,11 @@ def derivar_indicadores() -> dict[str, dict]:
             (con_dato if any(x.startswith("MEDIDO") for x in clases) else sin_dato).append(r["id"])
             tiers[str(r.get("tier"))] += 1
         put("motor_reglas_con_dato", len(con_dato), "python: reglas con >=1 conducta clase MEDIDO*")
-        put("motor_reglas_sin_dato", sin_dato, "python: reglas cuyas conductas son todas ASIGNADO", "LA SEÑAL: meta = []")
+        put("motor_reglas_sin_dato", sin_dato, "python: reglas cuyas conductas son todas ASIGNADO",
+            "sin instrumento: 0 aciertos de e.firma vigente en 350 832 filas (FP-329 (e), 6/sep); "
+            "gobierna FP-273 (3/sep): conservar. Razon derivada (ACTO MAESTRA38-SELLO-3, 7/sep/2026), "
+            "no 'sin acto asignado' -- MAESTRA35-L6/MAESTRA38-LOTE-CRUCE (COERCITIVO) ya corrieron contra "
+            "esta regla y volvieron con negativo de universo, no con la fuente.")
         put("motor_tiers", dict(tiers), "python: Counter(tier) sobre milpa/tramite.yaml")
     put("modelo_reglas_canon", sh("python3 tests/validador_registro_ids.py 2>/dev/null | tail -1"),
         "python3 tests/validador_registro_ids.py | tail -1", "las 49 del modelo-decision; el motor implementa un subconjunto")
