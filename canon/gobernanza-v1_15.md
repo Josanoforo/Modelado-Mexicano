@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **373 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **374 ADR**
 
 > | | |
 > |---|---|
@@ -6460,3 +6460,21 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Deuda que cierra.** El defecto "re-escaneo en raíz equivocada" del bloque `[ADQ-PDN]` (D-c nunca cumplido de verdad, `ADR-353`/`354`).
 
 **Numeración.** Candidateó `370` contra `origin/main = 33702a09` (máximo real `369`, `ADR-369` `MAESTRA38-TRAMITE-4`, ya fusionado). Renumerado a `373` al sincronizar contra `origin/main = 0a19d397`: en el intervalo fusionaron `ADR-370` (`MAESTRA38-C1 · RE-ASIENTO`, `PR #577`), `ADR-371` (`MAESTRA38-LOTE-CRUCE`, `PR #578`) y `ADR-372` (`AUTOMATIZA-2-E5 · SCORE-RENDER`, `PR #579`) -- regla de la casa, renumera quien fusiona segundo.
+
+---
+
+**ADR-374 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `373` contra `origin/main = e1c3c840`, candidato `374`, contiguo, sin huecos) · `ACTO AUTOMATIZA-2-A · BLINDA-HEAD-PR`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — defecto real: `PR #572` se fusionó contra un `HEAD` anterior al último commit de cierre (el `## CONSUMIDO` quedó fuera y se incorporó después vía `PR #576`); `/despacha` hace dos pushes (trabajo del acto, luego estado/bitácora/`## CONSUMIDO`) y no existía un guard final que probara que el remoto terminó exactamente en el `HEAD` local. Crea `tools/verifica_head_remoto.py` (sólo lectura: nunca push/fetch/commit/merge/API de GitHub/cambia archivos; no se integra en `tools/cierre_acto.py`, que es preflight/cierre de cascada, no guard de entrega), que compara `git rev-parse HEAD` contra `git ls-remote --heads <remote> refs/heads/<rama>` (nunca `refs/remotes/origin/<rama>`, que puede estar stale) y distingue cuatro estados por exit code: `0` `PR_HEAD_SINCRONIZADO` · `2` `PR_HEAD_DESACTUALIZADO` (`NO FUSIONAR`) · `3` `RAMA_AUSENTE_EN_ORIGIN` (`NO FUSIONAR`) · `4` `HEAD_REMOTO_NO_VERIFICABLE` (`NO FUSIONAR`) — rama ausente y fallo de red/remoto son hallazgos distintos, nunca colapsados. `.claude/commands/acto.md` §4 (CIERRE) gana un paso 10: correr el guard tras el último push susceptible de alterar `HEAD`, con retry de un `push` + una repetición si sale `PR_HEAD_DESACTUALIZADO`, y `NO FUSIONAR` sin loop ni segundo PR si persiste — excepción única, igual que el paso anterior, cuando `/acto` corre bajo `/despacha`, que conserva la propiedad del guard. `.claude/commands/despacha.md` gana la misma integración como punto 5 de "El orden del PR y del número que se cita", después de su propio segundo push. `tests/test_verifica_head_remoto.py` (nuevo, sin red real: repos `bare` locales por ruta de archivo) demuestra los cinco estados: local == remoto tras push → `0`; commit local sin empujar → `2`; push → `0` de nuevo; rama pedida ausente en el remoto → `3`; `--remote` a una ruta que no resuelve → `4`. El propio PR de este acto corre el guard sobre sí mismo al cerrar y pega `PR_HEAD_SINCRONIZADO`. **Contador:** clases observadas de merge con `HEAD` anterior protegidas por un guard mecánico, `0 → 1`.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-AUTOMATIZA-2-A-BLINDA-HEAD-PR.md`. **Gate verificado.** El encargo no trae línea `COMPUERTA:`/`GATED a`/`Estado: GATED a` para el acto A en sí (no dispara el protocolo de verificación de compuerta de `/acto` §2); la condición de lanzamiento que sí declara — E4 (`AUTOMATIZA-2-E4 · PDN-COMPARA`) debe haber abierto su PR antes de arrancar A — se verificó por producto contra `origin/main` real al arrancar: `e1c3c84073e7d246aa3399410e014242875e52ba`, `git log -1 origin/main` = `Merge pull request #580 from Josanoforo/acto/automatiza-2-e4-pdn-compara` (E4 no sólo abrió PR: ya se fusionó), `git ls-remote --heads origin` sin la rama `acto/automatiza-2-e4-pdn-compara` viva (borrada tras el merge).
+
+**Gap de archivo declarado.** El `DICTAMEN · PLAN AUTOMATIZA-2 · CABLEADO POST-E3` (dirección Fable, 7/sep/2026, `sha256 b6b754903372b609f90ebb93197f1a6b29b6c265d95d015320d3d2d098a84f7a` según el paquete de lanzamiento) no llegó a esta sesión — ni pegado, ni adjunto, ni rastro en el árbol (`grep` del `sha256`, `grep -li dictamen` sobre `*.md`, `git log --all` por rótulo) — y no se fabricó: se archivó como gap explícito junto al encargo final y al paquete en `A.3`. El `ENCARGO FINAL` declara en su primera línea que "incorpora y consolida" el plan y el dictamen, así que la sustancia ejecutable de este acto no depende del texto faltante.
+
+**Perímetro.** Toca `tools/verifica_head_remoto.py` (nuevo), `tests/test_verifica_head_remoto.py` (nuevo), `.claude/commands/acto.md` (CIERRE, guard final), `.claude/commands/despacha.md` (misma integración), `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_12.md` (L0 + fila `gobernanza` de la tabla §0, a mano — `tools/cierre_acto.py` todavía no la reconcilia; ésa es `AUTOMATIZA-2-B`), notas, A.3, cascada. **No toca** corpus, `data/raw`, `descargas_mx`, raíces físicas, manifiesto, adquisición, relaciones, motor, `baseline --freeze`, CI, GitHub Actions, reglas de protección de rama, `Downloads`.
+
+**Deuda que abre.** El texto verbatim del dictamen (ver "Gap de archivo declarado") sigue sin archivarse; mesa/dirección puede pegarlo en un PR posterior si lo juzga necesario.
+
+**Deuda que cierra.** Ninguna.
+
+**`tests/check.py --baseline`**: ver la nota de cierre.
+
+**Numeración.** Derivado contra `origin/main = e1c3c84073e7d246aa3399410e014242875e52ba` (máximo real `373`), candidato `374`, contiguo, sin huecos.
