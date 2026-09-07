@@ -975,7 +975,6 @@ invitaba a que un acto posterior los promoviera como si lo fueran.
 `propuesta_tier_PENDIENTE-DE-MESA`: +1 (44 → 45). Payloads del manifiesto: **+18**. `firmas ABIERTAS`: +1 (`FP-317`).
 
 `python3 tests/check.py --baseline`: ver cierre del PR de este acto.
->>>>>>> origin/main
 
 ### 8.17 Recibo — `ACTO MAESTRA38-A6 · RE-SONDEO-DE-NEGATIVOS-CON-CAPACIDAD-COMPLETA` (6/sep/2026, `ADR-353`, `FP-324`)
 

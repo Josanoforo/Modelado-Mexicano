@@ -3855,6 +3855,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # archivo propio que este acto escribe el rotulo va siempre con
     # prefijo completo (AUTOMATIZA-2-B) -- D-6.
     "forense/encargos/2026-09-07-AUTOMATIZA-2-B-CIERRA-TERCER-CONTADOR.md",
+    # ACTO AUTOMATIZA-2-C . SELLA-SIDECAR, 7/sep/2026: mismo A.3 verbatim
+    # que AUTOMATIZA-2-A/B de arriba -- tercera y ultima pieza de la tanda,
+    # mismo ENCARGO FINAL + PAQUETE compartido, mismos "E4" pelados
+    # heredados (habitante hermano externo, ya fusionado, #580). El texto
+    # no se edita (A.3); en todo archivo propio que este acto escribe el
+    # rotulo va siempre con prefijo completo (AUTOMATIZA-2-C) -- D-6.
+    "forense/encargos/2026-09-07-AUTOMATIZA-2-C-SELLA-SIDECAR.md",
 }
 
 
