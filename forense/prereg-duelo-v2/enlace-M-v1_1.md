@@ -158,3 +158,68 @@ tres celdas re-apuntadas se deriva en `agregado_v1_3.py` (Pieza 3), en
 memoria, vía `emitir_binaria(regla, 'paga_mordida_encig2025')`, el mismo
 camino que `tools/emite_m.py` usa para escribir archivos. No abre `D1`
 (corredor `P`). No decide si `DIN-M-01` se re-apunta en un acto sucesor.
+
+---
+
+## 6 · Reconciliación de columnas ejecutada — `ACTO MAESTRA38-M13 · M-POR-CELDA v1.3` (7/sep/2026)
+
+**Este apartado se añade después de que `PR #592` fusionara.** No borra ni
+reescribe nada de §1-§5: los deja fechados. Lo que cambia es que la
+corrección que §5 dejó **declarada y sin tocar el archivo** ya está
+**aplicada al archivo**, por mandato del §9 del encargo final
+(`forense/encargos/2026-09-07-MAESTRA38-M13-M-POR-CELDA-v1_3.md`): «No
+dejar columnas que contradigan el nuevo enlace».
+
+**Qué queda vencido de este propio documento.** Tres afirmaciones de §2 y
+§5 eran ciertas cuando se escribieron y dejan de serlo con la
+reconciliación — se declaran aquí en vez de editarlas arriba:
+
+1. §2 «`marco-M-sorteado-v1_3.tsv` = `marco-M-sorteado-v1_2.tsv` byte a
+   byte, con la columna `conducta` cambiada» — ahora son **cinco**
+   columnas en las tres filas TRA.
+2. §2 «Ninguna otra columna de esas tres filas cambia» — cambian además
+   `frase_discriminacion`, `ola_calibracion`, `razon` y `razon_DD`.
+3. §5 «Las columnas `grado_DD`/`razon_DD` **no se re-escriben** … sin
+   tocar el archivo» — `razon_DD` **sí** se re-escribe. `grado_DD` **no**:
+   sigue `P1 PUNTUA` en las tres, que es lo que §5 predijo y lo que §9 del
+   encargo final espera.
+
+**Diff exacto sobre `marco-M-sorteado-v1_3.tsv` (5 columnas × 3 filas):**
+
+| columna | qué decía | qué dice |
+|---|---|---|
+| `conducta` | `paga_mordida_encig2025` (ya re-apuntada por `PR #592`) | sin cambio en este acto |
+| `frase_discriminacion` | `… -> paga_mordida (…` | `… -> paga_mordida_encig2025 (…` — sólo el prefijo; el paréntesis describe el desenlace de la celda y no se toca |
+| `ola_calibracion` | `ENCIG 2023` (ancla del `ASIGNADO`) | verbatim de `milpa/tramite.yaml:104` (`enmienda_encig2025`) |
+| `razon` | «`!= ola_calibracion ENCIG 2023 de la regla`» | «`… ENCIG 2025 de la conducta paga_mordida_encig2025 (enmienda_encig2025, milpa/tramite.yaml:104)`» — una cláusula; C1/C2, `grado_sellado` y la inconsistencia declarada de `cv_arbitro` no se tocan |
+| `razon_DD` | comparaba contra `ENCIG 2023` por la conducta `paga_mordida` | compara contra `ENCIG 2025` por `paga_mordida_encig2025`, más una cláusula de linaje que conserva `0.62`/`ENCIG 2023` **como pasado explícito**, no como estado vigente |
+
+**Lo que NO se movió**, verificado columna a columna: las 8 que el §9 del
+encargo protege (`variable`, `ponderador`, `cv_arbitro`, `grado_sellado`,
+`grado_transferencia`, `encuesta`, `ola`, `universo`) — **ninguna**; y
+`clase_procedencia`, que describe el estimador del árbitro, no la clase
+que emite el motor.
+
+**Control mecánico (§9).** Las **11/11** celdas no afectadas son idénticas
+entre `v1_2` y `v1_3`: mismo `sha256` de sus 11 filas
+(`cd3f4401a6ba7d05…`), `diff` vacío. Universo, IDs, orden y 32 columnas
+sin cambio.
+
+**Lo que §5 no podía cerrar y este acto sí.** §5 declaraba el efecto F-DD
+«sin tocar el archivo» porque el `M` de las tres celdas se calculaba **en
+memoria**. El encargo final §2 corrige esa premisa: el agregado no consulta
+el motor vivo, lee `corridas-M/M-<id>*.json`, así que *cambiar la conducta
+en el marco sin reemitir M no tiene efecto en el agregado*. Por eso este
+acto **materializa** el enlace en tres archivos nuevos —
+`corridas-M/M-TRA-M-02__v1_3.json`, `…-03__v1_3.json`,
+`…-07__v1_3.json` — emitidos por `tools.emite_m.emite_celda` con
+`fuente_acto = ACTO MAESTRA38-M13 · EMITE-M-v1_3`. Los tres
+`M-TRA-M-0*.json` históricos quedan intactos.
+
+**`ola_calibracion` ahora se resuelve POR CONDUCTA.** §4 de este documento
+leía la calibración del `MEDIDO` a mano; `tools/emite_m.py` no lo hacía —
+resolvía por regla y devolvía el fijo `ENCIG 2023` para cualquier conducta
+de `tramite.mordida.discrecional`. Corregido en el COMMIT 1 de este acto:
+`paga_mordida → ENCIG 2023` (`:79`), `paga_mordida_encuci2020 → ENCUCI
+2020` (`:86`), `paga_mordida_encig2025 → ENCIG 2025` (`:104`). Sin eso,
+los tres JSON v1.3 habrían nacido citando el ancla equivocada.
