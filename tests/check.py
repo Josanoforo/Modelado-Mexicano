@@ -3804,6 +3804,18 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # pelados son autorreferencias a los tres elementos que el documento
     # define en su propia cabecera, no un habitante `MAESTRA<nn>-E<n>`.
     "forense/encargos/2026-09-07-AUTOMATIZA-1-E3-CIERRE-MECANICO.md",
+    # ACTO AUTOMATIZA-2-E4 · PDN-COMPARA, 6/sep/2026: encargo archivado
+    # VERBATIM (A.3). Trae `E4` pelado dos veces ("gobierna): E4 detecta
+    # identidad..." y "consumidores del filename: 0 (verificado en E4)")
+    # -- mismo análisis que la familia AUTOMATIZA-1-E1/E2/E3 arriba: es una
+    # autorreferencia al elemento que el propio documento define en su
+    # cabecera (ACTO AUTOMATIZA-2-E4), serie nueva fuera de la numeración
+    # MAESTRA<nn> y sin fila propia en canon/registro-rotulos.tsv por esa
+    # misma razón -- no hay un habitante MAESTRA<nn>-E4 ambiguo que
+    # resolver. El encargo no se edita (A.3); en todo archivo propio que
+    # este acto escribe el rótulo va siempre con prefijo completo
+    # (AUTOMATIZA-2-E4) -- D-6.
+    "forense/encargos/2026-09-06-AUTOMATIZA-2-E4-PDN-COMPARA.md",
 }
 
 
