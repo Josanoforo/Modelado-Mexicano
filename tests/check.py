@@ -3873,6 +3873,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # no se edita (A.3); en todo archivo propio que este acto escribe el
     # rotulo va siempre con prefijo completo (AUTOMATIZA-2-C) -- D-6.
     "forense/encargos/2026-09-07-AUTOMATIZA-2-C-SELLA-SIDECAR.md",
+    # ACTO AUTOMATIZA-2-D . COSTURAS-FINALES, 7/sep/2026: encargo archivado
+    # verbatim (A.3), microfix de cierre sobre A/B/C. Su §14 ("E4 corrida
+    # natural") cita "E4" pelado sobre la ventana natural (1-3/oct/2026)
+    # del cron end-to-end del habitante hermano externo ACTO AUTOMATIZA-2-E4
+    # -- mismo patron que el "E4" de A/B/C de arriba, no autorreferencia. El
+    # texto verbatim no se edita (A.3); en todo archivo propio que este
+    # acto escribe el rotulo va siempre con prefijo completo
+    # (AUTOMATIZA-2-D) -- D-6.
+    "forense/encargos/2026-09-07-AUTOMATIZA-2-D-COSTURAS-FINALES.md",
 }
 
 

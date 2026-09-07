@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **379 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **380 ADR**
 
 > | | |
 > |---|---|
@@ -6580,3 +6580,23 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **`tests/check.py --baseline`**: mismo estado que dejó `ADR-378` (`TRAMITE-5`) — 1 FAIL declarado (`T22`, `FP-330`), sin FAIL nuevo.
 
 **Numeración.** Derivado contra el estado de esta misma rama (máximo real `373`, `ADR-373` `MAESTRA38-TRAMITE-5` antes de renumerar, este mismo repo antes de este acto), candidato `374`, sin huecos. Renumerado a `377` junto con `ADR-376` al sincronizar con `origin/main = 3a04d53`: en el intervalo fusionaron `ADR-373`/`374`/`375` ajenos (`PR #580`/`#581`/`#582`) -- regla de la casa, renumera quien fusiona segundo. Renumerado de nuevo a `378` junto con `ADR-377` al sincronizar con `origin/main = 1452137`: en el intervalo fusionó `ADR-376` ajeno (`AUTOMATIZA-2-B`, `PR #584`) -- regla de la casa. Renumerado de nuevo a `379` junto con `ADR-378` al sincronizar con `origin/main = 325fb06`: en el intervalo fusionó `ADR-377` ajeno (`AUTOMATIZA-2-C`, `PR #585`) -- regla de la casa.
+
+---
+
+**ADR-380 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `379` contra `origin/main = 7e0fb716`, candidato `380`, contiguo, sin huecos) · `ACTO AUTOMATIZA-2-D · COSTURAS-FINALES`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — micro-PR de cierre de la campaña `AUTOMATIZA-2`, dos defectos concretos residuales encontrados en la revisión post-fusión de `A`/`B`/`C` (no reabre su diseño, no abre `AUTOMATIZA-3`).
+
+**(1) Orden del cierre directo de `/acto`.** El camino directo (CIERRE §4, pasos 8-10 previos) citaba `## CONSUMIDO` (paso 8) antes de empujar y abrir el PR (paso 9) que ese número necesita citar — el número de PR no existe todavía en ese punto, contradicción heredada nunca antes corregida en el camino directo (`/despacha` sí la resolvía ya). Reordenado (nuevos pasos 8-12): empuja la rama → abre UN PR y toma su número real → `## CONSUMIDO` en un commit posterior citando ese número → `tests/check.py --baseline` una última vez → guard final de HEAD. Las dos cláusulas "cuando el acto corre bajo `/despacha`, no lo dupliques" (push/PR y guard) se conservan intactas. `.claude/commands/despacha.md` sin cambios: la inspección no encontró ninguna contradicción real provocada por este reorden.
+
+**(2) `tools/sella_sha256.py --verifica`.** Leía sólo `f.readline()`: un sidecar con la primera línea correcta y una segunda línea de basura (o sin newline final) se aceptaba igual, contradiciendo el contrato de una sola línea exacta (`<64-hex><dos espacios><basename>\n`) que el propio módulo documenta — verificado que el comportamiento previo en efecto aceptaba ese caso antes del fix. Ahora lee el contenido completo del sidecar y lo valida contra `_SIDECAR_RE = re.compile(r"^([0-9a-f]{64})  ([^\n]+)\n$")` vía `fullmatch` (exige exactamente esa línea y nada más — segunda línea, bytes tras el `\n`, o ausencia del `\n` final quedan todos `SELLO_NO_COINCIDE`), conservando los diagnósticos separados de formato/basename/hash. Contrato de `C` intacto: sidecar = reemplazo de última extensión, sin glob, sin recursión, escritura atómica, `--verifica` sólo lectura, sin integración automática a `/acto`. `tests/test_sella_sha256.py` (nuevo, permanente, seis casos): a diferencia de `C` (que no dejó test por no encontrar defecto real), esta vez sí apareció uno.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-AUTOMATIZA-2-D-COSTURAS-FINALES.md`. **Gate verificado.** El encargo no declara `GATED a …`/`COMPUERTA:` — no compuertado, no dispara verificación.
+
+**Perímetro.** Toca `.claude/commands/acto.md`, `tools/sella_sha256.py`, `tests/test_sella_sha256.py` (nuevo), `tests/check.py` (sólo `_T25_ARCHIVOS_CONOCIDOS`, censa el A.3 verbatim de este acto), `canon/gobernanza-v1_15.md` (este registro), `canon/estado-programa-v1_12.md` (L0 + tabla §0), notas, A.3, cascada. **No toca** corpus, `data/raw`, `descargas_mx`, `Downloads`, manifiesto, adquisición, relaciones, motor, scoring, tablero, cron, `tests/baseline.json` (freeze), CI, GitHub Actions, branch protection, `.claude/commands/despacha.md`, ni el diseño de `A`/`B`/`C`.
+
+**Deuda que abre.** Ninguna.
+
+**Deuda que cierra.** Las dos costuras residuales de `AUTOMATIZA-2` señaladas por la revisión post-fusión de `A`/`B`/`C`. Regla de parada del propio encargo: no se busca `AUTOMATIZA-3` después de este cierre — el siguiente frente sustantivo que dirección señaló es `M-POR-CELDA`, trabajo de modelo, no de automatización.
+
+**`tests/check.py --baseline`**: ver la nota de cierre.
+
+**Numeración.** Derivado contra `origin/main = 7e0fb7169717abc2cd31b46035f8238153ab98de` (máximo real `379`), candidato `380`, contiguo, sin huecos.
