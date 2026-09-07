@@ -3911,6 +3911,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # todo archivo propio que este acto escribe el rótulo va siempre con
     # prefijo completo (MAESTRA38-N20-N21) -- D-6.
     "forense/encargos/2026-09-07-MAESTRA38-N20-N21-DOS-SPECS-CSES-R10-3.md",
+    # ACTO MAESTRA38-SELLO-3, 7/sep/2026: encargo archivado VERBATIM (A.3).
+    # Su bloque CARRILES cita "la rama claude/enlace-m-celdas-tra-dq7crb
+    # (M13 ENMIENDA-1: ...)" -- rótulo pelado de un tercero, carril paralelo
+    # real ajeno a este acto (mismo patrón que TRAMITE-6/N20-N21 de arriba).
+    # El texto verbatim no se edita (A.3).
+    "forense/encargos/2026-09-07-MAESTRA38-SELLO-3.md",
 }
 
 
@@ -4522,6 +4528,16 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # salida vive en `forense/prereg-caja/S12-CSES-spec-v1_0.md §0.1` y
     # `S13-R10-3-spec-v1_0.md §0.1`, no en el archivo verbatim del encargo.
     "forense/encargos/2026-09-07-MAESTRA38-N20-N21-DOS-SPECS-CSES-R10-3.md",
+    # ACTO MAESTRA38-SELLO-3, 7/sep/2026: el encargo se archiva VERBATIM
+    # (A.3) y cita `civico.protesta.agravio_urbano_multiola`/R7.4 (y las
+    # otras ocho reglas de las nueve decisiones) en su A.8 y su tabla de
+    # decisiones -- SELLA los tokens `tier`/`situacion` de esas nueve
+    # entradas ya PENDIENTE-DE-MESA en la propuesta, no las re-mide.
+    # `tools/ya_medido.py` SÍ se corrió sobre las nueve ids y sobre
+    # R1.2/R1.5/R7.4/R7.7/R7.8/R4.4 en el commit 0-bis de este acto;
+    # coincide con lo que el encargo declara (MEDIDA-EN: ...). La salida
+    # vive en el mensaje de ese commit, no en el archivo verbatim.
+    "forense/encargos/2026-09-07-MAESTRA38-SELLO-3.md",
 }
 
 
