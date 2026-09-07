@@ -278,6 +278,24 @@ def rutas(root):
 
 RAIZ_INTEGRADA = "data_raw"  # resuelta por código (rutas()); nunca por archivo
 
+# Perímetro físico vigente (ACTO AUTOMATIZA-1-E1 · PERIMETRO-FISICO-DE-RAICES,
+# 7/sep/2026): raíces sobre las que un automatismo general del corpus puede
+# hacer I/O físico -- caminar, listar, exists/stat, hashear o abrir un
+# archivo. 'downloads' puede seguir existiendo como nombre histórico (entradas
+# antiguas del manifiesto, `data/raices.local.yaml`) pero queda fuera por
+# diseño: contuvo información personal ajena al proyecto (ver
+# EXTENSIONES_DATO_RAICES_NO_CURADAS más abajo). Esto NO es un sistema de
+# permisos -- es una constante de dos raíces conocidas, igual que
+# RAIZ_INTEGRADA ya era una.
+RAICES_ESCANEABLES = frozenset({RAIZ_INTEGRADA, "descargas_mx"})
+
+
+def raiz_escaneable(nombre):
+    """True si un automatismo general del corpus puede hacer I/O físico sobre
+    `nombre`. Referencia histórica en el manifiesto o en raices.local.yaml no
+    es autorización para I/O físico -- son hechos distintos."""
+    return nombre in RAICES_ESCANEABLES
+
 
 def raices_configuradas(root):
     """Mapa nombre->ruta real de raíces EXTERNAS al repo (todo salvo
@@ -553,7 +571,16 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
         archivo = entrada.get("archivo")
         nombre_raiz = entrada.get("raiz", RAIZ_INTEGRADA)
         tally = por_raiz.setdefault(nombre_raiz, {"coincide": 0, "no_coincide": 0,
-                                                     "ausente": 0, "sin_raiz": 0})
+                                                     "ausente": 0, "sin_raiz": 0,
+                                                     "fuera_de_perimetro": 0})
+        if not raiz_escaneable(nombre_raiz):
+            # ACTO AUTOMATIZA-1-E1: raíz histórica fuera del perímetro físico --
+            # no se resuelve, no se abre, no se stat/hashea, no se imprime el
+            # nombre físico completo. Sólo se cuenta (lectura de YAML).
+            tally["fuera_de_perimetro"] += 1
+            print(f"{id_} [{nombre_raiz}]: FUERA_DE_PERIMETRO -- raíz histórica no "
+                  f"inspeccionable (fuera de RAICES_ESCANEABLES)")
+            continue
         if not archivo:
             print(f"{id_} [{nombre_raiz}]: SIN CAMPO 'archivo' en el manifiesto -- "
                   f"no se puede localizar el payload (omitido, no cuenta como falla)")
@@ -601,7 +628,8 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
         t = por_raiz[nombre_raiz]
         print(f"  {nombre_raiz}: coincide={t['coincide']} · "
               f"no_coincide={t['no_coincide']} · ausente={t['ausente']} · "
-              f"sin_configurar={t['sin_raiz']}")
+              f"sin_configurar={t['sin_raiz']} · "
+              f"fuera_de_perimetro={t['fuera_de_perimetro']}")
 
     derivadas = [e for e in entradas if e.get("url_origen_procedencia")]
     print()
@@ -787,6 +815,8 @@ def _formatear_entrada_staging(f, sugerencia_url):
 
 
 RAICES_QUE_EXIGEN_GRUPO = {"downloads"}
+# Inalcanzable desde --escanea desde ACTO AUTOMATIZA-1-E1 (raiz_escaneable()
+# rechaza 'downloads' antes de llegar aquí); no se borra, es historia viva.
 
 
 def _leer_head_clon(ruta_clon):
@@ -897,6 +927,14 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
     root = os.path.dirname(os.path.dirname(manifiesto_path))
     with _con_lock_manifiesto(root):
         nombre_raiz = a.escanea
+        if not raiz_escaneable(nombre_raiz):
+            print(f"ERROR: RAIZ_NO_ESCANEABLE: {nombre_raiz} -- fuera del perímetro "
+                  f"físico vigente (RAICES_ESCANEABLES = "
+                  f"{sorted(RAICES_ESCANEABLES)}). Es una raíz no escaneable por "
+                  f"política, no simplemente 'no configurada': ningún automatismo "
+                  f"general del corpus camina, hashea o abre archivos bajo ella.",
+                  file=sys.stderr)
+            sys.exit(1)
         ruta = resolver_raiz(nombre_raiz, root, raw_dir)
         if ruta is None:
             disponibles = [RAIZ_INTEGRADA] + sorted(raices_configuradas(root))
