@@ -215,23 +215,37 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
 7. **Anti-PR#77.** Si este acto descargó algo: verifica que los payloads
    quedaron en el corpus compartido y no solo en el worktree de esta
    sesión, antes de dar el acto por cerrado.
-8. **`## CONSUMIDO`** — añade esta sección al final del encargo
-   archivado en el paso 3, con el PR (o el commit, si el acto no abre
-   PR) que lo ejecutó. El encargo no se borra ni se edita en ningún otro
-   punto: es el registro de qué se pidió, para poder auditar si el
-   ejecutor hizo lo que se le dijo.
-9. **Empuja y abre UN PR.** `git push -u origin <rama>` y abre **UN** PR
-   contra `main` titulado con el rótulo del acto; **NO lo fusiones** — el
-   merge es de mesa, y es la autorización, no un trámite del ejecutor.
-   Excepción única: cuando el acto corre bajo `/despacha`, que ya hace
-   este paso — no lo dupliques.
-10. **Guard final de HEAD** (`ACTO AUTOMATIZA-2-A · BLINDA-HEAD-PR`,
+8. **Empuja la rama.** `git push -u origin <rama>` con la cascada de
+   arriba ya cerrada en el commit (o los commits) de esta sesión.
+   Excepción única: cuando el acto corre bajo `/despacha`, que ya
+   conserva la propiedad del push — no lo dupliques.
+9. **Abre UN PR.** Abre **UN** PR contra `main` titulado con el rótulo
+   del acto y toma su número real — nunca lo inventes, nunca antes de
+   que exista. `## CONSUMIDO` (paso 10) depende de este número: ningún
+   paso anterior a este lo necesita, y ninguno de los siguientes lo
+   sustituye por inferencia. **NO lo fusiones** — el merge es de mesa, y
+   es la autorización, no un trámite del ejecutor. Excepción única:
+   cuando el acto corre bajo `/despacha`, que ya hace este paso — no lo
+   dupliques.
+10. **`## CONSUMIDO`.** En un commit **posterior** sobre la misma rama,
+    añade esta sección al final del encargo archivado en el paso 3,
+    citando el número real del PR del paso 9 (o el commit, si el acto no
+    abre PR) que lo ejecutó, y empuja ese commit. El encargo no se borra
+    ni se edita en ningún otro punto: es el registro de qué se pidió,
+    para poder auditar si el ejecutor hizo lo que se le dijo. Excepción
+    única: cuando el acto corre bajo `/despacha`, que ya escribe
+    `## CONSUMIDO` (junto con `ESTADO`/`BITACORA`) en su propia
+    secuencia — no lo dupliques.
+11. **`python3 tests/check.py --baseline`** una última vez, después del
+    commit del paso 10, en VERDE — o PARO-reporta con la salida cruda,
+    nunca se declara el PR listo con un `FAIL` nuevo sin reportarlo
+    primero.
+12. **Guard final de HEAD** (`ACTO AUTOMATIZA-2-A · BLINDA-HEAD-PR`,
     `forense/encargos/2026-09-07-AUTOMATIZA-2-A-BLINDA-HEAD-PR.md`).
     Defecto real que corrige: `PR #572` se fusionó contra un `HEAD`
     anterior al último commit de cierre — el `## CONSUMIDO` quedó fuera y
-    se incorporó después vía `PR #576`. Tras el último commit/push
-    susceptible de alterar `HEAD` (el del paso 9, o el commit posterior
-    de `## CONSUMIDO` si lo hay), corre:
+    se incorporó después vía `PR #576`. Tras el último push susceptible
+    de alterar `HEAD` (el del paso 10), corre:
     ```
     python3 tools/verifica_head_remoto.py
     ```
