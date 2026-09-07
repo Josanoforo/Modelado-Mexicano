@@ -1996,6 +1996,29 @@ def _classify(test, msg):
             # ausencia; T03 la confirma, no es un defecto nuevo. Desaparece cuando
             # MOTOR-1 corra con los archivos en mano, o si alguien retira la cita.
             return "T03_encargo_MOTOR-1_cita_archivos_nunca_entregados_a_la_sesion__PROC-10-bis_declara_PARA"
+        if ("GEN2" in msg and ("forense/encargos/cola/2026-09-07-" in msg
+                                or "forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md" in msg)):
+            # ACTO GEN2-E0 · ENCOLA, 7/sep/2026: las cuatro citas colgantes de
+            # las piezas GEN2 son texto de direccion archivado VERBATIM
+            # (A.3 / forense/encargos/convencion.md), y ninguna es un defecto:
+            #  (a) `PROPUESTA-CORRIDA-0-v1_1-2026-09-07.md` y
+            #      `AUTOMATIZACION-GEN2-y-LIMPIEZA-2026-09-07.md` NO se encolan
+            #      y no existiran nunca: el propio PLAN-FINAL-GEN2 v2.0 declara
+            #      en su linea 2 que "integra y sustituye" a ambos. La cita es
+            #      historica -- nombra los documentos que el plan absorbio.
+            #  (b) `-E6-AUTOMATIZA-GEN2-2.md` es la cola de la elipsis con que
+            #      E0 enumera los seis archivos ("`...-E1-LIMPIEZA-C1.md` ...
+            #      `-E6-AUTOMATIZA-GEN2-2.md`"); el archivo real existe con su
+            #      fecha delante (2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md).
+            #      Mismo patron que el "v2_6.md" de A8-LAND (ADR-78).
+            #  (c) `spec.yaml` / `spec.md` son los nombres genericos del contrato
+            #      de dos capas que el plan define (§3) y que E3/E5 crearan bajo
+            #      data/corrida0/CALC-NNNN/. Citar un artefacto que un encargo
+            #      futuro producira no es una referencia colgante.
+            # Acotado a las rutas GEN2 de este acto a proposito: no perdona
+            # `spec.yaml` en ningun otro archivo del arbol.
+            return ("T03_pieza_GEN2_verbatim__doc_sustituido_por_el_plan_v2_0__"
+                     "elipsis_de_nombre__o_artefacto_que_E3-E5_creara")
         if name == "propuesta-motor-matriz-v0_2.md":
             # ACTO PROC-10-bis, 13/ago/2026: el encargo original (archivado verbatim,
             # §3 PERÍMETRO de MOTOR-1) cita "propuesta-motor-matriz-v0_2.md" -- solo
@@ -2110,7 +2133,22 @@ def _freeze_note():
                       "exit 1 el 17/ago. La suite cruda no se mueve y T22 sigue emitiendo sus "
                       "19 WARN en cada corrida: cambia qué cuenta como regresión nueva, no qué "
                       "reporta la suite. Detalle completo: "
-                      "forense/notas/2026-08-17-t22-deriva.md."),
+                      "forense/notas/2026-08-17-t22-deriva.md. "
+                      "Re-congelada el 7/sep/2026, ACTO GEN2-E0 · ENCOLA, autorizada "
+                      "explícitamente por mesa en la sesión tras que el ejecutor PARARA en el "
+                      "paso 4 de `/encola`, reportara las 16 entradas nuevas con su token exacto "
+                      "y pusiera la decisión a dirección («los archivos que te pasé son los "
+                      "finales»). Absorbe 8 WARN de T03, todas del mismo bucket "
+                      "`T03_pieza_GEN2_verbatim__…` y todas sobre texto de dirección archivado "
+                      "verbatim (A.3): 2 nombran los documentos que el propio PLAN-FINAL-GEN2 "
+                      "v2.0 declara haber absorbido («integra y sustituye»), 1 es la cola de una "
+                      "elipsis de nombre de archivo (patrón M6-sello) y 5 citan `spec.yaml` / "
+                      "`spec.md`, el contrato de dos capas que GEN2-E3 y GEN2-E5 crearán bajo "
+                      "`data/corrida0/CALC-NNNN/`. Cero FAIL nuevos y cero bajas: los 8 T25 que "
+                      "esta misma sesión produjo NO se congelaron — se resolvieron por exención "
+                      "de archivo con censo en `canon/registro-rotulos.tsv`, y antes de pedirla "
+                      "el ejecutor corrigió los rótulos pelados de su PROPIA prosa de bitácora, "
+                      "que sí era editable. Detalle completo: el PR `[COLA]` de este acto."),
         "fecha_de_clasificacion": "2026-08-17",
         "conteo_por_bucket": dict(sorted(buckets.items())),
     }
@@ -3950,6 +3988,29 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # real ajeno a este acto (mismo patrón que TRAMITE-6/N20-N21 de arriba).
     # El texto verbatim no se edita (A.3).
     "forense/encargos/2026-09-07-MAESTRA38-SELLO-3.md",
+    # ACTO GEN2-E0 · ENCOLA, 7/sep/2026: las siete piezas de la cola GEN2 y el
+    # plan que las gobierna, archivados VERBATIM (A.3). Los `E<n>` pelados son
+    # los encabezados de seccion con que direccion nombra SUS PROPIOS rotulos
+    # (`## E1 · ACTO GEN2-E1 · ...`); la forma larga `GEN2-E<n>` es la que el
+    # texto usa en todas partes y la que queda censada en
+    # canon/registro-rotulos.tsv por este mismo acto -- que es la mitad que D-6
+    # de verdad exige (T25 se declara "la mitad mecanica, no todo D-6").
+    # Exactamente el caso de MAESTRA38-M13 de arriba: un encargo verbatim nunca
+    # se edita para complacer un test. El `M13` del plan es, ademas, cita de un
+    # rotulo AJENO ya censado (`MAESTRA38-M13`, PR #597, en la linea de baseline
+    # del plan) -- el caso de SELLO-3.
+    # Lo que SI era editable se corrigio en vez de pedir exencion: la prosa del
+    # encolador en las cabeceras ESTADO/BITACORA de los siete archivos decia
+    # `E1-E6` pelado y se reescribio a `GEN2-E1...GEN2-E6`; verificado, las
+    # siete cabeceras quedan limpias y el residuo es 100% de direccion.
+    "forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md",
+    "forense/encargos/cola/2026-09-07-ENCARGOS-GEN2-en-orden.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E1-LIMPIEZA-C1.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E2-C0-A-DEMANDA.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E3-AUTOMATIZA-GEN2-1.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E4-LIMPIEZA-C2-PODA.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E5-CALC-0001-0003.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md",
 }
 
 
