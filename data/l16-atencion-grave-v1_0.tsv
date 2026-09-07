@@ -1,0 +1,13 @@
+# data/l16-atencion-grave-v1_0.tsv -- ACTO MAESTRA38-N14 (cierra MAESTRA38-LOTE-ENSANUT), pieza (4).
+# Celdas realizadas del falsador B-bis de salud.atencion.grave (R4.4), Rama B (ENSANUT2024).
+# Fuente: tools/medidor_l16_atencion_grave.py, re-corrido el 6/sep/2026 (cifras reproducidas idénticas a
+# forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md). Universo: integrantes con H0409A no-nulo
+# (7,645 de 36,021) cruzado con utilizadores con u0201 clasificable publico/privado (3,125 de 3,180), join
+# por FOLIO_I -> 5,289 filas. Escala: proporcion ponderada (ponde_f), IC95 por bootstrap de conglomerado
+# (estrato/UPM, 10,000 replicas, semilla 42, verbatim de tools/calibracion_mordida_encig_serie.py).
+# numerador_publico_crudo es el conteo SIN PONDERAR (u0201 en PUBLICO); proporcion_publico_ponderada
+# usa ponde_f y es la que decide el veredicto (falsador B-bis: diferencia grave-no_grave -0.2864%,
+# IC95_aprox=[-17.2835%,16.7107%] -> NO-DISCRIMINA, contiene 0).
+celda	n	numerador_publico_crudo	proporcion_publico_crudo	proporcion_publico_ponderada	ic95_inferior	ic95_superior	estratos	upm	universo	escala
+grave_H0409A_2_3	423	280	0.661939	0.522295	0.368248	0.698407	3	208	integrantes_ensanut2024_w_icb.dta x utilizadores_ensanut2024_w.dta (join FOLIO_I, H0409A no-nulo x u0201 clasificable)	proporcion ponderada (ponde_f) para IC95; crudo = conteo simple sin ponderador
+no_grave_H0409A_1_4	4866	2835	0.582614	0.525159	0.485995	0.566960	3	447	integrantes_ensanut2024_w_icb.dta x utilizadores_ensanut2024_w.dta (join FOLIO_I, H0409A no-nulo x u0201 clasificable)	proporcion ponderada (ponde_f) para IC95; crudo = conteo simple sin ponderador

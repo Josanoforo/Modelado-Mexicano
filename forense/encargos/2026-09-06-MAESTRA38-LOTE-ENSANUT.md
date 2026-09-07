@@ -37,6 +37,6 @@ Rama B, `NO-DISCRIMINA`) y L17 (`salud.vacunacion.disponible`, Rama B primaria,
 PARO parcial declarado por ponderador ambiguo sin codebook. Contador de salud
 permanece 2 de 5; `ABRE-CANDIDATO-CON-RESERVA` no se disparó. Detalle completo
 en `forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md`,
-`ADR-356` (`canon/gobernanza-v1_15.md`), `canon/registro-rotulos.tsv`
+`ADR-356` (re-verificado por `MAESTRA38-N14` contra `origin/main` real, sin colisión al momento del push final — la colisión declarada era entre esta rama y `maestra38-l2-mps2012`, dos ramas vivas, no contra `main`; `canon/gobernanza-v1_15.md`), `canon/registro-rotulos.tsv`
 (`MAESTRA38-L16`/`MAESTRA38-L17`). `tests/check.py --baseline`: LÍNEA BASE
 VERDE (3 FAIL / 171 WARN, sin novedad frente a `tests/baseline.json`).

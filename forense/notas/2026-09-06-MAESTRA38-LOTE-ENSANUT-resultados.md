@@ -174,6 +174,20 @@ viven íntegros en `milpa/tramite-ola5-propuesta-v0.yaml` (append) y esta
 nota. `tools/medidor_l16_atencion_grave.py`, `tools/medidor_l17_vacunacion_disponible.py`
 (nuevos). No se tocó `data/l2-*` (perímetro de `MAESTRA38-L2`, en paralelo).
 
+## Regularización del perímetro (asentada por `MAESTRA38-N14`)
+
+Este acto escribió `tools/medidor_l16_atencion_grave.py` y
+`tools/medidor_l17_vacunacion_disponible.py` (360 líneas) fuera del
+perímetro que el encargo original declaraba — el perímetro nombraba
+`data/l16-*`/`data/l17-*` como la salida, pero no anticipaba que
+producirlas exige un instrumento nuevo en `tools/`, y no nombró ese
+instrumento. La razón es que un falsador `NUNCA-MEDIDA` no tiene medidor
+previo que reusar: el perímetro del encargo original estaba mal
+calculado, no fue un atajo del acto. Los medidores no se borran: son el
+instrumento que `MAESTRA38-N14` reutiliza en su pieza (4) para sacar las
+celdas a `data/l16-atencion-grave-v1_0.tsv` y
+`data/l17-vacunacion-disponible-v1_0.tsv`.
+
 ## CONSUMIDO
 
 Ver `## CONSUMIDO` en `forense/encargos/2026-09-06-MAESTRA38-LOTE-ENSANUT.md`.

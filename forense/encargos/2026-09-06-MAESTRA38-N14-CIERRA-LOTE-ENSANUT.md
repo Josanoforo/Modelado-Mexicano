@@ -46,3 +46,21 @@ NO toca: `forense/prereg-caja/**` (las specs están selladas) · `milpa/**` (ya 
 
 ## CIERRE
 `tests/check.py --baseline` VERDE o PARO-reporta. Cascada D-10 en lo que la renumeración toque. Reporta: rótulo ADR final, `FP` derivado, confirmación por conteo de que no hay ADR duplicado ni L0 duplicada, y si alguna cifra de (4) no reprodujo.
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA38-N14 · CIERRA-LOTE-ENSANUT` sobre la rama
+`acto/maestra38-lote-ensanut` (PR #565, actualizado, no fusionado por
+este acto). PREMISA verificada dos veces (al arrancar y justo antes del
+push final): ni `MAESTRA38-L2` (PR #564) ni este propio PR habían
+fusionado a `origin/main` en ningún momento de la ejecución — se ejecutaron
+las piezas (2)-(5) y la (1) se re-derivó al final, conservando `ADR-356`
+sin renumerar (candidato contiguo tras `355`, sin colisión real contra
+`origin/main`; la colisión declarada es entre dos ramas vivas y la
+resuelve quien fusione segundo). Recibo asentado en el tablero, `FP-326`
+abierta por la spec `S7-L17` mal escrita (letra/dígito invertido,
+codebook confirma lo contrario), celdas de L16/L17 sacadas a
+`data/l16-atencion-grave-v1_0.tsv`/`data/l17-vacunacion-disponible-v1_0.tsv`
+(las cinco cifras re-corridas reprodujeron exactas), y perímetro
+regularizado en la nota de resultados (los dos medidores en `tools/`
+estaban fuera del perímetro original del lote, no fue atajo).
+`tests/check.py --baseline`: VERDE, sin `FAIL` nuevo.
