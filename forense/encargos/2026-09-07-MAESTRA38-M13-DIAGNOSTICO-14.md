@@ -17,3 +17,40 @@ FP/ADR CANDIDATOS — deriva, no heredes. Al redactar: FP máx 330, ADR máx 379
 CONTADOR: medición: sí — el marcador `L-solo / L+corpus / M` contra `R` se re-corre como v1.3 con métrica secundaria pre-registrada; mueve `benchmark_version` 1.2 → 1.3 y `D4` ABIERTA → FIRMADA. No mueve tiers ni el motor.
 Lo que este acto NO hace. No ejecuta el paso 3 (valor por celda en `evaluar()`: cambio de esquema del motor, ADR-29, `tests/test_emisor_m2.py`) — lo habilita con la pieza 1. No cambia `p` ni `clase` de ninguna regla. No reabre D1. No toca las cuatro conductas que el carril `N2` declaró intocables en `emisor.cargar_reglas()` (ADR-294): el cambio es en el enlace, no en el motor.
 Sucesores declarados, no lanzados. `M14` (paso 3, diseño de fase, Fable): reglas con desglose por ejes y `evaluar()` eligiendo celda por segmento — con la pieza 1 como insumo; su señal de éxito es la de D1: «cuando M deje de ser constante dentro de CIV».
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA38-M13 · M-POR-CELDA PASOS 1 Y 2`, 7/sep/2026,
+Pull Request [#592](https://github.com/Josanoforo/Modelado-Mexicano/pull/592).
+
+Pieza 1 (`forense/prereg-duelo-v2/diagnostico-14-celdas-v1_0.tsv`): censo
+de las 14 celdas contra `milpa/tramite.yaml` — solo `TRA-M-02/03/07`
+tienen una enmienda MEDIDA con firma de mesa citada por este encargo;
+`DIN-M-01` tiene una enmienda análoga (`enmienda_enif2024`) reportada, no
+aplicada (ninguna firma de este encargo la cita — sucesor declarado).
+
+Pieza 2 (`forense/prereg-duelo-v2/enlace-M-v1_1.md` +
+`marco-M-sorteado-v1_3.tsv`): re-apunta solo `TRA-M-02/03/07` a
+`paga_mordida_encig2025`, un único cambio de columna, verificado por
+`diff`.
+
+Pieza 3 (`forense/prereg-duelo-v2/procedimiento-scoring-v1_2.md` +
+`.sha256`, `agregado_v1_3.py`): scoring v1.1 verbatim + §7 (D4, métrica
+secundaria en puntos porcentuales — decisión de dirección: pp, no
+Brier). `M` de las tres celdas re-apuntadas calculado en memoria vía
+`emitir_binaria`, sin escribir `M-<id>.json` nuevo (fuera de perímetro).
+
+Resultado (`agregado-v1_3-resultado.json`, primera corrida, sin ajustar):
+`z_M` en `TRA` `98/203/229` → `−8.08/+14.28/+5.55` (confirma expectativa
+B-bis); `comparacion_principal_pareada` (primaria, `z`) sigue
+`INDETERMINADO`; `D4` (secundaria, pp) SÍ discrimina —
+`M=4.51pp [2.71,6.37]` vs `L_SOLO=11.69pp [4.13,21.72]` vs
+`L_CORPUS=19.60pp [9.28,30.92]`, `M-MENOR-ERROR-PP-QUE-L` en los dos
+pares pareados. `D1` sin cambio. `BENCHMARK-MOTORES-COMPARABLES.md`
+sección `v1.3` (append). `forense/firmas-pendientes.tsv` `FP-331`
+(`D4` → FIRMADA por merge). `canon/gobernanza-v1_15.md` `ADR-381`,
+`canon/estado-programa-v1_12.md` L0 + tabla, `canon/registro-rotulos.tsv`
+censado. `tests/check.py --baseline` VERDE, sin FAIL nuevo.
+
+Paso 3 (`evaluar()` por celda/eje, `M14`) y el re-apuntado de `DIN-M-01`
+quedan como sucesores declarados, no lanzados por este acto.
