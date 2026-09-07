@@ -1191,3 +1191,16 @@ mapeo real del bloque `a0927` (§2, letra=razón/dígito=vacuna) que
 `FP-326`/`ADR-357` ya habían corregido — la medición de `L17` no se
 re-corre, solo se deja el mapeo correcto en la spec. `v1.0` y su
 `.sha256` intactos. Medición: cero.
+
+## `ACTO MAESTRA38-TRAMITE-4` (Sonnet, 7/sep/2026) — PARO
+
+El encargo real exige el mismo adjunto que `MAESTRA38-TRAMITE-3`
+(`ADR-364`) ya declaró faltante: `TABLERO-PROGRAMA-v1_5.md` (19 030
+bytes, sha256 `ccdfe4cc...`), "pegado inline en el mensaje de
+lanzamiento". **No llegó pegado** — el mensaje solo trae la
+descripción del adjunto (nombre/tamaño/sha256), no su cuerpo. No se
+fabrica un v1.5 a partir de `v1.1` (ese defecto ya se cometió y
+corrigió en el acto anterior). Cero piezas de PERÍMETRO ejecutadas:
+`TABLERO-PROGRAMA.md`, `tools/tablero_programa.py` y `tests/check.py`
+quedan intactos. `FP-327` permanece `ABIERTA`, esperando el mismo
+adjunto de siempre. Medición: cero.

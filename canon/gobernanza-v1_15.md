@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **368 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **369 ADR**
 
 > | | |
 > |---|---|
@@ -6364,3 +6364,13 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Deuda que cierra.** Ninguna (defecto de mapeo ya cerrado por `ADR-357`/`FP-326`; esta pieza solo deja la spec congelada consistente).
 
 **Numeración.** Derivado contra `origin/main = b1be143` (máximo real `367`, `ADR-367` `AUTOMATIZA-1-E3`, fusionado `PR #572`), candidato `368`, sin huecos.
+
+**ADR-369 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `368`, contiguo, sin huecos; candidato `369`) · `ACTO MAESTRA38-TRAMITE-4`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — PARO, cero piezas sustantivas ejecutadas. El adjunto que el encargo declara obligatorio (`TABLERO-PROGRAMA-v1_5.md`, 19 030 bytes, `sha256 ccdfe4cc...`, "pegado inline en el mensaje de lanzamiento") no llegó pegado al mensaje real que invocó `/acto`: solo llegó su descripción (nombre/tamaño/sha256), no su cuerpo — misma condición que dejó `FP-327` `ABIERTA` en `ACTO MAESTRA38-TRAMITE-3` (`ADR-364`/`366`). No se fabrica un v1.5 a partir de `v1.1` (defecto ya declarado y corregido en el acto anterior). `FP-327` permanece `ABIERTA`, sin tocar. `forense/tablero/TABLERO-PROGRAMA.md`, `tools/tablero_programa.py` y `tests/check.py` quedan intactos.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-TRAMITE-4.md`. **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo, no dispara verificación.
+
+**Deuda que abre.** Ninguna nueva — `FP-327` sigue exactamente como estaba.
+
+**Deuda que cierra.** Ninguna.
+
+**Numeración.** Derivado contra `origin/main` (máximo real `368`, `ADR-368` `MAESTRA38-N18`, este mismo acto en la misma sesión/rama), candidato `369`, sin huecos.
