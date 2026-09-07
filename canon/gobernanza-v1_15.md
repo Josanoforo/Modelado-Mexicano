@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **375 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **376 ADR**
 
 > | | |
 > |---|---|
@@ -6502,3 +6502,21 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **`tests/check.py --baseline`**: ver la nota de cierre.
 
 **Numeración.** Candidateó `374` contra `origin/main = e1c3c84073e7d246aa3399410e014242875e52ba` (máximo real `373`, contiguo, sin huecos). Renumerado a `375` al sincronizar contra `origin/main = 8bc1a5dca18a798e663b4795a18695e68074e673`: en el intervalo fusionó `ADR-374` (`ACTO MAESTRA38-L16-BIS · RAMA A ENNViH`, `PR #581`) -- regla de la casa, renumera quien fusiona segundo.
+
+---
+
+**ADR-376 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `375` contra `origin/main = 3a04d535`, candidato `376`, contiguo, sin huecos) · `ACTO AUTOMATIZA-2-B · CIERRA-TERCER-CONTADOR`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — segunda pieza de la tanda `AUTOMATIZA-2`, lanzada tras la fusión de `A` (`PR #582`). Defecto real: `tools/cierre_acto.py` (`ACTO AUTOMATIZA-1-E3`) reconciliaba mecánicamente sólo dos citas del conteo de ADR — la cabecera de `canon/gobernanza-v1_15.md` y `L0` de `canon/estado-programa-v1_12.md` — dejando viva una TERCERA cita del mismo número, la fila `gobernanza` de la tabla de nombres estables (`estado-programa` §0: `| **\`gobernanza\`** | \`gobernanza-v1.15.md\` | N ADR, protocolo de cambio |`), que ya requirió recifrado manual repetido en actos previos (declarado a mano en la propia entrada de `ADR-372`). Añade `TABLA_ADR_RE` (ancla el nombre COSMÉTICO con punto `gobernanza-v1.15.md`, ADR-36, nunca el filename físico `gobernanza-v1_15.md` con guion bajo, y nunca por número de línea) a `tools/cierre_acto.py`; `canon/estado-programa-v1_12.md` se lee UNA vez y se escribe UNA vez — `L0` y la fila de tabla se reconcilian en secuencia sobre el mismo buffer en memoria (nunca dos ciclos independientes de read/write), cada paso validado contra su buffer inmediato anterior antes de aceptarlo. Atomicidad ampliada a `1/1/1` anclas (cabecera/L0/tabla) antes de escribir cualquier archivo — aborta con `APLICACION_ABORTADA · 0 archivos escritos` si cualquiera de las tres no es única — y preserva la semántica heredada de `E3`: si el segundo `os.replace()` falla después de que el primero ya confirmó, el reporte dice el estado real, nunca "0 archivos escritos" siendo falso. Fase A del dry-run reporta ahora las tres cifras (`ADR reales`/`Cabecera declara`/`L0 declara`/`Tabla estado declara`) y sus divergencias; Fase B exitosa imprime `APLICADO: gobernanza X->N · L0 Y->N · tabla estado Z->N` (sólo las que de verdad cambiaron), y una corrida ya reconciliada imprime `sin cambios`. `tests/test_cierre_acto.py` gana dos casos (ancla de tabla rota/duplicada aborta todo-o-nada, distinto del caso ya existente de `L0` rota) y extiende los otros cinco a las tres cifras — 7 pruebas, 0 fallos. `.claude/commands/acto.md` §4 paso 3: única frase tocada, habla de "los TRES contadores puramente mecánicos" en vez de "los dos" — no amplía la autoridad de `cierre_acto.py`: redactar el ADR, insertar la anotación semántica de `L0`, decidir rótulos, firmar `FP` y decidir pendientes siguen siendo humanos. **Contador:** recifrados ADR mecánicos manuales por acto, `1 → 0`.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-AUTOMATIZA-2-B-CIERRA-TERCER-CONTADOR.md`. **Gate verificado.** El paquete de lanzamiento condiciona `B` a que mesa fusione `A` primero (secuencia estricta, no apilar) y a que el producto de `A` esté en `origin/main`: verificado al arrancar — `git show origin/main:tools/verifica_head_remoto.py` existe, y `.claude/commands/acto.md`/`.claude/commands/despacha.md` en `origin/main` ya incluyen el guard final de HEAD (`grep` de las dos secciones, líneas 222/230 y 527/537 respectivamente). `origin/main` en `3a04d535...` = `Merge pull request #582 from Josanoforo/claude/automatiza-2-cableado-post-e3-mb1anf`.
+
+**Gap de archivo declarado (heredado de A).** El `DICTAMEN · PLAN AUTOMATIZA-2 · CABLEADO POST-E3` (sha256 `b6b754903372b609f90ebb93197f1a6b29b6c265d95d015320d3d2d098a84f7a`) sigue sin llegar a ninguna sesión de esta tanda — re-verificado contra el árbol fresco tras la fusión de `A`, sin rastro nuevo. Mismo A.3 verbatim que `A` (mismo `ENCARGO FINAL` + `PAQUETE`), mismo gap declarado, no fabricado.
+
+**Perímetro.** Toca `tools/cierre_acto.py` (tercera ancla), `tests/test_cierre_acto.py` (extensión), `.claude/commands/acto.md` (una frase), `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_12.md`, `tests/check.py` (sólo `_T25_ARCHIVOS_CONOCIDOS`), notas, A.3, cascada. **No toca** corpus, `data/raw`, `descargas_mx`, raíces físicas, manifiesto, adquisición, relaciones, motor, `baseline --freeze`, CI, GitHub Actions, reglas de protección de rama, `Downloads`.
+
+**Deuda que abre.** El texto verbatim del dictamen sigue sin archivarse (ver "Gap de archivo declarado").
+
+**Deuda que cierra.** El recifrado manual repetido de la tercera cita (fila `gobernanza` de la tabla de `estado-programa`), declarado a mano en `ADR-372` y en actos anteriores.
+
+**`tests/check.py --baseline`**: ver la nota de cierre.
+
+**Numeración.** Derivado contra `origin/main = 3a04d5359566c073e8bd49cd3c32db8b7ef58f48` (máximo real `375`), candidato `376`, contiguo, sin huecos.
