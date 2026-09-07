@@ -17,7 +17,8 @@ Entregable: forense/notas/2026-09-07-GEN2-E1-limpieza-arboles.md con las tres ta
 
 Ejecutado por `ACTO GEN2-E1 · LIMPIEZA-C1` (7/sep/2026, UBUNTU/caja, sin nube por diseño —
 COMPUERTA: ninguna). Rama `acto/gen2-e1-limpieza-c1`, worktree propio `mm-gen2-e1-limpieza-c1`
-creado desde `origin/main`. Commit A.3 `59c5d76`; commit de cascada (nota + `FP-338`) `6543b2d`.
+creado desde `origin/main`. Commit A.3 `59c5d76`; commit de cascada (nota + `FP-338`, renumerada a
+`FP-340` al sincronizar, ver abajo) `6543b2d`.
 **Sin PR** — el encargo pide explícitamente "no empuja nada"; el resultado queda committeado
 localmente, sin `git push`, para revisión de mesa en la misma máquina.
 
@@ -27,10 +28,23 @@ lista de poda de 114 candidatos con evidencia (PR fusionado o cero divergencia),
 método declarada antes de medir (el `find -type d -name .git` del encargo no ve worktrees enlazados;
 el inventario real usó `git worktree list --porcelain`).
 
-`FP-338` queda **ABIERTA**, no `RECIBO -- no requiere firma`: 2 worktrees con commits propios no
-empujados y sin PR (`mm-maestra37-l2-mps-codebook`, `mm-maestra38-v1`) exigen decisión de mesa antes
-de podar nada; la firma de la lista completa de 114 candidatos queda para un acto de mesa aparte.
-Ningún borrado, movimiento ni push ocurrió en este acto.
+`FP-340` (originalmente candidateada como `FP-338`) queda **ABIERTA**, no `RECIBO -- no requiere
+firma`: 2 worktrees con commits propios no empujados y sin PR (`mm-maestra37-l2-mps-codebook`,
+`mm-maestra38-v1`) exigen decisión de mesa antes de podar nada; la firma de la lista completa de 114
+candidatos queda para el acto sucesor `GEN2-E4 · LIMPIEZA-C2 · PODA`. Ningún borrado, movimiento ni
+push ocurrió en este acto.
+
+**Sincronización posterior con `origin/main`** (mismo día, tras avanzar de `03bcd6f` a `65a7dbb`,
+13 commits): `git merge origin/main` produjo 3 conflictos, todos en archivos append-only que otros
+actos también tocaron (`canon/registro-rotulos.tsv`, `forense/firmas-pendientes.tsv`,
+`tests/check.py`) — resueltos con la convención ya establecida en este repo (entrada de `origin/main`
+primero, la propia después, verbatim, sin reordenar ni editar ninguna de las dos). `origin/main` ya
+traía su propio `FP-338` (y `FP-339`) para `ACTO GEN2-E2 · C0-A DEMANDA`, PR #599, fusionado antes:
+regla de la casa, renumera quien fusiona segundo — esta fila pasa a `FP-340` en
+`forense/firmas-pendientes.tsv` y en `canon/registro-rotulos.tsv`. La sincronización también reveló
+que `E4` (citado bare en el cuerpo verbatim de este mismo encargo) es `GEN2-E4 · LIMPIEZA-C2 · PODA`,
+ya censado por `ACTO GEN2-E0 · ENCOLA` — confirma, no contradice, lo que la nota de cierre ya decía
+("un acto de mesa aparte"). Suite tras el merge: **LÍNEA BASE: VERDE**, sin entradas nuevas.
 
 `python3 tests/check.py --baseline`: la primera corrida trajo 3 entradas nuevas frente a
 `tests/baseline.json` — T03 (cita bare del archivo local de raíces sin el prefijo de directorio, corregida en

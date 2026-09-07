@@ -182,6 +182,20 @@ def t02_duplicates():
             # FP-59) -- colisiona por diseño con sus originales vivos, mismo
             # criterio que data/raw. FP-293/ACTO MAESTRA38-N4 (4/sep/2026).
             continue
+        if re.search(r"/data/corrida0/CALC-[A-Za-z0-9_.-]+/", p.replace(os.sep, "/") + "/"):
+            # ACTO GEN2-E3 · AUTOMATIZA-GEN2-1 (7/sep/2026). Un recibo de
+            # corrida se llama `spec.md`/`spec.yaml`/`medidor.py`/
+            # `ejecucion.json`/`resultados.json`/`sello.json` SIEMPRE: el
+            # nombre lo fija `corrida0 run`, no quien escribe la spec, y por
+            # eso `CALC-0001/resultados.json` y `CALC-0002/resultados.json`
+            # van a colisionar por diseño en cuanto E5 escriba la segunda
+            # corrida -- igual que `conjunto_de_datos.csv` bajo `data/raw`.
+            # by_hash tampoco aporta aquí: la custodia por contenido de cada
+            # recibo la lleva su propio `sello.sha256` (verificable con
+            # `tools/sella_sha256.py --verifica`) más `git_commit` +
+            # `script_blob_sha256` + `input_sha256` dentro de `ejecucion.json`.
+            # `data/corrida0/demanda-*.tsv` (GEN2-E2) NO queda exento.
+            continue
         if not os.path.isfile(p):
             continue
         by_name[norm(os.path.basename(p))].append(rel(p))
@@ -1996,6 +2010,29 @@ def _classify(test, msg):
             # ausencia; T03 la confirma, no es un defecto nuevo. Desaparece cuando
             # MOTOR-1 corra con los archivos en mano, o si alguien retira la cita.
             return "T03_encargo_MOTOR-1_cita_archivos_nunca_entregados_a_la_sesion__PROC-10-bis_declara_PARA"
+        if ("GEN2" in msg and ("forense/encargos/cola/2026-09-07-" in msg
+                                or "forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md" in msg)):
+            # ACTO GEN2-E0 · ENCOLA, 7/sep/2026: las cuatro citas colgantes de
+            # las piezas GEN2 son texto de direccion archivado VERBATIM
+            # (A.3 / forense/encargos/convencion.md), y ninguna es un defecto:
+            #  (a) `PROPUESTA-CORRIDA-0-v1_1-2026-09-07.md` y
+            #      `AUTOMATIZACION-GEN2-y-LIMPIEZA-2026-09-07.md` NO se encolan
+            #      y no existiran nunca: el propio PLAN-FINAL-GEN2 v2.0 declara
+            #      en su linea 2 que "integra y sustituye" a ambos. La cita es
+            #      historica -- nombra los documentos que el plan absorbio.
+            #  (b) `-E6-AUTOMATIZA-GEN2-2.md` es la cola de la elipsis con que
+            #      E0 enumera los seis archivos ("`...-E1-LIMPIEZA-C1.md` ...
+            #      `-E6-AUTOMATIZA-GEN2-2.md`"); el archivo real existe con su
+            #      fecha delante (2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md).
+            #      Mismo patron que el "v2_6.md" de A8-LAND (ADR-78).
+            #  (c) `spec.yaml` / `spec.md` son los nombres genericos del contrato
+            #      de dos capas que el plan define (§3) y que E3/E5 crearan bajo
+            #      data/corrida0/CALC-NNNN/. Citar un artefacto que un encargo
+            #      futuro producira no es una referencia colgante.
+            # Acotado a las rutas GEN2 de este acto a proposito: no perdona
+            # `spec.yaml` en ningun otro archivo del arbol.
+            return ("T03_pieza_GEN2_verbatim__doc_sustituido_por_el_plan_v2_0__"
+                     "elipsis_de_nombre__o_artefacto_que_E3-E5_creara")
         if name == "propuesta-motor-matriz-v0_2.md":
             # ACTO PROC-10-bis, 13/ago/2026: el encargo original (archivado verbatim,
             # §3 PERÍMETRO de MOTOR-1) cita "propuesta-motor-matriz-v0_2.md" -- solo
@@ -2110,7 +2147,22 @@ def _freeze_note():
                       "exit 1 el 17/ago. La suite cruda no se mueve y T22 sigue emitiendo sus "
                       "19 WARN en cada corrida: cambia qué cuenta como regresión nueva, no qué "
                       "reporta la suite. Detalle completo: "
-                      "forense/notas/2026-08-17-t22-deriva.md."),
+                      "forense/notas/2026-08-17-t22-deriva.md. "
+                      "Re-congelada el 7/sep/2026, ACTO GEN2-E0 · ENCOLA, autorizada "
+                      "explícitamente por mesa en la sesión tras que el ejecutor PARARA en el "
+                      "paso 4 de `/encola`, reportara las 16 entradas nuevas con su token exacto "
+                      "y pusiera la decisión a dirección («los archivos que te pasé son los "
+                      "finales»). Absorbe 8 WARN de T03, todas del mismo bucket "
+                      "`T03_pieza_GEN2_verbatim__…` y todas sobre texto de dirección archivado "
+                      "verbatim (A.3): 2 nombran los documentos que el propio PLAN-FINAL-GEN2 "
+                      "v2.0 declara haber absorbido («integra y sustituye»), 1 es la cola de una "
+                      "elipsis de nombre de archivo (patrón M6-sello) y 5 citan `spec.yaml` / "
+                      "`spec.md`, el contrato de dos capas que GEN2-E3 y GEN2-E5 crearán bajo "
+                      "`data/corrida0/CALC-NNNN/`. Cero FAIL nuevos y cero bajas: los 8 T25 que "
+                      "esta misma sesión produjo NO se congelaron — se resolvieron por exención "
+                      "de archivo con censo en `canon/registro-rotulos.tsv`, y antes de pedirla "
+                      "el ejecutor corrigió los rótulos pelados de su PROPIA prosa de bitácora, "
+                      "que sí era editable. Detalle completo: el PR `[COLA]` de este acto."),
         "fecha_de_clasificacion": "2026-08-17",
         "conteo_por_bucket": dict(sorted(buckets.items())),
     }
@@ -3950,16 +4002,36 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # real ajeno a este acto (mismo patrón que TRAMITE-6/N20-N21 de arriba).
     # El texto verbatim no se edita (A.3).
     "forense/encargos/2026-09-07-MAESTRA38-SELLO-3.md",
+    # ACTO GEN2-E0 · ENCOLA, 7/sep/2026: las siete piezas de la cola GEN2 y el
+    # plan que las gobierna, archivados VERBATIM (A.3). Los `E<n>` pelados son
+    # los encabezados de seccion con que direccion nombra SUS PROPIOS rotulos
+    # (`## E1 · ACTO GEN2-E1 · ...`); la forma larga `GEN2-E<n>` es la que el
+    # texto usa en todas partes y la que queda censada en
+    # canon/registro-rotulos.tsv por este mismo acto -- que es la mitad que D-6
+    # de verdad exige (T25 se declara "la mitad mecanica, no todo D-6").
+    # Exactamente el caso de MAESTRA38-M13 de arriba: un encargo verbatim nunca
+    # se edita para complacer un test. El `M13` del plan es, ademas, cita de un
+    # rotulo AJENO ya censado (`MAESTRA38-M13`, PR #597, en la linea de baseline
+    # del plan) -- el caso de SELLO-3.
+    # Lo que SI era editable se corrigio en vez de pedir exencion: la prosa del
+    # encolador en las cabeceras ESTADO/BITACORA de los siete archivos decia
+    # `E1-E6` pelado y se reescribio a `GEN2-E1...GEN2-E6`; verificado, las
+    # siete cabeceras quedan limpias y el residuo es 100% de direccion.
+    "forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md",
+    "forense/encargos/cola/2026-09-07-ENCARGOS-GEN2-en-orden.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E1-LIMPIEZA-C1.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E2-C0-A-DEMANDA.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E3-AUTOMATIZA-GEN2-1.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E4-LIMPIEZA-C2-PODA.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E5-CALC-0001-0003.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md",
     # ACTO GEN2-E1 · LIMPIEZA-C1, 7/sep/2026: encargo archivado VERBATIM
-    # (A.3). Cita "para firma de mesa (E4)" -- E4 es el paso siguiente
-    # (revisión/firma de mesa) que este mismo texto de mesa nombra y que
-    # este acto explícitamente NO ejecuta ("cada fila con su evidencia...
-    # para firma de mesa"). Ya censado como token bare colisionante en
-    # `canon/registro-rotulos.tsv` (fila E4, HABITANTE ACTO DISENO-ENSAFI) --
-    # esta es una mención nueva del mismo token pelado, no una reclamación:
-    # el acto se declara `GEN2-E1` en todo archivo propio que escribe y no
-    # reclama la forma bare. El texto verbatim no se edita (A.3); la nota de
-    # cierre de este mismo acto (forense/notas/2026-09-07-GEN2-E1-limpieza-
+    # (A.3, ruta SIN `cola/` -- distinta de la ya exenta arriba por GEN2-E0).
+    # Cita "para firma de mesa (E4)" -- E4 es GEN2-E4 · LIMPIEZA-C2 · PODA
+    # (censado arriba en la fila GEN2-E0..GEN2-E6 de registro-rotulos.tsv,
+    # el acto sucesor que ejecutará la poda), no una reclamación ni un
+    # rótulo nuevo. El texto verbatim no se edita (A.3); la nota de cierre
+    # de este mismo acto (forense/notas/2026-09-07-GEN2-E1-limpieza-
     # arboles.md) se redactó para no repetir el token pelado, así que no
     # necesita esta exención.
     "forense/encargos/2026-09-07-GEN2-E1-LIMPIEZA-C1.md",
@@ -4363,6 +4435,20 @@ def t27_infraestructura():
         relp = rel(p)
         if relp in _T_INFRA_ARCHIVOS_CONOCIDOS:
             continue
+        # ACTO GEN2-E3 · AUTOMATIZA-GEN2-1 (7/sep/2026). `data/corrida0/CALC-*/`
+        # es el RECIBO de una corrida, no infraestructura del repo: sus archivos
+        # (`spec.md`, `spec.yaml`, `medidor.py`, `ejecucion.json`,
+        # `resultados.json`, `sello.json`, `sello.sha256`) los escribe
+        # `corrida0 run` uno por corrida, y exigir una fila de
+        # `INFRAESTRUCTURA-v1_0.md` por corrida convertiría ese archivo en un
+        # registro de corridas -- que es justo lo que `corrida0 registro` (B-1,
+        # GEN2-E6) va a ser. La custodia NO se pierde: cada directorio trae su
+        # `sello.sha256` verificable con `tools/sella_sha256.py --verifica`, y
+        # `ejecucion.json` fija `git_commit` + `script_blob_sha256` +
+        # `input_sha256`. La familia `data/corrida0/demanda-*.tsv` NO está
+        # exenta: sigue citada en INFRAESTRUCTURA §`data/corrida0/` (GEN2-E2).
+        if re.match(r"^data/corrida0/CALC-[A-Za-z0-9_.-]+/", relp):
+            continue
         base = os.path.basename(p)
         if base in infra_text or relp in infra_text:
             continue
@@ -4723,6 +4809,42 @@ def t31_cron():
                     f"forense/cron/REGISTRO-CRON-v1_0.md §5")
 
 
+# ───────────────────────────────────────────────────────────────
+# T32 · T-CORRIDA0 -- ACTO GEN2-E3 · AUTOMATIZA-GEN2-1, 7/sep/2026.
+#
+#   `tools/corrida0.py` dejó de ser un derivador de TSV y pasó a ser el
+#   aparato que decide si una corrida se ejecuta (`preflight`), qué queda
+#   sellado de ella (`run`) y si reproduce (`verify`). Un aparato así sin
+#   test es peor que no tenerlo: produce recibos que nadie falsó. Este
+#   test corre `tests/test_corrida0.py` -- unidad con fixtures pequeños,
+#   SIN CORPUS y sin red -- y sube sus fallos como FAIL de la suite.
+#
+#   Límite declarado: `tests/test_corrida0.py` NO prueba el smoke
+#   `CALC-SMOKE-0001` de punta a punta. `run` exige árbol limpio y la
+#   suite corre casi siempre con el árbol sucio, así que un test que lo
+#   intentara fallaría por el motivo equivocado. El smoke se corre a mano
+#   y su recibo queda en `data/corrida0/CALC-SMOKE-0001/ejecucion.json`.
+# ───────────────────────────────────────────────────────────────
+def t32_corrida0():
+    ruta = os.path.join(ROOT, "tests", "test_corrida0.py")
+    if not os.path.exists(ruta):
+        fail("T-CORRIDA0", "no existe `tests/test_corrida0.py`")
+        return
+    try:
+        import importlib.util as _iu
+        _spec = _iu.spec_from_file_location("test_corrida0_desde_check", ruta)
+        _mod = _iu.module_from_spec(_spec)
+        sys.modules[_spec.name] = _mod
+        _spec.loader.exec_module(_mod)
+        fallos = _mod.corre()
+    except Exception as exc:
+        fail("T-CORRIDA0", f"`tests/test_corrida0.py` no pudo correr: "
+                            f"{type(exc).__name__}: {exc}")
+        return
+    for f in fallos:
+        fail("T-CORRIDA0", f)
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -4758,6 +4880,7 @@ def main():
         ("T29 T-FIRMAS-2",                         t29_firmas_2_no_perdidas),
         ("T30 T-YAMEDIDO",                         t30_yamedido),
         ("T31 T-CRON",                              t31_cron),
+        ("T32 T-CORRIDA0",                           t32_corrida0),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
