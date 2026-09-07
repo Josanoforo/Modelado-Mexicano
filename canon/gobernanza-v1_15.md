@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **370 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **371 ADR**
 
 > | | |
 > |---|---|
@@ -6365,6 +6365,8 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 
 **Numeración.** Derivado contra `origin/main = b1be143` (máximo real `367`, `ADR-367` `AUTOMATIZA-1-E3`, fusionado `PR #572`), candidato `368`, sin huecos.
 
+---
+
 **ADR-369 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `368`, contiguo, sin huecos; candidato `369`) · `ACTO MAESTRA38-TRAMITE-4`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — PARO, cero piezas sustantivas ejecutadas. El adjunto que el encargo declara obligatorio (`TABLERO-PROGRAMA-v1_5.md`, 19 030 bytes, `sha256 ccdfe4cc...`, "pegado inline en el mensaje de lanzamiento") no llegó pegado al mensaje real que invocó `/acto`: solo llegó su descripción (nombre/tamaño/sha256), no su cuerpo — misma condición que dejó `FP-327` `ABIERTA` en `ACTO MAESTRA38-TRAMITE-3` (`ADR-364`/`366`). No se fabrica un v1.5 a partir de `v1.1` (defecto ya declarado y corregido en el acto anterior). `FP-327` permanece `ABIERTA`, sin tocar. `forense/tablero/TABLERO-PROGRAMA.md`, `tools/tablero_programa.py` y `tests/check.py` quedan intactos.
 
 **Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-TRAMITE-4.md`. **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo, no dispara verificación.
@@ -6374,6 +6376,20 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Deuda que cierra.** Ninguna.
 
 **Numeración.** Derivado contra `origin/main` (máximo real `368`, `ADR-368` `MAESTRA38-N18`, este mismo acto en la misma sesión/rama), candidato `369`, sin huecos.
+
+---
+
+**ADR-371 (derivado tras sincronizar con `origin/main`: máximo real `370` -- `ADR-370` `ACTO MAESTRA38-C1 · RE-ASIENTO`, `PR #577`, fusionado mientras esta rama seguía abierta -- candidato `371`, regla de la casa: quien fusiona segundo renumera) · `ACTO MAESTRA38-LOTE-CRUCE`**, 6/sep/2026, entorno **CAJA (Ubuntu, corpus montado)** — cruce de seis piezas, **medición: cero**, ningún veredicto de regla, ningún tier movido. Las seis cerraron; ninguna PARÓ. `COMMIT-1`: `forense/prereg-caja/S11-CRUCE-spec-v1_0.md` (+ `.sha256` `c78a894d…`) congela el universo de búsqueda por pieza y declara **cuatro premisas del encargo que no se reprodujeron** antes de abrir un solo archivo de datos. `COMMIT-2`, por pieza: **(a)** los 19 instrumentos mínimos de `MAESTRA38-N12 §1` contra las tres fuentes de A4 + la base de protesta (122 archivos, 22 969 filas, 15 141 con texto) → **0 `CUBIERTO-POR`, 8 `PARCIAL`, 11 `SIN-COBERTURA`** (`data/cruce-ola6-v1_0.tsv`); el dominio `tiempo` queda 4/4 sin cobertura. **(b)** los tres constructos de `R7.3`/`R7.6` → **`CUBIERTO` los tres**, y no por LAPOP: por **CIDE-CSES 2015**, tres `.sav` que estaban en el manifiesto con **0 filas en los cuatro inventarios** y que este acto inventarió — batería `pcyc*` que separa el ofrecimiento condicionado (`pcyc13`) de la **amenaza de retiro** del beneficio (`pcyc14`), más un **experimento de encuadre** sobre el secreto del voto (`pvoto1`/`pvoto2`/`pvoto3`). **(c)** ENVIPE → **`NO-CUBRE`**: tiene `AGRAVIO`, `FALLA_ESTATAL` y estrato rural real (`DOMINIO=R`, n=3 770 en 2025), pero no tiene `RED_PREVIA` **ni el desenlace** — 0 líneas de protesta/manifestación/marcha/bloqueo/plantón en las 5 392 del FD 2025. **(d)** las 29 relaciones `NO-ENCONTRADO` → **14 `PARALELA-CUBRE`, 10 `PARALELA-PARCIAL`, 5 `NINGUNA-EN-CORPUS`**; `relaciones.tsv` no se edita. **(e)** `tramite.gobierno_digital.coercitivo` → **`SIN-COBERTURA`**, 0 aciertos de e.firma con texto sobre 350 832 filas, con control positivo (`trámite` → 26). **(f)** LAPOP 2021/2023 → la premisa de `SELLO-2 §B` («0 filas en el inventario») **no se reproduce** (262 y 585 filas con texto desde `v1_1`), y lo que sí es cierto es peor: **`clien1n`/`clien1na` no existen en ninguna de las dos olas** (leído del `.dta`, no del inventario; 2021 no trae ninguna variable `clien*`). No se escribe `S5 v1.1`, no se escribe spec `N7`, no se toca `milpa/`. `tests/check.py --baseline` VERDE.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-06-MAESTRA38-LOTE-CRUCE.md`, con anexo A.8 del ejecutor fuera del bloque verbatim (`tools/ya_medido.py` corrido sobre `R7.3`/`R7.4`/`R7.6`/`R7.7`/`R10.3` → `MEDIDA-EN:`, y `tramite.gobierno_digital.coercitivo` → `NUNCA-MEDIDA`; el anexo va aparte porque `T-YAMEDIDO` lo exige y `tests/*.py` es NO-TOCA en este perímetro). **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo, no dispara verificación.
+
+**Deuda que abre.** `FP-329` (recibo del acto). Y tres cláusulas de movimiento que este acto encuentra **inejecutables contra la fuente que nombran**, todas selladas esta misma semana: `R7.4` contra ENVIPE (`FP-316 (b)`/`ADR-363`), `tramite.gobierno_digital.coercitivo` contra el corpus, y las tres `se_mueve_si` de `SELLO-2 §B` condicionadas a `clien1n`/`clien1na`. **No se re-especifica ninguna aquí** — es decisión de mesa; este acto sólo mide que no se pueden disparar.
+
+**Deuda que cierra.** Ninguna se firma. `FP-303` recibe **enmienda append** («A3 corrió: 8 de 19, y las ocho `PARCIAL`»), y sigue `ABIERTA`.
+
+**Corrección de infraestructura, y corrección del propio COMMIT-1 de este acto.** `S11 §0.1` leyó que `data/inventario-reactivos-descargas-mx-v1_2.tsv` (copia byte-idéntica de `v1_0`, 13 599 líneas más corta que `v1_1`) estaba «por debajo» de `v1_1`, y anunció reconstruirlo como superconjunto de `v1_1`. La diferencia de conjuntos, medida en COMMIT-2 **antes** de escribir el archivo, lo desmiente: `v1_2 \ v1_1 = 9 443` (las filas de `UNIVERSO-2026-09/` que `ACTO MAESTRA38-A1` depositó después de generarse `v1_1`), `v1_1 \ v1_2 = 23 035`, intersección `19 480`. **Ninguna de las dos versiones contiene a la otra**: el número de versión no ordenaba el contenido, señalaba otro linaje, y reconstruir desde `v1_1` habría borrado 9 443 filas en silencio sin que ningún test lo viera. `v1_2` queda como **unión verificada de tres conjuntos** — `v1_1` (42 515) ∪ `v1_2` anterior (28 923) ∪ 24 169 nuevas = **76 127 filas únicas**, `v1_1` intacto. La spec de COMMIT-1 está congelada con su `.sha256` y no se edita: la corrección vive en `§0-bis` de la nota de resultados.
+
+**Numeración.** Colisión detectada al fusionar: `origin/main` avanzó a `c275952` (`PR #577`, `ADR-371` `ACTO MAESTRA38-C1 · RE-ASIENTO`, tomó el candidato `370` primero) mientras esta rama seguía abierta. Renumerado `370`→`371` al sincronizar contra `origin/main` real (máximo `370`), regla de la casa: quien fusiona segundo renumera. `FP-329` (abajo) también colisionaba con el `FP-329` de `PR #577` — renumerado a `FP-329`.
 
 ---
 
