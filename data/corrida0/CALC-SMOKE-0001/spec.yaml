@@ -1,0 +1,76 @@
+# CALC-SMOKE-0001 -- spec ejecutable del replay sellado (ACTO GEN2-E3).
+# El texto que gobierna esta spec es spec.md; este YAML es su cara mecanica.
+calc_id: CALC-SMOKE-0001
+spec_md: spec.md
+spec_md_sha256: 4afeaf471837c6df8bf2bac5e98f71aad8f02c6de79bb7ca7064af41193eaa7f
+
+script: data/corrida0/CALC-SMOKE-0001/medidor.py
+
+# Etiquetas del smoke -- viajan a ejecucion.json y no se pueden perder.
+etiquetas:
+  generacion: LEGACY-GEN1
+  tipo: REPLAY-SMOKE
+  cuenta_gen2: "NO"
+  validacion_independiente: NO-HECHA
+
+# Insumos VERSIONADOS (origen: repo). Limite declarado en spec.md §5:
+# corridas-{R,M,L}/ se leen como directorio y su identidad colectiva la fija
+# git_commit, no una lista que aparentaria ser exhaustiva sin serlo.
+inputs:
+  - id: IN-AGREGADO-V1-3
+    origen: repo
+    ruta: forense/prereg-duelo-v2/agregado_v1_3.py
+    sha256: efcba00d57890bc72ff6cb17f6465063f3b64f12adca63981d58d78f5d1f9b21
+  - id: IN-AGREGADO-V1-2
+    origen: repo
+    ruta: forense/prereg-duelo-v2/agregado_v1_2.py
+    sha256: d7f2d4c83969b72bc7158d6d80706d2f66f7a9e46cc93efa66784e50b97b63b7
+  - id: IN-AGREGADO-V1-1
+    origen: repo
+    ruta: forense/prereg-duelo-v2/agregado_v1_1.py
+    sha256: 3e8a36bd0d60ee7592a6a90a6da7fb7eeddc129276d5e28985a9b7969e8514ce
+  - id: IN-SCORING-ADV1-M3
+    origen: repo
+    ruta: forense/prereg-duelo-v2/scoring-adv1-m3.py
+    sha256: 63418cc8cfdb03ba5d851d01f1bba23e2f21dbac5cfbed2d88c2832cba13a8cf
+  - id: IN-MARCO-M-SORTEADO-V1-3
+    origen: repo
+    ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+    sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
+  - id: IN-L-EXTRAIDO-V1-2
+    origen: repo
+    ruta: forense/prereg-duelo-v2/L-extraido-v1_2.tsv
+    sha256: 8c9c5fb4707a7b852dcae6e5bb31618263d2b6d5145e5d8a0d6618f6fba6239c
+
+# Copiados verbatim de parametros_sellados del procedimiento v1.2. No se
+# eligen aqui: re-elegirlos seria re-pre-registrar el duelo por detras.
+parametros:
+  replicas: 10000
+  nivel_ic: 0.95
+  delta: 0.5
+seed: 42
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    7/sep/2026: dos corridas del mismo agregado sobre el mismo arbol
+    difirieron 3e-15 en ic_hi (redondeo de float64 en una suma reasociada).
+    1e-10 deja pasar ese ruido y sigue atrapando cualquier cambio real.
+    Los enteros se comparan EXACTO -- la tolerancia se aplica por tipo del
+    valor, no por tipo de la spec.
+
+resultados:
+  - {id: RESULT-SMOKE-PRINCIPAL-PUNTO,     tipo: flotante}
+  - {id: RESULT-SMOKE-PRINCIPAL-IC-LO,     tipo: flotante}
+  - {id: RESULT-SMOKE-PRINCIPAL-IC-HI,     tipo: flotante}
+  - {id: RESULT-SMOKE-SECUNDARIA-PUNTO,    tipo: flotante}
+  - {id: RESULT-SMOKE-SECUNDARIA-IC-LO,    tipo: flotante}
+  - {id: RESULT-SMOKE-SECUNDARIA-IC-HI,    tipo: flotante}
+  - {id: RESULT-SMOKE-N-CELDAS-UNIVERSO,   tipo: entero}
+  - {id: RESULT-SMOKE-REPLICAS,            tipo: entero}
+  - {id: RESULT-SMOKE-SEED,                tipo: entero}
+
+# Vacio DECLARADO, no olvidado: este calculo no lee reactivos de ningun
+# instrumento (spec.md §6).
+variables: []
