@@ -3889,6 +3889,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # acto escribe el rotulo va siempre con prefijo completo
     # (AUTOMATIZA-2-D) -- D-6.
     "forense/encargos/2026-09-07-AUTOMATIZA-2-D-COSTURAS-FINALES.md",
+    # ACTO MAESTRA38-TRAMITE-6, 7/sep/2026: encargo archivado VERBATIM
+    # (A.3). Su bloque CARRILES cita "M13 (nube: forense/prereg-duelo-v2/)"
+    # -- un carril paralelo real, ajeno a este acto (declarado solo por
+    # concurrencia, mismo patron que AUTOMATIZA-1/AUTOMATIZA-2 con "E2"/"E4"
+    # de arriba). El texto verbatim no se edita (A.3).
+    "forense/encargos/2026-09-07-MAESTRA38-TRAMITE-6.md",
 }
 
 
@@ -4466,6 +4472,17 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # `forense/notas/2026-09-07-MAESTRA38-CARGA-LAPOP-2-resultados.md`, no
     # en el archivo verbatim del encargo.
     "forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP-2.md",
+    # ACTO MAESTRA38-TRAMITE-6, 7/sep/2026: el encargo se archiva VERBATIM
+    # (A.3) y cita `civico.clientelismo.prevalencia_lista_listcran_mps2012`
+    # en su A.8 para describir la cláusula `se_mueve_si` que corrige (el
+    # `.dta` de ICPSR bajo Restricted Data Use Agreement, no la lista de
+    # primera mano ya sellada) -- no reclasifica/pre-registra/carga/sella
+    # la regla, solo edita el texto de la condición de movimiento sobre una
+    # entrada ya SELLADA-SIN-CARGA. `tools/ya_medido.py
+    # civico.clientelismo.prevalencia_lista_listcran_mps2012` SÍ se corrió
+    # en A.8 de este acto: `MEDIDA-EN: MAESTRA38-SELLO-2`, sin cambio de
+    # veredicto.
+    "forense/encargos/2026-09-07-MAESTRA38-TRAMITE-6.md",
 }
 
 

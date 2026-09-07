@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **381 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **382 ADR**
 
 > | | |
 > |---|---|
@@ -6583,7 +6583,7 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 
 ---
 
-**ADR-381 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `380` contra `origin/main = 3d6dee33`, candidato `381`, contiguo, sin huecos) · `ACTO MAESTRA38-L16-BIS-2 · MIDE-RAMA-A-ENNVIH-CONTRA-S6-v1_1`**, 7/sep/2026, entorno **CAJA con corpus montado** — relanzamiento de `ACTO MAESTRA38-L16-BIS`, cuyo PARO (`ADR-374`) fue por compuerta cumplida por rótulo y no por producto.
+**ADR-382 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `380` contra `origin/main = 3d6dee33`, candidato `381`; **renumerado a `382`** al sincronizar con `origin/main = 9b15b1a`, que fusionó `ADR-381` ajeno (`ACTO MAESTRA38-TRAMITE-6`, `PR #589`) — regla de la casa, no se salta número) · `ACTO MAESTRA38-L16-BIS-2 · MIDE-RAMA-A-ENNVIH-CONTRA-S6-v1_1`**, 7/sep/2026, entorno **CAJA con corpus montado** — relanzamiento de `ACTO MAESTRA38-L16-BIS`, cuyo PARO (`ADR-374`) fue por compuerta cumplida por rótulo y no por producto.
 
 **(a) La compuerta se cumplió por producto.** `git show origin/main:forense/prereg-caja/S6-L16-spec-v1_1.md | sha256sum` devolvió `7a0120a3a471fe81a732035dec6c2a9ed292d9b722cc408248eaec96d2e6643a`, exacto al valor que el encargo exige. `COMMIT-1` (`forense/notas/2026-09-07-MAESTRA38-L16-BIS-2-spec-congelada.md`) cita el nombre estable `prereg-caja-S6-L16` v1.1 con su sha256, transcribe verbatim §1.3/§3/§4/§6-Rama-A y declara el IC95 (bootstrap por hogar dentro de estrato, 2 000 réplicas, **semilla 20260907**) **antes de abrir un solo `.dta`**.
 
@@ -6593,7 +6593,7 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 
 **(d) La spec no resultó mal contra el dato y no se enmienda.** `§1.3` previó textualmente esta inversión («el margen de 14 es lo bastante estrecho para que eso sea posible») y prescribió el PARO que este acto ejecutó al pie. Las tres cifras del libro `bx` completo se **reprodujeron exactas** (21 631 / 21 645 / 9 037): el dato de `ACTO MAESTRA38-C1` es correcto; lo que no se sostiene es extrapolar ese margen al subconjunto que el falsador realmente usa. **No se sustituyó `fac_3b_px` por `fac_3a_px`** — elegir el ponderador después de ver el dato es exactamente lo que el pre-registro existe para impedir; re-adjudicarlo contra el subconjunto real es de un acto sucesor, con spec propia. No hay tercer commit porque no hay nada que corregir hacia atrás.
 
-**(e) Consecuencia para `R4.4`, reportada y no forzada (`§5`).** `se_mueve_si` de la regla **queda sin poder evaluarse con la Rama A**; la Rama B (`ENSANUT2024`, `NO-DISCRIMINA`, `ACTO MAESTRA38-LOTE-ENSANUT`, `PR #565`) ya no sostiene el `ENTONCES` por sí sola, y los dos `EXISTE-SATISFACE` sellados sin reconciliar que `§0.2` señaló siguen sin reconciliar — ahora con un dato más: el linaje `ENNVIH` no tiene el desenlace. Materia de mesa (`SELLO-3`), no de este acto: el `tier` `[MEDIA]` de `R4.4` en `canon/modelo-decision-v4_0.md` **no se toca**, no se mueve tier ni se carga al motor. Entrada nueva `salud.atencion.grave_ennvih2002` en `milpa/tramite-ola5-propuesta-v0.yaml` (append al final, sin tocar ninguna `se_mueve_si` ajena), `situacion` y `tier` ambos `PENDIENTE-DE-MESA` (token, prosa en comentario, `D16`). Recibo `FP-331`, ABIERTA.
+**(e) Consecuencia para `R4.4`, reportada y no forzada (`§5`).** `se_mueve_si` de la regla **queda sin poder evaluarse con la Rama A**; la Rama B (`ENSANUT2024`, `NO-DISCRIMINA`, `ACTO MAESTRA38-LOTE-ENSANUT`, `PR #565`) ya no sostiene el `ENTONCES` por sí sola, y los dos `EXISTE-SATISFACE` sellados sin reconciliar que `§0.2` señaló siguen sin reconciliar — ahora con un dato más: el linaje `ENNVIH` no tiene el desenlace. Materia de mesa (`SELLO-3`), no de este acto: el `tier` `[MEDIA]` de `R4.4` en `canon/modelo-decision-v4_0.md` **no se toca**, no se mueve tier ni se carga al motor. Entrada nueva `salud.atencion.grave_ennvih2002` en `milpa/tramite-ola5-propuesta-v0.yaml` (append al final, sin tocar ninguna `se_mueve_si` ajena), `situacion` y `tier` ambos `PENDIENTE-DE-MESA` (token, prosa en comentario, `D16`). Recibo `FP-332`, ABIERTA.
 
 **(f) Dos entradas de suite, ambas resueltas en este mismo acto.** `T27`: `data/l16bis2-atencion-grave-rama-a-v1_0.json` citado en `data/INFRAESTRUCTURA-v1_0.md`. `T25`: el encargo archivado verbatim (`A.3`) nombra `M13` pelado en su bloque `CARRILES` — es **mención del perímetro ajeno** (un acto de nube que corre en paralelo), no un rótulo que este acto instancie, y el encargo verbatim no se edita: censado en `_T25_ARCHIVOS_CONOCIDOS` con esa razón.
 
@@ -6614,3 +6614,29 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **`tests/check.py --baseline`**: ver la nota de cierre.
 
 **Numeración.** Derivado contra `origin/main = 7e0fb7169717abc2cd31b46035f8238153ab98de` (máximo real `379`), candidato `380`, contiguo, sin huecos.
+
+---
+
+**ADR-381 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `380` contra `origin/main = 3d6dee3`, candidato `381`, contiguo, sin huecos) · `ACTO MAESTRA38-TRAMITE-6`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — propagación mecánica de decisiones ya firmadas en mesa; cinco piezas, todas de edición, cero medición.
+
+**(1) ICPSR (D-A).** `FP-263`: la columna `estado` de `forense/firmas-pendientes.tsv` traía `ABIERTA` al inicio del campo (verificado con `awk -F'\t' '$1=="FP-263"{print $6}'`) mientras el propio texto ya declaraba `EJECUTADA` desde el 6/sep (`ACTO MAESTRA38-L2`) — EXISTE-NO-SATISFACE, corregido con un append que hace que el campo lea `EJECUTADA` de punta a punta, sin tocar el texto anterior. `FP-314` #1: pasa de la clasificación heredada `EXIGE-CUENTA` (que A4 nunca confirmó como `public-use` contra la firma de mesa del 6/sep) a `NO-ACCESIBLE — Restricted Data Use Agreement`, citando los dos cierres previos (`forense/notas/2026-08-12-...md:73`, `forense/notas/2026-08-13-...md:111`) que A4 no citó al reclasificar; los ítems #2-#5 y la fecha de vencimiento no se tocan. Dos cláusulas `se_mueve_si` de `milpa/tramite-ola5-propuesta-v0.yaml` (`civico.clientelismo.prevalencia_lista_listcran_mps2012`, `civico.voto.agencia_lapop2023`) reescritas con la condición real de acceso — texto anterior conservado en comentario `# hasta TRAMITE-6:`. Hallazgo append en `forense/hallazgos.md` (7/sep, rótulo `MAESTRA38-TRAMITE-6`) sobre la cadena de re-uso de un cierre de acceso ya desmentido (regla A.4).
+
+**(2) Cláusulas que no pueden dispararse (`FP-329` (c)(f)).** `civico.voto.clientelar_si_observable_lapop2019` (D2-g): la cláusula pedía una "segunda medición del brazo proximidad (LAPOP 2021/2023 `clien1n`/`clien1na`)" — `FP-329` (f) verificó que esas dos variables NO EXISTEN en esas dos olas del `.dta`; reescrita para pedir la medición en CIDE-CSES 2015 (`pcyc13`/`pcyc14`, `FP-329` (b)), con la ausencia de `clien1n`/`clien1na` declarada en el propio texto. `civico.protesta.agravio_urbano_multiola` (R7.4): la cláusula pedía ENVIPE como fuente que estimara `C_completo` — `FP-329` (c) midió 0 líneas de desenlace de protesta en 5 392 del FD 2025; reescrita a `ACOTADA-CON-RESERVA` (D2-h) sin fecha, hasta que una fuente traiga sobremuestra rural Y desenlace de protesta. `tramite.gobierno_digital.coercitivo` (×2, `coercitivo_efirma_sat`/`coercitivo_tabla_de_universos`): la cláusula ya describe correctamente un instrumento hoy inexistente (0 aciertos en 350 832 filas, `FP-329` (e)) — EXISTE-SATISFACE, solo se anota con comentario que cita `FP-329` (e) y `FP-273` (D10, gobierna, no se reabre). En las tres: texto anterior conservado en comentario `# hasta TRAMITE-6:`.
+
+**(3) `FP-329` → FIRMADA.** Estado propagado por merge: (a) enmienda a FP-303 en la pieza (4); (b) spec `N20` (CIDE-CSES 2015) encargada, no lanzada; (c)(f) cláusulas reescritas en la pieza (2); (d) `relaciones.tsv` no se toca; (e) gobierna `FP-273` sin reabrirla.
+
+**(4) `FP-303` → FIRMADA, ruta (c).** Estado propagado por merge: las 8 filas `PARCIAL` de `data/cruce-ola6-v1_0.tsv` reciben spec de caja individual con su faltante declarado (EXISTE-NO-SATISFACE); las 11 `SIN-COBERTURA` quedan `HIPÓTESIS-SIN-INSTRUMENTO`; el dominio `tiempo` (4/4 sin cobertura) no se diseña en esta ola. Sucesores declarados, no lanzados: `N22..N29`, empezando por `salud.atencion.leve_sin_imss` (R4.1).
+
+**(5) Recibo.** Fila nueva `FP-331` (RECIBO, no requiere firma) con las cinco piezas y los comandos de verificación del A.8.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-TRAMITE-6.md`. **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo, no dispara verificación.
+
+**Perímetro.** Toca `forense/firmas-pendientes.tsv` (filas `FP-263`, `FP-314`, `FP-329`, `FP-303` + `FP-331` recibo), `milpa/tramite-ola5-propuesta-v0.yaml` (solo cláusulas `se_mueve_si` y comentarios de las cinco entradas nombradas — ninguna entrada nueva, ningún `tier`, ningún `p`), `forense/hallazgos.md` (append), `tests/check.py` (`_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` y `_T25_ARCHIVOS_CONOCIDOS`, censa el A.3 verbatim de este acto), `canon/gobernanza-v1_15.md` (este registro), `canon/estado-programa-v1_12.md` (L0 + tabla §0). **No toca** `milpa/tramite.yaml`, `FP-273` (gobierna, no se reabre), diseño de instrumento para `tiempo`, `relaciones.tsv`, corpus, `data/raw`, manifiesto.
+
+**Deuda que abre.** Ninguna nueva — `N20`/`N21`/`N22..N29` ya estaban declarados como sucesores por sus firmas de origen; este acto no los lanza.
+
+**Deuda que cierra.** `FP-263` (estado consistente), `FP-329` (firmada), `FP-303` (firmada). Filas `ABIERTA` del tablero: 3 → 1.
+
+**`tests/check.py --baseline`**: VERDE — 2 entradas nuevas (`T-YAMEDIDO`, `T25`, ambas del A.3 verbatim de este propio encargo) censadas en `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS`/`_T25_ARCHIVOS_CONOCIDOS`; sin `FAIL` nuevo frente a `tests/baseline.json`.
+
+**Numeración.** Derivado contra `origin/main = 3d6dee33a478b3c4f687f3fc8e47205f4961cd82` (máximo real `380`), candidato `381`, contiguo, sin huecos.
