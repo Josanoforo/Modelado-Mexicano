@@ -29327,3 +29327,19 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: ACTO MAESTRA38-A6. A.7 doble descarga curl+wget, sha256 identico. La base CKAN correcta
     es /api/3/, no /busca/api/3/.
+
+- id: mex_2016_apipie_v01_m_stata
+  usado_para: 'ADQ-15 (N15), palanca 5 -- microdato Stata (6 .dta) de la evaluacion de impacto
+    APIPIE/Tutores Pedagogicos Moviles CONAFE 2016 (WB 6667). Completa el paquete adq15_wb6667_*:
+    las 24 entradas previas son documentacion+DDI, sin ningun .dta. RESERVA (forense/notas/2026-09-03-MAESTRA37-A2-revision-cola.md
+    2.1): sin reactivo de deferencia ni desenlace laboral; no responde N15/G6 sin cruce por
+    texto.'
+  url_origen: https://microdata.worldbank.org/index.php/catalog/6667/get-microdata
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-06'
+  descargado_por: usuario, vía navegador
+  archivo: MEX_2016_APIPIE_v01_M_Stata.zip
+  raiz: descargas_mx
+  sha256: c2dfe2c75d694a808cd99c9ecbf130701173dbebbdf3aa1aa9d5d35dba85f5b1
+  tamano_bytes: 618383
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4

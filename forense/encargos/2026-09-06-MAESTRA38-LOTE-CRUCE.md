@@ -45,8 +45,11 @@ inventario y no emite veredicto de regla.
 ## CONSUMIDO
 
 Ejecutado por `ACTO MAESTRA38-LOTE-CRUCE`, 6/sep/2026, entorno CAJA (Ubuntu,
-corpus montado), rama `acto/maestra38-lote-cruce`, `ADR-370`, `FP-328`.
+corpus montado), rama `acto/maestra38-lote-cruce`, `ADR-371`, `FP-329`.
 Las seis piezas cerraron; ninguna PARÓ. Medición: cero.
+Renumerado al sincronizar con `origin/main`: candidato original `ADR-370`/`FP-328`
+colisionó con `PR #577` (`ACTO MAESTRA38-C1 · RE-ASIENTO`), que fusionó primero
+y se quedó con esos números — renumerado a `ADR-371`/`FP-329`, regla de la casa.
 Resultados: `forense/notas/2026-09-06-MAESTRA38-LOTE-CRUCE-resultados.md`.
 COMMIT-1: `forense/prereg-caja/S11-CRUCE-spec-v1_0.md` (+ `.sha256`).
 PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/578 (abierto contra `main`, NO fusionado — el merge es de mesa).
