@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **373 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **374 ADR**
 
 > | | |
 > |---|---|
@@ -6460,3 +6460,21 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Deuda que cierra.** `FP-327` (cerrada, opción (b)). `FP-328(b)` (alta de `MACU_INMUJERES` ejecutada).
 
 **Numeración.** Derivado contra `origin/main` (máximo real `372`, `ADR-372` `AUTOMATIZA-2-E5`, este mismo repo antes de este acto), candidato `373`, sin huecos.
+
+---
+
+**ADR-374 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `373` — este mismo repo, commit de `ACTO MAESTRA38-TRAMITE-5` — candidato `374`, contiguo, sin huecos) · `ACTO MAESTRA38-N19`**, 7/sep/2026, entorno **NUBE sin corpus** — registro de spec, ninguna enmienda de canon. Renumerado de `N18` a `N19`: el rótulo `MAESTRA38-N18` que el encargo original invoca ya está censado en `canon/registro-rotulos.tsv` por `ACTO MAESTRA38-N18` (fusionado, `PR #573`, spec `S7-L17` v1.1 del mapeo `a0927`) — colisión de rótulo, regla de la casa: quien fusiona segundo renumera.
+
+`forense/prereg-caja/S6-L16-spec-v1_1.md` (+ `.sha256` `7a0120a3…`), copia de `S6-L16-spec-v1_0.md` (intacta, `sha256` sin cambio `317e42c3…`) con `§1.3` (Rama A, `ENNVIH`) reescrita: universo de `bx` declarado subpoblación Proxy (`instrucciones-proyecto-v2_12.md`, Bloque A-bis, regla 4 — nunca comparado contra marginal poblacional); ponderador adjudicado `fac_3b_px` (`ennvih1_2002_ponderador`, `ehh02w_all/ehh02w_bx.dta`, `n_no_nulo_gt0=21645`, el mayor de los tres candidatos que `ADR-357` había dejado ambiguos — evidencia de `ACTO MAESTRA38-C1`, `data/ennvih2002-ponderadores-candidatos-v1_0.tsv`); llave `folio` normalizada a entero antes del join (sin esto, todos los joins dan 0, hallazgo de `C1`); rama directa `b3b` reportada por separado con `fac_3b` (sin `_px`, etiqueta "SERIO" contra "GRAVE" de `bx`); chequeo de consistencia obligatorio antes de calcular (`n_no_nulo_gt0` de `fac_3b_px` ≥ el de `fac_3a_px`/`fac_4_px`, `PARA` si falla — ya satisfecho sobre el libro `bx` completo, con margen estrecho contra `fac_3a_px`: 21 645 vs. 21 631). Fila `B-bis`: la `se_mueve_si` de "fila 2 de `SELLO-2`" que el encargo pedía copiar verbatim **no existe en el repo** — `SELLO-2` declaró su Bloque B (filas 2-5) `NO ejecutado` en su propio `## CONSUMIDO`; declarado explícitamente, sustituido por una cláusula propia (el chequeo de consistencia), marcada sin ambigüedad como no-verbatim. `S7-L17 v1.2` **no se crea**: su Rama A usa el libro directo `b3b`, no `bx`/proxy (verificado contra `S7-L17 v1.1 §1.1`, "libro `bx` no aplica aquí"), tal como el encargo instruye cuando la rama A cita un libro distinto. Contador de specs del encargo ("era 21, pasa a 22/23") **no se reproduce** contra el tablero real (último conteo explícito: "specs de caja `8 → 9`") — usados los valores reales: archivos `12 → 13`, números de `S` distintos `11 → 11` (`v1.1` no es un `S`-número nuevo).
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-N19-S6-L16-PONDERADOR-V1_1.md` (0-bis + `## CONSUMIDO`). **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo, no dispara verificación.
+
+**Perímetro.** Toca `forense/prereg-caja/S6-L16-spec-v1_1.md` (nuevo), `.sha256` (nuevo), `forense/tablero/TABLERO-PROGRAMA.md`, `canon/gobernanza-v1_15.md` (este registro), `canon/estado-programa-v1_12.md` (L0 + línea 27), `canon/registro-rotulos.tsv` (censo). **No toca** `milpa/**`, `canon/modelo-decision-v4_0.md`, `data/curacion-registro/**` (tocada por `TRAMITE-5`, no por este acto), `tests/*.py`, `tools/*.py`, `forense/prereg-caja/S6-L16-spec-v1_0.md` ni `S7-L17-spec-v1_1.md` (ambas intactas).
+
+**Deuda que abre.** Ninguna nueva — la medición de la Rama A de `S6-L16` sigue pendiente de un acto `CAJA` (misma deuda que `MAESTRA38-LOTE-ENSANUT` ya había dejado, ahora destrabada en su causa).
+
+**Deuda que cierra.** `FP-328(c)` (adjudicación del ponderador de la Rama A, vía esta spec).
+
+**`tests/check.py --baseline`**: mismo estado que dejó `ADR-373` (`TRAMITE-5`) — 1 FAIL declarado (`T22`, `FP-330`), sin FAIL nuevo.
+
+**Numeración.** Derivado contra `origin/main` (máximo real `373`, `ADR-373` `MAESTRA38-TRAMITE-5`, este mismo repo antes de este acto), candidato `374`, sin huecos.

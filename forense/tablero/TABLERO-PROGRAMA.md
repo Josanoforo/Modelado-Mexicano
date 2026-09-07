@@ -1273,3 +1273,44 @@ de §7 arriba; misma letra, tema distinto, sin relación)
 `milpa/**` · `canon/` (salvo cascada estrictamente necesaria) ·
 `tests/*.py` · `tools/*.py` (solo usados, vía `alta_relacion.py` y
 `via_capa2.py`, ninguno editado) · `cron`. Medición de México: cero.
+
+## `ACTO MAESTRA38-N19` (Sonnet, 7/sep/2026) — recibo
+
+Renumerado de `N18` a `N19`: `MAESTRA38-N18` ya está censado en
+`canon/registro-rotulos.tsv` por `ACTO MAESTRA38-N18` (fusionado,
+`PR #573`, la spec `S7-L17` v1.1 del mapeo `a0927`) — colisión de rótulo,
+regla de la casa: quien fusiona segundo renumera.
+
+`forense/prereg-caja/S6-L16-spec-v1_1.md` (+ `.sha256`): §1.3 (Rama A,
+`ENNVIH`) reescrita — ponderador adjudicado (`fac_3b_px`, `A-bis 4`,
+subpoblación Proxy declarada, nunca contra marginal poblacional), llave
+`folio` normalizada a entero antes del join (nota de `C1`, sin esto todos
+los joins dan 0), `b3b`/`fac_3b` reportado por separado de `bx`/`fac_3b_px`
+(etiquetas "SERIO" vs. "GRAVE"), chequeo de consistencia obligatorio
+(`n_no_nulo_gt0` de `fac_3b_px` ≥ el de `fac_3a_px`/`fac_4_px`, PARA si
+falla — ya satisfecho sobre el libro `bx` completo: 21 645 ≥ 21 631 y ≥
+9 037). `v1.0` intacta. **Fila B-bis, `se_mueve_si` de "fila 2 de
+SELLO-2": no existe en el repo** — `SELLO-2` declaró su Bloque B
+(filas 2-5) `NO ejecutado`; se declara la ausencia y se sustituye por
+una cláusula propia (el chequeo de consistencia mismo), marcada
+explícitamente como NO-verbatim.
+
+**`S7-L17 v1.2` NO se crea**: su Rama A usa el libro directo `b3b`
+(`fac_3b`, sin `_px`), no el libro `bx`/proxy que esta pieza trata —
+verificado contra el texto de `S7-L17 v1.1 §1.1` ("libro `bx` no aplica
+aquí"), tal como el encargo instruye cuando la rama A usa un libro
+distinto.
+
+**Contador de specs — discrepancia declarada.** El encargo asumía "era
+21, pasa a 22 o 23"; el tablero no registra ningún "21" — el último
+conteo explícito es "specs de caja `8 → 9`" (línea 789, recibo de
+`MAESTRA38-N15`). Archivos reales en `forense/prereg-caja/`: 12 → 13.
+Números de spec distintos (`S1`-`S11`): 11 → 11, sin cambio (`v1.1` es
+versión nueva de un `S`-número existente, no un `S`-número nuevo — mismo
+criterio que `S7-L17 v1.1`, que tampoco movió ningún contador al
+fusionarse).
+
+Medición de la Rama A de `S6-L16`: **sigue sin correrse ni una vez** — a
+diferencia de `S7-L17 v1.1` (que registró un mapeo ya usado por una
+medición corrida), esta `v1.1` destraba el `PARO` de `MAESTRA38-LOTE-ENSANUT`
+(6/sep/2026) para un acto `CAJA` sucesor. Medición de este acto: cero.
