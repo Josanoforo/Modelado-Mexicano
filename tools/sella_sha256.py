@@ -28,7 +28,10 @@ Sellado -- escribe (temporal en el mismo directorio + `os.replace()`,
 atómico):
     python3 tools/sella_sha256.py <archivo>
 
-Verificación -- SIEMPRE de sólo lectura, nunca escribe:
+Verificación -- SIEMPRE de sólo lectura, nunca escribe. Valida el
+CONTENIDO COMPLETO del sidecar contra el contrato exacto de arriba --
+una segunda línea, bytes tras el `\n`, o la ausencia del `\n` final
+son SELLO_NO_COINCIDE tanto como un hash o basename distinto:
     python3 tools/sella_sha256.py --verifica <archivo>
 Tres resultados, tres exit codes:
     0  SELLO_COINCIDE        -- sidecar presente y coincide
@@ -43,8 +46,11 @@ Rechazos de entrada (exit != 0, sin sellar ni verificar nada):
 import argparse
 import hashlib
 import os
+import re
 import sys
 import tempfile
+
+_SIDECAR_RE = re.compile(r"^([0-9a-f]{64})  ([^\n]+)\n$")
 
 
 def _ruta_sidecar(ruta_fuente):
@@ -115,17 +121,17 @@ def verifica(ruta_fuente):
         return 2, f"SIDECAR_AUSENTE\nfuente={ruta_fuente}\nsidecar={ruta_sidecar}"
 
     with open(ruta_sidecar, encoding="utf-8") as f:
-        linea = f.readline()
+        contenido = f.read()
 
     basename = os.path.basename(ruta_fuente)
-    partes = linea.rstrip("\n").split("  ", 1)
-    if len(partes) != 2:
+    m = _SIDECAR_RE.fullmatch(contenido)
+    if not m:
         return 3, (
             "SELLO_NO_COINCIDE\n"
             f"fuente={ruta_fuente}\nsidecar={ruta_sidecar}\n"
-            f"diagnostico=formato de sidecar irreconocible: {linea!r}"
+            f"diagnostico=formato de sidecar irreconocible: {contenido!r}"
         )
-    hash_esperado, basename_sidecar = partes
+    hash_esperado, basename_sidecar = m.group(1), m.group(2)
     hash_real = _sha256_de(ruta_fuente)
 
     if basename_sidecar != basename:
