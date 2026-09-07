@@ -6,7 +6,7 @@
 puramente mecánicos.
 
 ACTO AUTOMATIZA-1-E2 · ESTADO-COMUN, 7/sep/2026
-(`forense/encargos/2026-09-07-AUTOMATIZA-1-E1-PERIMETRO-FISICO.md`,
+(`forense/encargos/2026-09-07-AUTOMATIZA-1-E2-ESTADO-COMUN.md`,
 ELEMENTO 2). Defecto real medido antes de esta pieza: `tools/tablero_programa.py`
 comparaba `estado == "ABIERTA"` (ciego a la glosa `ABIERTA -- pendiente...`)
 mientras `tools/digesto_tramite.py` ya usaba `^ABIERTA(\\s|$)` -- sobre el
@@ -95,7 +95,7 @@ def ramas_remotas_presentes(raiz):
         rc2, salida2 = _corre(["git", "for-each-ref", "--format=%(refname:short)",
                                "refs/remotes/origin"], raiz)
         fuente = ("`git for-each-ref refs/remotes/origin` (RESPALDO: `ls-remote` no "
-                  f"respondió, rc={rc}) -- refleja el último `fetch` de este clon, "
+                  f"respondió, rc={rc}) — refleja el último `fetch` de este clon, "
                   "no necesariamente el remoto de ahora")
         ramas = sorted({l.strip().split("origin/", 1)[-1]
                         for l in salida2.splitlines() if l.strip()

@@ -1739,7 +1739,11 @@ def t22_firmas():
         return
 
     sys.path.insert(0, os.path.join(ROOT, "tools"))
-    import estado_comun as _ec
+    try:
+        import estado_comun as _ec
+    except Exception as e:
+        fail("T22", f"no se pudo importar tools/estado_comun.py: {e}")
+        return
 
     # (a) WARN por cada fila ABIERTA, con antigüedad -- la memoria mecánica.
     # ACTO AUTOMATIZA-1-E2: `estado == "ABIERTA"` es ciego a la glosa
