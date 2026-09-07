@@ -3790,6 +3790,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # pelados son autorreferencias a los elementos que el documento define
     # en su propia cabecera, no un habitante `MAESTRA<nn>-E<n>`.
     "forense/encargos/2026-09-07-AUTOMATIZA-1-E2-ESTADO-COMUN.md",
+    # ACTO AUTOMATIZA-1-E3 · CIERRE-MECANICO, 7/sep/2026: tercer y último
+    # re-archivado verbatim del mismo encargo de AUTOMATIZA-1 (0-bis de
+    # este tercer acto, por diseño de la cabecera del propio documento).
+    # Mismo análisis que AUTOMATIZA-1-E1/E2 arriba: los `E1`/`E2`/`E3`
+    # pelados son autorreferencias a los tres elementos que el documento
+    # define en su propia cabecera, no un habitante `MAESTRA<nn>-E<n>`.
+    "forense/encargos/2026-09-07-AUTOMATIZA-1-E3-CIERRE-MECANICO.md",
 }
 
 
