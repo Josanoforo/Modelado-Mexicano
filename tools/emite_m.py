@@ -39,6 +39,8 @@ import re
 import sys
 from pathlib import Path
 
+import yaml
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
@@ -57,19 +59,35 @@ FUENTE_ACTO_REGRESION = "ACTO MAESTRA33-E6 · EMISOR-M-1 · P2-regresion, 1/sep/
 # ola_calibracion que NO vive como campo YAML propio junto a la conducta que
 # se emite -- fijada por forense/notas/2026-08-31-marco-M-v1_1-spec.md §(a):
 # tramite.mordida.discrecional/paga_mordida es ASIGNADO (tramite.yaml:45);
-# el unico campo `ola_calibracion:` de esa regla vive DENTRO de
-# `enmienda_encuci2020`, que calibra la conducta `paga_mordida_encuci2020`
-# (distinta de la que el marco declara). El spec fija ENCIG 2023 leyendo
-# `fuente:` (linea 64, ["ENCIG2023", ...]) como unica ancla, confirmado por
-# milpa/procedencia.yaml:782-786. Propiedad de LA REGLA (spec §(a), parrafo
-# final) -- aplica a TRA-M-01, TRA-M-02 y cualquier fila nueva que comparta
-# esta regla. Si alguna vez cargan una regla sin `ola_calibracion:` propia
-# Y sin entrada aqui, este emisor se niega (LookupError) en vez de adivinar.
+# los DOS campos `ola_calibracion:` de esa regla viven DENTRO de
+# `enmienda_encuci2020` / `enmienda_encig2025`, que calibran conductas
+# distintas de la que el marco declaraba. El spec fija ENCIG 2023 leyendo
+# `fuente:` (["ENCIG2023", ...]) como unica ancla, confirmado por
+# milpa/procedencia.yaml:782-786. Propiedad de LA REGLA cuando la conducta
+# NO calza ninguna enmienda (spec §(a), parrafo final) -- aplica a TRA-M-01,
+# TRA-M-02 sobre el camino historico y a cualquier fila que emita
+# `paga_mordida`. Si alguna vez cargan una regla sin `ola_calibracion:`
+# propia Y sin entrada aqui, este emisor se niega (LookupError) en vez de
+# adivinar.
+#
+# ACTO MAESTRA38-M13 · M-POR-CELDA v1.3: el numero de linea de la cita ya NO
+# se teclea. Antes la constante tecleaba `milpa/tramite.yaml:64`, y la 64 dejo
+# de ser el `fuente:` real cuando la enmienda ENCIG2025 empujo el bloque 15
+# lineas: hoy la 64 es un COMENTARIO y el `fuente:` vive en la 79. El encargo
+# §4 exige que "la cita debe seguir apuntando al texto real de
+# milpa/tramite.yaml", asi que la linea se LOCALIZA con `_ANCLA_FUENTE` sobre
+# el bloque de la regla en cada corrida. El TEXTO citado se conserva en su
+# forma declarada y abreviada (`fuente: ["ENCIG2023", ...]`) porque la
+# regresion P2 lo compara byte a byte y solo tolera la deriva del numero
+# (_CAMPOS_CITA_LINEA / _compara_cita_con_linea): es el "salvo que la
+# arquitectura existente obligue" del propio §4.
+_ANCLA_FUENTE = r"^\s*fuente:\s*\["
+
 _OLA_CALIBRACION_FIJA = {
     "tramite.mordida.discrecional": (
         "ENCIG 2023",
-        'milpa/tramite.yaml:64 -- fuente: ["ENCIG2023", ...]; fijada como '
-        "ola_calibracion=ENCIG 2023 por "
+        _ANCLA_FUENTE,
+        'fuente: ["ENCIG2023", ...]; fijada como ola_calibracion=ENCIG 2023 por '
         "forense/notas/2026-08-31-marco-M-v1_1-spec.md §(a), confirmada por "
         "milpa/procedencia.yaml:782-786 (asignados_probabilidad, 'el 0.62 NO "
         "corresponde a ninguna categoria medida -- es ASIGNADO, confirmado')",
@@ -132,12 +150,115 @@ def _primera_linea(lineas: list[str], ini: int, fin: int, patron: str) -> tuple[
     return None
 
 
-def cita_ola_calibracion(regla_id: str, lineas: list[str]) -> tuple[str, str]:
-    """(ola_calibracion, cita). YAML propio de la regla si existe; si no, el
-    fijo-y-citado de `_OLA_CALIBRACION_FIJA` -- nunca se inventa un tercero."""
-    if regla_id in _OLA_CALIBRACION_FIJA:
-        return _OLA_CALIBRACION_FIJA[regla_id]
+class CalibracionAmbigua(LookupError):
+    """Mas de una enmienda de la misma regla calibra la misma conducta (§25.4)."""
+
+
+def _sub_bloque(lineas: list[str], ini: int, fin: int, nombre: str) -> tuple[int, int]:
+    """Rango [i, j) de las lineas del sub-mapa `<nombre>:` dentro del bloque
+    [ini, fin) de una regla. El cierre es la primera linea no vacia con
+    indentacion <= la del propio `<nombre>:`."""
+    patron = re.compile(rf"^(\s*){re.escape(nombre)}:\s*$")
+    for i in range(ini, fin):
+        m = patron.match(lineas[i])
+        if not m:
+            continue
+        indent = len(m.group(1))
+        for j in range(i + 1, fin):
+            linea = lineas[j]
+            if linea.strip() and (len(linea) - len(linea.lstrip(" "))) <= indent:
+                return i, j
+        return i, fin
+    raise LookupError(
+        f"sub-mapa {nombre!r} no localizable en el bloque de la regla "
+        f"(lineas {ini + 1}..{fin}) de milpa/tramite.yaml"
+    )
+
+
+def enmiendas_que_calibran(regla_id: str, conducta: str,
+                            lineas: list[str]) -> list[tuple[str, str]]:
+    """[(nombre_del_sub_mapa, ola_calibracion), ...] de las enmiendas de
+    `regla_id` cuyo `aplica_a` contiene EXACTAMENTE `conducta` y que ademas
+    declaran `ola_calibracion`.
+
+    Match EXACTO de cadena contra los elementos de la lista `aplica_a`
+    (`conducta in aplica_a`). Sin fuzzy, sin prefijos, sin "primera MEDIDO",
+    sin inferencia por parecido de nombre -- encargo MAESTRA38-M13 §3.
+
+    La ESTRUCTURA se lee con `yaml.safe_load` sobre las MISMAS lineas que
+    luego se citan (una sola fuente): parsear `aplica_a: [a, b]` a mano con
+    regex es justo la clase de heuristica que §3 prohibe.
+    """
+    doc = yaml.safe_load("\n".join(lineas)) or {}
+    regla = next((r for r in doc.get("reglas", []) or []
+                  if r.get("id") == regla_id), None)
+    if regla is None:
+        raise LookupError(f"{regla_id}: regla no encontrada en milpa/tramite.yaml")
+    calibran: list[tuple[str, str]] = []
+    for nombre, valor in regla.items():
+        if not isinstance(valor, dict):
+            continue
+        aplica_a = valor.get("aplica_a")
+        if not isinstance(aplica_a, list) or conducta not in aplica_a:
+            continue
+        if "ola_calibracion" not in valor:
+            continue
+        calibran.append((nombre, valor["ola_calibracion"]))
+    return calibran
+
+
+def cita_ola_calibracion(regla_id: str, conducta: str,
+                          lineas: list[str]) -> tuple[str, str]:
+    """(ola_calibracion, cita) para el par (regla, conducta) -- CONDUCTA-AWARE.
+
+    ACTO MAESTRA38-M13 · M-POR-CELDA v1.3 (§3). Antes esta funcion resolvia
+    por REGLA: `tramite.mordida.discrecional` devolvia siempre el fijo
+    historico "ENCIG 2023", que es la calibracion del ASIGNADO `paga_mordida`
+    y NO la de las conductas MEDIDAS que despues convivieron dentro de la
+    misma regla. Eso puede cambiar F-DD y decidir si una celda puntua, asi
+    que se resuelve por conducta. Prioridad exacta del encargo:
+
+      1. enmiendas de la regla cuyo `aplica_a` contiene la `conducta` EXACTA
+         y que declaran `ola_calibracion`;
+      2. exactamente una  -> esa calibracion, con su cita real (linea del
+         `ola_calibracion:` de ESE sub-mapa, no la primera de la regla);
+      3. cero             -> mecanismo historico de la regla, intacto;
+      4. mas de una       -> PARO por ambiguedad (CalibracionAmbigua).
+    """
     ini, fin = _bloque_regla(lineas, regla_id)
+
+    calibran = enmiendas_que_calibran(regla_id, conducta, lineas)
+    if len(calibran) > 1:
+        nombres = ", ".join(n for n, _ in calibran)
+        raise CalibracionAmbigua(
+            f"{regla_id}/{conducta}: {len(calibran)} enmiendas la calibran "
+            f"({nombres}) -- PARO por ambiguedad (§3.4). No se elige una: "
+            f"desambigua milpa/tramite.yaml o el enlace del marco."
+        )
+    if len(calibran) == 1:
+        nombre, valor = calibran[0]
+        sub_ini, sub_fin = _sub_bloque(lineas, ini, fin, nombre)
+        hit = _primera_linea(lineas, sub_ini, sub_fin, r"^\s*ola_calibracion:\s*(.+)$")
+        if hit is None:  # pragma: no cover -- yaml lo vio, las lineas tienen que traerlo
+            raise LookupError(
+                f"{regla_id}/{conducta}: `ola_calibracion` esta en el YAML de "
+                f"{nombre!r} pero no se localizo su linea para citarla."
+            )
+        lineno, texto = hit
+        return valor, f"milpa/tramite.yaml:{lineno} -- {texto}"
+
+    # --- cero enmiendas: mecanismo historico de la regla, sin cambio ---
+    if regla_id in _OLA_CALIBRACION_FIJA:
+        valor, ancla, texto_declarado = _OLA_CALIBRACION_FIJA[regla_id]
+        hit = _primera_linea(lineas, ini, fin, ancla)
+        if hit is None:
+            raise LookupError(
+                f"{regla_id}: el ancla {ancla!r} de _OLA_CALIBRACION_FIJA ya no "
+                f"existe en el bloque de la regla en milpa/tramite.yaml -- no se "
+                f"cita una linea que no se encontro."
+            )
+        lineno, _ = hit
+        return valor, f"milpa/tramite.yaml:{lineno} -- {texto_declarado}"
     hit = _primera_linea(lineas, ini, fin, r"^\s*ola_calibracion:\s*(.+)$")
     if hit is None:
         raise LookupError(
@@ -377,7 +498,7 @@ def emite_celda(fila: dict, reglas_por_id: dict, lineas_tramite: list[str],
     if pred1.estado != "EMITE":
         raise LookupError(f"{id_celda}: estado={pred1.estado} para regla={regla_id} conducta={conducta}")
 
-    ola_cal, cita_ola = cita_ola_calibracion(regla_id, lineas_tramite)
+    ola_cal, cita_ola = cita_ola_calibracion(regla_id, conducta, lineas_tramite)
     grado_DD, razon_DD = calcula_grado_DD(encuesta, ola, regla_id, conducta, ola_cal)
     variable, ponderador, correcciones = correcciones_por_referencia(fila, candidatos, marco_nombre)
 
