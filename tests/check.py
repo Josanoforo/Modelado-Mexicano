@@ -4274,6 +4274,14 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # `forense/notas/2026-09-06-MAESTRA38-L2-spec-rama.md` y en el commit,
     # no en el archivo verbatim del encargo.
     "forense/encargos/2026-09-06-MAESTRA38-L2.md",
+    # ACTO MAESTRA38-N14 · CIERRA-LOTE-ENSANUT, 6/sep/2026: el encargo cita
+    # `R4.4` sólo dentro del hallazgo (C) al describir el defecto que
+    # cierra (spec S7-L17 con letra/digito invertido) -- ilustrativo, no
+    # una nueva clasificacion/pre-registro/carga/sello de la regla. La
+    # salida real de `tools/ya_medido.py R4.4` (MEDIDA-EN: S6) va en
+    # `forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md`,
+    # A.8, del propio acto que este encargo cierra.
+    "forense/encargos/2026-09-06-MAESTRA38-N14-CIERRA-LOTE-ENSANUT.md",
 }
 
 

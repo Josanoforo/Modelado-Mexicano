@@ -1,0 +1,14 @@
+# data/l17-vacunacion-disponible-v1_0.tsv -- ACTO MAESTRA38-N14 (cierra MAESTRA38-LOTE-ENSANUT), pieza (4).
+# Celdas realizadas del falsador de salud.vacunacion.disponible (R9.2): Rama B (primaria, adultos) y
+# Rama C (corroboracion descriptiva, adolescentes). Fuente: tools/medidor_l17_vacunacion_disponible.py,
+# re-corrido el 6/sep/2026 (cifras reproducidas idénticas a
+# forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md). Escala: proporcion ponderada (ponde_f
+# via bootstrap de conglomerado, 10,000 replicas, semilla 42) salvo donde IC95='' por NO-ESTIMABLE
+# (numerador<10 en alguna celda, cota de la spec S7-L17-spec-v1_0.md).
+celda	rama	n	numerador_crudo	proporcion	ic95_inferior	ic95_superior	estratos	upm	universo	veredicto
+razon_logistica	B_primaria	254	227	0.777762	0.672777	0.857561	3	140	adultos_ensanut2024_w.dta, menciones persona x vacuna x razon = 'Si' (razon logistica = no_habia_vacunas+enfermo+no_estaba_quien_aplica)	CORROBORADA
+d0321j	C_adolescentes	69	60			3		adolescentes_ensanut2024_w.dta, reactivo d0321j (numerador<10 en alguna celda)	NO-ESTIMABLE
+d0321p	C_adolescentes	66		0.562390	0.399606	0.719754	3	55	adolescentes_ensanut2024_w.dta, reactivo d0321p	NO-DISCRIMINA
+d0508	C_adolescentes	3094		0.371580	0.333836	0.410952	3	440	adolescentes_ensanut2024_w.dta, reactivo d0508	CONTRARIA
+d05041	C_adolescentes	2974		0.593244	0.555192	0.631826	3	439	adolescentes_ensanut2024_w.dta, reactivo d05041	CORROBORADA
+d05051	C_adolescentes	2941		0.346854	0.316861	0.377482	3	438	adolescentes_ensanut2024_w.dta, reactivo d05051	CONTRARIA

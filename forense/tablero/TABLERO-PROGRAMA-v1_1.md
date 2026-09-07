@@ -1151,3 +1151,28 @@ medido en el depósito de mesa del 2/sep).
 `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` de `tests/check.py` (encargo archivado
 VERBATIM por A.3, no se edita para complacer el test; `ya_medido.py` sí se
 corrió en A.8, salida en el commit y en las notas de este acto).
+## `ACTO MAESTRA38-LOTE-ENSANUT · L16+L17` (Sonnet, 6/sep/2026) — recibo (asentado por `MAESTRA38-N14`)
+
+`salud.atencion.grave` (R4.4), Rama B (ENSANUT2024, `H0409A` × `u0201`,
+join FOLIO_I, n=5,289): grave p̂(público)=52.2295% IC95=[36.8248%,
+69.8407%] n=423 · no-grave p̂(público)=52.5159% IC95=[48.5995%,
+56.6960%] n=4,866 → **NO-DISCRIMINA**.
+
+`salud.vacunacion.disponible` (R9.2), Rama B primaria (adultos, razón
+de no-vacunación, n=254 menciones): p̂(RAZÓN_LOGÍSTICA)=77.7762%
+IC95=[67.2777%, 85.7561%] → **CORROBORADA**. Rama C (adolescentes,
+descriptiva): mixta, 2 de 4 reactivos estimables por encima de 50%.
+
+PARO parcial declarado en ambas piezas: Rama A (ENNVIH+ENDIREH) NO
+corrida — ponderador del libro `bx`/2002 con tres candidatos
+(`fac_3a_px`/`fac_3b_px`/`fac_4_px`) sin codebook de ENNVIH en el
+corpus para desambiguar.
+
+**Salud permanece en 2 de 5** (`salud.atencion.grave` y
+`salud.atencion.desabasto`) — este lote midió falsadores sobre dos ids
+ya clasificados `EXISTE-SATISFACE`, no clasificó ningún id nuevo.
+
+Detalle completo:
+`forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md`. ADR de
+cierre y `FP` de la spec mal escrita (`S7-L17`, asignación letra/dígito
+invertida): ver `MAESTRA38-N14` (este acto de cierre).

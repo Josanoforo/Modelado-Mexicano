@@ -3623,3 +3623,163 @@ reglas_propuestas:
       reparte 168 motivos entre No sirve de nada (90), No tenia pruebas (28), No fue grave (25),
       Es peligroso y por miedo de represalias (22) y No sabe adonde denunciar (3) -- el motivo de
       MIEDO que el PORQUE de la regla nombra es el cuarto, no el primero.
+
+  - id: salud.atencion.grave_ensanut2024
+    entrada_nueva: true
+    referida_a: >
+      regla R4.4 salud.atencion.grave (canon/modelo-decision-v4_0.md:527) --
+      Rama B (ENSANUT2024) del falsador de doble linaje pre-registrado por
+      prereg-caja-S6-L16 (sha256 317e42c3becca6402aa0848f9cd5a4ace2af784ea174024c7dab0687db724b9f,
+      verificado). Rama A (ENNVIH+ENDIREH) de la misma spec NO se corrió en
+      este acto -- ver nota_alcance.
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: institucion_publica_si_hospitalizacion_o_urgencias, p: 0.522295, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)"}
+      - {conducta: institucion_publica_si_consulta_externa_u_otro, p: 0.525159, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)"}
+    porque: {generador: [], mecanismo: "PENDIENTE-DE-MESA -- este acto no re-deriva el mecanismo, mide el falsador"}
+    falsable_si: NO-APLICA
+    fuente: ["forense/prereg-caja/S6-L16-spec-v1_0.md", "ENSANUT2024-v2026-09-01/integrantes_ensanut2024_w_icb.stata.stata.zip", "ENSANUT2024-v2026-09-01/utilizadores_ensanut2024_w.stata.stata.zip"]
+    ola_calibracion: "ENSANUT Continua 2024 (unica ola de esta rama)"
+    instrumento: >
+      H0409A (integrantes_ensanut2024_w_icb.dta) -- codebook confirma valores
+      {1: consulta externa, 2: hospitalizacion, 3: urgencias, 4: otros}, NO
+      una escala de severidad textual ("grave"/"crónico complejo" no aparecen
+      literalmente, tal como spec §2.1 advertía). SINTOMA_GRAVE = H0409A en
+      {2,3} (excede al consultorio, texto de la propia regla), vs {1,4}.
+      u0201 (utilizadores_ensanut2024_w.dta) da INSTITUCION_PUBLICA -- lista de
+      26 categorías con codebook completo (no visible en el inventario, como
+      spec §2.2 anticipaba); PUBLICO = {1,2,3,4,5,6,8,9,10,26} (IMSS/ISSSTE/
+      PEMEX/Defensa/Marina/SSA/DIF/CruzRoja-Verde/InstNalSalud/IMSS-BIENESTAR),
+      PRIVADO = {12..19} (consultorios/hospitales/médico laboral privados);
+      55 filas fuera de la dicotomía (ONG, tradicional, otro, no-sabe,
+      psicológico) excluidas, declaradas. Join por FOLIO_I.
+    escala: "proporcion de personas (20+, universo de utilizadores) atendidas en institucion publica, por celda de severidad de H0409A"
+    universo: >
+      integrantes: 36 021 filas; utilizadores: 3 223 filas. H0409A no-nulo:
+      7 645 (grave {2,3}=644, no-grave {1,4}=7 001). utilizadores con u0201
+      clasificable publico/privado: 3 125 de 3 180 con u0201 no-nulo. Join
+      FOLIO_I (H0409A no-nulo x u0201 clasificable): 5 289 filas -- grave
+      n=423 (publico=280 crudo), no-grave n=4 866 (publico=2 835 crudo).
+    contrastes:
+      - {contraste: publico_grave, p: 0.522295, ic95: [0.368248, 0.698407], n: 423, estratos: 3, upm: 208}
+      - {contraste: publico_no_grave, p: 0.525159, ic95: [0.485995, 0.566960], n: 4866, estratos: 3, upm: 447}
+      - {contraste: diferencia_grave_menos_no_grave, brecha_pp: -0.2864, ic95_brecha_aprox: [-17.2835, 16.7107], excluye_cero: false}
+    se_mueve_si: >
+      [verbatim de prereg-caja-S6-L16 §5, Rama B] si entre quienes H0409A
+      marca con mayor requerimiento de atencion la proporcion en institucion
+      publica (u0201) no es mayor que en privada, se rompe para esa rama.
+    se_mueve_si_cumplido: >
+      NO se cumple ni se rompe con certeza estadistica: p(publico|grave)=
+      52.23% vs p(publico|no-grave)=52.52%, practicamente identico, y el
+      IC95 aproximado de la diferencia contiene 0 por un margen amplio
+      ([-17.28pp, +16.71pp]).
+    veredicto_Bbis: NO-DISCRIMINA
+    veredicto_del_acto: >
+      NO-DISCRIMINA. Es la primera falsacion real de R4.4 sobre datos (spec
+      §0.1: NUNCA-MEDIDA antes de este acto). El corte de severidad
+      (hospitalizacion/urgencias vs consulta externa/otro), construido contra
+      el codebook tras confirmar que H0402/H0409A-D no traen la palabra
+      "grave" literalmente (correccion que spec §2.1 ya anticipaba), no
+      discrimina institucion publica vs privada -- ambas celdas rondan 52%.
+      IC95 de cada celda se solapa casi por completo con el de la otra.
+    nota_alcance: >
+      Asociacion transversal, sin identificacion causal. IC95 de la
+      diferencia es aproximado (combinacion normal de los SE de cada IC de
+      celda, no re-muestreo conjunto -- declarado, no bootstrap directo de
+      la resta). Rama A (ENNVIH 2002/2005/2009 + ENDIREH 2016) de la misma
+      spec NO se corrió: el ponderador del libro bx/2002 (es09, disparador)
+      tiene tres candidatos (fac_3a_px/fac_3b_px/fac_4_px) sin que el
+      inventario, por si solo, diga cual corresponde (spec S6 §1.3),
+      y no hay codebook de ENNVIH en el corpus para resolverlo -- PARO
+      parcial, declarado, no forzado a ciegas. La spec permite reportar las
+      dos ramas por separado; esta entrada solo trae la Rama B. No mueve el
+      tier [MEDIA] de R4.4 ni sella MEDIBLE-COMO-ESTA -- eso es de mesa.
+    medido_en: "ACTO MAESTRA38-LOTE-ENSANUT (L16), 6/sep/2026 -- forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md; tools/medidor_l16_atencion_grave.py"
+
+  - id: salud.vacunacion.disponible_ensanut2024
+    entrada_nueva: true
+    referida_a: >
+      regla R9.2 salud.vacunacion.disponible (canon/modelo-decision-v4_0.md:575,
+      id de dominio §3.9 informacion, no §3.4 salud -- correccion de mapa
+      que canon/registro-rotulos.tsv ya trae per P3 del acto de origen,
+      no tocada aqui) -- Rama B (primaria, hallazgo nuevo de la spec) y Rama
+      C (corroboracion de tasa, descriptiva) de prereg-caja-S7-L17-spec-v1_0.md
+      (sha256 f3aea086cee60e59fa3858334eaa6e00218e30a0b19c67fb37ae806fd586830f,
+      verificado). Rama A (ENNVIH) NO se corrió -- ver nota_alcance.
+    situacion: PENDIENTE-DE-MESA
+    tier: PENDIENTE-DE-MESA
+    si:
+      disparadores: NO-APLICA
+    entonces:
+      - {conducta: razon_no_vacunacion_logistica, p: 0.777762, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)"}
+      - {conducta: razon_no_vacunacion_no_logistica, p: 0.222238, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)"}
+    porque: {generador: [], mecanismo: "PENDIENTE-DE-MESA -- este acto mide el PORQUE literal (logistico vs actitudinal/otro), no lo re-deriva"}
+    falsable_si: NO-APLICA
+    fuente: ["forense/prereg-caja/S7-L17-spec-v1_0.md", "ENSANUT2024-v2026-09-01/adultos_ensanut2024_w.stata.stata.zip", "ENSANUT2024-v2026-09-01/adolescentes_ensanut2024_w.stata.stata.zip"]
+    ola_calibracion: "ENSANUT Continua 2024 (unica ola de esta rama)"
+    instrumento: >
+      Bloque a0927 (adultos_ensanut2024_w.dta, razon de no vacunacion) --
+      el codebook INVIERTE la asignacion que spec §2 asumia del inventario:
+      la LETRA (a-e) es la RAZON, el DIGITO (1-4) es la VACUNA (1=Influenza,
+      2=Neumococo, 3=Tetanos, 4=Otra) -- verificado contra las etiquetas de
+      valor del .dta, no el orden que spec §2 proponía; reasignacion
+      declarada. RAZON_LOGISTICA = razon a (no habia vacunas) o c (no estaba
+      quien aplica); RAZON_NO_LOGISTICA = b (no derechohabiente), d (enfermo)
+      o e (otra razon). Unidad = mencion (persona x vacuna x razon marcada
+      "Si"), tal como spec §3 pre-registra (falsador de una sola muestra,
+      no de cruce). Rama C: d0321j/d0321p/d0508/d05041/d05051
+      (adolescentes_ensanut2024_w.dta), descriptivo de tasa de aceptacion.
+    escala: "proporcion de menciones logisticas sobre el total de razones declaradas de no vacunacion (Rama B); proporcion de aceptacion por reactivo (Rama C, descriptivo)"
+    universo: >
+      Rama B: 12 924 personas en adultos_ensanut2024_w.dta; 254 menciones
+      'Si' (179 personas distintas) en el bloque a0927, desglosadas
+      no_habia_vacunas=152, enfermo=47, no_estaba_quien_aplica=28,
+      no_derechohabiente=16, otra_razon=11. Rama C: 3 730 adolescentes;
+      n por reactivo entre 66 (d0321p) y 3 094 (d0508); d0321j cayo por
+      guardia de numerador (n=69, n_no=9 <10).
+    contrastes:
+      - {contraste: razon_logistica_rama_b, p: 0.777762, ic95: [0.672777, 0.857561], n: 254, estratos: 3, upm: 140, veredicto_Bbis: CORROBORADA}
+      - {contraste: acepta_d0321j_rama_c, estado: NO-ESTIMABLE, motivo: "numerador no-si 9 < 10 (n=69, n_si=60)"}
+      - {contraste: acepta_d0321p_rama_c, p: 0.562390, ic95: [0.399606, 0.719754], n: 66, estratos: 3, upm: 55, veredicto: NO-DISCRIMINA}
+      - {contraste: acepta_d0508_rama_c, p: 0.371580, ic95: [0.333836, 0.410952], n: 3094, estratos: 3, upm: 440, veredicto: CONTRARIA_descriptivo}
+      - {contraste: acepta_d05041_rama_c, p: 0.593244, ic95: [0.555192, 0.631826], n: 2974, estratos: 3, upm: 439, veredicto: CORROBORADA_descriptivo}
+      - {contraste: acepta_d05051_rama_c, p: 0.346854, ic95: [0.316861, 0.377482], n: 2941, estratos: 3, upm: 438, veredicto: CONTRARIA_descriptivo}
+    se_mueve_si: >
+      [verbatim de prereg-caja-S7-L17 §5, Rama B primaria] si entre las
+      personas de 20+ que no recibieron una vacuna nombrada, la razon
+      declarada no es mayoritariamente logistica (suministro/personal) sino
+      actitudinal o de otro tipo, la regla se rompe en su PORQUE.
+    se_mueve_si_cumplido: >
+      NO se rompe: 77.78% de las menciones son logisticas (no habia
+      vacunas + no estaba quien aplica), IC95 [67.28%, 85.76%] excluye 50%
+      por arriba con margen amplio.
+    veredicto_Bbis: CORROBORADA
+    veredicto_del_acto: >
+      CORROBORADA (Rama B, primaria de la spec). Es la primera prueba
+      directa del PORQUE de R9.2 en todo el corpus -- ni N5 ni N10 llegaron
+      a este reactivo (spec §4). Confirma con el texto exacto del propio
+      instrumento que, cuando hay hueco de vacunacion, la razon dominante
+      es de suministro/personal (152+28=180 de 254 menciones) y no
+      "enfermo" (47) ni "otra" (11); ENSANUT2024 tampoco ofrece una
+      categoria explicitamente actitudinal (rechazo/miedo/desconfianza),
+      restriccion del instrumento declarada, no inventada. Rama C
+      (descriptiva, sin antecedente propio, per N10 §2.5) es mixta: dos
+      reactivos por encima de 50% (Tdap prenatal 56.2% NO-DISCRIMINA;
+      tetanos antes-10-anos 59.3% CORROBORADA) y dos por debajo (VPH 37.2%,
+      tetanos desde-10-anos 34.7%, ambos CONTRARIA) -- no se pondera contra
+      el veredicto de Rama B, que es la primaria segun la spec.
+    nota_alcance: >
+      Rama B es de una sola muestra (composicion de razones, no un
+      contraste antecedente x desenlace) -- no se fuerza un IC95 de
+      diferencia donde no hay dos grupos que comparar (spec §4, declarado).
+      Rama A (ENNVIH) NO se corrió: mismo pendiente de ponderador ambiguo
+      (bx/2002) que salud.atencion.grave_ensanut2024, mas la reserva de
+      diseño §0.3 (ce19d_2/hs16d_2 posiblemente post-tratamiento, no
+      confirmable sin codebook de ENNVIH en el corpus) -- PARO parcial,
+      declarado, no bloquea el veredicto de Rama B. No mueve el tier
+      [FUERTE] de R9.2 ni sella MEDIBLE-COMO-ESTA -- eso es de mesa. No
+      corrige el dominio de la regla en canon/modelo-decision-v4_0.md.
+    medido_en: "ACTO MAESTRA38-LOTE-ENSANUT (L17), 6/sep/2026 -- forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md; tools/medidor_l17_vacunacion_disponible.py"
