@@ -1203,3 +1203,113 @@ corrigió en el acto anterior). Cero piezas de PERÍMETRO ejecutadas:
 `TABLERO-PROGRAMA.md`, `tools/tablero_programa.py` y `tests/check.py`
 quedan intactos. `FP-327` permanece `ABIERTA`, esperando el mismo
 adjunto de siempre. Medición: cero.
+
+## `ACTO MAESTRA38-TRAMITE-5` (Sonnet, 7/sep/2026) — recibo
+
+**FP-327 cerrada, por corrección de premisa, no por el hallazgo que el
+encargo citaba.** El encargo de dirección afirmaba «el cuerpo v1.5 entró
+por PR #573; `grep -c "v1.5"` → 3». La cifra (3) es correcta —
+verificada de nuevo aquí — pero la premisa es falsa: `git log --oneline
+4b3a2f1..cb233ac` (rango real del PR #573, rama
+`claude/tablero-v1-5-update-khcia5`) trae exactamente dos commits,
+`ACTO MAESTRA38-N18` (spec `S7-L17` v1.1) y `ACTO MAESTRA38-TRAMITE-4`
+(el `PARO` de arriba, mismo adjunto declarado ausente) — ningún commit
+del PR toca el cuerpo del tablero con contenido v1.5. Las 3 apariciones
+de "v1.5" en este archivo son menciones del adjunto ausente (la cabecera
+de consolidación de `TRAMITE-3`, arriba de este archivo, y la nota de
+`PARO` de `TRAMITE-4`, justo arriba), no contenido nuevo. Van ya **tres**
+actos consecutivos (`TRAMITE-3`, `TRAMITE-4`, este) sin que el adjunto
+real llegue a ningún repo. `FP-327` se cierra por la opción **(b)** que
+su propia fila ya ofrecía a mesa: el contenido `v1.1` vigente en este
+archivo (desde `TRAMITE-3`) queda declarado **definitivo**. Detalle
+completo en `forense/firmas-pendientes.tsv` (`FP-327`).
+
+**FP-328, `FIRMADA-PARCIAL`.** (a) Las 4 filas `ENFIH` restantes que
+citan `enfih2019_bd_csv_zip` en su nota (`N12`×2, `N4`×2) reciben
+`id_manifiesto`+`sha256_fuente`, mismo criterio que usó `C1` — pero
+**no** el mismo resultado completo: esta sesión es **NUBE sin corpus**
+(`data/raw` ausente, verificado), así que `via_capa2.py --escribe` no
+pudo promover `capa2_manifiesto`/`capa3_disco_real` (`AUSENTE=97`,
+`RAIZ_NO_CONFIGURADA=117`, exit 1, 0 diffs) — quedan
+`SI_O_REFERENCIADO`/`SI_O_PARCIAL`, sin cambio, hasta un acto `CAJA` con
+corpus. (b) `MACU_INMUJERES` dado de alta como fuente canónica propia
+(`tools/curador_registro/alta_relacion.py`, relación
+`REL-31513e0d2be4fb2d7fa98aeb`, `N36`/`R4.3`, `CANDIDATA`); la nota de
+`REL-2fa1c0dd…` ya no trae prosa libre sobre MACU — cita el id de la
+relación nueva. `baseline.py`: `{"ok": true, "errores": []}`. (c) **no**
+se ejecuta aquí — resuelto por `forense/prereg-caja/S6-L16-spec-v1_1.md`
+(`ACTO MAESTRA38-N19`, mismo día, acto separado, después de este).
+Detalle completo en `forense/firmas-pendientes.tsv` (`FP-328`).
+
+**`forense/benchmark/BENCHMARK-MOTORES-COMPARABLES.md` (nuevo, v1.2).**
+El encargo de dirección citaba un "benchmark v1.2" de mesa que **no
+llegó a este repo** — mismo patrón que el adjunto `v1.5` de arriba
+(`find . -iname "*benchmark*v1_2*"` solo encuentra el artefacto numérico
+`forense/prereg-duelo-v2/agregado-v1_2-resultado.json`, cero prosa).
+Tampoco hay `v1.0`/`v1.1` de un "benchmark de motores" en el árbol para
+mover a `forense/historico/` — si existieron, viven fuera de este repo.
+El documento nuevo se construye solo con cifras verificables: comparación
+principal `L_SOLO_vs_M` = `INDETERMINADO` (punto −28.99, IC95
+[−74.02, +9.40], 13 celdas pareadas), y un hallazgo nuevo — `M` es
+**constante dentro de `CIV`** (seis celdas, un solo valor `0.294313`,
+verificado byte a byte contra `agregado-v1_2-resultado.json`). Detalle en
+el documento mismo.
+
+### Decisiones de mesa — benchmark de motores (numeración propia del
+benchmark, §5 de ese documento — **no** la tabla de Discrepancias `D1`-`D7`
+de §7 arriba; misma letra, tema distinto, sin relación)
+
+| id (propio del benchmark) | estado | qué dice |
+|---|---|---|
+| `D1` | **FIRMADA** | corredor `P` (nuevo): no por ahora; se reabre cuando `M` deje de ser constante dentro de `CIV` (§3 del benchmark) |
+| `D4` | **ABIERTA** | `procedimiento-scoring` v1.2 con métrica secundaria (pp o Brier), para cuando `z`/banda no discrimina entre corredores (§4 del benchmark): firma de mesa |
+
+**Perímetro de este acto.** Tocado: `forense/tablero/TABLERO-PROGRAMA.md`
+(este archivo) · `forense/firmas-pendientes.tsv` (`FP-327`, `FP-328`) ·
+`data/curacion-registro/{relaciones,evidencias,utilidad-modelo,baseline}`
+(4 filas `ENFIH` + 1 alta `MACU_INMUJERES`) · `forense/benchmark/` (nuevo)
+· `forense/encargos/` (A.3) · cascada si aplica. No tocado:
+`milpa/**` · `canon/` (salvo cascada estrictamente necesaria) ·
+`tests/*.py` · `tools/*.py` (solo usados, vía `alta_relacion.py` y
+`via_capa2.py`, ninguno editado) · `cron`. Medición de México: cero.
+
+## `ACTO MAESTRA38-N19` (Sonnet, 7/sep/2026) — recibo
+
+Renumerado de `N18` a `N19`: `MAESTRA38-N18` ya está censado en
+`canon/registro-rotulos.tsv` por `ACTO MAESTRA38-N18` (fusionado,
+`PR #573`, la spec `S7-L17` v1.1 del mapeo `a0927`) — colisión de rótulo,
+regla de la casa: quien fusiona segundo renumera.
+
+`forense/prereg-caja/S6-L16-spec-v1_1.md` (+ `.sha256`): §1.3 (Rama A,
+`ENNVIH`) reescrita — ponderador adjudicado (`fac_3b_px`, `A-bis 4`,
+subpoblación Proxy declarada, nunca contra marginal poblacional), llave
+`folio` normalizada a entero antes del join (nota de `C1`, sin esto todos
+los joins dan 0), `b3b`/`fac_3b` reportado por separado de `bx`/`fac_3b_px`
+(etiquetas "SERIO" vs. "GRAVE"), chequeo de consistencia obligatorio
+(`n_no_nulo_gt0` de `fac_3b_px` ≥ el de `fac_3a_px`/`fac_4_px`, PARA si
+falla — ya satisfecho sobre el libro `bx` completo: 21 645 ≥ 21 631 y ≥
+9 037). `v1.0` intacta. **Fila B-bis, `se_mueve_si` de "fila 2 de
+SELLO-2": no existe en el repo** — `SELLO-2` declaró su Bloque B
+(filas 2-5) `NO ejecutado`; se declara la ausencia y se sustituye por
+una cláusula propia (el chequeo de consistencia mismo), marcada
+explícitamente como NO-verbatim.
+
+**`S7-L17 v1.2` NO se crea**: su Rama A usa el libro directo `b3b`
+(`fac_3b`, sin `_px`), no el libro `bx`/proxy que esta pieza trata —
+verificado contra el texto de `S7-L17 v1.1 §1.1` ("libro `bx` no aplica
+aquí"), tal como el encargo instruye cuando la rama A usa un libro
+distinto.
+
+**Contador de specs — discrepancia declarada.** El encargo asumía "era
+21, pasa a 22 o 23"; el tablero no registra ningún "21" — el último
+conteo explícito es "specs de caja `8 → 9`" (línea 789, recibo de
+`MAESTRA38-N15`). Archivos reales en `forense/prereg-caja/`: 12 → 13.
+Números de spec distintos (`S1`-`S11`): 11 → 11, sin cambio (`v1.1` es
+versión nueva de un `S`-número existente, no un `S`-número nuevo — mismo
+criterio que `S7-L17 v1.1`, que tampoco movió ningún contador al
+fusionarse).
+
+Medición de la Rama A de `S6-L16`: **sigue sin correrse ni una vez** — a
+diferencia de `S7-L17 v1.1` (que registró un mapeo ya usado por una
+medición corrida), esta `v1.1` destraba el `PARO` de `MAESTRA38-LOTE-ENSANUT`
+(6/sep/2026) para un acto `CAJA` sucesor. Medición de este acto: cero.
