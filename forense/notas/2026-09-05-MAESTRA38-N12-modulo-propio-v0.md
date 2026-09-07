@@ -82,3 +82,53 @@ levantar nada nuevo — este borrador es el plan B, no el plan A. Las escalas
 propuestas no están piloteadas ni validadas; son un punto de partida para
 que quien diseñe el módulo real (si mesa lo autoriza) no empiece de cero,
 no una especificación cerrada.
+
+---
+
+# APPEND · `ACTO MAESTRA38-LOTE-CRUCE`, pieza (a) — 6/sep/2026
+
+**Dónde vive este archivo.** El PERÍMETRO del encargo dice
+«`milpa/modulo-propio-v0*` (append)». Ese archivo **no existe**:
+`ls milpa/*modulo-propio*` → sin coincidencia. El borrador del módulo propio
+vive aquí, en `forense/notas/2026-09-05-MAESTRA38-N12-modulo-propio-v0.md`.
+Se hace el append sobre el archivo real, identificado por su contenido y no
+por su rótulo, y se declara el desvío en vez de crear un `milpa/` nuevo que
+duplicaría el mismo objeto.
+
+**Qué cambia el cruce.** `A3` corrió contra las tres fuentes de A4 + la base
+de protesta (`data/cruce-ola6-v1_0.tsv`, universo de 122 archivos / 22 969
+filas, 15 141 con texto). Resultado: **0 de 19 `CUBIERTO-POR`, 8 `PARCIAL`,
+11 `SIN-COBERTURA-EN-ESTAS-FUENTES`**. Las 19 filas del módulo **siguen en
+pie**; ninguna se retira. Lo que cambia es que **ocho de las diecinueve ya no
+hay que levantarlas enteras** — hay un ítem real, con texto, que cubre parte
+de cada una, y el módulo sólo tiene que levantar lo que falta:
+
+| id | qué ya existe (fuente · ítem) | qué falta levantar |
+|---|---|---|
+| `salud.atencion.leve_sin_imss` | Encuesta Nacional de Salud · `p13` con las tres opciones exactas (farmacia / se automedicó / consulta formal), `p14` con «Consultorio adyacente a la farmacia», `p9` para la población sin seguridad social | **un solo ítem**: la severidad percibida del malestar («¿usted lo consideró leve, moderado o grave?»). Es la fila más barata de las 19 |
+| `trabajo.prestaciones.formalidad_pesa_mas_que_salario` | Economía y Empleo · `p18_1`/`p18_2` + elección forzada `p19`/`p20` | el eje correcto: la batería contrasta **estabilidad vs. ingreso**, la regla necesita **prestaciones formales vs. salario nominal**. Se levanta el par de ítems, no la batería |
+| `informacion.escuela.miedo_a_caer_clase_media` | Economía y Empleo · `p4` («¿usted cree que sus hijos podrán vivir ___ que usted?») y `p3` | la liga a la elección de escuela, que ninguna de las cuatro fuentes tiene |
+| `trabajo.liderazgo.benevolencia_legitima` | Economía y Empleo · `p46_1..p46_5` (satisfacción laboral) | el driver entero: «¿su jefe/patrón lo trata con respeto…, o es autoritario?» |
+| `trabajo.rotacion.joven_urbano_sin_culpa` | Economía y Empleo · `p49`/`p51` (intención de cambio y razones) | el cambio **ocurrido** en 12 meses y el tramo de justificación ante la familia |
+| `cooperacion.confianza.puente_personal` | Cultura Constitucional · `P53_7` («Recurrir a un conocido») contra `P53_2`/`P53_3`; `P12_1` como control | el brazo de tratamiento con la formulación de la regla (paisano/correligionario), sobre una persona, no sobre la autoridad |
+| `informacion.deferencia.costo_acceso_experto` | Encuesta Nacional de Justicia · `p54` («¿gastar dinero con un abogado o arreglar las cosas por su cuenta?»), `p28` | el desenlace de **credibilidad de la información**, que es lo que la regla pide; `p54` mide contratación |
+| `comunicacion.directividad.regional_generacional` | Cultura Constitucional · batería `P53_1..P53_10` (directa vs. indirecta, cruzable con región y edad) | el estímulo de la regla: desacuerdo con una decisión en trato interpersonal, no ante la autoridad |
+
+**Las once que siguen enteras** (`SIN-COBERTURA-EN-ESTAS-FUENTES`, ninguna
+línea que rescatar): `trabajo.jerarquia.deferencia_iniciativa_suprimida` ·
+`salud.prevencion.hombre_sin_permiso` · `salud.consumo.sellos_precio_similar`
+· `tiempo.puntualidad.formal_vs_social` · `tiempo.compromiso.si_voy_incierto`
+· `tiempo.bomberazo.recursos_escasos_urgencias` ·
+`tiempo.cumplimiento.recordatorio_baja_barrera` ·
+`cooperacion.tanda.conoce_organizadora` ·
+`informacion.credibilidad.allegado_confianza` ·
+`comunicacion.rechazo.indirecto_face` ·
+`comunicacion.retroalimentacion.privada_publica_capital_social`.
+
+**Dominio entero sin una sola cobertura parcial: `tiempo` (4/4).** Es el
+único de los seis. Si mesa levanta algo, ahí el módulo propio no compite con
+nada existente.
+
+**Lo que este append NO hace:** no retira ninguna de las 19 filas, no cambia
+ninguna escala propuesta, no decide levantar nada, no promueve ningún
+`PARCIAL` a instrumento. Sigue sin ser un pre-registro y sigue sin `.sha256`.
