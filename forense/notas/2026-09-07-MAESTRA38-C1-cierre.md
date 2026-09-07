@@ -99,3 +99,15 @@ Tres hechos que `ADR-357` no tenía:
 **Tocado:** `data/curacion-registro/{relaciones,evidencias,utilidad-modelo,necesidad-objeto-modelo,cola-adquisicion-registro}.tsv` + `baseline.json` · `data/cola-adquisicion-v1_0.tsv` (vista) · `data/manifiesto.yaml` (+1) · `data/manifiesto-staging.yaml` · `data/ennvih2002-ponderadores-candidatos-v1_0.tsv` (nuevo) · `forense/hallazgos.md` · `forense/firmas-pendientes.tsv` · `forense/encargos/` (A.3) · esta nota · cascada.
 
 **No tocado, verificado:** `milpa/**` · `canon/` salvo la cascada · `data/l*-*` · `forense/prereg-caja/` · el clon `ACADEMICO-list-cran/` (regla #559) · `tests/*.py` · `tools/*.py` · `data/curacion-registro/aliases-fuentes.tsv`.
+
+---
+
+## 5 · Suite
+
+`python3 tests/check.py --baseline` en un **worktree limpio de esta rama** (control positivo, corpus enlazado): **`LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json`**.
+
+En el clon de trabajo la suite reporta **1** entrada: `T27: data/secretos.local.yaml`. Es un archivo **gitignorado**, creado el **6/ago/2026**, ausente de `origin/main` y del índice de esta rama — `T27` resuelve contra el filesystem, no contra git, así que un archivo local ajeno al acto lo enrojece. Verificado con los tres comandos (`git check-ignore` → `SI`, `git cat-file -e origin/main:…` → `NO`, `git ls-files --error-unmatch` → `NO`). No se registra en `INFRAESTRUCTURA` porque no es de este acto ni del repo.
+
+Cinco FAIL que sí eran de este acto, corregidos antes de cerrar: cuatro `data/alta-relacion-journal-REL-*.json` (residuo gitignorado de las propias corridas de `alta_relacion.py`, borrados) y `data/ennvih2002-ponderadores-candidatos-v1_0.tsv` (registrado en `data/INFRAESTRUCTURA-v1_0.md`). Y `T-YAMEDIDO`, resuelto pegando la salida de `tools/ya_medido.py` como **apéndice A.8** al final del encargo archivado — las cuatro reglas salen `NUNCA-MEDIDA`; el bloque verbatim del encargo no se tocó.
+
+**Anti-PR#77:** este acto **no descargó nada**. El único payload nuevo ya estaba en la raíz compartida `descargas_mx` desde el 6/sep 01:57; lo que faltaba era registrarlo. Nada quedó sólo en un worktree.
