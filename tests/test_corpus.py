@@ -54,8 +54,12 @@ def _preparar_root(tmp, nombre_raiz_externa, ruta_raiz_externa):
 
 def test_frontera_misma_raiz_vs_otra_raiz():
     with tempfile.TemporaryDirectory() as tmp:
-        nombre_raiz_b = "raiz_ext"
-        raiz_b_dir = os.path.join(tmp, "raiz_ext_dir")
+        # ACTO AUTOMATIZA-1-E1: la raíz B tiene que ser una raíz ESCANEABLE
+        # (raiz_escaneable()) o c1_huerfanos ya no la camina -- un nombre
+        # sintético arbitrario como el "raiz_ext" de antes ya no sirve para
+        # este fixture; "descargas_mx" es una raíz real y escaneable.
+        nombre_raiz_b = "descargas_mx"
+        raiz_b_dir = os.path.join(tmp, "descargas_mx_dir")
         root, raw_dir = _preparar_root(tmp, nombre_raiz_b, raiz_b_dir)
 
         contenido = b"contenido de fixture para c1_huerfanos, frontera misma-raiz/otra-raiz\n"
@@ -92,7 +96,7 @@ def test_frontera_misma_raiz_vs_otra_raiz():
 
         huerfanos = corpus.c1_huerfanos(root, entradas, raw_dir_cargado)
 
-        # -- Caso 1: raíz B (raiz_ext) --
+        # -- Caso 1: raíz B (descargas_mx) --
         clasif_b = huerfanos[nombre_raiz_b]
         assert clasif_b["sin_registro"] == [], clasif_b
         assert len(clasif_b["presente_bajo_otra_raiz"]) == 1, clasif_b

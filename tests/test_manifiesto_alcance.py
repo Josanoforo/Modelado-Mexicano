@@ -26,15 +26,29 @@ mismo filtro de 8 que MAP-1b declaró se excluye ANTES de leerlo/hashearlo
 -- ni se abre, ni aparece en staging, ni se nombra en el reporte (mismo
 criterio que esa nota usó para no transcribir ruido personal).
 
+ENMIENDA (ACTO AUTOMATIZA-1-E1 · PERIMETRO-FISICO-DE-RAICES, 7/sep/2026):
+`downloads` queda fuera del perímetro físico por diseño (`raiz_escaneable()`,
+`tests/manifiesto.py`) -- `--escanea downloads` se rechaza ANTES de resolver
+la raíz, mucho antes de que el filtro de extensión de MAP-1b tuviera
+oportunidad de aplicarse. MAP-1b deja de tener superficie de ataque sobre
+esta raíz: ya no hay ningún camino por el que `sha256_de()` pueda leer un
+archivo bajo `downloads`, con o sin filtro de extensión, porque la raíz
+misma ya no se recorre. El primer caso de este archivo se reescribe para
+afirmar ese rechazo -- no se borra, porque el defecto de privacidad que
+motivó MAP-1b sigue siendo el hecho histórico que da contexto a la nueva
+frontera (`RAICES_QUE_EXIGEN_GRUPO` sigue viva pero inalcanzable desde
+`--escanea`, ver `tests/manifiesto.py`).
+
 Qué prueban los dos casos de este archivo:
-  1. test_personal_extension_is_neither_hashed_nor_staged -- el caso que
-     justifica la corrección: sobre 'downloads', un archivo de extensión
-     ajena al filtro NUNCA se pasa a sha256_de() (rastreado con un stub que
-     envuelve la función real) ni aparece en el staging ni en el reporte;
-     un archivo de extensión conocida (.csv) sí se hashea y se stagea
-     normal.
+  1. test_downloads_es_rechazada_antes_del_filtro_de_extension -- desde la
+     frontera física, `--escanea downloads` se rechaza (`RAIZ_NO_ESCANEABLE`,
+     código != 0) antes de resolver la raíz físicamente: cero llamadas a
+     `sha256_de()`, cero staging, cero recorrido de directorio (rastreado con
+     un monkeypatch de `os.walk` que envuelve la función real). El caso
+     histórico de MAP-1b (archivo personal vs. archivo de dato) ya no aplica
+     porque ninguno de los dos llega a examinarse.
   2. test_curated_roots_are_not_extension_filtered -- que la corrección no
-     se pasó de alcance: 'descargas_mx' (raíz curada, no en
+     se pasó de alcance: 'descargas_mx' (raíz curada, escaneable, no en
      RAICES_QUE_EXIGEN_GRUPO) sigue escaneando cualquier extensión sin
      filtro -- el propio manifiesto ya registra payloads reales en formatos
      fuera de las 8 (p.ej. un .docx de cuestionario ENSANUT, citado en la
@@ -74,7 +88,25 @@ def _escanear(root, **kwargs):
     return salida.getvalue()
 
 
-def test_personal_extension_is_neither_hashed_nor_staged():
+def _escanear_esperando_rechazo(root, **kwargs):
+    """Igual que _escanear, pero para una raíz que se espera RAIZ_NO_ESCANEABLE
+    (ACTO AUTOMATIZA-1-E1): captura stdout+stderr y el código de SystemExit en
+    vez de dejarlo propagar. Devuelve (reporte, codigo)."""
+    valores = {"grupo": None, "grupo_n": None, "grupo_url": None, "usado_para": None}
+    valores.update(kwargs)
+    args = argparse.Namespace(**valores)
+    manifiesto_path, raw_dir = manifiesto.rutas(root)
+    salida = io.StringIO()
+    codigo = 0
+    with contextlib.redirect_stdout(salida), contextlib.redirect_stderr(salida):
+        try:
+            manifiesto.cmd_escanea(args, manifiesto_path, raw_dir)
+        except SystemExit as exc:
+            codigo = exc.code
+    return salida.getvalue(), codigo
+
+
+def test_downloads_es_rechazada_antes_del_filtro_de_extension():
     with tempfile.TemporaryDirectory() as tmp:
         downloads = os.path.join(tmp, "downloads_personal")
         root = _preparar_root(tmp, "downloads", downloads)
@@ -86,34 +118,45 @@ def test_personal_extension_is_neither_hashed_nor_staged():
             f.write(b"contenido personal, ajeno al proyecto\n" * 100)
 
         hasheados = []
-        original = manifiesto.sha256_de
+        sha256_original = manifiesto.sha256_de
 
-        def rastreado(path, *a, **kw):
+        def sha256_rastreado(path, *a, **kw):
             hasheados.append(os.path.basename(path))
-            return original(path, *a, **kw)
+            return sha256_original(path, *a, **kw)
 
-        manifiesto.sha256_de = rastreado
+        walks = []
+        walk_original = os.walk
+
+        def walk_rastreado(top, *a, **kw):
+            walks.append(top)
+            return walk_original(top, *a, **kw)
+
+        manifiesto.sha256_de = sha256_rastreado
+        os.walk = walk_rastreado
         try:
-            reporte = _escanear(root, escanea="downloads", grupo="*.csv")
+            reporte, codigo = _escanear_esperando_rechazo(root, escanea="downloads", grupo="*.csv")
         finally:
-            manifiesto.sha256_de = original
+            manifiesto.sha256_de = sha256_original
+            os.walk = walk_original
 
-        assert "encuesta_real.csv" in hasheados, "el archivo de dato (.csv) debe hashearse"
-        assert nombre_personal not in hasheados, (
-            "el archivo personal (.txt, fuera del filtro) NUNCA debe pasar por sha256_de -- "
-            "leerlo para hashearlo ES el riesgo de privacidad que MAP-1b encontró"
+        assert codigo not in (0, None), f"--escanea downloads debe rechazarse (código != 0), salió {codigo!r}"
+        assert "RAIZ_NO_ESCANEABLE" in reporte, reporte
+        assert hasheados == [], (
+            "ni el .csv de dato ni el .txt personal deben pasar por sha256_de() -- "
+            f"la raíz se rechaza antes de resolver nada físico, se hashearon: {hasheados}"
         )
-        assert nombre_personal not in reporte, "el nombre del archivo personal no debe aparecer en el reporte"
-        assert "fuera de alcance de dato: 1" in reporte, reporte
+        assert walks == [], f"cero recorrido de directorio antes del rechazo, se caminó: {walks}"
+        assert "encuesta_real.csv" not in reporte and nombre_personal not in reporte, (
+            "ningún nombre físico debe aparecer en el reporte de una raíz rechazada"
+        )
 
         staging_path = os.path.join(root, "data", manifiesto.STAGING_NOMBRE)
-        with open(staging_path, encoding="utf-8") as f:
-            staging = f.read()
-        assert "encuesta_real.csv" in staging
-        assert "google_takeout_backup_personal" not in staging, (
-            "el archivo fuera de alcance no debe llegar a data/manifiesto-staging.yaml"
+        assert not os.path.exists(staging_path), (
+            "una raíz rechazada no debe producir ningún archivo de staging"
         )
-        print("  OK -- .csv hasheado y en staging; .txt personal ni leído, ni en staging, ni nombrado en el reporte.")
+        print("  OK -- 'downloads' se rechaza (RAIZ_NO_ESCANEABLE) antes de resolver la raíz: "
+              "cero hashes, cero os.walk, cero staging -- el .csv de dato y el .txt personal "
+              "por igual, MAP-1b ya no tiene superficie de ataque sobre esta raíz.")
 
 
 def test_curated_roots_are_not_extension_filtered():
@@ -139,7 +182,7 @@ def test_curated_roots_are_not_extension_filtered():
 
 
 if __name__ == "__main__":
-    test_personal_extension_is_neither_hashed_nor_staged()
+    test_downloads_es_rechazada_antes_del_filtro_de_extension()
     print()
     test_curated_roots_are_not_extension_filtered()
     print()
