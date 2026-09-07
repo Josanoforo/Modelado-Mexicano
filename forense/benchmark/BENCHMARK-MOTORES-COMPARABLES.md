@@ -1,6 +1,6 @@
 # Benchmark de motores comparables (L / M / R) — corredores del duelo adversarial
 
-### `benchmark-motores-comparables` · **v1.2** · 7 de septiembre de 2026 · archivo canónico único, versión en la primera línea del cuerpo
+### `benchmark-motores-comparables` · **v1.3** · 7 de septiembre de 2026 · archivo canónico único, versión en la primera línea del cuerpo
 
 > | | |
 > |---|---|
@@ -92,7 +92,7 @@ Verificado directamente sobre `celdas` de `agregado-v1_2-resultado.json` (no re-
 | `CIV-M-12` | 0.294313 |
 | `CIV-M-13` | 0.294313 |
 
-**Las seis celdas del dominio `CIV` en el universo de 14 tienen el mismo valor de `M`, byte a byte, hasta el sexto decimal.** No es una casualidad de redondeo: es el mismo número repetido seis veces. Otros dominios no son igual de planos: `TRA-M-*` (3 celdas) también repite un único valor (`0.62`) las tres veces; `FAM-M-*` (4 celdas) **no** es constante (`FAM-M-01=0.457707` frente a `FAM-M-05/06/07=0.045694`, las tres últimas sí idénticas entre sí); `DIN-M-01` es una sola celda, no comparable consigo misma.
+**Las seis celdas del dominio `CIV` en el universo de 14 tienen el mismo valor de `M`, byte a byte, hasta el sexto decimal.** No es una casualidad de redondeo: es el mismo número repetido seis veces. Otros dominios no son igual de planos: `TRA-M-*` (3 celdas) también repetía un único valor las tres veces — `0.62` **en v1.2**, y `0.085118` en v1.3 tras el re-enlace: sigue siendo constante dentro del dominio, pero **ya no es el `0.62` ASIGNADO** (ver §v1.3 abajo; el valor vigente del benchmark es `0.085118`); `FAM-M-*` (4 celdas) **no** es constante (`FAM-M-01=0.457707` frente a `FAM-M-05/06/07=0.045694`, las tres últimas sí idénticas entre sí); `DIN-M-01` es una sola celda, no comparable consigo misma.
 
 **Lo que esto dice, sin interpretar de más:** dentro de `CIV`, el motor `M` no varía por celda — el mismo punto se repite para seis reglas distintas del dominio cívico. Esto es consistente con (aunque este documento no lo prueba) que `M` esté devolviendo un valor agregado a nivel de dominio, no una estimación por regla, para `CIV` específicamente. Verificar la causa (¿bug de agregación? ¿es el diseño correcto y las seis reglas comparten de verdad el mismo estimando?) queda fuera del perímetro de este benchmark — es la pregunta que la fila `D1` del tablero (§5) deja abierta.
 
@@ -151,8 +151,8 @@ Mediana `|z|` de `M` sobre las 14 celdas: **11.43 (v1.2) → 7.43 (v1.3)** —
 confirma la expectativa declarada antes de correr en el encargo (B-bis:
 `z ≈ −8/+14/+6` en `TRA`, mediana ≈ 7.4). `comparacion_principal_pareada`
 (`L_SOLO_vs_M`, banda `z`, veredicto primario) sigue **`INDETERMINADO`**
-(v1.2: `[−16.65, ...]`≈punto 27.9; v1.3: punto `10.79`, IC95
-`[−1.84, +26.53]`) — el IC sigue cruzando 0, ninguna celda entra en banda
+(v1.2: punto `−28.99`, IC95 `[−74.02, +9.40]`; v1.3: punto `10.79`, IC95
+`[−1.84, +26.53]` — el intervalo se estrecha de 83.4 a 28.4 de ancho) — el IC sigue cruzando 0, ninguna celda entra en banda
 `±0.5`. **Corregir el enlace no cambia el veredicto primario de la
 comparación pareada** — sigue sin distinguir `L_solo` de `M` con la
 evidencia actual, ahora con un punto medio mucho más cercano a 0.
@@ -202,3 +202,75 @@ firma de mesa de este encargo la cita; se reporta, no se aplica; sucesor
 declarado). No mueve ningún tier de `canon/modelo-decision-v4_0.md`. No
 abre el paso 3 (`evaluar()` por celda/eje) — ver `enlace-M-v1_1.md` §6 y
 el encargo, "sucesores declarados, no lanzados".
+
+---
+
+## v1.3 · addendum — `M` materializado y `ola_calibracion` por conducta (`ACTO MAESTRA38-M13 · M-POR-CELDA v1.3`)
+
+La sección `v1.3` de arriba se escribió cuando el `M` de `TRA-M-02/03/07`
+se calculaba **en memoria**. Este addendum la completa tras el encargo
+final del mismo acto. **Ninguna cifra de arriba cambia** — se verificó
+comparando el `agregado-v1_3-resultado.json` de entonces contra el actual:
+**cero claves con valor distinto**; las únicas diferencias son dos claves
+nuevas de procedencia.
+
+### Qué se corrigió, y por qué importa para el benchmark
+
+**(1) El agregado no consultaba el motor vivo.** La cadena real es
+`marco → tools/emite_m.py::emite_celda → emitir_binaria →
+corridas-M/M-<id>*.json → agregado::_leer_m`. Cambiar la `conducta` en el
+marco sin reemitir `M` es **cero cambio efectivo** en el agregado. v1.3
+materializa las tres celdas como archivos sellados —
+`corridas-M/M-TRA-M-0{2,3,7}__v1_3.json` — y el agregado los resuelve por
+archivo, en el orden `__v1_3` → plano → `__v1_2`, reportando
+`fuente_M_por_celda` con los 14 IDs. El benchmark deja de apoyarse en un
+número que sólo existía durante la corrida.
+
+**(2) `ola_calibracion` se resolvía por REGLA.** `tools/emite_m.py`
+devolvía el fijo histórico `ENCIG 2023` para *cualquier* conducta de
+`tramite.mordida.discrecional` — el ancla del `ASIGNADO` `paga_mordida`.
+Ahora se resuelve por conducta contra la enmienda cuyo `aplica_a` la
+contiene: `paga_mordida → ENCIG 2023`, `paga_mordida_encuci2020 → ENCUCI
+2020`, `paga_mordida_encig2025 → ENCIG 2025`. Importa para el benchmark
+porque `ola_calibracion` alimenta F-DD, que decide **si una celda puntúa**.
+El `grado_DD` de las tres sigue `P1 PUNTUA`, pero ahora por la razón
+correcta.
+
+### El hallazgo que motivó `M13`, conservado
+
+**v1.2 reveló que las tres celdas `TRA` consumían el `ASIGNADO` histórico**
+(`paga_mordida`, `p = 0.62`, `clase ASIGNADO`) pese a que el motor ya traía
+la serie ENCIG de 8 olas (2011-2025, rango 4.45 %–8.51 %) que lo declara
+`REFUTADA-POR-R` (`ADR-270`/`ADR-276`). **v1.3 re-enlaza esas tres celdas a
+la conducta medida preexistente** `paga_mordida_encig2025`
+(`p = 0.085118`, `MEDIDO·p(tasa base ponderada)`). No se creó ninguna
+medición nueva: la corrección consiste en dejar de leer un número que el
+propio motor ya había refutado.
+
+### Lectura del resultado — sin declarar victoria
+
+| | v1.2 | v1.3 |
+|---|---|---|
+| mediana `\|z\|` de `M` (14 celdas) | 11.4321 | **7.4259** |
+| IC95 de esa mediana | [3.9869, 18.7243] | [3.9869, 14.7022] |
+| `L_SOLO_vs_M` (**primaria**, `z`) | `INDETERMINADO` | `INDETERMINADO` |
+| punto · IC95 | −28.99 · [−74.02, +9.40] | 10.79 · [−1.84, +26.53] |
+| `L_CORPUS_vs_M` (secundaria) | `INDETERMINADO` | `L-MAS-ALTO-QUE-M` |
+| celdas en banda `±0.5` (`M`) | 0/14 | 0/14 |
+
+**La comparación principal sigue `INDETERMINADO` y su IC95 sigue cruzando
+el cero: el intervalo no sostiene una victoria de `M`, y no se declara.**
+Lo que sí se sostiene es más modesto y más sólido: `M` ya no se compara
+contra `R` usando un valor asignado que el motor declara refutado, y las
+cifras del benchmark son ahora reproducibles desde archivos sellados.
+`L_SOLO` y `L_CORPUS` **no se movieron** — mismos `R`, mismos `L`, mismo
+procedimiento, mismos `seed`/`réplicas`/`delta`/`nivel_ic`.
+
+**`D1` sin cambio.** `M` sigue constante dentro de `CIV` (0.294313 en las
+seis). `TRA` también es constante dentro del dominio, ahora en `0.085118`.
+La pregunta que abre la fila `D1` del tablero no la responde este acto.
+
+**Deriva de:** `forense/prereg-duelo-v2/agregado-v1_3-resultado.json`
+(`sha256 e0d59d54…`, dos corridas frescas mismo hash) ·
+`forense/prereg-duelo-v2/scoreboard-v1_3-AGREGADO.md` ·
+`forense/prereg-duelo-v2/enlace-M-v1_1.md` §6.

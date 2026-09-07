@@ -341,6 +341,22 @@
   "veredicto_cambia_entre_EE": false
  },
  "excluidas_verificacion_no_puntua": [],
+ "fuente_M_por_celda": {
+  "CIV-M-01": "forense/prereg-duelo-v2/corridas-M/M-CIV-M-01.json",
+  "CIV-M-02": "forense/prereg-duelo-v2/corridas-M/M-CIV-M-02__v1_2.json",
+  "CIV-M-04": "forense/prereg-duelo-v2/corridas-M/M-CIV-M-04__v1_2.json",
+  "CIV-M-10": "forense/prereg-duelo-v2/corridas-M/M-CIV-M-10__v1_2.json",
+  "CIV-M-12": "forense/prereg-duelo-v2/corridas-M/M-CIV-M-12.json",
+  "CIV-M-13": "forense/prereg-duelo-v2/corridas-M/M-CIV-M-13.json",
+  "DIN-M-01": "forense/prereg-duelo-v2/corridas-M/M-DIN-M-01__v1_2.json",
+  "FAM-M-01": "forense/prereg-duelo-v2/corridas-M/M-FAM-M-01.json",
+  "FAM-M-05": "forense/prereg-duelo-v2/corridas-M/M-FAM-M-05__v1_2.json",
+  "FAM-M-06": "forense/prereg-duelo-v2/corridas-M/M-FAM-M-06__v1_2.json",
+  "FAM-M-07": "forense/prereg-duelo-v2/corridas-M/M-FAM-M-07__v1_2.json",
+  "TRA-M-02": "forense/prereg-duelo-v2/corridas-M/M-TRA-M-02__v1_3.json",
+  "TRA-M-03": "forense/prereg-duelo-v2/corridas-M/M-TRA-M-03__v1_3.json",
+  "TRA-M-07": "forense/prereg-duelo-v2/corridas-M/M-TRA-M-07__v1_3.json"
+ },
  "fuente_l": {
   "extractor": "tools/extrae_l_v1_1.py (parcheado por PR #497, ENMIENDA 3, sha efb71de1...)",
   "nota": "agregado_v1_1.py (base, sin editar) queda como estaba, describiendo v1_1 con valor_extraido null. Este script (v1_2) es el mismo cálculo con marco, universo, fuente de M y fuente de L sobreescritos por monkeypatch quirúrgico, sin tocar el módulo base.",
@@ -487,6 +503,19 @@
     "n_celdas": 14
    }
   }
+ },
+ "orden_resolucion_M": {
+  "orden": [
+   "M-{id}__v1_3.json",
+   "M-{id}.json",
+   "M-{id}__v1_2.json"
+  ],
+  "reapuntadas_usan_v1_3": [
+   "TRA-M-02",
+   "TRA-M-03",
+   "TRA-M-07"
+  ],
+  "regla": "primera coincidencia exacta, sin otra heuristica (encargo MAESTRA38-M13 §16). Para las 11 celdas no afectadas reproduce las fuentes de v1.2, porque ninguna tiene __v1_3."
  },
  "parametros_sellados": {
   "delta": 0.5,

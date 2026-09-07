@@ -13,14 +13,21 @@ sobreescribe, en la instancia importada, dos cosas:
      la columna `conducta` re-apuntada por `enlace-M-v1_1.md`:
      `TRA-M-02`/`TRA-M-03`/`TRA-M-07` de `paga_mordida` a
      `paga_mordida_encig2025`).
-  2. `_leer_m` → para `TRA-M-02`/`TRA-M-03`/`TRA-M-07`, calcula `M` EN
-     MEMORIA vía `milpa.src.emisor.emitir_binaria(regla,
-     'paga_mordida_encig2025')` — el mismo camino que `tools/emite_m.py`
-     usa para escribir archivos, sin escribir ningún archivo nuevo bajo
-     `corridas-M/` (fuera del perímetro de este acto, ver
-     `enlace-M-v1_1.md` §6). Para las 11 celdas restantes, cae al mismo
-     patrón de dos nombres que `agregado_v1_2.py` ya usa
-     (`M-<id>.json` / `M-<id>__v1_2.json`) — no cambian.
+  2. `_leer_m` → resolución POR ARCHIVO en el orden exacto del §16 del
+     encargo final `MAESTRA38-M13 · M-POR-CELDA v1.3`:
+     `M-<id>__v1_3.json` → `M-<id>.json` → `M-<id>__v1_2.json`, primera
+     coincidencia exacta. Las tres celdas re-apuntadas resuelven a
+     `__v1_3` (materializadas por `tools.emite_m.emite_celda` en el
+     COMMIT 2 de ese acto); las 11 restantes reproducen las fuentes de
+     v1.2, porque ninguna tiene `__v1_3`. El resultado incluye
+     `fuente_M_por_celda` con los 14 IDs, que es la prueba mecánica del
+     control §19-F.
+
+     ANTES (`PR #592`) este script calculaba el `M` de las tres celdas EN
+     MEMORIA vía `emitir_binaria`, sin escribir nada bajo `corridas-M/`.
+     La `ENMIENDA-1` del encargo corrige esa premisa: el agregado lee
+     archivos, así que un `M` que sólo vive en memoria no deja registro
+     auditable, ni cita, ni `ola_calibracion`, ni `grado_DD`.
 
 Y AÑADE, sin tocar nada de lo que `agregado_v1_2.py`/`agregado_v1_1.py`
 calculan, la métrica secundaria pre-registrada por
@@ -56,7 +63,9 @@ _BASE = importlib.util.module_from_spec(_SPEC)
 sys.modules[_SPEC.name] = _BASE
 _SPEC.loader.exec_module(_BASE)  # agregado_v1_2.py NO se edita -- se importa por ruta
 
-from milpa.src.emisor import cargar_reglas, emitir_binaria  # noqa: E402
+# NOTA: este modulo ya NO importa milpa.src.emisor. El M de las tres celdas
+# re-apuntadas se lee de corridas-M/M-<id>__v1_3.json, emitido por
+# tools/emite_m.py -- que es el unico que habla con el motor. Ver §16.
 
 MARCO_TSV_V1_3 = DIR / "marco-M-sorteado-v1_3.tsv"
 
@@ -69,29 +78,49 @@ IDS_REAPUNTADOS = ("TRA-M-02", "TRA-M-03", "TRA-M-07")
 _BASE.MARCO_TSV = MARCO_TSV_V1_3
 _BASE._BASE.MARCO_TSV = MARCO_TSV_V1_3  # el modulo base (agregado_v1_1) tambien lee esta constante
 
-_REGLAS = cargar_reglas()
-_REGLA_MORDIDA = next(r for r in _REGLAS if r.id == "tramite.mordida.discrecional")
+# --- 2) M: resolucion POR ARCHIVO, en el orden exacto del §16 -----------
+#
+# ACTO MAESTRA38-M13 · M-POR-CELDA v1.3 (encargo final, §2/§15/§16).
+# Antes este script calculaba el M de las tres celdas re-apuntadas EN
+# MEMORIA (`emitir_binaria`), sin escribir nada bajo `corridas-M/`. La
+# ENMIENDA-1 corrige la premisa: la cadena real del duelo es
+#
+#   marco -> tools/emite_m.py::emite_celda -> milpa.src.emisor.emitir_binaria
+#         -> corridas-M/M-<id>*.json -> agregado::_leer_m
+#
+# es decir, el agregado lee ARCHIVOS, y un M que solo vive en memoria no
+# deja registro auditable ni cita, ni `ola_calibracion`, ni `grado_DD`.
+# El COMMIT 2 de este acto materializo los tres `M-<id>__v1_3.json` con
+# `tools.emite_m.emite_celda`; aqui se consumen desde disco.
+#
+# §16, literal: "Para cada celda, buscar en este orden: 1. M-<id>__v1_3.json
+# 2. M-<id>.json 3. M-<id>__v1_2.json. Primera coincidencia exacta. No otra
+# heuristica." Para las 11 no afectadas el resultado es identico al de
+# `agregado_v1_2._leer_m_v1_2` (que prueba `M-<id>.json` y luego
+# `M-<id>__v1_2.json`), porque ninguna de ellas tiene `__v1_3`.
+ORDEN_RESOLUCION_M = ("M-{id}__v1_3.json", "M-{id}.json", "M-{id}__v1_2.json")
+
+
+def _ruta_m(id_celda: str) -> Path | None:
+    """Primera coincidencia EXACTA del orden de §16, o None."""
+    for patron in ORDEN_RESOLUCION_M:
+        ruta = _BASE._BASE.CORRIDAS_M / patron.format(id=id_celda)
+        if ruta.exists():
+            return ruta
+    return None
+
+
+def _fuente_m(id_celda: str) -> str | None:
+    ruta = _ruta_m(id_celda)
+    return None if ruta is None else str(ruta.relative_to(DIR.parents[1]))
 
 
 def _leer_m_v1_3(id_celda: str):
-    if id_celda in IDS_REAPUNTADOS:
-        pred = emitir_binaria(_REGLA_MORDIDA, CONDUCTA_NUEVA)
-        if pred.estado != "EMITE":
-            raise LookupError(f"{id_celda}: emitir_binaria no emitio para {CONDUCTA_NUEVA!r}")
-        return {
-            "valor_punto": pred.valor_punto,
-            "conducta": CONDUCTA_NUEVA,
-            "clase": pred.clase,
-            "regla": "tramite.mordida.discrecional",
-            "fuente": (
-                "en memoria, agregado_v1_3.py, via "
-                "milpa.src.emisor.emitir_binaria(regla='tramite.mordida.discrecional', "
-                f"conducta={CONDUCTA_NUEVA!r}); enlace-M-v1_1.md re-apunta la celda a esta "
-                "conducta, DM 1/sep/2026, ADR-270/276"
-            ),
-        }
-    # 11 celdas restantes: mismo patron de dos nombres que agregado_v1_2.py
-    return _BASE._leer_m_v1_2(id_celda)
+    ruta = _ruta_m(id_celda)
+    if ruta is None:
+        return None
+    with ruta.open(encoding="utf-8") as fh:
+        return json.load(fh)
 
 
 _BASE._BASE._leer_m = _leer_m_v1_3
@@ -217,6 +246,28 @@ def main() -> dict:
     resultado["version_scoring"] = "v1_2 (procedimiento-scoring-v1_2.md -- z primaria sin cambio, "
     resultado["version_scoring"] += "metrica secundaria pp anadida, D4)"
     resultado["reapuntadas"] = list(IDS_REAPUNTADOS)
+
+    # §16: "Anadir al resultado fuente_M_por_celda ... Debe contener
+    # exactamente los 14 IDs del universo." Se deriva del UNIVERSO, no del
+    # orden en que `_leer_m` fue llamado, para que sea exactamente 14 y
+    # deterministico. Es la prueba mecanica del control §19-F.
+    universo = list(_BASE.UNIVERSO_V1_2)
+    resultado["fuente_M_por_celda"] = {cid: _fuente_m(cid) for cid in universo}
+    resultado["orden_resolucion_M"] = {
+        "orden": list(ORDEN_RESOLUCION_M),
+        "regla": ("primera coincidencia exacta, sin otra heuristica (encargo "
+                   "MAESTRA38-M13 §16). Para las 11 celdas no afectadas reproduce "
+                   "las fuentes de v1.2, porque ninguna tiene __v1_3."),
+        "reapuntadas_usan_v1_3": sorted(
+            cid for cid in universo
+            if (resultado["fuente_M_por_celda"].get(cid) or "").endswith("__v1_3.json")),
+    }
+    faltan = [cid for cid, f in resultado["fuente_M_por_celda"].items() if f is None]
+    if faltan:
+        raise LookupError(f"sin archivo M para {faltan} -- §16 exige los 14 IDs resueltos")
+    if len(resultado["fuente_M_por_celda"]) != 14:
+        raise AssertionError("fuente_M_por_celda debe traer exactamente los 14 IDs del universo")
+
     resultado["metrica_secundaria_pp_d4"] = _metrica_secundaria_pp(resultado)
     return resultado
 
