@@ -181,3 +181,40 @@ real, no sesión de nube):**
 **Lo que ninguna de las dos corridas prueba: el disparo automático.**
 Primera evidencia posible: `censo/2026-09-07`, lunes 07:30. `T31 T-CRON`
 lo vigila desde el martes; `FP-323` sigue `ABIERTA` hasta entonces.
+
+## §8 · AUTOMATIZA-2-E4 · PDN-COMPARA — formato de huella nuevo (6/sep/2026)
+
+**Defecto que corrige.** El paso 2.6 (D-c de §6) corría
+`tests/manifiesto.py --escanea descargas_mx` tras la re-baja -- raíz
+equivocada: los cuatro bulk de PDN se descargan a
+`data/raw/pdn_bulk_<AAAA_MM>/`, no a `descargas_mx`; ese re-escaneo
+nunca veía los archivos nuevos y la huella `[ADQ-PDN]` nunca reflejó el
+estado real de la re-baja (verificado por dirección en A.8 del encargo
+de este acto, re-confirmado línea por línea contra el árbol antes de
+editar -- `forense/notas/2026-09-06-AUTOMATIZA-2-E4-PDN-COMPARA-resultados.md`).
+
+**Formato nuevo, por sistema (cuatro líneas, una por `SIS_LOGICO` -- s1,
+s2, s3, s6):**
+```
+[ADQ-PDN] <SIS_LOGICO>: estado=<E> id=<id> sha_manifiesto=<sha|-> sha_real=<sha|-> miembros_zip=<IGUAL|DISTINTO|NO-DISPONIBLE>
+```
+o, si la re-baja falló: `[ADQ-PDN] <SIS_LOGICO>: PARO-RED, no se pudo
+re-bajar desde <URL>`. Las cuatro líneas van en el MISMO commit de
+`censo/<fecha>` (`commit_censo_linea` admite cuerpo multilínea, ya
+verificado por el bloque anterior de este mismo archivo). `<E>` es uno
+de `COINCIDE` / `CAMBIO-DE-CONTENIDO` / `SIN-REFERENCIA-UNIVOCA` /
+`SIN-SHA-EN-REFERENCIA` / `ARCHIVO-NO-LEGIBLE` (`tests/manifiesto.py
+--compara-sha`, frontera epistemológica del acto que lo instala: detecta
+identidad de bytes, no decide equivalencia semántica ni actualiza nada --
+una discrepancia queda para adjudicación humana, Enmienda 4).
+
+**Tabla `SIS_LOGICO` → `id_manifiesto` (cableada a mano en
+`tools/adquiere_cron.sh`, nunca derivada):** `s1:pdn_s1_2026_09_06` ·
+`s2:pdn_s2_2026_09_06` · `s3:pdn_s3v2` · `s6:pdn_s6_2026_09_06`. Se
+actualiza a mano cuando un mes trae un id de referencia nuevo -- mientras
+no se actualice, sigue comparando contra el id vigente y reporta
+`CAMBIO-DE-CONTENIDO` si los bytes ya no coinciden (no es un error del
+cron, es el hallazgo que este comparador existe para producir).
+
+Actualiza §1 (huella mínima) y §3 (calendario) arriba, que describían el
+`--escanea` retirado.
