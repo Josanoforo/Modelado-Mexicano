@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **369 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **370 ADR**
 
 > | | |
 > |---|---|
@@ -6374,3 +6374,35 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Deuda que cierra.** Ninguna.
 
 **Numeración.** Derivado contra `origin/main` (máximo real `368`, `ADR-368` `MAESTRA38-N18`, este mismo acto en la misma sesión/rama), candidato `369`, sin huecos.
+
+---
+
+**ADR-370 (derivado por `python3 tools/cierre_acto.py`, Fase A, equivalente al comando de la casa: máximo real `369` contra `origin/main = 33702a0`, candidato `370`, contiguo, sin huecos; el preflight reportó `NO` para el candidato en las dos ramas remotas accesibles) · `ACTO MAESTRA38-C1 · RE-ASIENTO`**, 7/sep/2026, entorno **CAJA (UBUNTU) con corpus** — ejecuta la spec congelada `prereg-caja-S3-C1`, cierra `FP-288` y corrige tres premisas del encargo contra el árbol. **Medición del motor: cero** (ningún `p`, ningún IC, ninguna `R`; las cuatro reglas tocadas salen `NUNCA-MEDIDA` en `tools/ya_medido.py`, pegado en el A.8 del encargo archivado).
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-C1-RE-ASIENTO.md` (SHA de redacción `5b48f249`). **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo, no dispara verificación.
+
+**(a) Re-asiento, y la corrección que lo gobierna.** El encargo pide el destino «`R4.5`/`N45`». **`N45` no existe.** Contra el árbol: `R4.5` **es `N41`**; `N43`/`N44` tienen **0** ocurrencias en todo el repo; `N45` aparece en un solo archivo, `forense/encargos/2026-09-04-MAESTRA38-N3-PRE-REGISTRO-DE-CAJA.md:5`, que llama «`N42`–`N45` de salud» a las cuatro altas que el árbol tiene como **`N38`–`N41`** — desplazamiento de cuatro lugares propagado de un encargo al siguiente. Se siguió la **spec congelada**, no el rótulo: `alta_relacion.py --dry-run` derivó **`REL-e7c3700e98be2d9aa7bbd55e`**, exactamente el id que `prereg-caja-S3-C1` §3 pre-registró. La fila vieja `REL-54b26887b70cada846e1207c` no se borra ni se mueve (el script no reescribe filas existentes): se le anota `SUPERADA-POR` en la `nota`, mecanismo que la spec §4 ya fijaba. Las 7 relaciones no-etiquetado bajo `N36` **no se tocan** (adjudicación de `L3-BIS`).
+
+**(a0) Alta de `N42`, reducida y declarada.** El encargo pide `N42`–`N45`; sólo `N42` (`R8.4`, `canon/modelo-decision-v4_0.md:567`) tiene soporte en el árbol — la propuso `MAESTRA38-N11:72` sin ejecutarla por estar fuera de su perímetro. `necesidad-objeto-modelo.tsv`: **41 → 42**.
+
+**(b) Tres relaciones `CANDIDATA`**, ejecutando la firma del 5/sep verbatim («una necesidad sobre una fuente que ya está en corpus es una relación CANDIDATA, no una fila de cola»): `REL-2fa1c0dd…` (`R4.3`/`N36`/`CERO_DESABASTO`), `REL-fbda9054…` (`R8.1`/`N28`/`CNGMD`), `REL-ec408a0b…` (`R8.4`/`N42`/`CNGMD`). Las 3 filas de cola pasan a `SUPERADA-POR <relacion_id>`; **ninguna se borra**. `CERO_DESABASTO`/`CNGMD` no están en `aliases-fuentes.tsv`, así que el script exigió `alias_decidido` explícito — declarado con el nombre que ya existe verbatim en `relaciones.tsv`; `aliases-fuentes.tsv` **no se editó**. **Identidad no plegada:** MACU/Inmujeres (segundo payload de la fila de `R4.3`) no tiene fuente canónica propia y **no** se metió bajo `CERO_DESABASTO` — queda en la `nota` y su alta se declara a mesa (`FP-328` (b)).
+
+**(c) `FP-288` → EJECUTADA por la opción (i).** `enfih2019_bd_csv_zip` → `--verifica` **COINCIDE** (sha256 `be372533…2ef4d5`, 4 404 049 B); escritos `id_manifiesto`+`sha256_fuente` en las 4 filas (`N3`/`N10`/`N13`/`N14`), identificadas **por la nota que cita el id**, no por rótulo. `via_capa2.py --escribe` las promovió `SI_O_REFERENCIADO → SI`. **Dos correcciones obligadas:** `via_capa2.py` **no tiene** la bandera `--vincula` que la opción (i) de `FP-288` nombra (`--help` verificado) — el enlace se escribió como edición preservando texto; y el contador «`SE ENLAZA` 20 → 24» **es inalcanzable**: el marcador ya vivía en la `nota` de esas 4 filas, era **mención, no enlace** — que es exactamente la sustancia de `FP-288`. El contador que sí se movió: `capa2_manifiesto = SI`, **86 → 93**.
+
+**(d) L2-LISTA, 18/18.** Una invocación por id, tres resultados sin colapsar: **COINCIDE = 18 · NO_COINCIDE = 0 · AUSENTE = 0**. **La premisa de «16 nuevos» no se reproduce:** ninguno de los dos censos del 6/sep los cuenta como nuevos; el falso positivo real ya lo corrigió `MAESTRA38-CENSO-CLON` (`PR #559`) y eran **136 residuos del clon `ACADEMICO-list-cran`**. Nada se promovió de esa carpeta; el clon no se tocó (regla #559).
+
+**(e) Payload nuevo (+1, manifiesto 1567 → 1568).** `mex_2016_apipie_v01_m_stata` — `MEX_2016_APIPIE_v01_M_Stata.zip`, 618 383 B, `testzip()` OK, 6 miembros y los 6 son `.dta`: el microdato que a las 24 entradas hermanas `adq15_wb6667_*` les faltaba. **Dos desvíos declarados:** el prefijo de id `adq15_wb6667_` que el encargo pide **no es alcanzable** (`tests/manifiesto.py::_derivar_id` deriva del basename; ese script está fuera de perímetro) — el vínculo queda en `usado_para`; y **A.7 doble descarga no es reproducible** (payload bajado a mano tras `EXIGE-CREDENCIAL`) — lo corrido es sha256+tamaño contra disco y validación estructural.
+
+**(h) Ponderador ENNViH 2002: se lista, no se adjudica.** `data/ennvih2002-ponderadores-candidatos-v1_0.tsv`, **13** candidatos. Corrige a `ADR-357` en dos puntos: el codebook **sí** está en corpus (`ennvih1_2002_hogar_cb`), y los tres candidatos «ambiguos» lo son porque comparten **la misma etiqueta verbatim**; además existe un cuarto, `fac_s` (`LIBRO SALUD`). Los pesos no están en el microdato (**137** `.dta` examinados, **0** con columna `fac*`) ni en los codebooks (**0** ocurrencias de `fac`, control positivo 340 376 B de texto extraído): viven en `ennvih/ehh02w_all.zip`.
+
+**Entorno, declarado.** El encargo dice «sin red»: hay red (INEGI `200`). Y la raíz `descargas_mx` es **invisible dentro del sandbox** de esta sesión (`0` archivos examinados adentro, `194` afuera): medido en `via_capa2.py`, `COINCIDE=92 · AUSENTE=117` adentro contra `COINCIDE=209 · AUSENTE=0` afuera, con **los 7 diffs idénticos en las dos vistas** — la ceguera no contaminó ninguna decisión, y los comandos sobre esa raíz se corrieron fuera del sandbox.
+
+**Perímetro.** Toca `data/curacion-registro/{relaciones,evidencias,utilidad-modelo,necesidad-objeto-modelo,cola-adquisicion-registro}.tsv` + `baseline.json`, `data/cola-adquisicion-v1_0.tsv` (vista), `data/manifiesto.yaml`, `data/manifiesto-staging.yaml`, `data/ennvih2002-ponderadores-candidatos-v1_0.tsv` (nuevo), `data/INFRAESTRUCTURA-v1_0.md` (T27), `forense/{hallazgos.md,firmas-pendientes.tsv}`, la nota de cierre y la cascada. **No toca** `milpa/**`, `data/l*-*`, `forense/prereg-caja/`, el clon `ACADEMICO-list-cran/`, `tests/*.py`, `tools/*.py` ni `aliases-fuentes.tsv`.
+
+**Deuda que abre.** `FP-328` (recibo + tres decisiones de mesa: las otras 4 filas `ENFIH` que citan el mismo id, el alta de MACU como fuente propia, y cuál de los 13 ponderadores se adjudica).
+
+**Deuda que cierra.** `FP-288` (`EJECUTADA`, opción (i)). El `PARO` parcial de Rama A de `S6-L16`/`S7-L17` **no se cierra** — este acto entrega la tabla para que dirección lo cierre.
+
+**`tests/check.py --baseline`**: ver la nota de cierre.
+
+**Numeración.** Derivado contra `origin/main = 33702a0` (máximo real `369`), candidato `370`, contiguo, sin huecos. `LOTE-CRUCE` corre en paralelo sobre `acto/maestra38-lote-cruce`: si fusiona primero, este ADR se renumera — regla de la casa, renumera quien fusiona segundo.
