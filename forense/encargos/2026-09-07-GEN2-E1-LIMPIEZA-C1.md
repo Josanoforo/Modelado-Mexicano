@@ -29,5 +29,14 @@ el inventario real usó `git worktree list --porcelain`).
 
 `FP-338` queda **ABIERTA**, no `RECIBO -- no requiere firma`: 2 worktrees con commits propios no
 empujados y sin PR (`mm-maestra37-l2-mps-codebook`, `mm-maestra38-v1`) exigen decisión de mesa antes
-de podar nada; la firma de la lista completa de 114 candidatos queda para un acto E4 aparte. Ningún
-borrado, movimiento ni push ocurrió en este acto.
+de podar nada; la firma de la lista completa de 114 candidatos queda para un acto de mesa aparte.
+Ningún borrado, movimiento ni push ocurrió en este acto.
+
+`python3 tests/check.py --baseline`: la primera corrida trajo 3 entradas nuevas frente a
+`tests/baseline.json` — T03 (cita bare de `raices.local.yaml` sin el prefijo `data/`, corregida en
+la propia nota) y T25 ×2 (rótulo pelado `E4`, mención del paso siguiente de mesa que el propio
+encargo nombra). Cascada §4-5 aplicada: `canon/registro-rotulos.tsv` censa `GEN2-E1` (nueva fila) y
+`tests/check.py::_T25_ARCHIVOS_CONOCIDOS` exime solo el encargo verbatim (la nota se redactó sin
+repetir el token, no necesita exención). Segunda corrida: **LÍNEA BASE: VERDE** — nada nuevo frente a
+`tests/baseline.json` (los 3 FAIL restantes — T06 ×2, T08 ×1 — ya vivían en el baseline antes de este
+acto, no los causó).

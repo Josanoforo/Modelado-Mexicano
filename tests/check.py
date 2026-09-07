@@ -3950,6 +3950,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # real ajeno a este acto (mismo patrón que TRAMITE-6/N20-N21 de arriba).
     # El texto verbatim no se edita (A.3).
     "forense/encargos/2026-09-07-MAESTRA38-SELLO-3.md",
+    # ACTO GEN2-E1 · LIMPIEZA-C1, 7/sep/2026: encargo archivado VERBATIM
+    # (A.3). Cita "para firma de mesa (E4)" -- E4 es el paso siguiente
+    # (revisión/firma de mesa) que este mismo texto de mesa nombra y que
+    # este acto explícitamente NO ejecuta ("cada fila con su evidencia...
+    # para firma de mesa"). Ya censado como token bare colisionante en
+    # `canon/registro-rotulos.tsv` (fila E4, HABITANTE ACTO DISENO-ENSAFI) --
+    # esta es una mención nueva del mismo token pelado, no una reclamación:
+    # el acto se declara `GEN2-E1` en todo archivo propio que escribe y no
+    # reclama la forma bare. El texto verbatim no se edita (A.3); la nota de
+    # cierre de este mismo acto (forense/notas/2026-09-07-GEN2-E1-limpieza-
+    # arboles.md) se redactó para no repetir el token pelado, así que no
+    # necesita esta exención.
+    "forense/encargos/2026-09-07-GEN2-E1-LIMPIEZA-C1.md",
 }
 
 

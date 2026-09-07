@@ -7,7 +7,7 @@ archivado — todo dentro de `mm-gen2-e1-limpieza-c1` (worktree propio de este
 acto, creado desde `origin/main`, rama `acto/gen2-e1-limpieza-c1`). No se abre
 PR (el encargo pide explícitamente "no empuja nada"): el resultado queda
 committeado localmente para que mesa lo revise en esta misma máquina, y firme
-la poda en un acto E4 aparte.
+la poda en un acto de mesa aparte (ver el encargo archivado para el rótulo de ese siguiente paso).
 
 ## §0 · Premisas y autodeclaraciones
 
@@ -228,7 +228,7 @@ por eso se compara por sha256 y no se asume que sea el mismo archivo en los
 dos clones; **no se pega ninguna ruta física de este archivo en esta nota**,
 solo raíz lógica declarada y si está configurada):
 
-| clon | sha256 de `raices.local.yaml` | raíces lógicas declaradas |
+| clon | sha256 de `data/raices.local.yaml` | raíces lógicas declaradas |
 |---|---|---|
 | `Modelado-Mexicano` | `42f48a2c…4fa503f` | `data_raw` (documentación inerte, ver nota abajo) · `descargas_mx` · `downloads` |
 | `mm-adq` | `a89149af…8aaa0814b` | `descargas_mx` únicamente |
@@ -286,7 +286,7 @@ la ya pública `data/raices.local.yaml` de arriba):
   información ajena al proyecto hacia un repositorio público. Recomendación
   de higiene: `downloads` no tiene NINGUNA entrada en el manifiesto bajo esa
   raíz (ver `--verifica` abajo, 0/0) — nunca ha sido una raíz de staging
-  real del proyecto. Vale que mesa decida retirarla de `raices.local.yaml`
+  real del proyecto. Vale que mesa decida retirarla de `data/raices.local.yaml`
   en vez de seguir declarándola como raíz del proyecto.
 
 **Verifica registrados-ausentes** (`tests/manifiesto.py --verifica`, todas
@@ -387,7 +387,7 @@ otros trabajos en la máquina local").
 `[branch "x"]` de ramas que ya no existen** (historial de todo el proyecto,
 nunca podado). No rompe nada, es basura inofensiva.
 
-## §5 · Lista propuesta de poda (para firma de mesa, E4)
+## §5 · Lista propuesta de poda (para firma de mesa, paso siguiente)
 
 **114 worktrees de tarea, cada uno con PR ya `MERGED` en `main` (113) o sin
 ninguna divergencia propia y sin PR (1) — cero riesgo de perder trabajo si
@@ -558,5 +558,5 @@ explícitamente. Ninguna de las dos rutas la toma este acto por su cuenta.
 
 Además, quedan dos recomendaciones de higiene sin urgencia (no bloquean
 nada, no gatean ningún acto en vuelo): retirar `downloads` de
-`raices.local.yaml` como raíz del proyecto (§2), y devolver el clon base
+`data/raices.local.yaml` como raíz del proyecto (§2), y devolver el clon base
 `Modelado-Mexicano` a `main` (§1).
