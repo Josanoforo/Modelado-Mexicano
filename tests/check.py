@@ -4282,6 +4282,18 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # `forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md`,
     # A.8, del propio acto que este encargo cierra.
     "forense/encargos/2026-09-06-MAESTRA38-N14-CIERRA-LOTE-ENSANUT.md",
+    # ACTO MAESTRA38-CARGA-LAPOP · PROPAGA-FP316-FP315, 7/sep/2026: el
+    # encargo se archiva VERBATIM (A.3) y cita
+    # `civico.voto.clientelar_si_observable_lapop2019`/`R7.6`/`R7.4`/`R10.3`
+    # en su cuerpo original (redactado por dirección antes de esta sesión)
+    # -- un encargo verbatim nunca se edita para complacer un test (misma
+    # regla que rige T25). `tools/ya_medido.py` SÍ se corrió en A.8 sobre
+    # las tres piezas y sobre R7.6/R7.4/R10.3; la salida (y el hallazgo de
+    # que la decisión (b) cita el id equivocado) vive en
+    # `forense/notas/2026-09-07-MAESTRA38-CARGA-LAPOP-resultados.md`, no en
+    # el archivo verbatim del encargo -- el acto PARÓ antes de ejecutar
+    # ninguna de las tres decisiones.
+    "forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP.md",
 }
 
 

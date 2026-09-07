@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **357 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **358 ADR**
 
 > | | |
 > |---|---|
@@ -6173,5 +6173,23 @@ WARN, sin entradas nuevas.
 **Deuda que abre.** Rama A de ambas specs (`ENNVIH` 2002/2005/2009 + `ENDIREH` 2016) sigue pendiente de resolver el ponderador ambiguo del libro `bx`/2002 contra un codebook de `ENNVIH` que este corpus no tiene registrado — declarado en la nota, no en `FP` nueva (no hay medición nueva del motor que abra fila; ambos ids ya tenían `EXISTE-SATISFACE` sellado antes de este acto).
 
 **Deuda que cierra.** `NUNCA-MEDIDA` de `salud.atencion.grave` y `salud.vacunacion.disponible` — ambos quedan con al menos una corrida real archivada.
+
+**`tests/check.py --baseline`**: ver resultado en la nota de cierre.
+
+**ADR-358 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `357`, contiguo, sin huecos; candidato `358`) · `ACTO MAESTRA38-CARGA-LAPOP · PROPAGA-FP316-FP315` — PARO, cero decisiones ejecutadas.** COMPUERTA verificada por producto contra `origin/main = 038ec4f` (PR #564 `MAESTRA38-L2` y PR #565 `MAESTRA38-LOTE-ENSANUT`, ambos ya fusionados) — cumplida. El acto encontró tres puntos donde el encargo (`forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP.md`, archivado 0-bis) no cuadra con el árbol, y para en los tres en vez de ajustar el texto para que cuadre (`el ejecutor propaga una decisión dictada, no decide`, ADR-76/79):
+
+**(1)** La decisión (b) del encargo dicta editar `civico.protesta.agravio_urbano_lapop2019`, pero esa entrada ya está `SELLADA-SIN-CARGA` desde `D2-e` (`ACTO MAESTRA37-N8`, 3/sep/2026) sobre una pieza distinta (C1, una sola ola 2019, `AMBIGUA-ENTRE-INSTRUMENTOS`). La pieza que de verdad mide lo que `FP-315`/`FP-316`(b) narran — tres olas, `C_completo` `NO-ESTIMABLE` con celda rural mínima 14/21/1 — es `civico.protesta.agravio_urbano_multiola` (`PENDIENTE-DE-MESA`), nombrada correctamente en la propia fila `FP-316` del tablero. **(2)** La decisión (a) afirma que `civico.voto.agencia_lapop2023`/`_encuci2020` ya están `SELLADA` por `D2-f`; ambas siguen `PENDIENTE-DE-MESA` — `D2-f` selló el tier que el motor consume en el canon, no la `situacion` de estas dos filas de la propuesta. **(3)** La decisión (a) dicta que `canon/registro-rotulos.tsv` gane `R7.10`/`R7.11`; ese archivo censa rótulos de actos y espacios (`ADR-NNN`, `FP-NN`, `E4a`, `D-1..D-6`...), y su propia fila para la familia `N, R, H, S, U, D` declara explícitamente que las reglas del catálogo (`R*`) **no** se derivan fila por fila ahí — el mecanismo real de anclaje de IDs de regla es el registro congelado de `canon/modelo-decision-v4_0.md §7` más `tests/validador_registro_ids.py`.
+
+Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CARGA-LAPOP-resultados.md`.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP.md`. **Gate verificado.** `COMPUERTA: L2 y LOTE-ENSANUT fusionados` — verificado por producto (`git log --oneline origin/main | grep` de los dos merges, PR #564/#565), cumplida.
+
+**Lo que este acto NO hace.** No crea `R7.10`/`R7.11`. No toca la fila de `R7.6` en la tabla del §7. No escribe las enmiendas `D2-g`/`D2-h`. No edita ninguna de las cinco entradas de `milpa/tramite-ola5-propuesta-v0.yaml` que el encargo listaba. No firma `FP-315` ni `FP-316`. No toca `milpa/tramite.yaml` (verificado: 20 entradas antes, 20 después) ni `canon/registro-rotulos.tsv`.
+
+**Perímetro.** Toca únicamente `forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP.md` (0-bis + `## CONSUMIDO`), `forense/notas/2026-09-07-MAESTRA38-CARGA-LAPOP-resultados.md`, este ADR, `canon/estado-programa-v1_12.md` L0, `canon/registro-rotulos.tsv` (rótulo del propio acto, `MAESTRA38-N16`), `forense/firmas-pendientes.tsv` (nota en `FP-315`/`FP-316`, sin firmar), `forense/hallazgos.md`.
+
+**Deuda que abre.** Los tres desajustes de arriba, para que mesa: (i) confirme si (b) debe leerse sobre `civico.protesta.agravio_urbano_multiola`; (ii) confirme o corrija el estado de las dos piezas gemelas de `R7.3` en (a); (iii) indique el mecanismo correcto de registro de `R7.10`/`R7.11` si la partición de `R7.6` se sostiene.
+
+**Deuda que cierra.** Ninguna — `FP-315`/`FP-316` permanecen `ABIERTA`.
 
 **`tests/check.py --baseline`**: ver resultado en la nota de cierre.
