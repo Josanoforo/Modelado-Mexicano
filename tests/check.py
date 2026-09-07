@@ -182,6 +182,20 @@ def t02_duplicates():
             # FP-59) -- colisiona por diseño con sus originales vivos, mismo
             # criterio que data/raw. FP-293/ACTO MAESTRA38-N4 (4/sep/2026).
             continue
+        if re.search(r"/data/corrida0/CALC-[A-Za-z0-9_.-]+/", p.replace(os.sep, "/") + "/"):
+            # ACTO GEN2-E3 · AUTOMATIZA-GEN2-1 (7/sep/2026). Un recibo de
+            # corrida se llama `spec.md`/`spec.yaml`/`medidor.py`/
+            # `ejecucion.json`/`resultados.json`/`sello.json` SIEMPRE: el
+            # nombre lo fija `corrida0 run`, no quien escribe la spec, y por
+            # eso `CALC-0001/resultados.json` y `CALC-0002/resultados.json`
+            # van a colisionar por diseño en cuanto E5 escriba la segunda
+            # corrida -- igual que `conjunto_de_datos.csv` bajo `data/raw`.
+            # by_hash tampoco aporta aquí: la custodia por contenido de cada
+            # recibo la lleva su propio `sello.sha256` (verificable con
+            # `tools/sella_sha256.py --verifica`) más `git_commit` +
+            # `script_blob_sha256` + `input_sha256` dentro de `ejecucion.json`.
+            # `data/corrida0/demanda-*.tsv` (GEN2-E2) NO queda exento.
+            continue
         if not os.path.isfile(p):
             continue
         by_name[norm(os.path.basename(p))].append(rel(p))
