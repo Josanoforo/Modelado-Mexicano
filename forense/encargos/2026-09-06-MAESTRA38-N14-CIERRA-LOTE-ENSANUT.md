@@ -64,3 +64,14 @@ codebook confirma lo contrario), celdas de L16/L17 sacadas a
 regularizado en la nota de resultados (los dos medidores en `tools/`
 estaban fuera del perímetro original del lote, no fue atajo).
 `tests/check.py --baseline`: VERDE, sin `FAIL` nuevo.
+
+**Nota de sincronización (7/sep/2026, dirección).** La pieza (1) sí se
+ejecutó, pero después de este acto y en el momento que la regla de la casa
+manda: `MAESTRA38-L2` (PR #564) fusionó a `origin/main` a las 00:09Z del
+7/sep llevándose el `ADR-356`. Al sincronizar `PR #565` contra
+`origin/main = 4bd7985` se resolvieron 6 conflictos y se renumeró este
+lote a **`ADR-357`** — párrafo por párrafo en `canon/gobernanza-v1_15.md`
+(bloque y cabecera de conteo), `canon/estado-programa-v1_12.md` (línea L0,
+verificada por conteo: exactamente 1) y `canon/registro-rotulos.tsv`
+(entradas `MAESTRA38-L16`/`L17`). `FP-326` no colisiona (máximo en main:
+`325`). Los demás conflictos eran aditivos y se conservaron ambos lados.

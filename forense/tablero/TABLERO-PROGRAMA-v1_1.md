@@ -1107,6 +1107,50 @@ siguiente censo real que recorra esa raíz.
 
 `python3 tests/check.py --baseline`: VERDE, sin `FAIL` nuevo.
 
+### 8.18 Recibo — `ACTO MAESTRA38-L2 · MPS-2012` (6/sep/2026, `ADR-356`, rama TEXTO)
+
+Rama elegida por el comando exacto que dicta el encargo (`find`+`md5sum`
+sobre las tres raíces declaradas, 2051 archivos examinados,
+`35024-0001-Data.dta` NO-ENCONTRADO): **TEXTO**. Ver
+`forense/notas/2026-09-06-MAESTRA38-L2-spec-rama.md`.
+
+`FP-263` → **EJECUTADA**: las tres condiciones que pedía (T9b presente,
+serie de ronda 1 completa presente, texto de los ítems P35A/P35B/W2_P35A/
+W2_P35B) se cumplen. Las dos primeras ya estaban en el depósito de mesa
+del 2/sep (Adendas 4-8 del LEEME); la tercera la obtiene este acto leyendo
+`35024-Questionnaire-spanish.pdf` (raíz `descargas_mx`, ya registrado
+desde `MAESTRA37-A1` y nunca abierto) — `data/l2-mps2012-cuestionario-v1_0.txt`
+(3908 líneas, `pdftotext`) y `data/l2-mps2012-items-v1_0.tsv` (11 filas).
+Confirma, verbatim y en español en las dos olas, que Lista B = Lista A +
+un ítem, y ese ítem es "recibir un regalo, favor o acceso a un servicio a
+cambio de su voto" — corrobora en español lo que `ADR-350` ya había leído
+en inglés vía `list::mexico`.
+
+P2 (R7.3/R7.6 con el texto): **NO-SELLADA** bajo este instrumento — el
+texto de los ítems resuelve procedencia, no ponderación ni diseño
+muestral; se mantiene `REPLICA-DE-SEGUNDA-MANO-NO-SELLADA` de `ADR-329`/L12.
+`R7.6` (`ADR-349`) no se reabre; solo se compara dirección.
+
+P3 (lista, ¿el ítem sensible es venta de voto?): **CORROBORADA-EN-TEXTO**.
+
+Enmiendas append en las dos entradas de L12 en
+`milpa/tramite-ola5-propuesta-v0.yaml` (`civico.clientelismo.vote_change_mps2012`,
+`civico.clientelismo.prevalencia_lista_mps2012`); `situacion` de ambas la
+cambia un acto siguiente con firma.
+
+**Indicadores que este acto mueve.** Piezas de L12 adjudicadas: +2. `FP-263`
+cerrada. Medición: cero (ninguna cifra nueva; todo lo citado ya estaba
+medido en el depósito de mesa del 2/sep).
+
+`python3 tests/check.py --baseline`: VERDE — 3 FAIL preexistentes (T06, T08),
+171 WARN, nada nuevo contra `tests/baseline.json` (HEAD congelado
+`accf688c6ad98f9b3264b4bf0343431d5649e666`). Fijado tras registrar
+`data/l2-mps2012-cuestionario-v1_0.txt`/`data/l2-mps2012-items-v1_0.tsv` en
+`data/INFRAESTRUCTURA-v1_0.md` (T27) y declarar
+`forense/encargos/2026-09-06-MAESTRA38-L2.md` en
+`_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` de `tests/check.py` (encargo archivado
+VERBATIM por A.3, no se edita para complacer el test; `ya_medido.py` sí se
+corrió en A.8, salida en el commit y en las notas de este acto).
 ## `ACTO MAESTRA38-LOTE-ENSANUT · L16+L17` (Sonnet, 6/sep/2026) — recibo (asentado por `MAESTRA38-N14`)
 
 `salud.atencion.grave` (R4.4), Rama B (ENSANUT2024, `H0409A` × `u0201`,
