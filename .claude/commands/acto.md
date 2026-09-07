@@ -27,12 +27,56 @@ Reporta las cinco líneas de abajo y NO empieces hasta tenerlas. Si algo
 no cuadra, PARA y repórtalo: encontrar que el terreno no es el que el
 encargo supone es entregable, no interrupción.
 
-0 · GUARD DE RAMA. Antes de crear la rama de este acto, corre
-    `git ls-remote --heads origin | grep -i "<rótulo>"` (rótulo = el
-    identificador del encargo/acto, p. ej. `MAESTRA38-N14` o el nombre de
-    rama que ibas a usar). Si hay coincidencia → PARA, reporta la rama
-    existente y termina con cero commits — ya hay una sesión corriendo
-    esto. Si no hay coincidencia, crea la rama y de inmediato
+0 · GUARD DE ARRANQUE — cuatro comprobaciones, antes de crear la rama
+    (`ACTO GEN2-E3 · AUTOMATIZA-GEN2-1`, 7/sep/2026, plan v2.0 §8 Fase I).
+    Las cuatro son mecánicas: se corren, se pegan crudas, y ninguna se
+    sustituye por "lo miré".
+
+    **0.a · BASE AL DÍA.** `git fetch --prune`, y luego confirma que tu
+    base es el `HEAD` de `origin/main`:
+    ```
+    git fetch --prune
+    git rev-list --count HEAD..origin/main
+    ```
+    Si el conteo **no** es 0: **no es PARO** — `git merge origin/main`
+    **antes de nada**, y reporta la diferencia. Arrancar sobre una base
+    atrasada y descubrirlo al cerrar cuesta el acto entero; descubrirlo
+    aquí cuesta un merge.
+
+    **0.b · ÁRBOL LIMPIO.** `git status --porcelain` vacío antes del
+    0-bis. Si no lo está, resuélvelo (commit, stash o descarte
+    deliberado) y dilo — con la salvedad D-d de abajo: nunca
+    `git reset --hard` con `data/manifiesto-staging.yaml` modificado.
+
+    **0.c · DUPLICADO — el mismo rótulo corriendo dos veces.** El rótulo
+    es el identificador del encargo/acto (p. ej. `MAESTRA38-N14`,
+    `GEN2-E3`) o el nombre de rama que ibas a usar. Se busca en **tres**
+    sitios, no en uno:
+    ```
+    git ls-remote --heads origin | grep -i "<rótulo>"     # rama remota
+    git worktree list                                      # worktree local
+    ```
+    más los **PR abiertos** (por el tool de GitHub disponible, o
+    `gh pr list --search "<rótulo>" --state open` donde exista `gh`).
+    Cualquiera de los tres con coincidencia → **PARA / RESUELVE
+    DUPLICADO** antes del 0-bis: reporta qué encontraste y termina con
+    cero commits, o resuelve el duplicado explícitamente (retomar esa
+    rama, cerrar el PR muerto, borrar el worktree olvidado) y dilo. Ya
+    hay una sesión corriendo esto y dos sesiones sobre el mismo rótulo
+    producen dos ADR con el mismo número. Buscar solo la rama remota
+    **no** basta: un worktree olvidado o un PR abierto sobre una rama ya
+    borrada del remoto son el mismo defecto y no aparecen ahí.
+
+    **0.d · HIGIENE, en modo reporte.** Pega la salida cruda de:
+    ```
+    python3 tools/limpia_arbol.py --reporta
+    ```
+    (worktrees vivos · ramas locales ya fusionadas y vivas · cuántos
+    commits detrás está la base). **Solo reporta** — el `--aplica` que
+    borra es `E4`/Fase IV y hoy sale con código 2; borrar un worktree o
+    una rama no se decide desde aquí.
+
+    Pasadas las cuatro: crea la rama y de inmediato
     `git push -u origin <rama>` con el 0-bis (aunque no haya más commits
     todavía), para que el rótulo sea visible a cualquier segunda sesión
     desde el primer minuto.
@@ -87,6 +131,20 @@ encargo supone es entregable, no interrupción.
       acto que abra microdato va a Ubuntu, sin excepción.
     Reporta los tres valores crudos. Si este acto no toca microdato ni
     red, dilo y salta este punto.
+    ⚠️ Las tres partes se derivan de una sola invocación, y se pega su
+    salida CRUDA (`ACTO GEN2-E3 · AUTOMATIZA-GEN2-1`, 7/sep/2026):
+    ```
+    python3 tools/entorno.py              # JSON + la línea
+    python3 tools/entorno.py --sonda-red  # además prueba la red
+    ```
+    Trae `git_commit · git_status · python · dependencias materiales ·
+    variables de entorno relevantes · sonda de red (opt-in) · raíces
+    lógicas (`raiz_logica · configurada · config_sha256`, **nunca** la
+    ruta física) · acceso a corpus con los archivos examinados (A.13).
+    La sonda de red es opt-in a propósito: una sonda que nadie pidió es
+    I/O que nadie declaró. La misma firma la incorpora `corrida0 run` a
+    `ejecucion.json` bajo `firma_entorno`, así que el entorno del
+    ARRANQUE y el de una corrida se leen con el mismo vocabulario.
     ⚠️ A.13 — Un negativo producido por un comando que no examinó
     archivos no es un negativo. Todo veredicto negativo —incluida la
     sonda de este punto— declara cuántos archivos examinó el comando que

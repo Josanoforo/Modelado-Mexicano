@@ -1,11 +1,36 @@
 #!/usr/bin/env python3
 """`corrida0` -- CLI del registro GEN2 (PLAN-FINAL-GEN2 v2.0, B-1).
 
-Este archivo nace en `ACTO GEN2-E2 · C0-A DEMANDA` con **un solo subcomando
-implementado**, `demanda`. Los demas subcomandos del plan (§4, fila B-1) se
-declaran aqui vacios, con su nombre y su fase, para que E3 los llene sin
-tener que re-decidir la estructura -- no para que nadie los invoque hoy:
-invocarlos sale con codigo 2 y el rotulo NO-IMPLEMENTADO.
+Este archivo nacio en `ACTO GEN2-E2 · C0-A DEMANDA` con un solo subcomando
+implementado, `demanda`, y los demas declarados vacios.
+
+`ACTO GEN2-E3 · AUTOMATIZA-GEN2-1` (7/sep/2026) llena SEIS de esos huecos y
+deja cuatro:
+
+  IMPLEMENTADOS  demanda (E2) · spec-check · negativo · preflight · run · verify
+  DECLARADOS Y VACIOS  registro · status · vigencia · delta  (los llena E6;
+                       invocarlos sale con codigo 2 y el rotulo NO-IMPLEMENTADO)
+
+El nucleo de corrida (`preflight` -> `run` -> `verify`) obedece la regla que
+firmo la propuesta externa aprobada, verbatim: «El humano decide que medir.
+La maquina registra, verifica y conecta mecanicamente lo que efectivamente
+ocurrio.» De ahi salen tres propiedades que no son negociables en el codigo
+de abajo:
+
+  · Ninguna funcion elige un reactivo, corrige una spec ni convierte un
+    NO-ENCONTRADO en hallazgo. `spec-check` SUGIERE (WARN) y sigue diciendo
+    FAIL; nunca edita la spec.
+  · Los estados no se colapsan. `verify` da REPRODUCE / NO-REPRODUCE /
+    NO-EJECUTABLE, y el tercero no es un NO-REPRODUCE piadoso. `preflight`
+    reporta el `spec.md` frente a `origin/main` en tres estados
+    (EN-MAIN-COINCIDE / EN-MAIN-DISCORDA / NO-EN-MAIN) porque la primera
+    corrida de una spec ocurre, por definicion, antes de que este fusionada.
+  · A.13: todo negativo declara cuantos archivos y cuantas filas examino el
+    comando que lo produjo.
+
+El medidor tiene UNA interfaz, `medir(inputs, params) -> {"RESULT-…": valor}`
+(plan v2.0 §4, B-1). Un script que no la exponga es NO-EJECUTABLE: no se
+adivina otra entrada ni se llama a `main()` por si acaso.
 
 `demanda` (= C0-A) NO MIDE NADA. Recorre por LECTURA los consumidores
 activos del registro GEN1, deriva que resultado habria que volver a medir y
@@ -47,8 +72,13 @@ from __future__ import annotations
 
 import argparse
 import csv
+import datetime
+import hashlib
+import importlib.util
 import json
+import platform
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -599,14 +629,831 @@ def cmd_demanda(args) -> int:
     return 0
 
 
-# ── subcomandos declarados y aun vacios (los llena GEN2-E3) ────────────────
+# ═══════════════════════════════════════════════════════════════════════════
+# GEN2-E3 · nucleo de corrida: preflight / run / verify + spec-check +
+# negativo (ACTO GEN2-E3 · AUTOMATIZA-GEN2-1, plan v2.0 §4/§8 Fase I).
+#
+# Regla que gobierna todo lo de abajo, verbatim de la propuesta aprobada:
+# «El humano decide que medir. La maquina registra, verifica y conecta
+# mecanicamente lo que efectivamente ocurrio.» Ninguna funcion de aqui
+# elige un reactivo, corrige una spec, ni convierte un NO-ENCONTRADO en
+# hallazgo: cuando el registro no alcanza, se DECLARA el hueco.
+# ═══════════════════════════════════════════════════════════════════════════
+
+CORRIDAS = RAIZ / "data" / "corrida0"
+
+# Los TRES inventarios canonicos VIGENTES. `v1_0`/`v1_1` estan superados y
+# NO se consultan: leer un inventario superado es exactamente la clase de
+# error que `spec-check` existe para no cometer.
+INVENTARIOS_VIGENTES = [
+    RAIZ / "data" / "inventario-reactivos-v1_2.tsv",
+    RAIZ / "data" / "inventario-reactivos-descargas-mx-v1_2.tsv",
+    RAIZ / "data" / "inventario-reactivos-ext-v1_0.tsv",
+]
+
+# Tolerancia por defecto para flotantes (encargo P1). Los enteros se
+# comparan EXACTO; `bootstrap` solo se declara exacto cuando la spec fija
+# seed + RNG + codigo, y si no, cae a la tolerancia absoluta declarada.
+TOL_FLOTANTE_DEFECTO = 1e-10
+
+MANIFIESTO_PY = RAIZ / "tests" / "manifiesto.py"
+SELLA_PY = RAIZ / "tools" / "sella_sha256.py"
+ENTORNO_PY = RAIZ / "tools" / "entorno.py"
+
+CAMPOS_SPEC_OBLIGATORIOS = ["calc_id", "spec_md", "spec_md_sha256", "script",
+                            "inputs", "parametros", "seed", "tolerancia",
+                            "resultados"]
+
+
+class BloqueoPreflight(Exception):
+    """Se levanta solo dentro de `preflight` para cortar sin escribir."""
+
+
+# ── utilidades comunes ─────────────────────────────────────────────────────
+
+def _sha256_archivo(ruta: Path) -> str | None:
+    try:
+        h = hashlib.sha256()
+        with ruta.open("rb") as fh:
+            for bloque in iter(lambda: fh.read(1 << 20), b""):
+                h.update(bloque)
+        return h.hexdigest()
+    except OSError:
+        return None
+
+
+def _git_salida(*args: str) -> tuple[int, str]:
+    try:
+        r = subprocess.run(["git", *args], cwd=RAIZ, capture_output=True,
+                           text=True, timeout=120)
+    except (OSError, subprocess.SubprocessError) as exc:  # pragma: no cover
+        return 1, f"ERROR:{type(exc).__name__}"
+    return r.returncode, (r.stdout if r.returncode == 0 else r.stderr)
+
+
+def _sha256_blob_en(ref: str, ruta_rel: str) -> str | None:
+    """sha256 del CONTENIDO que `ref` tiene en `ruta_rel` (no el blob-sha de
+    git, que es sha1 con cabecera: dos hashes distintos y no intercambiables)."""
+    try:
+        r = subprocess.run(["git", "show", f"{ref}:{ruta_rel}"], cwd=RAIZ,
+                           capture_output=True, timeout=120)
+    except (OSError, subprocess.SubprocessError):  # pragma: no cover
+        return None
+    if r.returncode != 0:
+        return None
+    return hashlib.sha256(r.stdout).hexdigest()
+
+
+def _rel(ruta: Path) -> str:
+    try:
+        return str(ruta.resolve().relative_to(RAIZ))
+    except ValueError:
+        return str(ruta)
+
+
+def _dir_calc(calc_id: str) -> Path:
+    return CORRIDAS / calc_id
+
+
+def _carga_spec(calc_id: str) -> tuple[Path, dict]:
+    d = _dir_calc(calc_id)
+    ruta = d / "spec.yaml"
+    if not ruta.exists():
+        raise BloqueoPreflight(f"spec_yaml_ausente={_rel(ruta)}")
+    with ruta.open(encoding="utf-8") as fh:
+        datos = yaml.safe_load(fh) or {}
+    if not isinstance(datos, dict):
+        raise BloqueoPreflight(f"spec_yaml_no_es_mapa={_rel(ruta)}")
+    return d, datos
+
+
+def _distancia_edicion(a: str, b: str) -> int:
+    """Levenshtein sin dependencias. Solo se usa para SUGERIR (WARN); una
+    sugerencia nunca se da por hallada ni edita la spec."""
+    if a == b:
+        return 0
+    if len(a) < len(b):
+        a, b = b, a
+    previa = list(range(len(b) + 1))
+    for i, ca in enumerate(a, 1):
+        actual = [i]
+        for j, cb in enumerate(b, 1):
+            actual.append(min(previa[j] + 1, actual[j - 1] + 1,
+                              previa[j - 1] + (ca != cb)))
+        previa = actual
+    return previa[-1]
+
+
+# ── inventarios (P2/P3) ────────────────────────────────────────────────────
+
+_CACHE_INVENTARIO: dict[tuple, list[dict]] = {}
+
+
+def _lee_inventario(ruta: Path) -> list[dict]:
+    """Un inventario a filas. Se parte por tabulador a mano en vez de con
+    `csv.DictReader`: son ~318 000 filas entre los tres vigentes y el
+    DictReader multiplica por seis el costo de una lectura que la suite hace
+    en cada corrida. El formato lo permite -- estos TSV no traen comillas de
+    citacion (`csv` no aporta nada que ganar aqui), y una fila con un numero
+    de campos distinto al de la cabecera se DECLARA truncada/rellenada, no se
+    descarta en silencio."""
+    if not ruta.exists():
+        return []
+    etiqueta = _rel(ruta)
+    filas: list[dict] = []
+    with ruta.open(encoding="utf-8") as fh:
+        cabecera = None
+        for linea in fh:
+            if linea.startswith("#"):
+                continue
+            campos = linea.rstrip("\n").split("\t")
+            if cabecera is None:
+                cabecera = campos
+                continue
+            if len(campos) < len(cabecera):
+                campos += [""] * (len(cabecera) - len(campos))
+            fila = dict(zip(cabecera, campos))
+            fila["_inventario"] = etiqueta
+            filas.append(fila)
+    return filas
+
+
+def _filas_inventario(rutas=None):
+    """Filas de los inventarios VIGENTES, con `_inventario` anotado. No abre
+    microdato: un inventario es metadato de reactivo.
+
+    Cachea por juego de rutas dentro del proceso. Es cache de LECTURA de
+    archivos versionados durante una sola invocacion -- nadie los reescribe a
+    media corrida -- y sin ella `tests/check.py` releeria 318 000 filas una
+    vez por caso de prueba."""
+    llave = tuple(str(r) for r in (rutas or INVENTARIOS_VIGENTES))
+    if llave not in _CACHE_INVENTARIO:
+        filas: list[dict] = []
+        for ruta in (rutas or INVENTARIOS_VIGENTES):
+            filas.extend(_lee_inventario(Path(ruta)))
+        _CACHE_INVENTARIO[llave] = filas
+    return iter(_CACHE_INVENTARIO[llave])
+
+
+def _basename(valor: str) -> str:
+    return (valor or "").replace("\\", "/").rsplit("/", 1)[-1]
+
+
+def _mismo_archivo(archivo_miembro: str, declarado: str) -> bool:
+    """El archivo de la spec identifica una fila del inventario si es la ruta
+    completa o un SUFIJO DE RUTA de `archivo_miembro`. Declarar `iiib_hs.dta`
+    alcanza las tres olas que traen ese miembro (y las etiquetas distintas de
+    cada una salen a la vista); declarar `ehh05dta_b3b/iiib_hs.dta` alcanza
+    solo la de 2005. Nunca es coincidencia parcial de nombre: el corte es por
+    separador de ruta."""
+    a = (archivo_miembro or "").replace("\\", "/")
+    b = (declarado or "").replace("\\", "/").strip("/")
+    return bool(b) and (a == b or a.endswith("/" + b))
+
+
+# ═══════════════ P2 · spec-check ═══════════════════════════════════════════
+
+def spec_check(calc_id: str, universo=None) -> dict:
+    """Para cada (archivo, variable) que la spec declara, consulta SOLO los
+    inventarios canonicos vigentes.
+
+    FAIL si la variable no existe EN ESE ARCHIVO EXACTO -- que exista en otro
+    archivo del mismo instrumento no la da por hallada: el defecto que este
+    check persigue es justamente ese (`iiib_hs.dta::hs02g` es `b3b` y
+    `p_hs.dta::hs02g` es `bx`; mismo nombre de variable, etiqueta distinta,
+    archivos distintos).
+
+    WARN, nunca hallazgo: la etiqueta mas cercana por distancia de edicion
+    <= 2 se SUGIERE (`IMMS` -> «¿IMSS?») y ahi se acaba -- no se da por
+    hallada, no se edita la spec, no se sustituye en el resultado."""
+    _d, spec = _carga_spec(calc_id)
+    declaradas = spec.get("variables") or []
+    filas = list(_filas_inventario(universo))
+    print(f"SPEC-CHECK {calc_id}")
+    print(f"  inventarios consultados ({len(INVENTARIOS_VIGENTES)}) -- solo los "
+          f"vigentes, nunca v1_0/v1_1 superados:")
+    from collections import Counter as _Counter
+    por_inventario = _Counter(f["_inventario"] for f in filas)
+    for inv in INVENTARIOS_VIGENTES:
+        etiqueta = _rel(Path(inv))
+        print(f"    {etiqueta}: {por_inventario.get(etiqueta, 0)} filas" +
+              ("" if Path(inv).exists() else "   [AUSENTE EN ESTE ARBOL]"))
+    print(f"  filas examinadas (A.13): {len(filas)}")
+    print(f"  pares (archivo, variable) declarados en la spec: {len(declaradas)}")
+
+    # instrumento -> secciones (basenames de archivo_miembro) presentes en el
+    # inventario. Una pasada, no una por par declarado.
+    por_instrumento: dict[str, set] = {}
+    for f in filas:
+        por_instrumento.setdefault(f.get("instrumento", ""), set()).add(
+            _basename(f.get("archivo_miembro")))
+
+    resultados = []
+    for par in declaradas:
+        archivo = str(par.get("archivo", ""))
+        variable = str(par.get("variable", ""))
+        patron = f"archivo_miembro basename == {archivo!r} AND variable_id == {variable!r} (exacto, sin normalizar)"
+        del_archivo = [f for f in filas
+                       if _mismo_archivo(f.get("archivo_miembro"), archivo)]
+        exactas = [f for f in del_archivo if (f.get("variable_id") or "") == variable]
+        item = {"archivo": archivo, "variable": variable, "patron": patron,
+                "filas_examinadas": len(filas),
+                "filas_del_archivo": len(del_archivo)}
+        if exactas:
+            etiquetas = sorted({(f.get("texto_reactivo") or "").strip() for f in exactas})
+            item["estado"] = "OK"
+            item["etiqueta"] = etiquetas[0] if len(etiquetas) == 1 else etiquetas
+            item["instrumento"] = sorted({f.get("instrumento", "") for f in exactas})
+            print(f"\n  [ OK ] {archivo} :: {variable}")
+            print(f"         patron: {patron}")
+            print(f"         filas del archivo en inventario: {len(del_archivo)}")
+            for e in etiquetas:
+                print(f"         etiqueta: {e[:200]}")
+            for inst in item["instrumento"]:
+                print(f"         instrumento: {inst}")
+        else:
+            item["estado"] = "FAIL"
+            cercanas = sorted(
+                ({(f.get("variable_id") or "") for f in del_archivo}),
+                key=lambda v: (_distancia_edicion(v.upper(), variable.upper()), v))
+            sugeridas = [v for v in cercanas
+                         if _distancia_edicion(v.upper(), variable.upper()) <= 2]
+            item["sugerencias_warn"] = sugeridas[:5]
+            print(f"\n  [FAIL] {archivo} :: {variable} -- NO EXISTE en ese archivo exacto")
+            print(f"         patron: {patron}")
+            print(f"         filas del archivo en inventario: {len(del_archivo)}")
+            if sugeridas:
+                for v in sugeridas[:5]:
+                    texto = next((f.get("texto_reactivo") or "" for f in del_archivo
+                                  if f.get("variable_id") == v), "")
+                    print(f"         [WARN] ¿{v}?  (distancia "
+                          f"{_distancia_edicion(v.upper(), variable.upper())}) "
+                          f"-- SUGERENCIA, no se da por hallada ni se edita la spec")
+                    if texto:
+                        print(f"                etiqueta de la sugerencia: {texto[:180]}")
+            else:
+                print("         [WARN] ninguna variable a distancia <= 2 en ese archivo")
+        # Las secciones del instrumento presentes en el inventario -- para que
+        # el FAIL diga contra que universo se midio, no solo que fallo. El
+        # indice se construye UNA vez para todos los pares (abajo): recorrer
+        # 318 000 filas por par declarado hacia que un spec-check de dos
+        # lineas costara medio minuto.
+        insts = sorted({f.get("instrumento", "") for f in del_archivo})
+        secciones = sorted({s for i in insts for s in por_instrumento.get(i, ())})
+        item["secciones_del_instrumento"] = secciones
+        if secciones:
+            print(f"         secciones del instrumento en el inventario ({len(secciones)}): "
+                  + ", ".join(secciones[:40]) + (" …" if len(secciones) > 40 else ""))
+        resultados.append(item)
+
+    n_fail = sum(1 for r in resultados if r["estado"] == "FAIL")
+    print(f"\nSPEC-CHECK: {len(resultados) - n_fail} OK · {n_fail} FAIL "
+          f"· {len(filas)} filas examinadas")
+    return {"calc_id": calc_id, "items": resultados, "n_fail": n_fail,
+            "filas_examinadas": len(filas)}
+
+
+def cmd_spec_check(args) -> int:
+    try:
+        r = spec_check(args.calc_id)
+    except BloqueoPreflight as exc:
+        print(f"SPEC-CHECK: NO-EJECUTABLE {exc}", file=sys.stderr)
+        return 2
+    return 1 if r["n_fail"] else 0
+
+
+# ═══════════════ P3 · negativo ═════════════════════════════════════════════
+
+def negativo(patron: str, archivos: str | None = None, universo=None) -> dict:
+    """Barrido declarativo (generaliza `tools/barrido_negativos_m38.py`).
+
+    A.13 verbatim: un negativo producido por un comando que no examino
+    archivos no es un negativo. Por eso esta funcion imprime SIEMPRE el
+    patron, el universo, cuantos archivos y cuantas filas examino, y la
+    linea lista para pegar en el recibo -- tambien (y sobre todo) cuando el
+    resultado es cero aciertos."""
+    filas = list(_filas_inventario(universo))
+    rp = re.compile(patron, re.IGNORECASE)
+    ra = re.compile(archivos, re.IGNORECASE) if archivos else None
+    if ra is not None:
+        filas = [f for f in filas if ra.search(f.get("archivo_miembro") or "")]
+    archivos_vistos = sorted({f.get("archivo_miembro") or "" for f in filas})
+    aciertos = [f for f in filas
+                if rp.search(f.get("variable_id") or "")
+                or rp.search(f.get("texto_reactivo") or "")]
+
+    print(f"NEGATIVO · patron: {patron}")
+    print(f"  universo: {len(INVENTARIOS_VIGENTES)} inventarios vigentes")
+    for inv in INVENTARIOS_VIGENTES:
+        print(f"    {_rel(Path(inv))}" +
+              ("" if Path(inv).exists() else "   [AUSENTE EN ESTE ARBOL]"))
+    print(f"  filtro de archivos: {archivos or '(ninguno -- todo el universo)'}")
+    print(f"  archivos examinados: {len(archivos_vistos)}")
+    print(f"  filas examinadas: {len(filas)}")
+    print(f"  aciertos: {len(aciertos)}")
+    for f in aciertos[:200]:
+        print(f"    {f['_inventario']} :: {f.get('instrumento','')} :: "
+              f"{f.get('archivo_miembro','')} :: {f.get('variable_id','')}"
+              f"\t{(f.get('texto_reactivo') or '')[:160]}")
+    if len(aciertos) > 200:
+        print(f"    … y {len(aciertos) - 200} aciertos mas (no truncados en el JSON)")
+    veredicto = "SIN-COBERTURA" if not aciertos else "CON-ACIERTOS"
+    linea = (f"{veredicto} · patron={patron} · filtro_archivos={archivos or 'TODOS'}"
+             f" · inventarios={len(INVENTARIOS_VIGENTES)} vigentes"
+             f" · archivos_examinados={len(archivos_vistos)}"
+             f" · filas_examinadas={len(filas)} · aciertos={len(aciertos)}")
+    print("\nLINEA PARA EL RECIBO (A.13):")
+    print(f"  {linea}")
+    return {"patron": patron, "filtro_archivos": archivos,
+            "archivos_examinados": len(archivos_vistos),
+            "filas_examinadas": len(filas), "aciertos": len(aciertos),
+            "veredicto": veredicto, "linea_recibo": linea,
+            "detalle": [{k: v for k, v in f.items()} for f in aciertos]}
+
+
+def cmd_negativo(args) -> int:
+    negativo(args.patron, args.archivos)
+    return 0
+
+
+# ═══════════════ P1 · preflight ════════════════════════════════════════════
+
+def _verifica_inputs(spec: dict, bloqueos: list[str]) -> list[dict]:
+    """Dos origenes, dos mecanismos, sin colapsar uno en el otro.
+
+      `origen: repo`        insumo VERSIONADO -- se rehashea el archivo del
+                            arbol y se compara con el sha declarado.
+      `origen: manifiesto`  payload del corpus -- lo verifica
+                            `tests/manifiesto.py --verifica`, con TODOS los
+                            ids en UNA invocacion y su salida CRUDA pegada.
+    """
+    inputs = spec.get("inputs") or []
+    fuera = []
+    ids_manifiesto = []
+    for ent in inputs:
+        iid = str(ent.get("id", ""))
+        origen = ent.get("origen", "manifiesto")
+        if origen == "repo":
+            ruta = RAIZ / str(ent.get("ruta", ""))
+            real = _sha256_archivo(ruta)
+            declarado = str(ent.get("sha256", ""))
+            if real is None:
+                bloqueos.append(f"input_repo_ausente={iid}:{ent.get('ruta')}")
+                estado = "AUSENTE"
+            elif declarado and real != declarado:
+                bloqueos.append(f"input_repo_sha_discorda={iid}")
+                estado = "DISCORDA"
+            elif not declarado:
+                bloqueos.append(f"input_repo_sin_sha_declarado={iid}")
+                estado = "SIN-SHA-DECLARADO"
+            else:
+                estado = "COINCIDE"
+            # Un insumo versionado que no esta commiteado no es versionado.
+            cod, _ = _git_salida("ls-files", "--error-unmatch", str(ent.get("ruta", "")))
+            if cod != 0:
+                bloqueos.append(f"input_repo_no_commiteado={iid}")
+                estado += "+NO-COMMITEADO"
+            print(f"    [{estado}] {iid}  origen=repo  ruta={ent.get('ruta')}")
+            print(f"              sha256 real     = {real}")
+            print(f"              sha256 declarado= {declarado or '(ninguno)'}")
+            fuera.append({"id": iid, "origen": "repo", "ruta": str(ent.get("ruta")),
+                          "sha256": real, "sha256_declarado": declarado,
+                          "estado": estado})
+        else:
+            ids_manifiesto.append(iid)
+            fuera.append({"id": iid, "origen": "manifiesto", "estado": "PENDIENTE"})
+
+    if ids_manifiesto:
+        cmd = [sys.executable, str(MANIFIESTO_PY), "--verifica"]
+        for iid in ids_manifiesto:
+            cmd += ["--id", iid]
+        print(f"    invocacion unica (todos los ids): {' '.join(cmd)}")
+        r = subprocess.run(cmd, cwd=RAIZ, capture_output=True, text=True)
+        print("    ── salida CRUDA de tests/manifiesto.py --verifica "
+              "(tres estados A.1 sin colapsar) ──")
+        for linea in (r.stdout + r.stderr).splitlines():
+            print(f"    | {linea}")
+        print(f"    ── exit_code={r.returncode} ──")
+        for ent in fuera:
+            if ent["origen"] == "manifiesto":
+                ent["estado"] = ("VERIFICADO" if r.returncode == 0
+                                 else f"NO-VERIFICADO(exit={r.returncode})")
+                ent["salida_cruda_exit"] = r.returncode
+        if r.returncode != 0:
+            bloqueos.append(f"manifiesto_verifica_exit={r.returncode}")
+    return fuera
+
+
+def preflight(calc_id: str, imprime: bool = True) -> dict:
+    """Comprobacion previa. No mide, no escribe, no arregla nada: contesta
+    VERDE o BLOQUEADO y dice por que, con el comando a la vista.
+
+    El estado de `spec.md` frente a `origin/main` se reporta en TRES estados
+    sin colapsar -- `EN-MAIN-COINCIDE`, `EN-MAIN-DISCORDA` (bloquea: alguien
+    movio la spec bajo los pies de la corrida) y `NO-EN-MAIN` (no bloquea y
+    se DECLARA: la primera corrida de una spec nueva ocurre por definicion
+    antes de que la spec este fusionada; llamarlo VERDE a secas seria
+    mentir, y bloquearlo haria imposible cualquier primera corrida)."""
+    bloqueos: list[str] = []
+    avisos: list[str] = []
+    d, spec = _carga_spec(calc_id)
+    if imprime:
+        print(f"PRE-FLIGHT {calc_id}   ({_rel(d)})")
+
+    for campo in CAMPOS_SPEC_OBLIGATORIOS:
+        if spec.get(campo) in (None, "", [], {}):
+            bloqueos.append(f"spec_sin_{campo}")
+    if spec.get("calc_id") and spec["calc_id"] != calc_id:
+        bloqueos.append(f"calc_id_discorda(spec={spec['calc_id']}, dir={calc_id})")
+
+    # 1 · spec.md y spec.yaml existen y estan commiteados
+    md = d / str(spec.get("spec_md", "spec.md"))
+    yml = d / "spec.yaml"
+    for ruta in (md, yml):
+        if not ruta.exists():
+            bloqueos.append(f"ausente={_rel(ruta)}")
+            continue
+        cod, _ = _git_salida("ls-files", "--error-unmatch", _rel(ruta))
+        estado = "COMMITEADO" if cod == 0 else "NO-COMMITEADO"
+        if cod != 0:
+            bloqueos.append(f"no_commiteado={_rel(ruta)}")
+        if imprime:
+            print(f"  [{estado}] {_rel(ruta)}")
+
+    # 2 · sha del md declarado en el yaml vs arbol vs origin/main
+    sha_declarado = str(spec.get("spec_md_sha256", ""))
+    sha_arbol = _sha256_archivo(md)
+    sha_main = _sha256_blob_en("origin/main", _rel(md))
+    if sha_arbol is None:
+        estado_md = "NO-EJECUTABLE"
+    elif sha_declarado != sha_arbol:
+        estado_md = "ARBOL-DISCORDA"
+        bloqueos.append("spec_md_sha256_discorda_arbol")
+    elif sha_main is None:
+        estado_md = "NO-EN-MAIN"
+        avisos.append("spec_md_no_esta_en_origin_main -- primera corrida de una "
+                      "spec aun no fusionada; se DECLARA, no se da por fusionada")
+    elif sha_main != sha_declarado:
+        estado_md = "EN-MAIN-DISCORDA"
+        bloqueos.append("spec_md_sha256_discorda_origin_main")
+    else:
+        estado_md = "EN-MAIN-COINCIDE"
+    if imprime:
+        print(f"  [{estado_md}] spec_md_sha256")
+        print(f"              declarado en spec.yaml = {sha_declarado or '(ninguno)'}")
+        print(f"              arbol                  = {sha_arbol}")
+        print(f"              origin/main            = {sha_main or 'NO-EN-MAIN'}")
+
+    # 3 · ids unicos
+    ids_res = [str(r.get("id", "")) for r in (spec.get("resultados") or [])]
+    ids_in = [str(i.get("id", "")) for i in (spec.get("inputs") or [])]
+    for nombre, ids in (("resultados", ids_res), ("inputs", ids_in)):
+        dup = sorted({i for i in ids if ids.count(i) > 1})
+        if dup:
+            bloqueos.append(f"ids_{nombre}_duplicados={dup}")
+        if imprime:
+            print(f"  [{'DUPLICADOS' if dup else 'UNICOS'}] ids de {nombre}: "
+                  f"{len(ids)} declarados" + (f" · duplicados: {dup}" if dup else ""))
+
+    # 4 · script existe
+    script = RAIZ / str(spec.get("script", ""))
+    if not script.exists():
+        bloqueos.append(f"script_ausente={spec.get('script')}")
+    if imprime:
+        print(f"  [{'EXISTE' if script.exists() else 'AUSENTE'}] script "
+              f"{spec.get('script')}")
+        print(f"              script_blob_sha256 = {_sha256_archivo(script)}")
+
+    # 5 · inputs
+    if imprime:
+        print(f"  inputs declarados: {len(spec.get('inputs') or [])}")
+    detalle_inputs = _verifica_inputs(spec, bloqueos)
+
+    # 6 · parametros, tolerancia y seed declarados
+    tol = spec.get("tolerancia") or {}
+    if not isinstance(tol, dict) or not tol.get("tipo"):
+        bloqueos.append("tolerancia_sin_tipo")
+    if spec.get("seed") is None:
+        bloqueos.append("seed_no_declarado")
+    if imprime:
+        print(f"  [DECLARADO] parametros = {json.dumps(spec.get('parametros'), sort_keys=True)}")
+        print(f"  [DECLARADO] tolerancia = {json.dumps(tol, sort_keys=True)}")
+        print(f"  [DECLARADO] seed       = {spec.get('seed')}")
+
+    # 7 · arbol limpio
+    _cod, porcelain = _git_salida("status", "--porcelain")
+    sucio = porcelain.strip() != ""
+    if sucio:
+        bloqueos.append("working_tree_dirty=SI")
+    if imprime:
+        print(f"  [{'SUCIO' if sucio else 'LIMPIO'}] git status --porcelain "
+              f"({len(porcelain.strip().splitlines()) if sucio else 0} lineas)")
+        for linea in porcelain.strip().splitlines()[:20]:
+            print(f"              | {linea}")
+
+    # 8 · sin sello incompatible previo
+    sello_json, sello_sha = d / "sello.json", d / "sello.sha256"
+    estado_sello = "SIN-SELLO-PREVIO"
+    if sello_sha.exists():
+        r = subprocess.run([sys.executable, str(SELLA_PY), "--verifica",
+                            str(sello_json)], cwd=RAIZ, capture_output=True, text=True)
+        estado_sello = {0: "SELLO_COINCIDE", 2: "SIDACAR_AUSENTE",
+                        3: "SELLO_NO_COINCIDE"}.get(r.returncode, f"exit={r.returncode}")
+        if r.returncode != 0:
+            bloqueos.append(f"sello_previo_incompatible={estado_sello}")
+        else:
+            try:
+                previo = json.loads((d / "ejecucion.json").read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                previo = {}
+            if previo.get("script_blob_sha256") not in (None, _sha256_archivo(script)):
+                avisos.append("sello previo de OTRO codigo -- `run` lo sobreescribe "
+                              "y `verify` compara contra el nuevo")
+    if imprime:
+        print(f"  [{estado_sello}] sello previo   [python3 tools/sella_sha256.py "
+              f"--verifica {_rel(sello_json)}]")
+
+    veredicto = "BLOQUEADO" if bloqueos else "VERDE"
+    if imprime:
+        for a in avisos:
+            print(f"  [AVISO] {a}")
+        print(f"\nPRE-FLIGHT: {veredicto}" +
+              ("" if not bloqueos else " " + " ".join(bloqueos)))
+    return {"calc_id": calc_id, "veredicto": veredicto, "bloqueos": bloqueos,
+            "avisos": avisos, "spec": spec, "dir": str(d),
+            "inputs": detalle_inputs, "spec_md_estado": estado_md,
+            "sello_previo": estado_sello,
+            "script_blob_sha256": _sha256_archivo(script)}
+
+
+def cmd_preflight(args) -> int:
+    try:
+        r = preflight(args.calc_id)
+    except BloqueoPreflight as exc:
+        print(f"PRE-FLIGHT: BLOQUEADO {exc}")
+        return 1
+    return 0 if r["veredicto"] == "VERDE" else 1
+
+
+# ═══════════════ P1 · run ══════════════════════════════════════════════════
+
+def _carga_medidor(script: Path):
+    """Interfaz estable, unica y sin alternativas:
+        medir(inputs, params) -> {"RESULT-…": valor}
+    Un medidor que no la exponga es NO-EJECUTABLE -- no se adivina otra
+    entrada ni se llama a `main()` por si acaso."""
+    spec_mod = importlib.util.spec_from_file_location(
+        f"medidor_{script.stem}", script)
+    if spec_mod is None or spec_mod.loader is None:
+        raise RuntimeError(f"no se pudo cargar {script}")
+    mod = importlib.util.module_from_spec(spec_mod)
+    sys.modules[spec_mod.name] = mod
+    spec_mod.loader.exec_module(mod)
+    if not hasattr(mod, "medir"):
+        raise RuntimeError(
+            f"{_rel(script)} no expone `medir(inputs, params)` -- interfaz "
+            f"estable del plan v2.0 §4 (B-1)")
+    return mod.medir
+
+
+def _inputs_para_medidor(spec: dict) -> dict:
+    fuera = {}
+    for ent in spec.get("inputs") or []:
+        iid = str(ent.get("id", ""))
+        d = dict(ent)
+        if ent.get("origen") == "repo":
+            d["ruta_absoluta"] = str(RAIZ / str(ent.get("ruta", "")))
+        fuera[iid] = d
+    return fuera
+
+
+def _firma_entorno() -> dict:
+    """P3 incorporada a `ejecucion.json`. Se importa por ruta -- `tools/` no
+    es un paquete y no se vuelve uno por esto."""
+    spec_mod = importlib.util.spec_from_file_location("entorno_gen2", ENTORNO_PY)
+    mod = importlib.util.module_from_spec(spec_mod)
+    sys.modules[spec_mod.name] = mod
+    spec_mod.loader.exec_module(mod)
+    return mod.firma(sonda=False)
+
+
+def _ejecuta(spec: dict) -> tuple[dict, int, str]:
+    script = RAIZ / str(spec.get("script", ""))
+    try:
+        medir = _carga_medidor(script)
+        valores = medir(_inputs_para_medidor(spec), dict(spec.get("parametros") or {}))
+    except Exception as exc:  # el fallo es un HECHO de la corrida, no un crash
+        return {}, 1, f"{type(exc).__name__}: {exc}"
+    if not isinstance(valores, dict):
+        return {}, 1, "medir() no devolvio un dict {\"RESULT-…\": valor}"
+    return valores, 0, ""
+
+
+def run(calc_id: str, imprime: bool = True) -> dict:
+    """Ejecucion sellada. Corre `preflight` primero SIEMPRE: una corrida
+    lanzada sobre un preflight bloqueado es exactamente el registro que este
+    CLI existe para no volver a producir."""
+    pre = preflight(calc_id, imprime=imprime)
+    if pre["veredicto"] != "VERDE":
+        if imprime:
+            print("\nRUN: NO-EJECUTADO -- preflight BLOQUEADO "
+                  + " ".join(pre["bloqueos"]))
+        return {"veredicto": "NO-EJECUTADO", "preflight": pre}
+
+    spec, d = pre["spec"], Path(pre["dir"])
+    _cod, commit = _git_salida("rev-parse", "HEAD")
+    valores, exit_code, error = _ejecuta(spec)
+
+    ejecucion = {
+        "corrida_id": f"{calc_id}--{commit.strip()[:12]}",
+        "spec_id": calc_id,
+        "fecha": datetime.datetime.now(datetime.timezone.utc)
+                 .strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "git_commit": commit.strip(),
+        "script_path": str(spec.get("script")),
+        "script_blob_sha256": pre["script_blob_sha256"],
+        "input_ids": [str(i.get("id", "")) for i in (spec.get("inputs") or [])],
+        "input_sha256": {e["id"]: e.get("sha256") for e in pre["inputs"]},
+        "parametros": spec.get("parametros"),
+        "seed": spec.get("seed"),
+        "python_version": platform.python_version(),
+        "dependencias_materiales": _firma_entorno()["dependencias_materiales"],
+        "firma_entorno": _firma_entorno(),
+        "exit_code": exit_code,
+        "error": error or None,
+        "resultado_ids": sorted(valores),
+        "tolerancia": spec.get("tolerancia"),
+        "etiquetas": spec.get("etiquetas") or {},
+        "spec_md_estado": pre["spec_md_estado"],
+    }
+    _escribe_json(d / "ejecucion.json", ejecucion)
+    _escribe_json(d / "resultados.json",
+                  {"spec_id": calc_id, "resultados": valores})
+
+    sello = {"ejecucion.json": _sha256_archivo(d / "ejecucion.json"),
+             "resultados.json": _sha256_archivo(d / "resultados.json")}
+    _escribe_json(d / "sello.json", sello)
+    r = subprocess.run([sys.executable, str(SELLA_PY), str(d / "sello.json")],
+                       cwd=RAIZ, capture_output=True, text=True)
+    if imprime:
+        print(f"\nRUN {calc_id}")
+        print(f"  corrida_id     = {ejecucion['corrida_id']}")
+        print(f"  git_commit     = {ejecucion['git_commit']}")
+        print(f"  script         = {ejecucion['script_path']}")
+        print(f"  script_blob_sha256 = {ejecucion['script_blob_sha256']}")
+        print(f"  exit_code      = {exit_code}" + (f"  error={error}" if error else ""))
+        print(f"  resultado_ids  = {ejecucion['resultado_ids']}")
+        print(f"  escritos: {_rel(d / 'ejecucion.json')} · "
+              f"{_rel(d / 'resultados.json')} · {_rel(d / 'sello.sha256')}")
+        print(f"  sella_sha256 exit={r.returncode} {(r.stdout or '').strip()}")
+    return {"veredicto": "EJECUTADO" if exit_code == 0 else "FALLO",
+            "ejecucion": ejecucion, "resultados": valores, "preflight": pre}
+
+
+def _escribe_json(ruta: Path, datos) -> None:
+    ruta.parent.mkdir(parents=True, exist_ok=True)
+    with ruta.open("w", encoding="utf-8") as fh:
+        json.dump(datos, fh, ensure_ascii=False, indent=1, sort_keys=True)
+        fh.write("\n")
+
+
+def cmd_run(args) -> int:
+    r = run(args.calc_id)
+    return 0 if r["veredicto"] == "EJECUTADO" else 1
+
+
+# ═══════════════ P1 · verify ═══════════════════════════════════════════════
+
+def _compara(valor_a, valor_b, tol: dict) -> tuple[bool, object]:
+    """Tolerancias POR TIPO (encargo P1):
+      entero     -- exacto, sin epsilon: un entero que no cuadra no cuadra.
+      flotante   -- abs(delta) <= `abs` declarado (1e-10 por defecto).
+      bootstrap  -- EXACTO solo si la spec fijo seed + RNG + codigo (lo cual
+                    `run` ya registra); si no, cae a la tolerancia absoluta.
+    """
+    tipo = (tol or {}).get("tipo", "flotante")
+    if isinstance(valor_a, bool) or isinstance(valor_b, bool):
+        return valor_a == valor_b, None
+    if tipo == "entero":
+        return valor_a == valor_b, (None if valor_a == valor_b
+                                    else f"{valor_a!r} != {valor_b!r}")
+    if isinstance(valor_a, (int, float)) and isinstance(valor_b, (int, float)):
+        delta = abs(float(valor_a) - float(valor_b))
+        if tipo == "bootstrap" and (tol or {}).get("exacto_por_seed") is True:
+            return valor_a == valor_b, delta
+        limite = float((tol or {}).get("abs", TOL_FLOTANTE_DEFECTO))
+        return delta <= limite, delta
+    if isinstance(valor_a, dict) and isinstance(valor_b, dict):
+        if set(valor_a) != set(valor_b):
+            return False, f"claves distintas: {sorted(set(valor_a) ^ set(valor_b))}"
+        peor, ok_total = None, True
+        for k in valor_a:
+            ok, delta = _compara(valor_a[k], valor_b[k], tol)
+            ok_total = ok_total and ok
+            if isinstance(delta, float) and (peor is None or not isinstance(peor, float) or delta > peor):
+                peor = delta
+            elif not ok and not isinstance(delta, float):
+                peor = f"{k}: {delta}"
+        return ok_total, peor
+    if isinstance(valor_a, list) and isinstance(valor_b, list):
+        if len(valor_a) != len(valor_b):
+            return False, f"longitudes {len(valor_a)} != {len(valor_b)}"
+        peor, ok_total = None, True
+        for x, y in zip(valor_a, valor_b):
+            ok, delta = _compara(x, y, tol)
+            ok_total = ok_total and ok
+            if isinstance(delta, float) and (peor is None or not isinstance(peor, float) or delta > peor):
+                peor = delta
+        return ok_total, peor
+    return valor_a == valor_b, (None if valor_a == valor_b else "valores no numericos distintos")
+
+
+def verify(calc_id: str, imprime: bool = True) -> dict:
+    """Reejecuta y compara contra lo sellado. Tres veredictos, sin colapsar:
+    REPRODUCE · NO-REPRODUCE (con delta) · NO-EJECUTABLE (con la razon)."""
+    d = _dir_calc(calc_id)
+    if imprime:
+        print(f"VERIFY {calc_id}   ({_rel(d)})")
+    try:
+        ejec = json.loads((d / "ejecucion.json").read_text(encoding="utf-8"))
+        previos = json.loads((d / "resultados.json").read_text(encoding="utf-8"))["resultados"]
+    except (OSError, ValueError, KeyError) as exc:
+        if imprime:
+            print(f"VERIFY: NO-EJECUTABLE -- sin corrida sellada que verificar "
+                  f"({type(exc).__name__})")
+        return {"veredicto": "NO-EJECUTABLE", "razon": f"sin corrida sellada: {exc}"}
+
+    _d, spec = _carga_spec(calc_id)
+    razones = []
+
+    # a · identidad de codigo
+    script = RAIZ / str(spec.get("script", ""))
+    sha_script = _sha256_archivo(script)
+    codigo_igual = sha_script == ejec.get("script_blob_sha256")
+    if imprime:
+        print(f"  [{'IDENTICO' if codigo_igual else 'CAMBIADO'}] codigo "
+              f"{_rel(script)}\n              sellado = {ejec.get('script_blob_sha256')}"
+              f"\n              hoy     = {sha_script}")
+    if not codigo_igual:
+        razones.append("script_cambiado_desde_el_sello")
+
+    # b · inputs
+    for ent in spec.get("inputs") or []:
+        iid = str(ent.get("id", ""))
+        if ent.get("origen") == "repo":
+            hoy = _sha256_archivo(RAIZ / str(ent.get("ruta", "")))
+            sellado = (ejec.get("input_sha256") or {}).get(iid)
+            ok = hoy is not None and hoy == sellado
+            if imprime:
+                print(f"  [{'COINCIDE' if ok else 'DISCORDA'}] input {iid} "
+                      f"({ent.get('ruta')})\n              sellado = {sellado}"
+                      f"\n              hoy     = {hoy}")
+            if not ok:
+                razones.append(f"input_cambiado={iid}")
+        elif imprime:
+            print(f"  [MANIFIESTO] input {iid} -- lo verifica `preflight` con "
+                  f"tests/manifiesto.py, no se re-hashea aqui")
+
+    # c · reejecucion
+    valores, exit_code, error = _ejecuta(spec)
+    if exit_code != 0:
+        if imprime:
+            print(f"\nVERIFY: NO-EJECUTABLE -- la reejecucion fallo: {error}")
+        return {"veredicto": "NO-EJECUTABLE", "razon": error,
+                "identidad_codigo": codigo_igual, "razones_previas": razones}
+
+    tol = spec.get("tolerancia") or {}
+    faltan = sorted(set(previos) ^ set(valores))
+    deltas, reproduce = {}, not faltan
+    for k in sorted(set(previos) & set(valores)):
+        ok, delta = _compara(previos[k], valores[k], tol)
+        deltas[k] = delta
+        reproduce = reproduce and ok
+        if imprime:
+            print(f"  [{'REPRODUCE' if ok else 'NO-REPRODUCE'}] {k}: "
+                  f"sellado={previos[k]!r} · hoy={valores[k]!r} · delta={delta!r}")
+    if faltan and imprime:
+        print(f"  [NO-REPRODUCE] ids que aparecen en una corrida y no en la otra: {faltan}")
+
+    veredicto = "REPRODUCE" if reproduce else "NO-REPRODUCE"
+    if imprime:
+        print(f"\n  tolerancia declarada: {json.dumps(tol, sort_keys=True)}")
+        print(f"VERIFY: {veredicto}" +
+              ("" if not razones else "  (con salvedades: " + " ".join(razones) + ")"))
+    return {"veredicto": veredicto, "deltas": deltas, "ids_faltantes": faltan,
+            "identidad_codigo": codigo_igual, "salvedades": razones,
+            "tolerancia": tol}
+
+
+def cmd_verify(args) -> int:
+    r = verify(args.calc_id)
+    return {"REPRODUCE": 0, "NO-REPRODUCE": 1}.get(r["veredicto"], 2)
+
+
+
+# ── subcomandos que siguen declarados y vacios (los llena GEN2-E5/E6) ──────
 
 PENDIENTES_E3 = [
-    ("spec-check", "B-2 · cada (archivo, variable) contra el inventario canonico"),
-    ("negativo", "B-3 · barrido declarativo de NO-ENCONTRADO / SIN-COBERTURA"),
-    ("preflight", "B-1 · comprobacion previa a ejecutar una corrida"),
-    ("run", "B-1 · ejecucion sellada de una corrida"),
-    ("verify", "B-1 · reejecucion con tolerancia declarada"),
     ("registro", "B-1 · vistas corridas.tsv / resultados.tsv / usos.tsv"),
     ("status", "B-11 · contadores GEN2 leidos del CLI"),
     ("vigencia", "B-6 · CANDIDATO-VENCIDO por fecha e instrumento"),
@@ -630,6 +1477,27 @@ def construye_parser() -> argparse.ArgumentParser:
     subs = p.add_subparsers(dest="subcomando", required=True)
     d = subs.add_parser("demanda", help="C0-A: deriva que hay que volver a medir")
     d.set_defaults(func=cmd_demanda)
+
+    # GEN2-E3 · AUTOMATIZA-GEN2-1: el nucleo de corrida deja de ser un hueco.
+    sc = subs.add_parser("spec-check",
+                         help="B-2 · cada (archivo, variable) contra los inventarios vigentes")
+    sc.add_argument("calc_id", help="p. ej. CALC-SMOKE-0001")
+    sc.set_defaults(func=cmd_spec_check)
+
+    ng = subs.add_parser("negativo",
+                         help="B-3 · barrido declarativo de NO-ENCONTRADO / SIN-COBERTURA")
+    ng.add_argument("--patron", required=True, help="regex sobre variable_id + texto_reactivo")
+    ng.add_argument("--archivos", default=None,
+                    help="regex sobre archivo_miembro; sin el, todo el universo vigente")
+    ng.set_defaults(func=cmd_negativo)
+
+    for nombre, ayuda, fn in (
+            ("preflight", "B-1 · comprobacion previa a ejecutar una corrida", cmd_preflight),
+            ("run", "B-1 · ejecucion sellada de una corrida", cmd_run),
+            ("verify", "B-1 · reejecucion con tolerancia declarada", cmd_verify)):
+        s = subs.add_parser(nombre, help=ayuda)
+        s.add_argument("calc_id", help="p. ej. CALC-SMOKE-0001")
+        s.set_defaults(func=fn)
     for nombre, ayuda in PENDIENTES_E3:
         s = subs.add_parser(nombre, help=f"[NO-IMPLEMENTADO] {ayuda}")
         s.set_defaults(func=_no_implementado(nombre))

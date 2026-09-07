@@ -182,6 +182,20 @@ def t02_duplicates():
             # FP-59) -- colisiona por diseño con sus originales vivos, mismo
             # criterio que data/raw. FP-293/ACTO MAESTRA38-N4 (4/sep/2026).
             continue
+        if re.search(r"/data/corrida0/CALC-[A-Za-z0-9_.-]+/", p.replace(os.sep, "/") + "/"):
+            # ACTO GEN2-E3 · AUTOMATIZA-GEN2-1 (7/sep/2026). Un recibo de
+            # corrida se llama `spec.md`/`spec.yaml`/`medidor.py`/
+            # `ejecucion.json`/`resultados.json`/`sello.json` SIEMPRE: el
+            # nombre lo fija `corrida0 run`, no quien escribe la spec, y por
+            # eso `CALC-0001/resultados.json` y `CALC-0002/resultados.json`
+            # van a colisionar por diseño en cuanto E5 escriba la segunda
+            # corrida -- igual que `conjunto_de_datos.csv` bajo `data/raw`.
+            # by_hash tampoco aporta aquí: la custodia por contenido de cada
+            # recibo la lleva su propio `sello.sha256` (verificable con
+            # `tools/sella_sha256.py --verifica`) más `git_commit` +
+            # `script_blob_sha256` + `input_sha256` dentro de `ejecucion.json`.
+            # `data/corrida0/demanda-*.tsv` (GEN2-E2) NO queda exento.
+            continue
         if not os.path.isfile(p):
             continue
         by_name[norm(os.path.basename(p))].append(rel(p))
@@ -4411,6 +4425,20 @@ def t27_infraestructura():
         relp = rel(p)
         if relp in _T_INFRA_ARCHIVOS_CONOCIDOS:
             continue
+        # ACTO GEN2-E3 · AUTOMATIZA-GEN2-1 (7/sep/2026). `data/corrida0/CALC-*/`
+        # es el RECIBO de una corrida, no infraestructura del repo: sus archivos
+        # (`spec.md`, `spec.yaml`, `medidor.py`, `ejecucion.json`,
+        # `resultados.json`, `sello.json`, `sello.sha256`) los escribe
+        # `corrida0 run` uno por corrida, y exigir una fila de
+        # `INFRAESTRUCTURA-v1_0.md` por corrida convertiría ese archivo en un
+        # registro de corridas -- que es justo lo que `corrida0 registro` (B-1,
+        # GEN2-E6) va a ser. La custodia NO se pierde: cada directorio trae su
+        # `sello.sha256` verificable con `tools/sella_sha256.py --verifica`, y
+        # `ejecucion.json` fija `git_commit` + `script_blob_sha256` +
+        # `input_sha256`. La familia `data/corrida0/demanda-*.tsv` NO está
+        # exenta: sigue citada en INFRAESTRUCTURA §`data/corrida0/` (GEN2-E2).
+        if re.match(r"^data/corrida0/CALC-[A-Za-z0-9_.-]+/", relp):
+            continue
         base = os.path.basename(p)
         if base in infra_text or relp in infra_text:
             continue
@@ -4771,6 +4799,42 @@ def t31_cron():
                     f"forense/cron/REGISTRO-CRON-v1_0.md §5")
 
 
+# ───────────────────────────────────────────────────────────────
+# T32 · T-CORRIDA0 -- ACTO GEN2-E3 · AUTOMATIZA-GEN2-1, 7/sep/2026.
+#
+#   `tools/corrida0.py` dejó de ser un derivador de TSV y pasó a ser el
+#   aparato que decide si una corrida se ejecuta (`preflight`), qué queda
+#   sellado de ella (`run`) y si reproduce (`verify`). Un aparato así sin
+#   test es peor que no tenerlo: produce recibos que nadie falsó. Este
+#   test corre `tests/test_corrida0.py` -- unidad con fixtures pequeños,
+#   SIN CORPUS y sin red -- y sube sus fallos como FAIL de la suite.
+#
+#   Límite declarado: `tests/test_corrida0.py` NO prueba el smoke
+#   `CALC-SMOKE-0001` de punta a punta. `run` exige árbol limpio y la
+#   suite corre casi siempre con el árbol sucio, así que un test que lo
+#   intentara fallaría por el motivo equivocado. El smoke se corre a mano
+#   y su recibo queda en `data/corrida0/CALC-SMOKE-0001/ejecucion.json`.
+# ───────────────────────────────────────────────────────────────
+def t32_corrida0():
+    ruta = os.path.join(ROOT, "tests", "test_corrida0.py")
+    if not os.path.exists(ruta):
+        fail("T-CORRIDA0", "no existe `tests/test_corrida0.py`")
+        return
+    try:
+        import importlib.util as _iu
+        _spec = _iu.spec_from_file_location("test_corrida0_desde_check", ruta)
+        _mod = _iu.module_from_spec(_spec)
+        sys.modules[_spec.name] = _mod
+        _spec.loader.exec_module(_mod)
+        fallos = _mod.corre()
+    except Exception as exc:
+        fail("T-CORRIDA0", f"`tests/test_corrida0.py` no pudo correr: "
+                            f"{type(exc).__name__}: {exc}")
+        return
+    for f in fallos:
+        fail("T-CORRIDA0", f)
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -4806,6 +4870,7 @@ def main():
         ("T29 T-FIRMAS-2",                         t29_firmas_2_no_perdidas),
         ("T30 T-YAMEDIDO",                         t30_yamedido),
         ("T31 T-CRON",                              t31_cron),
+        ("T32 T-CORRIDA0",                           t32_corrida0),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
