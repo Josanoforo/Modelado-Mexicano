@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **380 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **381 ADR**
 
 > | | |
 > |---|---|
@@ -6600,3 +6600,23 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **`tests/check.py --baseline`**: ver la nota de cierre.
 
 **Numeración.** Derivado contra `origin/main = 7e0fb7169717abc2cd31b46035f8238153ab98de` (máximo real `379`), candidato `380`, contiguo, sin huecos.
+
+---
+
+**ADR-381 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `380` contra `origin/main = 3d6dee3`, candidato `381`, contiguo, sin huecos) · `ACTO MAESTRA38-N20-N21 · DOS-SPECS-CSES-R10-3`**, 7/sep/2026, entorno **NUBE, sin corpus ni red** — dos pre-registros de caja (`S12-CSES-spec-v1_0.md`, `S13-R10-3-spec-v1_0.md`), congelados antes de abrir ningún `.sav`/`.dta`, propagando `FP-329(b)` y la cláusula de movimiento `D2-h`.
+
+**Qué hace.** `S12` pre-registra dos falsadores sobre `R7.3`/`R7.6` con **CIDE-CSES 2015**: el par zanahoria (`pcyc13`, oferta condicionada)/garrote (`pcyc14`, amenaza condicionada) como brazos separados (nunca sumados), y el experimento de encuadre sobre secreto del voto (`pvoto1`/`pvoto2`/`pvoto3`) como pieza aparte con su propio B-bis. **Hallazgo de `S12 §0.2`, verificado contra `data/inventario-reactivos-descargas-mx-v1_2.tsv`:** `pcyc13`/`pcyc14` no tienen significado estable entre los tres `.sav` de CSES 2015 que el manifiesto trae bajo ese nombre — sólo `cide_cses2015_nacional_poselectoral`/`_nacional_preelectoral` traen el par zanahoria/garrote limpio; `cide_cses2015_estatal_preelectoral` (el único de los tres con `pvoto1-3`) trae `pcyc13` con el texto de garrote y `pcyc14_1..8` como batería de afiliación a servicios de salud, sin relación con clientelismo. El desenlace (voto por el partido que ofreció/amenazó) no está confirmado en el inventario — declarado `NO-CONSTRUIBLE-SIN-CODEBOOK`, con dos candidatos de reserva citados (`p9`, `p8a`), no inventado.
+
+`S13` pre-registra la segunda medición de `comunicacion.inseguridad.ver_oir_callar` (`R10.3`) que `D2-h` exige, sobre LAPOP 2019/2021/2023. **Hallazgo de `S13 §0.2`, corrección de premisa:** el desenlace (`aoj1`, denuncia) que `D2-h` pide replicar con "la misma batería" **no existe en ninguna ola ≥2019 del corpus** (0 filas en 2019/2021/2023, verificado contra el mismo inventario — el mismo hallazgo que `S8-L18-spec-v1_0.md §0.2`/`ACTO MAESTRA38-L18` ya habían establecido el 5-6/sep, antes de que `D2-h` se redactara citando su resultado sin re-verificar el alcance). `S13` declara dos caminos, no adjudicados: Camino A (desenlace sustituto, requiere mandato de mesa) y Camino B (bajo el que se redacta esta spec: `D2-h` queda `NO-DISPARABLE` con el corpus de hoy salvo hallazgo de apertura en codebook completo; la spec pre-registra únicamente el marginal de contexto/antecedente, declarado insuficiente para disparar `se_mueve_si`).
+
+**Ninguna de las dos piezas mide, mueve tier de `R7.3`/`R7.6`/`R10.3`, ni reescribe `D2-g`/`D2-h`.** Sidecar `sha256` por spec (`tools/sella_sha256.py`). Recibo `FP-331` (no requiere firma) en `forense/firmas-pendientes.tsv`, con el pendiente declarado: la decisión de mesa sobre Camino A/B de `S13` y sobre cuál `.sav` de CSES usar para el desenlace de `S12`.
+
+**Perímetro.** Toca `forense/prereg-caja/S12-CSES-spec-v1_0.md`/`.sha256` (nuevos), `forense/prereg-caja/S13-R10-3-spec-v1_0.md`/`.sha256` (nuevos), `forense/firmas-pendientes.tsv` (fila `FP-331`), `tests/check.py` (dos exenciones declaradas: `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` y `_T25_ARCHIVOS_CONOCIDOS`, el encargo archivado verbatim cita `R7.3`/`R7.6`/`R10.3` y el rótulo pelado `M13` de un tercero), `canon/gobernanza-v1_15.md` (este registro), `canon/estado-programa-v1_12.md` (L0 + contadores), `canon/registro-rotulos.tsv` (censo del rótulo del acto). **No toca** `milpa/**`, `canon/modelo-decision-v4_0.md`, `data/**`, ni ninguna spec previa de `forense/prereg-caja/`.
+
+**Deuda que abre.** La decisión de mesa sobre Camino A/B de `S13 §0.2` (si se reescribe `se_mueve_si` de `D2-h` con un desenlace sustituto, o se acepta que la cláusula queda sin ola que la dispare hasta que el corpus cambie). La decisión de cuál `.sav` de CSES usar para el desenlace de `S12 §2` (o su confirmación `NO-CONSTRUIBLE` tras abrir cuestionario completo).
+
+**Deuda que cierra.** Ninguna — es la primera spec que cubre CIDE-CSES 2015 y la primera que intenta replicar `D2-h` (ambas `NO-ENCONTRADO`/`NUNCA-MEDIDA` antes de este acto, A.8 del encargo).
+
+**`tests/check.py --baseline`**: VERDE — sin `FAIL` nuevo frente a `tests/baseline.json`, tras las dos exenciones declaradas arriba.
+
+**Numeración.** Derivado por el comando de la casa (`python3 tools/cierre_acto.py`, Fase A) contra `origin/main = 3d6dee33a478b3c4f687f3fc8e47205f4961cd82` (máximo real `380`), candidato `381`, contiguo, sin huecos. Base declarada por el encargo (`7e0fb716`) quedó `9f5b3cd..3d6dee3` detrás al arrancar — verificado sin drift de perímetro (`git diff 7e0fb716 origin/main --stat` sólo toca `canon/estado-programa-v1_12.md`/`canon/gobernanza-v1_15.md`, ya reconciliado con `ADR-380` antes de este acto).

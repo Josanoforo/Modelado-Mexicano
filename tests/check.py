@@ -3882,6 +3882,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # acto escribe el rotulo va siempre con prefijo completo
     # (AUTOMATIZA-2-D) -- D-6.
     "forense/encargos/2026-09-07-AUTOMATIZA-2-D-COSTURAS-FINALES.md",
+    # ACTO MAESTRA38-N20-N21 · DOS-SPECS-CSES-R10-3, 7/sep/2026: encargo
+    # archivado VERBATIM (A.3). Su bloque CARRILES cita "M13 (nube: duelo)"
+    # como un acto paralelo en vuelo, sin serie MAESTRA<nn> -- rótulo pelado
+    # de un tercero, no de este acto (este acto no toca `M13` ni
+    # `forense/prereg-duelo-v2/`). El texto verbatim no se edita (A.3); en
+    # todo archivo propio que este acto escribe el rótulo va siempre con
+    # prefijo completo (MAESTRA38-N20-N21) -- D-6.
+    "forense/encargos/2026-09-07-MAESTRA38-N20-N21-DOS-SPECS-CSES-R10-3.md",
 }
 
 
@@ -4459,6 +4467,15 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # `forense/notas/2026-09-07-MAESTRA38-CARGA-LAPOP-2-resultados.md`, no
     # en el archivo verbatim del encargo.
     "forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP-2.md",
+    # ACTO MAESTRA38-N20-N21 · DOS-SPECS-CSES-R10-3, 7/sep/2026: el encargo se
+    # archiva VERBATIM (A.3) y cita `R7.3`/`R7.6`/`R10.3` en su cuerpo
+    # original (redactado por dirección) al describir las firmas de mesa y el
+    # perímetro de las dos specs que este acto congela -- un encargo verbatim
+    # nunca se edita para complacer un test (misma regla que rige T25).
+    # `tools/ya_medido.py` SÍ se corrió en A.8 sobre R7.3/R7.6/R10.3; la
+    # salida vive en `forense/prereg-caja/S12-CSES-spec-v1_0.md §0.1` y
+    # `S13-R10-3-spec-v1_0.md §0.1`, no en el archivo verbatim del encargo.
+    "forense/encargos/2026-09-07-MAESTRA38-N20-N21-DOS-SPECS-CSES-R10-3.md",
 }
 
 
