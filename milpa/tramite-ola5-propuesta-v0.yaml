@@ -149,7 +149,7 @@ reglas_propuestas:
     porque: {generador: [G1], mecanismo: "trampa social: cada quien paga porque supone que los demás pagan"}
       # mecanismo copiado literal de la regla ASIGNADA que se enmienda --
       # no se re-deriva ni se inventa uno distinto.
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026): cargada al motor por FP-200=b/ADR-236 (milpa/tramite.yaml:74); token desactualizado desde el 31/ago. `situacion: realiza_tramite_gobierno` es el campo funcional del motor (mismo patron que la entrada gemela tramite.mordida.discrecional_encig_serie de abajo, ya SELLADA) -- no se toca, no es el token de estado que este acto sella.
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["ENCUCI2020", "coeficientes_generador_medidos.G1_radio_confianza"]
     ola_calibracion: "ENCUCI 2020 (unica ola)"
@@ -190,14 +190,14 @@ reglas_propuestas:
 # milpa/procedencia.yaml::thetas_informativas (id corresidencia_actual).
 # ══════════════════════════════════════════════════════════════════
   - id: familia.corresidencia.adulto_familiar_actual
-    situacion: APARCADA
+    situacion: SELLADA-SIN-CARGA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026): las dos ventanas (esta, ACTUAL, y "alguna vez" de la entrada DEVUELTA arriba) son verdaderas y no compiten; R1.2 hereda su tier; la regla se lee con la ventana que declare cada uso. Se carga solo si un uso del motor necesita la ventana actual (decision futura, no esta). Reemplaza el token APARCADA (ACTO MAESTRA33-E11, 1/sep/2026) por instruccion expresa de mesa.
     si:
       disparadores: PENDIENTE-DE-MESA
     entonces:
       - {conducta: coreside_con_ascendiente_o_suegro_actual, p: 0.057531, clase: "MEDIDO·p(tasa base ponderada)"}
       - {conducta: no_coreside_con_ascendiente_o_suegro_actual, p: 0.942469, clase: "MEDIDO·p(tasa base ponderada)"}
     porque: {generador: [G5], mecanismo: PENDIENTE-DE-MESA}
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026)
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["EDER2017", "ACTO MAESTRA33-C1", "persona.csv[parentesco] (roster ENH actual, no historiavida)"]
     ola_calibracion: "EDER 2017 (unica ola)"
@@ -1118,7 +1118,7 @@ reglas_propuestas:
 
   # REGLA NUEVA · DOMINIO ACTIVO dinero · firma c3 (mesa, 2/sep/2026) · ACTO MAESTRA35-N1 -- no es apertura de Ola 6 (ADR-265 vigente)
   - id: dinero.ahorro.via_informal
-    situacion: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026): no es MEDIDO (aritmetica sobre A, B, A∪B de L5); apoyo, no medicion; no puede cargarse. Sucesor ya declarado: L1 P2 por ejes.
     si:
       disparadores: PENDIENTE-DE-MESA
     entonces:
@@ -1130,7 +1130,7 @@ reglas_propuestas:
       - {conducta: formal_cualquiera, p: 0.284927, ic95: [0.273502, 0.296342], clase: "MEDIDO·p(tasa base ponderada, sensibilidad A_solo_formal)"}
       - {conducta: informal_cualquiera, p: 0.561920, ic95: [0.549922, 0.573502], clase: "MEDIDO·p(tasa base ponderada, sensibilidad B_solo_informal)"}
     porque: {generador: [G3], mecanismo: PENDIENTE-DE-MESA}
-    tier: PENDIENTE-DE-MESA
+    tier: SELLADA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026)
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["ENIF2024", "forense/notas/2026-09-02-MAESTRA34-L5-P4-spec.md"]
     ola_calibracion: "ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)"
@@ -2221,8 +2221,8 @@ reglas_propuestas:
   - id: civico.clientelismo.turnout_no_vote_choice_lapop2019
     entrada_nueva: true
     referida_a: "regla R7.7 civico.clientelismo.turnout_no_vote_choice (canon/modelo-decision-v4_0.md:555)"
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026): R7.7 hereda; se_mueve_si: segunda medicion con oferta y asistencia en el mismo instrumento -- CIDE-CSES 2015 (pcyc13/pcyc14 x asistencia), spec S12 §2 si la trae, o NO-CONSTRUIBLE declarado por L19.
+    tier: SELLADA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026)
     si:
       disparadores: NO-APLICA  # asociacion por eje, no condicional de disparo
     entonces:
@@ -2422,8 +2422,8 @@ reglas_propuestas:
   - id: civico.transferencia.entitlement_encuci2020
     entrada_nueva: true
     referida_a: "regla R7.8 civico.transferencia.entitlement_derecho (canon/modelo-decision-v4_0.md:556)"
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026): primer dato de percepcion, en contra (CONTRARIA -6.57pp [-8.72,-4.43]); una CONTRARIA no degrada (precedente D2-f exige replicada); se_mueve_si: segunda CONTRARIA con IC fuera de 0 en otro instrumento -> REFUTADA; una CORROBORADA -> CONTRADICTORIA, mesa parte el id. Marca CONTRARIA-1 (ENCUCI 2020) tambien anotada en canon/modelo-decision-v4_0.md §7, fila R7.8.
+    tier: SELLADA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026)
     si:
       disparadores: NO-APLICA
     entonces:
@@ -2483,8 +2483,8 @@ reglas_propuestas:
   - id: dinero.ahorro.seguro_deposito_enif2024
     entrada_nueva: true
     referida_a: "regla R1.5 dinero.ahorro.seguro_deposito_atenua_aversion (canon/modelo-decision-v4_0.md:503)"
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026): R1.5 hereda; se_mueve_si: misma pregunta en ENIF 2027 o instrumento con conocimiento de la proteccion x razon de exclusion; si vuelve a no discriminar con signo contrario -> CONTRARIA-1.
+    tier: SELLADA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026)
     si:
       disparadores: NO-APLICA
     entonces:
@@ -3476,7 +3476,7 @@ reglas_propuestas:
       las CINCO piezas del SI...ENTONCES a reactivos LAPOP multi-ola en vez de a la
       ficha de una sola ola.
     situacion: ACOTADA-CON-RESERVA  # decisión de mesa 6/sep/2026, corregida 7/sep/2026, ACTO MAESTRA38-CARGA-LAPOP-2: FP-315 firmada
-    tier: PENDIENTE-DE-MESA  # ACOTADA: hereda R7.4 [MEDIA-FUERTE]; se_mueve_si en la entrada -- D16 (ACTO MAESTRA38-TRAMITE-3)
+    tier: SELLADA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026): situacion ya decidida por D2-h (ACOTADA-CON-RESERVA); clausula ya reescrita por TRAMITE-6 (sin instrumento hoy). Token de tier desactualizado -- tramite, cero decision nueva. Hereda R7.4 [MEDIA-FUERTE]; se_mueve_si en la entrada -- D16 (ACTO MAESTRA38-TRAMITE-3)
     reserva: "el corazón de la regla no se midió; lo estimable en LAPOP no discrimina"
     # hasta TRAMITE-6: se_mueve_si: "una fuente con sobremuestra rural que estime C_completo (ENVIPE: pieza del LOTE-CRUCE) -- si CUBRE, se escribe S5 v1.1 con la forma C2 fijada en §3.1 y §0.3 coherentes, y se corre como L5-bis"
     se_mueve_si: "sin instrumento hoy: ENVIPE 2025 no trae desenlace de protesta (FP-329 (c)); se mueve si entra al corpus una fuente con sobremuestra rural Y desenlace de protesta; hasta entonces, ACOTADA-CON-RESERVA (D2-h) sin fecha"
@@ -3654,8 +3654,8 @@ reglas_propuestas:
       prereg-caja-S6-L16 (sha256 317e42c3becca6402aa0848f9cd5a4ace2af784ea174024c7dab0687db724b9f,
       verificado). Rama A (ENNVIH+ENDIREH) de la misma spec NO se corrió en
       este acto -- ver nota_alcance.
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026): R4.4 hereda [MEDIA]; primera falsacion real; se_mueve_si: instrumento con severidad del sintoma Y lugar de atencion con la misma persona, corte de severidad distinto al de H0409.
+    tier: SELLADA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026)
     si:
       disparadores: NO-APLICA
     entonces:
@@ -3816,7 +3816,24 @@ reglas_propuestas:
     medido_en: "ACTO MAESTRA38-LOTE-ENSANUT (L17), 6/sep/2026 -- forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md; tools/medidor_l17_vacunacion_disponible.py"
 
   - id: salud.atencion.grave_ennvih2002
-    situacion: PENDIENTE-DE-MESA  # el falsador no llego a construirse: no hay
+    situacion: NO-ESTIMABLE-EN-v1_1  # ACTO MAESTRA38-SELLO-3 (7/sep/2026): la
+      # corrida fue correcta contra su spec: el chequeo de ponderador se
+      # invirtio por 25 obs. y la spec no traia desenlace. Pero la conclusion
+      # "el desenlace de R4.4 no existe en ENNViH 2002" excede su universo
+      # (A.10 corolario 2): data/inventario-reactivos-ext-v1_0.tsv
+      # (INSPECT_STATA, PRESENTE_EN_DATA_RAW) lista en ehh02dta_b3b/iiib_hs.dta
+      # hospitalizacion por institucion (hs01, hs02a SSA ... hs02e hospital
+      # privado, hs08_1a por enfermedad) y en iiib_ce.dta/p_ce.dta consulta
+      # externa por institucion (ce04a SSA ... ce04f medico privado), mas
+      # iiib_ec.dta (cronicas) y iiib_ats.dta (autotratamiento). S6 v1.0/v1.1
+      # construyo el desenlace sobre cen10* (seccion CEN, libro de ninos) y
+      # nunca miro CE/HS del libro IIIB. se_mueve_si: S6 v1.2 (encargo N22)
+      # pre-registra Rama A' con HS/CE y L21 la corre. FP-332 -> FIRMADA-
+      # PARCIAL: D1 (no sustituir ponderador tras ver el dato) se firma como
+      # conducta correcta; D2 se corrige: la clasificacion pasa de "no
+      # existe" a NO-ENCONTRADO POR ESE BARRIDO -- el recibo no declaro
+      # cuantos archivos examino y el inventario lo contradice (A.13).
+      # el falsador no llego a construirse: no hay
       # antecedente x desenlace que dispare una situacion del motor. Ver
       # disparadores D1/D2 abajo -- ENNVIH 2002 no trae el desenlace.
     si:
@@ -3830,9 +3847,9 @@ reglas_propuestas:
       # el PORQUE de R4.4 ("la complejidad excede al consultorio") es
       # mecanismo, no antecedente exigible -- prereg-caja-S6-L16 v1.1 §4 lo
       # declara fuera de medicion antes de medir. No se inventa uno aqui.
-    tier: PENDIENTE-DE-MESA  # ACTO MAESTRA38-L16-BIS-2 (7/sep/2026). Token, no
-      # prosa (D16). SELLADA no se mueve en este acto: lo mueve mesa por merge
-      # de la carga (patron SELLO-2).
+    tier: SELLADA  # ACTO MAESTRA38-SELLO-3 (7/sep/2026): sella la entrada
+      # (NO-ESTIMABLE-EN-v1_1, no NO-ESTIMABLE-DEFINITIVA); no carga nada al
+      # motor. Ver comentario de `situacion` arriba para el detalle completo.
     falsable_si: PENDIENTE-DE-MESA
     veredicto_Bbis: NO-ESTIMABLE
     veredicto_del_acto: >
