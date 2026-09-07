@@ -2552,6 +2552,23 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-M13 · M-POR-CELDA v1.3, 7/sep/2026: encargo archivado
+    # VERBATIM (A.3). Nombra `M13` pelado porque ES EL ROTULO DE ESTE ACTO --
+    # el espacio M de la serie maestra-38, ya censado en
+    # canon/registro-rotulos.tsv por el acto hermano (PASOS 1 Y 2, PR #592).
+    # No es un rotulo nuevo sin prefijo: es la forma corta con que el propio
+    # encargo de direccion se nombra, y un encargo verbatim nunca se edita para
+    # complacer un test -- misma regla que /acto §4.5 fija y que ya aplico
+    # 2026-09-07-MAESTRA38-L16-BIS-2.md.
+    #
+    # Solo el encargo entra aqui, a proposito. El scoreboard v1.3 y el
+    # benchmark tambien nombraban el acto y SI son editables: se corrigieron a
+    # `MAESTRA38-M13` en vez de pedir exencion. La exencion de T25 es por
+    # ARCHIVO COMPLETO y permanente (`if relp in _T25_ARCHIVOS_CONOCIDOS:
+    # continue`), asi que meter en ella un canonico de edicion continua como
+    # BENCHMARK-MOTORES-COMPARABLES.md lo dejaria ciego al test para siempre y
+    # para todo acto futuro.
+    "forense/encargos/2026-09-07-MAESTRA38-M13-M-POR-CELDA-v1_3.md",
     # ACTO MAESTRA38-N23-N25 · TRES-SPECS-NEGATIVOS, 7/sep/2026: encargo
     # archivado VERBATIM (A.3). Trae `M13` pelado en la línea CARRILES
     # ("rama de M13 ENMIENDA-1"), donde dirección enumera los actos en
@@ -4456,6 +4473,30 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-M13 · M-POR-CELDA v1.3, 7/sep/2026: encargo archivado
+    # VERBATIM (A.3), que no se edita para complacer un test (misma regla que
+    # rige T25). Cita `tramite.mordida.discrecional` porque re-enlaza tres
+    # celdas del marco a una conducta YA MEDIDA Y SELLADA de esa regla; NO la
+    # clasifica, ni la pre-registra, ni la carga, ni la sella -- §26 del propio
+    # encargo prohibe tocar milpa/tramite.yaml, y el arbol confirma que este
+    # acto no lo toca (git diff --stat -- milpa/ vacio).
+    #
+    # Veredicto REAL de `python3 tools/ya_medido.py tramite.mordida.discrecional`
+    # (corrido, ultima linea de su salida): NUNCA-MEDIDA. Igual con el alias
+    # `R3.1`. La herramienta censa HABITANTES del registro de rotulos, no
+    # apariciones en YAML, y para esta regla ningun habitante registra veredicto
+    # de medicion. Sus secciones de LISTADO si ubican la regla en
+    # milpa/tramite.yaml:40 (p=0.62, R3.1), milpa/tramite-ola5-propuesta-v0.yaml:131
+    # (p=0.62, tier SELLADA) y :462 (discrecional_encig_serie, p=0.085118); pero
+    # eso es el listado, no el veredicto, y no se presenta como tal.
+    #
+    # La exencion se sostiene CON ese veredicto, no a pesar de el: A.8 exige
+    # correr la herramienta antes de CLASIFICAR/PRE-REGISTRAR/CARGAR/SELLAR una
+    # regla, y este acto no hace ninguna de las cuatro. Ademas la medicion que
+    # pone a consumir no es la regla censada sino la conducta
+    # `paga_mordida_encig2025` de milpa/tramite.yaml:60, que `ya_medido.py` no
+    # resuelve por id de regla. Salida completa en el `## CONSUMIDO` (A.8).
+    "forense/encargos/2026-09-07-MAESTRA38-M13-M-POR-CELDA-v1_3.md",
     # ACTO MAESTRA38-N23-N25 · TRES-SPECS-NEGATIVOS, 7/sep/2026: el encargo
     # se archiva VERBATIM (A.3) y cita `R7.4`/`R4.5`/`R9.3` y
     # `civico.protesta.agravio_urbano_multiola` en el cuerpo que dirección

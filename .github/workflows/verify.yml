@@ -62,3 +62,14 @@ jobs:
 
       - name: svystat.py — validación independiente (bloqueante)
         run: python3 tests/test_svystat.py
+
+      - name: emite_m — resolver de ola_calibracion por conducta (bloqueante)
+        # ACTO MAESTRA38-M13 · M-POR-CELDA v1.3, §5 ("PRUEBA PERMANENTE
+        # JUSTIFICADA"). El defecto que cubre es material: si
+        # `cita_ola_calibracion` vuelve a resolver por REGLA en vez de por
+        # conducta, F-DD cambia y puede decidir si una celda puntúa. Sin este
+        # paso la prueba existiría pero nada la correría: `tests/check.py`
+        # cablea su lista en `main()` y no auto-descubre `tests/test_*.py`.
+        # No añade dependencias: el runner ya trae PyYAML por requirements.txt
+        # y `tools/emite_m.py` ya dependía de yaml vía milpa/src/emisor.py.
+        run: python3 tests/test_emite_m_calibracion.py
