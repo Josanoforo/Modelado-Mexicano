@@ -167,20 +167,33 @@ commitear `corridas-R/*.json`; nunca antes — las entradas de ADR de
 acto antes de escribir los `R` contamina la sesión que los va a producir.
 
 1. **ADR re-derivado por el comando de la casa** — nunca heredado de
-   prosa ni de lo que "hoy daría":
+   prosa ni de lo que "hoy daría". Preflight mecánico (ACTO
+   AUTOMATIZA-1-E3, 7/sep/2026): `python3 tools/cierre_acto.py` (Fase A,
+   dry-run, nunca escribe) reporta el máximo ADR real y el candidato
+   contiguo (equivalente a
    `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1`
-   → candidato = máximo + 1, contiguo (sin huecos). Declara si hay otro
-   acto en vuelo conocido que pueda tomar el mismo número primero — regla
-   de la casa, renumera quien fusiona segundo.
+   → candidato = máximo + 1), si el candidato ya aparece redactado en
+   alguna rama remota accesible (sin afirmar "PR abierto" sin evidencia),
+   FP máximo/filas abiertas, los conteos de `gobernanza`/L0 contra el
+   real, el rótulo esperado y si ya está en `registro-rotulos.tsv`, y
+   corre `tests/check.py --baseline`. Declara si hay otro acto en vuelo
+   conocido que pueda tomar el mismo número primero — regla de la casa,
+   renumera quien fusiona segundo.
 2. **Cabecera.** Entrada nueva en `canon/gobernanza-v1_15.md` §4
    (Registro de decisiones), con el encargo citado (archivado por A.3,
-   SHA de redacción) y, si aplica, el bloque **Gate verificado**.
+   SHA de redacción) y, si aplica, el bloque **Gate verificado**. Esto lo
+   redacta el ejecutor — el tool no entiende semántica de ADR.
 3. **Recifrado L0.** La ÚNICA FUENTE DE ESTADO vigente
    (`canon/estado-programa-v1_12.md`; `v1_11` retirada del árbol por `T01`,
-   ver `ADR-339`): el conteo de ADR
-   de la línea `L0` sube (N → N+1), con la anotación nueva insertada
-   antes de la anterior — nunca reescribiendo la que ya estaba. Cabecera
-   de conteo de `gobernanza` (`**N ADR**`, línea 2) recifrada igual.
+   ver `ADR-339`): la anotación nueva se inserta a mano en la línea `L0`,
+   antes de la anterior — nunca reescribiendo la que ya estaba (es
+   semántica, el tool no la escribe). Hecho esto, los dos contadores
+   puramente mecánicos — el conteo de ADR de la propia línea `L0` y la
+   cabecera de conteo de `gobernanza` (`**N ADR**`, línea 2) — se
+   reconcilian con `python3 tools/cierre_acto.py --aplica`: todo-o-nada
+   (aborta con `APLICACION_ABORTADA · 0 archivos escritos` si alguna
+   ancla no es única, nunca reescribe a mano ni a medias), idempotente
+   (una segunda corrida sin cambios en el árbol reporta `sin cambios`).
 4. **`registro-rotulos`.** `canon/registro-rotulos.tsv`: censa el rótulo
    del acto (`ESPACIO-Nn`) y cualquier token pelado nuevo que el encargo
    o las notas de cierre traigan sin prefijo (D-6/ADR-128) — deriva con

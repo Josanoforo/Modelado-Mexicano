@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **366 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **369 ADR**
 
 > | | |
 > |---|---|
@@ -6326,3 +6326,51 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Deuda que cierra.** `D16`/`D11`/`D12` de la deuda abierta por `ADR-364`. `D11` ya estaba cerrado (verificado). El tablero v1.5 real permanece pendiente en `FP-327`.
 
 **Numeración.** Derivado contra `origin/main` (que ya trae `ADR-364`, fusionado como `PR #570`); candidato inicial `365` colisionó con `ADR-365` de `ACTO AUTOMATIZA-1-E2 · ESTADO-COMUN` (fusionado primero, `PR #569`) -- renumerado a `366` por la regla de la casa "renumera quien fusiona segundo".
+
+**ADR-367 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `366`, contiguo, sin huecos; candidato `367`) · `ACTO AUTOMATIZA-1-E3 · CIERRE-MECANICO`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — retira de `/acto` las operaciones de cierre puramente mecánicas (contar, buscar, recifrar, detectar) sin automatizar ninguna decisión: preflight + reconciliador, no autor de gobernanza. Primer cierre real de un acto usando el tool: **este mismo**.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-AUTOMATIZA-1-E3-CIERRE-MECANICO.md`. **Gate verificado.** `COMPUERTA: E2 fusionado` — verificado por producto (`git log origin/main --oneline | grep AUTOMATIZA-1-E2` → `PR #569`, commit `4dfb4a5`), cumplida antes de tocar código.
+
+**Módulo nuevo** `tools/cierre_acto.py` (sin clases): `python3 tools/cierre_acto.py` = Fase A, dry-run, nunca escribe -- HEAD/`origin/main`/ramas remotas presentes (reutiliza `estado_comun.ramas_remotas_presentes()`), ADR real+candidato y si el candidato ya está redactado en alguna rama remota accesible (sin afirmar "PR abierto" sin evidencia: una rama puede existir sin haber escrito aún su ADR, o sus objetos pueden no estar accesibles localmente sin un fetch nuevo), FP máximo+filas abiertas (`estado_comun.es_abierta`/`lee_tablero`/`fp_max`), conteos de gobernanza (real vs cabecera `**N ADR**` vs L0), rótulo esperado (derivado de la rama actual) y si ya está en `canon/registro-rotulos.tsv`, presencia de `## CONSUMIDO` en el encargo dado, corrida de `tests/check.py --baseline`, y una sección fija «requiere juicio humano». `--aplica` = Fase B, todo-o-nada: escribe SÓLO la cabecera de gobernanza y los dígitos del conteo ADR de L0, con ancla única validada (aborta con `APLICACION_ABORTADA · 0 archivos escritos` si no lo es) y el cambio verificado como limitado a esos dígitos antes de escribir nada; idempotente (`sin cambios` si ya coincide).
+
+**Principio de diseño respetado.** El tool no incrementa un ADR que no existe: primero se escribió esta entrada (a mano, arriba) y la anotación L0 (a mano, `canon/estado-programa-v1_12.md`), *después* se corrió `--aplica` para reconciliar los dos contadores mecánicos contra el real (`367`).
+
+**Integración con `/acto`.** `.claude/commands/acto.md` §4 CIERRE, sólo pasos 1 y 3 (los nueve conceptos se conservan, misma numeración): paso 1 cita el tool como preflight; paso 3 separa la anotación L0 (semántica, a mano) de los dos contadores (mecánicos, `--aplica`). Diff completo en `forense/notas/2026-09-07-AUTOMATIZA-1-E3-verificacion-historica.md`.
+
+**Verificación histórica (única, manual, no en CI).** Dry-run con `git worktree` contra la base previa a `ADR-355`: el encargo citaba `3fb0b8a` como "padre de `PR #559`", pero ese commit es la rama de origen que `#559` fusionó (ya trae `ADR-355`) -- corregido sin PARO al primer padre real del merge (`a2c3138`, main antes de `#559`, máximo `354`): el tool propuso `355`, correcto. Contra el árbol actual (antes de esta entrada) propuso `366`; con esta entrada ya escrita, `366` es el real y `367` el candidato -- consistente. Detalle completo, comando por comando, en la misma nota.
+
+**`registro-rotulos.tsv`.** No se censa fila nueva: mismo razonamiento que `ADR-362`/`ADR-365` (`AUTOMATIZA-1-E1`/`E2`) -- el rótulo del acto no sigue el patrón `ESPACIO-Nn` de la serie `MAESTRA<nn>` y nunca aparece pelado en nada que este acto escriba. `tests/check.py::_T25_ARCHIVOS_CONOCIDOS` gana el encargo archivado de este tercer acto (mismos `E1`/`E2`/`E3` pelados autorreferenciales del documento).
+
+**Test nuevo** `tests/test_cierre_acto.py`: los 5 casos de la prueba mínima del encargo, todos sobre fixtures aislados.
+
+**Lo que este acto NO hace.** No redacta ADR por sí mismo (esta entrada la escribió el ejecutor, no el tool). No inserta la anotación L0. No decide si un rótulo nuevo merece fila en `registro-rotulos.tsv` ni escribe `que_significa`/`donde_vive`. No firma FP. No decide pendientes de mesa. No toca tiers ni el motor. No recifra `tests/baseline.json`. No fusiona ni aprueba su propio PR. No extrae T25 a módulo común: sigue viviendo en `tests/check.py`, el tool sólo corre la suite y reporta.
+
+**Limitación real encontrada al usar el tool en este propio cierre (declarada, no corregida -- fuera del alcance que el encargo fijó para `--aplica`, "(C) Nada más").** `canon/estado-programa-v1_12.md` tiene una TERCERA cita del conteo de ADR, distinta de la cabecera de `gobernanza-v1_15.md` y de L0: la fila `gobernanza` de la tabla de nombres estables (línea 27, `| **`gobernanza`** | ... | N ADR, protocolo de cambio |`), que `tests/check.py::t15_adr_count` también verifica contra el real. `--aplica` no la toca (el encargo autorizó escribir sólo dos ubicaciones) -- quedó recifrada a mano en este cierre, igual que en `ADR-362`/`ADR-365` (`AUTOMATIZA-1-E1`/`E2`). Se repitió tres actos seguidos: **candidato de mejora para un acto sucesor** (fuera de perímetro de E3), no un defecto de este tool.
+
+**Deuda que abre.** La línea 27 de `canon/estado-programa-v1_12.md` (tabla de nombres estables) queda fuera del alcance de `--aplica` y debe seguir recifrándose a mano en cada cierre -- candidato a un cuarto punto de escritura si un acto sucesor decide ampliarlo, con su propio encargo.
+
+**Deuda que cierra.** Los 9 pasos de cierre a mano que el encargo cita se reducen a 3 (texto ADR/anotación L0, rótulo/`## CONSUMIDO`, push/PR); los otros 6 quedan derivados, detectados o reconciliados por el tool.
+
+**Numeración.** Derivado contra `origin/main` (máximo real `366`: `ADR-363` `MAESTRA38-SELLO-2`, `ADR-364`/`366` `MAESTRA38-TRAMITE-3` (PARO parcial y relanzamiento), `ADR-365` `AUTOMATIZA-1-E2`, todos ya fusionados), candidato `367`, sin huecos.
+
+**ADR-368 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `367`, contiguo, sin huecos; candidato `368`) · `ACTO MAESTRA38-N18`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — `forense/prereg-caja/S7-L17-spec-v1_1.md` (+ `.sha256`) registra, en la spec de pre-registro de `salud.vacunacion.disponible` (`R9.2`), el mapeo real del bloque `a0927` (§2: letra=razón, dígito=vacuna) que `ADR-357`/`FP-326` ya habían corregido contra el `.dta` — `v1.0` supuso letra=vacuna/dígito=razón. `v1.1` no re-corre la medición de `L17` (`ADR-357`), que ya usó el mapeo correcto: solo deja la spec congelada consistente con lo medido. `v1.0` y su `.sha256` intactos, sin editar.
+
+**Colisión de rótulo.** El encargo real invocaba `MAESTRA38-N17`, ya censado en `canon/registro-rotulos.tsv` por `ACTO MAESTRA38-CARGA-LAPOP-2` (fusionado, `PR #566`). Renumerado a `MAESTRA38-N18`: regla de la casa, renumera quien fusiona segundo.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-N18-S7-L17-SPEC-V1_1.md`. **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo ("sin corpus ni red"), no dispara verificación.
+
+**Deuda que abre.** Ninguna.
+
+**Deuda que cierra.** Ninguna (defecto de mapeo ya cerrado por `ADR-357`/`FP-326`; esta pieza solo deja la spec congelada consistente).
+
+**Numeración.** Derivado contra `origin/main = b1be143` (máximo real `367`, `ADR-367` `AUTOMATIZA-1-E3`, fusionado `PR #572`), candidato `368`, sin huecos.
+
+**ADR-369 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `368`, contiguo, sin huecos; candidato `369`) · `ACTO MAESTRA38-TRAMITE-4`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — PARO, cero piezas sustantivas ejecutadas. El adjunto que el encargo declara obligatorio (`TABLERO-PROGRAMA-v1_5.md`, 19 030 bytes, `sha256 ccdfe4cc...`, "pegado inline en el mensaje de lanzamiento") no llegó pegado al mensaje real que invocó `/acto`: solo llegó su descripción (nombre/tamaño/sha256), no su cuerpo — misma condición que dejó `FP-327` `ABIERTA` en `ACTO MAESTRA38-TRAMITE-3` (`ADR-364`/`366`). No se fabrica un v1.5 a partir de `v1.1` (defecto ya declarado y corregido en el acto anterior). `FP-327` permanece `ABIERTA`, sin tocar. `forense/tablero/TABLERO-PROGRAMA.md`, `tools/tablero_programa.py` y `tests/check.py` quedan intactos.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-TRAMITE-4.md`. **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo, no dispara verificación.
+
+**Deuda que abre.** Ninguna nueva — `FP-327` sigue exactamente como estaba.
+
+**Deuda que cierra.** Ninguna.
+
+**Numeración.** Derivado contra `origin/main` (máximo real `368`, `ADR-368` `MAESTRA38-N18`, este mismo acto en la misma sesión/rama), candidato `369`, sin huecos.
