@@ -47,11 +47,12 @@ B-bis); `comparacion_principal_pareada` (primaria, `z`) sigue
 `M=4.51pp [2.71,6.37]` vs `L_SOLO=11.69pp [4.13,21.72]` vs
 `L_CORPUS=19.60pp [9.28,30.92]`, `M-MENOR-ERROR-PP-QUE-L` en los dos
 pares pareados. `D1` sin cambio. `BENCHMARK-MOTORES-COMPARABLES.md`
-sección `v1.3` (append). `forense/firmas-pendientes.tsv` `FP-332`
-(`D4` → FIRMADA por merge; renumerada de `FP-331` — `ACTO
-MAESTRA38-TRAMITE-6` tomó `FP-331` al fusionar primero, regla de la
-casa). `canon/gobernanza-v1_15.md` `ADR-382` (renumerado de `ADR-381` por
-la misma colisión), `canon/estado-programa-v1_12.md` L0 + tabla,
+sección `v1.3` (append). `forense/firmas-pendientes.tsv` `FP-333`
+(`D4` → FIRMADA por merge; renumerada dos veces — `FP-331` tomada por
+`ACTO MAESTRA38-TRAMITE-6`, luego `FP-332` tomada por `ACTO
+MAESTRA38-L16-BIS-2`, ambos fusionados primero, regla de la casa).
+`canon/gobernanza-v1_15.md` `ADR-383` (renumerado dos veces por la misma
+causa: `381`→`382`→`383`), `canon/estado-programa-v1_12.md` L0 + tabla,
 `canon/registro-rotulos.tsv` censado. `tests/check.py --baseline` VERDE,
 sin FAIL nuevo.
 
