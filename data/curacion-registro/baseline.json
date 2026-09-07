@@ -1,8 +1,8 @@
 {
   "archivos": {
     "aliases-fuentes.tsv": {
-      "filas": 18,
-      "sha256": "fad2036d75178212cdb11e27e1b5a4a093f57a6267ff2becf861052ad1df67e3"
+      "filas": 19,
+      "sha256": "3ae892f5deb6853bd07fb139c7a06c71ffabbdb9ae42fae9ff766520264060ae"
     },
     "artefactos-rechazados.tsv": {
       "filas": 85,
@@ -13,20 +13,20 @@
       "sha256": "2d32cd5e06fc2901aaf1eca7505936049528fd8496761a25653b7c2bcc21dcd8"
     },
     "evidencias.tsv": {
-      "filas": 223,
-      "sha256": "f4d3c559b676acb89962732d1c54aadd10e3cdd3a6f3b19fc5039c03370c21a1"
+      "filas": 227,
+      "sha256": "63da25a0ff37109f4e0cff85f5ca1a1a49697cd9d5dc5daec726afcde1f9c96d"
     },
     "fusiones-relaciones.tsv": {
       "filas": 1,
       "sha256": "d7ab67a8a20b4f27e825a025a4ffc6326f001508f72b6a0a273b79f30cd5a7b3"
     },
     "relaciones.tsv": {
-      "filas": 222,
-      "sha256": "7125401ffa30e5114e961925ec6bd406eff95698f472eac648523d2aae26679b"
+      "filas": 226,
+      "sha256": "dda1be7dc14301b2be475583e84ef248a81bee92943e526119a0bb7d84e4b59b"
     },
     "utilidad-modelo.tsv": {
-      "filas": 222,
-      "sha256": "50b3eab5455ac8cde48ed5f53a59807b9941547240957e3007430e97a9e55b73"
+      "filas": 226,
+      "sha256": "8dadf7e0769b4ead636230426f0b99ef18c54a41871761c8a1136254c53a5dbe"
     }
   },
   "baseline_version": "1.0.0",
@@ -37,15 +37,15 @@
   ],
   "conteos": {
     "artefactos_rechazados": 85,
-    "candidatas": 158,
+    "candidatas": 162,
     "confirmadas": 9,
     "decisiones_pendientes": 0,
-    "familias_alias": 18,
+    "familias_alias": 19,
     "fusiones_declaradas": 1,
     "negativas": 48,
     "no_accesibles": 7,
-    "procedencias_aceptadas": 223,
-    "relaciones_activas": 222
+    "procedencias_aceptadas": 227,
+    "relaciones_activas": 226
   },
   "delimiter": "TAB",
   "encoding": "UTF-8",
@@ -61,7 +61,7 @@
   "procedencia": {
     "criterio": "No queremos versionar 200 filas de historia de ejecución; sí queremos versionar toda la procedencia vigente necesaria para justificar el baseline aceptado.",
     "manifest_origen_sha256": "e72c174075ae1bbf6535723aea0fbaf19c1938a55f470de275f4fbf7d36e1d24",
-    "origen": "baseline semantico aceptado por la integracion final; recifrado por ACTO MAESTRA37-A1 (2026-09-03) tras dar de alta ENSANUT_CONTINUA_2024 (8 componentes nuevos: etiquetado, actividad fisica, antropometria, frecuencias, rec24h, lactancia, plomo, sangre) por la via de tools/curador_registro/GUIA-CURADOR-REGISTRO.md seccion alta -- +8 relaciones, +8 procedencias, +8 filas de utilidad, +1 alias (NO_FUSIONAR), todas CANDIDATA por A.4 conservador. El recifrado no es opcional: los sha256 de las tres tablas quedan invalidos en cuanto se escribe una fila. Recifrado otra vez en el mismo acto tras corregir capa3_disco_real de 'SI' a 'EXISTE;COINCIDE;INTEGRO' en las 8 filas nuevas: es el vocabulario que T21 exige cuando capa2=SI, y la suite lo marco como FAIL nuevo antes de que este PR se abriera."
+    "origen": "baseline semantico aceptado por la integracion final; recifrado por ACTO MAESTRA37-A1 (2026-09-03) tras dar de alta ENSANUT_CONTINUA_2024 (8 componentes nuevos: etiquetado, actividad fisica, antropometria, frecuencias, rec24h, lactancia, plomo, sangre) por la via de tools/curador_registro/GUIA-CURADOR-REGISTRO.md seccion alta -- +8 relaciones, +8 procedencias, +8 filas de utilidad, +1 alias (NO_FUSIONAR), todas CANDIDATA por A.4 conservador. El recifrado no es opcional: los sha256 de las tres tablas quedan invalidos en cuanto se escribe una fila. Recifrado otra vez en el mismo acto tras corregir capa3_disco_real de 'SI' a 'EXISTE;COINCIDE;INTEGRO' en las 8 filas nuevas: es el vocabulario que T21 exige cuando capa2=SI, y la suite lo marco como FAIL nuevo antes de que este PR se abriera. Re-asiento pre-registrado por prereg-caja-S3-C1 (ACTO MAESTRA38-N3, 4/sep/2026): adjudicación de MAESTRA37-L3-BIS (forense/notas/2026-09-03-MAESTRA37-L3-BIS-veredictos.md, tabla \"Adjudicación regla <-> componente\") asigna el componente de etiquetado de ENSANUT Continua 2024 a R4.5/N41. Mismo payload, misma fuente, mismo objeto que REL-54b26887b70cada846e1207c (N36) -- el alta bajo N41 es una fila NUEVA, no una edición de esa fila (alta_relacion.py no reescribe filas existentes; ver S3-C1 §2/§4). ACTO MAESTRA38-C1 (7/sep/2026), pieza (b): convierte la fila de cola de R4.3 (id de regla en la columna de fuente, defecto de forma) en relacion CANDIDATA. Ejecuta la firma de la revision del 5/sep/2026, verbatim: «una necesidad sobre una fuente que ya esta en corpus es una relacion CANDIDATA, no una fila de cola». La fila de cola correspondiente pasa a SUPERADA-POR esta relacion; no se borra. ACTO MAESTRA38-C1 (7/sep/2026), pieza (b): convierte la fila de cola de R8.1 (id de regla en la columna de fuente, defecto de forma) en relacion CANDIDATA. Ejecuta la firma de la revision del 5/sep/2026, verbatim: «una necesidad sobre una fuente que ya esta en corpus es una relacion CANDIDATA, no una fila de cola». La fila de cola correspondiente pasa a SUPERADA-POR esta relacion; no se borra. ACTO MAESTRA38-C1 (7/sep/2026), pieza (b): convierte la fila de cola de R8.4 (id de regla en la columna de fuente, defecto de forma) en relacion CANDIDATA. Ejecuta la firma de la revision del 5/sep/2026, verbatim: «una necesidad sobre una fuente que ya esta en corpus es una relacion CANDIDATA, no una fila de cola». La fila de cola correspondiente pasa a SUPERADA-POR esta relacion; no se borra."
   },
   "schema_version": "1.0.0"
 }

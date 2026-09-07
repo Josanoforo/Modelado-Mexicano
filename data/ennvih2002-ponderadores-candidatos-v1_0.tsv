@@ -1,0 +1,25 @@
+# GENERADO por ACTO MAESTRA38-C1 (7/sep/2026), pieza (h) -- SOLO LISTA, NO ADJUDICA. Dirección adjudica con esta tabla a la vista (sucesor: L16-bis/L17-bis rama A).
+# Fuente de los ponderadores: data/raw/ennvih/ehh02w_all.zip (11 .dta, uno por libro). NO están en ehh02dta_all.zip: 137 miembros .dta examinados, 0 con columna fac* (A.13).
+# Fuente de las llaves de cobertura: ehh02dta_all.zip -- libro bx = ehh02dta_bx/p_portad.dta (1903 filas, Proxy); hogar = ehh02dta_bc/c_portad.dta (8441 filas, libro C).
+# LLAVE: folio/ls normalizados a entero. En ehh02w_all.zip folio es cadena con ceros a la izquierda ('00001000') y en el microdato es float64 (2000.0): sin normalizar, TODOS los joins dan 0 -- resultado falso, no hallazgo.
+# n_no_nulo NO discrimina (35677 en las 11 variables de persona): el archivo guarda 0, no faltante. La columna que discrimina es n_no_nulo_gt0.
+# ADR-357 declaró "ponderador del libro bx/2002 ambiguo entre tres candidatos (fac_3a_px/fac_3b_px/fac_4_px), sin codebook de ENNVIH en el corpus para resolverlo".
+#   (1) El codebook SI está en corpus: ennvih1_2002_hogar_cb = ennvih/ehh02cb_all.zip (11 PDF, incluido ehh02cb_bx.pdf, libro Proxy). Va comprimido en deflate64, que zipfile de Python y tar.exe de Windows NO descomprimen: tar.exe deja los miembros RELLENOS DE CEROS con el tamaño correcto -- leerlo así da "sin variables" en falso.
+#   (2) Ninguno de los 11 codebooks menciona 'fac' (0 ocurrencias, control positivo: 340376 B de texto extraído de ehh02cb_bx.pdf). El documento de ponderadores es ennvih/calculo-de-factores-de-expansion.pdf, §1.2 "Factor de expansión a nivel persona".
+#   (3) La ambigüedad tiene causa medible: los tres candidatos comparten la MISMA etiqueta verbatim ('FACTOR DE EXPANSIÓN LIBRO PROXY'). Se distinguen por n_no_nulo_gt0 y por rango, no por etiqueta.
+#   (4) Aparece un cuarto candidato que ADR-357 no listó: fac_s ('FACTOR DE EXPANSIÓN LIBRO SALUD'), el único cuyo nombre nombra el dominio de R4.4/R9.2.
+# Ninguna medición del motor en esta tabla: cero R, cero p, cero IC.
+variable	etiqueta_verbatim	libro	archivo_fuente	n_filas	n_no_nulo	n_no_nulo_gt0	n_join_bx_proxy_folio_ls	n_join_hogar_folio	min	max	media	adr357_ambiguo
+fac_3a_px	FACTOR DE EXPANSIÓN LIBRO PROXY	bx	ehh02w_all/ehh02w_bx.dta	35677	35677	21631	1903	35664	0.000000	23420.000000	1914.831684	SI
+fac_3b_px	FACTOR DE EXPANSIÓN LIBRO PROXY	bx	ehh02w_all/ehh02w_bx.dta	35677	35677	21645	1903	35664	0.000000	23131.000000	1914.824873	SI
+fac_4_px	FACTOR DE EXPANSIÓN LIBRO PROXY	bx	ehh02w_all/ehh02w_bx.dta	35677	35677	9037	1903	35664	0.000000	24621.000000	808.672058	SI
+fac_s	FACTOR DE EXPANSIÓN LIBRO SALUD	bs	ehh02w_all/ehh02w_bs.dta	35677	35677	7587	1903	35664	0.000000	105446.000000	2842.119685	NO
+fac_libc	FACTOR DE EXPANSIÓN LIBRO C	bc	ehh02w_all/ehh02w_bc.dta	8440	8440	8440	NO_APLICA (archivo a nivel hogar, sin ls)	8437	47.000000	21116.000000	2885.528910	NO
+fac_3a	FACTOR DE EXPANSIÓN LIBRO 3A	b3a	ehh02w_all/ehh02w_b3a.dta	35677	35677	19763	1903	35664	0.000000	26160.000000	1914.817614	NO
+fac_3b	FACTOR DE EXPANSIÓN LIBRO 3B	b3b	ehh02w_all/ehh02w_b3b.dta	35677	35677	19809	1903	35664	0.000000	25544.000000	1914.831796	NO
+fac_4	FACTOR DE EXPANSIÓN LIBRO 4	b4	ehh02w_all/ehh02w_b4.dta	35677	35677	8743	1903	35664	0.000000	27326.000000	808.674636	NO
+fac_lib1	FACTOR DE EXPANSIÓN LIBRO 1	b1	ehh02w_all/ehh02w_b1.dta	8440	8440	8052	NO_APLICA (archivo a nivel hogar, sin ls)	8437	0.000000	22584.000000	2885.514218	NO
+fac_lib2	FACTOR DE EXPANSIÓN LIBRO 2	b2	ehh02w_all/ehh02w_b2.dta	8440	8440	8051	NO_APLICA (archivo a nivel hogar, sin ls)	8437	0.000000	23266.000000	2885.501540	NO
+fac_5	FACTOR DE EXPANSIÓN LIBRO 5	b5	ehh02w_all/ehh02w_b5.dta	35677	35677	11314	1903	35664	0.000000	22699.000000	927.292569	NO
+fac_ea	FACTOR DE EXPANSIÓN LIBRO EA	bea	ehh02w_all/ehh02w_bea.dta	35677	35677	19823	1903	35664	0.000000	24668.000000	1891.304734	NO
+fac_en	FACTOR DE EXPANSIÓN LIBRO EN	ben	ehh02w_all/ehh02w_ben.dta	35677	35677	6336	1903	35664	0.000000	24695.000000	519.629229	NO
