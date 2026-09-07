@@ -1738,10 +1738,17 @@ def t22_firmas():
                      "(`instrucciones-proyecto-v2_9.md`) lo exige")
         return
 
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    import estado_comun as _ec
+
     # (a) WARN por cada fila ABIERTA, con antigüedad -- la memoria mecánica.
+    # ACTO AUTOMATIZA-1-E2: `estado == "ABIERTA"` es ciego a la glosa
+    # (`ABIERTA -- pendiente de...`) y subcuenta -- usa `_ec.es_abierta()`,
+    # migrado a `tools/estado_comun.py` junto con `tools/digesto_tramite.py`
+    # (que ya lo hacía) y `tools/tablero_programa.py`.
     hoy = datetime.date.today()
     for f in filas:
-        if f.get("estado") != "ABIERTA":
+        if not _ec.es_abierta(f.get("estado", "")):
             continue
         edad_txt = "antigüedad no derivable"
         try:
@@ -1779,9 +1786,13 @@ def t22_firmas():
     # pendiente nuevo que el mismo archivo traiga después. Medido antes de
     # commitear: 21 archivos dejan de estar exentos, 3 FAIL nuevos (dentro
     # del límite de 3 acordado con mesa) -- ver nota del acto.
+    # ACTO AUTOMATIZA-1-E2 (b): `estado == "FIRMADA"` se conserva exacto a
+    # propósito -- el repo tiene `FIRMADA-POR-MERGE` y otros compuestos, y
+    # no hay defecto medido que justifique colapsarlos con `es_abierta()`
+    # ni con `startswith`. Sólo el lado `ABIERTA` gana la glosa.
     citados = set()
     for f in filas:
-        if f.get("estado") not in ("ABIERTA", "FIRMADA"):
+        if not (_ec.es_abierta(f.get("estado", "")) or f.get("estado") == "FIRMADA"):
             continue
         for m in re.finditer(r"[\w./-]+\.(?:md|tsv|yaml|json)", f.get("dónde", "")):
             citados.add(os.path.basename(m.group(0)))
@@ -3752,6 +3763,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # la nota de cierre, el ADR, los commits) el rotulo va siempre con
     # prefijo completo (AUTOMATIZA-1-E1) -- D-6.
     "forense/encargos/2026-09-07-AUTOMATIZA-1-E1-PERIMETRO-FISICO.md",
+    # ACTO AUTOMATIZA-1-E2 · ESTADO-COMUN, 7/sep/2026: mismo encargo
+    # verbatim archivado de nuevo por el 0-bis de este segundo acto (el
+    # documento entero se re-archiva con cada uno de los tres actos de
+    # AUTOMATIZA-1, por diseño -- cabecera del propio encargo). Mismo
+    # analisis que la entrada de AUTOMATIZA-1-E1 arriba: los `E1`/`E2`/`E3`
+    # pelados son autorreferencias a los elementos que el documento define
+    # en su propia cabecera, no un habitante `MAESTRA<nn>-E<n>`.
+    "forense/encargos/2026-09-07-AUTOMATIZA-1-E2-ESTADO-COMUN.md",
 }
 
 

@@ -88,15 +88,15 @@ def ramas_remotas_presentes(raiz):
     de ahora)."""
     rc, salida = _corre(["git", "ls-remote", "--heads", "origin"], raiz)
     if rc == 0 and salida.strip():
-        fuente = "git ls-remote --heads origin (estado vivo del remoto)"
+        fuente = "`git ls-remote --heads origin` (estado vivo del remoto)"
         ramas = sorted({l.split("refs/heads/", 1)[1].strip()
                         for l in salida.splitlines() if "refs/heads/" in l})
     else:
         rc2, salida2 = _corre(["git", "for-each-ref", "--format=%(refname:short)",
                                "refs/remotes/origin"], raiz)
-        fuente = (f"git for-each-ref refs/remotes/origin (RESPALDO: ls-remote no "
-                  f"respondió, rc={rc}) -- refleja el último fetch de este clon, "
-                  f"no necesariamente el remoto de ahora")
+        fuente = ("`git for-each-ref refs/remotes/origin` (RESPALDO: `ls-remote` no "
+                  f"respondió, rc={rc}) -- refleja el último `fetch` de este clon, "
+                  "no necesariamente el remoto de ahora")
         ramas = sorted({l.strip().split("origin/", 1)[-1]
                         for l in salida2.splitlines() if l.strip()
                         and not l.strip().endswith("/HEAD")})
