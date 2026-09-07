@@ -24,11 +24,13 @@ lee lo que ya existe en el árbol y arma:
 
 Uso::
 
-    python3 tools/score_marco_m.py [--marco v1_1] [--json salida.json]
+    python3 tools/score_marco_m.py [--marco v1_1] [--format json|markdown] [--json salida.json]
 
 Sin argumentos, censa `marco-M-sorteado-v1_1.tsv` y escribe el censo + la
 entrada de scoring a stdout (JSON). Determinista: mismo árbol -> misma
-salida (orden de celdas por `id_celda`, sin timestamps).
+salida (orden de celdas por `id_celda`, sin timestamps). `--format
+markdown` renderiza el mismo documento como tablero legible -- misma
+derivación, otra representación; no recalcula nada.
 """
 from __future__ import annotations
 
@@ -158,23 +160,17 @@ def construir_entrada_scoring(censo: list[dict[str, Any]]) -> dict[str, Any]:
     return {"configuracion": configuracion, "celdas": celdas}
 
 
-def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--marco",
-        default="v1_1",
-        help="sufijo de marco-M-sorteado-<sufijo>.tsv a censar (default v1_1)",
-    )
-    parser.add_argument("--json", dest="salida_json", help="ruta de salida del documento combinado")
-    argumentos = parser.parse_args(argv)
+def construir_documento(ruta_marco: Path, schema_dd: bool) -> dict[str, Any]:
+    """Documento combinado (censo + entrada de scoring) de un marco-M-sorteado.
 
-    ruta_marco = PREREG / f"marco-M-sorteado-{argumentos.marco}.tsv"
+    Misma forma que armaba `main()` antes de esta extracción -- ninguna
+    clave cambiada. `render_json`/`render_markdown` y las pruebas lo
+    consumen sin pasar por CLI ni por stdout.
+    """
     filas = _leer_tsv(ruta_marco)
-    schema_dd = "grado_DD" in (filas[0].keys() if filas else [])
     censo = censar_universo(filas, schema_dd)
     entrada = construir_entrada_scoring(censo)
-
-    documento = {
+    return {
         "marco_censado": ruta_marco.name,
         "n_celdas_universo": len(censo),
         "n_verificacion_no_puntua": sum(1 for c in censo if c["verificacion_no_puntua"]),
@@ -182,7 +178,85 @@ def main(argv: list[str] | None = None) -> int:
         "censo": censo,
         "entrada_scoring": entrada,
     }
-    salida = json.dumps(documento, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+
+
+def render_json(documento: dict[str, Any]) -> str:
+    return json.dumps(documento, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+
+
+def _fmt_si_no(valor: bool) -> str:
+    return "SÍ" if valor else "NO"
+
+
+def _fmt_m(m: dict[str, Any]) -> str:
+    return m["estado_M"] if m["estado_M"] is not None else "—"
+
+
+def _fmt_r(r: dict[str, Any]) -> str:
+    if r["estado"] is None:
+        return "—"
+    if r["estado"] == "COMPUTADO":
+        return f"{r['estado']} ({r['R']}/{r['EE_R']})"
+    return r["estado"]
+
+
+def _fmt_l(l: dict[str, Any]) -> str:
+    return str(l["n_corridas"])
+
+
+def render_markdown(documento: dict[str, Any]) -> str:
+    """Tablero Markdown del mismo `documento` que arma `render_json` --
+    ninguna celda recalculada, ninguna fecha, sin narrativa ni
+    interpretación (§21): misma derivación, otra representación."""
+    lineas = [
+        f"# score_marco_m · {documento['marco_censado']}",
+        "",
+        f"- n_celdas_universo: {documento['n_celdas_universo']}",
+        f"- n_verificacion_no_puntua: {documento['n_verificacion_no_puntua']}",
+        f"- n_puntuables: {documento['n_puntuables']}",
+        "",
+        "| id_celda | grado_DD | verificación-no-puntúa | M | R | L | puntuable |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for entrada in sorted(documento["censo"], key=lambda c: c["id_celda"]):
+        corredores = entrada["corredores"]
+        grado_dd = entrada["grado_DD"] if entrada["grado_DD"] is not None else "—"
+        lineas.append(
+            "| {} | {} | {} | {} | {} | {} | {} |".format(
+                entrada["id_celda"],
+                grado_dd,
+                _fmt_si_no(entrada["verificacion_no_puntua"]),
+                _fmt_m(corredores["M"]),
+                _fmt_r(corredores["R"]),
+                _fmt_l(corredores["L"]),
+                _fmt_si_no(entrada["puntuable"]),
+            )
+        )
+    return "\n".join(lineas) + "\n"
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--marco",
+        default="v1_1",
+        help="sufijo de marco-M-sorteado-<sufijo>.tsv a censar (default v1_1)",
+    )
+    parser.add_argument(
+        "--format",
+        choices=["json", "markdown"],
+        default="json",
+        help="representación de la salida (default json)",
+    )
+    parser.add_argument("--json", dest="salida_json", help="ruta de salida del documento combinado")
+    argumentos = parser.parse_args(argv)
+
+    ruta_marco = PREREG / f"marco-M-sorteado-{argumentos.marco}.tsv"
+    filas = _leer_tsv(ruta_marco)
+    schema_dd = "grado_DD" in (filas[0].keys() if filas else [])
+    documento = construir_documento(ruta_marco, schema_dd)
+
+    salida = render_markdown(documento) if argumentos.format == "markdown" else render_json(documento)
     if argumentos.salida_json:
         Path(argumentos.salida_json).write_text(salida, encoding="utf-8")
     else:
