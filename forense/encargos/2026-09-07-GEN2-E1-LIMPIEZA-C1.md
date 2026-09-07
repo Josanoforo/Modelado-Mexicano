@@ -33,7 +33,7 @@ de podar nada; la firma de la lista completa de 114 candidatos queda para un act
 Ningún borrado, movimiento ni push ocurrió en este acto.
 
 `python3 tests/check.py --baseline`: la primera corrida trajo 3 entradas nuevas frente a
-`tests/baseline.json` — T03 (cita bare de `raices.local.yaml` sin el prefijo `data/`, corregida en
+`tests/baseline.json` — T03 (cita bare del archivo local de raíces sin el prefijo de directorio, corregida en
 la propia nota) y T25 ×2 (rótulo pelado `E4`, mención del paso siguiente de mesa que el propio
 encargo nombra). Cascada §4-5 aplicada: `canon/registro-rotulos.tsv` censa `GEN2-E1` (nueva fila) y
 `tests/check.py::_T25_ARCHIVOS_CONOCIDOS` exime solo el encargo verbatim (la nota se redactó sin
