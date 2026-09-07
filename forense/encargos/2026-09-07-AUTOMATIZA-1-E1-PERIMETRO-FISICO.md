@@ -35,3 +35,15 @@ CRITERIO DE RETIRO (los tres)
 Si tras uso real E1 no protege ninguna vía real, E2 no evita divergencias, o E3 no ahorra cierres o genera más trabajo del que elimina: retirar o simplificar la pieza. No añadir otra capa para salvar una automatización que no pagó. Mismo criterio que A.3/A.8/A.9/A.10/A.12/A.13: se revisa en un mes con el caso citado.
 SOLICITUD AL EJECUTOR
 Ejecutar los tres actos en secuencia. Para cada uno: verificar `main` vigente; corregir cualquier línea/ruta que haya cambiado respecto a C3 (y decirlo); hacer sólo el cambio mínimo del elemento; correr su prueba dirigida; correr baseline; abrir PR; no fusionar; reportar qué cambió, qué comportamiento quedó automatizado, qué sigue humano, y qué medición demuestra que pagó. No reabrir el diseño salvo defecto material nuevo — un defecto así es entregable, se reporta con el archivo y la línea, y se PARA.
+
+## CONSUMIDO
+
+Ejecutado: **ACTO AUTOMATIZA-1-E1 · PERIMETRO-FISICO-DE-RAICES**, únicamente. `AUTOMATIZA-1-E2`/`E3` quedan compuertados a que este PR fusione (`COMPUERTA: E1 fusionado`/`E2 fusionado`, verificable por producto contra `origin/main` — no se ejecutan en esta sesión: no hay forma de que el ejecutor mismo fusione su propio PR, la compuerta exige un hecho que sólo mesa produce).
+
+PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/568 (rama `acto/automatiza-1-e1`, no fusionado).
+
+Re-derivación de base (ARRANQUE punto 2, dos veces): declarada `origin/main = 76dcdbb` (ADR máx 355, FP máx 325); al arrancar ya era `038ec4f` (ADR máx 357, FP máx 326); mientras el acto trabajaba avanzó a `1b469b7` (dos PRs ajenos, `MAESTRA38-CARGA-LAPOP`/`-2`, tomaron ADR-358 a 361) — reconciliado con `git merge origin/main`, ADR final del acto: `ADR-362`. Las líneas de C3 sobre `tests/manifiesto.py`/`tests/corpus.py`/`tools/digesto_tramite.py`/`tools/tablero_programa.py`/`.claude/commands/acto.md` §4/`canon/estado-programa-v1_12.md` L0 coincidieron exactamente con lo declarado en ambos momentos — ninguna se había movido.
+
+Commits: 0-bis (este archivo, verbatim) · COMMIT 1 (frontera central + `cmd_escanea`/`cmd_verifica` + `tests/test_perimetro_raices.py` + `tests/test_manifiesto_alcance.py` reescrito, C2) · COMMIT 2 (`tests/corpus.py` C1/C3 + regresión incidental en `tests/test_corpus.py` corregida + `data/INFRAESTRUCTURA-v1_0.md` + cascada ADR/L0/T25) · merge de `origin/main` (reconciliación de la cascada con `MAESTRA38-CARGA-LAPOP`/`-2`) · este commit (CONSUMIDO).
+
+`python3 tests/check.py --baseline`: LÍNEA BASE VERDE en los tres puntos de verificación (antes del merge, y de nuevo después).
