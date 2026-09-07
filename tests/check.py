@@ -4025,6 +4025,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/cola/2026-09-07-GEN2-E4-LIMPIEZA-C2-PODA.md",
     "forense/encargos/cola/2026-09-07-GEN2-E5-CALC-0001-0003.md",
     "forense/encargos/cola/2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md",
+    # ACTO GEN2-E1 · LIMPIEZA-C1, 7/sep/2026: NO añade exención propia aquí.
+    # El acto había archivado el encargo verbatim (A.3) en
+    # `forense/encargos/2026-09-07-GEN2-E1-LIMPIEZA-C1.md` (ruta sin `cola/`)
+    # ANTES de sincronizar con `origin/main`, con su propia exención en esta
+    # lista. Al fusionar `origin/main` (que ya traía GEN2-E0 fusionado, con
+    # el archivo de cola de arriba ya exento), esa ruta colisionaba por T02
+    # (nombre normalizado) con `forense/encargos/cola/2026-09-07-GEN2-E1-
+    # LIMPIEZA-C1.md` -- el mismo archivo verbatim, dos rutas. Se borró el
+    # duplicado (mismo patrón que GEN2-E2/FP-338: los actos derivados de la
+    # cola GEN2 no re-archivan el encargo, citan la cola directamente) y con
+    # él la necesidad de esta exención: la ruta de arriba ya cubre este acto.
 }
 
 
