@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **372 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **373 ADR**
 
 > | | |
 > |---|---|
@@ -6436,3 +6436,27 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Deuda que cierra.** Ninguna.
 
 **`tests/check.py --baseline`**: LÍNEA BASE VERDE.
+
+---
+
+**ADR-373 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `372` contra `origin/main = 0a19d39`, candidato `373`, contiguo, sin huecos) · `ACTO MAESTRA38-TRAMITE-5`**, 7/sep/2026, entorno **NUBE sin corpus** (`data/raw` ausente, verificado) — registro de tablero/relaciones, ninguna enmienda de canon. El encargo declaraba «sin ADR propio salvo cascada»; este registro se abre igual, por consistencia con el precedente de la propia serie (`TRAMITE-3`/`ADR-364`/`366`, `TRAMITE-4`/`ADR-369`, ambos también «sin ADR propio» en su encargo y ambos registrados) — no hay enmienda de `modelo-decision-v4_0.md` que cascadear, solo el registro de decisión que esta tabla lleva de todo acto fechado.
+
+**(1) `FP-327` cerrada por corrección de premisa.** El encargo afirmaba «el cuerpo v1.5 entró por PR #573; `grep -c "v1.5"` → 3». Verificado: la cifra es correcta, la premisa es falsa — `git log --oneline 4b3a2f1..cb233ac` (rango real del PR #573) trae 2 commits (`MAESTRA38-N18`, `MAESTRA38-TRAMITE-4`), ninguno con contenido `v1.5`; las 3 apariciones de "v1.5" en el tablero son menciones del adjunto ausente. Cerrada por la opción (b) que la propia fila `FP-327` ya ofrecía: `v1.1` (contenido vigente de `TABLERO-PROGRAMA.md`) declarado definitivo.
+
+**(2) `FP-328` `FIRMADA-PARCIAL`.** (a) Las 4 filas `ENFIH` restantes (`N12`×2, `N4`×2) reciben `id_manifiesto=enfih2019_bd_csv_zip` + `sha256_fuente` (mismo criterio que `C1`, edición preservando texto) — pero, a diferencia de `C1` (`CAJA` con corpus), esta sesión `NUBE` no pudo correr `via_capa2.py --escribe` con éxito (`data/raw` ausente, `AUSENTE=97 RAIZ_NO_CONFIGURADA=117`, exit 1, 0 diffs): `capa2_manifiesto`/`capa3_disco_real` de las 4 filas quedan sin cambio, declarado, pendiente de un acto `CAJA` sucesor. (b) `MACU_INMUJERES` dado de alta como fuente canónica propia vía `tools/curador_registro/alta_relacion.py` (`REL-31513e0d2be4fb2d7fa98aeb`, `N36`/`R4.3`, `CANDIDATA`); la nota de `REL-2fa1c0dd…` (y sus proyecciones en `evidencias.tsv`/`utilidad-modelo.tsv`) ya no trae prosa libre sobre MACU. (c) no ejecutada aquí — resuelta por `forense/prereg-caja/S6-L16-spec-v1_1.md` (`ACTO MAESTRA38-N19`, acto separado, inmediatamente después de este).
+
+**(3) `forense/benchmark/BENCHMARK-MOTORES-COMPARABLES.md` (nuevo, v1.2).** El "benchmark v1.2" de mesa que el encargo citaba no llegó al repo en prosa (mismo patrón que el adjunto `v1.5`) — reconstruido solo con cifras verificables de `forense/prereg-duelo-v2/agregado-v1_2-resultado.json` y `procedimiento-scoring-v1_1.md` (sellado, `ADR-262`, intocado): comparación principal `L_SOLO_vs_M` = `INDETERMINADO` (punto −28.99, IC95 [−74.02, +9.40]); hallazgo nuevo de que `M` es constante dentro de `CIV` (6 celdas, un solo valor `0.294313`).
+
+**(4) Tablero — filas `D1`/`D4` del benchmark**, en sección nueva y separada de la tabla de Discrepancias `D1`-`D7` preexistente (mismo rótulo, tema sin relación, declarado explícitamente para no colisionar). `D1 FIRMADA` (corredor `P`: no por ahora) · `D4 ABIERTA` (métrica secundaria de `procedimiento-scoring`: firma de mesa).
+
+**Suite.** `tests/check.py --baseline`: **1 FAIL nuevo, declarado, no corregido** — `T22` (cerrar `FP-327` deja `TABLERO-PROGRAMA.md` sin cita `ABIERTA`/`FIRMADA`, y `_T22_ARCHIVOS_CONOCIDOS` solo exime el nombre viejo `TABLERO-PROGRAMA-v1_1.md`, gap ya señalado por `MAESTRA38-TRAMITE-4` sin ejecutarlo). `tests/*.py` fuera de perímetro de este acto — declarado como `FP-330` (recibo) para un acto sucesor con `tests/*.py` en su perímetro. `T21`/`T-YAMEDIDO`, ambos detectados por el mismo preflight, corregidos dentro de perímetro (capa2/capa3 de la fila `MACU_INMUJERES` bajada a la combinación válida `SI_O_REFERENCIADO`/`SI_O_PARCIAL`; dos coerciones booleanas de YAML —`conflicto_material`/`requiere_decision`— corregidas de `False` a `"NO"`; `A.8` de `tools/ya_medido.py R4.3` pegado en el encargo archivado).
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-TRAMITE-5.md` (0-bis + `## CONSUMIDO`). **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo, no dispara verificación.
+
+**Perímetro.** Toca `forense/tablero/TABLERO-PROGRAMA.md`, `forense/firmas-pendientes.tsv` (`FP-327`, `FP-328`, `FP-330` nueva), `data/curacion-registro/{relaciones,evidencias,utilidad-modelo,baseline}.tsv|.json`, `forense/benchmark/BENCHMARK-MOTORES-COMPARABLES.md` (nuevo), notas, A.3, cascada. **No toca** `milpa/**`, `tests/*.py`, `tools/*.py` (solo usados: `alta_relacion.py`, `via_capa2.py`, `baseline.py`, `sync_bootstrap._freeze_manifest`), `cron`.
+
+**Deuda que abre.** `FP-330` (gap de `T22` sobre el nombre consolidado del tablero, para un acto con `tests/*.py` en perímetro). `FP-328(a)` parcial: promoción de `capa2`/`capa3` de las 4 filas `ENFIH` en un acto `CAJA` con corpus.
+
+**Deuda que cierra.** `FP-327` (cerrada, opción (b)). `FP-328(b)` (alta de `MACU_INMUJERES` ejecutada).
+
+**Numeración.** Derivado contra `origin/main` (máximo real `372`, `ADR-372` `AUTOMATIZA-2-E5`, este mismo repo antes de este acto), candidato `373`, sin huecos.
