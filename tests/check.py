@@ -262,6 +262,15 @@ HISTORICOS = {
     # mismo costo que HISTORICOS ya paga: una cita en texto que A.3 prohibe
     # editar contra un nombre que nunca tuvo archivo real detras.
     "TABLERO-PROGRAMA-v1_5.md",
+    # forense/encargos/2026-09-07-AUTOMATIZA-2-A-BLINDA-HEAD-PR.md (A.3,
+    # VERBATIM): el bloque "Verificación dirigida real" de ACTO C ·
+    # SELLA-SIDECAR describe un fixture temporal de la propia
+    # verificación dirigida ("crear `ejemplo.md`; sellar; verificar...")
+    # -- nunca fue, ni sera, un archivo del repo: es nombre de un
+    # tempfile que ese acto crea y borra durante su propia corrida.
+    # Mismo costo que TABLERO-PROGRAMA-v1_5.md arriba: una cita en texto
+    # que A.3 prohibe editar contra un nombre sin archivo real detras.
+    "ejemplo.md",
 }
 
 def _normalize_version_dots(name):
@@ -3828,6 +3837,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # todo archivo propio que este acto escribe el rótulo va siempre con
     # prefijo completo (AUTOMATIZA-2-E5) -- D-6.
     "forense/encargos/2026-09-07-AUTOMATIZA-2-E5-SCORE-RENDER.md",
+    # ACTO AUTOMATIZA-2-A . BLINDA-HEAD-PR, 7/sep/2026: archivo verbatim
+    # (A.3) del ENCARGO FINAL + PAQUETE DE LANZAMIENTO de la serie
+    # AUTOMATIZA-2-A/B/C completa. Trae varios "E4" pelados citando el
+    # habitante hermano externo ACTO AUTOMATIZA-2-E4 (ya fusionado, #580,
+    # sin rama viva que lo censara) -- mismo patron que el "E4" de la
+    # AUTOMATIZA-2-E5 de arriba, no autorreferencia. El texto verbatim no
+    # se edita (A.3); en todo archivo propio que este acto escribe el
+    # rotulo va siempre con prefijo completo (AUTOMATIZA-2-A) -- D-6.
+    "forense/encargos/2026-09-07-AUTOMATIZA-2-A-BLINDA-HEAD-PR.md",
 }
 
 

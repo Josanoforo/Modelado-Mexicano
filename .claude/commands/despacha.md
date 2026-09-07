@@ -524,6 +524,26 @@ está abierto, y el paso 4.8 de `/acto` pide citarlo dentro del archivo:
    número**, y empuja.
 4. Corre `python3 tests/check.py --baseline` por última vez **después** de
    ese commit, y pega el veredicto en el PR.
+5. **Guard final de HEAD** (`ACTO AUTOMATIZA-2-A · BLINDA-HEAD-PR`,
+   `forense/encargos/2026-09-07-AUTOMATIZA-2-A-BLINDA-HEAD-PR.md`).
+   Defecto real que corrige: los dos pushes de este mismo bloque (el del
+   punto 1, con el trabajo del acto ya cerrado, y el del punto 3, con
+   `ESTADO:`/`BITACORA:`/`## CONSUMIDO`) son exactamente el patrón que
+   dejó `PR #572` fusionado contra un `HEAD` anterior al segundo push —
+   el `## CONSUMIDO` quedó fuera y se incorporó después vía `PR #576`.
+   Después del push del punto 3 (el último que puede alterar `HEAD`),
+   corre:
+   ```
+   python3 tools/verifica_head_remoto.py
+   ```
+   Sólo si reporta `PR_HEAD_SINCRONIZADO` el PR queda listo para mesa. Si
+   reporta `PR_HEAD_DESACTUALIZADO`: un `git push origin
+   claude/despacha-<CÓDIGO>` más y **una** repetición del guard; si
+   persiste desactualizado, o si el guard reporta `RAMA_AUSENTE_EN_ORIGIN`
+   o `HEAD_REMOTO_NO_VERIFICABLE`, termina con `NO FUSIONAR` y repórtalo
+   en el PR — sin loop, sin segundo PR. Este despacho **conserva la
+   propiedad** de este guard también cuando ejecuta un `/acto` anidado
+   (bloque 5): el paso 10 de `/acto` §4 no lo duplica en ese caso.
 
 Si tu sesión no puede abrir el PR (`gh` no existe aquí), cita en su lugar
 **la rama y los commits**, dilo en el reporte, y deja la rama empujada:
