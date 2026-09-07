@@ -12,11 +12,22 @@ mecánica segura y todo-o-nada.
 Principio de diseño: el tool no incrementa por adelantado un ADR que no
 existe. Primero el humano crea la entrada ADR, la anotación L0, el rótulo
 si corresponde, `## CONSUMIDO` cuando corresponda. Después el tool
-reconcilia los derivados mecánicos (cabecera de gobernanza, conteo de L0)
+reconcilia los derivados mecánicos (cabecera de gobernanza, conteo de L0,
+fila `gobernanza` de la tabla de nombres estables de `estado-programa`)
 contra la realidad del árbol -- ya con la entrada humana escrita, el ADR
-real es mayor que lo que la cabecera/L0 todavía declaran, y el tool sólo
-sube esos dos contadores al valor real. Idempotente: correrlo dos veces
-seguidas sin cambios en el árbol no escribe nada la segunda vez.
+real es mayor que lo que esos tres contadores todavía declaran, y el tool
+sólo los sube al valor real. Idempotente: correrlo dos veces seguidas sin
+cambios en el árbol no escribe nada la segunda vez.
+
+Tercer contador (`ACTO AUTOMATIZA-2-B · CIERRA-TERCER-CONTADOR`,
+`forense/encargos/2026-09-07-AUTOMATIZA-2-B-CIERRA-TERCER-CONTADOR.md`):
+la fila `| **\`gobernanza\`** | \`gobernanza-v1.15.md\` | N ADR, protocolo
+de cambio |` de `canon/estado-programa-v1_12.md` §0 es una tercera cita
+viva del mismo número, que ya requirió recifrado manual repetido antes de
+esta pieza. `canon/estado-programa-v1_12.md` se lee UNA vez y se escribe
+UNA vez: las sustituciones de `L0` y de la tabla se aplican en secuencia
+sobre el mismo buffer en memoria, nunca en dos ciclos independientes de
+read/write.
 
 Reutiliza `tools/estado_comun.py` (`es_abierta`, `lee_tablero`,
 `ramas_remotas_presentes`, `adr_max`, `fp_max`) -- no las reimplementa.
@@ -135,6 +146,13 @@ CABECERA_ADR_RE = re.compile(r"(### `gobernanza`.*?\*\*)(\d+)( ADR\*\*)")
 # Ancla de L0: primeras palabras fijas de la línea + el conteo, antes de la
 # primera anotación "*(...)*" -- nunca se toca lo que sigue.
 L0_ADR_RE = re.compile(r"(\*\*L0 · Gobierno — completo y al día\.\*\* )(\d+)( ADR)")
+# Ancla de la fila `gobernanza` de la tabla de nombres estables (§0 de
+# `estado-programa`). La celda cita el nombre COSMÉTICO con punto
+# (`gobernanza-v1.15.md`, ADR-36) -- nunca el filename físico con guion
+# bajo (`gobernanza-v1_15.md`) -- y no se ancla por número de línea.
+TABLA_ADR_RE = re.compile(
+    r"(\| \*\*`gobernanza`\*\* \| `gobernanza-v1\.15\.md` \| )(\d+)( ADR, protocolo de cambio \|)"
+)
 
 
 def inspeccion_gobernanza(adr_real, raiz=RAIZ):
@@ -142,14 +160,18 @@ def inspeccion_gobernanza(adr_real, raiz=RAIZ):
     est = _leer(_ruta_estado(raiz))
     anclas_cab = list(CABECERA_ADR_RE.finditer(gob))
     anclas_l0 = list(L0_ADR_RE.finditer(est))
+    anclas_tabla = list(TABLA_ADR_RE.finditer(est))
     cabecera_declara = int(anclas_cab[0].group(2)) if len(anclas_cab) == 1 else None
     l0_declara = int(anclas_l0[0].group(2)) if len(anclas_l0) == 1 else None
+    tabla_declara = int(anclas_tabla[0].group(2)) if len(anclas_tabla) == 1 else None
     return {
         "adr_real": adr_real,
         "cabecera_declara": cabecera_declara,
         "cabecera_anclas": len(anclas_cab),
         "l0_declara": l0_declara,
         "l0_anclas": len(anclas_l0),
+        "tabla_declara": tabla_declara,
+        "tabla_anclas": len(anclas_tabla),
     }
 
 
@@ -229,11 +251,14 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True):
     print(f"  ADR reales: {gob['adr_real']}")
     print(f"  Cabecera declara: {gob['cabecera_declara']} (canon/gobernanza-v1_15.md, {gob['cabecera_anclas']} ancla(s))")
     print(f"  L0 declara: {gob['l0_declara']} (canon/estado-programa-v1_12.md, {gob['l0_anclas']} ancla(s))")
+    print(f"  Tabla estado declara: {gob['tabla_declara']} (canon/estado-programa-v1_12.md, {gob['tabla_anclas']} ancla(s))")
     reconciliar = []
     if gob["cabecera_anclas"] == 1 and gob["cabecera_declara"] != gob["adr_real"]:
         reconciliar.append(f"gobernanza {gob['cabecera_declara']}→{gob['adr_real']}")
     if gob["l0_anclas"] == 1 and gob["l0_declara"] != gob["adr_real"]:
         reconciliar.append(f"L0 {gob['l0_declara']}→{gob['adr_real']}")
+    if gob["tabla_anclas"] == 1 and gob["tabla_declara"] != gob["adr_real"]:
+        reconciliar.append(f"tabla estado {gob['tabla_declara']}→{gob['adr_real']}")
     print(f"  Reconciliación necesaria: {' · '.join(reconciliar) if reconciliar else 'ninguna (ya coinciden)'}")
     print()
     print("RÓTULO DEL ACTO (best-effort, derivado de la rama actual)")
@@ -314,16 +339,23 @@ def fase_b_aplica(raiz=RAIZ):
     ruta_est = _ruta_estado(raiz)
     adr_real = EC.adr_max(raiz)
     gob_texto = _leer(ruta_gob)
+    # canon/estado-programa-v1_12.md se lee UNA sola vez; L0 y la fila de
+    # tabla se reconcilian en secuencia sobre el mismo buffer en memoria
+    # (nunca dos ciclos independientes de read/write) y el archivo se
+    # escribe UNA sola vez, al final, con las dos correcciones ya aplicadas.
     est_texto = _leer(ruta_est)
 
     anclas_cab = list(CABECERA_ADR_RE.finditer(gob_texto))
     anclas_l0 = list(L0_ADR_RE.finditer(est_texto))
+    anclas_tabla = list(TABLA_ADR_RE.finditer(est_texto))
 
     problemas = []
     if len(anclas_cab) != 1:
         problemas.append(f"cabecera de gobernanza: {len(anclas_cab)} ancla(s) (se requiere exactamente 1)")
     if len(anclas_l0) != 1:
         problemas.append(f"L0: {len(anclas_l0)} ancla(s) (se requiere exactamente 1)")
+    if len(anclas_tabla) != 1:
+        problemas.append(f"tabla estado: {len(anclas_tabla)} ancla(s) (se requiere exactamente 1)")
     if problemas:
         print("APLICACION_ABORTADA · 0 archivos escritos")
         for p in problemas:
@@ -332,24 +364,42 @@ def fase_b_aplica(raiz=RAIZ):
 
     cab_actual = int(anclas_cab[0].group(2))
     l0_actual = int(anclas_l0[0].group(2))
+    tabla_actual = int(anclas_tabla[0].group(2))
 
-    if cab_actual == adr_real and l0_actual == adr_real:
-        print(f"sin cambios -- cabecera y L0 ya declaran {adr_real}, igual al real")
+    if cab_actual == adr_real and l0_actual == adr_real and tabla_actual == adr_real:
+        print(f"sin cambios -- cabecera, L0 y tabla estado ya declaran {adr_real}, igual al real")
         return 0
 
     def _sustituye(texto, m, valor):
         return texto[:m.start(2)] + str(valor) + texto[m.end(2):]
 
     gob_candidato = _sustituye(gob_texto, anclas_cab[0], adr_real) if cab_actual != adr_real else gob_texto
-    est_candidato = _sustituye(est_texto, anclas_l0[0], adr_real) if l0_actual != adr_real else est_texto
+
+    # L0 primero, tabla después -- ambas sobre el mismo buffer encadenado.
+    # Cada paso se valida contra el buffer que lo precede inmediatamente
+    # (no contra est_texto original en el segundo paso), porque el patrón
+    # de la tabla debe re-ubicarse en el texto YA modificado por L0.
+    est_tras_l0 = _sustituye(est_texto, anclas_l0[0], adr_real) if l0_actual != adr_real else est_texto
+    if est_tras_l0 != est_texto and not _solo_digitos_cambiaron(est_texto, est_tras_l0, L0_ADR_RE):
+        print("APLICACION_ABORTADA · 0 archivos escritos")
+        print("  · L0: el cambio construido no se limita a los dígitos del conteo")
+        return 1
+
+    anclas_tabla_tras_l0 = list(TABLA_ADR_RE.finditer(est_tras_l0))
+    if len(anclas_tabla_tras_l0) != 1:
+        print("APLICACION_ABORTADA · 0 archivos escritos")
+        print(f"  · tabla estado: {len(anclas_tabla_tras_l0)} ancla(s) tras aplicar L0 (se requiere exactamente 1)")
+        return 1
+    est_candidato = (_sustituye(est_tras_l0, anclas_tabla_tras_l0[0], adr_real)
+                      if tabla_actual != adr_real else est_tras_l0)
+    if est_candidato != est_tras_l0 and not _solo_digitos_cambiaron(est_tras_l0, est_candidato, TABLA_ADR_RE):
+        print("APLICACION_ABORTADA · 0 archivos escritos")
+        print("  · tabla estado: el cambio construido no se limita a los dígitos del conteo")
+        return 1
 
     if gob_candidato != gob_texto and not _solo_digitos_cambiaron(gob_texto, gob_candidato, CABECERA_ADR_RE):
         print("APLICACION_ABORTADA · 0 archivos escritos")
         print("  · cabecera de gobernanza: el cambio construido no se limita a los dígitos del conteo")
-        return 1
-    if est_candidato != est_texto and not _solo_digitos_cambiaron(est_texto, est_candidato, L0_ADR_RE):
-        print("APLICACION_ABORTADA · 0 archivos escritos")
-        print("  · L0: el cambio construido no se limita a los dígitos del conteo")
         return 1
 
     # Todo validado -- recién ahora se escribe, los dos archivos o ninguno.
@@ -388,6 +438,8 @@ def fase_b_aplica(raiz=RAIZ):
         cambios.append(f"gobernanza {cab_actual}->{adr_real}")
     if l0_actual != adr_real:
         cambios.append(f"L0 {l0_actual}->{adr_real}")
+    if tabla_actual != adr_real:
+        cambios.append(f"tabla estado {tabla_actual}->{adr_real}")
     print("APLICADO: " + " · ".join(cambios))
     return 0
 
