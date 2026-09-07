@@ -101,6 +101,15 @@ entradas ya cargadas en memoria (sin I/O nuevo: `entradas` ya viene de
                               reportaba: esta ENMIENDA reclasifica, no
                               recuenta.
 
+ENMIENDA 4 (ACTO AUTOMATIZA-1-E1 · PERIMETRO-FISICO-DE-RAICES, 7/sep/2026):
+la ENMIENDA de 2026-08-13 asumía que `downloads` (RAICES_QUE_EXIGEN_GRUPO) se
+caminaba, acotado por extensión. Ya no -- `downloads` queda fuera del
+perímetro físico por diseño (`M.raiz_escaneable()`): C1 no la camina en
+absoluto, no solo con filtro de extensión. `descargas_mx` (curada) sigue
+igual que siempre. `downloads` puede seguir declarada en
+`data/raices.local.yaml` y en entradas históricas del manifiesto -- eso es
+referencia, no autorización para I/O físico.
+
 Las tres comprobaciones emiten WARN; ninguna emite FAIL. Decisión de
 diseño central de este script (ENCARGO TC-1, 2026-08-05/06): un hallazgo
 del corpus no debe poder gatear el push de un acto ajeno -- CONF-17 quedó
@@ -169,8 +178,10 @@ def c1_huerfanos(root, entradas, raw_dir):
     categorías -- ver ENMIENDA 2 en la cabecera de este archivo.
 
     Barre RAIZ_INTEGRADA (data_raw) más todo lo que M.raices_configuradas()
-    devuelva (descargas_mx, downloads -- lo que este entorno tenga en
-    data/raices.local.yaml). Cada raíz se compara primero por RUTA contra
+    devuelva que además satisfaga M.raiz_escaneable() (descargas_mx; nunca
+    downloads, fuera del perímetro físico desde ACTO AUTOMATIZA-1-E1 aunque
+    esté en data/raices.local.yaml -- ni se camina ni se hashea). Cada raíz
+    escaneable se compara primero por RUTA contra
     las entradas que declaran esa raíz (`raiz` ausente = data_raw por
     convención); un archivo cuya ruta relativa ya está declarada para esa
     raíz nunca se hashea (no es candidato, no hay I/O nuevo para el caso ya
@@ -224,6 +235,10 @@ def c1_huerfanos(root, entradas, raw_dir):
 
     resultado = {}
     for nombre_raiz, ruta_raiz in raices.items():
+        if not M.raiz_escaneable(nombre_raiz):
+            # ACTO AUTOMATIZA-1-E1: raíz fuera del perímetro físico -- no se
+            # camina (sin os.walk, nombres, hashes ni conteo físico).
+            continue
         declarados = set()
         for e in entradas:
             if "sha256" not in e:
@@ -298,6 +313,10 @@ def c3_entradas_sin_archivo(root, entradas, raw_dir):
         if not archivo:
             continue
         nombre_raiz = e.get("raiz", M.RAIZ_INTEGRADA)
+        if not M.raiz_escaneable(nombre_raiz):
+            # ACTO AUTOMATIZA-1-E1: raíz fuera del perímetro físico -- no se
+            # resuelve ni se comprueba (sin exists()); no cuenta como AUSENTE.
+            continue
         base_dir = M.resolver_raiz(nombre_raiz, root, raw_dir)
         if base_dir is None:
             continue
@@ -339,6 +358,12 @@ def main():
     print(f"  raíces visibles a C1 (RAIZ_INTEGRADA + configuradas en "
           f"data/raices.local.yaml): {M.RAIZ_INTEGRADA}, "
           f"{', '.join(sorted(M.raices_configuradas(root))) or '(ninguna configurada en esta máquina)'}")
+    raices_todas = [M.RAIZ_INTEGRADA] + sorted(M.raices_configuradas(root))
+    no_escaneables = sorted(n for n in raices_todas
+                             if not M.raiz_escaneable(n))
+    if no_escaneables:
+        print(f"  RAIZ_NO_ESCANEABLE (fuera del perímetro físico, no recorridas "
+              f"por C1/C3): {', '.join(no_escaneables)}")
     print()
 
     warn_total = 0

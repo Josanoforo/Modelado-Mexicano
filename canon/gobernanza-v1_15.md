@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **357 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **358 ADR**
 
 > | | |
 > |---|---|
@@ -6175,3 +6175,31 @@ WARN, sin entradas nuevas.
 **Deuda que cierra.** `NUNCA-MEDIDA` de `salud.atencion.grave` y `salud.vacunacion.disponible` — ambos quedan con al menos una corrida real archivada.
 
 **`tests/check.py --baseline`**: ver resultado en la nota de cierre.
+
+**ADR-358 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `357`, contiguo, sin huecos; candidato `358`) · `ACTO AUTOMATIZA-1-E1 · PERIMETRO-FISICO-DE-RAICES`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — hace cumplir por código la frontera física de raíces que hasta hoy dependía de que nadie olvidara editar `data/raices.local.yaml`: sólo `data_raw` y `descargas_mx` quedan autorizadas para I/O físico general del corpus.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-AUTOMATIZA-1-E1-PERIMETRO-FISICO.md`. `COMPUERTA: ninguna` (E1 es el primero de los tres actos de `AUTOMATIZA-1`, sin dependencia previa).
+
+**Corrección de base declarada (ARRANQUE punto 2).** El encargo declaraba `origin/main = 76dcdbb` (ADR máx `355`, FP máx `325`). Al arrancar, `origin/main` ya estaba en `038ec4f` (`PR #565` fusionado) con ADR máx `357` y FP máx `326` -- re-derivado antes de editar, sin huecos. Las líneas de C3 (`tests/manifiesto.py`, `tests/corpus.py`, `tools/digesto_tramite.py`, `tools/tablero_programa.py`, `.claude/commands/acto.md` §4, `canon/estado-programa-v1_12.md` L0 :111) se re-verificaron contra el árbol real y coincidieron exactamente con lo declarado -- ninguna se había movido; los archivos del perímetro de E1 no fueron tocados por `MAESTRA38-L2`/`MAESTRA38-LOTE-ENSANUT` como la concurrencia declarada preveía.
+
+**Frontera central** (`tests/manifiesto.py`, junto a `RAIZ_INTEGRADA`): `RAICES_ESCANEABLES = frozenset({RAIZ_INTEGRADA, "descargas_mx"})` y `raiz_escaneable(nombre)`. `downloads` puede seguir citada en `data/raices.local.yaml` y en entradas históricas del manifiesto (hoy: **0** -- `C1` de la corrección de dirección, confirmado: `277 data_raw · 333 descargas_mx`, ninguna `downloads`) -- referencia histórica no es autorización para I/O físico.
+
+**Cuatro vías físicas cerradas.** (A) `cmd_escanea`: `raiz_escaneable()` se comprueba como primera línea dentro del lock, antes de `resolver_raiz` -- `--escanea downloads` sale con código `1` e imprime `RAIZ_NO_ESCANEABLE: downloads`, cero `os.walk`. (B) `cmd_verifica`: una entrada `raiz: downloads` nunca resuelve físicamente -- clasifica `FUERA_DE_PERIMETRO`, cuenta en la tabla por raíz, cero `exists`/`stat`/`sha256_de`. (C) `tests/corpus.py::c1_huerfanos`: sólo camina raíces que satisfacen `raiz_escaneable()` -- `downloads`, aunque esté en `data/raices.local.yaml`, ya no aparece en el resultado ni se le llama `os.walk`. (D) `tests/corpus.py::c3_entradas_sin_archivo`: una entrada de raíz no escaneable se omite antes de `resolver_raiz`/`exists` -- no cuenta como AUSENTE.
+
+**C2 (corrección de dirección): test existente reescrito, no dejado en rojo.** `tests/test_manifiesto_alcance.py::test_personal_extension_is_neither_hashed_nor_staged` ejercitaba `--escanea downloads` para proteger el filtro de extensión de MAP-1b; con la frontera, esa raíz se rechaza antes de que el filtro tuviera oportunidad de aplicarse. Renombrado `test_downloads_es_rechazada_antes_del_filtro_de_extension`, reescrito para afirmar el rechazo (`RAIZ_NO_ESCANEABLE`, código ≠ 0, cero `os.walk`, cero `sha256_de`, cero staging); docstring del archivo registra que MAP-1b deja de tener superficie de ataque sobre esta raíz porque ya no se recorre en absoluto, con o sin filtro. `test_curated_roots_are_not_extension_filtered` (descargas_mx) queda intacto.
+
+**Regresión incidental encontrada y corregida (fuera de C1-C3 pero dentro del mismo defecto).** `tests/test_corpus.py::test_frontera_misma_raiz_vs_otra_raiz` fijaba su fixture de "raíz B" con un nombre sintético (`raiz_ext`) que nunca fue una raíz real -- con la frontera, `c1_huerfanos` ya no camina ninguna raíz fuera de `RAICES_ESCANEABLES`, así que ese nombre sintético dejó de aparecer en el resultado (`KeyError` al correr la prueba). Corregido con el cambio mínimo: el nombre de la raíz B pasa a `descargas_mx` (una raíz real y escaneable), sin tocar la lógica ni las aserciones que la prueba verifica -- mismo principio que C2, aplicado a un test fuera del perímetro citado por dirección pero roto por el mismo cambio.
+
+**Test nuevo.** `tests/test_perimetro_raices.py` (patrón de `tests/test_t_cron.py`, corre solo): los 7 puntos de la prueba mínima del encargo -- `raiz_escaneable()` sobre las tres raíces conocidas, rechazo de `--escanea downloads` con cero `os.walk`, `FUERA_DE_PERIMETRO` en `--verifica` con cero `exists`, `c1_huerfanos` sin caminar `downloads` (y sí caminando una raíz escaneable, para que la prueba discrimine algo), `c3_entradas_sin_archivo` sin `exists()` sobre `downloads`.
+
+**Documentación mínima.** `data/INFRAESTRUCTURA-v1_0.md`: la fila de `forense/censo-raiz/AAAA-MM-DD.txt` gana la frase del perímetro físico, citando este ADR.
+
+**`tests/check.py --baseline`: VERDE**, sin `FAIL` nuevo (`forense/encargos/2026-09-07-AUTOMATIZA-1-E1-PERIMETRO-FISICO.md` añadido a `_T25_ARCHIVOS_CONOCIDOS` -- el encargo archivado trae `E1`/`E2`/`E3` pelados que se autorreferencian a los tres elementos que el propio documento define, no a ningún habitante `MAESTRA<nn>-E<n>`; no se censa en `canon/registro-rotulos.tsv` por esa misma razón -- no hay rótulo bare ambiguo que resolver, y el rótulo propio del acto (`AUTOMATIZA-1-E1`) nunca aparece pelado en ningún archivo que este acto escriba).
+
+**Lo que este acto NO hace.** No toca `data/manifiesto.yaml` ni migra/borra ninguna entrada `raiz: downloads` (hoy no hay ninguna). No crea sistema de permisos ni ACL. No toca `RAICES_QUE_EXIGEN_GRUPO`/`--grupo` (siguen vivos, ahora inalcanzables desde `--escanea`, documentado en una línea junto a la constante). No modifica `tools/digesto_tramite.py`, `tools/tablero_programa.py` ni `tests/check.py` salvo la línea de `_T25_ARCHIVOS_CONOCIDOS` -- esos son perímetro de `AUTOMATIZA-1-E2`/`E3`, compuertados a que este PR fusione primero. No toca `tests/fp29_series_externas.py::_ruta_de` (resuelve `resolver_raiz()` directo, sin pasar por las cuatro vías protegidas) -- observación declarada, no PARO: hoy no hay ninguna entrada `raiz: downloads` que ese script pudiera abrir, y no es un automatismo general del corpus sino una medición puntual de un id concreto; ampliar la frontera a scripts fuera de las cuatro vías del encargo habría sido ampliar el perímetro sin que el encargo lo pidiera.
+
+**Deuda que abre.** Ninguna.
+
+**Deuda que cierra.** Ninguna nueva -- cierra el riesgo de diseño que dependía de que nadie olvidara editar `data/raices.local.yaml`; la seguridad queda garantizada por construcción.
+
+**Numeración.** Derivado contra `origin/main = 038ec4f` (máximo `357`), candidato `358`, sin huecos. `AUTOMATIZA-1-E2`/`E3` quedan compuertados a que este PR fusione: regla de la casa, renumera quien fusiona segundo si algo más se adelanta.

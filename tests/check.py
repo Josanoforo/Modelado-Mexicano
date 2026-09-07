@@ -3736,6 +3736,22 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-03-MAESTRA38-A1-SONDA-Y-DESCARGA-UNIVERSO-1.md",
     "forense/notas/2026-09-03-MAESTRA38-A1-spec-lote-2.md",
     "forense/notas/2026-09-03-MAESTRA38-A1-resultados-lote-1.md",
+    # ACTO AUTOMATIZA-1-E1 · PERIMETRO-FISICO-DE-RAICES, 7/sep/2026: encargo
+    # archivado VERBATIM (A.3). Trae `E1`/`E2`/`E3` pelados muchas veces
+    # (p.ej. "COMPUERTA: E1 ninguna · E2 = E1 fusionado · E3 = E2 fusionado",
+    # "Orden: E1 -> E2 -> E3") -- a diferencia del resto de esta lista, estos
+    # NO son abreviaturas de un habitante MAESTRA<nn>-E<n> externo: son
+    # autorreferencias a los tres elementos que el propio documento define en
+    # su cabecera (AUTOMATIZA-1-E1/E2/E3), una serie nueva fuera de la
+    # numeracion MAESTRA<nn> y sin fila propia en canon/registro-rotulos.tsv
+    # por esa misma razon -- ese registro censa que rotulo REAL resuelve un
+    # bare token ambiguo, y aqui no hay ambiguedad que resolver: el propio
+    # texto define los tres elementos dos parrafos antes de nombrarlos
+    # pelados. El encargo no se edita (A.3 pide el texto verbatim de
+    # direccion); en todo archivo propio que este acto escribe (este mismo,
+    # la nota de cierre, el ADR, los commits) el rotulo va siempre con
+    # prefijo completo (AUTOMATIZA-1-E1) -- D-6.
+    "forense/encargos/2026-09-07-AUTOMATIZA-1-E1-PERIMETRO-FISICO.md",
 }
 
 
