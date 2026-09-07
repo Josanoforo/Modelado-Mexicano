@@ -2838,6 +2838,17 @@ reglas_propuestas:
     ola_calibracion: "Mexico Panel Study 2012, rondas 1 (marzo) y 2 (julio); unica fuente panel del corpus para clientelismo"
     payload_manifiesto_id: [icpsr35024_ds1_w2_crosstabs_derivado_v0, icpsr35024_ds1_w2_crosstabs_derivadas]
     entra_al_motor: false
+    enmienda_maestra38_l2: >
+      ENMIENDA APPEND (6/sep/2026, ACTO MAESTRA38-L2, rama TEXTO). No se re-mide:
+      el `.dta` completo de ICPSR 35024 sigue sin bajar (ver
+      forense/notas/2026-09-06-MAESTRA38-L2-spec-rama.md, comando find+md5sum
+      contra las tres raices declaradas, 2051 archivos examinados, ninguno
+      calza `35024-0001-Data.dta`). Lo que este acto agrega es contexto de
+      instrumento, no cifra: el texto verbatim de P35A/P35B/W2_P35A/W2_P35B se
+      leyo del cuestionario en espanol (data/l2-mps2012-cuestionario-v1_0.txt,
+      data/l2-mps2012-items-v1_0.tsv) -- no cambia r7_7_estado
+      (INTENTO-GASTADO-EN-CROSSTABS sigue) porque esta entrada no usa el
+      experimento de lista. situacion la cambia un acto siguiente con firma.
 
   - id: civico.clientelismo.prevalencia_lista_mps2012
     entrada_nueva: true
@@ -2886,6 +2897,25 @@ reglas_propuestas:
     ola_calibracion: "Mexico Panel Study 2012, rondas 1 y 2"
     payload_manifiesto_id: [icpsr35024_ds1_w2_crosstabs_derivadas]
     entra_al_motor: false
+    enmienda_maestra38_l2: >
+      ENMIENDA APPEND (6/sep/2026, ACTO MAESTRA38-L2, rama TEXTO). El
+      `supuesto_no_verificado_que_la_gobierna` de arriba queda VERIFICADO EN
+      TEXTO ESPAÑOL, no solo por el proxy en inglés que ya usó ADR-350
+      (list::mexico man/mexico.Rd): el cuestionario original de ICPSR 35024
+      (35024-Questionnaire-spanish.pdf, raiz descargas_mx, transcrito a
+      data/l2-mps2012-cuestionario-v1_0.txt lineas 1192-1230 [ronda 1] y
+      3057-3124 [ronda 2]) dice, verbatim, que la Lista B (folios nones) es la
+      Lista A (folios pares) MAS UN item, y que ese item es
+      "c. Recibir un regalo, favor o acceso a un servicio a cambio de su
+      voto" -- venta del voto, en las DOS olas, wording identico entre ronda 1
+      y ronda 2. Esto CORROBORA-EN-TEXTO el supuesto para ESTE instrumento
+      (tabulador de segunda mano ICPSR), en el idioma original del
+      cuestionario, no por inferencia desde otro paquete. NO cambia p, NO
+      cambia escala, NO pondera: sigue siendo instrumento de segunda mano SIN
+      PONDERAR y el `.dta` completo sigue sin bajar. Ver adjudicacion de
+      FP-263 en forense/notas/2026-09-06-MAESTRA38-L2-resultados.md y
+      forense/firmas-pendientes.tsv (FP-263 -> EJECUTADA). situacion la
+      cambia un acto siguiente con firma.
   - id: civico.clientelismo.prevalencia_lista_listcran_mps2012
     entrada_nueva: true
     referida_a: "regla R7.7 (canon/modelo-decision-v4_0.md:763) -- prevalencia por EXPERIMENTO DE LISTA de PRIMERA MANO, contrastada contra la pregunta directa del mismo cuestionario. NO es p de regla"
