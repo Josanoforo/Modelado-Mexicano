@@ -44,10 +44,13 @@ La salida es un documento JSON con `n_celdas_universo`,
 (`censo`) y la `entrada_scoring` lista para pasarse a
 `scoring-adv1-m3.py` si mesa sella `delta`.
 
-Para producir un tablero legible en Markdown a partir de esta salida
-(el patrón de `forense/prereg-duelo-v2/scoreboard-v1_1.md`), correr el
-script y volcar el censo a una tabla — esta skill no escribe el
-`.md` por sí misma, deja eso al acto que la invoque con fecha propia.
+Para producir un tablero legible en Markdown a partir de esta salida:
+
+```
+python3 tools/score_marco_m.py --format markdown
+```
+
+Misma derivación, dos representaciones; el Markdown no recalcula nada.
 
 ## LO QUE NO HACE
 
