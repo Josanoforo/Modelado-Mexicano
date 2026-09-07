@@ -46,3 +46,17 @@ CONTADOR: cero directo, declarado (tres registros de spec). Habilita `L22`–`L2
 Lo que este acto NO hace. No abre microdato. No mide. No reclasifica las ocho reglas que se sostienen (quedan con su conteo en la nota). No edita cláusulas de la propuesta. No escribe v2.13 (la entrega dirección cuando mesa firme la tercera entrada).
 
 Sucesores declarados, no lanzados. `L22` (R7.4, caja, solo si S14 §2 pre-registra al menos una encuesta con los cinco términos), `L23` (R4.5), `L24` (R9.3); `instrucciones-proyecto-v2_13` (dirección, B11, con pegado en los dos lados — A.9).
+
+---
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA38-N23-N25 · TRES-SPECS-NEGATIVOS`, 7/sep/2026, entorno **NUBE** (`cloud_default`), sobre `origin/main = 604793fa` (base declarada por el encargo, confirmada con `git fetch origin main` al arrancar). **PR #596** (`https://github.com/Josanoforo/Modelado-Mexicano/pull/596`), rama `claude/inventory-negative-specs-dvith5`. `ADR-385`, recibo `FP-335`.
+
+**Entregado:** las tres specs congeladas (`S14-R7-4`, `S15-R4-5`, `S16-R9-3`, con sidecar `sha256` cada una), la nota de barrido con script y salida cruda, la tercera entrada `PARA-v2.13` (`para_v2_13_entradas` 2 → 3), el recibo y la cascada de cierre. `tests/check.py --baseline`: **VERDE**.
+
+**Cumplido con cuatro discrepancias declaradas, no copiadas (A.13):** los «292 aciertos» de `R4.5` no reproducen (8 con el patrón verbatim del encargo, 253 con `^ETI`); el inventario **sí** trae las etiquetas del módulo `ETI` en el miembro `.dta`, así que `S15` no depende del cuestionario PDF ni necesita receta A.5; `p53` son 25 ítems y no 10, y la pregunta que este encargo dejaba condicionada al cuestionario ya estaba contestada por el inventario; los conteos de las ocho reglas que se sostienen no son comparables porque este encargo no escribe los patrones que los produjeron — ninguna de las ocho se reclasificó.
+
+**No cumplido, por lo que el propio encargo manda:** `L22` no queda habilitada. La condición era «`L22` … solo si `S14 §2` pre-registra al menos una encuesta con los cinco términos», y ninguna de las tres los tiene: falta `VÍCTIMA` en las tres. `S14` cierra `EXISTE-NO-SATISFACE` con el término faltante nombrado por encuesta, que es lo que el encargo declara entregable.
+
+Este archivo no se edita en ningún otro punto: es el registro de qué se pidió.
