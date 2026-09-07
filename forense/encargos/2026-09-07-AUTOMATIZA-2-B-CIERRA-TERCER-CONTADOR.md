@@ -939,3 +939,25 @@ El **encargo** es el texto `ENCARGO FINAL · AUTOMATIZA-2 · CABLEADO POST-E3` (
 3. Después de C: reporte final del paquete (los siete puntos del encargo) y **parada**. Lo siguiente es dirección, no aparato: `M-POR-CELDA`.
 
 **Contadores movidos por este documento: cero.** Declarado.
+
+## CONSUMIDO
+
+Ejecutado: **ACTO AUTOMATIZA-2-B · CIERRA-TERCER-CONTADOR**, únicamente — `C` queda para lanzarse por separado, desde `main` fresco, después de que mesa fusione este PR (regla de la casa de esta misma tanda: no apilar).
+
+**PR:** [`#584`](https://github.com/Josanoforo/Modelado-Mexicano/pull/584), rama `claude/automatiza-2-cableado-post-e3-mb1anf`, contra `main`. **NO fusionado por el ejecutor** — mesa fusiona.
+
+**Condición de lanzamiento**, verificada por producto al arrancar: `A` ya fusionada (`origin/main = 3a04d5359566c073e8bd49cd3c32db8b7ef58f48`, `Merge pull request #582`), `git show origin/main:tools/verifica_head_remoto.py` existe, y `.claude/commands/acto.md`/`.claude/commands/despacha.md` en `origin/main` ya traen el guard final de HEAD.
+
+**Gap de archivo declarado (heredado de A).** El `DICTAMEN · PLAN AUTOMATIZA-2 · CABLEADO POST-E3` (sha256 `b6b754903372b609f90ebb93197f1a6b29b6c265d95d015320d3d2d098a84f7a`) sigue sin llegar a ninguna sesión de esta tanda — re-verificado contra el árbol fresco tras la fusión de `A`, sin rastro nuevo.
+
+**Qué se hizo.** `tools/cierre_acto.py` gana `TABLA_ADR_RE` (ancla la fila `gobernanza` de la tabla de nombres estables de `canon/estado-programa-v1_12.md` §0, sobre el nombre cosmético con punto, nunca el filename físico ni por número de línea). `canon/estado-programa-v1_12.md` se lee y se escribe una sola vez: `L0` y la fila de tabla se reconcilian en secuencia sobre el mismo buffer, cada paso validado contra su buffer inmediato anterior. Atomicidad ampliada a `1/1/1` anclas antes de escribir; preserva la semántica de `E3` sobre el fallo del segundo `os.replace()`. `tests/test_cierre_acto.py`: 7 pruebas (dos nuevas/reescritas para la tercera ancla, incluido el caso distinto de tabla rota vs. `L0` rota). `.claude/commands/acto.md` §4 paso 3: una frase, "los TRES contadores".
+
+**Aceptación real, demostrada en el propio cierre de este acto.** Al redactar `ADR-376` y su anotación `L0` (humano), corrí `python3 tools/cierre_acto.py --aplica`: `APLICADO: gobernanza 375->376 · L0 375->376 · tabla estado 375->376` — las tres cifras en un solo paso, sin recifrar ninguna a mano. Segunda corrida: `sin cambios -- cabecera, L0 y tabla estado ya declaran 376, igual al real` (idempotente).
+
+**Commits:** 0-bis (`d43707b`, este archivo verbatim) · COMMIT 1 (`c153918`, `tools/cierre_acto.py` + test) · COMMIT 2 (`db19e21`, `.claude/commands/acto.md`) · cascada (`448dbbe`, `ADR-376`/`L0`/`T25`) · este commit (`## CONSUMIDO`).
+
+**`python3 tests/check.py --baseline`**: LÍNEA BASE VERDE, sin regresión nueva.
+
+**Perímetro cumplido tal como el encargo lo declaró.** Tocó `tools/cierre_acto.py` (tercera ancla) · `tests/test_cierre_acto.py` (extensión) · `.claude/commands/acto.md` (una frase) · `canon/gobernanza-v1_15.md` · `canon/estado-programa-v1_12.md` · `tests/check.py` (sólo `_T25_ARCHIVOS_CONOCIDOS`) · A.3 (este archivo) · cascada. **No tocó** corpus, `data/raw`, `descargas_mx`, raíces físicas, manifiesto, adquisición, relaciones, motor, `baseline --freeze`, CI, GitHub Actions, reglas de protección de rama, `Downloads`.
+
+**CONTADOR final:** recifrados ADR mecánicos manuales por acto, `1 → 0`.
