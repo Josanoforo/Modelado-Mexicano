@@ -1,13 +1,21 @@
 # GEN2-E1 · LIMPIEZA-C1 — inventario de árboles, ramas y raíces (solo lectura)
 
-Acto de solo-lectura: cero borrados, cero `git push`, cero cambios a ramas o
-worktrees ajenos. La única escritura de este acto es esta nota, la fila nueva
-de `forense/firmas-pendientes.tsv` y el cierre `## CONSUMIDO` del encargo
-archivado — todo dentro de `mm-gen2-e1-limpieza-c1` (worktree propio de este
-acto, creado desde `origin/main`, rama `acto/gen2-e1-limpieza-c1`). No se abre
-PR (el encargo pide explícitamente "no empuja nada"): el resultado queda
-committeado localmente para que mesa lo revise en esta misma máquina, y firme
-la poda en un acto de mesa aparte (ver el encargo archivado para el rótulo de ese siguiente paso).
+Acto de solo-lectura sobre el ÁRBOL que inventaría: cero borrados, cero
+cambios a ramas o worktrees ajenos. La única escritura *sustantiva* de este
+acto es esta nota y la fila nueva de `forense/firmas-pendientes.tsv` — todo
+dentro de `mm-gen2-e1-limpieza-c1` (worktree propio de este acto, creado desde
+`origin/main`, rama `acto/gen2-e1-limpieza-c1`).
+
+El encargo original pedía explícitamente "no empuja nada" y este acto no
+ejecutó ningún `git push` por su cuenta; el resultado se dejó committeado
+localmente para revisión de mesa en la misma máquina. **Actualización**: la
+rama se empujó y se abrió el **PR #602** (`origin/main` ← `acto/gen2-e1-
+limpieza-c1`) por una vía externa a la ejecución de este acto — este mismo
+worktree, ya con todo el trabajo de solo-lectura hecho, fue sincronizado
+después con `origin/main` (§0) y el CI de GitHub (`Verificación del corpus`)
+corrió en verde sobre el resultado. Mesa sigue siendo quien fusiona (D-13):
+abrir el PR no adelantó ninguna decisión sobre la poda de §5, que sigue
+esperando el acto sucesor `GEN2-E4 · LIMPIEZA-C2 · PODA`.
 
 ## §0 · Premisas y autodeclaraciones
 
