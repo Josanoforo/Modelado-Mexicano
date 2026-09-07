@@ -193,37 +193,65 @@ fi
 #   URLs estáticas del bundle React (ADENDA-A4-rutas-PDN, .env REACT_APP_S1_BULK/
 #   _BULK_S2/_S3_SERVIDORES/_S6) -- si Google Drive cambia el id, este paso falla
 #   con log, no rompe el resto del cron (no lleva set -e local, se aísla con `|| true`).
-#   D-c (ACTO MAESTRA38-CRON-2/CRON-3): tras la re-baja, re-escanea
-#   descargas_mx y COMMITEA el resultado en censo/${FECHA} (antes de
-#   CRON-3 este append quedaba huérfano, nunca commiteado -- ver A.1 del
-#   dictamen en forense/encargos/2026-09-06-MAESTRA38-CRON-3-*.md).
+#   ACTO AUTOMATIZA-2-E4 · PDN-COMPARA: E4 detecta identidad de bytes --
+#   no decide que el recurso cambió conceptualmente, no reemplaza payload,
+#   no actualiza manifiesto ni relaciones, no lanza mediciones.
+#   Enmienda 2: dos claves por sistema. SIS_DESCARGA es la clave FÍSICA --
+#   s1, s2, s3P, s6 -- la que vive en la URL y en el nombre del archivo
+#   (pdn_${SIS_DESCARGA}_<fecha>.zip); s3P es la clave física histórica del
+#   bundle -- el archivo es S3 servidores (A4/A5), no un sistema "P" aparte
+#   -- consumidores del filename pdn_s3P_*: 0 (verificado en E4).
+#   SIS_LOGICO -- s1, s2, s3, s6 -- es la clave que usa data/manifiesto.yaml
+#   (tabla ADQ_PDN_ID_MANIFIESTO abajo). Esa tabla es explícita y CABLEADA,
+#   nunca derivada ("última versión"): si el mes trae un id nuevo se
+#   actualiza a mano; mientras no se actualice, sigue comparando contra el
+#   id de referencia vigente y --compara-sha reporta CAMBIO-DE-CONTENIDO si
+#   los bytes ya no coinciden. Esa discrepancia queda para adjudicación
+#   humana -- este cron nunca la resuelve solo (Enmienda 4).
+#   D-c (ACTO MAESTRA38-CRON-2/CRON-3, cumplido de verdad desde AUTOMATIZA-
+#   2-E4): antes de este acto este paso corría `--escanea descargas_mx` --
+#   raíz equivocada, nunca veía estos archivos nuevos, así que la huella en
+#   censo/${FECHA} nunca reflejó el estado real de PDN. Ahora COMMITEA, por
+#   sistema, el resultado real de --compara-sha en censo/${FECHA}.
 #   Fuera de ventana también deja una línea commiteada, para que el día 4
 #   no parezca silencio.
+declare -A ADQ_PDN_ID_MANIFIESTO=(
+  [s1]="pdn_s1_2026_09_06"
+  [s2]="pdn_s2_2026_09_06"
+  [s3]="pdn_s3v2"
+  [s6]="pdn_s6_2026_09_06"
+)
 DIA_MES_A5="$(date +%-d)"
 if [ "$DIA_MES_A5" -ge 1 ] && [ "$DIA_MES_A5" -le 3 ]; then
   ADQ_PDN_DIR="data/raw/pdn_bulk_$(date +%Y_%m)"
   mkdir -p "$ADQ_PDN_DIR"
+  LINEAS_PDN=()
   for PAR in \
     "s1:https://drive.google.com/uc?export=download&id=1RSYOwWabsWqtxt7VNHIjf-yt1P5bPSbE" \
     "s2:https://drive.google.com/uc?export=download&id=1KWcst_YLI5YVlKnzmd3Xm5prAP4NVhAD" \
     "s3P:https://drive.google.com/uc?export=download&id=1i-HjNju04xdKThHgGDAzHb97GdF_cqS8" \
     "s6:https://drive.google.com/uc?export=download&id=1OM-P1JAp7PKeGL_InRYOQ1UO5Vpcs9Oi"; do
-    SIS="${PAR%%:*}"; URL="${PAR#*:}"
-    DEST="${ADQ_PDN_DIR}/pdn_${SIS}_$(date +%Y-%m-%d).zip"
+    SIS_DESCARGA="${PAR%%:*}"; URL="${PAR#*:}"
+    case "$SIS_DESCARGA" in
+      s3P) SIS_LOGICO="s3" ;;
+      *) SIS_LOGICO="$SIS_DESCARGA" ;;
+    esac
+    ID_MANIFIESTO="${ADQ_PDN_ID_MANIFIESTO[$SIS_LOGICO]:-}"
+    DEST="${ADQ_PDN_DIR}/pdn_${SIS_DESCARGA}_$(date +%Y-%m-%d).zip"
     if curl -sS -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128 Safari/537.36" --max-time 300 -L -o "$DEST" "$URL" 2>>"$LOGFILE"; then
-      SHA_NUEVO="$(sha256sum "$DEST" | cut -d' ' -f1)"
-      log "[ADQ-PDN] ${SIS}: re-bajado a ${DEST}, sha256=${SHA_NUEVO} (comparar a mano contra data/manifiesto.yaml; este paso no re-registra automáticamente)"
+      SALIDA_COMPARA="$(python3 tests/manifiesto.py --compara-sha --id "$ID_MANIFIESTO" --archivo "$DEST" 2>>"$LOGFILE" || true)"
+      LINEAS_PDN+=("[ADQ-PDN] ${SIS_LOGICO}: ${SALIDA_COMPARA}")
+      log "[ADQ-PDN] ${SIS_LOGICO}: ${SALIDA_COMPARA}"
     else
-      log "[ADQ-PDN] ${SIS}: PARO-RED, no se pudo re-bajar desde ${URL}"
+      LINEAS_PDN+=("[ADQ-PDN] ${SIS_LOGICO}: PARO-RED, no se pudo re-bajar desde ${URL}")
+      log "[ADQ-PDN] ${SIS_LOGICO}: PARO-RED, no se pudo re-bajar desde ${URL}"
       rm -f "$DEST"
     fi
     sleep 1
   done
-  SALIDA_ESCANEO_PDN="$(python3 tests/manifiesto.py --escanea descargas_mx 2>&1 || true)"
-  RESUMEN_PDN="$(echo "$SALIDA_ESCANEO_PDN" | grep -m1 '^Total en disco:' || echo 'Total en disco: (sin resumen -- ver salida cruda abajo)')"
-  LINEA_PDN="[ADQ-PDN] ${FECHA}: ${RESUMEN_PDN}"
-  log "${LINEA_PDN}"
-  commit_censo_linea "$(printf '%s\n\n%s' "$LINEA_PDN" "$SALIDA_ESCANEO_PDN")" "$LINEA_PDN" "[ADQ-PDN] ${FECHA}"
+  CONTENIDO_PDN="$(printf '%s\n' "${LINEAS_PDN[@]}")"
+  RESUMEN_PDN="[ADQ-PDN] ${FECHA}: 4 sistemas (s1/s2/s3/s6), ver detalle por sistema arriba"
+  commit_censo_linea "${CONTENIDO_PDN}" "${RESUMEN_PDN}" "[ADQ-PDN] ${FECHA}"
 else
   LINEA_PDN="[ADQ-PDN] ${FECHA}: fuera de ventana (día ${DIA_MES_A5}, ventana 1-3)"
   log "${LINEA_PDN}"
