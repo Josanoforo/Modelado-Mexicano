@@ -1028,3 +1028,169 @@ benchmark registra el efecto
 M13 termina.
 No aprovechar el acto para corregir otros M repetidos.
 La posible repetición de CIV/FAM se analiza después sólo si el resultado de M13 o una decisión de dirección demuestra que su enlace es materialmente incorrecto.
+
+---
+
+## CONSUMIDO
+
+Ejecutado por **`PR #597`** — `[MAESTRA38-M13] M-POR-CELDA v1.3`, rama
+`claude/enlace-m-celdas-tra-dq7crb`. `ADR-388`. Entorno **NUBE, sin corpus
+ni red**. Modelo Opus. **NO fusionado por el ejecutor: mesa fusiona.**
+
+**1 · SHA de `origin/main` de partida.** El encargo declara `3d6dee33` y
+manda no heredarlo. Re-derivado al arrancar: **`9bcdf0a7`**. `main` avanzó
+**tres veces** durante la sesión y se re-derivó en cada refresco:
+`9bcdf0a → d8adfec` (`PR #592`, el acto hermano) `→ 604793f` (`PR #591`)
+`→ c740baf` (`PR #594`/`#595`/`#596`). Base final del PR: **`c740baf`**.
+
+**Dos premisas del encargo caducaron a mitad de ARRANQUE, y se declaran.**
+`PR #592` (`MAESTRA38-M13 · PASOS 1 Y 2`, **mismo rótulo**) fusionó a las
+`05:00:12Z`, mientras corría el guard de rama, y dejó en `main`
+`marco-M-sorteado-v1_3.tsv`, `agregado_v1_3.py`,
+`agregado-v1_3-resultado.json`, `enlace-M-v1_1.md` y
+`procedimiento-scoring-v1_2.md`. Por eso: §7 («crear el marco v1.3») no
+crea un segundo v1.3 sino que **completa** el que ya estaba, y la premisa
+de §14 («`enlace-M-v1_1.md` no existe en `main`») dejó de ser cierta, así
+que en vez de crearlo se le **anexó un §6**. `/acto` §1.2 gobierna: «si
+main se movió: NO es PARO — refresca, re-deriva». El guard de rama no
+disparó PARO porque esa rama ya no era una sesión en vuelo.
+
+**Compuerta (§1).** `CIERRA-AUTOMATIZA-E6 · TABLERO-VIVO` no estaba
+abierto: sin rama remota, sin encargo archivado y sin commit en `main` que
+lo nombrara al arrancar. La espera condicional no se disparó.
+
+**A.8 · `tools/ya_medido.py` (regla citada por el encargo).**
+`python3 tools/ya_medido.py tramite.mordida.discrecional` → veredicto
+**`NUNCA-MEDIDA`** (igual con el alias `R3.1`). La herramienta censa
+HABITANTES del registro de rótulos, y para esta regla ninguno registra
+veredicto de medición. Sus secciones de **listado** sí ubican la regla en
+`milpa/tramite.yaml:40` (`p=0.62`, `R3.1`),
+`milpa/tramite-ola5-propuesta-v0.yaml:131` (`p=0.62`, tier `SELLADA`) y
+`:462` (`discrecional_encig_serie`, `p=0.085118`) — listado, no veredicto.
+La exención de `T-YAMEDIDO` se sostiene **con** ese veredicto: A.8 exige
+correr la herramienta antes de CLASIFICAR / PRE-REGISTRAR / CARGAR /
+SELLAR, y este acto no hace ninguna de las cuatro (§26 le prohíbe tocar
+`milpa/tramite.yaml`, y `git diff --stat -- milpa/` sale vacío).
+
+**2 · Resolver de calibración corregido.** `cita_ola_calibracion(regla_id,
+conducta, lineas_tramite)`, con la prioridad literal del §3: `aplica_a`
+exacto → una, esa y su cita real; cero, mecanismo histórico intacto; más de
+una, **PARO** (`CalibracionAmbigua`). Estructura por `yaml.safe_load` sobre
+las mismas líneas que se citan. Los tres casos del §4, corridos:
+`paga_mordida → ENCIG 2023` (`:79`), `paga_mordida_encuci2020 → ENCUCI
+2020` (`:86`), `paga_mordida_encig2025 → ENCIG 2025` (`:104`). Reparada la
+cita rancia `:64` (hoy un comentario). §25.4 no disparado: 0 ambigüedades
+en los 64 pares. Barrido de impacto: 43 idénticas · 13 `LookupError` en
+ambos caminos · **8 cambian**, y **0 consumidas por un `M` ya emitido**
+(35 JSON examinados).
+
+**3 · Regresión histórica.** P2 **PASA**. Único movimiento nuevo:
+`OK (linea corrida de 64 a 79, texto citado identico)` — la deriva que
+`_compara_cita_con_linea` fue construido para tolerar. La divergencia de
+redacción en `correcciones_aplicadas_por_referencia` es preexistente y ya
+declarada. `python3 tools/emite_m.py` → exit 0, cero archivos escritos.
+Prueba dirigida nueva `tests/test_emite_m_calibracion.py`: **16/16 OK**, y
+**añadida al CI** (`.github/workflows/verify.yml`) como paso bloqueante —
+sin eso existiría pero nada la correría.
+
+**4 · Tres filas M re-enlazadas.** `TRA-M-02/03/07` en
+`marco-M-sorteado-v1_3.tsv`. `PR #592` había movido sólo `conducta`;
+reconciliadas además `frase_discriminacion`, `ola_calibracion`, `razon` y
+`razon_DD`. `grado_DD` revisado y **no** movido: `P1 PUNTUA` en las tres.
+**11/11 celdas no afectadas idénticas** (mismo `sha256` de sus 11 filas,
+`diff` vacío); **ninguna** de las 8 columnas protegidas movida; 14 IDs,
+mismo orden, 32 columnas.
+
+**5 · Tres JSON v1.3.** `corridas-M/M-TRA-M-0{2,3,7}__v1_3.json`, por
+`tools.emite_m.emite_celda` con
+`fuente_acto = ACTO MAESTRA38-M13 · EMITE-M-v1_3`. **42/42
+comprobaciones** del contrato §12; **ninguna P0** (§25.6 no disparado).
+Históricos **intactos**: el `diff` de `corridas-M/` muestra tres archivos
+nuevos y cero modificados. §10 respetado: `paga_mordida_encuci2020`
+(`0.125822`, cuyo `p` está **más cerca** del `R` de `TRA-M-02`) **no** se
+usa, porque bajo F-DD daría `P0 VERIFICACION`. La correspondencia estaba
+decidida antes de abrir `R`.
+
+**6 · Fuente M por las 14 celdas.** `fuente_M_por_celda` en el resultado,
+derivada del universo y no del orden de llamadas, resolviendo `__v1_3` →
+plano → `__v1_2`: las **3** TRA en `__v1_3`, las **11** restantes
+reproduciendo exactamente las fuentes de v1.2.
+
+**7 · Comparación v1.2 → v1.3.** Controles **A-F**, los seis pasan: 14 IDs
+iguales; `R`/`EE_R` y `L_solo`/`L_corpus` idénticos celda a celda (0
+diferencias); `M` de las 11 no afectadas idéntico; cambian su `M`
+exactamente `TRA-M-02/03/07`. §17: `seed=42`, `nivel_ic=0.95`,
+`replicas=10000`, `delta=0.5` sin tocar.
+
+**8 · Resultado real, sin sustituirlo por expectativa.** `z_M` en `TRA`:
+**`−8.08 / +14.28 / +5.55`** (v1.2: `+97.62 / +202.54 / +228.76`). Mediana
+`|z|` de `M`: **`11.4321 → 7.4259`**. `comparacion_principal_pareada`
+(**primaria**, `z`): **`INDETERMINADO`**, punto `10.79`, IC95
+`[−1.84, +26.53]` — **el IC cruza el cero y no se declara victoria de
+`M`**. Secundaria `L_CORPUS_vs_M`: `L-MAS-ALTO-QUE-M`. `D4` intacta. Dos
+corridas frescas, mismo `sha256 e0d59d54…`. **Hallazgo:** frente al
+resultado que `PR #592` dejó en `main` hay **cero claves con valor
+distinto** — ninguna cifra es nueva; lo que este acto aporta es
+auditabilidad, no movimiento de marcador.
+
+**9 · Baseline.** `python3 tests/check.py --baseline` → **VERDE**, sin
+`FAIL` nuevo. 3 `FAIL` / 170 `WARN`, los tres preexistentes (`T06`×2,
+`T08`). Sin `--freeze`. Una sola exención por lista, ambas sobre el
+encargo verbatim.
+
+**10 · HEAD remoto sincronizado.** `python3 tools/verifica_head_remoto.py`
+→ `PR_HEAD_SINCRONIZADO` (ver abajo, corrido tras el último push).
+
+**11 · Reservas materiales que quedaron.** Unión de las dos listas
+(`ADR-388` y §6 del scoreboard v1.3), para que no haya dos censos:
+
+1. **Orden de lectura del §11, roto.** `corridas-R/`, `espec-R-ciega-v1_2.tsv`
+   y el scoreboard con `R` no se abrieron; `agregado-v1_2-resultado.json`
+   **sí** se leyó en el reconocimiento —antes de emitir— y mostró los `R`
+   de las tres celdas. La ceguera sustantiva se conserva por construcción:
+   el par `(regla, conducta)` lo fija el encargo en §8/§10, la emisión es
+   mecánica sin grados de libertad, y `tools/emite_m.py` jamás abre
+   `corridas-R/`. Ninguna elección pudo ser influida por `R`, pero el orden
+   se rompió. **§25.7 no dispara** —su texto es una condición de
+   dependencia («emitir *requiere* abrir R»), no de orden— y se verificó
+   materialmente: ningún valor de `R` aparece en el marco v1.3 ni en los
+   tres JSON.
+2. **El mismo defecto sigue vivo en otra regla.**
+   `tramite.mordida.con_registro / paga_mordida` resuelve a la calibración
+   de `enmienda_encig2025` (`:161`) aunque su `aplica_a` (`:156`) lo
+   excluya. **No se corrige**: REGLA DE PARADA, y ninguna celda del
+   universo de 14 usa esa regla (0 ocurrencias de `con_registro` bajo
+   `corridas-M/`). Sucesor posible, no lanzado.
+3. `tra_m_02_informativo` es un bloque vestigial del script sellado y su
+   `M` también se movió (`0.62 → 0.085118`); `PR #592` no lo declaró.
+4. `n_celdas` dentro de los bloques de bootstrap vale `10000` (réplicas),
+   no el universo: todo control debe usar `universo_pareado_ids` o
+   `universo_pareado_n`.
+5. `.claude/commands/emite-m.md` enumera de forma cerrada los veredictos
+   del tool y **no documenta** el camino de PARO nuevo
+   (`CalibracionAmbigua`), hoy **latente**. Sucesor declarado; §6 acota el
+   COMMIT 1 a `tools/emite_m.py` más el test.
+6. La cadena `ADR-270`/`ADR-276` con que este encargo, `ADR-282` y
+   `PR #592` citan la sustitución del `0.62` **no la sostiene `ADR-270`**
+   (que es `MAPEA-DENTRO-DE-ACTIVOS`); quien sella es `ADR-282`. La prosa
+   nueva cita `ADR-282`/`ADR-276`; corregir aguas arriba es de mesa.
+7. Reserva `d1` de `DIN-M-01`: sin cambio respecto de v1.2.
+8. `procedimiento-scoring-v1_2.md` y su `D4`, sellados por `PR #592`, se
+   reproducen sin tocar; este acto no los evalúa.
+
+**Pase adversarial.** Seis verificadores independientes revisaron el acto
+ya commiteado: dos bloques **LIMPIOS**, **ninguna** de las 12 condiciones
+de PARO del §25 disparada, perímetro §26 respetado archivo por archivo, y
+**ni una afirmación numérica falsa**. Los defectos reales que encontró
+están corregidos en el último commit — entre ellos una **transcripción
+falsa del veredicto de `tools/ya_medido.py`** (decía `MEDIDA-EN:`; el real
+es `NUNCA-MEDIDA`) que era la única justificación de una exención, una
+**exención de `T25` sobre-amplia** que habría dejado
+`BENCHMARK-MOTORES-COMPARABLES.md` ciego al test para siempre, que la
+**prueba permanente del §5 no la corría ningún arnés**, y que la cabecera
+del benchmark seguía describiendo la corrida v1.2 como estado vigente
+(§21).
+
+**Regla de parada.** Las tres TRA usan el MEDIDO correcto, el agregado
+v1.3 lo consume desde archivo, y el benchmark registra el efecto. M13
+termina aquí. No se corrigieron otros `M` repetidos.
