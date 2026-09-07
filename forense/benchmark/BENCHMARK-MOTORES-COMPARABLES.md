@@ -117,3 +117,88 @@ El procedimiento sellado (`procedimiento-scoring-v1_1.md`) fija una sola métric
 ## 6 · Qué NO hace este documento
 
 No sella ningún ADR. No modifica `procedimiento-scoring-v1_1.md` (sellado, intocado). No corre `agregado_v1_2.py` de nuevo — lee su resultado ya escrito. No abre ningún microdato. No mueve ningún tier de `canon/modelo-decision-v4_0.md`. No decide `D1`/`D4` (§5) — las deja para firma de mesa. No es el benchmark verbatim de dirección (§0) — es su reconstrucción verificable.
+
+---
+
+## v1.3 — enlace re-sellado (TRA-M-02/03/07) + métrica secundaria D4 resuelta (`ACTO MAESTRA38-M13`)
+
+Sección nueva, `append`. El cuerpo `v1.2` de arriba (§0-§5) **no se edita**
+— sigue describiendo exactamente lo que describía: la corrida sobre
+`marco-M-sorteado-v1_2.tsv` con el enlace v1.0 (`TRA-M-02/03/07` leyendo
+`paga_mordida` ASIGNADO, `p=0.62`). Esta sección describe la corrida
+`v1.3`, sobre `marco-M-sorteado-v1_3.tsv` (`enlace-M-v1_1.md`), con
+`procedimiento-scoring-v1_2.md` (§7, métrica secundaria D4).
+
+### Qué cambió y qué no
+
+`enlace-M-v1_1.md` re-apunta **solo** `TRA-M-02`/`TRA-M-03`/`TRA-M-07` de
+`paga_mordida` (`ASIGNADO`, `p=0.62`) a `paga_mordida_encig2025`
+(`MEDIDO·p(tasa base ponderada)`, `p=0.085118`) — la enmienda firmada por
+DM (1/sep/2026, `ADR-270`/`ADR-276`) que el motor ya traía y el enlace
+v1.0 no leía (`diagnostico-14-celdas-v1_0.tsv`, Pieza 1). Las 11 celdas
+restantes no cambian. `p`/`clase` de `milpa/tramite.yaml` no se tocan —
+solo la columna `conducta` del marco decide qué fila de la regla se lee.
+
+### `M` en `TRA` — antes y después
+
+| celda | `R` | `M` v1.2 (`paga_mordida`) | `z_M` v1.2 | `M` v1.3 (`paga_mordida_encig2025`) | `z_M` v1.3 |
+|---|---|---|---|---|---|
+| `TRA-M-02` | 0.1260 | 0.62 | **+97.62** | 0.085118 | **−8.08** |
+| `TRA-M-03` | 0.0445 | 0.62 | **+202.54** | 0.085118 | **+14.28** |
+| `TRA-M-07` | 0.0718 | 0.62 | **+228.76** | 0.085118 | **+5.55** |
+
+Mediana `|z|` de `M` sobre las 14 celdas: **11.43 (v1.2) → 7.43 (v1.3)** —
+confirma la expectativa declarada antes de correr en el encargo (B-bis:
+`z ≈ −8/+14/+6` en `TRA`, mediana ≈ 7.4). `comparacion_principal_pareada`
+(`L_SOLO_vs_M`, banda `z`, veredicto primario) sigue **`INDETERMINADO`**
+(v1.2: `[−16.65, ...]`≈punto 27.9; v1.3: punto `10.79`, IC95
+`[−1.84, +26.53]`) — el IC sigue cruzando 0, ninguna celda entra en banda
+`±0.5`. **Corregir el enlace no cambia el veredicto primario de la
+comparación pareada** — sigue sin distinguir `L_solo` de `M` con la
+evidencia actual, ahora con un punto medio mucho más cercano a 0.
+
+### `D4` resuelta — métrica secundaria en puntos porcentuales (`procedimiento-scoring-v1_2.md` §7)
+
+| corredor | `MAE_pp` (punto) | IC95 |
+|---|---|---|
+| `M` | **4.51** | [2.71, 6.37] |
+| `L_SOLO` | 11.69 | [4.13, 21.72] |
+| `L_CORPUS` | 19.60 | [9.28, 30.92] |
+
+| comparación pareada `|err_pp_corredor| − |err_pp_M|` | punto | IC95 | orden |
+|---|---|---|---|
+| `L_SOLO_vs_M` | +7.23 pp | [+0.68, +16.92] | **`M-MENOR-ERROR-PP-QUE-L`** |
+| `L_CORPUS_vs_M` | +15.10 pp | [+5.92, +25.71] | **`M-MENOR-ERROR-PP-QUE-L`** |
+
+**Esto es la respuesta a `D4`.** La banda `z` (primaria, sellada) no
+discrimina (`INDETERMINADO`, arriba). La métrica secundaria en puntos
+porcentuales **sí discrimina, en los dos pares**: los dos IC son
+íntegramente positivos — `M` se desvía menos de `R`, en pp absolutos, que
+`L_solo` y que `L+corpus`, sobre las 14 celdas del universo vigente. No
+reabre ni sustituye el veredicto primario `INDETERMINADO` (§7 del
+procedimiento, carácter no-gatante) — es diagnóstico, ordena corredores,
+no adjudica banda.
+
+### `D1` — sin cambio
+
+El re-apuntado de `TRA` no toca `CIV`: las seis celdas `CIV-M-*` siguen
+con el mismo `M=0.294313` byte a byte (§3 de arriba, sin re-derivar). `D1`
+sigue **NO POR AHORA** — se reabre cuando `M` deje de ser constante dentro
+de `CIV`, condición que este acto no cambia.
+
+### Decisiones para mesa — actualización
+
+- **`D4` → FIRMADA por merge** de `ACTO MAESTRA38-M13` (decisión de
+  dirección incluida en el encargo, D-B: puntos porcentuales, `z` sigue
+  primaria). Recibo en `forense/firmas-pendientes.tsv`.
+- **`D1` → sin cambio, NO POR AHORA.**
+
+### Qué NO hace esta sección
+
+No re-abre `D1`. No cambia `delta=0.5` ni la banda `z`. No re-apunta
+`DIN-M-01` (`diagnostico-14-celdas-v1_0.tsv`/`enlace-M-v1_1.md` §3: hay
+una enmienda MEDIDA firmada análoga —`enmienda_enif2024`— pero ninguna
+firma de mesa de este encargo la cita; se reporta, no se aplica; sucesor
+declarado). No mueve ningún tier de `canon/modelo-decision-v4_0.md`. No
+abre el paso 3 (`evaluar()` por celda/eje) — ver `enlace-M-v1_1.md` §6 y
+el encargo, "sucesores declarados, no lanzados".

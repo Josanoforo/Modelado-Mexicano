@@ -2552,6 +2552,13 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-L16-BIS-2, 7/sep/2026: encargo archivado VERBATIM (A.3).
+    # Su bloque CARRILES nombra los tres actos de nube que corren en paralelo
+    # — "TRAMITE-6, N20-N21, M13" — para declarar que ninguno toca este
+    # perimetro. `M13` pelado es un rotulo de OTRO acto (carril de nube,
+    # forense/prereg-duelo-v2/), no un rotulo que este acto instancie: es
+    # mencion de perimetro ajeno, no uso. El encargo verbatim no se edita.
+    "forense/encargos/2026-09-07-MAESTRA38-L16-BIS-2.md",
     # ACTO MAESTRA38-TRAMITE-3, 7/sep/2026: encargo archivado VERBATIM
     # (A.3) tras el relanzamiento con el cuerpo real. Su bloque de perimetro
     # de la CABECERA DE LA CASA cita "AUTOMATIZA-1-E2 fusionado" -- ese "E2"
@@ -3882,6 +3889,20 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # acto escribe el rotulo va siempre con prefijo completo
     # (AUTOMATIZA-2-D) -- D-6.
     "forense/encargos/2026-09-07-AUTOMATIZA-2-D-COSTURAS-FINALES.md",
+    # ACTO MAESTRA38-M13 . M-POR-CELDA PASOS 1 Y 2, 7/sep/2026: encargo
+    # archivado verbatim (A.3), redactado por direccion antes de esta
+    # sesion. Su parrafo "Sucesores declarados, no lanzados" cita "M14"
+    # pelado (paso 3, diseno de fase, Fable) -- nombre provisional de un
+    # acto FUTURO que este encargo explicitamente NO lanza ("sucesor
+    # declarado"), no una autorreferencia ni un habitante ya censado. El
+    # texto verbatim no se edita (A.3).
+    "forense/encargos/2026-09-07-MAESTRA38-M13-DIAGNOSTICO-14.md",
+    # ACTO MAESTRA38-TRAMITE-6, 7/sep/2026: encargo archivado VERBATIM
+    # (A.3). Su bloque CARRILES cita "M13 (nube: forense/prereg-duelo-v2/)"
+    # -- un carril paralelo real, ajeno a este acto (declarado solo por
+    # concurrencia, mismo patron que AUTOMATIZA-1/AUTOMATIZA-2 con "E2"/"E4"
+    # de arriba). El texto verbatim no se edita (A.3).
+    "forense/encargos/2026-09-07-MAESTRA38-TRAMITE-6.md",
     # ACTO MAESTRA38-N20-N21 · DOS-SPECS-CSES-R10-3, 7/sep/2026: encargo
     # archivado VERBATIM (A.3). Su bloque CARRILES cita "M13 (nube: duelo)"
     # como un acto paralelo en vuelo, sin serie MAESTRA<nn> -- rótulo pelado
@@ -4467,6 +4488,31 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # `forense/notas/2026-09-07-MAESTRA38-CARGA-LAPOP-2-resultados.md`, no
     # en el archivo verbatim del encargo.
     "forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP-2.md",
+    # ACTO MAESTRA38-M13 . M-POR-CELDA PASOS 1 Y 2, 7/sep/2026: el encargo
+    # se archiva VERBATIM (A.3) y cita `tramite.mordida.discrecional` en
+    # su cuerpo original (redactado por direccion) dentro de la
+    # VERIFICACION DE EXISTENCIA (A.8) que el propio encargo ya trae --
+    # describe el hallazgo, no re-clasifica la regla. `tools/ya_medido.py`
+    # SI se corrio en A.8 de esta sesion sobre las cinco reglas del marco
+    # (civico.denuncia.miedo_desconfianza, dinero.ahorro.tiene_ahorros,
+    # familia.apoyo.recibe_dinero_familiares,
+    # familia.seguro.volatilidad_ausencia_estado,
+    # tramite.mordida.discrecional): MEDIDA-EN: tramite.yaml las cinco: la
+    # salida vive en el historial de esta sesion y en
+    # diagnostico-14-celdas-v1_0.tsv (Pieza 1 congelada), no en el archivo
+    # verbatim del encargo.
+    "forense/encargos/2026-09-07-MAESTRA38-M13-DIAGNOSTICO-14.md",
+    # ACTO MAESTRA38-TRAMITE-6, 7/sep/2026: el encargo se archiva VERBATIM
+    # (A.3) y cita `civico.clientelismo.prevalencia_lista_listcran_mps2012`
+    # en su A.8 para describir la cláusula `se_mueve_si` que corrige (el
+    # `.dta` de ICPSR bajo Restricted Data Use Agreement, no la lista de
+    # primera mano ya sellada) -- no reclasifica/pre-registra/carga/sella
+    # la regla, solo edita el texto de la condición de movimiento sobre una
+    # entrada ya SELLADA-SIN-CARGA. `tools/ya_medido.py
+    # civico.clientelismo.prevalencia_lista_listcran_mps2012` SÍ se corrió
+    # en A.8 de este acto: `MEDIDA-EN: MAESTRA38-SELLO-2`, sin cambio de
+    # veredicto.
+    "forense/encargos/2026-09-07-MAESTRA38-TRAMITE-6.md",
     # ACTO MAESTRA38-N20-N21 · DOS-SPECS-CSES-R10-3, 7/sep/2026: el encargo se
     # archiva VERBATIM (A.3) y cita `R7.3`/`R7.6`/`R10.3` en su cuerpo
     # original (redactado por dirección) al describir las firmas de mesa y el

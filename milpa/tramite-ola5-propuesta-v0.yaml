@@ -2286,7 +2286,8 @@ reglas_propuestas:
     referida_a: "par de reglas R7.3 civico.voto.agencia_con_secreto (canon/modelo-decision-v4_0.md:553) y R7.6 civico.voto.clientelar_si_observable (:554) -- brazo observabilidad/monitoreo percibido tras D2-g (canon/modelo-decision-v4_0.md §7)"
     situacion: SELLADA-SIN-CARGA  # D2-g (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): brazo observabilidad de R7.6, junto con civico.voto.agencia_con_secreto_encuci2020
     tier: SELLADA  # hereda R7.3/R7.6 tras D2-f/D2-g: [MEDIA], sin movimiento en este acto -- D2-g, D16 (ACTO MAESTRA38-TRAMITE-3, tier es token de la receta, la prosa va en comentario)
-    se_mueve_si: "medición de primera mano en ICPSR 35024 .dta (D6) o un tercer instrumento CORROBORADA con IC fuera de 0 → vuelve a FUERTE; un tercero CONTRARIA → REFUTADA"  # verbatim de D2-f, brazo observabilidad, D2-g
+    # hasta TRAMITE-6: se_mueve_si: "medición de primera mano en ICPSR 35024 .dta (D6) o un tercer instrumento CORROBORADA con IC fuera de 0 → vuelve a FUERTE; un tercero CONTRARIA → REFUTADA"  # verbatim de D2-f, brazo observabilidad, D2-g
+    se_mueve_si: "`35024-0001-Data.dta` bajo Restricted Data Use Agreement (NO-ACCESIBLE, FP-314 #1): se mueve si mesa obtiene el DUA; mientras, el veredicto vigente es el de segunda mano/subconjunto público, o un tercer instrumento CORROBORADA con IC fuera de 0 → vuelve a FUERTE; un tercero CONTRARIA → REFUTADA"  # verbatim de D2-f, brazo observabilidad, D2-g
     nota_alcance: >
       NO reabre la fila C que ADR-155 archivo para R7.3 en el Hito D, y no
       propone cambiarla: aquel C dice que el RDD que su falsador exige no es
@@ -2699,7 +2700,7 @@ reglas_propuestas:
       corpus el 2/sep por ADR-310 y este acto los abre. NO sella: el prior
       0.91/0.09 ASIGNADO y el tier MEDIA-FUERTE NO se tocan aqui.
     situacion: SELLADA-SIN-CARGA  # D2-g (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): universo elegido -- ninguno; la fuente no puede dar p (AMBIGUA-POR-UNIVERSO); prior 0.09 ASIGNADO de milpa/procedencia.yaml pasa a REFUTADO-POR-COTA (ADR-68(a)), cuerpo intacto
-    se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"
+    se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"  # SIN-COBERTURA verificado 6/sep en 350 832 filas (FP-329 (e)); gobierna FP-273 (D10, 3/sep): conservar
     tier: SELLADA  # AMBIGUA-POR-UNIVERSO, D2-g; regla sin dato (S1) -- D16 (ACTO MAESTRA38-TRAMITE-3)
     si:
       disparadores: NO-APLICA
@@ -2923,7 +2924,8 @@ reglas_propuestas:
     referida_a: "regla R7.7 (canon/modelo-decision-v4_0.md:763) -- prevalencia por EXPERIMENTO DE LISTA de PRIMERA MANO, contrastada contra la pregunta directa del mismo cuestionario. NO es p de regla"
     situacion: SELLADA-SIN-CARGA  # ADR-D2j, ACTO MAESTRA38-SELLO-2 Fila 6, 7/sep/2026
     tier: SELLADA  # hereda R7.7 [MEDIA], sin movimiento, SELLO-2 -- prevalencia de primera mano, no mueve tier
-    se_mueve_si: "35024-0001-Data.dta completo (FP-314 #1, n=1 555, ponderado): su veredicto reemplaza a éste, no promedia (S10 §6)"
+    # hasta TRAMITE-6: se_mueve_si: "35024-0001-Data.dta completo (FP-314 #1, n=1 555, ponderado): su veredicto reemplaza a éste, no promedia (S10 §6)"
+    se_mueve_si: "`35024-0001-Data.dta` bajo Restricted Data Use Agreement (NO-ACCESIBLE, FP-314 #1): se mueve si mesa obtiene el DUA; mientras, el veredicto vigente es el de segunda mano/subconjunto público"
     reserva_tier: "microdato de PRIMERA MANO, pero sobre un SUBCONJUNTO publico (n=1004 de ~1555 de la ola 2) y SIN PONDERADOR; no es el panel completo de ICPSR 35024"
     enmienda_maestra38_sello2: >
       ENMIENDA APPEND (7/sep/2026, ACTO MAESTRA38-SELLO-2 Fila 6, ADR-D2j
@@ -3187,7 +3189,7 @@ reglas_propuestas:
       ENTREGA LA TABLA: NO adjudica, NO sella, NO propone letra. El prior
       0.91/0.09 ASIGNADO y el tier MEDIA-FUERTE NO se tocan aqui.
     situacion: SELLADA-SIN-CARGA  # D2-g (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): universo elegido -- ninguno; la fuente no puede dar p; prior 0.09 ASIGNADO de milpa/procedencia.yaml pasa a REFUTADO-POR-COTA (ADR-68(a)), cuerpo intacto
-    se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"
+    se_mueve_si: "instrumento de encuesta con tenencia vigente de e.firma por persona (ENCIG/ENDUTIH/ENIF, ítem nuevo) → medición y carga; SAT publica stock vigente (no acumulado) → re-lectura sobre ocupados"  # SIN-COBERTURA verificado 6/sep en 350 832 filas (FP-329 (e)); gobierna FP-273 (D10, 3/sep): conservar
     tier: SELLADA  # AMBIGUA-POR-UNIVERSO, D2-g; regla sin dato (S1) -- D16 (ACTO MAESTRA38-TRAMITE-3)
     si:
       disparadores: NO-APLICA
@@ -3406,7 +3408,8 @@ reglas_propuestas:
       -- brazo proximidad/focalizacion del reparto tras D2-g (canon/modelo-decision-v4_0.md §7).
     situacion: SELLADA-SIN-CARGA  # D2-g (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): brazo proximidad de R7.6
     tier: SELLADA  # hereda R7.6 tras D2-g: [MEDIA], sin movimiento en este acto -- D2-g, D16 (ACTO MAESTRA38-TRAMITE-3, tier es token de la receta, la prosa va en comentario)
-    se_mueve_si: "segunda medición del brazo proximidad (LAPOP 2021/2023 clien1n/clien1na × vb3n) con signo concordante → tier por brazo según D2"  # D2-g
+    # hasta TRAMITE-6: se_mueve_si: "segunda medición del brazo proximidad (LAPOP 2021/2023 clien1n/clien1na × vb3n) con signo concordante → tier por brazo según D2"  # D2-g
+    se_mueve_si: "segunda medición del brazo proximidad en CIDE-CSES 2015 (pcyc13 zanahoria / pcyc14 garrote, FP-329 (b), verificado en el .sav por LOTE-CRUCE) con signo concordante → tier por brazo según D2; LAPOP 2021/2023 NO traen clien1n/clien1na (FP-329 (f))"  # D2-g
     si:
       disparadores: NO-APLICA
     entonces:
@@ -3475,7 +3478,8 @@ reglas_propuestas:
     situacion: ACOTADA-CON-RESERVA  # decisión de mesa 6/sep/2026, corregida 7/sep/2026, ACTO MAESTRA38-CARGA-LAPOP-2: FP-315 firmada
     tier: PENDIENTE-DE-MESA  # ACOTADA: hereda R7.4 [MEDIA-FUERTE]; se_mueve_si en la entrada -- D16 (ACTO MAESTRA38-TRAMITE-3)
     reserva: "el corazón de la regla no se midió; lo estimable en LAPOP no discrimina"
-    se_mueve_si: "una fuente con sobremuestra rural que estime C_completo (ENVIPE: pieza del LOTE-CRUCE) -- si CUBRE, se escribe S5 v1.1 con la forma C2 fijada en §3.1 y §0.3 coherentes, y se corre como L5-bis"
+    # hasta TRAMITE-6: se_mueve_si: "una fuente con sobremuestra rural que estime C_completo (ENVIPE: pieza del LOTE-CRUCE) -- si CUBRE, se escribe S5 v1.1 con la forma C2 fijada en §3.1 y §0.3 coherentes, y se corre como L5-bis"
+    se_mueve_si: "sin instrumento hoy: ENVIPE 2025 no trae desenlace de protesta (FP-329 (c)); se mueve si entra al corpus una fuente con sobremuestra rural Y desenlace de protesta; hasta entonces, ACOTADA-CON-RESERVA (D2-h) sin fecha"
     si:
       disparadores: NO-APLICA
     entonces:
@@ -3810,3 +3814,79 @@ reglas_propuestas:
       [FUERTE] de R9.2 ni sella MEDIBLE-COMO-ESTA -- eso es de mesa. No
       corrige el dominio de la regla en canon/modelo-decision-v4_0.md.
     medido_en: "ACTO MAESTRA38-LOTE-ENSANUT (L17), 6/sep/2026 -- forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md; tools/medidor_l17_vacunacion_disponible.py"
+
+  - id: salud.atencion.grave_ennvih2002
+    situacion: PENDIENTE-DE-MESA  # el falsador no llego a construirse: no hay
+      # antecedente x desenlace que dispare una situacion del motor. Ver
+      # disparadores D1/D2 abajo -- ENNVIH 2002 no trae el desenlace.
+    si:
+      disparadores: PENDIENTE-DE-MESA  # SINTOMA_GRAVE (es09==1) SI existe y es
+        # medible en las dos ramas del libro (bx/GRAVE n=414, b3b/SERIO
+        # n=3972), pero sin desenlace publico/privado no hay condicional que
+        # ofrecer al motor.
+    entonces:
+      - {conducta: PENDIENTE-DE-MESA, p: null, clase: "NO-ESTIMABLE·sin celda construida"}
+    porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
+      # el PORQUE de R4.4 ("la complejidad excede al consultorio") es
+      # mecanismo, no antecedente exigible -- prereg-caja-S6-L16 v1.1 §4 lo
+      # declara fuera de medicion antes de medir. No se inventa uno aqui.
+    tier: PENDIENTE-DE-MESA  # ACTO MAESTRA38-L16-BIS-2 (7/sep/2026). Token, no
+      # prosa (D16). SELLADA no se mueve en este acto: lo mueve mesa por merge
+      # de la carga (patron SELLO-2).
+    falsable_si: PENDIENTE-DE-MESA
+    veredicto_Bbis: NO-ESTIMABLE
+    veredicto_del_acto: >
+      NO-ESTIMABLE (Rama A, ENNVIH 2002), por dos causas independientes,
+      cualquiera suficiente por si sola. D1: el CHEQUEO DE CONSISTENCIA
+      obligatorio de prereg-caja-S6-L16 v1.1 §1.3 FALLA sobre el subconjunto
+      real (filas de p_es.dta con es09 no nulo, 1 524 folios, 7 467 filas de
+      ponderador resueltas): n_no_nulo_gt0 de fac_3b_px = 5103 queda 25
+      observaciones POR DEBAJO de fac_3a_px = 5128, invirtiendo el orden que
+      la spec exige; el assert de la spec se dispara y el proceso PARA. La
+      spec previo textualmente esta posibilidad (margen de 14 sobre el libro
+      completo, "lo bastante estrecho para que eso sea posible") -- las tres
+      cifras del libro bx completo se reprodujeron exactas (21631/21645/9037),
+      asi que el dato de C1 es correcto; lo que no se sostiene es
+      extrapolarlo al subconjunto que el falsador usa. D2: BUSCA_PUBLICO
+      queda NO-CONSTRUIBLE-SIN-DIRECTORIO-EXTERNO -- caja NO confirma
+      clave1/clave2 como suficientes: sus etiquetas verbatim son "ID CLINICA
+      COMUNITARIO" e "ID PROVEEDOR SALUD COMUNITARIO", llaves de entrada a un
+      directorio externo que no esta en el corpus, no una clasificacion
+      publico/privado. Barrido de etiquetas de todo ENNVIH 2002 con control
+      positivo (PUBLIC|PRIVAD|IMSS|ISSSTE|SSA|SECTOR SI encuentra ca02*,
+      tb33*, nna20*, ed241-244): todos son stock de aseguramiento o tipo de
+      escuela, ninguno pregunta A DONDE ACUDIO tras el sintoma. El desenlace
+      de R4.4 no existe en ENNVIH 2002.
+    nota_alcance: >
+      Los dos brazos se reportan POR SEPARADO y no se agrupan ni se promedian
+      (spec §1.3, A-bis 4): bx = libro Proxy (informante responde por miembros
+      AUSENTES; universo declarado ACOTADO a esa subpoblacion, nunca contra un
+      marginal poblacional ni contra la Rama B), ponderador prescrito
+      fac_3b_px, es09 "HA TENIDO PROBLEMA SALUD GRAVE"; b3b = universo directo,
+      ponderador fac_3b (n_no_nulo_gt0 = 19809, reproducido), es09 "HA TENIDO
+      PROBLEMA SERIO SALUD" -- adjetivo distinto, que §1.1 declara evidencia de
+      la variable y no parte del falsador. NO SE DECLARA NINGUNA PROPORCION
+      PONDERADA NI NINGUN IC95: no se construyo ninguna celda. El bootstrap por
+      hogar dentro de estrato (2000 replicas, semilla 20260907) quedo declarado
+      en COMMIT-1 y no se ejecuto -- no hay celda que bootstrapear. Se_mueve_si
+      de la regla completa queda SIN PODER EVALUARSE con la Rama A (spec §5):
+      hallazgo a reportar, no a forzar; la Rama B (ENSANUT2024, NO-DISCRIMINA,
+      ACTO LOTE-ENSANUT PR #565) ya no sostiene el ENTONCES por si sola. Los
+      dos EXISTE-SATISFACE sellados sin reconciliar que §0.2 senalo siguen sin
+      reconciliar, ahora con un dato mas: el linaje ENNVIH no tiene desenlace.
+      No se sustituyo fac_3b_px por fac_3a_px -- elegir ponderador despues de
+      ver el dato es lo que el pre-registro existe para impedir; re-adjudicarlo
+      contra el subconjunto real es de un acto sucesor, con spec propia. No se
+      corrio la corroboracion ENDIREH 2016 (§1.2/§4 la declaran no-sustituto
+      del falsador; su antecedente es violencia, no sintoma grave). No se
+      abrieron 2005 ni 2009. No se re-corrio la Rama B. No se enmendo la spec.
+    fuente: ["ENNVIH1-2002"]
+    ola_calibracion: "ENNViH-1 (2002) -- unica ola que la spec pre-registra para el desenlace (clave1/clave2 solo 2002)"
+    ic95: null
+    n: null
+    ponderador: "fac_3b_px (bx) / fac_3b (b3b) -- prescritos por la spec, NO APLICADOS: el chequeo de §1.3 PARA el proceso"
+    universo: "bx: subpoblacion de miembros del hogar AUSENTES respondida por proxy (1 848 filas de p_es.dta, 1 524 folios con es09 no nulo). b3b: universo directo del libro 3B (19 804 filas de iiib_es.dta, 8 060 folios). Nunca agrupados."
+    sha256_payload: "8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923"
+    payload_manifiesto_id: ennvih1_2002_hogar_dta
+    spec: "prereg-caja-S6-L16 v1.1 -- forense/prereg-caja/S6-L16-spec-v1_1.md, sha256 7a0120a3a471fe81a732035dec6c2a9ed292d9b722cc408248eaec96d2e6643a"
+    medido_en: "ACTO MAESTRA38-L16-BIS-2, 7/sep/2026 -- forense/notas/2026-09-07-MAESTRA38-L16-BIS-2-resultados.md; data/l16bis2-atencion-grave-rama-a-v1_0.json"
