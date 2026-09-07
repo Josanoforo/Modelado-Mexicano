@@ -36,3 +36,15 @@ Si tras uso real E1 no protege ninguna vía real, E2 no evita divergencias, o E3
 SOLICITUD AL EJECUTOR
 Ejecutar los tres actos en secuencia. Para cada uno: verificar `main` vigente; corregir cualquier línea/ruta que haya cambiado respecto a C3 (y decirlo); hacer sólo el cambio mínimo del elemento; correr su prueba dirigida; correr baseline; abrir PR; no fusionar; reportar qué cambió, qué comportamiento quedó automatizado, qué sigue humano, y qué medición demuestra que pagó. No reabrir el diseño salvo defecto material nuevo — un defecto así es entregable, se reporta con el archivo y la línea, y se PARA.
 
+## CONSUMIDO
+
+Ejecutado: **ACTO AUTOMATIZA-1-E2 · ESTADO-COMUN**, únicamente. `AUTOMATIZA-1-E3` queda compuertado a que este PR fusione (`COMPUERTA: E2 fusionado`, verificable por producto contra `origin/main` -- no se ejecuta en esta sesión: el ejecutor no puede fusionar su propio PR).
+
+PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/569 (rama `acto/automatiza-1-e2`, no fusionado).
+
+Compuerta de entrada verificada por producto antes de tocar código: `git log origin/main --oneline | grep AUTOMATIZA-1-E1` → `PR #568` (commit `dc20b47`), cumplida.
+
+Commits: 0-bis (este archivo, verbatim) · COMMIT 1 (`tools/estado_comun.py` + `tests/test_estado_comun.py`) · COMMIT 2 (migración de `tools/digesto_tramite.py`/`tools/tablero_programa.py`, paridad medida contra el árbol real) · COMMIT 3 (T22 en `tests/check.py` + cascada ADR-363/L0/T25) · este commit (CONSUMIDO).
+
+`python3 tests/check.py --baseline`: LÍNEA BASE VERDE en los tres puntos de verificación. Paridad digesto/tablero confirmada: ambos cuentan las mismas 4 filas `ABIERTA` (`FP-263`, `FP-288`, `FP-303`, `FP-326`), diferencia ∅.
+
