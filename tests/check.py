@@ -1429,6 +1429,17 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # ranura nueva -- solo repite, en su columna "mesa", una que ya vive en
     # el tablero de firmas.
     "forense/tablero/TABLERO-PROGRAMA-v1_1.md",
+    # forense/tablero/TABLERO-PROGRAMA.md -- mismo archivo que
+    # TABLERO-PROGRAMA-v1_1.md (arriba), consolidado bajo el nombre único
+    # por ACTO MAESTRA38-TRAMITE-3 (`ADR-364`/`366`); el nombre nuevo nunca
+    # ganó su propia entrada aquí -- gap señalado por MAESTRA38-TRAMITE-4
+    # sin ejecutarlo, declarado como `FP-330` (recibo) por
+    # ACTO MAESTRA38-TRAMITE-5, 7/sep/2026. Mismo razonamiento que el
+    # nombre viejo: el marcador que dispara `_T22_MARCADOR_PENDIENTE` es la
+    # misma cita de `civico.participacion.tipo_boleta_federal_2016_2024`
+    # (FP-245, ABIERTA desde 2026-09-02) que el tablero repite en su
+    # columna "mesa" sin abrir una ranura propia.
+    "forense/tablero/TABLERO-PROGRAMA.md",
     # forense/notas/2026-08-25-sella-e.md -- discute cinco letras de mesa
     # (L1-L5) y FP-24, todas ya rastreadas en firmas-pendientes.tsv
     # (FP-127..FP-130, FP-63, FP-24) o explícitamente reportadas como sin
