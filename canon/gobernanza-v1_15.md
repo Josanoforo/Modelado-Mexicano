@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **364 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **365 ADR**
 
 > | | |
 > |---|---|
@@ -6279,3 +6279,33 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Deuda que cierra.** El gate de `FP-326`.
 
 **Numeración.** Derivado contra `origin/main` tras `ADR-363` (mismo acto de sesión, `MAESTRA38-SELLO-2`), candidato `364`, sin huecos.
+
+**ADR-365 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `364`, contiguo, sin huecos. Candidateó `363` cuando `origin/main` estaba en `dc20b47` con máximo `362` y ni `MAESTRA38-SELLO-2` ni `MAESTRA38-TRAMITE-3` habían fusionado; renumerado a `365` al sincronizar contra `origin/main = 9ab5b91` (`PR #570`), que ya trae `ADR-363`/`ADR-364` de esos dos actos -- regla de la casa, renumera quien fusiona segundo) · `ACTO AUTOMATIZA-1-E2 · ESTADO-COMUN`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — elimina implementaciones divergentes de `es_abierta`/ramas/ADR-máx/FP-máx entre `tools/digesto_tramite.py`, `tools/tablero_programa.py` y `tests/check.py` (T22); corrige el defecto real medido: `tablero_programa.py` comparaba `estado == "ABIERTA"` y perdía las filas con glosa (`ABIERTA -- pendiente...`).
+
+**Encargo** (archivado por A.3, re-archivado con este segundo acto de `AUTOMATIZA-1` por diseño de la cabecera del propio encargo): `forense/encargos/2026-09-07-AUTOMATIZA-1-E2-ESTADO-COMUN.md`. **Gate verificado.** `COMPUERTA: E1 fusionado` — verificado por producto (`git log origin/main --oneline | grep AUTOMATIZA-1-E1` → `PR #568`, commit `dc20b47`), cumplida antes de tocar código.
+
+**Módulo nuevo** `tools/estado_comun.py` (sin clases, sin estado global, funciones con argumentos explícitos): `es_abierta(estado)` (`^ABIERTA(\s|$)`, movida sin reinterpretar desde `tools/digesto_tramite.py`), `lee_tablero(raiz)` (lectura TSV cruda, tabulador/comillas literales), `ramas_remotas_presentes(raiz)` (`git ls-remote --heads origin`, respaldo `git for-each-ref`; nombre "presentes", no "vivas"), `adr_max(raiz)`, `fp_max(raiz)`.
+
+**`tests/check.py::t15_adr_count()` NO usa `adr_max()`**: conserva su propia derivación como vigía independiente de duplicados/huecos/secuencia -- duplicación deliberada de verificación, no deuda.
+
+**Migración de `tools/digesto_tramite.py`.** `lee_tablero`/`_es_abierta` delegan en `estado_comun` (wrappers locales, sitios de llamada intactos); `seccion_c` usa `ramas_remotas_presentes()` en vez de su propia copia del `ls-remote`+respaldo -- salida byte-idéntica (se conserva el filtro local de `main`).
+
+**Migración de `tools/tablero_programa.py`**, las cuatro del encargo: (A) `git branch -r` → `ramas_remotas_presentes()` (clave `ramas_remotas_vivas` conservada, nota corregida: "presentes", no "vivas"). (B) `adr_max()`. (C) `fp_max()`. (D) `estado == "ABIERTA"` → `es_abierta(estado)` para `fp_abiertas`. El tablero no se reescribe: nada más cambia.
+
+**Migración de T22** (`tests/check.py`, import local vía `sys.path.insert(ROOT, "tools")`, mismo patrón que T26/`vista_cola_adquisicion`): T22(a) `if es_abierta(estado)` corrige el defecto. T22(b) `es_abierta(estado) or estado == "FIRMADA"`. T22(c) **conservado exacto** (`estado == "FIRMADA"`, no `startswith` -- el repo tiene `FIRMADA-POR-MERGE` y compuestos, sin defecto que justifique colapsarlos).
+
+**Paridad medida contra el árbol real (7/sep/2026), antes y después:** digesto abiertas (sin cambio, ya usaba el ancla correcta): `FP-263 · FP-288 · FP-303 · FP-326`. Tablero abiertas ANTES (`estado == "ABIERTA"`, defecto): `FP-288 · FP-326`. Tablero abiertas DESPUÉS (`es_abierta()`): `FP-263 · FP-288 · FP-303 · FP-326`. **Diferencia digesto/tablero, después: ∅.**
+
+**Baseline.** T22 pasó de 47 a 49 WARN al migrar (a): las dos filas nuevas son exactamente `FP-263` y `FP-303` (`ABIERTA -- <glosa>`, antes perdidas por la igualdad exacta), verificado antes de tocar `tests/baseline.json` -- ninguna otra causa apareció. `python3 tests/check.py --baseline` sigue en **LÍNEA BASE VERDE** sin editar `tests/baseline.json`: T22 no es una de las comprobaciones que esa línea base congela (fluctúa por diseño con el estado real del tablero), así que no hacía falta recifrarla.
+
+**`registro-rotulos.tsv`.** No se censa fila nueva: el rótulo del acto (`AUTOMATIZA-1-E2`) no sigue el patrón `ESPACIO-Nn` de la serie `MAESTRA<nn>` y nunca aparece pelado en nada que este acto escriba -- mismo razonamiento que `ADR-362` (`AUTOMATIZA-1-E1`). `tests/check.py::_T25_ARCHIVOS_CONOCIDOS` gana el nuevo encargo archivado (mismos `E1`/`E2`/`E3` pelados autorreferenciales del documento, re-archivado por diseño con este segundo acto).
+
+**Test nuevo** `tests/test_estado_comun.py`: tabla de `es_abierta`, `lee_tablero` sobre TSV con glosa y comillas literales, `adr_max`/`fp_max` sobre fixtures mínimos, `ramas_remotas_presentes` con la fuente de respaldo simulada (sin red ni remoto real).
+
+**Lo que este acto NO hace.** No normaliza todos los estados ni crea `es_firmada()` genérico. No cambia el significado de `FIRMADA-POR-MERGE`. No toca tiers ni el motor. No centraliza todos los contadores del tablero. No hace que T15 use la implementación que verifica. No toca `tools/tablero_vista.py`. No reescribe partes grandes de `tablero_programa.py` -- sólo las cuatro líneas migradas.
+
+**Deuda que abre.** Ninguna.
+
+**Deuda que cierra.** La discrepancia digesto/tablero sobre filas `ABIERTA` con glosa.
+
+**Numeración.** Candidateó `363` contra `origin/main = dc20b47` (máximo `362`, `AUTOMATIZA-1-E1` ya fusionado); renumerado a `365` al sincronizar contra `origin/main = 9ab5b91` (`PR #570`), que ya trae `ADR-363`/`ADR-364` de `MAESTRA38-SELLO-2`/`MAESTRA38-TRAMITE-3` -- regla de la casa, renumera quien fusiona segundo. `AUTOMATIZA-1-E3` queda compuertado a que este PR fusione: renumera quien fusiona segundo si algo más se adelanta.
