@@ -4025,16 +4025,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/cola/2026-09-07-GEN2-E4-LIMPIEZA-C2-PODA.md",
     "forense/encargos/cola/2026-09-07-GEN2-E5-CALC-0001-0003.md",
     "forense/encargos/cola/2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md",
-    # ACTO GEN2-E1 · LIMPIEZA-C1, 7/sep/2026: encargo archivado VERBATIM
-    # (A.3, ruta SIN `cola/` -- distinta de la ya exenta arriba por GEN2-E0).
-    # Cita "para firma de mesa (E4)" -- E4 es GEN2-E4 · LIMPIEZA-C2 · PODA
-    # (censado arriba en la fila GEN2-E0..GEN2-E6 de registro-rotulos.tsv,
-    # el acto sucesor que ejecutará la poda), no una reclamación ni un
-    # rótulo nuevo. El texto verbatim no se edita (A.3); la nota de cierre
-    # de este mismo acto (forense/notas/2026-09-07-GEN2-E1-limpieza-
-    # arboles.md) se redactó para no repetir el token pelado, así que no
-    # necesita esta exención.
-    "forense/encargos/2026-09-07-GEN2-E1-LIMPIEZA-C1.md",
+    # ACTO GEN2-E1 · LIMPIEZA-C1, 7/sep/2026: NO añade exención propia aquí.
+    # El acto había archivado el encargo verbatim (A.3) en
+    # `forense/encargos/2026-09-07-GEN2-E1-LIMPIEZA-C1.md` (ruta sin `cola/`)
+    # ANTES de sincronizar con `origin/main`, con su propia exención en esta
+    # lista. Al fusionar `origin/main` (que ya traía GEN2-E0 fusionado, con
+    # el archivo de cola de arriba ya exento), esa ruta colisionaba por T02
+    # (nombre normalizado) con `forense/encargos/cola/2026-09-07-GEN2-E1-
+    # LIMPIEZA-C1.md` -- el mismo archivo verbatim, dos rutas. Se borró el
+    # duplicado (mismo patrón que GEN2-E2/FP-338: los actos derivados de la
+    # cola GEN2 no re-archivan el encargo, citan la cola directamente) y con
+    # él la necesidad de esta exención: la ruta de arriba ya cubre este acto.
 }
 
 
