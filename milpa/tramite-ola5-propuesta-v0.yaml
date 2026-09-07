@@ -2283,9 +2283,10 @@ reglas_propuestas:
 
   - id: civico.voto.agencia_lapop2023
     entrada_nueva: true
-    referida_a: "par de reglas R7.3 civico.voto.agencia_con_secreto (canon/modelo-decision-v4_0.md:553) y R7.6 civico.voto.clientelar_si_observable (:554)"
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    referida_a: "par de reglas R7.3 civico.voto.agencia_con_secreto (canon/modelo-decision-v4_0.md:553) y R7.6 civico.voto.clientelar_si_observable (:554) -- brazo observabilidad/monitoreo percibido tras D2-g (canon/modelo-decision-v4_0.md §7)"
+    situacion: SELLADA-SIN-CARGA  # D2-g (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): brazo observabilidad de R7.6, junto con civico.voto.agencia_con_secreto_encuci2020
+    tier: "hereda R7.3/R7.6 tras D2-f/D2-g: [MEDIA], sin movimiento en este acto"  # D2-g
+    se_mueve_si: "medición de primera mano en ICPSR 35024 .dta (D6) o un tercer instrumento CORROBORADA con IC fuera de 0 → vuelve a FUERTE; un tercero CONTRARIA → REFUTADA"  # verbatim de D2-f, brazo observabilidad, D2-g
     nota_alcance: >
       NO reabre la fila C que ADR-155 archivo para R7.3 en el Hito D, y no
       propone cambiarla: aquel C dice que el RDD que su falsador exige no es
@@ -2554,9 +2555,10 @@ reglas_propuestas:
 
   - id: civico.voto.agencia_con_secreto_encuci2020
     entrada_nueva: true
-    referida_a: "regla R7.3 civico.voto.agencia_con_secreto (canon/modelo-decision-v4_0.md:553) y R7.6 civico.voto.clientelar_si_observable (:554) -- SEGUNDO INSTRUMENTO de la pieza a-bis de MAESTRA35-L9"
-    situacion: PENDIENTE-DE-MESA
-    tier: PENDIENTE-DE-MESA
+    referida_a: "regla R7.3 civico.voto.agencia_con_secreto (canon/modelo-decision-v4_0.md:553) y R7.6 civico.voto.clientelar_si_observable (:554) -- SEGUNDO INSTRUMENTO de la pieza a-bis de MAESTRA35-L9 -- brazo observabilidad/monitoreo percibido tras D2-g (canon/modelo-decision-v4_0.md §7)"
+    situacion: SELLADA-SIN-CARGA  # D2-g (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): brazo observabilidad de R7.6, junto con civico.voto.agencia_lapop2023
+    tier: "hereda R7.3/R7.6 tras D2-f/D2-g: [MEDIA], sin movimiento en este acto"  # D2-g
+    se_mueve_si: "medición de primera mano en ICPSR 35024 .dta (D6) o un tercer instrumento CORROBORADA con IC fuera de 0 → vuelve a FUERTE; un tercero CONTRARIA → REFUTADA"  # verbatim de D2-f, brazo observabilidad, D2-g
     si:
       disparadores: NO-APLICA
     entonces:
@@ -3390,8 +3392,10 @@ reglas_propuestas:
       v4_0.md §7). Esta entrada NO reabre ni sustituye ese sello -- es el diseño de
       MAESTRA38-N5 §2.6 (REFORMULABLE (a)), aceptado por mesa via FP-298/N6, sobre un
       reactivo distinto (exposicion a oferta clientelar, no secreto/observabilidad).
-    situacion: PENDIENTE-DE-MESA  # diseño aceptado (FP-298, 4/sep/2026); falsador CORRIDO por ACTO MAESTRA38-L4 (6/sep/2026), CONTRARIA. La CARGA al motor es decision de mesa: FP-316.
-    tier: PENDIENTE-DE-MESA
+      -- brazo proximidad/focalizacion del reparto tras D2-g (canon/modelo-decision-v4_0.md §7).
+    situacion: SELLADA-SIN-CARGA  # D2-g (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): brazo proximidad de R7.6
+    tier: "hereda R7.6 tras D2-g: [MEDIA], sin movimiento en este acto"  # D2-g
+    se_mueve_si: "segunda medición del brazo proximidad (LAPOP 2021/2023 clien1n/clien1na × vb3n) con signo concordante → tier por brazo según D2"  # D2-g
     si:
       disparadores: NO-APLICA
     entonces:
@@ -3457,8 +3461,10 @@ reglas_propuestas:
       encuadre sin cambio de contenido), aceptado por mesa via FP-298/N6, que ancla
       las CINCO piezas del SI...ENTONCES a reactivos LAPOP multi-ola en vez de a la
       ficha de una sola ola.
-    situacion: PENDIENTE-DE-MESA  # diseño aceptado (FP-298, 4/sep/2026); falsador CORRIDO por ACTO MAESTRA38-L5 (6/sep/2026), NO-DISCRIMINA con el corazon de la regla NO MEDIDO. Sin carga: FP-316.
-    tier: PENDIENTE-DE-MESA
+    situacion: ACOTADA-CON-RESERVA  # decisión de mesa 6/sep/2026, corregida 7/sep/2026, ACTO MAESTRA38-CARGA-LAPOP-2: FP-315 firmada
+    tier: "hereda R7.4 [MEDIA-FUERTE], sin movimiento"
+    reserva: "el corazón de la regla no se midió; lo estimable en LAPOP no discrimina"
+    se_mueve_si: "una fuente con sobremuestra rural que estime C_completo (ENVIPE: pieza del LOTE-CRUCE) -- si CUBRE, se escribe S5 v1.1 con la forma C2 fijada en §3.1 y §0.3 coherentes, y se corre como L5-bis"
     si:
       disparadores: NO-APLICA
     entonces:
@@ -3548,8 +3554,9 @@ reglas_propuestas:
       prereg-caja-S8-L18 (ACTO MAESTRA38-N11), sobre el hallazgo de MAESTRA38-N10 §2.6 (modulo
       AOJ de LAPOP, universo que ni MAESTRA34-N5 -ENDIREH- ni MAESTRA36-N6 -CNGMD- tenian
       asignado).
-    situacion: PENDIENTE-DE-MESA  # falsador CORRIDO por ACTO MAESTRA38-L18 (6/sep/2026), NO-DISCRIMINA. Sin carga: FP-316.
-    tier: PENDIENTE-DE-MESA
+    situacion: SELLADA-SIN-CARGA  # D2-h (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): R10.3 conserva [FUERTE], gana cláusula de movimiento
+    tier: "hereda R10.3 [FUERTE], sin movimiento"  # D2-h
+    se_mueve_si: "segunda medición con la misma batería (AOJ1/AOJ11/AOJ12/vic1) en una ola ≥ 2019 ya en corpus; si tampoco discrimina → FUERTE→MEDIA por D2; si discrimina → la de 2004 queda como acotada temporalmente"  # D2-h
     si:
       disparadores: NO-APLICA
     entonces:

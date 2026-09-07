@@ -4294,6 +4294,16 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # el archivo verbatim del encargo -- el acto PARÓ antes de ejecutar
     # ninguna de las tres decisiones.
     "forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP.md",
+    # ACTO MAESTRA38-CARGA-LAPOP-2 · PROPAGA-FP316-FP315-CORREGIDO, 7/sep/2026:
+    # el encargo se archiva VERBATIM (A.3) y cita
+    # `civico.protesta.agravio_urbano_lapop2019` en su cuerpo original
+    # (redactado por dirección) solo para declarar que esa pieza NO se toca
+    # ("sellada por D2-e") -- ilustrativo, no una nueva clasificación/
+    # pre-registro/carga/sello. `tools/ya_medido.py` SÍ se corrió en A.8
+    # sobre las seis piezas y sobre R7.3/R7.6/R7.4/R10.3; la salida vive en
+    # `forense/notas/2026-09-07-MAESTRA38-CARGA-LAPOP-2-resultados.md`, no
+    # en el archivo verbatim del encargo.
+    "forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP-2.md",
 }
 
 

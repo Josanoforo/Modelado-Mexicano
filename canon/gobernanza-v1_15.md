@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **358 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **361 ADR**
 
 > | | |
 > |---|---|
@@ -6175,6 +6175,34 @@ WARN, sin entradas nuevas.
 **Deuda que cierra.** `NUNCA-MEDIDA` de `salud.atencion.grave` y `salud.vacunacion.disponible` — ambos quedan con al menos una corrida real archivada.
 
 **`tests/check.py --baseline`**: ver resultado en la nota de cierre.
+
+**ADR-359 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `358`, contiguo, sin huecos; candidato `359`) · `ACTO MAESTRA38-CARGA-LAPOP-2 · PROPAGA-FP316-FP315-CORREGIDO` — relanzamiento corregido de `MAESTRA38-CARGA-LAPOP` tras el PARO de `ADR-358`.** COMPUERTA verificada por producto: `PR #566` (que trae `ADR-358`) ya fusionado en `origin/main = 28c3965` — cumplida. Dirección revisó los tres desajustes que `ADR-358` reportó y los corrigió en el propio encargo, verbatim, sección por sección:
+
+**(1)** Confirma que el id correcto para la decisión (b) es `civico.protesta.agravio_urbano_multiola` (no `_lapop2019`, que sigue sellada e intacta bajo `D2-e`). **(2)** Reconoce que las dos piezas gemelas de `R7.3` (`civico.voto.agencia_lapop2023`, `civico.voto.agencia_con_secreto_encuci2020`) seguían `PENDIENTE-DE-MESA` — `D2-f` solo movió el tier del canon. **(3)** Sustituye el mecanismo de partición de `R7.6`: en vez de crear `R7.10`/`R7.11` (que habría exigido tocar `§3.7`, la tabla de `§7`, `REGISTRO` de `tests/validador_registro_ids.py` y recifrar «49 reglas» en tres archivos), opta por **partir por lectura, sin IDs nuevos** — enmienda `D2-g`, que declara `R7.6` como disyunción de dos mecanismos (brazo observabilidad y brazo proximidad), cada uno con su tier vigente y su `se_mueve_si`, con la creación de IDs propios declarada como **sucesor**, no ejecutada aquí.
+
+**Ejecutado en este acto:**
+
+- **`canon/modelo-decision-v4_0.md §7`**: enmiendas `D2-g` (brazo observabilidad/proximidad de `R7.6`, cita `FP-316`(a) y `forense/prereg-caja/S4-L4-spec-v1_0.md §4.3` verbatim) y `D2-h` (cláusula de movimiento de `R10.3`, cita `se_mueve_si` verbatim), append inmediatamente después de `D2-f`. Ninguna fila de la tabla de IDs se edita; ningún bullet de `§3.7` se añade. Ver incisos `ADR-360` (`D2-g`) y `ADR-361` (`D2-h`) abajo.
+- **`milpa/tramite-ola5-propuesta-v0.yaml`** (append/edición de campos, cinco entradas): `civico.voto.agencia_lapop2023` y `civico.voto.agencia_con_secreto_encuci2020` → `SELLADA-SIN-CARGA`, brazo observabilidad, tier hereda `[MEDIA]`; `civico.voto.clientelar_si_observable_lapop2019` → `SELLADA-SIN-CARGA`, brazo proximidad, tier hereda `[MEDIA]`; `civico.protesta.agravio_urbano_multiola` → `ACOTADA-CON-RESERVA` (vocabulario nuevo, declarado), tier hereda `R7.4` `[MEDIA-FUERTE]`; `comunicacion.inseguridad.ver_oir_callar_lapop2004` → `SELLADA-SIN-CARGA`, tier hereda `R10.3` `[FUERTE]`. `civico.protesta.agravio_urbano_lapop2019` (D2-e) **no se toca**.
+- **`forense/firmas-pendientes.tsv`**: `FP-315` → `FIRMADA` (S5 v1.1 fija C2 solo cuando exista fuente que la haga estimable); `FP-316` → `FIRMADA` (propagada por este ADR, `D2-g`/`D2-h`).
+
+**Verificación A.8 (comando y salida pegados en `forense/notas/2026-09-07-MAESTRA38-CARGA-LAPOP-2-resultados.md`):** las seis entradas tenían exactamente el estado que el encargo esperaba (cinco `PENDIENTE-DE-MESA`, `_lapop2019` `SELLADA-SIN-CARGA`) antes de este acto; `python3 tests/validador_registro_ids.py` da la **misma salida** antes y después (49 IDs, 27 en perímetro, sin cambio); `milpa/tramite.yaml` intacto (20/20).
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP-2.md`. **Gate verificado.** `COMPUERTA: PR de ADR-358 fusionado` — verificado por producto (`git merge-base --is-ancestor` del commit de `PR #566` contra `origin/main`), cumplida.
+
+**Lo que este acto NO hace.** No crea `R7.10`/`R7.11` (sucesor declarado en `D2-g`, no ejecutado). No toca `§3.7` ni la tabla de IDs de `§7`. No toca `tests/validador_registro_ids.py`. No carga nada a `milpa/tramite.yaml`. No escribe `S5 v1.1`. No edita `ADR-358` ni el `PARO` que documenta.
+
+**Perímetro.** Toca `canon/modelo-decision-v4_0.md` (§7 append), `milpa/tramite-ola5-propuesta-v0.yaml` (5 entradas), `forense/firmas-pendientes.tsv` (2 filas), este ADR + incisos, `canon/estado-programa-v1_12.md` L0, `canon/registro-rotulos.tsv` (rótulo del acto), `forense/notas/2026-09-07-MAESTRA38-CARGA-LAPOP-2-{spec,resultados}.md`, `forense/hallazgos.md`.
+
+**Deuda que abre.** Si una carga al motor de `R7.6` llegara a exigir IDs por brazo, ese acto sucesor ejecuta `(a-1)` (declarado en `D2-g`): `R7.<n>` nuevos, `§3.7` + tabla `§7` + `REGISTRO` de `tests/validador_registro_ids.py` + recifrado de «49 reglas» en tres archivos.
+
+**Deuda que cierra.** `FP-315`, `FP-316`. El `PARO` de `ADR-358` — las tres piezas de mesa quedan propagadas.
+
+**`tests/check.py --baseline`**: ver resultado en la nota de cierre.
+
+**ADR-360 (inciso de `ADR-359`, enmienda de canon `D2-g`) · `ACTO MAESTRA38-CARGA-LAPOP-2`**, protocolo ADR-29 (retropropagación S1, `gobernanza-v1_15.md §3.1`) — `R7.6` se lee como disyunción de dos mecanismos (brazo observabilidad/monitoreo percibido: `civico.voto.agencia_lapop2023`, `civico.voto.agencia_con_secreto_encuci2020`; brazo proximidad/focalización: `civico.voto.clientelar_si_observable_lapop2019`), cada uno con su tier vigente (`[MEDIA]`, heredado de `D2-f`/tabla `§7`, sin movimiento) y su `se_mueve_si` propio, sin crear IDs nuevos. Motivo: `FP-316`(a), tres piezas `CONTRARIA` con signos opuestos entre brazos, `forense/prereg-caja/S4-L4-spec-v1_0.md §4.3` («si dan en sentidos distintos… el id necesita partirse — decisión de mesa»). Ver texto completo en `canon/modelo-decision-v4_0.md §7`.
+
+**ADR-361 (inciso de `ADR-359`, enmienda de canon `D2-h`) · `ACTO MAESTRA38-CARGA-LAPOP-2`**, protocolo ADR-29 — `R10.3` conserva `[FUERTE]` y gana cláusula de movimiento: `comunicacion.inseguridad.ver_oir_callar_lapop2004` (`ACTO MAESTRA38-L18`) mide el corazón de la regla por primera vez y `NO-DISCRIMINA` (IC95 `[−13.90,+10.03]` pp sobre 266 víctimas de LAPOP 2004) — primer número que existe contra una `[FUERTE]` y no la sostiene, pero una sola ola no basta para bajar el tier, y D2 exige `se_mueve_si`. Ver texto completo en `canon/modelo-decision-v4_0.md §7`.
 
 **ADR-358 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `357`, contiguo, sin huecos; candidato `358`) · `ACTO MAESTRA38-CARGA-LAPOP · PROPAGA-FP316-FP315` — PARO, cero decisiones ejecutadas.** COMPUERTA verificada por producto contra `origin/main = 038ec4f` (PR #564 `MAESTRA38-L2` y PR #565 `MAESTRA38-LOTE-ENSANUT`, ambos ya fusionados) — cumplida. El acto encontró tres puntos donde el encargo (`forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP.md`, archivado 0-bis) no cuadra con el árbol, y para en los tres en vez de ajustar el texto para que cuadre (`el ejecutor propaga una decisión dictada, no decide`, ADR-76/79):
 
