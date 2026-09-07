@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **362 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **364 ADR**
 
 > | | |
 > |---|---|
@@ -6249,3 +6249,33 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Deuda que cierra.** Ninguna nueva -- cierra el riesgo de diseño que dependía de que nadie olvidara editar `data/raices.local.yaml`; la seguridad queda garantizada por construcción.
 
 **Numeración.** Derivado contra `origin/main = 1b469b7` (máximo real `361`, tras `ADR-358`-`361` de `MAESTRA38-CARGA-LAPOP`/`-2`), candidato `362`, sin huecos. `AUTOMATIZA-1-E2`/`E3` quedan compuertados a que este PR fusione: regla de la casa, renumera quien fusiona segundo si algo más se adelanta.
+
+**ADR-363 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `362`, contiguo, sin huecos; candidato `363`) · `ACTO MAESTRA38-SELLO-2`**, 7/sep/2026, decisión de dirección (Fable) — dos incisos, ambos enmienda de canon en `canon/modelo-decision-v4_0.md §7`, ninguno cambia tier ni fila de la tabla de IDs.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-SELLO-2.md`. `COMPUERTA: ninguna`.
+
+**Inciso (a), enmienda de canon `D2-i` (de `ADR-363`).** Primera carga de `R9.2` (`salud.vacunacion.disponible`, `[FUERTE]`, perímetro) a `milpa/tramite.yaml` bajo el id `salud.vacunacion.disponible` — la regla nunca había estado cargada (mismo caso que `R7.3` en `D2-f`). Entrada copiada verbatim de `milpa/tramite-ola5-propuesta-v0.yaml:3709-3744` (id `salud.vacunacion.disponible_ensanut2024`), veredicto `CORROBORADA` (Rama B primaria, `p=77.78%` IC95 `[67.28%,85.76%]`, `n=254`, `ACTO MAESTRA38-LOTE-ENSANUT` L17). Resuelve el gate de `FP-326` (`forense/firmas-pendientes.tsv` → `FIRMADA-RECIBO`): la reasignación letra=razón/dígito=vacuna corregida que esa fila registró es la que entra al motor, no la asunción original de la spec. Ver texto completo en `canon/modelo-decision-v4_0.md §7`.
+
+**Inciso (b), enmienda de canon `D2-j` (de `ADR-363`).** `civico.clientelismo.prevalencia_lista_listcran_mps2012` (`milpa/tramite-ola5-propuesta-v0.yaml`, contra `R7.7`, `[MEDIA]`) queda `SELLADA-SIN-CARGA`, heredando `[MEDIA]` sin movimiento — microdato de primera mano (`list::mexico`) pero sobre subconjunto público sin ponderador (`reserva_tier` de la propia entrada), no el panel completo de ICPSR 35024; veredicto `Bbis`: el contraste lista-menos-directa no se dispara (IC95 `[0.0216,0.2375]` excluye 0 por arriba). Cuando el `.dta` completo baje (`FP-314`/`FP-316`) su veredicto reemplaza a esta entrada, per `prereg-caja-S10-L2-LISTA §6`. Ver texto completo en `canon/modelo-decision-v4_0.md §7`.
+
+**"Bloque B" de benchmark (filas 2-5 del encargo).** No ejecutado en este acto — el encargo condiciona su ejecución a que el mensaje de lanzamiento diga explícitamente "con bloque B", y no lo dijo. Las cuatro entradas quedan `PENDIENTE-DE-MESA` sin movimiento de tier; nota "benchmark §B a la vista, decisión pendiente" en `forense/hallazgos.md`.
+
+**Deuda que abre.** Ninguna.
+
+**Deuda que cierra.** El gate declarado en `FP-326` (columna `gatea`: "que mesa decida si se sella una v1_1 de S7-L17-spec…") — resuelto por la decisión de cargar la entrada corregida al motor, no por escribir la v1_1 de la spec (la spec sellada sigue sin editarse, como `FP-326` ya declaraba).
+
+**Numeración.** Derivado contra `origin/main` tras `ADR-362` (`ACTO AUTOMATIZA-1-E1`, fusionado en `dc20b47`/`PR #568`), candidato `363`, sin huecos.
+
+**ADR-364 (derivado por el comando de la casa: `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1` → `363`, contiguo, sin huecos; candidato `364`) · `ACTO MAESTRA38-TRAMITE-3`**, 7/sep/2026, decisión de dirección (Fable) — cierra lo verificable del encargo y deja PARO parcial explícito sobre lo que no llegó completo a la sesión ejecutora.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-TRAMITE-3.md`. `COMPUERTA: ninguna`.
+
+**Ejecutado.** (1) `FP-326` → `FIRMADA-RECIBO` en `forense/firmas-pendientes.tsv`, firmada por la decisión de `ADR-363(a)` que carga la entrada corregida al motor. (2) Consolidación del tablero del programa a un solo archivo con un solo nombre (decisión de mesa verbatim: "1 solo archivo con un solo nombre, TODO que haga referencia se alinea a ello"): `forense/tablero/TABLERO-PROGRAMA-v1_1.md` (contenido más reciente disponible en el árbol real) pasa a vivir bajo `forense/tablero/TABLERO-PROGRAMA.md`; el contenido que antes ocupaba ese nombre (v1.0) queda en `forense/tablero/TABLERO-PROGRAMA-v1_0-superado.md`, con cabecera `SUPERADO POR` apuntando al archivo vigente. (3) Línea nueva en `forense/hallazgos.md` documentando ambos puntos.
+
+**PARO parcial declarado, no ejecutado.** El cuerpo íntegro del encargo `MAESTRA38-TRAMITE-3` (detalle línea-por-línea de `D16` — ajustes de tier para las 4+1+3+2 entradas que el encargo lista —, `D11`/`D12` — marcas `CONSUMIDO`/`RETIRADO` en la lista de encargos `LISTO` —, y el contenido del adjunto TABLERO-PROGRAMA-v1_5.md (adjunto nunca llegado al repo) que el encargo citaba como fuente del tablero consolidado) **no llegó completo a esta sesión**: el mensaje de lanzamiento trae, en el lugar de ese cuerpo, una nota del propio orquestador remitiendo al "prompt de invocación original" con instrucción explícita de declarar qué falta en vez de inventarlo si no llega. Verificado: ni el adjunto v1.5 ni el detalle de D16/D11/D12 están en el repo (`grep -ri "TABLERO-PROGRAMA-v1_5\|D16\b" -r .` fuera de esta nota y de los dos encargos archivados, sin resultados). Este acto NO ejecuta esas tres piezas para no inventar cifras de tier, ids de encargos `LISTO`, o contenido de un tablero v1.5 que nunca vio. Queda para un acto sucesor con el adjunto/detalle real.
+
+**Deuda que abre.** `D16`/`D11`/`D12`/tablero-v1.5 de `MAESTRA38-TRAMITE-3`, pendientes del cuerpo íntegro del encargo (no de una decisión de mesa nueva).
+
+**Deuda que cierra.** El gate de `FP-326`.
+
+**Numeración.** Derivado contra `origin/main` tras `ADR-363` (mismo acto de sesión, `MAESTRA38-SELLO-2`), candidato `364`, sin huecos.

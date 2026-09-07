@@ -1231,3 +1231,40 @@ reglas:
     se_mueve_si: "tercer instrumento CONTRARIA → baja a MEDIA"
     sha256_payload: "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
     payload_manifiesto_id: encuci2020_bd_dbf
+
+  # ── CARGA MAESTRA38-SELLO-2 · Fila 1 (7/sep/2026) · decision de mesa
+  # «1, la cargamos» -- ADR-D2i (canon/modelo-decision-v4_0.md §7) --
+  # PRIMERA carga de R9.2 (salud.vacunacion.disponible, canon:575,
+  # [FUERTE], Sí de perimetro) a este motor: la regla NUNCA habia estado
+  # cargada aqui (mismo caso que R7.3 en D2-f: "milpa/tramite.yaml NO
+  # carga" antes de esta carga). Entrada copiada verbatim de
+  # milpa/tramite-ola5-propuesta-v0.yaml:3709-3744 (id
+  # salud.vacunacion.disponible_ensanut2024), Rama B primaria, veredicto
+  # CORROBORADA (medido_en ACTO MAESTRA38-LOTE-ENSANUT L17, 6/sep/2026).
+  # El `si.disparadores` de la ficha original de R9.2 (vacuna/servicio
+  # disponible + campana llega) no se re-deriva aqui -- este acto carga
+  # el PORQUE (razon de no vacunacion, logistica vs no-logistica), no
+  # re-mide el disparador; se deja NO-APLICA, igual que la entrada fuente.
+  - id: salud.vacunacion.disponible
+    situacion: CARGADA  # ADR-D2i, primera carga de R9.2
+    tier: FUERTE  # canon/modelo-decision-v4_0.md:575, sin cambio
+    si:
+      disparadores: NO-APLICA  # verbatim de la entrada fuente -- este acto mide el PORQUE, no el disparador
+    entonces:
+      - {conducta: razon_no_vacunacion_logistica, p: 0.777762, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)"}
+      - {conducta: razon_no_vacunacion_no_logistica, p: 0.222238, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)"}
+    porque: {generador: [], mecanismo: "PENDIENTE-DE-MESA -- este acto mide el PORQUE literal (logistico vs actitudinal/otro), no lo re-deriva (verbatim de la entrada fuente)"}
+    falsable_si: NO-APLICA
+    fuente: ["forense/prereg-caja/S7-L17-spec-v1_0.md", "ENSANUT2024-v2026-09-01/adultos_ensanut2024_w.stata.stata.zip", "ENSANUT2024-v2026-09-01/adolescentes_ensanut2024_w.stata.stata.zip"]
+    ola_calibracion: "ENSANUT Continua 2024 (unica ola de esta rama)"
+    universo: "12 924 personas en adultos_ensanut2024_w.dta; 254 menciones 'Si' (179 personas distintas) en el bloque a0927, desglosadas no_habia_vacunas=152, enfermo=47, no_estaba_quien_aplica=28, no_derechohabiente=16, otra_razon=11"
+    ic95: [0.672777, 0.857561]
+    n: 254
+    enmienda_ensanut2024:
+      sellada_por: "decision de direccion 7/sep/2026 («1, la cargamos») -- ACTO MAESTRA38-SELLO-2, ADR-D2i"
+      origen: "milpa/tramite-ola5-propuesta-v0.yaml:3709-3744 (id salud.vacunacion.disponible_ensanut2024), copiada verbatim"
+      aplica_a: [razon_no_vacunacion_logistica, razon_no_vacunacion_no_logistica]
+      veredicto_Bbis: CORROBORADA
+      medido_en: "ACTO MAESTRA38-LOTE-ENSANUT (L17), 6/sep/2026 -- forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md; tools/medidor_l17_vacunacion_disponible.py"
+      nota: "No mueve el tier [FUERTE] de R9.2 (ya lo tenia) -- esta carga es la primera vez que la regla entra al motor, no un cambio de tier. Rama A (ENNVIH) y Rama C (descriptiva, adolescentes) NO se cargan aqui -- solo la Rama B primaria de la spec, tal como la propuesta la sella."
+      sha256_payload_manifiesto_referido: "f3aea086cee60e59fa3858334eaa6e00218e30a0b19c67fb37ae806fd586830f"  # sha256 de la spec S7-L17-spec-v1_0.md, no un payload de datos
