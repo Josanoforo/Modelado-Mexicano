@@ -1178,3 +1178,16 @@ Detalle completo:
 `forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md`. ADR de
 cierre y `FP` de la spec mal escrita (`S7-L17`, asignación letra/dígito
 invertida): ver `MAESTRA38-N14` (este acto de cierre).
+
+## `ACTO MAESTRA38-N18` (Sonnet, 7/sep/2026) — recibo
+
+Renumerado de `N17` a `N18`: `MAESTRA38-N17` ya está censado en
+`canon/registro-rotulos.tsv` por `ACTO MAESTRA38-CARGA-LAPOP-2`
+(fusionado, PR #566) — colisión de rótulo, regla de la casa: quien
+fusiona segundo renumera.
+
+`forense/prereg-caja/S7-L17-spec-v1_1.md` (+ `.sha256`): registra el
+mapeo real del bloque `a0927` (§2, letra=razón/dígito=vacuna) que
+`FP-326`/`ADR-357` ya habían corregido — la medición de `L17` no se
+re-corre, solo se deja el mapeo correcto en la spec. `v1.0` y su
+`.sha256` intactos. Medición: cero.

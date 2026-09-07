@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **367 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **368 ADR**
 
 > | | |
 > |---|---|
@@ -6352,3 +6352,15 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Deuda que cierra.** Los 9 pasos de cierre a mano que el encargo cita se reducen a 3 (texto ADR/anotación L0, rótulo/`## CONSUMIDO`, push/PR); los otros 6 quedan derivados, detectados o reconciliados por el tool.
 
 **Numeración.** Derivado contra `origin/main` (máximo real `366`: `ADR-363` `MAESTRA38-SELLO-2`, `ADR-364`/`366` `MAESTRA38-TRAMITE-3` (PARO parcial y relanzamiento), `ADR-365` `AUTOMATIZA-1-E2`, todos ya fusionados), candidato `367`, sin huecos.
+
+**ADR-368 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `367`, contiguo, sin huecos; candidato `368`) · `ACTO MAESTRA38-N18`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — `forense/prereg-caja/S7-L17-spec-v1_1.md` (+ `.sha256`) registra, en la spec de pre-registro de `salud.vacunacion.disponible` (`R9.2`), el mapeo real del bloque `a0927` (§2: letra=razón, dígito=vacuna) que `ADR-357`/`FP-326` ya habían corregido contra el `.dta` — `v1.0` supuso letra=vacuna/dígito=razón. `v1.1` no re-corre la medición de `L17` (`ADR-357`), que ya usó el mapeo correcto: solo deja la spec congelada consistente con lo medido. `v1.0` y su `.sha256` intactos, sin editar.
+
+**Colisión de rótulo.** El encargo real invocaba `MAESTRA38-N17`, ya censado en `canon/registro-rotulos.tsv` por `ACTO MAESTRA38-CARGA-LAPOP-2` (fusionado, `PR #566`). Renumerado a `MAESTRA38-N18`: regla de la casa, renumera quien fusiona segundo.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-N18-S7-L17-SPEC-V1_1.md`. **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo ("sin corpus ni red"), no dispara verificación.
+
+**Deuda que abre.** Ninguna.
+
+**Deuda que cierra.** Ninguna (defecto de mapeo ya cerrado por `ADR-357`/`FP-326`; esta pieza solo deja la spec congelada consistente).
+
+**Numeración.** Derivado contra `origin/main = b1be143` (máximo real `367`, `ADR-367` `AUTOMATIZA-1-E3`, fusionado `PR #572`), candidato `368`, sin huecos.
