@@ -7,9 +7,9 @@
 > | **ARCHIVO** | `forense/benchmark/BENCHMARK-MOTORES-COMPARABLES.md` |
 > | **NOMBRE ESTABLE** | **`benchmark-motores-comparables`** — cítalo así, nunca por nombre de archivo |
 > | **REEMPLAZA A** | Nada en este repo. `ACTO MAESTRA38-TRAMITE-5` buscó un borrador de mesa "benchmark v1.2" (`find . -iname "*benchmark*v1_2*" -o -iname "*agregado*v1_2*"`) y **no encontró prosa alguna** — el único artefacto v1.2 en el árbol es el resultado numérico `forense/prereg-duelo-v2/agregado-v1_2-resultado.json` y su script `agregado_v1_2.py`. Tampoco existen `v1.0`/`v1.1` de un "benchmark de motores" en el repo (mismo `find`, 0 resultados) — si existieron en mesa, viven fuera de este árbol y no fue posible incluirlos ni moverlos a `forense/historico/`. Este documento **no es una transcripción** de ese borrador ausente: es una reconstrucción hecha únicamente de cifras verificables por `grep`/lectura directa en este repo (`agregado-v1_2-resultado.json`, `procedimiento-scoring-v1_1.md` sellado, `canon/modelo-decision-v4_0.md`, `forense/tablero/TABLERO-PROGRAMA.md`). Donde una cifra del encargo de dirección no se pudo verificar, se declara ausente en vez de inventarse (D-13). |
-> | **QUÉ ES** | El estado, a `origin/main` de este acto, de la comparación entre los tres corredores medibles del duelo adversarial — `L` (extracción de literatura/LLM), `M` (motor de 49 reglas) y `R` (regla/referencia) — tal como los deja `agregado_v1_2.py` sobre el marco-M-sorteado de 14 celdas. No es un benchmark de "modelos de lenguaje" en el sentido de la industria: es el benchmark interno del programa entre sus propios tres mecanismos de estimación. |
+> | **QUÉ ES** | El estado, a `origin/main` de este acto, de la comparación entre los tres corredores medibles del duelo adversarial — `L` (extracción de literatura/LLM), `M` (motor de 49 reglas) y `R` (regla/referencia) — tal como los deja `agregado_v1_3.py` sobre `marco-M-sorteado-v1_3.tsv` (14 celdas). Las secciones §0-§5 conservan, fechada, la corrida `v1.2` que este documento reportó primero; la sección `v1.3` y su addendum traen el estado vigente. No es un benchmark de "modelos de lenguaje" en el sentido de la industria: es el benchmark interno del programa entre sus propios tres mecanismos de estimación. |
 > | **QUÉ NO ES** | No sella ningún veredicto nuevo, no mueve ningún tier de `canon/modelo-decision-v4_0.md`, no cambia `procedimiento-scoring-v1_1.md` (sellado, `ADR-262`, intocado). No mide México — es meta-medición del propio motor. No es el benchmark que dirección tenía en mesa (ver `REEMPLAZA A`): es lo que este repo puede sostener con evidencia hoy. |
-> | **VERIFICAS ASÍ** | `python3 -c "import json; d=json.load(open('forense/prereg-duelo-v2/agregado-v1_2-resultado.json')); print(d['comparacion_principal_pareada']['veredicto'], d['version_marco'])"` → `INDETERMINADO v1_2`. `grep -c "^## Dominio" data/INFRAESTRUCTURA-v1_0.md` → `9` (infraestructura vigente citada en §5). |
+> | **VERIFICAS ASÍ** | `python3 -c "import json; d=json.load(open('forense/prereg-duelo-v2/agregado-v1_3-resultado.json')); print(d['comparacion_principal_pareada']['veredicto'], d['version_marco'])"` → `INDETERMINADO v1_3` (estado vigente). El mismo comando sobre `agregado-v1_2-resultado.json` → `INDETERMINADO v1_2` (histórico, conservado en §0-§5). `grep -c "^## Dominio" data/INFRAESTRUCTURA-v1_0.md` → `9` (infraestructura vigente citada en §5). |
 
 **Acto:** `ACTO MAESTRA38-TRAMITE-5`, 7/sep/2026, entorno **NUBE sin corpus** (sesión sin `data/raw` montada, verificado — `ls data/raw` → `No such file or directory`).
 
@@ -134,7 +134,7 @@ Sección nueva, `append`. El cuerpo `v1.2` de arriba (§0-§5) **no se edita**
 `enlace-M-v1_1.md` re-apunta **solo** `TRA-M-02`/`TRA-M-03`/`TRA-M-07` de
 `paga_mordida` (`ASIGNADO`, `p=0.62`) a `paga_mordida_encig2025`
 (`MEDIDO·p(tasa base ponderada)`, `p=0.085118`) — la enmienda firmada por
-DM (1/sep/2026, `ADR-270`/`ADR-276`) que el motor ya traía y el enlace
+DM (1/sep/2026), sellada por `ADR-282` (firma DM 1/sep/2026, `ACTO MAESTRA34-N4 · PLOMERIA-v1_2`), que a su vez cita la serie de 8 olas de `ADR-276`, que el motor ya traía y el enlace
 v1.0 no leía (`diagnostico-14-celdas-v1_0.tsv`, Pieza 1). Las 11 celdas
 restantes no cambian. `p`/`clase` de `milpa/tramite.yaml` no se tocan —
 solo la columna `conducta` del marco decide qué fila de la regla se lee.
@@ -236,12 +236,12 @@ porque `ola_calibracion` alimenta F-DD, que decide **si una celda puntúa**.
 El `grado_DD` de las tres sigue `P1 PUNTUA`, pero ahora por la razón
 correcta.
 
-### El hallazgo que motivó `M13`, conservado
+### El hallazgo que motivó `MAESTRA38-M13`, conservado
 
 **v1.2 reveló que las tres celdas `TRA` consumían el `ASIGNADO` histórico**
 (`paga_mordida`, `p = 0.62`, `clase ASIGNADO`) pese a que el motor ya traía
 la serie ENCIG de 8 olas (2011-2025, rango 4.45 %–8.51 %) que lo declara
-`REFUTADA-POR-R` (`ADR-270`/`ADR-276`). **v1.3 re-enlaza esas tres celdas a
+`REFUTADA-POR-R` (`ADR-282` (firma DM 1/sep/2026, `ACTO MAESTRA34-N4 · PLOMERIA-v1_2`), que a su vez cita la serie de 8 olas de `ADR-276`). **v1.3 re-enlaza esas tres celdas a
 la conducta medida preexistente** `paga_mordida_encig2025`
 (`p = 0.085118`, `MEDIDO·p(tasa base ponderada)`). No se creó ninguna
 medición nueva: la corrección consiste en dejar de leer un número que el

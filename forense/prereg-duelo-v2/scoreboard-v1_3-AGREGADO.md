@@ -20,10 +20,21 @@ Esas tres celdas consumían el valor histórico **ASIGNADO**
 (`tramite.mordida.discrecional → paga_mordida`, `p = 0.62`) pese a que el
 motor ya traía, sellada, la conducta **MEDIDA**
 (`paga_mordida_encig2025`, `p = 0.085118`, `MEDIDO·p(tasa base
-ponderada)`, firma DM 1/sep/2026, `ADR-270`/`ADR-276`). v1.3 las re-enlaza
+ponderada)`, sellada por `ADR-282` (firma DM 1/sep/2026, `ACTO MAESTRA34-N4 · PLOMERIA-v1_2`), que a su vez cita la serie de 8 olas de `ADR-276`). v1.3 las re-enlaza
 a esa conducta preexistente. **No se buscó diversidad de `M`**: la
 corrección se hace porque el par `(regla, conducta)` correcto ya existe
 medido en `milpa/tramite.yaml`, no porque mejore el marcador.
+
+**Advertencia de lectura, antes de las tablas.** Las cifras de v1.3 que siguen
+**no son nuevas**: `PR #592` ya las había producido calculando el `M` de las
+tres celdas *en memoria*, y su `agregado-v1_3-resultado.json` está en `main`
+desde entonces. Comparado contra aquél, este resultado tiene **cero claves con
+valor distinto** — las únicas diferencias son dos claves nuevas de procedencia
+(`fuente_M_por_celda`, `orden_resolucion_M`). La comparación v1.2 → v1.3 de las
+tablas es legítima y es la que el encargo pide, pero **lo que este acto aporta
+es auditabilidad, no movimiento de marcador**: que ese `M` exista como archivo
+sellado, con su cita, su `ola_calibracion` y su `grado_DD`. Detalle en la
+reserva (a) del §6.
 
 Verificado mecánicamente contra v1.2 (§19 del encargo), **todo PASA**:
 
@@ -78,8 +89,9 @@ el control **D/E** leído celda a celda.
 
 `M` baja su mediana `|z|` de **11.43 a 7.43** y su IC superior de 18.72 a
 14.70. `L_SOLO` y `L_CORPUS` **no se mueven en absoluto** — es el control
-**C** visto desde el agregado. **Ningún corredor cae en banda: 0/14 para
-`M`, 0/13 para `L_SOLO`, 1/14 para `L_CORPUS`.** El re-enlace no pone a
+**C** visto desde el agregado. **Ningún corredor entra en banda como
+conjunto: 0/14 celdas para `M`, 0/13 para `L_SOLO`, y sólo 1/14 para
+`L_CORPUS`.** El re-enlace no pone a
 `M` en banda; sólo deja de compararlo contra un número que el propio motor
 declara refutado.
 
@@ -138,7 +150,8 @@ existe `paga_mordida_encuci2020` (`p = 0.125822`, `MEDIDO`, calibrada en
 `R` de la celda (0.126025) que el que se usó. **No se usa**, y la razón no
 es el marcador: bajo F-DD la celda y la calibración serían la misma
 encuesta y la misma ola, así que daría **`P0 VERIFICACION`** y no
-puntuaría. `M13` usa `paga_mordida_encig2025` como enlace externo exacto,
+puntuaría. `MAESTRA38-M13` usa `paga_mordida_encig2025` como enlace externo
+exacto,
 **decidido antes de abrir `R`** y no elegido por mejorar el resultado.
 
 ---
@@ -220,11 +233,23 @@ código nuevo de `D4`. El tamaño real del universo pareado se lee de
 `universo_pareado_n` (bloques `D4`). Todo control mecánico debe usar esos,
 no `n_celdas`.
 
-**(f) Reserva `d1` de `DIN-M-01`**: sin cambio respecto de v1.2 — el
+**(f) El mismo defecto sigue vivo en otra regla, sin corregir.**
+`tramite.mordida.con_registro / paga_mordida` (`ASIGNADO`, `p = 0.12`,
+`milpa/tramite.yaml:130`) sigue resolviendo su `ola_calibracion` a la de
+`enmienda_encig2025` (`:161`) **aunque el `aplica_a` de esa enmienda (`:156`)
+lo excluya explícitamente** — el mismo patrón que este acto corrige en
+`discrecional/paga_mordida`. El resolver nuevo lo deja en pie por diseño
+(regla 3 del §3: cero enmiendas → mecanismo histórico, que barre el bloque
+entero de la regla). **No se corrige aquí**: la REGLA DE PARADA del encargo lo
+prohíbe («No aprovechar el acto para corregir otros `M` repetidos») y ninguna
+celda del universo de 14 usa esa regla (0 ocurrencias de `con_registro` bajo
+`corridas-M/`). Sucesor posible, no lanzado.
+
+**(g) Reserva `d1` de `DIN-M-01`**: sin cambio respecto de v1.2 — el
 veredicto de banda es el mismo con ambas `EE`, calculado aparte por
 `din_m_01_doble_ee.py`, no recalculado aquí.
 
-**(g) Sin interpretación causal nueva.** Este documento reporta el efecto
+**(h) Sin interpretación causal nueva.** Este documento reporta el efecto
 de un cambio de enlace pre-registrado sobre cifras ya selladas. No afirma
 que `M` sea mejor motor que `L`: la comparación principal sigue
 `INDETERMINADO` y su IC cruza el cero.
