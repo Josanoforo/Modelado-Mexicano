@@ -499,3 +499,25 @@ AUTOMATIZA-2: CERRADA
 
 No fusionar.
 Mesa fusiona.
+
+## CONSUMIDO
+
+Ejecutado: **ACTO AUTOMATIZA-2-D · COSTURAS-FINALES**, único microfix de cierre de la campaña `AUTOMATIZA-2` — no reabre el diseño de `A`/`B`/`C`, no abre `AUTOMATIZA-3`.
+
+**PR:** [`#587`](https://github.com/Josanoforo/Modelado-Mexicano/pull/587), rama `claude/automatiza-2-costuras-finales-1k2gji`, contra `main`. **NO fusionado por el ejecutor** — mesa fusiona.
+
+**Qué se hizo.** (1) Reordenado el camino directo de `/acto` (CIERRE §4, nuevos pasos 8-12): empuja la rama → abre UN PR y toma su número real → `## CONSUMIDO` en un commit posterior citando ese número → `tests/check.py --baseline` una última vez → guard final de HEAD — corrige la contradicción que citaba `## CONSUMIDO` antes de que el PR (y su número) existieran. Las dos excepciones "bajo `/despacha`, no lo dupliques" se conservan; `despacha.md` sin cambios. (2) `tools/sella_sha256.py --verifica` pasa de `f.readline()` a validar el contenido completo del sidecar contra `_SIDECAR_RE` (`re.fullmatch`), rechazando una segunda línea de basura o la ausencia del `\n` final como `SELLO_NO_COINCIDE`; contrato de `C` intacto. `tests/test_sella_sha256.py` nuevo (permanente, 6 casos, todos `OK`) — a diferencia de `C`, esta vez sí apareció un defecto real.
+
+**Verificación real.** `python3 tools/sella_sha256.py --verifica` contra `forense/prereg-caja/S7-L17-spec-v1_1.md` y `S3-C1-spec-v1_0.md` → `SELLO_COINCIDE` en los dos, sidecars sin modificar. `tests/test_sella_sha256.py` → 6/6 `OK`, incluyendo el caso que reproduce el defecto exacto (primera línea correcta + segunda línea de basura → `SELLO_NO_COINCIDE`; confirmado que el `f.readline()` previo aceptaba ese mismo sidecar). `python3 tests/check.py --baseline` → `LÍNEA BASE: VERDE`, sin `FAIL` nuevo.
+
+**Notas de la revisión declaradas no materiales** (sin trabajo abierto por ellas, per encargo §14): dictamen faltante en A/B/C; reporte final prometido por C; `RENUMERA-DIAGNÓSTICO` (sigue descartado); E4 corrida natural (ventana 1–3/oct/2026, no se descarga nada para este microfix); marcador huérfano del tablero de `PR #586` (preexistente, ya retirado, no pertenece a este acto).
+
+**Perímetro.** Toca `.claude/commands/acto.md`, `tools/sella_sha256.py`, `tests/test_sella_sha256.py` (nuevo), `tests/check.py` (sólo `_T25_ARCHIVOS_CONOCIDOS`), `canon/gobernanza-v1_15.md` (`ADR-380`), `canon/estado-programa-v1_12.md` (L0 + tabla §0), este encargo (A.3 + `## CONSUMIDO`). **No toca** corpus, `data/raw`, `descargas_mx`, `Downloads`, manifiesto, adquisición, relaciones, motor, scoring, tablero, cron, `tests/baseline.json` (freeze), CI, GitHub Actions, branch protection, `.claude/commands/despacha.md`, ni el diseño de `A`/`B`/`C`.
+
+**Deuda que abre.** Ninguna.
+
+**Deuda que cierra.** Las dos costuras residuales de `AUTOMATIZA-2` señaladas por la revisión post-fusión.
+
+**`tests/check.py --baseline`**: VERDE, ver arriba.
+
+**AUTOMATIZA-2: CERRADA.** No se busca `AUTOMATIZA-3`. Siguiente frente sustantivo señalado por dirección: `M-POR-CELDA` (trabajo de modelo, no de automatización).
