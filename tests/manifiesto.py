@@ -59,6 +59,29 @@ pueda verificarlo.
              original estaba mal, o la fuente cambió de contenido) -- el
              script la reporta, no la resuelve ni la silencia sobreescribiendo.
 
+--compara-sha   como --compara pero mecánico, para consumo de cron/log, no
+             de humano: --id (uno) + --archivo (ruta TAL CUAL -- NO se une
+             a data/raw/, es la que el caller ya resolvió, p.ej. el DEST de
+             un cron). Salida de una sola línea (`estado=… id=… sha_
+             manifiesto=… sha_real=… miembros_zip=…`) y código de salida
+             por estado -- 0 COINCIDE · 1 CAMBIO-DE-CONTENIDO · 2 SIN-
+             REFERENCIA-UNIVOCA (id ausente o duplicado en `entradas`) · 3
+             SIN-SHA-EN-REFERENCIA (la entrada existe pero no tiene
+             sha256) · 4 ARCHIVO-NO-LEGIBLE. `miembros_zip` es la segunda
+             señal (Enmienda 1, sólo para .zip): hash barato -- lista
+             ordenada (nombre, CRC32, tamaño) de los miembros vía zipfile,
+             sin extraer -- contra la misma lista del archivo YA
+             REGISTRADO (resuelto por `raiz`+`archivo` de la entrada), si
+             ese archivo está en disco; si no, o si `ruta_archivo` no es
+             .zip, o la `raiz` de la entrada no es `raiz_escaneable()`
+             (perímetro físico, ACTO AUTOMATIZA-1-E1), NO-DISPONIBLE. No
+             prueba equivalencia semántica ni
+             identidad criptográfica descomprimida. E4 (frontera
+             epistemológica): detecta identidad de bytes -- no decide que
+             el recurso cambió conceptualmente, no reemplaza payload, no
+             actualiza manifiesto ni relaciones, no lanza mediciones. Una
+             discrepancia queda para adjudicación humana (Enmienda 4).
+
 RAÍCES (30/jul, corrección de diseño): hay tres, nunca dos.
     data_raw      repo/data/raw/ -- lo que baja un agente. Integrada:
                   se resuelve por código, nunca por archivo.
@@ -187,6 +210,7 @@ import platform
 import re
 import sys
 import tempfile
+import zipfile
 
 import yaml
 
@@ -1428,6 +1452,105 @@ def cmd_compara(a, manifiesto_path, raw_dir):
         sys.exit(1)
 
 
+def _miembros_zip(ruta):
+    """Lista ordenada (nombre, CRC32, tamaño) de los miembros de un .zip,
+    sin extraer nada -- es la lectura barata de A.7 (identidad = contenido,
+    no envoltura). None si `ruta` no es un .zip legible."""
+    try:
+        with zipfile.ZipFile(ruta) as zf:
+            return sorted((info.filename, info.CRC, info.file_size)
+                           for info in zf.infolist())
+    except (zipfile.BadZipFile, OSError):
+        return None
+
+
+def comparar_sha_manifiesto(entradas, id_manifiesto, ruta_archivo, root=None, raw_dir=None):
+    """E4 -- PDN-COMPARA: contrasta `ruta_archivo` (TAL CUAL, nunca unida a
+    `raw_dir`: es la ruta que el caller ya resolvió) contra la referencia
+    ÚNICA de `id_manifiesto` en `entradas`. Frontera epistemológica: detecta
+    identidad de bytes: no decide que el recurso cambió conceptualmente, no
+    reemplaza payload, no actualiza manifiesto ni relaciones, no lanza
+    mediciones. Una discrepancia (SHA distinto) permanece hasta adjudicación
+    humana (Enmienda 4) -- este comparador nunca la resuelve solo.
+
+    Devuelve {"estado", "id", "sha_manifiesto", "sha_real", "miembros_zip",
+    "codigo"}. Códigos: 0 COINCIDE · 1 CAMBIO-DE-CONTENIDO ·
+    2 SIN-REFERENCIA-UNIVOCA (id ausente o duplicado en `entradas`) ·
+    3 SIN-SHA-EN-REFERENCIA (la entrada existe pero no tiene sha256) ·
+    4 ARCHIVO-NO-LEGIBLE.
+
+    `miembros_zip` (Enmienda 1, segunda señal): sólo se calcula para
+    `ruta_archivo` con extensión .zip, como el hash de la lista ordenada
+    de miembros (`_miembros_zip`) contra la misma lista del archivo YA
+    REGISTRADO (resuelto vía `resolver_raiz(entrada['raiz'], root,
+    raw_dir)` + `entrada['archivo']`) si ese archivo está en disco; si no
+    -- o si `root`/`raw_dir` no se dieron, o `ruta_archivo` no es .zip, o
+    la `raiz` de la entrada no es `raiz_escaneable()` (perímetro físico,
+    ACTO AUTOMATIZA-1-E1) -- queda en NO-DISPONIBLE. No prueba
+    equivalencia semántica ni identidad criptográfica descomprimida."""
+    base = {"id": id_manifiesto, "sha_manifiesto": None, "sha_real": None,
+            "miembros_zip": "NO-DISPONIBLE"}
+
+    coincidencias = [e for e in entradas if e.get("id") == id_manifiesto]
+    if len(coincidencias) != 1:
+        return {**base, "estado": "SIN-REFERENCIA-UNIVOCA", "codigo": 2}
+    entrada = coincidencias[0]
+
+    sha_manifiesto = entrada.get("sha256")
+    if not sha_manifiesto:
+        return {**base, "estado": "SIN-SHA-EN-REFERENCIA", "codigo": 3}
+    base["sha_manifiesto"] = sha_manifiesto
+
+    try:
+        sha_real = sha256_de(ruta_archivo)
+    except OSError:
+        return {**base, "estado": "ARCHIVO-NO-LEGIBLE", "codigo": 4}
+    base["sha_real"] = sha_real
+
+    nombre_raiz = entrada.get("raiz", RAIZ_INTEGRADA)
+    if (ruta_archivo.lower().endswith(".zip") and root is not None and raw_dir is not None
+            and raiz_escaneable(nombre_raiz)):
+        # ACTO AUTOMATIZA-1-E1 (perímetro físico vigente): esta función SÍ
+        # hace I/O físico (exists/hash) sobre la raíz registrada -- se
+        # atiene a RAICES_ESCANEABLES igual que cmd_verifica/cmd_escanea.
+        # Una raíz histórica fuera del perímetro deja miembros_zip en
+        # NO-DISPONIBLE, no un error (el estado principal ya se decidió
+        # arriba, contra `ruta_archivo`, que el caller resolvió aparte).
+        base_dir = resolver_raiz(nombre_raiz, root, raw_dir)
+        ruta_registrada = (os.path.join(base_dir, entrada["archivo"])
+                            if base_dir is not None and entrada.get("archivo") else None)
+        if ruta_registrada is not None and os.path.exists(ruta_registrada):
+            miembros_nuevo = _miembros_zip(ruta_archivo)
+            miembros_registrado = _miembros_zip(ruta_registrada)
+            if miembros_nuevo is not None and miembros_registrado is not None:
+                base["miembros_zip"] = ("IGUAL" if miembros_nuevo == miembros_registrado
+                                         else "DISTINTO")
+
+    if sha_real == sha_manifiesto:
+        return {**base, "estado": "COINCIDE", "codigo": 0}
+    return {**base, "estado": "CAMBIO-DE-CONTENIDO", "codigo": 1}
+
+
+def cmd_compara_sha(a, manifiesto_path, raw_dir):
+    """CLI de comparar_sha_manifiesto -- salida de una línea pensada para un
+    log de cron (ADQ-PDN), no para lectura de manifiesto. No toca
+    data/manifiesto.yaml ni data/manifiesto-staging.yaml."""
+    a.id = _id_unico(a.id, "--compara-sha")
+    if not a.id or not a.archivo:
+        print("ERROR: --compara-sha exige --id (uno) y --archivo (ruta tal "
+              "cual del payload a contrastar).", file=sys.stderr)
+        sys.exit(1)
+
+    root = os.path.dirname(os.path.dirname(manifiesto_path))
+    _, entradas = leer_manifiesto(manifiesto_path)
+    r = comparar_sha_manifiesto(entradas, a.id, a.archivo, root=root, raw_dir=raw_dir)
+    print(f"estado={r['estado']} id={r['id']} "
+          f"sha_manifiesto={r['sha_manifiesto'] or '-'} "
+          f"sha_real={r['sha_real'] or '-'} "
+          f"miembros_zip={r['miembros_zip']}")
+    sys.exit(r["codigo"])
+
+
 def main():
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -1439,6 +1562,10 @@ def main():
     g.add_argument("--compara", action="store_true",
                     help="Contrasta un payload nuevo (--archivo) contra una entrada "
                          "ya registrada (--id), sin escribir nada")
+    g.add_argument("--compara-sha", action="store_true",
+                    help="Como --compara pero mecánico (una línea, código de "
+                         "salida por estado), para consumo de cron/log. "
+                         "--archivo es la ruta TAL CUAL, no se une a data/raw/")
     g.add_argument("--escanea", default=None, metavar="RAIZ",
                     help="Nombre de una raíz (data_raw / lo que declare "
                          "data/raices.local.yaml) -- NUNCA una ruta. Escribe "
@@ -1476,7 +1603,10 @@ def main():
                      help="url_origen a aplicar a los archivos que casen con "
                           "--grupo/--grupo-n (--escanea)")
     ap.add_argument("--archivo", default=None,
-                     help="ruta relativa dentro de data/raw/ (--registra)")
+                     help="ruta relativa dentro de data/raw/ (--registra/"
+                          "--compara); con --compara-sha, ruta TAL CUAL -- "
+                          "no se une a data/raw/, es la que el caller ya "
+                          "resolvió (p.ej. el DEST de un cron)")
     ap.add_argument("--usado-para", dest="usado_para", default=None)
     ap.add_argument("--url-origen", dest="url_origen", default=None)
     ap.add_argument("--descargado-por", dest="descargado_por", default=None)
@@ -1500,6 +1630,8 @@ def main():
         cmd_escanea(a, manifiesto_path, raw_dir)
     elif a.promueve:
         cmd_promueve(a, manifiesto_path, raw_dir)
+    elif a.compara_sha:
+        cmd_compara_sha(a, manifiesto_path, raw_dir)
     else:
         cmd_compara(a, manifiesto_path, raw_dir)
 
