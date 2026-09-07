@@ -49,4 +49,4 @@ corpus montado), rama `acto/maestra38-lote-cruce`, `ADR-370`, `FP-328`.
 Las seis piezas cerraron; ninguna PARÓ. Medición: cero.
 Resultados: `forense/notas/2026-09-06-MAESTRA38-LOTE-CRUCE-resultados.md`.
 COMMIT-1: `forense/prereg-caja/S11-CRUCE-spec-v1_0.md` (+ `.sha256`).
-PR: ver la línea de abajo, añadida al abrirlo.
+PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/578 (abierto contra `main`, NO fusionado — el merge es de mesa).
