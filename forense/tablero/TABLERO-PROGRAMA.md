@@ -1,5 +1,34 @@
 **CONSOLIDADO A UN SOLO ARCHIVO, UN SOLO NOMBRE — ACTO MAESTRA38-TRAMITE-3, 7/sep/2026 (decisión de mesa verbatim: "1 solo archivo con un solo nombre, TODO que haga referencia se alinea a ello").** Este archivo (`forense/tablero/TABLERO-PROGRAMA.md`) es, desde este acto, el ÚNICO tablero vigente — la ruta antes ocupada por el contenido v1.0 (2/sep/2026) queda en `forense/tablero/TABLERO-PROGRAMA-v1_0-superado.md`, marcada `SUPERADO POR` este archivo, no borrada. El contenido de abajo (etiquetado v1.1 en su propio cuerpo) es el más reciente que existe en el árbol real: **el adjunto TABLERO-PROGRAMA-v1_5.md (adjunto nunca llegado al repo) que el encargo de MAESTRA38-TRAMITE-3 citaba como fuente NO llegó a esta sesión ni está en el repo** — ni en `forense/tablero/`, ni en ninguna otra ruta (`grep -ri "TABLERO-PROGRAMA-v1_5" -r .` sin resultados fuera de esta nota). PARO parcial declarado sobre esa pieza: este acto NO inventa el contenido v1.2-v1.5 (los snapshots intermedios, si existieron en alguna conversación de mesa, no llegaron a este árbol tampoco); usa el v1.1 real como el más reciente disponible, tal como el encargo autoriza cuando el adjunto no está disponible. De aquí en adelante, cualquier actualización de este tablero se hace EN este mismo archivo (`TABLERO-PROGRAMA.md`), sin crear un sufijo de versión nuevo — si se necesita snapshot con fecha, va en el cuerpo (como ya hace la cabecera de abajo), no en el nombre del archivo. Ver `## CONSUMIDO` de `forense/encargos/2026-09-07-MAESTRA38-TRAMITE-3.md` para el detalle completo de este PARO.
 
+<!-- TABLERO-DERIVADO:BEGIN -->
+## Estado vivo derivado
+
+- **Procedencia.** SHA `3d6dee3` · fecha del commit `2026-09-06` · ¿árbol == origin/main? `True`.
+- **Motor.** reglas totales `21` · reglas con dato (>=1 conducta MEDIDO*) `20` · reglas sin dato `1` · conductas MEDIDO* `50` · tiers `{'FUERTE': 19, 'MEDIA': 2}`.
+- **Corredor.** marco vigente `marco-M-v1_2` (sorteado/congelado) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
+- **Corpus lógico.** entradas del manifiesto `1568` · filas de registro de curación `135` · filas de relaciones `228` · filas del inventario de reactivos v1.2 `178247`.
+- **Gobernanza operativa.** ADR máximo `380` · FP máximo `330` · FP abiertas: FP-263, FP-303, FP-329 · encargos archivados `359` (consumidos `341`) · cola de encargos:
+  - `2026-08-31-MAESTRA33-B2-MARCO-M-SORTEA-v1_1.md`: CONSUMIDO
+  - `2026-09-01-MAESTRA34-L2-ARBITRA-v1_2.md`: CONSUMIDO
+  - `2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md`: CONSUMIDO
+  - `2026-09-01-MAESTRA34-N3-AGREGA-2.md`: LISTO
+  - `2026-09-01-MAESTRA34-N5-RE-EVALUA-OLA6.md`: CONSUMIDO
+  - `2026-09-02-MAESTRA35-L10-OLA6-SALUD-L1.md`: LISTO
+  - `2026-09-08-MAESTRA34-E1-REVISION-FALSADORES.md`: CONSUMIDO
+- **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, `data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `forense/encargos/*.md`, `forense/encargos/cola/*.md`.
+
+**Protocolo vigente.** La actualización factual de este bloque se hace con:
+
+```
+git fetch origin
+python3 tools/tablero_programa.py --actualiza
+python3 tests/check.py --baseline
+```
+
+El humano solo actualiza la interpretación (las tablas curadas §2.1-2.5 y la narrativa) cuando hay una decisión o un hallazgo que valga la pena registrar. Las recetas antiguas del snapshot histórico (p. ej. `git branch -r` o `awk '$6=="ABIERTA"'`) NO gobiernan esta actualización -- son historia, no el mecanismo vigente.
+
+<!-- TABLERO-DERIVADO:END -->
+
 # TABLERO DEL PROGRAMA · Psicología del Mexicano Contemporáneo / Modelado-Mexicano
 **v1.1 · snapshot `9cbd8d8` (origin/main, merge PR #485, 2/sep/2026 18:21 −06:00) · derivado el 2/sep/2026 por la conversación del tablero · snapshot anterior `57a365e` (v1.0, dirección/Fable)**
 

@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **381 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **382 ADR**
 
 > | | |
 > |---|---|
@@ -6603,7 +6603,33 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 
 ---
 
-**ADR-381 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `380` contra `origin/main = 3d6dee3` (candidato al fetch), verificado también contra `HEAD` de esta rama antes de correr — contiguo, sin huecos) · `ACTO MAESTRA38-M13 · M-POR-CELDA PASOS 1 Y 2`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — re-sella el enlace celda→(regla,conducta) de `TRA-M-02/03/07` en `forense/prereg-duelo-v2/` y añade la métrica secundaria pre-registrada (`D4`) al procedimiento de scoring; no toca `milpa/**`.
+**ADR-381 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `380` contra `origin/main = 3d6dee3`, candidato `381`, contiguo, sin huecos) · `ACTO MAESTRA38-TRAMITE-6`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — propagación mecánica de decisiones ya firmadas en mesa; cinco piezas, todas de edición, cero medición.
+
+**(1) ICPSR (D-A).** `FP-263`: la columna `estado` de `forense/firmas-pendientes.tsv` traía `ABIERTA` al inicio del campo (verificado con `awk -F'\t' '$1=="FP-263"{print $6}'`) mientras el propio texto ya declaraba `EJECUTADA` desde el 6/sep (`ACTO MAESTRA38-L2`) — EXISTE-NO-SATISFACE, corregido con un append que hace que el campo lea `EJECUTADA` de punta a punta, sin tocar el texto anterior. `FP-314` #1: pasa de la clasificación heredada `EXIGE-CUENTA` (que A4 nunca confirmó como `public-use` contra la firma de mesa del 6/sep) a `NO-ACCESIBLE — Restricted Data Use Agreement`, citando los dos cierres previos (`forense/notas/2026-08-12-...md:73`, `forense/notas/2026-08-13-...md:111`) que A4 no citó al reclasificar; los ítems #2-#5 y la fecha de vencimiento no se tocan. Dos cláusulas `se_mueve_si` de `milpa/tramite-ola5-propuesta-v0.yaml` (`civico.clientelismo.prevalencia_lista_listcran_mps2012`, `civico.voto.agencia_lapop2023`) reescritas con la condición real de acceso — texto anterior conservado en comentario `# hasta TRAMITE-6:`. Hallazgo append en `forense/hallazgos.md` (7/sep, rótulo `MAESTRA38-TRAMITE-6`) sobre la cadena de re-uso de un cierre de acceso ya desmentido (regla A.4).
+
+**(2) Cláusulas que no pueden dispararse (`FP-329` (c)(f)).** `civico.voto.clientelar_si_observable_lapop2019` (D2-g): la cláusula pedía una "segunda medición del brazo proximidad (LAPOP 2021/2023 `clien1n`/`clien1na`)" — `FP-329` (f) verificó que esas dos variables NO EXISTEN en esas dos olas del `.dta`; reescrita para pedir la medición en CIDE-CSES 2015 (`pcyc13`/`pcyc14`, `FP-329` (b)), con la ausencia de `clien1n`/`clien1na` declarada en el propio texto. `civico.protesta.agravio_urbano_multiola` (R7.4): la cláusula pedía ENVIPE como fuente que estimara `C_completo` — `FP-329` (c) midió 0 líneas de desenlace de protesta en 5 392 del FD 2025; reescrita a `ACOTADA-CON-RESERVA` (D2-h) sin fecha, hasta que una fuente traiga sobremuestra rural Y desenlace de protesta. `tramite.gobierno_digital.coercitivo` (×2, `coercitivo_efirma_sat`/`coercitivo_tabla_de_universos`): la cláusula ya describe correctamente un instrumento hoy inexistente (0 aciertos en 350 832 filas, `FP-329` (e)) — EXISTE-SATISFACE, solo se anota con comentario que cita `FP-329` (e) y `FP-273` (D10, gobierna, no se reabre). En las tres: texto anterior conservado en comentario `# hasta TRAMITE-6:`.
+
+**(3) `FP-329` → FIRMADA.** Estado propagado por merge: (a) enmienda a FP-303 en la pieza (4); (b) spec `N20` (CIDE-CSES 2015) encargada, no lanzada; (c)(f) cláusulas reescritas en la pieza (2); (d) `relaciones.tsv` no se toca; (e) gobierna `FP-273` sin reabrirla.
+
+**(4) `FP-303` → FIRMADA, ruta (c).** Estado propagado por merge: las 8 filas `PARCIAL` de `data/cruce-ola6-v1_0.tsv` reciben spec de caja individual con su faltante declarado (EXISTE-NO-SATISFACE); las 11 `SIN-COBERTURA` quedan `HIPÓTESIS-SIN-INSTRUMENTO`; el dominio `tiempo` (4/4 sin cobertura) no se diseña en esta ola. Sucesores declarados, no lanzados: `N22..N29`, empezando por `salud.atencion.leve_sin_imss` (R4.1).
+
+**(5) Recibo.** Fila nueva `FP-331` (RECIBO, no requiere firma) con las cinco piezas y los comandos de verificación del A.8.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-TRAMITE-6.md`. **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo, no dispara verificación.
+
+**Perímetro.** Toca `forense/firmas-pendientes.tsv` (filas `FP-263`, `FP-314`, `FP-329`, `FP-303` + `FP-331` recibo), `milpa/tramite-ola5-propuesta-v0.yaml` (solo cláusulas `se_mueve_si` y comentarios de las cinco entradas nombradas — ninguna entrada nueva, ningún `tier`, ningún `p`), `forense/hallazgos.md` (append), `tests/check.py` (`_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` y `_T25_ARCHIVOS_CONOCIDOS`, censa el A.3 verbatim de este acto), `canon/gobernanza-v1_15.md` (este registro), `canon/estado-programa-v1_12.md` (L0 + tabla §0). **No toca** `milpa/tramite.yaml`, `FP-273` (gobierna, no se reabre), diseño de instrumento para `tiempo`, `relaciones.tsv`, corpus, `data/raw`, manifiesto.
+
+**Deuda que abre.** Ninguna nueva — `N20`/`N21`/`N22..N29` ya estaban declarados como sucesores por sus firmas de origen; este acto no los lanza.
+
+**Deuda que cierra.** `FP-263` (estado consistente), `FP-329` (firmada), `FP-303` (firmada). Filas `ABIERTA` del tablero: 3 → 1.
+
+**`tests/check.py --baseline`**: VERDE — 2 entradas nuevas (`T-YAMEDIDO`, `T25`, ambas del A.3 verbatim de este propio encargo) censadas en `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS`/`_T25_ARCHIVOS_CONOCIDOS`; sin `FAIL` nuevo frente a `tests/baseline.json`.
+
+**Numeración.** Derivado contra `origin/main = 3d6dee33a478b3c4f687f3fc8e47205f4961cd82` (máximo real `380`), candidato `381`, contiguo, sin huecos.
+
+---
+
+**ADR-382 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `380` contra `origin/main = 3d6dee3` (candidato al fetch), verificado también contra `HEAD` de esta rama antes de correr — contiguo, sin huecos) · `ACTO MAESTRA38-M13 · M-POR-CELDA PASOS 1 Y 2`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — re-sella el enlace celda→(regla,conducta) de `TRA-M-02/03/07` en `forense/prereg-duelo-v2/` y añade la métrica secundaria pre-registrada (`D4`) al procedimiento de scoring; no toca `milpa/**`.
 
 **Hallazgo (A.8, Pieza 1 — `diagnostico-14-celdas-v1_0.tsv`).** El enlace v1.0 (26/ago/2026, `ADR-208`) de `marco-M-sorteado-v1_2.tsv` apuntaba `TRA-M-02/03/07` a `tramite.mordida.discrecional/paga_mordida` (`ASIGNADO`, `p=0.62`) pese a que la firma DM del 1/sep/2026 (`ADR-270`/`ADR-276`) ya había sustituido esa conducta por `paga_mordida_encig2025` (`MEDIDO·p(tasa base ponderada)`, `p=0.085118`) "en el cálculo del motor" — el enlace se selló cinco días antes de esa firma, vencido en alcance (A.10), no incorrecto al sellarse. Censo de las 14 celdas: **solo `TRA` trae una enmienda MEDIDA con firma de mesa citada por este encargo**; `DIN-M-01` (`dinero.ahorro.tiene_ahorros`) trae una enmienda análoga (`enmienda_enif2024`, firma c1, 2/sep/2026) que **este acto reporta y no aplica** — ninguna firma de mesa de este encargo la cita; sucesor declarado.
 
@@ -6615,7 +6641,7 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 
 **Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-M13-DIAGNOSTICO-14.md`. **Gate verificado.** `COMPUERTA: ninguna de merge` — no compuertado, no dispara verificación (declaración explícita del propio encargo, verificada contra `origin/main` real antes de arrancar: `forense/benchmark/BENCHMARK-MOTORES-COMPARABLES.md` y `agregado-v1_2-resultado.json` ya estaban en `main` al SHA declarado `7e0fb716`).
 
-**Perímetro.** Toca `forense/prereg-duelo-v2/diagnostico-14-celdas-v1_0.tsv` (nuevo), `enlace-M-v1_1.md` (nuevo), `marco-M-sorteado-v1_3.tsv` (nuevo), `procedimiento-scoring-v1_2.md` + `.sha256` (nuevos), `agregado_v1_3.py` (nuevo), `agregado-v1_3-resultado.json` (nuevo), `forense/benchmark/BENCHMARK-MOTORES-COMPARABLES.md` (sección nueva `v1.3`, append; cuerpo `v1.2` intacto), `forense/firmas-pendientes.tsv` (`FP-331`, `D4` → FIRMADA), `tests/check.py` (solo `_T25_ARCHIVOS_CONOCIDOS`/`_T_YAMEDIDO_ARCHIVOS_CONOCIDOS`, censa el A.3 verbatim de este acto), `canon/gobernanza-v1_15.md` (este registro), `canon/estado-programa-v1_12.md` (L0 + tabla §0), `canon/registro-rotulos.tsv` (censo), cascada. **No toca** `milpa/**`, `procedimiento-scoring-v1_1.md` (sellado, intocado), `enlace-M-v1_0.md`, `marco-M-sorteado-v1_2.tsv`, capturas `corridas-L/`, `corridas-M/` (ningún `M-<id>.json` nuevo — `M` de las celdas re-apuntadas se calcula en memoria, no se escribe archivo), ningún microdato, ningún tier de `canon/modelo-decision-v4_0.md`.
+**Perímetro.** Toca `forense/prereg-duelo-v2/diagnostico-14-celdas-v1_0.tsv` (nuevo), `enlace-M-v1_1.md` (nuevo), `marco-M-sorteado-v1_3.tsv` (nuevo), `procedimiento-scoring-v1_2.md` + `.sha256` (nuevos), `agregado_v1_3.py` (nuevo), `agregado-v1_3-resultado.json` (nuevo), `forense/benchmark/BENCHMARK-MOTORES-COMPARABLES.md` (sección nueva `v1.3`, append; cuerpo `v1.2` intacto), `forense/firmas-pendientes.tsv` (`FP-332`, `D4` → FIRMADA), `tests/check.py` (solo `_T25_ARCHIVOS_CONOCIDOS`/`_T_YAMEDIDO_ARCHIVOS_CONOCIDOS`, censa el A.3 verbatim de este acto), `canon/gobernanza-v1_15.md` (este registro), `canon/estado-programa-v1_12.md` (L0 + tabla §0), `canon/registro-rotulos.tsv` (censo), cascada. **No toca** `milpa/**`, `procedimiento-scoring-v1_1.md` (sellado, intocado), `enlace-M-v1_0.md`, `marco-M-sorteado-v1_2.tsv`, capturas `corridas-L/`, `corridas-M/` (ningún `M-<id>.json` nuevo — `M` de las celdas re-apuntadas se calcula en memoria, no se escribe archivo), ningún microdato, ningún tier de `canon/modelo-decision-v4_0.md`.
 
 **Deuda que abre.** El re-apuntado de `DIN-M-01` (enmienda `enmienda_enif2024`, análoga a la de `TRA` pero sin firma de mesa que la cite en este encargo) queda para un acto sucesor si mesa firma. El paso 3 (`evaluar()` por celda/eje, `M14`, sucesor declarado por el propio encargo) sigue sin lanzar.
 
@@ -6623,4 +6649,4 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 
 **`tests/check.py --baseline`**: ver la nota de cierre.
 
-**Numeración.** Derivado contra `HEAD` de esta rama tras sincronizar con `origin/main` (máximo real `380`, `ADR-380` `AUTOMATIZA-2-D`), candidato `381`, contiguo, sin huecos.
+**Numeración.** Derivado contra `HEAD` de esta rama tras sincronizar con `origin/main` (máximo real `380`, `ADR-380` `AUTOMATIZA-2-D`), candidato `382` (renumerado de `381`: `ADR-381` fue tomado por `ACTO MAESTRA38-TRAMITE-6` al fusionar primero -- regla de la casa, renumera quien fusiona segundo), contiguo, sin huecos.

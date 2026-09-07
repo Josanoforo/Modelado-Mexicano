@@ -21,6 +21,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 from collections import Counter
 from datetime import date
 
@@ -61,7 +62,11 @@ def find_rules(o):
     return None
 
 
-def main() -> None:
+MARCA_INICIO = "<!-- TABLERO-DERIVADO:BEGIN -->"
+MARCA_FIN = "<!-- TABLERO-DERIVADO:END -->"
+
+
+def derivar_indicadores() -> dict[str, dict]:
     I: dict[str, dict] = {}
 
     def put(clave, valor, comando, nota=""):
@@ -189,6 +194,131 @@ def main() -> None:
     put("commits", int(sh("git rev-list --count HEAD") or 0), "git rev-list --count HEAD")
     put("prs_fusionados", int(sh("git log --merges --format=%s HEAD | grep -c 'pull request'") or 0), "git log --merges --format=%s HEAD | grep -c 'pull request'")
     put("suite", "correr: python3 tests/check.py --baseline | tail -6 (no se corre aqui: tarda; pega la salida cruda)", "python3 tests/check.py --baseline")
+
+    return I
+
+
+def _v(I, k):
+    return I[k]["valor"] if k in I else None
+
+
+def render_bloque_vivo(I: dict[str, dict]) -> str:
+    """Construye el bloque factual committeado a partir del dict de derivar_indicadores().
+
+    Solo hechos mecanicos y estables entre corridas -- sin cifras efimeras
+    (edad en dias de FP, ramas remotas presentes), que siguen disponibles en
+    la salida interactiva normal (markdown/--json) pero no aqui.
+    """
+    fp_ids = ", ".join(a["id"] for a in (_v(I, "fp_abiertas") or [])) or "(ninguna)"
+    cola = _v(I, "cola_encargos") or {}
+    cola_txt = "\n".join(f"  - `{k}`: {v}" for k, v in cola.items()) or "  (vacía)"
+
+    partes = []
+    partes.append(MARCA_INICIO)
+    partes.append("## Estado vivo derivado")
+    partes.append("")
+    partes.append(
+        f"- **Procedencia.** SHA `{_v(I, 'sha')}` · fecha del commit `{_v(I, 'fecha_commit')}` · "
+        f"¿árbol == origin/main? `{_v(I, 'es_origin_main')}`."
+    )
+    partes.append(
+        f"- **Motor.** reglas totales `{_v(I, 'motor_reglas')}` · "
+        f"reglas con dato (>=1 conducta MEDIDO*) `{_v(I, 'motor_reglas_con_dato')}` · "
+        f"reglas sin dato `{len(_v(I, 'motor_reglas_sin_dato') or [])}` · "
+        f"conductas MEDIDO* `{_v(I, 'motor_conductas_medido')}` · "
+        f"tiers `{_v(I, 'motor_tiers')}`."
+    )
+    partes.append(
+        f"- **Corredor.** marco vigente `marco-M-v1_2` (sorteado/congelado) · "
+        f"celdas sorteadas `{_v(I, 'marco_v1_2_sorteado')}` · "
+        f"celdas con M `{_v(I, 'celdas_con_M')}` · con R `{_v(I, 'celdas_con_R')}` · con L `{_v(I, 'celdas_con_L')}` · "
+        f"celdas puntuables (M∩R∩L) `{_v(I, 'celdas_puntuables_LMR')}` · "
+        f"celdas sin cobertura completa `{len(_v(I, 'celdas_sin_LMR') or [])}`."
+    )
+    partes.append(
+        f"- **Corpus lógico.** entradas del manifiesto `{_v(I, 'manifiesto_ids')}` · "
+        f"filas de registro de curación `{_v(I, 'registro_curador_filas')}` · "
+        f"filas de relaciones `{_v(I, 'relaciones_filas')}` · "
+        f"filas del inventario de reactivos v1.2 `{_v(I, 'inventario_reactivos_v1_2')}`."
+    )
+    partes.append(
+        f"- **Gobernanza operativa.** ADR máximo `{_v(I, 'adr_max')}` · FP máximo `{_v(I, 'fp_max')}` · "
+        f"FP abiertas: {fp_ids} · "
+        f"encargos archivados `{_v(I, 'encargos_archivados')}` (consumidos `{_v(I, 'encargos_consumidos')}`) · "
+        f"cola de encargos:\n{cola_txt}"
+    )
+    partes.append(
+        "- **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, "
+        "`forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, "
+        "`data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, "
+        "`data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, "
+        "`forense/encargos/*.md`, `forense/encargos/cola/*.md`."
+    )
+    partes.append("")
+    partes.append("**Protocolo vigente.** La actualización factual de este bloque se hace con:")
+    partes.append("")
+    partes.append("```")
+    partes.append("git fetch origin")
+    partes.append("python3 tools/tablero_programa.py --actualiza")
+    partes.append("python3 tests/check.py --baseline")
+    partes.append("```")
+    partes.append("")
+    partes.append(
+        "El humano solo actualiza la interpretación (las tablas curadas §2.1-2.5 y la narrativa) cuando hay "
+        "una decisión o un hallazgo que valga la pena registrar. Las recetas antiguas del snapshot histórico "
+        "(p. ej. `git branch -r` o `awk '$6==\"ABIERTA\"'`) NO gobiernan esta actualización -- son historia, "
+        "no el mecanismo vigente."
+    )
+    partes.append("")
+    partes.append(MARCA_FIN)
+    return "\n".join(partes)
+
+
+def _actualiza_tablero(ruta: str, I: dict[str, dict]) -> int:
+    if not os.path.exists(ruta):
+        print(f"error: no existe {ruta}", file=sys.stderr)
+        return 1
+    texto = leer(ruta)
+    n_begin = texto.count(MARCA_INICIO)
+    n_end = texto.count(MARCA_FIN)
+    if n_begin != 1 or n_end != 1:
+        print(
+            f"error: se esperaba exactamente 1 marcador BEGIN y 1 END en {ruta} "
+            f"(encontrados BEGIN={n_begin} END={n_end})",
+            file=sys.stderr,
+        )
+        return 1
+    i_begin = texto.index(MARCA_INICIO)
+    i_end = texto.index(MARCA_FIN)
+    if i_begin >= i_end:
+        print(f"error: BEGIN debe preceder a END en {ruta}", file=sys.stderr)
+        return 1
+    nuevo_bloque = render_bloque_vivo(I)
+    fin_bloque = i_end + len(MARCA_FIN)
+    nuevo_texto = texto[:i_begin] + nuevo_bloque + texto[fin_bloque:]
+    if nuevo_texto == texto:
+        return 0
+    dir_destino = os.path.dirname(os.path.abspath(ruta))
+    fd, tmp = tempfile.mkstemp(dir=dir_destino, prefix=".tablero-tmp-")
+    try:
+        with os.fdopen(fd, "wb") as f:
+            f.write(nuevo_texto.encode("utf-8"))
+        os.replace(tmp, ruta)
+    except Exception:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
+    return 0
+
+
+def main() -> None:
+    I = derivar_indicadores()
+
+    if "--actualiza" in sys.argv:
+        rc = _actualiza_tablero("forense/tablero/TABLERO-PROGRAMA.md", I)
+        sys.exit(rc)
 
     if "--json" in sys.argv:
         print(json.dumps(I, ensure_ascii=False, indent=2, default=str))
