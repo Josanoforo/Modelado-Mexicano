@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **367 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **368 ADR**
 
 > | | |
 > |---|---|
@@ -6330,6 +6330,10 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **ADR-367 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `366`, contiguo, sin huecos; candidato `367`) · `ACTO AUTOMATIZA-1-E3 · CIERRE-MECANICO`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — retira de `/acto` las operaciones de cierre puramente mecánicas (contar, buscar, recifrar, detectar) sin automatizar ninguna decisión: preflight + reconciliador, no autor de gobernanza. Primer cierre real de un acto usando el tool: **este mismo**.
 
 **Encargo** (archivado por A.3): `forense/encargos/2026-09-07-AUTOMATIZA-1-E3-CIERRE-MECANICO.md`. **Gate verificado.** `COMPUERTA: E2 fusionado` — verificado por producto (`git log origin/main --oneline | grep AUTOMATIZA-1-E2` → `PR #569`, commit `4dfb4a5`), cumplida antes de tocar código.
+
+**ADR-368 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `367`, contiguo, sin huecos; candidato `368`) · `ACTO MAESTRA38-N18`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — sella `forense/prereg-caja/S7-L17-spec-v1_1.md` + `.sha256`, copia de `v1.0` con una corrección en §2: mapeo del bloque `a0927` corregido de letra=vacuna/dígito=razón (asumido por `v1.0`) a **letra=razón/dígito=vacuna** (`a`=no había vacunas, `b`=no derechohabiente, `c`=no estaba quien aplica, `d`=enfermo, `e`=otra; `1`=Influenza, `2`=Neumococo, `3`=Tétanos, `4`=Otra), citando `ADR-357`/`FP-326`. §0 gana la línea: «v1.1 registra el mapeo real; la medición de `L17` (`ADR-357`) ya lo usó; no se re-corre.» `v1.0` y su `.sha256` quedan intactos. No abre `.dta`, medición: cero. El encargo cita `ACTO MAESTRA38-N17` en su propia cabecera — ya ocupado (`MAESTRA38-CARGA-LAPOP-2`, fusionado); renumerado a `N18` (máximo real de la serie N + 1), regla de la casa.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-N18.md`. `COMPUERTA: ninguna` (declaración explícita).
 
 **Módulo nuevo** `tools/cierre_acto.py` (sin clases): `python3 tools/cierre_acto.py` = Fase A, dry-run, nunca escribe -- HEAD/`origin/main`/ramas remotas presentes (reutiliza `estado_comun.ramas_remotas_presentes()`), ADR real+candidato y si el candidato ya está redactado en alguna rama remota accesible (sin afirmar "PR abierto" sin evidencia: una rama puede existir sin haber escrito aún su ADR, o sus objetos pueden no estar accesibles localmente sin un fetch nuevo), FP máximo+filas abiertas (`estado_comun.es_abierta`/`lee_tablero`/`fp_max`), conteos de gobernanza (real vs cabecera `**N ADR**` vs L0), rótulo esperado (derivado de la rama actual) y si ya está en `canon/registro-rotulos.tsv`, presencia de `## CONSUMIDO` en el encargo dado, corrida de `tests/check.py --baseline`, y una sección fija «requiere juicio humano». `--aplica` = Fase B, todo-o-nada: escribe SÓLO la cabecera de gobernanza y los dígitos del conteo ADR de L0, con ancla única validada (aborta con `APLICACION_ABORTADA · 0 archivos escritos` si no lo es) y el cambio verificado como limitado a esos dígitos antes de escribir nada; idempotente (`sin cambios` si ya coincide).
 

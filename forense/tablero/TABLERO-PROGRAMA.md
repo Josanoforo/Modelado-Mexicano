@@ -1178,3 +1178,25 @@ Detalle completo:
 `forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md`. ADR de
 cierre y `FP` de la spec mal escrita (`S7-L17`, asignación letra/dígito
 invertida): ver `MAESTRA38-N14` (este acto de cierre).
+
+### Recibo — `ACTO MAESTRA38-N18` (7/sep/2026, NUBE, sin corpus ni red)
+
+Encargo cita `ACTO MAESTRA38-N17` en su propia cabecera; ya ocupado
+(`MAESTRA38-CARGA-LAPOP-2`, fusionado) — ejecutado y registrado como
+`MAESTRA38-N18` (máximo real de la serie + 1).
+
+Sella `forense/prereg-caja/S7-L17-spec-v1_1.md` + `.sha256`: copia de
+`v1.0` con una corrección — §2, mapeo del bloque `a0927`: `v1.0` asumía
+letra=vacuna/dígito=razón; corregido a **letra=razón** (`a`=no había
+vacunas, `b`=no derechohabiente, `c`=no estaba quien aplica, `d`=enfermo,
+`e`=otra), **dígito=vacuna** (`1`=Influenza, `2`=Neumococo, `3`=Tétanos,
+`4`=Otra) — citando `ADR-357` y `FP-326`. §0 gana la línea: «v1.1
+registra el mapeo real; la medición de `L17` (`ADR-357`) ya lo usó; no
+se re-corre.» `v1.0` y su `.sha256` quedan intactos (sha256 verificado
+idéntico antes/después).
+
+No abre ningún `.dta`, no calcula ninguna cifra nueva. Detalle:
+`forense/notas/2026-09-07-MAESTRA38-N18-spec-v1_1.md`.
+
+**Indicadores que este acto mueve.** Specs de caja `20 → 21` (declarado
+por el encargo). Medición: cero.
