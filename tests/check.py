@@ -3889,6 +3889,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # acto escribe el rotulo va siempre con prefijo completo
     # (AUTOMATIZA-2-D) -- D-6.
     "forense/encargos/2026-09-07-AUTOMATIZA-2-D-COSTURAS-FINALES.md",
+    # ACTO MAESTRA38-M13 . M-POR-CELDA PASOS 1 Y 2, 7/sep/2026: encargo
+    # archivado verbatim (A.3), redactado por direccion antes de esta
+    # sesion. Su parrafo "Sucesores declarados, no lanzados" cita "M14"
+    # pelado (paso 3, diseno de fase, Fable) -- nombre provisional de un
+    # acto FUTURO que este encargo explicitamente NO lanza ("sucesor
+    # declarado"), no una autorreferencia ni un habitante ya censado. El
+    # texto verbatim no se edita (A.3).
+    "forense/encargos/2026-09-07-MAESTRA38-M13-DIAGNOSTICO-14.md",
     # ACTO MAESTRA38-TRAMITE-6, 7/sep/2026: encargo archivado VERBATIM
     # (A.3). Su bloque CARRILES cita "M13 (nube: forense/prereg-duelo-v2/)"
     # -- un carril paralelo real, ajeno a este acto (declarado solo por
@@ -4472,6 +4480,20 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # `forense/notas/2026-09-07-MAESTRA38-CARGA-LAPOP-2-resultados.md`, no
     # en el archivo verbatim del encargo.
     "forense/encargos/2026-09-07-MAESTRA38-CARGA-LAPOP-2.md",
+    # ACTO MAESTRA38-M13 . M-POR-CELDA PASOS 1 Y 2, 7/sep/2026: el encargo
+    # se archiva VERBATIM (A.3) y cita `tramite.mordida.discrecional` en
+    # su cuerpo original (redactado por direccion) dentro de la
+    # VERIFICACION DE EXISTENCIA (A.8) que el propio encargo ya trae --
+    # describe el hallazgo, no re-clasifica la regla. `tools/ya_medido.py`
+    # SI se corrio en A.8 de esta sesion sobre las cinco reglas del marco
+    # (civico.denuncia.miedo_desconfianza, dinero.ahorro.tiene_ahorros,
+    # familia.apoyo.recibe_dinero_familiares,
+    # familia.seguro.volatilidad_ausencia_estado,
+    # tramite.mordida.discrecional): MEDIDA-EN: tramite.yaml las cinco: la
+    # salida vive en el historial de esta sesion y en
+    # diagnostico-14-celdas-v1_0.tsv (Pieza 1 congelada), no en el archivo
+    # verbatim del encargo.
+    "forense/encargos/2026-09-07-MAESTRA38-M13-DIAGNOSTICO-14.md",
     # ACTO MAESTRA38-TRAMITE-6, 7/sep/2026: el encargo se archiva VERBATIM
     # (A.3) y cita `civico.clientelismo.prevalencia_lista_listcran_mps2012`
     # en su A.8 para describir la cláusula `se_mueve_si` que corrige (el

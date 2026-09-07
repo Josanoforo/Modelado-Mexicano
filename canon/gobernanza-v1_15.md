@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **382 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **383 ADR**
 
 > | | |
 > |---|---|
@@ -6640,3 +6640,27 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **`tests/check.py --baseline`**: VERDE — 2 entradas nuevas (`T-YAMEDIDO`, `T25`, ambas del A.3 verbatim de este propio encargo) censadas en `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS`/`_T25_ARCHIVOS_CONOCIDOS`; sin `FAIL` nuevo frente a `tests/baseline.json`.
 
 **Numeración.** Derivado contra `origin/main = 3d6dee33a478b3c4f687f3fc8e47205f4961cd82` (máximo real `380`), candidato `381`, contiguo, sin huecos.
+
+---
+
+**ADR-383 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `380` contra `origin/main = 3d6dee3` (candidato al fetch), verificado también contra `HEAD` de esta rama antes de correr — contiguo, sin huecos) · `ACTO MAESTRA38-M13 · M-POR-CELDA PASOS 1 Y 2`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — re-sella el enlace celda→(regla,conducta) de `TRA-M-02/03/07` en `forense/prereg-duelo-v2/` y añade la métrica secundaria pre-registrada (`D4`) al procedimiento de scoring; no toca `milpa/**`.
+
+**Hallazgo (A.8, Pieza 1 — `diagnostico-14-celdas-v1_0.tsv`).** El enlace v1.0 (26/ago/2026, `ADR-208`) de `marco-M-sorteado-v1_2.tsv` apuntaba `TRA-M-02/03/07` a `tramite.mordida.discrecional/paga_mordida` (`ASIGNADO`, `p=0.62`) pese a que la firma DM del 1/sep/2026 (`ADR-270`/`ADR-276`) ya había sustituido esa conducta por `paga_mordida_encig2025` (`MEDIDO·p(tasa base ponderada)`, `p=0.085118`) "en el cálculo del motor" — el enlace se selló cinco días antes de esa firma, vencido en alcance (A.10), no incorrecto al sellarse. Censo de las 14 celdas: **solo `TRA` trae una enmienda MEDIDA con firma de mesa citada por este encargo**; `DIN-M-01` (`dinero.ahorro.tiene_ahorros`) trae una enmienda análoga (`enmienda_enif2024`, firma c1, 2/sep/2026) que **este acto reporta y no aplica** — ninguna firma de mesa de este encargo la cita; sucesor declarado.
+
+**Re-apuntado (Pieza 2 — `enlace-M-v1_1.md` + `marco-M-sorteado-v1_3.tsv`).** Copia byte a byte de `v1_2` con un único cambio de columna (`conducta`) en tres filas — verificado por `diff` columna a columna. Las 11 celdas restantes no cambian. `p`/`clase` de `milpa/tramite.yaml` no se tocan.
+
+**Métrica secundaria D4 (Pieza 3 — `procedimiento-scoring-v1_2.md` + `.sha256`, `agregado_v1_3.py`).** `procedimiento-scoring-v1_1.md` (SELLADO, `ADR-262`) verbatim + §7 nueva: `err_pp = 100·(corredor − R)`, `MAE_pp` por corredor, comparación pareada por bootstrap (mismos `seed=42`/`nivel_ic=0.95`/`replicas=10000` sellados) — decisión de dirección incluida en el encargo (D-B): puntos porcentuales, no Brier; la banda `z` sigue siendo el veredicto primario, sin tocar. `agregado_v1_3.py` monkeypatchea `agregado_v1_2.py` (marco `v1_3`; `M` de `TRA-M-02/03/07` calculado EN MEMORIA vía `emitir_binaria` sobre la conducta re-apuntada, sin escribir ningún `M-<id>.json` nuevo — fuera del perímetro de este acto).
+
+**Resultado, reportado sin ajustar (`agregado-v1_3-resultado.json`).** `z_M` en `TRA`: `98/203/229` → `−8.08/+14.28/+5.55` (confirma la expectativa B-bis del encargo; mediana `|z|` de `M`: `11.43` → `7.43`). `comparacion_principal_pareada` (veredicto primario, `z`, sin tocar) sigue `INDETERMINADO` (punto `10.79`, IC95 `[−1.84, +26.53]`). Métrica secundaria `D4` (diagnóstico, no gating): **sí discrimina donde `z` no discrimina** — `M=4.51pp` `[2.71,6.37]` vs `L_SOLO=11.69pp` `[4.13,21.72]` vs `L_CORPUS=19.60pp` `[9.28,30.92]`; comparación pareada `M-MENOR-ERROR-PP-QUE-L` en los dos pares, IC íntegramente positivo. `D1` (corredor `P`) sin cambio: `M` sigue constante dentro de `CIV` (`0.294313` × 6, sin re-derivar).
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-MAESTRA38-M13-DIAGNOSTICO-14.md`. **Gate verificado.** `COMPUERTA: ninguna de merge` — no compuertado, no dispara verificación (declaración explícita del propio encargo, verificada contra `origin/main` real antes de arrancar: `forense/benchmark/BENCHMARK-MOTORES-COMPARABLES.md` y `agregado-v1_2-resultado.json` ya estaban en `main` al SHA declarado `7e0fb716`).
+
+**Perímetro.** Toca `forense/prereg-duelo-v2/diagnostico-14-celdas-v1_0.tsv` (nuevo), `enlace-M-v1_1.md` (nuevo), `marco-M-sorteado-v1_3.tsv` (nuevo), `procedimiento-scoring-v1_2.md` + `.sha256` (nuevos), `agregado_v1_3.py` (nuevo), `agregado-v1_3-resultado.json` (nuevo), `forense/benchmark/BENCHMARK-MOTORES-COMPARABLES.md` (sección nueva `v1.3`, append; cuerpo `v1.2` intacto), `forense/firmas-pendientes.tsv` (`FP-332`, `D4` → FIRMADA), `tests/check.py` (solo `_T25_ARCHIVOS_CONOCIDOS`/`_T_YAMEDIDO_ARCHIVOS_CONOCIDOS`, censa el A.3 verbatim de este acto), `canon/gobernanza-v1_15.md` (este registro), `canon/estado-programa-v1_12.md` (L0 + tabla §0), `canon/registro-rotulos.tsv` (censo), cascada. **No toca** `milpa/**`, `procedimiento-scoring-v1_1.md` (sellado, intocado), `enlace-M-v1_0.md`, `marco-M-sorteado-v1_2.tsv`, capturas `corridas-L/`, `corridas-M/` (ningún `M-<id>.json` nuevo — `M` de las celdas re-apuntadas se calcula en memoria, no se escribe archivo), ningún microdato, ningún tier de `canon/modelo-decision-v4_0.md`.
+
+**Deuda que abre.** El re-apuntado de `DIN-M-01` (enmienda `enmienda_enif2024`, análoga a la de `TRA` pero sin firma de mesa que la cite en este encargo) queda para un acto sucesor si mesa firma. El paso 3 (`evaluar()` por celda/eje, `M14`, sucesor declarado por el propio encargo) sigue sin lanzar.
+
+**Deuda que cierra.** `D4` del benchmark (`BENCHMARK-MOTORES-COMPARABLES.md` §4-5) — FIRMADA por merge de este acto (decisión de dirección incluida en el encargo, D-B).
+
+**`tests/check.py --baseline`**: ver la nota de cierre.
+
+**Numeración.** Derivado contra `HEAD` de esta rama tras sincronizar con `origin/main` (máximo real `380`, `ADR-380` `AUTOMATIZA-2-D`), candidato `383` (renumerado dos veces: `381`->`382` por colisión con `ACTO MAESTRA38-TRAMITE-6` (`PR #589`); luego `382`->`383` por segunda colisión con `ACTO MAESTRA38-L16-BIS-2` (`PR #590`), que fusionó primero en el segundo intervalo -- regla de la casa, renumera quien fusiona segundo), contiguo, sin huecos.
