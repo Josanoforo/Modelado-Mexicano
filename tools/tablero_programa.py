@@ -29,6 +29,8 @@ try:
 except ImportError:  # pragma: no cover
     yaml = None
 
+import estado_comun as EC
+
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(RAIZ)
 PD = "forense/prereg-duelo-v2/"
@@ -71,8 +73,12 @@ def main() -> None:
     put("fecha_commit", sh("git log -1 --format=%ad --date=short HEAD"), "git log -1 --format=%ad --date=short HEAD")
     put("es_origin_main", sh("git rev-parse HEAD") == sh("git rev-parse origin/main"),
         "git rev-parse HEAD == git rev-parse origin/main", "si False, el tablero no se deriva de main")
-    put("ramas_remotas_vivas", [b.strip() for b in sh("git branch -r | grep -v HEAD | grep -v 'origin/main$'").splitlines() if b.strip()],
-        "git branch -r | grep -v HEAD | grep -v 'origin/main$'", "PR abiertos = actos que aun no fusionan")
+    _ramas_presentes, _fuente_ramas = EC.ramas_remotas_presentes(RAIZ)
+    put("ramas_remotas_vivas", [r for r in _ramas_presentes if r != "main"],
+        f"tools/estado_comun.py::ramas_remotas_presentes() -- {_fuente_ramas.replace(chr(96), chr(39))}",
+        "'vivas' es historico del nombre de esta clave -- son ramas PRESENTES en origin "
+        "(ACTO AUTOMATIZA-1-E2), no necesariamente PR abierto ni trabajo sin fusionar: "
+        "una rama puede existir sin haber redactado aun su ADR")
 
     # ── 1 · motor ─────────────────────────────────────────────────────
     t = leer("milpa/tramite.yaml")
@@ -141,20 +147,25 @@ def main() -> None:
     put("inventario_reactivos_v1_2", int(sh("grep -vc '^#' data/inventario-reactivos-v1_2.tsv") or 0), "grep -vc '^#' data/inventario-reactivos-v1_2.tsv")
 
     # ── 6 · gobernanza y aparato ───────────────────────────────────────
-    put("adr_max", int(sh("grep -oE '^\\*\\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1") or 0),
+    put("adr_max", EC.adr_max(RAIZ),
+        "tools/estado_comun.py::adr_max() -- equivalente a "
         "grep -oE '^\\*\\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1")
-    put("fp_max", int(sh("grep -oE '^FP-[0-9]+' forense/firmas-pendientes.tsv | grep -oE '[0-9]+' | sort -n | tail -1") or 0),
+    put("fp_max", EC.fp_max(RAIZ),
+        "tools/estado_comun.py::fp_max() -- equivalente a "
         "grep -oE '^FP-[0-9]+' forense/firmas-pendientes.tsv | grep -oE '[0-9]+' | sort -n | tail -1")
     hoy = date.today()
     abiertas = []
     for r in csv.reader(open("forense/firmas-pendientes.tsv", encoding="utf-8", errors="replace"), delimiter="\t"):
-        if len(r) > 5 and r[5] == "ABIERTA":
+        if len(r) > 5 and EC.es_abierta(r[5]):
             try:
                 edad = (hoy - date.fromisoformat(r[3][:10])).days
             except Exception:
                 edad = None
             abiertas.append({"id": r[0], "creado": r[3][:10], "dias": edad, "que": r[1][:140]})
-    put("fp_abiertas", abiertas, "awk -F'\\t' '$6==\"ABIERTA\"' forense/firmas-pendientes.tsv", "WARN de T-FIRMAS en cada corrida")
+    put("fp_abiertas", abiertas,
+        "tools/estado_comun.py::es_abierta() sobre columna 6 -- ABIERTA con o sin glosa "
+        "(ACTO AUTOMATIZA-1-E2; antes comparaba columna==ABIERTA a secas, ciego a la glosa)",
+        "WARN de T-FIRMAS en cada corrida")
     enc = glob.glob("forense/encargos/*.md")
     cons = sum(1 for f in enc if "## CONSUMIDO" in leer(f))
     put("encargos_archivados", len(enc), "ls forense/encargos/*.md | wc -l")

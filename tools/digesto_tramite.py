@@ -143,6 +143,8 @@ import re
 import subprocess
 import sys
 
+import estado_comun as EC
+
 RAIZ_POR_DEFECTO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Copiados VERBATIM de tests/check.py -- si allá cambian, aquí se rompe la
@@ -244,34 +246,22 @@ def dias(desde, hasta):
 # Lectores del árbol
 # ───────────────────────────────────────────────────────────────
 
-def lee_tablero(raiz):
-    """(ruta, filas, n_lineas). Mismo lector que `_t22_tabla` de la suite:
-    TSV con cabecera, sin comillas -- el tablero se lee, no se parsea con
-    csv, porque sus celdas ya traen comillas literales de firmas verbatim."""
-    ruta = os.path.join(raiz, "forense", "firmas-pendientes.tsv")
-    if not os.path.exists(ruta):
-        return ruta, None, 0
-    with open(ruta, encoding="utf-8") as fh:
-        lineas = [l.rstrip("\n") for l in fh if l.strip()]
-    if not lineas:
-        return ruta, [], 0
-    cab = lineas[0].split("\t")
-    filas = [dict(zip(cab, l.split("\t"))) for l in lineas[1:]]
-    return ruta, filas, len(lineas)
-
-
-RE_ESTADO_ABIERTA = re.compile(r"^ABIERTA(\s|$)")
+# lee_tablero() y _es_abierta() migraron a tools/estado_comun.py (ACTO
+# AUTOMATIZA-1-E2 · ESTADO-COMUN, 7/sep/2026) -- primitivas compartidas con
+# tools/tablero_programa.py y tests/check.py (T22). Este archivo usa
+# EC.lee_tablero/EC.es_abierta; los nombres locales de abajo quedan como
+# wrappers para no reescribir cada sitio de llamada de esta sección.
+lee_tablero = EC.lee_tablero
 
 
 def _es_abierta(fila):
     """`estado` es `ABIERTA` con o sin glosa (`ABIERTA -- pendiente de...`).
     Comparar con `==` es ciego a la glosa y subcuenta las filas `ABIERTA`
     del tablero -- defecto real, medido: DIGESTO-2026-09-05 reportó 1 de
-    299 cuando por prefijo eran 5. `estado.split()[0]` no basta (colisiona
-    con la exactitud de otros estados de una sola palabra que empiezan
-    igual, si los hubiera); el ancla `^ABIERTA(\\s|$)` es la comparación
-    correcta y la misma que ya usa el resto del tablero."""
-    return bool(RE_ESTADO_ABIERTA.match(fila.get("estado", "")))
+    299 cuando por prefijo eran 5. Delega en `estado_comun.es_abierta()`
+    (ACTO AUTOMATIZA-1-E2): misma regla `^ABIERTA(\\s|$)`, ahora compartida
+    con `tools/tablero_programa.py` y `tests/check.py` (T22)."""
+    return EC.es_abierta(fila.get("estado", ""))
 
 
 RE_VENCE = re.compile(r"vence:\s*(\d{4}-\d{2}-\d{2})")
@@ -451,20 +441,11 @@ def seccion_b(raiz, sin_suite):
 
 def seccion_c(raiz):
     out = ["## C · Ramas remotas distintas de `main`", ""]
-    rc, salida = corre(["git", "ls-remote", "--heads", "origin"], raiz, timeout=60)
-    if rc == 0 and salida.strip():
-        fuente = "`git ls-remote --heads origin` (estado vivo del remoto)"
-        ramas = sorted({l.split("refs/heads/", 1)[1].strip()
-                        for l in salida.splitlines() if "refs/heads/" in l})
-    else:
-        rc2, salida2 = corre(["git", "for-each-ref", "--format=%(refname:short)",
-                              "refs/remotes/origin"], raiz, timeout=60)
-        fuente = ("`git for-each-ref refs/remotes/origin` (RESPALDO: `ls-remote` no "
-                  f"respondió, rc={rc}) — refleja el último `fetch` de este clon, "
-                  "no necesariamente el remoto de ahora")
-        ramas = sorted({l.strip().split("origin/", 1)[-1]
-                        for l in salida2.splitlines() if l.strip()
-                        and not l.strip().endswith("/HEAD")})
+    # Estrategia (ls-remote + respaldo for-each-ref) migrada a
+    # estado_comun.ramas_remotas_presentes() (ACTO AUTOMATIZA-1-E2):
+    # devuelve TODAS las ramas presentes, sin filtrar `main` -- ese filtro
+    # es específico de esta sección y se conserva aquí.
+    ramas, fuente = EC.ramas_remotas_presentes(raiz)
     examinadas = len([r for r in ramas if r])
     ramas = [r for r in ramas if r and r != "main"]
     out += [f"Comando: {fuente}.", ""]
