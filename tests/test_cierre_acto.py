@@ -92,6 +92,11 @@ def prueba_b_aplica_actualiza_ambos():
         # La anotación previa de L0 (ajena al conteo) no se toca.
         afirma("(anotación previa)" in est_despues, "la anotación existente de L0 no debe alterarse")
 
+        # Escritura atómica (tempfile + os.replace): no debe quedar ningún
+        # temporal huérfano en el directorio tras una corrida exitosa.
+        sobrantes = [n for n in os.listdir(os.path.join(tmp, "canon")) if n.endswith(".tmp")]
+        afirma(sobrantes == [], f"no deben quedar temporales tras --aplica: {sobrantes}")
+
 
 def prueba_c_ancla_rota_aborta_todo_o_nada():
     with tempfile.TemporaryDirectory() as tmp:
@@ -151,18 +156,58 @@ def prueba_e_rotulo_ausente_no_escribe_registro():
                "inspeccion_rotulo() es de sólo lectura -- nunca debe crear registro-rotulos.tsv")
 
 
+def prueba_f_fallo_de_confirmacion_no_miente():
+    """Si el segundo `os.replace` falla DESPUÉS de que el primero ya
+    confirmó, el mensaje de error no debe decir "0 archivos escritos" --
+    eso sería falso. Simulado: el primer archivo objetivo (gobernanza, se
+    procesa primero) se reemplaza con normalidad; el segundo (L0) falla."""
+    with tempfile.TemporaryDirectory() as tmp:
+        _fixture(tmp, adr_reales=4, cabecera_declara=3, l0_declara=3)
+        ruta_est = CA._ruta_estado(tmp)
+
+        reemplazo_original = CA._confirma_temp
+        llamadas = []
+
+        def reemplazo_falso(ruta_tmp, ruta):
+            llamadas.append(ruta)
+            if ruta == ruta_est:
+                raise OSError("simulado: falla el segundo rename")
+            return reemplazo_original(ruta_tmp, ruta)
+
+        CA._confirma_temp = reemplazo_falso
+        import io
+        import contextlib
+        salida = io.StringIO()
+        try:
+            with contextlib.redirect_stdout(salida):
+                codigo = CA.fase_b_aplica(raiz=tmp)
+        finally:
+            CA._confirma_temp = reemplazo_original
+
+        afirma(codigo == 1, codigo)
+        texto = salida.getvalue()
+        afirma("0 archivos" not in texto,
+               f"gobernanza SÍ se escribió antes de que L0 fallara -- el mensaje no debe decir '0 archivos': {texto!r}")
+        afirma(CA._ruta_gobernanza(tmp) in llamadas and ruta_est in llamadas,
+               "ambos renames deben haberse intentado")
+        gob_despues = CA._leer(CA._ruta_gobernanza(tmp))
+        afirma("**4 ADR**" in gob_despues,
+               "gobernanza debe haber quedado escrita aunque L0 fallara despues")
+
+
 def main():
     prueba_a_dry_run_reconcilia()
     prueba_b_aplica_actualiza_ambos()
     prueba_c_ancla_rota_aborta_todo_o_nada()
     prueba_d_ya_reconciliado_no_cambia()
     prueba_e_rotulo_ausente_no_escribe_registro()
+    prueba_f_fallo_de_confirmacion_no_miente()
     if FAILS:
         print(f"FALLÓ ({len(FAILS)}):")
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_cierre_acto.py: 5 pruebas, 0 fallos")
+    print("OK -- test_cierre_acto.py: 6 pruebas, 0 fallos")
     return 0
 
 

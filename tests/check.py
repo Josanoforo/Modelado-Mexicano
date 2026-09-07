@@ -2539,6 +2539,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # MAESTRA<nn>, mismo patron que MAESTRA34-N9 con "E1" abajo. El encargo
     # verbatim no se edita.
     "forense/encargos/2026-09-07-MAESTRA38-TRAMITE-3.md",
+    # ACTO MAESTRA38-TRAMITE-4, 7/sep/2026: mismo patron que TRAMITE-3
+    # arriba -- el encargo (archivado VERBATIM, A.3) cita "E2 fusionado,
+    # #569" en su bloque de COMPUERTA; ese "E2" pelado es AUTOMATIZA-1-E2
+    # (PR #569), fuera de la serie MAESTRA<nn>. El encargo verbatim no se
+    # edita (este acto es un PARO: el adjunto TABLERO-PROGRAMA-v1_5.md no
+    # llego, ver ## CONSUMIDO del propio encargo).
+    "forense/encargos/2026-09-07-MAESTRA38-TRAMITE-4.md",
     # ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE, 3/sep/2026: trae `M-3`
     # pelado tres veces ("Encargo M-3 2026-08-05", "acuerdos B-3/M-3",
     # "encargo B-3/M-3") citando un acto real y anterior al patrón

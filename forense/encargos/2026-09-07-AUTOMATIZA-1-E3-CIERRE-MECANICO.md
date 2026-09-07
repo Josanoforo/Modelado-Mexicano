@@ -36,3 +36,15 @@ Si tras uso real E1 no protege ninguna vía real, E2 no evita divergencias, o E3
 SOLICITUD AL EJECUTOR
 Ejecutar los tres actos en secuencia. Para cada uno: verificar `main` vigente; corregir cualquier línea/ruta que haya cambiado respecto a C3 (y decirlo); hacer sólo el cambio mínimo del elemento; correr su prueba dirigida; correr baseline; abrir PR; no fusionar; reportar qué cambió, qué comportamiento quedó automatizado, qué sigue humano, y qué medición demuestra que pagó. No reabrir el diseño salvo defecto material nuevo — un defecto así es entregable, se reporta con el archivo y la línea, y se PARA.
 
+## CONSUMIDO
+
+Ejecutado: **ACTO AUTOMATIZA-1-E3 · CIERRE-MECANICO**, el tercero y último de `AUTOMATIZA-1`.
+
+PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/572 (rama `acto/automatiza-1-e3`, fusionado -- commit de merge `b1be1438634e87cfc68b5ee1e27db0bd92617ac1`).
+
+**Nota de reconciliación** (defecto de proceso, no de contenido): esta sección `## CONSUMIDO` se había escrito y empujado a la rama del PR (commit `29c98d391a5a7dc72247723b073b9098d48b4909`) antes de que mesa fusionara, pero el merge se resolvió contra el commit anterior de la rama (`facfcfe6d096418103733d7f98d0fc38fa817d81`, COMMIT 3) por una carrera entre el push y el clic de merge -- el segundo padre del commit de merge `b1be143` es `facfcfe`, no `29c98d3`. El contenido sustantivo del acto (COMMIT 1/2/3: `tools/cierre_acto.py`, la integración con `.claude/commands/acto.md`, `ADR-367`, la reconciliación L0/cabecera) sí está íntegro en `main`; sólo esta sección de cierre faltaba. Se repone aquí, en un PR aparte, sin reabrir ni editar ningún otro punto del encargo.
+
+Compuerta de entrada verificada por producto antes de tocar código (en la sesión original): `git log origin/main --oneline | grep AUTOMATIZA-1-E2` → `PR #569` (commit `4dfb4a5`), cumplida.
+
+`python3 tests/check.py --baseline`: LÍNEA BASE VERDE (re-verificado al reponer esta sección).
+
