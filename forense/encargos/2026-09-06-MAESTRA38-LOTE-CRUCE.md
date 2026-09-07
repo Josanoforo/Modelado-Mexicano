@@ -39,3 +39,14 @@ como estado existente; `tramite.gobierno_digital.coercitivo` sale
 `NUNCA-MEDIDA`, que es exactamente la premisa de la pieza (e) («única sin
 dato») y este acto la deja igual: cruza su instrumento mínimo contra el
 inventario y no emite veredicto de regla.
+
+---
+
+## CONSUMIDO
+
+Ejecutado por `ACTO MAESTRA38-LOTE-CRUCE`, 6/sep/2026, entorno CAJA (Ubuntu,
+corpus montado), rama `acto/maestra38-lote-cruce`, `ADR-370`, `FP-328`.
+Las seis piezas cerraron; ninguna PARÓ. Medición: cero.
+Resultados: `forense/notas/2026-09-06-MAESTRA38-LOTE-CRUCE-resultados.md`.
+COMMIT-1: `forense/prereg-caja/S11-CRUCE-spec-v1_0.md` (+ `.sha256`).
+PR: ver la línea de abajo, añadida al abrirlo.

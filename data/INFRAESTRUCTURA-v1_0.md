@@ -565,6 +565,35 @@ clave, y `v1_0` es la única cifra contra la que la regresión se midió.
 | artefacto | productor | esquema | quién lo lee | advertencia |
 |---|---|---|---|---|
 | `data/inventario-reactivos-descargas-mx-v1_2.tsv` | `tools/inventario_reactivos.py --raiz descargas_mx` (sin `_ext.py` esta vez — el encargo de este acto sólo pidió la base) — `ACTO MAESTRA38-A1`, cierre | mismas columnas que `v1_0`/`v1_1` | `busca_reactivos.py` no tiene clave propia para `v1_2` todavía (ningún acto la pidió); copia byte a byte de `data/inventario-reactivos-descargas-mx-v1_0.tsv` tomada al cierre de este acto | **28 948 filas de dato**, 396 payloads examinados (144 `OK`, 236 `SIN-CAMPOS-EXTRAIBLES`, el resto `NO-EXTRAIDO` por formato: `.dta`/`.sav`/`.rar`/`.docx`/sin extensión). Byte a byte idéntico a `v1_0` en el momento de crearse (`--tablas descargas_mx` sigue resolviendo contra `v1_0`, que es el mismo contenido hoy) — `v1_0` divergirá en la siguiente corrida del script, `v1_2` no. 9 447 de las filas vienen de `UNIVERSO-2026-09/`, la subcarpeta de los 20 payloads que este acto depositó (`ENADIS`, `ENCO`, `ENCRIGE`, `MOTRAL`, `CONEVAL`, `ENJUVE`, `ENVE`, `ENH`, `Intercensal 2015`) |
+
+**Reescrito por `ACTO MAESTRA38-LOTE-CRUCE` (6/sep/2026).** El `v1_2` descrito
+en la fila de arriba (snapshot byte a byte de `v1_0`, `ACTO MAESTRA38-A1`)
+queda **contenido**, no reemplazado. El archivo de hoy es la **unión
+verificada de tres conjuntos**, medida con diferencia de conjuntos antes de
+escribirse (`v1_2` anterior `\` `v1_1` = **9 443** filas — las de
+`UNIVERSO-2026-09/` —, `v1_1` `\` `v1_2` anterior = **23 035**, intersección
+**19 480**: *ninguna de las dos versiones contenía a la otra*):
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/inventario-reactivos-descargas-mx-v1_2.tsv` | driver del `ACTO MAESTRA38-LOTE-CRUCE` que **importa** `tools/inventario_reactivos_ext.py::procesar_payload` y `tools/inventario_reactivos.py::procesar` sin editarlos (`tools/*.py` es NO-TOCA en ese perímetro), con perímetro restringido a `S11-CRUCE-spec-v1_0.md §1` | mismas columnas que `v1_0`/`v1_1` | `busca_reactivos.py` sigue sin clave propia para `v1_2` | **76 127 filas únicas** = `v1_1` (42 515) ∪ `v1_2` anterior (28 923) ∪ **24 169 nuevas**. Las nuevas vienen de cuatro subcarpetas de **`data_raw`** — `losmexicanos_unam_iij/`, `cultura_constitucional_unam_iij/`, `ecopred2014/`, `A6_MMAD_PROTESTA_MEXICO/` (el manifiesto las pone ahí, no en `descargas_mx`: `S11 §0.2`) — más `descargas_mx/UNIVERSO-2026-09/CSES/` (3 `.sav` de CIDE-CSES 2015, **0 filas en todo inventario previo**) y una relectura de LAPOP 2021/2023. **Por eso el nombre del archivo dice `descargas-mx` y parte de su contenido no viene de esa raíz**: el nombre lo fija el PERÍMETRO del encargo, la procedencia real de cada fila está en su `payload_id`. `ecopred2014` (1 110 filas) y `A6_MMAD_PROTESTA_MEXICO` (31) traen **0 filas con `texto_reactivo`** — `.dbf` y `.csv` sin etiquetas |
+
+### Cruces del `ACTO MAESTRA38-LOTE-CRUCE` — `data/cruce-*.tsv`
+
+Cinco TSV de **cruce de instrumentos**, no de medición: ninguno contiene una
+estimación, una `p` ni un veredicto de regla. Todos declaran su universo de
+búsqueda **por línea** (última columna) para que un negativo pueda leerse con
+su denominador (A.13). Criterio de los veredictos, congelado antes de correr:
+`forense/prereg-caja/S11-CRUCE-spec-v1_0.md §2`.
+
+| artefacto | productor | esquema | quién lo lee | advertencia |
+|---|---|---|---|---|
+| `data/cruce-ola6-v1_0.tsv` | `ACTO MAESTRA38-LOTE-CRUCE`, pieza (a) | `id_regla, R_n, poblacion_declarada, veredicto, fuente, item, texto_reactivo_verbatim, que_falta_o_por_que, universo_de_busqueda` — 19 filas | quien diseñe el módulo propio de Ola 6; `forense/notas/2026-09-05-MAESTRA38-N12-modulo-propio-v0.md` (append) | `veredicto` ∈ {`PARCIAL`, `SIN-COBERTURA-EN-ESTAS-FUENTES`}; **`CUBIERTO-POR` no aparece: 0 de 19**. El universo son SÓLO las tres fuentes de A4 + la base de protesta — un `SIN-COBERTURA-EN-ESTAS-FUENTES` **no** dice nada sobre el resto del corpus |
+| `data/cruce-r7-v1_0.tsv` | `ACTO MAESTRA38-LOTE-CRUCE`, piezas (b) y (e) | `R_n, constructo, veredicto, fuente, item, texto_reactivo_verbatim, nota, universo_de_busqueda` — 4 filas (3 de (b), 1 de (e)) | quien escriba la spec de `R7.3`/`R7.6`; dirección, para re-especificar `tramite.gobierno_digital.coercitivo` | las tres filas de (b) son `CUBIERTO` y **ninguna es de LAPOP**: son de CIDE-CSES 2015. La fila de (e) es `SIN-COBERTURA` y trae su **control positivo** en la propia celda de universo |
+| `data/cruce-envipe-agravio-v1_0.tsv` | `ACTO MAESTRA38-LOTE-CRUCE`, pieza (c) | `antecedente, definicion_S5_§3.1, veredicto, fuente, item, texto_verbatim_del_FD, nota, universo_de_busqueda` — 5 filas | mesa, para decidir sobre la cláusula de movimiento de `R7.4` (`FP-316 (b)`/`ADR-363`) | el texto **no** sale del inventario: las 44 payloads de ENVIPE inventariadas tienen `texto_reactivo` **vacío** (ni el `.dbf` ni los `.sav` de INEGI llevan etiquetas). Sale de `data/raw/fd_envipe2025.pdf`, 98 páginas / 5 392 líneas. La fila decisiva es la del **desenlace**, no la de un antecedente |
+| `data/cruce-relaciones-noencontrado-v1_0.tsv` | `ACTO MAESTRA38-LOTE-CRUCE`, pieza (d) | `relacion_id, necesidad_id, fuente_NO_ENCONTRADO, constructo_pedido, veredicto, fuente_paralela, item, texto_reactivo_verbatim, nota, universo_de_busqueda` — 29 filas | quien retome las relaciones `NO-ENCONTRADO`; **no** sustituye a `data/curacion-registro/relaciones.tsv`, que este acto no edita | el veredicto es **del constructo** (`necesidad_id`), no de la relación: filas de la misma necesidad comparten veredicto y paralela por construcción. La fila `N20` lleva una **reserva explícita** (la paralela vive en dos archivos del mismo estudio y no se verificó llave de unión) |
+| `data/cruce-lapop2123-v1_0.tsv` | `ACTO MAESTRA38-LOTE-CRUCE`, pieza (f) | `payload_id_manifiesto, archivo, variable_control, estado, texto_reactivo_verbatim, n_columnas_del_archivo, filas_en_v1_2, nota` — 12 filas | mesa, para las tres `se_mueve_si` de `MAESTRA38-SELLO-2 §B` | leído **directo del `.dta`** con `pyreadstat`, no del inventario. Las filas `(familia clien*/vb2*/aoj*)` son un **censo** de la familia de variables, no un control: sirven para que un `AUSENTE` no se confunda con un nombre distinto |
+
 `descargas_mx_v1_1` es una clave nueva, no un cambio de la anterior.
 
 `DE2` sigue vivo y ahora está medido sobre los 131: los `.stata.stata.zip`
