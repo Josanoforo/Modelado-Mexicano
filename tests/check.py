@@ -2559,6 +2559,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # forense/prereg-duelo-v2/), no un rotulo que este acto instancie: es
     # mencion de perimetro ajeno, no uso. El encargo verbatim no se edita.
     "forense/encargos/2026-09-07-MAESTRA38-L16-BIS-2.md",
+    # ACTO MAESTRA38-N22, 7/sep/2026: encargo archivado VERBATIM (A.3). Su
+    # bloque CARRILES nombra "la rama de M13 ENMIENDA-1" entre los carriles
+    # de nube que corren en paralelo, para declarar que ninguno toca
+    # `forense/prereg-caja/S6-*`. `M13` pelado es mencion de perimetro
+    # ajeno (forense/prereg-duelo-v2/), no un rotulo que este acto
+    # instancie -- mismo caso que L16-BIS-2, arriba. El encargo verbatim
+    # no se edita para complacer un test.
+    "forense/encargos/2026-09-07-MAESTRA38-N22.md",
     # ACTO MAESTRA38-TRAMITE-3, 7/sep/2026: encargo archivado VERBATIM
     # (A.3) tras el relanzamiento con el cuerpo real. Su bloque de perimetro
     # de la CABECERA DE LA CASA cita "AUTOMATIZA-1-E2 fusionado" -- ese "E2"
@@ -4450,6 +4458,14 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # herramienta no existía todavía cuando este texto se escribió (es el
     # propio objeto del encargo), así que no pudo traer su propia salida.
     "forense/encargos/2026-09-05-MAESTRA38-N9-YA-MEDIDO.md",
+    # ACTO MAESTRA38-N22, 7/sep/2026: el encargo se archiva VERBATIM (A.3)
+    # y cita `R4.4` en su cuerpo original, redactado por direccion antes de
+    # esta sesion -- un encargo verbatim nunca se edita para complacer un
+    # test (misma regla que rige T25). `tools/ya_medido.py R4.4` SI se
+    # corrio en el A.8 de este acto; la salida cruda vive en el §0.1 de
+    # `forense/prereg-caja/S6-L16-spec-v1_2.md`, la pieza que el encargo
+    # produce, no en el archivo verbatim.
+    "forense/encargos/2026-09-07-MAESTRA38-N22.md",
     # ACTO MAESTRA38-L2, 6/sep/2026: el encargo se archiva VERBATIM (A.3) y
     # cita `R7.3`/`R7.6`/`P3` en su cuerpo original (redactado por dirección
     # antes de esta sesión) -- un encargo verbatim nunca se edita para
