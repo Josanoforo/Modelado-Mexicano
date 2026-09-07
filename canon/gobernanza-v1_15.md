@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **371 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **372 ADR**
 
 > | | |
 > |---|---|
@@ -6422,3 +6422,17 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **`tests/check.py --baseline`**: ver la nota de cierre.
 
 **Numeración.** Derivado contra `origin/main = 33702a0` (máximo real `369`), candidato `370`, contiguo, sin huecos. `LOTE-CRUCE` corre en paralelo sobre `acto/maestra38-lote-cruce`: si fusiona primero, este ADR se renumera — regla de la casa, renumera quien fusiona segundo.
+
+---
+
+**ADR-372 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `371` contra `origin/main = 40ff4f8`, candidato `372`, contiguo, sin huecos) · `ACTO AUTOMATIZA-2-E5 · SCORE-RENDER`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — extrae de `tools/score_marco_m.py::main()` el documento inline (censo + entrada de scoring) a `construir_documento(ruta_marco, schema_dd) -> dict`, sin tocar `censar_universo` ni `construir_entrada_scoring` ni una sola clave del documento — verificado: `--json` sobre `marco-M-sorteado-v1_1.tsv` con el script pre-refactor (extraído del commit 0-bis) y con el script post-refactor produce bytes idénticos (diff vacío). Añade `render_json` (el `json.dumps(documento, ensure_ascii=False, indent=2, sort_keys=True)` actual, sin cambiar argumentos) y `render_markdown` (tablero legible por `id_celda` — `grado_DD`, verificación-no-puntúa, `M`/`R`/`L`, puntuable — sin fecha, sin narrativa, sin interpretación, §21) sobre el mismo `documento`: ninguna disponibilidad recalculada, nada leído fuera de él. `main()` gana `--format {json,markdown}` (Enmienda 6 del encargo; default `json`, `--json <ruta>` intacto en cualquier formato). `.claude/commands/score.md` deja de pedir transcripción manual del censo a una tabla: apunta al comando nuevo («misma derivación, dos representaciones; el Markdown no recalcula nada»). `tests/test_score_render.py` (nuevo): fixture de tres celdas (puntuable / no puntuable / `VERIFICACION-NO-PUNTUA`) con `_m_disponible`/`_r_disponible`/`_l_disponible` parcheados, compara `construir_documento` contra el documento recompuesto con los primitivos sin tocar, verifica las tres filas del Markdown y que dos corridas de `render_markdown` sean bytes idénticos. Verificación real adicional (una vez, en el acto): sobre `marco-M-sorteado-v1_1.tsv`, `--format markdown` reproduce el mismo `n_celdas_universo` (11=11), `n_puntuables` (11=11) y el mismo conjunto ordenado de `id_celda` que el JSON. **Medición: cero** — no toca `forense/prereg-duelo-v2/scoring-adv1-m3.py`, marcos, scoreboards históricos, `delta`/`FP-168` ni la definición de puntuable.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-AUTOMATIZA-2-E5-SCORE-RENDER.md`. **Gate verificado.** `COMPUERTA: ninguna` — declarada explícitamente por el encargo («nube, sin compuerta»), no dispara verificación.
+
+**Perímetro.** Toca `tools/score_marco_m.py`, `tests/test_score_render.py` (nuevo), `.claude/commands/score.md` (el párrafo del tablero Markdown), `tests/check.py` (`_T25_ARCHIVOS_CONOCIDOS`, un rótulo `E4` pelado en el encargo archivado que cita `ACTO AUTOMATIZA-2-E4`, elemento hermano externo), notas, A.3, cascada. **No toca** `forense/prereg-duelo-v2/scoring-adv1-m3.py`, marcos, scoreboards históricos, `delta`/`FP-168` ni la definición de puntuable.
+
+**Deuda que abre.** Ninguna.
+
+**Deuda que cierra.** Ninguna.
+
+**`tests/check.py --baseline`**: LÍNEA BASE VERDE.
