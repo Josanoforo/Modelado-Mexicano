@@ -2552,6 +2552,18 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-M13 · M-POR-CELDA v1.3, 7/sep/2026. Los tres archivos
+    # nombran `M13` pelado porque ES EL ROTULO DE ESTE ACTO -- el espacio M de
+    # la serie maestra-38, ya censado en canon/registro-rotulos.tsv por el
+    # acto hermano (PASOS 1 Y 2, PR #592). No es un rotulo nuevo sin prefijo:
+    # es la forma corta con que el propio encargo de direccion se nombra, y el
+    # encargo se archiva VERBATIM (A.3), que nunca se edita para complacer un
+    # test -- misma regla que /acto §4.5 fija y que ya aplico
+    # 2026-09-07-MAESTRA38-L16-BIS-2.md. El scoreboard y el benchmark lo citan
+    # al declarar de que acto salen sus cifras.
+    "forense/encargos/2026-09-07-MAESTRA38-M13-M-POR-CELDA-v1_3.md",
+    "forense/prereg-duelo-v2/scoreboard-v1_3-AGREGADO.md",
+    "forense/benchmark/BENCHMARK-MOTORES-COMPARABLES.md",
     # ACTO MAESTRA38-N23-N25 · TRES-SPECS-NEGATIVOS, 7/sep/2026: encargo
     # archivado VERBATIM (A.3). Trae `M13` pelado en la línea CARRILES
     # ("rama de M13 ENMIENDA-1"), donde dirección enumera los actos en
@@ -4456,6 +4468,19 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-M13 · M-POR-CELDA v1.3, 7/sep/2026: encargo archivado
+    # VERBATIM (A.3), que no se edita para complacer un test (misma regla que
+    # rige T25). Cita `tramite.mordida.discrecional` porque re-enlaza tres
+    # celdas del marco a una conducta YA MEDIDA Y SELLADA de esa regla; NO la
+    # clasifica, ni la pre-registra, ni la carga, ni la sella -- §26 del propio
+    # encargo prohibe tocar milpa/tramite.yaml, y el arbol confirma que este
+    # acto no lo toca. Salida real de `python3 tools/ya_medido.py
+    # tramite.mordida.discrecional`: MEDIDA-EN: milpa/tramite.yaml:40 (R3.1,
+    # p=0.62 ASIGNADO) y milpa/tramite-ola5-propuesta-v0.yaml:462
+    # (tramite.mordida.discrecional_encig_serie, p=0.085118) -- que es
+    # exactamente la medicion preexistente que este acto pone a consumir. La
+    # salida completa va en el `## CONSUMIDO` de este encargo (A.8).
+    "forense/encargos/2026-09-07-MAESTRA38-M13-M-POR-CELDA-v1_3.md",
     # ACTO MAESTRA38-N23-N25 · TRES-SPECS-NEGATIVOS, 7/sep/2026: el encargo
     # se archiva VERBATIM (A.3) y cita `R7.4`/`R4.5`/`R9.3` y
     # `civico.protesta.agravio_urbano_multiola` en el cuerpo que dirección
