@@ -21,6 +21,15 @@ seguidas sin cambios en el árbol no escribe nada la segunda vez.
 Reutiliza `tools/estado_comun.py` (`es_abierta`, `lee_tablero`,
 `ramas_remotas_presentes`, `adr_max`, `fp_max`) -- no las reimplementa.
 
+Escritura atómica (`--aplica`): cada archivo objetivo se escribe primero a
+un temporal en el mismo directorio y se confirma con `os.replace()` --
+un proceso interrumpido a medio camino nunca deja un archivo real con
+contenido parcial. Los dos temporales se preparan ANTES de confirmar
+ninguno, así que una interrupción mientras se preparan no toca ningún
+archivo real; si el segundo `os.replace()` falla después de que el
+primero ya confirmó, el reporte lo dice explícitamente en vez de afirmar
+"0 archivos escritos".
+
 Fuera de perímetro (decide el humano, no este tool): redactar el ADR,
 insertar la anotación L0, decidir el significado de un rótulo nuevo,
 escribir `que_significa`/`donde_vive` de `canon/registro-rotulos.tsv`,
@@ -37,6 +46,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 
 import estado_comun as EC
 
@@ -271,6 +281,34 @@ def _solo_digitos_cambiaron(original, candidato, patron):
             original[m_orig.end(2):] == candidato[m_new.end(2):])
 
 
+def _prepara_temp(ruta, contenido):
+    """Escribe `contenido` en un archivo temporal en el MISMO directorio que
+    `ruta` (requisito de `os.replace` para que el rename sea intra-
+    filesystem, luego atómico) y devuelve su ruta -- todavía no toca
+    `ruta`. Separar "preparar" de "confirmar" (`_confirma_temp`) deja
+    listos los dos archivos objetivo ANTES de reemplazar ninguno: un
+    proceso interrumpido mientras se preparan los temporales no toca
+    ningún archivo real."""
+    directorio = os.path.dirname(ruta) or "."
+    fd, ruta_tmp = tempfile.mkstemp(dir=directorio, prefix=".cierre_acto-", suffix=".tmp")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            f.write(contenido)
+    except BaseException:
+        try:
+            os.remove(ruta_tmp)
+        except OSError:
+            pass
+        raise
+    return ruta_tmp
+
+
+def _confirma_temp(ruta_tmp, ruta):
+    """Reemplazo atómico (`os.replace`): `ruta` nunca queda con contenido
+    parcial -- o el viejo completo, o el nuevo completo."""
+    os.replace(ruta_tmp, ruta)
+
+
 def fase_b_aplica(raiz=RAIZ):
     ruta_gob = _ruta_gobernanza(raiz)
     ruta_est = _ruta_estado(raiz)
@@ -315,12 +353,35 @@ def fase_b_aplica(raiz=RAIZ):
         return 1
 
     # Todo validado -- recién ahora se escribe, los dos archivos o ninguno.
-    if gob_candidato != gob_texto:
-        with open(ruta_gob, "w", encoding="utf-8") as f:
-            f.write(gob_candidato)
-    if est_candidato != est_texto:
-        with open(ruta_est, "w", encoding="utf-8") as f:
-            f.write(est_candidato)
+    # Primero se preparan TODOS los temporales (si algo falla aquí, ningún
+    # archivo real se tocó); sólo después se confirman los reemplazos --
+    # así el archivo real nunca queda con contenido parcial, y la ventana
+    # entre "nada escrito" y "todo escrito" se reduce a los dos renames
+    # atómicos consecutivos, no a dos escrituras completas consecutivas.
+    temps = []
+    try:
+        if gob_candidato != gob_texto:
+            temps.append((_prepara_temp(ruta_gob, gob_candidato), ruta_gob))
+        if est_candidato != est_texto:
+            temps.append((_prepara_temp(ruta_est, est_candidato), ruta_est))
+    except OSError as e:
+        print("APLICACION_ABORTADA · 0 archivos escritos")
+        print(f"  · error de E/S al preparar los temporales: {e}")
+        return 1
+
+    confirmados = []
+    try:
+        for ruta_tmp, ruta_destino in temps:
+            _confirma_temp(ruta_tmp, ruta_destino)
+            confirmados.append(ruta_destino)
+    except OSError as e:
+        # Los temporales ya estaban listos (ver arriba): si esto falla, es
+        # un error de E/S al hacer el rename, no una validación fallida.
+        # `confirmados` dice exactamente cuáles de los dos ya quedaron
+        # escritos antes del fallo -- nunca se afirma "0 archivos" si no
+        # es cierto.
+        print(f"ERROR DE E/S AL CONFIRMAR -- ya escrito: {confirmados or '(ninguno)'} · falló: {e}")
+        return 1
 
     cambios = []
     if cab_actual != adr_real:
