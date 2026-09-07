@@ -5,3 +5,21 @@ A.8 verificado (re-verifica): tools/score_marco_m.py: _leer_tsv :52 · censar_un
 E6 · TABLERO-DERIVADO — TODAVÍA NO MEDIBLE; no se redacta ni se lanza
 
 Los umbrales que dirección propuso (cifras copiadas a mano, discrepancias tipo D16, ventanas sin snapshot) son heurísticas para leer la fricción, no gates nuevos (enmienda de mesa). La decisión se toma después del siguiente mantenimiento real del tablero (v1.6), con la nota «FRICCIÓN-TABLERO POST-AUTOMATIZA-2» de una página: minutos/pasos, cifras copiadas, discrepancias observadas, E6 = HACER / NO HACER. Si se hace, hereda la forma de E5: render_markdown sobre el JSON de tablero_programa.py para el bloque factual, lectura humana intacta.
+
+## CONSUMIDO
+
+Ejecutado: **ACTO AUTOMATIZA-2-E5 · SCORE-RENDER**, únicamente. `E6 · TABLERO-DERIVADO` no se redactó ni se lanzó -- el propio encargo lo declara "TODAVÍA NO MEDIBLE" y condicionado al próximo mantenimiento real del tablero.
+
+Rama: `claude/score-render-refactor-fdanan` (empujada tras cada commit; `git ls-remote --heads origin | grep -i "automatiza-2-e5\|score-render"` no mostró colisión al arrancar). **No se abrió PR**: el entorno de esta sesión trae instrucción explícita de no crear pull request salvo pedido expreso, así que la rama queda empujada y lista para que mesa abra el PR cuando lo decida -- excepción declarada respecto al paso 9 de `/acto` §4, no un olvido.
+
+Commits: 0-bis (`831cbb7`, este archivo verbatim) · COMMIT 1 (`f929ff0`, `construir_documento`/`render_json`/`render_markdown` + `tests/test_score_render.py`) · COMMIT 2 (`678522a`, `.claude/commands/score.md` + `_T25_ARCHIVOS_CONOCIDOS`) · merge de `origin/main` tras dos PRs ajenos fusionados mientras esta rama estaba abierta (`PR #577` `MAESTRA38-C1`, `PR #578` `MAESTRA38-LOTE-CRUCE`, ninguno tocó el perímetro de este acto) · este commit (cascada: `ADR-372`, `canon/gobernanza-v1_15.md`/`canon/estado-programa-v1_12.md` recifrados con `python3 tools/cierre_acto.py --aplica`, más la cita de conteo de ADR en la tabla de nombres estables de `estado-programa-v1_12.md:27` que el tool no cubre, y `## CONSUMIDO`).
+
+Compuerta: `COMPUERTA` no citada por el encargo -- declarada explícitamente "nube, sin compuerta", no dispara verificación (paso 2 de `/acto` §2, "si no hay ninguna de las tres [formas], el encargo no está compuertado").
+
+Verificación real pegada (una vez, en el acto, sobre `marco-M-sorteado-v1_1.tsv`, 11 celdas): `--json` con el script pre-refactor (extraído de `831cbb7`) y con el post-refactor (`f929ff0`) → `diff` vacío, bytes idénticos. `--format markdown` → mismo `n_celdas_universo` (11=11), mismo `n_puntuables` (11=11), mismo conjunto ordenado de `id_celda` (`CIV-M-01, CIV-M-06, CIV-M-08, CIV-M-09, CIV-M-11, CIV-M-12, CIV-M-13, FAM-M-01, TRA-M-03, TRA-M-05, TRA-M-07`) que el JSON.
+
+`python3 tests/check.py --baseline`: LÍNEA BASE VERDE en los tres puntos de verificación (tras COMMIT 2, tras el T25 nuevo censado, y de nuevo tras la cascada de ADR/L0).
+
+PERÍMETRO cumplido tal como el encargo lo declaró: tocó `tools/score_marco_m.py`, `tests/test_score_render.py` (nuevo), `.claude/commands/score.md`, notas (este `## CONSUMIDO`), A.3 (0-bis) y la cascada (`tests/check.py::_T25_ARCHIVOS_CONOCIDOS`, `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_12.md`). No tocó `forense/prereg-duelo-v2/scoring-adv1-m3.py`, ningún marco, ningún scoreboard histórico, `delta`/`FP-168` ni la definición de puntuable -- verificado, ninguno de los tres aparece en ningún diff de este acto.
+
+CONTADOR final: transcripciones manuales por scoreboard 1 → 0 · bytes del JSON cambiados por el refactor: 0 (demostrado con diff vacío) · medición del motor: cero.
