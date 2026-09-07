@@ -3816,6 +3816,18 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # este acto escribe el rótulo va siempre con prefijo completo
     # (AUTOMATIZA-2-E4) -- D-6.
     "forense/encargos/2026-09-06-AUTOMATIZA-2-E4-PDN-COMPARA.md",
+    # ACTO AUTOMATIZA-2-E5 · SCORE-RENDER, 7/sep/2026: encargo archivado
+    # VERBATIM (A.3). Su cabecera cita "independiente de E4; se lanza
+    # cuando E4 abra PR, por orden del documento" -- a diferencia del caso
+    # AUTOMATIZA-1-E1/E2/E3 de arriba, este "E4" pelado NO es una
+    # autorreferencia: es un habitante externo real, ACTO AUTOMATIZA-2-E4,
+    # elemento hermano de la misma serie AUTOMATIZA-2 (rama viva en origin
+    # al momento de este acto: `acto/automatiza-2-e4-pdn-compara`, aún sin
+    # fusionar y por eso sin fila propia en canon/registro-rotulos.tsv).
+    # El encargo no se edita (A.3 pide el texto verbatim de dirección); en
+    # todo archivo propio que este acto escribe el rótulo va siempre con
+    # prefijo completo (AUTOMATIZA-2-E5) -- D-6.
+    "forense/encargos/2026-09-07-AUTOMATIZA-2-E5-SCORE-RENDER.md",
 }
 
 
