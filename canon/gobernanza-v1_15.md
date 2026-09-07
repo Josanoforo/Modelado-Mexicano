@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **376 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **377 ADR**
 
 > | | |
 > |---|---|
@@ -6520,3 +6520,21 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **`tests/check.py --baseline`**: ver la nota de cierre.
 
 **Numeración.** Derivado contra `origin/main = 3a04d5359566c073e8bd49cd3c32db8b7ef58f48` (máximo real `375`), candidato `376`, contiguo, sin huecos.
+
+---
+
+**ADR-377 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `376` contra `origin/main = 1452137e`, candidato `377`, contiguo, sin huecos) · `ACTO AUTOMATIZA-2-C · SELLA-SIDECAR`**, 7/sep/2026, entorno **NUBE sin corpus ni red** — tercera y última pieza de la tanda `AUTOMATIZA-2`, lanzada tras la fusión de `B` (`PR #584`). Defecto real: las specs congeladas de `forense/prereg-caja/` usan sidecar hermano (`<sha256> <basename>`, sustituyendo sólo la última extensión — `S7-L17-spec-v1_1.md` → `S7-L17-spec-v1_1.sha256`, nunca `.md.sha256`) y construir uno era transcripción manual. Crea `tools/sella_sha256.py`: sella o verifica el sidecar de un archivo pasado explícitamente — sin glob, sin caminar directorios, sin sellado recursivo, sin timestamps, sin YAML, sin registry de hashes, sin firmas, sin Git, sin decidir autorización semántica de una modificación; no se integra globalmente a `/acto` (un cambio accidental en una spec no se vuelve aceptado automáticamente sólo porque el cierre reselló el archivo). Sellado con escritura atómica (temporal en el mismo directorio + `os.replace()`); formato `<64-hex><dos espacios><basename>\n`, mismo formato que `sha256sum`. `--verifica` es siempre de sólo lectura y distingue tres resultados: `0` `SELLO_COINCIDE` · `2` `SIDECAR_AUSENTE` (nunca llamado "hash discordante") · `3` `SELLO_NO_COINCIDE` (con hash esperado/real, o diagnóstico de formato/basename). Rechaza una fuente que termina en `.sha256` y un directorio (exit `1`, sin sellar ni verificar nada — un directorio no se trata como lote implícito). Verificación dirigida real (sin test permanente — ningún defecto real apareció durante la implementación que justificara conservar uno, tal como el encargo lo condiciona): `--verifica` contra dos sidecars reales de `forense/prereg-caja/` (`S7-L17-spec-v1_1.md`, `S3-C1-spec-v1_0.md`) → `SELLO_COINCIDE` en los dos, sidecars sin modificar (`git status` limpio tras correr); fixture temporal con los diez pasos que el encargo pide (sellar, verificar → éxito, guardar el sidecar, modificar un byte, verificar → discordancia, comprobar que `--verifica` no cambió el sidecar, sidecar ausente, rechazo de directorio, rechazo de `.sha256`) → los diez, comando por comando, con el resultado esperado. **Contador:** transcripciones manuales necesarias para construir un sidecar, `1 → 0`.
+
+**Encargo** (archivado por A.3): `forense/encargos/2026-09-07-AUTOMATIZA-2-C-SELLA-SIDECAR.md`. **Gate verificado.** El paquete de lanzamiento condiciona `C` a que mesa fusione `B` primero y a que el producto de `B` esté en `origin/main`: verificado al arrancar — `origin/main = 1452137e671fbbe16053b7cd442484440f9ed528` = `Merge pull request #584`, y `git show origin/main:tools/cierre_acto.py | grep -c TABLA_ADR_RE` → `5` (el tercer contador de `B` presente por producto).
+
+**Gap de archivo declarado (heredado de A/B).** El `DICTAMEN · PLAN AUTOMATIZA-2 · CABLEADO POST-E3` (sha256 `b6b754903372b609f90ebb93197f1a6b29b6c265d95d015320d3d2d098a84f7a`) sigue sin llegar a ninguna sesión de esta tanda — re-verificado contra el árbol fresco tras la fusión de `B`, sin rastro nuevo.
+
+**Perímetro.** Toca `tools/sella_sha256.py` (nuevo), `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_12.md`, `tests/check.py` (sólo `_T25_ARCHIVOS_CONOCIDOS`), notas, A.3, cascada. **No toca** corpus, `data/raw`, `descargas_mx`, raíces físicas, manifiesto, adquisición, relaciones, motor, `baseline --freeze`, CI, GitHub Actions, reglas de protección de rama, `Downloads`, ni ningún runbook de sellado (ninguno único y obvio se encontró — no se tocó).
+
+**Deuda que abre.** El texto verbatim del dictamen sigue sin archivarse (ver "Gap de archivo declarado"). Regla de parada del paquete: no se busca un `AUTOMATIZA-3` después de C — el siguiente trabajo mecánico se automatiza sólo si aparece y se mide en uso.
+
+**Deuda que cierra.** La transcripción manual de sidecars `<sha256> <basename>` para specs congeladas nuevas.
+
+**`tests/check.py --baseline`**: ver la nota de cierre.
+
+**Numeración.** Derivado contra `origin/main = 1452137e671fbbe16053b7cd442484440f9ed528` (máximo real `376`), candidato `377`, contiguo, sin huecos.
