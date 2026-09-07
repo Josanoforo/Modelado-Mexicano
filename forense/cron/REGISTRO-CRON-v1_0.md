@@ -142,7 +142,7 @@ Cuando `T-CRON` da WARN o alguien sospecha que el cron dejó de correr:
 6/sep/2026).** Ambos fusionados antes de tocar código (D-a). `PR #557`
 traía un conflicto real con el ya-fusionado `PR #558` (dirección lo
 fusionó por error antes de lanzar el acto — ver `ADR-354`,
-`gobernanza-v1_15.md`) contra `forense/tablero/TABLERO-PROGRAMA-v1_1.md`,
+`gobernanza-v1_15.md`) contra `forense/tablero/TABLERO-PROGRAMA.md` (entonces v1_1),
 resuelto conservando ambas entradas en orden cronológico.
 
 **Commit 1** (este documento + `data/INFRAESTRUCTURA-v1_0.md` + `T-CRON`
