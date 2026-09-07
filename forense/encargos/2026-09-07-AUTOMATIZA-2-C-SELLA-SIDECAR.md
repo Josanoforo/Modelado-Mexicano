@@ -939,3 +939,25 @@ El **encargo** es el texto `ENCARGO FINAL · AUTOMATIZA-2 · CABLEADO POST-E3` (
 3. Después de C: reporte final del paquete (los siete puntos del encargo) y **parada**. Lo siguiente es dirección, no aparato: `M-POR-CELDA`.
 
 **Contadores movidos por este documento: cero.** Declarado.
+
+## CONSUMIDO
+
+Ejecutado: **ACTO AUTOMATIZA-2-C · SELLA-SIDECAR**, únicamente — la última de las tres piezas de la tanda.
+
+**PR:** [`#585`](https://github.com/Josanoforo/Modelado-Mexicano/pull/585), rama `claude/automatiza-2-cableado-post-e3-mb1anf`, contra `main`. **NO fusionado por el ejecutor** — mesa fusiona.
+
+**Condición de lanzamiento**, verificada por producto al arrancar: `B` ya fusionada (`origin/main = 1452137e671fbbe16053b7cd442484440f9ed528`, `Merge pull request #584`); `git show origin/main:tools/cierre_acto.py | grep -c TABLA_ADR_RE` → `5` (el tercer contador de B presente por producto).
+
+**Gap de archivo declarado (heredado de A/B).** El `DICTAMEN · PLAN AUTOMATIZA-2 · CABLEADO POST-E3` (sha256 `b6b754903372b609f90ebb93197f1a6b29b6c265d95d015320d3d2d098a84f7a`) sigue sin llegar a ninguna sesión de esta tanda — re-verificado contra el árbol fresco tras la fusión de `B`, sin rastro nuevo.
+
+**Qué se hizo.** `tools/sella_sha256.py` (nuevo): sella o verifica el sidecar `<sha256> <basename>` de un archivo pasado explícitamente (`Path.with_suffix(".sha256")`, nunca concatenado). Sellado con escritura atómica; `--verifica` siempre de sólo lectura, tres resultados (`SELLO_COINCIDE`/`SIDECAR_AUSENTE`/`SELLO_NO_COINCIDE`). Rechaza `.sha256` como fuente y directorios. Verificado real contra dos sidecars vigentes de `forense/prereg-caja/` (`S7-L17-spec-v1_1.md`, `S3-C1-spec-v1_0.md`) sin modificarlos, más fixture temporal con los diez pasos del encargo (sellar/verificar/modificar/discordancia/sidecar-no-cambia/ausente/rechazos). Sin test permanente — ningún defecto real apareció durante la implementación.
+
+**Commits:** 0-bis (`6419c87`, este archivo verbatim) · COMMIT 1 (`6225f46`, `tools/sella_sha256.py` + T25) · cascada (`262e619`, `ADR-377`/`L0`) · este commit (`## CONSUMIDO`).
+
+**`python3 tests/check.py --baseline`**: LÍNEA BASE VERDE, sin regresión nueva.
+
+**Perímetro cumplido tal como el encargo lo declaró.** Tocó `tools/sella_sha256.py` (nuevo) · `canon/gobernanza-v1_15.md` · `canon/estado-programa-v1_12.md` · `tests/check.py` (sólo `_T25_ARCHIVOS_CONOCIDOS`) · A.3 (este archivo) · cascada. **No tocó** corpus, `data/raw`, `descargas_mx`, raíces físicas, manifiesto, adquisición, relaciones, motor, `baseline --freeze`, CI, GitHub Actions, reglas de protección de rama, `Downloads`, ni ningún runbook de sellado (ninguno único y obvio se encontró).
+
+**CONTADOR final:** transcripciones manuales necesarias para construir un sidecar, `1 → 0`.
+
+**Regla de parada.** La tanda termina con este acto. No se busca un `AUTOMATIZA-3`. `RENUMERA-DIAGNÓSTICO` queda descartada, sin código/test/ADR/backlog, tal como el encargo pide. El reporte final del paquete (los siete puntos que el encargo exige) se entrega a mesa por separado, una vez que este PR también esté fusionado.
