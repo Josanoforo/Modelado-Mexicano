@@ -1,7 +1,8 @@
-ESTADO: LISTO-CAJA
+ESTADO: RETIRADO — premisa muerta (ADR-327), D12 (ACTO MAESTRA38-TRAMITE-3, 7/sep/2026)
 ENTORNO: UBUNTU (abre microdato ENSANUT 2024, raíz descargas_mx)
 ENCOLADO: 2026-09-03 · ACTO MAESTRA37-N1
 BITACORA:
+- 2026-09-07 · RETIRADO · D12 (ACTO MAESTRA38-TRAMITE-3): la compuerta de este encargo (`OLA 6 ABIERTA` para `salud`, criterio ≥3 `EXISTE-SATISFACE` de `ADR-265`) no puede cumplirse — `ADR-327` (`ACTO MAESTRA37-L3-BIS · SALUD-A4-SOBRE-v2`, 3/sep/2026) deja el dominio `salud` en 2 de 5, la vía de adquisición agotada, y `MAESTRA38-N10` (`ADR-336`) confirma `0` de `6` dominios con lo medible hoy tras el barrido más reciente. La premisa que este encargo esperaba (mesa abre Ola 6 para `salud` vía `MAESTRA34-N5`/`FP-267`/`FP-268`) está muerta, no pendiente. `/despacha` no debe recogerlo. El cuerpo verbatim de abajo no se edita (A.3).
 - 2026-09-03 · LISTO-CAJA · encolado por ACTO MAESTRA37-N1 · ALINEA-N6-Y-ENCOLA-L10 (ADR-319). ENMIENDA DE DIRECCION, fechada: GATED: compuerta verbatim del cuerpo sigue vigente y hoy NO se cumple (`grep -c "OLA 6 ABIERTA" canon/gobernanza-v1_15.md` → 0, control positivo `grep -c "ADR-317"` → 9). SHA de redacción `9cbd8d8` desactualizado: quien lance re-deriva contra `origin/main`. `MAESTRA34-N5` ya corrió (`ADR-317`, no abre); la decisión de apertura es de mesa (FP-267/FP-268, y el recuento de `MAESTRA37-L1` sobre `descargas_mx` antes de decidir).
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────

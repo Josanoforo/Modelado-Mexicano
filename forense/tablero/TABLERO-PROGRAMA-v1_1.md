@@ -1,3 +1,5 @@
+**SUPERADO POR `forense/tablero/TABLERO-PROGRAMA.md` (7/sep/2026) — ACTO MAESTRA38-TRAMITE-3, decisión de mesa "1 solo archivo con un solo nombre, TODO que haga referencia se alinea a ello".** Este archivo no se borra (historia recuperable); el archivo vigente para toda referencia nueva es `forense/tablero/TABLERO-PROGRAMA.md`, que lleva este mismo contenido (v1.1, snapshot 2/sep/2026 — el más reciente disponible en el árbol real; el adjunto TABLERO-PROGRAMA-v1_5.md (adjunto nunca llegado al repo) que un encargo posterior citó como fuente no llegó al repo).
+
 # TABLERO DEL PROGRAMA · Psicología del Mexicano Contemporáneo / Modelado-Mexicano
 **v1.1 · snapshot `9cbd8d8` (origin/main, merge PR #485, 2/sep/2026 18:21 −06:00) · derivado el 2/sep/2026 por la conversación del tablero · snapshot anterior `57a365e` (v1.0, dirección/Fable)**
 

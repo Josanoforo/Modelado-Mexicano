@@ -254,6 +254,14 @@ HISTORICOS = {
     # (canon/gobernanza-v1_15.md, canon/registro-rotulos.tsv, forense/notas,
     # forense/encargos) no se reescriben.
     "estado-programa-v1_11.md",
+    # forense/encargos/2026-09-07-MAESTRA38-TRAMITE-3.md (A.3, VERBATIM):
+    # el encargo cita `TABLERO-PROGRAMA-v1_5.md` como el adjunto de mesa que
+    # debía traer el contenido del tablero consolidado -- nunca llego ni al
+    # orquestador ni al repo (declarado por direccion misma, FP-327 sigue
+    # ABIERTA por esto). No es un archivo que existio y se borro, pero es el
+    # mismo costo que HISTORICOS ya paga: una cita en texto que A.3 prohibe
+    # editar contra un nombre que nunca tuvo archivo real detras.
+    "TABLERO-PROGRAMA-v1_5.md",
 }
 
 def _normalize_version_dots(name):
@@ -2524,6 +2532,13 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-TRAMITE-3, 7/sep/2026: encargo archivado VERBATIM
+    # (A.3) tras el relanzamiento con el cuerpo real. Su bloque de perimetro
+    # de la CABECERA DE LA CASA cita "AUTOMATIZA-1-E2 fusionado" -- ese "E2"
+    # pelado es AUTOMATIZA-1-E2, un acto real (PR #569) fuera de la serie
+    # MAESTRA<nn>, mismo patron que MAESTRA34-N9 con "E1" abajo. El encargo
+    # verbatim no se edita.
+    "forense/encargos/2026-09-07-MAESTRA38-TRAMITE-3.md",
     # ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE, 3/sep/2026: trae `M-3`
     # pelado tres veces ("Encargo M-3 2026-08-05", "acuerdos B-3/M-3",
     # "encargo B-3/M-3") citando un acto real y anterior al patrón
@@ -4298,6 +4313,15 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-TRAMITE-3, 7/sep/2026: encargo archivado VERBATIM (A.3).
+    # El §B (benchmark, redactado por direccion) cita
+    # `civico.participacion.tipo_boleta_federal_2016_2024` solo como ejemplo
+    # de un cierre ya ocurrido antes ("Cerrados 2-3/sep sin clausula") -- no
+    # clasifica/pre-registra/carga/sella esa regla en este acto. Verificado
+    # con `python3 tools/ya_medido.py civico.participacion.tipo_boleta_federal_2016_2024`:
+    # NUNCA-MEDIDA (ya estaba SELLADA-SIN-CARGA en la propuesta desde antes,
+    # sin cambio de este acto).
+    "forense/encargos/2026-09-07-MAESTRA38-TRAMITE-3.md",
     # ACTO MAESTRA38-N9 · YA-MEDIDO, 5/sep/2026: el propio encargo que
     # define `tools/ya_medido.py` cita `familia.cortejo.urbano_joven_apps`
     # como CONTROL NEGATIVO de su SPEC -- describe qué debe devolver la
