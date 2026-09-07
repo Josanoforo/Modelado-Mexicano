@@ -939,3 +939,25 @@ El **encargo** es el texto `ENCARGO FINAL · AUTOMATIZA-2 · CABLEADO POST-E3` (
 3. Después de C: reporte final del paquete (los siete puntos del encargo) y **parada**. Lo siguiente es dirección, no aparato: `M-POR-CELDA`.
 
 **Contadores movidos por este documento: cero.** Declarado.
+
+## CONSUMIDO
+
+Ejecutado: **ACTO AUTOMATIZA-2-A · BLINDA-HEAD-PR**, únicamente — `B` y `C` quedan para lanzarse por separado, desde `main` fresco, después de que mesa fusione este PR (regla de la casa de esta misma tanda: no apilar).
+
+**PR:** [`#582`](https://github.com/Josanoforo/Modelado-Mexicano/pull/582), rama `claude/automatiza-2-cableado-post-e3-mb1anf`, contra `main`. **NO fusionado por el ejecutor** — mesa fusiona.
+
+**Condición de lanzamiento**, verificada por producto al arrancar: `acto/automatiza-2-e4-pdn-compara` no sólo abrió su PR, ya se había fusionado como `#580` (`git log -1 origin/main` = `e1c3c84073e7d246aa3399410e014242875e52ba Merge pull request #580 from Josanoforo/acto/automatiza-2-e4-pdn-compara`; `git ls-remote --heads origin` sin esa rama viva).
+
+**Gap de archivo declarado.** El `DICTAMEN · PLAN AUTOMATIZA-2 · CABLEADO POST-E3` (dirección Fable, sha256 `b6b754903372b609f90ebb93197f1a6b29b6c265d95d015320d3d2d098a84f7a`) no llegó a esta sesión y no se archivó junto a los otros dos documentos de este mismo A.3 — ver la sección `DICTAMEN` arriba y `ADR-374`.
+
+**Qué se hizo.** `tools/verifica_head_remoto.py` (nuevo, sólo lectura) compara `git rev-parse HEAD` contra `git ls-remote --heads <remote> refs/heads/<rama>` real y distingue cuatro estados por exit code (`0` sincronizado · `2` desactualizado · `3` rama ausente · `4` remoto no verificable, los tres últimos `NO FUSIONAR`). `tests/test_verifica_head_remoto.py` (nuevo) demuestra los cinco estados sobre repos `bare` locales, sin red real. `.claude/commands/acto.md` §4 y `.claude/commands/despacha.md` ganan el guard final antes de declarar un PR listo para mesa, con retry de un push + una repetición si sale desactualizado y `NO FUSIONAR` sin loop si persiste.
+
+**Cascada.** `ADR-374` (`canon/gobernanza-v1_15.md`), anotación `L0` nueva + fila `gobernanza` de la tabla §0 (`canon/estado-programa-v1_12.md`, bumpeada a mano — `tools/cierre_acto.py` todavía no reconcilia esa tercera cita, es el objeto de `AUTOMATIZA-2-B`). `python3 tools/cierre_acto.py --aplica`: `APLICADO: gobernanza 373->374 · L0 373->374`; segunda corrida → `sin cambios`. `tests/check.py`: `_T25_ARCHIVOS_CONOCIDOS` gana este mismo archivo (cita "E4" pelado, habitante hermano externo ya fusionado) y `HISTORICOS` gana `ejemplo.md` (fixture temporal citado en la verificación dirigida de `ACTO C`, verbatim, A.3 prohíbe editar el encargo).
+
+**Commits:** 0-bis (`a5453a4`, este archivo verbatim) · COMMIT 1 (`5a35a10`, `tools/verifica_head_remoto.py` + test) · COMMIT 2 (`c059c0d`, guard en `/acto` + `/despacha`) · cascada (`a81fe07`, `ADR-374`/`L0`/tabla/`T25`) · este commit (`## CONSUMIDO`).
+
+**`python3 tests/check.py --baseline`**: LÍNEA BASE VERDE, sin regresión nueva, verificado en tres puntos (tras COMMIT 2, tras la cascada, y de nuevo tras este commit).
+
+**Perímetro cumplido tal como el encargo lo declaró.** Tocó `tools/verifica_head_remoto.py` (nuevo) · `tests/test_verifica_head_remoto.py` (nuevo) · `.claude/commands/acto.md` · `.claude/commands/despacha.md` · `canon/gobernanza-v1_15.md` · `canon/estado-programa-v1_12.md` · `tests/check.py` (sólo `_T25_ARCHIVOS_CONOCIDOS`/`HISTORICOS`) · A.3 (este archivo) · cascada. **No tocó** corpus, `data/raw`, `descargas_mx`, raíces físicas, manifiesto, adquisición, relaciones, motor, `baseline --freeze`, CI, GitHub Actions, reglas de protección de rama, `Downloads` — verificado, ninguno aparece en el diff de este acto (`git diff --stat origin/main..HEAD`).
+
+**CONTADOR final:** clases observadas de merge con `HEAD` anterior protegidas por un guard mecánico, `0 → 1`.
