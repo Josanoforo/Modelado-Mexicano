@@ -22,7 +22,7 @@
 
 `canon/modelo-decision-v4_0.md:558`: *«**SI** hay agravio personal/familiar + falla estatal palpable + red previa **Y** el entorno es **urbano con espacio público disponible** **ENTONCES** se suma a **protesta** … PORQUE G4 (destructor selectivo) — `[MEDIA-FUERTE]`»*.
 
-`python3 tools/ya_medido.py R7.4` (corrido al redactar): resuelve a `civico.protesta.agravio_urbano`; `milpa/tramite.yaml:1212` trae `situacion=SELLADA tier=FUERTE`, `veredicto_Bbis=NO-DISCRIMINA` / `CORROBORADA`, `p=0.112192`. La entrada que esta spec toca es la **tercera formulación**, `milpa/tramite-ola5-propuesta-v0.yaml:3467` `civico.protesta.agravio_urbano_multiola`, `situacion: ACOTADA-CON-RESERVA`, `tier: PENDIENTE-DE-MESA`.
+`python3 tools/ya_medido.py R7.4` (corrido al redactar): resuelve a `civico.protesta.agravio_urbano`; `milpa/tramite.yaml:1212` trae `situacion=SELLADA tier=FUERTE`, `veredicto_Bbis=NO-DISCRIMINA` / `CORROBORADA`, `p=0.112192`; veredicto del script: **`MEDIDA-EN: 2026-09-06-MAESTRA38-LOTE-LAPOP-A8.md, 2026-09-07-MAESTRA38-CARGA-LAPOP-resultados.md, L11, L5, L9, S5`**. La entrada que esta spec toca es la **tercera formulación**, `milpa/tramite-ola5-propuesta-v0.yaml:3467` `civico.protesta.agravio_urbano_multiola`, `situacion: ACOTADA-CON-RESERVA`, `tier: PENDIENTE-DE-MESA`.
 
 **Cláusula vigente, verbatim (`milpa/tramite-ola5-propuesta-v0.yaml:3482`):** *«sin instrumento hoy: ENVIPE 2025 no trae desenlace de protesta (FP-329 (c)); se mueve si entra al corpus una fuente con sobremuestra rural Y desenlace de protesta; hasta entonces, ACOTADA-CON-RESERVA (D2-h) sin fecha»*.
 

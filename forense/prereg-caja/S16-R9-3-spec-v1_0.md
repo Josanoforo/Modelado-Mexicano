@@ -22,7 +22,7 @@
 
 `canon/modelo-decision-v4_0.md:772`: `R9.3 | L287 | Allegado de confianza → sube credibilidad inicial | [MEDIA] | No`.
 
-`python3 tools/ya_medido.py R9.3` (corrido al redactar): resuelve a `informacion.credibilidad.allegado_confianza`; **`milpa/tramite.yaml`: sin apariciones**. Cierre vigente: `SIN-COBERTURA` en el cruce de Ola 6 / `HIPÓTESIS-SIN-INSTRUMENTO` (`N10`), firmado en bloque por **FP-303**. **Esta spec no reabre FP-303 en bloque.**
+`python3 tools/ya_medido.py R9.3` (corrido al redactar): resuelve a `informacion.credibilidad.allegado_confianza`; **`milpa/tramite.yaml`: sin apariciones**; veredicto del script al redactar: **`NUNCA-MEDIDA`** (una corrida posterior devuelve `MEDIDA-EN: S16` porque el script indexa esta misma spec — no es una medición, es esta pieza citándose; se declara para que nadie lo lea como tal). Cierre vigente: `SIN-COBERTURA` en el cruce de Ola 6 / `HIPÓTESIS-SIN-INSTRUMENTO` (`N10`), firmado en bloque por **FP-303**. **Esta spec no reabre FP-303 en bloque.**
 
 ### 0.2 · Corrección de premisa del encargo — son 25 fuentes, no 10, y la pregunta que dejaba abierta ya está contestada
 

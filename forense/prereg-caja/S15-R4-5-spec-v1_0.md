@@ -22,7 +22,7 @@
 
 `canon/modelo-decision-v4_0.md:750`: `R4.5 | L244 | Producto con sellos + precio similar → elige menos sellos | [MEDIA] | No`.
 
-`python3 tools/ya_medido.py R4.5` (corrido al redactar): resuelve a `salud.consumo.sellos_precio_similar`; **`milpa/tramite.yaml`: sin apariciones** — la regla no está cargada al motor. Cierre vigente: `SIN-COBERTURA` en el cruce de Ola 6 contra las 4 fuentes nuevas (6/sep), `HIPÓTESIS-SIN-INSTRUMENTO` por `N10` (5/sep), firmado en bloque por **FP-303** (ruta c, TRÁMITE-6 `#589`). **Esta spec no reabre FP-303 en bloque**: reabre esta regla con el comando y la salida que lo justifican, y deja las otras diez como estaban.
+`python3 tools/ya_medido.py R4.5` (corrido al redactar): resuelve a `salud.consumo.sellos_precio_similar`; **`milpa/tramite.yaml`: sin apariciones** — la regla no está cargada al motor; veredicto del script: **`NUNCA-MEDIDA`**. Cierre vigente: `SIN-COBERTURA` en el cruce de Ola 6 contra las 4 fuentes nuevas (6/sep), `HIPÓTESIS-SIN-INSTRUMENTO` por `N10` (5/sep), firmado en bloque por **FP-303** (ruta c, TRÁMITE-6 `#589`). **Esta spec no reabre FP-303 en bloque**: reabre esta regla con el comando y la salida que lo justifican, y deja las otras diez como estaban.
 
 ### 0.2 · Por qué el cierre no vio el módulo — cobertura retroactiva
 

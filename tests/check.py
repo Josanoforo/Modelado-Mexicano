@@ -2552,6 +2552,14 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-N23-N25 · TRES-SPECS-NEGATIVOS, 7/sep/2026: encargo
+    # archivado VERBATIM (A.3). Trae `M13` pelado en la línea CARRILES
+    # ("rama de M13 ENMIENDA-1"), donde dirección enumera los actos en
+    # paralelo que este acto NO toca -- mención de concurrencia, no rótulo
+    # que este acto acuñe. Se refiere a `ACTO MAESTRA38-M13`
+    # (`forense/encargos/2026-09-07-MAESTRA38-M13-DIAGNOSTICO-14.md`,
+    # FP-333). Un encargo verbatim no se edita para complacer un test.
+    "forense/encargos/2026-09-07-MAESTRA38-N23-N25-TRES-SPECS-NEGATIVOS.md",
     # ACTO MAESTRA38-L16-BIS-2, 7/sep/2026: encargo archivado VERBATIM (A.3).
     # Su bloque CARRILES nombra los tres actos de nube que corren en paralelo
     # — "TRAMITE-6, N20-N21, M13" — para declarar que ninguno toca este
@@ -4434,6 +4442,16 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-N23-N25 · TRES-SPECS-NEGATIVOS, 7/sep/2026: el encargo
+    # se archiva VERBATIM (A.3) y cita `R7.4`/`R4.5`/`R9.3` y
+    # `civico.protesta.agravio_urbano_multiola` en el cuerpo que dirección
+    # redactó -- un encargo verbatim nunca se edita para complacer un test
+    # (misma regla que rige T25). `tools/ya_medido.py` SÍ se corrió sobre las
+    # tres en A.8; el veredicto vive en el §0.1 de cada spec del acto
+    # (`forense/prereg-caja/S14-R7-4-spec-v1_0.md`: `MEDIDA-EN: ... L11, L5,
+    # L9, S5`; `S15-R4-5-spec-v1_0.md`: `NUNCA-MEDIDA`;
+    # `S16-R9-3-spec-v1_0.md`: `NUNCA-MEDIDA`).
+    "forense/encargos/2026-09-07-MAESTRA38-N23-N25-TRES-SPECS-NEGATIVOS.md",
     # ACTO MAESTRA38-TRAMITE-3, 7/sep/2026: encargo archivado VERBATIM (A.3).
     # El §B (benchmark, redactado por direccion) cita
     # `civico.participacion.tipo_boleta_federal_2016_2024` solo como ejemplo
