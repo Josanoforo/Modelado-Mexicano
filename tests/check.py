@@ -3846,6 +3846,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # se edita (A.3); en todo archivo propio que este acto escribe el
     # rotulo va siempre con prefijo completo (AUTOMATIZA-2-A) -- D-6.
     "forense/encargos/2026-09-07-AUTOMATIZA-2-A-BLINDA-HEAD-PR.md",
+    # ACTO AUTOMATIZA-2-B . CIERRA-TERCER-CONTADOR, 7/sep/2026: mismo A.3
+    # verbatim que AUTOMATIZA-2-A de arriba -- el paquete de lanzamiento de
+    # la tanda AUTOMATIZA-2 pide archivar el mismo ENCARGO FINAL + PAQUETE
+    # completos en cada uno de los tres actos (A/B/C), asi que los mismos
+    # "E4" pelados (habitante hermano externo, ya fusionado, #580)
+    # reaparecen aqui verbatim. El texto no se edita (A.3); en todo
+    # archivo propio que este acto escribe el rotulo va siempre con
+    # prefijo completo (AUTOMATIZA-2-B) -- D-6.
+    "forense/encargos/2026-09-07-AUTOMATIZA-2-B-CIERRA-TERCER-CONTADOR.md",
 }
 
 
