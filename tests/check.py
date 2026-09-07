@@ -2552,6 +2552,13 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-L16-BIS-2, 7/sep/2026: encargo archivado VERBATIM (A.3).
+    # Su bloque CARRILES nombra los tres actos de nube que corren en paralelo
+    # — "TRAMITE-6, N20-N21, M13" — para declarar que ninguno toca este
+    # perimetro. `M13` pelado es un rotulo de OTRO acto (carril de nube,
+    # forense/prereg-duelo-v2/), no un rotulo que este acto instancie: es
+    # mencion de perimetro ajeno, no uso. El encargo verbatim no se edita.
+    "forense/encargos/2026-09-07-MAESTRA38-L16-BIS-2.md",
     # ACTO MAESTRA38-TRAMITE-3, 7/sep/2026: encargo archivado VERBATIM
     # (A.3) tras el relanzamiento con el cuerpo real. Su bloque de perimetro
     # de la CABECERA DE LA CASA cita "AUTOMATIZA-1-E2 fusionado" -- ese "E2"

@@ -1,0 +1,94 @@
+{
+  "acto": "MAESTRA38-L16-BIS-2 · MIDE-RAMA-A-ENNVIH-CONTRA-S6-v1_1",
+  "fecha": "2026-09-07",
+  "entorno": "UBUNTU (caja, corpus montado)",
+  "spec": {
+    "nombre_estable": "prereg-caja-S6-L16",
+    "version": "v1.1",
+    "archivo": "forense/prereg-caja/S6-L16-spec-v1_1.md",
+    "sha256": "7a0120a3a471fe81a732035dec6c2a9ed292d9b722cc408248eaec96d2e6643a",
+    "compuerta": "CUMPLIDA — verificada por producto (git show origin/main:... | sha256sum) contra origin/main=3d6dee33"
+  },
+  "regla": "R4.4 · salud.atencion.grave",
+  "rama": "A (ENNVIH 2002)",
+  "ola": 2002,
+  "veredicto_rama_A": "NO-ESTIMABLE",
+  "escala_aplicada": "S6 v1.1 §4 (CORROBORADA / CONTRARIA / NO-DISCRIMINA / NO-ESTIMABLE)",
+  "escala_de_reporte": "proporción ponderada (A-bis 3) — NO SE DECLARA NINGUNA: no se construyó ninguna celda, ver disparadores",
+  "disparadores_de_NO_ESTIMABLE": [
+    {
+      "id": "D1",
+      "nombre": "CHEQUEO DE CONSISTENCIA de §1.3 FALLA",
+      "resultado": "FALLA",
+      "detalle": "Sobre las filas de ehh02dta_all/ehh02dta_bx/p_es.dta con es09 no nulo (1 524 folios distintos), el join normalizado a entero contra ehh02w_all/ehh02w_bx.dta resuelve 7 467 filas de ponderador. n_no_nulo_gt0: fac_3a_px = 5128, fac_3b_px = 5103, fac_4_px = 1972. La desigualdad que §1.3 exige (fac_3b_px >= fac_3a_px) SE INVIERTE por 25 observaciones. El assert de §1.3 se dispara: PARA.",
+      "n_no_nulo_gt0_subconjunto_es09": {"fac_3a_px": 5128, "fac_3b_px": 5103, "fac_4_px": 1972},
+      "n_no_nulo_gt0_libro_bx_completo_reproducido": {"fac_3a_px": 21631, "fac_3b_px": 21645, "fac_4_px": 9037},
+      "nota": "El libro bx completo (35 677 filas) reproduce exactamente las cifras que C1 midió y que §1.3 hereda — el margen de 14 a favor de fac_3b_px. El subconjunto real es09 no nulo, que §1.3 nunca pudo correr (NUBE sin corpus), invierte el orden por 25. La spec anticipó esta posibilidad textualmente y prescribió PARO."
+    },
+    {
+      "id": "D2",
+      "nombre": "BUSCA_PUBLICO NO-CONSTRUIBLE-SIN-DIRECTORIO-EXTERNO",
+      "resultado": "CONFIRMADO NO-CONSTRUIBLE",
+      "detalle": "§3 pre-registra BUSCA_PUBLICO como NO-CONSTRUIBLE-SIN-DIRECTORIO-EXTERNO 'salvo que caja confirme clave1/clave2 (solo 2002) como suficiente'. Caja NO lo confirma. clave1/clave2 aparecen en 8 archivos de ehh02dta_all.zip y sus etiquetas verbatim son 'ID CLINICA COMUNITARIO' e 'ID PROVEEDOR SALUD COMUNITARIO' (en b3a son de escuelas): son identificadores de entrada a un directorio comunitario externo, no una clasificación público/privado. Barrido de todo el corpus 2002 por etiquetas con PUBLIC|PRIVAD|IMSS|ISSSTE|SSA|SEGURO SOCIAL|SECTOR: los aciertos son afiliación/prestación de seguro (iiib_ca.dta ca02*, iiia_tb.dta tb33*, ii_nna1.dta nna20*) y tipo de escuela (iiia_ed.dta ed241-244) — stock de aseguramiento y educación, ningún reactivo de a DÓNDE ACUDIÓ tras el síntoma. El desenlace de R4.4 no existe en ENNVIH 2002.",
+      "archivos_con_clave1_clave2": ["ehh02dta_all/ehh02dta_bx/p_he1.dta", "ehh02dta_all/ehh02dta_bc/c_sp.dta", "ehh02dta_all/ehh02dta_b5/v_hsn1.dta", "ehh02dta_all/ehh02dta_b5/v_cen1.dta", "ehh02dta_all/ehh02dta_b4/iv_he2.dta", "ehh02dta_all/ehh02dta_b3b/iiib_hs1.dta", "ehh02dta_all/ehh02dta_b3b/iiib_ce1.dta", "ehh02dta_all/ehh02dta_b3a/iiia_ed.dta"]
+    }
+  ],
+  "brazos": [
+    {
+      "brazo": "bx",
+      "descripcion": "libro Proxy — informante responde en nombre de miembros del hogar ausentes",
+      "archivo_disparador": "ehh02dta_all/ehh02dta_bx/p_es.dta",
+      "variable": "es09",
+      "etiqueta_verbatim": "HA TENIDO PROBLEMA SALUD GRAVE",
+      "n_filas_archivo": 1848,
+      "es09_distribucion": {"1_si": 414, "3_no": 1419, "8_ns_nc": 15},
+      "folios_distintos_con_es09_no_nulo": 1524,
+      "ponderador_prescrito": "fac_3b_px (ehh02w_all/ehh02w_bx.dta)",
+      "ponderador_aplicado": null,
+      "universo_declarado": "ACOTADO a la subpoblación de miembros ausentes respondida por proxy (A-bis 4) — nunca comparado contra un marginal poblacional de ENNVIH ni contra la Rama B",
+      "numerador": null,
+      "proporcion_ponderada": null,
+      "ic95": null,
+      "veredicto": "NO-ESTIMABLE",
+      "por_que": "D1 (el chequeo de §1.3 falla: fac_3b_px < fac_3a_px sobre el subconjunto real) y, independientemente, D2 (no hay desenlace público/privado). No se calculó ninguna celda con fac_3b_px: §1.3 prescribe PARO."
+    },
+    {
+      "brazo": "b3b",
+      "descripcion": "libro 3B — universo directo, miembros presentes",
+      "archivo_disparador": "ehh02dta_all/ehh02dta_b3b/iiib_es.dta",
+      "variable": "es09",
+      "etiqueta_verbatim": "HA TENIDO PROBLEMA SERIO SALUD",
+      "n_filas_archivo": 19804,
+      "es09_distribucion": {"1_si": 3972, "3_no": 15832},
+      "folios_distintos_con_es09_no_nulo": 8060,
+      "ponderador_prescrito": "fac_3b (ehh02w_all/ehh02w_b3b.dta), n_no_nulo_gt0 = 19809 reproducido, coincide con §1.3",
+      "ponderador_aplicado": null,
+      "universo_declarado": "universo directo del libro 3B — NUNCA agrupado ni promediado con bx (dos universos, dos ponderadores)",
+      "numerador": null,
+      "proporcion_ponderada": null,
+      "ic95": null,
+      "veredicto": "NO-ESTIMABLE",
+      "por_que": "D2: no hay desenlace público/privado en ENNVIH 2002. D1 no lo alcanza (gobierna la adjudicación de fac_3b_px, del brazo bx), pero D2 basta por sí solo. Además §1.1 declara que la etiqueta de este brazo es 'SERIO', no 'GRAVE' — se cita como evidencia de la variable, no como parte del falsador."
+    }
+  ],
+  "ic95_procedimiento_declarado_en_COMMIT-1": {
+    "metodo": "bootstrap por hogar dentro de estrato, 2000 réplicas, semilla 20260907",
+    "ejecutado": false,
+    "por_que": "no hay celda que bootstrapear — ninguna proporción se construyó"
+  },
+  "se_mueve_si": "S6 v1.1 §5: 'Si Rama A cae por NO-ESTIMABLE (§4, incluido el fallo del chequeo de consistencia de §1.3), se_mueve_si de la regla completa queda sin poder evaluarse con la Rama A — hallazgo a reportar, no a forzar; la Rama B, medida, ya no sostiene el ENTONCES de la regla por sí sola.' Se reporta, no se fuerza.",
+  "rama_B_no_re_corrida": "ENSANUT2024, NO-DISCRIMINA, ACTO LOTE-ENSANUT (PR #565), data/l16-atencion-grave-v1_0.tsv — fuera del perímetro de este acto.",
+  "corroboracion_ENDIREH_no_corrida": "§1.2/§4 la reportan aparte y declaran que su antecedente (violencia) no es el de R4.4. Este acto no la corrió: no es sustituto del falsador y no cambia el veredicto NO-ESTIMABLE.",
+  "payloads_verificados": [
+    {"id_manifiesto": "ennvih1_2002_hogar_dta", "archivo": "ennvih/ehh02dta_all.zip", "sha256_esperado": "8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923", "sha256_medido_prefijo": "8b9b51904ca87904", "coincide": true},
+    {"id_manifiesto": "ennvih1_2002_ponderador", "archivo": "ennvih/ehh02w_all.zip", "sha256_esperado": "bbe8006844f715c19b724ebb74f1408c4cfa07e2efdfe7d6748b5182ef214587", "sha256_medido_prefijo": "bbe8006844f715c1", "coincide": true}
+  ],
+  "lo_que_este_acto_no_hizo": [
+    "No re-corrió la Rama B.",
+    "No enmendó S6 v1.1 (§1.3 se cumplió al pie: el chequeo falla, el proceso PARA).",
+    "No sustituyó fac_3b_px por fac_3a_px — re-adjudicar el ponderador es de un acto sucesor, con el subconjunto real.",
+    "No movió tier ni cargó al motor.",
+    "No abrió 2005 ni 2009 para el desenlace.",
+    "No promedió ramas ni brazos."
+  ]
+}
