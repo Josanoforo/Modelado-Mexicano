@@ -254,6 +254,14 @@ HISTORICOS = {
     # (canon/gobernanza-v1_15.md, canon/registro-rotulos.tsv, forense/notas,
     # forense/encargos) no se reescriben.
     "estado-programa-v1_11.md",
+    # forense/encargos/2026-09-07-MAESTRA38-TRAMITE-3.md (A.3, VERBATIM):
+    # el encargo cita `TABLERO-PROGRAMA-v1_5.md` como el adjunto de mesa que
+    # debía traer el contenido del tablero consolidado -- nunca llego ni al
+    # orquestador ni al repo (declarado por direccion misma, FP-327 sigue
+    # ABIERTA por esto). No es un archivo que existio y se borro, pero es el
+    # mismo costo que HISTORICOS ya paga: una cita en texto que A.3 prohibe
+    # editar contra un nombre que nunca tuvo archivo real detras.
+    "TABLERO-PROGRAMA-v1_5.md",
 }
 
 def _normalize_version_dots(name):
@@ -1738,10 +1746,21 @@ def t22_firmas():
                      "(`instrucciones-proyecto-v2_9.md`) lo exige")
         return
 
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    try:
+        import estado_comun as _ec
+    except Exception as e:
+        fail("T22", f"no se pudo importar tools/estado_comun.py: {e}")
+        return
+
     # (a) WARN por cada fila ABIERTA, con antigüedad -- la memoria mecánica.
+    # ACTO AUTOMATIZA-1-E2: `estado == "ABIERTA"` es ciego a la glosa
+    # (`ABIERTA -- pendiente de...`) y subcuenta -- usa `_ec.es_abierta()`,
+    # migrado a `tools/estado_comun.py` junto con `tools/digesto_tramite.py`
+    # (que ya lo hacía) y `tools/tablero_programa.py`.
     hoy = datetime.date.today()
     for f in filas:
-        if f.get("estado") != "ABIERTA":
+        if not _ec.es_abierta(f.get("estado", "")):
             continue
         edad_txt = "antigüedad no derivable"
         try:
@@ -1779,9 +1798,13 @@ def t22_firmas():
     # pendiente nuevo que el mismo archivo traiga después. Medido antes de
     # commitear: 21 archivos dejan de estar exentos, 3 FAIL nuevos (dentro
     # del límite de 3 acordado con mesa) -- ver nota del acto.
+    # ACTO AUTOMATIZA-1-E2 (b): `estado == "FIRMADA"` se conserva exacto a
+    # propósito -- el repo tiene `FIRMADA-POR-MERGE` y otros compuestos, y
+    # no hay defecto medido que justifique colapsarlos con `es_abierta()`
+    # ni con `startswith`. Sólo el lado `ABIERTA` gana la glosa.
     citados = set()
     for f in filas:
-        if f.get("estado") not in ("ABIERTA", "FIRMADA"):
+        if not (_ec.es_abierta(f.get("estado", "")) or f.get("estado") == "FIRMADA"):
             continue
         for m in re.finditer(r"[\w./-]+\.(?:md|tsv|yaml|json)", f.get("dónde", "")):
             citados.add(os.path.basename(m.group(0)))
@@ -2509,6 +2532,13 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-TRAMITE-3, 7/sep/2026: encargo archivado VERBATIM
+    # (A.3) tras el relanzamiento con el cuerpo real. Su bloque de perimetro
+    # de la CABECERA DE LA CASA cita "AUTOMATIZA-1-E2 fusionado" -- ese "E2"
+    # pelado es AUTOMATIZA-1-E2, un acto real (PR #569) fuera de la serie
+    # MAESTRA<nn>, mismo patron que MAESTRA34-N9 con "E1" abajo. El encargo
+    # verbatim no se edita.
+    "forense/encargos/2026-09-07-MAESTRA38-TRAMITE-3.md",
     # ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE, 3/sep/2026: trae `M-3`
     # pelado tres veces ("Encargo M-3 2026-08-05", "acuerdos B-3/M-3",
     # "encargo B-3/M-3") citando un acto real y anterior al patrón
@@ -3752,6 +3782,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # la nota de cierre, el ADR, los commits) el rotulo va siempre con
     # prefijo completo (AUTOMATIZA-1-E1) -- D-6.
     "forense/encargos/2026-09-07-AUTOMATIZA-1-E1-PERIMETRO-FISICO.md",
+    # ACTO AUTOMATIZA-1-E2 · ESTADO-COMUN, 7/sep/2026: mismo encargo
+    # verbatim archivado de nuevo por el 0-bis de este segundo acto (el
+    # documento entero se re-archiva con cada uno de los tres actos de
+    # AUTOMATIZA-1, por diseño -- cabecera del propio encargo). Mismo
+    # analisis que la entrada de AUTOMATIZA-1-E1 arriba: los `E1`/`E2`/`E3`
+    # pelados son autorreferencias a los elementos que el documento define
+    # en su propia cabecera, no un habitante `MAESTRA<nn>-E<n>`.
+    "forense/encargos/2026-09-07-AUTOMATIZA-1-E2-ESTADO-COMUN.md",
 }
 
 
@@ -4275,6 +4313,15 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO MAESTRA38-TRAMITE-3, 7/sep/2026: encargo archivado VERBATIM (A.3).
+    # El §B (benchmark, redactado por direccion) cita
+    # `civico.participacion.tipo_boleta_federal_2016_2024` solo como ejemplo
+    # de un cierre ya ocurrido antes ("Cerrados 2-3/sep sin clausula") -- no
+    # clasifica/pre-registra/carga/sella esa regla en este acto. Verificado
+    # con `python3 tools/ya_medido.py civico.participacion.tipo_boleta_federal_2016_2024`:
+    # NUNCA-MEDIDA (ya estaba SELLADA-SIN-CARGA en la propuesta desde antes,
+    # sin cambio de este acto).
+    "forense/encargos/2026-09-07-MAESTRA38-TRAMITE-3.md",
     # ACTO MAESTRA38-N9 · YA-MEDIDO, 5/sep/2026: el propio encargo que
     # define `tools/ya_medido.py` cita `familia.cortejo.urbano_joven_apps`
     # como CONTROL NEGATIVO de su SPEC -- describe qué debe devolver la
