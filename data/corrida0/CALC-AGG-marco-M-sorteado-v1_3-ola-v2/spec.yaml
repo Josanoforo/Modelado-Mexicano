@@ -1,0 +1,74 @@
+# CALC-AGG-marco-M-sorteado-v1_3-ola-v2 -- cara mecanica de spec.md (ACTO GEN2-T9, P3d/e).
+calc_id: CALC-AGG-marco-M-sorteado-v1_3-ola-v2
+spec_md: spec.md
+spec_md_sha256: a9682bbd2c8a6646b568221bcc2df9683c08dde936330d6a306eef9becf85455
+
+script: data/corrida0/CALC-AGG-marco-M-sorteado-v1_3-ola-v2/medidor.py
+
+repite_de: CALC-AGG-marco-M-sorteado-v1_3-ola
+
+etiquetas:
+  generacion: GEN2
+  tipo: AGREGADO-DERIVADO-OLA
+  # No se etiqueta a mano: la regla E.1 la deriva por CADENA desde
+  # CALC-M-marco-M-sorteado-v1_3-ola. Se escribe igual para que el archivo
+  # diga lo mismo que el registro deriva.
+  cuenta_gen2: NO
+  validacion_independiente: NO-HECHA
+  ci_replayable: true
+  marco_vigente: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+
+inputs:
+  - id: IN-CALC-M-OLA-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-M-marco-M-sorteado-v1_3-ola-v2/resultados.json
+    sha256: f677d74372cd2af6f7f0a356d74ae9527703e3ec83044a45f1ec6c406ca33c95
+  - id: IN-MARCO-M-SORTEADO-V1-3
+    origen: repo
+    ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+    sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
+  - id: IN-PROPUESTA-OLA5
+    origen: repo
+    ruta: milpa/tramite-ola5-propuesta-v0.yaml
+    sha256: 12a06fe2f87879d1203cdb0e4fd3f9bdcaf59f1639a72ac880dfb30077073902
+
+variables: []
+universo: "las 14 celdas elegible_v1_1=SI del marco vigente"
+filtros: "columna elegible_v1_1 == SI"
+ponderador: NO-APLICA
+transformacion: >-
+  conteo y agrupacion. NO hay promedio por regla ni por segmento: agrupar
+  para contar no es colapsar, promediar si lo seria.
+estimando: >-
+  ninguno: dos vistas informativas (por regla y por segmento) sobre celdas ya
+  emitidas, mas el conteo de los puntos por eje que existen del lado del
+  arbitro y que ninguna celda del marcador consume.
+dependencias_materiales: []
+
+parametros:
+  columna_elegible: elegible_v1_1
+  fuente_acto: "ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ · P3(d)"
+
+seed:
+  aplica: false
+
+tolerancia:
+  tipo: entero
+  razon: >-
+    Todos los RESULT numericos son conteos y se comparan EXACTO. No hay
+    flotante porque no hay estimacion: la corrida cuenta y agrupa.
+
+resultados:
+  - {id: RESULT-AGGOLA-N-CELDAS,                    tipo: entero, unidad: "celdas elegibles del marco vigente"}
+  - {id: RESULT-AGGOLA-N-MODULAN-OLA,               tipo: entero, unidad: "celdas con modela_ola SERIE-PREVIA"}
+  - {id: RESULT-AGGOLA-N-SIN-PREVIA,                tipo: entero, unidad: "celdas con serie pero sin ola anterior (no modulan)"}
+  - {id: RESULT-AGGOLA-N-VERIFICACION-NO-PUNTUA,    tipo: entero, unidad: "celdas cuya ola usada es ORIGEN-ARBITRO y no puntuan"}
+  - {id: RESULT-AGGOLA-VISTA-POR-REGLA,             tipo: texto,  unidad: "por regla: celdas, cuantas modulan y cuantas sin_previa -- sin promediar puntos"}
+  - {id: RESULT-AGGOLA-N-REGLAS,                    tipo: entero, unidad: "reglas distintas en el universo"}
+  - {id: RESULT-AGGOLA-CELDAS-CON-SEGMENTO,         tipo: entero, unidad: "celdas del marcador con x != vacio"}
+  - {id: RESULT-AGGOLA-MARCO-TIENE-COLUMNA-SEGMENTO, tipo: texto, unidad: "SI/NO, comprobado contra el esquema del marco"}
+  - {id: RESULT-AGGOLA-ENTRADAS-EJES-EN-PROPUESTA,  tipo: entero, unidad: "entradas `_ejes_` de la propuesta ola5"}
+  - {id: RESULT-AGGOLA-EJES-EN-PROPUESTA,           tipo: entero, unidad: "ejes declarados dentro de esas entradas"}
+  - {id: RESULT-AGGOLA-PUNTOS-POR-EJE-CON-IC,       tipo: entero, unidad: "celdas por eje con p e ic95"}
+  - {id: RESULT-AGGOLA-METRICA-SELLADA,             tipo: texto,  unidad: "declaracion de que la metrica sellada no se toco"}
+  - {id: RESULT-AGGOLA-HUECO,                       tipo: texto,  unidad: "el hueco de cableado, con sus dos cifras (NC-0020)"}
