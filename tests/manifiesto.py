@@ -585,6 +585,17 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
     print(f"Entorno de verificación: {entorno_actual()}")
     print()
 
+    # P1 (ACTO GEN2-E3-1 · READINESS-DEL-RUNNER): resolución por entrada vía
+    # `tests/payload_resolver.py` -- extraída de este mismo bucle, no
+    # reimplementada; mismo patrón de import directo que `tests/corpus.py`
+    # ya usa para reutilizar las primitivas de este archivo. `resolver_
+    # payload` cierra en cinco estados; los dos que este bucle ya filtra
+    # arriba (raíz fuera de perímetro, entrada sin `archivo`) nunca llegan a
+    # pedírsele -- lo que le queda por decidir es exactamente RAIZ_NO_
+    # CONFIGURADA / AUSENTE / COINCIDE / NO_COINCIDE.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import payload_resolver as _PR  # noqa: E402
+
     exit_code = 0
     # Tres estados por raíz, sin colapsar -- AUSENTE en 'downloads' no es lo
     # mismo que AUSENTE en 'data_raw', y una tabla que solo dijera "AUSENTE"
@@ -610,8 +621,9 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
                   f"no se puede localizar el payload (omitido, no cuenta como falla)")
             continue
 
-        base_dir = resolver_raiz(nombre_raiz, root, raw_dir)
-        if base_dir is None:
+        r = _PR.resolver_payload(id_, entradas=entradas, root=root, raw_dir=raw_dir)
+
+        if r["estado"] == "RAIZ_NO_CONFIGURADA":
             tally["sin_raiz"] += 1
             print(f"{id_} [{nombre_raiz}]: RAÍZ NO CONFIGURADA -- este entorno no "
                   f"define '{nombre_raiz}' en data/raices.local.yaml; no se puede "
@@ -619,19 +631,14 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
                   f"otra máquina)")
             continue
 
-        ruta = os.path.join(base_dir, archivo)
-        if not os.path.exists(ruta):
+        if r["estado"] == "AUSENTE":
             tally["ausente"] += 1
             print(f"{id_} [{nombre_raiz}]: AUSENTE -- {archivo} no está en la raíz "
                   f"'{nombre_raiz}' (no es un error: el payload no se commitea)")
             continue
 
-        sha_real = sha256_de(ruta)
-        tam_real = os.path.getsize(ruta)
-        sha_ok = sha_real == entrada.get("sha256")
-        tam_ok = tam_real == entrada.get("tamano_bytes")
-
-        if sha_ok and tam_ok:
+        sha_real, tam_real = r["sha256_actual"], r["tamano"]
+        if r["estado"] == "COINCIDE":
             tally["coincide"] += 1
             print(f"{id_} [{nombre_raiz}]: COINCIDE -- sha256 y tamaño "
                   f"({tam_real} bytes) verificados contra data/manifiesto.yaml")
@@ -639,10 +646,10 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
             tally["no_coincide"] += 1
             exit_code = 1
             print(f"{id_} [{nombre_raiz}]: NO COINCIDE")
-            if not sha_ok:
+            if sha_real != entrada.get("sha256"):
                 print(f"    sha256 manifiesto: {entrada.get('sha256')}")
                 print(f"    sha256 real:       {sha_real}")
-            if not tam_ok:
+            if tam_real != entrada.get("tamano_bytes"):
                 print(f"    tamano_bytes manifiesto: {entrada.get('tamano_bytes')}")
                 print(f"    tamano_bytes real:       {tam_real}")
 

@@ -3,7 +3,10 @@
 """`tests/test_corrida0.py` -- unidad de `preflight` / `verify` / `spec-check`
 / `negativo` con fixtures pequenos y SIN CORPUS.
 
-ACTO GEN2-E3 · AUTOMATIZA-GEN2-1. Lo llama `tests/check.py` (T32 · T-CORRIDA0).
+ACTO GEN2-E3 · AUTOMATIZA-GEN2-1 (nucleo) + ACTO GEN2-E3-1 ·
+READINESS-DEL-RUNNER (P1-P6: resolver unico de payload, contrato ejecutable,
+outputs validados, inmutabilidad y sello completo, verify en dos ejes).
+Lo llama `tests/check.py` (T32 · T-CORRIDA0).
 
 Estos tests no abren microdato, no tocan la red y no escriben fuera de un
 directorio temporal. Los unicos archivos reales que leen son los TRES
@@ -15,6 +18,18 @@ la suite corre, asi que `preflight` siempre devuelve BLOQUEADO aqui. Por eso
 los tests afirman sobre los BLOQUEOS CONCRETOS (que aparezca el que toca y
 que NO aparezca el que no toca), no sobre un VERDE global que en este
 contexto seria imposible y cuya ausencia no probaria nada.
+
+Misma nota, extendida (GEN2-E3-1): `run()` real tampoco puede completar
+punta a punta aqui -- exige `preflight` VERDE, que a su vez exige que
+`spec.yaml`/`spec.md` esten COMMITEADOS (`git ls-files`), y un `spec.yaml`
+de fixture vive en un directorio temporal FUERA del repo. Los catorce casos
+de P6 que dependen de lo que `run`/`verify` escriben prueban las piezas que
+`run`/`verify` factorizan para eso (`_fallas_run`, `_construye_ejecucion`,
+`_construye_sello`, `_evalua_contexto`, `_verifica_sello`) en vez de invocar
+`run()` de punta a punta -- mismo patron que ya usan `t_ejecuta_reporta_el_
+fallo_como_hecho`/`t_tolerancia_*` para `_ejecuta`/`_compara`. La unica
+excepcion real es T-SELLADO-NO-SOBRESCRIBE: la inmutabilidad se comprueba
+ANTES de llamar a `preflight`, asi que `run()` si se invoca completo.
 """
 from __future__ import annotations
 
@@ -24,6 +39,7 @@ import io
 import json
 import os
 import shutil
+import subprocess
 import sys
 import tempfile
 import contextlib
@@ -487,6 +503,346 @@ def t_cmd_demanda_aplica_fp339():
         ruta_m = C._m_vigente(cid)
         _afirma(ruta_m is not None and ruta_m.name == f"M-{cid}__v1_3.json", caso,
                 f"el M vivo de {cid} deberia ser __v1_3, resolvio {ruta_m}")
+
+
+# ── 7 · GEN2-E3-1 · READINESS-DEL-RUNNER (P1-P6, catorce casos) ────────────
+
+_ID_MANIFIESTO_REAL = "encig23_base_datos_csv"  # entrada real con payload,
+# usada solo para RESOLUCION (nunca abre el archivo -- data/raw no existe
+# en este entorno de prueba; el estado esperado es AUSENTE).
+
+
+def t_sellado_no_sobrescribe():
+    """T-SELLADO-NO-SOBRESCRIBE. P4: un CALC sellado no se reescribe. Es el
+    UNICO de los catorce que invoca `run()` completo -- la inmutabilidad se
+    decide ANTES de llamar a `preflight`, asi que no le afecta que este
+    entorno de prueba nunca pueda dejarlo VERDE."""
+    caso = "T-SELLADO-NO-SOBRESCRIBE"
+    with _calc_temporal(dict(_SPEC_BASE)) as (d, cid):
+        C._escribe_json(d / "ejecucion.json", {"marca": "original"})
+        C._escribe_json(d / "resultados.json", {"spec_id": cid, "resultados": {}})
+        sello = {"ejecucion.json": C._sha256_archivo(d / "ejecucion.json"),
+                 "resultados.json": C._sha256_archivo(d / "resultados.json")}
+        C._escribe_json(d / "sello.json", sello)
+        subprocess.run([sys.executable, str(C.SELLA_PY), str(d / "sello.json")],
+                       check=True, capture_output=True)
+        antes = {p.name: p.read_bytes() for p in d.iterdir()}
+        r, salida = _silencioso(C.run, cid)
+        despues = {p.name: p.read_bytes() for p in d.iterdir()}
+    _afirma(r["veredicto"] == "CALC-INMUTABLE", caso, f"veredicto={r['veredicto']}")
+    _afirma("YA-SELLADO" in salida, caso, f"no imprimio YA-SELLADO: {salida!r}")
+    _afirma(antes == despues, caso, "los bytes del CALC cambiaron pese al sello valido")
+
+
+def t_manifiesto_ausente_bloquea():
+    """T-MANIFIESTO-AUSENTE-BLOQUEA. Un input `origen: manifiesto` cuyo id
+    no existe en `data/manifiesto.yaml` resuelve AUSENTE y bloquea preflight
+    -- `preflight` VERDE solo si TODOS los inputs activos estan COINCIDE."""
+    caso = "T-MANIFIESTO-AUSENTE-BLOQUEA"
+    spec = dict(_SPEC_BASE, inputs=[{"id": "IN-NO-EXISTE-ZZZ-TEST", "origen": "manifiesto"}])
+    r, _s = _preflight_de(spec)
+    _afirma(any(b == "input_manifiesto_AUSENTE=IN-NO-EXISTE-ZZZ-TEST" for b in r["bloqueos"]),
+            caso, f"no bloqueo por payload ausente: {r['bloqueos']}")
+    _afirma(r["veredicto"] == "BLOQUEADO", caso, "veredicto no fue BLOQUEADO")
+
+
+def t_manifiesto_ruta_al_medidor():
+    """T-MANIFIESTO-RUTA-AL-MEDIDOR. El objeto que resolvio el payload
+    (P1) alimenta al medidor: `ruta_absoluta`/`raiz_logica` viajan, ningun
+    medidor busca su propio archivo por su cuenta."""
+    caso = "T-MANIFIESTO-RUTA-AL-MEDIDOR"
+    spec = {"inputs": [{"id": _ID_MANIFIESTO_REAL, "origen": "manifiesto"}]}
+    inputs = C._inputs_para_medidor(spec)
+    _afirma(_ID_MANIFIESTO_REAL in inputs, caso, "el input no llego al medidor")
+    entrada = inputs[_ID_MANIFIESTO_REAL]
+    _afirma(bool(entrada.get("ruta_absoluta")), caso,
+            f"ruta_absoluta vacia -- el medidor no sabe donde esta su input: {entrada}")
+    _afirma(entrada.get("raiz_logica") == "data_raw", caso,
+            f"raiz_logica inesperada: {entrada.get('raiz_logica')!r}")
+
+
+def t_sha_manifiesto_congelado():
+    """T-SHA-MANIFIESTO-CONGELADO. `ejecucion.json.input_sha256[id]` se
+    rellena del MISMO objeto que resolvio el payload -- nunca vacio, nunca
+    tecleado."""
+    caso = "T-SHA-MANIFIESTO-CONGELADO"
+    spec = {"inputs": [{"id": _ID_MANIFIESTO_REAL, "origen": "manifiesto"}]}
+    bloqueos = []
+    detalle, _salida = _silencioso(C._verifica_inputs, spec, bloqueos)
+    ent = next((e for e in detalle if e["id"] == _ID_MANIFIESTO_REAL), None)
+    _afirma(ent is not None, caso, "el input no aparece en el detalle de preflight")
+    r = C._PR.resolver_payload(_ID_MANIFIESTO_REAL)
+    esperado = r["sha256_actual"] or r["sha256_esperado"]
+    _afirma(bool(esperado), caso, "la entrada real del manifiesto no trae sha256 -- fixture rota")
+    _afirma(ent["sha256"] == esperado, caso,
+            f"sha256 no viene de resolver_payload: {ent['sha256']!r} vs {esperado!r}")
+
+
+def t_spec_yaml_sellada():
+    """T-SPEC-YAML-SELLADA. `ejecucion.json` trae `spec_yaml_sha256` y
+    `spec_md_sha256` reales (nunca copiados de la spec); `sello.json` cubre
+    `spec.yaml` (ademas de `ejecucion.json`/`resultados.json`)."""
+    caso = "T-SPEC-YAML-SELLADA"
+    with _calc_temporal(dict(_SPEC_BASE)) as (d, cid):
+        pre = _silencioso(C.preflight, cid)[0]
+        ejec = C._construye_ejecucion(cid, dict(_SPEC_BASE), d, pre, "deadbeef",
+                                      {"RESULT-A": 1, "RESULT-B": 2}, 0, "")
+        _afirma(ejec["spec_yaml_sha256"] == _sha(d / "spec.yaml"), caso,
+                "spec_yaml_sha256 no coincide con el archivo real")
+        _afirma(ejec["spec_md_sha256"] == _sha(d / "spec.md"), caso,
+                "spec_md_sha256 no coincide con el archivo real")
+        C._escribe_json(d / "ejecucion.json", ejec)
+        C._escribe_json(d / "resultados.json",
+                        {"spec_id": cid, "resultados": {"RESULT-A": 1, "RESULT-B": 2}})
+        sello = C._construye_sello(d, dict(_SPEC_BASE))
+    _afirma("spec.yaml" in sello, caso, f"sello no cubre spec.yaml: {sorted(sello)}")
+    _afirma("ejecucion.json" in sello and "resultados.json" in sello, caso,
+            f"sello incompleto: {sorted(sello)}")
+
+
+def t_seed_llega_al_medidor():
+    """T-SEED-LLEGA-AL-MEDIDOR. El medidor recibe `contrato["seed"]["valor"]`
+    -- retrocompatible con un `seed` suelto (formato de `CALC-SMOKE-0001`,
+    que este acto no toca)."""
+    caso = "T-SEED-LLEGA-AL-MEDIDOR"
+    _afirma(C.contrato_ejecutable({"seed": 42})["seed"] == {"aplica": True, "valor": 42},
+            caso, "un seed suelto (retrocompat) no se normalizo")
+    contrato_explicito = {"aplica": True, "valor": 7, "rng": "numpy.PCG64"}
+    _afirma(C.contrato_ejecutable({"seed": contrato_explicito})["seed"] == contrato_explicito,
+            caso, "un seed ya en forma de contrato se reescribio")
+
+    tmp = Path(tempfile.mkdtemp(prefix="med-seed-"))
+    try:
+        s = tmp / "medidor_seed.py"
+        s.write_text("def medir(inputs, contrato):\n"
+                      "    return {'RESULT-SEED': contrato['seed']['valor']}\n",
+                      encoding="utf-8")
+        rel = os.path.relpath(s, RAIZ)
+        valores, code, err = C._ejecuta({"script": rel, "seed": 99, "inputs": []})
+        _afirma(code == 0, caso, f"medidor revento: {err}")
+        _afirma(valores.get("RESULT-SEED") == 99, caso,
+                f"el seed no llego al medidor via el contrato: {valores}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def t_seed_no_aplica():
+    """T-SEED-NO-APLICA. `seed: {aplica: false}` es una declaracion valida
+    -- no se inventan semillas para calculos deterministas, y no bloquea
+    preflight (a diferencia de `seed` ausente/null)."""
+    caso = "T-SEED-NO-APLICA"
+    _afirma(C.contrato_ejecutable({"seed": {"aplica": False}})["seed"] == {"aplica": False},
+            caso, "aplica:false no se preservo")
+    spec = dict(_SPEC_BASE, seed={"aplica": False})
+    r, _s = _preflight_de(spec)
+    _afirma("seed_no_declarado" not in r["bloqueos"], caso,
+            f"aplica:false bloqueo como si no hubiera seed: {r['bloqueos']}")
+    _afirma(not any(b.startswith("seed_") for b in r["bloqueos"]), caso,
+            f"aplica:false disparo un bloqueo de seed: {r['bloqueos']}")
+
+
+def t_outputs_exactos():
+    """T-OUTPUTS-EXACTOS. `set(resultado.keys()) == set(outputs_declarados)`
+    EXACTO -- ni faltan, ni sobran."""
+    caso = "T-OUTPUTS-EXACTOS"
+    spec = {"resultados": [{"id": "RESULT-A", "tipo": "entero", "unidad": "u"},
+                           {"id": "RESULT-B", "tipo": "entero", "unidad": "u"}]}
+    completo = C._valida_outputs(spec, {"RESULT-A": 1, "RESULT-B": 2})
+    _afirma(completo == [], caso, f"outputs exactos y validos dieron problemas: {completo}")
+
+    faltante = C._valida_outputs(spec, {"RESULT-A": 1})
+    _afirma(any("outputs_faltantes" in p for p in faltante), caso,
+            f"un output faltante no se detecto: {faltante}")
+
+    sobrante = C._valida_outputs(spec, {"RESULT-A": 1, "RESULT-B": 2, "RESULT-999": 3})
+    _afirma(any("outputs_no_declarados" in p for p in sobrante), caso,
+            f"un RESULT-999 no declarado no se detecto: {sobrante}")
+
+
+def t_tipo_result():
+    """T-TIPO-RESULT. Cada output declara `tipo` y se valida: finitud,
+    rango de `proporcion`, y el tipo de Python que corresponde."""
+    caso = "T-TIPO-RESULT"
+
+    def _un_output(tipo, unidad="u", **extra):
+        return {"resultados": [dict({"id": "RESULT-X", "tipo": tipo, "unidad": unidad}, **extra)]}
+
+    _afirma(C._valida_outputs(_un_output("entero"), {"RESULT-X": 3}) == [], caso,
+            "entero valido reporto problema")
+    _afirma(C._valida_outputs(_un_output("entero"), {"RESULT-X": 3.5}) != [], caso,
+            "un flotante paso como entero")
+    _afirma(C._valida_outputs(_un_output("flotante"), {"RESULT-X": 1.5}) == [], caso,
+            "flotante valido reporto problema")
+    _afirma(C._valida_outputs(_un_output("flotante"), {"RESULT-X": float("nan")}) != [], caso,
+            "NaN paso como flotante valido")
+    _afirma(C._valida_outputs(_un_output("flotante"), {"RESULT-X": float("inf")}) != [], caso,
+            "infinito paso como flotante valido")
+    _afirma(C._valida_outputs(_un_output("proporcion"), {"RESULT-X": 0.5}) == [], caso,
+            "proporcion valida reporto problema")
+    _afirma(C._valida_outputs(_un_output("proporcion"), {"RESULT-X": 1.5}) != [], caso,
+            "proporcion fuera de [0,1] paso")
+    _afirma(C._valida_outputs(_un_output("texto"), {"RESULT-X": "ok"}) == [], caso,
+            "texto valido reporto problema")
+    _afirma(C._valida_outputs(_un_output("texto"), {"RESULT-X": 3}) != [], caso,
+            "un entero paso como texto")
+    _afirma(C._valida_outputs(_un_output("entero", permite_no_estimable=True),
+                              {"RESULT-X": None}) == [], caso,
+            "null con permite_no_estimable=true deberia pasar")
+    _afirma(C._valida_outputs(_un_output("entero"), {"RESULT-X": None}) != [], caso,
+            "null sin permite_no_estimable paso")
+
+
+def t_run_fallo_no_sella():
+    """T-RUN-FALLO-NO-SELLA. Fallo antes de outputs validos -> ningun
+    archivo se escribe. `_fallas_run` es el guard que `run()` consulta
+    antes de escribir cualquier cosa."""
+    caso = "T-RUN-FALLO-NO-SELLA"
+    _afirma(C._fallas_run({}, {}, 1, "boom") == ["medidor_fallo:boom"], caso,
+            "un medidor que revento no se marco como fallo")
+    spec = {"resultados": [{"id": "R", "tipo": "entero", "unidad": "u"}]}
+    _afirma(C._fallas_run(spec, {"R": 1}, 0, "") == [], caso,
+            "outputs validos con exit_code=0 no deberian fallar")
+    _afirma(C._fallas_run(spec, {}, 0, "") != [], caso,
+            "outputs faltantes con exit_code=0 deberian fallar igual")
+
+
+def t_verify_valida_sello():
+    """T-VERIFY-VALIDA-SELLO. `_verifica_sello` valida el sidecar Y que
+    cada archivo que `sello.json` declara cubrir siga coincidiendo -- un
+    `sello.json` reescrito a mano con hashes frescos no basta."""
+    caso = "T-VERIFY-VALIDA-SELLO"
+    tmp = Path(tempfile.mkdtemp(prefix="sello-test-"))
+    try:
+        (tmp / "ejecucion.json").write_text('{"a": 1}\n', encoding="utf-8")
+        (tmp / "resultados.json").write_text('{"b": 2}\n', encoding="utf-8")
+        sello = {"ejecucion.json": C._sha256_archivo(tmp / "ejecucion.json"),
+                 "resultados.json": C._sha256_archivo(tmp / "resultados.json")}
+        C._escribe_json(tmp / "sello.json", sello)
+        subprocess.run([sys.executable, str(C.SELLA_PY), str(tmp / "sello.json")],
+                       check=True, capture_output=True)
+        estado_ok, _r = C._verifica_sello(tmp)
+        _afirma(estado_ok == "COINCIDE", caso, f"sello valido reporto {estado_ok}")
+
+        (tmp / "ejecucion.json").write_text('{"a": 999}\n', encoding="utf-8")
+        estado_alterado, razon = C._verifica_sello(tmp)
+        _afirma(estado_alterado == "NO-COINCIDE", caso,
+                f"un archivo cubierto alterado sin re-sellar dio {estado_alterado}")
+        _afirma("ejecucion.json" in razon, caso, f"la razon no nombra el archivo: {razon}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    tmp2 = Path(tempfile.mkdtemp(prefix="sello-ausente-"))
+    try:
+        estado_ausente, _r = C._verifica_sello(tmp2)
+        _afirma(estado_ausente == "AUSENTE", caso,
+                f"sin sello.sha256 deberia ser AUSENTE, fue {estado_ausente}")
+    finally:
+        shutil.rmtree(tmp2, ignore_errors=True)
+
+
+def _construye_calc_sellado(d: Path, cid: str, parametros_spec, parametros_ejec, seed=42):
+    """Un CALC REAL -- medidor.py DENTRO del CALC, spec.yaml apuntando a el,
+    sello completo -- para ejercer `verify()` de punta a punta sin pasar por
+    `preflight` (que `verify` no llama). `parametros_ejec` puede declarar,
+    a proposito, un valor DISTINTO al de `parametros_spec` -- asi se simula
+    una corrida sellada bajo parametros que la spec ya no trae."""
+    import yaml
+    medidor = d / "medidor.py"
+    medidor.write_text("def medir(inputs, contrato):\n    return {'RESULT-X': 1}\n",
+                       encoding="utf-8")
+    spec = dict(_SPEC_BASE, calc_id=cid, script=os.path.relpath(medidor, RAIZ),
+               parametros=parametros_spec, seed=seed,
+               resultados=[{"id": "RESULT-X", "tipo": "entero", "unidad": "u"}])
+    spec["spec_md_sha256"] = _sha(d / "spec.md")
+    (d / "spec.yaml").write_text(yaml.safe_dump(spec, allow_unicode=True), encoding="utf-8")
+
+    _cod, commit = C._git_salida("rev-parse", "HEAD")
+    ejec = {
+        "git_commit": commit.strip(), "script_path": spec["script"],
+        "script_blob_sha256": C._sha256_archivo(medidor),
+        "spec_yaml_sha256": C._sha256_archivo(d / "spec.yaml"),
+        "spec_md_sha256": spec["spec_md_sha256"],
+        "input_ids": [], "input_sha256": {},
+        "parametros": parametros_ejec, "seed": seed,
+        "dependencias_materiales_calc": C._dependencias_materiales_calc(spec),
+    }
+    C._escribe_json(d / "ejecucion.json", ejec)
+    C._escribe_json(d / "resultados.json", {"spec_id": cid, "resultados": {"RESULT-X": 1}})
+    sello = C._construye_sello(d, spec)
+    C._escribe_json(d / "sello.json", sello)
+    subprocess.run([sys.executable, str(C.SELLA_PY), str(d / "sello.json")],
+                   check=True, capture_output=True)
+    return spec, ejec
+
+
+def t_verify_contexto():
+    """T-VERIFY-CONTEXTO. `CONTEXTO ∈ {IDENTICO, DISTINTO, NO-VERIFICABLE}`
+    con razon -- aqui, identico cuando la spec y el recibo coinciden, y
+    DISTINTO (con `parametros_distintos` en la razon) cuando la corrida
+    sellada quedo bajo parametros que la spec ya no trae."""
+    caso = "T-VERIFY-CONTEXTO"
+    with _calc_temporal(dict(_SPEC_BASE, calc_id="CALC-TEST-CTX-A")) as (d, cid):
+        spec, ejec = _construye_calc_sellado(d, cid, {"a": 1}, {"a": 1})
+        contexto, razones = C._evalua_contexto(d, spec, ejec)
+    _afirma(contexto == "IDENTICO", caso, f"contexto={contexto} razones={razones}")
+
+    with _calc_temporal(dict(_SPEC_BASE, calc_id="CALC-TEST-CTX-B")) as (d, cid):
+        spec, ejec = _construye_calc_sellado(d, cid, {"a": 1}, {"a": 999})
+        contexto2, razones2 = C._evalua_contexto(d, spec, ejec)
+    _afirma(contexto2 == "DISTINTO", caso, f"contexto={contexto2} razones={razones2}")
+    _afirma("parametros_distintos" in razones2, caso, f"razones={razones2}")
+
+
+def _listado_canonico(d: Path) -> list[str]:
+    """Nombres de archivo en `d`, excluyendo `__pycache__` -- efecto
+    colateral del propio interprete al importar `medidor.py` via
+    `importlib` (ni un artefacto canonico de `corrida0`, ni algo que
+    `verify` decida escribir)."""
+    return sorted(p.name for p in d.iterdir() if p.name != "__pycache__")
+
+
+def t_verify_no_escribe():
+    """T-VERIFY-NO-ESCRIBE. `verify` no escribe ningun artefacto canonico
+    -- ni con corrida sellada ni sin ella."""
+    caso = "T-VERIFY-NO-ESCRIBE"
+    with _calc_temporal(dict(_SPEC_BASE, calc_id="CALC-TEST-NOESCRIBE-1")) as (d, cid):
+        antes = _listado_canonico(d)
+        _silencioso(C.verify, cid)
+        despues = _listado_canonico(d)
+    _afirma(antes == despues, caso,
+            f"verify escribio sin corrida sellada: antes={antes} despues={despues}")
+
+    with _calc_temporal(dict(_SPEC_BASE, calc_id="CALC-TEST-NOESCRIBE-2")) as (d, cid):
+        _construye_calc_sellado(d, cid, {"a": 1}, {"a": 1})
+        antes = _listado_canonico(d)
+        _silencioso(C.verify, cid)
+        despues = _listado_canonico(d)
+    _afirma(antes == despues, caso,
+            f"verify escribio con corrida sellada: antes={antes} despues={despues}")
+
+
+def t_entorno_una_vez():
+    """T-ENTORNO-UNA-VEZ. `_firma_entorno()` se llama UNA sola vez por
+    construccion de `ejecucion.json` -- antes se llamaba dos (una para
+    `dependencias_materiales`, otra para `firma_entorno`)."""
+    caso = "T-ENTORNO-UNA-VEZ"
+    llamadas = []
+    original = C._firma_entorno
+
+    def _contador():
+        llamadas.append(1)
+        return original()
+
+    C._firma_entorno = _contador
+    try:
+        with _calc_temporal(dict(_SPEC_BASE)) as (d, cid):
+            pre = _silencioso(C.preflight, cid)[0]
+            C._construye_ejecucion(cid, dict(_SPEC_BASE), d, pre, "deadbeef",
+                                   {"RESULT-A": 1, "RESULT-B": 2}, 0, "")
+    finally:
+        C._firma_entorno = original
+    _afirma(len(llamadas) == 1, caso,
+            f"_firma_entorno se llamo {len(llamadas)} veces, se esperaba 1")
 
 
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]

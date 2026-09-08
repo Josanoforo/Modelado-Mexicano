@@ -13,12 +13,19 @@ name: Verificación del corpus
 # Dos cambios, y los dos atacan el modo de falla medido, no uno concebible:
 #   1. CERO actions del marketplace. El repo es público: el checkout se hace
 #      con git plano, sin token y sin descargar nada de la CDN que falló.
-#      También sale actions/setup-python: ubuntu-latest ya trae Python 3.12 y
-#      check.py/test_svystat.py son stdlib puro (verificado: nadie importa
-#      yaml; requirements.txt solo lo necesita tests/manifiesto.py, que el CI
-#      no corre — por eso el workflow nunca instaló nada y estaba bien así).
+#      También sale actions/setup-python: ubuntu-latest ya trae Python 3.12.
 #   2. timeout-minutes: un job atascado muere en 10 min en vez de colgar 15
 #      y morir auto-cancelado, que es un estado que se lee como rojo.
+#
+# CORRECCIÓN (ACTO GEN2-E3-1 · READINESS-DEL-RUNNER, 8/sep/2026): el
+# comentario de arriba decía "nadie importa yaml" -- ya no es cierto desde
+# `ACTO GEN2-E3 · AUTOMATIZA-GEN2-1` (7/sep/2026): `tools/corrida0.py`
+# importa `yaml` en su cabecera, y `python3 tests/check.py --baseline` SÍ
+# lo ejercita (T32 · T-CORRIDA0 corre `tests/test_corrida0.py`, que importa
+# `tools/corrida0.py`). Que el runner de `ubuntu-latest` traiga PyYAML
+# preinstalado (o no) nunca fue una garantía declarada -- `pip install -r
+# requirements.txt` explícito, abajo, deja de depender de lo que el runner
+# traiga por su cuenta.
 
 on:
   push:
@@ -56,6 +63,11 @@ jobs:
 
       - name: Intérprete del runner (crudo, para que quede en el log)
         run: python3 -VV
+
+      - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
+        # PyYAML: tests/manifiesto.py y tools/corrida0.py (import directo,
+        # nunca opcional) la usan; markdown: tools/tablero_vista.py.
+        run: python3 -m pip install -r requirements.txt
 
       - name: Suite de verificación (modo línea base — verde = no empeoraste)
         run: python3 tests/check.py --baseline

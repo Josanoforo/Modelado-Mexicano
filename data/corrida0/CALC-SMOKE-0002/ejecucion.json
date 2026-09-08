@@ -1,0 +1,109 @@
+{
+ "corrida_id": "CALC-SMOKE-0002--0efdf5ea899e",
+ "dependencias_materiales": {
+  "numpy": "AUSENTE",
+  "pandas": "AUSENTE",
+  "pyreadstat": "AUSENTE",
+  "scipy": "AUSENTE",
+  "yaml": "6.0.1"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "NO",
+  "generacion": "LEGACY-GEN1",
+  "tipo": "REPLAY-SMOKE",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-08T03:08:49Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "AUSENTE",
+   "pandas": "AUSENTE",
+   "pyreadstat": "AUSENTE",
+   "scipy": "AUSENTE",
+   "yaml": "6.0.1"
+  },
+  "git_commit": "0efdf5ea899e5fd8657dd07358c0a880714c72bd",
+  "git_rama": "claude/corrida0-readiness-refactor-flo8hm",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+  "python": "3.11.15",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "NO",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "cloud_default",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "0efdf5ea899e5fd8657dd07358c0a880714c72bd",
+ "input_ids": [
+  "IN-AGREGADO-V1-3",
+  "IN-AGREGADO-V1-2",
+  "IN-AGREGADO-V1-1",
+  "IN-SCORING-ADV1-M3",
+  "IN-MARCO-M-SORTEADO-V1-3",
+  "IN-L-EXTRAIDO-V1-2"
+ ],
+ "input_sha256": {
+  "IN-AGREGADO-V1-1": "3e8a36bd0d60ee7592a6a90a6da7fb7eeddc129276d5e28985a9b7969e8514ce",
+  "IN-AGREGADO-V1-2": "d7f2d4c83969b72bc7158d6d80706d2f66f7a9e46cc93efa66784e50b97b63b7",
+  "IN-AGREGADO-V1-3": "efcba00d57890bc72ff6cb17f6465063f3b64f12adca63981d58d78f5d1f9b21",
+  "IN-L-EXTRAIDO-V1-2": "8c9c5fb4707a7b852dcae6e5bb31618263d2b6d5145e5d8a0d6618f6fba6239c",
+  "IN-MARCO-M-SORTEADO-V1-3": "f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a",
+  "IN-SCORING-ADV1-M3": "63418cc8cfdb03ba5d851d01f1bba23e2f21dbac5cfbed2d88c2832cba13a8cf"
+ },
+ "parametros": {
+  "delta": 0.5,
+  "nivel_ic": 0.95,
+  "replicas": 10000
+ },
+ "python_version": "3.11.15",
+ "resultado_ids": [
+  "RESULT-SMOKE-N-CELDAS-UNIVERSO",
+  "RESULT-SMOKE-PRINCIPAL-IC-HI",
+  "RESULT-SMOKE-PRINCIPAL-IC-LO",
+  "RESULT-SMOKE-PRINCIPAL-PUNTO",
+  "RESULT-SMOKE-REPLICAS",
+  "RESULT-SMOKE-SECUNDARIA-IC-HI",
+  "RESULT-SMOKE-SECUNDARIA-IC-LO",
+  "RESULT-SMOKE-SECUNDARIA-PUNTO",
+  "RESULT-SMOKE-SEED"
+ ],
+ "script_blob_sha256": "0e64804e3546820d01bc7da9a23e2486a24085ee49da3890ac792fa7d85e9125",
+ "script_path": "data/corrida0/CALC-SMOKE-0002/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 42
+ },
+ "spec_id": "CALC-SMOKE-0002",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "d3c196ebfe700a00fd7ef5be904023bd44241b155cad33063e02db95df1c933b",
+ "spec_yaml_sha256": "f13c27b32ec2d8d28c6bab3d7581ed0df2ea1c81c5dab9cd5809c86208c7e11d",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "7/sep/2026: dos corridas del mismo agregado sobre el mismo arbol difirieron 3e-15 en ic_hi (redondeo de float64 en una suma reasociada). 1e-10 deja pasar ese ruido y sigue atrapando cualquier cambio real. Los enteros se comparan EXACTO -- la tolerancia se aplica por tipo del valor, no por tipo de la spec.",
+  "tipo": "flotante"
+ }
+}

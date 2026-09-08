@@ -1,8 +1,10 @@
-ESTADO: LISTO-NUBE
+ESTADO: CONSUMIDO
 ENTORNO: NUBE
 ENCOLADO: 2026-09-08 · ACTO GEN2-T7-CIERRE reemplaza este encargo por "E3.1 · ACTO GEN2-E3-1 · READINESS DEL RUNNER" v1.3, texto de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa} (adjunto por el operador). Sustituye a la versión "ENDURECE-CALC" v1.2 encolada por GEN2-T7.
 BITACORA:
 - 2026-09-08 · LISTO-NUBE. Sustituye a la v1.2 (ENDURECE-CALC) porque dirección emitió `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa}, que reordena la automatización antes de los cálculos: la auditoría de readiness del 7/sep encontró que el runner necesita los doce cables (P1–P6, resolver de payload único, contrato ejecutable normalizado, outputs validados, inmutabilidad y sello completo, verify en dos ejes, tests+smokes+CI) antes de medir, no solo los cuatro defectos originales que ENDURECE-CALC atendía. COMPUERTA por producto: `git show origin/main:data/corrida0/decisiones.tsv | grep -c FP-339` ≥ 1 — TRÁMITE-7 ya está fusionado/ejecutado en esta rama (commit `fc63f66`, fix T27 en `4f4bee6`), así que la compuerta está satisfecha en cuanto esta rama se fusione a `main`; se deja `LISTO-NUBE` en vez de `GATEADO` porque el producto que la compuerta exige ya existe en el árbol de esta misma rama de cierre.
+- 2026-09-08 · EN-CURSO · sesión de nube claude/corrida0-readiness-refactor-flo8hm
+- 2026-09-08 · CONSUMIDO · ejecutado por PR #608
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 
@@ -21,3 +23,37 @@ Firmas: propuestas externas E3.1 y readiness, aprobadas por mesa el 7/sep; princ
 **Compuerta de salida (los seis checks del GO):** `PAYLOAD-RESUELTO · CONTRATO-EJECUTABLE-COMPLETO · OUTPUTS-VALIDADOS · CALC-INMUTABLE · SELLO-COMPLETO · VERIFY-CONTEXTO+RESULTADO` = los catorce tests en verde + `CALC-SMOKE-0002` `REPRODUCE/IDENTICO` + `tests/check.py --baseline` VERDE.
 Perímetro: `tools/corrida0.py` · el módulo compartido del resolver (nuevo, importado por `tests/manifiesto.py` sin cambiar su CLI) · `tools/entorno.py` · `tests/test_corrida0.py` · `tests/check.py` · `.github/workflows/verify.yml` · `data/corrida0/CALC-SMOKE-0002/` · `forense/notas/<fecha>-GEN2-E3-1-readiness.md` · cascada. **No toca** `CALC-SMOKE-0001/`, `demanda`, `spec-check`, `negativo`, `tramite.yaml`, `procedencia.yaml`, tiers, marcador, `corridas-R/M/L`, `emite_m.py`, `arbitra.py`, `runner_l_cli.py`, ni implementa `registro/status/vigencia/delta`. Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
 Contador: cero GEN2. Resultado protegido: que el primer `CALC-0001` use exactamente los bytes, parámetros, outputs y receta declarados.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| P4 · la máquina de estados explícita del encargo (`BORRADOR → SPEC-FIJADA → PRE-FLIGHT-VERDE → EJECUTADA → SELLADA`; `SUPERADO → sucesor` en un registro derivado) como campo persistido y consultable | FUERA-DE-PERÍMETRO | las cinco garantías de comportamiento SÍ están construidas (spec sin sellar = editable; `preflight` VERDE es condición de `run`; `ejecucion.json`+`resultados.json` = ejecutada; sello válido = sellada e inmutable), pero ningún archivo declara un campo `estado` legible por un consumidor externo; `estado_programa_calc` no existe como contador | GEN2-E5 (los `CALC-0001/0002/0003` reales de `GEN2-E5-0` son los primeros que necesitarían leer ese campo) |
+
+Ninguna otra pieza del encargo quedó sin correr, parcial, o distinta de lo
+pedido: los catorce tests corren y pasan (38/38 con los preexistentes),
+`CALC-SMOKE-0002` sella y `verify` da `REPRODUCE`/`IDENTICO`, `CALC-SMOKE-
+0001` queda intacto (verificado byte a byte tras invocar `run` sobre él),
+`tests/check.py --baseline` es VERDE, y `NC-0003` cierra con cuatro de
+cinco límites resueltos y el quinto (`tools/limpia_arbol.py` sin `fetch`)
+conservado como válido por diseño, no como deuda.
+
+## CONSUMIDO
+
+PR: `#608`, rama `claude/corrida0-readiness-refactor-flo8hm`, contra
+`main`. Ejecutado: `ACTO GEN2-E3-1 · READINESS-DEL-RUNNER`, con la skill
+`/acto` (`ADR-237`). `ADR-394`. Endurece `tools/corrida0.py`
+(`preflight`/`run`/`verify`) contra los ocho defectos que A.8 confirmó
+(§A.8 en `forense/notas/2026-09-08-GEN2-E3-1-readiness.md`): P1 resolver
+único de payload · P2 contrato ejecutable normalizado (`seed` `{aplica:
+false/true}`) · P3 outputs validados, `run` que no sella fallos · P4
+inmutabilidad (`CALC-INMUTABLE · YA-SELLADO`) y sello completo · P5
+`verify` en dos ejes (`CONTEXTO`/`RESULTADO`) · P6 catorce tests +
+`CALC-SMOKE-0002` (`repite_de: CALC-SMOKE-0001`, intacto) →
+`REPRODUCE`/`IDENTICO`. Propaga D11/D12. Cierra `NC-0003` (cuatro de
+cinco límites; el quinto se conserva, válido por diseño).
+
+Cascada: `ADR-394`, `L0`, `registro-rotulos.tsv` (`GEN2-E3-1`),
+`forense/no-corrido.tsv` (`NC-0003` → `CERRADA`), `tests/check.py
+--baseline` VERDE (38/38 casos nuevos de `tests/test_corrida0.py`
+incluidos). **NO fusionado por el ejecutor** — mesa fusiona.

@@ -106,6 +106,15 @@ def dependencias_materiales() -> dict[str, str]:
     return {m: version_de(m) for m in DEPENDENCIAS_MATERIALES}
 
 
+def dependencias_materiales_de(nombres: list[str]) -> dict[str, str]:
+    """Versiones resueltas de una lista DECLARADA por el llamador (p. ej. el
+    campo `dependencias_materiales` de un `spec.yaml`, ACTO GEN2-E3-1 · P2) --
+    no la lista fija de arriba. Un nombre repetido se resuelve una sola vez;
+    el orden del resultado no importa, `dependencias_materiales()` ya
+    establece el precedente de devolver un dict."""
+    return {m: version_de(m) for m in dict.fromkeys(nombres)}
+
+
 def raices_logicas() -> list[dict]:
     """Nombre logico, si esta configurada y el sha256 del archivo que la
     configura. NUNCA la ruta fisica."""
