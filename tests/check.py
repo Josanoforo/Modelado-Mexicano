@@ -2614,6 +2614,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # que la exención hermana de `2026-09-08-GEN2-T8-A14-CERO-RAMAS-RETROFIT.md`
     # justo abajo: un encargo verbatim no se edita para complacer un test (A.3).
     "forense/encargos/2026-09-08-GEN2-E3-1-1-CABLEADO-FINAL-RUNNER.md",
+    # ACTO GEN2-E6 · AUTOMATIZA-GEN2-2, 8/sep/2026: encargo archivado
+    # VERBATIM (0-bis A.3). Su cuerpo se nombra a sí mismo "E6" pelado
+    # ("E6 · ACTO GEN2-E6 · AUTOMATIZA-GEN2-2") y cita "E5"/"E3.1" igual de
+    # pelados, porque así los escribe el mensaje de lanzamiento de mesa: son
+    # el rótulo del propio acto y referencias de procedencia a la serie
+    # `E · GEN2-E0..GEN2-E6` ya censada en canon/registro-rotulos.tsv, no
+    # rótulos nuevos. El acto se declara `ACTO GEN2-E6` en forma larga en
+    # todo archivo propio que escribe. Mismo patrón, y misma razón, que las
+    # exenciones hermanas de arriba y abajo: un encargo verbatim no se edita
+    # para complacer un test (A.3).
+    "forense/encargos/2026-09-08-GEN2-E6-AUTOMATIZA-GEN2-2.md",
     # ACTO GEN2-V213 · SELLA-INSTRUCCIONES-Y-REENCOLA, 8/sep/2026: encargo
     # archivado VERBATIM (0-bis A.3). Su cuerpo cita "E5-0", "E5", "E6" y "E7"
     # pelados (sin el prefijo GEN2-) porque asi los nombra el propio mensaje
@@ -5155,6 +5166,140 @@ def t34_no_corrido():
                   f"({edad}) -- sucesor {sucesor or '?'}")
 
 
+# ───────────────────────────────────────────────────────────────
+# T35 · T-REPRO -- ACTO GEN2-E6 · AUTOMATIZA-GEN2-2 (8/sep/2026),
+# plan v2.0 §2 y §7. **MODO AVISO (WARN), declarado y con fecha de
+# caducidad.**
+#
+#   Por qué WARN y no FAIL, dicho aquí y en la nota del acto: el gate
+#   solo se puede congelar contra una corrida GEN2 VERDADERA, y hoy no
+#   existe ninguna -- E6 corre ANTES de E5 porque mesa manda montar todo
+#   el aparato antes de calcular. Congelar el FAIL contra un universo
+#   vacío sería declarar verde un test que nunca se ejerció. **En el
+#   cierre de E5 (las tres primeras corridas GEN2) estos `warn()` pasan a
+#   `fail()`**; hasta entonces avisan. Los `warn()` SÍ entran en la
+#   comparación de línea base (no son `senal()`), así que un aviso NUEVO
+#   ya es una regresión detectable hoy, no dentro de dos actos.
+#
+#   Qué verifica, sobre las vistas que `corrida0 registro` deriva:
+#     (a) cadena completa de cada RESULT activo GEN2: id · CALC · spec ·
+#         script · código fijado · inputs · hashes · parámetros · sello ·
+#         consumidor.
+#     (b) consumidor -> RESULT -> CALC resolubles.
+#     (c) `valor materializado == RESULT` dentro de la tolerancia POR
+#         TIPO, para todo valor que lleve `corrida0_resultado_id`.
+#     (11.1) todo CALC ACTIVO (`cuenta_gen2 = SI`) con `spec_yaml_sha256`,
+#         `script_blob_sha256` e `input_sha256` completos.
+#     (11.2) inmutabilidad estructural: cada artefacto sellado coincide
+#         con su sello -- por hash, SIN REEJECUTAR MICRODATO. Esta sí
+#         aplica a los replays LEGACY-GEN1: no cuentan como medición GEN2,
+#         pero su sello es un sello.
+#     (d) NUEVO: ningún consumidor GEN2 lee un valor sin
+#         `corrida0_resultado_id`. Es lo que impide que un cálculo GEN1 se
+#         cuele por la puerta de atrás con el rótulo del nuevo.
+#
+#   Hoy pasa LIMPIO sobre `CALC-SMOKE-0001`/`0002`: los dos son
+#   `LEGACY-GEN1 · cuenta_gen2 = NO`, así que (a)-(c) y (11.1) no tienen
+#   universo y (11.2) los cubre a los dos. No se aplica a GEN1.
+# ───────────────────────────────────────────────────────────────
+def t35_repro():
+    ruta = os.path.join(ROOT, "tools", "corrida0.py")
+    if not os.path.exists(ruta):
+        warn("T-REPRO", "no existe `tools/corrida0.py`")
+        return
+    try:
+        import importlib.util as _iu
+        _spec = _iu.spec_from_file_location("corrida0_para_repro", ruta)
+        C = _iu.module_from_spec(_spec)
+        sys.modules[_spec.name] = C
+        _spec.loader.exec_module(C)
+    except Exception as exc:
+        warn("T-REPRO", f"`tools/corrida0.py` no importa: "
+                        f"{type(exc).__name__}: {exc}")
+        return
+    try:
+        vistas = C._filas_registro(verifica=False)
+    except Exception as exc:
+        warn("T-REPRO", f"`registro` no deriva: {type(exc).__name__}: {exc}")
+        return
+
+    corridas = {f["corrida_id"]: f for f in vistas["corridas"]}
+    resultados = vistas["resultados"]
+    usos = vistas["usos"]
+    usos_por_result = Counter(u["resultado_id"] for u in usos)
+    indice = {}
+    for f in resultados:
+        previo = indice.get(f["resultado_id"])
+        if previo is None or str(previo["estado"]).startswith("SUPERADO"):
+            indice[f["resultado_id"]] = f
+
+    # (11.2) inmutabilidad estructural, por hash y sin reejecutar.
+    for d in C._dirs_calc():
+        if not (d / "sello.sha256").exists():
+            continue
+        estado, razon = C._verifica_sello(d)
+        if estado != "COINCIDE":
+            warn("T-REPRO", f"11.2 inmutabilidad: {d.name} -> {estado} ({razon})")
+
+    # (11.1) + (a) sobre lo que CUENTA como GEN2.
+    activos = [f for f in resultados
+               if f["origen"] == "OFERTA" and f["cuenta_gen2"] == "SI"
+               and str(f["estado"]).startswith(("SELLADA", "SUPERADO"))]
+    for f in activos:
+        rid, calc = f["resultado_id"], f["spec_id"]
+        c = corridas.get(f["corrida_id"])
+        if c is None:
+            warn("T-REPRO", f"(a) {rid}: su corrida {f['corrida_id']} no existe")
+            continue
+        for campo in ("spec_yaml_sha256", "script_blob_sha256"):
+            if not c[campo] or c[campo] == C.NO_DECLARADO:
+                warn("T-REPRO", f"11.1 {calc}: sin `{campo}`")
+        if c["input_sha256_efectivos"] in ("", "PENDIENTE"):
+            warn("T-REPRO", f"11.1 {calc}: sin `input_sha256` efectivos")
+        for campo in ("codigo_commit", "script_path", "sello"):
+            if not c[campo] or c[campo] == C.NO_DECLARADO:
+                warn("T-REPRO", f"(a) {calc}: cadena incompleta, falta `{campo}`")
+        if c["sello"] != "COINCIDE":
+            warn("T-REPRO", f"(a) {calc}: sello {c['sello']}")
+        if f["tolerancia"] == C.NO_DECLARADO:
+            warn("T-REPRO", f"(a) {rid}: sin tolerancia declarada")
+        if not (C.CORRIDAS / calc / "spec.yaml").exists():
+            warn("T-REPRO", f"(b) {rid}: su CALC {calc} no resuelve a spec.yaml")
+        if usos_por_result.get(rid, 0) == 0:
+            warn("T-REPRO", f"(a) {rid}: activo GEN2 y sin consumidor")
+
+    # (b)+(c)+(d) por el lado del consumidor.
+    for u in usos:
+        if u["activo"] != "SI":
+            continue
+        marca = u["corrida0_resultado_id"]
+        destino = indice.get(u["resultado_id"]) if not marca else indice.get(marca)
+        if marca and destino is None:
+            warn("T-REPRO", f"(b) {u['consumidor']}: corrida0_resultado_id="
+                            f"{marca} no resuelve a ningún RESULT")
+            continue
+        # (d) un consumidor GEN2 sin marca es un número huérfano.
+        if u["generacion_leida"] == "GEN2" and not marca:
+            warn("T-REPRO", f"(d) {u['consumidor']}: lee GEN2 sin "
+                            f"`corrida0_resultado_id`")
+        if not marca or destino is None:
+            continue
+        if not (C.CORRIDAS / destino["spec_id"] / "spec.yaml").exists():
+            warn("T-REPRO", f"(b) {u['consumidor']} -> {marca} -> "
+                            f"{destino['spec_id']}: el CALC no resuelve")
+        # (c) valor materializado == RESULT, con tolerancia POR TIPO.
+        try:
+            tol = json.loads(destino["tolerancia"]) if destino["tolerancia"] != C.NO_DECLARADO else {}
+        except ValueError:
+            tol = {}
+        igual, delta = C._compara_result(destino["valor"], u["valor_materializado"],
+                                         {"tipo": destino["tipo"]}, tol)
+        if not igual:
+            warn("T-REPRO", f"(c) {u['consumidor']}: valor materializado "
+                            f"{u['valor_materializado']!r} != {marca} "
+                            f"({destino['valor']!r}); delta={delta}")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -5192,6 +5337,7 @@ def main():
         ("T31 T-CRON",                              t31_cron),
         ("T32 T-CORRIDA0",                           t32_corrida0),
         ("T34 T-NO-CORRIDO",                          t34_no_corrido),
+        ("T35 T-REPRO [aviso]",                        t35_repro),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
