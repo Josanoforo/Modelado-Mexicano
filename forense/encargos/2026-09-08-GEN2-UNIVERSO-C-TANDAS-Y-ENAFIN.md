@@ -23,4 +23,4 @@ Registro: filas nuevas en la cola de adquisición con estado A.4 · manifiesto p
 
 ## CONSUMIDO
 
-Ejecutado por `PR #639` (rama `acto/gen2-universo-c-tandas-enafin`, `ADR-416`). P1 (ENAFIN/N19), P2 (tandas/R8.2-N29) y P3 (mapa de 10 filas) ejecutados en `forense/notas/2026-09-08-GEN2-UNIVERSO-C-tandas-enafin.md`. `## NO-CORRIDO / RESERVAS` arriba, con `NC-0056`/`NC-0057`. `tests/check.py --baseline`: ROJO heredado del merge de `origin/main` (`PR #636`/`ADR-413`/`NC-0053`, 211 `T-REPRO`), no nuevo de este acto — antes del merge, VERDE.
+Ejecutado por `PR #639` (rama `acto/gen2-universo-c-tandas-enafin`, `ADR-417`). P1 (ENAFIN/N19), P2 (tandas/R8.2-N29) y P3 (mapa de 10 filas) ejecutados en `forense/notas/2026-09-08-GEN2-UNIVERSO-C-tandas-enafin.md`. `## NO-CORRIDO / RESERVAS` arriba, con `NC-0056`/`NC-0057`. `tests/check.py --baseline`: **VERDE**. El ROJO heredado del merge de `PR #636`/`ADR-413`/`NC-0053` (211 `T-REPRO`, nunca causado por este acto) se resolvió al fusionar `PR #640`/`GEN2-T35-DISEÑO`/`FP-360`, que migró esos 211 de `FAIL` a `WARN` de vigía (`SELLADA-SIN-ADOPTAR`).
