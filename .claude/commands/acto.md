@@ -285,8 +285,33 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
    es la autorización, no un trámite del ejecutor. Excepción única:
    cuando el acto corre bajo `/despacha`, que ya hace este paso — no lo
    dupliques.
-10. **`## CONSUMIDO`.** En un commit **posterior** sobre la misma rama,
+10. **`## NO-CORRIDO / RESERVAS`** (A.14, `ACTO GEN2-T8`, 8/sep/2026,
+    `forense/encargos/2026-09-08-GEN2-T8-A14-CERO-RAMAS-RETROFIT.md`).
+    **Precede** a `## CONSUMIDO` — se escribe en el mismo encargo
+    archivado, antes de esa sección, y nunca después. Lo que no se corrió
+    se asienta, o el acto no cierra: una fila por pieza no ejecutada,
+    parcial, distinta de lo pedido, o con reserva —
+    "Ninguno." si de verdad no hay nada. Cada fila trae:
+    - **qué** — la pieza citada, verbatim del encargo.
+    - **por qué** — una de siete, sin inventar otras:
+      `PARO-ENTORNO` · `PARO-PREMISA` · `FUERA-DE-PERÍMETRO` ·
+      `SUSTITUIDO-POR:<acto>` · `DIFERIDO-A:<sucesor>` ·
+      `NO-VERIFICABLE-AQUÍ` · `DECISIÓN-DE-MESA-PENDIENTE`.
+    - **impacto** — qué contador o consumidor no se mueve por esto.
+    - **sucesor** — acto, fila FP, o `SIN-ASIGNAR` — nunca vacío.
+    Un `SUSTITUIDO-POR` que no enumere qué absorbe el sustituto y qué
+    queda huérfano es una fuga de deuda: dilo explícitamente en la fila,
+    no lo dejes implícito. El mismo texto va, verbatim, en el cuerpo del
+    PR (paso 9, plantilla `.github/pull_request_template.md`) y como filas
+    `NC-NNNN` en `forense/no-corrido.tsv` con `estado = ABIERTA` (o
+    `CERRADA` si este mismo acto la cierra). `tools/cierre_acto.py`
+    (Fase A) reporta `NO-CORRIDO-AUSENTE` si el encargo llega a
+    `## CONSUMIDO` sin esta sección, y `NC-HUÉRFANA` si una fila de
+    `forense/no-corrido.tsv` no tiene sucesor resoluble — ninguno de los
+    dos bloquea el commit por sí solo, pero se reporta antes de cerrar.
+11. **`## CONSUMIDO`.** En un commit **posterior** sobre la misma rama,
     añade esta sección al final del encargo archivado en el paso 3,
+    **después** de `## NO-CORRIDO / RESERVAS` (paso 10, nunca antes),
     citando el número real del PR del paso 9 (o el commit, si el acto no
     abre PR) que lo ejecutó, y empuja ese commit. El encargo no se borra
     ni se edita en ningún otro punto: es el registro de qué se pidió,
@@ -294,11 +319,22 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
     única: cuando el acto corre bajo `/despacha`, que ya escribe
     `## CONSUMIDO` (junto con `ESTADO`/`BITACORA`) en su propia
     secuencia — no lo dupliques.
-11. **`python3 tests/check.py --baseline`** una última vez, después del
+
+    **Política de cero ramas** (A.14): un acto termina con su rama
+    **fusionada o borrada**. Trabajo único sin PR se absorbe en `main`
+    como histórico rotulado (`## HISTÓRICO — NO EJECUTADO` con origen y
+    fecha) o se borra con decisión explícita; nunca se preserva como
+    rama. Esto deroga, por enmienda fechada y no por reescritura, la
+    variante `historico/` de `GEN2-E4` D1 y del plan v2.0 §6. Si el PR de
+    este acto ya fusionó al llegar a este paso: `git push origin --delete
+    <rama>` en el mismo momento en que se escribe `## CONSUMIDO`.
+    `tools/limpia_arbol.py --reporta` cuenta toda rama remota sin PR
+    abierto como `fuera_de_politica`.
+12. **`python3 tests/check.py --baseline`** una última vez, después del
     commit del paso 10, en VERDE — o PARO-reporta con la salida cruda,
     nunca se declara el PR listo con un `FAIL` nuevo sin reportarlo
     primero.
-12. **Guard final de HEAD** (`ACTO AUTOMATIZA-2-A · BLINDA-HEAD-PR`,
+13. **Guard final de HEAD** (`ACTO AUTOMATIZA-2-A · BLINDA-HEAD-PR`,
     `forense/encargos/2026-09-07-AUTOMATIZA-2-A-BLINDA-HEAD-PR.md`).
     Defecto real que corrige: `PR #572` se fusionó contra un `HEAD`
     anterior al último commit de cierre — el `## CONSUMIDO` quedó fuera y
