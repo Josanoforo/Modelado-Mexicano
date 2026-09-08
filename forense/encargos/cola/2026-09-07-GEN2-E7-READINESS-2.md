@@ -1,8 +1,8 @@
-ESTADO: DECLARADO
-ENTORNO: (sin determinar — depende del esquema que dejen E5/E6)
-ENCOLADO: 2026-09-08 · ACTO GEN2-T7-CIERRE encola "E7 · ACTO GEN2-E7 · READINESS-2 DEL MARCADOR", texto de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa} (adjunto por el operador y nunca guardado en el repo — cita al documento fuente, no una ruta que este acto cree), como stub declarado. Nuevo en la cola.
+ESTADO: GATEADO
+ENTORNO: (sin determinar — depende del esquema que deje E6; ya no de E5, ver BITACORA)
+ENCOLADO: 2026-09-08 · ACTO GEN2-V213 reencola: reemplaza el cuerpo de este archivo, verbatim (texto técnico sin cambios respecto de la versión que `ACTO GEN2-T7-CIERRE` encoló), sube su ESTADO de `DECLARADO` a `GATEADO` y le asigna una COMPUERTA real por primera vez.
 BITACORA:
-- 2026-09-08 · DECLARADO (no `LISTO` ni `GATEADO`: el propio cuerpo dice «No se redacta ahora»). Nace de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa}, D12 de E3.1: la readiness del marcador (wrapper M, corredor R/L, agregado sucesor) se atiende en E7, antes de C0-D, pero su alcance concreto depende del esquema real que dejen E5 y E6 — este archivo es solo la nota de scope, sin cabecera ejecutable todavía.
+- 2026-09-08 · **GATEADO** (recomputado por `ACTO GEN2-V213`, cambia de `DECLARADO`). `ADR-394` (`GEN2-E3-1`, D12, 8/sep/2026) ya había desacoplado esto de `GEN2-E5`: «la readiness del marcador se atiende en `ACTO GEN2-E7` … no en `ACTO GEN2-E5`» — el propio cuerpo de abajo seguía diciendo "depende del esquema real que dejen E5 y E6", una premisa que `ADR-394` dejó vieja el mismo día que se escribió (v2.1, verificación de premisas: se declara, no se calla, y no se reescribe el cuerpo verbatim para que cuadre). Con `E5` fuera de la dependencia y `GEN2-E6` recomputado a `LISTO-NUBE` por este mismo acto (ver su archivo, vía E.5 "el aparato se prueba con replays"), E7 deja de ser un stub sin fecha y pasa a tener una COMPUERTA verificable: **`ACTO GEN2-E6` fusionado a `main`** (`git show origin/main:tools/corrida0.py | grep -c "def cmd_registro\|def cmd_status"` → 2, hoy 0 — no cumplida). Mientras E6 no fusione, el esquema de `resultados.tsv`/`usos.tsv` que E7 necesita para envolver M/R/L no está fijado, y redactar E7 antes arriesgaría re-escribirlo. `GEN2-E5` (real corridas) queda, a su vez, gateado a que E7 cierre su propio Go/No-Go — dependencia en un solo sentido, no circular: E6 → E7 → E5.
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 

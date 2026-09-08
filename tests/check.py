@@ -2604,6 +2604,15 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-V213 · SELLA-INSTRUCCIONES-Y-REENCOLA, 8/sep/2026: encargo
+    # archivado VERBATIM (0-bis A.3). Su cuerpo cita "E5-0", "E5", "E6" y "E7"
+    # pelados (sin el prefijo GEN2-) porque asi los nombra el propio mensaje
+    # de lanzamiento de mesa -- son referencias de PROCEDENCIA a los cuatro
+    # habitantes ya censados de la cola (GEN2-E5-0/GEN2-E5/GEN2-E6/GEN2-E7,
+    # ver sus filas en canon/registro-rotulos.tsv), no rotulos nuevos que este
+    # acto reclame. Un encargo verbatim no se edita para complacer un test --
+    # mismo patron que GEN2-T8 abajo.
+    "forense/encargos/2026-09-08-GEN2-V213-SELLA-INSTRUCCIONES-Y-REENCOLA.md",
     # ACTO GEN2-T8 · A.14/CERO-RAMAS/RETROFIT, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3). Cita "E7" y "E3.1" con su prefijo GEN2- completo,
     # pero también "E4" pelado dos veces ("cuatro los cierra E3.1... la
