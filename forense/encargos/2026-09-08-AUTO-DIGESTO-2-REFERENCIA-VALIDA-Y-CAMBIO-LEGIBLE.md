@@ -118,3 +118,7 @@ Completado este parche, terminar el encargo y reportar el digesto listo para aco
 | qué | por qué | impacto | sucesor |
 |---|---|---|---|
 | Ninguno. | — | Los dos ajustes pedidos (hash incongruente detiene el diff; valores antes/después de campos modificados) se implementaron y probaron completos; los 14 casos previos y la conexión a T39 siguen operativos; no se tocó el motor, parámetros, corpus, baseline de pruebas, scheduler, CI ni CALC sellados; no se reconstruyeron digestos históricos; `NC-0032` sigue ABIERTA (condición distinta, no tocada); `NC-0027`, la ambigüedad de SHA corto y deuda incidental no se ampliaron. | Ninguno. | — |
+
+## CONSUMIDO
+
+Ejecutado por [PR #625](https://github.com/Josanoforo/Modelado-Mexicano/pull/625). ADR-405. Ambos ajustes implementados, 6 casos de regresión nuevos (20 en total), `tests/check.py --baseline` VERDE.
