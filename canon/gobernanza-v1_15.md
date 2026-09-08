@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **404 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **405 ADR**
 
 > | | |
 > |---|---|
@@ -7046,6 +7046,8 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **`tests/check.py --baseline`**: **LÍNEA BASE VERDE** (3 `FAIL` · 188 `WARN`, los tres de la línea base congelada).
 
 ---
+
+**ADR-405 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `404` contra `origin/main = 6f46976` refrescado con `git fetch --prune`, candidato contiguo `405`, sin huecos; ninguna rama remota accesible lo traía redactado) · `ACTO AUTO-DIGESTO-2 · REFERENCIA-VALIDA-Y-CAMBIO-LEGIBLE`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** — completa dos condiciones pendientes del digesto incremental de `ADR-403`: (1) un hash `H-REF` declarado que contradice el `no-corrido.tsv` recuperado del mismo árbol de referencia **detiene el diff** (`h_error = HASH-REFERENCIA-NO-COINCIDE`, código 2, ninguna escritura del digesto, salida anterior conservada byte a byte) en vez de continuar y declarar `BASE-COMPARABLE` con `h_error = None`; (2) la sección H muestra, por cada campo modificado de una reserva, su **valor anterior y su valor actual** (columna nueva, reutilizando la neutralización de marcadores vigente), no solo el cambio de estado. 6 casos de regresión nuevos en `tests/test_digesto_nc.py` (20 en total, 14 previos intactos). **No** ejecuta mediciones, no recalibra el motor, no implementa `corrida0 delta`, no cierra `NC-0032`. **CONTADOR: cero GEN2.**
 
 **ADR-404 (renumerado de `403` a `404` al fusionar `origin/main`: `ACTO AUTO-DIGESTO-1` — abajo — fusionó primero por `PR #622` y tomó el `403` con la misma derivación de `tools/cierre_acto.py`; regla de la casa, renumera quien fusiona segundo) · `ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA`**, 8/sep/2026, entorno **NUBE, sin corpus ni red** — repara `NC-0023` (`ACTO GEN2-T9`, `PR #615`): el motor matricial que `ADR-91` selló arranca de nuevo, ejercido de punta a punta sobre las tres celdas-D semilla. **CONTADOR: cero GEN2.**
 
