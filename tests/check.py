@@ -2629,6 +2629,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # GEN2-T9/PRE-E5 de abajo: un encargo verbatim no se edita para
     # complacer un test (A.3).
     "forense/encargos/2026-09-08-AUTO-MOTOR-1-RECUPERA-Y-EJERCITA.md",
+    # ACTO RUTINAS-2 · COORDINACION-Y-REVISION-VIGENTE, 8/sep/2026: encargo
+    # archivado VERBATIM (0-bis A.3). Cita "E5-0/E5" pelados dos veces --
+    # "No ejecutar E5-0/E5 desde NUBE" -- como referencia de PROCEDENCIA a
+    # la fase de cálculo ya censada de la serie `E · GEN2-E0..GEN2-E7`
+    # (canon/registro-rotulos.tsv), para acotar que este acto NO la toca;
+    # no es un rótulo nuevo que este acto reclame. Mismo patrón que las
+    # exenciones hermanas de arriba: un encargo verbatim no se edita para
+    # complacer un test (A.3).
+    "forense/encargos/2026-09-08-RUTINAS-2-COORDINACION-Y-REVISION.md",
     # ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`. Trae
     # rótulos pelados de DOS clases, ninguna de ellas nueva:
@@ -5263,6 +5272,37 @@ def t36_corredores_gen2():
 #   REAL del proyecto (eso lo hace la demostración manual del cierre del
 #   acto, con `--sin-suite` para no anidar la suite dentro de sí misma).
 # ───────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
+# T40 · T-RUTINAS -- ACTO RUTINAS-2 · COORDINACION-Y-REVISION-VIGENTE,
+#   8/sep/2026 (`forense/encargos/2026-09-08-RUTINAS-2-COORDINACION-Y-
+#   REVISION.md`).
+#
+#   Único punto de conexión a la suite de `tools/rutinas.py`, las reglas
+#   deterministas que `/revisa`, `/despacha` y `/tramite` comparten
+#   (identidad de revisión y su marca P1, clasificación de rama
+#   administrativa P2, reutilización del PR de trámite P3, traducción de
+#   huellas P4). Mismo arnés `corre()` que `tests/test_digesto_nc.py`.
+# ───────────────────────────────────────────────────────────────
+def t40_rutinas():
+    ruta = os.path.join(ROOT, "tests", "test_rutinas.py")
+    if not os.path.exists(ruta):
+        fail("T-RUTINAS", "no existe `tests/test_rutinas.py`")
+        return
+    try:
+        import importlib.util as _iu
+        _spec = _iu.spec_from_file_location("test_rutinas_desde_check", ruta)
+        _mod = _iu.module_from_spec(_spec)
+        sys.modules[_spec.name] = _mod
+        _spec.loader.exec_module(_mod)
+        fallos = _mod.corre()
+    except Exception as exc:
+        fail("T-RUTINAS", f"`tests/test_rutinas.py` no pudo correr: "
+                           f"{type(exc).__name__}: {exc}")
+        return
+    for f in fallos:
+        fail("T-RUTINAS", f)
+
+
 def t39_digesto_nc():
     ruta = os.path.join(ROOT, "tests", "test_digesto_nc.py")
     if not os.path.exists(ruta):
@@ -5709,6 +5749,7 @@ def main():
         ("T32 T-CORRIDA0",                           t32_corrida0),
         ("T36 T-CORREDORES-GEN2",                     t36_corredores_gen2),
         ("T39 T-DIGESTO-NC",                          t39_digesto_nc),
+        ("T40 T-RUTINAS",                             t40_rutinas),
         ("T37 T-COLA-SINCRONIZADA",                    t37_cola_sincronizada),
         ("T38 T-ALTA-RELACION",                        t38_alta_relacion),
         ("T34 T-NO-CORRIDO",                          t34_no_corrido),

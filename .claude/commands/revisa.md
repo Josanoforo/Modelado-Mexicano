@@ -28,6 +28,11 @@ sustituye** al diario: el diario sigue atrapando los PR que se abrieron
 mientras nadie miraba, y los que cambiaron después de su primera
 revisión.
 
+**NUBE: no abrir ni descargar microdatos/corpus.** Se permite obtener
+código, metadatos de GitHub y dependencias declaradas (`pip install -r
+requirements.txt` en el worktree desechable, punto 2.9). Este agente mide
+PR, no México — no tiene motivo para tocar `data/raw`.
+
 Ejecuta los cuatro bloques de abajo, en orden. Cada uno es instrucción
 ejecutable para esta sesión, no prosa de referencia.
 
@@ -56,11 +61,18 @@ estos, el guardrail gana y lo reportas.
    escribiendo el segundo, o el diff cambió bajo tus pies (verifica el
    `HEAD` del PR antes de comentar) y entonces el primero era sobre otra
    cosa —dilo en el mismo comentario— o estás repitiéndote.
-6. **No revisa PRs `[TRAMITE]`.** Tienen su propio protocolo de lectura
-   (`forense/agente-tramite-v1_0.md` §2) y su propio perímetro de tres
-   rutas; medirlos con esta lista de once daría `NO-APLICA` en ocho
-   puntos y ruido en los otros dos. Si el título empieza por
-   `[TRAMITE]`: **termina sin comentar** y dilo.
+6. **No revisa PRs `[TRAMITE]` ni `[REVISA]`.** Los `[TRAMITE]` tienen su
+   propio protocolo de lectura (`forense/agente-tramite-v1_0.md` §2) y su
+   propio perímetro de tres rutas; medirlos con esta lista de once daría
+   `NO-APLICA` en ocho puntos y ruido en los otros dos. Los `[REVISA]` son
+   el propio vehículo de esta rutina (bloque 1.4) — revisarse a sí misma
+   no aporta nada. Si el título empieza por `[TRAMITE]` o `[REVISA]`:
+   **termina sin comentar** y dilo. Si el diff del PR contradice su
+   clasificación administrativa (por ejemplo, un `[TRAMITE]` que toca algo
+   fuera de su perímetro de tres rutas), **repórtalo** — no lo uses para
+   ejecutar la lista de once igual, eso sigue sin ser tu perímetro; el
+   candado de `/despacha` (`P2` de `RUTINAS-2`) es quien decide si esa
+   rama bloquea.
 7. **`CONTADOR: cero, declarado.`** Este agente no mide nada sobre
    México. Mide **el PR**, que es otra cosa: infraestructura de proceso.
    El comentario lo dice con esas palabras.
@@ -161,6 +173,71 @@ existe para impedir, y ningún inciso de este bloque lo autoriza.
 Un PR `[REVISA]` **no se fusiona solo** (guardrail 3) y **no aprueba
 nada** (guardrail 1): es el vehículo para que la nota llegue al árbol,
 no una firma.
+
+### 1.5 · Selección en el barrido diario — `ACTO RUTINAS-2 · COORDINACION-Y-REVISION-VIGENTE` (P1)
+
+El disparador «al abrir PR» (bloque 0) revisa el PR que lo disparó, punto.
+Esta sección aplica **solo** al tick diario, que barre todos los PR
+abiertos: filtra primero (excluye borradores y títulos `[TRAMITE]`/
+`[REVISA]`, guardrail 6) y, del resto, elige el PR **elegible con
+revisión pendiente desde hace más tiempo** — antigüedad del PR
+(`created_at`), nunca antigüedad de su último comentario.
+
+**Una revisión está pendiente** si no hay resultado vigente para las
+referencias actuales del PR: helper compartido
+`tools/rutinas.py::revision_esta_vigente` compara `(pr, HEAD, tip de
+main, hash normalizado del cuerpo)` contra la última marca publicada
+(§1.6). Mismo HEAD/main/cuerpo → vigente, no se vuelve a comentar.
+Cualquiera de los tres distinto → pendiente.
+
+**Sin candidato: `NADA-QUE-REVISAR`.** No hay salto automático a
+`--post-hoc` — ese modo es solo por petición explícita de mesa (bloque
+1.4). Si el PR del evento se fusionó mientras corría la revisión
+ordinaria (verificado con `gh pr view <n> --json state` si `gh` está
+disponible en este entorno, o releyendo `git ls-remote` de su rama):
+termina `PR-YA-FUSIONADO` y **no** abras un PR `[REVISA]` de nota
+automáticamente por eso.
+
+### 1.6 · Identidad y marca del comentario — P1
+
+Una revisión identifica **cuatro cosas**: número de PR, `HEAD` revisado,
+`tip` de `origin/main` usado para construir la vista previa, y el hash
+normalizado del cuerpo del PR (`tools/rutinas.py::body_sha256` —
+detecta cambios de alcance o de `## NO-CORRIDO / RESERVAS` aunque el
+código no cambie). El comentario del veredicto lleva, en una línea
+propia, la marca:
+
+```text
+<!-- MM-REVISA:v2 pr=<n> head=<sha40> main=<sha40> body_sha256=<sha256> -->
+```
+
+Constrúyela con `tools/rutinas.py::construye_marca_revisa`, no a mano —
+valida la forma de los tres hashes.
+
+**Un comentario vigente por PR, no uno por revisión.** Busca, entre los
+comentarios existentes del PR, el que traiga esta marca **y** la
+identidad de la cuenta con la que esta sesión publica — no «cualquier
+comentario de la cuenta»: `/tramite` y `/despacha` publican con la misma
+cuenta y no dejan esta marca. Si lo hay: **actualízalo** (no publiques
+uno nuevo) y conserva, en una línea breve, la referencia a la marca
+anterior que reemplazas — no la borres del historial del hilo, el
+comentario editado la lleva junto a la nueva. Si no lo hay, o el que hay
+no trae marca reconocible (`tools/rutinas.py::parsea_marca_revisa` →
+`None`): trátalo como si no hubiera revisión previa — **no presumas
+vigencia sin evidencia de versión**, aunque el texto "se lea" como un
+veredicto viejo de esta rutina.
+
+**Relee antes de publicar.** Entre que empezaste la revisión y el
+momento de comentar pueden haber pasado minutos: vuelve a derivar
+`HEAD`, `tip` de main y el hash del cuerpo, y vuelve a leer el
+comentario propio. Si algo cambió, **no publiques el veredicto como
+vigente**: declara la revisión desactualizada y termina — el siguiente
+evento o barrido la retoma. No entres en un bucle de revalidaciones. Si
+otro disparo dejó ya el mismo veredicto (mismas cuatro identidades)
+mientras corrías, no dupliques: esta sesión no tiene garantía de
+exclusión mutua sobre otras (el entorno no la da), así que la relectura
+final es la única defensa contra el duplicado — decláralo con esas
+palabras si no puedes verificarlo.
 
 ---
 
@@ -514,7 +591,9 @@ Estructura, en este orden y sin adornos:
    recuento: `N BLOQUEA · M RESERVA · K NO-VERIFICADO · J NO-APLICA`.
 2. **Las tres identidades** del bloque 1.1 (`BASE`, `HEAD` del PR, `tip`
    de `origin/main`) y el código de `merge-tree`. Sin esto, nadie sabe
-   qué se revisó.
+   qué se revisó. **Y la marca de §1.6**, `<!-- MM-REVISA:v2 ... -->`, en
+   su propia línea — es lo que hace vigente a esta revisión y lo que el
+   próximo disparo lee para decidir si hay que repetirla.
 3. **Hallazgos numerados**, ordenados por peso. Cada uno: **qué punto**,
    **qué se esperaba**, **qué se encontró**, **el comando y su salida**,
    y —si la tienes— **la propuesta de arreglo**, marcada como propuesta.

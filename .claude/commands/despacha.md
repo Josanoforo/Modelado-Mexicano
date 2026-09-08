@@ -207,15 +207,58 @@ git fetch origin <rama>
 git merge-base --is-ancestor FETCH_HEAD origin/main   # 0 = ya fusionada, no cuenta
 ```
 
-**Alguna rama no contenida en `main` → CANDADO CERRADO.** Repórtala y
+**Alguna rama no contenida en `main` → CANDADO CERRADO, salvo que
+clasifique como administrativa exenta** (`ACTO RUTINAS-2 ·
+COORDINACION-Y-REVISION-VIGENTE`, P2 — sustituye la regla anterior
+«cualquier rama no contenida en main bloquea»):
+
+| Caso | Comportamiento |
+|---|---|
+| Encargo en `EN-CURSO` vigente | Bloquea (eso es `2.a`, no aquí) |
+| Rama activa de acto, manual o despachado | Bloquea otro acto automático |
+| Rama ya contenida en main | No bloquea |
+| Rama `[TRAMITE]` / `claude/tramite-*` con diff exclusivamente administrativo permitido | No bloquea |
+| Rama `[REVISA]` / `claude/revisa-*` con solo la nota de revisión permitida | No bloquea |
+| Rama sin clasificación verificable, o administrativa con cambios fuera de perímetro | No eximirla: candado con causa explícita |
+
+La clasificación **no es de nombre solo**: comprueba el diff contra
+`main` con `git diff --name-only origin/main...FETCH_HEAD` y pásalo por
+el helper compartido `tools/rutinas.py::clasifica_rama_para_candado`
+(mismo módulo que usan `/revisa` y `/tramite`, para que las tres rutinas
+apliquen la misma regla). En trámite el perímetro exento es: digestos
+(`forense/digesto/`), `forense/rutinas.tsv`, `forense/no-corrido.tsv`, y
+las modificaciones puntuales ya permitidas de `forense/firmas-
+pendientes.tsv` o de `## CONSUMIDO`/`## NO-CORRIDO` al final de un
+encargo — **nunca** basta con que el archivo completo esté bajo
+`forense/`. En revisión, el perímetro exento es solo la nota de
+`forense/notas/`, sin cambios ejecutables. **No eximas `[CENSO]` ni
+ninguna otra familia por analogía** — el helper no las reconoce, y no
+las inventes tú.
+
+`gh` puede o no estar disponible en este entorno — se comprueba cada vez
+(`command -v gh`), el comentario histórico de que "no existe aquí" no es
+una prohibición permanente de usarlo. Si `gh` responde, úsalo para
+metadatos del PR (título, si es `[TRAMITE]`/`[REVISA]`); si no, deriva
+por `git` puro (nombre de rama, diff). Si una lectura necesaria falla
+(remoto no responde, `gh` no disponible y el nombre de rama no basta
+para clasificar), **declara incertidumbre y trata la rama como no
+exenta** — «no eximirla» es la regla por defecto, no «ausencia de
+trabajo».
+
+**Alguna rama no exenta → CANDADO CERRADO.** Repórtala y
 termina — **con su fecha**, igual que en `2.a`:
 `git log -1 --format='%h %ci %s' FETCH_HEAD`. En régimen estable esta va
-a ser la causa **más frecuente** de candado cerrado, porque el guardrail 7
+a ser una causa **frecuente** de candado cerrado, porque el guardrail 7
 te prohíbe fusionar tu propio PR: entre que un tick abre su PR y mesa lo
 fusiona, la rama sigue abierta y la cola no avanza. Eso es deliberado —la
 cola avanza al ritmo al que mesa firma—, pero mesa solo puede decidir si
 le urge cuando ve **desde cuándo** está esperando. Un candado que se
 cierra en silencio es un candado roto.
+
+**Nunca retomes el acto manual de mesa por similitud de nombre.** Una
+rama que "se parece" al acto que mesa está preparando a mano no es
+candidato a exención ni a ejecución: si no clasifica por las reglas de
+arriba, no se toca.
 
 Los dos comprobantes **declaran cuántos archivos y cuántas ramas
 examinaron** (`A.13`): un negativo producido por un comando que no miró
