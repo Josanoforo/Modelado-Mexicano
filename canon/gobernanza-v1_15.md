@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **401 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **402 ADR**
 
 > | | |
 > |---|---|
@@ -7044,6 +7044,26 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Perímetro cumplido (pieza D).** `tools/cierra_libro_gen1.py` (nuevo) · `forense/encargos/*.md` (sólo el rótulo al pie, por script) · `forense/encargos/cola/*.md` (sólo `ESTADO:`) · `tools/cierre_acto.py` · `tools/digesto_tramite.py` · `.claude/commands/{despacha,revisa,tramite}.md` · `forense/rutinas.tsv` (nuevo) · `tests/manifiesto.py` (ruta del lock) · `tests/check.py` (`T37`) · `forense/hallazgos.md` · `forense/no-corrido.tsv` · cascada. **No tocó** `tools/corrida0.py`, `milpa/**`, canon de reglas, specs, `corridas-{R,M,L}/`, ni las rutinas de GitHub (ésas las edita mesa en la interfaz).
 
 **`tests/check.py --baseline`**: **LÍNEA BASE VERDE** (3 `FAIL` · 188 `WARN`, los tres de la línea base congelada).
+
+---
+
+**ADR-402 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `401` contra `origin/main = 8ee60db` refrescado con `git fetch --prune`, candidato contiguo `402`, sin huecos; ninguna rama remota accesible lo traía redactado) · `ACTO GEN2-T10 · BENCHMARK-B-TEMPORAL`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** — instala el selector B temporal (`tools/baseline_temporal.py`) aplicando un parche pre-validado; **no adopta su uso** en ningún `CALC` ni en el marcador. **CONTADOR: cero GEN2.**
+
+**Firmas de mesa que este acto propaga, verbatim.** *«mi merge manual es la firma de las decisiones»* (6/sep) — el merge de este PR es la firma del contenido. **D-2** (8/sep): *«…no colapsamos a menos que la literatura y benchmark de lo que queremos lograr lo demanden…»* — este acto instala el benchmark que `D-2` invoca, sin colapsar nada.
+
+**Compuerta verificada.** `COMPUERTA: T9 fusionado`. `git ls-remote --heads origin | grep -c "motor-matricial"` → **0**; `git log origin/main --oneline -5` muestra, además del merge de `ACTO GEN2-T9` (`PR #615`), el de su **ADENDA DE MESA** (`PR #618`, `8ee60db`) — el terreno estaba más avanzado de lo que el encargo (redactado contra `6f1500e2`/`PR #614`) suponía; no es `PARO` (Bloque D, punto 2): se re-deriva antes de aplicar, ver hallazgo abajo.
+
+**P1 · el parche v2 aplicado, verbatim.** `git apply --check` → `APLICA-LIMPIO` contra `origin/main = 8ee60db`, sin conflictos (los 4 archivos del parche — `tools/baseline_temporal.py`, `tests/test_baseline_temporal.py`, `.github/workflows/verify.yml`, `forense/benchmark-mercado-motores/2026-09-08-propuesta-gen2.md` — no se tocan en `PR #615`/`#618`). `git apply` verbatim; ningún otro archivo editado a mano. El selector es función pura (cero lecturas del repo, cero lecturas GEN1): exige periodo objetivo y fecha de corte; excluye la misma ola, periodos superpuestos y versiones no disponibles al corte; compara `Serie` con igualdad total (encuesta/reactivo/universo/codificación/segmento/unidad); precedencia última-ola-pública → persistencia → `SIN_BASELINE`; ambigüedad lanza error, no promedia.
+
+**P2 · validado.** `python3 tests/test_baseline_temporal.py` → **9/9 OK**. `python3 tools/verifica_encargos_gen2.py --verifica` → **OK×2**. `python3 tools/corrida0.py run CALC-SMOKE-0002` → **`CALC-INMUTABLE · YA-SELLADO`**, cero bytes tocados (`git status --porcelain` vacío tras la corrida).
+
+**Hallazgo propio — el H4 de la revisión de dirección que motivó este acto ya estaba resuelto en el árbol al ejecutarlo.** La propuesta aplicada por `P1` (§«Corrección material a P1») describe la regla «última ola anterior al periodo del árbitro y disponible al corte; sin anterior → `modela_ola: SIN-PREVIA`» y el rótulo `ORIGEN-ARBITRO` como una corrección que «sube a T9 como adenda de mesa» — tiempo futuro. Entre que la propuesta se redactó (contra `#614`) y este acto se ejecutó (contra `#618`), esa adenda se envió y fusionó de forma **independiente**: `PR #618` (`ADENDA GEN2-T9 · ola previa estricta y ORIGEN-ARBITRO`), ya asentada bajo `ADR-401` con sus propias líneas de `hallazgos.md` y `NC-0026`/`NC-0027`. Verificado en el árbol: `tools/emite_m.py::ola_previa_estricta`/`origen_de_entrada_serie` ya implementan exactamente esas dos reglas. El documento aplicado por `P1` es verbatim del parche y no se edita aquí (A.3); la corrección se asienta en `forense/hallazgos.md` y en `NC-0030` (`CERRADA` por esta misma fila) — mismo patrón que las «Reservas sobre el propio encargo» que `ADR-401` ya usó para sus cifras de Θ y `_ejes_`. La pieza `P3(c)` del encargo, tal como estaba redactada (atribuir a esta propuesta el mérito del envío/fusión de la adenda), **no se ejecuta así** por ser inexacta contra el árbol; se ejecuta corregida.
+
+**P3 · registro.** `FP-348` (`PENDIENTE-DE-MESA`): adoptar el selector B como comparador del marcador GEN2 en `C0-D` y autorizar el ensayo descriptivo remesas ENIGH 2016→2018→2020→2022 en `C0-B` — el merge de este PR instala la herramienta, no adopta su uso. `NC-0028` (`B sobre datos reales`, `DIFERIDO-A:C0-B`) y `NC-0029` (`nuevos R/L, ensamble E y adopciones`, `FUERA-DE-PERÍMETRO`) — las dos que el encargo preveía. `NC-0030` (`CERRADA`, ver hallazgo arriba). `no_corrido_abiertas` +2 (`NC-0028`/`NC-0029` `ABIERTA`; `NC-0030` nace y cierra en el mismo acto). `fp_abiertas` +1 (`FP-348`).
+
+**Perímetro respetado.** No se tocó `milpa/**`, ningún `CALC` sellado, `corredor-B-tasa-base.py` ni `L-spec-v1_2.json`; no se cerró `NC-0018`/`NC-0019`/`NC-0020`; no se copiaron tasas GEN1; no se abrió microdato; el selector no se activa en ningún `CALC` ni en el marcador.
+
+**`tests/check.py --baseline`**: **LÍNEA BASE VERDE** (3 `FAIL` heredados de la línea base congelada, cero nuevos; 5 entradas de la base ya no aparecen — mejora, no baja la cifra sin `--freeze` explícito).
 
 ---
 

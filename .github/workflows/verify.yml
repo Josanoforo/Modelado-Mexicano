@@ -86,6 +86,9 @@ jobs:
         # y `tools/emite_m.py` ya dependía de yaml vía milpa/src/emisor.py.
         run: python3 tests/test_emite_m_calibracion.py
 
+      - name: Baseline temporal — corte y compatibilidad del estimando
+        run: python3 tests/test_baseline_temporal.py
+
       - name: T-CRON — huella del cron y no-regresión de baseline (bloqueante)
         # ACTO ADQ-CRON-V2 · DISPARO-PERSISTENTE-Y-RUNNER-IDEMPOTENTE (P1,
         # 7/sep/2026). Mismo motivo que la prueba de arriba: sin este paso
