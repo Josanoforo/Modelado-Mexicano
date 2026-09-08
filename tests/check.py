@@ -2604,6 +2604,16 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-E3-1-1 · CABLEADO-FINAL-DEL-RUNNER, 8/sep/2026: encargo
+    # archivado VERBATIM (0-bis A.3). Cita "E5" y "E6" pelados ("No conviertas
+    # este acto en E5 ni E6", "no implementes registro/status de E6") --
+    # referencia de PROCEDENCIA a `GEN2-E5`/`GEN2-E6`, ya censados en la fila
+    # `E · GEN2-E0..GEN2-E6` de canon/registro-rotulos.tsv, no rótulos nuevos
+    # que este acto reclame: el acto se declara `ACTO GEN2-E3-1-1` en forma
+    # larga en todo archivo propio que escribe. Mismo patrón, y misma razón,
+    # que la exención hermana de `2026-09-08-GEN2-T8-A14-CERO-RAMAS-RETROFIT.md`
+    # justo abajo: un encargo verbatim no se edita para complacer un test (A.3).
+    "forense/encargos/2026-09-08-GEN2-E3-1-1-CABLEADO-FINAL-RUNNER.md",
     # ACTO GEN2-V213 · SELLA-INSTRUCCIONES-Y-REENCOLA, 8/sep/2026: encargo
     # archivado VERBATIM (0-bis A.3). Su cuerpo cita "E5-0", "E5", "E6" y "E7"
     # pelados (sin el prefijo GEN2-) porque asi los nombra el propio mensaje
