@@ -431,7 +431,8 @@ def t_ejecuta_reporta_el_fallo_como_hecho():
         s.write_text("def medir(inputs, params):\n    raise ValueError('boom')\n",
                      encoding="utf-8")
         rel = os.path.relpath(s, RAIZ)
-        valores, code, err = C._ejecuta({"script": rel, "parametros": {}, "inputs": []})
+        spec = {"script": rel, "parametros": {}, "inputs": []}
+        valores, code, err = C._ejecuta(spec, C._resuelve_inputs(spec))
         _afirma(code == 1 and "boom" in err, caso, f"code={code} err={err}")
         _afirma(valores == {}, caso, "devolvio valores tras reventar")
     finally:
@@ -552,7 +553,9 @@ def t_manifiesto_ruta_al_medidor():
     medidor busca su propio archivo por su cuenta."""
     caso = "T-MANIFIESTO-RUTA-AL-MEDIDOR"
     spec = {"inputs": [{"id": _ID_MANIFIESTO_REAL, "origen": "manifiesto"}]}
-    inputs = C._inputs_para_medidor(spec)
+    # P1 (GEN2-E3-1-1): el medidor recibe el SNAPSHOT ya resuelto; ya no
+    # existe una firma que le permita resolver por su cuenta.
+    inputs = C._inputs_para_medidor(spec, C._resuelve_inputs(spec))
     _afirma(_ID_MANIFIESTO_REAL in inputs, caso, "el input no llego al medidor")
     entrada = inputs[_ID_MANIFIESTO_REAL]
     _afirma(bool(entrada.get("ruta_absoluta")), caso,
@@ -567,8 +570,7 @@ def t_sha_manifiesto_congelado():
     tecleado."""
     caso = "T-SHA-MANIFIESTO-CONGELADO"
     spec = {"inputs": [{"id": _ID_MANIFIESTO_REAL, "origen": "manifiesto"}]}
-    bloqueos = []
-    detalle, _salida = _silencioso(C._verifica_inputs, spec, bloqueos)
+    detalle = C._resuelve_inputs(spec)
     ent = next((e for e in detalle if e["id"] == _ID_MANIFIESTO_REAL), None)
     _afirma(ent is not None, caso, "el input no aparece en el detalle de preflight")
     r = C._PR.resolver_payload(_ID_MANIFIESTO_REAL)
@@ -618,7 +620,8 @@ def t_seed_llega_al_medidor():
                       "    return {'RESULT-SEED': contrato['seed']['valor']}\n",
                       encoding="utf-8")
         rel = os.path.relpath(s, RAIZ)
-        valores, code, err = C._ejecuta({"script": rel, "seed": 99, "inputs": []})
+        spec = {"script": rel, "seed": 99, "inputs": []}
+        valores, code, err = C._ejecuta(spec, C._resuelve_inputs(spec))
         _afirma(code == 0, caso, f"medidor revento: {err}")
         _afirma(valores.get("RESULT-SEED") == 99, caso,
                 f"el seed no llego al medidor via el contrato: {valores}")
@@ -843,6 +846,317 @@ def t_entorno_una_vez():
         C._firma_entorno = original
     _afirma(len(llamadas) == 1, caso,
             f"_firma_entorno se llamo {len(llamadas)} veces, se esperaba 1")
+
+
+# ══════════ ACTO GEN2-E3-1-1 · CABLEADO-FINAL-DEL-RUNNER (P5) ═════════════
+# Cuatro casos, uno por cada uno de los cuatro defectos materiales que el
+# acto cierra. No se anaden casos para anomalias que no protejan a uno de
+# esos cuatro.
+
+# Una spec del ESQUEMA ENDURECIDO: declara TODA dimension sustantiva. Es lo
+# que P2 exige a cualquier CALC nuevo, y la base de los casos de abajo.
+_SPEC_ENDURECIDA = {
+    "calc_id": "CALC-TEST-DURA", "spec_md": "spec.md", "spec_md_sha256": "",
+    "script": "tools/entorno.py",
+    "inputs": [], "variables": [], "universo": "NO-APLICA",
+    "filtros": "NO-APLICA", "ponderador": "NO-APLICA",
+    "transformacion": "NO-APLICA", "estimando": "NO-APLICA",
+    "parametros": {"a": 1}, "seed": {"aplica": False},
+    "dependencias_materiales": [],
+    "tolerancia": {"tipo": "flotante", "abs": 1e-10},
+    "resultados": [{"id": "RESULT-A", "tipo": "entero", "unidad": "u"}],
+}
+
+
+def t_snapshot_input_unico():
+    """T-SNAPSHOT-INPUT-UNICO (D1). El payload se resuelve UNA sola vez por
+    input y por intento de corrida, y ese MISMO sha/ruta llega al medidor y a
+    `ejecucion.json`.
+
+    El mock devuelve A en la primera llamada y B en la segunda a proposito:
+    si existiera una segunda resolucion, el medidor mediria B mientras el
+    recibo registraria A -- que es literalmente el defecto D1. El test afirma
+    que la segunda llamada NO EXISTE."""
+    caso = "T-SNAPSHOT-INPUT-UNICO"
+    iid = "IN-FALSO-SNAPSHOT"
+    llamadas = []
+    respuestas = [
+        {"id": iid, "raiz_logica": "data_raw", "ruta_absoluta": "/ruta/A",
+         "sha256_esperado": "aaa", "sha256_actual": "aaa", "tamano": 1,
+         "estado": "COINCIDE"},
+        {"id": iid, "raiz_logica": "data_raw", "ruta_absoluta": "/ruta/B",
+         "sha256_esperado": "bbb", "sha256_actual": "bbb", "tamano": 2,
+         "estado": "COINCIDE"},
+    ]
+
+    def _mock(payload_id, **kw):
+        llamadas.append(payload_id)
+        return respuestas[min(len(llamadas) - 1, len(respuestas) - 1)]
+
+    original = C._PR.resolver_payload
+    C._PR.resolver_payload = _mock
+    try:
+        spec = dict(_SPEC_ENDURECIDA, calc_id="CALC-TEST-SNAP",
+                    inputs=[{"id": iid, "origen": "manifiesto"}])
+        with _calc_temporal(spec) as (d, cid):
+            import yaml
+            spec = dict(spec, spec_md_sha256=_sha(d / "spec.md"))
+            (d / "spec.yaml").write_text(yaml.safe_dump(spec, allow_unicode=True),
+                                         encoding="utf-8")
+            pre = _silencioso(C.preflight, cid)[0]
+            n_tras_preflight = len(llamadas)
+            inputs_medidor = C._inputs_para_medidor(spec, pre["inputs_resueltos"])
+            ejec = C._construye_ejecucion(cid, spec, d, pre, "deadbeef",
+                                          {"RESULT-A": 1}, 0, "")
+    finally:
+        C._PR.resolver_payload = original
+
+    _afirma(n_tras_preflight == 1, caso,
+            f"preflight resolvio el payload {n_tras_preflight} veces, se esperaba 1")
+    _afirma(len(llamadas) == 1, caso,
+            f"hubo una segunda resolucion tras preflight: {len(llamadas)} llamadas "
+            f"-- el medidor y el recibo pueden discordar (defecto D1)")
+    _afirma(pre["inputs_resueltos"][0]["sha256"] == "aaa", caso,
+            f"snapshot de preflight: {pre['inputs_resueltos'][0]}")
+    _afirma(inputs_medidor[iid]["sha256"] == "aaa"
+            and inputs_medidor[iid]["ruta_absoluta"] == "/ruta/A", caso,
+            f"al medidor no llego el snapshot de preflight: {inputs_medidor[iid]}")
+    _afirma(ejec["input_sha256"][iid] == "aaa", caso,
+            f"ejecucion.json no salio del mismo snapshot: {ejec['input_sha256']}")
+
+
+def t_snapshot_repo_trae_los_bytes():
+    """T-SNAPSHOT-INPUT-UNICO (D1, cara `origen: repo`). Para un insumo
+    versionado el snapshot se queda con los MISMOS bytes que el SHA
+    verificado identifica -- el medidor no reabre el archivo."""
+    caso = "T-SNAPSHOT-INPUT-UNICO/repo"
+    ruta_rel = "tools/entorno.py"
+    spec = {"inputs": [{"id": "IN-ENTORNO", "origen": "repo", "ruta": ruta_rel,
+                        "sha256": _sha(RAIZ / ruta_rel)}]}
+    snapshot = C._resuelve_inputs(spec)
+    ent = snapshot[0]
+    _afirma(ent["estado"] == "COINCIDE", caso, f"estado={ent['estado']}")
+    _afirma(ent["bytes"] == (RAIZ / ruta_rel).read_bytes(), caso,
+            "el snapshot no trae los bytes del insumo versionado")
+    import hashlib as _h
+    _afirma(_h.sha256(ent["bytes"]).hexdigest() == ent["sha256"], caso,
+            "los bytes del snapshot no son los que su sha256 identifica")
+    _afirma(C._inputs_para_medidor(spec, snapshot)["IN-ENTORNO"]["bytes"]
+            == ent["bytes"], caso, "los bytes no llegaron al medidor")
+
+
+def t_spec_no_aplica_explicito():
+    """T-SPEC-NO-APLICA-EXPLICITO (D2). `ponderador: NO-APLICA` es una
+    declaracion valida; `ponderador` AUSENTE es un campo olvidado y bloquea.
+    Antes de este acto ambos casos eran indistinguibles: el runner rellenaba
+    con `"NO-APLICA"` por omision.
+
+    El bloqueo se comprueba dimension por dimension en un solo bucle -- el
+    mecanismo es uno (`DIMENSIONES_SUSTANTIVAS`), no un test por campo."""
+    caso = "T-SPEC-NO-APLICA-EXPLICITO"
+    r, _s = _preflight_de(dict(_SPEC_ENDURECIDA))
+    _afirma(not any(b.startswith("campo_sustantivo_ausente") for b in r["bloqueos"]),
+            caso, f"una spec que declara TODO bloqueo igual: {r['bloqueos']}")
+
+    for campo in C.DIMENSIONES_SUSTANTIVAS:
+        spec = {k: v for k, v in _SPEC_ENDURECIDA.items() if k != campo}
+        r, _s = _preflight_de(spec)
+        _afirma(f"campo_sustantivo_ausente={campo}" in r["bloqueos"], caso,
+                f"`{campo}` ausente no bloqueo: {r['bloqueos']}")
+
+    # `NO-APLICA` DECLARADO y `[]` DECLARADO son ambos declaraciones validas.
+    r, _s = _preflight_de(dict(_SPEC_ENDURECIDA, ponderador="NO-APLICA",
+                               variables=[], dependencias_materiales=[]))
+    _afirma(not any(b.startswith("campo_sustantivo_ausente") for b in r["bloqueos"]),
+            caso, f"un vacio DECLARADO se leyo como ausente: {r['bloqueos']}")
+
+    # El esquema legado (las dos specs selladas) queda exento por su propia
+    # etiqueta, no por olvido.
+    legado = {k: v for k, v in _SPEC_ENDURECIDA.items() if k != "ponderador"}
+    legado["etiquetas"] = {"generacion": C.GENERACION_LEGADO}
+    r, _s = _preflight_de(legado)
+    _afirma(not any(b.startswith("campo_sustantivo_ausente") for b in r["bloqueos"]),
+            caso, f"el esquema LEGACY-GEN1 se endurecio: {r['bloqueos']}")
+
+
+def t_seed_rng_obligatorio():
+    """T-SPEC-NO-APLICA-EXPLICITO (D2, cara `seed`). `aplica: true` exige
+    `valor` Y `rng`. No se inventa un RNG por omision."""
+    caso = "T-SEED-RNG-OBLIGATORIO"
+    r, _s = _preflight_de(dict(_SPEC_ENDURECIDA, seed={"aplica": True, "valor": 42}))
+    _afirma("seed_aplica_sin_rng" in r["bloqueos"], caso,
+            f"`aplica: true` sin `rng` no bloqueo: {r['bloqueos']}")
+
+    r, _s = _preflight_de(dict(_SPEC_ENDURECIDA, seed={"aplica": True,
+                                                       "rng": "numpy.PCG64"}))
+    _afirma("seed_aplica_sin_valor" in r["bloqueos"], caso,
+            f"`aplica: true` sin `valor` no bloqueo: {r['bloqueos']}")
+
+    completo = {"aplica": True, "valor": 42, "rng": "numpy.PCG64"}
+    r, _s = _preflight_de(dict(_SPEC_ENDURECIDA, seed=completo))
+    _afirma(not any(b.startswith("seed_") for b in r["bloqueos"]), caso,
+            f"un seed completo bloqueo: {r['bloqueos']}")
+
+    # `{aplica: false}` sigue siendo declaracion valida (no exige rng).
+    r, _s = _preflight_de(dict(_SPEC_ENDURECIDA, seed={"aplica": False}))
+    _afirma(not any(b.startswith("seed_") for b in r["bloqueos"]), caso,
+            f"`aplica: false` bloqueo: {r['bloqueos']}")
+
+
+def t_preflight_valida_schema_de_resultados():
+    """T-SPEC-NO-APLICA-EXPLICITO (D2, cara `resultados`). ANTES de abrir
+    microdato, `preflight` valida la DECLARACION de outputs: id no vacio,
+    tipo permitido, unidad no vacia, `permite_no_estimable` booleano."""
+    caso = "T-PREFLIGHT-SCHEMA-RESULTADOS"
+    for res, esperado in (
+            ([{"id": "", "tipo": "entero", "unidad": "u"}], "resultado_sin_id"),
+            ([{"id": "RESULT-A", "tipo": "raro", "unidad": "u"}],
+             "resultado_tipo_invalido"),
+            ([{"id": "RESULT-A", "tipo": "entero"}], "resultado_sin_unidad"),
+            ([{"id": "RESULT-A", "tipo": "entero", "unidad": "u",
+               "permite_no_estimable": "si"}],
+             "resultado_permite_no_estimable_no_booleano")):
+        r, _s = _preflight_de(dict(_SPEC_ENDURECIDA, resultados=res))
+        _afirma(any(b.startswith(esperado) for b in r["bloqueos"]), caso,
+                f"{esperado} no bloqueo con resultados={res}: {r['bloqueos']}")
+
+    r, _s = _preflight_de(dict(_SPEC_ENDURECIDA, resultados=[
+        {"id": "RESULT-A", "tipo": "proporcion", "unidad": "p",
+         "permite_no_estimable": True}]))
+    _afirma(not any(b.startswith("resultado_") for b in r["bloqueos"]), caso,
+            f"un schema de outputs valido bloqueo: {r['bloqueos']}")
+
+
+def _calc_para_verify(d: Path, cid: str, resultados_decl, sellados, replay,
+                      tolerancia):
+    """Un CALC sellado cuyo medidor devuelve `replay` mientras el recibo trae
+    `sellados` -- para ejercer el eje RESULTADO de `verify` sin corpus."""
+    import yaml
+    medidor = d / "medidor.py"
+    medidor.write_text("def medir(inputs, contrato):\n"
+                       f"    return {replay!r}\n", encoding="utf-8")
+    spec = dict(_SPEC_ENDURECIDA, calc_id=cid,
+                script=os.path.relpath(medidor, RAIZ),
+                resultados=resultados_decl, tolerancia=tolerancia)
+    spec["spec_md_sha256"] = _sha(d / "spec.md")
+    (d / "spec.yaml").write_text(yaml.safe_dump(spec, allow_unicode=True),
+                                 encoding="utf-8")
+    _cod, commit = C._git_salida("rev-parse", "HEAD")
+    ejec = {"git_commit": commit.strip(), "script_path": spec["script"],
+            "script_blob_sha256": C._sha256_archivo(medidor),
+            "spec_yaml_sha256": C._sha256_archivo(d / "spec.yaml"),
+            "spec_md_sha256": spec["spec_md_sha256"],
+            "input_ids": [], "input_sha256": {},
+            "parametros": spec["parametros"], "seed": spec["seed"],
+            "dependencias_materiales_calc": C._dependencias_materiales_calc(spec)}
+    C._escribe_json(d / "ejecucion.json", ejec)
+    C._escribe_json(d / "resultados.json", {"spec_id": cid, "resultados": sellados})
+    C._escribe_json(d / "sello.json", C._construye_sello(d, spec))
+    subprocess.run([sys.executable, str(C.SELLA_PY), str(d / "sello.json")],
+                   check=True, capture_output=True)
+    return spec
+
+
+def t_verify_tipo_por_result():
+    """T-VERIFY-TIPO-POR-RESULT (D3). Con `tolerancia: {tipo: flotante, abs:
+    1e-10}` GLOBAL y un RESULT declarado `entero`, un replay que devuelve
+    `1.0` contra un `1` sellado NO reproduce: el tipo autoritativo es el del
+    RESULT, no el de la tolerancia. Antes de este acto `_compara` leia
+    `tolerancia["tipo"]`, caia en la rama numerica y `1.0 == 1` dentro de
+    1e-10 reproducia -- el cambio de tipo quedaba invisible."""
+    caso = "T-VERIFY-TIPO-POR-RESULT"
+    tol = {"tipo": "flotante", "abs": 1e-10}
+
+    # (a) entero declarado, replay flotante -> NO reproduce.
+    with _calc_temporal(dict(_SPEC_ENDURECIDA, calc_id="CALC-TEST-TIPO-N")) as (d, cid):
+        _calc_para_verify(d, cid,
+                          [{"id": "RESULT-N", "tipo": "entero", "unidad": "u"}],
+                          {"RESULT-N": 1}, {"RESULT-N": 1.0}, tol)
+        r = _silencioso(C.verify, cid)[0]
+    _afirma(r["resultado"] != "REPRODUCE", caso,
+            f"1.0 contra 1 sellado reprodujo como entero valido: {r}")
+
+    # El comparador, aislado: la tolerancia global no puede decidir el tipo.
+    ok, _delta = C._compara_result(1, 1.0, {"tipo": "entero"}, tol)
+    _afirma(not ok, caso, "_compara_result acepto 1.0 para un RESULT `entero`")
+    ok_viejo, _d = C._compara(1, 1.0, tol)
+    _afirma(ok_viejo, caso,
+            "premisa del caso rota: el comparador global ya no aceptaba 1.0 "
+            "-- si esto falla, el defecto D3 se corrigio en otro sitio")
+
+    # (b) flotante DENTRO de tolerancia -> si reproduce.
+    with _calc_temporal(dict(_SPEC_ENDURECIDA, calc_id="CALC-TEST-TIPO-F")) as (d, cid):
+        _calc_para_verify(d, cid,
+                          [{"id": "RESULT-F", "tipo": "flotante", "unidad": "z"}],
+                          {"RESULT-F": 1.0}, {"RESULT-F": 1.0 + 1e-15}, tol)
+        r = _silencioso(C.verify, cid)[0]
+    _afirma(r["resultado"] == "REPRODUCE", caso,
+            f"un flotante dentro de tolerancia no reprodujo: {r}")
+
+    # (c) los outputs del REPLAY pasan `_valida_outputs` antes de comparar:
+    # una proporcion fuera de [0,1] es NO-EJECUTABLE, nunca REPRODUCE.
+    with _calc_temporal(dict(_SPEC_ENDURECIDA, calc_id="CALC-TEST-TIPO-P")) as (d, cid):
+        _calc_para_verify(d, cid,
+                          [{"id": "RESULT-P", "tipo": "proporcion", "unidad": "p"}],
+                          {"RESULT-P": 7.0}, {"RESULT-P": 7.0}, tol)
+        r = _silencioso(C.verify, cid)[0]
+    _afirma(r["resultado"] == "NO-EJECUTABLE", caso,
+            f"un replay que viola el contrato no fue NO-EJECUTABLE: {r}")
+    _afirma(r["veredicto"] != "REPRODUCE", caso,
+            f"veredicto REPRODUCE sobre outputs invalidos: {r['veredicto']}")
+    _afirma(any("proporcion_fuera_de_rango" in pb for pb in r["problemas_replay"]),
+            caso, f"no se reporto el problema del replay: {r['problemas_replay']}")
+
+
+def t_sellador_falla_no_ejecutado():
+    """T-SELLADOR-FALLA-NO-EJECUTADO (D4). Medidor OK + outputs OK +
+    `sella_sha256.py` con `returncode != 0` -> el veredicto NO puede ser
+    `EJECUTADO`, y el CALC no queda sellado ni inmutable. Antes de este acto
+    el veredicto salia del `exit_code` del MEDIDOR y el del sellador se
+    imprimia sin consecuencia."""
+    caso = "T-SELLADOR-FALLA-NO-EJECUTADO"
+    original = subprocess.run
+
+    class _Falla:
+        returncode, stdout, stderr = 3, "", "sellador simulado: fallo"
+
+    def _run_mock(cmd, *a, **kw):
+        # solo el sellador cuando SELLA (no cuando --verifica): todo lo demas
+        # (git, entorno) corre de verdad.
+        if (len(cmd) > 1 and str(cmd[1]) == str(C.SELLA_PY)
+                and "--verifica" not in [str(x) for x in cmd]):
+            return _Falla()
+        return original(cmd, *a, **kw)
+
+    with _calc_temporal(dict(_SPEC_ENDURECIDA, calc_id="CALC-TEST-SELLO")) as (d, cid):
+        medidor = d / "medidor.py"
+        medidor.write_text("def medir(inputs, contrato):\n"
+                           "    return {'RESULT-A': 1}\n", encoding="utf-8")
+        import yaml
+        spec = dict(_SPEC_ENDURECIDA, calc_id=cid,
+                    script=os.path.relpath(medidor, RAIZ),
+                    spec_md_sha256=_sha(d / "spec.md"))
+        (d / "spec.yaml").write_text(yaml.safe_dump(spec, allow_unicode=True),
+                                     encoding="utf-8")
+        # `preflight` no puede quedar VERDE con un fixture fuera del repo
+        # (arbol sucio, spec.yaml no commiteado), asi que se ejerce `run` a
+        # partir del punto que este caso mide: el tramo posterior al medidor.
+        pre = _silencioso(C.preflight, cid)[0]
+        pre["veredicto"] = "VERDE"
+        original_pre = C.preflight
+        C.preflight = lambda calc_id, imprime=True: pre
+        C.subprocess.run = _run_mock
+        try:
+            r = _silencioso(C.run, cid)[0]
+        finally:
+            C.preflight = original_pre
+            C.subprocess.run = original
+        _afirma(r["veredicto"] != "EJECUTADO", caso,
+                f"veredicto EJECUTADO con el sellador en fallo: {r['veredicto']}")
+        _afirma(r["veredicto"] == "FALLO-SELLADO", caso,
+                f"veredicto inesperado: {r['veredicto']}")
+        _afirma(not C._calc_ya_sellado(d), caso,
+                "el CALC quedo sellado/inmutable pese al fallo del sellador")
 
 
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]

@@ -718,6 +718,29 @@ CAMPOS_SPEC_OBLIGATORIOS = ["calc_id", "spec_md", "spec_md_sha256", "script",
 # endurecido puede declarar. Cerrado, sin JSON Schema universal.
 TIPOS_VALIDOS_RESULT = {"entero", "flotante", "proporcion", "texto"}
 
+# P2 (ACTO GEN2-E3-1-1 · CABLEADO-FINAL-DEL-RUNNER): las dimensiones
+# sustantivas que una spec del esquema endurecido declara EXPLICITAMENTE.
+# El valor puede ser `NO-APLICA` -- lo que no puede es faltar. Antes de este
+# acto, `contrato_ejecutable()` rellenaba con `"NO-APLICA"` por omision, y un
+# campo OLVIDADO quedaba indistinguible de un `NO-APLICA` DECLARADO.
+DIMENSIONES_SUSTANTIVAS = ["variables", "universo", "filtros", "ponderador",
+                           "transformacion", "estimando", "parametros", "seed",
+                           "dependencias_materiales", "resultados", "tolerancia"]
+
+# Compatibilidad de lectura, EXPLICITA y por marca ya existente en el arbol
+# (no un esquema nuevo): las specs legado traen `etiquetas.generacion:
+# LEGACY-GEN1` -- es lo que `CALC-SMOKE-0001` y `CALC-SMOKE-0002` ya declaran,
+# ambas selladas. Solo esas quedan exentas del endurecimiento P2/P3; toda
+# spec nueva que pretenda `PRE-FLIGHT: VERDE` declara sus dimensiones.
+GENERACION_LEGADO = "LEGACY-GEN1"
+
+
+def _esquema_endurecido(spec: dict) -> bool:
+    """VERDADERO salvo que la spec se declare legado por su propia etiqueta.
+    El default es el esquema endurecido: una spec que no dice nada es nueva."""
+    etiquetas = spec.get("etiquetas") or {}
+    return str(etiquetas.get("generacion", "")) != GENERACION_LEGADO
+
 
 class BloqueoPreflight(Exception):
     """Se levanta solo dentro de `preflight` para cortar sin escribir."""
@@ -1032,68 +1055,167 @@ def cmd_negativo(args) -> int:
 
 # ═══════════════ P1 · preflight ════════════════════════════════════════════
 
-def _verifica_inputs(spec: dict, bloqueos: list[str]) -> list[dict]:
-    """Dos origenes, dos mecanismos, sin colapsar uno en el otro.
+def _resuelve_inputs(spec: dict) -> list[dict]:
+    """P1 (GEN2-E3-1-1): resolucion UNICA de los inputs de una spec. Devuelve
+    el SNAPSHOT -- una lista de entradas con `{id, origen, ruta_absoluta,
+    raiz_logica, sha256, estado}` -- y nada mas: no imprime, no bloquea, no
+    decide veredictos. Quien lo llama (preflight, verify) lo hace UNA vez por
+    intento y le pasa ese mismo objeto a todo lo que necesite identidad de
+    input; nadie vuelve a mirar manifiesto ni disco despues.
 
-      `origen: repo`        insumo VERSIONADO -- se rehashea el archivo del
-                            arbol y se compara con el sha declarado.
+      `origen: repo`        insumo VERSIONADO -- se leen los bytes UNA vez, se
+                            hashean, y el snapshot se queda con esos MISMOS
+                            bytes (`bytes`): el medidor recibe exactamente lo
+                            que el SHA verificado identifica, no lo que el
+                            disco traiga un instante despues.
       `origen: manifiesto`  payload del corpus -- lo resuelve
-                            `resolver_payload` (P1, `tests/payload_
-                            resolver.py`), UNA vez por id, import directo
-                            (nunca subproceso). `preflight` queda VERDE solo
-                            si CADA input activo resuelve en `COINCIDE`; el
-                            objeto devuelto (`ruta_absoluta`, `sha256_actual`,
-                            `raiz_logica`) es el mismo que `run` reusa para
-                            alimentar al medidor y rellenar
-                            `ejecucion.json.input_sha256`.
+                            `resolver_payload` (`tests/payload_resolver.py`),
+                            una vez por id, import directo (nunca subproceso).
+
+    Defecto que cierra (A.8 D1): antes, `preflight` resolvia para verificar y
+    `_inputs_para_medidor` volvia a resolver por su cuenta -- entre las dos
+    lecturas cabia un cambio de disco, y `ejecucion.json` podia registrar los
+    bytes X que verifico el preflight mientras el medidor midio los bytes Y.
     """
-    inputs = spec.get("inputs") or []
     fuera = []
-    for ent in inputs:
+    for ent in spec.get("inputs") or []:
         iid = str(ent.get("id", ""))
-        origen = ent.get("origen", "manifiesto")
-        if origen == "repo":
+        if ent.get("origen") == "repo":
             ruta = RAIZ / str(ent.get("ruta", ""))
-            real = _sha256_archivo(ruta)
+            try:
+                crudo = ruta.read_bytes()
+            except OSError:
+                crudo, real = None, None
+            else:
+                real = hashlib.sha256(crudo).hexdigest()
             declarado = str(ent.get("sha256", ""))
             if real is None:
-                bloqueos.append(f"input_repo_ausente={iid}:{ent.get('ruta')}")
                 estado = "AUSENTE"
             elif declarado and real != declarado:
-                bloqueos.append(f"input_repo_sha_discorda={iid}")
                 estado = "DISCORDA"
             elif not declarado:
-                bloqueos.append(f"input_repo_sin_sha_declarado={iid}")
                 estado = "SIN-SHA-DECLARADO"
             else:
                 estado = "COINCIDE"
-            # Un insumo versionado que no esta commiteado no es versionado.
-            cod, _ = _git_salida("ls-files", "--error-unmatch", str(ent.get("ruta", "")))
-            if cod != 0:
-                bloqueos.append(f"input_repo_no_commiteado={iid}")
-                estado += "+NO-COMMITEADO"
-            print(f"    [{estado}] {iid}  origen=repo  ruta={ent.get('ruta')}")
-            print(f"              sha256 real     = {real}")
-            print(f"              sha256 declarado= {declarado or '(ninguno)'}")
+            cod, _ = _git_salida("ls-files", "--error-unmatch",
+                                 str(ent.get("ruta", "")))
             fuera.append({"id": iid, "origen": "repo", "ruta": str(ent.get("ruta")),
                           "ruta_absoluta": str(ruta), "raiz_logica": None,
                           "sha256": real, "sha256_declarado": declarado,
-                          "estado": estado})
+                          "estado": estado, "commiteado": cod == 0,
+                          "bytes": crudo})
         else:
             r = _PR.resolver_payload(iid)
-            estado = r["estado"]
-            if estado != "COINCIDE":
-                bloqueos.append(f"input_manifiesto_{estado}={iid}")
-            print(f"    [{estado}] {iid}  origen=manifiesto  raiz={r['raiz_logica']}")
-            print(f"              ruta_absoluta   = {r['ruta_absoluta']}")
-            print(f"              sha256 esperado = {r['sha256_esperado']}")
-            print(f"              sha256 actual   = {r['sha256_actual']}")
-            print(f"              tamano          = {r['tamano']}")
-            fuera.append({"id": iid, "origen": "manifiesto", "estado": estado,
+            fuera.append({"id": iid, "origen": "manifiesto", "estado": r["estado"],
                           "ruta_absoluta": r["ruta_absoluta"],
                           "raiz_logica": r["raiz_logica"],
-                          "sha256": r["sha256_actual"] or r["sha256_esperado"]})
+                          "sha256": r["sha256_actual"] or r["sha256_esperado"],
+                          "sha256_esperado": r["sha256_esperado"],
+                          "sha256_actual": r["sha256_actual"],
+                          "tamano": r["tamano"], "bytes": None})
     return fuera
+
+
+def _bloqueos_de_inputs(snapshot: list[dict], bloqueos: list[str],
+                        imprime: bool = True) -> None:
+    """Los VEREDICTOS sobre el snapshot de `_resuelve_inputs` -- separados de
+    la resolucion a proposito: se juzga lo ya resuelto, no se vuelve a
+    resolver para juzgar. `preflight` queda VERDE solo si CADA input activo
+    esta en `COINCIDE` y, si es `origen: repo`, ademas commiteado."""
+    for e in snapshot:
+        iid, estado = e["id"], e["estado"]
+        if e["origen"] == "repo":
+            if estado == "AUSENTE":
+                bloqueos.append(f"input_repo_ausente={iid}:{e.get('ruta')}")
+            elif estado == "DISCORDA":
+                bloqueos.append(f"input_repo_sha_discorda={iid}")
+            elif estado == "SIN-SHA-DECLARADO":
+                bloqueos.append(f"input_repo_sin_sha_declarado={iid}")
+            if not e.get("commiteado"):
+                # Un insumo versionado que no esta commiteado no es versionado.
+                bloqueos.append(f"input_repo_no_commiteado={iid}")
+                estado = f"{estado}+NO-COMMITEADO"
+            if imprime:
+                print(f"    [{estado}] {iid}  origen=repo  ruta={e.get('ruta')}")
+                print(f"              sha256 real     = {e['sha256']}")
+                print(f"              sha256 declarado= "
+                      f"{e.get('sha256_declarado') or '(ninguno)'}")
+        else:
+            if estado != "COINCIDE":
+                bloqueos.append(f"input_manifiesto_{estado}={iid}")
+            if imprime:
+                print(f"    [{estado}] {iid}  origen=manifiesto  "
+                      f"raiz={e['raiz_logica']}")
+                print(f"              ruta_absoluta   = {e['ruta_absoluta']}")
+                print(f"              sha256 esperado = {e.get('sha256_esperado')}")
+                print(f"              sha256 actual   = {e.get('sha256_actual')}")
+                print(f"              tamano          = {e.get('tamano')}")
+
+
+def _bloqueos_de_dimensiones(spec: dict, bloqueos: list[str]) -> None:
+    """P2 (GEN2-E3-1-1): toda dimension sustantiva se DECLARA. `ponderador:
+    NO-APLICA` es una declaracion valida; `ponderador` ausente es un campo
+    olvidado, y el runner ya no lo convierte en `NO-APLICA` por su cuenta.
+
+    Nota sobre el test de presencia: `campo in spec`, no `spec.get(campo)`.
+    `variables: []` y `dependencias_materiales: []` son vacios DECLARADOS
+    (es lo que ambos smokes traen) y no pueden confundirse con ausencia."""
+    for campo in DIMENSIONES_SUSTANTIVAS:
+        if campo not in spec:
+            bloqueos.append(f"campo_sustantivo_ausente={campo}")
+
+
+def _bloqueos_de_seed(spec: dict, bloqueos: list[str], endurecido: bool) -> None:
+    """P2: `seed` acepta DOS formas y ninguna mas --
+        seed: {aplica: false}
+        seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+    Si `aplica: true` y falta `valor` o falta `rng`: BLOQUEADO. No se inventa
+    un RNG por omision: una corrida estocastica sin RNG declarado no es
+    reproducible, y decir que lo es seria el defecto, no el bloqueo.
+
+    Un `seed` escalar (`seed: 42`) solo lo admite el esquema legado -- es el
+    unico formato que `CALC-SMOKE-0001` trae, y ese CALC no se toca."""
+    seed = spec.get("seed")
+    if "seed" not in spec or seed is None:
+        bloqueos.append("seed_no_declarado")
+        return
+    if not isinstance(seed, dict):
+        if endurecido:
+            bloqueos.append(f"seed_escalar_sin_forma={seed!r}")
+        return
+    if "aplica" not in seed:
+        bloqueos.append("seed_dict_sin_aplica")
+        return
+    if seed.get("aplica") is not True:
+        return
+    if "valor" not in seed:
+        bloqueos.append("seed_aplica_sin_valor")
+    if endurecido and not seed.get("rng"):
+        bloqueos.append("seed_aplica_sin_rng")
+
+
+def _bloqueos_de_resultados(spec: dict, bloqueos: list[str]) -> None:
+    """P2: la DECLARACION del schema de outputs se valida ANTES de abrir
+    microdato -- id no vacio, tipo permitido, unidad no vacia,
+    `permite_no_estimable` booleano si aparece. (La validacion de los VALORES
+    producidos sigue siendo de `run`, en `_valida_outputs`: son dos cosas
+    distintas y no se colapsan.) La unicidad de ids ya la comprueba el paso 3
+    de `preflight`, comun a inputs y resultados; aqui no se repite."""
+    for i, r in enumerate(spec.get("resultados") or []):
+        if not isinstance(r, dict):
+            bloqueos.append(f"resultado_no_es_mapa=#{i}:{r!r}")
+            continue
+        rid = str(r.get("id", "")).strip()
+        etiqueta = rid or f"#{i}"
+        if not rid:
+            bloqueos.append(f"resultado_sin_id=#{i}")
+        if r.get("tipo") not in TIPOS_VALIDOS_RESULT:
+            bloqueos.append(f"resultado_tipo_invalido={etiqueta}:{r.get('tipo')!r}")
+        if not str(r.get("unidad", "")).strip():
+            bloqueos.append(f"resultado_sin_unidad={etiqueta}")
+        if "permite_no_estimable" in r and \
+                not isinstance(r["permite_no_estimable"], bool):
+            bloqueos.append(f"resultado_permite_no_estimable_no_booleano={etiqueta}")
 
 
 def preflight(calc_id: str, imprime: bool = True) -> dict:
@@ -1176,27 +1298,30 @@ def preflight(calc_id: str, imprime: bool = True) -> dict:
               f"{spec.get('script')}")
         print(f"              script_blob_sha256 = {_sha256_archivo(script)}")
 
-    # 5 · inputs
+    # 5 · inputs -- RESOLUCION UNICA (P1): este snapshot es el que sale en
+    # `pre["inputs_resueltos"]` y el que `run` le pasa al medidor y al recibo.
     if imprime:
         print(f"  inputs declarados: {len(spec.get('inputs') or [])}")
-    detalle_inputs = _verifica_inputs(spec, bloqueos)
+    detalle_inputs = _resuelve_inputs(spec)
+    _bloqueos_de_inputs(detalle_inputs, bloqueos, imprime=imprime)
 
-    # 6 · parametros, tolerancia y seed declarados
+    # 6 · parametros, tolerancia, seed y dimensiones sustantivas declarados
+    endurecido = _esquema_endurecido(spec)
     tol = spec.get("tolerancia") or {}
     if not isinstance(tol, dict) or not tol.get("tipo"):
         bloqueos.append("tolerancia_sin_tipo")
-    seed = spec.get("seed")
-    if "seed" not in spec or seed is None:
-        bloqueos.append("seed_no_declarado")
-    elif isinstance(seed, dict):
-        # P2: `{aplica: false}` es una declaracion valida -- no se inventan
-        # semillas para calculos deterministas. Solo se bloquea la forma
-        # invalida (dict sin `aplica`, o `aplica: true` sin `valor`).
-        if "aplica" not in seed:
-            bloqueos.append("seed_dict_sin_aplica")
-        elif seed.get("aplica") is True and "valor" not in seed:
-            bloqueos.append("seed_aplica_sin_valor")
+    _bloqueos_de_seed(spec, bloqueos, endurecido)
+    if endurecido:
+        # P2: una spec del esquema endurecido declara TODA dimension
+        # sustantiva y el schema completo de sus outputs. El esquema legado
+        # (`etiquetas.generacion: LEGACY-GEN1`) queda exento por lectura, no
+        # por olvido -- es lo que los dos smokes sellados ya declaran.
+        _bloqueos_de_dimensiones(spec, bloqueos)
+        _bloqueos_de_resultados(spec, bloqueos)
     if imprime:
+        print(f"  [{'ENDURECIDO' if endurecido else 'LEGADO'}] esquema de spec"
+              f"   (etiquetas.generacion = "
+              f"{(spec.get('etiquetas') or {}).get('generacion', '(ninguna)')})")
         print(f"  [DECLARADO] parametros = {json.dumps(spec.get('parametros'), sort_keys=True)}")
         print(f"  [DECLARADO] tolerancia = {json.dumps(tol, sort_keys=True)}")
         print(f"  [DECLARADO] seed       = {spec.get('seed')}")
@@ -1237,7 +1362,11 @@ def preflight(calc_id: str, imprime: bool = True) -> dict:
               ("" if not bloqueos else " " + " ".join(bloqueos)))
     return {"calc_id": calc_id, "veredicto": veredicto, "bloqueos": bloqueos,
             "avisos": avisos, "spec": spec, "dir": str(d),
-            "inputs": detalle_inputs, "spec_md_estado": estado_md,
+            # P1: UN solo snapshot, bajo su nombre canonico. `inputs` se
+            # conserva como alias del MISMO objeto (mismos elementos, no una
+            # copia) para no romper a quien ya lo leia por ese nombre.
+            "inputs_resueltos": detalle_inputs, "inputs": detalle_inputs,
+            "esquema_endurecido": endurecido, "spec_md_estado": estado_md,
             "sello_previo": estado_sello,
             "script_blob_sha256": _sha256_archivo(script)}
 
@@ -1272,22 +1401,33 @@ def _carga_medidor(script: Path):
     return mod.medir
 
 
-def _inputs_para_medidor(spec: dict) -> dict:
-    """P1: el MISMO objeto que resolvio el payload alimenta al medidor --
-    ningun medidor busca su propio archivo por su cuenta. `origen: repo`
-    resuelve `ruta_absoluta` contra el arbol; `origen: manifiesto` la resuelve
-    `resolver_payload` (una vez por id, import directo, nunca subproceso)."""
+def _inputs_para_medidor(spec: dict, inputs_resueltos: list[dict]) -> dict:
+    """P1: TRANSFORMA el snapshot al formato que espera `medir()`; no vuelve a
+    resolver nada. `inputs_resueltos` es el objeto que `preflight` (o `verify`)
+    produjo UNA vez en este intento, y de el salen `ruta_absoluta`, `sha256` y
+    `raiz_logica` -- ni el manifiesto ni el disco se vuelven a mirar aqui para
+    decidir identidad, que es exactamente el defecto D1 que este acto cierra.
+
+    Un input DECLARADO en la spec que no aparezca en el snapshot es un error
+    de cableado, no algo que se resuelva sobre la marcha: se levanta."""
+    por_id = {e["id"]: e for e in inputs_resueltos}
     fuera = {}
     for ent in spec.get("inputs") or []:
         iid = str(ent.get("id", ""))
+        r = por_id.get(iid)
+        if r is None:
+            raise RuntimeError(
+                f"input `{iid}` declarado en la spec y ausente del snapshot "
+                f"resuelto -- P1 prohibe resolverlo aqui por segunda vez")
         d = dict(ent)
-        if ent.get("origen") == "repo":
-            d["ruta_absoluta"] = str(RAIZ / str(ent.get("ruta", "")))
-        else:
-            r = _PR.resolver_payload(iid)
-            d["ruta_absoluta"] = r["ruta_absoluta"]
-            d["sha256"] = r["sha256_actual"]
-            d["raiz_logica"] = r["raiz_logica"]
+        d["ruta_absoluta"] = r["ruta_absoluta"]
+        d["sha256"] = r["sha256"]
+        d["raiz_logica"] = r["raiz_logica"]
+        d["estado"] = r["estado"]
+        if r.get("bytes") is not None:
+            # `origen: repo`: los MISMOS bytes que el SHA verificado
+            # identifica -- el medidor no tiene que reabrir el archivo.
+            d["bytes"] = r["bytes"]
         fuera[iid] = d
     return fuera
 
@@ -1308,8 +1448,15 @@ def contrato_ejecutable(spec: dict) -> dict:
     """P2: `{variables, universo, filtros, ponderador, transformacion,
     estimando, parametros, seed}` -- el medidor recibe SIEMPRE este contrato
     normalizado, nunca la spec cruda; no abre `spec.yaml`. Cada dimension
-    sustantiva que la spec no declara llega como `"NO-APLICA"` -- la spec la
-    declara explicita, este contrato solo la copia, nunca la inventa."""
+    sustantiva la DECLARA la spec, y `preflight` ya bloqueo la spec endurecida
+    a la que le faltara alguna (`campo_sustantivo_ausente=…`, P2 de
+    GEN2-E3-1-1). Este contrato solo COPIA lo declarado.
+
+    El relleno `"NO-APLICA"` que queda abajo es, desde este acto, unicamente
+    la cara legible del esquema LEGADO -- las dos specs `LEGACY-GEN1` que ya
+    estan selladas y que no se tocan. Para una spec nueva es inalcanzable:
+    `preflight` no la deja llegar aqui con un campo ausente, asi que un campo
+    OLVIDADO ya no puede disfrazarse de `NO-APLICA` DECLARADO."""
     return {
         "variables": spec.get("variables") or [],
         "universo": spec.get("universo", "NO-APLICA"),
@@ -1344,11 +1491,16 @@ def _dependencias_materiales_calc(spec: dict) -> dict:
     return mod.dependencias_materiales_de(spec.get("dependencias_materiales") or [])
 
 
-def _ejecuta(spec: dict) -> tuple[dict, int, str]:
+def _ejecuta(spec: dict, inputs_resueltos: list[dict]) -> tuple[dict, int, str]:
+    """P1: `inputs_resueltos` es OBLIGATORIO y viene de quien ya resolvio el
+    snapshot en este intento (`preflight` en `run`, la resolucion unica de
+    `verify`). No tiene valor por defecto a proposito: un llamador que no
+    traiga snapshot es un llamador que iba a resolver por segunda vez."""
     script = RAIZ / str(spec.get("script", ""))
     try:
         medir = _carga_medidor(script)
-        valores = medir(_inputs_para_medidor(spec), contrato_ejecutable(spec))
+        valores = medir(_inputs_para_medidor(spec, inputs_resueltos),
+                        contrato_ejecutable(spec))
     except Exception as exc:  # el fallo es un HECHO de la corrida, no un crash
         return {}, 1, f"{type(exc).__name__}: {exc}"
     if not isinstance(valores, dict):
@@ -1452,7 +1604,10 @@ def _construye_ejecucion(calc_id: str, spec: dict, d: Path, pre: dict, commit: s
         "spec_yaml_sha256": _sha256_archivo(d / "spec.yaml"),
         "spec_md_sha256": _sha256_archivo(md),
         "input_ids": [str(i.get("id", "")) for i in (spec.get("inputs") or [])],
-        "input_sha256": {e["id"]: e.get("sha256") for e in pre["inputs"]},
+        # P1: del MISMO snapshot que alimento al medidor -- no de una
+        # segunda lectura de disco.
+        "input_sha256": {e["id"]: e.get("sha256")
+                         for e in pre["inputs_resueltos"]},
         "parametros": spec.get("parametros"),
         "seed": spec.get("seed"),
         "python_version": platform.python_version(),
@@ -1510,7 +1665,9 @@ def run(calc_id: str, imprime: bool = True) -> dict:
 
     spec, d = pre["spec"], Path(pre["dir"])
     _cod, commit = _git_salida("rev-parse", "HEAD")
-    valores, exit_code, error = _ejecuta(spec)
+    # P1: el snapshot que `preflight` acaba de verificar es el que corre.
+    inputs_resueltos = pre["inputs_resueltos"]
+    valores, exit_code, error = _ejecuta(spec, inputs_resueltos)
 
     problemas = _fallas_run(spec, valores, exit_code, error)
     if problemas:
@@ -1531,6 +1688,18 @@ def run(calc_id: str, imprime: bool = True) -> dict:
     _escribe_json(d / "sello.json", sello)
     r = subprocess.run([sys.executable, str(SELLA_PY), str(d / "sello.json")],
                        cwd=RAIZ, capture_output=True, text=True)
+
+    # P4 (GEN2-E3-1-1): el veredicto lo cierra el SELLO, no el medidor. Antes
+    # de este acto, `run` devolvia `EJECUTADO` mirando solo `exit_code` del
+    # medidor -- un `sella_sha256.py` que fallara dejaba un CALC declarado
+    # ejecutado y sin sello valido. Se exige lo uno Y lo otro: que el sellador
+    # termine en 0, y que el sello RECIEN escrito verifique con el mecanismo
+    # que ya existe (`_verifica_sello`: sidecar + cada archivo que cubre).
+    estado_sello_nuevo, razon_sello_nuevo = (
+        ("NO-CREADO", f"sella_sha256.py exit={r.returncode} "
+                      f"{(r.stderr or r.stdout or '').strip()}")
+        if r.returncode != 0 else _verifica_sello(d))
+    sellado = estado_sello_nuevo == "COINCIDE"
     if imprime:
         print(f"\nRUN {calc_id}")
         print(f"  corrida_id     = {ejecucion['corrida_id']}")
@@ -1545,7 +1714,17 @@ def run(calc_id: str, imprime: bool = True) -> dict:
         print(f"  escritos: {_rel(d / 'ejecucion.json')} · "
               f"{_rel(d / 'resultados.json')} · {_rel(d / 'sello.sha256')}")
         print(f"  sella_sha256 exit={r.returncode} {(r.stdout or '').strip()}")
-    return {"veredicto": "EJECUTADO" if exit_code == 0 else "FALLO",
+        print(f"  [{estado_sello_nuevo}] sello nuevo -- {razon_sello_nuevo}")
+    if not sellado:
+        if imprime:
+            print("\nRUN: FALLO-SELLADO -- el CALC NO queda sellado ni "
+                  "inmutable. Los JSON intermedios quedan como intento "
+                  "incompleto: al no existir sello valido, `run` puede "
+                  "reintentar sobre ellos (no hay sidecar de rescate).")
+        return {"veredicto": "FALLO-SELLADO", "error": razon_sello_nuevo,
+                "sello": estado_sello_nuevo, "ejecucion": ejecucion,
+                "resultados": valores, "preflight": pre}
+    return {"veredicto": "EJECUTADO", "sello": estado_sello_nuevo,
             "ejecucion": ejecucion, "resultados": valores, "preflight": pre}
 
 
@@ -1607,6 +1786,57 @@ def _compara(valor_a, valor_b, tol: dict) -> tuple[bool, object]:
     return valor_a == valor_b, (None if valor_a == valor_b else "valores no numericos distintos")
 
 
+def _compara_result(previo, hoy, decl: dict, tol: dict) -> tuple[bool, object]:
+    """P3 (GEN2-E3-1-1): el tipo AUTORITATIVO es el que declara la entrada de
+    `resultados:` para ESE id -- nunca `spec["tolerancia"]["tipo"]`, que es
+    global y no puede hablar por cada RESULT. Defecto que cierra (A.8 D3):
+    con `tolerancia: {tipo: flotante, abs: 1e-10}`, un RESULT declarado
+    `entero` cuyo replay devolviera `1.0` contra un `1` sellado caia en la
+    rama numerica y reproducia dentro de la tolerancia -- el cambio de tipo
+    quedaba invisible.
+
+        entero      int de Python (no bool), comparacion EXACTA
+        texto       str, comparacion EXACTA
+        flotante    finito, abs(delta) <= tolerancia declarada
+        proporcion  finito, en [0, 1], abs(delta) <= tolerancia declarada
+
+    La tolerancia sigue siendo global como MAGNITUD (`tol["abs"]`, que es
+    como las specs de hoy la declaran); lo que ya no sale de ella es la
+    SEMANTICA de la comparacion. Un RESULT sin declaracion en la spec cae al
+    comparador general `_compara`, que no cambia."""
+    tipo = (decl or {}).get("tipo")
+    if tipo not in TIPOS_VALIDOS_RESULT:
+        return _compara(previo, hoy, tol)
+
+    if tipo == "entero":
+        for etiqueta, v in (("sellado", previo), ("hoy", hoy)):
+            if isinstance(v, bool) or not isinstance(v, int):
+                return False, (f"tipo declarado `entero` y {etiqueta}="
+                               f"{v!r} ({type(v).__name__})")
+        return previo == hoy, (None if previo == hoy else f"{previo!r} != {hoy!r}")
+
+    if tipo == "texto":
+        for etiqueta, v in (("sellado", previo), ("hoy", hoy)):
+            if not isinstance(v, str):
+                return False, (f"tipo declarado `texto` y {etiqueta}="
+                               f"{v!r} ({type(v).__name__})")
+        return previo == hoy, (None if previo == hoy else f"{previo!r} != {hoy!r}")
+
+    # flotante | proporcion
+    for etiqueta, v in (("sellado", previo), ("hoy", hoy)):
+        if isinstance(v, bool) or not isinstance(v, (int, float)):
+            return False, (f"tipo declarado `{tipo}` y {etiqueta}="
+                           f"{v!r} ({type(v).__name__})")
+        fv = float(v)
+        if fv != fv or fv in (float("inf"), float("-inf")):
+            return False, f"{etiqueta} no finito: {v!r}"
+        if tipo == "proporcion" and not (0.0 <= fv <= 1.0):
+            return False, f"{etiqueta} fuera de [0,1]: {v!r}"
+    delta = abs(float(previo) - float(hoy))
+    limite = float((tol or {}).get("abs", TOL_FLOTANTE_DEFECTO))
+    return delta <= limite, delta
+
+
 def _verifica_sello(d: Path) -> tuple[str, str]:
     """P5(1): valida el sello del recibo COMPLETO -- el sidecar de
     `sello.json` (via `sella_sha256.py --verifica`) Y que cada archivo que
@@ -1631,7 +1861,8 @@ def _verifica_sello(d: Path) -> tuple[str, str]:
     return "COINCIDE", "sello y todos los archivos que cubre coinciden"
 
 
-def _evalua_contexto(d: Path, spec: dict, ejec: dict, imprime: bool = False) -> tuple[str, list[str]]:
+def _evalua_contexto(d: Path, spec: dict, ejec: dict, inputs_resueltos=None,
+                     imprime: bool = False) -> tuple[str, list[str]]:
     """P5 (2)+(3)+(4): `spec_yaml_sha256` · inputs de manifiesto re-resueltos
     con `resolver_payload` (P1) · `script_blob_sha256`, commit, parametros,
     seed, dependencias -> `CONTEXTO ∈ {IDENTICO, DISTINTO, NO-VERIFICABLE}`
@@ -1646,12 +1877,19 @@ def _evalua_contexto(d: Path, spec: dict, ejec: dict, imprime: bool = False) -> 
               f"  sellado={ejec.get('spec_yaml_sha256')}  hoy={sha_yaml_hoy}")
     razones_contexto = [] if yaml_igual else ["spec_yaml_cambiado"]
 
+    # P1: los inputs vienen del snapshot que `verify` resolvio UNA vez en esta
+    # invocacion -- el mismo que va a alimentar la reejecucion. Resolver aqui
+    # para el CONTEXTO y otra vez para el medidor es el defecto D1 de nuevo,
+    # esta vez en `verify`. `inputs_resueltos=None` solo lo usan los llamadores
+    # que no traen snapshot (tests de contexto puro sobre specs sin inputs).
+    if inputs_resueltos is None:
+        inputs_resueltos = _resuelve_inputs(spec)
     no_verificable_inputs = False
-    for ent in spec.get("inputs") or []:
-        iid = str(ent.get("id", ""))
+    for e in inputs_resueltos:
+        iid = e["id"]
         sellado = (ejec.get("input_sha256") or {}).get(iid)
-        if ent.get("origen") == "repo":
-            hoy = _sha256_archivo(RAIZ / str(ent.get("ruta", "")))
+        if e["origen"] == "repo":
+            hoy = e["sha256"]
             ok = hoy is not None and hoy == sellado
             if imprime:
                 print(f"  [3/5 INPUT {'COINCIDE' if ok else 'DISCORDA'}] {iid} (repo)"
@@ -1659,14 +1897,13 @@ def _evalua_contexto(d: Path, spec: dict, ejec: dict, imprime: bool = False) -> 
             if not ok:
                 razones_contexto.append(f"input_cambiado={iid}")
         else:
-            r = _PR.resolver_payload(iid)
             if imprime:
-                print(f"  [3/5 INPUT {r['estado']}] {iid} (manifiesto)"
-                      f"  sellado={sellado}  actual={r['sha256_actual']}")
-            if r["estado"] in ("RAIZ_NO_CONFIGURADA", "FUERA_DE_PERIMETRO"):
+                print(f"  [3/5 INPUT {e['estado']}] {iid} (manifiesto)"
+                      f"  sellado={sellado}  actual={e.get('sha256_actual')}")
+            if e["estado"] in ("RAIZ_NO_CONFIGURADA", "FUERA_DE_PERIMETRO"):
                 no_verificable_inputs = True
-                razones_contexto.append(f"input_no_verificable={iid}:{r['estado']}")
-            elif r["estado"] != "COINCIDE" or r["sha256_actual"] != sellado:
+                razones_contexto.append(f"input_no_verificable={iid}:{e['estado']}")
+            elif e["estado"] != "COINCIDE" or e.get("sha256_actual") != sellado:
                 razones_contexto.append(f"input_cambiado={iid}")
 
     sha_script_hoy = _sha256_archivo(RAIZ / str(spec.get("script", "")))
@@ -1739,34 +1976,60 @@ def verify(calc_id: str, imprime: bool = True) -> dict:
         return {"veredicto": "NO-VERIFICABLE", "contexto": "NO-VERIFICABLE",
                 "resultado": None, "razones_contexto": [razon_sello]}
 
+    # P1: UNA resolucion de inputs por invocacion de `verify`. Este mismo
+    # snapshot alimenta la comparacion de CONTEXTO y la reejecucion del
+    # medidor -- no se resuelve una vez para cada cosa.
+    inputs_resueltos = _resuelve_inputs(spec)
+
     # (2)+(3)+(4) -> CONTEXTO, con razon.
-    contexto, razones_contexto = _evalua_contexto(d, spec, ejec, imprime=imprime)
+    contexto, razones_contexto = _evalua_contexto(d, spec, ejec, inputs_resueltos,
+                                                  imprime=imprime)
     if imprime:
         print(f"  CONTEXTO: {contexto}" +
               (f"  razon: {'; '.join(razones_contexto)}" if razones_contexto else ""))
 
-    # (5) reejecuta y compara POR RESULT con la tolerancia del tipo (P3).
-    valores, exit_code, error = _ejecuta(spec)
-    deltas, faltan = {}, []
+    # (5) reejecuta y compara POR RESULT segun el tipo que declara la spec
+    # para CADA id (P3), no segun el `tipo` global de `tolerancia`.
+    valores, exit_code, error = _ejecuta(spec, inputs_resueltos)
+    deltas, faltan, problemas_replay = {}, [], []
     if exit_code != 0:
         resultado = "NO-EJECUTABLE"
         if imprime:
             print(f"  [5/5 RESULT] NO-EJECUTABLE -- la reejecucion fallo: {error}")
     else:
-        tol = spec.get("tolerancia") or {}
-        faltan = sorted(set(previos) ^ set(valores))
-        reproduce = not faltan
-        for k in sorted(set(previos) & set(valores)):
-            ok, delta = _compara(previos[k], valores[k], tol)
-            deltas[k] = delta
-            reproduce = reproduce and ok
+        # P3: los outputs REEJECUTADOS pasan el mismo contrato que `run` le
+        # exige a una corrida antes de sellarla. Una salida que viola el
+        # contrato no puede llamarse `REPRODUCE` aunque los numeros cuadren:
+        # lo que reprodujo seria algo que la spec no autoriza a producir.
+        problemas_replay = _valida_outputs(spec, valores)
+        if problemas_replay:
+            resultado = "NO-EJECUTABLE"
             if imprime:
-                print(f"  [5/5 RESULT {'REPRODUCE' if ok else 'NO-REPRODUCE'}] {k}: "
-                      f"sellado={previos[k]!r} · hoy={valores[k]!r} · delta={delta!r}")
-        if faltan and imprime:
-            print(f"  [5/5 RESULT NO-REPRODUCE] ids que aparecen en una corrida y no "
-                  f"en la otra: {faltan}")
-        resultado = "REPRODUCE" if reproduce else "NO-REPRODUCE"
+                print("  [5/5 RESULT] NO-EJECUTABLE -- los outputs de la "
+                      "reejecucion violan el contrato de la spec:")
+                for pb in problemas_replay:
+                    print(f"      {pb}")
+        else:
+            tol = spec.get("tolerancia") or {}
+            decl_por_id = {str(r.get("id", "")): r
+                           for r in (spec.get("resultados") or [])
+                           if isinstance(r, dict)}
+            faltan = sorted(set(previos) ^ set(valores))
+            reproduce = not faltan
+            for k in sorted(set(previos) & set(valores)):
+                ok, delta = _compara_result(previos[k], valores[k],
+                                            decl_por_id.get(k), tol)
+                deltas[k] = delta
+                reproduce = reproduce and ok
+                if imprime:
+                    tipo_k = (decl_por_id.get(k) or {}).get("tipo", "(no declarado)")
+                    print(f"  [5/5 RESULT {'REPRODUCE' if ok else 'NO-REPRODUCE'}] "
+                          f"{k} (tipo={tipo_k}): sellado={previos[k]!r} · "
+                          f"hoy={valores[k]!r} · delta={delta!r}")
+            if faltan and imprime:
+                print(f"  [5/5 RESULT NO-REPRODUCE] ids que aparecen en una corrida "
+                      f"y no en la otra: {faltan}")
+            resultado = "REPRODUCE" if reproduce else "NO-REPRODUCE"
 
     # Combinacion final (P5, verbatim de la firma de mesa).
     if contexto == "NO-VERIFICABLE":
@@ -1786,7 +2049,8 @@ def verify(calc_id: str, imprime: bool = True) -> dict:
         print(f"\nVERIFY: {veredicto}   (CONTEXTO={contexto} · RESULTADO={resultado})")
     return {"veredicto": veredicto, "contexto": contexto, "resultado": resultado,
             "razones_contexto": razones_contexto, "deltas": deltas,
-            "ids_faltantes": faltan, "tolerancia": spec.get("tolerancia") or {}}
+            "ids_faltantes": faltan, "problemas_replay": problemas_replay,
+            "tolerancia": spec.get("tolerancia") or {}}
 
 
 def cmd_verify(args) -> int:
