@@ -803,6 +803,48 @@ def t_verify_contexto():
     _afirma("parametros_distintos" in razones2, caso, f"razones={razones2}")
 
 
+def t_verify_contexto_llaves_no_cadena():
+    """T-VERIFY-CONTEXTO-LLAVES (FP-353). `spec.yaml` viene del YAML, que
+    conserva `29` como int; `ejecucion.json` paso por JSON, que convirtio esa
+    misma llave en `'29'`. Antes de este acto la comparacion era cruda y
+    `CONTEXTO: IDENTICO` era INALCANZABLE -- en cualquier arbol y sin que
+    nada hubiera cambiado -- para toda spec con un mapping de llaves
+    no-cadena en `parametros`. El ejemplo es el MEDIDO en CALC-0001
+    (`coaliciones: {29: [2, 9]}`), no uno inventado.
+
+    El falsador tiene los dos lados: si solo probara el caso IDENTICO, una
+    canonizacion que aplastara todo a igual pasaria el test."""
+    caso = "T-VERIFY-CONTEXTO-LLAVES"
+
+    # (a) misma llave, un lado int y el otro cadena -> IDENTICO.
+    with _calc_temporal(dict(_SPEC_BASE, calc_id="CALC-TEST-LLAVE-A")) as (d, cid):
+        spec, ejec = _construye_calc_sellado(d, cid,
+                                             {"coaliciones": {29: [2, 9]}},
+                                             {"coaliciones": {"29": [2, 9]}})
+        contexto, razones = C._evalua_contexto(d, spec, ejec)
+    _afirma(contexto == "IDENTICO", caso,
+            f"{{29: [2, 9]}} contra {{'29': [2, 9]}} no dio IDENTICO: "
+            f"contexto={contexto} razones={razones}")
+
+    # (b) misma llave, VALOR distinto -> DISTINTO. La canonizacion no puede
+    # comprarse el IDENTICO de (a) a costa de dejar de ver una diferencia.
+    with _calc_temporal(dict(_SPEC_BASE, calc_id="CALC-TEST-LLAVE-B")) as (d, cid):
+        spec, ejec = _construye_calc_sellado(d, cid,
+                                             {"coaliciones": {29: [2, 9]}},
+                                             {"coaliciones": {"29": [2, 8]}})
+        contexto2, razones2 = C._evalua_contexto(d, spec, ejec)
+    _afirma(contexto2 == "DISTINTO", caso,
+            f"{{29: [2, 9]}} contra {{'29': [2, 8]}} no dio DISTINTO: "
+            f"contexto={contexto2} razones={razones2}")
+    _afirma("parametros_distintos" in razones2, caso, f"razones={razones2}")
+
+    # (c) el canonizador, aislado: dos llaves que colapsan a la MISMA cadena
+    # siguen siendo dos. Colapsarlas afirmaria una igualdad no comprobada.
+    _afirma(C._canoniza_llaves({1: "a", "1": "b"})
+            != C._canoniza_llaves({1: "a"}), caso,
+            "el canonizador aplasto `{1: 'a', '1': 'b'}` contra `{1: 'a'}`")
+
+
 def _listado_canonico(d: Path) -> list[str]:
     """Nombres de archivo en `d`, excluyendo `__pycache__` -- efecto
     colateral del propio interprete al importar `medidor.py` via
@@ -1113,6 +1155,52 @@ def t_verify_tipo_por_result():
             f"veredicto REPRODUCE sobre outputs invalidos: {r['veredicto']}")
     _afirma(any("proporcion_fuera_de_rango" in pb for pb in r["problemas_replay"]),
             caso, f"no se reporto el problema del replay: {r['problemas_replay']}")
+
+
+def t_verify_no_estimable():
+    """T-VERIFY-NO-ESTIMABLE (FP-354). `None` es un valor que la spec puede
+    AUTORIZAR (`permite_no_estimable: true`), que `_valida_outputs` respeta y
+    que `run` sella. Antes de este acto `_compara_result` no tenia rama para
+    el: un output NO-ESTIMABLE sellado y hoy NO-ESTIMABLE otra vez --
+    reproduccion perfecta -- se contaba `NO-REPRODUCE` con el mensaje "tipo
+    declarado `flotante` y sellado=None". Las dos funciones implementaban
+    contratos CONTRADICTORIOS sobre el mismo valor; medido, 26 casos entre
+    CALC-0001 y CALC-0002, con `sellado == hoy` en los 26."""
+    caso = "T-VERIFY-NO-ESTIMABLE"
+    tol = {"tipo": "flotante", "abs": 1e-10}
+    decl_permite = {"tipo": "flotante", "unidad": "u", "permite_no_estimable": True}
+
+    # (a) None contra None, autorizado -> REPRODUCE, y sin delta que reportar.
+    ok, delta = C._compara_result(None, None, decl_permite, tol)
+    _afirma(ok, caso, f"None contra None autorizado no reprodujo: delta={delta!r}")
+    _afirma(delta is None, caso, f"delta espuria sobre dos NO-ESTIMABLE: {delta!r}")
+
+    # (b) None contra valor -> NO-REPRODUCE, con mensaje propio: el veredicto
+    # no puede ser el mismo texto que (a) ni el de un tipo mal declarado.
+    ok_b, delta_b = C._compara_result(None, 0.5, decl_permite, tol)
+    _afirma(not ok_b, caso, "None contra 0.5 reprodujo")
+    _afirma("NO-ESTIMABLE contra valor" in str(delta_b), caso,
+            f"mensaje sin causa propia: {delta_b!r}")
+    ok_c, delta_c = C._compara_result(0.5, None, decl_permite, tol)
+    _afirma(not ok_c, caso, "0.5 contra None reprodujo")
+    _afirma("NO-ESTIMABLE contra valor" in str(delta_c), caso,
+            f"mensaje sin causa propia: {delta_c!r}")
+
+    # (c) None contra None SIN autorizacion no se cuela por la puerta nueva.
+    ok_d, delta_d = C._compara_result(None, None, {"tipo": "flotante", "unidad": "u"}, tol)
+    _afirma(not ok_d, caso,
+            f"dos None reprodujeron sin `permite_no_estimable`: {delta_d!r}")
+
+    # (d) punta a punta: `verify` sobre un CALC cuyo unico RESULT es
+    # NO-ESTIMABLE sellado y NO-ESTIMABLE hoy.
+    with _calc_temporal(dict(_SPEC_ENDURECIDA, calc_id="CALC-TEST-NE")) as (d, cid):
+        _calc_para_verify(d, cid,
+                          [{"id": "RESULT-NE", "tipo": "flotante", "unidad": "u",
+                            "permite_no_estimable": True}],
+                          {"RESULT-NE": None}, {"RESULT-NE": None}, tol)
+        r = _silencioso(C.verify, cid)[0]
+    _afirma(r["resultado"] == "REPRODUCE", caso,
+            f"un NO-ESTIMABLE sellado y reproducido no dio REPRODUCE: {r}")
 
 
 def t_sellador_falla_no_ejecutado():
