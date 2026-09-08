@@ -14,7 +14,7 @@ BITACORA:
 
 ## E5-0 · ACTO GEN2-E5-0 · SPECS EJECUTABLES — códigos y ponderadores desde metadato; congelar `spec.yaml`
 
-Cabecera: **UBUNTU (caja)**, worktree nuevo desde `origin/main` · **Opus** · COMPUERTA por producto: E7 fusionado con `GO-MARCADOR` en su nota (`git show origin/main:forense/notas/<nota-E7> | grep -c GO-MARCADOR` ≥ 1); `python3 tools/limpia_arbol.py --reporta` sin árboles ni ramas fuera de política; gates de spec en `main`: S12 `870522a3…`, S13 `c41235b8…`, S6 v1.2 `c1cd3b63…` (íntegros del sidecar). NO se lanza en NUBE.
+Cabecera: **UBUNTU (caja)**, worktree nuevo desde `origin/main` · **Opus** · COMPUERTA por producto: E7 fusionado con `GO-MARCADOR` en su nota (`git show origin/main:forense/notas/<nota-E7> | grep -c GO-MARCADOR` ≥ 1); `python3 tools/limpia_arbol.py --reporta` sin árboles ni ramas fuera de política **propios de este acto; lo ajeno se reporta con conteo y no bloquea** (cláusula reescrita por `ACTO GEN2-E5-1`, `NC-0047` — ver nota al pie); gates de spec en `main`: S12 `870522a3…`, S13 `c41235b8…`, S6 v1.2 `c1cd3b63…` (íntegros del sidecar). NO se lanza en NUBE.
 Principio (E.5 de v2.13): «spec conceptual pre-registrada → abrir **solo** codebook/metadato → resolver códigos y ponderador → congelar `spec.yaml` → COMMIT-1 → (E5) abrir microdato → calcular». **Termina en el COMMIT-1; no abre microdato ni calcula.** Adivinar códigos para lograr un `preflight` VERDE está prohibido.
 **CALC-0001 / S12 (CIDE-CSES 2015).** Codebook y metadatos del `.sav` (etiquetas y códigos, sin valores): `pcyc13`, `pcyc14`, `pvoto1/2/3`, desenlace §2, ponderador. Si el desenlace no existe con esos códigos → `NO-CONSTRUIBLE` declarado (outputs `null` solo en ese brazo). `spec.yaml` (D-15), `spec-check` y `preflight` VERDE, COMMIT-1.
 **CALC-0002 / S13 (LAPOP 2019/2021/2023, R10.3).** **No se convierte ausencia de desenlace en veredicto D2-h.** (a) Confirmar en los codebooks de las tres olas si existe desenlace comparable al de la corrida 2004 (leer en la nota de LOTE-LAPOP cuál usó); (b) si existe: escribir **S13 v1.1** (md + sidecar, antes de cualquier microdato) y `spec.yaml` contra v1.1; (c) si no: `spec.yaml` contra v1.0 con `veredicto_D2h: NO-CONSTRUIBLE` y solo outputs descriptivos pre-registrados. Las dos rutas están autorizadas; el acto reporta cuál y por qué, con codebook citado.
@@ -22,3 +22,32 @@ Principio (E.5 de v2.13): «spec conceptual pre-registrada → abrir **solo** co
 Común: un COMMIT-1 por CALC con «el primer resultado que produzca este procedimiento es el que se reporta»; sidecars; nota con codebooks abiertos (id de manifiesto, página) y **ningún número**. Cierre A.14; rama fusionada o borrada.
 Perímetro: `data/corrida0/CALC-000{1,2,3}/spec.yaml` (+ `spec.md` local citando la spec sellada) · `forense/prereg-caja/S13-R10-3-spec-v1_1.md` + sidecar (solo ruta b) · `forense/notas/` (1) · `forense/firmas-pendientes.tsv` (recibo) · cascada. **No toca microdato, `tramite.yaml`, canon ni S12/S6.** Si te encuentras escribiendo fuera de esta lista, PARA.
 Contador: cero; tres CALC en `PRE-FLIGHT-VERDE`.
+
+---
+
+## Nota al pie · la cláusula de caja limpia, reescrita (`ACTO GEN2-E5-1`, 8/sep/2026, `NC-0047`)
+
+La compuerta de arriba decía «`limpia_arbol --reporta` vacío» / «sin árboles ni
+ramas fuera de política». **Era literalmente incumplible y ya costó dos
+desviaciones declaradas** (`GEN2-E5-0` y `GEN2-E5`). Firma de mesa del mensaje
+de lanzamiento de `ACTO GEN2-E5-1`, verbatim:
+
+> «El reporte nunca sale vacío por diseño (siempre imprime el worktree en
+> curso): la cláusula vieja era literalmente incumplible y ya costó dos
+> desviaciones declaradas.»
+
+**Texto vigente de la cláusula, desde este acto:**
+
+> «sin árboles ni ramas fuera de política **propios de este acto**; lo ajeno se
+> reporta con conteo y no bloquea».
+
+**Control positivo medido por `ACTO GEN2-E5-1`** en su propio worktree, con
+`python3 tools/limpia_arbol.py --reporta` (salida cruda en la nota del acto):
+`A · worktrees vivos: 12` — uno de ellos es el worktree **del acto que está
+evaluando la compuerta**; y `D · fuera_de_politica: 1` —
+`acto/gen2-e5-1-verificador-calc0003v2`, **la rama del propio acto**, contada
+así sólo porque su PR todavía no existe en el momento de la comprobación. La
+cláusula vieja exigía, por tanto, un estado que el ejecutor no puede producir
+ni siquiera en principio, y que además fluctúa con la actividad de otras
+sesiones. `/acto` §1.0.d ya prohíbe expresamente decidir desde el ejecutor el
+borrado de un worktree o una rama (`--aplica` es `E4`/Fase IV).
