@@ -73,3 +73,11 @@ jobs:
         # No añade dependencias: el runner ya trae PyYAML por requirements.txt
         # y `tools/emite_m.py` ya dependía de yaml vía milpa/src/emisor.py.
         run: python3 tests/test_emite_m_calibracion.py
+
+      - name: T-CRON — huella del cron y no-regresión de baseline (bloqueante)
+        # ACTO ADQ-CRON-V2 · DISPARO-PERSISTENTE-Y-RUNNER-IDEMPOTENTE (P1,
+        # 7/sep/2026). Mismo motivo que la prueba de arriba: sin este paso
+        # de CI, `prueba_senal_no_genera_delta_baseline` (la que demuestra
+        # que T31 dejó de poder volver ROJO un PR ajeno) nunca correría en
+        # automático. Stdlib puro, sin red ni corpus.
+        run: python3 tests/test_t_cron.py
