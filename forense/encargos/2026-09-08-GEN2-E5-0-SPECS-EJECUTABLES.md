@@ -66,3 +66,18 @@ degeneradas), `FP-350` (el desenlace que `S12 §2` dio por no construible existe
 `peledip`, más tres correcciones de premisa), `FP-351` (`S6 §3.5` dice que la
 localidad no está en los archivos y sí está, en `c_portad`), `FP-352` (`preflight`
 da `BLOQUEADO` falso dentro del sandbox para toda raíz `descargas_mx`).
+
+## CONSUMIDO
+
+`PR #629` — `ACTO GEN2-E5-0 · SPECS EJECUTABLES`, 8/sep/2026, entorno **UBUNTU
+(caja)**, rama `acto/gen2-e5-0-specs-ejecutables`, `ADR-408` (renumerado de `407`
+al fusionar `origin/main`: `ACTO GEN2-TRAMITE-FIRMAS-1` fusionó primero por
+`PR #627`).
+
+Ejecutado: `spec.yaml` congelado para `CALC-0001` (`prereg-caja-S12`),
+`CALC-0002` (`prereg-caja-S13`, **ruta (c)**) y `CALC-0003` (`prereg-caja-S6-L16`
+v1.2), cada uno con su `spec.md` local, su `medidor.py` y su `COMMIT-1` con la
+frase de sello. Abierto **sólo** codebook y metadato; **no se abrió microdato y no
+se calculó**. `spec-check`: 117 pares, **0 FAIL**. `preflight`: **VERDE los tres**.
+`NC-0011` **CERRADA**. Reservas: `NC-0038`, `NC-0039`. Firmas abiertas a mesa:
+`FP-349`, `FP-350`, `FP-351`, `FP-352`.
