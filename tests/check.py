@@ -5199,6 +5199,45 @@ def t36_corredores_gen2():
 
 
 # ───────────────────────────────────────────────────────────────
+# T39 · T-DIGESTO-NC -- `ACTO AUTO-DIGESTO-1 · CAMBIOS-DESDE-EL-ULTIMO-
+# CORTE` (8/sep/2026, `forense/encargos/2026-09-08-digesto-incremental-
+# reservas.md`).
+#
+#   La sección H de `tools/digesto_tramite.py` pasó de volcar TODO
+#   `forense/no-corrido.tsv` como si fuera novedad a comparar por `id`
+#   contra el último digesto versionado (P1: referencia por SHA de
+#   árbol Git; P2: NUEVA/CAMBIO-DE-ESTADO/MODIFICADA/AUSENTE-EN-CORTE-
+#   ACTUAL/SIN-CAMBIOS/SIN-BASE-COMPARABLE). Un diff sin test es un diff
+#   que nadie falsó -- este test corre `tests/test_digesto_nc.py`, que
+#   construye repos Git temporales reales (SIN CORPUS, sin red, sin
+#   reloj real) para poder ejercer la recuperación por SHA de punta a
+#   punta.
+#
+#   Límite declarado: este test no corre el generador sobre el árbol
+#   REAL del proyecto (eso lo hace la demostración manual del cierre del
+#   acto, con `--sin-suite` para no anidar la suite dentro de sí misma).
+# ───────────────────────────────────────────────────────────────
+def t39_digesto_nc():
+    ruta = os.path.join(ROOT, "tests", "test_digesto_nc.py")
+    if not os.path.exists(ruta):
+        fail("T-DIGESTO-NC", "no existe `tests/test_digesto_nc.py`")
+        return
+    try:
+        import importlib.util as _iu
+        _spec = _iu.spec_from_file_location("test_digesto_nc_desde_check", ruta)
+        _mod = _iu.module_from_spec(_spec)
+        sys.modules[_spec.name] = _mod
+        _spec.loader.exec_module(_mod)
+        fallos = _mod.corre()
+    except Exception as exc:
+        fail("T-DIGESTO-NC", f"`tests/test_digesto_nc.py` no pudo correr: "
+                             f"{type(exc).__name__}: {exc}")
+        return
+    for f in fallos:
+        fail("T-DIGESTO-NC", f)
+
+
+# ───────────────────────────────────────────────────────────────
 # T37 · T-COLA-SINCRONIZADA -- ACTO GEN2-E7 pieza D (D2c), 8/sep/2026.
 #
 #   Un encargo que sigue `LISTO-*`/`GATEADO`/`EN-CURSO` en
@@ -5623,6 +5662,7 @@ def main():
         ("T31 T-CRON",                              t31_cron),
         ("T32 T-CORRIDA0",                           t32_corrida0),
         ("T36 T-CORREDORES-GEN2",                     t36_corredores_gen2),
+        ("T39 T-DIGESTO-NC",                          t39_digesto_nc),
         ("T37 T-COLA-SINCRONIZADA",                    t37_cola_sincronizada),
         ("T38 T-ALTA-RELACION",                        t38_alta_relacion),
         ("T34 T-NO-CORRIDO",                          t34_no_corrido),

@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **402 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **403 ADR**
 
 > | | |
 > |---|---|
@@ -7044,6 +7044,30 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Perímetro cumplido (pieza D).** `tools/cierra_libro_gen1.py` (nuevo) · `forense/encargos/*.md` (sólo el rótulo al pie, por script) · `forense/encargos/cola/*.md` (sólo `ESTADO:`) · `tools/cierre_acto.py` · `tools/digesto_tramite.py` · `.claude/commands/{despacha,revisa,tramite}.md` · `forense/rutinas.tsv` (nuevo) · `tests/manifiesto.py` (ruta del lock) · `tests/check.py` (`T37`) · `forense/hallazgos.md` · `forense/no-corrido.tsv` · cascada. **No tocó** `tools/corrida0.py`, `milpa/**`, canon de reglas, specs, `corridas-{R,M,L}/`, ni las rutinas de GitHub (ésas las edita mesa en la interfaz).
 
 **`tests/check.py --baseline`**: **LÍNEA BASE VERDE** (3 `FAIL` · 188 `WARN`, los tres de la línea base congelada).
+
+---
+
+**ADR-403 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `402` contra `origin/main = 31c16c7` refrescado con `git fetch --prune`, candidato contiguo `403`, sin huecos; ninguna rama remota accesible lo traía redactado) · `ACTO AUTO-DIGESTO-1 · CAMBIOS-DESDE-EL-ULTIMO-CORTE`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** — reemplaza el volcado completo de la sección H (`ACTO GEN2-T8`) por un **digesto incremental**: compara `forense/no-corrido.tsv` contra el último digesto versionado por SHA de árbol, en vez de repetir todo el inventario como novedad. **CONTADOR: cero GEN2.**
+
+**Encargo.** `forense/encargos/2026-09-08-digesto-incremental-reservas.md` (`0-bis A.3`, verbatim). Cero línea `GATED a`/`COMPUERTA:` — no aplica verificación de compuerta.
+
+**P1 · referencia por SHA de árbol.** Cada corte nuevo deja una marca `<!-- H-REF sha_arbol=… nc_sha256=… -->` (invisible en Markdown, no volátil: ambos valores derivan del árbol, no del reloj) al final de la sección H. El siguiente corte localiza el último digesto versionado **una sola vez** vía `git log -1 -- forense/digesto/` (nunca por fecha de modificación del sistema de archivos), recupera esa marca (o, en digestos anteriores a esta pieza, el `HEAD` corto de la cabecera — admitido únicamente cuando `git rev-parse` lo resuelve sin ambigüedad) y trae el TSV anterior con `git show <sha>:forense/no-corrido.tsv`. Sin referencia recuperable —primera emisión, TSV ausente en ese árbol, SHA no resoluble— se emite `SIN-BASE-COMPARABLE` con la causa explícita, preservando el total vigente de abiertas; nunca se afirma que todo es nuevo. `--base-nc-ref <sha>` es diagnóstico explícito, resuelto con `git rev-parse --verify` estructurado (nunca interpolación de shell); una ref inválida es error, código 2, nada se escribe — no se sustituye por otra. En modo publicación (escribe archivo), un `forense/no-corrido.tsv` con cambios locales sin commitear detiene la escritura (P1.6); `--stdout` sigue mostrando la vista previa, declarando que no es referencia publicada.
+
+**P2 · comparación por `id`.** Todos los campos comunes del TSV, no solo las columnas visibles de la tabla. Siete salidas del contrato: `NUEVA` / `CAMBIO-DE-ESTADO` / `MODIFICADA` (con los campos que cambiaron) / `AUSENTE-EN-CORTE-ACTUAL` (nunca "cerrada" por inferencia) / sin novedad (reordenamiento no cuenta) / `SIN-CAMBIOS` (cortes iguales) / `SIN-BASE-COMPARABLE`. `id` duplicado o TSV inválido: error explícito, nunca un diff aparentemente válido. Cambio de esquema: columnas añadidas/retiradas se declaran; identidad/estado ausentes del esquema nuevo abortan el diff en vez de fingir comparabilidad.
+
+**P3 · presentación en sección H de `/tramite`.** Orden: referencia anterior + corte actual + comparabilidad → conteos (nuevas/cambio-estado/modificadas/ausentes + total afectados sin duplicar) → tabla acotada por `--tope-lista` (declara lo omitido) → total vigente de abiertas + inventario completo, cruzado con `python3 tools/corrida0.py status --json` cuando corre sobre el mismo árbol (declarado como lectura local si no corre, nunca una corroboración inexistente). `--stdout` preservado, sin escribir nada; la escritura de archivo es atómica (`tempfile` + `os.replace`) tras validar marcadores y sección H — un fallo a mitad deja el digesto anterior intacto.
+
+**P4 · pruebas.** `tests/test_digesto_nc.py`, 14 casos sobre repos Git temporales reales (SIN CORPUS, sin red, sin reloj real): primera emisión, cortes iguales, alta/cierre/reapertura/modificación de sucesor, reordenamiento sin falso cambio, ausencia nunca cierre, referencia explícita válida e inválida, SHA no recuperable, dos publicaciones el mismo día, salto de varios días, reintento antes de publicar (byte-idéntico, no autoconsume), `--stdout` no escribe, TSV duplicado/inválido = error, neutralización de marcadores preservada, cambio de esquema declarado. Conectado a `tests/check.py` como `T39 T-DIGESTO-NC` (mismo arnés que `T32`/`T36`), que corre `python3 tests/check.py --baseline` — el mecanismo que `.github/workflows/verify.yml` ya invoca; no se duplicó.
+
+**Demostración sobre el árbol real.** `forense/digesto/DIGESTO-2026-09-08.md`: primera emisión de H incremental, `SIN-BASE-COMPARABLE` (el único digesto previo, `2026-09-07`, es anterior a `forense/no-corrido.tsv`), preserva `no_corrido_abiertas` = 18. `forense/digesto/DIGESTO-2026-09-09.md`: segunda emisión, compara contra el `H-REF` de la anterior, detecta el cierre de `NC-0008`/`NC-0013` (`CAMBIO-DE-ESTADO + MODIFICADA`), `no_corrido_abiertas` 18 → 16, corroborado contra `tools/corrida0.py status` sobre el mismo árbol.
+
+**Cierra `NC-0008` y `NC-0013`.** Las dos describían exactamente este hueco (`NC-0008`: "no hay estado persistido entre corridas para comparar"; `NC-0013`: sucesor declarado `acto/digesto-diff-nc`, señalando que la reserva era implementable con los propios `forense/digesto/DIGESTO-*.md` anteriores). Verificado por texto contra este acto antes de cerrarlas; el segundo digesto de demostración es la prueba end-to-end que `NC-0008` marcaba `NO-VERIFICABLE-AQUÍ`.
+
+**De paso.** Corrige un `TypeError` preexistente en `seccion_i`/`seccion_j` (`datetime.date.fromisoformat` recibía un `datetime.date`, no un `str`) — crash reportado hoy por `/tramite` (commit `3a0fa0c`, fuera de su perímetro de cuatro rutas) que bloqueaba generar cualquier digesto, incluida la demostración de P4 de este mismo acto.
+
+**Perímetro cumplido.** `tools/digesto_tramite.py` (sección H, referencia, metadatos) · `tests/test_digesto_nc.py` (nuevo) · `tests/check.py` (`T39`) · `.claude/commands/tramite.md` (documenta el contrato y `--base-nc-ref`) · `forense/no-corrido.tsv` (cierra `NC-0008`/`NC-0013`) · `forense/digesto/DIGESTO-2026-09-{08,09}.md` (demostración) · cascada. **No tocó** `tools/corrida0.py` (solo lo invoca como subproceso de solo lectura), `milpa/**`, el scheduler, ni cerró reservas de otros actos.
+
+**`tests/check.py --baseline`**: **LÍNEA BASE VERDE** (3 `FAIL` heredados de la línea base congelada, cero nuevos; `T39 T-DIGESTO-NC` nuevo, verde).
 
 ---
 
