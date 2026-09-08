@@ -25,6 +25,6 @@ CONTADOR: éste es el acto que lo mueve — 0→3 corridas, 0→211 resultados.
 
 ## NO-CORRIDO / RESERVAS
 
-Ninguno.
+- **qué:** `tests/test_corrida0.py::t_status_arbol_real_no_cuenta_smokes` (`T-STATUS-SMOKES`) sigue con la premisa pre-firma en su docstring y sus asertos (`N_corridas_selladas==0`, `N_resultados_sellados==0` como «la cifra correcta»); `tests/check.py::t35_repro` (`T35`/`T-REPRO`) muerde por primera vez sobre cadena GEN2 real (211 fail, ramal (a): 211 `RESULT` activos GEN2 sin consumidor en `milpa/`). **por qué:** `FUERA-DE-PERÍMETRO` — actualizar falsadores en `tests/` no está en la lista de este acto, y los 211 fallos de (a) son la cadena de adopción (E.2), que este mismo encargo declara explícitamente que no hace. **impacto:** `python3 tests/check.py --baseline` sale ROJO con 213 entradas nuevas frente a la línea base (211 de T35 + 2 de T-CORRIDA0); ningún consumidor real quedó sin marcar — es la firma la que les dio universo a los tests, no un defecto que la firma introdujo. **sucesor:** `NC-0053` — acto que (a) actualice el falsador `T-STATUS-SMOKES` a los valores post-firma y (b) revise, uno por uno, los 211 casos del ramal (a) de T35 (adopción E.2, cada consumidor de `milpa/` que debiera citar `corrida0_resultado_id` y no lo hace todavía).
 
 Lo que NO hace: no adopta al motor (E.2: adopción humana, por merge, otro día) · no corre delta (B-7, sin implementar) · no toca CALC-0003 v1 (SUPERADO, historia) · no simula absolutamente nada.
