@@ -669,3 +669,14 @@ Después:
 
 y la cascada normal de `/acto`.
 El objetivo de este acto es ser la última modificación del runner antes de preparar las tres specs reales, no inaugurar otra ronda de infraestructura.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| «MÁQUINA DE ESTADOS · deja una función pura derivada, no un archivo nuevo de control, por ejemplo `estado_calc(calc_id)`» | `DIFERIDO-A:GEN2-E5-0` | Ningún contador se mueve. No hace falta para cerrar ninguno de los cuatro defectos D1–D4, y el propio encargo lo autoriza («Si esto no es necesario para cerrar los cuatro defectos, déjalo explícitamente para E5-0 como ya declaró #608»). Los primeros CALC de E5 no podrán consultar su estado por función todavía. | `GEN2-E5-0` · `forense/no-corrido.tsv` NC-0009 |
+| «`data/corrida0/CALC-SMOKE-0003/` solo si hace falta un smoke nuevo» (P6) | `NO-VERIFICABLE-AQUÍ` — no hizo falta | Ninguno. Los siete tests nuevos ejercitan el snapshot único (mock de `resolver_payload`) y el fallo del sellador (mock de `subprocess.run`) sin corpus; el encargo prohíbe crearlo «solo por ceremonia». No queda deuda: el cableado queda cubierto por fixtures, no sin cubrir. | Ninguno — cerrado por no aplicar |
+| Verificación del endurecimiento P2/P3 contra los `spec.yaml` reales de `CALC-0001/0002/0003` | `NO-VERIFICABLE-AQUÍ` | El endurecimiento se probó contra fixtures y contra las dos specs `LEGACY-GEN1` selladas; las tres specs reales todavía no existen, así que no se pudo medir cuántos campos sustantivos les faltarían. | `GEN2-E5-0` · `forense/no-corrido.tsv` NC-0010 |
+| Ejecución de `run()` de punta a punta sobre un fixture temporal | `NO-VERIFICABLE-AQUÍ` | Ninguno nuevo: `run` exige `preflight` VERDE, que exige `spec.yaml` COMMITEADO, y un fixture vive fuera del repo. `t_sellador_falla_no_ejecutado` sustituye `preflight` por su resultado ya calculado para ejercer el tramo posterior al medidor —que es justo lo que el caso mide—, mismo patrón que la nota de cabecera de `tests/test_corrida0.py` ya declara para los catorce casos de `PR #608`. Límite ya conocido y ya declarado, no deuda nueva. | Ninguno — límite estructural declarado |
