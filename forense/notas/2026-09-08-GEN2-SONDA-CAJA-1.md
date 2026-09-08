@@ -307,52 +307,216 @@ LATERAL+CONSTRUCTO en P3). **Ningún defecto material del contrato encontrado:**
 
 ---
 
-## P6 · Cierre
+## AMPLIACIÓN (mismo día) — barrido paralelo con técnicas no aplicadas en la primera pasada; corrige un error propio
 
-| objeto | antes de CAJA | evidencia nueva | veredicto | cambio material |
+El operador preguntó explícitamente si se habían agotado todos los trucos disponibles. Auditar
+la primera pasada contra la disciplina de `/sonda §5` ("declara el máximo, no el mínimo")
+encontró que sí faltaban técnicas aplicables — y, al aplicarlas, una de ellas **refutó una
+afirmación de esta misma nota**. Se declara aquí, sin editar el texto original de P3 arriba.
+
+### Corrección a P3 — el PUB SÍ tenía una API de búsqueda nominal, no solo catálogos de metadatos
+
+P3 arriba interpretó los tabs `persons`/`socialActors` del bundle archivado como catálogos de
+metadatos ("Catálogos para la integración de padrones..."). **Eso era una lectura incompleta.**
+Un segundo pase sobre el mismo bundle JS (`main.288a966b.chunk.js`) reveló, en construcciones de
+URL que el primer grep no aisló, cuatro endpoints reales de **búsqueda nominal por apellido**:
+
+```
+GET /api/resume/integral/program/{prog}/period/{period}/estate/{clave}/person/?lastName=...&secondLastName=...&name=...
+GET /api/resume/integral/program/{prog}/period/{period}/municipality/{clave_mun}/person/?lastName=...&secondLastName=...&name=...
+```
+
+Esto confirma que el portal en vivo (cuando responde) **sí** exponía consulta de un beneficiario
+individual por nombre, filtrable a municipio — el título "Consulta al Padrón Único de
+Beneficiarios" no era retórico. Solo se encontró el **patrón de URL/parámetros** en el código
+fuente archivado — nunca se llamó a estos endpoints (host bloqueado) ni se vio/guardó dato de
+persona alguna.
+
+### Corrección a P3 — sí existe un agregado real a nivel MUNICIPIO, parcialmente recuperable hoy
+
+`pub.bienestar.gob.mx/v1/api/resume/estate/{clave}` es un endpoint real (JSON,
+`{municipalityKey, name, beneficiary, interventions}`, una fila por municipio) que Wayback
+archivó de forma incidental para solo algunas entidades. Verificación exhaustiva de las **32
+entidades reales + el bucket "99 no especificado"** (`web.archive.org/cdx/search/cdx`, uno por
+uno, sin filtrar por prefijo estrecho):
+
+| entidad archivada | filas | fecha de captura |
+|---|---|---|
+| `01` Aguascalientes | 12 municipios | 2023-09-28 |
+| `07` Chiapas | 125 municipios | 2025-10-03 |
+| `09` CDMX | (1105 B) | 2023-09-28 |
+| `99` no especificado | 1 (bucket residual) | 2023-09-28 |
+| **02–06, 08, 10–32** (29 de 32) | **0 — sin captura** | — |
+
+Es genuinamente más fino que el agregado "por Entidad" ya conocido (748 filas nacionales), pero
+**parcial e incidental** (el crawler nunca rastreó sistemáticamente el resto). El botón real
+"Descarga por Municipio" del frontend (`/data/v2/municipalities/{prog}/{period}/{state}/...zip`)
+tiene **cero** capturas en Wayback — nunca se generó como link estático rastreable.
+
+### Corrección/precisión a P3 — la llave `AGEB`/`CLAVE_MZNA` que cité como "defendible" NO está respaldada por nada que ya tengamos en corpus
+
+Verificación local (sin red) de `data/raw/ine_marco_geografico_electoral/*`, ya en corpus: los
+tres archivos declaran explícitamente su propio tope — *"CATÁLOGOS A NIVEL ENTIDAD, DISTRITO
+LOCAL, MUNICIPIO Y SECCIÓN"* y *"CATÁLOGOS A NIVEL ENTIDAD Y MUNICIPIO"* — **sección** es el
+nivel más fino que contienen, nada de `AGEB`/manzana. La llave que P3 propuso como "defendible"
+(vía cartografía electoral) sigue siendo conceptualmente válida, pero **el producto cartográfico
+real (shapefiles del Marco Geográfico Electoral del INE, a nivel manzana) no está adquirido** —
+sería un objeto nuevo y distinto, no una relectura de algo que ya está en el corpus. Nota
+adicional: al revisar el archivo `.zip` de esa carpeta se sospechó un objeto nunca abierto por
+la herramienta equivocada (7-zip servido con extensión `.zip`, `zipfile.ZipFile` lo rechaza) —
+falsa alarma: el manifiesto ya documentaba correctamente el formato real (`py7zr`) desde
+`MAESTRA34-L3`.
+
+### P2 · RUPC — hallazgo mayor: el registro SÍ existe, republicado por sociedad civil — adquirido
+
+Un barrido de organizaciones mexicanas de sociedad civil/civic-tech que históricamente raspan
+CompraNet/RUPC encontró que **datamx.io** (portal CKAN operado por **Codeando México**) republica
+un datastore propio del RUPC, **independiente** de todos los hosts oficiales ya confirmados
+muertos:
+
+- `https://datamx.io/dataset/compranet-rupc` — metadata CKAN: *"Proveedores y Contratistas de
+  Gobierno inscritos en el Registro Único de Proveedores y Contratistas (RUPC)"*, licencia CC-BY,
+  cosechado `2019-07-28`.
+- Datastore vivo verificado por el operador (no solo por el agente): `datastore_search` sobre
+  `resource_id=5ef00daf-42ee-4d7b-a62a-7531ef74ff03` responde `200`, `success:true`, con filas
+  reales (`Folio RUPC`, `RFC`, `Nombre de la empresa`, `Entidad Federativa`, `Sector`, `Giro`,
+  `Contratos`, `Fecha de inscripción al RUPC`, `Grado de cumplimiento LAASSP/LOPSRM`).
+- **A.8**: `grep -in "datamx\|compranet-rupc\|RUPC\.csv"` sobre manifiesto/cola/alias → 0
+  aciertos, candidata genuinamente nueva.
+- **A.7**: doble descarga de `https://datamx.io/datastore/dump/5ef00daf-...?format=json`, sha256
+  idéntico (`2e6c98ed3e557b239b331b746dc31b73dadf62c802923a53a9a38e0204cb3ee9`), 18 298 registros ×
+  17 campos, verificado con `json.load` (no solo tamaño de archivo).
+- **Registrado**: `python3 tests/manifiesto.py --registra --id rupc_datamx_json` →
+  `RUPC_datamx_2019/compranet_rupc_datamx.json` en el corpus compartido (`/home/pc0/mm-corpus/raw/`),
+  5 810 200 B, sha256 arriba.
+- **Fila `RUPC` actualizada** (`upsert_fila`, misma clave): `estado_A4A5 =
+  OBTENIDO-PARCIAL(RUPC histórico 2019 vía datamx.io; objeto vivo sigue
+  NO-OBTENIDO-POR-ESTE-AGENTE)`, `ids_manifiesto` gana `rupc_datamx_json`. Vista regenerada.
+
+**Límite honesto, declarado explícitamente:** es un **snapshot histórico** (fechas de inscripción
+reales hasta 2019-04-25), **no** el RUPC vivo/actual. El host oficial que datamx.io cita como
+fuente (`compranetinfo.hacienda.gob.mx/datosabiertos/RUPC.csv`) ya no resuelve por DNS. Una ruta
+histórica adicional, documentada por dos repos de GitHub de 2018
+(`siac.funcionpublica.gob.mx/DatosAbiertos/rupc/RUPC.csv` + diccionario en
+`compranetinfo.funcionpublica.gob.mx`), tampoco resuelve hoy y **no tiene ninguna copia en
+Wayback** — ruta muerta sin rastro, esquema de campos documentado pero irrecuperable.
+
+**Por qué `norah/documentos` rechaza con 403 — explicado, no solo declarado.** Dos repos de
+GitHub de terceros, independientes entre sí (`humandesignlab/veta`, actualizado jul-2026;
+`javiercamarapp/atiende-licitaciones`, sep-2026), documentan y corroboran cruzadamente la misma
+arquitectura: la API "Whitney" de ComprasMX (`upcp-cnetservicios.buengobierno.gob.mx/whitney/sitiopublico`)
+hoy exige headers firmados (RSA, derivados de `adele/interoperabilidad/tp/reloj` — confirmado en
+vivo, `200`, reloj de servidor real) — no se implementó ese esquema de firma (sería bypass de
+anti-bot, fuera de alcance de `/sonda` y de este acto).
+
+**Handoff declarado, NO ejecutado (fuera del alcance RUPC de este acto):** el mismo repo
+documenta y esta sonda verificó EN VIVO tres rutas más de CompraNet, sin tocarlas más allá de un
+`HEAD`/`curl` de verificación:
+- `Contratos_CompraNet{2023,2024,2025}.csv` y `Expedientes_PICompraNet2025.csv` bajo
+  `upcp-compranet.buengobierno.gob.mx/cnetassets/datos_abiertos_contratos_expedientes/` — `200`,
+  72–188 MB cada uno, formato/vintage distinto a `Contratos_CompraNet5.xlsx` ya en corpus.
+- API OCDS oficial `api.datos.gob.mx/v2/contratacionesabiertas` (300 265 registros confirmados
+  vía Wayback a jul-2024) — hoy inalcanzable en vivo (TLS cortado, misma firma que
+  `pub.bienestar.gob.mx`, confirmado con `openssl s_client` directo).
+- El CSV histórico de 951 MB que apareció en esta misma búsqueda (`repodatos.atdt.gob.mx/api_update/sabg/...`)
+  **ya está en corpus** — mismo tamaño exacto (951 619 345 B) que `compranet_historico.csv`,
+  adquirido por `MAESTRA38-A4`. No es un hallazgo nuevo, se verificó para no duplicar.
+
+**Negativo, ampliado y más riguroso:** CKAN datos.gob.mx censado ahora por **organización**
+(`sabg`=22, `sfp`=11, `sesna`=28 datasets, 61 en total vía `package_search?fq=organization:<slug>`,
+no solo por texto) — ninguno es el RUPC. `q=RUPC` da `count=0` en todo el catálogo. Esto es
+"bloqueo de existencia" en esa fuente específica, no bloqueo técnico — el catálogo respondió
+`200` en todos los intentos.
+
+**Vía intentada y bloqueada por infraestructura ajena, declarada sin forzar:** `archive.today`
+(y sus 5 espejos) rechazó **toda** conexión desde este entorno — TCP conecta, el servidor
+mantiene el socket ~12s y corta el handshake TLS sin responder, en los 4 objetivos probados. Tres
+mecanismos (curl HTTPS, curl HTTP puro, `openssl s_client`) confirman el mismo patrón; Google y
+Wayback Machine responden con normalidad desde el mismo entorno en el mismo momento. La IP de
+egreso de esta caja (`187.13.203.159`) pertenece a `AS212238 Datacamp Limited` — un ASN de
+datacenter/proxy — que coincide con el comportamiento anti-scraping documentado de
+`archive.today` contra rangos de datacenter. **Advertencia metodológica honesta:** esto no se
+pudo distinguir de un bloqueo específico del servidor de destino en el caso de `archive.today`
+mismo — pero para los bloqueos TLS de `pub.bienestar.gob.mx`/`cpid.bienestar.gob.mx`/
+`consultapublicamx.inai.org.mx`/`api.datos.gob.mx` declarados como "del servidor" en esta nota,
+la corroboración independiente de dos repos de terceros con infraestructura propia
+(`humandesignlab/veta`, `javiercamarapp/atiende-licitaciones`) reportando el mismo tipo de
+bloqueo sobre los mismos hosts reduce (no elimina) la probabilidad de que sea únicamente un
+artefacto de la IP de esta caja. No se intentó (ni se intentará) enmascarar la IP de salida —
+eso cruzaría de reconocimiento pasivo a evasión.
+
+**Colateral — el endpoint `wayback/available` está roto ahora mismo.** Devuelve `404` genérico
+para cualquier URL, incluyendo `example.com` como control — no es evidencia de ausencia de
+captura, es una falla del propio servicio. Se documenta para que un acto futuro no lo tome como
+señal; `web.archive.org/cdx/search/cdx` es el método fiable confirmado.
+
+**Otras vías genuinas exploradas, sin hallazgo utilizable:** repositorios académicos
+(Dataverse/Zenodo/ICPSR vía SHARE/DataCite) — un solo dataset real y tangencial (`COEP
+Replication Package`, DOI `10.3886/E219822`, contratos marco/nómina, Pace University, bloqueado
+por Cloudflare para ver su esquema exacto, alcance declarado como acotado y no equivalente al
+RUPC); IMCO (`github.com/imco/IRC`) documentó una granularidad de CompraNet más fina
+(participantes/licitantes por procedimiento) pero su único punto de acceso (bucket S3
+`opi-compranet`) está confirmado **eliminado** (`NoSuchBucket` en los 9 archivos documentados);
+MCCI/Data Cívica/Fundar/Serendipia/Animal Político — sin dataset relevante encontrado; PNT — las
+3 rutas alternas en vivo confirmadas muertas (`api.plataformadetransparencia.org.mx` no existe en
+DNS; `www.infomex.org.mx` es un dominio **secuestrado por un sitio de casino en línea**, no
+usar/visitar pensando que es INAI; `consultapublicamx.inai.org.mx` resuelve pero corta TLS incluso
+contra la IP directa vía `openssl s_client`) — Wayback sí reveló que el reto de Cloudflare existe
+desde sep-2022 (no reciente) y que hay una captura de mayo-2023 con el formulario de búsqueda
+real, sin utilidad para búsquedas en vivo hoy.
+
+---
+
+## P6 · Cierre (final, tras la ampliación)
+
+| objeto | antes de CAJA | evidencia nueva | veredicto final | cambio material |
 |---|---|---|---|---|
 | R5.4 / ENADID `conoce_1..6` | `HIPÓTESIS-SIN-INSTRUMENTO` (candidata nominal sin verificar) | Descriptor `fd_enadid23.xlsx`, hoja `TMUJER1`: 6 variables = conocimiento de métodos anticonceptivos | `NO-ENCONTRADO-EN-ENADID2023` (falso positivo nominal) | Ninguno (solo esta nota) |
-| RUPC | `NO-OBTENIDO-POR-ESTE-AGENTE(4 rutas)`, 3 laterales SIN-FETCH sin ejecutar | (a) Folio RUPC en `Contratos_CompraNet5.xlsx` ya OBTENIDO (72.6% cobertura); (b) Cloudflare challenge confirmado 3 mecanismos; (c) 0 datasets RUPC-nacional en CKAN | Objeto original sigue `NO-OBTENIDO-POR-ESTE-AGENTE`; hallazgo colateral (a) ya en corpus | Fila `RUPC` actualizada (nota + estado), vista regenerada |
-| R7.9 / Bienestar | `HIPÓTESIS-SIN-INSTRUMENTO`; PUB/PREP ya en corpus, granularidad no verificada en CAJA | PUB confirmado agregado (de nuevo); PREP confirma `SECCION`; portal nominal SIN-FETCH (TLS, 3 mecanismos); Anexo 2 archivado (Wayback) revela esquema con `AGEB`/`CLAVE_MZNA`/domicilio | `ENLACE-POTENCIALMENTE-CONSTRUIBLE` (esquema) + `SIN-FETCH`/agregado (acceso hoy) | Ninguno (solo esta nota) |
+| RUPC | `NO-OBTENIDO-POR-ESTE-AGENTE(4 rutas)` | (a) Folio RUPC en `Contratos_CompraNet5.xlsx` (ya en corpus); (b) datamx.io/Codeando México republica el RUPC completo (18 298 registros, histórico 2019) — **adquirido**; (c) PNT/CKAN/archive.today/hosts oficiales negativos, ampliamente corroborados | `EXISTE-SATISFACE-PARCIAL` (histórico 2019, no el RUPC vivo) | **Sí** — `rupc_datamx_json` en manifiesto + corpus; fila `RUPC` → `OBTENIDO-PARCIAL`; vista regenerada |
+| R7.9 / Bienestar | `HIPÓTESIS-SIN-INSTRUMENTO`; PUB/PREP ya en corpus | PUB: agregado por Entidad confirmado + agregado por Municipio parcial (3/32 estados, vía Wayback) + API de búsqueda nominal por nombre confirmada (patrón de URL, sin datos vistos); portal en vivo SIN-FETCH (TLS, corroborado por terceros); llave `AGEB`/manzana NO respaldada por el corpus actual (tope real: sección) | `ENLACE-POTENCIALMENTE-CONSTRUIBLE` (esquema, sin producto cartográfico adquirido) + `GRANULARIDAD-PARCIAL` (municipio, 3/32) + `SIN-FETCH` (portal en vivo) | Ninguno a `milpa`/canon; solo esta nota |
 
-**CONTADORES:**
+**CONTADORES (finales):**
 
 ```
 N_reservas_PR632 = 3
-N_reservas_resueltas = 3   (las tres pasaron de "no verificable por NUBE" a evidencia real de CAJA, positiva o negativa)
-N_candidatas_confirmadas = 1   (Folio RUPC en Contratos_CompraNet5.xlsx, ya en corpus)
+N_reservas_resueltas = 3
+N_candidatas_confirmadas = 2   (Folio RUPC en Contratos_CompraNet5.xlsx; RUPC completo vía datamx.io)
 N_candidatas_descartadas = 1   (ENADID conoce_1..6, falso positivo nominal)
-N_fuentes_adquiridas = 0   (todo lo usado ya estaba en corpus; nada nuevo descargado ni registrado en manifiesto)
-N_handoffs_nuevos = 0   (una fila EXISTENTE actualizada, ninguna fila nueva)
+N_fuentes_adquiridas = 1   (rupc_datamx_json, A.7+A.8+registro completos)
+N_handoffs_nuevos = 0   (una fila EXISTENTE de RUPC actualizada dos veces; ninguna fila nueva en la cola)
 ```
 
-**CRITERIO DE ÉXITO cumplido:** las tres reservas de `PR #632` dejaron de ser "no
-verificables por NUBE" — cada una tiene ahora evidencia obtenida en CAJA con red real,
-positiva (R5.4: negativo acotado con causa; RUPC: hallazgo colateral confirmado) o mixta
-(R7.9: esquema con llave defendible, acceso aún bloqueado, ambos declarados con precisión).
+**CRITERIO DE ÉXITO cumplido, y superado en RUPC:** las tres reservas de `PR #632` dejaron de
+ser "no verificables por NUBE" — RUPC pasó de negativo a una adquisición real (histórico 2019,
+límite declarado); R7.9 ganó evidencia sustancialmente más rica (municipio parcial + API nominal
+confirmada) sin cruzar ninguna línea de construcción de enlace/CALC; R5.4 cerró limpio.
 
 **Suite final:**
 
 ```
-python3 tests/check.py --baseline → LÍNEA BASE VERDE (sin cambio respecto al arranque)
-python3 tools/vista_cola_adquisicion.py → 134 filas, coherente con el registro
+python3 tests/check.py --baseline → LÍNEA BASE VERDE (sin cambio; corrida de nuevo tras la
+  ampliación y la adquisición de rupc_datamx_json)
+python3 tools/vista_cola_adquisicion.py → 134 filas, coherente con el registro (fila RUPC
+  actualizada dos veces, ninguna fila nueva)
 ```
 
 ---
 
 ## Siguiente avance
 
-De las tres, **RUPC** es la que queda más lista para un paso de medición/adquisición real
-inmediato: el Folio RUPC ya está en corpus (`compranet5_contratos_2022_2023_xlsx`), sin
-necesidad de ninguna adquisición nueva — lo único que falta es que mesa decida si ese nivel
-(folio por contrato, sin domicilio/estatus/historial de sanciones) satisface el uso que
-motivó la fila, o si vale la pena seguir con sesión de navegador real contra PNT/`norah`
-para el padrón completo. R7.9 quedó con el hallazgo más rico (esquema con llave geográfica
-defendible) pero requiere un paso adicional no trivial (verificar "Descarga por Municipio"
-en vivo cuando el TLS del host responda, o conseguir el Marco Geográfico Electoral del INE a
-nivel manzana) antes de ser candidata a spec. R5.4 queda cerrada como negativo — sin vía
-abierta dentro de ENADID 2023; si se busca instrumento para esta hipótesis, el siguiente
-paso sería `/sonda ... CONSTRUCTO` sobre otra familia de fuente, no otra sonda sobre ENADID.
+**RUPC** ya tiene dato real adquirido (histórico 2019, 18 298 folios) — el siguiente paso, de
+mesa, es decidir si ese corte satisface el uso original de la fila o si vale la pena perseguir
+una versión más actual (ninguna ruta viva encontrada hoy; la única forma de actualizarlo sería
+lograr acceso al RUPC oficial vigente, que sigue exigiendo sesión/firma anti-bot). **R7.9**
+ganó el hallazgo más rico de los tres: existe una API de búsqueda nominal real y un agregado
+municipal parcial, pero para construir el enlace a sección electoral hacen falta dos cosas que
+hoy NO están en corpus — (a) el TLS de `pub.bienestar.gob.mx` respondiendo de nuevo (para
+completar el agregado municipal a las 29 entidades faltantes, o para intentar `/api/resume/estate/{clave}/person/`),
+y (b) el producto cartográfico real del INE a nivel manzana (el crosswalk ya en corpus solo
+llega a sección) — ninguno de los dos se adquirió aquí, ambos declarados como huecos concretos,
+no como excusa. **R5.4** queda cerrada como negativo limpio — sin vía abierta dentro de ENADID
+2023; el siguiente paso sería `/sonda ... CONSTRUCTO` sobre otra familia de fuente, no otra sonda
+sobre ENADID.
 
 ---
 
