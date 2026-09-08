@@ -13,26 +13,74 @@ Dos mandatos, y esta corrida obedece los dos: **no colapsar** (las 14 celdas
 siguen siendo 14, ninguna ola se promedia ni se funde) y **modular por ola
 donde sea práctico** (donde la conducta ya trae serie medida).
 
-## 2 · La regla, y por qué es leave-one-out
+## 2 · La regla — última ola estrictamente anterior
+
+> **ADENDA DE MESA, 8/sep/2026, recibida en vuelo (precisión 1).** Esta
+> sección sustituye a la regla original de este acto —«ola más cercana
+> distinta a la del árbitro, empate → anterior»—, que queda derogada.
 
 Por celda elegible del marco vigente:
 
-  · si la conducta trae `serie_olas`, el punto usa la **ola más cercana
-    DISTINTA de la del árbitro**; empate → la anterior. Se declara
-    `SERIE-LOO · ola_usada=<n>` con su fuente, la ola del árbitro y la
-    distancia;
-  · si no la trae, `modela_ola: NO`. No se inventa una serie.
+  · si la conducta trae `serie_olas`, el punto usa la **última ola
+    ESTRICTAMENTE ANTERIOR** a la de la celda del árbitro. Se declara
+    `SERIE-PREVIA · ola_usada=<n>` con su fuente, la ola del árbitro, la
+    distancia y el **origen** de la entrada;
+  · si hay serie pero **ninguna ola anterior**, `SIN-PREVIA`: la celda **no
+    modula**. No se usa una posterior y no se promedia;
+  · si no hay serie, `modela_ola: NO`. No se inventa una.
 
-El *leave-one-out* no es un adorno estadístico. Usar la misma ola que el
-árbitro haría que M y R leyeran el mismo número, y el duelo dejaría de ser
-un duelo: M estaría copiando su respuesta del examen que se le está
-aplicando. Por eso la regla es «distinta a la del árbitro» y no «la más
-cercana».
+**Por qué «anterior» y no «más cercana».** Con una serie que no trae ninguna
+ola anterior, «más cercana» elige una **posterior**: el punto se construiría
+con información que no existía en el momento que se predice. Eso es **fuga
+temporal**, y una demostración que la enseñe enseña el patrón equivocado
+aunque el número salga bien — es el mismo corte que la evaluación clásica de
+series hace al partir el conjunto por tiempo y no al azar, y es lo que D-2
+pedía al invocar *«el benchmark de lo que queremos lograr»*.
 
-El desempate hacia la ola ANTERIOR también se declara en vez de dejarse al
-orden del YAML: `TRA-M-03` (árbitro 2013) tiene 2011 y 2015 a la misma
-distancia, y sin regla escrita el resultado dependería de cómo se ordenó el
-archivo.
+Sigue siendo *leave-one-out* por construcción: exigir **estrictamente**
+anterior deja fuera la ola del árbitro. Usar su misma ola haría que M y R
+leyeran el mismo número y el duelo dejaría de ser un duelo — M estaría
+copiando su respuesta del examen que se le aplica. `TRA-M-03` es el caso que
+lo hace visible: su árbitro es ENCIG **2013** y la serie trae una entrada
+2013 cuyo `metodo` es, literalmente, `R-json (TRA-M-03, ya público)` — su
+propio resultado arbitrado. La regla la excluye.
+
+**Medido al instalar la regla:** sobre las 6 celdas que hoy modulan,
+**ninguna cambia de ola** — las seis ya tenían una anterior, y las dos
+reglas coinciden en las seis. Se instala por lo que impide mañana, no por lo
+que corrige hoy, y decirlo así es parte de instalarla. `SIN-PREVIA` no es
+hipotético: con árbitro en 2011 (el primer año de la serie ENCIG) la regla
+vieja habría tomado 2013 —posterior **y** `ORIGEN-ARBITRO`— y la nueva
+declara `SIN-PREVIA`.
+
+## 2-bis · `ORIGEN-ARBITRO` — la entrada que no puede puntuar
+
+> **ADENDA DE MESA, 8/sep/2026 (precisión 2).**
+
+Tres entradas de la serie de `tramite.mordida.discrecional:enmienda_encig2025`
+—ENCIG **2013**, **2017** y **2021**— traen `metodo: "R-json (TRA-M-0X, ya
+público)"`: su valor **no** nace de una medición propia, sino del `R-json` de
+un duelo ya arbitrado.
+
+`F-DD` (`ADR-237`) cubre el par **misma-encuesta-misma-ola**; **no** cubre la
+reutilización **cruzada** de un valor que ya pasó por el árbitro. Una celda
+que modulara con una de esas entradas estaría puntuando contra un número que
+el árbitro ya vio, y `F-DD` no lo atraparía.
+
+Regla: toda celda cuya ola modulada consuma una entrada `ORIGEN-ARBITRO`
+queda **`VERIFICACION-NO-PUNTUA`**, no `P1`, con el rótulo en el propio
+`RESULT` (`RESULT-MOLA-<id>-GRADO-DD`).
+
+Para GEN2 real esto es discutible-*moot* —`C0-B` recompone las series con
+cadena propia, regla `E.1`—, pero la demostración no debe enseñar el patrón
+contaminado. **Hoy:** `RESULT-MOLA-N-ORIGEN-ARBITRO = 0` (ninguna de las 6
+celdas cae ahí), y las tres entradas se inventarían igual en
+`RESULT-MOLA-ENTRADAS-ORIGEN-ARBITRO-EN-SERIES` — el guard se declara aunque
+no muerda, porque el día que muerda nadie estará mirando.
+
+Se lee el campo `metodo` y nada más: una entrada que no lo declara es
+`ORIGEN-MEDICION`. No se adivina procedencia desde el `payload_id` ni desde
+el acto.
 
 ## 3 · `F-DD` contra la ola usada
 

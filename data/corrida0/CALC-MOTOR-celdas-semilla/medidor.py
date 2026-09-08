@@ -41,7 +41,13 @@ import io
 import os
 import sys
 
-RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# CUATRO `dirname`, no tres: este archivo vive en
+# `data/corrida0/<CALC>/medidor.py`, asi que tres niveles llegan a `data/`
+# y no a la raiz. Con tres funcionaba solo por accidente -- `corrida0` se
+# invoca desde la raiz y el CWD ya estaba en `sys.path`; el dia que se
+# invocara desde otro sitio, el import del motor habria reventado.
+RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__)))))
 if RAIZ not in sys.path:
     sys.path.insert(0, RAIZ)
 

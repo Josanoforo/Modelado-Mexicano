@@ -489,35 +489,115 @@ def _mola():
                   "medidor_mola_t9")
 
 
-def t_ola_loo_nunca_usa_la_ola_del_arbitro() -> None:
-    """El invariante que hace del duelo un duelo: si M leyera la misma ola que
-    el arbitro, estaria copiando su respuesta del examen que se le aplica."""
-    mod = _mola()
-    serie = [{"ola": 2011, "p": 0.1}, {"ola": 2013, "p": 0.2}, {"ola": 2015, "p": 0.3}]
-    for arbitro in (2011, 2013, 2015):
-        elegida = mod._loo(arbitro, serie)
-        if elegida is None or mod._ola_entera(elegida["ola"]) == arbitro:
-            _falla("t_ola_loo_nunca_usa_la_ola_del_arbitro",
-                   f"arbitro={arbitro} -> {elegida}")
+def _emite_m():
+    import sys as _sys
+    ruta_tools = str(RAIZ / "tools")
+    if ruta_tools not in _sys.path:
+        _sys.path.insert(0, ruta_tools)
+    return _carga(RAIZ / "tools/emite_m.py", "emite_m_t9")
 
 
-def t_ola_loo_desempata_hacia_la_anterior() -> None:
-    """Empate a distancia 2: 2011 y 2015 contra un arbitro en 2013. La regla
-    declarada es «la anterior»; sin ella el resultado dependeria del orden en
-    que el YAML trajo la serie -- por eso se prueba con la lista INVERTIDA."""
-    mod = _mola()
-    serie = [{"ola": 2015, "p": 0.3}, {"ola": 2011, "p": 0.1}]
-    elegida = mod._loo(2013, serie)
-    if mod._ola_entera(elegida["ola"]) != 2011:
-        _falla("t_ola_loo_desempata_hacia_la_anterior",
-               f"con la serie invertida eligio {elegida}")
+#: Serie sintetica con la forma real: `metodo` presente en unas entradas y no
+#: en otras, y una entrada `R-json` en medio.
+_SERIE = [
+    {"ola": 2011, "p": 0.1, "metodo": "bootstrap-conglomerado (ACTO X)"},
+    {"ola": 2013, "p": 0.2, "metodo": "R-json (TRA-M-03, ya publico)"},
+    {"ola": 2015, "p": 0.3},
+]
 
 
-def t_ola_sin_serie_declara_no_y_no_inventa() -> None:
-    mod = _mola()
-    if mod._loo(2020, []) is not None:
-        _falla("t_ola_sin_serie_declara_no_y_no_inventa",
+def t_ola_previa_es_estrictamente_anterior() -> None:
+    """ADENDA precision 1: la ultima ANTERIOR, no la mas cercana."""
+    mod = _emite_m()
+    for arbitro, esperada in ((2015, 2013), (2014, 2013), (2013, 2011), (2012, 2011)):
+        e = mod.ola_previa_estricta(arbitro, _SERIE)
+        if e is None or mod.anio_de_ola(e["ola"]) != esperada:
+            _falla("t_ola_previa_es_estrictamente_anterior",
+                   f"arbitro={arbitro} esperaba {esperada}, dio {e}")
+
+
+def t_ola_previa_nunca_usa_una_posterior() -> None:
+    """El caso que motiva la ADENDA: sin ola anterior NO se cae a la
+    posterior. La regla derogada («mas cercana distinta») habria devuelto
+    2013 para un arbitro en 2011 -- posterior Y ORIGEN-ARBITRO. Es fuga
+    temporal: informacion que no existia al predecir."""
+    mod = _emite_m()
+    if mod.ola_previa_estricta(2011, _SERIE) is not None:
+        _falla("t_ola_previa_nunca_usa_una_posterior",
+               "devolvio una ola con el arbitro en el primer anio de la serie")
+    if mod.ola_previa_estricta(2000, _SERIE) is not None:
+        _falla("t_ola_previa_nunca_usa_una_posterior",
+               "devolvio una ola con el arbitro anterior a toda la serie")
+
+
+def t_ola_previa_no_depende_del_orden_del_yaml() -> None:
+    """Con la serie invertida el resultado es el mismo: la regla es un `max`
+    sobre las anteriores, no «la primera que aparezca»."""
+    mod = _emite_m()
+    e = mod.ola_previa_estricta(2015, list(reversed(_SERIE)))
+    if e is None or mod.anio_de_ola(e["ola"]) != 2013:
+        _falla("t_ola_previa_no_depende_del_orden_del_yaml", f"dio {e}")
+
+
+def t_ola_previa_sin_serie_declara_sin_previa() -> None:
+    mod = _emite_m()
+    if mod.ola_previa_estricta(2020, []) is not None:
+        _falla("t_ola_previa_sin_serie_declara_sin_previa",
                "devolvio una ola con la serie vacia")
+
+
+def t_origen_arbitro_se_lee_del_metodo_y_no_se_adivina() -> None:
+    """ADENDA precision 2. `R-json` en `metodo` => ORIGEN-ARBITRO. Sin
+    `metodo`, ORIGEN-MEDICION: no se adivina procedencia desde el payload."""
+    mod = _emite_m()
+    casos = [({"metodo": "R-json (TRA-M-03, ya publico)"}, mod.ORIGEN_ARBITRO),
+             ({"metodo": "bootstrap-conglomerado (ACTO X)"}, mod.ORIGEN_MEDICION),
+             ({}, mod.ORIGEN_MEDICION),
+             ({"metodo": None}, mod.ORIGEN_MEDICION)]
+    for entrada, esperado in casos:
+        dio = mod.origen_de_entrada_serie(entrada)
+        if dio != esperado:
+            _falla("t_origen_arbitro_se_lee_del_metodo_y_no_se_adivina",
+                   f"{entrada} -> {dio}, esperaba {esperado}")
+
+
+def t_origen_arbitro_esta_vivo_en_el_arbol() -> None:
+    """No es un guard hipotetico: `milpa/tramite.yaml` trae HOY tres entradas
+    `R-json` en la serie de ENCIG (2013, 2017, 2021). Si alguien las
+    renombra, este caso avisa antes de que el rotulo deje de aplicarse en
+    silencio."""
+    import yaml as _yaml
+    mod = _emite_m()
+    crudo = _yaml.safe_load((RAIZ / "milpa/tramite.yaml").read_text(encoding="utf-8"))
+    vivas = set()
+    def _rec(nodo):
+        if isinstance(nodo, dict):
+            for e in (nodo.get("serie_olas") or []):
+                if isinstance(e, dict) and mod.origen_de_entrada_serie(e) == mod.ORIGEN_ARBITRO:
+                    vivas.add(mod.anio_de_ola(e.get("ola")))
+            for v in nodo.values():
+                _rec(v)
+        elif isinstance(nodo, list):
+            for v in nodo:
+                _rec(v)
+    _rec(crudo)
+    if vivas != {2013, 2017, 2021}:
+        _falla("t_origen_arbitro_esta_vivo_en_el_arbol",
+               f"las entradas R-json del arbol son {sorted(vivas)}, "
+               f"se esperaban [2013, 2017, 2021]")
+
+
+def t_celda_con_origen_arbitro_no_puntua() -> None:
+    """Una celda que module con una entrada R-json queda
+    VERIFICACION-NO-PUNTUA. Hoy ninguna cae ahi, asi que el caso se construye
+    con una serie sintetica: un guard que solo se probara el dia que muerda
+    es un guard que nadie probo."""
+    mod = _emite_m()
+    e = mod.ola_previa_estricta(2015, [{"ola": 2013, "p": 0.2,
+                                        "metodo": "R-json (TRA-M-03, ya publico)"}])
+    if e is None or mod.origen_de_entrada_serie(e) != mod.ORIGEN_ARBITRO:
+        _falla("t_celda_con_origen_arbitro_no_puntua",
+               f"la entrada elegida no salio ORIGEN-ARBITRO: {e}")
 
 
 def t_ola_no_colapsa_el_universo() -> None:
@@ -527,10 +607,13 @@ def t_ola_no_colapsa_el_universo() -> None:
         {"IN-MARCO-M-SORTEADO-V1-3": _entrada_de("IN-MARCO-M-SORTEADO-V1-3", MARCO_REL),
          "IN-TRAMITE": _entrada_de("IN-TRAMITE", "milpa/tramite.yaml")}, {})
     n = salida["RESULT-MOLA-N-CELDAS"]
-    con, sin = salida["RESULT-MOLA-N-CON-SERIE"], salida["RESULT-MOLA-N-SIN-SERIE"]
-    if n != 14 or con + sin != n:
+    con = salida["RESULT-MOLA-N-CON-SERIE"]
+    sin = salida["RESULT-MOLA-N-SIN-SERIE"]
+    sin_previa = salida["RESULT-MOLA-N-SIN-PREVIA"]
+    if n != 14 or con + sin + sin_previa != n:
         _falla("t_ola_no_colapsa_el_universo",
-               f"n={n} con_serie={con} sin_serie={sin} -- la particion no cubre el universo")
+               f"n={n} con_serie={con} sin_serie={sin} sin_previa={sin_previa} "
+               f"-- la particion no cubre el universo")
     marcas = [k for k in salida if k.endswith("-MODELA-OLA")]
     if len(marcas) != 14:
         _falla("t_ola_no_colapsa_el_universo",
