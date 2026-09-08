@@ -5,11 +5,12 @@ Este archivo nacio en `ACTO GEN2-E2 · C0-A DEMANDA` con un solo subcomando
 implementado, `demanda`, y los demas declarados vacios.
 
 `ACTO GEN2-E3 · AUTOMATIZA-GEN2-1` (7/sep/2026) llena SEIS de esos huecos y
-deja cuatro:
+`ACTO GEN2-E6 · AUTOMATIZA-GEN2-2` (8/sep/2026) llena dos mas:
 
-  IMPLEMENTADOS  demanda (E2) · spec-check · negativo · preflight · run · verify
-  DECLARADOS Y VACIOS  registro · status · vigencia · delta  (los llena E6;
-                       invocarlos sale con codigo 2 y el rotulo NO-IMPLEMENTADO)
+  IMPLEMENTADOS  demanda (E2) · spec-check · negativo · preflight · run ·
+                 verify (E3/E3.1) · registro · status (E6)
+  DECLARADOS Y VACIOS  vigencia · delta  (los llena E7; invocarlos sale con
+                       codigo 2 y el rotulo NO-IMPLEMENTADO)
 
 El nucleo de corrida (`preflight` -> `run` -> `verify`) obedece la regla que
 firmo la propuesta externa aprobada, verbatim: «El humano decide que medir.
@@ -2064,11 +2065,537 @@ def cmd_verify(args) -> int:
 
 
 
-# ── subcomandos que siguen declarados y vacios (los llena GEN2-E5/E6) ──────
+# ── subcomandos `registro` y `status` ─────────────────────────────────────
+#
+# ACTO GEN2-E6 · AUTOMATIZA-GEN2-2 (8/sep/2026). `registro` une los DOS
+# LADOS del plan v2.0 §5 -- la DEMANDA que `cmd_demanda` derivo (que habria
+# que volver a medir) y la OFERTA que las carpetas `data/corrida0/CALC-*/`
+# demuestran (que se ejecuto de verdad) -- y emite las TRES vistas
+# derivadas. `status` lee esas mismas filas en memoria (no los TSV en
+# disco: un contador derivado de un archivo que alguien no re-derivo es
+# exactamente el defecto que este aparato existe para no repetir).
+#
+# Lo que NO hace, declarado: no mide, no ejecuta medidores, no reejecuta
+# microdato y no decide adopcion. `resultado_replay`/`contexto_replay`
+# salen de `verify()` SOLO con `--verifica` explicito; sin esa bandera
+# valen `NO-VERIFICADO`, que es lo que el registro sabe de verdad.
+
+DEMANDA_RESULTADOS = CORRIDAS / "demanda-resultados.tsv"
+DEMANDA_CORRIDAS = CORRIDAS / "demanda-corridas.tsv"
+VISTA_CORRIDAS = CORRIDAS / "corridas.tsv"
+VISTA_RESULTADOS = CORRIDAS / "resultados.tsv"
+VISTA_USOS = CORRIDAS / "usos.tsv"
+NO_CORRIDO_TSV = RAIZ / "forense" / "no-corrido.tsv"
+
+NO_VERIFICADO = "NO-VERIFICADO"
+NO_CORRIDA = "NO-CORRIDA"
+NO_COMPARABLE = "NO-COMPARABLE"
+
+COLS_VISTA_CORRIDAS = [
+    "corrida_id", "origen", "spec_id", "estado", "generacion", "cuenta_gen2",
+    "spec_yaml_sha256", "script_path", "script_blob_sha256", "codigo_commit",
+    "fecha", "n_resultados", "resultados_ids", "input_ids",
+    "input_sha256_efectivos", "sello", "resultado_replay", "contexto_replay",
+    "sucesor", "entorno_requerido", "receta", "orden_causal",
+]
+COLS_VISTA_RESULTADOS = [
+    "resultado_id", "origen", "corrida_id", "spec_id", "valor", "tipo",
+    "unidad", "estado", "generacion", "cuenta_gen2", "tolerancia",
+    "validacion_independiente", "valor_legacy", "delta_legacy", "sello",
+    "depende_de", "n_usos", "sucesor",
+]
+COLS_VISTA_USOS = [
+    "resultado_id", "consumidor", "tipo_uso", "activo", "reglas_impacto",
+    "generacion_leida", "corrida0_resultado_id", "valor_materializado",
+]
+
+
+class ParoRegistro(Exception):
+    """Validacion que PARA (plan v2.0 §5). No se escribe ninguna vista."""
+
+
+def _leer_tsv_derivado(ruta: Path) -> list[dict]:
+    """Como `_leer_tsv`, pero saltando la cabecera `# DERIVADO — NO EDITAR`
+    que `_escribe` pone antes de la fila de columnas."""
+    with ruta.open(encoding="utf-8") as fh:
+        lineas = [l for l in fh if not l.startswith("#")]
+    return list(csv.DictReader(lineas, delimiter="\t"))
+
+
+def _dirs_calc() -> list[Path]:
+    """Las carpetas de OFERTA, en orden determinista."""
+    if not CORRIDAS.exists():
+        return []
+    return sorted((d for d in CORRIDAS.iterdir()
+                   if d.is_dir() and d.name.startswith("CALC-")),
+                  key=lambda d: d.name)
+
+
+def _etiqueta(spec: dict, clave: str, defecto: str) -> str:
+    etiquetas = spec.get("etiquetas") or {}
+    valor = etiquetas.get(clave)
+    return defecto if valor is None else str(valor)
+
+
+def _regla_de(consumidor: str) -> str:
+    """`milpa/tramite.yaml:<regla>:<conducta>` -> `<regla>`. Un consumidor
+    que no trae regla (una celda del marco, p. ej.) declara su propio id."""
+    partes = consumidor.split(":")
+    return partes[1] if len(partes) >= 3 else (partes[-1] if partes else "")
+
+
+# Campos por los que un consumidor MATERIALIZA la cifra que lee. `p` es la
+# probabilidad de una conducta del motor; los otros dos, un coeficiente.
+CAMPOS_VALOR_MATERIALIZADO = ["p", "valor_ejecutable", "valor"]
+
+
+def _ids_corrida0_declarados() -> dict[str, dict]:
+    """Consumidores que YA declaran `corrida0_resultado_id` (plan v2.0 §2:
+    la marca que convierte a un consumidor en GEN2). Devuelve
+    `consumidor -> {resultado_id, valor}`, con el MISMO formato de consumidor
+    que `cmd_demanda` escribe, para que las dos vistas se puedan cruzar. El
+    `valor` es la cifra MATERIALIZADA en el archivo del consumidor: es lo que
+    `T-REPRO` compara contra el RESULT sellado (`p: 0.083742` +
+    `corrida0_resultado_id: RESULT-0001`).
+
+    Hoy el arbol no trae ninguna: `dependencias_numericas_legacy_activas`
+    == `N_resultados_activos` es la lectura correcta, no un error. La
+    funcion existe para que el dia que E5 selle la primera cifra GEN2 el
+    registro la vea sin tocar codigo."""
+    declarados: dict[str, dict] = {}
+    for ruta in (TRAMITE, PROCEDENCIA):
+        if not ruta.exists():
+            continue
+        try:
+            crudo = yaml.safe_load(ruta.read_text(encoding="utf-8"))
+        except (OSError, yaml.YAMLError):
+            continue
+        rel = _rel(ruta)
+
+        def _camina(nodo, contexto: list[str]) -> None:
+            if isinstance(nodo, dict):
+                marca = nodo.get("corrida0_resultado_id")
+                if marca:
+                    nombre = (nodo.get("conducta") or nodo.get("id")
+                              or nodo.get("clave") or "")
+                    ruta_c = [c for c in contexto if c] + ([nombre] if nombre else [])
+                    valor = next((nodo[c] for c in CAMPOS_VALOR_MATERIALIZADO
+                                  if c in nodo), None)
+                    declarados[f"{rel}:{':'.join(ruta_c)}"] = {
+                        "resultado_id": str(marca),
+                        "valor": NO_DECLARADO if valor is None else valor,
+                    }
+                propio = nodo.get("id")
+                for clave, valor in nodo.items():
+                    if clave == "entonces":
+                        _camina(valor, contexto + [str(propio or "")])
+                    else:
+                        _camina(valor, contexto)
+            elif isinstance(nodo, list):
+                for elemento in nodo:
+                    _camina(elemento, contexto)
+
+        _camina(crudo, [])
+    return declarados
+
+
+def _lee_oferta(verifica: bool) -> list[dict]:
+    """Un registro por carpeta `CALC-*/`. Levanta `ParoRegistro` en las
+    validaciones que el plan declara bloqueantes."""
+    oferta = []
+    for d in _dirs_calc():
+        calc_id = d.name
+        ruta_spec = d / "spec.yaml"
+        if not ruta_spec.exists():
+            raise ParoRegistro(f"CALC-SIN-SPEC: {_rel(d)} no trae spec.yaml")
+        try:
+            spec = yaml.safe_load(ruta_spec.read_text(encoding="utf-8")) or {}
+        except yaml.YAMLError as exc:
+            raise ParoRegistro(f"CALC-SIN-SPEC: {_rel(ruta_spec)} ilegible: {exc}")
+        if not isinstance(spec, dict):
+            raise ParoRegistro(f"CALC-SIN-SPEC: {_rel(ruta_spec)} no es un mapa")
+
+        ejec, valores = None, {}
+        ruta_ejec, ruta_res = d / "ejecucion.json", d / "resultados.json"
+        if ruta_ejec.exists():
+            ejec = json.loads(ruta_ejec.read_text(encoding="utf-8"))
+        if ruta_res.exists():
+            valores = json.loads(ruta_res.read_text(encoding="utf-8")).get("resultados", {})
+
+        sello, razon_sello = _verifica_sello(d)
+        # PARA: hay RESULT materializados y el sello no los respalda. Un
+        # numero sellado a medias es peor que un numero ausente.
+        if valores and sello != "COINCIDE":
+            raise ParoRegistro(f"RESULT-SIN-SELLO: {calc_id} trae "
+                               f"resultados.json y su sello dice {sello} "
+                               f"({razon_sello})")
+        generacion = _etiqueta(spec, "generacion", "GEN2")
+        cuenta = _etiqueta(spec, "cuenta_gen2",
+                           "NO" if generacion == GENERACION_LEGADO else "SI")
+        if ejec is None:
+            estado = "SPEC-FIJADA"
+        elif valores and sello == "COINCIDE":
+            estado = "SELLADA"
+        else:
+            estado = "EJECUTADA-NO-SELLADA"
+
+        faltan: list[str] = []
+        if estado == "SELLADA":
+            faltan = [c for c in ("spec_yaml_sha256", "script_blob_sha256")
+                      if not (ejec or {}).get(c)]
+            sha_inputs = (ejec or {}).get("input_sha256") or {}
+            faltan += [f"input_sha256[{i}]" for i in ((ejec or {}).get("input_ids") or [])
+                       if not sha_inputs.get(i)]
+        # PARA solo si la corrida CUENTA como GEN2. Un replay LEGACY-GEN1
+        # sellado antes de que `ACTO GEN2-E3-1` endureciera el esquema no
+        # puede traer campos que en su momento no existian, y su sello no se
+        # reescribe para complacer a este registro: se avisa y se cuenta
+        # aparte. Es el caso medido de `CALC-SMOKE-0001`, sellado por E3 sin
+        # `spec_yaml_sha256` -- "linea base congela GEN1".
+        if faltan and cuenta == "SI":
+            raise ParoRegistro(f"HASH-AUSENTE: {calc_id} sellada sin "
+                               f"{', '.join(faltan)}")
+
+        replay, contexto = NO_VERIFICADO, NO_VERIFICADO
+        if verifica and estado == "SELLADA":
+            r = verify(calc_id, imprime=False)
+            replay, contexto = r.get("veredicto", NO_VERIFICADO), r.get("contexto", NO_VERIFICADO)
+        elif estado != "SELLADA":
+            replay, contexto = NO_CORRIDA, NO_CORRIDA
+
+        oferta.append({
+            "calc_id": calc_id, "spec": spec, "ejec": ejec or {},
+            "valores": valores, "sello": sello, "estado": estado,
+            "generacion": generacion, "cuenta_gen2": cuenta,
+            "replay": replay, "contexto": contexto,
+            "hashes_faltantes": faltan,
+            "repite_de": str(spec.get("repite_de") or ""),
+        })
+    return oferta
+
+
+def _filas_registro(verifica: bool = False) -> dict:
+    """Deriva las tres vistas. Devuelve `{corridas, resultados, usos,
+    avisos}`; levanta `ParoRegistro` sin escribir nada si una validacion
+    bloqueante falla."""
+    if not DEMANDA_RESULTADOS.exists() or not DEMANDA_CORRIDAS.exists():
+        raise ParoRegistro("DEMANDA-AUSENTE: falta `demanda-resultados.tsv` o "
+                           "`demanda-corridas.tsv` -- corre `corrida0 demanda` primero")
+    demanda_res = _leer_tsv_derivado(DEMANDA_RESULTADOS)
+    demanda_corr = _leer_tsv_derivado(DEMANDA_CORRIDAS)
+    oferta = _lee_oferta(verifica)
+    marcas = _ids_corrida0_declarados()
+    avisos: list[str] = []
+
+    sucesor_de = {o["repite_de"]: o["calc_id"] for o in oferta if o["repite_de"]}
+
+    filas_corridas, filas_resultados, filas_usos = [], [], []
+    vistos_corrida, vistos_resultado = set(), set()
+
+    def _unico(coleccion: set, clave: str, donde: str) -> None:
+        if clave in coleccion:
+            raise ParoRegistro(f"ID-DUPLICADO: {clave} aparece dos veces en {donde}")
+        coleccion.add(clave)
+
+    # ── lado DEMANDA ──────────────────────────────────────────────────────
+    for c in demanda_corr:
+        _unico(vistos_corrida, c["corrida_id"], "corridas")
+        filas_corridas.append({
+            "corrida_id": c["corrida_id"], "origen": "DEMANDA",
+            "spec_id": c["medidor_o_spec_candidato"], "estado": "PENDIENTE",
+            "generacion": "GEN2-PENDIENTE", "cuenta_gen2": "SI",
+            "spec_yaml_sha256": "PENDIENTE", "script_path": "PENDIENTE",
+            "script_blob_sha256": "PENDIENTE", "codigo_commit": "PENDIENTE",
+            "fecha": "PENDIENTE", "n_resultados": c["n_resultados"],
+            "resultados_ids": c["resultados_ids"],
+            "input_ids": c["payload_ids"], "input_sha256_efectivos": "PENDIENTE",
+            "sello": "PENDIENTE", "resultado_replay": NO_CORRIDA,
+            "contexto_replay": NO_CORRIDA, "sucesor": "",
+            "entorno_requerido": c["entorno_requerido"], "receta": c["receta"],
+            "orden_causal": c["orden_causal"],
+        })
+
+    usos_por_resultado: dict[str, int] = {}
+    for r in demanda_res:
+        rid = r["resultado_id"]
+        _unico(vistos_resultado, (r["corrida_natural"], rid), "resultados")
+        if r["corrida_natural"] not in vistos_corrida:
+            raise ParoRegistro(f"RESULT-SIN-CALC: {rid} apunta a la corrida "
+                               f"{r['corrida_natural']}, que no existe")
+        marca = marcas.get(r["consumidor"]) or {}
+        filas_resultados.append({
+            "resultado_id": rid, "origen": "DEMANDA",
+            "corrida_id": r["corrida_natural"], "spec_id": "PENDIENTE",
+            "valor": "PENDIENTE", "tipo": r["tipo"], "unidad": NO_DECLARADO,
+            "estado": r["estado"], "generacion": "GEN2-PENDIENTE",
+            "cuenta_gen2": "SI", "tolerancia": "PENDIENTE",
+            "validacion_independiente": r["validacion_independiente"],
+            "valor_legacy": r["valor_legacy"], "delta_legacy": NO_COMPARABLE,
+            "sello": "PENDIENTE", "depende_de": r["depende_de"],
+            "n_usos": 1, "sucesor": "",
+        })
+        usos_por_resultado[rid] = 1
+        filas_usos.append({
+            "resultado_id": rid, "consumidor": r["consumidor"],
+            "tipo_uso": r["tipo"], "activo": "SI",
+            "reglas_impacto": _regla_de(r["consumidor"]),
+            # Sin `corrida0_resultado_id`, el consumidor sigue leyendo la
+            # cifra GEN1 materializada: es una dependencia legacy activa.
+            "generacion_leida": "GEN2" if marca else GENERACION_LEGADO,
+            "corrida0_resultado_id": marca.get("resultado_id", ""),
+            "valor_materializado": marca.get("valor", NO_DECLARADO),
+        })
+
+    # ── lado OFERTA ───────────────────────────────────────────────────────
+    for o in oferta:
+        calc_id, ejec, spec = o["calc_id"], o["ejec"], o["spec"]
+        sucesor = sucesor_de.get(calc_id, "")
+        estado = f"SUPERADO→{sucesor}" if sucesor else o["estado"]
+        corrida_id = ejec.get("corrida_id") or calc_id
+        _unico(vistos_corrida, corrida_id, "corridas")
+        ids_res = sorted(o["valores"])
+        sha_inputs = ejec.get("input_sha256") or {}
+        decl_res = {str(d.get("id")): d for d in (spec.get("resultados") or [])
+                    if isinstance(d, dict)}
+        tol = spec.get("tolerancia") or {}
+        filas_corridas.append({
+            "corrida_id": corrida_id, "origen": "OFERTA", "spec_id": calc_id,
+            "estado": estado, "generacion": o["generacion"],
+            "cuenta_gen2": o["cuenta_gen2"],
+            "spec_yaml_sha256": ejec.get("spec_yaml_sha256") or NO_DECLARADO,
+            "script_path": ejec.get("script_path") or str(spec.get("script") or NO_DECLARADO),
+            "script_blob_sha256": ejec.get("script_blob_sha256") or NO_DECLARADO,
+            "codigo_commit": ejec.get("git_commit") or NO_DECLARADO,
+            "fecha": ejec.get("fecha") or NO_DECLARADO,
+            "n_resultados": len(ids_res),
+            "resultados_ids": ",".join(ids_res),
+            "input_ids": ",".join(ejec.get("input_ids") or []),
+            "input_sha256_efectivos": ",".join(
+                f"{i}={sha_inputs[i]}" for i in sorted(sha_inputs)) or "PENDIENTE",
+            "sello": o["sello"], "resultado_replay": o["replay"],
+            "contexto_replay": o["contexto"], "sucesor": sucesor,
+            "entorno_requerido": "NUBE-O-CAJA", "receta": "OK",
+            "orden_causal": NO_DECLARADO,
+        })
+        for rid in ids_res:
+            # La unicidad de un RESULT es POR CORRIDA. Un replay declarado
+            # (`repite_de`) reproduce los mismos ids a proposito -- es lo que
+            # significa replicar. Lo que si para es el mismo id en dos
+            # corridas SIN cadena de sucesion, que se verifica abajo.
+            _unico(vistos_resultado, (corrida_id, rid), "resultados")
+            decl = decl_res.get(rid, {})
+            filas_resultados.append({
+                "resultado_id": rid, "origen": "OFERTA",
+                "corrida_id": corrida_id, "spec_id": calc_id,
+                "valor": o["valores"][rid],
+                "tipo": str(decl.get("tipo") or NO_DECLARADO),
+                "unidad": str(decl.get("unidad") or NO_DECLARADO),
+                "estado": estado, "generacion": o["generacion"],
+                "cuenta_gen2": o["cuenta_gen2"],
+                "tolerancia": json.dumps(tol, ensure_ascii=False, sort_keys=True,
+                                         default=str) if tol else NO_DECLARADO,
+                "validacion_independiente": _etiqueta(spec, "validacion_independiente",
+                                                      "NO-HECHA"),
+                "valor_legacy": NO_COMPARABLE, "delta_legacy": NO_COMPARABLE,
+                "sello": o["sello"], "depende_de": "", "n_usos": 0,
+                "sucesor": sucesor,
+            })
+        if o["hashes_faltantes"]:
+            avisos.append(f"HASH-AUSENTE-EN-LEGACY: {calc_id} "
+                          f"({o['generacion']}, cuenta_gen2={o['cuenta_gen2']}) "
+                          f"no trae {', '.join(o['hashes_faltantes'])} -- sellada "
+                          f"antes del esquema endurecido de ACTO GEN2-E3-1; su "
+                          f"sello NO se reescribe")
+        if o["cuenta_gen2"] == "SI" and estado.startswith("SELLADA"):
+            avisos.append(f"CALC-SIN-CONSUMIDOR-ACTIVO: {calc_id} esta sellada "
+                          f"y ningun consumidor activo la cita todavia")
+
+    # PARA: el mismo RESULT en dos corridas que NO son la misma cadena de
+    # replay. `repite_de` es lo unico que autoriza repetir un id.
+    repite_de = {o["calc_id"]: o["repite_de"] for o in oferta}
+
+    def _raiz(calc: str) -> str:
+        visto = set()
+        while repite_de.get(calc) and calc not in visto:
+            visto.add(calc)
+            calc = repite_de[calc]
+        return calc
+
+    por_id: dict[str, list[dict]] = {}
+    for f in filas_resultados:
+        por_id.setdefault(f["resultado_id"], []).append(f)
+    for rid, filas in por_id.items():
+        raices = {_raiz(f["spec_id"]) for f in filas}
+        if len(filas) > 1 and len(raices) > 1:
+            raise ParoRegistro(
+                f"ID-DUPLICADO: {rid} aparece en "
+                f"{', '.join(sorted(f['corrida_id'] for f in filas))} sin "
+                f"cadena `repite_de` que las una")
+
+    # El indice de resolucion prefiere la corrida VIGENTE: un uso resuelve
+    # al RESULT que no fue superado.
+    indice_resultados: dict[str, dict] = {}
+    for f in filas_resultados:
+        previo = indice_resultados.get(f["resultado_id"])
+        if previo is None or str(previo["estado"]).startswith("SUPERADO"):
+            indice_resultados[f["resultado_id"]] = f
+
+    # ── validaciones que PARAN sobre el grafo ya unido ─────────────────────
+    for u in filas_usos:
+        if u["resultado_id"] not in indice_resultados:
+            raise ParoRegistro(f"USO-A-RESULT-INEXISTENTE: {u['consumidor']} "
+                               f"usa {u['resultado_id']}, que no existe")
+        marca = u["corrida0_resultado_id"]
+        if marca:
+            destino = indice_resultados.get(marca)
+            if destino is None:
+                raise ParoRegistro(f"USO-A-RESULT-INEXISTENTE: {u['consumidor']} "
+                                   f"declara corrida0_resultado_id={marca}, "
+                                   f"que no existe")
+            if destino["generacion"] == GENERACION_LEGADO:
+                raise ParoRegistro(f"CONSUMIDOR-ACTIVO-A-LEGACY: {u['consumidor']} "
+                                   f"es GEN2 y resuelve a {marca}, que es "
+                                   f"{GENERACION_LEGADO}")
+    _verifica_ciclos(filas_resultados)
+
+    # ── avisos (no paran) ─────────────────────────────────────────────────
+    for f in filas_resultados:
+        n_usos = usos_por_resultado.get(f["resultado_id"], 0)
+        if n_usos == 0:
+            avisos.append(f"RESULT-SIN-CONSUMIDOR: {f['resultado_id']} "
+                          f"({f['spec_id']}) no lo cita ningun consumidor")
+        # `legacy sin sucesor` avisa de una cifra GEN1 que alguien SIGUE
+        # leyendo y nadie va a remedir. Un replay que nadie consume ya lo
+        # dice RESULT-SIN-CONSUMIDOR; repetirlo aqui es ruido, no señal.
+        elif f["generacion"] == GENERACION_LEGADO and not f["sucesor"]:
+            avisos.append(f"LEGACY-SIN-SUCESOR: {f['resultado_id']} es "
+                          f"{GENERACION_LEGADO} y no declara sucesor")
+    return {"corridas": filas_corridas, "resultados": filas_resultados,
+            "usos": filas_usos, "avisos": avisos}
+
+
+def _verifica_ciclos(filas: list[dict]) -> None:
+    """El grafo `depende_de` de las vistas unidas sigue siendo aciclico.
+    `cmd_demanda` ya lo verifico sobre su propio lado; aqui se re-verifica
+    sobre la union, que es un grafo distinto."""
+    hijos = {f["resultado_id"]: [d for d in str(f["depende_de"]).split(",") if d]
+             for f in filas}
+    estado: dict[str, int] = {}
+
+    def visita(nodo: str, pila: list[str]) -> None:
+        if estado.get(nodo) == 2:
+            return
+        if estado.get(nodo) == 1:
+            ciclo = " -> ".join(pila[pila.index(nodo):] + [nodo])
+            raise ParoRegistro(f"CICLO: {ciclo}")
+        estado[nodo] = 1
+        for h in hijos.get(nodo, []):
+            if h in hijos:
+                visita(h, pila + [nodo])
+        estado[nodo] = 2
+
+    for nodo in hijos:
+        visita(nodo, [])
+
+
+def registro(escribe: bool = True, verifica: bool = False,
+             imprime: bool = True) -> dict:
+    vistas = _filas_registro(verifica)
+    if escribe:
+        _escribe(VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, vistas["corridas"])
+        _escribe(VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, vistas["resultados"])
+        _escribe(VISTA_USOS, COLS_VISTA_USOS, vistas["usos"])
+    if imprime:
+        for ruta, clave in ((VISTA_CORRIDAS, "corridas"),
+                            (VISTA_RESULTADOS, "resultados"),
+                            (VISTA_USOS, "usos")):
+            print(f"{'ESCRITO' if escribe else 'DERIVADO'} {_rel(ruta)}: "
+                  f"{len(vistas[clave])} filas")
+        for a in sorted(set(vistas["avisos"])):
+            print(f"AVISO · {a}", file=sys.stderr)
+        print(f"AVISOS: {len(set(vistas['avisos']))}", file=sys.stderr)
+    return vistas
+
+
+def cmd_registro(args) -> int:
+    try:
+        registro(escribe=not getattr(args, "seco", False),
+                 verifica=getattr(args, "verifica", False))
+    except ParoRegistro as exc:
+        print(f"PARO · {exc}", file=sys.stderr)
+        print("no se escribio ninguna vista", file=sys.stderr)
+        return 1
+    return 0
+
+
+def _no_corrido_abiertas() -> int:
+    """`no_corrido_abiertas` (A.14): filas ABIERTA de `forense/no-corrido.tsv`."""
+    if not NO_CORRIDO_TSV.exists():
+        return 0
+    return sum(1 for f in _leer_tsv(NO_CORRIDO_TSV)
+               if (f.get("estado") or "").strip() == "ABIERTA")
+
+
+def status(imprime: bool = True) -> dict:
+    """§9 del plan v2.0. TODO derivado de las vistas en memoria: ningun
+    numero se teclea aqui y ninguno se lee de un TSV que quiza no se
+    re-derivo. Un replay GEN1 nunca incrementa `N_resultados_sellados`."""
+    v = _filas_registro(verifica=False)
+    corridas, resultados, usos = v["corridas"], v["resultados"], v["usos"]
+
+    def gen2(filas):
+        return [f for f in filas if f["cuenta_gen2"] == "SI"]
+
+    sellada = lambda f: str(f["estado"]).startswith(("SELLADA", "SUPERADO"))
+    activos = [f for f in resultados if f["origen"] == "DEMANDA"]
+    usos_activos = [u for u in usos if u["activo"] == "SI"]
+    c = {
+        "N_corridas_requeridas": sum(1 for f in corridas if f["origen"] == "DEMANDA"),
+        "N_corridas_selladas": sum(1 for f in gen2(corridas)
+                                   if f["origen"] == "OFERTA" and sellada(f)),
+        "N_resultados_activos": len(activos),
+        "N_resultados_sellados": sum(1 for f in gen2(resultados)
+                                     if f["origen"] == "OFERTA" and sellada(f)),
+        "N_resultados_pendientes": sum(1 for f in activos if f["estado"] == "PENDIENTE"),
+        "dependencias_numericas_legacy_activas": sum(
+            1 for u in usos_activos if u["generacion_leida"] == GENERACION_LEGADO),
+        "resultados_con_validacion_independiente": sum(
+            1 for f in resultados if f["validacion_independiente"] == "PASA"),
+        # `delta` (B-7) es de E7: sin criterio de materialidad firmado y sin
+        # `valor_gen2` que comparar, el conteo derivado es 0 -- y su razon
+        # se declara, no se calla.
+        "diferencias_materiales": sum(
+            1 for f in resultados
+            if f["delta_legacy"] not in (NO_COMPARABLE, "PENDIENTE", "")),
+        "no_corrido_abiertas": _no_corrido_abiertas(),
+        # Fuera del nucleo §9: los replays LEGACY-GEN1 que sostienen el
+        # aparato pero NO cuentan como medicion GEN2.
+        "replays_legacy_sellados": sum(1 for f in corridas
+                                       if f["origen"] == "OFERTA"
+                                       and f["cuenta_gen2"] == "NO" and sellada(f)),
+    }
+    if imprime:
+        for clave, valor in c.items():
+            print(f"{clave}={valor}")
+        print(f"# derivado de {len(corridas)} corridas · {len(resultados)} "
+              f"resultados · {len(usos)} usos", file=sys.stderr)
+    return c
+
+
+def cmd_status(args) -> int:
+    try:
+        c = status(imprime=not getattr(args, "json", False))
+    except ParoRegistro as exc:
+        print(f"PARO · {exc}", file=sys.stderr)
+        return 1
+    if getattr(args, "json", False):
+        print(json.dumps(c, ensure_ascii=False, indent=2, sort_keys=True))
+    return 0
+
+
+# ── subcomandos que siguen declarados y vacios (los llena GEN2-E7) ─────────
 
 PENDIENTES_E3 = [
-    ("registro", "B-1 · vistas corridas.tsv / resultados.tsv / usos.tsv"),
-    ("status", "B-11 · contadores GEN2 leidos del CLI"),
     ("vigencia", "B-6 · CANDIDATO-VENCIDO por fecha e instrumento"),
     ("delta", "B-7 · valor_legacy vs valor_gen2 y su materialidad"),
 ]
@@ -2111,6 +2638,20 @@ def construye_parser() -> argparse.ArgumentParser:
         s = subs.add_parser(nombre, help=ayuda)
         s.add_argument("calc_id", help="p. ej. CALC-SMOKE-0001")
         s.set_defaults(func=fn)
+    # GEN2-E6 · AUTOMATIZA-GEN2-2: las tres vistas y los contadores.
+    rg = subs.add_parser("registro",
+                         help="B-1 · une demanda y oferta -> corridas/resultados/usos.tsv")
+    rg.add_argument("--verifica", action="store_true",
+                    help="ademas corre `verify` por CALC sellado para llenar "
+                         "resultado_replay/contexto_replay (reejecuta el medidor)")
+    rg.add_argument("--seco", action="store_true",
+                    help="deriva y valida sin escribir ninguna vista")
+    rg.set_defaults(func=cmd_registro)
+
+    st = subs.add_parser("status", help="B-11 · contadores GEN2, todos derivados")
+    st.add_argument("--json", action="store_true", help="mismo contenido, JSON")
+    st.set_defaults(func=cmd_status)
+
     for nombre, ayuda in PENDIENTES_E3:
         s = subs.add_parser(nombre, help=f"[NO-IMPLEMENTADO] {ayuda}")
         s.set_defaults(func=_no_implementado(nombre))
