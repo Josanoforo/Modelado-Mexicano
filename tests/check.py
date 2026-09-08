@@ -1722,6 +1722,20 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # cierre.md ya cubren arriba: discutir el marcador no es un pendiente
     # nuevo sin registrar.
     "forense/notas/2026-09-01-maestra33-e12-sella-1-cierre.md",
+    # ACTO GEN2-T11 · RUTINAS-FIX, 8/sep/2026: encargo archivado VERBATIM
+    # (0-bis A.3), pegado en el mensaje que invocó `/acto`. Dispara
+    # `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) por la cabecera del
+    # propio acto -- "PROPUESTA, mesa lo lanza" -- que es la etiqueta de
+    # clasificación que todo el lote D-11 de encargos GEN2 en formato corto
+    # trae (mismo patrón que la exención hermana de GEN2-T10-BENCHMARK-B-
+    # TEMPORAL: esa además abre una decisión real citada por su propia fila
+    # de firmas-pendientes.tsv, y por eso no necesitó esta lista). Este
+    # encargo no abre ninguna decisión nueva esperando firma -- `COMPUERTA:
+    # ninguna` y la firma de mesa que autoriza el lanzamiento ya vive en
+    # `AJUSTES-RUTINAS-2026-09-08.md` (D-A, decisión ya tomada antes de
+    # archivarse este acto) -- es MENCIÓN de la clasificación del acto, no
+    # USO de una ranura sin dueño.
+    "forense/encargos/2026-09-08-GEN2-T11-RUTINAS-FIX.md",
 }
 
 def _t22_tabla():
@@ -4184,6 +4198,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # rótulo nuevo que este documento reclame, y prefijarlo volvería una
     # cita que mesa no dio.
     "forense/benchmark-mercado-motores/2026-09-08-propuesta-gen2.md",
+    # ACTO GEN2-T11 · RUTINAS-FIX, 8/sep/2026: encargo archivado VERBATIM
+    # (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita "E7" (dos
+    # veces) y "E3" (una vez) pelados, las tres dentro de la sección A.8 de
+    # VERIFICACIÓN DE EXISTENCIA, citando VERBATIM el texto que el propio
+    # auto-check T25 imprimió al PARAR («rótulo pelado `E7`», luego `E3`») y
+    # el nombre de la sección I que el test de regresión ejercita (`sucesor
+    # E7 (x)`) -- referencias de PROCEDENCIA a `GEN2-E7`/`GEN2-E3`, ya
+    # censadas en la fila `E · GEN2-E0..GEN2-E7` de `canon/registro-
+    # rotulos.tsv`, no rótulos nuevos que este acto reclame. Mismo patrón,
+    # y misma razón, que las exenciones hermanas de GEN2-T8/GEN2-T9/
+    # GEN2-T10 arriba: un encargo verbatim no se edita para complacer un
+    # test (A.3).
+    "forense/encargos/2026-09-08-GEN2-T11-RUTINAS-FIX.md",
 }
 
 
