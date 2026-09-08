@@ -15,3 +15,9 @@ Pieza C (caja), `PR #612`. Las piezas A y B tienen su propio PR (NUBE) y escribe
 **Contador declarado vs. medido.** El encargo dice «`no_corrido_abiertas` −1 si C cierra NC-0001». `NC-0001` **sí** cierra, pero el contador **sube de 9 a 11**: −1 por el cierre, +3 por las tres reservas que A.14 obliga a asentar. La diferencia no es un incumplimiento — es A.14 haciendo visible deuda que antes no dejaba huella. La corrección del encargo se declara aquí, no se absorbe en silencio.
 
 **Reservas que NO son filas `NC-`, porque son deuda medida y no deuda no corrida** (van a `forense/firmas-pendientes.tsv`, la vía de la casa): `FP-344` (los cinco casos no están cableados a `tests/check.py`), `FP-345` (el lock no cubre concurrencia entre worktrees: comparten `.git`, no `data/`), `FP-346` (`arbitra.py` sin raíz inyectable + estado constante `NO-EJECUTABLE-SIN-CODIFICACION` con `faltantes: []`).
+
+## CONSUMIDO
+
+Pieza C (caja) ejecutada por `PR #612` — `ACTO GEN2-E7 · READINESS-2`, 8/sep/2026, entorno UBUNTU/WSL2 con corpus montado, sobre `origin/main = 9a950c9`. Cascada: `ADR-398`, `L0` 397→398, `canon/registro-rotulos.tsv`, `FP-344`/`FP-345`/`FP-346`, `NC-0001` CERRADA + `NC-0015`/`NC-0016`/`NC-0017`, nota `forense/notas/nota-2026-09-08-gen2-e7-readiness2-c-infra-adversarial.md`. Suite `--baseline` VERDE.
+
+Las piezas A y B (NUBE) se consumen en su propio PR, bajo `D-11`; este encargo queda archivado una sola vez y ambas secciones conviven.
