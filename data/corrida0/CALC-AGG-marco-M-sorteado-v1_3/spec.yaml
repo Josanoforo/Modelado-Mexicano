@@ -1,0 +1,64 @@
+# CALC-AGG-marco-M-sorteado-v1_3 -- cara mecanica de spec.md (ACTO GEN2-E7 · A4).
+calc_id: CALC-AGG-marco-M-sorteado-v1_3
+spec_md: spec.md
+spec_md_sha256: d30fbb188b4fcae350d954ce9eaf7a05afcac02226f16540c4ae62975d7ee3e2
+
+script: data/corrida0/CALC-AGG-marco-M-sorteado-v1_3/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: AGREGADO-DERIVADO
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  ci_replayable: true
+  marco_vigente: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+
+# Corrida DERIVADA: los insumos son RESULT-* que otra corrida ya sello, mas
+# el marco que fija el universo. Ningun `corridas-*/` ni `agregado_v1_3`.
+# Cuando existan CALC-R-* / CALC-L-*, entran AQUI como IN-CALC-R-RESULTADOS /
+# IN-CALC-L-RESULTADOS -- el medidor ya los consume si estan (spec.md §4).
+inputs:
+  - id: IN-CALC-M-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-M-marco-M-sorteado-v1_3/resultados.json
+    sha256: 0bf58b7ffb749f584827e87309958df86a9c311f120e63e0514eabbfa9bf6bb1
+  - id: IN-MARCO-M-SORTEADO-V1-3
+    origen: repo
+    ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+    sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
+
+variables: []
+universo: "las 14 celdas elegible_v1_1=SI del marco vigente"
+filtros: "columna elegible_v1_1 == SI"
+ponderador: NO-APLICA
+transformacion: "agregacion por celda de los RESULT-R/M/L declarados"
+estimando: "mediana, minimo y maximo de los puntos M del universo; conteo de celdas con insumo por corredor"
+dependencias_materiales: []
+
+parametros:
+  columna_elegible: elegible_v1_1
+
+seed:
+  aplica: false
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Agregar no es estocastico: la mediana de un conjunto fijo de puntos es el
+    mismo numero siempre. La tolerancia cubre el redondeo float64 al
+    serializar; cualquier cambio real de un punto M la excede.
+
+resultados:
+  - {id: RESULT-AGG-N-CELDAS,       tipo: entero,     unidad: "celdas del universo"}
+  - {id: RESULT-AGG-N-CON-M,        tipo: entero,     unidad: "celdas con RESULT-M GEN2"}
+  - {id: RESULT-AGG-N-CON-R,        tipo: entero,     unidad: "celdas con RESULT-R GEN2"}
+  - {id: RESULT-AGG-N-CON-L,        tipo: entero,     unidad: "celdas con RESULT-L GEN2"}
+  - {id: RESULT-AGG-M-P-MEDIANA,    tipo: proporcion, unidad: "proporcion [0,1]", permite_no_estimable: true}
+  - {id: RESULT-AGG-M-P-MIN,        tipo: proporcion, unidad: "proporcion [0,1]", permite_no_estimable: true}
+  - {id: RESULT-AGG-M-P-MAX,        tipo: proporcion, unidad: "proporcion [0,1]", permite_no_estimable: true}
+  - {id: RESULT-AGG-M-P-DISTINTOS,  tipo: entero,     unidad: "valores distintos de p (re-derivado, spec.md §6)"}
+  - {id: RESULT-AGG-EJE-M-VS-R,     tipo: texto,      unidad: "ESTIMABLE o NO-ESTIMABLE con motivo"}
+  - {id: RESULT-AGG-EJE-M-VS-L,     tipo: texto,      unidad: "ESTIMABLE o NO-ESTIMABLE con motivo"}
+  - {id: RESULT-AGG-CI-REPLAYABLE,  tipo: texto,      unidad: "por que esta corrida se replica sin corpus (spec.md §2)"}
+  - {id: RESULT-AGG-FUENTES,        tipo: texto,      unidad: "inventario de los inputs efectivamente consumidos"}
