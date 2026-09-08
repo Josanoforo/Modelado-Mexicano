@@ -18,3 +18,7 @@ Contador: cero; `fp_abiertas` −1 (FP-339).
 
 - Pieza 4 (`#598`) retirada por mesa, que la fusionó a mano: el digesto de TRÁMITE del 7/sep no requirió automatización de este acto de cierre.
 - `tools/limpia_arbol.py` no invoca `gh pr list` ni ninguna consulta de PRs — es de solo lectura sobre git local (`git worktree list`, `git for-each-ref` + `git merge-base --is-ancestor`, `git rev-list --count`), verificado leyendo el archivo completo. No hay nada que ajustar a `--limit 1000`; se deja constancia explícita y el archivo no se toca en `GEN2-T7-CIERRE`.
+
+## CONSUMIDO
+
+PR: `#603`, rama `claude/tramite-7-decisiones-k7xvyv`, contra `main`. Ejecutado: `ACTO GEN2-T7-CIERRE`, primer cierre a mano bajo A.14. Archiva este mismo documento (0-bis A.3 tardío de TRÁMITE-7), verifica que `tools/limpia_arbol.py` no consulta PRs, reemplaza `E3.1`/`E5`/`E6` de la cola por el paquete "readiness-primero" v1.3, y encola `E5-0` y el stub `E7`. Cascada: `ADR-390`, `L0`, `registro-rotulos.tsv`, `tests/check.py --baseline` VERDE. **NO fusionado por el ejecutor** — mesa fusiona.
