@@ -663,6 +663,28 @@ termina en `NADA-QUE-HACER` y un tick **que no corrió** se ven idénticos
 desde fuera —cero commits, cero PR—, y esa ambigüedad es la que impide
 saber si la rutina sigue viva.
 
+### 7-pre · RE-VERIFICA el candado, otra vez, inmediatamente antes de escribir — mejora propuesta por `[REVISA]` post-hoc de `PR #619` (rama `claude/revisa-post-hoc-619`)
+
+`4-bis` re-verifica el candado **al arrancar**, pero entre ese punto y
+este pueden pasar minutos u horas de `/acto` ejecutándose — el `[REVISA]`
+de `PR #619` midió tres hechos ya caducados en 100 minutos de una sola
+corrida. Una huella que reporta el candado de hace una hora como si
+fuera el de ahora mismo es una huella que miente por omisión. Antes de
+apendar la línea del bloque de abajo, vuelve a correr la misma
+verificación de `2.b`:
+
+```
+git ls-remote --heads origin
+```
+
+Si el candado **cambió** desde `4-bis` (apareció o desapareció una rama
+de acto ajena, o el `EN-CURSO` de la cola ya no es el mismo que viste al
+marcar), la huella **lo dice así**: el `<detalle en una línea>` del
+bloque de abajo trae, además del resultado del propio tick, la nota
+`CANDADO-CAMBIÓ-A-MEDIA-CORRIDA: <qué cambió>`. No cambia el desenlace
+del tick ya ejecutado — eso ya pasó y no se deshace aquí —, solo evita
+que la huella quede caducada desde el instante en que se escribe.
+
 Apenda **una** línea (nunca reescribes una anterior):
 
 ```
