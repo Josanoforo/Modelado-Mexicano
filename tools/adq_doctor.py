@@ -39,8 +39,16 @@ def _seguro(fn, *a, **kw):
 
 
 def _corre(cmd, timeout=10, cwd=None):
+    # `errors="replace"`, no `text=True` a secas: los binarios de Windows
+    # invocados bajo /mnt/c (schtasks.exe, tzutil.exe) devuelven su salida
+    # en la codepage de consola del sistema (vista aquí: bytes no-UTF-8
+    # con acentos españoles), no UTF-8 -- decodificar a ciegas revienta
+    # con UnicodeDecodeError y tumba TODO el doctor si no se atrapa
+    # aparte. `_seguro()` ya envuelve cada sección, pero esto evita perder
+    # el contenido legible del resto de la línea por un solo byte.
     try:
-        r = subprocess.run(cmd, cwd=cwd or RAIZ, capture_output=True, text=True, timeout=timeout)
+        r = subprocess.run(cmd, cwd=cwd or RAIZ, capture_output=True,
+                            text=True, errors="replace", timeout=timeout)
         return r.returncode, r.stdout, r.stderr
     except FileNotFoundError:
         return 127, "", "comando no encontrado"
@@ -84,40 +92,64 @@ def check_zona_horaria():
     except Exception:
         ahora_mx = None
         zoneinfo_ok = False
+    # P2: el trigger de Windows Task Scheduler dispara en hora LOCAL del
+    # sistema, sin campo de zona horaria explícito como cron -- si el
+    # reloj de Windows no está en America/Mexico_City, la tarea de
+    # tools/windows/instala-tarea-adquisicion.ps1 dispara a una hora de
+    # mesa distinta de la que dice. `tzutil.exe /g` corre bajo /mnt/c
+    # (mismo límite de sandbox que schtasks.exe -- NO-VERIFICABLE, nunca
+    # un desajuste inventado, si no es legible desde este proceso).
+    tzutil = "/mnt/c/Windows/System32/tzutil.exe"
+    if os.path.exists(tzutil):
+        codigo, out, err = _corre([tzutil, "/g"], timeout=10)
+        tz_windows = out.strip() if codigo == 0 else f"NO-VERIFICABLE: {(err or out).strip()[:120]}"
+    else:
+        tz_windows = "NO-VERIFICABLE: tzutil.exe no es legible desde este proceso"
     return {
         "tz_sistema_etc_timezone": tz_sistema or "NO-LEGIBLE",
         "offset_local_actual": ahora_local.strftime("%z"),
         "zoneinfo_america_mexico_city_disponible": zoneinfo_ok,
         "ahora_america_mexico_city": ahora_mx.isoformat(timespec="seconds") if ahora_mx else None,
+        "tz_windows_host_tzutil": tz_windows,
     }
 
 
 def check_scheduler_windows():
-    """Windows Task Scheduler (P2), consultado vía schtasks.exe bajo
-    /mnt/c. NO-VERIFICABLE si /mnt/c no es legible desde este proceso
-    (p.ej. corriendo dentro de un sandbox que deniega /mnt) -- nunca se
-    asume "no instalado" por eso."""
+    """Windows Task Scheduler (P2), consultado vía PowerShell bajo
+    /mnt/c. `Get-ScheduledTask*` en vez de `schtasks.exe /FO LIST`: los
+    nombres de propiedad de PowerShell son estables en cualquier locale,
+    las etiquetas de `schtasks.exe` NO -- medido en esta caja (Windows en
+    español): "Last Run Time" no existe, es "Último tiempo de ejecución",
+    y parsear por etiqueta habría dado "?" en todos los campos en
+    silencio. NO-VERIFICABLE si /mnt/c o powershell.exe no son legibles
+    desde este proceso (p.ej. dentro de un sandbox que deniega /mnt) --
+    nunca se asume "no instalado" por eso."""
     nombre_tarea = os.environ.get("ADQ_TASK_SCHEDULER_NOMBRE", "\\ModeladoMexicano\\AdquiereCron")
-    schtasks = "/mnt/c/Windows/System32/schtasks.exe"
-    if not os.path.exists(schtasks):
-        return {"estado": "NO-VERIFICABLE", "razon": f"{schtasks} no es legible desde este proceso"}
-    codigo, out, err = _corre([schtasks, "/Query", "/TN", nombre_tarea, "/V", "/FO", "LIST"], timeout=15)
+    partes = nombre_tarea.strip("\\").split("\\")
+    task_name = partes[-1]
+    task_path = "\\" + "\\".join(partes[:-1]) + "\\" if len(partes) > 1 else "\\"
+    powershell = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
+    if not os.path.exists(powershell):
+        return {"estado": "NO-VERIFICABLE", "razon": f"{powershell} no es legible desde este proceso"}
+    script_ps = (
+        f"$ErrorActionPreference='Stop'; "
+        f"$t = Get-ScheduledTask -TaskName '{task_name}' -TaskPath '{task_path}'; "
+        f"$i = Get-ScheduledTaskInfo -TaskName '{task_name}' -TaskPath '{task_path}'; "
+        f"[pscustomobject]@{{"
+        f"State=$t.State.ToString(); LogonType=$t.Principal.LogonType.ToString(); "
+        f"LastRunTime=$i.LastRunTime.ToString('o'); LastTaskResult=$i.LastTaskResult; "
+        f"NextRunTime=$i.NextRunTime.ToString('o')"
+        f"}} | ConvertTo-Json"
+    )
+    codigo, out, err = _corre([powershell, "-NoProfile", "-Command", script_ps], timeout=20)
     if codigo != 0:
         return {"estado": "NO-INSTALADO-O-NO-VERIFICABLE", "detalle": (err or out).strip()[:400],
                 "tarea_buscada": nombre_tarea}
-    campos = {}
-    for linea in out.splitlines():
-        if ":" in linea:
-            k, _, v = linea.partition(":")
-            campos[k.strip()] = v.strip()
-    return {
-        "estado": "INSTALADA",
-        "tarea": nombre_tarea,
-        "listo_habilitado": campos.get("Scheduled Task State", campos.get("Estado de la tarea programada", "?")),
-        "ultima_ejecucion": campos.get("Last Run Time", campos.get("Hora de la última ejecución", "?")),
-        "resultado_ultima_ejecucion": campos.get("Last Result", campos.get("Último resultado", "?")),
-        "proxima_ejecucion": campos.get("Next Run Time", campos.get("Hora de la próxima ejecución", "?")),
-    }
+    try:
+        campos = json.loads(out)
+    except json.JSONDecodeError:
+        return {"estado": "NO-VERIFICABLE", "razon": f"salida de PowerShell no fue JSON: {out.strip()[:200]}"}
+    return {"estado": "INSTALADA", "tarea": nombre_tarea, **campos}
 
 
 def check_crontab_legado():
