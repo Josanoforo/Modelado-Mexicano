@@ -1628,7 +1628,7 @@ def _compara_cortes(filas_antes, filas_ahora):
     }
 
 
-def seccion_h(raiz, fecha, cuenta=None, base_nc_ref=None, tope_filas=25):
+def seccion_h(raiz, fecha, cuenta=None, base_nc_ref=None, tope_filas=25, tope_texto=220):
     """H · A.14 -- digesto INCREMENTAL de `forense/no-corrido.tsv`
     (P1-P3 de `ACTO AUTO-DIGESTO-1 · CAMBIOS-DESDE-EL-ULTIMO-CORTE`,
     8/sep/2026). Reemplaza el volcado completo de la v1 de esta sección
@@ -1645,8 +1645,11 @@ def seccion_h(raiz, fecha, cuenta=None, base_nc_ref=None, tope_filas=25):
     `dict-resumen["no_corrido_abiertas"]` es el conteo vigente de
     abiertas (se preserva aunque la comparación no sea posible) y
     `dict-resumen["h_error"]` (str o None) señala una referencia
-    explícita inválida -- la única condición de esta sección que debe
-    abortar la escritura del digesto completo (P1.5)."""
+    explícita inválida, o un hash de referencia recuperado que contradice
+    el declarado por el digesto anterior (`HASH-REFERENCIA-NO-COINCIDE`,
+    Ajuste 1 de `forense/encargos/2026-09-08-AUTO-DIGESTO-2-REFERENCIA-VALIDA-Y-CAMBIO-LEGIBLE.md`)
+    -- ambas condiciones deben abortar la escritura del digesto completo
+    (P1.5)."""
     if cuenta is None:
         cuenta = Cuenta()
     ruta = os.path.join(raiz, _NC_RUTA_REL)
@@ -1731,9 +1734,33 @@ def seccion_h(raiz, fecha, cuenta=None, base_nc_ref=None, tope_filas=25):
         return out, resumen
 
     if nc_sha256_ref:
-        integridad = ("coincide" if _hash_tsv(texto_ref_tsv) == nc_sha256_ref
-                      else "NO coincide con la declarada por ese digesto (A.13: "
-                           "se compara igual, con esta discrepancia señalada)")
+        hash_recuperado = _hash_tsv(texto_ref_tsv)
+        if hash_recuperado != nc_sha256_ref:
+            # Ajuste 1: un hash de referencia discrepante DETIENE el diff --
+            # nunca se declara BASE-COMPARABLE ni SIN-CAMBIOS ni conteos de
+            # novedades sobre una referencia que contradice su propio digesto.
+            out += [f"**ERROR — HASH-REFERENCIA-NO-COINCIDE.** El "
+                    f"`no-corrido.tsv` recuperado del árbol de referencia "
+                    f"`{sha_ref}` no coincide con el hash que ese digesto "
+                    f"declaró para su propio corte. No se calcula ni se "
+                    f"presenta el diff sobre una referencia incongruente (P2).",
+                    "",
+                    f"SHA de referencia: `{sha_ref}` ({via_ref}"
+                    + (f", vía `{origen_digesto}`" if origen_digesto else "") + ").",
+                    f"Hash esperado (declarado por el digesto anterior): "
+                    f"`sha256:{nc_sha256_ref}`.",
+                    f"Hash obtenido (recuperado ahora del mismo árbol): "
+                    f"`sha256:{hash_recuperado}`.",
+                    "",
+                    "El operador debe corregir la referencia dañada, o usar "
+                    "conscientemente `--base-nc-ref` para diagnóstico; este "
+                    "digesto no sustituye silenciosamente la referencia por "
+                    "otra más antigua.", "", marca_ref, ""]
+            resumen["h_error"] = (
+                f"HASH-REFERENCIA-NO-COINCIDE: ref={sha_ref} "
+                f"esperado=sha256:{nc_sha256_ref} obtenido=sha256:{hash_recuperado}")
+            return out, resumen
+        integridad = "coincide"
     else:
         integridad = "no declarada por el digesto de referencia (formato anterior a H-REF)"
 
@@ -1778,19 +1805,31 @@ def seccion_h(raiz, fecha, cuenta=None, base_nc_ref=None, tope_filas=25):
         mod_de = {rid: (a, b, campos) for rid, a, b, campos in cmp["modificadas"]}
         nueva_de = {rid: f for rid, f in cmp["nuevas"]}
         aus_de = {rid: f for rid, f in cmp["ausentes"]}
+
+        def _fmt_campo_valor(v):
+            # Distingue vacío ("") de ausencia (None) -- A.13/Ajuste 2: un
+            # valor vacío no es lo mismo que una reserva sin ese campo.
+            if v is None:
+                return "*(sin valor)*"
+            txt = neutraliza(una_linea(v, tope_texto), cuenta)
+            if txt == "":
+                return "*(vacío)*"
+            return txt.replace("|", "\\|")
+
         for rid in cmp["afectados"]:
             if rid in nueva_de:
                 f = nueva_de[rid]
                 filas_tabla.append((rid, "NUEVA", "—",
-                                    _n(f.get("estado")), _n(f.get("sucesor"))))
+                                    _n(f.get("estado")), _n(f.get("sucesor")), "—"))
             elif rid in aus_de:
                 f = aus_de[rid]
                 filas_tabla.append((rid, "AUSENTE-EN-CORTE-ACTUAL", _n(f.get("estado")),
-                                    "—", _n(f.get("sucesor"))))
+                                    "—", _n(f.get("sucesor")), "—"))
             else:
                 tags = []
                 antes_estado = ahora_estado = "—"
                 sucesor = "—"
+                detalle = "—"
                 if rid in cambio_de:
                     a, b = cambio_de[rid]
                     tags.append("CAMBIO-DE-ESTADO")
@@ -1802,14 +1841,29 @@ def seccion_h(raiz, fecha, cuenta=None, base_nc_ref=None, tope_filas=25):
                     if antes_estado == "—":
                         antes_estado, ahora_estado = _n(a.get("estado")), _n(b.get("estado"))
                     sucesor = _n(b.get("sucesor")) if b.get("sucesor") else sucesor
-                filas_tabla.append((rid, " + ".join(tags), antes_estado, ahora_estado, sucesor))
+                    # Ajuste 2: valor anterior y valor actual de cada campo
+                    # modificado, orden estable (campos ya viene ordenado por
+                    # `_compara_cortes`). Un enlace solo al SHA actual no
+                    # bastaría -- por eso arriba se declaran ambos SHA
+                    # (referencia y actual) para recuperar el íntegro.
+                    detalle = "<br>".join(
+                        f"`{campo}`: {_fmt_campo_valor(a.get(campo))} → "
+                        f"{_fmt_campo_valor(b.get(campo))}"
+                        for campo in campos)
+                filas_tabla.append((rid, " + ".join(tags), antes_estado, ahora_estado,
+                                    sucesor, detalle))
         tope = tope_filas if tope_filas else len(filas_tabla)
-        out += ["| `id` | cambio | antes | después | sucesor |", "|---|---|---|---|---|"]
-        for rid, cambio, antes_e, despues_e, sucesor in filas_tabla[:tope]:
-            out.append(f"| `{rid}` | {cambio} | {antes_e} | {despues_e} | {sucesor} |")
+        out += [f"Los valores de campo se truncan a {tope_texto} caracteres "
+                f"(`--tope-texto`, `0` = sin tope) y se marcan con `…`; el íntegro se "
+                f"recupera con `git show <sha>:{_NC_RUTA_REL}` sobre el SHA de "
+                f"referencia o el actual declarados arriba.", "",
+                "| `id` | cambio | antes | después | sucesor | campos modificados (antes → después) |",
+                "|---|---|---|---|---|---|"]
+        for rid, cambio, antes_e, despues_e, sucesor, detalle in filas_tabla[:tope]:
+            out.append(f"| `{rid}` | {cambio} | {antes_e} | {despues_e} | {sucesor} | {detalle} |")
         if len(filas_tabla) > tope:
             out.append(f"| … | **{len(filas_tabla) - tope} fila(s) más, omitidas por el "
-                       f"tope de presentación (`--tope-lista`)** | | | |")
+                       f"tope de presentación (`--tope-lista`)** | | | | |")
         out.append("")
         out += [f"Total vigente de abiertas (corte actual, sin duplicar): **{len(abiertas)}**.", ""]
 
@@ -1841,7 +1895,8 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso, base_nc_ref=
     e, n_cont = seccion_e(raiz)
     f, res_f = seccion_f(raiz, fecha, ramas, fuente_ramas)
     g, n_pend = seccion_g(raiz)
-    h, res_h = seccion_h(raiz, fecha, cuenta, base_nc_ref=base_nc_ref, tope_filas=tope_lista)
+    h, res_h = seccion_h(raiz, fecha, cuenta, base_nc_ref=base_nc_ref, tope_filas=tope_lista,
+                        tope_texto=tope_texto)
     n_nc_abiertas = res_h["no_corrido_abiertas"]
     i, res_i = seccion_i(raiz, fecha, cuenta)
     j, res_j = seccion_j(raiz, fecha, ramas, fuente_ramas)

@@ -4209,6 +4209,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # rótulo nuevo que este documento reclame, y prefijarlo volvería una
     # cita que mesa no dio.
     "forense/benchmark-mercado-motores/2026-09-08-propuesta-gen2.md",
+    # ACTO AUTO-DIGESTO-2 · REFERENCIA-VALIDA-Y-CAMBIO-LEGIBLE, 8/sep/2026:
+    # encargo archivado VERBATIM (0-bis A.3), pegado en el mensaje que
+    # invocó `/acto`. Cita `E5` pelado dentro del EJEMPLO ILUSTRATIVO de la
+    # tabla de Ajuste 2 ("NC-OTRO | MODIFICADA: sucesor | E5 | C0-C") --
+    # el propio encargo declara la tabla "ajena a las reservas reales", así
+    # que no es una cita real de procedencia y prefijarla sería alterar el
+    # verbatim. Un encargo verbatim no se edita para complacer un test (A.3).
+    "forense/encargos/2026-09-08-AUTO-DIGESTO-2-REFERENCIA-VALIDA-Y-CAMBIO-LEGIBLE.md",
     # ACTO GEN2-T11 · RUTINAS-FIX, 8/sep/2026: encargo archivado VERBATIM
     # (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita "E7" (dos
     # veces) y "E3" (una vez) pelados, las tres dentro de la sección A.8 de
