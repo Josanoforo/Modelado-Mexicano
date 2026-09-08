@@ -66,6 +66,42 @@ MARCA_INICIO = "<!-- TABLERO-DERIVADO:BEGIN -->"
 MARCA_FIN = "<!-- TABLERO-DERIVADO:END -->"
 
 
+def _marco_vigente(familia: str) -> tuple[str, str]:
+    """(version, ruta) del marco `familia` de version maxima en el arbol.
+    Deriva; no clava una version en el codigo (ACTO GEN2-E6)."""
+    patron = re.compile(rf"marco-M-{familia}-v(\d+)_(\d+)\.tsv$")
+    hallados = []
+    for f in glob.glob(PD + f"marco-M-{familia}-v*.tsv"):
+        m = patron.search(f)
+        if m:
+            hallados.append(((int(m.group(1)), int(m.group(2))), f))
+    if not hallados:
+        return "NO-ENCONTRADO", ""
+    (mayor, menor), ruta = max(hallados)
+    return f"v{mayor}_{menor}", ruta
+
+
+def _contadores_gen2() -> tuple[dict, str]:
+    """Los contadores GEN2 (§9 del plan v2.0) LEIDOS DE `corrida0 status`.
+
+    El tablero no los recalcula por su cuenta: `corrida0.py` es la unica
+    fuente y este script solo la muestra. Si `status` no puede derivar
+    (falta la demanda, una validacion PARA), se declara el motivo -- nunca
+    se rellena con ceros que aparentarian un programa sano.
+    """
+    try:
+        import importlib.util
+        ruta = os.path.join(RAIZ, "tools", "corrida0.py")
+        spec = importlib.util.spec_from_file_location("corrida0_para_tablero", ruta)
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = mod
+        spec.loader.exec_module(mod)
+        return mod.status(imprime=False), "python3 tools/corrida0.py status"
+    except Exception as exc:  # noqa: BLE001 -- el tablero informa, no revienta
+        return ({"error": f"{type(exc).__name__}: {exc}"},
+                "python3 tools/corrida0.py status (no derivable en este arbol)")
+
+
 def derivar_indicadores() -> dict[str, dict]:
     I: dict[str, dict] = {}
 
@@ -126,14 +162,25 @@ def derivar_indicadores() -> dict[str, dict]:
         put("rutas_coeficiente", d.get("rutas_estimabilidad_coeficiente", {}).get("reparto"), "yaml: rutas_estimabilidad_coeficiente.reparto")
 
     # ── 4 · corredor (duelo M/L vs R) ──────────────────────────────────
-    sort = [r[0] for r in tsv_rows(PD + "marco-M-sorteado-v1_2.tsv") if r[0] != "id"]
-    cong = [r[0] for r in tsv_rows(PD + "marco-M-congelado-v1_2.tsv") if r[0] != "id"]
+    # El marco vigente se DERIVA (version maxima presente en el arbol), no se
+    # fija a mano: hasta ACTO GEN2-E6 (8/sep/2026) estas dos lineas apuntaban
+    # a `v1_2` mientras el marco vigente ya era `v1_3` -- un tablero que mide
+    # un marco superado informa de un programa que ya no existe.
+    v_sort, sorteado = _marco_vigente("sorteado")
+    v_cong, congelado = _marco_vigente("congelado")
+    put("marco_vigente_sorteado", v_sort, "max(version) de forense/prereg-duelo-v2/marco-M-sorteado-v1_*.tsv")
+    put("marco_vigente_congelado", v_cong, "max(version) de forense/prereg-duelo-v2/marco-M-congelado-v1_*.tsv",
+        "asimetria REAL del arbol, no un error de este script: el sorteado llego a v1_3 y el congelado se quedo en v1_2")
+    sort = [r[0] for r in tsv_rows(sorteado) if r[0] != "id"]
+    cong = [r[0] for r in tsv_rows(congelado) if r[0] != "id"]
     Rc = [i for i in sort if os.path.exists(PD + f"corridas-R/{i}.json")]
     Mc = [i for i in sort if glob.glob(PD + f"corridas-M/M-{i}*.json")]
     Lc = [i for i in sort if glob.glob(PD + f"corridas-L/L-{i}-M__*.json")]
     lmr = [i for i in sort if i in Rc and i in Mc and i in Lc]
-    put("marco_v1_2_congelado", len(cong), "filas de marco-M-congelado-v1_2.tsv sin '#'")
-    put("marco_v1_2_sorteado", len(sort), "filas de marco-M-sorteado-v1_2.tsv sin '#'")
+    put("marco_congelado", len(cong), f"filas de {os.path.basename(congelado)} sin '#'")
+    put("marco_sorteado", len(sort), f"filas de {os.path.basename(sorteado)} sin '#'",
+        "clave renombrada desde `marco_v1_2_sorteado` (ACTO GEN2-E6): el nombre "
+        "ya no clava una version en el indicador")
     put("celdas_con_R", len(Rc), "ls corridas-R/<id>.json por id sorteado")
     put("celdas_con_M", len(Mc), "ls corridas-M/M-<id>*.json por id sorteado")
     put("celdas_con_L", len(Lc), "ls corridas-L/L-<id>-M__*.json por id sorteado")
@@ -193,11 +240,27 @@ def derivar_indicadores() -> dict[str, dict]:
     put("forenses", len(glob.glob("corpus/forense/*.md")), "ls corpus/forense/*.md | wc -l")
     dig = sorted(glob.glob("forense/digesto/DIGESTO-*.md"))
     put("digesto_ultimo", os.path.basename(dig[-1]) if dig else None, "ls forense/digesto/DIGESTO-*.md | tail -1")
-    put("hito_d_historico", sh("grep -oE '[0-9]+ de 27 corridas archivadas' canon/estado-programa-v1_11.md | head -1"),
-        "grep -oE '[0-9]+ de 27 corridas archivadas' canon/estado-programa-v1_11.md", "historico (transfer §6): NO es la señal")
+    # `hito_d_historico` RETIRADO (ACTO GEN2-E6, 8/sep/2026). Era una tarjeta
+    # narrada con la receta rota: apuntaba a `canon/estado-programa-v1_10.md`,
+    # luego a `v1_11`, y las dos versiones estan fuera del arbol (`T01`,
+    # `ADR-339`), asi que el `grep` devolvia cadena vacia sin avisar --
+    # un negativo de un comando que examino CERO archivos, que es justo lo
+    # que A.13 prohibe tratar como resultado. Defecto ya asentado como `B22`
+    # y `§7·D5` en `forense/tablero/TABLERO-PROGRAMA.md`. No se "arregla" la
+    # ruta: el propio indicador declaraba "NO es la señal", y la cifra que
+    # perseguia vive en `canon/modelo-decision-v4_0.md`.
     put("commits", int(sh("git rev-list --count HEAD") or 0), "git rev-list --count HEAD")
     put("prs_fusionados", int(sh("git log --merges --format=%s HEAD | grep -c 'pull request'") or 0), "git log --merges --format=%s HEAD | grep -c 'pull request'")
     put("suite", "correr: python3 tests/check.py --baseline | tail -6 (no se corre aqui: tarda; pega la salida cruda)", "python3 tests/check.py --baseline")
+
+    # ── 7 · GEN2 (derivado de `corrida0 status`) ───────────────────────
+    # ACTO GEN2-E6 · AUTOMATIZA-GEN2-2: el tablero deja de contar GEN2 a
+    # ojo y lo lee del CLI. `0 / N` explicito es la lectura CORRECTA hoy --
+    # el aparato existe antes que las corridas, y un tablero que ocultara
+    # el cero estaria informando de un avance que nadie midio.
+    gen2, comando_gen2 = _contadores_gen2()
+    for clave, valor in gen2.items():
+        put(f"gen2_{clave}", valor, comando_gen2)
 
     return I
 
@@ -233,8 +296,9 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
         f"tiers `{_v(I, 'motor_tiers')}`."
     )
     partes.append(
-        f"- **Corredor.** marco vigente `marco-M-v1_2` (sorteado/congelado) · "
-        f"celdas sorteadas `{_v(I, 'marco_v1_2_sorteado')}` · "
+        f"- **Corredor.** marco vigente `marco-M-{_v(I, 'marco_vigente_sorteado')}` sorteado / "
+        f"`marco-M-{_v(I, 'marco_vigente_congelado')}` congelado (derivado del árbol) · "
+        f"celdas sorteadas `{_v(I, 'marco_sorteado')}` · "
         f"celdas con M `{_v(I, 'celdas_con_M')}` · con R `{_v(I, 'celdas_con_R')}` · con L `{_v(I, 'celdas_con_L')}` · "
         f"celdas puntuables (M∩R∩L) `{_v(I, 'celdas_puntuables_LMR')}` · "
         f"celdas sin cobertura completa `{len(_v(I, 'celdas_sin_LMR') or [])}`."
@@ -250,6 +314,18 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
         f"FP abiertas: {fp_ids} · "
         f"encargos archivados `{_v(I, 'encargos_archivados')}` (consumidos `{_v(I, 'encargos_consumidos')}`) · "
         f"cola de encargos:\n{cola_txt}"
+    )
+    partes.append(
+        f"- **GEN2 (derivado de `corrida0 status`).** corridas selladas "
+        f"`{_v(I, 'gen2_N_corridas_selladas')}` / requeridas `{_v(I, 'gen2_N_corridas_requeridas')}` · "
+        f"resultados sellados `{_v(I, 'gen2_N_resultados_sellados')}` / activos "
+        f"`{_v(I, 'gen2_N_resultados_activos')}` · pendientes `{_v(I, 'gen2_N_resultados_pendientes')}` · "
+        f"dependencias numéricas legacy activas `{_v(I, 'gen2_dependencias_numericas_legacy_activas')}` · "
+        f"validación independiente `{_v(I, 'gen2_resultados_con_validacion_independiente')}` · "
+        f"diferencias materiales `{_v(I, 'gen2_diferencias_materiales')}` · "
+        f"NC- abiertas `{_v(I, 'gen2_no_corrido_abiertas')}` · "
+        f"replays LEGACY-GEN1 sellados `{_v(I, 'gen2_replays_legacy_sellados')}` (no cuentan). "
+        f"El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas."
     )
     partes.append(
         "- **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, "

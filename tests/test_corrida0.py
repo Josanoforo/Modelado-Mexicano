@@ -1159,6 +1159,359 @@ def t_sellador_falla_no_ejecutado():
                 "el CALC quedo sellado/inmutable pese al fallo del sellador")
 
 
+# ── ACTO GEN2-E6 · AUTOMATIZA-GEN2-2: `registro` y `status` ───────────────
+#
+# Punta a punta sobre FIXTURES, no sobre `data/corrida0/`: la demanda, la
+# oferta y hasta el `tramite.yaml` que declara `corrida0_resultado_id` viven
+# en un temporal, y `corrida0` se re-apunta ahi. Dos consecuencias que el
+# encargo pide explicitamente: estos casos NO exigen arbol limpio (no pasan
+# por `preflight`) y no escriben una sola linea en el arbol de verdad.
+
+_SPEC_REGISTRO_BASE = {
+    "spec_md": "spec.md",
+    "inputs": [],
+    "parametros": {"a": 1},
+    "seed": {"aplica": False},
+    "tolerancia": {"tipo": "flotante", "abs": 1.0e-10},
+}
+
+
+def _fila_demanda(rid: str, consumidor: str, corrida: str, **kw) -> dict:
+    fila = {c: C.NO_DECLARADO for c in C.COLS_RESULTADOS}
+    fila.update({"resultado_id": rid, "consumidor": consumidor, "tipo": "conducta_p_medido",
+                 "valor_legacy": "0.5", "receta_legacy": "OK", "depende_de": "",
+                 "corrida_natural": corrida, "estado": "PENDIENTE",
+                 "vigencia": "PENDIENTE", "validacion_independiente": "NO-HECHA"})
+    fila.update(kw)
+    return fila
+
+
+def _fila_corrida(cid: str, rids: list[str], **kw) -> dict:
+    fila = {c: C.NO_DECLARADO for c in C.COLS_CORRIDAS}
+    fila.update({"corrida_id": cid, "instrumento": "FIXTURE", "payload_ids": "",
+                 "medidor_o_spec_candidato": "SIN-RECETA", "n_resultados": len(rids),
+                 "resultados_ids": ",".join(rids), "entorno_requerido": "NUBE",
+                 "receta": "OK", "orden_causal": 1})
+    fila.update(kw)
+    return fila
+
+
+def _sella_calc_fixture(d: Path, cid: str, valores: dict, etiquetas: dict,
+                        decl_res=None, sin_sello=False, sin_hash=None,
+                        repite_de=None) -> None:
+    """Un CALC de fixture con su sello real (`sella_sha256.py`, no un sidecar
+    escrito a mano). `sin_sello` deja `resultados.json` sin respaldo y
+    `sin_hash` borra un campo del recibo -- las dos son las condiciones que
+    `registro` debe atrapar, no adornos."""
+    import yaml
+    d.mkdir(parents=True, exist_ok=True)
+    (d / "spec.md").write_text("# fixture\n", encoding="utf-8")
+    medidor = d / "medidor.py"
+    medidor.write_text("def medir(inputs, contrato):\n    return {}\n", encoding="utf-8")
+    spec = dict(_SPEC_REGISTRO_BASE, calc_id=cid, etiquetas=etiquetas,
+                script=os.path.relpath(medidor, RAIZ),
+                resultados=decl_res or [{"id": r, "tipo": "flotante", "unidad": "u"}
+                                        for r in valores])
+    if repite_de:
+        spec["repite_de"] = repite_de
+    spec["spec_md_sha256"] = _sha(d / "spec.md")
+    (d / "spec.yaml").write_text(yaml.safe_dump(spec, allow_unicode=True), encoding="utf-8")
+    ejec = {"corrida_id": f"{cid}--fixture", "spec_id": cid,
+            "git_commit": "0" * 40, "script_path": spec["script"],
+            "script_blob_sha256": C._sha256_archivo(medidor),
+            "spec_yaml_sha256": C._sha256_archivo(d / "spec.yaml"),
+            "input_ids": [], "input_sha256": {}, "exit_code": 0,
+            "fecha": "2026-09-08T00:00:00Z", "parametros": spec["parametros"],
+            "seed": spec["seed"], "resultado_ids": sorted(valores)}
+    if sin_hash:
+        ejec.pop(sin_hash, None)
+    C._escribe_json(d / "ejecucion.json", ejec)
+    C._escribe_json(d / "resultados.json", {"spec_id": cid, "resultados": valores})
+    if sin_sello:
+        return
+    C._escribe_json(d / "sello.json", C._construye_sello(d, spec))
+    subprocess.run([sys.executable, str(C.SELLA_PY), str(d / "sello.json")],
+                   check=True, capture_output=True)
+
+
+@contextlib.contextmanager
+def _arbol_registro(res=None, corr=None, calcs=(), tramite=None):
+    """Monta demanda + oferta en un temporal y re-apunta `corrida0` ahi.
+    Restaura SIEMPRE: ningun caso escribe en `data/corrida0/`."""
+    import yaml
+    tmp = Path(tempfile.mkdtemp(prefix="registro-test-"))
+    previos = {k: getattr(C, k) for k in
+               ("CORRIDAS", "DEMANDA_RESULTADOS", "DEMANDA_CORRIDAS",
+                "NO_CORRIDO_TSV", "TRAMITE", "PROCEDENCIA")}
+    C.CORRIDAS = tmp
+    C.DEMANDA_RESULTADOS = tmp / "demanda-resultados.tsv"
+    C.DEMANDA_CORRIDAS = tmp / "demanda-corridas.tsv"
+    C.NO_CORRIDO_TSV = tmp / "no-corrido.tsv"
+    C.TRAMITE = tmp / "tramite.yaml"
+    C.PROCEDENCIA = tmp / "procedencia-ausente.yaml"
+    C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS, res or [])
+    C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS, corr or [])
+    C.TRAMITE.write_text(yaml.safe_dump(tramite or {"reglas": []},
+                                        allow_unicode=True), encoding="utf-8")
+    for c in calcs:
+        _sella_calc_fixture(tmp / c["calc_id"], c["calc_id"], c.get("valores", {}),
+                            c.get("etiquetas", {}), c.get("decl_res"),
+                            c.get("sin_sello", False), c.get("sin_hash"),
+                            c.get("repite_de"))
+    try:
+        yield tmp
+    finally:
+        for k, v in previos.items():
+            setattr(C, k, v)
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def _paro_de(**kw) -> str:
+    """Corre `registro` sobre el fixture y devuelve el texto del PARO (o ''
+    si no paro). Ningun caso escribe vistas: `escribe=False`."""
+    with _arbol_registro(**kw):
+        try:
+            C.registro(escribe=False, imprime=False)
+        except C.ParoRegistro as exc:
+            return str(exc)
+    return ""
+
+
+def t_registro_punta_a_punta():
+    """T-REGISTRO-E2E. Demanda + oferta -> tres vistas, con la cabecera
+    `# DERIVADO — NO EDITAR`, las columnas declaradas y bytes IDENTICOS en
+    dos derivaciones seguidas (mismo criterio que `cmd_demanda`)."""
+    caso = "T-REGISTRO-E2E"
+    res = [_fila_demanda("RES-0001", "milpa/tramite.yaml:r.uno:c1", "CORR-0001")]
+    corr = [_fila_corrida("CORR-0001", ["RES-0001"])]
+    calcs = [{"calc_id": "CALC-FIX-0001", "valores": {"RESULT-A": 1.5},
+              "etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI"}}]
+    with _arbol_registro(res=res, corr=corr, calcs=calcs) as tmp:
+        C.VISTA_CORRIDAS = tmp / "corridas.tsv"
+        C.VISTA_RESULTADOS = tmp / "resultados.tsv"
+        C.VISTA_USOS = tmp / "usos.tsv"
+        try:
+            v = C.registro(escribe=True, imprime=False)
+            primeros = {p.name: p.read_bytes() for p in
+                        (C.VISTA_CORRIDAS, C.VISTA_RESULTADOS, C.VISTA_USOS)}
+            C.registro(escribe=True, imprime=False)
+            segundos = {p.name: p.read_bytes() for p in
+                        (C.VISTA_CORRIDAS, C.VISTA_RESULTADOS, C.VISTA_USOS)}
+            _afirma(primeros == segundos, caso,
+                    "dos derivaciones seguidas no dieron bytes identicos")
+            texto = C.VISTA_CORRIDAS.read_text(encoding="utf-8").splitlines()
+            _afirma(texto[0] == C.CABECERA_DERIVADO, caso,
+                    f"cabecera inesperada: {texto[0]!r}")
+            _afirma(texto[1].split("\t") == C.COLS_VISTA_CORRIDAS, caso,
+                    "las columnas de corridas.tsv no son las declaradas")
+        finally:
+            C.VISTA_CORRIDAS = C.CORRIDAS / "corridas.tsv"
+            C.VISTA_RESULTADOS = C.CORRIDAS / "resultados.tsv"
+            C.VISTA_USOS = C.CORRIDAS / "usos.tsv"
+    _afirma(len(v["corridas"]) == 2 and len(v["resultados"]) == 2, caso,
+            f"vistas con tamano inesperado: {len(v['corridas'])}/{len(v['resultados'])}")
+    _afirma(len(v["usos"]) == 1, caso, f"usos={len(v['usos'])}")
+
+
+def t_registro_para_id_duplicado():
+    """T-REGISTRO-PARA-DUPLICADO. Dos filas con el mismo id PARAN; el mismo
+    RESULT en una cadena `repite_de` NO -- repetir ids es lo que significa
+    replicar, y confundir las dos cosas volveria imposible todo replay."""
+    caso = "T-REGISTRO-PARA-DUPLICADO"
+    res = [_fila_demanda("RES-0001", "c:uno:a", "CORR-0001"),
+           _fila_demanda("RES-0001", "c:dos:b", "CORR-0001")]
+    corr = [_fila_corrida("CORR-0001", ["RES-0001"])]
+    p = _paro_de(res=res, corr=corr)
+    _afirma("ID-DUPLICADO" in p, caso, f"no paro por id duplicado: {p!r}")
+
+    calcs = [{"calc_id": "CALC-FIX-A", "valores": {"RESULT-A": 1.0},
+              "etiquetas": {"cuenta_gen2": "NO", "generacion": "LEGACY-GEN1"}},
+             {"calc_id": "CALC-FIX-B", "valores": {"RESULT-A": 1.0},
+              "etiquetas": {"cuenta_gen2": "NO", "generacion": "LEGACY-GEN1"},
+              "repite_de": "CALC-FIX-A"}]
+    p2 = _paro_de(calcs=calcs)
+    _afirma(p2 == "", caso, f"un replay declarado paro por id repetido: {p2!r}")
+
+
+def t_registro_para_cadena_rota():
+    """T-REGISTRO-PARA-CADENA. Las validaciones bloqueantes del plan §5 que
+    describen una cadena rota: RESULT sin CALC, CALC sin spec, RESULT sin
+    sello, hash ausente en un CALC que CUENTA, y ciclo."""
+    caso = "T-REGISTRO-PARA-CADENA"
+    p = _paro_de(res=[_fila_demanda("RES-0001", "c:uno:a", "CORR-FANTASMA")],
+                 corr=[_fila_corrida("CORR-0001", ["RES-0001"])])
+    _afirma("RESULT-SIN-CALC" in p, caso, f"RESULT sin CALC no paro: {p!r}")
+
+    with _arbol_registro() as tmp:
+        (tmp / "CALC-FIX-SINSPEC").mkdir()
+        try:
+            C.registro(escribe=False, imprime=False)
+            _falla(caso, "un CALC sin spec.yaml no paro")
+        except C.ParoRegistro as exc:
+            _afirma("CALC-SIN-SPEC" in str(exc), caso, f"paro inesperado: {exc}")
+
+    p = _paro_de(calcs=[{"calc_id": "CALC-FIX-NS", "valores": {"RESULT-A": 1.0},
+                         "etiquetas": {"cuenta_gen2": "SI"}, "sin_sello": True}])
+    _afirma("RESULT-SIN-SELLO" in p, caso, f"RESULT sin sello no paro: {p!r}")
+
+    p = _paro_de(calcs=[{"calc_id": "CALC-FIX-SH", "valores": {"RESULT-A": 1.0},
+                         "etiquetas": {"cuenta_gen2": "SI"},
+                         "sin_hash": "spec_yaml_sha256"}])
+    _afirma("HASH-AUSENTE" in p, caso, f"hash ausente no paro: {p!r}")
+
+    # El mismo hueco en un replay LEGACY-GEN1 AVISA y no para: es el caso
+    # real de `CALC-SMOKE-0001`, sellado antes del esquema endurecido.
+    p = _paro_de(calcs=[{"calc_id": "CALC-FIX-LEG", "valores": {"RESULT-A": 1.0},
+                         "etiquetas": {"cuenta_gen2": "NO",
+                                       "generacion": "LEGACY-GEN1"},
+                         "sin_hash": "spec_yaml_sha256"}])
+    _afirma(p == "", caso, f"un legado sin hash paro en vez de avisar: {p!r}")
+
+    ciclo = [_fila_demanda("RES-0001", "c:uno:a", "CORR-0001", depende_de="RES-0002"),
+             _fila_demanda("RES-0002", "c:dos:b", "CORR-0001", depende_de="RES-0001")]
+    p = _paro_de(res=ciclo, corr=[_fila_corrida("CORR-0001", ["RES-0001", "RES-0002"])])
+    _afirma("CICLO" in p, caso, f"el ciclo no paro: {p!r}")
+
+
+def _tramite_con_marca(regla: str, conducta: str, rid: str, valor):
+    return {"reglas": [{"id": regla, "entonces": [
+        {"conducta": conducta, "p": valor, "corrida0_resultado_id": rid}]}]}
+
+
+def t_registro_para_consumidor_gen2_roto():
+    """T-REGISTRO-PARA-CONSUMIDOR. Un consumidor que ya declara
+    `corrida0_resultado_id` y apunta a un RESULT inexistente, o a uno
+    LEGACY-GEN1, PARA. Es la puerta por la que se colaria una cifra GEN1
+    con rotulo de nueva."""
+    caso = "T-REGISTRO-PARA-CONSUMIDOR"
+    with _arbol_registro(tramite=_tramite_con_marca("r.uno", "c1", "RESULT-FANTASMA", 0.5)) as tmp:
+        consumidor = f"{C._rel(C.TRAMITE)}:r.uno:c1"
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                   [_fila_demanda("RES-0001", consumidor, "CORR-0001")])
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                   [_fila_corrida("CORR-0001", ["RES-0001"])])
+        try:
+            C.registro(escribe=False, imprime=False)
+            _falla(caso, "un corrida0_resultado_id inexistente no paro")
+        except C.ParoRegistro as exc:
+            _afirma("USO-A-RESULT-INEXISTENTE" in str(exc), caso, f"paro: {exc}")
+
+    calcs = [{"calc_id": "CALC-FIX-LEG", "valores": {"RESULT-L": 1.0},
+              "etiquetas": {"cuenta_gen2": "NO", "generacion": "LEGACY-GEN1"}}]
+    with _arbol_registro(calcs=calcs,
+                         tramite=_tramite_con_marca("r.uno", "c1", "RESULT-L", 1.0)) as tmp:
+        consumidor = f"{C._rel(C.TRAMITE)}:r.uno:c1"
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                   [_fila_demanda("RES-0001", consumidor, "CORR-0001")])
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                   [_fila_corrida("CORR-0001", ["RES-0001"])])
+        try:
+            C.registro(escribe=False, imprime=False)
+            _falla(caso, "un consumidor activo apuntando a LEGACY no paro")
+        except C.ParoRegistro as exc:
+            _afirma("CONSUMIDOR-ACTIVO-A-LEGACY" in str(exc), caso, f"paro: {exc}")
+
+
+def t_registro_avisa_sin_parar():
+    """T-REGISTRO-AVISA. Los tres avisos del plan §5 avisan y NO paran:
+    un RESULT sin consumidor, un CALC sellado que nadie cita, y un legado
+    sin sucesor que alguien SI lee."""
+    caso = "T-REGISTRO-AVISA"
+    calcs = [{"calc_id": "CALC-FIX-0001", "valores": {"RESULT-A": 1.0},
+              "etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI"}}]
+    with _arbol_registro(calcs=calcs):
+        v = C.registro(escribe=False, imprime=False)
+    avisos = " · ".join(v["avisos"])
+    _afirma("RESULT-SIN-CONSUMIDOR" in avisos, caso, f"avisos={avisos}")
+    _afirma("CALC-SIN-CONSUMIDOR-ACTIVO" in avisos, caso, f"avisos={avisos}")
+
+
+def t_registro_estado_superado():
+    """T-REGISTRO-SUPERADO. `repite_de` produce `SUPERADO→<sucesor>` en la
+    corrida vieja y deja la nueva SELLADA -- el campo `estado` del encargo."""
+    caso = "T-REGISTRO-SUPERADO"
+    calcs = [{"calc_id": "CALC-FIX-A", "valores": {"RESULT-A": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}},
+             {"calc_id": "CALC-FIX-B", "valores": {"RESULT-A": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"},
+              "repite_de": "CALC-FIX-A"}]
+    with _arbol_registro(calcs=calcs):
+        v = C.registro(escribe=False, imprime=False)
+    por_spec = {f["spec_id"]: f for f in v["corridas"] if f["origen"] == "OFERTA"}
+    _afirma(por_spec["CALC-FIX-A"]["estado"] == "SUPERADO→CALC-FIX-B", caso,
+            f"estado={por_spec['CALC-FIX-A']['estado']}")
+    _afirma(por_spec["CALC-FIX-B"]["estado"] == "SELLADA", caso,
+            f"estado={por_spec['CALC-FIX-B']['estado']}")
+
+
+def t_status_cifras_derivadas():
+    """T-STATUS. Los contadores de §9 salen de las vistas, no de un TSV en
+    disco, y un replay LEGACY-GEN1 NUNCA incrementa `N_resultados_sellados`
+    (regla explicita del plan)."""
+    caso = "T-STATUS"
+    res = [_fila_demanda(f"RES-000{i}", f"c:r{i}:x", "CORR-0001") for i in (1, 2, 3)]
+    corr = [_fila_corrida("CORR-0001", ["RES-0001", "RES-0002", "RES-0003"])]
+    calcs = [{"calc_id": "CALC-FIX-SMOKE", "valores": {"RESULT-S": 1.0},
+              "etiquetas": {"cuenta_gen2": "NO", "generacion": "LEGACY-GEN1"}},
+             {"calc_id": "CALC-FIX-GEN2", "valores": {"RESULT-G1": 1.0, "RESULT-G2": 2.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}}]
+    with _arbol_registro(res=res, corr=corr, calcs=calcs):
+        c = C.status(imprime=False)
+    esperado = {"N_corridas_requeridas": 1, "N_corridas_selladas": 1,
+                "N_resultados_activos": 3, "N_resultados_sellados": 2,
+                "N_resultados_pendientes": 3,
+                "dependencias_numericas_legacy_activas": 3,
+                "resultados_con_validacion_independiente": 0,
+                "diferencias_materiales": 0, "no_corrido_abiertas": 0,
+                "replays_legacy_sellados": 1}
+    for k, v in esperado.items():
+        _afirma(c[k] == v, caso, f"{k}={c[k]}, esperado {v}")
+
+
+def t_status_arbol_real_no_cuenta_smokes():
+    """T-STATUS-SMOKES. Sobre el arbol DE VERDAD: los dos replays sellados
+    existen, estan contados aparte, y no suben ni una unidad de GEN2. Es la
+    cifra que el encargo declara -- `0 / N` es correcto, no un error."""
+    caso = "T-STATUS-SMOKES"
+    c = C.status(imprime=False)
+    _afirma(c["replays_legacy_sellados"] >= 2, caso,
+            f"replays sellados={c['replays_legacy_sellados']} (se esperaban >=2)")
+    _afirma(c["N_corridas_selladas"] == 0, caso,
+            f"N_corridas_selladas={c['N_corridas_selladas']}: un replay GEN1 conto como GEN2")
+    _afirma(c["N_resultados_sellados"] == 0, caso,
+            f"N_resultados_sellados={c['N_resultados_sellados']}: un replay GEN1 conto como GEN2")
+    _afirma(c["N_resultados_activos"] == c["dependencias_numericas_legacy_activas"], caso,
+            "hoy toda dependencia activa es legacy: ningun consumidor declara "
+            "corrida0_resultado_id todavia")
+
+
+def t_repro_atrapa_valor_movido():
+    """T-REPRO-ATRAPA. El test de `check.py` es de AVISO, no de adorno: si
+    alguien mueve la cifra materializada sin mover el RESULT, `registro`
+    resuelve la cadena y la comparacion POR TIPO da distinto. Sin este caso,
+    `T35` seria un test que no puede fallar."""
+    caso = "T-REPRO-ATRAPA"
+    calcs = [{"calc_id": "CALC-FIX-G", "valores": {"RESULT-G": 0.5},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}}]
+    for valor, espera_igual in ((0.5, True), (0.9, False)):
+        with _arbol_registro(calcs=calcs,
+                             tramite=_tramite_con_marca("r.uno", "c1", "RESULT-G", valor)):
+            consumidor = f"{C._rel(C.TRAMITE)}:r.uno:c1"
+            C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                       [_fila_demanda("RES-0001", consumidor, "CORR-0001")])
+            C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                       [_fila_corrida("CORR-0001", ["RES-0001"])])
+            v = C.registro(escribe=False, imprime=False)
+        uso = [u for u in v["usos"] if u["corrida0_resultado_id"] == "RESULT-G"]
+        _afirma(len(uso) == 1, caso, f"el uso GEN2 no se derivo: {uso}")
+        destino = [f for f in v["resultados"] if f["resultado_id"] == "RESULT-G"][0]
+        igual, delta = C._compara_result(destino["valor"], uso[0]["valor_materializado"],
+                                         {"tipo": destino["tipo"]},
+                                         json.loads(destino["tolerancia"]))
+        _afirma(igual is espera_igual, caso,
+                f"valor materializado {valor}: igual={igual} delta={delta}")
+
+
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]
 
 
