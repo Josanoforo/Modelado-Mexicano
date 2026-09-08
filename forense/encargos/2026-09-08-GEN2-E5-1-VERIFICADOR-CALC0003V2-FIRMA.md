@@ -25,3 +25,11 @@ PERÍMETRO: tools/corrida0.py (solo _evalua_contexto y _compara_result) · tests
 - **`P2` se ejecutó con la premisa corregida, no con la del encargo.** El encargo manda filtrar «filas **totalmente vacías**» de `c_portad.dta`; de ésas hay **cero**. Implementarlo al pie de la letra habría descartado cero filas y `CALC-0003-v2` habría vuelto a parar igual que v1. Se filtró por la **llave de join ausente**, que es lo que rompe el merge, y la divergencia se declara en la cabecera de `spec.yaml`, en `spec.md §0`, en `COMMIT-1` y en la nota.
 - **`sucesor_de` → `repite_de`.** El encargo pide `sucesor_de: CALC-0003`; ninguna función lo lee. El campo mecánico es `repite_de` (`tools/corrida0.py:2699`), único que deriva `SUPERADO→` y autoriza repetir los 128 ids. Se escribió ése y se declaró la equivalencia, en vez de añadir un campo inerte que pareciera cableado.
 - **La compuerta se cumplió en la segunda lectura, no en la primera.** `main` se movió durante el ARRANQUE. Se declara el movimiento en vez de reportar cualquiera de las dos lecturas como estado final.
+
+## CONSUMIDO
+
+Ejecutado por **`PR #634`** (`ACTO GEN2-E5-1 · VERIFICADOR REPARADO + CALC-0003-v2 + LA FIRMA DEL CONTADOR`), `ADR-411`, 8/sep/2026, UBUNTU (caja) con corpus montado, Opus.
+
+Commits: `d8c62f8` (0-bis A.3) · `9501160` (P1) · `cdebb60` (COMMIT-1) · `eeceb25` (COMMIT-2) · `d598210` (cascada) · `a8793a7` (COMMIT-3, corrige la contaminación del control positivo) · `8e59706` (FP-359) · `1128ddf` (A.14).
+
+Piezas: **`P1` ejecutada** (`FP-353`/`FP-354` → `EJECUTADA`; 83 de 83 `RESULT` GEN2 reproducen; `FP-358` nueva por lo que no llegó) · **`P2` ejecutada** con la premisa corregida contra el archivo (`CALC-0003-v2` SELLADA, 128 `RESULT`, `verify REPRODUCE` 128/128, `FP-355` → `EJECUTADA`, `NC-0044` cerrada) · **`P3` ejecutada** (`NC-0047` cerrada; reserva `NC-0050`) · **`P4` NO escribió** — la firma de mesa no viajó en el mensaje (`NC-0049`) · **`P5` no se corrió** — `delta` está declarado y vacío, y la respuesta medida a la pregunta de mesa es `SIN-BASE-COMPARABLE` para los 211 (`NC-0048`).
