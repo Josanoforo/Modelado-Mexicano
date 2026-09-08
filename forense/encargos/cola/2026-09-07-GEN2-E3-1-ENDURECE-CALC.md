@@ -1,8 +1,9 @@
-ESTADO: LISTO-NUBE
+ESTADO: EN-CURSO
 ENTORNO: NUBE
 ENCOLADO: 2026-09-08 · ACTO GEN2-T7-CIERRE reemplaza este encargo por "E3.1 · ACTO GEN2-E3-1 · READINESS DEL RUNNER" v1.3, texto de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa} (adjunto por el operador). Sustituye a la versión "ENDURECE-CALC" v1.2 encolada por GEN2-T7.
 BITACORA:
 - 2026-09-08 · LISTO-NUBE. Sustituye a la v1.2 (ENDURECE-CALC) porque dirección emitió `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa}, que reordena la automatización antes de los cálculos: la auditoría de readiness del 7/sep encontró que el runner necesita los doce cables (P1–P6, resolver de payload único, contrato ejecutable normalizado, outputs validados, inmutabilidad y sello completo, verify en dos ejes, tests+smokes+CI) antes de medir, no solo los cuatro defectos originales que ENDURECE-CALC atendía. COMPUERTA por producto: `git show origin/main:data/corrida0/decisiones.tsv | grep -c FP-339` ≥ 1 — TRÁMITE-7 ya está fusionado/ejecutado en esta rama (commit `fc63f66`, fix T27 en `4f4bee6`), así que la compuerta está satisfecha en cuanto esta rama se fusione a `main`; se deja `LISTO-NUBE` en vez de `GATEADO` porque el producto que la compuerta exige ya existe en el árbol de esta misma rama de cierre.
+- 2026-09-08 · EN-CURSO · sesión de nube claude/corrida0-readiness-refactor-flo8hm
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 
