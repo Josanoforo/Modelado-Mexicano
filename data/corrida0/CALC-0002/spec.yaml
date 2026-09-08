@@ -1,0 +1,154 @@
+# CALC-0002 -- cara mecanica de spec.md (ACTO GEN2-E5-0 · SPECS EJECUTABLES).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/S13-R10-3-spec-v1_0.md. RUTA (c) del encargo: el
+# desenlace de denuncia NO existe en ninguna de las tres olas (verificado
+# contra codebook, spec.md §1), asi que veredicto_D2h = NO-CONSTRUIBLE y solo
+# se pre-registran outputs DESCRIPTIVOS. S13 v1.1 NO se escribe.
+# CONGELADO en el COMMIT-1 de GEN2-E5-0. Lo corre GEN2-E5.
+calc_id: CALC-0002
+spec_md: spec.md
+spec_md_sha256: 4f08b62370731d6223313e897741f33e93eb6fcda89025a019f6285d169d586e
+
+script: data/corrida0/CALC-0002/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MARGINAL-ANTECEDENTE-S13
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/S13-R10-3-spec-v1_0.md
+  spec_sellada_sha256: c41235b804b0834881b7d3467e25ab0b74946fc03ba14245918e9c7a2e69a515
+  reglas_bajo_prueba: "R10.3 (NO se mueve: este CALC no la falsa, mide su antecedente)"
+  medidor_ejecutado_en_e5_0: "NO -- escrito y congelado, nunca corrido"
+
+inputs:
+  - id: mexico_lapop_americasbarometer_2019_v1_0_w
+    origen: manifiesto
+  - id: mex_2021_lapop_americasbarometer_v1_2_w
+    origen: manifiesto
+  - id: mex_2023_lapop_americasbarometer_v1_0_w
+    origen: manifiesto
+  - id: IN-S13-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/S13-R10-3-spec-v1_0.md
+    sha256: c41235b804b0834881b7d3467e25ab0b74946fc03ba14245918e9c7a2e69a515
+
+variables:
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: aoj11, rol: "[2019] indicador de contexto -- inseguridad en el barrio", codigos: "1=Muy seguro 2=Algo seguro 3=Algo inseguro 4=Muy inseguro", direccion: "inseguridad = {3,4}"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: b18, rol: "[2019] indicador de contexto -- confianza en la policia", codigos: "1=Nada … 7=Mucho", direccion: "desconfianza = {1,2,3} (mitad inferior)"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: aoj12, rol: "[2019] indicador de contexto -- confianza en que castiguen", codigos: "1=Mucho 2=Algo 3=Poco 4=Nada", direccion: "desconfianza = {3,4}"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: vic1ext, rol: "[2019] filtro de universo (ex-vic1, renombrada)", codigos: "1=Si · 2=No"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: wt, rol: "[2019] ponderador", etiqueta: "Peso del pais (2019) / Peso de la muestra (2021, 2023)"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: estratopri, rol: "[2019] estrato", codigos: "101=Norte 102=Centro Occidente 103=Centro 104=Sur"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: upm, rol: "[2019] UPM", etiqueta: "Unidad Primaria de Muestreo"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: aoj11, rol: "[2021] indicador de contexto -- inseguridad en el barrio", codigos: "1=Muy seguro 2=Algo seguro 3=Algo inseguro 4=Muy inseguro", direccion: "inseguridad = {3,4}"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: b18, rol: "[2021] indicador de contexto -- confianza en la policia", codigos: "1=Nada … 7=Mucho", direccion: "desconfianza = {1,2,3} (mitad inferior)"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: vic1ext, rol: "[2021] filtro de universo (ex-vic1, renombrada)", codigos: "1=Si · 2=No"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: wt, rol: "[2021] ponderador", etiqueta: "Peso del pais (2019) / Peso de la muestra (2021, 2023)"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: estratopri, rol: "[2021] estrato", codigos: "101=Norte 102=Centro Occidente 103=Centro 104=Sur"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: upm, rol: "[2021] UPM", etiqueta: "Unidad Primaria de Muestreo"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: aoj11, rol: "[2023] indicador de contexto -- inseguridad en el barrio", codigos: "1=Muy seguro 2=Algo seguro 3=Algo inseguro 4=Muy inseguro", direccion: "inseguridad = {3,4}"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: b18, rol: "[2023] indicador de contexto -- confianza en la policia", codigos: "1=Nada … 7=Mucho", direccion: "desconfianza = {1,2,3} (mitad inferior)"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: aoj12, rol: "[2023] indicador de contexto -- confianza en que castiguen", codigos: "1=Mucho 2=Algo 3=Poco 4=Nada", direccion: "desconfianza = {3,4}"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: vic1ext, rol: "[2023] filtro de universo (ex-vic1, renombrada)", codigos: "1=Si · 2=No"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: wt, rol: "[2023] ponderador", etiqueta: "Peso del pais (2019) / Peso de la muestra (2021, 2023)"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: estratopri, rol: "[2023] estrato", codigos: "101=Norte 102=Centro Occidente 103=Centro 104=Sur"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: upm, rol: "[2023] UPM", etiqueta: "Unidad Primaria de Muestreo"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: weight1500, rol: "[2021] NO SE USA -- nombre de peso, etiqueta de estrato", etiqueta: "Estratos de muestra"}
+
+universo: >-
+  Victimas de delito en los ultimos 12 meses (vic1ext = 1) de cada ola de LAPOP
+  AmericasBarometer Mexico, UNA OLA A LA VEZ y nunca agrupadas (S13 §2: disenos
+  muestrales y preguntas de antecedente no identicos entre olas).
+
+filtros: >-
+  vic1ext = 1. Missing extendidos de Stata (.a No sabe, .b No responde, .c No
+  aplica) llegan como NaN y quedan fuera -- no son un cero. El indice exige los
+  TRES indicadores no faltantes en el mismo caso (sin imputacion).
+
+ponderador: >-
+  wt en las tres olas. NO se usa weight1500 (nombre de peso, etiqueta de
+  estrato) ni strata (nombre de estrato, etiqueta de peso) -- spec.md §2.
+
+transformacion: >-
+  INDICE_CONTEXTO = suma de tres indicadores dicotomicos (aoj11 en {3,4}, b18 en
+  {1,2,3}, aoj12 en {3,4}); ALTO = indice >= 2 (el "2 o 3 de 3" de S13 §1 /
+  S8 §3), BAJO = 0 o 1. En 2021, aoj12 esta AUSENTE: el corte de 3 no existe y
+  la celda sale NO-ESTIMABLE-INDICE-INCOMPLETO -- no se fabrica un corte de 2.
+
+estimando: >-
+  Proporcion ponderada de ALTO sobre el subuniverso de victimas, por ola, con
+  IC95. Es un MARGINAL DEL ANTECEDENTE: no falsa R10.3 y no dispara el
+  se_mueve_si de D2-h (S13 §2, explicito).
+
+dependencias_materiales: [pyreadstat, numpy]
+
+parametros:
+  fuente_acto: "ACTO GEN2-E5-0 · SPECS EJECUTABLES · CALC-0002"
+  ruta_encargo: "c -- desenlace de denuncia inexistente en las tres olas; S13 v1.1 no se escribe"
+  veredicto_D2h: NO-CONSTRUIBLE
+  ponderador: wt
+  estrato: estratopri
+  upm: upm
+  filtro_universo: vic1ext
+  codigos_victima: [1]
+  corte_alto: 2
+  indicadores_exigidos: 3
+  n_minimo_celda: 10
+  bootstrap_replicas: 2000
+  olas:
+    - ["2019", mexico_lapop_americasbarometer_2019_v1_0_w]
+    - ["2021", mex_2021_lapop_americasbarometer_v1_2_w]
+    - ["2023", mex_2023_lapop_americasbarometer_v1_0_w]
+  indicadores:
+    - [aoj11, [3, 4]]
+    - [b18,   [1, 2, 3]]
+    - [aoj12, [3, 4]]
+  metodo_ic: "bootstrap de upm dentro de estratopri, percentil 2.5/97.5"
+  ranura_no_preregistrada_por_S13: >-
+    S13 §2 exige IC95 y no pre-registra el metodo. El bootstrap es eleccion del
+    ejecutor sobre ranura vacia, declarada y elevada a mesa.
+
+seed:
+  aplica: true
+  valor: 20260908
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed+rng declarados; la unica diferencia esperable
+    entre dos corridas del mismo arbol es redondeo de float64 al reasociar
+    sumas ponderadas. Los enteros se comparan EXACTO.
+
+resultados:
+  - {id: RESULT-CTX-2019-P-ALTO,        tipo: proporcion, unidad: "proporcion ponderada de INDICE_CONTEXTO ALTO entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2019-IC-LO,         tipo: flotante,   unidad: "limite inferior IC95 de P-ALTO", permite_no_estimable: true}
+  - {id: RESULT-CTX-2019-IC-HI,         tipo: flotante,   unidad: "limite superior IC95 de P-ALTO", permite_no_estimable: true}
+  - {id: RESULT-CTX-2019-N-UNIVERSO,    tipo: entero,     unidad: "victimas (vic1ext=1) con ponderador valido en la ola"}
+  - {id: RESULT-CTX-2019-N-INDICADORES, tipo: entero,     unidad: "indicadores de contexto presentes en la ola (de 3)"}
+  - {id: RESULT-CTX-2019-MARGINAL-AOJ11, tipo: proporcion, unidad: "marginal ponderado del indicador entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2019-MARGINAL-B18, tipo: proporcion, unidad: "marginal ponderado del indicador entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2019-MARGINAL-AOJ12, tipo: proporcion, unidad: "marginal ponderado del indicador entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2019-VEREDICTO,     tipo: texto,      unidad: "MARGINAL-REPORTADO / NO-ESTIMABLE / NO-ESTIMABLE-INDICE-INCOMPLETO"}
+  - {id: RESULT-CTX-2021-P-ALTO,        tipo: proporcion, unidad: "proporcion ponderada de INDICE_CONTEXTO ALTO entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2021-IC-LO,         tipo: flotante,   unidad: "limite inferior IC95 de P-ALTO", permite_no_estimable: true}
+  - {id: RESULT-CTX-2021-IC-HI,         tipo: flotante,   unidad: "limite superior IC95 de P-ALTO", permite_no_estimable: true}
+  - {id: RESULT-CTX-2021-N-UNIVERSO,    tipo: entero,     unidad: "victimas (vic1ext=1) con ponderador valido en la ola"}
+  - {id: RESULT-CTX-2021-N-INDICADORES, tipo: entero,     unidad: "indicadores de contexto presentes en la ola (de 3)"}
+  - {id: RESULT-CTX-2021-MARGINAL-AOJ11, tipo: proporcion, unidad: "marginal ponderado del indicador entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2021-MARGINAL-B18, tipo: proporcion, unidad: "marginal ponderado del indicador entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2021-MARGINAL-AOJ12, tipo: proporcion, unidad: "marginal ponderado del indicador entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2021-VEREDICTO,     tipo: texto,      unidad: "MARGINAL-REPORTADO / NO-ESTIMABLE / NO-ESTIMABLE-INDICE-INCOMPLETO"}
+  - {id: RESULT-CTX-2023-P-ALTO,        tipo: proporcion, unidad: "proporcion ponderada de INDICE_CONTEXTO ALTO entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2023-IC-LO,         tipo: flotante,   unidad: "limite inferior IC95 de P-ALTO", permite_no_estimable: true}
+  - {id: RESULT-CTX-2023-IC-HI,         tipo: flotante,   unidad: "limite superior IC95 de P-ALTO", permite_no_estimable: true}
+  - {id: RESULT-CTX-2023-N-UNIVERSO,    tipo: entero,     unidad: "victimas (vic1ext=1) con ponderador valido en la ola"}
+  - {id: RESULT-CTX-2023-N-INDICADORES, tipo: entero,     unidad: "indicadores de contexto presentes en la ola (de 3)"}
+  - {id: RESULT-CTX-2023-MARGINAL-AOJ11, tipo: proporcion, unidad: "marginal ponderado del indicador entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2023-MARGINAL-B18, tipo: proporcion, unidad: "marginal ponderado del indicador entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2023-MARGINAL-AOJ12, tipo: proporcion, unidad: "marginal ponderado del indicador entre victimas [0,1]", permite_no_estimable: true}
+  - {id: RESULT-CTX-2023-VEREDICTO,     tipo: texto,      unidad: "MARGINAL-REPORTADO / NO-ESTIMABLE / NO-ESTIMABLE-INDICE-INCOMPLETO"}
+  - {id: RESULT-VEREDICTO-D2H,  tipo: texto, unidad: "veredicto de la clausula D2-h: NO-CONSTRUIBLE con el corpus de hoy (no es 'se evaluo y no discrimino')"}
+  - {id: RESULT-RUTA-ENCARGO,   tipo: texto, unidad: "cual de las tres rutas (a)/(b)/(c) del encargo se tomo, y por que"}

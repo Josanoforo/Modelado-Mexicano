@@ -2627,6 +2627,17 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-E5-0 · SPECS EJECUTABLES, 8/sep/2026: encargo archivado
+    # VERBATIM (0-bis A.3) desde `forense/encargos/cola/`, que no se edita para
+    # complacer un test (misma regla que rige el resto de esta lista). El
+    # rótulo pelado que trae es `E5-0` -- el encabezado de su propio cuerpo,
+    # "## E5-0 · ACTO GEN2-E5-0 · SPECS EJECUTABLES", donde el prefijo `GEN2-`
+    # SÍ está en la forma canónica y falta sólo en el número de sección que la
+    # dirección usó al encolar. NO es un rótulo nuevo: `E · GEN2-E5-0` está
+    # censado en `canon/registro-rotulos.tsv:222` desde el 8/sep/2026 (lo
+    # censó `ACTO GEN2-T7-CIERRE` al encolarlo), y `E5-0` ya figura por la
+    # misma razón en las exenciones de `AUTO-MOTOR-1` y `GEN2-T9` de arriba.
+    "forense/encargos/2026-09-08-GEN2-E5-0-SPECS-EJECUTABLES.md",
     # ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita
     # "E5-0"/"E5"/"E6" pelados en el perímetro ("una revisión textual
