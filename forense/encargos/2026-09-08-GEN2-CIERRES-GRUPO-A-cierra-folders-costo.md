@@ -2,7 +2,7 @@ ENCARGO · ACTO GEN2-CIERRES-GRUPO-A · CIERRA LOS FÓLDERS CON COSTO, CON ESTAM
 
 Cabecera: NUBE (repo-only) · MODELO SUGERIDO: Sonnet (propagación de decisiones dictadas; subir permitido) · redactado contra `origin/main = fbce146d` · COMPUERTA: ninguna · CONCURRENCIA: E5 corre en caja — cero archivos comunes; este acto no toca `data/corrida0/`, `milpa/`, specs ni cola.
 
-Estado: VIVO
+Estado: CONSUMIDO
 
 ENTORNO ASIGNADO — y el que NO. NUBE (repo-only). NO se lanza en Ubuntu/caja: no descarga nada, no toca microdato, no corre `/adquiere`.
 
@@ -57,3 +57,5 @@ Lo que NO hace: no descarga nada · no toca Grupo C (`REGISTRO_DE_TANDAS_Y_REPUT
 ⚠️ (2) confirma que ninguna de las siete piezas está ya resuelta por otra vía: cada cierre es nuevo trabajo de clasificación, no una repetición.
 
 ## CONSUMIDO
+
+Ejecutado por el commit `a7af1e3` en la rama `claude/cierre-folders-costo-grupo-a-z6vtcf` (`ACTO GEN2-CIERRES-GRUPO-A`). Cascada: `data/curacion-registro/cola-adquisicion-registro.tsv` (7 filas via `tsv_crudo.upsert_fila`), `data/cola-adquisicion-v1_0.tsv` (vista regenerada), `data/curacion-registro/aliases-fuentes.tsv` (2 altas de hermana), `forense/firmas-pendientes.tsv` (`FP-286`/`FP-343` desglose actualizado), `forense/hallazgos.md` (8 líneas nuevas), `forense/notas/2026-09-08-GEN2-CIERRES-GRUPO-A-cierre.md`. `python3 tests/check.py --baseline` → LÍNEA BASE VERDE.
