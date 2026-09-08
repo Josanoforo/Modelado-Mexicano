@@ -328,6 +328,15 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
         f"El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas."
     )
     partes.append(
+        f"- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** "
+        f"sellados `{_v(I, 'gen2_N_resultados_gen2_sellados')}` · "
+        f"pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) "
+        f"`{_v(I, 'gen2_N_resultados_gen2_pendientes_adopcion')}` · "
+        f"adoptados por un consumidor activo `{_v(I, 'gen2_N_resultados_gen2_adoptados_activos')}`. "
+        f"Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: "
+        f"solo el consumidor activo que lo adopta la baja."
+    )
+    partes.append(
         "- **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, "
         "`forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, "
         "`data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, "

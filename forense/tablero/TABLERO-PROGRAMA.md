@@ -3,18 +3,30 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
 ## Estado vivo derivado
 
-- **Procedencia.** SHA `3d6dee3` · fecha del commit `2026-09-06` · ¿árbol == origin/main? `True`.
+- **Procedencia.** SHA `7a958b0` · fecha del commit `2026-09-07` · ¿árbol == origin/main? `True`.
 - **Motor.** reglas totales `21` · reglas con dato (>=1 conducta MEDIDO*) `20` · reglas sin dato `1` · conductas MEDIDO* `50` · tiers `{'FUERTE': 19, 'MEDIA': 2}`.
-- **Corredor.** marco vigente `marco-M-v1_2` (sorteado/congelado) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
-- **Corpus lógico.** entradas del manifiesto `1568` · filas de registro de curación `135` · filas de relaciones `228` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo `380` · FP máximo `330` · FP abiertas: FP-263, FP-303, FP-329 · encargos archivados `359` (consumidos `341`) · cola de encargos:
+- **Corredor.** marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
+- **Corpus lógico.** entradas del manifiesto `1569` · filas de registro de curación `135` · filas de relaciones `228` · filas del inventario de reactivos v1.2 `178247`.
+- **Gobernanza operativa.** ADR máximo `399` · FP máximo `346` · FP abiertas: FP-342, FP-343, FP-346 · encargos archivados `375` (consumidos `357`) · cola de encargos:
   - `2026-08-31-MAESTRA33-B2-MARCO-M-SORTEA-v1_1.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-L2-ARBITRA-v1_2.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-N3-AGREGA-2.md`: LISTO
   - `2026-09-01-MAESTRA34-N5-RE-EVALUA-OLA6.md`: CONSUMIDO
   - `2026-09-02-MAESTRA35-L10-OLA6-SALUD-L1.md`: LISTO
+  - `2026-09-07-ENCARGOS-GEN2-en-orden.md`: LISTO
+  - `2026-09-07-GEN2-E1-LIMPIEZA-C1.md`: LISTO
+  - `2026-09-07-GEN2-E2-C0-A-DEMANDA.md`: GATED
+  - `2026-09-07-GEN2-E3-1-ENDURECE-CALC.md`: CONSUMIDO
+  - `2026-09-07-GEN2-E3-AUTOMATIZA-GEN2-1.md`: CONSUMIDO
+  - `2026-09-07-GEN2-E4-LIMPIEZA-C2-PODA.md`: GATED
+  - `2026-09-07-GEN2-E5-0-SPECS-EJECUTABLES.md`: GATED
+  - `2026-09-07-GEN2-E5-CALC-0001-0003.md`: GATED
+  - `2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md`: CONSUMIDO
+  - `2026-09-07-GEN2-E7-READINESS-2.md`: LISTO
   - `2026-09-08-MAESTRA34-E1-REVISION-FALSADORES.md`: CONSUMIDO
+- **GEN2 (derivado de `corrida0 status`).** corridas selladas `0` / requeridas `79` · resultados sellados `0` / activos `162` · pendientes `162` · dependencias numéricas legacy activas `162` · validación independiente `0` · diferencias materiales `0` · NC- abiertas `12` · replays LEGACY-GEN1 sellados `2` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
+- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `0` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `0` · adoptados por un consumidor activo `0`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
 - **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, `data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `forense/encargos/*.md`, `forense/encargos/cola/*.md`.
 
 **Protocolo vigente.** La actualización factual de este bloque se hace con:
