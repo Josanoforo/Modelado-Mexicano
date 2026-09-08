@@ -23,3 +23,12 @@ CONTADOR: cero GEN2 — trámite. Lo que mueve: 3 FP cerradas + 1 sellada + 1 pa
 NO-CORRIDO / RESERVAS (plantilla mínima que el acto completa)
 La fusión de la nota `revisa-post-hoc-619` — DECISIÓN-DE-MESA-PENDIENTE (es un clic de mesa) — sucesor: mesa. La lista corta de P3(c) — DIFERIDO-A: conversación de mesa — sucesor: la propia mesa con la lista a la vista.
 Lo que NO hace: no fusiona nada · no lanza E5-0 (eso viaja en su propio mensaje de lanzamiento, firma D-1) · no toca CALC, cola, milpa ni specs · no reabre FP-166 ni ningún cierre previo (A.10 gobierna hacia adelante).
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** fusión (o cierre) de la nota/PR de `[REVISA]` post-hoc, rama `claude/revisa-post-hoc-619` (`PR #621`) — la mejora que propone (re-verificar el candado inmediatamente antes de escribir la huella) ya quedó instalada en `.claude/commands/despacha.md` §7-pre por este mismo acto, pero la rama/PR misma no se fusionó ni se cerró. **por qué:** DECISIÓN-DE-MESA-PENDIENTE. **impacto:** ninguno — la mejora concreta ya vive en el árbol; solo falta el clic de mesa sobre `PR #621`. **sucesor:** mesa (merge o cierre de `PR #621`) — `NC-0036`.
+- **qué:** las 10 filas VIVAS del cruce D-4 de FP-343/FP-286 (`HOMESCAN_CONSUMER_PANEL_SERVICES`, `PANEL_DE_COMPRA_DE_HOGARES`, `REGISTRO_DE_TANDAS_Y_REPUTACION`, `REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES`, `ENAFIN`, `PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND`, `OECD`, `PI`, `EXT_OF_07_CATALOGO_PROVEEDORES_S1_S3_S6`, `INEGI_CNGF`) — ninguna se cerró ni se ejecutó su receta; quedan devueltas a mesa con costo/desbloqueo explícito, no cerradas por decisión propia del acto. **por qué:** DIFERIDO-A:mesa. **impacto:** ninguno hoy — ningún resultado GEN2 sellado depende de estas 10 filas; el impacto es de cobertura de cola, no de contador. **sucesor:** mesa, en conversación, con la lista de `forense/notas/2026-09-08-GEN2-TRAMITE-FIRMAS-1-propaga-firmas.md` §3.c a la vista — `NC-0037`.
+
+## CONSUMIDO
+
+Ejecutado por `PR #627` (`ACTO GEN2-TRAMITE-FIRMAS-1 · PROPAGA-FIRMAS`), rama `claude/gen2-tramite-firmas-propagacion-y0au20`. Cascada de cierre: `ADR-407` (`canon/gobernanza-v1_15.md`), `L0` recifrado (`canon/estado-programa-v1_12.md`), rótulo `GEN2-TRAMITE-FIRMAS-1` censado en `canon/registro-rotulos.tsv`. `python3 tests/check.py --baseline` → LÍNEA BASE VERDE.
