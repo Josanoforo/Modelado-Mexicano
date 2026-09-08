@@ -124,7 +124,7 @@ El cierre debe indicar: causa corregida; tratamiento de cada clase; celdas efect
 
 Ejecutado por [`PR #623`](https://github.com/Josanoforo/Modelado-Mexicano/pull/623) — `ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA`, 8/sep/2026, entorno **NUBE, sin corpus ni red**, sobre `origin/main = 31c16c7` (rama `claude/new-session-l33kki`).
 
-Cascada: `ADR-403` · L0 (`canon/estado-programa-v1_12.md`, los tres contadores reconciliados por `tools/cierre_acto.py --aplica`) · `canon/registro-rotulos.tsv` (rótulo `AUTO-MOTOR-1` censado) · `forense/no-corrido.tsv` (`NC-0022` **CERRADA**, `NC-0023` **CERRADA**; `NC-0027` sigue `ABIERTA`, sucesor renombrado) · `forense/hallazgos.md` (dos entradas) · `tests/check.py` (`_T25_ARCHIVOS_CONOCIDOS`).
+Cascada: `ADR-404` (renumerado de `403` a `404` al fusionar `origin/main`: `ACTO AUTO-DIGESTO-1`, `PR #622`, fusionó primero y tomó el `403`; regla de la casa, renumera quien fusiona segundo) · L0 (`canon/estado-programa-v1_12.md`, los tres contadores reconciliados por `tools/cierre_acto.py --aplica`) · `canon/registro-rotulos.tsv` (rótulo `AUTO-MOTOR-1` censado) · `forense/no-corrido.tsv` (`NC-0022` **CERRADA**, `NC-0023` **CERRADA**; `NC-0027` sigue `ABIERTA`, sucesor renombrado) · `forense/hallazgos.md` (dos entradas) · `tests/check.py` (`_T25_ARCHIVOS_CONOCIDOS`).
 
 **P1.** `milpa/src/clases.py` reconoce `REFUTADO-POR-COTA` y `EVIDENCIA_EXPERIMENTAL_TERCEROS` por prefijo propio. `milpa/src/procedencia.py::_recorrer` corrige la ambigüedad de doble-`Entrada` (clase explícita vs. clase implícita del bloque) que el prefijo nuevo habría destapado; el prior refutado queda excluido de `consumibles()`. `EvidenciaTercerosIncompleta` valida `cita`/`llave_id` al cargar.
 
