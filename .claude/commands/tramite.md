@@ -97,11 +97,28 @@ python3 tools/digesto_tramite.py
 Escribe `forense/digesto/DIGESTO-<fecha>.md`. Es determinista y de solo
 lectura sobre el árbol: no toca nada fuera de `forense/digesto/`.
 
-Si sale con **código 2**, no escribió nada: su auto-verificación de
-marcadores detectó que un rótulo pelado o un marcador de `T22(b)`
-sobrevivió a la neutralización. Eso es un defecto de `tools/digesto_
-tramite.py`, y **arreglarlo está fuera de tu perímetro**: reporta la
-salida cruda y termina con cero commits.
+Si sale con **código 2**, no escribió nada. Dos causas posibles, ambas
+fuera de tu perímetro para reparar (reporta la salida cruda y termina con
+cero commits):
+- su auto-verificación de marcadores detectó que un rótulo pelado o un
+  marcador de `T22(b)` sobrevivió a la neutralización;
+- `forense/no-corrido.tsv` tiene cambios locales sin commitear (P1.6,
+  `ACTO AUTO-DIGESTO-1 · CAMBIOS-DESDE-EL-ULTIMO-CORTE`, 8/sep/2026): el
+  generador no puede atribuir ese contenido a ningún SHA de árbol en modo
+  publicación. Versiona el TSV primero (fuera de tu perímetro: eso lo
+  decide quien lo tocó) o, para una lectura de diagnóstico sin escribir,
+  usa `--stdout`.
+
+**Sección H, digesto incremental** (misma pieza): desde el 8/sep/2026 la
+sección H ya no vuelca todo `forense/no-corrido.tsv` como si fuera
+novedad -- compara por `id` contra el último digesto versionado en
+`forense/digesto/` y reporta NUEVA / CAMBIO-DE-ESTADO / MODIFICADA /
+AUSENTE-EN-CORTE-ACTUAL / SIN-CAMBIOS / `SIN-BASE-COMPARABLE`. Esto no
+cambia tu perímetro ni tus acciones: sigue siendo lectura, tú sigues sin
+decidir nada de lo que H nombre. `--base-nc-ref <sha>` es un flag de
+diagnóstico (nunca lo necesitas en la corrida normal): fuerza la
+comparación contra un SHA de árbol explícito en vez de auto-seleccionar
+el último digesto; una ref inválida es error, código 2, nada se escribe.
 
 Lee el digesto entero antes de seguir. Las cinco acciones del bloque 3
 se deciden con lo que dice, no con lo que recuerdas.
