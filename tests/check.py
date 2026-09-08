@@ -2644,10 +2644,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # de su propio cuerpo, "## E5 · ACTO GEN2-E5 · CALC-0001..0003", donde el
     # prefijo `GEN2-` SÍ está en la forma canónica y falta sólo en el número
     # de sección que la dirección usó al encolar. NO es un rótulo nuevo:
-    # `E · GEN2-E5` está censado en `canon/registro-rotulos.tsv` desde el
-    # 8/sep/2026, y su copia en `cola/` ya figura por la misma razón en la
-    # lista de exenciones de encargos encolados de más abajo.
+    # `E · GEN2-E5` lo censa ESTE MISMO acto en `canon/registro-rotulos.tsv`
+    # (antes sólo estaba `E · GEN2-E5-0`, que es otro rótulo: E5-0 congela las
+    # specs, E5 las corre). Su copia en `cola/` ya figura por la misma razón en
+    # la lista de exenciones de encargos encolados de más abajo.
     "forense/encargos/2026-09-08-GEN2-E5-CALC-0001-0003.md",
+    # ACTO GEN2-E5 · CALC-0001..0003, 8/sep/2026: la NOTA del acto. Cita `E5`
+    # pelado dos veces, las dos como PROCEDENCIA y no como rótulo nuevo: en
+    # «El encargo lo previó» al glosar la instrucción de E5 sobre el contador,
+    # y en «el cierre de E5» al citar verbatim el comentario que `GEN2-E6`
+    # dejó escrito en `tests/check.py` para T35. `E · GEN2-E5` queda censado en
+    # `canon/registro-rotulos.tsv` por este mismo acto; el encargo archivado de
+    # arriba figura aquí por esta misma razón.
+    "forense/notas/2026-09-08-GEN2-E5-corridas-selladas.md",
     # ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita
     # "E5-0"/"E5"/"E6" pelados en el perímetro ("una revisión textual
