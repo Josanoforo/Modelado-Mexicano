@@ -199,5 +199,7 @@ Entregar un PR pequeño con: reglas cambiadas, ejemplos de los tres desenlaces, 
 `PR #628` (`https://github.com/Josanoforo/Modelado-Mexicano/pull/628`),
 rama `claude/rutinas-2-coordinacion`. Implementa P1-P5 dentro del
 perímetro declarado; los pendientes quedan en `## NO-CORRIDO / RESERVAS`
-arriba, citados también en `forense/no-corrido.tsv` (`NC-0036`..`NC-0039`,
-`ABIERTA`). No fusionado automáticamente — la firma es de mesa.
+arriba, citados también en `forense/no-corrido.tsv` (`NC-0038`..`NC-0041`,
+`ABIERTA` — renumeradas de `NC-0036`..`NC-0039` al fusionar `origin/main`:
+`PR #627` (`ACTO GEN2-TRAMITE-FIRMAS-1`) tomó ese rango primero). No
+fusionado automáticamente — la firma es de mesa.

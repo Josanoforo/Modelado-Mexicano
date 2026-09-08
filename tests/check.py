@@ -2629,6 +2629,16 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # GEN2-T9/PRE-E5 de abajo: un encargo verbatim no se edita para
     # complacer un test (A.3).
     "forense/encargos/2026-09-08-AUTO-MOTOR-1-RECUPERA-Y-EJERCITA.md",
+    # ACTO GEN2-TRAMITE-FIRMAS-1 · PROPAGA-FIRMAS-PROPAGACION, 8/sep/2026:
+    # encargo archivado VERBATIM (0-bis A.3), pegado en el mensaje que
+    # invocó `/acto`. Cita "E5-0/E5" pelado en la cabecera de CONCURRENCIA
+    # ("E5-0/E5 corren en caja") y "E5-0" suelto en D-1/P5/el cierre --
+    # referencias de PROCEDENCIA al mismo habitante ya censado de la serie
+    # `E · GEN2-E0..GEN2-E7` en `canon/registro-rotulos.tsv`, no un rótulo
+    # nuevo que este acto reclame. Mismo patrón que la exención hermana de
+    # AUTO-MOTOR-1 arriba: un encargo verbatim no se edita para complacer
+    # un test (A.3).
+    "forense/encargos/2026-09-08-GEN2-TRAMITE-FIRMAS-1-PROPAGACION.md",
     # ACTO RUTINAS-2 · COORDINACION-Y-REVISION-VIGENTE, 8/sep/2026: encargo
     # archivado VERBATIM (0-bis A.3). Cita "E5-0/E5" pelados dos veces --
     # "No ejecutar E5-0/E5 desde NUBE" -- como referencia de PROCEDENCIA a
