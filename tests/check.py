@@ -2604,6 +2604,18 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-E4 · LIMPIEZA-C2 · PODA, 7/sep/2026: nota de cierre que
+    # archiva en su §10 el encargo verbatim (0-bis A.3, no en un archivo
+    # aparte bajo forense/encargos/ -- ver la propia FP-340, corrección T02
+    # de GEN2-E1, que ya documentó por qué duplicar ese path colisiona).
+    # El cuerpo verbatim se nombra a sí mismo "E4" pelado repetidamente
+    # ("FP-340 -> FIRMADA (E4 D1)", "SUPERADO por E4 (D4)") -- ES EL ROTULO
+    # DE ESTE ACTO, mismo patrón que MAESTRA38-M13 abajo. También cita "E1"
+    # pelado al nombrar la lista de 114 de GEN2-E1 (acto hermano, mismo
+    # espacio GEN2). Toda mención de GEN2-E1/GEN2-E4 fuera del bloque
+    # verbatim ya lleva el prefijo GEN2- en la prosa propia de esta nota;
+    # un encargo verbatim no se edita para complacer un test.
+    "forense/notas/2026-09-07-GEN2-E4-poda.md",
     # ACTO MAESTRA38-M13 · M-POR-CELDA v1.3, 7/sep/2026: encargo archivado
     # VERBATIM (A.3). Nombra `M13` pelado porque ES EL ROTULO DE ESTE ACTO --
     # el espacio M de la serie maestra-38, ya censado en

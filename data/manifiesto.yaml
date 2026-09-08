@@ -28537,7 +28537,7 @@
   descargado_por: 'caja (ACTO MAESTRA38-L2-LISTA), vía `git clone --depth 1` del repo del
     paquete — NO por navegador: el valor por defecto que --escanea deriva no aplica a este
     payload'
-  archivo: ACADEMICO-list-cran/data/mexico.tab
+  archivo: list-cran/mexico.tab
   raiz: descargas_mx
   sha256: fe101499b591d90d9e2122f439e26306fcdeab443e42d14f9455e9efa1c04488
   tamano_bytes: 78065
@@ -28554,7 +28554,7 @@
   descargado_por: 'caja (ACTO MAESTRA38-L2-LISTA), vía `git clone --depth 1` del repo del
     paquete — NO por navegador: el valor por defecto que --escanea deriva no aplica a este
     payload'
-  archivo: ACADEMICO-list-cran/man/mexico.Rd
+  archivo: list-cran/mexico.Rd
   raiz: descargas_mx
   sha256: cd8cdaefb2d0174ae515754966e3f8ea26c5cc2884fe39e6f6fb8d84f875af85
   tamano_bytes: 3592
@@ -29342,4 +29342,18 @@
   raiz: descargas_mx
   sha256: c2dfe2c75d694a808cd99c9ecbf130701173dbebbdf3aa1aa9d5d35dba85f5b1
   tamano_bytes: 618383
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: icpsr35024_documentacion_v1
+  usado_para: 'MEXICO_PANEL_STUDY_2012 -- descarga manual de mesa desde Downloads, hallazgo
+    GEN2-E1/D4 (E4): confirma que las 4 copias en Downloads son solo documentacion (mismos
+    10 miembros, sin Data.dta/tsv/sav/csv), duplicado de contenido logico de icpsr35024_mexico_panel_study_2012_paquete_v1_zip'
+  url_origen: https://www.icpsr.umich.edu/web/NADAC/studies/35024
+  url_origen_procedencia: asignada vía --grupo/--url en --escanea, NO confirmada por el autor
+  fecha_descarga: '2026-09-02'
+  descargado_por: usuario, vía navegador
+  archivo: academico_icpsr35024/icpsr35024_documentacion_v1.zip
+  raiz: descargas_mx
+  sha256: 8e48c789c5841d6c964297a19562025744f6245d68b8abf2a91548e455abd13b
+  tamano_bytes: 14665813
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
