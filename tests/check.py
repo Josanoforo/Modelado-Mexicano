@@ -5080,6 +5080,44 @@ def t32_corrida0():
 
 
 # ───────────────────────────────────────────────────────────────
+# T36 · T-CORREDORES-GEN2 -- ACTO GEN2-E7 · READINESS-2, 8/sep/2026.
+#
+#   Los cuatro corredores del marcador (M, R, L y el agregado) quedaron
+#   envueltos para GEN2 en este acto. Un wrapper cuyo único aval es su
+#   propio docstring no avala nada: `tests/test_corredores_gen2.py` corre
+#   un caso por wrapper sobre fixtures reducidos -- SIN CORPUS, sin red y
+#   sin llamar a ningún modelo -- más los falsadores del propio Go/No-Go
+#   (que el detector de AST no cuente prosa y sí llamadas).
+#
+#   Límite declarado: este test NO corre `CALC-M`/`CALC-AGG` de punta a
+#   punta. `run` exige árbol limpio y la suite corre casi siempre con el
+#   árbol sucio; un test que lo intentara fallaría por el motivo
+#   equivocado. Los recibos de esas dos corridas quedan sellados en
+#   `data/corrida0/CALC-{M,AGG}-marco-M-sorteado-v1_3/ejecucion.json` y su
+#   reproducción la comprueba `corrida0.py verify`, a mano.
+# ───────────────────────────────────────────────────────────────
+def t36_corredores_gen2():
+    ruta = os.path.join(ROOT, "tests", "test_corredores_gen2.py")
+    if not os.path.exists(ruta):
+        fail("T-CORREDORES-GEN2", "no existe `tests/test_corredores_gen2.py`")
+        return
+    try:
+        import importlib.util as _iu
+        _spec = _iu.spec_from_file_location("test_corredores_gen2_desde_check",
+                                            ruta)
+        _mod = _iu.module_from_spec(_spec)
+        sys.modules[_spec.name] = _mod
+        _spec.loader.exec_module(_mod)
+        fallos = _mod.corre()
+    except Exception as exc:
+        fail("T-CORREDORES-GEN2", f"`tests/test_corredores_gen2.py` no pudo "
+                                   f"correr: {type(exc).__name__}: {exc}")
+        return
+    for f in fallos:
+        fail("T-CORREDORES-GEN2", f)
+
+
+# ───────────────────────────────────────────────────────────────
 # T34 · T-NO-CORRIDO -- A.14 (`ACTO GEN2-T8`, 8/sep/2026,
 # `forense/encargos/2026-09-08-GEN2-T8-A14-CERO-RAMAS-RETROFIT.md`):
 # "Lo que no se corrió se asienta, o el acto no cierra."
@@ -5336,6 +5374,7 @@ def main():
         ("T30 T-YAMEDIDO",                         t30_yamedido),
         ("T31 T-CRON",                              t31_cron),
         ("T32 T-CORRIDA0",                           t32_corrida0),
+        ("T36 T-CORREDORES-GEN2",                     t36_corredores_gen2),
         ("T34 T-NO-CORRIDO",                          t34_no_corrido),
         ("T35 T-REPRO [aviso]",                        t35_repro),
     ]
