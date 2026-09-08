@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **417 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **418 ADR**
 
 > | | |
 > |---|---|
@@ -7342,5 +7342,19 @@ FIRMA DE MESA, verbatim del 8/sep/2026: «ármame el sello, el encargo ya corri�
 **Contador.** **Cero GEN2** (adquisición declarada, no medición del modelo) — lo que mueve: el hueco de `N19` pasa de "cobertura incierta" a `EXISTE-SATISFACE`; el hueco de `R8.2`/`N29` pasa de "vacante sin candidatos" a mapa clasificado con rutas y costos.
 
 **`tests/check.py --baseline`**: **ROJO heredado** — antes de fusionar `origin/main` el acto leía `VERDE` (3 `FAIL` de línea base); tras el merge (`PR #636`/`ADR-413`), 211 `T35`/`T-REPRO` nuevos, que son exactamente `NC-0053` (ya `ABIERTA`, `DECISIÓN-DE-MESA-PENDIENTE`, el usuario ya decidió no forzar verde mientras `FP-360` diseña la separación cableado-roto/sellado-sin-adoptar) — no un rojo nuevo de este acto. Confirmado línea por línea contra `forense/no-corrido.tsv` antes de cerrar.
+
+---
+
+**ADR-418 (derivado a mano contra `origin/main = 351fd25`, máximo real `417`, candidato contiguo `418`, sin huecos — trámite registral puro, no corre `tools/cierre_acto.py` por no haber encargo previo que fichar; ver P1/P3 de este mismo acto) · `ACTO GEN2-RETRO-SELLO-SONDA-CAJA-1 · FICHA-PR635-HACIA-ATRAS`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** (`forense/encargos/2026-09-08-GEN2-SONDA-CAJA-1-RETRO.md`). **CONTADOR: cero GEN2 — trámite registral.**
+
+**Gate verificado.** `COMPUERTA: ninguna` — declarada, no dispara verificación.
+
+**Objetivo.** `PR #635` (`ACTO GEN2-SONDA-CAJA-1 · CIERRA-RESERVAS-PR632`, commit de fusión `51fec0539406f486eff4480f727640b5d1c33dcb`) corrió y nunca fichó: cerró en caja las tres reservas `SIN-FETCH` que `PR #632` había dejado, con 5 archivos tocados (`data/cola-adquisicion-v1_0.tsv`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `+29` entradas en `data/manifiesto.yaml`, `+5` en `forense/hallazgos.md`, y la nota de cierre `forense/notas/2026-09-08-GEN2-SONDA-CAJA-1.md`, 524 líneas) — sin ADR propio, sin fila en `canon/registro-rotulos.tsv`, sin fila en `forense/no-corrido.tsv`. Huella registral contra `51fec053` verificada por comando: `grep -c "SONDA-CAJA"` en `forense/no-corrido.tsv`/`canon/registro-rotulos.tsv`/`canon/gobernanza-v1_15.md` → `0`; `grep -c "#635"` → `0`; sin 0-bis. Contenido revisado por dirección: **bueno** — incluye la recuperación del snapshot histórico del RUPC vía republicador y la corrección de un negativo prematuro re-leyendo el JavaScript de Bienestar. Mesa reconoce el trabajo como propio del programa, firma verbatim del 8/sep/2026: *"dame retro-sello-2"*, y ordena ficharlo hacia atrás.
+
+**NO-CORRIDO / RESERVAS, filas `NC-0058`/`NC-0059`.** El texto del encargo original que ordenó `#635` sigue `PARO-PREMISA` (no recuperado, sucesor `SIN-ASIGNAR`, `NC-0058`) y la verificación de que los 29 payloads del manifiesto viven en el corpus compartido — no solo en el worktree de caja donde se adquirieron — queda `NO-VERIFICABLE-AQUÍ` desde NUBE, mismo defecto que `PR #77` ya documentó (`NC-0059`); sucesor: un `--verifica` por id en el próximo acto de caja.
+
+**El patrón, al candidato-WARN `D-14`.** `forense/firmas-pendientes.tsv` fila `D-14` (abierta por `ACTO GEN2-RETRO-SELLO-SONDA-2`/`PR #637` para el candidato *WARN cuando un merge toque `.claude/commands/`, una cola de adquisición o `canon/` sin que el mismo diff traiga un archivo nuevo en `forense/encargos/`*) se alimenta con el segundo caso: dos actos GEN2 sin fichar el mismo día (`#632` y `#635`), mismo linaje, mismo hueco registral — deja de ser anécdota y pasa a ser serie. La fila sigue `ABIERTA`; este acto no la firma ni la implementa, solo aporta el dato.
+
+**Perímetro.** `forense/encargos/2026-09-08-GEN2-SONDA-CAJA-1-RETRO.md` (nuevo) · `canon/gobernanza-v1_15.md` (este ADR) · `forense/hallazgos.md` (serie, no anécdota) · `forense/firmas-pendientes.tsv` (apéndice a la fila `D-14` existente, no fila nueva) · `forense/no-corrido.tsv` (filas `NC-0058`/`NC-0059`) · `canon/estado-programa-v1_12.md` §L0. **Verificado que `#635` no creó ningún rótulo nuevo** (`.claude/commands/`): `git diff --stat 51fec053^..51fec053 | grep commands` → vacío; no hay nada que censar en `canon/registro-rotulos.tsv`. **No tocó** ninguno de los 5 archivos que `#635` escribió, ni la nota, ni el manifiesto, ni las colas — ficha, no edita.
 
 **Perímetro cumplido.** `data/manifiesto.yaml` · `data/curacion-registro/cola-adquisicion-registro.tsv` · `data/cola-adquisicion-v1_0.tsv` (regenerado) · `data/raw/GEN2_UNIVERSO_C_FINDEX_2025/` (corpus compartido) · `forense/notas/2026-09-08-GEN2-UNIVERSO-C-tandas-enafin.md` · `forense/hallazgos.md` · `tests/check.py` (exenciones) · cascada. **No tocó** `milpa/**`, `CALC-*`, `decisiones.tsv`, specs, ni convenios/cuentas de mesa.
