@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Test de `tools/adq_doctor.py` (P4, ACTO ADQ-CRON-V2). No ejercita el
+reporte completo (mezcla red, `/mnt/c`, `crontab` reales) -- cubre los dos
+puntos con lógica real de clasificación:
+
+- `check_crontab_legado`: "sin crontab" (ejecución real, sin credencial)
+  no debe confundirse con "no se pudo preguntar" (sandbox/permiso) --
+  ambos salen con código != 0 pero significan cosas distintas.
+- `check_lock`: detecta un lock realmente tomado por OTRO proceso (se
+  lanza un subproceso que toma flock y se queda vivo) sin bloquearse ni
+  quedárselo.
+
+Corre sola:
+
+    python3 tests/test_adq_doctor.py
+"""
+import os
+import subprocess
+import sys
+import tempfile
+import time
+import unittest.mock
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "tools"))
+import adq_doctor as D  # noqa: E402
+
+FAILS = []
+
+
+def afirma(cond, msg):
+    if not cond:
+        FAILS.append(msg)
+
+
+def prueba_crontab_sin_credencial_no_es_no_instalado():
+    with unittest.mock.patch.object(
+            D, "_corre", lambda *a, **kw: (1, "", "crontab: crontabs/pc0/: fopen: Permission denied")):
+        r = D.check_crontab_legado()
+    afirma(r["instalado"] == "NO-VERIFICABLE",
+           f"un fallo de permiso debe ser NO-VERIFICABLE, no False -- dio {r}")
+
+
+def prueba_crontab_realmente_vacio():
+    with unittest.mock.patch.object(
+            D, "_corre", lambda *a, **kw: (1, "", "no crontab for pc0")):
+        r = D.check_crontab_legado()
+    afirma(r["instalado"] is False,
+           f"'no crontab for <user>' es una ejecución real, debe dar False -- dio {r}")
+
+
+def prueba_crontab_instalado_detecta_linea():
+    with unittest.mock.patch.object(
+            D, "_corre", lambda *a, **kw: (0, "PATH=/usr/bin\n30 7 * * 1-5 cd /x && ./tools/adquiere_cron.sh\n", "")):
+        r = D.check_crontab_legado()
+    afirma(r["instalado"] is True, f"línea de adquiere_cron.sh presente debe dar True -- dio {r}")
+
+
+def prueba_lock_libre():
+    with tempfile.TemporaryDirectory() as td:
+        ruta = os.path.join(td, "forense", "adq-log", "estado")
+        os.makedirs(ruta)
+        lockfile = os.path.join(ruta, "adquiere_cron.lock")
+        open(lockfile, "w").close()
+        with unittest.mock.patch.object(D, "RAIZ", td):
+            r = D.check_lock()
+        afirma(r["lock_activo"] is False, f"un lockfile sin tomar debe dar False -- dio {r}")
+
+
+def prueba_lock_tomado_por_otro_proceso():
+    with tempfile.TemporaryDirectory() as td:
+        ruta = os.path.join(td, "forense", "adq-log", "estado")
+        os.makedirs(ruta)
+        lockfile = os.path.join(ruta, "adquiere_cron.lock")
+        open(lockfile, "w").close()
+        # Sub-proceso que toma flock exclusivo y se queda vivo 3s -- prueba
+        # de un lock tomado por OTRO PID, no un self-deadlock del propio
+        # proceso de prueba (flock de Linux es por descriptor de archivo,
+        # no reentrante dentro del mismo proceso).
+        codigo_hijo = (
+            "import fcntl, time, sys\n"
+            f"f = open({lockfile!r}, 'r+')\n"
+            "fcntl.flock(f.fileno(), fcntl.LOCK_EX)\n"
+            "sys.stdout.write('LISTO\\n'); sys.stdout.flush()\n"
+            "time.sleep(3)\n"
+        )
+        proc = subprocess.Popen([sys.executable, "-c", codigo_hijo],
+                                 stdout=subprocess.PIPE, text=True)
+        try:
+            linea = proc.stdout.readline()
+            afirma(linea.strip() == "LISTO", f"el subproceso no confirmó haber tomado el lock: {linea!r}")
+            with unittest.mock.patch.object(D, "RAIZ", td):
+                r = D.check_lock()
+            afirma(r["lock_activo"] is True,
+                   f"un lock tomado por otro proceso vivo debe detectarse True -- dio {r}")
+        finally:
+            proc.terminate()
+            proc.wait(timeout=5)
+
+
+def main():
+    prueba_crontab_sin_credencial_no_es_no_instalado()
+    prueba_crontab_realmente_vacio()
+    prueba_crontab_instalado_detecta_linea()
+    prueba_lock_libre()
+    prueba_lock_tomado_por_otro_proceso()
+    if FAILS:
+        print(f"FALLÓ ({len(FAILS)}):")
+        for m in FAILS:
+            print(f"  · {m}")
+        return 1
+    print("OK -- test_adq_doctor.py: 5 pruebas, 0 fallos")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
