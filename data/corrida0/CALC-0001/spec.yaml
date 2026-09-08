@@ -35,18 +35,28 @@ inputs:
 # ── Dimensiones sustantivas, todas DECLARADAS (P2) ────────────────────────
 # Codigos verbatim del codebook (metadataonly), nunca adivinados. spec.md §1.
 variables:
-  - {id: pcyc13,   archivo: cide_cses2015_nacional_poselectoral, rol: "disparador zanahoria (OFERTA)", codigos: "1=Si · 2=No · 9=Ns/NC", dicotomiza: "1->1 · 2->0 · 9 y faltante fuera y contados"}
-  - {id: pcyc14,   archivo: cide_cses2015_nacional_poselectoral, rol: "disparador garrote (AMENAZA)",  codigos: "1=Si · 2=No · 9=Ns/NC", dicotomiza: "1->1 · 2->0 · 9 y faltante fuera y contados"}
-  - {id: pcyc13_1, archivo: cide_cses2015_nacional_poselectoral, rol: "partido oferente", codigos: "1=PAN 2=PRI 3=PRD 4=PT 5=PVEM 6=MC 7=NA 8=MORENA 9=PH 10=PES 12=Otro 97=Ninguno 99=NS/NC"}
-  - {id: pcyc14_1, archivo: cide_cses2015_nacional_poselectoral, rol: "partido amenazante", codigos: "identicos a pcyc13_1"}
-  - {id: peledip,  archivo: cide_cses2015_nacional_poselectoral, rol: "DESENLACE -- voto emitido, diputados federales 7-jun-2015", codigos: "1=PAN 2=PRI 4=PRD 8=PT 9=PVEM 10=OTRO 11=NINGUNO 12=NO SABE 13=BLANCO 14=ANULADO 19=MC 29=PRI-PVEM 34=NA 35=MORENA 36=PH 37=PES 39=INDEP"}
-  - {id: pelegob,  archivo: cide_cses2015_nacional_preelectoral, rol: "DESENLACE de la fila replica -- voto emitido, OTRO CARGO (gobernador/pdte mun)", codigos: "identicos a peledip mas 38=OTRO PARTIDO"}
-  - {id: pvoto1,   archivo: cide_cses2015_estatal_preelectoral, rol: "encuadre garantia institucional", codigos: "1=Si · 2=No · 9=Ns/Nc"}
-  - {id: pvoto2,   archivo: cide_cses2015_estatal_preelectoral, rol: "encuadre violacion reportada",   codigos: "1=Si · 2=No · 9=Ns/Nc"}
-  - {id: pvoto3,   archivo: cide_cses2015_estatal_preelectoral, rol: "encuadre neutral (referencia)",  codigos: "1=Si · 2=No · 9=Ns/Nc"}
-  - {id: PONDFIN,  archivo: "los tres", rol: "ponderador global", etiqueta: "Ponderador nacional / Ponderador Global"}
-  - {id: dominio,  archivo: "los tres", rol: "estrato", etiqueta: "Estratos de diseno muestral"}
-  - {id: upmmn,    archivo: "los tres", rol: "UPM", etiqueta: "(sin etiqueta; nombre estable de la casa encuestadora)"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_poselectoral.sav", variable: pcyc13, rol: "[POSEL] disparador zanahoria (OFERTA)", codigos: "1=Si · 2=No · 9=Ns/NC -- NO existe 0", dicotomiza: "1->1 · 2->0 · 9 y faltante fuera y CONTADOS"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_poselectoral.sav", variable: pcyc14, rol: "[POSEL] disparador garrote (AMENAZA)", codigos: "1=Si · 2=No · 9=Ns/NC", gateada_por: "bateria pcyc12/pcyc12a/pcyc12b (LICONSA/PROCAMPO/PROSPERA), por el texto de la propia pregunta"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_poselectoral.sav", variable: pcyc13_1, rol: "[POSEL] partido oferente", codigos: "1=PAN 2=PRI 3=PRD 4=PT 5=PVEM 6=MC 7=NA 8=MORENA 9=PH 10=PES 12=Otro 97=Ninguno 99=NS/NC"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_poselectoral.sav", variable: pcyc14_1, rol: "[POSEL] partido amenazante", codigos: "identicos a pcyc13_1"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_preelectoral.sav", variable: pcyc13, rol: "[PREEL] disparador zanahoria (OFERTA)", codigos: "1=Si · 2=No · 9=Ns/NC -- NO existe 0", dicotomiza: "1->1 · 2->0 · 9 y faltante fuera y CONTADOS"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_preelectoral.sav", variable: pcyc14, rol: "[PREEL] disparador garrote (AMENAZA)", codigos: "1=Si · 2=No · 9=Ns/NC", gateada_por: "bateria pcyc12/pcyc12a/pcyc12b (LICONSA/PROCAMPO/PROSPERA), por el texto de la propia pregunta"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_preelectoral.sav", variable: pcyc13_1, rol: "[PREEL] partido oferente", codigos: "1=PAN 2=PRI 3=PRD 4=PT 5=PVEM 6=MC 7=NA 8=MORENA 9=PH 10=PES 12=Otro 97=Ninguno 99=NS/NC"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_preelectoral.sav", variable: pcyc14_1, rol: "[PREEL] partido amenazante", codigos: "identicos a pcyc13_1"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_poselectoral.sav", variable: peledip, rol: "[POSEL] DESENLACE -- voto emitido, diputados federales 7-jun-2015", codigos: "1=PAN 2=PRI 4=PRD 8=PT 9=PVEM 10=OTRO 11=NINGUNO 12=NO SABE 13=BLANCO 14=ANULADO 19=MC 29=PRI-PVEM 34=NA 35=MORENA 36=PH 37=PES 39=INDEP", nota: "el desenlace que S12 §2 declaro NO-CONSTRUIBLE-SIN-CODEBOOK: existe"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_preelectoral.sav", variable: pelegob, rol: "[PREEL] DESENLACE de la fila replica -- voto emitido, OTRO CARGO", codigos: "identicos a peledip mas 38=OTRO PARTIDO", nota: "NO es replica del desenlace de POSEL: otro cargo (gobernador/pdte mun)"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_estatal_preelectoral.sav", variable: pvoto1, rol: "[2-BIS] encuadre garantia institucional", codigos: "1=Si · 2=No · 9=Ns/Nc"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_estatal_preelectoral.sav", variable: pvoto2, rol: "[2-BIS] encuadre violacion reportada", codigos: "1=Si · 2=No · 9=Ns/Nc"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_estatal_preelectoral.sav", variable: pvoto3, rol: "[2-BIS] encuadre neutral (referencia)", codigos: "1=Si · 2=No · 9=Ns/Nc"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_poselectoral.sav", variable: PONDFIN, rol: "[POSEL] ponderador global", etiqueta: "Ponderador nacional (POSEL) / Ponderador Global (los otros dos)"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_poselectoral.sav", variable: dominio, rol: "[POSEL] estrato", etiqueta: "Estratos de diseno muestral"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_poselectoral.sav", variable: upmmn, rol: "[POSEL] UPM", etiqueta: "(sin etiqueta en el .sav; confirmada como UPM por el diseno muestral)"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_preelectoral.sav", variable: PONDFIN, rol: "[PREEL] ponderador global", etiqueta: "Ponderador nacional (POSEL) / Ponderador Global (los otros dos)"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_preelectoral.sav", variable: dominio, rol: "[PREEL] estrato", etiqueta: "Estratos de diseno muestral"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_nacional_preelectoral.sav", variable: upmmn, rol: "[PREEL] UPM", etiqueta: "(sin etiqueta en el .sav; confirmada como UPM por el diseno muestral)"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_estatal_preelectoral.sav", variable: PONDFIN, rol: "[2-BIS] ponderador global", etiqueta: "Ponderador nacional (POSEL) / Ponderador Global (los otros dos)"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_estatal_preelectoral.sav", variable: dominio, rol: "[2-BIS] estrato", etiqueta: "Estratos de diseno muestral"}
+  - {archivo: "UNIVERSO-2026-09/CSES/cide_cses2015_estatal_preelectoral.sav", variable: upmmn, rol: "[2-BIS] UPM", etiqueta: "(sin etiqueta en el .sav; confirmada como UPM por el diseno muestral)"}
 
 universo: >-
   Adultos encuestados en cada levantamiento CSES 2015, POR SEPARADO y nunca

@@ -35,19 +35,80 @@ inputs:
     sha256: c1cd3b6367d4edc4d38401e19752adb9656d238a81ae6cff9db11dacaf73da1c
 
 variables:
-  - {id: es09,    rol: "T1 -- disparador «grave»", codigos: "1=Si · 3=No · 8=NS (solo bx). NO existe 0", ventana: "a lo largo de su vida (cuestionario pag. 5)", fuente_codigos: "ehh02cb_b3b.pdf pag. 8 · ehh02cb_bx.pdf pag. 49"}
-  - {id: "ec01a..ec01g,ec01h_1,ec01i_1", rol: "T2 -- disparador «cronico»", codigos: "1=Si", ventana: "alguna vez (cuestionario pag. 10)", fuente_codigos: "ehh02cb_b3b.pdf pag. 18", nota: "T2 no tiene brazo bx: p_ec.dta no existe"}
-  - {id: hs01,    rol: "D-HS -- desenlace primario", codigos: "1=Si · 3=No · 8=NS (solo bx)", ventana: "ultimos 12 meses (cuestionario pag. 18)", fuente_codigos: "ehh02cb_b3b.pdf pag. 28 · ehh02cb_bx.pdf pag. 60"}
-  - {id: ce01,    rol: "D-CE -- desenlace secundario", codigos: "1=Si · 3=No · 8=NS (solo bx)", ventana: "ultimas 4 semanas (cuestionario pag. 12)", fuente_codigos: "ehh02cb_b3b.pdf pag. 21 · ehh02cb_bx.pdf pag. 56"}
-  - {id: "hs08_1a, hs08_1e", rol: "filtro de motivo (ENFERMEDAD / OPERACION), nivel episodio", codigos: "1=Si", nota: "solo b3b -- no hay p_hs1.dta"}
-  - {id: "hs02* (Tabla A/B), ce04* (Tabla C)", rol: "bateria de institucion, respuesta multiple", nota: "clasificada por variable_id, NUNCA por etiqueta (S6 §0.4); 0 desajustes contra el .dta"}
-  - {id: fac_3b,     rol: "ponderador brazo b3b",  etiqueta: "FACTOR DE EXPANSION LIBRO 3B"}
-  - {id: fac_3b_px,  rol: "ponderador brazo bx (pareja)", etiqueta: "FACTOR DE EXPANSION LIBRO PROXY"}
-  - {id: fac_3a_px,  rol: "ponderador brazo bx (pareja)", etiqueta: "FACTOR DE EXPANSION LIBRO PROXY -- IDENTICA a la de fac_3b_px: la etiqueta NO distingue"}
-  - {id: fac_4_px,   rol: "NO ENTRA (S6 §3.2 punto 4)"}
-  - {id: estrato,    rol: "estrato del bootstrap", archivo: "ehh02dta_bc/c_portad.dta"}
-  - {id: "loc, id_loc", rol: "NO SE USA -- localidad SI existe en c_portad (corrige S6 §3.5), pero el diseno pre-registrado es hogar dentro de estrato y no se re-pre-registra aqui"}
-  - {id: "folio, ls", rol: "llaves", nota: "NUMERICO en los ocho .dta y en c_portad; CADENA (%8s) en los DOS de ponderador -- el join en riesgo es microdato x ponderador"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_es.dta", variable: es09, rol: "[b3b] T1 -- disparador «grave»", codigos: "1=Si · 3=No -- el codigo 0 NO EXISTE (ehh02cb_b3b.pdf pag. 8)", ventana: "a lo largo de su vida (cuestionario pag. 5)"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_es.dta", variable: es09, rol: "[bx] T1 -- disparador «grave»", codigos: "1=Si · 3=No · 8=NS (ehh02cb_bx.pdf pag. 49; el 8=NS son 15 casos)", ventana: "a lo largo de su vida"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01a, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01b, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01c, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01d, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01e, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01f, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01g, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01h_1, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01i_1, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs01, rol: "[b3b] D-HS -- desenlace primario", codigos: "1=Si · 3=No (pag. 28)", ventana: "ultimos 12 meses (cuestionario pag. 18)"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs01, rol: "[bx] D-HS -- desenlace primario", codigos: "1=Si · 3=No · 8=NS (pag. 60)", ventana: "ultimos 12 meses"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce01, rol: "[b3b] D-CE -- desenlace secundario", codigos: "1=Si · 3=No (pag. 21)", ventana: "ultimas 4 semanas (cuestionario pag. 12)"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce01, rol: "[bx] D-CE -- desenlace secundario", codigos: "1=Si · 3=No · 8=NS (pag. 56)", ventana: "ultimas 4 semanas"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs1.dta", variable: hs08_1a, rol: "[b3b] filtro de motivo, NIVEL EPISODIO", codigos: "1=Si", nota: "no hay p_hs1.dta: el brazo bx corre SIN este filtro"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs1.dta", variable: hs08_1e, rol: "[b3b] filtro de motivo, NIVEL EPISODIO", codigos: "1=Si", nota: "no hay p_hs1.dta: el brazo bx corre SIN este filtro"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02a, rol: "[Tabla A] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02b, rol: "[Tabla A] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02c, rol: "[Tabla A] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02d, rol: "[Tabla A] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02g, rol: "[Tabla A] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02e, rol: "[Tabla A] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02f, rol: "[Tabla A] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02h, rol: "[Tabla A] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02i, rol: "[Tabla A] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02j, rol: "[Tabla A] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02k_1, rol: "[Tabla A] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02a, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02b, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02c, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02d, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02g, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02i, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02k, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02e, rol: "[Tabla B] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02f, rol: "[Tabla B] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02l, rol: "[Tabla B] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02h, rol: "[Tabla B] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02j, rol: "[Tabla B] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02m, rol: "[Tabla B] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02n_1, rol: "[Tabla B] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04a, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04b, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04c, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04d, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04g, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04i, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04k, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04e, rol: "[Tabla C/b3b] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04f, rol: "[Tabla C/b3b] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04l, rol: "[Tabla C/b3b] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04h, rol: "[Tabla C/b3b] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04j, rol: "[Tabla C/b3b] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04m, rol: "[Tabla C/b3b] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04n_1, rol: "[Tabla C/b3b] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04a, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04b, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04c, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04d, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04g, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04i, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04k, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04e, rol: "[Tabla C/bx] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04f, rol: "[Tabla C/bx] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04l, rol: "[Tabla C/bx] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04h, rol: "[Tabla C/bx] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04j, rol: "[Tabla C/bx] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04m, rol: "[Tabla C/bx] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04n_1, rol: "[Tabla C/bx] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02w_all/ehh02w_b3b.dta", variable: fac_3b, rol: "[b3b] ponderador", etiqueta: "FACTOR DE EXPANSION LIBRO 3B"}
+  - {archivo: "ehh02w_all/ehh02w_bx.dta", variable: fac_3b_px, rol: "[bx] ponderador de la PAREJA", etiqueta: "FACTOR DE EXPANSION LIBRO PROXY -- IDENTICA a la de fac_3a_px"}
+  - {archivo: "ehh02w_all/ehh02w_bx.dta", variable: fac_3a_px, rol: "[bx] ponderador de la PAREJA", etiqueta: "FACTOR DE EXPANSION LIBRO PROXY -- la etiqueta NO adjudica entre los dos"}
+  - {archivo: "ehh02dta_all/ehh02dta_bc/c_portad.dta", variable: estrato, rol: "estrato del bootstrap", nota: "el mismo archivo trae loc/id_loc (corrige S6 §3.5); NO se usan"}
 
 universo: >-
   Personas del Libro IIIB (brazo b3b, adultos presentes) y del Libro Proxy

@@ -34,16 +34,27 @@ inputs:
     sha256: c41235b804b0834881b7d3467e25ab0b74946fc03ba14245918e9c7a2e69a515
 
 variables:
-  - {id: aoj11,      rol: "indicador de contexto -- inseguridad en el barrio", codigos: "1=Muy seguro 2=Algo seguro 3=Algo inseguro 4=Muy inseguro", direccion: "inseguridad = {3,4}", presente_en: "2019, 2021, 2023"}
-  - {id: b18,        rol: "indicador de contexto -- confianza en la policia",  codigos: "1=Nada … 7=Mucho", direccion: "desconfianza = {1,2,3} (mitad inferior)", presente_en: "2019, 2021, 2023"}
-  - {id: aoj12,      rol: "indicador de contexto -- confianza en que castiguen", codigos: "1=Mucho 2=Algo 3=Poco 4=Nada", direccion: "desconfianza = {3,4}", presente_en: "2019, 2023 -- AUSENTE en 2021"}
-  - {id: vic1ext,    rol: "filtro de universo (ex-vic1, renombrada)", codigos: "1=Si 2=No", presente_en: "2019, 2021, 2023"}
-  - {id: wt,         rol: "ponderador", etiqueta: "Peso del pais (2019) / Peso de la muestra (2021, 2023)"}
-  - {id: estratopri, rol: "estrato", codigos: "101=Norte 102=Centro Occidente 103=Centro 104=Sur"}
-  - {id: upm,        rol: "UPM", etiqueta: "Unidad Primaria de Muestreo"}
-  - {id: aoj1,       rol: "DESENLACE de la corrida 2004 -- AUSENTE en las tres olas", codigos: "(no aplica)", presente_en: "NINGUNA -- 0 aciertos sobre 678 variables con etiqueta en 3 archivos"}
-  - {id: weight1500, rol: "NO SE USA -- nombre de peso, etiqueta 'Estratos de muestra' (2021)"}
-  - {id: strata,     rol: "NO SE USA -- nombre de estrato, etiqueta 'Peso estandarizado' (2021, 2023)"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: aoj11, rol: "[2019] indicador de contexto -- inseguridad en el barrio", codigos: "1=Muy seguro 2=Algo seguro 3=Algo inseguro 4=Muy inseguro", direccion: "inseguridad = {3,4}"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: b18, rol: "[2019] indicador de contexto -- confianza en la policia", codigos: "1=Nada … 7=Mucho", direccion: "desconfianza = {1,2,3} (mitad inferior)"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: aoj12, rol: "[2019] indicador de contexto -- confianza en que castiguen", codigos: "1=Mucho 2=Algo 3=Poco 4=Nada", direccion: "desconfianza = {3,4}"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: vic1ext, rol: "[2019] filtro de universo (ex-vic1, renombrada)", codigos: "1=Si · 2=No"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: wt, rol: "[2019] ponderador", etiqueta: "Peso del pais (2019) / Peso de la muestra (2021, 2023)"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: estratopri, rol: "[2019] estrato", codigos: "101=Norte 102=Centro Occidente 103=Centro 104=Sur"}
+  - {archivo: "Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: upm, rol: "[2019] UPM", etiqueta: "Unidad Primaria de Muestreo"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: aoj11, rol: "[2021] indicador de contexto -- inseguridad en el barrio", codigos: "1=Muy seguro 2=Algo seguro 3=Algo inseguro 4=Muy inseguro", direccion: "inseguridad = {3,4}"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: b18, rol: "[2021] indicador de contexto -- confianza en la policia", codigos: "1=Nada … 7=Mucho", direccion: "desconfianza = {1,2,3} (mitad inferior)"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: vic1ext, rol: "[2021] filtro de universo (ex-vic1, renombrada)", codigos: "1=Si · 2=No"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: wt, rol: "[2021] ponderador", etiqueta: "Peso del pais (2019) / Peso de la muestra (2021, 2023)"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: estratopri, rol: "[2021] estrato", codigos: "101=Norte 102=Centro Occidente 103=Centro 104=Sur"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: upm, rol: "[2021] UPM", etiqueta: "Unidad Primaria de Muestreo"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: aoj11, rol: "[2023] indicador de contexto -- inseguridad en el barrio", codigos: "1=Muy seguro 2=Algo seguro 3=Algo inseguro 4=Muy inseguro", direccion: "inseguridad = {3,4}"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: b18, rol: "[2023] indicador de contexto -- confianza en la policia", codigos: "1=Nada … 7=Mucho", direccion: "desconfianza = {1,2,3} (mitad inferior)"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: aoj12, rol: "[2023] indicador de contexto -- confianza en que castiguen", codigos: "1=Mucho 2=Algo 3=Poco 4=Nada", direccion: "desconfianza = {3,4}"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: vic1ext, rol: "[2023] filtro de universo (ex-vic1, renombrada)", codigos: "1=Si · 2=No"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: wt, rol: "[2023] ponderador", etiqueta: "Peso del pais (2019) / Peso de la muestra (2021, 2023)"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: estratopri, rol: "[2023] estrato", codigos: "101=Norte 102=Centro Occidente 103=Centro 104=Sur"}
+  - {archivo: "Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: upm, rol: "[2023] UPM", etiqueta: "Unidad Primaria de Muestreo"}
+  - {archivo: "Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta", variable: weight1500, rol: "[2021] NO SE USA -- nombre de peso, etiqueta de estrato", etiqueta: "Estratos de muestra"}
 
 universo: >-
   Victimas de delito en los ultimos 12 meses (vic1ext = 1) de cada ola de LAPOP
