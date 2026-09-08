@@ -39,7 +39,7 @@ motivó MAP-1b sigue siendo el hecho histórico que da contexto a la nueva
 frontera (`RAICES_QUE_EXIGEN_GRUPO` sigue viva pero inalcanzable desde
 `--escanea`, ver `tests/manifiesto.py`).
 
-Qué prueban los dos casos de este archivo:
+Qué prueban los tres casos de este archivo:
   1. test_downloads_es_rechazada_antes_del_filtro_de_extension -- desde la
      frontera física, `--escanea downloads` se rechaza (`RAIZ_NO_ESCANEABLE`,
      código != 0) antes de resolver la raíz físicamente: cero llamadas a
@@ -53,6 +53,13 @@ Qué prueban los dos casos de este archivo:
      filtro -- el propio manifiesto ya registra payloads reales en formatos
      fuera de las 8 (p.ej. un .docx de cuestionario ENSANUT, citado en la
      nota MAP-1b como hueco declarado del filtro original).
+  3. test_lock_propio_excluido_del_escaneo (ACTO GEN2-T11 · RUTINAS-FIX,
+     8/sep/2026) -- el lock de escritura de la propia raíz compartida
+     (ADR-399 D6, `ruta_lock_manifiesto`) vive desde entonces DENTRO de la
+     raíz que --escanea recorre: sin exclusión, cada corrida se stagea a sí
+     misma como candidato "nuevo" (medido en el censo real del 2026-09-08,
+     `forense/censo-raiz/2026-09-08.txt`). `LOCK_PROPIO_BASENAME` lo excluye
+     antes de clasificar, igual que un clon.
 
 Corre solo:
     python3 tests/test_manifiesto_alcance.py
@@ -181,11 +188,49 @@ def test_curated_roots_are_not_extension_filtered():
         print("  OK -- descargas_mx (raíz curada) escanea .docx sin filtro de extensión.")
 
 
+def test_lock_propio_excluido_del_escaneo():
+    """El lock de escritura de la raíz compartida (ADR-399 D6,
+    tests/manifiesto.py::ruta_lock_manifiesto) vive DESDE ENTONCES dentro de
+    la raíz que --escanea recorre -- sin esta exclusión cada corrida se
+    stagea a sí misma como candidato "nuevo" (medido en el censo real del
+    2026-09-08, forense/censo-raiz/2026-09-08.txt: uno de los 4 "nuevos" era
+    el propio .manifiesto.lock, con mtime = hora de la propia corrida --
+    ACTO GEN2-T11 · RUTINAS-FIX, pieza 2)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        descargas_mx = os.path.join(tmp, "descargas_mx_curada")
+        root = _preparar_root(tmp, "descargas_mx", descargas_mx)
+
+        with open(os.path.join(descargas_mx, ".manifiesto.lock"), "wb") as f:
+            f.write(b"")
+        with open(os.path.join(descargas_mx, "payload_real.csv"), "wb") as f:
+            f.write(b"col_a,col_b\n1,2\n")
+
+        reporte = _escanear(root, escanea="descargas_mx")
+
+        assert "nuevos: 1" in reporte, reporte
+        assert "LOCK-PROPIO (excluido): 1" in reporte, reporte
+        assert ".manifiesto.lock" in reporte, (
+            "el nombre del lock sí puede citarse -- no es dato personal, "
+            "a diferencia de FUERA DE ALCANCE (MAP-1b)"
+        )
+
+        staging_path = os.path.join(root, "data", manifiesto.STAGING_NOMBRE)
+        with open(staging_path, encoding="utf-8") as f:
+            staging = f.read()
+        assert ".manifiesto.lock" not in staging, staging
+        assert "payload_real.csv" in staging
+        print("  OK -- .manifiesto.lock (lock propio de la raíz compartida) se excluye "
+              "del escaneo: 0 nuevos por él, 0 entradas de staging, línea informativa "
+              "LOCK-PROPIO (excluido).")
+
+
 if __name__ == "__main__":
     test_downloads_es_rechazada_antes_del_filtro_de_extension()
     print()
     test_curated_roots_are_not_extension_filtered()
     print()
-    print("Los dos casos de este archivo coinciden. Detalle del hallazgo y de la")
+    test_lock_propio_excluido_del_escaneo()
+    print()
+    print("Los tres casos de este archivo coinciden. Detalle del hallazgo y de la")
     print("corrección: encabezado de este archivo y tests/manifiesto.py")
-    print("(EXTENSIONES_DATO_RAICES_NO_CURADAS).")
+    print("(EXTENSIONES_DATO_RAICES_NO_CURADAS, LOCK_PROPIO_BASENAME).")

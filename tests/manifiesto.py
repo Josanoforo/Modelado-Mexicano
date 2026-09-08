@@ -725,6 +725,14 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
 
 STAGING_NOMBRE = "manifiesto-staging.yaml"
 
+# El propio lock de escritura (`ruta_lock_manifiesto`, ADR-399 D6) vive DESDE
+# ENTONCES dentro de la RAIZ-COMPARTIDA -- antes vivía siempre en <root>/data/,
+# fuera de cualquier raíz que --escanea recorriera. Sin esta exclusión, cada
+# corrida se stagea a sí misma como candidato "nuevo", con el mtime de la
+# propia corrida (medido por primera vez en el censo 2026-09-08,
+# forense/censo-raiz/2026-09-08.txt -- ACTO GEN2-T11 · RUTINAS-FIX, pieza 2).
+LOCK_PROPIO_BASENAME = ".manifiesto.lock"
+
 # Páginas guardadas (evidencia de procedencia), no payload de dato -- nunca
 # se agrupan por tanda junto con archivos de datos aunque el mtime coincida.
 EXTENSIONES_PAGINA = {".php", ".html", ".htm"}
@@ -1043,6 +1051,14 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
 
         archivos_sueltos, clones = _detectar_clones_y_archivos(ruta)
 
+        # El lock de escritura de esta misma raíz (ADR-399 D6) no es dato: se
+        # excluye ANTES de clasificar, igual que un clon -- nunca entra a
+        # "nuevos", ni a staging, ni a "páginas guardadas".
+        lock_propio = [n for n in archivos_sueltos
+                       if os.path.basename(n) == LOCK_PROPIO_BASENAME]
+        if lock_propio:
+            archivos_sueltos = [n for n in archivos_sueltos if n not in lock_propio]
+
         # Un clon es un objeto (COMMIT-1): sus archivos nunca entran a
         # "nuevos" ni a "páginas guardadas", ni se stagean. Los que YA
         # están en el manifiesto (por sha256) siguen contando en "ya
@@ -1205,6 +1221,12 @@ def cmd_escanea(a, manifiesto_path, raw_dir):
               f"{len(conflictos_nombre)} · fuera de alcance de dato: {len(fuera_de_alcance)} · "
               f"clones: {len(clones)}")
         print()
+
+        if lock_propio:
+            print(f"LOCK-PROPIO (excluido): {len(lock_propio)} -- {', '.join(lock_propio)} "
+                  f"(lock de escritura de esta misma raíz, ADR-399 D6 -- no es dato, "
+                  f"nunca entra a nuevos/staging)")
+            print()
 
         if clones:
             print(f"CLONES ({len(clones)}):")

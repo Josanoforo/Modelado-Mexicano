@@ -1276,7 +1276,7 @@ def bloque_falsadores(raiz, hoy):
 # ───────────────────────────────────────────────────────────────
 
 
-def seccion_i(raiz, fecha):
+def seccion_i(raiz, fecha, cuenta):
     """I · Rutinas (últimos 7 días) -- `ACTO GEN2-E7` pieza D (D5a).
 
     Derivada de `forense/rutinas.tsv`, donde cada rutina apenda UNA línea
@@ -1301,10 +1301,13 @@ def seccion_i(raiz, fecha):
         filas = [f for f in csv.DictReader(
             (l for l in fh if not l.startswith("#")), delimiter="\t")
             if f.get("fecha")]
-    try:
-        hoy = datetime.date.fromisoformat(fecha)
-    except ValueError:
-        hoy = datetime.date.today()
+    if isinstance(fecha, datetime.date):
+        hoy = fecha
+    else:
+        try:
+            hoy = datetime.date.fromisoformat(str(fecha))
+        except (ValueError, TypeError):
+            hoy = datetime.date.today()
     piso = (hoy - datetime.timedelta(days=7)).isoformat()
     ventana = [f for f in filas if f["fecha"] >= piso]
 
@@ -1323,12 +1326,12 @@ def seccion_i(raiz, fecha):
             out.append(f"| `{nombre}` | **0** | **SIN HUELLA en la ventana** — "
                        f"no se midió que corriera; no se afirma que no corriera |")
             continue
-        res = " · ".join(f"`{x.get('resultado', '?')}`" for x in fs)
+        res = " · ".join(f"`{neutraliza(x.get('resultado', '?'), cuenta)}`" for x in fs)
         out.append(f"| `{nombre}` | {len(fs)} | {res} |")
     otras = sorted(set(por_rutina) - set(RUTINAS_VIVAS))
     for nombre in otras:
         fs = por_rutina[nombre]
-        res = " · ".join(f"`{x.get('resultado', '?')}`" for x in fs)
+        res = " · ".join(f"`{neutraliza(x.get('resultado', '?'), cuenta)}`" for x in fs)
         out.append(f"| `{nombre}` (no es una de las tres) | {len(fs)} | {res} |")
     out.append("")
     sin_huella = [n for n in RUTINAS_VIVAS if not por_rutina.get(n)]
@@ -1357,10 +1360,13 @@ def seccion_j(raiz, fecha, ramas_remotas, fuente_ramas):
            "veredicto como comentario de GitHub y **no** deja huella aquí.", ""]
     dir_notas = os.path.join(raiz, "forense", "notas")
     notas = sorted(glob.glob(os.path.join(dir_notas, "*revisa*.md")))
-    try:
-        hoy = datetime.date.fromisoformat(fecha)
-    except ValueError:
-        hoy = datetime.date.today()
+    if isinstance(fecha, datetime.date):
+        hoy = fecha
+    else:
+        try:
+            hoy = datetime.date.fromisoformat(str(fecha))
+        except (ValueError, TypeError):
+            hoy = datetime.date.today()
     piso = (hoy - datetime.timedelta(days=7)).isoformat()
     recientes = [n for n in notas if os.path.basename(n)[:10] >= piso]
     ramas_revisa = [r for r in (ramas_remotas or []) if "revisa" in r]
@@ -1382,7 +1388,7 @@ def seccion_j(raiz, fecha, ramas_remotas, fuente_ramas):
     return out, {"notas": len(recientes), "ramas": len(ramas_revisa)}
 
 
-def seccion_h(raiz, fecha):
+def seccion_h(raiz, fecha, cuenta):
     """H · A.14 -- `forense/no-corrido.tsv` (`ACTO GEN2-T8`, 8/sep/2026).
 
     Lee el TSV completo (append-only) y lista toda fila `NC-`, con su
@@ -1412,9 +1418,12 @@ def seccion_h(raiz, fecha):
             "| `id` | acto | pieza | estado | sucesor |",
             "|---|---|---|---|---|"]
     for f in filas:
-        out.append(f"| `{f.get('id', '?')}` | {f.get('acto', '—')} | "
-                   f"{f.get('pieza', '—')} | {f.get('estado', '—')} | "
-                   f"{f.get('sucesor') or '—'} |")
+        # Campos copiados del árbol: se neutralizan igual que las firmas
+        # (T25/T22 -- las filas retrofit de ADR-393 traen rótulos pelados).
+        _n = lambda v: neutraliza(una_linea(v or "—"), cuenta)
+        out.append(f"| `{f.get('id', '?')}` | {_n(f.get('acto'))} | "
+                   f"{_n(f.get('pieza'))} | {_n(f.get('estado'))} | "
+                   f"{_n(f.get('sucesor'))} |")
     out += ["", f"`no_corrido_abiertas` (provisional, contado por este digesto -- "
                 f"sucesor definitivo: `status` de `tools/corrida0.py`): **{len(abiertas)}**.", ""]
     return out, len(abiertas)
@@ -1442,8 +1451,8 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
     e, n_cont = seccion_e(raiz)
     f, res_f = seccion_f(raiz, fecha, ramas, fuente_ramas)
     g, n_pend = seccion_g(raiz)
-    h, n_nc_abiertas = seccion_h(raiz, fecha)
-    i, res_i = seccion_i(raiz, fecha)
+    h, n_nc_abiertas = seccion_h(raiz, fecha, cuenta)
+    i, res_i = seccion_i(raiz, fecha, cuenta)
     j, res_j = seccion_j(raiz, fecha, ramas, fuente_ramas)
     fals, n_venc = bloque_falsadores(raiz, fecha)
 
