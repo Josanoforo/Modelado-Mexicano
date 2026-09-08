@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **413 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **414 ADR**
 
 > | | |
 > |---|---|
@@ -7044,6 +7044,20 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Perímetro cumplido (pieza D).** `tools/cierra_libro_gen1.py` (nuevo) · `forense/encargos/*.md` (sólo el rótulo al pie, por script) · `forense/encargos/cola/*.md` (sólo `ESTADO:`) · `tools/cierre_acto.py` · `tools/digesto_tramite.py` · `.claude/commands/{despacha,revisa,tramite}.md` · `forense/rutinas.tsv` (nuevo) · `tests/manifiesto.py` (ruta del lock) · `tests/check.py` (`T37`) · `forense/hallazgos.md` · `forense/no-corrido.tsv` · cascada. **No tocó** `tools/corrida0.py`, `milpa/**`, canon de reglas, specs, `corridas-{R,M,L}/`, ni las rutinas de GitHub (ésas las edita mesa en la interfaz).
 
 **`tests/check.py --baseline`**: **LÍNEA BASE VERDE** (3 `FAIL` · 188 `WARN`, los tres de la línea base congelada).
+
+---
+
+**ADR-414 (Derivado por `python3 tools/cierre_acto.py`, Fase A; contra `origin/main = 09975b1`: máximo real `413`, candidato `414`, sin huecos) · `ACTO GEN2-TRAMITE-TABLERO-2`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** (`forense/encargos/2026-09-08-GEN2-TRAMITE-TABLERO-2.md`, archivado verbatim, 0-bis `50a5373`). **La pieza B1 (refrescar `TABLERO-PROGRAMA.md` a v2.3) PARA sobre su propia salvaguarda; la pieza B2 (asentar la serie de tres negativos falsos en `forense/hallazgos.md`) se ejecuta completa.**
+
+**Gate verificado.** COMPUERTA (`GEN2-FIRMA-CONTADOR` fusionado a `main`, `PR #636`) verificada por producto: `python3 tools/corrida0.py status` da `N_corridas_selladas=3` y `N_resultados_sellados=211` — ninguno de los dos sigue en `0`, así que la firma ya propagó y la compuerta abre.
+
+**B1 · PARO-PREMISA, por la segunda salvaguarda del propio encargo, no por la primera.** El adjunto (cuerpo v2.3, fuera del repo) llegó a la sesión, así que el bloqueo no es por ausencia — es por **señal discordante**, el caso que el encargo nombra explícitamente y prohíbe resolver editando el adjunto. Su bloque derivado (línea 4: `SHA d1a97cd6`; línea 8: `ADR máximo 412 · FP máximo 359`; línea 26: `corridas selladas 0/86 · resultados sellados 0/205`) es la **señal pre-firma**: el mismo `d1a97cd6` que el encargo cita como el estado *antes* de que `GEN2-FIRMA-CONTADOR` fusionara. Contra el árbol de ejecución (`origin/main = 09975b1`, `ADR` real `413`, `FP` máximo `360`, `corrida0.py status` → `N_corridas_selladas=3`, `N_resultados_sellados=211`), las cuatro cifras del adjunto no coinciden. El encargo es explícito sobre el remedio: *«No edites las cifras del adjunto para hacerlas cuadrar: eso es inventar el adjunto por otra vía»* — así que `forense/tablero/TABLERO-PROGRAMA.md` **no se toca** en este acto. Fila `NC-0054`, sucesor: relanzar `GEN2-TRAMITE-TABLERO-2` con el adjunto regenerado del lado del tablero contra la señal post-firma.
+
+**B2 · ejecutada.** Una entrada en `forense/hallazgos.md`, fechada 8/sep/2026, con las tres instancias de negativo falso de la conversación del tablero juntas — subcadena-contra-línea (`v2_1` casando dentro de `v2_13`), patrón-contra-campo (el grep de encabezados sin paréntesis que no veía `- **GEN2 (derivado de corrida0 status).**`) y fragmento-contra-documento (3 000 de 80 323 caracteres del `ADR-411`). Las tres del mismo tipo bajo A.13: el comando corrió, devolvió algo, y ese algo no era lo que se creía haber preguntado. No añade regla ni test (declarado en el propio encargo).
+
+**Contador.** **Cero**, declarado por el encargo: este acto no mueve ningún contador de la señal de Gen 2 — la mueve `GEN2-FIRMA-CONTADOR`, que corrió antes.
+
+**Perímetro cumplido.** `forense/encargos/2026-09-08-GEN2-TRAMITE-TABLERO-2.md` (0-bis A.3) · `forense/hallazgos.md` · cascada (`canon/gobernanza-v1_15.md`, `canon/registro-rotulos.tsv`, `canon/estado-programa-v1_12.md` §L0, `forense/no-corrido.tsv`). **No tocó** `forense/tablero/TABLERO-PROGRAMA.md` (PARO-PREMISA sobre B1) ni ningún archivo de `milpa/**`, `data/corrida0/**` o corrida sellada.
 
 ---
 
