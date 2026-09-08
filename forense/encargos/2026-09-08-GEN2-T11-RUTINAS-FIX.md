@@ -29,3 +29,7 @@ Lo que NO hace: no edita `forense/no-corrido.tsv` histórico (los rótulos pelad
 | P5/A.14 — rama del acto con el rótulo (convención: crear una rama nombrada por el rótulo del acto, fusionarla o borrarla al cerrar). Se trabajó sobre `claude/new-session-uqptgt` (la rama que el entorno de ejecución — Claude Code Remote — asigna a esta sesión), no sobre una rama nueva nombrada por el rótulo del acto. Mismo patrón exacto que `NC-0031` de `ACTO GEN2-T10`. | `DECISIÓN-DE-MESA-PENDIENTE` — las instrucciones de esta sesión prohíben empujar a otra rama sin permiso explícito del operador. | La política de cero ramas (A.14) no se ejecuta con su mecánica normal (fusionar/borrar la rama propia del acto con el rótulo `GEN2-T11`); ningún contador GEN2 se mueve por esto. | Mesa decide, en el merge, si acepta esta rama o pide reabrir el acto bajo una rama con el rótulo `GEN2-T11` — mismo sucesor que `NC-0031`. |
 
 Las tres piezas (P1, P2, P3) se ejecutaron completas, tal como el encargo las pidió — ninguna quedó parcial, sustituida ni diferida.
+
+## CONSUMIDO
+
+Ejecutado por `PR #624` (`ACTO GEN2-T11 · RUTINAS-FIX`), contra `origin/main = 31c16c7` (rama `claude/new-session-uqptgt`). `ADR-403`. **NO FUSIONAR** sin autorización de mesa — el merge es la firma, no un trámite del ejecutor.
