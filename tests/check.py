@@ -5673,10 +5673,20 @@ def t34_no_corrido():
 #   Se declara el límite en vez de dejar el rótulo `[aviso]` puesto
 #   sobre un test que ya no avisa.
 #
+#   FP-360 (FIRMADA, 8/sep/2026, sobre PR #636): tras `GEN2-FIRMA-CONTADOR`
+#   y `GEN2-E5 · CALC-0001..0003`, "sellado, correcto, todavía no adoptado
+#   por mesa en C0-B/C0-D" y "cableado roto" compartían el mismo veredicto
+#   FAIL. Ya no: la cola de (a) -- un RESULT activo GEN2 sin consumidor en
+#   milpa/ -- baja a WARN (`SELLADA-SIN-ADOPTAR`, patrón T22 con
+#   antigüedad). El resto de (a) (cadena incompleta, sello que no coincide)
+#   y los ramales (b)/(c)/(d)/(e)/(f) -- cableado roto de verdad -- se
+#   quedan en FAIL, intactos.
+#
 #   Qué verifica, sobre las vistas que `corrida0 registro` deriva:
 #     (a) cadena completa de cada RESULT activo GEN2: id · CALC · spec ·
-#         script · código fijado · inputs · hashes · parámetros · sello ·
-#         consumidor.
+#         script · código fijado · inputs · hashes · parámetros · sello.
+#         El consumidor lo vigila aparte: activo sin consumidor es
+#         SELLADA-SIN-ADOPTAR (WARN, FP-360), no cadena rota (FAIL).
 #     (b) consumidor -> RESULT -> CALC resolubles.
 #     (c) `valor materializado == RESULT` dentro de la tolerancia POR
 #         TIPO, para todo valor que lleve `corrida0_resultado_id`.
@@ -5758,6 +5768,7 @@ def t35_repro(modulo=None):
     activos = [f for f in resultados
                if f["origen"] == "OFERTA" and f["cuenta_gen2"] == "SI"
                and str(f["estado"]).startswith(("SELLADA", "SUPERADO"))]
+    sellada_sin_adoptar = []
     for f in activos:
         rid, calc = f["resultado_id"], f["spec_id"]
         c = corridas.get(f["corrida_id"])
@@ -5779,7 +5790,39 @@ def t35_repro(modulo=None):
         if not (C.CORRIDAS / calc / "spec.yaml").exists():
             fail("T-REPRO", f"(b) {rid}: su CALC {calc} no resuelve a spec.yaml")
         if usos_por_result.get(rid, 0) == 0:
-            fail("T-REPRO", f"(a) {rid}: activo GEN2 y sin consumidor")
+            sellada_sin_adoptar.append((rid, calc))
+
+    # FP-360 (FIRMADA, 8/sep/2026): un RESULT activo GEN2 sellado y sin
+    # consumidor en milpa/ ya no es cableado roto -- es el estado que la
+    # propia firma del contador (ACTO GEN2-FIRMA-CONTADOR) creó a propósito
+    # ("cuenta, no adopta"). Baja de FAIL a WARN con el rótulo
+    # SELLADA-SIN-ADOPTAR, patrón T22 (`senal()`: WARN de vigía, fuera de la
+    # comparación de línea base) -- grita con antigüedad hasta que mesa
+    # adopte por merge en C0-B/C0-D. El agregado sale primero para que quede
+    # en la vista previa del resumen del test; las entradas individuales no
+    # se resumen aparte.
+    if sellada_sin_adoptar:
+        decisiones_fecha = {}
+        if C.DECISIONES.exists():
+            decisiones_fecha = {f["objeto"]: f.get("fecha", "")
+                                 for f in C._leer_tsv(C.DECISIONES)}
+        hoy = datetime.date.today()
+        entradas = []
+        for rid, calc in sellada_sin_adoptar:
+            edad_txt, edad_dias = "SIN-FECHA", None
+            try:
+                anio, mes, dia = (int(x) for x in decisiones_fecha.get(calc, "").split("-"))
+                edad_dias = (hoy - datetime.date(anio, mes, dia)).days
+                edad_txt = f"{edad_dias} días"
+            except (ValueError, TypeError):
+                pass
+            entradas.append((rid, edad_txt, edad_dias))
+        conocidas = [d for _, _, d in entradas if d is not None]
+        mas_vieja = f"{max(conocidas)} días" if conocidas else "SIN-FECHA"
+        senal("T-REPRO", f"SELLADA-SIN-ADOPTAR: {len(entradas)} · más vieja: {mas_vieja}")
+        for rid, edad_txt, _ in entradas:
+            senal("T-REPRO", f"SELLADA-SIN-ADOPTAR {rid}: activo GEN2 y sin "
+                             f"consumidor -- antigüedad {edad_txt}")
 
     # (b)+(c)+(d)+(e)+(f) por el lado del consumidor.
     for u in usos:
