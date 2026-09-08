@@ -83,3 +83,12 @@ GEN2-FIRMA-CONTADOR (NUBE) — mueve la señal. Es la compuerta de este acto.
 UNIVERSO-C (caja) — le llegó su turno.
 GEN2-TRAMITE-TABLERO-2 (NUBE, este) — con el v2.3 ya regenerado contra la señal post-firma.
 Pendiente del lado del tablero antes de lanzar: regenerar el adjunto v2.3 con la señal post-firma. La receta es python3 tools/corrida0.py status sobre main una vez la firma fusione, y reescribir la tabla de §2 con esa salida. Hasta que eso ocurra, el adjunto que existe hoy lleva la señal pre-firma y no debe lanzarse.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** B1 · Reemplazar el cuerpo curado por la versión v2.3 (`forense/tablero/TABLERO-PROGRAMA.md`).
+  **por qué:** `PARO-PREMISA`.
+  **impacto:** §9 del tablero sigue listando como pendientes las siete piezas que el PR #633 ya ejecutó; §2 sigue con la señal pre-firma (`0/86` corridas selladas, `0/205` resultados sellados) en vez de la real (`3/86`, `211/205`).
+  **sucesor:** `GEN2-TRAMITE-TABLERO-2` (relanzamiento), con el adjunto v2.3 regenerado del lado del tablero contra la señal post-firma. Asentado como `NC-0054` en `forense/no-corrido.tsv`, `estado = ABIERTA`.
+
+  El adjunto sí llegó a la sesión, así que el bloqueo no es por ausencia: es por **señal discordante**, el caso que este mismo encargo nombra en su bloque de COMPUERTA y para el que prohíbe explícitamente el remedio de editar las cifras del adjunto. Su bloque derivado trae `SHA d1a97cd6`, `ADR máximo 412`, `FP máximo 359` y `corridas selladas 0/86 · resultados sellados 0/205` — la señal de **antes** de que `GEN2-FIRMA-CONTADOR` fusionara. Contra el árbol de ejecución (`origin/main` tras el `PR #636`, `ADR` real `413`, `FP` máximo `360`, `python3 tools/corrida0.py status` → `N_corridas_selladas=3`, `N_resultados_sellados=211`), ninguna de las cuatro cifras coincide.
