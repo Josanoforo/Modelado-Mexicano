@@ -1,0 +1,188 @@
+{
+ "corrida_id": "CALC-0002--f57ad1cd8f96",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pyreadstat": "1.3.6"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "generacion": "GEN2",
+  "medidor_ejecutado_en_e5_0": "NO -- escrito y congelado, nunca corrido",
+  "reglas_bajo_prueba": "R10.3 (NO se mueve: este CALC no la falsa, mide su antecedente)",
+  "spec_sellada": "forense/prereg-caja/S13-R10-3-spec-v1_0.md",
+  "spec_sellada_sha256": "c41235b804b0834881b7d3467e25ab0b74946fc03ba14245918e9c7a2e69a515",
+  "tipo": "MARGINAL-ANTECEDENTE-S13",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-08T19:17:32Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 398,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "f57ad1cd8f963b4edb03ec2433fb270f6d05141f",
+  "git_rama": "acto/gen2-e5-calc-0001-0003",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "f57ad1cd8f963b4edb03ec2433fb270f6d05141f",
+ "input_ids": [
+  "mexico_lapop_americasbarometer_2019_v1_0_w",
+  "mex_2021_lapop_americasbarometer_v1_2_w",
+  "mex_2023_lapop_americasbarometer_v1_0_w",
+  "IN-S13-SPEC-SELLADA"
+ ],
+ "input_sha256": {
+  "IN-S13-SPEC-SELLADA": "c41235b804b0834881b7d3467e25ab0b74946fc03ba14245918e9c7a2e69a515",
+  "mex_2021_lapop_americasbarometer_v1_2_w": "153fb0f81acfffb41bbe247b7fce81159350e1fdfcb342a14bb034bcb7d95566",
+  "mex_2023_lapop_americasbarometer_v1_0_w": "4a9410a53cde9d11edeb23465bdbadce8a6abcc18330b6eebe2a4493be6e765c",
+  "mexico_lapop_americasbarometer_2019_v1_0_w": "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "codigos_victima": [
+   1
+  ],
+  "corte_alto": 2,
+  "estrato": "estratopri",
+  "filtro_universo": "vic1ext",
+  "fuente_acto": "ACTO GEN2-E5-0 · SPECS EJECUTABLES · CALC-0002",
+  "indicadores": [
+   [
+    "aoj11",
+    [
+     3,
+     4
+    ]
+   ],
+   [
+    "b18",
+    [
+     1,
+     2,
+     3
+    ]
+   ],
+   [
+    "aoj12",
+    [
+     3,
+     4
+    ]
+   ]
+  ],
+  "indicadores_exigidos": 3,
+  "metodo_ic": "bootstrap de upm dentro de estratopri, percentil 2.5/97.5",
+  "n_minimo_celda": 10,
+  "olas": [
+   [
+    "2019",
+    "mexico_lapop_americasbarometer_2019_v1_0_w"
+   ],
+   [
+    "2021",
+    "mex_2021_lapop_americasbarometer_v1_2_w"
+   ],
+   [
+    "2023",
+    "mex_2023_lapop_americasbarometer_v1_0_w"
+   ]
+  ],
+  "ponderador": "wt",
+  "ranura_no_preregistrada_por_S13": "S13 §2 exige IC95 y no pre-registra el metodo. El bootstrap es eleccion del ejecutor sobre ranura vacia, declarada y elevada a mesa.",
+  "ruta_encargo": "c -- desenlace de denuncia inexistente en las tres olas; S13 v1.1 no se escribe",
+  "upm": "upm",
+  "veredicto_D2h": "NO-CONSTRUIBLE"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-CTX-2019-IC-HI",
+  "RESULT-CTX-2019-IC-LO",
+  "RESULT-CTX-2019-MARGINAL-AOJ11",
+  "RESULT-CTX-2019-MARGINAL-AOJ12",
+  "RESULT-CTX-2019-MARGINAL-B18",
+  "RESULT-CTX-2019-N-INDICADORES",
+  "RESULT-CTX-2019-N-UNIVERSO",
+  "RESULT-CTX-2019-P-ALTO",
+  "RESULT-CTX-2019-VEREDICTO",
+  "RESULT-CTX-2021-IC-HI",
+  "RESULT-CTX-2021-IC-LO",
+  "RESULT-CTX-2021-MARGINAL-AOJ11",
+  "RESULT-CTX-2021-MARGINAL-AOJ12",
+  "RESULT-CTX-2021-MARGINAL-B18",
+  "RESULT-CTX-2021-N-INDICADORES",
+  "RESULT-CTX-2021-N-UNIVERSO",
+  "RESULT-CTX-2021-P-ALTO",
+  "RESULT-CTX-2021-VEREDICTO",
+  "RESULT-CTX-2023-IC-HI",
+  "RESULT-CTX-2023-IC-LO",
+  "RESULT-CTX-2023-MARGINAL-AOJ11",
+  "RESULT-CTX-2023-MARGINAL-AOJ12",
+  "RESULT-CTX-2023-MARGINAL-B18",
+  "RESULT-CTX-2023-N-INDICADORES",
+  "RESULT-CTX-2023-N-UNIVERSO",
+  "RESULT-CTX-2023-P-ALTO",
+  "RESULT-CTX-2023-VEREDICTO",
+  "RESULT-RUTA-ENCARGO",
+  "RESULT-VEREDICTO-D2H"
+ ],
+ "script_blob_sha256": "3fb76f29d56c175060e8c63db972ccee9d30a82b7d3dfdbfad5ff7b8e87792f0",
+ "script_path": "data/corrida0/CALC-0002/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260908
+ },
+ "spec_id": "CALC-0002",
+ "spec_md_estado": "EN-MAIN-COINCIDE",
+ "spec_md_sha256": "4f08b62370731d6223313e897741f33e93eb6fcda89025a019f6285d169d586e",
+ "spec_yaml_sha256": "5d0c88a358cfec1525378b294694b8e0fa44ab7edffec3f6a9903e14be7e669e",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Bootstrap fijado por seed+rng declarados; la unica diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Los enteros se comparan EXACTO.",
+  "tipo": "flotante"
+ }
+}
