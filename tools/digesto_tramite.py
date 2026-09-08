@@ -1703,12 +1703,13 @@ def seccion_h(raiz, fecha, base_nc_ref=None, tope_filas=25):
                  f"`{_NC_RUTA_REL}` no existe en el árbol `{sha_ref}` "
                  f"({via_ref}) -- probablemente anterior a `ACTO GEN2-T8` (8/sep/2026, "
                  f"introdujo el archivo)")
+        corroboracion0 = _cruza_no_corrido_abiertas(raiz, len(abiertas))
         out += ["**SIN-BASE-COMPARABLE.**", "",
                 f"Motivo: {causa}.", "",
                 f"Corte actual: árbol `{sha_arbol_actual or 'NO-DERIVABLE'}`"
                 + (" (TSV con cambios locales sin commitear — ver nota abajo)"
                    if sucio else "") + f", `no-corrido.tsv` `sha256:{nc_sha256_actual}`. "
-                f"**{len(filas_ahora)}** fila(s) total, **{len(abiertas)}** `ABIERTA`.", "",
+                f"**{len(filas_ahora)}** fila(s) total. {corroboracion0}", "",
                 "No se afirma que todas las filas son nuevas ni que no hubo cambios: "
                 "esta ejecución solo establece una referencia utilizable para la "
                 "siguiente (P1.4).", "", marca_ref, ""]
