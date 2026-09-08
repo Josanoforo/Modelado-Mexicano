@@ -1,0 +1,17 @@
+{
+ "resultados": {
+  "RESULT-AGG-CI-REPLAYABLE": "true -- todos los insumos son archivos versionados del arbol (resultados.json de otros CALC + el marco vigente), con sha declarado en la spec; no hay corpus, red ni clave en el camino",
+  "RESULT-AGG-EJE-M-VS-L": "NO-ESTIMABLE -- ninguna celda tiene RESULT-L GEN2: el corredor L sucesor esta en readiness, CONTADOR cero (no se llamo al modelo)",
+  "RESULT-AGG-EJE-M-VS-R": "NO-ESTIMABLE -- ninguna celda tiene RESULT-R GEN2: la corrida de R necesita corpus (data/raw/) y va a caja, E5 o despues",
+  "RESULT-AGG-FUENTES": "IN-CALC-M-RESULTADOS=data/corrida0/CALC-M-marco-M-sorteado-v1_3/resultados.json | IN-MARCO-M-SORTEADO-V1-3=forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv",
+  "RESULT-AGG-M-P-DISTINTOS": 5,
+  "RESULT-AGG-M-P-MAX": 0.457707,
+  "RESULT-AGG-M-P-MEDIANA": 0.2345585,
+  "RESULT-AGG-M-P-MIN": 0.045694,
+  "RESULT-AGG-N-CELDAS": 14,
+  "RESULT-AGG-N-CON-L": 0,
+  "RESULT-AGG-N-CON-M": 14,
+  "RESULT-AGG-N-CON-R": 0
+ },
+ "spec_id": "CALC-AGG-marco-M-sorteado-v1_3"
+}

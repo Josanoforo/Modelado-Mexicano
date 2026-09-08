@@ -38,10 +38,12 @@ el guardrail gana y lo reportas.
    error. Ante la duda, no actúes: repórtalo.
 4. **CONTADOR: cero, declarado.** Este agente no mide nada. Es
    infraestructura. El PR lo dice con esas palabras.
-5. **Perímetro duro, cerrado**, y son tres rutas:
+5. **Perímetro duro, cerrado**, y son cuatro rutas:
    - `forense/firmas-pendientes.tsv`
    - `forense/digesto/`
    - la sección `## CONSUMIDO` de archivos en `forense/encargos/`
+   - `forense/rutinas.tsv` (una línea apendada por tick, bloque 3.5;
+     `ACTO GEN2-E7` pieza D)
    **Nada más.** Ni `canon/`, ni `tests/`, ni `milpa/`, ni `tools/`, ni
    `.github/`, ni `data/`, ni este archivo. Si te encuentras escribiendo
    fuera de esa lista, **PARA** — el perímetro estaba mal calculado y
@@ -101,12 +103,12 @@ sobrevivió a la neutralización. Eso es un defecto de `tools/digesto_
 tramite.py`, y **arreglarlo está fuera de tu perímetro**: reporta la
 salida cruda y termina con cero commits.
 
-Lee el digesto entero antes de seguir. Las cuatro acciones del bloque 3
+Lee el digesto entero antes de seguir. Las cinco acciones del bloque 3
 se deciden con lo que dice, no con lo que recuerdas.
 
 ---
 
-## 3 · LAS CUATRO ACCIONES PERMITIDAS
+## 3 · LAS CINCO ACCIONES PERMITIDAS
 
 Son cuatro, cerradas. Cualquier otra cosa que se te ocurra hacer es
 **fila del digesto**, no acción.
@@ -207,6 +209,27 @@ aunque las otras tres acciones queden en cero. Un día sin nada que hacer
 también es información, y sin el archivo no queda registro de que se
 miró.
 
+### 3.5 · Apendar la huella propia — `ACTO GEN2-E7` pieza D (D5d)
+
+Una línea en `forense/rutinas.tsv`, **siempre**, incluidos los días en
+que las otras cuatro acciones quedan en cero:
+
+```
+<fecha>	tramite	<resultado>	<detalle en una línea>
+```
+
+`<resultado>`: `HIZO:<PR>` si abriste el PR del día (o dejaste la rama, y
+lo dices en el detalle) · `NADA-QUE-HACER` si el digesto salió y no hubo
+nada que mover · `PARO:<razón>` si no pudiste cerrar.
+
+Es la misma razón que en `/despacha`: un día sin movimientos y un día en
+que la rutina **no corrió** se ven idénticos desde fuera, y la sección
+`I` del digesto —que lee este archivo— sólo puede distinguirlos si la
+línea está. Nunca reescribes una línea anterior; sólo apendas.
+
+**El archivo entra al perímetro de esta skill**: es la cuarta ruta del
+bloque 0.
+
 ---
 
 ## 4 · EL PR
@@ -232,9 +255,16 @@ El cuerpo trae, en este orden y sin adornos:
 3. **Qué NO se hizo y por qué.** La lista de lo que requirió juicio, tal
    como aparece en el digesto. Esta sección es el producto principal del
    agente, no un apéndice: es lo que mesa tiene que ver.
+3-bis. **Rutinas y revisiones** (secciones `I` y `J` del digesto, `ACTO
+   GEN2-E7` pieza D). De `I`, las rutinas **sin huella** en la ventana de
+   7 días, nombradas: una rutina sin huella no es una rutina sana, es una
+   de la que no se sabe nada, y mesa es quien puede reactivarla. De `J`,
+   las notas `[REVISA]` y las ramas `claude/revisa-*` de la ventana —
+   declarando que son **huellas**, no el conjunto de PR, porque `gh` no
+   existe en este entorno.
 4. **`CONTADOR: cero mediciones, declarado (infraestructura).`**
 5. **Perímetro tocado**, con `git diff --stat`. Si aparece una ruta
-   fuera de las tres, el PR no se abre: se reporta el error de perímetro.
+   fuera de las cuatro, el PR no se abre: se reporta el error de perímetro.
 
 Antes de abrir el PR, corre `python3 tests/check.py --baseline` otra vez
 y pega el veredicto. Si el digesto del día hizo que la suite deje de
@@ -254,5 +284,5 @@ que dejó de ser trámite — **PARA y repórtalo**, no lo selles.
 
 Falsador y caducidad (`forense/agente-tramite-v1_0.md` §3): si en un mes
 un PR `[TRAMITE]` requiere retrabajo de mesa, o toca algo fuera del
-perímetro de tres rutas —a juicio de mesa, con el caso citado—, se
+perímetro de cuatro rutas —a juicio de mesa, con el caso citado—, se
 revisa la pieza que falló y se anota.

@@ -129,3 +129,5 @@ Salida cruda en `forense/notas/2026-09-06-MAESTRA38-A4-resultados.md` §PDN. **V
 ## PASO 3
 
 `ADENDA aplicada`. Ejecución de `R0`–`R7` con comando y salida cruda en `forense/notas/2026-09-06-MAESTRA38-A4-resultados.md`, sección «Objetivo #27 · PDN — ADENDA aplicada (R0–R7)». Alcance respetado: **un objeto dentro del `COMMIT-1` de A4**, no el barrido paginado completo de los cuatro sistemas — eso es `MAESTRA38-A5 · PDN-BULK-Y-PROXY`, que corre en rama propia. Disciplina de red respetada: todo `curl` fuera del sandbox de bash, **una petición por segundo, sin paralelismo**.
+
+## HISTÓRICO-GEN1 — sin marca al cierre de GEN1 (7/sep/2026, PR #597). No se reabre: GEN2 deriva su perímetro de consumidores activos (E.2), no de encargos. Registrado por GEN2-E7 pieza D.

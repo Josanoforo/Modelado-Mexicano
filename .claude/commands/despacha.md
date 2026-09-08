@@ -15,7 +15,7 @@ corre con `/acto`.
 El runbook de mesa —el prompt de la tarea recurrente, qué esperar de
 cada tick y el falsador— vive en `forense/agente-despacho-v1_0.md`.
 
-Ejecuta los seis bloques de abajo, en orden. Cada uno es instrucción
+Ejecuta los siete bloques de abajo, en orden. Cada uno es instrucción
 ejecutable para esta sesión, no prosa de referencia.
 
 ---
@@ -53,12 +53,13 @@ estos, **el guardrail gana y lo reportas**.
 **CONTADOR del tick:** el que muevan **los encargos que ejecuta**; el
 despacho en sí, **cero**. El vehículo no mide; mide la carga.
 
-**Perímetro propio del despacho** — dos cosas, y nada más:
+**Perímetro propio del despacho** — tres cosas, y nada más:
 `forense/encargos/cola/` (solo la **cabecera**: línea `ESTADO:` y
-renglones nuevos de `BITACORA:`, más el `## CONSUMIDO` del cierre) y lo
-que el **encargo ejecutado** declare como suyo. Si te encuentras
-escribiendo fuera de esas dos, **PARA** — el perímetro estaba mal
-calculado y saberlo vale más que el atajo.
+renglones nuevos de `BITACORA:`, más el `## CONSUMIDO` del cierre),
+**`forense/rutinas.tsv`** (una línea apendada por tick, bloque 7;
+`ACTO GEN2-E7` pieza D) y lo que el **encargo ejecutado** declare como
+suyo. Si te encuentras escribiendo fuera de esas tres, **PARA** — el
+perímetro estaba mal calculado y saberlo vale más que el atajo.
 
 ---
 
@@ -302,6 +303,87 @@ Un candidato gateado **no** es `PARO-REPORTADO` (eso requiere haberlo
 marcado `EN-CURSO` primero, bloque 6.b) ni `CANDADO CERRADO` (eso es de
 otra sesión trabajando) — es un tercer motivo, propio de este pre-check,
 para pasarlo de largo sin tocar su cabecera.
+
+### 2-ter · ¿El homónimo archivado ya trae `## CONSUMIDO`? — `ACTO GEN2-E7` pieza D (D3a)
+
+**Corre esto ANTES del pre-check de compuerta**, sobre cada candidato.
+
+Defecto **medido** el 8/sep/2026, y por eso existe este bloque: cinco
+encargos GEN2 ya fusionados (`E1` `PR #602`, `E2` `#600`, `E3` `#601`,
+`E4` `#604`, `E6` `#611`) seguían en la cola con `ESTADO: LISTO-*` o
+`GATEADO`. Sin este candado, el siguiente tick habría tomado
+`GEN2-E6-AUTOMATIZA-GEN2-2` —`LISTO-NUBE`, el más antiguo que pasaba— y
+**lo habría vuelto a ejecutar**, entero, con su PR ya fusionado.
+
+El homónimo se busca **por RÓTULO**, es decir el nombre del archivo **sin
+el prefijo `AAAA-MM-DD-`**, y no por nombre completo: la copia de cola
+lleva la fecha de **redacción** y la archivada la de **ejecución**, así
+que los dos nombres casi nunca coinciden — `2026-09-07-GEN2-E6-…` en cola
+contra `2026-09-08-GEN2-E6-…` archivado. Un cotejo por nombre completo
+**nunca dispararía**, y su verde no significaría nada.
+
+```
+# ROTULO del candidato de cola (nombre sin el prefijo de fecha, sin .md)
+ROT=$(basename "$f" .md | cut -c12-)
+# ¿algún archivado con ese mismo rótulo ya trae la marca?
+for a in $(git ls-tree -r --name-only origin/main -- forense/encargos/ \
+           | grep -v '/cola/' | grep -- "-$ROT\.md$"); do
+  git show "origin/main:$a" | grep -q '^## CONSUMIDO' && echo "YA CONSUMIDO: $a"
+done
+```
+
+**Si aparece alguno:** no lo ejecutas. Corriges el `ESTADO:` de la copia
+de cola **en un commit propio** —solo esa línea, más un renglón nuevo de
+`BITACORA:`— y **sigues al siguiente candidato**:
+
+```
+ESTADO: CONSUMIDO — PR #<N>. Sincronizado por /despacha: el homónimo archivado ya traía `## CONSUMIDO`.
+- <fecha> · CONSUMIDO · sincronizado por /despacha contra <ruta del archivado>
+```
+
+Ese commit **no es** ejecutar el encargo y **no cuenta** como el trabajo
+del tick: es contabilidad de cola, vive en el perímetro propio del
+despacho (guardrail del bloque 0) y su resultado en `forense/rutinas.tsv`
+es `NADA-QUE-HACER` si no acabas ejecutando nada más.
+
+`tests/check.py::T37 · T-COLA-SINCRONIZADA` comprueba lo mismo desde la
+suite, y `python3 tools/cierre_acto.py --aplica` lo reconcilia solo: los
+tres usan **la misma** función, `cierre_acto.cola_desincronizada`, para
+que no puedan discrepar sobre qué cuenta como desincronizado.
+
+---
+
+### 2-quater · Compuerta que SÍ se cumple: PROMUEVE — `ACTO GEN2-E7` pieza D (D3b)
+
+Hasta aquí, un `GATEADO` cuya compuerta ya se cumple se quedaba
+`GATEADO` para siempre: nadie volvía a evaluarla, porque el bloque 2-bis
+sólo mira los `LISTO-NUBE`. La cola se llenaba de encargos ejecutables
+marcados como no ejecutables.
+
+**Evalúa la compuerta declarada de cada `ESTADO: GATEADO`** con el mismo
+método mecánico y por producto del bloque 2-bis (nunca por lectura, nunca
+por `git log --grep`). Si **pasa contra `origin/main`**, promuévelo en un
+**commit propio** y repórtalo:
+
+```
+ESTADO: LISTO-<ENTORNO>
+- <fecha> · LISTO-<ENTORNO> · promovido por /despacha: compuerta cumplida — comando: <el comando> → <la salida>
+```
+
+`<ENTORNO>` sale de la línea `ENTORNO:` del propio encargo; **no se
+elige**. Su resultado en `forense/rutinas.tsv` es
+`PROMOVIÓ:<rótulo>`.
+
+**Nunca al revés y nunca a mano.** Un `LISTO-*` no se degrada a `GATEADO`
+por esta ruta: si su compuerta dejó de cumplirse, eso es un hallazgo para
+mesa, no una corrección tuya. Y la promoción **sólo** procede si el
+comando de la compuerta pasa hoy — no si te parece que debería.
+
+Promover no es ejecutar: puedes promover uno y, en el mismo tick, tomar
+otro (o ninguno). Si promueves y no ejecutas nada, el tick termina en
+`COLA VACÍA` con el commit de promoción, que es un entregable.
+
+---
 
 ### Si SÍ se cumple
 
@@ -572,6 +654,41 @@ cuerpo trae, en este orden:
 Antes de abrir el PR corre `python3 tests/check.py --baseline` y pega el
 veredicto. Si el tick dejó la suite fuera de línea base, **no abras el
 PR**: reporta con la salida cruda.
+
+## 7 · HUELLA — una línea en `forense/rutinas.tsv`, siempre — `ACTO GEN2-E7` pieza D (D3c)
+
+**Este bloque corre en los CUATRO desenlaces**, incluido `CANDADO
+CERRADO` y `COLA VACÍA`. Es la razón de ser del archivo: un tick que
+termina en `NADA-QUE-HACER` y un tick **que no corrió** se ven idénticos
+desde fuera —cero commits, cero PR—, y esa ambigüedad es la que impide
+saber si la rutina sigue viva.
+
+Apenda **una** línea (nunca reescribes una anterior):
+
+```
+<fecha>	despacha	<resultado>	<detalle en una línea>
+```
+
+`<resultado>` es exactamente uno de:
+
+| valor | cuándo |
+|---|---|
+| `HIZO:<PR>` | ejecutaste un encargo y abriste su PR (o dejaste la rama, y lo dices en el detalle) |
+| `CANDADO:<razón>` | bloques 2.a / 2.b / 4-bis / push rechazado |
+| `PARO:<razón>` | `PARO-REPORTADO` del bloque 6.b |
+| `PROMOVIÓ:<encargo>` | bloque 2-quater |
+| `NADA-QUE-HACER` | `COLA VACÍA`, o sólo sincronizaste cola (2-ter) |
+
+Va commiteada en la **rama del día `claude/tramite-<fecha>`**, que creas
+si no existe (`git checkout -B claude/tramite-<fecha> origin/main`). No va
+en la rama del tick: la huella es de la **rutina**, no del encargo, y
+tiene que sobrevivir aunque el PR del tick nunca se fusione.
+
+Si el tick terminó en `CANDADO CERRADO`, esta línea es su **único**
+commit — y sigue siendo cierto que no empujaste nada sobre el encargo
+ajeno.
+
+---
 
 Falsador y caducidad de esta skill (`forense/agente-despacho-v1_0.md`
 §3): si en un mes el despachador ejecuta algo fuera de la cola o fuera

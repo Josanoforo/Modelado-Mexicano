@@ -47,3 +47,5 @@ enmienda 2026-09-04), este encargo queda cerrado por antigüedad e
 inacción declarada, no por evidencia positiva de ejecución o
 sustitución. Si aparece evidencia nueva, esta marca se reabre -- no es
 `## CONSUMIDO`.
+
+## HISTÓRICO-GEN1 — sin marca al cierre de GEN1 (7/sep/2026, PR #597). No se reabre: GEN2 deriva su perímetro de consumidores activos (E.2), no de encargos. Registrado por GEN2-E7 pieza D.

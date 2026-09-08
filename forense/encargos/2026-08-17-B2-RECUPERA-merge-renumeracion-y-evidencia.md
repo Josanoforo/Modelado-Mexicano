@@ -129,3 +129,5 @@ Contadores del programa: 0. Este acto no mide ni cierra: reconcilia la base y re
 ## NO-EJECUTADO
 
 Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). Cero rastro: `grep -Fc -- "2026-08-17-B2-RECUPERA-merge-renumeracion-y-evidencia.md" canon/gobernanza-v1_15.md` → 0 · `git log --all --oneline --grep="2026-08-17-B2-RECUPERA-merge-renumeracion-y-evidencia.md"` → 0 · `git grep -Fl -- "2026-08-17-B2-RECUPERA-merge-renumeracion-y-evidencia.md"` (excluyendo forense/digesto/ y el propio archivo) → 0 resultados en los 327 ADR ni en el historial de commits. Sin nota de cierre, sin FP, sin cita posterior.
+
+## HISTÓRICO-GEN1 — sin marca al cierre de GEN1 (7/sep/2026, PR #597). No se reabre: GEN2 deriva su perímetro de consumidores activos (E.2), no de encargos. Registrado por GEN2-E7 pieza D.

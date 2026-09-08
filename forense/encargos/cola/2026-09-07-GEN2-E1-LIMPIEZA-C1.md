@@ -1,4 +1,4 @@
-ESTADO: LISTO-CAJA
+ESTADO: CONSUMIDO — PR #602 (`acto/gen2-e1-limpieza-c1`). Sincronizado por `ACTO GEN2-E7` pieza D (D2a): seguía `LISTO-CAJA` con el PR ya fusionado.
 ENTORNO: CAJA (UBUNTU)
 ENCOLADO: 2026-09-07 · ACTO GEN2-E0 · ENCOLA, skill `/encola`, PR [COLA]. Gesto de encolado: precedente §1c del transfer maestra-34 (firma D4-a, 1/sep/2026).
 BITACORA:

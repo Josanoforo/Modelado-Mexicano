@@ -1,0 +1,106 @@
+# CALC-M-marco-M-sorteado-v1_3 -- cara mecanica de spec.md (ACTO GEN2-E7 · A1).
+# El texto que gobierna es spec.md; este YAML no decide nada que aquel no diga.
+calc_id: CALC-M-marco-M-sorteado-v1_3
+spec_md: spec.md
+spec_md_sha256: 19c3492fe330909ed6a9c325806b0cbe81ba94de0bf7a3591873ed9abdf7085b
+
+script: data/corrida0/CALC-M-marco-M-sorteado-v1_3/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: CORREDOR-M-ENVUELTO
+  # No es decision del corredor: corre sobre insumos de repo, no produce un
+  # numero nuevo del modelo, y si cuenta como GEN2 lo firma mesa en el merge.
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  marco_vigente: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+
+# Los dos primeros los consume el medidor; los cuatro siguientes los abre
+# emite_m/emisor durante la emision y se declaran para que la identidad de la
+# corrida los cubra (spec.md §6).
+inputs:
+  - id: IN-MARCO-M-SORTEADO-V1-3
+    origen: repo
+    ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+    sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
+  - id: IN-EMITE-M
+    origen: repo
+    ruta: tools/emite_m.py
+    sha256: 196c2fc30a4b892e52117bcd8d521cf4c4ff8c2fd9801c0940d1588148edbf17
+  - id: IN-TRAMITE
+    origen: repo
+    ruta: milpa/tramite.yaml
+    sha256: 08bdda0bb3f8a6424d495f96f25839bf5df04f6a487649a28359f04cfa69ce86
+  - id: IN-CANDIDATOS-MARCO-M-V1-1
+    origen: repo
+    ruta: forense/prereg-duelo-v2/candidatos-marco-M-v1_1.tsv
+    sha256: 16ac31730ee3d9dbcd187cbbc859140635121c2c1eece7f2f4210c4ffe363c34
+  - id: IN-PROCEDENCIA
+    origen: repo
+    ruta: milpa/procedencia.yaml
+    sha256: 556eb8e9c6816fca86211a3446e033e3e624d05646ae63f45ee86b25045ccf17
+  - id: IN-MODELO-DECISION-V4-0
+    origen: repo
+    ruta: canon/modelo-decision-v4_0.md
+    sha256: 51365820a12739471299385a8b6f6f4790664ec12413c27465103779a0db5d65
+
+# Dimensiones sustantivas -- todas DECLARADAS (P2 de GEN2-E3-1-1).
+# `NO-APLICA` aqui es declaracion, no relleno: este calculo no abre microdato.
+variables: []
+universo: NO-APLICA
+filtros: "columna elegible_v1_1 == SI del marco vigente (14 de 14 celdas)"
+ponderador: NO-APLICA
+transformacion: NO-APLICA
+estimando: "punto p emitido por milpa/src/emisor.py::emitir_binaria por celda"
+dependencias_materiales: []
+
+parametros:
+  fuente_acto: "ACTO GEN2-E7 · READINESS-2 · A1 · CALC-M-marco-M-sorteado-v1_3"
+  columna_elegible: elegible_v1_1
+
+seed:
+  aplica: false
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    La emision no es estocastica y `emite_celda` ya comprueba determinismo de
+    `emitir_binaria` por celda. La tolerancia queda para el redondeo de
+    float64 al serializar `p`; cualquier cambio real del punto la excede por
+    ordenes de magnitud.
+
+resultados:
+  - {id: RESULT-M-CIV-M-01-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-CIV-M-01-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-CIV-M-02-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-CIV-M-02-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-CIV-M-04-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-CIV-M-04-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-CIV-M-10-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-CIV-M-10-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-CIV-M-12-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-CIV-M-12-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-CIV-M-13-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-CIV-M-13-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-DIN-M-01-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-DIN-M-01-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-FAM-M-01-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-FAM-M-01-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-FAM-M-05-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-FAM-M-05-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-FAM-M-06-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-FAM-M-06-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-FAM-M-07-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-FAM-M-07-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-TRA-M-02-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-TRA-M-02-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-TRA-M-03-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-TRA-M-03-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-TRA-M-07-P,        tipo: proporcion, unidad: "proporcion del universo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-M-TRA-M-07-GRADO-DD, tipo: texto,      unidad: "grado de dependencia declarativa (escala P0-P3 / NO-ELEGIBLE)"}
+  - {id: RESULT-M-N-CELDAS,    tipo: entero, unidad: "celdas del marco vigente"}
+  - {id: RESULT-M-N-EMITIDAS,  tipo: entero, unidad: "celdas con p emitido"}
+  - {id: RESULT-M-P-DISTINTOS, tipo: entero, unidad: "valores distintos de p (dato del paso 3, spec.md §5)"}
+  - {id: RESULT-M-CIEGO-A-R,   tipo: texto,  unidad: "recibo del audithook (spec.md §4)"}
+  - {id: RESULT-M-MARCO,       tipo: texto,  unidad: "ruta del marco vigente consumido"}

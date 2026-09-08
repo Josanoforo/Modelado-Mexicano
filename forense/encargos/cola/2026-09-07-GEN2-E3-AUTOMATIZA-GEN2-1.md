@@ -1,4 +1,4 @@
-ESTADO: GATEADO
+ESTADO: CONSUMIDO — PR #601 (`claude/acto-gen2-e3-corrida0-2q9ser`). Sincronizado por `ACTO GEN2-E7` pieza D (D2a): seguía `GATEADO` con el PR ya fusionado.
 ENTORNO: NUBE
 ENCOLADO: 2026-09-07 · ACTO GEN2-E0 · ENCOLA, skill `/encola`, PR [COLA]. Gesto de encolado: precedente §1c del transfer maestra-34 (firma D4-a, 1/sep/2026).
 BITACORA:
