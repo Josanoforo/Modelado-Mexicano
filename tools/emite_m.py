@@ -106,6 +106,105 @@ DETERMINISMO = (
 )
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# MODULACION POR OLA -- reglas de la ADENDA DE MESA de `ACTO GEN2-T9`
+# (8/sep/2026, recibida en vuelo). Dos funciones PURAS, sin E/S: viven aqui
+# porque aqui vivira la envoltura por celda que las consuma (C0-D), y las usa
+# ya el CALC de demostracion `CALC-M-marco-M-sorteado-v1_3-ola`. NINGUNA
+# cambia el camino de emision vigente de `emite_celda`: la `M` que este
+# modulo emite hoy no pasa por ellas, asi que ninguna `corridas-M/*.json`
+# sellada cambia por este acto.
+# ═══════════════════════════════════════════════════════════════════════════
+
+#: Marca de una entrada de `serie_olas` cuyo valor NO nace de una medicion
+#: propia sino del `R-json` de un duelo ya arbitrado.
+ORIGEN_ARBITRO = "ORIGEN-ARBITRO"
+ORIGEN_MEDICION = "ORIGEN-MEDICION"
+
+#: Lo que una celda declara cuando su punto modulado consume una entrada
+#: `ORIGEN-ARBITRO`: no puntua, se verifica.
+VERIFICACION_NO_PUNTUA = "VERIFICACION-NO-PUNTUA"
+
+#: Lo que una celda declara cuando su serie no tiene ninguna ola ANTERIOR.
+SIN_PREVIA = "SIN-PREVIA"
+
+
+def anio_de_ola(valor) -> int | None:
+    """El anio de una ola escrita como `2002 (ola 1)`, `2013` o `ENIGH 2016`.
+
+    Devuelve `None` si no hay cuatro digitos seguidos. Un `None` NO se
+    sustituye por un default: la celda que no sabe su anio no modula.
+    """
+    digitos = ""
+    for ch in str(valor):
+        if ch.isdigit():
+            digitos += ch
+            if len(digitos) == 4:
+                return int(digitos)
+        else:
+            digitos = ""
+    return None
+
+
+def ola_previa_estricta(ola_arbitro, serie):
+    """La ULTIMA ola ESTRICTAMENTE ANTERIOR a la del arbitro. `None` si no hay.
+
+    ADENDA DE MESA (`ACTO GEN2-T9`, 8/sep/2026), precision 1 -- sustituye a
+    la regla «ola mas cercana distinta a la del arbitro (empate -> anterior)»
+    que `ACTO GEN2-T9` habia implementado:
+
+        «ultima ola estrictamente anterior al periodo de la celda del
+        arbitro; sin anterior en la serie -> `modela_ola: SIN-PREVIA` y la
+        celda no modula (no se usa posterior, no se promedia)».
+
+    POR QUE, y no es un detalle de estilo: «mas cercana» elige una ola
+    POSTERIOR cuando la serie no trae ninguna anterior. Un punto construido
+    con informacion que no existia en el momento que se predice es FUGA
+    TEMPORAL, y una demostracion que la ensene ensena el patron equivocado
+    aunque el numero salga bien -- es el mismo corte que la evaluacion
+    clasica de series hace al partir el conjunto por tiempo y no al azar.
+    Es tambien lo que D-2 pedia al invocar «el benchmark de lo que queremos
+    lograr».
+
+    Medido al instalar la regla: sobre las 6 celdas que hoy modulan, NINGUNA
+    cambia de ola -- las seis ya tenian una anterior y las dos reglas
+    coinciden. La regla se instala por lo que impide manana, no por lo que
+    corrige hoy, y decirlo asi es parte de instalarla.
+    """
+    a = anio_de_ola(ola_arbitro)
+    if a is None:
+        return None
+    previas = [e for e in (serie or [])
+               if isinstance(e, dict)
+               and anio_de_ola(e.get("ola")) is not None
+               and anio_de_ola(e.get("ola")) < a]
+    if not previas:
+        return None
+    return max(previas, key=lambda e: anio_de_ola(e["ola"]))
+
+
+def origen_de_entrada_serie(entrada) -> str:
+    """`ORIGEN-ARBITRO` si el valor de la entrada viene de un `R-json`.
+
+    ADENDA DE MESA (`ACTO GEN2-T9`, 8/sep/2026), precision 2. Verificado
+    sobre `milpa/tramite.yaml`: tres entradas de la serie de
+    `tramite.mordida.discrecional:enmienda_encig2025` -- ENCIG 2013, 2017 y
+    2021 -- traen `metodo: "R-json (TRA-M-0X, ya publico)"`, es decir, una
+    tasa cuya procedencia es el `R-json` de un duelo ya arbitrado.
+
+    `F-DD` (`ADR-237`) cubre el par MISMA-ENCUESTA-MISMA-OLA; NO cubre la
+    reutilizacion CRUZADA de un valor que ya paso por el arbitro. Una celda
+    que module con una de esas entradas estaria puntuando contra un numero
+    que el arbitro ya vio, y `F-DD` no lo atraparia.
+
+    Se lee el campo `metodo` y nada mas: si una entrada no lo declara, es
+    `ORIGEN-MEDICION` -- no se adivina procedencia desde el `payload_id` ni
+    desde el acto.
+    """
+    metodo = str((entrada or {}).get("metodo") or "")
+    return ORIGEN_ARBITRO if "R-json" in metodo else ORIGEN_MEDICION
+
+
 def archivos_abiertos(marco_nombre: str) -> list[str]:
     return [
         "canon/modelo-decision-v4_0.md  [lectura via emisor (import del modulo)]",

@@ -252,3 +252,113 @@ Las tres corridas nuevas dan `verify` **`REPLICA-RESULTADO`
 mecánica y esperada: el `git_commit` del sello no es el de hoy, porque cada
 corrida se selló en su propio commit y el árbol siguió avanzando dentro del
 mismo acto.
+
+---
+
+## 8 · ADENDA DE MESA — recibida en vuelo, 8/sep/2026
+
+*El encargo archivado **no** se edita (A.3). Dos precisiones a P3(c), ambas
+dentro del perímetro ya declarado.*
+
+### 8.1 · Precisión 1 — la regla es «última anterior», no «más cercana»
+
+La regla que este acto había implementado —«ola más cercana distinta a la
+del árbitro, empate → anterior»— **queda derogada**. La regla operable es:
+
+> **última ola estrictamente anterior** al periodo de la celda del árbitro;
+> sin anterior en la serie → `modela_ola: SIN-PREVIA` y la celda **no
+> modula** (no se usa posterior, no se promedia).
+
+**Por qué.** Con una serie que no trae ninguna ola anterior, «más cercana»
+elige una **posterior**: el punto se construye con información que no
+existía en el momento que se predice. Es **fuga temporal**, y una
+demostración que la enseñe enseña el patrón equivocado aunque el número
+salga bien. Es el mismo corte que la evaluación clásica de series hace al
+partir el conjunto por tiempo y no al azar — lo que D-2 pedía al invocar
+*«el benchmark de lo que queremos lograr»*.
+
+**Medido, y hay que decirlo entero:**
+
+| | |
+|---|---|
+| celdas que cambian de ola | **0 de 6** |
+| celdas que cambian de `p` | **0 de 6** |
+| `RESULT-MOLA-N-SIN-PREVIA` hoy | **0** |
+
+Las seis celdas que modulan ya tenían una ola anterior, así que las dos
+reglas coinciden en las seis y los seis puntos `p` son idénticos entre la
+corrida vieja y la nueva (comparado archivo contra archivo, no afirmado).
+**La regla se instala por lo que impide mañana, no por lo que corrige hoy** —
+y eso la hace más creíble, no menos: no se puede acusar de haber sido
+ajustada a un resultado.
+
+**Una premisa de la adenda que el árbol no sostiene.** La adenda propone
+verificar «remesas ENIGH, celda objetivo 2016 […] si la serie arranca en
+2016, "más cercana distinta" daría 2018». Verificado: la serie de
+`familia.seguro.volatilidad_ausencia_estado` **arranca en 2012**, no en 2016
+(olas 2012·2014·2016·2018·2020·2022), así que `FAM-M-05` sí tenía anterior
+—2014— y la regla vieja ya daba 2014. **La fuga no estaba viva en esa
+celda.** El caso donde sí muerde es el árbitro en **2011**, el primer año de
+la serie ENCIG: la regla vieja habría tomado **2013** —posterior **y**
+`ORIGEN-ARBITRO`— y la nueva declara `SIN-PREVIA`. Ese es el caso que quedó
+como test.
+
+### 8.2 · Precisión 2 — `ORIGEN-ARBITRO`
+
+Verificado en `milpa/tramite.yaml` (líneas **111**, **113**, **115**, como la
+adenda indica): tres entradas de la serie de
+`tramite.mordida.discrecional:enmienda_encig2025` —ENCIG **2013**, **2017**,
+**2021**— traen `metodo: "R-json (TRA-M-0X, ya público)"`. Su valor no nace
+de una medición propia: viene del `R-json` de un duelo ya arbitrado.
+
+`F-DD` (`ADR-237`) cubre el par **misma-encuesta-misma-ola**; **no** cubre la
+reutilización **cruzada** de un valor que ya pasó por el árbitro. Regla: toda
+celda cuya ola modulada consuma una entrada `ORIGEN-ARBITRO` queda
+**`VERIFICACION-NO-PUNTUA`**, no `P1`, con el rótulo en el `RESULT`.
+
+**Hoy `RESULT-MOLA-N-ORIGEN-ARBITRO = 0`**: ninguna de las 6 celdas cae ahí.
+Las tres entradas se inventarían igual en
+`RESULT-MOLA-ENTRADAS-ORIGEN-ARBITRO-EN-SERIES` — el guard se declara aunque
+no muerda, porque el día que muerda nadie estará mirando. Para GEN2 real es
+discutible-*moot* (`C0-B` recompone las series con cadena propia, regla
+`E.1`), pero la demostración no debe enseñar el patrón contaminado.
+
+`TRA-M-03` es el caso que hace visible por qué el leave-one-out importa: su
+árbitro es ENCIG **2013** y la serie trae una entrada 2013 cuyo `metodo` es,
+literalmente, `R-json (TRA-M-03, ya público)` — su propio resultado
+arbitrado. La regla lo excluye por exigir **estrictamente** anterior.
+
+### 8.3 · Dónde viven las dos reglas, y por qué las corridas viejas no se tocan
+
+Las dos son funciones **puras** en `tools/emite_m.py` —donde vivirá la
+envoltura por celda que las consuma en `C0-D`— y el CALC de demostración las
+**importa** en vez de recopiarlas: dos copias de una regla de mesa se separan
+en cuanto una cambia. **Ninguna toca el camino de emisión vigente de
+`emite_celda`**, así que ninguna `corridas-M/*.json` sellada cambia por esto.
+
+**Las corridas selladas no se reescriben.** `corrida0 run` lo impide
+(`CALC-INMUTABLE · YA-SELLADO`) y tiene razón: una corrida sellada es
+evidencia histórica de lo que se corrió, **incluida la regla que se
+corrió**. Así que la adenda entra por **sucesión declarada** (`repite_de`):
+
+| predecesora | estado | sucesora |
+|---|---|---|
+| `CALC-M-marco-M-sorteado-v1_3-ola` | `SUPERADO→` | `CALC-M-marco-M-sorteado-v1_3-ola-v2` |
+| `CALC-AGG-marco-M-sorteado-v1_3-ola` | `SUPERADO→` | `CALC-AGG-marco-M-sorteado-v1_3-ola-v2` |
+
+Las dos predecesoras conservan sus bytes intactos y su sello `COINCIDE`. Que
+las dos versiones convivan **es el punto**: así se ve qué regla produjo qué
+número. Las dos sucesoras dan `verify REPRODUCE` y son `cuenta_gen2: NO` por
+`D-1`. `corredores_envueltos_legacy` **5 → 7**; `N_corridas_selladas` sigue
+en **0**.
+
+### 8.4 · Un defecto latente encontrado al mover el código
+
+`RAIZ` en los medidores usaba **tres** `dirname` para un archivo que vive
+**cuatro** niveles adentro (`data/corrida0/<CALC>/medidor.py`): resolvía a
+`data/`, no a la raíz. Sólo funcionaba porque `corrida0` se invoca desde la
+raíz y el CWD ya estaba en `sys.path`; el día que se invocara desde otro
+sitio, el import del motor habría reventado. Corregido en el medidor `-v2`
+(nace con cuatro). El de `CALC-MOTOR-celdas-semilla` **queda como está** —su
+corrida está sellada y el defecto no afectó su resultado—; se paga en el acto
+sucesor que ya tiene `milpa/src/` en perímetro (`NC-0023`).

@@ -43,6 +43,22 @@ Lo que NO hace: no colapsa celdas; no cambia la métrica sellada; no promedia se
 
 Las conclusiones del encargo se sostienen las dos —el motor faltaba en la demanda; existen puntos por eje con IC que ninguna celda del marcador consume—. Las cifras, no.
 
+### ENMIENDA DE MESA RECIBIDA EN VUELO — 8/sep/2026
+
+*Dos precisiones a P3(c), llegadas con `PR #615` ya abierto. El cuerpo del
+encargo no se edita (A.3); se asientan aquí y en la nota del acto.*
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **Precisión 1 · la regla de ola pasa de «más cercana distinta al árbitro» a «última estrictamente anterior; sin anterior → `SIN-PREVIA`, la celda no modula».** Implementada, probada y corrida. | *(no es una pieza no corrida: es una regla **sustituida** por mesa en vuelo)*. La regla vieja elegía una ola **posterior** cuando la serie no traía anterior — fuga temporal. | **Cero celdas cambian de ola y cero cambian de `p`**: las 6 que modulan ya tenían anterior, y los 6 puntos son idénticos entre la corrida vieja y la nueva. `N-SIN-PREVIA = 0`. La regla se instala por lo que impide mañana. | Corrida y sellada en `CALC-M-marco-M-sorteado-v1_3-ola-v2`. |
+| **Precisión 2 · `ORIGEN-ARBITRO`**: las entradas de serie con `metodo: R-json` se rotulan así, y toda celda que module con una queda `VERIFICACION-NO-PUNTUA`. | *(regla **añadida** por mesa)*. `F-DD` (`ADR-237`) cubre misma-encuesta-misma-ola; no cubre la reutilización cruzada de un valor que ya pasó por el árbitro. | `N-ORIGEN-ARBITRO = 0` hoy — ninguna de las 6 cae ahí. Las tres entradas vivas (ENCIG 2013/2017/2021) se inventarían igual: el guard se declara aunque no muerda. | Corrida y sellada en las dos `-v2`. |
+| **La envoltura por celda de `tools/emite_m.py`** que consuma la regla de ola. **No escrita.** | `DIFERIDO-A:C0-D` — cablearla a `emite_celda` cambiaría la `M` que el emisor produce hoy y con ella las `corridas-M` ya selladas. Escribir hoy una envoltura que nada llama sería código muerto; cablearla sería salirse del perímetro. Las dos reglas quedan como funciones **puras** en `tools/emite_m.py`, probadas y con un consumidor real (el CALC demo). | Ninguna `corridas-M/*.json` cambia. La `M` que el marcador emite hoy sigue sin modular por ola. | `ACTO C0-D`. `NC-0026`. |
+| **`RAIZ` mal derivada** en el medidor de `CALC-MOTOR-celdas-semilla` (tres `dirname` para un archivo cuatro niveles adentro). **No corregida ahí.** | `FUERA-DE-PERÍMETRO` — esa corrida está **sellada** y `corrida0 run` lo impide (`CALC-INMUTABLE`); abrir una sucesora sólo por un defecto que no afectó su resultado no lo vale. | Ninguno hoy: `RAIZ` sólo alimenta `sys.path`, y `corrida0` se invoca desde la raíz. Muerde sólo si alguien invoca ese medidor desde otro CWD, y entonces falla con un error de módulo, no con una cifra mala. | El mismo acto que arregle `milpa/src/clases.py` y re-corra el CALC (`NC-0023`). `NC-0027`. |
+
+**Reserva sobre la adenda misma.** Propone verificar la fuga en «remesas ENIGH, celda objetivo 2016 […] si la serie arranca en 2016». Verificado: esa serie **arranca en 2012** (olas 2012·2014·2016·2018·2020·2022), así que `FAM-M-05` sí tenía anterior y la regla vieja ya daba 2014 — **la fuga no estaba viva en esa celda**. El caso donde sí muerde es el árbitro en **2011**, primer año de la serie ENCIG: la regla vieja habría tomado **2013**, posterior **y** `ORIGEN-ARBITRO`. Ése quedó como test.
+
+**Las corridas selladas no se reescriben.** Al aplicar la adenda edité en su sitio dos medidores ya sellados; `corrida0 run` lo rechazó (`CALC-INMUTABLE · YA-SELLADO`) y tenía razón — una corrida sellada es evidencia de lo que se corrió, **incluida la regla que se corrió**. Se restauraron a sus bytes sellados y la adenda entró por **sucesión declarada** (`repite_de`): las dos predecesoras quedan `SUPERADO→` con sus bytes intactos y sello `COINCIDE`. `corredores_envueltos_legacy` **5 → 7**; `N_corridas_selladas` sigue en **0**; `no_corrido_abiertas` **13 → 15**.
+
 ## CONSUMIDO
 
 Ejecutado por [`PR #615`](https://github.com/Josanoforo/Modelado-Mexicano/pull/615) — `ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ`, 8/sep/2026, entorno **NUBE, sin corpus ni red**, sobre `origin/main = 6f1500e2` (el encargo se redactó contra `7a958b06`/`PR #613`; `main` avanzó a `6f1500e2` con `PR #614` antes de arrancar, y la diferencia se reportó en el ARRANQUE en vez de trabajar sobre una base atrasada).
@@ -52,3 +68,5 @@ Cascada: `ADR-401` · `L0` 400→401 (`canon/estado-programa-v1_12.md`, los tres
 Suite `--baseline` **VERDE** (3 `FAIL`, los tres de la línea base congelada). `tests/test_corredores_gen2.py` · 31 casos · 31 ok.
 
 **CONTADOR: cero GEN2.** `N_corridas_selladas = 0`; las tres corridas nuevas son `cuenta_gen2: NO` por D-1 y por la regla `E.1`.
+
+**ADENDA CONSUMIDA.** Las dos precisiones de mesa a P3(c) (ola previa estricta · `ORIGEN-ARBITRO`) ejecutadas por [`PR #618`](https://github.com/Josanoforo/Modelado-Mexicano/pull/618), 8/sep/2026, entorno **NUBE**, sobre `origin/main = fbd847d` (`PR #615` ya fusionado). Sin ADR nuevo: se asienta como bloque `ADENDA` dentro de `ADR-401` — mismo acto, mismo rótulo. Cascada: `forense/no-corrido.tsv` (`NC-0026`, `NC-0027`; `NC-0025` enriquecida), `forense/hallazgos.md` (dos entradas), `canon/registro-rotulos.tsv`, §8 de la nota del acto. Suite `--baseline` **VERDE**; `tests/test_corredores_gen2.py` · 35 casos · 35 ok. **CONTADOR: cero GEN2** — las dos sucesoras son `cuenta_gen2: NO` por `D-1`.

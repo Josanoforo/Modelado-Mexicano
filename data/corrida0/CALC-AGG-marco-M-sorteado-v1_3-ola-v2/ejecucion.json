@@ -1,0 +1,105 @@
+{
+ "corrida_id": "CALC-AGG-marco-M-sorteado-v1_3-ola-v2--bd12af6087d0",
+ "dependencias_materiales": {
+  "numpy": "AUSENTE",
+  "pandas": "AUSENTE",
+  "pyreadstat": "AUSENTE",
+  "scipy": "AUSENTE",
+  "yaml": "6.0.1"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "ci_replayable": true,
+  "cuenta_gen2": false,
+  "generacion": "GEN2",
+  "marco_vigente": "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv",
+  "tipo": "AGREGADO-DERIVADO-OLA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-08T15:28:27Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "AUSENTE",
+   "pandas": "AUSENTE",
+   "pyreadstat": "AUSENTE",
+   "scipy": "AUSENTE",
+   "yaml": "6.0.1"
+  },
+  "git_commit": "bd12af6087d01c9e2d32c2a83b8a37de2feb6159",
+  "git_rama": "claude/gen2-t9-adenda-ola-previa-y-origen-arbitro",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+  "python": "3.11.15",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "NO",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "cloud_default",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "bd12af6087d01c9e2d32c2a83b8a37de2feb6159",
+ "input_ids": [
+  "IN-CALC-M-OLA-RESULTADOS",
+  "IN-MARCO-M-SORTEADO-V1-3",
+  "IN-PROPUESTA-OLA5"
+ ],
+ "input_sha256": {
+  "IN-CALC-M-OLA-RESULTADOS": "f677d74372cd2af6f7f0a356d74ae9527703e3ec83044a45f1ec6c406ca33c95",
+  "IN-MARCO-M-SORTEADO-V1-3": "f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a",
+  "IN-PROPUESTA-OLA5": "12a06fe2f87879d1203cdb0e4fd3f9bdcaf59f1639a72ac880dfb30077073902"
+ },
+ "parametros": {
+  "columna_elegible": "elegible_v1_1",
+  "fuente_acto": "ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ · P3(d)"
+ },
+ "python_version": "3.11.15",
+ "resultado_ids": [
+  "RESULT-AGGOLA-CELDAS-CON-SEGMENTO",
+  "RESULT-AGGOLA-EJES-EN-PROPUESTA",
+  "RESULT-AGGOLA-ENTRADAS-EJES-EN-PROPUESTA",
+  "RESULT-AGGOLA-HUECO",
+  "RESULT-AGGOLA-MARCO-TIENE-COLUMNA-SEGMENTO",
+  "RESULT-AGGOLA-METRICA-SELLADA",
+  "RESULT-AGGOLA-N-CELDAS",
+  "RESULT-AGGOLA-N-MODULAN-OLA",
+  "RESULT-AGGOLA-N-REGLAS",
+  "RESULT-AGGOLA-N-SIN-PREVIA",
+  "RESULT-AGGOLA-N-VERIFICACION-NO-PUNTUA",
+  "RESULT-AGGOLA-PUNTOS-POR-EJE-CON-IC",
+  "RESULT-AGGOLA-VISTA-POR-REGLA"
+ ],
+ "script_blob_sha256": "df104f7e4fbb1a4228c71d1a36444b0546d2c67e40e1bd3eaea23cf65e80fbfd",
+ "script_path": "data/corrida0/CALC-AGG-marco-M-sorteado-v1_3-ola-v2/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-AGG-marco-M-sorteado-v1_3-ola-v2",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "a9682bbd2c8a6646b568221bcc2df9683c08dde936330d6a306eef9becf85455",
+ "spec_yaml_sha256": "99d24f58a7e32fee816efb596e59ed66ac6918c17db1de580f934853e5f10604",
+ "tolerancia": {
+  "razon": "Todos los RESULT numericos son conteos y se comparan EXACTO. No hay flotante porque no hay estimacion: la corrida cuenta y agrupa.",
+  "tipo": "entero"
+ }
+}
