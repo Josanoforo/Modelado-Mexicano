@@ -2619,6 +2619,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     #     hermanas de PRE-E5/V213/E6/E7: un encargo verbatim no se edita para
     #     complacer un test (A.3).
     "forense/encargos/2026-09-08-GEN2-T9-MOTOR-MATRICIAL.md",
+    # ACTO GEN2-T9, mismas dos razones, en los dos documentos que el acto
+    # escribe: ambos CITAN la firma de mesa de `ADR-91` verbatim -- «M1
+    # cómputo matricial como definición del ejecutable» -- y `M1` es ahí el
+    # primero de los seis sellos del motor (`M1`-`M6`, `ADR-100`,
+    # `ADR-MOTOR-2`), ya censado en `canon/registro-rotulos.tsv`. No es un
+    # rótulo nuevo que estos documentos reclamen: es la cita de una firma de
+    # 17/ago/2026, y prefijarla la volvería una cita que mesa no dio.
+    # `canon/gobernanza-v1_15.md` lleva ese mismo `M1` pelado por la misma
+    # razón desde `ADR-100`.
+    "forense/notas/2026-09-08-GEN2-T9-motor-matricial-y-unidad-de-celda.md",
+    "forense/notas/2026-09-08-GEN2-E7-paso-3-unidad-de-celda.md",
     # ACTO GEN2-PRE-E5 · CABLEADO-Y-AUTOMATIZACION-FINAL, 8/sep/2026: encargo
     # archivado VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`.
     # Cita "E5-0"/"E5"/"E6"/"E7"/"V213" pelados repetidamente ("ORDEN:

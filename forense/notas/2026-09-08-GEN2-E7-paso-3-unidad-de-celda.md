@@ -152,3 +152,42 @@ Que `emitir_binaria` reciba la ola y emita un punto distinto por ola.
 - Las cuatro opciones con su costo.
 
 La decisión es de mesa. Este acto la deja lista para tomarse, no tomada.
+
+---
+
+## ENMIENDA FECHADA — 8/sep/2026 · `ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ`
+
+*No se reescribe nada de lo de arriba. Esta sección declara qué de esta nota
+quedó incompleto y con qué se cierra.*
+
+**Las cuatro opciones de §2 estaban incompletas.** A, B, C y D se movían
+todas dentro de `regla × ola × instrumento`: ninguna contenía **la dimensión
+de la matriz**. Mesa decidió (D-2, 8/sep/2026) una quinta que no estaba en
+la tabla:
+
+> la celda del marcador es
+> **`regla × segmento (x, sobre los seis ejes del modelo) × ola ×
+> instrumento`**.
+
+Las 14 celdas actuales son el caso `x = ∅` y se conservan; **no se colapsan
+olas** (lo que descarta la Opción B); la dimensión que falta es el
+**segmento**.
+
+**Y con eso, el diagnóstico de §1 se lee distinto.** La constancia de `M`
+dentro de CIV **no es un defecto del emisor**: con `x = ∅` la evaluación
+matricial se reduce a la `p` base de la regla — `ADR-91`, M1, *«cómputo
+matricial como definición del ejecutable»* — y por eso seis celdas de una
+regla repiten un número. La celda no porta su punto de la matriz porque no
+porta vector de atributos. Esta nota lo trató como un problema del marcador;
+era un problema de **unidad de celda**, que es justo lo que su propio §4
+pedía que mesa decidiera.
+
+`NC-0020` queda **CERRADA** por esa decisión. El detalle, las cifras
+medidas y el diseño del marcador GEN2 están en
+`forense/notas/2026-09-08-GEN2-T9-motor-matricial-y-unidad-de-celda.md`.
+
+**Corrección de cifra.** Donde esta nota (y el encargo de `GEN2-T9`) hablan
+de las entradas `_ejes_` de la propuesta, la cifra medida contra el árbol es
+**7 entradas `_ejes_`, 24 ejes, 74 puntos por eje con `ic95`** — publicada
+como `RESULT` en `CALC-AGG-marco-M-sorteado-v1_3-ola`. La conclusión no
+cambia: ninguna celda del marcador consume ninguno de esos puntos.

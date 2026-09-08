@@ -108,3 +108,38 @@ Solo entra una pieza nueva si: (1) evita un defecto real ya observado; (2) ese d
 **La firma de este plan autoriza E0 y E1 de inmediato.**
 
 **Contadores movidos por este documento: cero.** Declarado.
+
+---
+
+## ENMIENDA FECHADA — 8/sep/2026 · `ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ`
+
+*Enmienda, no reescritura: el cuerpo de arriba queda verbatim y su
+`.sha256` sigue siendo el del documento tal como se firmó.*
+
+**§D11 — REVOCADA.** `D11` (propagada por `ADR-396`, `ACTO GEN2-E3-1`) decía
+que `milpa/src/{motor,theta,pi,celdas,momentos}.py` son «scaffold/calibración
+histórica» y que el sistema numérico activo es `tramite.yaml + emisor +
+matriz B`. Contradice a `ADR-91` (17/ago/2026, `PR #246`), cuya firma de mesa
+verbatim es *«M1 cómputo matricial como definición del ejecutable»*, adoptada
+**antes** del gate de Fase 1. `D11` se dictó contra el árbol sin cotejarla con
+ese sello. **Rige `ADR-91`.** El emisor no es el motor: es el emisor binario
+de reglas que alimenta al marcador, una de las salidas del motor.
+
+Consecuencia inmediata y medida: `procedencia.cargar()` **lanza** hoy sobre
+`milpa/procedencia.yaml`, así que el ejecutable sellado no arranca. Declarar
+«scaffold» a un ejecutable es dejar de correrlo, y dejar de correrlo es dejar
+de saber si corre.
+
+**§4 `C0-D` — la unidad de celda queda decidida (D-2, 8/sep/2026).** La celda
+del marcador es **`regla × segmento (x, sobre los seis ejes del modelo) × ola
+× instrumento`**. Las 14 celdas de hoy son el caso `x = ∅` y se conservan; **no
+se colapsan olas**; la dimensión que falta es el segmento. `C0-D` corre el
+marcador por segmento cuando `C0-C` entregue motor y emisor limpios — y no
+antes de que el motor arranque.
+
+**§8 `C0-B`** se redacta sobre la demanda **re-derivada** (`N_resultados_activos
+= 205`, `N_corridas_requeridas = 86`), que ahora incluye Θ, π, celdas-D y
+momentos.
+
+Detalle, cifras y comandos:
+`forense/notas/2026-09-08-GEN2-T9-motor-matricial-y-unidad-de-celda.md`.
