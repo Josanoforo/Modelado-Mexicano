@@ -193,3 +193,11 @@ Entregar un PR pequeño con: reglas cambiadas, ejemplos de los tres desenlaces, 
   **impacto**: ninguno — el encargo nunca lo pidió; se anota aquí solo
   para que quede explícito que esta cláusula del encargo se respetó
   literalmente. **sucesor**: `DIFERIDO-A:E5-0` (cuando ese acto corra en su entorno correcto).
+
+## CONSUMIDO
+
+`PR #628` (`https://github.com/Josanoforo/Modelado-Mexicano/pull/628`),
+rama `claude/rutinas-2-coordinacion`. Implementa P1-P5 dentro del
+perímetro declarado; los pendientes quedan en `## NO-CORRIDO / RESERVAS`
+arriba, citados también en `forense/no-corrido.tsv` (`NC-0036`..`NC-0039`,
+`ABIERTA`). No fusionado automáticamente — la firma es de mesa.
