@@ -2604,6 +2604,32 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-PRE-E5 · CABLEADO-Y-AUTOMATIZACION-FINAL, 8/sep/2026: encargo
+    # archivado VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`.
+    # Cita "E5-0"/"E5"/"E6"/"E7"/"V213" pelados repetidamente ("ORDEN:
+    # ejecutar DESPUÉS de que GEN2-E7 esté fusionado y antes de GEN2-E5-0",
+    # "V213 → E6 → E7 → E5-0 → E5", "Cerrar NC-0010 si esto queda
+    # demostrado" citando el propio rótulo del acto que este documento
+    # ejecuta) -- referencias de PROCEDENCIA a los cinco habitantes ya
+    # censados de la serie `E · GEN2-E0..GEN2-E7`/`GEN2-V213` en
+    # `canon/registro-rotulos.tsv`, no rótulos nuevos que este acto reclame.
+    # El acto se declara `ACTO GEN2-PRE-E5` en forma larga en todo archivo
+    # propio que escribe. Mismo patrón, y misma razón, que las exenciones
+    # hermanas de V213/E6/E7 de abajo: un encargo verbatim no se edita para
+    # complacer un test (A.3).
+    "forense/encargos/2026-09-08-GEN2-PRE-E5-CABLEADO-Y-AUTOMATIZACION-FINAL.md",
+    # ENCARGOS-GEN2-v1_5 · APARATO-ANTES-DE-CALCULAR, 8/sep/2026 (dirección,
+    # Fable Maestra 48): documento maestro incorporado VERBATIM por ACTO
+    # GEN2-PRE-E5 · CABLEADO-Y-AUTOMATIZACION-FINAL, P4.1 (sidecar SHA256,
+    # no se reescribe su cuerpo). Es la FUENTE de la que V213/E6/E7/E5-0/E5
+    # nombran sus rótulos pelados "E5-0"/"E5"/"E6"/"E7"/"V213" -- ya
+    # censados en la fila `E · GEN2-E0..GEN2-E7` de `canon/registro-
+    # rotulos.tsv` (ver las exenciones hermanas de los cuatro encargos
+    # archivados que citan la misma serie, más abajo). No son rótulos
+    # nuevos que este documento reclame: son los mismos cuatro habitantes
+    # de la cola, en la forma corta con la que dirección los nombra en su
+    # propio texto de origen.
+    "forense/notas/ENCARGOS-GEN2-v1_5-aparato-antes-de-calcular-2026-09-08.md",
     # ACTO GEN2-E3-1-1 · CABLEADO-FINAL-DEL-RUNNER, 8/sep/2026: encargo
     # archivado VERBATIM (0-bis A.3). Cita "E5" y "E6" pelados ("No conviertas
     # este acto en E5 ni E6", "no implementes registro/status de E6") --
@@ -5362,29 +5388,50 @@ def t34_no_corrido():
 #         con su sello -- por hash, SIN REEJECUTAR MICRODATO. Esta sí
 #         aplica a los replays LEGACY-GEN1: no cuentan como medición GEN2,
 #         pero su sello es un sello.
-#     (d) NUEVO: ningún consumidor GEN2 lee un valor sin
-#         `corrida0_resultado_id`. Es lo que impide que un cálculo GEN1 se
-#         cuele por la puerta de atrás con el rótulo del nuevo.
+#     (d) ningún consumidor GEN2 lee un valor sin `corrida0_resultado_id`.
+#         Es lo que impide que un cálculo GEN1 se cuele por la puerta de
+#         atrás con el rótulo del nuevo.
+#     (e) NUEVO (ACTO GEN2-PRE-E5 · P2): `corrida0_resultado_id` presente
+#         sin `corrida0_generacion: GEN2` -- cadena incompleta por el otro
+#         lado (cita un RESULT pero no completó la marca de adopción).
+#     (f) NUEVO (ACTO GEN2-PRE-E5 · P2): `corrida0_generacion: GEN2` cuyo
+#         `corrida0_resultado_id` resuelve a un RESULT `LEGACY-GEN1`.
+#
+#   Corrección de firewall (ACTO GEN2-PRE-E5 · P2, NC-0010/D-B del acto):
+#   antes de esta corrección, "GEN2" en `generacion_leida` se derivaba de
+#   la mera PRESENCIA de `corrida0_resultado_id` -- así que (d) no podía
+#   construir el caso que decía vigilar (un GEN2 sin esa marca es, por esa
+#   misma derivación, imposible). `corrida0_generacion` es ahora un campo
+#   namespaced e independiente que un consumidor declara aparte; (d)/(e)
+#   comparan las dos señales sin que una derive de la otra.
 #
 #   Hoy pasa LIMPIO sobre `CALC-SMOKE-0001`/`0002`: los dos son
 #   `LEGACY-GEN1 · cuenta_gen2 = NO`, así que (a)-(c) y (11.1) no tienen
 #   universo y (11.2) los cubre a los dos. No se aplica a GEN1.
 # ───────────────────────────────────────────────────────────────
-def t35_repro():
-    ruta = os.path.join(ROOT, "tools", "corrida0.py")
-    if not os.path.exists(ruta):
-        warn("T-REPRO", "no existe `tools/corrida0.py`")
-        return
-    try:
-        import importlib.util as _iu
-        _spec = _iu.spec_from_file_location("corrida0_para_repro", ruta)
-        C = _iu.module_from_spec(_spec)
-        sys.modules[_spec.name] = C
-        _spec.loader.exec_module(C)
-    except Exception as exc:
-        warn("T-REPRO", f"`tools/corrida0.py` no importa: "
-                        f"{type(exc).__name__}: {exc}")
-        return
+def t35_repro(modulo=None):
+    """`modulo`: para los falsadores de P6 (ACTO GEN2-PRE-E5) -- pasa un
+    `tools/corrida0.py` ya cargado, con `TRAMITE`/`PROCEDENCIA`/`PROPUESTA`/
+    `CORRIDAS` re-apuntados a un fixture, para probar un caso sin escribir
+    en el árbol de verdad. Sin argumento, la CLI real sigue recargando el
+    módulo desde disco, como siempre."""
+    C = modulo
+    if C is None:
+        ruta = os.path.join(ROOT, "tools", "corrida0.py")
+        if not os.path.exists(ruta):
+            warn("T-REPRO", "no existe `tools/corrida0.py`")
+            return
+        try:
+            import importlib.util as _iu
+            _spec = _iu.spec_from_file_location("corrida0_para_repro", ruta)
+            C = _iu.module_from_spec(_spec)
+            sys.modules[_spec.name] = C
+            _spec.loader.exec_module(C)
+        except Exception as exc:
+            warn("T-REPRO", f"`tools/corrida0.py` no importa: "
+                            f"{type(exc).__name__}: {exc}")
+            return
+    import json
     try:
         vistas = C._filas_registro(verifica=False)
     except Exception as exc:
@@ -5436,22 +5483,37 @@ def t35_repro():
         if usos_por_result.get(rid, 0) == 0:
             warn("T-REPRO", f"(a) {rid}: activo GEN2 y sin consumidor")
 
-    # (b)+(c)+(d) por el lado del consumidor.
+    # (b)+(c)+(d)+(e)+(f) por el lado del consumidor.
     for u in usos:
         if u["activo"] != "SI":
             continue
         marca = u["corrida0_resultado_id"]
+        gen_declarada = u.get("corrida0_generacion", "")
         destino = indice.get(u["resultado_id"]) if not marca else indice.get(marca)
         if marca and destino is None:
             warn("T-REPRO", f"(b) {u['consumidor']}: corrida0_resultado_id="
                             f"{marca} no resuelve a ningún RESULT")
             continue
         # (d) un consumidor GEN2 sin marca es un número huérfano.
-        if u["generacion_leida"] == "GEN2" and not marca:
-            warn("T-REPRO", f"(d) {u['consumidor']}: lee GEN2 sin "
+        # `corrida0_generacion` es la señal INDEPENDIENTE (P2) -- ya no se
+        # lee de la presencia de `marca`, así que este caso ahora SÍ puede
+        # construirse.
+        if gen_declarada == "GEN2" and not marca:
+            warn("T-REPRO", f"(d) {u['consumidor']}: declara "
+                            f"`corrida0_generacion: GEN2` sin "
                             f"`corrida0_resultado_id`")
+        # (e) cadena incompleta por el otro lado: cita un RESULT pero no
+        # completó la marca de generación.
+        if marca and gen_declarada != "GEN2":
+            warn("T-REPRO", f"(e) {u['consumidor']}: declara "
+                            f"corrida0_resultado_id={marca} sin "
+                            f"`corrida0_generacion: GEN2` -- cadena incompleta")
         if not marca or destino is None:
             continue
+        # (f) la marca dice GEN2 y el RESULT al que apunta es LEGACY-GEN1.
+        if gen_declarada == "GEN2" and destino["generacion"] == C.GENERACION_LEGADO:
+            warn("T-REPRO", f"(f) {u['consumidor']}: corrida0_generacion=GEN2 "
+                            f"y {marca} resuelve a {C.GENERACION_LEGADO}")
         if not (C.CORRIDAS / destino["spec_id"] / "spec.yaml").exists():
             warn("T-REPRO", f"(b) {u['consumidor']} -> {marca} -> "
                             f"{destino['spec_id']}: el CALC no resuelve")

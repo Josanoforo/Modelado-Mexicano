@@ -1235,24 +1235,29 @@ def _sella_calc_fixture(d: Path, cid: str, valores: dict, etiquetas: dict,
 
 
 @contextlib.contextmanager
-def _arbol_registro(res=None, corr=None, calcs=(), tramite=None):
+def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None):
     """Monta demanda + oferta en un temporal y re-apunta `corrida0` ahi.
     Restaura SIEMPRE: ningun caso escribe en `data/corrida0/`."""
     import yaml
     tmp = Path(tempfile.mkdtemp(prefix="registro-test-"))
     previos = {k: getattr(C, k) for k in
                ("CORRIDAS", "DEMANDA_RESULTADOS", "DEMANDA_CORRIDAS",
-                "NO_CORRIDO_TSV", "TRAMITE", "PROCEDENCIA")}
+                "NO_CORRIDO_TSV", "TRAMITE", "PROCEDENCIA", "PROPUESTA")}
     C.CORRIDAS = tmp
     C.DEMANDA_RESULTADOS = tmp / "demanda-resultados.tsv"
     C.DEMANDA_CORRIDAS = tmp / "demanda-corridas.tsv"
     C.NO_CORRIDO_TSV = tmp / "no-corrido.tsv"
     C.TRAMITE = tmp / "tramite.yaml"
     C.PROCEDENCIA = tmp / "procedencia-ausente.yaml"
+    C.PROPUESTA = tmp / "propuesta-ausente.yaml"
     C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS, res or [])
     C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS, corr or [])
     C.TRAMITE.write_text(yaml.safe_dump(tramite or {"reglas": []},
                                         allow_unicode=True), encoding="utf-8")
+    if propuesta is not None:
+        C.PROPUESTA = tmp / "tramite-ola5-propuesta-v0.yaml"
+        C.PROPUESTA.write_text(yaml.safe_dump(propuesta, allow_unicode=True),
+                               encoding="utf-8")
     for c in calcs:
         _sella_calc_fixture(tmp / c["calc_id"], c["calc_id"], c.get("valores", {}),
                             c.get("etiquetas", {}), c.get("decl_res"),
@@ -1510,6 +1515,237 @@ def t_repro_atrapa_valor_movido():
                                          json.loads(destino["tolerancia"]))
         _afirma(igual is espera_igual, caso,
                 f"valor materializado {valor}: igual={igual} delta={delta}")
+
+
+# ── ACTO GEN2-PRE-E5 · CABLEADO-Y-AUTOMATIZACION-FINAL ────────────────────
+
+def _carga_check():
+    ruta = RAIZ / "tests" / "check.py"
+    spec = importlib.util.spec_from_file_location("check_bajo_prueba_t35", ruta)
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _carga_verificador():
+    ruta = RAIZ / "tools" / "verifica_encargos_gen2.py"
+    spec = importlib.util.spec_from_file_location(
+        "verifica_encargos_gen2_bajo_prueba", ruta)
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def t_estado_calc_derivado():
+    """T-ESTADO-CALC-DERIVADO (P1, cierra NC-0010). Los cinco estados de
+    `estado_calc()`, cada uno de un artefacto real distinto -- y que
+    `registro` (via `_lee_oferta`) reusa la MISMA función en vez de
+    mantener una segunda máquina de estados."""
+    caso = "T-ESTADO-CALC-DERIVADO"
+    tmp = Path(tempfile.mkdtemp(prefix="estado-calc-test-"))
+    previa = C.CORRIDAS
+    C.CORRIDAS = tmp
+    try:
+        r = C.estado_calc("CALC-NO-EXISTE")
+        _afirma(r["estado"] == "BORRADOR", caso, f"sin carpeta: {r}")
+
+        d = tmp / "CALC-FIX-ESTADO"
+        d.mkdir()
+        (d / "spec.yaml").write_text("calc_id: CALC-FIX-ESTADO\n", encoding="utf-8")
+        r = C.estado_calc("CALC-FIX-ESTADO")
+        _afirma(r["estado"] == "SPEC-FIJADA", caso, f"spec sin ejecutar: {r}")
+
+        # PRE-FLIGHT-VERDE se aisla de `preflight()` (probado aparte, y
+        # documentado como siempre BLOQUEADO en este arnés por árbol
+        # sucio) con un doble -- mismo patrón que ya usan los casos de
+        # `run()` más arriba.
+        original_pre = C.preflight
+        try:
+            C.preflight = lambda cid, imprime=False: {"veredicto": "VERDE"}
+            r = C.estado_calc("CALC-FIX-ESTADO", evalua_preflight=True)
+            _afirma(r["estado"] == "PRE-FLIGHT-VERDE", caso, f"preflight VERDE: {r}")
+            C.preflight = lambda cid, imprime=False: {"veredicto": "BLOQUEADO"}
+            r = C.estado_calc("CALC-FIX-ESTADO", evalua_preflight=True)
+            _afirma(r["estado"] == "SPEC-FIJADA", caso,
+                    f"preflight BLOQUEADO no debe subir el estado: {r}")
+        finally:
+            C.preflight = original_pre
+        r = C.estado_calc("CALC-FIX-ESTADO")
+        _afirma(r["estado"] == "SPEC-FIJADA", caso,
+                f"sin evalua_preflight se queda en SPEC-FIJADA: {r}")
+
+        d2 = tmp / "CALC-FIX-EJEC"
+        d2.mkdir()
+        (d2 / "spec.yaml").write_text("calc_id: CALC-FIX-EJEC\n", encoding="utf-8")
+        C._escribe_json(d2 / "ejecucion.json", {"corrida_id": "x"})
+        C._escribe_json(d2 / "resultados.json", {"resultados": {"RESULT-A": 1.0}})
+        r = C.estado_calc("CALC-FIX-EJEC")
+        _afirma(r["estado"] == "EJECUTADA-NO-SELLADA", caso, f"sin sello: {r}")
+
+        d3 = tmp / "CALC-FIX-SELLADA"
+        _sella_calc_fixture(d3, "CALC-FIX-SELLADA", {"RESULT-A": 1.0},
+                            {"cuenta_gen2": "SI", "generacion": "GEN2"})
+        r = C.estado_calc("CALC-FIX-SELLADA")
+        _afirma(r["estado"] == "SELLADA", caso, f"sellado: {r}")
+    finally:
+        C.CORRIDAS = previa
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    # `registro` (vía `_lee_oferta`) reusa la MISMA máquina: no una segunda
+    # implementación que pueda divergir de `estado_calc`.
+    calcs = [{"calc_id": "CALC-FIX-SELLADA2", "valores": {"RESULT-A": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}}]
+    with _arbol_registro(calcs=calcs):
+        v = C.registro(escribe=False, imprime=False)
+    fila = next(f for f in v["corridas"]
+                if f["origen"] == "OFERTA" and f["spec_id"] == "CALC-FIX-SELLADA2")
+    _afirma(fila["estado"] == "SELLADA", caso,
+            f"`registro` diverge de `estado_calc`: {fila['estado']}")
+
+
+def t_gen2_sin_resultado_id_avisa():
+    """T-GEN2-SIN-RESULTADO-ID (P2/P6). Un consumidor que declara
+    `corrida0_generacion: GEN2` sin `corrida0_resultado_id` es un número
+    huérfano -- T35 (`tests/check.py`) DEBE avisar. Obligatorio porque el
+    mecanismo anterior no podía construir el caso que decía detectar: GEN2
+    se leía de la mera presencia de la marca."""
+    caso = "T-GEN2-SIN-RESULTADO-ID"
+    chk = _carga_check()
+    tramite = {"reglas": [{"id": "r.uno", "entonces": [
+        {"conducta": "c1", "p": 0.5, "corrida0_generacion": "GEN2"}]}]}
+    with _arbol_registro(tramite=tramite):
+        consumidor = f"{C._rel(C.TRAMITE)}:r.uno:c1"
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                   [_fila_demanda("RES-0001", consumidor, "CORR-0001")])
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                   [_fila_corrida("CORR-0001", ["RES-0001"])])
+        chk.WARNS.clear()
+        chk.FAILS.clear()
+        chk.t35_repro(modulo=C)
+    avisos = " · ".join(m for _, m in chk.WARNS)
+    _afirma("(d)" in avisos and "corrida0_generacion: GEN2" in avisos, caso,
+            f"T35 no avisó del número huérfano: {avisos!r}")
+
+
+def t_resultado_id_sin_generacion_avisa():
+    """T-RESULTADO-ID-SIN-GENERACION (P2/P6). Un consumidor que cita
+    `corrida0_resultado_id` sin declarar `corrida0_generacion: GEN2` tiene
+    una cadena incompleta por el otro lado -- T35 debe avisar."""
+    caso = "T-RESULTADO-ID-SIN-GENERACION"
+    chk = _carga_check()
+    calcs = [{"calc_id": "CALC-FIX-RG", "valores": {"RESULT-RG": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}}]
+    with _arbol_registro(calcs=calcs,
+                         tramite=_tramite_con_marca("r.dos", "c2", "RESULT-RG", 1.0)):
+        consumidor = f"{C._rel(C.TRAMITE)}:r.dos:c2"
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                   [_fila_demanda("RES-0002", consumidor, "CORR-0002")])
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                   [_fila_corrida("CORR-0002", ["RES-0002"])])
+        chk.WARNS.clear()
+        chk.FAILS.clear()
+        chk.t35_repro(modulo=C)
+    avisos = " · ".join(m for _, m in chk.WARNS)
+    _afirma("(e)" in avisos and "cadena incompleta" in avisos, caso,
+            f"T35 no avisó de la cadena incompleta: {avisos!r}")
+
+
+def t_status_mide_no_adopta():
+    """T-STATUS-MIDE-NO-ADOPTA (P3/P6). Sellar un RESULT GEN2 y que la
+    propuesta PENDIENTE-DE-MESA lo cite no lo adopta: el consumidor activo
+    sigue leyendo LEGACY hasta que el mismo declara `corrida0_generacion:
+    GEN2` + `corrida0_resultado_id` -- entonces, y solo entonces, pendiente
+    baja y adoptado sube."""
+    caso = "T-STATUS-MIDE-NO-ADOPTA"
+    calcs = [{"calc_id": "CALC-FIX-ADOPCION", "valores": {"RESULT-X": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}}]
+    propuesta = {"reglas_propuestas": [{"id": "civico.x", "entonces": [
+        {"conducta": "c", "p": 1.0, "corrida0_resultado_id": "RESULT-X"}]}]}
+
+    with _arbol_registro(calcs=calcs, propuesta=propuesta,
+                         tramite={"reglas": [{"id": "r.tres", "entonces": [
+                             {"conducta": "c3", "p": 0.2}]}]}):
+        consumidor = f"{C._rel(C.TRAMITE)}:r.tres:c3"
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                   [_fila_demanda("RES-0003", consumidor, "CORR-0003")])
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                   [_fila_corrida("CORR-0003", ["RES-0003"])])
+        c = C.status(imprime=False)
+    _afirma(c["N_resultados_gen2_sellados"] == 1, caso,
+            f"sellados={c['N_resultados_gen2_sellados']}")
+    _afirma(c["N_resultados_gen2_pendientes_adopcion"] == 1, caso,
+            f"pendientes={c['N_resultados_gen2_pendientes_adopcion']}")
+    _afirma(c["N_resultados_gen2_adoptados_activos"] == 0, caso,
+            f"adoptados={c['N_resultados_gen2_adoptados_activos']}")
+    _afirma(c["dependencias_numericas_legacy_activas"] == 1, caso,
+            f"legacy_activas={c['dependencias_numericas_legacy_activas']}")
+
+    with _arbol_registro(calcs=calcs, propuesta=propuesta,
+                         tramite={"reglas": [{"id": "r.tres", "entonces": [
+                             {"conducta": "c3", "p": 1.0,
+                              "corrida0_generacion": "GEN2",
+                              "corrida0_resultado_id": "RESULT-X"}]}]}):
+        consumidor = f"{C._rel(C.TRAMITE)}:r.tres:c3"
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                   [_fila_demanda("RES-0003", consumidor, "CORR-0003")])
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                   [_fila_corrida("CORR-0003", ["RES-0003"])])
+        c = C.status(imprime=False)
+    _afirma(c["N_resultados_gen2_pendientes_adopcion"] == 0, caso,
+            f"pendientes tras adoptar={c['N_resultados_gen2_pendientes_adopcion']}")
+    _afirma(c["N_resultados_gen2_adoptados_activos"] == 1, caso,
+            f"adoptados tras adoptar={c['N_resultados_gen2_adoptados_activos']}")
+    _afirma(c["dependencias_numericas_legacy_activas"] == 0, caso,
+            f"legacy_activas tras adoptar={c['dependencias_numericas_legacy_activas']}")
+
+
+def t_encargo_gen2_desfasado():
+    """T-ENCARGO-GEN2-DESFASADO (P4/P6). Una diferencia de UN byte entre el
+    cuerpo de un encargo GEN2 activo en cola y la sección que le
+    corresponde de la versión maestra debe hacer fallar `--verifica` -- es
+    el defecto que ya ocurrió una vez (dirección emitió v1.5 y la cola se
+    quedó con el cuerpo anterior)."""
+    caso = "T-ENCARGO-GEN2-DESFASADO"
+    V = _carga_verificador()
+    tmp = Path(tempfile.mkdtemp(prefix="verifica-encargos-test-"))
+    previos = {k: getattr(V, k) for k in ("RAIZ", "COLA", "NOTAS")}
+    try:
+        V.RAIZ = tmp
+        V.NOTAS = tmp / "forense" / "notas"
+        V.COLA = tmp / "forense" / "encargos" / "cola"
+        V.NOTAS.mkdir(parents=True)
+        V.COLA.mkdir(parents=True)
+        cuerpo = ("## E9 · ACTO GEN2-E9 · FIXTURE — falsador de prueba\n\n"
+                  "Cabecera: fixture.\n"
+                  "Contador: cero.")
+        (V.NOTAS / "ENCARGOS-GEN2-v1_0-fixture.md").write_text(
+            f"# fixture\n\n---\n\n{cuerpo}\n", encoding="utf-8")
+        cola = V.COLA / "2026-01-01-GEN2-E9-FIXTURE.md"
+        cola.write_text(
+            "ESTADO: GATEADO\nENTORNO: NUBE\nENCOLADO: fixture\nBITACORA:\n- fixture\n\n"
+            "──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────\n\n"
+            f"{cuerpo}\n", encoding="utf-8")
+
+        _, salida = _silencioso(V.verifica)
+        _afirma(salida.strip().startswith("OK ·"), caso,
+                f"un encargo idéntico no debe fallar --verifica: {salida!r}")
+
+        # una diferencia de UN byte (una coma por un punto) debe bastar.
+        cola.write_text(cola.read_text(encoding="utf-8").replace("cero.", "cero,"),
+                        encoding="utf-8")
+        buf_err = io.StringIO()
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(buf_err):
+            codigo = V.verifica()
+        _afirma(codigo == 1, caso,
+                "una diferencia de un byte no hizo fallar --verifica")
+        _afirma("ENCARGO-GEN2-DESFASADO" in buf_err.getvalue(), caso,
+                f"no reportó el PARO esperado: {buf_err.getvalue()!r}")
+    finally:
+        for k, v in previos.items():
+            setattr(V, k, v)
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]

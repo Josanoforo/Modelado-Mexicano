@@ -4,11 +4,13 @@
 Este archivo nacio en `ACTO GEN2-E2 · C0-A DEMANDA` con un solo subcomando
 implementado, `demanda`, y los demas declarados vacios.
 
-`ACTO GEN2-E3 · AUTOMATIZA-GEN2-1` (7/sep/2026) llena SEIS de esos huecos y
-`ACTO GEN2-E6 · AUTOMATIZA-GEN2-2` (8/sep/2026) llena dos mas:
+`ACTO GEN2-E3 · AUTOMATIZA-GEN2-1` (7/sep/2026) llena SEIS de esos huecos,
+`ACTO GEN2-E6 · AUTOMATIZA-GEN2-2` (8/sep/2026) llena dos mas, y
+`ACTO GEN2-PRE-E5 · CABLEADO-Y-AUTOMATIZACION-FINAL` (8/sep/2026) añade
+`estado` (P1, estado unico de un CALC):
 
   IMPLEMENTADOS  demanda (E2) · spec-check · negativo · preflight · run ·
-                 verify (E3/E3.1) · registro · status (E6)
+                 verify (E3/E3.1) · registro · status (E6) · estado (PRE-E5)
   DECLARADOS Y VACIOS  vigencia · delta  (los llena E7; invocarlos sale con
                        codigo 2 y el rotulo NO-IMPLEMENTADO)
 
@@ -94,6 +96,7 @@ from milpa.src.emisor import cargar_reglas  # noqa: E402
 RAIZ = Path(__file__).resolve().parents[1]
 TRAMITE = RAIZ / "milpa" / "tramite.yaml"
 PROCEDENCIA = RAIZ / "milpa" / "procedencia.yaml"
+PROPUESTA = RAIZ / "milpa" / "tramite-ola5-propuesta-v0.yaml"
 PREREG = RAIZ / "forense" / "prereg-duelo-v2"
 MARCO_VIGENTE = PREREG / "marco-M-sorteado-v1_3.tsv"
 AGREGADO_VIGENTE = PREREG / "agregado-v1_3-resultado.json"
@@ -2106,7 +2109,8 @@ COLS_VISTA_RESULTADOS = [
 ]
 COLS_VISTA_USOS = [
     "resultado_id", "consumidor", "tipo_uso", "activo", "reglas_impacto",
-    "generacion_leida", "corrida0_resultado_id", "valor_materializado",
+    "generacion_leida", "corrida0_generacion", "corrida0_resultado_id",
+    "valor_materializado",
 ]
 
 
@@ -2150,18 +2154,28 @@ CAMPOS_VALOR_MATERIALIZADO = ["p", "valor_ejecutable", "valor"]
 
 
 def _ids_corrida0_declarados() -> dict[str, dict]:
-    """Consumidores que YA declaran `corrida0_resultado_id` (plan v2.0 §2:
-    la marca que convierte a un consumidor en GEN2). Devuelve
-    `consumidor -> {resultado_id, valor}`, con el MISMO formato de consumidor
-    que `cmd_demanda` escribe, para que las dos vistas se puedan cruzar. El
-    `valor` es la cifra MATERIALIZADA en el archivo del consumidor: es lo que
-    `T-REPRO` compara contra el RESULT sellado (`p: 0.083742` +
-    `corrida0_resultado_id: RESULT-0001`).
+    """Consumidores que YA declaran `corrida0_resultado_id` y/o
+    `corrida0_generacion` (plan v1.5 P2; plan v2.0 §2). Devuelve
+    `consumidor -> {resultado_id, generacion, valor}`, con el MISMO formato
+    de consumidor que `cmd_demanda` escribe, para que las dos vistas se
+    puedan cruzar. El `valor` es la cifra MATERIALIZADA en el archivo del
+    consumidor: es lo que `T-REPRO` compara contra el RESULT sellado
+    (`p: 0.083742` + `corrida0_resultado_id: RESULT-0001`).
 
-    Hoy el arbol no trae ninguna: `dependencias_numericas_legacy_activas`
-    == `N_resultados_activos` es la lectura correcta, no un error. La
-    funcion existe para que el dia que E5 selle la primera cifra GEN2 el
-    registro la vea sin tocar codigo."""
+    `corrida0_generacion` (namespaced, ACTO GEN2-PRE-E5 · P2) es la SEÑAL
+    INDEPENDIENTE de generacion: antes de esta correccion, "GEN2" se leia
+    de la mera presencia de `corrida0_resultado_id`, lo que volvia
+    circular al check que debia detectar un GEN2 SIN esa marca (T35(d) no
+    podia construir el caso que decia vigilar). Los dos campos se
+    recolectan por separado y un consumidor puede traer uno sin el otro
+    -- es justo lo que T35 usa para avisar de una cadena incompleta. Un
+    consumidor LEGACY existente no se toca solo para rellenar la marca
+    nueva: los dos campos son opcionales y su ausencia es LEGACY, no error.
+
+    Hoy el arbol no trae ninguno de los dos: `dependencias_numericas_
+    legacy_activas` == `N_resultados_activos` es la lectura correcta, no
+    un error. La funcion existe para que el dia que E5 selle la primera
+    cifra GEN2 el registro la vea sin tocar codigo."""
     declarados: dict[str, dict] = {}
     for ruta in (TRAMITE, PROCEDENCIA):
         if not ruta.exists():
@@ -2174,15 +2188,17 @@ def _ids_corrida0_declarados() -> dict[str, dict]:
 
         def _camina(nodo, contexto: list[str]) -> None:
             if isinstance(nodo, dict):
-                marca = nodo.get("corrida0_resultado_id")
-                if marca:
+                marca_id = nodo.get("corrida0_resultado_id")
+                marca_gen = nodo.get("corrida0_generacion")
+                if marca_id or marca_gen:
                     nombre = (nodo.get("conducta") or nodo.get("id")
                               or nodo.get("clave") or "")
                     ruta_c = [c for c in contexto if c] + ([nombre] if nombre else [])
                     valor = next((nodo[c] for c in CAMPOS_VALOR_MATERIALIZADO
                                   if c in nodo), None)
                     declarados[f"{rel}:{':'.join(ruta_c)}"] = {
-                        "resultado_id": str(marca),
+                        "resultado_id": str(marca_id) if marca_id else "",
+                        "generacion": str(marca_gen) if marca_gen else "",
                         "valor": NO_DECLARADO if valor is None else valor,
                     }
                 propio = nodo.get("id")
@@ -2197,6 +2213,106 @@ def _ids_corrida0_declarados() -> dict[str, dict]:
 
         _camina(crudo, [])
     return declarados
+
+
+def _resultados_citados_en(ruta: Path) -> set[str]:
+    """ids de RESULT citados por `corrida0_resultado_id` en cualquier nodo
+    de `ruta` (ACTO GEN2-PRE-E5 · P3). Recorrido generico -- no asume la
+    forma de `tramite.yaml`/`procedencia.yaml` -- para usarse sobre
+    `milpa/tramite-ola5-propuesta-v0.yaml`: TODO el archivo es, por su
+    propio encabezado, una propuesta `PENDIENTE-DE-MESA` que el motor no
+    carga, asi que cualquier cita ahi cuenta como pendiente de adopcion
+    (P3), nunca como consumidor activo."""
+    if not ruta.exists():
+        return set()
+    try:
+        crudo = yaml.safe_load(ruta.read_text(encoding="utf-8"))
+    except (OSError, yaml.YAMLError):
+        return set()
+    citados: set[str] = set()
+
+    def _camina(nodo) -> None:
+        if isinstance(nodo, dict):
+            marca = nodo.get("corrida0_resultado_id")
+            if marca:
+                citados.add(str(marca))
+            for valor in nodo.values():
+                _camina(valor)
+        elif isinstance(nodo, list):
+            for elemento in nodo:
+                _camina(elemento)
+
+    _camina(crudo)
+    return citados
+
+
+ESTADOS_CALC = ["BORRADOR", "SPEC-FIJADA", "PRE-FLIGHT-VERDE",
+                "EJECUTADA-NO-SELLADA", "SELLADA"]
+
+
+def estado_calc(calc_id: str, evalua_preflight: bool = False) -> dict:
+    """Estado derivado UNICO de un CALC (ACTO GEN2-PRE-E5 ·
+    CABLEADO-Y-AUTOMATIZACION-FINAL, P1; cierra NC-0010). Funcion PURA:
+    no escribe ni lee ningun archivo de estado propio, solo deriva de los
+    artefactos reales bajo `data/corrida0/<calc_id>/`.
+
+        sin spec.yaml                              -> BORRADOR
+        spec.yaml, sin ejecucion                   -> SPEC-FIJADA
+        (evalua_preflight=True y preflight VERDE)  -> PRE-FLIGHT-VERDE
+        ejecucion/resultados sin sello valido       -> EJECUTADA-NO-SELLADA
+        sello completo valido                       -> SELLADA
+
+    `SUPERADO→<sucesor>` NO es un estado de esta funcion: un CALC no sabe
+    por si mismo si algo lo sucedio -- eso sigue siendo una propiedad que
+    `registro()` deriva por encima, de la cadena `repite_de` (plan v1.5,
+    P1: "no duplicarla dentro del CALC")."""
+    d = _dir_calc(calc_id)
+    ruta_spec = d / "spec.yaml"
+    if not ruta_spec.exists():
+        return {"calc_id": calc_id, "estado": "BORRADOR"}
+    try:
+        spec = yaml.safe_load(ruta_spec.read_text(encoding="utf-8")) or {}
+    except yaml.YAMLError as exc:
+        return {"calc_id": calc_id, "estado": "BORRADOR",
+                "motivo": f"spec.yaml ilegible: {exc}"}
+    if not isinstance(spec, dict):
+        return {"calc_id": calc_id, "estado": "BORRADOR",
+                "motivo": "spec.yaml no es un mapa"}
+
+    ruta_ejec = d / "ejecucion.json"
+    if not ruta_ejec.exists():
+        detalle = {"calc_id": calc_id, "estado": "SPEC-FIJADA"}
+        if evalua_preflight:
+            try:
+                pre = preflight(calc_id, imprime=False)
+            except BloqueoPreflight as exc:
+                detalle["motivo"] = f"preflight no evalua: {exc}"
+                return detalle
+            detalle["preflight"] = pre
+            if pre.get("veredicto") == "VERDE":
+                detalle["estado"] = "PRE-FLIGHT-VERDE"
+        return detalle
+
+    ejec = json.loads(ruta_ejec.read_text(encoding="utf-8"))
+    ruta_res = d / "resultados.json"
+    valores = (json.loads(ruta_res.read_text(encoding="utf-8")).get("resultados", {})
+               if ruta_res.exists() else {})
+    sello, razon_sello = _verifica_sello(d)
+    if valores and sello == "COINCIDE":
+        return {"calc_id": calc_id, "estado": "SELLADA"}
+    return {"calc_id": calc_id, "estado": "EJECUTADA-NO-SELLADA",
+            "sello": sello, "razon_sello": razon_sello, "ejec": ejec}
+
+
+def cmd_estado(args) -> int:
+    r = estado_calc(args.calc_id, evalua_preflight=getattr(args, "preflight", False))
+    if getattr(args, "json", False):
+        print(json.dumps(r, ensure_ascii=False, indent=2, sort_keys=True, default=str))
+    else:
+        print(f"{r['calc_id']}: {r['estado']}")
+        if r.get("motivo"):
+            print(f"  motivo: {r['motivo']}")
+    return 0
 
 
 def _lee_oferta(verifica: bool) -> list[dict]:
@@ -2232,12 +2348,11 @@ def _lee_oferta(verifica: bool) -> list[dict]:
         generacion = _etiqueta(spec, "generacion", "GEN2")
         cuenta = _etiqueta(spec, "cuenta_gen2",
                            "NO" if generacion == GENERACION_LEGADO else "SI")
-        if ejec is None:
-            estado = "SPEC-FIJADA"
-        elif valores and sello == "COINCIDE":
-            estado = "SELLADA"
-        else:
-            estado = "EJECUTADA-NO-SELLADA"
+        # Misma maquina que `estado_calc()` (P1, NC-0010): no una segunda
+        # implementacion del mismo estado. `spec.yaml` ya existe (se
+        # verifico arriba) y `evalua_preflight` por defecto es False, asi
+        # que aqui solo salen SPEC-FIJADA / EJECUTADA-NO-SELLADA / SELLADA.
+        estado = estado_calc(calc_id)["estado"]
 
         faltan: list[str] = []
         if estado == "SELLADA":
@@ -2323,6 +2438,7 @@ def _filas_registro(verifica: bool = False) -> dict:
             raise ParoRegistro(f"RESULT-SIN-CALC: {rid} apunta a la corrida "
                                f"{r['corrida_natural']}, que no existe")
         marca = marcas.get(r["consumidor"]) or {}
+        generacion_declarada = marca.get("generacion", "")
         filas_resultados.append({
             "resultado_id": rid, "origen": "DEMANDA",
             "corrida_id": r["corrida_natural"], "spec_id": "PENDIENTE",
@@ -2339,9 +2455,16 @@ def _filas_registro(verifica: bool = False) -> dict:
             "resultado_id": rid, "consumidor": r["consumidor"],
             "tipo_uso": r["tipo"], "activo": "SI",
             "reglas_impacto": _regla_de(r["consumidor"]),
-            # Sin `corrida0_resultado_id`, el consumidor sigue leyendo la
-            # cifra GEN1 materializada: es una dependencia legacy activa.
-            "generacion_leida": "GEN2" if marca else GENERACION_LEGADO,
+            # `generacion_leida` se deriva de `corrida0_generacion`, una
+            # señal INDEPENDIENTE de si `corrida0_resultado_id` esta
+            # presente (P2, ACTO GEN2-PRE-E5): sin `corrida0_generacion:
+            # GEN2` el consumidor sigue leyendo la cifra GEN1 materializada
+            # y es una dependencia legacy activa, tenga o no una marca de
+            # resultado (una marca sin generacion es cadena incompleta,
+            # que T35 avisa aparte -- no basta para contar como GEN2).
+            "generacion_leida": ("GEN2" if generacion_declarada == "GEN2"
+                                 else GENERACION_LEGADO),
+            "corrida0_generacion": generacion_declarada,
             "corrida0_resultado_id": marca.get("resultado_id", ""),
             "valor_materializado": marca.get("valor", NO_DECLARADO),
         })
@@ -2549,6 +2672,27 @@ def status(imprime: bool = True) -> dict:
     sellada = lambda f: str(f["estado"]).startswith(("SELLADA", "SUPERADO"))
     activos = [f for f in resultados if f["origen"] == "DEMANDA"]
     usos_activos = [u for u in usos if u["activo"] == "SI"]
+
+    # ACTO GEN2-PRE-E5 · P3: separar MEDICION de ADOPCION. Medir (sellar un
+    # RESULT) y adoptar (que un consumidor activo lo lea) son eventos
+    # distintos que hoy pueden separarse por actos enteros -- E5 sella,
+    # mesa adopta despues. `dependencias_numericas_legacy_activas` sigue
+    # midiendo SOLO lo que el consumidor activo lee de verdad: sellar un
+    # RESULT no la mueve un bit por si solo.
+    #   SELLADO: RESULT de una corrida con cuenta_gen2=SI y sello valido.
+    #   PENDIENTE_ADOPCION: SELLADO citado en la propuesta PENDIENTE-DE-
+    #     MESA, pero todavia no por un consumidor activo GEN2.
+    #   ADOPTADO_ACTIVO: SELLADO citado por un consumidor activo con
+    #     corrida0_generacion=GEN2 Y corrida0_resultado_id=<ese RESULT>.
+    sellados_gen2 = [f for f in resultados if f["origen"] == "OFERTA"
+                     and f["cuenta_gen2"] == "SI" and sellada(f)]
+    ids_sellados_gen2 = {f["resultado_id"] for f in sellados_gen2}
+    ids_adoptados = {u["corrida0_resultado_id"] for u in usos_activos
+                     if u["generacion_leida"] == "GEN2" and u["corrida0_resultado_id"]}
+    ids_adoptados &= ids_sellados_gen2
+    ids_pendientes = _resultados_citados_en(PROPUESTA) & ids_sellados_gen2
+    ids_pendientes -= ids_adoptados
+
     c = {
         "N_corridas_requeridas": sum(1 for f in corridas if f["origen"] == "DEMANDA"),
         "N_corridas_selladas": sum(1 for f in gen2(corridas)
@@ -2559,6 +2703,9 @@ def status(imprime: bool = True) -> dict:
         "N_resultados_pendientes": sum(1 for f in activos if f["estado"] == "PENDIENTE"),
         "dependencias_numericas_legacy_activas": sum(
             1 for u in usos_activos if u["generacion_leida"] == GENERACION_LEGADO),
+        "N_resultados_gen2_sellados": len(ids_sellados_gen2),
+        "N_resultados_gen2_pendientes_adopcion": len(ids_pendientes),
+        "N_resultados_gen2_adoptados_activos": len(ids_adoptados),
         "resultados_con_validacion_independiente": sum(
             1 for f in resultados if f["validacion_independiente"] == "PASA"),
         # `delta` (B-7) es de E7: sin criterio de materialidad firmado y sin
@@ -2651,6 +2798,16 @@ def construye_parser() -> argparse.ArgumentParser:
     st = subs.add_parser("status", help="B-11 · contadores GEN2, todos derivados")
     st.add_argument("--json", action="store_true", help="mismo contenido, JSON")
     st.set_defaults(func=cmd_status)
+
+    # ACTO GEN2-PRE-E5 · CABLEADO-Y-AUTOMATIZACION-FINAL, P1: estado unico
+    # de un CALC, derivado de artefactos (cierra NC-0010).
+    es = subs.add_parser("estado", help="P1 · estado derivado unico de un CALC")
+    es.add_argument("calc_id", help="p. ej. CALC-0001")
+    es.add_argument("--preflight", action="store_true",
+                    help="si la spec esta fijada sin ejecutar, corre preflight "
+                         "para distinguir PRE-FLIGHT-VERDE de SPEC-FIJADA")
+    es.add_argument("--json", action="store_true", help="mismo contenido, JSON")
+    es.set_defaults(func=cmd_estado)
 
     for nombre, ayuda in PENDIENTES_E3:
         s = subs.add_parser(nombre, help=f"[NO-IMPLEMENTADO] {ayuda}")
