@@ -161,6 +161,21 @@ RE_NO_CONSUMIDO = re.compile(
     r"SUSTITUID[OA]|DEVUELT[OA]-POR-MESA|no ejecutado|no consumido|queda como historia",
     re.I)
 
+# ACTO GEN2-E7 pieza D (D1): el libro GEN1 se cerro con un rotulo mecanico
+# (`tools/cierra_libro_gen1.py`). Un encargo asi rotulado NO es un pendiente
+# -- es historia declarada -- y §D deja de LISTARLO para pasar a CONTARLO en
+# una linea. Listar sesenta archivos que nadie va a abrir es ruido que tapa
+# los que si importan.
+RE_HISTORICO_GEN1 = re.compile(r"^## HIST[OÓ]RICO-GEN1", re.M)
+
+# Un encargo puede traer una marca que NO es `## CONSUMIDO` y aun asi estar
+# cerrado: `## SUSTITUIDO` (mesa lo reemplazo) o `## HISTÓRICO` (quedo como
+# historia). Antes de GEN2-E7 pieza D el digesto solo miraba `## CONSUMIDO`,
+# asi que esos dos casos se contaban como "sin marca" -- una inexactitud
+# medida: los DOS que sobrevivian al cierre del libro son exactamente esos.
+# Se cuentan aparte, con su nombre.
+RE_MARCA_OTRA = re.compile(r"^## (SUSTITUIDO|HIST[OÓ]RICO)(?!-GEN1)", re.M)
+
 RE_MARCADOR_PENDIENTE = re.compile(
     r"requiere_decision.*true|PENDIENTE de mesa|pendiente nombrado.*mesa|PROPUESTA.*mesa")
 
@@ -489,11 +504,19 @@ def seccion_d(raiz, piso_arg, tope_lista):
         b = os.path.basename(p)
         (con_fecha if re.match(r"^\d{4}-\d{2}-\d{2}-", b) else sin_fecha).append(p)
 
-    marcados, sin_marca = [], []
+    marcados, sin_marca, historicos_gen1, marca_otra = [], [], [], []
     for p in con_fecha:
         with open(p, encoding="utf-8") as fh:
             s = fh.read()
-        (marcados if re.search(r"^## CONSUMIDO", s, re.M) else sin_marca).append(p)
+        if re.search(r"^## CONSUMIDO", s, re.M):
+            marcados.append(p)
+        elif RE_HISTORICO_GEN1.search(s):
+            # D1: rotulado al cierre de GEN1. No se lista; se cuenta.
+            historicos_gen1.append(p)
+        elif RE_MARCA_OTRA.search(s):
+            marca_otra.append(p)
+        else:
+            sin_marca.append(p)
 
     if piso_arg:
         piso, origen_piso = piso_arg, "dado con `--piso-encargos`"
@@ -555,6 +578,15 @@ def seccion_d(raiz, piso_arg, tope_lista):
             f"({len(con_fecha)} con prefijo de fecha, {len(sin_fecha)} sin él y por "
             f"tanto fuera del universo) (A.13).",
             f"Con marca: **{len(marcados)}**. Sin marca: **{len(sin_marca)}**.",
+            f"`HISTÓRICO-GEN1`: **{len(historicos_gen1)}** — rotulados al cierre "
+            f"de GEN1 (7/sep/2026, `PR #597`) por `tools/cierra_libro_gen1.py` "
+            f"(`ACTO GEN2-E7` pieza D, `D13`). **No se listan**: son historia "
+            f"declarada, no pendientes, y GEN2 deriva su perímetro de "
+            f"consumidores activos (`E.2`), no de encargos.",
+            f"Con otra marca de cierre (`## SUSTITUIDO` / `## HISTÓRICO`): "
+            f"**{len(marca_otra)}**" +
+            (" — " + ", ".join("`%s`" % os.path.basename(q) for q in marca_otra)
+             if marca_otra else "") + ".",
             f"Piso de la convención: **{piso}** — {origen_piso}.", ""]
 
     if not frescos:
@@ -1243,6 +1275,113 @@ def bloque_falsadores(raiz, hoy):
 # Armado
 # ───────────────────────────────────────────────────────────────
 
+
+def seccion_i(raiz, fecha):
+    """I · Rutinas (últimos 7 días) -- `ACTO GEN2-E7` pieza D (D5a).
+
+    Derivada de `forense/rutinas.tsv`, donde cada rutina apenda UNA línea
+    por tick. Existe porque un tick que termina en `NADA-QUE-HACER` y un
+    tick **que no corrió** se ven idénticos desde fuera —cero commits,
+    cero PR— y esa ambigüedad impide saber si una rutina sigue viva.
+
+    La ventana es de 7 días y se declara: una rutina SIN líneas en ese
+    plazo no se reporta como "sana y ociosa", se reporta como **SIN
+    HUELLA**, que es lo que de verdad se midió."""
+    ruta = os.path.join(raiz, "forense", "rutinas.tsv")
+    out = ["## I · Rutinas (últimos 7 días)", "",
+           "Comando: lectura de `forense/rutinas.tsv` (append-only), acotada a "
+           "las líneas con `fecha` en los 7 días previos a la de este digesto. "
+           "Cada rutina apenda una línea por tick, incluidos los ticks que no "
+           "hicieron nada -- ese es el punto.", ""]
+    if not os.path.exists(ruta):
+        out += ["**NO-ENCONTRADO.** `forense/rutinas.tsv` no existe (A.13). "
+                "Ninguna rutina ha dejado huella todavía.", ""]
+        return out, {}
+    with open(ruta, encoding="utf-8-sig", newline="") as fh:
+        filas = [f for f in csv.DictReader(
+            (l for l in fh if not l.startswith("#")), delimiter="\t")
+            if f.get("fecha")]
+    try:
+        hoy = datetime.date.fromisoformat(fecha)
+    except ValueError:
+        hoy = datetime.date.today()
+    piso = (hoy - datetime.timedelta(days=7)).isoformat()
+    ventana = [f for f in filas if f["fecha"] >= piso]
+
+    RUTINAS_VIVAS = ("despacha", "revisa", "tramite")
+    por_rutina = {}
+    for f in ventana:
+        por_rutina.setdefault(f.get("rutina", "(sin rutina)"), []).append(f)
+
+    out += [f"Ventana: **{piso}** a **{hoy.isoformat()}**. Líneas en el "
+            f"archivo: **{len(filas)}**; en la ventana: **{len(ventana)}** "
+            f"(A.13).", ""]
+    out += ["| rutina | ticks | resultados |", "|---|---|---|"]
+    for nombre in RUTINAS_VIVAS:
+        fs = por_rutina.get(nombre, [])
+        if not fs:
+            out.append(f"| `{nombre}` | **0** | **SIN HUELLA en la ventana** — "
+                       f"no se midió que corriera; no se afirma que no corriera |")
+            continue
+        res = " · ".join(f"`{x.get('resultado', '?')}`" for x in fs)
+        out.append(f"| `{nombre}` | {len(fs)} | {res} |")
+    otras = sorted(set(por_rutina) - set(RUTINAS_VIVAS))
+    for nombre in otras:
+        fs = por_rutina[nombre]
+        res = " · ".join(f"`{x.get('resultado', '?')}`" for x in fs)
+        out.append(f"| `{nombre}` (no es una de las tres) | {len(fs)} | {res} |")
+    out.append("")
+    sin_huella = [n for n in RUTINAS_VIVAS if not por_rutina.get(n)]
+    if sin_huella:
+        out += [f"**{len(sin_huella)} rutina(s) sin huella en la ventana**: "
+                + ", ".join(f"`{n}`" for n in sin_huella) +
+                ". Una rutina sin huella no es una rutina sana: es una rutina "
+                "de la que no se sabe nada.", ""]
+    return out, por_rutina
+
+
+def seccion_j(raiz, fecha, ramas_remotas, fuente_ramas):
+    """J · Revisiones -- `ACTO GEN2-E7` pieza D (D5b).
+
+    Los PR `[REVISA]` abiertos o fusionados en la ventana. `gh` no existe
+    en este entorno (medido 31/ago/2026), así que el PR no es derivable
+    directamente: se deriva por sus DOS huellas en el árbol, y se declara
+    que son huellas y no el PR.
+    """
+    out = ["## J · Revisiones (`[REVISA]`)", "",
+           "Comando: `gh` no existe en este entorno, así que un PR no se lee "
+           "directamente. Se derivan sus **dos huellas**: las notas "
+           "`forense/notas/*-revisa-*.md` (que es lo que un PR `[REVISA]` "
+           "post-hoc contiene) y las ramas remotas `claude/revisa-*`. Es una "
+           "cota, no el conjunto de PR: un `/revisa` en línea deja su "
+           "veredicto como comentario de GitHub y **no** deja huella aquí.", ""]
+    dir_notas = os.path.join(raiz, "forense", "notas")
+    notas = sorted(glob.glob(os.path.join(dir_notas, "*revisa*.md")))
+    try:
+        hoy = datetime.date.fromisoformat(fecha)
+    except ValueError:
+        hoy = datetime.date.today()
+    piso = (hoy - datetime.timedelta(days=7)).isoformat()
+    recientes = [n for n in notas if os.path.basename(n)[:10] >= piso]
+    ramas_revisa = [r for r in (ramas_remotas or []) if "revisa" in r]
+
+    out += [f"Notas de revisión en `forense/notas/`: **{len(notas)}** total, "
+            f"**{len(recientes)}** desde {piso} (A.13).", ""]
+    if recientes:
+        for n in recientes:
+            out.append(f"- `forense/notas/{os.path.basename(n)}`")
+    else:
+        out.append("- Ninguna nota de revisión en la ventana.")
+    out += ["", f"Ramas remotas `claude/revisa-*`: **{len(ramas_revisa)}** "
+            f"(fuente de ramas: {fuente_ramas}).", ""]
+    for r in ramas_revisa:
+        out.append(f"- `{r}`")
+    if not ramas_revisa:
+        out.append("- Ninguna.")
+    out.append("")
+    return out, {"notas": len(recientes), "ramas": len(ramas_revisa)}
+
+
 def seccion_h(raiz, fecha):
     """H · A.14 -- `forense/no-corrido.tsv` (`ACTO GEN2-T8`, 8/sep/2026).
 
@@ -1304,6 +1443,8 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
     f, res_f = seccion_f(raiz, fecha, ramas, fuente_ramas)
     g, n_pend = seccion_g(raiz)
     h, n_nc_abiertas = seccion_h(raiz, fecha)
+    i, res_i = seccion_i(raiz, fecha)
+    j, res_j = seccion_j(raiz, fecha, ramas, fuente_ramas)
     fals, n_venc = bloque_falsadores(raiz, fecha)
 
     pie = ["## Pie · falsadores vivos, neutralización de marcadores y A.13", "",
@@ -1331,14 +1472,16 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
            f"`forense/firmas-pendientes.tsv` · `forense/encargos/*.md` · "
            f"`forense/prereg-duelo-v2/corridas-{{M,R,L}}/` · `milpa/tramite.yaml` · "
            f"`milpa/procedencia.yaml` · `forense/encargos/cola/*.md` · "
-           f"`milpa/*.yaml` · `forense/no-corrido.tsv` · los runbooks y skills de "
+           f"`milpa/*.yaml` · `forense/no-corrido.tsv` · `forense/rutinas.tsv` · "
+           f"`forense/notas/*revisa*.md` · los runbooks y skills de "
            f"la tabla de falsadores · ramas del remoto `origin`. Fuera de ese "
            "universo este digesto no dice nada, y no debe leerse como si dijera.", ""]
 
-    cuerpo = cab + venc + a + b + c + d + e + f + g + h + pie
+    cuerpo = cab + venc + a + b + c + d + e + f + g + h + i + j + pie
     resumen = {"abiertas": n_ab, "ramas": n_ramas, "sin_consumido": n_sin,
                "contadores": n_cont, "neutralizaciones": cuenta.total(),
                "detalle_d": det_d, "sha": sha, "cola": res_f,
+               "rutinas": res_i, "revisiones": res_j,
                "pendientes_mesa": n_pend, "falsadores_vencidos": n_venc,
                "vencidas": n_vencidas, "vencen_semana": n_vencen_semana,
                "no_corrido_abiertas": n_nc_abiertas}

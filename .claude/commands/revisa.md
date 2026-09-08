@@ -1,5 +1,5 @@
 ---
-description: Revisor adversarial de PR. Dado un PR (numero o rama), verifica diez puntos sobre la VISTA PREVIA DEL MERGE, con comando y salida por punto, y deja UN comentario con veredicto. Nunca aprueba, nunca empuja, nunca fusiona. Uso — /revisa <numero|rama> [--post-hoc]
+description: Revisor adversarial de PR. Dado un PR (numero o rama), verifica once puntos sobre la VISTA PREVIA DEL MERGE, con comando y salida por punto, y deja UN comentario con veredicto. Nunca aprueba, nunca empuja, nunca fusiona. Uso — /revisa <numero|rama> [--post-hoc]
 argument-hint: <numero de PR o rama> [--post-hoc]
 ---
 
@@ -18,6 +18,15 @@ cabeza de quien revisó el jueves no revisa el viernes.
 
 El runbook de mesa —el prompt de la rutina, el activador, cómo leer el
 comentario y el falsador— vive en `forense/agente-revisor-v1_0.md`.
+
+**Cuándo se dispara** (`ACTO GEN2-E7` pieza D, D4a): además del tick
+diario, **al abrir un PR**. La rutina lo permite, y el momento en que
+una revisión vale más es cuando el PR acaba de nacer y todavía nadie lo
+firmó — revisarlo a la mañana siguiente es revisarlo después de que mesa
+tuvo toda la tarde para fusionarlo. El disparador «al abrir PR» **no
+sustituye** al diario: el diario sigue atrapando los PR que se abrieron
+mientras nadie miraba, y los que cambiaron después de su primera
+revisión.
 
 Ejecuta los cuatro bloques de abajo, en orden. Cada uno es instrucción
 ejecutable para esta sesión, no prosa de referencia.
@@ -49,7 +58,7 @@ estos, el guardrail gana y lo reportas.
    cosa —dilo en el mismo comentario— o estás repitiéndote.
 6. **No revisa PRs `[TRAMITE]`.** Tienen su propio protocolo de lectura
    (`forense/agente-tramite-v1_0.md` §2) y su propio perímetro de tres
-   rutas; medirlos con esta lista de diez daría `NO-APLICA` en ocho
+   rutas; medirlos con esta lista de once daría `NO-APLICA` en ocho
    puntos y ruido en los otros dos. Si el título empieza por
    `[TRAMITE]`: **termina sin comentar** y dilo.
 7. **`CONTADOR: cero, declarado.`** Este agente no mide nada sobre
@@ -70,7 +79,7 @@ Todo este archivo descansa en una distinción que es fácil de perder:
 **revisar la rama no es revisar lo que se va a fusionar.** Lo que entra
 a `main` es el **merge**, y el merge puede traer conflictos, puede
 renumerar un `ADR` y puede romper la suite aunque la rama sola estuviera
-verde. Los diez puntos del bloque 2 se corren **sobre la vista previa**,
+verde. Los once puntos del bloque 2 se corren **sobre la vista previa**,
 no sobre la rama, y no sobre `main`.
 
 ### 1.1 · Identifica el objeto
@@ -115,7 +124,7 @@ git worktree add --detach <ruta-desechable> origin/main
 cd <ruta-desechable> && git merge --no-ff --no-commit --no-edit revisa-pr-<X>
 ```
 
-**Ese** directorio es el universo de los diez puntos. Cuando un punto de
+**Ese** directorio es el universo de los once puntos. Cuando un punto de
 abajo dice "sobre la vista previa", es aquí.
 
 ### 1.3 · Retira el worktree al cerrar
@@ -134,11 +143,30 @@ modo de calibración —comprobar que la lista atrapa lo que mesa atrapó a
 mano— y es también el modo correcto para auditar un merge viejo sin
 resucitar su conversación.
 
+**Cómo llega ese veredicto a mesa** (`ACTO GEN2-E7` pieza D, D4b): en un
+**PR propio**, titulado `[REVISA] post-hoc #<n>`, que contiene
+**únicamente** la nota `forense/notas/<fecha>-revisa-<rótulo>.md`. Un
+solo archivo en el diff, y ninguno más.
+
+**Nunca commits sobre la rama revisada.** El guardrail 2 del bloque 0
+sigue mandando aquí con esas mismas palabras —*«NUNCA empuja commits.
+Cero `git push`, cero commits, en la rama del PR y en cualquier otra»*—
+y este modo **no lo relaja**: lo satisface. La rama del PR `[REVISA]` es
+**tuya**, nueva, `claude/revisa-post-hoc-<n>`, sacada de `origin/main`;
+la rama revisada no se toca, no se checkoutea para escribir y no recibe
+un solo byte. Si te encuentras a punto de commitear sobre la rama que
+revisas, **PARA**: eso es exactamente el desenlace que el guardrail 2
+existe para impedir, y ningún inciso de este bloque lo autoriza.
+
+Un PR `[REVISA]` **no se fusiona solo** (guardrail 3) y **no aprueba
+nada** (guardrail 1): es el vehículo para que la nota llegue al árbol,
+no una firma.
+
 ---
 
-## 2 · LOS DIEZ PUNTOS
+## 2 · LOS ONCE PUNTOS
 
-Reglas que valen para los diez, y que son la mitad del valor de esta
+Reglas que valen para los once, y que son la mitad del valor de esta
 skill:
 
 - **Comando y salida, por punto.** Un punto sin comando pegado no está
@@ -148,8 +176,8 @@ skill:
   pasado**, y arrastra `RESERVA` por sí solo. Es la misma disciplina de
   A.13 aplicada al revisor: un negativo que nadie midió no es un
   negativo.
-- **`NO-APLICA` se declara con su razón**, nunca en silencio. Los diez
-  puntos aparecen siempre en el comentario, los diez, aunque ocho digan
+- **`NO-APLICA` se declara con su razón**, nunca en silencio. Los once
+  puntos aparecen siempre en el comentario, los once, aunque ocho digan
   `NO-APLICA`.
 - **Cada punto trae su peso**: `BLOQUEA` o `RESERVA`. El peso no lo
   eliges tú al final para que cuadre el veredicto; está fijado abajo,
@@ -404,6 +432,51 @@ que se prohibió por escrito.
 
 ---
 
+### 2.11 · `## NO-CORRIDO / RESERVAS` cotejado contra el diff y el encargo — `ACTO GEN2-E7` pieza D (D4c)
+
+**Peso: `BLOQUEA`.**
+
+`A.14` dice: *«Lo que no se corrió se asienta, o el acto no cierra.»* El
+punto 2.10 comprueba que el PR respetó su *«lo que NO hace»* declarado;
+éste comprueba lo contrario y es el que faltaba: que **lo que el encargo
+pidió y el diff no tocó** aparezca asentado, con su fila.
+
+Tres lecturas, en este orden:
+
+```
+# (a) las piezas que el encargo archivado PIDE
+git show <base>:forense/encargos/<archivo>.md | grep -nE '^\(?[A-Z][0-9]+\)?|^## '
+# (b) lo que el diff REALMENTE toca
+git diff --stat <base> <cabeza>
+# (c) lo que el PR ASIENTA como no corrido
+git diff <base> <cabeza> -- forense/no-corrido.tsv
+```
+
+El cotejo:
+
+- Una pieza **pedida por el encargo**, **no tocada por el diff** y **sin
+  fila** en `## NO-CORRIDO / RESERVAS` ni en `forense/no-corrido.tsv`
+  → **`BLOQUEA`**. No es «se le olvidó documentar»: es una pieza que
+  desapareció entre el encargo y el reporte sin que nadie lo diga, que
+  es precisamente la forma en que un acto se declara completo sin serlo.
+- Una pieza pedida, no tocada, **con** su fila y su razón → correcto.
+  Ese es el mecanismo funcionando; no es un hallazgo.
+- Una fila de `NO-CORRIDO` **sin** pieza que la respalde (asienta como
+  no corrido algo que el encargo nunca pidió) → **`RESERVA`**: no es
+  falso, pero infla el contador y merece decirse.
+- Encargo sin piezas enumerables (los hay) → `NO-APLICA` **con su
+  razón**, nunca en silencio.
+
+**Cuidado con el falso positivo del entorno.** Un encargo de dos
+entornos —piezas de nube y piezas de caja en el mismo texto— reparte su
+trabajo en **dos PR**. Una pieza de caja ausente del PR de nube **no
+bloquea**: se comprueba que el propio PR lo declare (cabecera del
+encargo, o el reporte) y se anota como `NO-APLICA — pieza de <entorno>,
+va en otro PR`. Bloquear ahí sería exigirle a un PR el trabajo que su
+encargo mandó explícitamente a otra máquina.
+
+---
+
 ## 3 · EL VEREDICTO Y EL COMENTARIO
 
 ### 3.1 · El veredicto sale de los pesos, no del ánimo
@@ -411,7 +484,7 @@ que se prohibió por escrito.
 - **`NO-FUSIONAR`** — hay al menos **un** hallazgo de peso `BLOQUEA`.
 - **`FUSIONABLE-CON-RESERVA`** — cero `BLOQUEA`, al menos un `RESERVA`
   (y `NO-VERIFICADO` cuenta como `RESERVA`).
-- **`FUSIONABLE`** — cero hallazgos, y los **diez** puntos con su
+- **`FUSIONABLE`** — cero hallazgos, y los **once** puntos con su
   comando y su salida pegados.
 
 No hay cuarto veredicto, y **`FUSIONABLE` no significa "fusiona"**:
@@ -436,7 +509,7 @@ Estructura, en este orden y sin adornos:
 3. **Hallazgos numerados**, ordenados por peso. Cada uno: **qué punto**,
    **qué se esperaba**, **qué se encontró**, **el comando y su salida**,
    y —si la tienes— **la propuesta de arreglo**, marcada como propuesta.
-4. **La tabla de los diez puntos**, los diez, con su estado
+4. **La tabla de los once puntos**, los once, con su estado
    (`PASA` / `BLOQUEA` / `RESERVA` / `NO-VERIFICADO` / `NO-APLICA`) y su
    comando. Ésta es la parte que hace la revisión auditable: quien la
    lea dentro de un mes puede correr los mismos comandos.

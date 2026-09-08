@@ -1,0 +1,11 @@
+# DERIVADO PARCIALMENTE — cada rutina APENDA su propia linea al terminar; nadie reescribe una linea anterior.
+# ACTO GEN2-E7 pieza D (D3c/D4/D5d). Firma de mesa 8/sep/2026: «revisemos actualizar de una vez estas
+# rutinas, ajustarlas o crear nuevas que valgan la pena» -> D14: no se crean rutinas nuevas; se ajustan las
+# tres que ya existen y se les pide que dejen huella. Sin este archivo, un tick que termina en NADA-QUE-HACER
+# es indistinguible de un tick que no corrio: los dos se ven igual desde fuera (cero commits, cero PR), y esa
+# ambiguedad es la que impide saber si una rutina esta viva.
+#
+# resultado ∈ {HIZO:<PR>, CANDADO:<razon>, PARO:<razon>, PROMOVIO:<encargo>, NADA-QUE-HACER}
+# Se commitea en la rama del dia `claude/tramite-<fecha>` (la crea quien la necesite si no existe).
+fecha	rutina	resultado	detalle
+2026-09-08	acto-gen2-e7-pieza-d	NADA-QUE-HACER	primera linea del archivo, escrita por el acto que lo crea; no es un tick de rutina -- es el encabezado de datos, para que la primera rutina que corra tenga un formato que copiar en vez de uno que inventar

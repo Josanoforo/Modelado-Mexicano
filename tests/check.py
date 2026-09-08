@@ -5118,6 +5118,54 @@ def t36_corredores_gen2():
 
 
 # ───────────────────────────────────────────────────────────────
+# T37 · T-COLA-SINCRONIZADA -- ACTO GEN2-E7 pieza D (D2c), 8/sep/2026.
+#
+#   Un encargo que sigue `LISTO-*`/`GATEADO`/`EN-CURSO` en
+#   `forense/encargos/cola/` mientras su homónimo archivado ya trae
+#   `## CONSUMIDO` es una trampa con nombre: `/despacha` toma el
+#   `LISTO-NUBE` más antiguo, así que en su siguiente tick vuelve a
+#   ejecutar un acto ya fusionado. Defecto MEDIDO el 8/sep/2026 -- cinco
+#   encargos GEN2 (`E1` #602, `E2` #600, `E3` #601, `E4` #604, `E6` #611)
+#   estaban exactamente así, y sin este test nada lo habría dicho.
+#
+#   El emparejamiento es por RÓTULO (nombre sin el prefijo `AAAA-MM-DD-`),
+#   no por basename: la copia de cola lleva la fecha de REDACCIÓN y la
+#   archivada la de EJECUCIÓN, así que los basenames casi nunca coinciden.
+#   Un test que emparejara por basename nunca dispararía, y su verde no
+#   significaría nada.
+#
+#   La lógica vive en `tools/cierre_acto.py::cola_desincronizada` y aquí
+#   sólo se consume: el reconciliador y el test no pueden discrepar sobre
+#   qué cuenta como desincronizado.
+# ───────────────────────────────────────────────────────────────
+def t37_cola_sincronizada():
+    ruta = os.path.join(ROOT, "tools", "cierre_acto.py")
+    if not os.path.exists(ruta):
+        fail("T-COLA-SINCRONIZADA", "no existe `tools/cierre_acto.py`")
+        return
+    try:
+        import importlib.util as _iu
+        if os.path.join(ROOT, "tools") not in sys.path:
+            sys.path.insert(0, os.path.join(ROOT, "tools"))
+        _spec = _iu.spec_from_file_location("cierre_acto_desde_check", ruta)
+        _mod = _iu.module_from_spec(_spec)
+        sys.modules[_spec.name] = _mod
+        _spec.loader.exec_module(_mod)
+        filas = _mod.cola_desincronizada(ROOT)
+    except Exception as exc:
+        fail("T-COLA-SINCRONIZADA",
+             f"`cola_desincronizada` no pudo correr: {type(exc).__name__}: {exc}")
+        return
+    for fila in filas:
+        fail("T-COLA-SINCRONIZADA",
+             f"{fila['cola']} sigue `ESTADO: {fila['estado_cola']}` pero "
+             f"{fila['archivado']} ya trae `## CONSUMIDO`"
+             + (f" (PR #{fila['pr']})" if fila.get("pr") else "")
+             + " -- /despacha lo re-ejecutaria; corrige el ESTADO: de la cola "
+               "(o corre `python3 tools/cierre_acto.py --aplica`)")
+
+
+# ───────────────────────────────────────────────────────────────
 # T34 · T-NO-CORRIDO -- A.14 (`ACTO GEN2-T8`, 8/sep/2026,
 # `forense/encargos/2026-09-08-GEN2-T8-A14-CERO-RAMAS-RETROFIT.md`):
 # "Lo que no se corrió se asienta, o el acto no cierra."
@@ -5375,6 +5423,7 @@ def main():
         ("T31 T-CRON",                              t31_cron),
         ("T32 T-CORRIDA0",                           t32_corrida0),
         ("T36 T-CORREDORES-GEN2",                     t36_corredores_gen2),
+        ("T37 T-COLA-SINCRONIZADA",                    t37_cola_sincronizada),
         ("T34 T-NO-CORRIDO",                          t34_no_corrido),
         ("T35 T-REPRO [aviso]",                        t35_repro),
     ]

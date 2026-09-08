@@ -229,8 +229,10 @@ tools/corrida0.py verify CALC-AGG-marco-M-sorteado-v1_3  -> REPRODUCE
 
 Los 3 FAIL (`T06` ×2, `T08`) son de la línea base congelada, ajenos a este
 acto. **Un FAIL nuevo apareció durante el acto y se corrigió**: `T25` marcó
-el rótulo pelado `M13` en la nota de A5 (D-6/ADR-128); se le dio su prefijo
-de espacio, `MAESTRA38-M13`. El `spec.md` sellado de `CALC-M` conserva la
+un rótulo pelado del espacio `M` en la nota de A5 (D-6/ADR-128); se le dio
+su prefijo de espacio, `MAESTRA38-M13`. *(Esta frase tampoco escribe el
+rótulo pelado: nombrarlo aquí volvería a disparar `T25` sobre esta misma
+nota, que es exactamente como se descubrió.)* El `spec.md` sellado de `CALC-M` conserva la
 forma corta y `T25` no lo señala — reescribirlo rompería su
 `spec_md_sha256` y su sello para complacer a un test, que es exactamente lo
 que la casa no hace.

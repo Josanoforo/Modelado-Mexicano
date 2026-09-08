@@ -1,4 +1,4 @@
-ESTADO: LISTO-NUBE
+ESTADO: CONSUMIDO — PR #611 (`claude/e6-registro-status-tablero-82umwv`). Sincronizado por `ACTO GEN2-E7` pieza D (D2a): seguía `LISTO-NUBE` con el PR ya fusionado y su homónimo archivado (`forense/encargos/2026-09-08-GEN2-E6-AUTOMATIZA-GEN2-2.md`) ya con `## CONSUMIDO`.
 ENTORNO: NUBE
 ENCOLADO: 2026-09-08 · ACTO GEN2-V213 reencola: reemplaza el cuerpo de este archivo, verbatim (texto técnico sin cambios respecto de la versión que `ACTO GEN2-T7-CIERRE` encoló), y recomputa la COMPUERTA contra `origin/main = df9336c5` bajo la regla nueva E.5 de `instrucciones-proyecto-v2_13.md` ("el aparato se prueba con replays").
 BITACORA:

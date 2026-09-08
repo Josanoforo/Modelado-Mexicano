@@ -53,6 +53,7 @@ Uso:
     python3 tools/cierre_acto.py --aplica            # Fase B, todo-o-nada
 """
 import argparse
+import glob
 import os
 import re
 import subprocess
@@ -334,6 +335,16 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True):
         for l in suite["ultimas_lineas"]:
             print(f"    {l}")
         print()
+    desincro = cola_desincronizada(raiz)
+    print("COLA SINCRONIZADA (D2b)")
+    if not desincro:
+        print("  Ninguna copia de cola/ abierta con su homonimo archivado ya CONSUMIDO.")
+    else:
+        for fila in desincro:
+            print(f"  DESINCRONIZADA: {fila['cola']} (ESTADO: {fila['estado_cola']}) "
+                  f"vs {fila['archivado']} · PR #{fila['pr'] or '?'}")
+        print(f"  -> `--aplica` reescribe {len(desincro)} ESTADO: a CONSUMIDO.")
+    print()
     print("REQUIERE JUICIO HUMANO (siempre, este tool no lo hace)")
     print("  - Redactar el texto del ADR (motivo, incisos, qué cierra/abre)")
     print("  - Insertar la anotación nueva en L0 (antes de la anterior)")
@@ -495,8 +506,101 @@ def fase_b_aplica(raiz=RAIZ):
         cambios.append(f"L0 {l0_actual}->{adr_real}")
     if tabla_actual != adr_real:
         cambios.append(f"tabla estado {tabla_actual}->{adr_real}")
-    print("APLICADO: " + " · ".join(cambios))
+    sincronizadas = sincroniza_cola(raiz)
+    for fila in sincronizadas:
+        cambios.append(f"cola {os.path.basename(fila['cola'])} "
+                       f"{fila['estado_cola']}->CONSUMIDO"
+                       + (f" (PR #{fila['pr']})" if fila["pr"] else ""))
+    print("APLICADO: " + (" · ".join(cambios) if cambios else "nada que reconciliar"))
     return 0
+
+
+
+# ─────────────────────────────────────────────────────────────────
+# Cola sincronizada (ACTO GEN2-E7 pieza D · D2b)
+# ─────────────────────────────────────────────────────────────────
+#
+# Defecto MEDIDO el 8/sep/2026: cinco encargos GEN2 ya fusionados
+# (`E1` #602, `E2` #600, `E3` #601, `E4` #604, `E6` #611) seguían en
+# `forense/encargos/cola/` con `ESTADO: LISTO-*` o `GATEADO`. `/despacha`
+# toma el `LISTO-NUBE` más antiguo: en su siguiente tick habría vuelto a
+# ejecutar `E6`, ya fusionado, sin más candado que la buena memoria de
+# quien mirara.
+#
+# El homónimo se busca por RÓTULO (el nombre sin el prefijo `AAAA-MM-DD-`),
+# no por basename: la copia de cola lleva la fecha de REDACCIÓN y la
+# archivada la de EJECUCIÓN, así que los basenames casi nunca coinciden
+# -- `2026-09-07-GEN2-E6-...md` en cola contra `2026-09-08-GEN2-E6-...md`
+# archivado. Emparejar por basename habría producido un sincronizador que
+# nunca dispara y un verde que no significa nada.
+
+_RE_ROTULO_FECHA = re.compile(r"^\d{4}-\d{2}-\d{2}-")
+_RE_ESTADO_COLA = re.compile(r"^ESTADO:\s*(.*)$", re.M)
+_RE_PR_EN_CONSUMIDO = re.compile(r"^## CONSUMIDO.*?#(\d+)", re.M | re.S)
+
+ESTADOS_COLA_ABIERTOS = ("LISTO-NUBE", "LISTO-CAJA", "LISTO-", "GATEADO",
+                          "EN-CURSO")
+
+
+def _rotulo_de(nombre):
+    """`2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md` -> `GEN2-E6-AUTOMATIZA-GEN2-2`.
+    Mismo criterio que `digesto_tramite.py::seccion_d::_rotulo`."""
+    base = os.path.basename(nombre)
+    if not _RE_ROTULO_FECHA.match(base):
+        return None
+    return re.sub(r"\.md$", "", base[11:])
+
+
+def cola_desincronizada(raiz=RAIZ):
+    """Filas `{cola, archivado, estado_cola, pr}` de encargos cuya copia en
+    `cola/` sigue abierta mientras su homónimo archivado ya trae
+    `## CONSUMIDO`. Puro: lee y no escribe."""
+    dir_enc = os.path.join(raiz, "forense", "encargos")
+    dir_cola = os.path.join(dir_enc, "cola")
+    archivados = {}
+    for ruta in glob.glob(os.path.join(dir_enc, "*.md")):
+        rot = _rotulo_de(ruta)
+        if rot:
+            archivados.setdefault(rot, []).append(ruta)
+
+    fuera = []
+    for ruta_cola in sorted(glob.glob(os.path.join(dir_cola, "*.md"))):
+        rot = _rotulo_de(ruta_cola)
+        if not rot:
+            continue
+        m_est = _RE_ESTADO_COLA.search(_leer(ruta_cola))
+        estado = (m_est.group(1).strip() if m_est else "")
+        if not any(estado.upper().startswith(e) for e in ESTADOS_COLA_ABIERTOS):
+            continue
+        for ruta_arch in archivados.get(rot, []):
+            m_pr = _RE_PR_EN_CONSUMIDO.search(_leer(ruta_arch))
+            if _MARCADOR_CONSUMIDO.search(_leer(ruta_arch)) or m_pr:
+                fuera.append({"cola": os.path.relpath(ruta_cola, raiz),
+                              "archivado": os.path.relpath(ruta_arch, raiz),
+                              "estado_cola": estado,
+                              "pr": m_pr.group(1) if m_pr else None})
+                break
+    return fuera
+
+
+def sincroniza_cola(raiz=RAIZ):
+    """Reescribe el `ESTADO:` de cada copia de cola desincronizada. Devuelve
+    la lista de las filas escritas. Escritura atómica, una por archivo."""
+    escritas = []
+    for fila in cola_desincronizada(raiz):
+        ruta = os.path.join(raiz, fila["cola"])
+        texto = _leer(ruta)
+        pr = f" — PR #{fila['pr']}" if fila["pr"] else ""
+        linea = (f"ESTADO: CONSUMIDO{pr}. Sincronizado por "
+                 f"`tools/cierre_acto.py --aplica` contra "
+                 f"`{fila['archivado']}`, que ya trae `## CONSUMIDO`.")
+        nuevo, n = re.subn(r"^ESTADO:.*$", lambda m: linea, texto, count=1,
+                           flags=re.M)
+        if n != 1:
+            continue
+        _confirma_temp(_prepara_temp(ruta, nuevo), ruta)
+        escritas.append(fila)
+    return escritas
 
 
 def main():

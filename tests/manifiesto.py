@@ -463,12 +463,59 @@ def _id_unico(valor, comando):
     return valor[0]
 
 
+def ruta_lock_manifiesto(root):
+    """Dónde vive el archivo de lock, y POR QUÉ ahí.
+
+    Hasta `ACTO GEN2-E7` pieza D el lock era siempre `<root>/data/
+    .manifiesto.lock`, con `root` = el árbol desde el que se invoca. Eso lo
+    hace **por worktree**: `git worktree add` produce un `data/` propio, así
+    que dos actos corriendo en dos worktrees del mismo clon tomaban locks
+    DISTINTOS y no se veían. El lock protegía contra el escritor con el que
+    ya se compartía todo y no contra el único del que había algo que
+    proteger — la puerta del defecto `ACTO R` / `ACTO R″` (`FP-345`,
+    hallazgo de la pieza C de este mismo acto).
+
+    Desde aquí se resuelve a la **raíz de escritura compartida**
+    (`descargas_mx` de `data/raices.local.yaml`), que es común a todos los
+    worktrees de una máquina. `raices_configuradas` lee ese archivo, que
+    está gitignorado: la ruta real nunca se commitea.
+
+    Fallback DECLARADO, no silencioso: si el entorno no configura esa raíz
+    (la nube, por ejemplo, que no tiene corpus), se cae al lock por árbol y
+    `aviso_lock_manifiesto` lo dice. Un lock por árbol sigue siendo correcto
+    cuando hay un solo árbol; lo que no puede pasar es que el caso
+    degradado se parezca al bueno.
+
+    Devuelve `(ruta, ambito)` con `ambito` ∈ {`RAIZ-COMPARTIDA`,
+    `POR-ARBOL-SIN-RAIZ-CONFIGURADA`}."""
+    base_compartida = raices_configuradas(root).get("descargas_mx")
+    if base_compartida and os.path.isdir(base_compartida):
+        return os.path.join(base_compartida, ".manifiesto.lock"), "RAIZ-COMPARTIDA"
+    return os.path.join(root, "data", ".manifiesto.lock"), \
+        "POR-ARBOL-SIN-RAIZ-CONFIGURADA"
+
+
+def aviso_lock_manifiesto(root):
+    """La frase que un escritor imprime para que el ámbito del lock que
+    realmente tomó quede a la vista, en vez de suponerse."""
+    ruta, ambito = ruta_lock_manifiesto(root)
+    if ambito == "RAIZ-COMPARTIDA":
+        return (f"lock: {ruta} (ambito RAIZ-COMPARTIDA -- cubre todos los "
+                f"worktrees de esta maquina)")
+    return (f"lock: {ruta} (ambito POR-ARBOL: 'descargas_mx' no esta en "
+            f"data/raices.local.yaml, asi que el lock NO cubre otros "
+            f"worktrees del mismo clon)")
+
+
 @contextlib.contextmanager
 def _con_lock_manifiesto(root):
     """Protege escritores que comparten este archivo de lock (mismo
     filesystem/máquina). No coordina clones independientes con archivos de
-    lock distintos. No es una solución de concurrencia distribuida."""
-    ruta_lock = os.path.join(root, "data", ".manifiesto.lock")
+    lock distintos. No es una solución de concurrencia distribuida.
+
+    La RUTA del lock la decide `ruta_lock_manifiesto` -- ver su docstring
+    para por qué no es `<root>/data/` sin más."""
+    ruta_lock, _ambito = ruta_lock_manifiesto(root)
     os.makedirs(os.path.dirname(ruta_lock), exist_ok=True)
     with open(ruta_lock, "w") as handle:
         fcntl.flock(handle.fileno(), fcntl.LOCK_EX)

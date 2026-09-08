@@ -1,4 +1,4 @@
-ESTADO: GATEADO
+ESTADO: CONSUMIDO — PR #604 (`acto/gen2-e4-limpieza-c2-poda`). Sincronizado por `ACTO GEN2-E7` pieza D (D2a): seguía `GATEADO` con el PR ya fusionado.
 ENTORNO: CAJA (UBUNTU)
 ENCOLADO: 2026-09-07 · ACTO GEN2-E0 · ENCOLA, skill `/encola`, PR [COLA]. Gesto de encolado: precedente §1c del transfer maestra-34 (firma D4-a, 1/sep/2026).
 BITACORA:

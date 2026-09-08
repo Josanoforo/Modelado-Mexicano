@@ -1,4 +1,4 @@
-ESTADO: GATEADO
+ESTADO: EN-CURSO — pieza C en `PR #612` (`acto/gen2-e7-readiness2-c`, caja); piezas A y B ejecutadas en `claude/nube-e7-readiness-gen2-873cj3` (nube); pieza D en curso en esa misma rama. Ninguna de las cuatro está fusionada todavía. Sincronizado por `ACTO GEN2-E7` pieza D (D2a).
 ENTORNO: (sin determinar — depende del esquema que deje E6; ya no de E5, ver BITACORA)
 ENCOLADO: 2026-09-08 · ACTO GEN2-V213 reencola: reemplaza el cuerpo de este archivo, verbatim (texto técnico sin cambios respecto de la versión que `ACTO GEN2-T7-CIERRE` encoló), sube su ESTADO de `DECLARADO` a `GATEADO` y le asigna una COMPUERTA real por primera vez.
 BITACORA:

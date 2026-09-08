@@ -89,3 +89,5 @@ No abre las ocho etapas de FP-26. Ese disparador sigue gateado.
 ## NO-EJECUTADO
 
 Derivado por auditoría 2026-09-03 (ACTO MAESTRA37-N9 · AUDITA-ENCARGOS-166). `grep -Fn -- "2026-08-18-CI-CATEGORIA-devolver-significado-ci.md" canon/gobernanza-v1_15.md` cita ADR-96, pero el propio texto del ADR declara el encargo "escrito, VIVO, sin lanzar" / "no lanzado por este acto". Cero rastro de ejecución posterior: `git log --all --oneline --grep="2026-08-18-CI-CATEGORIA-devolver-significado-ci.md"` → 0. 327 ADR revisados vía cita directa del archivo: ninguno distinto de ADR-96 lo nombra.
+
+## HISTÓRICO-GEN1 — sin marca al cierre de GEN1 (7/sep/2026, PR #597). No se reabre: GEN2 deriva su perímetro de consumidores activos (E.2), no de encargos. Registrado por GEN2-E7 pieza D.
