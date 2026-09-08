@@ -118,16 +118,20 @@ El cierre debe indicar: causa corregida; tratamiento de cada clase; celdas efect
 |---|---|---|---|
 | **`NC-0027` (RAIZ mal derivada en el medidor: tres `dirname` para un archivo cuatro niveles adentro)**, que su propia fila nombraba a este acto como sucesor asignado. | `PARO-PREMISA` — el defecto se detectó **después** de sellar `CALC-MOTOR-celdas-semilla-v2` (se copió el patrón de la predecesora sin revisarlo primero); `corrida0 run` impide reescribir un `CALC` sellado (`CALC-INMUTABLE`), y abrir una tercera sucesora únicamente por `RAIZ` — que solo alimenta `sys.path` y no afecta ningún `RESULT` mientras `corrida0` se invoque desde la raíz — no se justificó. | Ninguno hoy: mismo alcance que declaraba `NC-0027` originalmente. | El próximo acto que edite o cree un medidor de esta familia; nace con los cuatro `dirname`. `NC-0027` sigue `ABIERTA`. |
 | Segundo acceso a `procedencia.crudo` fuera de `consumibles()` — `tools/corrida0.py:_consumidores_asignados_prob` etiqueta `clase_legacy="ASIGNADO"` sin condición para toda entrada del bloque `asignados_probabilidad`, incluida la que hoy es `REFUTADO-POR-COTA`. | `FUERA-DE-PERÍMETRO` — inspeccionado como el encargo pedía; la corrección es de una línea, pero `data/corrida0/demanda-resultados.tsv` es un ledger ya sellado por `ACTO GEN2-E2`/`GEN2-T9` cuyas filas emitidas no se recalculan por acto ajeno (regla verbatim de `ADR-401`, P2: «nada se recalcula: solo se cuenta lo que faltaba»). | Ninguno numérico: esta fila del ledger es bookkeeping de demanda, no un parámetro que el motor consuma. La fila `RES-0090` sigue etiquetada `ASIGNADO` en el ledger sellado. | El acto que próximamente re-derive `demanda-resultados.tsv`. Registrado en `forense/hallazgos.md`, no silenciado. |
-| Publicación de rama/PR. | `DECISIÓN-DE-MESA-PENDIENTE` — el encargo condiciona el PR a autorización de mesa («cuando su publicación esté autorizada por mesa; de otro modo, diff y texto de PR listos para revisión»); esta sesión no la recibió. | Ninguno material: todos los commits están en la rama `claude/new-session-l33kki`, empujada a `origin`, con la suite en verde. | Autorización de mesa para abrir el PR; el texto queda listo (ver cierre de la sesión). |
+| Publicación de rama/PR. | `SUSTITUIDO-POR:PR #623` — el PR se abrió desde la interfaz de Claude Code sobre esta misma rama tras declararse pendiente de autorización de mesa; se toma como la autorización. | Ninguno: no se fusiona automáticamente (A.14) — queda para revisión y merge de mesa. | `## CONSUMIDO`, abajo. |
 
-## ESTADO — entrega parcial, sin PR (no `## CONSUMIDO` todavía)
+## CONSUMIDO
 
-Todas las piezas P1/P2/P3 del encargo se ejecutaron y sellaron en la rama
-`claude/new-session-l33kki` (empujada a `origin`), con
-`tests/check.py --baseline` en **LÍNEA BASE VERDE**. Deliberadamente **no**
-se escribe `## CONSUMIDO` — esa sección cita el número real de un PR
-fusionable, y este encargo no abrió PR: la publicación requiere
-autorización de mesa que esta sesión no recibió (ver
-`## NO-CORRIDO / RESERVAS`). Cuando mesa autorice y el PR exista,
-`## CONSUMIDO` se añade en un commit posterior con su número real —
-nunca inventado por adelantado.
+Ejecutado por [`PR #623`](https://github.com/Josanoforo/Modelado-Mexicano/pull/623) — `ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA`, 8/sep/2026, entorno **NUBE, sin corpus ni red**, sobre `origin/main = 31c16c7` (rama `claude/new-session-l33kki`).
+
+Cascada: `ADR-403` · L0 (`canon/estado-programa-v1_12.md`, los tres contadores reconciliados por `tools/cierre_acto.py --aplica`) · `canon/registro-rotulos.tsv` (rótulo `AUTO-MOTOR-1` censado) · `forense/no-corrido.tsv` (`NC-0022` **CERRADA**, `NC-0023` **CERRADA**; `NC-0027` sigue `ABIERTA`, sucesor renombrado) · `forense/hallazgos.md` (dos entradas) · `tests/check.py` (`_T25_ARCHIVOS_CONOCIDOS`).
+
+**P1.** `milpa/src/clases.py` reconoce `REFUTADO-POR-COTA` y `EVIDENCIA_EXPERIMENTAL_TERCEROS` por prefijo propio. `milpa/src/procedencia.py::_recorrer` corrige la ambigüedad de doble-`Entrada` (clase explícita vs. clase implícita del bloque) que el prefijo nuevo habría destapado; el prior refutado queda excluido de `consumibles()`. `EvidenciaTercerosIncompleta` valida `cita`/`llave_id` al cargar.
+
+**P2.** `CALC-MOTOR-celdas-semilla-v2` (`repite_de: CALC-MOTOR-celdas-semilla`) sella `RESULT-MOTOR-ESTADO-B = CARGA` con tres veredictos reales — `EXISTE-NO-SATISFACE` (`SinMagnitud`, `G5×familismo_obligacion`) y dos `EXISTE-NO-VERIFICADO` (calibración E1+ pendiente). `verify` → `REPRODUCE` (`CONTEXTO=IDENTICO`). La predecesora conserva bytes y sello intactos (`SELLO_COINCIDE`); `corrida0 registro` la deja `SUPERADO→v2`. `corredores_envueltos_legacy` 7 → 8, `cuenta_gen2: NO` (regla `E.1`).
+
+**P3.** `tests/test_motor_ejecutable.py` (6 pruebas) conectado como paso bloqueante nuevo en `.github/workflows/verify.yml`. Verificado contra el código pre-`P1`: falla en 5 de 6 pruebas (`ClaseDesconocida`), confirmando que la guarda atrapa la regresión.
+
+Suite `python3 tests/check.py --baseline` **VERDE** (3 `FAIL` heredados de la línea base congelada, cero nuevos).
+
+**CONTADOR: cero GEN2.** `N_corridas_selladas` sigue en `0`; la corrida nueva es `cuenta_gen2: NO` por regla `E.1`.
