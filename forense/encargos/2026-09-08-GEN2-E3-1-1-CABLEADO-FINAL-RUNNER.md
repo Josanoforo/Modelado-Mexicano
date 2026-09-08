@@ -680,3 +680,18 @@ El objetivo de este acto es ser la última modificación del runner antes de pre
 | «`data/corrida0/CALC-SMOKE-0003/` solo si hace falta un smoke nuevo» (P6) | `NO-VERIFICABLE-AQUÍ` — no hizo falta | Ninguno. Los siete tests nuevos ejercitan el snapshot único (mock de `resolver_payload`) y el fallo del sellador (mock de `subprocess.run`) sin corpus; el encargo prohíbe crearlo «solo por ceremonia». No queda deuda: el cableado queda cubierto por fixtures, no sin cubrir. | Ninguno — cerrado por no aplicar |
 | Verificación del endurecimiento P2/P3 contra los `spec.yaml` reales de `CALC-0001/0002/0003` | `NO-VERIFICABLE-AQUÍ` | El endurecimiento se probó contra fixtures y contra las dos specs `LEGACY-GEN1` selladas; las tres specs reales todavía no existen, así que no se pudo medir cuántos campos sustantivos les faltarían. | `GEN2-E5-0` · `forense/no-corrido.tsv` NC-0010 |
 | Ejecución de `run()` de punta a punta sobre un fixture temporal | `NO-VERIFICABLE-AQUÍ` | Ninguno nuevo: `run` exige `preflight` VERDE, que exige `spec.yaml` COMMITEADO, y un fixture vive fuera del repo. `t_sellador_falla_no_ejecutado` sustituye `preflight` por su resultado ya calculado para ejercer el tramo posterior al medidor —que es justo lo que el caso mide—, mismo patrón que la nota de cabecera de `tests/test_corrida0.py` ya declara para los catorce casos de `PR #608`. Límite ya conocido y ya declarado, no deuda nueva. | Ninguno — límite estructural declarado |
+
+## CONSUMIDO
+
+Ejecutado por **PR #610** (`ACTO GEN2-E3-1-1 · CABLEADO-FINAL-DEL-RUNNER`),
+rama `claude/cableado-final-runner-w94qj6`, 8/sep/2026, contra
+`origin/main = df9336c` (merge de PR #608). `canon/gobernanza-v1_15.md`
+**ADR-395**.
+
+Los cuatro defectos (D1 doble resolución de payload · D2 omisiones
+silenciosas · D3 `verify` con tolerancia global · D4 sellador sin
+consecuencia) quedan cerrados y con test propio. `GEN2-RUNNER-READY=SI` ·
+`GO-CALC-0001=SI`.
+
+Este encargo no se edita en ningún otro punto: es el registro de qué se
+pidió, para poder auditar si el ejecutor hizo lo que se le dijo.
