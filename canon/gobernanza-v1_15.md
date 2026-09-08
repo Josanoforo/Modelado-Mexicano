@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **414 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **415 ADR**
 
 > | | |
 > |---|---|
@@ -7289,7 +7289,19 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 
 ---
 
-**ADR-414 (Derivado por `python3 tools/cierre_acto.py`, Fase A; re-derivado tras fusionar `origin/main` durante el acto: máximo real `413`, candidato `414`, sin huecos) · `ACTO GEN2-UNIVERSO-C · TANDAS Y ENAFIN`**, 8/sep/2026, entorno **UBUNTU (caja), corpus montado, red real** (`forense/encargos/2026-09-08-GEN2-UNIVERSO-C-TANDAS-Y-ENAFIN.md`, archivado verbatim, 0-bis `612f10f`). **Firma de mesa: "que lo que tengamos 'universo conocido' no nos limite de explorar el Universo Desconocido." Sondea los dos únicos huecos con vacante real del cruce de `FP-286` — ENAFIN/`N19` y tandas/`R8.2`-`N29` — y encuentra que el primero ya estaba resuelto en el corpus sin que nadie lo hubiera leído completo.**
+**ADR-414 (derivado a mano contra `origin/main = 09975b1`, máximo real `413`, candidato contiguo `414`, sin huecos — trámite registral puro, no corre `tools/cierre_acto.py` por no haber encargo previo que fichar; ver P3 de este mismo acto) · `ACTO GEN2-RETRO-SELLO-SONDA-2 · FICHA-PR632-HACIA-ATRAS`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** (`forense/encargos/2026-09-08-GEN2-SONDA-2-RETRO.md`). **CONTADOR: cero GEN2 — trámite registral.**
+
+FIRMA DE MESA, verbatim del 8/sep/2026: «ármame el sello, el encargo ya corrió» — mesa reconoce el trabajo de `PR #632` (`ACTO GEN2-SONDA-2 · OPERACIONALIZA-SONDA-LATERAL`) como propio del programa y ordena ficharlo retroactivamente.
+
+**El hueco que este acto repara.** `PR #632` fusionó con un solo commit (`8cbbc9f9b0f378655587b91f2cedd31948c4cf14`, merge `a800f29999028f25ed830215e5ed2180f04a57a7`), creó `.claude/commands/sonda.md` y `.claude/commands/mapea.md`, apendizó filas laterales `SIN-FETCH` a la cola de adquisición, y dejó nota de 289 líneas (`forense/notas/2026-09-08-GEN2-SONDA-2-operacionaliza-sonda-lateral.md`) — sin dejar huella registral: `grep -c "SONDA-2"` sobre `forense/no-corrido.tsv`, `canon/registro-rotulos.tsv` y este mismo archivo daba `0`, `0`, `0` antes de este ADR. Sin 0-bis, sin ADR, sin rótulo, sin fila `NO-CORRIDO`. **La cadena de actas salta el `PR #632`; esta acta lo repara hacia atrás y no reescribe ninguna posterior.**
+
+**Lo que este acto NO hace.** No evalúa el contenido de `#632` (ya revisado por dirección: bueno). No reconstruye el encargo original de `#632` — vivió sólo en una conversación externa (ChatGPT) y no se recuperó; queda asentado en `forense/encargos/2026-09-08-GEN2-SONDA-2-RETRO.md` §`## NO-CORRIDO / RESERVAS` como `PARO-PREMISA`, sucesor `SIN-ASIGNAR`. No implementa el candidato `D-14` (abajo). No renumera actas posteriores a `#632`.
+
+**Perímetro.** `forense/encargos/2026-09-08-GEN2-SONDA-2-RETRO.md` (nuevo) · `canon/gobernanza-v1_15.md` (este ADR) · `canon/registro-rotulos.tsv` (fila `/sonda`+`/mapea`) · `forense/hallazgos.md` (punto ciego) · `forense/firmas-pendientes.tsv` (fila `D-14`) · `canon/estado-programa-v1_12.md` §L0. **No tocó** `.claude/commands/sonda.md`, `.claude/commands/mapea.md`, las colas de adquisición, la nota de `SONDA-2`, `data/corrida0/**` ni ningún archivo que `#632` haya escrito — ficha, no edita.
+
+---
+
+**ADR-415 (RENUMERADO de `414` a `415` al fusionar `origin/main`: `ACTO GEN2-RETRO-SELLO-SONDA-2` fusionó primero por `PR #637` y tomó el `414` — regla de la casa, renumera quien fusiona segundo. Derivado por `python3 tools/cierre_acto.py`, Fase A; re-derivado tras fusionar `origin/main` durante el acto: máximo real `413`, candidato `414` al momento de escribirse, `415` tras el conflicto) · `ACTO GEN2-UNIVERSO-C · TANDAS Y ENAFIN`**, 8/sep/2026, entorno **UBUNTU (caja), corpus montado, red real** (`forense/encargos/2026-09-08-GEN2-UNIVERSO-C-TANDAS-Y-ENAFIN.md`, archivado verbatim, 0-bis `612f10f`). **Firma de mesa: "que lo que tengamos 'universo conocido' no nos limite de explorar el Universo Desconocido." Sondea los dos únicos huecos con vacante real del cruce de `FP-286` — ENAFIN/`N19` y tandas/`R8.2`-`N29` — y encuentra que el primero ya estaba resuelto en el corpus sin que nadie lo hubiera leído completo.**
 
 **Gate verificado.** `COMPUERTA: GEN2-E5 fusionado` verificada por producto contra `origin/main` recién fetcheado: `gh pr list --search "GEN2-E5"` → `PR #631` (`GEN2-E5`) y `PR #634` (`GEN2-E5-1`), ambos `MERGED`. `origin/main` se movió de `d1a97cd` a `09975b1` (trae `PR #636`/`GEN2-FIRMA-CONTADOR`, `ADR-413`) mientras el acto estaba en curso — re-derivado con `git merge origin/main`, sin conflicto.
 
