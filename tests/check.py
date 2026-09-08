@@ -285,6 +285,15 @@ HISTORICOS = {
     # Mismo costo que TABLERO-PROGRAMA-v1_5.md arriba: una cita en texto
     # que A.3 prohibe editar contra un nombre sin archivo real detras.
     "ejemplo.md",
+    # forense/encargos/2026-09-08-RUTINAS-2-COORDINACION-Y-REVISION.md (A.3,
+    # VERBATIM): el encargo cita el documento companero de pantallas
+    # `05-PANTALLAS-RUTINAS-CONFIGURACION.md` como fuente de los textos que
+    # se sustituyen en Claude -- el propio encargo lo declara FUERA DE
+    # PERIMETRO de este acto (## NO-CORRIDO / RESERVAS: no se crea aqui).
+    # Mismo costo que TABLERO-PROGRAMA-v1_5.md y ejemplo.md arriba: una cita
+    # en texto que A.3 prohibe editar contra un nombre sin archivo real
+    # detras, deliberadamente.
+    "05-PANTALLAS-RUTINAS-CONFIGURACION.md",
 }
 
 def _normalize_version_dots(name):
