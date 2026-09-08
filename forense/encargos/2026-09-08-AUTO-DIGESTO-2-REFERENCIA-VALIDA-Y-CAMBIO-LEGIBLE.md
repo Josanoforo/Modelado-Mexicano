@@ -112,3 +112,9 @@ Completado este parche, terminar el encargo y reportar el digesto listo para aco
 - [PR #622: digesto incremental integrado](https://github.com/Josanoforo/Modelado-Mexicano/pull/622).
 - [Generador en la base revisada](https://github.com/Josanoforo/Modelado-Mexicano/blob/6f46976c345731b6cdb13ccfb6ca0b59d4a16ba3/tools/digesto_tramite.py).
 - [Pruebas existentes del digesto](https://github.com/Josanoforo/Modelado-Mexicano/blob/6f46976c345731b6cdb13ccfb6ca0b59d4a16ba3/tests/test_digesto_nc.py).
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Ninguno. | — | Los dos ajustes pedidos (hash incongruente detiene el diff; valores antes/después de campos modificados) se implementaron y probaron completos; los 14 casos previos y la conexión a T39 siguen operativos; no se tocó el motor, parámetros, corpus, baseline de pruebas, scheduler, CI ni CALC sellados; no se reconstruyeron digestos históricos; `NC-0032` sigue ABIERTA (condición distinta, no tocada); `NC-0027`, la ambigüedad de SHA corto y deuda incidental no se ampliaron. | Ninguno. | — |
