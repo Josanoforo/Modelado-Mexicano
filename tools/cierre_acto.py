@@ -538,8 +538,20 @@ _RE_ROTULO_FECHA = re.compile(r"^\d{4}-\d{2}-\d{2}-")
 _RE_ESTADO_COLA = re.compile(r"^ESTADO:\s*(.*)$", re.M)
 _RE_PR_EN_CONSUMIDO = re.compile(r"^## CONSUMIDO.*?#(\d+)", re.M | re.S)
 
-ESTADOS_COLA_ABIERTOS = ("LISTO-NUBE", "LISTO-CAJA", "LISTO-", "GATEADO",
-                          "EN-CURSO")
+# Los estados que hacen de un encargo un candidato REAL para /despacha. Son
+# los unicos que importan: el defecto que esto atrapa es que el despachador
+# vuelva a ejecutar un acto ya fusionado.
+#
+# `EN-CURSO` NO esta en la lista, y la razon es sustantiva, no una excepcion
+# de conveniencia: /despacha jamas toma un `EN-CURSO` -- su candado (bloque
+# 2.a) se CIERRA al verlo. Ademas, un encargo de DOS ENTORNOS (`D-11`: un
+# encargo, dos entornos, dos PR) vive legitimamente asi: la primera pieza que
+# fusiona escribe `## CONSUMIDO` en la copia archivada mientras la otra sigue
+# en vuelo, y su copia de cola queda `EN-CURSO` diciendo exactamente eso.
+# Marcarlo desincronizado seria pedirle al acto que se declare consumido antes
+# de estarlo. Medido: `GEN2-E7`, cuya pieza C fusiono en `PR #612` mientras
+# las piezas A/B/D seguian abiertas en `PR #613`.
+ESTADOS_COLA_ABIERTOS = ("LISTO-NUBE", "LISTO-CAJA", "LISTO-", "GATEADO")
 
 
 def _rotulo_de(nombre):

@@ -2634,6 +2634,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # acto reclame. Un encargo verbatim no se edita para complacer un test --
     # mismo patron que GEN2-T8 abajo.
     "forense/encargos/2026-09-08-GEN2-V213-SELLA-INSTRUCCIONES-Y-REENCOLA.md",
+    # ACTO GEN2-E7 · READINESS-2, 8/sep/2026: encargo archivado VERBATIM
+    # (0-bis A.3). Su cuerpo se nombra a si mismo "E7" pelado ("E7 · ACTO
+    # GEN2-E7 · READINESS-2") y cita "E6"/"E5"/"E3.1" igual de pelados,
+    # porque asi los escribe el mensaje de lanzamiento de mesa: son el
+    # rotulo del propio acto y referencias de procedencia a la serie
+    # `E · GEN2-E0..GEN2-E7` ya censada en canon/registro-rotulos.tsv, no
+    # rotulos nuevos. El acto se declara `ACTO GEN2-E7` en forma larga en
+    # todo archivo propio que escribe (nota y ADR). Mismo patron, y misma
+    # razon, que las exenciones hermanas de arriba: un encargo verbatim no
+    # se edita para complacer un test (A.3).
+    "forense/encargos/2026-09-08-GEN2-E7-READINESS-2.md",
     # ACTO GEN2-T8 · A.14/CERO-RAMAS/RETROFIT, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3). Cita "E7" y "E3.1" con su prefijo GEN2- completo,
     # pero también "E4" pelado dos veces ("cuatro los cierra E3.1... la
@@ -5137,6 +5148,16 @@ def t36_corredores_gen2():
 #   La lógica vive en `tools/cierre_acto.py::cola_desincronizada` y aquí
 #   sólo se consume: el reconciliador y el test no pueden discrepar sobre
 #   qué cuenta como desincronizado.
+#
+#   `EN-CURSO` NO cuenta como abierto, y no es una excepción de
+#   conveniencia: `/despacha` jamás toma un `EN-CURSO` —su candado se
+#   CIERRA al verlo—, así que ahí no hay trampa que atrapar. Y un encargo
+#   de DOS ENTORNOS (`D-11`) vive legítimamente así: la primera pieza que
+#   fusiona escribe `## CONSUMIDO` en la copia archivada mientras la otra
+#   sigue en vuelo. Este mismo test lo descubrió sobre `GEN2-E7` —pieza C
+#   fusionada en `PR #612`, piezas A/B/D abiertas en `PR #613`— y exigirle
+#   `CONSUMIDO` habría sido pedirle al acto que se declarara consumido
+#   antes de estarlo.
 # ───────────────────────────────────────────────────────────────
 def t37_cola_sincronizada():
     ruta = os.path.join(ROOT, "tools", "cierre_acto.py")
@@ -5163,6 +5184,67 @@ def t37_cola_sincronizada():
              + (f" (PR #{fila['pr']})" if fila.get("pr") else "")
              + " -- /despacha lo re-ejecutaria; corrige el ESTADO: de la cola "
                "(o corre `python3 tools/cierre_acto.py --aplica`)")
+
+
+# ───────────────────────────────────────────────────────────────
+# T38 · T-ALTA-RELACION -- `FP-344`, cerrado por `ACTO GEN2-E7` pieza D.
+#
+#   `tools/curador_registro/tests/test_alta_relacion.py` (cinco casos con
+#   fixture propio, de la pieza C de este mismo acto) PASABA y la suite
+#   no lo corría: `tests/check.py` cablea su lista a mano y no
+#   auto-descubre `test_*.py`. Un test que nadie corre no protege nada;
+#   `FP-344` lo dijo y esto lo cierra.
+#
+#   AVISO en vez de FAIL cuando falta `jsonschema`: el módulo bajo prueba
+#   (`tools/curador_registro/alta_relacion.py`) la importa, y hasta este
+#   acto no estaba declarada en `requirements.txt`. Ahora sí lo está, así
+#   que en CI el test CORRE y sus fallos son `FAIL`. En un árbol sin la
+#   dependencia se reporta el AVISO con su razón -- que es la disciplina
+#   de A.13: un test que no se pudo correr no es un test pasado, y decir
+#   "verde" ahí sería la mentira que este cableado existe para evitar.
+#
+#   Los dos `sys.path` que se inyectan no son un adorno: el paquete se
+#   importa como `tools.curador_registro.*` (raíz del repo) pero
+#   `alta_relacion.py` hace `from baseline import ...` (su propio
+#   directorio). Sin los dos, el import falla y el test no corre.
+# ───────────────────────────────────────────────────────────────
+def t38_alta_relacion():
+    rel = os.path.join("tools", "curador_registro", "tests",
+                        "test_alta_relacion.py")
+    ruta = os.path.join(ROOT, rel)
+    if not os.path.exists(ruta):
+        fail("T-ALTA-RELACION", f"no existe `{rel}`")
+        return
+    try:
+        import jsonschema  # noqa: F401
+    except ImportError:
+        senal("T-ALTA-RELACION",
+              f"NO-CORRIDO -- falta `jsonschema`, que "
+              f"`tools/curador_registro/alta_relacion.py` importa. Está "
+              f"declarada en `requirements.txt`; instálala "
+              f"(`python3 -m pip install -r requirements.txt`) para que estos "
+              f"cinco casos corran. No se cuenta como pasado.")
+        return
+    import unittest as _ut
+    for p_extra in (ROOT, os.path.join(ROOT, "tools", "curador_registro")):
+        if p_extra not in sys.path:
+            sys.path.insert(0, p_extra)
+    try:
+        cargador = _ut.TestLoader()
+        suite = cargador.loadTestsFromName(
+            "tools.curador_registro.tests.test_alta_relacion")
+        res = _ut.TextTestRunner(stream=open(os.devnull, "w"),
+                                  verbosity=0).run(suite)
+    except Exception as exc:
+        fail("T-ALTA-RELACION",
+             f"`{rel}` no pudo correr: {type(exc).__name__}: {exc}")
+        return
+    for caso, traza in list(res.failures) + list(res.errors):
+        fail("T-ALTA-RELACION",
+             f"{caso}: {traza.strip().splitlines()[-1][:200]}")
+    if res.testsRun == 0:
+        fail("T-ALTA-RELACION", f"`{rel}` no expuso ningun caso")
+
 
 
 # ───────────────────────────────────────────────────────────────
@@ -5424,6 +5506,7 @@ def main():
         ("T32 T-CORRIDA0",                           t32_corrida0),
         ("T36 T-CORREDORES-GEN2",                     t36_corredores_gen2),
         ("T37 T-COLA-SINCRONIZADA",                    t37_cola_sincronizada),
+        ("T38 T-ALTA-RELACION",                        t38_alta_relacion),
         ("T34 T-NO-CORRIDO",                          t34_no_corrido),
         ("T35 T-REPRO [aviso]",                        t35_repro),
     ]

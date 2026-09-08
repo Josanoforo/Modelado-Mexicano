@@ -5,3 +5,10 @@ PyYAML
 # tools/tablero_vista.py usa markdown para convertir
 # forense/tablero/TABLERO-PROGRAMA-vX_Y.md a la vista HTML.
 markdown
+
+# tools/curador_registro/alta_relacion.py valida su entrada contra un JSON
+# Schema. Declarada por `ACTO GEN2-E7` pieza D al cablear a la suite los cinco
+# casos de tools/curador_registro/tests/test_alta_relacion.py (`FP-344`): sin
+# esta linea el cableado existiria y no correria nunca -- ni aqui ni en CI --,
+# que es exactamente el defecto que FP-344 denuncia.
+jsonschema
