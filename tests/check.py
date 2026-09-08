@@ -2604,6 +2604,15 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-T8 · A.14/CERO-RAMAS/RETROFIT, 8/sep/2026: encargo archivado
+    # VERBATIM (0-bis A.3). Cita "E7" y "E3.1" con su prefijo GEN2- completo,
+    # pero también "E4" pelado dos veces ("cuatro los cierra E3.1... la
+    # variante historico/ de E4 D1") -- referencia de PROCEDENCIA a
+    # `GEN2-E4 · LIMPIEZA-C2 · PODA` (ya censado arriba, fila GEN2-E0..E6 y
+    # su propia fila de registro-rotulos), no un rótulo nuevo que este acto
+    # reclame. Un encargo verbatim no se edita para complacer un test --
+    # mismo patrón que `MAESTRA38-M13` y `GEN2-E4` abajo.
+    "forense/encargos/2026-09-08-GEN2-T8-A14-CERO-RAMAS-RETROFIT.md",
     # ACTO GEN2-E4 · LIMPIEZA-C2 · PODA, 7/sep/2026: nota de cierre que
     # archiva en su §10 el encargo verbatim (0-bis A.3, no en un archivo
     # aparte bajo forense/encargos/ -- ver la propia FP-340, corrección T02
@@ -5040,6 +5049,93 @@ def t32_corrida0():
         fail("T-CORRIDA0", f)
 
 
+# ───────────────────────────────────────────────────────────────
+# T34 · T-NO-CORRIDO -- A.14 (`ACTO GEN2-T8`, 8/sep/2026,
+# `forense/encargos/2026-09-08-GEN2-T8-A14-CERO-RAMAS-RETROFIT.md`):
+# "Lo que no se corrió se asienta, o el acto no cierra."
+#
+# FAIL:
+#   (a) un encargo archivado con fecha de archivo (prefijo `YYYY-MM-DD` del
+#       nombre) >= la fecha en que A.14 entra en vigor (2026-09-08, este
+#       mismo acto) trae `## CONSUMIDO` sin `## NO-CORRIDO / RESERVAS`
+#       ANTES de esa sección. Mismo límite que `T30`/`T28`: un encargo
+#       anterior a la existencia de la regla nunca puede cumplirla en
+#       retrospectiva, así que la comparación de fecha ya lo excluye sin
+#       necesidad de un allowlist histórico.
+#   (b) una fila de `forense/no-corrido.tsv` cuyo `id` no empieza con
+#       `NC-` (append-only: todo lo que entra ahí es un NC-).
+#   (c) una fila `NC-` con `sucesor` vacío o literalmente `SIN-ASIGNAR`.
+#       LÍMITE DECLARADO: la regla del encargo pide "> 1 sesión" -- este
+#       test no tiene noción de sesión (no hay reloj de sesión en el
+#       árbol), así que trata *cualquier* `SIN-ASIGNAR` persistido en un
+#       commit como la violación: un acto que cierra con una fila todavía
+#       sin sucesor ya dejó pasar al menos una oportunidad de asignarlo.
+#       Mismo criterio que `NC-HUÉRFANA` de `tools/cierre_acto.py`
+#       (Fase A) -- no lo reimplementa, lo reafirma como bloqueante.
+#
+# WARN (vía `senal()`, fuera de la comparación de línea base -- dispara
+# por diseño mientras haya algo abierto, A.12): cada fila `estado =
+# ABIERTA` de `forense/no-corrido.tsv`, con su edad en días desde `fecha`.
+#
+# Falsador y caducidad (verbatim del encargo): si en tres meses este test
+# no atrapa nada y ninguna `ABIERTA` sobrevive dos sesiones sin sucesor,
+# A.14 se retira.
+# ───────────────────────────────────────────────────────────────
+_T34_FECHA_VIGENCIA = "2026-09-08"
+_T34_PREFIJO_FECHA_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})-")
+
+
+def _t34_leer_no_corrido():
+    ruta = os.path.join(ROOT, "forense", "no-corrido.tsv")
+    if not os.path.exists(ruta):
+        return None
+    with io.open(ruta, encoding="utf-8-sig", newline="") as handle:
+        return list(csv.DictReader(handle, delimiter="\t"))
+
+
+def t34_no_corrido():
+    encargos = sorted(glob.glob(os.path.join(ROOT, "forense", "encargos", "*.md")))
+    for p in encargos:
+        base = os.path.basename(p)
+        m = _T34_PREFIJO_FECHA_RE.match(base)
+        if not m or m.group(1) < _T34_FECHA_VIGENCIA:
+            continue
+        texto = read(p)
+        tiene_consumido = bool(re.search(r"^## CONSUMIDO\s*$", texto, re.M))
+        if not tiene_consumido:
+            continue
+        m_nc = re.search(r"^## NO-CORRIDO / RESERVAS\s*$", texto, re.M)
+        m_cons = re.search(r"^## CONSUMIDO\s*$", texto, re.M)
+        if not m_nc or m_nc.start() > m_cons.start():
+            fail("T-NO-CORRIDO", f"{rel(p)}: trae `## CONSUMIDO` sin "
+                 "`## NO-CORRIDO / RESERVAS` antes (A.14)")
+
+    filas = _t34_leer_no_corrido()
+    if filas is None:
+        fail("T-NO-CORRIDO", "no existe `forense/no-corrido.tsv` (A.14)")
+        return
+    for i, fila in enumerate(filas, start=2):
+        fid = (fila.get("id") or "").strip()
+        if not fid.startswith("NC-"):
+            fail("T-NO-CORRIDO", f"forense/no-corrido.tsv:{i} `id` no "
+                 f"empieza con `NC-`: {fid!r}")
+        sucesor = (fila.get("sucesor") or "").strip()
+        if not sucesor or sucesor == "SIN-ASIGNAR":
+            fail("T-NO-CORRIDO", f"forense/no-corrido.tsv:{i} {fid or '?'}: "
+                 "sucesor vacío o SIN-ASIGNAR -- NC-HUÉRFANA")
+        estado = (fila.get("estado") or "").strip()
+        if estado == "ABIERTA":
+            fecha = (fila.get("fecha") or "").strip()
+            edad = "edad desconocida"
+            try:
+                d = datetime.date.fromisoformat(fecha)
+                edad = f"{(datetime.date.today() - d).days} día(s)"
+            except ValueError:
+                pass
+            senal("T-NO-CORRIDO", f"{fid or '?'} ABIERTA desde {fecha or '?'} "
+                  f"({edad}) -- sucesor {sucesor or '?'}")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -5076,6 +5172,7 @@ def main():
         ("T30 T-YAMEDIDO",                         t30_yamedido),
         ("T31 T-CRON",                              t31_cron),
         ("T32 T-CORRIDA0",                           t32_corrida0),
+        ("T34 T-NO-CORRIDO",                          t34_no_corrido),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))

@@ -189,7 +189,48 @@ def inspeccion_rotulo(raiz=RAIZ):
     return {"rama": rama, "rotulo_esperado": rotulo_esperado, "ya_censado": ya_censado}
 
 
+_MARCADOR_NO_CORRIDO = re.compile(r"^## NO-CORRIDO / RESERVAS\s*$", re.M)
 _MARCADOR_CONSUMIDO = re.compile(r"^## CONSUMIDO\s*$", re.M)
+_RUTA_NO_CORRIDO_TSV = os.path.join("forense", "no-corrido.tsv")
+
+
+def inspeccion_no_corrido(ruta_encargo, raiz=RAIZ):
+    """A.14 (`ACTO GEN2-T8`, 8/sep/2026). Dos hallazgos, ninguno deriva ADR
+    ni bloquea por sí solo -- se reportan para que el humano los resuelva
+    antes de cerrar, igual que el resto de Fase A.
+
+    NO-CORRIDO-AUSENTE: el encargo ya trae `## CONSUMIDO` pero no trae
+    `## NO-CORRIDO / RESERVAS` ANTES de esa sección -- A.14 exige la
+    sección en todo encargo archivado, "Ninguno." incluido si de verdad no
+    hay nada sin correr.
+
+    NC-HUÉRFANA: una fila de `forense/no-corrido.tsv` sin sucesor
+    resoluble (`sucesor` vacío o literalmente `SIN-ASIGNAR`) -- un NC- sin
+    a quién reclamarlo es exactamente la fuga de deuda que A.14 existe
+    para atrapar."""
+    resultado = {
+        "no_corrido_ausente": None,
+        "nc_huerfanas": [],
+        "nc_tsv_existe": False,
+    }
+    if ruta_encargo:
+        ruta_abs = ruta_encargo if os.path.isabs(ruta_encargo) else os.path.join(raiz, ruta_encargo)
+        if os.path.exists(ruta_abs):
+            texto = _leer(ruta_abs)
+            tiene_consumido = bool(_MARCADOR_CONSUMIDO.search(texto))
+            tiene_no_corrido = bool(_MARCADOR_NO_CORRIDO.search(texto))
+            if tiene_consumido and not tiene_no_corrido:
+                resultado["no_corrido_ausente"] = ruta_encargo
+    ruta_tsv = os.path.join(raiz, _RUTA_NO_CORRIDO_TSV)
+    if os.path.exists(ruta_tsv):
+        resultado["nc_tsv_existe"] = True
+        import csv
+        with open(ruta_tsv, encoding="utf-8-sig", newline="") as f:
+            for fila in csv.DictReader(f, delimiter="\t"):
+                sucesor = (fila.get("sucesor") or "").strip()
+                if not sucesor or sucesor == "SIN-ASIGNAR":
+                    resultado["nc_huerfanas"].append(fila.get("id", "?"))
+    return resultado
 
 
 def inspeccion_consumido(ruta_encargo):
@@ -222,6 +263,7 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True):
     gob = inspeccion_gobernanza(adr["real"], raiz)
     rotulo = inspeccion_rotulo(raiz)
     consumido = inspeccion_consumido(ruta_encargo)
+    no_corrido = inspeccion_no_corrido(ruta_encargo, raiz)
     suite = corre_baseline(raiz) if corre_suite else None
 
     print("=== FASE A · INSPECCIÓN (dry-run, nunca escribe) ===")
@@ -271,6 +313,19 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True):
     print("## CONSUMIDO")
     print(f"  Encargo: {consumido['ruta']} -> {consumido['estado']}")
     print()
+    print("A.14 · NO-CORRIDO / RESERVAS (informativo, no deriva ADR)")
+    if no_corrido["no_corrido_ausente"]:
+        print(f"  NO-CORRIDO-AUSENTE: {no_corrido['no_corrido_ausente']} trae "
+              f"## CONSUMIDO sin ## NO-CORRIDO / RESERVAS antes")
+    else:
+        print("  NO-CORRIDO-AUSENTE: no (o el encargo aún no llega a ## CONSUMIDO)")
+    print(f"  forense/no-corrido.tsv existe: {'SI' if no_corrido['nc_tsv_existe'] else 'NO'}")
+    if no_corrido["nc_huerfanas"]:
+        print(f"  NC-HUÉRFANA ({len(no_corrido['nc_huerfanas'])}): "
+              f"{', '.join(no_corrido['nc_huerfanas'])} -- sucesor vacío o SIN-ASIGNAR")
+    else:
+        print("  NC-HUÉRFANA: ninguna")
+    print()
     if suite is not None:
         print("SUITE")
         print("  Comando: python3 tests/check.py --baseline")
@@ -288,7 +343,7 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True):
     print("  - Un T25 nuevo en la suite (rótulo pelado): decidir prefijo o censarlo")
     print("  - Fusionar/aprobar el PR")
     return {"git": git, "adr": adr, "fp": fp, "gobernanza": gob, "rotulo": rotulo,
-            "consumido": consumido, "suite": suite}
+            "consumido": consumido, "no_corrido": no_corrido, "suite": suite}
 
 
 # ─────────────────────────────────────────────────────────────────

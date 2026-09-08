@@ -135,6 +135,7 @@ verdad de un texto: cita el `id` de la fila, y la fila íntegra vive en
 """
 
 import argparse
+import csv
 import datetime
 import glob
 import json
@@ -1242,6 +1243,44 @@ def bloque_falsadores(raiz, hoy):
 # Armado
 # ───────────────────────────────────────────────────────────────
 
+def seccion_h(raiz, fecha):
+    """H · A.14 -- `forense/no-corrido.tsv` (`ACTO GEN2-T8`, 8/sep/2026).
+
+    Lee el TSV completo (append-only) y lista toda fila `NC-`, con su
+    `estado`. "Nuevas" = la lista completa hasta que este digesto se
+    ejecute dos días seguidos con memoria del anterior; hoy no hay estado
+    persistido entre corridas del digesto (es determinista sobre el árbol,
+    no sobre su propia historia), así que se reporta el CORTE del día:
+    todas las filas vigentes, con su estado, y el conteo provisional
+    `no_corrido_abiertas` -- "provisional" porque su fuente real (`status`
+    de `tools/corrida0.py`) todavía no lo deriva; este digesto solo cuenta
+    filas `estado = ABIERTA` del TSV."""
+    ruta = os.path.join(raiz, "forense", "no-corrido.tsv")
+    out = ["## H · `NO-CORRIDO / RESERVAS` (A.14)", "",
+           "Comando: lectura completa de `forense/no-corrido.tsv` (append-only). "
+           "Cada fila es un `NC-` que algún encargo archivó porque una pieza no se "
+           "corrió, se corrió parcial, distinta, o con reserva.", ""]
+    if not os.path.exists(ruta):
+        out += ["**NO-ENCONTRADO.** `forense/no-corrido.tsv` no existe (A.13).", ""]
+        return out, 0
+    with open(ruta, encoding="utf-8-sig", newline="") as fh:
+        filas = list(csv.DictReader(fh, delimiter="\t"))
+    if not filas:
+        out += ["**0 filas.** El archivo existe y está vacío (solo cabecera).", ""]
+        return out, 0
+    abiertas = [f for f in filas if (f.get("estado") or "").strip() == "ABIERTA"]
+    out += [f"**{len(filas)}** fila(s) total, **{len(abiertas)}** `ABIERTA`.", "",
+            "| `id` | acto | pieza | estado | sucesor |",
+            "|---|---|---|---|---|"]
+    for f in filas:
+        out.append(f"| `{f.get('id', '?')}` | {f.get('acto', '—')} | "
+                   f"{f.get('pieza', '—')} | {f.get('estado', '—')} | "
+                   f"{f.get('sucesor') or '—'} |")
+    out += ["", f"`no_corrido_abiertas` (provisional, contado por este digesto -- "
+                f"sucesor definitivo: `status` de `tools/corrida0.py`): **{len(abiertas)}**.", ""]
+    return out, len(abiertas)
+
+
 def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
     cuenta = Cuenta()
     rc_git, sha = corre(["git", "rev-parse", "--short", "HEAD"], raiz, timeout=60)
@@ -1264,6 +1303,7 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
     e, n_cont = seccion_e(raiz)
     f, res_f = seccion_f(raiz, fecha, ramas, fuente_ramas)
     g, n_pend = seccion_g(raiz)
+    h, n_nc_abiertas = seccion_h(raiz, fecha)
     fals, n_venc = bloque_falsadores(raiz, fecha)
 
     pie = ["## Pie · falsadores vivos, neutralización de marcadores y A.13", "",
@@ -1291,16 +1331,17 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
            f"`forense/firmas-pendientes.tsv` · `forense/encargos/*.md` · "
            f"`forense/prereg-duelo-v2/corridas-{{M,R,L}}/` · `milpa/tramite.yaml` · "
            f"`milpa/procedencia.yaml` · `forense/encargos/cola/*.md` · "
-           f"`milpa/*.yaml` · los runbooks y skills de la tabla de falsadores · "
-           f"ramas del remoto `origin`. Fuera de ese "
+           f"`milpa/*.yaml` · `forense/no-corrido.tsv` · los runbooks y skills de "
+           f"la tabla de falsadores · ramas del remoto `origin`. Fuera de ese "
            "universo este digesto no dice nada, y no debe leerse como si dijera.", ""]
 
-    cuerpo = cab + venc + a + b + c + d + e + f + g + pie
+    cuerpo = cab + venc + a + b + c + d + e + f + g + h + pie
     resumen = {"abiertas": n_ab, "ramas": n_ramas, "sin_consumido": n_sin,
                "contadores": n_cont, "neutralizaciones": cuenta.total(),
                "detalle_d": det_d, "sha": sha, "cola": res_f,
                "pendientes_mesa": n_pend, "falsadores_vencidos": n_venc,
-               "vencidas": n_vencidas, "vencen_semana": n_vencen_semana}
+               "vencidas": n_vencidas, "vencen_semana": n_vencen_semana,
+               "no_corrido_abiertas": n_nc_abiertas}
     return "\n".join(cuerpo).rstrip() + "\n", resumen
 
 
@@ -1391,7 +1432,8 @@ def main(argv=None):
           f"{c['paro']} PARO · {res['pendientes_mesa']} pendiente(s) de mesa · "
           f"{res['falsadores_vencidos']} falsador(es) vencido(s) · "
           f"{res['vencidas']} vencida(s) · {res['vencen_semana']} vencen esta semana · "
-          f"{res['neutralizaciones']} neutralización(es) · HEAD {res['sha']}",
+          f"{res['neutralizaciones']} neutralización(es) · "
+          f"no_corrido_abiertas {res['no_corrido_abiertas']} · HEAD {res['sha']}",
           file=sys.stderr)
     return 0
 
