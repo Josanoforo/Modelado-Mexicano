@@ -466,27 +466,36 @@ def t_e1_la_firma_de_mesa_manda_sobre_la_regla() -> None:
                f"cuenta={cuenta!r} motivo={motivo!r}")
 
 
-def t_los_cinco_corredores_envueltos_estan_declarados() -> None:
-    """El contador de D-1 sobre el arbol real: los cinco CALC que envuelven el
-    aparato GEN1 estan los cinco en `decisiones.tsv` con cuenta_gen2=NO."""
+def t_los_corredores_envueltos_estan_declarados() -> None:
+    """El contador de D-1 sobre el arbol real: todo CALC que envuelve el
+    aparato GEN1 esta en `decisiones.tsv` con cuenta_gen2=NO. La lista crece
+    -- la ADENDA de mesa añadio las dos sucesoras `-v2` -- y por eso se
+    verifica por PERTENENCIA y no contra un numero fijo, que convertiria cada
+    corrida nueva en un FAIL."""
     C = _corrida0()
     decisiones = C._lee_decisiones()
     for calc in ("CALC-M-marco-M-sorteado-v1_3",
                  "CALC-AGG-marco-M-sorteado-v1_3",
                  "CALC-M-marco-M-sorteado-v1_3-ola",
                  "CALC-AGG-marco-M-sorteado-v1_3-ola",
-                 "CALC-MOTOR-celdas-semilla"):
+                 "CALC-MOTOR-celdas-semilla",
+                 "CALC-M-marco-M-sorteado-v1_3-ola-v2",
+                 "CALC-AGG-marco-M-sorteado-v1_3-ola-v2"):
         d = decisiones.get(calc, "")
         if not d.startswith("cuenta_gen2=NO"):
-            _falla("t_los_cinco_corredores_envueltos_estan_declarados",
+            _falla("t_los_corredores_envueltos_estan_declarados",
                    f"{calc} no trae cuenta_gen2=NO en decisiones.tsv: {d!r}")
 
 
 # ── ACTO GEN2-T9 · P3(c) · modulacion por ola ──────────────────────────────
 
 def _mola():
-    return _carga(RAIZ / "data/corrida0/CALC-M-marco-M-sorteado-v1_3-ola/medidor.py",
-                  "medidor_mola_t9")
+    """El medidor VIGENTE de la modulacion por ola: la sucesora `-v2`. La v1
+    quedo SUPERADA por la ADENDA de mesa (regla derogada por fuga temporal) y
+    sus bytes siguen intactos como evidencia historica -- apuntar los tests a
+    ella probaria la regla que ya no rige."""
+    return _carga(RAIZ / "data/corrida0/CALC-M-marco-M-sorteado-v1_3-ola-v2/medidor.py",
+                  "medidor_mola_t9_v2")
 
 
 def _emite_m():
