@@ -176,6 +176,22 @@ ajena a esta búsqueda (crosswalk, marco), esta skill no lo verifica ni
 lo cita — está fuera de su perímetro (ver abajo); la tabla de arriba es
 únicamente lo que la búsqueda por definición encontró.
 
+**Puente a `/sonda` (ACTO GEN2-SONDA-2)**: si el resultado es materialmente
+`NO-ENCONTRADO`, o sólo hay `EXISTE-NO-SATISFACE`, y la ausencia podría
+cambiar una medición, spec, regla o parámetro (materialidad — no todo cero
+irrelevante lo dispara, ni todo `NO-ENCONTRADO` histórico se vuelve tarea
+nueva), la RECOMENDACIÓN puede cerrar con una línea adicional:
+
+```
+SONDA-RECOMENDADA:
+ejecutar /sonda <código> "<definición verbatim>", porque el negativo
+sólo agota <universo examinado por esta corrida>.
+```
+
+Sigue siendo propuesta, no orden — `/sonda` decide su propio modo
+(CONSTRUCTO/HERMANAS/LATERAL) y corre por separado; esta skill no la invoca
+ni le pasa el turno automáticamente.
+
 ## Lo que esta skill no hace
 
 No decide cuál candidata usa el motor — DIRECCIÓN revisa la
