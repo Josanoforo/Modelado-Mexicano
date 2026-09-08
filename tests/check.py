@@ -2648,6 +2648,22 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # forense/prereg-duelo-v2/), no un rotulo que este acto instancie: es
     # mencion de perimetro ajeno, no uso. El encargo verbatim no se edita.
     "forense/encargos/2026-09-07-MAESTRA38-L16-BIS-2.md",
+    # ACTO GEN2-T7-CIERRE, 8/sep/2026: encargo archivado VERBATIM (A.3), el
+    # 0-bis tardío de TRAMITE-7. Su cuerpo cita "ACTO GEN2-E0 · ENCOLA" al
+    # describir la pieza (2) -- `E0` pelado es el rótulo de OTRO acto ya
+    # ejecutado (el que encoló el plan GEN2), mención de procedencia, no un
+    # rótulo que este acto acuñe. El encargo verbatim no se edita para
+    # complacer un test.
+    "forense/encargos/2026-09-07-GEN2-T7-DECISIONES.md",
+    # Cola v1.3 (readiness-primero) encolada por GEN2-T7-CIERRE, 8/sep/2026:
+    # los tres cuerpos verbatim de E3.1/E5-0/E7 citan "E5" pelado al describir
+    # la secuencia de actos vecinos (E5-0 antes de E5, E7 después de E6) --
+    # mención de rótulos de actos hermanos en la misma cola, no un rótulo que
+    # cada uno de estos archivos instancie por sí mismo. Encargo verbatim, no
+    # se edita para complacer un test.
+    "forense/encargos/cola/2026-09-07-GEN2-E3-1-ENDURECE-CALC.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E5-0-SPECS-EJECUTABLES.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E7-READINESS-2.md",
     # ACTO MAESTRA38-N22, 7/sep/2026: encargo archivado VERBATIM (A.3). Su
     # bloque CARRILES nombra "la rama de M13 ENMIENDA-1" entre los carriles
     # de nube que corren en paralelo, para declarar que ninguno toca
@@ -4725,6 +4741,20 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # coincide con lo que el encargo declara (MEDIDA-EN: ...). La salida
     # vive en el mensaje de ese commit, no en el archivo verbatim.
     "forense/encargos/2026-09-07-MAESTRA38-SELLO-3.md",
+    # ACTO GEN2-T7-CIERRE / [TRAMITE] absorbe-historico, 8/sep/2026 (fusión
+    # PR #605, detectado durante el sync de ACTO ADQ-CRON-V2 -- fuera del
+    # perímetro de este acto, no se toca el encargo verbatim ajeno, mismo
+    # criterio que rige T25). Cita `dinero.ahorro.tiene_ahorros` como
+    # decisión de LINAJE de datos (§D10: qué artefacto de
+    # `data/corrida0/` representa la fila, `SIN-RECETA` por decisión) -- no
+    # clasifica, no pre-registra ni resella la regla.
+    #
+    # Veredicto REAL de `python3 tools/ya_medido.py
+    # dinero.ahorro.tiene_ahorros` (corrido, última línea): `MEDIDA-EN:
+    # tramite.yaml`. `milpa/tramite.yaml:601` la trae `situacion=SELLADA
+    # tier=FUERTE p=0.174804` -- ya medida y sellada, consistente con que
+    # este acto solo decida su representación de linaje, no su medición.
+    "forense/encargos/2026-09-07-GEN2-T7-DECISIONES.md",
 }
 
 
@@ -4962,12 +4992,12 @@ def t31_cron():
     estado, detalle = t_cron_estado(fecha, prefijos, cuerpo_adq)
     if estado == "COMPLETO":
         return
-    # ACTO ADQ-CRON-V2 (P1, 7/sep/2026): `senal()`, no `warn()`. El
-    # 7/sep/2026 el WSL de mesa estuvo suspendido en la ventana 07:30 y
-    # T-CRON habría marcado ROJO un PR sin relación alguna con el cron --
-    # el estado del disparo es información operacional que debe seguir
-    # visible en la suite, pero no puede ser una regresión de
-    # `tests/baseline.json` de otro acto. Ver
+    # ACTO ADQ-CRON-V2 · DISPARO-PERSISTENTE-Y-RUNNER-IDEMPOTENTE (P1,
+    # 7/sep/2026): `senal()`, no `warn()`. El 7/sep/2026 el WSL de mesa
+    # estuvo suspendido en la ventana 07:30 y T-CRON habría marcado ROJO un
+    # PR sin relación alguna con el cron -- el estado del disparo es
+    # información operacional que debe seguir visible en la suite, pero no
+    # puede ser una regresión de `tests/baseline.json` de otro acto. Ver
     # `tests/test_t_cron.py::prueba_senal_no_genera_delta_baseline`.
     nota_zona = "" if zona_real else " (tzdata ausente, hora aproximada UTC-6)"
     senal("T-CRON", f"{estado}{nota_zona} -- {detalle} -- ver "

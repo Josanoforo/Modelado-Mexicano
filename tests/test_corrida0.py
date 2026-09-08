@@ -18,6 +18,7 @@ contexto seria imposible y cuya ausencia no probaria nada.
 """
 from __future__ import annotations
 
+import csv
 import importlib.util
 import io
 import json
@@ -419,6 +420,73 @@ def t_ejecuta_reporta_el_fallo_como_hecho():
         _afirma(valores == {}, caso, "devolvio valores tras reventar")
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ── 6 · decisiones.tsv / FP-339 (D9/D10, ACTO GEN2-T7) ─────────────────────
+
+def t_decisiones_tsv_se_lee():
+    caso = "decisiones.tsv (D9/D10 · FP-339) se lee y trae las 7 filas"
+    decisiones = C._lee_decisiones()
+    _afirma(len(decisiones) == 7, caso, f"se esperaban 7 objetos, hay {len(decisiones)}")
+    for objeto in ("TRA-M-02", "TRA-M-03", "TRA-M-07"):
+        _afirma(decisiones.get(objeto) == "M_vivo=__v1_3", caso,
+                f"{objeto} deberia decidir M_vivo=__v1_3, trae {decisiones.get(objeto)!r}")
+    for objeto in (
+            "milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:tiene_ahorros",
+            "milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:no_tiene_ahorros",
+            "milpa/tramite.yaml:familia.apoyo.recibe_dinero_familiares:"
+            "recibe_dinero_familiares_para_vejez",
+            "milpa/tramite.yaml:familia.apoyo.recibe_dinero_familiares:"
+            "no_recibe_dinero_familiares_para_vejez"):
+        _afirma(decisiones.get(objeto) == "receta_legacy=SIN-RECETA", caso,
+                f"{objeto} deberia decidir receta_legacy=SIN-RECETA, "
+                f"trae {decisiones.get(objeto)!r}")
+
+
+def t_cmd_demanda_aplica_fp339():
+    """`cmd_demanda` real (arbol de trabajo, no fixture): los 7 casos de
+    FP-339 dejan de listarse como ambiguos por `stderr` porque mesa ya los
+    decidio en `decisiones.tsv`, y las filas de las celdas TRA-M usan el M
+    `__v1_3` mientras las de DIN/FAM quedan SIN-RECETA."""
+    caso = "cmd_demanda aplica D9/D10 · FP-339"
+    buf_out, buf_err = io.StringIO(), io.StringIO()
+    with contextlib.redirect_stdout(buf_out), contextlib.redirect_stderr(buf_err):
+        codigo = C.cmd_demanda(None)
+    _afirma(codigo == 0, caso, f"cmd_demanda devolvio {codigo}")
+    salida_err = buf_err.getvalue()
+    salida_out = buf_out.getvalue()
+    _afirma("decisiones_aplicadas (FP-339) = 7" in salida_out, caso,
+            f"no se declaro la aplicacion de las 7 decisiones: {salida_out!r}")
+    for fragmento in ("TRA-M-02", "TRA-M-03", "TRA-M-07",
+                      "dinero.ahorro.tiene_ahorros",
+                      "familia.apoyo.recibe_dinero_familiares"):
+        _afirma(fragmento not in salida_err, caso,
+                f"{fragmento} sigue listado como ambiguo pese a FP-339: {salida_err!r}")
+
+    with (C.SALIDA / "demanda-resultados.tsv").open(encoding="utf-8") as fh:
+        fh.readline()  # "# DERIVADO -- NO EDITAR"
+        resultados = list(csv.DictReader(fh, delimiter="\t"))
+    por_consumidor = {f["consumidor"]: f for f in resultados}
+    for sufijo in ("tiene_ahorros", "no_tiene_ahorros"):
+        cons = f"milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:{sufijo}"
+        fila = por_consumidor.get(cons)
+        _afirma(fila is not None, caso, f"falta la fila de {cons}")
+        _afirma(fila and fila["receta_legacy"] == "SIN-RECETA", caso,
+                f"{cons} deberia ser SIN-RECETA, es {fila and fila['receta_legacy']!r}")
+    for sufijo in ("recibe_dinero_familiares_para_vejez",
+                   "no_recibe_dinero_familiares_para_vejez"):
+        cons = f"milpa/tramite.yaml:familia.apoyo.recibe_dinero_familiares:{sufijo}"
+        fila = por_consumidor.get(cons)
+        _afirma(fila is not None, caso, f"falta la fila de {cons}")
+        _afirma(fila and fila["receta_legacy"] == "SIN-RECETA", caso,
+                f"{cons} deberia ser SIN-RECETA, es {fila and fila['receta_legacy']!r}")
+    for cid in ("TRA-M-02", "TRA-M-03", "TRA-M-07"):
+        cons = f"forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:{cid}:M"
+        fila = por_consumidor.get(cons)
+        _afirma(fila is not None, caso, f"falta la fila M de {cid}")
+        ruta_m = C._m_vigente(cid)
+        _afirma(ruta_m is not None and ruta_m.name == f"M-{cid}__v1_3.json", caso,
+                f"el M vivo de {cid} deberia ser __v1_3, resolvio {ruta_m}")
 
 
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]
