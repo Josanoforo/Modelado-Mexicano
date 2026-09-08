@@ -152,7 +152,7 @@ Dos límites del `VERDE`, dichos aquí para que nadie los lea de más:
    en memoria y sin tocar ningún payload: que el juego de claves que cada `medir()`
    devuelve **coincide exacto** con los ids declarados, y que los tipos casan. Los
    números que salieron de ese fixture son de datos inventados y **no se reportan**.
-   → `NC-0036`.
+   → `NC-0038`.
 2. **`preflight` da `BLOQUEADO` FALSO dentro del sandbox.** Todo payload cuya raíz
    lógica sea `descargas_mx` (`/mnt/c/...`) se resuelve `AUSENTE` dentro del
    sandbox de esta sesión y `COINCIDE` fuera. `CALC-0001` y `CALC-0002` sólo salen
