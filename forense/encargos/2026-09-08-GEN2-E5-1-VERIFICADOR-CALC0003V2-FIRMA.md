@@ -28,7 +28,7 @@ PERÍMETRO: tools/corrida0.py (solo _evalua_contexto y _compara_result) · tests
 
 ## CONSUMIDO
 
-Ejecutado por **`PR #634`** (`ACTO GEN2-E5-1 · VERIFICADOR REPARADO + CALC-0003-v2 + LA FIRMA DEL CONTADOR`), `ADR-411`, 8/sep/2026, UBUNTU (caja) con corpus montado, Opus.
+Ejecutado por **`PR #634`** (`ACTO GEN2-E5-1 · VERIFICADOR REPARADO + CALC-0003-v2 + LA FIRMA DEL CONTADOR`), `ADR-412` (renumerado de `411` al fusionar `origin/main`: `ACTO GEN2-TRAMITE-TABLERO-1` tomó el `411` por `PR #633`), 8/sep/2026, UBUNTU (caja) con corpus montado, Opus.
 
 Commits: `d8c62f8` (0-bis A.3) · `9501160` (P1) · `cdebb60` (COMMIT-1) · `eeceb25` (COMMIT-2) · `d598210` (cascada) · `a8793a7` (COMMIT-3, corrige la contaminación del control positivo) · `8e59706` (FP-359) · `1128ddf` (A.14).
 
