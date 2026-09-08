@@ -1,0 +1,136 @@
+{
+ "corrida_id": "CALC-M-marco-M-sorteado-v1_3-ola-v2--e374e27aee4f",
+ "dependencias_materiales": {
+  "numpy": "AUSENTE",
+  "pandas": "AUSENTE",
+  "pyreadstat": "AUSENTE",
+  "scipy": "AUSENTE",
+  "yaml": "6.0.1"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": false,
+  "deroga_regla": "ola mas cercana distinta al arbitro (fuga temporal) -- ADENDA de mesa 8/sep/2026",
+  "firma_que_lo_ordena": "D-2 (mesa, 8/sep/2026): modular por ola, no colapsar",
+  "generacion": "GEN2",
+  "marco_vigente": "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv",
+  "tipo": "CORREDOR-M-ENVUELTO-OLA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-08T15:27:36Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "AUSENTE",
+   "pandas": "AUSENTE",
+   "pyreadstat": "AUSENTE",
+   "scipy": "AUSENTE",
+   "yaml": "6.0.1"
+  },
+  "git_commit": "e374e27aee4f20b2d48440da6293b3178dd2285e",
+  "git_rama": "claude/gen2-t9-adenda-ola-previa-y-origen-arbitro",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+  "python": "3.11.15",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "NO",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "cloud_default",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "e374e27aee4f20b2d48440da6293b3178dd2285e",
+ "input_ids": [
+  "IN-MARCO-M-SORTEADO-V1-3",
+  "IN-EMITE-M",
+  "IN-TRAMITE"
+ ],
+ "input_sha256": {
+  "IN-EMITE-M": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+  "IN-MARCO-M-SORTEADO-V1-3": "f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a",
+  "IN-TRAMITE": "08bdda0bb3f8a6424d495f96f25839bf5df04f6a487649a28359f04cfa69ce86"
+ },
+ "parametros": {
+  "adenda_de_mesa": "8/sep/2026, recibida en vuelo: deroga la regla de ola mas cercana (fuga temporal) y añade el rotulo ORIGEN-ARBITRO",
+  "columna_elegible": "elegible_v1_1",
+  "fuente_acto": "ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ · P3(c)",
+  "regla_de_seleccion": "max(ola) con ola < ola_arbitro (ultima estrictamente anterior); sin previa -> SIN-PREVIA, la celda no modula"
+ },
+ "python_version": "3.11.15",
+ "resultado_ids": [
+  "RESULT-MOLA-CIV-M-01-MODELA-OLA",
+  "RESULT-MOLA-CIV-M-02-MODELA-OLA",
+  "RESULT-MOLA-CIV-M-04-MODELA-OLA",
+  "RESULT-MOLA-CIV-M-10-MODELA-OLA",
+  "RESULT-MOLA-CIV-M-12-MODELA-OLA",
+  "RESULT-MOLA-CIV-M-13-MODELA-OLA",
+  "RESULT-MOLA-DIN-M-01-MODELA-OLA",
+  "RESULT-MOLA-ENTRADAS-ORIGEN-ARBITRO-EN-SERIES",
+  "RESULT-MOLA-FAM-M-01-MODELA-OLA",
+  "RESULT-MOLA-FAM-M-05-ANCLA-F-DD",
+  "RESULT-MOLA-FAM-M-05-GRADO-DD",
+  "RESULT-MOLA-FAM-M-05-MODELA-OLA",
+  "RESULT-MOLA-FAM-M-05-P-LOO",
+  "RESULT-MOLA-FAM-M-06-ANCLA-F-DD",
+  "RESULT-MOLA-FAM-M-06-GRADO-DD",
+  "RESULT-MOLA-FAM-M-06-MODELA-OLA",
+  "RESULT-MOLA-FAM-M-06-P-LOO",
+  "RESULT-MOLA-FAM-M-07-ANCLA-F-DD",
+  "RESULT-MOLA-FAM-M-07-GRADO-DD",
+  "RESULT-MOLA-FAM-M-07-MODELA-OLA",
+  "RESULT-MOLA-FAM-M-07-P-LOO",
+  "RESULT-MOLA-N-CELDAS",
+  "RESULT-MOLA-N-CON-SERIE",
+  "RESULT-MOLA-N-ORIGEN-ARBITRO",
+  "RESULT-MOLA-N-SIN-PREVIA",
+  "RESULT-MOLA-N-SIN-SERIE",
+  "RESULT-MOLA-NO-COLAPSA",
+  "RESULT-MOLA-REGLAS-CON-SERIE",
+  "RESULT-MOLA-TRA-M-02-ANCLA-F-DD",
+  "RESULT-MOLA-TRA-M-02-GRADO-DD",
+  "RESULT-MOLA-TRA-M-02-MODELA-OLA",
+  "RESULT-MOLA-TRA-M-02-P-LOO",
+  "RESULT-MOLA-TRA-M-03-ANCLA-F-DD",
+  "RESULT-MOLA-TRA-M-03-GRADO-DD",
+  "RESULT-MOLA-TRA-M-03-MODELA-OLA",
+  "RESULT-MOLA-TRA-M-03-P-LOO",
+  "RESULT-MOLA-TRA-M-07-ANCLA-F-DD",
+  "RESULT-MOLA-TRA-M-07-GRADO-DD",
+  "RESULT-MOLA-TRA-M-07-MODELA-OLA",
+  "RESULT-MOLA-TRA-M-07-P-LOO"
+ ],
+ "script_blob_sha256": "a9b312379345cc205685b2f42270f7c7d899227c79b3e711e6815f0f897d8770",
+ "script_path": "data/corrida0/CALC-M-marco-M-sorteado-v1_3-ola-v2/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-M-marco-M-sorteado-v1_3-ola-v2",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "3b16520eb900fdf410fa59032daf2e02ce3688e838c286d597d3c12da06b3f92",
+ "spec_yaml_sha256": "e13dd8d3e55af8a836c9544b512a28a52f268dc41603dc727ee515b3a72e2856",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Seleccionar una ola no es estocastico y el punto se copia verbatim de serie_olas. La tolerancia cubre solo el redondeo float64 al serializar.",
+  "tipo": "flotante"
+ }
+}
