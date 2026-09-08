@@ -351,13 +351,10 @@ def t_tsv_invalido_error():
 
 
 def t_neutralizacion_preservada():
-    """La sección H incremental sigue siendo prosa que puede citar un
-    `sucesor`/`pieza` con rótulo pelado -- la neutralización de T25/T22(b)
-    la aplican las DEMÁS secciones sobre columnas de texto libre; H solo
-    cita columnas cortas (`id`, `estado`, `sucesor`), así que el
-    invariante real a preservar es que `tools/digesto_tramite.py::verifica`
-    sigue corriendo sobre la salida COMPLETA del digesto (incluyendo H) y
-    no se rompe por nada que H produzca."""
+    """En la primera emisión (`SIN-BASE-COMPARABLE`) H no imprime ninguna
+    fila individual -- solo cuenta -- así que un rótulo pelado en `sucesor`
+    no llega a esta salida por esa vía. Caso base: `verifica()` sigue
+    corriendo sobre la salida COMPLETA del digesto sin romperse."""
     caso = "neutralizacion_preservada"
     r = _Repo()
     try:
@@ -366,6 +363,41 @@ def t_neutralizacion_preservada():
         texto, _ = r.h("2026-09-01")
         problemas = D.verifica(texto)
         _afirma(not problemas, caso, f"H dejó pasar un marcador sin neutralizar: {problemas}")
+    finally:
+        r.cerrar()
+
+
+def t_neutralizacion_preservada_en_diff():
+    """ACTO GEN2-T11 · RUTINAS-FIX, 8/sep/2026. A diferencia de la primera
+    emisión (caso anterior), la rama `BASE-COMPARABLE` SÍ imprime `estado`/
+    `sucesor` fila por fila en la tabla de afectados (`NUEVA`, `CAMBIO-DE-
+    ESTADO`, `MODIFICADA`) -- y esas dos columnas pueden traer un rótulo
+    `M`/`E` pelado (filas retrofit de ADR-393, o cualquier `sucesor` que
+    cite un acto por su forma corta). Sin `neutraliza()` en ese camino,
+    T25 para sobre el digesto igual que paraba antes del arreglo de la
+    sección I. Ejercita las tres formas (alta, cambio de estado,
+    modificación) con el mismo rótulo pelado `E7`."""
+    caso = "neutralizacion_preservada_en_diff"
+    r = _Repo()
+    try:
+        r.escribe_nc([_fila_nc("NC-0001"), _fila_nc("NC-0002", sucesor="S")])
+        r.commit("init")
+        r.publica("2026-09-01")
+        # NC-0001: cierre con sucesor pelado. NC-0002: sucesor se modifica a
+        # pelado. NC-0003: alta con sucesor pelado.
+        r.escribe_nc([_fila_nc("NC-0001", estado="CERRADA", sucesor="E7"),
+                      _fila_nc("NC-0002", sucesor="E7"),
+                      _fila_nc("NC-0003", sucesor="E7")])
+        r.commit("dia2")
+        texto, res = r.h("2026-09-02")
+        _afirma("BASE-COMPARABLE" in texto, caso, "no comparable")
+        tabla = texto.split("| `id` |")[1] if "| `id` |" in texto else ""
+        _afirma("_E7" in tabla, caso, "el rótulo pelado 'E7' del diff no salió neutralizado")
+        _afirma("| E7 |" not in tabla and "E7 |" not in tabla.replace("_E7", ""), caso,
+                "el rótulo 'E7' sobrevivió sin neutralizar en la tabla de afectados")
+        problemas = D.verifica(texto)
+        _afirma(not problemas, caso,
+                f"H (rama BASE-COMPARABLE) dejó pasar un marcador sin neutralizar: {problemas}")
     finally:
         r.cerrar()
 
