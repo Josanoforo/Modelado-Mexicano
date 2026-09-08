@@ -152,3 +152,44 @@ Entregar un PR pequeño con: reglas cambiadas, ejemplos de los tres desenlaces, 
 - [PR #621: tratamiento de observaciones históricas](https://github.com/Josanoforo/Modelado-Mexicano/pull/621).
 - [PR #624: reparación ya fusionada de las rutinas](https://github.com/Josanoforo/Modelado-Mexicano/pull/624).
 - [PR #625: ajustes del digesto ya fusionados](https://github.com/Josanoforo/Modelado-Mexicano/pull/625).
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: "Los textos de pantalla se entregan en el documento compañero
+  `05-PANTALLAS-RUTINAS-CONFIGURACION.md`. Primero fusionar el acto y
+  después sustituir esos textos en Claude." (P5). **por qué**:
+  `FUERA-DE-PERÍMETRO`. **impacto**: la cuenta de Claude que corre las
+  tres rutinas sigue con los textos de pantalla anteriores hasta que
+  alguien con acceso a esa cuenta los sustituya; ningún contador del
+  repo se mueve por esto — es cambio fuera del árbol versionado.
+  **sucesor**: `DIFERIDO-A:mesa/operador` (después de fusionar este PR).
+- **qué**: el documento compañero `05-PANTALLAS-RUTINAS-CONFIGURACION.md`
+  mismo — el encargo lo cita como entregable pero no lo archiva en este
+  perímetro (no está entre las rutas declaradas del perímetro principal).
+  **por qué**: `FUERA-DE-PERÍMETRO`. **impacto**: `T03` reporta una
+  cita a un archivo que no existe en el árbol (WARN nuevo contra
+  `tests/baseline.json`, ver `## CONSUMIDO`); es la consecuencia
+  esperada de citar verbatim un documento que vive fuera del repo o que
+  mesa redacta aparte. **sucesor**: `DIFERIDO-A:mesa/operador`.
+- **qué**: reactivar `--gh`/API real de GitHub para leer comentarios
+  marcados y PR `[REVISA]` en `tools/digesto_tramite.py` sección J desde
+  esta sesión — se implementó la distinción `GITHUB-NO-VERIFICADO` y el
+  vocabulario, pero esta sesión no tenía acceso a la API de GitHub para
+  demostrar una consulta real corroborada. **por qué**:
+  `NO-VERIFICABLE-AQUÍ`. **impacto**: la sección J sigue reportando por
+  huella local (notas + ramas), no por comentario real corroborado;
+  `revisa_comentarios_corroborados` no se movió. **sucesor**:
+  `DIFERIDO-A:tramite` (la próxima sesión de `/tramite` con acceso a
+  `gh` o a la integración GitHub de su propia sesión).
+- **qué**: revisar el veredicto histórico de `#621` bajo el criterio de
+  observación corregido de P1 (la distinción entre afirmación vigente y
+  huella histórica). El encargo pide *indicar* que ese veredicto
+  necesita revisión, no ejecutarla. **por qué**:
+  `DECISIÓN-DE-MESA-PENDIENTE`. **impacto**: `#621` no se reabre ni se
+  modifica; su veredicto queda como estaba, con esta nota señalándolo.
+  **sucesor**: `DIFERIDO-A:mesa` (mesa decide si amerita una segunda revisión).
+- **qué**: `E5-0`/`E5` (ejecución del motor/CALC en NUBE) — explícitamente
+  excluido por el propio encargo. **por qué**: `FUERA-DE-PERÍMETRO`.
+  **impacto**: ninguno — el encargo nunca lo pidió; se anota aquí solo
+  para que quede explícito que esta cláusula del encargo se respetó
+  literalmente. **sucesor**: `DIFERIDO-A:E5-0` (cuando ese acto corra en su entorno correcto).
