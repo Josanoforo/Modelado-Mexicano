@@ -42,3 +42,13 @@ Lo que NO hace: no colapsa celdas; no cambia la métrica sellada; no promedia se
 - «`CALC-M-…-ola` y `CALC-AGG-…-ola` (serie legacy)» y `CALC-MOTOR-celdas-semilla` sí se corrieron y sellaron, los tres con `verify REPRODUCE`. `CONTEXTO=DISTINTO` en los tres: cada uno se selló en su propio commit y el árbol siguió avanzando dentro del mismo acto.
 
 Las conclusiones del encargo se sostienen las dos —el motor faltaba en la demanda; existen puntos por eje con IC que ninguna celda del marcador consume—. Las cifras, no.
+
+## CONSUMIDO
+
+Ejecutado por [`PR #615`](https://github.com/Josanoforo/Modelado-Mexicano/pull/615) — `ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ`, 8/sep/2026, entorno **NUBE, sin corpus ni red**, sobre `origin/main = 6f1500e2` (el encargo se redactó contra `7a958b06`/`PR #613`; `main` avanzó a `6f1500e2` con `PR #614` antes de arrancar, y la diferencia se reportó en el ARRANQUE en vez de trabajar sobre una base atrasada).
+
+Cascada: `ADR-401` · `L0` 400→401 (`canon/estado-programa-v1_12.md`, los tres contadores reconciliados por `tools/cierre_acto.py --aplica`) · `canon/registro-rotulos.tsv` (rótulo `GEN2-T9` censado) · `forense/no-corrido.tsv` (`NC-0020` **CERRADA**; `NC-0022`, `NC-0023`, `NC-0024`, `NC-0025` abiertas) · `forense/firmas-pendientes.tsv` (`FP-346` **FIRMADA**, `FP-347` abierta) · `forense/hallazgos.md` (tres entradas) · nota del acto en `forense/notas/2026-09-08-GEN2-T9-motor-matricial-y-unidad-de-celda.md` · enmiendas fechadas en `forense/notas/2026-09-08-GEN2-E7-paso-3-unidad-de-celda.md` y en `forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md` (+ sidecar re-sellado, mismo patrón que `ACTO GEN2-T8`).
+
+Suite `--baseline` **VERDE** (3 `FAIL`, los tres de la línea base congelada). `tests/test_corredores_gen2.py` · 31 casos · 31 ok.
+
+**CONTADOR: cero GEN2.** `N_corridas_selladas = 0`; las tres corridas nuevas son `cuenta_gen2: NO` por D-1 y por la regla `E.1`.
