@@ -2665,6 +2665,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # como `E · GEN2-E5` en `canon/registro-rotulos.tsv` por ese mismo acto.
     # El rótulo que ESTE acto reclama es `E · GEN2-E5-1`, y lo censa él.
     "forense/encargos/2026-09-08-GEN2-E5-1-VERIFICADOR-CALC0003V2-FIRMA.md",
+    # ACTO GEN2-FIRMA-CONTADOR, 8/sep/2026: encargo archivado VERBATIM
+    # (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita "E5-1"
+    # pelado dos veces, las dos como PROCEDENCIA al acto predecesor ("la
+    # firma que E5-1 se negó a inferir", "es el test que E5-1 escaló a
+    # FAIL"), ya censado como `E · GEN2-E5-1` en `canon/registro-rotulos.tsv`
+    # por ese mismo acto. No es un rótulo nuevo que este acto reclame.
+    "forense/encargos/2026-09-08-GEN2-FIRMA-CONTADOR-PROPAGA-FIRMA.md",
+    # ACTO GEN2-FIRMA-CONTADOR, 8/sep/2026: la NOTA del acto. Cita `E5-1`/`E5`
+    # pelados varias veces, todas como PROCEDENCIA al patrón de exenciones ya
+    # censado de la serie E5/E5-0/E5-1 (comparando cómo T25 exime a esos
+    # encargos), nunca como rótulo nuevo que este acto reclame. `E · GEN2-E5-1`
+    # ya está censado en `canon/registro-rotulos.tsv` desde ese mismo acto.
+    "forense/notas/2026-09-08-GEN2-FIRMA-CONTADOR-tres-filas-decisiones.md",
     # ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita
     # "E5-0"/"E5"/"E6" pelados en el perímetro ("una revisión textual

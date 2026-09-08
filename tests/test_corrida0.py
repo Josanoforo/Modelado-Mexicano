@@ -1570,19 +1570,31 @@ def t_status_cifras_derivadas():
 
 def t_status_arbol_real_no_cuenta_smokes():
     """T-STATUS-SMOKES. Sobre el arbol DE VERDAD: los dos replays sellados
-    existen, estan contados aparte, y no suben ni una unidad de GEN2. Es la
-    cifra que el encargo declara -- `0 / N` es correcto, no un error."""
+    existen y estan contados aparte -- nunca suben una unidad de GEN2, con
+    firma de mesa o sin ella (eso es lo que este falsador vigila; no que el
+    contador GEN2 se quede en cero). Premisa actualizada por
+    `ACTO GEN2-FIRMA-CONTADOR` (8/sep/2026, NC-0053): antes de la firma de
+    mesa en `data/corrida0/decisiones.tsv`, `0/0` era la cifra correcta;
+    desde esa firma (`CALC-0001`, `CALC-0002`, `CALC-0003-v2`,
+    `cuenta_gen2=SI`), la cifra correcta es `3/211` (83+128 RESULT
+    sellados), y los replays LEGACY siguen sin contar ni una unidad de eso."""
     caso = "T-STATUS-SMOKES"
     c = C.status(imprime=False)
     _afirma(c["replays_legacy_sellados"] >= 2, caso,
             f"replays sellados={c['replays_legacy_sellados']} (se esperaban >=2)")
-    _afirma(c["N_corridas_selladas"] == 0, caso,
-            f"N_corridas_selladas={c['N_corridas_selladas']}: un replay GEN1 conto como GEN2")
-    _afirma(c["N_resultados_sellados"] == 0, caso,
-            f"N_resultados_sellados={c['N_resultados_sellados']}: un replay GEN1 conto como GEN2")
+    _afirma(c["N_corridas_selladas"] == 3, caso,
+            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 3 tras la firma "
+            f"de mesa (ACTO GEN2-FIRMA-CONTADOR) -- si es 0, la firma se perdio; si es "
+            f">3, un replay GEN1 conto como GEN2")
+    _afirma(c["N_resultados_sellados"] == 211, caso,
+            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 211 (83+128) "
+            f"tras la firma de mesa -- si es 0, la firma se perdio; si es >211, un "
+            f"replay GEN1 conto como GEN2")
     _afirma(c["N_resultados_activos"] == c["dependencias_numericas_legacy_activas"], caso,
             "hoy toda dependencia activa es legacy: ningun consumidor declara "
-            "corrida0_resultado_id todavia")
+            "corrida0_resultado_id todavia en un archivo que el motor carga "
+            "(milpa/tramite-ola5-propuesta-v0.yaml lo declara pero es PROPUESTA, "
+            "no cargada) -- E.2 (adopcion) sigue pendiente, NC-0053")
 
 
 def t_repro_atrapa_valor_movido():
