@@ -1631,9 +1631,13 @@ def t_gen2_sin_resultado_id_avisa():
         chk.WARNS.clear()
         chk.FAILS.clear()
         chk.t35_repro(modulo=C)
-    avisos = " · ".join(m for _, m in chk.WARNS)
-    _afirma("(d)" in avisos and "corrida0_generacion: GEN2" in avisos, caso,
-            f"T35 no avisó del número huérfano: {avisos!r}")
+    # `ACTO GEN2-E5 · CALC-0001..0003` (8/sep/2026) pasó T35 de WARN a FAIL:
+    # el falsador sigue exigiendo LO MISMO -- que T35 señale el caso -- y sólo
+    # cambia el canal donde lo señala. Se leen los DOS para que el falsador no
+    # dependa de la severidad vigente.
+    senalado = " · ".join(m for _, m in list(chk.FAILS) + list(chk.WARNS))
+    _afirma("(d)" in senalado and "corrida0_generacion: GEN2" in senalado, caso,
+            f"T35 no señaló el número huérfano: {senalado!r}")
 
 
 def t_resultado_id_sin_generacion_avisa():
@@ -1654,9 +1658,9 @@ def t_resultado_id_sin_generacion_avisa():
         chk.WARNS.clear()
         chk.FAILS.clear()
         chk.t35_repro(modulo=C)
-    avisos = " · ".join(m for _, m in chk.WARNS)
-    _afirma("(e)" in avisos and "cadena incompleta" in avisos, caso,
-            f"T35 no avisó de la cadena incompleta: {avisos!r}")
+    senalado = " · ".join(m for _, m in list(chk.FAILS) + list(chk.WARNS))
+    _afirma("(e)" in senalado and "cadena incompleta" in senalado, caso,
+            f"T35 no señaló la cadena incompleta: {senalado!r}")
 
 
 def t_status_mide_no_adopta():
