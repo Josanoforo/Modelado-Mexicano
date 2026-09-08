@@ -569,6 +569,18 @@ def _escribe(ruta: Path, columnas: list[str], filas: list[dict]) -> None:
 
 # ── subcomando `demanda` ───────────────────────────────────────────────────
 
+DECISIONES = SALIDA / "decisiones.tsv"
+
+
+def _lee_decisiones() -> dict:
+    """Lee `data/corrida0/decisiones.tsv` (edicion manual de mesa, D9/D10 ·
+    FP-339): objeto -> decision. Un objeto ausente del archivo sigue sin
+    decidir -- `cmd_demanda` no inventa decisiones que mesa no firmo."""
+    if not DECISIONES.exists():
+        return {}
+    return {f["objeto"]: f["decision"] for f in _leer_tsv(DECISIONES)}
+
+
 def cmd_demanda(args) -> int:
     crudo_tramite = yaml.safe_load(TRAMITE.read_text(encoding="utf-8"))
     crudo_proc = yaml.safe_load(PROCEDENCIA.read_text(encoding="utf-8"))
@@ -586,6 +598,15 @@ def cmd_demanda(args) -> int:
 
     for fila in filas:
         fila["receta_legacy"] = _receta(fila)
+
+    # D10 · FP-339 (mesa, FIRMADA 2026-09-07): estas celdas quedan
+    # SIN-RECETA por decision -- no se reconstruyen aunque algun campo
+    # legacy este declarado -- la decision de decisiones.tsv PISA la
+    # receta calculada por `_receta` (que aqui vendria PARCIAL).
+    decisiones = _lee_decisiones()
+    for fila in filas:
+        if decisiones.get(fila["consumidor"]) == "receta_legacy=SIN-RECETA":
+            fila["receta_legacy"] = "SIN-RECETA"
 
     _verifica_grafo(filas)
 
@@ -607,6 +628,24 @@ def cmd_demanda(args) -> int:
                 f"{fila['resultado_id']} ({fila['consumidor']}): payload "
                 f"'{valor}' no esta en data/manifiesto.yaml")
 
+    # D9/D10 · FP-339 (mesa, FIRMADA 2026-09-07): decisiones.tsv resuelve
+    # exactamente los 7 casos que este subcomando listaba como ambiguos --
+    # (1)-(3) el M vivo de TRA-M-02/03/07 es el __v1_3 (ya la regla del
+    # codigo, ahora tambien DECLARADA en el registro); (4)-(7) las celdas
+    # DIN/FAM de dinero.ahorro.tiene_ahorros y familia.apoyo.recibe_dinero_
+    # familiares quedan SIN-RECETA por decision de mesa, no se reconstruyen.
+    # Lo que decisiones.tsv NO cubre sigue listandose como ambiguo: este
+    # subcomando sigue sin decidir nada por su cuenta.
+    def _decidida(linea: str) -> bool:
+        for objeto, decision in decisiones.items():
+            if decision == "M_vivo=__v1_3" and linea.startswith(f"celda {objeto}:"):
+                return True
+            if decision == "receta_legacy=SIN-RECETA" and f"({objeto}):" in linea:
+                return True
+        return False
+
+    ambiguas = [linea for linea in ambiguas if not _decidida(linea)]
+
     marco_por_consumidor = {
         c["id"]: f"{c['encuesta']} {c['ola']}" for c in _leer_tsv(MARCO_VIGENTE)}
     corridas = _corridas(filas, crudo_tramite, marco_por_consumidor)
@@ -621,6 +660,8 @@ def cmd_demanda(args) -> int:
     print(f"N_resultados_pendientes = "
           f"{sum(1 for f in filas if f['estado'] == 'PENDIENTE')}")
     print(f"clausura_activa_de_payloads = {len(payloads)}")
+    if decisiones:
+        print(f"decisiones_aplicadas (FP-339) = {len(decisiones)}")
     if ambiguas:
         print("\nAGRUPACIONES / RESOLUCIONES QUE EL REGISTRO NO DECIDE "
               f"({len(ambiguas)}) -- se listan, no se deciden:", file=sys.stderr)
