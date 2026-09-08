@@ -47,8 +47,8 @@ citan (`civico.clientelismo…_lapop2019` y `salud.atencion.grave_ennvih2002`, e
 
 | qué (verbatim del encargo) | por qué | impacto | sucesor |
 |---|---|---|---|
-| «(b) si existe: escribir **S13 v1.1** (md + sidecar, antes de cualquier microdato) y `spec.yaml` contra v1.1» | `PARO-PREMISA` | La ruta (b) está condicionada a que exista desenlace comparable al de la corrida 2004, y **no existe en ninguna de las tres olas** — `aoj1` ausente, y 0 aciertos de `denunc\|report` sobre **678 variables con etiqueta en 3 archivos** (control positivo: 221/221, 262/262, 195/195). Se tomó la **ruta (c)**, que el encargo autoriza igual. `R10.3` no gana segunda medición; `veredicto_D2h` queda `NO-CONSTRUIBLE` y `D2-h` sigue sin ola que la dispare. Ningún tier se mueve | Camino A de `S13 §0.2` (desenlace sustituto con variable nombrada) — **requiere mandato de mesa, no de ejecutor** — `NC-0039` |
-| «`spec-check` y `preflight` VERDE» — el `medidor.py` que ese VERDE exige | `NO-VERIFICABLE-AQUÍ` | Los tres `medidor.py` se **escribieron** en este acto y **no se ejecutaron**: el encargo prohíbe abrir microdato. `PRE-FLIGHT: VERDE` certifica la **declaración** (esquema, identidad de inputs, árbol limpio), **no** la corrección numérica del medidor. Lo que sí se verificó, con fixture **sintético** en memoria y sin tocar payload: que el juego de claves de `medir()` **coincide exacto** con los ids declarados (54 · 29 · 128) y que los tipos casan | `ACTO GEN2-E5` — su corrida es la primera ejecución real de los tres — `NC-0038` |
+| «(b) si existe: escribir **S13 v1.1** (md + sidecar, antes de cualquier microdato) y `spec.yaml` contra v1.1» | `PARO-PREMISA` | La ruta (b) está condicionada a que exista desenlace comparable al de la corrida 2004, y **no existe en ninguna de las tres olas** — `aoj1` ausente, y 0 aciertos de `denunc\|report` sobre **678 variables con etiqueta en 3 archivos** (control positivo: 221/221, 262/262, 195/195). Se tomó la **ruta (c)**, que el encargo autoriza igual. `R10.3` no gana segunda medición; `veredicto_D2h` queda `NO-CONSTRUIBLE` y `D2-h` sigue sin ola que la dispare. Ningún tier se mueve | Camino A de `S13 §0.2` (desenlace sustituto con variable nombrada) — **requiere mandato de mesa, no de ejecutor** — `NC-0043` |
+| «`spec-check` y `preflight` VERDE» — el `medidor.py` que ese VERDE exige | `NO-VERIFICABLE-AQUÍ` | Los tres `medidor.py` se **escribieron** en este acto y **no se ejecutaron**: el encargo prohíbe abrir microdato. `PRE-FLIGHT: VERDE` certifica la **declaración** (esquema, identidad de inputs, árbol limpio), **no** la corrección numérica del medidor. Lo que sí se verificó, con fixture **sintético** en memoria y sin tocar payload: que el juego de claves de `medir()` **coincide exacto** con los ids declarados (54 · 29 · 128) y que los tipos casan | `ACTO GEN2-E5` — su corrida es la primera ejecución real de los tres — `NC-0042` |
 | Perímetro: «`data/corrida0/CALC-000{1,2,3}/spec.yaml` (+ `spec.md` local…)» | `DECISIÓN-DE-MESA-PENDIENTE` | Se escribió además `medidor.py` en cada uno de los tres directorios — **dentro** del directorio que el perímetro nombra, y **obligado por el propio encargo**: `preflight` bloquea con `script_ausente` si el script no existe, así que «`preflight` VERDE» (exigido tres veces, y puesto como contador: «tres CALC en `PRE-FLIGHT-VERDE`») es inalcanzable sin él. Se declara en vez de absorberse | mesa, en el merge: si el medidor no debía escribirse aquí, el contador del encargo no era alcanzable y hay que reescribir uno de los dos |
 | COMPUERTA, tercer limbo: «`python3 tools/limpia_arbol.py --reporta` **sin árboles ni ramas fuera de política**» | `NO-VERIFICABLE-AQUÍ` | **No se cumple y no se puede cumplir desde el ejecutor.** El reporte da ramas remotas sin PR abierto (`fuera_de_politica`), todas **ajenas a esta sesión**, y `/acto` §1.0.d prohíbe expresamente decidir su borrado desde aquí (`--aplica` es `E4`/Fase IV, hoy sale con código 2). Los otros dos limbos —`GO-MARCADOR` de E7 y las tres specs íntegras— **sí se verificaron por producto**. Ver la `BITACORA` de la cola para el detalle re-derivado | mesa: o `E4`/Fase IV limpia el remoto, o el limbo se reescribe acotado a las ramas del propio acto — `SIN-ASIGNAR` |
 
@@ -70,7 +70,7 @@ da `BLOQUEADO` falso dentro del sandbox para toda raíz `descargas_mx`).
 ## CONSUMIDO
 
 `PR #629` — `ACTO GEN2-E5-0 · SPECS EJECUTABLES`, 8/sep/2026, entorno **UBUNTU
-(caja)**, rama `acto/gen2-e5-0-specs-ejecutables`, `ADR-408` (renumerado de `407`
+(caja)**, rama `acto/gen2-e5-0-specs-ejecutables`, `ADR-409` (renumerado de `407`
 al fusionar `origin/main`: `ACTO GEN2-TRAMITE-FIRMAS-1` fusionó primero por
 `PR #627`).
 
@@ -79,5 +79,5 @@ Ejecutado: `spec.yaml` congelado para `CALC-0001` (`prereg-caja-S12`),
 v1.2), cada uno con su `spec.md` local, su `medidor.py` y su `COMMIT-1` con la
 frase de sello. Abierto **sólo** codebook y metadato; **no se abrió microdato y no
 se calculó**. `spec-check`: 117 pares, **0 FAIL**. `preflight`: **VERDE los tres**.
-`NC-0011` **CERRADA**. Reservas: `NC-0038`, `NC-0039`. Firmas abiertas a mesa:
+`NC-0011` **CERRADA**. Reservas: `NC-0042`, `NC-0043`. Firmas abiertas a mesa:
 `FP-349`, `FP-350`, `FP-351`, `FP-352`.
