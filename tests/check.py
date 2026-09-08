@@ -2604,6 +2604,21 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ, 8/sep/2026: encargo archivado
+    # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`. Trae
+    # rótulos pelados de DOS clases, ninguna de ellas nueva:
+    #   · `M1` -- la primera de las seis M del sello del motor (`ADR-91`,
+    #     `ADR-100`, `ADR-MOTOR-2`), citada aquí en su firma verbatim de mesa
+    #     ("M1 cómputo matricial como definición del ejecutable"). Es la cita
+    #     de una firma de 17/ago/2026, no un rótulo que este acto reclame;
+    #     censada en `canon/registro-rotulos.tsv` bajo la serie `M · M1..M6`.
+    #   · `E5-0`/`E7`/`E3.1`/`C0-A`/`C0-B`/`C0-C`/`C0-D`/`D11`/`D-1`/`D-2` --
+    #     referencias de PROCEDENCIA a la serie `E · GEN2-E0..GEN2-E7`, a la
+    #     serie `C · C0-A..C0-D` del plan v2.0 y a las decisiones de mesa,
+    #     ya censadas. Mismo patrón, y misma razón, que las exenciones
+    #     hermanas de PRE-E5/V213/E6/E7: un encargo verbatim no se edita para
+    #     complacer un test (A.3).
+    "forense/encargos/2026-09-08-GEN2-T9-MOTOR-MATRICIAL.md",
     # ACTO GEN2-PRE-E5 · CABLEADO-Y-AUTOMATIZACION-FINAL, 8/sep/2026: encargo
     # archivado VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`.
     # Cita "E5-0"/"E5"/"E6"/"E7"/"V213" pelados repetidamente ("ORDEN:

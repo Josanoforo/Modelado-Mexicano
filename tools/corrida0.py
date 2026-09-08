@@ -93,6 +93,13 @@ import yaml  # noqa: E402
 
 from milpa.src.emisor import cargar_reglas  # noqa: E402
 
+# ACTO GEN2-T9: los seis ejes del vector de atributos de
+# `canon/modelo-decision-v4_0.md` §1.1.A se LEEN del modulo que los declara --
+# no se re-escriben aqui, que es como dos listas se separan sin que nadie lo
+# note. `clases.py` no abre ningun archivo al importarse.
+from milpa.src.clases import EJES as EJES_MODELO  # noqa: E402
+from milpa.src.clases import EJES_HOGAR as EJES_HOGAR_MODELO  # noqa: E402
+
 RAIZ = Path(__file__).resolve().parents[1]
 TRAMITE = RAIZ / "milpa" / "tramite.yaml"
 PROCEDENCIA = RAIZ / "milpa" / "procedencia.yaml"
@@ -120,8 +127,20 @@ COLS_CORRIDAS = [
 
 # Peldanos de la escalera causal por tipo de consumidor.
 ORDEN_CAUSAL = {
+    # 0 · la malla DECLARADA del motor matricial (`ADR-91` M1): los cortes por
+    # eje que `pi.construir_pi` exige y las celdas-D del disco. Es estructura,
+    # y precede a toda medicion -- por eso peldano 0 y no un peldano nuevo al
+    # final: `ACTO GEN2-T9` NO renumera los siete peldanos ya declarados.
+    "corte_pi": 0,
+    "celda_D": 0,
     "conducta_p_medido": 1,
+    # 1 · un momento del catalogo es un estadistico OBSERVADO del instrumento,
+    # de la misma naturaleza que una tasa base: mismo peldano.
+    "momento": 1,
     "coeficiente_ejecutable": 2,
+    # 2 · Theta y B se consumen JUNTOS por `matriz.g(B, theta(x))`: la
+    # condicional medida cae en el mismo peldano que el coeficiente medido.
+    "condicional_theta": 2,
     "conducta_p_asignado": 3,
     "coeficiente_asignado": 3,
     "asignado_probabilidad": 3,
@@ -448,6 +467,208 @@ def _consumidores_celdas(indice_conductas, ambiguas) -> list[dict]:
 
 # ── ensamblado ─────────────────────────────────────────────────────────────
 
+# ── (e) el MOTOR MATRICIAL · ACTO GEN2-T9, D11 revocada ────────────────────
+#
+# `ADR-91` (17/ago/2026, `PR #246`), firma de mesa verbatim: «M1 computo
+# matricial como definicion del ejecutable». El ejecutable sellado es
+# `milpa/src/{motor,matriz,theta,pi,celdas,momentos}.py`, y `C0-A` (`ACTO
+# GEN2-E2`) NO lo recorrio: sus 162 filas salieron del emisor y del marcador,
+# nunca del motor. `D11` de `ACTO GEN2-E3-1` (`ADR-396`) declaro ese ejecutable
+# «scaffold historico» -- dictado contra el arbol, sin cotejarlo con `ADR-91`.
+# `ACTO GEN2-T9` lo revoca y cuenta lo que faltaba. NADA SE RECALCULA: estas
+# filas se AÑADEN al final, de modo que ningun `RES-` ya emitido cambia de id.
+#
+# Las cuatro familias se LEEN de los modulos, no de memoria -- exigencia
+# literal del encargo. De ahi que los conteos salgan de `celdas.CORTES_C1`,
+# `motor.celdas_semilla()`, `momentos.cargar_catalogo()` y del mismo recorrido
+# de `procedencia._recorrer` que `theta.Theta.desde` consume.
+
+
+def _limpia(valor) -> str:
+    """Un TSV no admite tabulador ni salto de linea DENTRO de un campo.
+
+    Los `clase:` de `milpa/procedencia.yaml` traen parrafos enteros (`GATE·ID-X`
+    arrastra uno) y el `REFUTADO-POR-COTA` arrastra un comentario de tres
+    lineas. Se colapsa el blanco; no se trunca el contenido.
+    """
+    return " ".join(str(valor).split()) or NO_DECLARADO
+
+
+def _entradas_procedencia(crudo_proc) -> list[tuple[tuple, str]]:
+    """`(ruta_yaml, clase_cruda)` por cada entrada con `clase:`.
+
+    Mismo recorrido que `milpa.src.procedencia._recorrer`, reimplementado aqui
+    por LECTURA y no importado, por una razon medida y no supuesta: hoy
+    `procedencia.cargar()` LANZA `ClaseDesconocida` sobre este mismo archivo
+    (dos valores de `clase:` que `milpa/src/clases.py` no conoce --
+    `REFUTADO-POR-COTA` y `EVIDENCIA_EXPERIMENTAL_TERCEROS`), y el registro no
+    puede quedarse sin contar la demanda del motor porque el cargador del motor
+    este roto. El defecto se declara, no se parchea: `milpa/src/**` esta fuera
+    del perimetro de `ACTO GEN2-T9` (el motor se corre, no se edita).
+    """
+    salida: list[tuple[tuple, str]] = []
+
+    def rec(nodo, camino):
+        if isinstance(nodo, dict):
+            if isinstance(nodo.get("clase"), str):
+                salida.append((tuple(str(c) for c in camino), nodo["clase"]))
+            for k, v in nodo.items():
+                rec(v, camino + [k])
+        elif isinstance(nodo, list):
+            for i, v in enumerate(nodo):
+                rec(v, camino + [i])
+
+    rec(crudo_proc, [])
+    return salida
+
+
+def _consumidores_cortes_pi(ambiguas) -> list[dict]:
+    """Un corte por eje de los que `pi.construir_pi` exige sellados.
+
+    `celdas.CORTES_C1` es el dato: cuatro ejes con corte sellado bajo M2 y dos
+    `None` -- `edad` y `migracion` -- que el propio modulo declara PENDIENTE
+    (`FP-53`) y que `construir_pi` rechaza por `CortesNoSellados`. Los seis
+    entran a la demanda: un corte PENDIENTE es demanda no cubierta, que es
+    exactamente lo que este TSV existe para contar.
+    """
+    from milpa.src.celdas import CORTES_C1
+
+    filas = []
+    for eje in EJES_MODELO:
+        if eje not in CORTES_C1.por_eje:
+            ambiguas.append(
+                f"corte_pi {eje}: es uno de los seis ejes de §1.1.A pero no "
+                f"aparece en `celdas.CORTES_C1.por_eje` -- el registro no "
+                f"decide si falta el corte o falta el eje")
+            continue
+        valor = CORTES_C1.por_eje[eje]
+        sellado = valor is not None
+        filas.append(_fila(
+            consumidor=f"milpa/src/celdas.py:CORTES_C1:{eje}",
+            tipo="corte_pi",
+            valor_legacy=_limpia(valor) if sellado else NO_DECLARADO,
+            escala_legacy=("HOGAR" if eje in EJES_HOGAR_MODELO else "PERSONA"),
+            clase_legacy="SELLADO·M2" if sellado else "PENDIENTE·FP-53",
+            acto_legacy="ACTO LANE-A-E0-E5 C1",
+            script_legacy="milpa/src/pi.py",
+            spec_legacy="milpa/src/celdas.py",
+        ))
+    return filas
+
+
+def _consumidores_celdas_d(ambiguas) -> list[dict]:
+    """Una fila por celda-D del disco. `motor.celdas_semilla()` las enumera."""
+    from milpa.src import motor as _motor
+
+    filas = []
+    for nombre, celda_d in _motor.celdas_semilla():
+        cid = str(celda_d.get("id", NO_DECLARADO))
+        estado = str(celda_d.get("estado_operativo", NO_DECLARADO))
+        if estado != "LISTO":
+            ambiguas.append(
+                f"celda_D {cid}: `estado_operativo` = {estado} -- el registro "
+                f"no decide si su corrida es exigible hoy")
+        filas.append(_fila(
+            consumidor=f"data/curacion-registro/celdas-d/{nombre}:{cid}",
+            tipo="celda_D",
+            valor_legacy=NO_DECLARADO,
+            escala_legacy=_limpia(celda_d.get("nivel", NO_DECLARADO)),
+            clase_legacy=_limpia(celda_d.get("tipo_adjudicacion", NO_DECLARADO)),
+            acto_legacy=_limpia(celda_d.get("estado_operativo", NO_DECLARADO)),
+            script_legacy="milpa/src/motor.py",
+            spec_legacy=f"data/curacion-registro/celdas-d/{nombre}",
+        ))
+    return filas
+
+
+def _consumidores_momentos(ambiguas) -> list[dict]:
+    """Una fila por momento del catalogo sellado, con su `rol_calibracion`.
+
+    El muro `AJUSTE`/`HOLDOUT` viaja en la fila (`clase_legacy`): un `HOLDOUT`
+    esta en la demanda -- hay que medirlo alguna vez -- pero `momentos.valor_de`
+    lanza si se lee hoy, y eso es el pre-registro, no un hueco del registro.
+    """
+    from milpa.src import momentos as _momentos
+
+    catalogo = _momentos.cargar_catalogo()
+    filas = []
+    for m in catalogo.momentos:
+        if m.estatus_disponibilidad and "POR DECLARAR" in m.estatus_disponibilidad.upper():
+            ambiguas.append(
+                f"momento {m.id_momento}: `universo_candidatos` POR DECLARAR "
+                f"-- el registro no elige el reactivo")
+        filas.append(_fila(
+            consumidor=f"milpa/catalogo-momentos-v0_1.tsv:{m.id_momento}",
+            tipo="momento",
+            valor_legacy=NO_DECLARADO,
+            escala_legacy=_limpia(m.nivel),
+            clase_legacy=_limpia(m.rol_calibracion),
+            acto_legacy=_limpia(m.objeto_modelo),
+            # `universo_instrumento` NO es un `payload_manifiesto_id` y no se
+            # mete en esa columna: es la declaracion del universo, no la del
+            # payload. Viaja aparte y `_instrumento()` la lee para agrupar la
+            # corrida -- meterla en `payload_ids_legacy` habria producido 22
+            # falsas "ambiguedades de payload" sobre un campo que nunca
+            # pretendio ser un id.
+            _instrumento_declarado=_limpia(m.universo_instrumento),
+            script_legacy="milpa/src/momentos.py",
+            spec_legacy="milpa/catalogo-momentos-v0_1.tsv",
+        ))
+    return filas
+
+
+def _consumidores_theta(crudo_proc, indice_cortes, ambiguas) -> list[dict]:
+    """Una fila por condicional Theta MEDIDA sobre atributos, con clase y eje.
+
+    El numerador es el de la FORMULA OFICIAL, no uno nuevo:
+    `procedencia.contador_condicionales_medidas()` cuenta exactamente las dos
+    clases `MEDIDO·PARCIAL` y `MEDIDO·NACIONAL`, y `tests/check.py` (T19b/T19c)
+    deriva la misma cifra sobre texto crudo. Aqui se emite UNA FILA por cada
+    una de esas entradas -- ni una mas.
+
+    `depende_de`: una `MEDIDO·PARCIAL(x)` no puede segmentarse por un eje cuyo
+    corte no este sellado (`procedencia.segmentar` -> `EjeNoDeclarado`), asi
+    que la fila depende de la fila `corte_pi` de cada eje que declara. Es una
+    arista LEIDA del contrato, no una inventada.
+    """
+    from milpa.src.clases import Clase, clasificar, ejes_declarados
+
+    filas = []
+    for camino, crudo in _entradas_procedencia(crudo_proc):
+        try:
+            clase, _ = clasificar(crudo)
+        except Exception:
+            # Una `clase:` que `milpa/src/clases.py` no conoce NO se adivina y
+            # NO se cuenta como Theta: se lista y sigue.
+            ambiguas.append(
+                f"condicional_theta {'/'.join(camino)}: `clase:` "
+                f"{_limpia(crudo)[:60]!r} no casa con ningun prefijo de "
+                f"`milpa/src/clases.py` -- `procedencia.cargar()` LANZA sobre "
+                f"ella y el motor no arranca")
+            continue
+        if clase not in (Clase.MEDIDO_PARCIAL, Clase.MEDIDO_NACIONAL):
+            continue
+        ejes = ejes_declarados(crudo)
+        deps = [indice_cortes[e] for e in ejes if e in indice_cortes]
+        faltantes = [e for e in ejes if e not in indice_cortes]
+        if faltantes:
+            ambiguas.append(
+                f"condicional_theta {'/'.join(camino)}: declara los ejes "
+                f"{faltantes} que no tienen fila `corte_pi` -- el registro no "
+                f"decide si el eje sobra en la clase o falta en los cortes")
+        filas.append(_fila(
+            consumidor=f"milpa/procedencia.yaml:{'/'.join(camino)}",
+            tipo="condicional_theta",
+            valor_legacy=NO_DECLARADO,
+            escala_legacy=(",".join(ejes) if ejes else "x = 0/vacio (NACIONAL)"),
+            clase_legacy=_limpia(crudo)[:200],
+            script_legacy="milpa/src/theta.py",
+            spec_legacy="milpa/procedencia.yaml",
+            depende_de=";".join(deps),
+        ))
+    return filas
+
+
 def _asigna_ids(filas: list[dict]) -> None:
     for i, fila in enumerate(filas, start=1):
         fila["resultado_id"] = f"RES-{i:04d}"
@@ -491,7 +712,11 @@ def _verifica_grafo(filas: list[dict]) -> None:
 
 
 def _instrumento(fila: dict, crudo_tramite, marco_por_consumidor) -> str:
-    if fila["tipo"].startswith("celda_"):
+    # ACTO GEN2-T9: un momento del catalogo declara su propio universo de
+    # instrumento; es lo que agrupa su corrida.
+    if fila["tipo"] == "momento":
+        return fila.get("_instrumento_declarado", NO_DECLARADO)
+    if fila["tipo"].startswith("celda_") and fila["tipo"] != "celda_D":
         return marco_por_consumidor.get(fila["consumidor"].split(":")[1],
                                         NO_DECLARADO)
     if fila["tipo"].startswith("conducta_"):
@@ -578,6 +803,17 @@ def _escribe(ruta: Path, columnas: list[str], filas: list[dict]) -> None:
 DECISIONES = SALIDA / "decisiones.tsv"
 
 
+def _firma_de_decision(objeto: str) -> str:
+    """La firma de mesa bajo la que se decidio `objeto`, leida de la columna
+    `fuente` de `decisiones.tsv`. No se infiere del nombre del objeto."""
+    if not DECISIONES.exists():
+        return NO_DECLARADO
+    for f in _leer_tsv(DECISIONES):
+        if f["objeto"] == objeto:
+            return (f.get("fuente") or NO_DECLARADO).split("(")[0].strip()
+    return NO_DECLARADO
+
+
 def _lee_decisiones() -> dict:
     """Lee `data/corrida0/decisiones.tsv` (edicion manual de mesa, D9/D10 ·
     FP-339): objeto -> decision. Un objeto ausente del archivo sigue sin
@@ -599,6 +835,19 @@ def cmd_demanda(args) -> int:
     filas += _consumidores_coeficientes(crudo_proc, ambiguas)
     filas += _consumidores_asignados_prob(crudo_proc, indice_conductas)
     filas += _consumidores_celdas(indice_conductas, ambiguas)
+
+    # (e) ACTO GEN2-T9 · el motor matricial de `ADR-91`, que `C0-A` no
+    # recorrio. Se AÑADE al final a proposito: asi ningun `RES-` ya emitido
+    # cambia de id -- «nada se recalcula: solo se cuenta lo que faltaba».
+    filas += _consumidores_cortes_pi(ambiguas)
+    filas += _consumidores_celdas_d(ambiguas)
+    filas += _consumidores_momentos(ambiguas)
+    _asigna_ids(filas)
+    indice_cortes = {
+        f["consumidor"].rsplit(":", 1)[1]: f["resultado_id"]
+        for f in filas if f["tipo"] == "corte_pi"}
+    filas += _consumidores_theta(crudo_proc, indice_cortes, ambiguas)
+
     _asigna_ids(filas)
     _resuelve_dependencias_locales(filas)
 
@@ -667,7 +916,15 @@ def cmd_demanda(args) -> int:
           f"{sum(1 for f in filas if f['estado'] == 'PENDIENTE')}")
     print(f"clausura_activa_de_payloads = {len(payloads)}")
     if decisiones:
-        print(f"decisiones_aplicadas (FP-339) = {len(decisiones)}")
+        # ACTO GEN2-T9: `decisiones.tsv` dejo de ser la tabla de UNA firma
+        # (FP-339) para ser la tabla de las firmas de mesa sobre objetos del
+        # registro -- D-1 añadio las suyas. El contador se declara generico y
+        # con desglose, en vez de rotularlo con una sola firma que ya no lo
+        # describe.
+        print(f"decisiones_aplicadas = {len(decisiones)}")
+        for firma in sorted({_firma_de_decision(o) for o in decisiones}):
+            n = sum(1 for o in decisiones if _firma_de_decision(o) == firma)
+            print(f"decisiones_aplicadas[{firma}] = {n}")
     if ambiguas:
         print("\nAGRUPACIONES / RESOLUCIONES QUE EL REGISTRO NO DECIDE "
               f"({len(ambiguas)}) -- se listan, no se deciden:", file=sys.stderr)
@@ -2096,6 +2353,9 @@ NO_COMPARABLE = "NO-COMPARABLE"
 
 COLS_VISTA_CORRIDAS = [
     "corrida_id", "origen", "spec_id", "estado", "generacion", "cuenta_gen2",
+    # ACTO GEN2-T9 · P1: la marca de la regla E.1, en su propia columna --
+    # un corredor envuelto se ve en el TSV sin re-derivar la regla.
+    "envuelto_legacy", "motivo_cuenta_gen2",
     "spec_yaml_sha256", "script_path", "script_blob_sha256", "codigo_commit",
     "fecha", "n_resultados", "resultados_ids", "input_ids",
     "input_sha256_efectivos", "sello", "resultado_replay", "contexto_replay",
@@ -2346,8 +2606,10 @@ def _lee_oferta(verifica: bool) -> list[dict]:
                                f"resultados.json y su sello dice {sello} "
                                f"({razon_sello})")
         generacion = _etiqueta(spec, "generacion", "GEN2")
-        cuenta = _etiqueta(spec, "cuenta_gen2",
-                           "NO" if generacion == GENERACION_LEGADO else "SI")
+        # ACTO GEN2-T9 · P1: la etiqueta de la spec ya no es la ultima
+        # palabra. Manda la firma de mesa (`decisiones.tsv`), y en su
+        # ausencia la regla E.1 sobre los inputs declarados.
+        cuenta, motivo_cuenta = _cuenta_gen2_resuelto(calc_id, spec, _lee_decisiones())
         # Misma maquina que `estado_calc()` (P1, NC-0010): no una segunda
         # implementacion del mismo estado. `spec.yaml` ya existe (se
         # verifico arriba) y `evalua_preflight` por defecto es False, asi
@@ -2382,11 +2644,135 @@ def _lee_oferta(verifica: bool) -> list[dict]:
             "calc_id": calc_id, "spec": spec, "ejec": ejec or {},
             "valores": valores, "sello": sello, "estado": estado,
             "generacion": generacion, "cuenta_gen2": cuenta,
+            "motivo_cuenta_gen2": motivo_cuenta,
+            "envuelto_legacy": "SI" if _inputs_legacy_de(spec) else "NO",
             "replay": replay, "contexto": contexto,
             "hashes_faltantes": faltan,
             "repite_de": str(spec.get("repite_de") or ""),
         })
+
+    # ACTO GEN2-T9 · P1: el cierre transitivo corre DESPUES de leer todas
+    # las specs -- antes no se puede saber si el padre es envuelto -- y
+    # re-resuelve `cuenta_gen2` de quien se vuelva envuelto por cadena. La
+    # firma de mesa en `decisiones.tsv` sigue mandando sobre ambos.
+    _propaga_envuelto(oferta)
+    decisiones = _lee_decisiones()
+    for o in oferta:
+        if o["envuelto_legacy"] == "SI" and o.get("_via_cadena"):
+            if not decisiones.get(o["calc_id"], "").startswith("cuenta_gen2="):
+                o["cuenta_gen2"] = "NO"
+                o["motivo_cuenta_gen2"] = (
+                    f"regla E.1 por CADENA: consume RESULT de "
+                    f"{o['_via_cadena']}, que es corredor envuelto LEGACY")
     return oferta
+
+
+# ── ACTO GEN2-T9 · P1 · D-1 de mesa, ejecutable ────────────────────────────
+#
+# Firma de mesa verbatim (8/sep/2026): «decision 1 no cuentan como Gen2, no
+# cometamos un error sobre los 600 PR's que ya cagamos».
+#
+# LA REGLA, con nombre (E.1): NINGUN `CALC` cuyo input resuelva a
+# `milpa/tramite.yaml`, `milpa/procedencia.yaml` o `corridas-R/M/L` cuenta
+# como GEN2, POR COMPLETA QUE SEA SU CADENA. Un corredor envuelto puede tener
+# spec endurecida, sello valido y `verify REPRODUCE/IDENTICO` -- y aun asi el
+# numero que emite viene del aparato GEN1. La calidad de la envoltura no
+# cambia la procedencia del numero.
+#
+# Se aplica MECANICAMENTE sobre los inputs DECLARADOS de la spec: no se
+# edita ningun `spec.yaml` sellado (E.3), y `decisiones.tsv` es donde mesa
+# firma el caso por caso.
+INSUMOS_LEGACY_GEN1 = (
+    "milpa/tramite.yaml",
+    "milpa/procedencia.yaml",
+    "forense/prereg-duelo-v2/corridas-R/",
+    "forense/prereg-duelo-v2/corridas-M/",
+    "forense/prereg-duelo-v2/corridas-L/",
+)
+
+
+def _inputs_legacy_de(spec: dict) -> list[str]:
+    """Los inputs DECLARADOS de la spec que caen bajo la regla E.1.
+
+    Lee `inputs[].ruta` -- lo que la spec declara --, no el disco: una spec
+    que no declara su insumo ya falla antes, en `_resuelve_inputs`.
+    """
+    malos = []
+    for entrada in (spec.get("inputs") or []):
+        if not isinstance(entrada, dict):
+            continue
+        ruta = str(entrada.get("ruta") or "")
+        for patron in INSUMOS_LEGACY_GEN1:
+            if ruta == patron or ruta.startswith(patron):
+                malos.append(f"{entrada.get('id') or '?'}={ruta}")
+                break
+    return malos
+
+
+RE_CALC_RESULTADOS = re.compile(
+    r"^data/corrida0/(CALC-[A-Za-z0-9_.\-]+)/resultados\.json$")
+
+
+def _propaga_envuelto(oferta: list[dict]) -> None:
+    """Cierre TRANSITIVO de la regla E.1 sobre la cadena de CALC.
+
+    «...por completa que sea su cadena» no es una figura retorica: un
+    agregado cuyos inputs son `RESULT-*` de un corredor envuelto hereda la
+    procedencia de esos numeros. `CALC-AGG-marco-M-sorteado-v1_3` no nombra
+    `milpa/tramite.yaml` en ningun input -- consume
+    `CALC-M-.../resultados.json` --, y sin este cierre habria pasado por GEN2
+    limpio leyendo cifras del emisor GEN1. Es exactamente el error que D-1
+    manda no repetir.
+
+    Punto fijo sobre el grafo declarado de inputs; termina porque el conjunto
+    de envueltos solo crece y esta acotado por el numero de CALC.
+    """
+    por_id = {o["calc_id"]: o for o in oferta}
+    cambio = True
+    while cambio:
+        cambio = False
+        for o in oferta:
+            if o["envuelto_legacy"] == "SI":
+                continue
+            for entrada in (o["spec"].get("inputs") or []):
+                if not isinstance(entrada, dict):
+                    continue
+                m = RE_CALC_RESULTADOS.match(str(entrada.get("ruta") or ""))
+                if not m:
+                    continue
+                padre = por_id.get(m.group(1))
+                if padre is not None and padre["envuelto_legacy"] == "SI":
+                    o["envuelto_legacy"] = "SI"
+                    o["_via_cadena"] = m.group(1)
+                    cambio = True
+                    break
+
+
+def _cuenta_gen2_resuelto(calc_id: str, spec: dict,
+                          decisiones: dict) -> tuple[str, str]:
+    """`(cuenta_gen2, motivo)`. Precedencia DECLARADA, no inventada:
+
+      1. la firma de mesa en `data/corrida0/decisiones.tsv` (D-1);
+      2. la regla E.1 sobre los inputs declarados -- mecanica;
+      3. la etiqueta de la propia spec;
+      4. el default por `generacion`.
+
+    `PENDIENTE-DE-MESA` sobrevive como valor propio cuando ni mesa ni la
+    regla lo resuelven: no se colapsa a `NO` por comodidad del contador.
+    """
+    generacion = _etiqueta(spec, "generacion", "GEN2")
+    decision = decisiones.get(calc_id, "")
+    if decision.startswith("cuenta_gen2="):
+        valor = decision.split("=", 1)[1].split("·")[0].strip()
+        return valor, f"decision de mesa (`decisiones.tsv`): {_limpia(decision)}"
+    legacy = _inputs_legacy_de(spec)
+    if legacy:
+        return "NO", ("regla E.1 (ACTO GEN2-T9, D-1): input LEGACY GEN1 "
+                      + ", ".join(legacy))
+    etiqueta = _etiqueta(spec, "cuenta_gen2", None)
+    if etiqueta is not None:
+        return etiqueta, "etiqueta de la spec"
+    return ("NO" if generacion == GENERACION_LEGADO else "SI"), "default por generacion"
 
 
 def _filas_registro(verifica: bool = False) -> dict:
@@ -2419,6 +2805,11 @@ def _filas_registro(verifica: bool = False) -> dict:
             "corrida_id": c["corrida_id"], "origen": "DEMANDA",
             "spec_id": c["medidor_o_spec_candidato"], "estado": "PENDIENTE",
             "generacion": "GEN2-PENDIENTE", "cuenta_gen2": "SI",
+            # Una corrida DEMANDADA todavia no tiene spec: no hay inputs
+            # declarados sobre los que la regla E.1 pueda pronunciarse.
+            "envuelto_legacy": "PENDIENTE",
+            "motivo_cuenta_gen2": "demanda sin spec: la regla E.1 se evalua "
+                                  "cuando la spec declare sus inputs",
             "spec_yaml_sha256": "PENDIENTE", "script_path": "PENDIENTE",
             "script_blob_sha256": "PENDIENTE", "codigo_commit": "PENDIENTE",
             "fecha": "PENDIENTE", "n_resultados": c["n_resultados"],
@@ -2485,6 +2876,8 @@ def _filas_registro(verifica: bool = False) -> dict:
             "corrida_id": corrida_id, "origen": "OFERTA", "spec_id": calc_id,
             "estado": estado, "generacion": o["generacion"],
             "cuenta_gen2": o["cuenta_gen2"],
+            "envuelto_legacy": o["envuelto_legacy"],
+            "motivo_cuenta_gen2": o["motivo_cuenta_gen2"],
             "spec_yaml_sha256": ejec.get("spec_yaml_sha256") or NO_DECLARADO,
             "script_path": ejec.get("script_path") or str(spec.get("script") or NO_DECLARADO),
             "script_blob_sha256": ejec.get("script_blob_sha256") or NO_DECLARADO,
@@ -2719,7 +3112,17 @@ def status(imprime: bool = True) -> dict:
         # aparato pero NO cuentan como medicion GEN2.
         "replays_legacy_sellados": sum(1 for f in corridas
                                        if f["origen"] == "OFERTA"
-                                       and f["cuenta_gen2"] == "NO" and sellada(f)),
+                                       and f["cuenta_gen2"] == "NO"
+                                       and f["envuelto_legacy"] != "SI"
+                                       and sellada(f)),
+        # ACTO GEN2-T9 · P1 · D-1: los corredores ENVUELTOS -- spec GEN2,
+        # sello valido, `verify REPRODUCE`, y aun asi cero GEN2 porque su
+        # insumo es el aparato GEN1 (regla E.1). Se cuentan APARTE y nunca
+        # entran a `N_corridas_selladas`: es el contador que evita repetir
+        # sobre los corredores el error que ya se pago en 600 PR.
+        "corredores_envueltos_legacy": sum(
+            1 for f in corridas
+            if f["origen"] == "OFERTA" and f["envuelto_legacy"] == "SI"),
     }
     if imprime:
         for clave, valor in c.items():

@@ -444,7 +444,12 @@ def t_ejecuta_reporta_el_fallo_como_hecho():
 def t_decisiones_tsv_se_lee():
     caso = "decisiones.tsv (D9/D10 · FP-339) se lee y trae las 7 filas"
     decisiones = C._lee_decisiones()
-    _afirma(len(decisiones) == 7, caso, f"se esperaban 7 objetos, hay {len(decisiones)}")
+    # ACTO GEN2-T9: `decisiones.tsv` es la tabla de las firmas de mesa sobre
+    # objetos del registro y CRECE (D-1 añadio las suyas). Lo que este caso
+    # verifica son las SIETE de FP-339, por presencia -- no que el archivo
+    # tenga exactamente siete filas, que convertiria cada firma nueva de mesa
+    # en un FAIL de la suite.
+    _afirma(len(decisiones) >= 7, caso, f"se esperaban >=7 objetos, hay {len(decisiones)}")
     for objeto in ("TRA-M-02", "TRA-M-03", "TRA-M-07"):
         _afirma(decisiones.get(objeto) == "M_vivo=__v1_3", caso,
                 f"{objeto} deberia decidir M_vivo=__v1_3, trae {decisiones.get(objeto)!r}")
@@ -472,8 +477,10 @@ def t_cmd_demanda_aplica_fp339():
     _afirma(codigo == 0, caso, f"cmd_demanda devolvio {codigo}")
     salida_err = buf_err.getvalue()
     salida_out = buf_out.getvalue()
-    _afirma("decisiones_aplicadas (FP-339) = 7" in salida_out, caso,
-            f"no se declaro la aplicacion de las 7 decisiones: {salida_out!r}")
+    _afirma("decisiones_aplicadas = " in salida_out, caso,
+            f"no se declaro la aplicacion de las decisiones: {salida_out!r}")
+    _afirma("decisiones_aplicadas[FP-339] = 7" in salida_out, caso,
+            f"no se declararon las 7 decisiones de FP-339: {salida_out!r}")
     for fragmento in ("TRA-M-02", "TRA-M-03", "TRA-M-07",
                       "dinero.ahorro.tiene_ahorros",
                       "familia.apoyo.recibe_dinero_familiares"):
