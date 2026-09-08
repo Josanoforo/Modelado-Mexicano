@@ -4322,6 +4322,25 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # GEN2-T10 arriba: un encargo verbatim no se edita para complacer un
     # test (A.3).
     "forense/encargos/2026-09-08-GEN2-T11-RUTINAS-FIX.md",
+    # ACTO GEN2-UNIVERSO-C, 8/sep/2026: encargo archivado VERBATIM (0-bis
+    # A.3), pegado en el mensaje que invocó `/acto`. Cita "E5" pelado una
+    # vez, dentro de la línea de cabecera "COMPUERTA: GEN2-E5 fusionado" --
+    # referencia de PROCEDENCIA al rótulo `GEN2-E5`, ya censado en
+    # `canon/registro-rotulos.tsv:239` (`E · GEN2-E5`), no un rótulo nuevo
+    # que este acto reclame. Mismo patrón que las exenciones hermanas de
+    # GEN2-E5/GEN2-E5-0 de arriba: un encargo verbatim no se edita para
+    # complacer un test (A.3).
+    "forense/encargos/2026-09-08-GEN2-UNIVERSO-C-TANDAS-Y-ENAFIN.md",
+    # ACTO GEN2-UNIVERSO-C, 8/sep/2026: la NOTA del acto (§0, premisa
+    # verificada). Cita "M18" pelado una vez, como PROCEDENCIA: es el id de
+    # momento ya existente en `milpa/catalogo-momentos-v0_1.tsv:19` (fila
+    # `M18 · R8.2 · N29 · HOLDOUT`), citado para mostrar de dónde sale el
+    # mapeo `R8.2 -> N29` que el encargo asume -- no un rótulo nuevo que
+    # este acto reclame ni censo. El habitante `M18` en sí no está censado
+    # en `canon/registro-rotulos.tsv` desde antes de este acto; corregir
+    # ese hueco es de quien mantenga el censo del catálogo de momentos, no
+    # de este acto (fuera de perímetro: este acto no toca `milpa/`).
+    "forense/notas/2026-09-08-GEN2-UNIVERSO-C-tandas-enafin.md",
 }
 
 
@@ -4657,11 +4676,13 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 18:
+    if len(diffs_csv) != 21:
         fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
-                         f"18 líneas distintas (20, 29, 35, 37, 38, 40, 47, 51, 63, 94, 97, 114, "
-                         f"117, 119, 121, 123, 124, 125) el 8/sep/2026 (ACTO GEN2-CIERRES-GRUPO-A); "
-                         f"hoy da "
+                         f"21 líneas distintas (20, 29, 35, 37, 38, 40, 47, 50, 51, 63, 94, 97, "
+                         f"114, 117, 119, 121, 123, 124, 125, 136, 139) el 8/sep/2026 (ACTO "
+                         f"GEN2-UNIVERSO-C, tras actualizar filas 9/10/50 y añadir filas 136-139 "
+                         f"de cola-adquisicion-registro.tsv -- ver forense/notas/2026-09-08-"
+                         f"GEN2-UNIVERSO-C-tandas-enafin.md); hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")
@@ -5036,6 +5057,20 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # `milpa/tramite.yaml` ni en `milpa/tramite-ola5-propuesta-v0.yaml`) --
     # consistente con que este acto no toca el motor ni mide nada.
     "forense/encargos/2026-09-08-GEN2-TRAMITE-TABLERO-1.md",
+    # ACTO GEN2-UNIVERSO-C, 8/sep/2026: encargo archivado VERBATIM (0-bis
+    # A.3), que no se edita para complacer un test (misma regla que rige
+    # T25). Cita `R8.2` como motivación del hueco de modelo que sondea (el
+    # objeto del acto es adquisición/sondeo de fuentes, no clasificar,
+    # pre-registrar, cargar ni sellar la regla).
+    #
+    # Veredicto REAL de `python3 tools/ya_medido.py R8.2` (corrido, última
+    # línea): `NUNCA-MEDIDA` (resuelve a `cooperacion.tanda.conoce_organizadora`
+    # por canon; sin apariciones en `milpa/tramite.yaml` ni en
+    # `milpa/tramite-ola5-propuesta-v0.yaml` ni en `forense/prereg-caja/`) --
+    # ya tiene veredicto Hito D (GEN1) archivado = B (ADR-199), aparato
+    # distinto, no reabierto aquí. Salida completa citada en
+    # `forense/notas/2026-09-08-GEN2-UNIVERSO-C-tandas-enafin.md` §0.
+    "forense/encargos/2026-09-08-GEN2-UNIVERSO-C-TANDAS-Y-ENAFIN.md",
 }
 
 
