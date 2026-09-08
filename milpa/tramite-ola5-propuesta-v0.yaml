@@ -3907,3 +3907,46 @@ reglas_propuestas:
     payload_manifiesto_id: ennvih1_2002_hogar_dta
     spec: "prereg-caja-S6-L16 v1.1 -- forense/prereg-caja/S6-L16-spec-v1_1.md, sha256 7a0120a3a471fe81a732035dec6c2a9ed292d9b722cc408248eaec96d2e6643a"
     medido_en: "ACTO MAESTRA38-L16-BIS-2, 7/sep/2026 -- forense/notas/2026-09-07-MAESTRA38-L16-BIS-2-resultados.md; data/l16bis2-atencion-grave-rama-a-v1_0.json"
+
+  # ══════════════════════════════════════════════════════════════════
+  # ACTO GEN2-E5 · CALC-0001..0003 — primeras cifras GEN2 selladas
+  # (8/sep/2026). Entradas PENDIENTE-DE-MESA que CITAN el RESULT sellado
+  # por `corrida0_resultado_id`. El motor no carga este archivo; estas
+  # entradas no adoptan nada — hacen visible al registro qué produjo la
+  # corrida y quedan a decisión de mesa. `corrida0_generacion: GEN2` es
+  # la señal independiente que T35 exige para no leerlas como legacy.
+  # ══════════════════════════════════════════════════════════════════
+
+  - id: civico.voto_alineado.clientelar_cses2015
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA  # el contraste pre-registrado por S12 §4
+        # (T1 = le ofrecieron/amenazaron vs. T0 = no) NO ES ESTIMABLE con estos
+        # datos, y la corrida lo dice con su propio número: N-T0 = 0 en los
+        # CUATRO brazos. No es una n pequeña ni un filtro mal escrito — es
+        # estructural: el desenlace ALINEADO se construye sobre `pcyc13_1` /
+        # `pcyc14_1` («¿qué partido le ofreció / lo amenazó?»), preguntas que
+        # sólo existen para quien contestó «sí». El brazo control no tiene
+        # partido con el cual alinearse, así que el desenlace está indefinido
+        # ahí por construcción. Control positivo sobre el dato crudo: el código
+        # `2 = No` SÍ existe y es mayoritario (pcyc13: 1130 filas · pcyc14:
+        # 1165 filas, poselectoral), de modo que el 0 no viene de un código mal
+        # resuelto. Ver forense/notas/2026-09-08-GEN2-E5-corridas-selladas.md.
+    entonces:
+      - {conducta: voto_alineado_tras_oferta, p: null, clase: "NO-ESTIMABLE·contraste-sin-brazo-control",
+         corrida0_resultado_id: RESULT-C1-POSEL-OFERTA-VEREDICTO, corrida0_generacion: GEN2}
+      - {conducta: voto_alineado_tras_amenaza, p: null, clase: "NO-ESTIMABLE·contraste-sin-brazo-control",
+         corrida0_resultado_id: RESULT-C1-POSEL-AMENAZA-VEREDICTO, corrida0_generacion: GEN2}
+    porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["CIDE-CSES2015"]
+    ola_calibracion: "CIDE-CSES 2015 (poselectoral y preelectoral) — única ola que S12 pre-registra"
+    ic95: null
+    n: "N-T1 = 42 (POSEL/OFERTA) · 14 (POSEL/AMENAZA) · 23 (PREEL/OFERTA) · 10 (PREEL/AMENAZA); N-T0 = 0 en los cuatro"
+    ponderador: "PONDFIN (prescrito por la spec y aplicado)"
+    universo: "adultos con desenlace no faltante; el brazo T0 queda vacío por construcción del desenlace, no por el filtro"
+    sha256_payload: "1ef01a17fe6ca10b73db9e988ac4dacac766a6b0759af43f1fd690d3f60d4d80"
+    payload_manifiesto_id: cide_cses2015_nacional_poselectoral
+    spec: "prereg-caja-S12 — forense/prereg-caja/S12-CSES-spec-v1_0.md, sha256 870522a34d9538454b5b774ddc33e46f9cd8e8d62a20f31b2d972f9755447336; cara local data/corrida0/CALC-0001/spec.yaml"
+    medido_en: "ACTO GEN2-E5 · CALC-0001, 8/sep/2026 — corrida sellada CALC-0001--174c269a07b6, data/corrida0/CALC-0001/resultados.json"
