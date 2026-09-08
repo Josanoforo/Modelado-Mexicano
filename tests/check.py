@@ -2634,6 +2634,17 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # acto reclame. Un encargo verbatim no se edita para complacer un test --
     # mismo patron que GEN2-T8 abajo.
     "forense/encargos/2026-09-08-GEN2-V213-SELLA-INSTRUCCIONES-Y-REENCOLA.md",
+    # ACTO GEN2-E7 · READINESS-2, 8/sep/2026: encargo archivado VERBATIM
+    # (0-bis A.3). Su cuerpo se nombra a si mismo "E7" pelado ("E7 · ACTO
+    # GEN2-E7 · READINESS-2") y cita "E6"/"E5"/"E3.1" igual de pelados,
+    # porque asi los escribe el mensaje de lanzamiento de mesa: son el
+    # rotulo del propio acto y referencias de procedencia a la serie
+    # `E · GEN2-E0..GEN2-E7` ya censada en canon/registro-rotulos.tsv, no
+    # rotulos nuevos. El acto se declara `ACTO GEN2-E7` en forma larga en
+    # todo archivo propio que escribe (nota y ADR). Mismo patron, y misma
+    # razon, que las exenciones hermanas de arriba: un encargo verbatim no
+    # se edita para complacer un test (A.3).
+    "forense/encargos/2026-09-08-GEN2-E7-READINESS-2.md",
     # ACTO GEN2-T8 · A.14/CERO-RAMAS/RETROFIT, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3). Cita "E7" y "E3.1" con su prefijo GEN2- completo,
     # pero también "E4" pelado dos veces ("cuatro los cierra E3.1... la
