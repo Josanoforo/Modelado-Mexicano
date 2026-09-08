@@ -382,6 +382,244 @@ def t_gonogo_marco_vigente_unico_atrapa_dos_marcos() -> None:
                f"el detector de marcos no vio v1_1: {encontrados}")
 
 
+# ── ACTO GEN2-T9 · P1 · la regla E.1, y su cierre transitivo ───────────────
+#
+# D-1 (mesa, 8/sep/2026): «decision 1 no cuentan como Gen2, no cometamos un
+# error sobre los 600 PR's que ya cagamos». La regla que este acto escribe con
+# nombre: NINGUN CALC cuyo input resuelva a `milpa/tramite.yaml`,
+# `milpa/procedencia.yaml` o `corridas-R/M/L` cuenta como GEN2, POR COMPLETA
+# QUE SEA SU CADENA.
+#
+# Estos casos corren sobre SPECS SINTETICAS, no sobre el arbol: lo que se
+# prueba es la REGLA, no el estado de hoy de `decisiones.tsv`. Un test que
+# solo leyera el arbol pasaria en verde el dia que alguien borre una fila.
+
+def _corrida0():
+    return _carga(RAIZ / "tools/corrida0.py", "corrida0_t9")
+
+
+def t_e1_input_legacy_directo_nunca_cuenta_gen2() -> None:
+    C = _corrida0()
+    for ruta in ("milpa/tramite.yaml", "milpa/procedencia.yaml",
+                 "forense/prereg-duelo-v2/corridas-M/M-TRA-M-02__v1_3.json",
+                 "forense/prereg-duelo-v2/corridas-R/R-CIV-M-01.json",
+                 "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01.json"):
+        spec = {"etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI"},
+                "inputs": [{"id": "IN-X", "origen": "repo", "ruta": ruta}]}
+        cuenta, motivo = C._cuenta_gen2_resuelto("CALC-FICTICIO", spec, {})
+        if cuenta != "NO":
+            _falla("t_e1_input_legacy_directo_nunca_cuenta_gen2",
+                   f"{ruta}: la spec dice cuenta_gen2=SI y la regla E.1 la "
+                   f"dejo en {cuenta!r} ({motivo})")
+
+
+def t_e1_no_marca_lo_que_no_es_legacy() -> None:
+    """La regla no puede ser un sello de goma: una spec sin insumo legado
+    conserva su etiqueta. Sin este caso, `cuenta_gen2` seria siempre NO y el
+    test de arriba pasaria por construccion."""
+    C = _corrida0()
+    spec = {"etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI"},
+            "inputs": [{"id": "IN-X", "origen": "repo",
+                        "ruta": "data/inventario-reactivos-v1_2.tsv"}]}
+    cuenta, _ = C._cuenta_gen2_resuelto("CALC-LIMPIO", spec, {})
+    if cuenta != "SI":
+        _falla("t_e1_no_marca_lo_que_no_es_legacy",
+               f"una spec sin insumo legado quedo en {cuenta!r}")
+
+
+def t_e1_es_transitiva_por_la_cadena() -> None:
+    """El caso que motiva el cierre: un agregado que NO nombra ningun archivo
+    legado, pero consume los RESULT de quien si lo hace. Sin transitividad
+    habria pasado por GEN2 limpio leyendo cifras del emisor GEN1."""
+    C = _corrida0()
+    padre = {"calc_id": "CALC-PADRE", "envuelto_legacy": "SI",
+             "spec": {"inputs": [{"id": "IN-T", "ruta": "milpa/tramite.yaml"}]},
+             "cuenta_gen2": "NO", "motivo_cuenta_gen2": "directo"}
+    hijo = {"calc_id": "CALC-HIJO", "envuelto_legacy": "NO",
+            "spec": {"inputs": [{"id": "IN-P", "ruta":
+                                 "data/corrida0/CALC-PADRE/resultados.json"}]},
+            "cuenta_gen2": "SI", "motivo_cuenta_gen2": "etiqueta de la spec"}
+    nieto = {"calc_id": "CALC-NIETO", "envuelto_legacy": "NO",
+             "spec": {"inputs": [{"id": "IN-H", "ruta":
+                                  "data/corrida0/CALC-HIJO/resultados.json"}]},
+             "cuenta_gen2": "SI", "motivo_cuenta_gen2": "etiqueta de la spec"}
+    # Orden deliberado: el nieto ANTES que el hijo. Un cierre implementado
+    # como una sola pasada en el orden de la lista lo dejaria fuera.
+    oferta = [nieto, hijo, padre]
+    C._propaga_envuelto(oferta)
+    for o in (hijo, nieto):
+        if o["envuelto_legacy"] != "SI":
+            _falla("t_e1_es_transitiva_por_la_cadena",
+                   f"{o['calc_id']} no heredo el envuelto por cadena")
+
+
+def t_e1_la_firma_de_mesa_manda_sobre_la_regla() -> None:
+    """`decisiones.tsv` es la fuente unica de decisiones de mesa (ADR-91).
+    Si mesa firma un valor, la regla mecanica no lo pisa."""
+    C = _corrida0()
+    spec = {"etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI"},
+            "inputs": [{"id": "IN-T", "origen": "repo", "ruta": "milpa/tramite.yaml"}]}
+    cuenta, motivo = C._cuenta_gen2_resuelto(
+        "CALC-FIRMADO", spec, {"CALC-FIRMADO": "cuenta_gen2=NO · insumo LEGACY"})
+    if cuenta != "NO" or "decision de mesa" not in motivo:
+        _falla("t_e1_la_firma_de_mesa_manda_sobre_la_regla",
+               f"cuenta={cuenta!r} motivo={motivo!r}")
+
+
+def t_los_cinco_corredores_envueltos_estan_declarados() -> None:
+    """El contador de D-1 sobre el arbol real: los cinco CALC que envuelven el
+    aparato GEN1 estan los cinco en `decisiones.tsv` con cuenta_gen2=NO."""
+    C = _corrida0()
+    decisiones = C._lee_decisiones()
+    for calc in ("CALC-M-marco-M-sorteado-v1_3",
+                 "CALC-AGG-marco-M-sorteado-v1_3",
+                 "CALC-M-marco-M-sorteado-v1_3-ola",
+                 "CALC-AGG-marco-M-sorteado-v1_3-ola",
+                 "CALC-MOTOR-celdas-semilla"):
+        d = decisiones.get(calc, "")
+        if not d.startswith("cuenta_gen2=NO"):
+            _falla("t_los_cinco_corredores_envueltos_estan_declarados",
+                   f"{calc} no trae cuenta_gen2=NO en decisiones.tsv: {d!r}")
+
+
+# ── ACTO GEN2-T9 · P3(c) · modulacion por ola ──────────────────────────────
+
+def _mola():
+    return _carga(RAIZ / "data/corrida0/CALC-M-marco-M-sorteado-v1_3-ola/medidor.py",
+                  "medidor_mola_t9")
+
+
+def t_ola_loo_nunca_usa_la_ola_del_arbitro() -> None:
+    """El invariante que hace del duelo un duelo: si M leyera la misma ola que
+    el arbitro, estaria copiando su respuesta del examen que se le aplica."""
+    mod = _mola()
+    serie = [{"ola": 2011, "p": 0.1}, {"ola": 2013, "p": 0.2}, {"ola": 2015, "p": 0.3}]
+    for arbitro in (2011, 2013, 2015):
+        elegida = mod._loo(arbitro, serie)
+        if elegida is None or mod._ola_entera(elegida["ola"]) == arbitro:
+            _falla("t_ola_loo_nunca_usa_la_ola_del_arbitro",
+                   f"arbitro={arbitro} -> {elegida}")
+
+
+def t_ola_loo_desempata_hacia_la_anterior() -> None:
+    """Empate a distancia 2: 2011 y 2015 contra un arbitro en 2013. La regla
+    declarada es «la anterior»; sin ella el resultado dependeria del orden en
+    que el YAML trajo la serie -- por eso se prueba con la lista INVERTIDA."""
+    mod = _mola()
+    serie = [{"ola": 2015, "p": 0.3}, {"ola": 2011, "p": 0.1}]
+    elegida = mod._loo(2013, serie)
+    if mod._ola_entera(elegida["ola"]) != 2011:
+        _falla("t_ola_loo_desempata_hacia_la_anterior",
+               f"con la serie invertida eligio {elegida}")
+
+
+def t_ola_sin_serie_declara_no_y_no_inventa() -> None:
+    mod = _mola()
+    if mod._loo(2020, []) is not None:
+        _falla("t_ola_sin_serie_declara_no_y_no_inventa",
+               "devolvio una ola con la serie vacia")
+
+
+def t_ola_no_colapsa_el_universo() -> None:
+    """D-2: «no colapsamos». Las 14 celdas siguen siendo 14 despues de modular."""
+    mod = _mola()
+    salida = mod.medir(
+        {"IN-MARCO-M-SORTEADO-V1-3": _entrada_de("IN-MARCO-M-SORTEADO-V1-3", MARCO_REL),
+         "IN-TRAMITE": _entrada_de("IN-TRAMITE", "milpa/tramite.yaml")}, {})
+    n = salida["RESULT-MOLA-N-CELDAS"]
+    con, sin = salida["RESULT-MOLA-N-CON-SERIE"], salida["RESULT-MOLA-N-SIN-SERIE"]
+    if n != 14 or con + sin != n:
+        _falla("t_ola_no_colapsa_el_universo",
+               f"n={n} con_serie={con} sin_serie={sin} -- la particion no cubre el universo")
+    marcas = [k for k in salida if k.endswith("-MODELA-OLA")]
+    if len(marcas) != 14:
+        _falla("t_ola_no_colapsa_el_universo",
+               f"{len(marcas)} celdas declaran modela_ola, se esperaban 14")
+
+
+def t_ola_ancla_f_dd_a_la_ola_usada_no_a_la_del_arbitro() -> None:
+    """Si el punto viene de 2013, el ancla de F-DD es 2013. Anclarlo a la ola
+    del arbitro seria puntuar un numero con el ancla de otro."""
+    mod = _mola()
+    salida = mod.medir(
+        {"IN-MARCO-M-SORTEADO-V1-3": _entrada_de("IN-MARCO-M-SORTEADO-V1-3", MARCO_REL),
+         "IN-TRAMITE": _entrada_de("IN-TRAMITE", "milpa/tramite.yaml")}, {})
+    for clave, valor in salida.items():
+        if not clave.endswith("-ANCLA-F-DD"):
+            continue
+        cid = clave[len("RESULT-MOLA-"):-len("-ANCLA-F-DD")]
+        marca = salida[f"RESULT-MOLA-{cid}-MODELA-OLA"]
+        if f"ola_usada={valor}" not in marca:
+            _falla("t_ola_ancla_f_dd_a_la_ola_usada_no_a_la_del_arbitro",
+                   f"{cid}: ancla={valor} pero la marca dice {marca!r}")
+
+
+# ── ACTO GEN2-T9 · P4(i) · la cola cierra solo con TODAS las piezas ────────
+
+def _cierre_acto():
+    import sys as _sys
+    ruta_tools = str(RAIZ / "tools")
+    if ruta_tools not in _sys.path:
+        _sys.path.insert(0, ruta_tools)
+    return _carga(RAIZ / "tools/cierre_acto.py", "cierre_acto_t9")
+
+
+_CONSUMIDO_PARCIAL = """## CONSUMIDO
+
+Pieza C ejecutada por `PR #612`.
+
+Las piezas A y B se consumen en su propio PR.
+"""
+
+_CONSUMIDO_COMPLETO = """## CONSUMIDO
+
+Pieza C ejecutada por `PR #612`.
+
+Piezas A, B y D ejecutadas por `PR #613`.
+"""
+
+
+def t_cola_piezas_parciales_no_cierran() -> None:
+    """El defecto que P4(i) corrige: una pieza consumida cerraba la cola
+    entera. Una pieza NOMBRADA pero sin `PR #<n>` en su linea esta declarada
+    y NO marcada."""
+    mod = _cierre_acto()
+    declaradas, marcadas, prs = mod.piezas_de_consumido(_CONSUMIDO_PARCIAL)
+    if sorted(declaradas) != ["A", "B", "C"] or sorted(marcadas) != ["C"]:
+        _falla("t_cola_piezas_parciales_no_cierran",
+               f"declaradas={sorted(declaradas)} marcadas={sorted(marcadas)}")
+    if prs != ["612"]:
+        _falla("t_cola_piezas_parciales_no_cierran", f"prs={prs}")
+
+
+def t_cola_piezas_completas_cierran_con_todos_los_pr() -> None:
+    mod = _cierre_acto()
+    declaradas, marcadas, prs = mod.piezas_de_consumido(_CONSUMIDO_COMPLETO)
+    if declaradas != marcadas or sorted(declaradas) != ["A", "B", "C", "D"]:
+        _falla("t_cola_piezas_completas_cierran_con_todos_los_pr",
+               f"declaradas={sorted(declaradas)} marcadas={sorted(marcadas)}")
+    if prs != ["612", "613"]:
+        _falla("t_cola_piezas_completas_cierran_con_todos_los_pr",
+               f"se esperaban los dos PR en orden de aparicion, hubo {prs}")
+
+
+def t_cola_la_y_no_es_una_pieza() -> None:
+    """`piezas A y B` son DOS piezas, no tres. La conjuncion inflaba el
+    denominador y hacia que una cola completa se reportara parcial."""
+    mod = _cierre_acto()
+    declaradas, _, _ = mod.piezas_de_consumido(
+        "## CONSUMIDO\n\nPiezas A y B ejecutadas por `PR #1`.\n")
+    if sorted(declaradas) != ["A", "B"]:
+        _falla("t_cola_la_y_no_es_una_pieza", f"declaradas={sorted(declaradas)}")
+
+
+def t_cola_sin_consumido_no_declara_piezas() -> None:
+    mod = _cierre_acto()
+    d, m, prs = mod.piezas_de_consumido("Un encargo cualquiera, pieza A, sin seccion.")
+    if d or m or prs:
+        _falla("t_cola_sin_consumido_no_declara_piezas", f"{d} {m} {prs}")
+
+
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]
 
 

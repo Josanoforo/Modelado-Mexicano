@@ -2604,6 +2604,32 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ, 8/sep/2026: encargo archivado
+    # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`. Trae
+    # rótulos pelados de DOS clases, ninguna de ellas nueva:
+    #   · `M1` -- la primera de las seis M del sello del motor (`ADR-91`,
+    #     `ADR-100`, `ADR-MOTOR-2`), citada aquí en su firma verbatim de mesa
+    #     ("M1 cómputo matricial como definición del ejecutable"). Es la cita
+    #     de una firma de 17/ago/2026, no un rótulo que este acto reclame;
+    #     censada en `canon/registro-rotulos.tsv` bajo la serie `M · M1..M6`.
+    #   · `E5-0`/`E7`/`E3.1`/`C0-A`/`C0-B`/`C0-C`/`C0-D`/`D11`/`D-1`/`D-2` --
+    #     referencias de PROCEDENCIA a la serie `E · GEN2-E0..GEN2-E7`, a la
+    #     serie `C · C0-A..C0-D` del plan v2.0 y a las decisiones de mesa,
+    #     ya censadas. Mismo patrón, y misma razón, que las exenciones
+    #     hermanas de PRE-E5/V213/E6/E7: un encargo verbatim no se edita para
+    #     complacer un test (A.3).
+    "forense/encargos/2026-09-08-GEN2-T9-MOTOR-MATRICIAL.md",
+    # ACTO GEN2-T9, mismas dos razones, en los dos documentos que el acto
+    # escribe: ambos CITAN la firma de mesa de `ADR-91` verbatim -- «M1
+    # cómputo matricial como definición del ejecutable» -- y `M1` es ahí el
+    # primero de los seis sellos del motor (`M1`-`M6`, `ADR-100`,
+    # `ADR-MOTOR-2`), ya censado en `canon/registro-rotulos.tsv`. No es un
+    # rótulo nuevo que estos documentos reclamen: es la cita de una firma de
+    # 17/ago/2026, y prefijarla la volvería una cita que mesa no dio.
+    # `canon/gobernanza-v1_15.md` lleva ese mismo `M1` pelado por la misma
+    # razón desde `ADR-100`.
+    "forense/notas/2026-09-08-GEN2-T9-motor-matricial-y-unidad-de-celda.md",
+    "forense/notas/2026-09-08-GEN2-E7-paso-3-unidad-de-celda.md",
     # ACTO GEN2-PRE-E5 · CABLEADO-Y-AUTOMATIZACION-FINAL, 8/sep/2026: encargo
     # archivado VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`.
     # Cita "E5-0"/"E5"/"E6"/"E7"/"V213" pelados repetidamente ("ORDEN:
@@ -5204,6 +5230,18 @@ def t37_cola_sincronizada():
              f"`cola_desincronizada` no pudo correr: {type(exc).__name__}: {exc}")
         return
     for fila in filas:
+        # ACTO GEN2-T9 · P4(i): una cola con piezas a medias NO es lo mismo
+        # que una cola sin sincronizar, y decirlo con el mismo texto era como
+        # se perdia la diferencia. `PARCIAL` nombra cuantas piezas faltan.
+        if not fila.get("completa", True):
+            fail("T-COLA-SINCRONIZADA",
+                 f"{fila['cola']} PARCIAL: {fila['piezas_consumidas']} de "
+                 f"{fila['piezas_totales']} piezas con `## CONSUMIDO` "
+                 f"(declaradas={fila.get('piezas_declaradas')}, "
+                 f"marcadas={fila.get('piezas_marcadas')}) -- la cola no cierra "
+                 f"hasta que estén todas; su ESTADO: debe decir "
+                 f"`EN-CURSO (parcial: X de Y)`, no `CONSUMIDO`")
+            continue
         fail("T-COLA-SINCRONIZADA",
              f"{fila['cola']} sigue `ESTADO: {fila['estado_cola']}` pero "
              f"{fila['archivado']} ya trae `## CONSUMIDO`"
