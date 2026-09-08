@@ -4166,6 +4166,24 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # duplicado (mismo patrón que GEN2-E2/FP-338: los actos derivados de la
     # cola GEN2 no re-archivan el encargo, citan la cola directamente) y con
     # él la necesidad de esta exención: la ruta de arriba ya cubre este acto.
+
+    # ACTO GEN2-T10 · BENCHMARK-B-TEMPORAL, 8/sep/2026: encargo archivado
+    # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita
+    # "E5-0/E5" pelados ("CONCURRENCIA: E5-0/E5 (caja) pueden estar
+    # corriendo") -- referencia de PROCEDENCIA a la serie E · GEN2-E0..GEN2-E7
+    # ya censada (`canon/registro-rotulos.tsv`, filas `GEN2-E0..GEN2-E6` y
+    # `GEN2-E5-0`), mismo patrón que la exención hermana de GEN2-T9. Un
+    # encargo verbatim no se edita para complacer un test (A.3).
+    "forense/encargos/2026-09-08-GEN2-T10-BENCHMARK-B-TEMPORAL.md",
+    # ACTO GEN2-T10, mismo acto, el documento que el parche v2 aplica
+    # (`P1`): cita la firma de mesa de `ADR-91` verbatim -- «M1 cómputo
+    # matricial como definición del ejecutable» -- igual que los dos
+    # documentos de GEN2-T9 exentos arriba por la misma razón. `M1` es el
+    # primero de los seis sellos del motor (`ADR-91`, `ADR-100`,
+    # `ADR-MOTOR-2`), ya censado en `canon/registro-rotulos.tsv`; no es un
+    # rótulo nuevo que este documento reclame, y prefijarlo volvería una
+    # cita que mesa no dio.
+    "forense/benchmark-mercado-motores/2026-09-08-propuesta-gen2.md",
 }
 
 
