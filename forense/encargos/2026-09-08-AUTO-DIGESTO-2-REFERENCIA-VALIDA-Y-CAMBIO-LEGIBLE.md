@@ -121,4 +121,4 @@ Completado este parche, terminar el encargo y reportar el digesto listo para aco
 
 ## CONSUMIDO
 
-Ejecutado por [PR #625](https://github.com/Josanoforo/Modelado-Mexicano/pull/625). ADR-405. Ambos ajustes implementados, 6 casos de regresión nuevos (20 en total), `tests/check.py --baseline` VERDE.
+Ejecutado por [PR #625](https://github.com/Josanoforo/Modelado-Mexicano/pull/625). ADR-406 (renumerado de 405 a 406 al fusionar `origin/main`: `ACTO GEN2-T11` tomó el 405 por [PR #624](https://github.com/Josanoforo/Modelado-Mexicano/pull/624)). Ambos ajustes implementados, 6 casos de regresión nuevos (21 en total tras fusionar el caso de GEN2-T11), `tests/check.py --baseline` VERDE.
