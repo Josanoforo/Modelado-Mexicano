@@ -1,0 +1,123 @@
+{
+ "corrida_id": "CALC-M-marco-M-sorteado-v1_3-ola--f7f970085e96",
+ "dependencias_materiales": {
+  "numpy": "AUSENTE",
+  "pandas": "AUSENTE",
+  "pyreadstat": "AUSENTE",
+  "scipy": "AUSENTE",
+  "yaml": "6.0.1"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": false,
+  "firma_que_lo_ordena": "D-2 (mesa, 8/sep/2026): modular por ola, no colapsar",
+  "generacion": "GEN2",
+  "marco_vigente": "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv",
+  "tipo": "CORREDOR-M-ENVUELTO-OLA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-08T07:00:25Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "AUSENTE",
+   "pandas": "AUSENTE",
+   "pyreadstat": "AUSENTE",
+   "scipy": "AUSENTE",
+   "yaml": "6.0.1"
+  },
+  "git_commit": "f7f970085e96c718add4be8bc03b95588f615415",
+  "git_rama": "claude/motor-matricial-d11-demanda-2188aw",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+  "python": "3.11.15",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "NO",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "cloud_default",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "f7f970085e96c718add4be8bc03b95588f615415",
+ "input_ids": [
+  "IN-MARCO-M-SORTEADO-V1-3",
+  "IN-TRAMITE"
+ ],
+ "input_sha256": {
+  "IN-MARCO-M-SORTEADO-V1-3": "f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a",
+  "IN-TRAMITE": "08bdda0bb3f8a6424d495f96f25839bf5df04f6a487649a28359f04cfa69ce86"
+ },
+ "parametros": {
+  "columna_elegible": "elegible_v1_1",
+  "fuente_acto": "ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ · P3(c)",
+  "regla_de_seleccion": "min(|ola - ola_arbitro|) con ola != ola_arbitro; empate -> ola menor"
+ },
+ "python_version": "3.11.15",
+ "resultado_ids": [
+  "RESULT-MOLA-CIV-M-01-MODELA-OLA",
+  "RESULT-MOLA-CIV-M-02-MODELA-OLA",
+  "RESULT-MOLA-CIV-M-04-MODELA-OLA",
+  "RESULT-MOLA-CIV-M-10-MODELA-OLA",
+  "RESULT-MOLA-CIV-M-12-MODELA-OLA",
+  "RESULT-MOLA-CIV-M-13-MODELA-OLA",
+  "RESULT-MOLA-DIN-M-01-MODELA-OLA",
+  "RESULT-MOLA-FAM-M-01-MODELA-OLA",
+  "RESULT-MOLA-FAM-M-05-ANCLA-F-DD",
+  "RESULT-MOLA-FAM-M-05-MODELA-OLA",
+  "RESULT-MOLA-FAM-M-05-P-LOO",
+  "RESULT-MOLA-FAM-M-06-ANCLA-F-DD",
+  "RESULT-MOLA-FAM-M-06-MODELA-OLA",
+  "RESULT-MOLA-FAM-M-06-P-LOO",
+  "RESULT-MOLA-FAM-M-07-ANCLA-F-DD",
+  "RESULT-MOLA-FAM-M-07-MODELA-OLA",
+  "RESULT-MOLA-FAM-M-07-P-LOO",
+  "RESULT-MOLA-N-CELDAS",
+  "RESULT-MOLA-N-CON-SERIE",
+  "RESULT-MOLA-N-SIN-SERIE",
+  "RESULT-MOLA-NO-COLAPSA",
+  "RESULT-MOLA-REGLAS-CON-SERIE",
+  "RESULT-MOLA-TRA-M-02-ANCLA-F-DD",
+  "RESULT-MOLA-TRA-M-02-MODELA-OLA",
+  "RESULT-MOLA-TRA-M-02-P-LOO",
+  "RESULT-MOLA-TRA-M-03-ANCLA-F-DD",
+  "RESULT-MOLA-TRA-M-03-MODELA-OLA",
+  "RESULT-MOLA-TRA-M-03-P-LOO",
+  "RESULT-MOLA-TRA-M-07-ANCLA-F-DD",
+  "RESULT-MOLA-TRA-M-07-MODELA-OLA",
+  "RESULT-MOLA-TRA-M-07-P-LOO"
+ ],
+ "script_blob_sha256": "53a1317b69b2d4f8909dfe561bca0846572c7784c5b0e4a52b198cb4ae5f4610",
+ "script_path": "data/corrida0/CALC-M-marco-M-sorteado-v1_3-ola/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-M-marco-M-sorteado-v1_3-ola",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "8749b8723ee6f896d9bd0cb21d9117baab7aa05b060a2717ddf8c6639a3e872a",
+ "spec_yaml_sha256": "67dde291e076baa2942ea89aaf822167330b48228c2e374a87c20b3b32d28e1e",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Seleccionar una ola no es estocastico y el punto se copia verbatim de serie_olas. La tolerancia cubre solo el redondeo float64 al serializar.",
+  "tipo": "flotante"
+ }
+}
