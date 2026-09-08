@@ -546,3 +546,35 @@ Después:
 Cascada normal de /acto.
 
 No hacer cálculos.
+
+──── FIN DEL CUERPO VERBATIM (A.3) ────
+
+## NO-CORRIDO / RESERVAS
+
+- **P7 · `vigencia`/`delta` (contrato B-6/B-7).** DECISIÓN-DE-MESA-PENDIENTE
+  — `ENCARGOS-GEN2-v1_5` no define su contrato operativo y `delta` no
+  tiene todavía un `valor_gen2` real contra el que medir materialidad; no
+  se inventa definición para llenar el hueco. Impacto: `vigencia`/`delta`
+  siguen `NO-IMPLEMENTADO` (`corrida0.py`), `diferencias_materiales` sigue
+  derivando `0` declarado. Sucesor: SIN-ASIGNAR (mesa define el
+  contrato).
+- **P7 · orquestador general `preflight→run→verify→commit→registro→
+  status`.** FUERA-DE-PERÍMETRO — el propio encargo manda observar
+  `GEN2-E5` sobre tres CALC reales antes de automatizar el ritual.
+  Impacto: ninguno — cada paso de `GEN2-E5` se sigue ejecutando a mano,
+  un comando a la vez. Sucesor: acto posterior a `GEN2-E5`, si el ritual
+  se repite sin cambios.
+
+## CONSUMIDO
+
+`PR #614` (`https://github.com/Josanoforo/Modelado-Mexicano/pull/614`),
+rama `claude/gen2-pre-e5-cableado-kyo7fh`. Implementa P1-P6 sobre
+`tools/corrida0.py`/`tests/check.py`/`tests/test_corrida0.py`/
+`tools/tablero_programa.py`, incorpora `ENCARGOS-GEN2-v1_5` con sidecar
+sha256, resincroniza `GEN2-E5-0`/`GEN2-E5` en cola, añade
+`tools/verifica_encargos_gen2.py`, y refresca
+`forense/tablero/TABLERO-PROGRAMA.md`. Cierra `NC-0010` y `NC-0014`.
+`APARATO-GEN2-PRE-E5=READY` · `GO-E5-0=SI`. `python3 tests/check.py
+--baseline`: **LÍNEA BASE VERDE** (3 FAIL preexistentes/189 WARN).
+**NO fusionado por este acto** — el merge es de mesa (`.claude/commands/
+acto.md` paso 9).
