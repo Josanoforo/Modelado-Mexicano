@@ -22,3 +22,23 @@ PERÍMETRO: `data/corrida0/decisiones.tsv` · `tools/corrida0.py` (`cmd_demanda`
 CONTADOR: cero GEN2 (D-1). `N_resultados_activos` y `N_corridas_requeridas` **suben** por P2 (se reporta el número nuevo, no se estima aquí). `no_corrido_abiertas` −1 (NC-0020) +1 (D11). `corredores_envueltos_legacy` → 5.
 
 Lo que NO hace: no colapsa celdas; no cambia la métrica sellada; no promedia series; no edita el motor; no cuenta nada como GEN2; no corre el marcador por segmento (C0-D, tras C0-C). Sucesores: **E5-0** (caja; compuerta `GO-MARCADOR` en `main`) — la re-derivación de P2 no la bloquea, porque E5-0/E5 miden reglas del emisor cuyas filas ya estaban en la demanda; **C0-B lote 1** se redacta sobre la demanda re-derivada y ahora incluye Θ y π; **C0-D** corre el marcador por segmento cuando C0-C entregue motor y emisor limpios.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **P2(a) · re-verificar los actos que se apoyaron en `D11`.** «ADR con la revocación» — la revocación está hecha; lo que no se corrió es el barrido de los actos posteriores a `ADR-396` que hayan excluido `milpa/src/**` de su perímetro *citando* `D11`. | `DECISIÓN-DE-MESA-PENDIENTE` — la revocación la firma mesa en el merge. Barrer `GEN2-E5`/`E5-0`/`E6` buscando decisiones apoyadas en una premisa revocada es trabajo propio, no de aquí. | Ninguna cifra se mueve. Lo que queda abierto es si algún perímetro posterior se calculó sobre una premisa que ya no rige. | Acto sucesor con el barrido; `C0-C`. `NC-0022`. |
+| **P3(e) · el motor matricial corrido de punta a punta** sobre las tres celdas-D semilla y el catálogo `AJUSTE`. Corrieron el catálogo, las celdas-D, los cortes y el muro `AJUSTE`/`HOLDOUT`; **no** corrieron `matriz.g(B, θ(x))` ni `motor.evaluar()`. | `PARO-PREMISA` — `procedencia.cargar()` **lanza** `ClaseDesconocida` sobre `milpa/procedencia.yaml`: dos valores de `clase:` que `milpa/src/clases.py` no conoce (`REFUTADO-POR-COTA`, `EVIDENCIA_EXPERIMENTAL_TERCEROS`). Sin `Procedencia` no hay `B`. **No se parchea aquí:** `milpa/src/**` está fuera del perímetro por declaración del propio encargo. | `CALC-MOTOR-celdas-semilla` sella `RESULT-MOTOR-ESTADO-B = NO-EJECUTABLE` en vez de veredictos por celda. El ejecutable que `ADR-91` selló no arranca hoy. | Acto sucesor con `milpa/src/clases.py` en perímetro; después, re-correr el CALC hasta `ESTADO-B = CARGA`. `NC-0023`. |
+| **P3(b) · el marcador por segmento** (celda con `x ≠ ∅`, `M` por motor matricial y `R` por el IC de la entrada `_ejes_`). **Diseñado, no corrido.** | `DIFERIDO-A:C0-D` — el encargo lo declara explícitamente («no corre el marcador por segmento (C0-D, tras C0-C)»). Depende de `C0-C` y, antes, de que el motor arranque. | Las 14 celdas siguen con `x = ∅`: `RESULT-AGGOLA-CELDAS-CON-SEGMENTO = 0` contra **74** puntos por eje con IC95 que existen y ninguna celda consume. El eje `M`-vs-`R` por segmento sigue `NO-ESTIMABLE`. | `ACTO C0-D`, después de `C0-C`. `NC-0024`. |
+| **P3(c) · modulación por ola:** demostrada sobre **2 reglas** (6 de 14 celdas), no sobre el universo. | `NO-VERIFICABLE-AQUÍ` — hoy sólo 2 reglas del marco vigente traen `serie_olas`. Las otras 8 celdas salen `modela_ola: NO` porque no hay serie que leer, no porque el aparato falle. | `RESULT-MOLA-N-CON-SERIE = 6`, `N-SIN-SERIE = 8`. Ninguna cifra de la modulación entra a un veredicto. | `C0-B` lote 1 (spec de la modulación); actos de medición que añadan `serie_olas`. `NC-0025`. |
+
+**Reservas sobre el propio encargo (no son piezas no corridas; son cifras suyas que el árbol no sostiene, corregidas aquí y no en él —A.3):**
+
+- «Θ: 18 `MEDIDO·PARCIAL` + 5 `MEDIDO·NACIONAL`» → el árbol da **10 + 2 = 12**, por la fórmula oficial (`procedencia.contador_condicionales_medidas()`).
+- «77 entradas `_ejes_` con IC por eje» → **7 entradas**, **24 ejes**, **74 puntos por eje** con `ic95`.
+- Contador declarado `no_corrido_abiertas` −1 +1 = 10 → el real es **13**: `NC-0020` cierra (−1) y entran **cuatro** filas (+4), no una. Las tres de más son piezas realmente no corridas que este acto encontró; dejarlas fuera para que cuadrara el contador habría sido el error que A.14 existe para impedir.
+- «`CALC-M-…-ola` y `CALC-AGG-…-ola` (serie legacy)» y `CALC-MOTOR-celdas-semilla` sí se corrieron y sellaron, los tres con `verify REPRODUCE`. `CONTEXTO=DISTINTO` en los tres: cada uno se selló en su propio commit y el árbol siguió avanzando dentro del mismo acto.
+
+Las conclusiones del encargo se sostienen las dos —el motor faltaba en la demanda; existen puntos por eje con IC que ninguna celda del marcador consume—. Las cifras, no.
