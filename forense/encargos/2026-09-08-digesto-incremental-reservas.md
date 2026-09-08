@@ -128,3 +128,14 @@ El cierre incluye: ejemplo antes/después de H; contrato de referencia implement
 - [PR #613: actualización de las rutinas existentes](https://github.com/Josanoforo/Modelado-Mexicano/pull/613).
 - [Generador en la base revisada](https://github.com/Josanoforo/Modelado-Mexicano/blob/fbd847deee91c3e3efe283bb2f5921addcdda3a9/tools/digesto_tramite.py).
 - [Registro de reservas en la base revisada](https://github.com/Josanoforo/Modelado-Mexicano/blob/fbd847deee91c3e3efe283bb2f5921addcdda3a9/forense/no-corrido.tsv).
+
+## NO-CORRIDO / RESERVAS
+
+A.14 (`ACTO GEN2-T8`, 8/sep/2026). Precede a `## CONSUMIDO`.
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Demostración periódica publicada por una rutina real (`/tramite` corriendo en producción varios días distintos, con commits separados en el tiempo) | NO-VERIFICABLE-AQUÍ — este acto corrió el generador dos veces en la misma sesión sobre el árbol real (`DIGESTO-2026-09-08.md` primera emisión, `DIGESTO-2026-09-09.md` segunda) y catorce casos adicionales sobre repos Git temporales con saltos de días simulados; una ejecución periódica real en el tiempo es evidencia distinta, que solo `/tramite` corriendo en producción puede producir | ninguno: el contrato (P1-P3) y los 14 casos de `tests/test_digesto_nc.py` ya cubren "salto de días" y "dos publicaciones el mismo día" sobre fixtures; lo que falta es solo la corroboración de que el mismo código, corrido por la rutina real en fechas de calendario distintas, se comporta igual | `/tramite` (rutina diaria; el siguiente digesto real que corra sobre esta rama fusionada ya lo demuestra) |
+| Referencia histórica con SHA corto ambiguo (varios digestos antiguos cuyo `HEAD` corto de cabecera resuelva a más de un commit) | NO-VERIFICABLE-AQUÍ — el árbol real de este proyecto no tiene hoy ningún caso así; `_git_rev_parse()` lo rechaza (devuelve `None`, tratado como `SIN-BASE-COMPARABLE`) pero el caso de aceptación vive solo en el contrato, no en un test dedicado a la ambigüedad real de SHA corto | ninguno: el comportamiento (rechazar y no adivinar) está implementado y es el mismo camino que ya cubre el caso "SHA no recuperable" de `tests/test_digesto_nc.py` | mesa (se revisita si algún día el árbol real produce dos commits con el mismo prefijo corto en `forense/digesto/`) |
+
+Ninguna otra pieza de P1-P4 quedó sin ejecutar dentro del perímetro declarado. Lo explícitamente excluido por el propio encargo (`corrida0 delta`/`vigencia`, comparar valores numéricos del modelo, cambiar el scheduler, reconstruir todo el historial, mensajes, cierre automático de reservas de otros actos) no se tocó, como se pidió.
