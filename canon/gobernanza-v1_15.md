@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **410 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **411 ADR**
 
 > | | |
 > |---|---|
@@ -7044,6 +7044,28 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Perímetro cumplido (pieza D).** `tools/cierra_libro_gen1.py` (nuevo) · `forense/encargos/*.md` (sólo el rótulo al pie, por script) · `forense/encargos/cola/*.md` (sólo `ESTADO:`) · `tools/cierre_acto.py` · `tools/digesto_tramite.py` · `.claude/commands/{despacha,revisa,tramite}.md` · `forense/rutinas.tsv` (nuevo) · `tests/manifiesto.py` (ruta del lock) · `tests/check.py` (`T37`) · `forense/hallazgos.md` · `forense/no-corrido.tsv` · cascada. **No tocó** `tools/corrida0.py`, `milpa/**`, canon de reglas, specs, `corridas-{R,M,L}/`, ni las rutinas de GitHub (ésas las edita mesa en la interfaz).
 
 **`tests/check.py --baseline`**: **LÍNEA BASE VERDE** (3 `FAIL` · 188 `WARN`, los tres de la línea base congelada).
+
+---
+
+**ADR-411 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `410` contra `origin/main = d48014ed` — HEAD de esta rama, sin commits detrás —, candidato contiguo `411`, sin huecos; ninguna rama remota accesible lo traía redactado) · `ACTO GEN2-TRAMITE-TABLERO-1`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red a fuentes** (`forense/encargos/2026-09-08-GEN2-TRAMITE-TABLERO-1.md`, archivado verbatim en `c55320b`) — alinea el tablero del repo con Gen 2, siete piezas de trámite. **COMPUERTA: ninguna** (declarada; verificado que `PR #631` ya fusionó — `origin/main` en `d48014ed` es exactamente ese merge). Los dos adjuntos que el encargo exige (`TABLERO-PROGRAMA.md` nuevo, 202 líneas; `tools/tablero_vista.py` nuevo, 555 líneas) llegaron pegados a la sesión a medio acto, después del 0-bis — ninguna pieza paró por adjunto faltante.
+
+**A1 · Reemplazo del cuerpo curado.** `forense/tablero/TABLERO-PROGRAMA.md` sustituido íntegro por el cuerpo reconstruido para Gen 2 (antes: v1.1, snapshot `9cbd8d8`, 2/sep — seis días desatendido, `G-D4` del propio tablero). Verificado por patrón de línea completa (`grep -cx`, no `grep -c`, porque el cuerpo nuevo menciona el marcador en prosa dentro de una tabla): `TABLERO-DERIVADO:BEGIN`/`END` → `1`/`1`. `python3 tools/tablero_programa.py --actualiza` corrió sin error sobre el archivo nuevo.
+
+**A2 · Reemplazo del generador de vista.** `tools/tablero_vista.py`: 201 → 555 líneas. Localiza secciones por título, no por número; tolera tablas que cambian de forma; en modo Gen 2 el héroe es la cadena de procedencia (una casilla por resultado activo) en vez de las 49 reglas del motor. `markdown` ya vivía en `requirements.txt` (2 menciones) — no se dobló. Corrida de extremo a extremo en este acto contra el `TABLERO-PROGRAMA.md` de A1 y el `--json` de `tablero_programa.py`: escribió HTML válido (34 242 B) sin excepción.
+
+**A3 · Retiro de `dominios_activos`.** `tools/tablero_programa.py:224` fijaba la constante `4` con «Ola 6 NO abierta» incrustada en el texto — acertaba por coincidencia y no habría avisado si la Ola 6 abriera. Retirada del derivador; es indicador de capa legacy que Gen 2 no consume, salida avalada por dirección.
+
+**A4 · Normalización de estado de cola antes de contar.** `tools/tablero_programa.py:231` (hoy `230`) cortaba `cola_adquisicion_estados` por `"("`, que fragmentaba `SUPERADA-POR` en cuatro entradas distintas (una pelada + tres con `REL-<hash>` propio) sin fusionar las tres filas con id pegado. Cambiado a cortar por `" REL-"`. Derivado contra el árbol real: **14 estados distintos, 7 con espacio interno, 3 son el defecto** (las tres `SUPERADA-POR REL-…`, 1 fila cada una). Verificación de cierre: `SUPERADA-POR` suma `1+3=4` tras el cambio; los cuatro estados legítimos con espacio (`CERRADA NO-BAJAR-PORQUE`, `CERRADA NO-GASTAR`, `DIFERIDO-A: spec GEN2 dinero.credito.scoring_alternativo`, `NO-OBTENIDO-POR-ESTE-AGENTE(4 rutas)`) conservan su texto completo. La cita de `dinero.credito.scoring_alternativo` es prosa ilustrativa de un estado de cola, no clasificación/pre-registro/carga/sello de regla — `python3 tools/ya_medido.py dinero.credito.scoring_alternativo` real: `NUNCA-MEDIDA`; `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` (T30) censa el encargo con la razón.
+
+**A5 · Conteo de tiers por entrada, no por línea.** `tools/tablero_programa.py:183` contaba `propuesta_tier_*` con `^\s+tier: {k}` (cualquier indentación) sobre `milpa/tramite-ola5-propuesta-v0.yaml` — sobrecontaba porque la entrada `tramite.mordida.con_registro_encig2025` trae **dos** líneas `tier:` (indentación 4, la propia; indentación 6, anidada dentro de un sub-bloque de la misma entrada). Derivado: 50 entradas (`^  - id: `), 51 líneas `tier:`, indentaciones `{4: 50, 6: 1}`. Cambiado a `^    tier: {k}` (indentación 4 exacta, una por entrada). Verificación de cierre: suma de las cuatro recetas `propuesta_tier_*` = `50` = número de entradas (`PENDIENTE-DE-MESA=2`, `SELLADA=37`, `MEDIA=9`, `FUERTE=2`). No toca `milpa/tramite.yaml` (el motor, defecto análogo, 21 entradas/24 líneas `tier:`) — queda como sucesor fuera de perímetro.
+
+**A6 · Anotación del archivo superado.** `forense/tablero/TABLERO-PROGRAMA-v1_1.md` gana una línea al inicio (append-only, la nota previa de `ACTO MAESTRA38-TRAMITE-3` queda intacta debajo) aclarando que, tras A1, `TABLERO-PROGRAMA.md` ya no lleva el mismo contenido — la nota vieja seguía siendo cierta sobre cuándo/por qué quedó superado, pero no sobre qué contenido lleva hoy el vigente.
+
+**A7 · Hueco del índice cerrado.** `data/INFRAESTRUCTURA-v1_0.md` ganó la sección `forense/tablero/` — archivo vigente, dos escritores (bloque derivado por `tablero_programa.py --actualiza`, capa curada por la conversación del tablero), y que los `-v1_1`/`-superado` son historia. Cierra el hueco confirmado en A.8(1): `grep -c "forense/tablero"` daba `0` antes de este acto.
+
+**CONTADOR: cero.** N_resultados_sellados sigue en `0` de `205`; este acto no mide nada sobre México, instrumenta cómo el tablero describe Gen 2.
+
+**Perímetro cumplido.** `forense/tablero/TABLERO-PROGRAMA.md` · `forense/tablero/TABLERO-PROGRAMA-v1_1.md` · `tools/tablero_vista.py` · `tools/tablero_programa.py` · `data/INFRAESTRUCTURA-v1_0.md` · `tests/check.py` (`_T_YAMEDIDO_ARCHIVOS_CONOCIDOS`) · cascada. **No tocó** `milpa/**` más allá de leerlo, `data/corrida0/**`, ninguna corrida sellada, ni el vocabulario del bloque derivado (ya lee `corrida0 status` y está bien hecho, verificado, no se repite el trabajo). **`tests/check.py --baseline`**: **LÍNEA BASE VERDE** (3 `FAIL` · 211 `WARN`).
 
 ---
 
