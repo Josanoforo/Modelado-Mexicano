@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **415 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **416 ADR**
 
 > | | |
 > |---|---|
@@ -7047,6 +7047,20 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 
 ---
 
+**ADR-415 (RENUMERADO de `414` a `415` al fusionar `origin/main`: `ACTO GEN2-RETRO-SELLO-SONDA-2` fusionó primero por `PR #637` y tomó el `414` — regla de la casa, renumera quien fusiona segundo. Derivado por `python3 tools/cierre_acto.py`, Fase A; contra `origin/main = 09975b1`: máximo real `413`, candidato `414`, sin huecos) · `ACTO GEN2-TRAMITE-TABLERO-2`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** (`forense/encargos/2026-09-08-GEN2-TRAMITE-TABLERO-2.md`, archivado verbatim, 0-bis `50a5373`). **La pieza B1 (refrescar `TABLERO-PROGRAMA.md` a v2.3) PARA sobre su propia salvaguarda; la pieza B2 (asentar la serie de tres negativos falsos en `forense/hallazgos.md`) se ejecuta completa.**
+
+**Gate verificado.** COMPUERTA (`GEN2-FIRMA-CONTADOR` fusionado a `main`, `PR #636`) verificada por producto: `python3 tools/corrida0.py status` da `N_corridas_selladas=3` y `N_resultados_sellados=211` — ninguno de los dos sigue en `0`, así que la firma ya propagó y la compuerta abre.
+
+**B1 · PARO-PREMISA, por la segunda salvaguarda del propio encargo, no por la primera.** El adjunto (cuerpo v2.3, fuera del repo) llegó a la sesión, así que el bloqueo no es por ausencia — es por **señal discordante**, el caso que el encargo nombra explícitamente y prohíbe resolver editando el adjunto. Su bloque derivado (línea 4: `SHA d1a97cd6`; línea 8: `ADR máximo 412 · FP máximo 359`; línea 26: `corridas selladas 0/86 · resultados sellados 0/205`) es la **señal pre-firma**: el mismo `d1a97cd6` que el encargo cita como el estado *antes* de que `GEN2-FIRMA-CONTADOR` fusionara. Contra el árbol de ejecución (`origin/main = 09975b1`, `ADR` real `413`, `FP` máximo `360`, `corrida0.py status` → `N_corridas_selladas=3`, `N_resultados_sellados=211`), las cuatro cifras del adjunto no coinciden. El encargo es explícito sobre el remedio: *«No edites las cifras del adjunto para hacerlas cuadrar: eso es inventar el adjunto por otra vía»* — así que `forense/tablero/TABLERO-PROGRAMA.md` **no se toca** en este acto. Fila `NC-0055` (renumerada de `NC-0054`: `ACTO GEN2-RETRO-SELLO-SONDA-2` tomó ese número primero al fusionar por `PR #637`), sucesor: relanzar `GEN2-TRAMITE-TABLERO-2` con el adjunto regenerado del lado del tablero contra la señal post-firma.
+
+**B2 · ejecutada.** Una entrada en `forense/hallazgos.md`, fechada 8/sep/2026, con las tres instancias de negativo falso de la conversación del tablero juntas — subcadena-contra-línea (`v2_1` casando dentro de `v2_13`), patrón-contra-campo (el grep de encabezados sin paréntesis que no veía `- **GEN2 (derivado de corrida0 status).**`) y fragmento-contra-documento (3 000 de 80 323 caracteres del `ADR-411`). Las tres del mismo tipo bajo A.13: el comando corrió, devolvió algo, y ese algo no era lo que se creía haber preguntado. No añade regla ni test (declarado en el propio encargo).
+
+**Contador.** **Cero**, declarado por el encargo: este acto no mueve ningún contador de la señal de Gen 2 — la mueve `GEN2-FIRMA-CONTADOR`, que corrió antes.
+
+**Perímetro cumplido.** `forense/encargos/2026-09-08-GEN2-TRAMITE-TABLERO-2.md` (0-bis A.3) · `forense/hallazgos.md` · cascada (`canon/gobernanza-v1_15.md`, `canon/registro-rotulos.tsv`, `canon/estado-programa-v1_12.md` §L0, `forense/no-corrido.tsv`). **No tocó** `forense/tablero/TABLERO-PROGRAMA.md` (PARO-PREMISA sobre B1) ni ningún archivo de `milpa/**`, `data/corrida0/**` o corrida sellada.
+
+---
+
 **ADR-413 (Derivado por `python3 tools/cierre_acto.py`, Fase A; contra `origin/main = d1a97cd`: máximo real `412`, candidato `413`, sin huecos) · `ACTO GEN2-FIRMA-CONTADOR · TRES FILAS EN decisiones.tsv`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** (`forense/encargos/2026-09-08-GEN2-FIRMA-CONTADOR-PROPAGA-FIRMA.md`, archivado verbatim, 0-bis `0c69bf3`). **Propaga, por la vía directa y nunca simulada (FP-359), la firma de mesa 8/sep/2026 que `ACTO GEN2-E5-1` se negó — con razón — a inferir: tres filas `cuenta_gen2=SI` (`CALC-0001`, `CALC-0002`, `CALC-0003-v2`) en `data/corrida0/decisiones.tsv`, registro y status re-derivados después, en ese orden.**
 
 **Gate verificado.** COMPUERTA (`PR #634` fusionado) verificada por producto: `git cat-file -e origin/main:data/corrida0/CALC-0003-v2/sello.json` → **EXISTE**.
@@ -7301,7 +7315,7 @@ FIRMA DE MESA, verbatim del 8/sep/2026: «ármame el sello, el encargo ya corri�
 
 ---
 
-**ADR-415 (RENUMERADO de `414` a `415` al fusionar `origin/main`: `ACTO GEN2-RETRO-SELLO-SONDA-2` fusionó primero por `PR #637` y tomó el `414` — regla de la casa, renumera quien fusiona segundo. Derivado por `python3 tools/cierre_acto.py`, Fase A; re-derivado tras fusionar `origin/main` durante el acto: máximo real `413`, candidato `414` al momento de escribirse, `415` tras el conflicto) · `ACTO GEN2-UNIVERSO-C · TANDAS Y ENAFIN`**, 8/sep/2026, entorno **UBUNTU (caja), corpus montado, red real** (`forense/encargos/2026-09-08-GEN2-UNIVERSO-C-TANDAS-Y-ENAFIN.md`, archivado verbatim, 0-bis `612f10f`). **Firma de mesa: "que lo que tengamos 'universo conocido' no nos limite de explorar el Universo Desconocido." Sondea los dos únicos huecos con vacante real del cruce de `FP-286` — ENAFIN/`N19` y tandas/`R8.2`-`N29` — y encuentra que el primero ya estaba resuelto en el corpus sin que nadie lo hubiera leído completo.**
+**ADR-416 (RENUMERADO de `414`→`415`→`416` al fusionar `origin/main` dos veces en vuelo: `ACTO GEN2-RETRO-SELLO-SONDA-2` fusionó primero por `PR #637` y tomó el `414`; `ACTO GEN2-TRAMITE-TABLERO-2` fusionó después por `PR #638` y tomó el `415` — regla de la casa, renumera quien fusiona segundo, aplicada dos veces sobre la misma acta. Derivado por `python3 tools/cierre_acto.py`, Fase A; re-derivado tras cada fusión de `origin/main` durante el acto: máximo real `413`, candidato `414` al escribirse, `415` tras el primer conflicto, `416` tras el segundo) · `ACTO GEN2-UNIVERSO-C · TANDAS Y ENAFIN`**, 8/sep/2026, entorno **UBUNTU (caja), corpus montado, red real** (`forense/encargos/2026-09-08-GEN2-UNIVERSO-C-TANDAS-Y-ENAFIN.md`, archivado verbatim, 0-bis `612f10f`). **Firma de mesa: "que lo que tengamos 'universo conocido' no nos limite de explorar el Universo Desconocido." Sondea los dos únicos huecos con vacante real del cruce de `FP-286` — ENAFIN/`N19` y tandas/`R8.2`-`N29` — y encuentra que el primero ya estaba resuelto en el corpus sin que nadie lo hubiera leído completo.**
 
 **Gate verificado.** `COMPUERTA: GEN2-E5 fusionado` verificada por producto contra `origin/main` recién fetcheado: `gh pr list --search "GEN2-E5"` → `PR #631` (`GEN2-E5`) y `PR #634` (`GEN2-E5-1`), ambos `MERGED`. `origin/main` se movió de `d1a97cd` a `09975b1` (trae `PR #636`/`GEN2-FIRMA-CONTADOR`, `ADR-413`) mientras el acto estaba en curso — re-derivado con `git merge origin/main`, sin conflicto.
 
