@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **413 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **414 ADR**
 
 > | | |
 > |---|---|
@@ -7286,3 +7286,15 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Perímetro cumplido.** `tools/corrida0.py` (`estado_calc`, `cmd_estado`, `_ids_corrida0_declarados`, `_resultados_citados_en`, `PROPUESTA`, `status`, `COLS_VISTA_USOS`) · `tools/tablero_programa.py` · `tools/verifica_encargos_gen2.py` (nuevo) · `tests/check.py` (`t35_repro`, `_T25_ARCHIVOS_CONOCIDOS`) · `tests/test_corrida0.py` · `forense/notas/ENCARGOS-GEN2-v1_5-aparato-antes-de-calcular-2026-09-08.md` + `.sha256` (nuevos) · `forense/encargos/2026-09-08-GEN2-PRE-E5-CABLEADO-Y-AUTOMATIZACION-FINAL.md` (verbatim, 0-bis A.3) · `forense/encargos/cola/{2026-09-07-GEN2-E5-0-SPECS-EJECUTABLES,2026-09-07-GEN2-E5-CALC-0001-0003}.md` · `forense/tablero/TABLERO-PROGRAMA.md` · `forense/no-corrido.tsv` (`NC-0010`/`NC-0014`) · `canon/registro-rotulos.tsv` · cascada. **No tocó** `CALC-0001/0002/0003`, microdato, `M/R/L/agregado` de `E7`, `tramite.yaml`/`procedencia.yaml` activos, ni valores del modelo.
 
 **`tests/check.py --baseline`**: ver cierre de este acto (pegado abajo, tras la cascada).
+
+---
+
+**ADR-414 (derivado a mano contra `origin/main = 09975b1`, máximo real `413`, candidato contiguo `414`, sin huecos — trámite registral puro, no corre `tools/cierre_acto.py` por no haber encargo previo que fichar; ver P3 de este mismo acto) · `ACTO GEN2-RETRO-SELLO-SONDA-2 · FICHA-PR632-HACIA-ATRAS`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** (`forense/encargos/2026-09-08-GEN2-SONDA-2-RETRO.md`). **CONTADOR: cero GEN2 — trámite registral.**
+
+FIRMA DE MESA, verbatim del 8/sep/2026: «ármame el sello, el encargo ya corrió» — mesa reconoce el trabajo de `PR #632` (`ACTO GEN2-SONDA-2 · OPERACIONALIZA-SONDA-LATERAL`) como propio del programa y ordena ficharlo retroactivamente.
+
+**El hueco que este acto repara.** `PR #632` fusionó con un solo commit (`8cbbc9f9b0f378655587b91f2cedd31948c4cf14`, merge `a800f29999028f25ed830215e5ed2180f04a57a7`), creó `.claude/commands/sonda.md` y `.claude/commands/mapea.md`, apendizó filas laterales `SIN-FETCH` a la cola de adquisición, y dejó nota de 289 líneas (`forense/notas/2026-09-08-GEN2-SONDA-2-operacionaliza-sonda-lateral.md`) — sin dejar huella registral: `grep -c "SONDA-2"` sobre `forense/no-corrido.tsv`, `canon/registro-rotulos.tsv` y este mismo archivo daba `0`, `0`, `0` antes de este ADR. Sin 0-bis, sin ADR, sin rótulo, sin fila `NO-CORRIDO`. **La cadena de actas salta el `PR #632`; esta acta lo repara hacia atrás y no reescribe ninguna posterior.**
+
+**Lo que este acto NO hace.** No evalúa el contenido de `#632` (ya revisado por dirección: bueno). No reconstruye el encargo original de `#632` — vivió sólo en una conversación externa (ChatGPT) y no se recuperó; queda asentado en `forense/encargos/2026-09-08-GEN2-SONDA-2-RETRO.md` §`## NO-CORRIDO / RESERVAS` como `PARO-PREMISA`, sucesor `SIN-ASIGNAR`. No implementa el candidato `D-14` (abajo). No renumera actas posteriores a `#632`.
+
+**Perímetro.** `forense/encargos/2026-09-08-GEN2-SONDA-2-RETRO.md` (nuevo) · `canon/gobernanza-v1_15.md` (este ADR) · `canon/registro-rotulos.tsv` (fila `/sonda`+`/mapea`) · `forense/hallazgos.md` (punto ciego) · `forense/firmas-pendientes.tsv` (fila `D-14`) · `canon/estado-programa-v1_12.md` §L0. **No tocó** `.claude/commands/sonda.md`, `.claude/commands/mapea.md`, las colas de adquisición, la nota de `SONDA-2`, `data/corrida0/**` ni ningún archivo que `#632` haya escrito — ficha, no edita.
