@@ -2657,6 +2657,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # `canon/registro-rotulos.tsv` por este mismo acto; el encargo archivado de
     # arriba figura aquí por esta misma razón.
     "forense/notas/2026-09-08-GEN2-E5-corridas-selladas.md",
+    # ACTO GEN2-E5-1 · VERIFICADOR REPARADO, 8/sep/2026: encargo archivado
+    # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`, que no se
+    # edita para complacer un test. Cita `E5` pelado como PROCEDENCIA, no como
+    # rótulo nuevo: «la nota de E5», «los 26 NO-REPRODUCE de E5» y «sustancia
+    # clase E5-0» -- las tres son referencias al acto predecesor, ya censado
+    # como `E · GEN2-E5` en `canon/registro-rotulos.tsv` por ese mismo acto.
+    # El rótulo que ESTE acto reclama es `E · GEN2-E5-1`, y lo censa él.
+    "forense/encargos/2026-09-08-GEN2-E5-1-VERIFICADOR-CALC0003V2-FIRMA.md",
     # ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita
     # "E5-0"/"E5"/"E6" pelados en el perímetro ("una revisión textual
