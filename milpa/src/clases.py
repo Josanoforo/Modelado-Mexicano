@@ -62,6 +62,16 @@ class SinMagnitud(ValueError):
     """
 
 
+class EvidenciaTercerosIncompleta(ValueError):
+    """Una entrada `EVIDENCIA_EXPERIMENTAL_TERCEROS` sin `cita` o `llave_id`.
+
+    Su contrato (`ADR-204`, `FP-164` opción (b)) exige las dos: la cita
+    sostiene la corroboración, `llave_id` la registra en
+    `forense/registro-llaves-identificacion-v1_0.md`. Sin ambas no hay nada
+    que auditar, y cargarla igual sería fabricar procedencia.
+    """
+
+
 class Clase(Enum):
     """Las clases de procedencia, como PREFIJOS.
 
@@ -79,6 +89,12 @@ class Clase(Enum):
     PENDIENTE = "PENDIENTE"
     MEDIDO_BETA = "MEDIDO·β̂"    # dos code points: β + U+0302
     GATE_ID = "GATE·ID"
+    #: Novena y décima clase (`ACTO AUTO-MOTOR-1`, 8/sep/2026 -- revoca D11,
+    #: `PR #615`/`NC-0023`). Vivían solo como valores crudos sin prefijo
+    #: reconocido; `procedencia.cargar()` lanzaba `ClaseDesconocida` antes de
+    #: llegar a nada más.
+    REFUTADO_POR_COTA = "REFUTADO-POR-COTA"
+    EVIDENCIA_EXPERIMENTAL_TERCEROS = "EVIDENCIA_EXPERIMENTAL_TERCEROS"
 
 
 def clasificar(valor):

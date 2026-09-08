@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Regresión de `tools/digesto_tramite.py` -- fecha como `datetime.date` y
-neutralización en las secciones H/I, ACTO GEN2-T11 · RUTINAS-FIX (8/sep/2026,
+"""Regresión de `tools/digesto_tramite.py::seccion_i` -- fecha como
+`datetime.date`, ACTO GEN2-T11 · RUTINAS-FIX (8/sep/2026,
 `forense/encargos/2026-09-08-GEN2-T11-RUTINAS-FIX.md`).
 
 Dos defectos, medidos contra `fbd847de` con el comando exacto que el encargo
@@ -15,22 +15,26 @@ cita, el primero desnudando al segundo:
      huella de ese PARO vive en `forense/rutinas.tsv` (rutina `tramite`,
      8/sep/2026).
   2. Arreglado (1), el auto-check T25 (`tests/check.py::_T25_ROTULO_BARE`)
-     paraba con «rótulo pelado» -- las secciones H (`forense/no-corrido.tsv`)
-     e I (`forense/rutinas.tsv`) copian texto del árbol tal cual, sin pasar
-     por `neutraliza()` como las firmas sí hacen (`seccion_a`/`seccion_c`).
-     Las filas retrofit de ADR-393 traen rótulos `M`/`E` pelados (`E7`,
-     `E3`…) que `neutraliza()` existe exactamente para blindar.
+     paraba con «rótulo pelado» -- la sección I (`forense/rutinas.tsv`)
+     copiaba texto del árbol tal cual, sin pasar por `neutraliza()` como las
+     firmas sí hacen (`seccion_a`/`seccion_c`). Las filas retrofit de
+     ADR-393 traen rótulos `M`/`E` pelados (`E7`, `E3`…) que `neutraliza()`
+     existe exactamente para blindar.
 
-Qué prueban los dos casos de este archivo:
-  1. test_seccion_i_acepta_date_y_neutraliza -- `seccion_i(raiz, fecha, cuenta)`
-     con `fecha` un `datetime.date` (no un `str`) no lanza, y una fila de
-     `rutinas.tsv` cuyo `resultado` trae un rótulo pelado (`E7 (x)`) sale
-     `_E7 (x)` en la tabla, sumando en `cuenta`.
-  2. test_seccion_h_neutraliza_campos_copiados -- una fila de
-     `no-corrido.tsv` cuyo `sucesor` trae un rótulo pelado (`E7 (x)`) sale
-     `_E7 (x)` en la tabla de la sección H, sumando en `cuenta` -- mismo
-     mecanismo, columna distinta (`acto`/`pieza`/`estado`/`sucesor`, las
-     cuatro pasan por `neutraliza()` en el parche).
+`seccion_h` (`forense/no-corrido.tsv`) recibió el mismo arreglo, pero
+`ACTO AUTO-DIGESTO-1 · CAMBIOS-DESDE-EL-ULTIMO-CORTE` (8/sep/2026, en vuelo
+al mismo tiempo) reescribió esa sección entera al formato incremental --
+al fusionar main aquí, el arreglo de neutralización se reintegró sobre esa
+nueva forma directamente en `tools/digesto_tramite.py::seccion_h` (el
+helper `_n`), y su cobertura de regresión vive donde ya vive el resto de la
+sección H: `tests/test_digesto_nc.py` (caso
+`t_neutralizacion_preservada_en_diff`), no aquí.
+
+Qué prueba el caso de este archivo:
+  test_seccion_i_acepta_date_y_neutraliza -- `seccion_i(raiz, fecha, cuenta)`
+  con `fecha` un `datetime.date` (no un `str`) no lanza, y una fila de
+  `rutinas.tsv` cuyo `resultado` trae un rótulo pelado (`E7 (x)`) sale
+  `_E7 (x)` en la tabla, sumando en `cuenta`.
 
 Corre solo:
     python3 tests/test_digesto_fecha.py
@@ -77,34 +81,9 @@ def test_seccion_i_acepta_date_y_neutraliza():
               "el rótulo pelado copiado de rutinas.tsv.")
 
 
-def test_seccion_h_neutraliza_campos_copiados():
-    with tempfile.TemporaryDirectory() as raiz:
-        hoy = datetime.date.today()
-        _escribe(
-            os.path.join(raiz, "forense", "no-corrido.tsv"),
-            "id\tfecha\tacto\tpr\tpieza\tque_no_se_corrio\trazon\timpacto\t"
-            "sucesor\testado\tcerrado_por\tfecha_cierre\n"
-            f"NC-9999\t{hoy.isoformat()}\tGEN2-T11\tn/a\tP1\tfixture\t"
-            "NO-VERIFICABLE-AQUI\tninguno\tE7 (x)\tABIERTA\t\t\n",
-        )
-        cuenta = digesto_tramite.Cuenta()
-
-        out, n_abiertas = digesto_tramite.seccion_h(raiz, hoy, cuenta)
-        texto = "\n".join(out)
-
-        assert n_abiertas == 1
-        assert "| _E7 (x) |" in texto, texto
-        assert "| E7 (x) |" not in texto, texto
-        assert cuenta.rotulos >= 1, "neutraliza() debe sumar en el contador del pie"
-        print("  OK -- seccion_h acepta datetime.date y neutraliza el rótulo "
-              "pelado copiado de la columna 'sucesor' de no-corrido.tsv.")
-
-
 if __name__ == "__main__":
     test_seccion_i_acepta_date_y_neutraliza()
     print()
-    test_seccion_h_neutraliza_campos_copiados()
-    print()
-    print("Los dos casos de este archivo coinciden. Detalle del hallazgo y de la")
+    print("El caso de este archivo coincide. Detalle del hallazgo y de la")
     print("corrección: encabezado de este archivo y tools/digesto_tramite.py")
-    print("(seccion_h, seccion_i, neutraliza).")
+    print("(seccion_i, neutraliza).")

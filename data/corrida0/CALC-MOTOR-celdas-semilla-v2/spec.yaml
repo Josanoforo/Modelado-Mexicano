@@ -1,0 +1,120 @@
+# CALC-MOTOR-celdas-semilla-v2 -- cara mecanica de spec.md (ACTO AUTO-MOTOR-1, P2).
+# El texto que gobierna es spec.md; este YAML no decide nada que aquel no diga.
+calc_id: CALC-MOTOR-celdas-semilla-v2
+spec_md: spec.md
+spec_md_sha256: 5f6312360e9f7269c4ecddf46af49fbe25fec7ca600d8bbd0c38cda49532b434
+
+script: data/corrida0/CALC-MOTOR-celdas-semilla-v2/medidor.py
+
+# Sucesion declarada (P2 del encargo): esta corrida REPITE la predecesora
+# con el cargador reparado -- no la reemplaza. La predecesora no se
+# reescribe (CALC-INMUTABLE la protege) y queda SUPERADO-> en el registro.
+repite_de: CALC-MOTOR-celdas-semilla
+
+etiquetas:
+  generacion: GEN2
+  tipo: MOTOR-MATRICIAL-ENVUELTO
+  # D-1 (mesa, 8/sep/2026) + regla E.1 (ACTO GEN2-T9): el motor consume
+  # milpa/procedencia.yaml, asi que esta corrida NO cuenta como GEN2 por
+  # completa que sea su cadena -- misma regla que la predecesora.
+  cuenta_gen2: NO
+  validacion_independiente: NO-HECHA
+  sello_que_lo_gobierna: "ADR-91 (M1, computo matricial como definicion del ejecutable)"
+
+# Los cinco modulos del motor se declaran como input aunque el medidor los
+# IMPORTE en vez de leerlos por `bytes`: son codigo cuya identidad tiene que
+# quedar cubierta por la corrida (mismo patron que la predecesora). Se
+# agregan clases.py y procedencia.py -- ausentes de la predecesora porque
+# procedencia.cargar() nunca llegaba a completarse con ellos.
+inputs:
+  - id: IN-CATALOGO-MOMENTOS
+    origen: repo
+    ruta: milpa/catalogo-momentos-v0_1.tsv
+    sha256: 9c78bc7f1c5446d89ace02ab010d9a02fdc39224474c279cd21fc2f5e1b7f93c
+  - id: IN-PROCEDENCIA
+    origen: repo
+    ruta: milpa/procedencia.yaml
+    sha256: 556eb8e9c6816fca86211a3446e033e3e624d05646ae63f45ee86b25045ccf17
+  - id: IN-MOTOR
+    origen: repo
+    ruta: milpa/src/motor.py
+    sha256: 0bda0108b383e1f92253152b4809a63fe5ea0c120691b3494f44010cb653f712
+  - id: IN-MOMENTOS
+    origen: repo
+    ruta: milpa/src/momentos.py
+    sha256: 649588be8652d7f849804aee1625c4cf0238a740e3728a8109506718da953131
+  - id: IN-CELDAS
+    origen: repo
+    ruta: milpa/src/celdas.py
+    sha256: 55805f881cf929d74e2496c91657d211c7ef208b03da6135872c42d3987db813
+  - id: IN-MATRIZ
+    origen: repo
+    ruta: milpa/src/matriz.py
+    sha256: 3aaaaf61f70f467b025fab1f9a7edfcba495064c452995d21becf8b3c834578d
+  - id: IN-CLASES
+    origen: repo
+    ruta: milpa/src/clases.py
+    sha256: 309cf9c6dfc23018ad36ad5e32c865c01fb9c904b9060eab24abb89e6a4db3bf
+  - id: IN-PROCEDENCIA-PY
+    origen: repo
+    ruta: milpa/src/procedencia.py
+    sha256: 9ee2b05f414eb8cc47e2f806e933b2fa2e667df0da5bf45d28228149801be754
+  - id: IN-CELDA-D-FAMILISMO-OBLIGACION
+    origen: repo
+    ruta: data/curacion-registro/celdas-d/G5.familismo_obligacion.actitud.yaml
+    sha256: 8cef5619ddb43e9e6276e0088c3c17721cb186b9a1d84da2016a40b84dda1146
+  - id: IN-CELDA-D-OBLIGACION-MEDIDA
+    origen: repo
+    ruta: data/curacion-registro/celdas-d/G5.obligacion_medida.conducta.yaml
+    sha256: 411b30c507d7a99eba20db03d431bc64dcac79eb9cea63126e82b4a8b134f419
+  - id: IN-CELDA-D-RADIO-CONFIANZA
+    origen: repo
+    ruta: data/curacion-registro/celdas-d/G5.radio_confianza.encuci_vs_enbiare.yaml
+    sha256: 351c237fe322d7024f2351bf65867fe2f3fa030907ad0059510b97ef1e0dd3f7
+
+# Dimensiones sustantivas -- todas DECLARADAS (P2 de GEN2-E3-1-1).
+# `NO-APLICA` aqui es declaracion, no relleno: esta corrida no abre microdato
+# y no estima ningun parametro -- ejercita el camino, no calibra.
+variables: []
+universo: "las tres celdas-D de data/curacion-registro/celdas-d/, enumeradas por listdir"
+filtros: NO-APLICA
+ponderador: NO-APLICA
+transformacion: NO-APLICA
+estimando: >-
+  ninguno: veredicto de ESTADO del ejecutable matricial, ejercido de punta a
+  punta (procedencia.cargar() -> matriz.cargar_B() -> motor.evaluar()) sobre
+  las tres celdas-D semilla. ADR-91 sello el computo matricial como
+  definicion del ejecutable; esta corrida comprueba que corre con cadena
+  completa, no produce ninguna cifra del modelo.
+dependencias_materiales: []
+
+parametros:
+  fuente_acto: "ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA · P2"
+  repara: "NC-0023 (ACTO GEN2-T9, PR #615): milpa/src/clases.py sin prefijo para REFUTADO-POR-COTA y EVIDENCIA_EXPERIMENTAL_TERCEROS"
+
+seed:
+  aplica: false
+
+tolerancia:
+  tipo: entero
+  razon: >-
+    Todos los RESULT numericos son conteos (momentos, celdas, cortes,
+    entradas, archivos examinados) y se comparan EXACTO. No hay flotante
+    que tolerar porque no hay estimacion: la corrida no calcula, verifica.
+
+resultados:
+  - {id: RESULT-MOTOR-MOMENTOS-TOTAL,             tipo: entero, unidad: "momentos del catalogo sellado"}
+  - {id: RESULT-MOTOR-MOMENTOS-AJUSTE,            tipo: entero, unidad: "momentos con rol_calibracion AJUSTE"}
+  - {id: RESULT-MOTOR-MOMENTOS-HOLDOUT,           tipo: entero, unidad: "momentos con rol_calibracion HOLDOUT"}
+  - {id: RESULT-MOTOR-HOLDOUT-INTOCADOS,          tipo: entero, unidad: "HOLDOUT cuyo valor_de() lanzo (muro ejercido)"}
+  - {id: RESULT-MOTOR-CELDAS-SEMILLA,             tipo: entero, unidad: "celdas-D del disco"}
+  - {id: RESULT-MOTOR-CELDAS-IDS,                 tipo: texto,  unidad: "ids de las celdas-D, ordenados"}
+  - {id: RESULT-MOTOR-CORTES-SELLADOS,            tipo: entero, unidad: "ejes con corte sellado bajo M2"}
+  - {id: RESULT-MOTOR-CORTES-PENDIENTES,          tipo: entero, unidad: "ejes con corte PENDIENTE (FP-53)"}
+  - {id: RESULT-MOTOR-ESTADO-B,                   tipo: texto,  unidad: "CARGA o NO-EJECUTABLE"}
+  - {id: RESULT-MOTOR-DETALLE-B,                  tipo: texto,  unidad: "la razon medida del estado de B"}
+  - {id: RESULT-MOTOR-VEREDICTOS,                 tipo: texto,  unidad: "veredicto por celda-D, real -- ninguno fabricado"}
+  - {id: RESULT-MOTOR-REFUTADO-POR-COTA-N,        tipo: entero, unidad: "entradas REFUTADO-POR-COTA reconocidas"}
+  - {id: RESULT-MOTOR-REFUTADO-POR-COTA-CONSUMIBLE, tipo: entero, unidad: "de esas, cuantas aparecen en consumibles() (debe ser 0)"}
+  - {id: RESULT-MOTOR-EVIDENCIA-TERCEROS-N,       tipo: entero, unidad: "entradas EVIDENCIA_EXPERIMENTAL_TERCEROS reconocidas, con cita y llave_id"}
+  - {id: RESULT-MOTOR-ARCHIVOS-EXAMINADOS,        tipo: entero, unidad: "archivos/fuentes abiertos por el medidor (A.13)"}

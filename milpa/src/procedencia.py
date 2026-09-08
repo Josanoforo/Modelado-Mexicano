@@ -23,6 +23,7 @@ import yaml
 from .clases import (
     Clase,
     EjeNoDeclarado,
+    EvidenciaTercerosIncompleta,
     GateDetiene,
     SegmentacionProhibida,
     clasificar,
@@ -63,15 +64,17 @@ BLOQUES_CON_CLASE_IMPLICITA = {
 #: `clases.py`) -- sin que este diccionario tenga que nombrar el bloque.
 #: Confirmado corriendo `_recorrer` aislado sobre el bloque nuevo: produce 5
 #: `Entrada` con `clase=Clase.MEDIDO_BETA`, cero código nuevo. (No se pudo
-#: confirmar de punta a punta con `cargar()` completo: el árbol de hoy trae
-#: una entrada previa, ajena a este acto -- `EVIDENCIA_EXPERIMENTAL_
-#: TERCEROS`, sellada por `ADR-204` -- cuyo `clase:` no casa con ningún
-#: prefijo de `clases.py` y hace que `clasificar()` lance `ClaseDesconocida`
-#: antes de llegar a la sección nueva, que vive más abajo en el archivo.
-#: Defecto preexistente, fuera del perímetro de este acto -- `clases.py` no
-#: está en su lista de archivos; se declara aquí para que no se lea como
-#: introducido por este cambio. Ver `forense/notas/2026-08-28-sella-enlace-
-#: cierre.md`.)
+#: confirmar de punta a punta con `cargar()` completo en su momento: el árbol
+#: traía una entrada previa, ajena a ese acto -- `EVIDENCIA_EXPERIMENTAL_
+#: TERCEROS`, sellada por `ADR-204` -- cuyo `clase:` no casaba con ningún
+#: prefijo de `clases.py` y hacía que `clasificar()` lanzara `ClaseDesconocida`
+#: antes de llegar a la sección nueva, que vive más abajo en el archivo. Ver
+#: `forense/notas/2026-08-28-sella-enlace-cierre.md`.)
+#:
+#: ENMIENDA (`ACTO AUTO-MOTOR-1`, 8/sep/2026): `EVIDENCIA_EXPERIMENTAL_
+#: TERCEROS` y `REFUTADO-POR-COTA` ya tienen prefijo propio en `clases.py`
+#: (`NC-0023`); `cargar()` completo confirma hoy las 5 `Entrada`
+#: `MEDIDO_BETA` de punta a punta.
 
 
 @dataclass(frozen=True)
@@ -105,13 +108,15 @@ class Procedencia:
         """Lo que el motor puede consumir.
 
         `PENDIENTE` no entra (regla 5) y `GATE·ID` tampoco: el gate detiene.
-        Las dos se cargaron y están registradas en `entradas` — excluirlas del
-        consumo no es lo mismo que no haberlas leído.
+        `REFUTADO-POR-COTA` tampoco (`ACTO AUTO-MOTOR-1`, `NC-0023`): un
+        prior refutado no reingresa como parámetro utilizable. Las tres se
+        cargaron y están registradas en `entradas` — excluirlas del consumo
+        no es lo mismo que no haberlas leído.
         """
         return [
             e
             for e in self.entradas
-            if e.clase not in (Clase.PENDIENTE, Clase.GATE_ID)
+            if e.clase not in (Clase.PENDIENTE, Clase.GATE_ID, Clase.REFUTADO_POR_COTA)
         ]
 
     def contador_condicionales_medidas(self):
@@ -140,7 +145,19 @@ def _clase_implicita(camino):
 def _recorrer(nodo, camino, salida):
     if isinstance(nodo, dict):
         implicita = _clase_implicita(camino)
-        if implicita is not None and ("regla" in nodo or "gen" in nodo):
+        tiene_clase_propia = "clase" in nodo and isinstance(nodo["clase"], str)
+        # PRECEDENCIA SEMÁNTICA (`ACTO AUTO-MOTOR-1`, `NC-0022`/`NC-0023`):
+        # un nodo bajo un bloque de clase implícita (`asignados_probabilidad`
+        # / `asignados_coeficiente`) que ADEMÁS trae su propio campo `clase:`
+        # no es una entrada doble -- es UNA entrada con una clase más
+        # específica que la del bloque que la contiene (p. ej. un prior
+        # ASIGNADO que quedó `REFUTADO-POR-COTA`). Antes de que
+        # `REFUTADO-POR-COTA` tuviera prefijo propio esto no se veía: la
+        # rama explícita de abajo lanzaba `ClaseDesconocida` antes de llegar
+        # aquí. Con el prefijo reconocido, emitir las dos habría dejado el
+        # prior refutado reingresando como `ASIGNADO` consumible por la
+        # misma llave -- el defecto que este acto corrige.
+        if implicita is not None and ("regla" in nodo or "gen" in nodo) and not tiene_clase_propia:
             llave = nodo.get("regla") or nodo.get("gen")
             salida.append(
                 Entrada(
@@ -154,10 +171,31 @@ def _recorrer(nodo, camino, salida):
                     ruta_yaml=tuple(str(c) for c in camino),
                 )
             )
-        if "clase" in nodo and isinstance(nodo["clase"], str):
+        if tiene_clase_propia:
             crudo = nodo["clase"]
             clase, _ = clasificar(crudo)
             llave = camino[-1] if camino else "?"
+            if implicita is not None and ("regla" in nodo or "gen" in nodo):
+                # Misma precedencia: la llave semántica (`regla`/`gen`) gana
+                # sobre el índice de lista -- la otra mitad del mismo
+                # defecto, si no se corrigiera dejaría a esta entrada con
+                # una llave numérica sin sentido en vez de
+                # `tramite.gobierno_digital.coercitivo`.
+                llave = nodo.get("regla") or nodo.get("gen") or llave
+            if clase is Clase.EVIDENCIA_EXPERIMENTAL_TERCEROS:
+                # Contrato de la octava clase (`ADR-204`, `FP-164` opción
+                # (b)): sin `cita` y `llave_id` no hay nada que auditar, y
+                # cargarla igual sería fabricar procedencia.
+                if not str(nodo.get("cita") or "").strip():
+                    raise EvidenciaTercerosIncompleta(
+                        f"`{llave}` es EVIDENCIA_EXPERIMENTAL_TERCEROS sin "
+                        f"`cita`."
+                    )
+                if not str(nodo.get("llave_id") or "").strip():
+                    raise EvidenciaTercerosIncompleta(
+                        f"`{llave}` es EVIDENCIA_EXPERIMENTAL_TERCEROS sin "
+                        f"`llave_id`."
+                    )
             deuda = None
             if clase is Clase.ASIGNADO:
                 # §4.1 del plan: no hay campo de banda ni de IC en las

@@ -68,6 +68,26 @@ parseo, así que el WARN de cada corrida de la suite también trae los
 días de retraso cuando aplica — la memoria mecánica no depende de que
 alguien abra el digesto del día.
 
+v1.3 — DIGESTO INCREMENTAL DE H, P1-P3 de `ACTO AUTO-DIGESTO-1 ·
+CAMBIOS-DESDE-EL-ULTIMO-CORTE`
+(`forense/encargos/2026-09-08-digesto-incremental-reservas.md`). La
+sección H (`ACTO GEN2-T8`) volcaba todo `forense/no-corrido.tsv` cada
+corrida, como si todo fuera novedad. Ahora compara por `id` contra el
+último digesto versionado en `forense/digesto/`, localizado UNA SOLA VEZ
+por su historial de `git log` (nunca por fecha de modificación del
+sistema de archivos) y recuperado por el SHA de árbol que ese digesto
+declaró — nunca por lo que "hoy daría" el TSV en el árbol de trabajo.
+DETERMINISMO DE H, explícito (extiende el párrafo de arriba): misma
+`--fecha` + mismo árbol de entrada + misma referencia de comparación →
+mismo diff, byte por byte; la referencia se fija una vez al empezar y
+no se re-consulta a mitad de la comparación. Cada corte deja una marca
+`<!-- H-REF sha_arbol=… nc_sha256=… -->` (invisible en Markdown, no
+volátil: ambos valores derivan del árbol, nunca del reloj) para que el
+siguiente la recupere. Sin referencia recuperable —primera emisión, TSV
+ausente en ese árbol, SHA no resoluble— se declara `SIN-BASE-COMPARABLE`
+con la causa, nunca "todo es nuevo". Ver el docstring de `seccion_h()`
+para el contrato completo.
+
 ────────────────────────────────────────────────────────────────────
 NEUTRALIZACIÓN DE MARCADORES — léelo antes de tocar `_neutraliza()`.
 ────────────────────────────────────────────────────────────────────
@@ -138,11 +158,14 @@ import argparse
 import csv
 import datetime
 import glob
+import hashlib
+import io
 import json
 import os
 import re
 import subprocess
 import sys
+import tempfile
 
 import estado_comun as EC
 
@@ -1301,13 +1324,10 @@ def seccion_i(raiz, fecha, cuenta):
         filas = [f for f in csv.DictReader(
             (l for l in fh if not l.startswith("#")), delimiter="\t")
             if f.get("fecha")]
-    if isinstance(fecha, datetime.date):
-        hoy = fecha
-    else:
-        try:
-            hoy = datetime.date.fromisoformat(str(fecha))
-        except (ValueError, TypeError):
-            hoy = datetime.date.today()
+    try:
+        hoy = fecha if isinstance(fecha, datetime.date) else datetime.date.fromisoformat(fecha)
+    except (ValueError, TypeError):
+        hoy = datetime.date.today()
     piso = (hoy - datetime.timedelta(days=7)).isoformat()
     ventana = [f for f in filas if f["fecha"] >= piso]
 
@@ -1360,13 +1380,10 @@ def seccion_j(raiz, fecha, ramas_remotas, fuente_ramas):
            "veredicto como comentario de GitHub y **no** deja huella aquí.", ""]
     dir_notas = os.path.join(raiz, "forense", "notas")
     notas = sorted(glob.glob(os.path.join(dir_notas, "*revisa*.md")))
-    if isinstance(fecha, datetime.date):
-        hoy = fecha
-    else:
-        try:
-            hoy = datetime.date.fromisoformat(str(fecha))
-        except (ValueError, TypeError):
-            hoy = datetime.date.today()
+    try:
+        hoy = fecha if isinstance(fecha, datetime.date) else datetime.date.fromisoformat(fecha)
+    except (ValueError, TypeError):
+        hoy = datetime.date.today()
     piso = (hoy - datetime.timedelta(days=7)).isoformat()
     recientes = [n for n in notas if os.path.basename(n)[:10] >= piso]
     ramas_revisa = [r for r in (ramas_remotas or []) if "revisa" in r]
@@ -1388,48 +1405,421 @@ def seccion_j(raiz, fecha, ramas_remotas, fuente_ramas):
     return out, {"notas": len(recientes), "ramas": len(ramas_revisa)}
 
 
-def seccion_h(raiz, fecha, cuenta):
-    """H · A.14 -- `forense/no-corrido.tsv` (`ACTO GEN2-T8`, 8/sep/2026).
+# ───────────────────────────────────────────────────────────────
+# H · P1/P2 (`ACTO AUTO-DIGESTO-1 · CAMBIOS-DESDE-EL-ULTIMO-CORTE`,
+# 8/sep/2026, `forense/encargos/2026-09-08-digesto-incremental-reservas.md`)
+# -- contrato de referencia y de comparación del digesto incremental de
+# `forense/no-corrido.tsv`. Ver el docstring de `seccion_h()` para el
+# resumen operativo; las funciones de abajo son las piezas mecánicas.
+# ───────────────────────────────────────────────────────────────
 
-    Lee el TSV completo (append-only) y lista toda fila `NC-`, con su
-    `estado`. "Nuevas" = la lista completa hasta que este digesto se
-    ejecute dos días seguidos con memoria del anterior; hoy no hay estado
-    persistido entre corridas del digesto (es determinista sobre el árbol,
-    no sobre su propia historia), así que se reporta el CORTE del día:
-    todas las filas vigentes, con su estado, y el conteo provisional
-    `no_corrido_abiertas` -- "provisional" porque su fuente real (`status`
-    de `tools/corrida0.py`) todavía no lo deriva; este digesto solo cuenta
-    filas `estado = ABIERTA` del TSV."""
-    ruta = os.path.join(raiz, "forense", "no-corrido.tsv")
-    out = ["## H · `NO-CORRIDO / RESERVAS` (A.14)", "",
-           "Comando: lectura completa de `forense/no-corrido.tsv` (append-only). "
-           "Cada fila es un `NC-` que algún encargo archivó porque una pieza no se "
-           "corrió, se corrió parcial, distinta, o con reserva.", ""]
+# Marca invisible en Markdown (comentario HTML) que un digesto nuevo deja
+# para que el SIGUIENTE la recupere sin ambigüedad. No es metadato volátil:
+# `sha_arbol` y `nc_sha256` son ambos derivados del árbol, no del reloj ni
+# de un UUID (P1.7). `nc_sha256` puede ser `AUSENTE` cuando el TSV no
+# existía en ese árbol (p. ej. antes de `ACTO GEN2-T8`).
+RE_H_REF = re.compile(
+    r"<!-- H-REF sha_arbol=([0-9a-f]{40}) nc_sha256=([0-9a-f]{64}|AUSENTE) -->")
+
+# Fallback para digestos anteriores a esta pieza: todos declaran su HEAD
+# corto en la cabecera (`construye()`), y ADMITIR el SHA corto ahí es
+# exactamente lo que P1.3 autoriza -- "únicamente si resuelve de forma
+# inequívoca" (se resuelve con `git rev-parse`, nunca a ojo).
+RE_HEAD_CABECERA = re.compile(r"sobre el clon en `HEAD` `([0-9a-fA-F]{4,40}|NO-DERIVABLE)`")
+
+_NC_RUTA_REL = os.path.join("forense", "no-corrido.tsv")
+
+
+def _hash_tsv(texto):
+    """sha256 normalizando BOM y finales de línea (P1.1/P2: solo transporte,
+    nunca contenido). No usar para nada que exija integridad criptográfica
+    fuerte -- es una firma de identidad de corte, no una firma de seguridad."""
+    t = texto.lstrip("﻿").replace("\r\n", "\n").replace("\r", "\n")
+    return hashlib.sha256(t.encode("utf-8")).hexdigest()
+
+
+def _git_rev_parse(raiz, ref):
+    """Resuelve `ref` a un SHA completo de commit, con argumentos
+    estructurados -- nunca interpolación de shell (P1.5). `None` si no
+    resuelve (ref inexistente, historial superficial, etc.)."""
+    rc, salida = corre(["git", "rev-parse", "--verify", "--quiet", f"{ref}^{{commit}}"],
+                       raiz, timeout=30)
+    if rc != 0:
+        return None
+    sha = salida.strip().splitlines()[0].strip() if salida.strip() else ""
+    return sha if re.fullmatch(r"[0-9a-f]{40}", sha) else None
+
+
+def _git_muestra_archivo(raiz, sha, ruta_rel):
+    """`git show <sha>:<ruta_rel>`, o `None` si el objeto no existe en ese
+    árbol (el archivo aún no existía, o el SHA no es recuperable)."""
+    rc, salida = corre(["git", "show", f"{sha}:{ruta_rel}"], raiz, timeout=30)
+    return salida if rc == 0 else None
+
+
+def _git_arbol_sucio(raiz, ruta_rel):
+    """`True` si `ruta_rel` tiene cambios sin commitear frente a `HEAD`
+    (P1.6). `git status --porcelain` sobre esa ruta exacta."""
+    rc, salida = corre(["git", "status", "--porcelain", "--", ruta_rel], raiz, timeout=30)
+    return rc == 0 and bool(salida.strip())
+
+
+def _localiza_ultimo_digesto(raiz):
+    """El último digesto COMPLETADO y VERSIONADO en el historial del
+    destino de salida (`forense/digesto/`), anterior a esta emisión
+    (P1.2). Se resuelve UNA VEZ por el propio historial de `git log`
+    -- nunca por fecha de modificación del sistema de archivos -- y se
+    fija durante toda la generación (el resultado se pasa hacia abajo,
+    nunca se re-consulta a mitad de la comparación).
+
+    Devuelve (commit_sha, ruta_rel, texto) del digesto más reciente, o
+    (None, None, None) si `forense/digesto/` no tiene ningún commit
+    (primera vez que se publica cualquier digesto)."""
+    rc, salida = corre(["git", "log", "--format=%H", "-n", "1", "--",
+                        "forense/digesto/"], raiz, timeout=30)
+    if rc != 0 or not salida.strip():
+        return None, None, None
+    sha = salida.strip().splitlines()[0].strip()
+    rc2, listado = corre(["git", "show", "--name-only", "--format=",
+                          sha, "--", "forense/digesto/"], raiz, timeout=30)
+    if rc2 != 0:
+        return sha, None, None
+    candidatos = sorted(l.strip() for l in listado.splitlines()
+                        if l.strip().endswith(".md"))
+    if not candidatos:
+        return sha, None, None
+    ruta_rel = candidatos[-1]  # el más reciente por nombre (DIGESTO-<fecha>)
+    texto = _git_muestra_archivo(raiz, sha, ruta_rel)
+    return sha, ruta_rel, texto
+
+
+def _parse_referencia_h(raiz, texto_digesto):
+    """Extrae del texto de un digesto anterior la referencia que declaró
+    para SU PROPIO corte de entrada: (sha_arbol_completo, nc_sha256_o_None,
+    via). `via` documenta de dónde salió, para el A.13 de la sección H.
+
+    Dos formatos, en orden de preferencia:
+      1. La marca `H-REF` de esta misma pieza (digestos emitidos por esta
+         versión del generador).
+      2. La cabecera `HEAD <sha-corto>` que TODO digesto declara desde
+         `construye()` -- válida como referencia de árbol para digestos
+         más antiguos que no traen `H-REF` todavía; se resuelve con
+         `git rev-parse` para admitir el corto SOLO si es inequívoco."""
+    if texto_digesto is None:
+        return None, None, ("no existe ningún digesto anterior versionado en "
+                            "`forense/digesto/` (esta seria la primera emisión)")
+    m = RE_H_REF.search(texto_digesto)
+    if m:
+        sha_arbol = m.group(1)
+        nc_sha = None if m.group(2) == "AUSENTE" else m.group(2)
+        return sha_arbol, nc_sha, "marca H-REF"
+    m2 = RE_HEAD_CABECERA.search(texto_digesto)
+    if m2 and m2.group(1) != "NO-DERIVABLE":
+        resuelto = _git_rev_parse(raiz, m2.group(1))
+        if resuelto:
+            return resuelto, None, f"cabecera HEAD corto `{m2.group(1)}` (digesto anterior a H-REF)"
+        return None, None, f"cabecera HEAD corto `{m2.group(1)}` no resuelve de forma inequívoca"
+    return None, None, "el digesto anterior no declara ninguna referencia de árbol"
+
+
+def _cruza_no_corrido_abiertas(raiz, n_local):
+    """P3: "Usar el conteo de `corrida0 status` cuando el contexto permita
+    derivarlo sobre el mismo árbol; contrastarlo en la verificación." Si
+    `tools/corrida0.py status --json` no corre (dependencia ausente,
+    tiempo agotado, etc.) se declara una lectura local del TSV, sin
+    anunciar una corroboración inexistente -- nunca se calla el motivo."""
+    rc, salida = corre(["python3", os.path.join(raiz, "tools", "corrida0.py"),
+                        "status", "--json"], raiz, timeout=60)
+    if rc != 0:
+        return (f"`no_corrido_abiertas` **{n_local}** — lectura local del TSV; "
+                f"`tools/corrida0.py status --json` no corrió (código {rc}), sin "
+                f"corroboración cruzada.")
+    try:
+        remoto = json.loads(salida).get("no_corrido_abiertas")
+    except (json.JSONDecodeError, AttributeError):
+        return (f"`no_corrido_abiertas` **{n_local}** — lectura local del TSV; "
+                f"la salida de `tools/corrida0.py status --json` no se pudo parsear, "
+                f"sin corroboración cruzada.")
+    if remoto == n_local:
+        return (f"`no_corrido_abiertas` **{n_local}** — coincide con "
+                f"`tools/corrida0.py status` sobre el mismo árbol.")
+    return (f"`no_corrido_abiertas` **{n_local}** (lectura local del TSV) vs. "
+            f"**{remoto}** de `tools/corrida0.py status` — **discrepancia**, "
+            f"señalada y no resuelta aquí.")
+
+
+def _lee_tsv_texto(texto):
+    """Parsea un TSV de `no-corrido.tsv` desde una cadena (misma norma de
+    lectura que el archivo real: `utf-8-sig`, `\\t`). Lanza `ValueError`
+    con un mensaje explícito ante ID duplicado o fila sin `id` -- P2:
+    "ID duplicado, TSV inválido o esquema incompatible: error explícito;
+    no emitir un diff aparentemente válido"."""
+    t = texto.lstrip("﻿")
+    filas = list(csv.DictReader(io.StringIO(t), delimiter="\t"))
+    vistos = {}
+    for i, f in enumerate(filas):
+        rid = (f.get("id") or "").strip()
+        if not rid:
+            raise ValueError(f"fila {i + 1} sin `id` -- TSV inválido")
+        if rid in vistos:
+            raise ValueError(f"`id` duplicado: `{rid}` (filas {vistos[rid] + 1} y {i + 1})")
+        vistos[rid] = i
+    return filas
+
+
+_CAMPOS_IDENTIDAD = ("id",)
+_CAMPO_ESTADO = "estado"
+
+
+def _compara_cortes(filas_antes, filas_ahora):
+    """P2: compara dos cortes por `id`, campo por campo (todos los del
+    TSV, no solo los que la tabla visible muestra). Orden determinista
+    por `id`. Devuelve un dict con las cinco categorías + metadatos de
+    esquema, o lanza `ValueError` si el esquema cambiado ya no permite
+    comparar identidad/estado con seguridad."""
+    idx_antes = {f["id"].strip(): f for f in filas_antes}
+    idx_ahora = {f["id"].strip(): f for f in filas_ahora}
+
+    cols_antes = set(filas_antes[0].keys()) if filas_antes else set()
+    cols_ahora = set(filas_ahora[0].keys()) if filas_ahora else set()
+    agregadas = sorted(cols_ahora - cols_antes)
+    retiradas = sorted(cols_antes - cols_ahora)
+    if cols_antes and cols_ahora:
+        for c in _CAMPOS_IDENTIDAD + (_CAMPO_ESTADO,):
+            if c in cols_antes and c not in cols_ahora:
+                raise ValueError(
+                    f"columna `{c}` (identidad/estado) desapareció del esquema -- "
+                    f"no se puede comparar identidad ni estado con seguridad")
+
+    campos_comunes = sorted((cols_antes & cols_ahora) or cols_ahora) or ["id", "estado"]
+
+    nuevas, cambios_estado, modificadas, ausentes, sin_cambio = [], [], [], [], []
+    todos_ids = sorted(set(idx_antes) | set(idx_ahora))
+    for rid in todos_ids:
+        antes = idx_antes.get(rid)
+        ahora = idx_ahora.get(rid)
+        if antes is None:
+            nuevas.append((rid, ahora))
+            continue
+        if ahora is None:
+            ausentes.append((rid, antes))
+            continue
+        cambio_estado = (antes.get(_CAMPO_ESTADO) or "") != (ahora.get(_CAMPO_ESTADO) or "")
+        campos_distintos = sorted(
+            c for c in campos_comunes
+            if c != _CAMPO_ESTADO and (antes.get(c) or "") != (ahora.get(c) or ""))
+        if not cambio_estado and not campos_distintos:
+            sin_cambio.append(rid)
+            continue
+        tags = []
+        if cambio_estado:
+            tags.append("CAMBIO-DE-ESTADO")
+            cambios_estado.append((rid, antes, ahora))
+        if campos_distintos:
+            tags.append("MODIFICADA")
+            modificadas.append((rid, antes, ahora, campos_distintos))
+
+    afectados = sorted({rid for rid, *_ in nuevas} | {rid for rid, *_ in cambios_estado}
+                       | {rid for rid, *_ in modificadas} | {rid for rid, *_ in ausentes})
+    return {
+        "nuevas": nuevas, "cambios_estado": cambios_estado, "modificadas": modificadas,
+        "ausentes": ausentes, "sin_cambio": sin_cambio, "afectados": afectados,
+        "columnas_agregadas": agregadas, "columnas_retiradas": retiradas,
+    }
+
+
+def seccion_h(raiz, fecha, cuenta=None, base_nc_ref=None, tope_filas=25):
+    """H · A.14 -- digesto INCREMENTAL de `forense/no-corrido.tsv`
+    (P1-P3 de `ACTO AUTO-DIGESTO-1 · CAMBIOS-DESDE-EL-ULTIMO-CORTE`,
+    8/sep/2026). Reemplaza el volcado completo de la v1 de esta sección
+    (`ACTO GEN2-T8`) por un diff contra el último corte publicado.
+
+    Referencia (P1): se localiza UNA VEZ el último digesto versionado en
+    `forense/digesto/` (o, con `--base-nc-ref`, una referencia explícita
+    de diagnóstico -- resuelta con `git`, nunca interpolación de shell),
+    se recupera el `no-corrido.tsv` que declaró, y se compara contra el
+    corte actual por `id` (P2). Sin referencia recuperable, se declara
+    `SIN-BASE-COMPARABLE` -- nunca se afirma que todo es nuevo.
+
+    Devuelve (líneas, dict-resumen) igual que las demás secciones;
+    `dict-resumen["no_corrido_abiertas"]` es el conteo vigente de
+    abiertas (se preserva aunque la comparación no sea posible) y
+    `dict-resumen["h_error"]` (str o None) señala una referencia
+    explícita inválida -- la única condición de esta sección que debe
+    abortar la escritura del digesto completo (P1.5)."""
+    if cuenta is None:
+        cuenta = Cuenta()
+    ruta = os.path.join(raiz, _NC_RUTA_REL)
+    resumen = {"no_corrido_abiertas": 0, "h_error": None}
+    out = ["## H · `NO-CORRIDO / RESERVAS` — digesto incremental (A.14)", "",
+           "Comando: diff por `id` de `forense/no-corrido.tsv` contra el último "
+           "digesto versionado en `forense/digesto/` (P1/P2 de "
+           "`forense/encargos/2026-09-08-digesto-incremental-reservas.md`).", ""]
+
     if not os.path.exists(ruta):
         out += ["**NO-ENCONTRADO.** `forense/no-corrido.tsv` no existe (A.13).", ""]
-        return out, 0
+        return out, resumen
+
     with open(ruta, encoding="utf-8-sig", newline="") as fh:
-        filas = list(csv.DictReader(fh, delimiter="\t"))
-    if not filas:
-        out += ["**0 filas.** El archivo existe y está vacío (solo cabecera).", ""]
-        return out, 0
-    abiertas = [f for f in filas if (f.get("estado") or "").strip() == "ABIERTA"]
-    out += [f"**{len(filas)}** fila(s) total, **{len(abiertas)}** `ABIERTA`.", "",
-            "| `id` | acto | pieza | estado | sucesor |",
-            "|---|---|---|---|---|"]
-    for f in filas:
-        # Campos copiados del árbol: se neutralizan igual que las firmas
-        # (T25/T22 -- las filas retrofit de ADR-393 traen rótulos pelados).
-        _n = lambda v: neutraliza(una_linea(v or "—"), cuenta)
-        out.append(f"| `{f.get('id', '?')}` | {_n(f.get('acto'))} | "
-                   f"{_n(f.get('pieza'))} | {_n(f.get('estado'))} | "
-                   f"{_n(f.get('sucesor'))} |")
-    out += ["", f"`no_corrido_abiertas` (provisional, contado por este digesto -- "
-                f"sucesor definitivo: `status` de `tools/corrida0.py`): **{len(abiertas)}**.", ""]
-    return out, len(abiertas)
+        texto_actual = fh.read()
+    try:
+        filas_ahora = _lee_tsv_texto(texto_actual)
+    except ValueError as exc:
+        out += [f"**ERROR** — `forense/no-corrido.tsv` no es un TSV válido: {exc}. "
+                f"No se emite un diff aparentemente válido sobre datos inválidos (P2).", ""]
+        resumen["h_error"] = f"TSV actual inválido: {exc}"
+        return out, resumen
+
+    # Campos copiados del árbol: se neutralizan igual que las firmas (T25/T22 --
+    # ACTO GEN2-T11 · RUTINAS-FIX, 8/sep/2026 -- las filas retrofit de ADR-393
+    # traen rótulos M/E pelados en `estado`/`sucesor`).
+    _n = lambda v: neutraliza(una_linea(v or "—"), cuenta)
+
+    abiertas = [f for f in filas_ahora if (f.get("estado") or "").strip() == "ABIERTA"]
+    resumen["no_corrido_abiertas"] = len(abiertas)
+
+    rc_sha, sha_actual = corre(["git", "rev-parse", "HEAD"], raiz, timeout=30)
+    sha_arbol_actual = sha_actual.strip() if rc_sha == 0 else None
+    nc_sha256_actual = _hash_tsv(texto_actual)
+    sucio = _git_arbol_sucio(raiz, _NC_RUTA_REL)
+
+    # Referencia: explícita (diagnóstico) o auto-seleccionada (P1.2/P1.5).
+    if base_nc_ref:
+        sha_ref = _git_rev_parse(raiz, base_nc_ref)
+        if not sha_ref:
+            out += [f"**ERROR** — `--base-nc-ref {base_nc_ref}` no resuelve a un commit "
+                    f"real (`git rev-parse --verify`). Una referencia explícita inválida "
+                    f"es error; no se sustituye silenciosamente por otra (P1.5).", ""]
+            resumen["h_error"] = f"--base-nc-ref inválido: {base_nc_ref!r}"
+            return out, resumen
+        via_ref = f"explícita (`--base-nc-ref {base_nc_ref}` → `{sha_ref}`)"
+        texto_ref_tsv = _git_muestra_archivo(raiz, sha_ref, _NC_RUTA_REL)
+        origen_digesto = None
+        nc_sha256_ref = None  # diagnóstico: no hay digesto que declare un hash que cotejar
+    else:
+        sha_digesto, ruta_digesto, texto_digesto = _localiza_ultimo_digesto(raiz)
+        origen_digesto = ruta_digesto
+        sha_ref, nc_sha256_ref, via_ref = _parse_referencia_h(raiz, texto_digesto)
+        texto_ref_tsv = _git_muestra_archivo(raiz, sha_ref, _NC_RUTA_REL) if sha_ref else None
+
+    marca_ref = (f"<!-- H-REF sha_arbol={sha_arbol_actual or '0' * 40} "
+                f"nc_sha256={nc_sha256_actual} -->")
+
+    if sha_ref is None or texto_ref_tsv is None:
+        causa = (via_ref if sha_ref is None else
+                 f"`{_NC_RUTA_REL}` no existe en el árbol `{sha_ref}` "
+                 f"({via_ref}) -- probablemente anterior a `ACTO GEN2-T8` (8/sep/2026, "
+                 f"introdujo el archivo)")
+        corroboracion0 = _cruza_no_corrido_abiertas(raiz, len(abiertas))
+        out += ["**SIN-BASE-COMPARABLE.**", "",
+                f"Motivo: {causa}.", "",
+                f"Corte actual: árbol `{sha_arbol_actual or 'NO-DERIVABLE'}`"
+                + (" (TSV con cambios locales sin commitear — ver nota abajo)"
+                   if sucio else "") + f", `no-corrido.tsv` `sha256:{nc_sha256_actual}`. "
+                f"**{len(filas_ahora)}** fila(s) total. {corroboracion0}", "",
+                "No se afirma que todas las filas son nuevas ni que no hubo cambios: "
+                "esta ejecución solo establece una referencia utilizable para la "
+                "siguiente (P1.4).", "", marca_ref, ""]
+        return out, resumen
+
+    try:
+        filas_antes = _lee_tsv_texto(texto_ref_tsv)
+    except ValueError as exc:
+        out += [f"**ERROR** — el TSV de referencia (`{sha_ref}`) no es válido: {exc}. "
+                f"No se emite un diff sobre una referencia inválida.", "", marca_ref, ""]
+        resumen["h_error"] = f"TSV de referencia inválido: {exc}"
+        return out, resumen
+
+    if nc_sha256_ref:
+        integridad = ("coincide" if _hash_tsv(texto_ref_tsv) == nc_sha256_ref
+                      else "NO coincide con la declarada por ese digesto (A.13: "
+                           "se compara igual, con esta discrepancia señalada)")
+    else:
+        integridad = "no declarada por el digesto de referencia (formato anterior a H-REF)"
+
+    try:
+        cmp = _compara_cortes(filas_antes, filas_ahora)
+    except ValueError as exc:
+        out += [f"**ERROR** — esquema incompatible entre el corte de referencia y el "
+                f"actual: {exc}.", "", marca_ref, ""]
+        resumen["h_error"] = f"esquema incompatible: {exc}"
+        return out, resumen
+
+    out += [f"Referencia anterior: árbol `{sha_ref}` (`{via_ref}`"
+            + (f", vía `{origen_digesto}`" if origen_digesto else "") + f"); "
+            f"hash de su `no-corrido.tsv`: {integridad}.",
+            f"Corte actual: árbol `{sha_arbol_actual or 'NO-DERIVABLE'}`"
+            + (" — **TSV con cambios locales sin commitear** (esta comparación es "
+               "una vista previa; no constituye referencia publicada, ver P1.6)"
+               if sucio else "") + f", `no-corrido.tsv` `sha256:{nc_sha256_actual}`.",
+            "Comparabilidad: **BASE-COMPARABLE**.", ""]
+
+    if cmp["columnas_agregadas"] or cmp["columnas_retiradas"]:
+        out += [f"Cambio de esquema: columnas añadidas: "
+                f"{', '.join(f'`{c}`' for c in cmp['columnas_agregadas']) or '(ninguna)'}"
+                f"; retiradas: "
+                f"{', '.join(f'`{c}`' for c in cmp['columnas_retiradas']) or '(ninguna)'}. "
+                f"Comparación limitada a las columnas comunes.", ""]
+
+    n_nuevas, n_ce, n_mod, n_aus = (len(cmp["nuevas"]), len(cmp["cambios_estado"]),
+                                     len(cmp["modificadas"]), len(cmp["ausentes"]))
+    n_afectados = len(cmp["afectados"])
+    if n_nuevas == n_ce == n_mod == n_aus == 0:
+        out += [f"**SIN-CAMBIOS.** Cero IDs afectados desde la referencia. Total vigente "
+                f"de abiertas: **{len(abiertas)}**.", ""]
+    else:
+        out += [f"**{n_nuevas}** nueva(s) · **{n_ce}** con cambio de estado · "
+                f"**{n_mod}** modificada(s) · **{n_aus}** ausente(s) en el corte actual "
+                f"-- **{n_afectados}** ID(s) afectado(s) en total, sin duplicar "
+                f"(una fila con cambio de estado Y de contenido cuenta una sola vez "
+                f"en este total).", ""]
+        filas_tabla = []
+        cambio_de = {rid: (a, b) for rid, a, b in cmp["cambios_estado"]}
+        mod_de = {rid: (a, b, campos) for rid, a, b, campos in cmp["modificadas"]}
+        nueva_de = {rid: f for rid, f in cmp["nuevas"]}
+        aus_de = {rid: f for rid, f in cmp["ausentes"]}
+        for rid in cmp["afectados"]:
+            if rid in nueva_de:
+                f = nueva_de[rid]
+                filas_tabla.append((rid, "NUEVA", "—",
+                                    _n(f.get("estado")), _n(f.get("sucesor"))))
+            elif rid in aus_de:
+                f = aus_de[rid]
+                filas_tabla.append((rid, "AUSENTE-EN-CORTE-ACTUAL", _n(f.get("estado")),
+                                    "—", _n(f.get("sucesor"))))
+            else:
+                tags = []
+                antes_estado = ahora_estado = "—"
+                sucesor = "—"
+                if rid in cambio_de:
+                    a, b = cambio_de[rid]
+                    tags.append("CAMBIO-DE-ESTADO")
+                    antes_estado, ahora_estado = _n(a.get("estado")), _n(b.get("estado"))
+                    sucesor = _n(b.get("sucesor"))
+                if rid in mod_de:
+                    a, b, campos = mod_de[rid]
+                    tags.append(f"MODIFICADA ({', '.join(campos)})")
+                    if antes_estado == "—":
+                        antes_estado, ahora_estado = _n(a.get("estado")), _n(b.get("estado"))
+                    sucesor = _n(b.get("sucesor")) if b.get("sucesor") else sucesor
+                filas_tabla.append((rid, " + ".join(tags), antes_estado, ahora_estado, sucesor))
+        tope = tope_filas if tope_filas else len(filas_tabla)
+        out += ["| `id` | cambio | antes | después | sucesor |", "|---|---|---|---|---|"]
+        for rid, cambio, antes_e, despues_e, sucesor in filas_tabla[:tope]:
+            out.append(f"| `{rid}` | {cambio} | {antes_e} | {despues_e} | {sucesor} |")
+        if len(filas_tabla) > tope:
+            out.append(f"| … | **{len(filas_tabla) - tope} fila(s) más, omitidas por el "
+                       f"tope de presentación (`--tope-lista`)** | | | |")
+        out.append("")
+        out += [f"Total vigente de abiertas (corte actual, sin duplicar): **{len(abiertas)}**.", ""]
+
+    corroboracion = _cruza_no_corrido_abiertas(raiz, len(abiertas))
+    out += [f"Inventario completo: `forense/no-corrido.tsv` (**{len(filas_ahora)}** fila(s) "
+            f"total). {corroboracion}", "", marca_ref, ""]
+    return out, resumen
 
 
-def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
+def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso, base_nc_ref=None):
     cuenta = Cuenta()
     rc_git, sha = corre(["git", "rev-parse", "--short", "HEAD"], raiz, timeout=60)
     sha = sha.strip() if rc_git == 0 else "NO-DERIVABLE"
@@ -1451,7 +1841,8 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
     e, n_cont = seccion_e(raiz)
     f, res_f = seccion_f(raiz, fecha, ramas, fuente_ramas)
     g, n_pend = seccion_g(raiz)
-    h, n_nc_abiertas = seccion_h(raiz, fecha, cuenta)
+    h, res_h = seccion_h(raiz, fecha, cuenta, base_nc_ref=base_nc_ref, tope_filas=tope_lista)
+    n_nc_abiertas = res_h["no_corrido_abiertas"]
     i, res_i = seccion_i(raiz, fecha, cuenta)
     j, res_j = seccion_j(raiz, fecha, ramas, fuente_ramas)
     fals, n_venc = bloque_falsadores(raiz, fecha)
@@ -1493,7 +1884,7 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso):
                "rutinas": res_i, "revisiones": res_j,
                "pendientes_mesa": n_pend, "falsadores_vencidos": n_venc,
                "vencidas": n_vencidas, "vencen_semana": n_vencen_semana,
-               "no_corrido_abiertas": n_nc_abiertas}
+               "no_corrido_abiertas": n_nc_abiertas, "h_error": res_h["h_error"]}
     return "\n".join(cuerpo).rstrip() + "\n", resumen
 
 
@@ -1541,6 +1932,11 @@ def main(argv=None):
                     help="Desactiva la verificación. No lo uses para escribir en "
                          "forense/: es la única garantía de que el digesto no tumba "
                          "la suite.")
+    ap.add_argument("--base-nc-ref", default=None,
+                    help="Diagnóstico (P1.5): SHA/ref explícito contra el que comparar "
+                         "`forense/no-corrido.tsv`, en vez de auto-seleccionar el último "
+                         "digesto versionado. Se resuelve con `git rev-parse --verify`; "
+                         "una ref inválida es error, nunca se sustituye por otra.")
     a = ap.parse_args(argv)
 
     if a.fecha:
@@ -1554,8 +1950,25 @@ def main(argv=None):
         fecha = datetime.date.today()
 
     raiz = os.path.abspath(a.raiz)
+
+    # P1.6: en modo publicación (escribe archivo), un `no-corrido.tsv` con
+    # cambios locales sin commitear no puede atribuirse a ningún SHA -- se
+    # detiene y se exige versionarlo primero. `--stdout` sigue siendo vista
+    # previa: puede mostrarlo (seccion_h ya lo declara como tal).
+    if not a.stdout and _git_arbol_sucio(raiz, _NC_RUTA_REL):
+        print("PARO — `forense/no-corrido.tsv` tiene cambios locales sin commitear. "
+              "El digesto de archivo no puede atribuir ese contenido a ningún SHA "
+              "(P1.6). Commitea el corte primero, o usa `--stdout` para una vista "
+              "previa que declare su hash sin publicarlo.", file=sys.stderr)
+        return 2
+
     texto, res = construye(raiz, fecha, a.sin_suite, a.tope_texto, a.tope_lista,
-                           a.piso_encargos)
+                           a.piso_encargos, base_nc_ref=a.base_nc_ref)
+
+    if res.get("h_error"):
+        print(f"PARO — sección H (P1/P2): {res['h_error']}. El digesto NO se escribe.",
+              file=sys.stderr)
+        return 2
 
     if a.verifica:
         problemas = verifica(texto)
@@ -1572,8 +1985,22 @@ def main(argv=None):
         salida = a.salida or os.path.join(raiz, "forense", "digesto",
                                           f"DIGESTO-{fecha.isoformat()}.md")
         os.makedirs(os.path.dirname(salida), exist_ok=True)
-        with open(salida, "w", encoding="utf-8") as fh:
-            fh.write(texto)
+        # Escritura atómica (P3): valida todo el contenido arriba (verifica
+        # de marcadores + h_error) antes de tocar el archivo final; escribe
+        # a un temporal en el mismo directorio y `os.replace` -- si algo
+        # falla a mitad, el digesto anterior queda intacto.
+        fd, tmp_path = tempfile.mkstemp(prefix=".digesto-tmp-",
+                                        dir=os.path.dirname(salida))
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as fh:
+                fh.write(texto)
+            os.replace(tmp_path, salida)
+        except BaseException:
+            try:
+                os.remove(tmp_path)
+            except OSError:
+                pass
+            raise
         print(f"escrito: {os.path.relpath(salida, raiz)}")
 
     c = res["cola"]
