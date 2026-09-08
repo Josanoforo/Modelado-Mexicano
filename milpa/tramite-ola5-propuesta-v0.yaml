@@ -3950,3 +3950,34 @@ reglas_propuestas:
     payload_manifiesto_id: cide_cses2015_nacional_poselectoral
     spec: "prereg-caja-S12 — forense/prereg-caja/S12-CSES-spec-v1_0.md, sha256 870522a34d9538454b5b774ddc33e46f9cd8e8d62a20f31b2d972f9755447336; cara local data/corrida0/CALC-0001/spec.yaml"
     medido_en: "ACTO GEN2-E5 · CALC-0001, 8/sep/2026 — corrida sellada CALC-0001--174c269a07b6, data/corrida0/CALC-0001/resultados.json"
+
+  - id: civico.contexto_institucional_victimas.lapop
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA  # marginal del ANTECEDENTE de R10.3, no la
+        # regla: este CALC no falsa R10.3, mide el contexto institucional entre
+        # víctimas (vic1ext=1). El índice exige TRES indicadores (aoj11, b18,
+        # aoj12); 2021 sale NO-ESTIMABLE-INDICE-INCOMPLETO porque `aoj12` NO
+        # EXISTE en ese archivo — control positivo: aoj11, b18, vic1ext, wt,
+        # upm y estratopri sí están, entre 262 columnas. `veredicto_D2h`
+        # sigue NO-CONSTRUIBLE, decidido en E5-0 y NO tocado aquí.
+    entonces:
+      - {conducta: contexto_institucional_alto_2019, p: 0.7862745098039216, clase: "MEDIDO·p(proporcion ponderada)",
+         corrida0_resultado_id: RESULT-CTX-2019-P-ALTO, corrida0_generacion: GEN2}
+      - {conducta: contexto_institucional_alto_2023, p: 0.7341176470588235, clase: "MEDIDO·p(proporcion ponderada)",
+         corrida0_resultado_id: RESULT-CTX-2023-P-ALTO, corrida0_generacion: GEN2}
+      - {conducta: contexto_institucional_alto_2021, p: null, clase: "NO-ESTIMABLE·indice-incompleto",
+         corrida0_resultado_id: RESULT-CTX-2021-P-ALTO, corrida0_generacion: GEN2}
+    porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["LAPOP-AmericasBarometer-MEX-2019", "LAPOP-AmericasBarometer-MEX-2021", "LAPOP-AmericasBarometer-MEX-2023"]
+    ola_calibracion: "tres olas LAPOP (2019, 2021, 2023); 2021 no entrega índice — dos olas con estimación"
+    ic95: [0.75, 0.8230792682926829]   # 2019; 2023 = [0.6843195210395104, 0.782010650766957]; 2021 = null
+    n: "N-UNIVERSO víctimas con ponderador válido: 520 (2019) · 505 (2021) · 428 (2023)"
+    ponderador: "wt (prescrito por la spec y aplicado)"
+    universo: "víctimas de extorsión (vic1ext = 1) con ponderador válido en la ola; nunca agrupadas entre olas"
+    sha256_payload: "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57"
+    payload_manifiesto_id: mexico_lapop_americasbarometer_2019_v1_0_w
+    spec: "prereg-caja-S13 — forense/prereg-caja/S13-R10-3-spec-v1_0.md, sha256 c41235b804b0834881b7d3467e25ab0b74946fc03ba14245918e9c7a2e69a515; cara local data/corrida0/CALC-0002/spec.yaml"
+    medido_en: "ACTO GEN2-E5 · CALC-0002, 8/sep/2026 — corrida sellada CALC-0002--f57ad1cd8f96, data/corrida0/CALC-0002/resultados.json"
