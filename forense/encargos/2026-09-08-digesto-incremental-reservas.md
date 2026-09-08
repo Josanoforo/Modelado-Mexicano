@@ -139,3 +139,7 @@ A.14 (`ACTO GEN2-T8`, 8/sep/2026). Precede a `## CONSUMIDO`.
 | Referencia histórica con SHA corto ambiguo (varios digestos antiguos cuyo `HEAD` corto de cabecera resuelva a más de un commit) | NO-VERIFICABLE-AQUÍ — el árbol real de este proyecto no tiene hoy ningún caso así; `_git_rev_parse()` lo rechaza (devuelve `None`, tratado como `SIN-BASE-COMPARABLE`) pero el caso de aceptación vive solo en el contrato, no en un test dedicado a la ambigüedad real de SHA corto | ninguno: el comportamiento (rechazar y no adivinar) está implementado y es el mismo camino que ya cubre el caso "SHA no recuperable" de `tests/test_digesto_nc.py` | mesa (se revisita si algún día el árbol real produce dos commits con el mismo prefijo corto en `forense/digesto/`) |
 
 Ninguna otra pieza de P1-P4 quedó sin ejecutar dentro del perímetro declarado. Lo explícitamente excluido por el propio encargo (`corrida0 delta`/`vigencia`, comparar valores numéricos del modelo, cambiar el scheduler, reconstruir todo el historial, mensajes, cierre automático de reservas de otros actos) no se tocó, como se pidió.
+
+## CONSUMIDO
+
+Ejecutado vía [PR #622](https://github.com/Josanoforo/Modelado-Mexicano/pull/622) (`ACTO AUTO-DIGESTO-1 · CAMBIOS-DESDE-EL-ULTIMO-CORTE`), rama `acto/digesto-incremental-reservas`. `## NO-CORRIDO / RESERVAS` arriba precede a esta sección, tal como A.14 exige. No fusionado por el ejecutor: el merge es de mesa.
