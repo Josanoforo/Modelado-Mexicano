@@ -2659,6 +2659,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # AUTO-MOTOR-1 arriba: un encargo verbatim no se edita para complacer
     # un test (A.3).
     "forense/encargos/2026-09-08-GEN2-TRAMITE-FIRMAS-1-PROPAGACION.md",
+    # ACTO GEN2-CIERRES-GRUPO-A, 8/sep/2026: encargo archivado VERBATIM
+    # (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita "E5 corre
+    # en caja" en CONCURRENCIA -- referencia de PROCEDENCIA a la fase de
+    # cálculo ya censada de la serie `E · GEN2-E0..GEN2-E7`
+    # (`canon/registro-rotulos.tsv:213`), no un rótulo nuevo que este acto
+    # reclame. Mismo patrón que las exenciones hermanas de arriba: un
+    # encargo verbatim no se edita para complacer un test (A.3).
+    "forense/encargos/2026-09-08-GEN2-CIERRES-GRUPO-A-cierra-folders-costo.md",
+    # ACTO GEN2-CIERRES-GRUPO-A, nota del acto, 8/sep/2026: cita `M07`,
+    # el id de momento ya censado en `milpa/catalogo-momentos-v0_1.md:67`
+    # para `dinero.credito.scoring_alternativo`/`N19` -- referencia de
+    # PROCEDENCIA a un habitante existente, no un rótulo nuevo.
+    "forense/notas/2026-09-08-GEN2-CIERRES-GRUPO-A-cierre.md",
     # ACTO RUTINAS-2 · COORDINACION-Y-REVISION-VIGENTE, 8/sep/2026: encargo
     # archivado VERBATIM (0-bis A.3). Cita "E5-0/E5" pelados dos veces --
     # "No ejecutar E5-0/E5 desde NUBE" -- como referencia de PROCEDENCIA a
@@ -4565,6 +4578,14 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
     revisión, más receta para 6 de ellas) -- el texto nuevo no repite
     todas las comillas sueltas del texto viejo que reemplazó. **13
     líneas** (20, 29, 35, 40, 47, 94, 114, 117, 119, 121, 123, 124, 125).
+
+    Re-medido de nuevo (`ACTO GEN2-CIERRES-GRUPO-A`, 8/sep/2026): 7 filas
+    (`HOMESCAN_CONSUMER_PANEL_SERVICES`, `PANEL_DE_COMPRA_DE_HOGARES`,
+    `EXT_OF_07_CATALOGO_PROVEEDORES_S1_S3_S6`, `INEGI_CNGF`,
+    `PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND`, `OECD`,
+    `PI`) recibieron `nota` nueva vía el mismo `upsert_fila` (glosa de
+    cierre + estampa de universo A.10). **18 líneas** (20, 29, 35, 37,
+    38, 40, 47, 51, 63, 94, 97, 114, 117, 119, 121, 123, 124, 125).
     Este test es DOBLE:
 
     (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
@@ -4596,11 +4617,11 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 13:
+    if len(diffs_csv) != 18:
         fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
-                         f"13 líneas distintas (20, 29, 35, 40, 47, 94, 114, 117, 119, 121, 123, "
-                         f"124, 125) el 4/sep/2026 (ACTO MAESTRA38-N4, FP-286, tras re-escribir "
-                         f"la nota de las 28 filas de MAESTRA37-A2); hoy da "
+                         f"18 líneas distintas (20, 29, 35, 37, 38, 40, 47, 51, 63, 94, 97, 114, "
+                         f"117, 119, 121, 123, 124, 125) el 8/sep/2026 (ACTO GEN2-CIERRES-GRUPO-A); "
+                         f"hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")
