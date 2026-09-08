@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **415 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **416 ADR**
 
 > | | |
 > |---|---|
@@ -7044,6 +7044,18 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Perímetro cumplido (pieza D).** `tools/cierra_libro_gen1.py` (nuevo) · `forense/encargos/*.md` (sólo el rótulo al pie, por script) · `forense/encargos/cola/*.md` (sólo `ESTADO:`) · `tools/cierre_acto.py` · `tools/digesto_tramite.py` · `.claude/commands/{despacha,revisa,tramite}.md` · `forense/rutinas.tsv` (nuevo) · `tests/manifiesto.py` (ruta del lock) · `tests/check.py` (`T37`) · `forense/hallazgos.md` · `forense/no-corrido.tsv` · cascada. **No tocó** `tools/corrida0.py`, `milpa/**`, canon de reglas, specs, `corridas-{R,M,L}/`, ni las rutinas de GitHub (ésas las edita mesa en la interfaz).
 
 **`tests/check.py --baseline`**: **LÍNEA BASE VERDE** (3 `FAIL` · 188 `WARN`, los tres de la línea base congelada).
+
+---
+
+**ADR-416 (derivado por `python3 tools/cierre_acto.py`, Fase A; contra `origin/main = 51fec05`: máximo real `415`, candidato `416`, sin huecos; ya redactado en la rama remota `acto/gen2-universo-c-tandas-enafin` — `PR #639`, `ACTO GEN2-UNIVERSO-C`, perímetro disjunto de éste (manifiesto/colas de caja contra un test de repo) — regla de la casa: renumera quien fusiona segundo, se re-deriva antes de cada push) · `ACTO GEN2-T35-DISEÑO · LA SIRENA SOLO PARA CABLES CORTADOS`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** (`forense/encargos/2026-09-08-GEN2-T35-DISENO.md`, archivado verbatim, 0-bis `bf4a3e9`). **COMPUERTA: ninguna** (declarada, no dispara verificación).
+
+**FP-360 → FIRMADA.** Firma de mesa 8/sep/2026, citada verbatim en el propio encargo: *«FP-360 = SI. El FAIL de T35 se reserva para cableado roto: una regla que cita un corrida0_resultado_id inexistente, o una cita malformada. Lo sellado-sin-adoptar no es un defecto: es el estado que mi propia firma del contador creó a propósito («cuenta, no adopta») — grita en WARN con antigüedad en días, patrón T22, hasta que mesa adopte por merge en C0-B/C0-D.»* En `tests/check.py::t35_repro`, el ramal (a) — un `RESULT` activo GEN2 sellado sin consumidor en `milpa/` — deja de emitir `FAIL` y pasa a `senal()` (WARN de vigía, patrón `T22`, fuera de la comparación de línea base) con el rótulo `SELLADA-SIN-ADOPTAR` y su antigüedad en días, derivada de la fecha de la fila del `CALC` en `data/corrida0/decisiones.tsv` (`SIN-FECHA` si no hay fila). El resumen imprime el agregado (`SELLADA-SIN-ADOPTAR: N · más vieja: X días`) antes que las 211 entradas individuales, para que quede en la vista previa del resumen del test. El resto de (a) (cadena incompleta, sello que no coincide) y los ramales (b)/(c)/(d)/(e)/(f) — cableado roto de verdad — se quedan en `FAIL`, intactos. Tres falsadores nuevos en `tests/test_corrida0.py` (P2 del encargo): un `RESULT` sintético activo sin consumidor produce `WARN`, no `FAIL`; una regla sintética citando `corrida0_resultado_id` inexistente sigue en `FAIL`; el conteo del agregado coincide con las entradas individuales.
+
+**`tests/check.py --baseline`: LÍNEA BASE VERDE.** Las 211 entradas migran de `FAIL` a `WARN` de vigía (`senal()`, excluidas por diseño de la comparación de línea base) — cero entradas nuevas, `tests/baseline.json` sin tocar, sin `--freeze`. Los 3 `FAIL` legacy congelados (`T06` ×2, `T08` ×1) siguen igual.
+
+**Contador.** Cero GEN2 — aparato declarado. Este acto no adopta ningún `RESULT` (E.2 sigue siendo humana, por merge, en `C0-B/C0-D`), no cierra `NC-0053` (queda `ABIERTA`, con la línea añadida: «la presión vive ahora en el WARN con antigüedad»), no congela la línea base y no toca los 3 `FAIL` legacy.
+
+**Perímetro cumplido.** `tests/check.py` (sólo `T35`) · `tests/test_corrida0.py` (falsadores de `T35`) · `forense/firmas-pendientes.tsv` (`FP-360` → `FIRMADA`) · `forense/no-corrido.tsv` (línea en `NC-0053`, sin cerrarla) · `forense/hallazgos.md` (una línea) · nota · cascada (`canon/gobernanza-v1_15.md`, `canon/registro-rotulos.tsv`, `canon/estado-programa-v1_12.md` §L0). **No tocó** `tools/corrida0.py`, `data/corrida0/**`, `milpa/**` ni la línea base congelada.
 
 ---
 
