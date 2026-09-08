@@ -1,0 +1,103 @@
+{
+ "corrida_id": "CALC-AGG-marco-M-sorteado-v1_3-ola--46b09a3b2559",
+ "dependencias_materiales": {
+  "numpy": "AUSENTE",
+  "pandas": "AUSENTE",
+  "pyreadstat": "AUSENTE",
+  "scipy": "AUSENTE",
+  "yaml": "6.0.1"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "ci_replayable": true,
+  "cuenta_gen2": false,
+  "generacion": "GEN2",
+  "marco_vigente": "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv",
+  "tipo": "AGREGADO-DERIVADO-OLA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-08T07:00:26Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "AUSENTE",
+   "pandas": "AUSENTE",
+   "pyreadstat": "AUSENTE",
+   "scipy": "AUSENTE",
+   "yaml": "6.0.1"
+  },
+  "git_commit": "46b09a3b2559a20d525983523a6345f7820d54f2",
+  "git_rama": "claude/motor-matricial-d11-demanda-2188aw",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+  "python": "3.11.15",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "NO",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "cloud_default",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "46b09a3b2559a20d525983523a6345f7820d54f2",
+ "input_ids": [
+  "IN-CALC-M-OLA-RESULTADOS",
+  "IN-MARCO-M-SORTEADO-V1-3",
+  "IN-PROPUESTA-OLA5"
+ ],
+ "input_sha256": {
+  "IN-CALC-M-OLA-RESULTADOS": "8468a307ca48cbe3d5a7be24cc9d193f04541ed4976610915d6faf8e9b599c06",
+  "IN-MARCO-M-SORTEADO-V1-3": "f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a",
+  "IN-PROPUESTA-OLA5": "12a06fe2f87879d1203cdb0e4fd3f9bdcaf59f1639a72ac880dfb30077073902"
+ },
+ "parametros": {
+  "columna_elegible": "elegible_v1_1",
+  "fuente_acto": "ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ · P3(d)"
+ },
+ "python_version": "3.11.15",
+ "resultado_ids": [
+  "RESULT-AGGOLA-CELDAS-CON-SEGMENTO",
+  "RESULT-AGGOLA-EJES-EN-PROPUESTA",
+  "RESULT-AGGOLA-ENTRADAS-EJES-EN-PROPUESTA",
+  "RESULT-AGGOLA-HUECO",
+  "RESULT-AGGOLA-MARCO-TIENE-COLUMNA-SEGMENTO",
+  "RESULT-AGGOLA-METRICA-SELLADA",
+  "RESULT-AGGOLA-N-CELDAS",
+  "RESULT-AGGOLA-N-MODULAN-OLA",
+  "RESULT-AGGOLA-N-REGLAS",
+  "RESULT-AGGOLA-PUNTOS-POR-EJE-CON-IC",
+  "RESULT-AGGOLA-VISTA-POR-REGLA"
+ ],
+ "script_blob_sha256": "5f9dc1d6936eaee7910e9f5de91775963ee0739f151e4c6b7ab623fde54b2965",
+ "script_path": "data/corrida0/CALC-AGG-marco-M-sorteado-v1_3-ola/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-AGG-marco-M-sorteado-v1_3-ola",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "dcd34d17bae78a866fcbfebdc73bf1bfafda470bdd197efb14b0cdce70fa1d8f",
+ "spec_yaml_sha256": "4241a234a1a9808e962ecc6fcd3b5db7c79139dbc5f73f4cf2bc0566515007c0",
+ "tolerancia": {
+  "razon": "Todos los RESULT numericos son conteos y se comparan EXACTO. No hay flotante porque no hay estimacion: la corrida cuenta y agrupa.",
+  "tipo": "entero"
+ }
+}
