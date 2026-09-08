@@ -2,7 +2,7 @@
 # El texto que gobierna es spec.md; este YAML no decide nada que aquel no diga.
 calc_id: CALC-M-marco-M-sorteado-v1_3-ola
 spec_md: spec.md
-spec_md_sha256: 4dc3689f3c812c44dc2e0dd977e5bdd0b2c5aaf4e3e311b8ba94ede72c9b98ff
+spec_md_sha256: 8749b8723ee6f896d9bd0cb21d9117baab7aa05b060a2717ddf8c6639a3e872a
 
 script: data/corrida0/CALC-M-marco-M-sorteado-v1_3-ola/medidor.py
 
@@ -20,14 +20,6 @@ inputs:
     origen: repo
     ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
     sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
-  # ADENDA DE MESA (ACTO GEN2-T9, 8/sep/2026): las dos reglas -- ola previa
-  # estricta y ORIGEN-ARBITRO -- viven en tools/emite_m.py, donde vivira la
-  # envoltura por celda que las consuma en C0-D, y este medidor las IMPORTA.
-  # Se declara como input para que su identidad quede cubierta por la corrida.
-  - id: IN-EMITE-M
-    origen: repo
-    ruta: tools/emite_m.py
-    sha256: ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4
   - id: IN-TRAMITE
     origen: repo
     ruta: milpa/tramite.yaml
@@ -38,10 +30,9 @@ universo: "las 14 celdas elegible_v1_1=SI del marco vigente"
 filtros: "columna elegible_v1_1 == SI"
 ponderador: NO-APLICA
 transformacion: >-
-  seleccion de ola por corte temporal: la ULTIMA ESTRICTAMENTE ANTERIOR a la
-  del arbitro; sin anterior -> SIN-PREVIA y la celda no modula. NO se usa una
-  ola posterior (seria fuga temporal), NO hay promedio, NO hay ajuste de
-  tendencia, NO hay colapso de olas.
+  seleccion leave-one-out de ola: la mas cercana DISTINTA de la del arbitro,
+  empate -> la anterior. NO hay promedio, NO hay ajuste de tendencia, NO hay
+  colapso de olas.
 estimando: >-
   el punto p ya MEDIDO de la ola LOO, leido verbatim de serie_olas. Esta
   corrida no estima: selecciona una ola por una regla declarada y reporta el
@@ -50,8 +41,7 @@ dependencias_materiales: []
 
 parametros:
   columna_elegible: elegible_v1_1
-  regla_de_seleccion: "max(ola) con ola < ola_arbitro (ultima estrictamente anterior); sin previa -> SIN-PREVIA, la celda no modula"
-  adenda_de_mesa: "8/sep/2026, recibida en vuelo: deroga la regla de ola mas cercana (fuga temporal) y añade el rotulo ORIGEN-ARBITRO"
+  regla_de_seleccion: "min(|ola - ola_arbitro|) con ola != ola_arbitro; empate -> ola menor"
   fuente_acto: "ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ · P3(c)"
 
 seed:
@@ -65,43 +55,34 @@ tolerancia:
     serie_olas. La tolerancia cubre solo el redondeo float64 al serializar.
 
 resultados:
-  - {id: RESULT-MOLA-CIV-M-01-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-CIV-M-02-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-CIV-M-04-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-CIV-M-10-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-CIV-M-12-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-CIV-M-13-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-DIN-M-01-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-FAM-M-01-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-FAM-M-05-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-FAM-M-05-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola previa -- DEMOSTRACION, no veredicto"}
+  - {id: RESULT-MOLA-CIV-M-01-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-CIV-M-02-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-CIV-M-04-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-CIV-M-10-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-CIV-M-12-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-CIV-M-13-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-DIN-M-01-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-FAM-M-01-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-FAM-M-05-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-FAM-M-05-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola LOO -- DEMOSTRACION, no veredicto"}
   - {id: RESULT-MOLA-FAM-M-05-ANCLA-F-DD, tipo: texto, unidad: "ola contra la que se ancla F-DD"}
-  - {id: RESULT-MOLA-FAM-M-05-GRADO-DD, tipo: texto, unidad: "P1-PUNTUA, o VERIFICACION-NO-PUNTUA si la ola usada es ORIGEN-ARBITRO"}
-  - {id: RESULT-MOLA-FAM-M-06-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-FAM-M-06-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola previa -- DEMOSTRACION, no veredicto"}
+  - {id: RESULT-MOLA-FAM-M-06-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-FAM-M-06-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola LOO -- DEMOSTRACION, no veredicto"}
   - {id: RESULT-MOLA-FAM-M-06-ANCLA-F-DD, tipo: texto, unidad: "ola contra la que se ancla F-DD"}
-  - {id: RESULT-MOLA-FAM-M-06-GRADO-DD, tipo: texto, unidad: "P1-PUNTUA, o VERIFICACION-NO-PUNTUA si la ola usada es ORIGEN-ARBITRO"}
-  - {id: RESULT-MOLA-FAM-M-07-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-FAM-M-07-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola previa -- DEMOSTRACION, no veredicto"}
+  - {id: RESULT-MOLA-FAM-M-07-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-FAM-M-07-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola LOO -- DEMOSTRACION, no veredicto"}
   - {id: RESULT-MOLA-FAM-M-07-ANCLA-F-DD, tipo: texto, unidad: "ola contra la que se ancla F-DD"}
-  - {id: RESULT-MOLA-FAM-M-07-GRADO-DD, tipo: texto, unidad: "P1-PUNTUA, o VERIFICACION-NO-PUNTUA si la ola usada es ORIGEN-ARBITRO"}
-  - {id: RESULT-MOLA-TRA-M-02-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-TRA-M-02-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola previa -- DEMOSTRACION, no veredicto"}
+  - {id: RESULT-MOLA-TRA-M-02-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-TRA-M-02-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola LOO -- DEMOSTRACION, no veredicto"}
   - {id: RESULT-MOLA-TRA-M-02-ANCLA-F-DD, tipo: texto, unidad: "ola contra la que se ancla F-DD"}
-  - {id: RESULT-MOLA-TRA-M-02-GRADO-DD, tipo: texto, unidad: "P1-PUNTUA, o VERIFICACION-NO-PUNTUA si la ola usada es ORIGEN-ARBITRO"}
-  - {id: RESULT-MOLA-TRA-M-03-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-TRA-M-03-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola previa -- DEMOSTRACION, no veredicto"}
+  - {id: RESULT-MOLA-TRA-M-03-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-TRA-M-03-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola LOO -- DEMOSTRACION, no veredicto"}
   - {id: RESULT-MOLA-TRA-M-03-ANCLA-F-DD, tipo: texto, unidad: "ola contra la que se ancla F-DD"}
-  - {id: RESULT-MOLA-TRA-M-03-GRADO-DD, tipo: texto, unidad: "P1-PUNTUA, o VERIFICACION-NO-PUNTUA si la ola usada es ORIGEN-ARBITRO"}
-  - {id: RESULT-MOLA-TRA-M-07-MODELA-OLA, tipo: texto, unidad: "NO, SIN-PREVIA, o SERIE-PREVIA con ola usada, fuente, ola del arbitro, distancia y origen"}
-  - {id: RESULT-MOLA-TRA-M-07-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola previa -- DEMOSTRACION, no veredicto"}
+  - {id: RESULT-MOLA-TRA-M-07-MODELA-OLA, tipo: texto, unidad: "NO, o SERIE-LOO con ola usada, fuente, ola del arbitro y distancia"}
+  - {id: RESULT-MOLA-TRA-M-07-P-LOO, tipo: proporcion, unidad: "proporcion [0,1] de la ola LOO -- DEMOSTRACION, no veredicto"}
   - {id: RESULT-MOLA-TRA-M-07-ANCLA-F-DD, tipo: texto, unidad: "ola contra la que se ancla F-DD"}
-  - {id: RESULT-MOLA-TRA-M-07-GRADO-DD, tipo: texto, unidad: "P1-PUNTUA, o VERIFICACION-NO-PUNTUA si la ola usada es ORIGEN-ARBITRO"}
   - {id: RESULT-MOLA-N-CELDAS, tipo: entero, unidad: "celdas elegibles del marco vigente"}
   - {id: RESULT-MOLA-N-CON-SERIE, tipo: entero, unidad: "celdas que modulan por ola"}
   - {id: RESULT-MOLA-N-SIN-SERIE, tipo: entero, unidad: "celdas sin serie: modela_ola NO"}
-  - {id: RESULT-MOLA-N-SIN-PREVIA, tipo: entero, unidad: "celdas con serie pero sin ninguna ola anterior"}
-  - {id: RESULT-MOLA-N-ORIGEN-ARBITRO, tipo: entero, unidad: "celdas cuya ola usada es ORIGEN-ARBITRO (no puntuan)"}
-  - {id: RESULT-MOLA-ENTRADAS-ORIGEN-ARBITRO-EN-SERIES, tipo: texto, unidad: "inventario de entradas con metodo R-json, module o no alguna celda"}
   - {id: RESULT-MOLA-REGLAS-CON-SERIE, tipo: texto, unidad: "reglas de tramite.yaml con serie_olas"}
   - {id: RESULT-MOLA-NO-COLAPSA, tipo: texto, unidad: "la declaracion de que ninguna ola se fundio"}
