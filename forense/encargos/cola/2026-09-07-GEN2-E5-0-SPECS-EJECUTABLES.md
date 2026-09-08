@@ -1,8 +1,8 @@
 ESTADO: GATEADO
 ENTORNO: CAJA (UBUNTU)
-ENCOLADO: 2026-09-08 · ACTO GEN2-T7-CIERRE encola "E5-0 · ACTO GEN2-E5-0 · SPECS EJECUTABLES", texto de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` (adjunto por el operador). Nuevo en la cola — no reemplaza ningún archivo previo.
+ENCOLADO: 2026-09-08 · ACTO GEN2-T7-CIERRE encola "E5-0 · ACTO GEN2-E5-0 · SPECS EJECUTABLES", texto de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa} (adjunto por el operador). Nuevo en la cola — no reemplaza ningún archivo previo.
 BITACORA:
-- 2026-09-08 · GATEADO. Nace de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md`, que reordena la automatización antes de los cálculos: la readiness (E3.1) debe fusionarse antes de que E5-0 pueda resolver códigos/ponderadores contra el schema endurecido de spec.yaml. COMPUERTA: "E3.1 fusionado" — hoy NO lo está (E3.1 sigue en cola, `LISTO-NUBE`, sin PR ni merge todavía) — así que este encargo queda `GATEADO`, no `LISTO`.
+- 2026-09-08 · GATEADO. Nace de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa}, que reordena la automatización antes de los cálculos: la readiness (E3.1) debe fusionarse antes de que E5-0 pueda resolver códigos/ponderadores contra el schema endurecido de spec.yaml. COMPUERTA: "E3.1 fusionado" — hoy NO lo está (E3.1 sigue en cola, `LISTO-NUBE`, sin PR ni merge todavía) — así que este encargo queda `GATEADO`, no `LISTO`.
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 

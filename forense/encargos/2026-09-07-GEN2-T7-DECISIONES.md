@@ -1,6 +1,6 @@
 ESTADO: EJECUTADO
 ENTORNO: NUBE
-ENCOLADO: 2026-09-07 · ACTO GEN2-T7 · v1.1 — FP-339 DECIDIDA · COMPUERTAS CORREGIDAS · PLAN ENMENDADO. Texto tomado verbatim de `ENCARGOS-GEN2-v1_2-con-E3-1-2026-09-07.md` (adjuntado por el operador), sección "## TRÁMITE-7 · ACTO GEN2-T7 · v1.1"; E0 nunca lo encoló como archivo propio en `forense/encargos/` — este archivo es el 0-bis A.3 tardío que lo formaliza.
+ENCOLADO: 2026-09-07 · ACTO GEN2-T7 · v1.1 — FP-339 DECIDIDA · COMPUERTAS CORREGIDAS · PLAN ENMENDADO. Texto tomado verbatim de `ENCARGOS-GEN2-v1_2-con-E3-1-2026-09-07.md` {cita-ilustrativa} (adjuntado por el operador y nunca guardado en el repo — cita al documento fuente, no una ruta que este acto cree), sección "## TRÁMITE-7 · ACTO GEN2-T7 · v1.1"; E0 nunca lo encoló como archivo propio en `forense/encargos/` — este archivo es el 0-bis A.3 tardío que lo formaliza.
 BITACORA:
 - 2026-09-08 · EJECUTADO. TRÁMITE-7 corrió en esta misma sesión/rama (`claude/tramite-7-decisiones-k7xvyv`) en el commit `fc63f66` (piezas D9/D10, FP-339, `decisiones.tsv`, endurecimiento de compuertas de E5/E6 a v1.2, enmienda del plan y de `tools/limpia_arbol.py`), con un fix posterior de T27 en `4f4bee6` (`decisiones.tsv` registrado en `INFRAESTRUCTURA-v1_0`). Este archivo es el 0-bis A.3 tardío de `ACTO GEN2-T7-CIERRE`, que archiva verbatim el encargo original que E0 no había encolado y deja constancia formal de qué se ejecutó.
 

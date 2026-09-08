@@ -1,8 +1,8 @@
 ESTADO: GATEADO
 ENTORNO: NUBE
-ENCOLADO: 2026-09-08 · ACTO GEN2-T7-CIERRE reemplaza este encargo por "E6 · ACTO GEN2-E6 · AUTOMATIZA-GEN2-2 · v1.3", texto de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` (adjunto por el operador). Sustituye a la versión v1.0 que estaba en la cola.
+ENCOLADO: 2026-09-08 · ACTO GEN2-T7-CIERRE reemplaza este encargo por "E6 · ACTO GEN2-E6 · AUTOMATIZA-GEN2-2 · v1.3", texto de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa} (adjunto por el operador). Sustituye a la versión v1.0 que estaba en la cola.
 BITACORA:
-- 2026-09-08 · GATEADO. Sustituye a la v1.0 porque dirección emitió `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md`, que reordena la automatización antes de los cálculos: T-REPRO en v1.3 se endurece contra el esquema de E3.1 (spec_yaml_sha256, input_sha256 efectivos, resultado_replay, contexto_replay) e incorpora los checks 11.1/11.2 de inmutabilidad estructural, y elimina el hardcode histórico del tablero. COMPUERTA: `git ls-tree -d --name-only origin/main data/corrida0/ | grep -c "^data/corrida0/CALC-000"` ≥ 2 — hoy es 0, así que queda `GATEADO`.
+- 2026-09-08 · GATEADO. Sustituye a la v1.0 porque dirección emitió `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa}, que reordena la automatización antes de los cálculos: T-REPRO en v1.3 se endurece contra el esquema de E3.1 (spec_yaml_sha256, input_sha256 efectivos, resultado_replay, contexto_replay) e incorpora los checks 11.1/11.2 de inmutabilidad estructural, y elimina el hardcode histórico del tablero. COMPUERTA: `git ls-tree -d --name-only origin/main data/corrida0/ | grep -c "^data/corrida0/CALC-000"` ≥ 2 — hoy es 0, así que queda `GATEADO`.
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 

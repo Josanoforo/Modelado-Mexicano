@@ -1,8 +1,8 @@
 ESTADO: DECLARADO
 ENTORNO: (sin determinar — depende del esquema que dejen E5/E6)
-ENCOLADO: 2026-09-08 · ACTO GEN2-T7-CIERRE encola "E7 · ACTO GEN2-E7 · READINESS-2 DEL MARCADOR", texto de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` (adjunto por el operador), como stub declarado. Nuevo en la cola.
+ENCOLADO: 2026-09-08 · ACTO GEN2-T7-CIERRE encola "E7 · ACTO GEN2-E7 · READINESS-2 DEL MARCADOR", texto de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa} (adjunto por el operador y nunca guardado en el repo — cita al documento fuente, no una ruta que este acto cree), como stub declarado. Nuevo en la cola.
 BITACORA:
-- 2026-09-08 · DECLARADO (no `LISTO` ni `GATEADO`: el propio cuerpo dice «No se redacta ahora»). Nace de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md`, D12 de E3.1: la readiness del marcador (wrapper M, corredor R/L, agregado sucesor) se atiende en E7, antes de C0-D, pero su alcance concreto depende del esquema real que dejen E5 y E6 — este archivo es solo la nota de scope, sin cabecera ejecutable todavía.
+- 2026-09-08 · DECLARADO (no `LISTO` ni `GATEADO`: el propio cuerpo dice «No se redacta ahora»). Nace de `ENCARGOS-GEN2-v1_3-readiness-primero-2026-09-07.md` {cita-ilustrativa}, D12 de E3.1: la readiness del marcador (wrapper M, corredor R/L, agregado sucesor) se atiende en E7, antes de C0-D, pero su alcance concreto depende del esquema real que dejen E5 y E6 — este archivo es solo la nota de scope, sin cabecera ejecutable todavía.
 
 ──── CUERPO VERBATIM DEL ENCARGO (A.3) · el despachador NO lo edita ────
 

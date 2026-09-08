@@ -2636,6 +2636,22 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # forense/prereg-duelo-v2/), no un rotulo que este acto instancie: es
     # mencion de perimetro ajeno, no uso. El encargo verbatim no se edita.
     "forense/encargos/2026-09-07-MAESTRA38-L16-BIS-2.md",
+    # ACTO GEN2-T7-CIERRE, 8/sep/2026: encargo archivado VERBATIM (A.3), el
+    # 0-bis tardío de TRAMITE-7. Su cuerpo cita "ACTO GEN2-E0 · ENCOLA" al
+    # describir la pieza (2) -- `E0` pelado es el rótulo de OTRO acto ya
+    # ejecutado (el que encoló el plan GEN2), mención de procedencia, no un
+    # rótulo que este acto acuñe. El encargo verbatim no se edita para
+    # complacer un test.
+    "forense/encargos/2026-09-07-GEN2-T7-DECISIONES.md",
+    # Cola v1.3 (readiness-primero) encolada por GEN2-T7-CIERRE, 8/sep/2026:
+    # los tres cuerpos verbatim de E3.1/E5-0/E7 citan "E5" pelado al describir
+    # la secuencia de actos vecinos (E5-0 antes de E5, E7 después de E6) --
+    # mención de rótulos de actos hermanos en la misma cola, no un rótulo que
+    # cada uno de estos archivos instancie por sí mismo. Encargo verbatim, no
+    # se edita para complacer un test.
+    "forense/encargos/cola/2026-09-07-GEN2-E3-1-ENDURECE-CALC.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E5-0-SPECS-EJECUTABLES.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E7-READINESS-2.md",
     # ACTO MAESTRA38-N22, 7/sep/2026: encargo archivado VERBATIM (A.3). Su
     # bloque CARRILES nombra "la rama de M13 ENMIENDA-1" entre los carriles
     # de nube que corren en paralelo, para declarar que ninguno toca
