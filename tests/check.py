@@ -5008,6 +5008,21 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # tier=FUERTE p=0.174804` -- ya medida y sellada, consistente con que
     # este acto solo decida su representación de linaje, no su medición.
     "forense/encargos/2026-09-07-GEN2-T7-DECISIONES.md",
+    # ACTO GEN2-TRAMITE-TABLERO-1, 8/sep/2026: encargo archivado VERBATIM
+    # (A.3), que no se edita para complacer un test (misma regla que rige
+    # T25). Cita `dinero.credito.scoring_alternativo` dentro de la fila §4
+    # (pieza A4) como uno de los CUATRO estados legítimos con espacio
+    # interno de `data/cola-adquisicion-v1_0.tsv` (columna 2, valor literal
+    # `DIFERIDO-A: spec GEN2 dinero.credito.scoring_alternativo`) -- es la
+    # prueba empírica de que ese estado no se debe cortar por el primer
+    # espacio, no una clasificación/pre-registro/carga/sello de la regla.
+    #
+    # Veredicto REAL de `python3 tools/ya_medido.py
+    # dinero.credito.scoring_alternativo` (corrido, última línea):
+    # `NUNCA-MEDIDA` (resuelve a `R1.6` por canon; sin apariciones en
+    # `milpa/tramite.yaml` ni en `milpa/tramite-ola5-propuesta-v0.yaml`) --
+    # consistente con que este acto no toca el motor ni mide nada.
+    "forense/encargos/2026-09-08-GEN2-TRAMITE-TABLERO-1.md",
 }
 
 
