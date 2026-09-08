@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **412 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **413 ADR**
 
 > | | |
 > |---|---|
@@ -7044,6 +7044,18 @@ Detalle completo, comando por comando, en `forense/notas/2026-09-07-MAESTRA38-CA
 **Perímetro cumplido (pieza D).** `tools/cierra_libro_gen1.py` (nuevo) · `forense/encargos/*.md` (sólo el rótulo al pie, por script) · `forense/encargos/cola/*.md` (sólo `ESTADO:`) · `tools/cierre_acto.py` · `tools/digesto_tramite.py` · `.claude/commands/{despacha,revisa,tramite}.md` · `forense/rutinas.tsv` (nuevo) · `tests/manifiesto.py` (ruta del lock) · `tests/check.py` (`T37`) · `forense/hallazgos.md` · `forense/no-corrido.tsv` · cascada. **No tocó** `tools/corrida0.py`, `milpa/**`, canon de reglas, specs, `corridas-{R,M,L}/`, ni las rutinas de GitHub (ésas las edita mesa en la interfaz).
 
 **`tests/check.py --baseline`**: **LÍNEA BASE VERDE** (3 `FAIL` · 188 `WARN`, los tres de la línea base congelada).
+
+---
+
+**ADR-413 (Derivado por `python3 tools/cierre_acto.py`, Fase A; contra `origin/main = d1a97cd`: máximo real `412`, candidato `413`, sin huecos) · `ACTO GEN2-FIRMA-CONTADOR · TRES FILAS EN decisiones.tsv`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** (`forense/encargos/2026-09-08-GEN2-FIRMA-CONTADOR-PROPAGA-FIRMA.md`, archivado verbatim, 0-bis `0c69bf3`). **Propaga, por la vía directa y nunca simulada (FP-359), la firma de mesa 8/sep/2026 que `ACTO GEN2-E5-1` se negó — con razón — a inferir: tres filas `cuenta_gen2=SI` (`CALC-0001`, `CALC-0002`, `CALC-0003-v2`) en `data/corrida0/decisiones.tsv`, registro y status re-derivados después, en ese orden.**
+
+**Gate verificado.** COMPUERTA (`PR #634` fusionado) verificada por producto: `git cat-file -e origin/main:data/corrida0/CALC-0003-v2/sello.json` → **EXISTE**.
+
+**El contador se mueve.** `python3 tools/corrida0.py status`: `N_corridas_selladas` **0→3**, `N_resultados_sellados` **0→211** (83+128) — exactamente lo esperado por la nota de `PR #634`, sin diferencia que explicar.
+
+**El registro.** `FP-356` → **FIRMADA**, con la firma de mesa citada verbatim. `NC-0045`, `NC-0046` y `NC-0049` → **CERRADAS** (misma causa raíz, misma firma). `T35` (`T-REPRO`) se ejerció por primera vez sobre cadena GEN2 real: **MUERDE**, 211 fallos, la totalidad del ramal (a) (`activo GEN2 y sin consumidor`) — la cadena de adopción (E.2) que este acto declara explícitamente fuera de su objeto, no un defecto de la firma. `T-CORRIDA0` (2 fail) es la misma noticia desde otro test: `t_status_arbol_real_no_cuenta_smokes` afirmaba la premisa pre-firma (`0/0` es correcto) y esta firma la vuelve falsa por diseño. Ambos asentados como `NC-0053` — actualizar los falsadores queda fuera de perímetro (`tests/` no está en la lista de este acto).
+
+**Perímetro cumplido.** `data/corrida0/decisiones.tsv` · `data/corrida0/{corridas,resultados,usos}.tsv` (re-derivados) · `forense/{firmas-pendientes,no-corrido}.tsv` · la nota del acto · `tests/check.py` (`_T25_ARCHIVOS_CONOCIDOS`, cascada paso 5) · cascada. **No tocó** sellos, specs, `milpa/**`, canon del modelo ni el tablero. No adopta al motor (E.2, otro día) · no corre `delta` (B-7, sin implementar) · no toca `CALC-0003` v1 (SUPERADO, historia) · no simuló absolutamente nada.
 
 ---
 
