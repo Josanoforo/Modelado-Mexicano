@@ -18,6 +18,26 @@ consultados antes de sondear nada son
 
 ## §1 · P1 — ENAFIN, la ruta directa
 
+### 0 · Premisa del encargo verificada contra el árbol (A.15/A.8)
+
+El encargo cita el hueco de tandas como "reputación/incumplimiento (`R8.2`/`N29`)".
+`python3 tools/ya_medido.py R8.2` (8/sep/2026) resuelve `R8.2` por
+`canon/modelo-decision-v4_0.md` §7 a `cooperacion.tanda.conoce_organizadora`,
+texto exacto: **"Conoce a la organizadora → entra a la tanda; desconocidos →
+evita"** — un mecanismo de CONFIANZA EN LA ENTRADA (vetting por conocer al
+organizador), no de reputación/incumplimiento DENTRO de una tanda en curso.
+`M18` (`milpa/catalogo-momentos-v0_1.tsv:19`) confirma `R8.2 → N29`, `HOLDOUT`.
+Estado de medición: `NUNCA-MEDIDA` bajo la infraestructura GEN2 (sin
+apariciones en `milpa/tramite.yaml`, `tramite-ola5-propuesta-v0.yaml`, specs
+de `forense/prereg-caja/`); ya tiene sin embargo un veredicto **Hito D (GEN1)
+= `B`** archivado (`ADR-199`, firma de mesa L1) — dos aparatos de medición
+distintos, ninguno de los dos re-abierto por este acto. Esto **no invalida**
+lo que sigue: "conoce a la organizadora" y "reputación/incumplimiento" son
+ambos rasgos del mismo objeto (confianza dentro del mecanismo de la tanda), y
+ninguna fuente evaluada en §2 trae NI UNO de los dos con microdato mexicano —
+la precisión importa para no prometerle a mesa una cobertura que ninguna
+fuente da, no para descartar el hallazgo.
+
 ### 1.a · Inventario completo, contra el árbol de hoy (A.15)
 
 El inventario canónico ya cataloga ENAFIN (§C.15) y sus paralelos de crédito/
