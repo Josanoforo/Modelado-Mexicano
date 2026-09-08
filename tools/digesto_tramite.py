@@ -1364,20 +1364,36 @@ def seccion_i(raiz, fecha, cuenta):
 
 
 def seccion_j(raiz, fecha, ramas_remotas, fuente_ramas):
-    """J · Revisiones -- `ACTO GEN2-E7` pieza D (D5b).
+    """J · Revisiones -- `ACTO GEN2-E7` pieza D (D5b); ajustada por
+    `ACTO RUTINAS-2 · COORDINACION-Y-REVISION-VIGENTE` (P4).
 
-    Los PR `[REVISA]` abiertos o fusionados en la ventana. `gh` no existe
-    en este entorno (medido 31/ago/2026), así que el PR no es derivable
-    directamente: se deriva por sus DOS huellas en el árbol, y se declara
-    que son huellas y no el PR.
+    Los PR `[REVISA]` abiertos o fusionados en la ventana, y las
+    revisiones en línea que dejan su veredicto como comentario marcado en
+    GitHub (`<!-- MM-REVISA:v2 ... -->`, ver `tools/rutinas.py`). La
+    disponibilidad de `gh` se comprueba en cada entorno -- el comentario
+    histórico "gh no existe aquí" no es una prohibición permanente de
+    usarlo; esta función no lo invoca ella misma (es de solo lectura del
+    árbol de trabajo), así que declara explícitamente `GITHUB-NO-
+    VERIFICADO` y reporta la huella local disponible: las notas
+    `forense/notas/*-revisa-*.md` (lo que deja un `[REVISA]` post-hoc) y
+    las ramas remotas `claude/revisa-*`. Es una cota inferior, no el
+    conjunto de PR ni de comentarios -- un `/revisa` en línea que
+    comentó y no dejó nota ni rama **no** es "cero revisiones": es
+    actividad no verificable desde este comando. Quien invoque esta
+    rutina con acceso a GitHub (`gh` o la integración de la sesión) puede
+    complementar esta sección con comentarios marcados reales antes de
+    publicar el digesto -- ese complemento no lo produce esta función.
     """
     out = ["## J · Revisiones (`[REVISA]`)", "",
-           "Comando: `gh` no existe en este entorno, así que un PR no se lee "
-           "directamente. Se derivan sus **dos huellas**: las notas "
-           "`forense/notas/*-revisa-*.md` (que es lo que un PR `[REVISA]` "
-           "post-hoc contiene) y las ramas remotas `claude/revisa-*`. Es una "
-           "cota, no el conjunto de PR: un `/revisa` en línea deja su "
-           "veredicto como comentario de GitHub y **no** deja huella aquí.", ""]
+           "**GITHUB-NO-VERIFICADO** (este comando es de solo lectura del "
+           "árbol, no invoca `gh` ni la API de GitHub). Se derivan sus "
+           "**dos huellas locales**: las notas `forense/notas/*-revisa-*.md` "
+           "(que es lo que un PR `[REVISA]` post-hoc contiene) y las ramas "
+           "remotas `claude/revisa-*`. Es una **cota inferior**, no el "
+           "conjunto de PR ni de comentarios: un `/revisa` en línea deja su "
+           "veredicto como comentario marcado de GitHub y **no** deja huella "
+           "aquí -- ausencia de huella local no es evidencia de cero "
+           "revisiones, es falta de verificación desde este comando.", ""]
     dir_notas = os.path.join(raiz, "forense", "notas")
     notas = sorted(glob.glob(os.path.join(dir_notas, "*revisa*.md")))
     try:

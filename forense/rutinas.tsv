@@ -7,6 +7,24 @@
 #
 # resultado ∈ {HIZO:<PR>, CANDADO:<razon>, PARO:<razon>, PROMOVIO:<encargo>, NADA-QUE-HACER}
 # Se commitea en la rama del dia `claude/tramite-<fecha>` (la crea quien la necesite si no existe).
+#
+# ACLARACION DE CONTRATO -- ACTO RUTINAS-2 · COORDINACION-Y-REVISION-VIGENTE, 8/sep/2026
+# (forense/encargos/2026-09-08-RUTINAS-2-COORDINACION-Y-REVISION.md, P4). Traduccion fijada
+# de los cierres de sesion reales a este vocabulario (tools/rutinas.py::traduce_resultado_rutina),
+# aplicada SOLO a huellas nuevas -- las filas de abajo NO se reescriben:
+#   tramite  ABRIO/ACTUALIZO         -> HIZO:<PR>   (accion y URL en detalle)
+#   revisa   COMENTO/ACTUALIZO       -> HIZO:<PR>   (comentario marcado, ver MM-REVISA:v2 abajo)
+#   despacha COLA-VACIA              -> NADA-QUE-HACER
+#   CANDADO / PARO / PROMOVIO        -> conservan su significado sin traduccion
+# El actor canonico de la fila `rutina` para revisiones es `revisa`; el revisor no escribe
+# commits de huella -- su evidencia de trabajo es el comentario marcado
+# `<!-- MM-REVISA:v2 pr=<n> head=<sha40> main=<sha40> body_sha256=<sha256> -->` y su sesion,
+# no una fila obligatoria aqui. Cero filas de `revisa` en la ventana NO demuestra cero
+# ejecuciones: una sesion sin candidato puede no dejar comentario ni fila.
+# Detalle de huella nueva (a partir de este acto) incluye, cuando aplique:
+# observado_en=<ISO8601 con zona>, main_sha=<sha>, enlace de sesion si esta disponible.
+# El esquema sigue siendo de CUATRO columnas (fecha, rutina, resultado, detalle); no se anaden
+# columnas, y ninguna fila historica de abajo se corrige ni se reescribe.
 fecha	rutina	resultado	detalle
 2026-09-08	acto-gen2-e7-pieza-d	NADA-QUE-HACER	primera linea del archivo, escrita por el acto que lo crea; no es un tick de rutina -- es el encabezado de datos, para que la primera rutina que corra tenga un formato que copiar en vez de uno que inventar
 2026-09-08	tramite	PARO:digesto_tramite.py crashea (TypeError en seccion_i, fecha ya es datetime.date pasada a date.fromisoformat)	Suite VERDE en linea base; tools/digesto_tramite.py lanza excepcion no capturada antes de escribir nada -- fuera de perimetro reparar

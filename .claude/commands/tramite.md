@@ -16,8 +16,19 @@ suite a mano.
 El runbook de mesa —el prompt de la tarea recurrente, cómo leer el PR y
 el falsador— vive en `forense/agente-tramite-v1_0.md`.
 
+**NUBE: no abrir ni descargar microdatos/corpus.** Se permite obtener
+código, metadatos de GitHub y dependencias declaradas; instala requisitos
+en el entorno según el flujo vigente, y si no se puede, declara la
+limitación de la suite en el reporte.
+
 Ejecuta los cinco bloques de abajo, en orden. Cada uno es instrucción
 ejecutable para esta sesión, no prosa de referencia.
+
+**Un `PARO` no autoriza reparar código.** Registra primero la huella
+permitida (bloque 3.5) y reporta el fallo. Distingue registro local de
+registro publicado: no afirmes que la huella quedó visible remotamente si
+el `push` falló. Un bloqueo de la suite no justifica fusionar ni publicar
+otros cambios como si hubieran pasado.
 
 ---
 
@@ -75,8 +86,36 @@ empieces sin ellas.
    `git log -1 --format="%h %s"`.
 2. **SHA.** `git fetch origin main` y compara `HEAD` con `origin/main`.
    Si `main` se movió, refresca antes de editar y reporta la diferencia.
-   Trabaja sobre una rama del día (`claude/tramite-<AAAA-MM-DD>`), nunca
-   sobre `main`.
+
+   **Rama: busca antes de crear** (`ACTO RUTINAS-2 ·
+   COORDINACION-Y-REVISION-VIGENTE`, P3 — sustituye "siempre crea la
+   rama del día"). Antes de tocar una rama, busca el PR `[TRAMITE]`
+   abierto correspondiente a esta rutina y este repositorio, con rama y
+   perímetro comprobados (`gh pr list --state open --search
+   "[TRAMITE]"` si `gh` está disponible; si no, deriva por
+   `git ls-remote --heads origin | grep claude/tramite-` y el estado de
+   cada rama contra `main`). Pasa el resultado por
+   `tools/rutinas.py::decide_pr_tramite`:
+   - **`REUSA`** — un PR abierto: continúa **su rama real**, aunque el
+     nombre lleve una fecha anterior. `git fetch origin <esa-rama>` y
+     trabaja sobre su tip; **nunca** `git checkout -B ... origin/main`
+     para reiniciarla — eso descarta sus commits. Push normal, nunca
+     forzado.
+   - **`CREA`** — ninguno abierto: usa la rama administrativa válida
+     pendiente si existe; si tampoco, crea `claude/tramite-<AAAA-MM-DD>`
+     desde `main`.
+   - **`DUPLICADO`** — más de uno abierto: **declara la duplicidad con
+     los números**, no crees otro ni cierres los existentes
+     automáticamente. Termina y repórtalo — esto es juicio de mesa.
+
+   Un PR `[TRAMITE]` anterior ya fusionado o cerrado no se reactiva: si
+   `decide_pr_tramite` dice `CREA` porque el único que había ya cerró,
+   el ciclo nuevo es exactamente eso — nuevo, no una continuación.
+
+   Trabaja en un **worktree administrativo separado** del worktree de
+   cualquier acto en curso; no cambies de rama encima de cambios
+   pendientes ni muevas archivos de un encargo para poder registrar la
+   huella.
 3. **SUITE.** `python3 tests/check.py --baseline`.
    - **VERDE** → sigue.
    - **ROJO** → **PARO**. Termina con cero commits y reporta la salida
@@ -244,6 +283,33 @@ que la rutina **no corrió** se ven idénticos desde fuera, y la sección
 `I` del digesto —que lee este archivo— sólo puede distinguirlos si la
 línea está. Nunca reescribes una línea anterior; sólo apendas.
 
+**Vocabulario normalizado — P4.** Usa `tools/rutinas.py::traduce_
+resultado_rutina` para el token: `ABRIO`/`ACTUALIZO` de este agente y
+`COMENTO`/`ACTUALIZO` corroborados de `/revisa` se registran como
+`HIZO:<PR>`, con la acción y la URL en el detalle; `CANDADO`, `PARO` y
+`PROMOVIO` conservan su significado sin traducir. Esto normaliza
+**huellas nuevas** — no corrige filas antiguas del TSV.
+
+**Huellas de `/revisa` — P4.** El revisor no escribe commits de huella:
+su evidencia es el comentario marcado (`<!-- MM-REVISA:v2 ... -->`) y su
+sesión. Consulta los comentarios marcados, revisiones anteriores
+identificables por esa marca, y PR `[REVISA]` en la ventana de **7
+días**, con `gh` si está disponible o con la entrada JSON temporal que
+esta sesión obtenga por su integración de GitHub — nunca credenciales
+nuevas en el repo. Deduplica por la identidad de revisión (`pr`, `head`,
+`main`, `body_sha256`) y puedes incorporar sus referencias a
+`forense/rutinas.tsv` como **filas nuevas**; nunca reescribas datos
+históricos ni inventes ticks a partir solo de la fecha de un PR. Declara
+repositorio, ventana, momento de consulta y si la paginación quedó
+completa. Si el acceso es incompleto, no presentes un inventario
+exhaustivo: di lo que faltó.
+
+Sin GitHub disponible: declara `GITHUB-NO-VERIFICADO` y muestra las
+huellas que sí hay en el TSV local — no mantengas fija la afirmación de
+que `gh` no existe (se comprueba cada vez), y no informes "cero
+revisiones" solo porque el TSV no tiene filas de `revisa`: una sesión sin
+candidato puede legítimamente no dejar comentario ni fila.
+
 **El archivo entra al perímetro de esta skill**: es la cuarta ruta del
 bloque 0.
 
@@ -251,8 +317,19 @@ bloque 0.
 
 ## 4 · EL PR
 
-**Uno solo**, título `[TRAMITE] digesto <AAAA-MM-DD>`. No lo fusiones y
-no lo apruebes.
+**Uno solo**, título `[TRAMITE] digesto <AAAA-MM-DD>`. Si el bloque 1
+(punto 2) reusó un PR abierto, **actualízalo**: añade el digesto del día
+nuevo conservando los digestos previos y su historial de commits, y
+actualiza el título a `[TRAMITE] digesto <fecha más reciente>` — no abras
+uno nuevo. No lo fusiones y no lo apruebes.
+
+Si otro escritor avanzó la rama entre tu lectura y tu push: releé una vez
+y reaplica únicamente tu huella propia si no existe ya (usa una clave
+estable — el ID de sesión disponible; si no hay, deriva una del instante
+original, actor y SHA observado, y consérvala durante el reintento). Ante
+conflicto, **para sin sobrescribir**. Si `main` avanzó, intégralo solo si
+es sin conflictos y vuelve a validar el diff final; un conflicto real es
+resolución explícita, fuera de este trámite rutinario.
 
 El cuerpo trae, en este orden y sin adornos:
 
