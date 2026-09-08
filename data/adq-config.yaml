@@ -1,0 +1,61 @@
+# data/adq-config.yaml -- ACTO ADQ-CRON-V2 · DISPARO-PERSISTENTE-Y-RUNNER-
+# IDEMPOTENTE (P6, 7/sep/2026). URLs, claves físicas/lógicas e ids de
+# manifiesto que antes vivían cableados a mano dentro de
+# tools/adquiere_cron.sh -- movidos aquí para que sean auditables sin leer
+# el shell y reutilizables desde tools/adq_doctor.py. Léelo con
+# `python3 tools/adq_config.py <ruta.punteada>`, nunca a mano desde bash.
+#
+# Cambiar un valor aquí (p.ej. un id_manifiesto nuevo cuando la PDN
+# regenera un bulk) es una decisión de mesa, igual que cuando vivía
+# cableado en el shell -- este archivo no se auto-actualiza.
+
+zona_horaria: America/Mexico_City
+
+sonda_red_url: https://www.inegi.org.mx/
+
+# Timeout por defecto de `claude -p` dentro de tools/adquiere_cron.sh.
+# Configurable en caliente sin editar este archivo: la variable de entorno
+# CLAUDE_TIMEOUT_SEGUNDOS, si está fijada, gana sobre este valor.
+claude_timeout_segundos: 1800
+
+runbook: forense/agente-adquisicion-v1_0.md
+
+# Gracia (P5, T-CRON v2): minutos después de las 07:30 America/Mexico_City
+# antes de exigir que el día ya tenga huella. Cubre el tiempo normal de
+# ejecución del runner (~3-5 min medido el 6/sep) más margen para que un
+# scheduler con jitter no dispare un SIN-HUELLA falso a las 07:31.
+t_cron_gracia_minutos: 45
+
+# PDN · re-baja mensual de los cuatro bulk oficiales (ACTO MAESTRA38-A5 /
+# AUTOMATIZA-2-E4). Ventana de días del mes en que corre la re-baja real;
+# fuera de ventana el runner solo deja una línea "fuera de ventana".
+#
+# sis_descarga = clave FÍSICA (la que vive en la URL y en el nombre del
+#   archivo pdn_<sis_descarga>_<fecha>.zip); s3P es la clave física
+#   histórica del bundle S3-servidores, no un sistema "P" aparte.
+# id_manifiesto = clave que usa data/manifiesto.yaml (SIS_LOGICO), cableada
+#   a mano -- nunca derivada ("última versión"). Actualízala cuando un mes
+#   traiga un id de referencia nuevo; mientras no se actualice, el cron
+#   sigue comparando contra el id vigente y reporta CAMBIO-DE-CONTENIDO si
+#   los bytes ya no coinciden (Enmienda 4: esa discrepancia es para
+#   adjudicación humana, el cron nunca la resuelve solo).
+pdn:
+  ventana_dia_inicio: 1
+  ventana_dia_fin: 3
+  sistemas:
+    s1:
+      url: "https://drive.google.com/uc?export=download&id=1RSYOwWabsWqtxt7VNHIjf-yt1P5bPSbE"
+      sis_descarga: s1
+      id_manifiesto: pdn_s1_2026_09_06
+    s2:
+      url: "https://drive.google.com/uc?export=download&id=1KWcst_YLI5YVlKnzmd3Xm5prAP4NVhAD"
+      sis_descarga: s2
+      id_manifiesto: pdn_s2_2026_09_06
+    s3:
+      url: "https://drive.google.com/uc?export=download&id=1i-HjNju04xdKThHgGDAzHb97GdF_cqS8"
+      sis_descarga: s3P
+      id_manifiesto: pdn_s3v2
+    s6:
+      url: "https://drive.google.com/uc?export=download&id=1OM-P1JAp7PKeGL_InRYOQ1UO5Vpcs9Oi"
+      sis_descarga: s6
+      id_manifiesto: pdn_s6_2026_09_06

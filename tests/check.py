@@ -4741,6 +4741,20 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # coincide con lo que el encargo declara (MEDIDA-EN: ...). La salida
     # vive en el mensaje de ese commit, no en el archivo verbatim.
     "forense/encargos/2026-09-07-MAESTRA38-SELLO-3.md",
+    # ACTO GEN2-T7-CIERRE / [TRAMITE] absorbe-historico, 8/sep/2026 (fusión
+    # PR #605, detectado durante el sync de ACTO ADQ-CRON-V2 -- fuera del
+    # perímetro de este acto, no se toca el encargo verbatim ajeno, mismo
+    # criterio que rige T25). Cita `dinero.ahorro.tiene_ahorros` como
+    # decisión de LINAJE de datos (§D10: qué artefacto de
+    # `data/corrida0/` representa la fila, `SIN-RECETA` por decisión) -- no
+    # clasifica, no pre-registra ni resella la regla.
+    #
+    # Veredicto REAL de `python3 tools/ya_medido.py
+    # dinero.ahorro.tiene_ahorros` (corrido, última línea): `MEDIDA-EN:
+    # tramite.yaml`. `milpa/tramite.yaml:601` la trae `situacion=SELLADA
+    # tier=FUERTE p=0.174804` -- ya medida y sellada, consistente con que
+    # este acto solo decida su representación de linaje, no su medición.
+    "forense/encargos/2026-09-07-GEN2-T7-DECISIONES.md",
 }
 
 
@@ -4774,22 +4788,38 @@ def t30_yamedido():
 
 
 # ───────────────────────────────────────────────────────────────
-# T31 · T-CRON -- ACTO MAESTRA38-CRON-2 · REGISTRO-Y-HUELLA (dirección,
-#   6/sep/2026, `forense/cron/REGISTRO-CRON-v1_0.md` §4). El cron de
-#   `tools/adquiere_cron.sh` corre de lunes a viernes a las 07:30 CST; su
-#   única huella verificable desde el repo es el censo del día
-#   (`forense/censo-raiz/AAAA-MM-DD*.txt`, paso 2.5) o, si `main` está
-#   protegida y el censo vive en rama sin fusionar todavía, la rama remota
-#   `censo/AAAA-MM-DD` (§2.5 de `adquiere_cron.sh`). Ninguna de las dos
-#   demuestra que el resto del cron corrió -- demuestran que el cron
-#   arrancó y llegó al paso 2.5 -- pero su ausencia total, en el último día
-#   hábil anterior a hoy, es la señal más barata de que el cron dejó de
-#   dispararse (crontab caído, máquina apagada, `PATH` roto) sin que nadie
-#   lo note hasta que alguien pida un dato que se supone que ya se
-#   escaneó. WARN, nunca FAIL -- el playbook de diagnóstico (§5) puede
-#   confirmar en 5 minutos si es un defecto real o un día sin ventana
-#   (fin de semana, feriado, la caja apagada por mesa a propósito), y ese
-#   diagnóstico no lo puede hacer este test desde un checkout de nube.
+# T31 · T-CRON v2 -- ACTO MAESTRA38-CRON-2 · REGISTRO-Y-HUELLA (dirección,
+#   6/sep/2026, `forense/cron/REGISTRO-CRON-v1_0.md` §4), reemplazado por
+#   ACTO ADQ-CRON-V2 · DISPARO-PERSISTENTE-Y-RUNNER-IDEMPOTENTE (P5,
+#   7/sep/2026). El binario "hay/no hay censo" no distinguía "el
+#   scheduler ni siquiera disparó" de "disparó y `claude -p` falló" de
+#   "arrancó y murió antes de reportar" -- tres causas muy distintas que
+#   el playbook de diagnóstico (§5) trataba como el mismo WARN. Cinco
+#   estados, derivables solo de git (`censo/<fecha>`, fetch superficial de
+#   SOLO esa rama -- nunca el repo completo) más, opcionalmente, el censo
+#   local ya fusionado a este árbol:
+#
+#   - PENDIENTE        -- todavía no pasan las 07:30 + gracia (hora de
+#                         mesa, America/Mexico_City) del día que se evalúa.
+#                         No es señal: `t31_cron()` no llama a `senal()`.
+#   - SIN-HUELLA        -- pasó la gracia y censo/<fecha> no existe ni
+#                         local ni remota: el mismo WARN de siempre, ahora
+#                         con nombre propio.
+#   - CENSO-SIN-CIERRE  -- hay actividad de censo (`[CENSO]`/`[ADQ-PDN]`)
+#                         pero la huella final `[ADQ] <fecha>` -- que
+#                         `huella_adq()` escribe SIEMPRE, en cada PARO y
+#                         al terminar -- nunca llegó: el runner murió a
+#                         medio camino, antes de su propio autorreporte.
+#   - ARRANCO-FALLO     -- existe la huella final `[ADQ]` pero reporta un
+#                         cierre no exitoso (`invocado=no` con cualquier
+#                         `PARO-*`, o `invocado=si` con `exit` != 0).
+#   - COMPLETO          -- `[ADQ]` presente con `invocado=si exit=0`.
+#
+#   La señal se emite con `senal()` (P1): visible en la suite, nunca
+#   regresión de `tests/baseline.json`. Sigue sin bloquear CI global
+#   (P5): un consumidor que necesite un payload concreto se bloquea por
+#   disponibilidad/hash de ESE payload (`tests/manifiesto.py --verifica`),
+#   nunca por el estado global de T-CRON.
 #
 #   Excepción declarada: el cron se instaló el 4/sep/2026 -- no se exige
 #   huella de ningún día hábil anterior a esa fecha.
@@ -4808,30 +4838,159 @@ def t_cron_ultimo_habil(hoy):
 
 _T_CRON_INSTALACION = datetime.date(2026, 9, 4)
 
+try:
+    from zoneinfo import ZoneInfo as _T_CRON_ZoneInfo
+    _T_CRON_ZONA_MX = _T_CRON_ZoneInfo("America/Mexico_City")
+except Exception:
+    _T_CRON_ZONA_MX = None
 
-def _t_cron_existe_huella(fecha):
-    """True si hay censo local (`forense/censo-raiz/<fecha>*.txt`) o rama
-    remota `censo/<fecha>` para esa fecha."""
-    if glob.glob(os.path.join(ROOT, "forense", "censo-raiz", f"{fecha.isoformat()}*.txt")):
-        return True
+
+def _t_cron_ahora_mx():
+    """(ahora, zona_real) en America/Mexico_City. Si el sistema no tiene
+    base de zonas horarias (`tzdata` ausente), degrada a UTC-6 fijo --
+    declarado en el segundo valor devuelto, nunca silencioso."""
+    if _T_CRON_ZONA_MX is not None:
+        return datetime.datetime.now(_T_CRON_ZONA_MX), True
+    return (datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-6))),
+            False)
+
+
+def _t_cron_gracia_minutos():
+    """Minutos de gracia tras 07:30 antes de exigir la corrida del día
+    (`data/adq-config.yaml:t_cron_gracia_minutos`, default 45 si el
+    archivo/la clave no resuelve -- nunca bloquea T31 por un config roto)."""
     try:
-        import subprocess
-        r = subprocess.run(
-            ["git", "ls-remote", "--heads", "origin", f"censo/{fecha.isoformat()}"],
-            cwd=ROOT, capture_output=True, text=True, timeout=15)
-        if r.returncode == 0 and r.stdout.strip():
-            return True
+        ruta_tools = os.path.join(ROOT, "tools")
+        if ruta_tools not in sys.path:
+            sys.path.insert(0, ruta_tools)
+        import adq_config
+        return int(adq_config.obten("t_cron_gracia_minutos"))
+    except Exception:
+        return 45
+
+
+def _t_cron_fecha_a_evaluar(hoy):
+    """`hoy` mismo si es día hábil (lunes-viernes); si no, el último hábil
+    (P5: T-CRON evalúa el día en curso con gracia, no siempre "ayer" --
+    detecta un fallo el mismo día en vez de esperar al siguiente)."""
+    if hoy.weekday() < 5:
+        return hoy
+    return t_cron_ultimo_habil(hoy)
+
+
+def _t_cron_existe_censo_local(fecha):
+    """True si hay censo ya fusionado a ESTE árbol
+    (`forense/censo-raiz/<fecha>*.txt`) -- señal adicional, no la única:
+    tras P3 (ACTO ADQ-CRON-V2) el commit `[CENSO]` vive en `censo/<fecha>`
+    hasta que mesa lo fusiona, así que en la caja que corrió el cron esto
+    normalmente da False el mismo día -- la rama remota es la señal
+    primaria (ver `_t_cron_ref_censo`)."""
+    return bool(glob.glob(os.path.join(ROOT, "forense", "censo-raiz", f"{fecha.isoformat()}*.txt")))
+
+
+def _t_cron_ref_censo(fecha, timeout=20):
+    """Resuelve una ref legible para censo/<fecha>: local si existe, si no
+    remota (fetch superficial de SOLO esa rama, profundidad 100 -- nunca
+    trae el repo completo). None si la rama no existe en ningún lado, o si
+    no se pudo verificar (sin red / timeout) -- ambos casos indistintos
+    aquí, mismo límite que el código que reemplaza."""
+    import subprocess
+    rama = f"censo/{fecha.isoformat()}"
+    try:
+        if subprocess.run(["git", "show-ref", "--verify", "--quiet", f"refs/heads/{rama}"],
+                           cwd=ROOT, timeout=timeout).returncode == 0:
+            return f"refs/heads/{rama}"
+        if subprocess.run(["git", "show-ref", "--verify", "--quiet", f"refs/remotes/origin/{rama}"],
+                           cwd=ROOT, timeout=timeout).returncode == 0:
+            return f"refs/remotes/origin/{rama}"
+        r = subprocess.run(["git", "ls-remote", "--exit-code", "--heads", "origin", rama],
+                            cwd=ROOT, capture_output=True, text=True, timeout=timeout)
+        if r.returncode != 0 or not r.stdout.strip():
+            return None
+        rf = subprocess.run(
+            ["git", "fetch", "-q", "--depth=100", "origin",
+             f"refs/heads/{rama}:refs/remotes/origin/{rama}"],
+            cwd=ROOT, capture_output=True, text=True, timeout=timeout)
+        if rf.returncode == 0:
+            return f"refs/remotes/origin/{rama}"
     except Exception:
         pass
-    return False
+    return None
+
+
+def _t_cron_commits_censo(fecha, timeout=20):
+    """(set_de_prefijos_presentes, cuerpo_del_commit_[ADQ]_mas_reciente)
+    para censo/<fecha>. `None` si la rama no se pudo leer -- `t31_cron`
+    lo trata como "sin evidencia por esta vía" y todavía consulta
+    `_t_cron_existe_censo_local` antes de concluir SIN-HUELLA."""
+    import subprocess
+    ref = _t_cron_ref_censo(fecha, timeout=timeout)
+    if ref is None:
+        return None
+    try:
+        r = subprocess.run(["git", "log", ref, "--format=%s", "-n", "50"],
+                            cwd=ROOT, capture_output=True, text=True, timeout=timeout)
+    except Exception:
+        return set(), None
+    prefijos = set()
+    for asunto in (r.stdout.splitlines() if r.returncode == 0 else []):
+        for p in ("[CENSO]", "[ADQ-PDN]", "[ADQ]"):
+            if asunto.startswith(p):
+                prefijos.add(p)
+    cuerpo_adq = None
+    try:
+        r2 = subprocess.run(["git", "log", ref, "--grep=^\\[ADQ\\] ", "-n", "1", "--format=%B"],
+                             cwd=ROOT, capture_output=True, text=True, timeout=timeout)
+        if r2.returncode == 0 and r2.stdout.strip():
+            cuerpo_adq = r2.stdout
+    except Exception:
+        pass
+    return prefijos, cuerpo_adq
+
+
+def t_cron_estado(fecha, prefijos, cuerpo_adq):
+    """Función pura (P5): dado el conjunto de prefijos de commit presentes
+    en censo/<fecha> y el cuerpo del commit `[ADQ]` más reciente (o `None`
+    si no hay ninguno), devuelve `(estado, detalle)` -- sin tocar git ni
+    reloj, para que las pruebas la ejerciten directo sin red ni mocks."""
+    if not prefijos:
+        return "SIN-HUELLA", f"censo/{fecha.isoformat()} no existe (ni local ni remota)"
+    if "[ADQ]" not in prefijos:
+        return ("CENSO-SIN-CIERRE",
+                f"censo/{fecha.isoformat()} tiene {sorted(prefijos)} pero nunca llegó "
+                f"la huella final [ADQ]")
+    invocado = motivo = exit_ = None
+    if cuerpo_adq:
+        m = re.search(r"invocado=(\S+)", cuerpo_adq)
+        invocado = m.group(1) if m else None
+        m = re.search(r"motivo=(\S+)", cuerpo_adq)
+        motivo = m.group(1) if m else None
+        m = re.search(r"\bexit=(\S+)", cuerpo_adq)
+        exit_ = m.group(1) if m else None
+    if invocado == "si" and exit_ == "0":
+        return "COMPLETO", f"censo/{fecha.isoformat()}: [ADQ] invocado=si exit=0"
+    return ("ARRANCO-FALLO",
+            f"censo/{fecha.isoformat()}: [ADQ] invocado={invocado} motivo={motivo} exit={exit_}")
 
 
 def t31_cron():
-    hoy = datetime.date.today()
-    fecha = t_cron_ultimo_habil(hoy)
+    ahora_mx, zona_real = _t_cron_ahora_mx()
+    hoy = ahora_mx.date()
+    fecha = _t_cron_fecha_a_evaluar(hoy)
     if fecha < _T_CRON_INSTALACION:
         return
-    if _t_cron_existe_huella(fecha):
+    if fecha == hoy:
+        gracia = _t_cron_gracia_minutos()
+        limite = (datetime.datetime.combine(fecha, datetime.time(7, 30), tzinfo=ahora_mx.tzinfo)
+                  + datetime.timedelta(minutes=gracia))
+        if ahora_mx < limite:
+            return  # PENDIENTE: no se exige nada todavía, no es señal.
+    resultado = _t_cron_commits_censo(fecha)
+    prefijos, cuerpo_adq = resultado if resultado is not None else (set(), None)
+    if _t_cron_existe_censo_local(fecha):
+        prefijos = prefijos | {"[CENSO]"}
+    estado, detalle = t_cron_estado(fecha, prefijos, cuerpo_adq)
+    if estado == "COMPLETO":
         return
     # ACTO ADQ-CRON-V2 · DISPARO-PERSISTENTE-Y-RUNNER-IDEMPOTENTE (P1,
     # 7/sep/2026): `senal()`, no `warn()`. El 7/sep/2026 el WSL de mesa
@@ -4840,8 +4999,8 @@ def t31_cron():
     # información operacional que debe seguir visible en la suite, pero no
     # puede ser una regresión de `tests/baseline.json` de otro acto. Ver
     # `tests/test_t_cron.py::prueba_senal_no_genera_delta_baseline`.
-    senal("T-CRON", f"sin censo del {fecha.isoformat()} (último hábil); cron "
-                     f"no dejó huella -- ver "
+    nota_zona = "" if zona_real else " (tzdata ausente, hora aproximada UTC-6)"
+    senal("T-CRON", f"{estado}{nota_zona} -- {detalle} -- ver "
                      f"forense/cron/REGISTRO-CRON-v1_0.md §5")
 
 

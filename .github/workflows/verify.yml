@@ -81,3 +81,16 @@ jobs:
         # que T31 dejó de poder volver ROJO un PR ajeno) nunca correría en
         # automático. Stdlib puro, sin red ni corpus.
         run: python3 tests/test_t_cron.py
+
+      - name: adq_config.py — lector de data/adq-config.yaml (bloqueante)
+        # ACTO ADQ-CRON-V2 (P6). Fixture propia en un temporal, nunca lee
+        # el data/adq-config.yaml real -- un id de PDN nuevo no puede
+        # romper esta prueba.
+        run: python3 tests/test_adq_config.py
+
+      - name: adq_doctor.py — clasificación de lock/crontab (bloqueante)
+        # ACTO ADQ-CRON-V2 (P4). No ejercita el reporte completo (mezcla
+        # red y /mnt/c reales) -- cubre la lógica de clasificación que sí
+        # puede fallar en silencio: "sin crontab" vs. "no se pudo
+        # preguntar", y detección de lock tomado por otro proceso.
+        run: python3 tests/test_adq_doctor.py
