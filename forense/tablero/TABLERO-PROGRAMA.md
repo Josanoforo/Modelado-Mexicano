@@ -3,11 +3,11 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
 ## Estado vivo derivado
 
-- **Procedencia.** SHA `17dafaf` · fecha del commit `2026-09-08` · ¿árbol == origin/main? `False`.
+- **Procedencia.** SHA `29253be` · fecha del commit `2026-09-08` · ¿árbol == origin/main? `False`.
 - **Motor.** reglas totales `21` · reglas con dato (>=1 conducta MEDIDO*) `20` · reglas sin dato `1` · conductas MEDIDO* `50` · tiers `{'FUERTE': 19, 'MEDIA': 2}`.
 - **Corredor.** marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
 - **Corpus lógico.** entradas del manifiesto `1569` · filas de registro de curación `135` · filas de relaciones `228` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo `402` · FP máximo `348` · FP abiertas: FP-342, FP-343, FP-347, FP-348 · encargos archivados `378` (consumidos `360`) · cola de encargos:
+- **Gobernanza operativa.** ADR máximo `405` · FP máximo `348` · FP abiertas: FP-342, FP-343, FP-347, FP-348 · encargos archivados `381` (consumidos `363`) · cola de encargos:
   - `2026-08-31-MAESTRA33-B2-MARCO-M-SORTEA-v1_1.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-L2-ARBITRA-v1_2.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md`: CONSUMIDO

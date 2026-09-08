@@ -389,6 +389,15 @@ cd <ruta-desechable> && python3 tests/check.py --baseline ; echo "exit=$?"
 git diff --stat origin/main...revisa-pr-<X> -- tests/baseline.json
 ```
 
+`pip install -r requirements.txt` en `<ruta-desechable>` **antes** de correr
+lo de arriba (A4, `ACTO GEN2-T11 · RUTINAS-FIX`, 8/sep/2026) — defecto real
+medido: el `/revisa` post-hoc de `#619` corrió sin instalar `jsonschema`
+(que sí está en `requirements.txt`) y su cifra de `WARN` no era re-derivable
+por quien leyó su nota. Si el entorno no permite instalar (sin red, sin
+permiso), no se deriva la cifra a ojo: se declara **`NO-VERIFICABLE`** con
+el conteo A.13 de qué se examinó y por qué, nunca un número que nadie pudo
+reproducir.
+
 Dos cosas, y la segunda es la que importa:
 
 - **VERDE** sobre la vista previa, no sobre la rama. Un PR verde en

@@ -1299,7 +1299,7 @@ def bloque_falsadores(raiz, hoy):
 # ───────────────────────────────────────────────────────────────
 
 
-def seccion_i(raiz, fecha):
+def seccion_i(raiz, fecha, cuenta):
     """I · Rutinas (últimos 7 días) -- `ACTO GEN2-E7` pieza D (D5a).
 
     Derivada de `forense/rutinas.tsv`, donde cada rutina apenda UNA línea
@@ -1346,12 +1346,12 @@ def seccion_i(raiz, fecha):
             out.append(f"| `{nombre}` | **0** | **SIN HUELLA en la ventana** — "
                        f"no se midió que corriera; no se afirma que no corriera |")
             continue
-        res = " · ".join(f"`{x.get('resultado', '?')}`" for x in fs)
+        res = " · ".join(f"`{neutraliza(x.get('resultado', '?'), cuenta)}`" for x in fs)
         out.append(f"| `{nombre}` | {len(fs)} | {res} |")
     otras = sorted(set(por_rutina) - set(RUTINAS_VIVAS))
     for nombre in otras:
         fs = por_rutina[nombre]
-        res = " · ".join(f"`{x.get('resultado', '?')}`" for x in fs)
+        res = " · ".join(f"`{neutraliza(x.get('resultado', '?'), cuenta)}`" for x in fs)
         out.append(f"| `{nombre}` (no es una de las tres) | {len(fs)} | {res} |")
     out.append("")
     sin_huella = [n for n in RUTINAS_VIVAS if not por_rutina.get(n)]
@@ -1628,7 +1628,7 @@ def _compara_cortes(filas_antes, filas_ahora):
     }
 
 
-def seccion_h(raiz, fecha, base_nc_ref=None, tope_filas=25, tope_texto=220, cuenta=None):
+def seccion_h(raiz, fecha, cuenta=None, base_nc_ref=None, tope_filas=25, tope_texto=220):
     """H · A.14 -- digesto INCREMENTAL de `forense/no-corrido.tsv`
     (P1-P3 de `ACTO AUTO-DIGESTO-1 · CAMBIOS-DESDE-EL-ULTIMO-CORTE`,
     8/sep/2026). Reemplaza el volcado completo de la v1 de esta sección
@@ -1672,6 +1672,11 @@ def seccion_h(raiz, fecha, base_nc_ref=None, tope_filas=25, tope_texto=220, cuen
                 f"No se emite un diff aparentemente válido sobre datos inválidos (P2).", ""]
         resumen["h_error"] = f"TSV actual inválido: {exc}"
         return out, resumen
+
+    # Campos copiados del árbol: se neutralizan igual que las firmas (T25/T22 --
+    # ACTO GEN2-T11 · RUTINAS-FIX, 8/sep/2026 -- las filas retrofit de ADR-393
+    # traen rótulos M/E pelados en `estado`/`sucesor`).
+    _n = lambda v: neutraliza(una_linea(v or "—"), cuenta)
 
     abiertas = [f for f in filas_ahora if (f.get("estado") or "").strip() == "ABIERTA"]
     resumen["no_corrido_abiertas"] = len(abiertas)
@@ -1815,11 +1820,11 @@ def seccion_h(raiz, fecha, base_nc_ref=None, tope_filas=25, tope_texto=220, cuen
             if rid in nueva_de:
                 f = nueva_de[rid]
                 filas_tabla.append((rid, "NUEVA", "—",
-                                    f.get("estado", "—"), f.get("sucesor") or "—", "—"))
+                                    _n(f.get("estado")), _n(f.get("sucesor")), "—"))
             elif rid in aus_de:
                 f = aus_de[rid]
-                filas_tabla.append((rid, "AUSENTE-EN-CORTE-ACTUAL", f.get("estado", "—"),
-                                    "—", f.get("sucesor") or "—", "—"))
+                filas_tabla.append((rid, "AUSENTE-EN-CORTE-ACTUAL", _n(f.get("estado")),
+                                    "—", _n(f.get("sucesor")), "—"))
             else:
                 tags = []
                 antes_estado = ahora_estado = "—"
@@ -1828,14 +1833,14 @@ def seccion_h(raiz, fecha, base_nc_ref=None, tope_filas=25, tope_texto=220, cuen
                 if rid in cambio_de:
                     a, b = cambio_de[rid]
                     tags.append("CAMBIO-DE-ESTADO")
-                    antes_estado, ahora_estado = a.get("estado", "—"), b.get("estado", "—")
-                    sucesor = b.get("sucesor") or "—"
+                    antes_estado, ahora_estado = _n(a.get("estado")), _n(b.get("estado"))
+                    sucesor = _n(b.get("sucesor"))
                 if rid in mod_de:
                     a, b, campos = mod_de[rid]
                     tags.append(f"MODIFICADA ({', '.join(campos)})")
                     if antes_estado == "—":
-                        antes_estado, ahora_estado = a.get("estado", "—"), b.get("estado", "—")
-                    sucesor = b.get("sucesor") or sucesor
+                        antes_estado, ahora_estado = _n(a.get("estado")), _n(b.get("estado"))
+                    sucesor = _n(b.get("sucesor")) if b.get("sucesor") else sucesor
                     # Ajuste 2: valor anterior y valor actual de cada campo
                     # modificado, orden estable (campos ya viene ordenado por
                     # `_compara_cortes`). Un enlace solo al SHA actual no
@@ -1890,10 +1895,10 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso, base_nc_ref=
     e, n_cont = seccion_e(raiz)
     f, res_f = seccion_f(raiz, fecha, ramas, fuente_ramas)
     g, n_pend = seccion_g(raiz)
-    h, res_h = seccion_h(raiz, fecha, base_nc_ref=base_nc_ref, tope_filas=tope_lista,
-                        tope_texto=tope_texto, cuenta=cuenta)
+    h, res_h = seccion_h(raiz, fecha, cuenta, base_nc_ref=base_nc_ref, tope_filas=tope_lista,
+                        tope_texto=tope_texto)
     n_nc_abiertas = res_h["no_corrido_abiertas"]
-    i, res_i = seccion_i(raiz, fecha)
+    i, res_i = seccion_i(raiz, fecha, cuenta)
     j, res_j = seccion_j(raiz, fecha, ramas, fuente_ramas)
     fals, n_venc = bloque_falsadores(raiz, fecha)
 
