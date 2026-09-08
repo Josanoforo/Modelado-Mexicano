@@ -109,3 +109,25 @@ El cierre debe indicar: causa corregida; tratamiento de cada clase; celdas efect
 - [Procedencia en la base revisada](https://github.com/Josanoforo/Modelado-Mexicano/blob/fbd847deee91c3e3efe283bb2f5921addcdda3a9/milpa/procedencia.yaml).
 - [Diagnóstico sellado](https://github.com/Josanoforo/Modelado-Mexicano/blob/fbd847deee91c3e3efe283bb2f5921addcdda3a9/data/corrida0/CALC-MOTOR-celdas-semilla/resultados.json).
 - [PR #614: límites previos a E5](https://github.com/Josanoforo/Modelado-Mexicano/pull/614).
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **`NC-0027` (RAIZ mal derivada en el medidor: tres `dirname` para un archivo cuatro niveles adentro)**, que su propia fila nombraba a este acto como sucesor asignado. | `PARO-PREMISA` — el defecto se detectó **después** de sellar `CALC-MOTOR-celdas-semilla-v2` (se copió el patrón de la predecesora sin revisarlo primero); `corrida0 run` impide reescribir un `CALC` sellado (`CALC-INMUTABLE`), y abrir una tercera sucesora únicamente por `RAIZ` — que solo alimenta `sys.path` y no afecta ningún `RESULT` mientras `corrida0` se invoque desde la raíz — no se justificó. | Ninguno hoy: mismo alcance que declaraba `NC-0027` originalmente. | El próximo acto que edite o cree un medidor de esta familia; nace con los cuatro `dirname`. `NC-0027` sigue `ABIERTA`. |
+| Segundo acceso a `procedencia.crudo` fuera de `consumibles()` — `tools/corrida0.py:_consumidores_asignados_prob` etiqueta `clase_legacy="ASIGNADO"` sin condición para toda entrada del bloque `asignados_probabilidad`, incluida la que hoy es `REFUTADO-POR-COTA`. | `FUERA-DE-PERÍMETRO` — inspeccionado como el encargo pedía; la corrección es de una línea, pero `data/corrida0/demanda-resultados.tsv` es un ledger ya sellado por `ACTO GEN2-E2`/`GEN2-T9` cuyas filas emitidas no se recalculan por acto ajeno (regla verbatim de `ADR-401`, P2: «nada se recalcula: solo se cuenta lo que faltaba»). | Ninguno numérico: esta fila del ledger es bookkeeping de demanda, no un parámetro que el motor consuma. La fila `RES-0090` sigue etiquetada `ASIGNADO` en el ledger sellado. | El acto que próximamente re-derive `demanda-resultados.tsv`. Registrado en `forense/hallazgos.md`, no silenciado. |
+| Publicación de rama/PR. | `DECISIÓN-DE-MESA-PENDIENTE` — el encargo condiciona el PR a autorización de mesa («cuando su publicación esté autorizada por mesa; de otro modo, diff y texto de PR listos para revisión»); esta sesión no la recibió. | Ninguno material: todos los commits están en la rama `claude/new-session-l33kki`, empujada a `origin`, con la suite en verde. | Autorización de mesa para abrir el PR; el texto queda listo (ver cierre de la sesión). |
+
+## ESTADO — entrega parcial, sin PR (no `## CONSUMIDO` todavía)
+
+Todas las piezas P1/P2/P3 del encargo se ejecutaron y sellaron en la rama
+`claude/new-session-l33kki` (empujada a `origin`), con
+`tests/check.py --baseline` en **LÍNEA BASE VERDE**. Deliberadamente **no**
+se escribe `## CONSUMIDO` — esa sección cita el número real de un PR
+fusionable, y este encargo no abrió PR: la publicación requiere
+autorización de mesa que esta sesión no recibió (ver
+`## NO-CORRIDO / RESERVAS`). Cuando mesa autorice y el PR exista,
+`## CONSUMIDO` se añade en un commit posterior con su número real —
+nunca inventado por adelantado.
