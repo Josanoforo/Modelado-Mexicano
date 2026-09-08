@@ -5219,6 +5219,18 @@ def t37_cola_sincronizada():
              f"`cola_desincronizada` no pudo correr: {type(exc).__name__}: {exc}")
         return
     for fila in filas:
+        # ACTO GEN2-T9 · P4(i): una cola con piezas a medias NO es lo mismo
+        # que una cola sin sincronizar, y decirlo con el mismo texto era como
+        # se perdia la diferencia. `PARCIAL` nombra cuantas piezas faltan.
+        if not fila.get("completa", True):
+            fail("T-COLA-SINCRONIZADA",
+                 f"{fila['cola']} PARCIAL: {fila['piezas_consumidas']} de "
+                 f"{fila['piezas_totales']} piezas con `## CONSUMIDO` "
+                 f"(declaradas={fila.get('piezas_declaradas')}, "
+                 f"marcadas={fila.get('piezas_marcadas')}) -- la cola no cierra "
+                 f"hasta que estén todas; su ESTADO: debe decir "
+                 f"`EN-CURSO (parcial: X de Y)`, no `CONSUMIDO`")
+            continue
         fail("T-COLA-SINCRONIZADA",
              f"{fila['cola']} sigue `ESTADO: {fila['estado_cola']}` pero "
              f"{fila['archivado']} ya trae `## CONSUMIDO`"

@@ -554,6 +554,72 @@ def t_ola_ancla_f_dd_a_la_ola_usada_no_a_la_del_arbitro() -> None:
                    f"{cid}: ancla={valor} pero la marca dice {marca!r}")
 
 
+# ── ACTO GEN2-T9 · P4(i) · la cola cierra solo con TODAS las piezas ────────
+
+def _cierre_acto():
+    import sys as _sys
+    ruta_tools = str(RAIZ / "tools")
+    if ruta_tools not in _sys.path:
+        _sys.path.insert(0, ruta_tools)
+    return _carga(RAIZ / "tools/cierre_acto.py", "cierre_acto_t9")
+
+
+_CONSUMIDO_PARCIAL = """## CONSUMIDO
+
+Pieza C ejecutada por `PR #612`.
+
+Las piezas A y B se consumen en su propio PR.
+"""
+
+_CONSUMIDO_COMPLETO = """## CONSUMIDO
+
+Pieza C ejecutada por `PR #612`.
+
+Piezas A, B y D ejecutadas por `PR #613`.
+"""
+
+
+def t_cola_piezas_parciales_no_cierran() -> None:
+    """El defecto que P4(i) corrige: una pieza consumida cerraba la cola
+    entera. Una pieza NOMBRADA pero sin `PR #<n>` en su linea esta declarada
+    y NO marcada."""
+    mod = _cierre_acto()
+    declaradas, marcadas, prs = mod.piezas_de_consumido(_CONSUMIDO_PARCIAL)
+    if sorted(declaradas) != ["A", "B", "C"] or sorted(marcadas) != ["C"]:
+        _falla("t_cola_piezas_parciales_no_cierran",
+               f"declaradas={sorted(declaradas)} marcadas={sorted(marcadas)}")
+    if prs != ["612"]:
+        _falla("t_cola_piezas_parciales_no_cierran", f"prs={prs}")
+
+
+def t_cola_piezas_completas_cierran_con_todos_los_pr() -> None:
+    mod = _cierre_acto()
+    declaradas, marcadas, prs = mod.piezas_de_consumido(_CONSUMIDO_COMPLETO)
+    if declaradas != marcadas or sorted(declaradas) != ["A", "B", "C", "D"]:
+        _falla("t_cola_piezas_completas_cierran_con_todos_los_pr",
+               f"declaradas={sorted(declaradas)} marcadas={sorted(marcadas)}")
+    if prs != ["612", "613"]:
+        _falla("t_cola_piezas_completas_cierran_con_todos_los_pr",
+               f"se esperaban los dos PR en orden de aparicion, hubo {prs}")
+
+
+def t_cola_la_y_no_es_una_pieza() -> None:
+    """`piezas A y B` son DOS piezas, no tres. La conjuncion inflaba el
+    denominador y hacia que una cola completa se reportara parcial."""
+    mod = _cierre_acto()
+    declaradas, _, _ = mod.piezas_de_consumido(
+        "## CONSUMIDO\n\nPiezas A y B ejecutadas por `PR #1`.\n")
+    if sorted(declaradas) != ["A", "B"]:
+        _falla("t_cola_la_y_no_es_una_pieza", f"declaradas={sorted(declaradas)}")
+
+
+def t_cola_sin_consumido_no_declara_piezas() -> None:
+    mod = _cierre_acto()
+    d, m, prs = mod.piezas_de_consumido("Un encargo cualquiera, pieza A, sin seccion.")
+    if d or m or prs:
+        _falla("t_cola_sin_consumido_no_declara_piezas", f"{d} {m} {prs}")
+
+
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]
 
 

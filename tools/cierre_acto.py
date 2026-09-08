@@ -341,9 +341,19 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True):
         print("  Ninguna copia de cola/ abierta con su homonimo archivado ya CONSUMIDO.")
     else:
         for fila in desincro:
+            if not fila.get("completa", True):
+                print(f"  PARCIAL: {fila['cola']} -- "
+                      f"{fila['piezas_consumidas']} de {fila['piezas_totales']} "
+                      f"piezas con `## CONSUMIDO` "
+                      f"(declaradas={fila.get('piezas_declaradas')}, "
+                      f"marcadas={fila.get('piezas_marcadas')}) -- la cola NO "
+                      f"cierra hasta que estén todas")
             print(f"  DESINCRONIZADA: {fila['cola']} (ESTADO: {fila['estado_cola']}) "
                   f"vs {fila['archivado']} · PR #{fila['pr'] or '?'}")
-        print(f"  -> `--aplica` reescribe {len(desincro)} ESTADO: a CONSUMIDO.")
+        completas = sum(1 for f in desincro if f.get("completa", True))
+        print(f"  -> `--aplica` reescribe {len(desincro)} ESTADO: "
+              f"{completas} a CONSUMIDO, {len(desincro) - completas} a "
+              f"EN-CURSO (parcial).")
     print()
     print("REQUIERE JUICIO HUMANO (siempre, este tool no lo hace)")
     print("  - Redactar el texto del ADR (motivo, incisos, qué cierra/abre)")
@@ -433,6 +443,18 @@ def fase_b_aplica(raiz=RAIZ):
     tabla_actual = int(anclas_tabla[0].group(2))
 
     if cab_actual == adr_real and l0_actual == adr_real and tabla_actual == adr_real:
+        # ACTO GEN2-T9 · P4(i): esta salida temprana se comia la
+        # sincronizacion de la cola. Los TRES contadores de ADR y el ESTADO
+        # de `cola/` son cosas independientes: que los primeros ya cuadren
+        # no dice nada del segundo, y el acto cuyos contadores no se movieron
+        # -- justo el que solo cierra cola -- era el que se quedaba sin
+        # sincronizar. Se corre la cola SIEMPRE, antes de devolver.
+        sincronizadas = sincroniza_cola(raiz)
+        for fila in sincronizadas:
+            destino = "CONSUMIDO" if fila.get("completa", True) else "EN-CURSO (parcial)"
+            print(f"APLICADO: cola {os.path.basename(fila['cola'])} "
+                  f"-> {destino}"
+                  + (f" (PR #{fila['pr']})" if fila["pr"] else ""))
         print(f"sin cambios -- cabecera, L0 y tabla estado ya declaran {adr_real}, igual al real")
         return 0
 
@@ -508,8 +530,8 @@ def fase_b_aplica(raiz=RAIZ):
         cambios.append(f"tabla estado {tabla_actual}->{adr_real}")
     sincronizadas = sincroniza_cola(raiz)
     for fila in sincronizadas:
-        cambios.append(f"cola {os.path.basename(fila['cola'])} "
-                       f"{fila['estado_cola']}->CONSUMIDO"
+        destino = "CONSUMIDO" if fila.get("completa", True) else "EN-CURSO (parcial)"
+        cambios.append(f"cola {os.path.basename(fila['cola'])} -> {destino}"
                        + (f" (PR #{fila['pr']})" if fila["pr"] else ""))
     print("APLICADO: " + (" · ".join(cambios) if cambios else "nada que reconciliar"))
     return 0
@@ -551,7 +573,55 @@ _RE_PR_EN_CONSUMIDO = re.compile(r"^## CONSUMIDO.*?#(\d+)", re.M | re.S)
 # Marcarlo desincronizado seria pedirle al acto que se declare consumido antes
 # de estarlo. Medido: `GEN2-E7`, cuya pieza C fusiono en `PR #612` mientras
 # las piezas A/B/D seguian abiertas en `PR #613`.
-ESTADOS_COLA_ABIERTOS = ("LISTO-NUBE", "LISTO-CAJA", "LISTO-", "GATEADO")
+# ACTO GEN2-T9 · P4(i): `EN-CURSO` faltaba, y su ausencia era el agujero.
+# Un encargo de VARIAS PIEZAS pasa por `EN-CURSO` mientras sus piezas caen en
+# PR distintos -- que es exactamente cuando la cola necesita vigilancia. Sin
+# este estado en la lista, `GEN2-E7` se quedo en `EN-CURSO` con su homonimo
+# archivado ya `## CONSUMIDO` y ningun check lo vio.
+ESTADOS_COLA_ABIERTOS = ("LISTO-NUBE", "LISTO-CAJA", "LISTO-", "GATEADO",
+                         "EN-CURSO")
+
+#: Piezas citadas en un `## CONSUMIDO`: `Pieza C`, `piezas A y B`,
+#: `piezas A, B y D`. Se captura el grupo entero de letras y se parte despues.
+_RE_PIEZAS = re.compile(r"[Pp]ieza[s]?\s+((?:[A-Z](?:\s*(?:,|y|/)\s*)?)+)")
+
+
+def piezas_de_consumido(texto):
+    """`(declaradas, marcadas, prs)` leidas del `## CONSUMIDO` de un encargo.
+
+    Una pieza esta MARCADA si en su misma linea aparece un `PR #<n>`. La
+    linea es la unidad porque es como se escriben estas secciones: una linea
+    por pieza consumida, con su PR. Una pieza nombrada SIN numero de PR --
+    «las piezas A y B se consumen en su propio PR» -- esta declarada y NO
+    marcada, que es justo la distincion que este contador existe para hacer.
+
+    Sin `## CONSUMIDO` devuelve `(set(), set(), [])`: no hay nada que contar.
+    """
+    m = _MARCADOR_CONSUMIDO.search(texto)
+    if not m:
+        return set(), set(), []
+    cuerpo = texto[m.end():]
+    declaradas, marcadas, prs = set(), set(), []
+    for linea in cuerpo.splitlines():
+        letras = set()
+        for grupo in _RE_PIEZAS.findall(linea):
+            # Solo MAYUSCULAS: la `y` de «piezas A y B» es conjuncion, no
+            # pieza, y contarla inflaba el denominador en uno.
+            letras |= {c for c in grupo if c.isupper()}
+        if not letras:
+            continue
+        declaradas |= letras
+        encontrados = re.findall(r"PR\s*#(\d+)", linea)
+        if encontrados:
+            marcadas |= letras
+            prs.extend(encontrados)
+    # Orden estable y sin repetidos, conservando el orden de aparicion.
+    vistos, orden = set(), []
+    for n in prs:
+        if n not in vistos:
+            vistos.add(n)
+            orden.append(n)
+    return declaradas, marcadas, orden
 
 
 def _rotulo_de(nombre):
@@ -584,14 +654,60 @@ def cola_desincronizada(raiz=RAIZ):
         estado = (m_est.group(1).strip() if m_est else "")
         if not any(estado.upper().startswith(e) for e in ESTADOS_COLA_ABIERTOS):
             continue
-        for ruta_arch in archivados.get(rot, []):
-            m_pr = _RE_PR_EN_CONSUMIDO.search(_leer(ruta_arch))
-            if _MARCADOR_CONSUMIDO.search(_leer(ruta_arch)) or m_pr:
-                fuera.append({"cola": os.path.relpath(ruta_cola, raiz),
-                              "archivado": os.path.relpath(ruta_arch, raiz),
-                              "estado_cola": estado,
-                              "pr": m_pr.group(1) if m_pr else None})
-                break
+
+        # ACTO GEN2-T9 · P4(i). Antes de este acto bastaba UN archivado con
+        # `## CONSUMIDO` para dar la cola por cerrada -- el `break` de abajo
+        # salia al primero que casara. Con un encargo de VARIAS PIEZAS en
+        # varios PR (el caso real: `GEN2-E7` con piezas A/B en un PR, C en
+        # `PR #612` y D en `PR #613`), eso cerraba la cola con la primera
+        # pieza consumida y las otras tres quedaban invisibles.
+        #
+        # La cola se cierra SOLO con TODAS las piezas marcadas. Mientras
+        # falte una, el estado correcto es `EN-CURSO (parcial: X de Y)`, que
+        # es informacion -- no un `CONSUMIDO` prematuro ni un silencio.
+        archivos = archivados.get(rot, [])
+        consumidos, prs = [], []
+        declaradas, marcadas = set(), set()
+        for ruta_arch in sorted(archivos):
+            texto_arch = _leer(ruta_arch)
+            m_pr = _RE_PR_EN_CONSUMIDO.search(texto_arch)
+            if not (_MARCADOR_CONSUMIDO.search(texto_arch) or m_pr):
+                continue
+            consumidos.append(ruta_arch)
+            d, m_, p = piezas_de_consumido(texto_arch)
+            declaradas |= d
+            marcadas |= m_
+            prs.extend(p)
+            if not p and m_pr:
+                prs.append(m_pr.group(1))
+        if not consumidos:
+            continue
+
+        # Dos granularidades, y las dos cuentan: los ARCHIVOS del rotulo
+        # (un encargo por pieza) y las PIEZAS dentro de un archivo (un
+        # encargo con piezas A/B/C/D en PR distintos, el caso de `GEN2-E7`).
+        # La cola cierra solo si las dos estan completas.
+        totales = max(len(archivos), len(declaradas)) or 1
+        hechas = min(len(consumidos), len(marcadas)) if declaradas else len(consumidos)
+        completa = (len(consumidos) == len(archivos)
+                    and (not declaradas or declaradas == marcadas))
+        vistos, orden = set(), []
+        for n in prs:
+            if n not in vistos:
+                vistos.add(n)
+                orden.append(n)
+        fuera.append({
+            "cola": os.path.relpath(ruta_cola, raiz),
+            "archivado": os.path.relpath(consumidos[0], raiz),
+            "estado_cola": estado,
+            "pr": orden[0] if orden else None,
+            "piezas_totales": totales,
+            "piezas_consumidas": hechas,
+            "piezas_declaradas": sorted(declaradas),
+            "piezas_marcadas": sorted(marcadas),
+            "prs": orden,
+            "completa": completa,
+        })
     return fuera
 
 
@@ -602,10 +718,20 @@ def sincroniza_cola(raiz=RAIZ):
     for fila in cola_desincronizada(raiz):
         ruta = os.path.join(raiz, fila["cola"])
         texto = _leer(ruta)
-        pr = f" — PR #{fila['pr']}" if fila["pr"] else ""
-        linea = (f"ESTADO: CONSUMIDO{pr}. Sincronizado por "
-                 f"`tools/cierre_acto.py --aplica` contra "
-                 f"`{fila['archivado']}`, que ya trae `## CONSUMIDO`.")
+        if fila.get("completa", True):
+            prs = ", ".join(f"PR #{n}" for n in (fila.get("prs") or []))
+            pr = f" — {prs}" if prs else ""
+            linea = (f"ESTADO: CONSUMIDO{pr}. Sincronizado por "
+                     f"`tools/cierre_acto.py --aplica` contra "
+                     f"`{fila['archivado']}`, que ya trae `## CONSUMIDO`.")
+        else:
+            # Parcial: se ESCRIBE el parcial, no se deja el estado viejo ni
+            # se adelanta a CONSUMIDO. La cifra es la informacion.
+            prs = ", ".join(f"PR #{n}" for n in (fila.get("prs") or [])) or "sin PR citado"
+            linea = (f"ESTADO: EN-CURSO (parcial: {fila['piezas_consumidas']} de "
+                     f"{fila['piezas_totales']} piezas con `## CONSUMIDO`; {prs}). "
+                     f"Sincronizado por `tools/cierre_acto.py --aplica`; la cola "
+                     f"NO se cierra hasta que las {fila['piezas_totales']} lo estén.")
         nuevo, n = re.subn(r"^ESTADO:.*$", lambda m: linea, texto, count=1,
                            flags=re.M)
         if n != 1:

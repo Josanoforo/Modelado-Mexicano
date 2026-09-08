@@ -31,6 +31,7 @@ except ImportError:  # pragma: no cover
     yaml = None
 
 import estado_comun as EC
+import limpia_arbol as LA  # ACTO GEN2-T9 · P4(v)
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(RAIZ)
@@ -120,6 +121,36 @@ def derivar_indicadores() -> dict[str, dict]:
         "'vivas' es historico del nombre de esta clave -- son ramas PRESENTES en origin "
         "(ACTO AUTOMATIZA-1-E2), no necesariamente PR abierto ni trabajo sin fusionar: "
         "una rama puede existir sin haber redactado aun su ADR")
+
+    # ACTO GEN2-T9 · P4(v): `NO-VERIFICABLE-SIN-GH` es un ESTADO, no un cero.
+    # `tools/limpia_arbol.py` ya lo distinguia y el tablero no lo leia: sin
+    # `gh` en el entorno, la politica de cero ramas (A.14) queda SIN VERIFICAR,
+    # y un tablero que publicara `0` ahi estaria afirmando que se cumple. Los
+    # tres estados posibles se publican con ese nombre -- `VERIFICADO`,
+    # `NO-VERIFICABLE-SIN-GH`, `ERROR` -- porque colapsarlos a un numero es
+    # justo como un negativo no examinado se lee como positivo (A.13).
+    try:
+        _pol = LA.ramas_fuera_de_politica()
+        _estado_pol = "VERIFICADO" if _pol.get("verificable") else "NO-VERIFICABLE-SIN-GH"
+        _n_pol = _pol.get("n")
+        _detalle_pol = _pol.get("detalle") or []
+        _nota_pol = _pol.get("nota") or ""
+        _cmd_pol = _pol.get("comando", "")
+    except Exception as _exc:      # el tablero no revienta por un tool auxiliar
+        _estado_pol, _n_pol, _detalle_pol = "ERROR", None, []
+        _nota_pol = f"{type(_exc).__name__}: {_exc}"
+        _cmd_pol = "tools/limpia_arbol.py::ramas_fuera_de_politica()"
+    put("ramas_fuera_de_politica_estado", _estado_pol,
+        f"tools/limpia_arbol.py::ramas_fuera_de_politica() -- {_cmd_pol}",
+        _nota_pol or "VERIFICADO: se consultaron los PR abiertos de verdad")
+    put("ramas_fuera_de_politica_n", _n_pol,
+        f"tools/limpia_arbol.py::ramas_fuera_de_politica() -- {_cmd_pol}",
+        "null cuando el estado NO es VERIFICADO -- un null declarado, nunca un 0 "
+        "que se leeria como 'la politica se cumple'")
+    put("ramas_fuera_de_politica_detalle", _detalle_pol,
+        f"tools/limpia_arbol.py::ramas_fuera_de_politica() -- {_cmd_pol}",
+        "vacio cuando no es verificable; no distingue por si solo -- se lee "
+        "junto a `ramas_fuera_de_politica_estado`")
 
     # ── 1 · motor ─────────────────────────────────────────────────────
     t = leer("milpa/tramite.yaml")
