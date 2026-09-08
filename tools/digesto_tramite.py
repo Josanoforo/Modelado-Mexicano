@@ -68,6 +68,26 @@ parseo, así que el WARN de cada corrida de la suite también trae los
 días de retraso cuando aplica — la memoria mecánica no depende de que
 alguien abra el digesto del día.
 
+v1.3 — DIGESTO INCREMENTAL DE H, P1-P3 de `ACTO AUTO-DIGESTO-1 ·
+CAMBIOS-DESDE-EL-ULTIMO-CORTE`
+(`forense/encargos/2026-09-08-digesto-incremental-reservas.md`). La
+sección H (`ACTO GEN2-T8`) volcaba todo `forense/no-corrido.tsv` cada
+corrida, como si todo fuera novedad. Ahora compara por `id` contra el
+último digesto versionado en `forense/digesto/`, localizado UNA SOLA VEZ
+por su historial de `git log` (nunca por fecha de modificación del
+sistema de archivos) y recuperado por el SHA de árbol que ese digesto
+declaró — nunca por lo que "hoy daría" el TSV en el árbol de trabajo.
+DETERMINISMO DE H, explícito (extiende el párrafo de arriba): misma
+`--fecha` + mismo árbol de entrada + misma referencia de comparación →
+mismo diff, byte por byte; la referencia se fija una vez al empezar y
+no se re-consulta a mitad de la comparación. Cada corte deja una marca
+`<!-- H-REF sha_arbol=… nc_sha256=… -->` (invisible en Markdown, no
+volátil: ambos valores derivan del árbol, nunca del reloj) para que el
+siguiente la recupere. Sin referencia recuperable —primera emisión, TSV
+ausente en ese árbol, SHA no resoluble— se declara `SIN-BASE-COMPARABLE`
+con la causa, nunca "todo es nuevo". Ver el docstring de `seccion_h()`
+para el contrato completo.
+
 ────────────────────────────────────────────────────────────────────
 NEUTRALIZACIÓN DE MARCADORES — léelo antes de tocar `_neutraliza()`.
 ────────────────────────────────────────────────────────────────────
