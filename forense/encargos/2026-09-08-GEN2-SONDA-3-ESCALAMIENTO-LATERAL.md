@@ -56,3 +56,7 @@ Verbatim, 8/sep/2026: «revisa la propuesta de Chatgpt Astra» — validada por 
 | P5 (piloto): ejercitar `/sonda` + `/adquiere` sobre un negativo material real, modos CONSTRUCTO/HERMANAS/LATERAL | `DIFERIDO-A:GEN2-SONDA-3-PILOTO-CAJA` — el piloto es sucesor GATEADO a este PR fusionado, no pieza de este acto (verbatim del encargo) | el criterio nuevo de `sonda.md`/`adquiere.md` queda sin ejercitar contra un negativo real hasta que el piloto corra | `GEN2-SONDA-3-PILOTO-CAJA` (`forense/encargos/cola/2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`), `NC-0058` |
 
 Nota de cierre: `forense/notas/2026-09-08-cierre-escalamiento-lateral-astra.md`.
+
+## CONSUMIDO
+
+Por `PR #642` (`ACTO GEN2-SONDA-3 · ESCALAMIENTO-LATERAL`).
