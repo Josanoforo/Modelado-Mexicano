@@ -172,6 +172,30 @@ produzca trae, en la misma nota:
    intentó) — un negativo que no declara su frontera se lee como cobertura
    total sin haberlo sido.
 
+## 5-bis · Segunda pasada crítica — antes de todo negativo material
+
+Antes de escribir cualquier negativo material (§5), el mismo ejecutor corre
+una segunda pasada crítica, breve, con estas cinco preguntas — sin cuotas
+universales del tipo "tres clases de fuente" o "dos archivos web": una cuota
+así queda **explícitamente prohibida**, porque sustituye juicio sobre el
+objeto concreto por un conteo que no depende de él.
+
+1. ¿El objeto exacto que pide la definición fue examinado, o solo un
+   sinónimo/proxy suyo?
+2. ¿Alguna vía se dio por agotada tras un solo intento con un solo
+   mecanismo, cuando el repertorio de `§3` ofrece un segundo mecanismo
+   razonable?
+3. ¿Un `HTTP 200`/`000`/bloqueo se leyó como veredicto final sin la
+   verificación de contenido o el segundo mecanismo que `§3`/`§4` exigen?
+4. ¿Hay un republicador, mirror, frontend/SPA o handoff humano evidente que
+   el repertorio activado por evidencia (§2) no llegó a considerar para
+   este objeto en particular?
+5. ¿El negativo que se está por escribir declara su frontera (qué NO se
+   examinó), o se lee como si el universo entero ya estuviera agotado?
+
+Si alguna respuesta revela una vía razonable sin probar, se prueba antes de
+declarar el negativo — no se documenta la duda y se avanza igual.
+
 ## 6 · Handoff a adquisición — reusa el escritor, no inventes uno
 
 `/sonda` no reemplaza `/adquiere`. Si esta skill localiza una candidata
@@ -248,6 +272,47 @@ RECOMENDACIÓN:
 una sola frase. Propone, no decide — sin verbo de decisión ("se adopta",
 "se sella", "se adquiere").
 ```
+
+## 8 · Advertencias — supuestos de los Deep Research que NO se incorporan
+
+`ACTO GEN2-SONDA-3 · ESCALAMIENTO-LATERAL` revisó dos estudios Deep Research
+externos (procedencia tipo (3): reportados en conversación, no verificados
+contra este repo — `grep -rc "Deep Research"` sobre las notas de
+`SONDA-CAJA-1`/`SONDA-2` da `0`). Seis supuestos suyos NO se incorporan a
+esta skill, y quedan aquí como advertencia en vez de mecanismo, porque
+ninguno se confirmó contra el corpus real de este proyecto:
+
+1. **SODA3/SODA2.1** — nombres de instrumento citados por el estudio sin fila
+   ni mención en `data/curacion-registro/cola-adquisicion-registro.tsv` ni en
+   `canon/`. No se asume que existan hasta que una búsqueda real los ubique.
+2. **403 ≠ ASN** — un `HTTP 403` no identifica por sí solo qué ASN/CDN lo
+   emitió; el estudio lo trataba como señal de bloqueo geográfico o de
+   proveedor sin verificarlo con un mecanismo independiente (`whois`/cabecera
+   `server`). Se sigue tratando como bloqueo genérico, per `§4`.
+3. **SHA256 vs. CDX digest** — el estudio asumía que el `digest` que expone
+   el índice CDX de Wayback Machine es directamente comparable contra un
+   `sha256` de archivo descargado. Son algoritmos/formatos distintos
+   (CDX usa un digest propio, típicamente Base32 de SHA-1) — no se comparan
+   como si fueran el mismo valor sin conversión explícita.
+4. **DuckDB remoto** — el estudio proponía consultar parquet/CSV remotos vía
+   `duckdb` con `httpfs` como vía de acceso lateral. No hay evidencia de que
+   este mecanismo esté disponible o autorizado en NUBE (política de egreso) ni
+   de que las fuentes de este proyecto lo sirvan — no se asume la capacidad,
+   se confirma si y cuando se use.
+5. **Source maps** — el estudio sugería que los `.map` de un frontend/SPA
+   siempre exponen las rutas de API reales. Un `.map` ausente o minificado sin
+   mapa no es evidencia de que la vía no exista — es una vía más del
+   repertorio de `§2`, no una garantía.
+6. **Tabulados ≠ microdatos** — el estudio trataba un tabulado agregado
+   (cifras ya sumarizadas) como si pudiera sustituir microdato desagregado
+   para efectos de `EXISTE-SATISFACE`. No son intercambiables: un tabulado que
+   satisface una definición agregada no satisface una que pide observación
+   por unidad — la distinción se declara explícita en la clasificación (`§4`),
+   nunca se difumina.
+
+Cierre: los estudios Deep Research son repertorio adicional a considerar, no
+mecanismo verificado — las capacidades que proponen se confirman al usarse
+contra una candidata real, no se dan por ciertas de antemano.
 
 ## Lo que esta skill no hace
 
