@@ -29357,3 +29357,36 @@
   sha256: 8e48c789c5841d6c964297a19562025744f6245d68b8abf2a91548e455abd13b
   tamano_bytes: 14665813
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: gen2_universo_c_findex2025_csv
+  usado_para: 'GEN2-UNIVERSO-C P1(d): paralelo evaluado para N19 (rechazo de credito por sin-historial
+    POR SEGMENTO) -- archivo pais publico, 438 columnas examinadas, EXISTE-NO-SATISFACE (ninguna
+    columna codifica razon de rechazo/historial crediticio)'
+  url_origen: https://thedocs.worldbank.org/en/doc/be6615202d1f08a25855c8ac2d615122-0050012025/related/GlobalFindexDatabase2025.csv
+  fecha_descarga: '2026-09-08'
+  descargado_por: agente, curl directo, GET real, sin registro
+  archivo: GEN2_UNIVERSO_C_FINDEX_2025/GlobalFindexDatabase2025.csv
+  sha256: dce89f60a9aceaf60a7be62b56b6a52e4d47405ee48fe2e2227da60f2a9d51cd
+  tamano_bytes: 17643094
+  formato: CSV
+  licencia: World Bank Global Findex Database -- descarga publica sin registro; el microdato
+    individual vive en microdata.worldbank.org tras cuenta
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO GEN2-UNIVERSO-C, forense/notas/2026-09-08-GEN2-UNIVERSO-C-tandas-enafin.md S1.c.
+    Descargado via el enlace publico de worldbank.org/en/publication/globalfindex/download-data
+    (JSON-LD/HTML, no adivinado). Ninguna de las 438 columnas cubre razon de rechazo de credito
+    ni historial crediticio -- confirmado con lectura completa del header. No se persigue
+    el microdato individual: el archivo publico ya descarta el reactivo exacto.'
+
+- id: gen2_universo_c_findex2025_glosario
+  usado_para: 'GEN2-UNIVERSO-C P1(d): glosario de indicadores para gen2_universo_c_findex2025_csv'
+  url_origen: https://thedocs.worldbank.org/en/doc/be6615202d1f08a25855c8ac2d615122-0050012025/related/GlobalFindex2025-glossary.xlsx
+  fecha_descarga: '2026-09-08'
+  descargado_por: agente, curl directo, GET real, sin registro
+  archivo: GEN2_UNIVERSO_C_FINDEX_2025/GlobalFindex2025-glossary.xlsx
+  sha256: 8eb99754e6e18d6831c133cc743d8207cc657baedc3447588a574fd3d935f923
+  tamano_bytes: 26841
+  formato: XLSX
+  licencia: World Bank Global Findex Database -- descarga publica sin registro
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: ACTO GEN2-UNIVERSO-C. Acompana a gen2_universo_c_findex2025_csv.
