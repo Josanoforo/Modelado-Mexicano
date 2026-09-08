@@ -1812,6 +1812,83 @@ def t_status_mide_no_adopta():
             f"legacy_activas tras adoptar={c['dependencias_numericas_legacy_activas']}")
 
 
+# ── FP-360 (FIRMADA, 8/sep/2026) · SELLADA-SIN-ADOPTAR ────────────────────
+
+def t_sellada_sin_adoptar_es_warn_no_fail():
+    """T-SELLADA-SIN-ADOPTAR (P2.i, FP-360). Un RESULT activo GEN2 sellado
+    sin consumidor en milpa/ es el estado que la propia firma del contador
+    creó a propósito ("cuenta, no adopta") -- T35 debe avisar (WARN,
+    SELLADA-SIN-ADOPTAR), no fallar."""
+    caso = "T-SELLADA-SIN-ADOPTAR"
+    chk = _carga_check()
+    calcs = [{"calc_id": "CALC-FIX-SSA", "valores": {"RESULT-SSA": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}}]
+    with _arbol_registro(calcs=calcs):
+        chk.WARNS.clear()
+        chk.FAILS.clear()
+        chk.SENAL.clear()
+        chk.t35_repro(modulo=C)
+    fails = " · ".join(m for _, m in chk.FAILS)
+    warns = " · ".join(m for _, m in chk.WARNS)
+    _afirma("RESULT-SSA" not in fails, caso,
+            f"un activo GEN2 sin consumidor sigue fallando: {fails!r}")
+    _afirma("SELLADA-SIN-ADOPTAR RESULT-SSA" in warns, caso,
+            f"T35 no avisó SELLADA-SIN-ADOPTAR: {warns!r}")
+
+
+def t_sellada_sin_adoptar_no_tapa_cita_inexistente():
+    """T-SELLADA-SIN-ADOPTAR-CITA (P2.ii, FP-360). FP-360 solo mueve la cola
+    de (a) -- sin consumidor. Un consumidor que cita un
+    `corrida0_resultado_id` inexistente sigue siendo cableado roto: FAIL
+    intacto."""
+    caso = "T-SELLADA-SIN-ADOPTAR-CITA"
+    chk = _carga_check()
+    tramite = {"reglas": [{"id": "r.fantasma", "entonces": [
+        {"conducta": "c1", "p": 0.5, "corrida0_generacion": "GEN2",
+         "corrida0_resultado_id": "RESULT-FANTASMA"}]}]}
+    with _arbol_registro(tramite=tramite):
+        consumidor = f"{C._rel(C.TRAMITE)}:r.fantasma:c1"
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                   [_fila_demanda("RES-0001", consumidor, "CORR-0001")])
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                   [_fila_corrida("CORR-0001", ["RES-0001"])])
+        chk.WARNS.clear()
+        chk.FAILS.clear()
+        chk.SENAL.clear()
+        chk.t35_repro(modulo=C)
+    _afirma(len(chk.FAILS) > 0, caso,
+            f"una cita a corrida0_resultado_id inexistente no falló: {chk.FAILS!r}")
+    _afirma(not any("SELLADA-SIN-ADOPTAR" in m for _, m in chk.WARNS), caso,
+            "una cita rota no debe pasar como SELLADA-SIN-ADOPTAR")
+
+
+def t_sellada_sin_adoptar_agregado_coincide():
+    """T-SELLADA-SIN-ADOPTAR-AGREGADO (P2.iii, FP-360). El resumen que
+    imprime T35 -- `SELLADA-SIN-ADOPTAR: N · más vieja: X días` -- lleva la
+    N que coincide con el número de entradas individuales, no una cifra
+    aparte."""
+    caso = "T-SELLADA-SIN-ADOPTAR-AGREGADO"
+    chk = _carga_check()
+    calcs = [{"calc_id": "CALC-FIX-SSA1", "valores": {"RESULT-SSA1": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}},
+             {"calc_id": "CALC-FIX-SSA2", "valores": {"RESULT-SSA2": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}}]
+    with _arbol_registro(calcs=calcs):
+        chk.WARNS.clear()
+        chk.FAILS.clear()
+        chk.SENAL.clear()
+        chk.t35_repro(modulo=C)
+    entradas = [m for _, m in chk.WARNS if m.startswith("SELLADA-SIN-ADOPTAR ")]
+    agregados = [m for _, m in chk.WARNS if m.startswith("SELLADA-SIN-ADOPTAR:")]
+    _afirma(len(agregados) == 1, caso,
+            f"debe haber exactamente un renglón de agregado: {agregados!r}")
+    if agregados:
+        n_agregado = int(agregados[0].split(":", 1)[1].strip().split(" ", 1)[0])
+        _afirma(n_agregado == len(entradas), caso,
+                f"el agregado ({agregados[0]!r}) no coincide con las "
+                f"{len(entradas)} entradas: {entradas!r}")
+
+
 def t_encargo_gen2_desfasado():
     """T-ENCARGO-GEN2-DESFASADO (P4/P6). Una diferencia de UN byte entre el
     cuerpo de un encargo GEN2 activo en cola y la sección que le
