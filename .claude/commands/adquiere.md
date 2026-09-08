@@ -214,6 +214,47 @@ modelo lo sostienen. Lo único que se escribe es lo que un comando produjo.
    ruta en la columna `nota` de la fila del registro — es la evidencia que
    `data/INFRAESTRUCTURA-v1_0.md` Dominio 1 declara para ese artefacto.
 
+## 6-bis · Vía recibida de `/sonda` — dos matices, no un estado nuevo
+
+Cuando una fila de la cola llega a esta skill con una candidata que `/sonda`
+localizó (nota `RECOMENDACIÓN` de `sonda.md §7`, vocabulario
+`SONDA-LATERAL-RECOMENDADA`): eso es una recomendación consignada en la nota
+de la fila, **no** un estado A.5 nuevo ni disparador de recursión automática
+— la fila sigue caminando por `§1`-`§6` como cualquier otra, con estos dos
+matices propios de una vía lateral:
+
+1. **Identidad contra corpus, considerando que un mirror cambia hostname.**
+   Antes de tratar la candidata como fuente distinta, compárala por
+   contenido (hash de fondo, estructura, campos) contra lo ya `OBTENIDO` en
+   `data/manifiesto.yaml` — un mirror legítimo (Wayback, republicador,
+   CDN alterno) sirve el mismo objeto desde otro host, y un `grep` por
+   hostname no lo detecta. Distingue explícitamente, en la nota:
+   - **misma-fuente-otra-ruta** (mismo objeto, otro host/ruta — no es fila
+     nueva, es `upsert_fila` sobre la clave existente, per `sonda.md §6.1`);
+   - **edición nueva** (misma familia, versión/fecha de corte distinta —
+     candidata a fila propia);
+   - **extracto** (subconjunto del objeto ya obtenido — no reemplaza al
+     original, se declara como tal);
+   - **fuente distinta** (objeto genuinamente diferente pese al parecido).
+   También distingue **escritor canónico** (el sistema que produce el dato
+   originalmente) de **vista regenerada** (una re-publicación derivada,
+   p.ej. un dashboard que expone el mismo CSV) — el escritor canónico es la
+   fuente preferida cuando ambos están disponibles.
+2. **Completitud técnica proporcional en exportaciones/API.** Si la
+   adquisición viene de una API o exportación paginada, confirma cobertura
+   antes de marcar `OBTENIDO`: paginación agotada (última página vacía o
+   `next` ausente), total declarado por el propio servicio comparado contra
+   filas recibidas, señales de truncamiento (límite de fila/tamaño del
+   endpoint). Si esto no se confirma, el estado es `OBTENIDO-PARCIAL` o
+   cobertura desconocida — nunca `OBTENIDO` liso. Verbatim: **dos descargas
+   idénticas no demuestran que se descargaron todas las filas** — A.7 (§4)
+   prueba que la descarga es reproducible, no que es completa.
+
+Completar la caminata de `/adquiere` sobre una vía lateral cierra esa
+caminata — no agota la fuente: puede haber más vías hermanas que `/sonda`
+no exploró en esta invocación, y eso se deja explícito en la nota de la
+fila, no se asume cubierto.
+
 ## 7 · Cierre de la caminata
 
 1. `data/curacion-registro/cola-adquisicion-registro.tsv` queda con
