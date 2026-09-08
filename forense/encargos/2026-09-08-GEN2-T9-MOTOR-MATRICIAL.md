@@ -68,3 +68,5 @@ Cascada: `ADR-401` · `L0` 400→401 (`canon/estado-programa-v1_12.md`, los tres
 Suite `--baseline` **VERDE** (3 `FAIL`, los tres de la línea base congelada). `tests/test_corredores_gen2.py` · 31 casos · 31 ok.
 
 **CONTADOR: cero GEN2.** `N_corridas_selladas = 0`; las tres corridas nuevas son `cuenta_gen2: NO` por D-1 y por la regla `E.1`.
+
+**ADENDA CONSUMIDA.** Las dos precisiones de mesa a P3(c) (ola previa estricta · `ORIGEN-ARBITRO`) ejecutadas por [`PR #618`](https://github.com/Josanoforo/Modelado-Mexicano/pull/618), 8/sep/2026, entorno **NUBE**, sobre `origin/main = fbd847d` (`PR #615` ya fusionado). Sin ADR nuevo: se asienta como bloque `ADENDA` dentro de `ADR-401` — mismo acto, mismo rótulo. Cascada: `forense/no-corrido.tsv` (`NC-0026`, `NC-0027`; `NC-0025` enriquecida), `forense/hallazgos.md` (dos entradas), `canon/registro-rotulos.tsv`, §8 de la nota del acto. Suite `--baseline` **VERDE**; `tests/test_corredores_gen2.py` · 35 casos · 35 ok. **CONTADOR: cero GEN2** — las dos sucesoras son `cuenta_gen2: NO` por `D-1`.
