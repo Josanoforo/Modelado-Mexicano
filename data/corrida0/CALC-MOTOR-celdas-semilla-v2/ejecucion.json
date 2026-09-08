@@ -1,0 +1,122 @@
+{
+ "corrida_id": "CALC-MOTOR-celdas-semilla-v2--af1dee672bcd",
+ "dependencias_materiales": {
+  "numpy": "AUSENTE",
+  "pandas": "AUSENTE",
+  "pyreadstat": "AUSENTE",
+  "scipy": "AUSENTE",
+  "yaml": "6.0.1"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": false,
+  "generacion": "GEN2",
+  "sello_que_lo_gobierna": "ADR-91 (M1, computo matricial como definicion del ejecutable)",
+  "tipo": "MOTOR-MATRICIAL-ENVUELTO",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-08T16:23:30Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "AUSENTE",
+   "pandas": "AUSENTE",
+   "pyreadstat": "AUSENTE",
+   "scipy": "AUSENTE",
+   "yaml": "6.0.1"
+  },
+  "git_commit": "af1dee672bcd5608ad7fd94d21ffc2b12adf1e61",
+  "git_rama": "claude/new-session-l33kki",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+  "python": "3.11.15",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "NO",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "cloud_default",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "af1dee672bcd5608ad7fd94d21ffc2b12adf1e61",
+ "input_ids": [
+  "IN-CATALOGO-MOMENTOS",
+  "IN-PROCEDENCIA",
+  "IN-MOTOR",
+  "IN-MOMENTOS",
+  "IN-CELDAS",
+  "IN-MATRIZ",
+  "IN-CLASES",
+  "IN-PROCEDENCIA-PY",
+  "IN-CELDA-D-FAMILISMO-OBLIGACION",
+  "IN-CELDA-D-OBLIGACION-MEDIDA",
+  "IN-CELDA-D-RADIO-CONFIANZA"
+ ],
+ "input_sha256": {
+  "IN-CATALOGO-MOMENTOS": "9c78bc7f1c5446d89ace02ab010d9a02fdc39224474c279cd21fc2f5e1b7f93c",
+  "IN-CELDA-D-FAMILISMO-OBLIGACION": "8cef5619ddb43e9e6276e0088c3c17721cb186b9a1d84da2016a40b84dda1146",
+  "IN-CELDA-D-OBLIGACION-MEDIDA": "411b30c507d7a99eba20db03d431bc64dcac79eb9cea63126e82b4a8b134f419",
+  "IN-CELDA-D-RADIO-CONFIANZA": "351c237fe322d7024f2351bf65867fe2f3fa030907ad0059510b97ef1e0dd3f7",
+  "IN-CELDAS": "55805f881cf929d74e2496c91657d211c7ef208b03da6135872c42d3987db813",
+  "IN-CLASES": "309cf9c6dfc23018ad36ad5e32c865c01fb9c904b9060eab24abb89e6a4db3bf",
+  "IN-MATRIZ": "3aaaaf61f70f467b025fab1f9a7edfcba495064c452995d21becf8b3c834578d",
+  "IN-MOMENTOS": "649588be8652d7f849804aee1625c4cf0238a740e3728a8109506718da953131",
+  "IN-MOTOR": "0bda0108b383e1f92253152b4809a63fe5ea0c120691b3494f44010cb653f712",
+  "IN-PROCEDENCIA": "556eb8e9c6816fca86211a3446e033e3e624d05646ae63f45ee86b25045ccf17",
+  "IN-PROCEDENCIA-PY": "9ee2b05f414eb8cc47e2f806e933b2fa2e667df0da5bf45d28228149801be754"
+ },
+ "parametros": {
+  "fuente_acto": "ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA · P2",
+  "repara": "NC-0023 (ACTO GEN2-T9, PR #615): milpa/src/clases.py sin prefijo para REFUTADO-POR-COTA y EVIDENCIA_EXPERIMENTAL_TERCEROS"
+ },
+ "python_version": "3.11.15",
+ "resultado_ids": [
+  "RESULT-MOTOR-ARCHIVOS-EXAMINADOS",
+  "RESULT-MOTOR-CELDAS-IDS",
+  "RESULT-MOTOR-CELDAS-SEMILLA",
+  "RESULT-MOTOR-CORTES-PENDIENTES",
+  "RESULT-MOTOR-CORTES-SELLADOS",
+  "RESULT-MOTOR-DETALLE-B",
+  "RESULT-MOTOR-ESTADO-B",
+  "RESULT-MOTOR-EVIDENCIA-TERCEROS-N",
+  "RESULT-MOTOR-HOLDOUT-INTOCADOS",
+  "RESULT-MOTOR-MOMENTOS-AJUSTE",
+  "RESULT-MOTOR-MOMENTOS-HOLDOUT",
+  "RESULT-MOTOR-MOMENTOS-TOTAL",
+  "RESULT-MOTOR-REFUTADO-POR-COTA-CONSUMIBLE",
+  "RESULT-MOTOR-REFUTADO-POR-COTA-N",
+  "RESULT-MOTOR-VEREDICTOS"
+ ],
+ "script_blob_sha256": "a3ee61ff5cc721bf35e51322812f419cb61bea3d06f977c1c75e6ea06f5e2ab8",
+ "script_path": "data/corrida0/CALC-MOTOR-celdas-semilla-v2/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-MOTOR-celdas-semilla-v2",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "5f6312360e9f7269c4ecddf46af49fbe25fec7ca600d8bbd0c38cda49532b434",
+ "spec_yaml_sha256": "5240d59f16bababab39c50cfb5bf04e7cbde75060672f6cfb184fac06e55b5a2",
+ "tolerancia": {
+  "razon": "Todos los RESULT numericos son conteos (momentos, celdas, cortes, entradas, archivos examinados) y se comparan EXACTO. No hay flotante que tolerar porque no hay estimacion: la corrida no calcula, verifica.",
+  "tipo": "entero"
+ }
+}

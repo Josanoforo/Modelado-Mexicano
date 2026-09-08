@@ -2604,6 +2604,17 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA, 8/sep/2026: encargo archivado
+    # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita
+    # "E5-0"/"E5"/"E6" pelados en el perímetro ("una revisión textual
+    # acotada de E5-0/E5/E6 y otros encargos posteriores a ADR-396 que
+    # citen D11") -- referencias de PROCEDENCIA a tres habitantes ya
+    # censados de la serie `E · GEN2-E0..GEN2-E7` en
+    # `canon/registro-rotulos.tsv`, no rótulos nuevos que este acto
+    # reclame. Mismo patrón, y misma razón, que las exenciones hermanas de
+    # GEN2-T9/PRE-E5 de abajo: un encargo verbatim no se edita para
+    # complacer un test (A.3).
+    "forense/encargos/2026-09-08-AUTO-MOTOR-1-RECUPERA-Y-EJERCITA.md",
     # ACTO GEN2-T9 · EL MOTOR ES LA MATRIZ, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`. Trae
     # rótulos pelados de DOS clases, ninguna de ellas nueva:
