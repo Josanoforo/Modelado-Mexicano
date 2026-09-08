@@ -1,0 +1,24 @@
+ENCARGO · ACTO GEN2-T10 · BENCHMARK-B-TEMPORAL — APLICA EL PARCHE v2 (SELECTOR B + PROPUESTA CORREGIDA) · PROPUESTA, mesa lo lanza
+
+Cabecera: **NUBE** (repo-only; no toca microdato ni red de datos) · **MODELO SUGERIDO: Sonnet** (propagación mecánica de un parche pre-validado; subir de modelo permitido, D-13) · redactado contra `origin/main = 6f1500e2` (PR #614) · ADR/FP: deriva en el cierre · **COMPUERTA: T9 fusionado** — `git ls-remote --heads origin | grep -c "motor-matricial"` → **0** y `git log origin/main --oneline -5` muestra el merge de T9; si no, la skill se niega con cero commits (D-10). **NO se lanza en UBUNTU/caja.** Cierra con `## NO-CORRIDO / RESERVAS` (A.14), cascada completa y rama borrada. El parche `gen2-benchmark-baseline-temporal-v2.patch` va adjunto al lanzamiento; el 0-bis lo archiva junto con este encargo (A.3).
+
+FIRMAS DE MESA que este acto propaga, verbatim: «mi merge manual es la firma de las decisiones» (6/sep) — el merge de este PR es la firma del contenido; **D-2** (8/sep) «…no colapsamos a menos que la literatura y benchmark de lo que queremos lograr lo demanden…» — este acto instala el benchmark que D-2 invoca, sin colapsar nada.
+
+═══ VERIFICACIÓN DE EXISTENCIA (A.8) — contestada por quien escribe, 8/sep, contra `6f1500e2` ═══
+- `tools/baseline_temporal.py` y `tests/test_baseline_temporal.py`: **NO-ENCONTRADO** (`ls` sobre rutas exactas; 2 rutas examinadas).
+- `forense/benchmark-mercado-motores/`: **NO existe** (`test -d`).
+- Paso en CI: `grep -c test_baseline_temporal .github/workflows/verify.yml` → **0**.
+- Estructura: `data/INFRAESTRUCTURA-v1_0.md` no gobierna `tools/` — hueco conocido, no bloquea: el objeto de este acto es el parche mismo, ya validado dos veces (VALIDACION.txt contra #613; re-validado contra #614: aplica limpio, 9/9 tests, suite `exit 0` LÍNEA BASE VERDE, 3 FAIL · 186 WARN heredados).
+- El B sellado (`forense/prereg-duelo-v2/corredor-B-tasa-base.py`) **EXISTE-NO-SATISFACE** para GEN2: su interfaz no recibe fecha objetivo (líneas 58-80) — es exactamente lo que el sucesor añade sin editarlo.
+
+PIEZAS
+**P1 · Aplicar.** Worktree nuevo desde `origin/main`; `git apply --check` y `git apply` del parche v2 **verbatim** — si `--check` falla porque main avanzó, resolver solo los 4 archivos del parche y reportar el diff de resolución; no forzar. Ningún otro archivo se edita a mano.
+**P2 · Validar y pegar salidas crudas.** `python3 tests/test_baseline_temporal.py` (9/9) · `python3 tests/check.py --baseline` (LÍNEA BASE VERDE o PARO-reporta) · `python3 tools/verifica_encargos_gen2.py --verifica` (OK×2) · `python3 tools/corrida0.py run CALC-SMOKE-0002` (debe responder `CALC-INMUTABLE · YA-SELLADO`, cero bytes tocados).
+**P3 · Registro.** (a) Fila FP nueva (deriva número): `PROPUESTA — PENDIENTE-DE-MESA: adoptar el selector B temporal como comparador del marcador GEN2 en C0-D y autorizar el ensayo descriptivo remesas ENIGH 2016→2018→2020→2022 en C0-B; el merge de este PR instala la herramienta, no adopta su uso`. (b) `## NO-CORRIDO / RESERVAS` con tokens A.14, mínimo: `B sobre datos reales — DIFERIDO-A: C0-B (spec del CALC consumidor con snapshot y disponible_desde documentado) — impacto: sin cifra B ni mejora medida de M — sucesor: C0-B` · `nuevos R/L, ensamble E y adopciones — FUERA-DE-PERÍMETRO — NC-0018/0019 sin cambio — sucesor: cola vigente`; filas `NC-` correspondientes en `forense/no-corrido.tsv`. (c) Una línea en `forense/hallazgos.md`: adenda de mesa a T9 (fuga temporal LOO + `ORIGEN-ARBITRO`) registrada por la propuesta §«Corrección material».
+**P4 · Cierre.** Cascada completa de `/acto`: ADR re-derivado por el comando de la casa, L0, `registro-rotulos`, tablero, T25, `## CONSUMIDO`, rama borrada al fusionar.
+
+PERÍMETRO: los 4 archivos del parche (`tools/baseline_temporal.py` · `tests/test_baseline_temporal.py` · `.github/workflows/verify.yml` · `forense/benchmark-mercado-motores/2026-09-08-propuesta-gen2.md`) · `forense/no-corrido.tsv` · `forense/firmas-pendientes.tsv` · `forense/hallazgos.md` · `forense/encargos/` (0-bis) · cascada. CONCURRENCIA: E5-0/E5 (caja) pueden estar corriendo — sin archivos comunes; T9 debe estar fusionado (compuerta). Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.
+
+CONTADOR: **cero GEN2**. `no_corrido_abiertas` +2 (las dos filas de P3b, ambas de diseño) · FP +1 ABIERTA (P3a). Nada se sella, nada se adopta.
+
+Lo que NO hace: no activa el selector en ningún CALC ni en el marcador; no toca `milpa/**`, CALC sellados, `corredor-B-tasa-base.py` ni `L-spec-v1_2.json`; no cierra NC-0018/0019/0020; no copia tasas GEN1; no abre microdato. Sucesores: **C0-B** (spec del CALC consumidor de B — ahí vive el primer número B real) · **C0-D** (marcador por segmento; mesa decide ahí si B entra al marcador, con la FP de P3a a la vista).
