@@ -29390,3 +29390,32 @@
   licencia: World Bank Global Findex Database -- descarga publica sin registro
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: ACTO GEN2-UNIVERSO-C. Acompana a gen2_universo_c_findex2025_csv.
+
+- id: rupc_datamx_json
+  usado_para: RUPC (Registro Unico de Proveedores y Contratistas) -- espejo historico republicado
+    por Codeando Mexico (datamx.io, CKAN), 18298 proveedores/contratistas con Folio RUPC,
+    RFC, razon social, entidad, sector, y grado de cumplimiento LAASSP/LOPSRM. Snapshot cosechado
+    2019-07-28 del host oficial ya muerto (compranetinfo.hacienda.gob.mx/datosabiertos/RUPC.csv),
+    fechas de inscripcion reales 2009-01-24 a 2019-04-25. Cierra parcialmente el hueco 'persona
+    + sancion' de la fila RUPC/EXT_OF_07 -- es el registro de proveedores mismo, no un extracto
+    por contrato.
+  url_origen: https://datamx.io/datastore/dump/5ef00daf-42ee-4d7b-a62a-7531ef74ff03?format=json
+  fecha_descarga: '2026-09-08'
+  descargado_por: agente, directamente de datamx.io (curl -sS, API datastore_dump de CKAN,
+    sin sesion; doble descarga, sha256 identico)
+  archivo: RUPC_datamx_2019/compranet_rupc_datamx.json
+  sha256: 2e6c98ed3e557b239b331b746dc31b73dadf62c802923a53a9a38e0204cb3ee9
+  tamano_bytes: 5810200
+  formato: 'JSON (CKAN datastore dump), 18298 registros, 17 campos: Folio RUPC,RFC,Nombre
+    de la empresa,Pais,Entidad Federativa,Estratificacion,Tipo de usuario,Sector,Giro,Contratos,Fecha
+    de inscripcion al RUPC,Contratos Evaluados LAASSP,Grado de cumplimiento LAASSP,Contratos
+    evaluados LOPSRM,Grado de cumplimiento LOPSRM,Sitio web'
+  licencia: Creative Commons Attribution (declarada en metadata CKAN de datamx.io)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO GEN2-SONDA-CAJA-1 (8/sep/2026), hallazgo de /sonda LATERAL ampliado (ronda 2,
+    tarea terceros_republican): host oficial del RUPC (siac.funcionpublica.gob.mx/DatosAbiertos/rupc/RUPC.csv,
+    documentado por repos de GitHub de 2018) ya no resuelve por DNS y no tiene copia en Wayback
+    -- ruta muerta sin rastro. datamx.io/Codeando Mexico republica un datastore CKAN propio,
+    independiente del host oficial, cosechado 2019-07-28 antes de que la fuente original muriera.
+    Es un snapshot historico (corte real 2019-04-25), NO el RUPC vivo/actual -- declarado
+    explicitamente, no se presenta como corriente.'
