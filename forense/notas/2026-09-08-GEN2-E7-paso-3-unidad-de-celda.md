@@ -41,7 +41,7 @@ tabla sugiere la primera.
 ### 1-bis · Corrección al `diagnostico-14-celdas-v1_0.tsv`
 
 `forense/prereg-duelo-v2/diagnostico-14-celdas-v1_0.tsv` (el diagnóstico de
-M13) trae `p_emitida = 0.62` para TRA-M-02/-03/-07. Contra el marco **vigente**
+MAESTRA38-M13) trae `p_emitida = 0.62` para TRA-M-02/-03/-07. Contra el marco **vigente**
 esas tres celdas emiten **0.085118**, no 0.62. El motivo no es un error del
 diagnóstico: entre v1_2 y v1_3 esas tres celdas fueron re-apuntadas de la
 conducta `paga_mordida` a `paga_mordida_encig2025` (es el re-apunte que
@@ -52,11 +52,11 @@ Las otras once filas del diagnóstico coinciden con lo emitido hoy. Este acto
 no edita ese TSV (está fuera del perímetro): se asienta la discrepancia y su
 causa, para que nadie la lea como si fuera de v1_3.
 
-### 1-ter · Lo que M13 sí cerró
+### 1-ter · Lo que MAESTRA38-M13 sí cerró
 
 El aviso de `L-spec-v1_2.json` dice que DIN-M-01 «NO tiene M: el emisor se
 negó a emitirla». **Ya no es cierto.** Con `grado_DD` derivado por conducta
-(la corrección de M13, ya en `emite_m.py`), DIN-M-01 emite:
+(la corrección de MAESTRA38-M13, ya en `emite_m.py`), DIN-M-01 emite:
 `p = 0.174804`, `grado_DD = P1 PUNTUA`. Las 14 de 14 celdas del marco vigente
 emiten. Ese aviso de la spec de L está obsoleto y se asienta aquí; corregirlo
 en el JSON sellado es acto aparte, no éste.
