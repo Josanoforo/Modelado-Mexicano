@@ -2047,6 +2047,30 @@ def _compara(valor_a, valor_b, tol: dict) -> tuple[bool, object]:
     return valor_a == valor_b, (None if valor_a == valor_b else "valores no numericos distintos")
 
 
+def _canoniza_llaves(o):
+    """FP-353: `ejecucion.json` paso por JSON, que convierte TODA llave de
+    mapping en cadena; `spec.yaml` viene recien parseado del YAML, que
+    conserva `29` como int. Comparar los dos lados crudos hace
+    `CONTEXTO: IDENTICO` INALCANZABLE -- en cualquier arbol, sin que nada
+    haya cambiado -- para toda spec cuyos parametros traigan un mapping de
+    llaves no-cadena. Medido en CALC-0001 (12 llaves enteras entre
+    `crosswalk_partido` y `coaliciones`: `spec.yaml` sale IDENTICO y
+    `parametros` sale DISTINTO en la misma corrida); control positivo
+    CALC-0002, cero llaves enteras, salio `CONTEXTO=IDENTICO`.
+
+    Canoniza a la forma que SOBREVIVE el viaje por JSON: llaves a cadena,
+    recursivo, y el mapping como lista ordenada de pares -- no como dict --
+    para que dos llaves que colapsan a la misma cadena (`{1: 'a', '1': 'b'}`)
+    sigan siendo dos. Colapsarlas afirmaria una igualdad que no se comprobo,
+    que es el mismo defecto al reves."""
+    if isinstance(o, dict):
+        return sorted(((str(k), _canoniza_llaves(v)) for k, v in o.items()),
+                      key=lambda par: (par[0], repr(par[1])))
+    if isinstance(o, (list, tuple)):
+        return [_canoniza_llaves(v) for v in o]
+    return o
+
+
 def _compara_result(previo, hoy, decl: dict, tol: dict) -> tuple[bool, object]:
     """P3 (GEN2-E3-1-1): el tipo AUTORITATIVO es el que declara la entrada de
     `resultados:` para ESE id -- nunca `spec["tolerancia"]["tipo"]`, que es
@@ -2068,6 +2092,23 @@ def _compara_result(previo, hoy, decl: dict, tol: dict) -> tuple[bool, object]:
     tipo = (decl or {}).get("tipo")
     if tipo not in TIPOS_VALIDOS_RESULT:
         return _compara(previo, hoy, tol)
+
+    # FP-354: `None` es un valor que la propia spec puede AUTORIZAR
+    # (`permite_no_estimable: true`), que `_valida_outputs` respeta y que
+    # `run` sella sin problema. Sin esta rama, `_compara_result` y
+    # `_valida_outputs` implementaban contratos CONTRADICTORIOS sobre el
+    # mismo valor: un output NO-ESTIMABLE sellado y hoy NO-ESTIMABLE otra
+    # vez -- reproduccion perfecta -- se contaba `NO-REPRODUCE` con el
+    # mensaje "tipo declarado `flotante` y sellado=None". Medido: 22 de 54
+    # en CALC-0001 y 4 de 29 en CALC-0002, con `sellado == hoy` en los 26.
+    if previo is None or hoy is None:
+        if previo is None and hoy is None:
+            if (decl or {}).get("permite_no_estimable"):
+                return True, None
+            return False, ("sellado y hoy son None y la spec no declara "
+                           "`permite_no_estimable: true` para este RESULT")
+        return False, (f"NO-ESTIMABLE contra valor: sellado={previo!r} · "
+                       f"hoy={hoy!r}")
 
     if tipo == "entero":
         for etiqueta, v in (("sellado", previo), ("hoy", hoy)):
@@ -2178,19 +2219,26 @@ def _evalua_contexto(d: Path, spec: dict, ejec: dict, inputs_resueltos=None,
         razones_contexto.append("commit_no_verificable")
     elif commit_hoy != ejec.get("git_commit"):
         razones_contexto.append("commit_distinto")
-    if spec.get("parametros") != ejec.get("parametros"):
+    # FP-353: los dos lados se canonizan ANTES de compararse -- `spec` viene
+    # del YAML (llaves int) y `ejec` del JSON (esas mismas llaves, cadena).
+    # Sin esto, `parametros_distintos` es un falso positivo permanente.
+    parametros_igual = (_canoniza_llaves(spec.get("parametros"))
+                        == _canoniza_llaves(ejec.get("parametros")))
+    if not parametros_igual:
         razones_contexto.append("parametros_distintos")
     if spec.get("seed") != ejec.get("seed"):
         razones_contexto.append("seed_distinto")
     deps_hoy = _dependencias_materiales_calc(spec)
-    if deps_hoy != ejec.get("dependencias_materiales_calc"):
+    deps_igual = (_canoniza_llaves(deps_hoy)
+                  == _canoniza_llaves(ejec.get("dependencias_materiales_calc")))
+    if not deps_igual:
         razones_contexto.append("dependencias_distintas")
     if imprime:
         print(f"  [4/5 CONTEXTO] codigo={'IDENTICO' if script_igual else 'CAMBIADO'}"
               f"  commit={'NO-VERIFICABLE' if commit_no_verificable else ('IDENTICO' if commit_hoy == ejec.get('git_commit') else 'DISTINTO')}"
-              f"  parametros={'IDENTICO' if spec.get('parametros') == ejec.get('parametros') else 'DISTINTO'}"
+              f"  parametros={'IDENTICO' if parametros_igual else 'DISTINTO'}"
               f"  seed={'IDENTICO' if spec.get('seed') == ejec.get('seed') else 'DISTINTO'}"
-              f"  dependencias={'IDENTICO' if deps_hoy == ejec.get('dependencias_materiales_calc') else 'DISTINTO'}")
+              f"  dependencias={'IDENTICO' if deps_igual else 'DISTINTO'}")
 
     if no_verificable_inputs or commit_no_verificable:
         contexto = "NO-VERIFICABLE"

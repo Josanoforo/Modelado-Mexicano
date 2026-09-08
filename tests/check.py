@@ -2657,6 +2657,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # `canon/registro-rotulos.tsv` por este mismo acto; el encargo archivado de
     # arriba figura aquí por esta misma razón.
     "forense/notas/2026-09-08-GEN2-E5-corridas-selladas.md",
+    # ACTO GEN2-E5-1 · VERIFICADOR REPARADO, 8/sep/2026: encargo archivado
+    # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`, que no se
+    # edita para complacer un test. Cita `E5` pelado como PROCEDENCIA, no como
+    # rótulo nuevo: «la nota de E5», «los 26 NO-REPRODUCE de E5» y «sustancia
+    # clase E5-0» -- las tres son referencias al acto predecesor, ya censado
+    # como `E · GEN2-E5` en `canon/registro-rotulos.tsv` por ese mismo acto.
+    # El rótulo que ESTE acto reclama es `E · GEN2-E5-1`, y lo censa él.
+    "forense/encargos/2026-09-08-GEN2-E5-1-VERIFICADOR-CALC0003V2-FIRMA.md",
     # ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita
     # "E5-0"/"E5"/"E6" pelados en el perímetro ("una revisión textual
@@ -5000,6 +5008,21 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # tier=FUERTE p=0.174804` -- ya medida y sellada, consistente con que
     # este acto solo decida su representación de linaje, no su medición.
     "forense/encargos/2026-09-07-GEN2-T7-DECISIONES.md",
+    # ACTO GEN2-TRAMITE-TABLERO-1, 8/sep/2026: encargo archivado VERBATIM
+    # (A.3), que no se edita para complacer un test (misma regla que rige
+    # T25). Cita `dinero.credito.scoring_alternativo` dentro de la fila §4
+    # (pieza A4) como uno de los CUATRO estados legítimos con espacio
+    # interno de `data/cola-adquisicion-v1_0.tsv` (columna 2, valor literal
+    # `DIFERIDO-A: spec GEN2 dinero.credito.scoring_alternativo`) -- es la
+    # prueba empírica de que ese estado no se debe cortar por el primer
+    # espacio, no una clasificación/pre-registro/carga/sello de la regla.
+    #
+    # Veredicto REAL de `python3 tools/ya_medido.py
+    # dinero.credito.scoring_alternativo` (corrido, última línea):
+    # `NUNCA-MEDIDA` (resuelve a `R1.6` por canon; sin apariciones en
+    # `milpa/tramite.yaml` ni en `milpa/tramite-ola5-propuesta-v0.yaml`) --
+    # consistente con que este acto no toca el motor ni mide nada.
+    "forense/encargos/2026-09-08-GEN2-TRAMITE-TABLERO-1.md",
 }
 
 

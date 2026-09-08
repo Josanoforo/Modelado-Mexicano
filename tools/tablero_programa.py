@@ -180,7 +180,8 @@ def derivar_indicadores() -> dict[str, dict]:
     p = leer("milpa/tramite-ola5-propuesta-v0.yaml")
     put("propuesta_entradas", len(re.findall(r"^  - id: ", p, re.M)), "grep -cE '^  - id: ' milpa/tramite-ola5-propuesta-v0.yaml")
     for k in ("PENDIENTE-DE-MESA", "SELLADA", "MEDIA", "FUERTE"):
-        put(f"propuesta_tier_{k}", len(re.findall(rf"^\s+tier: {k}", p, re.M)), f"grep -cE '^\\s+tier: {k}' milpa/tramite-ola5-propuesta-v0.yaml")
+        put(f"propuesta_tier_{k}", len(re.findall(rf"^    tier: {k}", p, re.M)), f"grep -cE '^    tier: {k}' milpa/tramite-ola5-propuesta-v0.yaml",
+            "cuenta por entrada (indentacion 4, una por bloque `- id:`), no por linea: la 51a `tier:` del archivo vive a indentacion 6, anidada dentro de la propia entrada `con_registro_encig2025`")
     put("propuesta_situacion_refutada", len(re.findall(r"^\s+situacion: REFUTADA", p, re.M)), "grep -cE '^\\s+situacion: REFUTADA' milpa/tramite-ola5-propuesta-v0.yaml")
     put("propuesta_celdas_por_ejes", len(re.findall(r"^\s+- \{celda: ", p, re.M)), "grep -cE '^\\s+- \\{celda: ' milpa/tramite-ola5-propuesta-v0.yaml",
         "celdas con IC por ejes (entradas *_ejes_*)")
@@ -221,14 +222,13 @@ def derivar_indicadores() -> dict[str, dict]:
     put("L_capturas_total", len(glob.glob(PD + "corridas-L/L-*.json")), "ls corridas-L/L-*.json | wc -l")
     put("L_capturas_v1_2", int(sh(f"grep -l sha256_prompt {PD}corridas-L/L-*.json | wc -l") or 0), "grep -l sha256_prompt corridas-L/L-*.json | wc -l")
     put("scoreboards", sorted(os.path.basename(f) for f in glob.glob(PD + "scoreboard*")), "ls scoreboard*", "v1_2 aparece cuando N3 cierra")
-    put("dominios_activos", 4, "ADR-265 (MAESTRA33-E14): tramite, civico, dinero, familia; Ola 6 NO abierta", "cambia solo por firma de mesa (N5)")
 
     # ── 5 · corpus ────────────────────────────────────────────────────
     put("manifiesto_ids", int(sh("grep -c '^- id: ' data/manifiesto.yaml") or 0), "grep -c '^- id: ' data/manifiesto.yaml")
     put("payloads_verificados_ultimo_registro", sh("grep -rhoE 'data_raw: coincide=[0-9]+[^|]{0,40}' forense/notas/2026-09-0*.md | tail -1"),
         "grep -rhoE 'data_raw: coincide=...' forense/notas/2026-09-0*.md | tail -1", "solo se re-mide en caja con corpus (tests/manifiesto.py --verifica)")
     rows = tsv_rows("data/cola-adquisicion-v1_0.tsv")
-    put("cola_adquisicion_estados", dict(Counter(r[1].split("(")[0] for r in rows[1:])), "columna 2 de data/cola-adquisicion-v1_0.tsv")
+    put("cola_adquisicion_estados", dict(Counter(r[1].split(" REL-")[0] for r in rows[1:])), "columna 2 de data/cola-adquisicion-v1_0.tsv")
     put("registro_curador_filas", int(sh("grep -vc '^#' data/curacion-registro/cola-adquisicion-registro.tsv") or 0), "grep -vc '^#' data/curacion-registro/cola-adquisicion-registro.tsv")
     put("relaciones_filas", int(sh("grep -vc '^#' data/curacion-registro/relaciones.tsv") or 0), "grep -vc '^#' data/curacion-registro/relaciones.tsv")
     put("inventario_reactivos_v1_2", int(sh("grep -vc '^#' data/inventario-reactivos-v1_2.tsv") or 0), "grep -vc '^#' data/inventario-reactivos-v1_2.tsv")
