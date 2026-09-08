@@ -10,3 +10,7 @@ Cabecera: NUBE · Opus · COMPUERTA: ninguna (T7 ya fusionó). NO se lanza en UB
 | P5 · `tools/digesto_tramite.py`, diff real de "NC- nuevas y cambios de estado" | NO-VERIFICABLE-AQUÍ (no hay estado persistido entre corridas del digesto para comparar) | sección H reporta el corte completo del día (todas las filas vigentes con su estado) en vez de un diff incremental contra el digesto anterior | GEN2-E6 (NC-0008) |
 
 El retrofit acotado (§Retrofit del cuerpo verbatim de arriba) queda asentado en `forense/no-corrido.tsv` como `NC-0001`..`NC-0006`, con su propia razón/sucesor/estado por fila -- no se repite aquí porque no es una reserva de *este* acto, es su entregable.
+
+## CONSUMIDO
+
+PR: `#607`, rama `claude/a14-zero-branches-retrofit-syf2d6`, contra `main`. Ejecutado: `ACTO GEN2-T8 · A.14-CERO-RAMAS-RETROFIT`. Instala A.14 (`## NO-CORRIDO / RESERVAS` obligatoria) y la política de cero ramas; corre el retrofit acotado `NC-0001..NC-0006`; abre sus propias reservas `NC-0007`/`NC-0008` (ver sección de arriba). Cascada: `ADR-393`, `L0`, `registro-rotulos.tsv` (`GEN2-T8`; `historico/` → `RETIRADO`), `tests/check.py --baseline` VERDE. **NO fusionado por el ejecutor** — mesa fusiona.
