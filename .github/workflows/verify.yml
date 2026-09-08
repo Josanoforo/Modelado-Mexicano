@@ -81,3 +81,9 @@ jobs:
         # que T31 dejó de poder volver ROJO un PR ajeno) nunca correría en
         # automático. Stdlib puro, sin red ni corpus.
         run: python3 tests/test_t_cron.py
+
+      - name: adq_config.py — lector de data/adq-config.yaml (bloqueante)
+        # ACTO ADQ-CRON-V2 (P6). Fixture propia en un temporal, nunca lee
+        # el data/adq-config.yaml real -- un id de PDN nuevo no puede
+        # romper esta prueba.
+        run: python3 tests/test_adq_config.py
