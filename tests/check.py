@@ -4833,9 +4833,16 @@ def t31_cron():
         return
     if _t_cron_existe_huella(fecha):
         return
-    warn("T-CRON", f"sin censo del {fecha.isoformat()} (último hábil); cron "
-                    f"no dejó huella -- ver "
-                    f"forense/cron/REGISTRO-CRON-v1_0.md §5")
+    # ACTO ADQ-CRON-V2 · DISPARO-PERSISTENTE-Y-RUNNER-IDEMPOTENTE (P1,
+    # 7/sep/2026): `senal()`, no `warn()`. El 7/sep/2026 el WSL de mesa
+    # estuvo suspendido en la ventana 07:30 y T-CRON habría marcado ROJO un
+    # PR sin relación alguna con el cron -- el estado del disparo es
+    # información operacional que debe seguir visible en la suite, pero no
+    # puede ser una regresión de `tests/baseline.json` de otro acto. Ver
+    # `tests/test_t_cron.py::prueba_senal_no_genera_delta_baseline`.
+    senal("T-CRON", f"sin censo del {fecha.isoformat()} (último hábil); cron "
+                     f"no dejó huella -- ver "
+                     f"forense/cron/REGISTRO-CRON-v1_0.md §5")
 
 
 # ───────────────────────────────────────────────────────────────
