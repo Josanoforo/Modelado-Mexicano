@@ -233,6 +233,31 @@ restaurado byte a byte y verificado):
 | `N_resultados_gen2_sellados` | 0 | **211** |
 | `N_resultados_gen2_pendientes_adopcion` | 0 | **5** |
 
+### El control positivo mordió — `FP-359` (nueva)
+
+El procedimiento que `ADR-410` recomienda —«simula la firma **en memoria**, sin
+escribir nada»— **sí escribe**. `status` no se puede leer sin pasar por
+`registro()`, y `registro()` escribe `corridas.tsv`, `resultados.tsv` y
+`usos.tsv` como efecto colateral. Restaurar `decisiones.tsv` —que es lo que el
+procedimiento dice, y lo que hice, y verifiqué byte a byte— **no basta**: el
+archivo que se restaura no es el que quedó contaminado.
+
+Resultado real, en este acto: el commit de cascada `d598210` salió con las tres
+corridas GEN2 marcadas `cuenta_gen2 = SI`, motivo «FIRMA SIMULADA» — publicando
+una firma que mesa no dio, que es exactamente lo que `P4` existe para no hacer.
+Se detectó porque `git status` mostró `corridas.tsv` y `resultados.tsv`
+modificados **después** del `COMMIT-2` que ya los había sellado, y no había
+razón para que cambiaran. Corregido hacia adelante en `COMMIT-3` (`a8793a7`),
+verificado por tres vías: `cuenta_gen2` de los cuatro CALC de vuelta en
+`PENDIENTE-DE-MESA`; `grep -rlI "FIRMA SIMULADA"` sobre `data/ forense/ canon/`
+→ **0** archivos; `git diff eeceb25 -- data/corrida0/*.tsv` → **0 líneas**,
+idéntico byte a byte al `COMMIT-2`.
+
+**Alcance:** `origin/main` está **limpio** — `GEN2-E5` corrió la misma
+simulación y no la publicó. No es un defecto heredado: es una trampa que se
+arma al repetir un procedimiento recomendado, y que ni `ADR-410` ni la nota de
+`GEN2-E5` advierten.
+
 Lo que falta firmar son **tres** filas: `CALC-0001`, `CALC-0002` y
 `CALC-0003-v2` con `cuenta_gen2 = SI`. `FP-356` sigue **ABIERTA**;
 `NC-0045`/`NC-0046` siguen **ABIERTAS**, y `T35` sigue sin ejercerse sobre
