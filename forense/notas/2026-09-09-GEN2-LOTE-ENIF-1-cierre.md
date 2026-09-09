@@ -172,7 +172,7 @@ resuelve — sólo aplica la lección a ENIF, como el encargo pedía.
 |---|---|---|
 | `RES-0057`, `RES-0058` | `REPRODUCE` (delta `+0.000000`) | **SÍ** |
 | `RES-0059`, `RES-0060` | `REPRODUCE` (delta `+0.000000`) | **SÍ** |
-| `RES-0046`…`RES-0049` | `NO-REPRODUCE` | **NO** — `NC-0114`…`NC-0117` |
+| `RES-0046`…`RES-0049` | `NO-REPRODUCE` | **NO** — `NC-0124`…`NC-0127` |
 
 La familia A **no recibe cita** porque su `p` medido **no es** el `p`
 publicado: citarla afirmaría que el `0.330600` de `milpa/` sale de este
