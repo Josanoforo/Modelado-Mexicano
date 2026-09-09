@@ -78,6 +78,7 @@ from __future__ import annotations
 import argparse
 import csv
 import datetime
+import difflib
 import hashlib
 import importlib.util
 import json
@@ -1566,6 +1567,40 @@ def preflight(calc_id: str, imprime: bool = True) -> dict:
     detalle_inputs = _resuelve_inputs(spec)
     _bloqueos_de_inputs(detalle_inputs, bloqueos, imprime=imprime)
 
+    # 5-bis · FP-352: el detector aprende la diferencia. Un `AUSENTE` de
+    # manifiesto con `raiz_logica` CONFIGURADA es AMBIGUO -- puede ser un
+    # archivo genuinamente ausente bajo una raiz que SI resuelve, o puede
+    # ser que la raiz misma no resuelve DESDE ESTE PROCESO (el caso
+    # sandbox//mnt/c: la raiz esta configurada en la maquina, pero el
+    # proceso que corre este `preflight` no la ve). Solo el primero
+    # bloquea preflight; el segundo es `NO-VISIBLE-EN-ESTE-CONTEXTO` --
+    # aviso con instruccion, nunca `BLOQUEADO` falso. (`raiz_logica is
+    # None` -- id ausente del manifiesto -- no entra aqui: eso sigue
+    # siendo `AUSENTE` real, sin ambiguedad.)
+    for e in detalle_inputs:
+        if e["origen"] != "manifiesto" or e["estado"] != "AUSENTE" \
+                or not e.get("raiz_logica"):
+            continue
+        etiqueta_bloqueo = f"input_manifiesto_AUSENTE={e['id']}"
+        if etiqueta_bloqueo not in bloqueos:
+            continue
+        raiz_fisica = _PR.M.resolver_raiz(e["raiz_logica"], _PR.M.repo_root(),
+                                          _PR.M.rutas(_PR.M.repo_root())[1])
+        raiz_visible = raiz_fisica is not None and Path(raiz_fisica).is_dir()
+        if raiz_visible:
+            continue
+        bloqueos.remove(etiqueta_bloqueo)
+        avisos.append(
+            f"input_manifiesto_NO-VISIBLE-EN-ESTE-CONTEXTO={e['id']} "
+            f"(raiz_logica={e['raiz_logica']} configurada, pero su raiz "
+            f"fisica no resuelve desde este proceso -- correr fuera del "
+            f"sandbox, FP-352)")
+        if imprime:
+            print(f"    [NO-VISIBLE-EN-ESTE-CONTEXTO] {e['id']}  "
+                  f"raiz_logica={e['raiz_logica']}  raiz_fisica={raiz_fisica!r}"
+                  f" -- no resuelve desde este proceso; correr fuera del "
+                  f"sandbox (no bloquea, FP-352)")
+
     # 6 · parametros, tolerancia, seed y dimensiones sustantivas declarados
     endurecido = _esquema_endurecido(spec)
     tol = spec.get("tolerancia") or {}
@@ -2166,12 +2201,20 @@ def _verifica_sello(d: Path) -> tuple[str, str]:
 def _evalua_contexto(d: Path, spec: dict, ejec: dict, inputs_resueltos=None,
                      imprime: bool = False) -> tuple[str, list[str]]:
     """P5 (2)+(3)+(4): `spec_yaml_sha256` · inputs de manifiesto re-resueltos
-    con `resolver_payload` (P1) · `script_blob_sha256`, commit, parametros,
-    seed, dependencias -> `CONTEXTO ∈ {IDENTICO, DISTINTO, NO-VERIFICABLE}`
-    con sus razones. `NO-VERIFICABLE` cuando algo no se puede ni siquiera
-    comprobar (un input fuera de perimetro/raiz no configurada, o `git`
-    mismo fallando) -- nunca se degrada a `DISTINTO`, que afirmaria un
-    cambio que en realidad no se pudo confirmar ni descartar."""
+    con `resolver_payload` (P1) · `script_blob_sha256`, parametros, seed,
+    dependencias -> `CONTEXTO ∈ {IDENTICO, DISTINTO, NO-VERIFICABLE}` con sus
+    razones. `NO-VERIFICABLE` cuando algo no se puede ni siquiera comprobar
+    (un input fuera de perimetro/raiz no configurada) -- nunca se degrada a
+    `DISTINTO`, que afirmaria un cambio que en realidad no se pudo confirmar
+    ni descartar.
+
+    FP-358: `git_commit` se reporta (informativo) pero NUNCA gatea. Lo que
+    identifica una corrida es lo que la hace reproducible -- el codigo, la
+    spec, los inputs, las dependencias -- no cuantos commits ajenos cayeron
+    despues del sello, cosa que el propio protocolo del acto OBLIGA a que
+    pase (COMMIT-2, cascada, merge). Antes de este acto, `CONTEXTO: IDENTICO`
+    era inalcanzable para TODA corrida sellada en cuanto avanzaba un commit
+    mas -- las 12 de 12 corridas selladas del arbol lo median."""
     sha_yaml_hoy = _sha256_archivo(d / "spec.yaml")
     yaml_igual = sha_yaml_hoy == ejec.get("spec_yaml_sha256")
     if imprime:
@@ -2211,14 +2254,18 @@ def _evalua_contexto(d: Path, spec: dict, ejec: dict, inputs_resueltos=None,
     sha_script_hoy = _sha256_archivo(RAIZ / str(spec.get("script", "")))
     script_igual = sha_script_hoy == ejec.get("script_blob_sha256")
     if not script_igual:
-        razones_contexto.append("script_cambiado")
+        razones_contexto.append("codigo_distinto")
+    # FP-358: el commit es dato INFORMATIVO, nunca criterio. Antes,
+    # `CONTEXTO: IDENTICO` era inalcanzable para toda corrida sellada en
+    # cuanto caia UN commit mas -- cosa que el propio protocolo del acto
+    # OBLIGA a hacer (COMMIT-2, cascada, merge). Lo que identifica la
+    # corrida es el blob del medidor, el spec.yaml, los inputs y las
+    # dependencias -- no el numero de commits que cayeron despues, ajenos
+    # o no, a la corrida sellada. Se sigue calculando y reportando (una
+    # sesion que audite CUANDO se corrio algo lo necesita) pero nunca
+    # gatea CONTEXTO ni fuerza NO-VERIFICABLE.
     cod_commit, commit_hoy = _git_salida("rev-parse", "HEAD")
-    commit_hoy = commit_hoy.strip()
-    commit_no_verificable = cod_commit != 0
-    if commit_no_verificable:
-        razones_contexto.append("commit_no_verificable")
-    elif commit_hoy != ejec.get("git_commit"):
-        razones_contexto.append("commit_distinto")
+    commit_hoy = commit_hoy.strip() if cod_commit == 0 else None
     # FP-353: los dos lados se canonizan ANTES de compararse -- `spec` viene
     # del YAML (llaves int) y `ejec` del JSON (esas mismas llaves, cadena).
     # Sin esto, `parametros_distintos` es un falso positivo permanente.
@@ -2234,13 +2281,16 @@ def _evalua_contexto(d: Path, spec: dict, ejec: dict, inputs_resueltos=None,
     if not deps_igual:
         razones_contexto.append("dependencias_distintas")
     if imprime:
+        commit_informativo = ("NO-VERIFICABLE" if commit_hoy is None
+                              else ("IDENTICO" if commit_hoy == ejec.get("git_commit")
+                                    else "DISTINTO"))
         print(f"  [4/5 CONTEXTO] codigo={'IDENTICO' if script_igual else 'CAMBIADO'}"
-              f"  commit={'NO-VERIFICABLE' if commit_no_verificable else ('IDENTICO' if commit_hoy == ejec.get('git_commit') else 'DISTINTO')}"
+              f"  commit_informativo={commit_informativo}  (FP-358: no gatea)"
               f"  parametros={'IDENTICO' if parametros_igual else 'DISTINTO'}"
               f"  seed={'IDENTICO' if spec.get('seed') == ejec.get('seed') else 'DISTINTO'}"
               f"  dependencias={'IDENTICO' if deps_igual else 'DISTINTO'}")
 
-    if no_verificable_inputs or commit_no_verificable:
+    if no_verificable_inputs:
         contexto = "NO-VERIFICABLE"
     elif razones_contexto:
         contexto = "DISTINTO"
@@ -3062,19 +3112,62 @@ def _verifica_ciclos(filas: list[dict]) -> None:
         visita(nodo, [])
 
 
-def registro(escribe: bool = True, verifica: bool = False,
+def _texto_vista(columnas: list[str], filas: list[dict]) -> str:
+    """Los MISMOS bytes que `_escribe` pondria en disco -- sin escribir
+    nada. `registro(escribe=False)` lo usa para poder diferenciar contra lo
+    que ya existe sin tocar el arbol."""
+    partes = [CABECERA_DERIVADO, "\t".join(columnas)]
+    partes.extend("\t".join(str(fila[c]) for c in columnas) for fila in filas)
+    return "\n".join(partes) + "\n"
+
+
+def _imprime_diff_vista(ruta: Path, columnas: list[str], filas: list[dict]) -> None:
+    """FP-359: la fotocopiadora se desarma -- sin `--escribe`, `registro`
+    imprime el diff que ESCRIBIRIA, nunca lo escribe. `ruta` puede no
+    existir (primera derivacion): el diff sale contra `""`, no contra un
+    intento de leer un archivo ausente."""
+    actual = ruta.read_text(encoding="utf-8") if ruta.exists() else ""
+    nuevo = _texto_vista(columnas, filas)
+    if actual == nuevo:
+        print(f"SECO {_rel(ruta)}: sin diferencia con el archivo en disco "
+              f"({len(filas)} filas)")
+        return
+    diff = list(difflib.unified_diff(
+        actual.splitlines(keepends=True), nuevo.splitlines(keepends=True),
+        fromfile=f"a/{_rel(ruta)}", tofile=f"b/{_rel(ruta)} (lo que --escribe pondria)"))
+    print(f"SECO {_rel(ruta)}: {len(filas)} filas -- diff que `--escribe` "
+          f"pondria ({sum(1 for l in diff if l.startswith('+') and not l.startswith('+++'))} "
+          f"+ / {sum(1 for l in diff if l.startswith('-') and not l.startswith('---'))} -):")
+    for linea in diff:
+        print(f"  {linea}", end="" if linea.endswith("\n") else "\n")
+
+
+def registro(escribe: bool = False, verifica: bool = False,
              imprime: bool = True) -> dict:
+    """FP-359: la fotocopiadora se desarma -- `escribe` por defecto es
+    `False`. Escribir las tres vistas en disco exige el `True` explicito
+    (`--escribe` en la CLI); sin el, esta funcion deriva, valida y --si
+    `imprime`-- muestra el diff que escribiria, pero no toca ningun TSV.
+    Antes, `registro()` escribia por defecto y el UNICO procedimiento
+    documentado para "simular sin escribir" (`ADR-410`) escribia de todos
+    modos como efecto colateral (`FP-359`) -- publico una firma que mesa
+    nunca dio."""
     vistas = _filas_registro(verifica)
     if escribe:
         _escribe(VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, vistas["corridas"])
         _escribe(VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, vistas["resultados"])
         _escribe(VISTA_USOS, COLS_VISTA_USOS, vistas["usos"])
+        if imprime:
+            for ruta, clave in ((VISTA_CORRIDAS, "corridas"),
+                                (VISTA_RESULTADOS, "resultados"),
+                                (VISTA_USOS, "usos")):
+                print(f"ESCRITO {_rel(ruta)}: {len(vistas[clave])} filas")
+    elif imprime:
+        for ruta, cols, clave in ((VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, "corridas"),
+                                  (VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, "resultados"),
+                                  (VISTA_USOS, COLS_VISTA_USOS, "usos")):
+            _imprime_diff_vista(ruta, cols, vistas[clave])
     if imprime:
-        for ruta, clave in ((VISTA_CORRIDAS, "corridas"),
-                            (VISTA_RESULTADOS, "resultados"),
-                            (VISTA_USOS, "usos")):
-            print(f"{'ESCRITO' if escribe else 'DERIVADO'} {_rel(ruta)}: "
-                  f"{len(vistas[clave])} filas")
         for a in sorted(set(vistas["avisos"])):
             print(f"AVISO · {a}", file=sys.stderr)
         print(f"AVISOS: {len(set(vistas['avisos']))}", file=sys.stderr)
@@ -3083,7 +3176,7 @@ def registro(escribe: bool = True, verifica: bool = False,
 
 def cmd_registro(args) -> int:
     try:
-        registro(escribe=not getattr(args, "seco", False),
+        registro(escribe=getattr(args, "escribe", False),
                  verifica=getattr(args, "verifica", False))
     except ParoRegistro as exc:
         print(f"PARO · {exc}", file=sys.stderr)
@@ -3242,8 +3335,10 @@ def construye_parser() -> argparse.ArgumentParser:
     rg.add_argument("--verifica", action="store_true",
                     help="ademas corre `verify` por CALC sellado para llenar "
                          "resultado_replay/contexto_replay (reejecuta el medidor)")
-    rg.add_argument("--seco", action="store_true",
-                    help="deriva y valida sin escribir ninguna vista")
+    rg.add_argument("--escribe", action="store_true",
+                    help="FP-359: sin esta bandera, `registro` deriva, valida "
+                         "e imprime el diff que escribiria SIN tocar ningun "
+                         "TSV -- con ella, escribe las tres vistas de verdad")
     rg.set_defaults(func=cmd_registro)
 
     st = subs.add_parser("status", help="B-11 · contadores GEN2, todos derivados")
