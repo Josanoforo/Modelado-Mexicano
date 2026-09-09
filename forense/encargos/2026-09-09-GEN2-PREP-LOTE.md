@@ -17,3 +17,15 @@ LO QUE NO HACE: no mide ni adjudica probabilidades · no lanza ENCIG · no toca 
 SUCESORES: lanzamiento del lote ENCIG con compuerta nueva (dirección propaga la adenda) · GEN2-OPERACION (gateado a este merge).
 
 CIERRE · Cascada completa + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+| qué (verbatim del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| P1 · «candados de migración: tabla de correspondencia CORR viejo→nuevo pegada en la nota y en el cuerpo del PR» — resolver la nueva etiqueta `AMBIGUA` de `familia.seguro.volatilidad_ausencia_estado` (`RES-0035`/`RES-0036`, antes `ENIGH2022` silencioso) | `DECISIÓN-DE-MESA-PENDIENTE` | La corrida (nueva `CORR-0011`) queda sin instrumento útil hasta que la regla declare, por conducta, cuál de las seis olas ENIGH le corresponde. Ningún `CALC` ni sello se ve afectado — es solo la columna `instrumento` de `demanda-corridas.tsv` la que cambia de "incorrecta pero legible" a "correctamente marcada como ambigua". | `NC-0105` → acto que enmiende `milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado` con payload por conducta, o decisión de mesa |
+| P1 · `milpa/tramite.yaml:tramite.mordida.discrecional`/`.con_registro` — el `fuente:` de ambas reglas sigue `ENCIG2023`, sin actualizar | `FUERA-DE-PERÍMETRO` | Ninguno mecánico: `_instrumento()` ya no lee ese campo para conductas con payload propio, solo como respaldo de conductas `ASIGNADO` sin medición. Se declara para que el `fuente:` desactualizado no se lea como defecto pendiente sin dueño — es cosmético y tocar el motor exige firma de mesa. | `NC-0106` → acto de mantenimiento de `milpa/tramite.yaml`, o ninguno si mesa decide que la prosa histórica no vale la pena tocar |
+| P3 · lanzar `GEN2-LOTE-ENCIG-1` con la compuerta nueva | `DIFERIDO-A:GEN2-LOTE-ENCIG-1` | El encargo ENCIG sigue con su P0 escrito tal cual hasta que dirección propague la línea que este acto dejó redactada (`forense/notas/2026-09-09-GEN2-PREP-LOTE-identidad-migracion.md` §5). Este acto no lo edita ni lo lanza — es exactamente lo que "no lanza ENCIG" pedía. | `GEN2-LOTE-ENCIG-1` (dirección propaga la adenda) |
+
+**CONTADOR: no** — herramienta pura. Ningún `CALC` nace, ningún sello se toca, `status()` sobre el árbol real da lo mismo antes y después (la re-derivación de la demanda no toca la oferta), y las validaciones de P1/P2 corren sobre fixture aislado.
