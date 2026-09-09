@@ -19,3 +19,39 @@ LO QUE NO HACE: no reescribe los JSON GEN1 ni la familia sellada por el CSV · n
 SUCESORES: adopción por lote de los seis R en el duelo (F3) · contrato del duelo temporal (F5, con la serie completa a la vista) · si mesa quiere la comparación formal GEN1↔GEN2 de la serie, el activador de delta con este par concreto.
 
 CIERRE · Cascada completa + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+Seis filas. Ninguna vacía.
+
+| # | qué (verbatim del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|---|
+| `NC-0098` | «diseño con su regla pre-declarada» — la variante `U4` (unidad **persona**, `ID_PER`, `FAC_ELE`, `tper_vic2`) que `prereg-caja-ENVIPE-DENUNCIA` define | `FUERA-DE-PERÍMETRO` | Ninguno sobre este acto: la familia `R-ENVIPE-SERIE` mide `U_R` y `U1`, **ambos de unidad delito** sobre `tmod_vic` con `FAC_DEL`, y ningún `RESULT` del trío CSV toca `tper_vic2`. La guardia de `tper_vic2` sale **`NO-APLICA`** por ola — valor declarado, no omisión (`D-15`). Los tres dictámenes GEN1 del trío viejo también son de unidad delito, así que el control positivo tampoco la necesitaba. | acto que necesite `U4` en olas anteriores a 2021; para 2012 ver `NC-0099` |
+| `NC-0099` | «se mapean POR ARCHIVO desde el descriptor de cada ola» — declarar la ruta que permitiría construir `U4` en **ENVIPE 2012** | `DIFERIDO-A:SIN-ASIGNAR` | Medido contra el descriptor: `tper_vic.dbf` de 2012 tiene **311 436 filas, las mismas que `tsdem.DBF`** —censo del hogar, no persona seleccionada— y **no trae `N_REN`**. Aislar a la persona seleccionada exigiría un join a `tsdem` por `N_REN == R_SEL` que ninguna spec de esta familia declara. **No se improvisó**: un join nuevo devuelve vacío en vez de error y el denominador se equivocaría en silencio. 2013 y 2015 no tienen el problema. | acto que abra `U4` en olas DBF: debe **declarar** el join a `tsdem` en su spec y verificar su cardinalidad antes de medir |
+| `NC-0100` | «no repara el inventario de reactivos para DBF (si su hueco molesta a futuro, es fila `NC` con sucesor)» | `FUERA-DE-PERÍMETRO` | **Corrige de paso la premisa (3) de este encargo**: el inventario **sí** cubre `envipe2012`/`2013`/`2015` a nivel de presencia de columna —400 / 419 / 485 filas, con 12 / 11 / 11 filas `BP1_2*`— y por eso `corrida0 spec-check` da **6 OK · 0 FAIL** en los tres. Lo que falta es `texto_reactivo`, **vacío en las 1 304 filas**. Ningún negativo de este acto se derivó del inventario. | acto con `data/inventario-reactivos-v1_2.tsv` y `tools/inventario_reactivos.py` en su perímetro |
+| `NC-0101` | «la serie 2012→2025 en el estimando secundario homologado» — las **ocho** olas que siguen sin medir (2011, 2014, 2016, 2017, 2018, 2019, 2020, 2022) | `DIFERIDO-A:SIN-ASIGNAR` | La serie pasa de cuatro a **siete** puntos sobre trece. El hueco que muerde está entre los años de delito **2014 y 2020**: seis años sin medir, justo donde la serie cambia de nivel. Por eso se publica **descriptiva**. Los ocho payloads **existen** en el manifiesto: no hay nada que adquirir, falta medir. | acto hermano por lote de olas, mismo patrón `GEN2-R-SERIE-<formato>` |
+| `NC-0102` | «SUCESORES: adopción por lote de los seis `R` en el duelo (F3)» | `DIFERIDO-A:F3` | Cero adopciones por diseño: ningún `RESULT` de las dos familias se cita en `milpa/`. Los seis quedan como `OFERTA`. `N_resultados_gen2_adoptados_activos` sigue en **2**. | `F3`, por lote y con firma de mesa por merge |
+| `NC-0103` | «CONTADOR: sí — tres `CALC` con cadena `E.2`» — la fila en `data/corrida0/decisiones.tsv` | `FUERA-DE-PERÍMETRO` | Mismo caso y mismo desenlace que `NC-0097`: **ningún contador se queda quieto**. El registro ya cuenta los tres porque la firma con OBJETO viaja verbatim en `etiquetas.cuenta_gen2_firma`. `N_corridas_selladas` 11→**14**, `N_resultados_sellados` 901→**1021**, `N_resultados_gen2_sellados` 631→**751**. | el mismo acto que resuelva `NC-0097` |
+
+**Reserva sobre `NC-0094` (adenda de dirección a este acto).** Antes del
+`corrida0 registro --escribe` se corrió el diff en seco **con `--verifica`** y se
+midió el efecto sobre las columnas `resultado_replay`/`contexto_replay` de las
+corridas **ajenas** a este acto: **cero filas ajenas tocadas** —el diff es
+`3 + / 0 −` en `corridas.tsv` y `120 + / 0 −` en `resultados.tsv`, y `usos.tsv`
+sin diferencia—. Por eso se escribió. Si alguna hubiera cambiado, no se
+escribía. La contención de `NC-0094` se respetó y la reparación sigue siendo de
+otro acto.
+
+**Reserva sobre `FP-370`.** Sigue **ABIERTA**, y ahora gatea también el estatus
+del insumo de estas tres celdas: `forense/prereg-duelo-v2/codificacion-R-v1_0.tsv`
+—de donde salen codificación, universo, ponderador y diseño de las **seis**—
+continúa en estado `PROPUESTA`. Ninguna cifra de los seis `CALC` cambia por eso.
+
+**Perímetro: una escritura fuera de la lista enumerada, declarada.** El encargo
+enumera el perímetro y `tests/` no aparece por nombre. Se tocó
+`tests/test_corrida0.py` para mover los tres contadores de `T-STATUS-SMOKES` que
+este acto hace avanzar por construcción — misma escritura y misma razón que
+declaró `ADR-433`: un contador que el acto mueve y no actualiza deja la suite
+roja para el siguiente.
