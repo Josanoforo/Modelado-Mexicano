@@ -32,3 +32,5 @@ CIERRE · Cascada completa + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
 | P2, enmienda 6 — cita del fixture concreto de `NO-REPRODUCE→NO-VERIFICADO` que "E1 dejó" | NO-VERIFICABLE-AQUÍ | La regla se documentó y se armó en `.claude/commands/revisa.md` §2-ter sin una ruta de fixture verificada contra el árbol (no se inventó una ruta); el revisor aplica la regla igual, pero sin el ejemplo local citado con archivo:línea | DIFERIDO-A:la primera corrida de `/revisa` que tope con el caso, que localice y cite el fixture real |
 | NC-0040 (calibración: consulta corroborada + alcance vs criterio literal) | DECISIÓN-DE-MESA-PENDIENTE | La sección K de `digesto_tramite.py` la presenta como candidata de calibración, no la resuelve; ninguna fila del tablero se mueve por esto | DECISIÓN-DE-MESA-PENDIENTE (mesa, con la calibración de P1/P2 a la vista) |
 | NC-0055 | PARO-PREMISA | Su cuerpo curado pedido sigue sin satisfacerse; el refresco del tablero de P3 no la toca ni la cierra, por diseño explícito del encargo | SIN-ASIGNAR (queda ABIERTA hasta que su premisa se cumpla) |
+
+## CONSUMIDO: ACTO GEN2-OPERACION-1 cierra con PR #663
