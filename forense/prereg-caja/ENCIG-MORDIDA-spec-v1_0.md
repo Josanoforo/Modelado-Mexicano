@@ -435,3 +435,27 @@ Esta spec, `data/corrida0/CALC-ENCIG-0001/spec.yaml` y
 El COMMIT-2 corre `preflight → run → verify` y **no edita el COMMIT-1**.
 
 **El primer resultado que produzca este procedimiento es el que se reporta.**
+
+---
+
+## 8 · Enmienda fechada — 9/sep/2026 (firma de mesa, `ACTO GEN2-MOTOR-SEMANTICA · D3`, NC-0112)
+
+**El original de arriba (§0–7) queda intacto.** Esta enmienda no lo reescribe:
+lo complementa.
+
+Mesa RATIFICA el método de IC declarado en §3.7 (bootstrap de `UPM_DIS` con
+reemplazo dentro de `EST_DIS`, conservando el número de UPM por estrato,
+percentiles 2.5/97.5, 2 000 réplicas, `numpy.PCG64`, semilla `20260909`) como
+**ESTÁNDAR PRE-REGISTRADO DE LA FAMILIA** para toda ranura sin método propio.
+§3.7 declaraba esto como elegido por el ejecutor sobre ranura vacía y elevado
+a mesa («nadie pre-registró el método de IC para estas series»); esta
+enmienda cierra esa elevación: de aquí en adelante, una ranura de esta
+familia sin método de IC pre-registrado hereda el de §3.7 sin necesidad de
+que el ejecutor lo elija de nuevo. Cierra NC-0112.
+
+No hay plantilla de spec en `forense/prereg-caja/` a la fecha de esta
+enmienda (censada: ningún archivo `*plantilla*`/`*template*` en el
+directorio) — la línea que futuras specs heredarían pre-registrada, en vez
+de elegida al vuelo, queda pendiente hasta que exista una plantilla donde
+escribirla (ver `## NO-CORRIDO / RESERVAS` del acto que cierra esta
+enmienda).

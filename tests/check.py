@@ -5132,6 +5132,21 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # `forense/prereg-caja/S6-L16-spec-v1_2.md`, la pieza que el encargo
     # produce, no en el archivo verbatim.
     "forense/encargos/2026-09-07-MAESTRA38-N22.md",
+    # ACTO GEN2-MOTOR-SEMANTICA, 9/sep/2026: encargo archivado VERBATIM (A.3),
+    # que no se edita para complacer un test (misma regla que rige T25). Cita
+    # `tramite.mordida.con_registro` en el cuerpo de mesa (P2, el estandar de
+    # IC de D3) -- este acto NO clasifica/pre-registra/carga/sella esa regla:
+    # solo anota comentarios sobre conductas ya MEDIDAS que de ella dependen
+    # (D1/D2/D4) y ratifica por enmienda fechada el metodo de IC que su propia
+    # spec sellada ya declaraba en S3.7. `tools/ya_medido.py
+    # tramite.mordida.con_registro` SI se corrio (A.8): veredicto REAL
+    # NUNCA-MEDIDA -- FALSO NEGATIVO conocido (ADR-438, NC-0129): la regla
+    # esta MEDIDA y sellada en milpa/tramite.yaml:122 (tier=FUERTE, p=0.88
+    # ASIGNADO + enmiendas MEDIDAS encig2025/encig2025_r2), y la propia
+    # seccion de LISTADO de la herramienta la ubica ahi -- el defecto es de
+    # `_tiene_veredicto_real()`, no de este acto. Salida cruda pegada en
+    # `forense/notas/2026-09-09-GEN2-MOTOR-SEMANTICA-cierre.md`.
+    "forense/encargos/2026-09-09-GEN2-MOTOR-SEMANTICA-propagacion.md",
     # ACTO MAESTRA38-L2, 6/sep/2026: el encargo se archiva VERBATIM (A.3) y
     # cita `R7.3`/`R7.6`/`P3` en su cuerpo original (redactado por dirección
     # antes de esta sesión) -- un encargo verbatim nunca se edita para
