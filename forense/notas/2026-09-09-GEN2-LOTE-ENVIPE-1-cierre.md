@@ -22,7 +22,7 @@ El encargo contestó su A.8 contra `631fcd78`. Al arrancar, `origin/main` estaba
 | lo que el encargo declaró | lo real sobre `6e0381b` |
 |---|---|
 | «última NC al escribir: NC-0080» | **NC-0082** → la primera de este acto es `NC-0083` |
-| ADR candidato heredado | **ADR máximo real 428** → candidato `ADR-429` |
+| ADR candidato heredado | **ADR máximo real 428** → candidato `ADR-429`. **Y volvió a moverse al cerrar:** entre el COMMIT-3 y el push, `PR #652` (`GEN2-OBRA-V11`) fusionó y tomó el `429` — él mismo renumerado desde `428` porque `PR #651` le ganó antes. Este acto renumera a **`ADR-430`** por la regla de la casa (renumera quien fusiona segundo), re-derivando tras `git fetch origin` justo antes del push. Sin saltar número. |
 | — | rótulo `GEN2-LOTE-ENVIPE-1` **AUSENTE** de `registro-rotulos.tsv` (censado en la cascada) |
 | `CORR-0009` = 6 RESULT | confirmado; pero `RES-0039..0042` **no** son razones de no-denuncia (ver §6) |
 
