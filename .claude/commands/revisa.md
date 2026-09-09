@@ -563,6 +563,127 @@ encargo mandó explícitamente a otra máquina.
 
 ---
 
+## 2-bis · REVISA-CALC — el bloque que lee un cálculo, no sólo un diff — `ACTO GEN2-REVISA-CALC`
+
+Especialización del mismo informe/comentario único de arriba, no un
+segundo revisor ni una segunda rutina. Se aplica **dentro** de la misma
+invocación de `/revisa`, con el mismo veredicto final y el mismo
+guardrail 2 (nunca commitea, nunca empuja) — la evidencia de calibración
+de este bloque la entrega el **ejecutor del acto** que lo redactó, en su
+propio PR, no este agente.
+
+### Activación
+
+Cuando la vista previa del merge toca alguno de:
+
+- `data/corrida0/CALC-*/`
+- `forense/prereg-caja/`
+- decisiones o vistas de corrida (`canon/estado-programa*`,
+  `forense/no-corrido.tsv` con filas de CALC, registros de sello)
+- afirmaciones de **ejecución**, **sucesión** o **adopción** en el cuerpo
+  del PR
+- citas nuevas `corrida0_*` añadidas a un consumidor
+
+Un medidor compartido (`medidor.py` reutilizado por varios CALC) amplía
+la revisión **solo a los consumidores afectados demostrables por sus
+dependencias declaradas** — nunca dispara replay de todo el programa. Una
+fila cambiada del TSV global de no-corrido/registro se resuelve por
+identidad (qué CALC/RESULT cambió esa fila), no obliga a revisar todos
+los CALC del árbol. `CONTADOR: cero` (guardrail 7) describe lo que este
+agente mide sobre México — no excluye un CALC de la revisión: un cálculo
+envuelto legacy puede declarar `CONTADOR: cero` y aun así requerir
+revisión de sello y de conclusión.
+
+Si nada de lo anterior aplica: `NO-APLICA`, sin peso, y el resto de este
+bloque se omite del comentario.
+
+### Comprobaciones — mecánica reutilizada + lectura humana
+
+| Pieza | Comprobación mecánica reutilizada | Lectura humana necesaria |
+|---|---|---|
+| Identidad/sucesión | `python tools/corrida0.py estado <CALC>`; cadena del registro; sellos de antecesoras intactos | Qué objeto cubre la sucesora y qué residual conserva |
+| Congelación | Orden por ascendencia de commits (`git log --ancestry-path`), no sólo timestamps; hashes y archivos gobernantes | Si un cambio posterior es spec sucesora declarada |
+| Sello | Validador existente sobre recibo, sidecar y archivos cubiertos | Concordancia entre lo que el PR afirma y lo que quedó sellado |
+| Replay | `python tools/corrida0.py verify` **sólo si el entorno lo permite** (nunca abre microdato en NUBE); conservar sus **tres** componentes — `contexto`, `resultado`, `veredicto` — y sus razones. `REPLICA-RESULTADO · CONTEXTO-DISTINTO` no se colapsa a un solo rótulo | Qué queda sin corroborar y si eso cambia la conclusión |
+| Registro/status | `python tools/corrida0.py registro` / `status`, en modo lectura | Firma y clase E.1 explican por qué puede no moverse un contador |
+| Adopción | Cita, generación, grano declarado, consumidor real, con los controles de adopción existentes | Compatibilidad del estimando con el parámetro; una nota no es una ranura de p |
+| Inferencia | Resultados/cobertura y pruebas locales existentes de ramas del medidor | ¿La conclusión excede al intervalo, al universo o al diseño? ¿Una secundaria modifica indebidamente la primaria? |
+
+### Entorno
+
+En NUBE, este bloque verifica **estáticamente** contratos, sellos y
+registro. Ver un payload listado en un censo no levanta la prohibición
+del guardrail de abrir/descargar microdato (bloque 0 de `/revisa` y A.2
+del acto). Lo que exige CAJA (un `verify` con lectura real de microdato,
+por ejemplo) sale en el comentario como `NO-VERIFICADO` con **causa** y
+**receta para caja** — y esa observación **no se escribe como estado
+nuevo de ningún CALC**: es una nota de este revisor, no una entrada del
+registro del programa.
+
+Seis estados de fallo que no se confunden entre sí, ni se colapsan a
+"no reproduce": **sello inválido** · **contexto no verificable** ·
+**biblioteca ausente** · **input no visible** · **fallo de ejecución** ·
+**divergencia numérica**. Cada uno tiene una causa distinta y una
+receta distinta; usar el rótulo equivocado le da a mesa la corrección
+equivocada.
+
+### Pesos
+
+- Contradicción **material** de identidad, sello, adopción o conclusión
+  → **`BLOQUEA`**.
+- Replay inaccesible por frontera declarada de entorno (CAJA requerida,
+  corremos en NUBE) → **`NO-VERIFICADO`/`RESERVA`** — nunca degradado a
+  aprobado ni a silencio.
+- Falta legítima de firma o de adopción, **fuera del perímetro del
+  encargo que se revisa** → explicación en el comentario, no defecto.
+
+Estos pesos se combinan con los del bloque 3.1 (el veredicto sale de los
+pesos, no del ánimo): un `BLOQUEA` de REVISA-CALC bloquea el PR igual que
+un `BLOQUEA` de los once puntos.
+
+### Calibración documental — cuatro casos, no receta congelada
+
+Este bloque se calibró contra casos ya ocurridos, no contra una
+especificación abstracta. Quien lo aplique puede releerlos como vara:
+
+- **#634/#644** — semántica de verificación: qué distingue un `verify`
+  que corroboró de uno que sólo no encontró motivo para objetar.
+- **#647** — adopción con delta al grano: un cambio de representación no
+  es automáticamente un cambio material.
+- **#649 → #651**, el caso negativo y el positivo en la misma cadena:
+  #649 **pasó la reproducción, 152/152 resultados exactos**, y aun así
+  necesitó corrección — la reproducción prueba la transformación, no
+  valida la inferencia que se construyó sobre ella. La corrección real
+  fue de **adjudicación** (qué rama estadística mereció qué rótulo), un
+  defecto que ningún replay mecánico iba a encontrar por sí solo. Este
+  bloque no exige que la máquina lo descubra; exige que la **lectura
+  humana** de la fila "Inferencia" de la tabla de arriba lo haga visible
+  y lo cite cuando aplique a la revisión en curso. #651 es el positivo de
+  la misma cadena: sucesión correcta reconocida sin pedir reescritura
+  histórica, sellos de #649 intactos, y dos `RESULT` de destino
+  corregidos sin abrir un segundo defecto.
+
+**Pasa cuando** el bloque: detecta una afirmación material falsa (aunque
+la reproducción numérica sea exacta) · reconoce una sucesora correcta sin
+pedir que se reescriba la historia · conserva una reserva de entorno
+declarada sin inventar una divergencia que no se pudo verificar. Una
+calibración documental contra estos cuatro casos **no se rotula como
+replay de CAJA** — es lectura del historial ya fusionado, no ejecución
+nueva.
+
+### Límite heredado del guardrail 2
+
+El guardrail 2 (arriba, bloque 0) prohíbe absolutamente commits y push,
+incluso en modo `--post-hoc` (bloque 1.4). Esta especialización no lo
+relaja: si una calibración o una revisión de este bloque produce
+evidencia que valdría la pena registrar en el árbol, esa evidencia la
+**registra el ejecutor del acto que la originó, en su propio PR** —
+nunca este agente. Cualquier cambio futuro a ese permiso queda explícito
+en el encargo de dirección que lo autorice, nunca tácito ni inferido de
+este bloque.
+
+---
+
 ## 3 · EL VEREDICTO Y EL COMENTARIO
 
 ### 3.1 · El veredicto sale de los pesos, no del ánimo
