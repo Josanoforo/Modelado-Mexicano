@@ -1,5 +1,5 @@
 {
-  "head": "da84a20123976c4cb5ce6da062fc962101a4d97d",
+  "head": "42a6dec711e02b3b08954d0e3bed06e90e10ea36",
   "fails": [
     [
       "T06",
@@ -498,7 +498,7 @@
     "conteo_por_bucket": {
       "T-ALTA-RELACION_sin_clasificar": 1,
       "T-CRON_sin_clasificar": 1,
-      "T-NO-CORRIDO_sin_clasificar": 40,
+      "T-NO-CORRIDO_sin_clasificar": 41,
       "T-REPRO_sin_clasificar": 315,
       "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
@@ -512,7 +512,7 @@
       "T08_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 3,
-      "T22_sin_clasificar": 51
+      "T22_sin_clasificar": 52
     }
   }
 }
