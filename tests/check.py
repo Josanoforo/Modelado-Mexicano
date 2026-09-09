@@ -310,6 +310,26 @@ HISTORICOS = {
     # en texto que A.3 prohibe editar contra un nombre sin archivo real
     # detras, deliberadamente.
     "05-PANTALLAS-RUTINAS-CONFIGURACION.md",
+    # forense/encargos/2026-09-09-GEN2-REVISA-CALC.md (A.3, VERBATIM):
+    # cita "el bloque REVISA-CALC DENTRO DE `/revisa`" y "grep -n
+    # \"REVISA-CALC\" .claude/commands/revisa.md" -- `revisa.md` existe en
+    # `.claude/commands/revisa.md`, pero el glob recursivo de T03 no
+    # desciende a directorios ocultos como `.claude/` (mismo defecto de
+    # cobertura ya documentado arriba para `tramite.md`).
+    "revisa.md",
+    # forense/notas/2026-09-09-PROPUESTA-FINAL-AUTOMATIZACIONES-
+    # POSTCALCULOS-astra.md y forense/notas/2026-09-09-REVISION-
+    # ADVERSARIAL-PR649-astra.md (ambos P0 de GEN2-REVISA-CALC, A.3):
+    # citan `REVISION-ADVERSARIAL-PR649.md`, el nombre que el adjunto de
+    # Astra trae en su propia cabecera de procedencia y en el pie de la
+    # propuesta ("Fuente: `REVISION-ADVERSARIAL-PR649.md` · SHA-256: ..."),
+    # verbatim y no editable. El archivo que P0 commiteó en `forense/notas/`
+    # sigue la convención de nombrado del repo (prefijo de fecha + sufijo
+    # `-astra`) y por tanto vive con otro basename literal -- mismo patrón
+    # que `PROPUESTA-GOBIERNO-DECISIONES-PENDIENTES.md` arriba. El
+    # contenido citado existe (es el mismo archivo, sha256 verificado);
+    # solo el basename pelado no coincide.
+    "REVISION-ADVERSARIAL-PR649.md",
 }
 
 def _normalize_version_dots(name):
@@ -1802,6 +1822,20 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # ("S6 PROPUESTA con reserva"), misma fila `FP-361` ya ABIERTA que lo
     # cubre -- no abre ranura nueva.
     "forense/notas/PLAN-DE-OBRA-GEN2-v1_1-2026-09-09.md",
+    # ACTO GEN2-REVISA-CALC, 9/sep/2026: el encargo verbatim (0-bis A.3)
+    # cita el nombre de archivo `...PROPUESTA-FINAL-AUTOMATIZACIONES-
+    # POSTCALCULOS-astra.md` en la misma línea donde P0 dice «regla de
+    # mesa 4» -- mención del NOMBRE de un archivo a archivar, no una
+    # decisión nueva esperando firma. Mismo patrón que el de
+    # GEN2-OBRA-V11 arriba: el texto de un encargo archivado no se edita
+    # para complacer el test (A.3).
+    "forense/encargos/2026-09-09-GEN2-REVISA-CALC.md",
+    # forense/notas/2026-09-09-GEN2-REVISA-CALC-cierre.md (nota de cierre
+    # del mismo acto): narra, en su §4, que el propio encargo cita
+    # `PROPUESTA-GOBIERNO-DECISIONES-PENDIENTES.md` en la misma línea que
+    # menciona "regla de mesa 4" -- mención de la exención que este mismo
+    # acto ya documentó arriba, no una decisión nueva esperando firma.
+    "forense/notas/2026-09-09-GEN2-REVISA-CALC-cierre.md",
 }
 
 def _t22_tabla():
