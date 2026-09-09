@@ -31,3 +31,7 @@ Ninguno. Las cinco piezas de este acto (P0(a), P0(b), P0(c), P1, P2) se ejecutar
 Lo que el encargo explícitamente **no pide** ejecutar aquí — `lote`, `delta`, `vigencia`, `siguiente` — está clasificado bajo `DIFERIDO-A:<sucesor>` en la sección "SUCESORES" del propio encargo (arriba), no como pieza pedida y omitida: el encargo mismo los excluye del perímetro de este acto ("LO QUE NO HACE"). No hay pieza pedida, no tocada y sin fila.
 
 **Contadores movidos: cero, y se dice.** Este acto no mide nada sobre México (`CONTADOR: no`, declarado en la cabecera del encargo).
+
+## CONSUMIDO
+
+Ejecutado por `PR #654` (rama `claude/jolly-darwin-te6yf8`), contra `main = 95ef598` (`PR #652` fusionado; re-basado sobre `05f5fc5` tras `PR #653` durante la sesión). `ADR-431` en `canon/gobernanza-v1_15.md` registra el acto completo.
