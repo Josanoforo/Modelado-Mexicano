@@ -2,7 +2,7 @@
 resultado_id	consumidor	tipo_uso	activo	reglas_impacto	generacion_leida	corrida0_generacion	corrida0_resultado_id	valor_materializado
 RES-0001	milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida	conducta_p_asignado	SI	tramite.mordida.discrecional	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0002	milpa/tramite.yaml:tramite.mordida.discrecional:tramite_normal	conducta_p_asignado	SI	tramite.mordida.discrecional	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
-RES-0003	milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida_encig2025	conducta_p_medido	SI	tramite.mordida.discrecional	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
+RES-0003	milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida_encig2025	conducta_p_medido	SI	tramite.mordida.discrecional	GEN2	GEN2	RESULT-ENCIG-MOR-A-P-SOL1	0.085118
 RES-0004	milpa/tramite.yaml:tramite.mordida.discrecional:tramite_normal_encig2025	conducta_p_medido	SI	tramite.mordida.discrecional	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0005	milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida_encuci2020	conducta_p_medido	SI	tramite.mordida.discrecional	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0006	milpa/tramite.yaml:tramite.mordida.discrecional:tramite_normal_encuci2020	conducta_p_medido	SI	tramite.mordida.discrecional	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
@@ -12,15 +12,15 @@ RES-0009	milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_
 RES-0010	milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_presencial	conducta_p_medido	SI	tramite.mordida.con_registro	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0011	milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_digital	conducta_p_medido	SI	tramite.mordida.con_registro	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0012	milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_digital	conducta_p_medido	SI	tramite.mordida.con_registro	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
-RES-0013	milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_presencial_r2	conducta_p_medido	SI	tramite.mordida.con_registro	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
+RES-0013	milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_presencial_r2	conducta_p_medido	SI	tramite.mordida.con_registro	GEN2	GEN2	RESULT-ENCIG-MOR-B-P-PRE-SD	0.141041
 RES-0014	milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_presencial_r2	conducta_p_medido	SI	tramite.mordida.con_registro	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
-RES-0015	milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_digital_r2	conducta_p_medido	SI	tramite.mordida.con_registro	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
+RES-0015	milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_digital_r2	conducta_p_medido	SI	tramite.mordida.con_registro	GEN2	GEN2	RESULT-ENCIG-MOR-B-P-DIG-SD	0.029868
 RES-0016	milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_digital_r2	conducta_p_medido	SI	tramite.mordida.con_registro	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0017	milpa/tramite.yaml:tramite.gobierno_digital.coercitivo:rechaza_servicio	conducta_p_asignado	SI	tramite.gobierno_digital.coercitivo	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0018	milpa/tramite.yaml:tramite.gobierno_digital.coercitivo:adopta	conducta_p_asignado	SI	tramite.gobierno_digital.coercitivo	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0019	milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:adopta	conducta_p_asignado	SI	tramite.gobierno_digital.util_sin_coercion	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0020	milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:rechaza_servicio	conducta_p_asignado	SI	tramite.gobierno_digital.util_sin_coercion	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
-RES-0021	milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:adopta_encig2025_luz	conducta_p_medido	SI	tramite.gobierno_digital.util_sin_coercion	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
+RES-0021	milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:adopta_encig2025_luz	conducta_p_medido	SI	tramite.gobierno_digital.util_sin_coercion	GEN2	GEN2	RESULT-ENCIG-MOR-C-P-ADOPTA	0.673393
 RES-0022	milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:rechaza_servicio_encig2025_luz	conducta_p_medido	SI	tramite.gobierno_digital.util_sin_coercion	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0023	milpa/tramite.yaml:tramite.evasion_norma:evade_norma	conducta_p_asignado	SI	tramite.evasion_norma	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0024	milpa/tramite.yaml:tramite.evasion_norma:cumple_norma	conducta_p_asignado	SI	tramite.evasion_norma	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
