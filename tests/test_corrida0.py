@@ -1733,28 +1733,43 @@ def t_status_arbol_real_no_cuenta_smokes():
     de mesa agrega `CALC-0003-v3` y `CALC-B-0001` a `decisiones.tsv`, asi que
     la cifra correcta pasa a `5` corridas; y P4 escribe la PRIMERA adopcion
     real, asi que `N_resultados_activos == dependencias_legacy` deja de ser
-    cierto -- es justo lo que la adopcion significa. Lo que este falsador
+    cierto -- es justo lo que la adopcion significa.
+
+    Premisa actualizada de nuevo por `FIRMA DE CONTADOR` (mesa, 9/sep/2026,
+    citada en `data/corrida0/decisiones.tsv`): OBJETO 1 `cuenta_gen2=SI`
+    para `CALC-C0D-MARCADOR-v3` (resuelve FP-368, absorbe FP-367 por objeto
+    superado) y OBJETO 2 `cuenta_gen2=SI` para `CALC-ENVIPE-0001` (resuelve
+    la fila FP que faltaba, FP-369). Dos corridas mas selladas cuentan:
+    `5 -> 7`. `CALC-C0D-MARCADOR-v3` sella 162 RESULT y `CALC-ENVIPE-0001`
+    sella 39 -- `443+162+39 = 644` y `315+162+39 = 516`. Ninguno de los dos
+    es un replay LEGACY (`envuelto_legacy` de C0D-MARCADOR-v3 sigue `SI`
+    por la regla E.1, pero eso no lo cuenta aqui como replay -- es una
+    corrida OFERTA con `cuenta_gen2=SI` propia). Lo que este falsador
     vigila NO cambia: que los replays LEGACY no suban ni una unidad de GEN2,
     y que la firma no se pierda en un merge."""
     caso = "T-STATUS-SMOKES"
     c = C.status(imprime=False)
     _afirma(c["replays_legacy_sellados"] >= 2, caso,
             f"replays sellados={c['replays_legacy_sellados']} (se esperaban >=2)")
-    _afirma(c["N_corridas_selladas"] == 5, caso,
-            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 5 tras FIRMA 1 "
-            f"(ACTO GEN2-PRIMERA-SILLA: CALC-0001, CALC-0002, CALC-0003-v2, "
-            f"CALC-0003-v3, CALC-B-0001) -- si es 0, la firma se perdio; si es >5, un "
-            f"replay GEN1 conto como GEN2")
-    _afirma(c["N_resultados_sellados"] == 443, caso,
-            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 443 "
-            f"(54+29+128+142+90 RENGLONES de OFERTA que cuentan GEN2) tras FIRMA 1 -- "
-            f"si es 0, la firma se perdio; si es >443, un replay GEN1 conto como GEN2")
-    # Ids UNICOS, que es otra pregunta: v3 repite 128 de los 142 ids de v2 por
-    # cadena `repite_de`, asi que aporta 14 nuevos, no 142. 211+90+14 = 315.
-    _afirma(c["N_resultados_gen2_sellados"] == 315, caso,
+    _afirma(c["N_corridas_selladas"] == 7, caso,
+            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 7 tras FIRMA DE "
+            f"CONTADOR 9/sep/2026 (FP-368: CALC-C0D-MARCADOR-v3 · FP-369: "
+            f"CALC-ENVIPE-0001, sobre los 5 de ACTO GEN2-PRIMERA-SILLA) -- si es 5, la "
+            f"firma se perdio; si es >7, un replay GEN1 conto como GEN2")
+    _afirma(c["N_resultados_sellados"] == 644, caso,
+            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 644 "
+            f"(443 previos + 162 de CALC-C0D-MARCADOR-v3 + 39 de CALC-ENVIPE-0001) tras "
+            f"FIRMA DE CONTADOR 9/sep/2026 -- si es 443, la firma se perdio; si es >644, "
+            f"un replay GEN1 conto como GEN2")
+    # Ids UNICOS, que es otra pregunta: v3 (CALC-0003) repite 128 de los 142
+    # ids de v2 por cadena `repite_de`, asi que aporta 14 nuevos, no 142.
+    # 211+90+14 = 315. La FIRMA DE CONTADOR de 9/sep/2026 suma las 162+39
+    # ids propias de CALC-C0D-MARCADOR-v3/CALC-ENVIPE-0001: 315+162+39=516.
+    _afirma(c["N_resultados_gen2_sellados"] == 516, caso,
             f"N_resultados_gen2_sellados={c['N_resultados_gen2_sellados']}, esperado "
-            f"315 (los 211 previos + 90 de CALC-B-0001 + los 14 ids que v3 agrega "
-            f"sobre los 128 que repite de v2) -- si sale 353, se sumo v3 dos veces")
+            f"516 (315 previos + 162 de CALC-C0D-MARCADOR-v3 + 39 de CALC-ENVIPE-0001) "
+            f"-- si sale 480 (315+165), se conto una corrida de mas; si sale 315, la "
+            f"firma se perdio")
     # E.2: la primera silla esta ocupada. `dependencias_legacy` baja en 1 por
     # la cita de P4 y ya NO iguala a los activos -- y ese 1 es la adopcion.
     _afirma(c["N_resultados_gen2_adoptados_activos"] == 1, caso,
