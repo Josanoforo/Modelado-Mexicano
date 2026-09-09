@@ -57,3 +57,7 @@ PERÍMETRO: `tools/digesto_tramite.py` · `tools/estado_comun.py` (solo extensi�
   **por qué:** `NO-VERIFICABLE-AQUÍ` (parcial) — `data/curacion-registro/cola-adquisicion-registro.tsv` se cuenta como fuente examinada (A.13) pero no se integra campo a campo en la tabla de siete columnas: los ocho casos de aceptación de este acto se resuelven íntegramente vía FP/NC (que sí lo cubren), así que no forzó la integración completa del registro de adquisición para completarlos.
   **impacto:** una NC cuyo único rastro de responsable/acción viviera solo en el registro de adquisición (no en FP/NC) no aparecería hoy con ese detalle en la vista — se seguiría mostrando la fila, sin la columna "quién actúa" derivada de ese registro.
   **sucesor:** ampliar `seccion_mesa()` para leer `data/curacion-registro/cola-adquisicion-registro.tsv` campo a campo cuando un caso real lo requiera — SIN-ASIGNAR.
+
+## CONSUMIDO
+
+Ejecutado por `PR #650` (rama `claude/kind-pasteur-sj6r2p`, `ADR-426`). P0-P5 implementados; cinco reservas declaradas en `## NO-CORRIDO / RESERVAS` arriba. `tests/check.py --baseline`: **VERDE**.
