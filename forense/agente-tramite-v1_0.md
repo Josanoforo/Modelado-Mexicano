@@ -249,3 +249,33 @@ exactamente lo que `D-13` dejó registrado como práctica y no como regla:
 
 **CONTADOR de este acto: cero mediciones, declarado.** Es
 infraestructura: instala el vehículo, no mide con él.
+
+---
+
+## Enmienda de precedencia fechada, 9/sep/2026 (`ACTO GEN2-OPERACION-1 ·
+CICLO-CONCILIACION-PAGABLE`, `forense/encargos/2026-09-09-GEN2-OPERACION-1-CICLO-CONCILIACION-PAGABLE.md`, P3)
+
+El texto de arriba **queda intacto y sin editar** — este párrafo se
+añade, no reescribe nada anterior.
+
+Este documento describe el runbook de `/tramite` como estaba en
+`ACTO MAESTRA33-E1` (31/ago/2026). Desde entonces, el lector que
+`/tramite` consume (`tools/digesto_tramite.py`) y la propia skill
+(`.claude/commands/tramite.md`) han recibido piezas que este archivo no
+narra — más recientemente, la sección `K` de `tools/digesto_tramite.py`
+v1.4 (localización de candidatas para filas abiertas, P1 del mismo
+acto). Donde este documento y el runbook vigente discrepen en un
+detalle mecánico (qué secciones existen, qué comanda cada bandera, qué
+universo examina cada lectura), **el runbook vigente tiene precedencia**:
+
+- `.claude/commands/tramite.md` (la skill que actúa).
+- `tools/digesto_tramite.py` (el lector; su propio docstring de cabecera
+  lleva el número de versión y el acto que la introdujo).
+
+Este documento sigue siendo la fuente correcta para lo que no cambia
+con cada pieza: los tres guardrails de perímetro, el criterio de
+falsador de `§3`, y la distinción entre lo que el agente propone y lo
+que mesa firma. Lo que un lector necesita saber HOY sobre qué secciones
+tiene el digesto o qué banderas acepta `main()` se lee del runbook
+vigente, no de este archivo — exactamente como el propio `§3` ya
+advertía sobre la caducidad de cualquier pieza de esta familia.
