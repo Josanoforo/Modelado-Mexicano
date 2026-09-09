@@ -142,6 +142,220 @@ estimando: >-
   declaraciones del informante en una seccion transversal, y P3_13 no es una
   asignacion aleatoria -- comparar celdas de la familia A es DESCRIPCION.
 
+inputs:
+  - id: enif_2024_enif_2024_bd_csv
+    origen: manifiesto
+  - id: IN-ENIF-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENIF-AHORRO-spec-v1_0.md
+    sha256: 697ab9e8084d5a7d8ae413778c9ef33303181a934c1c493980202f87580f10ab
+
+seed:
+  aplica: true
+  valor: 20260909
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en ORDEN FIJO DE FILA:
+    la unica diferencia esperable entre dos corridas del mismo arbol es
+    redondeo de float64 al reasociar sumas ponderadas. Los enteros y los
+    textos se comparan EXACTO. NO se afloja para que la adopcion de P3 pase:
+    si el grano de milpa/ (seis decimales) no cabe, la cita no se escribe y
+    eso es el hallazgo.
+
+resultados:
+  - {id: RESULT-ENIF-AHO-G-N-FILAS-TMODULO, tipo: entero, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-ENCODING-USADO, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-COLUMNAS-AUSENTES, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P4_10, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P3_13, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_20, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_23, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_1, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_2, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_3, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_4, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_5, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_6, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_1, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_2, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_3, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_4, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_5, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_6, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_7, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_8, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_9, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_1, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_2, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_3, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_4, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_5, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_6, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_7, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_8, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_9, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D5-N-CELDAS-FUERA-DE-DOMINIO, tipo: entero, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-P1-EDAD-MIN, tipo: entero, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-P1-EDAD-MAX, tipo: entero, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-P1-N-CODIGO-97, tipo: entero, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-P1-N-CODIGO-98, tipo: entero, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-P1-POBLACION, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D4-LLAVES-OPACAS, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D4-N-FILAS-CON-CERO-A-LA-IZQUIERDA, tipo: entero, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-C1-N-P523-BLANCO-O-B, tipo: entero, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-C1-EJE-ES-PARTICION, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-C2-N-FILAS-CON-520-Y-CUENTA, tipo: entero, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-C2-DENOMINADOR-C-VERIFICADO, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D2-PONDERADOR, tipo: texto, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-D2-N-SIN-PONDERADOR, tipo: entero, unidad: "guardia / embudo declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-N-DENOMINADOR, tipo: entero, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-P, tipo: flotante, unidad: "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-IC-LO, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-IC-HI, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-METODO-IC, tipo: texto, unidad: "BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-*"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-N-ESTRATOS, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-N-UPM, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-N-SIN-DISENO, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-PESO-DENOMINADOR, tipo: flotante, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-N-DENOMINADOR, tipo: entero, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-P, tipo: flotante, unidad: "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-IC-LO, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-IC-HI, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-METODO-IC, tipo: texto, unidad: "BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-*"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-N-ESTRATOS, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-N-UPM, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-N-SIN-DISENO, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-PESO-DENOMINADOR, tipo: flotante, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-N-DENOMINADOR, tipo: entero, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-P, tipo: flotante, unidad: "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-IC-LO, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-IC-HI, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-METODO-IC, tipo: texto, unidad: "BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-*"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-N-ESTRATOS, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-N-UPM, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-N-SIN-DISENO, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-PESO-DENOMINADOR, tipo: flotante, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-N-DENOMINADOR, tipo: entero, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-P, tipo: flotante, unidad: "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-IC-LO, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-IC-HI, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-METODO-IC, tipo: texto, unidad: "BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-*"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-N-ESTRATOS, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-N-UPM, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-N-SIN-DISENO, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-PESO-DENOMINADOR, tipo: flotante, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-N-DENOMINADOR, tipo: entero, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-P, tipo: flotante, unidad: "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-IC-LO, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-IC-HI, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-METODO-IC, tipo: texto, unidad: "BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-*"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-N-ESTRATOS, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-N-UPM, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-N-SIN-DISENO, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-PESO-DENOMINADOR, tipo: flotante, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-S1-N-DENOMINADOR, tipo: entero, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-S1-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-S1-P, tipo: flotante, unidad: "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-S1-IC-LO, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-S1-IC-HI, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-S1-METODO-IC, tipo: texto, unidad: "BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-*"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-S1-N-ESTRATOS, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-S1-N-UPM, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-S1-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-S1-N-SIN-DISENO, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-P-CORTO-CON-S1-PESO-DENOMINADOR, tipo: flotante, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-C-PESO-TOTAL-18MAS, tipo: flotante, unidad: "declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-A-C-FUERA-DEL-EJE-N, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-C-FUERA-DEL-EJE-PESO, tipo: flotante, unidad: "suma de FAC_PER (poblacion expandida)"}
+  - {id: RESULT-ENIF-AHO-A-C-FUERA-DEL-EJE-FRACCION, tipo: flotante, unidad: "fraccion ponderada del complemento sobre su denominador -- NO es RESULT de consumidor"}
+  - {id: RESULT-ENIF-AHO-A-C-FUERA-DEL-EJE-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-C-SIN-EJE-BLANCO-N, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-C-SIN-EJE-BLANCO-PESO, tipo: flotante, unidad: "suma de FAC_PER (poblacion expandida)"}
+  - {id: RESULT-ENIF-AHO-A-C-SIN-EJE-BLANCO-FRACCION, tipo: flotante, unidad: "fraccion ponderada del complemento sobre su denominador -- NO es RESULT de consumidor"}
+  - {id: RESULT-ENIF-AHO-A-C-SIN-EJE-BLANCO-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-A-C-FALTANTE-P410-SIN-N, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-A-C-FALTANTE-P410-CON-N, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-P-FORMAL-N-DENOMINADOR, tipo: entero, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-B-P-FORMAL-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-B-P-FORMAL-P, tipo: flotante, unidad: "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"}
+  - {id: RESULT-ENIF-AHO-B-P-FORMAL-IC-LO, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-B-P-FORMAL-IC-HI, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-B-P-FORMAL-METODO-IC, tipo: texto, unidad: "BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-*"}
+  - {id: RESULT-ENIF-AHO-B-P-FORMAL-N-ESTRATOS, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-P-FORMAL-N-UPM, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-P-FORMAL-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-P-FORMAL-N-SIN-DISENO, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-P-FORMAL-PESO-DENOMINADOR, tipo: flotante, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-B-P-INFORMAL-N-DENOMINADOR, tipo: entero, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-B-P-INFORMAL-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-B-P-INFORMAL-P, tipo: flotante, unidad: "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"}
+  - {id: RESULT-ENIF-AHO-B-P-INFORMAL-IC-LO, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-B-P-INFORMAL-IC-HI, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-B-P-INFORMAL-METODO-IC, tipo: texto, unidad: "BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-*"}
+  - {id: RESULT-ENIF-AHO-B-P-INFORMAL-N-ESTRATOS, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-P-INFORMAL-N-UPM, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-P-INFORMAL-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-P-INFORMAL-N-SIN-DISENO, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-P-INFORMAL-PESO-DENOMINADOR, tipo: flotante, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-B-SUMA-FORMAL-MAS-INFORMAL, tipo: flotante, unidad: "declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-B-SUMA-EXCEDE-1, tipo: texto, unidad: "declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-B-NOTA-COEXISTENCIA, tipo: texto, unidad: "declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-B-C-AMBAS-VIAS-N, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-C-AMBAS-VIAS-PESO, tipo: flotante, unidad: "suma de FAC_PER (poblacion expandida)"}
+  - {id: RESULT-ENIF-AHO-B-C-AMBAS-VIAS-FRACCION, tipo: flotante, unidad: "fraccion ponderada del complemento sobre su denominador -- NO es RESULT de consumidor"}
+  - {id: RESULT-ENIF-AHO-B-C-AMBAS-VIAS-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-B-C-NINGUNA-VIA-N, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-C-NINGUNA-VIA-PESO, tipo: flotante, unidad: "suma de FAC_PER (poblacion expandida)"}
+  - {id: RESULT-ENIF-AHO-B-C-NINGUNA-VIA-FRACCION, tipo: flotante, unidad: "fraccion ponderada del complemento sobre su denominador -- NO es RESULT de consumidor"}
+  - {id: RESULT-ENIF-AHO-B-C-NINGUNA-VIA-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-B-CONTROL-FILTRO-S5-1-N-DISCREPANTES, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-B-CONTROL-FILTRO-S5-1, tipo: texto, unidad: "declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-N-DENOMINADOR, tipo: entero, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P, tipo: flotante, unidad: "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-IC-LO, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-IC-HI, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-METODO-IC, tipo: texto, unidad: "BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-*"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-N-ESTRATOS, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-N-UPM, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-N-SIN-DISENO, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-PESO-DENOMINADOR, tipo: flotante, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-N-DENOMINADOR, tipo: entero, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-DENOMINADOR, tipo: texto, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P, tipo: flotante, unidad: "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-IC-LO, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-IC-HI, tipo: flotante, unidad: "extremo del IC95 por bootstrap de UPM_DIS dentro de EST_DIS -- NO comparable con fase 1 (A-bis.3)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-METODO-IC, tipo: texto, unidad: "BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-*"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-N-ESTRATOS, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-N-UPM, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-N-SIN-DISENO, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-PESO-DENOMINADOR, tipo: flotante, unidad: "texto del denominador de esa celda, escrito por RESULT"}
+  - {id: RESULT-ENIF-AHO-C-C-OTRAS-RAZONES-CONOCE-N, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-C-C-OTRAS-RAZONES-CONOCE-PESO, tipo: flotante, unidad: "suma de FAC_PER (poblacion expandida)"}
+  - {id: RESULT-ENIF-AHO-C-C-OTRAS-RAZONES-NOCONOCE-N, tipo: entero, unidad: "conteo de filas (sin ponderar)"}
+  - {id: RESULT-ENIF-AHO-C-C-OTRAS-RAZONES-NOCONOCE-PESO, tipo: flotante, unidad: "suma de FAC_PER (poblacion expandida)"}
+  - {id: RESULT-ENIF-AHO-C-NOTA-NO-SUMAR, tipo: texto, unidad: "declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-C-CUALQUIER-RAZON, tipo: texto, unidad: "declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-C-CUALQUIER-RAZON-JUSTIFICACION, tipo: texto, unidad: "declarado en la spec sellada"}
+  - {id: RESULT-ENIF-AHO-G-NOTA-IC-NO-COMPARABLE, tipo: texto, unidad: "nota declarada, texto fijo"}
+  - {id: RESULT-ENIF-AHO-G-NOTA-FP-201, tipo: texto, unidad: "nota declarada, texto fijo"}
+
 dependencias_materiales: [numpy]
 
 parametros:
