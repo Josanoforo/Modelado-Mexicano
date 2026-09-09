@@ -25,3 +25,15 @@ PERÍMETRO: forense/prereg-caja/C0D-* · data/corrida0/CALC-C0D*/** + TSV re-der
 | **P1 — la fuente del punto `L` en la spec `v1.0`** (reserva del propio acto, no del encargo) | `NO-VERIFICABLE-AQUÍ` | La spec `v1.0` citó verbatim la regla del módulo **base** `agregado_v1_1`, que `agregado_v1_2.py` deroga por monkeypatch. Costó **una corrida**: `CALC-C0D-MARCADOR` selló 151 `RESULT` y su guardia lo paró (`DIVERGE` 28/28, `maxdif 0.0`). Sin esa guardia el acto habría reportado `n = 0` como falta de cobertura y nadie habría mirado el lector. | `NC-0074` — **CERRADA por este mismo acto**: spec `v1.1` (`COMMIT-3`) + `CALC-C0D-MARCADOR-v2` |
 | **`RESULT-C0D-ALCANCE-CORPUS-CAPTURA` salió pobre** (reserva del propio acto) | `DECISIÓN-DE-MESA-PENDIENTE` | Dice `fecha_congelacion=sin-params · modelo=None` porque muestrea **una** captura y `CIV-M-01` pertenece a la familia con `modelo_real` (nulo) en vez de `params`. Ninguna cifra del acto depende de ese campo —los metadatos correctos están medidos sobre las 424 capturas y citados en §0.3 de la sellada— pero el `RESULT` es más pobre de lo que debería. **Sellado está y sellado se queda.** | `NC-0078` |
 | **Suite: cuarto `FAIL` sin `TZ=UTC`** (ajeno al acto) | `FUERA-DE-PERÍMETRO` | `T-YAMEDIDO` sobre `forense/encargos/2026-09-08-GEN2-TRAMITE-BANDEJA.md`, **encargo ajeno**. Con `TZ=UTC`: `3 FAIL · LÍNEA BASE VERDE`. Se declara para que nadie lea el rojo local como daño de este PR. | `NC-0080` |
+
+---
+
+## CONSUMIDO
+
+Ejecutado por **`PR #649`** (`acto/gen2-c0-d-marcador`), `ACTO GEN2-C0-D · EL MARCADOR`, 9/sep/2026, **`ADR-426`** (renumerado desde `425` porque `PR #648` fusionó primero — regla de la casa: renumera quien fusiona segundo).
+
+**Veredicto:** `RESULT-C0D-VEREDICTO-PAREADA = NO-DISCRIMINA` → `RESULT-C0D-ADJUDICACION-HALLAZGO = EXPLICADO-POR-METRICA`. La pareada `L_SOLO ↔ L_CORPUS` da `+4.6978 pp` con IC95 `[−0.8022, +11.2747]` sobre `n = 13`; el hallazgo del 8/sep era una comparación de marginales y no sobrevive al pareo. `ADJUDICACION-SUCESOR = NO-APLICA`.
+
+**Corridas:** `CALC-C0D-MARCADOR` (spec `v1.0`, 151 `RESULT`, **PARÓ** por su propia guardia de convergencia) → `CALC-C0D-MARCADOR-v2` (spec `v1.1`, 152 `RESULT`, `verify` → **REPRODUCE**).
+
+**Nota de cierre:** `forense/notas/2026-09-09-GEN2-C0-D-MARCADOR-cierre.md`.
