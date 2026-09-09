@@ -227,6 +227,23 @@ concreta que vale la pena intentar adquirir:
    decisión de mayor peso que un alta de cola; si falta certeza, deja la fila
    de cola sola y declara la relación como pendiente de mesa, no la fuerces.
 
+6. **Escribe la fecha con el nombre correcto** (ACTO GEN2-SONDA-ADQ-CABLEADO,
+   P2/H2, 9/sep/2026). En la nota, la fecha de este sondeo se escribe
+   literalmente como `descubrimiento de vía <YYYY-MM-DD>` — **nunca** como
+   `intento efectivo`, que está reservado para una descarga realmente
+   intentada. El contrato de selección
+   (`.claude/commands/adquiere.md` §1) cuenta la antigüedad desde el intento
+   efectivo: si `/sonda` escribiera su fecha con ese nombre, sondear
+   reiniciaría el plazo de descarga de la fila y la sacaría de la caminata
+   durante otros siete días. Descubrir una vía no es haberla intentado.
+7. **Una recomendación no es una autorización.** Para que la candidata pase
+   de propuesta a caminable, la nota necesita los cuatro elementos del
+   handoff: objeto faltante, vía nueva, **autorización de mesa con su cita**,
+   y el modo de invocación por ID. Sin la autorización citada, el selector la
+   excluye con esa razón exacta y la fila **permanece propuesta** — que es lo
+   correcto: `/sonda` localiza, mesa autoriza, `/adquiere` camina. No escribas
+   la autorización tú.
+
 **El alta en la cola NO significa** `EXISTE-SATISFACE`, ni relación
 `CONFIRMADA`, ni resultado adoptado — significa únicamente "vale la pena
 intentar adquirir/verificar esta candidata". No modifica `milpa/**` ni
