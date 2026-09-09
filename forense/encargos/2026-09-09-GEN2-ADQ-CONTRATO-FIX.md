@@ -11,3 +11,18 @@ PIEZAS: P0 · REGISTRO (A.3). Archiva verbatim forense/notas/2026-09-09-REVISION
 PERÍMETRO Y CONCURRENCIA. Toca: tools/adq_doctor.py · tools/adquiere_cron.sh · tests/check.py (solo TCRON) · tests/test_adq_* · forense/notas/ · forense/no-corrido.tsv (tokens/append) · skills SOLO si P3 exige la línea del contrato · 0-bis · cascada. EN PARALELO: GEN2-MOTOR-SEMANTICA (milpa/specs — cero intersección) y F5-RECAPTURA en caja; DERIVADORES-FIX espera tu merge. Baseline/TSV: re-deriva al cierre y reporta pisadas. «Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.»
 
 CONTADOR: no, y se dice. LO QUE NO HACE: no toca digesto ni corrida0 (hermano 2/5) · no habilita reintentos automáticos · no ejecuta la primera corrida post-arreglo (NC-0114, caja) · no crea guardias nuevas fuera de lo listado (D-14 pagado por la revisión archivada). SUCESORES: GEN2-DERIVADORES-FIX (gateado a este merge) · la corrida NC-0114 que estrena todo en producción. CIERRE · Cascada + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: P0, «Archiva verbatim `forense/notas/2026-09-09-REVISION-IMPLEMENTACION-PR660-666-astra.md` con cabecera de procedencia. El original viaja adjunto; si falta, PARA.»
+  **por qué**: `PARO-PREMISA` — el original no llegó adjunto a esta sesión y no existe en `origin/main` (`git grep -i "REVISION-IMPLEMENTACION-PR660"` sobre todas las refs → 0 coincidencias). A diferencia de `ADR-440`, el encargo no enumera el contenido del documento para poder reconstruirlo por declaración. No se PARÓ el acto completo porque el propio encargo declara que dirección ya reverificó H1/H5 textualmente contra el código y pide re-derivar H2/H3 como primer paso — P1-P4 son autocontenidos, no dependen del documento ausente.
+  **impacto**: no hay registro de procedencia del insumo externo ChatGPT/Astra en `forense/notas/`; el rastro forense de "de dónde salió H1/H2/H3/H5" queda solo en este mismo encargo (que cita las conclusiones verbatim) y en la cita a `ADR-439`/revisión previa.
+  **sucesor**: `DECISIÓN-DE-MESA-PENDIENTE` (registrada como `NC-0134`) — mesa adjunta el documento a un acto sucesor, o lo pega directo en una sesión de seguimiento para archivarlo por separado.
+- **qué**: P2, «el tratamiento de la indeterminación queda PROPUESTO a mesa en la nota (reintentos automáticos NO se habilitan en este acto)».
+  **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` — deliberado, verbatim del propio encargo; el centinela `FECHA_INDETERMINADA` excluye la fila con razón explícita, pero qué hacer DESPUÉS de esa exclusión (¿receta manual? ¿mesa fija fecha por decreto?) no está decidido.
+  **impacto**: una fila con `FECHA-INDETERMINADA` queda excluida de la caminata indefinidamente hasta que mesa decida o alguien la nombre por `--nombrada`.
+  **sucesor**: `SIN-ASIGNAR` — mesa decide cuándo se convierte en encargo.
+- **qué**: SUCESORES declarados por el encargo, «la corrida `NC-0114` que estrena todo en producción».
+  **por qué**: `FUERA-DE-PERÍMETRO` — es explícitamente de CAJA, y el encargo mismo (CONTADOR/LO QUE NO HACE) prohíbe ejecutarla desde este acto.
+  **impacto**: los arreglos de este acto no se han ejercitado todavía contra una corrida real de `adquiere_cron.sh` en producción.
+  **sucesor**: `NC-0114` (caja).

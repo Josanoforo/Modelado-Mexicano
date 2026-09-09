@@ -329,6 +329,80 @@ ${resumen}" >>"$LOGFILE" 2>&1
   return 0
 }
 
+# publica_censo_manual -- paso 2.5: censo diario de la raíz manual +
+# commit + push a censo/${FECHA}, dado que $CENSO_DIR ya existe y la raíz
+# ya resolvió (comprobado por el llamador, cuerpo principal). Extraída a
+# función (GEN2-ADQ-CONTRATO-FIX, P4) para que sea ejercitable con el seam
+# de solo-definición igual que commit_censo_linea, y para que su fallo de
+# publicación alimente PUBLICACION_FALLIDA igual que ésa -- antes de este
+# acto un push fallido aquí se logueaba como PARO-CENSO-PUSH SIN tocar el
+# contador, así que una publicación de censo que nunca llegó al remoto
+# podía cerrar la corrida con publicacion=OK (H5 de la revisión del 9/sep).
+publica_censo_manual() {
+  mkdir -p "$CENSO_DIR"
+  local RAMA_CENSO="censo/${FECHA}"
+  # ACTO ADQ-CRON-V2 (P3): cambia de rama ANTES de decidir el nombre del
+  # archivo o escribir nada. Antes de este acto el add/commit ocurría
+  # mientras el árbol seguía en `main` (checked out desde el paso 1) y
+  # censo/${FECHA} se creaba/reseteaba DESPUÉS con `checkout -B` -- eso
+  # dejaba `main` local contaminado con el commit [CENSO] cada corrida
+  # (hecho 8) y, en un reintento el mismo día, reescribía censo/${FECHA}
+  # desde ese `main` ya adelantado en vez de continuar lo que el remoto
+  # ya tenía (hecho 9, el non-fast-forward real del 6/sep).
+  checkout_o_crea_censo
+  local CENSO_FILE="${CENSO_DIR}/${FECHA}.txt"
+  if [ -e "$CENSO_FILE" ]; then
+    CENSO_FILE="${CENSO_DIR}/${FECHA}-cron-$(date +%H%M).txt"
+  fi
+  local SALIDA_CENSO RESUMEN
+  SALIDA_CENSO="$(python3 tests/manifiesto.py --escanea descargas_mx 2>&1 || true)"
+  RESUMEN="$(echo "$SALIDA_CENSO" | grep -m1 '^Total en disco:' || echo 'Total en disco: (sin resumen -- ver salida cruda abajo)')"
+
+  {
+    echo "$RESUMEN"
+    echo
+    echo "$SALIDA_CENSO"
+  } >"$CENSO_FILE"
+  log "[CENSO] ${FECHA}: ${RESUMEN}"
+
+  # main está protegida (status check "check" requerido) -- no se puede
+  # empujar directo. En vez de eso: rama censo/${FECHA} (ya activa arriba)
+  # + PR (--fill si gh está disponible, si no se deja logueada la URL de
+  # compare) para que el check corra y mesa firme. data/manifiesto-
+  # staging.yaml (escrito por --escanea arriba) NO se commitea aquí --
+  # este paso solo hace `git add` de $CENSO_FILE; sus cambios quedan sin
+  # comitear por este cron hasta que un acto los recoja explícitamente.
+  git add "$CENSO_FILE" >>"$LOGFILE" 2>&1
+  if ! git diff --cached --quiet -- "$CENSO_FILE"; then
+    git commit -m "[CENSO] ${FECHA}
+
+${RESUMEN}" >>"$LOGFILE" 2>&1
+    if git push -u origin "$RAMA_CENSO" >>"$LOGFILE" 2>&1; then
+      log "[CENSO] ${FECHA} commiteado y empujado a ${RAMA_CENSO}"
+      # H5 (GEN2-ADQ-CONTRATO-FIX): "push-sin-PR" -- rama empujada, PR NO
+      # creado (gh ausente o `gh pr create` falló) -- NO es publicación
+      # fallida. El recibo SÍ llegó al remoto; abrir el PR es trámite de
+      # mesa, no parte de esta señal, así que esto nunca toca
+      # PUBLICACION_FALLIDA.
+      if command -v gh >/dev/null 2>&1; then
+        if gh pr create --fill >>"$LOGFILE" 2>&1; then
+          log "[CENSO] ${FECHA}: PR abierto para ${RAMA_CENSO}"
+        else
+          log "[CENSO] ${FECHA}: gh pr create falló, ver arriba. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${RAMA_CENSO}"
+        fi
+      else
+        log "[CENSO] ${FECHA}: gh no disponible. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${RAMA_CENSO}"
+      fi
+    else
+      PUBLICACION_FALLIDA=$((PUBLICACION_FALLIDA + 1))
+      log "PARO-CENSO-PUSH: el commit [CENSO] ${FECHA} quedó local, no se pudo empujar ${RAMA_CENSO}. Fallo operativo, no éxito -- alimenta PUBLICACION_FALLIDA."
+    fi
+  else
+    log "[CENSO] ${FECHA}: sin cambios respecto al censo previo, no se commitea de nuevo."
+  fi
+  git checkout main >>"$LOGFILE" 2>&1 || true
+}
+
 # huella_adq <invocado:si|no> <motivo:-|PARO-RAIZ|PARO-RED|PARO-PROMPT|PARO-CORPUS> <exit:codigo|->
 # Formato congelado en forense/notas/2026-09-06-MAESTRA38-CRON-3-spec.md.
 # Se llama en CADA PARO (exit 1) y una vez al terminar con éxito o con
@@ -358,19 +432,73 @@ huella_adq() {
   duracion=$((t1 - T0))
   head_despues="$(git rev-parse HEAD 2>/dev/null || echo "$HEAD_ANTES")"
   commits_nuevos="$(git rev-list --count "${HEAD_ANTES}..${head_despues}" 2>/dev/null || echo 0)"
-  ramas_despues="$(git ls-remote --heads origin 2>/dev/null | wc -l || echo "$RAMAS_ANTES")"
+  # GEN2-ADQ-CONTRATO-FIX: bajo `pipefail` (activo desde la línea 73),
+  # `git ls-remote ... | wc -l || echo "$RAMAS_ANTES"` es la trampa que su
+  # propio nombre sugiere que evita: si `git ls-remote` falla, `wc -l`
+  # sobre su entrada vacía SIGUE imprimiendo "0" y sale 0 -- pero
+  # `pipefail` hace que la CANALIZACIÓN completa reporte el fallo de
+  # `git ls-remote`, así que el `|| echo` TAMBIÉN se dispara, y el
+  # resultado capturado son DOS líneas ("0" de `wc -l` más el respaldo),
+  # no una -- lo que revienta la aritmética de abajo. Se separa la
+  # captura del respaldo con `set +e/-e` para leer el código de salida
+  # real de la canalización, no el de `wc -l` a secas.
+  set +e
+  ramas_despues="$(git ls-remote --heads origin 2>/dev/null | wc -l)"
+  codigo_ramas=$?
+  set -e
+  if [ "$codigo_ramas" -ne 0 ]; then
+    ramas_despues="$RAMAS_ANTES"
+  fi
   ramas_nuevas=$((ramas_despues - RAMAS_ANTES))
   archivos_modificados="$(git status --short 2>/dev/null | wc -l)"
-  if [ "${PUBLICACION_FALLIDA:-0}" -eq 0 ]; then
+
+  # GEN2-ADQ-CONTRATO-FIX (H5): la publicación de ESTA MISMA huella no se
+  # conoce hasta que commit_censo_linea intenta su propio push -- así que
+  # `publicacion=` no puede escribirse con la verdad todavía cuando la
+  # línea se arma. Antes de este acto se escribía aquí, ANTES de llamar a
+  # commit_censo_linea, leyendo PUBLICACION_FALLIDA como estaba en ese
+  # instante: solo podía cargar fallos ANTERIORES de la misma corrida
+  # (2.5, PDN), nunca el fallo del propio push de esta huella -- que es
+  # justo el caso que el vigilante necesita distinguir. Se escribe
+  # primero en tentativa (arrastrando solo lo YA conocido) y, si ESTE
+  # push falla, se corrige el commit local recién hecho -- nunca
+  # empujado todavía, así que corregirlo no reescribe nada compartido --
+  # antes de declarar cerrada la corrida.
+  local fallidas_antes="${PUBLICACION_FALLIDA:-0}"
+  if [ "$fallidas_antes" -eq 0 ]; then
     publicacion="OK"
   else
-    publicacion="FALLIDA(${PUBLICACION_FALLIDA})"
+    publicacion="FALLIDA(${fallidas_antes})"
   fi
 
   linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} publicacion=${publicacion} run_id=${RUN_ID}"
   log "${linea}"
   CIERRE_ESCRITO=1
-  commit_censo_linea "$linea" "$linea" "[ADQ] ${FECHA}" || true
+  if ! commit_censo_linea "$linea" "$linea" "[ADQ] ${FECHA}"; then
+    if [ "${PUBLICACION_FALLIDA:-0}" -gt "$fallidas_antes" ]; then
+      # commit_censo_linea ya volvió a `main` antes de devolver el fallo
+      # -- hay que regresar a censo/${FECHA} para corregir el commit que
+      # de verdad quedó mal etiquetado, nunca amendar lo que sea que HEAD
+      # de main tenga en ese momento.
+      local archivo="${CENSO_DIR}/${FECHA}.txt" linea_corregida
+      local rama_censo="censo/${FECHA}"
+      linea_corregida="${linea/publicacion=${publicacion}/publicacion=FALLIDA(${PUBLICACION_FALLIDA})}"
+      if git checkout "$rama_censo" >>"$LOGFILE" 2>&1; then
+        if [ -f "$archivo" ]; then
+          sed -i "\$ s/publicacion=${publicacion}/publicacion=FALLIDA(${PUBLICACION_FALLIDA})/" \
+            "$archivo" 2>>"$LOGFILE" || true
+          git add "$archivo" >>"$LOGFILE" 2>&1 || true
+        fi
+        git commit --amend -m "[ADQ] ${FECHA}
+
+${linea_corregida}" >>"$LOGFILE" 2>&1 || true
+        log "HUELLA-CORREGIDA: el push de esta huella falló; se corrigió el commit local (nunca empujado, en ${rama_censo}) para declarar: ${linea_corregida}"
+        git checkout main >>"$LOGFILE" 2>&1 || true
+      else
+        log "HUELLA-NO-CORREGIDA: no se pudo volver a ${rama_censo} para corregir el commit local; el log ya declaró FALLIDA(${PUBLICACION_FALLIDA}) aunque el commit quedó con publicacion=${publicacion}."
+      fi
+    fi
+  fi
 }
 
 # ── Seam de solo-definición (ADQ_CRON_SOLO_DEFINE=1) ─────────────
@@ -500,61 +628,7 @@ print(manifiesto.resolver_raiz('descargas_mx', '.', 'data/raw') or '')
 " 2>/dev/null || true)"
 
 if [ -n "$RAIZ_RESUELTA" ] && [ -d "$RAIZ_RESUELTA" ]; then
-  mkdir -p "$CENSO_DIR"
-  RAMA_CENSO="censo/${FECHA}"
-  # ACTO ADQ-CRON-V2 (P3): cambia de rama ANTES de decidir el nombre del
-  # archivo o escribir nada. Antes de este acto el add/commit ocurría
-  # mientras el árbol seguía en `main` (checked out desde el paso 1) y
-  # censo/${FECHA} se creaba/reseteaba DESPUÉS con `checkout -B` -- eso
-  # dejaba `main` local contaminado con el commit [CENSO] cada corrida
-  # (hecho 8) y, en un reintento el mismo día, reescribía censo/${FECHA}
-  # desde ese `main` ya adelantado en vez de continuar lo que el remoto
-  # ya tenía (hecho 9, el non-fast-forward real del 6/sep).
-  checkout_o_crea_censo
-  CENSO_FILE="${CENSO_DIR}/${FECHA}.txt"
-  if [ -e "$CENSO_FILE" ]; then
-    CENSO_FILE="${CENSO_DIR}/${FECHA}-cron-$(date +%H%M).txt"
-  fi
-  SALIDA_CENSO="$(python3 tests/manifiesto.py --escanea descargas_mx 2>&1 || true)"
-  RESUMEN="$(echo "$SALIDA_CENSO" | grep -m1 '^Total en disco:' || echo 'Total en disco: (sin resumen -- ver salida cruda abajo)')"
-
-  {
-    echo "$RESUMEN"
-    echo
-    echo "$SALIDA_CENSO"
-  } >"$CENSO_FILE"
-  log "[CENSO] ${FECHA}: ${RESUMEN}"
-
-  # main está protegida (status check "check" requerido) -- no se puede
-  # empujar directo. En vez de eso: rama censo/${FECHA} (ya activa arriba)
-  # + PR (--fill si gh está disponible, si no se deja logueada la URL de
-  # compare) para que el check corra y mesa firme. data/manifiesto-
-  # staging.yaml (escrito por --escanea arriba) NO se commitea aquí --
-  # este paso solo hace `git add` de $CENSO_FILE; sus cambios quedan sin
-  # comitear por este cron hasta que un acto los recoja explícitamente.
-  git add "$CENSO_FILE" >>"$LOGFILE" 2>&1
-  if ! git diff --cached --quiet -- "$CENSO_FILE"; then
-    git commit -m "[CENSO] ${FECHA}
-
-${RESUMEN}" >>"$LOGFILE" 2>&1
-    if git push -u origin "$RAMA_CENSO" >>"$LOGFILE" 2>&1; then
-      log "[CENSO] ${FECHA} commiteado y empujado a ${RAMA_CENSO}"
-      if command -v gh >/dev/null 2>&1; then
-        if gh pr create --fill >>"$LOGFILE" 2>&1; then
-          log "[CENSO] ${FECHA}: PR abierto para ${RAMA_CENSO}"
-        else
-          log "[CENSO] ${FECHA}: gh pr create falló, ver arriba. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${RAMA_CENSO}"
-        fi
-      else
-        log "[CENSO] ${FECHA}: gh no disponible. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${RAMA_CENSO}"
-      fi
-    else
-      log "PARO-CENSO-PUSH: el commit [CENSO] ${FECHA} quedó local, no se pudo empujar ${RAMA_CENSO}."
-    fi
-  else
-    log "[CENSO] ${FECHA}: sin cambios respecto al censo previo, no se commitea de nuevo."
-  fi
-  git checkout main >>"$LOGFILE" 2>&1 || true
+  publica_censo_manual
 else
   log "PARO-RAIZ: descargas_mx no resuelve en esta máquina (data/raices.local.yaml). Censo omitido, sigue con /adquiere."
 fi

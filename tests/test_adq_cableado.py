@@ -502,7 +502,9 @@ FILAS_FIXTURE = [
      "sin autorización de mesa"),
     ("KAPPA_AUTORIZADA", "PENDIENTE", "7",
      "descubrimiento de vía 2026-09-09 por /sonda; SONDA-LATERAL-RECOMENDADA; "
-     "AUTORIZADA por firma de mesa 2026-09-09"),
+     # A.16 (GEN2-ADQ-CONTRATO-FIX, H1): token, no prosa -- objeto = esta
+     # misma fila, para que la cita no pueda leerse como ajena.
+     "AUTORIZADA:mesa/2026-09-09/KAPPA_AUTORIZADA"),
 ]
 
 
