@@ -26,3 +26,7 @@ CONTADOR: no, y se dice. LO QUE NO HACE: no toca digesto ni corrida0 (hermano 2/
   **por qué**: `FUERA-DE-PERÍMETRO` — es explícitamente de CAJA, y el encargo mismo (CONTADOR/LO QUE NO HACE) prohíbe ejecutarla desde este acto.
   **impacto**: los arreglos de este acto no se han ejercitado todavía contra una corrida real de `adquiere_cron.sh` en producción.
   **sucesor**: `NC-0114` (caja).
+
+## CONSUMIDO
+
+Ejecutado por [PR #671](https://github.com/Josanoforo/Modelado-Mexicano/pull/671).
