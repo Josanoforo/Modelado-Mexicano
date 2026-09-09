@@ -4,7 +4,7 @@ Archivado verbatim por 0-bis A.3 (`.claude/commands/acto.md` §3). SHA de
 redacción: `origin/main = b984531` (merge de `PR #663`). El encargo declara
 `redactado contra origin/main = 606f6ee3 (PR #662)`; entre la redacción y la
 ejecución fusionó el acto de la compuerta (`PR #663`), y `origin/main` avanzó
-a `b984531` — diferencia reportada en el ARRANQUE (punto 2 de `acto.md`), no
+a `b984531` — diferencia reportada en el ARRANQUE (punto 2 de `.claude/commands/acto.md`), no
 es PARO.
 
 ---

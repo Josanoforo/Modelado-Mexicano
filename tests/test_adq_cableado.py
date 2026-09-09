@@ -215,8 +215,15 @@ def _corre_bash(cuerpo, entorno=None, cwd=None, timeout=90):
     env = dict(os.environ)
     env["ADQ_CRON_SOLO_DEFINE"] = "1"
     env.update(entorno or {})
-    guion = f'set -uo pipefail\nsource "{RUNNER}"\n{cuerpo}\n'
-    r = subprocess.run(["bash", "-c", guion], cwd=cwd or str(RAIZ),
+    # El runner hace `cd "$REPO_DIR"` al cargarse (es su primer acto, y no
+    # se toca). Por eso el `cd` al directorio de trabajo del caso va
+    # DESPUÉS del source y no en `cwd=`: sin esto, un caso que escribe un
+    # recibo lo escribiría en el censo REAL del repo -- ya ocurrió una vez
+    # al construir este archivo, y la corrección vive aquí.
+    destino = cwd or str(RAIZ)
+    guion = (f'set -uo pipefail\nsource "{RUNNER}"\n'
+             f'cd "{destino}" || exit 90\n{cuerpo}\n')
+    r = subprocess.run(["bash", "-c", guion], cwd=str(RAIZ),
                        capture_output=True, text=True, errors="replace",
                        env=env, timeout=timeout)
     return r.returncode, (r.stdout or "") + (r.stderr or "")
@@ -341,7 +348,7 @@ def prueba_h5_contadores_no_se_rotulan_como_fuentes():
     explícitamente que no son payloads."""
     fuente = RUNNER.read_text(encoding="utf-8")
     afirma("ramas_nuevas" in fuente, "H5: la huella debe seguir midiendo ramas_nuevas")
-    afirma("no son payloads" in fuente or "no es número de fuentes" in fuente,
+    afirma("no son payloads" in fuente.lower(),
            "H5: el runner debe declarar que los contadores no son fuentes obtenidas")
 
 
