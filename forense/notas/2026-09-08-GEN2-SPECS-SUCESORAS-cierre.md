@@ -319,7 +319,10 @@ de donde §3.5 toma `estrato` e `id_loc` — no se parcha editando un sello),
 | corrida v3 | `preflight` → `run` → `verify` | `VERDE` → `SELLADO` → **`REPRODUCE` 142/142** |
 | corrida v4 | `preflight` → `run` → `verify` | `VERDE` → `SELLADO` → **`REPRODUCE` 143/143** |
 | sellos previos | `sella_sha256.py --verifica` sobre `S6 v1_2` y `S12 v1_0` | **`SELLO_COINCIDE`** los dos |
-| suite | `tests/check.py --baseline` | **`LÍNEA BASE: VERDE`** |
+| suite (base `c5b89a9`) | `tests/check.py --baseline` | **`LÍNEA BASE: VERDE`** |
+| suite (tras fusionar `origin/main = 0763457`) | `tests/check.py --baseline` | **`ROJO` — 1 entrada, heredada, ver abajo** |
+
+🛑 **El rojo es de `origin/main`, no de este acto — con control positivo.** Al fusionar `origin/main = 0763457` (`PR #643`, `ACTO GEN2-TRAMITE-BANDEJA`) la suite pasa a `ROJO` por **una** entrada: `T-YAMEDIDO: forense/encargos/2026-09-08-GEN2-TRAMITE-BANDEJA.md: cita R8.3 y no trae salida de tools/ya_medido.py`. **Control:** `git worktree add <tmp> origin/main` — un árbol limpio, **sin un solo commit de esta rama** — y `tests/check.py --baseline` ahí da **exactamente la misma única entrada**. **Esta rama añade cero entradas nuevas sobre esa base.** No se repara aquí: exigiría editar `tests/check.py` (fuera del perímetro declarado del acto) o el encargo verbatim de otro acto (lo prohíbe la regla de la casa). Queda como **`NC-0066`**.
 
 **Siete commits, en el orden que hace verificable la disciplina** — es el orden,
 y no la palabra del ejecutor, lo que prueba que la spec se fijó antes del número:
@@ -331,7 +334,7 @@ y no la palabra del ejecutor, lo que prueba que la spec se fijó antes del núme
 835dfff  COMMIT-3  CALC-0003-v4 congelado (el reemplazo)
 8250fc8  COMMIT-4  CALC-0003-v4 SELLADA
 017f198  COMMIT-5  S12 v1.1 SELLADA
-   ↓     COMMIT-6  cascada (ADR-420, L0, registro, firmas, nota)
+   ↓     COMMIT-6  cascada (ADR-421, L0, registro, firmas, nota)
 ```
 
 ---
