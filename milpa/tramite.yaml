@@ -836,7 +836,7 @@ reglas:
       disparadores: {}
       disparadores_estado: "el SI de §3.5 (segsoc=2 ∨ residencia ∈ {EUA, Otro país} ∨ hogar con remesas P041) es circular con el desenlace medido (recibe_remesas) y sus mitades no circulares no existen en concentradohogar; tasa base incondicional sobre universo completo de hogares, declarado en #447"
     entonces:
-      - {conducta: recibe_remesas, p: 0.045694, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: recibe_remesas, p: 0.045694, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-B-ENIGH-2022-P, corrida0_generacion: GEN2}  # ACTO GEN2-PRIMERA-SILLA P4 (FIRMA 2 de mesa, 8/sep/2026): la PRIMERA cita de un consumidor de milpa/ a un RESULT GEN2. CALC-B-0001 remidio esta tasa bajo GEN2 (RESULT-B-ENIGH-2022-P = 0.04569409956405095) y reproduce el 0.045694 publicado al grano de seis decimales con que milpa/ materializa (delta +9.956e-08). El merge de este PR es la adopcion (E.2). El `p` NO se movio: se declara de donde viene.
       - {conducta: no_recibe_remesas, p: 0.954306, clase: "MEDIDO·p(tasa base ponderada)"}
     porque: {generador: [G5], mecanismo: "la familia opera como seguro (corresidencia, pooling, remesas) ante ingreso volátil / ausencia de Estado — §3.5 verbatim"}
     tier: FUERTE

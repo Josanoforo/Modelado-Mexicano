@@ -5794,7 +5794,19 @@ def t35_repro(modulo=None):
     corridas = {f["corrida_id"]: f for f in vistas["corridas"]}
     resultados = vistas["resultados"]
     usos = vistas["usos"]
-    usos_por_result = Counter(u["resultado_id"] for u in usos)
+    # NC-0068 / FP-364 (medido en ACTO GEN2-C0-B §5.3): la llave de ADOPCION
+    # no es `usos.resultado_id` -- ese es un id del lado DEMANDA
+    # (`RES-0001`...), disjunto por construccion de los `RESULT-...` del lado
+    # OFERTA que se estan recorriendo aqui (medido: 205 llaves de usos x 348
+    # de OFERTA, interseccion 0). Con la llave de antes el WARN
+    # SELLADA-SIN-ADOPTAR no podia bajar ni con una adopcion real y correcta.
+    # La marca de adopcion vive en `usos.corrida0_resultado_id`, y solo cuenta
+    # con la cadena COMPLETA: uso activo, marca presente y `corrida0_generacion:
+    # GEN2` -- una cadena a medias ya falla por (d)/(e) y no debe pasar por
+    # adopcion.
+    adoptado_por = Counter(u["corrida0_resultado_id"] for u in usos
+                           if u["activo"] == "SI" and u["corrida0_resultado_id"]
+                           and u.get("corrida0_generacion") == "GEN2")
     indice = {}
     for f in resultados:
         previo = indice.get(f["resultado_id"])
@@ -5834,7 +5846,7 @@ def t35_repro(modulo=None):
             fail("T-REPRO", f"(a) {rid}: sin tolerancia declarada")
         if not (C.CORRIDAS / calc / "spec.yaml").exists():
             fail("T-REPRO", f"(b) {rid}: su CALC {calc} no resuelve a spec.yaml")
-        if usos_por_result.get(rid, 0) == 0:
+        if adoptado_por.get(rid, 0) == 0:
             sellada_sin_adoptar.append((rid, calc))
 
     # FP-360 (FIRMADA, 8/sep/2026): un RESULT activo GEN2 sellado y sin
@@ -5903,17 +5915,24 @@ def t35_repro(modulo=None):
         if not (C.CORRIDAS / destino["spec_id"] / "spec.yaml").exists():
             fail("T-REPRO", f"(b) {u['consumidor']} -> {marca} -> "
                             f"{destino['spec_id']}: el CALC no resuelve")
-        # (c) valor materializado == RESULT, con tolerancia POR TIPO.
+        # (c) valor materializado == RESULT, con tolerancia POR TIPO y con la
+        # vara de ADOPCION -- NO con la de reproducibilidad (NC-0069 / FP-365).
+        # La pregunta de aqui es "el consumidor materializa este RESULT?", cuyo
+        # grano lo fija `milpa/` (seis decimales), no "esta corrida se
+        # reproduce a si misma?", que es la que `verify` contesta con
+        # `tolerancia.abs = 1e-10` y que este cambio NO afloja ni un decimal.
         try:
             tol = json.loads(destino["tolerancia"]) if destino["tolerancia"] != C.NO_DECLARADO else {}
         except ValueError:
             tol = {}
-        igual, delta = C._compara_result(destino["valor"], u["valor_materializado"],
-                                         {"tipo": destino["tipo"]}, tol)
+        igual, delta, modo = C._compara_adopcion(
+            destino["valor"], u["valor_materializado"],
+            {"tipo": destino["tipo"]}, tol, C._tol_adopcion_de(destino))
         if not igual:
             fail("T-REPRO", f"(c) {u['consumidor']}: valor materializado "
                             f"{u['valor_materializado']!r} != {marca} "
-                            f"({destino['valor']!r}); delta={delta}")
+                            f"({destino['valor']!r}); delta={delta}; "
+                            f"vara de adopcion: {modo}")
 
 
 def main():
