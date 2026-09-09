@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **419 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **420 ADR**
 
 > | | |
 > |---|---|
@@ -7382,3 +7382,25 @@ FIRMA DE MESA, verbatim del 8/sep/2026: «ármame el sello, el encargo ya corri�
 **Contador.** **Cero GEN2** (aparato de disciplina de investigación, no medición del motor) — pagado con el Gate D-14 de arriba: la próxima fuente bloqueada tiene mejor oportunidad de recuperarse, y si no se recupera, se sabrá qué falta y cuándo dejar de buscar.
 
 **Perímetro cumplido.** `.claude/commands/sonda.md` · `.claude/commands/adquiere.md` · `forense/encargos/2026-09-08-GEN2-SONDA-3-ESCALAMIENTO-LATERAL.md` (0-bis) · `forense/encargos/cola/2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md` · `forense/hallazgos.md` (una línea) · `forense/no-corrido.tsv` (`NC-0060`) · cascada. **No tocó** cron, colas de datos, manifiesto, downloader, catálogo general, skill por técnica, ni esquema nuevo de estados — verbatim prohibido por el encargo.
+
+---
+
+**ADR-420 (derivado por `python3 tools/cierre_acto.py`, Fase A; contra `origin/main = c5b89a9` — el encargo se redactó contra `351fd25f`, sin diferencia material en su perímetro: máximo real `419`, candidato `420`, sin huecos) · `ACTO GEN2-TRAMITE-BANDEJA · CUATRO DECISIONES DE MESA PROPAGADAS Y LA BANDEJA DERIVADA`**, 8/sep/2026, entorno **NUBE, repo-only, sin microdato ni red** (`forense/encargos/2026-09-08-GEN2-TRAMITE-BANDEJA.md`, archivado verbatim, 0-bis `37e8057`).
+
+**Gate verificado.** `COMPUERTA: RETRO-SELLO-2 fusionado` — verificada por producto, no por `grep` de log: `git merge-base --is-ancestor 2f86da6 origin/main` (fusión de `PR #637`, `ACTO GEN2-RETRO-SELLO-SONDA-2`) y `git merge-base --is-ancestor 4a0d391 origin/main` (fusión de `PR #641`, `ACTO GEN2-RETRO-SELLO-SONDA-CAJA-1`) — ambos `0` (cumplen). Los dos "retro-sello" que la fila `D-14` cita como su serie histórica están fusionados.
+
+**P1 · `D-14` → `DECLINADA-POR-PROCESO`.** Firma de mesa verbatim: «pues sobre todo son encargos que vienen de chatgpt, mejor lo que haré es pasarlos por ti antes de mandarlos yo directamente, es que luego te tengo trabajando en otras cosas, pero eso se corrige yo dejándolo de hacer.» Mesa declina el `WARN` mecánico candidateado por `D-14` y elige un remedio de proceso — dirección revisa todo encargo redactado fuera del repo antes de lanzarlo. La fila no cierra ni se borra: `#632`/`#635` quedan como su serie histórica, con condición de reapertura escrita (un caso nuevo del mismo patrón revive la fila y reconsidera el `WARN`).
+
+**P2 · `NC-0057` → `CERRADA-DECLINADA`.** Firma de mesa verbatim: «ahorita no agregan valor.» La vía CIDE/Colmex/UNAM para un microdato mexicano de tandas/ROSCA con reputación cierra con la respuesta técnica de dirección asentada: semi-automatizable por autor, pero sin una pista concreta la razón señal/ruido no paga las horas. `SONDA-3` queda nombrada como vía de piloto futuro si aparece un autor o paper citado.
+
+**P3 · El segundo timbre → `SOLICITUD-PREPARADA`.** Firma de mesa verbatim: «Ok, hay 2 elementos así, de timbres, pero hay descargas manuales que efectivamente yo tengo que correr, pero otras que con los arreglos de la sonda se obtienen.» `REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES` (Tanda+, `equipo@tandamas.mx`) pasa a `SOLICITUD-PREPARADA` con receta de correo (español, ≤10 líneas) lista para mesa, mismo patrón que `OECD` (`ACTO GEN2-CIERRES-GRUPO-A`). Editado en `data/curacion-registro/cola-adquisicion-registro.tsv` (fuente) y regenerado en `data/cola-adquisicion-v1_0.tsv` vía `tools/vista_cola_adquisicion.py`. El envío físico es `DECISIÓN-DE-MESA-PENDIENTE` (`NC-0061`) — el agente no manda correos.
+
+**P4 · La bandeja de mesa, derivada.** Sobre las 138 filas de la cola vigente, `forense/notas/2026-09-06-MAESTRA38-A6-PAQUETE-RECETAS-11.md` y el piloto gateado de `SONDA-3` (`forense/encargos/cola/2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`), se separa en dos columnas lo pendiente-de-humano: `SOLO-MESA` (7 filas — `OECD`, tandas, Global Findex 2025, `ENAFIN`-empresa, `CNBV_PORTAFOLIO_INFORMACION_IMOR_CONSUMO`, `ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF`, Bauchet SSRN 2474620) y `RE-INTENTO-VÍA-SONDA` (3 filas ya nombradas o con barrera de bloqueo de agente/`SIN-FETCH` — `RUPC`, `DD_COMPRANET_DICCIONARIOS_DE_DATOS`, `ROSCA_ACADEMICO_MEXICO_BUSQUEDA`), tabla completa en `forense/notas/2026-09-08-GEN2-TRAMITE-BANDEJA-bandeja-mesa.md` §4.
+
+**`tests/check.py --baseline`**: VERDE, sin `FAIL` nuevo.
+
+**NO-CORRIDO/RESERVAS.** `NC-0061` — envío físico de los dos correos (OCDE ya preparado por `ACTO GEN2-CIERRES-GRUPO-A`, tandas preparado aquí), `DECISIÓN-DE-MESA-PENDIENTE`, sucesor: mesa, con la bandeja de §4 a la vista.
+
+**Contador.** **Cero GEN2** — trámite declarado. Tres decisiones dejan de vivir solo en conversación, y mesa recibe por primera vez su bandeja completa en una tabla de dos columnas.
+
+**Perímetro cumplido.** `forense/firmas-pendientes.tsv` (`D-14`) · `forense/no-corrido.tsv` (`NC-0057`, `NC-0061` nueva) · `data/curacion-registro/cola-adquisicion-registro.tsv` / `data/cola-adquisicion-v1_0.tsv` (vista regenerada) · `forense/hallazgos.md` · `forense/notas/2026-09-08-GEN2-TRAMITE-BANDEJA-bandeja-mesa.md` · `forense/encargos/2026-09-08-GEN2-TRAMITE-BANDEJA.md` (0-bis) · cascada. **No tocó** comandos, `corrida0`, specs ni `CALC` — verbatim prohibido por el encargo.
