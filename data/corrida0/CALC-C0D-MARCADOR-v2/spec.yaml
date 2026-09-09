@@ -1,0 +1,555 @@
+# CALC-C0D-MARCADOR-v2 -- cara mecanica de spec.md (ACTO GEN2-C0-D · EL MARCADOR).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/C0D-MARCADOR-spec-v1_0.md (`prereg-caja-C0D-MARCADOR`).
+# La pareada L_SOLO <-> L_CORPUS sobre las 14 celdas de marco-M-sorteado-v1_3.tsv.
+# NINGUNA cifra suya entra a un veredicto de regla (T9).
+# CONGELADO en el COMMIT-1 de GEN2-C0-D, antes de calcular una sola cifra.
+calc_id: CALC-C0D-MARCADOR-v2
+repite_de: CALC-C0D-MARCADOR
+spec_md: spec.md
+spec_md_sha256: 66330ddb92b80c4305c7b5586d814f4e51b4548f2d8c10ec8753153c6f767caa
+
+script: data/corrida0/CALC-C0D-MARCADOR-v2/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MARCADOR-PAREADO-DUELO
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/C0D-MARCADOR-spec-v1_1.md
+  spec_sellada_sha256: 604008c7ae0d5f82e12bb8aacee39f73ae676c794d9c067de73b0e56ae3f40cd
+  reglas_bajo_prueba: "NINGUNA. T9, verbatim: ninguna cifra de este marcador entra a un veredicto de regla. No mueve ningun tier, ningun p, ninguna banda z del duelo."
+  contaminacion_declarada: "ADR-46 -- al congelar esta spec la sesion YA conocia, por el encargo de dirección, las tres cifras marginales D4 del 8/sep (L_CORPUS 19.60 · L_SOLO 11.69 · M 4.51). NO conocia ninguna cifra pareada, ningun d_i, ningun n de universo comun ni ningun err_pp por celda: la pareada L_SOLO<->L_CORPUS no existe en el arbol (§0.1 de la sellada). La sesion leyo ADEMAS, antes de congelar: la ESTRUCTURA del universo (14 celdas, encuesta/ola/conducta/escala/grado_DD), el CONTEO de capturas por brazo (8+8 en las 14; 15 celdas de piloto sin brazo L+corpus), los METADATOS de captura (modelo, temperatura, k, fecha_congelacion, timestamps), los IDs de RESULT de CALC-B-0001 y el CODIGO de agregado_v1_1/v1_2/v1_3. NO leyo ningun valor_extraido, ningun R, ningun valor_punto de M ni ninguna cifra de CALC-B-0001."
+  medidor_ejecutado_al_congelar: "NO -- escrito y congelado en el COMMIT-3, corrido despues. La UNICA diferencia con CALC-C0D-MARCADOR es la fuente del punto L (L-extraido-v1_2.tsv en vez de valor_extraido) mas la guardia de correspondencia §3.5. Ninguna rama de veredicto se reescribio: v1.0 produjo NO-ADJUDICA-POR-CONTROL, que es la rama que mando escribir la sucesora."
+
+variables:
+  - {archivo: "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv", variable: id, rol: "identidad de la celda; las 14 filas son el universo"}
+  - {archivo: "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv", variable: grado_DD, rol: "exclusion §5 del procedimiento sellado: VERIFICACION-NO-PUNTUA sale. Verificado: las 14 traen 'P1 PUNTUA', ninguna sale"}
+  - {archivo: "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv", variable: escala, rol: "A-bis 3: las 14 son binaria, por eso err_pp es comparable entre celdas"}
+  - {archivo: "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv", variable: "encuesta, ola, conducta", rol: "cobertura del piso B (§0.2): solo ENIGH x recibe_remesas con ola previa"}
+  - {archivo: "forense/prereg-duelo-v2/L-extraido-v1_2.tsv", variable: "valor, estado", rol: "FUENTE VIGENTE del punto L: media de `valor` sobre las filas EXTRAIBLE de ese (id_celda, variante). Regla verbatim de agregado_v1_2._cargar_l_tsv_v1_2, que es la que corre", codigos: "estado in {EXTRAIBLE, ...}; solo EXTRAIBLE entra", direccion: "mas cerca de R es mejor"}
+  - {archivo: "forense/prereg-duelo-v2/L-extraido-v1_2.tsv", variable: "id_celda, variante, indice", rol: "llave de la guardia §3.5: cada fila del TSV tiene que tener su captura y cada captura su fila"}
+  - {archivo: "forense/prereg-duelo-v2/corridas-L/L-<id>-M__{L-solo,L+corpus}__NN.json", variable: valor_extraido, rol: "NO es la fuente del punto: es `null` en las 224 por diseno (hallazgo_declarado.nota_v1_2 del agregado). La captura entra por su EXISTENCIA (guardia §3.5) y por su metadato de alcance"}
+  - {archivo: "forense/prereg-duelo-v2/corridas-L/L-<id>-M__{L-solo,L+corpus}__NN.json", variable: variante, rol: "brazo; se verifica contra el nombre de archivo y discorda PARA"}
+  - {archivo: "forense/prereg-duelo-v2/corridas-M/M-<id>{__v1_3,,__v1_2}.json", variable: valor_punto, rol: "punto del corredor M; archivo resuelto por el orden §16 de MAESTRA38-M13"}
+  - {archivo: "forense/prereg-duelo-v2/corridas-R/<id>.json", variable: "R, EE_R, estado", rol: "patron oro y su error estandar; solo estado == COMPUTADO entra"}
+  - {archivo: "data/corrida0/CALC-B-0001/resultados.json", variable: "RESULT-B-{PERSISTENCIA,OPERATIVO}-<ola>-P y RESULT-B-ENIGH-<ola>-P", rol: "piso B citado por corrida0_resultado_id, y su observada para la guardia de conmensurabilidad"}
+  - {archivo: "forense/prereg-duelo-v2/scoring-adv1-m3.py", variable: "generar_indices_bootstrap, derivar_seed_scope, _cuantil_7", rol: "maquinaria de bootstrap SELLADA del duelo, consumida desde los bytes verificados por sha256; no se reimplementa"}
+  - {archivo: "forense/prereg-duelo-v2/agregado-v1_3-resultado.json", variable: "celdas.<id>.{L_solo,L_corpus}", rol: "control de convergencia §3.4: el punto que el agregado ya sello, contra el re-derivado de las capturas"}
+  - {archivo: "data/manifiesto.yaml", variable: fecha_descarga, rol: "alcance §0.3: cuantas entradas entraron al corpus DESPUES de la ventana de captura del brazo L+corpus"}
+
+universo: >-
+  Las 14 filas de `forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv`, ninguna mas y
+  ninguna menos. Las 15 celdas del piloto (CIV-08, DIN-03/05/07/11, DOC-06,
+  EMP-02/04/05, SFT-04/06, TIC-01/06/08/12) quedan FUERA: solo tienen brazo L-solo,
+  asi que no admiten pareada -- declarado en §0.4 de la sellada, no descubierto al
+  correr. Universo de la PAREADA PRIMARIA (U_LL): las celdas con R computado Y punto
+  en L_SOLO Y punto en L_CORPUS. Universo COMUN (U-interseccion): las que ademas
+  tienen punto en M.
+
+filtros: >-
+  Entra la celda cuyo `corridas-R/<id>.json` trae `estado == "COMPUTADO"` con `R` no
+  nulo. Entra la replica L cuyo `valor_extraido` no es nulo; si las 8 de un brazo son
+  nulas, ese punto es NO-DISPONIBLE y la celda sale de los agregados que lo
+  necesiten -- no se sustituye por 0 ni por el otro brazo. Si el campo `variante` de
+  una captura no coincide con el brazo que su nombre de archivo declara, PARA
+  (ValueError): es el mismo control que `agregado_v1_1._leer_l_variante` ya hace.
+
+ponderador: >-
+  NO-APLICA a nivel de celda: los puntos L, M y R llegan ya agregados por sus
+  procedimientos sellados, cada uno con su propio ponderador declarado en su fuente.
+  Los agregados de este marcador (MAE_pp y las pareadas) son medias SIN PONDERAR
+  sobre celdas -- cada celda del marco pesa uno, que es lo que `procedimiento-
+  scoring-v1_2.md` §7 sello para D4 y lo que este marcador copia sin cambiar.
+
+transformacion: >-
+  err_pp(corredor, celda) = 100 * (punto - R), con signo, en puntos porcentuales.
+  d_i = |err_pp(L_CORPUS, i)| - |err_pp(L_SOLO, i)|; d_i > 0 significa que el corpus
+  ALEJO al corredor del patron oro en esa celda -- el signo se fija aqui, antes del
+  dato. MAE_pp(corredor, U) = media de |err_pp| sobre U. IC95 de toda media = percentiles
+  2.5/97.5 de 10000 replicas bootstrap sobre CELDAS (remuestreo con reemplazo del
+  indice de celda), con `derivar_seed_scope(42, scope_id)` por cantidad.
+
+estimando: >-
+  DIAGNOSTICO, no gating. (1) PRIMARIO: la media de d_i sobre U_LL con su IC95 -- la
+  comparacion pareada L_SOLO <-> L_CORPUS que D-2/FP-348 declara de primera clase y
+  que `agregado_v1_3.py` NO implementa (§0.1). (2) SECUNDARIOS: las pareadas de cada
+  brazo de L contra M sobre el universo comun, y el piso B en las 2 celdas que lo
+  admiten. (3) DIAGNOSTICO DE UNIVERSO: si los MAE_pp marginales de D4 estaban
+  calculados sobre conjuntos de celdas distintos (A-bis 4). NO es una estimacion de
+  regla: ninguna cifra entra a un veredicto (T9) y la banda z primaria del duelo no
+  se toca.
+
+dependencias_materiales: []
+
+parametros:
+  fuente_acto: "ACTO GEN2-C0-D · EL MARCADOR · CALC-C0D-MARCADOR"
+  firma_que_lo_autoriza: "D-2 / FP-348 (FIRMADA), verbatim de mesa: «la idea central de todo este proyecto es un LLM puede superar a LLM con dato (todo el corpus), si esto no esta claro ahorita entonces no estamos comparando correctamente.» -- de ahi que la pareada L_SOLO<->L_CORPUS sea la comparacion de primera clase."
+  hallazgo_a_adjudicar: "asentado por direccion el 8/sep/2026: D4 (escala pp) marginal muestra L_CORPUS 19.60 · L_SOLO 11.69 · M 4.51. Este marcador lo convierte en veredicto o lo explica; §5 de la sellada fija las ramas por precedencia ANTES del dato."
+  seed_duelo: 42
+  bootstrap_replicas: 10000
+  nivel_ic: 0.95
+  n_minimo_pareada: 10
+  k_umbral_conmensurabilidad: 1.96
+  tolerancia_convergencia_L: 1.0e-9
+  n_filas_l_tsv: 224
+  fecha_corte_alcance: "2026-09-02"
+  orden_resolucion_M: ["M-{id}__v1_3.json", "M-{id}.json", "M-{id}__v1_2.json"]
+  scopes_bootstrap:
+    mae_marginal: "mae_pp::marginal::{corredor}::c0d_v1_0"
+    mae_comun: "mae_pp::comun::{corredor}::c0d_v1_0"
+    pareada_primaria: "mae_pp::pareado::L_CORPUS_vs_L_SOLO::c0d_v1_0"
+    pareada_sec_lsolo_m: "mae_pp::pareado::L_SOLO_vs_M::c0d_v1_0"
+    pareada_sec_lcorpus_m: "mae_pp::pareado::L_CORPUS_vs_M::c0d_v1_0"
+  piso_B:
+    cobertura_sellada: "2 de 14 celdas -- FAM-M-06 (ENIGH 2018) y FAM-M-07 (ENIGH 2020). FAM-M-05 (ENIGH 2016) es SIN-BASELINE-PRIMERA-OLA: 2016 abre el universo congelado de B y no hay ola anterior. Las otras 11 son SIN-BASELINE-FUERA-DE-SERIE: B es una linea base temporal de la MISMA serie (ENIGH x recibe_remesas)."
+    celdas: {FAM-M-06: "2018", FAM-M-07: "2020"}
+    brazo_primario: PERSISTENCIA
+    brazo_secundario: OPERATIVO
+    nota: "MAE_pp(B) NO se calcula: n=2 no sostiene un agregado y compararlo contra un MAE de 14 celdas violaria A-bis 4. Se reporta PISO-CITADO-COBERTURA-PARCIAL."
+  ramas_pareada_pre_declaradas:
+    precedencia: ["NO-ESTIMABLE-POR-COBERTURA", "CORPUS-ESTORBA", "CORPUS-AYUDA", "NO-DISCRIMINA"]
+    NO-ESTIMABLE-POR-COBERTURA: "n_LL < 10 -- no adjudica, cualquiera que sea el intervalo"
+    CORPUS-ESTORBA: "ic_lo > 0 -- el corpus alejo a L del patron oro; CONFIRMA el hallazgo del 8/sep"
+    CORPUS-AYUDA: "ic_hi < 0 -- el corpus acerco a L al patron oro; REFUTA el hallazgo del 8/sep"
+    NO-DISCRIMINA: "ic_lo <= 0 <= ic_hi -- la pareada no distingue los dos brazos"
+  ramas_adjudicacion_pre_declaradas:
+    precedencia: ["NO-ADJUDICA-POR-CONTROL", "NO-ESTIMABLE-POR-COBERTURA", "EXPLICADO-POR-UNIVERSO", "EXPLICADO-POR-METRICA", "CONFIRMADO-CON-ALCANCE"]
+    NO-ADJUDICA-POR-CONTROL: "el control de convergencia DIVERGE: el agregado vigente y las capturas no dicen lo mismo; adjudicar sobre una lectura desfasada seria adjudicar sobre nada"
+    EXPLICADO-POR-UNIVERSO: "universos marginales NO identicos Y el orden de los MAE comunes difiere del orden de los marginales: 19.60/11.69/4.51 comparaba corredores medidos sobre conjuntos distintos (A-bis 4)"
+    EXPLICADO-POR-METRICA: "universos identicos (o su correccion no cambia el orden) PERO la pareada da NO-DISCRIMINA: la diferencia de marginales no sobrevive al pareo"
+    CONFIRMADO-CON-ALCANCE: "la pareada da CORPUS-ESTORBA; el alcance es el corpus del 1-2/sep/2026, claude-opus-4-6, k=8, temp 1.0, 14 celdas del marco v1_3"
+    sucesor_de_5_3: "re-captura L_CORPUS con corpus GEN2 (fase 5 del plan de direccion) -- se NOMBRA aqui y NO se ejecuta en este acto"
+
+seed:
+  aplica: true
+  valor: 42
+  rng: "random.Random via generar_indices_bootstrap de scoring-adv1-m3.py (sellado); derivar_seed_scope(42, scope_id) por cantidad"
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Sin microdato y sin RNG propio: el bootstrap es determinista por seed derivada y
+    scope_id declarado, y las medias corren en orden fijo de celda. La unica
+    diferencia esperable entre dos corridas del mismo arbol es redondeo de float64.
+    Enteros y textos se comparan EXACTO. NO se afloja para que una adopcion pase: si
+    el grano de un consumidor no cabe aqui, para eso existe `tolerancia_adopcion`
+    (PRIMERA-SILLA §1), que esta spec deliberadamente NO declara -- adopta por la
+    rama de defecto, redondeando al grano del consumidor.
+
+inputs:
+  - {id: IN-L-EXTRAIDO-V1-2, origen: repo, ruta: "forense/prereg-duelo-v2/L-extraido-v1_2.tsv", sha256: 8c9c5fb4707a7b852dcae6e5bb31618263d2b6d5145e5d8a0d6618f6fba6239c}
+  - {id: IN-SPEC-SELLADA-V1-1, origen: repo, ruta: "forense/prereg-caja/C0D-MARCADOR-spec-v1_1.md", sha256: 604008c7ae0d5f82e12bb8aacee39f73ae676c794d9c067de73b0e56ae3f40cd}
+  - {id: IN-MARCO-V1-3, origen: repo, ruta: "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv", sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a}
+  - {id: IN-SCORING-M3, origen: repo, ruta: "forense/prereg-duelo-v2/scoring-adv1-m3.py", sha256: 63418cc8cfdb03ba5d851d01f1bba23e2f21dbac5cfbed2d88c2832cba13a8cf}
+  - {id: IN-AGREGADO-V1-3-RESULTADO, origen: repo, ruta: "forense/prereg-duelo-v2/agregado-v1_3-resultado.json", sha256: e0d59d542e141db2d572a3ed4d81e7651f2a0960f25841c0cd1c060774a6ab23}
+  - {id: IN-B-RESULTADOS, origen: repo, ruta: "data/corrida0/CALC-B-0001/resultados.json", sha256: 87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d}
+  - {id: IN-MANIFIESTO, origen: repo, ruta: "data/manifiesto.yaml", sha256: fadabe668e7af8897cca691ed8c1a688ee2c07c8fc996170d7041ccbf7df28a1}
+  - {id: IN-SPEC-SELLADA, origen: repo, ruta: "forense/prereg-caja/C0D-MARCADOR-spec-v1_0.md", sha256: c249e3b2ad8efd64326dc4b65ca770ca20e0e7fdac78dc2696e84a9838c56bd9}
+  - {id: IN-R-CIV-M-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/CIV-M-01.json", sha256: 919fb4e2ffe1e2ff73c84616420c9635b59a4d79a6cb37042fae5a29e9f70cfe}
+  - {id: IN-M-CIV-M-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-CIV-M-01.json", sha256: 5ace0f3c3692ce4a5ad87ce8ce29801c1acc74d2ddcad1255a825b46f0eb8bd8}
+  - {id: IN-L-SOLO-CIV-M-01-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L-solo__01.json", sha256: 9d1df4cb4f7b2659d7f210af782100927551cc0404be97b9a8dcde78ba5775cb}
+  - {id: IN-L-SOLO-CIV-M-01-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L-solo__02.json", sha256: 3203975742a3be7eec6020bc229eb9711c7c162eac50e1ccba78f98141c6a308}
+  - {id: IN-L-SOLO-CIV-M-01-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L-solo__03.json", sha256: 525805c4f98c4a739fc095ee785d819339171181c7f0a7a39322d51b0f658460}
+  - {id: IN-L-SOLO-CIV-M-01-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L-solo__04.json", sha256: 2bafd25fe1e1f06afb925ac2507a92ae609025ce60e4f1bec33952ffc896d39a}
+  - {id: IN-L-SOLO-CIV-M-01-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L-solo__05.json", sha256: e6a8b9ccad0e368dda06d026a18b8a69502e1605d2256839fb2cd486f37bc93f}
+  - {id: IN-L-SOLO-CIV-M-01-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L-solo__06.json", sha256: 5c138d606eae082be6ac99f40ea0bda56553de78a6996471054052f8a80b8ecd}
+  - {id: IN-L-SOLO-CIV-M-01-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L-solo__07.json", sha256: 44120c49a3d0896207a61377adf86f33d6fb9ee023582927bfcfb4498dac55ef}
+  - {id: IN-L-SOLO-CIV-M-01-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L-solo__08.json", sha256: 9c7cac088e997938cbc7290e872e43ce884ca492c8475456d44501533b356028}
+  - {id: IN-L-CORPUS-CIV-M-01-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L+corpus__01.json", sha256: d950b159dd04899a9b032d02e2422bc5fd06712799f3a4c3f6650b6e1c6b87a9}
+  - {id: IN-L-CORPUS-CIV-M-01-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L+corpus__02.json", sha256: c4f9f7a8a9f166b50089346156b922f4dcb4c281d2255435f319700478ff7c2d}
+  - {id: IN-L-CORPUS-CIV-M-01-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L+corpus__03.json", sha256: 149d7ee24fa25ca02062798aa5594510ca9cf2778ab6cd3d07eed15ef94affe1}
+  - {id: IN-L-CORPUS-CIV-M-01-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L+corpus__04.json", sha256: 1819cb49f4613fd632588a51eb7ecf9ffc14953d2671726a049909054a91d539}
+  - {id: IN-L-CORPUS-CIV-M-01-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L+corpus__05.json", sha256: 65651ae3bd5d9506c89246dbb6c564d0b2778ce4130bb4f5ce79f956f933fab8}
+  - {id: IN-L-CORPUS-CIV-M-01-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L+corpus__06.json", sha256: 43a507199c8cb315acc6ffb2719b29ce3dbf2252dc52fe3fe38386b75646f4c5}
+  - {id: IN-L-CORPUS-CIV-M-01-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L+corpus__07.json", sha256: 7fa69e2e0065c9467c2bb5e2fe78886654befda34b13ed6752b272bcbc95a009}
+  - {id: IN-L-CORPUS-CIV-M-01-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-01-M__L+corpus__08.json", sha256: 0de7c0e2620cbbe39274e4a7998bad88e9a9e1f2fc425739c23a831e9a974d71}
+  - {id: IN-R-CIV-M-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/CIV-M-02.json", sha256: d9c6926e421ea7dd6048d6f04d5f10914e32566cb07ce13b000dc37b222e7073}
+  - {id: IN-M-CIV-M-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-CIV-M-02__v1_2.json", sha256: a0d17fca609d51df834ec5db4835192de577d43d8bbb7d94fda2ec98f12b9254}
+  - {id: IN-L-SOLO-CIV-M-02-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L-solo__01.json", sha256: 2b2c4ccf283de0b3530f0de08165c7e34411cc19a0e49852c9f50610c6b76c9c}
+  - {id: IN-L-SOLO-CIV-M-02-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L-solo__02.json", sha256: d3a09ab0f51f49345bb49b83a16b5f4ada25ac1e1e6a21cde3354976fde913c6}
+  - {id: IN-L-SOLO-CIV-M-02-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L-solo__03.json", sha256: bf60e46fc2345bb7a9de57cb572ec3ec8af9d0eb8aa1c2f5309b8fec567caafd}
+  - {id: IN-L-SOLO-CIV-M-02-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L-solo__04.json", sha256: 1a5633bc0491d403d186889e192a2e90dfd729fe3491de66e72953e908c4053e}
+  - {id: IN-L-SOLO-CIV-M-02-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L-solo__05.json", sha256: c5fc34d3630c9fad6c01df2794ab92d4efaff40c0bc1b76151889c78fc4f2ee5}
+  - {id: IN-L-SOLO-CIV-M-02-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L-solo__06.json", sha256: 366347b7619fb23ad45ac2c9e47f27fea9d69611abd33c20c4ba008c11f795ce}
+  - {id: IN-L-SOLO-CIV-M-02-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L-solo__07.json", sha256: 3c7c832a741074fc9a70d1545c5f1a3069a7201cc95b0e1d975a079b33240cf2}
+  - {id: IN-L-SOLO-CIV-M-02-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L-solo__08.json", sha256: 0923834910c846d67e0d35b740acdea86183cdcf3d852f58b5cb1f9201541056}
+  - {id: IN-L-CORPUS-CIV-M-02-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L+corpus__01.json", sha256: 807b7ced2305d3ec67d7323a4674aadf6d46b757fd3152c1e02ab7f57221bb28}
+  - {id: IN-L-CORPUS-CIV-M-02-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L+corpus__02.json", sha256: f93085174b2e2376bf96eec7853d1fc5c33a5f28df49ee7ebe395afd66596d89}
+  - {id: IN-L-CORPUS-CIV-M-02-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L+corpus__03.json", sha256: 17c6408238a04fed1ddace6c1572321deb439be68d628a8fcdf375e5cc85db0b}
+  - {id: IN-L-CORPUS-CIV-M-02-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L+corpus__04.json", sha256: a0369f22cd69b19e781c28ca6c738cdabf5ecbdb3086675e347cb3d419703d12}
+  - {id: IN-L-CORPUS-CIV-M-02-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L+corpus__05.json", sha256: fbcd65f888a198adf93e02a23431a90028afec3c4b01b15f9f615f97e6b36fcc}
+  - {id: IN-L-CORPUS-CIV-M-02-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L+corpus__06.json", sha256: 0d1d358e15bdbca02a41aa4f4f0193f33fdc7a911aa2f5f67d44b454cc302afd}
+  - {id: IN-L-CORPUS-CIV-M-02-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L+corpus__07.json", sha256: 52902489bd5c664ba3cf1eadb2742e5f09f91d0d14acdf1e2941463587878736}
+  - {id: IN-L-CORPUS-CIV-M-02-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-02-M__L+corpus__08.json", sha256: bd040fef39ca0a7321b77366ff82afa947b31d3fc5a9786a08e3662497d56b1e}
+  - {id: IN-R-CIV-M-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/CIV-M-04.json", sha256: b5c49fd6c6ff8afa0ca4df86f5e4be955d4a566aab5a4100c903f4041c981906}
+  - {id: IN-M-CIV-M-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-CIV-M-04__v1_2.json", sha256: ec69473b29c1a1713f271b23bc25f0e49c42277ab57d11b0a20cd1dae5153cb5}
+  - {id: IN-L-SOLO-CIV-M-04-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L-solo__01.json", sha256: 419aa78c29750f2265ca98d71861144f1b1a33c3fd7143a25e15f60ffaec1115}
+  - {id: IN-L-SOLO-CIV-M-04-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L-solo__02.json", sha256: a9fe25fc3210e13cc97a7838a655e5afda1509f1623373eeda270281a967b93b}
+  - {id: IN-L-SOLO-CIV-M-04-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L-solo__03.json", sha256: 16e191516aa4cf883ff88ece6a0ac39b6b317f5178f7c2c534b7997e367dbb78}
+  - {id: IN-L-SOLO-CIV-M-04-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L-solo__04.json", sha256: 47b818c6351d6eba85bfb7f53d938248abdd0b1a103e2d56630c2bed69ba5819}
+  - {id: IN-L-SOLO-CIV-M-04-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L-solo__05.json", sha256: baf3ae0b08d5c3da697df9c1b13d764d4b3127d263268582ed6326f3c2dec22b}
+  - {id: IN-L-SOLO-CIV-M-04-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L-solo__06.json", sha256: 676245dfe81d225a5c9121ee17b52d9bec159e55390cc62ed22021f348b363e1}
+  - {id: IN-L-SOLO-CIV-M-04-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L-solo__07.json", sha256: 3d7fa0e36a13af25f575f1a2889ad6a08b9454c24240f0c0d647df0209952d47}
+  - {id: IN-L-SOLO-CIV-M-04-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L-solo__08.json", sha256: 1f5b7bb97528e9acef14ef0ba629b604bfe09b77007430d9dc0e24ad3ba7107c}
+  - {id: IN-L-CORPUS-CIV-M-04-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L+corpus__01.json", sha256: 5bb88baa684a66580f734f190477eec77b53e3e2d512dd26ae914e63baf04293}
+  - {id: IN-L-CORPUS-CIV-M-04-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L+corpus__02.json", sha256: 7fc5378051c317b0c5961d5e556765c9c8f90548054c296fe194fc774dbca91f}
+  - {id: IN-L-CORPUS-CIV-M-04-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L+corpus__03.json", sha256: fb6df6fcd81ffeb74a5f1bca68e90438adfcf52b0924f7deb438b5cc996d416d}
+  - {id: IN-L-CORPUS-CIV-M-04-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L+corpus__04.json", sha256: fd718738f935411238e63918acdb2b2e2c3c62f9ed6403313e79fddf6ad5bb2d}
+  - {id: IN-L-CORPUS-CIV-M-04-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L+corpus__05.json", sha256: a0d4773ba0ec6de78f25f683b4116e9ac30ec42bc58e446a29fda3285b8a2ddb}
+  - {id: IN-L-CORPUS-CIV-M-04-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L+corpus__06.json", sha256: 1178f9b54bb597d9cbc976edc133182f585be0b767aa9bbf2aafcc915d2beb01}
+  - {id: IN-L-CORPUS-CIV-M-04-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L+corpus__07.json", sha256: ca329efa865d31bc353a063d3bb2b83cb268a95b7f18265f4fe06a1803735baf}
+  - {id: IN-L-CORPUS-CIV-M-04-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-04-M__L+corpus__08.json", sha256: cd017836b8ebd9fc69f5f3ad0240f999e5e147ff23f17969be57eec01c5be0d5}
+  - {id: IN-R-CIV-M-10, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/CIV-M-10.json", sha256: 4b7605de396efcf959feb79643e65956e08bfb313169a3447036de861dff4522}
+  - {id: IN-M-CIV-M-10, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-CIV-M-10__v1_2.json", sha256: 2f517ca8b29f9bdf7c90c87c47427c21a60fa4ad15ff53285bc55c01d59c2e35}
+  - {id: IN-L-SOLO-CIV-M-10-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L-solo__01.json", sha256: 8b4830ded3a1377fb8f1c9e3b5b27e4fa9cd764f90559e5e6d9748d4d8c87d2d}
+  - {id: IN-L-SOLO-CIV-M-10-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L-solo__02.json", sha256: 2c84fbfec0dc760cea50db97db5ba9969ca7cc219554204a404b87ad35f26237}
+  - {id: IN-L-SOLO-CIV-M-10-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L-solo__03.json", sha256: 920b2f1bc114986f18f1559f9473da10c6ada0b3f49f946e10dcc3eec51efc06}
+  - {id: IN-L-SOLO-CIV-M-10-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L-solo__04.json", sha256: bb336a408b518b551d387846b45e72d6e77f6b3b774e3929bd812d85d078e6ff}
+  - {id: IN-L-SOLO-CIV-M-10-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L-solo__05.json", sha256: dc52dde9a3c0cdadf09a65b9299667a2f4fd465260b38080e5f7c8d0b5630146}
+  - {id: IN-L-SOLO-CIV-M-10-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L-solo__06.json", sha256: f71329a239743d4780e3f7ba53c0110e66e6ab1af34818646de707214fef7918}
+  - {id: IN-L-SOLO-CIV-M-10-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L-solo__07.json", sha256: 832af5012c37d73a308b077ffe6b57dda430a6bd7075b3475f1b93bbcc9af9ad}
+  - {id: IN-L-SOLO-CIV-M-10-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L-solo__08.json", sha256: cdd7b936d46539c826ccb1c09813e2f3dcd246492f04693d42f7b77ebd035eed}
+  - {id: IN-L-CORPUS-CIV-M-10-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L+corpus__01.json", sha256: 0476297534246130b7152fc5bada01d324dd5947c4ea920b52cd7c74c04b9dbf}
+  - {id: IN-L-CORPUS-CIV-M-10-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L+corpus__02.json", sha256: af0af56fcf44c2ad85cbf79eea6212b70a7205ec83dead83c98c4c27552cb5c4}
+  - {id: IN-L-CORPUS-CIV-M-10-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L+corpus__03.json", sha256: b5cfe9d774aab5a93a9b33487ae68821767de051db4eca5c7d48de85eb48a822}
+  - {id: IN-L-CORPUS-CIV-M-10-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L+corpus__04.json", sha256: b1ebb628c4265133db06f760ac01a72926b2c2d61698261538b244c75debbf4c}
+  - {id: IN-L-CORPUS-CIV-M-10-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L+corpus__05.json", sha256: 0efc1621d10fdf83d29c00a8e703142f11cd3d4a88c4c75f6aee4b8cac8cd7e3}
+  - {id: IN-L-CORPUS-CIV-M-10-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L+corpus__06.json", sha256: 5f9ba29c8ea449679fa52424d89a961a4475ed06f0fed2d8217e1ef7999f9c24}
+  - {id: IN-L-CORPUS-CIV-M-10-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L+corpus__07.json", sha256: 544dd9642464efe32ec0dd35469b788b1bfc68d877fb7d44ce448a395798783f}
+  - {id: IN-L-CORPUS-CIV-M-10-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-10-M__L+corpus__08.json", sha256: 9fc4781516c77e012c51e667c6d206699b034f62c305899d8bcd2f5cf6050768}
+  - {id: IN-R-CIV-M-12, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/CIV-M-12.json", sha256: 93c859420ff8d610fbc41c5868b739be6e5fcc99a8750b046e1be53e017c86cd}
+  - {id: IN-M-CIV-M-12, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-CIV-M-12.json", sha256: 6dbaf71682207a347b246324d9b85d6304a77472b3203def12918bebc3aab999}
+  - {id: IN-L-SOLO-CIV-M-12-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L-solo__01.json", sha256: 9b8e33d410660f0fbd076cae42a48418d7e4b841faff2a04c805bbea07c518b0}
+  - {id: IN-L-SOLO-CIV-M-12-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L-solo__02.json", sha256: d6bb7f2ad3fc4bf01b0af9642b79e46f5d6489965b665303c4d5a1541e834e29}
+  - {id: IN-L-SOLO-CIV-M-12-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L-solo__03.json", sha256: 7aaff18f375b490be3fbb8b0bc9ca01ba029093b81a11438a125383d28807f50}
+  - {id: IN-L-SOLO-CIV-M-12-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L-solo__04.json", sha256: b0c809bb66cfabccc840f7f805a90edd48faae9bc1cef15c51c849e6264f7676}
+  - {id: IN-L-SOLO-CIV-M-12-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L-solo__05.json", sha256: 9c983ae38f2d86e822f5e33b8387a9ff68f140677dc2618eb7a051d39fa50829}
+  - {id: IN-L-SOLO-CIV-M-12-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L-solo__06.json", sha256: e4d541d87fca3b1454f0f7ac81c0772c0a59dc0b63e4c955a63e69d295dac775}
+  - {id: IN-L-SOLO-CIV-M-12-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L-solo__07.json", sha256: a8a39f83d80be3d068d6de47a50fe2a7080908159f07df79ea839caa2c6ac081}
+  - {id: IN-L-SOLO-CIV-M-12-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L-solo__08.json", sha256: 5595b853a876641d0f0635fe84246b5a66e97d42b4d2829d78a80f037fba88a6}
+  - {id: IN-L-CORPUS-CIV-M-12-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L+corpus__01.json", sha256: 95f3ce7d9b481084223b10476c4ce7413dff4c558288737c6d929879a1689b88}
+  - {id: IN-L-CORPUS-CIV-M-12-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L+corpus__02.json", sha256: 77892ef5168b47e76399bf0684b28f51debc2ab483cf7e5701fc4fba3801636f}
+  - {id: IN-L-CORPUS-CIV-M-12-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L+corpus__03.json", sha256: 9fce4681b90d84569ac1cf09f0f9c4ee42a7206c8d67b271b5e696051ebdddc0}
+  - {id: IN-L-CORPUS-CIV-M-12-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L+corpus__04.json", sha256: 06f7f2a918482b71b1afde6f498d3a7af0f5ad8e0d729ec682e1a8f0d07449a0}
+  - {id: IN-L-CORPUS-CIV-M-12-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L+corpus__05.json", sha256: 2391db600a251e063fc4fb03c56debe0e6ce5f4c21af9157dcd534619ec7cdc8}
+  - {id: IN-L-CORPUS-CIV-M-12-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L+corpus__06.json", sha256: 28933415b859dc977e0bdb293a0de1cc583d48f09bcb6c5f0dddd8ab5148201b}
+  - {id: IN-L-CORPUS-CIV-M-12-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L+corpus__07.json", sha256: 91e785e9004b3884f75b122b28850449e611a1e44397e812c47ba7ba8c832602}
+  - {id: IN-L-CORPUS-CIV-M-12-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-12-M__L+corpus__08.json", sha256: 177988c545f9da3b1d3dc0be99400472757b035d0dca2614c28c98d95cd4dbe5}
+  - {id: IN-R-CIV-M-13, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/CIV-M-13.json", sha256: 5268c05cff446609f82e4148625516da58687af5b89d10b88012397d43d51193}
+  - {id: IN-M-CIV-M-13, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-CIV-M-13.json", sha256: 6ea42b33875ab5ad44f6c14fb1d0297b145e55788c716e75deeee857841ad7e3}
+  - {id: IN-L-SOLO-CIV-M-13-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L-solo__01.json", sha256: a6332a46b30c3c94c3ae46beab919812a769c4a22e39e58ff4a8ee157ae5ebf9}
+  - {id: IN-L-SOLO-CIV-M-13-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L-solo__02.json", sha256: 76c7004f61eb9473c83b91cf6bf3067a5781397bdcb2460064a93619ddeb9b9a}
+  - {id: IN-L-SOLO-CIV-M-13-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L-solo__03.json", sha256: f84fa9ea744845d14fcd6aed6ec14484d8f3b09ba0f4f2696bcf0b0ba32a5438}
+  - {id: IN-L-SOLO-CIV-M-13-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L-solo__04.json", sha256: d165ac3827c82ac717e13264617d64b82dcd12fd8e4810d2324ebf480b58cd45}
+  - {id: IN-L-SOLO-CIV-M-13-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L-solo__05.json", sha256: c8d0813fb547ef79c8a32a9a0b24112737f798a3addbef239f3f9775108db80f}
+  - {id: IN-L-SOLO-CIV-M-13-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L-solo__06.json", sha256: 633edb16df77b174397d1da81febe778441df15e8cc7f32c355bb0481cc114ce}
+  - {id: IN-L-SOLO-CIV-M-13-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L-solo__07.json", sha256: ebfbc03494d2b36834c9fa87934677b2b326407c9c88e33f4c3dbda860c029d1}
+  - {id: IN-L-SOLO-CIV-M-13-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L-solo__08.json", sha256: 05d1c45b39ab54ff576053b52272a3be8051e877824b40d79202cf9caab14bf1}
+  - {id: IN-L-CORPUS-CIV-M-13-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L+corpus__01.json", sha256: aa5c6508390e1e589f16ef0e29bde4a166f249f71e60db4c8ae492dd3621ed01}
+  - {id: IN-L-CORPUS-CIV-M-13-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L+corpus__02.json", sha256: d3631f5372aeb3671bf19e05bba2212ff1b4c3580fb2d982c68c7d67a10a0269}
+  - {id: IN-L-CORPUS-CIV-M-13-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L+corpus__03.json", sha256: 87b2024955e6ec266be7228644f442c4f149d105a95ac3e9042f9dfef2e89b45}
+  - {id: IN-L-CORPUS-CIV-M-13-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L+corpus__04.json", sha256: 4cc8a78327195b410d209d514e95b6c09223f04335b47d87fe1c9cc8d3ad562c}
+  - {id: IN-L-CORPUS-CIV-M-13-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L+corpus__05.json", sha256: 983025648cbb31822eae8332c4d31db02d9dc1637b05844b2f259fad9b05750f}
+  - {id: IN-L-CORPUS-CIV-M-13-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L+corpus__06.json", sha256: 0c50a3c6852a1484da6979c298f130df4657f47f0d33c03243b7ea2d1f4fbe03}
+  - {id: IN-L-CORPUS-CIV-M-13-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L+corpus__07.json", sha256: dfbbd9dc0cd59cbbdeb8fc5677af7145c95db9932cd41577a67026f212246d74}
+  - {id: IN-L-CORPUS-CIV-M-13-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-CIV-M-13-M__L+corpus__08.json", sha256: 17a5ba31e0cd81765ba02b7efd749276c5b8a63de3ad16b706e69a5bd1632cd6}
+  - {id: IN-R-DIN-M-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/DIN-M-01.json", sha256: b46ee86303c21bee11a8bf9f3573e1bdfe8b5d7336768ce25480bc560ce4e6cc}
+  - {id: IN-M-DIN-M-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-DIN-M-01__v1_2.json", sha256: 4a0f5b7d5cf2f2dbf595134b797f9369d0dbf88c6c1cc1b12f246ac651cd615a}
+  - {id: IN-L-SOLO-DIN-M-01-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L-solo__01.json", sha256: a39e89d33300bdb1ca8136537bcdca8e38654b6836156756abd4d14243173b27}
+  - {id: IN-L-SOLO-DIN-M-01-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L-solo__02.json", sha256: b2393e802b633d3bf692420a0efa25c04825e4e7aa4968a5d292fcc82b0acd17}
+  - {id: IN-L-SOLO-DIN-M-01-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L-solo__03.json", sha256: a0f5307b6374a0b09863249c66b127a7015b7539c4d97409ac3bdea5b0c5eb05}
+  - {id: IN-L-SOLO-DIN-M-01-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L-solo__04.json", sha256: d671184edda3b69abca31cac1f1ec11e11fe667ee3d5151244be37aba3c78db5}
+  - {id: IN-L-SOLO-DIN-M-01-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L-solo__05.json", sha256: 818738c41d8e44fcccab7466031b8eb8ae3170a09dfba07d9080b5ab0e10dd7a}
+  - {id: IN-L-SOLO-DIN-M-01-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L-solo__06.json", sha256: 6661fa762b897db75f685e7f46563445b2bc4d2b8d7330e4a0bbbaa66948a3d5}
+  - {id: IN-L-SOLO-DIN-M-01-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L-solo__07.json", sha256: d6c15d4630f1b7bea4344442d0bf044c11d9149e2828825b233008c1dc4ee8fa}
+  - {id: IN-L-SOLO-DIN-M-01-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L-solo__08.json", sha256: bfc945c320ea5ebd21aec78ab33050343135187cd16a46b81914a7d33a1c8c68}
+  - {id: IN-L-CORPUS-DIN-M-01-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L+corpus__01.json", sha256: 923a44b9fd16c3bf3280971e06d355b0c190ded16416dc674a08f451c387a97a}
+  - {id: IN-L-CORPUS-DIN-M-01-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L+corpus__02.json", sha256: 77fe66013f07dafe9ffb340c98f8e53a440b47476fbb5c90e4d13750c29c93b6}
+  - {id: IN-L-CORPUS-DIN-M-01-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L+corpus__03.json", sha256: f6a4c7741de16bc9fcc6f73ca8e65061fa09450f4ee2e206ed510afab2204ac7}
+  - {id: IN-L-CORPUS-DIN-M-01-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L+corpus__04.json", sha256: 9e50ac8d1bb7275e9161aceb3b219a3dea3aba271824c79fa0c057c5ee3c8a6f}
+  - {id: IN-L-CORPUS-DIN-M-01-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L+corpus__05.json", sha256: 7e3d5ba82334b38ed00df8a031b1975f9e6549d65d81f7d5f8dd366b76192cc4}
+  - {id: IN-L-CORPUS-DIN-M-01-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L+corpus__06.json", sha256: b2249acd5934f442c870d85901bf719e8dec14d86a73cd9391dfe5b251b994b3}
+  - {id: IN-L-CORPUS-DIN-M-01-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L+corpus__07.json", sha256: 04cfc2c6392d52cfba50ce69b6548f403832d1925dec6d227614375de9340e3b}
+  - {id: IN-L-CORPUS-DIN-M-01-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-DIN-M-01-M__L+corpus__08.json", sha256: 48da172b70ff006d0ea9e4a011656a96cff9ce48d88013175a3deedbf2213a20}
+  - {id: IN-R-FAM-M-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/FAM-M-01.json", sha256: fd63b311ad9a981517465f71e10eaa819f95556ad6ed5b1a89326d6fa3fc1db1}
+  - {id: IN-M-FAM-M-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-FAM-M-01.json", sha256: 308910835d6ae68c40e18d6132ddbd52e3de59174357a8f20af63aa8fc80b6ec}
+  - {id: IN-L-SOLO-FAM-M-01-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L-solo__01.json", sha256: f71c946069d036923f281d8656d82a38806709f50fbdeec0efa869f681260222}
+  - {id: IN-L-SOLO-FAM-M-01-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L-solo__02.json", sha256: 8af1ed09301c727b9040e162934bd862078a0cad46ac8c1a06b2d885c5422c60}
+  - {id: IN-L-SOLO-FAM-M-01-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L-solo__03.json", sha256: b0fa192633aeaa83958649615503a2c221f8f601dedb7f132b105a8c233a6c6a}
+  - {id: IN-L-SOLO-FAM-M-01-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L-solo__04.json", sha256: 5acaf490772b20e1ef1b9a7f664f422d2c84dd4cdc35afc294a55b8048492ffa}
+  - {id: IN-L-SOLO-FAM-M-01-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L-solo__05.json", sha256: 1ed2978dbe686b9fff50dce33288bca3a67a8d4ebddf4a1f4051261f2d89f4d9}
+  - {id: IN-L-SOLO-FAM-M-01-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L-solo__06.json", sha256: 51761127f8b93d739a30d48296197edebb3d0934218e905d55a1d8b5ef673d1a}
+  - {id: IN-L-SOLO-FAM-M-01-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L-solo__07.json", sha256: 312e169a71e44f6898095ba029081bd9e6d44b83277164237054da2a7549483e}
+  - {id: IN-L-SOLO-FAM-M-01-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L-solo__08.json", sha256: eadb3d9f9b6f56e7983bef4bb14a68df6a0aa44f52c085f25f2e587c98a6cc6c}
+  - {id: IN-L-CORPUS-FAM-M-01-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L+corpus__01.json", sha256: 89b78e1bc6927c14d6808abf34a4c33f584823b6e712f6180c0d9b115aa073a2}
+  - {id: IN-L-CORPUS-FAM-M-01-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L+corpus__02.json", sha256: 99fe94e7814810e4c007d34bc69f0be3dc4f488a27e2598e253c61e46e8681b9}
+  - {id: IN-L-CORPUS-FAM-M-01-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L+corpus__03.json", sha256: 361f63be9c3461c158ba7e3f34638eba7a24b834829acf62cea1675ff10a1116}
+  - {id: IN-L-CORPUS-FAM-M-01-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L+corpus__04.json", sha256: 90fa84b1bb19720e8102079f1bdc5eb37fa2031f7d3fde191abe3c225290806f}
+  - {id: IN-L-CORPUS-FAM-M-01-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L+corpus__05.json", sha256: 7875bc93a30b80e511c0b3e3d597dff5c83d257b27dfa21b91a175f51aec49e2}
+  - {id: IN-L-CORPUS-FAM-M-01-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L+corpus__06.json", sha256: 1b281fb57b179c008f5d5369696b8ecf8c72292833038c3891cc8bc61a32ea5a}
+  - {id: IN-L-CORPUS-FAM-M-01-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L+corpus__07.json", sha256: ac2b4d07652c1585c633ff5d0b3861a6323518cf491334db9bb66793c22f8635}
+  - {id: IN-L-CORPUS-FAM-M-01-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-01-M__L+corpus__08.json", sha256: c1f01df58aa379b421ee42d367c0f245c2a69375c065e669dc82c9d41aaf84f7}
+  - {id: IN-R-FAM-M-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/FAM-M-05.json", sha256: a345af93306b6b81c40ef710561ae28c01a51422553a19865603afb87a36487d}
+  - {id: IN-M-FAM-M-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-FAM-M-05__v1_2.json", sha256: ecc6906a73e4db3848311c9c1aaa5a718732a737672a2d8cf39d34d3a7c56c76}
+  - {id: IN-L-SOLO-FAM-M-05-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L-solo__01.json", sha256: 75293614f470ac0117452d4f76cd4cfaf72ece48f971375315fccc048737b305}
+  - {id: IN-L-SOLO-FAM-M-05-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L-solo__02.json", sha256: 85ee95e4cd4f0c6cf09ab485e63dc2e67d6c6091863638cdd198d7b28d74de95}
+  - {id: IN-L-SOLO-FAM-M-05-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L-solo__03.json", sha256: a632d073037f0bc72034fbb9595f3cb7158afe4e469274f45e19e46b59645cd9}
+  - {id: IN-L-SOLO-FAM-M-05-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L-solo__04.json", sha256: 9a95d82498793ec8ecf96e95bfa6942fd052239ef0e11c547d261577911b31f3}
+  - {id: IN-L-SOLO-FAM-M-05-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L-solo__05.json", sha256: 10dc27b834ef6d75095b804a66106d8699681fa0700513b34fe897b064a047c9}
+  - {id: IN-L-SOLO-FAM-M-05-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L-solo__06.json", sha256: 0ddaf8f92e527b043509d312a7dd5546cf4cf4ab8d56731f158093dc055dcb23}
+  - {id: IN-L-SOLO-FAM-M-05-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L-solo__07.json", sha256: d73d811a7520f10cb264b94fc359ecfae2459fed644a99bb587261adcddd9890}
+  - {id: IN-L-SOLO-FAM-M-05-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L-solo__08.json", sha256: ce2f701e90ecce4f833ffdc3c9d6c325367354a19073c24855debb2b88e7f9f5}
+  - {id: IN-L-CORPUS-FAM-M-05-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L+corpus__01.json", sha256: e43ac3cadab1d0941d237d40904d8d65dea064afff64ef441ecae07c5d5310f6}
+  - {id: IN-L-CORPUS-FAM-M-05-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L+corpus__02.json", sha256: 094fdc1b602765b4818a62cc46f345119d4e990e5691858390e6d7be07f7366b}
+  - {id: IN-L-CORPUS-FAM-M-05-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L+corpus__03.json", sha256: 227aa8f871ba29e9b43eb9535a391a1756282f7532e817646e53bcf3681314a9}
+  - {id: IN-L-CORPUS-FAM-M-05-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L+corpus__04.json", sha256: 501394e28089f58fbf95e13bc45651f0df1fbe8e394305f925e0a063faafa4e3}
+  - {id: IN-L-CORPUS-FAM-M-05-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L+corpus__05.json", sha256: a0d556b1ccac05bdcee8eb90b618e9a8db0fb58c3bb0214ce7b1c37e003e255b}
+  - {id: IN-L-CORPUS-FAM-M-05-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L+corpus__06.json", sha256: 2eaf3889f051e3c7fee9d1cca44e748cf3d6a9f52b6653af52bb9ce7773a429e}
+  - {id: IN-L-CORPUS-FAM-M-05-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L+corpus__07.json", sha256: ab634d06ed0242d623d2f1783896e1fb7f4e2a0b16a2603eb6a98c1d942e868c}
+  - {id: IN-L-CORPUS-FAM-M-05-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-05-M__L+corpus__08.json", sha256: 806286b6e6548761159b6355010673ef62e8b0b822a291295dddd3d5a9b8627b}
+  - {id: IN-R-FAM-M-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/FAM-M-06.json", sha256: 0cb55334eed344f71838656e25ef714fa40ec9d2949ad0a799e75ebe406da55a}
+  - {id: IN-M-FAM-M-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-FAM-M-06__v1_2.json", sha256: 552e4e47d33439c9a6e7838d65a89cb48cd3d38e8e8b8033d90074078e2d50c6}
+  - {id: IN-L-SOLO-FAM-M-06-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L-solo__01.json", sha256: ccf368e51df4a2116e87481f356870d9940e5b9efd6b484a996821d978be6d3f}
+  - {id: IN-L-SOLO-FAM-M-06-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L-solo__02.json", sha256: 045b92516daa8b91e74f66e25894a5183d72ccaec570cc9c59561e1abdef8848}
+  - {id: IN-L-SOLO-FAM-M-06-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L-solo__03.json", sha256: 7b0135ede475d1294ff13765f86339639ae3e5280bc06e7bec557718b65c527d}
+  - {id: IN-L-SOLO-FAM-M-06-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L-solo__04.json", sha256: afd4b1c4ca651dd21a404b1eaada13bcdee2064d717b2db60df303a2badc5662}
+  - {id: IN-L-SOLO-FAM-M-06-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L-solo__05.json", sha256: 4791a7eaa0a635c14550f9b7bb91671cb332b1b7e325872e5f77473cf9a100bc}
+  - {id: IN-L-SOLO-FAM-M-06-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L-solo__06.json", sha256: c250a3eafcd7879806c299312714737f224ee81f24d9380b72043aafcf09a609}
+  - {id: IN-L-SOLO-FAM-M-06-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L-solo__07.json", sha256: 5a4a0f308a1f750d3fabcd9a91c5359c5030e1e6a5b38fff213e378ea6a9d660}
+  - {id: IN-L-SOLO-FAM-M-06-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L-solo__08.json", sha256: b54ef229d238ad01f768dac5f726c13c1ed981026df3fbad9bd3fbf9f39784e1}
+  - {id: IN-L-CORPUS-FAM-M-06-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L+corpus__01.json", sha256: 520cddda9992d627790b1d81e858cdb546e23c89b8863c8b9f353cf063652cf6}
+  - {id: IN-L-CORPUS-FAM-M-06-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L+corpus__02.json", sha256: 9b2efd8b120ad8d104b94c197e338ceafa27da6c40972f21bc9a18762effde45}
+  - {id: IN-L-CORPUS-FAM-M-06-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L+corpus__03.json", sha256: f68cb4ebcc795738777f531c12d255eab7b1613f2cf5eef186b203cfea1f04fc}
+  - {id: IN-L-CORPUS-FAM-M-06-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L+corpus__04.json", sha256: 03bb680736b037f7dc4f91584a4c1e197be734e3341abf94f3c048ca61645e0d}
+  - {id: IN-L-CORPUS-FAM-M-06-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L+corpus__05.json", sha256: 9f0b7cc8b45c75b8058c93b9b286e09f931268795bc468cdf1872167232e94f0}
+  - {id: IN-L-CORPUS-FAM-M-06-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L+corpus__06.json", sha256: 77fd5f90925830a57db6954022185a9c7b14499b148c340c68b5dc7e4a17b95f}
+  - {id: IN-L-CORPUS-FAM-M-06-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L+corpus__07.json", sha256: 3c8fb3213e22b1724c0dea6c374108c07f01bba59c3068ff279c65306f0ac2c2}
+  - {id: IN-L-CORPUS-FAM-M-06-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-06-M__L+corpus__08.json", sha256: c6368fb08904d7156c76a808fb20b2e8b538b57051489c56b47911ea322020f1}
+  - {id: IN-R-FAM-M-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/FAM-M-07.json", sha256: 289d4d697da66bba305db21ab5d201caf0ef1578cfa1c944841fdc71a17556b6}
+  - {id: IN-M-FAM-M-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-FAM-M-07__v1_2.json", sha256: e27d24d547826d9c0037bc5229b109456eb1772904b5c188cd3a304545376b7f}
+  - {id: IN-L-SOLO-FAM-M-07-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L-solo__01.json", sha256: 5d9314b2cf1857715cd0f77446d855f5c8d1a6d3b5ba8b3efe15c79e672e78cb}
+  - {id: IN-L-SOLO-FAM-M-07-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L-solo__02.json", sha256: a1fe9edafc16be6b24cfc31cd3eca3b727899f5bbc0c514aab012d0d90e9fcf0}
+  - {id: IN-L-SOLO-FAM-M-07-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L-solo__03.json", sha256: d0708491c64f8fc824fc5c683558e1dff5dc1098f9b71b7bff41ad0e62d7e76b}
+  - {id: IN-L-SOLO-FAM-M-07-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L-solo__04.json", sha256: 41a5509c54af471f0b1e21995836e0ba4723ef832cb9a1797371dc3599da8d3f}
+  - {id: IN-L-SOLO-FAM-M-07-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L-solo__05.json", sha256: 6fcca351d20acbfd94102c74dd633cdf587a1082c7a2bd435288f9d7a3728640}
+  - {id: IN-L-SOLO-FAM-M-07-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L-solo__06.json", sha256: 4270fb7ffcabfd352de84886206f8e2f9c1747699972b9e49f6d0902b45d9a84}
+  - {id: IN-L-SOLO-FAM-M-07-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L-solo__07.json", sha256: cd7fb78e9d77afb5cbce76311ca300a785d7c76eb7c188533a23268902edfa16}
+  - {id: IN-L-SOLO-FAM-M-07-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L-solo__08.json", sha256: d2bcf90279db10feb69c04b795dd0f4c856bb4bb126d9c59db6552afc97204f9}
+  - {id: IN-L-CORPUS-FAM-M-07-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L+corpus__01.json", sha256: 62977dfdd132a9b4d5d59ae17df016ce1b04a393f4ec3ddbb1b1d332126eb813}
+  - {id: IN-L-CORPUS-FAM-M-07-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L+corpus__02.json", sha256: f6b2d700637779ee0cf48a3f568ca653ec31aa555cca7767708946a4d3937886}
+  - {id: IN-L-CORPUS-FAM-M-07-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L+corpus__03.json", sha256: 8b31643cf76d7dd9ef532d85508c48193bd41b52111211bc15f043cf3798f792}
+  - {id: IN-L-CORPUS-FAM-M-07-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L+corpus__04.json", sha256: 7504bf4465f2d22336e4ca450e4992e160cba386a433c8705153fb45c3111a70}
+  - {id: IN-L-CORPUS-FAM-M-07-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L+corpus__05.json", sha256: 97caad14af29a406323796af430ea7f522df7680ee312e1069e4d7187a9788d5}
+  - {id: IN-L-CORPUS-FAM-M-07-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L+corpus__06.json", sha256: 343f6deadd2973e7950fa0a92a2a2d2fcb44266c87a552e501092edf2b81646f}
+  - {id: IN-L-CORPUS-FAM-M-07-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L+corpus__07.json", sha256: f0c33f6f838bdb850858663d5fa7d2d9f4b2b438ae4758951a19186bde913fa2}
+  - {id: IN-L-CORPUS-FAM-M-07-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-FAM-M-07-M__L+corpus__08.json", sha256: 0de92166ec1b5aade8b68cb6381338c47273a281443c28d1360f3448a3657b5b}
+  - {id: IN-R-TRA-M-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/TRA-M-02.json", sha256: 746301362f570971986440659437295c5ea5d288e419840797d40d0d626d43ff}
+  - {id: IN-M-TRA-M-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-TRA-M-02__v1_3.json", sha256: c6e36176a85e67f2c9d7e5409a067be3d20b35ff0d9f751bda47e86d3c2c96c2}
+  - {id: IN-L-SOLO-TRA-M-02-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L-solo__01.json", sha256: 600343b17a6484eb2972dc8720dc0293fa8ffa37b43ddadb78472a299cd50b31}
+  - {id: IN-L-SOLO-TRA-M-02-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L-solo__02.json", sha256: 9d8651cea78584eca4cad0d9ebf3921f4aeefb7cc3d7907a028e4cd9b09c29da}
+  - {id: IN-L-SOLO-TRA-M-02-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L-solo__03.json", sha256: f26f395455b75154a541891cff7513fa29eb9a4560175fa2df7855cd4e50a57b}
+  - {id: IN-L-SOLO-TRA-M-02-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L-solo__04.json", sha256: 44f19ac87074c6158fcfb99f9ed98727950fd3ae69e18837d5bc71fca00986f2}
+  - {id: IN-L-SOLO-TRA-M-02-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L-solo__05.json", sha256: ea8c036331228abd38824d90fc289719df72220f7a93d3ae22802d57fe6c545a}
+  - {id: IN-L-SOLO-TRA-M-02-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L-solo__06.json", sha256: 94eb81718660279bf37ecd936e765eb509dced84a7c88273a3e18585b67c99ed}
+  - {id: IN-L-SOLO-TRA-M-02-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L-solo__07.json", sha256: 716a9527154429853051ff088ad4433f9829cd219b884ab3d8dcb85a0a2a9e4a}
+  - {id: IN-L-SOLO-TRA-M-02-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L-solo__08.json", sha256: e037efa918fabf882436672955e7c0d9f4778e527eb6bf896a0af5046f973c9d}
+  - {id: IN-L-CORPUS-TRA-M-02-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L+corpus__01.json", sha256: 958775ebdecc747f519912dba2809664e7636281c899726d2bed429280129a12}
+  - {id: IN-L-CORPUS-TRA-M-02-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L+corpus__02.json", sha256: 61bc46337bdaea9c14d38fe6cc0274d99aaebf341f41c55d1bcccea486e5c054}
+  - {id: IN-L-CORPUS-TRA-M-02-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L+corpus__03.json", sha256: 8b92bfaf3b32e450a2c8bf680c0ee2e2991401d0e96d2200238737779c7f5d8a}
+  - {id: IN-L-CORPUS-TRA-M-02-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L+corpus__04.json", sha256: 1df77e0250403238ed9620a10906763a62ac53f75d887fdbcb55f21b04235fbe}
+  - {id: IN-L-CORPUS-TRA-M-02-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L+corpus__05.json", sha256: c79d1889557630630a42f2a8c42dce3a57c6437cd0e5a2b1898f9788170f917d}
+  - {id: IN-L-CORPUS-TRA-M-02-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L+corpus__06.json", sha256: a3690881ed7590c605b375bffa0ab686ff774531e48b1de66d4385829b8c679f}
+  - {id: IN-L-CORPUS-TRA-M-02-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L+corpus__07.json", sha256: e8fbef9d6b62d7d43f901147f5b005c98cdc4f1818d73b5c377a99809f58606f}
+  - {id: IN-L-CORPUS-TRA-M-02-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-02-M__L+corpus__08.json", sha256: e88b40735ca719ea020bfd3d4132f66ca4f386420d80dc513586645b7641eb4d}
+  - {id: IN-R-TRA-M-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/TRA-M-03.json", sha256: ab73d1cd53b23cd09346d2dc14c89baa8cfdfb41b4659581c4c166caa44a8a8c}
+  - {id: IN-M-TRA-M-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-TRA-M-03__v1_3.json", sha256: 320204b80c443a9250010706518f79a42364581c0487968e9aa81b29823143e2}
+  - {id: IN-L-SOLO-TRA-M-03-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L-solo__01.json", sha256: 5d89658edcfcff70205eea497709eb58b1591f3ee15e84367bdc256ea80e8321}
+  - {id: IN-L-SOLO-TRA-M-03-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L-solo__02.json", sha256: 4c68a4269376d80e26703f65146b065e6c54a7f2b6da43bf08f347786a9ab5f4}
+  - {id: IN-L-SOLO-TRA-M-03-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L-solo__03.json", sha256: 044424c6aa0c2f775a6ca674b919242d0940043b5c08e5c4354aac0613cdde52}
+  - {id: IN-L-SOLO-TRA-M-03-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L-solo__04.json", sha256: 341364b708eba83a94a95023cd184680635d47633a743fff1245ab6261119a93}
+  - {id: IN-L-SOLO-TRA-M-03-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L-solo__05.json", sha256: a9e3421fbb6739169e39a8f9a136f348588dc651a6435a2912ec254aa8fe37ee}
+  - {id: IN-L-SOLO-TRA-M-03-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L-solo__06.json", sha256: 81199d1e7a147f3af47b30832179106e69aa8c7faaf6da7a620f0dfecf57d3f6}
+  - {id: IN-L-SOLO-TRA-M-03-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L-solo__07.json", sha256: fd929b24c87986b038d51a4adfbf083c4c6909ead49e4a6cd9b6022b48600a23}
+  - {id: IN-L-SOLO-TRA-M-03-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L-solo__08.json", sha256: 36a9c201b2d127f12872c8b7dc0aac8e08bd24d8fb396953da2e05f5b4c39d01}
+  - {id: IN-L-CORPUS-TRA-M-03-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L+corpus__01.json", sha256: a5da251a0f38cec142d96d8eac3bdb3d9a092a863ee4b47de6ea3a3c3a5a9858}
+  - {id: IN-L-CORPUS-TRA-M-03-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L+corpus__02.json", sha256: bc36511ad52795956e217bc6d4b680cadac8992ad0c82ab9a03d3cc330ca4b2b}
+  - {id: IN-L-CORPUS-TRA-M-03-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L+corpus__03.json", sha256: db539f1d97be1ec70884b4e5c9da75f593fe17a20d090c28e3d9336ac5dfa43e}
+  - {id: IN-L-CORPUS-TRA-M-03-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L+corpus__04.json", sha256: 60adb36a8c825e5bca447ed1b5df9a2a7a43af66c87631f5f0a6542d7f9aebeb}
+  - {id: IN-L-CORPUS-TRA-M-03-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L+corpus__05.json", sha256: ec133545776dd2bad14c2fc319b83c89bb8ac77ceebc4dcd252b616bea4acf2c}
+  - {id: IN-L-CORPUS-TRA-M-03-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L+corpus__06.json", sha256: 468929b3c6334d009f191067b430ae0b3b96a6e30e6622da6a522dce40e71138}
+  - {id: IN-L-CORPUS-TRA-M-03-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L+corpus__07.json", sha256: 92c8df8b56e729514ce65ba44ff5f44bccaab26622bb8d96cadc39d536d7059d}
+  - {id: IN-L-CORPUS-TRA-M-03-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-03-M__L+corpus__08.json", sha256: 6fe207714ca8d8af2c07032faf34d0b3b2657f5ae5220b25e0f74f7ddd022e7b}
+  - {id: IN-R-TRA-M-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-R/TRA-M-07.json", sha256: 633e0a3445c11d93dfcde42f871e96c46f891448b40397f89a1add1b11c3b897}
+  - {id: IN-M-TRA-M-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-M/M-TRA-M-07__v1_3.json", sha256: 757a66fad0a72084d7d39fad812d909ff12b2b64ad02d4e25817b391f6d41890}
+  - {id: IN-L-SOLO-TRA-M-07-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L-solo__01.json", sha256: 0132bdbaa30fa67f182e22158926220d4f20e2b545132a726160ffb5acc2c47b}
+  - {id: IN-L-SOLO-TRA-M-07-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L-solo__02.json", sha256: 42e8524b875c6a6cb32958edef3d129b6cc873f2797fe79cccc4fdd3f047666f}
+  - {id: IN-L-SOLO-TRA-M-07-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L-solo__03.json", sha256: 2b990a0d7f051cdb333aabb374d6dc7fdf1bb88487632cb20efdb02b6a3f1fd0}
+  - {id: IN-L-SOLO-TRA-M-07-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L-solo__04.json", sha256: 2e5205be1156e511199bfd2c9d6b4ee1244cd2bc18690ab95b53ba8f9981e8dc}
+  - {id: IN-L-SOLO-TRA-M-07-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L-solo__05.json", sha256: 9b9ce5039017bcacdcc1f205cb1909e94f5a2ecdc237060e630075694d808208}
+  - {id: IN-L-SOLO-TRA-M-07-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L-solo__06.json", sha256: 1a70f81edddec07e10435676f6275cee9f7e617ef16571e6645a0f85c34cee16}
+  - {id: IN-L-SOLO-TRA-M-07-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L-solo__07.json", sha256: 67c168d1fb5e012b4f5e15b8b1182f23efd981c340555547194384ea05639387}
+  - {id: IN-L-SOLO-TRA-M-07-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L-solo__08.json", sha256: 7b84bd68b30b2a4f745ca1c540ed66b5710d895a8d6cbf8c323faabbc11d63af}
+  - {id: IN-L-CORPUS-TRA-M-07-01, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L+corpus__01.json", sha256: 26e6df70943622bc7771f4e25cc07b1309d9ab01d525b78492903e3e79e0c285}
+  - {id: IN-L-CORPUS-TRA-M-07-02, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L+corpus__02.json", sha256: b4aa67298cb135f3000a5174135a01d6ab519bab9e265850eacb0b0c3bd6d893}
+  - {id: IN-L-CORPUS-TRA-M-07-03, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L+corpus__03.json", sha256: 680c2a3173f85622a696a4867c343e0a9a5e3a4dcba371c464d4e4b18d3f45e4}
+  - {id: IN-L-CORPUS-TRA-M-07-04, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L+corpus__04.json", sha256: c756dab99810c27bc7318a7ab3816eaa860d080bf23010db2ed48ab28e6986af}
+  - {id: IN-L-CORPUS-TRA-M-07-05, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L+corpus__05.json", sha256: 85a3ca1d3c483e869649ed4294253fffb8e0135e195ea02a5715d590ba000049}
+  - {id: IN-L-CORPUS-TRA-M-07-06, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L+corpus__06.json", sha256: 717f5e267f87edf5ed437fa98ad4f65553625cf16c0481cf4aeee267929de4c3}
+  - {id: IN-L-CORPUS-TRA-M-07-07, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L+corpus__07.json", sha256: d103c3eca576a2d5b3b2c6126482b6fc675903571beebbd771919be367c7cbca}
+  - {id: IN-L-CORPUS-TRA-M-07-08, origen: repo, ruta: "forense/prereg-duelo-v2/corridas-L/L-TRA-M-07-M__L+corpus__08.json", sha256: 24a6a528e4019ab8d9a58e8ef073075628229947ec0b983e4c7ed4be5c6efcec}
+
+resultados:
+  - {id: RESULT-C0D-CONTROL-CORRESPONDENCIA, tipo: texto, unidad: "CORRESPONDE / DISCORDA:<detalle> -- guardia §3.5: llaves (id_celda,variante,indice) del TSV contra los archivos de captura"}
+  - {id: RESULT-C0D-CIV-M-01-R, tipo: proporcion, unidad: "[CIV-M-01] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-01-EE-R, tipo: flotante, unidad: "[CIV-M-01] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-01-ERRPP-L-SOLO, tipo: flotante, unidad: "[CIV-M-01] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-01-ERRPP-L-CORPUS, tipo: flotante, unidad: "[CIV-M-01] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-01-ERRPP-M, tipo: flotante, unidad: "[CIV-M-01] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-01-D-PAREADA, tipo: flotante, unidad: "[CIV-M-01] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-02-R, tipo: proporcion, unidad: "[CIV-M-02] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-02-EE-R, tipo: flotante, unidad: "[CIV-M-02] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-02-ERRPP-L-SOLO, tipo: flotante, unidad: "[CIV-M-02] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-02-ERRPP-L-CORPUS, tipo: flotante, unidad: "[CIV-M-02] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-02-ERRPP-M, tipo: flotante, unidad: "[CIV-M-02] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-02-D-PAREADA, tipo: flotante, unidad: "[CIV-M-02] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-04-R, tipo: proporcion, unidad: "[CIV-M-04] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-04-EE-R, tipo: flotante, unidad: "[CIV-M-04] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-04-ERRPP-L-SOLO, tipo: flotante, unidad: "[CIV-M-04] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-04-ERRPP-L-CORPUS, tipo: flotante, unidad: "[CIV-M-04] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-04-ERRPP-M, tipo: flotante, unidad: "[CIV-M-04] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-04-D-PAREADA, tipo: flotante, unidad: "[CIV-M-04] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-10-R, tipo: proporcion, unidad: "[CIV-M-10] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-10-EE-R, tipo: flotante, unidad: "[CIV-M-10] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-10-ERRPP-L-SOLO, tipo: flotante, unidad: "[CIV-M-10] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-10-ERRPP-L-CORPUS, tipo: flotante, unidad: "[CIV-M-10] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-10-ERRPP-M, tipo: flotante, unidad: "[CIV-M-10] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-10-D-PAREADA, tipo: flotante, unidad: "[CIV-M-10] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-12-R, tipo: proporcion, unidad: "[CIV-M-12] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-12-EE-R, tipo: flotante, unidad: "[CIV-M-12] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-12-ERRPP-L-SOLO, tipo: flotante, unidad: "[CIV-M-12] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-12-ERRPP-L-CORPUS, tipo: flotante, unidad: "[CIV-M-12] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-12-ERRPP-M, tipo: flotante, unidad: "[CIV-M-12] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-12-D-PAREADA, tipo: flotante, unidad: "[CIV-M-12] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-13-R, tipo: proporcion, unidad: "[CIV-M-13] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-13-EE-R, tipo: flotante, unidad: "[CIV-M-13] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-13-ERRPP-L-SOLO, tipo: flotante, unidad: "[CIV-M-13] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-13-ERRPP-L-CORPUS, tipo: flotante, unidad: "[CIV-M-13] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-13-ERRPP-M, tipo: flotante, unidad: "[CIV-M-13] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-CIV-M-13-D-PAREADA, tipo: flotante, unidad: "[CIV-M-13] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-DIN-M-01-R, tipo: proporcion, unidad: "[DIN-M-01] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-DIN-M-01-EE-R, tipo: flotante, unidad: "[DIN-M-01] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-DIN-M-01-ERRPP-L-SOLO, tipo: flotante, unidad: "[DIN-M-01] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-DIN-M-01-ERRPP-L-CORPUS, tipo: flotante, unidad: "[DIN-M-01] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-DIN-M-01-ERRPP-M, tipo: flotante, unidad: "[DIN-M-01] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-DIN-M-01-D-PAREADA, tipo: flotante, unidad: "[DIN-M-01] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-01-R, tipo: proporcion, unidad: "[FAM-M-01] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-01-EE-R, tipo: flotante, unidad: "[FAM-M-01] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-01-ERRPP-L-SOLO, tipo: flotante, unidad: "[FAM-M-01] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-01-ERRPP-L-CORPUS, tipo: flotante, unidad: "[FAM-M-01] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-01-ERRPP-M, tipo: flotante, unidad: "[FAM-M-01] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-01-D-PAREADA, tipo: flotante, unidad: "[FAM-M-01] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-05-R, tipo: proporcion, unidad: "[FAM-M-05] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-05-EE-R, tipo: flotante, unidad: "[FAM-M-05] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-05-ERRPP-L-SOLO, tipo: flotante, unidad: "[FAM-M-05] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-05-ERRPP-L-CORPUS, tipo: flotante, unidad: "[FAM-M-05] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-05-ERRPP-M, tipo: flotante, unidad: "[FAM-M-05] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-05-D-PAREADA, tipo: flotante, unidad: "[FAM-M-05] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-06-R, tipo: proporcion, unidad: "[FAM-M-06] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-06-EE-R, tipo: flotante, unidad: "[FAM-M-06] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-06-ERRPP-L-SOLO, tipo: flotante, unidad: "[FAM-M-06] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-06-ERRPP-L-CORPUS, tipo: flotante, unidad: "[FAM-M-06] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-06-ERRPP-M, tipo: flotante, unidad: "[FAM-M-06] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-06-D-PAREADA, tipo: flotante, unidad: "[FAM-M-06] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-07-R, tipo: proporcion, unidad: "[FAM-M-07] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-07-EE-R, tipo: flotante, unidad: "[FAM-M-07] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-07-ERRPP-L-SOLO, tipo: flotante, unidad: "[FAM-M-07] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-07-ERRPP-L-CORPUS, tipo: flotante, unidad: "[FAM-M-07] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-07-ERRPP-M, tipo: flotante, unidad: "[FAM-M-07] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-FAM-M-07-D-PAREADA, tipo: flotante, unidad: "[FAM-M-07] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-02-R, tipo: proporcion, unidad: "[TRA-M-02] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-02-EE-R, tipo: flotante, unidad: "[TRA-M-02] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-02-ERRPP-L-SOLO, tipo: flotante, unidad: "[TRA-M-02] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-02-ERRPP-L-CORPUS, tipo: flotante, unidad: "[TRA-M-02] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-02-ERRPP-M, tipo: flotante, unidad: "[TRA-M-02] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-02-D-PAREADA, tipo: flotante, unidad: "[TRA-M-02] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-03-R, tipo: proporcion, unidad: "[TRA-M-03] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-03-EE-R, tipo: flotante, unidad: "[TRA-M-03] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-03-ERRPP-L-SOLO, tipo: flotante, unidad: "[TRA-M-03] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-03-ERRPP-L-CORPUS, tipo: flotante, unidad: "[TRA-M-03] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-03-ERRPP-M, tipo: flotante, unidad: "[TRA-M-03] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-03-D-PAREADA, tipo: flotante, unidad: "[TRA-M-03] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-07-R, tipo: proporcion, unidad: "[TRA-M-07] patron oro R de corridas-R (proporcion ponderada [0,1])", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-07-EE-R, tipo: flotante, unidad: "[TRA-M-07] error estandar de R, misma escala que R", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-07-ERRPP-L-SOLO, tipo: flotante, unidad: "[TRA-M-07] err_pp = 100*(punto_L-SOLO - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-07-ERRPP-L-CORPUS, tipo: flotante, unidad: "[TRA-M-07] err_pp = 100*(punto_L-CORPUS - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-07-ERRPP-M, tipo: flotante, unidad: "[TRA-M-07] err_pp = 100*(punto_M - R), CON SIGNO, puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-TRA-M-07-D-PAREADA, tipo: flotante, unidad: "[TRA-M-07] d_i = |err_pp_L_CORPUS| - |err_pp_L_SOLO|, pp; >0 = el corpus alejo", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-MARGINAL-L-SOLO, tipo: flotante, unidad: "MAE_pp de L-SOLO sobre el subconjunto propio del corredor (reproduce D4), puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-MARGINAL-L-SOLO-IC-LO, tipo: flotante, unidad: "limite inferior IC95 bootstrap del MAE_pp MARGINAL de L-SOLO", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-MARGINAL-L-SOLO-IC-HI, tipo: flotante, unidad: "limite superior IC95 bootstrap del MAE_pp MARGINAL de L-SOLO", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-MARGINAL-L-SOLO-N, tipo: entero, unidad: "celdas que entran al MAE_pp MARGINAL de L-SOLO"}
+  - {id: RESULT-C0D-MAE-MARGINAL-L-CORPUS, tipo: flotante, unidad: "MAE_pp de L-CORPUS sobre el subconjunto propio del corredor (reproduce D4), puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-MARGINAL-L-CORPUS-IC-LO, tipo: flotante, unidad: "limite inferior IC95 bootstrap del MAE_pp MARGINAL de L-CORPUS", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-MARGINAL-L-CORPUS-IC-HI, tipo: flotante, unidad: "limite superior IC95 bootstrap del MAE_pp MARGINAL de L-CORPUS", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-MARGINAL-L-CORPUS-N, tipo: entero, unidad: "celdas que entran al MAE_pp MARGINAL de L-CORPUS"}
+  - {id: RESULT-C0D-MAE-MARGINAL-M, tipo: flotante, unidad: "MAE_pp de M sobre el subconjunto propio del corredor (reproduce D4), puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-MARGINAL-M-IC-LO, tipo: flotante, unidad: "limite inferior IC95 bootstrap del MAE_pp MARGINAL de M", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-MARGINAL-M-IC-HI, tipo: flotante, unidad: "limite superior IC95 bootstrap del MAE_pp MARGINAL de M", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-MARGINAL-M-N, tipo: entero, unidad: "celdas que entran al MAE_pp MARGINAL de M"}
+  - {id: RESULT-C0D-MAE-COMUN-L-SOLO, tipo: flotante, unidad: "MAE_pp de L-SOLO sobre el universo comun U-interseccion (unico comparable, A-bis 4), puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-COMUN-L-SOLO-IC-LO, tipo: flotante, unidad: "limite inferior IC95 bootstrap del MAE_pp COMUN de L-SOLO", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-COMUN-L-SOLO-IC-HI, tipo: flotante, unidad: "limite superior IC95 bootstrap del MAE_pp COMUN de L-SOLO", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-COMUN-L-SOLO-N, tipo: entero, unidad: "celdas que entran al MAE_pp COMUN de L-SOLO"}
+  - {id: RESULT-C0D-MAE-COMUN-L-CORPUS, tipo: flotante, unidad: "MAE_pp de L-CORPUS sobre el universo comun U-interseccion (unico comparable, A-bis 4), puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-COMUN-L-CORPUS-IC-LO, tipo: flotante, unidad: "limite inferior IC95 bootstrap del MAE_pp COMUN de L-CORPUS", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-COMUN-L-CORPUS-IC-HI, tipo: flotante, unidad: "limite superior IC95 bootstrap del MAE_pp COMUN de L-CORPUS", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-COMUN-L-CORPUS-N, tipo: entero, unidad: "celdas que entran al MAE_pp COMUN de L-CORPUS"}
+  - {id: RESULT-C0D-MAE-COMUN-M, tipo: flotante, unidad: "MAE_pp de M sobre el universo comun U-interseccion (unico comparable, A-bis 4), puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-COMUN-M-IC-LO, tipo: flotante, unidad: "limite inferior IC95 bootstrap del MAE_pp COMUN de M", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-COMUN-M-IC-HI, tipo: flotante, unidad: "limite superior IC95 bootstrap del MAE_pp COMUN de M", permite_no_estimable: true}
+  - {id: RESULT-C0D-MAE-COMUN-M-N, tipo: entero, unidad: "celdas que entran al MAE_pp COMUN de M"}
+  - {id: RESULT-C0D-PAREADA-PRIMARIA-LCORPUS-LSOLO-PUNTO, tipo: flotante, unidad: "PRIMARIA -- |err_pp_L_CORPUS| - |err_pp_L_SOLO|: media de d_i, pp", permite_no_estimable: true}
+  - {id: RESULT-C0D-PAREADA-PRIMARIA-LCORPUS-LSOLO-IC-LO, tipo: flotante, unidad: "PRIMARIA -- |err_pp_L_CORPUS| - |err_pp_L_SOLO|: IC95 inferior (bootstrap de celdas, seed 42, 10000 replicas)", permite_no_estimable: true}
+  - {id: RESULT-C0D-PAREADA-PRIMARIA-LCORPUS-LSOLO-IC-HI, tipo: flotante, unidad: "PRIMARIA -- |err_pp_L_CORPUS| - |err_pp_L_SOLO|: IC95 superior", permite_no_estimable: true}
+  - {id: RESULT-C0D-PAREADA-PRIMARIA-LCORPUS-LSOLO-N, tipo: entero, unidad: "PRIMARIA -- |err_pp_L_CORPUS| - |err_pp_L_SOLO|: celdas pareadas"}
+  - {id: RESULT-C0D-PAREADA-SEC-LSOLO-M-PUNTO, tipo: flotante, unidad: "SECUNDARIA -- |err_pp_L_SOLO| - |err_pp_M|: media de d_i, pp", permite_no_estimable: true}
+  - {id: RESULT-C0D-PAREADA-SEC-LSOLO-M-IC-LO, tipo: flotante, unidad: "SECUNDARIA -- |err_pp_L_SOLO| - |err_pp_M|: IC95 inferior (bootstrap de celdas, seed 42, 10000 replicas)", permite_no_estimable: true}
+  - {id: RESULT-C0D-PAREADA-SEC-LSOLO-M-IC-HI, tipo: flotante, unidad: "SECUNDARIA -- |err_pp_L_SOLO| - |err_pp_M|: IC95 superior", permite_no_estimable: true}
+  - {id: RESULT-C0D-PAREADA-SEC-LSOLO-M-N, tipo: entero, unidad: "SECUNDARIA -- |err_pp_L_SOLO| - |err_pp_M|: celdas pareadas"}
+  - {id: RESULT-C0D-PAREADA-SEC-LCORPUS-M-PUNTO, tipo: flotante, unidad: "SECUNDARIA -- |err_pp_L_CORPUS| - |err_pp_M|: media de d_i, pp", permite_no_estimable: true}
+  - {id: RESULT-C0D-PAREADA-SEC-LCORPUS-M-IC-LO, tipo: flotante, unidad: "SECUNDARIA -- |err_pp_L_CORPUS| - |err_pp_M|: IC95 inferior (bootstrap de celdas, seed 42, 10000 replicas)", permite_no_estimable: true}
+  - {id: RESULT-C0D-PAREADA-SEC-LCORPUS-M-IC-HI, tipo: flotante, unidad: "SECUNDARIA -- |err_pp_L_CORPUS| - |err_pp_M|: IC95 superior", permite_no_estimable: true}
+  - {id: RESULT-C0D-PAREADA-SEC-LCORPUS-M-N, tipo: entero, unidad: "SECUNDARIA -- |err_pp_L_CORPUS| - |err_pp_M|: celdas pareadas"}
+  - {id: RESULT-C0D-B-FAM-M-06-PERSISTENCIA-CITA, tipo: texto, unidad: "[FAM-M-06] corrida0_resultado_id del piso B brazo PERSISTENCIA en CALC-B-0001"}
+  - {id: RESULT-C0D-B-FAM-M-06-PERSISTENCIA-P, tipo: proporcion, unidad: "[FAM-M-06] prediccion del piso B brazo PERSISTENCIA para ENIGH 2018 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C0D-B-FAM-M-06-PERSISTENCIA-ERRPP, tipo: flotante, unidad: "[FAM-M-06] err_pp del piso B brazo PERSISTENCIA contra R de la celda, pp", permite_no_estimable: true}
+  - {id: RESULT-C0D-B-FAM-M-06-OPERATIVO-CITA, tipo: texto, unidad: "[FAM-M-06] corrida0_resultado_id del piso B brazo OPERATIVO en CALC-B-0001"}
+  - {id: RESULT-C0D-B-FAM-M-06-OPERATIVO-P, tipo: proporcion, unidad: "[FAM-M-06] prediccion del piso B brazo OPERATIVO para ENIGH 2018 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C0D-B-FAM-M-06-OPERATIVO-ERRPP, tipo: flotante, unidad: "[FAM-M-06] err_pp del piso B brazo OPERATIVO contra R de la celda, pp", permite_no_estimable: true}
+  - {id: RESULT-C0D-B-FAM-M-06-CONMENSURABLE, tipo: texto, unidad: "[FAM-M-06] PISO-CONMENSURABLE / PISO-NO-CONMENSURABLE (|P_B_observada - R| vs 1.96*EE_R)"}
+  - {id: RESULT-C0D-B-FAM-M-06-BRECHA-OBSERVADAS, tipo: flotante, unidad: "[FAM-M-06] P_B_observada(ENIGH 2018) - R(celda), pp -- la guardia A-bis 4", permite_no_estimable: true}
+  - {id: RESULT-C0D-B-FAM-M-07-PERSISTENCIA-CITA, tipo: texto, unidad: "[FAM-M-07] corrida0_resultado_id del piso B brazo PERSISTENCIA en CALC-B-0001"}
+  - {id: RESULT-C0D-B-FAM-M-07-PERSISTENCIA-P, tipo: proporcion, unidad: "[FAM-M-07] prediccion del piso B brazo PERSISTENCIA para ENIGH 2020 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C0D-B-FAM-M-07-PERSISTENCIA-ERRPP, tipo: flotante, unidad: "[FAM-M-07] err_pp del piso B brazo PERSISTENCIA contra R de la celda, pp", permite_no_estimable: true}
+  - {id: RESULT-C0D-B-FAM-M-07-OPERATIVO-CITA, tipo: texto, unidad: "[FAM-M-07] corrida0_resultado_id del piso B brazo OPERATIVO en CALC-B-0001"}
+  - {id: RESULT-C0D-B-FAM-M-07-OPERATIVO-P, tipo: proporcion, unidad: "[FAM-M-07] prediccion del piso B brazo OPERATIVO para ENIGH 2020 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C0D-B-FAM-M-07-OPERATIVO-ERRPP, tipo: flotante, unidad: "[FAM-M-07] err_pp del piso B brazo OPERATIVO contra R de la celda, pp", permite_no_estimable: true}
+  - {id: RESULT-C0D-B-FAM-M-07-CONMENSURABLE, tipo: texto, unidad: "[FAM-M-07] PISO-CONMENSURABLE / PISO-NO-CONMENSURABLE (|P_B_observada - R| vs 1.96*EE_R)"}
+  - {id: RESULT-C0D-B-FAM-M-07-BRECHA-OBSERVADAS, tipo: flotante, unidad: "[FAM-M-07] P_B_observada(ENIGH 2020) - R(celda), pp -- la guardia A-bis 4", permite_no_estimable: true}
+  - {id: RESULT-C0D-B-COBERTURA, tipo: texto, unidad: "celdas del marco con piso B disponible, y por que las demas no (sellado en §0.2)"}
+  - {id: RESULT-C0D-B-VEREDICTO, tipo: texto, unidad: "NO-ADJUDICA-POR-N (n=2) -- B se cita como piso, no se agrega ni se ordena"}
+  - {id: RESULT-C0D-CONTROL-CONVERGENCIA-L, tipo: texto, unidad: "CONVERGE / DIVERGE:<celdas> -- puntos L re-derivados de las 224 capturas vs agregado-v1_3-resultado.json"}
+  - {id: RESULT-C0D-CONTROL-MAXDIF-L, tipo: flotante, unidad: "mayor |diferencia| entre punto L re-derivado y el sellado por el agregado", permite_no_estimable: true}
+  - {id: RESULT-C0D-CONTROL-N-PUNTOS-L, tipo: entero, unidad: "puntos L comparados en el control de convergencia (14 celdas x 2 brazos = 28)"}
+  - {id: RESULT-C0D-UNIVERSOS-IDENTICOS, tipo: texto, unidad: "SI / NO -- si los tres subconjuntos marginales de MAE_pp son el MISMO conjunto de celdas"}
+  - {id: RESULT-C0D-N-UNIVERSO-COMUN, tipo: entero, unidad: "celdas con R, L_SOLO, L_CORPUS y M los cuatro disponibles"}
+  - {id: RESULT-C0D-ORDEN-MARGINAL, tipo: texto, unidad: "corredores ordenados por MAE_pp MARGINAL, de menor a mayor error"}
+  - {id: RESULT-C0D-ORDEN-COMUN, tipo: texto, unidad: "corredores ordenados por MAE_pp COMUN, de menor a mayor error"}
+  - {id: RESULT-C0D-CELDAS-DOMINANTES, tipo: texto, unidad: "las tres celdas de mayor |d_i| en la pareada primaria, con su d_i"}
+  - {id: RESULT-C0D-ALCANCE-PAYLOADS-POSTERIORES, tipo: entero, unidad: "entradas de data/manifiesto.yaml con fecha_descarga > 2026-09-02 -- corpus que el brazo L+corpus NO vio"}
+  - {id: RESULT-C0D-ALCANCE-CORPUS-CAPTURA, tipo: texto, unidad: "fecha_congelacion y ventana de timestamps de los dos brazos, VERBATIM de las capturas"}
+  - {id: RESULT-C0D-VEREDICTO-PAREADA, tipo: texto, unidad: "NO-ESTIMABLE-POR-COBERTURA / CORPUS-ESTORBA / CORPUS-AYUDA / NO-DISCRIMINA (§4 de la sellada, por precedencia)"}
+  - {id: RESULT-C0D-ADJUDICACION-HALLAZGO, tipo: texto, unidad: "NO-ADJUDICA-POR-CONTROL / EXPLICADO-POR-UNIVERSO / EXPLICADO-POR-METRICA / CONFIRMADO-CON-ALCANCE / NO-ESTIMABLE-POR-COBERTURA (§5, por precedencia)"}
+  - {id: RESULT-C0D-ADJUDICACION-SUCESOR, tipo: texto, unidad: "el sucesor nombrado por §5.3, o NO-APLICA si la rama que cayo no lo exige"}
