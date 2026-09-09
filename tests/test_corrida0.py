@@ -1746,30 +1746,39 @@ def t_status_arbol_real_no_cuenta_smokes():
     por la regla E.1, pero eso no lo cuenta aqui como replay -- es una
     corrida OFERTA con `cuenta_gen2=SI` propia). Lo que este falsador
     vigila NO cambia: que los replays LEGACY no suban ni una unidad de GEN2,
-    y que la firma no se pierda en un merge."""
+    y que la firma no se pierda en un merge.
+
+    Premisa actualizada por `ACTO GEN2-R-SERIE-CSV` (9/sep/2026, `ADR-432`):
+    tres arbitros R sellados con `cuenta_gen2=SI` por firma de mesa con
+    OBJETO dentro del encargo (estandar FP-367/368), citada verbatim en
+    `etiquetas.cuenta_gen2_firma` de cada `spec.yaml` --
+    `CALC-R-CIV-M-10`, `CALC-R-CIV-M-12`, `CALC-R-CIV-M-13`, 38 RESULT cada
+    una: `7 -> 10` corridas, `644+114 = 758` y `516+114 = 630`. Ninguno es
+    replay LEGACY. La adopcion NO se mueve (`1`): que R consume el duelo lo
+    decide mesa por lote en F3 (`NC-0089`), y `usos.tsv` se re-derivo sin
+    cambio, que es justo lo que este falsador debe seguir viendo."""
     caso = "T-STATUS-SMOKES"
     c = C.status(imprime=False)
     _afirma(c["replays_legacy_sellados"] >= 2, caso,
             f"replays sellados={c['replays_legacy_sellados']} (se esperaban >=2)")
-    _afirma(c["N_corridas_selladas"] == 7, caso,
-            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 7 tras FIRMA DE "
+    _afirma(c["N_corridas_selladas"] == 10, caso,
+            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 10 tras la firma "
+            f"con OBJETO de ACTO GEN2-R-SERIE-CSV (3 CALC-R) sobre los 7 de FIRMA DE "
             f"CONTADOR 9/sep/2026 (FP-368: CALC-C0D-MARCADOR-v3 · FP-369: "
-            f"CALC-ENVIPE-0001, sobre los 5 de ACTO GEN2-PRIMERA-SILLA) -- si es 5, la "
-            f"firma se perdio; si es >7, un replay GEN1 conto como GEN2")
-    _afirma(c["N_resultados_sellados"] == 644, caso,
-            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 644 "
-            f"(443 previos + 162 de CALC-C0D-MARCADOR-v3 + 39 de CALC-ENVIPE-0001) tras "
-            f"FIRMA DE CONTADOR 9/sep/2026 -- si es 443, la firma se perdio; si es >644, "
-            f"un replay GEN1 conto como GEN2")
+            f"CALC-ENVIPE-0001) -- si es 7, la firma de los tres R se perdio; "
+            f"si es >10, un replay GEN1 conto como GEN2")
+    _afirma(c["N_resultados_sellados"] == 758, caso,
+            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 758 "
+            f"(644 previos + 3 x 38 de los CALC-R de ACTO GEN2-R-SERIE-CSV) -- si es 644, "
+            f"la firma de los tres R se perdio; si es >758, un replay GEN1 conto como GEN2")
     # Ids UNICOS, que es otra pregunta: v3 (CALC-0003) repite 128 de los 142
     # ids de v2 por cadena `repite_de`, asi que aporta 14 nuevos, no 142.
     # 211+90+14 = 315. La FIRMA DE CONTADOR de 9/sep/2026 suma las 162+39
     # ids propias de CALC-C0D-MARCADOR-v3/CALC-ENVIPE-0001: 315+162+39=516.
-    _afirma(c["N_resultados_gen2_sellados"] == 516, caso,
+    _afirma(c["N_resultados_gen2_sellados"] == 630, caso,
             f"N_resultados_gen2_sellados={c['N_resultados_gen2_sellados']}, esperado "
-            f"516 (315 previos + 162 de CALC-C0D-MARCADOR-v3 + 39 de CALC-ENVIPE-0001) "
-            f"-- si sale 480 (315+165), se conto una corrida de mas; si sale 315, la "
-            f"firma se perdio")
+            f"630 (516 previos + 3 x 38 de los CALC-R; los 114 ids son propios, ninguno "
+            f"repite_de otra corrida) -- si sale 516, la firma de los tres R se perdio")
     # E.2: la primera silla esta ocupada. `dependencias_legacy` baja en 1 por
     # la cita de P4 y ya NO iguala a los activos -- y ese 1 es la adopcion.
     _afirma(c["N_resultados_gen2_adoptados_activos"] == 1, caso,
