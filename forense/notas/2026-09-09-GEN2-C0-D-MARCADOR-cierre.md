@@ -284,3 +284,108 @@ Y una comprobación que la fusión hacía obligatoria: **`PR #648` no cerró `NC
 - `data/corrida0/decisiones.tsv` **no se tocó**: la firma de contador es de mesa (§4).
 - La spec `v1.0` y su corrida quedan **intactas y verificando**; `v1.1` las supera por `repite_de`, sin editar un byte hacia atrás.
 - Las cuatro premisas del encargo se verificaron contra el árbol **antes** de congelar la spec, y las que no se reprodujeron están en §0.2 y §0.3 de la sellada, no descubiertas al escribir esta nota.
+
+---
+
+## ENMIENDA FECHADA · 9 de septiembre de 2026 · `ACTO GEN2-C0-D-CORRECTIVO`
+
+> **Esta enmienda NO reescribe una sola línea de lo anterior.** Todo lo de arriba
+> queda tal cual, con su fecha, incluidas las frases que esta enmienda corrige: el
+> registro de qué se dijo es lo que permite auditar la corrección. Se corrige **por
+> sucesión, hacia adelante**, como manda la regla de la casa.
+>
+> **Origen:** revisión adversarial externa de `PR #649`, validada por dirección y
+> remitida por mesa el 9/sep/2026 con la firma verbatim *«chutate este»*.
+> **Ejecución:** `forense/encargos/2026-09-09-GEN2-C0-D-CORRECTIVO.md` (0-bis),
+> spec sucesora `prereg-caja-C0D-MARCADOR` **v1.2**, corrida
+> `CALC-C0D-MARCADOR-v3` (`repite_de: CALC-C0D-MARCADOR-v2`).
+
+### 1 · El destino del hallazgo cambia. Las cifras NO.
+
+**Ninguna cifra de este acto se mueve, y hay un control mecánico que lo prueba:**
+`CALC-C0D-MARCADOR-v3` consume los **mismos 260 insumos, byte-idénticos**, y emite
+`RESULT-C0D-CONTROL-CIFRAS-INTACTAS = INTACTAS` sobre **149 cifras comparadas con
+tolerancia `0.0`** (identidad exacta). La primaria sigue en `+4.6978 pp`, IC95
+`[−0.8022, +11.2747]`, `n = 13`; las secundarias en `+7.2287` y `+11.9265`; los
+marginales en `11.6925 / 19.6040 / 4.5066`. `verify` → `REPRODUCE`.
+
+**Lo único que cambia son dos `RESULT`, y los dos son de destino, no de medida:**
+
+| `RESULT` | `v2` (`PR #649`) | `v3` (esta enmienda) |
+|---|---|---|
+| `RESULT-C0D-VEREDICTO-PAREADA` | `NO-DISCRIMINA` | **`NO-DISCRIMINA`** — idéntico |
+| `RESULT-C0D-ADJUDICACION-HALLAZGO` | `EXPLICADO-POR-METRICA` | **`INCONCLUSO`** |
+| `RESULT-C0D-ADJUDICACION-SUCESOR` | `NO-APLICA` | **`NC-0077`** |
+
+### 2 · La lectura canónica, adoptada verbatim de la revisión
+
+> *«…el IC95 va de −0.80 a +11.27: la comparación no discrimina la dirección…
+> Igualar el universo reduce la diferencia marginal; no demuestra que el resto esté
+> explicado por la métrica.»*
+
+**Este párrafo sustituye, como lectura canónica de `PR #649`, a toda formulación
+anterior que dijera o sugiriera que el hallazgo del 8/sep quedaba «explicado».** No
+queda explicado, y tampoco queda refutado: **no se puede decidir con este `n` y este
+intervalo.** Lo que §0 de esta nota llamó `EXPLICADO-POR-METRICA` se lee desde hoy
+como **`INCONCLUSO`**.
+
+### 3 · Los tres defectos del mapa de `v2`, y por qué eran defectos
+
+El código que corrió (`data/corrida0/CALC-C0D-MARCADOR-v2/medidor.py:373-385`)
+traducía el veredicto a un destino por una escalera con tres fallas:
+
+- **(a) Veto de universo.** `elif (not identicos) and (rank_marginal != rank_comun)`
+  se evaluaba **antes** de mirar la pareada. El ranking de `M` podía vetar una
+  comparación `L↔L` **en la que `M` no participa**. En el caso real no llegó a
+  disparar (`DIAGNOSTICO-UNIVERSO = ORDEN-ESTABLE`), pero **estaba latente**: con
+  una primaria concluyente y un orden cambiado, `v2` habría archivado como artefacto
+  un intervalo que excluye cero. En `v1.2` el efecto de universo es **diagnóstico y
+  nada más**; la función de adjudicación **ni siquiera recibe el ranking**.
+- **(b) `NO-DISCRIMINA → EXPLICADO-POR-METRICA`.** Un IC95 que cruza cero no explica
+  nada. En `v1.2` va a **`INCONCLUSO`**.
+- **(c) El `else` mudo.** `CORPUS-AYUDA` (`ic_hi < 0`), que es la **refutación
+  inequívoca** del hallazgo, caía en el resto y salía rotulada `EXPLICADO-POR-METRICA`:
+  el resultado más informativo que este marcador puede producir salía como el más
+  neutro. En `v1.2` tiene rama propia, **`REFUTADO-CON-ALCANCE`**, y el mapa es un
+  diccionario **sin destino por defecto** — una clave ausente levanta excepción.
+
+Los tres están cerrados **por falsador ejecutado y sellado**, no por afirmación:
+`RESULT-C0D-FALSADOR-A-VETO-UNIVERSO = CONFIRMADO-CON-ALCANCE`,
+`RESULT-C0D-FALSADOR-B-CORPUS-AYUDA = REFUTADO-CON-ALCANCE`,
+`RESULT-C0D-FALSADOR-F-EXHAUSTIVO = LEVANTA-EXCEPCION`, y cuatro más.
+
+### 4 · `n = 14 → 13` en el enunciado de las secundarias
+
+§0 y §2 de esta nota escriben *«Sobre estas 14 celdas, `M` le gana a `L` con corpus
+y sin corpus»*. **El enunciado correcto es `13`, no `14`.** Las dos secundarias se
+calculan sobre el **universo común** `U∩`, y
+`RESULT-C0D-PAREADA-SEC-LSOLO-M-N = RESULT-C0D-PAREADA-SEC-LCORPUS-M-N = 13`
+(`RESULT-C0D-N-UNIVERSO-COMUN = 13`): `CIV-M-04` tiene punto en `L_CORPUS` y no en
+`L_SOLO`, y sale del universo común. **Las cifras `+7.2287` y `+11.9265` y sus IC no
+cambian** —siempre se calcularon sobre 13—; lo que se corrige es la **frase que las
+acompaña**, que decía 14. El marco tiene 14 celdas; la comparación tiene 13.
+
+### 5 · El sucesor de alcance ya no depende del signo
+
+§0 dice: *«el límite de alcance de P1 NO muerde para esta rama … `ADJUDICACION-SUCESOR
+= NO-APLICA`»*. Esa condición era la equivocada. **El alcance limita a los tres
+destinos por igual**, porque el corpus que estaba delante del corredor es el mismo
+cualquiera que sea el signo del intervalo. `v1.2` §5.4 vuelve a la condición
+**material** del encargo original: se nombra sucesor si entró corpus después de la
+ventana de captura. Entró — **435 payloads**, la misma cifra que §6 ya medía — así
+que `RESULT-C0D-ADJUDICACION-SUCESOR = NC-0077`.
+
+**`NC-0077` se REUTILIZA, no se duplica: este acto no abre deuda nueva por este
+concepto.** Lo que cambia es su estatuto: deja de ser *«deuda que este veredicto no
+exige»* y pasa a ser el **sucesor que el alcance nombra**.
+
+### 6 · Lo que esta enmienda NO hace
+
+- **No toca** los sellos de `CALC-C0D-MARCADOR`, `CALC-C0D-MARCADOR-v2`, ni las specs
+  `v1.0`/`v1.1`: sus bytes quedan intactos y sus sidecars siguen verificando.
+- **No re-captura nada** y no toca `corridas-L/`, `corridas-M/`, `corridas-R/` ni
+  `agregado_v1_*.py`.
+- **No introduce prueba de equivalencia ni umbral post-hoc.** `INCONCLUSO` es la
+  ausencia de una conclusión, no la afirmación de que no hay diferencia.
+- **No mueve el contador**, por la misma razón estructural de §4: regla `E.1`,
+  `envuelto_legacy = SI`. `corredores_envueltos_legacy` **10 → 11**.
