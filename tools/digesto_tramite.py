@@ -1889,6 +1889,310 @@ def seccion_h(raiz, fecha, cuenta=None, base_nc_ref=None, tope_filas=25, tope_te
     return out, resumen
 
 
+# ───────────────────────────────────────────────────────────────
+# P1 · `--mesa` — vista de mesa (`ACTO GEN2-GOBIERNO-DECISIONES`,
+# `forense/encargos/2026-09-09-GEN2-GOBIERNO-DECISIONES.md`, propuesta de
+# Astra §2 en `forense/notas/2026-09-09-PROPUESTA-GOBIERNO-DECISIONES-
+# PENDIENTES-astra.md`).
+#
+# QUÉ ES. Una tabla derivada de FP + NC (mismos lectores del resto del
+# digesto: `EC.lee_tablero`, `_lee_tsv_texto` de esta sección H) que
+# responde en un solo lugar «qué falta, qué ya está cubierto, quién debe
+# actuar» — sin inventar un tercer registro y sin escribir nada. `--mesa`
+# es de solo lectura, igual que cualquier otra sección: `--stdout` con
+# `--mesa` no toca `firmas-pendientes.tsv`, `no-corrido.tsv` ni el
+# registro de adquisición (P5 lo falsa con hash antes/después).
+#
+# Las siete columnas de la propuesta §2 se aplanan aquí a un bloque de
+# texto por fila (no una tabla ancha: el contenido de cada campo es prosa
+# variable y una tabla de 7 columnas con celdas largas es ilegible en
+# Markdown crudo). Las etiquetas "Quién debe actuar"/"Qué ya está
+# cubierto" son SOLO presentación: se derivan de `estado` con
+# `EC.es_abierta`, nunca se escriben de vuelta.
+# ───────────────────────────────────────────────────────────────
+
+RE_FP_ID = re.compile(r"\bFP-\d+\b")
+
+
+def _lee_no_corrido(raiz):
+    """(ruta, filas-o-None, n). Mismo `_lee_tsv_texto` que ya usa la
+    sección H -- no se reimplementa el parseo de `no-corrido.tsv`."""
+    ruta = os.path.join(raiz, _NC_RUTA_REL)
+    if not os.path.exists(ruta):
+        return ruta, None, 0
+    with open(ruta, encoding="utf-8-sig", newline="") as fh:
+        texto = fh.read()
+    try:
+        filas = _lee_tsv_texto(texto)
+    except ValueError:
+        return ruta, None, 0
+    return ruta, filas, len(filas)
+
+
+def _cuenta_registro_adquisicion(raiz):
+    """(ruta, n). Cuenta filas del registro canónico de adquisición
+    (propuesta §2: "registro canónico de adquisición ya existente"), sin
+    parsearlo campo a campo -- la vista lo declara como fuente examinada
+    (A.13); no cruza sus columnas hoy porque los ocho casos de P5 se
+    resuelven por FP/NC, no por este registro."""
+    ruta = os.path.join(raiz, "data", "curacion-registro",
+                        "cola-adquisicion-registro.tsv")
+    if not os.path.exists(ruta):
+        return ruta, 0
+    with open(ruta, encoding="utf-8-sig", newline="") as fh:
+        n = sum(1 for _ in csv.DictReader(fh, delimiter="\t"))
+    return ruta, n
+
+
+def _normaliza_id_mesa(id_filtro):
+    """`--id` acepta el ID pelado (`FP-362`) o la referencia calificada
+    por documento (`forense/firmas-pendientes.tsv#FP-362`, §5 de la
+    propuesta: "documento de origen + ID original"). Devuelve el ID
+    pelado con el que comparar contra la columna `id` de cada TSV."""
+    if id_filtro is None:
+        return None
+    t = id_filtro.strip()
+    if "#" in t:
+        t = t.split("#", 1)[1].strip()
+    return t
+
+
+def _fp_a_fila_mesa(f, hoy, cuenta, tope_texto):
+    rid = f.get("id", "?")
+    estado = f.get("estado", "")
+    abierta = EC.es_abierta(estado)
+    creado = f.get("creado", "")
+    d = dias(creado, hoy)
+    edad_txt = plural_dias(d) if d is not None else "antigüedad no derivable"
+    v = _vence_de(f)
+    if v is not None:
+        vencida = v < hoy
+        vence_txt = (f"**VENCIDA** desde {v.isoformat()}" if vencida
+                    else f"vence {v.isoformat()}")
+    else:
+        vencida, vence_txt = False, "sin `vence:` en `gatea`"
+    pregunta = neutraliza(una_linea(f.get("qué_se_firma", ""), tope_texto), cuenta)
+    desbloquea = neutraliza(una_linea(f.get("gatea", ""), tope_texto), cuenta)
+    if abierta:
+        quien = "**Mesa decide** — firma o declina, con cita."
+        cubierto = "— (fila abierta; ningún alcance cubierto todavía)."
+        cita = f.get("dónde", "") or f.get("encargo", "")
+        evidencia = (f"Sin firma verbatim en el repo. Localizador: "
+                    f"{neutraliza(una_linea(cita, tope_texto), cuenta)}.")
+    else:
+        quien = "Ya resuelto — presentación, no re-preguntar."
+        cita = f.get("firmada_en") or f.get("ejecutada_en") or "(sin cita en esas columnas)"
+        cubierto = (f"`{neutraliza(una_linea(estado, tope_texto), cuenta)}` — "
+                    f"{neutraliza(una_linea(cita, tope_texto), cuenta)}")
+        evidencia = f"`archivo:línea` en la fila `{rid}` de `forense/firmas-pendientes.tsv`."
+    return {
+        "id": rid, "ref": f"forense/firmas-pendientes.tsv#{rid}",
+        "pregunta": pregunta, "quien": quien, "edad": edad_txt,
+        "vence": vence_txt, "vencida": vencida, "dias_edad": d or 0,
+        "desbloquea": desbloquea or "sin `gatea` declarado",
+        "cubierto": cubierto, "evidencia": evidencia, "abierta": abierta,
+    }
+
+
+def _nc_a_fila_mesa(f, hoy, cuenta, tope_texto, fp_por_id):
+    rid = f.get("id", "?")
+    estado = f.get("estado", "")
+    abierta = EC.es_abierta(estado)
+    creado = f.get("fecha", "")
+    d = dias(creado, hoy)
+    edad_txt = plural_dias(d) if d is not None else "antigüedad no derivable"
+    sucesor = f.get("sucesor", "") or ""
+    fp_citadas = RE_FP_ID.findall(sucesor)
+    vence_txt = "sin plazo propio; sin FP sucesora con `vence:`"
+    vencida = False
+    for fid in fp_citadas:
+        ffila = fp_por_id.get(fid)
+        if ffila is None:
+            continue
+        v = _vence_de(ffila)
+        if v is not None:
+            vencida = v < hoy
+            vence_txt = (f"plazo heredado de `{fid}`: "
+                        + (f"**VENCIDA** desde {v.isoformat()}" if vencida
+                           else f"vence {v.isoformat()}"))
+            break
+    pregunta = neutraliza(una_linea(f.get("que_no_se_corrio", ""), tope_texto), cuenta)
+    desbloquea = neutraliza(una_linea(f.get("impacto", ""), tope_texto), cuenta)
+    if abierta:
+        residuales = []
+        for fid in fp_citadas:
+            ffila = fp_por_id.get(fid)
+            if ffila is not None and not EC.es_abierta(ffila.get("estado", "")):
+                residuales.append(
+                    f"sucesor `{fid}` ya `{neutraliza(una_linea(ffila.get('estado', ''), 80), cuenta)}` "
+                    f"— firmar/cerrar la sucesora no acredita ejecutar esta NC; "
+                    f"el residual de `{rid}` sigue pendiente.")
+        if residuales:
+            quien = "Mesa decide el residual — la sucesora NO cierra esto."
+            cubierto = "; ".join(residuales)
+        elif sucesor.strip() and not fp_citadas:
+            quien = f"Sucesor sin FP visible: `{neutraliza(una_linea(sucesor, 120), cuenta)}` — por aclarar."
+            cubierto = "— (sin FP sucesora que citar; trámite no crea una firma nueva)."
+        else:
+            quien = "Mesa decide / trámite concilia según evidencia."
+            cubierto = "— (abierta, sin cobertura registrada)."
+        razon = neutraliza(una_linea(f.get("razon", ""), tope_texto), cuenta)
+        evidencia = f"`razón`: {razon}" if razon else "sin `razón` registrada."
+    else:
+        quien = "Ya resuelto — presentación, no re-preguntar."
+        cerrado_por = neutraliza(una_linea(f.get("cerrado_por", ""), tope_texto), cuenta)
+        cubierto = (f"`{neutraliza(una_linea(estado, tope_texto), cuenta)}` — "
+                    f"cerrado_por: {cerrado_por or '(vacío)'}")
+        evidencia = f"`fecha_cierre`: {f.get('fecha_cierre', '') or '(vacía)'}."
+    return {
+        "id": rid, "ref": f"forense/no-corrido.tsv#{rid}",
+        "pregunta": pregunta, "quien": quien, "edad": edad_txt,
+        "vence": vence_txt, "vencida": vencida, "dias_edad": d or 0,
+        "desbloquea": desbloquea or "sin `impacto` declarado",
+        "cubierto": cubierto, "evidencia": evidencia, "abierta": abierta,
+    }
+
+
+def seccion_mesa(raiz, hoy, cuenta, id_filtro=None, tope_texto=220, tope_lista=0):
+    """La vista de mesa (P1). Devuelve (líneas, resumen-dict).
+
+    Sin `--id`: conjunto completo de filas `ABIERTA` de FP y NC (§2:
+    "emitir el conjunto completo... no ocultar candidatos antiguos detrás
+    de un tope" -- `tope_lista<=0` es "todos", igual que D; un tope
+    positivo trunca y lo declara). Con `--id`: UNA fila (FP o NC,
+    cualquier estado -- también decididas, §2 in fine), buscada por ID
+    pelado o calificado por documento (§5).
+
+    UMBRAL DE REVISIÓN (P4c, §6 de la propuesta): cuando una fila NO trae
+    `vence:` explícito, la propuesta sugiere 7 días desde su creación
+    como umbral de REVISIÓN -- no de cierre ni plazo fatal, y elección de
+    diseño reversible, no observada. Esta función NO lo implementa: no
+    marca, ordena ni filtra por ese umbral (evitar decidir por silencio
+    del reloj es justo lo que §6 pide). Queda declarado aquí para que
+    quien active el umbral lo haga leyendo `edad`/`dias_edad`, ya
+    calculados por esta misma función, sin inventar un segundo cómputo de
+    antigüedad -- diferido explícitamente por presupuesto (P4/P5 antes
+    que esto en el reparto del encargo).
+    """
+    ruta_fp, filas_fp, n_fp = EC.lee_tablero(raiz)
+    ruta_nc, filas_nc, n_nc = _lee_no_corrido(raiz)
+    ruta_reg, n_reg = _cuenta_registro_adquisicion(raiz)
+
+    out = ["## Mesa · vista de decisiones pendientes (`--mesa`)", "",
+           "Comando: `tools/digesto_tramite.py --mesa` -- extensión de este mismo "
+           "digesto (propuesta de Astra §2, `forense/notas/2026-09-09-PROPUESTA-"
+           "GOBIERNO-DECISIONES-PENDIENTES-astra.md`, adoptada por "
+           "`ACTO GEN2-GOBIERNO-DECISIONES`). Fuentes: `forense/firmas-pendientes.tsv` "
+           "(`EC.lee_tablero`), `forense/no-corrido.tsv` (mismo lector de la sección H) "
+           "y el registro canónico de adquisición, declarado como universo examinado. "
+           "Cero escritura: esta sección no toca ninguna de las tres.", ""]
+
+    if filas_fp is None:
+        out += ["**PARO** — no existe `forense/firmas-pendientes.tsv`. Archivos "
+                f"examinados por `{os.path.relpath(ruta_fp, raiz)}`: 0.", ""]
+        return out, {"filas": 0, "vencidas": 0}
+    if filas_nc is None:
+        out += ["**PARO** — `forense/no-corrido.tsv` no existe o no es un TSV "
+                f"válido. Archivos examinados por `{os.path.relpath(ruta_nc, raiz)}`: 0.", ""]
+        return out, {"filas": 0, "vencidas": 0}
+
+    fp_por_id = {f.get("id", "").strip(): f for f in filas_fp}
+
+    id_pelado = _normaliza_id_mesa(id_filtro)
+    if id_pelado is not None:
+        out += [f"Modo **consulta puntual**: `--id {id_filtro}` → ID pelado "
+                f"`{id_pelado}`. Devuelve la fila con cualquier estado, incluidas "
+                "decisiones ya tomadas (§2 in fine).", ""]
+        candidato_fp = fp_por_id.get(id_pelado)
+        candidato_nc = next((f for f in filas_nc if f.get("id", "").strip() == id_pelado), None)
+        if candidato_fp is None and candidato_nc is None:
+            # Ni FP ni NC: el ID puede ser un ítem de `forense/encargos/cola/`
+            # (p. ej. `GEN2-E5-0`, `PILOTO-CAJA` -- su `codigo` es el nombre
+            # de archivo sin fecha ni extensión, y trae el ID como
+            # subcadena, no como identidad exacta). Se declara distinto de
+            # una fila FP/NC: es fuera del universo de FP+NC de §2, y esta
+            # vista lo nombra sin fingir que es una decisión de tablero.
+            d_cola = os.path.join(raiz, "forense", "encargos", "cola")
+            candidatos_cola = []
+            if os.path.isdir(d_cola):
+                for p in sorted(glob.glob(os.path.join(d_cola, "*.md"))):
+                    it = _lee_item_cola(p)
+                    if it and id_pelado.upper() in it["codigo"].upper():
+                        candidatos_cola.append(it)
+            if not candidatos_cola:
+                out += [f"**NO-ENCONTRADO.** Ningún `id` igual a `{id_pelado}` en "
+                        f"`forense/firmas-pendientes.tsv` (**{n_fp}** filas examinadas) ni "
+                        f"en `forense/no-corrido.tsv` (**{n_nc}** filas examinadas), ni un "
+                        f"`codigo` de `forense/encargos/cola/*.md` que lo contenga (A.13).", ""]
+                return out, {"filas": 0, "vencidas": 0}
+            out += [f"**{len(candidatos_cola)}** ítem(s) de `forense/encargos/cola/` cuyo "
+                    f"`codigo` contiene `{id_pelado}` (fuera del universo FP+NC de §2, "
+                    f"nombrado igual):", ""]
+            for it in candidatos_cola:
+                out += [f"### `{it['base']}` (cola) — forense/encargos/cola/{it['base']}",
+                        "", f"- **ESTADO:** {neutraliza(it['estado'] or '(sin ESTADO)', cuenta)}",
+                        f"- **ENTORNO:** {it['entorno'] or '(sin ENTORNO)'}", ""]
+            return out, {"filas": len(candidatos_cola), "vencidas": 0}
+        filas_mesa = []
+        if candidato_fp is not None:
+            filas_mesa.append(("FP", _fp_a_fila_mesa(candidato_fp, hoy, cuenta, tope_texto)))
+        if candidato_nc is not None:
+            filas_mesa.append(("NC", _nc_a_fila_mesa(candidato_nc, hoy, cuenta, tope_texto, fp_por_id)))
+        for tipo, r in filas_mesa:
+            out += _bloque_fila_mesa(tipo, r)
+        out += [f"Registro de adquisición examinado: `{os.path.relpath(ruta_reg, raiz)}` "
+                f"(**{n_reg}** fila(s), A.13) -- no cruzado campo a campo para esta consulta.", ""]
+        return out, {"filas": len(filas_mesa), "vencidas": sum(1 for _, r in filas_mesa if r["vencida"])}
+
+    # ── Sin --id: conjunto completo de ABIERTA ──────────────────
+    abiertas_fp = [f for f in filas_fp if EC.es_abierta(f.get("estado", ""))]
+    abiertas_nc = [f for f in filas_nc if EC.es_abierta(f.get("estado", ""))]
+    filas_mesa = ([("FP", _fp_a_fila_mesa(f, hoy, cuenta, tope_texto)) for f in abiertas_fp]
+                 + [("NC", _nc_a_fila_mesa(f, hoy, cuenta, tope_texto, fp_por_id)) for f in abiertas_nc])
+    # Orden: vencidas primero, luego por edad descendente -- sin puntuación
+    # de urgencia (§2), solo dos claves deterministas.
+    filas_mesa.sort(key=lambda t: (0 if t[1]["vencida"] else 1, -t[1]["dias_edad"], t[1]["id"]))
+
+    out += [f"FP examinadas: **{n_fp}** ({len(abiertas_fp)} `ABIERTA`). "
+            f"NC examinadas: **{n_nc}** ({len(abiertas_nc)} `ABIERTA`). "
+            f"Registro de adquisición examinado: `{os.path.relpath(ruta_reg, raiz)}` "
+            f"(**{n_reg}** fila(s)) (A.13).", "",
+            f"**{len(filas_mesa)}** decisión(es) viva(s) en total (FP + NC `ABIERTA`, "
+            "sin puntuación de urgencia; orden: vencidas primero, luego por edad).", ""]
+
+    if not filas_mesa:
+        out += ["NINGUNA fila `ABIERTA` en FP ni en NC hoy.", ""]
+        return out, {"filas": 0, "vencidas": 0}
+
+    mostradas = filas_mesa if tope_lista <= 0 else filas_mesa[:tope_lista]
+    for tipo, r in mostradas:
+        out += _bloque_fila_mesa(tipo, r)
+    if len(mostradas) < len(filas_mesa):
+        out += [f"**Se listan {len(mostradas)} de {len(filas_mesa)}.** El resto no está "
+                f"oculto: `--tope-lista 0` los imprime todos (el conjunto completo, §2); "
+                f"el tope por defecto ({tope_lista}) es el mismo que usa la sección D y "
+                f"esta nota lo declara para que no se lea como cobertura silenciosa.", ""]
+
+    n_venc = sum(1 for _, r in filas_mesa if r["vencida"])
+    out += [f"De las {len(filas_mesa)}, **{n_venc}** están vencidas (`vence:` ya pasado, "
+            "propio o heredado de la FP sucesora). El vencimiento AVISA, no decide: "
+            "esta vista nunca firma, cierra ni declina una fila por sí sola (§6).", ""]
+    return out, {"filas": len(filas_mesa), "vencidas": n_venc}
+
+
+def _bloque_fila_mesa(tipo, r):
+    return [
+        f"### `{r['id']}` ({tipo}) — {r['ref']}", "",
+        f"- **Pregunta o acción exacta:** {r['pregunta'] or '(vacío)'}",
+        f"- **Quién debe actuar y para qué:** {r['quien']}",
+        f"- **Edad y vencimiento:** {r['edad']} — {r['vence']}",
+        f"- **Qué desbloquea:** {r['desbloquea']}",
+        f"- **Qué ya está cubierto:** {r['cubierto']}",
+        f"- **Evidencia y siguiente acción:** {r['evidencia']}",
+        "",
+    ]
+
+
 def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso, base_nc_ref=None):
     cuenta = Cuenta()
     rc_git, sha = corre(["git", "rev-parse", "--short", "HEAD"], raiz, timeout=60)
@@ -2008,6 +2312,15 @@ def main(argv=None):
                          "`forense/no-corrido.tsv`, en vez de auto-seleccionar el último "
                          "digesto versionado. Se resuelve con `git rev-parse --verify`; "
                          "una ref inválida es error, nunca se sustituye por otra.")
+    ap.add_argument("--mesa", action="store_true",
+                    help="P1 (ACTO GEN2-GOBIERNO-DECISIONES): en vez del digesto "
+                         "completo, emite la vista de mesa (FP+NC ABIERTA, propuesta "
+                         "de Astra §2). Solo lectura, igual que el resto del digesto. "
+                         "Respeta --stdout/--fecha/--raiz/--tope-texto/--tope-lista.")
+    ap.add_argument("--id", dest="id_filtro", default=None,
+                    help="Con --mesa: consulta puntual por ID (`FP-362` o "
+                         "`forense/firmas-pendientes.tsv#FP-362`). También devuelve "
+                         "decisiones ya tomadas, no solo ABIERTA (§2 in fine).")
     a = ap.parse_args(argv)
 
     if a.fecha:
@@ -2021,6 +2334,38 @@ def main(argv=None):
         fecha = datetime.date.today()
 
     raiz = os.path.abspath(a.raiz)
+
+    if a.mesa:
+        # P1: vista de mesa, cero escritura. Solo `--stdout` -- no tiene
+        # ruta de publicación propia en `forense/digesto/`, así que
+        # escribir archivo aquí sería inventar un segundo entregable que
+        # el encargo no pide.
+        if not a.stdout:
+            print("--mesa requiere --stdout (P1: es una vista de solo lectura, "
+                  "sin ruta de publicación propia).", file=sys.stderr)
+            return 2
+        cuenta = Cuenta()
+        lineas, res_mesa = seccion_mesa(raiz, fecha, cuenta, id_filtro=a.id_filtro,
+                                        tope_texto=a.tope_texto, tope_lista=a.tope_lista)
+        rc_git, sha = corre(["git", "rev-parse", "--short", "HEAD"], raiz, timeout=60)
+        sha = sha.strip() if rc_git == 0 else "NO-DERIVABLE"
+        cab = [f"# Vista de mesa · {fecha.isoformat()}", "",
+               f"`tools/digesto_tramite.py --mesa` sobre `HEAD` `{sha}`. Solo lectura: "
+               "no modifica `firmas-pendientes.tsv`, `no-corrido.tsv` ni el registro "
+               "de adquisición.", ""]
+        texto = "\n".join(cab + lineas).rstrip() + "\n"
+        if a.verifica:
+            problemas = verifica(texto)
+            if problemas:
+                print("PARO — la neutralización no fue completa; --mesa NO imprime:",
+                      file=sys.stderr)
+                for p in problemas:
+                    print(f"  · {p}", file=sys.stderr)
+                return 2
+        sys.stdout.write(texto)
+        print(f"mesa: {res_mesa['filas']} fila(s) · {res_mesa['vencidas']} vencida(s) · "
+              f"HEAD {sha}", file=sys.stderr)
+        return 0
 
     # P1.6: en modo publicación (escribe archivo), un `no-corrido.tsv` con
     # cambios locales sin commitear no puede atribuirse a ningún SHA -- se

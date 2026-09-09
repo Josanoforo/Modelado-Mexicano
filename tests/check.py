@@ -220,6 +220,22 @@ def t02_duplicates():
 # lista es el costo deliberado de declarar un borrado — es el mismo que
 # `curaduria-archivos.md` ya paga a mano.
 HISTORICOS = {
+    # ACTO GEN2-GOBIERNO-DECISIONES, 9/sep/2026: dos citas del encargo
+    # archivado VERBATIM (0-bis A.3, no se edita para complacer un test)
+    # que T03 no puede resolver por basename plano. `tramite.md` existe en
+    # `.claude/commands/tramite.md`, pero el glob recursivo de T03
+    # (`**/*.*`) no desciende a directorios ocultos como `.claude/`, así
+    # que su basename nunca entra al set `existing` aunque el archivo
+    # exista -- limitación del glob, no del archivo. `PROPUESTA-GOBIERNO-
+    # DECISIONES-PENDIENTES.md` es el nombre que la propia propuesta de
+    # Astra se dio a sí misma en su título; el archivo que P0 de este acto
+    # commiteó en `forense/notas/` sigue la convención de nombrado del
+    # repo (prefijo de fecha) y por tanto vive con otro basename literal:
+    # `2026-09-09-PROPUESTA-GOBIERNO-DECISIONES-PENDIENTES-astra.md`. El
+    # contenido citado existe en ambos casos; solo el basename pelado no
+    # coincide.
+    "tramite.md",
+    "PROPUESTA-GOBIERNO-DECISIONES-PENDIENTES.md",
     # forense/curaduria-archivos.md §1 "SE VA"
     "estado-proyecto-psicologia-mexicano.md",
     "glosario-corregido-v2.md",
@@ -1376,6 +1392,17 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-GOBIERNO-DECISIONES, 9/sep/2026: encargo archivado VERBATIM
+    # (0-bis A.3), que no se edita para complacer un test. Dispara
+    # `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) dos veces, y ninguna es
+    # una decisión sin resolver: la primera es el propio título del acto
+    # ("PROPUESTA DE ASTRA, ADAPTADA — la vista de mesa"), la segunda cita
+    # el nombre del archivo `PROPUESTA-GOBIERNO-DECISIONES-PENDIENTES.md`
+    # (la propuesta de Astra, commiteada verbatim por P0 del mismo acto en
+    # `forense/notas/`) al describir su propia procedencia. No hay ninguna
+    # fila del tablero que este marcador debiera citar: el acto entero es
+    # código/documentación (P1-P5), no una ranura de firma pendiente.
+    "forense/encargos/2026-09-09-GEN2-GOBIERNO-DECISIONES.md",
     # ACTO MAESTRA38-N9 · YA-MEDIDO, 5/sep/2026. `FP-301` era la única fila
     # que citaba estos dos archivos en `dónde` y estaba `ABIERTA`; este acto
     # la recifra a `FIRMADA-POR-MERGE` (P3 del encargo -- `PR #537` ya
@@ -2644,6 +2671,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # rótulo `GEN2-E5-0` ya censado arriba y en `canon/registro-rotulos.tsv`,
     # no un rótulo nuevo.
     "forense/encargos/2026-09-09-GEN2-CIERRES-CON-CITA.md",
+    # ACTO GEN2-GOBIERNO-DECISIONES, 9/sep/2026: encargo archivado VERBATIM
+    # (0-bis A.3), que no se edita para complacer un test. Cita "estado
+    # E5-0 rancio" al listar uno de los ocho casos de aceptación heredados
+    # de ACTO GEN2-CIERRES-CON-CITA -- procedencia del mismo rótulo
+    # `GEN2-E5-0` ya censado arriba y en `canon/registro-rotulos.tsv`, no
+    # un rótulo nuevo.
+    "forense/encargos/2026-09-09-GEN2-GOBIERNO-DECISIONES.md",
     # ACTO GEN2-E5 · CALC-0001..0003, 8/sep/2026: encargo archivado VERBATIM
     # (0-bis A.3) desde `forense/encargos/cola/`, que no se edita para
     # complacer un test. El rótulo pelado que trae es `E5` -- el encabezado
@@ -5460,6 +5494,31 @@ def t40_rutinas():
         fail("T-RUTINAS", f)
 
 
+def t41_digesto_mesa():
+    """T41 · T-DIGESTO-MESA -- P5 de `ACTO GEN2-GOBIERNO-DECISIONES`
+    (`forense/encargos/2026-09-09-GEN2-GOBIERNO-DECISIONES.md`). Corre
+    `tests/test_digesto_mesa.py`: falsadores dirigidos de
+    `tools/digesto_tramite.py --mesa` (P1 del mismo encargo) -- mismo
+    arnés que T39/T40/T32."""
+    ruta = os.path.join(ROOT, "tests", "test_digesto_mesa.py")
+    if not os.path.exists(ruta):
+        fail("T-DIGESTO-MESA", "no existe `tests/test_digesto_mesa.py`")
+        return
+    try:
+        import importlib.util as _iu
+        _spec = _iu.spec_from_file_location("test_digesto_mesa_desde_check", ruta)
+        _mod = _iu.module_from_spec(_spec)
+        sys.modules[_spec.name] = _mod
+        _spec.loader.exec_module(_mod)
+        fallos = _mod.corre()
+    except Exception as exc:
+        fail("T-DIGESTO-MESA", f"`tests/test_digesto_mesa.py` no pudo correr: "
+                                f"{type(exc).__name__}: {exc}")
+        return
+    for f in fallos:
+        fail("T-DIGESTO-MESA", f)
+
+
 def t39_digesto_nc():
     ruta = os.path.join(ROOT, "tests", "test_digesto_nc.py")
     if not os.path.exists(ruta):
@@ -5984,6 +6043,7 @@ def main():
         ("T38 T-ALTA-RELACION",                        t38_alta_relacion),
         ("T34 T-NO-CORRIDO",                          t34_no_corrido),
         ("T35 T-REPRO",                                t35_repro),
+        ("T41 T-DIGESTO-MESA",                          t41_digesto_mesa),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
