@@ -8,20 +8,35 @@
 
 ---
 
-## 0 · Una advertencia sobre la fuente de este reporte (léase antes que la tabla)
+## 0 · La fuente de este reporte — y su verificación posterior
 
-El encargo manda «intenta el bloque PowerShell **del §7 de la firma**» y evalúa contra el «**criterio de aceptación 7** de la firma». El despacho `REVISION-CABLEADO-SONDA-ADQUISICION` (Astra, 9/sep) que contiene ese §7 **NO viajó adjunto a este lanzamiento y NO existe en el repo** — negativo con control positivo y código de salida:
+El encargo manda «intenta el bloque PowerShell **del §7 de la firma**» y evalúa contra el «**criterio de aceptación 7** de la firma». **Al ejecutar este acto, el despacho `REVISION-CABLEADO-SONDA-ADQUISICION` (Astra, 9/sep) no viajó adjunto ni existía en el repo** — negativo con control positivo y código de salida:
 
 ```
 git grep -l "REVISION-CABLEADO-SONDA" <todas las refs>   -> 0 resultados
 git grep -l "SONDA-3" origin/main -- forense/            -> 10 resultados (control positivo)
-grep -rlEi "Get-ScheduledTask|WakeToRun|NumberOfMissedRuns" ~/.claude/paste-cache/
-   -> 1 resultado, y es el propio encargo de este acto, no el despacho
 ```
 
-Lo que **sí** viajó adentro es la firma verbatim, que es lo que la cláusula «si falta, PARA» protege — por eso este acto NO paró. Pero **el §7 se reconstruyó a partir de la enumeración que el propio encargo hace de su contenido** (tarea, acción, usuario, triggers, `StartWhenAvailable`/`WakeToRun`/`MultipleInstances`/`ExecutionTimeLimit`, principal, `LastRunTime`/`NextRunTime`/`NumberOfMissedRuns`, `Get-TimeZone`, eventos del día del log Operational filtrados por la tarea), no de su texto. Si el §7 pedía algo fuera de esa lista, no se corrió. Se declara aquí, no se disimula.
+Lo que sí viajó adentro es la firma verbatim, que es lo que la cláusula «si falta, PARA» protege — por eso este acto NO paró. El §7 **se reconstruyó a partir de la enumeración que el propio encargo hace de su contenido**, y así se declaró en su momento, sin fingir haberlo leído.
 
----
+**VERIFICACIÓN POSTERIOR (mesa entregó el documento el mismo día; `sha256 0554bf6f8f8b530a428650f25f88b910bbf9e3eb471991224efc4b422e5082a5`).** El despacho quedó archivado por el hermano NUBE en `forense/notas/2026-09-09-REVISION-CABLEADO-SONDA-ADQUISICION-astra.md` (`PR #665`, fusionado 19:18Z) — este acto **no lo duplica**. Contrastado el §7 real contra lo que se corrió, elemento por elemento:
+
+| §7 pide | ¿Se corrió? |
+|---|---|
+| `python3 /home/pc0/mm-adq/tools/adq_doctor.py --json` | Sí — y la ruta `mm-adq` se había derivado por cuenta propia del instalador, no adivinado |
+| «interpretar `t_cron` junto al censo consolidado, no relanzar por su falso `CENSO-SIN-CIERRE`» | Sí — H1 no se materializó, `t_cron COMPLETO`; nada se relanzó |
+| `Get-ScheduledTask` / `Get-ScheduledTaskInfo` sobre `\ModeladoMexicano\AdquiereCron` | Sí |
+| `TaskName,TaskPath,State` · `Actions: Execute,Arguments,WorkingDirectory` · `Triggers *` | Sí |
+| `Settings: StartWhenAvailable,WakeToRun,MultipleInstances,ExecutionTimeLimit` | Sí (y algunos más) |
+| `Principal: UserId,LogonType,RunLevel` | Sí |
+| `Info: LastRunTime,LastTaskResult,NextRunTime,NumberOfMissedRuns` | Sí |
+| `Get-TimeZone` | Sí |
+| `Get-WinEvent` Operational del día, filtrado por la tarea | Sí — canal `IsEnabled=False`, declarado |
+| «si el historial está deshabilitado, declararlo; no inferir ausencia de disparo» | Sí |
+| «correlacionar con `2026-09-09T073007-371` y el log local» | Sí (§1.5) |
+| «comprobar que no quedó otro disparador activo» | Sí — **quedó**: el crontab legado sigue disparando |
+
+**La reconstrucción resultó completa: el §7 real no pide nada que no se haya corrido, y no se corrió nada que el §7 no pidiera.** El criterio de aceptación 7 verbatim es «Una ejecución programada de producción se correlaciona desde Task Scheduler hasta su recibo publicado. Una invocación manual se distingue y no sustituye esa evidencia», y el 8 conserva el alcance parcial de la recuperación «hasta observarla o realizar una prueba acotada autorizada» — ambos son los que este reporte evalúa. Se deja escrito el trayecto entero, no sólo el desenlace: el acto corrió a ciegas del §7 y acertó, y eso vale menos que el hecho de que la ciega estaba declarada.
 
 ## 1 · P1 · Lectura de lo instalado — sin tocar nada
 
@@ -93,7 +108,7 @@ Todo coincide con lo que `tools/windows/instala-tarea-adquisicion.ps1` declara e
 Get-WinEvent -ListLog 'Microsoft-Windows-TaskScheduler/Operational'  ->  IsEnabled = False
 ```
 
-El canal **está deshabilitado**. Se intentó habilitarlo desde esta sesión y Windows lo rechazó por falta de elevación (`SaveChanges` → «Intento de realizar una operación no válida»); el estado quedó `False`, la máquina sin cambios. Esto se declara como **NO-VERIFICABLE-DESDE-ESTA-SESIÓN**: un historial operativo apagado **no** es evidencia de que la tarea no disparó (A.13). Queda como `NC-0115`.
+El canal **está deshabilitado**. Se intentó habilitarlo desde esta sesión y Windows lo rechazó por falta de elevación (`SaveChanges` → «Intento de realizar una operación no válida»); el estado quedó `False`, la máquina sin cambios. Esto se declara como **NO-VERIFICABLE-DESDE-ESTA-SESIÓN**: un historial operativo apagado **no** es evidencia de que la tarea no disparó (A.13). Queda como `NC-0120`.
 
 ### 1.5 · La atribución — el hallazgo central
 
@@ -130,7 +145,7 @@ El único eslabón faltante es el evento del scheduler (§1.4), y falta **por ca
 
 ### 1.7 · Qué se corrigió en la máquina
 
-**Nada.** Es el resultado honesto, no una omisión: lo único que la lectura demostró necesario fue habilitar el canal Operational, y Windows lo rechazó sin elevación. La retirada del crontab **sí** tiene ya la atribución que le faltaba, pero el paso (3) de `tools/windows/GUIA-TAREA-ADQUISICION.md` exige documentarla en `forense/cron/REGISTRO-CRON-v1_0.md`, que **no está en el perímetro de este acto** — y retirar el respaldo mientras el CABLEADO modifica `adquiere_cron.sh` en paralelo agrega riesgo sin urgencia, porque el `flock` ya contiene el daño. Va como `NC-0114` con sucesor, no como atajo.
+**Nada.** Es el resultado honesto, no una omisión: lo único que la lectura demostró necesario fue habilitar el canal Operational, y Windows lo rechazó sin elevación. La retirada del crontab **sí** tiene ya la atribución que le faltaba, pero el paso (3) de `tools/windows/GUIA-TAREA-ADQUISICION.md` exige documentarla en `forense/cron/REGISTRO-CRON-v1_0.md`, que **no está en el perímetro de este acto** — y retirar el respaldo mientras el CABLEADO modifica `adquiere_cron.sh` en paralelo agrega riesgo sin urgencia, porque el `flock` ya contiene el daño. Va como `NC-0119` con sucesor, no como atajo.
 
 ---
 
@@ -195,13 +210,13 @@ Eso **es** el «porcentaje de altas por canal para fintech identificable» que `
 
 ### 2.5 · Segunda pasada crítica (§5-bis) — y por qué el veredicto es PARCIAL
 
-1. **¿El objeto exacto, o un proxy?** Proxy en el margen: `P6_6`/`P5_16` preguntan por el **último** crédito/cuenta contratado, sin sufijo de producto, mientras `P6_2_8`/`P5_4_8` identifican **tenencia** fintech. Lo publicado es «canal del último producto entre tenedores de producto fintech». Por eso **EXISTE-SATISFACE-PARCIAL**, no SATISFACE (`NC-0117`).
+1. **¿El objeto exacto, o un proxy?** Proxy en el margen: `P6_6`/`P5_16` preguntan por el **último** crédito/cuenta contratado, sin sufijo de producto, mientras `P6_2_8`/`P5_4_8` identifican **tenencia** fintech. Lo publicado es «canal del último producto entre tenedores de producto fintech». Por eso **EXISTE-SATISFACE-PARCIAL**, no SATISFACE (`NC-0122`).
 2. **¿Vía agotada con un solo mecanismo?** El índice habría cerrado en negativo; se abrieron descriptor y microdato como segundo y tercer mecanismo. Es lo que volteó el resultado.
 3. **¿Un 200/000 leído como veredicto?** No se apoyó ningún veredicto en códigos HTTP: el hallazgo es local sobre bytes en corpus.
 4. **¿Republicador/handoff no considerado?** Para la pierna de **reguladores** sí queda uno sin reintentar hoy — ver frontera.
 5. **¿Declara frontera?** Sí, abajo.
 
-**Frontera explícita de este sondeo (lo que NO se examinó):** no se re-probaron hoy CNBV/Banxico/COFECE ni CKAN — se heredan los cuatro sondeos previos; no se abrieron ENIF 2018/2021 para serie temporal del mismo cruce (`NC-0116`), pese a que la nota de la fila ya marcaba ENIF 2021 como `PARALELA-PARCIAL` desde el 6/sep; «referido» **no existe** como código de canal en ninguna de las dos baterías, así que esa pierna sigue **EXISTE-NO-SATISFACE**.
+**Frontera explícita de este sondeo (lo que NO se examinó):** no se re-probaron hoy CNBV/Banxico/COFECE ni CKAN — se heredan los cuatro sondeos previos; no se abrieron ENIF 2018/2021 para serie temporal del mismo cruce (`NC-0121`), pese a que la nota de la fila ya marcaba ENIF 2021 como `PARALELA-PARCIAL` desde el 6/sep; «referido» **no existe** como código de canal en ninguna de las dos baterías, así que esa pierna sigue **EXISTE-NO-SATISFACE**.
 
 ### 2.6 · Desenlace y escritura
 
@@ -222,9 +237,9 @@ La fila existente se actualizó **con el escritor canónico** (`tools/curador_re
 | | |
 |---|---|
 | **Qué se atribuyó** | Criterio 7 (ejecución programada correlacionada de Task Scheduler a recibo publicado): **CUMPLIDO EN PARTE, con la parte faltante declarada**. Cadena `LastRunTime 07:30:00 / LastTaskResult 0` → `log 07:30:07 run_id ...-371` → `heartbeat TERMINADO exit 0` → `huella fusionada censo-raiz/2026-09-09.txt`. **Programada, no manual**, por doble discriminador. Falta sólo el evento del scheduler, **NO-VERIFICABLE-DESDE-ESTA-SESIÓN** porque el canal Operational está apagado — no por ausencia de disparo (A.13) |
-| **Qué corrigió y por qué** | **Nada en la máquina.** Único arreglo que la lectura demostró necesario (habilitar el canal Operational) → rechazado por falta de elevación. Retirar el crontab ya tiene atribución probada pero exige `forense/cron/`, fuera de perímetro → `NC-0114`. Ni segundo scheduler, ni logon, ni energía, ni horarios |
+| **Qué corrigió y por qué** | **Nada en la máquina.** Único arreglo que la lectura demostró necesario (habilitar el canal Operational) → rechazado por falta de elevación. Retirar el crontab ya tiene atribución probada pero exige `forense/cron/`, fuera de perímetro → `NC-0119`. Ni segundo scheduler, ni logon, ni energía, ni horarios |
 | **Desenlace del piloto** | **Positivo parcial, sin adquisición.** `CANAL_DE_ADQUISICION_REFERIDOS_FINTECH`: `NO-ENCONTRADO` → `OBTENIDO-PARCIAL`. Cuatro sondeos previos fallaron por una ceguera medible del índice (382 filas ENIF, 0 con texto). Cruce ponderado publicado. Manifiesto intacto |
-| **Residuales** | `NC-0114` retirada del crontab (sucesor: acto con `forense/cron/`) · `NC-0115` canal Operational + recuperación real (sucesor: mesa, elevado) · `NC-0116` ENIF 2018/2021 para serie (sucesor: acto de universo N19/R1.3) · `NC-0117` canal del producto fintech en sí (sucesor: decisión de mesa) · `NC-0118` índice ciego a ENIF (sucesor: acto con `tools/`) |
+| **Residuales** | `NC-0119` retirada del crontab (sucesor: acto con `forense/cron/`) · `NC-0120` canal Operational + recuperación real (sucesor: mesa, elevado) · `NC-0121` ENIF 2018/2021 para serie (sucesor: acto de universo N19/R1.3) · `NC-0122` canal del producto fintech en sí (sucesor: decisión de mesa) · `NC-0123` índice ciego a ENIF (sucesor: acto con `tools/`) |
 
 **Contador:** no se movió. El piloto no adquirió payload, así que no hay cambio de manifiesto ni PR de firma por esa vía; este acto no cuenta corridas.
 
