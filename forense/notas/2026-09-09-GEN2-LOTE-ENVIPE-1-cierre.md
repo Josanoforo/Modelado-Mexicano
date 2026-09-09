@@ -21,7 +21,7 @@ El encargo contestó su A.8 contra `631fcd78`. Al arrancar, `origin/main` estaba
 
 | lo que el encargo declaró | lo real sobre `6e0381b` |
 |---|---|
-| «última NC al escribir: NC-0080» | **NC-0082** → la primera de este acto es `NC-0083` |
+| «última NC al escribir: NC-0080» | **NC-0082** al arrancar → este acto reservó `NC-0083`…`NC-0087`. **Al cerrar volvió a moverse:** `PR #652` fusionó primero y su `NC-0083` quedó en `main`, así que estas cinco renumeran a **`NC-0084`…`NC-0088`** — misma regla que el ADR, y por eso el `COMMIT-3` (anterior al merge) todavía las nombra `NC-0083`…`NC-0087`. |
 | ADR candidato heredado | **ADR máximo real 428** → candidato `ADR-429`. **Y volvió a moverse al cerrar:** entre el COMMIT-3 y el push, `PR #652` (`GEN2-OBRA-V11`) fusionó y tomó el `429` — él mismo renumerado desde `428` porque `PR #651` le ganó antes. Este acto renumera a **`ADR-430`** por la regla de la casa (renumera quien fusiona segundo), re-derivando tras `git fetch origin` justo antes del push. Sin saltar número. |
 | — | rótulo `GEN2-LOTE-ENVIPE-1` **AUSENTE** de `registro-rotulos.tsv` (censado en la cascada) |
 | `CORR-0009` = 6 RESULT | confirmado; pero `RES-0039..0042` **no** son razones de no-denuncia (ver §6) |
@@ -73,7 +73,7 @@ Consecuencia directa sobre la demanda: **`RES-0028` (`0.705687`) no es «el comp
 
 Esta corrida estima varianza de diseño (bootstrap de UPM con reemplazo dentro de estrato, 2 000 réplicas, `PCG64` semilla `20260909`). **83 estratos quedan con una sola UPM** tras el recorte a no-denunciantes → `METODO-IC = IC-CON-ESTRATOS-DE-UPM-UNICA`, y **el IC se lee como límite inferior de la anchura verdadera**, tal como quedó pre-declarado en §3.4 de la sellada. No se presenta un IC ingenuo como IC de diseño.
 
-Esto **no** reabre las otras cuatro reglas de fase 1: cada fuente es suya y ninguna se toca aquí. Queda como `NC-0085`.
+Esto **no** reabre las otras cuatro reglas de fase 1: cada fuente es suya y ninguna se toca aquí. Queda como `NC-0086`.
 
 ### 3.4 · Un defecto del descriptor, encontrado y declarado — no muerde
 
@@ -116,22 +116,22 @@ Así que la cita **no se escribe**, y P3 cierra por la vía que el propio encarg
       - {conducta: denuncia_con_miedo_o_desconfianza, p: 0.294313, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-ENVIPE-DEN-P-C2-U4, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENVIPE-1: CALC-ENVIPE-0001 remidió esta tasa bajo GEN2 (RESULT-ENVIPE-DEN-P-C2-U4 = 0.29431298745731216) y reproduce el 0.294313 publicado al grano de seis decimales con que milpa/ materializa (delta −1.254e-08). El merge del PR que aplique esta línea es la adopción (E.2). El `p` NO se movió: se declara de dónde viene.
 ```
 
-Aplicarlo es de un acto con `milpa/` en su perímetro. Queda como **`NC-0083`**.
+Aplicarlo es de un acto con `milpa/` en su perímetro. Queda como **`NC-0084`**.
 
-**Advertencia para quien lo aplique:** la cita natural para `denuncia_por_otra_razon` (`RES-0028`) **no debe escribirse igual**. Ese `0.705687` no es una cantidad medida: es `1 −` el primario sobre un denominador que excluye 9.19% del peso del universo (§3.2). Adoptarlo con un `corrida0_resultado_id` lo presentaría como medido cuando no lo es. Queda como **`NC-0084`**.
+**Advertencia para quien lo aplique:** la cita natural para `denuncia_por_otra_razon` (`RES-0028`) **no debe escribirse igual**. Ese `0.705687` no es una cantidad medida: es `1 −` el primario sobre un denominador que excluye 9.19% del peso del universo (§3.2). Adoptarlo con un `corrida0_resultado_id` lo presentaría como medido cuando no lo es. Queda como **`NC-0085`**.
 
 ## 5 · Límites declarados (§7 de la sellada, repetidos aquí)
 
-- **Temporal.** ENVIPE 2025 mide delitos de **2024**. No valida transferencia a 2012–2024 ni cumple cortes de ola previa. El hueco temporal es **decisión de mesa** con esta nota a la vista; este acto no lo decide. → `NC-0086`.
+- **Temporal.** ENVIPE 2025 mide delitos de **2024**. No valida transferencia a 2012–2024 ni cumple cortes de ola previa. El hueco temporal es **decisión de mesa** con esta nota a la vista; este acto no lo decide. → `NC-0087`.
 - **No se calibró contra el marco.** Las diez celdas ENVIPE de `M` que consumen esta regla se usaron sólo como **evidencia de consumo** (§4.1), nunca para calibrar; ninguna mejora en ellas se presenta como confirmación independiente. El marcador y sus capturas no se tocaron.
 - **Causalidad: ninguna.** «Miedo/desconfianza como razón principal» es lo que la persona **declaró**. Ningún `RESULT` de este lote se rotula causal.
 - **Contaminación (ADR-46).** La corrida **no fue ciega**: al congelar, la sesión ya había leído los dos valores GEN1, su IC95, su `n` y **la codificación GEN1 completa**. Está declarado en §0.3 de la sellada y es la razón de que la primaria sea `C1` y no `C2`. Lo genuinamente desconocido al congelar —y lo que resultó ser el hallazgo— eran los conteos de `09`/`99`/blanco, que no aparecen en ninguna fuente leída.
 
 ## 6 · Lo que NO se corrió, y por qué no se declara cubierto
 
-`RES-0039..0042` (`civico.denuncia.con_seguro` / `.sin_seguro`) tienen **otra apertura**: unidad delito restringida a `BPCOD = 01` (robo total de vehículo), condicionada a cobertura de seguro, con desenlace `denuncia`/`no_denuncia` — **no** razones de no-denuncia. El encargo los admitía *«solo si comparten apertura coherente y su spec quedó completa en P1»*. No la comparten y su spec no se escribió. → `NC-0087`, con `tools/medidor_denuncia_seguro_envipe25.py` ya localizado como cobertura retroactiva para el sucesor.
+`RES-0039..0042` (`civico.denuncia.con_seguro` / `.sin_seguro`) tienen **otra apertura**: unidad delito restringida a `BPCOD = 01` (robo total de vehículo), condicionada a cobertura de seguro, con desenlace `denuncia`/`no_denuncia` — **no** razones de no-denuncia. El encargo los admitía *«solo si comparten apertura coherente y su spec quedó completa en P1»*. No la comparten y su spec no se escribió. → `NC-0088`, con `tools/medidor_denuncia_seguro_envipe25.py` ya localizado como cobertura retroactiva para el sucesor.
 
-Tabla completa en `forense/no-corrido.tsv`, filas `NC-0083` … `NC-0087`.
+Tabla completa en `forense/no-corrido.tsv`, filas `NC-0084` … `NC-0088`.
 
 ## 7 · Contador
 

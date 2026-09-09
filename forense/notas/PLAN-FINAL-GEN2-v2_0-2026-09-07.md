@@ -143,3 +143,10 @@ momentos.
 
 Detalle, cifras y comandos:
 `forense/notas/2026-09-08-GEN2-T9-motor-matricial-y-unidad-de-celda.md`.
+
+---
+
+**(Enmienda, 9/sep/2026, ACTO GEN2-OBRA-V11)** Fases I-III cumplidas el 8/sep
+con compuertas citadas (preflight VERDE, corridas reales, T-REPRO activo,
+primer par legacy↔GEN2 en mesa). La obra se gobierna desde hoy en
+PLAN-DE-OBRA-GEN2 v1.1; este documento queda como historia del taller.
