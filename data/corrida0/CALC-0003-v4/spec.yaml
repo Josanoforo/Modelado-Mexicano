@@ -1,0 +1,377 @@
+# CALC-0003-v4 -- cara mecanica de spec.md (ACTO GEN2-SPECS-SUCESORAS,
+# TERCER commit: el que congela el reemplazo cuando la corrida anterior salio
+# con un defecto. CALC-0003-v3 NO se edita, NO se retira y NO se re-corre.)
+#
+# 🛑 UNICA diferencia OPERATIVA con CALC-0003-v3 (spec.md §0): los atributos de
+# diseno (`estrato`, `id_loc`) se toman de c_portad.dta por la llave de HOGAR
+# (`folio`), no por la de PERSONA (`folio`, `ls`).
+#
+# Por que. c_portad.dta es UNA FILA POR HOGAR: 8437 folios en 8438 filas con
+# llave, y su `ls` es el respondente de la portada, no cada persona. El join
+# por (folio, ls) que v1/v2/v3 heredaron -- y que NINGUNA spec sellada declaro:
+# S6 v1.3 §3.4 tabula cinco joins y ninguno es contra c_portad -- resuelve
+# 7870 de 19804 personas en iiib_es. Por folio resuelve ~100%.
+# En v2 el dano pasaba desapercibido (conglomerado = hogar: cada huerfana era
+# su propio conglomerado en un pseudo-estrato NaN). En v3, con conglomerado =
+# localidad, TODAS las huerfanas caian en UN conglomerado NaN que el remuestreo
+# toma siempre entero -- lo que ESTRECHA el IC. La guardia
+# RESULT-*-N-SIN-CONGLOMERADO de v3 lo volvio numero: 182/342, 1655/3179,
+# 87/93. Esta version lo repara.
+#
+# La correccion no ELIGE nada: estrato e id_loc son atributos del HOGAR y son
+# constantes dentro de folio (0 folios con >1 de cualquiera de los dos). La
+# guardia RESULT-COBERTURA-DISENO publica ese conteo y declara
+# DEDUP-NO-LOSSLESS si dejara de cumplirse -- en cuyo caso NO se elige un valor.
+#
+# NO cambia estimando, universo, ponderador, tablas, seed (20260908), replicas
+# (2000), umbral n<10 ni tolerancia. Control de regresion en spec.md §1: todo
+# lo que no sea IC-LO/IC-HI/VEREDICTO ni uno de los cinco textos que describen
+# el propio join debe reproducir IDENTICO a v2 y v3.
+#
+# 143 RESULT: los 142 de v3 con sus mismos ids + RESULT-COBERTURA-DISENO.
+# Cadena: CALC-0003 (PARO, FP-355) -> v2 (SELLADA) -> v3 (SELLADA, guardia
+# mordio) -> v4. Los bytes de las tres anteriores quedan INTACTOS.
+#
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/S6-L16-spec-v1_3.md. AQUI NO SE CALCULA NADA.
+calc_id: CALC-0003-v4
+repite_de: CALC-0003-v3
+spec_md: spec.md
+spec_md_sha256: fea0f8fce8bb3c2ccc9954a24dda416c13769bf54c843d3f5163bddf0ffb6156
+
+script: data/corrida0/CALC-0003-v4/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: FALSADOR-S6-L16-ENNVIH2002-RAMA-A-PRIMA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/S6-L16-spec-v1_3.md
+  spec_sellada_sha256: e075356bb5b35eb59282481435707f42f0a12f4d5edb72cda0931d7ae27de3eb
+  reglas_bajo_prueba: "R4.4 / salud.atencion.grave (NO se mueve por este CALC)"
+  sucede_a: "CALC-0003-v3 (SELLADA, VERIFY REPRODUCE 142/142); sus bytes quedan intactos"
+  diferencia_unica: "llave del join de diseno contra c_portad: PERSONA (folio, ls) -> HOGAR (folio). Repara la cobertura que la guardia de v3 midio"
+  control_de_regresion: "todo lo que no sea IC-LO/IC-HI/VEREDICTO ni uno de los cinco textos que describen el propio join reproduce identico a CALC-0003-v2 y v3 (spec.md §1)"
+  hueco_de_la_spec_sellada: "S6 v1.3 §3.4 no tabula ningun join contra c_portad, de donde §3.5 toma estrato e id_loc. Se eleva a mesa; NO se parcha editando una spec sellada"
+
+inputs:
+  - id: ennvih1_2002_hogar_dta
+    origen: manifiesto
+  - id: ennvih1_2002_ponderador
+    origen: manifiesto
+  - id: IN-S6-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/S6-L16-spec-v1_3.md
+    sha256: e075356bb5b35eb59282481435707f42f0a12f4d5edb72cda0931d7ae27de3eb
+
+variables:
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_es.dta", variable: es09, rol: "[b3b] T1 -- disparador «grave»", codigos: "1=Si · 3=No -- el codigo 0 NO EXISTE (ehh02cb_b3b.pdf pag. 8)", ventana: "a lo largo de su vida (cuestionario pag. 5)"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_es.dta", variable: es09, rol: "[bx] T1 -- disparador «grave»", codigos: "1=Si · 3=No · 8=NS (ehh02cb_bx.pdf pag. 49; el 8=NS son 15 casos)", ventana: "a lo largo de su vida"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01a, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01b, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01c, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01d, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01e, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01f, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01g, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01h_1, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ec.dta", variable: ec01i_1, rol: "[b3b] T2 -- disparador «cronico»", codigos: "1=Si (ehh02cb_b3b.pdf pag. 18)", ventana: "alguna vez (cuestionario pag. 10)"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs01, rol: "[b3b] D-HS -- desenlace primario", codigos: "1=Si · 3=No (pag. 28)", ventana: "ultimos 12 meses (cuestionario pag. 18)"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs01, rol: "[bx] D-HS -- desenlace primario", codigos: "1=Si · 3=No · 8=NS (pag. 60)", ventana: "ultimos 12 meses"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce01, rol: "[b3b] D-CE -- desenlace secundario", codigos: "1=Si · 3=No (pag. 21)", ventana: "ultimas 4 semanas (cuestionario pag. 12)"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce01, rol: "[bx] D-CE -- desenlace secundario", codigos: "1=Si · 3=No · 8=NS (pag. 56)", ventana: "ultimas 4 semanas"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs1.dta", variable: hs08_1a, rol: "[b3b] filtro de motivo, NIVEL EPISODIO", codigos: "1=Si", nota: "no hay p_hs1.dta: el brazo bx corre SIN este filtro"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs1.dta", variable: hs08_1e, rol: "[b3b] filtro de motivo, NIVEL EPISODIO", codigos: "1=Si", nota: "no hay p_hs1.dta: el brazo bx corre SIN este filtro"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02a, rol: "[Tabla A] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02b, rol: "[Tabla A] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02c, rol: "[Tabla A] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02d, rol: "[Tabla A] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02g, rol: "[Tabla A] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02e, rol: "[Tabla A] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02f, rol: "[Tabla A] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02h, rol: "[Tabla A] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02i, rol: "[Tabla A] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02j, rol: "[Tabla A] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_hs.dta", variable: hs02k_1, rol: "[Tabla A] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02a, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02b, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02c, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02d, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02g, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02i, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02k, rol: "[Tabla B] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02e, rol: "[Tabla B] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02f, rol: "[Tabla B] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02l, rol: "[Tabla B] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02h, rol: "[Tabla B] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02j, rol: "[Tabla B] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02m, rol: "[Tabla B] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_hs.dta", variable: hs02n_1, rol: "[Tabla B] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04a, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04b, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04c, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04d, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04g, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04i, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04k, rol: "[Tabla C/b3b] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04e, rol: "[Tabla C/b3b] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04f, rol: "[Tabla C/b3b] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04l, rol: "[Tabla C/b3b] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04h, rol: "[Tabla C/b3b] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04j, rol: "[Tabla C/b3b] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04m, rol: "[Tabla C/b3b] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_b3b/iiib_ce.dta", variable: ce04n_1, rol: "[Tabla C/b3b] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04a, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04b, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04c, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04d, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04g, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04i, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04k, rol: "[Tabla C/bx] institucion -> PUBLICO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04e, rol: "[Tabla C/bx] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04f, rol: "[Tabla C/bx] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04l, rol: "[Tabla C/bx] institucion -> PRIVADO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04h, rol: "[Tabla C/bx] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04j, rol: "[Tabla C/bx] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04m, rol: "[Tabla C/bx] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02dta_all/ehh02dta_bx/p_ce.dta", variable: ce04n_1, rol: "[Tabla C/bx] institucion -> OTRO", codigos: "1=Si · 3=No"}
+  - {archivo: "ehh02w_all/ehh02w_b3b.dta", variable: fac_3b, rol: "[b3b] ponderador", etiqueta: "FACTOR DE EXPANSION LIBRO 3B"}
+  - {archivo: "ehh02w_all/ehh02w_bx.dta", variable: fac_3b_px, rol: "[bx] ponderador de la PAREJA", etiqueta: "FACTOR DE EXPANSION LIBRO PROXY -- IDENTICA a la de fac_3a_px"}
+  - {archivo: "ehh02w_all/ehh02w_bx.dta", variable: fac_3a_px, rol: "[bx] ponderador de la PAREJA", etiqueta: "FACTOR DE EXPANSION LIBRO PROXY -- la etiqueta NO adjudica entre los dos"}
+  - {archivo: "ehh02dta_all/ehh02dta_bc/c_portad.dta", variable: folio, rol: "LLAVE DEL JOIN DE DISENO (hogar) -- LA UNICA DIFERENCIA CON v3", etiqueta: "IDENTIFICADOR DEL HOGAR", nota: "en v1/v2/v3 el join era por (folio, ls) y dejaba sin diseno a ~60% de las personas"}
+  - {archivo: "ehh02dta_all/ehh02dta_bc/c_portad.dta", variable: estrato, rol: "estrato del bootstrap", etiqueta: "ESTRATO", nota: "atributo de HOGAR: constante dentro de folio (0 folios con >1)"}
+  - {archivo: "ehh02dta_all/ehh02dta_bc/c_portad.dta", variable: id_loc, rol: "CONGLOMERADO del bootstrap (S6 v1.3 §3.5)", etiqueta: "ID LOCALIDAD", nota: "atributo de HOGAR: constante dentro de folio (0 folios con >1). El archivo NO trae etiquetas de valor."}
+  - {archivo: "ehh02dta_all/ehh02dta_bc/c_portad.dta", variable: edo, rol: "control de la llave de conglomerado (llave compuesta)", etiqueta: "ESTADO", nota: "solo diagnostico: RESULT-CONGLOMERADO-LOCALIDAD"}
+  - {archivo: "ehh02dta_all/ehh02dta_bc/c_portad.dta", variable: mpio, rol: "control de la llave de conglomerado (llave compuesta)", etiqueta: "MUNICIPIO", nota: "solo diagnostico"}
+  - {archivo: "ehh02dta_all/ehh02dta_bc/c_portad.dta", variable: loc, rol: "control de la llave de conglomerado (llave compuesta)", etiqueta: "LOCALIDAD", nota: "NO se usa a secas: bajo convencion INEGI es unico dentro de municipio, no a nivel nacional"}
+
+universo: >-
+  Personas del Libro IIIB (brazo b3b, adultos presentes) y del Libro Proxy
+  (brazo bx, miembros ausentes) de ENNViH-1 2002, NUNCA agrupadas. D-HS:
+  hs01=1 y (solo b3b) >=1 episodio con hs08_1a o hs08_1e. D-CE: ce01=1.
+
+filtros: >-
+  T1: es09 en {1,3} (8=NS y faltante fuera de los dos grupos). T2: al menos una
+  de las nueve ec01* = 1. D-HS b3b: filtro de motivo por episodio, agregado a
+  persona. D-HS bx: SIN filtro de motivo -- no existe p_hs1.dta; asimetria
+  declarada en spec.md §5 y rotulada en RESULT-C1-BX-FILTRO.
+
+ponderador: >-
+  b3b: fac_3b. bx: PAREJA fac_3b_px y fac_3a_px, las dos corridas y las dos
+  reportadas; el veredicto del brazo bx solo cuenta si coinciden en signo
+  (S6 §3.2), y si discrepan la fila sale NO-ESTIMABLE-PONDERADOR-INDETERMINADO.
+  fac_4_px no entra.
+
+transformacion: >-
+  LUGAR de cuatro niveles mutuamente excluyentes (SOLO-PUBLICO / SOLO-PRIVADO /
+  AMBOS / SOLO-OTRO) desde la bateria de respuesta multiple, por variable_id.
+  P_PUB = SOLO-PUBLICO / (SOLO-PUBLICO + SOLO-PRIVADO), ponderada; AMBOS y
+  SOLO-OTRO fuera del cociente y CONTADOS. Sensibilidad de S6 §2.4: el mismo
+  Delta contando AMBOS como publico; la celda solo vale si base y sensibilidad
+  coinciden en signo.
+
+estimando: >-
+  Delta = P_PUB(T=1) - P_PUB(T=0) con IC95, por celda y por brazo. Seis filas
+  (C1 b3b/bx, C2 b3b/bx, C3 b3b, C4 b3b), jamas agrupadas ni promediadas.
+  C1/b3b es la fila que decide el veredicto de la regla (S6 §2.5). El punto
+  estimado es IDENTICO al de CALC-0003-v2; lo que cambia es el IC95, calculado
+  con conglomerado = localidad en vez de hogar (S6 v1.3 §3.5).
+
+dependencias_materiales: [pyreadstat, numpy, pandas, zipfile_deflate64]
+
+parametros:
+  fuente_acto: "ACTO GEN2-SPECS-SUCESORAS · S6 v1.3 + S12 v1.1 · CALC-0003-v4"
+  payload_microdato: ennvih1_2002_hogar_dta
+  payload_ponderador: ennvih1_2002_ponderador
+  miembros:
+    iiib_es:  ehh02dta_all/ehh02dta_b3b/iiib_es.dta
+    iiib_ec:  ehh02dta_all/ehh02dta_b3b/iiib_ec.dta
+    iiib_hs:  ehh02dta_all/ehh02dta_b3b/iiib_hs.dta
+    iiib_hs1: ehh02dta_all/ehh02dta_b3b/iiib_hs1.dta
+    iiib_ce:  ehh02dta_all/ehh02dta_b3b/iiib_ce.dta
+    p_es:     ehh02dta_all/ehh02dta_bx/p_es.dta
+    p_hs:     ehh02dta_all/ehh02dta_bx/p_hs.dta
+    p_ce:     ehh02dta_all/ehh02dta_bx/p_ce.dta
+    c_portad: ehh02dta_all/ehh02dta_bc/c_portad.dta
+    w_b3b:    ehh02w_all/ehh02w_b3b.dta
+    w_bx:     ehh02w_all/ehh02w_bx.dta
+  var_t1: es09
+  vars_t2: [ec01a, ec01b, ec01c, ec01d, ec01e, ec01f, ec01g, ec01h_1, ec01i_1]
+  var_hs01: hs01
+  var_ce01: ce01
+  var_motivo_enf: hs08_1a
+  var_motivo_ope: hs08_1e
+  col_fac_3b: fac_3b
+  col_fac_3b_px: fac_3b_px
+  col_fac_3a_px: fac_3a_px
+  codigos_si_no: "1=Si · 3=No · 8=NS (solo bx) -- el codigo 0 NO EXISTE (ehh02cb_b3b.pdf pag. 8)"
+  ventanas: "es09=de por vida (q pag.5) · ec01=alguna vez (q pag.10) · ce01=ultimas 4 semanas (q pag.12) · hs01=ultimos 12 meses (q pag.18); en las 4 celdas el desenlace NO cubre al disparador -> co-ocurrencia, no secuencia"
+  n_minimo_celda: 10
+  bootstrap_replicas: 2000
+  metodo_ic: "bootstrap de LOCALIDADES (c_portad.id_loc) dentro de estrato (c_portad.estrato), percentil 2.5/97.5 -- S6 v1.3 §3.5. Los dos atributos se toman de c_portad por la llave de HOGAR (folio): son atributos del hogar y son constantes dentro de folio (guardia RESULT-COBERTURA-DISENO)."
+  llave_diseno: folio
+  col_conglomerado: id_loc
+  cols_geografia: [edo, mpio, loc]
+  tabla_A: {hs02a: PUBLICO, hs02b: PUBLICO, hs02c: PUBLICO, hs02d: PUBLICO, hs02g: PUBLICO, hs02e: PRIVADO, hs02f: PRIVADO, hs02h: OTRO, hs02i: OTRO, hs02j: OTRO, hs02k_1: OTRO}
+  tabla_B: {hs02a: PUBLICO, hs02b: PUBLICO, hs02c: PUBLICO, hs02d: PUBLICO, hs02g: PUBLICO, hs02i: PUBLICO, hs02k: PUBLICO, hs02e: PRIVADO, hs02f: PRIVADO, hs02l: PRIVADO, hs02h: OTRO, hs02j: OTRO, hs02m: OTRO, hs02n_1: OTRO}
+  tabla_C: {ce04a: PUBLICO, ce04b: PUBLICO, ce04c: PUBLICO, ce04d: PUBLICO, ce04g: PUBLICO, ce04i: PUBLICO, ce04k: PUBLICO, ce04e: PRIVADO, ce04f: PRIVADO, ce04l: PRIVADO, ce04h: OTRO, ce04j: OTRO, ce04m: OTRO, ce04n_1: OTRO}
+
+seed:
+  aplica: true
+  valor: 20260908
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed+rng declarados; entre dos corridas del mismo arbol
+    solo cabe redondeo de float64 al reasociar sumas ponderadas. Los enteros se
+    comparan EXACTO.
+
+resultados:
+  - {id: RESULT-C1-B3B-N-UNIVERSO, tipo: entero, unidad: "personas del universo de la celda tras los joins"}
+  - {id: RESULT-C1-B3B-FILTRO,     tipo: texto,  unidad: "definicion del universo aplicada en esta fila (las de bx difieren: sin filtro de motivo)"}
+  - {id: RESULT-C1-B3B-N-SOLO-PUBLICO, tipo: entero, unidad: "casos en el nivel SOLO-PUBLICO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C1-B3B-N-SOLO-PRIVADO, tipo: entero, unidad: "casos en el nivel SOLO-PRIVADO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C1-B3B-N-AMBOS, tipo: entero, unidad: "casos en el nivel AMBOS de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C1-B3B-N-SOLO-OTRO, tipo: entero, unidad: "casos en el nivel SOLO-OTRO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C1-B3B-FAC3B-P-T1,   tipo: proporcion, unidad: "P_PUB ponderada entre T=1 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-B3B-FAC3B-P-T0,   tipo: proporcion, unidad: "P_PUB ponderada entre T=0 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-B3B-FAC3B-DELTA,  tipo: flotante,   unidad: "Delta = P_PUB(T=1) - P_PUB(T=0) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-B3B-FAC3B-IC-LO,  tipo: flotante,   unidad: "limite inferior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C1-B3B-FAC3B-IC-HI,  tipo: flotante,   unidad: "limite superior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C1-B3B-FAC3B-N-T1,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=1"}
+  - {id: RESULT-C1-B3B-FAC3B-N-T0,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=0"}
+  - {id: RESULT-C1-B3B-FAC3B-DELTA-SENS, tipo: flotante, unidad: "Delta de la sensibilidad de S6 §2.4 (AMBOS como publico) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-B3B-FAC3B-N-PONDERADOR-VALIDO, tipo: entero, unidad: "casos con ponderador finito y >0 (diagnostico de cobertura de S6 §3.2)"}
+  - {id: RESULT-C1-B3B-FAC3B-VEREDICTO, tipo: texto,   unidad: "CORROBORADA / CONTRARIA / NO-DISCRIMINA / NO-ESTIMABLE / NO-ESTIMABLE-POR-DEFINICION-INDETERMINADA"}
+  - {id: RESULT-C1-BX-N-UNIVERSO, tipo: entero, unidad: "personas del universo de la celda tras los joins"}
+  - {id: RESULT-C1-BX-FILTRO,     tipo: texto,  unidad: "definicion del universo aplicada en esta fila (las de bx difieren: sin filtro de motivo)"}
+  - {id: RESULT-C1-BX-N-SOLO-PUBLICO, tipo: entero, unidad: "casos en el nivel SOLO-PUBLICO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C1-BX-N-SOLO-PRIVADO, tipo: entero, unidad: "casos en el nivel SOLO-PRIVADO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C1-BX-N-AMBOS, tipo: entero, unidad: "casos en el nivel AMBOS de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C1-BX-N-SOLO-OTRO, tipo: entero, unidad: "casos en el nivel SOLO-OTRO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C1-BX-FAC3BPX-P-T1,   tipo: proporcion, unidad: "P_PUB ponderada entre T=1 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3BPX-P-T0,   tipo: proporcion, unidad: "P_PUB ponderada entre T=0 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3BPX-DELTA,  tipo: flotante,   unidad: "Delta = P_PUB(T=1) - P_PUB(T=0) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3BPX-IC-LO,  tipo: flotante,   unidad: "limite inferior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3BPX-IC-HI,  tipo: flotante,   unidad: "limite superior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3BPX-N-T1,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=1"}
+  - {id: RESULT-C1-BX-FAC3BPX-N-T0,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=0"}
+  - {id: RESULT-C1-BX-FAC3BPX-DELTA-SENS, tipo: flotante, unidad: "Delta de la sensibilidad de S6 §2.4 (AMBOS como publico) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3BPX-N-PONDERADOR-VALIDO, tipo: entero, unidad: "casos con ponderador finito y >0 (diagnostico de cobertura de S6 §3.2)"}
+  - {id: RESULT-C1-BX-FAC3BPX-VEREDICTO, tipo: texto,   unidad: "CORROBORADA / CONTRARIA / NO-DISCRIMINA / NO-ESTIMABLE / NO-ESTIMABLE-POR-DEFINICION-INDETERMINADA"}
+  - {id: RESULT-C1-BX-FAC3APX-P-T1,   tipo: proporcion, unidad: "P_PUB ponderada entre T=1 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3APX-P-T0,   tipo: proporcion, unidad: "P_PUB ponderada entre T=0 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3APX-DELTA,  tipo: flotante,   unidad: "Delta = P_PUB(T=1) - P_PUB(T=0) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3APX-IC-LO,  tipo: flotante,   unidad: "limite inferior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3APX-IC-HI,  tipo: flotante,   unidad: "limite superior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3APX-N-T1,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=1"}
+  - {id: RESULT-C1-BX-FAC3APX-N-T0,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=0"}
+  - {id: RESULT-C1-BX-FAC3APX-DELTA-SENS, tipo: flotante, unidad: "Delta de la sensibilidad de S6 §2.4 (AMBOS como publico) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C1-BX-FAC3APX-N-PONDERADOR-VALIDO, tipo: entero, unidad: "casos con ponderador finito y >0 (diagnostico de cobertura de S6 §3.2)"}
+  - {id: RESULT-C1-BX-FAC3APX-VEREDICTO, tipo: texto,   unidad: "CORROBORADA / CONTRARIA / NO-DISCRIMINA / NO-ESTIMABLE / NO-ESTIMABLE-POR-DEFINICION-INDETERMINADA"}
+  - {id: RESULT-C1-BX-PAREJA, tipo: texto, unidad: "COINCIDEN-EN-SIGNO / NO-ESTIMABLE-PONDERADOR-INDETERMINADO (regla de pareja de S6 §3.2)"}
+  - {id: RESULT-C2-B3B-N-UNIVERSO, tipo: entero, unidad: "personas del universo de la celda tras los joins"}
+  - {id: RESULT-C2-B3B-FILTRO,     tipo: texto,  unidad: "definicion del universo aplicada en esta fila (las de bx difieren: sin filtro de motivo)"}
+  - {id: RESULT-C2-B3B-N-SOLO-PUBLICO, tipo: entero, unidad: "casos en el nivel SOLO-PUBLICO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C2-B3B-N-SOLO-PRIVADO, tipo: entero, unidad: "casos en el nivel SOLO-PRIVADO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C2-B3B-N-AMBOS, tipo: entero, unidad: "casos en el nivel AMBOS de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C2-B3B-N-SOLO-OTRO, tipo: entero, unidad: "casos en el nivel SOLO-OTRO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C2-B3B-FAC3B-P-T1,   tipo: proporcion, unidad: "P_PUB ponderada entre T=1 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-B3B-FAC3B-P-T0,   tipo: proporcion, unidad: "P_PUB ponderada entre T=0 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-B3B-FAC3B-DELTA,  tipo: flotante,   unidad: "Delta = P_PUB(T=1) - P_PUB(T=0) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-B3B-FAC3B-IC-LO,  tipo: flotante,   unidad: "limite inferior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C2-B3B-FAC3B-IC-HI,  tipo: flotante,   unidad: "limite superior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C2-B3B-FAC3B-N-T1,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=1"}
+  - {id: RESULT-C2-B3B-FAC3B-N-T0,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=0"}
+  - {id: RESULT-C2-B3B-FAC3B-DELTA-SENS, tipo: flotante, unidad: "Delta de la sensibilidad de S6 §2.4 (AMBOS como publico) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-B3B-FAC3B-N-PONDERADOR-VALIDO, tipo: entero, unidad: "casos con ponderador finito y >0 (diagnostico de cobertura de S6 §3.2)"}
+  - {id: RESULT-C2-B3B-FAC3B-VEREDICTO, tipo: texto,   unidad: "CORROBORADA / CONTRARIA / NO-DISCRIMINA / NO-ESTIMABLE / NO-ESTIMABLE-POR-DEFINICION-INDETERMINADA"}
+  - {id: RESULT-C2-BX-N-UNIVERSO, tipo: entero, unidad: "personas del universo de la celda tras los joins"}
+  - {id: RESULT-C2-BX-FILTRO,     tipo: texto,  unidad: "definicion del universo aplicada en esta fila (las de bx difieren: sin filtro de motivo)"}
+  - {id: RESULT-C2-BX-N-SOLO-PUBLICO, tipo: entero, unidad: "casos en el nivel SOLO-PUBLICO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C2-BX-N-SOLO-PRIVADO, tipo: entero, unidad: "casos en el nivel SOLO-PRIVADO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C2-BX-N-AMBOS, tipo: entero, unidad: "casos en el nivel AMBOS de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C2-BX-N-SOLO-OTRO, tipo: entero, unidad: "casos en el nivel SOLO-OTRO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C2-BX-FAC3BPX-P-T1,   tipo: proporcion, unidad: "P_PUB ponderada entre T=1 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3BPX-P-T0,   tipo: proporcion, unidad: "P_PUB ponderada entre T=0 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3BPX-DELTA,  tipo: flotante,   unidad: "Delta = P_PUB(T=1) - P_PUB(T=0) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3BPX-IC-LO,  tipo: flotante,   unidad: "limite inferior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3BPX-IC-HI,  tipo: flotante,   unidad: "limite superior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3BPX-N-T1,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=1"}
+  - {id: RESULT-C2-BX-FAC3BPX-N-T0,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=0"}
+  - {id: RESULT-C2-BX-FAC3BPX-DELTA-SENS, tipo: flotante, unidad: "Delta de la sensibilidad de S6 §2.4 (AMBOS como publico) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3BPX-N-PONDERADOR-VALIDO, tipo: entero, unidad: "casos con ponderador finito y >0 (diagnostico de cobertura de S6 §3.2)"}
+  - {id: RESULT-C2-BX-FAC3BPX-VEREDICTO, tipo: texto,   unidad: "CORROBORADA / CONTRARIA / NO-DISCRIMINA / NO-ESTIMABLE / NO-ESTIMABLE-POR-DEFINICION-INDETERMINADA"}
+  - {id: RESULT-C2-BX-FAC3APX-P-T1,   tipo: proporcion, unidad: "P_PUB ponderada entre T=1 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3APX-P-T0,   tipo: proporcion, unidad: "P_PUB ponderada entre T=0 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3APX-DELTA,  tipo: flotante,   unidad: "Delta = P_PUB(T=1) - P_PUB(T=0) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3APX-IC-LO,  tipo: flotante,   unidad: "limite inferior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3APX-IC-HI,  tipo: flotante,   unidad: "limite superior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3APX-N-T1,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=1"}
+  - {id: RESULT-C2-BX-FAC3APX-N-T0,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=0"}
+  - {id: RESULT-C2-BX-FAC3APX-DELTA-SENS, tipo: flotante, unidad: "Delta de la sensibilidad de S6 §2.4 (AMBOS como publico) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C2-BX-FAC3APX-N-PONDERADOR-VALIDO, tipo: entero, unidad: "casos con ponderador finito y >0 (diagnostico de cobertura de S6 §3.2)"}
+  - {id: RESULT-C2-BX-FAC3APX-VEREDICTO, tipo: texto,   unidad: "CORROBORADA / CONTRARIA / NO-DISCRIMINA / NO-ESTIMABLE / NO-ESTIMABLE-POR-DEFINICION-INDETERMINADA"}
+  - {id: RESULT-C2-BX-PAREJA, tipo: texto, unidad: "COINCIDEN-EN-SIGNO / NO-ESTIMABLE-PONDERADOR-INDETERMINADO (regla de pareja de S6 §3.2)"}
+  - {id: RESULT-C3-B3B-N-UNIVERSO, tipo: entero, unidad: "personas del universo de la celda tras los joins"}
+  - {id: RESULT-C3-B3B-FILTRO,     tipo: texto,  unidad: "definicion del universo aplicada en esta fila (las de bx difieren: sin filtro de motivo)"}
+  - {id: RESULT-C3-B3B-N-SOLO-PUBLICO, tipo: entero, unidad: "casos en el nivel SOLO-PUBLICO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C3-B3B-N-SOLO-PRIVADO, tipo: entero, unidad: "casos en el nivel SOLO-PRIVADO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C3-B3B-N-AMBOS, tipo: entero, unidad: "casos en el nivel AMBOS de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C3-B3B-N-SOLO-OTRO, tipo: entero, unidad: "casos en el nivel SOLO-OTRO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C3-B3B-FAC3B-P-T1,   tipo: proporcion, unidad: "P_PUB ponderada entre T=1 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C3-B3B-FAC3B-P-T0,   tipo: proporcion, unidad: "P_PUB ponderada entre T=0 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C3-B3B-FAC3B-DELTA,  tipo: flotante,   unidad: "Delta = P_PUB(T=1) - P_PUB(T=0) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C3-B3B-FAC3B-IC-LO,  tipo: flotante,   unidad: "limite inferior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C3-B3B-FAC3B-IC-HI,  tipo: flotante,   unidad: "limite superior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C3-B3B-FAC3B-N-T1,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=1"}
+  - {id: RESULT-C3-B3B-FAC3B-N-T0,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=0"}
+  - {id: RESULT-C3-B3B-FAC3B-DELTA-SENS, tipo: flotante, unidad: "Delta de la sensibilidad de S6 §2.4 (AMBOS como publico) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C3-B3B-FAC3B-N-PONDERADOR-VALIDO, tipo: entero, unidad: "casos con ponderador finito y >0 (diagnostico de cobertura de S6 §3.2)"}
+  - {id: RESULT-C3-B3B-FAC3B-VEREDICTO, tipo: texto,   unidad: "CORROBORADA / CONTRARIA / NO-DISCRIMINA / NO-ESTIMABLE / NO-ESTIMABLE-POR-DEFINICION-INDETERMINADA"}
+  - {id: RESULT-C4-B3B-N-UNIVERSO, tipo: entero, unidad: "personas del universo de la celda tras los joins"}
+  - {id: RESULT-C4-B3B-FILTRO,     tipo: texto,  unidad: "definicion del universo aplicada en esta fila (las de bx difieren: sin filtro de motivo)"}
+  - {id: RESULT-C4-B3B-N-SOLO-PUBLICO, tipo: entero, unidad: "casos en el nivel SOLO-PUBLICO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C4-B3B-N-SOLO-PRIVADO, tipo: entero, unidad: "casos en el nivel SOLO-PRIVADO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C4-B3B-N-AMBOS, tipo: entero, unidad: "casos en el nivel AMBOS de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C4-B3B-N-SOLO-OTRO, tipo: entero, unidad: "casos en el nivel SOLO-OTRO de LUGAR (AMBOS y SOLO-OTRO van fuera del cociente y se publican)"}
+  - {id: RESULT-C4-B3B-FAC3B-P-T1,   tipo: proporcion, unidad: "P_PUB ponderada entre T=1 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C4-B3B-FAC3B-P-T0,   tipo: proporcion, unidad: "P_PUB ponderada entre T=0 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-C4-B3B-FAC3B-DELTA,  tipo: flotante,   unidad: "Delta = P_PUB(T=1) - P_PUB(T=0) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C4-B3B-FAC3B-IC-LO,  tipo: flotante,   unidad: "limite inferior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C4-B3B-FAC3B-IC-HI,  tipo: flotante,   unidad: "limite superior IC95 de Delta", permite_no_estimable: true}
+  - {id: RESULT-C4-B3B-FAC3B-N-T1,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=1"}
+  - {id: RESULT-C4-B3B-FAC3B-N-T0,   tipo: entero,     unidad: "casos en el denominador de P_PUB con T=0"}
+  - {id: RESULT-C4-B3B-FAC3B-DELTA-SENS, tipo: flotante, unidad: "Delta de la sensibilidad de S6 §2.4 (AMBOS como publico) [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-C4-B3B-FAC3B-N-PONDERADOR-VALIDO, tipo: entero, unidad: "casos con ponderador finito y >0 (diagnostico de cobertura de S6 §3.2)"}
+  - {id: RESULT-C4-B3B-FAC3B-VEREDICTO, tipo: texto,   unidad: "CORROBORADA / CONTRARIA / NO-DISCRIMINA / NO-ESTIMABLE / NO-ESTIMABLE-POR-DEFINICION-INDETERMINADA"}
+  - {id: RESULT-T2-N-VARIABLES,           tipo: entero, unidad: "variables ec01* halladas en el archivo (de 9 declaradas)"}
+  - {id: RESULT-DHS-N-EPISODIOS-TOTAL,    tipo: entero, unidad: "episodios en iiib_hs1.dta"}
+  - {id: RESULT-DHS-N-EPISODIOS-INCLUIDOS,tipo: entero, unidad: "episodios con motivo ENFERMEDAD u OPERACION"}
+  - {id: RESULT-DHS-N-EPISODIOS-EXCLUIDOS,tipo: entero, unidad: "episodios excluidos por motivo (parto, accidente, agresion, analisis, aborto, otro)"}
+  - {id: RESULT-LLAVE-UNICA-PORTAD, tipo: texto, unidad: "unicidad de la llave (folio,ls) de c_portad tras el filtro, CON el conteo A.13 de la unica diferencia: filas leidas · filtradas por llave ausente · las que entraron al join"}
+  - {id: RESULT-LLAVE-UNICA-W_B3B, tipo: texto, unidad: "UNICA / REPETIDA -- guardia de fan-out del join contra ehh02w_b3b (fac_3b)"}
+  - {id: RESULT-LLAVE-UNICA-W_BX, tipo: texto, unidad: "UNICA / REPETIDA -- guardia de fan-out del join contra ehh02w_bx (pareja de ponderadores)"}
+  - {id: RESULT-JOINS,        tipo: texto, unidad: "filas que entraron -> filas que resolvieron, por join (guardia de S6 §3.4)"}
+  - {id: RESULT-VENTANAS,     tipo: texto, unidad: "ventanas de referencia con pagina del cuestionario, y la brecha declarada"}
+  - {id: RESULT-CODIGOS-SI-NO,tipo: texto, unidad: "codificacion Si/No usada, con la pagina del manual que la fija"}
+  # ── LOS 14 NUEVOS · diagnostico de la unica diferencia operativa (S6 v1.3 §3.5).
+  # Ninguno es un Delta, un IC ni un veredicto.
+  - {id: RESULT-COBERTURA-DISENO, tipo: texto, unidad: "llave del join de diseno y su cobertura: filas de c_portad con llave, hogares unicos, filas de mas por folio repetido, y folios con >1 estrato o >1 id_loc; declara DEDUP-LOSSLESS o DEDUP-NO-LOSSLESS"}
+  - {id: RESULT-CONGLOMERADO-LOCALIDAD, tipo: texto, unidad: "llave de conglomerado usada y los tres conteos que la controlan (id_loc / (edo,mpio,loc) / loc a secas), mas estratos, hogares y localidades por estrato; declara BIYECCION-VERIFICADA o DISCREPAN"}
+  - {id: RESULT-CONGLOMERADO-ANIDAMIENTO, tipo: texto, unidad: "guardia del anidamiento hogar c localidad c estrato que el remuestreo supone: localidades que cruzan >1 estrato, hogares que cruzan >1 localidad, filas con id_loc nulo; ANIDADO / NO-ANIDADO"}
+  - {id: RESULT-C1-B3B-N-CONGLOMERADOS, tipo: entero, unidad: "localidades distintas en el universo de esta fila (unidades que el bootstrap remuestrea)"}
+  - {id: RESULT-C1-B3B-N-SIN-CONGLOMERADO, tipo: entero, unidad: "filas de esta celda cuya localidad NO resolvio en el left-join contra c_portad -- si no es 0, caen todas en un mismo conglomerado y el IC se lee con esa reserva"}
+  - {id: RESULT-C1-BX-N-CONGLOMERADOS, tipo: entero, unidad: "localidades distintas en el universo de esta fila (unidades que el bootstrap remuestrea)"}
+  - {id: RESULT-C1-BX-N-SIN-CONGLOMERADO, tipo: entero, unidad: "filas de esta celda cuya localidad NO resolvio en el left-join contra c_portad -- si no es 0, caen todas en un mismo conglomerado y el IC se lee con esa reserva"}
+  - {id: RESULT-C2-B3B-N-CONGLOMERADOS, tipo: entero, unidad: "localidades distintas en el universo de esta fila (unidades que el bootstrap remuestrea)"}
+  - {id: RESULT-C2-B3B-N-SIN-CONGLOMERADO, tipo: entero, unidad: "filas de esta celda cuya localidad NO resolvio en el left-join contra c_portad -- si no es 0, caen todas en un mismo conglomerado y el IC se lee con esa reserva"}
+  - {id: RESULT-C2-BX-N-CONGLOMERADOS, tipo: entero, unidad: "localidades distintas en el universo de esta fila (unidades que el bootstrap remuestrea)"}
+  - {id: RESULT-C2-BX-N-SIN-CONGLOMERADO, tipo: entero, unidad: "filas de esta celda cuya localidad NO resolvio en el left-join contra c_portad -- si no es 0, caen todas en un mismo conglomerado y el IC se lee con esa reserva"}
+  - {id: RESULT-C3-B3B-N-CONGLOMERADOS, tipo: entero, unidad: "localidades distintas en el universo de esta fila (unidades que el bootstrap remuestrea)"}
+  - {id: RESULT-C3-B3B-N-SIN-CONGLOMERADO, tipo: entero, unidad: "filas de esta celda cuya localidad NO resolvio en el left-join contra c_portad -- si no es 0, caen todas en un mismo conglomerado y el IC se lee con esa reserva"}
+  - {id: RESULT-C4-B3B-N-CONGLOMERADOS, tipo: entero, unidad: "localidades distintas en el universo de esta fila (unidades que el bootstrap remuestrea)"}
+  - {id: RESULT-C4-B3B-N-SIN-CONGLOMERADO, tipo: entero, unidad: "filas de esta celda cuya localidad NO resolvio en el left-join contra c_portad -- si no es 0, caen todas en un mismo conglomerado y el IC se lee con esa reserva"}
