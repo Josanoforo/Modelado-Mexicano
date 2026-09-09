@@ -1,11 +1,11 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
 ## Estado vivo derivado
 
-- **Procedencia.** SHA `c55320b` · fecha del commit `2026-09-08` · ¿árbol == origin/main? `False`.
+- **Procedencia.** SHA `86294db` · fecha del commit `2026-09-09` · ¿árbol == origin/main? `False`.
 - **Motor.** reglas totales `21` · reglas con dato (>=1 conducta MEDIDO*) `20` · reglas sin dato `1` · conductas MEDIDO* `50` · tiers `{'FUERTE': 19, 'MEDIA': 2}`.
 - **Corredor.** marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
-- **Corpus lógico.** entradas del manifiesto `1569` · filas de registro de curación `135` · filas de relaciones `228` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo `410` · FP máximo `357` · FP abiertas: FP-349, FP-350, FP-351, FP-352, FP-353, FP-354, FP-355, FP-356, FP-357 · encargos archivados `388` (consumidos `370`) · cola de encargos:
+- **Corpus lógico.** entradas del manifiesto `1572` · filas de registro de curación `139` · filas de relaciones `228` · filas del inventario de reactivos v1.2 `178247`.
+- **Gobernanza operativa.** ADR máximo `436` · FP máximo `370` · FP abiertas: FP-361, FP-363, FP-370 · encargos archivados `414` (consumidos `396`) · cola de encargos:
   - `2026-08-31-MAESTRA33-B2-MARCO-M-SORTEA-v1_1.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-L2-ARBITRA-v1_2.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md`: CONSUMIDO
@@ -22,9 +22,10 @@
   - `2026-09-07-GEN2-E5-CALC-0001-0003.md`: GATED
   - `2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md`: CONSUMIDO
   - `2026-09-07-GEN2-E7-READINESS-2.md`: CONSUMIDO
+  - `2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`: LISTO
   - `2026-09-08-MAESTRA34-E1-REVISION-FALSADORES.md`: CONSUMIDO
-- **GEN2 (derivado de `corrida0 status`).** corridas selladas `0` / requeridas `86` · resultados sellados `0` / activos `205` · pendientes `205` · dependencias numéricas legacy activas `205` · validación independiente `0` · diferencias materiales `0` · NC- abiertas `25` · replays LEGACY-GEN1 sellados `2` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
-- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `0` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `0` · adoptados por un consumidor activo `0`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
+- **GEN2 (derivado de `corrida0 status`).** corridas selladas `14` / requeridas `82` · resultados sellados `1021` / activos `205` · pendientes `205` · dependencias numéricas legacy activas `203` · validación independiente `0` · diferencias materiales `0` · NC- abiertas `60` · replays LEGACY-GEN1 sellados `2` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
+- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `751` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `5` · adoptados por un consumidor activo `2`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
 - **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, `data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `forense/encargos/*.md`, `forense/encargos/cola/*.md`.
 
 **Protocolo vigente.** La actualización factual de este bloque se hace con:
@@ -116,7 +117,7 @@ El humano solo actualiza la interpretación (las tablas curadas §2.1-2.5 y la n
 | `corrida0.py vigencia` · `delta` | **`[NO-IMPLEMENTADO]`**, declarado en el propio `--help` |
 | `entorno.py` · `limpia_arbol.py` · `cierre_acto.py` | en el árbol |
 | `forense/no-corrido.tsv` + plantilla de PR (A.14) | en el árbol, 43 filas |
-| Plan CORRIDA-0 | `forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md` **con `.sha256`** |
+| Plan CORRIDA-0 | **Plan vigente: `PLAN-DE-OBRA-GEN2 v1.1` (sellado por merge del PR #652 · `forense/notas/PLAN-DE-OBRA-GEN2-v1_1-2026-09-09.md`)** — corrige NC-0083 (ACTO GEN2-OPERACION-1, 9/sep/2026): esta fila citaba `forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md` **con `.sha256`**, anterior al PR #652; se cita por firma concreta, no por "versión más alta" |
 | Instrucciones v2.13 | en el árbol |
 | suite | **3 FAIL · 203 WARN · LÍNEA BASE VERDE** (`dee5fc5`) |
 | **los seis checks del GO (E.5)** | **NO-DERIVABLE** — `preflight` responde por `calc_id`; no hay artefacto que los reporte juntos. Universo: `grep` de los seis nombres sobre el plan, `ls` de `forense/notas/*READINESS*` y `*GO*` |
@@ -147,7 +148,7 @@ El humano solo actualiza la interpretación (las tablas curadas §2.1-2.5 y la n
 | id | qué bloquea | dueño | cómo se cierra |
 |---|---|---|---|
 | **G1** | **El GO de E.5 no es derivable.** E.5 prohíbe lanzar corrida real hasta que los seis checks pasen en `origin/main`, y hoy «podemos lanzar» sería juicio, no derivación | dirección | un `corrida0.py go` o un readiness commiteado |
-| **G2** | **`vigencia` y `delta` sin implementar.** E.1 exige que la comparación contra GEN1 se calcule por script y después de medir; hoy no hay herramienta que lo haga | dirección | implementarlos antes de la primera adopción |
+| **G2** | **`vigencia` y `delta` sin implementar** — sigue así; ver `NC-0091` (`ABIERTA`, `GEN2-FIRMAS-ADOPCION-1`/`PR #656`: «Implementar delta» · `DECISION-DE-MESA-PENDIENTE`) para la decisión pendiente concreta. Corrección (ACTO GEN2-OPERACION-1, 9/sep/2026): decisiones POSTERIORES a este bloqueador ya consolidaron dos adopciones activas (`ADR-432 · ACTO GEN2-FIRMAS-ADOPCION-1`, `PR #655`: `CALC-C0D-MARCADOR-v3` y `CALC-ENVIPE-0001`, `cuenta_gen2=SI`, adoptadas por consumidor real). Esas dos adopciones **no** requirieron `delta`/`vigencia` (E.1 exige la comparación contra GEN1 sólo para lo que hereda de GEN1, no para toda adopción) — el bloqueador sigue vivo para la comparación GEN1, no bloqueó estas dos | dirección | implementarlos antes de la primera adopción que sí compare contra GEN1; mesa resuelve `NC-0091` |
 | **G3** | **Cuatro filas `DECISION-DE-MESA-PENDIENTE`** en la deuda declarada | mesa | resolver por fila |
 | **G4** | **Una rama viva contra la política de cero**, y el verificador no puede comprobar el punto D sin `gh` | mesa | fusionar o borrar; instalar `gh` donde corra el reporte |
 | **G5** | **Cuatro firmas ABIERTA** (FP-349 a FP-352) | mesa | firma por fila |

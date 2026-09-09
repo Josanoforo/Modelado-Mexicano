@@ -684,6 +684,138 @@ este bloque.
 
 ---
 
+## 2-ter · SEIS ENMIENDAS DE CALIBRACIÓN — `ACTO GEN2-OPERACION-1 · CICLO-CONCILIACION-PAGABLE`
+
+P2 de `ACTO GEN2-OPERACION-1 · CICLO-CONCILIACION-PAGABLE`
+(`forense/encargos/2026-09-09-GEN2-OPERACION-1-CICLO-CONCILIACION-PAGABLE.md`).
+No son un segundo revisor ni una segunda rutina: son disciplina que se
+aplica **dentro** de los once puntos, del bloque 2-bis y del veredicto,
+la misma sesión, el mismo comentario único. Armonizan con `2-bis ·
+REVISA-CALC` (`ACTO GEN2-REVISA-CALC`) sin contradecirlo — donde este
+bloque habla de "adopción" o "cifra" y 2-bis ya trae su propia fila,
+gana la más específica de las dos y las dos se citan juntas.
+
+### Enmienda 1 — evidencia ejecutada, documental citada, o limitación explícita
+
+Toda afirmación relevante de este agente cae en una de tres clases, y
+**lo dice**:
+
+- **Ejecutada** — hay comando y salida pegados (regla ya vigente del
+  bloque 2). Sólo esta clase se rotula `ejecutado` en el comentario.
+- **Documental citada** — la afirmación descansa en un archivo/línea del
+  árbol que el comentario cita con ruta exacta (`archivo:línea`), sin
+  correr nada sobre él. Se rotula `citado`, nunca `ejecutado` — citar no
+  es correr, y rotular lo uno como lo otro es exactamente el defecto que
+  esta enmienda existe para cerrar.
+- **Limitación explícita** — ni se ejecutó ni se citó, y el comentario
+  dice por qué (entorno, alcance, tiempo). Es lo que el bloque 2 ya
+  llama `NO-VERIFICADO`.
+
+**`NO-APLICA` sólo es válido cuando la comprobación está fuera del
+objeto del PR** — nunca porque sea costosa de correr, tarde, o requiera
+instalar algo. Un punto caro de correr que sigue dentro del objeto del
+PR es `NO-VERIFICADO` con su razón, no `NO-APLICA`.
+
+### Enmienda 2 — el resumen concuerda con su propia tabla
+
+El veredicto y el recuento (§3.1/§3.2) se derivan **de la tabla de los
+once puntos que el mismo comentario publica**, nunca de una impresión
+aparte. Si la tabla trae una comprobación aplicable marcada
+`NO-VERIFICADO`, el resumen **la cuenta como `NO-VERIFICADO` con el peso
+que le corresponde** (`RESERVA` si su peso base es `RESERVA`, y sigue
+contando hacia `NO-FUSIONAR` si su peso base es `BLOQUEA` y no pudo
+verificarse que NO lo sea) — nunca se omite del recuento ni se sube
+tácitamente a `PASA` porque el resto del PR se veía bien.
+
+### Enmienda 3 — cifras sólo comparables dentro del mismo SHA/universo/fecha/entorno
+
+Extiende el punto 2.5 (toda cifra, re-derivada por comando): una cifra
+sólo se compara contra otra cifra cuando las dos comparten **las cuatro
+coordenadas** — mismo SHA (o el `HEAD`/`tip` declarados en §1.6), mismo
+universo (mismo conjunto de archivos/filas contado), misma fecha, mismo
+entorno (NUBE/CAJA). Si falta cualquiera de las cuatro, la comparación
+**no se hace** — se declara `SIN-BASE-COMPARABLE` (mismo vocabulario que
+`tools/digesto_tramite.py::seccion_h`) y se re-derivan las dos cifras por
+separado. **No hay excepción de "es una diferencia pequeña":** una cifra
+vieja comparada contra una nueva se corrige siempre, sin importar cuánto
+difieran — la magnitud de la discrepancia no decide si se corrige, sólo
+decide si escala a `BLOQUEA` (enmienda 4).
+
+### Enmienda 4 — nace `RESERVA` informativa, y seis causas que sí escalan a `BLOQUEA`
+
+El bloque 2 ya usa `RESERVA` como peso (2.4, 2.6, 2.7, 2.8, 2.11); esta
+enmienda la hace explícita como **categoría propia**, distinta de
+`BLOQUEA` y de `NO-VERIFICADO`/`NO-FUSIONAR`:
+
+- **`RESERVA`** — un desajuste **puramente informativo**, con **causa
+  localizada** (se sabe exactamente de dónde viene la discrepancia), que
+  **no cambia el resultado de la compuerta** (el veredicto sería el
+  mismo con o sin él) y **no oculta un fallo real**. Ejemplo local: el
+  patrón de `#643` — una cifra auxiliar del comentario resultó
+  corregible sin que el hallazgo de fondo (`429` vs `428`,
+  `NO-FUSIONAR`) cambiara; la cifra auxiliar es `RESERVA`, el hallazgo de
+  fondo sigue siendo el que decide el veredicto.
+- **`BLOQUEA`** se reserva para seis clases, y **sólo** para ellas:
+  **identidad** (sucesión, sello, cadena de antecesoras), **universo**
+  (qué se midió, sobre qué conjunto), **estimación** (el número que
+  entra al canon/corpus), **consumo** (qué consumidor lee qué resultado),
+  **decisión** (qué se firmó, qué se adoptó) o **resultado material**
+  (lo que cambia el veredicto del PR). **La magnitud numérica de un
+  `WARN`, por sí sola, nunca decide la severidad** — necesita, además,
+  que la causa caiga en una de esas seis clases para escalar de
+  `RESERVA` a `BLOQUEA`. Ejemplo local: el patrón de `#656` — el alcance
+  de una sonda quedó declarado y sin reproducir, y **eso** (falta de
+  reproducción de la sonda, clase "consumo") es lo que decide `RESERVA`
+  con causa citada; el tamaño del universo no reproducido no es, por sí
+  mismo, lo que decide el peso.
+
+**Caso adverso, para no confundir `NO-REPRODUCE` con `PASA`:** una
+comprobación que no reproduce (sello ausente, entorno insuficiente,
+input no visible — ver 2-bis) se reporta **siempre** como
+`NO-VERIFICADO`, **nunca** como `PASA` y nunca se omite del recuento. El
+encargo que calibra este bloque cita un fixture concreto que E1 dejó
+etiquetado `E1` en este patrón (`NO-REPRODUCE→NO-VERIFICADO`); esta
+sesión no localizó su ruta exacta en el árbol al redactar esta enmienda
+— **se deja dicho explícitamente que el fixture queda por localizar**,
+sin inventar una ruta que no se verificó. La regla no depende de
+localizarlo: se aplica igual.
+
+### Enmienda 5 — columnas de evidencia, revisadas aunque el archivo sea DERIVADO
+
+Un archivo marcado `DERIVADO` (generado por script — `tools/digesto_tramite.py`,
+`tools/tablero_programa.py` y análogos) no es excusa para saltarse sus
+**columnas de evidencia** (`dónde`, `firmada_en`, `ejecutada_en`,
+`cerrado_por`, `sha`/hash citado, y equivalentes). Que el texto
+alrededor sea mecánico no implica que sus columnas de evidencia lo sean
+igual de fiablemente — un derivador puede citar una ruta que ya no
+existe o un SHA que no resuelve, y eso es exactamente lo que este punto
+existe para atrapar. Extiende el punto 2.6 (originales intactos): un
+archivo `DERIVADO` sigue sujeto a "¿esta columna de evidencia, re-
+derivada, dice lo mismo que el archivo afirma?" — `BLOQUEA` si no
+coincide, `RESERVA` si sólo cambió de forma.
+
+### Enmienda 6 — adopción con `p` idéntico exige la cadena consumidor→RESULT→corrida verificada
+
+Extiende la fila "Adopción" de la tabla de 2-bis: cuando el PR declara
+que una adopción usa el **mismo valor de `p`** que una corrida anterior,
+eso **no se asume** — el revisor verifica dos cosas, cada una con su
+comando o su limitación explícita (enmienda 1):
+
+1. **La relación consumidor→`RESULT`→corrida**: que el consumidor que el
+   PR cita de verdad lee el `RESULT` de **esa** corrida concreta (no de
+   una corrida distinta que resultó tener el mismo número por
+   coincidencia — el caso de `MAESTRA33-A1` en el punto 2.5 es la forma
+   general de este error).
+2. **Que la sonda de consumo se ejecutó**, o que su ausencia está
+   **declarada explícitamente** en el comentario, con razón — nunca
+   asumida por default porque "el número ya se vio antes".
+
+**Peso: `BLOQUEA`** si la cadena consumidor→RESULT→corrida no resuelve o
+contradice lo declarado; `RESERVA`/`NO-VERIFICADO` si la sonda de
+consumo no pudo ejecutarse pero su ausencia queda declarada con causa.
+
+---
+
 ## 3 · EL VEREDICTO Y EL COMENTARIO
 
 ### 3.1 · El veredicto sale de los pesos, no del ánimo
