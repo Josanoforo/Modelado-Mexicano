@@ -33,3 +33,9 @@ P4 · Registro. FP-358/359/352 → EJECUTADAS con la firma; NC de reserva de E5-
 PERÍMETRO: `tools/corrida0.py` (solo `_evalua_contexto`, `status`, `registro`, `preflight`) · `tests/test_corrida0.py` (falsadores nuevos) · runbook de caja (una línea) · `forense/{firmas-pendientes,no-corrido}.tsv` · nota · 0-bis · cascada. No toca sellos, CALC, `decisiones.tsv`, specs ni T35. Si escribes fuera de la lista, PARA. CONTADOR: cero GEN2 — aparato declarado, pagado: tres defectos reales medidos, dos de ellos capaces de publicar una firma falsa o de negarle REPRODUCE a una corrida correcta para siempre.
 
 ## NO-CORRIDO / RESERVAS obligatoria.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **P1 · «Re-correr verify sobre CALC-0001/0002/0003-v2 y pegar la tabla: esperado REPRODUCE·IDENTICO pleno por primera vez sobre corridas viejas»** | `PARO-ENTORNO`. Re-corrido de verdad, en NUBE: las tres corridas confirman que `commit_distinto`/`commit_no_verificable` YA NO aparecen en ningún `razon:` (el defecto de `FP-358` está reparado) pero ninguna llega a `REPRODUCE · IDENTICO` — `CALC-0001`/`CALC-0002` salen `NO-VERIFICABLE` (`input_no_verificable=...:RAIZ_NO_CONFIGURADA`, `descargas_mx`/`data_raw` no montados en NUBE) y las tres traen además `dependencias_distintas` (`numpy`/`pandas`/`scipy` `AUSENTE` en NUBE contra la versión real al sellar) y `RESULT: NO-EJECUTABLE` (`ModuleNotFoundError: No module named 'numpy'`). Las tres causas son AJENAS a `FP-358`/`FP-359`/`FP-352` y a este acto, que declara cero microdato. | `verify REPRODUCE · IDENTICO` sobre las tres corridas reales sigue sin demostrarse punta a punta. Lo que SÍ queda probado, aislado y con control positivo verificable sin microdato (`T-VERIFY-CONTEXTO-FP358`), es exactamente el eje que `FP-358` pedía: el commit deja de gatear. | `NC-0061`. CAJA (worktree con corpus montado + `numpy`/`pandas`/`scipy` instalados) — `SIN-ASIGNAR` de acto puntual. |
