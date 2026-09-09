@@ -26,3 +26,21 @@ LO QUE NO HACE: no toca Windows ni certifica el scheduler (encargo hermano de ca
 SUCESORES: GEN2-ADQ-VERIFICACION-CAJA (hermano, fila de caja) · la primera corrida de producción post-arreglo, que estrena H1/H5 en vivo.
 
 CIERRE · Cascada completa + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+(A.14, `ACTO GEN2-T8`. Precede a `## CONSUMIDO`.)
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **Criterio de aceptación 7 del §6** — «una ejecución programada de producción se correlaciona desde Task Scheduler hasta su recibo publicado; una invocación manual se distingue y no sustituye esa evidencia». | `NO-VERIFICABLE-AQUÍ` | El arranque del 9/sep (`run_id=2026-09-09T073007-371`) sigue **sin atribuirse** a un disparador concreto: el runner corrió y publicó, pero desde NUBE no se puede saber si lo disparó la tarea de Windows, el crontab legado o una mano. `check_scheduler_windows()` devuelve `NO-VERIFICABLE` (no «no instalada»). H1/H5 quedan reparados y probados, pero su estreno en vivo es de la próxima corrida. | `GEN2-ADQ-VERIFICACION-CAJA` (hermano, fila de caja), con la lectura de PowerShell del §7 de la revisión ya redactada. |
+| **Criterio 8 del §6** — la prueba de recuperación de un disparo perdido. | `NO-VERIFICABLE-AQUÍ` | Conserva su alcance **PARCIAL** tal como lo dejó la aceptación del 7/sep (`ADQ-CRON-V2-P7`): este acto **NO la promociona**. No se toca `logon`, energía, `WakeToRun` ni se reinstala nada. | `GEN2-ADQ-VERIFICACION-CAJA`. |
+| **`P3` de la propuesta de Astra** — ejecutar el piloto SONDA-3 pendiente. | `DIFERIDO-A:GEN2-SONDA-3-PILOTO-CAJA` | El criterio nuevo de `.claude/commands/sonda.md` / `.claude/commands/adquiere.md` sigue **sin ejercitarse contra un negativo material real**. Este acto solo lo hizo **visible** (H3): ahora aparece en «esperando caja». `NC-0060` se **reutiliza**, sigue `ABIERTA`, y no se abre deuda gemela. | `GEN2-SONDA-3-PILOTO-CAJA` (`forense/encargos/cola/2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`), en sesión CAJA. |
+| **`data/adq-config.yaml`: la clave `claude_kill_after_segundos`.** El `--kill-after` de H6 usa un default de shell (60 s) en vez de una clave de configuración. | `FUERA-DE-PERÍMETRO` | Ninguno funcional: el escalamiento TERM→KILL está activo y probado. Pero la gracia no es configurable desde el YAML como sí lo es `claude_timeout_segundos`, y leerla por `lee_config` emitiría un `CONFIG-DEGRADADA` en cada corrida por una clave que nadie escribió. Se declara para que la asimetría no se lea como descuido. | El acto que toque `data/adq-config.yaml` a continuación, o `GEN2-ADQ-VERIFICACION-CAJA` si la calibra en caja. |
+| **La autoridad uniforme del calendario.** El horario 07:30 sigue viviendo en **tres** consumidores que no se leen entre sí (trigger del instalador de Windows, `date` local del runner, constante de T31). | `DECISIÓN-DE-MESA-PENDIENTE` | Un cambio de hora aplicado en un solo sitio volvería a hacer mentir al vigilante. Este acto lo deja **escrito** (enmienda de precedencia del runbook) y **no ejecutado**: el encargo prohíbe cambiar el horario. | Acto que unifique el calendario en `data/adq-config.yaml` y propague a los tres consumidores, o decisión de mesa de dejarlo como está con la advertencia escrita. |
+| **`data/curacion-registro/*.tsv`** — ninguna fila de la cola se escribió. | `FUERA-DE-PERÍMETRO` | Ninguno: el contrato de selección es de **solo lectura** y proyecta lo que la caminata tomaría, sin escribir. El escritor canónico sigue siendo `tools/curador_registro/tsv_crudo.py::upsert_fila`, y el perímetro lo prohíbe explícitamente («escritor canónico o nada»). La cola queda **sin barrer**, como el encargo exige. | Ninguno — es el comportamiento pedido, no una deuda. |
+| **`.claude/commands/despacha.md`** — no se tocó. | `FUERA-DE-PERÍMETRO` | Ninguno: el perímetro lo admitía «solo si el contrato lo exige», y no lo exigió. El defecto H3 no estaba en el selector de `/despacha` (su `grep '^ENTORNO: CAJA'` es correcto y sigue siéndolo) sino en el archivo del piloto, que es donde se corrigió. | Ninguno. |
+
+**Pisadas en paralelo:** ninguna observada. La intersección declarada con el lote ENCIG de CAJA era `forense/no-corrido.tsv` y sus derivados; este acto solo **apendiza** (`NC-0107`, `NC-0108`) y no re-deriva ninguna vista. `NC-0060` se cita sin editarla.
