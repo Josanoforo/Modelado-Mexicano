@@ -1,0 +1,237 @@
+# CALC-B-0001 -- cara mecanica de spec.md (ACTO GEN2-C0-B · LA BASE).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/B-REMESAS-spec-v1_0.md (`prereg-caja-B-REMESAS`).
+# ENSAYO de la linea base temporal B sobre la serie de remesas de ENIGH
+# 2016-2022. NINGUNA cifra suya entra a un veredicto de regla (T9).
+# CONGELADO en el COMMIT-1 de GEN2-C0-B, antes de abrir microdato.
+calc_id: CALC-B-0001
+spec_md: spec.md
+spec_md_sha256: c645b59fef55cf20b969ad657c8fcde1100cff3b1f524f50e883d27d4442a998
+
+script: data/corrida0/CALC-B-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ENSAYO-LINEA-BASE-TEMPORAL-B
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/B-REMESAS-spec-v1_0.md
+  spec_sellada_sha256: 2376c21a0668a5f57db8cbddcd8cc59dd468dc7e10838f66da3b8156fb93c7ba
+  reglas_bajo_prueba: "NINGUNA. R5.1 / familia.seguro.volatilidad_ausencia_estado NO se mueve: este CALC no la falsa ni la re-calibra. T9, verbatim: es modelo nuevo y ninguna cifra suya entra a un veredicto."
+  contaminacion_declarada: "ADR-46 -- al congelar esta spec la sesion YA habia leido milpa/tramite.yaml:850-856 (la serie GEN1 observada de las seis olas con sus IC95). El ensayo NO es ciego; §0.2 y §5.3 de la sellada declaran que se deriva de eso y que sigue desconocido."
+  medidor_ejecutado_al_congelar: "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2 del mismo acto"
+
+inputs:
+  - id: enigh2016_nc_csv
+    origen: manifiesto
+  - id: enigh2018_nc_csv
+    origen: manifiesto
+  - id: enigh2020_nc_csv
+    origen: manifiesto
+  - id: enigh2022_nc_csv
+    origen: manifiesto
+  - id: IN-B-SELECTOR
+    origen: repo
+    ruta: tools/baseline_temporal.py
+    sha256: 886f2da43724f26ead82736eb48cdbba4b4145b51cdedf2b38f2fd1701871d92
+  - id: IN-B-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/B-REMESAS-spec-v1_0.md
+    sha256: 2376c21a0668a5f57db8cbddcd8cc59dd468dc7e10838f66da3b8156fb93c7ba
+
+variables:
+  - {archivo: "enigh<ola>_nc_csv.zip -> <directorio>/conjunto_de_datos/*.csv", variable: folioviv, rol: "llave de vivienda (identidad del hogar junto con foliohog)"}
+  - {archivo: "enigh<ola>_nc_csv.zip -> <directorio>/conjunto_de_datos/*.csv", variable: foliohog, rol: "llave de hogar dentro de la vivienda"}
+  - {archivo: "enigh<ola>_nc_csv.zip -> <directorio>/conjunto_de_datos/*.csv", variable: remesas, rol: "desenlace -- ingreso trimestral por remesas", codigos: "N (12,2); recibe_remesas = 1 si remesas > 0, 0 si remesas == 0", direccion: "recibe = remesas > 0"}
+  - {archivo: "enigh<ola>_nc_csv.zip -> <directorio>/conjunto_de_datos/*.csv", variable: factor, rol: "ponderador de hogar en las CUATRO olas del universo (2016, 2018, 2020, 2022)"}
+  - {archivo: "enigh<ola>_nc_csv.zip -> <directorio>/conjunto_de_datos/*.csv", variable: est_dis, rol: "estrato de diseno -- estratificacion del bootstrap"}
+  - {archivo: "enigh<ola>_nc_csv.zip -> <directorio>/conjunto_de_datos/*.csv", variable: upm, rol: "unidad primaria de muestreo -- conglomerado que se re-muestrea"}
+  - {archivo: "tools/baseline_temporal.py", variable: seleccionar_baseline, rol: "el selector B, consumido SIN modificar desde los bytes verificados por sha256 (origen: repo)"}
+
+universo: >-
+  Hogares: el universo COMPLETO de `concentradohogar` (folioviv + foliohog) de cada
+  ola de ENIGH Nueva Serie 2016, 2018, 2020 y 2022, SIN filtro adicional -- el mismo
+  universo que milpa/tramite.yaml declara para familia.seguro.volatilidad_ausencia_
+  estado, deliberadamente, para que el punto 2022 sea comparable contra la cifra ya
+  sellada. UNA OLA A LA VEZ, jamas agrupadas ni promediadas. Las olas 2012 y 2014
+  existen en corpus y quedan FUERA del universo congelado (§0.1 de la sellada).
+
+filtros: >-
+  Entran las filas con `factor` finito y > 0 y con `remesas` no nula. La rama NA de
+  la dicotomizacion NO existe y no se fabrica: si `N-NULOS-REMESAS` > 0 en una ola,
+  esa ola sale NO-ESTIMABLE-NULOS-INESPERADOS (guardia §1.1). Si alguna fila valida
+  carece de `est_dis` o de `upm`, el IC de esa ola sale null y el veredicto es
+  NO-ESTIMABLE-DISENO-INCOMPLETO.
+
+ponderador: >-
+  `factor` en las cuatro olas. NO se usa `factor_hog` (nombre del ponderador en 2012
+  y 2014, olas fuera de este universo).
+
+transformacion: >-
+  recibe_remesas = 1 si remesas > 0, 0 si remesas == 0. p_ola = suma(factor *
+  recibe_remesas) / suma(factor) sobre el universo valido de la ola. Sobre esa serie
+  corre el selector B sin modificarlo, para tres objetivos (2018, 2020, 2022) y dos
+  brazos que difieren SOLO en el metadato `disponible_desde`: OPERATIVO usa el campo
+  `Modified` de la version en corpus; PERSISTENCIA usa `periodo_fin` de la ola (el
+  contrafactico "si cada ola hubiera estado disponible el dia que cerro su
+  levantamiento"). Periodos = ano calendario de la ola; fecha_corte(objetivo) =
+  (objetivo - 1)-12-31.
+
+estimando: >-
+  DESCRIPTIVO, en dos capas. (1) p_ola: proporcion ponderada de hogares con remesas
+  por ola, con IC95. (2) El error de la linea base: para cada objetivo y cada brazo,
+  P_B - P_observada con signo, su valor absoluto, si P_B cae dentro del IC95 de la
+  observada, y el margen con signo al borde mas cercano. NO es una estimacion de
+  regla: ninguna cifra entra a un veredicto (T9) y R5.1 no se mueve.
+
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  fuente_acto: "ACTO GEN2-C0-B · LA BASE · CALC-B-0001"
+  firma_que_lo_autoriza: "D-2 / FP-348 (FIRMADA) -- B es el piso comun de los tres contendientes bajo el mismo corte informativo del selector; el ensayo remesas ENIGH 2016->2022 queda autorizado."
+  selector_sha256: 886f2da43724f26ead82736eb48cdbba4b4145b51cdedf2b38f2fd1701871d92
+  bootstrap_replicas: 2000
+  n_minimo_celda: 10
+  metodo_ic: "bootstrap de upm CON REEMPLAZO dentro de est_dis, conservando el numero de upm por estrato; percentiles 2.5/97.5"
+  ranura_no_preregistrada: >-
+    Nadie pre-registro el metodo de IC para esta serie. Lo elige el ejecutor sobre
+    ranura vacia, se declara y se eleva a mesa. No se hereda de la corrida GEN1 (otra
+    implementacion): no se espera coincidencia digito a digito de los extremos.
+  umbral_roza_el_borde: 1.0e-4
+  columnas:
+    ponderador: factor
+    estrato: est_dis
+    upm: upm
+    desenlace: remesas
+  serie:
+    encuesta: "ENIGH-NS"
+    reactivo: "concentradohogar.remesas"
+    universo: "hogares del universo completo de concentradohogar, sin filtro adicional"
+    codificacion: "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0"
+    segmento: "nacional"
+    unidad: "proporcion"
+  brazos: [OPERATIVO, PERSISTENCIA]
+  objetivos: ["2018", "2020", "2022"]
+  olas:
+  - {ola: "2016", payload_id: enigh2016_nc_csv, directorio: "conjunto_de_datos_concentradohogar_enigh_2016_ns", modified: "2021-11-29", temporal_verbatim: "2016-08-11 2016-11-18"}
+  - {ola: "2018", payload_id: enigh2018_nc_csv, directorio: "conjunto_de_datos_concentradohogar_enigh_2018_ns", modified: "2021-11-29", temporal_verbatim: "2018-08-21-2018-11-28"}
+  - {ola: "2020", payload_id: enigh2020_nc_csv, directorio: "conjunto_de_datos_concentradohogar_enigh_2020_ns", modified: "2021-07-28", temporal_verbatim: "2020-08-21-2020-11-28"}
+  - {ola: "2022", payload_id: enigh2022_nc_csv, directorio: "conjunto_de_datos_concentradohogar_enigh2022_ns", modified: "2023-07-26", temporal_verbatim: "2021-08-11-2021-11-28"}
+  adopcion_p3:
+    consumidor: "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas"
+    result_id: RESULT-B-ENIGH-2022-P
+    valor_materializado: 0.045694
+    umbral_replay: 1.0e-10
+    umbral_grano_milpa: 1.0e-6
+    nota: >-
+      `umbral_replay` es IDENTICO a `tolerancia.abs` de esta spec a proposito: es la
+      tolerancia con que T35 (c) compara el valor materializado por el consumidor
+      contra el RESULT. `contrato_ejecutable()` no pasa `tolerancia` al medidor, asi
+      que se espeja aqui. Si alguien cambia una, tiene que cambiar la otra.
+
+seed:
+  aplica: true
+  valor: 20260908
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en orden fijo: la unica
+    diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al
+    reasociar sumas ponderadas. Los enteros y los textos se comparan EXACTO. NO se
+    afloja para que la adopcion de P3 pase: si el grano de milpa/ (seis decimales) no
+    cabe en esta tolerancia, la cita no se escribe y eso es el hallazgo (§6).
+
+resultados:
+  - {id: RESULT-B-ENIGH-2016-P, tipo: proporcion, unidad: "[2016] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2016-IC-LO, tipo: flotante, unidad: "[2016] limite inferior IC95 de P (bootstrap de upm dentro de est_dis)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2016-IC-HI, tipo: flotante, unidad: "[2016] limite superior IC95 de P (bootstrap de upm dentro de est_dis)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2016-N, tipo: entero, unidad: "[2016] hogares con factor finito >0 y remesas no nula"}
+  - {id: RESULT-B-ENIGH-2016-N-NULOS-REMESAS, tipo: entero, unidad: "[2016] hogares con remesas nula -- guardia §1.1: >0 PARA la ola"}
+  - {id: RESULT-B-ENIGH-2016-N-SIN-DISENO, tipo: entero, unidad: "[2016] filas sin est_dis o sin upm -- guardia §1.1: >0 anula el IC"}
+  - {id: RESULT-B-ENIGH-2016-HOGARES-EXPANDIDOS, tipo: flotante, unidad: "[2016] suma de factor sobre el universo valido (hogares expandidos)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2016-VEREDICTO, tipo: texto, unidad: "[2016] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-B-ENIGH-2016-METADATO-TEMPORAL, tipo: texto, unidad: "[2016] campo `Temporal` del metadato del payload, VERBATIM (sellado por §0.3, no usado)"}
+  - {id: RESULT-B-ENIGH-2018-P, tipo: proporcion, unidad: "[2018] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2018-IC-LO, tipo: flotante, unidad: "[2018] limite inferior IC95 de P (bootstrap de upm dentro de est_dis)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2018-IC-HI, tipo: flotante, unidad: "[2018] limite superior IC95 de P (bootstrap de upm dentro de est_dis)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2018-N, tipo: entero, unidad: "[2018] hogares con factor finito >0 y remesas no nula"}
+  - {id: RESULT-B-ENIGH-2018-N-NULOS-REMESAS, tipo: entero, unidad: "[2018] hogares con remesas nula -- guardia §1.1: >0 PARA la ola"}
+  - {id: RESULT-B-ENIGH-2018-N-SIN-DISENO, tipo: entero, unidad: "[2018] filas sin est_dis o sin upm -- guardia §1.1: >0 anula el IC"}
+  - {id: RESULT-B-ENIGH-2018-HOGARES-EXPANDIDOS, tipo: flotante, unidad: "[2018] suma de factor sobre el universo valido (hogares expandidos)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2018-VEREDICTO, tipo: texto, unidad: "[2018] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-B-ENIGH-2018-METADATO-TEMPORAL, tipo: texto, unidad: "[2018] campo `Temporal` del metadato del payload, VERBATIM (sellado por §0.3, no usado)"}
+  - {id: RESULT-B-ENIGH-2020-P, tipo: proporcion, unidad: "[2020] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2020-IC-LO, tipo: flotante, unidad: "[2020] limite inferior IC95 de P (bootstrap de upm dentro de est_dis)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2020-IC-HI, tipo: flotante, unidad: "[2020] limite superior IC95 de P (bootstrap de upm dentro de est_dis)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2020-N, tipo: entero, unidad: "[2020] hogares con factor finito >0 y remesas no nula"}
+  - {id: RESULT-B-ENIGH-2020-N-NULOS-REMESAS, tipo: entero, unidad: "[2020] hogares con remesas nula -- guardia §1.1: >0 PARA la ola"}
+  - {id: RESULT-B-ENIGH-2020-N-SIN-DISENO, tipo: entero, unidad: "[2020] filas sin est_dis o sin upm -- guardia §1.1: >0 anula el IC"}
+  - {id: RESULT-B-ENIGH-2020-HOGARES-EXPANDIDOS, tipo: flotante, unidad: "[2020] suma de factor sobre el universo valido (hogares expandidos)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2020-VEREDICTO, tipo: texto, unidad: "[2020] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-B-ENIGH-2020-METADATO-TEMPORAL, tipo: texto, unidad: "[2020] campo `Temporal` del metadato del payload, VERBATIM (sellado por §0.3, no usado)"}
+  - {id: RESULT-B-ENIGH-2022-P, tipo: proporcion, unidad: "[2022] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2022-IC-LO, tipo: flotante, unidad: "[2022] limite inferior IC95 de P (bootstrap de upm dentro de est_dis)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2022-IC-HI, tipo: flotante, unidad: "[2022] limite superior IC95 de P (bootstrap de upm dentro de est_dis)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2022-N, tipo: entero, unidad: "[2022] hogares con factor finito >0 y remesas no nula"}
+  - {id: RESULT-B-ENIGH-2022-N-NULOS-REMESAS, tipo: entero, unidad: "[2022] hogares con remesas nula -- guardia §1.1: >0 PARA la ola"}
+  - {id: RESULT-B-ENIGH-2022-N-SIN-DISENO, tipo: entero, unidad: "[2022] filas sin est_dis o sin upm -- guardia §1.1: >0 anula el IC"}
+  - {id: RESULT-B-ENIGH-2022-HOGARES-EXPANDIDOS, tipo: flotante, unidad: "[2022] suma de factor sobre el universo valido (hogares expandidos)", permite_no_estimable: true}
+  - {id: RESULT-B-ENIGH-2022-VEREDICTO, tipo: texto, unidad: "[2022] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-B-ENIGH-2022-METADATO-TEMPORAL, tipo: texto, unidad: "[2022] campo `Temporal` del metadato del payload, VERBATIM (sellado por §0.3, no usado)"}
+  - {id: RESULT-B-OPERATIVO-2018-ESTADO, tipo: texto, unidad: "[OPERATIVO/2018] estado que devuelve el selector: EMITE o SIN_BASELINE"}
+  - {id: RESULT-B-OPERATIVO-2018-METODO, tipo: texto, unidad: "[OPERATIVO/2018] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE"}
+  - {id: RESULT-B-OPERATIVO-2018-FUENTE, tipo: texto, unidad: "[OPERATIVO/2018] resultado_id de la ola seleccionada, o SIN-BASELINE"}
+  - {id: RESULT-B-OPERATIVO-2018-P, tipo: proporcion, unidad: "[OPERATIVO/2018] prediccion de B para la ola objetivo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-B-OPERATIVO-2018-ERROR, tipo: flotante, unidad: "[OPERATIVO/2018] P_B menos P observada de la ola objetivo, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-B-OPERATIVO-2018-ERROR-ABS, tipo: flotante, unidad: "[OPERATIVO/2018] valor absoluto del error", permite_no_estimable: true}
+  - {id: RESULT-B-OPERATIVO-2018-DENTRO-IC, tipo: texto, unidad: "[OPERATIVO/2018] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC"}
+  - {id: RESULT-B-OPERATIVO-2018-MARGEN-AL-BORDE, tipo: flotante, unidad: "[OPERATIVO/2018] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo = dentro", permite_no_estimable: true}
+  - {id: RESULT-B-OPERATIVO-2020-ESTADO, tipo: texto, unidad: "[OPERATIVO/2020] estado que devuelve el selector: EMITE o SIN_BASELINE"}
+  - {id: RESULT-B-OPERATIVO-2020-METODO, tipo: texto, unidad: "[OPERATIVO/2020] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE"}
+  - {id: RESULT-B-OPERATIVO-2020-FUENTE, tipo: texto, unidad: "[OPERATIVO/2020] resultado_id de la ola seleccionada, o SIN-BASELINE"}
+  - {id: RESULT-B-OPERATIVO-2020-P, tipo: proporcion, unidad: "[OPERATIVO/2020] prediccion de B para la ola objetivo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-B-OPERATIVO-2020-ERROR, tipo: flotante, unidad: "[OPERATIVO/2020] P_B menos P observada de la ola objetivo, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-B-OPERATIVO-2020-ERROR-ABS, tipo: flotante, unidad: "[OPERATIVO/2020] valor absoluto del error", permite_no_estimable: true}
+  - {id: RESULT-B-OPERATIVO-2020-DENTRO-IC, tipo: texto, unidad: "[OPERATIVO/2020] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC"}
+  - {id: RESULT-B-OPERATIVO-2020-MARGEN-AL-BORDE, tipo: flotante, unidad: "[OPERATIVO/2020] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo = dentro", permite_no_estimable: true}
+  - {id: RESULT-B-OPERATIVO-2022-ESTADO, tipo: texto, unidad: "[OPERATIVO/2022] estado que devuelve el selector: EMITE o SIN_BASELINE"}
+  - {id: RESULT-B-OPERATIVO-2022-METODO, tipo: texto, unidad: "[OPERATIVO/2022] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE"}
+  - {id: RESULT-B-OPERATIVO-2022-FUENTE, tipo: texto, unidad: "[OPERATIVO/2022] resultado_id de la ola seleccionada, o SIN-BASELINE"}
+  - {id: RESULT-B-OPERATIVO-2022-P, tipo: proporcion, unidad: "[OPERATIVO/2022] prediccion de B para la ola objetivo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-B-OPERATIVO-2022-ERROR, tipo: flotante, unidad: "[OPERATIVO/2022] P_B menos P observada de la ola objetivo, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-B-OPERATIVO-2022-ERROR-ABS, tipo: flotante, unidad: "[OPERATIVO/2022] valor absoluto del error", permite_no_estimable: true}
+  - {id: RESULT-B-OPERATIVO-2022-DENTRO-IC, tipo: texto, unidad: "[OPERATIVO/2022] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC"}
+  - {id: RESULT-B-OPERATIVO-2022-MARGEN-AL-BORDE, tipo: flotante, unidad: "[OPERATIVO/2022] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo = dentro", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2018-ESTADO, tipo: texto, unidad: "[PERSISTENCIA/2018] estado que devuelve el selector: EMITE o SIN_BASELINE"}
+  - {id: RESULT-B-PERSISTENCIA-2018-METODO, tipo: texto, unidad: "[PERSISTENCIA/2018] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE"}
+  - {id: RESULT-B-PERSISTENCIA-2018-FUENTE, tipo: texto, unidad: "[PERSISTENCIA/2018] resultado_id de la ola seleccionada, o SIN-BASELINE"}
+  - {id: RESULT-B-PERSISTENCIA-2018-P, tipo: proporcion, unidad: "[PERSISTENCIA/2018] prediccion de B para la ola objetivo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2018-ERROR, tipo: flotante, unidad: "[PERSISTENCIA/2018] P_B menos P observada de la ola objetivo, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2018-ERROR-ABS, tipo: flotante, unidad: "[PERSISTENCIA/2018] valor absoluto del error", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2018-DENTRO-IC, tipo: texto, unidad: "[PERSISTENCIA/2018] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC"}
+  - {id: RESULT-B-PERSISTENCIA-2018-MARGEN-AL-BORDE, tipo: flotante, unidad: "[PERSISTENCIA/2018] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo = dentro", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2020-ESTADO, tipo: texto, unidad: "[PERSISTENCIA/2020] estado que devuelve el selector: EMITE o SIN_BASELINE"}
+  - {id: RESULT-B-PERSISTENCIA-2020-METODO, tipo: texto, unidad: "[PERSISTENCIA/2020] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE"}
+  - {id: RESULT-B-PERSISTENCIA-2020-FUENTE, tipo: texto, unidad: "[PERSISTENCIA/2020] resultado_id de la ola seleccionada, o SIN-BASELINE"}
+  - {id: RESULT-B-PERSISTENCIA-2020-P, tipo: proporcion, unidad: "[PERSISTENCIA/2020] prediccion de B para la ola objetivo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2020-ERROR, tipo: flotante, unidad: "[PERSISTENCIA/2020] P_B menos P observada de la ola objetivo, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2020-ERROR-ABS, tipo: flotante, unidad: "[PERSISTENCIA/2020] valor absoluto del error", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2020-DENTRO-IC, tipo: texto, unidad: "[PERSISTENCIA/2020] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC"}
+  - {id: RESULT-B-PERSISTENCIA-2020-MARGEN-AL-BORDE, tipo: flotante, unidad: "[PERSISTENCIA/2020] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo = dentro", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2022-ESTADO, tipo: texto, unidad: "[PERSISTENCIA/2022] estado que devuelve el selector: EMITE o SIN_BASELINE"}
+  - {id: RESULT-B-PERSISTENCIA-2022-METODO, tipo: texto, unidad: "[PERSISTENCIA/2022] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE"}
+  - {id: RESULT-B-PERSISTENCIA-2022-FUENTE, tipo: texto, unidad: "[PERSISTENCIA/2022] resultado_id de la ola seleccionada, o SIN-BASELINE"}
+  - {id: RESULT-B-PERSISTENCIA-2022-P, tipo: proporcion, unidad: "[PERSISTENCIA/2022] prediccion de B para la ola objetivo [0,1]", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2022-ERROR, tipo: flotante, unidad: "[PERSISTENCIA/2022] P_B menos P observada de la ola objetivo, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2022-ERROR-ABS, tipo: flotante, unidad: "[PERSISTENCIA/2022] valor absoluto del error", permite_no_estimable: true}
+  - {id: RESULT-B-PERSISTENCIA-2022-DENTRO-IC, tipo: texto, unidad: "[PERSISTENCIA/2022] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC"}
+  - {id: RESULT-B-PERSISTENCIA-2022-MARGEN-AL-BORDE, tipo: flotante, unidad: "[PERSISTENCIA/2022] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo = dentro", permite_no_estimable: true}
+  - {id: RESULT-B-N-PREDICCIONES-OPERATIVO, tipo: entero, unidad: "[OPERATIVO] objetivos en que el selector EMITE y hay observada comparable"}
+  - {id: RESULT-B-N-PREDICCIONES-PERSISTENCIA, tipo: entero, unidad: "[PERSISTENCIA] objetivos en que el selector EMITE y hay observada comparable"}
+  - {id: RESULT-B-BIS-LECTURA-OPERATIVO, tipo: texto, unidad: "[OPERATIVO] lectura B-bis agregada: PISO-ALTO / PISO-BAJO / MIXTO / SIN-PREDICCIONES"}
+  - {id: RESULT-B-BIS-LECTURA-PERSISTENCIA, tipo: texto, unidad: "[PERSISTENCIA] lectura B-bis agregada: PISO-ALTO / PISO-BAJO / MIXTO / SIN-PREDICCIONES"}
+  - {id: RESULT-B-ADOPCION-P3, tipo: texto, unidad: "rama de adopcion pre-declarada: ADOPTABLE / NO-ADOPTABLE-POR-GRANO / NO-ADOPTABLE-POR-DISCREPANCIA"}
+  - {id: RESULT-B-ADOPCION-P3-DELTA, tipo: flotante, unidad: "RESULT-B-ENIGH-2022-P menos el 0.045694 materializado por el motor, CON SIGNO", permite_no_estimable: true}
